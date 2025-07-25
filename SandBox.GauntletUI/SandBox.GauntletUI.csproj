@@ -1,0 +1,128 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <!--Project was exported from assembly: D:\steam\steamapps\common\Mount & Blade II Bannerlord\Modules\SandBox\bin\Win64_Shipping_Client\SandBox.GauntletUI.dll-->
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{0553E1D6-8B06-4F7D-8ED8-6FA6BBB02913}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AssemblyName>SandBox.GauntletUI</AssemblyName>
+    <ApplicationVersion>1.0.0.0</ApplicationVersion>
+    <RootNamespace>SandBox.GauntletUI</RootNamespace>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="SandBox">
+      <HintPath>lib\SandBox.dll</HintPath>
+    </Reference>
+    <Reference Include="SandBox.View">
+      <HintPath>lib\SandBox.View.dll</HintPath>
+    </Reference>
+    <Reference Include="SandBox.ViewModelCollection">
+      <HintPath>lib\SandBox.ViewModelCollection.dll</HintPath>
+    </Reference>
+    <Reference Include="TaleWorlds.CampaignSystem" />
+    <Reference Include="TaleWorlds.Core" />
+    <Reference Include="TaleWorlds.DotNet" />
+    <Reference Include="TaleWorlds.Engine" />
+    <Reference Include="TaleWorlds.Engine.GauntletUI" />
+    <Reference Include="TaleWorlds.GauntletUI" />
+    <Reference Include="TaleWorlds.GauntletUI.Data" />
+    <Reference Include="TaleWorlds.InputSystem" />
+    <Reference Include="TaleWorlds.Library" />
+    <Reference Include="TaleWorlds.LinQuick" />
+    <Reference Include="TaleWorlds.Localization" />
+    <Reference Include="TaleWorlds.ModuleManager" />
+    <Reference Include="TaleWorlds.MountAndBlade" />
+    <Reference Include="TaleWorlds.MountAndBlade.View" />
+    <Reference Include="TaleWorlds.ObjectSystem" />
+    <Reference Include="TaleWorlds.ScreenSystem" />
+    <Reference Include="TaleWorlds.TwoDimension" />
+    <Reference Include="netstandard" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="GauntletBarberScreen.cs" />
+    <Compile Include="GauntletCharacterDeveloperScreen.cs" />
+    <Compile Include="GauntletClanScreen.cs" />
+    <Compile Include="GauntletCraftingScreen.cs" />
+    <Compile Include="GauntletEducationScreen.cs" />
+    <Compile Include="GauntletGameOverScreen.cs" />
+    <Compile Include="GauntletInventoryScreen.cs" />
+    <Compile Include="GauntletKingdomScreen.cs" />
+    <Compile Include="GauntletPartyScreen.cs" />
+    <Compile Include="GauntletQuestsScreen.cs" />
+    <Compile Include="GauntletSaveLoadScreen.cs" />
+    <Compile Include="MapConversationTextureProvider.cs" />
+    <Compile Include="SandBoxGauntletUICheats.cs" />
+    <Compile Include="SandBoxGauntletUISubModule.cs" />
+    <Compile Include="SandboxSceneNotificationContextProvider.cs" />
+    <Compile Include="Missions\MissionGauntletArenaPracticeFightView.cs" />
+    <Compile Include="Missions\MissionGauntletBarterView.cs" />
+    <Compile Include="Missions\MissionGauntletBoardGameView.cs" />
+    <Compile Include="Missions\MissionGauntletCheatView.cs" />
+    <Compile Include="Missions\MissionGauntletConversationView.cs" />
+    <Compile Include="Missions\MissionGauntletNameMarkerView.cs" />
+    <Compile Include="Missions\MissionGauntletTournamentView.cs" />
+    <Compile Include="Menu\GauntlerMenuBackground.cs" />
+    <Compile Include="Menu\GauntletMenuBaseView.cs" />
+    <Compile Include="Menu\GauntletMenuOverlayBaseView.cs" />
+    <Compile Include="Menu\GauntletMenuRecruitVolunteersView.cs" />
+    <Compile Include="Menu\GauntletMenuTournamentLeaderboardView.cs" />
+    <Compile Include="Menu\GauntletMenuTownManagementView.cs" />
+    <Compile Include="Menu\GauntletMenuTroopSelectionView.cs" />
+    <Compile Include="Map\GauntletMapBarView.cs" />
+    <Compile Include="Map\GauntletMapBarGlobalLayer.cs" />
+    <Compile Include="Map\PanelScreenStatus.cs" />
+    <Compile Include="Map\GauntletMapBasicView.cs" />
+    <Compile Include="Map\GauntletMapBattleSimulationView.cs" />
+    <Compile Include="Map\GauntletMapCampaignOptionsView.cs" />
+    <Compile Include="Map\GauntletMapCheatsView.cs" />
+    <Compile Include="Map\GauntletMapConversationView.cs" />
+    <Compile Include="Map\GauntletMapEscapeMenuView.cs" />
+    <Compile Include="Map\GauntletMapEventVisualCreator.cs" />
+    <Compile Include="Map\IGauntletMapEventVisualHandler.cs" />
+    <Compile Include="Map\GauntletMapEventVisual.cs" />
+    <Compile Include="Map\GauntletMapEventVisualsView.cs" />
+    <Compile Include="Map\GauntletMapMobilePartyTrackerView.cs" />
+    <Compile Include="Map\GauntletMapNotificationView.cs" />
+    <Compile Include="Map\GauntletMapOverlayView.cs" />
+    <Compile Include="Map\GauntletMapPartyNameplateView.cs" />
+    <Compile Include="Map\GauntletMapReadyView.cs" />
+    <Compile Include="Map\GauntletMapSaveView.cs" />
+    <Compile Include="Map\GauntletMapSettlementNameplateView.cs" />
+    <Compile Include="Map\GauntletMapSiegeOverlayView.cs" />
+    <Compile Include="Map\GauntletMarriageOfferPopupView.cs" />
+    <Compile Include="Encyclopedia\EncyclopediaData.cs" />
+    <Compile Include="Encyclopedia\EncyclopediaListViewDataController.cs" />
+    <Compile Include="Encyclopedia\GauntletMapEncyclopediaView.cs" />
+    <Compile Include="CharacterCreation\CharacterCreationBannerEditorView.cs" />
+    <Compile Include="CharacterCreation\CharacterCreationClanNamingStageView.cs" />
+    <Compile Include="CharacterCreation\CharacterCreationCultureStageView.cs" />
+    <Compile Include="CharacterCreation\CharacterCreationFaceGeneratorView.cs" />
+    <Compile Include="CharacterCreation\CharacterCreationGenericStageView.cs" />
+    <Compile Include="CharacterCreation\CharacterCreationOptionsStageView.cs" />
+    <Compile Include="CharacterCreation\CharacterCreationReviewStageView.cs" />
+    <Compile Include="BannerEditor\BannerEditorView.cs" />
+    <Compile Include="BannerEditor\GauntletBannerEditorScreen.cs" />
+    <Compile Include="AssemblyInfo.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+</Project>

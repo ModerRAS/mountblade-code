@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <!--Project was exported from assembly: D:\steam\steamapps\common\Mount & Blade II Bannerlord\Modules\SandBox\bin\Win64_Shipping_Client\SandBox.ViewModelCollection.dll-->
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{FF02D4E4-C8E8-407B-8392-D9B474FE8E51}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AssemblyName>SandBox.ViewModelCollection</AssemblyName>
+    <ApplicationVersion>1.0.0.0</ApplicationVersion>
+    <RootNamespace>SandBox.ViewModelCollection</RootNamespace>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="SandBox">
+      <HintPath>lib\SandBox.dll</HintPath>
+    </Reference>
+    <Reference Include="TaleWorlds.CampaignSystem" />
+    <Reference Include="TaleWorlds.Core" />
+    <Reference Include="TaleWorlds.DotNet" />
+    <Reference Include="TaleWorlds.Engine" />
+    <Reference Include="TaleWorlds.InputSystem" />
+    <Reference Include="TaleWorlds.Library" />
+    <Reference Include="TaleWorlds.LinQuick" />
+    <Reference Include="TaleWorlds.Localization" />
+    <Reference Include="TaleWorlds.ModuleManager" />
+    <Reference Include="TaleWorlds.MountAndBlade" />
+    <Reference Include="TaleWorlds.ObjectSystem" />
+    <Reference Include="TaleWorlds.SaveSystem" />
+    <Reference Include="TaleWorlds.ScreenSystem" />
+    <Reference Include="netstandard" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="SandBoxUIHelper.cs" />
+    <Compile Include="SPOrderOfBattleVM.cs" />
+    <Compile Include="SkillObjectComparer.cs" />
+    <Compile Include="SPScoreboardVM.cs" />
+    <Compile Include="TournamentRewardVM.cs" />
+    <Compile Include="Tournament\TournamentMatchVM.cs" />
+    <Compile Include="Tournament\TournamentParticipantVM.cs" />
+    <Compile Include="Tournament\TournamentRoundVM.cs" />
+    <Compile Include="Tournament\TournamentTeamVM.cs" />
+    <Compile Include="Tournament\TournamentVM.cs" />
+    <Compile Include="SaveLoad\MapSaveVM.cs" />
+    <Compile Include="SaveLoad\SavedGameGroupVM.cs" />
+    <Compile Include="SaveLoad\SavedGameModuleInfoVM.cs" />
+    <Compile Include="SaveLoad\SavedGamePropertyVM.cs" />
+    <Compile Include="SaveLoad\SavedGameVM.cs" />
+    <Compile Include="SaveLoad\SaveLoadVM.cs" />
+    <Compile Include="Nameplate\NameplateVM.cs" />
+    <Compile Include="Nameplate\PartyNameplatesVM.cs" />
+    <Compile Include="Nameplate\PartyNameplateVM.cs" />
+    <Compile Include="Nameplate\SettlementNameplateEventsVM.cs" />
+    <Compile Include="Nameplate\SettlementNameplateEventItemVM.cs" />
+    <Compile Include="Nameplate\SettlementNameplatePartyMarkerItemVM.cs" />
+    <Compile Include="Nameplate\SettlementNameplatePartyMarkersVM.cs" />
+    <Compile Include="Nameplate\SettlementNameplatesVM.cs" />
+    <Compile Include="Nameplate\SettlementNameplateVM.cs" />
+    <Compile Include="Nameplate\NameplateNotifications\SettlementNotificationItemBaseVM.cs" />
+    <Compile Include="Nameplate\NameplateNotifications\SettlementNotificationTypes\CaravanTransactionNotificationItemVM.cs" />
+    <Compile Include="Nameplate\NameplateNotifications\SettlementNotificationTypes\IssueSolvedByLordNotificationItemVM.cs" />
+    <Compile Include="Nameplate\NameplateNotifications\SettlementNotificationTypes\ItemSoldNotificationItemVM.cs" />
+    <Compile Include="Nameplate\NameplateNotifications\SettlementNotificationTypes\PrisonerSoldNotificationItemVM.cs" />
+    <Compile Include="Nameplate\NameplateNotifications\SettlementNotificationTypes\SettlementNameplateNotificationsVM.cs" />
+    <Compile Include="Nameplate\NameplateNotifications\SettlementNotificationTypes\TroopGivenToSettlementNotificationItemVM.cs" />
+    <Compile Include="Nameplate\NameplateNotifications\SettlementNotificationTypes\TroopRecruitmentNotificationItemVM.cs" />
+    <Compile Include="Missions\MissionArenaPracticeFightVM.cs" />
+    <Compile Include="Missions\NameMarker\MissionNameMarkerTargetVM.cs" />
+    <Compile Include="Missions\NameMarker\MissionNameMarkerVM.cs" />
+    <Compile Include="Missions\NameMarker\MissionNameMarkerToggleEvent.cs" />
+    <Compile Include="Missions\NameMarker\QuestMarkerVM.cs" />
+    <Compile Include="Map\MapEventVisualsVM.cs" />
+    <Compile Include="Map\MapEventVisualItemVM.cs" />
+    <Compile Include="Map\MapMobilePartyTrackerVM.cs" />
+    <Compile Include="Map\MobilePartyTrackItemVM.cs" />
+    <Compile Include="Map\Cheat\CheatActionItemVM.cs" />
+    <Compile Include="Map\Cheat\CheatGroupItemVM.cs" />
+    <Compile Include="Map\Cheat\CheatItemBaseVM.cs" />
+    <Compile Include="Map\Cheat\GameplayCheatsVM.cs" />
+    <Compile Include="MapSiege\MapSiegePOIVM.cs" />
+    <Compile Include="MapSiege\MapSiegeProductionVM.cs" />
+    <Compile Include="MapSiege\MapSiegeProductionMachineVM.cs" />
+    <Compile Include="MapSiege\PlayerStartEngineConstructionEvent.cs" />
+    <Compile Include="MapSiege\MapSiegeVM.cs" />
+    <Compile Include="Input\InputKeyItemVM.cs" />
+    <Compile Include="GameOver\GameOverStatCategoryVM.cs" />
+    <Compile Include="GameOver\GameOverStatItemVM.cs" />
+    <Compile Include="GameOver\GameOverStatsProvider.cs" />
+    <Compile Include="GameOver\StatCategory.cs" />
+    <Compile Include="GameOver\StatItem.cs" />
+    <Compile Include="GameOver\GameOverVM.cs" />
+    <Compile Include="BoardGame\BoardGameInstructionsVM.cs" />
+    <Compile Include="BoardGame\BoardGameInstructionVM.cs" />
+    <Compile Include="BoardGame\BoardGameVM.cs" />
+    <Compile Include="AssemblyInfo.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+</Project>

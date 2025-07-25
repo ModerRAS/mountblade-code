@@ -1,0 +1,31 @@
+﻿// Decompiled with JetBrains decompiler
+// Type: SandBox.View.Conversation.ConversationViewEventHandler
+// Assembly: SandBox.View, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 0A839D79-47BB-4148-AC54-5FF94CFF4273
+// Assembly location: D:\steam\steamapps\common\Mount & Blade II Bannerlord\Modules\SandBox\bin\Win64_Shipping_Client\SandBox.View.dll
+
+using System;
+
+#nullable disable
+namespace SandBox.View.Conversation
+{
+  [AttributeUsage(AttributeTargets.Method, AllowMultiple = true)]
+  public class ConversationViewEventHandler : Attribute
+  {
+    public string Id { get; }
+
+    public ConversationViewEventHandler.EventType Type { get; }
+
+    public ConversationViewEventHandler(string id, ConversationViewEventHandler.EventType type)
+    {
+      this.Id = id;
+      this.Type = type;
+    }
+
+    public enum EventType
+    {
+      OnCondition,
+      OnConsequence,
+    }
+  }
+}

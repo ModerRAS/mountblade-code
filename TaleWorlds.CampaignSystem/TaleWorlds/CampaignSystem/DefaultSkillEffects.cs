@@ -1,0 +1,470 @@
+﻿// Decompiled with JetBrains decompiler
+// Type: TaleWorlds.CampaignSystem.DefaultSkillEffects
+// Assembly: TaleWorlds.CampaignSystem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: E85F8C15-4DF6-4E9C-A58A-29177E40D07A
+// Assembly location: D:\steam\steamapps\common\Mount & Blade II Bannerlord\bin\Win64_Shipping_Client\TaleWorlds.CampaignSystem.dll
+
+using TaleWorlds.Core;
+using TaleWorlds.Localization;
+
+#nullable disable
+namespace TaleWorlds.CampaignSystem
+{
+  public class DefaultSkillEffects
+  {
+    private SkillEffect _effectOneHandedSpeed;
+    private SkillEffect _effectOneHandedDamage;
+    private SkillEffect _effectTwoHandedSpeed;
+    private SkillEffect _effectTwoHandedDamage;
+    private SkillEffect _effectPolearmSpeed;
+    private SkillEffect _effectPolearmDamage;
+    private SkillEffect _effectBowLevel;
+    private SkillEffect _effectBowDamage;
+    private SkillEffect _effectBowAccuracy;
+    private SkillEffect _effectThrowingSpeed;
+    private SkillEffect _effectThrowingDamage;
+    private SkillEffect _effectThrowingAccuracy;
+    private SkillEffect _effectCrossbowReloadSpeed;
+    private SkillEffect _effectCrossbowAccuracy;
+    private SkillEffect _effectHorseLevel;
+    private SkillEffect _effectHorseSpeed;
+    private SkillEffect _effectHorseManeuver;
+    private SkillEffect _effectMountedWeaponDamagePenalty;
+    private SkillEffect _effectMountedWeaponSpeedPenalty;
+    private SkillEffect _effectDismountResistance;
+    private SkillEffect _effectAthleticsSpeedFactor;
+    private SkillEffect _effectAthleticsWeightFactor;
+    private SkillEffect _effectKnockBackResistance;
+    private SkillEffect _effectKnockDownResistance;
+    private SkillEffect _effectSmithingLevel;
+    private SkillEffect _effectTacticsAdvantage;
+    private SkillEffect _effectTacticsTroopSacrificeReduction;
+    private SkillEffect _effectTrackingLevel;
+    private SkillEffect _effectTrackingRadius;
+    private SkillEffect _effectTrackingSpottingDistance;
+    private SkillEffect _effectTrackingTrackInformation;
+    private SkillEffect _effectRogueryLootBonus;
+    private SkillEffect _effectCharmRelationBonus;
+    private SkillEffect _effectTradePenaltyReduction;
+    private SkillEffect _effectSurgeonSurvivalBonus;
+    private SkillEffect _effectSiegeEngineProductionBonus;
+    private SkillEffect _effectTownProjectBuildingBonus;
+    private SkillEffect _effectHealingRateBonusForHeroes;
+    private SkillEffect _effectHealingRateBonusForRegulars;
+    private SkillEffect _effectGovernorHealingRateBonus;
+    private SkillEffect _effectLeadershipMoraleBonus;
+    private SkillEffect _effectLeadershipGarrisonSizeBonus;
+    private SkillEffect _effectStewardPartySizeBonus;
+    private SkillEffect _effectEngineerLevel;
+
+    private static DefaultSkillEffects Instance => Campaign.Current.DefaultSkillEffects;
+
+    public static SkillEffect OneHandedSpeed => DefaultSkillEffects.Instance._effectOneHandedSpeed;
+
+    public static SkillEffect OneHandedDamage
+    {
+      get => DefaultSkillEffects.Instance._effectOneHandedDamage;
+    }
+
+    public static SkillEffect TwoHandedSpeed => DefaultSkillEffects.Instance._effectTwoHandedSpeed;
+
+    public static SkillEffect TwoHandedDamage
+    {
+      get => DefaultSkillEffects.Instance._effectTwoHandedDamage;
+    }
+
+    public static SkillEffect PolearmSpeed => DefaultSkillEffects.Instance._effectPolearmSpeed;
+
+    public static SkillEffect PolearmDamage => DefaultSkillEffects.Instance._effectPolearmDamage;
+
+    public static SkillEffect BowLevel => DefaultSkillEffects.Instance._effectBowLevel;
+
+    public static SkillEffect BowDamage => DefaultSkillEffects.Instance._effectBowDamage;
+
+    public static SkillEffect BowAccuracy => DefaultSkillEffects.Instance._effectBowAccuracy;
+
+    public static SkillEffect ThrowingSpeed => DefaultSkillEffects.Instance._effectThrowingSpeed;
+
+    public static SkillEffect ThrowingDamage => DefaultSkillEffects.Instance._effectThrowingDamage;
+
+    public static SkillEffect ThrowingAccuracy
+    {
+      get => DefaultSkillEffects.Instance._effectThrowingAccuracy;
+    }
+
+    public static SkillEffect CrossbowReloadSpeed
+    {
+      get => DefaultSkillEffects.Instance._effectCrossbowReloadSpeed;
+    }
+
+    public static SkillEffect CrossbowAccuracy
+    {
+      get => DefaultSkillEffects.Instance._effectCrossbowAccuracy;
+    }
+
+    public static SkillEffect HorseLevel => DefaultSkillEffects.Instance._effectHorseLevel;
+
+    public static SkillEffect HorseSpeed => DefaultSkillEffects.Instance._effectHorseSpeed;
+
+    public static SkillEffect HorseManeuver => DefaultSkillEffects.Instance._effectHorseManeuver;
+
+    public static SkillEffect MountedWeaponDamagePenalty
+    {
+      get => DefaultSkillEffects.Instance._effectMountedWeaponDamagePenalty;
+    }
+
+    public static SkillEffect MountedWeaponSpeedPenalty
+    {
+      get => DefaultSkillEffects.Instance._effectMountedWeaponSpeedPenalty;
+    }
+
+    public static SkillEffect DismountResistance
+    {
+      get => DefaultSkillEffects.Instance._effectDismountResistance;
+    }
+
+    public static SkillEffect AthleticsSpeedFactor
+    {
+      get => DefaultSkillEffects.Instance._effectAthleticsSpeedFactor;
+    }
+
+    public static SkillEffect AthleticsWeightFactor
+    {
+      get => DefaultSkillEffects.Instance._effectAthleticsWeightFactor;
+    }
+
+    public static SkillEffect KnockBackResistance
+    {
+      get => DefaultSkillEffects.Instance._effectKnockBackResistance;
+    }
+
+    public static SkillEffect KnockDownResistance
+    {
+      get => DefaultSkillEffects.Instance._effectKnockDownResistance;
+    }
+
+    public static SkillEffect SmithingLevel => DefaultSkillEffects.Instance._effectSmithingLevel;
+
+    public static SkillEffect TacticsAdvantage
+    {
+      get => DefaultSkillEffects.Instance._effectTacticsAdvantage;
+    }
+
+    public static SkillEffect TacticsTroopSacrificeReduction
+    {
+      get => DefaultSkillEffects.Instance._effectTacticsTroopSacrificeReduction;
+    }
+
+    public static SkillEffect TrackingRadius => DefaultSkillEffects.Instance._effectTrackingRadius;
+
+    public static SkillEffect TrackingLevel => DefaultSkillEffects.Instance._effectTrackingLevel;
+
+    public static SkillEffect TrackingSpottingDistance
+    {
+      get => DefaultSkillEffects.Instance._effectTrackingSpottingDistance;
+    }
+
+    public static SkillEffect TrackingTrackInformation
+    {
+      get => DefaultSkillEffects.Instance._effectTrackingTrackInformation;
+    }
+
+    public static SkillEffect RogueryLootBonus
+    {
+      get => DefaultSkillEffects.Instance._effectRogueryLootBonus;
+    }
+
+    public static SkillEffect CharmRelationBonus
+    {
+      get => DefaultSkillEffects.Instance._effectCharmRelationBonus;
+    }
+
+    public static SkillEffect TradePenaltyReduction
+    {
+      get => DefaultSkillEffects.Instance._effectTradePenaltyReduction;
+    }
+
+    public static SkillEffect SurgeonSurvivalBonus
+    {
+      get => DefaultSkillEffects.Instance._effectSurgeonSurvivalBonus;
+    }
+
+    public static SkillEffect SiegeEngineProductionBonus
+    {
+      get => DefaultSkillEffects.Instance._effectSiegeEngineProductionBonus;
+    }
+
+    public static SkillEffect TownProjectBuildingBonus
+    {
+      get => DefaultSkillEffects.Instance._effectTownProjectBuildingBonus;
+    }
+
+    public static SkillEffect HealingRateBonusForHeroes
+    {
+      get => DefaultSkillEffects.Instance._effectHealingRateBonusForHeroes;
+    }
+
+    public static SkillEffect HealingRateBonusForRegulars
+    {
+      get => DefaultSkillEffects.Instance._effectHealingRateBonusForRegulars;
+    }
+
+    public static SkillEffect GovernorHealingRateBonus
+    {
+      get => DefaultSkillEffects.Instance._effectGovernorHealingRateBonus;
+    }
+
+    public static SkillEffect LeadershipMoraleBonus
+    {
+      get => DefaultSkillEffects.Instance._effectLeadershipMoraleBonus;
+    }
+
+    public static SkillEffect LeadershipGarrisonSizeBonus
+    {
+      get => DefaultSkillEffects.Instance._effectLeadershipGarrisonSizeBonus;
+    }
+
+    public static SkillEffect StewardPartySizeBonus
+    {
+      get => DefaultSkillEffects.Instance._effectStewardPartySizeBonus;
+    }
+
+    public static SkillEffect EngineerLevel => DefaultSkillEffects.Instance._effectEngineerLevel;
+
+    public DefaultSkillEffects() => this.RegisterAll();
+
+    private void RegisterAll()
+    {
+      this._effectOneHandedSpeed = this.Create("OneHandedSpeed");
+      this._effectOneHandedDamage = this.Create("OneHandedDamage");
+      this._effectTwoHandedSpeed = this.Create("TwoHandedSpeed");
+      this._effectTwoHandedDamage = this.Create("TwoHandedDamage");
+      this._effectPolearmSpeed = this.Create("PolearmSpeed");
+      this._effectPolearmDamage = this.Create("PolearmDamage");
+      this._effectBowLevel = this.Create("BowLevel");
+      this._effectBowDamage = this.Create("BowDamage");
+      this._effectBowAccuracy = this.Create("BowAccuracy");
+      this._effectThrowingSpeed = this.Create("ThrowingSpeed");
+      this._effectThrowingDamage = this.Create("ThrowingDamage");
+      this._effectThrowingAccuracy = this.Create("ThrowingAccuracy");
+      this._effectCrossbowReloadSpeed = this.Create("CrossbowReloadSpeed");
+      this._effectCrossbowAccuracy = this.Create("CrossbowAccuracy");
+      this._effectHorseLevel = this.Create("HorseLevel");
+      this._effectHorseSpeed = this.Create("HorseSpeed");
+      this._effectHorseManeuver = this.Create("HorseManeuver");
+      this._effectMountedWeaponDamagePenalty = this.Create("MountedWeaponDamagePenalty");
+      this._effectMountedWeaponSpeedPenalty = this.Create("MountedWeaponSpeedPenalty");
+      this._effectDismountResistance = this.Create("DismountResistance");
+      this._effectAthleticsSpeedFactor = this.Create("AthleticsSpeedFactor");
+      this._effectAthleticsWeightFactor = this.Create("AthleticsWeightFactor");
+      this._effectKnockBackResistance = this.Create("KnockBackResistance");
+      this._effectKnockDownResistance = this.Create("KnockDownResistance");
+      this._effectSmithingLevel = this.Create("SmithingLevel");
+      this._effectTacticsAdvantage = this.Create("TacticsAdvantage");
+      this._effectTacticsTroopSacrificeReduction = this.Create("TacticsTroopSacrificeReduction");
+      this._effectTrackingRadius = this.Create("TrackingRadius");
+      this._effectTrackingLevel = this.Create("TrackingLevel");
+      this._effectTrackingSpottingDistance = this.Create("TrackingSpottingDistance");
+      this._effectTrackingTrackInformation = this.Create("TrackingTrackInformation");
+      this._effectRogueryLootBonus = this.Create("RogueryLootBonus");
+      this._effectCharmRelationBonus = this.Create("CharmRelationBonus");
+      this._effectTradePenaltyReduction = this.Create("TradePenaltyReduction");
+      this._effectLeadershipMoraleBonus = this.Create("LeadershipMoraleBonus");
+      this._effectLeadershipGarrisonSizeBonus = this.Create("LeadershipGarrisonSizeBonus");
+      this._effectSurgeonSurvivalBonus = this.Create("SurgeonSurvivalBonus");
+      this._effectHealingRateBonusForHeroes = this.Create("HealingRateBonusForHeroes");
+      this._effectHealingRateBonusForRegulars = this.Create("HealingRateBonusForRegulars");
+      this._effectGovernorHealingRateBonus = this.Create("GovernorHealingRateBonus");
+      this._effectSiegeEngineProductionBonus = this.Create("SiegeEngineProductionBonus");
+      this._effectTownProjectBuildingBonus = this.Create("TownProjectBuildingBonus");
+      this._effectStewardPartySizeBonus = this.Create("StewardPartySizeBonus");
+      this._effectEngineerLevel = this.Create("EngineerLevel");
+      this.InitializeAll();
+    }
+
+    private SkillEffect Create(string stringId)
+    {
+      return Game.Current.ObjectManager.RegisterPresumedObject<SkillEffect>(new SkillEffect(stringId));
+    }
+
+    private void InitializeAll()
+    {
+      this._effectOneHandedSpeed.Initialize(new TextObject("{=hjxRvb9l}One handed weapon speed: +{a0}%"), new SkillObject[1]
+      {
+        DefaultSkills.OneHanded
+      }, SkillEffect.PerkRole.Personal, 0.07f);
+      this._effectOneHandedDamage.Initialize(new TextObject("{=baUFKAbd}One handed weapon damage: +{a0}%"), new SkillObject[1]
+      {
+        DefaultSkills.OneHanded
+      }, SkillEffect.PerkRole.Personal, 0.15f);
+      this._effectTwoHandedSpeed.Initialize(new TextObject("{=Np94rYMz}Two handed weapon speed: +{a0}%"), new SkillObject[1]
+      {
+        DefaultSkills.TwoHanded
+      }, SkillEffect.PerkRole.Personal, 0.06f);
+      this._effectTwoHandedDamage.Initialize(new TextObject("{=QkbbLb4v}Two handed weapon damage: +{a0}%"), new SkillObject[1]
+      {
+        DefaultSkills.TwoHanded
+      }, SkillEffect.PerkRole.Personal, 0.16f);
+      this._effectPolearmSpeed.Initialize(new TextObject("{=2ATI9qVM}Polearm weapon speed: +{a0}%"), new SkillObject[1]
+      {
+        DefaultSkills.Polearm
+      }, SkillEffect.PerkRole.Personal, 0.06f);
+      this._effectPolearmDamage.Initialize(new TextObject("{=17cIGVQE}Polearm weapon damage: +{a0}%"), new SkillObject[1]
+      {
+        DefaultSkills.Polearm
+      }, SkillEffect.PerkRole.Personal, 0.07f);
+      this._effectBowLevel.Initialize(new TextObject("{=XN7BX0qP}Max usable bow difficulty: {a0}"), new SkillObject[1]
+      {
+        DefaultSkills.Bow
+      }, SkillEffect.PerkRole.Personal, 1f);
+      this._effectBowDamage.Initialize(new TextObject("{=RUZHJMQO}Bow Damage: +{a0}%"), new SkillObject[1]
+      {
+        DefaultSkills.Bow
+      }, SkillEffect.PerkRole.Personal, 0.11f);
+      this._effectBowAccuracy.Initialize(new TextObject("{=sQCS90Wq}Bow Accuracy: +{a0}%"), new SkillObject[1]
+      {
+        DefaultSkills.Bow
+      }, SkillEffect.PerkRole.Personal, 0.09f);
+      this._effectThrowingSpeed.Initialize(new TextObject("{=Z0CoeojG}Thrown weapon speed: +{a0}%"), new SkillObject[1]
+      {
+        DefaultSkills.Throwing
+      }, SkillEffect.PerkRole.Personal, 0.07f);
+      this._effectThrowingDamage.Initialize(new TextObject("{=TQMGppEk}Thrown weapon damage: +{a0}%"), new SkillObject[1]
+      {
+        DefaultSkills.Throwing
+      }, SkillEffect.PerkRole.Personal, 0.06f);
+      this._effectThrowingAccuracy.Initialize(new TextObject("{=SfKrjKuO}Thrown weapon accuracy: +{a0}%"), new SkillObject[1]
+      {
+        DefaultSkills.Throwing
+      }, SkillEffect.PerkRole.Personal, 0.06f);
+      this._effectCrossbowReloadSpeed.Initialize(new TextObject("{=W0Zu4iDz}Crossbow reload speed: +{a0}%"), new SkillObject[1]
+      {
+        DefaultSkills.Crossbow
+      }, SkillEffect.PerkRole.Personal, 0.07f);
+      this._effectCrossbowAccuracy.Initialize(new TextObject("{=JwWnpD40}Crossbow accuracy: +{a0}%"), new SkillObject[1]
+      {
+        DefaultSkills.Crossbow
+      }, SkillEffect.PerkRole.Personal, 0.05f);
+      this._effectHorseLevel.Initialize(new TextObject("{=8uBbbwY9}Max mount difficulty: {a0}"), new SkillObject[1]
+      {
+        DefaultSkills.Riding
+      }, SkillEffect.PerkRole.Personal, 1f);
+      this._effectHorseSpeed.Initialize(new TextObject("{=Y07OcP1T}Horse speed: +{a0}"), new SkillObject[1]
+      {
+        DefaultSkills.Riding
+      }, SkillEffect.PerkRole.Personal, 0.2f);
+      this._effectHorseManeuver.Initialize(new TextObject("{=AahNTeXY}Horse maneuver: +{a0}"), new SkillObject[1]
+      {
+        DefaultSkills.Riding
+      }, SkillEffect.PerkRole.Personal, 0.04f);
+      this._effectMountedWeaponDamagePenalty.Initialize(new TextObject("{=0dbwEczK}Mounted weapon damage penalty: {a0}%"), new SkillObject[1]
+      {
+        DefaultSkills.Riding
+      }, SkillEffect.PerkRole.Personal, -0.2f, incrementType: SkillEffect.EffectIncrementType.Add, primaryBaseValue: 20f);
+      this._effectMountedWeaponSpeedPenalty.Initialize(new TextObject("{=oE5etyy0}Mounted weapon speed & reload penalty: {a0}%"), new SkillObject[1]
+      {
+        DefaultSkills.Riding
+      }, SkillEffect.PerkRole.Personal, -0.3f, incrementType: SkillEffect.EffectIncrementType.Add, primaryBaseValue: 30f);
+      this._effectDismountResistance.Initialize(new TextObject("{=kbHJVxAo}Dismount resistance: {a0}% of max. hitpoints"), new SkillObject[1]
+      {
+        DefaultSkills.Riding
+      }, SkillEffect.PerkRole.Personal, 0.1f, incrementType: SkillEffect.EffectIncrementType.Add, primaryBaseValue: 40f);
+      this._effectAthleticsSpeedFactor.Initialize(new TextObject("{=rgb6vdon}Running speed increased by {a0}%"), new SkillObject[1]
+      {
+        DefaultSkills.Athletics
+      }, SkillEffect.PerkRole.Personal, 0.1f);
+      this._effectAthleticsWeightFactor.Initialize(new TextObject("{=WaUuhxwv}Weight penalty reduced by: {a0}%"), new SkillObject[1]
+      {
+        DefaultSkills.Athletics
+      }, SkillEffect.PerkRole.Personal, 0.1f);
+      this._effectKnockBackResistance.Initialize(new TextObject("{=TyjDHQUv}Knock back resistance: {a0}% of max. hitpoints"), new SkillObject[1]
+      {
+        DefaultSkills.Athletics
+      }, SkillEffect.PerkRole.Personal, 0.1f, incrementType: SkillEffect.EffectIncrementType.Add, primaryBaseValue: 15f);
+      this._effectKnockDownResistance.Initialize(new TextObject("{=tlNZIH3l}Knock down resistance: {a0}% of max. hitpoints"), new SkillObject[1]
+      {
+        DefaultSkills.Athletics
+      }, SkillEffect.PerkRole.Personal, 0.1f, incrementType: SkillEffect.EffectIncrementType.Add, primaryBaseValue: 40f);
+      this._effectSmithingLevel.Initialize(new TextObject("{=ImN8Cfk6}Max difficulty of weapon that can be smithed without penalty: {a0}"), new SkillObject[1]
+      {
+        DefaultSkills.Crafting
+      }, SkillEffect.PerkRole.Personal, 1f);
+      this._effectTacticsAdvantage.Initialize(new TextObject("{=XO3SOlZx}Simulation advantage: +{a0}%"), new SkillObject[1]
+      {
+        DefaultSkills.Tactics
+      }, SkillEffect.PerkRole.Personal, 0.1f);
+      this._effectTacticsTroopSacrificeReduction.Initialize(new TextObject("{=VHdyQYKI}Decrease the sacrificed troop number when trying to get away +{a0}%"), new SkillObject[1]
+      {
+        DefaultSkills.Tactics
+      }, SkillEffect.PerkRole.Personal, 0.1f);
+      this._effectTrackingRadius.Initialize(new TextObject("{=kqJipMqc}Track detection radius +{a0}%"), new SkillObject[1]
+      {
+        DefaultSkills.Scouting
+      }, SkillEffect.PerkRole.Scout, 0.1f, secondaryBonus: 0.05f, incrementType: SkillEffect.EffectIncrementType.Add);
+      this._effectTrackingLevel.Initialize(new TextObject("{=aGecGUub}Max track difficulty that can be detected: {a0}"), new SkillObject[1]
+      {
+        DefaultSkills.Scouting
+      }, SkillEffect.PerkRole.Scout, 1f, secondaryBonus: 1f, incrementType: SkillEffect.EffectIncrementType.Add);
+      this._effectTrackingSpottingDistance.Initialize(new TextObject("{=lbrOAvKj}Spotting distance +{a0}%"), new SkillObject[1]
+      {
+        DefaultSkills.Scouting
+      }, SkillEffect.PerkRole.Scout, 0.06f, secondaryBonus: 0.03f, incrementType: SkillEffect.EffectIncrementType.Add);
+      this._effectTrackingTrackInformation.Initialize(new TextObject("{=uNls3bOP}Track information level: {a0}"), new SkillObject[1]
+      {
+        DefaultSkills.Scouting
+      }, SkillEffect.PerkRole.Scout, 0.04f, secondaryBonus: 0.03f, incrementType: SkillEffect.EffectIncrementType.Add);
+      this._effectRogueryLootBonus.Initialize(new TextObject("{=bN3bLDb2}Battle Loot +{a0}%"), new SkillObject[1]
+      {
+        DefaultSkills.Roguery
+      }, SkillEffect.PerkRole.PartyLeader, 0.25f);
+      this._effectCharmRelationBonus.Initialize(new TextObject("{=c5dsio8Q}Relation increase with NPCs +{a0}%"), new SkillObject[1]
+      {
+        DefaultSkills.Charm
+      }, SkillEffect.PerkRole.Personal, 0.5f);
+      this._effectTradePenaltyReduction.Initialize(new TextObject("{=uq7JwT1Z}Trade penalty Reduction +{a0}%"), new SkillObject[1]
+      {
+        DefaultSkills.Trade
+      }, SkillEffect.PerkRole.PartyLeader, 0.2f);
+      this._effectLeadershipMoraleBonus.Initialize(new TextObject("{=n3bFiuVu}Increase morale of the parties under your command +{a0}"), new SkillObject[1]
+      {
+        DefaultSkills.Leadership
+      }, SkillEffect.PerkRole.Personal, 0.1f, incrementType: SkillEffect.EffectIncrementType.Add);
+      this._effectLeadershipGarrisonSizeBonus.Initialize(new TextObject("{=cSt26auo}Increase garrison size by +{a0}"), new SkillObject[1]
+      {
+        DefaultSkills.Leadership
+      }, SkillEffect.PerkRole.Personal, 0.2f, incrementType: SkillEffect.EffectIncrementType.Add);
+      this._effectSurgeonSurvivalBonus.Initialize(new TextObject("{=w4BzNJYl}Casualty survival chance +{a0}%"), new SkillObject[1]
+      {
+        DefaultSkills.Medicine
+      }, SkillEffect.PerkRole.Surgeon, 0.01f, secondaryBonus: 0.01f, incrementType: SkillEffect.EffectIncrementType.Add);
+      this._effectHealingRateBonusForHeroes.Initialize(new TextObject("{=fUvs4g40}Healing rate increase for heroes +{a0}%"), new SkillObject[1]
+      {
+        DefaultSkills.Medicine
+      }, SkillEffect.PerkRole.Surgeon, 0.5f, secondaryBonus: 0.05f);
+      this._effectHealingRateBonusForRegulars.Initialize(new TextObject("{=A310vHqJ}Healing rate increase for troops +{a0}%"), new SkillObject[1]
+      {
+        DefaultSkills.Medicine
+      }, SkillEffect.PerkRole.Surgeon, 1f, secondaryBonus: 0.05f);
+      this._effectGovernorHealingRateBonus.Initialize(new TextObject("{=6mQGst9s}Healing rate increase +{a0}%"), new SkillObject[1]
+      {
+        DefaultSkills.Medicine
+      }, SkillEffect.PerkRole.Governor, 0.1f);
+      this._effectSiegeEngineProductionBonus.Initialize(new TextObject("{=spbYlf0y}Faster siege engine production +{a0}%"), new SkillObject[1]
+      {
+        DefaultSkills.Engineering
+      }, SkillEffect.PerkRole.Engineer, 0.1f, secondaryBonus: 0.05f);
+      this._effectTownProjectBuildingBonus.Initialize(new TextObject("{=2paRqO8u}Faster building production +{a0}%"), new SkillObject[1]
+      {
+        DefaultSkills.Engineering
+      }, SkillEffect.PerkRole.Governor, 0.25f);
+      this._effectStewardPartySizeBonus.Initialize(new TextObject("{=jNDUXetG}Increase party size by +{a0}"), new SkillObject[1]
+      {
+        DefaultSkills.Steward
+      }, SkillEffect.PerkRole.Quartermaster, 0.25f, incrementType: SkillEffect.EffectIncrementType.Add);
+      this._effectEngineerLevel.Initialize(new TextObject("{=aQduWCrg}Max difficulty of siege engine that can be built: {a0}"), new SkillObject[1]
+      {
+        DefaultSkills.Engineering
+      }, SkillEffect.PerkRole.Engineer, 1f, incrementType: SkillEffect.EffectIncrementType.Add);
+    }
+  }
+}

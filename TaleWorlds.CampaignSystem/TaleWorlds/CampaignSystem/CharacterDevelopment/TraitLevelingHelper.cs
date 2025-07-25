@@ -1,0 +1,132 @@
+﻿// Decompiled with JetBrains decompiler
+// Type: TaleWorlds.CampaignSystem.CharacterDevelopment.TraitLevelingHelper
+// Assembly: TaleWorlds.CampaignSystem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: E85F8C15-4DF6-4E9C-A58A-29177E40D07A
+// Assembly location: D:\steam\steamapps\common\Mount & Blade II Bannerlord\bin\Win64_Shipping_Client\TaleWorlds.CampaignSystem.dll
+
+using System;
+using TaleWorlds.CampaignSystem.Actions;
+using TaleWorlds.CampaignSystem.Encounters;
+using TaleWorlds.CampaignSystem.LogEntries;
+using TaleWorlds.CampaignSystem.MapEvents;
+using TaleWorlds.CampaignSystem.Settlements;
+using TaleWorlds.Library;
+
+#nullable disable
+namespace TaleWorlds.CampaignSystem.CharacterDevelopment
+{
+  public class TraitLevelingHelper
+  {
+    private const int LordExecutedHonorPenalty = -1000;
+    private const int TroopsSacrificedValorPenalty = -30;
+    private const int VillageRaidedMercyPenalty = -30;
+    private const int PartyStarvingGenerosityPenalty = -20;
+    private const int PartyTreatedWellGenerosityBonus = 20;
+    private const int LordFreedCalculatingBonus = 20;
+    private const int PersuasionDefectionCalculatingBonus = 20;
+
+    private static void AddPlayerTraitXPAndLogEntry(
+      TraitObject trait,
+      int xpValue,
+      ActionNotes context,
+      Hero referenceHero)
+    {
+      int traitLevel = Hero.MainHero.GetTraitLevel(trait);
+      Campaign.Current.PlayerTraitDeveloper.AddTraitXp(trait, xpValue);
+      if (traitLevel != Hero.MainHero.GetTraitLevel(trait))
+        CampaignEventDispatcher.Instance.OnPlayerTraitChanged(trait, traitLevel);
+      if (MathF.Abs(xpValue) < 10)
+        return;
+      LogEntry.AddLogEntry((LogEntry) new PlayerReputationChangesLogEntry(trait, referenceHero, context));
+    }
+
+    public static void OnBattleWon(MapEvent mapEvent, float contribution)
+    {
+      float num = 0.0f;
+      float strengthRatio = mapEvent.GetMapEventSide(PlayerEncounter.Current.PlayerSide).StrengthRatio;
+      if ((double) strengthRatio > 0.89999997615814209)
+        num = MathF.Min(20f, MathF.Sqrt(mapEvent.StrengthOfSide[(int) mapEvent.GetOtherSide(PlayerEncounter.Current.PlayerSide)]) * strengthRatio);
+      TraitLevelingHelper.AddPlayerTraitXPAndLogEntry(DefaultTraits.Valor, (int) ((double) num * (double) contribution), ActionNotes.BattleValor, (Hero) null);
+    }
+
+    public static void OnTroopsSacrificed()
+    {
+      TraitLevelingHelper.AddPlayerTraitXPAndLogEntry(DefaultTraits.Valor, -30, ActionNotes.SacrificedTroops, (Hero) null);
+    }
+
+    public static void OnLordExecuted()
+    {
+      TraitLevelingHelper.AddPlayerTraitXPAndLogEntry(DefaultTraits.Honor, -1000, ActionNotes.SacrificedTroops, (Hero) null);
+    }
+
+    public static void OnVillageRaided()
+    {
+      TraitLevelingHelper.AddPlayerTraitXPAndLogEntry(DefaultTraits.Mercy, -30, ActionNotes.VillageRaid, (Hero) null);
+    }
+
+    public static void OnHostileAction(int amount)
+    {
+      TraitLevelingHelper.AddPlayerTraitXPAndLogEntry(DefaultTraits.Honor, amount, ActionNotes.HostileAction, (Hero) null);
+      TraitLevelingHelper.AddPlayerTraitXPAndLogEntry(DefaultTraits.Mercy, amount, ActionNotes.HostileAction, (Hero) null);
+    }
+
+    public static void OnPartyTreatedWell()
+    {
+      TraitLevelingHelper.AddPlayerTraitXPAndLogEntry(DefaultTraits.Generosity, 20, ActionNotes.PartyTakenCareOf, (Hero) null);
+    }
+
+    public static void OnPartyStarved()
+    {
+      TraitLevelingHelper.AddPlayerTraitXPAndLogEntry(DefaultTraits.Generosity, -20, ActionNotes.PartyHungry, (Hero) null);
+    }
+
+    public static void OnIssueFailed(Hero targetHero, Tuple<TraitObject, int>[] effectedTraits)
+    {
+      foreach (Tuple<TraitObject, int> effectedTrait in effectedTraits)
+        TraitLevelingHelper.AddPlayerTraitXPAndLogEntry(effectedTrait.Item1, effectedTrait.Item2, ActionNotes.QuestFailed, targetHero);
+    }
+
+    public static void OnIssueSolvedThroughQuest(
+      Hero targetHero,
+      Tuple<TraitObject, int>[] effectedTraits)
+    {
+      foreach (Tuple<TraitObject, int> effectedTrait in effectedTraits)
+        TraitLevelingHelper.AddPlayerTraitXPAndLogEntry(effectedTrait.Item1, effectedTrait.Item2, ActionNotes.QuestSuccess, targetHero);
+    }
+
+    public static void OnIssueSolvedThroughAlternativeSolution(
+      Hero targetHero,
+      Tuple<TraitObject, int>[] effectedTraits)
+    {
+      foreach (Tuple<TraitObject, int> effectedTrait in effectedTraits)
+        TraitLevelingHelper.AddPlayerTraitXPAndLogEntry(effectedTrait.Item1, effectedTrait.Item2, ActionNotes.QuestSuccess, targetHero);
+    }
+
+    public static void OnIssueSolvedThroughBetrayal(
+      Hero targetHero,
+      Tuple<TraitObject, int>[] effectedTraits)
+    {
+      foreach (Tuple<TraitObject, int> effectedTrait in effectedTraits)
+        TraitLevelingHelper.AddPlayerTraitXPAndLogEntry(effectedTrait.Item1, effectedTrait.Item2, ActionNotes.QuestBetrayal, targetHero);
+    }
+
+    public static void OnLordFreed(Hero targetHero)
+    {
+      TraitLevelingHelper.AddPlayerTraitXPAndLogEntry(DefaultTraits.Calculating, 20, ActionNotes.NPCFreed, targetHero);
+    }
+
+    public static void OnPersuasionDefection(Hero targetHero)
+    {
+      TraitLevelingHelper.AddPlayerTraitXPAndLogEntry(DefaultTraits.Calculating, 20, ActionNotes.PersuadedToDefect, targetHero);
+    }
+
+    public static void OnSiegeAftermathApplied(
+      Settlement settlement,
+      SiegeAftermathAction.SiegeAftermath aftermathType,
+      TraitObject[] effectedTraits)
+    {
+      foreach (TraitObject effectedTrait in effectedTraits)
+        TraitLevelingHelper.AddPlayerTraitXPAndLogEntry(effectedTrait, Campaign.Current.Models.SiegeAftermathModel.GetSiegeAftermathTraitXpChangeForPlayer(effectedTrait, settlement, aftermathType), ActionNotes.SiegeAftermath, (Hero) null);
+    }
+  }
+}

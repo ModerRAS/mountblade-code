@@ -1,0 +1,163 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <!--Project was exported from assembly: D:\steam\steamapps\common\Mount & Blade II Bannerlord\bin\Win64_Shipping_Client\TaleWorlds.GauntletUI.dll-->
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{19688465-F7F5-49DB-9659-527E676BDB67}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AssemblyName>TaleWorlds.GauntletUI</AssemblyName>
+    <ApplicationVersion>1.0.0.0</ApplicationVersion>
+    <RootNamespace>TaleWorlds.GauntletUI</RootNamespace>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System.Numerics.Vectors">
+      <HintPath>lib\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="TaleWorlds.InputSystem">
+      <HintPath>lib\TaleWorlds.InputSystem.dll</HintPath>
+    </Reference>
+    <Reference Include="TaleWorlds.Library">
+      <HintPath>lib\TaleWorlds.Library.dll</HintPath>
+    </Reference>
+    <Reference Include="TaleWorlds.TwoDimension">
+      <HintPath>lib\TaleWorlds.TwoDimension.dll</HintPath>
+    </Reference>
+    <Reference Include="netstandard" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="IGamepadNavigationContext.cs" />
+    <Compile Include="EmptyGamepadNavigationContext.cs" />
+    <Compile Include="GauntletGamepadNavigationContext.cs" />
+    <Compile Include="TaleWorlds\MountAndBlade\GauntletUI\Widgets\DimensionSyncWidget.cs" />
+    <Compile Include="AlignmentAxis.cs" />
+    <Compile Include="AnimatedDropdownWidget.cs" />
+    <Compile Include="Brush.cs" />
+    <Compile Include="BrushAnimation.cs" />
+    <Compile Include="BrushAnimationKeyFrame.cs" />
+    <Compile Include="BrushAnimationProperty.cs" />
+    <Compile Include="BrushFactory.cs" />
+    <Compile Include="BrushLayerSizePolicy.cs" />
+    <Compile Include="BrushOverlayMethod.cs" />
+    <Compile Include="BrushLayer.cs" />
+    <Compile Include="BrushLayerAnimation.cs" />
+    <Compile Include="IBrushAnimationState.cs" />
+    <Compile Include="BrushLayerState.cs" />
+    <Compile Include="BrushListPanel.cs" />
+    <Compile Include="BrushRenderer.cs" />
+    <Compile Include="BrushState.cs" />
+    <Compile Include="Style.cs" />
+    <Compile Include="StyleAnimationMode.cs" />
+    <Compile Include="StyleLayer.cs" />
+    <Compile Include="CircleActionSelectorWidget.cs" />
+    <Compile Include="CircleItemPlacerWidget.cs" />
+    <Compile Include="ContainerItemDescription.cs" />
+    <Compile Include="EditorAttribute.cs" />
+    <Compile Include="EventManager.cs" />
+    <Compile Include="FontFactory.cs" />
+    <Compile Include="Language.cs" />
+    <Compile Include="GauntletEvent.cs" />
+    <Compile Include="GauntletExtensions.cs" />
+    <Compile Include="GuiEventResult.cs" />
+    <Compile Include="GuiEventType.cs" />
+    <Compile Include="HorizontalAlignment.cs" />
+    <Compile Include="IBrushLayerData.cs" />
+    <Compile Include="IDataSource.cs" />
+    <Compile Include="IDropContainer.cs" />
+    <Compile Include="IInputService.cs" />
+    <Compile Include="ResourceTextureProvider.cs" />
+    <Compile Include="SizePolicy.cs" />
+    <Compile Include="SoundProperties.cs" />
+    <Compile Include="AudioProperty.cs" />
+    <Compile Include="TextureProvider.cs" />
+    <Compile Include="UIContext.cs" />
+    <Compile Include="UpdateAction.cs" />
+    <Compile Include="VerticalAlignment.cs" />
+    <Compile Include="VisualDefinition.cs" />
+    <Compile Include="VisualState.cs" />
+    <Compile Include="VisualStateAnimationState.cs" />
+    <Compile Include="WidgetComponent.cs" />
+    <Compile Include="WidgetContainer.cs" />
+    <Compile Include="EmptyWidget.cs" />
+    <Compile Include="WidgetInfo.cs" />
+    <Compile Include="PropertyOwnerObject.cs" />
+    <Compile Include="Layout\DefaultLayout.cs" />
+    <Compile Include="Layout\DragCarrierLayout.cs" />
+    <Compile Include="Layout\GridVerticalLayoutMethod.cs" />
+    <Compile Include="Layout\GridHorizontalLayoutMethod.cs" />
+    <Compile Include="Layout\GridDirection.cs" />
+    <Compile Include="Layout\GridLayout.cs" />
+    <Compile Include="Layout\ILayout.cs" />
+    <Compile Include="Layout\LayoutBox.cs" />
+    <Compile Include="Layout\LayoutMethod.cs" />
+    <Compile Include="Layout\StackLayout.cs" />
+    <Compile Include="Layout\TextLayout.cs" />
+    <Compile Include="GamepadNavigation\GamepadNavigationForcedScopeCollection.cs" />
+    <Compile Include="GamepadNavigation\GamepadNavigationHelper.cs" />
+    <Compile Include="GamepadNavigation\GamepadNavigationScope.cs" />
+    <Compile Include="GamepadNavigation\GamepadNavigationScopeCollection.cs" />
+    <Compile Include="GamepadNavigation\GamepadNavigationTypes.cs" />
+    <Compile Include="GamepadNavigation\GauntletGamepadNavigationManager.cs" />
+    <Compile Include="Canvas\Canvas.cs" />
+    <Compile Include="Canvas\CanvasElement.cs" />
+    <Compile Include="Canvas\CanvasImage.cs" />
+    <Compile Include="Canvas\CanvasLine.cs" />
+    <Compile Include="Canvas\CanvasLineAlignment.cs" />
+    <Compile Include="Canvas\CanvasLineElement.cs" />
+    <Compile Include="Canvas\CanvasLineImage.cs" />
+    <Compile Include="Canvas\CanvasLineText.cs" />
+    <Compile Include="Canvas\CanvasObject.cs" />
+    <Compile Include="Canvas\CanvasTextBox.cs" />
+    <Compile Include="Canvas\CanvasWidget.cs" />
+    <Compile Include="BaseTypes\BasicContainer.cs" />
+    <Compile Include="BaseTypes\BrushWidget.cs" />
+    <Compile Include="BaseTypes\ButtonWidget.cs" />
+    <Compile Include="BaseTypes\ButtonType.cs" />
+    <Compile Include="BaseTypes\Container.cs" />
+    <Compile Include="BaseTypes\DragCarrierWidget.cs" />
+    <Compile Include="BaseTypes\DropdownWidget.cs" />
+    <Compile Include="BaseTypes\EditableTextWidget.cs" />
+    <Compile Include="BaseTypes\FloatInputTextWidget.cs" />
+    <Compile Include="BaseTypes\GridWidget.cs" />
+    <Compile Include="BaseTypes\ImageWidget.cs" />
+    <Compile Include="BaseTypes\IntegerInputTextWidget.cs" />
+    <Compile Include="BaseTypes\ListPanel.cs" />
+    <Compile Include="BaseTypes\MaskedTextureWidget.cs" />
+    <Compile Include="BaseTypes\SpriteFromTexture.cs" />
+    <Compile Include="BaseTypes\OnlineImageTextureWidget.cs" />
+    <Compile Include="BaseTypes\RichTextWidget.cs" />
+    <Compile Include="BaseTypes\ScrollablePanel.cs" />
+    <Compile Include="BaseTypes\ScrollablePanelFixedHeaderWidget.cs" />
+    <Compile Include="BaseTypes\ScrollbarWidget.cs" />
+    <Compile Include="BaseTypes\SelectedStateBrushWidget.cs" />
+    <Compile Include="BaseTypes\SliderWidget.cs" />
+    <Compile Include="BaseTypes\OnActiveTabChangeEvent.cs" />
+    <Compile Include="BaseTypes\TabControl.cs" />
+    <Compile Include="BaseTypes\TabToggleWidget.cs" />
+    <Compile Include="BaseTypes\TextureWidget.cs" />
+    <Compile Include="BaseTypes\TextWidget.cs" />
+    <Compile Include="BaseTypes\Widget.cs" />
+    <Compile Include="BaseTypes\WidgetSearchDelegate.cs" />
+    <Compile Include="AssemblyInfo.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+</Project>

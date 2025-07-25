@@ -1,0 +1,834 @@
+﻿// Decompiled with JetBrains decompiler
+// Type: TaleWorlds.CampaignSystem.Issues.ArtisanOverpricedGoodsIssueBehavior
+// Assembly: TaleWorlds.CampaignSystem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: E85F8C15-4DF6-4E9C-A58A-29177E40D07A
+// Assembly location: D:\steam\steamapps\common\Mount & Blade II Bannerlord\bin\Win64_Shipping_Client\TaleWorlds.CampaignSystem.dll
+
+using Helpers;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using TaleWorlds.CampaignSystem.Actions;
+using TaleWorlds.CampaignSystem.CharacterDevelopment;
+using TaleWorlds.CampaignSystem.Conversation;
+using TaleWorlds.CampaignSystem.Extensions;
+using TaleWorlds.CampaignSystem.Party;
+using TaleWorlds.CampaignSystem.Roster;
+using TaleWorlds.CampaignSystem.Settlements;
+using TaleWorlds.Core;
+using TaleWorlds.Library;
+using TaleWorlds.Localization;
+using TaleWorlds.ObjectSystem;
+using TaleWorlds.SaveSystem;
+
+#nullable disable
+namespace TaleWorlds.CampaignSystem.Issues
+{
+  public class ArtisanOverpricedGoodsIssueBehavior : CampaignBehaviorBase
+  {
+    private const IssueBase.IssueFrequency ArtisanOverpricedGoodsIssueFrequency = IssueBase.IssueFrequency.Common;
+    private const float HighestPriceIndexAtTown = 1.4f;
+
+    private static IEnumerable<ItemObject> PossibleRequestedItems
+    {
+      get
+      {
+        yield return MBObjectManager.Instance.GetObject<ItemObject>("cow");
+        yield return MBObjectManager.Instance.GetObject<ItemObject>("sheep");
+        yield return MBObjectManager.Instance.GetObject<ItemObject>("wool");
+        yield return MBObjectManager.Instance.GetObject<ItemObject>("iron");
+        yield return MBObjectManager.Instance.GetObject<ItemObject>("leather");
+        yield return MBObjectManager.Instance.GetObject<ItemObject>("hardwood");
+      }
+    }
+
+    public override void RegisterEvents()
+    {
+      CampaignEvents.OnCheckForIssueEvent.AddNonSerializedListener((object) this, new Action<Hero>(this.OnCheckForIssue));
+    }
+
+    public override void SyncData(IDataStore dataStore)
+    {
+    }
+
+    public void OnCheckForIssue(Hero hero)
+    {
+      Hero antagonistMerchant;
+      ItemObject requestedItem;
+      if (this.ConditionsHold(hero, out antagonistMerchant, out requestedItem))
+      {
+        KeyValuePair<Hero, ItemObject> relatedObject = new KeyValuePair<Hero, ItemObject>(antagonistMerchant, requestedItem);
+        Campaign.Current.IssueManager.AddPotentialIssueData(hero, new PotentialIssueData(new PotentialIssueData.StartIssueDelegate(this.OnStartIssue), typeof (ArtisanOverpricedGoodsIssueBehavior.ArtisanOverpricedGoodsIssue), IssueBase.IssueFrequency.Common, (object) relatedObject));
+      }
+      else
+        Campaign.Current.IssueManager.AddPotentialIssueData(hero, new PotentialIssueData(typeof (ArtisanOverpricedGoodsIssueBehavior.ArtisanOverpricedGoodsIssue), IssueBase.IssueFrequency.Common));
+    }
+
+    private Hero GetAntagonistMerchant(Hero issueOwner)
+    {
+      return issueOwner.CurrentSettlement.Notables.GetRandomElementWithPredicate<Hero>((Func<Hero, bool>) (x => x != issueOwner && x.IsMerchant && x.GetTraitLevel(DefaultTraits.Mercy) <= 0 && x.CanHaveQuestsOrIssues()));
+    }
+
+    private bool ConditionsHold(
+      Hero IssueOwner,
+      out Hero antagonistMerchant,
+      out ItemObject requestedItem)
+    {
+      antagonistMerchant = (Hero) null;
+      requestedItem = (ItemObject) null;
+      if (IssueOwner.CurrentSettlement == null || !IssueOwner.CurrentSettlement.IsTown || !IssueOwner.IsArtisan)
+        return false;
+      antagonistMerchant = this.GetAntagonistMerchant(IssueOwner);
+      if (antagonistMerchant != null)
+      {
+        foreach (ItemObject possibleRequestedItem in ArtisanOverpricedGoodsIssueBehavior.PossibleRequestedItems)
+        {
+          if ((double) IssueOwner.CurrentSettlement.Town.GetItemCategoryPriceIndex(possibleRequestedItem.ItemCategory) > 1.3999999761581421)
+          {
+            requestedItem = possibleRequestedItem;
+            return true;
+          }
+        }
+      }
+      return false;
+    }
+
+    private IssueBase OnStartIssue(in PotentialIssueData pid, Hero issueOwner)
+    {
+      KeyValuePair<Hero, ItemObject> relatedObject = (KeyValuePair<Hero, ItemObject>) pid.RelatedObject;
+      return (IssueBase) new ArtisanOverpricedGoodsIssueBehavior.ArtisanOverpricedGoodsIssue(issueOwner, relatedObject.Key, relatedObject.Value);
+    }
+
+    public class ArtisanOverpricedGoodsIssue : IssueBase
+    {
+      private const int RequiredTradeSkillLevelForSendingComp = 120;
+      private const int BaseRewardGold = 300;
+      private const int IssueDuration = 30;
+      private const int QuestTimeLimit = 30;
+      private const int MinimumAlternativeTroopTier = 2;
+      [SaveableField(13)]
+      private int _goldReward;
+      [SaveableField(10)]
+      private ItemObject _requestedTradeGood;
+
+      internal static void AutoGeneratedStaticCollectObjectsArtisanOverpricedGoodsIssue(
+        object o,
+        List<object> collectedObjects)
+      {
+        ((MBObjectBase) o).AutoGeneratedInstanceCollectObjects(collectedObjects);
+      }
+
+      protected override void AutoGeneratedInstanceCollectObjects(List<object> collectedObjects)
+      {
+        base.AutoGeneratedInstanceCollectObjects(collectedObjects);
+        collectedObjects.Add((object) this._requestedTradeGood);
+        collectedObjects.Add((object) this.CounterOfferHero);
+      }
+
+      internal static object AutoGeneratedGetMemberValueRequestedTradeGoodAmount(object o)
+      {
+        return (object) ((ArtisanOverpricedGoodsIssueBehavior.ArtisanOverpricedGoodsIssue) o).RequestedTradeGoodAmount;
+      }
+
+      internal static object AutoGeneratedGetMemberValueCounterOfferHero(object o)
+      {
+        return (object) ((IssueBase) o).CounterOfferHero;
+      }
+
+      internal static object AutoGeneratedGetMemberValue_goldReward(object o)
+      {
+        return (object) ((ArtisanOverpricedGoodsIssueBehavior.ArtisanOverpricedGoodsIssue) o)._goldReward;
+      }
+
+      internal static object AutoGeneratedGetMemberValue_requestedTradeGood(object o)
+      {
+        return (object) ((ArtisanOverpricedGoodsIssueBehavior.ArtisanOverpricedGoodsIssue) o)._requestedTradeGood;
+      }
+
+      public override int AlternativeSolutionBaseNeededMenCount
+      {
+        get => 4 + MathF.Ceiling(6f * this.IssueDifficultyMultiplier);
+      }
+
+      protected override int AlternativeSolutionBaseDurationInDaysInternal
+      {
+        get => 3 + MathF.Ceiling(5f * this.IssueDifficultyMultiplier);
+      }
+
+      public override IssueBase.AlternativeSolutionScaleFlag AlternativeSolutionScaleFlags
+      {
+        get => IssueBase.AlternativeSolutionScaleFlag.Duration;
+      }
+
+      protected override int RewardGold => this._goldReward;
+
+      [SaveableProperty(12)]
+      private int RequestedTradeGoodAmount { get; set; }
+
+      private int RequiredGoldForAlternativeSolution
+      {
+        get
+        {
+          return MathF.Floor((float) (this._requestedTradeGood.Value * this.RequestedTradeGoodAmount) * 0.75f);
+        }
+      }
+
+      [SaveableProperty(11)]
+      public override Hero CounterOfferHero { get; protected set; }
+
+      public override int NeededInfluenceForLordSolution
+      {
+        get => 15 + MathF.Ceiling(35f * this.IssueDifficultyMultiplier);
+      }
+
+      public override TextObject IssueBriefByIssueGiver
+      {
+        get
+        {
+          return new TextObject("{=FKtkmwtb}I don't know if you know much about the law here... Craftsmen like me are required to buy our raw materials from local merchants. The other side of the bargain is that they offer us reasonable prices. But they're not doing that! They've come together and agreed on a price that's just too high. They don't care if it ruins us - they can always sell the goods elsewhere.[ib:hip][if:convo_thinking]");
+        }
+      }
+
+      public override TextObject IssueAcceptByPlayer
+      {
+        get => new TextObject("{=j4V4fVBd}I see... How can I help?");
+      }
+
+      protected override TextObject LordSolutionStartLog
+      {
+        get
+        {
+          return new TextObject("{=p5OHK0Lh}You decided to issue a decree banning the merchants' price-fixing arrangement.");
+        }
+      }
+
+      protected override TextObject LordSolutionCounterOfferRefuseLog
+      {
+        get
+        {
+          return new TextObject("{=wrliXWLc}You approved the law which prevents price fixing in the markets and rejected the merchants' counter-offer.");
+        }
+      }
+
+      protected override TextObject LordSolutionCounterOfferAcceptLog
+      {
+        get
+        {
+          return new TextObject("{=bSguu34C}After listening to the town merchants, you decided to let the merchants continue price-fixing.");
+        }
+      }
+
+      public override TextObject IssueQuestSolutionExplanationByIssueGiver
+      {
+        get
+        {
+          TextObject explanationByIssueGiver = new TextObject("{=epcc2knY}Well, you get around, right? It wouldn't be hard for you to collect the {.%}{SELECTED_GOOD}{.%} we need. If you could bring, say {SELECTED_AMOUNT} {.%}{?SELECTED_AMOUNT > 1}{PLURAL(SELECTED_GOOD)}{?}{SELECTED_GOOD}{\\?}{.%} directly to me instead of selling to the merchants, I would gladly pay {REWARD_AMOUNT}{GOLD_ICON} for them. With this, the merchants would have to lower their prices.[if:convo_calm_friendly][ib:confident3]");
+          explanationByIssueGiver.SetTextVariable("SELECTED_GOOD", this._requestedTradeGood.Name);
+          explanationByIssueGiver.SetTextVariable("SELECTED_AMOUNT", this.RequestedTradeGoodAmount);
+          explanationByIssueGiver.SetTextVariable("REWARD_AMOUNT", this.RewardGold);
+          explanationByIssueGiver.SetTextVariable("GOLD_ICON", "{=!}<img src=\"General\\Icons\\Coin@2x\" extend=\"8\">");
+          return explanationByIssueGiver;
+        }
+      }
+
+      public override TextObject IssueAlternativeSolutionExplanationByIssueGiver
+      {
+        get
+        {
+          TextObject explanationByIssueGiver = new TextObject("{=XvC1eLR1}Or, if you will not be able to acquire the goods yourself, you can perhaps assign one of your trusted companions to the task. Somewhat with a good understanding of trade and and around {TROOP_NUMBER} {?TROOP_NUMBER}troops{?}troop{\\?} could do it easily enough, along with {GOLD_COST}{GOLD_ICON} denars to make the purchases.[ib:normal2][if:convo_undecided_open]");
+          explanationByIssueGiver.SetTextVariable("TROOP_NUMBER", this.GetTotalAlternativeSolutionNeededMenCount());
+          explanationByIssueGiver.SetTextVariable("GOLD_COST", this.RequiredGoldForAlternativeSolution);
+          explanationByIssueGiver.SetTextVariable("GOLD_ICON", "{=!}<img src=\"General\\Icons\\Coin@2x\" extend=\"8\">");
+          return explanationByIssueGiver;
+        }
+      }
+
+      public override TextObject IssueLordSolutionExplanationByIssueGiver
+      {
+        get
+        {
+          TextObject parent = new TextObject("{=JeL0aUOa}You could stop them with a decree, my {?PLAYER.GENDER}lady{?}lord{\\?}. All the craftsmen here would be very grateful.");
+          StringHelpers.SetCharacterProperties("PLAYER", CharacterObject.PlayerCharacter, parent);
+          return parent;
+        }
+      }
+
+      public override TextObject IssueQuestSolutionAcceptByPlayer
+      {
+        get
+        {
+          TextObject solutionAcceptByPlayer = new TextObject("{=mTuIMcLA}All right. I will bring {SELECTED_AMOUNT} {.%}{?SELECTED_AMOUNT > 1}{PLURAL(SELECTED_GOOD)}{?}{SELECTED_GOOD}{\\?}{.%} to you.");
+          solutionAcceptByPlayer.SetTextVariable("SELECTED_GOOD", this._requestedTradeGood.Name);
+          solutionAcceptByPlayer.SetTextVariable("SELECTED_AMOUNT", this.RequestedTradeGoodAmount);
+          return solutionAcceptByPlayer;
+        }
+      }
+
+      public override TextObject IssueAlternativeSolutionAcceptByPlayer
+      {
+        get => new TextObject("{=79h7xNeL}I will have one of my companions take care of this.");
+      }
+
+      public override TextObject IssueDiscussAlternativeSolution
+      {
+        get
+        {
+          return new TextObject("{=E9GhODyh}I am very grateful to you for sparing your men to help us get what we need for a fair price.[if:convo_approving][ib:normal2]");
+        }
+      }
+
+      public override TextObject IssueAlternativeSolutionResponseByIssueGiver
+      {
+        get
+        {
+          TextObject parent = new TextObject("{=2YiPE05P}Thank you, my {?PLAYER.GENDER}lady{?}lord{\\?}. Your companion will no doubt be very helpful.");
+          StringHelpers.SetCharacterProperties("PLAYER", CharacterObject.PlayerCharacter, parent);
+          return parent;
+        }
+      }
+
+      public override TextObject IssueLordSolutionAcceptByPlayer
+      {
+        get
+        {
+          return new TextObject("{=xTKHO53L}This is outrageous. I declare that from now on that there shall be no price fixing.");
+        }
+      }
+
+      public override TextObject IssueLordSolutionResponseByIssueGiver
+      {
+        get
+        {
+          TextObject parent = new TextObject("{=6vPCEaSR}Thank you, my {?PLAYER.GENDER}lady{?}lord{\\?} that would be very good. Merchants will not like this but the hard-working artisans like me will be grateful to you for this.");
+          StringHelpers.SetCharacterProperties("PLAYER", CharacterObject.PlayerCharacter, parent);
+          return parent;
+        }
+      }
+
+      public override TextObject IssueLordSolutionCounterOfferBriefByOtherNpc
+      {
+        get
+        {
+          return new TextObject("{=ojNK5Zem}(One of the merchants in the town comes to talk as you are preparing to depart.)");
+        }
+      }
+
+      public override TextObject IssueLordSolutionCounterOfferExplanationByOtherNpc
+      {
+        get
+        {
+          return new TextObject("{=8Tqv9ezH}We heard you wish to issue a decree changing our longstanding rules on pricing. Of course this is your right, but I'd like to remind you that we merchants pay significantly more taxes than the artisans. I would ask you to think of the finances of the town, and reconsider this.");
+        }
+      }
+
+      public override TextObject IssueLordSolutionCounterOfferAcceptByPlayer
+      {
+        get
+        {
+          return new TextObject("{=FyTGbvLS}On second thought, I have decided not to interfere with the merchant's business.");
+        }
+      }
+
+      public override TextObject IssueLordSolutionCounterOfferAcceptResponseByOtherNpc
+      {
+        get
+        {
+          TextObject parent = new TextObject("{=wynCFpsT}This is a wise decision, my {?PLAYER.GENDER}lady{?}lord{\\?}. Thank you.");
+          StringHelpers.SetCharacterProperties("PLAYER", CharacterObject.PlayerCharacter, parent);
+          return parent;
+        }
+      }
+
+      public override TextObject IssueLordSolutionCounterOfferDeclineByPlayer
+      {
+        get => new TextObject("{=IXuaflOe}I stand by my decision.");
+      }
+
+      public override TextObject IssueLordSolutionCounterOfferDeclineResponseByOtherNpc
+      {
+        get => new TextObject("{=ypAPaO1J}That's a pity.");
+      }
+
+      protected override void LordSolutionConsequenceWithRefuseCounterOffer()
+      {
+        this.ApplySuccessRewards(this.IssueOwner);
+      }
+
+      protected override void LordSolutionConsequenceWithAcceptCounterOffer()
+      {
+        ChangeRelationAction.ApplyPlayerRelation(this.CounterOfferHero, 5);
+        this.RelationshipChangeWithIssueOwner = -5;
+        this.IssueSettlement.Town.Prosperity -= 30f;
+        TraitLevelingHelper.OnIssueSolvedThroughBetrayal(this.IssueOwner, new Tuple<TraitObject, int>[1]
+        {
+          new Tuple<TraitObject, int>(DefaultTraits.Honor, -50)
+        });
+        this.IssueOwner.AddPower(-5f);
+      }
+
+      protected override TextObject AlternativeSolutionStartLog
+      {
+        get
+        {
+          TextObject solutionStartLog = new TextObject("{=aeKdXKnO}{ISSUE_GIVER.LINK}, an artisan from {SETTLEMENT}, has told you that a local merchant {COUNTER_OFFER.LINK} is asking ridiculous amounts of money for raw materials which {?ISSUE_GIVER.GENDER}she{?}he{\\?} needs to continue {?ISSUE_GIVER.GENDER}her{?}his{\\?} work. {?ISSUE_GIVER.GENDER}She{?}He{\\?} is willing to pay {REWARD_AMOUNT}{GOLD_ICON} for help obtaining the needed goods.{newline}You asked {COMPANION.LINK} to stay with {?ISSUE_GIVER.GENDER}her{?}him{\\?} and try to solve {?ISSUE_GIVER.GENDER}her{?}his{\\?} problems. You expect {COMPANION.LINK} to report back to you in {RETURN_DAYS} days.");
+          StringHelpers.SetCharacterProperties("ISSUE_GIVER", this.IssueOwner.CharacterObject, solutionStartLog);
+          StringHelpers.SetCharacterProperties("COUNTER_OFFER", this.CounterOfferHero.CharacterObject, solutionStartLog);
+          solutionStartLog.SetCharacterProperties("COMPANION", this.AlternativeSolutionHero.CharacterObject);
+          solutionStartLog.SetTextVariable("SETTLEMENT", this.IssueOwner.CurrentSettlement.EncyclopediaLinkWithName);
+          solutionStartLog.SetTextVariable("REWARD_AMOUNT", this.RewardGold);
+          solutionStartLog.SetTextVariable("GOLD_ICON", "{=!}<img src=\"General\\Icons\\Coin@2x\" extend=\"8\">");
+          solutionStartLog.SetTextVariable("RETURN_DAYS", this.GetTotalAlternativeSolutionDurationInDays());
+          return solutionStartLog;
+        }
+      }
+
+      public override bool IsThereAlternativeSolution => true;
+
+      public override bool IsThereLordSolution => true;
+
+      public override TextObject Title
+      {
+        get
+        {
+          TextObject title = new TextObject("{=dt6kKXSL}Overpriced Raw Materials at {SETTLEMENT}");
+          title.SetTextVariable("SETTLEMENT", this.IssueSettlement.Name);
+          return title;
+        }
+      }
+
+      public override TextObject Description
+      {
+        get
+        {
+          TextObject description = new TextObject("{=U90asNb9}Artisans in {SETTLEMENT} cannot continue their work because of the overpriced raw materials.");
+          description.SetTextVariable("SETTLEMENT", this.IssueOwner.CurrentSettlement.Name);
+          return description;
+        }
+      }
+
+      public override TextObject IssueAsRumorInSettlement
+      {
+        get
+        {
+          TextObject parent = new TextObject("{=FPbmUpy7}{QUEST_GIVER.NAME} is in quite a stew over the merchants' monopoly, so I hear.");
+          StringHelpers.SetCharacterProperties("QUEST_GIVER", this.IssueOwner.CharacterObject, parent);
+          return parent;
+        }
+      }
+
+      public override TextObject IssueAlternativeSolutionSuccessLog
+      {
+        get
+        {
+          TextObject to = new TextObject("{=3r2HLPQ1}Your {COMPANION.LINK} has delivered {ISSUE_GIVER.LINK}'s goods as you promised.");
+          to.SetCharacterProperties("COMPANION", this.AlternativeSolutionHero.CharacterObject);
+          to.SetCharacterProperties("ISSUE_GIVER", this.IssueOwner.CharacterObject);
+          return to;
+        }
+      }
+
+      public ArtisanOverpricedGoodsIssue(
+        Hero issueOwner,
+        Hero counterOfferHero,
+        ItemObject requestedTradeGood)
+        : base(issueOwner, CampaignTime.DaysFromNow(30f))
+      {
+        this.CounterOfferHero = counterOfferHero;
+        this._requestedTradeGood = requestedTradeGood;
+        this.CalculateTradeGoodsAmountAndReward();
+      }
+
+      protected override float GetIssueEffectAmountInternal(IssueEffect issueEffect)
+      {
+        return issueEffect == DefaultIssueEffects.SettlementProsperity ? -0.4f : 0.0f;
+      }
+
+      public override bool IssueStayAliveConditions()
+      {
+        return (double) this.IssueOwner.CurrentSettlement.Town.GetItemCategoryPriceIndex(this._requestedTradeGood.ItemCategory) > 1.1999999284744263 && this.CounterOfferHero.IsActive && this.CounterOfferHero.CurrentSettlement == this.IssueSettlement;
+      }
+
+      protected override void CompleteIssueWithTimedOutConsequences()
+      {
+      }
+
+      public override (SkillObject, int) GetAlternativeSolutionSkill(Hero hero)
+      {
+        return (hero.GetSkillValue(DefaultSkills.Roguery) >= hero.GetSkillValue(DefaultSkills.Trade) ? DefaultSkills.Roguery : DefaultSkills.Trade, 120);
+      }
+
+      public override bool AlternativeSolutionCondition(out TextObject explanation)
+      {
+        explanation = TextObject.Empty;
+        return QuestHelper.CheckRosterForAlternativeSolution(MobileParty.MainParty.MemberRoster, this.GetTotalAlternativeSolutionNeededMenCount(), ref explanation, 2) && QuestHelper.CheckGoldForAlternativeSolution(this.RequiredGoldForAlternativeSolution, ref explanation);
+      }
+
+      public override bool DoTroopsSatisfyAlternativeSolution(
+        TroopRoster troopRoster,
+        out TextObject explanation)
+      {
+        explanation = TextObject.Empty;
+        return QuestHelper.CheckRosterForAlternativeSolution(troopRoster, this.GetTotalAlternativeSolutionNeededMenCount(), ref explanation, 2);
+      }
+
+      public override void AlternativeSolutionStartConsequence()
+      {
+        GiveGoldAction.ApplyBetweenCharacters(Hero.MainHero, (Hero) null, this.RequiredGoldForAlternativeSolution);
+      }
+
+      protected override void AlternativeSolutionEndWithSuccessConsequence()
+      {
+        this.ApplySuccessRewards(this.IssueOwner);
+      }
+
+      public override bool LordSolutionCondition(out TextObject explanation)
+      {
+        if (Clan.PlayerClan == Settlement.CurrentSettlement.OwnerClan)
+        {
+          explanation = TextObject.Empty;
+          return true;
+        }
+        explanation = new TextObject("{=bItEf0WN}You need to be the {?PLAYER.GENDER}lady{?}lord{\\?} of this settlement.");
+        StringHelpers.SetCharacterProperties("PLAYER", Hero.MainHero.CharacterObject, explanation);
+        return false;
+      }
+
+      protected override int CompanionSkillRewardXP
+      {
+        get => (int) (400.0 + 1700.0 * (double) this.IssueDifficultyMultiplier);
+      }
+
+      private void ApplySuccessRewards(Hero issueGiver)
+      {
+        issueGiver.AddPower(10f);
+        ChangeRelationAction.ApplyPlayerRelation(issueGiver, 5);
+        ChangeRelationAction.ApplyPlayerRelation(this.CounterOfferHero, -10);
+        this.CounterOfferHero.AddPower(-10f);
+        issueGiver.CurrentSettlement.Town.Prosperity += 30f;
+      }
+
+      public override IssueBase.IssueFrequency GetFrequency() => IssueBase.IssueFrequency.Common;
+
+      protected override bool CanPlayerTakeQuestConditions(
+        Hero issueGiver,
+        out IssueBase.PreconditionFlags flag,
+        out Hero relationHero,
+        out SkillObject skill)
+      {
+        flag = IssueBase.PreconditionFlags.None;
+        relationHero = (Hero) null;
+        skill = (SkillObject) null;
+        if ((double) issueGiver.GetRelationWithPlayer() < -10.0)
+        {
+          flag |= IssueBase.PreconditionFlags.Relation;
+          relationHero = issueGiver;
+        }
+        return flag == IssueBase.PreconditionFlags.None;
+      }
+
+      private void CalculateTradeGoodsAmountAndReward()
+      {
+        this.RequestedTradeGoodAmount = MathF.Max((int) (2500.0 / (double) this._requestedTradeGood.Value * (double) this.IssueDifficultyMultiplier), 1);
+        this._goldReward = 300 + (int) ((double) (this.IssueOwner.CurrentSettlement.Town.GetItemPrice(this._requestedTradeGood, (MobileParty) null, false) + this._requestedTradeGood.Value) / 2.0) * this.RequestedTradeGoodAmount;
+      }
+
+      protected override void OnGameLoad()
+      {
+        if (this.RequestedTradeGoodAmount != 0 && this._goldReward != 0)
+          return;
+        this.CalculateTradeGoodsAmountAndReward();
+      }
+
+      protected override void HourlyTick()
+      {
+      }
+
+      protected override QuestBase GenerateIssueQuest(string questId)
+      {
+        return (QuestBase) new ArtisanOverpricedGoodsIssueBehavior.ArtisanOverpricedGoodsIssueQuest(questId, this.IssueOwner, CampaignTime.DaysFromNow(30f), this._requestedTradeGood, this.RewardGold, this.RequestedTradeGoodAmount, this.CounterOfferHero);
+      }
+    }
+
+    public class ArtisanOverpricedGoodsIssueQuest : QuestBase
+    {
+      [SaveableField(20)]
+      private int _rewardGold;
+      [SaveableField(30)]
+      private readonly ItemObject _requestedTradeGood;
+      [SaveableField(60)]
+      private readonly int _requestedTradeGoodAmount;
+      [SaveableField(40)]
+      private int _givenTradeGoods;
+      [SaveableField(50)]
+      private JournalLog _playerStartsQuestLog;
+
+      internal static void AutoGeneratedStaticCollectObjectsArtisanOverpricedGoodsIssueQuest(
+        object o,
+        List<object> collectedObjects)
+      {
+        ((MBObjectBase) o).AutoGeneratedInstanceCollectObjects(collectedObjects);
+      }
+
+      protected override void AutoGeneratedInstanceCollectObjects(List<object> collectedObjects)
+      {
+        base.AutoGeneratedInstanceCollectObjects(collectedObjects);
+        collectedObjects.Add((object) this._requestedTradeGood);
+        collectedObjects.Add((object) this._playerStartsQuestLog);
+      }
+
+      internal static object AutoGeneratedGetMemberValue_rewardGold(object o)
+      {
+        return (object) ((ArtisanOverpricedGoodsIssueBehavior.ArtisanOverpricedGoodsIssueQuest) o)._rewardGold;
+      }
+
+      internal static object AutoGeneratedGetMemberValue_requestedTradeGood(object o)
+      {
+        return (object) ((ArtisanOverpricedGoodsIssueBehavior.ArtisanOverpricedGoodsIssueQuest) o)._requestedTradeGood;
+      }
+
+      internal static object AutoGeneratedGetMemberValue_requestedTradeGoodAmount(object o)
+      {
+        return (object) ((ArtisanOverpricedGoodsIssueBehavior.ArtisanOverpricedGoodsIssueQuest) o)._requestedTradeGoodAmount;
+      }
+
+      internal static object AutoGeneratedGetMemberValue_givenTradeGoods(object o)
+      {
+        return (object) ((ArtisanOverpricedGoodsIssueBehavior.ArtisanOverpricedGoodsIssueQuest) o)._givenTradeGoods;
+      }
+
+      internal static object AutoGeneratedGetMemberValue_playerStartsQuestLog(object o)
+      {
+        return (object) ((ArtisanOverpricedGoodsIssueBehavior.ArtisanOverpricedGoodsIssueQuest) o)._playerStartsQuestLog;
+      }
+
+      public override TextObject Title
+      {
+        get
+        {
+          TextObject title = new TextObject("{=dt6kKXSL}Overpriced Raw Materials at {SETTLEMENT}");
+          title.SetTextVariable("SETTLEMENT", this.QuestGiver.CurrentSettlement.Name);
+          return title;
+        }
+      }
+
+      private Hero AntagonistHero
+      {
+        get
+        {
+          return this.QuestGiver.CurrentSettlement.Notables.FirstOrDefault<Hero>((Func<Hero, bool>) (x => x != this.QuestGiver && x.IsMerchant && x.GetTraitLevel(DefaultTraits.Mercy) <= 0));
+        }
+      }
+
+      public override bool IsRemainingTimeHidden => false;
+
+      private TextObject _playerStartsQuestLogText
+      {
+        get
+        {
+          TextObject parent = new TextObject("{=IL3QWZ93}{QUEST_GIVER.LINK}, an artisan from {SETTLEMENT}, has told you about local merchant asking ridiculous amounts of money for the raw materials that {?QUEST_GIVER.GENDER}she{?}he{\\?} needs to continue {?QUEST_GIVER.GENDER}her{?}his{\\?} work. You said that you can bring {?QUEST_GIVER.GENDER}her{?}him{\\?} {REQUESTED_AMOUNT} {.%}{?REQUESTED_AMOUNT > 1}{PLURAL(REQUESTED_GOOD)}{?}{REQUESTED_GOOD}{\\?}{.%}. {?QUEST_GIVER.GENDER}She{?}He{\\?} is willing to pay {REWARD_AMOUNT}{GOLD_ICON} for these items.");
+          StringHelpers.SetCharacterProperties("QUEST_GIVER", this.QuestGiver.CharacterObject, parent);
+          parent.SetTextVariable("SETTLEMENT", this.QuestGiver.CurrentSettlement.EncyclopediaLinkWithName);
+          parent.SetTextVariable("REQUESTED_AMOUNT", this._requestedTradeGoodAmount);
+          parent.SetTextVariable("REQUESTED_GOOD", this._requestedTradeGood.Name);
+          parent.SetTextVariable("REWARD_AMOUNT", this._rewardGold);
+          parent.SetTextVariable("GOLD_ICON", "{=!}<img src=\"General\\Icons\\Coin@2x\" extend=\"8\">");
+          return parent;
+        }
+      }
+
+      private TextObject _successQuestLogText
+      {
+        get
+        {
+          TextObject parent = new TextObject("{=6XvszYj2}You brought {REQUESTED_AMOUNT} {.%}{?REQUESTED_AMOUNT > 1}{PLURAL(REQUESTED_GOOD)}{?}{REQUESTED_GOOD}{\\?}{.%} to {?QUEST_GIVER.GENDER}her{?}him{\\?} as promised.");
+          StringHelpers.SetCharacterProperties("QUEST_GIVER", this.QuestGiver.CharacterObject, parent);
+          parent.SetTextVariable("REQUESTED_AMOUNT", this._requestedTradeGoodAmount);
+          parent.SetTextVariable("REQUESTED_GOOD", this._requestedTradeGood.Name);
+          return parent;
+        }
+      }
+
+      private TextObject _timeoutQuestLogText
+      {
+        get
+        {
+          TextObject parent = new TextObject("{=Ts5dZih4}You couldn't fully bring {.%}{REQUESTED_GOOD}{.%} to {?QUEST_GIVER.GENDER}her{?}him{\\?} in time.");
+          StringHelpers.SetCharacterProperties("QUEST_GIVER", this.QuestGiver.CharacterObject, parent);
+          parent.SetTextVariable("REQUESTED_GOOD", this._requestedTradeGood.Name);
+          return parent;
+        }
+      }
+
+      protected override void InitializeQuestOnGameLoad()
+      {
+        this.SetDialogs();
+        Campaign.Current.ConversationManager.AddDialogFlow(this.GetMerchantDialogFlow(), (object) this);
+      }
+
+      protected override void HourlyTick()
+      {
+      }
+
+      public ArtisanOverpricedGoodsIssueQuest(
+        string questId,
+        Hero questGiver,
+        CampaignTime dueTime,
+        ItemObject requestedTradeGood,
+        int rewardGold,
+        int requestedTradeGoodAmount,
+        Hero counterOfferHero)
+        : base(questId, questGiver, dueTime, rewardGold)
+      {
+        this._requestedTradeGood = requestedTradeGood;
+        this._requestedTradeGoodAmount = requestedTradeGoodAmount;
+        this._rewardGold = rewardGold;
+        this.SetDialogs();
+        this.InitializeQuestOnCreation();
+      }
+
+      protected override void SetDialogs()
+      {
+        this.OfferDialogFlow = DialogFlow.CreateDialogFlow("issue_classic_quest_start").NpcLine(new TextObject("{=e1sSXEOh}This is excellent news. If you could bring the goods, it would be an immense help, and the merchants would have to lower their prices. Thank you.[if:convo_excited][ib:hip2]")).Condition((ConversationSentence.OnConditionDelegate) (() => Hero.OneToOneConversationHero == this.QuestGiver)).Consequence(new ConversationSentence.OnConsequenceDelegate(this.QuestAcceptedConsequences)).CloseDialog();
+        TextObject npcText1 = new TextObject("{=fKnkkWH1}Have you brought any {.%}{REQUESTED_GOOD}{.%}? My stocks are running out and I need some very soon.");
+        npcText1.SetTextVariable("REQUESTED_GOOD", this._requestedTradeGood.Name);
+        TextObject text1 = new TextObject("{=bPbzwMat}I could only deliver {AMOUNT_TO_DELIVER} {.%}{?AMOUNT_TO_DELIVER > 1}{PLURAL(REQUESTED_GOOD)}{?}{REQUESTED_GOOD}{\\?}{.%}.");
+        text1.SetTextVariable("REQUESTED_GOOD", this._requestedTradeGood.Name);
+        text1.SetTextVariable("AMOUNT_TO_DELIVER", this.GetAvailableRequestedItemCountOnPlayer());
+        TextObject npcText2 = new TextObject("{=IfF3OHNT}Thank you. These will be very useful. If you can get your hands on more, please bring them directly to me.");
+        TextObject text2 = new TextObject("{=1LzohiMf}I brought {AMOUNT_TO_DELIVER} {.%}{?AMOUNT_TO_DELIVER > 1}{PLURAL(REQUESTED_GOOD)}{?}{REQUESTED_GOOD}{\\?}{.%} as we agreed.");
+        text2.SetTextVariable("AMOUNT_TO_DELIVER", this._requestedTradeGoodAmount - this._givenTradeGoods);
+        text2.SetTextVariable("REQUESTED_GOOD", this._requestedTradeGood.Name);
+        TextObject npcText3 = new TextObject("{=cxQGUbUD}I'm so grateful! You've kept my workshop running and my family fed. Please take this money and some extra to cover your costs.[if:convo_grateful][ib:normal2]");
+        TextObject text3 = new TextObject("{=4uKTfTg9}Sorry. I don't have anything for you this time.");
+        TextObject npcText4 = new TextObject("{=YWorGaI1}Ah... We'll get by. I won't lie. It will be hard. I just hope you can deliver some soon.[if:convo_normal][ib:closed]");
+        this.DiscussDialogFlow = DialogFlow.CreateDialogFlow("quest_discuss").NpcLine(npcText1).Condition((ConversationSentence.OnConditionDelegate) (() => Hero.OneToOneConversationHero == this.QuestGiver)).BeginPlayerOptions().PlayerOption(text1).Condition((ConversationSentence.OnConditionDelegate) (() =>
+        {
+          int itemCountOnPlayer = this.GetAvailableRequestedItemCountOnPlayer();
+          Campaign.Current.ConversationManager.GetCurrentDialogLine().SetTextVariable("REQUESTED_GOOD", this._requestedTradeGood.Name);
+          Campaign.Current.ConversationManager.GetCurrentDialogLine().SetTextVariable("AMOUNT_TO_DELIVER", itemCountOnPlayer);
+          return itemCountOnPlayer > 0 && itemCountOnPlayer < this._requestedTradeGoodAmount - this._givenTradeGoods;
+        })).Consequence(new ConversationSentence.OnConsequenceDelegate(this.DeliverItemsPartiallyOnConsequence)).NpcLine(npcText2).CloseDialog().PlayerOption(text2).Condition((ConversationSentence.OnConditionDelegate) (() =>
+        {
+          int itemCountOnPlayer = this.GetAvailableRequestedItemCountOnPlayer();
+          Campaign.Current.ConversationManager.GetCurrentDialogLine().SetTextVariable("AMOUNT_TO_DELIVER", this._requestedTradeGoodAmount - this._givenTradeGoods);
+          Campaign.Current.ConversationManager.GetCurrentDialogLine().SetTextVariable("REQUESTED_GOOD", this._requestedTradeGood.Name);
+          int num = this._requestedTradeGoodAmount - this._givenTradeGoods;
+          return itemCountOnPlayer >= num;
+        })).Consequence(new ConversationSentence.OnConsequenceDelegate(this.DeliverItemsFullyOnConsequence)).NpcLine(npcText3).Consequence(new ConversationSentence.OnConsequenceDelegate(((QuestBase) this).CompleteQuestWithSuccess)).CloseDialog().PlayerOption(text3).NpcLine(npcText4).CloseDialog().EndPlayerOptions().CloseDialog();
+      }
+
+      private int GetAvailableRequestedItemCountOnPlayer()
+      {
+        return PartyBase.MainParty.ItemRoster.GetItemNumber(this._requestedTradeGood);
+      }
+
+      private void DeliverItemsPartiallyOnConsequence()
+      {
+        int num = this.GetAvailableRequestedItemCountOnPlayer();
+        if (PartyBase.MainParty.ItemRoster.ElementAt<ItemRosterElement>(PartyBase.MainParty.ItemRoster.FindIndex((Predicate<ItemObject>) (x => x == this._requestedTradeGood))).Amount <= 0)
+          num = 0;
+        PartyBase.MainParty.ItemRoster.AddToCounts(this._requestedTradeGood, -num);
+        this._givenTradeGoods += num;
+        this.UpdateQuestTaskStage(this._playerStartsQuestLog, this._givenTradeGoods);
+      }
+
+      private void DeliverItemsFullyOnConsequence()
+      {
+        TraitLevelingHelper.OnIssueSolvedThroughQuest(this.QuestGiver, new Tuple<TraitObject, int>[1]
+        {
+          new Tuple<TraitObject, int>(DefaultTraits.Honor, 50)
+        });
+        ChangeCrimeRatingAction.Apply(this.QuestGiver.MapFaction, 5f);
+        PartyBase.MainParty.ItemRoster.AddToCounts(this._requestedTradeGood, -(this._requestedTradeGoodAmount - this._givenTradeGoods));
+        this._givenTradeGoods = this._requestedTradeGoodAmount;
+        this.UpdateQuestTaskStage(this._playerStartsQuestLog, this._givenTradeGoods);
+      }
+
+      private void QuestAcceptedConsequences()
+      {
+        this.StartQuest();
+        this._playerStartsQuestLog = this.AddDiscreteLog(this._playerStartsQuestLogText, new TextObject("{=yw62BLhy}Delivered Goods"), this._givenTradeGoods, this._requestedTradeGoodAmount, hideInformation: true);
+        Campaign.Current.ConversationManager.AddDialogFlow(this.GetMerchantDialogFlow(), (object) this);
+      }
+
+      private DialogFlow GetMerchantDialogFlow()
+      {
+        TextObject playerText = new TextObject("{=YNxGcaJI}I want to talk to you about the outlandish prices you're asking for the goods you sell the artisans.");
+        TextObject npcText1 = new TextObject("{=UwEbBanm}These are the laws of our town. The artisans don't complain when the laws require us to buy tools from them.[if:convo_bored][ib:closed2]");
+        TextObject npcText2 = new TextObject("{=sPEZq0Yk}What's sauce for the goose is sauce for the gander. We've done business for years like this and we're not just going to change things because one party complains.[if:convo_mocking_teasing][ib:hip]");
+        TextObject text1 = new TextObject("{=VzzQX4EZ}Maybe you're right. I won't get involved in this.");
+        TextObject text2 = new TextObject("{=KbFJJfl6}I am sorry. I will do what I must.");
+        TextObject npcText3 = new TextObject("{=yccVH4KD}Thank you for listening to the voice of reason.");
+        TextObject npcText4 = new TextObject("{=A8dyXgLz}That's a pity.");
+        return DialogFlow.CreateDialogFlow("hero_main_options", 125).PlayerLine(playerText).Condition(new ConversationSentence.OnConditionDelegate(this.IsSuitableToTalk)).NpcLine(npcText1).NpcLine(npcText2).BeginPlayerOptions().PlayerOption(text1).NpcLine(npcText3).Consequence(new ConversationSentence.OnConsequenceDelegate(this.AcceptCounterOffer)).CloseDialog().PlayerOption(text2).NpcLine(npcText4).CloseDialog();
+      }
+
+      private bool IsSuitableToTalk()
+      {
+        return Settlement.CurrentSettlement == this.QuestGiver.CurrentSettlement && CharacterObject.OneToOneConversationCharacter.IsHero && CharacterObject.OneToOneConversationCharacter.HeroObject == this.AntagonistHero;
+      }
+
+      private void AcceptCounterOffer()
+      {
+        Hero antagonistHero = this.AntagonistHero;
+        TextObject textObject = new TextObject("{=q4wWEbsa}You decided not to deliver the items after listening to {COUNTER_OFFER_HERO.LINK}.");
+        StringHelpers.SetCharacterProperties("COUNTER_OFFER_HERO", antagonistHero.CharacterObject, textObject);
+        ChangeRelationAction.ApplyPlayerRelation(antagonistHero, 5);
+        antagonistHero.AddPower(5f);
+        TraitLevelingHelper.OnIssueSolvedThroughBetrayal(this.QuestGiver, new Tuple<TraitObject, int>[1]
+        {
+          new Tuple<TraitObject, int>(DefaultTraits.Honor, -50)
+        });
+        this.QuestGiver.CurrentSettlement.Town.Prosperity -= 30f;
+        this.CompleteQuestWithFail(textObject);
+      }
+
+      protected override void OnCompleteWithSuccess()
+      {
+        this.QuestGiver.AddPower(10f);
+        TraitLevelingHelper.OnIssueSolvedThroughQuest(this.QuestGiver, new Tuple<TraitObject, int>[1]
+        {
+          new Tuple<TraitObject, int>(DefaultTraits.Honor, 50)
+        });
+        this.QuestGiver.CurrentSettlement.Town.Prosperity += 30f;
+        this.RelationshipChangeWithQuestGiver = 5;
+        if (this.AntagonistHero != null)
+        {
+          this.AntagonistHero.AddPower(-10f);
+          ChangeRelationAction.ApplyPlayerRelation(this.AntagonistHero, -10);
+        }
+        GiveGoldAction.ApplyForQuestBetweenCharacters(this.QuestGiver, Hero.MainHero, this._rewardGold);
+        this.AddLog(this._successQuestLogText);
+      }
+
+      public override void OnFailed()
+      {
+        this.QuestGiver.AddPower(-10f);
+        this.RelationshipChangeWithQuestGiver = -5;
+        this.QuestGiver.CurrentSettlement.Town.Prosperity -= 20f;
+      }
+
+      protected override void OnTimedOut()
+      {
+        this.AddLog(this._timeoutQuestLogText);
+        this.QuestGiver.AddPower(-20f);
+        this.RelationshipChangeWithQuestGiver = -5;
+        this.QuestGiver.CurrentSettlement.Town.Prosperity -= 50f;
+      }
+    }
+
+    public class ArtisanOverpricedGoodsIssueTypeDefiner : SaveableTypeDefiner
+    {
+      public ArtisanOverpricedGoodsIssueTypeDefiner()
+        : base(470000)
+      {
+      }
+
+      protected override void DefineClassTypes()
+      {
+        this.AddClassDefinition(typeof (ArtisanOverpricedGoodsIssueBehavior.ArtisanOverpricedGoodsIssue), 1);
+        this.AddClassDefinition(typeof (ArtisanOverpricedGoodsIssueBehavior.ArtisanOverpricedGoodsIssueQuest), 2);
+      }
+    }
+  }
+}
