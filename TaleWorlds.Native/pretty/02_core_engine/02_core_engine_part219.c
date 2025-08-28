@@ -1,9 +1,10 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 02_core_engine_part219.c - 8 个函数
+// 02_core_engine_part219.c - 核心引擎模块第219部分
+// 包含8个函数，主要涉及引擎初始化、内存管理和资源清理
 
-// 函数: void FUN_1801954c7(void)
-void FUN_1801954c7(void)
+// 函数: 空函数，可能用于初始化或占位
+void initialize_empty_placeholder(void)
 
 {
   return;
@@ -11,9 +12,10 @@ void FUN_1801954c7(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: 全局变量以'_'开头的可能与较小符号在同一地址重叠
 
-undefined8 * FUN_1801954d0(undefined8 *param_1,longlong param_2)
+// 函数: 初始化引擎核心组件
+undefined8 * initialize_engine_core(undefined8 *engine_context,longlong config_flags)
 
 {
   longlong *plVar1;

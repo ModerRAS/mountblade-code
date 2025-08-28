@@ -39,8 +39,17 @@ void initialize_string_structure(undefined8 param_1, undefined8 param_2, undefin
 
 
 
+/**
+ * 在字符串树中插入或查找节点
+ * @param param_1 树结构指针
+ * @param param_2 返回结果指针
+ * @param param_3 比较节点
+ * @param param_4 查找字符串
+ * @param param_5 插入标志
+ * @return 插入或找到的节点指针
+ */
 undefined8 *
-FUN_18018a1c0(longlong *param_1,undefined8 *param_2,longlong *param_3,undefined8 *param_4,
+insert_or_find_string_node(longlong *param_1, undefined8 *param_2, longlong *param_3, undefined8 *param_4,
              undefined8 param_5)
 
 {
@@ -267,8 +276,13 @@ LAB_18018a53f:
 
 
 
-// 函数: void FUN_18018a610(undefined8 param_1,undefined8 param_2,undefined8 *param_3)
-void FUN_18018a610(undefined8 param_1,undefined8 param_2,undefined8 *param_3)
+/**
+ * 初始化数值数据结构
+ * @param param_1 上下文参数
+ * @param param_2 保留参数
+ * @param param_3 数值数据指针
+ */
+void initialize_numeric_structure(undefined8 param_1, undefined8 param_2, undefined8 *param_3)
 
 {
   longlong lVar1;
@@ -282,8 +296,17 @@ void FUN_18018a610(undefined8 param_1,undefined8 param_2,undefined8 *param_3)
 
 
 
+/**
+ * 在数值树中插入或查找节点
+ * @param param_1 树结构指针
+ * @param param_2 返回结果指针
+ * @param param_3 比较节点
+ * @param param_4 数值参数
+ * @param param_5 插入标志
+ * @return 插入或找到的节点指针
+ */
 undefined8 *
-FUN_18018a660(longlong *param_1,undefined8 *param_2,longlong *param_3,int *param_4,
+insert_or_find_numeric_node(longlong *param_1, undefined8 *param_2, longlong *param_3, int *param_4,
              undefined8 param_5)
 
 {
@@ -390,8 +413,16 @@ FUN_18018a660(longlong *param_1,undefined8 *param_2,longlong *param_3,int *param
 
 
 
+/**
+ * 复制树节点结构
+ * @param param_1 树结构指针
+ * @param param_2 源节点
+ * @param param_3 目标节点
+ * @param param_4 复制标志
+ * @return 复制的节点指针
+ */
 undefined8 *
-FUN_18018a8c0(longlong *param_1,undefined8 *param_2,undefined8 param_3,ulonglong param_4)
+copy_tree_node(longlong *param_1, undefined8 *param_2, undefined8 param_3, ulonglong param_4)
 
 {
   undefined8 *puVar1;
@@ -418,8 +449,12 @@ FUN_18018a8c0(longlong *param_1,undefined8 *param_2,undefined8 param_3,ulonglong
 
 
 
-// 函数: void FUN_18018a960(undefined8 *param_1)
-void FUN_18018a960(undefined8 *param_1)
+/**
+ * 分配字符串结构内存
+ * @param param_1 数据指针
+ * @return 分配的内存地址
+ */
+void allocate_string_structure(undefined8 *param_1)
 
 {
   undefined8 *puVar1;
@@ -435,8 +470,12 @@ void FUN_18018a960(undefined8 *param_1)
 
 
 
-// 函数: void FUN_18018a9a0(undefined8 param_1,longlong param_2)
-void FUN_18018a9a0(undefined8 param_1,longlong param_2)
+/**
+ * 释放字符串结构内存
+ * @param param_1 上下文参数
+ * @param param_2 要释放的内存地址
+ */
+void free_string_structure(undefined8 param_1, longlong param_2)
 
 {
   FUN_180067070(param_2 + 0x40);
@@ -451,8 +490,12 @@ void FUN_18018a9a0(undefined8 param_1,longlong param_2)
 
 
 
-// 函数: void FUN_18018a9f0(undefined8 *param_1)
-void FUN_18018a9f0(undefined8 *param_1)
+/**
+ * 分配数值结构内存
+ * @param param_1 数据指针
+ * @return 分配的内存地址
+ */
+void allocate_numeric_structure(undefined8 *param_1)
 
 {
   undefined8 *puVar1;
@@ -466,9 +509,19 @@ void FUN_18018a9f0(undefined8 *param_1)
 
 
 
+/**
+ * 执行字符串树的再平衡操作
+ * @param param_1 树结构指针
+ * @param param_2 结果输出指针
+ * @param param_3 平衡类型标志
+ * @param param_4 插入位置
+ * @param param_5 保留参数
+ * @param param_6 新节点指针
+ * @return 再平衡后的树结构
+ */
 undefined8 *
-FUN_18018aa30(longlong *param_1,undefined8 *param_2,char param_3,undefined8 *param_4,
-             undefined8 param_5,longlong *param_6)
+rebalance_string_tree(longlong *param_1, undefined8 *param_2, char param_3, undefined8 *param_4,
+             undefined8 param_5, longlong *param_6)
 
 {
   char cVar1;
@@ -601,8 +654,17 @@ LAB_18018ac29:
 
 
 
+/**
+ * 在字符串树中查找并插入节点
+ * @param param_1 树结构指针
+ * @param param_2 结果输出指针
+ * @param param_3 查找模式
+ * @param param_4 查找字符串
+ * @param param_5 临时内存
+ * @return 插入或找到的节点
+ */
 undefined8 *
-FUN_18018ac60(longlong *param_1,undefined8 *param_2,char param_3,undefined8 *param_4,
+find_and_insert_string_node(longlong *param_1, undefined8 *param_2, char param_3, undefined8 *param_4,
              longlong param_5)
 
 {
@@ -765,9 +827,19 @@ LAB_18018aebc:
 
 
 
+/**
+ * 执行数值树的再平衡操作
+ * @param param_1 树结构指针
+ * @param param_2 结果输出指针
+ * @param param_3 平衡类型标志
+ * @param param_4 插入位置
+ * @param param_5 保留参数
+ * @param param_6 新节点指针
+ * @return 再平衡后的树结构
+ */
 undefined8 *
-FUN_18018af30(longlong *param_1,undefined8 *param_2,char param_3,undefined8 *param_4,
-             undefined8 param_5,longlong *param_6)
+rebalance_numeric_tree(longlong *param_1, undefined8 *param_2, char param_3, undefined8 *param_4,
+             undefined8 param_5, longlong *param_6)
 
 {
   char cVar1;
@@ -900,8 +972,17 @@ LAB_18018b129:
 
 
 
+/**
+ * 在数值树中查找并插入节点
+ * @param param_1 树结构指针
+ * @param param_2 结果输出指针
+ * @param param_3 查找模式
+ * @param param_4 数值参数
+ * @param param_5 临时内存
+ * @return 插入或找到的节点
+ */
 undefined8 *
-FUN_18018b160(longlong *param_1,undefined8 *param_2,char param_3,int *param_4,undefined8 param_5)
+find_and_insert_numeric_node(longlong *param_1, undefined8 *param_2, char param_3, int *param_4, undefined8 param_5)
 
 {
   undefined8 *puVar1;
@@ -976,7 +1057,15 @@ FUN_18018b160(longlong *param_1,undefined8 *param_2,char param_3,int *param_4,un
 
 
 
-longlong FUN_18018b2e0(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
+/**
+ * 创建新的字符串树节点
+ * @param param_1 上下文参数
+ * @param param_2 字符串数据
+ * @param param_3 节点值
+ * @param param_4 节点属性
+ * @return 新创建的节点
+ */
+longlong create_string_tree_node(undefined8 param_1, longlong param_2, undefined8 param_3, undefined8 param_4)
 
 {
   longlong lVar1;
@@ -992,7 +1081,13 @@ longlong FUN_18018b2e0(undefined8 param_1,longlong param_2,undefined8 param_3,un
 
 
 
-undefined8 * FUN_18018b350(undefined8 *param_1,undefined8 *param_2)
+/**
+ * 复制字符串数据到节点
+ * @param param_1 目标节点
+ * @param param_2 源字符串数据
+ * @return 目标节点指针
+ */
+undefined8 * copy_string_data_to_node(undefined8 *param_1, undefined8 *param_2)
 
 {
   ulonglong uVar1;
@@ -1025,8 +1120,16 @@ undefined8 * FUN_18018b350(undefined8 *param_1,undefined8 *param_2)
 
 
 
+/**
+ * 初始化字符串迭代器
+ * @param param_1 迭代器指针
+ * @param param_2 迭代器标志
+ * @param param_3 迭代器参数
+ * @param param_4 保留参数
+ * @return 初始化的迭代器
+ */
 undefined8 *
-FUN_18018b3f0(undefined8 *param_1,ulonglong param_2,undefined8 param_3,undefined8 param_4)
+initialize_string_iterator(undefined8 *param_1, ulonglong param_2, undefined8 param_3, undefined8 param_4)
 
 {
   *param_1 = &UNK_1809ffa18;
@@ -1038,8 +1141,16 @@ FUN_18018b3f0(undefined8 *param_1,ulonglong param_2,undefined8 param_3,undefined
 
 
 
+/**
+ * 初始化数值迭代器
+ * @param param_1 迭代器指针
+ * @param param_2 迭代器标志
+ * @param param_3 迭代器参数
+ * @param param_4 保留参数
+ * @return 初始化的迭代器
+ */
 undefined8 *
-FUN_18018b430(undefined8 *param_1,ulonglong param_2,undefined8 param_3,undefined8 param_4)
+initialize_numeric_iterator(undefined8 *param_1, ulonglong param_2, undefined8 param_3, undefined8 param_4)
 
 {
   *param_1 = &UNK_180a0ad90;
@@ -1061,7 +1172,13 @@ FUN_18018b430(undefined8 *param_1,ulonglong param_2,undefined8 param_3,undefined
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 * FUN_18018b4c0(undefined8 param_1,longlong param_2)
+/**
+ * 创建字符串映射结构
+ * @param param_1 上下文参数
+ * @param param_2 配置参数
+ * @return 创建的映射结构
+ */
+undefined8 * create_string_mapping(undefined8 param_1, longlong param_2)
 
 {
   undefined8 uVar1;

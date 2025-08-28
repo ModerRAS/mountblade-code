@@ -24,7 +24,7 @@ void cleanup_container_objects(longlong *container_ptr)
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  handle_memory_error();
 }
 
 
@@ -113,7 +113,7 @@ void safe_cleanup_container_objects(longlong *container_ptr)
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  handle_memory_error();
 }
 
 
@@ -207,32 +207,33 @@ CAPACITY_CALCULATED:
 
 
 
-// 函数: void FUN_1801946c0(longlong *param_1)
-void FUN_1801946c0(longlong *param_1)
+// 函数: 释放场景对象
+// 作用: 释放场景中的所有对象，包括渲染对象和游戏对象
+void release_scene_objects(longlong *scene_ptr)
 
 {
-  longlong lVar1;
-  longlong lVar2;
+  longlong scene_end;
+  longlong scene_current;
   
-  lVar1 = param_1[1];
-  lVar2 = *param_1;
+  scene_end = scene_ptr[1];
+  scene_current = *scene_ptr;
   while( true ) {
-    if (lVar2 == lVar1) {
-      if (*param_1 == 0) {
+    if (scene_current == scene_end) {
+      if (*scene_ptr == 0) {
         return;
       }
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      handle_memory_error();
     }
-    if (*(longlong **)(lVar2 + 0x40) != (longlong *)0x0) {
-      (**(code **)(**(longlong **)(lVar2 + 0x40) + 0x38))();
+    if (*(longlong **)(scene_current + 0x40) != (longlong *)0x0) {
+      (**(code **)(**(longlong **)(scene_current + 0x40) + 0x38))();
     }
-    if (*(longlong *)(lVar2 + 0x20) != 0) break;
-    FUN_180057830(lVar2);
-    lVar2 = lVar2 + 0x48;
+    if (*(longlong *)(scene_current + 0x20) != 0) break;
+    cleanup_game_object(scene_current);
+    scene_current = scene_current + 0x48;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  handle_memory_error();
 }
 
 
@@ -318,9 +319,9 @@ void FUN_1801946e0(undefined8 *param_1)
       }
       if (*(longlong *)(lVar5 + 0x20) != 0) {
                     // WARNING: Subroutine does not return
-        FUN_18064e900();
+        handle_memory_error();
       }
-      FUN_180057830(lVar5);
+      cleanup_game_object(lVar5);
       lVar5 = lVar5 + 0x48;
     } while (lVar5 != lVar10);
     param_1[3] = param_1[2];
@@ -332,37 +333,40 @@ void FUN_1801946e0(undefined8 *param_1)
 
 
 
-// 函数: void FUN_1801948b0(longlong *param_1)
-void FUN_1801948b0(longlong *param_1)
+// 函数: 安全释放场景对象
+// 作用: 安全地释放场景中的所有对象，防止内存泄漏
+void safe_release_scene_objects(longlong *scene_ptr)
 
 {
-  longlong lVar1;
-  longlong lVar2;
+  longlong scene_end;
+  longlong scene_current;
   
-  lVar1 = param_1[1];
-  lVar2 = *param_1;
+  scene_end = scene_ptr[1];
+  scene_current = *scene_ptr;
   while( true ) {
-    if (lVar2 == lVar1) {
-      if (*param_1 == 0) {
+    if (scene_current == scene_end) {
+      if (*scene_ptr == 0) {
         return;
       }
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      handle_memory_error();
     }
-    if (*(longlong **)(lVar2 + 0x40) != (longlong *)0x0) {
-      (**(code **)(**(longlong **)(lVar2 + 0x40) + 0x38))();
+    if (*(longlong **)(scene_current + 0x40) != (longlong *)0x0) {
+      (**(code **)(**(longlong **)(scene_current + 0x40) + 0x38))();
     }
-    if (*(longlong *)(lVar2 + 0x20) != 0) break;
-    FUN_180057830(lVar2);
-    lVar2 = lVar2 + 0x48;
+    if (*(longlong *)(scene_current + 0x20) != 0) break;
+    cleanup_game_object(scene_current);
+    scene_current = scene_current + 0x48;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  handle_memory_error();
 }
 
 
 
-float * FUN_180194940(float *param_1,float *param_2,float *param_3)
+// 函数: 矩阵变换计算
+// 作用: 执行4x4矩阵的变换计算，用于3D图形渲染
+float * matrix_transform_calculation(float *matrix_src, float *matrix_dest, float *vector)
 
 {
   float fVar1;
@@ -426,8 +430,9 @@ float * FUN_180194940(float *param_1,float *param_2,float *param_3)
 
 
 
-// 函数: void FUN_180194a50(longlong *param_1,undefined1 *param_2)
-void FUN_180194a50(longlong *param_1,undefined1 *param_2)
+// 函数: 向缓冲区添加字符
+// 作用: 向字符缓冲区添加一个字符，必要时扩容
+void add_char_to_buffer(longlong *buffer_ptr, undefined1 *char_ptr)
 
 {
   undefined1 *puVar1;
@@ -452,7 +457,7 @@ void FUN_180194a50(longlong *param_1,undefined1 *param_2)
       goto LAB_180194acf;
     }
   }
-  puVar1 = (undefined1 *)FUN_18062b420(_DAT_180c8ed18,lVar3,(char)param_1[3]);
+  puVar1 = (undefined1 *)allocate_container_memory(_DAT_180c8ed18,lVar3,(char)param_1[3]);
   puVar2 = (undefined1 *)*param_1;
   puVar4 = (undefined1 *)param_1[1];
 LAB_180194acf:
@@ -463,7 +468,7 @@ LAB_180194acf:
   *puVar1 = *param_2;
   if (*param_1 != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    handle_memory_error();
   }
   *param_1 = (longlong)puVar1;
   param_1[1] = (longlong)(puVar1 + 1);
@@ -475,11 +480,12 @@ LAB_180194acf:
 
 
 
-// 函数: void FUN_180194b30(undefined8 param_1)
-void FUN_180194b30(undefined8 param_1)
+// 函数: 初始化图形对象
+// 作用: 初始化图形对象，设置默认属性
+void initialize_graphics_object(undefined8 object_handle)
 
 {
-  FUN_1808fc8a8(param_1,0x30,4,FUN_18004a130,0xfffffffffffffffe);
+  initialize_object_pool(param_1,0x30,4,default_object_constructor,0xfffffffffffffffe);
   return;
 }
 
@@ -489,8 +495,8 @@ undefined8 *
 FUN_180194b60(undefined8 *param_1,ulonglong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  *param_1 = &UNK_180a0c9a0;
-  *param_1 = &UNK_180a0cb40;
+  *param_1 = &GLOBAL_OBJECT_POOL_VTABLE;
+  *param_1 = &GLOBAL_TEXTURE_VTABLE;
   if ((param_2 & 1) != 0) {
     free(param_1,8,param_3,param_4,0xfffffffffffffffe);
   }
@@ -510,7 +516,7 @@ undefined4 * FUN_180194c10(undefined8 param_1,undefined4 *param_2)
   param_2[5] = 0;
   param_2[6] = 0;
   param_2[7] = 0x7f7fffff;
-  FUN_1800b9f60(0);
+  reset_render_state(0);
   return param_2;
 }
 
@@ -520,10 +526,10 @@ undefined8 *
 FUN_180194c60(undefined8 *param_1,ulonglong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  *param_1 = &UNK_180a0c808;
-  *param_1 = &UNK_180a0c9b0;
-  *param_1 = &UNK_180a21720;
-  *param_1 = &UNK_180a21690;
+  *param_1 = &GLOBAL_SHADER_VTABLE;
+  *param_1 = &GLOBAL_SCENE_VTABLE;
+  *param_1 = &GLOBAL_RENDER_TARGET_VTABLE;
+  *param_1 = &GLOBAL_BUFFER_VTABLE;
   if ((param_2 & 1) != 0) {
     free(param_1,0x70,param_3,param_4,0xfffffffffffffffe);
   }
@@ -536,8 +542,8 @@ undefined8 *
 FUN_180194cc0(undefined8 *param_1,ulonglong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  *param_1 = &UNK_180a0c7d8;
-  *param_1 = &UNK_180a0c7f0;
+  *param_1 = &GLOBAL_MATERIAL_VTABLE;
+  *param_1 = &GLOBAL_LIGHT_VTABLE;
   if ((param_2 & 1) != 0) {
     free(param_1,8,param_3,param_4,0xfffffffffffffffe);
   }
@@ -555,14 +561,14 @@ FUN_180194d10(undefined8 param_1,undefined8 *param_2,undefined8 param_3,undefine
   longlong *plVar1;
   
   plVar1 = (longlong *)FUN_18062b1e0(_DAT_180c8ed18,0x70,8,3,0,0xfffffffffffffffe);
-  *plVar1 = (longlong)&UNK_180a21690;
-  *plVar1 = (longlong)&UNK_180a21720;
+  *plVar1 = (longlong)&GLOBAL_BUFFER_VTABLE;
+  *plVar1 = (longlong)&GLOBAL_RENDER_TARGET_VTABLE;
   *(undefined4 *)(plVar1 + 1) = 0;
-  *plVar1 = (longlong)&UNK_180a0c9b0;
+  *plVar1 = (longlong)&GLOBAL_SCENE_VTABLE;
   plVar1[2] = 0;
   *(undefined4 *)(plVar1 + 3) = 0;
   plVar1[4] = 0;
-  *plVar1 = (longlong)&UNK_180a0c808;
+  *plVar1 = (longlong)&GLOBAL_SHADER_VTABLE;
   plVar1[0xd] = 0;
   plVar1[5] = 0x3f800000;
   plVar1[6] = 0;
@@ -593,14 +599,14 @@ FUN_180194e00(undefined8 param_1,undefined8 *param_2,undefined8 param_3,undefine
   longlong *plVar1;
   
   plVar1 = (longlong *)FUN_18062b1e0(_DAT_180c8ed18,0x70,8,3,0,0xfffffffffffffffe);
-  *plVar1 = (longlong)&UNK_180a21690;
-  *plVar1 = (longlong)&UNK_180a21720;
+  *plVar1 = (longlong)&GLOBAL_BUFFER_VTABLE;
+  *plVar1 = (longlong)&GLOBAL_RENDER_TARGET_VTABLE;
   *(undefined4 *)(plVar1 + 1) = 0;
-  *plVar1 = (longlong)&UNK_180a0c9b0;
+  *plVar1 = (longlong)&GLOBAL_SCENE_VTABLE;
   plVar1[2] = 0;
   *(undefined4 *)(plVar1 + 3) = 0;
   plVar1[4] = 0;
-  *plVar1 = (longlong)&UNK_180a0c808;
+  *plVar1 = (longlong)&GLOBAL_SHADER_VTABLE;
   plVar1[0xd] = 0;
   plVar1[5] = 0x3f800000;
   plVar1[6] = 0;
@@ -634,8 +640,8 @@ undefined8 * FUN_180194ef0(longlong param_1)
   undefined8 *puVar5;
   
   puVar1 = (undefined8 *)FUN_18062b1e0(_DAT_180c8ed18,8,8,3,0xfffffffffffffffe);
-  *puVar1 = &UNK_180a0cb40;
-  *puVar1 = &UNK_180a0c9a0;
+  *puVar1 = &GLOBAL_TEXTURE_VTABLE;
+  *puVar1 = &GLOBAL_OBJECT_POOL_VTABLE;
   puVar5 = *(undefined8 **)(param_1 + 0x30);
   if (puVar5 < *(undefined8 **)(param_1 + 0x38)) {
     *(undefined8 **)(param_1 + 0x30) = puVar5 + 1;
@@ -654,7 +660,7 @@ undefined8 * FUN_180194ef0(longlong param_1)
       goto LAB_180194fa5;
     }
   }
-  puVar3 = (undefined8 *)FUN_18062b420(_DAT_180c8ed18,lVar2 * 8,*(undefined1 *)(param_1 + 0x40));
+  puVar3 = (undefined8 *)allocate_container_memory(_DAT_180c8ed18,lVar2 * 8,*(undefined1 *)(param_1 + 0x40));
   puVar5 = *(undefined8 **)(param_1 + 0x30);
   puVar4 = *(undefined8 **)(param_1 + 0x28);
 LAB_180194fa5:
@@ -670,7 +676,7 @@ LAB_180194fa5:
     return puVar1;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  handle_memory_error();
 }
 
 
@@ -683,14 +689,14 @@ undefined8 * FUN_180195000(undefined8 param_1,undefined8 *param_2)
   longlong *plVar1;
   
   plVar1 = (longlong *)FUN_18062b1e0(_DAT_180c8ed18,0x70,8,3,0,0xfffffffffffffffe);
-  *plVar1 = (longlong)&UNK_180a21690;
-  *plVar1 = (longlong)&UNK_180a21720;
+  *plVar1 = (longlong)&GLOBAL_BUFFER_VTABLE;
+  *plVar1 = (longlong)&GLOBAL_RENDER_TARGET_VTABLE;
   *(undefined4 *)(plVar1 + 1) = 0;
-  *plVar1 = (longlong)&UNK_180a0c9b0;
+  *plVar1 = (longlong)&GLOBAL_SCENE_VTABLE;
   plVar1[2] = 0;
   *(undefined4 *)(plVar1 + 3) = 0;
   plVar1[4] = 0;
-  *plVar1 = (longlong)&UNK_180a0c808;
+  *plVar1 = (longlong)&GLOBAL_SHADER_VTABLE;
   plVar1[0xd] = 0;
   plVar1[5] = 0x3f800000;
   plVar1[6] = 0;
@@ -720,10 +726,10 @@ undefined8 * FUN_1801950d0(longlong param_1)
   undefined8 *puStackX_8;
   
   puVar1 = (undefined8 *)FUN_18062b1e0(_DAT_180c8ed18,8,8,3,0xfffffffffffffffe);
-  *puVar1 = &UNK_180a0c7f0;
-  *puVar1 = &UNK_180a0c7d8;
+  *puVar1 = &GLOBAL_LIGHT_VTABLE;
+  *puVar1 = &GLOBAL_MATERIAL_VTABLE;
   puStackX_8 = puVar1;
-  FUN_18005ea90(param_1 + 0x48,&puStackX_8);
+  register_shader_object(param_1 + 0x48,&puStackX_8);
   return puVar1;
 }
 
@@ -731,19 +737,20 @@ undefined8 * FUN_1801950d0(longlong param_1)
 
 
 
-// 函数: void FUN_180195140(longlong param_1,undefined8 *param_2)
-void FUN_180195140(longlong param_1,undefined8 *param_2)
+// 函数: 释放纹理资源
+// 作用: 释放纹理资源及相关内存
+void release_texture_resource(longlong texture_id, undefined8 *resource_ptr)
 
 {
   longlong lVar1;
   
-  FUN_1801ba580(param_1 + 0x28);
+  release_texture_data(param_1 + 0x28);
   if (param_2 != (undefined8 *)0x0) {
     lVar1 = __RTCastToVoid(param_2);
     (**(code **)*param_2)(param_2,0);
     if (lVar1 != 0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900(lVar1);
+      handle_memory_error(lVar1);
     }
   }
   return;
@@ -753,8 +760,9 @@ void FUN_180195140(longlong param_1,undefined8 *param_2)
 
 
 
-// 函数: void FUN_18019515a(void)
-void FUN_18019515a(void)
+// 函数: 清理纹理缓存
+// 作用: 清理纹理缓存中的所有纹理
+void cleanup_texture_cache(void)
 
 {
   longlong lVar1;
@@ -764,7 +772,7 @@ void FUN_18019515a(void)
   (**(code **)*unaff_RBX)();
   if (lVar1 != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900(lVar1);
+    handle_memory_error(lVar1);
   }
   return;
 }
@@ -773,8 +781,9 @@ void FUN_18019515a(void)
 
 
 
-// 函数: void FUN_180195184(void)
-void FUN_180195184(void)
+// 函数: 空操作函数
+// 作用: 空操作，用于占位或同步
+void nop_function(void)
 
 {
   return;
@@ -784,19 +793,20 @@ void FUN_180195184(void)
 
 
 
-// 函数: void FUN_180195190(longlong param_1,undefined8 *param_2)
-void FUN_180195190(longlong param_1,undefined8 *param_2)
+// 函数: 释放着色器资源
+// 作用: 释放着色器资源及相关内存
+void release_shader_resource(longlong shader_id, undefined8 *resource_ptr)
 
 {
   longlong lVar1;
   
-  FUN_1801ba580(param_1 + 0x48);
+  release_texture_data(param_1 + 0x48);
   if (param_2 != (undefined8 *)0x0) {
     lVar1 = __RTCastToVoid(param_2);
     (**(code **)*param_2)(param_2,0);
     if (lVar1 != 0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900(lVar1);
+      handle_memory_error(lVar1);
     }
   }
   return;
@@ -806,8 +816,9 @@ void FUN_180195190(longlong param_1,undefined8 *param_2)
 
 
 
-// 函数: void FUN_1801951aa(void)
-void FUN_1801951aa(void)
+// 函数: 清理着色器缓存
+// 作用: 清理着色器缓存中的所有着色器
+void cleanup_shader_cache(void)
 
 {
   longlong lVar1;
@@ -817,7 +828,7 @@ void FUN_1801951aa(void)
   (**(code **)*unaff_RBX)();
   if (lVar1 != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900(lVar1);
+    handle_memory_error(lVar1);
   }
   return;
 }
@@ -843,14 +854,14 @@ undefined8 * FUN_1801951e0(undefined8 param_1,undefined8 *param_2)
   longlong *plVar1;
   
   plVar1 = (longlong *)FUN_18062b1e0(_DAT_180c8ed18,0x70,8,3,0,0xfffffffffffffffe);
-  *plVar1 = (longlong)&UNK_180a21690;
-  *plVar1 = (longlong)&UNK_180a21720;
+  *plVar1 = (longlong)&GLOBAL_BUFFER_VTABLE;
+  *plVar1 = (longlong)&GLOBAL_RENDER_TARGET_VTABLE;
   *(undefined4 *)(plVar1 + 1) = 0;
-  *plVar1 = (longlong)&UNK_180a0c9b0;
+  *plVar1 = (longlong)&GLOBAL_SCENE_VTABLE;
   plVar1[2] = 0;
   *(undefined4 *)(plVar1 + 3) = 0;
   plVar1[4] = 0;
-  *plVar1 = (longlong)&UNK_180a0c808;
+  *plVar1 = (longlong)&GLOBAL_SHADER_VTABLE;
   plVar1[0xd] = 0;
   plVar1[5] = 0x3f800000;
   plVar1[6] = 0;
@@ -888,8 +899,8 @@ FUN_1801952e0(undefined8 *param_1,ulonglong param_2,undefined8 param_3,undefined
   undefined8 uVar1;
   
   uVar1 = 0xfffffffffffffffe;
-  *param_1 = &UNK_180a0c508;
-  FUN_1801c2640();
+  *param_1 = &GLOBAL_RESOURCE_MANAGER_VTABLE;
+  initialize_graphics_system();
   if ((param_2 & 1) != 0) {
     free(param_1,0xb8,param_3,param_4,uVar1);
   }
@@ -927,7 +938,7 @@ undefined8 *
 FUN_1801953d0(undefined8 param_1,undefined8 *param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  *param_2 = &UNK_18098bcb0;
+  *param_2 = &DEFAULT_STRING_BUFFER;
   param_2[1] = 0;
   *(undefined4 *)(param_2 + 2) = 0;
   *param_2 = &UNK_1809fcc28;
@@ -966,7 +977,7 @@ void FUN_180195450(longlong param_1)
     } while (uVar3 != 0);
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900(lVar1 + -0x10);
+  handle_memory_error(lVar1 + -0x10);
 }
 
 
@@ -993,7 +1004,7 @@ void FUN_180195464(void)
     } while (uVar2 != 0);
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900(unaff_RDI + -0x10);
+  handle_memory_error(unaff_RDI + -0x10);
 }
 
 
@@ -1015,7 +1026,7 @@ void FUN_180195484(void)
     in_RAX = in_RAX + -1;
   } while (in_RAX != 0);
                     // WARNING: Subroutine does not return
-  FUN_18064e900(unaff_RDI + -0x10);
+  handle_memory_error(unaff_RDI + -0x10);
 }
 
 
@@ -1029,7 +1040,7 @@ void FUN_1801954a7(void)
   longlong unaff_RDI;
   
                     // WARNING: Subroutine does not return
-  FUN_18064e900(unaff_RDI + -0x10);
+  handle_memory_error(unaff_RDI + -0x10);
 }
 
 
