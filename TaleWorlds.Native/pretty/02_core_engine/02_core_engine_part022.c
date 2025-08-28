@@ -2,8 +2,50 @@
 
 // 02_core_engine_part022.c - 4 个函数
 
-// 函数: void FUN_180064c00(longlong *param_1,longlong param_2,longlong param_3)
-void FUN_180064c00(longlong *param_1,longlong param_2,longlong param_3)
+// 全局变量映射：
+// _DAT_180bf00a8 - 安全检查/校验值
+// DAT_18098bc73 - 默认字符串缓冲区
+// _DAT_180c8ed18 - 内存分配器/池管理器
+// _DAT_180c8f008 - 系统状态标志
+// _DAT_180c8a9c0 - 函数指针表/虚函数表
+// _DAT_180c86870 - 引用计数器/对象管理器
+// _DAT_180c8ed58 - 性能计数器基准
+// _DAT_180c8ed48 - 时间戳基准值
+// _DAT_180c8ed50 - 时间缩放因子
+// _DAT_180c8ed60 - 文件句柄计数器
+// _DAT_180c8ed08 - 全局对象指针
+// _DAT_180c86920 - 配置参数块1
+// _DAT_180c868b0 - 配置参数块2
+// _DAT_180c86928 - 引擎配置数据
+// _DAT_180c82868 - 系统模块句柄
+// DAT_1809fc7d8 - 系统配置字符串1
+// DAT_1809fcfc0 - 系统配置字符串2
+// DAT_1809fdf28 - 默认路径字符串
+// DAT_18098ba28 - 引擎数据块1
+// DAT_18098ba40 - 引擎数据块2
+// DAT_18098ba50 - 引擎数据块3
+// DAT_18098ba60 - 引擎数据块4
+// DAT_18098ba70 - 引擎数据块5
+// DAT_18098ba80 - 引擎数据块6
+// DAT_18098ba98 - 引擎数据块7
+// DAT_18098baa0 - 引擎数据块8
+
+// 函数: 处理字符串数据和内存操作
+// 原始函数名：FUN_180064c00
+// 
+// 功能说明：
+// - 处理字符串缓冲区的分配和管理
+// - 执行字符串复制和内存操作
+// - 管理动态内存分配和释放
+// - 处理字符串长度计算和缓冲区操作
+// 
+// 参数：
+// - param_1: 字符串容器/缓冲区管理器指针
+// - param_2: 源字符串数据指针
+// - param_3: 目标字符串数据指针
+// 
+// 返回值：void
+void process_string_data(longlong *param_1,longlong param_2,longlong param_3)
 
 {
   uint uVar1;
@@ -293,8 +335,21 @@ LAB_180065009:
 
 
 
-// 函数: void FUN_180065160(undefined8 param_1)
-void FUN_180065160(undefined8 param_1)
+// 函数: 收集系统信息和性能数据
+// 原始函数名：FUN_180065160
+// 
+// 功能说明：
+// - 收集系统性能信息和内存使用情况
+// - 获取进程内存信息和工作集大小
+// - 执行性能计数和时间测量
+// - 处理系统状态检查和日志记录
+// - 管理文件操作和数据输出
+// 
+// 参数：
+// - param_1: 系统信息收集器/性能监控器句柄
+// 
+// 返回值：void
+void gather_system_info(undefined8 param_1)
 
 {
   byte *pbVar1;
@@ -833,8 +888,19 @@ LAB_180065a3e:
 
 
 
-// 函数: void FUN_180065d50(void)
-void FUN_180065d50(void)
+// 函数: 初始化字符串缓冲区
+// 原始函数名：FUN_180065d50
+// 
+// 功能说明：
+// - 初始化字符串缓冲区内存空间
+// - 设置缓冲区安全检查值
+// - 准备字符串操作环境
+// - 执行内存清零操作
+// 
+// 参数：void
+// 
+// 返回值：void
+void initialize_string_buffer(void)
 
 {
   undefined1 auStack_2c8 [104];
@@ -876,8 +942,24 @@ void FUN_180065d50(void)
 
 
 
-// 函数: void FUN_180065f00(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
-void FUN_180065f00(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
+// 函数: 处理系统参数和引擎配置
+// 原始函数名：FUN_180065f00
+// 
+// 功能说明：
+// - 处理系统参数配置和引擎设置
+// - 管理参数验证和类型检查
+// - 执行系统模块初始化
+// - 处理参数传递和函数调用
+// - 管理资源分配和释放
+// 
+// 参数：
+// - param_1: 系统参数管理器/配置处理器
+// - param_2: 参数类型标识符
+// - param_3: 配置数据指针
+// - param_4: 附加参数数据
+// 
+// 返回值：void
+void process_system_parameters(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
   code *pcVar1;
