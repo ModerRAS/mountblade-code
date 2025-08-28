@@ -50,6 +50,40 @@
 #define StringPathBuilder FUN_1801c5700
 #define StringPathProcessor FUN_1801c5870
 
+// 系统调用和内存管理器
+#define SystemMemoryAllocator FUN_18062b1e0     // 系统内存分配器
+#define SystemMemoryDeallocator FUN_18005e110    // 系统内存释放器
+#define SystemDataCopier FUN_180627ae0          // 系统数据复制器
+#define SystemConfigurator FUN_1806277c0         // 系统配置器
+#define SystemErrorHandler FUN_18064e900         // 系统错误处理器
+#define SystemResourceTracker FUN_1801c9940     // 系统资源跟踪器
+#define SystemDataManager FUN_1803e8a40          // 系统数据管理器
+#define SystemInitializer FUN_18005e630          // 系统初始化器
+#define SystemCleanupHandler FUN_1808fc050      // 系统清理处理器
+#define SystemValidator FUN_18062dee0            // 系统验证器
+#define SystemBufferManager FUN_180639bf0       // 系统缓冲区管理器
+#define SystemDataProcessor FUN_180628f30       // 系统数据处理器
+#define SystemSearchHandler FUN_1801ea180       // 系统搜索处理器
+#define SystemDataFinder FUN_1801ea730          // 系统数据查找器
+#define SystemDataInserter FUN_1801ea0a0        // 系统数据插入器
+#define SystemNodeManager FUN_1801e8280         // 系统节点管理器
+#define SystemFileHandler FUN_1801d8e90         // 系统文件处理器
+#define SystemSecurityChecker FUN_18063ba00     // 系统安全检查器
+#define SystemMessageHandler FUN_1800623b0      // 系统消息处理器
+#define SystemConfigurator2 FUN_18004b860       // 系统配置器2
+#define SystemMemoryManager FUN_18062b420      // 系统内存管理器
+#define SystemStateChecker FUN_180624af0         // 系统状态检查器
+#define SystemStateSetter FUN_18062c1e0         // 系统状态设置器
+#define SystemInitializer2 FUN_180062300        // 系统初始化器2
+#define SystemStringHandler FUN_1800baa80       // 系统字符串处理器
+#define SystemResourceBinder FUN_18005d190      // 系统资源绑定器
+#define SystemPathProcessor FUN_180627be0       // 系统路径处理器
+
+// 系统常量和函数指针
+#define SystemFunctionPointer1 FUN_1801eb5a0     // 系统函数指针1
+#define SystemFunctionPointer2 FUN_1801eb560     // 系统函数指针2
+#define SystemResourceHandler FUN_18006b640      // 系统资源处理器
+
 // ============================================================================
 // 核心函数实现
 // ============================================================================
