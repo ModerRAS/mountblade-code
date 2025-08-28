@@ -899,7 +899,7 @@ uint64_t FUN_1808a2740(uint64_t param_1,int64_t *param_2)
       memset((int64_t)iVar1 + *param_2,0,(int64_t)(iVar5 - iVar1));
     }
     *(int *)(param_2 + 1) = iVar5;
-    uVar2 = FUN_1808aed00(param_1,*param_2,lVar4);
+    uVar2 = SystemErrorHandler(param_1,*param_2,lVar4);
     if ((int)uVar2 != 0) {
       return uVar2;
     }
@@ -936,7 +936,7 @@ uint64_t FUN_1808a2766(void)
       memset((int64_t)iVar1 + *unaff_RBX,0,(int64_t)(iVar4 - iVar1));
     }
     *(int *)(unaff_RBX + 1) = iVar4;
-    uVar2 = FUN_1808aed00();
+    uVar2 = SystemErrorHandler();
     if ((int)uVar2 != 0) {
       return uVar2;
     }

@@ -1686,7 +1686,7 @@ void FUN_1805f0650(int64_t param_1,int64_t param_2)
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_e8 ^ (uint64_t)auStack_aa8);
+  SystemSecurityChecker(uStack_e8 ^ (uint64_t)auStack_aa8);
 }
 
 

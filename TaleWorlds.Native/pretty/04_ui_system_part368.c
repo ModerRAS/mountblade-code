@@ -125,7 +125,7 @@ uint64_t FUN_180867bc0(uint64_t *param_1)
   uint64_t *puVar1;
   
   puVar1 = (uint64_t *)
-           FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0xc0,&unknown_var_3264_ptr,0x40,0,0,1);
+           SystemResourceManager(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0xc0,&unknown_var_3264_ptr,0x40,0,0,1);
   if (puVar1 == (uint64_t *)0x0) {
     return 0x26;
   }
@@ -271,7 +271,7 @@ LAB_180867ef8:
         FUN_180868700(param_1 + 4,*(int *)(param_1 + 5));
       }
                     // WARNING: Subroutine does not return
-      FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_1,&unknown_var_3264_ptr,0xa6,1);
+      SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_1,&unknown_var_3264_ptr,0xa6,1);
     }
     if (((*(byte *)(lVar2 + 0x2d8) & 1) == 0) || (iVar4 = FUN_180863b30(lVar2), iVar4 == 0)) {
       if (*(uint64_t **)(lVar2 + 0x80) == (uint64_t *)0x0) goto LAB_180867ef8;
@@ -376,7 +376,7 @@ void FUN_180867f80(int64_t param_1,uint param_2,uint64_t *param_3)
     FUN_18088dbf0(*(int64_t *)(alStack_68[0] + 0x98),&uStack_58);
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_28 ^ (uint64_t)auStack_88);
+  SystemSecurityChecker(uStack_28 ^ (uint64_t)auStack_88);
 }
 
 
@@ -605,7 +605,7 @@ LAB_1808683fc:
     } while ((int)uVar8 < *(int *)(param_1 + 0x28));
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_30 ^ (uint64_t)auStack_78);
+  SystemSecurityChecker(uStack_30 ^ (uint64_t)auStack_78);
 }
 
 
@@ -678,7 +678,7 @@ LAB_1808683fc:
     uVar6 = uVar6 + 0x18;
     if (*(int *)(unaff_RBP + 0x28) <= unaff_R14D) {
                     // WARNING: Subroutine does not return
-      FUN_1808fc050(in_stack_00000048 ^ (uint64_t)&stack0x00000000);
+      SystemSecurityChecker(in_stack_00000048 ^ (uint64_t)&stack0x00000000);
     }
   } while( true );
 }
@@ -694,7 +694,7 @@ void FUN_180868459(void)
   uint64_t in_stack_00000048;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000048 ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(in_stack_00000048 ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -755,7 +755,7 @@ void FUN_180868490(int64_t param_1,int64_t param_2,int64_t param_3)
   }
 LAB_1808685dc:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_40 ^ (uint64_t)auStack_88);
+  SystemSecurityChecker(uStack_40 ^ (uint64_t)auStack_88);
 }
 
 
@@ -829,7 +829,7 @@ uint64_t FUN_180868700(int64_t *param_1,int param_2)
   lVar1 = 0;
   if (param_2 != 0) {
     if (param_2 * 0x18 - 1U < 0x3fffffff) {
-      lVar1 = FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_2 * 0x18,&unknown_var_8432_ptr,
+      lVar1 = SystemResourceManager(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_2 * 0x18,&unknown_var_8432_ptr,
                             0xf4,0,0,1);
       if (lVar1 != 0) {
         if ((int)param_1[1] != 0) {
@@ -844,7 +844,7 @@ uint64_t FUN_180868700(int64_t *param_1,int param_2)
 LAB_180868794:
   if ((0 < *(int *)((int64_t)param_1 + 0xc)) && (*param_1 != 0)) {
                     // WARNING: Subroutine does not return
-    FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*param_1,&unknown_var_8432_ptr,0x100,1);
+    SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*param_1,&unknown_var_8432_ptr,0x100,1);
   }
   *param_1 = lVar1;
   *(int *)((int64_t)param_1 + 0xc) = param_2;
@@ -867,14 +867,14 @@ uint64_t FUN_180868724(uint64_t param_1,int param_2)
 LAB_180868794:
     if ((0 < *(int *)((int64_t)unaff_RBX + 0xc)) && (*unaff_RBX != 0)) {
                     // WARNING: Subroutine does not return
-      FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*unaff_RBX,&unknown_var_8432_ptr,0x100,1);
+      SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*unaff_RBX,&unknown_var_8432_ptr,0x100,1);
     }
     *unaff_RBX = lVar1;
     *(int *)((int64_t)unaff_RBX + 0xc) = unaff_EDI;
     return 0;
   }
   if (param_2 * 0x18 - 1U < 0x3fffffff) {
-    lVar1 = FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_2 * 0x18,&unknown_var_8432_ptr,0xf4
+    lVar1 = SystemResourceManager(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_2 * 0x18,&unknown_var_8432_ptr,0xf4
                           ,0);
     if (lVar1 != 0) {
       if ((int)unaff_RBX[1] != 0) {

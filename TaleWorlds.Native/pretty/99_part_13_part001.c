@@ -216,19 +216,19 @@ uint64_t DataProcessor(uint64_t *param_1, int64_t *param_2)
                         // 步骤8.3：数据元素处理
                         operation_result = *param_1;
                         element_count = (int64_t)current_size * 0x10 + *param_2;
-                        process_result = FUN_1808aed00(operation_result, element_count, 4);
+                        process_result = SystemErrorHandler(operation_result, element_count, 4);
                         if ((int)process_result != 0) {
                             return process_result;
                         }
-                        process_result = FUN_1808aed00(operation_result, element_count + 4, 2);
+                        process_result = SystemErrorHandler(operation_result, element_count + 4, 2);
                         if ((int)process_result != 0) {
                             return process_result;
                         }
-                        process_result = FUN_1808aed00(operation_result, element_count + 6, 2);
+                        process_result = SystemErrorHandler(operation_result, element_count + 6, 2);
                         if ((int)process_result != 0) {
                             return process_result;
                         }
-                        operation_result = FUN_1808aed00(operation_result, element_count + 8, 8);
+                        operation_result = SystemErrorHandler(operation_result, element_count + 8, 8);
                     } else {
                         operation_result = 0x1c;
                     }
@@ -317,19 +317,19 @@ uint64_t ContainerOperator(void)
                         // 步骤5.3：数据元素处理
                         check_result = *data_ptr;
                         element_address = (int64_t)iteration_count * 0x10 + *container_ptr;
-                        final_result = FUN_1808aed00(check_result, element_address, 4);
+                        final_result = SystemErrorHandler(check_result, element_address, 4);
                         if ((int)final_result != 0) {
                             return final_result;
                         }
-                        final_result = FUN_1808aed00(check_result, element_address + 4, 2);
+                        final_result = SystemErrorHandler(check_result, element_address + 4, 2);
                         if ((int)final_result != 0) {
                             return final_result;
                         }
-                        final_result = FUN_1808aed00(check_result, element_address + 6, 2);
+                        final_result = SystemErrorHandler(check_result, element_address + 6, 2);
                         if ((int)final_result != 0) {
                             return final_result;
                         }
-                        final_result = FUN_1808aed00(check_result, element_address + 8, 8);
+                        final_result = SystemErrorHandler(check_result, element_address + 8, 8);
                     } else {
                         final_result = 0x1c;
                     }
@@ -400,19 +400,19 @@ uint64_t DataTraversal(void)
                 // 步骤2.3：数据元素处理
                 traversal_result = *data_ptr;
                 element_address = (int64_t)(int)traversal_flags * 0x10 + *container_ptr;
-                process_result = FUN_1808aed00(traversal_result, element_address, 4);
+                process_result = SystemErrorHandler(traversal_result, element_address, 4);
                 if ((int)process_result != 0) {
                     return process_result;
                 }
-                process_result = FUN_1808aed00(traversal_result, element_address + 4, 2);
+                process_result = SystemErrorHandler(traversal_result, element_address + 4, 2);
                 if ((int)process_result != 0) {
                     return process_result;
                 }
-                process_result = FUN_1808aed00(traversal_result, element_address + 6, 2);
+                process_result = SystemErrorHandler(traversal_result, element_address + 6, 2);
                 if ((int)process_result != 0) {
                     return process_result;
                 }
-                traversal_result = FUN_1808aed00(traversal_result, element_address + 8, 8);
+                traversal_result = SystemErrorHandler(traversal_result, element_address + 8, 8);
             } else {
                 traversal_result = 0x1c;
             }
@@ -533,35 +533,35 @@ uint64_t ExtendedOperator(uint64_t *param_1, int64_t *param_2)
                     if (*(int *)(param_1[1] + 0x18) == 0) {
                         // 步骤5.4：扩展数据元素处理
                         operation_result = *param_1;
-                        process_result = FUN_1808aed00(operation_result, element_address, 4);
+                        process_result = SystemErrorHandler(operation_result, element_address, 4);
                         if ((int)process_result != 0) {
                             return process_result;
                         }
-                        process_result = FUN_1808aed00(operation_result, element_address + 4, 2);
+                        process_result = SystemErrorHandler(operation_result, element_address + 4, 2);
                         if ((int)process_result != 0) {
                             return process_result;
                         }
-                        process_result = FUN_1808aed00(operation_result, element_address + 6, 2);
+                        process_result = SystemErrorHandler(operation_result, element_address + 6, 2);
                         if ((int)process_result != 0) {
                             return process_result;
                         }
-                        process_result = FUN_1808aed00(operation_result, element_address + 8, 8);
+                        process_result = SystemErrorHandler(operation_result, element_address + 8, 8);
                         if ((int)process_result != 0) {
                             return process_result;
                         }
-                        process_result = FUN_1808aed00(operation_result, element_address + 0x10, 4);
+                        process_result = SystemErrorHandler(operation_result, element_address + 0x10, 4);
                         if ((int)process_result != 0) {
                             return process_result;
                         }
-                        process_result = FUN_1808aed00(operation_result, element_address + 0x14, 4);
+                        process_result = SystemErrorHandler(operation_result, element_address + 0x14, 4);
                         if ((int)process_result != 0) {
                             return process_result;
                         }
-                        process_result = FUN_1808aed00(operation_result, element_address + 0x18, 4);
+                        process_result = SystemErrorHandler(operation_result, element_address + 0x18, 4);
                         if ((int)process_result != 0) {
                             return process_result;
                         }
-                        operation_result = FUN_1808995c0(operation_result, element_address + 0x1c);
+                        operation_result = SystemConfigManager(operation_result, element_address + 0x1c);
                     } else {
                         operation_result = 0x1c;
                     }
@@ -633,35 +633,35 @@ uint64_t BatchProcessor(void)
                 if (*(int *)(data_ptr[1] + 0x18) == 0) {
                     // 步骤2.4：批量数据元素处理
                     batch_result = *data_ptr;
-                    process_result = FUN_1808aed00(batch_result, element_address, 4);
+                    process_result = SystemErrorHandler(batch_result, element_address, 4);
                     if ((int)process_result != 0) {
                         return process_result;
                     }
-                    process_result = FUN_1808aed00(batch_result, element_address + 4, 2);
+                    process_result = SystemErrorHandler(batch_result, element_address + 4, 2);
                     if ((int)process_result != 0) {
                         return process_result;
                     }
-                    process_result = FUN_1808aed00(batch_result, element_address + 6, 2);
+                    process_result = SystemErrorHandler(batch_result, element_address + 6, 2);
                     if ((int)process_result != 0) {
                         return process_result;
                     }
-                    process_result = FUN_1808aed00(batch_result, element_address + 8, 8);
+                    process_result = SystemErrorHandler(batch_result, element_address + 8, 8);
                     if ((int)process_result != 0) {
                         return process_result;
                     }
-                    process_result = FUN_1808aed00(batch_result, element_address + 0x10, 4);
+                    process_result = SystemErrorHandler(batch_result, element_address + 0x10, 4);
                     if ((int)process_result != 0) {
                         return process_result;
                     }
-                    process_result = FUN_1808aed00(batch_result, element_address + 0x14, 4);
+                    process_result = SystemErrorHandler(batch_result, element_address + 0x14, 4);
                     if ((int)process_result != 0) {
                         return process_result;
                     }
-                    process_result = FUN_1808aed00(batch_result, element_address + 0x18, 4);
+                    process_result = SystemErrorHandler(batch_result, element_address + 0x18, 4);
                     if ((int)process_result != 0) {
                         return process_result;
                     }
-                    batch_result = FUN_1808995c0(batch_result, element_address + 0x1c);
+                    batch_result = SystemConfigManager(batch_result, element_address + 0x1c);
                 } else {
                     batch_result = 0x1c;
                 }

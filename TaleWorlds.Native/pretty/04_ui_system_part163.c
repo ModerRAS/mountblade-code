@@ -104,7 +104,7 @@ void FUN_1807632c0(float *param_1,char param_2,int param_3,int param_4,float par
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_48 ^ (uint64_t)auStack_1b8);
+  SystemSecurityChecker(uStack_48 ^ (uint64_t)auStack_1b8);
 }
 
 
@@ -130,7 +130,7 @@ void FUN_1807635bb(void)
   int64_t unaff_RBP;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(*(uint64_t *)(unaff_RBP + 0x70) ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(*(uint64_t *)(unaff_RBP + 0x70) ^ (uint64_t)&stack0x00000000);
 }
 
 

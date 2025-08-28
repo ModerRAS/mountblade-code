@@ -345,16 +345,16 @@ uint64_t *ShaderPipelineGenerator(uint64_t param_1, uint64_t *param_2, uint64_t 
 #define FUN_180344f00              ShaderTextureProcessor
 
 // 内存管理函数别名
-#define FUN_18062b420              MemoryAllocator
-#define FUN_18064e990              MemoryInitializer
-#define FUN_18064e900              MemoryDeallocator
+#define CoreEngineMemoryPoolAllocator              MemoryAllocator
+#define CoreEngineSystemCleanup              MemoryInitializer
+#define CoreEngineMemoryPoolCleaner              MemoryDeallocator
 
 // 缓冲区管理函数别名
 #define FUN_1806279c0              BufferAllocator
-#define FUN_1806277c0              BufferExpander
+#define CoreEngineDataBufferProcessor              BufferExpander
 #define FUN_180627be0              ShaderConfigSetter
 #define FUN_18062dee0              FileStreamOpener
-#define FUN_1808fc050              SecurityCheckHandler
+#define SystemSecurityChecker              SecurityCheckHandler
 
 // =============================================================================
 // 模块信息
@@ -863,16 +863,16 @@ void ShaderSourceCompiler(uint64_t param_1, int64_t param_2, int64_t param_3, ui
 #define FUN_180344f00              ShaderTextureProcessor
 
 // 内存管理函数别名
-#define FUN_18062b420              MemoryAllocator
-#define FUN_18064e990              MemoryInitializer
-#define FUN_18064e900              MemoryDeallocator
+#define CoreEngineMemoryPoolAllocator              MemoryAllocator
+#define CoreEngineSystemCleanup              MemoryInitializer
+#define CoreEngineMemoryPoolCleaner              MemoryDeallocator
 
 // 缓冲区管理函数别名
 #define FUN_1806279c0              BufferAllocator
-#define FUN_1806277c0              BufferExpander
+#define CoreEngineDataBufferProcessor              BufferExpander
 #define FUN_180627be0              ShaderConfigSetter
 #define FUN_18062dee0              FileStreamOpener
-#define FUN_1808fc050              SecurityCheckHandler
+#define SystemSecurityChecker              SecurityCheckHandler
 
 // =============================================================================
 // 模块信息

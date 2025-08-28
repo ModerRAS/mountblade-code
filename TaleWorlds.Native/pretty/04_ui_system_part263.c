@@ -832,7 +832,7 @@ LAB_180819016:
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_48 ^ (uint64_t)auStack_238);
+  SystemSecurityChecker(uStack_48 ^ (uint64_t)auStack_238);
 }
 
 

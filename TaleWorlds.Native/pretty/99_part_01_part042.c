@@ -778,7 +778,7 @@ LAB_1800cd0dc:
     (**(code **)(*plVar2 + 0x38))(plVar2);
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_58 ^ (uint64_t)auStack_218);
+  SystemSecurityChecker(uStack_58 ^ (uint64_t)auStack_218);
 }
 
 

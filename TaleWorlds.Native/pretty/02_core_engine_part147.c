@@ -348,7 +348,7 @@ LAB_180137cc2:
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(*(uint64_t *)(unaff_RBP + -1) ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(*(uint64_t *)(unaff_RBP + -1) ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -701,7 +701,7 @@ LAB_180137cc2:
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(*(uint64_t *)(unaff_RBP + -1) ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(*(uint64_t *)(unaff_RBP + -1) ^ (uint64_t)&stack0x00000000);
 }
 
 

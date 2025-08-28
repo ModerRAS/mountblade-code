@@ -3,8 +3,8 @@
 
 // 03_rendering_part669.c - 13 个函数
 
-// 函数: void FUN_18064d630(uint *param_1)
-void FUN_18064d630(uint *param_1)
+// 函数: void SystemDataCleaner(uint *param_1)
+void SystemDataCleaner(uint *param_1)
 
 {
   int64_t *plVar1;
@@ -1028,7 +1028,7 @@ void FUN_18064e350(int64_t *param_1)
         piVar1 = (int *)(lVar5 + 0x18);
         *piVar1 = *piVar1 + -1;
         if (*piVar1 == 0) {
-          FUN_18064d630();
+          SystemDataCleaner();
           return;
         }
       }
@@ -1042,7 +1042,7 @@ void FUN_18064e350(int64_t *param_1)
   *(int64_t *)(lVar5 + 0x18) = param_1[0x17c];
 LAB_18064e3ed:
                     // WARNING: Subroutine does not return
-  FUN_18064e900(param_1);
+  CoreEngineMemoryPoolCleaner(param_1);
 }
 
 

@@ -197,7 +197,7 @@ void FUN_180508f50(int64_t param_1,uint64_t *param_2,int param_3)
   *(int32_t *)(param_2 + 5) = uVar13;
   *(int32_t *)((int64_t)param_2 + 0x2c) = uVar14;
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_b8 ^ (uint64_t)auStack_1f8);
+  SystemSecurityChecker(uStack_b8 ^ (uint64_t)auStack_1f8);
 }
 
 
