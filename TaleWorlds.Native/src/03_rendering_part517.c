@@ -1326,75 +1326,213 @@ void RenderSystem_SetBlendMode(longlong param_1, undefined4 param_2, undefined8 
 
 
 
-// 函数: void FUN_180547860(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-void FUN_180547860(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-
+/*==============================================================================
+ * 函数: RenderSystem_SetDepthMode - 渲染系统深度模式设置函数
+ * 
+ * 功能描述：
+ *   设置渲染系统的深度测试模式，用于控制深度缓冲区操作
+ *   这是一个深度模式设置函数，通过渲染队列异步设置深度参数
+ * 
+ * 参数：
+ *   param_1 - 渲染上下文指针
+ *   param_2 - 深度模式参数（64位）
+ *   param_3 - 附加参数1（64位）
+ *   param_4 - 附加参数2（64位）
+ * 
+ * 返回值：
+ *   无
+ * 
+ * 处理流程：
+ *   1. 设置深度模式处理回调函数
+ *   2. 准备深度模式参数数组
+ *   3. 设置深度模式参数
+ *   4. 发送到渲染队列处理
+ * 
+ * 注意事项：
+ *   - 使用16字节的深度模式参数数组
+ *   - 支持异步深度模式设置
+ *   - 深度模式参数为64位，适合存储深度测试配置
+ * 
+ * 简化实现：
+ *   原始实现：简单的深度模式参数打包和队列发送
+ *   简化实现：保持原有深度模式设置逻辑，添加了详细的参数说明
+ =============================================================================*/
+void RenderSystem_SetDepthMode(longlong param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4)
 {
-  undefined8 auStack_30 [2];
-  undefined *puStack_20;
-  code *pcStack_18;
-  
-  puStack_20 = &UNK_18054ae40;
-  pcStack_18 = FUN_18054add0;
-  auStack_30[0] = param_2;
-  FUN_18054a4b0(param_1 + 0xe0,auStack_30,param_3,param_4,0xfffffffffffffffe);
-  return;
+    undefined8 auStack_30 [2];      // 深度模式参数数组
+    undefined *puStack_20;           // 回调函数指针
+    code *pcStack_18;               // 深度模式处理回调
+    
+    // 设置深度模式处理回调函数
+    puStack_20 = &UNK_18054ae40;
+    pcStack_18 = FUN_18054add0;
+    
+    // 准备深度模式参数数组
+    auStack_30[0] = param_2;
+    
+    // 发送到渲染队列处理
+    FUN_18054a4b0(param_1 + OFFSET_RENDER_QUEUE, auStack_30, param_3, param_4, 0xfffffffffffffffe);
+    
+    return;
 }
 
 
 
 
 
-// 函数: void FUN_1805478b0(longlong param_1,undefined4 param_2,undefined8 param_3,undefined8 param_4)
-void FUN_1805478b0(longlong param_1,undefined4 param_2,undefined8 param_3,undefined8 param_4)
-
+/*==============================================================================
+ * 函数: RenderSystem_SetStencilMode - 渲染系统模板模式设置函数
+ * 
+ * 功能描述：
+ *   设置渲染系统的模板测试模式，用于控制模板缓冲区操作
+ *   这是一个模板模式设置函数，通过渲染队列异步设置模板参数
+ * 
+ * 参数：
+ *   param_1 - 渲染上下文指针
+ *   param_2 - 模板模式参数（32位）
+ *   param_3 - 附加参数1（64位）
+ *   param_4 - 附加参数2（64位）
+ * 
+ * 返回值：
+ *   无
+ * 
+ * 处理流程：
+ *   1. 设置模板模式处理回调函数
+ *   2. 准备模板模式参数数组
+ *   3. 设置模板模式参数
+ *   4. 发送到渲染队列处理
+ * 
+ * 注意事项：
+ *   - 使用24字节的模板模式参数数组
+ *   - 支持异步模板模式设置
+ *   - 模板模式参数为32位，适合存储复杂的模板测试配置
+ * 
+ * 简化实现：
+ *   原始实现：简单的模板模式参数打包和队列发送
+ *   简化实现：保持原有模板模式设置逻辑，添加了详细的参数说明
+ =============================================================================*/
+void RenderSystem_SetStencilMode(longlong param_1, undefined4 param_2, undefined8 param_3, undefined8 param_4)
 {
-  undefined4 auStackX_10 [6];
-  undefined4 *apuStack_30 [2];
-  undefined *puStack_20;
-  code *pcStack_18;
-  
-  puStack_20 = &UNK_18054ad90;
-  pcStack_18 = FUN_18054ad20;
-  apuStack_30[0] = auStackX_10;
-  auStackX_10[0] = param_2;
-  FUN_18054a4b0(param_1 + 0xe0,apuStack_30,param_3,param_4,0xfffffffffffffffe);
-  return;
+    undefined4 auStackX_10 [6];    // 模板模式参数数组
+    undefined4 *apuStack_30 [2];   // 参数指针数组
+    undefined *puStack_20;           // 回调函数指针
+    code *pcStack_18;               // 模板模式处理回调
+    
+    // 设置模板模式处理回调函数
+    puStack_20 = &UNK_18054ad90;
+    pcStack_18 = FUN_18054ad20;
+    
+    // 准备模板模式参数数组
+    apuStack_30[0] = auStackX_10;
+    auStackX_10[0] = param_2;
+    
+    // 发送到渲染队列处理
+    FUN_18054a4b0(param_1 + OFFSET_RENDER_QUEUE, apuStack_30, param_3, param_4, 0xfffffffffffffffe);
+    
+    return;
 }
 
 
 
 
 
-// 函数: void FUN_180547900(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-void FUN_180547900(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-
+/*==============================================================================
+ * 函数: RenderSystem_SetCullMode - 渲染系统剔除模式设置函数
+ * 
+ * 功能描述：
+ *   设置渲染系统的面剔除模式，用于控制多边形面的剔除
+ *   这是一个剔除模式设置函数，通过渲染队列异步设置剔除参数
+ * 
+ * 参数：
+ *   param_1 - 渲染上下文指针
+ *   param_2 - 剔除模式参数（64位）
+ *   param_3 - 附加参数1（64位）
+ *   param_4 - 附加参数2（64位）
+ * 
+ * 返回值：
+ *   无
+ * 
+ * 处理流程：
+ *   1. 设置剔除模式处理回调函数
+ *   2. 准备剔除模式参数数组
+ *   3. 设置剔除模式参数
+ *   4. 发送到渲染队列处理
+ * 
+ * 注意事项：
+ *   - 使用16字节的剔除模式参数数组
+ *   - 支持异步剔除模式设置
+ *   - 剔除模式参数为64位，适合存储剔除配置
+ * 
+ * 简化实现：
+ *   原始实现：简单的剔除模式参数打包和队列发送
+ *   简化实现：保持原有剔除模式设置逻辑，添加了详细的参数说明
+ =============================================================================*/
+void RenderSystem_SetCullMode(longlong param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4)
 {
-  undefined8 auStack_30 [2];
-  undefined *puStack_20;
-  code *pcStack_18;
-  
-  puStack_20 = &UNK_18054ace0;
-  pcStack_18 = FUN_18054ac70;
-  auStack_30[0] = param_2;
-  FUN_18054a4b0(param_1 + 0xe0,auStack_30,param_3,param_4,0xfffffffffffffffe);
-  return;
+    undefined8 auStack_30 [2];      // 剔除模式参数数组
+    undefined *puStack_20;           // 回调函数指针
+    code *pcStack_18;               // 剔除模式处理回调
+    
+    // 设置剔除模式处理回调函数
+    puStack_20 = &UNK_18054ace0;
+    pcStack_18 = FUN_18054ac70;
+    
+    // 准备剔除模式参数数组
+    auStack_30[0] = param_2;
+    
+    // 发送到渲染队列处理
+    FUN_18054a4b0(param_1 + OFFSET_RENDER_QUEUE, auStack_30, param_3, param_4, 0xfffffffffffffffe);
+    
+    return;
 }
 
 
 
-ulonglong FUN_180547950(longlong param_1)
-
+/*==============================================================================
+ * 函数: RenderSystem_GetState - 渲染系统状态获取函数
+ * 
+ * 功能描述：
+ *   获取渲染系统的当前状态信息
+ *   这是一个状态查询函数，用于读取渲染系统的运行状态
+ * 
+ * 参数：
+ *   param_1 - 渲染上下文指针
+ * 
+ * 返回值：
+ *   ulonglong - 当前状态值
+ * 
+ * 处理流程：
+ *   1. 从上下文中获取状态对象指针
+ *   2. 检查是否为默认状态对象
+ *   3. 如果是默认对象，直接返回状态值
+ *   4. 否则调用状态对象的获取函数
+ * 
+ * 注意事项：
+ *   - 支持多种状态对象的查询
+ *   - 默认状态对象使用固定偏移量
+ *   - 动态状态对象通过虚函数调用
+ * 
+ * 简化实现：
+ *   原始实现：条件分支的状态查询逻辑
+ *   简化实现：保持原有状态查询逻辑，添加了详细的对象类型说明
+ =============================================================================*/
+ulonglong RenderSystem_GetState(longlong param_1)
 {
-  undefined *puVar1;
-  ulonglong uVar2;
-  
-  puVar1 = (undefined *)**(undefined8 **)(param_1 + 0x100);
-  if (puVar1 == &UNK_180a169b8) {
-    return (ulonglong)*(uint *)(*(undefined8 **)(param_1 + 0x100) + 0x42);
-  }
-  uVar2 = (**(code **)(puVar1 + 0x130))();
-  return uVar2;
+    undefined *puVar1;
+    ulonglong uVar2;
+    
+    // 获取状态对象指针
+    puVar1 = (undefined *)**(undefined8 **)(param_1 + 0x100);
+    
+    // 检查是否为默认状态对象
+    if (puVar1 == &UNK_180a169b8) {
+        // 默认状态对象，直接返回状态值
+        return (ulonglong)*(uint *)(*(undefined8 **)(param_1 + 0x100) + 0x42);
+    }
+    
+    // 动态状态对象，调用获取函数
+    uVar2 = (**(code **)(puVar1 + 0x130))();
+    return uVar2;
 }
 
 

@@ -984,80 +984,224 @@ void FUN_180547770(longlong param_1,undefined1 param_2,undefined8 param_3,undefi
 
 
 
-// 函数: void FUN_1805477c0(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-void FUN_1805477c0(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-
+/*==============================================================================
+ * 函数: RenderSystem_SetScissor - 渲染系统裁剪区域设置函数
+ * 
+ * 功能描述：
+ *   设置渲染系统的裁剪区域，用于控制渲染输出的有效区域
+ *   这是一个裁剪设置函数，通过渲染队列异步设置裁剪参数
+ * 
+ * 参数：
+ *   param_1 - 渲染上下文指针
+ *   param_2 - 裁剪参数（64位）
+ *   param_3 - 附加参数1（64位）
+ *   param_4 - 附加参数2（64位）
+ * 
+ * 返回值：
+ *   无
+ * 
+ * 处理流程：
+ *   1. 设置裁剪处理回调函数
+ *   2. 准备裁剪参数数组
+ *   3. 设置裁剪参数
+ *   4. 发送到渲染队列处理
+ * 
+ * 注意事项：
+ *   - 使用16字节的裁剪参数数组
+ *   - 支持异步裁剪设置
+ *   - 裁剪参数为64位，适合存储复杂的裁剪区域数据
+ * 
+ * 简化实现：
+ *   原始实现：简单的裁剪参数打包和队列发送
+ *   简化实现：保持原有裁剪设置逻辑，添加了详细的参数说明
+ =============================================================================*/
+void RenderSystem_SetScissor(longlong param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4)
 {
-  undefined8 auStack_30 [2];
-  undefined *puStack_20;
-  code *pcStack_18;
-  
-  puStack_20 = &UNK_18054afa0;
-  pcStack_18 = FUN_18054af30;
-  auStack_30[0] = param_2;
-  FUN_18054a4b0(param_1 + 0xe0,auStack_30,param_3,param_4,0xfffffffffffffffe);
-  return;
+    undefined8 auStack_30 [2];      // 裁剪参数数组
+    undefined *puStack_20;           // 回调函数指针
+    code *pcStack_18;               // 裁剪处理回调
+    
+    // 设置裁剪处理回调函数
+    puStack_20 = &UNK_18054afa0;
+    pcStack_18 = FUN_18054af30;
+    
+    // 准备裁剪参数数组
+    auStack_30[0] = param_2;
+    
+    // 发送到渲染队列处理
+    FUN_18054a4b0(param_1 + OFFSET_RENDER_QUEUE, auStack_30, param_3, param_4, 0xfffffffffffffffe);
+    
+    return;
 }
 
 
 
 
 
-// 函数: void FUN_180547810(longlong param_1,undefined4 param_2,undefined8 param_3,undefined8 param_4)
-void FUN_180547810(longlong param_1,undefined4 param_2,undefined8 param_3,undefined8 param_4)
-
+/*==============================================================================
+ * 函数: RenderSystem_SetBlendMode - 渲染系统混合模式设置函数
+ * 
+ * 功能描述：
+ *   设置渲染系统的混合模式，用于控制颜色混合和透明度处理
+ *   这是一个混合模式设置函数，通过渲染队列异步设置混合参数
+ * 
+ * 参数：
+ *   param_1 - 渲染上下文指针
+ *   param_2 - 混合模式参数（32位）
+ *   param_3 - 附加参数1（64位）
+ *   param_4 - 附加参数2（64位）
+ * 
+ * 返回值：
+ *   无
+ * 
+ * 处理流程：
+ *   1. 设置混合模式处理回调函数
+ *   2. 准备混合模式参数数组（6字节）
+ *   3. 设置混合模式参数
+ *   4. 发送到渲染队列处理
+ * 
+ * 注意事项：
+ *   - 使用6字节的混合模式参数数组
+ *   - 支持异步混合模式设置
+ *   - 混合模式参数为32位，适合设置混合模式枚举值
+ * 
+ * 简化实现：
+ *   原始实现：简单的混合模式参数打包和队列发送
+ *   简化实现：保持原有混合模式设置逻辑，添加了详细的参数说明
+ =============================================================================*/
+void RenderSystem_SetBlendMode(longlong param_1, undefined4 param_2, undefined8 param_3, undefined8 param_4)
 {
-  undefined4 auStackX_10 [6];
-  undefined4 *apuStack_30 [2];
-  undefined *puStack_20;
-  code *pcStack_18;
-  
-  puStack_20 = &UNK_18054aef0;
-  pcStack_18 = FUN_18054ae80;
-  apuStack_30[0] = auStackX_10;
-  auStackX_10[0] = param_2;
-  FUN_18054a4b0(param_1 + 0xe0,apuStack_30,param_3,param_4,0xfffffffffffffffe);
-  return;
+    undefined4 auStackX_10 [6];     // 混合模式参数数组
+    undefined4 *apuStack_30 [2];    // 参数指针数组
+    undefined *puStack_20;           // 回调函数指针
+    code *pcStack_18;               // 混合模式处理回调
+    
+    // 设置混合模式处理回调函数
+    puStack_20 = &UNK_18054aef0;
+    pcStack_18 = FUN_18054ae80;
+    
+    // 准备混合模式参数数组
+    apuStack_30[0] = auStackX_10;
+    
+    // 设置混合模式参数
+    auStackX_10[0] = param_2;
+    
+    // 发送到渲染队列处理
+    FUN_18054a4b0(param_1 + OFFSET_RENDER_QUEUE, apuStack_30, param_3, param_4, 0xfffffffffffffffe);
+    
+    return;
 }
 
 
 
 
 
-// 函数: void FUN_180547860(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-void FUN_180547860(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-
+/*==============================================================================
+ * 函数: RenderSystem_SetDepthMode - 渲染系统深度模式设置函数
+ * 
+ * 功能描述：
+ *   设置渲染系统的深度模式，用于控制深度测试和深度写入
+ *   这是一个深度模式设置函数，通过渲染队列异步设置深度参数
+ * 
+ * 参数：
+ *   param_1 - 渲染上下文指针
+ *   param_2 - 深度模式参数（64位）
+ *   param_3 - 附加参数1（64位）
+ *   param_4 - 附加参数2（64位）
+ * 
+ * 返回值：
+ *   无
+ * 
+ * 处理流程：
+ *   1. 设置深度模式处理回调函数
+ *   2. 准备深度模式参数数组
+ *   3. 设置深度模式参数
+ *   4. 发送到渲染队列处理
+ * 
+ * 注意事项：
+ *   - 使用16字节的深度模式参数数组
+ *   - 支持异步深度模式设置
+ *   - 深度模式参数为64位，适合存储复杂的深度设置
+ * 
+ * 简化实现：
+ *   原始实现：简单的深度模式参数打包和队列发送
+ *   简化实现：保持原有深度模式设置逻辑，添加了详细的参数说明
+ =============================================================================*/
+void RenderSystem_SetDepthMode(longlong param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4)
 {
-  undefined8 auStack_30 [2];
-  undefined *puStack_20;
-  code *pcStack_18;
-  
-  puStack_20 = &UNK_18054ae40;
-  pcStack_18 = FUN_18054add0;
-  auStack_30[0] = param_2;
-  FUN_18054a4b0(param_1 + 0xe0,auStack_30,param_3,param_4,0xfffffffffffffffe);
-  return;
+    undefined8 auStack_30 [2];      // 深度模式参数数组
+    undefined *puStack_20;           // 回调函数指针
+    code *pcStack_18;               // 深度模式处理回调
+    
+    // 设置深度模式处理回调函数
+    puStack_20 = &UNK_18054ae40;
+    pcStack_18 = FUN_18054add0;
+    
+    // 准备深度模式参数数组
+    auStack_30[0] = param_2;
+    
+    // 发送到渲染队列处理
+    FUN_18054a4b0(param_1 + OFFSET_RENDER_QUEUE, auStack_30, param_3, param_4, 0xfffffffffffffffe);
+    
+    return;
 }
 
 
 
 
 
-// 函数: void FUN_1805478b0(longlong param_1,undefined4 param_2,undefined8 param_3,undefined8 param_4)
-void FUN_1805478b0(longlong param_1,undefined4 param_2,undefined8 param_3,undefined8 param_4)
-
+/*==============================================================================
+ * 函数: RenderSystem_SetStencilMode - 渲染系统模板模式设置函数
+ * 
+ * 功能描述：
+ *   设置渲染系统的模板模式，用于控制模板测试和模板操作
+ *   这是一个模板模式设置函数，通过渲染队列异步设置模板参数
+ * 
+ * 参数：
+ *   param_1 - 渲染上下文指针
+ *   param_2 - 模板模式参数（32位）
+ *   param_3 - 附加参数1（64位）
+ *   param_4 - 附加参数2（64位）
+ * 
+ * 返回值：
+ *   无
+ * 
+ * 处理流程：
+ *   1. 设置模板模式处理回调函数
+ *   2. 准备模板模式参数数组（6字节）
+ *   3. 设置模板模式参数
+ *   4. 发送到渲染队列处理
+ * 
+ * 注意事项：
+ *   - 使用6字节的模板模式参数数组
+ *   - 支持异步模板模式设置
+ *   - 模板模式参数为32位，适合设置模板模式枚举值
+ * 
+ * 简化实现：
+ *   原始实现：简单的模板模式参数打包和队列发送
+ *   简化实现：保持原有模板模式设置逻辑，添加了详细的参数说明
+ =============================================================================*/
+void RenderSystem_SetStencilMode(longlong param_1, undefined4 param_2, undefined8 param_3, undefined8 param_4)
 {
-  undefined4 auStackX_10 [6];
-  undefined4 *apuStack_30 [2];
-  undefined *puStack_20;
-  code *pcStack_18;
-  
-  puStack_20 = &UNK_18054ad90;
-  pcStack_18 = FUN_18054ad20;
-  apuStack_30[0] = auStackX_10;
-  auStackX_10[0] = param_2;
-  FUN_18054a4b0(param_1 + 0xe0,apuStack_30,param_3,param_4,0xfffffffffffffffe);
-  return;
+    undefined4 auStackX_10 [6];     // 模板模式参数数组
+    undefined4 *apuStack_30 [2];    // 参数指针数组
+    undefined *puStack_20;           // 回调函数指针
+    code *pcStack_18;               // 模板模式处理回调
+    
+    // 设置模板模式处理回调函数
+    puStack_20 = &UNK_18054ad90;
+    pcStack_18 = FUN_18054ad20;
+    
+    // 准备模板模式参数数组
+    apuStack_30[0] = auStackX_10;
+    
+    // 设置模板模式参数
+    auStackX_10[0] = param_2;
+    
+    // 发送到渲染队列处理
+    FUN_18054a4b0(param_1 + OFFSET_RENDER_QUEUE, apuStack_30, param_3, param_4, 0xfffffffffffffffe);
+    
+    return;
 }
 
 
