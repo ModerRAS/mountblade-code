@@ -164,16 +164,16 @@
 #define NetworkingSystem_TCPProtocolHandler network_tcp_handler_ptr
 
 // UDP 协议处理器
-#define NetworkingSystem_UDPProtocolHandler network_udp_handler_ptr
+#define NetworkingSystem_UDPProtocolHandler NetworkingSystem_UDPProtocolHandler
 
 // SSL 协议处理器
-#define NetworkingSystem_SSLProtocolHandler network_ssl_handler_ptr
+#define NetworkingSystem_SSLProtocolHandler NetworkingSystem_SSLProtocolHandler
 
 // 自定义协议处理器
-#define NetworkingSystem_CustomProtocolHandler network_custom_handler_ptr
+#define NetworkingSystem_CustomProtocolHandler NetworkingSystem_CustomProtocolHandler
 
 // 默认网络配置
-#define NetworkingSystem_DefaultConfig network_default_config_ptr
+#define NetworkingSystem_DefaultConfig NetworkingSystem_DefaultConfig
 
 // 网络配置指针
 #define NetworkingSystem_ConfigPtr UNK_18095af38
@@ -437,7 +437,7 @@ PROTOCOL_SETUP_COMPLETE:
   }
   else {
     if (connection_status == CONNECTION_TYPE_UDP) {
-      protocol_handler = &network_udp_handler_ptr;
+      protocol_handler = &NetworkingSystem_UDPProtocolHandler;
 SETUP_PROTOCOL_HANDLER:
       operation_result = NetworkingSystem_ProtocolInitializer(temp_result_1, protocol_handler, &network_context);
 PROTOCOL_HANDLER_SETUP:
@@ -446,15 +446,15 @@ PROTOCOL_HANDLER_SETUP:
     else {
       if (connection_status != CONNECTION_TYPE_SSL) {
         if (connection_status == CONNECTION_TYPE_TLS) {
-          protocol_handler = &network_ssl_handler_ptr;
+          protocol_handler = &NetworkingSystem_SSLProtocolHandler;
         }
         else {
           if (connection_status != CONNECTION_TYPE_CUSTOM) goto PROTOCOL_SETUP_COMPLETE;
-          protocol_handler = &network_custom_handler_ptr;
+          protocol_handler = &NetworkingSystem_CustomProtocolHandler;
         }
         goto SETUP_PROTOCOL_HANDLER;
       }
-      operation_result = NetworkingSystem_ProtocolInitializer(temp_result_1, &network_default_config_ptr, &network_context);
+      operation_result = NetworkingSystem_ProtocolInitializer(temp_result_1, &NetworkingSystem_DefaultConfig, &network_context);
       if (operation_result == 0) {
         operation_result = NetworkingSystem_ConfigInitializer(temp_result_1, 0x19, &config_context);
         if ((operation_result != 0) || (operation_result = NetworkingSystem_ConfigValidator(config_context, 1), operation_result != 0)) goto PROTOCOL_HANDLER_ERROR;
@@ -848,7 +848,7 @@ CLEANUP_PROTOCOL_COMPLETE:
   }
   else {
     if (connection_status == CONNECTION_TYPE_UDP) {
-      protocol_handler = &network_udp_handler_ptr;
+      protocol_handler = &NetworkingSystem_UDPProtocolHandler;
 CLEANUP_PROTOCOL_HANDLER:
       operation_result = NetworkingSystem_ProtocolInitializer(temp_result_1, protocol_handler, &security_context);
 CLEANUP_PROTOCOL_SETUP:
@@ -857,15 +857,15 @@ CLEANUP_PROTOCOL_SETUP:
     else {
       if (connection_status != CONNECTION_TYPE_SSL) {
         if (connection_status == CONNECTION_TYPE_TLS) {
-          protocol_handler = &network_ssl_handler_ptr;
+          protocol_handler = &NetworkingSystem_SSLProtocolHandler;
         }
         else {
           if (connection_status != CONNECTION_TYPE_CUSTOM) goto CLEANUP_PROTOCOL_COMPLETE;
-          protocol_handler = &network_custom_handler_ptr;
+          protocol_handler = &NetworkingSystem_CustomProtocolHandler;
         }
         goto CLEANUP_PROTOCOL_HANDLER;
       }
-      operation_result = NetworkingSystem_ProtocolInitializer(temp_result_1, &network_default_config_ptr, &resource_manager);
+      operation_result = NetworkingSystem_ProtocolInitializer(temp_result_1, &NetworkingSystem_DefaultConfig, &resource_manager);
       if (operation_result == 0) {
         operation_result = NetworkingSystem_ConfigInitializer(temp_result_1, 0x19, &resource_manager);
         if ((operation_result != 0) || (operation_result = NetworkingSystem_ConfigValidator(resource_manager, 1), operation_result != 0)) goto CLEANUP_PROTOCOL_ERROR;

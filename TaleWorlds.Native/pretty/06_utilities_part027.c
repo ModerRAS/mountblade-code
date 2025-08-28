@@ -1108,7 +1108,7 @@ void utilities_system_data_state_manager(void)
   *system_data_state_ptr = SYSTEM_INIT_VALUE;
   
   // 检查数据状态
-  if (_DAT_180d49248 != 0) {
+  if (*system_data_status_ptr != 0) {
     // 数据状态异常，终止程序
     FUN_18064e900();
   }
