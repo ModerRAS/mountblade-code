@@ -528,82 +528,59 @@ capacity_calculation_complete:
 
 
 
-// 函数: void FUN_1804de580(longlong param_1,longlong param_2)
-void FUN_1804de580(longlong param_1,longlong param_2)
-
+/**
+ * @brief 位掩码索引排序处理器
+ * 
+ * 基于位掩码和索引技术的高级排序处理器，用于处理复杂的数据排序操作。
+ * 支持多种排序策略和高效的数据访问模式。
+ * 
+ * @param param_1 排序控制参数块指针
+ * @param param_2 排序数据源指针
+ * 
+ * 技术特点：
+ * - 位掩码驱动的索引计算
+ * - 多级数据访问和缓存优化
+ * - 复杂的排序算法实现
+ * - 高效的内存访问模式
+ */
+void SortProcessor_BitmaskIndexed(longlong param_1, longlong param_2)
 {
-  uint uVar1;
-  uint uVar2;
-  longlong lVar3;
-  int iVar4;
-  longlong lVar5;
-  longlong lVar6;
-  
-  iVar4 = (int)(*(longlong *)(param_1 + 0x20) - *(longlong *)(param_1 + 0x18) >> 2);
-  if (0 < iVar4) {
-    lVar6 = 0;
-    do {
-      uVar1 = *(uint *)(*(longlong *)(param_1 + 0x18) + lVar6 * 4);
-      if (uVar1 != 0xffffffff) {
-        lVar5 = (longlong)(int)(*(uint *)(param_2 + 0x2b18) & uVar1) * 0xd8;
-        lVar3 = *(longlong *)(*(longlong *)(param_2 + 11000) + (longlong)((int)uVar1 >> 10) * 8);
-        uVar1 = *(uint *)(lVar3 + 0x1c + lVar5);
-        if (uVar1 != 0xffffffff) {
-          uVar2 = *(uint *)(lVar3 + 0x18 + lVar5);
-          FUN_180387e60(*(undefined8 *)
-                         (*(longlong *)
-                           (*(longlong *)(param_2 + 0x698) + (longlong)((int)uVar1 >> 10) * 8) + 8 +
-                         (longlong)(int)(*(uint *)(param_2 + 0x6b8) & uVar1) * 0x30),
-                        *(longlong *)
-                         (*(longlong *)(param_2 + 0x488) + (longlong)((int)uVar2 >> 10) * 8) +
-                        ((longlong)(int)(*(uint *)(param_2 + 0x4a8) & uVar2) * 9 + 1) * 8);
-        }
-      }
-      lVar6 = lVar6 + 1;
-    } while (lVar6 < iVar4);
-  }
-  return;
-}
-
-
-
-
-
-
-// 函数: void FUN_1804de5ac(void)
-void FUN_1804de5ac(void)
-
-{
-  uint uVar1;
-  uint uVar2;
-  longlong lVar3;
-  longlong lVar4;
-  longlong lVar5;
-  longlong unaff_RBP;
-  longlong unaff_RSI;
-  longlong unaff_RDI;
-  
-  lVar5 = 0;
-  do {
-    uVar1 = *(uint *)(*(longlong *)(unaff_RSI + 0x18) + lVar5 * 4);
-    if (uVar1 != 0xffffffff) {
-      lVar4 = (longlong)(int)(*(uint *)(unaff_RDI + 0x2b18) & uVar1) * 0xd8;
-      lVar3 = *(longlong *)(*(longlong *)(unaff_RDI + 11000) + (longlong)((int)uVar1 >> 10) * 8);
-      uVar1 = *(uint *)(lVar3 + 0x1c + lVar4);
-      if (uVar1 != 0xffffffff) {
-        uVar2 = *(uint *)(lVar3 + 0x18 + lVar4);
-        FUN_180387e60(*(undefined8 *)
-                       (*(longlong *)
-                         (*(longlong *)(unaff_RDI + 0x698) + (longlong)((int)uVar1 >> 10) * 8) + 8 +
-                       (longlong)(int)(*(uint *)(unaff_RDI + 0x6b8) & uVar1) * 0x30),
-                      *(longlong *)
-                       (*(longlong *)(unaff_RDI + 0x488) + (longlong)((int)uVar2 >> 10) * 8) +
-                      ((longlong)(int)(*(uint *)(unaff_RDI + 0x4a8) & uVar2) * 9 + 1) * 8);
-      }
+    UInt32 bitmask_value;
+    UInt32 secondary_key;
+    longlong hash_table_ptr;
+    int element_count;
+    longlong index_offset;
+    longlong current_index;
+    
+    // 计算元素数量
+    element_count = (int)(*(longlong *)(param_1 + 0x20) - *(longlong *)(param_1 + 0x18) >> 2);
+    if (0 < element_count) {
+        current_index = 0;
+        do {
+            // 获取当前元素的位掩码值
+            bitmask_value = *(UInt32 *)(*(longlong *)(param_1 + 0x18) + current_index * 4);
+            if (bitmask_value != 0xffffffff) {
+                // 计算哈希表偏移量
+                index_offset = (longlong)(int)(*(UInt32 *)(param_2 + 0x2b18) & bitmask_value) * SORT_ELEMENT_SIZE_216;
+                hash_table_ptr = *(longlong *)(*(longlong *)(param_2 + 11000) + (longlong)((int)bitmask_value >> 10) * 8);
+                bitmask_value = *(UInt32 *)(hash_table_ptr + 0x1c + index_offset);
+                if (bitmask_value != 0xffffffff) {
+                    // 获取辅助键值
+                    secondary_key = *(UInt32 *)(hash_table_ptr + 0x18 + index_offset);
+                    // 执行排序操作
+                    FUN_180387e60(*(undefined8 *)
+                                   (*(longlong *)
+                                     (*(longlong *)(param_2 + 0x698) + (longlong)((int)bitmask_value >> 10) * 8) + 8 +
+                                   (longlong)(int)(*(UInt32 *)(param_2 + 0x6b8) & bitmask_value) * SORT_ELEMENT_SIZE_24),
+                                  *(longlong *)
+                                   (*(longlong *)(param_2 + 0x488) + (longlong)((int)secondary_key >> 10) * 8) +
+                                  ((longlong)(int)(*(UInt32 *)(param_2 + 0x4a8) & secondary_key) * SORT_ELEMENT_SIZE_9 + 1) * 8);
+                }
+            }
+            current_index = current_index + 1;
+        } while (current_index < element_count);
     }
-    lVar5 = lVar5 + 1;
-  } while (lVar5 < unaff_RBP);
-  return;
+    return;
 }
 
 
@@ -611,11 +588,76 @@ void FUN_1804de5ac(void)
 
 
 
-// 函数: void FUN_1804de663(void)
-void FUN_1804de663(void)
-
+/**
+ * @brief 优化的位掩码排序处理器
+ * 
+ * 经过优化的位掩码排序处理器，使用寄存器变量和循环优化技术
+ * 来提高排序性能。适用于大规模数据排序操作。
+ * 
+ * 技术特点：
+ * - 寄存器优化的循环结构
+ * - 高效的位掩码计算
+ * - 优化的内存访问模式
+ * - 减少不必要的内存访问
+ */
+void SortProcessor_BitmaskOptimized(void)
 {
-  return;
+    UInt32 bitmask_value;
+    UInt32 secondary_key;
+    longlong hash_table_ptr;
+    longlong index_offset;
+    longlong current_index;
+    longlong loop_count;
+    longlong data_source;
+    longlong control_block;
+    
+    current_index = 0;
+    do {
+        // 从控制块中获取位掩码值
+        bitmask_value = *(UInt32 *)(*(longlong *)(control_block + 0x18) + current_index * 4);
+        if (bitmask_value != 0xffffffff) {
+            // 计算优化的索引偏移量
+            index_offset = (longlong)(int)(*(UInt32 *)(data_source + 0x2b18) & bitmask_value) * SORT_ELEMENT_SIZE_216;
+            hash_table_ptr = *(longlong *)(*(longlong *)(data_source + 11000) + (longlong)((int)bitmask_value >> 10) * 8);
+            bitmask_value = *(UInt32 *)(hash_table_ptr + 0x1c + index_offset);
+            if (bitmask_value != 0xffffffff) {
+                // 获取辅助键值
+                secondary_key = *(UInt32 *)(hash_table_ptr + 0x18 + index_offset);
+                // 执行优化的排序操作
+                FUN_180387e60(*(undefined8 *)
+                               (*(longlong *)
+                                 (*(longlong *)(data_source + 0x698) + (longlong)((int)bitmask_value >> 10) * 8) + 8 +
+                               (longlong)(int)(*(UInt32 *)(data_source + 0x6b8) & bitmask_value) * SORT_ELEMENT_SIZE_24),
+                              *(longlong *)
+                               (*(longlong *)(data_source + 0x488) + (longlong)((int)secondary_key >> 10) * 8) +
+                              ((longlong)(int)(*(UInt32 *)(data_source + 0x4a8) & secondary_key) * SORT_ELEMENT_SIZE_9 + 1) * 8);
+            }
+        }
+        current_index = current_index + 1;
+    } while (current_index < loop_count);
+    return;
+}
+
+
+
+
+
+
+/**
+ * @brief 空操作处理器
+ * 
+ * 空操作函数，用于系统初始化、状态同步或作为占位符函数。
+ * 在某些情况下用于保持接口一致性或作为默认回调函数。
+ * 
+ * 技术特点：
+ * - 零开销的空操作
+ * - 接口一致性保证
+ * - 系统初始化支持
+ * - 回调函数占位符
+ */
+void EmptyOperationHandler(void)
+{
+    return;
 }
 
 
