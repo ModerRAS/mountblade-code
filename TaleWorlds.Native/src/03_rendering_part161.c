@@ -144,17 +144,28 @@ void RenderingSystem_CreateRenderContext(undefined8 *context_ptr)
 
 
 
-undefined8 FUN_1803697a0(undefined8 param_1,ulonglong param_2,undefined8 param_3,undefined8 param_4)
-
+/**
+ * @brief 渲染系统内存分配器
+ * 
+ * 该函数负责为渲染系统分配内存资源。
+ * 支持条件内存分配、内存管理和系统调用等高级渲染功能。
+ * 
+ * @param memory_ptr 内存指针
+ * @param allocation_flags 分配标志
+ * @param size_param 大小参数
+ * @param alignment_param 对齐参数
+ * @return undefined8 分配的内存指针
+ */
+undefined8 RenderingSystem_AllocateRenderMemory(undefined8 memory_ptr, ulonglong allocation_flags, undefined8 size_param, undefined8 alignment_param)
 {
-  undefined8 uVar1;
-  
-  uVar1 = 0xfffffffffffffffe;
-  FUN_1803457d0();
-  if ((param_2 & 1) != 0) {
-    free(param_1,0x90,param_3,param_4,uVar1);
-  }
-  return param_1;
+    undefined8 thread_counter;
+    
+    thread_counter = 0xfffffffffffffffe;
+    FUN_1803457d0();
+    if ((allocation_flags & 1) != 0) {
+        free(memory_ptr, RENDERING_SYSTEM_MEMORY_POOL_SIZE_0x90, size_param, alignment_param, thread_counter);
+    }
+    return memory_ptr;
 }
 
 
