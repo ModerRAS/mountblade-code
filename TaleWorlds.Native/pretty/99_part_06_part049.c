@@ -482,7 +482,7 @@ LAB_1803d90f2:
   *(uint64_t *)(lVar6 + 0x48) = 0;
   *(int32_t *)(lVar6 + 0x58) = 0;
                     // WARNING: Subroutine does not return
-  FUN_18066bdc0(lVar6,puVar7,param_1,uVar8,uVar9,lVar6 + 0x30);
+  SystemNetworkHandler(lVar6,puVar7,param_1,uVar8,uVar9,lVar6 + 0x30);
 }
 
 
@@ -530,7 +530,7 @@ LAB_1803d91f9:
   *(uint64_t *)(lVar4 + 0x48) = 0;
   *(int32_t *)(lVar4 + 0x58) = 0;
                     // WARNING: Subroutine does not return
-  FUN_18066bdc0(lVar4,param_3,param_1,uVar5);
+  SystemNetworkHandler(lVar4,param_3,param_1,uVar5);
 }
 
 
@@ -610,7 +610,7 @@ LAB_1803d938d:
   *(uint64_t *)(lVar6 + 0x40) = param_5[4];
   FUN_1801eb8e0(lVar6 + 0x48);
                     // WARNING: Subroutine does not return
-  FUN_18066bdc0(lVar6,param_3,param_1,uVar7);
+  SystemNetworkHandler(lVar6,param_3,param_1,uVar7);
 }
 
 

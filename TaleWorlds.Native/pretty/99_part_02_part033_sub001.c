@@ -764,7 +764,7 @@ LAB_1801a59cb:
           lVar8 = lVar11;
         }
                     // WARNING: Subroutine does not return
-        FUN_18066bdc0(lVar13,pppppppuVar7,&pppppppuStack_148,lVar8);
+        SystemNetworkHandler(lVar13,pppppppuVar7,&pppppppuStack_148,lVar8);
       }
     }
     lVar2 = *plStack_100;

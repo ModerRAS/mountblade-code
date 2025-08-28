@@ -244,7 +244,7 @@ void FUN_18037ae90(int64_t param_1,int64_t param_2,uint64_t *param_3)
   auStack_7c0._0_8_ = CONCAT44(fVar32,fVar29 * -0.5) ^ 0x8000000000000000;
   auStack_7c0._8_4_ = pfVar19[2];
   auStack_7c0._12_4_ = 0;
-  pcStack_9b8 = FUN_180045af0;
+  pcStack_9b8 = SystemTimer;
   iStack_988 = (int)(auVar31._0_4_ * 4.0);
   DataStructureManager(aplStack_940,8,2,&SUB_18005d5f0);
   uStack_8e0 = 1;
@@ -970,7 +970,7 @@ LAB_18037bb4c:
       puStack_958 = (int16_t *)0x0;
       uStack_948 = (uint64_t)uStack_948._4_4_ << 0x20;
       puStack_960 = &system_state_ptr;
-      SystemDataValidator(aplStack_940,8,2,FUN_180045af0);
+      SystemDataValidator(aplStack_940,8,2,SystemTimer);
                     // WARNING: Subroutine does not return
       SystemSecurityChecker(uStack_e8 ^ (uint64_t)auStack_9d8);
     }

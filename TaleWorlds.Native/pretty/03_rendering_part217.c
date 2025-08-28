@@ -129,7 +129,7 @@ static RenderStatusFlags g_global_render_state = 0;        // 全局渲染状态
 //============================================================================
 
 // 主要函数别名
-#define RenderingSystem_ConnectionProcessor FUN_180391980
+#define RenderingSystem_ConnectionProcessor RenderingProcessor
 
 // 连接处理函数别名
 #define RenderingSystem_ConnectionHandleCleanup FUN_18038b160

@@ -356,7 +356,7 @@ void FUN_1804524e0(int64_t param_1)
 
 {
   if (param_1 != 0) {
-    FUN_180391980(param_1 + 0x2a68);
+    RenderingProcessor(param_1 + 0x2a68);
   }
   return;
 }

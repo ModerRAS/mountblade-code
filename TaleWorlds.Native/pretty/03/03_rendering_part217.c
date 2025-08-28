@@ -155,7 +155,7 @@ static void pipeline_manager(uint64_t context, uint64_t param1, uint64_t param2)
  * @param param_3 几何计算类型参数2  
  * @param param_4 几何计算类型参数3
  */
-void FUN_180391980(int64_t param_1, int param_2, int param_3, int param_4)
+void RenderingProcessor(int64_t param_1, int param_2, int param_3, int param_4)
 {
   byte bVar1;
   uint64_t *puVar2;
@@ -746,7 +746,7 @@ LAB_180392028:
 /**
  * 渲染系统核心功能函数别名
  */
-#define RenderingSystemGeometryCalculator FUN_180391980
+#define RenderingSystemGeometryCalculator RenderingProcessor
 #define RenderingSystemEdgeDetector FUN_18038b160
 #define RenderingSystemVectorNormalizer FUN_18038af00
 #define RenderingSystemDistanceCalculator FUN_18038c180
@@ -837,11 +837,11 @@ void module_cleanup(void)
 
 /**
  * 导出函数：渲染系统高级几何计算和边缘检测处理器
- * 对应原始函数：FUN_180391980
+ * 对应原始函数：RenderingProcessor
  */
 void RenderingSystemGeometryCalculator(int64_t param_1, int param_2, int param_3, int param_4)
 {
-  FUN_180391980(param_1, param_2, param_3, param_4);
+  RenderingProcessor(param_1, param_2, param_3, param_4);
 }
 
 /*==========================================

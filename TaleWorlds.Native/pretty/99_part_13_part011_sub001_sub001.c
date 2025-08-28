@@ -82,7 +82,7 @@ uint64_t FUN_1808ab460(uint64_t param_1,int64_t param_2,int32_t param_3)
                     // WARNING: Subroutine does not return
                 AdvancedSystemManager(param_1,auStack_88);
               }
-              if ((iVar2 != 0) || (iVar2 = FUN_18087dc70(param_2,&puStack_90), iVar2 != 0)) {
+              if ((iVar2 != 0) || (iVar2 = DataStreamProcessor(param_2,&puStack_90), iVar2 != 0)) {
                 (**(code **)*puVar4)(puVar4,0);
                     // WARNING: Subroutine does not return
                 SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),puVar4,&unknown_var_2144_ptr,0xc6,1);
@@ -150,7 +150,7 @@ uint64_t FUN_1808ab48f(void)
                     // WARNING: Subroutine does not return
               AdvancedSystemManager();
             }
-            if ((iVar2 != 0) || (iVar2 = FUN_18087dc70(), iVar2 != 0)) {
+            if ((iVar2 != 0) || (iVar2 = DataStreamProcessor(), iVar2 != 0)) {
               (**(code **)*puVar4)(puVar4,0);
                     // WARNING: Subroutine does not return
               SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),puVar4,&unknown_var_2144_ptr,0xc6,1);
@@ -206,7 +206,7 @@ int FUN_1808ab4ea(int param_1)
                     // WARNING: Subroutine does not return
           AdvancedSystemManager();
         }
-        if ((iVar1 != 0) || (iVar1 = FUN_18087dc70(), iVar1 != 0)) {
+        if ((iVar1 != 0) || (iVar1 = DataStreamProcessor(), iVar1 != 0)) {
           (**(code **)*puVar2)(puVar2,0);
                     // WARNING: Subroutine does not return
           SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),puVar2,&unknown_var_2144_ptr,0xc6,1);
@@ -343,7 +343,7 @@ uint64_t FUN_1808ab6f0(uint64_t param_1,int64_t param_2,int32_t param_3)
               *(int32_t *)(puVar7 + 0xd) = 0;
               puStack_50 = puVar7;
               iVar5 = FUN_18089c190(puVar7,param_1);
-              if ((iVar5 != 0) || (iVar5 = FUN_18087dc70(param_2,&puStack_50), iVar5 != 0)) {
+              if ((iVar5 != 0) || (iVar5 = DataStreamProcessor(param_2,&puStack_50), iVar5 != 0)) {
                 (**(code **)*puVar7)(puVar7,0);
                     // WARNING: Subroutine does not return
                 SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),puVar7,&unknown_var_2144_ptr,0xc6,1);
@@ -440,7 +440,7 @@ uint64_t FUN_1808ab71c(int32_t param_1)
             in_stack_00000048 = puVar6;
             iVar4 = FUN_18089c190(puVar6);
             if ((iVar4 != 0) ||
-               (iVar4 = FUN_18087dc70(extraout_XMM0_Da_01,&stack0x00000048), iVar4 != 0)) {
+               (iVar4 = DataStreamProcessor(extraout_XMM0_Da_01,&stack0x00000048), iVar4 != 0)) {
               (**(code **)*puVar6)(puVar6,0);
                     // WARNING: Subroutine does not return
               SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),puVar6,&unknown_var_2144_ptr,0xc6,1);
@@ -522,7 +522,7 @@ int FUN_1808ab773(int param_1)
         *(int *)(puVar5 + 0xd) = (int)unaff_R15;
         in_stack_00000048 = puVar5;
         iVar4 = FUN_18089c190(puVar5);
-        if ((iVar4 != 0) || (iVar4 = FUN_18087dc70(extraout_XMM0_Da,&stack0x00000048), iVar4 != 0))
+        if ((iVar4 != 0) || (iVar4 = DataStreamProcessor(extraout_XMM0_Da,&stack0x00000048), iVar4 != 0))
         {
           (**(code **)*puVar5)(puVar5,0);
                     // WARNING: Subroutine does not return
@@ -646,7 +646,7 @@ uint64_t FUN_1808ab910(uint64_t param_1,int64_t param_2,int32_t param_3)
               *(int32_t *)(puVar5 + 0x10) = 0;
               puStack_40 = puVar5;
               iVar3 = FUN_18089d0f0(puVar5,param_1);
-              if ((iVar3 != 0) || (iVar3 = FUN_18087dc70(param_2,&puStack_40), iVar3 != 0)) {
+              if ((iVar3 != 0) || (iVar3 = DataStreamProcessor(param_2,&puStack_40), iVar3 != 0)) {
                 (**(code **)*puVar5)(puVar5,0);
                     // WARNING: Subroutine does not return
                 SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),puVar5,&unknown_var_2144_ptr,0xc6,1);
@@ -719,7 +719,7 @@ uint64_t FUN_1808ab939(void)
             puVar5[0xf] = 0;
             *(int32_t *)(puVar5 + 0x10) = 0;
             iVar3 = FUN_18089d0f0(puVar5);
-            if ((iVar3 != 0) || (iVar3 = FUN_18087dc70(), iVar3 != 0)) {
+            if ((iVar3 != 0) || (iVar3 = DataStreamProcessor(), iVar3 != 0)) {
               (**(code **)*puVar5)(puVar5,0);
                     // WARNING: Subroutine does not return
               SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),puVar5,&unknown_var_2144_ptr,0xc6,1);
@@ -782,7 +782,7 @@ int FUN_1808ab990(int param_1)
         puVar3[0xf] = unaff_R15;
         *(int32_t *)(puVar3 + 0x10) = uVar6;
         iVar2 = FUN_18089d0f0(puVar3);
-        if ((iVar2 != 0) || (iVar2 = FUN_18087dc70(), iVar2 != 0)) {
+        if ((iVar2 != 0) || (iVar2 = DataStreamProcessor(), iVar2 != 0)) {
           (**(code **)*puVar3)(puVar3,0);
                     // WARNING: Subroutine does not return
           SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),puVar3,&unknown_var_2144_ptr,0xc6,1);

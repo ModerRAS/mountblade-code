@@ -664,7 +664,7 @@ LAB_1804a3e6f:
     uVar12 = 0;
   }
                     // WARNING: Subroutine does not return
-  FUN_18066bdc0(lVar6,lVar7,param_2,uVar12);
+  SystemNetworkHandler(lVar6,lVar7,param_2,uVar12);
   while (pbVar9 = pbVar9 + 1, uVar3 != 0) {
 LAB_1804a3f60:
     bVar1 = *pbVar9;
@@ -680,7 +680,7 @@ LAB_1804a3f7f:
     uVar12 = 0;
   }
                     // WARNING: Subroutine does not return
-  FUN_18066bdc0(lVar6,lVar7,param_2,uVar12);
+  SystemNetworkHandler(lVar6,lVar7,param_2,uVar12);
   while (pbVar9 = pbVar9 + 1, uVar3 != 0) {
 LAB_1804a4060:
     bVar1 = *pbVar9;
@@ -696,7 +696,7 @@ LAB_1804a407f:
     uVar12 = 0;
   }
                     // WARNING: Subroutine does not return
-  FUN_18066bdc0(lVar6,lVar7,param_2,uVar12);
+  SystemNetworkHandler(lVar6,lVar7,param_2,uVar12);
   while (pbVar9 = pbVar9 + 1, uVar3 != 0) {
 LAB_1804a4140:
     bVar1 = *pbVar9;
@@ -712,7 +712,7 @@ LAB_1804a415f:
     uVar12 = 0;
   }
                     // WARNING: Subroutine does not return
-  FUN_18066bdc0(lVar6,lVar7,param_2,uVar12);
+  SystemNetworkHandler(lVar6,lVar7,param_2,uVar12);
   while (pbVar9 = pbVar9 + 1, uVar3 != 0) {
 LAB_1804a4210:
     bVar1 = *pbVar9;
@@ -728,7 +728,7 @@ LAB_1804a422f:
     uVar12 = 0;
   }
                     // WARNING: Subroutine does not return
-  FUN_18066bdc0(lVar6,lVar4,param_2,uVar12);
+  SystemNetworkHandler(lVar6,lVar4,param_2,uVar12);
   while (pbVar9 = pbVar9 + 1, uVar3 != 0) {
 LAB_1804a42d0:
     bVar1 = *pbVar9;
@@ -744,7 +744,7 @@ LAB_1804a42ef:
     uVar12 = 0;
   }
                     // WARNING: Subroutine does not return
-  FUN_18066bdc0(lVar6,lVar4,param_2,uVar12);
+  SystemNetworkHandler(lVar6,lVar4,param_2,uVar12);
   while (pbVar9 = pbVar9 + 1, uVar3 != 0) {
 LAB_1804a4390:
     bVar1 = *pbVar9;
@@ -760,7 +760,7 @@ LAB_1804a43af:
     uVar12 = 0;
   }
                     // WARNING: Subroutine does not return
-  FUN_18066bdc0(lVar6,lVar4,param_2,uVar12);
+  SystemNetworkHandler(lVar6,lVar4,param_2,uVar12);
   while (pbVar9 = pbVar9 + 1, uVar3 != 0) {
 LAB_1804a4450:
     bVar1 = *pbVar9;
@@ -776,7 +776,7 @@ LAB_1804a446f:
     uVar12 = 0;
   }
                     // WARNING: Subroutine does not return
-  FUN_18066bdc0(lVar6,lVar4,param_2,uVar12);
+  SystemNetworkHandler(lVar6,lVar4,param_2,uVar12);
   while (pbVar9 = pbVar9 + 1, uVar3 != 0) {
 LAB_1804a4510:
     bVar1 = *pbVar9;
@@ -792,7 +792,7 @@ LAB_1804a452f:
     uVar12 = 0;
   }
                     // WARNING: Subroutine does not return
-  FUN_18066bdc0(lVar7,lVar4,param_2,uVar12);
+  SystemNetworkHandler(lVar7,lVar4,param_2,uVar12);
 }
 
 
