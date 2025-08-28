@@ -1,90 +1,92 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 02_core_engine_part222.c - 5 个函数
+// 02_core_engine_part222.c - 核心引擎模块第222部分
+// 本文件包含5个函数，主要处理核心引擎的组件管理和事件处理
 
-// 函数: void FUN_180198e30(longlong param_1,undefined8 param_2,undefined8 param_3,undefined1 param_4)
-void FUN_180198e30(longlong param_1,undefined8 param_2,undefined8 param_3,undefined1 param_4)
+// 函数: 处理引擎组件初始化和事件分发
+// 参数: param_1 - 引擎实例指针, param_2 - 事件类型, param_3 - 事件数据, param_4 - 处理标志
+void process_engine_component_initialization(longlong engine_instance, undefined8 event_type, undefined8 event_data, undefined1 process_flag)
 
 {
-  byte *pbVar1;
-  byte bVar2;
-  longlong lVar3;
-  longlong *plVar4;
-  byte *pbVar5;
-  uint uVar6;
-  uint uVar7;
-  char *pcVar8;
-  uint uVar9;
-  longlong *plVar10;
-  int iVar11;
-  ulonglong uVar12;
-  int iVar13;
-  ulonglong uVar14;
-  longlong lVar15;
-  longlong *plVar17;
-  ulonglong uVar18;
-  longlong *plVar19;
-  longlong *plVar20;
-  undefined1 auStack_128 [32];
-  undefined1 uStack_108;
-  uint uStack_104;
-  undefined *puStack_100;
-  byte *pbStack_f8;
-  uint uStack_f0;
-  ulonglong uStack_e8;
-  undefined *puStack_e0;
-  byte *pbStack_d8;
-  uint uStack_d0;
-  ulonglong uStack_c8;
-  longlong *plStack_c0;
-  longlong *plStack_b8;
-  longlong *plStack_b0;
-  longlong *plStack_a8;
-  undefined4 uStack_a0;
-  longlong lStack_98;
-  longlong lStack_90;
-  undefined8 uStack_88;
-  undefined8 uStack_80;
-  undefined8 uStack_78;
-  char acStack_70 [16];
-  char acStack_60 [16];
-  char acStack_50 [16];
-  ulonglong uStack_40;
-  longlong lVar16;
+  byte *temp_buffer_ptr;
+  byte temp_byte;
+  longlong loop_counter;
+  longlong *component_ptr;
+  byte *string_buffer;
+  uint buffer_size;
+  uint string_length;
+  char *temp_string;
+  uint component_count;
+  longlong *temp_component_ptr;
+  int component_index;
+  ulonglong address_offset;
+  int temp_index;
+  ulonglong temp_offset;
+  longlong temp_value;
+  longlong *component_list_ptr;
+  ulonglong checksum;
+  longlong *current_component;
+  longlong *next_component;
+  undefined1 stack_buffer[32];
+  undefined1 flag_stack;
+  uint stack_size;
+  undefined *heap_ptr;
+  byte *memory_buffer;
+  uint memory_size;
+  ulonglong memory_offset;
+  undefined *global_ptr;
+  byte *global_buffer;
+  uint global_size;
+  ulonglong global_checksum;
+  longlong *stack_component_ptr;
+  longlong *stack_component_ptr2;
+  longlong *stack_component_ptr3;
+  longlong *stack_component_ptr4;
+  undefined4 operation_flag;
+  longlong instance_offset;
+  longlong temp_address;
+  undefined8 param2_copy;
+  undefined8 param2_copy2;
+  undefined8 event_data_copy;
+  char string_buffer1[16];
+  char string_buffer2[16];
+  char string_buffer3[16];
+  ulonglong stack_checksum;
+  longlong temp_variable;
   
-  uStack_80 = 0xfffffffffffffffe;
-  uStack_40 = _DAT_180bf00a8 ^ (ulonglong)auStack_128;
-  uStack_104 = 0;
-  plStack_b8 = (longlong *)0x0;
-  plStack_b0 = (longlong *)0x0;
-  plStack_a8 = (longlong *)0x0;
-  uStack_a0 = 3;
-  uStack_108 = param_4;
-  lStack_90 = param_1;
-  uStack_88 = param_2;
-  uStack_78 = param_2;
-  plStack_c0 = (longlong *)FUN_1801a9dd0(0,param_3);
-  if (plStack_c0 != (longlong *)0x0) {
-    (**(code **)(*plStack_c0 + 0x28))(plStack_c0);
+  param2_copy = 0xfffffffffffffffe;
+  stack_checksum = _DAT_180bf00a8 ^ (ulonglong)stack_buffer;
+  stack_size = 0;
+  stack_component_ptr2 = (longlong *)0x0;
+  stack_component_ptr3 = (longlong *)0x0;
+  stack_component_ptr4 = (longlong *)0x0;
+  operation_flag = 3;
+  flag_stack = process_flag;
+  temp_address = engine_instance;
+  param2_copy = event_type;
+  event_data_copy = event_type;
+  stack_component_ptr = (longlong *)create_component_instance(0, event_data);
+  if (stack_component_ptr != (longlong *)0x0) {
+    (**(code **)(*stack_component_ptr + 0x28))(stack_component_ptr);
   }
-  FUN_1800b87c0(&plStack_b8,&plStack_c0);
-  if (plStack_c0 != (longlong *)0x0) {
-    (**(code **)(*plStack_c0 + 0x38))();
+  initialize_component_list(&stack_component_ptr2, &stack_component_ptr);
+  if (stack_component_ptr != (longlong *)0x0) {
+    (**(code **)(*stack_component_ptr + 0x38))();
   }
-  FUN_180627ae0(&puStack_100,param_3);
-  uVar9 = uStack_f0 + 3;
-  FUN_1806277c0(&puStack_100,uVar9);
-  pbVar5 = pbStack_f8 + uStack_f0;
-  pbVar5[0] = 0x5f;
-  pbVar5[1] = 0x30;
-  pbVar5[2] = 0x31;
-  pbVar5[3] = 0;
-  plStack_c0 = (longlong *)CONCAT44(plStack_c0._4_4_,1);
-  lStack_98 = param_1 + 0x607e0;
-  plVar19 = plStack_b0;
-  plVar20 = plStack_a8;
-  uVar7 = 0;
-  uStack_f0 = uVar9;
+  allocate_event_buffer(&heap_ptr, event_data);
+  component_count = memory_size + 3;
+  expand_event_buffer(&heap_ptr, component_count);
+  string_buffer = memory_buffer + memory_size;
+  string_buffer[0] = 0x5f;
+  string_buffer[1] = 0x30;
+  string_buffer[2] = 0x31;
+  string_buffer[3] = 0;
+  stack_component_ptr = (longlong *)CONCAT44(stack_component_ptr._4_4_, 1);
+  instance_offset = engine_instance + 0x607e0;
+  current_component = stack_component_ptr3;
+  next_component = stack_component_ptr4;
+  buffer_size = 0;
+  memory_size = component_count;
 LAB_180198f21:
   uVar12 = 0;
   uVar9 = uStack_f0 - 2;
