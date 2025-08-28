@@ -493,7 +493,7 @@ void process_spatial_partition_data(long long *spatial_data, unsigned long long 
                 }
                 
                 // 插入新节点到树中
-                FUN_18066bdc0(start_addr, node_ptr, tree_node, flags);
+                SystemNetworkHandler(start_addr, node_ptr, tree_node, flags);
             }
             
             start_addr = *spatial_data;  // 重新获取起始地址
@@ -551,7 +551,7 @@ void process_spatial_partition_data(long long *spatial_data, unsigned long long 
                 }
                 
                 // 插入新节点到树中
-                FUN_18066bdc0(start_addr, node_ptr, tree_node, flags);
+                SystemNetworkHandler(start_addr, node_ptr, tree_node, flags);
             }
             
             start_addr = spatial_data[4];  // 重新获取起始地址
@@ -620,7 +620,7 @@ void process_spatial_partition_data(long long *spatial_data, unsigned long long 
                         }
                         
                         // 插入新节点到树中
-                        FUN_18066bdc0(start_addr, node_ptr, tree_node, flags);
+                        SystemNetworkHandler(start_addr, node_ptr, tree_node, flags);
                     }
                     
                     end_addr = *data_ptr;  // 重新获取子数据块起始地址
@@ -642,7 +642,7 @@ void process_spatial_partition_data(long long *spatial_data, unsigned long long 
 // FUN_1800b9f60 - 边界框处理函数，用于处理计算出的边界框数据
 // CoreEngineMemoryPoolAllocator - 内存分配函数，从内存池中分配指定大小的内存块
 // FUN_18066b9a0 - 树节点操作函数，获取树节点的前驱或后继节点
-// FUN_18066bdc0 - 树节点插入函数，将新节点插入到二叉搜索树中
+// SystemNetworkHandler - 树节点插入函数，将新节点插入到二叉搜索树中
 // 
 // 注意：这是一个简化实现，用于展示空间分区数据的基本处理逻辑。
 // 实际的游戏引擎实现会更复杂，包含更多优化和错误处理。

@@ -1144,7 +1144,7 @@ void move_data_block(int64_t param_1, int64_t *param_2)
 #define execute_cleanup_sequence     FUN_180083100
 #define allocate_structured_memory    CoreEngineMemoryPoolAllocator
 #define create_tree_node              func_0x00018066b9a0
-#define insert_tree_node              FUN_18066bdc0
+#define insert_tree_node              SystemNetworkHandler
 #define process_event_queue           FUN_18005e890
 #define copy_parameter_block          FUN_18017b480
 #define initialize_parameter_block    FUN_18017b240
