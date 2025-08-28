@@ -446,7 +446,7 @@ void FUN_18071dadd(void)
   
   *unaff_R15 = 0;
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(*(uint64_t *)(unaff_RBP + 0x4060) ^ (uint64_t)&stack0x00000000);
+  CoreSystemConfigManager(*(uint64_t *)(unaff_RBP + 0x4060) ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -661,7 +661,7 @@ void FUN_18071e260(int64_t param_1,int param_2)
   }
   *(int32_t *)(param_1 + 0x11cc) = *(int32_t *)(param_1 + 0x11c8);
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_38 ^ (uint64_t)auStack_48);
+  CoreSystemConfigManager(uStack_38 ^ (uint64_t)auStack_48);
 }
 
 

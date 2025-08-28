@@ -179,7 +179,7 @@ void FUN_180287610(int64_t param_1,float *param_2,float *param_3)
   *(int32_t *)(param_1 + 0x114) = 0x3f800000;
   FUN_1802864f0();
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_b8 ^ (uint64_t)auStack_198);
+  CoreSystemConfigManager(uStack_b8 ^ (uint64_t)auStack_198);
 }
 
 

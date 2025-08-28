@@ -338,7 +338,7 @@ apply_final_colors:
     render_system_data_texture = render_system_data_texture + -1;
     (**(code **)(*render_system_data_texture + 0x20))();
     // 安全检查：验证堆栈保护
-    FUN_1808fc050(security_cookie ^ (uint64_t)stack_canary_check);
+    CoreSystemConfigManager(security_cookie ^ (uint64_t)stack_canary_check);
   }
   // 错误处理：不返回的函数调用
   CoreEngine_MemoryPoolManager();
@@ -468,7 +468,7 @@ void rendering_system_batch_process_and_apply(uint64_t *param_1, int64_t param_2
     texture_format = 0;
     render_context = &system_state_ptr;
     // 安全检查：验证堆栈保护
-    FUN_1808fc050(security_cookie ^ (uint64_t)stack_canary_check);
+    CoreSystemConfigManager(security_cookie ^ (uint64_t)stack_canary_check);
   }
   // 错误处理：不返回的函数调用
   CoreEngine_MemoryPoolManager();
@@ -604,7 +604,7 @@ void rendering_system_texture_generation_and_coord_calculation(uint64_t *param_1
     texture_width = 0;
   }
   // 安全检查：验证堆栈保护
-  FUN_1808fc050(security_cookie ^ (uint64_t)stack_canary_check);
+  CoreSystemConfigManager(security_cookie ^ (uint64_t)stack_canary_check);
 }
 
 

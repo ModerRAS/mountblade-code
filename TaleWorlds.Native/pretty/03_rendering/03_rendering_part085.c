@@ -699,7 +699,7 @@ void rendering_system_advanced_render_control(int64_t render_engine, int64_t ren
         }
         
         // 函数在此处结束（不返回）
-        FUN_1808fc050(stack_xor ^ (uint64_t)stack_protect);
+        CoreSystemConfigManager(stack_xor ^ (uint64_t)stack_protect);
     }
     
     // 处理其他渲染路径

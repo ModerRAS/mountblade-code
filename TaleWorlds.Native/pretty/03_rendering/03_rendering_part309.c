@@ -384,7 +384,7 @@ int HandleImageProcessingError(ImageProcessingContext* context, int error); /**<
 
 /** 外部依赖函数 */
 extern int FUN_18042f7d0(void* context, void* param1, void* param2, void* source, void* target); /**< 外部处理函数 */
-extern void FUN_1808fc050(uint64_t param);                               /**< 外部终止函数 */
+extern void CoreSystemConfigManager(uint64_t param);                               /**< 外部终止函数 */
 
 // ============================================================================
 // 主要功能函数实现
@@ -771,7 +771,7 @@ void RenderingAdvancedImageProcessor(void)
     ((ImageControlFunction)*stackPointer)(stackPointer[1], &stack0x00000040, 1);
     
     // 调用终止函数
-    FUN_1808fc050(*(uint64_t *)(contextParam2 + BUFFER_OFFSET_ENCODE_DATA) ^ (uint64_t)&stack0x00000000);
+    CoreSystemConfigManager(*(uint64_t *)(contextParam2 + BUFFER_OFFSET_ENCODE_DATA) ^ (uint64_t)&stack0x00000000);
 }
 
 /**
@@ -964,7 +964,7 @@ void ImageColorSpaceConverter(int param_1, int param_2, int64_t param_3)
     ((ImageControlFunction)*stackPointer)(stackPointer[1], &stack0x00000040, 1);
     
     // 调用终止函数
-    FUN_1808fc050(*(uint64_t *)(contextParam2 + BUFFER_OFFSET_ENCODE_DATA) ^ (uint64_t)&stack0x00000000);
+    CoreSystemConfigManager(*(uint64_t *)(contextParam2 + BUFFER_OFFSET_ENCODE_DATA) ^ (uint64_t)&stack0x00000000);
 }
 
 /**
@@ -1018,7 +1018,7 @@ void ImageDataEncoder(uint64_t param_1, uint64_t param_2, uint param_3)
     ((ImageControlFunction)*stackPointer)(stackPointer[1], &stack0x00000040, 1);
     
     // 调用终止函数
-    FUN_1808fc050(*(uint64_t *)(contextPointer + BUFFER_OFFSET_ENCODE_DATA) ^ (uint64_t)&stack0x00000000);
+    CoreSystemConfigManager(*(uint64_t *)(contextPointer + BUFFER_OFFSET_ENCODE_DATA) ^ (uint64_t)&stack0x00000000);
 }
 
 // ============================================================================

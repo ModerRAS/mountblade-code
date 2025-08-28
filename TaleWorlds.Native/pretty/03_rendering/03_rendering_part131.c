@@ -910,7 +910,7 @@ void rendering_system_execute_render_parameter_callback(uint64_t callback_param)
   callback_handler_ptr = &system_state_ptr;
   callback_array[0] = callback_params;
   // 错误处理：清理资源
-  FUN_1808fc050(callback_info ^ (uint64_t)callback_stack);
+  CoreSystemConfigManager(callback_info ^ (uint64_t)callback_stack);
 }
 
 /**

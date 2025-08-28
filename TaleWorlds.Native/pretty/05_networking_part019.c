@@ -209,7 +209,7 @@ void FUN_180852090(uint64_t *param_1, uint64_t *param_2)
             plStack_318 = (int64_t *)CONCAT44(plStack_318._4_4_, (uint)uStack_2c8._4_2_);
             
             // 调用网络错误处理函数
-            FUN_18076b390(auStack_78, 0x27, &unknown_var_8960_ptr, (uint64_t)uStack_2c8 & 0xffffffff);
+            SystemDataValidator(auStack_78, 0x27, &unknown_var_8960_ptr, (uint64_t)uStack_2c8 & 0xffffffff);
         }
         
         // 更新网络连接状态

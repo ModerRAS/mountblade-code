@@ -229,7 +229,7 @@ LAB_18049ce60:
       uStack_40 = uVar7;
       uStack_38 = uVar8;
                     // WARNING: Subroutine does not return
-      FUN_1808fc050(uStack_30 ^ (uint64_t)aiStack_88);
+      CoreSystemConfigManager(uStack_30 ^ (uint64_t)aiStack_88);
     }
   } while( true );
 }
@@ -312,7 +312,7 @@ void rendering_system_module_loader(uint64_t param_1)
   apuStack_b8[0] = &system_state_ptr;
   puStack_158 = &system_state_ptr;
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_18 ^ (uint64_t)auStack_198);
+  CoreSystemConfigManager(uStack_18 ^ (uint64_t)auStack_198);
 }
 
 /**
@@ -600,7 +600,7 @@ void rendering_system_shader_manager(uint64_t *param_1)
   uStack_70 = (uint64_t)uStack_70._4_4_ << 0x20;
   puStack_88 = &system_state_ptr;
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_28 ^ (uint64_t)auStack_b8, 0);
+  CoreSystemConfigManager(uStack_28 ^ (uint64_t)auStack_b8, 0);
 }
 
 /**

@@ -1211,7 +1211,7 @@ void rendering_system_parameter_processor(
     }
     
     // 调用清理函数
-    FUN_1808fc050(stack_checksum_58 ^ (uint64_t)stack_buffer_488);
+    CoreSystemConfigManager(stack_checksum_58 ^ (uint64_t)stack_buffer_488);
 }
 
 // ============================================================================

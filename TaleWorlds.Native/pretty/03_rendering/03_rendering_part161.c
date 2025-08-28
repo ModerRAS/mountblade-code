@@ -175,7 +175,7 @@ void FUN_1803691c0(uint64_t param_1)
     texture_cache_ptr = &RENDERING_MATERIAL_REGISTRY;
     
     // 执行安全验证和清理操作
-    FUN_1808fc050(security_token ^ (uint64_t)stack_buffer_1);
+    CoreSystemConfigManager(security_token ^ (uint64_t)stack_buffer_1);
 }
 
 /**
@@ -530,7 +530,7 @@ void FUN_180369890(uint64_t param_1)
     resource_ptr_5 = &RENDERING_MATERIAL_REGISTRY;
     
     // 执行批处理完成操作
-    FUN_1808fc050(security_token ^ (uint64_t)stack_buffer_1);
+    CoreSystemConfigManager(security_token ^ (uint64_t)stack_buffer_1);
 }
 
 /**
@@ -1125,7 +1125,7 @@ void FUN_18036a930(int64_t param_1)
     }
     
     // 执行安全验证
-    FUN_1808fc050(security_token ^ (uint64_t)stack_buffer);
+    CoreSystemConfigManager(security_token ^ (uint64_t)stack_buffer);
 }
 
 /**
@@ -1199,7 +1199,7 @@ void FUN_18036aa50(int64_t param_1)
     }
     
     // 执行安全验证
-    FUN_1808fc050(security_token ^ (uint64_t)stack_buffer);
+    CoreSystemConfigManager(security_token ^ (uint64_t)stack_buffer);
 }
 
 /**

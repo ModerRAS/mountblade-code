@@ -175,7 +175,7 @@ typedef struct {
 
 // 函数别名定义
 #define SystemFeatureProcessor FUN_1803be690
-#define SystemConfigManager FUN_1803be9f0
+#define SystemConfigManager UtilitiesSystemManager
 #define SystemDataProcessor FUN_180627c50
 #define SystemConfigValidator FUN_180631000
 #define SystemParameterHandler FUN_180631b90

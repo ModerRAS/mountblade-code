@@ -217,7 +217,7 @@ void RenderingSystem_ProcessResourceFile(int64_t render_context, int64_t output_
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_40 ^ (uint64_t)auStack_128);
+  CoreSystemConfigManager(uStack_40 ^ (uint64_t)auStack_128);
 }
 
 
@@ -384,7 +384,7 @@ void RenderingSystem_ExportResourceData(uint64_t render_context, int64_t output_
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_40 ^ (uint64_t)auStack_138);
+  CoreSystemConfigManager(uStack_40 ^ (uint64_t)auStack_138);
 }
 
 

@@ -473,7 +473,7 @@ void FUN_180443b00(void)
     
     // 设置渲染配置
     stack_ptr_c8 = &system_state_ptr;
-    FUN_1808fc050(stack_data_28 ^ (uint64_t)stack_buffer_278);
+    CoreSystemConfigManager(stack_data_28 ^ (uint64_t)stack_buffer_278);
 }
 
 /**
@@ -576,7 +576,7 @@ void FUN_180443b80(uint64_t param_1, int8_t param_2)
     }
     
     *parameter_ptr = &system_state_ptr;
-    FUN_1808fc050(parameter_data_18 ^ (uint64_t)parameter_buffer_d8);
+    CoreSystemConfigManager(parameter_data_18 ^ (uint64_t)parameter_buffer_d8);
 }
 
 /**
@@ -1048,7 +1048,7 @@ void FUN_180444600(uint64_t param_1, uint64_t param_2, float param_3, float para
     float_array_58[0] = param_4;
     float_array_50[0] = param_3;
     FUN_180114450(param_1, 4, param_2, float_param_1);
-    FUN_1808fc050(parameter_data_38 ^ (uint64_t)parameter_buffer_98);
+    CoreSystemConfigManager(parameter_data_38 ^ (uint64_t)parameter_buffer_98);
 }
 
 /**
@@ -1090,7 +1090,7 @@ void FUN_180444700(uint64_t param_1, int32_t *param_2, int32_t *param_3, int par
     FUN_180114890(param_1);
     *param_2 = shader_data_38;
     *param_3 = shader_data_34;
-    FUN_1808fc050(shader_data_20 ^ (uint64_t)shader_buffer_78);
+    CoreSystemConfigManager(shader_data_20 ^ (uint64_t)shader_buffer_78);
 }
 
 /**
@@ -1136,7 +1136,7 @@ void FUN_1804447c0(uint64_t param_1, int32_t *param_2, int32_t *param_3, int32_t
     *param_2 = effect_data_58;
     *param_3 = effect_data_54;
     *param_4 = effect_data_50;
-    FUN_1808fc050(effect_data_38 ^ (uint64_t)effect_buffer_98);
+    CoreSystemConfigManager(effect_data_38 ^ (uint64_t)effect_buffer_98);
 }
 
 /**
@@ -1186,7 +1186,7 @@ void FUN_1804448a0(uint64_t param_1, int32_t *param_2, int32_t *param_3, int32_t
     *param_3 = buffer_data_54;
     *param_4 = buffer_data_50;
     *param_5 = buffer_data_4c;
-    FUN_1808fc050(buffer_data_38 ^ (uint64_t)buffer_data_98);
+    CoreSystemConfigManager(buffer_data_38 ^ (uint64_t)buffer_data_98);
 }
 
 /**

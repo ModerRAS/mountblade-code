@@ -355,7 +355,7 @@ void initialize_rendering_manager(uint64_t *render_manager)
         if (stack_shader_ptr != (int64_t *)0x0) {
             (**(code **)(*stack_shader_ptr + 0x38))();
         }
-        FUN_1808fc050(stack_checksum ^ (uint64_t)stack_buffer);
+        CoreSystemConfigManager(stack_checksum ^ (uint64_t)stack_buffer);
     }
     CoreEngine_MemoryPoolManager();
 }

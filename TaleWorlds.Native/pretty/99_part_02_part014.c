@@ -276,7 +276,7 @@ void FUN_1800f2940(int64_t param_1)
   }
   ReleaseSRWLockExclusive(lStack_1e0);
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_30 ^ (uint64_t)auStack_298);
+  CoreSystemConfigManager(uStack_30 ^ (uint64_t)auStack_298);
 }
 
 

@@ -265,7 +265,7 @@ void render_object_matrix_transform(int64_t render_context)
     FUN_18020a7b0(unaff_RBX + 0x308,uStack0000000000000074,unaff_RBP + 4);
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(unaff_RBP[0x10] ^ (uint64_t)&stack0x00000000);
+  CoreSystemConfigManager(unaff_RBP[0x10] ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -362,7 +362,7 @@ void render_parameter_processor(uint64_t render_system, int64_t render_data, uin
     FUN_18020a7b0(unaff_RBX + 0x308,uStack0000000000000074,unaff_RBP + 4);
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(unaff_RBP[0x10] ^ (uint64_t)&stack0x00000000);
+  CoreSystemConfigManager(unaff_RBP[0x10] ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -377,7 +377,7 @@ void render_stack_cleanup(void)
   int64_t unaff_RBP;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(*(uint64_t *)(unaff_RBP + 0x80) ^ (uint64_t)&stack0x00000000);
+  CoreSystemConfigManager(*(uint64_t *)(unaff_RBP + 0x80) ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -630,7 +630,7 @@ void render_object_depth_test(void)
     FUN_18020a7b0(unaff_RBX + 0x308,uStack0000000000000074,unaff_RBP + 4);
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(unaff_RBP[0x10] ^ (uint64_t)&stack0x00000000);
+  CoreSystemConfigManager(unaff_RBP[0x10] ^ (uint64_t)&stack0x00000000);
 }
 
 

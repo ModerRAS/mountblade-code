@@ -492,7 +492,7 @@ void rendering_system_update_render_system(int64_t render_context)
     }
     
     // 执行栈保护检查（该操作可能不会返回）
-    FUN_1808fc050(checksum ^ (uint64_t)stack_protector);
+    CoreSystemConfigManager(checksum ^ (uint64_t)stack_protector);
 }
 
 /*
@@ -678,7 +678,7 @@ void rendering_system_process_render_parameters(int64_t render_context, int64_t 
     }
     
     // 执行栈保护检查（该操作可能不会返回）
-    FUN_1808fc050(checksum ^ (uint64_t)stack_buffer);
+    CoreSystemConfigManager(checksum ^ (uint64_t)stack_buffer);
 }
 
 /*
@@ -1247,5 +1247,5 @@ void rendering_system_manage_render_resources(int64_t render_context)
     }
     
     // 执行栈保护检查（该操作可能不会返回）
-    FUN_1808fc050(checksum ^ (uint64_t)stack_buffer);
+    CoreSystemConfigManager(checksum ^ (uint64_t)stack_buffer);
 }

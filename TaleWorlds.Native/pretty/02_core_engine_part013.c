@@ -541,7 +541,7 @@ void FUN_180053200(uint64_t param_1,int64_t param_2)
   ppuStack_1a8 = &puStack_d8;
   puStack_d8 = &system_state_ptr;
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_18 ^ (uint64_t)auStack_1c8);
+  CoreSystemConfigManager(uStack_18 ^ (uint64_t)auStack_1c8);
 }
 
 

@@ -145,7 +145,7 @@ typedef struct {
 
 /** 系统初始化函数 */
 #define SystemInitializer                   System_Initializer2
-#define SystemShutdown                      FUN_1808fc050
+#define SystemShutdown                      CoreSystemConfigManager
 #define SystemGetState                      SystemEventProcessor
 
 /** 系统数据处理器 */
@@ -816,7 +816,7 @@ void FUN_180099430(int64_t param_1,int64_t param_2)
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_68 ^ (uint64_t)auStack_2f8);
+  CoreSystemConfigManager(uStack_68 ^ (uint64_t)auStack_2f8);
 }
 
 

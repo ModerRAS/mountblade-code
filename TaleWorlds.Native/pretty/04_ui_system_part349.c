@@ -50,7 +50,7 @@
 #define UISystem_CallbackHandler func_0x0001808c6c40
 
 // UI系统资源管理器
-#define UISystem_ResourceManager FUN_18076b390
+#define UISystem_ResourceManager SystemDataValidator
 
 // UI系统渲染控制器
 #define UISystem_RenderController FUN_1808c6120

@@ -402,7 +402,7 @@ LAB_180273eb0:
     *(int64_t *)(param_2 + 8) = *(int64_t *)(param_2 + 8) + 4;
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_48 ^ (uint64_t)auStack_938);
+  CoreSystemConfigManager(uStack_48 ^ (uint64_t)auStack_938);
 }
 
 

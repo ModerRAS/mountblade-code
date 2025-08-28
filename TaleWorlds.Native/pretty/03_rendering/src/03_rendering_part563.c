@@ -249,7 +249,7 @@ struct RenderingDataArray {
 #define RenderingSystemStateProcessor FUN_1805162e0                     // 渲染系统状态处理器
 #define RenderingSystemModeHandler FUN_180515880                        // 渲染系统模式处理器
 #define RenderingSystemConfigProcessor FUN_180514a60                     // 渲染系统配置处理器
-#define RenderingSystemFinalHandler FUN_1808fc050                        // 渲染系统最终处理器
+#define RenderingSystemFinalHandler CoreSystemConfigManager                        // 渲染系统最终处理器
 
 /** 渲染系统内存管理函数别名 */
 #define RenderingMemoryBlockAllocator RenderingSystemAdvancedProcessor   // 渲染内存块分配器

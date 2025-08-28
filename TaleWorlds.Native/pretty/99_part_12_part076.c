@@ -861,7 +861,7 @@ void FUN_1807ff2a0(uint64_t param_1,int16_t param_2)
   uStack_26c = 0;
   uStack_264 = 0;
                     // WARNING: Subroutine does not return
-  FUN_18076b390(&uStack_48,8,&unknown_var_4576_ptr,param_2);
+  SystemDataValidator(&uStack_48,8,&unknown_var_4576_ptr,param_2);
 }
 
 
@@ -898,7 +898,7 @@ void FUN_1807ff2c6(uint64_t param_1,int16_t param_2)
   uStack000000000000006c = 0;
   uStack0000000000000074 = 0;
                     // WARNING: Subroutine does not return
-  FUN_18076b390(unaff_RBP + 400,unaff_ESI + 8,&unknown_var_4576_ptr,param_2);
+  SystemDataValidator(unaff_RBP + 400,unaff_ESI + 8,&unknown_var_4576_ptr,param_2);
 }
 
 

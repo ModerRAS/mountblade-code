@@ -1101,5 +1101,5 @@ LAB_180322d80:
   }
   
   // 完成渲染系统处理
-  FUN_1808fc050(uStack_48 ^ (uint64_t)auStack_f8);
+  CoreSystemConfigManager(uStack_48 ^ (uint64_t)auStack_f8);
 }

@@ -64,7 +64,7 @@ extern void FUN_180296ad0(void *resource);  // 资源清理函数 -> RenderingSy
 extern void FUN_180294c20(void *context, void *algorithm_config, uint32_t *param_3, void *param_4, void *param_5);  // 渲染配置函数 -> RenderingSystem_Configurator
 extern void FUN_180294f50(void *context);  // 渲染处理函数 -> RenderingSystem_Processor
 extern void *func_0x000180120ce0(uint64_t size, void *memory_manager);  // 内存分配函数 -> RenderingSystem_MemoryAllocator
-extern void FUN_1808fc050(uint64_t stack_cookie);  // 栈安全检查函数 -> RenderingSystem_StackChecker
+extern void CoreSystemConfigManager(uint64_t stack_cookie);  // 栈安全检查函数 -> RenderingSystem_StackChecker
 
 // 函数别名定义
 #define RenderingSystem_ResourceReleaser FUN_180059ba0
@@ -72,7 +72,7 @@ extern void FUN_1808fc050(uint64_t stack_cookie);  // 栈安全检查函数 -> R
 #define RenderingSystem_Configurator FUN_180294c20
 #define RenderingSystem_Processor FUN_180294f50
 #define RenderingSystem_MemoryAllocator func_0x000180120ce0
-#define RenderingSystem_StackChecker FUN_1808fc050
+#define RenderingSystem_StackChecker CoreSystemConfigManager
 
 /**
  * 渲染资源释放函数

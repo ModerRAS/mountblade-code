@@ -480,7 +480,7 @@ void RenderingSystem_AdvancedDataProcessorAndOptimizer(
     lStack_188 = param_1;
     
     // 调用清理函数
-    FUN_1808fc050(uStack_d8 ^ (uint64_t)&uStack_208);
+    CoreSystemConfigManager(uStack_d8 ^ (uint64_t)&uStack_208);
 }
 
 /**

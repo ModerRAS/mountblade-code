@@ -317,7 +317,7 @@ resource_cleanup_complete:
         (**(code **)(*context_cache + 0x38))();
     }
     // WARNING: Subroutine does not return
-    FUN_1808fc050(memory_checksum ^ (uint64_t)security_buffer);
+    CoreSystemConfigManager(memory_checksum ^ (uint64_t)security_buffer);
 }
 
 // 渲染系统清理处理器
@@ -444,7 +444,7 @@ void rendering_system_resource_manager(int64_t render_context)
     (**(code **)(resource_data + 0x38))(resource_manager);
 cleanup_complete:
     // WARNING: Subroutine does not return
-    FUN_1808fc050(checksum_value ^ (uint64_t)security_buffer);
+    CoreSystemConfigManager(checksum_value ^ (uint64_t)security_buffer);
 }
 
 // 渲染系统参数处理器
@@ -865,7 +865,7 @@ texture_processing_complete:
     *(float *)(target_context + 0x9798) = (float)vector_component_count;
     *(int32_t *)(target_context + 0x979c) = 0x3f800000;
     // WARNING: Subroutine does not return
-    FUN_1808fc050(checksum_value ^ (uint64_t)security_buffer);
+    CoreSystemConfigManager(checksum_value ^ (uint64_t)security_buffer);
 }
 
 // 渲染系统内存优化器

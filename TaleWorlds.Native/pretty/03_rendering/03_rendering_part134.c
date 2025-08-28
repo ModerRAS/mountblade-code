@@ -579,7 +579,7 @@ void FUN_180349330(int64_t param_1)
   if (plVar6 != (int64_t *)0x0) {
     CoreEngine_MemoryPoolManager(plVar6);
   }
-  FUN_1808fc050(uStack_38 ^ (uint64_t)auStack_188);
+  CoreSystemConfigManager(uStack_38 ^ (uint64_t)auStack_188);
 }
 
 
@@ -849,7 +849,7 @@ void FUN_180349a50(uint64_t param_1)
   apuStack_1a8[0] = &system_state_ptr;
   puStack_88 = &system_state_ptr;
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_28 ^ (uint64_t)auStack_1e8);
+  CoreSystemConfigManager(uStack_28 ^ (uint64_t)auStack_1e8);
 }
 
 
@@ -966,7 +966,7 @@ void FUN_180349ce0(uint64_t *param_1,int64_t param_2)
   FUN_1803460a0(param_1,&puStack_68,param_1 + 0xf,5);
   puStack_68 = &system_state_ptr;
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_30 ^ (uint64_t)auStack_168);
+  CoreSystemConfigManager(uStack_30 ^ (uint64_t)auStack_168);
 }
 
 

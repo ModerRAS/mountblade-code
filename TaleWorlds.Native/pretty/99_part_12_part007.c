@@ -494,7 +494,7 @@ LAB_1807cbd3d:
   }
 LAB_1807cc69d:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(*(uint64_t *)(unaff_RBP + 0x3e0) ^ (uint64_t)&stack0x00000000);
+  CoreSystemConfigManager(*(uint64_t *)(unaff_RBP + 0x3e0) ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -509,7 +509,7 @@ void FUN_1807cc6a5(void)
   int64_t unaff_RBP;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(*(uint64_t *)(unaff_RBP + 0x3e0) ^ (uint64_t)&stack0x00000000);
+  CoreSystemConfigManager(*(uint64_t *)(unaff_RBP + 0x3e0) ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -560,7 +560,7 @@ void FUN_1807cc6d0(void)
                      unaff_RBP + -0x50);
   if (iVar2 != 0) {
                     // WARNING: Subroutine does not return
-    FUN_1808fc050(*(uint64_t *)(unaff_RBP + 0x3e0) ^ (uint64_t)&stack0x00000000);
+    CoreSystemConfigManager(*(uint64_t *)(unaff_RBP + 0x3e0) ^ (uint64_t)&stack0x00000000);
   }
                     // WARNING: Subroutine does not return
   memcpy(*(uint64_t *)(unaff_RBP + -0x70));

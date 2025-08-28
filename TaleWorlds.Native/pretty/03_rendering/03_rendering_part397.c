@@ -762,7 +762,7 @@ void RenderingSystemAdvancedPipelineManager(int64_t param_1, int64_t *param_2, i
         if (plVar12 != (int64_t *)0x0) {
             (**(code **)(*plVar12 + 0x38))(plVar12);
         }
-        FUN_1808fc050(uStack_48 ^ (uint64_t)auStack_418);
+        CoreSystemConfigManager(uStack_48 ^ (uint64_t)auStack_418);
     }
     CoreEngine_MemoryPoolManager();
 }

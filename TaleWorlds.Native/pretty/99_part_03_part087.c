@@ -379,7 +379,7 @@ LAB_18024bde4:
   *(int32_t *)(param_1 + 0x12bf8) = uVar18;
   *(int32_t *)(param_1 + 0x12bfc) = uVar19;
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(*(uint64_t *)(unaff_RBP + 0x200) ^ (uint64_t)&stack0x00000000);
+  CoreSystemConfigManager(*(uint64_t *)(unaff_RBP + 0x200) ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -586,7 +586,7 @@ LAB_18024bd46:
   *(int32_t *)(unaff_RBX + 0x12bf8) = uVar3;
   *(int32_t *)(unaff_RBX + 0x12bfc) = uVar4;
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(*(uint64_t *)(unaff_RBP + 0x200) ^ (uint64_t)&stack0x00000000);
+  CoreSystemConfigManager(*(uint64_t *)(unaff_RBP + 0x200) ^ (uint64_t)&stack0x00000000);
 }
 
 

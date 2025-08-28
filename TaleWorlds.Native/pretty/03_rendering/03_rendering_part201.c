@@ -91,7 +91,7 @@ void rendering_data_processor(int64_t param_1, uint64_t param_2, int64_t param_3
 #define rendering_data_getter            FUN_180387380
 
 /** 渲染系统管理器 */
-#define rendering_system_manager         FUN_1808fc050
+#define rendering_system_manager         CoreSystemConfigManager
 
 /** 渲染迭代器 */
 #define rendering_iterator               func_0x00018066bd70

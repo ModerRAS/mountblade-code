@@ -87,7 +87,7 @@ extern void FUN_1803048f0(int64_t param1, uint64_t *param2, uint64_t param3, uin
 extern void FUN_180095420(int64_t param1);
 extern void SystemDataValidator(int64_t param1, int64_t param2, int64_t param3, void *param4);
 extern void DataCacheManager(void);
-extern void FUN_1808fc050(uint64_t param1);
+extern void CoreSystemConfigManager(uint64_t param1);
 
 /**
  * 渲染系统高级参数控制函数
@@ -765,7 +765,7 @@ void RenderingSystem_ComplexResourceManagement(int64_t *render_context, int64_t 
         if (stack_value_1 != (int64_t *)0x0) {
           (**(code **)(*stack_value_1 + 0x28))();
         }
-        FUN_1808fc050(stack_param);
+        CoreSystemConfigManager(stack_param);
       }
     }
     FUN_18024cb50(data_context, context_manager);
@@ -787,7 +787,7 @@ void RenderingSystem_ComplexResourceManagement(int64_t *render_context, int64_t 
     *(uint64_t *)(context_manager + 0x9a3c) = stack_param;
   }
   // 执行最终的清理操作
-  FUN_1808fc050(checksum_value ^ (uint64_t)data_buffer);
+  CoreSystemConfigManager(checksum_value ^ (uint64_t)data_buffer);
 }
 
 /**
@@ -1004,7 +1004,7 @@ void RenderingSystem_CompleteRenderShutdown(uint64_t *render_context, uint64_t p
     (**(code **)*data_array)(data_array, 0);
     if (memory_block != 0) {
       // 处理内存块释放
-      FUN_1808fc050(memory_block);
+      CoreSystemConfigManager(memory_block);
     }
   }
   render_context[0x10b] = &global_state_9896_ptr;

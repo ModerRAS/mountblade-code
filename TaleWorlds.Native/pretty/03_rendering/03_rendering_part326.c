@@ -86,7 +86,7 @@ extern void FUN_1800b3a40(void);
 extern void FUN_180171f10(uint64_t param_1, uint64_t param_2);
 extern void FUN_180060680(char *param_1, uint64_t param_2, int param_3);
 extern void FUN_18004b1f0(int param_1);
-extern void FUN_1808fc050(uint64_t param_1);
+extern void CoreSystemConfigManager(uint64_t param_1);
 extern uint64_t FUN_18062b1e0(uint64_t param_1, int param_2, int param_3, int param_4);
 extern uint64_t FUN_18005ce30(uint64_t param_1, uint64_t *param_2);
 extern void FUN_18005e370(uint64_t param_1, uint64_t *param_2);
@@ -1453,7 +1453,7 @@ void rendering_system_batch_executor(int param_1, int param_2, int param_3, int 
     buffer_pointer = &global_config_720_ptr;
     FUN_18004b1f0(0);
     // WARNING: Subroutine does not return
-    FUN_1808fc050(stack_guard ^ (uint64_t)temp_buffer);
+    CoreSystemConfigManager(stack_guard ^ (uint64_t)temp_buffer);
 }
 
 /**
@@ -1538,7 +1538,7 @@ void rendering_system_string_processor(int param_1)
     (**(code **)(*system_cache_buffer + 0x70))(system_cache_buffer, &stack_pointer);
     stack_pointer = &global_config_720_ptr;
     // WARNING: Subroutine does not return
-    FUN_1808fc050(stack_guard ^ (uint64_t)temp_buffer);
+    CoreSystemConfigManager(stack_guard ^ (uint64_t)temp_buffer);
 }
 
 /**
@@ -1588,7 +1588,7 @@ void rendering_system_copy_executor(int64_t param_1, int32_t param_2)
                format_buffer, (int64_t)((int)temp_offset + 2));
     }
     // WARNING: Subroutine does not return
-    FUN_1808fc050(stack_guard ^ (uint64_t)temp_buffer);
+    CoreSystemConfigManager(stack_guard ^ (uint64_t)temp_buffer);
 }
 
 /**
@@ -1625,7 +1625,7 @@ void rendering_system_extended_copy_executor(uint64_t param_1, uint param_2)
                source_buffer, (int64_t)(copy_length + 1));
     }
     // WARNING: Subroutine does not return
-    FUN_1808fc050(stack_data ^ (uint64_t)&stack0x00000000);
+    CoreSystemConfigManager(stack_data ^ (uint64_t)&stack0x00000000);
 }
 
 /**
@@ -1650,7 +1650,7 @@ void rendering_system_empty_function3(void)
     uint64_t stack_data;
     
     // WARNING: Subroutine does not return
-    FUN_1808fc050(stack_data ^ (uint64_t)&stack0x00000000);
+    CoreSystemConfigManager(stack_data ^ (uint64_t)&stack0x00000000);
 }
 
 /**

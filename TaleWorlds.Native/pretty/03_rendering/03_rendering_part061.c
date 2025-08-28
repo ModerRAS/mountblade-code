@@ -201,7 +201,7 @@ void FUN_18029cdd0(int64_t param_1,uint64_t *param_2)
                 *(int8_t *)((int64_t)param_2 + 0x3a));
                     
   // 清理安全缓冲区
-  FUN_1808fc050(security_key ^ (uint64_t)security_buffer);
+  CoreSystemConfigManager(security_key ^ (uint64_t)security_buffer);
 }
 
 
@@ -331,7 +331,7 @@ void FUN_18029d0a0(int64_t param_1,uint64_t *param_2,int32_t *param_3)
             (*(int64_t **)(param_1 + 0x8400), 1, &texture_param4);
   
   // 清理安全缓冲区（函数不返回）
-  FUN_1808fc050(security_key ^ (uint64_t)security_buffer);
+  CoreSystemConfigManager(security_key ^ (uint64_t)security_buffer);
 }
 
 
@@ -545,7 +545,7 @@ void FUN_18029d280(int64_t param_1,int64_t param_2)
   } while (slot_index < 0x80);  // 最大128个插槽
   
   // 清理安全缓冲区（函数不返回）
-  FUN_1808fc050(security_key ^ (uint64_t)security_buffer);
+  CoreSystemConfigManager(security_key ^ (uint64_t)security_buffer);
 }
 
 
@@ -660,7 +660,7 @@ void FUN_18029d500(int64_t param_1,int64_t param_2)
   }
   
   // 清理安全缓冲区（函数不返回）
-  FUN_1808fc050(security_key ^ (uint64_t)security_buffer);
+  CoreSystemConfigManager(security_key ^ (uint64_t)security_buffer);
 }
 
 
@@ -761,7 +761,7 @@ void FUN_18029d760(int64_t param_1,int param_2,char param_3,int64_t param_4,int 
   }
   
   // 清理安全缓冲区（函数不返回）
-  FUN_1808fc050(security_key ^ (uint64_t)security_buffer);
+  CoreSystemConfigManager(security_key ^ (uint64_t)security_buffer);
 }
 
 
@@ -846,7 +846,7 @@ void FUN_18029d930(int64_t param_1,uint64_t param_2,char param_3,int64_t param_4
   }
   
   // 清理安全缓冲区（函数不返回）
-  FUN_1808fc050(security_key ^ (uint64_t)security_buffer);
+  CoreSystemConfigManager(security_key ^ (uint64_t)security_buffer);
 }
 
 
@@ -1108,7 +1108,7 @@ void FUN_18029de40(int64_t param_1,int32_t param_2)
   }
   
   // 清理安全缓冲区（函数不返回）
-  FUN_1808fc050(security_key ^ (uint64_t)security_buffer);
+  CoreSystemConfigManager(security_key ^ (uint64_t)security_buffer);
 }
 
 

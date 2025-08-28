@@ -216,7 +216,7 @@ LAB_180878d26:
                 *(int64_t *)(unaff_RBP + -0x49) = lVar12;
                 if (lVar12 == 0) {
                     // WARNING: Subroutine does not return
-                  FUN_18076b390(unaff_RBP + -0x39,0x27,&unknown_var_8960_ptr,
+                  SystemDataValidator(unaff_RBP + -0x39,0x27,&unknown_var_8960_ptr,
                                 *(int32_t *)(unaff_RBP + -0x79),
                                 *(int16_t *)(unaff_RBP + -0x75));
                 }
@@ -298,7 +298,7 @@ void FUN_180879270(int64_t param_1,int64_t *param_2)
       uStack_b0 = (uint)*(ushort *)((int64_t)puVar3 + 6);
       uStack_b8 = (uint)*(ushort *)(puVar3 + 1);
                     // WARNING: Subroutine does not return
-      FUN_18076b390(auStack_68,0x27,&unknown_var_8960_ptr,*puVar3);
+      SystemDataValidator(auStack_68,0x27,&unknown_var_8960_ptr,*puVar3);
     }
     if (*(int *)(lVar2 + 0xb0) == -1) break;
     puVar3 = puVar3 + 5;

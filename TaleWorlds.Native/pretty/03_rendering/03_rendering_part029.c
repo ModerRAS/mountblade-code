@@ -565,7 +565,7 @@ LAB_180281d06:
   texture_buffer_size = 0;
   name_buffer_ptr = &RENDER_DATA_PTR_3;
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(security_key ^ (uint64_t)name_buffer);
+  CoreSystemConfigManager(security_key ^ (uint64_t)name_buffer);
 }
 
 

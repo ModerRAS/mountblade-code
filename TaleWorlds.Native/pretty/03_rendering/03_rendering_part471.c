@@ -382,7 +382,7 @@ typedef struct {
 /** @defgroup MemoryFunctionAliases 内存函数别名
  *  @{
  */
-#define MemorySystem_BlockAllocator             FUN_1808fc050  ///< 内存系统块分配器
+#define MemorySystem_BlockAllocator             CoreSystemConfigManager  ///< 内存系统块分配器
 #define MemorySystem_DataProcessor              FUN_180516bd0  ///< 内存系统数据处理器
 #define MemorySystem_ResourceManager           FUN_18055dcf0  ///< 内存系统资源管理器
 /** @} */

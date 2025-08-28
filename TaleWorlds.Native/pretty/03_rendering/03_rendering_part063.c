@@ -812,7 +812,7 @@ void rendering_system_batch_processor(int64_t batch_context_ptr, uint64_t proces
   }
   
   // 清理栈并返回
-  FUN_1808fc050(stack_canary_value ^ (uint64_t)stack_canary);
+  CoreSystemConfigManager(stack_canary_value ^ (uint64_t)stack_canary);
 }
 
 // 函数: void rendering_system_thread_synchronizer(void)
@@ -939,7 +939,7 @@ void rendering_system_thread_synchronizer(void)
   } while (item_index < *(char *)(memory_offset + 0x20));
   
   // 清理栈并返回
-  FUN_1808fc050(*(uint64_t *)(stack_buffer_ptr + 0x10) ^ (uint64_t)&stack_param1);
+  CoreSystemConfigManager(*(uint64_t *)(stack_buffer_ptr + 0x10) ^ (uint64_t)&stack_param1);
 }
 
 // 函数: void rendering_system_stack_cleaner(void)
@@ -950,7 +950,7 @@ void rendering_system_stack_cleaner(void)
   int64_t stack_context_ptr;           // 栈上下文指针
   
   // 清理栈数据
-  FUN_1808fc050(*(uint64_t *)(stack_context_ptr + 0x40) ^ (uint64_t)&stack_param1);
+  CoreSystemConfigManager(*(uint64_t *)(stack_context_ptr + 0x40) ^ (uint64_t)&stack_param1);
 }
 
 // 函数: void rendering_system_resource_remover(int64_t param_1, char param_2, int64_t *param_3)

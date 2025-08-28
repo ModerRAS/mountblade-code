@@ -699,7 +699,7 @@ LAB_resource_processing_complete:
     FUN_180057830(&stack_long3);
     
     // 栈保护清理
-    FUN_1808fc050(stack_guard ^ (uint64_t)stack_buffer1);
+    CoreSystemConfigManager(stack_guard ^ (uint64_t)stack_buffer1);
     
     // 处理字符串分割和资源标记
     while (true) {

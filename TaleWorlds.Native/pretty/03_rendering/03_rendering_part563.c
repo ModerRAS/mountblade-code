@@ -83,7 +83,7 @@ typedef uint64_t RenderingSystem_Undefined8;              // 渲染系统未定�
 #define RenderingSystem_FloatProcessor FUN_1805791e0        // 渲染系统浮点数处理器
 #define RenderingSystem_UnknownFunction1 FUN_180662190     // 渲染系统未知函数1
 #define RenderingSystem_UnknownFunction2 FUN_180516e40     // 渲染系统未知函数2
-#define RenderingSystem_UnknownFunction3 FUN_1808fc050     // 渲染系统未知函数3
+#define RenderingSystem_UnknownFunction3 CoreSystemConfigManager     // 渲染系统未知函数3
 
 // =============================================================================
 // 结构体定义

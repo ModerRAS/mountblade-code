@@ -1054,5 +1054,5 @@ void rendering_system_process_render_commands(int64_t param1, int64_t param2)
   }
   
   // 清理栈资源
-  FUN_1808fc050(stack_data_offset ^ (uint64_t)stack_buffer);
+  CoreSystemConfigManager(stack_data_offset ^ (uint64_t)stack_buffer);
 }

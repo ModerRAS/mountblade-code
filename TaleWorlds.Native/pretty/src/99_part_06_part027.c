@@ -230,7 +230,7 @@ typedef struct SystemState {
 
 /** 主要功能函数别名 */
 #define SystemFeatureProcessor FUN_1803be690
-#define SystemConfigManager FUN_1803be9f0
+#define SystemConfigManager UtilitiesSystemManager
 
 /** 字符串处理函数别名 */
 #define SystemStringCompare strcmp

@@ -355,7 +355,7 @@ void rendering_system_resource_initializer(
     *(uint64_t*)((uint8_t*)max_params + 0xc78) = function_ptr;
     
     // 调用初始化完成函数
-    FUN_1808fc050(stack_alignment ^ (uint64_t)&stack_alignment);
+    CoreSystemConfigManager(stack_alignment ^ (uint64_t)&stack_alignment);
 }
 
 /**
@@ -404,7 +404,7 @@ void rendering_system_texture_processor(
     *(uint64_t*)((uint8_t*)texture_proc + 0xc78) = function_ptr;
     
     // 调用纹理处理完成函数
-    FUN_1808fc050(stack_alignment ^ (uint64_t)&stack_alignment);
+    CoreSystemConfigManager(stack_alignment ^ (uint64_t)&stack_alignment);
 }
 
 /**
@@ -415,7 +415,7 @@ void rendering_system_memory_manager(void) {
     uint64_t stack_alignment = 0;
     
     // 调用内存管理函数
-    FUN_1808fc050(stack_alignment ^ (uint64_t)&stack_alignment);
+    CoreSystemConfigManager(stack_alignment ^ (uint64_t)&stack_alignment);
 }
 
 /**
@@ -1159,7 +1159,7 @@ void rendering_system_data_validator_extended(
  * - FUN_180557990: 资源分配函数
  * - FUN_18053a410: 参数处理函数
  * - FUN_18053a960: 资源清理函数
- * - FUN_1808fc050: 系统调用函数
+ * - CoreSystemConfigManager: 系统调用函数
  * - SystemCore_MemoryManager0: 函数调度函数
  * - FUN_1804e7130: 资源管理函数
  * - FUN_18057f1f0: 数据验证函数

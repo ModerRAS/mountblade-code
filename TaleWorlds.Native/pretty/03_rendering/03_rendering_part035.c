@@ -212,7 +212,7 @@ void transform_bounding_box_with_matrix(int64_t render_context, float *matrix_pt
     FUN_1802864f0();
     
     // 栈保护清理
-    FUN_1808fc050(stack_guard ^ (uint64_t)stack_data);
+    CoreSystemConfigManager(stack_guard ^ (uint64_t)stack_data);
 }
 
 /**

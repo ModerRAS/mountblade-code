@@ -1127,7 +1127,7 @@ void animation_parameter_configurator(int64_t param_1, uint64_t param_2, int64_t
         
         *render_state_ptr1 = &unknown_var_5252_ptr;
         render_state_ptr1[2] = string_ptr2 + -0x180a180f3;
-        FUN_180630b20(param_3, render_state_ptr1, &DAT, param_2);
+        SystemMemoryManager(param_3, render_state_ptr1, &DAT, param_2);
         FUN_180630c80(param_3, render_state_ptr1, &unknown_var_2256_ptr, 1);
         FUN_18062f990(param_3, render_state_ptr1, &DAT);
         FUN_18062f990(param_3, render_state_ptr1, &unknown_var_5184_ptr);

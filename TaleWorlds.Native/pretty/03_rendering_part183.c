@@ -156,7 +156,7 @@ void FUN_180376b03(void)
   }
   if (fVar40 < 0.001) {
                     // WARNING: Subroutine does not return
-    FUN_1808fc050(*(uint64_t *)(unaff_RBP + 0x80) ^ (uint64_t)&stack0x00000000);
+    CoreSystemConfigManager(*(uint64_t *)(unaff_RBP + 0x80) ^ (uint64_t)&stack0x00000000);
   }
   if (0.0 < (float)unaff_RSI[3]) {
     fVar44 = 75.0;

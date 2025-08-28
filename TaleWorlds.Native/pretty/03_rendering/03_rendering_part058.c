@@ -554,7 +554,7 @@ LAB_180299f92:
   FUN_18009e960(param_3);
 LAB_18029a2da:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_58 ^ (uint64_t)auStack_228);
+  CoreSystemConfigManager(uStack_58 ^ (uint64_t)auStack_228);
 }
 
 

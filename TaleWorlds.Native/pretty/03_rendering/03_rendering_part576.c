@@ -192,7 +192,7 @@ extern void DataStructureManager(int8_t *param_1, int param_2, int param_3, code
 extern void FUN_1801594d0(int8_t *param_1, float *param_2);
 extern void FUN_1804f83f0(uint64_t param_1, int param_2, uint64_t *param_3, int param_4);
 extern void SystemDataValidator(int8_t *param_1, int param_2, int param_3, code *param_4);
-extern void FUN_1808fc050(uint64_t param_1);
+extern void CoreSystemConfigManager(uint64_t param_1);
 
 // ============================================================================
 // 函数声明

@@ -75,7 +75,7 @@ void rendering_system_pipeline_manager(code **render_context, code *render_data)
     }
     
     // 安全退出
-    FUN_1808fc050(0);
+    CoreSystemConfigManager(0);
 }
 
 /**
@@ -147,7 +147,7 @@ void rendering_system_state_manager(int64_t render_context)
     }
     
     // 安全退出
-    FUN_1808fc050(0);
+    CoreSystemConfigManager(0);
 }
 
 /**
@@ -231,7 +231,7 @@ void rendering_system_data_transformer(int64_t source_context, int64_t target_co
     }
     
     // 安全退出
-    FUN_1808fc050(0);
+    CoreSystemConfigManager(0);
 }
 
 /**

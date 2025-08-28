@@ -254,7 +254,7 @@ void FUN_1803f68a0(int64_t *param_1,int64_t param_2)
     (**(code **)(*plStack_1c8 + 0x38))();
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_28 ^ (uint64_t)auStack_1e8);
+  CoreSystemConfigManager(uStack_28 ^ (uint64_t)auStack_1e8);
 }
 
 
@@ -619,7 +619,7 @@ void FUN_1803f7330(int64_t param_1,int64_t param_2)
     (**(code **)(*plStack_120 + 0x38))();
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_28 ^ (uint64_t)auStack_148);
+  CoreSystemConfigManager(uStack_28 ^ (uint64_t)auStack_148);
 }
 
 
@@ -821,7 +821,7 @@ void FUN_1803f74f0(int64_t *param_1,int64_t param_2)
 LAB_1803f78fe:
   puStack_d8 = &system_state_ptr;
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_38 ^ (uint64_t)auStack_158);
+  CoreSystemConfigManager(uStack_38 ^ (uint64_t)auStack_158);
 }
 
 
@@ -1003,7 +1003,7 @@ void FUN_1803f79d0(int64_t *param_1,int64_t param_2)
     (**(code **)(*plStack_1c8 + 0x38))();
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_28 ^ (uint64_t)auStack_1e8);
+  CoreSystemConfigManager(uStack_28 ^ (uint64_t)auStack_1e8);
 }
 
 

@@ -908,7 +908,7 @@ void FUN_1801a0860(uint64_t param_1,uint64_t *param_2,int64_t *param_3)
   plStack_3b0 = (int64_t *)0x0;
   uStack_424 = 1;
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_e8 ^ (uint64_t)auStack_548);
+  CoreSystemConfigManager(uStack_e8 ^ (uint64_t)auStack_548);
 }
 
 

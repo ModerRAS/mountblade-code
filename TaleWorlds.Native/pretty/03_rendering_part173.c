@@ -420,7 +420,7 @@ LAB_180374a51:
     param_3 = iStackX_24;
     if (param_4 <= iStackX_24) {
                     // WARNING: Subroutine does not return
-      FUN_1808fc050(unaff_RBP[0x12] ^ (uint64_t)&stack0x00000000);
+      CoreSystemConfigManager(unaff_RBP[0x12] ^ (uint64_t)&stack0x00000000);
     }
   } while( true );
 }
@@ -436,7 +436,7 @@ void FUN_180374e41(void)
   int64_t unaff_RBP;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(*(uint64_t *)(unaff_RBP + 0x90) ^ (uint64_t)&stack0x00000000);
+  CoreSystemConfigManager(*(uint64_t *)(unaff_RBP + 0x90) ^ (uint64_t)&stack0x00000000);
 }
 
 

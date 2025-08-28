@@ -813,7 +813,7 @@ final_processing:
                         texture_manager = &system_state_ptr;
                         
                         // 最终处理
-                        FUN_1808fc050(security_cookie ^ (uint64_t)stack_buffer_2d8);
+                        CoreSystemConfigManager(security_cookie ^ (uint64_t)stack_buffer_2d8);
                     }
                     
                     current_name = (char *)*material_entry;

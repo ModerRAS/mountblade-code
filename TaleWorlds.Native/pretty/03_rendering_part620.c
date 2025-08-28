@@ -316,7 +316,7 @@ void FUN_18060f8e0(int64_t param_1,float *param_2,int32_t *param_3,int param_4,f
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_48 ^ (uint64_t)auStack_d08);
+  CoreSystemConfigManager(uStack_48 ^ (uint64_t)auStack_d08);
 }
 
 
@@ -387,7 +387,7 @@ void FUN_18060f956(int32_t param_1,int64_t param_2,int32_t param_3,int64_t param
     } while (cVar5 < unaff_DIL);
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(*(uint64_t *)(unaff_RBP + 0xbc0) ^ (uint64_t)&stack0x00000000);
+  CoreSystemConfigManager(*(uint64_t *)(unaff_RBP + 0xbc0) ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -429,7 +429,7 @@ void FUN_18060f9f0(void)
     unaff_BL = unaff_BL + '\x01';
   } while (unaff_BL < unaff_DIL);
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(*(uint64_t *)(unaff_RBP + 0xbc0) ^ (uint64_t)&stack0x00000000);
+  CoreSystemConfigManager(*(uint64_t *)(unaff_RBP + 0xbc0) ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -572,7 +572,7 @@ LAB_18060fb60:
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_48 ^ (uint64_t)auStack_d18);
+  CoreSystemConfigManager(uStack_48 ^ (uint64_t)auStack_d18);
 }
 
 

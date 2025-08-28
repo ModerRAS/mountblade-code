@@ -577,7 +577,7 @@ LAB_180089891:
   if (lStack_1f0 <= lStack_288) {
 LAB_180089861:
                     // WARNING: Subroutine does not return
-    FUN_1808fc050(uStack_38 ^ (uint64_t)auStack_418);
+    CoreSystemConfigManager(uStack_38 ^ (uint64_t)auStack_418);
   }
   goto LAB_1800897d5;
   while (pbVar12 = pbVar12 + 1, uVar26 != 0) {

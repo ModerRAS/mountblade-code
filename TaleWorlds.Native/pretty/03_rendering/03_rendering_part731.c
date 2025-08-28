@@ -657,7 +657,7 @@ void RenderingSystemMathCalculator(void* param1, int param2, int param3) {
         ((int*)param1)[1] = param3;
         
         // 执行优化操作
-        // FUN_1808fc050();
+        // CoreSystemConfigManager();
     }
     
     // 更新处理统计

@@ -121,7 +121,7 @@ LAB_18027c7bb:
       if (string_ptr != (char *)0x0) {
         string_ptr2 = string_ptr;
       }
-      FUN_180630b20(render_context_ptr, component_data_ptr, &system_buffer_3a84, string_ptr2);
+      SystemMemoryManager(render_context_ptr, component_data_ptr, &system_buffer_3a84, string_ptr2);
     }
     stack_mesh_ptr = (uint64_t *)FUN_1800b6de0(system_resource_state, mesh_component_ptr + 0x3e, 1);
     if (stack_mesh_ptr == (uint64_t *)0x0) {
@@ -158,7 +158,7 @@ LAB_18027c73b:
   if (string_ptr != (char *)0x0) {
     string_ptr2 = string_ptr;
   }
-  FUN_180630b20(render_context_ptr, component_data_ptr, &system_buffer_3a84, string_ptr2);
+  SystemMemoryManager(render_context_ptr, component_data_ptr, &system_buffer_3a84, string_ptr2);
 LAB_18027c801:
   
   // 检查渲染标志差异
@@ -202,7 +202,7 @@ LAB_18027c801:
     if (render_obj_ptr != (void *)0x0) {
       material_ptr = render_obj_ptr;
     }
-    FUN_180630b20(render_context_ptr, component_data_ptr, &unknown_var_8928_ptr, material_ptr);
+    SystemMemoryManager(render_context_ptr, component_data_ptr, &unknown_var_8928_ptr, material_ptr);
   }
   
   // 处理子网格
@@ -417,7 +417,7 @@ LAB_18027cd98:
                   if (stack_buffer_ptr != (byte *)0x0) {
                     byte_ptr2 = stack_buffer_ptr;
                   }
-                  FUN_180630b20(render_context_ptr, mesh_data_ptr, &system_buffer_3a84, byte_ptr2);
+                  SystemMemoryManager(render_context_ptr, mesh_data_ptr, &system_buffer_3a84, byte_ptr2);
                   bool_flag = false;
                   long_val2 = FUN_180079430(long_val);
                   stack_data_ptr = &system_data_buffer_ptr;
@@ -470,7 +470,7 @@ LAB_18027cd98:
                   if (stack_char_ptr2 != (int8_t *)0x0) {
                     data_ptr = stack_char_ptr2;
                   }
-                  FUN_180630b20(render_context_ptr, mesh_data_ptr, &unknown_var_6864_ptr, data_ptr);
+                  SystemMemoryManager(render_context_ptr, mesh_data_ptr, &unknown_var_6864_ptr, data_ptr);
                   stack_data_ptr = &system_data_buffer_ptr;
                   if (stack_char_ptr2 != (int8_t *)0x0) {
                     CoreMemoryPoolInitializer();
@@ -496,7 +496,7 @@ LAB_18027cd98:
                   if (stack_buffer_ptr != (byte *)0x0) {
                     byte_ptr2 = stack_buffer_ptr;
                   }
-                  FUN_180630b20(render_context_ptr, mesh_data_ptr, &system_buffer_3a84, byte_ptr2);
+                  SystemMemoryManager(render_context_ptr, mesh_data_ptr, &system_buffer_3a84, byte_ptr2);
                   bool_flag = false;
                 }
                 uint_val2 = (uint)(int64_t)(*(float *)(long_val + 0x244) * 256.0);
@@ -538,7 +538,7 @@ LAB_18027cd98:
                   if (stack_buffer_ptr != (byte *)0x0) {
                     byte_ptr2 = stack_buffer_ptr;
                   }
-                  FUN_180630b20(render_context_ptr, mesh_data_ptr, &system_buffer_3a84, byte_ptr2);
+                  SystemMemoryManager(render_context_ptr, mesh_data_ptr, &system_buffer_3a84, byte_ptr2);
                   bool_flag = false;
                 }
                 uint_val2 = (uint)(int64_t)(*(float *)(long_val + 0x254) * 256.0);
@@ -574,7 +574,7 @@ LAB_18027cd98:
                   if (stack_buffer_ptr != (byte *)0x0) {
                     byte_ptr2 = stack_buffer_ptr;
                   }
-                  FUN_180630b20(render_context_ptr, mesh_data_ptr, &system_buffer_3a84, byte_ptr2);
+                  SystemMemoryManager(render_context_ptr, mesh_data_ptr, &system_buffer_3a84, byte_ptr2);
                   bool_flag = false;
                 }
                 FUN_180630010(render_context_ptr, mesh_data_ptr, &unknown_var_8832_ptr, long_val + 0x2a8);
@@ -587,7 +587,7 @@ LAB_18027cd98:
                   if (stack_buffer_ptr != (byte *)0x0) {
                     byte_ptr2 = stack_buffer_ptr;
                   }
-                  FUN_180630b20(render_context_ptr, mesh_data_ptr, &system_buffer_3a84, byte_ptr2);
+                  SystemMemoryManager(render_context_ptr, mesh_data_ptr, &system_buffer_3a84, byte_ptr2);
                   bool_flag = false;
                 }
                 FUN_180630010(render_context_ptr, mesh_data_ptr, &unknown_var_8848_ptr, long_val + 0x2b8);

@@ -45,7 +45,7 @@ void FUN_180746180(int64_t param_1,int32_t *param_2)
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_10 ^ (uint64_t)auStack_48);
+  CoreSystemConfigManager(uStack_10 ^ (uint64_t)auStack_48);
 }
 
 

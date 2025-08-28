@@ -88,7 +88,7 @@ extern uint64_t global_var_3456;
 // ============================================================================
 
 extern void FUN_1802feba0(int64_t param_1, int64_t param_2);
-extern void FUN_1808fc050(uint64_t param_1);
+extern void CoreSystemConfigManager(uint64_t param_1);
 extern void FUN_180179aa0(uint64_t param_1, uint64_t param_2, int param_3, uint64_t param_4, int param_5);
 extern void FUN_1801b9a40(int64_t param_1, int param_2);
 extern void System_BufferManager(int64_t param_1, int64_t param_2, int64_t param_3, uint64_t param_4, uint64_t param_5);

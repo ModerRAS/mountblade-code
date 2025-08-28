@@ -647,7 +647,7 @@ void FUN_18043c3b0(int32_t *param_1, int32_t *param_2, int32_t param_3, int8_t p
     }
     
     // WARNING: 子函数不返回
-    FUN_1808fc050(uStack_18 ^ (uint64_t)auStack_f8);
+    CoreSystemConfigManager(uStack_18 ^ (uint64_t)auStack_f8);
 }
 
 /**
@@ -729,7 +729,7 @@ void FUN_18043c510(uint64_t *param_1, uint64_t *param_2, uint64_t *param_3, int3
     }
     
     // WARNING: 子函数不返回
-    FUN_1808fc050(uStack_18 ^ (uint64_t)auStack_138);
+    CoreSystemConfigManager(uStack_18 ^ (uint64_t)auStack_138);
 }
 
 /**

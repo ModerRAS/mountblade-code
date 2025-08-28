@@ -719,7 +719,7 @@ LAB_18035f156:
     }
     
     /* 返回调用者 */
-    FUN_1808fc050(uStack_d8 ^ (uint64_t)auStack_458);
+    CoreSystemConfigManager(uStack_d8 ^ (uint64_t)auStack_458);
 }
 
 /*==============================================================================

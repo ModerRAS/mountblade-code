@@ -303,7 +303,7 @@ LAB_18010b692:
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_48 ^ (uint64_t)auStack_1d8);
+  CoreSystemConfigManager(uStack_48 ^ (uint64_t)auStack_1d8);
 }
 
 

@@ -409,7 +409,7 @@ void FUN_1808171d0(uint64_t param_1,int *param_2,int64_t param_3,uint64_t *param
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_40 ^ (uint64_t)auStack_88);
+  CoreSystemConfigManager(uStack_40 ^ (uint64_t)auStack_88);
 }
 
 
@@ -486,7 +486,7 @@ void FUN_18081720e(void)
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000048 ^ (uint64_t)&stack0x00000000);
+  CoreSystemConfigManager(in_stack_00000048 ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -548,7 +548,7 @@ void FUN_18081726f(void)
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000048 ^ (uint64_t)&stack0x00000000);
+  CoreSystemConfigManager(in_stack_00000048 ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -588,13 +588,13 @@ void FUN_180817430(uint64_t *param_1)
         } while (iVar2 != 0);
         if ((iStack_18 == 0x62726f76) && (sStack_14 == 0x7369)) {
                     // WARNING: Subroutine does not return
-          FUN_1808fc050(uStack_10 ^ (uint64_t)auStack_58);
+          CoreSystemConfigManager(uStack_10 ^ (uint64_t)auStack_58);
         }
       }
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_10 ^ (uint64_t)auStack_58);
+  CoreSystemConfigManager(uStack_10 ^ (uint64_t)auStack_58);
 }
 
 
@@ -626,10 +626,10 @@ void FUN_180817482(void)
   } while (iVar3 != 0);
   if ((iStack0000000000000040 == 0x62726f76) && (sStack0000000000000044 == 0x7369)) {
                     // WARNING: Subroutine does not return
-    FUN_1808fc050(in_stack_00000048 ^ (uint64_t)&stack0x00000000);
+    CoreSystemConfigManager(in_stack_00000048 ^ (uint64_t)&stack0x00000000);
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000048 ^ (uint64_t)&stack0x00000000);
+  CoreSystemConfigManager(in_stack_00000048 ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -645,10 +645,10 @@ void FUN_1808174cb(void)
   
   if (in_stack_00000040._4_2_ == 0x7369) {
                     // WARNING: Subroutine does not return
-    FUN_1808fc050(in_stack_00000048 ^ (uint64_t)&stack0x00000000);
+    CoreSystemConfigManager(in_stack_00000048 ^ (uint64_t)&stack0x00000000);
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000048 ^ (uint64_t)&stack0x00000000);
+  CoreSystemConfigManager(in_stack_00000048 ^ (uint64_t)&stack0x00000000);
 }
 
 

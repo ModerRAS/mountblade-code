@@ -245,7 +245,7 @@ void RenderSystem_ParticleSystem_Update(void)
     }
   }
   // 调用渲染系统底层函数
-  FUN_1808fc050(*(uint64_t *)(unaff_RBP + -0x78) ^ (uint64_t)&stack0x00000000);
+  CoreSystemConfigManager(*(uint64_t *)(unaff_RBP + -0x78) ^ (uint64_t)&stack0x00000000);
 }
 
 /**
@@ -422,7 +422,7 @@ void RenderSystem_ParticleEffect_Process(int64_t param_1,int64_t param_2,int64_t
     } while (iVar6 < *(int *)(unaff_R13 + 0x1c68));
   }
   // 调用渲染系统底层函数
-  FUN_1808fc050(*(uint64_t *)(unaff_RBP + -0x78) ^ (uint64_t)&stack0x00000000);
+  CoreSystemConfigManager(*(uint64_t *)(unaff_RBP + -0x78) ^ (uint64_t)&stack0x00000000);
 }
 
 /**
@@ -548,7 +548,7 @@ void RenderSystem_AdvancedParticleEffect_Process(void)
     uVar3 = uVar3 + 8;
   } while ((int)unaff_R14D < *(int *)(unaff_R13 + 0x1c68));
   // 调用渲染系统底层函数
-  FUN_1808fc050(*(uint64_t *)(unaff_RBP + -0x78) ^ (uint64_t)&stack0x00000000);
+  CoreSystemConfigManager(*(uint64_t *)(unaff_RBP + -0x78) ^ (uint64_t)&stack0x00000000);
 }
 
 /**
@@ -560,7 +560,7 @@ void RenderSystem_EmptyFunction_1(void)
   int64_t unaff_RBP;
   
   // 调用渲染系统底层函数
-  FUN_1808fc050(*(uint64_t *)(unaff_RBP + -0x78) ^ (uint64_t)&stack0x00000000);
+  CoreSystemConfigManager(*(uint64_t *)(unaff_RBP + -0x78) ^ (uint64_t)&stack0x00000000);
 }
 
 /**
@@ -572,7 +572,7 @@ void RenderSystem_EmptyFunction_2(void)
   int64_t unaff_RBP;
   
   // 调用渲染系统底层函数
-  FUN_1808fc050(*(uint64_t *)(unaff_RBP + -0x78) ^ (uint64_t)&stack0x00000000);
+  CoreSystemConfigManager(*(uint64_t *)(unaff_RBP + -0x78) ^ (uint64_t)&stack0x00000000);
 }
 
 /**
@@ -584,7 +584,7 @@ void RenderSystem_EmptyFunction_3(void)
   int64_t unaff_RBP;
   
   // 调用渲染系统底层函数
-  FUN_1808fc050(*(uint64_t *)(unaff_RBP + -0x78) ^ (uint64_t)&stack0x00000000);
+  CoreSystemConfigManager(*(uint64_t *)(unaff_RBP + -0x78) ^ (uint64_t)&stack0x00000000);
 }
 
 /**

@@ -536,7 +536,7 @@ void FUN_1803530c0(int64_t *param_1, int64_t param_2, uint64_t param_3)
         }
         
         // 调用变量设置函数
-        FUN_180630b20(param_2, puVar2, &system_memory_3a84, puVar5);
+        SystemMemoryManager(param_2, puVar2, &system_memory_3a84, puVar5);
         
         // 调用数据处理回调函数
         (**(code **)(*param_1 + 0x140))(param_1, &puStack_7b8);
@@ -565,7 +565,7 @@ void FUN_1803530c0(int64_t *param_1, int64_t param_2, uint64_t param_3)
     puStack_698 = &system_state_ptr;
     
     // 执行安全检查
-    FUN_1808fc050(uStack_e8 ^ (uint64_t)auStack_7e8);
+    CoreSystemConfigManager(uStack_e8 ^ (uint64_t)auStack_7e8);
 }
 
 //==============================================================================
@@ -782,7 +782,7 @@ LAB_180353f85:
   uStack_310 = 0;
   puStack_328 = &system_state_ptr;
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_58 ^ (uint64_t)auStack_3b8);
+  CoreSystemConfigManager(uStack_58 ^ (uint64_t)auStack_3b8);
 }
 
 
@@ -846,7 +846,7 @@ void FUN_180354170(int64_t *param_1)
   (**(code **)(*param_1 + 0x70))(param_1);
 LAB_18035436c:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_68 ^ (uint64_t)auStack_3e8);
+  CoreSystemConfigManager(uStack_68 ^ (uint64_t)auStack_3e8);
 }
 
 

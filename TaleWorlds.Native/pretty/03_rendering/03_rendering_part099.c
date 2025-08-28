@@ -589,7 +589,7 @@ void rendering_system_parameter_processor(int64_t param_1, int64_t param_2, int6
     // 最终状态更新和安全检查
 LAB_180327215:
     *(byte *)(param_3 + 0xfd) = *(byte *)(param_3 + 0xfd) | 1;
-    FUN_1808fc050(uStack_48 ^ (uint64_t)auStack_168);
+    CoreSystemConfigManager(uStack_48 ^ (uint64_t)auStack_168);
 }
 
 /**

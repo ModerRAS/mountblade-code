@@ -415,7 +415,7 @@ void RenderingSystem_AdvancedDataCalculator(int64_t param_1, uint64_t *param_2, 
     uint64_t cleanup_data_2 = render_data_2;
     
     // 执行清理操作
-    FUN_1808fc050(stack_guard ^ (uint64_t)&temp_values[0]);
+    CoreSystemConfigManager(stack_guard ^ (uint64_t)&temp_values[0]);
 }
 
 /**

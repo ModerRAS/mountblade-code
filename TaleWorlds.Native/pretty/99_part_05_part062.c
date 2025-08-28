@@ -888,7 +888,7 @@ LAB_1802ff5d0:
             plStack_30 = (int64_t *)0x0;
             uStack_28 = 0;
             uStack_20 = 3;
-            FUN_1803be9f0(param_4,&plStack_38,0,puVar13,param_3,
+            UtilitiesSystemManager(param_4,&plStack_38,0,puVar13,param_3,
                           in_stack_ffffffffffffffa0 & 0xffffffffffffff00);
             plVar3 = plStack_30;
             plVar2 = plStack_38;

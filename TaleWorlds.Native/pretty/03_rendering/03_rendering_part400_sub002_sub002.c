@@ -1081,7 +1081,7 @@ void RenderingSystem_AdvancedTextureCoordinateAndUVMappingProcessor(int64_t para
     
 LAB_18048f1aa:
     // 返回纹理处理结果
-    FUN_1808fc050(stack_temp24 ^ (uint64_t)stack_temp1);
+    CoreSystemConfigManager(stack_temp24 ^ (uint64_t)stack_temp1);
 }
 
 /*===============================================================================================

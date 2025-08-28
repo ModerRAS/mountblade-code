@@ -656,7 +656,7 @@ LAB_1803330f8:
     if (uVar13 == 0) {
       uStack_168 = uVar13;
                     // WARNING: Subroutine does not return
-      FUN_1808fc050(uStack_38 ^ (uint64_t)auStack_248);
+      CoreSystemConfigManager(uStack_38 ^ (uint64_t)auStack_248);
     }
   } while( true );
 }

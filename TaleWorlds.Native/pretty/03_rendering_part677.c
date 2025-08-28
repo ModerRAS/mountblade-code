@@ -693,7 +693,7 @@ LAB_1806572f9:
   puStack_88 = puVar8;
   puStack_80 = puVar6;
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_38 ^ (uint64_t)auStack_f8);
+  CoreSystemConfigManager(uStack_38 ^ (uint64_t)auStack_f8);
 }
 
 

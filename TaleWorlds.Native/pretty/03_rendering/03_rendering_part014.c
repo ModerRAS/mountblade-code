@@ -339,7 +339,7 @@ void perform_render_transform(uint64_t *transform_matrix, int64_t transform_type
   }
   
   // 栈保护检查结束
-  FUN_1808fc050(stack_data[0] ^ (uint64_t)stack_vars);
+  CoreSystemConfigManager(stack_data[0] ^ (uint64_t)stack_vars);
 }
 
 
@@ -628,5 +628,5 @@ void perform_advanced_render_transform(int64_t render_params)
   }
   
   // 栈保护检查结束
-  FUN_1808fc050(register_rbp[0x10] ^ (uint64_t)&stack_vars[0]);
+  CoreSystemConfigManager(register_rbp[0x10] ^ (uint64_t)&stack_vars[0]);
 }

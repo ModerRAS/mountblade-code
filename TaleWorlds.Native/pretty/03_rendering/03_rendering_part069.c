@@ -195,7 +195,7 @@ void rendering_system_initialize_context(uint64_t *context, int context_id)
     
     // 清理堆栈保护
     *(uint64_t *)((int64_t)context + 0x1c3c) = 0;
-    FUN_1808fc050(stack_canary ^ (uint64_t)stack_buffer1);
+    CoreSystemConfigManager(stack_canary ^ (uint64_t)stack_buffer1);
 }
 
 // 内存释放函数

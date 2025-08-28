@@ -159,7 +159,7 @@ int FUN_18088ebb0(int64_t param_1,int param_2,int64_t param_3)
   iVar1 = func_0x00018076b690(&unknown_var_7528_ptr);
   if (param_2 < iVar1 + 1) {
                     // WARNING: Subroutine does not return
-    FUN_18076b390(param_1,param_2,&unknown_var_552_ptr,&unknown_var_7528_ptr,unaff_RDI);
+    SystemDataValidator(param_1,param_2,&unknown_var_552_ptr,&unknown_var_7528_ptr,unaff_RDI);
   }
                     // WARNING: Subroutine does not return
   memcpy(param_1,&unknown_var_7528_ptr,(int64_t)(iVar1 + 1));

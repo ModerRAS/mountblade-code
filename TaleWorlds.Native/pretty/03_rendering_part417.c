@@ -236,7 +236,7 @@ void FUN_180495026(void)
   }
 LAB_1804954a0:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(*(uint64_t *)(unaff_RBP + 0x20) ^ (uint64_t)&stack0x00000000);
+  CoreSystemConfigManager(*(uint64_t *)(unaff_RBP + 0x20) ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -354,7 +354,7 @@ void FUN_1804954f0(void *param_1)
     __Throw_C_error_std__YAXH_Z(iVar3);
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_28 ^ (uint64_t)auStack_158);
+  CoreSystemConfigManager(uStack_28 ^ (uint64_t)auStack_158);
 }
 
 
@@ -974,7 +974,7 @@ void FUN_180496270(uint64_t *param_1,int32_t param_2)
     LocalFree();
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_28 ^ (uint64_t)auStack_c8);
+  CoreSystemConfigManager(uStack_28 ^ (uint64_t)auStack_c8);
 }
 
 

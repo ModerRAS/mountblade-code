@@ -472,7 +472,7 @@ FINALIZE_RENDER_PROCESS:
     }
     
     // 最终处理（不返回）
-    FUN_1808fc050(checksum_value ^ (uint64_t)string_buffer_1);
+    CoreSystemConfigManager(checksum_value ^ (uint64_t)string_buffer_1);
 }
 
 /**

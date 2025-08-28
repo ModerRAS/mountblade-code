@@ -143,7 +143,7 @@ void process_rendering_data_advanced(uint64_t render_context, int64_t data_buffe
   puVar6 = (uint64_t*)func_0x000180120ce0(((int64_t)iVar20 + 1) * 0x14);
   if (puVar6 == (uint64_t*)0x0) {
     // 内存分配失败处理
-    FUN_1808fc050(uStack_50 ^ (uint64_t)auStack_b8);
+    CoreSystemConfigManager(uStack_50 ^ (uint64_t)auStack_b8);
   }
   
   iVar19 = 0;

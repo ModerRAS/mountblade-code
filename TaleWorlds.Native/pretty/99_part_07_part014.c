@@ -867,7 +867,7 @@ LAB_1804a892d:
   }
 LAB_1804a8e62:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_38 ^ (uint64_t)auStack_178);
+  CoreSystemConfigManager(uStack_38 ^ (uint64_t)auStack_178);
 }
 
 
@@ -944,7 +944,7 @@ void FUN_1804a8e90(uint64_t param_1)
   apuStack_1a8[0] = &system_state_ptr;
   puStack_88 = &system_state_ptr;
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_28 ^ (uint64_t)auStack_1e8);
+  CoreSystemConfigManager(uStack_28 ^ (uint64_t)auStack_1e8);
 }
 
 

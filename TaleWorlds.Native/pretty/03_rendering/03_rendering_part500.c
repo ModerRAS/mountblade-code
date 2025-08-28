@@ -398,7 +398,7 @@ void rendering_system_process_render_parameters(int64_t render_context, uint *pa
   param_ptr[7] = stack_param_8;
                     
   // 清理栈数据并返回
-  FUN_1808fc050(security_cookie ^ (uint64_t)stack_data);
+  CoreSystemConfigManager(security_cookie ^ (uint64_t)stack_data);
 }
 
 

@@ -70,7 +70,7 @@ void RenderingSystem_ParameterProcessor(uint64_t render_context, int64_t param_b
   } while (resource_index < 0x58);
   
   // 同步和清理
-  FUN_1808fc050(frame_sync);
+  CoreSystemConfigManager(frame_sync);
 }
 
 // ===================================================================
@@ -130,7 +130,7 @@ void RenderingSystem_AdvancedMaterialProcessor(uint64_t render_context, int64_t 
   }
   
   // 材质数据同步
-  FUN_1808fc050(GET_SECURITY_COOKIE());
+  CoreSystemConfigManager(GET_SECURITY_COOKIE());
 }
 
 // ===================================================================
@@ -197,7 +197,7 @@ void RenderingSystem_MaterialOptimizer(uint64_t material_context, uint64_t textu
   }
   
   // 优化数据同步
-  FUN_1808fc050(GET_SECURITY_COOKIE());
+  CoreSystemConfigManager(GET_SECURITY_COOKIE());
 }
 
 // ===================================================================

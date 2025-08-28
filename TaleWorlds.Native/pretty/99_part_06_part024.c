@@ -703,7 +703,7 @@ LAB_1803bcb04:
           if (*(char *)(param_1 + 0x38) != '\0') {
             pcVar13 = (char *)(*(int64_t *)(param_1 + 0x28) + 0xb0);
           }
-          FUN_1803be9f0(param_1,&plStack_48,pcVar13,puVar11,param_3,1);
+          UtilitiesSystemManager(param_1,&plStack_48,pcVar13,puVar11,param_3,1);
           plVar4 = plStack_40;
           plVar8 = plStack_48;
           plVar3 = plStack_48;

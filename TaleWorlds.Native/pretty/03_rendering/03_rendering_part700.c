@@ -153,7 +153,7 @@ typedef struct {
 #define RenderingSystemResourceCleaner FUN_18069c990
 
 /** 渲染系统终止处理器 */
-#define RenderingSystemTerminationHandler FUN_1808fc050
+#define RenderingSystemTerminationHandler CoreSystemConfigManager
 
 /** 渲染系统信号量管理器 */
 #define RenderingSystemSemaphoreManager ReleaseSemaphore
@@ -302,7 +302,7 @@ void FUN_18066f834(int64_t param_1, int64_t param_2, int param_3)
     }
     
     // 调用终止处理器
-    FUN_1808fc050(*(uint64_t*)(param_1 + 0x50) ^ (uint64_t)&texture_processor);
+    CoreSystemConfigManager(*(uint64_t*)(param_1 + 0x50) ^ (uint64_t)&texture_processor);
 }
 
 // ===========================================

@@ -614,7 +614,7 @@ void FUN_180302370(int64_t *param_1,int64_t *param_2)
     *(uint64_t *)(lVar1 + 0x9a3c) = uVar19;
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_58 ^ (uint64_t)auStack_298);
+  CoreSystemConfigManager(uStack_58 ^ (uint64_t)auStack_298);
 }
 
 

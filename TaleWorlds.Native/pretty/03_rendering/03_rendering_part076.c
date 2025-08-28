@@ -418,7 +418,7 @@ LAB_18030c93f:
                     uStack_1b8 = uStack_1b8 & 0xffffffff00000000;
                     puStack_1d0 = &system_state_ptr;
                     // WARNING: Subroutine does not return
-                    FUN_1808fc050(uStack_48 ^ (uint64_t)auStack_218);
+                    CoreSystemConfigManager(uStack_48 ^ (uint64_t)auStack_218);
                 }
                 pcVar21 = (char *)*puVar9;
                 if (pcVar21 == (char *)0x0) {

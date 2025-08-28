@@ -752,7 +752,7 @@ void RenderingSystem_AdvancedImageCompressor(uint64_t compression_context, uint6
         }
     }
     // WARNING: Subroutine does not return
-    FUN_1808fc050(security_cookie ^ (uint64_t)stack_buffer);
+    CoreSystemConfigManager(security_cookie ^ (uint64_t)stack_buffer);
 }
 
 
@@ -965,7 +965,7 @@ void RenderingSystem_MemoryCleanup(void) {
     }
     
     // 安全检查
-    FUN_1808fc050(security_cookie ^ (uint64_t)&stack0x00000000);
+    CoreSystemConfigManager(security_cookie ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -1018,7 +1018,7 @@ void RenderingSystem_MemoryResourceManager(void) {
     }
     
     // 执行安全检查
-    FUN_1808fc050(security_cookie ^ (uint64_t)&stack0x00000000);
+    CoreSystemConfigManager(security_cookie ^ (uint64_t)&stack0x00000000);
 }
 
 

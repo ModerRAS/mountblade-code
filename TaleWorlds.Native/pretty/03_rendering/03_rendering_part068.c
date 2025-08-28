@@ -194,7 +194,7 @@ void rendering_system_initialize_render_context(int64_t render_context, int64_t 
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(system_checksum ^ (uint64_t)security_buffer);
+  CoreSystemConfigManager(system_checksum ^ (uint64_t)security_buffer);
 }
 
 

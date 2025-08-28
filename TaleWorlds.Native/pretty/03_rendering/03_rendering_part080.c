@@ -465,7 +465,7 @@ void rendering_system_advanced_render_controller(void)
       *(int32_t *)(scene_context + 100) = render_flag;
     }
     *(int8_t *)(scene_context + 0x7e) = 1;
-    FUN_1808fc050(*(uint64_t *)(render_base_ptr + 0xc0) ^ (uint64_t)&matrix_data);
+    CoreSystemConfigManager(*(uint64_t *)(render_base_ptr + 0xc0) ^ (uint64_t)&matrix_data);
   }
   
   // 处理渲染缓冲区和资源清理
@@ -516,7 +516,7 @@ void rendering_system_render_state_processor(void)
     *(int32_t *)(scene_data + 100) = render_mode;
   }
   *(int8_t *)(scene_data + 0x7e) = 1;
-  FUN_1808fc050(*(uint64_t *)(render_context + 0xc0) ^ (uint64_t)&status_flag);
+  CoreSystemConfigManager(*(uint64_t *)(render_context + 0xc0) ^ (uint64_t)&status_flag);
 }
 
 

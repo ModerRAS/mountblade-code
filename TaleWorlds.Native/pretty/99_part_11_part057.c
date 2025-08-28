@@ -70,9 +70,9 @@
 #define BinaryDataSerializer                 FUN_180772fe0    // 二进制数据序列化器
 
 // 内存初始化函数别名
-#define memory_initializer                    FUN_18076b390    // 内存初始化器
-#define MemoryInitializer                     FUN_18076b390    // 内存初始化器（标准命名）
-#define BufferInitializer                    FUN_18076b390    // 缓冲区初始化器
+#define memory_initializer                    SystemDataValidator    // 内存初始化器
+#define MemoryInitializer                     SystemDataValidator    // 内存初始化器（标准命名）
+#define BufferInitializer                    SystemDataValidator    // 缓冲区初始化器
 
 // 状态更新函数别名
 #define state_updater                         func_0x0001807b9040    // 状态更新器
@@ -536,7 +536,7 @@ uint64_t memory_boundary_checker(int64_t param_1, int64_t param_2, int param_3)
  * - 参数：数据对象、序列化类型、目标缓冲区
  * - 作用：实现数据的高效序列化和存储
  * 
- * memory_initializer (FUN_18076b390):
+ * memory_initializer (SystemDataValidator):
  * - 功能：内存缓冲区的初始化和设置
  * - 用途：初始化内存区域并设置初始状态
  * - 参数：目标缓冲区、缓冲区大小、初始化数据、附加参数

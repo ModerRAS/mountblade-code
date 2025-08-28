@@ -298,7 +298,7 @@ process_batch_loop:
     param_10 = param_10 + 0x10;
     if ((uint64_t)(param_4[8] - data_offset >> 4) <= (uint64_t)(int64_t)(int)param_6) {
       // 安全检查失败
-      FUN_1808fc050(param_18 ^ (uint64_t)&stack0x00000000);
+      CoreSystemConfigManager(param_18 ^ (uint64_t)&stack0x00000000);
     }
     
     flag_mask = *(uint *)(data_offset + 8 + param_10);
@@ -863,7 +863,7 @@ context_setup_complete:
   UNLOCK();
   
   // 安全验证
-  FUN_1808fc050(temp_security ^ (uint64_t)security_buffer);
+  CoreSystemConfigManager(temp_security ^ (uint64_t)security_buffer);
 }
 
 

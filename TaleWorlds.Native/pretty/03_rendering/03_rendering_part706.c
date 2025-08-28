@@ -350,7 +350,7 @@ void FUN_180673850(int64_t param_1, int64_t *param_2)
     *(uint8_t*)param_2[5] = result_byte;
     
     // 调用安全处理器
-    FUN_1808fc050(stack_cookie ^ (uint64_t)&security_params);
+    CoreSystemConfigManager(stack_cookie ^ (uint64_t)&security_params);
 }
 
 /**

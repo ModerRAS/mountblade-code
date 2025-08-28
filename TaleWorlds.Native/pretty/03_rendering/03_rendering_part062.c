@@ -214,7 +214,7 @@ void rendering_texture_batch_processor(int64_t render_context, int64_t resource1
     (*render_function)(context_ptr, *(uint64_t *)(resource1 + 0x10), 0, param2);
     
     // 安全退出
-    FUN_1808fc050(security_cookie ^ (uint64_t)stack_buffer);
+    CoreSystemConfigManager(security_cookie ^ (uint64_t)stack_buffer);
 }
 
 /**
@@ -381,7 +381,7 @@ void rendering_resource_allocator(uint64_t render_context, int64_t resource_data
     }
     
     // 安全退出
-    FUN_1808fc050(security_cookie ^ (uint64_t)stack_buffer);
+    CoreSystemConfigManager(security_cookie ^ (uint64_t)stack_buffer);
 }
 
 /**
@@ -489,7 +489,7 @@ void rendering_memory_manager(int64_t render_context, int64_t resource_data, int
     (*render_function)(context_ptr, *(uint64_t *)(resource_data + 0x10), 0, stack_array);
     
     // 安全退出
-    FUN_1808fc050(security_cookie ^ (uint64_t)stack_buffer);
+    CoreSystemConfigManager(security_cookie ^ (uint64_t)stack_buffer);
 }
 
 /**
@@ -683,7 +683,7 @@ void rendering_resource_manager(int64_t render_context, int64_t resource_data, i
     }
     
     // 安全退出
-    FUN_1808fc050(security_cookie ^ (uint64_t)stack_buffer1);
+    CoreSystemConfigManager(security_cookie ^ (uint64_t)stack_buffer1);
 }
 
 /**
@@ -723,7 +723,7 @@ void rendering_texture_loader(int64_t render_context, int64_t texture_data)
     *(int32_t *)(texture_data + 0x35c) = stack_param;
     
     // 安全退出
-    FUN_1808fc050(security_cookie ^ (uint64_t)stack_buffer1);
+    CoreSystemConfigManager(security_cookie ^ (uint64_t)stack_buffer1);
 }
 
 /**
@@ -948,7 +948,7 @@ void rendering_performance_optimizer(int64_t render_context, int64_t resource_da
     *(uint64_t *)(resource_handle + 0x40) = 0;
 LAB_18029f52c:
     // 安全退出
-    FUN_1808fc050(security_cookie ^ (uint64_t)stack_buffer1);
+    CoreSystemConfigManager(security_cookie ^ (uint64_t)stack_buffer1);
 }
 
 /**

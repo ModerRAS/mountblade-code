@@ -1320,7 +1320,7 @@ void ProcessResourceUpdateLoop(int64_t param_1)
         }
         
         // 安全检查返回（不返回的函数调用）
-        FUN_1808fc050(uStack_38 ^ (uint64_t)auStack_178);
+        CoreSystemConfigManager(uStack_38 ^ (uint64_t)auStack_178);
       }
       
       // 更新资源队列指针

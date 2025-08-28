@@ -422,7 +422,7 @@ LAB_18066fdc2:
     ReleaseSemaphore(*(uint64_t *)(param_1 + 0x4400),1);
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_48 ^ (uint64_t)auStack_198);
+  CoreSystemConfigManager(uStack_48 ^ (uint64_t)auStack_198);
 }
 
 

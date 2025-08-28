@@ -423,7 +423,7 @@ void rendering_system_advanced_param_processing_8args(uint64_t param_1, int64_t 
     }
     
     // 调用系统函数完成处理
-    FUN_1808fc050(*(uint64_t *)(unaff_RBP + 0x70) ^ (uint64_t)&stack0x00000000);
+    CoreSystemConfigManager(*(uint64_t *)(unaff_RBP + 0x70) ^ (uint64_t)&stack0x00000000);
 }
 
 // 函数2: 渲染系统向量归一化和标准化处理
@@ -512,7 +512,7 @@ void rendering_system_vector_normalization(void)
     }
     
     // 调用系统函数完成处理
-    FUN_1808fc050(*(uint64_t *)(unaff_RBP + 0x70) ^ (uint64_t)&stack0x00000000);
+    CoreSystemConfigManager(*(uint64_t *)(unaff_RBP + 0x70) ^ (uint64_t)&stack0x00000000);
 }
 
 // 函数3: 渲染系统快速向量归一化处理
@@ -595,7 +595,7 @@ void rendering_system_fast_vector_normalization(void)
     }
     
     // 调用系统函数完成处理
-    FUN_1808fc050(*(uint64_t *)(unaff_RBP + 0x70) ^ (uint64_t)&stack0x00000000);
+    CoreSystemConfigManager(*(uint64_t *)(unaff_RBP + 0x70) ^ (uint64_t)&stack0x00000000);
 }
 
 // 函数4: 渲染系统标准化系数应用
@@ -623,7 +623,7 @@ void rendering_system_normalization_coefficient_application(void)
     *(float *)(unaff_RBX + 0xc) = (unaff_XMM14_Da / in_XMM5_Da) * *(float *)(unaff_RBX + 0xc);
     
     // 调用系统函数完成处理
-    FUN_1808fc050(*(uint64_t *)(unaff_RBP + 0x70) ^ (uint64_t)&stack0x00000000);
+    CoreSystemConfigManager(*(uint64_t *)(unaff_RBP + 0x70) ^ (uint64_t)&stack0x00000000);
 }
 
 // 函数5: 渲染系统快速排序算法实现

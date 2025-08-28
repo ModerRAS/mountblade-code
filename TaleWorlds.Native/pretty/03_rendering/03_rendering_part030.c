@@ -617,7 +617,7 @@ void update_material_system_status(int64_t material_system, int64_t* texture_dat
     }
     
     // 调用材质系统更新函数
-    FUN_1808fc050(security_cookie ^ (uint64_t)name_buffer);
+    CoreSystemConfigManager(security_cookie ^ (uint64_t)name_buffer);
 }
 
 // 函数：处理材质系统批量更新

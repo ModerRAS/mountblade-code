@@ -354,7 +354,7 @@ uint64_t *ShaderPipelineGenerator(uint64_t param_1, uint64_t *param_2, uint64_t 
 #define FUN_1806277c0              BufferExpander
 #define SystemCore_ConfigurationHandler0              ShaderConfigSetter
 #define FUN_18062dee0              FileStreamOpener
-#define FUN_1808fc050              SecurityCheckHandler
+#define CoreSystemConfigManager              SecurityCheckHandler
 
 // =============================================================================
 // 模块信息
@@ -872,7 +872,7 @@ void ShaderSourceCompiler(uint64_t param_1, int64_t param_2, int64_t param_3, ui
 #define FUN_1806277c0              BufferExpander
 #define SystemCore_ConfigurationHandler0              ShaderConfigSetter
 #define FUN_18062dee0              FileStreamOpener
-#define FUN_1808fc050              SecurityCheckHandler
+#define CoreSystemConfigManager              SecurityCheckHandler
 
 // =============================================================================
 // 模块信息
