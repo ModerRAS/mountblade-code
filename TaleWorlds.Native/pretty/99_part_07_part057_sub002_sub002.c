@@ -59,8 +59,8 @@ bool FUN_1804d2a50(longlong param_1,longlong param_2,int param_3,uint param_4)
   float fStack_98;
   float fStack_94;
   
-  if ((*(longlong *)(_DAT_180c86870 + 0x3d8) != 0) &&
-     (*(int *)(*(longlong *)(_DAT_180c86870 + 0x3d8) + 0x110) == 1)) {
+  if ((*(longlong *)(system_main_module_state + 0x3d8) != 0) &&
+     (*(int *)(*(longlong *)(system_main_module_state + 0x3d8) + 0x110) == 1)) {
     return true;
   }
   lVar15 = *(longlong *)(param_1 + 11000);
@@ -127,8 +127,8 @@ bool FUN_1804d2a50(longlong param_1,longlong param_2,int param_3,uint param_4)
         fVar34 = *(float *)(lVar2 + 0x120);
         fVar25 = *(float *)(lVar2 + 0x124);
         fVar26 = *(float *)(lVar2 + 0x128);
-        auVar27 = _DAT_180a40110;
-        auVar29 = _DAT_180a400e0;
+        auVar27 = system_system_memory;
+        auVar29 = system_system_memory;
         do {
           fVar30 = pfVar20[0xe] - fVar34;
           fVar22 = pfVar20[0xf] - fVar25;
@@ -324,8 +324,8 @@ bool FUN_1804d2a94(longlong param_1,longlong param_2,uint64_t param_3,uint param
         fVar24 = *(float *)(lVar15 + 0x120);
         fVar25 = *(float *)(lVar15 + 0x124);
         fVar26 = *(float *)(lVar15 + 0x128);
-        auVar27 = _DAT_180a40110;
-        auVar29 = _DAT_180a400e0;
+        auVar27 = system_system_memory;
+        auVar29 = system_system_memory;
         do {
           fVar30 = pfVar19[0xe] - fVar24;
           fVar21 = pfVar19[0xf] - fVar25;
@@ -509,8 +509,8 @@ bool FUN_1804d2ae7(int param_1,longlong param_2,longlong param_3)
       fVar20 = *(float *)(unaff_RDI + 0x120);
       fVar21 = *(float *)(unaff_RDI + 0x124);
       fVar22 = *(float *)(unaff_RDI + 0x128);
-      auVar23 = _DAT_180a40110;
-      auVar25 = _DAT_180a400e0;
+      auVar23 = system_system_memory;
+      auVar25 = system_system_memory;
       do {
         fVar26 = pfVar16[0xe] - fVar20;
         fVar17 = pfVar16[0xf] - fVar21;
@@ -692,8 +692,8 @@ bool FUN_1804d2aef(int param_1,longlong param_2,longlong param_3)
       fVar20 = *(float *)(unaff_RDI + 0x120);
       fVar21 = *(float *)(unaff_RDI + 0x124);
       fVar22 = *(float *)(unaff_RDI + 0x128);
-      auVar23 = _DAT_180a40110;
-      auVar25 = _DAT_180a400e0;
+      auVar23 = system_system_memory;
+      auVar25 = system_system_memory;
       do {
         fVar26 = pfVar16[0xe] - fVar20;
         fVar17 = pfVar16[0xf] - fVar21;
@@ -847,8 +847,8 @@ bool FUN_1804d2c61(void)
     fVar19 = *(float *)(unaff_RDI + 0x120);
     fVar20 = *(float *)(unaff_RDI + 0x124);
     fVar21 = *(float *)(unaff_RDI + 0x128);
-    auVar22 = _DAT_180a40110;
-    auVar24 = _DAT_180a400e0;
+    auVar22 = system_system_memory;
+    auVar24 = system_system_memory;
     do {
       fVar25 = pfVar15[-2] - fVar19;
       fVar16 = pfVar15[-1] - fVar20;
@@ -1206,8 +1206,8 @@ bool FUN_1804d2fc2(uint64_t param_1,code *param_2)
       fVar19 = *(float *)(unaff_RDI + 0x120);
       fVar20 = *(float *)(unaff_RDI + 0x124);
       fVar21 = *(float *)(unaff_RDI + 0x128);
-      auVar22 = _DAT_180a40110;
-      auVar24 = _DAT_180a400e0;
+      auVar22 = system_system_memory;
+      auVar24 = system_system_memory;
       do {
         fVar25 = pfVar15[-2] - fVar19;
         fVar16 = pfVar15[-1] - fVar20;

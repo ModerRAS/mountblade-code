@@ -68,7 +68,7 @@ LAB_180524a5a:
       }
       else {
         *(int *)(unaff_RBP + -0x34) = iVar4;
-        iVar4 = _DAT_180c92514;
+        iVar4 = system_status_flag;
         *(int32_t *)(unaff_RBP + -0x28) = 0;
         *(int32_t *)(unaff_RBP + -0x14) = 0x3ecccccd;
         *(uint64_t *)(unaff_RBP + -0x30) = 0;
@@ -148,7 +148,7 @@ void FUN_180524af9(int32_t param_1,uint64_t param_2,int8_t param_3)
   }
   else {
     *(int *)(unaff_RBP + -0x34) = iVar1;
-    iVar1 = _DAT_180c92514;
+    iVar1 = system_status_flag;
     *(int32_t *)(unaff_RBP + -0x28) = 0;
     *(int32_t *)(unaff_RBP + -0x14) = 0x3ecccccd;
     *(uint64_t *)(unaff_RBP + -0x30) = 0;
@@ -190,7 +190,7 @@ void FUN_180524bc8(void)
   int32_t uVar2;
   
   *(int32_t *)(unaff_RBP + -0x34) = in_EAX;
-  iVar1 = _DAT_180c92514;
+  iVar1 = system_status_flag;
   *(int32_t *)(unaff_RBP + -0x28) = 0;
   *(int32_t *)(unaff_RBP + -0x14) = 0x3ecccccd;
   *(uint64_t *)(unaff_RBP + -0x30) = 0;

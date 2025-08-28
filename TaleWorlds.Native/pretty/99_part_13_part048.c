@@ -10,7 +10,7 @@ void FUN_1808c6310(float *param_1,float param_2)
   float fVar1;
   
   if (0.00578 <= ABS(param_2)) {
-    param_2 = _DAT_180bef7b0 * param_2;
+    param_2 = system_system_buffer_config * param_2;
   }
   else {
     param_2 = 0.0;

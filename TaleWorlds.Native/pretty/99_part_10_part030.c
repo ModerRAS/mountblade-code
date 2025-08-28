@@ -450,8 +450,8 @@ void FUN_1806b6d70(longlong param_1,longlong param_2)
   longlong *plStackX_8;
   
   plVar2 = (longlong *)
-           (**(code **)(*_DAT_180be0050 + 8))
-                     (_DAT_180be0050,0x18,&unknown_var_6872_ptr,&unknown_var_6800_ptr,0x96);
+           (**(code **)(*system_system_buffer_config + 8))
+                     (system_system_buffer_config,0x18,&unknown_var_6872_ptr,&unknown_var_6800_ptr,0x96);
   if (plVar2 == (longlong *)0x0) {
     plVar2 = (longlong *)0x0;
   }
@@ -508,7 +508,7 @@ void FUN_1806b6e30(longlong param_1,longlong param_2)
       ;
       if (puVar1 != (uint64_t *)0x0) {
         (**(code **)*puVar1)(puVar1,0);
-        (**(code **)(*_DAT_180be0050 + 0x10))(_DAT_180be0050,puVar1);
+        (**(code **)(*system_system_buffer_config + 0x10))(system_system_buffer_config,puVar1);
       }
                     // WARNING: Subroutine does not return
       _unlock_MutexImpl_shdfnd_physx__QEAAXXZ(*(uint64_t *)(param_1 + 8));
@@ -545,7 +545,7 @@ void FUN_1806b6e4a(uint param_1,longlong param_2,uint64_t param_3,longlong param
             (*(longlong *)(unaff_RDI + 0x20) + (ulonglong)*(uint *)(unaff_RDI + 0x28) * 8);
       if (puVar1 != (uint64_t *)0x0) {
         (**(code **)*puVar1)(puVar1,0);
-        (**(code **)(*_DAT_180be0050 + 0x10))(_DAT_180be0050,puVar1);
+        (**(code **)(*system_system_buffer_config + 0x10))(system_system_buffer_config,puVar1);
       }
                     // WARNING: Subroutine does not return
       _unlock_MutexImpl_shdfnd_physx__QEAAXXZ(*(uint64_t *)(unaff_RDI + 8));
@@ -579,7 +579,7 @@ void FUN_1806b6e6d(void)
   ;
   if (puVar1 != (uint64_t *)0x0) {
     (**(code **)*puVar1)(puVar1,0);
-    (**(code **)(*_DAT_180be0050 + 0x10))(_DAT_180be0050,puVar1);
+    (**(code **)(*system_system_buffer_config + 0x10))(system_system_buffer_config,puVar1);
   }
                     // WARNING: Subroutine does not return
   _unlock_MutexImpl_shdfnd_physx__QEAAXXZ(*(uint64_t *)(unaff_RDI + 8));

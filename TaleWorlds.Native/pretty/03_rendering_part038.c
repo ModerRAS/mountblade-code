@@ -25,7 +25,7 @@ void FUN_180289f50(longlong param_1,uint64_t param_2,uint64_t param_3,uint64_t p
   int32_t uStack_28;
   uint64_t uStack_20;
   
-  fVar4 = (float)_DAT_180c8ed30;
+  fVar4 = (float)system_error_code;
   fVar3 = fVar4 * 1e-05 - *(float *)(param_1 + 0x15c);
   lVar1 = *(longlong *)(param_1 + 0x120);
   *(float *)(lVar1 + 0x2a8) = fVar3;
@@ -204,7 +204,7 @@ longlong FUN_18028a2c0(longlong param_1,longlong param_2)
   uStack_d8 = 0xfffffffffffffffe;
   lVar11 = FUN_1800daa50();
   FUN_180094b30(lVar11,&system_data_6c38);
-  plVar3 = *(longlong **)(_DAT_180c86938 + 0x121e0);
+  plVar3 = *(longlong **)(system_message_buffer + 0x121e0);
   if (plVar3 != (longlong *)0x0) {
     (**(code **)(*plVar3 + 0x28))(plVar3);
   }
@@ -226,8 +226,8 @@ longlong FUN_18028a2c0(longlong param_1,longlong param_2)
   *(int8_t *)(lVar11 + 0x9a31) = 0;
   lVar14 = 2;
   *(int32_t *)(lVar11 + 4) = 2;
-  *(float *)(lVar11 + 0x124e4) = (float)(_DAT_180c8ed30 % 1000000000) * 1e-05;
-  puVar9 = (uint64_t *)(_DAT_180c86950 + 0x16a0);
+  *(float *)(lVar11 + 0x124e4) = (float)(system_error_code % 1000000000) * 1e-05;
+  puVar9 = (uint64_t *)(system_operation_state + 0x16a0);
   puVar10 = (uint64_t *)(lVar11 + 0x30);
   do {
     puVar13 = puVar10;
@@ -286,8 +286,8 @@ longlong FUN_18028a2c0(longlong param_1,longlong param_2)
   uStack_90 = 0;
   uStack_8c = 0x3f800000;
   lVar14 = *(longlong *)(*(longlong *)(*(longlong *)(param_1 + 0xf0) + 0x1b8) + 0xb8);
-  fVar16 = (float)*(ushort *)(lVar14 + 0x32e) / *(float *)(_DAT_180c86950 + 0x17f0);
-  fVar15 = (float)*(ushort *)(lVar14 + 0x32c) / *(float *)(_DAT_180c86950 + 0x17ec);
+  fVar16 = (float)*(ushort *)(lVar14 + 0x32e) / *(float *)(system_operation_state + 0x17f0);
+  fVar15 = (float)*(ushort *)(lVar14 + 0x32c) / *(float *)(system_operation_state + 0x17ec);
   fStack_c8 = fVar15 * 1.0 + 0.0 + 0.0;
   fStack_c4 = fVar15 * 0.0 + 0.0 + 0.0;
   fStack_c0 = fVar15 * 0.0 + 0.0 + 0.0;
@@ -605,10 +605,10 @@ void FUN_18028a850(int *param_1,int param_2,int param_3,longlong param_4,int par
   int8_t auVar12 [16];
   int8_t auVar13 [16];
   
-  auVar2 = _DAT_180a3f750;
+  auVar2 = render_system_config;
   uVar1 = param_5 - 1;
   iVar8 = 0;
-  if (((0 < (int)uVar1) && (iVar8 = 0, 3 < uVar1)) && (1 < _DAT_180bf00b0)) {
+  if (((0 < (int)uVar1) && (iVar8 = 0, 3 < uVar1)) && (1 < render_system_control_config)) {
     uVar3 = uVar1 & 0x80000003;
     if ((int)uVar3 < 0) {
       uVar3 = (uVar3 - 1 | 0xfffffffc) + 1;

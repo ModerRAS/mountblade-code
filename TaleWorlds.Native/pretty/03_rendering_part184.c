@@ -644,7 +644,7 @@ LAB_18037777e:
     puVar16 = &unknown_var_3824_ptr;
   }
                     // WARNING: Subroutine does not return
-  FUN_180062300(_DAT_180c86928,puVar16,lVar13 / 0x28,puVar22);
+  FUN_180062300(system_message_context,puVar16,lVar13 / 0x28,puVar22);
 }
 
 

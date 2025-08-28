@@ -197,7 +197,7 @@ int32_t * RenderingSystem_CreateColorBuffer(int32_t *param_1,longlong *param_2)
   int32_t uStack_3c;
   int32_t uStack_34;
   
-  plVar2 = (longlong *)FUN_18062b1e0(_DAT_180c8ed18,RENDERING_SYSTEM_DATA_SIZE_0X48,8,3,RENDERING_SYSTEM_FLAG_FFFFFFFE);
+  plVar2 = (longlong *)FUN_18062b1e0(system_memory_pool_ptr,RENDERING_SYSTEM_DATA_SIZE_0X48,8,3,RENDERING_SYSTEM_FLAG_FFFFFFFE);
   *plVar2 = (longlong)&unknown_var_3552_ptr;
   *plVar2 = (longlong)&unknown_var_3696_ptr;
   *(int32_t *)(plVar2 + 1) = 0;

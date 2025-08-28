@@ -24,7 +24,7 @@ void FUN_180340b00(uint64_t param_1,longlong param_2,longlong param_3,uint64_t p
   
   uVar12 = 0;
   puVar5 = (int32_t *)
-           FUN_18062b420(_DAT_180c8ed18,0x18,0x13,param_4,0,0xfffffffffffffffe,&unknown_var_3456_ptr,0,0,0)
+           FUN_18062b420(system_memory_pool_ptr,0x18,0x13,param_4,0,0xfffffffffffffffe,&unknown_var_3456_ptr,0,0,0)
   ;
   *(int8_t *)puVar5 = 0;
   FUN_18064e990(puVar5);
@@ -494,7 +494,7 @@ void FUN_1803415f0(uint64_t param_1,longlong param_2,longlong param_3,uint64_t p
   
   uVar13 = 0;
   puVar5 = (int32_t *)
-           FUN_18062b420(_DAT_180c8ed18,0x18,0x13,param_4,0,0xfffffffffffffffe,&unknown_var_3456_ptr,0,0,0)
+           FUN_18062b420(system_memory_pool_ptr,0x18,0x13,param_4,0,0xfffffffffffffffe,&unknown_var_3456_ptr,0,0,0)
   ;
   *(int8_t *)puVar5 = 0;
   FUN_18064e990(puVar5);

@@ -81,7 +81,7 @@ longlong * FUN_18047a1e0(longlong *param_1,longlong param_2,int32_t param_3)
   lVar4 = FUN_18047aab0(param_1 + 3);
   *plVar1 = lVar4;
   __0_Lockit_std__QEAA_H_Z(auStackX_18,0);
-  plStack_108 = _DAT_180d48f10;
+  plStack_108 = render_system_config_config;
   uVar5 = __Bid_locale_std__QEAA_KXZ(_id___ctype_D_std__2V0locale_2_A_exref);
   lVar4 = param_1[4];
   if ((uVar5 < *(ulonglong *)(lVar4 + 0x18)) &&
@@ -110,7 +110,7 @@ LAB_18047a298:
     plStack_100 = plStack_108;
     FUN_1808ffb84(plStack_108);
     (**(code **)(*plVar6 + 8))(plVar6);
-    _DAT_180d48f10 = plStack_108;
+    render_system_config_config = plStack_108;
     plStack_100 = (longlong *)0x0;
     plVar6 = plStack_108;
   }
@@ -599,7 +599,7 @@ void FUN_18047aab0(longlong param_1)
   uStack_18 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_e8;
   uStack_c8 = 0;
   __0_Lockit_std__QEAA_H_Z(auStack_c4,0);
-  plVar6 = _DAT_180d48f08;
+  plVar6 = render_system_config_config;
   uVar4 = __Bid_locale_std__QEAA_KXZ(_id___collate_D_std__2V0locale_2_A_exref);
   lVar5 = *(longlong *)(param_1 + 8);
   if ((uVar4 < *(ulonglong *)(lVar5 + 0x18)) &&
@@ -660,7 +660,7 @@ LAB_18047ab4b:
     FUN_1808ffb84(plVar6);
     (**(code **)(*plVar6 + 8))(plVar6);
     plStack_c0 = (longlong *)0x0;
-    _DAT_180d48f08 = plVar6;
+    render_system_config_config = plVar6;
   }
 LAB_18047ac81:
   __1_Lockit_std__QEAA_XZ(auStack_c4);

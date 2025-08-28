@@ -219,14 +219,14 @@ void FUN_1804ecfb1(uint64_t param_1,uint64_t param_2,uint param_3)
         FUN_180590fc0(puVar14);
         FUN_180593ce0(puVar14,*(int32_t *)(lVar11 + 0x18));
         uVar16 = *(int32_t *)(lVar11 + 0x18);
-        if ((_DAT_180c92514 == 0) || (_DAT_180c92514 == 5)) {
+        if ((system_status_flag == 0) || (system_status_flag == 5)) {
           uVar8 = 1;
         }
         else {
           uVar8 = 0;
         }
         *(int8_t *)(unaff_RDI + 0x87d208) = uVar8;
-        if ((_DAT_180c92514 == 1) || (_DAT_180c92514 == 4)) {
+        if ((system_status_flag == 1) || (system_status_flag == 4)) {
           uVar8 = 1;
         }
         else {
@@ -444,14 +444,14 @@ void FUN_1804ed12e(uint64_t param_1,int param_2,uint64_t param_3,longlong param_
     FUN_180590fc0(puVar14);
     FUN_180593ce0(puVar14,*(int32_t *)(lVar15 + 0x18));
     uVar16 = *(int32_t *)(lVar15 + 0x18);
-    if ((_DAT_180c92514 == 0) || (_DAT_180c92514 == 5)) {
+    if ((system_status_flag == 0) || (system_status_flag == 5)) {
       uVar8 = 1;
     }
     else {
       uVar8 = 0;
     }
     *(int8_t *)(unaff_RDI + 0x87d208) = uVar8;
-    if ((_DAT_180c92514 == 1) || (_DAT_180c92514 == 4)) {
+    if ((system_status_flag == 1) || (system_status_flag == 4)) {
       uVar8 = 1;
     }
     else {
@@ -667,14 +667,14 @@ void FUN_1804ed139(longlong param_1,int param_2,uint64_t param_3,longlong param_
     FUN_180590fc0(puVar13);
     FUN_180593ce0(puVar13,*(int32_t *)(lVar14 + 0x18));
     uVar15 = *(int32_t *)(lVar14 + 0x18);
-    if ((_DAT_180c92514 == 0) || (_DAT_180c92514 == 5)) {
+    if ((system_status_flag == 0) || (system_status_flag == 5)) {
       uVar8 = 1;
     }
     else {
       uVar8 = 0;
     }
     *(int8_t *)(unaff_RDI + 0x87d208) = uVar8;
-    if ((_DAT_180c92514 == 1) || (_DAT_180c92514 == 4)) {
+    if ((system_status_flag == 1) || (system_status_flag == 4)) {
       uVar8 = 1;
     }
     else {
@@ -753,14 +753,14 @@ void FUN_1804ed2b8(int32_t param_1)
     uVar4 = FUN_180590fc0();
     FUN_180593ce0(uVar4,*(int32_t *)(lVar3 + 0x18));
     uVar4 = *(int32_t *)(lVar3 + 0x18);
-    if ((_DAT_180c92514 == 0) || (_DAT_180c92514 == 5)) {
+    if ((system_status_flag == 0) || (system_status_flag == 5)) {
       uVar1 = 1;
     }
     else {
       uVar1 = 0;
     }
     *(int8_t *)(unaff_RDI + 0x87d208) = uVar1;
-    if ((_DAT_180c92514 == 1) || (_DAT_180c92514 == 4)) {
+    if ((system_status_flag == 1) || (system_status_flag == 4)) {
       uVar1 = 1;
     }
     else {

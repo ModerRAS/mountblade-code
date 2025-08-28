@@ -953,7 +953,7 @@ uint64_t * FUN_1803e04d0(longlong param_1,uint64_t *param_2)
   uint64_t uVar5;
   longlong *plVar6;
   
-  uVar5 = FUN_18062b1e0(_DAT_180c8ed18,0x468,8,3,0,0xfffffffffffffffe);
+  uVar5 = FUN_18062b1e0(system_memory_pool_ptr,0x468,8,3,0,0xfffffffffffffffe);
   plVar6 = (longlong *)FUN_1803dd0f0(uVar5);
   *(int32_t *)(plVar6 + 0x18) = *(int32_t *)(param_1 + 0xc0);
   uVar5 = *(uint64_t *)(param_1 + 0xdc);

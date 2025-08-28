@@ -49,7 +49,7 @@ void FUN_18062b1e0(longlong param_1,ulonglong param_2,ulonglong param_3,int8_t p
                              ((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) +
                            0x10),param_2,param_3,0);
     if (lVar3 == 0) {
-      plVar1 = *(longlong **)(_DAT_180c8ed08 + 0x18);
+      plVar1 = *(longlong **)(render_system_data_memory + 0x18);
       if (plVar1 != (longlong *)0x0) {
         pcVar2 = *(code **)(*plVar1 + 0x20);
         puStack_90 = &unknown_var_672_ptr;
@@ -145,7 +145,7 @@ LAB_18062b4be:
     puVar4 = (uint64_t *)FUN_18064ddd0();
   }
   if (puVar4 == (uint64_t *)0x0) {
-    plVar2 = *(longlong **)(_DAT_180c8ed08 + 0x18);
+    plVar2 = *(longlong **)(render_system_data_memory + 0x18);
     if (plVar2 != (longlong *)0x0) {
       pcVar3 = *(code **)(*plVar2 + 0x20);
       puStack_68 = &unknown_var_672_ptr;
@@ -233,7 +233,7 @@ void FUN_18062b680(uint64_t param_1,longlong param_2,ulonglong param_3)
                              ((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) +
                            0x10),param_2,uVar4);
     if (lVar3 == 0) {
-      plVar1 = *(longlong **)(_DAT_180c8ed08 + 0x18);
+      plVar1 = *(longlong **)(render_system_data_memory + 0x18);
       if (plVar1 != (longlong *)0x0) {
         pcVar2 = *(code **)(*plVar1 + 0x20);
         puStack_78 = &unknown_var_672_ptr;
@@ -330,7 +330,7 @@ void FUN_18062b8b0(uint64_t param_1,ulonglong param_2,longlong param_3,ulonglong
       lVar4 = FUN_18064ec60(uVar1,param_2,param_3,param_4);
     }
     if (lVar4 == 0) {
-      plVar2 = *(longlong **)(_DAT_180c8ed08 + 0x18);
+      plVar2 = *(longlong **)(render_system_data_memory + 0x18);
       if (plVar2 != (longlong *)0x0) {
         pcVar3 = *(code **)(*plVar2 + 0x20);
         puStack_88 = &unknown_var_672_ptr;

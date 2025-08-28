@@ -420,7 +420,7 @@ void FUN_180733080(longlong param_1,longlong param_2,uint64_t param_3,uint64_t p
     sVar7 = (short)*(char *)(param_1 + 0x12a7) * (short)*(char *)(param_1 + 0x12a7) * 0x800;
     auVar10._0_4_ = CONCAT22(sVar7,sVar7);
     auVar10._4_4_ = auVar10._0_4_;
-    if (((0 < (int)uVar1) && (0xf < uVar1)) && (1 < _DAT_180bf00b0)) {
+    if (((0 < (int)uVar1) && (0xf < uVar1)) && (1 < ui_system_control_config)) {
       uVar3 = uVar1 & 0x8000000f;
       if ((int)uVar3 < 0) {
         uVar3 = (uVar3 - 1 | 0xfffffff0) + 1;
@@ -595,7 +595,7 @@ void FUN_1807330b2(longlong param_1,longlong param_2,uint64_t param_3)
     sVar7 = (short)*(char *)(param_1 + 0x12a7) * (short)*(char *)(param_1 + 0x12a7) * 0x800;
     auVar10._0_4_ = CONCAT22(sVar7,sVar7);
     auVar10._4_4_ = auVar10._0_4_;
-    if (((0 < (int)uVar1) && (0xf < uVar1)) && (1 < _DAT_180bf00b0)) {
+    if (((0 < (int)uVar1) && (0xf < uVar1)) && (1 < ui_system_control_config)) {
       uVar3 = uVar1 & 0x8000000f;
       if ((int)uVar3 < 0) {
         uVar3 = (uVar3 - 1 | 0xfffffff0) + 1;

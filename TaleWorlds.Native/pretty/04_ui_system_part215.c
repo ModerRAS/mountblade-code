@@ -469,9 +469,9 @@ FUN_180790610(longlong *param_1,uint64_t param_2,longlong param_3,longlong param
     } while (iVar3 < iVar4 / 2);
   }
 LAB_180789990:
-  (*(code *)*_DAT_180c108d0)
+  (*(code *)*ui_system_config)
             (pfVar1,*(longlong *)(in_stack_00000008 + 0x30) + (longlong)iVar4 * 4,iVar4 / 2);
-  (*(code *)_DAT_180c108d0[2])
+  (*(code *)ui_system_config[2])
             (pfVar1,param_4,*(uint64_t *)(in_stack_00000008 + 0x30),
              *(int32_t *)(in_stack_00000008 + 0x18));
                     // WARNING: Subroutine does not return
@@ -513,7 +513,7 @@ FUN_180790680(longlong *param_1,uint64_t param_2,longlong param_3,int32_t *param
       if (param_6 != 0) {
         uVar2 = *(uint64_t *)(in_stack_00000008 + 0x68);
         FUN_180768360(uVar2);
-        (**(code **)(_DAT_180c108d0 + 0x18))
+        (**(code **)(ui_system_config + 0x18))
                   (param_3,*(uint64_t *)(in_stack_00000008 + 0x28),
                    *(uint64_t *)(in_stack_00000008 + 0x30),
                    *(int32_t *)(in_stack_00000008 + 0x18));
@@ -537,7 +537,7 @@ FUN_180790680(longlong *param_1,uint64_t param_2,longlong param_3,int32_t *param
           } while (iVar6 < iVar1);
           lVar11 = *(longlong *)(in_stack_00000008 + 0x28);
         }
-        (**(code **)(_DAT_180c108d0 + 8))
+        (**(code **)(ui_system_config + 8))
                   (lVar11 + (longlong)iVar3 * 4,
                    *(longlong *)(in_stack_00000008 + 0x30) + (longlong)iVar3 * 4,iVar3 / 2);
         if ((param_6 == 1) && (param_5 == 0)) {

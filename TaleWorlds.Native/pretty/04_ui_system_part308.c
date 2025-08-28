@@ -468,7 +468,7 @@ void FUN_180838930(int8_t (*param_1) [64],uint param_2,longlong param_3,uint *pa
                                              ZEXT116(0) * auVar21 + ZEXT116(1) * auVar22)),auVar20,1
                         );
     auVar8 = vpaddq_avx512f(auVar8,auVar14);
-    auVar14 = vmovdqu32_avx512f(_DAT_180980d80);
+    auVar14 = vmovdqu32_avx512f(ui_system_memory_config);
     do {
       auVar15 = vpermd_avx512f(auVar14,auVar8);
       auVar7 = vextracti64x4_avx512f(auVar15,0);
@@ -605,7 +605,7 @@ void FUN_1808389ec(void)
                       (ZEXT3264(CONCAT1616(ZEXT116(1) * auVar19,
                                            ZEXT116(0) * auVar19 + ZEXT116(1) * auVar20)),auVar18,1);
   auVar6 = vpaddq_avx512f(auVar6,auVar12);
-  auVar12 = vmovdqu32_avx512f(_DAT_180980d80);
+  auVar12 = vmovdqu32_avx512f(ui_system_memory_config);
   do {
     auVar13 = vpermd_avx512f(auVar12,auVar6);
     auVar5 = vextracti64x4_avx512f(auVar13,0);

@@ -397,7 +397,7 @@ longlong FUN_18042b8d0(longlong param_1,int *param_2)
   if (((-1 < iVar4) &&
       ((((iVar4 == 0 || (3 < (int)(0x7fffffff / (longlong)iVar4))) && (-1 < iVar4 * 4)) &&
        (-1 < iVar5)))) && ((iVar5 == 0 || (iVar4 * 4 <= (int)(0x7fffffff / (longlong)iVar5))))) {
-    lVar8 = FUN_18062b420(_DAT_180c8ed18,(longlong)(iVar4 * iVar5 * 4));
+    lVar8 = FUN_18062b420(system_memory_pool_ptr,(longlong)(iVar4 * iVar5 * 4));
   }
   *(longlong *)(param_2 + 2) = lVar8;
   if (lVar8 == 0) {

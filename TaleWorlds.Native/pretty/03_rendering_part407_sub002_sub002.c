@@ -177,9 +177,9 @@ void FUN_1804920b0(longlong param_1,float *param_2,int param_3)
   fStack_184 = pfVar28[9] * fVar6;
   fStack_180 = pfVar28[10] * fVar6;
   fStack_17c = pfVar28[0xb] * fVar6;
-  auVar60 = _DAT_180a40740;
-  auVar66 = _DAT_180a40490;
-  auVar53 = _DAT_180a40780;
+  auVar60 = render_system_memory;
+  auVar66 = render_system_memory;
+  auVar53 = render_system_memory;
   do {
     uVar30 = (ulonglong)*(uint *)(&unknown_var_4160_ptr + lVar27);
     uVar15 = (ulonglong)*(uint *)(&unknown_var_4096_ptr + lVar27);
@@ -298,8 +298,8 @@ void FUN_1804920b0(longlong param_1,float *param_2,int param_3)
   } while (lVar32 != 0);
   iVar13 = movmskps(uVar34 * 2,auVar53);
   if (iVar13 == 0xf) {
-    auVar60 = minps(auVar60,_DAT_180a403e0);
-    auVar66 = maxps(auVar66,_DAT_180a40720);
+    auVar60 = minps(auVar60,render_system_memory);
+    auVar66 = maxps(auVar66,render_system_memory);
     fVar69 = auVar60._8_4_;
     auVar36._4_4_ = -(uint)(auVar60._4_4_ < auVar66._4_4_);
     auVar36._0_4_ = -(uint)(auVar60._0_4_ < auVar66._0_4_);
@@ -524,7 +524,7 @@ void FUN_1804920b0(longlong param_1,float *param_2,int param_3)
                        ((int)uVar81 >= auVar85._8_4_) * uVar81;
               uVar44 = (uint)((int)uVar83 < auVar85._12_4_) * auVar85._12_4_ |
                        ((int)uVar83 >= auVar85._12_4_) * uVar83;
-              auStack_288 = auVar40 & _DAT_180a40770;
+              auStack_288 = auVar40 & render_system_memory;
               auStack_278[0] = (uint)(0x167 < (int)uVar35) * 0x167 | (0x167 >= (int)uVar35) * uVar35
               ;
               auStack_278[1] = (uint)(0x167 < (int)uVar42) * 0x167 | (0x167 >= (int)uVar42) * uVar42
@@ -678,7 +678,7 @@ void FUN_1804920b0(longlong param_1,float *param_2,int param_3)
                         auVar64 = auVar62;
                       } while (uVar30 != 0);
                     }
-                    if ((_DAT_180a40570 & auVar60) != (int8_t  [16])0x0) goto FUN_180492a44;
+                    if ((render_system_memory & auVar60) != (int8_t  [16])0x0) goto FUN_180492a44;
                     auVar87._0_4_ = auVar86._0_4_ + iVar14 * 2;
                     auVar87._4_4_ = auVar86._4_4_ + iVar14 * 2;
                     auVar87._8_4_ = auVar86._8_4_ + iVar14 * 2;

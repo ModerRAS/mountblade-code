@@ -302,7 +302,7 @@ void RenderingSystemAdvancedParameterProcessor(void)
         // 内存管理和数据结构操作
         if (temp_bool) {
             temp_ptr = RenderingSystemMemoryAllocator(
-                _DAT_180c8ed18, 
+                system_memory_pool_ptr, 
                 temp_uint1 * 8, 
                 (rendering_char)temp_uint2
             );
@@ -379,7 +379,7 @@ void RenderingSystemDataCollector(rendering_long param_1, rendering_ulong* param
                     // 内存重新分配
                     if (temp_long1 != 0) {
                         temp_ptr_ptr = (rendering_pointer*)RenderingSystemMemoryAllocator(
-                            _DAT_180c8ed18, 
+                            system_memory_pool_ptr, 
                             temp_long1 * 8, 
                             (rendering_char)param_2[3]
                         );
@@ -470,7 +470,7 @@ void RenderingSystemStateProcessor(rendering_pointer param_1, rendering_long par
                 // 内存重新分配
                 if (temp_long1 != 0) {
                     temp_ptr_ptr = (rendering_pointer*)RenderingSystemMemoryAllocator(
-                        _DAT_180c8ed18, 
+                        system_memory_pool_ptr, 
                         temp_long1 * 8, 
                         (rendering_char)temp_ulong_ptr[3]
                     );

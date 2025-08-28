@@ -566,7 +566,7 @@ void FUN_18035ec60(longlong param_1)
                 if (lVar7 == 0) {
                   lVar7 = 1;
 LAB_18035f156:
-                  auVar8 = (int8_t  [8])FUN_18062b420(_DAT_180c8ed18,lVar7 * 8,3);
+                  auVar8 = (int8_t  [8])FUN_18062b420(system_memory_pool_ptr,lVar7 * 8,3);
                 }
                 else {
                   lVar7 = lVar7 * 2;
@@ -608,7 +608,7 @@ LAB_18035f156:
       ppplStack_430 = &pplStack_400;
       pfStack_438 = (float *)&uStack_410;
       FUN_18046a8c0();
-      uVar10 = FUN_18062b1e0(_DAT_180c8ed18,0x3d0,8,0x16);
+      uVar10 = FUN_18062b1e0(system_memory_pool_ptr,0x3d0,8,0x16);
       plVar11 = (longlong *)FUN_180275090(uVar10);
       plStack_288 = plVar11;
       if (plVar11 != (longlong *)0x0) {
@@ -625,7 +625,7 @@ LAB_18035f156:
         (**(code **)(*plStack_3b8 + 0x38))();
       }
       (**(code **)(*plVar11 + 0xd8))(plVar11);
-      uVar10 = FUN_18062b1e0(_DAT_180c8ed18,0x300,0x10,3);
+      uVar10 = FUN_18062b1e0(system_memory_pool_ptr,0x300,0x10,3);
       plVar12 = (longlong *)FUN_180075030(uVar10,1);
       plStack_278 = plVar12;
       if (plVar12 != (longlong *)0x0) {
@@ -637,7 +637,7 @@ LAB_18035f156:
       puStack_1d8 = (void *)((ulonglong)puStack_1d8 & 0xffffffffffffff00);
       uStack_1e0 = (void *)CONCAT44((int)((ulonglong)uStack_1e0 >> 0x20),0x12);
       strcpy_s(&puStack_1d8,0x20,&unknown_var_5560_ptr);
-      uVar10 = FUN_1800b30d0(_DAT_180c86930,&uStack_410,&puStack_1f0,1);
+      uVar10 = FUN_1800b30d0(system_resource_state,&uStack_410,&puStack_1f0,1);
       FUN_180076910(plVar12,uVar10);
       if (uStack_410 != (longlong **)0x0) {
         (*(code *)(*uStack_410)[7])();
@@ -846,7 +846,7 @@ LAB_18035f156:
         }
         ppplStack_430 = (longlong ***)((ulonglong)ppplStack_430 & 0xffffffff00000000);
         pfStack_438 = (float *)&unknown_var_5472_ptr;
-        FUN_1800623b0(_DAT_180c86928,0,0x80000000000,3);
+        FUN_1800623b0(system_message_context,0,0x80000000000,3);
       }
       cStack_360 = '\x01';
       if (pplStack_388 != (longlong **)0x0) {

@@ -545,7 +545,7 @@ void FUN_18057c310(longlong param_1)
   int iVar6;
   
   FUN_18065cc10(param_1 + 0x3460);
-  plVar2 = (longlong *)(**(code **)(*_DAT_180c8ed00 + 0x70))(_DAT_180c8ed00,&unknown_var_1920_ptr);
+  plVar2 = (longlong *)(**(code **)(*render_system_data_config + 0x70))(render_system_data_config,&unknown_var_1920_ptr);
   plVar2 = (longlong *)(**(code **)(*plVar2 + 0x28))(plVar2,*(int32_t *)(param_1 + 0x1284));
   (**(code **)(*plVar2 + 0x70))(plVar2,&system_data_fd38);
   iVar5 = 0;
@@ -553,7 +553,7 @@ void FUN_18057c310(longlong param_1)
   if (0 < *(int *)(param_1 + 0x100)) {
     puVar4 = (int32_t *)(param_1 + 0x134);
     do {
-      plVar2 = (longlong *)(**(code **)(*_DAT_180c8ed00 + 0x70))(_DAT_180c8ed00,&unknown_var_7100_ptr);
+      plVar2 = (longlong *)(**(code **)(*render_system_data_config + 0x70))(render_system_data_config,&unknown_var_7100_ptr);
       plVar2 = (longlong *)(**(code **)(*plVar2 + 0x50))(plVar2,iVar6);
       plVar2 = (longlong *)(**(code **)(*plVar2 + 0x70))(plVar2,&system_data_f674);
       if (*(longlong *)(puVar4 + -0xb) == 0) {
@@ -578,13 +578,13 @@ void FUN_18057c310(longlong param_1)
       puVar4 = puVar4 + 0x12;
     } while (iVar6 < *(int *)(param_1 + 0x100));
   }
-  plVar2 = (longlong *)(**(code **)(*_DAT_180c8ed00 + 0x70))(_DAT_180c8ed00,&unknown_var_2000_ptr);
+  plVar2 = (longlong *)(**(code **)(*render_system_data_config + 0x70))(render_system_data_config,&unknown_var_2000_ptr);
   plVar2 = (longlong *)(**(code **)(*plVar2 + 0x28))(plVar2,*(int32_t *)(param_1 + 0x2434));
   (**(code **)(*plVar2 + 0x70))(plVar2,&system_data_fd38);
   if (0 < *(int *)(param_1 + 0x12b0)) {
     puVar4 = (int32_t *)(param_1 + 0x12e4);
     do {
-      plVar2 = (longlong *)(**(code **)(*_DAT_180c8ed00 + 0x70))(_DAT_180c8ed00,&unknown_var_7100_ptr);
+      plVar2 = (longlong *)(**(code **)(*render_system_data_config + 0x70))(render_system_data_config,&unknown_var_7100_ptr);
       plVar2 = (longlong *)(**(code **)(*plVar2 + 0x50))(plVar2,iVar5);
       plVar2 = (longlong *)(**(code **)(*plVar2 + 0x70))(plVar2,&system_data_f674);
       if (*(longlong *)(puVar4 + -0xb) == 0) {

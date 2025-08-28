@@ -78,7 +78,7 @@ void FUN_1803ba550(longlong param_1,uint64_t param_2,uint64_t param_3,longlong p
       uVar5 = uVar12 >> 0xc;
       uVar10 = (ulonglong)uVar5;
       if (*(longlong *)(param_6 + (ulonglong)uVar5 * 2 + 2) == 0) {
-        lVar6 = FUN_18062b420(_DAT_180c8ed18,0x30000,0);
+        lVar6 = FUN_18062b420(system_memory_pool_ptr,0x30000,0);
         LOCK();
         bVar14 = *(longlong *)(param_6 + uVar10 * 2 + 2) == 0;
         if (bVar14) {
@@ -661,13 +661,13 @@ LAB_1803bb347:
                         if ((int)uVar1 < 0x10) {
                           uVar1 = 0x10;
                         }
-                        pcVar2 = (char *)FUN_18062b420(_DAT_180c8ed18,(longlong)(int)uVar1,0x13);
+                        pcVar2 = (char *)FUN_18062b420(system_memory_pool_ptr,(longlong)(int)uVar1,0x13);
                         *pcVar2 = '\0';
                         uVar4 = FUN_18064e990(pcVar2);
                         pcVar3 = (char *)(uVar4 & 0xffffffff);
                       }
                       else if ((uint)pcVar3 < uVar1) {
-                        pcVar2 = (char *)FUN_18062b8b0(_DAT_180c8ed18,pcVar2,uVar1,0x10,0x13);
+                        pcVar2 = (char *)FUN_18062b8b0(system_memory_pool_ptr,pcVar2,uVar1,0x10,0x13);
                         pcVar3 = (char *)FUN_18064e990(pcVar2);
                       }
                     }
@@ -683,12 +683,12 @@ LAB_1803bb347:
                         if (iVar10 < 0x10) {
                           iVar10 = 0x10;
                         }
-                        pcVar2 = (char *)FUN_18062b420(_DAT_180c8ed18,(longlong)iVar10,0x13);
+                        pcVar2 = (char *)FUN_18062b420(system_memory_pool_ptr,(longlong)iVar10,0x13);
                         *pcVar2 = '\0';
                       }
                       else {
                         if (iVar10 + 1U <= (uint)pcVar3) goto LAB_1803bb478;
-                        pcVar2 = (char *)FUN_18062b8b0(_DAT_180c8ed18,pcVar2,iVar10 + 1U,0x10,0x13);
+                        pcVar2 = (char *)FUN_18062b8b0(system_memory_pool_ptr,pcVar2,iVar10 + 1U,0x10,0x13);
                       }
                       FUN_18064e990(pcVar2);
                     }

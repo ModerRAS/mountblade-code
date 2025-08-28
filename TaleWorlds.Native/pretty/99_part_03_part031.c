@@ -178,7 +178,7 @@ void FUN_1801ea320(longlong param_1,uint64_t param_2,longlong param_3,char param
 LAB_1801ea3a1:
   uVar5 = 0;
 LAB_1801ea3a3:
-  lVar4 = FUN_18062b420(_DAT_180c8ed18,0x38,*(int8_t *)(param_1 + 0x28));
+  lVar4 = FUN_18062b420(system_memory_pool_ptr,0x38,*(int8_t *)(param_1 + 0x28));
   uVar1 = param_5[1];
   uVar2 = param_5[2];
   uVar3 = param_5[3];
@@ -288,7 +288,7 @@ LAB_1801ea4f7:
   }
   uVar9 = 0;
 LAB_1801ea540:
-  lVar8 = FUN_18062b420(_DAT_180c8ed18,0x70,*(int8_t *)(param_1 + 5));
+  lVar8 = FUN_18062b420(system_memory_pool_ptr,0x70,*(int8_t *)(param_1 + 5));
   FUN_180627ae0(lVar8 + 0x20,param_4);
   lVar7 = lVar8 + 0x40;
   *(uint64_t *)(lVar8 + 0x68) = 0;
@@ -364,7 +364,7 @@ LAB_1801ea684:
   else {
     uVar7 = 1;
   }
-  lVar3 = FUN_18062b420(_DAT_180c8ed18,0x58,*(int8_t *)(param_1 + 5));
+  lVar3 = FUN_18062b420(system_memory_pool_ptr,0x58,*(int8_t *)(param_1 + 5));
   *(uint64_t *)(lVar3 + 0x20) = *(uint64_t *)param_4;
   lVar5 = lVar3 + 0x28;
   *(uint64_t *)(lVar3 + 0x40) = 0;
@@ -515,7 +515,7 @@ FUN_1801ea860(uint64_t *param_1,uint64_t *param_2,uint64_t param_3,ulonglong *pa
     return param_2;
   }
 LAB_1801ea94d:
-  lVar9 = FUN_18062b420(_DAT_180c8ed18,0x38,*(int8_t *)(param_1 + 5));
+  lVar9 = FUN_18062b420(system_memory_pool_ptr,0x38,*(int8_t *)(param_1 + 5));
   uVar2 = *(int32_t *)((longlong)param_4 + 4);
   uVar7 = param_4[1];
   uVar3 = *(int32_t *)((longlong)param_4 + 0xc);
@@ -595,7 +595,7 @@ LAB_1801eaa92:
      ((*(uint *)(puVar5 + 4) < uVar4 || (*(uint *)((longlong)puVar5 + 0x24) <= param_4[1])))) {
     uVar6 = 1;
   }
-  lVar3 = FUN_18062b420(_DAT_180c8ed18,0x48,*(int8_t *)(param_1 + 5));
+  lVar3 = FUN_18062b420(system_memory_pool_ptr,0x48,*(int8_t *)(param_1 + 5));
   *(uint64_t *)(lVar3 + 0x20) = *(uint64_t *)param_4;
   puVar2 = (uint64_t *)(lVar3 + 0x28);
   *puVar2 = &unknown_var_720_ptr;
@@ -631,7 +631,7 @@ void FUN_1801eab50(longlong param_1,uint64_t param_2,longlong param_3,uint64_t p
       uVar2 = 1;
     }
   }
-  lVar1 = FUN_18062b420(_DAT_180c8ed18,0x48,*(int8_t *)(param_1 + 0x28),param_4,
+  lVar1 = FUN_18062b420(system_memory_pool_ptr,0x48,*(int8_t *)(param_1 + 0x28),param_4,
                         0xfffffffffffffffe);
   *(uint64_t *)(lVar1 + 0x20) = *(uint64_t *)param_5;
   *(uint64_t *)(lVar1 + 0x28) = &unknown_var_720_ptr;
@@ -663,7 +663,7 @@ FUN_1801eac40(uint64_t *param_1,uint64_t *param_2,uint64_t param_3,longlong para
   longlong lVar8;
   uint64_t uVar9;
   
-  lVar4 = FUN_18062b420(_DAT_180c8ed18,0x48,*(int8_t *)(param_1 + 5),param_4,0xfffffffffffffffe)
+  lVar4 = FUN_18062b420(system_memory_pool_ptr,0x48,*(int8_t *)(param_1 + 5),param_4,0xfffffffffffffffe)
   ;
   *(uint64_t *)(lVar4 + 0x20) = &unknown_var_720_ptr;
   uVar9 = 0;
@@ -776,7 +776,7 @@ FUN_1801eae40(uint64_t *param_1,uint64_t *param_2,uint64_t param_3,longlong para
   longlong lVar9;
   uint64_t uVar10;
   
-  lVar5 = FUN_18062b420(_DAT_180c8ed18,0x48,*(int8_t *)(param_1 + 5),param_4,0xfffffffffffffffe)
+  lVar5 = FUN_18062b420(system_memory_pool_ptr,0x48,*(int8_t *)(param_1 + 5),param_4,0xfffffffffffffffe)
   ;
   *(uint64_t *)(lVar5 + 0x20) = &unknown_var_720_ptr;
   uVar10 = 0;
@@ -945,7 +945,7 @@ longlong FUN_1801eb0f0(longlong *param_1,longlong *param_2,int param_3)
   }
   else {
     if (param_3 == 1) {
-      puVar3 = (uint64_t *)FUN_18062b1e0(_DAT_180c8ed18,0x30,8,system_allocation_flags,0xfffffffffffffffe);
+      puVar3 = (uint64_t *)FUN_18062b1e0(system_memory_pool_ptr,0x30,8,system_allocation_flags,0xfffffffffffffffe);
       puVar1 = (uint64_t *)*param_2;
       uVar2 = puVar1[1];
       *puVar3 = *puVar1;
@@ -995,7 +995,7 @@ longlong FUN_1801eb1e0(longlong *param_1,longlong *param_2,int param_3)
   }
   else {
     if (param_3 == 1) {
-      puVar3 = (uint64_t *)FUN_18062b1e0(_DAT_180c8ed18,0x68,8,system_allocation_flags,0xfffffffffffffffe);
+      puVar3 = (uint64_t *)FUN_18062b1e0(system_memory_pool_ptr,0x68,8,system_allocation_flags,0xfffffffffffffffe);
       puVar1 = (uint64_t *)*param_2;
       *puVar3 = *puVar1;
       FUN_180627ae0(puVar3 + 1,puVar1 + 1);

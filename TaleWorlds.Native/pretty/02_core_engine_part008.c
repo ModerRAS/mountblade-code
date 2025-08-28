@@ -224,7 +224,7 @@ void FUN_180041f10(void)
   auStack_88[0] = 0;
   uStack_90 = 0xd;
   strcpy_s(auStack_88,0x80,&unknown_var_9616_ptr,in_R9,0xfffffffffffffffe);
-  _DAT_180c95ecc = FUN_180623800(&puStack_a0);
+  core_system_ui = FUN_180623800(&puStack_a0);
   return;
 }
 
@@ -1332,7 +1332,7 @@ void FUN_1800434d0(void)
   auStack_88[0] = 0;
   uStack_90 = 0x1b;
   strcpy_s(auStack_88,0x80,&unknown_var_2504_ptr,in_R9,0xfffffffffffffffe);
-  _DAT_180c9606c = FUN_180623800(&puStack_a0);
+  core_system_ui = FUN_180623800(&puStack_a0);
   return;
 }
 

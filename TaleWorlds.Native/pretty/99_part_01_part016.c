@@ -833,13 +833,13 @@ uint64_t * FUN_1800b08e0(longlong param_1,uint64_t *param_2,longlong param_3,cha
         if (*(void **)(param_3 + 8) != (void *)0x0) {
           puVar2 = *(void **)(param_3 + 8);
         }
-        FUN_1800622d0(_DAT_180c86928,0,7,&unknown_var_7376_ptr,puVar2);
+        FUN_1800622d0(system_message_context,0,7,&unknown_var_7376_ptr,puVar2);
         puVar2 = &system_buffer_ptr;
         if (*(void **)(param_3 + 8) != (void *)0x0) {
           puVar2 = *(void **)(param_3 + 8);
         }
         FUN_180627020(&unknown_var_7408_ptr,puVar2);
-        plVar1 = (longlong *)FUN_1800bd410(_DAT_180c86898);
+        plVar1 = (longlong *)FUN_1800bd410(system_system_data_config);
         *param_2 = plVar1;
         if (plVar1 != (longlong *)0x0) {
           (**(code **)(*plVar1 + 0x28))(plVar1);

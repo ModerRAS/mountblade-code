@@ -841,7 +841,7 @@ void FUN_1803b27a0(longlong param_1)
     }
     pcStack_60 = (code *)&unknown_var_8640_ptr;
     pcStack_58 = (code *)&unknown_var_8608_ptr;
-    lVar1 = *(longlong *)(_DAT_180c86940 + 8);
+    lVar1 = *(longlong *)(system_system_data_memory + 8);
     alStack_70[0] = param_1;
     lVar4 = FUN_18006d0b0(lVar1 + 200);
     if (lVar4 != 0) {

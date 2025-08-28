@@ -892,7 +892,7 @@ void cleanup_memory_handlers(longlong memory_ptr)
     } while (uVar2 != 0);
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900(memory_ptr + -MEMORY_ALLOC_BASE_SIZE);
+  free_system_memory(memory_ptr + -MEMORY_ALLOC_BASE_SIZE);
 }
 
 
@@ -923,7 +923,7 @@ void cleanup_memory_handlers_fast(longlong memory_ptr)
     } while (uVar2 != 0);
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900(memory_ptr + -MEMORY_ALLOC_BASE_SIZE);
+  free_system_memory(memory_ptr + -MEMORY_ALLOC_BASE_SIZE);
 }
 
 
@@ -950,7 +950,7 @@ void cleanup_memory_pool(void)
     in_RAX = in_RAX + -1;
   } while (in_RAX != 0);
                     // WARNING: Subroutine does not return
-  FUN_18064e900(unaff_RSI + -MEMORY_ALLOC_BASE_SIZE);
+  free_system_memory(unaff_RSI + -MEMORY_ALLOC_BASE_SIZE);
 }
 
 

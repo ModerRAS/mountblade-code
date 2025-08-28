@@ -212,7 +212,7 @@ void FUN_18049bb60(ulonglong *param_1,float *param_2,uint64_t param_3,double par
     iVar13 = ((int)(iVar13 + (iVar13 >> 0x1f & 7U)) >> 3) + 4;
   }
   if (iVar13 != 0) {
-    uVar14 = FUN_18062b420(_DAT_180c8ed18,(longlong)iVar13,4);
+    uVar14 = FUN_18062b420(system_memory_pool_ptr,(longlong)iVar13,4);
   }
   *param_1 = uVar14;
                     // WARNING: Subroutine does not return
@@ -490,7 +490,7 @@ void FUN_18049bbb3(uint64_t param_1,float param_2,uint64_t param_3,uint64_t *par
     iVar23 = ((int)(iVar23 + (iVar23 >> 0x1f & 7U)) >> 3) + 4;
   }
   if (iVar23 != 0) {
-    uVar24 = FUN_18062b420(_DAT_180c8ed18,(longlong)iVar23,4);
+    uVar24 = FUN_18062b420(system_memory_pool_ptr,(longlong)iVar23,4);
   }
   *unaff_RBX = uVar24;
                     // WARNING: Subroutine does not return
@@ -768,7 +768,7 @@ void FUN_18049bbc5(uint64_t param_1,float param_2,uint64_t param_3,uint64_t *par
     uVar28 = CONCAT44(unaff_0000003c,CONCAT22(unaff_0000003a,unaff_DI));
   }
   else {
-    uVar28 = FUN_18062b420(_DAT_180c8ed18,(longlong)iVar23,4);
+    uVar28 = FUN_18062b420(system_memory_pool_ptr,(longlong)iVar23,4);
   }
   *unaff_RBX = uVar28;
                     // WARNING: Subroutine does not return

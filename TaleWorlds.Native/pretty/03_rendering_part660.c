@@ -537,7 +537,7 @@ void FUN_1806424c0(uint64_t param_1,uint64_t param_2,int32_t param_3,int32_t par
 {
   longlong lVar1;
   
-  lVar1 = FUN_18062b420(_DAT_180c8ed18,0x40038,3);
+  lVar1 = FUN_18062b420(system_memory_pool_ptr,0x40038,3);
   FUN_1806423d0(lVar1,param_1,param_2,param_3,param_4);
   if (lVar1 != 0) {
                     // WARNING: Subroutine does not return

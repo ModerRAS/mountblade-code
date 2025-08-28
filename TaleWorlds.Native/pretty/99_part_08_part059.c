@@ -168,7 +168,7 @@ LAB_1805b1f10:
   fVar13 = fVar15 - fVar13 * param_6 * (1.0 / fStack_58);
   _fStack_60 = CONCAT44(fVar13 * fStack_58,fStack_58);
   uStack_54 = 0x3e99999a;
-  fStack_58 = ((fVar15 - fVar13) - _DAT_180c96458) * fStack_58;
+  fStack_58 = ((fVar15 - fVar13) - system_system_config) * fStack_58;
   if (fStack_58 <= 0.0) {
     fStack_58 = 0.0;
   }
@@ -178,7 +178,7 @@ LAB_1805b1f10:
   if (cVar6 == '\0') {
     return 0;
   }
-  if ((_DAT_180c92514 != 1) && (_DAT_180c92514 != 4)) {
+  if ((system_status_flag != 1) && (system_status_flag != 4)) {
     uVar7 = FUN_1805b2220(param_1,*param_3,0);
     lVar10 = func_0x0001805b23d0(param_1,uVar7,param_4);
     if (lVar10 == 0) {
@@ -338,7 +338,7 @@ LAB_1805b1f10:
   fVar14 = fVar15 - fVar14 * *(float *)(unaff_RBP + 0x6f) * (unaff_XMM7_Da / fVar16);
   *(float *)(unaff_RBP + -0x1d) = fVar14 * fVar16;
   *(int32_t *)(unaff_RBP + -0x15) = 0x3e99999a;
-  fVar16 = ((fVar15 - fVar14) - _DAT_180c96458) * fVar16;
+  fVar16 = ((fVar15 - fVar14) - system_system_config) * fVar16;
   if (fVar16 <= 0.0) {
     fVar16 = 0.0;
   }
@@ -348,7 +348,7 @@ LAB_1805b1f10:
     uVar12 = 0;
   }
   else {
-    if ((_DAT_180c92514 != 1) && (_DAT_180c92514 != 4)) {
+    if ((system_status_flag != 1) && (system_status_flag != 4)) {
       uVar8 = FUN_1805b2220(extraout_XMM0_Da,*unaff_RDI,0);
       lVar11 = func_0x0001805b23d0(extraout_XMM0_Da_00,uVar8);
       if (lVar11 == 0) {
@@ -439,8 +439,8 @@ uint64_t FUN_1805b209e(int32_t param_1)
   int32_t extraout_XMM0_Da;
   int32_t unaff_XMM7_Da;
   
-  uVar8 = (ulonglong)_DAT_180c92514;
-  if ((_DAT_180c92514 != 1) && (_DAT_180c92514 != 4)) {
+  uVar8 = (ulonglong)system_status_flag;
+  if ((system_status_flag != 1) && (system_status_flag != 4)) {
     uVar5 = FUN_1805b2220(param_1,*unaff_RDI,0);
     lVar6 = func_0x0001805b23d0(extraout_XMM0_Da,uVar5);
     if (lVar6 == 0) {
@@ -758,17 +758,17 @@ float * FUN_1805b2900(longlong param_1,float *param_2,longlong param_3)
   iVar3 = FUN_18053a410(&system_data_5f30,
                         *(int32_t *)(*(longlong *)(*(longlong *)(param_1 + 0xb8) + 0x590) + 0xac)
                        );
-  iVar3 = *(int *)(_DAT_180c95f68 + (longlong)iVar3 * 4);
+  iVar3 = *(int *)(system_system_config + (longlong)iVar3 * 4);
   if (iVar3 == -1) {
     lVar6 = 0;
   }
   else {
-    lVar6 = *(longlong *)(_DAT_180c95f88 + (longlong)iVar3 * 8);
+    lVar6 = *(longlong *)(system_system_config + (longlong)iVar3 * 8);
   }
   lVar1 = *(longlong *)(param_1 + 0xb8);
   iVar3 = *(int *)(param_3 + 0x104);
   fVar8 = 1.0;
-  lVar7 = (longlong)*(short *)(lVar6 + 0x7e) * 0x68 + _DAT_180c95ed0;
+  lVar7 = (longlong)*(short *)(lVar6 + 0x7e) * 0x68 + system_system_config;
   lVar2 = *(longlong *)(*(longlong *)(lVar1 + 0x8f8) + 0x9e8);
   if (lVar2 != 0) {
     lVar5 = (longlong)*(int *)(lVar2 + 0xf0) * 0xa0;
@@ -786,9 +786,9 @@ float * FUN_1805b2900(longlong param_1,float *param_2,longlong param_3)
   else if (iVar3 == 1) {
     fVar8 = fVar8 * *(float *)(lVar1 + 0x3ac);
   }
-  fVar8 = _DAT_180c96418 * fVar8;
+  fVar8 = system_system_config * fVar8;
   if (*(char *)(param_3 + 5) != '\0') {
-    fVar8 = fVar8 * _DAT_180c9641c;
+    fVar8 = fVar8 * system_system_config;
   }
   fVar8 = *(float *)(lVar6 + 0x188) / fVar8;
   param_2[2] = *(float *)(lVar7 + 0x24);
@@ -821,12 +821,12 @@ float FUN_1805b2a50(longlong param_1,longlong param_2)
   iVar2 = FUN_18053a410(&system_data_5f30,
                         *(int32_t *)(*(longlong *)(*(longlong *)(param_1 + 0xb8) + 0x590) + 0xac)
                         ,iVar4);
-  iVar2 = *(int *)(_DAT_180c95f68 + (longlong)iVar2 * 4);
+  iVar2 = *(int *)(system_system_config + (longlong)iVar2 * 4);
   if (iVar2 == -1) {
     lVar3 = 0;
   }
   else {
-    lVar3 = *(longlong *)(_DAT_180c95f88 + (longlong)iVar2 * 8);
+    lVar3 = *(longlong *)(system_system_config + (longlong)iVar2 * 8);
   }
   fVar6 = *(float *)(lVar3 + 0x1d8);
   plVar1 = *(longlong **)(*(longlong *)(param_1 + 0xb8) + 0x590);
@@ -863,9 +863,9 @@ uint64_t FUN_1805b2b20(uint64_t *param_1,longlong param_2)
   if ((param_2 == 0) || (*(int *)(param_2 + 0xc) == -1)) {
     return 0xbf800000;
   }
-  fVar6 = _DAT_180c96424;
+  fVar6 = system_system_config;
   if (*(char *)(param_2 + 5) == '\0') {
-    fVar6 = _DAT_180c96424 * _DAT_180c96428;
+    fVar6 = system_system_config * system_system_config;
   }
   lVar1 = param_1[0x17];
   lVar2 = *(longlong *)(*(longlong *)(lVar1 + 0x8f8) + 0x9f0);

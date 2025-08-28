@@ -890,8 +890,8 @@ uint64_t UtilitiesSystem_Validator1(longlong param_1, uint64_t param_2)
         // 遍历数组进行验证
         do {
             // 检查参数有效性
-            if (((*parameter_pointer != _DAT_180c4eaa0) || 
-                 (parameter_pointer[1] != _DAT_180c4eaa4)) &&
+            if (((*parameter_pointer != system_config_data_eaa0) || 
+                 (parameter_pointer[1] != system_config_data_eaa4)) &&
                 (validation_status = FUN_1808678e0(param_2 + 0x60, 
                                                    (int *)(param_1 + 0x18) + (longlong)index * 2, 
                                                    *data_pointer, 

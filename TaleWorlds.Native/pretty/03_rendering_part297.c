@@ -67,7 +67,7 @@ void FUN_1804266c0(uint64_t *param_1,longlong param_2,int param_3,int param_4,in
       lStack_108 = 0;
     }
     else {
-      lStack_108 = FUN_18062b420(_DAT_180c8ed18,(longlong)(iVar5 * iVar7),
+      lStack_108 = FUN_18062b420(system_memory_pool_ptr,(longlong)(iVar5 * iVar7),
                                  CONCAT71((uint7)(uint3)(uVar3 >> 8),0x22));
     }
     iStack_10c = 0;
@@ -206,7 +206,7 @@ void FUN_18042674c(int param_1,uint64_t param_2,int param_3)
        ((param_3 == 0 || (param_1 <= (int)(0x7fffffff / (longlong)param_3))))) &&
       ((param_1 = param_1 * param_3, -1 < param_1 && (-1 < unaff_EDI)))) &&
      ((unaff_EDI == 0 || (param_1 <= (int)(0x7fffffff / (longlong)unaff_EDI))))) {
-    uVar7 = FUN_18062b420(_DAT_180c8ed18,(longlong)(param_1 * unaff_EDI),0x22);
+    uVar7 = FUN_18062b420(system_memory_pool_ptr,(longlong)(param_1 * unaff_EDI),0x22);
     in_R11D = in_stack_00000040;
   }
   uStack000000000000004c = (uint)unaff_RBX;

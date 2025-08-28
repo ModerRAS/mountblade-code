@@ -19,13 +19,13 @@ void FUN_180093af0(longlong param_1)
   ulonglong uVar10;
   uint uVar11;
   
-  lVar3 = *(longlong *)(_DAT_180c86870 + 8);
+  lVar3 = *(longlong *)(system_main_module_state + 8);
   uVar10 = (ulonglong)(*(uint *)(lVar3 + 0x13c) & 1);
   iVar1 = *(int *)(lVar3 + 0xc4 + uVar10 * 0x48);
-  lVar4 = *(longlong *)(_DAT_180c86870 + 8);
+  lVar4 = *(longlong *)(system_main_module_state + 8);
   uVar8 = (ulonglong)(*(uint *)(lVar4 + 0x13c) & 1);
   iVar2 = *(int *)(lVar4 + 0xf0 + uVar8 * 0x48);
-  lVar5 = *(longlong *)(_DAT_180c86870 + 8);
+  lVar5 = *(longlong *)(system_main_module_state + 8);
   uVar9 = (ulonglong)(*(uint *)(lVar5 + 0x13c) & 1);
   uVar7 = *(int *)(lVar5 + 0xb4 + uVar9 * 0x48) - *(int *)(lVar5 + 0xac + uVar9 * 0x48);
   uVar11 = *(int *)(lVar5 + 0xb8 + uVar9 * 0x48) - *(int *)(lVar5 + 0xb0 + uVar9 * 0x48);
@@ -95,7 +95,7 @@ void FUN_180093bf0(longlong *param_1,uint64_t *param_2)
       goto LAB_180093cb6;
     }
   }
-  puVar7 = (uint64_t *)FUN_18062b420(_DAT_180c8ed18,lVar10 * 0x30,(char)param_1[3]);
+  puVar7 = (uint64_t *)FUN_18062b420(system_memory_pool_ptr,lVar10 * 0x30,(char)param_1[3]);
   puVar11 = (uint64_t *)param_1[1];
   puVar9 = (uint64_t *)*param_1;
 LAB_180093cb6:
@@ -180,7 +180,7 @@ void FUN_180093d90(longlong *param_1,uint64_t param_2)
     if (lVar10 == 0) goto LAB_180093e1b;
   }
   puVar5 = (int8_t *)
-           FUN_18062b420(_DAT_180c8ed18,lVar10 * 0x50,(char)param_1[3],lVar8,0xfffffffffffffffe);
+           FUN_18062b420(system_memory_pool_ptr,lVar10 * 0x50,(char)param_1[3],lVar8,0xfffffffffffffffe);
   lVar9 = param_1[1];
   lVar8 = *param_1;
 LAB_180093e1b:
@@ -666,7 +666,7 @@ void FUN_180094e80(uint64_t param_1,uint64_t param_2,longlong param_3)
   int8_t auStack_70 [72];
   ulonglong uStack_28;
   
-  uVar1 = _DAT_180c86930;
+  uVar1 = system_resource_state;
   uStack_a0 = 0xfffffffffffffffe;
   uStack_28 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_d8;
   uStack_a8 = 0;
@@ -728,7 +728,7 @@ void FUN_180095000(uint64_t param_1,uint64_t param_2,longlong param_3,int8_t par
   int8_t auStack_70 [72];
   ulonglong uStack_28;
   
-  uVar1 = _DAT_180c86930;
+  uVar1 = system_resource_state;
   uStack_a0 = 0xfffffffffffffffe;
   uStack_28 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_c8;
   uStack_a8 = 0;

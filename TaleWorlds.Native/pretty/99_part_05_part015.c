@@ -36,7 +36,7 @@ void FUN_1802dddb4(void)
   *(uint64_t *)(in_R11 + -0x30) = unaff_R13;
   *(uint64_t *)(in_R11 + -0x38) = unaff_R15;
   lVar10 = FUN_1800bd5c0();
-  uVar2 = *(uint64_t *)(_DAT_180c86938 + 0x1cd8);
+  uVar2 = *(uint64_t *)(system_message_buffer + 0x1cd8);
   if ((longlong *)*unaff_R12 == (longlong *)0x0) {
     *(int32_t *)(unaff_RBP + -0x69) = 0x7f0000;
     puVar11 = (int32_t *)(unaff_RBP + -0x79);

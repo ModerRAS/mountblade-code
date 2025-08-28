@@ -47,11 +47,11 @@ void FUN_1805204e0(longlong param_1,uint64_t param_2)
   if ((*(uint *)(param_1 + 0x56c) & 0x4000) != 0) {
     FUN_18050c1c0(param_1);
   }
-  lVar6 = _DAT_180c8ece0;
+  lVar6 = render_system_data_memory;
   iVar2 = *(int *)(param_1 + 0x18);
   _fStackX_8 = CONCAT44(fStackX_c,iVar2);
-  if ((iVar2 != 0) && (_DAT_180c8f008 != 0)) {
-    (**(code **)(_DAT_180c8f008 + 0x30))(iVar2);
+  if ((iVar2 != 0) && (system_cache_buffer != 0)) {
+    (**(code **)(system_cache_buffer + 0x30))(iVar2);
   }
   lVar6 = (**(code **)(lVar6 + 0x40))(iVar2);
   puVar9 = &system_buffer_ptr;
@@ -59,7 +59,7 @@ void FUN_1805204e0(longlong param_1,uint64_t param_2)
     puVar9 = *(void **)(lVar6 + 8);
   }
   FUN_180627910(&puStack_c8,puVar9);
-  for (lVar6 = *_DAT_180c8aa00; lVar6 != _DAT_180c8aa00[1]; lVar6 = lVar6 + 0x20) {
+  for (lVar6 = *render_system_data_memory; lVar6 != render_system_data_memory[1]; lVar6 = lVar6 + 0x20) {
     iVar3 = *(int *)(lVar6 + 0x10);
     iVar8 = iStack_b8;
     if (iVar3 == iStack_b8) {
@@ -78,7 +78,7 @@ LAB_1805205ee:
     }
     else if (iVar3 == 0) goto LAB_1805205ee;
   }
-  if (lVar6 == _DAT_180c8aa00[1]) {
+  if (lVar6 == render_system_data_memory[1]) {
     puVar9 = &system_buffer_ptr;
     if (puStack_c0 != (void *)0x0) {
       puVar9 = puStack_c0;
@@ -87,7 +87,7 @@ LAB_1805205ee:
     uVar11 = 0xffffffff;
   }
   else {
-    uVar11 = (int32_t)(lVar6 - *_DAT_180c8aa00 >> 5);
+    uVar11 = (int32_t)(lVar6 - *render_system_data_memory >> 5);
   }
   *(int32_t *)(param_1 + 0x740) = uVar11;
   puStack_c8 = &unknown_var_3456_ptr;
@@ -98,8 +98,8 @@ LAB_1805205ee:
   puStack_c0 = (void *)0x0;
   uStack_b0 = 0;
   puStack_c8 = &unknown_var_720_ptr;
-  if ((iVar2 != 0) && (_DAT_180c8f008 != 0)) {
-    (**(code **)(_DAT_180c8f008 + 0x18))(iVar2);
+  if ((iVar2 != 0) && (system_cache_buffer != 0)) {
+    (**(code **)(system_cache_buffer + 0x18))(iVar2);
   }
   if (*(int *)(param_1 + 0x570) == 2) {
     FUN_1804f41b0(*(uint64_t *)(param_1 + 0x8d8));
@@ -168,7 +168,7 @@ void FUN_180520b40(longlong param_1,longlong param_2)
     param_2 = *(longlong *)(param_1 + 0x8e8);
     if (param_2 == 0) goto LAB_180520bbd;
   }
-  if ((_DAT_180c92514 == 3) && (*(int *)(param_2 + 0x14) == 0)) {
+  if ((system_status_flag == 3) && (*(int *)(param_2 + 0x14) == 0)) {
     FUN_1804f1c90(*(uint64_t *)(param_1 + 0x8d8),*(int32_t *)(param_1 + 0x10),system_data_ec8a);
   }
 LAB_180520bbd:
@@ -898,7 +898,7 @@ void FUN_180520e60(longlong param_1,int32_t *param_2,longlong param_3,uint param
     uStack_168 = uStack_178;
     uStack_164 = uStack_174;
     func_0x0001805345e0(&uStack_2c8);
-    lVar3 = _DAT_180c8ece0;
+    lVar3 = render_system_data_memory;
     uStack_2c8 = 0x1000000;
     uStack_2c0 = 0;
     uStack_2a0 = 0;
@@ -937,12 +937,12 @@ void FUN_180520e60(longlong param_1,int32_t *param_2,longlong param_3,uint param
     uStack_228 = uVar6;
     uStack_224 = uVar13;
     uStack_220 = uVar7;
-    if ((iVar1 != 0) && (_DAT_180c8f008 != 0)) {
-      (**(code **)(_DAT_180c8f008 + 0x30))(iVar1);
+    if ((iVar1 != 0) && (system_cache_buffer != 0)) {
+      (**(code **)(system_cache_buffer + 0x30))(iVar1);
     }
     iVar2 = *(int *)(lVar10 * 0xa60 + lVar4 + 0x30b8);
-    if ((iVar2 != 0) && (_DAT_180c8f008 != 0)) {
-      (**(code **)(_DAT_180c8f008 + 0x30))(iVar2);
+    if ((iVar2 != 0) && (system_cache_buffer != 0)) {
+      (**(code **)(system_cache_buffer + 0x30))(iVar2);
     }
     uStack_108 = uStack_1e8;
     uStack_100 = uStack_1e0;
@@ -976,11 +976,11 @@ void FUN_180520e60(longlong param_1,int32_t *param_2,longlong param_3,uint param
     (**(code **)(lVar3 + 0x1e0))
               (*(int32_t *)(*(longlong *)(param_1 + 0x8d8) + 0x98d928),&uStack_2c8,&uStack_108,
                iVar2,iVar1);
-    if ((iVar2 != 0) && (_DAT_180c8f008 != 0)) {
-      (**(code **)(_DAT_180c8f008 + 0x18))(iVar2);
+    if ((iVar2 != 0) && (system_cache_buffer != 0)) {
+      (**(code **)(system_cache_buffer + 0x18))(iVar2);
     }
-    if ((iVar1 != 0) && (_DAT_180c8f008 != 0)) {
-      (**(code **)(_DAT_180c8f008 + 0x18))(iVar1);
+    if ((iVar1 != 0) && (system_cache_buffer != 0)) {
+      (**(code **)(system_cache_buffer + 0x18))(iVar1);
     }
   }
   return;

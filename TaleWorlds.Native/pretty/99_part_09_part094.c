@@ -501,9 +501,9 @@ void FUN_1806a07d0(uint64_t param_1,uint64_t param_2)
 uint64_t FUN_1806a07f0(longlong *param_1)
 
 {
-  _DAT_180be0050 = (**(code **)(*param_1 + 0x20))();
+  system_system_buffer_config = (**(code **)(*param_1 + 0x20))();
   FUN_1806a1b30();
-  return _DAT_180c0c2f0;
+  return system_system_config;
 }
 
 
@@ -833,7 +833,7 @@ uint64_t * FUN_1806a0d90(uint64_t *param_1)
   uVar6 = _getAllocator_shdfnd_physx__YAAEAVPxAllocatorCallback_2_XZ();
   uVar6 = FUN_1806b20f0(uVar6);
   param_1[0x12] = uVar6;
-  lVar7 = (**(code **)(*_DAT_180be0050 + 8))(_DAT_180be0050,0x40,&unknown_var_2528_ptr,&unknown_var_2472_ptr,0x5e)
+  lVar7 = (**(code **)(*system_system_buffer_config + 8))(system_system_buffer_config,0x40,&unknown_var_2528_ptr,&unknown_var_2472_ptr,0x5e)
   ;
   if (lVar7 == 0) {
     param_1[0x13] = 0;
@@ -902,7 +902,7 @@ uint64_t * FUN_1806a0d9c(uint64_t *param_1)
   uVar6 = _getAllocator_shdfnd_physx__YAAEAVPxAllocatorCallback_2_XZ();
   uVar6 = FUN_1806b20f0(uVar6);
   param_1[0x12] = uVar6;
-  lVar7 = (**(code **)(*_DAT_180be0050 + 8))(_DAT_180be0050,0x40,&unknown_var_2528_ptr,&unknown_var_2472_ptr,0x5e)
+  lVar7 = (**(code **)(*system_system_buffer_config + 8))(system_system_buffer_config,0x40,&unknown_var_2528_ptr,&unknown_var_2472_ptr,0x5e)
   ;
   if (lVar7 == 0) {
     param_1[0x13] = unaff_RBP;
@@ -951,7 +951,7 @@ void FUN_1806a0e10(void)
   uVar4 = _getAllocator_shdfnd_physx__YAAEAVPxAllocatorCallback_2_XZ();
   uVar4 = FUN_1806b20f0(uVar4);
   *(uint64_t *)(unaff_RBX + 0x90) = uVar4;
-  lVar5 = (**(code **)(*_DAT_180be0050 + 8))(_DAT_180be0050,0x40,&unknown_var_2528_ptr,&unknown_var_2472_ptr,0x5e)
+  lVar5 = (**(code **)(*system_system_buffer_config + 8))(system_system_buffer_config,0x40,&unknown_var_2528_ptr,&unknown_var_2472_ptr,0x5e)
   ;
   if (lVar5 == 0) {
     *(uint64_t *)(unaff_RBX + 0x98) = unaff_RBP;
@@ -990,7 +990,7 @@ void FUN_1806a0e71(void)
   uVar1 = _getAllocator_shdfnd_physx__YAAEAVPxAllocatorCallback_2_XZ();
   uVar1 = FUN_1806b20f0(uVar1);
   *(uint64_t *)(unaff_RBX + 0x90) = uVar1;
-  lVar2 = (**(code **)(*_DAT_180be0050 + 8))(_DAT_180be0050,0x40,&unknown_var_2528_ptr,&unknown_var_2472_ptr,0x5e)
+  lVar2 = (**(code **)(*system_system_buffer_config + 8))(system_system_buffer_config,0x40,&unknown_var_2528_ptr,&unknown_var_2472_ptr,0x5e)
   ;
   if (lVar2 != 0) {
     uVar1 = FUN_1806b6ae0(lVar2);

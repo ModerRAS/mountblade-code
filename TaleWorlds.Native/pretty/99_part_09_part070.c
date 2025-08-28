@@ -95,13 +95,13 @@ void FUN_1805ea4b0(longlong param_1,longlong param_2,longlong param_3,char *para
         iVar3 = 0;
       }
       else {
-        iVar3 = *(int *)((longlong)(int)plVar1[0x493] * 0x68 + 0x58 + _DAT_180c96150);
+        iVar3 = *(int *)((longlong)(int)plVar1[0x493] * 0x68 + 0x58 + system_system_config);
         if (iVar3 == 0x12) {
           lVar2 = FUN_18053a5a0(&system_data_5f30,*(int32_t *)((longlong)plVar1 + 0xac));
           if ((int)plVar1[0x493] == -1) {
             return;
           }
-          if (*(char *)((longlong)(int)plVar1[0x493] * 0x68 + 0x60 + _DAT_180c96150) != '\x04') {
+          if (*(char *)((longlong)(int)plVar1[0x493] * 0x68 + 0x60 + system_system_config) != '\x04') {
             return;
           }
           fVar5 = (float)(**(code **)(*plVar1 + 0x90))(plVar1,1);
@@ -144,17 +144,17 @@ void FUN_1805ea4b0(longlong param_1,longlong param_2,longlong param_3,char *para
 LAB_1805ea5e4:
       *param_4 = *(char *)(param_1 + 0x126) == '\0';
     }
-    else if (*(int *)((longlong)iVar3 * 0x68 + 0x58 + _DAT_180c96150) == 0x11) {
+    else if (*(int *)((longlong)iVar3 * 0x68 + 0x58 + system_system_config) == 0x11) {
       lVar2 = (**(code **)(*plVar1 + 0x128))(plVar1,1);
       fVar5 = *(float *)(lVar2 + 0x1d8);
       fVar4 = (float)(**(code **)(*plVar1 + 0x90))(plVar1,1);
       *param_4 = fVar4 < fVar5;
     }
     else {
-      if (*(int *)((longlong)iVar3 * 0x68 + 0x58 + _DAT_180c96150) != 0x12) goto LAB_1805ea5e4;
+      if (*(int *)((longlong)iVar3 * 0x68 + 0x58 + system_system_config) != 0x12) goto LAB_1805ea5e4;
       lVar2 = FUN_18053a5a0(&system_data_5f30,*(int32_t *)((longlong)plVar1 + 0xac));
       if (((int)plVar1[0x493] != -1) &&
-         (*(char *)((longlong)(int)plVar1[0x493] * 0x68 + 0x60 + _DAT_180c96150) == '\x04')) {
+         (*(char *)((longlong)(int)plVar1[0x493] * 0x68 + 0x60 + system_system_config) == '\x04')) {
         fVar5 = (float)(**(code **)(*plVar1 + 0x90))(plVar1,1);
         *param_4 = *(float *)(lVar2 + 0x1d8) <= fVar5 && fVar5 != *(float *)(lVar2 + 0x1d8);
       }
@@ -240,7 +240,7 @@ void FUN_1805ea582(longlong param_1,longlong param_2,uint64_t param_3,uint64_t p
   if (*(int *)(param_2 * 0x68 + 0x58 + param_1) == 0x12) {
     lVar1 = FUN_18053a5a0(&system_data_5f30,*(int32_t *)((longlong)unaff_RDI + 0xac));
     if (((int)unaff_RDI[0x493] != -1) &&
-       (*(char *)((longlong)(int)unaff_RDI[0x493] * 0x68 + 0x60 + _DAT_180c96150) == '\x04')) {
+       (*(char *)((longlong)(int)unaff_RDI[0x493] * 0x68 + 0x60 + system_system_config) == '\x04')) {
       fVar2 = (float)(**(code **)(*unaff_RDI + 0x90))(extraout_XMM0_Da,1);
       *unaff_RSI = *(float *)(lVar1 + 0x1d8) <= fVar2 && fVar2 != *(float *)(lVar1 + 0x1d8);
     }

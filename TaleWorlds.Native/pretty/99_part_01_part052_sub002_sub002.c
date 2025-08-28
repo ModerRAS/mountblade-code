@@ -678,7 +678,7 @@ uint64_t * FUN_1800d9060(uint64_t *param_1)
   *(int32_t *)((longlong)param_1 + 0x150c) = *(int32_t *)(lVar2 + 0x540);
   *(int32_t *)(param_1 + 0x26b) = 0;
   if ((longlong)*(int *)(param_1 + 0x466) != 0) {
-    uVar3 = FUN_18062b420(_DAT_180c8ed18,(longlong)*(int *)(param_1 + 0x466) * 4,0xc);
+    uVar3 = FUN_18062b420(system_memory_pool_ptr,(longlong)*(int *)(param_1 + 0x466) * 4,0xc);
   }
   param_1[0x467] = uVar3;
   *(int8_t *)(param_1 + 0x1e3) = 0;

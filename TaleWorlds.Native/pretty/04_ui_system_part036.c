@@ -395,7 +395,7 @@ void FUN_180675320(ulonglong *param_1,longlong param_2,uint64_t *param_3,
   auVar16._0_2_ = (short)(uVar2 >> 0x10);
   auVar35._14_2_ = (short)uVar1;
   auVar35._12_2_ = (short)uVar2;
-  auVar18 = pshufb(auVar41,_DAT_180946f70);
+  auVar18 = pshufb(auVar41,ui_system_config);
   auVar31._0_8_ = auVar36._0_8_;
   auVar31._8_4_ = auVar15._0_4_;
   auVar31._12_4_ = auVar16._0_4_;
@@ -410,10 +410,10 @@ void FUN_180675320(ulonglong *param_1,longlong param_2,uint64_t *param_3,
   auVar32._8_8_ = auVar31._8_8_;
   auVar32._0_8_ = auVar34._8_8_;
   auVar33 = pmaddubsw(auVar32,auVar18);
-  auVar18 = pshufb(auVar41,_DAT_180946f90);
+  auVar18 = pshufb(auVar41,ui_system_config);
   auVar26 = pmaddubsw(auVar48,auVar18);
-  auVar18 = pshufb(auVar41,_DAT_180946fa0);
-  auVar41 = pshufb(auVar41,_DAT_180946f40);
+  auVar18 = pshufb(auVar41,ui_system_config);
+  auVar41 = pshufb(auVar41,ui_system_config);
   auVar48 = pmaddubsw(auVar47,auVar18);
   auVar18 = pmaddubsw(auVar35,auVar41);
   sVar5 = auVar33._0_2_;
@@ -451,7 +451,7 @@ void FUN_180675320(ulonglong *param_1,longlong param_2,uint64_t *param_3,
   auVar18 = paddsw(auVar48,auVar18);
   auVar41 = paddsw(auVar18,auVar41);
   auVar41 = paddsw(auVar41,auVar27);
-  auVar41 = pmulhrsw(auVar41,_DAT_180946f30);
+  auVar41 = pmulhrsw(auVar41,ui_system_config);
   sVar5 = auVar41._0_2_;
   sVar6 = auVar41._2_2_;
   sVar7 = auVar41._4_2_;
@@ -620,7 +620,7 @@ void FUN_180675570(longlong param_1,longlong param_2,longlong param_3,longlong p
               auVar13._0_2_ = (short)(uVar3 >> 0x10);
               auVar35._6_2_ = (short)uVar1;
               auVar35._4_2_ = (short)uVar3;
-              auVar24 = pshufb(auVar41,_DAT_180946f70);
+              auVar24 = pshufb(auVar41,ui_system_config);
               auVar46._4_4_ = auVar32._8_4_;
               auVar46._0_4_ = auVar43._8_4_;
               auVar46._8_4_ = auVar44._12_4_;
@@ -633,10 +633,10 @@ void FUN_180675570(longlong param_1,longlong param_2,longlong param_3,longlong p
               auVar39._8_8_ = 0;
               auVar39._0_8_ = auVar35._8_8_;
               auVar40 = pmaddubsw(auVar39,auVar24);
-              auVar24 = pshufb(auVar41,_DAT_180946f90);
+              auVar24 = pshufb(auVar41,ui_system_config);
               auVar32 = pmaddubsw(auVar46,auVar24);
-              auVar24 = pshufb(auVar41,_DAT_180946fa0);
-              auVar41 = pshufb(auVar41,_DAT_180946f40);
+              auVar24 = pshufb(auVar41,ui_system_config);
+              auVar41 = pshufb(auVar41,ui_system_config);
               auVar47 = pmaddubsw(auVar46 >> 0x40,auVar24);
               auVar24 = pmaddubsw(auVar35,auVar41);
               sVar4 = auVar40._0_2_;
@@ -680,7 +680,7 @@ void FUN_180675570(longlong param_1,longlong param_2,longlong param_3,longlong p
               auVar24 = paddsw(auVar47,auVar24);
               auVar41 = paddsw(auVar24,auVar41);
               auVar41 = paddsw(auVar41,auVar33);
-              auVar41 = pmulhrsw(auVar41,_DAT_180946f30);
+              auVar41 = pmulhrsw(auVar41,ui_system_config);
               sVar4 = auVar41._0_2_;
               sVar5 = auVar41._2_2_;
               sVar6 = auVar41._4_2_;

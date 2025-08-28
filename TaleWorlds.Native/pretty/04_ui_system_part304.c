@@ -546,9 +546,9 @@ void FUN_180836110(int8_t (*param_1) [32],uint param_2,longlong param_3,uint *pa
     auVar32._0_16_ = auVar43;
     auStack_140 = vpaddq_avx2(auVar32,auVar33);
     puVar27 = auStack_188;
-    auVar32 = _DAT_180980be0;
-    auVar33 = _DAT_180980c20;
-    auVar23 = _DAT_180980c80;
+    auVar32 = ui_system_memory_config;
+    auVar33 = ui_system_memory_config;
+    auVar23 = ui_system_memory_config;
     do {
       auStack_180 = auStack_140;
       auVar33 = vpermd_avx2(auVar33,auStack_180);
@@ -611,7 +611,7 @@ void FUN_180836110(int8_t (*param_1) [32],uint param_2,longlong param_3,uint *pa
       auVar39._28_4_ = auVar20._12_4_ + 0.0;
       auVar32 = vmovntps_avx(auVar39);
       *param_1 = auVar32;
-      auVar32 = _DAT_180980be0;
+      auVar32 = ui_system_memory_config;
       auVar23._8_8_ = lStack_100;
       auVar23._0_8_ = lStack_100;
       auVar23._16_8_ = lStack_100;
@@ -629,8 +629,8 @@ void FUN_180836110(int8_t (*param_1) [32],uint param_2,longlong param_3,uint *pa
       auVar34 = vsubps_avx(auVar34,auVar42);
       auVar33 = vmovntps_avx(auVar37);
       param_1[1] = auVar33;
-      auVar23 = _DAT_180980c80;
-      auVar33 = _DAT_180980c20;
+      auVar23 = ui_system_memory_config;
+      auVar33 = ui_system_memory_config;
       auVar35._0_4_ = auVar34._0_4_ * fStack_120 + auVar16._0_4_;
       auVar35._4_4_ = auVar34._4_4_ * fStack_11c + auVar16._4_4_;
       auVar35._8_4_ = auVar34._8_4_ * fStack_118 + auVar16._8_4_;

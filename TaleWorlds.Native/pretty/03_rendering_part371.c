@@ -101,8 +101,8 @@ void FUN_18046d350(float param_1,float *param_2,float *param_3)
     fVar15 = fVar24 * fVar12;
     bVar3 = (&unknown_var_1744_ptr)[(byte)((&unknown_var_1744_ptr)[(longlong)iVar10 & 0xff] + cVar5 + '\x01')];
     fVar22 = fVar15 * fVar20;
-    iVar9 = _DAT_180c8ecd4 + iVar11;
-    iVar11 = _DAT_180c8ecd4 + iVar11 + 1;
+    iVar9 = render_system_data_config + iVar11;
+    iVar11 = render_system_data_config + iVar11 + 1;
     fVar15 = fVar15 * fVar26;
     bVar4 = (&unknown_var_1744_ptr)
             [(byte)((&unknown_var_1744_ptr)[(longlong)iVar10 + 1U & 0xff] + cVar5 + '\x01')];
@@ -323,8 +323,8 @@ void FUN_18046d374(float param_1,float *param_2)
   fVar15 = fVar24 * fVar12;
   bVar3 = (&unknown_var_1744_ptr)[(byte)((&unknown_var_1744_ptr)[(longlong)iVar10 & 0xff] + cVar5 + '\x01')];
   fVar22 = fVar15 * fVar20;
-  iVar9 = _DAT_180c8ecd4 + iVar11;
-  iVar11 = _DAT_180c8ecd4 + iVar11 + 1;
+  iVar9 = render_system_data_config + iVar11;
+  iVar11 = render_system_data_config + iVar11 + 1;
   fVar15 = fVar15 * fVar26;
   bVar4 = (&unknown_var_1744_ptr)[(byte)((&unknown_var_1744_ptr)[(longlong)iVar10 + 1U & 0xff] + cVar5 + '\x01')];
   uVar7 = (ulonglong)(byte)(&unknown_var_1744_ptr)[iVar9 + (uint)bVar1 & 0xff];
@@ -724,15 +724,15 @@ void FUN_18046e1e0(longlong param_1,longlong param_2,uint param_3)
   }
   *(longlong *)(param_1 + 0x1b8 + (ulonglong)auStack_108[0] * 8) = param_2;
   fVar12 = *(float *)(param_1 + 0x250);
-  lStack_e8 = _DAT_180bfbb50;
+  lStack_e8 = render_system_control_config;
   puStack_e0 = (uint *)uRam0000000180bfbb58;
-  puStack_d8 = (void *)_DAT_180bfbb60;
+  puStack_d8 = (void *)render_system_control_config;
   pcStack_d0 = (code *)uRam0000000180bfbb68;
-  uStack_c8 = _DAT_180bfbb70;
+  uStack_c8 = render_system_control_config;
   uStack_c4 = uRam0000000180bfbb74;
   uStack_c0 = uRam0000000180bfbb78;
   uStack_bc = uRam0000000180bfbb7c;
-  uStack_b8 = _DAT_180bfbb80;
+  uStack_b8 = render_system_control_config;
   uStack_b4 = uRam0000000180bfbb84;
   uStack_b0 = uRam0000000180bfbb88;
   uStack_ac = uRam0000000180bfbb8c;

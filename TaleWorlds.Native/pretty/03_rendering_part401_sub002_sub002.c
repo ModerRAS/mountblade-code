@@ -128,7 +128,7 @@ void FUN_18048f210(longlong param_1,float *param_2,int param_3)
   fVar11 = param_2[6];
   pauVar21 = (int8_t (*) [16])auStack_130;
   auVar55._16_48_ = in_ZMM9._16_48_;
-  auVar55._0_16_ = _DAT_180a40780;
+  auVar55._0_16_ = render_system_memory;
   pfVar20 = *(float **)(param_1 + 0x1e8 + lVar27 * 8);
   lVar19 = 0;
   fVar12 = pfVar20[0xc];
@@ -161,8 +161,8 @@ void FUN_18048f210(longlong param_1,float *param_2,int param_3)
   afStack_19c[4] = pfVar20[9] * fVar11;
   afStack_19c[5] = pfVar20[10] * fVar11;
   fStack_184 = pfVar20[0xb] * fVar11;
-  auVar42 = _DAT_180a40490;
-  auVar46 = _DAT_180a40740;
+  auVar42 = render_system_memory;
+  auVar46 = render_system_memory;
   do {
     lVar1 = (ulonglong)*(uint *)(&unknown_var_3920_ptr + lVar19) * 0x10;
     lVar2 = (ulonglong)*(uint *)(&unknown_var_3856_ptr + lVar19) * 0x10;
@@ -288,8 +288,8 @@ void FUN_18048f210(longlong param_1,float *param_2,int param_3)
   } while (lVar23 != 0);
   auVar35._4_4_ = movmskps(uVar26 * 2,auVar53);
   if (auVar35._4_4_ == 0xf) {
-    auVar46 = minps(auVar46,_DAT_180a403e0);
-    auVar42 = maxps(auVar42,_DAT_180a40720);
+    auVar46 = minps(auVar46,render_system_memory);
+    auVar42 = maxps(auVar42,render_system_memory);
     fVar49 = auVar46._8_4_;
     auVar51._4_4_ = -(uint)(auVar46._4_4_ < auVar42._4_4_);
     auVar51._0_4_ = -(uint)(auVar46._0_4_ < auVar42._0_4_);
@@ -488,16 +488,16 @@ void FUN_18048f210(longlong param_1,float *param_2,int param_3)
               auStack_160._8_4_ = auVar35._8_4_ * auVar43._8_4_;
               auStack_160._12_4_ = auVar35._12_4_ * auVar43._12_4_;
               auVar42 = vpmaxsd_avx(auVar42,auVar41);
-              auStack_3e0 = vpminsd_avx(auVar42,_DAT_180a3f840);
+              auStack_3e0 = vpminsd_avx(auVar42,render_system_memory);
               auVar42 = vpmaxsd_avx(auVar46,ZEXT816(0) << 0x20);
-              auStack_3f0 = vpand_avx(auVar42,_DAT_180a40760);
+              auStack_3f0 = vpand_avx(auVar42,render_system_memory);
               auVar42 = vpminsd_avx(auVar40,auVar34);
               auVar46 = vpminsd_avx(auVar42,auVar44);
               auVar42 = vpmaxsd_avx(auVar40,auVar34);
               auVar46 = vpmaxsd_avx(auVar46,ZEXT816(0) << 0x20);
               auVar42 = vpmaxsd_avx(auVar42,auVar44);
-              auStack_3d0 = vpand_avx(auVar46,_DAT_180a40770);
-              auStack_3c0 = vpminsd_avx(auVar42,_DAT_180a3f820);
+              auStack_3d0 = vpand_avx(auVar46,render_system_memory);
+              auStack_3c0 = vpminsd_avx(auVar42,render_system_memory);
               do {
                 uStack_420 = MXCSR;
                 if (0 < *(int *)(auStack_400 + lVar19)) {
@@ -585,12 +585,12 @@ void FUN_18048f210(longlong param_1,float *param_2,int param_3)
                   auVar42 = vpshufd_avx(ZEXT416(uVar25),0);
                   auVar33._16_16_ = auVar42;
                   auVar33._0_16_ = auVar42;
-                  auVar33 = vpaddd_avx2(auVar33,_DAT_180a407e0);
+                  auVar33 = vpaddd_avx2(auVar33,render_system_memory);
                   auVar31 = vpmulld_avx2(auVar33,auVar37);
                   auVar42 = vpshufd_avx(ZEXT416(uVar6),0);
                   auVar28._16_16_ = auVar42;
                   auVar28._0_16_ = auVar42;
-                  auVar28 = vpaddd_avx2(auVar28,_DAT_180a40820);
+                  auVar28 = vpaddd_avx2(auVar28,render_system_memory);
                   uVar4 = *(int32_t *)(auStack_350 + lVar19);
                   auVar29._4_4_ = uVar4;
                   auVar29._0_4_ = uVar4;
@@ -688,7 +688,7 @@ void FUN_18048f210(longlong param_1,float *param_2,int param_3)
                         auVar38 = auVar39;
                       } while (uVar22 != 0);
                     }
-                    if ((_DAT_180a40880 & auVar31) != (int8_t  [32])0x0) goto LAB_18048fc1a;
+                    if ((render_system_memory & auVar31) != (int8_t  [32])0x0) goto LAB_18048fc1a;
                     _auStack_1a0 = vpaddd_avx2(_auStack_1a0,auStack_240);
                     _auStack_1c0 = vpaddd_avx2(_auStack_1c0,auStack_220);
                     _auStack_1e0 = vpaddd_avx2(_auStack_1e0,auStack_200);

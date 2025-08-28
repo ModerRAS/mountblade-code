@@ -288,7 +288,7 @@ void FUN_180563470(longlong param_1)
 {
   uint64_t *puVar1;
   
-  puVar1 = (uint64_t *)FUN_18062b1e0(_DAT_180c8ed18,0x10,8,3);
+  puVar1 = (uint64_t *)FUN_18062b1e0(system_memory_pool_ptr,0x10,8,3);
   *puVar1 = &unknown_var_7904_ptr;
   *(int32_t *)(puVar1 + 1) = *(int32_t *)(param_1 + 8);
   *(int32_t *)((longlong)puVar1 + 0xc) = *(int32_t *)(param_1 + 0xc);
@@ -517,7 +517,7 @@ void FUN_180563860(longlong param_1)
 {
   uint64_t *puVar1;
   
-  puVar1 = (uint64_t *)FUN_18062b1e0(_DAT_180c8ed18,0x10,8,3);
+  puVar1 = (uint64_t *)FUN_18062b1e0(system_memory_pool_ptr,0x10,8,3);
   *puVar1 = &unknown_var_8008_ptr;
   *(int32_t *)(puVar1 + 1) = *(int32_t *)(param_1 + 8);
   *(int32_t *)((longlong)puVar1 + 0xc) = *(int32_t *)(param_1 + 0xc);
@@ -746,7 +746,7 @@ void FUN_180563c50(longlong param_1)
 {
   uint64_t *puVar1;
   
-  puVar1 = (uint64_t *)FUN_18062b1e0(_DAT_180c8ed18,0x18,8,3);
+  puVar1 = (uint64_t *)FUN_18062b1e0(system_memory_pool_ptr,0x18,8,3);
   *puVar1 = &unknown_var_8128_ptr;
   *(int32_t *)(puVar1 + 1) = *(int32_t *)(param_1 + 8);
   *(int32_t *)((longlong)puVar1 + 0xc) = *(int32_t *)(param_1 + 0xc);
@@ -1046,7 +1046,7 @@ void FUN_1805641b0(longlong param_1)
   uint64_t uVar1;
   uint64_t *puVar2;
   
-  puVar2 = (uint64_t *)FUN_18062b1e0(_DAT_180c8ed18,0x20,8,3);
+  puVar2 = (uint64_t *)FUN_18062b1e0(system_memory_pool_ptr,0x20,8,3);
   *puVar2 = &unknown_var_8256_ptr;
   uVar1 = *(uint64_t *)(param_1 + 0x10);
   puVar2[1] = *(uint64_t *)(param_1 + 8);

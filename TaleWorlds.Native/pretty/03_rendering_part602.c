@@ -181,7 +181,7 @@ void FUN_180599750(longlong param_1,float *param_2)
   uStackX_10 = ((ulonglong)(uint)fVar5 & 0x7fffffff) << 0x20;
   uStackX_8 = 0;
   uVar2 = func_0x000180598130(param_1,0,0x3f800000);
-  fVar5 = -_DAT_180c963c8;
+  fVar5 = -render_system_config;
   while( true ) {
     uStackX_8 = CONCAT44(uVar2,(int32_t)uStackX_8) ^ 0x8000000000000000;
     FUN_180598c50(&uStackX_8,0x3d088889,&uStackX_10,uVar1);

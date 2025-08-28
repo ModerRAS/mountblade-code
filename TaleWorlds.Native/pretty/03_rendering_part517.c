@@ -78,7 +78,7 @@ typedef int (*RenderCallbackFunc)(void*, void*);      // 渲染回调函数
  =============================================================================*/
 
 // 外部全局变量引用
-extern void* _DAT_180c8ed18;                         // 全局数据区
+extern void* system_memory_pool_ptr;                         // 全局数据区
 extern void* global_state_784_ptr;                          // 未知数据块1
 extern void* global_state_3552_ptr;                          // 未知数据块2
 extern void* global_state_3696_ptr;                          // 未知数据块3
@@ -86,7 +86,7 @@ extern void* global_state_768_ptr;                          // 未知数据块4
 extern void* global_state_248_ptr;                          // 未知数据块5
 extern void* global_state_9304_ptr;                          // 未知数据块6
 extern void* system_allocation_flags;                          // 数据区引用
-extern void* _DAT_180c86870;                         // 全局系统数据
+extern void* system_main_module_state;                         // 全局系统数据
 
 // 外部函数声明
 extern void FUN_1808fd200(void);                     // 系统初始化函数
@@ -313,7 +313,7 @@ uint64_t RenderSystem_ProcessBatch(longlong *param_1)
     }
     
     // 分配渲染上下文内存
-    uVar1 = FUN_18062b1e0(_DAT_180c8ed18, RENDER_OBJECT_SIZE_1A8, MEMORY_ALIGN_8, 3);
+    uVar1 = FUN_18062b1e0(system_memory_pool_ptr, RENDER_OBJECT_SIZE_1A8, MEMORY_ALIGN_8, 3);
     
     // 设置批处理参数
     pplStack_58 = &plStackX_10;
@@ -412,7 +412,7 @@ uint64_t * RenderSystem_CreateContext(void)
     uint64_t *puVar1;
     
     // 分配渲染上下文内存（0x6d0字节，8字节对齐）
-    puVar1 = (uint64_t *)FUN_18062b1e0(_DAT_180c8ed18, RENDER_OBJECT_SIZE_6D0, MEMORY_ALIGN_8, 3);
+    puVar1 = (uint64_t *)FUN_18062b1e0(system_memory_pool_ptr, RENDER_OBJECT_SIZE_6D0, MEMORY_ALIGN_8, 3);
     
     // 调用系统配置函数
     FUN_180320470();
@@ -604,7 +604,7 @@ RenderSystem_InitializeContext(uint64_t *param_1, longlong *param_2, longlong *p
         cVar4 = func_0x000180282950();
         if (cVar4 != '\0') {
             // 分配额外资源内存
-            uVar5 = FUN_18062b1e0(_DAT_180c8ed18, RENDER_OBJECT_SIZE_200, MEMORY_ALIGN_8, 3);
+            uVar5 = FUN_18062b1e0(system_memory_pool_ptr, RENDER_OBJECT_SIZE_200, MEMORY_ALIGN_8, 3);
             
             // 创建额外资源对象
             plVar6 = (longlong *)FUN_18030b420(uVar5, param_1[0x22], 1);
@@ -906,7 +906,7 @@ int32_t RenderSystem_ExecuteCommand(longlong param_1, int32_t param_2, longlong 
     auStackX_10[0] = param_2;
     
     // 分配命令参数结构体内存（0x18字节，8字节对齐）
-    aplStack_28[0] = (longlong *)FUN_18062b1e0(_DAT_180c8ed18, RENDER_OBJECT_SIZE_18, MEMORY_ALIGN_8, system_allocation_flags, 0xfffffffffffffffe);
+    aplStack_28[0] = (longlong *)FUN_18062b1e0(system_memory_pool_ptr, RENDER_OBJECT_SIZE_18, MEMORY_ALIGN_8, system_allocation_flags, 0xfffffffffffffffe);
     
     // 打包命令参数到结构体
     *aplStack_28[0] = (longlong)auStackX_8;    // 返回值指针
@@ -1786,7 +1786,7 @@ void RenderSystem_SetShader(longlong param_1, uint64_t param_2, uint64_t param_3
     pcStack_10 = FUN_18054a960;
     
     // 分配着色器参数结构体内存（0x18字节，8字节对齐）
-    apuStack_28[0] = (int32_t *)FUN_18062b1e0(_DAT_180c8ed18, 0x18, MEMORY_ALIGN_8, system_allocation_flags, 0xfffffffffffffffe);
+    apuStack_28[0] = (int32_t *)FUN_18062b1e0(system_memory_pool_ptr, 0x18, MEMORY_ALIGN_8, system_allocation_flags, 0xfffffffffffffffe);
     
     // 打包着色器参数（64位参数拆分为两个32位）
     uStack_40 = (int32_t)param_2;                    // 低32位
@@ -2334,8 +2334,8 @@ int RenderSystem_ExecuteFrame(longlong param_1, longlong param_2, uint64_t param
         
         // 检查是否需要更新状态
         if ((iVar1 == 0) &&
-            ((*(longlong *)(_DAT_180c86870 + 0x3d8) == 0 ||
-             (*(int *)(*(longlong *)(_DAT_180c86870 + 0x3d8) + 0x110) != 2)))) {
+            ((*(longlong *)(system_main_module_state + 0x3d8) == 0 ||
+             (*(int *)(*(longlong *)(system_main_module_state + 0x3d8) + 0x110) != 2)))) {
             // 调用状态更新函数
             FUN_180548880(param_1, *(int8_t *)(param_1 + 0x191));
             iVar1 = *(int *)(param_1 + 0x154);

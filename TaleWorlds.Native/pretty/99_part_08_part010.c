@@ -100,7 +100,7 @@ void FUN_1804e88b0(longlong param_1,char param_2,longlong **param_3,float *param
   plStack_c50 = (longlong *)0x0;
   if (param_2 == '\0') {
     plVar17 = plVar15;
-    if ((_DAT_180c92514 == 1) && (param_16 != '\0')) {
+    if ((system_status_flag == 1) && (param_16 != '\0')) {
       iVar12 = -1;
       fVar23 = 1e+30;
       iVar18 = 0;
@@ -171,7 +171,7 @@ void FUN_1804e88b0(longlong param_1,char param_2,longlong **param_3,float *param
             (iVar12 = *(int *)(*(longlong *)
                                 ((longlong)*(int *)(param_1 + 0x98d930) * 0xa60 + 0x3630 + param_1)
                               + 0x2498), iVar12 != -1)) &&
-           (plVar17 = plVar15, *(int *)((longlong)iVar12 * 0x68 + 0x58 + _DAT_180c96150) == 0x11)) {
+           (plVar17 = plVar15, *(int *)((longlong)iVar12 * 0x68 + 0x58 + system_system_memory) == 0x11)) {
           *(int8_t *)(param_1 + 0x87b2f0) = 1;
         }
         goto LAB_1804e8dc6;
@@ -180,7 +180,7 @@ void FUN_1804e88b0(longlong param_1,char param_2,longlong **param_3,float *param
     else {
 LAB_1804e8dc6:
       plVar16 = plVar17;
-      if ((param_6 == *(float *)(param_1 + 0x98d930)) && (_DAT_180c92514 == 1)) {
+      if ((param_6 == *(float *)(param_1 + 0x98d930)) && (system_status_flag == 1)) {
         *(uint64_t *)(param_1 + 0x87b700) =
              *(uint64_t *)(&system_error_code + (longlong)*(int *)(param_1 + 0x87b708) * 8);
       }
@@ -274,7 +274,7 @@ LAB_1804e8dc6:
       if (lVar9 == 0) {
         lVar9 = 1;
 LAB_1804e89e2:
-        lVar7 = FUN_18062b420(_DAT_180c8ed18,lVar9 * 0xbe0,*(int8_t *)(param_1 + 0x87b310));
+        lVar7 = FUN_18062b420(system_memory_pool_ptr,lVar9 * 0xbe0,*(int8_t *)(param_1 + 0x87b310));
         uVar19 = *(ulonglong *)(param_1 + 0x87b300);
         lVar21 = *(longlong *)(param_1 + 0x87b2f8);
       }
@@ -320,7 +320,7 @@ LAB_1804e89e2:
     }
     apuStack_c38[0] = &unknown_var_5552_ptr;
   }
-  FUN_18062b1e0(_DAT_180c8ed18,0x1f8,8,3);
+  FUN_18062b1e0(system_memory_pool_ptr,0x1f8,8,3);
   lVar9 = FUN_18058f390();
   uStack_c90 = &plStack_ca0;
   plStack_ca0 = plVar16;
@@ -412,7 +412,7 @@ void FUN_1804e9160(longlong param_1,uint param_2)
     }
     *(int16_t *)(lVar4 + 0x3d1) = 0;
                     // WARNING: Subroutine does not return
-    FUN_180062300(_DAT_180c86928,&unknown_var_1728_ptr);
+    FUN_180062300(system_message_context,&unknown_var_1728_ptr);
   }
   *(int8_t *)(lVar4 + 0x3d0) = 0;
   lVar6 = *(longlong *)(*(longlong *)(param_1 + 0x87b340) + uVar7 * 8) + lVar6;
@@ -475,7 +475,7 @@ void FUN_1804e9160(longlong param_1,uint param_2)
   *(int8_t *)(param_1 + 0x87b388) = 1;
                     // WARNING: Could not recover jumptable at 0x0001804e93cc. Too many branches
                     // WARNING: Treating indirect jump as call
-  (**(code **)(_DAT_180c8ece0 + 0x248))(*(int32_t *)(param_1 + 0x98d928),param_2);
+  (**(code **)(system_system_data_memory + 0x248))(*(int32_t *)(param_1 + 0x98d928),param_2);
   return;
 }
 

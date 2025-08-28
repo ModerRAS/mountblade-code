@@ -647,7 +647,7 @@ void FUN_180439d9f(void)
   int iStack0000000000000048;
   
   lVar1 = SYSTEM_STATE_MANAGER;
-  if (*(int *)(_DAT_180c8a9c8 + 0xcb0) == 0) {
+  if (*(int *)(render_system_data_memory + 0xcb0) == 0) {
     return;
   }
   uStack0000000000000030 = _iStack0000000000000048;
@@ -686,7 +686,7 @@ void FUN_180439dd2(void)
   int iStack0000000000000048;
   
   lVar1 = SYSTEM_STATE_MANAGER;
-  if (*(int *)(_DAT_180c8a9c8 + 0xd20) == 0) {
+  if (*(int *)(render_system_data_memory + 0xd20) == 0) {
     return;
   }
   uStack0000000000000030 = _iStack0000000000000048;
@@ -725,7 +725,7 @@ void FUN_180439e05(void)
   int iStack0000000000000048;
   
   lVar1 = SYSTEM_STATE_MANAGER;
-  if (*(int *)(_DAT_180c8a9c8 + 0xd90) == 0) {
+  if (*(int *)(render_system_data_memory + 0xd90) == 0) {
     return;
   }
   uStack0000000000000030 = _iStack0000000000000048;
@@ -764,7 +764,7 @@ void FUN_180439e38(void)
   int iStack0000000000000048;
   
   lVar1 = SYSTEM_STATE_MANAGER;
-  if (*(int *)(_DAT_180c8a9c8 + 0xe70) == 0) {
+  if (*(int *)(render_system_data_memory + 0xe70) == 0) {
     return;
   }
   uStack0000000000000030 = _iStack0000000000000048;
@@ -803,7 +803,7 @@ void FUN_180439e6b(void)
   int iStack0000000000000048;
   
   lVar1 = SYSTEM_STATE_MANAGER;
-  if (*(int *)(_DAT_180c8a9c8 + 0xe00) == 0) {
+  if (*(int *)(render_system_data_memory + 0xe00) == 0) {
     return;
   }
   uStack0000000000000030 = _iStack0000000000000048;

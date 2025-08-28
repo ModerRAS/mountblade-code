@@ -253,7 +253,7 @@ void FUN_1803cbfb0(longlong param_1,float *param_2,longlong param_3)
       uStack_3fc = puVar3[1];
       uStack_3f8 = puVar3[2];
       uStack_3f4 = puVar3[3];
-      lStack_538 = _DAT_180c8a990 + 0x48;
+      lStack_538 = system_system_data_memory + 0x48;
       uStack_540 = 0x3f800000;
       uStack_548 = 0x3dcccccd;
       uStack_550 = 0x3dcccccd;

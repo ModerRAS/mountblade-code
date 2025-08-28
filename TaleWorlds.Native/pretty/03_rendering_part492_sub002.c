@@ -50,7 +50,7 @@ void FUN_18052f6f0(longlong param_1,longlong param_2,int32_t *param_3,int32_t *p
     if (cVar5 == '\0') {
       if (((uVar10 & 0x20) != 0) && (-1 < (char)uVar10)) {
         iVar4 = *(int *)(*(longlong *)(param_1 + 0x590) + 0x2450);
-        if ((iVar4 == -1) || (*(int *)((longlong)iVar4 * 0x68 + 0x58 + _DAT_180c96150) != 0x17)) {
+        if ((iVar4 == -1) || (*(int *)((longlong)iVar4 * 0x68 + 0x58 + render_system_config) != 0x17)) {
           fVar13 = *(float *)(param_2 + 0x7c) * *(float *)(param_1 + 0x534) +
                    *(float *)(param_2 + 0x78) * *(float *)(param_1 + 0x530) +
                    *(float *)(param_2 + 0x80) * *(float *)(param_1 + 0x538);

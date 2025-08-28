@@ -381,7 +381,7 @@ void FUN_1805d5c90(longlong *param_1)
   iStackX_10 = 0;
   lVar20 = 0;
   lStack_60 = 0;
-  lVar21 = _DAT_180c95ff0;
+  lVar21 = system_system_config;
   auStackX_18[0] = uVar22;
   do {
     lVar16 = lStack_60;
@@ -414,7 +414,7 @@ void FUN_1805d5c90(longlong *param_1)
                 auStackX_18[0] = 0xffffffff;
                 FUN_18050e440(lVar8,plVar15,aiStackX_20,auStackX_18,auStack_70,auStack_50,iVar14);
                 lVar13 = plVar15[0x1a];
-                lVar21 = _DAT_180c95ff0;
+                lVar21 = system_system_config;
                 iVar17 = aiStackX_20[0];
                 uVar19 = auStackX_18[0];
               }
@@ -507,7 +507,7 @@ LAB_1805d61ea:
                      ((~*(byte *)((longlong)iVar17 * 0x170 + 0x140 + lVar21) & 2) != 0)))) &&
                    (fVar24 = (float)*(int *)(lVar16 + 0x70 + lVar13), fVar25 < fVar24)) {
                   *(int *)((longlong)param_1 + 0x2154) = iStackX_10;
-                  lVar21 = _DAT_180c95ff0;
+                  lVar21 = system_system_config;
                   fVar25 = fVar24;
                   iStack_78 = iVar14;
                 }
@@ -523,7 +523,7 @@ LAB_1805d6114:
         }
       }
     }
-    lVar13 = _DAT_180c8ece0;
+    lVar13 = system_system_data_config;
     iStackX_10 = iStackX_10 + 1;
     lVar20 = lVar20 + 1;
     lStack_60 = lVar16 + 0x1f8;
@@ -534,13 +534,13 @@ LAB_1805d6114:
       }
       else {
         iVar14 = *(int *)(*param_1 + 0x18);
-        if ((iVar14 != 0) && (_DAT_180c8f008 != 0)) {
-          (**(code **)(_DAT_180c8f008 + 0x30))(iVar14);
+        if ((iVar14 != 0) && (system_cache_buffer != 0)) {
+          (**(code **)(system_cache_buffer + 0x30))(iVar14);
         }
         uVar23 = (**(code **)(lVar13 + 0x48))(iVar14,iVar17,iStack_78);
         *(int32_t *)(param_1 + 0x42b) = uVar23;
-        if ((iVar14 != 0) && (_DAT_180c8f008 != 0)) {
-          (**(code **)(_DAT_180c8f008 + 0x18))(iVar14);
+        if ((iVar14 != 0) && (system_cache_buffer != 0)) {
+          (**(code **)(system_cache_buffer + 0x18))(iVar14);
         }
       }
       return;
