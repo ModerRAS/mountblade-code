@@ -2,102 +2,113 @@
 
 // 02_core_engine_part191.c - 17 个函数
 
-// 函数: void FUN_180173720(longlong param_1,int param_2,int param_3,byte param_4,int *param_5,
-void FUN_180173720(longlong param_1,int param_2,int param_3,byte param_4,int *param_5,
-                  longlong *param_6)
+// 函数: 调整窗口位置和大小
+// 功能: 根据显示模式调整窗口的位置、大小和样式
+// 参数: window_context - 窗口上下文, width/height - 窗口尺寸, update_flag - 更新标志, current_mode_ptr - 当前模式指针, display_config_ptr - 显示配置指针
+void adjust_window_position_and_size(longlong window_context, int width, int height, byte update_flag, int *current_mode_ptr,
+                                    longlong *display_config_ptr)
 
 {
-  int iVar1;
-  longlong lVar2;
-  int iVar3;
-  int iVar4;
-  uint uVar5;
-  uint uVar6;
-  longlong lVar7;
-  uint uVar8;
-  longlong lVar9;
-  int iVar10;
-  ulonglong uVar11;
-  int iVar12;
-  undefined1 auStack_98 [32];
-  int iStack_78;
-  int iStack_70;
-  int iStack_68;
-  byte bStack_58;
-  int iStack_54;
-  undefined8 uStack_50;
-  int iStack_48;
-  int iStack_44;
-  ulonglong uStack_40;
+  int display_mode;
+  longlong config_start;
+  int screen_width;
+  int screen_height;
+  uint window_width;
+  uint window_height;
+  longlong display_count;
+  uint adjusted_width;
+  longlong total_displays;
+  int window_style;
+  ulonglong display_index;
+  int vertical_offset;
+  undefined1 stack_guard [32];
+  int horizontal_pos;
+  int vertical_pos;
+  int window_flags;
+  byte needs_update;
+  int horizontal_offset;
+  undefined8 rect_data;
+  int adjusted_width_result;
+  int adjusted_height_result;
+  ulonglong stack_guard_value;
   
-  uStack_40 = _DAT_180bf00a8 ^ (ulonglong)auStack_98;
-  iVar1 = *(int *)(_DAT_180c86920 + 0x1ea0);
-  bStack_58 = param_4;
-  if (iVar1 != 2) {
-    iVar3 = GetSystemMetrics(0);
-    iVar4 = GetSystemMetrics(1);
-    lVar2 = *param_6;
-    iStack_54 = 0;
-    uVar11 = 0;
-    lVar7 = param_6[1] - lVar2 >> 0x3f;
-    lVar9 = (param_6[1] - lVar2) / 0x70 + lVar7;
-    iVar12 = 0;
-    if (lVar9 != lVar7) {
+  // 安全栈检查
+  stack_guard_value = _DAT_180bf00a8 ^ (ulonglong)stack_guard;
+  display_mode = *(int *)(_DAT_180c86920 + 0x1ea0);
+  needs_update = update_flag;
+  // 如果不是全屏模式(2)
+  if (display_mode != 2) {
+    // 获取屏幕尺寸
+    screen_width = GetSystemMetrics(0);
+    screen_height = GetSystemMetrics(1);
+    config_start = *display_config_ptr;
+    horizontal_offset = 0;
+    display_index = 0;
+    display_count = display_config_ptr[1] - config_start >> 0x3f;
+    total_displays = (display_config_ptr[1] - config_start) / 0x70 + display_count;
+    vertical_offset = 0;
+    // 查找匹配的显示区域
+    if (total_displays != display_count) {
       do {
-        if ((int)uVar11 == *(int *)(_DAT_180c86920 + 0x1f10)) {
-          lVar7 = uVar11 * 0x70;
-          iStack_54 = *(int *)(lVar7 + 0x58 + lVar2);
-          iVar12 = *(int *)(lVar7 + 0x5c + lVar2);
-          uVar5 = *(int *)(lVar7 + 0x60 + lVar2) - iStack_54;
-          uVar8 = (int)uVar5 >> 0x1f;
-          uVar6 = *(int *)(lVar7 + 100 + lVar2) - iVar12;
-          iVar3 = (uVar5 ^ uVar8) - uVar8;
-          uVar5 = (int)uVar6 >> 0x1f;
-          iVar4 = (uVar6 ^ uVar5) - uVar5;
+        if ((int)display_index == *(int *)(_DAT_180c86920 + 0x1f10)) {
+          display_count = display_index * 0x70;
+          horizontal_offset = *(int *)(display_count + 0x58 + config_start);
+          vertical_offset = *(int *)(display_count + 0x5c + config_start);
+          window_width = *(int *)(display_count + 0x60 + config_start) - horizontal_offset;
+          adjusted_width = (int)window_width >> 0x1f;
+          window_height = *(int *)(display_count + 100 + config_start) - vertical_offset;
+          screen_width = (window_width ^ adjusted_width) - adjusted_width;
+          window_width = (int)window_height >> 0x1f;
+          screen_height = (window_height ^ window_width) - window_width;
           break;
         }
-        uVar11 = (ulonglong)((int)uVar11 + 1);
-        iVar12 = 0;
-      } while (uVar11 < (ulonglong)(lVar9 - lVar7));
+        display_index = (ulonglong)((int)display_index + 1);
+        vertical_offset = 0;
+      } while (display_index < (ulonglong)(total_displays - display_count));
     }
-    iVar10 = 0;
-    uStack_50 = 0;
-    if (iVar1 == 1) {
-      iVar10 = -0x70000000;
-      iStack_48 = iVar3;
-      iStack_44 = iVar4;
+    // 根据显示模式设置窗口样式
+    window_style = 0;
+    rect_data = 0;
+    if (display_mode == 1) {
+      // 边框窗口模式
+      window_style = -0x70000000;  // WS_OVERLAPPEDWINDOW
+      adjusted_width_result = screen_width;
+      adjusted_height_result = screen_height;
     }
     else {
-      iStack_48 = param_2;
-      iStack_44 = param_3;
-      if (iVar1 == 0) {
-        iVar10 = 0xca0000;
-        if (param_2 <= iVar3) {
-          iStack_54 = (iVar3 - param_2) / 2 + iStack_54;
+      adjusted_width_result = width;
+      adjusted_height_result = height;
+      if (display_mode == 0) {
+        // 无边框窗口模式
+        window_style = 0xca0000;  // WS_POPUP
+        if (width <= screen_width) {
+          horizontal_offset = (screen_width - width) / 2 + horizontal_offset;
         }
-        if (param_3 <= iVar4) {
-          iVar12 = iVar12 + (iVar4 - param_3) / 2;
+        if (height <= screen_height) {
+          vertical_offset = vertical_offset + (screen_height - height) / 2;
         }
       }
     }
-    if (*param_5 != iVar1) {
-      SetWindowLongPtrW(*(undefined8 *)(param_1 + 8),0xfffffff0,(longlong)iVar10);
-      iStack_68 = 0x27;
-      iStack_70 = 0;
-      iStack_78 = 0;
-      SetWindowPos(*(undefined8 *)(param_1 + 8),0,0,0);
-      *param_5 = iVar1;
-      bStack_58 = 1;
+    // 如果样式状态发生变化，更新窗口
+    if (*current_mode_ptr != display_mode) {
+      SetWindowLongPtrW(*(undefined8 *)(window_context + 8), 0xfffffff0, (longlong)window_style);
+      window_flags = 0x27;
+      vertical_pos = 0;
+      horizontal_pos = 0;
+      SetWindowPos(*(undefined8 *)(window_context + 8), 0, 0, 0);
+      *current_mode_ptr = display_mode;
+      needs_update = 1;
     }
-    AdjustWindowRect(&uStack_50,iVar10,0);
-    iStack_78 = iStack_48 - (int)uStack_50;
-    iStack_70 = iStack_44 - uStack_50._4_4_;
-    iStack_68 = (bStack_58 ^ 1) * 2 + 0x40;
-    SetWindowPos(*(undefined8 *)(param_1 + 8),0,iStack_54 + (int)uStack_50,iVar12);
+    // 调整窗口矩形并设置位置
+    AdjustWindowRect(&rect_data, window_style, 0);
+    horizontal_pos = adjusted_width_result - (int)rect_data;
+    vertical_pos = adjusted_height_result - rect_data._4_4_;
+    window_flags = (needs_update ^ 1) * 2 + 0x40;
+    SetWindowPos(*(undefined8 *)(window_context + 8), 0, horizontal_offset + (int)rect_data, vertical_offset);
   }
-  *param_5 = iVar1;
-                    // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_40 ^ (ulonglong)auStack_98);
+  *current_mode_ptr = display_mode;
+  // 安全栈检查（函数不返回）
+  execute_window_adjustment_completion(stack_guard_value ^ (ulonglong)stack_guard);
 }
 
 
