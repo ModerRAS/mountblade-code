@@ -225,31 +225,37 @@ void rendering_system_process_render_data(void)
 
 
 
-// 函数: void FUN_180308be0(void)
-void FUN_180308be0(void)
-
+// 渲染批处理函数
+void rendering_system_process_render_batches(void)
 {
-  undefined4 *unaff_RSI;
-  undefined8 *unaff_RDI;
-  undefined8 uStack0000000000000080;
-  undefined8 uStack0000000000000088;
-  undefined8 uStack0000000000000090;
-  undefined8 uStack0000000000000098;
-  undefined4 uStack00000000000000a0;
-  undefined4 uStack00000000000000a4;
-  undefined4 uStack00000000000000a8;
-  undefined4 uStack00000000000000ac;
-  
-  uStack0000000000000080 = *unaff_RDI;
-  uStack0000000000000088 = unaff_RDI[1];
-  uStack00000000000000a0 = *unaff_RSI;
-  uStack00000000000000a4 = unaff_RSI[1];
-  uStack00000000000000a8 = unaff_RSI[2];
-  uStack00000000000000ac = unaff_RSI[3];
-  uStack0000000000000090 = uStack0000000000000080;
-  uStack0000000000000098 = uStack0000000000000088;
-  FUN_180308c30(&stack0x000000a0,&stack0x00000090,&stack0x00000080);
-  return;
+    undefined4 *source_data_ptr;
+    undefined8 *target_data_ptr;
+    undefined8 stack_data_1;
+    undefined8 stack_data_2;
+    undefined8 stack_data_3;
+    undefined8 stack_data_4;
+    undefined4 stack_buffer_1[4];
+    undefined4 stack_buffer_2[4];
+    undefined4 stack_buffer_3[4];
+    undefined4 stack_buffer_4[4];
+    
+    // 准备目标数据
+    stack_data_1 = *target_data_ptr;
+    stack_data_2 = target_data_ptr[1];
+    
+    // 准备源数据缓冲区
+    stack_buffer_1[0] = *source_data_ptr;
+    stack_buffer_1[1] = source_data_ptr[1];
+    stack_buffer_1[2] = source_data_ptr[2];
+    stack_buffer_1[3] = source_data_ptr[3];
+    
+    // 设置处理参数
+    stack_data_3 = stack_data_1;
+    stack_data_4 = stack_data_2;
+    
+    // 调用渲染管线执行函数
+    rendering_system_execute_render_pipeline(&stack_buffer_1, &stack_data_3, &stack_data_1);
+    return;
 }
 
 

@@ -620,7 +620,9 @@ bool rendering_system_validate_render_state(void)
 
 
 
-bool FUN_180306b2c(void)
+// 渲染系统验证渲染能力
+// 返回: bool - 渲染能力是否可用
+bool rendering_system_verify_render_capability(void)
 
 {
   float fVar1;
@@ -716,8 +718,9 @@ bool FUN_180306b2c(void)
 
 
 
-// 函数: void FUN_180306b40(longlong param_1)
-void FUN_180306b40(longlong param_1)
+// 渲染系统释放渲染资源
+// 参数: render_context - 渲染上下文指针
+void rendering_system_release_render_resources(longlong render_context)
 
 {
   uint *puVar1;
