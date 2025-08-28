@@ -374,17 +374,20 @@ void initialize_system_module_2(void)
 
 
 // 函数: void FUN_180043a90(void)
-void FUN_180043a90(void)
-
+/**
+ * 初始化系统模块3
+ * 功能：初始化系统模块3，根据条件选择不同的实现
+ */
+void initialize_system_module_3(void)
 {
-  int iVar1;
-  
-  iVar1 = FUN_1807681a0(0);
-  _DAT_180c0d100 = 0x180be1c00;
-  if (iVar1 != 0) {
-    _DAT_180c0d100 = 0x180be1c08;
-  }
-  return;
+    int condition_result;
+    
+    condition_result = FUN_1807681a0(0);
+    _DAT_180c0d100 = 0x180be1c00;
+    if (condition_result != 0) {
+        _DAT_180c0d100 = 0x180be1c08;
+    }
+    return;
 }
 
 
@@ -396,17 +399,20 @@ void FUN_180043a90(void)
 
 
 // 函数: void FUN_180043ac0(void)
-void FUN_180043ac0(void)
-
+/**
+ * 初始化系统模块4
+ * 功能：初始化系统模块4，根据条件选择不同的实现
+ */
+void initialize_system_module_4(void)
 {
-  int iVar1;
-  
-  iVar1 = FUN_1807681a0(0);
-  _DAT_180c0e170 = 0x180be23a0;
-  if (iVar1 != 0) {
-    _DAT_180c0e170 = 0x180be23c0;
-  }
-  return;
+    int condition_result;
+    
+    condition_result = FUN_1807681a0(0);
+    _DAT_180c0e170 = 0x180be23a0;
+    if (condition_result != 0) {
+        _DAT_180c0e170 = 0x180be23c0;
+    }
+    return;
 }
 
 
@@ -418,17 +424,20 @@ void FUN_180043ac0(void)
 
 
 // 函数: void FUN_180043af0(void)
-void FUN_180043af0(void)
-
+/**
+ * 初始化系统模块5
+ * 功能：初始化系统模块5，根据条件选择不同的实现
+ */
+void initialize_system_module_5(void)
 {
-  int iVar1;
-  
-  iVar1 = FUN_1807681a0(0);
-  _DAT_180c108d0 = 0x180be2ad8;
-  if (iVar1 != 0) {
-    _DAT_180c108d0 = 0x180be2af8;
-  }
-  return;
+    int condition_result;
+    
+    condition_result = FUN_1807681a0(0);
+    _DAT_180c108d0 = 0x180be2ad8;
+    if (condition_result != 0) {
+        _DAT_180c108d0 = 0x180be2af8;
+    }
+    return;
 }
 
 
@@ -440,17 +449,20 @@ void FUN_180043af0(void)
 
 
 // 函数: void FUN_180043b20(void)
-void FUN_180043b20(void)
-
+/**
+ * 初始化系统模块6
+ * 功能：初始化系统模块6，根据条件选择不同的实现
+ */
+void initialize_system_module_6(void)
 {
-  int iVar1;
-  
-  iVar1 = FUN_1807681a0(0);
-  _DAT_180c2bca0 = 0x180be4710;
-  if (iVar1 != 0) {
-    _DAT_180c2bca0 = 0x180be4728;
-  }
-  return;
+    int condition_result;
+    
+    condition_result = FUN_1807681a0(0);
+    _DAT_180c2bca0 = 0x180be4710;
+    if (condition_result != 0) {
+        _DAT_180c2bca0 = 0x180be4728;
+    }
+    return;
 }
 
 
