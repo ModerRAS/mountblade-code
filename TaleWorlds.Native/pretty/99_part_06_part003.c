@@ -111,15 +111,15 @@ typedef struct {
 #define ResourceAllocator FUN_1803a6c4c
 
 // 内存管理函数
-#define SystemMemoryPoolAllocator FUN_18062b420
+#define SystemMemoryPoolAllocator SystemMemoryPoolAllocator
 #define SystemMemoryPoolInitializer SystemMemoryPoolInitializer
 #define SystemMemoryPoolReallocator FUN_18066bdc0
 
 // 数据处理函数
 #define SystemDataProcessor FUN_1800a02a0
-#define SystemConfigurationValidator FUN_1808fc050
-#define SystemDataTransformer FUN_1803a7190
-#define SystemDataOptimizer FUN_1803a6f10
+#define SystemConfigurationValidator SystemConfigurationValidator
+#define SystemDataTransformer SystemDataTransformer
+#define SystemDataOptimizer SystemDataOptimizer
 #define SystemDataEnhancer FUN_1803a7050
 #define SystemDataInitializer FUN_180627be0
 #define SystemDataManager FUN_180627910
@@ -504,7 +504,7 @@ LAB_1803a62d7:
             plVar15 = *(int64_t **)(param_1 + 0x88);
             lVar11 = (int64_t)plVar14 - (int64_t)plVar15 >> 3;
             if ((lVar11 == 0) || (lVar5 = lVar11 * 2, plVar16 = plVar8, lVar5 != 0)) {
-                plVar8 = (int64_t *)FUN_18062b420(system_memory_pool_ptr, lVar5 * 8, *(int8_t *)(param_1 + 0xa0));
+                plVar8 = (int64_t *)SystemMemoryPoolAllocator(system_memory_pool_ptr, lVar5 * 8, *(int8_t *)(param_1 + 0xa0));
                 plVar14 = *(int64_t **)(param_1 + 0x90);
                 plVar15 = *(int64_t **)(param_1 + 0x88);
                 plVar16 = plVar8;
@@ -557,7 +557,7 @@ LAB_1803a62d7:
             (**(code **)(*(int64_t *)*param_2 + 0x38))();
         }
     }
-    FUN_1808fc050(uStack_48 ^ (uint64_t)auStack_a8);
+    SystemConfigurationValidator(uStack_48 ^ (uint64_t)auStack_a8);
 }
 
 /**
@@ -634,13 +634,13 @@ void MemoryManager(int64_t param_1)
                 uVar12 = (int)uVar8 + 1;
                 uVar8 = (uint64_t)uVar12;
             }
-            FUN_1803a7190(&puStack_d8, &puStack_c8, (int64_t)(int)(uVar12 - 1) * 2, uStackX_8);
+            SystemDataTransformer(&puStack_d8, &puStack_c8, (int64_t)(int)(uVar12 - 1) * 2, uStackX_8);
             if ((int)uVar3 < 0x1d) {
                 uStack_60 = uVar9;
                 lStack_50 = lVar2;
                 puStack_68 = puVar1;
                 puStack_58 = puVar1;
-                FUN_1803a6f10(&puStack_58, &puStack_68);
+                SystemDataOptimizer(&puStack_58, &puStack_68);
             }
             else {
                 uStack_d0._0_4_ = 0x1c;
@@ -650,7 +650,7 @@ void MemoryManager(int64_t param_1)
                 puStack_d8 = puVar1;
                 puStack_98 = puVar1;
                 uStack_a8 = puVar1;
-                FUN_1803a6f10(&puStack_98, &uStack_a8);
+                SystemDataOptimizer(&puStack_98, &uStack_a8);
                 uStack_d0 = CONCAT44(uStack_d0._4_4_, 0x1c);
                 uStack_80 = uVar9;
                 uStack_70 = 0x1c;
@@ -814,7 +814,7 @@ void SystemConfigurationProcessor(int64_t *param_1)
     *(int16_t *)((int64_t)param_1 + 0x2c) = 0x101;
     plStack_68 = (int64_t *)0x0;
     param_1[6] = 0;
-    FUN_1808fc050(uStack_18 ^ (uint64_t)auStack_88);
+    SystemConfigurationValidator(uStack_18 ^ (uint64_t)auStack_88);
 }
 
 /**
@@ -1184,7 +1184,7 @@ LAB_1803a6d2f:
                         }
                         uVar7 = 1;
                     }
-                    lVar3 = FUN_18062b420(system_memory_pool_ptr, 0x30, (char)param_1[5]);
+                    lVar3 = SystemMemoryPoolAllocator(system_memory_pool_ptr, 0x30, (char)param_1[5]);
                     *(uint64_t *)(lVar3 + 0x20) = *(uint64_t *)param_2;
                     *(int *)(lVar3 + 0x28) = param_2[2];
                     *(int32_t *)(lVar3 + 0x2c) = 0;
@@ -1267,7 +1267,7 @@ int64_t ResourceAllocator(uint64_t param_1)
         }
     }
     if (unaff_RBX != (int64_t *)0x0) {
-        lVar3 = FUN_18062b420(system_memory_pool_ptr, 0x30, (char)unaff_R14[5]);
+        lVar3 = SystemMemoryPoolAllocator(system_memory_pool_ptr, 0x30, (char)unaff_R14[5]);
         *(uint64_t *)(lVar3 + 0x20) = *(uint64_t *)unaff_RDI;
         *(int *)(lVar3 + 0x28) = unaff_RDI[2];
         *(int32_t *)(lVar3 + 0x2c) = 0;
