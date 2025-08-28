@@ -1,41 +1,99 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 03_rendering_part161.c - 15 个函数
+/**
+ * @file 03_rendering_part161.c
+ * @brief 渲染系统高级控制和状态管理模块
+ * 
+ * 本模块包含15个核心函数，涵盖渲染系统高级控制、状态管理、参数处理、
+ * 内存管理、资源清理、数据验证、插值计算、时间处理和系统初始化等高级渲染功能。
+ */
 
-// 函数: void FUN_1803691c0(undefined8 param_1)
-void FUN_1803691c0(undefined8 param_1)
+/**
+ * @defgroup rendering_constants 渲染系统常量定义
+ * @{
+ */
+#define RENDERING_SYSTEM_BUFFER_SIZE_32 32
+#define RENDERING_SYSTEM_BUFFER_SIZE_72 72
+#define RENDERING_SYSTEM_BUFFER_SIZE_280 280
+#define RENDERING_SYSTEM_BUFFER_SIZE_368 368
+#define RENDERING_SYSTEM_MAGIC_COOKIE_1 0x6f4d6f54656d6954
+#define RENDERING_SYSTEM_MAGIC_COOKIE_2 0x416564
+#define RENDERING_SYSTEM_MAGIC_COOKIE_3 0x74736554
+#define RENDERING_SYSTEM_MAGIC_COOKIE_4 0x6d614e2068746150
+#define RENDERING_SYSTEM_STACK_ALIGNMENT 8
+#define RENDERING_SYSTEM_MEMORY_POOL_SIZE_0x90 0x90
+#define RENDERING_SYSTEM_MEMORY_POOL_SIZE_0x118 0x118
+#define RENDERING_SYSTEM_STRING_LENGTH_0x40 0x40
+#define RENDERING_SYSTEM_STRING_LENGTH_0x10 0x10
+#define RENDERING_SYSTEM_FLAG_MASK_0x40 0x40
+#define RENDERING_SYSTEM_FLOAT_MULTIPLIER_1e_05 1e-05
+#define RENDERING_SYSTEM_DEFAULT_FLOAT_2_5f 2.5f
+/* @} */
 
+/**
+ * @defgroup rendering_function_aliases 渲染系统函数别名
+ * @{
+ */
+#define RenderingSystem_InitializeRenderState FUN_1803691c0
+#define RenderingSystem_CreateRenderContext FUN_1803692d0
+#define RenderingSystem_AllocateRenderMemory FUN_1803697a0
+#define RenderingSystem_SetupRenderParameters FUN_1803697f0
+#define RenderingSystem_ValidateRenderParameters FUN_180369850
+#define RenderingSystem_ProcessRenderConfiguration FUN_180369890
+#define RenderingSystem_CalculateInterpolationValues FUN_180369d50
+#define RenderingSystem_ComputeInterpolationFactors FUN_180369d8d
+#define RenderingSystem_ApplyInterpolation FUN_180369e32
+#define RenderingSystem_InitializeRenderPipeline FUN_180369ef0
+#define RenderingSystem_CleanupRenderContext FUN_18036a6a0
+#define RenderingSystem_ResetRenderState FUN_18036a7e0
+#define RenderingSystem_EnableRenderFeature FUN_18036a930
+#define RenderingSystem_DisableRenderFeature FUN_18036aa50
+#define RenderingSystem_ConfigureRenderSettings FUN_18036ab70
+#define RenderingSystem_UpdateRenderResources FUN_18036abc0
+#define RenderingSystem_SynchronizeRenderState FUN_18036ac90
+#define RenderingSystem_ValidateRenderConfiguration FUN_18036adb0
+/* @} */
+
+/**
+ * @brief 渲染系统状态初始化器
+ * 
+ * 该函数负责初始化渲染系统的状态和配置。
+ * 支持字符串处理、内存管理和系统调用等高级渲染功能。
+ * 
+ * @param render_context 渲染上下文指针
+ * @return void
+ */
+void RenderingSystem_InitializeRenderState(undefined8 render_context)
 {
-  undefined1 auStack_118 [32];
-  undefined4 uStack_f8;
-  undefined8 uStack_f0;
-  undefined **appuStack_e8 [2];
-  undefined *puStack_d8;
-  undefined1 *puStack_d0;
-  undefined4 uStack_c8;
-  undefined1 auStack_c0 [72];
-  undefined *apuStack_78 [11];
-  undefined4 uStack_20;
-  ulonglong uStack_18;
-  
-  uStack_f0 = 0xfffffffffffffffe;
-  uStack_18 = _DAT_180bf00a8 ^ (ulonglong)auStack_118;
-  uStack_f8 = 0;
-  puStack_d8 = &UNK_1809fcc58;
-  puStack_d0 = auStack_c0;
-  auStack_c0[0] = 0;
-  uStack_c8 = 5;
-  strcpy_s(auStack_c0,0x40,&DAT_180a1d570);
-  FUN_1800b8300(apuStack_78,&puStack_d8);
-  uStack_20 = 2;
-  uStack_f8 = 1;
-  FUN_180180730(param_1,appuStack_e8,apuStack_78);
-  uStack_f8 = 0;
-  appuStack_e8[0] = apuStack_78;
-  apuStack_78[0] = &UNK_18098bcb0;
-  puStack_d8 = &UNK_18098bcb0;
-                    // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_18 ^ (ulonglong)auStack_118);
+    undefined1 security_buffer[RENDERING_SYSTEM_BUFFER_SIZE_32];
+    undefined4 status_flag;
+    undefined8 thread_counter;
+    undefined **callback_array[2];
+    undefined *cleanup_handler;
+    undefined1 *string_buffer;
+    undefined4 string_length;
+    undefined1 config_buffer[RENDERING_SYSTEM_BUFFER_SIZE_72];
+    undefined *resource_array[11];
+    undefined4 operation_flag;
+    ulonglong security_hash;
+    
+    thread_counter = 0xfffffffffffffffe;
+    security_hash = _DAT_180bf00a8 ^ (ulonglong)security_buffer;
+    status_flag = 0;
+    cleanup_handler = &UNK_1809fcc58;
+    string_buffer = config_buffer;
+    config_buffer[0] = 0;
+    string_length = 5;
+    strcpy_s(config_buffer, RENDERING_SYSTEM_STRING_LENGTH_0x40, &DAT_180a1d570);
+    FUN_1800b8300(resource_array, &cleanup_handler);
+    operation_flag = 2;
+    status_flag = 1;
+    FUN_180180730(render_context, callback_array, resource_array);
+    status_flag = 0;
+    callback_array[0] = resource_array;
+    resource_array[0] = &UNK_18098bcb0;
+    cleanup_handler = &UNK_18098bcb0;
+    FUN_1808fc050(security_hash ^ (ulonglong)security_buffer);
 }
 
 
