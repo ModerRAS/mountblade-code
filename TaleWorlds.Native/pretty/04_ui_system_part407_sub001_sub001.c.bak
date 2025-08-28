@@ -627,7 +627,7 @@ void FUN_1808916f0(int64_t param_1,int64_t param_2)
     } while ((*plVar3 == 0) || (iVar2 = FUN_18088aca0(param_2), iVar2 == 0));
   }
                     // WARNING: Subroutine does not return
-  AdvancedSystemProcessor(auStackX_18);
+  FUN_18088c790(auStackX_18);
 }
 
 

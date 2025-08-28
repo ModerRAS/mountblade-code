@@ -218,7 +218,7 @@ LAB_1802c0b35:
         if (puVar1[1] != 0) {
           lVar4 = puVar1[1];
         }
-        AdvancedSystemOptimizer(lVar4,&system_data_6430,auStack_f8);
+        FUN_18010cbc0(lVar4,&system_data_6430,auStack_f8);
         *(int32_t *)(param_1 + 4) = auStack_f8[0];
         goto LAB_1802c0b5f;
       }

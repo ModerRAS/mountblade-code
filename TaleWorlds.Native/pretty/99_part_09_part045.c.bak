@@ -314,7 +314,7 @@ LAB_1805d185c:
   }
   if (*(char *)((int64_t)unaff_RSI + 0x26c) != cVar17) {
                     // WARNING: Subroutine does not return
-    AdvancedSystemController(*(float *)(unaff_RSI + 0x4d) -
+    FUN_1808fd400(*(float *)(unaff_RSI + 0x4d) -
                   *(float *)(*(int64_t *)(*(int64_t *)unaff_RSI[0x33] + 0x20) + 0x34));
   }
 LAB_1805d1a6a:

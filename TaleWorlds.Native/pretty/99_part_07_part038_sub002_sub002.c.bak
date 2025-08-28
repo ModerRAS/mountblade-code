@@ -132,7 +132,7 @@ void FUN_1804bd980(int64_t param_1,uint *param_2,uint64_t param_3,uint64_t param
   uStack_e8 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_d28;
   lStack_cd8 = param_1;
   puStack_cb0 = param_2;
-  CoreMemoryPoolValidator(&puStack_bf8,param_6);
+  FUN_180627910(&puStack_bf8,param_6);
   puStack_c88 = (uint64_t *)0x0;
   puStack_c80 = (uint64_t *)0x0;
   uStack_c78 = 0;
@@ -140,7 +140,7 @@ void FUN_1804bd980(int64_t param_1,uint *param_2,uint64_t param_3,uint64_t param
   if (lStack_bf0 != 0) {
     FUN_180057980(&puStack_bf8,&puStack_c88,&system_data_d518);
   }
-  CoreMemoryPoolValidator(&puStack_c18,param_7);
+  FUN_180627910(&puStack_c18,param_7);
   puStack_ca8 = (uint64_t *)0x0;
   puStack_ca0 = (uint64_t *)0x0;
   uStack_c98 = 0;
@@ -148,7 +148,7 @@ void FUN_1804bd980(int64_t param_1,uint *param_2,uint64_t param_3,uint64_t param
   if (lStack_c10 != 0) {
     FUN_180057980(&puStack_c18,&puStack_ca8,&system_data_d518);
   }
-  CoreMemoryPoolValidator(&puStack_c38,param_8);
+  FUN_180627910(&puStack_c38,param_8);
   puStack_c68 = (uint64_t *)0x0;
   puStack_c60 = (uint64_t *)0x0;
   uStack_c58 = 0;

@@ -867,7 +867,7 @@ void FUN_1805380e0(int64_t param_1,float param_2)
 LAB_180538125:
   *(float *)(param_1 + 0x10) = param_2;
                     // WARNING: Subroutine does not return
-  AdvancedSystemController(param_2);
+  FUN_1808fd400(param_2);
 }
 
 
@@ -895,7 +895,7 @@ void FUN_180538160(int64_t param_1,uint *param_2)
 LAB_1805381c1:
   *(float *)(param_1 + 0x10) = fVar1;
                     // WARNING: Subroutine does not return
-  AdvancedSystemController(fVar1);
+  FUN_1808fd400(fVar1);
 }
 
 

@@ -162,7 +162,7 @@ void SystemRegistryNodeCreator(void) {
     if ((parent_node == root_node) || 
         (comparison_result = memcmp(&system_memory_f9c0, parent_node + 4, 0x10), comparison_result < 0)) {
         memory_size = NetworkConnectionManager(registry_manager);
-        NetworkProtocolHandler(registry_manager, &new_node, parent_node, memory_size + 0x20, memory_size);
+        FUN_18008f140(registry_manager, &new_node, parent_node, memory_size + 0x20, memory_size);
         parent_node = new_node;
     }
     
@@ -220,7 +220,7 @@ void SystemRegistryNodeCreatorType2(void) {
     if ((parent_node == root_node) || 
         (comparison_result = memcmp(&system_memory_10a0, parent_node + 4, 0x10), comparison_result < 0)) {
         memory_size = NetworkConnectionManager(registry_manager);
-        NetworkProtocolHandler(registry_manager, &new_node, parent_node, memory_size + 0x20, memory_size);
+        FUN_18008f140(registry_manager, &new_node, parent_node, memory_size + 0x20, memory_size);
         parent_node = new_node;
     }
     
@@ -278,7 +278,7 @@ void SystemRegistryNodeCreatorType3(void) {
     if ((parent_node == root_node) || 
         (comparison_result = memcmp(&system_memory_1078, parent_node + 4, 0x10), comparison_result < 0)) {
         memory_size = NetworkConnectionManager(registry_manager);
-        NetworkProtocolHandler(registry_manager, &new_node, parent_node, memory_size + 0x20, memory_size);
+        FUN_18008f140(registry_manager, &new_node, parent_node, memory_size + 0x20, memory_size);
         parent_node = new_node;
     }
     
@@ -336,7 +336,7 @@ void SystemRegistryNodeCreatorType4(void) {
     if ((parent_node == root_node) || 
         (comparison_result = memcmp(&system_memory_1050, parent_node + 4, 0x10), comparison_result < 0)) {
         memory_size = NetworkConnectionManager(registry_manager);
-        NetworkProtocolHandler(registry_manager, &new_node, parent_node, memory_size + 0x20, memory_size);
+        FUN_18008f140(registry_manager, &new_node, parent_node, memory_size + 0x20, memory_size);
         parent_node = new_node;
     }
     
@@ -394,7 +394,7 @@ void SystemRegistryNodeCreatorType5(void) {
     if ((parent_node == root_node) || 
         (comparison_result = memcmp(&system_memory_1028, parent_node + 4, 0x10), comparison_result < 0)) {
         memory_size = NetworkConnectionManager(registry_manager);
-        NetworkProtocolHandler(registry_manager, &new_node, parent_node, memory_size + 0x20, memory_size);
+        FUN_18008f140(registry_manager, &new_node, parent_node, memory_size + 0x20, memory_size);
         parent_node = new_node;
     }
     
@@ -452,7 +452,7 @@ void SystemRegistryNodeCreatorType6(void) {
     if ((parent_node == root_node) || 
         (comparison_result = memcmp(&system_memory_1000, parent_node + 4, 0x10), comparison_result < 0)) {
         memory_size = NetworkConnectionManager(registry_manager);
-        NetworkProtocolHandler(registry_manager, &new_node, parent_node, memory_size + 0x20, memory_size);
+        FUN_18008f140(registry_manager, &new_node, parent_node, memory_size + 0x20, memory_size);
         parent_node = new_node;
     }
     
@@ -510,7 +510,7 @@ void SystemRegistryNodeCreatorType7(void) {
     if ((parent_node == root_node) || 
         (comparison_result = memcmp(&system_memory_0fd8, parent_node + 4, 0x10), comparison_result < 0)) {
         memory_size = NetworkConnectionManager(registry_manager);
-        NetworkProtocolHandler(registry_manager, &new_node, parent_node, memory_size + 0x20, memory_size);
+        FUN_18008f140(registry_manager, &new_node, parent_node, memory_size + 0x20, memory_size);
         parent_node = new_node;
     }
     
@@ -568,7 +568,7 @@ void SystemRegistryNodeCreatorType8(void) {
     if ((parent_node == root_node) || 
         (comparison_result = memcmp(&system_memory_0fb0, parent_node + 4, 0x10), comparison_result < 0)) {
         memory_size = NetworkConnectionManager(registry_manager);
-        NetworkProtocolHandler(registry_manager, &new_node, parent_node, memory_size + 0x20, memory_size);
+        FUN_18008f140(registry_manager, &new_node, parent_node, memory_size + 0x20, memory_size);
         parent_node = new_node;
     }
     
@@ -626,7 +626,7 @@ void SystemRegistryNodeCreatorType9(void) {
     if ((parent_node == root_node) || 
         (comparison_result = memcmp(&system_memory_0bb0, parent_node + 4, 0x10), comparison_result < 0)) {
         memory_size = NetworkConnectionManager(registry_manager);
-        NetworkProtocolHandler(registry_manager, &new_node, parent_node, memory_size + 0x20, memory_size);
+        FUN_18008f140(registry_manager, &new_node, parent_node, memory_size + 0x20, memory_size);
         parent_node = new_node;
     }
     
@@ -684,7 +684,7 @@ void SystemRegistryNodeCreatorType10(void) {
     if ((parent_node == root_node) || 
         (comparison_result = memcmp(&system_memory_0b88, parent_node + 4, 0x10), comparison_result < 0)) {
         memory_size = NetworkConnectionManager(registry_manager);
-        NetworkProtocolHandler(registry_manager, &new_node, parent_node, memory_size + 0x20, memory_size);
+        FUN_18008f140(registry_manager, &new_node, parent_node, memory_size + 0x20, memory_size);
         parent_node = new_node;
     }
     
@@ -742,7 +742,7 @@ void SystemRegistryNodeCreatorType11(void) {
     if ((parent_node == root_node) || 
         (comparison_result = memcmp(&system_memory_10a0, parent_node + 4, 0x10), comparison_result < 0)) {
         memory_size = NetworkConnectionManager(registry_manager);
-        NetworkProtocolHandler(registry_manager, &new_node, parent_node, memory_size + 0x20, memory_size);
+        FUN_18008f140(registry_manager, &new_node, parent_node, memory_size + 0x20, memory_size);
         parent_node = new_node;
     }
     
@@ -800,7 +800,7 @@ void SystemRegistryNodeCreatorType12(void) {
     if ((parent_node == root_node) || 
         (comparison_result = memcmp(&system_memory_1078, parent_node + 4, 0x10), comparison_result < 0)) {
         memory_size = NetworkConnectionManager(registry_manager);
-        NetworkProtocolHandler(registry_manager, &new_node, parent_node, memory_size + 0x20, memory_size);
+        FUN_18008f140(registry_manager, &new_node, parent_node, memory_size + 0x20, memory_size);
         parent_node = new_node;
     }
     
@@ -858,7 +858,7 @@ void SystemRegistryNodeCreatorType13(void) {
     if ((parent_node == root_node) || 
         (comparison_result = memcmp(&system_memory_1050, parent_node + 4, 0x10), comparison_result < 0)) {
         memory_size = NetworkConnectionManager(registry_manager);
-        NetworkProtocolHandler(registry_manager, &new_node, parent_node, memory_size + 0x20, memory_size);
+        FUN_18008f140(registry_manager, &new_node, parent_node, memory_size + 0x20, memory_size);
         parent_node = new_node;
     }
     
@@ -916,7 +916,7 @@ void SystemRegistryNodeCreatorType14(void) {
     if ((parent_node == root_node) || 
         (comparison_result = memcmp(&system_memory_1028, parent_node + 4, 0x10), comparison_result < 0)) {
         memory_size = NetworkConnectionManager(registry_manager);
-        NetworkProtocolHandler(registry_manager, &new_node, parent_node, memory_size + 0x20, memory_size);
+        FUN_18008f140(registry_manager, &new_node, parent_node, memory_size + 0x20, memory_size);
         parent_node = new_node;
     }
     
@@ -974,7 +974,7 @@ void SystemRegistryNodeCreatorType15(void) {
     if ((parent_node == root_node) || 
         (comparison_result = memcmp(&system_memory_1000, parent_node + 4, 0x10), comparison_result < 0)) {
         memory_size = NetworkConnectionManager(registry_manager);
-        NetworkProtocolHandler(registry_manager, &new_node, parent_node, memory_size + 0x20, memory_size);
+        FUN_18008f140(registry_manager, &new_node, parent_node, memory_size + 0x20, memory_size);
         parent_node = new_node;
     }
     
@@ -1032,7 +1032,7 @@ void SystemRegistryNodeCreatorType16(void) {
     if ((parent_node == root_node) || 
         (comparison_result = memcmp(&system_memory_0fd8, parent_node + 4, 0x10), comparison_result < 0)) {
         memory_size = NetworkConnectionManager(registry_manager);
-        NetworkProtocolHandler(registry_manager, &new_node, parent_node, memory_size + 0x20, memory_size);
+        FUN_18008f140(registry_manager, &new_node, parent_node, memory_size + 0x20, memory_size);
         parent_node = new_node;
     }
     
@@ -1090,7 +1090,7 @@ void SystemRegistryNodeCreatorType17(void) {
     if ((parent_node == root_node) || 
         (comparison_result = memcmp(&system_memory_0fb0, parent_node + 4, 0x10), comparison_result < 0)) {
         memory_size = NetworkConnectionManager(registry_manager);
-        NetworkProtocolHandler(registry_manager, &new_node, parent_node, memory_size + 0x20, memory_size);
+        FUN_18008f140(registry_manager, &new_node, parent_node, memory_size + 0x20, memory_size);
         parent_node = new_node;
     }
     
@@ -1148,7 +1148,7 @@ void SystemRegistryNodeCreatorType18(void) {
     if ((parent_node == root_node) || 
         (comparison_result = memcmp(&system_memory_0e28, parent_node + 4, 0x10), comparison_result < 0)) {
         memory_size = NetworkConnectionManager(registry_manager);
-        NetworkProtocolHandler(registry_manager, &new_node, parent_node, memory_size + 0x20, memory_size);
+        FUN_18008f140(registry_manager, &new_node, parent_node, memory_size + 0x20, memory_size);
         parent_node = new_node;
     }
     
@@ -1206,7 +1206,7 @@ void SystemRegistryNodeCreatorType19(void) {
     if ((parent_node == root_node) || 
         (comparison_result = memcmp(&system_memory_0d48, parent_node + 4, 0x10), comparison_result < 0)) {
         memory_size = NetworkConnectionManager(registry_manager);
-        NetworkProtocolHandler(registry_manager, &new_node, parent_node, memory_size + 0x20, memory_size);
+        FUN_18008f140(registry_manager, &new_node, parent_node, memory_size + 0x20, memory_size);
         parent_node = new_node;
     }
     
@@ -1264,7 +1264,7 @@ void SystemRegistryNodeCreatorType20(void) {
     if ((parent_node == root_node) || 
         (comparison_result = memcmp(&system_memory_0bb0, parent_node + 4, 0x10), comparison_result < 0)) {
         memory_size = NetworkConnectionManager(registry_manager);
-        NetworkProtocolHandler(registry_manager, &new_node, parent_node, memory_size + 0x20, memory_size);
+        FUN_18008f140(registry_manager, &new_node, parent_node, memory_size + 0x20, memory_size);
         parent_node = new_node;
     }
     
@@ -1322,7 +1322,7 @@ void SystemRegistryNodeCreatorType21(void) {
     if ((parent_node == root_node) || 
         (comparison_result = memcmp(&system_memory_0b88, parent_node + 4, 0x10), comparison_result < 0)) {
         memory_size = NetworkConnectionManager(registry_manager);
-        NetworkProtocolHandler(registry_manager, &new_node, parent_node, memory_size + 0x20, memory_size);
+        FUN_18008f140(registry_manager, &new_node, parent_node, memory_size + 0x20, memory_size);
         parent_node = new_node;
     }
     
@@ -1380,7 +1380,7 @@ void SystemRegistryNodeCreatorType22(void) {
     if ((parent_node == root_node) || 
         (comparison_result = memcmp(&system_memory_e0d0, parent_node + 4, 0x10), comparison_result < 0)) {
         memory_size = NetworkConnectionManager(registry_manager);
-        NetworkProtocolHandler(registry_manager, &new_node, parent_node, memory_size + 0x20, memory_size);
+        FUN_18008f140(registry_manager, &new_node, parent_node, memory_size + 0x20, memory_size);
         parent_node = new_node;
     }
     
@@ -1438,7 +1438,7 @@ void SystemRegistryNodeCreatorType23(void) {
     if ((parent_node == root_node) || 
         (comparison_result = memcmp(&system_memory_10a0, parent_node + 4, 0x10), comparison_result < 0)) {
         memory_size = NetworkConnectionManager(registry_manager);
-        NetworkProtocolHandler(registry_manager, &new_node, parent_node, memory_size + 0x20, memory_size);
+        FUN_18008f140(registry_manager, &new_node, parent_node, memory_size + 0x20, memory_size);
         parent_node = new_node;
     }
     
@@ -1496,7 +1496,7 @@ void SystemRegistryNodeCreatorType24(void) {
     if ((parent_node == root_node) || 
         (comparison_result = memcmp(&system_memory_1078, parent_node + 4, 0x10), comparison_result < 0)) {
         memory_size = NetworkConnectionManager(registry_manager);
-        NetworkProtocolHandler(registry_manager, &new_node, parent_node, memory_size + 0x20, memory_size);
+        FUN_18008f140(registry_manager, &new_node, parent_node, memory_size + 0x20, memory_size);
         parent_node = new_node;
     }
     
@@ -1554,7 +1554,7 @@ void SystemRegistryNodeCreatorType25(void) {
     if ((parent_node == root_node) || 
         (comparison_result = memcmp(&system_memory_1050, parent_node + 4, 0x10), comparison_result < 0)) {
         memory_size = NetworkConnectionManager(registry_manager);
-        NetworkProtocolHandler(registry_manager, &new_node, parent_node, memory_size + 0x20, memory_size);
+        FUN_18008f140(registry_manager, &new_node, parent_node, memory_size + 0x20, memory_size);
         parent_node = new_node;
     }
     
@@ -1612,7 +1612,7 @@ void SystemRegistryNodeCreatorType26(void) {
     if ((parent_node == root_node) || 
         (comparison_result = memcmp(&system_memory_1028, parent_node + 4, 0x10), comparison_result < 0)) {
         memory_size = NetworkConnectionManager(registry_manager);
-        NetworkProtocolHandler(registry_manager, &new_node, parent_node, memory_size + 0x20, memory_size);
+        FUN_18008f140(registry_manager, &new_node, parent_node, memory_size + 0x20, memory_size);
         parent_node = new_node;
     }
     

@@ -858,7 +858,7 @@ LAB_1808403d0:
     func_0x00018074b800(auStack_128 + (iVar1 + iVar2),0x100 - (iVar1 + iVar2),param_2);
     puStack_158 = auStack_128;
                     // WARNING: Subroutine does not return
-    DataTransformer(iVar3,0,0,&unknown_var_432_ptr);
+    FUN_180749ef0(iVar3,0,0,&unknown_var_432_ptr);
   }
 LAB_180840449:
                     // WARNING: Subroutine does not return
@@ -894,7 +894,7 @@ void FUN_180840490(uint64_t param_1,uint64_t *param_2)
     func_0x00018074bda0(auStack_128,0x100,0);
     puStack_158 = auStack_128;
                     // WARNING: Subroutine does not return
-    DataTransformer(0x1f,0xc,param_1,&unknown_var_5504_ptr);
+    FUN_180749ef0(0x1f,0xc,param_1,&unknown_var_5504_ptr);
   }
   *param_2 = 0;
   alStack_148[1] = 0;
