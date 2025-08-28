@@ -1,10 +1,43 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 02_core_engine_part257_sub002_sub002.c - 1 个函数
+/**
+ * 02_core_engine_part257_sub002_sub002.c - 核心引擎数据处理模块
+ * 
+ * 本文件包含6个函数，主要用于：
+ * - 复杂的数据流处理和参数配置
+ * - 条件检查和字符串比较
+ * - 返回值处理和状态验证
+ * 
+ * 文件位置: 核心引擎模块第257部分第2子部分第2子部分
+ * 包含函数数量: 6个
+ */
 
-// 函数: void FUN_1802230e0(undefined8 param_1,undefined8 *param_2,longlong param_3,longlong param_4,
-void FUN_1802230e0(undefined8 param_1,undefined8 *param_2,longlong param_3,longlong param_4,
-                  undefined1 param_5,undefined4 param_6,uint param_7,ulonglong param_8)
+/**
+ * 处理复杂数据流和参数配置的主函数
+ * 
+ * 此函数处理复杂的数据流操作，包括参数配置、条件检查和数据处理。
+ * 这是核心引擎中的关键函数，涉及多个数据结构和内存管理操作。
+ * 
+ * @param 上下文参数         上下文信息指针
+ * @param 数据结构指针       指向主要数据结构的指针
+ * @param 配置参数1         第一个配置参数
+ * @param 配置参数2         第二个配置参数
+ * @param 标志参数          操作标志参数
+ * @param 选项参数          选项和模式参数
+ * @param 状态参数          状态和控制参数
+ * @param 地址参数          地址和偏移参数
+ * 
+ * 主要功能:
+ * - 初始化数据结构和缓冲区
+ * - 处理多种条件分支和数据流
+ * - 执行字符串比较和配置检查
+ * - 管理内存分配和资源清理
+ * - 处理各种标志和状态参数
+ * 
+ * 注意: 此函数实现包含10000多行代码，逻辑极其复杂
+ */
+void 处理复杂数据流配置(undefined8 上下文参数, undefined8 *数据结构指针, longlong 配置参数1, longlong 配置参数2,
+                        undefined1 标志参数, undefined4 选项参数, uint 状态参数, ulonglong 地址参数)
 
 {
   int iVar1;
@@ -10719,32 +10752,53 @@ int FUN_180225c85(void)
 
 
 
-undefined4 FUN_180225cc6(void)
+/**
+ * 检查字符串匹配并返回标识符（版本1）
+ * 
+ * 此函数检查字符串匹配条件并返回相应的标识符值。
+ * 
+ * @param 无参数
+ * @return 返回匹配的标识符值，0表示不匹配
+ * 
+ * 主要功能:
+ * - 检查EBX寄存器值是否为0x11
+ * - 比较RDI+8位置的字符串与预定义字符串
+ * - 检查EBX寄存器值是否为0xe
+ * - 检查EBX寄存器值是否为0xb
+ * - 返回相应的标识符值
+ */
+undefined4 检查字符串匹配返回标识符版本1(void)
 
 {
-  int iVar1;
-  int unaff_EBX;
-  longlong unaff_RDI;
+  int 比较结果;
+  int 寄存器EBX;
+  longlong 寄存器RDI;
   
-  if ((unaff_EBX == 0x11) &&
-     (iVar1 = strcmp(*(undefined8 *)(unaff_RDI + 8),&UNK_180a13280), iVar1 == 0)) {
-    return 0x2a;
+  // 检查EBX=0x11且字符串匹配
+  if ((寄存器EBX == 0x11) &&
+     (比较结果 = strcmp(*(undefined8 *)(寄存器RDI + 8),&UNK_180a13280), 比较结果 == 0)) {
+    return 0x2a;  // 返回标识符42
   }
-  if (unaff_EBX == 0xe) {
-    iVar1 = strcmp(*(undefined8 *)(unaff_RDI + 8),&UNK_180a132d0);
-    if (iVar1 == 0) {
-      return 0x2e;
+  
+  // 检查EBX=0xe的情况
+  if (寄存器EBX == 0xe) {
+    比较结果 = strcmp(*(undefined8 *)(寄存器RDI + 8),&UNK_180a132d0);
+    if (比较结果 == 0) {
+      return 0x2e;  // 返回标识符46
     }
-    iVar1 = strcmp(*(undefined8 *)(unaff_RDI + 8),&UNK_180a132e0);
-    if (iVar1 == 0) {
-      return 0x2f;
+    比较结果 = strcmp(*(undefined8 *)(寄存器RDI + 8),&UNK_180a132e0);
+    if (比较结果 == 0) {
+      return 0x2f;  // 返回标识符47
     }
   }
-  if ((unaff_EBX == 0xb) &&
-     (iVar1 = strcmp(*(undefined8 *)(unaff_RDI + 8),&UNK_180a132c0), iVar1 == 0)) {
-    return 0x33;
+  
+  // 检查EBX=0xb且字符串匹配
+  if ((寄存器EBX == 0xb) &&
+     (比较结果 = strcmp(*(undefined8 *)(寄存器RDI + 8),&UNK_180a132c0), 比较结果 == 0)) {
+    return 0x33;  // 返回标识符51
   }
-  return 0;
+  
+  return 0;  // 无匹配返回0
 }
 
 
