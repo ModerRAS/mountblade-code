@@ -1,59 +1,84 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 02_core_engine_part199.c - 2 个函数
+// 02_core_engine_part199.c - 核心引擎模块第199部分 - 包含2个函数
 
-// 函数: void FUN_18017dd60(undefined8 param_1,undefined8 param_2)
-void FUN_18017dd60(undefined8 param_1,undefined8 param_2)
+// 函数: void create_platform_object(undefined8 param_1, undefined8 param_2)
+// 功能: 创建平台对象，分配内存并初始化相关结构
+// 参数: 
+//   param_1 - 平台对象类型标识符
+//   param_2 - 平台对象配置参数
+void create_platform_object(undefined8 param_1, undefined8 param_2)
 
 {
-  longlong *plVar1;
-  undefined4 uVar2;
-  undefined8 *puVar3;
-  undefined4 *puVar4;
-  undefined8 *puVar5;
-  undefined8 uVar6;
-  undefined *puStack_80;
-  undefined4 *puStack_78;
-  undefined4 uStack_70;
-  undefined8 uStack_68;
+  longlong *object_ptr;
+  undefined4 temp_var;
+  undefined8 *memory_block;
+  undefined4 *string_buffer;
+  undefined8 *object_data;
+  undefined8 flag_value;
+  undefined *stack_ptr_80;
+  undefined4 *stack_ptr_78;
+  undefined4 stack_value_70;
+  undefined8 stack_value_68;
   
-  puVar3 = (undefined8 *)FUN_18062b1e0(_DAT_180c8ed18,0x98,8,3);
-  uVar6 = 0xfffffffffffffffe;
-  puVar5 = puVar3;
-  FUN_1803456e0(puVar3,param_2,param_1);
-  *puVar5 = &UNK_180a1e978;
-  plVar1 = puVar5 + 0xf;
-  *plVar1 = (longlong)&UNK_18098bcb0;
-  puVar5[0x10] = 0;
-  *(undefined4 *)(puVar5 + 0x11) = 0;
-  *plVar1 = (longlong)&UNK_180a3c3e0;
-  puVar5[0x12] = 0;
-  puVar5[0x10] = 0;
-  *(undefined4 *)(puVar5 + 0x11) = 0;
-  *(undefined1 *)(puVar5 + 0xe) = 0;
-  (**(code **)(*plVar1 + 0x10))(plVar1,&DAT_180a1e968);
-  puStack_80 = &UNK_180a3c3e0;
-  uStack_68 = 0;
-  puStack_78 = (undefined4 *)0x0;
-  uStack_70 = 0;
-  puVar4 = (undefined4 *)FUN_18062b420(_DAT_180c8ed18,0x1f,0x13);
-  *(undefined1 *)puVar4 = 0;
-  puStack_78 = puVar4;
-  uVar2 = FUN_18064e990(puVar4);
-  uStack_68 = CONCAT44(uStack_68._4_4_,uVar2);
-  *puVar4 = 0x74726150;
-  puVar4[1] = 0x206c6169;
-  puVar4[2] = 0x656b6142;
-  puVar4[3] = 0x726f4620;
-  *(undefined8 *)(puVar4 + 4) = 0x746e657272754320;
-  puVar4[6] = 0x76654c20;
-  *(undefined2 *)(puVar4 + 7) = 0x6c65;
-  *(undefined1 *)((longlong)puVar4 + 0x1e) = 0;
-  uStack_70 = 0x1e;
-  FUN_1803460a0(puVar3,&puStack_80,puVar3 + 0xe,0xb,uVar6);
-  puStack_80 = &UNK_180a3c3e0;
+  // 分配内存块，大小为0x98字节，对齐为8字节
+  memory_block = (undefined8 *)allocate_memory(_memory_pool_address, 0x98, 8, 3);
+  flag_value = 0xfffffffffffffffe;
+  object_data = memory_block;
+  
+  // 初始化对象数据
+  initialize_object_data(memory_block, param_2, param_1);
+  
+  // 设置对象虚函数表指针
+  *object_data = &platform_object_vtable;
+  object_ptr = object_data + 0xf;
+  *object_ptr = (longlong)&platform_object_methods;
+  
+  // 初始化对象属性
+  object_data[0x10] = 0;
+  *(undefined4 *)(object_data + 0x11) = 0;
+  *object_ptr = (longlong)&platform_object_interface;
+  object_data[0x12] = 0;
+  object_data[0x10] = 0;
+  *(undefined4 *)(object_data + 0x11) = 0;
+  *(undefined1 *)(object_data + 0xe) = 0;
+  
+  // 调用对象初始化方法
+  (**(code **)(*object_ptr + 0x10))(object_ptr, &platform_object_config);
+  
+  // 准备错误消息字符串
+  stack_ptr_80 = &platform_object_interface;
+  stack_value_68 = 0;
+  stack_ptr_78 = (undefined4 *)0x0;
+  stack_value_70 = 0;
+  
+  // 分配字符串缓冲区
+  string_buffer = (undefined4 *)allocate_string_buffer(_memory_pool_address, 0x1f, 0x13);
+  *(undefined1 *)string_buffer = 0;
+  stack_ptr_78 = string_buffer;
+  
+  // 获取字符串句柄
+  temp_var = get_string_handle(string_buffer);
+  stack_value_68 = CONCAT44(stack_value_68._4_4_, temp_var);
+  
+  // 设置错误消息内容: "Part Bake Frame Level Current"
+  *string_buffer = 0x74726150;  // "Ptra"
+  string_buffer[1] = 0x206c6169;  // "ial "
+  string_buffer[2] = 0x656b6142;  // "Bake"
+  string_buffer[3] = 0x726f4620;  // " Fro"
+  *(undefined8 *)(string_buffer + 4) = 0x746e657272754320;  // "e Current "
+  string_buffer[6] = 0x76654c20;  // " Leve"
+  *(undefined2 *)(string_buffer + 7) = 0x6c65;  // "el"
+  *(undefined1 *)((longlong)string_buffer + 0x1e) = 0;
+  stack_value_70 = 0x1e;
+  
+  // 调用对象方法设置错误消息
+  set_object_error_message(memory_block, &stack_ptr_80, memory_block + 0xe, 0xb, flag_value);
+  
+  stack_ptr_80 = &platform_object_interface;
                     // WARNING: Subroutine does not return
-  FUN_18064e900(puVar4);
+  // 释放字符串缓冲区并退出
+  release_string_buffer(string_buffer);
 }
 
 
@@ -62,31 +87,50 @@ void FUN_18017dd60(undefined8 param_1,undefined8 param_2)
 
 
 
-// 函数: void FUN_18017ee80(longlong *param_1)
-void FUN_18017ee80(longlong *param_1)
+// 函数: void initialize_engine_object(longlong *param_1)
+// 功能: 初始化引擎对象，设置必要的配置和回调函数
+// 参数: 
+//   param_1 - 引擎对象指针的指针
+void initialize_engine_object(longlong *param_1)
 
 {
-  undefined8 uVar1;
-  longlong lVar2;
-  longlong *plVar3;
-  longlong *plStackX_8;
+  undefined8 config_value;
+  longlong base_address;
+  longlong *engine_object;
+  longlong *stack_ptr_8;
   
-  lVar2 = _DAT_180c86870;
-  plStackX_8 = param_1;
-  plVar3 = (longlong *)FUN_18062b1e0(_DAT_180c8ed18,200,8,3,0xfffffffffffffffe);
-  plStackX_8 = plVar3;
-  FUN_180049830(plVar3);
-  *plVar3 = (longlong)&UNK_180a0a128;
-  plVar3[0x18] = lVar2 + 0x38;
-  plVar3[3] = -3;
-  (**(code **)(*plVar3 + 0x28))(plVar3);
-  uVar1 = _DAT_180c82868;
-  plStackX_8 = plVar3;
-  (**(code **)(*plVar3 + 0x28))(plVar3);
-  FUN_18005e110(uVar1,&plStackX_8);
+  // 获取引擎配置基址
+  base_address = _engine_config_address;
+  stack_ptr_8 = param_1;
+  
+  // 分配引擎对象内存，大小为200字节，对齐为8字节
+  engine_object = (longlong *)allocate_memory(_memory_pool_address, 200, 8, 3, 0xfffffffffffffffe);
+  stack_ptr_8 = engine_object;
+  
+  // 初始化引擎对象基础结构
+  initialize_engine_base(engine_object);
+  
+  // 设置引擎对象虚函数表
+  *engine_object = (longlong)&engine_object_vtable;
+  engine_object[0x18] = base_address + 0x38;
+  engine_object[3] = -3;
+  
+  // 调用引擎对象初始化方法
+  (**(code **)(*engine_object + 0x28))(engine_object);
+  
+  // 获取引擎配置值
+  config_value = _engine_config_value;
+  stack_ptr_8 = engine_object;
+  
+  // 再次调用初始化方法（可能是不同的初始化阶段）
+  (**(code **)(*engine_object + 0x28))(engine_object);
+  
+  // 注册引擎对象回调
+  register_engine_callback(config_value, &stack_ptr_8);
                     // WARNING: Could not recover jumptable at 0x00018017ef34. Too many branches
                     // WARNING: Treating indirect jump as call
-  (**(code **)(*plVar3 + 0x38))(plVar3);
+  // 调用引擎对象启动方法
+  (**(code **)(*engine_object + 0x38))(engine_object);
   return;
 }
 
@@ -95,4 +139,20 @@ void FUN_18017ee80(longlong *param_1)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-
+// 本文件中使用的全局变量和函数引用：
+// _memory_pool_address - 内存池地址
+// allocate_memory - 内存分配函数
+// initialize_object_data - 对象数据初始化函数
+// platform_object_vtable - 平台对象虚函数表
+// platform_object_methods - 平台对象方法表
+// platform_object_interface - 平台对象接口
+// platform_object_config - 平台对象配置
+// allocate_string_buffer - 字符串缓冲区分配函数
+// get_string_handle - 获取字符串句柄函数
+// set_object_error_message - 设置对象错误消息函数
+// release_string_buffer - 释放字符串缓冲区函数
+// _engine_config_address - 引擎配置地址
+// initialize_engine_base - 引擎基础初始化函数
+// engine_object_vtable - 引擎对象虚函数表
+// _engine_config_value - 引擎配置值
+// register_engine_callback - 注册引擎回调函数
