@@ -1203,7 +1203,7 @@ void FUN_180941b20(void)
 
 {
   // 初始化系统资源状态
-  _DAT_180d49638 = &UNK_180a3c3e0;
+  *system_resource_state_ptr = SYSTEM_INIT_VALUE;
   
   // 检查资源状态
   if (_DAT_180d49640 != 0) {
