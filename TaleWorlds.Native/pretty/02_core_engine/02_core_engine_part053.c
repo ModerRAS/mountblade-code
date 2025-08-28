@@ -332,14 +332,14 @@ LAB_18008eff7:
         lVar2 = (lVar6 + -2 >> 1) + 1;
         do {
           lVar2 = lVar2 + -1;
-          heap_sort_adjust_optimized(unaff_R15,lVar2,lVar1,lVar2,&uStack0000000000000060);
+          heap_sort_adjust_down(unaff_R15,lVar2,lVar1,lVar2,&uStack0000000000000060);
         } while (lVar2 != 0);
       }
       if (1 < lVar6) {
         plVar7 = plVar7 + -1;
         do {
           *plVar7 = *unaff_R15;
-          heap_sort_adjust_optimized(unaff_R15,lVar2,lVar1,lVar2,&uStack0000000000000060);
+          heap_sort_adjust_down(unaff_R15,lVar2,lVar1,lVar2,&uStack0000000000000060);
           plVar7 = plVar7 + -1;
         } while (1 < (8 - (longlong)unaff_R15) + (longlong)plVar7 >> 3);
       }
@@ -376,7 +376,7 @@ void heap_build_conditional(void)
       do {
         uStack0000000000000060 = unaff_R15[lVar2 + -1];
         lVar2 = lVar2 + -1;
-        heap_sort_adjust_optimized(unaff_R15,lVar2,lVar1,lVar2,&uStack0000000000000060);
+        heap_sort_adjust_down(unaff_R15,lVar2,lVar1,lVar2,&uStack0000000000000060);
       } while (lVar2 != 0);
     }
     if (1 < lVar1) {
@@ -384,7 +384,7 @@ void heap_build_conditional(void)
       do {
         uStack0000000000000060 = *puVar3;
         *puVar3 = *unaff_R15;
-        heap_sort_adjust_optimized(unaff_R15,lVar2,lVar1,lVar2,&uStack0000000000000060);
+        heap_sort_adjust_down(unaff_R15,lVar2,lVar1,lVar2,&uStack0000000000000060);
         puVar3 = puVar3 + -1;
       } while (1 < (8 - (longlong)unaff_R15) + (longlong)puVar3 >> 3);
     }
