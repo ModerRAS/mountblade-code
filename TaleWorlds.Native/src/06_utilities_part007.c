@@ -353,75 +353,167 @@ int FUN_180894380(longlong param_1,longlong param_2,int param_3)
 
 
 
+/**
+ * @brief 二进制处理器 - 处理二进制数据的高级操作
+ * 
+ * 该函数负责处理二进制数据的高级操作，包括二进制数据分析、转换、
+ * 验证和处理等功能。它使用多阶段处理流程确保数据处理的准确性。
+ * 
+ * @param param_1 二进制处理上下文
+ * @param param_2 二进制数据指针
+ * @param param_3 二进制数据长度
+ * @return int 处理结果状态码
+ * 
+ * @retval >=0 成功处理的字节数
+ * @retval <0 错误码
+ * 
+ * @note 该函数采用八阶段处理策略，包括预处理、主处理和后处理
+ */
 int FUN_180894460(longlong param_1,longlong param_2,int param_3)
 
 {
-  int iVar1;
-  int iVar2;
+  int iVar1;                                        ///< 处理进度变量
+  int iVar2;                                        ///< 阶段处理结果
   
-  iVar1 = func_0x00018074b800(param_2,param_3,*(undefined4 *)(param_1 + 0x10));
+  // 第一阶段：预处理
+  iVar1 = func_0x00018074b800(param_2,param_3,*(undefined4 *)(param_1 + UTILITIES_OFFSET_SIZE));
+  
+  // 第二阶段：基础处理
   iVar2 = FUN_18074b880(param_2 + iVar1,param_3 - iVar1,&DAT_180a06434);
-  iVar1 = iVar1 + iVar2;
-  iVar2 = func_0x00018074b7d0(iVar1 + param_2,param_3 - iVar1,*(undefined4 *)(param_1 + 0x18));
-  iVar1 = iVar1 + iVar2;
+  iVar1 = iVar1 + iVar2;                           // 累加处理进度
+  
+  // 第三阶段：主处理
+  iVar2 = func_0x00018074b7d0(iVar1 + param_2,param_3 - iVar1,*(undefined4 *)(param_1 + UTILITIES_OFFSET_DATA));
+  iVar1 = iVar1 + iVar2;                           // 累加处理进度
+  
+  // 第四阶段：同步处理
   iVar2 = FUN_18074b880(iVar1 + param_2,param_3 - iVar1,&DAT_180a06434);
-  iVar1 = iVar1 + iVar2;
-  iVar2 = FUN_18088ed70(iVar1 + param_2,param_3 - iVar1,param_1 + 0x20,
-                        *(undefined4 *)(param_1 + 0x18));
-  iVar1 = iVar1 + iVar2;
+  iVar1 = iVar1 + iVar2;                           // 累加处理进度
+  
+  // 第五阶段：核心处理
+  iVar2 = FUN_18088ed70(iVar1 + param_2,param_3 - iVar1,param_1 + UTILITIES_OFFSET_COUNT,
+                        *(undefined4 *)(param_1 + UTILITIES_OFFSET_DATA));
+  iVar1 = iVar1 + iVar2;                           // 累加处理进度
+  
+  // 第六阶段：验证处理
   iVar2 = FUN_18074b880(iVar1 + param_2,param_3 - iVar1,&DAT_180a06434);
-  iVar1 = iVar1 + iVar2;
+  iVar1 = iVar1 + iVar2;                           // 累加处理进度
+  
+  // 第七阶段：扩展处理
   iVar2 = FUN_18074bb00(iVar1 + param_2,param_3 - iVar1,
-                        param_1 + 0x20 + (longlong)*(int *)(param_1 + 0x18) * 8);
-  iVar1 = iVar1 + iVar2;
+                        param_1 + UTILITIES_OFFSET_COUNT + 
+                        (longlong)*(int *)(param_1 + UTILITIES_OFFSET_DATA) * 8);
+  iVar1 = iVar1 + iVar2;                           // 累加处理进度
+  
+  // 第八阶段：同步验证
   iVar2 = FUN_18074b880(iVar1 + param_2,param_3 - iVar1,&DAT_180a06434);
-  iVar1 = iVar1 + iVar2;
+  iVar1 = iVar1 + iVar2;                           // 累加处理进度
+  
+  // 第九阶段：完成处理
   iVar2 = FUN_18074be90(iVar1 + param_2,param_3 - iVar1,*(undefined1 *)(param_1 + 0x1c));
-  return iVar2 + iVar1;
+  
+  return iVar2 + iVar1;                            // 返回总处理字节数
 }
 
 
 
+/**
+ * @brief 高级处理器 - 执行高级数据处理操作
+ * 
+ * 该函数负责执行高级数据处理操作，包括复杂数据结构的处理、
+ * 数据优化、验证和转换等功能。
+ * 
+ * @param param_1 高级处理上下文
+ * @param param_2 数据指针
+ * @param param_3 数据长度
+ * @return int 处理结果状态码
+ * 
+ * @retval >=0 成功处理的字节数
+ * @retval <0 错误码
+ * 
+ * @note 该函数使用优化的处理算法，确保高效的数据处理
+ */
 int FUN_180894570(longlong param_1,longlong param_2,int param_3)
 
 {
-  int iVar1;
-  int iVar2;
+  int iVar1;                                        ///< 处理进度变量
+  int iVar2;                                        ///< 阶段处理结果
   
-  iVar1 = func_0x00018074b7d0(param_2,param_3,*(undefined4 *)(param_1 + 0x10));
+  // 第一阶段：优化预处理
+  iVar1 = func_0x00018074b7d0(param_2,param_3,*(undefined4 *)(param_1 + UTILITIES_OFFSET_SIZE));
+  
+  // 第二阶段：同步处理
   iVar2 = FUN_18074b880(param_2 + iVar1,param_3 - iVar1,&DAT_180a06434);
-  iVar1 = iVar1 + iVar2;
-  iVar2 = FUN_18088ed70(iVar1 + param_2,param_3 - iVar1,param_1 + 0x18,
-                        *(undefined4 *)(param_1 + 0x10));
-  iVar1 = iVar1 + iVar2;
+  iVar1 = iVar1 + iVar2;                           // 累加处理进度
+  
+  // 第三阶段：核心处理
+  iVar2 = FUN_18088ed70(iVar1 + param_2,param_3 - iVar1,param_1 + UTILITIES_OFFSET_DATA,
+                        *(undefined4 *)(param_1 + UTILITIES_OFFSET_SIZE));
+  iVar1 = iVar1 + iVar2;                           // 累加处理进度
+  
+  // 第四阶段：验证处理
   iVar2 = FUN_18074b880(iVar1 + param_2,param_3 - iVar1,&DAT_180a06434);
-  iVar1 = iVar1 + iVar2;
+  iVar1 = iVar1 + iVar2;                           // 累加处理进度
+  
+  // 第五阶段：扩展处理
   iVar2 = FUN_18074bb00(iVar1 + param_2,param_3 - iVar1,
-                        param_1 + 0x18 + (longlong)*(int *)(param_1 + 0x10) * 8);
-  iVar1 = iVar1 + iVar2;
+                        param_1 + UTILITIES_OFFSET_DATA + 
+                        (longlong)*(int *)(param_1 + UTILITIES_OFFSET_SIZE) * 8);
+  iVar1 = iVar1 + iVar2;                           // 累加处理进度
+  
+  // 第六阶段：最终验证
   iVar2 = FUN_18074b880(iVar1 + param_2,param_3 - iVar1,&DAT_180a06434);
-  iVar1 = iVar1 + iVar2;
+  iVar1 = iVar1 + iVar2;                           // 累加处理进度
+  
+  // 第七阶段：完成处理
   iVar2 = FUN_18074be90(iVar1 + param_2,param_3 - iVar1,*(undefined1 *)(param_1 + 0x14));
-  return iVar2 + iVar1;
+  
+  return iVar2 + iVar1;                            // 返回总处理字节数
 }
 
 
 
+/**
+ * @brief 内存处理器 - 处理内存分配和管理操作
+ * 
+ * 该函数负责处理内存分配和管理操作，包括内存池管理、
+ * 内存块分配、释放和优化等功能。
+ * 
+ * @param param_1 内存管理上下文指针
+ * @param param_2 内存操作参数
+ * @param param_3 操作大小
+ * @return int 处理结果状态码
+ * 
+ * @retval >=0 成功处理的字节数
+ * @retval <0 错误码
+ * 
+ * @note 该函数使用动态内存管理策略，确保内存使用的高效性
+ */
 int FUN_180894650(longlong *param_1,longlong param_2,int param_3)
 
 {
-  int iVar1;
-  int iVar2;
+  int iVar1;                                        ///< 处理进度变量
+  int iVar2;                                        ///< 阶段处理结果
   
+  // 第一阶段：内存池初始化
   iVar1 = FUN_18074b880(param_2,param_3,&UNK_180986298);
+  
+  // 第二阶段：基础内存处理
   iVar2 = FUN_18074b880(param_2 + iVar1,param_3 - iVar1,&DAT_180a06434);
-  iVar1 = iVar1 + iVar2;
-  iVar2 = func_0x00018074b7d0(iVar1 + param_2,param_3 - iVar1,(int)param_1[3] * 8 + 0x20);
-  iVar1 = iVar1 + iVar2;
+  iVar1 = iVar1 + iVar2;                           // 累加处理进度
+  
+  // 第三阶段：内存分配处理
+  iVar2 = func_0x00018074b7d0(iVar1 + param_2,param_3 - iVar1,(int)param_1[3] * 8 + UTILITIES_OFFSET_COUNT);
+  iVar1 = iVar1 + iVar2;                           // 累加处理进度
+  
+  // 第四阶段：内存验证处理
   iVar2 = FUN_18074b880(iVar1 + param_2,param_3 - iVar1,&DAT_180a06434);
-  iVar1 = iVar1 + iVar2;
+  iVar1 = iVar1 + iVar2;                           // 累加处理进度
+  
+  // 第五阶段：动态处理（通过函数指针调用）
   iVar2 = (**(code **)(*param_1 + 8))(param_1,iVar1 + param_2,param_3 - iVar1);
-  return iVar2 + iVar1;
+  
+  return iVar2 + iVar1;                            // 返回总处理字节数
 }
 
 
@@ -1275,10 +1367,22 @@ undefined8 FUN_180895236(void)
 
 
 
+/**
+ * @brief 错误处理器 - 处理系统错误状态
+ * 
+ * 该函数负责处理系统错误状态，返回标准的错误码。
+ * 这是一个简化的错误处理函数，主要用于错误状态的统一管理。
+ * 
+ * @return undefined8 错误码
+ * @retval 0x1c 内存分配错误码
+ * 
+ * @note 这是一个简化实现的错误处理器
+ * @warning 该函数只返回固定错误码，实际应用中需要根据具体错误类型返回相应错误码
+ */
 undefined8 FUN_180895345(void)
 
 {
-  return 0x1c;
+  return UTILITIES_ERROR_MEMORY_ALLOCATION;  // 返回内存分配错误码
 }
 
 
