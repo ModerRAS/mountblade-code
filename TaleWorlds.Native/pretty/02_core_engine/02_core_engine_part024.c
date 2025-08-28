@@ -281,8 +281,11 @@ void close_file_handle(longlong engine_context, undefined8 *file_handle_array, u
 
 
 
-// 函数: void FUN_1800686b0(longlong param_1)
-void FUN_1800686b0(longlong param_1)
+// 函数: 清理资源池和内存管理
+// 参数:
+//   param_1 - 资源管理器指针
+// 功能: 遍历并清理资源池中的所有资源条目
+void cleanup_resource_pool(longlong resource_manager)
 
 {
   longlong *plVar1;
@@ -346,8 +349,12 @@ void FUN_1800686b0(longlong param_1)
 
 
 
-// 函数: void FUN_1800687d0(longlong param_1,undefined8 *param_2)
-void FUN_1800687d0(longlong param_1,undefined8 *param_2)
+// 函数: 释放IO缓冲区资源
+// 参数:
+//   param_1 - 缓冲区管理器
+//   param_2 - 要释放的缓冲区指针
+// 功能: 将缓冲区返回到空闲池中
+void release_io_buffer(longlong buffer_manager, undefined8 *buffer)
 
 {
   int iVar1;
@@ -370,9 +377,14 @@ void FUN_1800687d0(longlong param_1,undefined8 *param_2)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-longlong *
-FUN_180068860(longlong param_1,longlong *param_2,undefined8 param_3,undefined8 param_4,
-             ulonglong param_5)
+// 函数: 创建哈希表条目
+// 参数:
+//   param_1 - 哈希表指针
+//   param_2 - 条目数据指针
+//   param_3, param_4 - 附加参数
+//   param_5 - 哈希键值
+// 功能: 在哈希表中创建或查找条目
+longlong *create_hash_table_entry(longlong hash_table, longlong *entry_data, undefined8 param_3, undefined8 param_4, ulonglong hash_key)
 
 {
   longlong lVar1;
@@ -415,7 +427,12 @@ FUN_180068860(longlong param_1,longlong *param_2,undefined8 param_3,undefined8 p
 
 
 
-undefined8 FUN_180068a90(ulonglong *param_1,undefined8 *param_2)
+// 函数: 查找可用资源条目
+// 参数:
+//   param_1 - 资源池指针
+//   param_2 - 返回的条目指针
+// 功能: 在资源池中查找可用的资源条目
+undefined8 find_available_resource_entry(ulonglong *resource_pool, undefined8 *entry_pointer)
 
 {
   longlong *plVar1;
@@ -551,7 +568,12 @@ LAB_180068c94:
 
 
 
-undefined8 FUN_180068ce0(longlong param_1,undefined8 *param_2)
+// 函数: 获取资源条目数据
+// 参数:
+//   param_1 - 资源条目指针
+//   param_2 - 返回的数据指针
+// 功能: 从资源条目中提取数据
+undefined8 get_resource_entry_data(longlong resource_entry, undefined8 *data_pointer)
 
 {
   longlong *plVar1;
