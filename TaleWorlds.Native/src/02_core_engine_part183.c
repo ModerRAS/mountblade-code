@@ -1226,7 +1226,7 @@ ALLOCATE_MEMORY:
                         data_handle = data_handle * 2;
                         if (data_handle != 0) goto ALLOCATE_MEMORY;
                     }
-                    data_size = FUN_180059780(*data_ptr, temp_size, data_offset);
+                    data_size = DataSizeCalculator(*data_ptr, temp_size, data_offset);
                     StringInitializer(data_size, &stack_ptr_2);
                     data_block_1 = (undefined8 *)data_ptr[1];
                     temp_size = stack_data_14;
@@ -1262,7 +1262,7 @@ ALLOCATE_MEMORY:
     }
     
     // 清理资源
-    FUN_18016d200(*data_ptr, data_ptr[1], 0);
+    DataReleaser(*data_ptr, data_ptr[1], 0);
     stack_ptr_10 = &UNK_180a3c3e0;
     if (stack_data_11 != 0) {
         ErrorHandler();
