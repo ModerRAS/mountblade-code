@@ -754,38 +754,61 @@ void CleanupRenderObject(RenderObject* render_object)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-longlong FUN_180560a90(longlong param_1)
-
+/*==============================================================================
+函数别名: CreateRenderContext - 创建渲染上下文
+原始函数: FUN_180560a90
+参数:
+  parent_context - 父渲染上下文指针
+返回:
+  RenderContext* - 新创建的渲染上下文指针
+描述:
+  创建一个新的渲染上下文，初始化渲染管线所需的各个组件。
+===============================================================================*/
+RenderContext* CreateRenderContext(RenderContext* parent_context)
 {
-  longlong lVar1;
-  undefined *puVar2;
+  RenderContext* context;
+  undefined* default_name;
   
-  lVar1 = FUN_18062b1e0(_DAT_180c8ed18,0x208,8,4,0xfffffffffffffffe);
-  FUN_18034dd90();
-  *(undefined8 *)(lVar1 + 0x1b0) = &UNK_18098bcb0;
-  *(undefined8 *)(lVar1 + 0x1b8) = 0;
-  *(undefined4 *)(lVar1 + 0x1c0) = 0;
-  *(undefined8 *)(lVar1 + 0x1b0) = &UNK_180a3c3e0;
-  *(undefined8 *)(lVar1 + 0x1c8) = 0;
-  *(undefined8 *)(lVar1 + 0x1b8) = 0;
-  *(undefined4 *)(lVar1 + 0x1c0) = 0;
-  *(undefined8 *)(lVar1 + 0x1d0) = 0;
-  *(undefined8 *)(lVar1 + 0x1d8) = 0;
-  *(undefined4 *)(lVar1 + 0x1e0) = 0;
-  *(undefined8 *)(lVar1 + 0x1e4) = 0x3e99999a;
-  *(undefined8 *)(lVar1 + 0x1ec) = 0xffffffffffffffff;
-  *(undefined2 *)(lVar1 + 500) = 0xffff;
-  *(undefined4 *)(lVar1 + 0x1f8) = 0xffffffff;
-  *(undefined8 *)(lVar1 + 0x200) = 0;
-  *(longlong *)(lVar1 + 0x200) = param_1;
-  puVar2 = &DAT_18098bc73;
-  if (*(undefined **)(param_1 + 0x70) != (undefined *)0x0) {
-    puVar2 = *(undefined **)(param_1 + 0x70);
+  // 分配渲染上下文内存
+  context = (RenderContext*)FUN_18062b1e0(_DAT_180c8ed18, 0x208, 8, 4, 0xfffffffffffffffe);
+  FUN_18034dd90(); // 初始化上下文
+  
+  // 初始化渲染状态对象
+  *(undefined8 *)(context + 0x1b0) = &UNK_18098bcb0;
+  *(undefined8 *)(context + 0x1b8) = 0;
+  *(undefined4 *)(context + 0x1c0) = 0;
+  *(undefined8 *)(context + 0x1b0) = &UNK_180a3c3e0;
+  *(undefined8 *)(context + 0x1c8) = 0;
+  *(undefined8 *)(context + 0x1b8) = 0;
+  *(undefined4 *)(context + 0x1c0) = 0;
+  
+  // 初始化变换矩阵
+  *(undefined8 *)(context + 0x1d0) = 0;
+  *(undefined8 *)(context + 0x1d8) = 0;
+  *(undefined4 *)(context + 0x1e0) = 0;
+  
+  // 初始化材质参数
+  *(undefined8 *)(context + 0x1e4) = FLOAT_0_3E99999A;
+  *(undefined8 *)(context + 0x1ec) = 0xffffffffffffffff;
+  
+  // 初始化渲染标志
+  *(undefined2 *)(context + 500) = 0xffff;
+  *(undefined4 *)(context + 0x1f8) = 0xffffffff;
+  
+  // 设置父上下文关联
+  *(undefined8 *)(context + 0x200) = 0;
+  *(longlong *)(context + 0x200) = parent_context;
+  
+  // 获取上下文名称
+  default_name = &DAT_18098bc73;
+  if (*(undefined **)(parent_context + 0x70) != (undefined *)0x0) {
+    default_name = *(undefined **)(parent_context + 0x70);
   }
-  (**(code **)(*(longlong *)(lVar1 + 0x10) + 0x10))((longlong *)(lVar1 + 0x10),puVar2);
-  return lVar1;
+  
+  // 调用初始化回调
+  (**(code **)(*(longlong *)(context + 0x10) + 0x10))((longlong *)(context + 0x10), default_name);
+  
+  return context;
 }
 
 
@@ -794,47 +817,68 @@ longlong FUN_180560a90(longlong param_1)
 
 
 
-// 函数: void FUN_180560b80(longlong param_1)
-void FUN_180560b80(longlong param_1)
-
+/*==============================================================================
+函数别名: ProcessRenderData - 处理渲染数据
+原始函数: FUN_180560b80
+参数:
+  render_context - 渲染上下文指针
+返回:
+  void
+描述:
+  处理渲染数据，包括字符串比较、数据复制和状态更新。
+===============================================================================*/
+void ProcessRenderData(RenderContext* render_context)
 {
-  byte *pbVar1;
-  int iVar2;
-  longlong lVar3;
-  byte *pbVar4;
-  int iVar5;
-  longlong lVar6;
+  byte *str_ptr1;
+  int str_len1;
+  longlong data_buffer;
+  byte *str_ptr2;
+  int str_len2;
+  longlong str_offset;
   
+  // 检查调试标志
   if (*(char *)(_DAT_180c868a8 + 0x130) != '\0') {
-    FUN_18053cee0(*(undefined8 *)(param_1 + 0xb0));
+    FUN_18053cee0(*(undefined8 *)(render_context + 0xb0));
   }
-  lVar3 = *(longlong *)(param_1 + 0x20);
-  iVar2 = *(int *)(param_1 + 0x78);
-  iVar5 = *(int *)(lVar3 + 0xe8);
-  if (iVar2 == iVar5) {
-    if (iVar2 != 0) {
-      pbVar4 = *(byte **)(param_1 + 0x70);
-      lVar6 = *(longlong *)(lVar3 + 0xe0) - (longlong)pbVar4;
+  
+  data_buffer = *(longlong *)(render_context + 0x20);
+  str_len1 = *(int *)(render_context + 0x78);
+  str_len2 = *(int *)(data_buffer + 0xe8);
+  
+  // 比较字符串长度
+  if (str_len1 == str_len2) {
+    if (str_len1 != 0) {
+      str_ptr2 = *(byte **)(render_context + 0x70);
+      str_offset = *(longlong *)(data_buffer + 0xe0) - (longlong)str_ptr2;
+      
+      // 逐字符比较字符串
       do {
-        pbVar1 = pbVar4 + lVar6;
-        iVar5 = (uint)*pbVar4 - (uint)*pbVar1;
-        if (iVar5 != 0) break;
-        pbVar4 = pbVar4 + 1;
-      } while (*pbVar1 != 0);
+        str_ptr1 = str_ptr2 + str_offset;
+        str_len2 = (uint)*str_ptr2 - (uint)*str_ptr1;
+        if (str_len2 != 0) break;
+        str_ptr2 = str_ptr2 + 1;
+      } while (*str_ptr1 != 0);
     }
   }
-  else if (iVar2 != 0) goto LAB_180560c1e;
-  if (iVar5 == 0) {
-    FUN_1804aa470(&DAT_180c961e0,*(undefined8 *)(param_1 + 0xb0),param_1 + 0x68,param_1 + 0x68,0xff)
-    ;
+  else if (str_len1 != 0) {
+    goto PROCESS_EXTENDED_DATA;
+  }
+  
+  // 如果字符串匹配或为空
+  if (str_len2 == 0) {
+    FUN_1804aa470(&DAT_180c961e0, *(undefined8 *)(render_context + 0xb0), 
+                  render_context + 0x68, render_context + 0x68, 0xff);
     return;
   }
-LAB_180560c1e:
-  if (0 < *(int *)(lVar3 + 0x180)) {
-    FUN_180086e40(_DAT_180c868a8,&DAT_180a2d688,lVar3 + 0x170);
-    FUN_180086e40(_DAT_180c868a8,&DAT_180a2d688,lVar3 + 400);
-    FUN_1804aa470(&DAT_180c961e0,*(undefined8 *)(param_1 + 0xb0),lVar3 + 0x170,lVar3 + 400,
-                  *(undefined1 *)(lVar3 + 0x1b0));
+  
+PROCESS_EXTENDED_DATA:
+  // 处理扩展数据
+  if (0 < *(int *)(data_buffer + 0x180)) {
+    FUN_180086e40(_DAT_180c868a8, &DAT_180a2d688, data_buffer + 0x170);
+    FUN_180086e40(_DAT_180c868a8, &DAT_180a2d688, data_buffer + 400);
+    FUN_1804aa470(&DAT_180c961e0, *(undefined8 *)(render_context + 0xb0), 
+                  data_buffer + 0x170, data_buffer + 400,
+                  *(undefined1 *)(data_buffer + 0x1b0));
   }
   return;
 }
