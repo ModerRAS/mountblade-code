@@ -1,6 +1,29 @@
 #include "TaleWorlds.Native.Split.h"
 
 //============================================================================
+// FUN_函数语义化别名定义
+//============================================================================
+
+// 渲染数据管理函数
+#define RenderingSystem_DataProcessor FUN_1804485c0          // 渲染系统数据处理器
+#define RenderingSystem_DataManager FUN_1804489a0            // 渲染系统数据管理器
+#define RenderingSystem_DataInitializer FUN_180448d90        // 渲染系统数据初始化器
+#define RenderingSystem_DataCleaner FUN_180448df0            // 渲染系统数据清理器
+#define RenderingSystem_DataValidator FUN_180448e50         // 渲染系统数据验证器
+#define RenderingSystem_StatusChecker FUN_180448ea0         // 渲染系统状态检查器
+#define RenderingSystem_Controller FUN_180448f00            // 渲染系统控制器
+#define RenderingSystem_Counter FUN_180448f50                // 渲染系统计数器
+#define RenderingSystem_Updater FUN_180448fb0                // 渲染系统更新器
+#define RenderingSystem_InfoGetter FUN_180449000            // 渲染系统信息获取器
+#define RenderingSystem_OperationHandler FUN_180449070       // 渲染系统操作处理器
+#define RenderingSystem_QueryHandler FUN_1804491c0           // 渲染系统查询处理器
+#define RenderingSystem_Finalizer FUN_180449230              // 渲染系统终结器
+#define RenderingSystem_DataAllocator FUN_180449300        // 渲染系统数据分配器
+#define RenderingSystem_BatchProcessor FUN_1804496f0       // 渲染系统批处理器
+#define RenderingSystem_Resetter FUN_180449780              // 渲染系统重置器
+#define RenderingSystem_HandleManager FUN_180449850         // 渲染系统句柄管理器
+
+//============================================================================
 // 03_rendering_part337.c - 渲染系统高级数据结构和对象管理模块
 // 
 // 本模块包含11个核心函数，主要负责：

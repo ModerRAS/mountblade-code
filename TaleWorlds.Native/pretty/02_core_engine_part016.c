@@ -94,10 +94,10 @@
 #define CoreEngineDataStructureManager CoreEngineDataStructureManager    // 核心引擎数据结构管理器
 #define CoreEngineDataBufferCleaner CoreEngineDataBufferCleaner       // 核心引擎数据缓冲区清理器
 #define CoreEngineDataOffsetCalculator CoreEngineDataOffsetCalculator    // 核心引擎数据偏移计算器
-#define CoreEngineDataStructureOptimizer FUN_180057490  // 核心引擎数据结构优化器
+#define CoreEngineDataStructureOptimizer CoreEngineDataStructureOptimizer  // 核心引擎数据结构优化器
 
 // 系统组件管理函数别名
-#define CoreEngineComponentProcessor FUN_180058c20      // 核心引擎组件处理器
+#define CoreEngineComponentProcessor CoreEngineComponentProcessor      // 核心引擎组件处理器
 #define CoreEngineResourceManager FUN_1800582b0         // 核心引擎资源管理器
 #define CoreEngineStateManager FUN_180058370            // 核心引擎状态管理器
 #define CoreEngineErrorHandler FUN_180058420            // 核心引擎错误处理器
@@ -313,8 +313,8 @@ void CoreEngineDataOffsetCalculator(uint64_t param_1,int64_t param_2,uint64_t pa
 
 
 
-// 函数: void FUN_180057490(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
-void FUN_180057490(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
+// 函数: void CoreEngineDataStructureOptimizer(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
+void CoreEngineDataStructureOptimizer(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
   FUN_180058210(param_1,*(uint64_t *)(param_1 + 0x10),param_3,param_4,0xfffffffffffffffe);
@@ -334,7 +334,7 @@ void FUN_1800574b0(int64_t *param_1)
   
   lVar1 = param_1[1];
   for (lVar2 = *param_1; lVar2 != lVar1; lVar2 = lVar2 + 0x48) {
-    FUN_180058c20(lVar2);
+    CoreEngineComponentProcessor(lVar2);
   }
   if (*param_1 == 0) {
     return;
