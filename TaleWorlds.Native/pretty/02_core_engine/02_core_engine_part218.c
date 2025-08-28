@@ -1,9 +1,11 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 02_core_engine_part218.c - 19 个函数
+// 02_core_engine_part218.c - 核心引擎模块第218部分
+// 包含19个函数，主要涉及内存管理、容器操作、对象生命周期管理等功能
 
-// 函数: void FUN_180194350(longlong *param_1)
-void FUN_180194350(longlong *param_1)
+// 函数: 释放容器中的对象资源
+// 作用: 遍历容器中的所有对象，调用它们的析构函数，然后释放容器资源
+void cleanup_container_objects(longlong *container_ptr)
 
 {
   longlong *plVar1;
@@ -31,22 +33,23 @@ void FUN_180194350(longlong *param_1)
 
 
 
-// 函数: void FUN_180194370(void)
-void FUN_180194370(void)
+// 函数: 清理全局对象池
+// 作用: 清理全局对象池中的所有对象，释放相关资源
+void cleanup_global_object_pool(void)
 
 {
-  longlong lVar1;
-  longlong *plVar2;
-  longlong *plVar3;
-  ulonglong uVar4;
-  uint uVar5;
-  ulonglong uVar6;
+  longlong global_pool_base;
+  longlong *pool_start;
+  longlong *pool_end;
+  ulonglong index;
+  uint counter;
+  ulonglong total_items;
   
-  lVar1 = _DAT_180c868f0;
-  uVar4 = 0;
-  plVar3 = *(longlong **)(_DAT_180c868f0 + 0x58);
-  plVar2 = *(longlong **)(_DAT_180c868f0 + 0x50);
-  uVar6 = uVar4;
+  global_pool_base = global_object_pool_base;
+  index = 0;
+  pool_end = *(longlong **)(global_object_pool_base + 0x58);
+  pool_start = *(longlong **)(global_object_pool_base + 0x50);
+  total_items = index;
   if (((longlong)plVar3 - (longlong)plVar2) / 0x18 != 0) {
     do {
       plVar3 = *(longlong **)(uVar4 + (longlong)plVar2);
@@ -89,8 +92,9 @@ void FUN_180194370(void)
 
 
 
-// 函数: void FUN_1801944b0(longlong *param_1)
-void FUN_1801944b0(longlong *param_1)
+// 函数: 安全释放容器对象
+// 作用: 安全地释放容器中的对象，避免内存泄漏
+void safe_cleanup_container_objects(longlong *container_ptr)
 
 {
   longlong *plVar1;
@@ -118,84 +122,85 @@ void FUN_1801944b0(longlong *param_1)
 
 
 
-// 函数: void FUN_180194530(longlong *param_1,longlong *param_2)
-void FUN_180194530(longlong *param_1,longlong *param_2)
+// 函数: 向容器添加对象
+// 作用: 将新对象添加到容器中，必要时扩容
+void add_object_to_container(longlong *container_ptr, longlong *object_ptr)
 
 {
-  undefined8 *puVar1;
-  longlong *plVar2;
-  longlong *plVar3;
-  undefined8 *puVar4;
-  longlong *plVar5;
-  longlong *plVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  longlong lVar9;
+  undefined8 *container_end;
+  longlong *current_obj;
+  longlong *container_start;
+  undefined8 *src_ptr;
+  longlong *new_obj_ptr;
+  longlong *old_obj_ptr;
+  undefined8 *temp_ptr1;
+  undefined8 *temp_ptr2;
+  longlong new_capacity;
   
-  puVar8 = (undefined8 *)param_1[1];
-  puVar7 = (undefined8 *)*param_1;
-  lVar9 = ((longlong)puVar8 - (longlong)puVar7) / 0x18;
-  plVar3 = (longlong *)0x0;
-  if (lVar9 == 0) {
-    lVar9 = 1;
+  container_end = (undefined8 *)container_ptr[1];
+  container_start = (undefined8 *)*container_ptr;
+  new_capacity = ((longlong)container_end - (longlong)container_start) / 0x18;
+  new_obj_ptr = (longlong *)0x0;
+  if (new_capacity == 0) {
+    new_capacity = 1;
   }
   else {
-    lVar9 = lVar9 * 2;
-    if (lVar9 == 0) goto LAB_1801945bb;
+    new_capacity = new_capacity * 2;
+    if (new_capacity == 0) goto CAPACITY_CALCULATED;
   }
-  plVar3 = (longlong *)
-           FUN_18062b420(_DAT_180c8ed18,lVar9 * 0x18,(char)param_1[3],puVar7,0xfffffffffffffffe);
-  puVar8 = (undefined8 *)param_1[1];
-  puVar7 = (undefined8 *)*param_1;
-LAB_1801945bb:
-  plVar5 = plVar3;
-  if (puVar7 != puVar8) {
-    puVar4 = puVar7 + 1;
+  new_obj_ptr = (longlong *)
+           allocate_container_memory(global_memory_allocator,new_capacity * 0x18,(char)container_ptr[3],container_start,0xfffffffffffffffe);
+  container_end = (undefined8 *)container_ptr[1];
+  container_start = (undefined8 *)*container_ptr;
+CAPACITY_CALCULATED:
+  new_obj_ptr = new_obj_ptr;
+  if (container_start != container_end) {
+    src_ptr = container_start + 1;
     do {
-      *plVar5 = puVar4[-1];
-      puVar4[-1] = 0;
-      *(undefined8 *)((longlong)puVar4 + ((longlong)plVar3 - (longlong)puVar7)) = *puVar4;
-      *puVar4 = 0;
-      *(undefined4 *)(((longlong)plVar3 - (longlong)puVar7) + 8 + (longlong)puVar4) =
-           *(undefined4 *)(puVar4 + 1);
-      plVar5 = plVar5 + 3;
-      puVar1 = puVar4 + 2;
-      puVar4 = puVar4 + 3;
-    } while (puVar1 != puVar8);
+      *new_obj_ptr = src_ptr[-1];
+      src_ptr[-1] = 0;
+      *(undefined8 *)((longlong)src_ptr + ((longlong)new_obj_ptr - (longlong)container_start)) = *src_ptr;
+      *src_ptr = 0;
+      *(undefined4 *)(((longlong)new_obj_ptr - (longlong)container_start) + 8 + (longlong)src_ptr) =
+           *(undefined4 *)(src_ptr + 1);
+      new_obj_ptr = new_obj_ptr + 3;
+      temp_ptr1 = src_ptr + 2;
+      src_ptr = src_ptr + 3;
+    } while (temp_ptr1 != container_end);
   }
-  plVar2 = (longlong *)*param_2;
-  *plVar5 = (longlong)plVar2;
-  if (plVar2 != (longlong *)0x0) {
-    (**(code **)(*plVar2 + 0x28))();
+  old_obj_ptr = (longlong *)*object_ptr;
+  *new_obj_ptr = (longlong)old_obj_ptr;
+  if (old_obj_ptr != (longlong *)0x0) {
+    (**(code **)(*old_obj_ptr + 0x28))();
   }
-  plVar2 = (longlong *)param_2[1];
-  plVar5[1] = (longlong)plVar2;
-  if (plVar2 != (longlong *)0x0) {
-    (**(code **)(*plVar2 + 0x28))();
+  old_obj_ptr = (longlong *)object_ptr[1];
+  new_obj_ptr[1] = (longlong)old_obj_ptr;
+  if (old_obj_ptr != (longlong *)0x0) {
+    (**(code **)(*old_obj_ptr + 0x28))();
   }
-  *(int *)(plVar5 + 2) = (int)param_2[2];
-  plVar2 = (longlong *)param_1[1];
-  plVar6 = (longlong *)*param_1;
-  if (plVar6 != plVar2) {
+  *(int *)(new_obj_ptr + 2) = (int)object_ptr[2];
+  old_obj_ptr = (longlong *)container_ptr[1];
+  container_start = (longlong *)*container_ptr;
+  if (container_start != old_obj_ptr) {
     do {
-      if ((longlong *)plVar6[1] != (longlong *)0x0) {
-        (**(code **)(*(longlong *)plVar6[1] + 0x38))();
+      if ((longlong *)container_start[1] != (longlong *)0x0) {
+        (**(code **)(*(longlong *)container_start[1] + 0x38))();
       }
-      if ((longlong *)*plVar6 != (longlong *)0x0) {
-        (**(code **)(*(longlong *)*plVar6 + 0x38))();
+      if ((longlong *)*container_start != (longlong *)0x0) {
+        (**(code **)(*(longlong *)*container_start + 0x38))();
       }
-      plVar6 = plVar6 + 3;
-    } while (plVar6 != plVar2);
-    plVar6 = (longlong *)*param_1;
+      container_start = container_start + 3;
+    } while (container_start != old_obj_ptr);
+    container_start = (longlong *)*container_ptr;
   }
-  if (plVar6 == (longlong *)0x0) {
-    *param_1 = (longlong)plVar3;
-    param_1[1] = (longlong)(plVar5 + 3);
-    param_1[2] = (longlong)(plVar3 + lVar9 * 3);
+  if (container_start == (longlong *)0x0) {
+    *container_ptr = (longlong)new_obj_ptr;
+    container_ptr[1] = (longlong)(new_obj_ptr + 3);
+    container_ptr[2] = (longlong)(new_obj_ptr + new_capacity * 3);
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900(plVar6);
+  handle_memory_error(container_start);
 }
 
 
