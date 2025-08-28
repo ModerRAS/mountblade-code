@@ -5,141 +5,192 @@
 
 // 函数：堆排序插入操作
 // 用于在堆数据结构中插入元素并维护堆性质
+/**
+ * 堆排序插入和平衡操作
+ * 在堆数据结构中插入元素并维护堆性质，确保父节点总是小于子节点
+ * 
+ * @param heap_base 堆的基地址
+ * @param heap_size 堆的当前大小
+ * @param capacity 堆的容量
+ * @param index 插入位置的索引
+ * @param new_element 要插入的新元素指针
+ */
 void heap_insert_and_balance(longlong heap_base, longlong heap_size, longlong capacity, 
                             longlong index, longlong *new_element)
-
 {
-  int iVar1;
-  byte bVar2;
-  int iVar3;
-  longlong lVar4;
-  bool bVar5;
-  longlong lVar6;
-  byte *pbVar7;
-  uint uVar8;
-  longlong lVar9;
-  longlong lVar10;
-  longlong *plVar11;
+  int left_child_key;
+  byte *current_byte;
+  int right_child_key;
+  longlong left_child_data;
+  bool should_swap;
+  longlong swap_index;
+  byte *string_ptr;
+  uint compare_char;
+  longlong child_index;
+  longlong parent_index;
+  longlong *parent_node;
   
-  lVar10 = param_4 * 2;
-  while (lVar9 = lVar10 + 2, lVar9 < param_3) {
-    lVar6 = lVar9 * 0x10;
-    iVar3 = *(int *)(lVar6 + 8 + param_1);
-    iVar1 = *(int *)(lVar6 + -8 + param_1);
-    if (iVar3 == iVar1) {
-      lVar4 = *(longlong *)(lVar6 + -0x10 + param_1);
-      if (*(int *)(lVar4 + 0x78) == 0) {
-        bVar5 = false;
+  // 从当前节点开始向下调整堆
+  parent_index = index * 2;
+  while (child_index = parent_index + 2, child_index < capacity) {
+    swap_index = child_index * 0x10;
+    right_child_key = *(int *)(swap_index + 8 + heap_base);
+    left_child_key = *(int *)(swap_index + -8 + heap_base);
+    
+    // 比较左右子节点的键值
+    if (right_child_key == left_child_key) {
+      left_child_data = *(longlong *)(swap_index + -0x10 + heap_base);
+      if (*(int *)(left_child_data + 0x78) == 0) {
+        should_swap = false;
       }
-      else if (*(int *)(*(longlong *)(lVar6 + param_1) + 0x78) == 0) {
-        bVar5 = true;
+      else if (*(int *)(*(longlong *)(swap_index + heap_base) + 0x78) == 0) {
+        should_swap = true;
       }
       else {
-        pbVar7 = *(byte **)(lVar4 + 0x70);
-        lVar6 = *(longlong *)(*(longlong *)(lVar6 + param_1) + 0x70) - (longlong)pbVar7;
+        // 比较字符串内容
+        string_ptr = *(byte **)(left_child_data + 0x70);
+        swap_index = *(longlong *)(*(longlong *)(swap_index + heap_base) + 0x70) - (longlong)string_ptr;
         do {
-          bVar2 = *pbVar7;
-          uVar8 = (uint)pbVar7[lVar6];
-          if (bVar2 != uVar8) break;
-          pbVar7 = pbVar7 + 1;
-        } while (uVar8 != 0);
-        bVar5 = 0 < (int)(bVar2 - uVar8);
+          current_byte = *string_ptr;
+          compare_char = (uint)string_ptr[swap_index];
+          if (current_byte != compare_char) break;
+          string_ptr = string_ptr + 1;
+        } while (compare_char != 0);
+        should_swap = 0 < (int)(current_byte - compare_char);
       }
     }
     else {
-      bVar5 = iVar3 < iVar1;
+      should_swap = right_child_key < left_child_key;
     }
-    lVar6 = lVar10 + 1;
-    if (!bVar5) {
-      lVar6 = lVar9;
+    
+    swap_index = parent_index + 1;
+    if (!should_swap) {
+      swap_index = child_index;
     }
-    *(undefined8 *)(param_1 + param_4 * 0x10) = *(undefined8 *)(param_1 + lVar6 * 0x10);
-    *(undefined4 *)(param_1 + 8 + param_4 * 0x10) = *(undefined4 *)(param_1 + 8 + lVar6 * 0x10);
-    param_4 = lVar6;
-    lVar10 = lVar6 * 2;
+    
+    // 交换节点内容
+    *(longlong *)(heap_base + index * 0x10) = *(longlong *)(heap_base + swap_index * 0x10);
+    *(int *)(heap_base + 8 + index * 0x10) = *(int *)(heap_base + 8 + swap_index * 0x10);
+    index = swap_index;
+    parent_index = swap_index * 2;
   }
-  if (lVar9 == param_3) {
-    *(undefined8 *)(param_1 + param_4 * 0x10) = *(undefined8 *)(param_1 + -0x10 + lVar9 * 0x10);
-    *(undefined4 *)(param_1 + 8 + param_4 * 0x10) = *(undefined4 *)(param_1 + -8 + lVar9 * 0x10);
-    param_4 = lVar10 + 1;
+  
+  // 处理最后一个可能的子节点
+  if (child_index == capacity) {
+    *(longlong *)(heap_base + index * 0x10) = *(longlong *)(heap_base + -0x10 + child_index * 0x10);
+    *(int *)(heap_base + 8 + index * 0x10) = *(int *)(heap_base + -8 + child_index * 0x10);
+    index = parent_index + 1;
   }
-  while (param_2 < param_4) {
-    lVar10 = param_4 + -1 >> 1;
-    plVar11 = (longlong *)(lVar10 * 0x10 + param_1);
-    if ((int)plVar11[1] == (int)param_5[1]) {
-      if (*(int *)(*param_5 + 0x78) == 0) {
-        bVar5 = false;
+  
+  // 向上调整堆，确保父节点小于子节点
+  while (heap_size < index) {
+    parent_index = index + -1 >> 1;
+    parent_node = (longlong *)(parent_index * 0x10 + heap_base);
+    
+    if ((int)parent_node[1] == (int)new_element[1]) {
+      if (*(int *)(*new_element + 0x78) == 0) {
+        should_swap = false;
       }
-      else if (*(int *)(*plVar11 + 0x78) == 0) {
-        bVar5 = true;
+      else if (*(int *)(*parent_node + 0x78) == 0) {
+        should_swap = true;
       }
       else {
-        pbVar7 = *(byte **)(*param_5 + 0x70);
-        lVar9 = *(longlong *)(*plVar11 + 0x70) - (longlong)pbVar7;
+        // 比较字符串内容
+        string_ptr = *(byte **)(*new_element + 0x70);
+        child_index = *(longlong *)(*parent_node + 0x70) - (longlong)string_ptr;
         do {
-          bVar2 = *pbVar7;
-          uVar8 = (uint)pbVar7[lVar9];
-          if (bVar2 != uVar8) break;
-          pbVar7 = pbVar7 + 1;
-        } while (uVar8 != 0);
-        bVar5 = 0 < (int)(bVar2 - uVar8);
+          current_byte = *string_ptr;
+          compare_char = (uint)string_ptr[child_index];
+          if (current_byte != compare_char) break;
+          string_ptr = string_ptr + 1;
+        } while (compare_char != 0);
+        should_swap = 0 < (int)(current_byte - compare_char);
       }
     }
     else {
-      bVar5 = (int)plVar11[1] < (int)param_5[1];
+      should_swap = (int)parent_node[1] < (int)new_element[1];
     }
-    if (!bVar5) break;
-    *(longlong *)(param_1 + param_4 * 0x10) = *plVar11;
-    *(int *)(param_1 + 8 + param_4 * 0x10) = (int)plVar11[1];
-    param_4 = lVar10;
+    
+    if (!should_swap) break;
+    
+    // 交换父子节点
+    *(longlong *)(heap_base + index * 0x10) = *parent_node;
+    *(int *)(heap_base + 8 + index * 0x10) = (int)parent_node[1];
+    index = parent_index;
   }
-  *(longlong *)(param_1 + param_4 * 0x10) = *param_5;
-  *(int *)(param_1 + 8 + param_4 * 0x10) = (int)param_5[1];
+  
+  // 将新元素放入最终位置
+  *(longlong *)(heap_base + index * 0x10) = *new_element;
+  *(int *)(heap_base + 8 + index * 0x10) = (int)new_element[1];
   return;
 }
 
 
 
+/**
+ * 初始化内存块并设置虚函数表
+ * 为内存块设置默认的虚函数表指针，并根据标志决定是否释放内存
+ * 
+ * @param memory_block 内存块指针
+ * @param flags 操作标志位
+ * @param param3 保留参数
+ * @param param4 保留参数
+ * @return 返回初始化后的内存块指针
+ */
 undefined8 *
-FUN_18008fd70(undefined8 *param_1,ulonglong param_2,undefined8 param_3,undefined8 param_4)
-
+initialize_memory_block_with_vtable(undefined8 *memory_block, ulonglong flags, undefined8 param3, undefined8 param4)
 {
-  *param_1 = &UNK_18098bcb0;
-  if ((param_2 & 1) != 0) {
-    free(param_1,0x218,param_3,param_4,0xfffffffffffffffe);
-  }
-  return param_1;
-}
-
-
-
-
-
-// 函数: void FUN_18008fdb0(longlong param_1,longlong param_2)
-void FUN_18008fdb0(longlong param_1,longlong param_2)
-
-{
-  longlong lVar1;
+  // 设置虚函数表指针
+  *memory_block = &UNK_18098bcb0;
   
-  if (param_2 == 0) {
-    *(undefined4 *)(param_1 + 0x10) = 0;
-    **(undefined1 **)(param_1 + 8) = 0;
+  // 如果设置了释放标志，则释放内存
+  if ((flags & 1) != 0) {
+    free(memory_block, 0x218, param3, param4, 0xfffffffffffffffe);
+  }
+  
+  return memory_block;
+}
+
+
+
+
+
+/**
+ * 安全复制字符串到字符串缓冲区
+ * 将源字符串安全地复制到目标字符串缓冲区，处理长度限制和缓冲区溢出
+ * 
+ * @param string_buffer 字符串缓冲区结构体指针
+ * @param source_string 源字符串指针
+ */
+void safe_copy_string_to_buffer(longlong string_buffer, longlong source_string)
+{
+  longlong string_length;
+  
+  // 如果源字符串为空，清空缓冲区
+  if (source_string == 0) {
+    *(int *)(string_buffer + 0x10) = 0;  // 设置长度为0
+    **(char **)(string_buffer + 8) = 0;  // 设置字符串内容为空
     return;
   }
-  lVar1 = -1;
+  
+  // 计算源字符串长度
+  string_length = -1;
   do {
-    lVar1 = lVar1 + 1;
-  } while (*(char *)(param_2 + lVar1) != '\0');
-  if ((int)lVar1 < 0x200) {
-    *(int *)(param_1 + 0x10) = (int)lVar1;
-                    // WARNING: Could not recover jumptable at 0x00018008fde9. Too many branches
-                    // WARNING: Treating indirect jump as call
-    strcpy_s(*(undefined8 *)(param_1 + 8),0x200);
+    string_length = string_length + 1;
+  } while (*(char *)(source_string + string_length) != '\0');
+  
+  // 如果字符串长度小于512字节，直接复制
+  if ((int)string_length < 0x200) {
+    *(int *)(string_buffer + 0x10) = (int)string_length;  // 记录字符串长度
+    // 安全复制字符串到缓冲区
+    strcpy_s(*(char **)(string_buffer + 8), 0x200);
     return;
   }
-  FUN_180626f80(&UNK_18098bc48,0x200,param_2);
-  *(undefined4 *)(param_1 + 0x10) = 0;
-  **(undefined1 **)(param_1 + 8) = 0;
+  
+  // 字符串过长，使用扩展处理函数
+  FUN_180626f80(&UNK_18098bc48, 0x200, source_string);
+  *(int *)(string_buffer + 0x10) = 0;  // 重置长度标志
+  **(char **)(string_buffer + 8) = 0;  // 清空字符串内容
   return;
 }
 
@@ -147,16 +198,25 @@ void FUN_18008fdb0(longlong param_1,longlong param_2)
 
 
 
-// 函数: void FUN_18008fe30(longlong param_1,undefined8 param_2,int param_3)
-void FUN_18008fe30(longlong param_1,undefined8 param_2,int param_3)
-
+/**
+ * 安全复制指定长度的字符串到缓冲区
+ * 将源字符串的指定长度安全地复制到目标缓冲区，并确保字符串正确终止
+ * 
+ * @param string_buffer 字符串缓冲区结构体指针
+ * @param source_data 源数据指针
+ * @param data_length 要复制的数据长度
+ */
+void safe_copy_string_with_length(longlong string_buffer, undefined8 source_data, int data_length)
 {
-  if (param_3 + 1 < 0x200) {
-                    // WARNING: Subroutine does not return
-    memcpy(*(undefined1 **)(param_1 + 8),param_2,(longlong)param_3);
+  // 检查缓冲区大小是否足够
+  if (data_length + 1 < 0x200) {
+    // 安全复制数据到缓冲区
+    memcpy(*(char **)(string_buffer + 8), source_data, (longlong)data_length);
   }
-  **(undefined1 **)(param_1 + 8) = 0;
-  *(undefined4 *)(param_1 + 0x10) = 0;
+  
+  // 确保字符串正确终止
+  **(char **)(string_buffer + 8) = 0;  // 添加字符串终止符
+  *(int *)(string_buffer + 0x10) = 0;  // 重置长度标志
   return;
 }
 
@@ -164,11 +224,14 @@ void FUN_18008fe30(longlong param_1,undefined8 param_2,int param_3)
 
 
 
-// 函数: void FUN_18008fe51(void)
-void FUN_18008fe51(void)
-
+/**
+ * 内存复制包装函数
+ * 这是一个内存复制函数的包装，具体实现依赖于上下文
+ * 注意：此函数可能不返回，调用时需要谨慎
+ */
+void memory_copy_wrapper(void)
 {
-                    // WARNING: Subroutine does not return
+  // 警告：此函数可能不返回
   memcpy();
 }
 
@@ -176,14 +239,21 @@ void FUN_18008fe51(void)
 
 
 
-// 函数: void FUN_18008fe76(undefined1 *param_1)
-void FUN_18008fe76(undefined1 *param_1)
-
+/**
+ * 重置字符串对象
+ * 将字符串对象重置为初始状态，清空内容和长度信息
+ * 
+ * @param string_obj 字符串对象指针
+ */
+void reset_string_object(undefined1 *string_obj)
 {
-  longlong unaff_RDI;
+  longlong object_base;
   
-  *param_1 = 0;
-  *(undefined4 *)(unaff_RDI + 0x10) = 0;
+  // 清空字符串内容
+  *string_obj = 0;
+  
+  // 重置长度信息
+  *(int *)(object_base + 0x10) = 0;
   return;
 }
 

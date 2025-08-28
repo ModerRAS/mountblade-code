@@ -1,174 +1,176 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 02_core_engine_part053.c - 10 个函数
+// 02_core_engine_part053.c - 核心引擎排序与数据结构操作函数 (10个函数)
 
-// 函数: void FUN_18008edcf(longlong *param_1,longlong *param_2,longlong param_3,undefined1 param_4)
-void FUN_18008edcf(longlong *param_1,longlong *param_2,longlong param_3,undefined1 param_4)
+// 函数: void quicksort_string_array(string_array *array, string_array *end, longlong depth, char sort_flag)
+// 快速排序算法，用于字符串数组的排序
+void quicksort_string_array(string_array *array, string_array *end, longlong depth, char sort_flag)
 
 {
-  byte bVar1;
-  longlong in_RAX;
-  ulonglong uVar2;
-  longlong lVar3;
-  byte *pbVar4;
-  uint uVar5;
-  int iVar6;
-  longlong lVar7;
-  longlong *plVar8;
-  longlong lVar9;
-  longlong lVar10;
-  longlong *plVar11;
-  longlong in_stack_00000060;
+  byte cmp_result;
+  longlong array_size;
+  ulonglong distance;
+  longlong middle_index;
+  byte *string_ptr;
+  uint char_val;
+  int compare_result;
+  longlong pivot_value;
+  string_array *left_ptr;
+  string_array *right_ptr;
+  longlong left_value;
+  longlong right_value;
+  string_array *temp_ptr;
+  longlong temp_value;
   
-  uVar2 = in_RAX - (longlong)param_1;
-joined_r0x00018008edee:
-  if (((longlong)(uVar2 & 0xfffffffffffffff8) < 0xe1) || (param_3 < 1)) {
-    if (param_3 == 0) {
-      lVar7 = (longlong)param_2 - (longlong)param_1 >> 3;
-      if (1 < lVar7) {
-        lVar3 = (lVar7 + -2 >> 1) + 1;
+  distance = array_size - (longlong)array;
+sort_loop:
+  if (((longlong)(distance & 0xfffffffffffffff8) < 0xe1) || (depth < 1)) {
+    if (depth == 0) {
+      pivot_value = (longlong)end - (longlong)array >> 3;
+      if (1 < pivot_value) {
+        middle_index = (pivot_value + -2 >> 1) + 1;
         do {
-          in_stack_00000060 = param_1[lVar3 + -1];
-          lVar3 = lVar3 + -1;
-          FUN_18008fa70(param_1,lVar3,lVar7,lVar3,&stack0x00000060);
-        } while (lVar3 != 0);
+          temp_value = array[middle_index + -1];
+          middle_index = middle_index + -1;
+          heap_sort_adjust(array, middle_index, pivot_value, middle_index, &temp_value);
+        } while (middle_index != 0);
       }
-      if (1 < lVar7) {
-        param_2 = param_2 + -1;
+      if (1 < pivot_value) {
+        end = end + -1;
         do {
-          in_stack_00000060 = *param_2;
-          *param_2 = *param_1;
-          FUN_18008fa70(param_1,0,lVar7 + -1,0,&stack0x00000060);
-          param_2 = param_2 + -1;
-          lVar7 = (8 - (longlong)param_1) + (longlong)param_2 >> 3;
-        } while (1 < lVar7);
+          temp_value = *end;
+          *end = *array;
+          heap_sort_adjust(array, 0, pivot_value + -1, 0, &temp_value);
+          end = end + -1;
+          pivot_value = (8 - (longlong)array) + (longlong)end >> 3;
+        } while (1 < pivot_value);
       }
     }
     return;
   }
-  lVar7 = *param_1;
-  lVar3 = (longlong)param_2 - (longlong)param_1 >> 3;
-  if (lVar3 < 0) {
-    lVar3 = lVar3 + 1;
+  pivot_value = *array;
+  middle_index = (longlong)end - (longlong)array >> 3;
+  if (middle_index < 0) {
+    middle_index = middle_index + 1;
   }
-  lVar3 = param_1[lVar3 >> 1];
-  plVar8 = param_1;
-  plVar11 = param_2;
-  if (*(int *)(lVar3 + 0x78) == 0) {
-LAB_18008eecc:
-    lVar9 = param_2[-1];
-    lVar10 = lVar3;
-    if ((*(int *)(lVar9 + 0x78) == 0) || (lVar10 = lVar7, *(int *)(lVar7 + 0x78) == 0))
-    goto LAB_18008ef40;
-    pbVar4 = *(byte **)(lVar9 + 0x70);
-    lVar10 = *(longlong *)(lVar7 + 0x70) - (longlong)pbVar4;
+  middle_index = array[middle_index >> 1];
+  left_ptr = array;
+  right_ptr = end;
+  if (*(int *)(middle_index + 0x78) == 0) {
+find_partition:
+    right_value = end[-1];
+    left_value = middle_index;
+    if ((*(int *)(right_value + 0x78) == 0) || (left_value = pivot_value, *(int *)(pivot_value + 0x78) == 0))
+    goto partition_complete;
+    string_ptr = *(byte **)(right_value + 0x70);
+    left_value = *(longlong *)(pivot_value + 0x70) - (longlong)string_ptr;
     do {
-      bVar1 = *pbVar4;
-      uVar5 = (uint)pbVar4[lVar10];
-      if (bVar1 != uVar5) break;
-      pbVar4 = pbVar4 + 1;
-    } while (uVar5 != 0);
-    lVar10 = lVar7;
-    if ((0 < (int)(bVar1 - uVar5)) || (lVar10 = lVar3, *(int *)(lVar9 + 0x78) == 0))
-    goto LAB_18008ef40;
-    if (*(int *)(lVar3 + 0x78) != 0) {
-      pbVar4 = *(byte **)(lVar9 + 0x70);
-      lVar10 = *(longlong *)(lVar3 + 0x70) - (longlong)pbVar4;
+      cmp_result = *string_ptr;
+      char_val = (uint)string_ptr[left_value];
+      if (cmp_result != char_val) break;
+      string_ptr = string_ptr + 1;
+    } while (char_val != 0);
+    left_value = pivot_value;
+    if ((0 < (int)(cmp_result - char_val)) || (left_value = middle_index, *(int *)(right_value + 0x78) == 0))
+    goto partition_complete;
+    if (*(int *)(middle_index + 0x78) != 0) {
+      string_ptr = *(byte **)(right_value + 0x70);
+      left_value = *(longlong *)(middle_index + 0x70) - (longlong)string_ptr;
       do {
-        uVar5 = (uint)pbVar4[lVar10];
-        iVar6 = *pbVar4 - uVar5;
-        lVar7 = lVar3;
-        if (*pbVar4 != uVar5) break;
-        pbVar4 = pbVar4 + 1;
-      } while (uVar5 != 0);
-      goto joined_r0x00018008ef35;
+        char_val = (uint)string_ptr[left_value];
+        compare_result = *string_ptr - char_val;
+        pivot_value = middle_index;
+        if (*string_ptr != char_val) break;
+        string_ptr = string_ptr + 1;
+      } while (char_val != 0);
+      goto compare_result_check;
     }
   }
   else {
-    if (*(int *)(lVar7 + 0x78) != 0) {
-      pbVar4 = *(byte **)(lVar3 + 0x70);
-      lVar9 = *(longlong *)(lVar7 + 0x70) - (longlong)pbVar4;
+    if (*(int *)(pivot_value + 0x78) != 0) {
+      string_ptr = *(byte **)(middle_index + 0x70);
+      right_value = *(longlong *)(pivot_value + 0x70) - (longlong)string_ptr;
       do {
-        bVar1 = *pbVar4;
-        uVar5 = (uint)pbVar4[lVar9];
-        if (bVar1 != uVar5) break;
-        pbVar4 = pbVar4 + 1;
-      } while (uVar5 != 0);
-      if ((int)(bVar1 - uVar5) < 1) goto LAB_18008eecc;
+        cmp_result = *string_ptr;
+        char_val = (uint)string_ptr[right_value];
+        if (cmp_result != char_val) break;
+        string_ptr = string_ptr + 1;
+      } while (char_val != 0);
+      if ((int)(cmp_result - char_val) < 1) goto find_partition;
     }
-    lVar9 = param_2[-1];
-    lVar10 = lVar7;
-    if (*(int *)(lVar9 + 0x78) == 0) goto LAB_18008ef40;
-    pbVar4 = *(byte **)(lVar9 + 0x70);
-    lVar10 = *(longlong *)(lVar3 + 0x70) - (longlong)pbVar4;
+    right_value = end[-1];
+    left_value = pivot_value;
+    if (*(int *)(right_value + 0x78) == 0) goto partition_complete;
+    string_ptr = *(byte **)(right_value + 0x70);
+    left_value = *(longlong *)(middle_index + 0x70) - (longlong)string_ptr;
     do {
-      bVar1 = *pbVar4;
-      uVar5 = (uint)pbVar4[lVar10];
-      if (bVar1 != uVar5) break;
-      pbVar4 = pbVar4 + 1;
-    } while (uVar5 != 0);
-    lVar10 = lVar3;
-    if ((0 < (int)(bVar1 - uVar5)) || (lVar10 = lVar7, *(int *)(lVar9 + 0x78) == 0))
-    goto LAB_18008ef40;
-    if (*(int *)(lVar7 + 0x78) != 0) {
-      pbVar4 = *(byte **)(lVar9 + 0x70);
-      lVar3 = *(longlong *)(lVar7 + 0x70) - (longlong)pbVar4;
+      cmp_result = *string_ptr;
+      char_val = (uint)string_ptr[left_value];
+      if (cmp_result != char_val) break;
+      string_ptr = string_ptr + 1;
+    } while (char_val != 0);
+    left_value = middle_index;
+    if ((0 < (int)(cmp_result - char_val)) || (left_value = pivot_value, *(int *)(right_value + 0x78) == 0))
+    goto partition_complete;
+    if (*(int *)(pivot_value + 0x78) != 0) {
+      string_ptr = *(byte **)(right_value + 0x70);
+      middle_index = *(longlong *)(pivot_value + 0x70) - (longlong)string_ptr;
       do {
-        uVar5 = (uint)pbVar4[lVar3];
-        iVar6 = *pbVar4 - uVar5;
-        if (*pbVar4 != uVar5) break;
-        pbVar4 = pbVar4 + 1;
-      } while (uVar5 != 0);
-joined_r0x00018008ef35:
-      lVar10 = lVar7;
-      if (iVar6 < 1) goto LAB_18008ef40;
+        char_val = (uint)string_ptr[middle_index];
+        compare_result = *string_ptr - char_val;
+        if (*string_ptr != char_val) break;
+        string_ptr = string_ptr + 1;
+      } while (char_val != 0);
+compare_result_check:
+      left_value = pivot_value;
+      if (compare_result < 1) goto partition_complete;
     }
   }
-  lVar10 = lVar9;
-LAB_18008ef40:
+  left_value = right_value;
+partition_complete:
   do {
     while( true ) {
-      lVar7 = *plVar8;
-      if (*(int *)(lVar10 + 0x78) == 0) break;
-      if (*(int *)(lVar7 + 0x78) != 0) {
-        pbVar4 = *(byte **)(lVar10 + 0x70);
-        lVar3 = *(longlong *)(lVar7 + 0x70) - (longlong)pbVar4;
+      pivot_value = *left_ptr;
+      if (*(int *)(left_value + 0x78) == 0) break;
+      if (*(int *)(pivot_value + 0x78) != 0) {
+        string_ptr = *(byte **)(left_value + 0x70);
+        middle_index = *(longlong *)(pivot_value + 0x70) - (longlong)string_ptr;
         do {
-          bVar1 = *pbVar4;
-          uVar5 = (uint)pbVar4[lVar3];
-          if (bVar1 != uVar5) break;
-          pbVar4 = pbVar4 + 1;
-        } while (uVar5 != 0);
-        if ((int)(bVar1 - uVar5) < 1) break;
+          cmp_result = *string_ptr;
+          char_val = (uint)string_ptr[middle_index];
+          if (cmp_result != char_val) break;
+          string_ptr = string_ptr + 1;
+        } while (char_val != 0);
+        if ((int)(cmp_result - char_val) < 1) break;
       }
-      plVar8 = plVar8 + 1;
+      left_ptr = left_ptr + 1;
     }
     do {
       do {
-        lVar3 = plVar11[-1];
-        plVar11 = plVar11 + -1;
-        if (*(int *)(lVar3 + 0x78) == 0) goto LAB_18008efb7;
-      } while (*(int *)(lVar10 + 0x78) == 0);
-      pbVar4 = *(byte **)(lVar3 + 0x70);
-      lVar9 = *(longlong *)(lVar10 + 0x70) - (longlong)pbVar4;
+        middle_index = right_ptr[-1];
+        right_ptr = right_ptr + -1;
+        if (*(int *)(middle_index + 0x78) == 0) goto swap_elements;
+      } while (*(int *)(left_value + 0x78) == 0);
+      string_ptr = *(byte **)(middle_index + 0x70);
+      right_value = *(longlong *)(left_value + 0x70) - (longlong)string_ptr;
       do {
-        bVar1 = *pbVar4;
-        uVar5 = (uint)pbVar4[lVar9];
-        if (bVar1 != uVar5) break;
-        pbVar4 = pbVar4 + 1;
-      } while (uVar5 != 0);
-    } while (0 < (int)(bVar1 - uVar5));
-LAB_18008efb7:
-    if (plVar11 <= plVar8) break;
-    *plVar8 = lVar3;
-    *plVar11 = lVar7;
-    plVar8 = plVar8 + 1;
+        cmp_result = *string_ptr;
+        char_val = (uint)string_ptr[right_value];
+        if (cmp_result != char_val) break;
+        string_ptr = string_ptr + 1;
+      } while (char_val != 0);
+    } while (0 < (int)(cmp_result - char_val));
+swap_elements:
+    if (right_ptr <= left_ptr) break;
+    *left_ptr = middle_index;
+    *right_ptr = pivot_value;
+    left_ptr = left_ptr + 1;
   } while( true );
-  param_3 = param_3 + -1;
-  FUN_18008edc0(plVar8,param_2,param_3,param_4);
-  uVar2 = (longlong)plVar8 - (longlong)param_1;
-  param_2 = plVar8;
-  goto joined_r0x00018008edee;
+  depth = depth + -1;
+  quicksort_recursive(left_ptr, end, depth, sort_flag);
+  distance = (longlong)left_ptr - (longlong)array;
+  end = left_ptr;
+  goto sort_loop;
 }
 
 

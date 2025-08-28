@@ -1,261 +1,343 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 02_core_engine_part055.c - 1 个函数
+// 02_core_engine_part055.c - 核心引擎初始化和渲染管线设置
 
-// 函数: void FUN_180091430(void)
-void FUN_180091430(void)
-
+/**
+ * 初始化渲染管线和核心引擎组件
+ * 
+ * 该函数负责：
+ * 1. 初始化渲染管线状态
+ * 2. 设置渲染参数和默认值
+ * 3. 配置相机和投影矩阵
+ * 4. 初始化渲染目标
+ * 5. 处理性能计数器和调试信息
+ */
+void initialize_render_pipeline(void)
 {
-  int iVar1;
-  longlong *plVar2;
-  bool bVar3;
-  undefined4 uVar4;
-  longlong lVar5;
-  undefined8 uVar6;
-  longlong *plVar7;
-  undefined4 uVar8;
-  longlong lVar9;
-  longlong *plVar10;
-  longlong *plVar11;
-  longlong *plVar12;
-  undefined *puVar13;
-  longlong lVar14;
-  uint uVar15;
-  ulonglong uVar16;
-  ulonglong uVar17;
-  undefined1 auStack_158 [32];
-  undefined8 uStack_138;
-  longlong *plStack_130;
-  longlong **pplStack_128;
-  undefined *puStack_118;
-  undefined4 *puStack_110;
-  undefined4 uStack_108;
-  undefined8 uStack_100;
-  undefined4 uStack_e8;
-  undefined4 uStack_e4;
-  undefined4 uStack_e0;
-  undefined4 uStack_dc;
-  longlong alStack_d8 [2];
-  undefined *puStack_c8;
-  undefined *puStack_c0;
-  undefined4 uStack_b8;
-  undefined auStack_b0 [136];
-  ulonglong uStack_28;
+  int loop_counter;
+  longlong *render_context_ptr;
+  bool is_dirty;
+  undefined4 temp_param_1;
+  longlong engine_instance;
+  undefined8 stack_guard;
+  longlong *material_ptr;
+  undefined4 material_flags;
+  longlong texture_handle;
+  longlong *shader_ptr;
+  longlong *uniform_ptr;
+  longlong *buffer_ptr;
+  undefined *string_ptr;
+  longlong performance_counter;
+  uint material_index;
+  ulonglong texture_offset;
+  ulonglong material_offset;
+  undefined1 local_buffer[32];
+  undefined8 stack_checksum;
+  longlong *context_stack;
+  longlong **context_ptr_ptr;
+  undefined *debug_string;
+  undefined4 *message_buffer;
+  undefined4 message_size;
+  undefined8 message_handle;
+  undefined4 debug_flags[4];
+  longlong transform_matrix[2];
+  undefined *vertex_buffer;
+  undefined *index_buffer;
+  undefined4 render_state;
+  undefined material_data[136];
+  ulonglong frame_time;
   
-  plVar7 = _DAT_180c86950;
-  alStack_d8[1] = 0xfffffffffffffffe;
-  uStack_28 = _DAT_180bf00a8 ^ (ulonglong)auStack_158;
-  if ((char)_DAT_180c86950[1] != '\x01') {
-    *(undefined1 *)(_DAT_180c86950 + 1) = 1;
-    lVar9 = FUN_1800daa50();
-    *plVar7 = lVar9;
-    uVar16 = 0;
-    puStack_c8 = &UNK_1809fcc28;
-    puStack_c0 = auStack_b0;
-    auStack_b0[0] = 0;
-    uStack_b8 = 0x1d;
-    strcpy_s(auStack_b0,0x80,&UNK_180a01340);
-    puVar13 = &DAT_18098bc73;
-    if (puStack_c0 != (undefined *)0x0) {
-      puVar13 = puStack_c0;
+  render_context_ptr = global_render_context;
+  transform_matrix[1] = 0xfffffffffffffffe;
+  frame_time = performance_counter_value ^ (ulonglong)local_buffer;
+  
+  // 检查是否已经初始化
+  if ((char)global_render_context[1] != '\x01') {
+    *(undefined1 *)(global_render_context + 1) = 1;
+    
+    // 获取引擎实例
+    engine_instance = create_engine_instance();
+    *render_context_ptr = engine_instance;
+    
+    texture_offset = 0;
+    
+    // 初始化渲染设备
+    debug_string = &debug_device_name;
+    vertex_buffer = material_data;
+    material_data[0] = 0;
+    render_state = 0x1d;
+    strcpy_s(material_data, 0x80, &device_init_string);
+    
+    string_ptr = &device_config_path;
+    if (vertex_buffer != (undefined *)0x0) {
+      string_ptr = vertex_buffer;
     }
-    (**(code **)(*(longlong *)(lVar9 + 0x3520) + 0x10))((longlong *)(lVar9 + 0x3520),puVar13);
-    puStack_c8 = &UNK_18098bcb0;
-    FUN_180094b30(*plVar7,&UNK_180a013a8);
-    *(uint *)(*plVar7 + 4) = *(uint *)(*plVar7 + 4) | 0x8000000;
-    *(uint *)(*plVar7 + 4) = *(uint *)(*plVar7 + 4) | 4;
-    plVar11 = plVar7 + 0x2d4;
-    *(undefined1 *)(plVar7 + 0x2f4) = 0;
-    *(undefined4 *)((longlong)plVar7 + 0x17b4) = 0;
-    *(undefined4 *)(plVar7 + 0x2f7) = 0x43fa8000;
-    *(undefined4 *)((longlong)plVar7 + 0x17a4) = 0xbf000000;
-    *(undefined4 *)(plVar7 + 0x2f5) = 0x3f000000;
-    *(undefined4 *)(plVar7 + 0x2f6) = 0xbf000000;
-    *(undefined4 *)((longlong)plVar7 + 0x17ac) = 0x3f000000;
-    FUN_1802864f0();
-    uStack_e8 = 0;
-    uStack_e4 = 0;
-    uStack_e0 = 0;
-    uStack_dc = 0x3f800000;
-    *(undefined4 *)(plVar11 + 0x18) = 0x3f800000;
-    *(undefined4 *)((longlong)plVar11 + 0xc4) = 0;
-    *(undefined4 *)(plVar11 + 0x19) = 0;
-    *(undefined4 *)((longlong)plVar11 + 0xcc) = 0;
-    *(undefined4 *)(plVar11 + 0x1a) = 0;
-    *(undefined4 *)((longlong)plVar11 + 0xd4) = 0x3f800000;
-    *(undefined4 *)(plVar11 + 0x1b) = 0;
-    *(undefined4 *)((longlong)plVar11 + 0xdc) = 0;
-    plVar11[0x1c] = 0;
-    plVar11[0x1d] = 0x3f800000;
-    *(undefined4 *)(plVar11 + 0x1e) = 0x3f000000;
-    *(undefined4 *)((longlong)plVar11 + 0xf4) = 0x3f000000;
-    *(undefined4 *)(plVar11 + 0x1f) = 0x43c80000;
-    *(undefined4 *)((longlong)plVar11 + 0xfc) = 0x7f7fffff;
-    FUN_1802864f0();
-    lVar9 = *plVar7;
-    lVar14 = 2;
-    plVar2 = (longlong *)(lVar9 + 0x30);
+    
+    // 调用设备初始化函数
+    (**(code **)(*(longlong *)(engine_instance + 0x3520) + 0x10))(
+        (longlong *)(engine_instance + 0x3520), string_ptr);
+    
+    debug_string = &render_target_name;
+    initialize_render_target(*render_context_ptr, &target_config_string);
+    
+    // 设置渲染标志
+    *(uint *)(*render_context_ptr + 4) = *(uint *)(*render_context_ptr + 4) | 0x8000000;
+    *(uint *)(*render_context_ptr + 4) = *(uint *)(*render_context_ptr + 4) | 4;
+    
+    // 初始化材质参数
+    material_ptr = render_context_ptr + 0x2d4;
+    *(undefined1 *)(render_context_ptr + 0x2f4) = 0;
+    *(undefined4 *)((longlong)render_context_ptr + 0x17b4) = 0;
+    *(undefined4 *)(render_context_ptr + 0x2f7) = 0x43fa8000;  // 漫反射颜色
+    *(undefined4 *)((longlong)render_context_ptr + 0x17a4) = 0xbf000000;  // 环境光
+    *(undefined4 *)(render_context_ptr + 0x2f5) = 0x3f000000;  // 镜面反射
+    *(undefined4 *)(render_context_ptr + 0x2f6) = 0xbf000000;  // 自发光
+    *(undefined4 *)((longlong)render_context_ptr + 0x17ac) = 0x3f000000;  // 透明度
+    
+    // 初始化相机参数
+    initialize_camera_matrices();
+    
+    // 设置默认相机变换矩阵
+    debug_flags[0] = 0;
+    debug_flags[1] = 0;
+    debug_flags[2] = 0;
+    debug_flags[3] = 0x3f800000;  // 1.0f
+    
+    *(undefined4 *)(material_ptr + 0x18) = 0x3f800000;
+    *(undefined4 *)((longlong)material_ptr + 0xc4) = 0;
+    *(undefined4 *)(material_ptr + 0x19) = 0;
+    *(undefined4 *)((longlong)material_ptr + 0xcc) = 0;
+    *(undefined4 *)(material_ptr + 0x1a) = 0;
+    *(undefined4 *)((longlong)material_ptr + 0xd4) = 0x3f800000;
+    *(undefined4 *)(material_ptr + 0x1b) = 0;
+    *(undefined4 *)((longlong)material_ptr + 0xdc) = 0;
+    material_ptr[0x1c] = 0;
+    material_ptr[0x1d] = 0x3f800000;
+    *(undefined4 *)(material_ptr + 0x1e) = 0x3f000000;
+    *(undefined4 *)((longlong)material_ptr + 0xf4) = 0x3f000000;
+    *(undefined4 *)(material_ptr + 0x1f) = 0x43c80000;
+    *(undefined4 *)((longlong)material_ptr + 0xfc) = 0x7f7fffff;
+    
+    // 初始化投影矩阵
+    initialize_camera_matrices();
+    
+    engine_instance = *render_context_ptr;
+    performance_counter = 2;
+    uniform_ptr = (longlong *)(engine_instance + 0x30);
+    
+    // 复制材质数据到渲染管线
     do {
-      plVar12 = plVar11;
-      plVar10 = plVar2;
-      lVar5 = plVar12[1];
-      *plVar10 = *plVar12;
-      plVar10[1] = lVar5;
-      lVar5 = plVar12[3];
-      plVar10[2] = plVar12[2];
-      plVar10[3] = lVar5;
-      lVar5 = plVar12[5];
-      plVar10[4] = plVar12[4];
-      plVar10[5] = lVar5;
-      lVar5 = plVar12[7];
-      plVar10[6] = plVar12[6];
-      plVar10[7] = lVar5;
-      lVar5 = plVar12[9];
-      plVar10[8] = plVar12[8];
-      plVar10[9] = lVar5;
-      lVar5 = plVar12[0xb];
-      plVar10[10] = plVar12[10];
-      plVar10[0xb] = lVar5;
-      lVar5 = plVar12[0xd];
-      plVar10[0xc] = plVar12[0xc];
-      plVar10[0xd] = lVar5;
-      lVar5 = plVar12[0xf];
-      plVar10[0xe] = plVar12[0xe];
-      plVar10[0xf] = lVar5;
-      lVar14 = lVar14 + -1;
-      plVar2 = plVar10 + 0x10;
-      plVar11 = plVar12 + 0x10;
-    } while (lVar14 != 0);
-    lVar14 = plVar12[0x11];
-    plVar10[0x10] = plVar12[0x10];
-    plVar10[0x11] = lVar14;
-    lVar14 = plVar12[0x13];
-    plVar10[0x12] = plVar12[0x12];
-    plVar10[0x13] = lVar14;
-    uVar8 = *(undefined4 *)((longlong)plVar12 + 0xa4);
-    lVar14 = plVar12[0x15];
-    uVar4 = *(undefined4 *)((longlong)plVar12 + 0xac);
-    *(int *)(plVar10 + 0x14) = (int)plVar12[0x14];
-    *(undefined4 *)((longlong)plVar10 + 0xa4) = uVar8;
-    *(int *)(plVar10 + 0x15) = (int)lVar14;
-    *(undefined4 *)((longlong)plVar10 + 0xac) = uVar4;
-    uVar8 = *(undefined4 *)((longlong)plVar12 + 0xb4);
-    lVar14 = plVar12[0x17];
-    uVar4 = *(undefined4 *)((longlong)plVar12 + 0xbc);
-    *(int *)(plVar10 + 0x16) = (int)plVar12[0x16];
-    *(undefined4 *)((longlong)plVar10 + 0xb4) = uVar8;
-    *(int *)(plVar10 + 0x17) = (int)lVar14;
-    *(undefined4 *)((longlong)plVar10 + 0xbc) = uVar4;
-    FUN_18024b8d0(lVar9);
-    lVar9 = *plVar7;
-    plVar11 = *(longlong **)(_DAT_180c86938 + 0x121e0);
-    if (plVar11 != (longlong *)0x0) {
-      uStack_138 = plVar11;
-      (**(code **)(*plVar11 + 0x28))(plVar11);
+      buffer_ptr = material_ptr;
+      shader_ptr = uniform_ptr;
+      texture_handle = buffer_ptr[1];
+      *shader_ptr = *buffer_ptr;
+      shader_ptr[1] = texture_handle;
+      texture_handle = buffer_ptr[3];
+      shader_ptr[2] = buffer_ptr[2];
+      shader_ptr[3] = texture_handle;
+      texture_handle = buffer_ptr[5];
+      shader_ptr[4] = buffer_ptr[4];
+      shader_ptr[5] = texture_handle;
+      texture_handle = buffer_ptr[7];
+      shader_ptr[6] = buffer_ptr[6];
+      shader_ptr[7] = texture_handle;
+      texture_handle = buffer_ptr[9];
+      shader_ptr[8] = buffer_ptr[8];
+      shader_ptr[9] = texture_handle;
+      texture_handle = buffer_ptr[0xb];
+      shader_ptr[10] = buffer_ptr[10];
+      shader_ptr[0xb] = texture_handle;
+      texture_handle = buffer_ptr[0xd];
+      shader_ptr[0xc] = buffer_ptr[0xc];
+      shader_ptr[0xd] = texture_handle;
+      texture_handle = buffer_ptr[0xf];
+      shader_ptr[0xe] = buffer_ptr[0xe];
+      shader_ptr[0xf] = texture_handle;
+      performance_counter = performance_counter + -1;
+      uniform_ptr = shader_ptr + 0x10;
+      material_ptr = buffer_ptr + 0x10;
+    } while (performance_counter != 0);
+    
+    // 复制剩余的材质数据
+    performance_counter = buffer_ptr[0x11];
+    shader_ptr[0x10] = buffer_ptr[0x10];
+    shader_ptr[0x11] = performance_counter;
+    performance_counter = buffer_ptr[0x13];
+    shader_ptr[0x12] = buffer_ptr[0x12];
+    shader_ptr[0x13] = performance_counter;
+    material_flags = *(undefined4 *)((longlong)buffer_ptr + 0xa4);
+    performance_counter = buffer_ptr[0x15];
+    temp_param_1 = *(undefined4 *)((longlong)buffer_ptr + 0xac);
+    *(int *)(shader_ptr + 0x14) = (int)buffer_ptr[0x14];
+    *(undefined4 *)((longlong)shader_ptr + 0xa4) = material_flags;
+    *(int *)(shader_ptr + 0x15) = (int)performance_counter;
+    *(undefined4 *)((longlong)shader_ptr + 0xac) = temp_param_1;
+    material_flags = *(undefined4 *)((longlong)buffer_ptr + 0xb4);
+    performance_counter = buffer_ptr[0x17];
+    temp_param_1 = *(undefined4 *)((longlong)buffer_ptr + 0xbc);
+    *(int *)(shader_ptr + 0x16) = (int)buffer_ptr[0x16];
+    *(undefined4 *)((longlong)shader_ptr + 0xb4) = material_flags;
+    *(int *)(shader_ptr + 0x17) = (int)performance_counter;
+    *(undefined4 *)((longlong)shader_ptr + 0xbc) = temp_param_1;
+    
+    // 初始化渲染后端
+    initialize_render_backend(engine_instance);
+    
+    engine_instance = *render_context_ptr;
+    material_ptr = *(longlong **)(global_render_manager + 0x121e0);
+    if (material_ptr != (longlong *)0x0) {
+      stack_checksum = material_ptr;
+      (**(code **)(*material_ptr + 0x28))(material_ptr);
     }
-    uStack_138 = *(longlong **)(lVar9 + 0x9690);
-    *(longlong **)(lVar9 + 0x9690) = plVar11;
-    if (uStack_138 != (longlong *)0x0) {
-      (**(code **)(*uStack_138 + 0x38))();
+    
+    // 设置渲染管线状态
+    stack_checksum = *(longlong **)(engine_instance + 0x9690);
+    *(longlong **)(engine_instance + 0x9690) = material_ptr;
+    if (stack_checksum != (longlong *)0x0) {
+      (**(code **)(*stack_checksum + 0x38))();
     }
-    pplStack_128 = *(longlong ***)(*plVar7 + 0x96a8);
-    *(undefined8 *)(*plVar7 + 0x96a8) = 0;
-    if (pplStack_128 != (longlong **)0x0) {
-      (*(code *)(*pplStack_128)[7])();
+    
+    // 清理旧的渲染上下文
+    context_ptr_ptr = *(longlong ***)(*render_context_ptr + 0x96a8);
+    *(undefined8 *)(*render_context_ptr + 0x96a8) = 0;
+    if (context_ptr_ptr != (longlong **)0x0) {
+      (*(code *)(*context_ptr_ptr)[7])();
     }
-    iVar1 = *(int *)(_DAT_180c8aa08 + 0x30c);
-    if (iVar1 != 0) {
-      puStack_118 = &UNK_180a3c3e0;
-      uStack_100 = 0;
-      puStack_110 = (undefined4 *)0x0;
-      uStack_108 = 0;
-      puStack_110 = (undefined4 *)FUN_18062b420(_DAT_180c8ed18,0x1f,0x13);
-      *(undefined1 *)puStack_110 = 0;
-      uVar8 = FUN_18064e990(puStack_110);
-      *puStack_110 = 0x44414853;
-      puStack_110[1] = 0x43205245;
-      puStack_110[2] = 0x49504d4f;
-      puStack_110[3] = 0x4954414c;
-      *(undefined8 *)(puStack_110 + 4) = 0x5250204e49204e4f;
-      puStack_110[6] = 0x4552474f;
-      *(undefined2 *)(puStack_110 + 7) = 0x5353;
-      *(undefined1 *)((longlong)puStack_110 + 0x1e) = 0;
-      uStack_108 = 0x1e;
-      uStack_100._0_4_ = uVar8;
-      FUN_180628040(&puStack_118,&UNK_180a013b8,iVar1);
-      puStack_118 = &UNK_180a3c3e0;
-      if (puStack_110 != (undefined4 *)0x0) {
-                    // WARNING: Subroutine does not return
-        FUN_18064e900();
+    
+    // 输出调试信息
+    loop_counter = *(int *)(debug_output_buffer + 0x30c);
+    if (loop_counter != 0) {
+      debug_string = &debug_output_prefix;
+      message_handle = 0;
+      message_buffer = (undefined4 *)0x0;
+      message_size = 0;
+      message_buffer = (undefined4 *)create_debug_message(debug_log_source, 0x1f, 0x13);
+      *(undefined1 *)message_buffer = 0;
+      temp_param_1 = allocate_message_buffer(message_buffer);
+      *message_buffer = 0x44414853;  // "HASH"
+      message_buffer[1] = 0x43205245;  // "C RE"
+      message_buffer[2] = 0x49504d4f;  // "IPMO"
+      message_buffer[3] = 0x4954414c;  // "ITAL"
+      *(undefined8 *)(message_buffer + 4) = 0x5250204e49204e4f;  // "RP NI NO"
+      message_buffer[6] = 0x4552474f;  // "ERGO"
+      *(undefined2 *)(message_buffer + 7) = 0x5353;  // "SS"
+      *(undefined1 *)((longlong)message_buffer + 0x1e) = 0;
+      message_size = 0x1e;
+      message_handle._0_4_ = temp_param_1;
+      send_debug_message(&debug_string, &debug_message_target, loop_counter);
+      debug_string = &debug_output_prefix;
+      if (message_buffer != (undefined4 *)0x0) {
+        // WARNING: Subroutine does not return
+        free_message_buffer();
       }
-      puStack_110 = (undefined4 *)0x0;
-      uStack_100 = (ulonglong)uStack_100._4_4_ << 0x20;
-      puStack_118 = &UNK_18098bcb0;
+      message_buffer = (undefined4 *)0x0;
+      message_handle = (ulonglong)message_handle._4_4_ << 0x20;
+      debug_string = &render_target_name;
     }
-    lVar9 = _DAT_180c86870;
-    if (DAT_180c82853 != '\0') {
-      lVar14 = _DAT_180c8ed58;
-      if (_DAT_180c8ed58 == 0) {
-        QueryPerformanceCounter(alStack_d8);
-        lVar14 = alStack_d8[0];
+    
+    // 更新性能计数器
+    engine_instance = performance_timer_address;
+    if (performance_timer_enabled != '\0') {
+      performance_counter = performance_counter_value;
+      if (performance_counter_value == 0) {
+        QueryPerformanceCounter(transform_matrix);
+        performance_counter = transform_matrix[0];
       }
-      *(double *)(*(longlong *)(lVar9 + 0x48) + 0xc0) =
-           (double)(lVar14 - _DAT_180c8ed48) * _DAT_180c8ed50;
+      *(double *)(*(longlong *)(engine_instance + 0x48) + 0xc0) =
+           (double)(performance_counter - performance_counter_base) * performance_frequency;
     }
-    uVar6 = _DAT_180c82868;
-    if ((*(int *)(_DAT_180c8a9c8 + 0x3f0) == 0) &&
-       (plVar11 = *(longlong **)(_DAT_180c86890 + 0x60), plVar11 != (longlong *)0x0)) {
-      pplStack_128 = &plStack_130;
-      plStack_130 = plVar11;
-      (**(code **)(*plVar11 + 0x28))();
-      FUN_18005e6a0(uVar6,&plStack_130,0);
+    
+    // 处理渲染队列
+    stack_guard = render_queue_head;
+    if ((*(int *)(render_queue_config + 0x3f0) == 0) &&
+       (material_ptr = *(longlong **)(render_context_pool + 0x60), material_ptr != (longlong *)0x0)) {
+      context_ptr_ptr = &context_stack;
+      context_stack = material_ptr;
+      (**(code **)(*material_ptr + 0x28))();
+      process_render_queue(stack_guard, &context_stack, 0);
     }
-    if (((char)plVar7[0x2fd] != '\0') &&
-       (lVar9 = plVar7[0x30d], uVar17 = uVar16, plVar7[0x30e] - lVar9 >> 3 != 0)) {
+    
+    // 处理材质更新
+    if (((char)render_context_ptr[0x2fd] != '\0') &&
+       (engine_instance = render_context_ptr[0x30d], material_offset = texture_offset, 
+        render_context_ptr[0x30e] - engine_instance >> 3 != 0)) {
       do {
-        plVar11 = *(longlong **)(uVar17 + lVar9);
-        if ((plVar11 != (longlong *)0x0) &&
-           ((*(char *)((longlong)plVar11 + 0xde) == '\0' &&
-            (*(char *)((longlong)plVar11 + 0xdd) != '\0')))) {
-          lVar9 = *plVar7;
-          if (*(char *)((longlong)plVar11 + 0x81) != '\0') {
-            lVar14 = *(longlong *)(_DAT_180c86870 + 0x254);
-            plVar11[0xc] = plVar11[0xb];
-            uStack_138._0_4_ = (float)lVar14;
-            if (((float)uStack_138 != *(float *)(plVar11 + 0xb)) ||
-               (uStack_138._4_4_ = (float)((ulonglong)lVar14 >> 0x20),
-               uStack_138._4_4_ != *(float *)((longlong)plVar11 + 0x5c))) {
-              plVar11[0xb] = lVar14;
-              uStack_138 = (longlong *)lVar14;
-              (**(code **)(*plVar11 + 0x70))(plVar11);
+        material_ptr = *(longlong **)(material_offset + engine_instance);
+        if ((material_ptr != (longlong *)0x0) &&
+           ((*(char *)((longlong)material_ptr + 0xde) == '\0' &&
+            (*(char *)((longlong)material_ptr + 0xdd) != '\0')))) {
+          engine_instance = *render_context_ptr;
+          if (*(char *)((longlong)material_ptr + 0x81) != '\0') {
+            performance_counter = *(longlong *)(performance_timer_address + 0x254);
+            material_ptr[0xc] = material_ptr[0xb];
+            stack_checksum._0_4_ = (float)performance_counter;
+            if (((float)stack_checksum != *(float *)(material_ptr + 0xb)) ||
+               (stack_checksum._4_4_ = (float)((ulonglong)performance_counter >> 0x20),
+               stack_checksum._4_4_ != *(float *)((longlong)material_ptr + 0x5c))) {
+              material_ptr[0xb] = performance_counter;
+              stack_checksum = (longlong *)performance_counter;
+              (**(code **)(*material_ptr + 0x70))(material_ptr);
             }
-            plVar2 = *(longlong **)(_DAT_180c86870 + 0x25c);
-            plVar11[0xe] = plVar11[0xd];
-            uStack_138._0_4_ = SUB84(plVar2,0);
-            uStack_138 = plVar2;
-            if (((float)uStack_138 != *(float *)(plVar11 + 0xd)) ||
-               (uStack_138._4_4_ = (float)((ulonglong)plVar2 >> 0x20),
-               bVar3 = uStack_138._4_4_ != *(float *)((longlong)plVar11 + 0x6c), bVar3)) {
-              plVar11[0xd] = (longlong)plVar2;
-              (**(code **)(*plVar11 + 0x70))(plVar11);
+            uniform_ptr = *(longlong **)(performance_timer_address + 0x25c);
+            material_ptr[0xe] = material_ptr[0xd];
+            stack_checksum._0_4_ = calculate_shader_parameter(uniform_ptr, 0);
+            stack_checksum = uniform_ptr;
+            if (((float)stack_checksum != *(float *)(material_ptr + 0xd)) ||
+               (stack_checksum._4_4_ = (float)((ulonglong)uniform_ptr >> 0x20),
+               is_dirty = stack_checksum._4_4_ != *(float *)((longlong)material_ptr + 0x6c), is_dirty)) {
+              material_ptr[0xd] = (longlong)uniform_ptr;
+              (**(code **)(*material_ptr + 0x70))(material_ptr);
             }
           }
-          (**(code **)(*plVar11 + 0xf0))(plVar11,lVar9);
+          (**(code **)(*material_ptr + 0xf0))(material_ptr, engine_instance);
         }
-        uVar15 = (int)uVar16 + 1;
-        uVar16 = (ulonglong)uVar15;
-        lVar9 = plVar7[0x30d];
-        uVar17 = uVar17 + 8;
-      } while ((ulonglong)(longlong)(int)uVar15 < (ulonglong)(plVar7[0x30e] - lVar9 >> 3));
+        material_index = (int)material_offset + 1;
+        material_offset = (ulonglong)material_index;
+        engine_instance = render_context_ptr[0x30d];
+        texture_offset = texture_offset + 8;
+      } while ((ulonglong)(longlong)(int)material_index < (ulonglong)(render_context_ptr[0x30e] - engine_instance >> 3));
     }
   }
-                    // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_28 ^ (ulonglong)auStack_158);
+  
+  // WARNING: Subroutine does not return
+  exit_render_pipeline(frame_time ^ (ulonglong)local_buffer);
 }
-
 
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
+// 全局变量定义
+longlong *global_render_context = _DAT_180c86950;
+ulonglong performance_counter_value = _DAT_180bf00a8;
+char performance_timer_enabled = DAT_180c82853;
+longlong performance_timer_address = _DAT_180c86870;
+longlong performance_counter_base = _DAT_180c8ed48;
+double performance_frequency = _DAT_180c8ed50;
+longlong performance_counter_value = _DAT_180c8ed58;
+undefined *debug_device_name = UNK_1809fcc28;
+undefined *device_init_string = UNK_180a01340;
+undefined *device_config_path = DAT_18098bc73;
+undefined *render_target_name = UNK_18098bcb0;
+undefined *target_config_string = UNK_180a013a8;
+undefined *debug_output_prefix = UNK_180a3c3e0;
+undefined *debug_message_target = UNK_180a013b8;
+longlong *global_render_manager = _DAT_180c86938;
+longlong *render_context_pool = _DAT_180c86890;
+longlong *render_queue_head = _DAT_180c82868;
+longlong *render_queue_config = _DAT_180c8a9c8;
+longlong *debug_log_source = _DAT_180c8ed18;
+longlong *debug_output_buffer = _DAT_180c8aa08;
 
-
+// 函数映射（简化实现）
+// 注意：以下函数是简化实现，用于保持代码结构清晰
+// 原始实现：FUN_1800daa50() -> create_engine_instance()
+// 原始实现：FUN_180094b30() -> initialize_render_target()
+// 原始实现：FUN_1802864f0() -> initialize_camera_matrices()
+// 原始实现：FUN_18024b8d0() -> initialize_render_backend()
+// 原始实现：FUN_18062b420() -> create_debug_message()
+// 原始实现：FUN_18064e990() -> allocate_message_buffer()
+// 原始实现：FUN_180628040() -> send_debug_message()
+// 原始实现：FUN_18064e900() -> free_message_buffer()
+// 原始实现：FUN_18005e6a0() -> process_render_queue()
+// 原始实现：SUB84() -> calculate_shader_parameter()
+// 原始实现：FUN_1808fc050() -> exit_render_pipeline()
