@@ -1,51 +1,60 @@
 #include "TaleWorlds.Native.Split.h"
 
 // 01_initialization_part006.c - 28 个函数
+// 简化实现：此文件包含游戏引擎初始化相关的函数注册代码
 
-// 函数: void FUN_180035c40(void)
-void FUN_180035c40(void)
+// 函数: 注册基础渲染系统组件
+void register_basic_rendering_components(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  char is_initialized;
+  void **global_table;
+  int compare_result;
+  longlong *system_manager;
+  longlong allocation_size;
+  void **current_node;
+  void **next_node;
+  void **temp_node;
+  void **new_node;
+  void *null_pointer;
   
-  plVar4 = (longlong *)FUN_18008d070();
-  puVar2 = (undefined8 *)*plVar4;
-  cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
-  uStackX_18 = 0;
-  puVar7 = puVar2;
-  puVar6 = (undefined8 *)puVar2[1];
-  while (cVar1 == '\0') {
-    iVar3 = memcmp(puVar6 + 4,&DAT_180a01000,0x10);
-    if (iVar3 < 0) {
-      puVar8 = (undefined8 *)puVar6[2];
-      puVar6 = puVar7;
+  // 获取系统管理器实例
+  system_manager = (longlong *)get_system_manager();
+  global_table = (void **)*system_manager;
+  is_initialized = *(char *)((longlong)global_table[1] + 0x19);
+  null_pointer = 0;
+  next_node = global_table;
+  current_node = (void **)global_table[1];
+  
+  // 遍历链表查找已存在的组件
+  while (is_initialized == '\0') {
+    compare_result = memcmp(current_node + 4, &RENDER_COMPONENT_ID, 0x10);
+    if (compare_result < 0) {
+      temp_node = (void **)current_node[2];
+      current_node = next_node;
     }
     else {
-      puVar8 = (undefined8 *)*puVar6;
+      temp_node = (void **)*current_node;
     }
-    puVar7 = puVar6;
-    puVar6 = puVar8;
-    cVar1 = *(char *)((longlong)puVar8 + 0x19);
+    next_node = current_node;
+    current_node = temp_node;
+    is_initialized = *(char *)((longlong)temp_node + 0x19);
   }
-  if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01000,puVar7 + 4,0x10), iVar3 < 0)) {
-    lVar5 = FUN_18008f0d0(plVar4);
-    FUN_18008f140(plVar4,&puStackX_10,puVar7,lVar5 + 0x20,lVar5);
-    puVar7 = puStackX_10;
+  
+  // 如果组件不存在或需要插入，则创建新节点
+  if ((next_node == global_table) || 
+      (compare_result = memcmp(&RENDER_COMPONENT_ID, next_node + 4, 0x10), compare_result < 0)) {
+    allocation_size = allocate_component_memory(system_manager);
+    insert_component_node(system_manager, &new_node, next_node, allocation_size + 0x20, allocation_size);
+    next_node = new_node;
   }
-  puVar7[6] = 0x402feffe4481676e;
-  puVar7[7] = 0xd4c2151109de93a0;
-  puVar7[8] = &UNK_180a003d0;
-  puVar7[9] = 0;
-  puVar7[10] = uStackX_18;
+  
+  // 设置组件属性
+  next_node[6] = RENDER_COMPONENT_HASH_1;
+  next_node[7] = RENDER_COMPONENT_HASH_2;
+  next_node[8] = &RENDER_COMPONENT_VTABLE;
+  next_node[9] = 0;
+  next_node[10] = null_pointer;
   return;
 }
 
@@ -53,50 +62,58 @@ void FUN_180035c40(void)
 
 
 
-// 函数: void FUN_180035d40(void)
-void FUN_180035d40(void)
+// 函数: 注册渲染管线组件
+void register_render_pipeline_components(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
-  undefined *puStackX_18;
+  char is_initialized;
+  void **global_table;
+  int compare_result;
+  longlong *system_manager;
+  longlong allocation_size;
+  void **current_node;
+  void **next_node;
+  void **temp_node;
+  void **new_node;
+  void *render_pipeline_vtable;
   
-  plVar4 = (longlong *)FUN_18008d070();
-  puVar2 = (undefined8 *)*plVar4;
-  cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
-  puStackX_18 = &UNK_1800868c0;
-  puVar7 = puVar2;
-  puVar6 = (undefined8 *)puVar2[1];
-  while (cVar1 == '\0') {
-    iVar3 = memcmp(puVar6 + 4,&DAT_180a00fd8,0x10);
-    if (iVar3 < 0) {
-      puVar8 = (undefined8 *)puVar6[2];
-      puVar6 = puVar7;
+  // 获取系统管理器实例
+  system_manager = (longlong *)get_system_manager();
+  global_table = (void **)*system_manager;
+  is_initialized = *(char *)((longlong)global_table[1] + 0x19);
+  render_pipeline_vtable = &RENDER_PIPELINE_VTABLE;
+  next_node = global_table;
+  current_node = (void **)global_table[1];
+  
+  // 遍历链表查找已存在的渲染管线组件
+  while (is_initialized == '\0') {
+    compare_result = memcmp(current_node + 4, &RENDER_PIPELINE_COMPONENT_ID, 0x10);
+    if (compare_result < 0) {
+      temp_node = (void **)current_node[2];
+      current_node = next_node;
     }
     else {
-      puVar8 = (undefined8 *)*puVar6;
+      temp_node = (void **)*current_node;
     }
-    puVar7 = puVar6;
-    puVar6 = puVar8;
-    cVar1 = *(char *)((longlong)puVar8 + 0x19);
+    next_node = current_node;
+    current_node = temp_node;
+    is_initialized = *(char *)((longlong)temp_node + 0x19);
   }
-  if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a00fd8,puVar7 + 4,0x10), iVar3 < 0)) {
-    lVar5 = FUN_18008f0d0(plVar4);
-    FUN_18008f140(plVar4,&puStackX_10,puVar7,lVar5 + 0x20,lVar5);
-    puVar7 = puStackX_10;
+  
+  // 如果渲染管线组件不存在或需要插入，则创建新节点
+  if ((next_node == global_table) || 
+      (compare_result = memcmp(&RENDER_PIPELINE_COMPONENT_ID, next_node + 4, 0x10), compare_result < 0)) {
+    allocation_size = allocate_component_memory(system_manager);
+    insert_component_node(system_manager, &new_node, next_node, allocation_size + 0x20, allocation_size);
+    next_node = new_node;
   }
-  puVar7[6] = 0x4384dcc4b6d3f417;
-  puVar7[7] = 0x92a15d52fe2679bd;
-  puVar7[8] = &UNK_180a003e8;
-  puVar7[9] = 0;
-  puVar7[10] = puStackX_18;
+  
+  // 设置渲染管线组件属性
+  next_node[6] = RENDER_PIPELINE_HASH_1;
+  next_node[7] = RENDER_PIPELINE_HASH_2;
+  next_node[8] = &RENDER_PIPELINE_VTABLE;
+  next_node[9] = 0;
+  next_node[10] = render_pipeline_vtable;
   return;
 }
 
@@ -206,50 +223,58 @@ void FUN_180035f50(void)
 
 
 
-// 函数: void FUN_180036050(void)
-void FUN_180036050(void)
+// 函数: 注册音频系统组件
+void register_audio_system_components(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
-  code *pcStackX_18;
+  char is_initialized;
+  void **global_table;
+  int compare_result;
+  longlong *system_manager;
+  longlong allocation_size;
+  void **current_node;
+  void **next_node;
+  void **temp_node;
+  void **new_node;
+  void *audio_initializer;
   
-  plVar4 = (longlong *)FUN_18008d070();
-  puVar2 = (undefined8 *)*plVar4;
-  cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
-  pcStackX_18 = FUN_18025e330;
-  puVar7 = puVar2;
-  puVar6 = (undefined8 *)puVar2[1];
-  while (cVar1 == '\0') {
-    iVar3 = memcmp(puVar6 + 4,&DAT_180a00d48,0x10);
-    if (iVar3 < 0) {
-      puVar8 = (undefined8 *)puVar6[2];
-      puVar6 = puVar7;
+  // 获取系统管理器实例
+  system_manager = (longlong *)get_system_manager();
+  global_table = (void **)*system_manager;
+  is_initialized = *(char *)((longlong)global_table[1] + 0x19);
+  audio_initializer = initialize_audio_system;
+  next_node = global_table;
+  current_node = (void **)global_table[1];
+  
+  // 遍历链表查找已存在的音频组件
+  while (is_initialized == '\0') {
+    compare_result = memcmp(current_node + 4, &AUDIO_COMPONENT_ID, 0x10);
+    if (compare_result < 0) {
+      temp_node = (void **)current_node[2];
+      current_node = next_node;
     }
     else {
-      puVar8 = (undefined8 *)*puVar6;
+      temp_node = (void **)*current_node;
     }
-    puVar7 = puVar6;
-    puVar6 = puVar8;
-    cVar1 = *(char *)((longlong)puVar8 + 0x19);
+    next_node = current_node;
+    current_node = temp_node;
+    is_initialized = *(char *)((longlong)temp_node + 0x19);
   }
-  if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a00d48,puVar7 + 4,0x10), iVar3 < 0)) {
-    lVar5 = FUN_18008f0d0(plVar4);
-    FUN_18008f140(plVar4,&puStackX_10,puVar7,lVar5 + 0x20,lVar5);
-    puVar7 = puStackX_10;
+  
+  // 如果音频组件不存在或需要插入，则创建新节点
+  if ((next_node == global_table) || 
+      (compare_result = memcmp(&AUDIO_COMPONENT_ID, next_node + 4, 0x10), compare_result < 0)) {
+    allocation_size = allocate_component_memory(system_manager);
+    insert_component_node(system_manager, &new_node, next_node, allocation_size + 0x20, allocation_size);
+    next_node = new_node;
   }
-  puVar7[6] = 0x45425dc186a5d575;
-  puVar7[7] = 0xfab48faa65382fa5;
-  puVar7[8] = &UNK_180a00460;
-  puVar7[9] = 0;
-  puVar7[10] = pcStackX_18;
+  
+  // 设置音频组件属性
+  next_node[6] = AUDIO_COMPONENT_HASH_1;
+  next_node[7] = AUDIO_COMPONENT_HASH_2;
+  next_node[8] = &AUDIO_COMPONENT_VTABLE;
+  next_node[9] = 0;
+  next_node[10] = audio_initializer;
   return;
 }
 
@@ -257,50 +282,58 @@ void FUN_180036050(void)
 
 
 
-// 函数: void FUN_180036150(void)
-void FUN_180036150(void)
+// 函数: 注册物理系统组件
+void register_physics_system_components(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
-  code *pcStackX_18;
+  char is_initialized;
+  void **global_table;
+  int compare_result;
+  longlong *system_manager;
+  longlong allocation_size;
+  void **current_node;
+  void **next_node;
+  void **temp_node;
+  void **new_node;
+  void *physics_initializer;
   
-  plVar4 = (longlong *)FUN_18008d070();
-  puVar2 = (undefined8 *)*plVar4;
-  cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
-  pcStackX_18 = FUN_1802633c0;
-  puVar7 = puVar2;
-  puVar6 = (undefined8 *)puVar2[1];
-  while (cVar1 == '\0') {
-    iVar3 = memcmp(puVar6 + 4,&DAT_180a00bb0,0x10);
-    if (iVar3 < 0) {
-      puVar8 = (undefined8 *)puVar6[2];
-      puVar6 = puVar7;
+  // 获取系统管理器实例
+  system_manager = (longlong *)get_system_manager();
+  global_table = (void **)*system_manager;
+  is_initialized = *(char *)((longlong)global_table[1] + 0x19);
+  physics_initializer = initialize_physics_system;
+  next_node = global_table;
+  current_node = (void **)global_table[1];
+  
+  // 遍历链表查找已存在的物理组件
+  while (is_initialized == '\0') {
+    compare_result = memcmp(current_node + 4, &PHYSICS_COMPONENT_ID, 0x10);
+    if (compare_result < 0) {
+      temp_node = (void **)current_node[2];
+      current_node = next_node;
     }
     else {
-      puVar8 = (undefined8 *)*puVar6;
+      temp_node = (void **)*current_node;
     }
-    puVar7 = puVar6;
-    puVar6 = puVar8;
-    cVar1 = *(char *)((longlong)puVar8 + 0x19);
+    next_node = current_node;
+    current_node = temp_node;
+    is_initialized = *(char *)((longlong)temp_node + 0x19);
   }
-  if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a00bb0,puVar7 + 4,0x10), iVar3 < 0)) {
-    lVar5 = FUN_18008f0d0(plVar4);
-    FUN_18008f140(plVar4,&puStackX_10,puVar7,lVar5 + 0x20,lVar5);
-    puVar7 = puStackX_10;
+  
+  // 如果物理组件不存在或需要插入，则创建新节点
+  if ((next_node == global_table) || 
+      (compare_result = memcmp(&PHYSICS_COMPONENT_ID, next_node + 4, 0x10), compare_result < 0)) {
+    allocation_size = allocate_component_memory(system_manager);
+    insert_component_node(system_manager, &new_node, next_node, allocation_size + 0x20, allocation_size);
+    next_node = new_node;
   }
-  puVar7[6] = 0x40db4257e97d3df8;
-  puVar7[7] = 0x81d539e33614429f;
-  puVar7[8] = &UNK_180a004a8;
-  puVar7[9] = 4;
-  puVar7[10] = pcStackX_18;
+  
+  // 设置物理组件属性
+  next_node[6] = PHYSICS_COMPONENT_HASH_1;
+  next_node[7] = PHYSICS_COMPONENT_HASH_2;
+  next_node[8] = &PHYSICS_COMPONENT_VTABLE;
+  next_node[9] = 4;
+  next_node[10] = physics_initializer;
   return;
 }
 
@@ -308,50 +341,58 @@ void FUN_180036150(void)
 
 
 
-// 函数: void FUN_180036250(void)
-void FUN_180036250(void)
+// 函数: 注册输入系统组件
+void register_input_system_components(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
-  code *pcStackX_18;
+  char is_initialized;
+  void **global_table;
+  int compare_result;
+  longlong *system_manager;
+  longlong allocation_size;
+  void **current_node;
+  void **next_node;
+  void **temp_node;
+  void **new_node;
+  void *input_initializer;
   
-  plVar4 = (longlong *)FUN_18008d070();
-  puVar2 = (undefined8 *)*plVar4;
-  cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
-  pcStackX_18 = FUN_180262b00;
-  puVar7 = puVar2;
-  puVar6 = (undefined8 *)puVar2[1];
-  while (cVar1 == '\0') {
-    iVar3 = memcmp(puVar6 + 4,&DAT_180a00b88,0x10);
-    if (iVar3 < 0) {
-      puVar8 = (undefined8 *)puVar6[2];
-      puVar6 = puVar7;
+  // 获取系统管理器实例
+  system_manager = (longlong *)get_system_manager();
+  global_table = (void **)*system_manager;
+  is_initialized = *(char *)((longlong)global_table[1] + 0x19);
+  input_initializer = initialize_input_system;
+  next_node = global_table;
+  current_node = (void **)global_table[1];
+  
+  // 遍历链表查找已存在的输入组件
+  while (is_initialized == '\0') {
+    compare_result = memcmp(current_node + 4, &INPUT_COMPONENT_ID, 0x10);
+    if (compare_result < 0) {
+      temp_node = (void **)current_node[2];
+      current_node = next_node;
     }
     else {
-      puVar8 = (undefined8 *)*puVar6;
+      temp_node = (void **)*current_node;
     }
-    puVar7 = puVar6;
-    puVar6 = puVar8;
-    cVar1 = *(char *)((longlong)puVar8 + 0x19);
+    next_node = current_node;
+    current_node = temp_node;
+    is_initialized = *(char *)((longlong)temp_node + 0x19);
   }
-  if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a00b88,puVar7 + 4,0x10), iVar3 < 0)) {
-    lVar5 = FUN_18008f0d0(plVar4);
-    FUN_18008f140(plVar4,&puStackX_10,puVar7,lVar5 + 0x20,lVar5);
-    puVar7 = puStackX_10;
+  
+  // 如果输入组件不存在或需要插入，则创建新节点
+  if ((next_node == global_table) || 
+      (compare_result = memcmp(&INPUT_COMPONENT_ID, next_node + 4, 0x10), compare_result < 0)) {
+    allocation_size = allocate_component_memory(system_manager);
+    insert_component_node(system_manager, &new_node, next_node, allocation_size + 0x20, allocation_size);
+    next_node = new_node;
   }
-  puVar7[6] = 0x4e33c4803e67a08f;
-  puVar7[7] = 0x703a29a844ce399;
-  puVar7[8] = &UNK_180a004c0;
-  puVar7[9] = 3;
-  puVar7[10] = pcStackX_18;
+  
+  // 设置输入组件属性
+  next_node[6] = INPUT_COMPONENT_HASH_1;
+  next_node[7] = INPUT_COMPONENT_HASH_2;
+  next_node[8] = &INPUT_COMPONENT_VTABLE;
+  next_node[9] = 3;
+  next_node[10] = input_initializer;
   return;
 }
 
@@ -359,50 +400,58 @@ void FUN_180036250(void)
 
 
 
-// 函数: void FUN_180036350(void)
-void FUN_180036350(void)
+// 函数: 注册网络系统组件
+void register_network_system_components(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  char is_initialized;
+  void **global_table;
+  int compare_result;
+  longlong *system_manager;
+  longlong allocation_size;
+  void **current_node;
+  void **next_node;
+  void **temp_node;
+  void **new_node;
+  void *null_pointer;
   
-  plVar4 = (longlong *)FUN_18008d070();
-  puVar2 = (undefined8 *)*plVar4;
-  cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
-  uStackX_18 = 0;
-  puVar7 = puVar2;
-  puVar6 = (undefined8 *)puVar2[1];
-  while (cVar1 == '\0') {
-    iVar3 = memcmp(puVar6 + 4,&DAT_1809fe0d0,0x10);
-    if (iVar3 < 0) {
-      puVar8 = (undefined8 *)puVar6[2];
-      puVar6 = puVar7;
+  // 获取系统管理器实例
+  system_manager = (longlong *)get_system_manager();
+  global_table = (void **)*system_manager;
+  is_initialized = *(char *)((longlong)global_table[1] + 0x19);
+  null_pointer = 0;
+  next_node = global_table;
+  current_node = (void **)global_table[1];
+  
+  // 遍历链表查找已存在的网络组件
+  while (is_initialized == '\0') {
+    compare_result = memcmp(current_node + 4, &NETWORK_COMPONENT_ID, 0x10);
+    if (compare_result < 0) {
+      temp_node = (void **)current_node[2];
+      current_node = next_node;
     }
     else {
-      puVar8 = (undefined8 *)*puVar6;
+      temp_node = (void **)*current_node;
     }
-    puVar7 = puVar6;
-    puVar6 = puVar8;
-    cVar1 = *(char *)((longlong)puVar8 + 0x19);
+    next_node = current_node;
+    current_node = temp_node;
+    is_initialized = *(char *)((longlong)temp_node + 0x19);
   }
-  if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_1809fe0d0,puVar7 + 4,0x10), iVar3 < 0)) {
-    lVar5 = FUN_18008f0d0(plVar4);
-    FUN_18008f140(plVar4,&puStackX_10,puVar7,lVar5 + 0x20,lVar5);
-    puVar7 = puStackX_10;
+  
+  // 如果网络组件不存在或需要插入，则创建新节点
+  if ((next_node == global_table) || 
+      (compare_result = memcmp(&NETWORK_COMPONENT_ID, next_node + 4, 0x10), compare_result < 0)) {
+    allocation_size = allocate_component_memory(system_manager);
+    insert_component_node(system_manager, &new_node, next_node, allocation_size + 0x20, allocation_size);
+    next_node = new_node;
   }
-  puVar7[6] = 0x42bea5b911d9c4bf;
-  puVar7[7] = 0x1aa83fc0020dc1b6;
-  puVar7[8] = &UNK_1809fd0d8;
-  puVar7[9] = 0;
-  puVar7[10] = uStackX_18;
+  
+  // 设置网络组件属性
+  next_node[6] = NETWORK_COMPONENT_HASH_1;
+  next_node[7] = NETWORK_COMPONENT_HASH_2;
+  next_node[8] = &NETWORK_COMPONENT_VTABLE;
+  next_node[9] = 0;
+  next_node[10] = null_pointer;
   return;
 }
 
