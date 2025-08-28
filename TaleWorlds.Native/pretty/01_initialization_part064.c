@@ -899,7 +899,7 @@ int32_t InitializationSystem_AllocateResource(void)
  * 
  * @return undefined 释放结果状态
  */
-undefined InitializationSystem_ReleaseResource(void)
+int32_t InitializationSystem_ReleaseResource(void)
 {
     // 资源释放逻辑实现
     
@@ -935,7 +935,7 @@ undefined InitializationSystem_ReleaseResource(void)
  * 
  * @return undefined 更新结果状态
  */
-undefined InitializationSystem_UpdateStatus(void)
+int32_t InitializationSystem_UpdateStatus(void)
 {
     // 状态更新逻辑实现
     
@@ -971,7 +971,7 @@ undefined InitializationSystem_UpdateStatus(void)
  * 
  * @return undefined 记录结果状态
  */
-undefined InitializationSystem_LogEvent(void)
+int32_t InitializationSystem_LogEvent(void)
 {
     // 事件记录逻辑实现
     
