@@ -972,7 +972,7 @@ int process_secure_connection_validation(longlong connection_config, longlong da
   bytes_processed = bytes_processed + bytes_validated;
   
   // 应用签名标志
-  bytes_validated = FUN_18074be90(bytes_processed + data_ptr, data_size - bytes_processed, signature_flag);
+  bytes_validated = validate_packet_signature(bytes_processed + data_ptr, data_size - bytes_processed, signature_flag);
   return bytes_validated + bytes_processed;
 }
 
@@ -1008,7 +1008,7 @@ int process_extended_connection_validation(longlong connection_config, longlong 
   bytes_processed = bytes_processed + bytes_validated;
   
   // 应用签名标志
-  bytes_validated = FUN_18074be90(bytes_processed + data_ptr, data_size - bytes_processed, signature_flag);
+  bytes_validated = validate_packet_signature(bytes_processed + data_ptr, data_size - bytes_processed, signature_flag);
   return bytes_validated + bytes_processed;
 }
 
@@ -1044,7 +1044,7 @@ int process_data_stream_validation(longlong stream_config, longlong data_ptr, in
   bytes_processed = bytes_processed + bytes_streamed;
   
   // 应用签名标志
-  bytes_streamed = FUN_18074be90(bytes_processed + data_ptr, data_size - bytes_processed, signature_flag);
+  bytes_streamed = validate_packet_signature(bytes_processed + data_ptr, data_size - bytes_processed, signature_flag);
   return bytes_streamed + bytes_processed;
 }
 
@@ -1078,7 +1078,7 @@ int process_extended_stream_validation(longlong stream_config, longlong data_ptr
   bytes_processed = bytes_processed + bytes_streamed;
   
   // 应用签名标志
-  bytes_streamed = FUN_18074be90(bytes_processed + data_ptr, data_size - bytes_processed, signature_flag);
+  bytes_streamed = validate_packet_signature(bytes_processed + data_ptr, data_size - bytes_processed, signature_flag);
   return bytes_streamed + bytes_processed;
 }
 
