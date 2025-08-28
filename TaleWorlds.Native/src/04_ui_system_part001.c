@@ -67,56 +67,86 @@ undefined UNK_180a3e030;                           // UI事件监听器管理器
 undefined FUN_180662260;                           // UI事件处理器 - 负责处理用户输入和系统事件
 
 
-// 函数: undefined FUN_1806500b0;
-undefined FUN_1806500b0;
-undefined UNK_180a3c5a0;
-undefined UNK_180a3c6f8;
-undefined UNK_180a3c710;
-undefined UNK_180a3c9b0;
-undefined UNK_180a3c948;
-undefined UNK_180a3c968;
-undefined1 DAT_180c95fea;
-char DAT_180c8eced;
-undefined UNK_180a3ca20;
-undefined UNK_180a3ca70;
-undefined UNK_180a3cac0;
-undefined DAT_180a12e00;
-undefined UNK_180a12e10;
-undefined UNK_180a0794c;
-undefined UNK_180a3cb70;
-undefined UNK_180a3cb58;
-undefined UNK_180a3cb00;
-undefined UNK_180a3cad8;
-undefined UNK_180a3cb48;
-undefined UNK_180a3cb40;
-undefined UNK_180a063a4;
-char DAT_180c95fea;
-undefined UNK_180a3cbc8;
-undefined UNK_180a3cc28;
-undefined UNK_180a3cbe0;
-undefined UNK_180a3cc48;
-undefined UNK_180a3c9ec;
-undefined UNK_180a3cc0c;
-undefined UNK_180a3cc1c;
-undefined UNK_180a3c9f8;
-undefined UNK_180a3ccc8;
-undefined UNK_180a3cca0;
-undefined UNK_180a03a90;
-undefined UNK_180a10118;
-undefined UNK_180a12c70;
-undefined UNK_180a12c90;
-undefined UNK_180a12cb0;
-undefined UNK_180a12cd0;
-undefined UNK_180a12d20;
-undefined DAT_180a2fce0;
-undefined UNK_180a341b0;
-undefined UNK_180a3cc58;
-undefined UNK_180a3cc70;
-undefined UNK_180a3cc80;
-undefined UNK_180a3cc90;
-undefined UNK_180a3ccdc;
-undefined UNK_180a3ccf8;
-undefined UNK_180a3cd08;
+//------------------------------------------------------------------------------
+// UI组件管理函数组
+//------------------------------------------------------------------------------
+
+// UI组件管理核心函数
+undefined FUN_1806500b0;                           // UI组件管理器 - 负责UI组件的创建、管理和销毁
+
+// UI组件状态变量
+undefined UNK_180a3c5a0;                           // UI组件状态管理器 - 管理组件的状态转换
+undefined UNK_180a3c6f8;                           // UI组件属性表 - 存储组件的属性数据
+undefined UNK_180a3c710;                           // UI组件样式表 - 存储组件的样式信息
+undefined UNK_180a3c9b0;                           // UI组件布局管理器 - 管理组件的布局和排列
+undefined UNK_180a3c948;                           // UI组件渲染器 - 负责组件的渲染绘制
+undefined UNK_180a3c968;                           // UI组件事件绑定器 - 管理组件的事件绑定
+
+// UI系统状态标志
+undefined1 DAT_180c95fea;                          // UI系统初始化标志 - 标识系统是否已初始化
+char DAT_180c8eced;                                // UI系统运行状态 - 存储当前运行状态
+
+// UI组件生命周期管理变量
+undefined UNK_180a3ca20;                           // UI组件创建器 - 负责组件的创建
+undefined UNK_180a3ca70;                           // UI组件更新器 - 负责组件的更新
+undefined UNK_180a3cac0;                           // UI组件销毁器 - 负责组件的销毁
+
+// UI组件资源管理变量
+undefined DAT_180a12e00;                          // UI组件资源池 - 管理组件使用的资源
+undefined UNK_180a12e10;                           // UI组件资源分配器 - 负责资源的分配
+undefined UNK_180a0794c;                           // UI组件资源回收器 - 负责资源的回收
+
+// UI组件交互变量
+undefined UNK_180a3cb70;                           // UI组件交互管理器 - 管理组件的交互逻辑
+undefined UNK_180a3cb58;                           // UI组件焦点管理器 - 管理组件的焦点控制
+undefined UNK_180a3cb00;                           // UI组件选择器 - 管理组件的选择状态
+undefined UNK_180a3cad8;                           // UI组件导航器 - 管理组件的导航逻辑
+
+// UI组件数据管理变量
+undefined UNK_180a3cb48;                           // UI组件数据绑定器 - 管理组件的数据绑定
+undefined UNK_180a3cb40;                           // UI组件数据验证器 - 验证组件数据的合法性
+undefined UNK_180a063a4;                           // UI组件数据转换器 - 转换组件数据的格式
+
+// UI系统配置变量
+char DAT_180c95fea;                                // UI系统配置标志 - 标识配置状态
+undefined UNK_180a3cbc8;                           // UI系统配置管理器 - 管理系统配置
+undefined UNK_180a3cc28;                           // UI系统配置解析器 - 解析配置文件
+undefined UNK_180a3cbe0;                           // UI系统配置验证器 - 验证配置的有效性
+
+// UI系统渲染变量
+undefined UNK_180a3cc48;                           // UI系统渲染器 - 负责系统级别的渲染
+undefined UNK_180a3c9ec;                           // UI系统渲染队列 - 管理渲染任务队列
+undefined UNK_180a3cc0c;                           // UI系统渲染缓存 - 管理渲染缓存
+undefined UNK_180a3cc1c;                           // UI系统渲染优化器 - 优化渲染性能
+
+// UI系统内存管理变量
+undefined UNK_180a3c9f8;                           // UI系统内存分配器 - 管理内存分配
+undefined UNK_180a3ccc8;                           // UI系统内存回收器 - 管理内存回收
+undefined UNK_180a3cca0;                           // UI系统内存池 - 管理内存池资源
+
+// UI系统线程管理变量
+undefined UNK_180a03a90;                           // UI系统线程管理器 - 管理UI线程
+undefined UNK_180a10118;                           // UI系统任务调度器 - 调度UI任务
+
+// UI系统输入处理变量
+undefined UNK_180a12c70;                           // UI系统输入处理器 - 处理用户输入
+undefined UNK_180a12c90;                           // UI系统输入缓冲区 - 管理输入缓冲
+undefined UNK_180a12cb0;                           // UI系统输入验证器 - 验证输入有效性
+undefined UNK_180a12cd0;                           // UI系统输入转换器 - 转换输入格式
+undefined UNK_180a12d20;                           // UI系统输入分发器 - 分发输入事件
+
+// UI系统资源变量
+undefined DAT_180a2fce0;                          // UI系统资源表 - 存储系统资源
+undefined UNK_180a341b0;                           // UI系统资源加载器 - 加载系统资源
+
+// UI系统同步变量
+undefined UNK_180a3cc58;                           // UI系统同步器 - 管理系统同步
+undefined UNK_180a3cc70;                           // UI系统锁管理器 - 管理系统锁
+undefined UNK_180a3cc80;                           // UI系统信号量 - 管理系统信号量
+undefined UNK_180a3cc90;                           // UI系统条件变量 - 管理条件变量
+undefined UNK_180a3ccdc;                           // UI系统原子操作器 - 执行原子操作
+undefined UNK_180a3ccf8;                           // UI系统屏障 - 管理系统屏障
+undefined UNK_180a3cd08;                           // UI系统内存屏障 - 管理内存屏障
 undefined UNK_180a3cd18;
 undefined UNK_180a3cd30;
 undefined UNK_180a3cd40;

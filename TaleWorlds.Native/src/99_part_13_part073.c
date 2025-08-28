@@ -158,43 +158,79 @@ void SystemResourceCleanup(void)
   longlong *plVar3;
   undefined8 *unaff_R14;
   
+  // 调用资源清理前处理函数
   FUN_18085dbf0(unaff_R14 + 9);
   plVar1 = unaff_R14 + 6;
+  
+  // 处理资源链表节点：从活动链表移除并加入空闲链表
   *(longlong *)unaff_R14[7] = *plVar1;
   *(undefined8 *)(*plVar1 + 8) = unaff_R14[7];
   unaff_R14[7] = plVar1;
   *plVar1 = (longlong)plVar1;
+  
+  // 重复链表操作以确保完整性
   *(longlong **)unaff_R14[7] = plVar1;
   *(undefined8 *)(*plVar1 + 8) = unaff_R14[7];
   unaff_R14[7] = plVar1;
   *plVar1 = (longlong)plVar1;
+  
+  // 设置系统状态标志
   *unaff_R14 = &UNK_180986f68;
   plVar1 = unaff_R14 + 4;
   plVar2 = (longlong *)*plVar1;
+  
+  // 检查是否需要立即清理
   if ((plVar2 == plVar1) && ((longlong *)unaff_R14[5] == plVar1)) {
     func_0x00018085dda0(plVar1);
     *unaff_R14 = &UNK_180984ab8;
     *(undefined4 *)(unaff_R14 + 1) = 0xdeadf00d;
     return;
   }
+  
+  // 准备延迟清理操作
   plVar3 = (longlong *)0x0;
   if (plVar2 != plVar1) {
     plVar3 = plVar2;
   }
+  
+  // 设置清理标志并执行清理操作
   *(undefined4 *)((longlong)plVar3 + 0x44) = 0xffffffff;
   FUN_18084c220(plVar3 + 4);
   FUN_18084c220(plVar3 + 2);
+  
+  // 处理资源对象的双向链表操作
   *(longlong *)plVar3[1] = *plVar3;
   *(longlong *)(*plVar3 + 8) = plVar3[1];
   plVar3[1] = (longlong)plVar3;
   *plVar3 = (longlong)plVar3;
+  
+  // 确保链表操作的完整性
   *(longlong **)plVar3[1] = plVar3;
   *(longlong *)(*plVar3 + 8) = plVar3[1];
   plVar3[1] = (longlong)plVar3;
   *plVar3 = (longlong)plVar3;
-                    // WARNING: Subroutine does not return
+  
+  // 执行最终的资源释放操作（不返回）
   FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),plVar3,&UNK_180986f90,0x30);
 }
+
+/**
+ * @brief 资源对象释放函数
+ * 
+ * 释放指定的资源对象，并根据标志位决定是否释放内存。
+ * 实现安全的资源释放和内存管理。
+ * 
+ * 功能特点：
+ * - 自动处理资源链表操作
+ * - 支持条件内存释放
+ * - 确保释放操作的原子性
+ * - 提供状态返回码
+ * 
+ * @param resource_ptr 资源对象指针
+ * @param flags 释放标志位（bit 0: 是否释放内存）
+ * @return 资源对象指针（用于链式操作）
+ */
+longlong ResourceObjectRelease(longlong resource_ptr, uint flags)
 
 
 
