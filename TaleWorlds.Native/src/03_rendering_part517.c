@@ -1897,45 +1897,102 @@ void FUN_180547d30(longlong param_1,undefined1 param_2,undefined8 param_3,undefi
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-int FUN_180547d80(longlong param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
-
+/*==============================================================================
+ * 函数: RenderSystem_ExecuteFrame - 渲染系统帧执行函数
+ * 
+ * 功能描述：
+ *   执行渲染系统的帧渲染操作，这是渲染管线的核心执行函数
+ *   负责处理渲染队列、更新状态、执行实际的渲染操作
+ * 
+ * 参数：
+ *   param_1 - 渲染上下文指针
+ *   param_2 - 帧参数（64位）
+ *   param_3 - 附加参数1（64位）
+ *   param_4 - 附加参数2（64位）
+ * 
+ * 返回值：
+ *   int - 帧执行结果（通常0=成功，非0=失败）
+ * 
+ * 处理流程：
+ *   1. 初始化返回值为0
+ *   2. 设置帧处理回调函数
+ *   3. 准备帧参数结构体
+ *   4. 发送到渲染队列处理
+ *   5. 检查特殊标志位
+ *   6. 如果需要，更新渲染状态
+ *   7. 根据状态返回结果
+ * 
+ * 特殊处理：
+ *   - 当参数2的字节8的位2被设置时，进行特殊状态处理
+ *   - 检查全局系统状态
+ *   - 调用状态更新函数
+ *   - 根据状态标志返回不同的结果
+ * 
+ * 注意事项：
+ *   - 这是渲染系统的核心执行函数
+ *   - 支持条件性的状态更新
+ *   - 使用复杂的参数结构体
+ *   - 与全局系统状态交互
+ * 
+ * 简化实现：
+ *   原始实现：复杂的帧执行逻辑，包含条件分支和状态更新
+ *   简化实现：保持原有帧执行逻辑，添加了详细的流程说明
+ =============================================================================*/
+int RenderSystem_ExecuteFrame(longlong param_1, longlong param_2, undefined8 param_3, undefined8 param_4)
 {
-  int iVar1;
-  int aiStackX_8 [2];
-  int **ppiStackX_10;
-  undefined4 uStack_38;
-  undefined4 uStack_34;
-  int *piStack_30;
-  undefined4 uStack_28;
-  undefined4 uStack_24;
-  undefined *puStack_20;
-  code *pcStack_18;
-  
-  aiStackX_8[0] = 0;
-  ppiStackX_10 = &piStack_30;
-  piStack_30 = aiStackX_8;
-  puStack_20 = &UNK_18054a660;
-  pcStack_18 = FUN_18054a5f0;
-  uStack_38 = (undefined4)param_2;
-  uStack_34 = (undefined4)((ulonglong)param_2 >> 0x20);
-  uStack_28 = uStack_38;
-  uStack_24 = uStack_34;
-  FUN_18054a4b0(param_1 + 0xe0,&piStack_30,param_3,param_4,0xfffffffffffffffe);
-  if ((*(byte *)(param_2 + 8) & 2) != 0) {
-    iVar1 = *(int *)(param_1 + 0x154);
-    if ((iVar1 == 0) &&
-       ((*(longlong *)(_DAT_180c86870 + 0x3d8) == 0 ||
-        (*(int *)(*(longlong *)(_DAT_180c86870 + 0x3d8) + 0x110) != 2)))) {
-      FUN_180548880(param_1,*(undefined1 *)(param_1 + 0x191));
-      iVar1 = *(int *)(param_1 + 0x154);
+    int iVar1;
+    int aiStackX_8 [2];        // 返回值数组
+    int **ppiStackX_10;        // 返回值指针
+    undefined4 uStack_38;     // 参数低32位
+    undefined4 uStack_34;     // 参数高32位
+    int *piStack_30;          // 参数指针
+    undefined4 uStack_28;     // 复制参数低32位
+    undefined4 uStack_24;     // 复制参数高32位
+    undefined *puStack_20;    // 回调函数指针
+    code *pcStack_18;        // 帧处理回调
+    
+    // 初始化返回值
+    aiStackX_8[0] = 0;
+    
+    // 设置帧处理参数结构
+    ppiStackX_10 = &piStack_30;
+    piStack_30 = aiStackX_8;
+    
+    // 设置帧处理回调函数
+    puStack_20 = &UNK_18054a660;
+    pcStack_18 = FUN_18054a5f0;
+    
+    // 分解64位参数为两个32位参数
+    uStack_38 = (undefined4)param_2;           // 低32位
+    uStack_34 = (undefined4)((ulonglong)param_2 >> 0x20); // 高32位
+    uStack_28 = uStack_38;                      // 复制低32位
+    uStack_24 = uStack_34;                      // 复制高32位
+    
+    // 发送到渲染队列处理
+    FUN_18054a4b0(param_1 + OFFSET_RENDER_QUEUE, &piStack_30, param_3, param_4, 0xfffffffffffffffe);
+    
+    // 检查特殊标志位（字节8的位2）
+    if ((*(byte *)(param_2 + 8) & 2) != 0) {
+        // 获取当前渲染状态
+        iVar1 = *(int *)(param_1 + 0x154);
+        
+        // 检查是否需要更新状态
+        if ((iVar1 == 0) &&
+            ((*(longlong *)(_DAT_180c86870 + 0x3d8) == 0 ||
+             (*(int *)(*(longlong *)(_DAT_180c86870 + 0x3d8) + 0x110) != 2)))) {
+            // 调用状态更新函数
+            FUN_180548880(param_1, *(undefined1 *)(param_1 + 0x191));
+            iVar1 = *(int *)(param_1 + 0x154);
+        }
+        
+        // 根据状态返回结果
+        if (iVar1 != 2) {
+            return aiStackX_8[0] + 1;  // 返回成功+1
+        }
     }
-    if (iVar1 != 2) {
-      return aiStackX_8[0] + 1;
-    }
-  }
-  return aiStackX_8[0];
+    
+    // 返回默认结果
+    return aiStackX_8[0];
 }
 
 /*==============================================================================
