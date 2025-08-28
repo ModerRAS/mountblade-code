@@ -2,18 +2,18 @@
 
 // 04_ui_system_part223_sub002.c - 1 个函数
 
-// 函数: void FUN_1807975fc(longlong param_1,uint64_t param_2,float *param_3,float *param_4)
-void FUN_1807975fc(longlong param_1,uint64_t param_2,float *param_3,float *param_4)
+// 函数: void FUN_1807975fc(int64_t param_1,uint64_t param_2,float *param_3,float *param_4)
+void FUN_1807975fc(int64_t param_1,uint64_t param_2,float *param_3,float *param_4)
 
 {
   float *pfVar1;
   float *pfVar2;
-  longlong lVar3;
+  int64_t lVar3;
   float *unaff_RBP;
   float *unaff_RSI;
-  longlong in_R10;
-  longlong in_R11;
-  longlong unaff_R14;
+  int64_t in_R10;
+  int64_t in_R11;
+  int64_t unaff_R14;
   float fVar4;
   float fVar5;
   float fVar6;
@@ -26,7 +26,7 @@ void FUN_1807975fc(longlong param_1,uint64_t param_2,float *param_3,float *param
   float unaff_XMM8_Da;
   float afStackX_8 [6];
   float afStackX_20 [2];
-  ulonglong in_stack_00000040;
+  uint64_t in_stack_00000040;
   
   if (3 < in_R10 - param_1) {
     fVar8 = unaff_XMM6_Da - in_XMM4_Da;
@@ -68,10 +68,10 @@ void FUN_1807975fc(longlong param_1,uint64_t param_2,float *param_3,float *param
     afStackX_20[param_1 + -8] = fVar8;
     in_XMM5_Da = in_XMM5_Da + fVar8;
   }
-  *(longlong *)param_3 = unaff_R14;
+  *(int64_t *)param_3 = unaff_R14;
   fVar8 = (float)unaff_R14;
   param_3[2] = fVar8;
-  *(longlong *)param_4 = unaff_R14;
+  *(int64_t *)param_4 = unaff_R14;
   param_4[2] = fVar8;
   if (in_XMM5_Da != unaff_XMM8_Da) {
     lVar3 = unaff_R14;
@@ -141,14 +141,14 @@ void FUN_1807975fc(longlong param_1,uint64_t param_2,float *param_3,float *param
       param_4[2] = fVar7 * fVar6;
     }
     else {
-      *(longlong *)param_4 = unaff_R14;
+      *(int64_t *)param_4 = unaff_R14;
       param_4[2] = fVar8;
     }
   }
   *unaff_RSI = in_XMM4_Da;
   *unaff_RBP = SQRT(param_3[2] * param_3[2] + *param_3 * *param_3);
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000040 ^ (ulonglong)&stack0x00000000);
+  FUN_1808fc050(in_stack_00000040 ^ (uint64_t)&stack0x00000000);
 }
 
 

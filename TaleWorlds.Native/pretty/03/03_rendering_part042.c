@@ -485,7 +485,7 @@ void render_nop_operation3(void) {
  * 
  * 该函数用于执行复杂的渲染批处理操作，包括顶点计算和插值处理。
  */
-void execute_render_batch(longlong param1, longlong param2, int param3, longlong* param4, float param5) {
+void execute_render_batch(int64_t param1, int64_t param2, int param3, int64_t* param4, float param5) {
     if (!param4) {
         return;
     }
@@ -493,7 +493,7 @@ void execute_render_batch(longlong param1, longlong param2, int param3, longlong
     float fVar21 = param5 + 1.0f;
     
     do {
-        float fVar16 = *(float*)((longlong)param4 + 0xc);
+        float fVar16 = *(float*)((int64_t)param4 + 0xc);
         float fVar11 = *(float*)(param4 + 1);
         
         if (fVar16 == 0.0f) {
@@ -517,7 +517,7 @@ void execute_render_batch(longlong param1, longlong param2, int param3, longlong
                 fVar18 = fVar17;
             }
             
-            fVar17 = *(float*)((longlong)param4 + 0x1c);
+            fVar17 = *(float*)((int64_t)param4 + 0x1c);
             float fVar14 = fVar20;
             float fVar10 = fVar21;
             
@@ -559,9 +559,9 @@ void execute_render_batch(longlong param1, longlong param2, int param3, longlong
                 // 处理内部情况
                 int iVar3 = (int)fVar15;
                 if (iVar3 == (int)fVar14) {
-                    longlong lVar1 = (longlong)iVar3;
-                    *(float*)(param1 + lVar1 * 4) = (1.0f - ((fVar14 - (float)iVar3) + (fVar15 - (float)iVar3)) * 0.5f) * *(float*)((longlong)param4 + 0x14) * (fVar10 - fVar18) + *(float*)(param1 + lVar1 * 4);
-                    *(float*)(param2 + lVar1 * 4) = (fVar10 - fVar18) * *(float*)((longlong)param4 + 0x14) + *(float*)(param2 + lVar1 * 4);
+                    int64_t lVar1 = (int64_t)iVar3;
+                    *(float*)(param1 + lVar1 * 4) = (1.0f - ((fVar14 - (float)iVar3) + (fVar15 - (float)iVar3)) * 0.5f) * *(float*)((int64_t)param4 + 0x14) * (fVar10 - fVar18) + *(float*)(param1 + lVar1 * 4);
+                    *(float*)(param2 + lVar1 * 4) = (fVar10 - fVar18) * *(float*)((int64_t)param4 + 0x14) + *(float*)(param2 + lVar1 * 4);
                 } else {
                     // 处理复杂插值情况
                     float temp_fVar16 = fVar15;
@@ -577,18 +577,18 @@ void execute_render_batch(longlong param1, longlong param2, int param3, longlong
                     
                     int iVar7 = (int)temp_fVar16;
                     iVar3 = (int)fVar14;
-                    longlong lVar1 = (longlong)(iVar7 + 1);
-                    longlong lVar6 = (longlong)iVar3;
-                    float fVar17 = *(float*)((longlong)param4 + 0x14);
+                    int64_t lVar1 = (int64_t)(iVar7 + 1);
+                    int64_t lVar6 = (int64_t)iVar3;
+                    float fVar17 = *(float*)((int64_t)param4 + 0x14);
                     float fVar15_calc = fVar17 * fVar19;
                     float fVar20_calc = ((float)(iVar7 + 1) - fVar11) * fVar19 + param5;
                     float fVar11_calc = (fVar20_calc - fVar18) * fVar17;
                     
-                    *(float*)(param1 + (longlong)iVar7 * 4) = (0.5f - (temp_fVar16 - (float)iVar7) * 0.5f) * fVar11_calc + *(float*)(param1 + (longlong)iVar7 * 4);
+                    *(float*)(param1 + (int64_t)iVar7 * 4) = (0.5f - (temp_fVar16 - (float)iVar7) * 0.5f) * fVar11_calc + *(float*)(param1 + (int64_t)iVar7 * 4);
                     
                     if (lVar1 < lVar6) {
                         // 批量处理插值
-                        for (longlong i = lVar1; i < lVar6; i++) {
+                        for (int64_t i = lVar1; i < lVar6; i++) {
                             float fVar16_temp = fVar15_calc * 0.5f + fVar11_calc;
                             fVar11_calc = fVar11_calc + fVar15_calc;
                             *(float*)(param1 + i * 4) = fVar16_temp + *(float*)(param1 + i * 4);
@@ -601,8 +601,8 @@ void execute_render_batch(longlong param1, longlong param2, int param3, longlong
             }
         }
         
-        param4 = (longlong*)*param4;
-    } while (param4 != (longlong*)0x0);
+        param4 = (int64_t*)*param4;
+    } while (param4 != (int64_t*)0x0);
 }
 
 // =============================================================================

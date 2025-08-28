@@ -114,19 +114,19 @@
 
 // UI系统链表管理器 - 管理UI系统中的链表数据结构和节点操作
 // 该函数实现了链表管理功能，包括节点插入、删除、查找和链表维护操作
-void ui_system_linked_list_manager(longlong *list_header, uint64_t *prev_node, uint64_t *next_node, int operation_type)
+void ui_system_linked_list_manager(int64_t *list_header, uint64_t *prev_node, uint64_t *next_node, int operation_type)
 {
-  longlong *current_node;
-  longlong temp_ptr;
+  int64_t *current_node;
+  int64_t temp_ptr;
   uint64_t *node_ptr;
-  longlong *prev_ptr;
-  longlong *next_ptr;
-  longlong *link_ptr;
-  longlong *head_ptr;
-  longlong *tail_ptr;
+  int64_t *prev_ptr;
+  int64_t *next_ptr;
+  int64_t *link_ptr;
+  int64_t *head_ptr;
+  int64_t *tail_ptr;
   
   // 初始化链表头部
-  list_header[2] = (longlong)prev_node;
+  list_header[2] = (int64_t)prev_node;
   *list_header = 0;
   list_header[1] = 0;
   *(int8_t *)(list_header + 3) = 0;
@@ -150,73 +150,73 @@ void ui_system_linked_list_manager(longlong *list_header, uint64_t *prev_node, u
 node_inserted:
   
   // 链表节点处理和状态更新
-  head_ptr = (longlong *)next_node[2];
+  head_ptr = (int64_t *)next_node[2];
   if (list_header == head_ptr) {
     *(int8_t *)(head_ptr + 3) = 1;
     return;
   }
   
   do {
-    current_node = (longlong *)list_header[2];
+    current_node = (int64_t *)list_header[2];
     if ((char)current_node[3] != '\0') break;
     
-    tail_ptr = (longlong *)current_node[2];
+    tail_ptr = (int64_t *)current_node[2];
     link_ptr = current_node + 2;
-    next_ptr = (longlong *)tail_ptr[1];
+    next_ptr = (int64_t *)tail_ptr[1];
     
     if (current_node == next_ptr) {
       temp_ptr = *tail_ptr;
       if ((temp_ptr == 0) || (*(char *)(temp_ptr + 0x18) != '\0')) {
         next_ptr = current_node;
-        if ((current_node != (longlong *)0x0) && (prev_ptr = (longlong *)*current_node, list_header == prev_ptr)) {
+        if ((current_node != (int64_t *)0x0) && (prev_ptr = (int64_t *)*current_node, list_header == prev_ptr)) {
           *current_node = prev_ptr[1];
           if (prev_ptr[1] != 0) {
-            *(longlong **)(prev_ptr[1] + 0x10) = current_node;
+            *(int64_t **)(prev_ptr[1] + 0x10) = current_node;
           }
           prev_ptr[2] = *link_ptr;
           next_ptr = prev_ptr;
           if (current_node != head_ptr) {
             node_ptr = (uint64_t *)*link_ptr;
             next_ptr = head_ptr;
-            if (current_node == (longlong *)node_ptr[1]) {
+            if (current_node == (int64_t *)node_ptr[1]) {
               node_ptr[1] = prev_ptr;
             }
             else {
               *node_ptr = prev_ptr;
             }
           }
-          prev_ptr[1] = (longlong)current_node;
-          *link_ptr = (longlong)prev_ptr;
+          prev_ptr[1] = (int64_t)current_node;
+          *link_ptr = (int64_t)prev_ptr;
           next_node[2] = next_ptr;
-          next_ptr = (longlong *)*link_ptr;
+          next_ptr = (int64_t *)*link_ptr;
           list_header = current_node;
         }
         *(int8_t *)(next_ptr + 3) = 1;
-        head_ptr = (longlong *)tail_ptr[1];
+        head_ptr = (int64_t *)tail_ptr[1];
         *(int8_t *)(tail_ptr + 3) = 0;
-        link_ptr = (longlong *)next_node[2];
+        link_ptr = (int64_t *)next_node[2];
         tail_ptr[1] = *head_ptr;
         if (*head_ptr != 0) {
-          *(longlong **)(*head_ptr + 0x10) = tail_ptr;
+          *(int64_t **)(*head_ptr + 0x10) = tail_ptr;
         }
         head_ptr[2] = tail_ptr[2];
         if (tail_ptr == link_ptr) {
-          *head_ptr = (longlong)tail_ptr;
+          *head_ptr = (int64_t)tail_ptr;
           link_ptr = head_ptr;
         }
         else {
           node_ptr = (uint64_t *)tail_ptr[2];
-          if (tail_ptr == (longlong *)*node_ptr) {
+          if (tail_ptr == (int64_t *)*node_ptr) {
             *node_ptr = head_ptr;
-            *head_ptr = (longlong)tail_ptr;
+            *head_ptr = (int64_t)tail_ptr;
           }
           else {
             node_ptr[1] = head_ptr;
-            *head_ptr = (longlong)tail_ptr;
+            *head_ptr = (int64_t)tail_ptr;
           }
         }
 list_processed:
-        tail_ptr[2] = (longlong)head_ptr;
+        tail_ptr[2] = (int64_t)head_ptr;
         next_node[2] = link_ptr;
         tail_ptr = list_header;
       }
@@ -227,60 +227,60 @@ list_processed:
       }
     }
     else {
-      if ((next_ptr == (longlong *)0x0) || ((char)next_ptr[3] != '\0')) {
-        next_ptr = (longlong *)current_node[1];
+      if ((next_ptr == (int64_t *)0x0) || ((char)next_ptr[3] != '\0')) {
+        next_ptr = (int64_t *)current_node[1];
         prev_ptr = current_node;
         if (list_header == next_ptr) {
           current_node[1] = *next_ptr;
           if (*next_ptr != 0) {
-            *(longlong **)(*next_ptr + 0x10) = current_node;
+            *(int64_t **)(*next_ptr + 0x10) = current_node;
           }
           next_ptr[2] = *link_ptr;
           prev_ptr = next_ptr;
           if (current_node != head_ptr) {
             node_ptr = (uint64_t *)*link_ptr;
             prev_ptr = head_ptr;
-            if (current_node == (longlong *)*node_ptr) {
-              *node_ptr = (longlong)next_ptr;
+            if (current_node == (int64_t *)*node_ptr) {
+              *node_ptr = (int64_t)next_ptr;
             }
             else {
-              node_ptr[1] = (longlong)next_ptr;
+              node_ptr[1] = (int64_t)next_ptr;
             }
           }
-          *next_ptr = (longlong)current_node;
-          *link_ptr = (longlong)next_ptr;
+          *next_ptr = (int64_t)current_node;
+          *link_ptr = (int64_t)next_ptr;
           next_node[2] = prev_ptr;
-          prev_ptr = (longlong *)*link_ptr;
+          prev_ptr = (int64_t *)*link_ptr;
           list_header = current_node;
         }
         *(int8_t *)(prev_ptr + 3) = 1;
-        head_ptr = (longlong *)*tail_ptr;
+        head_ptr = (int64_t *)*tail_ptr;
         *(int8_t *)(tail_ptr + 3) = 0;
-        current_node = (longlong *)next_node[2];
+        current_node = (int64_t *)next_node[2];
         *tail_ptr = head_ptr[1];
         if (head_ptr[1] != 0) {
-          *(longlong **)(head_ptr[1] + 0x10) = tail_ptr;
+          *(int64_t **)(head_ptr[1] + 0x10) = tail_ptr;
         }
         head_ptr[2] = tail_ptr[2];
         link_ptr = head_ptr;
         if (tail_ptr != current_node) {
           node_ptr = (uint64_t *)tail_ptr[2];
           link_ptr = current_node;
-          if (tail_ptr == (longlong *)*node_ptr) {
+          if (tail_ptr == (int64_t *)*node_ptr) {
             node_ptr[1] = head_ptr;
           }
           else {
             *node_ptr = head_ptr;
           }
         }
-        head_ptr[1] = (longlong)tail_ptr;
+        head_ptr[1] = (int64_t)tail_ptr;
         goto list_processed;
       }
       *(int8_t *)(current_node + 3) = 1;
       *(int8_t *)(next_ptr + 3) = 1;
       *(int8_t *)(tail_ptr + 3) = 0;
     }
-    head_ptr = (longlong *)next_node[2];
+    head_ptr = (int64_t *)next_node[2];
     list_header = tail_ptr;
   } while (tail_ptr != head_ptr);
   *(int8_t *)(head_ptr + 3) = 1;
@@ -289,81 +289,81 @@ list_processed:
 
 // UI系统数据结构处理器 - 处理UI系统中的复杂数据结构操作
 // 该函数实现了数据结构处理功能，包括结构体操作、数据管理和状态更新
-void ui_system_data_structure_processor(uint64_t data_context, uint64_t operation_flag, longlong *structure_data)
+void ui_system_data_structure_processor(uint64_t data_context, uint64_t operation_flag, int64_t *structure_data)
 {
-  longlong temp_ptr;
+  int64_t temp_ptr;
   uint64_t *node_ptr;
-  longlong *current_node;
-  longlong *next_node;
-  longlong *prev_node;
-  longlong *head_node;
-  longlong *tail_node;
-  longlong *context_ptr;
-  longlong context_data;
+  int64_t *current_node;
+  int64_t *next_node;
+  int64_t *prev_node;
+  int64_t *head_node;
+  int64_t *tail_node;
+  int64_t *context_ptr;
+  int64_t context_data;
   
   // 数据结构处理主循环
   do {
-    tail_node = (longlong *)context_ptr[2];
+    tail_node = (int64_t *)context_ptr[2];
     if ((char)tail_node[3] != '\0') break;
     
-    head_node = (longlong *)tail_node[2];
+    head_node = (int64_t *)tail_node[2];
     current_node = tail_node + 2;
     temp_ptr = head_node[1];
     
-    if (tail_node == (longlong *)temp_ptr) {
+    if (tail_node == (int64_t *)temp_ptr) {
       temp_ptr = *head_node;
       if ((temp_ptr == 0) || (*(char *)(temp_ptr + 0x18) != '\0')) {
         tail_node = tail_node;
-        if ((tail_node != (longlong *)0x0) && (prev_node = (longlong *)*tail_node, context_ptr == prev_node)) {
+        if ((tail_node != (int64_t *)0x0) && (prev_node = (int64_t *)*tail_node, context_ptr == prev_node)) {
           *tail_node = prev_node[1];
           if (prev_node[1] != 0) {
-            *(longlong **)(prev_node[1] + 0x10) = tail_node;
+            *(int64_t **)(prev_node[1] + 0x10) = tail_node;
           }
           prev_node[2] = *current_node;
           tail_node = prev_node;
           if (tail_node != structure_data) {
             node_ptr = (uint64_t *)*current_node;
             tail_node = structure_data;
-            if (tail_node == (longlong *)node_ptr[1]) {
+            if (tail_node == (int64_t *)node_ptr[1]) {
               node_ptr[1] = prev_node;
             }
             else {
               *node_ptr = prev_node;
             }
           }
-          prev_node[1] = (longlong)tail_node;
-          *current_node = (longlong)prev_node;
-          *(longlong **)(context_data + 0x10) = tail_node;
-          tail_node = (longlong *)*current_node;
+          prev_node[1] = (int64_t)tail_node;
+          *current_node = (int64_t)prev_node;
+          *(int64_t **)(context_data + 0x10) = tail_node;
+          tail_node = (int64_t *)*current_node;
           context_ptr = tail_node;
         }
-        *(int8_t *)((longlong)tail_node + 0x18) = 1;
-        tail_node = (longlong *)head_node[1];
+        *(int8_t *)((int64_t)tail_node + 0x18) = 1;
+        tail_node = (int64_t *)head_node[1];
         *(int8_t *)(head_node + 3) = 0;
-        tail_node = *(longlong **)(context_data + 0x10);
+        tail_node = *(int64_t **)(context_data + 0x10);
         head_node[1] = *tail_node;
         if (*tail_node != 0) {
-          *(longlong **)(*tail_node + 0x10) = head_node;
+          *(int64_t **)(*tail_node + 0x10) = head_node;
         }
         tail_node[2] = head_node[2];
         if (head_node == tail_node) {
-          *tail_node = (longlong)head_node;
+          *tail_node = (int64_t)head_node;
           tail_node = tail_node;
         }
         else {
           node_ptr = (uint64_t *)head_node[2];
-          if (head_node == (longlong *)*node_ptr) {
+          if (head_node == (int64_t *)*node_ptr) {
             *node_ptr = tail_node;
-            *tail_node = (longlong)head_node;
+            *tail_node = (int64_t)head_node;
           }
           else {
             node_ptr[1] = tail_node;
-            *tail_node = (longlong)head_node;
+            *tail_node = (int64_t)head_node;
           }
         }
 data_processed:
-        head_node[2] = (longlong)tail_node;
-        *(longlong **)(context_data + 0x10) = tail_node;
+        head_node[2] = (int64_t)tail_node;
+        *(int64_t **)(context_data + 0x10) = tail_node;
         head_node = context_ptr;
       }
       else {
@@ -374,59 +374,59 @@ data_processed:
     }
     else {
       if ((temp_ptr == 0) || (*(char *)(temp_ptr + 0x18) != '\0')) {
-        tail_node = (longlong *)tail_node[1];
+        tail_node = (int64_t *)tail_node[1];
         prev_node = tail_node;
         if (context_ptr == tail_node) {
           tail_node[1] = *tail_node;
           if (*tail_node != 0) {
-            *(longlong **)(*tail_node + 0x10) = tail_node;
+            *(int64_t **)(*tail_node + 0x10) = tail_node;
           }
           tail_node[2] = *current_node;
           prev_node = tail_node;
           if (tail_node != structure_data) {
-            next_node = (longlong *)*current_node;
+            next_node = (int64_t *)*current_node;
             prev_node = structure_data;
-            if (tail_node == (longlong *)*next_node) {
-              *next_node = (longlong)tail_node;
+            if (tail_node == (int64_t *)*next_node) {
+              *next_node = (int64_t)tail_node;
             }
             else {
-              next_node[1] = (longlong)tail_node;
+              next_node[1] = (int64_t)tail_node;
             }
           }
-          *tail_node = (longlong)tail_node;
-          *current_node = (longlong)tail_node;
-          *(longlong **)(context_data + 0x10) = prev_node;
-          prev_node = (longlong *)*current_node;
+          *tail_node = (int64_t)tail_node;
+          *current_node = (int64_t)tail_node;
+          *(int64_t **)(context_data + 0x10) = prev_node;
+          prev_node = (int64_t *)*current_node;
           context_ptr = tail_node;
         }
-        *(int8_t *)((longlong)prev_node + 0x18) = 1;
-        tail_node = (longlong *)*head_node;
+        *(int8_t *)((int64_t)prev_node + 0x18) = 1;
+        tail_node = (int64_t *)*head_node;
         *(int8_t *)(head_node + 3) = 0;
-        current_node = *(longlong **)(context_data + 0x10);
+        current_node = *(int64_t **)(context_data + 0x10);
         *head_node = tail_node[1];
         if (tail_node[1] != 0) {
-          *(longlong **)(tail_node[1] + 0x10) = head_node;
+          *(int64_t **)(tail_node[1] + 0x10) = head_node;
         }
         tail_node[2] = head_node[2];
         tail_node = tail_node;
         if (head_node != current_node) {
           node_ptr = (uint64_t *)head_node[2];
           tail_node = current_node;
-          if (head_node == (longlong *)*node_ptr) {
+          if (head_node == (int64_t *)*node_ptr) {
             node_ptr[1] = tail_node;
           }
           else {
             *node_ptr = tail_node;
           }
         }
-        tail_node[1] = (longlong)head_node;
+        tail_node[1] = (int64_t)head_node;
         goto data_processed;
       }
       *(int8_t *)(tail_node + 3) = 1;
       *(int8_t *)(temp_ptr + 0x18) = 1;
       *(int8_t *)(head_node + 3) = 0;
     }
-    structure_data = *(longlong **)(context_data + 0x10);
+    structure_data = *(int64_t **)(context_data + 0x10);
     context_ptr = head_node;
   } while (head_node != structure_data);
   *(int8_t *)(structure_data + 3) = 1;
@@ -435,7 +435,7 @@ data_processed:
 
 // UI系统状态设置器 - 设置UI系统中的状态标志
 // 该函数实现了状态设置功能，用于快速设置UI组件的状态
-void ui_system_state_setter(uint64_t context, uint64_t flags, longlong state_data)
+void ui_system_state_setter(uint64_t context, uint64_t flags, int64_t state_data)
 {
   *(int8_t *)(state_data + 0x18) = 1;
   return;
@@ -446,8 +446,8 @@ void ui_system_state_setter(uint64_t context, uint64_t flags, longlong state_dat
 uint ui_system_value_calculator(float *calculation_params, uint input_value)
 {
   uint result;
-  longlong mid_point;
-  longlong search_range;
+  int64_t mid_point;
+  int64_t search_range;
   uint *lookup_table;
   float ceiling_value;
   
@@ -457,7 +457,7 @@ uint ui_system_value_calculator(float *calculation_params, uint input_value)
   
   do {
     mid_point = search_range >> 1;
-    if (lookup_table[mid_point] < (uint)(longlong)((float)input_value / *calculation_params)) {
+    if (lookup_table[mid_point] < (uint)(int64_t)((float)input_value / *calculation_params)) {
       lookup_table = lookup_table + mid_point + 1;
       mid_point = search_range + (-1 - mid_point);
     }
@@ -466,7 +466,7 @@ uint ui_system_value_calculator(float *calculation_params, uint input_value)
   
   result = *lookup_table;
   ceiling_value = (float)ceilf((float)result * *calculation_params);
-  calculation_params[2] = (float)(longlong)ceiling_value;
+  calculation_params[2] = (float)(int64_t)ceiling_value;
   return result;
 }
 
@@ -475,8 +475,8 @@ uint ui_system_value_calculator(float *calculation_params, uint input_value)
 uint ui_system_parameter_optimizer(float *optimization_params, uint target_value)
 {
   uint result;
-  longlong mid_point;
-  longlong search_range;
+  int64_t mid_point;
+  int64_t search_range;
   uint *lookup_table;
   float ceiling_value;
   
@@ -495,7 +495,7 @@ uint ui_system_parameter_optimizer(float *optimization_params, uint target_value
   
   result = *lookup_table;
   ceiling_value = (float)ceilf((float)result * *optimization_params);
-  optimization_params[2] = (float)(longlong)ceiling_value;
+  optimization_params[2] = (float)(int64_t)ceiling_value;
   return result;
 }
 
@@ -504,8 +504,8 @@ uint ui_system_parameter_optimizer(float *optimization_params, uint target_value
 int8_t *ui_system_data_transformer(float *transform_params, int8_t *output_buffer, uint input_value, int param_4, int param_5)
 {
   uint result;
-  longlong mid_point;
-  longlong search_range;
+  int64_t mid_point;
+  int64_t search_range;
   uint *lookup_table;
   float base_value;
   float threshold_value;
@@ -532,7 +532,7 @@ int8_t *ui_system_data_transformer(float *transform_params, int8_t *output_buffe
     base_value = (float)ceilf(threshold_value * base_value);
     *output_buffer = 0;
     *(int32_t *)(output_buffer + 4) = 0;
-    transform_params[2] = (float)(longlong)base_value;
+    transform_params[2] = (float)(int64_t)base_value;
     return output_buffer;
   }
   
@@ -546,7 +546,7 @@ int8_t *ui_system_data_transformer(float *transform_params, int8_t *output_buffe
   search_range = 0x100;
   do {
     mid_point = search_range >> 1;
-    if (lookup_table[mid_point] < (uint)(longlong)threshold_value) {
+    if (lookup_table[mid_point] < (uint)(int64_t)threshold_value) {
       lookup_table = lookup_table + mid_point + 1;
       mid_point = search_range + (-1 - mid_point);
     }
@@ -557,7 +557,7 @@ int8_t *ui_system_data_transformer(float *transform_params, int8_t *output_buffe
   base_value = (float)ceilf((float)result * base_value);
   *(uint *)(output_buffer + 4) = result;
   *output_buffer = 1;
-  transform_params[2] = (float)(longlong)base_value;
+  transform_params[2] = (float)(int64_t)base_value;
   return output_buffer;
 }
 
@@ -566,9 +566,9 @@ int8_t *ui_system_data_transformer(float *transform_params, int8_t *output_buffe
 void ui_system_math_processor(float param_1, float param_2, uint *lookup_table)
 {
   uint result;
-  longlong mid_point;
-  longlong search_range;
-  longlong context_ptr;
+  int64_t mid_point;
+  int64_t search_range;
+  int64_t context_ptr;
   int8_t *output_buffer;
   float ceiling_value;
   float scale_factor;
@@ -581,7 +581,7 @@ void ui_system_math_processor(float param_1, float param_2, uint *lookup_table)
   search_range = 0x100;
   do {
     mid_point = search_range >> 1;
-    if (lookup_table[mid_point] < (uint)(longlong)param_1) {
+    if (lookup_table[mid_point] < (uint)(int64_t)param_1) {
       lookup_table = lookup_table + mid_point + 1;
       mid_point = search_range + (-1 - mid_point);
     }
@@ -592,7 +592,7 @@ void ui_system_math_processor(float param_1, float param_2, uint *lookup_table)
   ceiling_value = (float)ceilf((float)result * scale_factor);
   *(uint *)(output_buffer + 4) = result;
   *output_buffer = 1;
-  *(int *)(context_ptr + 8) = (int)(longlong)ceiling_value;
+  *(int *)(context_ptr + 8) = (int)(int64_t)ceiling_value;
   return;
 }
 
@@ -600,14 +600,14 @@ void ui_system_math_processor(float param_1, float param_2, uint *lookup_table)
 // 该函数实现了天花板计算功能，用于向上取整和数值优化
 void ui_system_ceiling_calculator(float param_1, uint64_t param_2, float param_3)
 {
-  longlong context_ptr;
+  int64_t context_ptr;
   int8_t *output_buffer;
   float ceiling_value;
   
   ceiling_value = (float)ceilf(param_1 * param_3);
   *output_buffer = 0;
   *(int32_t *)(output_buffer + 4) = 0;
-  *(int *)(context_ptr + 8) = (int)(longlong)ceiling_value;
+  *(int *)(context_ptr + 8) = (int)(int64_t)ceiling_value;
   return;
 }
 
@@ -624,10 +624,10 @@ int ui_system_component_validator(uint64_t *component_data, uint64_t *validation
       result = 8;
     }
     else if (*(int *)(validation_params + 1) == 5) {
-      if (((validation_flags >> 0x10 & 1) == 0) || ((*(uint *)((longlong)validation_params + 0xc) & 0x40000) != 0)) {
-        if (((validation_flags >> 0x11 & 1) == 0) || ((*(uint *)((longlong)validation_params + 0xc) & 0x80000) != 0)) {
-          if (((validation_flags >> 0x12 & 1) == 0) || ((*(uint *)((longlong)validation_params + 0xc) & 0x100000) != 0)) {
-            if ((*(byte *)((longlong)validation_params + 0xc) & 1) == 0) {
+      if (((validation_flags >> 0x10 & 1) == 0) || ((*(uint *)((int64_t)validation_params + 0xc) & 0x40000) != 0)) {
+        if (((validation_flags >> 0x11 & 1) == 0) || ((*(uint *)((int64_t)validation_params + 0xc) & 0x80000) != 0)) {
+          if (((validation_flags >> 0x12 & 1) == 0) || ((*(uint *)((int64_t)validation_params + 0xc) & 0x100000) != 0)) {
+            if ((*(byte *)((int64_t)validation_params + 0xc) & 1) == 0) {
               result = 4;
             }
             else {
@@ -685,7 +685,7 @@ int ui_system_component_checker(uint64_t *component_data, uint64_t *check_params
 {
   int result;
   uint64_t temp_value;
-  longlong context_ptr;
+  int64_t context_ptr;
   bool validation_flag;
   
   // 组件检查逻辑
@@ -694,10 +694,10 @@ int ui_system_component_checker(uint64_t *component_data, uint64_t *check_params
       result = 8;
     }
     else if (*(int *)(check_params + 1) == 5) {
-      if (((check_flags >> 0x10 & 1) == 0) || ((*(uint *)((longlong)check_params + 0xc) & 0x40000) != 0)) {
-        if (((check_flags >> 0x11 & 1) == 0) || ((*(uint *)((longlong)check_params + 0xc) & 0x80000) != 0)) {
-          if (((check_flags >> 0x12 & 1) == 0) || ((*(uint *)((longlong)check_params + 0xc) & 0x100000) != 0)) {
-            if ((*(byte *)((longlong)check_params + 0xc) & 1) == 0) {
+      if (((check_flags >> 0x10 & 1) == 0) || ((*(uint *)((int64_t)check_params + 0xc) & 0x40000) != 0)) {
+        if (((check_flags >> 0x11 & 1) == 0) || ((*(uint *)((int64_t)check_params + 0xc) & 0x80000) != 0)) {
+          if (((check_flags >> 0x12 & 1) == 0) || ((*(uint *)((int64_t)check_params + 0xc) & 0x100000) != 0)) {
+            if ((*(byte *)((int64_t)check_params + 0xc) & 1) == 0) {
               result = 4;
             }
             else {
@@ -754,7 +754,7 @@ int ui_system_component_checker(uint64_t *component_data, uint64_t *check_params
 void ui_system_flag_setter(void)
 {
   int32_t flag_value;
-  longlong context_ptr;
+  int64_t context_ptr;
   
   *(int32_t *)(context_ptr + 0x10) = flag_value;
   return;
@@ -762,7 +762,7 @@ void ui_system_flag_setter(void)
 
 // UI系统状态验证器 - 验证UI系统中的状态和条件
 // 该函数实现了状态验证功能，包括条件检查、状态验证和错误处理
-void ui_system_state_validator(longlong context_ptr, longlong param_2, int validation_type)
+void ui_system_state_validator(int64_t context_ptr, int64_t param_2, int validation_type)
 {
   int32_t result;
   
@@ -770,11 +770,11 @@ void ui_system_state_validator(longlong context_ptr, longlong param_2, int valid
     if (param_2 == 0) {
       if (validation_type == 0) {
 validation_check:
-        if ((*(longlong *)(context_ptr + 8) == 0) || (*(longlong *)(context_ptr + 0x30) == 0)) {
+        if ((*(int64_t *)(context_ptr + 8) == 0) || (*(int64_t *)(context_ptr + 0x30) == 0)) {
           result = 1;
         }
         else {
-          result = (**(code **)(*(longlong *)(context_ptr + 8) + 0x38))();
+          result = (**(code **)(*(int64_t *)(context_ptr + 8) + 0x38))();
         }
         goto validation_complete;
       }
@@ -791,17 +791,17 @@ validation_complete:
 
 // UI系统权限检查器 - 检查UI系统中的权限和访问控制
 // 该函数实现了权限检查功能，包括权限验证、访问控制和安全管理
-uint64_t ui_system_permission_checker(longlong security_context, longlong *permission_data)
+uint64_t ui_system_permission_checker(int64_t security_context, int64_t *permission_data)
 {
   uint *permission_flags;
   int permission_level_1;
   int permission_level_2;
   int permission_level_3;
-  longlong security_offset;
+  int64_t security_offset;
   
   permission_flags = (uint *)*permission_data;
   if ((permission_flags != (uint *)0x0) && (*(int *)(security_context + 0x1a8) == 0)) {
-    security_offset = *(longlong *)(security_context + 0x1b0) + 0x12c0;
+    security_offset = *(int64_t *)(security_context + 0x1b0) + 0x12c0;
     permission_level_1 = func_0x00018066f280(security_offset, 3);
     permission_level_2 = func_0x00018066f280(security_offset, 2);
     permission_level_3 = func_0x00018066f280(security_offset, 1);
@@ -813,15 +813,15 @@ uint64_t ui_system_permission_checker(longlong security_context, longlong *permi
 
 // UI系统标志处理器 - 处理UI系统中的标志位和状态
 // 该函数实现了标志处理功能，包括标志计算、状态更新和权限管理
-uint64_t ui_system_flag_processor(longlong flag_context)
+uint64_t ui_system_flag_processor(int64_t flag_context)
 {
   int flag_level_1;
   int flag_level_2;
   int flag_level_3;
-  longlong flag_offset;
+  int64_t flag_offset;
   uint *output_flags;
   
-  flag_offset = *(longlong *)(flag_context + 0x1b0) + 0x12c0;
+  flag_offset = *(int64_t *)(flag_context + 0x1b0) + 0x12c0;
   flag_level_1 = func_0x00018066f280(flag_offset, 3);
   flag_level_2 = func_0x00018066f280(flag_offset, 2);
   flag_level_3 = func_0x00018066f280(flag_offset, 1);
@@ -838,19 +838,19 @@ uint64_t ui_system_empty_function(void)
 
 // UI系统资源初始化器 - 初始化UI系统中的资源和数据结构
 // 该函数实现了资源初始化功能，包括内存分配、数据结构初始化和资源管理
-uint64_t ui_system_resource_initializer(longlong resource_context)
+uint64_t ui_system_resource_initializer(int64_t resource_context)
 {
   uint64_t *resource_ptr;
-  longlong temp_ptr;
+  int64_t temp_ptr;
   
   // 执行系统初始化函数
   func_0x00018066d6e0();
   func_0x00018066e220();
   func_0x00018066e360();
   
-  if (*(longlong *)(resource_context + 0x30) == 0) {
+  if (*(int64_t *)(resource_context + 0x30) == 0) {
     temp_ptr = FUN_18066e8f0(1);
-    *(longlong *)(resource_context + 0x30) = temp_ptr;
+    *(int64_t *)(resource_context + 0x30) = temp_ptr;
     *(int32_t *)(temp_ptr + 8) = *(int32_t *)(resource_context + 0x20);
     *(int32_t *)(temp_ptr + 0xe4) = 0x10;
     *(uint64_t *)(temp_ptr + 0x108) = 0;
@@ -861,19 +861,19 @@ uint64_t ui_system_resource_initializer(longlong resource_context)
       *(int32_t *)(temp_ptr + 0xe0) = *(int32_t *)(resource_ptr + 1);
       *(uint64_t **)(resource_context + 0x28) = (uint64_t *)(temp_ptr + 0xd8);
     }
-    temp_ptr = *(longlong *)(resource_context + 0x30);
+    temp_ptr = *(int64_t *)(resource_context + 0x30);
     *(int32_t *)(temp_ptr + 700) = 0;
     *(uint *)(temp_ptr + 0x2b8) = *(uint *)(temp_ptr + 8) & 0x40000;
     *(int32_t *)(temp_ptr + 0x1a8) = 0;
     return 0;
   }
-  *(int32_t *)(*(longlong *)(resource_context + 0x30) + 0x1a8) = 0;
+  *(int32_t *)(*(int64_t *)(resource_context + 0x30) + 0x1a8) = 0;
   return 0;
 }
 
 // UI系统资源清理器 - 清理UI系统中的资源和内存
 // 该函数实现了资源清理功能，包括内存释放、资源清理和状态重置
-uint64_t ui_system_resource_cleaner(longlong resource_context)
+uint64_t ui_system_resource_cleaner(int64_t resource_context)
 {
   FUN_18066ef00(resource_context + 0x1a8);
   func_0x00018066e940(resource_context);

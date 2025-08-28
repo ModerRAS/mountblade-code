@@ -17,20 +17,20 @@ int8_t FUN_1800795a4(void)
 {
   int8_t *puVar1;
   int8_t uVar2;
-  longlong lVar3;
-  longlong unaff_RBX;
+  int64_t lVar3;
+  int64_t unaff_RBX;
   int unaff_ESI;
-  longlong unaff_RDI;
+  int64_t unaff_RDI;
   
   do {
     Sleep(0);
-    while ((*(char *)(*(longlong *)(unaff_RBX + 0x1e0) + 0x15 + unaff_RDI) != '\x02' &&
-           (*(char *)(*(longlong *)(unaff_RBX + 0x1e0) + 0x15 + unaff_RDI) != '\x01'))) {
-      lVar3 = (longlong)unaff_ESI;
+    while ((*(char *)(*(int64_t *)(unaff_RBX + 0x1e0) + 0x15 + unaff_RDI) != '\x02' &&
+           (*(char *)(*(int64_t *)(unaff_RBX + 0x1e0) + 0x15 + unaff_RDI) != '\x01'))) {
+      lVar3 = (int64_t)unaff_ESI;
       unaff_RDI = unaff_RDI + 0x18;
       unaff_ESI = unaff_ESI + 1;
       LOCK();
-      puVar1 = (int8_t *)(*(longlong *)(unaff_RBX + 0x1e0) + lVar3 * 0x18 + 0x15);
+      puVar1 = (int8_t *)(*(int64_t *)(unaff_RBX + 0x1e0) + lVar3 * 0x18 + 0x15);
       uVar2 = *puVar1;
       *puVar1 = 0;
       UNLOCK();
@@ -51,13 +51,13 @@ float * FUN_1800795b0(float *param_1)
 {
   float *pfVar1;
   byte bVar2;
-  longlong *plVar3;
+  int64_t *plVar3;
   float *pfVar4;
   char cVar5;
   float fVar6;
   float *pfVar7;
   uint uVar8;
-  ulonglong uVar9;
+  uint64_t uVar9;
   bool bVar10;
   float fVar11;
   float fStack_b8;
@@ -70,7 +70,7 @@ float * FUN_1800795b0(float *param_1)
   int32_t uStack_9c;
   float *pfStack_98;
   int32_t uStack_90;
-  longlong lStack_88;
+  int64_t lStack_88;
   uint64_t uStack_80;
   uint64_t uStack_78;
   uint64_t uStack_70;
@@ -96,13 +96,13 @@ float * FUN_1800795b0(float *param_1)
     uStack_80 = 0x180079605;
     fVar6 = (float)FUN_1802349a0(0);
     if ((10 < (int)fVar6) ||
-       ((int)(*(int *)(*(longlong *)(param_1 + 0x84) + 0x88) +
-             (*(int *)(*(longlong *)(param_1 + 0x84) + 0x88) >> 0x1f & 3U)) >> 2 < (int)fVar6)) {
+       ((int)(*(int *)(*(int64_t *)(param_1 + 0x84) + 0x88) +
+             (*(int *)(*(int64_t *)(param_1 + 0x84) + 0x88) >> 0x1f & 3U)) >> 2 < (int)fVar6)) {
       puStack_48 = &system_buffer_ptr;
       if (*(void **)(param_1 + 6) != (void *)0x0) {
         puStack_48 = *(void **)(param_1 + 6);
       }
-      uStack_40 = CONCAT44(uStack_40._4_4_,*(int32_t *)(*(longlong *)(param_1 + 0x84) + 0x60));
+      uStack_40 = CONCAT44(uStack_40._4_4_,*(int32_t *)(*(int64_t *)(param_1 + 0x84) + 0x60));
       puStack_58 = &unknown_var_5472_ptr;
       uStack_80 = 0x18007967a;
       fStack_50 = fVar6;
@@ -114,10 +114,10 @@ float * FUN_1800795b0(float *param_1)
   }
   uStack_38 = 0xfffffffffffffffe;
   pfVar7 = param_1;
-  if ((*(byte *)((longlong)param_1 + 0xfd) & 0x20) == 0) {
+  if ((*(byte *)((int64_t)param_1 + 0xfd) & 0x20) == 0) {
     pfVar7 = (float *)func_0x000180085de0(*(uint64_t *)(param_1 + 0x6c));
   }
-  if ((*(longlong *)(pfVar7 + 0x84) != 0) && (((uint)param_1[0x40] & 0x80) == 0)) {
+  if ((*(int64_t *)(pfVar7 + 0x84) != 0) && (((uint)param_1[0x40] & 0x80) == 0)) {
     pfVar1 = param_1 + 0x9d;
     pfVar1[0] = 1e+08;
     pfVar1[1] = 1e+08;
@@ -138,7 +138,7 @@ float * FUN_1800795b0(float *param_1)
     FUN_18007f770(&pfStack_98);
     if (*(int *)(lStack_88 + 0x10) != 0) {
       do {
-        pfVar7 = (float *)((longlong)(int)uVar8 * 0x10 + *(longlong *)(lStack_88 + 0x18));
+        pfVar7 = (float *)((int64_t)(int)uVar8 * 0x10 + *(int64_t *)(lStack_88 + 0x18));
         fStack_a8 = *pfVar7;
         if (*pfVar1 < fStack_a8) {
           fStack_a8 = *pfVar1;
@@ -151,8 +151,8 @@ float * FUN_1800795b0(float *param_1)
         if (param_1[0x9f] < fStack_a0) {
           fStack_a0 = param_1[0x9f];
         }
-        *(ulonglong *)pfVar1 = CONCAT44(fStack_a4,fStack_a8);
-        *(ulonglong *)(param_1 + 0x9f) = CONCAT44(uStack_9c,fStack_a0);
+        *(uint64_t *)pfVar1 = CONCAT44(fStack_a4,fStack_a8);
+        *(uint64_t *)(param_1 + 0x9f) = CONCAT44(uStack_9c,fStack_a0);
         fStack_b8 = *pfVar7;
         if (fStack_b8 < param_1[0xa1]) {
           fStack_b8 = param_1[0xa1];
@@ -165,8 +165,8 @@ float * FUN_1800795b0(float *param_1)
         if (fStack_b0 < param_1[0xa3]) {
           fStack_b0 = param_1[0xa3];
         }
-        *(ulonglong *)(param_1 + 0xa1) = CONCAT44(fStack_b4,fStack_b8);
-        *(ulonglong *)(param_1 + 0xa3) = CONCAT44(uStack_ac,fStack_b0);
+        *(uint64_t *)(param_1 + 0xa1) = CONCAT44(fStack_b4,fStack_b8);
+        *(uint64_t *)(param_1 + 0xa3) = CONCAT44(uStack_ac,fStack_b0);
         uVar8 = uVar8 + 1;
       } while (uVar8 < *(uint *)(lStack_88 + 0x10));
     }
@@ -231,7 +231,7 @@ float * FUN_1800795b0(float *param_1)
       param_1[0xa7] = (param_1[0xa3] + param_1[0x9f]) * 0.5;
       param_1[0xa8] = 3.4028235e+38;
       fVar6 = 0.0;
-      uVar9 = (ulonglong)*(uint *)(lStack_88 + 0x10);
+      uVar9 = (uint64_t)*(uint *)(lStack_88 + 0x10);
       if (0 < (int)*(uint *)(lStack_88 + 0x10)) {
         pfVar7 = *(float **)(lStack_88 + 0x18);
         fVar11 = fVar6;
@@ -269,26 +269,26 @@ LAB_180075f4f:
       LOCK();
       pfVar1 = pfVar4 + 0x3a;
       fVar6 = *pfVar1;
-      pfVar7 = (float *)(ulonglong)(uint)fVar6;
+      pfVar7 = (float *)(uint64_t)(uint)fVar6;
       *pfVar1 = (float)((int)*pfVar1 + -1);
       UNLOCK();
       if (cVar5 == '\0') {
-        if ((((fVar6 == 1.4013e-45) && (*(longlong *)(pfStack_98 + 0x84) != 0)) &&
+        if ((((fVar6 == 1.4013e-45) && (*(int64_t *)(pfStack_98 + 0x84) != 0)) &&
             (pfVar7 = pfStack_98, FUN_1800791a0(pfStack_98), *(char *)(pfVar7 + 0x3f) == '\0')) &&
            ((*(char *)(pfVar7 + 0x3d) == '\0' &&
-            (((*(byte *)((longlong)pfVar7 + 0xfd) & 0x20) == 0 ||
-             ((*(byte *)((longlong)pfVar7 + 0xfe) & 1) == 0)))))) {
-          plVar3 = *(longlong **)(pfVar7 + 0x84);
+            (((*(byte *)((int64_t)pfVar7 + 0xfd) & 0x20) == 0 ||
+             ((*(byte *)((int64_t)pfVar7 + 0xfe) & 1) == 0)))))) {
+          plVar3 = *(int64_t **)(pfVar7 + 0x84);
           pfVar7[0x84] = 0.0;
           pfVar7[0x85] = 0.0;
-          if (plVar3 != (longlong *)0x0) {
+          if (plVar3 != (int64_t *)0x0) {
             (**(code **)(*plVar3 + 0x38))();
           }
         }
         LOCK();
         bVar2 = *(byte *)(pfVar4 + 0x3b);
         *(byte *)(pfVar4 + 0x3b) = 0;
-        pfVar7 = (float *)(ulonglong)bVar2;
+        pfVar7 = (float *)(uint64_t)bVar2;
         UNLOCK();
       }
     }

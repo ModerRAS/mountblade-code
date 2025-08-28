@@ -58,7 +58,7 @@
 
 // UI系统矩阵变换处理器 - 处理UI系统中的高级矩阵变换和向量运算
 // 该函数实现了复杂的矩阵变换算法，包括四元数运算、向量叉乘、点积计算和矩阵乘法
-void ui_system_matrix_transform_processor(uint64_t context_handle, longlong resource_manager, longlong state_data, char transform_type, float *vector_data, int32_t transform_flags)
+void ui_system_matrix_transform_processor(uint64_t context_handle, int64_t resource_manager, int64_t state_data, char transform_type, float *vector_data, int32_t transform_flags)
 {
   uint64_t *result_ptr;
   float vector_x;
@@ -72,8 +72,8 @@ void ui_system_matrix_transform_processor(uint64_t context_handle, longlong reso
   uint64_t temp_value_1;
   float *transform_data;
   uint64_t *temp_value_2;
-  ulonglong type_index;
-  longlong offset_value;
+  uint64_t type_index;
+  int64_t offset_value;
   float result_x;
   float result_y;
   float result_z;
@@ -81,10 +81,10 @@ void ui_system_matrix_transform_processor(uint64_t context_handle, longlong reso
   int8_t conversion_buffer [16];
   
   // 类型索引和偏移量计算
-  type_index = (ulonglong)transform_type;
+  type_index = (uint64_t)transform_type;
   offset_value = type_index * UI_MULTIPLIER_0X1B0;
   transform_data = (float *)FUN_18022a890(state_data, *(int8_t *)
-                                            (*(longlong *)(resource_manager + UI_GLOBAL_DATA_OFFSET_0X140) + UI_GLOBAL_DATA_OFFSET_0XF0 + offset_value), resource_manager
+                                            (*(int64_t *)(resource_manager + UI_GLOBAL_DATA_OFFSET_0X140) + UI_GLOBAL_DATA_OFFSET_0XF0 + offset_value), resource_manager
                                   );
   
   // 提取变换向量数据
@@ -108,7 +108,7 @@ void ui_system_matrix_transform_processor(uint64_t context_handle, longlong reso
   // 调用高级变换处理函数
   temp_value_2 = (uint64_t *)
             FUN_18040b910(resource_manager, conversion_buffer, transform_type,
-                          *(int32_t *)(*(longlong *)(resource_manager + UI_GLOBAL_DATA_OFFSET_0X140) + UI_GLOBAL_DATA_OFFSET_0X110 + offset_value),
+                          *(int32_t *)(*(int64_t *)(resource_manager + UI_GLOBAL_DATA_OFFSET_0X140) + UI_GLOBAL_DATA_OFFSET_0X110 + offset_value),
                           &result_w, transform_flags);
   
   // 存储变换结果
@@ -118,17 +118,17 @@ void ui_system_matrix_transform_processor(uint64_t context_handle, longlong reso
   result_ptr[1] = temp_value_1;
   
   // 更新状态标志位
-  *(ulonglong *)(state_data + UI_GLOBAL_DATA_OFFSET_0X800) =
-       *(ulonglong *)(state_data + UI_GLOBAL_DATA_OFFSET_0X800) |
-       *(ulonglong *)(*(longlong *)(resource_manager + UI_GLOBAL_DATA_OFFSET_0X140) + UI_GLOBAL_DATA_OFFSET_0XE8 + offset_value);
-  *(ulonglong *)(state_data + UI_GLOBAL_DATA_OFFSET_0X808) = *(ulonglong *)(state_data + UI_GLOBAL_DATA_OFFSET_0X808) | UI_ONE_FLOAT << (type_index & UI_BIT_SHIFT_6);
+  *(uint64_t *)(state_data + UI_GLOBAL_DATA_OFFSET_0X800) =
+       *(uint64_t *)(state_data + UI_GLOBAL_DATA_OFFSET_0X800) |
+       *(uint64_t *)(*(int64_t *)(resource_manager + UI_GLOBAL_DATA_OFFSET_0X140) + UI_GLOBAL_DATA_OFFSET_0XE8 + offset_value);
+  *(uint64_t *)(state_data + UI_GLOBAL_DATA_OFFSET_0X808) = *(uint64_t *)(state_data + UI_GLOBAL_DATA_OFFSET_0X808) | UI_ONE_FLOAT << (type_index & UI_BIT_SHIFT_6);
   
   return;
 }
 
 // UI系统内存管理器 - 管理UI系统中的内存分配和释放
 // 该函数实现了内存管理功能，包括内存块设置、条件释放和内存清理
-uint64_t *ui_system_memory_manager(uint64_t *memory_block, ulonglong memory_flags, uint64_t param_3, uint64_t param_4)
+uint64_t *ui_system_memory_manager(uint64_t *memory_block, uint64_t memory_flags, uint64_t param_3, uint64_t param_4)
 {
   // 设置内存块指针到全局数据
   *memory_block = &unknown_var_1864_ptr;
@@ -143,11 +143,11 @@ uint64_t *ui_system_memory_manager(uint64_t *memory_block, ulonglong memory_flag
 
 // UI系统状态初始化器 - 初始化UI系统中的状态数据和结构
 // 该函数实现了状态初始化功能，包括内存清理、参数设置和标志位初始化
-longlong ui_system_state_initializer(longlong state_data, int8_t init_flag_1, int8_t init_flag_2, int8_t init_flag_3, int32_t init_param_1, int32_t init_param_2)
+int64_t ui_system_state_initializer(int64_t state_data, int8_t init_flag_1, int8_t init_flag_2, int8_t init_flag_3, int32_t init_param_1, int32_t init_param_2)
 {
-  longlong loop_ptr_1;
-  longlong loop_ptr_2;
-  longlong loop_counter_1;
+  int64_t loop_ptr_1;
+  int64_t loop_ptr_2;
+  int64_t loop_counter_1;
   
   // 初始化循环计数器
   loop_counter_1 = UI_ARRAY_SIZE_8;
@@ -195,14 +195,14 @@ uint64_t *ui_system_resource_manager(uint64_t *resource_data)
   resource_data[UI_OFFSET_0X3A] = UI_ZERO_FLOAT;
   *(int32_t *)(resource_data + UI_OFFSET_0X3B) = UI_FLOAT_VALUE_0X40400000;
   *(int8_t *)(resource_data + UI_OFFSET_0X3C) = UI_ZERO_FLOAT;
-  *(int32_t *)((longlong)resource_data + UI_OFFSET_0X1DC) = UI_MAGIC_NUMBER_0X7149F2CA;
+  *(int32_t *)((int64_t)resource_data + UI_OFFSET_0X1DC) = UI_MAGIC_NUMBER_0X7149F2CA;
   
   return resource_data;
 }
 
 // UI系统高级变换处理器 - 处理UI系统中的高级变换和数学计算
 // 该函数实现了高级变换算法，包括向量归一化、矩阵运算、角度计算和三角函数处理
-void ui_system_advanced_transform_processor(longlong transform_context, longlong resource_manager, float *input_vector, longlong state_data)
+void ui_system_advanced_transform_processor(int64_t transform_context, int64_t resource_manager, float *input_vector, int64_t state_data)
 {
   float *matrix_data;
   char transform_type_1;
@@ -224,7 +224,7 @@ void ui_system_advanced_transform_processor(longlong transform_context, longlong
   float param_14;
   float param_15;
   uint64_t transform_handle;
-  longlong offset_value;
+  int64_t offset_value;
   uint temp_uint;
   float temp_float_1;
   int8_t conversion_buffer [16];
@@ -244,7 +244,7 @@ void ui_system_advanced_transform_processor(longlong transform_context, longlong
   float transform_x;
   float transform_y;
   float transform_z;
-  longlong stack_ptr;
+  int64_t stack_ptr;
   float calculation_x;
   float calculation_y;
   float calculation_z;
@@ -272,10 +272,10 @@ void ui_system_advanced_transform_processor(longlong transform_context, longlong
   float temp_result_21;
   float temp_result_22;
   float temp_result_23;
-  ulonglong security_key;
+  uint64_t security_key;
   
   // 安全密钥初始化
-  security_key = GET_SECURITY_COOKIE() ^ (ulonglong)conversion_buffer;
+  security_key = GET_SECURITY_COOKIE() ^ (uint64_t)conversion_buffer;
   
   // 获取变换类型
   transform_type_1 = *(char *)(transform_context + 0xa4);
@@ -283,7 +283,7 @@ void ui_system_advanced_transform_processor(longlong transform_context, longlong
   *(int8_t *)(transform_context + 0x1c4) = UI_ZERO_FLOAT;
   
   // 计算偏移量
-  offset_value = (longlong)*(char *)((longlong)transform_type_1 + UI_MULTIPLIER_0X100 + state_data);
+  offset_value = (int64_t)*(char *)((int64_t)transform_type_1 + UI_MULTIPLIER_0X100 + state_data);
   transform_type_2 = *(char *)(state_data + UI_MULTIPLIER_0X100 + offset_value);
   
   // 计算向量大小（归一化）
@@ -308,7 +308,7 @@ void ui_system_advanced_transform_processor(longlong transform_context, longlong
   param_12 = input_vector[0xb];
   
   // 获取矩阵数据
-  matrix_data = (float *)(resource_manager + ((longlong)transform_type_2 + UI_MULTIPLIER_0X40) * UI_MULTIPLIER_0X10);
+  matrix_data = (float *)(resource_manager + ((int64_t)transform_type_2 + UI_MULTIPLIER_0X40) * UI_MULTIPLIER_0X10);
   matrix_x = *matrix_data;
   matrix_y = matrix_data[1];
   matrix_z = matrix_data[2];
@@ -386,9 +386,9 @@ void ui_system_advanced_transform_processor(longlong transform_context, longlong
   
   // 角度计算和验证
   stack_ptr = offset_value * UI_MULTIPLIER_0X1B0;
-  temp_float_1 = *(float *)(stack_ptr + UI_MULTIPLIER_0X100 + *(longlong *)(state_data + UI_GLOBAL_DATA_OFFSET_0X140));
-  temp_value_1 = (longlong)transform_type_1 * UI_MULTIPLIER_0X1B0;
-  matrix_x = *(float *)(temp_value_1 + UI_MULTIPLIER_0X100 + *(longlong *)(state_data + UI_GLOBAL_DATA_OFFSET_0X140));
+  temp_float_1 = *(float *)(stack_ptr + UI_MULTIPLIER_0X100 + *(int64_t *)(state_data + UI_GLOBAL_DATA_OFFSET_0X140));
+  temp_value_1 = (int64_t)transform_type_1 * UI_MULTIPLIER_0X1B0;
+  matrix_x = *(float *)(temp_value_1 + UI_MULTIPLIER_0X100 + *(int64_t *)(state_data + UI_GLOBAL_DATA_OFFSET_0X140));
   
   // 验证变换结果
   matrix_y = (temp_float_1 + temp_float_1) * matrix_x;
@@ -436,14 +436,14 @@ void ui_system_advanced_transform_processor(longlong transform_context, longlong
 
 // UI系统数据同步器 - 同步UI系统中的数据和状态
 // 该函数实现了数据同步功能，包括内存锁定、数据复制和状态更新
-void ui_system_data_synchronizer(longlong sync_context, longlong resource_manager)
+void ui_system_data_synchronizer(int64_t sync_context, int64_t resource_manager)
 {
   uint *lock_ptr;
   int32_t *data_ptr_1;
   uint lock_value;
-  longlong resource_offset;
+  int64_t resource_offset;
   char sync_flag;
-  longlong base_offset;
+  int64_t base_offset;
   int32_t *data_ptr_2;
   int sync_counter;
   int32_t sync_data_1;
@@ -454,10 +454,10 @@ void ui_system_data_synchronizer(longlong sync_context, longlong resource_manage
   int32_t sync_data_6;
   int32_t sync_data_7;
   int32_t sync_data_8;
-  ulonglong security_key;
+  uint64_t security_key;
   
   // 安全密钥初始化
-  security_key = GET_SECURITY_COOKIE() ^ (ulonglong)&sync_data_1;
+  security_key = GET_SECURITY_COOKIE() ^ (uint64_t)&sync_data_1;
   
   // 获取同步标志
   sync_flag = *(char *)(sync_context + 0xa4);
@@ -473,8 +473,8 @@ void ui_system_data_synchronizer(longlong sync_context, longlong resource_manage
       *(uint64_t *)(data_ptr_2 + -0x1e) = UI_ZERO_FLOAT;
       
       // 获取资源偏移量
-      resource_offset = *(longlong *)(resource_manager + UI_GLOBAL_DATA_OFFSET_0X18);
-      base_offset = (longlong)sync_flag * UI_MULTIPLIER_0X100;
+      resource_offset = *(int64_t *)(resource_manager + UI_GLOBAL_DATA_OFFSET_0X18);
+      base_offset = (int64_t)sync_flag * UI_MULTIPLIER_0X100;
       
       // 内存锁定机制
       do {
@@ -512,17 +512,17 @@ void ui_system_data_synchronizer(longlong sync_context, longlong resource_manage
       data_ptr_2 = data_ptr_2 + UI_ARRAY_SIZE_4;
       
       // 获取下一个同步标志
-      sync_flag = *(char *)(base_offset + 0xa0 + *(longlong *)(resource_manager + UI_GLOBAL_DATA_OFFSET_0X18));
+      sync_flag = *(char *)(base_offset + 0xa0 + *(int64_t *)(resource_manager + UI_GLOBAL_DATA_OFFSET_0X18));
     } while (sync_flag != -1);
   }
   
   // 返回同步结果
-  FUN_1808fc050(security_key ^ (ulonglong)&sync_data_1);
+  FUN_1808fc050(security_key ^ (uint64_t)&sync_data_1);
 }
 
 // UI系统参数更新器 - 更新UI系统中的参数和状态
 // 该函数实现了参数更新功能，包括条件检查、增量更新和边界处理
-void ui_system_parameter_updater(longlong param_context, float update_delta, uint64_t update_flags)
+void ui_system_parameter_updater(int64_t param_context, float update_delta, uint64_t update_flags)
 {
   float current_value;
   float target_value;

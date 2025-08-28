@@ -10,7 +10,7 @@
  * @param render_obj_ptr 渲染对象指针
  * @param data_stream_ptr 数据流指针
  */
-void initialize_render_object(longlong render_obj_ptr, longlong data_stream_ptr)
+void initialize_render_object(int64_t render_obj_ptr, int64_t data_stream_ptr)
 {
   byte *buffer_ptr;
   uint count;
@@ -22,28 +22,28 @@ void initialize_render_object(longlong render_obj_ptr, longlong data_stream_ptr)
   int int_val4;
   int int_val5;
   uint64_t undef_val1;
-  longlong long_val1;
+  int64_t long_val1;
   byte *byte_ptr;
   uint *uint_ptr;
   int32_t *undef4_ptr;
   uint64_t *undef8_ptr;
   int int_val6;
-  ulonglong ulong_val1;
+  uint64_t ulong_val1;
   uint64_t *undef8_ptr2;
   uint64_t *undef8_ptr3;
   uint uint_val1;
-  longlong long_val2;
-  ulonglong ulong_val2;
+  int64_t long_val2;
+  uint64_t ulong_val2;
   uint64_t *undef8_ptr4;
   void *undef_ptr2;
-  longlong *long_ptr;
-  ulonglong ulong_val3;
+  int64_t *long_ptr;
+  uint64_t ulong_val3;
   int8_t stack_buffer1[32];
   uint stack_uint1;
-  ulonglong stack_ulong1;
+  uint64_t stack_ulong1;
   uint64_t *stack_undef8_ptr1;
-  longlong stack_long1;
-  longlong stack_long2;
+  int64_t stack_long1;
+  int64_t stack_long2;
   uint64_t stack_undef8_val1;
   void *stack_undef_ptr1;
   int8_t *stack_undef1_ptr1;
@@ -57,11 +57,11 @@ void initialize_render_object(longlong render_obj_ptr, longlong data_stream_ptr)
   byte *stack_byte_ptr2;
   int stack_int2;
   byte stack_buffer4[1032];
-  ulonglong stack_ulong2;
+  uint64_t stack_ulong2;
   
   // 初始化栈变量
   stack_undef8_val1 = 0xfffffffffffffffe;
-  stack_ulong2 = RENDER_DATA_OFFSET ^ (ulonglong)stack_buffer1;
+  stack_ulong2 = RENDER_DATA_OFFSET ^ (uint64_t)stack_buffer1;
   
   // 读取渲染对象类型数量
   uint_val1 = **(uint **)(data_stream_ptr + 8);
@@ -72,7 +72,7 @@ void initialize_render_object(longlong render_obj_ptr, longlong data_stream_ptr)
   
   // 处理渲染对象类型
   process_render_type(&RENDER_TYPE_TABLE, data_stream_ptr, render_obj_ptr);
-  *(longlong *)(data_stream_ptr + 8) = *(longlong *)(data_stream_ptr + 8) + 4;
+  *(int64_t *)(data_stream_ptr + 8) = *(int64_t *)(data_stream_ptr + 8) + 4;
   
   // 初始化渲染标志
   ulong_val1 = 0;
@@ -83,7 +83,7 @@ void initialize_render_object(longlong render_obj_ptr, longlong data_stream_ptr)
   *(uint **)(data_stream_ptr + 8) = *(uint **)(data_stream_ptr + 8) + 1;
   
   if (uint_val1 != 0) {
-    ulong_val2 = (ulonglong)uint_val1;
+    ulong_val2 = (uint64_t)uint_val1;
     do {
       // 处理每个材质类型
       stack_undef_ptr3 = &RENDER_MATERIAL_BASE;
@@ -98,11 +98,11 @@ void initialize_render_object(longlong render_obj_ptr, longlong data_stream_ptr)
       
       if (uint_val1 != 0) {
         read_string_data(&stack_undef_ptr3, uint_ptr, uint_val1);
-        *(longlong *)(data_stream_ptr + 8) = *(longlong *)(data_stream_ptr + 8) + (ulonglong)uint_val1;
+        *(int64_t *)(data_stream_ptr + 8) = *(int64_t *)(data_stream_ptr + 8) + (uint64_t)uint_val1;
       }
       
       // 在材质表中查找匹配的材质
-      long_ptr = (longlong *)&MATERIAL_LOOKUP_TABLE;
+      long_ptr = (int64_t *)&MATERIAL_LOOKUP_TABLE;
       ulong_val3 = ulong_val1;
       do {
         long_val1 = -1;
@@ -115,7 +115,7 @@ void initialize_render_object(longlong render_obj_ptr, longlong data_stream_ptr)
           if (stack_int2 != 0) {
             byte_ptr = stack_byte_ptr2;
             do {
-              buffer_ptr = byte_ptr + (*long_ptr - (longlong)stack_byte_ptr2);
+              buffer_ptr = byte_ptr + (*long_ptr - (int64_t)stack_byte_ptr2);
               int_val6 = (uint)*byte_ptr - (uint)*buffer_ptr;
               if (int_val6 != 0) break;
               byte_ptr = byte_ptr + 1;
@@ -133,7 +133,7 @@ MATERIAL_FOUND:
         
         ulong_val3 = ulong_val3 + 1;
         long_ptr = long_ptr + 2;
-      } while ((longlong)long_ptr < 0x18098e220);
+      } while ((int64_t)long_ptr < 0x18098e220);
       
       stack_undef_ptr3 = &RENDER_MATERIAL_BASE;
       ulong_val2 = ulong_val2 - 1;
@@ -153,11 +153,11 @@ MATERIAL_FOUND:
   
   if (uint_val1 != 0) {
     read_string_data(&stack_undef_ptr2, uint_ptr, uint_val1);
-    *(longlong *)(data_stream_ptr + 8) = *(longlong *)(data_stream_ptr + 8) + (ulonglong)uint_val1;
+    *(int64_t *)(data_stream_ptr + 8) = *(int64_t *)(data_stream_ptr + 8) + (uint64_t)uint_val1;
   }
   
   // 在渲染器表中查找匹配的渲染器
-  long_ptr = (longlong *)0x180bf8ff0;
+  long_ptr = (int64_t *)0x180bf8ff0;
   do {
     long_val1 = -1;
     do {
@@ -169,7 +169,7 @@ MATERIAL_FOUND:
       if (stack_int1 != 0) {
         byte_ptr = stack_byte_ptr1;
         do {
-          buffer_ptr = byte_ptr + (*long_ptr - (longlong)stack_byte_ptr1);
+          buffer_ptr = byte_ptr + (*long_ptr - (int64_t)stack_byte_ptr1);
           int_val6 = (uint)*byte_ptr - (uint)*buffer_ptr;
           if (int_val6 != 0) break;
           byte_ptr = byte_ptr + 1;
@@ -179,15 +179,15 @@ RENDERER_FOUND:
       if (int_val6 == 0) {
         // 设置渲染器类型
         *(int8_t *)(render_obj_ptr + 0x11c) = 
-             *(int8_t *)((longlong)(int)ulong_val1 * 0x10 + 0x180bf8ff8);
+             *(int8_t *)((int64_t)(int)ulong_val1 * 0x10 + 0x180bf8ff8);
         break;
       }
     }
     else if (stack_int1 == 0) goto RENDERER_FOUND;
     
-    ulong_val1 = (ulonglong)((int)ulong_val1 + 1);
+    ulong_val1 = (uint64_t)((int)ulong_val1 + 1);
     long_ptr = long_ptr + 2;
-  } while ((longlong)long_ptr < 0x180bf90b0);
+  } while ((int64_t)long_ptr < 0x180bf90b0);
   
   stack_undef_ptr2 = &RENDER_MATERIAL_BASE;
   
@@ -196,11 +196,11 @@ RENDERER_FOUND:
   *(uint64_t *)(render_obj_ptr + 8) = **(uint64_t **)(data_stream_ptr + 8);
   *(uint64_t *)(render_obj_ptr + 0x10) = undef_val1;
   
-  long_val1 = *(longlong *)(data_stream_ptr + 8);
+  long_val1 = *(int64_t *)(data_stream_ptr + 8);
   uint_ptr = (uint *)(long_val1 + 0x10);
   *(uint **)(data_stream_ptr + 8) = uint_ptr;
   uint_val1 = *uint_ptr;
-  *(longlong *)(data_stream_ptr + 8) = long_val1 + 0x14;
+  *(int64_t *)(data_stream_ptr + 8) = long_val1 + 0x14;
   
   // 初始化渲染对象的各个字段为0
   *(uint64_t *)(render_obj_ptr + 0x18) = 0;
@@ -240,7 +240,7 @@ RENDERER_FOUND:
   
   undef4_ptr = *(int32_t **)(data_stream_ptr + 8);
   if (0 < (int)uint_val1) {
-    ulong_val2 = (ulonglong)uint_val1;
+    ulong_val2 = (uint64_t)uint_val1;
     do {
       // 处理渲染对象的属性数组
       int_ptr = *(int **)(data_stream_ptr + 8);
@@ -252,7 +252,7 @@ RENDERER_FOUND:
       int_val4 = int_ptr[4];
       *(int **)(data_stream_ptr + 8) = int_ptr + 5;
       
-      int_ptr = (int *)(render_obj_ptr + 0x18 + (longlong)int_val6 * 0x10);
+      int_ptr = (int *)(render_obj_ptr + 0x18 + (int64_t)int_val6 * 0x10);
       *int_ptr = int_val1;
       int_ptr[1] = int_val2;
       int_ptr[2] = int_val3;
@@ -264,13 +264,13 @@ RENDERER_FOUND:
   }
   
   *(int32_t *)(render_obj_ptr + 0x118) = *undef4_ptr;
-  long_val1 = *(longlong *)(data_stream_ptr + 8);
+  long_val1 = *(int64_t *)(data_stream_ptr + 8);
   uint_ptr = (uint *)(long_val1 + 4);
   *(uint **)(data_stream_ptr + 8) = uint_ptr;
   uint_val1 = *uint_ptr;
   undef4_ptr = (int32_t *)(long_val1 + 8);
   *(int32_t **)(data_stream_ptr + 8) = undef4_ptr;
-  ulong_val2 = (ulonglong)uint_val1;
+  ulong_val2 = (uint64_t)uint_val1;
   
   if (0 < (int)uint_val1) {
     do {
@@ -286,7 +286,7 @@ RENDERER_FOUND:
       
       if (uint_val1 != 0) {
         process_texture_data(&stack_undef_ptr1);
-        *(longlong *)(data_stream_ptr + 8) = *(longlong *)(data_stream_ptr + 8) + (ulonglong)uint_val1;
+        *(int64_t *)(data_stream_ptr + 8) = *(int64_t *)(data_stream_ptr + 8) + (uint64_t)uint_val1;
       }
       
       undef8_ptr = (uint64_t *)0x0;
@@ -309,7 +309,7 @@ RENDERER_FOUND:
       else {
         // 空间不足，需要重新分配内存
         undef8_ptr3 = *(uint64_t **)(render_obj_ptr + 0x120);
-        long_val1 = ((longlong)undef8_ptr2 - (longlong)undef8_ptr3) / 0x58;
+        long_val1 = ((int64_t)undef8_ptr2 - (int64_t)undef8_ptr3) / 0x58;
         
         if (long_val1 == 0) {
           long_val1 = 1;
@@ -326,7 +326,7 @@ ALLOCATE_MEMORY:
         undef8_ptr4 = undef8_ptr;
         if (undef8_ptr3 != undef8_ptr2) {
           // 复制现有纹理数据到新内存
-          long_val2 = (longlong)undef8_ptr3 - (longlong)undef8_ptr;
+          long_val2 = (int64_t)undef8_ptr3 - (int64_t)undef8_ptr;
           do {
             *undef8_ptr4 = &RENDER_MATERIAL_BASE;
             undef8_ptr4[1] = 0;
@@ -335,8 +335,8 @@ ALLOCATE_MEMORY:
             undef8_ptr4[1] = undef8_ptr4 + 3;
             *(int32_t *)(undef8_ptr4 + 2) = 0;
             *(int8_t *)(undef8_ptr4 + 3) = 0;
-            *(int32_t *)(undef8_ptr4 + 2) = *(int32_t *)(long_val2 + 0x10 + (longlong)undef8_ptr4);
-            undef_ptr = *(void **)(long_val2 + 8 + (longlong)undef8_ptr4);
+            *(int32_t *)(undef8_ptr4 + 2) = *(int32_t *)(long_val2 + 0x10 + (int64_t)undef8_ptr4);
+            undef_ptr = *(void **)(long_val2 + 8 + (int64_t)undef8_ptr4);
             undef_ptr2 = &DEFAULT_TEXTURE_NAME;
             if (undef_ptr != (void *)0x0) {
               undef_ptr2 = undef_ptr;
@@ -346,7 +346,7 @@ ALLOCATE_MEMORY:
             undef8_ptr4 = undef8_ptr4 + 0xb;
             data_stream_ptr = stack_long1;
             render_obj_ptr = stack_long2;
-          } while ((uint64_t *)(long_val2 + (longlong)undef8_ptr4) != undef8_ptr2);
+          } while ((uint64_t *)(long_val2 + (int64_t)undef8_ptr4) != undef8_ptr2);
         }
         
         // 添加新纹理
@@ -393,17 +393,17 @@ ALLOCATE_MEMORY:
   
   // 继续处理渲染对象的其他属性...
   *(int32_t *)(render_obj_ptr + 0x140) = *undef4_ptr;
-  undef4_ptr = (int32_t *)(*(longlong *)(data_stream_ptr + 8) + 4);
+  undef4_ptr = (int32_t *)(*(int64_t *)(data_stream_ptr + 8) + 4);
   *(int32_t **)(data_stream_ptr + 8) = undef4_ptr;
   *(int32_t *)(render_obj_ptr + 0x144) = *undef4_ptr;
-  undef4_ptr = (int32_t *)(*(longlong *)(data_stream_ptr + 8) + 4);
+  undef4_ptr = (int32_t *)(*(int64_t *)(data_stream_ptr + 8) + 4);
   *(int32_t **)(data_stream_ptr + 8) = undef4_ptr;
   *(int32_t *)(render_obj_ptr + 0x148) = *undef4_ptr;
-  undef4_ptr = (int32_t *)(*(longlong *)(data_stream_ptr + 8) + 4);
+  undef4_ptr = (int32_t *)(*(int64_t *)(data_stream_ptr + 8) + 4);
   *(int32_t **)(data_stream_ptr + 8) = undef4_ptr;
   *(int32_t *)(render_obj_ptr + 0x14c) = *undef4_ptr;
   
-  long_val1 = *(longlong *)(data_stream_ptr + 8);
+  long_val1 = *(int64_t *)(data_stream_ptr + 8);
   *(int32_t *)(render_obj_ptr + 0x150) = *(int32_t *)(long_val1 + 4);
   *(int32_t *)(render_obj_ptr + 0x154) = *(int32_t *)(long_val1 + 8);
   *(int32_t *)(render_obj_ptr + 0x158) = *(int32_t *)(long_val1 + 0xc);
@@ -423,38 +423,38 @@ ALLOCATE_MEMORY:
   *(int32_t **)(data_stream_ptr + 8) = (int32_t *)(long_val1 + 0x44);
   *(int32_t *)(render_obj_ptr + 400) = *(int32_t *)(long_val1 + 0x44);
   
-  undef4_ptr = (int32_t *)(*(longlong *)(data_stream_ptr + 8) + 4);
+  undef4_ptr = (int32_t *)(*(int64_t *)(data_stream_ptr + 8) + 4);
   *(int32_t **)(data_stream_ptr + 8) = undef4_ptr;
   *(int32_t *)(render_obj_ptr + 0x194) = *undef4_ptr;
-  undef4_ptr = (int32_t *)(*(longlong *)(data_stream_ptr + 8) + 4);
+  undef4_ptr = (int32_t *)(*(int64_t *)(data_stream_ptr + 8) + 4);
   *(int32_t **)(data_stream_ptr + 8) = undef4_ptr;
   *(int32_t *)(render_obj_ptr + 0x198) = *undef4_ptr;
-  undef4_ptr = (int32_t *)(*(longlong *)(data_stream_ptr + 8) + 4);
+  undef4_ptr = (int32_t *)(*(int64_t *)(data_stream_ptr + 8) + 4);
   *(int32_t **)(data_stream_ptr + 8) = undef4_ptr;
   *(int32_t *)(render_obj_ptr + 0x19c) = *undef4_ptr;
-  undef4_ptr = (int32_t *)(*(longlong *)(data_stream_ptr + 8) + 4);
+  undef4_ptr = (int32_t *)(*(int64_t *)(data_stream_ptr + 8) + 4);
   *(int32_t **)(data_stream_ptr + 8) = undef4_ptr;
   *(int32_t *)(render_obj_ptr + 0x1a0) = *undef4_ptr;
-  undef4_ptr = (int32_t *)(*(longlong *)(data_stream_ptr + 8) + 4);
+  undef4_ptr = (int32_t *)(*(int64_t *)(data_stream_ptr + 8) + 4);
   *(int32_t **)(data_stream_ptr + 8) = undef4_ptr;
   
   if (uint_val1 != 0) {
     *(int32_t *)(render_obj_ptr + 0x1a4) = *undef4_ptr;
-    *(longlong *)(data_stream_ptr + 8) = *(longlong *)(data_stream_ptr + 8) + 4;
+    *(int64_t *)(data_stream_ptr + 8) = *(int64_t *)(data_stream_ptr + 8) + 4;
     undef4_ptr = *(int32_t **)(data_stream_ptr + 8);
   }
   
   *(int32_t *)(render_obj_ptr + 0x1a8) = *undef4_ptr;
-  undef4_ptr = (int32_t *)(*(longlong *)(data_stream_ptr + 8) + 4);
+  undef4_ptr = (int32_t *)(*(int64_t *)(data_stream_ptr + 8) + 4);
   *(int32_t **)(data_stream_ptr + 8) = undef4_ptr;
   
   if (1 < uint_val1) {
     *(int32_t *)(render_obj_ptr + 0x1ac) = *undef4_ptr;
-    *(longlong *)(data_stream_ptr + 8) = *(longlong *)(data_stream_ptr + 8) + 4;
+    *(int64_t *)(data_stream_ptr + 8) = *(int64_t *)(data_stream_ptr + 8) + 4;
   }
   
   // 清理栈数据并返回
-  cleanup_stack_data(stack_ulong2 ^ (ulonglong)stack_buffer1);
+  cleanup_stack_data(stack_ulong2 ^ (uint64_t)stack_buffer1);
 }
 
 /**
@@ -464,30 +464,30 @@ ALLOCATE_MEMORY:
  * @param render_data 渲染数据指针
  * @param output_stream 输出流指针
  */
-void serialize_render_object(int32_t *render_data, longlong *output_stream)
+void serialize_render_object(int32_t *render_data, int64_t *output_stream)
 {
   int int_val1;
   int32_t undef4_val1;
   int32_t undef4_val2;
   int32_t undef4_val3;
   char *char_ptr;
-  longlong *long_ptr;
-  longlong long_val1;
-  ulonglong ulong_val1;
-  longlong long_val2;
+  int64_t *long_ptr;
+  int64_t long_val1;
+  uint64_t ulong_val1;
+  int64_t long_val2;
   int *int_ptr;
   uint uint_val1;
-  ulonglong ulong_val2;
+  uint64_t ulong_val2;
   uint64_t *undef8_ptr;
-  longlong *long_ptr2;
+  int64_t *long_ptr2;
   int32_t *undef4_ptr;
-  ulonglong ulong_val3;
+  uint64_t ulong_val3;
   
   undef4_ptr = (int32_t *)output_stream[1];
   
   // 检查输出流是否有足够的空间
-  if ((ulonglong)((*output_stream - (longlong)undef4_ptr) + output_stream[2]) < 5) {
-    expand_output_stream(output_stream, (longlong)undef4_ptr + (4 - *output_stream));
+  if ((uint64_t)((*output_stream - (int64_t)undef4_ptr) + output_stream[2]) < 5) {
+    expand_output_stream(output_stream, (int64_t)undef4_ptr + (4 - *output_stream));
     undef4_ptr = (int32_t *)output_stream[1];
   }
   
@@ -502,8 +502,8 @@ void serialize_render_object(int32_t *render_data, longlong *output_stream)
   uint_val1 = render_data[1];
   
   // 检查输出流空间
-  if ((ulonglong)((*output_stream - (longlong)undef4_ptr) + output_stream[2]) < 5) {
-    expand_output_stream(output_stream, (longlong)undef4_ptr + (4 - *output_stream));
+  if ((uint64_t)((*output_stream - (int64_t)undef4_ptr) + output_stream[2]) < 5) {
+    expand_output_stream(output_stream, (int64_t)undef4_ptr + (4 - *output_stream));
     undef4_ptr = (int32_t *)output_stream[1];
   }
   
@@ -519,7 +519,7 @@ void serialize_render_object(int32_t *render_data, longlong *output_stream)
   }
   
   // 检查并扩展输出流
-  if ((ulonglong)((long_val2 - long_val1) + output_stream[2]) < 5) {
+  if ((uint64_t)((long_val2 - long_val1) + output_stream[2]) < 5) {
     expand_output_stream(output_stream, (long_val1 - long_val2) + 4);
     long_val1 = output_stream[1];
   }
@@ -532,10 +532,10 @@ void serialize_render_object(int32_t *render_data, longlong *output_stream)
   do {
     if ((*(uint *)(undef8_ptr + 1) & uint_val1) != 0) {
       serialize_material_flag(output_stream, *undef8_ptr);
-      ulong_val2 = (ulonglong)((int)ulong_val2 + 1);
+      ulong_val2 = (uint64_t)((int)ulong_val2 + 1);
     }
     undef8_ptr = undef8_ptr + 2;
-  } while ((longlong)undef8_ptr < 0x18098e220);
+  } while ((int64_t)undef8_ptr < 0x18098e220);
   
   *(int *)(ulong_val1 + *output_stream) = (int)ulong_val2;
   
@@ -544,16 +544,16 @@ void serialize_render_object(int32_t *render_data, longlong *output_stream)
   ulong_val1 = ulong_val3;
   do {
     if (*char_ptr == *(char *)(render_data + 0x47)) {
-      serialize_renderer_type(output_stream, *(uint64_t *)((longlong)(int)ulong_val1 * 0x10 + 0x180bf8ff0));
+      serialize_renderer_type(output_stream, *(uint64_t *)((int64_t)(int)ulong_val1 * 0x10 + 0x180bf8ff0));
       break;
     }
-    ulong_val1 = (ulonglong)((int)ulong_val1 + 1);
+    ulong_val1 = (uint64_t)((int)ulong_val1 + 1);
     char_ptr = char_ptr + 0x10;
-  } while ((longlong)char_ptr < 0x180bf90b8);
+  } while ((int64_t)char_ptr < 0x180bf90b8);
   
   undef4_ptr = (int32_t *)output_stream[1];
-  if ((ulonglong)((*output_stream - (longlong)undef4_ptr) + output_stream[2]) < 0x11) {
-    expand_output_stream(output_stream, (longlong)undef4_ptr + (0x10 - *output_stream));
+  if ((uint64_t)((*output_stream - (int64_t)undef4_ptr) + output_stream[2]) < 0x11) {
+    expand_output_stream(output_stream, (int64_t)undef4_ptr + (0x10 - *output_stream));
     undef4_ptr = (int32_t *)output_stream[1];
   }
   
@@ -561,7 +561,7 @@ void serialize_render_object(int32_t *render_data, longlong *output_stream)
   undef4_val1 = render_data[3];
   undef4_val2 = render_data[4];
   undef4_val3 = render_data[5];
-  long_ptr2 = (longlong *)(render_data + 6);
+  long_ptr2 = (int64_t *)(render_data + 6);
   
   *undef4_ptr = render_data[2];
   undef4_ptr[1] = undef4_val1;
@@ -577,14 +577,14 @@ void serialize_render_object(int32_t *render_data, longlong *output_stream)
   // 计算非零属性的数量
   do {
     if ((*long_ptr != 0) || (long_ptr[1] != 0)) {
-      ulong_val1 = (ulonglong)((int)ulong_val1 + 1);
+      ulong_val1 = (uint64_t)((int)ulong_val1 + 1);
     }
     long_ptr = long_ptr + 2;
     long_val2 = long_val2 + -1;
   } while (long_val2 != 0);
   
-  if ((ulonglong)((*output_stream - (longlong)undef4_ptr) + output_stream[2]) < 5) {
-    expand_output_stream(output_stream, (longlong)undef4_ptr + (4 - *output_stream));
+  if ((uint64_t)((*output_stream - (int64_t)undef4_ptr) + output_stream[2]) < 5) {
+    expand_output_stream(output_stream, (int64_t)undef4_ptr + (4 - *output_stream));
     undef4_ptr = (int32_t *)output_stream[1];
   }
   
@@ -597,20 +597,20 @@ void serialize_render_object(int32_t *render_data, longlong *output_stream)
   do {
     int_ptr = (int *)output_stream[1];
     if ((*long_ptr2 != 0) || (long_ptr2[1] != 0)) {
-      if ((ulonglong)((*output_stream - (longlong)int_ptr) + output_stream[2]) < 5) {
-        expand_output_stream(output_stream, (longlong)int_ptr + (4 - *output_stream));
+      if ((uint64_t)((*output_stream - (int64_t)int_ptr) + output_stream[2]) < 5) {
+        expand_output_stream(output_stream, (int64_t)int_ptr + (4 - *output_stream));
         int_ptr = (int *)output_stream[1];
       }
       *int_ptr = (int)ulong_val1;
       output_stream[1] = output_stream[1] + 4;
       undef4_ptr = (int32_t *)output_stream[1];
-      if ((ulonglong)((*output_stream - (longlong)undef4_ptr) + output_stream[2]) < 0x11) {
-        expand_output_stream(output_stream, (longlong)undef4_ptr + (0x10 - *output_stream));
+      if ((uint64_t)((*output_stream - (int64_t)undef4_ptr) + output_stream[2]) < 0x11) {
+        expand_output_stream(output_stream, (int64_t)undef4_ptr + (0x10 - *output_stream));
         undef4_ptr = (int32_t *)output_stream[1];
       }
-      undef4_val1 = *(int32_t *)((longlong)long_ptr + 4);
+      undef4_val1 = *(int32_t *)((int64_t)long_ptr + 4);
       long_val2 = long_ptr[1];
-      undef4_val2 = *(int32_t *)((longlong)long_ptr + 0xc);
+      undef4_val2 = *(int32_t *)((int64_t)long_ptr + 0xc);
       *undef4_ptr = (int)*long_ptr;
       undef4_ptr[1] = undef4_val1;
       undef4_ptr[2] = (int)long_val2;
@@ -619,25 +619,25 @@ void serialize_render_object(int32_t *render_data, longlong *output_stream)
       int_ptr = (int *)output_stream[1];
     }
     uint_val1 = (int)ulong_val1 + 1;
-    ulong_val1 = (ulonglong)uint_val1;
+    ulong_val1 = (uint64_t)uint_val1;
     long_ptr2 = long_ptr2 + 2;
     long_ptr = long_ptr + 2;
   } while ((int)uint_val1 < 0x10);
   
   // 继续序列化其他属性...
   int_val1 = render_data[0x46];
-  if ((ulonglong)((*output_stream - (longlong)int_ptr) + output_stream[2]) < 5) {
-    expand_output_stream(output_stream, (longlong)int_ptr + (4 - *output_stream));
+  if ((uint64_t)((*output_stream - (int64_t)int_ptr) + output_stream[2]) < 5) {
+    expand_output_stream(output_stream, (int64_t)int_ptr + (4 - *output_stream));
     int_ptr = (int *)output_stream[1];
   }
   *int_ptr = int_val1;
   undef4_ptr = (int32_t *)(output_stream[1] + 4);
-  output_stream[1] = (longlong)undef4_ptr;
+  output_stream[1] = (int64_t)undef4_ptr;
   
-  long_val2 = *(longlong *)(render_data + 0x4a);
-  long_val1 = *(longlong *)(render_data + 0x48);
-  if ((ulonglong)((*output_stream - (longlong)undef4_ptr) + output_stream[2]) < 5) {
-    expand_output_stream(output_stream, (longlong)undef4_ptr + (4 - *output_stream));
+  long_val2 = *(int64_t *)(render_data + 0x4a);
+  long_val1 = *(int64_t *)(render_data + 0x48);
+  if ((uint64_t)((*output_stream - (int64_t)undef4_ptr) + output_stream[2]) < 5) {
+    expand_output_stream(output_stream, (int64_t)undef4_ptr + (4 - *output_stream));
     undef4_ptr = (int32_t *)output_stream[1];
   }
   
@@ -645,61 +645,61 @@ void serialize_render_object(int32_t *render_data, longlong *output_stream)
   output_stream[1] = output_stream[1] + 4;
   undef4_ptr = (int32_t *)output_stream[1];
   
-  long_val2 = *(longlong *)(render_data + 0x4a) - *(longlong *)(render_data + 0x48) >> 0x3f;
+  long_val2 = *(int64_t *)(render_data + 0x4a) - *(int64_t *)(render_data + 0x48) >> 0x3f;
   ulong_val1 = ulong_val3;
   
-  if ((*(longlong *)(render_data + 0x4a) - *(longlong *)(render_data + 0x48)) / 0x58 + long_val2 != long_val2) {
+  if ((*(int64_t *)(render_data + 0x4a) - *(int64_t *)(render_data + 0x48)) / 0x58 + long_val2 != long_val2) {
     // 序列化纹理数据
     do {
-      serialize_texture_data(output_stream, ulong_val3 * 0x58 + *(longlong *)(render_data + 0x48));
+      serialize_texture_data(output_stream, ulong_val3 * 0x58 + *(int64_t *)(render_data + 0x48));
       uint_val1 = (int)ulong_val1 + 1;
-      ulong_val3 = (ulonglong)(int)uint_val1;
-      ulong_val1 = (ulonglong)uint_val1;
-    } while (ulong_val3 < (ulonglong)
-                    ((*(longlong *)(render_data + 0x4a) - *(longlong *)(render_data + 0x48)) / 0x58));
+      ulong_val3 = (uint64_t)(int)uint_val1;
+      ulong_val1 = (uint64_t)uint_val1;
+    } while (ulong_val3 < (uint64_t)
+                    ((*(int64_t *)(render_data + 0x4a) - *(int64_t *)(render_data + 0x48)) / 0x58));
     undef4_ptr = (int32_t *)output_stream[1];
   }
   
   // 序列化各种渲染属性
   undef4_val1 = render_data[0x50];
-  if ((ulonglong)((*output_stream - (longlong)undef4_ptr) + output_stream[2]) < 5) {
-    expand_output_stream(output_stream, (longlong)undef4_ptr + (4 - *output_stream));
+  if ((uint64_t)((*output_stream - (int64_t)undef4_ptr) + output_stream[2]) < 5) {
+    expand_output_stream(output_stream, (int64_t)undef4_ptr + (4 - *output_stream));
     undef4_ptr = (int32_t *)output_stream[1];
   }
   *undef4_ptr = undef4_val1;
   undef4_ptr = (int32_t *)(output_stream[1] + 4);
-  output_stream[1] = (longlong)undef4_ptr;
+  output_stream[1] = (int64_t)undef4_ptr;
   
   undef4_val1 = render_data[0x51];
-  if ((ulonglong)((*output_stream - (longlong)undef4_ptr) + output_stream[2]) < 5) {
-    expand_output_stream(output_stream, (longlong)undef4_ptr + (4 - *output_stream));
+  if ((uint64_t)((*output_stream - (int64_t)undef4_ptr) + output_stream[2]) < 5) {
+    expand_output_stream(output_stream, (int64_t)undef4_ptr + (4 - *output_stream));
     undef4_ptr = (int32_t *)output_stream[1];
   }
   *undef4_ptr = undef4_val1;
   undef4_ptr = (int32_t *)(output_stream[1] + 4);
-  output_stream[1] = (longlong)undef4_ptr;
+  output_stream[1] = (int64_t)undef4_ptr;
   
   undef4_val1 = render_data[0x52];
-  if ((ulonglong)((*output_stream - (longlong)undef4_ptr) + output_stream[2]) < 5) {
-    expand_output_stream(output_stream, (longlong)undef4_ptr + (4 - *output_stream));
+  if ((uint64_t)((*output_stream - (int64_t)undef4_ptr) + output_stream[2]) < 5) {
+    expand_output_stream(output_stream, (int64_t)undef4_ptr + (4 - *output_stream));
     undef4_ptr = (int32_t *)output_stream[1];
   }
   *undef4_ptr = undef4_val1;
   undef4_ptr = (int32_t *)(output_stream[1] + 4);
-  output_stream[1] = (longlong)undef4_ptr;
+  output_stream[1] = (int64_t)undef4_ptr;
   
   undef4_val1 = render_data[0x53];
-  if ((ulonglong)((*output_stream - (longlong)undef4_ptr) + output_stream[2]) < 5) {
-    expand_output_stream(output_stream, (longlong)undef4_ptr + (4 - *output_stream));
+  if ((uint64_t)((*output_stream - (int64_t)undef4_ptr) + output_stream[2]) < 5) {
+    expand_output_stream(output_stream, (int64_t)undef4_ptr + (4 - *output_stream));
     undef4_ptr = (int32_t *)output_stream[1];
   }
   *undef4_ptr = undef4_val1;
   undef4_ptr = (int32_t *)(output_stream[1] + 4);
-  output_stream[1] = (longlong)undef4_ptr;
+  output_stream[1] = (int64_t)undef4_ptr;
   
   undef4_val1 = render_data[0x54];
-  if ((ulonglong)((*output_stream - (longlong)undef4_ptr) + output_stream[2]) < 0x11) {
-    expand_output_stream(output_stream, (longlong)undef4_ptr + (0x10 - *output_stream));
+  if ((uint64_t)((*output_stream - (int64_t)undef4_ptr) + output_stream[2]) < 0x11) {
+    expand_output_stream(output_stream, (int64_t)undef4_ptr + (0x10 - *output_stream));
     undef4_ptr = (int32_t *)output_stream[1];
   }
   *undef4_ptr = undef4_val1;
@@ -713,12 +713,12 @@ void serialize_render_object(int32_t *render_data, longlong *output_stream)
   output_stream[1] = long_val2 + 4;
   *(int32_t *)(long_val2 + 4) = render_data[0x57];
   undef4_ptr = (int32_t *)(output_stream[1] + 4);
-  output_stream[1] = (longlong)undef4_ptr;
+  output_stream[1] = (int64_t)undef4_ptr;
   
   // 继续序列化更多属性...
   undef4_val1 = render_data[0x58];
-  if ((ulonglong)((*output_stream - (longlong)undef4_ptr) + output_stream[2]) < 0x11) {
-    expand_output_stream(output_stream, (longlong)undef4_ptr + (0x10 - *output_stream));
+  if ((uint64_t)((*output_stream - (int64_t)undef4_ptr) + output_stream[2]) < 0x11) {
+    expand_output_stream(output_stream, (int64_t)undef4_ptr + (0x10 - *output_stream));
     undef4_ptr = (int32_t *)output_stream[1];
   }
   *undef4_ptr = undef4_val1;
@@ -732,11 +732,11 @@ void serialize_render_object(int32_t *render_data, longlong *output_stream)
   output_stream[1] = long_val2 + 4;
   *(int32_t *)(long_val2 + 4) = render_data[0x5b];
   undef4_ptr = (int32_t *)(output_stream[1] + 4);
-  output_stream[1] = (longlong)undef4_ptr;
+  output_stream[1] = (int64_t)undef4_ptr;
   
   undef4_val1 = render_data[0x5c];
-  if ((ulonglong)((*output_stream - (longlong)undef4_ptr) + output_stream[2]) < 0x11) {
-    expand_output_stream(output_stream, (longlong)undef4_ptr + (0x10 - *output_stream));
+  if ((uint64_t)((*output_stream - (int64_t)undef4_ptr) + output_stream[2]) < 0x11) {
+    expand_output_stream(output_stream, (int64_t)undef4_ptr + (0x10 - *output_stream));
     undef4_ptr = (int32_t *)output_stream[1];
   }
   *undef4_ptr = undef4_val1;
@@ -750,11 +750,11 @@ void serialize_render_object(int32_t *render_data, longlong *output_stream)
   output_stream[1] = long_val2 + 4;
   *(int32_t *)(long_val2 + 4) = render_data[0x5f];
   undef4_ptr = (int32_t *)(output_stream[1] + 4);
-  output_stream[1] = (longlong)undef4_ptr;
+  output_stream[1] = (int64_t)undef4_ptr;
   
   undef4_val1 = render_data[0x60];
-  if ((ulonglong)((*output_stream - (longlong)undef4_ptr) + output_stream[2]) < 0x11) {
-    expand_output_stream(output_stream, (longlong)undef4_ptr + (0x10 - *output_stream));
+  if ((uint64_t)((*output_stream - (int64_t)undef4_ptr) + output_stream[2]) < 0x11) {
+    expand_output_stream(output_stream, (int64_t)undef4_ptr + (0x10 - *output_stream));
     undef4_ptr = (int32_t *)output_stream[1];
   }
   *undef4_ptr = undef4_val1;
@@ -768,74 +768,74 @@ void serialize_render_object(int32_t *render_data, longlong *output_stream)
   output_stream[1] = long_val2 + 4;
   *(int32_t *)(long_val2 + 4) = render_data[99];
   undef4_ptr = (int32_t *)(output_stream[1] + 4);
-  output_stream[1] = (longlong)undef4_ptr;
+  output_stream[1] = (int64_t)undef4_ptr;
   
   undef4_val1 = render_data[100];
-  if ((ulonglong)((*output_stream - (longlong)undef4_ptr) + output_stream[2]) < 5) {
-    expand_output_stream(output_stream, (longlong)undef4_ptr + (4 - *output_stream));
+  if ((uint64_t)((*output_stream - (int64_t)undef4_ptr) + output_stream[2]) < 5) {
+    expand_output_stream(output_stream, (int64_t)undef4_ptr + (4 - *output_stream));
     undef4_ptr = (int32_t *)output_stream[1];
   }
   *undef4_ptr = undef4_val1;
   undef4_ptr = (int32_t *)(output_stream[1] + 4);
-  output_stream[1] = (longlong)undef4_ptr;
+  output_stream[1] = (int64_t)undef4_ptr;
   
   undef4_val1 = render_data[0x65];
-  if ((ulonglong)((*output_stream - (longlong)undef4_ptr) + output_stream[2]) < 5) {
-    expand_output_stream(output_stream, (longlong)undef4_ptr + (4 - *output_stream));
+  if ((uint64_t)((*output_stream - (int64_t)undef4_ptr) + output_stream[2]) < 5) {
+    expand_output_stream(output_stream, (int64_t)undef4_ptr + (4 - *output_stream));
     undef4_ptr = (int32_t *)output_stream[1];
   }
   *undef4_ptr = undef4_val1;
   undef4_ptr = (int32_t *)(output_stream[1] + 4);
-  output_stream[1] = (longlong)undef4_ptr;
+  output_stream[1] = (int64_t)undef4_ptr;
   
   undef4_val1 = render_data[0x66];
-  if ((ulonglong)((*output_stream - (longlong)undef4_ptr) + output_stream[2]) < 5) {
-    expand_output_stream(output_stream, (longlong)undef4_ptr + (4 - *output_stream));
+  if ((uint64_t)((*output_stream - (int64_t)undef4_ptr) + output_stream[2]) < 5) {
+    expand_output_stream(output_stream, (int64_t)undef4_ptr + (4 - *output_stream));
     undef4_ptr = (int32_t *)output_stream[1];
   }
   *undef4_ptr = undef4_val1;
   undef4_ptr = (int32_t *)(output_stream[1] + 4);
-  output_stream[1] = (longlong)undef4_ptr;
+  output_stream[1] = (int64_t)undef4_ptr;
   
   undef4_val1 = render_data[0x67];
-  if ((ulonglong)((*output_stream - (longlong)undef4_ptr) + output_stream[2]) < 5) {
-    expand_output_stream(output_stream, (longlong)undef4_ptr + (4 - *output_stream));
+  if ((uint64_t)((*output_stream - (int64_t)undef4_ptr) + output_stream[2]) < 5) {
+    expand_output_stream(output_stream, (int64_t)undef4_ptr + (4 - *output_stream));
     undef4_ptr = (int32_t *)output_stream[1];
   }
   *undef4_ptr = undef4_val1;
   undef4_ptr = (int32_t *)(output_stream[1] + 4);
-  output_stream[1] = (longlong)undef4_ptr;
+  output_stream[1] = (int64_t)undef4_ptr;
   
   undef4_val1 = render_data[0x68];
-  if ((ulonglong)((*output_stream - (longlong)undef4_ptr) + output_stream[2]) < 5) {
-    expand_output_stream(output_stream, (longlong)undef4_ptr + (4 - *output_stream));
+  if ((uint64_t)((*output_stream - (int64_t)undef4_ptr) + output_stream[2]) < 5) {
+    expand_output_stream(output_stream, (int64_t)undef4_ptr + (4 - *output_stream));
     undef4_ptr = (int32_t *)output_stream[1];
   }
   *undef4_ptr = undef4_val1;
   undef4_ptr = (int32_t *)(output_stream[1] + 4);
-  output_stream[1] = (longlong)undef4_ptr;
+  output_stream[1] = (int64_t)undef4_ptr;
   
   undef4_val1 = render_data[0x69];
-  if ((ulonglong)((*output_stream - (longlong)undef4_ptr) + output_stream[2]) < 5) {
-    expand_output_stream(output_stream, (longlong)undef4_ptr + (4 - *output_stream));
+  if ((uint64_t)((*output_stream - (int64_t)undef4_ptr) + output_stream[2]) < 5) {
+    expand_output_stream(output_stream, (int64_t)undef4_ptr + (4 - *output_stream));
     undef4_ptr = (int32_t *)output_stream[1];
   }
   *undef4_ptr = undef4_val1;
   undef4_ptr = (int32_t *)(output_stream[1] + 4);
-  output_stream[1] = (longlong)undef4_ptr;
+  output_stream[1] = (int64_t)undef4_ptr;
   
   undef4_val1 = render_data[0x6a];
-  if ((ulonglong)((*output_stream - (longlong)undef4_ptr) + output_stream[2]) < 5) {
-    expand_output_stream(output_stream, (longlong)undef4_ptr + (4 - *output_stream));
+  if ((uint64_t)((*output_stream - (int64_t)undef4_ptr) + output_stream[2]) < 5) {
+    expand_output_stream(output_stream, (int64_t)undef4_ptr + (4 - *output_stream));
     undef4_ptr = (int32_t *)output_stream[1];
   }
   *undef4_ptr = undef4_val1;
   undef4_ptr = (int32_t *)(output_stream[1] + 4);
-  output_stream[1] = (longlong)undef4_ptr;
+  output_stream[1] = (int64_t)undef4_ptr;
   
   undef4_val1 = render_data[0x6b];
-  if ((ulonglong)((*output_stream - (longlong)undef4_ptr) + output_stream[2]) < 5) {
-    expand_output_stream(output_stream, (longlong)undef4_ptr + (4 - *output_stream));
+  if ((uint64_t)((*output_stream - (int64_t)undef4_ptr) + output_stream[2]) < 5) {
+    expand_output_stream(output_stream, (int64_t)undef4_ptr + (4 - *output_stream));
     *(int32_t *)output_stream[1] = undef4_val1;
   }
   else {
@@ -863,20 +863,20 @@ uint64_t *initialize_render_structure(uint64_t *render_obj)
   render_obj[1] = 0;
   render_obj[2] = 0;
   *(int32_t *)(render_obj + 0x23) = 0;
-  *(int8_t *)((longlong)render_obj + 0x11c) = 0;
+  *(int8_t *)((int64_t)render_obj + 0x11c) = 0;
   render_obj[0x32] = 0;
   
   // 设置默认浮点数值
   *(int32_t *)(render_obj + 0x28) = 0x3f800000;  // 1.0f
-  *(int32_t *)((longlong)render_obj + 0x144) = 0x3f266666;  // 0.65f
+  *(int32_t *)((int64_t)render_obj + 0x144) = 0x3f266666;  // 0.65f
   *(int32_t *)(render_obj + 0x29) = 0x3f800000;  // 1.0f
-  *(int32_t *)((longlong)render_obj + 0x14c) = 0x3f800000;  // 1.0f
+  *(int32_t *)((int64_t)render_obj + 0x14c) = 0x3f800000;  // 1.0f
   *(int32_t *)(render_obj + 0x35) = 0x3f800000;  // 1.0f
   *(int32_t *)(render_obj + 0x34) = 0;
-  *(int32_t *)((longlong)render_obj + 0x1a4) = 0x3f000000;  // 0.5f
-  *(int32_t *)((longlong)render_obj + 0x1ac) = 0x3f800000;  // 1.0f
+  *(int32_t *)((int64_t)render_obj + 0x1a4) = 0x3f000000;  // 0.5f
+  *(int32_t *)((int64_t)render_obj + 0x1ac) = 0x3f800000;  // 1.0f
   *(int32_t *)(render_obj + 0x33) = 0x3f800000;  // 1.0f
-  *(int32_t *)((longlong)render_obj + 0x19c) = 0x3f800000;  // 1.0f
+  *(int32_t *)((int64_t)render_obj + 0x19c) = 0x3f800000;  // 1.0f
   
   // 初始化其他字段
   render_obj[0x2a] = 0;
@@ -936,15 +936,15 @@ uint64_t *initialize_render_structure(uint64_t *render_obj)
 #define RENDER_MEMORY_POOL 0x180c8ed18
 
 // 函数声明（简化实现）
-void process_render_type(uint64_t *table, longlong data_stream, longlong render_obj);
+void process_render_type(uint64_t *table, int64_t data_stream, int64_t render_obj);
 void read_string_data(uint64_t **buffer, uint *data, uint size);
 void process_texture_data(uint64_t **buffer);
-uint64_t *allocate_texture_memory(uint64_t *pool, longlong size);
+uint64_t *allocate_texture_memory(uint64_t *pool, int64_t size);
 void free_texture_memory(uint64_t *memory);
 void copy_texture_name(uint64_t *dest, uint size, uint64_t *src);
-void cleanup_stack_data(ulonglong data);
-void serialize_render_type(uint64_t *table, int32_t render_data, longlong *output_stream);
-void serialize_material_flag(longlong *output_stream, uint64_t flag);
-void serialize_renderer_type(longlong *output_stream, uint64_t renderer_type);
-void expand_output_stream(longlong *stream, longlong size);
-void serialize_texture_data(longlong *output_stream, ulonglong offset);
+void cleanup_stack_data(uint64_t data);
+void serialize_render_type(uint64_t *table, int32_t render_data, int64_t *output_stream);
+void serialize_material_flag(int64_t *output_stream, uint64_t flag);
+void serialize_renderer_type(int64_t *output_stream, uint64_t renderer_type);
+void expand_output_stream(int64_t *stream, int64_t size);
+void serialize_texture_data(int64_t *output_stream, uint64_t offset);

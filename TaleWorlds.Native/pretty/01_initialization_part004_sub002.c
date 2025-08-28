@@ -9,17 +9,17 @@ void FUN_180034150(void)
   char cVar1;
   uint64_t *puVar2;
   int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  int64_t *plVar4;
+  int64_t lVar5;
   uint64_t *puVar6;
   uint64_t *puVar7;
   uint64_t *puVar8;
   uint64_t *puStackX_10;
   void *puStackX_18;
   
-  plVar4 = (longlong *)FUN_18008d070();
+  plVar4 = (int64_t *)FUN_18008d070();
   puVar2 = (uint64_t *)*plVar4;
-  cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
+  cVar1 = *(char *)((int64_t)puVar2[1] + 0x19);
   puStackX_18 = &unknown_var_2048_ptr;
   puVar7 = puVar2;
   puVar6 = (uint64_t *)puVar2[1];
@@ -34,7 +34,7 @@ void FUN_180034150(void)
     }
     puVar7 = puVar6;
     puVar6 = puVar8;
-    cVar1 = *(char *)((longlong)puVar8 + 0x19);
+    cVar1 = *(char *)((int64_t)puVar8 + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&system_data_0fd8,puVar7 + 4,0x10), iVar3 < 0)) {
     lVar5 = FUN_18008f0d0(plVar4);

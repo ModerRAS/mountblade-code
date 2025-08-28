@@ -300,7 +300,7 @@ typedef enum {
  * @param param_1 主参数指针
  * @param param_2 辅助参数指针
  */
-void AdvancedDataProcessor(longlong param_1, longlong param_2) {
+void AdvancedDataProcessor(int64_t param_1, int64_t param_2) {
     // 系统上下文初始化
     system_context_t context;
     memset(&context, 0, sizeof(system_context_t));
@@ -365,14 +365,14 @@ void AdvancedDataProcessor(longlong param_1, longlong param_2) {
     
     // 计算对数值
     double log_value = log2((double)final_size);
-    longlong log_int = (longlong)log_value;
+    int64_t log_int = (int64_t)log_value;
     
     // 对数精度处理
     if ((log_int != -0x8000000000000000) && ((double)log_int != log_value)) {
         // 使用SIMD指令处理精度
         double temp_value[2] = {log_value, log_value};
         uint32_t precision_mask = movmskpd(0, *(double*)temp_value);
-        log_value = (double)(longlong)(log_int - (uint64_t)(precision_mask & 1));
+        log_value = (double)(int64_t)(log_int - (uint64_t)(precision_mask & 1));
     }
     
     // 设置系统参数
@@ -399,8 +399,8 @@ void AdvancedDataProcessor(longlong param_1, longlong param_2) {
     // 设置字符串标识
     flags_t string_flags = ResourceCreate(memory_ptr);
     *(qword_t*)memory_ptr = 0x65766c6f766e6f63;  // "control_no"
-    *(dword_t*)((longlong)memory_ptr + 4) = 0x5f74725f;  // "_tr_"
-    *(byte_t*)((longlong)memory_ptr + 12) = STRING_TERMINATOR;
+    *(dword_t*)((int64_t)memory_ptr + 4) = 0x5f74725f;  // "_tr_"
+    *(byte_t*)((int64_t)memory_ptr + 12) = STRING_TERMINATOR;
     
     // 处理字符串数据
     int string_length = *(int*)(param_2 + 0x3530);
@@ -414,9 +414,9 @@ void AdvancedDataProcessor(longlong param_1, longlong param_2) {
         }
         
         // 复制字符串数据
-        memcpy((byte_t*)((longlong)memory_ptr + 12), 
+        memcpy((byte_t*)((int64_t)memory_ptr + 12), 
                *(pointer_t*)(param_2 + 0x3528), 
-               (longlong)(string_length + 1));
+               (int64_t)(string_length + 1));
     }
     
     // 创建系统资源
@@ -425,7 +425,7 @@ void AdvancedDataProcessor(longlong param_1, longlong param_2) {
     
     // 清理资源
     if (context.memory_manager_ptr != (pointer_t)0x0) {
-        ((void(*)(void))(*(void(**)(void))(*((longlong*)context.memory_manager_ptr) + 0x38)))();
+        ((void(*)(void))(*(void(**)(void))(*((int64_t*)context.memory_manager_ptr) + 0x38)))();
     }
     
     if (memory_ptr != (pointer_t)0x0) {
@@ -453,7 +453,7 @@ void AdvancedDataProcessor(longlong param_1, longlong param_2) {
  * @param param_4 配置标志
  * @param param_5 配置选项
  */
-void ConfigurationManager(longlong *param_1, uint64_t param_2, longlong param_3, 
+void ConfigurationManager(int64_t *param_1, uint64_t param_2, int64_t param_3, 
                          uint param_4, int32_t param_5) {
     // 系统上下文初始化
     system_context_t context;
@@ -483,13 +483,13 @@ void ConfigurationManager(longlong *param_1, uint64_t param_2, longlong param_3,
     // 处理配置字符串
     if (config_name != (pointer_t)0x0) {
         // 执行配置处理
-        StringLength(*(longlong*)(system_message_buffer + 0x1cd8) + 0x7f20, &config_ptr);
-        StringLength(*(longlong*)(system_message_buffer + 0x1cd8) + 0x7f20, &config_ptr);
+        StringLength(*(int64_t*)(system_message_buffer + 0x1cd8) + 0x7f20, &config_ptr);
+        StringLength(*(int64_t*)(system_message_buffer + 0x1cd8) + 0x7f20, &config_ptr);
     }
     
     // 设置配置标志
     *(dword_t*)(param_1 + 0x20) = NETWORK_PORT_BASE + 1;
-    *(byte_t*)((longlong)param_1 + 0x103) = 1;
+    *(byte_t*)((int64_t)param_1 + 0x103) = 1;
     
     // 获取配置参数
     uint config_param1 = *(uint*)(param_1[0x85] + 0x35c);
@@ -500,14 +500,14 @@ void ConfigurationManager(longlong *param_1, uint64_t param_2, longlong param_3,
     
     // 计算渲染尺寸
     *(int*)(param_1 + 0x90) = (int)((float32_t)(int)param_1[0x8f] * *(float32_t*)(param_3 + 0x35a8));
-    *(int*)((longlong)param_1 + 0x484) = (int)((float32_t)*(int*)((longlong)param_1 + 0x47c) * *(float32_t*)(param_3 + 0x35ac));
+    *(int*)((int64_t)param_1 + 0x484) = (int)((float32_t)*(int*)((int64_t)param_1 + 0x47c) * *(float32_t*)(param_3 + 0x35ac));
     
     // 清理系统状态
-    *(qword_t*)(*(longlong*)(system_message_buffer + 0x1cd8) + 0x83f0) = 0;
+    *(qword_t*)(*(int64_t*)(system_message_buffer + 0x1cd8) + 0x83f0) = 0;
     
     // 执行配置操作
     ((void(*)(void))(*(void(**)(void))(*param_1 + 0x50)))(param_1, param_3, (int)param_1[0x8a], 
-                                                          *(dword_t*)((longlong)param_1 + 0x454));
+                                                          *(dword_t*)((int64_t)param_1 + 0x454));
     
     // 处理数据
     ProcessData(param_1, param_3, &config_param4, &context.memory_manager_ptr);
@@ -520,14 +520,14 @@ void ConfigurationManager(longlong *param_1, uint64_t param_2, longlong param_3,
         uint param_value2 = (uint)(*(word_t*)(param_1[0x85] + 0x32e) >> (param_byte & 0x1f));
         
         // 设置渲染参数
-        *(float32_t*)(*(longlong*)(system_message_buffer + 0x1cd8) + 0x1be0) = DATA_SCALE_FACTOR / (float32_t)param_value1;
-        *(float32_t*)(*(longlong*)(system_message_buffer + 0x1cd8) + 0x1be4) = DATA_SCALE_FACTOR / (float32_t)param_value2;
-        *(float32_t*)(*(longlong*)(system_message_buffer + 0x1cd8) + 0x1be8) = 1.0f / (float32_t)(*(word_t*)(param_1[0x85] + 0x32c) >> (param_byte - 1 & 0x1f));
-        *(float32_t*)(*(longlong*)(system_message_buffer + 0x1cd8) + 0x1bec) = 1.0f / (float32_t)(*(word_t*)(param_1[0x85] + 0x32e) >> (param_byte - 1 & 0x1f));
+        *(float32_t*)(*(int64_t*)(system_message_buffer + 0x1cd8) + 0x1be0) = DATA_SCALE_FACTOR / (float32_t)param_value1;
+        *(float32_t*)(*(int64_t*)(system_message_buffer + 0x1cd8) + 0x1be4) = DATA_SCALE_FACTOR / (float32_t)param_value2;
+        *(float32_t*)(*(int64_t*)(system_message_buffer + 0x1cd8) + 0x1be8) = 1.0f / (float32_t)(*(word_t*)(param_1[0x85] + 0x32c) >> (param_byte - 1 & 0x1f));
+        *(float32_t*)(*(int64_t*)(system_message_buffer + 0x1cd8) + 0x1bec) = 1.0f / (float32_t)(*(word_t*)(param_1[0x85] + 0x32e) >> (param_byte - 1 & 0x1f));
         
         // 执行渲染操作
-        ExecuteOperation(*(longlong*)(system_message_buffer + 0x1cd8), *(uint64_t*)(system_message_buffer + 0x1c88),
-                         *(longlong*)(system_message_buffer + 0x1cd8) + 0x1be0, 0x230);
+        ExecuteOperation(*(int64_t*)(system_message_buffer + 0x1cd8), *(uint64_t*)(system_message_buffer + 0x1c88),
+                         *(int64_t*)(system_message_buffer + 0x1cd8) + 0x1be0, 0x230);
         
         // 更新系统状态
         system_system_data_config = system_system_data_config - 1;
@@ -536,7 +536,7 @@ void ConfigurationManager(longlong *param_1, uint64_t param_2, longlong param_3,
     
     // 清理资源
     if (context.memory_manager_ptr != (pointer_t)0x0) {
-        ((void(*)(void))(*(void(**)(void))(*((longlong*)context.memory_manager_ptr) + 0x38)))();
+        ((void(*)(void))(*(void(**)(void))(*((int64_t*)context.memory_manager_ptr) + 0x38)))();
     }
 }
 
@@ -553,7 +553,7 @@ void ConfigurationManager(longlong *param_1, uint64_t param_2, longlong param_3,
  * @param param_1 资源参数指针
  * @param param_2 分配参数指针
  */
-void ResourceAllocator(longlong param_1, longlong param_2) {
+void ResourceAllocator(int64_t param_1, int64_t param_2) {
     // 系统上下文初始化
     system_context_t context;
     memset(&context, 0, sizeof(system_context_t));
@@ -579,13 +579,13 @@ void ResourceAllocator(longlong param_1, longlong param_2) {
     // 参数验证和处理
     if (*(char*)(param_1 + 0x4c) != STRING_TERMINATOR) {
         // 宽度参数处理
-        int width_param = (int)(longlong)((float64_t)*(int*)(param_2 + 0x3590) * *(float64_t*)(param_1 + 0x58));
+        int width_param = (int)(int64_t)((float64_t)*(int*)(param_2 + 0x3590) * *(float64_t*)(param_1 + 0x58));
         if (width_param < SYSTEM_MIN_VALUE) {
             width_param = SYSTEM_MIN_VALUE;
         }
         
         // 高度参数处理
-        int height_param = (int)(longlong)((float64_t)*(int*)(param_2 + 0x3594) * *(float64_t*)(param_1 + 0x60));
+        int height_param = (int)(int64_t)((float64_t)*(int*)(param_2 + 0x3594) * *(float64_t*)(param_1 + 0x60));
         if (height_param < SYSTEM_MIN_VALUE) {
             height_param = SYSTEM_MIN_VALUE;
         }
@@ -616,13 +616,13 @@ void ResourceAllocator(longlong param_1, longlong param_2) {
         pointer_t old_resource = *(pointer_t**)(param_1 + 0x428);
         *(qword_t*)(param_1 + 0x428) = resource_data;
         if (old_resource != (pointer_t)0x0) {
-            ((void(*)(void))(*(void(**)(void))(*((longlong*)old_resource) + 0x38)))();
+            ((void(*)(void))(*(void(**)(void))(*((int64_t*)old_resource) + 0x38)))();
         }
         
         // 清理临时资源
         context.temp_flags = 0;
         if (context.vertex_buffer_ptr != (pointer_t)0x0) {
-            ((void(*)(void))(*(void(**)(void))(*((longlong*)context.vertex_buffer_ptr) + 0x38)))();
+            ((void(*)(void))(*(void(**)(void))(*((int64_t*)context.vertex_buffer_ptr) + 0x38)))();
         }
         
         // 设置渲染参数
@@ -650,12 +650,12 @@ void ResourceAllocator(longlong param_1, longlong param_2) {
         old_resource = *(pointer_t**)(param_1 + 0x448);
         *(qword_t*)(param_1 + 0x448) = render_config;
         if (old_resource != (pointer_t)0x0) {
-            ((void(*)(void))(*(void(**)(void))(*((longlong*)old_resource) + 0x38)))();
+            ((void(*)(void))(*(void(**)(void))(*((int64_t*)old_resource) + 0x38)))();
         }
         
         // 清理渲染资源
         if (context.index_buffer_ptr != (pointer_t)0x0) {
-            ((void(*)(void))(*(void(**)(void))(*((longlong*)context.index_buffer_ptr) + 0x38)))();
+            ((void(*)(void))(*(void(**)(void))(*((int64_t*)context.index_buffer_ptr) + 0x38)))();
         }
     }
 }
@@ -673,7 +673,7 @@ void ResourceAllocator(longlong param_1, longlong param_2) {
  * @param param_1 系统参数指针
  * @param param_2 初始化参数指针
  */
-void SystemInitializer(longlong *param_1, longlong param_2) {
+void SystemInitializer(int64_t *param_1, int64_t param_2) {
     // 系统上下文初始化
     system_context_t context;
     memset(&context, 0, sizeof(system_context_t));
@@ -721,7 +721,7 @@ void SystemInitializer(longlong *param_1, longlong param_2) {
     }
     
     // 计算字符串长度
-    longlong str_length = -1;
+    int64_t str_length = -1;
     do {
         str_length = str_length + 1;
     } while (additional_string[str_length] != STRING_TERMINATOR);
@@ -730,11 +730,11 @@ void SystemInitializer(longlong *param_1, longlong param_2) {
     
     // 字符串连接
     if ((0 < str_len) && ((uint)((int)string_length + str_len) < STRING_MAX_LENGTH)) {
-        memcpy(string_buffer + string_length, additional_string, (longlong)(str_len + 1));
+        memcpy(string_buffer + string_length, additional_string, (int64_t)(str_len + 1));
     }
     
     // 系统状态检查
-    if (*(char*)((longlong)param_1 + 0x4d) == STRING_TERMINATOR) {
+    if (*(char*)((int64_t)param_1 + 0x4d) == STRING_TERMINATOR) {
         // 获取系统模式
         int system_mode = (int)param_1[0x37];
         if (system_mode == -1) {
@@ -754,10 +754,10 @@ void SystemInitializer(longlong *param_1, longlong param_2) {
             render_params.color.a = 1.0f;
             
             // 参数验证
-            if (*(char*)((longlong)param_1 + 0x4c) == STRING_TERMINATOR) {
+            if (*(char*)((int64_t)param_1 + 0x4c) == STRING_TERMINATOR) {
                 // 执行系统初始化
-                int width_param = (int)(longlong)(float64_t)param_1[0xb];
-                int height_param = (int)(longlong)(float64_t)param_1[0xc];
+                int width_param = (int)(int64_t)(float64_t)param_1[0xb];
+                int height_param = (int)(int64_t)(float64_t)param_1[0xc];
                 
                 if (param_1[0x85] != 0) {
                     // 执行系统操作
@@ -866,16 +866,16 @@ void SystemInitializer(longlong *param_1, longlong param_2) {
         pointer_t resource_manager = *(pointer_t**)(param_2 + 0x9690);
         if (resource_manager != (pointer_t)0x0) {
             context.pipeline_state_ptr = resource_manager;
-            ((void(*)(void))(*(void(**)(void))(*((longlong*)resource_manager) + 0x28)))();
+            ((void(*)(void))(*(void(**)(void))(*((int64_t*)resource_manager) + 0x28)))();
         }
         
         context.pipeline_state_ptr = (pointer_t)param_1[0x85];
-        param_1[0x85] = (longlong)resource_manager;
+        param_1[0x85] = (int64_t)resource_manager;
     }
     
     // 清理资源
     if (context.pipeline_state_ptr != (pointer_t)0x0) {
-        ((void(*)(void))(*(void(**)(void))(*((longlong*)context.pipeline_state_ptr) + 0x38)))();
+        ((void(*)(void))(*(void(**)(void))(*((int64_t*)context.pipeline_state_ptr) + 0x38)))();
     }
     
     // 更新系统状态

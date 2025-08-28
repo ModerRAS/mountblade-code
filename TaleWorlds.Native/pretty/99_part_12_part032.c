@@ -264,8 +264,8 @@ typedef float Float32;                       // 32位浮点数
 typedef uint UInt32;                         // 32位无符号整数
 typedef int Int32;                           // 32位有符号整数
 typedef bool Bool;                           // 布尔类型
-typedef ulonglong UInt64;                    // 64位无符号整数
-typedef longlong Int64;                      // 64位有符号整数
+typedef uint64_t UInt64;                    // 64位无符号整数
+typedef int64_t Int64;                      // 64位有符号整数
 typedef int8_t UInt8;                    // 8位无符号整数
 typedef int32_t UInt32_fixed;        // 32位无符号整数（固定类型）
 typedef uint64_t UInt64_fixed;        // 64位无符号整数（固定类型）

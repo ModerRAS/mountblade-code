@@ -17,10 +17,10 @@ void FUN_18079c2e0(float *param_1,float *param_2,int param_3,float *param_4,floa
   float fVar8;
   float fVar9;
   float fVar10;
-  longlong lVar11;
+  int64_t lVar11;
   float *pfVar12;
-  longlong lVar13;
-  longlong lVar14;
+  int64_t lVar13;
+  int64_t lVar14;
   float fVar15;
   float fVar16;
   float fVar17;
@@ -54,7 +54,7 @@ void FUN_18079c2e0(float *param_1,float *param_2,int param_3,float *param_4,floa
   fVar8 = param_5[1];
   fVar9 = param_5[3];
   fVar10 = param_5[4];
-  lVar11 = (longlong)(int)param_7;
+  lVar11 = (int64_t)(int)param_7;
   fStackX_18 = 0.0;
   if (param_7 == 1.4013e-45) {
     param_7 = param_6[3];
@@ -66,7 +66,7 @@ void FUN_18079c2e0(float *param_1,float *param_2,int param_3,float *param_4,floa
     fVar27 = param_6[4];
     fVar23 = param_6[6];
     if (param_3 != 0) {
-      lVar11 = (longlong)param_2 - (longlong)param_1;
+      lVar11 = (int64_t)param_2 - (int64_t)param_1;
       fStack_d0 = fVar16;
       do {
         fVar16 = *param_1;
@@ -88,7 +88,7 @@ void FUN_18079c2e0(float *param_1,float *param_2,int param_3,float *param_4,floa
         fVar23 = fVar22 * fVar17 + fVar23;
         fVar27 = (fVar20 * fVar16 - fVar21 * fVar17) + param_5._0_4_;
         param_5._0_4_ = fVar18 * fVar16 - fVar19 * fVar17;
-        *(float *)(lVar11 + (longlong)param_1) = fVar23;
+        *(float *)(lVar11 + (int64_t)param_1) = fVar23;
         param_1 = param_1 + 1;
         fVar16 = fVar18 * fVar17 - fVar19 * fVar23;
         fVar23 = (fVar20 * fVar17 - fVar21 * fVar23) + fStack_d0;
@@ -226,12 +226,12 @@ void FUN_18079c2e0(float *param_1,float *param_2,int param_3,float *param_4,floa
 
 
 
-// 函数: void FUN_18079c63c(float param_1,float *param_2,float param_3,longlong param_4)
-void FUN_18079c63c(float param_1,float *param_2,float param_3,longlong param_4)
+// 函数: void FUN_18079c63c(float param_1,float *param_2,float param_3,int64_t param_4)
+void FUN_18079c63c(float param_1,float *param_2,float param_3,int64_t param_4)
 
 {
-  longlong lVar1;
-  longlong lVar2;
+  int64_t lVar1;
+  int64_t lVar2;
   float *pfVar3;
   float *in_R10;
   int in_R11D;
@@ -261,7 +261,7 @@ void FUN_18079c63c(float param_1,float *param_2,float param_3,longlong param_4)
   float in_stack_000000e8;
   float in_stack_000000f0;
   float in_stack_000000f8;
-  longlong in_stack_00000108;
+  int64_t in_stack_00000108;
   
   do {
     lVar1 = 0;
@@ -400,23 +400,23 @@ void FUN_18079ccda(void)
 
 
 
-uint64_t FUN_18079cd20(longlong param_1)
+uint64_t FUN_18079cd20(int64_t param_1)
 
 {
-  longlong *plVar1;
-  longlong lVar2;
+  int64_t *plVar1;
+  int64_t lVar2;
   
-  if (*(longlong *)(param_1 + 8) != 0) {
-    plVar1 = (longlong *)(*(longlong *)(param_1 + 8) + 0xb0);
+  if (*(int64_t *)(param_1 + 8) != 0) {
+    plVar1 = (int64_t *)(*(int64_t *)(param_1 + 8) + 0xb0);
     lVar2 = 5;
     do {
       if (*plVar1 != 0) {
-        (**(code **)(*(longlong *)(param_1 + 0x28) + 0x10))(*plVar1,0,&unknown_var_4528_ptr);
+        (**(code **)(*(int64_t *)(param_1 + 0x28) + 0x10))(*plVar1,0,&unknown_var_4528_ptr);
       }
       plVar1 = plVar1 + 0xb;
       lVar2 = lVar2 + -1;
     } while (lVar2 != 0);
-    (**(code **)(*(longlong *)(param_1 + 0x28) + 0x10))
+    (**(code **)(*(int64_t *)(param_1 + 0x28) + 0x10))
               (*(uint64_t *)(param_1 + 8),0,&unknown_var_4528_ptr);
     *(uint64_t *)(param_1 + 8) = 0;
   }
@@ -428,21 +428,21 @@ uint64_t FUN_18079cd20(longlong param_1)
 uint64_t FUN_18079cd36(void)
 
 {
-  longlong unaff_RBX;
-  longlong *plVar1;
-  longlong unaff_RSI;
-  longlong lVar2;
+  int64_t unaff_RBX;
+  int64_t *plVar1;
+  int64_t unaff_RSI;
+  int64_t lVar2;
   
-  plVar1 = (longlong *)(unaff_RBX + 0xb0);
+  plVar1 = (int64_t *)(unaff_RBX + 0xb0);
   lVar2 = 5;
   do {
     if (*plVar1 != 0) {
-      (**(code **)(*(longlong *)(unaff_RSI + 0x28) + 0x10))(*plVar1,0,&unknown_var_4528_ptr);
+      (**(code **)(*(int64_t *)(unaff_RSI + 0x28) + 0x10))(*plVar1,0,&unknown_var_4528_ptr);
     }
     plVar1 = plVar1 + 0xb;
     lVar2 = lVar2 + -1;
   } while (lVar2 != 0);
-  (**(code **)(*(longlong *)(unaff_RSI + 0x28) + 0x10))
+  (**(code **)(*(int64_t *)(unaff_RSI + 0x28) + 0x10))
             (*(uint64_t *)(unaff_RSI + 8),0,&unknown_var_4528_ptr);
   *(uint64_t *)(unaff_RSI + 8) = 0;
   return 0;

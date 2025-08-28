@@ -46,13 +46,13 @@
  * 
  * @return void (该函数不返回值，可能通过异常处理机制退出)
  */
-void NetworkSystem_ConnectionProcessor(uint64_t *connection_pool_ptr, longlong network_context, longlong system_base)
+void NetworkSystem_ConnectionProcessor(uint64_t *connection_pool_ptr, int64_t network_context, int64_t system_base)
 
 {
   int validation_result;
   uint64_t *resource_ptr;
-  longlong connection_base;
-  longlong system_context;
+  int64_t connection_base;
+  int64_t system_context;
   
   // 遍历网络连接池中的所有连接
   for (; (*(uint64_t **)(connection_base + NETWORK_CONNECTION_BASE_ADDR) <= connection_pool_ptr &&
@@ -92,7 +92,7 @@ void NetworkSystem_ConnectionProcessor(uint64_t *connection_pool_ptr, longlong n
   }
 LAB_180864019:
   // 执行最终的连接状态同步（该子程序不返回）
-  FUN_1808fc050(*(ulonglong *)(system_context + 0x1b0) ^ (ulonglong)&stack0x00000000);
+  FUN_1808fc050(*(uint64_t *)(system_context + 0x1b0) ^ (uint64_t)&stack0x00000000);
 }
 
 /**
@@ -114,10 +114,10 @@ LAB_180864019:
  * 
  * @return int 验证结果状态码（0表示成功，非0表示失败）
  */
-int NetworkSystem_ConnectionValidator(longlong connection_context)
+int NetworkSystem_ConnectionValidator(int64_t connection_context)
 
 {
-  longlong *network_info_ptr;
+  int64_t *network_info_ptr;
   uint status_check;
   bool connection_flag;
   byte connection_byte;
@@ -126,12 +126,12 @@ int NetworkSystem_ConnectionValidator(longlong connection_context)
   int32_t network_param;
   int network_status;
   uint64_t *resource_ptr;
-  longlong resource_handle;
+  int64_t resource_handle;
   uint64_t network_data;
   float quality_value;
-  ulonglong timestamp;
+  uint64_t timestamp;
   uint64_t stack_data;
-  longlong context_data;
+  int64_t context_data;
   uint time_counter;
   byte performance_flag;
   
@@ -139,7 +139,7 @@ int NetworkSystem_ConnectionValidator(longlong connection_context)
   if (validation_result == 2) {
     return 0;
   }
-  if (((*(byte *)(*(longlong *)(*(longlong *)(connection_context + 0x2c8) + 0x4c0) + 0x7a) & 1) == 0) &&
+  if (((*(byte *)(*(int64_t *)(*(int64_t *)(connection_context + 0x2c8) + 0x4c0) + 0x7a) & 1) == 0) &&
      (*(char *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x158) == '\0')) {
     context_data = 0;
   }
@@ -161,7 +161,7 @@ LAB_1808640fb:
     validation_result = FUN_180865550(connection_context,0);
     if ((validation_result != 0) || (validation_result = FUN_180863b80(connection_context), validation_result != 0)) goto LAB_180864627;
     if ((*(uint *)(connection_context + 0x2d8) >> 1 & 1) != 0) {
-      resource_handle = *(longlong *)(*(longlong *)(connection_context + 0x2b0) + 0x78);
+      resource_handle = *(int64_t *)(*(int64_t *)(connection_context + 0x2b0) + 0x78);
       if (resource_handle == 0) {
         validation_result = 0x1c;
         goto LAB_180864627;
@@ -169,7 +169,7 @@ LAB_1808640fb:
       timestamp = 0;
       validation_result = FUN_18073c730(resource_handle,0,&timestamp,0);
       if (validation_result != 0) goto LAB_180864627;
-      if (*(ulonglong *)(connection_context + 0x338) <= timestamp) goto LAB_180864477;
+      if (*(uint64_t *)(connection_context + 0x338) <= timestamp) goto LAB_180864477;
       validation_result = FUN_18073d8a0(resource_handle,1);
 joined_r0x0001808641af:
       if (validation_result != 0) goto LAB_180864627;
@@ -180,7 +180,7 @@ LAB_180864477:
       if (*(int *)(connection_context + 0x2e4) == 5) {
         FUN_1808d0490(connection_context + 0x378,*(uint64_t *)(connection_context + 0x328),1);
         FUN_1808d0490(connection_context + 0x3f8,*(uint64_t *)(connection_context + 0x328),1);
-        if (*(ulonglong *)(connection_context + 0x328) < *(ulonglong *)(*(longlong *)(connection_context + 0x2b0) + 0x30))
+        if (*(uint64_t *)(connection_context + 0x328) < *(uint64_t *)(*(int64_t *)(connection_context + 0x2b0) + 0x30))
         {
           *(int32_t *)(connection_context + 0x2e4) = 6;
         }
@@ -191,7 +191,7 @@ LAB_180864477:
         goto LAB_180864627;
         timestamp = timestamp & 0xffffffffffffff00;
         stack_data = 0;
-        validation_result = FUN_18073c380(*(uint64_t *)(*(longlong *)(connection_context + 0x2b0) + 0x78),0xffffffff,
+        validation_result = FUN_18073c380(*(uint64_t *)(*(int64_t *)(connection_context + 0x2b0) + 0x78),0xffffffff,
                               &stack_data);
         if (((validation_result != 0) || (validation_result = FUN_180740410(stack_data,&timestamp), validation_result != 0)) &&
            (validation_result != 0)) goto LAB_180864627;
@@ -205,13 +205,13 @@ LAB_180864477:
         if ((validation_result != 0) || (validation_result = FUN_1808ca6f0(connection_context + 0x3f8), validation_result != 0))
         goto LAB_180864627;
         if (*(int *)(connection_context + 0x4e8) != 0) goto LAB_18086460a;
-        if ((*(longlong *)(connection_context + 0x2b8) == 0) || ((*(uint *)(connection_context + 0x2d8) >> 6 & 1) == 0)) {
+        if ((*(int64_t *)(connection_context + 0x2b8) == 0) || ((*(uint *)(connection_context + 0x2d8) >> 6 & 1) == 0)) {
 LAB_1808645f6:
           validation_result = FUN_18085f0e0(connection_context,0);
           if (validation_result == 0) goto LAB_18086460a;
         }
         else {
-          validation_result = FUN_1808538a0(*(longlong *)(connection_context + 0x2b8),connection_context);
+          validation_result = FUN_1808538a0(*(int64_t *)(connection_context + 0x2b8),connection_context);
           if (validation_result == 0) {
             *(uint *)(connection_context + 0x2d8) = *(uint *)(connection_context + 0x2d8) & 0xffffffbf;
             goto LAB_1808645f6;
@@ -220,14 +220,14 @@ LAB_1808645f6:
         if (validation_result != 0) goto LAB_180864627;
       }
 LAB_18086460a:
-      resource_handle = *(longlong *)(connection_context + 0x80);
+      resource_handle = *(int64_t *)(connection_context + 0x80);
       if (resource_handle != 0) {
         network_param = FUN_1808605e0(connection_context);
         *(int32_t *)(resource_handle + 0x80) = network_param;
       }
       goto LAB_180864624;
     }
-    network_data = *(uint64_t *)(*(longlong *)(connection_context + 0x2b0) + 0x30);
+    network_data = *(uint64_t *)(*(int64_t *)(connection_context + 0x2b0) + 0x30);
     *(uint64_t *)(connection_context + 0x330) = network_data;
     for (resource_ptr = *(uint64_t **)(connection_context + 0x260);
         (*(uint64_t **)(connection_context + 0x260) <= resource_ptr &&
@@ -241,12 +241,12 @@ LAB_18086460a:
         (validation_result = FUN_1808d0d90(connection_context + 0x3f8,network_data), validation_result != 0)) ||
        (validation_result = func_0x0001808d57c0(connection_context + 0x280,network_data), validation_result != 0)) goto LAB_180864627;
     if (*(int *)(connection_context + 0x2e4) != 8) {
-      if (*(longlong *)(connection_context + 0x478) != 0) {
+      if (*(int64_t *)(connection_context + 0x478) != 0) {
         timestamp = 0;
-        validation_result = FUN_18073c730(*(uint64_t *)(*(longlong *)(connection_context + 0x2b0) + 0x78),&timestamp,0,0
+        validation_result = FUN_18073c730(*(uint64_t *)(*(int64_t *)(connection_context + 0x2b0) + 0x78),&timestamp,0,0
                              );
         if (validation_result != 0) goto LAB_180864627;
-        if ((timestamp == 0) || (timestamp <= *(ulonglong *)(connection_context + 0x338))) {
+        if ((timestamp == 0) || (timestamp <= *(uint64_t *)(connection_context + 0x338))) {
           network_data = 1;
         }
         else {
@@ -255,39 +255,39 @@ LAB_18086460a:
         validation_result = FUN_1808d9380(*(uint64_t *)(connection_context + 0x478),network_data);
         if (validation_result != 0) goto LAB_180864627;
       }
-      if (*(ulonglong *)(connection_context + 0x340) != 0) {
-        connection_char = *(ulonglong *)(connection_context + 0x338) < *(ulonglong *)(connection_context + 0x340);
+      if (*(uint64_t *)(connection_context + 0x340) != 0) {
+        connection_char = *(uint64_t *)(connection_context + 0x338) < *(uint64_t *)(connection_context + 0x340);
         timestamp = CONCAT71(timestamp._1_7_,connection_char);
-        if (((bool)connection_char) && (*(longlong *)(connection_context + 0x478) == 0)) {
-          FUN_18073cd10(*(uint64_t *)(*(longlong *)(connection_context + 0x2b0) + 0x78),&timestamp);
+        if (((bool)connection_char) && (*(int64_t *)(connection_context + 0x478) == 0)) {
+          FUN_18073cd10(*(uint64_t *)(*(int64_t *)(connection_context + 0x2b0) + 0x78),&timestamp);
           connection_char = (char)timestamp;
         }
         if (connection_char == '\0') {
           status_check = *(uint *)(connection_context + 0x2d8);
           if ((status_check >> 8 & 1) != 0) {
-            resource_handle = *(longlong *)(connection_context + 0x2b8);
+            resource_handle = *(int64_t *)(connection_context + 0x2b8);
             if (resource_handle != 0) goto LAB_18086428a;
             goto LAB_1808642a1;
           }
           *(uint *)(connection_context + 0x2d8) = status_check | 0x100;
         }
       }
-      if ((((*(uint *)(*(longlong *)(connection_context + 0x88) + 0xf8) >> 1 & 1) == 0) ||
+      if ((((*(uint *)(*(int64_t *)(connection_context + 0x88) + 0xf8) >> 1 & 1) == 0) ||
           ((*(uint *)(connection_context + 0x2d8) >> 0xf & 1) != 0)) ||
-         ((*(ulonglong *)(connection_context + 0x348) != 0 &&
-          (*(ulonglong *)(connection_context + 0x348) <= *(ulonglong *)(connection_context + 0x338))))) {
+         ((*(uint64_t *)(connection_context + 0x348) != 0 &&
+          (*(uint64_t *)(connection_context + 0x348) <= *(uint64_t *)(connection_context + 0x338))))) {
         connection_flag = true;
       }
       else {
         connection_flag = false;
       }
       if ((((*(int *)(connection_context + 0x2e4) == 3) && (connection_flag)) &&
-          (network_info_ptr = (longlong *)(connection_context + 0x400), (longlong *)*network_info_ptr == network_info_ptr)) &&
-         ((*(longlong **)(connection_context + 0x408) == network_info_ptr &&
+          (network_info_ptr = (int64_t *)(connection_context + 0x400), (int64_t *)*network_info_ptr == network_info_ptr)) &&
+         ((*(int64_t **)(connection_context + 0x408) == network_info_ptr &&
           (connection_char = func_0x000180857b00(connection_context + 200), connection_char != '\0')))) {
         network_status = *(int *)(connection_context + 0x2e4);
-        if ((*(longlong *)(connection_context + 0x2b8) != 0) && ((*(uint *)(connection_context + 0x2d8) >> 6 & 1) != 0)) {
-          validation_result = FUN_1808538a0(*(longlong *)(connection_context + 0x2b8),connection_context);
+        if ((*(int64_t *)(connection_context + 0x2b8) != 0) && ((*(uint *)(connection_context + 0x2d8) >> 6 & 1) != 0)) {
+          validation_result = FUN_1808538a0(*(int64_t *)(connection_context + 0x2b8),connection_context);
           if (validation_result != 0) goto joined_r0x0001808641af;
           *(uint *)(connection_context + 0x2d8) = *(uint *)(connection_context + 0x2d8) & 0xffffffbf;
         }
@@ -302,7 +302,7 @@ LAB_18086460a:
       }
       goto LAB_180864477;
     }
-    resource_handle = *(longlong *)(connection_context + 0x2b8);
+    resource_handle = *(int64_t *)(connection_context + 0x2b8);
     if (resource_handle == 0) {
 LAB_1808642a1:
       validation_result = FUN_18085f0e0(connection_context,0);
@@ -360,14 +360,14 @@ LAB_180864627:
  * 5. 监控优化效果并进行微调
  * 6. 返回优化状态和结果
  * 
- * @return ulonglong 优化结果状态码（0表示成功，非0表示失败或需要进一步处理）
+ * @return uint64_t 优化结果状态码（0表示成功，非0表示失败或需要进一步处理）
  */
-ulonglong NetworkSystem_ConnectionOptimizer(int32_t optimization_param)
+uint64_t NetworkSystem_ConnectionOptimizer(int32_t optimization_param)
 
 {
-  longlong *network_info_ptr;
+  int64_t *network_info_ptr;
   int *status_ptr;
-  longlong resource_handle;
+  int64_t resource_handle;
   bool optimization_flag;
   byte opt_byte;
   char opt_char;
@@ -377,11 +377,11 @@ ulonglong NetworkSystem_ConnectionOptimizer(int32_t optimization_param)
   int network_state;
   uint64_t *resource_ptr;
   uint64_t network_data;
-  longlong context_base;
-  ulonglong result_code;
-  longlong connection_context;
+  int64_t context_base;
+  uint64_t result_code;
+  int64_t connection_context;
   char connection_status;
-  ulonglong performance_counter;
+  uint64_t performance_counter;
   int32_t quality_param;
   int32_t quality_param_00;
   int32_t quality_param_01;
@@ -395,7 +395,7 @@ ulonglong NetworkSystem_ConnectionOptimizer(int32_t optimization_param)
   connection_status = (char)performance_counter;
   if (param_value < 2) {
     status_check = FUN_1808650a0(optimization_param,0);
-    result_code = (ulonglong)status_check;
+    result_code = (uint64_t)status_check;
     if (status_check != 0) goto LAB_180864627;
     optimization_param = quality_param;
     if (1 < *(int *)(connection_context + 0x2e4) - 1U) goto LAB_1808640fb;
@@ -406,87 +406,87 @@ LAB_1808640fb:
     *(uint *)(connection_context + 0x2d8) =
          ((uint)opt_byte << 10 | *(uint *)(connection_context + 0x2d8)) & ~((opt_byte ^ 1) << 10) & 0xffffb7ff;
     status_check = FUN_180865550(optimization_param,0);
-    result_code = (ulonglong)status_check;
+    result_code = (uint64_t)status_check;
     if (status_check != 0) goto LAB_180864627;
     status_check = FUN_180863b80();
-    result_code = (ulonglong)status_check;
+    result_code = (uint64_t)status_check;
     if (status_check != 0) goto LAB_180864627;
     if ((*(uint *)(connection_context + 0x2d8) >> 1 & 1) == 0) {
-      network_data = *(uint64_t *)(*(longlong *)(connection_context + 0x2b0) + 0x30);
+      network_data = *(uint64_t *)(*(int64_t *)(connection_context + 0x2b0) + 0x30);
       *(uint64_t *)(connection_context + 0x330) = network_data;
       for (resource_ptr = *(uint64_t **)(connection_context + 0x260);
           (*(uint64_t **)(connection_context + 0x260) <= resource_ptr &&
           (resource_ptr < *(uint64_t **)(connection_context + 0x260) + *(int *)(connection_context + 0x268)));
           resource_ptr = resource_ptr + 1) {
         status_check = FUN_1808d7550(*resource_ptr);
-        result_code = (ulonglong)status_check;
+        result_code = (uint64_t)status_check;
         if (status_check != 0) goto LAB_180864627;
       }
       status_check = FUN_18085ca30(connection_context + 200,network_data);
-      result_code = (ulonglong)status_check;
+      result_code = (uint64_t)status_check;
       if (status_check != 0) goto LAB_180864627;
       status_check = FUN_1808d0d90(connection_context + 0x378,network_data);
-      result_code = (ulonglong)status_check;
+      result_code = (uint64_t)status_check;
       if (status_check != 0) goto LAB_180864627;
       status_check = FUN_1808d0d90(connection_context + 0x3f8,network_data);
-      result_code = (ulonglong)status_check;
+      result_code = (uint64_t)status_check;
       if (status_check != 0) goto LAB_180864627;
       status_check = func_0x0001808d57c0(connection_context + 0x280,network_data);
-      result_code = (ulonglong)status_check;
+      result_code = (uint64_t)status_check;
       if (status_check != 0) goto LAB_180864627;
       network_config = quality_param_00;
       if (*(int *)(connection_context + 0x2e4) != 8) {
-        if (*(ulonglong *)(connection_context + 0x478) != performance_counter) {
-          resource_handle = *(longlong *)(connection_context + 0x2b0);
-          *(ulonglong *)(context_base + 0x28) = performance_counter;
+        if (*(uint64_t *)(connection_context + 0x478) != performance_counter) {
+          resource_handle = *(int64_t *)(connection_context + 0x2b0);
+          *(uint64_t *)(context_base + 0x28) = performance_counter;
           status_check = FUN_18073c730(*(uint64_t *)(resource_handle + 0x78),context_base + 0x28,0,0);
-          result_code = (ulonglong)status_check;
+          result_code = (uint64_t)status_check;
           if (status_check != 0) goto LAB_180864627;
-          if ((*(ulonglong *)(context_base + 0x28) == 0) ||
-             (*(ulonglong *)(context_base + 0x28) <= *(ulonglong *)(connection_context + 0x338))) {
+          if ((*(uint64_t *)(context_base + 0x28) == 0) ||
+             (*(uint64_t *)(context_base + 0x28) <= *(uint64_t *)(connection_context + 0x338))) {
             network_data = 1;
           }
           else {
             network_data = 0;
           }
           status_check = FUN_1808d9380(*(uint64_t *)(connection_context + 0x478),network_data);
-          result_code = (ulonglong)status_check;
+          result_code = (uint64_t)status_check;
           network_config = quality_param_02;
           if (status_check != 0) goto LAB_180864627;
         }
-        if (*(ulonglong *)(connection_context + 0x340) != 0) {
-          opt_char = *(ulonglong *)(connection_context + 0x338) < *(ulonglong *)(connection_context + 0x340);
+        if (*(uint64_t *)(connection_context + 0x340) != 0) {
+          opt_char = *(uint64_t *)(connection_context + 0x338) < *(uint64_t *)(connection_context + 0x340);
           *(char *)(context_base + 0x28) = opt_char;
-          if (((bool)opt_char) && (*(ulonglong *)(connection_context + 0x478) == performance_counter)) {
-            network_config = FUN_18073cd10(*(uint64_t *)(*(longlong *)(connection_context + 0x2b0) + 0x78),
+          if (((bool)opt_char) && (*(uint64_t *)(connection_context + 0x478) == performance_counter)) {
+            network_config = FUN_18073cd10(*(uint64_t *)(*(int64_t *)(connection_context + 0x2b0) + 0x78),
                                   context_base + 0x28);
             opt_char = *(char *)(context_base + 0x28);
           }
           if (opt_char == '\0') {
             status_check = *(uint *)(connection_context + 0x2d8);
             if ((status_check >> 8 & 1) != 0) {
-              if (*(longlong *)(connection_context + 0x2b8) != 0) goto LAB_18086428a;
+              if (*(int64_t *)(connection_context + 0x2b8) != 0) goto LAB_18086428a;
               goto LAB_1808642a1;
             }
             *(uint *)(connection_context + 0x2d8) = status_check | 0x100;
           }
         }
-        if ((((*(uint *)(*(longlong *)(connection_context + 0x88) + 0xf8) >> 1 & 1) == 0) ||
+        if ((((*(uint *)(*(int64_t *)(connection_context + 0x88) + 0xf8) >> 1 & 1) == 0) ||
             ((*(uint *)(connection_context + 0x2d8) >> 0xf & 1) != 0)) ||
-           ((*(ulonglong *)(connection_context + 0x348) != 0 &&
-            (*(ulonglong *)(connection_context + 0x348) <= *(ulonglong *)(connection_context + 0x338))))) {
+           ((*(uint64_t *)(connection_context + 0x348) != 0 &&
+            (*(uint64_t *)(connection_context + 0x348) <= *(uint64_t *)(connection_context + 0x338))))) {
           optimization_flag = true;
         }
         else {
           optimization_flag = false;
         }
         if ((((*(int *)(connection_context + 0x2e4) == 3) && (optimization_flag)) &&
-            (network_info_ptr = (longlong *)(connection_context + 0x400), (longlong *)*network_info_ptr == network_info_ptr)) &&
-           ((*(longlong **)(connection_context + 0x408) == network_info_ptr &&
+            (network_info_ptr = (int64_t *)(connection_context + 0x400), (int64_t *)*network_info_ptr == network_info_ptr)) &&
+           ((*(int64_t **)(connection_context + 0x408) == network_info_ptr &&
             (opt_char = func_0x000180857b00(connection_context + 200), opt_char != '\0')))) {
           network_state = *(int *)(connection_context + 0x2e4);
           network_config = quality_param_03;
-          if ((*(longlong *)(connection_context + 0x2b8) != 0) &&
+          if ((*(int64_t *)(connection_context + 0x2b8) != 0) &&
              ((*(uint *)(connection_context + 0x2d8) >> 6 & 1) != 0)) {
             status_check = FUN_1808538a0();
             if (status_check != 0) goto joined_r0x0001808641af;
@@ -504,7 +504,7 @@ LAB_1808640fb:
         }
         goto LAB_180864477;
       }
-      if (*(longlong *)(connection_context + 0x2b8) == 0) {
+      if (*(int64_t *)(connection_context + 0x2b8) == 0) {
 LAB_1808642a1:
         status_check = FUN_18085f0e0(network_config,0);
         if (status_check == 0) goto LAB_180864624;
@@ -520,53 +520,53 @@ LAB_18086428a:
           goto LAB_1808642a1;
         }
       }
-      result_code = (ulonglong)status_check;
+      result_code = (uint64_t)status_check;
       if (status_check != 0) goto LAB_180864627;
       goto LAB_180864624;
     }
-    resource_handle = *(longlong *)(*(longlong *)(connection_context + 0x2b0) + 0x78);
+    resource_handle = *(int64_t *)(*(int64_t *)(connection_context + 0x2b0) + 0x78);
     if (resource_handle == 0) {
       result_code = 0x1c;
       goto LAB_180864627;
     }
-    *(ulonglong *)(context_base + 0x28) = performance_counter;
+    *(uint64_t *)(context_base + 0x28) = performance_counter;
     status_check = FUN_18073c730(resource_handle,0,context_base + 0x28,0);
-    result_code = (ulonglong)status_check;
+    result_code = (uint64_t)status_check;
     if (status_check != 0) goto LAB_180864627;
-    if (*(ulonglong *)(connection_context + 0x338) <= *(ulonglong *)(context_base + 0x28)) goto LAB_180864477;
+    if (*(uint64_t *)(connection_context + 0x338) <= *(uint64_t *)(context_base + 0x28)) goto LAB_180864477;
     status_check = FUN_18073d8a0(resource_handle,1);
 joined_r0x0001808641af:
-    result_code = (ulonglong)status_check;
+    result_code = (uint64_t)status_check;
     if (status_check != 0) goto LAB_180864627;
 LAB_180864477:
     if ((*(int *)(connection_context + 0x2e4) == 4) &&
        (opt_char = FUN_1808d38d0(connection_context + 0x280), opt_char != '\0')) {
       status_check = FUN_18085f2b0();
-      result_code = (ulonglong)status_check;
+      result_code = (uint64_t)status_check;
       if (status_check != 0) goto LAB_180864627;
     }
     if (*(int *)(connection_context + 0x2e4) == 5) {
       FUN_1808d0490(connection_context + 0x378,*(uint64_t *)(connection_context + 0x328),1);
       FUN_1808d0490(connection_context + 0x3f8,*(uint64_t *)(connection_context + 0x328),1);
-      if (*(ulonglong *)(connection_context + 0x328) <
-          *(ulonglong *)(*(longlong *)(connection_context + 0x2b0) + 0x30)) {
+      if (*(uint64_t *)(connection_context + 0x328) <
+          *(uint64_t *)(*(int64_t *)(connection_context + 0x2b0) + 0x30)) {
         *(int32_t *)(connection_context + 0x2e4) = 6;
       }
     }
     if (*(int *)(connection_context + 0x2e4) == 6) {
       status_check = FUN_1808ca6f0(connection_context + 0x378);
-      result_code = (ulonglong)status_check;
+      result_code = (uint64_t)status_check;
       if (status_check != 0) goto LAB_180864627;
       status_check = FUN_1808ca6f0(connection_context + 0x3f8);
-      result_code = (ulonglong)status_check;
+      result_code = (uint64_t)status_check;
       if (status_check != 0) goto LAB_180864627;
-      resource_handle = *(longlong *)(connection_context + 0x2b0);
+      resource_handle = *(int64_t *)(connection_context + 0x2b0);
       *(char *)(context_base + 0x28) = connection_status;
-      *(ulonglong *)(context_base + 0x30) = performance_counter;
+      *(uint64_t *)(context_base + 0x30) = performance_counter;
       status_check = FUN_18073c380(*(uint64_t *)(resource_handle + 0x78),0xffffffff,context_base + 0x30);
       if (((status_check != 0) ||
           (status_check = FUN_180740410(*(uint64_t *)(context_base + 0x30),context_base + 0x28), status_check != 0))
-         && (result_code = (ulonglong)status_check, status_check != 0)) goto LAB_180864627;
+         && (result_code = (uint64_t)status_check, status_check != 0)) goto LAB_180864627;
       if ((*(char *)(context_base + 0x28) != connection_status) ||
          (quality_value = (float)func_0x000180851e30(*(uint64_t *)(connection_context + 0x2b0)), quality_value == 0.0)) {
         *(int32_t *)(connection_context + 0x2e4) = 7;
@@ -574,14 +574,14 @@ LAB_180864477:
     }
     if (*(int *)(connection_context + 0x2e4) == 7) {
       status_check = FUN_1808ca6f0(connection_context + 0x378);
-      result_code = (ulonglong)status_check;
+      result_code = (uint64_t)status_check;
       if (status_check != 0) goto LAB_180864627;
       status_check = FUN_1808ca6f0(connection_context + 0x3f8);
-      result_code = (ulonglong)status_check;
+      result_code = (uint64_t)status_check;
       if (status_check != 0) goto LAB_180864627;
       if (*(int *)(connection_context + 0x4e8) != (int)performance_counter) goto LAB_18086460a;
       network_config = quality_param_05;
-      if ((*(longlong *)(connection_context + 0x2b8) == 0) || ((*(uint *)(connection_context + 0x2d8) >> 6 & 1) == 0))
+      if ((*(int64_t *)(connection_context + 0x2b8) == 0) || ((*(uint *)(connection_context + 0x2d8) >> 6 & 1) == 0))
       {
 LAB_1808645f6:
         status_check = FUN_18085f0e0(network_config,0);
@@ -595,11 +595,11 @@ LAB_1808645f6:
           goto LAB_1808645f6;
         }
       }
-      result_code = (ulonglong)status_check;
+      result_code = (uint64_t)status_check;
       if (status_check != 0) goto LAB_180864627;
     }
 LAB_18086460a:
-    resource_handle = *(longlong *)(connection_context + 0x80);
+    resource_handle = *(int64_t *)(connection_context + 0x80);
     if (resource_handle != 0) {
       network_config = FUN_1808605e0();
       *(int32_t *)(resource_handle + 0x80) = network_config;
@@ -608,20 +608,20 @@ LAB_18086460a:
 LAB_180864624:
   result_code = performance_counter & 0xffffffff;
 LAB_180864627:
-  if (*(longlong *)(context_base + -0x38) != 0) {
+  if (*(int64_t *)(context_base + -0x38) != 0) {
     network_state = FUN_1808605e0();
     if (network_state == 2) {
-      *(int *)(*(longlong *)(context_base + -0x38) + 0x488) = (int)performance_counter;
+      *(int *)(*(int64_t *)(context_base + -0x38) + 0x488) = (int)performance_counter;
     }
     else {
       FUN_180768b90(context_base + 0x28);
       if (*(uint *)(context_base + -0x30) <= *(uint *)(context_base + 0x28)) {
         network_state = *(uint *)(context_base + 0x28) - *(uint *)(context_base + -0x30);
         if (*(char *)(context_base + -0x2c) == connection_status) {
-          *(int *)(*(longlong *)(context_base + -0x38) + 0x488) = network_state;
+          *(int *)(*(int64_t *)(context_base + -0x38) + 0x488) = network_state;
         }
         else {
-          status_ptr = (int *)(*(longlong *)(context_base + -0x38) + 0x488);
+          status_ptr = (int *)(*(int64_t *)(context_base + -0x38) + 0x488);
           *status_ptr = *status_ptr + network_state;
         }
       }
@@ -651,23 +651,23 @@ int32_t NetworkSystem_ConnectionManager(void)
 {
   int *status_ptr;
   int network_state;
-  longlong context_base;
+  int64_t context_base;
   int32_t system_status;
   int32_t performance_counter;
   
   network_state = FUN_1808605e0();
   if (network_state == 2) {
-    *(int32_t *)(*(longlong *)(context_base + -0x38) + 0x488) = performance_counter;
+    *(int32_t *)(*(int64_t *)(context_base + -0x38) + 0x488) = performance_counter;
   }
   else {
     FUN_180768b90(context_base + 0x28);
     if (*(uint *)(context_base + -0x30) <= *(uint *)(context_base + 0x28)) {
       network_state = *(uint *)(context_base + 0x28) - *(uint *)(context_base + -0x30);
       if (*(char *)(context_base + -0x2c) == (char)performance_counter) {
-        *(int *)(*(longlong *)(context_base + -0x38) + 0x488) = network_state;
+        *(int *)(*(int64_t *)(context_base + -0x38) + 0x488) = network_state;
       }
       else {
-        status_ptr = (int *)(*(longlong *)(context_base + -0x38) + 0x488);
+        status_ptr = (int *)(*(int64_t *)(context_base + -0x38) + 0x488);
         *status_ptr = *status_ptr + network_state;
       }
     }
@@ -692,7 +692,7 @@ int32_t NetworkSystem_ConnectionManager(void)
  * 
  * @return uint64_t 质量控制结果（0表示成功，非0表示需要调整或失败）
  */
-uint64_t NetworkSystem_ConnectionQualityController(longlong connection_context)
+uint64_t NetworkSystem_ConnectionQualityController(int64_t connection_context)
 
 {
   uint64_t quality_result;
@@ -745,18 +745,18 @@ uint64_t NetworkSystem_ConnectionQualityController(longlong connection_context)
  * 
  * @return void (该函数通过修改连接上下文来返回结果)
  */
-void NetworkSystem_ConnectionEnhancer(longlong connection_context)
+void NetworkSystem_ConnectionEnhancer(int64_t connection_context)
 
 {
-  longlong resource_handle;
+  int64_t resource_handle;
   int enhancement_result;
   uint64_t *resource_ptr;
   float performance_multiplier;
   
-  resource_handle = *(longlong *)(connection_context + 0x2b0);
+  resource_handle = *(int64_t *)(connection_context + 0x2b0);
   *(int32_t *)(connection_context + 0x2f4) = 0x3f800000;
   for (resource_ptr = (uint64_t *)
-                (*(longlong *)(resource_handle + 0x90) + (longlong)(*(int *)(resource_handle + 0x98) + -1) * 8);
+                (*(int64_t *)(resource_handle + 0x90) + (int64_t)(*(int *)(resource_handle + 0x98) + -1) * 8);
       (*(uint64_t **)(resource_handle + 0x90) <= resource_ptr &&
       (resource_ptr < *(uint64_t **)(resource_handle + 0x90) + *(int *)(resource_handle + 0x98))); resource_ptr = resource_ptr + -1) {
     enhancement_result = FUN_1808b3bc0(*resource_ptr,connection_context + 0x2f4);
@@ -766,7 +766,7 @@ void NetworkSystem_ConnectionEnhancer(longlong connection_context)
   }
   performance_multiplier = (float)func_0x000180851e30(*(uint64_t *)(connection_context + 0x2b0));
   *(float *)(connection_context + 0x2f4) = performance_multiplier * *(float *)(connection_context + 0x2f4);
-  enhancement_result = FUN_18085e860(*(longlong *)(connection_context + 0x2b0) + 0x80,connection_context + 0x2f4);
+  enhancement_result = FUN_18085e860(*(int64_t *)(connection_context + 0x2b0) + 0x80,connection_context + 0x2f4);
   if (enhancement_result == 0) {
     *(uint *)(connection_context + 0x2d8) = *(uint *)(connection_context + 0x2d8) & 0xffffdfff;
   }

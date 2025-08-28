@@ -134,8 +134,8 @@
 // 5. 执行内存管理和资源分配
 // 6. 更新系统状态和返回结果
 //
-int ui_system_advanced_data_processor(longlong *ui_context_ptr, longlong process_param, 
-                                    ulonglong data_flags, longlong result_ptr, int process_options)
+int ui_system_advanced_data_processor(int64_t *ui_context_ptr, int64_t process_param, 
+                                    uint64_t data_flags, int64_t result_ptr, int process_options)
 {
     // 参数验证
     if (ui_context_ptr == NULL) {
@@ -153,23 +153,23 @@ int ui_system_advanced_data_processor(longlong *ui_context_ptr, longlong process
         
         if (status_code > 0) {
             // 获取UI系统上下文信息
-            longlong context_backup = ui_context_ptr[0x22];
-            longlong temp_var7 = ui_context_ptr[0x1d];
+            int64_t context_backup = ui_context_ptr[0x22];
+            int64_t temp_var7 = ui_context_ptr[0x1d];
             
             // 处理UI系统配置
             process_status = ui_system_config_processor(ui_context_ptr[0x58], (int)ui_context_ptr[0x61], 
-                                                     (longlong)ui_context_ptr + 0xe4, ui_context_ptr[0x21]);
+                                                     (int64_t)ui_context_ptr + 0xe4, ui_context_ptr[0x21]);
             
             // 检查和处理特殊状态
             if ((process_status == 5) && ((int)ui_context_ptr[0x1e] == 0)) {
                 process_status = 0;
             }
-            if ((*(int *)((longlong)ui_context_ptr + 0xf4) == 0) && ((int)ui_context_ptr[0x1e] == 0)) {
+            if ((*(int *)((int64_t)ui_context_ptr + 0xf4) == 0) && ((int)ui_context_ptr[0x1e] == 0)) {
                 process_status = 5;
             }
             
             // 处理UI系统数据格式化
-            if ((process_status == 0) && (*(int *)((longlong)ui_context_ptr + 0xf4) == 0)) {
+            if ((process_status == 0) && (*(int *)((int64_t)ui_context_ptr + 0xf4) == 0)) {
                 // 配置数据处理
                 int config_data = (int)ui_context_ptr[0x1d];
                 int result_data = 9;
@@ -178,19 +178,19 @@ int ui_system_advanced_data_processor(longlong *ui_context_ptr, longlong process
                 
                 // 处理特殊配置标志
                 if (((int)ui_context_ptr[0x1f] == 0) && ((*(uint *)(ui_context_ptr + 1) & 0x10000) != 0)) {
-                    *(int32_t *)((longlong)ui_context_ptr + 0xfc) = 0x403;
+                    *(int32_t *)((int64_t)ui_context_ptr + 0xfc) = 0x403;
                     ui_context_ptr[0x20] = 4;
                 }
                 
                 // 执行格式化处理
                 process_status = FUN_18066eea0(ui_context_ptr + 0x35, &config_data);
-                *(int32_t *)((longlong)ui_context_ptr + 0xf4) = 1;
+                *(int32_t *)((int64_t)ui_context_ptr + 0xf4) = 1;
             }
             
             // 更新系统状态
-            if (*(int *)((longlong)ui_context_ptr + 0xf4) != 0) {
-                *(longlong *)(ui_context_ptr[0x36] + 0x4430) = ui_context_ptr[0x21];
-                *(longlong *)(ui_context_ptr[0x36] + 0x4438) = ui_context_ptr[0x22];
+            if (*(int *)((int64_t)ui_context_ptr + 0xf4) != 0) {
+                *(int64_t *)(ui_context_ptr[0x36] + 0x4430) = ui_context_ptr[0x21];
+                *(int64_t *)(ui_context_ptr[0x36] + 0x4438) = ui_context_ptr[0x22];
             }
         }
     }
@@ -213,7 +213,7 @@ int ui_system_advanced_data_processor(longlong *ui_context_ptr, longlong process
 // 4. 配置资源管理参数
 // 5. 返回管理结果
 //
-int ui_system_memory_manager(longlong system_ptr, longlong *resource_ptr)
+int ui_system_memory_manager(int64_t system_ptr, int64_t *resource_ptr)
 {
     // 参数验证
     if (system_ptr == 0 || resource_ptr == NULL) {
@@ -221,7 +221,7 @@ int ui_system_memory_manager(longlong system_ptr, longlong *resource_ptr)
     }
     
     // 检查系统状态
-    if ((*resource_ptr == 0) && (*(longlong *)(system_ptr + 0x1b0) != 0)) {
+    if ((*resource_ptr == 0) && (*(int64_t *)(system_ptr + 0x1b0) != 0)) {
         // 初始化资源管理参数
         uint config_data = 0;
         uint result_data = 0;
@@ -234,7 +234,7 @@ int ui_system_memory_manager(longlong system_ptr, longlong *resource_ptr)
         }
         
         // 执行资源管理初始化
-        int status_code = FUN_18066ef60(*(longlong *)(system_ptr + 0x1b0), &format_data, &result_data, &config_data);
+        int status_code = FUN_18066ef60(*(int64_t *)(system_ptr + 0x1b0), &format_data, &result_data, &config_data);
         
         if (status_code == 0) {
             // 配置系统参数
@@ -272,7 +272,7 @@ int ui_system_memory_manager(longlong system_ptr, longlong *resource_ptr)
 // 3. 执行格式转换处理
 // 4. 返回转换结果
 //
-int ui_system_data_format_converter(longlong system_ptr, uint64_t *data_ptr)
+int ui_system_data_format_converter(int64_t system_ptr, uint64_t *data_ptr)
 {
     // 参数验证
     if (data_ptr == NULL || system_ptr == 0) {
@@ -316,7 +316,7 @@ int ui_system_data_format_converter(longlong system_ptr, uint64_t *data_ptr)
 // 3. 执行数据验证
 // 4. 返回验证结果
 //
-int ui_system_data_validator(longlong system_ptr, uint64_t *data_ptr)
+int ui_system_data_validator(int64_t system_ptr, uint64_t *data_ptr)
 {
     // 参数验证
     if (data_ptr == NULL || system_ptr == 0) {
@@ -362,7 +362,7 @@ int ui_system_data_validator(longlong system_ptr, uint64_t *data_ptr)
 // 3. 配置系统参数
 // 4. 返回初始化结果
 //
-int ui_system_state_initializer(longlong system_ptr, longlong param1, int param2, int32_t *status_ptr)
+int ui_system_state_initializer(int64_t system_ptr, int64_t param1, int param2, int32_t *status_ptr)
 {
     // 参数验证
     if (system_ptr == 0 || status_ptr == NULL) {
@@ -381,8 +381,8 @@ int ui_system_state_initializer(longlong system_ptr, longlong param1, int param2
     if (current_status != 0) {
         if ((param1 != 0) || (param2 != 0)) {
             // 添加处理参数
-            *(longlong *)(system_ptr + 0x2c0 + (ulonglong)*(uint *)(system_ptr + 700) * 8) = param1;
-            *(int *)(system_ptr + 0x308 + (ulonglong)*(uint *)(system_ptr + 700) * 4) = param2;
+            *(int64_t *)(system_ptr + 0x2c0 + (uint64_t)*(uint *)(system_ptr + 700) * 8) = param1;
+            *(int *)(system_ptr + 0x308 + (uint64_t)*(uint *)(system_ptr + 700) * 4) = param2;
             *(int *)(system_ptr + 700) = *(int *)(system_ptr + 700) + 1;
             
             if (*(uint *)(system_ptr + 700) < 10) {
@@ -406,7 +406,7 @@ int ui_system_state_initializer(longlong system_ptr, longlong param1, int param2
     }
     
     if (current_status == 0) {
-        *(longlong *)(system_ptr + 0x2c0) = param1;
+        *(int64_t *)(system_ptr + 0x2c0) = param1;
         *(int *)(system_ptr + 0x308) = param2;
         *(int32_t *)(system_ptr + 700) = 1;
     }
@@ -431,7 +431,7 @@ int ui_system_state_initializer(longlong system_ptr, longlong param1, int param2
 // 3. 应用配置设置
 // 4. 返回处理结果
 //
-void ui_system_config_processor(byte *config_ptr, uint config_size, longlong param1, code *param2, uint64_t param3)
+void ui_system_config_processor(byte *config_ptr, uint config_size, int64_t param1, code *param2, uint64_t param3)
 {
     // 参数验证
     if (config_ptr == NULL || config_size == 0) {
@@ -514,7 +514,7 @@ int ui_system_resource_cleaner(uint64_t *resource_ptr)
 // 3. 执行异常处理
 // 4. 返回处理结果
 //
-void ui_system_exception_handler(int32_t *exception_ptr, int32_t exception_code, longlong message_ptr, uint64_t param4)
+void ui_system_exception_handler(int32_t *exception_ptr, int32_t exception_code, int64_t message_ptr, uint64_t param4)
 {
     // 设置异常代码
     *exception_ptr = exception_code;
@@ -524,9 +524,9 @@ void ui_system_exception_handler(int32_t *exception_ptr, int32_t exception_code,
         exception_ptr[1] = 1;
         
         // 格式化错误消息
-        ulonglong *format_ptr = (ulonglong *)func_0x00018004b9a0();
+        uint64_t *format_ptr = (uint64_t *)func_0x00018004b9a0();
         __stdio_common_vsprintf(*format_ptr | 2, exception_ptr + 2, 0x4f, message_ptr, 0, &param4);
-        *(int8_t *)((longlong)exception_ptr + 0x57) = 0;
+        *(int8_t *)((int64_t)exception_ptr + 0x57) = 0;
     }
     
     // 执行异常跳转
@@ -552,7 +552,7 @@ void ui_system_exception_handler(int32_t *exception_ptr, int32_t exception_code,
 // 3. 记录错误日志
 // 4. 执行错误处理
 //
-void ui_system_error_manager(int32_t *error_ptr, int32_t error_code, longlong message_ptr)
+void ui_system_error_manager(int32_t *error_ptr, int32_t error_code, int64_t message_ptr)
 {
     // 设置错误代码
     *error_ptr = error_code;
@@ -562,9 +562,9 @@ void ui_system_error_manager(int32_t *error_ptr, int32_t error_code, longlong me
         error_ptr[1] = 1;
         
         // 格式化错误消息
-        ulonglong *format_ptr = (ulonglong *)func_0x00018004b9a0();
+        uint64_t *format_ptr = (uint64_t *)func_0x00018004b9a0();
         __stdio_common_vsprintf(*format_ptr | 2, error_ptr + 2, 0x4f, message_ptr, 0);
-        *(int8_t *)((longlong)error_ptr + 0x57) = 0;
+        *(int8_t *)((int64_t)error_ptr + 0x57) = 0;
     }
     
     // 执行错误处理
@@ -588,16 +588,16 @@ void ui_system_error_manager(int32_t *error_ptr, int32_t error_code, longlong me
 // 3. 记录日志信息
 // 4. 执行日志处理
 //
-void ui_system_logger(longlong log_ptr)
+void ui_system_logger(int64_t log_ptr)
 {
     // 设置日志级别
     *(int32_t *)(log_ptr + 4) = 1;
     
     // 格式化日志消息
-    ulonglong *format_ptr = (ulonglong *)func_0x00018004b9a0();
+    uint64_t *format_ptr = (uint64_t *)func_0x00018004b9a0();
     int32_t *log_data_ptr = (int32_t *)log_ptr;
     __stdio_common_vsprintf(*format_ptr | 2, log_data_ptr + 2, 0x4f);
-    *(int8_t *)((longlong)log_data_ptr + 0x57) = 0;
+    *(int8_t *)((int64_t)log_data_ptr + 0x57) = 0;
     
     // 执行日志处理
     if (log_data_ptr[0x16] == 0) {
@@ -665,12 +665,12 @@ void ui_system_thread_synchronizer(code *sync_func)
         UNLOCK();
         
         // 创建临界区
-        longlong critical_section = malloc(0x28);
+        int64_t critical_section = malloc(0x28);
         InitializeCriticalSection(critical_section);
         
         LOCK();
         bool section_exists = ui_system_ui != 0;
-        longlong section_ptr = critical_section;
+        int64_t section_ptr = critical_section;
         
         if (section_exists) {
             section_ptr = ui_system_ui;
@@ -722,8 +722,8 @@ void ui_system_system_initializer(void)
 {
     code *init_func;  // 初始化函数指针
     int ref_count;    // 引用计数
-    longlong temp_var1;  // 临时变量1
-    longlong temp_var2;  // 临时变量2
+    int64_t temp_var1;  // 临时变量1
+    int64_t temp_var2;  // 临时变量2
     bool resource_exists;  // 资源存在标志
     
     // 初始化引用计数
@@ -822,7 +822,7 @@ void ui_system_system_executor(void)
 void ui_system_cpu_feature_detector(void)
 {
     uint *cpu_info;    // CPU信息指针
-    longlong version_info;  // 版本信息
+    int64_t version_info;  // 版本信息
     uint feature_flags;  // 特性标志
     bool has_sse2;     // SSE2支持
     bool has_sse3;     // SSE3支持
@@ -937,12 +937,12 @@ void ui_system_secure_synchronizer(code *sync_func)
         UNLOCK();
         
         // 创建安全临界区
-        longlong critical_section = malloc(0x28);
+        int64_t critical_section = malloc(0x28);
         InitializeCriticalSection(critical_section);
         
         LOCK();
         bool section_exists = ui_system_ui != 0;
-        longlong section_ptr = critical_section;
+        int64_t section_ptr = critical_section;
         
         if (section_exists) {
             section_ptr = ui_system_ui;
@@ -994,8 +994,8 @@ void ui_system_secure_initializer(void)
 {
     code *init_func;  // 初始化函数指针
     int ref_count;    // 引用计数
-    longlong temp_var1;  // 临时变量1
-    longlong temp_var2;  // 临时变量2
+    int64_t temp_var1;  // 临时变量1
+    int64_t temp_var2;  // 临时变量2
     bool resource_exists;  // 资源存在标志
     
     // 初始化引用计数

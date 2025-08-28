@@ -355,8 +355,8 @@ void RegisterSystemCallback(void* callback_data)
     char status;
     uint64_t *base_ptr;
     int compare_result;
-    longlong *manager_ptr;
-    longlong result;
+    int64_t *manager_ptr;
+    int64_t result;
     uint64_t *current_ptr;
     uint64_t *prev_ptr;
     uint64_t *next_ptr;
@@ -364,9 +364,9 @@ void RegisterSystemCallback(void* callback_data)
     code *callback_function;
     
     /* 获取回调管理器指针 */
-    manager_ptr = (longlong *)FUN_18008d070();
+    manager_ptr = (int64_t *)FUN_18008d070();
     base_ptr = (uint64_t *)*manager_ptr;
-    status = *(char *)((longlong)base_ptr[1] + 0x19);
+    status = *(char *)((int64_t)base_ptr[1] + 0x19);
     callback_function = FUN_18007fcd0;
     prev_ptr = base_ptr;
     current_ptr = (uint64_t *)base_ptr[1];
@@ -382,7 +382,7 @@ void RegisterSystemCallback(void* callback_data)
         }
         prev_ptr = current_ptr;
         current_ptr = next_ptr;
-        status = *(char *)((longlong)next_ptr + 0x19);
+        status = *(char *)((int64_t)next_ptr + 0x19);
     }
     
     /* 如果需要创建新的回调节点 */
@@ -414,8 +414,8 @@ void RegisterInputCallback(void* input_data)
     char status;
     uint64_t *base_ptr;
     int compare_result;
-    longlong *manager_ptr;
-    longlong result;
+    int64_t *manager_ptr;
+    int64_t result;
     uint64_t *current_ptr;
     uint64_t *prev_ptr;
     uint64_t *next_ptr;
@@ -423,9 +423,9 @@ void RegisterInputCallback(void* input_data)
     uint64_t callback_data;
     
     /* 获取输入管理器指针 */
-    manager_ptr = (longlong *)FUN_18008d070();
+    manager_ptr = (int64_t *)FUN_18008d070();
     base_ptr = (uint64_t *)*manager_ptr;
-    status = *(char *)((longlong)base_ptr[1] + 0x19);
+    status = *(char *)((int64_t)base_ptr[1] + 0x19);
     callback_data = 0;
     prev_ptr = base_ptr;
     current_ptr = (uint64_t *)base_ptr[1];
@@ -441,7 +441,7 @@ void RegisterInputCallback(void* input_data)
         }
         prev_ptr = current_ptr;
         current_ptr = next_ptr;
-        status = *(char *)((longlong)next_ptr + 0x19);
+        status = *(char *)((int64_t)next_ptr + 0x19);
     }
     
     /* 如果需要创建新的回调节点 */
@@ -473,8 +473,8 @@ void RegisterRenderCallback(void* render_data)
     char status;
     uint64_t *base_ptr;
     int compare_result;
-    longlong *manager_ptr;
-    longlong result;
+    int64_t *manager_ptr;
+    int64_t result;
     uint64_t *current_ptr;
     uint64_t *prev_ptr;
     uint64_t *next_ptr;
@@ -482,9 +482,9 @@ void RegisterRenderCallback(void* render_data)
     uint64_t callback_data;
     
     /* 获取渲染管理器指针 */
-    manager_ptr = (longlong *)FUN_18008d070();
+    manager_ptr = (int64_t *)FUN_18008d070();
     base_ptr = (uint64_t *)*manager_ptr;
-    status = *(char *)((longlong)base_ptr[1] + 0x19);
+    status = *(char *)((int64_t)base_ptr[1] + 0x19);
     callback_data = 0;
     prev_ptr = base_ptr;
     current_ptr = (uint64_t *)base_ptr[1];
@@ -500,7 +500,7 @@ void RegisterRenderCallback(void* render_data)
         }
         prev_ptr = current_ptr;
         current_ptr = next_ptr;
-        status = *(char *)((longlong)next_ptr + 0x19);
+        status = *(char *)((int64_t)next_ptr + 0x19);
     }
     
     /* 如果需要创建新的回调节点 */

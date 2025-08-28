@@ -55,11 +55,11 @@
 #define ui_system_debug_support FUN_18065e9a5
 #define ui_system_performance_monitor FUN_18065ed75
 
-// 函数: void FUN_18065d7f0(longlong param_1,longlong param_2)
+// 函数: void FUN_18065d7f0(int64_t param_1,int64_t param_2)
 // UI系统高级事件处理器 - 处理复杂的UI事件分发和动画状态管理
 // 该函数实现了高级的UI事件处理机制，包括动画状态计算、事件分发、参数处理等
 // 主要功能：计算动画插值、处理UI事件、管理控件状态、执行渲染优化
-void ui_system_advanced_event_processor(longlong ui_context_ptr,longlong event_data_ptr)
+void ui_system_advanced_event_processor(int64_t ui_context_ptr,int64_t event_data_ptr)
 {
   // 动画插值计算变量
   float animation_factor;        // 动画因子
@@ -83,19 +83,19 @@ void ui_system_advanced_event_processor(longlong ui_context_ptr,longlong event_d
   
   // 处理主控件事件类型
   if (*(int *)(ui_context_ptr + 0x10) == 1) {
-    FUN_180660070(*(longlong *)(ui_context_ptr + 0xc78) + 0x30,*(uint *)(ui_context_ptr + 0x18) & 0x7fffffff);
+    FUN_180660070(*(int64_t *)(ui_context_ptr + 0xc78) + 0x30,*(uint *)(ui_context_ptr + 0x18) & 0x7fffffff);
   }
   else {
-    FUN_18065ffa0((longlong)*(int *)(ui_context_ptr + 0x10) * UI_ANIMATION_BLOCK_SIZE + *(longlong *)(ui_context_ptr + 0xc78),
+    FUN_18065ffa0((int64_t)*(int *)(ui_context_ptr + 0x10) * UI_ANIMATION_BLOCK_SIZE + *(int64_t *)(ui_context_ptr + 0xc78),
                   *(int32_t *)(ui_context_ptr + 0x1c));
   }
   
   // 处理副控件事件类型
   if (*(int *)(ui_context_ptr + 0x14) == 1) {
-    FUN_180660070(*(longlong *)(ui_context_ptr + 0xc78) + 0x30,*(uint *)(ui_context_ptr + 0x18) & 0x7fffffff);
+    FUN_180660070(*(int64_t *)(ui_context_ptr + 0xc78) + 0x30,*(uint *)(ui_context_ptr + 0x18) & 0x7fffffff);
   }
   else {
-    FUN_18065ffa0((longlong)*(int *)(ui_context_ptr + 0x14) * UI_ANIMATION_BLOCK_SIZE + *(longlong *)(ui_context_ptr + 0xc78),
+    FUN_18065ffa0((int64_t)*(int *)(ui_context_ptr + 0x14) * UI_ANIMATION_BLOCK_SIZE + *(int64_t *)(ui_context_ptr + 0xc78),
                   *(int32_t *)(ui_context_ptr + 0x1c));
   }
   
@@ -113,7 +113,7 @@ void ui_system_advanced_event_processor(longlong ui_context_ptr,longlong event_d
         position_x = *(float *)(ui_context_ptr + 0x34);
         position_y = *(float *)(ui_context_ptr + 0x38);
         size_width = *(float *)(ui_context_ptr + 0x30);
-        widget_array = (uint64_t *)(*(longlong *)(ui_context_ptr + 0xc78) + 0xf0);
+        widget_array = (uint64_t *)(*(int64_t *)(ui_context_ptr + 0xc78) + 0xf0);
         blend_factor = (UI_ONE_FLOAT - position_x) - position_y;
         event_type = control_state;
         
@@ -152,7 +152,7 @@ LAB_18065da24:
       if (UI_ZERO_FLOAT < threshold_value) {
         position_x = *(float *)(ui_context_ptr + 0x34);
         position_y = *(float *)(ui_context_ptr + 0x38);
-        widget_array = (uint64_t *)(*(longlong *)(ui_context_ptr + 0xc78) + 0x120);
+        widget_array = (uint64_t *)(*(int64_t *)(ui_context_ptr + 0xc78) + 0x120);
         size_width = *(float *)(ui_context_ptr + 0x30);
         blend_factor = (UI_ONE_FLOAT - position_x) - position_y;
         event_type = control_state;
@@ -188,7 +188,7 @@ LAB_18065dae7:
     }
     else {
       // 处理其他类型的控件
-      FUN_18065fdb0((longlong)*(int *)(ui_context_ptr + 0x14) * UI_ANIMATION_BLOCK_SIZE + *(longlong *)(ui_context_ptr + 0xc78),
+      FUN_18065fdb0((int64_t)*(int *)(ui_context_ptr + 0x14) * UI_ANIMATION_BLOCK_SIZE + *(int64_t *)(ui_context_ptr + 0xc78),
                     event_data_ptr);
     }
   }
@@ -204,7 +204,7 @@ LAB_18065dae7:
       position_y = *(float *)(ui_context_ptr + 0x38);
       size_width = *(float *)(ui_context_ptr + 0x30);
       blend_factor = (UI_ONE_FLOAT - visibility_factor) * smooth_factor;
-      widget_array = (uint64_t *)(*(longlong *)(ui_context_ptr + 0xc78) + 0xf0);
+      widget_array = (uint64_t *)(*(int64_t *)(ui_context_ptr + 0xc78) + 0xf0);
       threshold_value = (UI_ONE_FLOAT - position_x) - position_y;
       visibility_factor = -UI_ONE_FLOAT;
       
@@ -250,7 +250,7 @@ LAB_18065dae7:
     if (UI_ZERO_FLOAT < visibility_factor) {
       position_x = *(float *)(ui_context_ptr + 0x34);
       position_y = *(float *)(ui_context_ptr + 0x38);
-      widget_array = (uint64_t *)(*(longlong *)(ui_context_ptr + 0xc78) + 0x120);
+      widget_array = (uint64_t *)(*(int64_t *)(ui_context_ptr + 0xc78) + 0x120);
       size_width = *(float *)(ui_context_ptr + 0x30);
       visibility_factor = visibility_factor * smooth_factor;
       smooth_factor = (UI_ONE_FLOAT - position_x) - position_y;
@@ -292,34 +292,34 @@ LAB_18065dae7:
   }
   else {
     // 处理其他类型的主控件
-    FUN_18065fdb0((longlong)*(int *)(ui_context_ptr + 0x10) * UI_ANIMATION_BLOCK_SIZE + *(longlong *)(ui_context_ptr + 0xc78),
+    FUN_18065fdb0((int64_t)*(int *)(ui_context_ptr + 0x10) * UI_ANIMATION_BLOCK_SIZE + *(int64_t *)(ui_context_ptr + 0xc78),
                   event_data_ptr);
   }
   
   // 检查是否需要执行额外的清理工作
-  if (*(longlong *)(event_data_ptr + 0x808) != 0) {
+  if (*(int64_t *)(event_data_ptr + 0x808) != 0) {
     func_0x000180435370(event_data_ptr);
   }
   
   return;
 }
 
-// 函数: void FUN_18065d804(longlong param_1,float param_2)
+// 函数: void FUN_18065d804(int64_t param_1,float param_2)
 // UI系统动画控制器 - 管理复杂的UI动画状态和控制逻辑
 // 该函数实现了高级的UI动画控制系统，包括动画状态管理、事件处理、参数计算等
 // 主要功能：动画插值计算、控件状态管理、事件分发、性能优化
-void ui_system_animation_controller(longlong animation_context_ptr,float time_factor)
+void ui_system_animation_controller(int64_t animation_context_ptr,float time_factor)
 {
   // 动画计算变量
   float position_x;             // X坐标位置
   float position_y;             // Y坐标位置
   float size_width;             // 宽度尺寸
-  longlong context_ptr;         // 上下文指针
+  int64_t context_ptr;         // 上下文指针
   uint64_t register_rbx;       // 寄存器RBX备份
   uint64_t register_rsi;       // 寄存器RSI备份
   int frame_count;              // 帧计数
   int animation_state;          // 动画状态
-  longlong register_r12;        // 寄存器R12备份
+  int64_t register_r12;        // 寄存器R12备份
   uint64_t register_r13;      // 寄存器R13备份
   uint64_t *widget_array;     // 控件数组指针
   uint64_t register_r15;      // 寄存器R15备份
@@ -390,19 +390,19 @@ void ui_system_animation_controller(longlong animation_context_ptr,float time_fa
   
   // 处理主控件动画状态
   if (*(int *)(animation_context_ptr + 0x10) == 1) {
-    FUN_180660070(*(longlong *)(animation_context_ptr + 0xc78) + 0x30,*(uint *)(animation_context_ptr + 0x18) & 0x7fffffff);
+    FUN_180660070(*(int64_t *)(animation_context_ptr + 0xc78) + 0x30,*(uint *)(animation_context_ptr + 0x18) & 0x7fffffff);
   }
   else {
-    FUN_18065ffa0((longlong)*(int *)(animation_context_ptr + 0x10) * UI_ANIMATION_BLOCK_SIZE + *(longlong *)(animation_context_ptr + 0xc78),
+    FUN_18065ffa0((int64_t)*(int *)(animation_context_ptr + 0x10) * UI_ANIMATION_BLOCK_SIZE + *(int64_t *)(animation_context_ptr + 0xc78),
                   *(int32_t *)(animation_context_ptr + 0x1c));
   }
   
   // 处理副控件动画状态
   if (*(int *)(animation_context_ptr + 0x14) == 1) {
-    FUN_180660070(*(longlong *)(animation_context_ptr + 0xc78) + 0x30,*(uint *)(animation_context_ptr + 0x18) & 0x7fffffff);
+    FUN_180660070(*(int64_t *)(animation_context_ptr + 0xc78) + 0x30,*(uint *)(animation_context_ptr + 0x18) & 0x7fffffff);
   }
   else {
-    FUN_18065ffa0((longlong)*(int *)(animation_context_ptr + 0x14) * UI_ANIMATION_BLOCK_SIZE + *(longlong *)(animation_context_ptr + 0xc78),
+    FUN_18065ffa0((int64_t)*(int *)(animation_context_ptr + 0x14) * UI_ANIMATION_BLOCK_SIZE + *(int64_t *)(animation_context_ptr + 0xc78),
                   *(int32_t *)(animation_context_ptr + 0x1c));
   }
   
@@ -420,7 +420,7 @@ void ui_system_animation_controller(longlong animation_context_ptr,float time_fa
         position_x = *(float *)(animation_context_ptr + 0x34);
         position_y = *(float *)(animation_context_ptr + 0x38);
         size_width = *(float *)(animation_context_ptr + 0x30);
-        widget_array = (uint64_t *)(*(longlong *)(animation_context_ptr + 0xc78) + 0xf0);
+        widget_array = (uint64_t *)(*(int64_t *)(animation_context_ptr + 0xc78) + 0xf0);
         blend_factor = (UI_ONE_FLOAT - position_x) - position_y;
         frame_count = animation_state;
         
@@ -459,7 +459,7 @@ LAB_18065da24:
       if (UI_ZERO_FLOAT < threshold_value) {
         position_x = *(float *)(animation_context_ptr + 0x34);
         position_y = *(float *)(animation_context_ptr + 0x38);
-        widget_array = (uint64_t *)(*(longlong *)(animation_context_ptr + 0xc78) + 0x120);
+        widget_array = (uint64_t *)(*(int64_t *)(animation_context_ptr + 0xc78) + 0x120);
         size_width = *(float *)(animation_context_ptr + 0x30);
         blend_factor = (UI_ONE_FLOAT - position_x) - position_y;
         frame_count = animation_state;
@@ -495,7 +495,7 @@ LAB_18065dae7:
     }
     else {
       // 处理其他类型的动画
-      FUN_18065fdb0((longlong)*(int *)(animation_context_ptr + 0x14) * UI_ANIMATION_BLOCK_SIZE + *(longlong *)(animation_context_ptr + 0xc78));
+      FUN_18065fdb0((int64_t)*(int *)(animation_context_ptr + 0x14) * UI_ANIMATION_BLOCK_SIZE + *(int64_t *)(animation_context_ptr + 0xc78));
     }
   }
   
@@ -510,7 +510,7 @@ LAB_18065dae7:
       position_y = *(float *)(animation_context_ptr + 0x38);
       size_width = *(float *)(animation_context_ptr + 0x30);
       blend_factor = (UI_ONE_FLOAT - smooth_factor) * animation_curve;
-      widget_array = (uint64_t *)(*(longlong *)(animation_context_ptr + 0xc78) + 0xf0);
+      widget_array = (uint64_t *)(*(int64_t *)(animation_context_ptr + 0xc78) + 0xf0);
       interaction_strength = (UI_ONE_FLOAT - position_x) - position_y;
       smooth_factor = -UI_ONE_FLOAT;
       
@@ -556,7 +556,7 @@ LAB_18065dae7:
     if (UI_ZERO_FLOAT < smooth_factor) {
       position_x = *(float *)(animation_context_ptr + 0x34);
       position_y = *(float *)(animation_context_ptr + 0x38);
-      widget_array = (uint64_t *)(*(longlong *)(animation_context_ptr + 0xc78) + 0x120);
+      widget_array = (uint64_t *)(*(int64_t *)(animation_context_ptr + 0xc78) + 0x120);
       size_width = *(float *)(animation_context_ptr + 0x30);
       smooth_factor = smooth_factor * animation_curve;
       animation_curve = (UI_ONE_FLOAT - position_x) - position_y;
@@ -598,7 +598,7 @@ LAB_18065dae7:
   }
   else {
     // 处理其他类型的主控件
-    FUN_18065fdb0((longlong)*(int *)(animation_context_ptr + 0x10) * UI_ANIMATION_BLOCK_SIZE + *(longlong *)(animation_context_ptr + 0xc78));
+    FUN_18065fdb0((int64_t)*(int *)(animation_context_ptr + 0x10) * UI_ANIMATION_BLOCK_SIZE + *(int64_t *)(animation_context_ptr + 0xc78));
   }
   
   return;
@@ -843,7 +843,7 @@ void ui_system_parameter_calculator(uint64_t *parameter_array,uint64_t config_da
                                     uint64_t param_13,uint64_t param_14,uint64_t param_15,uint64_t param_16)
 {
   // 参数计算变量
-  longlong stack_ptr;            // 栈指针
+  int64_t stack_ptr;            // 栈指针
   uint64_t register_rax;       // 寄存器RAX备份
   uint64_t register_rbx;       // 寄存器RBX备份
   uint64_t register_rbp;       // 寄存器RBP备份
@@ -907,7 +907,7 @@ void ui_system_parameter_calculator(uint64_t *parameter_array,uint64_t config_da
 void ui_system_memory_manager(void)
 {
   // 内存管理变量
-  longlong stack_ptr;            // 栈指针
+  int64_t stack_ptr;            // 栈指针
   uint64_t register_rax;       // 寄存器RAX备份
   uint64_t register_rbx;       // 寄存器RBX备份
   uint64_t register_rbp;       // 寄存器RBP备份
@@ -964,14 +964,14 @@ void ui_system_memory_manager(void)
   return;
 }
 
-// 函数: void FUN_18065e276(longlong param_1,uint64_t param_2,longlong param_3,uint64_t param_4)
+// 函数: void FUN_18065e276(int64_t param_1,uint64_t param_2,int64_t param_3,uint64_t param_4)
 // UI系统错误处理器 - 处理UI系统的错误和异常
 // 该函数实现了高级的UI错误处理机制，包括错误检测、错误处理、错误恢复等
 // 主要功能：错误检测、错误处理、错误恢复、错误管理
-void ui_system_error_handler(longlong error_context,uint64_t error_data,longlong recovery_context,uint64_t recovery_data)
+void ui_system_error_handler(int64_t error_context,uint64_t error_data,int64_t recovery_context,uint64_t recovery_data)
 {
   // 错误处理变量
-  longlong stack_ptr;            // 栈指针
+  int64_t stack_ptr;            // 栈指针
   uint64_t register_rax;       // 寄存器RAX备份
   uint64_t register_rbx;       // 寄存器RBX备份
   uint64_t register_rbp;       // 寄存器RBP备份
@@ -1035,7 +1035,7 @@ void ui_system_error_handler(longlong error_context,uint64_t error_data,longlong
 void ui_system_debug_support(void)
 {
   // 调试支持变量
-  longlong stack_ptr;            // 栈指针
+  int64_t stack_ptr;            // 栈指针
   uint64_t register_rax;       // 寄存器RAX备份
   uint64_t register_rbx;       // 寄存器RBX备份
   uint64_t register_rbp;       // 寄存器RBP备份
@@ -1099,7 +1099,7 @@ void ui_system_debug_support(void)
 void ui_system_performance_monitor(void)
 {
   // 性能监控变量
-  longlong stack_ptr;            // 栈指针
+  int64_t stack_ptr;            // 栈指针
   uint64_t register_rax;       // 寄存器RAX备份
   uint64_t register_rbx;       // 寄存器RBX备份
   uint64_t register_rbp;       // 寄存器RBP备份

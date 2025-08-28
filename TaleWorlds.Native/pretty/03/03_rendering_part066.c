@@ -340,27 +340,27 @@ void render_system_texture_mapper_initializer(RenderContext* context, uint32_t f
  */
 void initialize_texture_mapping_components(RenderContext* context, uint32_t flags) {
     // 初始化主要纹理映射组件
-    if (*(longlong*)(context + 0x530) == 0) {
+    if (*(int64_t*)(context + 0x530) == 0) {
         void* texture_component = create_texture_component("main_texture", flags);
-        *(longlong*)(context + 0x530) = (longlong)texture_component;
+        *(int64_t*)(context + 0x530) = (int64_t)texture_component;
     }
     
     // 初始化颜色纹理组件
-    if (*(longlong*)(context + 0x538) == 0) {
+    if (*(int64_t*)(context + 0x538) == 0) {
         void* color_component = create_texture_component("image_color", flags);
-        *(longlong*)(context + 0x538) = (longlong)color_component;
+        *(int64_t*)(context + 0x538) = (int64_t)color_component;
     }
     
     // 初始化着色器组件
-    if (*(longlong*)(context + 0x540) == 0) {
+    if (*(int64_t*)(context + 0x540) == 0) {
         void* shader_component = create_texture_component("shader_graph", flags);
-        *(longlong*)(context + 0x540) = (longlong)shader_component;
+        *(int64_t*)(context + 0x540) = (int64_t)shader_component;
     }
     
     // 初始化帧缓冲区组件
-    if (*(longlong*)(context + 0x550) == 0) {
+    if (*(int64_t*)(context + 0x550) == 0) {
         void* frame_buffer_component = create_texture_component("frame_buffer", flags);
-        *(longlong*)(context + 0x550) = (longlong)frame_buffer_component;
+        *(int64_t*)(context + 0x550) = (int64_t)frame_buffer_component;
     }
     
     // 更新组件标志

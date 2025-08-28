@@ -189,7 +189,7 @@ typedef struct {
  * @warning 函数执行期间会修改多个渲染状态
  * @see RenderingSystemMemoryManager, RenderingSystemStateSynchronizer
  */
-void FUN_18066f834(longlong param_1, longlong param_2, int param_3)
+void FUN_18066f834(int64_t param_1, int64_t param_2, int param_3)
 {
     // 局部变量声明
     RenderingMemoryManager* memory_manager;
@@ -235,11 +235,11 @@ void FUN_18066f834(longlong param_1, longlong param_2, int param_3)
             int current_texture = texture_flags;
             
             // 计算纹理数据位置
-            *(longlong*)(param_2 + 0xfb8) = 
-                ((longlong)(current_texture % (1 << (texture_format & 0x1f))) + 0x15c) * 0x30 + param_1;
+            *(int64_t*)(param_2 + 0xfb8) = 
+                ((int64_t)(current_texture % (1 << (texture_format & 0x1f))) + 0x15c) * 0x30 + param_1;
             
             // 初始化纹理处理器
-            texture_processor = (RenderingTextureProcessor*)*(longlong*)(param_2 + 0xf58);
+            texture_processor = (RenderingTextureProcessor*)*(int64_t*)(param_2 + 0xf58);
             texture_processor->texture_array = 0;
             texture_processor->texture_count = current_texture;
             
@@ -256,12 +256,12 @@ void FUN_18066f834(longlong param_1, longlong param_2, int param_3)
             // 检查是否需要直接内存访问
             if (*(int*)(param_1 + 0x2be0) == 0) {
                 // 直接内存访问模式
-                *(longlong*)(param_2 + 0xf18) = 
-                    (longlong)texture_data_size + *(longlong*)(param_1 + 0x12a0 + 0x38);
-                *(longlong*)(param_2 + 0xf20) = 
-                    *(longlong*)(param_1 + 0x12a0 + 0x40) + texture_state_size;
-                *(longlong*)(param_2 + 0xf28) = 
-                    *(longlong*)(param_1 + 0x12a0 + 0x48) + texture_state_size;
+                *(int64_t*)(param_2 + 0xf18) = 
+                    (int64_t)texture_data_size + *(int64_t*)(param_1 + 0x12a0 + 0x38);
+                *(int64_t*)(param_2 + 0xf20) = 
+                    *(int64_t*)(param_1 + 0x12a0 + 0x40) + texture_state_size;
+                *(int64_t*)(param_2 + 0xf28) = 
+                    *(int64_t*)(param_1 + 0x12a0 + 0x48) + texture_state_size;
                 
                 // 初始化纹理缓冲区
                 InitializeTextureBuffers(param_2, texture_data_size, texture_state_size);
@@ -302,7 +302,7 @@ void FUN_18066f834(longlong param_1, longlong param_2, int param_3)
     }
     
     // 调用终止处理器
-    FUN_1808fc050(*(ulonglong*)(param_1 + 0x50) ^ (ulonglong)&texture_processor);
+    FUN_1808fc050(*(uint64_t*)(param_1 + 0x50) ^ (uint64_t)&texture_processor);
 }
 
 // ===========================================
@@ -318,12 +318,12 @@ void FUN_18066f834(longlong param_1, longlong param_2, int param_3)
  * @param data_size 数据大小
  * @param state_size 状态大小
  */
-static void InitializeTextureBuffers(longlong param_2, int data_size, int state_size)
+static void InitializeTextureBuffers(int64_t param_2, int data_size, int state_size)
 {
     // 初始化纹理数据缓冲区
-    *(longlong*)(param_2 + 0xf18) = *(longlong*)(param_2 + 0xf18) - (longlong)*(int*)(param_2 + 0xe80);
-    *(longlong*)(param_2 + 0xf20) = *(longlong*)(param_2 + 0xf20) - (longlong)*(int*)(param_2 + 0xe94);
-    *(longlong*)(param_2 + 0xf28) = *(longlong*)(param_2 + 0xf28) - (longlong)*(int*)(param_2 + 0xe94);
+    *(int64_t*)(param_2 + 0xf18) = *(int64_t*)(param_2 + 0xf18) - (int64_t)*(int*)(param_2 + 0xe80);
+    *(int64_t*)(param_2 + 0xf20) = *(int64_t*)(param_2 + 0xf20) - (int64_t)*(int*)(param_2 + 0xe94);
+    *(int64_t*)(param_2 + 0xf28) = *(int64_t*)(param_2 + 0xf28) - (int64_t)*(int*)(param_2 + 0xe94);
     
     // 设置缓冲区参数
     *(uint32_t*)(param_2 + 0xf48) = *(uint32_t*)(param_2 + 0xe80);
@@ -342,23 +342,23 @@ static void InitializeTextureBuffers(longlong param_2, int data_size, int state_
  * @param param_2 纹理处理参数
  * @param texture_index 纹理索引
  */
-static void InitializeIndirectMemoryAccess(longlong param_1, longlong param_2, int texture_index)
+static void InitializeIndirectMemoryAccess(int64_t param_1, int64_t param_2, int texture_index)
 {
     // 设置间接内存访问指针
-    *(longlong*)(param_2 + 0xf18) = 
-        *(longlong*)(*(longlong*)(param_1 + 0x43b0) + texture_index * 8) + 0x20;
-    *(longlong*)(param_2 + 0xf20) = 
-        *(longlong*)(*(longlong*)(param_1 + 0x43b8) + texture_index * 8) + 0x10;
-    *(longlong*)(param_2 + 0xf28) = 
-        *(longlong*)(*(longlong*)(param_1 + 0x43c0) + texture_index * 8) + 0x10;
+    *(int64_t*)(param_2 + 0xf18) = 
+        *(int64_t*)(*(int64_t*)(param_1 + 0x43b0) + texture_index * 8) + 0x20;
+    *(int64_t*)(param_2 + 0xf20) = 
+        *(int64_t*)(*(int64_t*)(param_1 + 0x43b8) + texture_index * 8) + 0x10;
+    *(int64_t*)(param_2 + 0xf28) = 
+        *(int64_t*)(*(int64_t*)(param_1 + 0x43c0) + texture_index * 8) + 0x10;
     
     // 设置纹理处理参数
     *(void**)(param_2 + 0xf30) = 
-        *(void**)(*(longlong*)(param_1 + 0x43c8) + texture_index * 8);
+        *(void**)(*(int64_t*)(param_1 + 0x43c8) + texture_index * 8);
     *(void**)(param_2 + 0xf38) = 
-        *(void**)(*(longlong*)(param_1 + 0x43d0) + texture_index * 8);
+        *(void**)(*(int64_t*)(param_1 + 0x43d0) + texture_index * 8);
     *(void**)(param_2 + 0xf40) = 
-        *(void**)(*(longlong*)(param_1 + 0x43d8) + texture_index * 8);
+        *(void**)(*(int64_t*)(param_1 + 0x43d8) + texture_index * 8);
     
     // 设置处理标志
     *(uint32_t*)(param_2 + 0xf48) = 1;
@@ -375,18 +375,18 @@ static void InitializeIndirectMemoryAccess(longlong param_1, longlong param_2, i
  * @param flow_index 流索引
  * @param texture_index 纹理索引
  */
-static void ProcessTextureFlow(longlong param_1, longlong param_2, uint32_t flow_index, int texture_index)
+static void ProcessTextureFlow(int64_t param_1, int64_t param_2, uint32_t flow_index, int texture_index)
 {
     // 设置流处理参数
     *(int*)(param_2 + 0xf84) = flow_index * -0x80;
     
     // 计算流数据位置
-    *(longlong*)(param_2 + 0xea8) = 
-        *(longlong*)(param_1 + 0x12a0 + 0x38) + (longlong)(flow_index * 0x10);
-    *(longlong*)(param_2 + 0xeb0) = 
-        *(longlong*)(param_1 + 0x12a0 + 0x40) + (longlong)(flow_index * 8);
-    *(longlong*)(param_2 + 0xeb8) = 
-        *(longlong*)(param_1 + 0x12a0 + 0x48) + (longlong)(flow_index * 8);
+    *(int64_t*)(param_2 + 0xea8) = 
+        *(int64_t*)(param_1 + 0x12a0 + 0x38) + (int64_t)(flow_index * 0x10);
+    *(int64_t*)(param_2 + 0xeb0) = 
+        *(int64_t*)(param_1 + 0x12a0 + 0x40) + (int64_t)(flow_index * 8);
+    *(int64_t*)(param_2 + 0xeb8) = 
+        *(int64_t*)(param_1 + 0x12a0 + 0x48) + (int64_t)(flow_index * 8);
     
     // 调用纹理处理函数
     FUN_18066f3e0(0, param_2, 0);
@@ -395,15 +395,15 @@ static void ProcessTextureFlow(longlong param_1, longlong param_2, uint32_t flow
     *(uint32_t*)(param_2 + 0xf14) = 1;
     
     // 移动到下一个纹理位置
-    *(longlong*)(param_2 + 0xf18) = *(longlong*)(param_2 + 0xf18) + 0x10;
-    *(longlong*)(param_2 + 0xf20) = *(longlong*)(param_2 + 0xf20) + 8;
-    *(longlong*)(param_2 + 0xf28) = *(longlong*)(param_2 + 0xf28) + 8;
+    *(int64_t*)(param_2 + 0xf18) = *(int64_t*)(param_2 + 0xf18) + 0x10;
+    *(int64_t*)(param_2 + 0xf20) = *(int64_t*)(param_2 + 0xf20) + 8;
+    *(int64_t*)(param_2 + 0xf28) = *(int64_t*)(param_2 + 0xf28) + 8;
     
     // 更新纹理指针
     if (*(int*)(param_1 + 0x2be0) == 0) {
-        *(longlong*)(param_2 + 0xf30) = *(longlong*)(param_2 + 0xf30) + 0x10;
-        *(longlong*)(param_2 + 0xf38) = *(longlong*)(param_2 + 0xf38) + 8;
-        *(longlong*)(param_2 + 0xf40) = *(longlong*)(param_2 + 0xf40) + 8;
+        *(int64_t*)(param_2 + 0xf30) = *(int64_t*)(param_2 + 0xf30) + 0x10;
+        *(int64_t*)(param_2 + 0xf38) = *(int64_t*)(param_2 + 0xf38) + 8;
+        *(int64_t*)(param_2 + 0xf40) = *(int64_t*)(param_2 + 0xf40) + 8;
     }
     
     // 处理纹理数据
@@ -417,7 +417,7 @@ static void ProcessTextureFlow(longlong param_1, longlong param_2, uint32_t flow
  * 
  * @param param_2 纹理处理参数
  */
-static void InitializeBufferData(longlong param_2)
+static void InitializeBufferData(int64_t param_2)
 {
     void* buffer_ptr;
     int buffer_size;
@@ -445,7 +445,7 @@ static void InitializeBufferData(longlong param_2)
  * 
  * @param param_2 纹理处理参数
  */
-static void InitializeAdditionalBuffers(longlong param_2)
+static void InitializeAdditionalBuffers(int64_t param_2)
 {
     byte* buffer_ptr;
     int stride;
@@ -477,7 +477,7 @@ static void InitializeAdditionalBuffers(longlong param_2)
  * @param flow_index 流索引
  * @param texture_index 纹理索引
  */
-static void ProcessTextureData(longlong param_1, longlong param_2, uint32_t flow_index, int texture_index)
+static void ProcessTextureData(int64_t param_1, int64_t param_2, uint32_t flow_index, int texture_index)
 {
     byte* texture_data;
     byte format_type;
@@ -497,8 +497,8 @@ static void ProcessTextureData(longlong param_1, longlong param_2, uint32_t flow
     }
     
     // 获取处理标志
-    processing_flags = *(byte*)((longlong)format_type + 0xd00 + param_1 + 0x1ed0 + 0xc40 +
-                              ((longlong)texture_data[2] + (longlong)texture_data[0xb] * 4) * 4);
+    processing_flags = *(byte*)((int64_t)format_type + 0xd00 + param_1 + 0x1ed0 + 0xc40 +
+                              ((int64_t)texture_data[2] + (int64_t)texture_data[0xb] * 4) * 4);
     
     // 处理纹理数据
     if (texture_index != *(int*)(param_1 + 0x1e74) + -1) {
@@ -507,7 +507,7 @@ static void ProcessTextureData(longlong param_1, longlong param_2, uint32_t flow
     
     // 处理特殊纹理格式
     if ((flow_index != *(int*)(param_1 + 0x1e78) - 1U) &&
-        (*(char*)(*(longlong*)(param_2 + 0xf00) + 0x4e) == '\0')) {
+        (*(char*)(*(int64_t*)(param_2 + 0xf00) + 0x4e) == '\0')) {
         ProcessSpecialTextureFormat(param_1, param_2, flow_index, texture_index);
     }
     
@@ -527,24 +527,24 @@ static void ProcessTextureData(longlong param_1, longlong param_2, uint32_t flow
  * @param flow_index 流索引
  * @param texture_index 纹理索引
  */
-static void ProcessTextureMapping(longlong param_1, longlong param_2, uint32_t flow_index, int texture_index)
+static void ProcessTextureMapping(int64_t param_1, int64_t param_2, uint32_t flow_index, int texture_index)
 {
     uint32_t* texture_ptr;
     uint32_t texture_data[4];
-    longlong data_offset;
+    int64_t data_offset;
     
     // 获取纹理数据
-    texture_ptr = (uint32_t*)(flow_index * 0xf + *(longlong*)(param_2 + 0xea8));
+    texture_ptr = (uint32_t*)(flow_index * 0xf + *(int64_t*)(param_2 + 0xea8));
     texture_data[0] = texture_ptr[0];
     texture_data[1] = texture_ptr[1];
     texture_data[2] = texture_ptr[2];
     texture_data[3] = texture_ptr[3];
     
     // 计算数据偏移
-    data_offset = (longlong)(*(int*)(param_1 + 0x1e64) + 0x32) * 0x40;
+    data_offset = (int64_t)(*(int*)(param_1 + 0x1e64) + 0x32) * 0x40;
     
     // 设置纹理映射
-    texture_ptr = (uint32_t*)(*(longlong*)(*(longlong*)(param_1 + 0x43b0) + 8 + texture_index * 8) + 0x20);
+    texture_ptr = (uint32_t*)(*(int64_t*)(*(int64_t*)(param_1 + 0x43b0) + 8 + texture_index * 8) + 0x20);
     texture_ptr[0] = texture_data[0];
     texture_ptr[1] = texture_data[1];
     texture_ptr[2] = texture_data[2];
@@ -564,20 +564,20 @@ static void ProcessTextureMapping(longlong param_1, longlong param_2, uint32_t f
  * @param flow_index 流索引
  * @param texture_index 纹理索引
  */
-static void SetAdditionalMappingData(longlong param_1, longlong param_2, uint32_t flow_index, int texture_index)
+static void SetAdditionalMappingData(int64_t param_1, int64_t param_2, uint32_t flow_index, int texture_index)
 {
-    longlong source_offset;
-    longlong target_offset;
+    int64_t source_offset;
+    int64_t target_offset;
     
-    source_offset = *(longlong*)(param_2 + 0xeb0);
-    target_offset = *(longlong*)(*(longlong*)(param_1 + 0x43b8) + 8 + texture_index * 8) + 0x10;
+    source_offset = *(int64_t*)(param_2 + 0xeb0);
+    target_offset = *(int64_t*)(*(int64_t*)(param_1 + 0x43b8) + 8 + texture_index * 8) + 0x10;
     
-    *(longlong*)target_offset = *(longlong*)(flow_index * 7 + source_offset);
+    *(int64_t*)target_offset = *(int64_t*)(flow_index * 7 + source_offset);
     
-    source_offset = *(longlong*)(param_2 + 0xeb8);
-    target_offset = *(longlong*)(*(longlong*)(param_1 + 0x43c0) + 8 + texture_index * 8) + 0x10;
+    source_offset = *(int64_t*)(param_2 + 0xeb8);
+    target_offset = *(int64_t*)(*(int64_t*)(param_1 + 0x43c0) + 8 + texture_index * 8) + 0x10;
     
-    *(longlong*)target_offset = *(longlong*)(flow_index * 7 + source_offset);
+    *(int64_t*)target_offset = *(int64_t*)(flow_index * 7 + source_offset);
 }
 
 /**
@@ -590,20 +590,20 @@ static void SetAdditionalMappingData(longlong param_1, longlong param_2, uint32_
  * @param flow_index 流索引
  * @param texture_index 纹理索引
  */
-static void ProcessSpecialTextureFormat(longlong param_1, longlong param_2, uint32_t flow_index, int texture_index)
+static void ProcessSpecialTextureFormat(int64_t param_1, int64_t param_2, uint32_t flow_index, int texture_index)
 {
     byte* source_ptr;
     byte* target_ptr;
-    longlong source_offset;
-    longlong target_offset;
+    int64_t source_offset;
+    int64_t target_offset;
     int i;
     
     source_offset = flow_index * 2;
     
     // 处理纹理数据
     for (i = 0; i < 0x10; i += 4) {
-        target_ptr = *(byte**)(*(longlong*)(param_1 + 0x43c8) + texture_index * 8) + i;
-        source_ptr = (byte*)(*(longlong*)(param_2 + 0xea8) + source_offset + 0xf);
+        target_ptr = *(byte**)(*(int64_t*)(param_1 + 0x43c8) + texture_index * 8) + i;
+        source_ptr = (byte*)(*(int64_t*)(param_2 + 0xea8) + source_offset + 0xf);
         
         target_ptr[0] = source_ptr[0];
         target_ptr[1] = source_ptr[-(int)flow_index];
@@ -627,14 +627,14 @@ static void ProcessSpecialTextureFormat(longlong param_1, longlong param_2, uint
  * @param flow_index 流索引
  * @param texture_index 纹理索引
  */
-static void SetAdditionalTextureData(longlong param_1, longlong param_2, uint32_t flow_index, int texture_index)
+static void SetAdditionalTextureData(int64_t param_1, int64_t param_2, uint32_t flow_index, int texture_index)
 {
     byte* source_ptr;
     byte* target_ptr;
     int i;
     
     source_ptr = *(byte**)(param_2 + 0xeb0);
-    target_ptr = *(byte**)(*(longlong*)(param_1 + 0x43d0) + texture_index * 8);
+    target_ptr = *(byte**)(*(int64_t*)(param_1 + 0x43d0) + texture_index * 8);
     
     // 设置纹理数据
     for (i = 0; i < 8; i++) {
@@ -642,7 +642,7 @@ static void SetAdditionalTextureData(longlong param_1, longlong param_2, uint32_
     }
     
     source_ptr = *(byte**)(param_2 + 0xeb8);
-    target_ptr = *(byte**)(*(longlong*)(param_1 + 0x43d8) + texture_index * 8);
+    target_ptr = *(byte**)(*(int64_t*)(param_1 + 0x43d8) + texture_index * 8);
     
     // 设置第二个纹理数据
     for (i = 0; i < 8; i++) {
@@ -661,9 +661,9 @@ static void SetAdditionalTextureData(longlong param_1, longlong param_2, uint32_
  * @param texture_index 纹理索引
  * @param processing_flags 处理标志
  */
-static void OptimizeTextureProcessing(longlong param_1, longlong param_2, uint32_t flow_index, int texture_index, byte processing_flags)
+static void OptimizeTextureProcessing(int64_t param_1, int64_t param_2, uint32_t flow_index, int texture_index, byte processing_flags)
 {
-    longlong base_offset;
+    int64_t base_offset;
     bool use_advanced_mode;
     
     base_offset = param_1 + 0x1ed0;
@@ -690,17 +690,17 @@ static void OptimizeTextureProcessing(longlong param_1, longlong param_2, uint32
  * @param processing_flags 处理标志
  * @param base_offset 基础偏移
  */
-static void OptimizeAdvancedTextureProcessing(longlong param_1, longlong param_2, uint32_t flow_index, int texture_index, byte processing_flags, longlong base_offset)
+static void OptimizeAdvancedTextureProcessing(int64_t param_1, int64_t param_2, uint32_t flow_index, int texture_index, byte processing_flags, int64_t base_offset)
 {
-    longlong offset;
-    longlong texture_offset;
+    int64_t offset;
+    int64_t texture_offset;
     
-    offset = (longlong)(int)processing_flags;
+    offset = (int64_t)(int)processing_flags;
     texture_offset = offset * 0x10 + base_offset;
     
     // 设置优化参数
-    *(longlong*)(param_1 + 0x1ed0 - 0x40) = (offset + 0x40) * 0x10 + base_offset;
-    *(longlong*)(param_1 + 0x1ed0 - 0x30) = (offset + 0x80) * 0x10 + base_offset;
+    *(int64_t*)(param_1 + 0x1ed0 - 0x40) = (offset + 0x40) * 0x10 + base_offset;
+    *(int64_t*)(param_1 + 0x1ed0 - 0x30) = (offset + 0x80) * 0x10 + base_offset;
     
     // 执行优化操作
     if (0 < (int)flow_index) {
@@ -736,11 +736,11 @@ static void OptimizeAdvancedTextureProcessing(longlong param_1, longlong param_2
  * @param processing_flags 处理标志
  * @param base_offset 基础偏移
  */
-static void OptimizeStandardTextureProcessing(longlong param_1, longlong param_2, uint32_t flow_index, int texture_index, byte processing_flags, longlong base_offset)
+static void OptimizeStandardTextureProcessing(int64_t param_1, int64_t param_2, uint32_t flow_index, int texture_index, byte processing_flags, int64_t base_offset)
 {
-    longlong texture_offset;
+    int64_t texture_offset;
     
-    texture_offset = (longlong)(int)processing_flags * 0x10 + base_offset;
+    texture_offset = (int64_t)(int)processing_flags * 0x10 + base_offset;
     
     // 执行标准优化操作
     if (0 < (int)flow_index) {
@@ -749,7 +749,7 @@ static void OptimizeStandardTextureProcessing(longlong param_1, longlong param_2
     
     if (flow_index != 0) {
         FUN_18069ca80(*(void**)(param_2 + 0xea8), flow_index, 
-                      ((longlong)(int)processing_flags + 0x40) * 0x10 + base_offset);
+                      ((int64_t)(int)processing_flags + 0x40) * 0x10 + base_offset);
     }
     
     if (0 < texture_index) {
@@ -758,7 +758,7 @@ static void OptimizeStandardTextureProcessing(longlong param_1, longlong param_2
     
     if (flow_index != 0) {
         FUN_18069c990(*(void**)(param_2 + 0xea8), flow_index, 
-                      ((longlong)(int)processing_flags + 0x40) * 0x10 + base_offset);
+                      ((int64_t)(int)processing_flags + 0x40) * 0x10 + base_offset);
     }
 }
 
@@ -770,13 +770,13 @@ static void OptimizeStandardTextureProcessing(longlong param_1, longlong param_2
  * @param param_1 渲染系统上下文
  * @param param_2 纹理处理参数
  */
-static void CleanupTextureResources(longlong param_1, longlong param_2)
+static void CleanupTextureResources(int64_t param_1, int64_t param_2)
 {
     // 调用内存清理函数
     func_0x00018001c253(*(void**)(param_1 + 0x12a0), 
-                         *(longlong*)(param_2 + 0xea8) + 0x10,
-                         *(longlong*)(param_2 + 0xeb0) + 8,
-                         *(longlong*)(param_2 + 0xeb8) + 8);
+                         *(int64_t*)(param_2 + 0xea8) + 0x10,
+                         *(int64_t*)(param_2 + 0xeb0) + 8,
+                         *(int64_t*)(param_2 + 0xeb8) + 8);
 }
 
 /**
@@ -788,20 +788,20 @@ static void CleanupTextureResources(longlong param_1, longlong param_2)
  * @param param_2 纹理处理参数
  * @param texture_index 纹理索引
  */
-static void OptimizeTextureMemory(longlong param_1, longlong param_2, int texture_index)
+static void OptimizeTextureMemory(int64_t param_1, int64_t param_2, int texture_index)
 {
     void* texture_ptr;
     int texture_size;
     int i;
     
-    texture_ptr = *(void**)(*(longlong*)(param_1 + 0x43b0) + 8 + texture_index * 8);
-    texture_size = (*(int*)(*(void**)(*(longlong*)(param_1 + 0x12a8)) + 0x18) >> 1) + 0x10;
+    texture_ptr = *(void**)(*(int64_t*)(param_1 + 0x43b0) + 8 + texture_index * 8);
+    texture_size = (*(int*)(*(void**)(*(int64_t*)(param_1 + 0x12a8)) + 0x18) >> 1) + 0x10;
     
     // 优化纹理内存布局
     for (i = 0; i < 4; i++) {
-        *(byte*)((longlong)texture_ptr + 0x20 + i) = *(byte*)((longlong)texture_ptr + 0x1f + i);
-        *(byte*)((longlong)texture_ptr + 0x10 + texture_size + i) = *(byte*)((longlong)texture_ptr + 0xf + texture_size + i);
-        *(byte*)((longlong)texture_ptr + 0x10 + texture_size * 2 + i) = *(byte*)((longlong)texture_ptr + 0xf + texture_size * 2 + i);
+        *(byte*)((int64_t)texture_ptr + 0x20 + i) = *(byte*)((int64_t)texture_ptr + 0x1f + i);
+        *(byte*)((int64_t)texture_ptr + 0x10 + texture_size + i) = *(byte*)((int64_t)texture_ptr + 0xf + texture_size + i);
+        *(byte*)((int64_t)texture_ptr + 0x10 + texture_size * 2 + i) = *(byte*)((int64_t)texture_ptr + 0xf + texture_size * 2 + i);
     }
 }
 

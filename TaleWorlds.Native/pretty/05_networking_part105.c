@@ -262,10 +262,10 @@ void NetworkingSystem_EmptyFunction3(void) {
  * - 包含错误处理和异常恢复机制
  * - 采用高效的数据结构进行批量处理
  */
-ulonglong NetworkingDataProcessor(longlong param_1, longlong *param_2) {
-    longlong *plVar1;
+uint64_t NetworkingDataProcessor(int64_t param_1, int64_t *param_2) {
+    int64_t *plVar1;
     uint uVar2;
-    ulonglong uVar3;
+    uint64_t uVar3;
     int iVar4;
     uint auStackX_18[2];
     uint auStackX_20[2];
@@ -283,7 +283,7 @@ ulonglong NetworkingDataProcessor(longlong param_1, longlong *param_2) {
     
     // 验证连接状态
     if (*(int *)(param_2[1] + 0x18) == 0) {
-        plVar1 = (longlong *)*param_2;
+        plVar1 = (int64_t *)*param_2;
         if (*plVar1 == 0) {
             uVar3 = NETWORK_ERROR_DATA_CORRUPTED;
         }
@@ -296,7 +296,7 @@ ulonglong NetworkingDataProcessor(longlong param_1, longlong *param_2) {
                     return uVar3;
                 }
                 // 检查缓冲区溢出
-                if ((ulonglong)plVar1[2] < (ulonglong)auStackX_20[0] + 4) {
+                if ((uint64_t)plVar1[2] < (uint64_t)auStackX_20[0] + 4) {
                     uVar3 = NETWORK_ERROR_BUFFER_OVERFLOW;
                     goto LAB_18089cd46;
                 }
@@ -344,7 +344,7 @@ LAB_18089cd76:
         // 清理网络资源
         FUN_1808ddf80(param_2, auStack_38);
     }
-    return (ulonglong)uVar2;
+    return (uint64_t)uVar2;
 }
 
 /**
@@ -359,20 +359,20 @@ LAB_18089cd76:
  * - 包含数据范围检查和边界验证
  * - 采用高效的验证算法提高性能
  */
-ulonglong NetworkingDataValidator(void) {
-    longlong *plVar1;
+uint64_t NetworkingDataValidator(void) {
+    int64_t *plVar1;
     uint uVar2;
-    longlong in_RAX;
-    ulonglong uVar3;
+    int64_t in_RAX;
+    uint64_t uVar3;
     int iVar4;
-    longlong unaff_RBP;
-    longlong *unaff_RSI;
+    int64_t unaff_RBP;
+    int64_t *unaff_RSI;
     uint in_stack_00000080;
     uint in_stack_00000088;
     
     uVar2 = NETWORK_ERROR_DATA_CORRUPTED;
     if (*(int *)(in_RAX + 0x18) == 0) {
-        plVar1 = (longlong *)*unaff_RSI;
+        plVar1 = (int64_t *)*unaff_RSI;
         if (*plVar1 == 0) {
             uVar3 = NETWORK_ERROR_DATA_CORRUPTED;
         }
@@ -385,7 +385,7 @@ ulonglong NetworkingDataValidator(void) {
                     return uVar3;
                 }
                 // 缓冲区边界检查
-                if ((ulonglong)plVar1[2] < (ulonglong)in_stack_00000088 + 4) {
+                if ((uint64_t)plVar1[2] < (uint64_t)in_stack_00000088 + 4) {
                     uVar3 = NETWORK_ERROR_BUFFER_OVERFLOW;
                     goto LAB_18089cd46;
                 }
@@ -430,7 +430,7 @@ LAB_18089cd76:
         uVar2 = FUN_1808a2e00(*unaff_RSI, unaff_RBP + NETWORK_OFFSET_TIMEOUT_DATA);
     }
     if (uVar2 != 0) {
-        return (ulonglong)uVar2;
+        return (uint64_t)uVar2;
     }
     // 清理验证资源
     FUN_1808ddf80();
@@ -496,9 +496,9 @@ void NetworkingConnectionManager(void) {
  * - 包含安全检查和权限验证
  * - 采用高效的验证算法提高性能
  */
-ulonglong NetworkingConnectionValidator(longlong param_1, longlong *param_2) {
-    longlong *plVar1;
-    ulonglong uVar2;
+uint64_t NetworkingConnectionValidator(int64_t param_1, int64_t *param_2) {
+    int64_t *plVar1;
+    uint64_t uVar2;
     uint uVar3;
     bool bVar4;
     uint auStackX_18[2];
@@ -516,7 +516,7 @@ ulonglong NetworkingConnectionValidator(longlong param_1, longlong *param_2) {
         return NETWORK_ERROR_DATA_CORRUPTED;
     }
     
-    plVar1 = (longlong *)*param_2;
+    plVar1 = (int64_t *)*param_2;
     uVar3 = NETWORK_ERROR_DATA_CORRUPTED;
     if (*plVar1 == 0) {
         uVar2 = NETWORK_ERROR_DATA_CORRUPTED;
@@ -530,7 +530,7 @@ ulonglong NetworkingConnectionValidator(longlong param_1, longlong *param_2) {
                 return uVar2;
             }
             // 缓冲区边界检查
-            if ((ulonglong)plVar1[2] < (ulonglong)auStackX_18[0] + 4) {
+            if ((uint64_t)plVar1[2] < (uint64_t)auStackX_18[0] + 4) {
                 uVar2 = NETWORK_ERROR_BUFFER_OVERFLOW;
                 goto LAB_18089cef2;
             }
@@ -557,7 +557,7 @@ LAB_18089cef2:
         return NETWORK_ERROR_DATA_CORRUPTED;
     }
     
-    plVar1 = (longlong *)*param_2;
+    plVar1 = (int64_t *)*param_2;
     if (*plVar1 == 0) {
         uVar2 = NETWORK_ERROR_DATA_CORRUPTED;
     }
@@ -570,7 +570,7 @@ LAB_18089cef2:
                 return uVar2;
             }
             // 缓冲区边界检查
-            if ((ulonglong)plVar1[2] < (ulonglong)auStackX_18[0] + 4) {
+            if ((uint64_t)plVar1[2] < (uint64_t)auStackX_18[0] + 4) {
                 uVar2 = NETWORK_ERROR_BUFFER_OVERFLOW;
                 goto LAB_18089cf93;
             }
@@ -602,7 +602,7 @@ LAB_18089cf93:
     if (2 < (int)param_2[8] - 0x65U) goto LAB_18089d07f;
     bVar4 = false;
     if (*(int *)(param_2[1] + 0x18) != 0) goto LAB_18089d06e;
-    plVar1 = (longlong *)*param_2;
+    plVar1 = (int64_t *)*param_2;
     if (*plVar1 != 0) {
         if (plVar1[2] == 0) {
     LAB_18089d034:
@@ -612,7 +612,7 @@ LAB_18089cf93:
             auStackX_20[0] = 0;
             uVar3 = func_0x00018076a7d0(*plVar1, auStackX_20);
             if (uVar3 == 0) {
-                if ((ulonglong)auStackX_20[0] + 1 <= (ulonglong)plVar1[2]) goto LAB_18089d034;
+                if ((uint64_t)auStackX_20[0] + 1 <= (uint64_t)plVar1[2]) goto LAB_18089d034;
                 uVar3 = NETWORK_ERROR_BUFFER_OVERFLOW;
             }
         }
@@ -623,7 +623,7 @@ LAB_18089cf93:
     }
     if (uVar3 != 0) {
     LAB_18089d06e:
-        return (ulonglong)uVar3;
+        return (uint64_t)uVar3;
     }
     if (bVar4) {
         *(int32_t *)(param_1 + NETWORK_OFFSET_CONNECTION_DATA) = 3;
@@ -645,13 +645,13 @@ LAB_18089d07f:
  * - 包含连接状态管理和监控
  * - 采用高效的处理算法提高性能
  */
-ulonglong NetworkingConnectionHandler(void) {
-    longlong *plVar1;
-    longlong in_RAX;
-    ulonglong uVar2;
+uint64_t NetworkingConnectionHandler(void) {
+    int64_t *plVar1;
+    int64_t in_RAX;
+    uint64_t uVar2;
     uint uVar3;
-    longlong *unaff_RDI;
-    longlong unaff_R14;
+    int64_t *unaff_RDI;
+    int64_t unaff_R14;
     bool bVar4;
     char cStack0000000000000090;
     uint in_stack_00000098;
@@ -661,7 +661,7 @@ ulonglong NetworkingConnectionHandler(void) {
         return NETWORK_ERROR_DATA_CORRUPTED;
     }
     
-    plVar1 = (longlong *)*unaff_RDI;
+    plVar1 = (int64_t *)*unaff_RDI;
     uVar3 = NETWORK_ERROR_DATA_CORRUPTED;
     if (*plVar1 == 0) {
         uVar2 = NETWORK_ERROR_DATA_CORRUPTED;
@@ -675,7 +675,7 @@ ulonglong NetworkingConnectionHandler(void) {
                 return uVar2;
             }
             // 缓冲区边界检查
-            if ((ulonglong)plVar1[2] < (ulonglong)_cStack0000000000000090 + 4) {
+            if ((uint64_t)plVar1[2] < (uint64_t)_cStack0000000000000090 + 4) {
                 uVar2 = NETWORK_ERROR_BUFFER_OVERFLOW;
                 goto LAB_18089cef2;
             }
@@ -702,7 +702,7 @@ LAB_18089cef2:
         return NETWORK_ERROR_DATA_CORRUPTED;
     }
     
-    plVar1 = (longlong *)*unaff_RDI;
+    plVar1 = (int64_t *)*unaff_RDI;
     if (*plVar1 == 0) {
         uVar2 = NETWORK_ERROR_DATA_CORRUPTED;
     }
@@ -715,7 +715,7 @@ LAB_18089cef2:
                 return uVar2;
             }
             // 缓冲区边界检查
-            if ((ulonglong)plVar1[2] < (ulonglong)_cStack0000000000000090 + 4) {
+            if ((uint64_t)plVar1[2] < (uint64_t)_cStack0000000000000090 + 4) {
                 uVar2 = NETWORK_ERROR_BUFFER_OVERFLOW;
                 goto LAB_18089cf93;
             }
@@ -747,7 +747,7 @@ LAB_18089cf93:
     if (2 < (int)unaff_RDI[8] - 0x65U) goto LAB_18089d07f;
     bVar4 = false;
     if (*(int *)(unaff_RDI[1] + 0x18) != 0) goto LAB_18089d06e;
-    plVar1 = (longlong *)*unaff_RDI;
+    plVar1 = (int64_t *)*unaff_RDI;
     if (*plVar1 != 0) {
         if (plVar1[2] == 0) {
     LAB_18089d034:
@@ -757,7 +757,7 @@ LAB_18089cf93:
             in_stack_00000098 = 0;
             uVar3 = func_0x00018076a7d0(*plVar1, &stack0x00000098);
             if (uVar3 == 0) {
-                if ((ulonglong)in_stack_00000098 + 1 <= (ulonglong)plVar1[2]) goto LAB_18089d034;
+                if ((uint64_t)in_stack_00000098 + 1 <= (uint64_t)plVar1[2]) goto LAB_18089d034;
                 uVar3 = NETWORK_ERROR_BUFFER_OVERFLOW;
             }
         }
@@ -768,7 +768,7 @@ LAB_18089cf93:
     }
     if (uVar3 != 0) {
     LAB_18089d06e:
-        return (ulonglong)uVar3;
+        return (uint64_t)uVar3;
     }
     if (bVar4) {
         *(int32_t *)(unaff_R14 + NETWORK_OFFSET_CONNECTION_DATA) = 3;
@@ -790,21 +790,21 @@ LAB_18089d07f:
  * - 包含连接状态清理和内存回收
  * - 采用安全的终止机制避免资源泄漏
  */
-ulonglong NetworkingConnectionFinalizer(void) {
-    longlong *plVar1;
+uint64_t NetworkingConnectionFinalizer(void) {
+    int64_t *plVar1;
     uint in_EAX;
     uint uVar2;
-    ulonglong unaff_RBX;
-    longlong *unaff_RDI;
-    longlong unaff_R14;
-    ulonglong unaff_R15;
+    uint64_t unaff_RBX;
+    int64_t *unaff_RDI;
+    int64_t unaff_R14;
+    uint64_t unaff_R15;
     char in_stack_00000090;
     uint in_stack_00000098;
     
     uVar2 = (uint)unaff_RBX;
     if (2 < in_EAX) goto LAB_18089d07f;
     if (*(uint *)(unaff_RDI[1] + 0x18) != (uint)unaff_R15) goto LAB_18089d06e;
-    plVar1 = (longlong *)*unaff_RDI;
+    plVar1 = (int64_t *)*unaff_RDI;
     if (*plVar1 != 0) {
         if (plVar1[2] == unaff_R15) {
     LAB_18089d034:
@@ -814,12 +814,12 @@ ulonglong NetworkingConnectionFinalizer(void) {
             in_stack_00000098 = (uint)unaff_R15;
             uVar2 = func_0x00018076a7d0(*plVar1, &stack0x00000098);
             if (uVar2 == 0) {
-                if ((ulonglong)in_stack_00000098 + 1 <= (ulonglong)plVar1[2]) goto LAB_18089d034;
+                if ((uint64_t)in_stack_00000098 + 1 <= (uint64_t)plVar1[2]) goto LAB_18089d034;
                 uVar2 = NETWORK_ERROR_BUFFER_OVERFLOW;
             }
         }
     }
-    unaff_RBX = (ulonglong)uVar2;
+    unaff_RBX = (uint64_t)uVar2;
     if (uVar2 == 0) {
         unaff_RBX = unaff_R15 & 0xffffffff;
     }
@@ -876,7 +876,7 @@ void NetworkingProtocolValidator(void) {
  * - 包含协议状态管理和错误处理
  * - 采用高效的协议处理算法
  */
-void NetworkingProtocolProcessor(longlong param_1, uint64_t param_2) {
+void NetworkingProtocolProcessor(int64_t param_1, uint64_t param_2) {
     int iVar1;
     
     iVar1 = NetworkingConnectionValidator(param_1 + 0xd8);
@@ -900,10 +900,10 @@ void NetworkingProtocolProcessor(longlong param_1, uint64_t param_2) {
  * - 包含传输状态监控和错误恢复
  * - 采用高效的传输算法提高性能
  */
-ulonglong NetworkingTransferManager(longlong param_1, uint64_t *param_2) {
+uint64_t NetworkingTransferManager(int64_t param_1, uint64_t *param_2) {
     uint uVar1;
-    ulonglong uVar2;
-    ulonglong uVar3;
+    uint64_t uVar2;
+    uint64_t uVar3;
     int8_t auStack_48[32];
     int8_t auStack_28[32];
     
@@ -923,7 +923,7 @@ ulonglong NetworkingTransferManager(longlong param_1, uint64_t *param_2) {
     }
     
     uVar1 = FUN_1808a2740(*param_2, param_1 + NETWORK_OFFSET_PROTOCOL_DATA);
-    uVar2 = (ulonglong)uVar1;
+    uVar2 = (uint64_t)uVar1;
     if (uVar1 == 0) {
         uVar2 = NETWORK_ERROR_DATA_CORRUPTED;
         if (*(uint *)(param_2 + 8) < NETWORK_DATA_SIZE_MIN_1) {
@@ -943,7 +943,7 @@ ulonglong NetworkingTransferManager(longlong param_1, uint64_t *param_2) {
         }
         else if (*(int *)(param_2[1] + 0x18) == 0) {
             uVar1 = FUN_1808a2e00(*param_2, param_1 + NETWORK_OFFSET_SECURITY_DATA);
-            uVar2 = (ulonglong)uVar1;
+            uVar2 = (uint64_t)uVar1;
         }
         if ((int)uVar2 == 0) {
             // 清理传输资源
@@ -965,13 +965,13 @@ ulonglong NetworkingTransferManager(longlong param_1, uint64_t *param_2) {
  * - 包含传输安全检查和权限验证
  * - 采用高效的验证算法提高性能
  */
-ulonglong NetworkingTransferValidator(void) {
+uint64_t NetworkingTransferValidator(void) {
     uint uVar1;
-    longlong in_RAX;
-    ulonglong uVar2;
+    int64_t in_RAX;
+    uint64_t uVar2;
     uint64_t *unaff_RBX;
-    longlong unaff_RSI;
-    ulonglong uVar3;
+    int64_t unaff_RSI;
+    uint64_t uVar3;
     
     // 验证传输状态
     if (*(int *)(in_RAX + 0x18) != 0) {
@@ -979,7 +979,7 @@ ulonglong NetworkingTransferValidator(void) {
     }
     
     uVar1 = FUN_1808a2740(*unaff_RBX, unaff_RSI + NETWORK_OFFSET_PROTOCOL_DATA);
-    uVar3 = (ulonglong)uVar1;
+    uVar3 = (uint64_t)uVar1;
     if (uVar1 == 0) {
         uVar3 = NETWORK_ERROR_DATA_CORRUPTED;
         if (*(uint *)(unaff_RBX + 8) < NETWORK_DATA_SIZE_MIN_1) {
@@ -999,7 +999,7 @@ ulonglong NetworkingTransferValidator(void) {
         }
         else if (*(int *)(unaff_RBX[1] + 0x18) == 0) {
             uVar1 = FUN_1808a2e00(*unaff_RBX, unaff_RSI + NETWORK_OFFSET_SECURITY_DATA);
-            uVar3 = (ulonglong)uVar1;
+            uVar3 = (uint64_t)uVar1;
         }
         if ((int)uVar3 == 0) {
             // 清理传输验证资源
@@ -1021,16 +1021,16 @@ ulonglong NetworkingTransferValidator(void) {
  * - 包含传输状态管理和错误处理
  * - 采用高效的处理算法提高性能
  */
-ulonglong NetworkingTransferProcessor(void) {
+uint64_t NetworkingTransferProcessor(void) {
     uint uVar1;
-    ulonglong uVar2;
+    uint64_t uVar2;
     uint64_t *unaff_RBX;
-    longlong unaff_RSI;
-    ulonglong uVar3;
+    int64_t unaff_RSI;
+    uint64_t uVar3;
     
     // 执行传输处理
     uVar1 = FUN_1808a2740(*unaff_RBX, unaff_RSI + NETWORK_OFFSET_PROTOCOL_DATA);
-    uVar3 = (ulonglong)uVar1;
+    uVar3 = (uint64_t)uVar1;
     if (uVar1 == 0) {
         uVar3 = NETWORK_ERROR_DATA_CORRUPTED;
         if (*(uint *)(unaff_RBX + 8) < NETWORK_DATA_SIZE_MIN_1) {
@@ -1050,7 +1050,7 @@ ulonglong NetworkingTransferProcessor(void) {
         }
         else if (*(int *)(unaff_RBX[1] + 0x18) == 0) {
             uVar1 = FUN_1808a2e00(*unaff_RBX, unaff_RSI + NETWORK_OFFSET_SECURITY_DATA);
-            uVar3 = (ulonglong)uVar1;
+            uVar3 = (uint64_t)uVar1;
         }
         if ((int)uVar3 == 0) {
             // 清理传输处理资源
@@ -1133,7 +1133,7 @@ uint64_t NetworkingConfigValidator(void) {
  * - 包含配置验证和错误处理
  * - 采用高效的配置处理算法
  */
-uint64_t NetworkingConfigProcessor(longlong param_1, uint64_t *param_2) {
+uint64_t NetworkingConfigProcessor(int64_t param_1, uint64_t *param_2) {
     uint64_t uVar1;
     
     uVar1 = FUN_1808dde10(param_2, 0);
@@ -1168,7 +1168,7 @@ uint64_t NetworkingConfigProcessor(longlong param_1, uint64_t *param_2) {
  * - 包含配置验证和应用逻辑
  * - 采用高效的配置管理算法
  */
-void NetworkingConfigManager(longlong param_1, uint64_t *param_2) {
+void NetworkingConfigManager(int64_t param_1, uint64_t *param_2) {
     int iVar1;
     int8_t auStack_48[32];
     int8_t auStack_28[32];
@@ -1237,7 +1237,7 @@ void NetworkingConfigManager(longlong param_1, uint64_t *param_2) {
 void NetworkingConfigFinalizer(int32_t param_1) {
     int iVar1;
     uint64_t *unaff_RBX;
-    longlong unaff_RDI;
+    int64_t unaff_RDI;
     int32_t extraout_XMM0_Da;
     
     iVar1 = FUN_1808ddc20(param_1, &stack0x00000030, 0);

@@ -81,7 +81,7 @@ typedef struct {
  * 3. 分配初始渲染缓冲区
  * 4. 初始化渲染状态
  */
-void FUN_180307ca0(longlong param_1,longlong param_2)
+void FUN_180307ca0(int64_t param_1,int64_t param_2)
 {
     /* 初始化渲染上下文核心逻辑
      * - 设置渲染模式和配置参数
@@ -107,7 +107,7 @@ void FUN_180307ca0(longlong param_1,longlong param_2)
  * 3. 执行渲染操作
  * 4. 更新渲染统计信息
  */
-void FUN_180308500(longlong param_1,longlong param_2)
+void FUN_180308500(int64_t param_1,int64_t param_2)
 {
     /* 渲染批次处理核心逻辑
      * - 验证批次数据完整性
@@ -133,7 +133,7 @@ void FUN_180308500(longlong param_1,longlong param_2)
  * 3. 计算可见性状态
  * 4. 返回可见性结果
  */
-uint FUN_1803085c0(longlong param_1,longlong param_2)
+uint FUN_1803085c0(int64_t param_1,int64_t param_2)
 {
     /* 可见性检查核心逻辑
      * - 执行视锥体剔除算法
@@ -158,7 +158,7 @@ uint FUN_1803085c0(longlong param_1,longlong param_2)
  * 3. 处理状态变更
  * 4. 返回更新结果
  */
-uint FUN_1803085e2(longlong param_1)
+uint FUN_1803085e2(int64_t param_1)
 {
     /* 渲染状态更新核心逻辑
      * - 更新渲染状态机状态
@@ -183,7 +183,7 @@ uint FUN_1803085e2(longlong param_1)
  * 3. 设置资源属性
  * 4. 返回资源指针
  */
-void* FUN_180308660(longlong param_1)
+void* FUN_180308660(int64_t param_1)
 {
     /* 渲染资源分配核心逻辑
      * - 分配渲染缓冲区和资源
@@ -208,7 +208,7 @@ void* FUN_180308660(longlong param_1)
  * 3. 清理资源引用
  * 4. 返回释放结果
  */
-uint FUN_180308670(longlong param_1)
+uint FUN_180308670(int64_t param_1)
 {
     /* 渲染资源释放核心逻辑
      * - 验证资源有效性
@@ -234,7 +234,7 @@ uint FUN_180308670(longlong param_1)
  * 3. 执行渲染操作
  * 4. 返回执行结果
  */
-uint FUN_180308820(longlong param_1,longlong param_2)
+uint FUN_180308820(int64_t param_1,int64_t param_2)
 {
     /* 渲染命令执行核心逻辑
      * - 解析渲染命令类型
@@ -259,7 +259,7 @@ uint FUN_180308820(longlong param_1,longlong param_2)
  * 3. 检查数据范围
  * 4. 返回验证结果
  */
-uint FUN_1803089a0(longlong param_1)
+uint FUN_1803089a0(int64_t param_1)
 {
     /* 渲染数据验证核心逻辑
      * - 检查数据完整性和格式
@@ -284,7 +284,7 @@ uint FUN_1803089a0(longlong param_1)
  * 3. 重置上下文状态
  * 4. 返回清理结果
  */
-uint FUN_180308a90(longlong param_1)
+uint FUN_180308a90(int64_t param_1)
 {
     /* 渲染上下文清理核心逻辑
      * - 释放所有渲染资源

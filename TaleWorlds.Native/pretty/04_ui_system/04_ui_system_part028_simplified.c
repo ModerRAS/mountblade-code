@@ -45,12 +45,12 @@
  * @param render_context 渲染上下文指针
  * @param batch_index 批处理索引
  */
-void ui_system_advanced_render_batch_processor(longlong ui_context, longlong render_context, int batch_index)
+void ui_system_advanced_render_batch_processor(int64_t ui_context, int64_t render_context, int batch_index)
 {
     // 变量声明和初始化
     int32_t *texture_data_ptr;
     int32_t *vertex_data_ptr;
-    longlong resource_offset;
+    int64_t resource_offset;
     byte texture_flag;
     int current_index;
     uint64_t *render_data_ptr;
@@ -63,21 +63,21 @@ void ui_system_advanced_render_batch_processor(longlong ui_context, longlong ren
     uint texture_count;
     int *index_buffer;
     int8_t *flag_ptr;
-    longlong buffer_offset;
+    int64_t buffer_offset;
     uint vertex_stride;
-    longlong texture_base;
-    ulonglong resource_key;
-    longlong index_offset;
-    ulonglong buffer_size;
-    ulonglong vertex_size;
-    ulonglong texture_size;
+    int64_t texture_base;
+    uint64_t resource_key;
+    int64_t index_offset;
+    uint64_t buffer_size;
+    uint64_t vertex_size;
+    uint64_t texture_size;
     uint batch_counter;
     
     // 栈变量声明
     int8_t stack_buffer[32];
     uint stack_texture_count;
-    longlong *stack_ptr;
-    longlong stack_offset;
+    int64_t *stack_ptr;
+    int64_t stack_offset;
     int stack_index;
     int stack_batch;
     int stack_limit;
@@ -89,37 +89,37 @@ void ui_system_advanced_render_batch_processor(longlong ui_context, longlong ren
     uint stack_param;
     int stack_loop;
     int stack_iter;
-    longlong stack_pos;
-    longlong stack_base;
-    ulonglong stack_buffer1;
-    ulonglong stack_buffer2;
+    int64_t stack_pos;
+    int64_t stack_base;
+    uint64_t stack_buffer1;
+    uint64_t stack_buffer2;
     int *stack_buffer_ptr;
     int *stack_index_ptr;
-    longlong stack_data;
-    longlong stack_resource;
-    longlong stack_vertex;
-    longlong stack_texture;
-    longlong stack_memory;
-    longlong stack_context;
-    longlong stack_state;
+    int64_t stack_data;
+    int64_t stack_resource;
+    int64_t stack_vertex;
+    int64_t stack_texture;
+    int64_t stack_memory;
+    int64_t stack_context;
+    int64_t stack_state;
     uint stack_flags[4];
-    longlong stack_array[6];
+    int64_t stack_array[6];
     uint64_t stack_param1;
     uint64_t stack_param2;
     uint64_t stack_param3;
     uint64_t stack_param4;
     uint64_t stack_param5;
     uint64_t stack_param6;
-    ulonglong stack_security;
+    uint64_t stack_security;
     
     // 安全检查和初始化
-    stack_security = GET_SECURITY_COOKIE() ^ (ulonglong)stack_buffer;
+    stack_security = GET_SECURITY_COOKIE() ^ (uint64_t)stack_buffer;
     current_index = *(int *)(ui_context + 0x43a4);
-    stack_vertex = *(longlong *)(ui_context + 0x12a0);
+    stack_vertex = *(int64_t *)(ui_context + 0x12a0);
     stack_limit = *(int *)(ui_context + 0x1e78) + current_index;
-    texture_count = (ulonglong)(int)*(uint *)(stack_vertex + 0x10);
+    texture_count = (uint64_t)(int)*(uint *)(stack_vertex + 0x10);
     stack_texture_count = *(uint *)(stack_vertex + 0x24);
-    vertex_size = (ulonglong)(int)stack_texture_count;
+    vertex_size = (uint64_t)(int)stack_texture_count;
     index_buffer = *(int **)(ui_context + 0x12a8);
     stack_flag = 1 << ((byte)*(int32_t *)(ui_context + 0x34e4) & UI_FLAG_MASK);
     
@@ -127,22 +127,22 @@ void ui_system_advanced_render_batch_processor(longlong ui_context, longlong ren
     stack_array[3] = *(uint64_t *)(index_buffer + 0xe);
     stack_array[4] = *(uint64_t *)(index_buffer + 0x10);
     stack_array[5] = *(uint64_t *)(index_buffer + 0x12);
-    resource_offset = *(longlong *)(ui_context + 0x12b0);
+    resource_offset = *(int64_t *)(ui_context + 0x12b0);
     stack_flags[1] = index_buffer[0x22];
     stack_param = *(uint *)(stack_vertex + 0x10);
     stack_param1 = *(uint64_t *)(resource_offset + 0x38);
     stack_param2 = *(uint64_t *)(resource_offset + 0x40);
     stack_param3 = *(uint64_t *)(resource_offset + 0x48);
-    stack_memory = *(longlong *)(ui_context + 0x12b8);
+    stack_memory = *(int64_t *)(ui_context + 0x12b8);
     stack_flags[2] = *(int32_t *)(resource_offset + 0x88);
     stack_flags[0] = 0;
     stack_param4 = *(uint64_t *)(stack_memory + 0x38);
     stack_param5 = *(uint64_t *)(stack_memory + 0x40);
     stack_param6 = *(uint64_t *)(stack_memory + 0x48);
     stack_flags[3] = *(int32_t *)(stack_memory + 0x88);
-    stack_data = *(longlong *)(stack_vertex + 0x38);
-    stack_resource = *(longlong *)(stack_vertex + 0x40);
-    stack_texture = *(longlong *)(stack_vertex + 0x48);
+    stack_data = *(int64_t *)(stack_vertex + 0x38);
+    stack_resource = *(int64_t *)(stack_vertex + 0x40);
+    stack_texture = *(int64_t *)(stack_vertex + 0x48);
     
     // 初始化渲染上下文
     *(uint *)(render_context + 0xf10) = (uint)(batch_index != 0);
@@ -170,7 +170,7 @@ void ui_system_advanced_render_batch_processor(longlong ui_context, longlong ren
     }
     
     // 安全退出
-    FUN_1808fc050(stack_security ^ (ulonglong)stack_buffer);
+    FUN_1808fc050(stack_security ^ (uint64_t)stack_buffer);
 }
 
 /**

@@ -35,18 +35,18 @@
 #define NORMALIZATION_EPSILON 1.1754944e-38 // 归一化极小值
 
 // 函数别名定义
-void rendering_camera_position_processor(longlong param_1, uint64_t param_2, float param_3, longlong param_4) __attribute__((alias("FUN_180598210")));
-void rendering_camera_orientation_processor(uint64_t param_1, uint64_t param_2, float param_3, longlong param_4) __attribute__((alias("FUN_18059823c")));
+void rendering_camera_position_processor(int64_t param_1, uint64_t param_2, float param_3, int64_t param_4) __attribute__((alias("FUN_180598210")));
+void rendering_camera_orientation_processor(uint64_t param_1, uint64_t param_2, float param_3, int64_t param_4) __attribute__((alias("FUN_18059823c")));
 void rendering_interpolation_processor(uint64_t param_1, uint64_t param_2, float param_3, float param_4) __attribute__((alias("FUN_1805982c7")));
 void rendering_angle_normalizer(void) __attribute__((alias("FUN_1805983bf")));
 void rendering_simple_processor(void) __attribute__((alias("FUN_18059847b")));
-void rendering_advanced_angle_calculator(longlong param_1, float param_2, longlong param_3) __attribute__((alias("FUN_1805984e0")));
-void rendering_complex_angle_processor(longlong param_1, float param_2, longlong param_3) __attribute__((alias("FUN_1805984f3")));
+void rendering_advanced_angle_calculator(int64_t param_1, float param_2, int64_t param_3) __attribute__((alias("FUN_1805984e0")));
+void rendering_complex_angle_processor(int64_t param_1, float param_2, int64_t param_3) __attribute__((alias("FUN_1805984f3")));
 void rendering_visual_effect_processor(uint64_t param_1, uint64_t param_2, float param_3) __attribute__((alias("FUN_1805988fc")));
 void rendering_state_resetter(void) __attribute__((alias("FUN_180598972")));
-void rendering_movement_processor(float *param_1, float param_2, char param_3, longlong param_4) __attribute__((alias("FUN_1805989b0")));
-void rendering_angle_processor(float param_1, float param_2, char param_3, longlong param_4) __attribute__((alias("FUN_1805989db")));
-void rendering_vector_processor(uint64_t param_1, uint64_t param_2, float param_3, longlong param_4) __attribute__((alias("FUN_180598b0d")));
+void rendering_movement_processor(float *param_1, float param_2, char param_3, int64_t param_4) __attribute__((alias("FUN_1805989b0")));
+void rendering_angle_processor(float param_1, float param_2, char param_3, int64_t param_4) __attribute__((alias("FUN_1805989db")));
+void rendering_vector_processor(uint64_t param_1, uint64_t param_2, float param_3, int64_t param_4) __attribute__((alias("FUN_180598b0d")));
 void rendering_data_initializer(void) __attribute__((alias("FUN_180598b5d")));
 void rendering_collision_processor(float *param_1, float param_2, float *param_3, float param_4) __attribute__((alias("FUN_180598c50")));
 
@@ -67,7 +67,7 @@ void rendering_collision_processor(float *param_1, float param_2, float *param_3
  * - 支持平滑的相机运动过渡
  * - 包含角度标准化和范围控制
  */
-void FUN_180598210(longlong param_1, uint64_t param_2, float param_3, longlong param_4)
+void FUN_180598210(int64_t param_1, uint64_t param_2, float param_3, int64_t param_4)
 
 {
   char cVar1;
@@ -180,13 +180,13 @@ LAB_1805983ca:
  * - 朝向平滑过渡处理
  * - 边界条件处理
  */
-void FUN_18059823c(uint64_t param_1, uint64_t param_2, float param_3, longlong param_4)
+void FUN_18059823c(uint64_t param_1, uint64_t param_2, float param_3, int64_t param_4)
 
 {
   char cVar1;
   int iVar2;
   int iVar3;
-  longlong unaff_RBX;
+  int64_t unaff_RBX;
   float fVar4;
   float fVar5;
   float fVar6;
@@ -299,8 +299,8 @@ void FUN_1805982c7(uint64_t param_1, uint64_t param_2, float param_3, float para
 {
   int iVar1;
   int iVar2;
-  longlong unaff_RBX;
-  longlong unaff_RDI;
+  int64_t unaff_RBX;
+  int64_t unaff_RDI;
   float fVar3;
   float fVar4;
   float fVar5;
@@ -394,8 +394,8 @@ void FUN_1805983bf(void)
 {
   int iVar1;
   int iVar2;
-  longlong unaff_RBX;
-  longlong unaff_RDI;
+  int64_t unaff_RBX;
+  int64_t unaff_RDI;
   float fVar3;
   float fVar4;
   float fVar5;
@@ -462,8 +462,8 @@ void FUN_1805983bf(void)
 void FUN_18059847b(void)
 
 {
-  longlong unaff_RBX;
-  longlong unaff_RDI;
+  int64_t unaff_RBX;
+  int64_t unaff_RDI;
   
   if (*(char *)(unaff_RDI + 0x98) == '\0') {
     FUN_180596510();
@@ -494,7 +494,7 @@ void FUN_18059847b(void)
  * - atan2f角度计算
  * - 平滑过渡算法
  */
-void FUN_1805984e0(longlong param_1, float param_2, longlong param_3)
+void FUN_1805984e0(int64_t param_1, float param_2, int64_t param_3)
 
 {
   bool bVar1;
@@ -681,13 +681,13 @@ LAB_1805988c4:
  * - 多状态标志处理
  * - 优化的数据处理流程
  */
-void FUN_1805984f3(longlong param_1, float param_2, longlong param_3)
+void FUN_1805984f3(int64_t param_1, float param_2, int64_t param_3)
 
 {
   int iVar1;
   bool bVar2;
   uint uVar3;
-  longlong in_RAX;
+  int64_t in_RAX;
   uint64_t unaff_RDI;
   float fVar4;
   int32_t uVar5;
@@ -932,7 +932,7 @@ void FUN_1805988fc(uint64_t param_1, uint64_t param_2, float param_3)
 
 {
   uint uVar1;
-  longlong unaff_RBX;
+  int64_t unaff_RBX;
   int32_t unaff_EBP;
   char unaff_SIL;
   float fVar2;
@@ -974,7 +974,7 @@ void FUN_180598972(void)
 
 {
   uint uVar1;
-  longlong unaff_RBX;
+  int64_t unaff_RBX;
   int32_t unaff_EBP;
   char unaff_SIL;
   
@@ -1009,7 +1009,7 @@ void FUN_180598972(void)
  * - 运动阻尼控制
  * - 距离阈值检查
  */
-void FUN_1805989b0(float *param_1, float param_2, char param_3, longlong param_4)
+void FUN_1805989b0(float *param_1, float param_2, char param_3, int64_t param_4)
 
 {
   float fVar1;
@@ -1072,7 +1072,7 @@ void FUN_1805989b0(float *param_1, float param_2, char param_3, longlong param_4
     *(float *)(param_4 + 0x8c) = fVar1 * fVar7 * fVar2 + *(float *)(param_4 + 0x8c);
     return;
   }
-  *(ulonglong *)(param_4 + 0x8c) = (ulonglong)(uint)fVar5;
+  *(uint64_t *)(param_4 + 0x8c) = (uint64_t)(uint)fVar5;
   return;
 }
 
@@ -1098,7 +1098,7 @@ void FUN_1805989b0(float *param_1, float param_2, char param_3, longlong param_4
  * - 状态标志位管理
  * - 优化的数学计算
  */
-void FUN_1805989db(float param_1, float param_2, char param_3, longlong param_4)
+void FUN_1805989db(float param_1, float param_2, char param_3, int64_t param_4)
 
 {
   float fVar1;
@@ -1164,7 +1164,7 @@ void FUN_1805989db(float param_1, float param_2, char param_3, longlong param_4)
     *(float *)(param_4 + 0x8c) = fVar1 * fVar7 * fVar2 + *(float *)(param_4 + 0x8c);
     return;
   }
-  *(ulonglong *)(param_4 + 0x8c) = CONCAT44(in_stack_00000060._4_4_,fVar5);
+  *(uint64_t *)(param_4 + 0x8c) = CONCAT44(in_stack_00000060._4_4_,fVar5);
   return;
 }
 
@@ -1189,7 +1189,7 @@ void FUN_1805989db(float param_1, float param_2, char param_3, longlong param_4)
  * - 条件判断处理
  * - 内存布局管理
  */
-void FUN_180598b0d(uint64_t param_1, uint64_t param_2, float param_3, longlong param_4)
+void FUN_180598b0d(uint64_t param_1, uint64_t param_2, float param_3, int64_t param_4)
 
 {
   float fVar1;
@@ -1238,7 +1238,7 @@ void FUN_180598b0d(uint64_t param_1, uint64_t param_2, float param_3, longlong p
 void FUN_180598b5d(void)
 
 {
-  longlong in_R9;
+  int64_t in_R9;
   uint64_t in_stack_00000060;
   
   *(uint64_t *)(in_R9 + 0x8c) = in_stack_00000060;

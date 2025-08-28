@@ -10,8 +10,8 @@ void initialize_game_system_component_type1(void)
   char is_initialized;
   uint64_t *system_root;
   int compare_result;
-  longlong *system_manager;
-  longlong memory_offset;
+  int64_t *system_manager;
+  int64_t memory_offset;
   uint64_t *current_node;
   uint64_t *previous_node;
   uint64_t *next_node;
@@ -19,9 +19,9 @@ void initialize_game_system_component_type1(void)
   void *default_config;
   
   // 获取系统管理器
-  system_manager = (longlong *)get_system_manager();
+  system_manager = (int64_t *)get_system_manager();
   system_root = (uint64_t *)*system_manager;
-  is_initialized = *(char *)((longlong)system_root[1] + 0x19);
+  is_initialized = *(char *)((int64_t)system_root[1] + 0x19);
   default_config = &DEFAULT_CONFIG_1800868c0;
   previous_node = system_root;
   current_node = (uint64_t *)system_root[1];
@@ -38,7 +38,7 @@ void initialize_game_system_component_type1(void)
     }
     previous_node = current_node;
     current_node = next_node;
-    is_initialized = *(char *)((longlong)next_node + 0x19);
+    is_initialized = *(char *)((int64_t)next_node + 0x19);
   }
   
   // 如果需要创建新组件
@@ -66,8 +66,8 @@ void initialize_game_system_component_type2(void)
   char is_initialized;
   uint64_t *system_root;
   int compare_result;
-  longlong *system_manager;
-  longlong memory_offset;
+  int64_t *system_manager;
+  int64_t memory_offset;
   uint64_t *current_node;
   uint64_t *previous_node;
   uint64_t *next_node;
@@ -75,9 +75,9 @@ void initialize_game_system_component_type2(void)
   uint64_t uStackX_18;
   
   // 获取系统管理器
-  system_manager = (longlong *)get_system_manager();
+  system_manager = (int64_t *)get_system_manager();
   system_root = (uint64_t *)*system_manager;
-  is_initialized = *(char *)((longlong)system_root[1] + 0x19);
+  is_initialized = *(char *)((int64_t)system_root[1] + 0x19);
   uStackX_18 = 0;
   previous_node = system_root;
   current_node = (uint64_t *)system_root[1];
@@ -94,7 +94,7 @@ void initialize_game_system_component_type2(void)
     }
     previous_node = current_node;
     current_node = next_node;
-    is_initialized = *(char *)((longlong)next_node + 0x19);
+    is_initialized = *(char *)((int64_t)next_node + 0x19);
   }
   
   // 如果需要创建新组件
@@ -122,8 +122,8 @@ void initialize_game_system_component_type3(void)
   char is_initialized;
   uint64_t *system_root;
   int compare_result;
-  longlong *system_manager;
-  longlong memory_offset;
+  int64_t *system_manager;
+  int64_t memory_offset;
   uint64_t *current_node;
   uint64_t *previous_node;
   uint64_t *next_node;
@@ -131,9 +131,9 @@ void initialize_game_system_component_type3(void)
   void *component_callback;
   
   // 获取系统管理器
-  system_manager = (longlong *)get_system_manager();
+  system_manager = (int64_t *)get_system_manager();
   system_root = (uint64_t *)*system_manager;
-  is_initialized = *(char *)((longlong)system_root[1] + 0x19);
+  is_initialized = *(char *)((int64_t)system_root[1] + 0x19);
   component_callback = get_component_callback_handler();
   previous_node = system_root;
   current_node = (uint64_t *)system_root[1];
@@ -150,7 +150,7 @@ void initialize_game_system_component_type3(void)
     }
     previous_node = current_node;
     current_node = next_node;
-    is_initialized = *(char *)((longlong)next_node + 0x19);
+    is_initialized = *(char *)((int64_t)next_node + 0x19);
   }
   
   // 如果需要创建新组件
@@ -178,8 +178,8 @@ void initialize_game_system_component_type4(void)
   char is_initialized;
   uint64_t *system_root;
   int compare_result;
-  longlong *system_manager;
-  longlong memory_offset;
+  int64_t *system_manager;
+  int64_t memory_offset;
   uint64_t *current_node;
   uint64_t *previous_node;
   uint64_t *next_node;
@@ -187,9 +187,9 @@ void initialize_game_system_component_type4(void)
   void *component_handler;
   
   // 获取系统管理器
-  system_manager = (longlong *)get_system_manager();
+  system_manager = (int64_t *)get_system_manager();
   system_root = (uint64_t *)*system_manager;
-  is_initialized = *(char *)((longlong)system_root[1] + 0x19);
+  is_initialized = *(char *)((int64_t)system_root[1] + 0x19);
   component_handler = get_component_handler();
   previous_node = system_root;
   current_node = (uint64_t *)system_root[1];
@@ -206,7 +206,7 @@ void initialize_game_system_component_type4(void)
     }
     previous_node = current_node;
     current_node = next_node;
-    is_initialized = *(char *)((longlong)next_node + 0x19);
+    is_initialized = *(char *)((int64_t)next_node + 0x19);
   }
   
   // 如果需要创建新组件
@@ -234,8 +234,8 @@ void initialize_game_system_component_type5(void)
   char is_initialized;
   uint64_t *system_root;
   int compare_result;
-  longlong *system_manager;
-  longlong memory_offset;
+  int64_t *system_manager;
+  int64_t memory_offset;
   uint64_t *current_node;
   uint64_t *previous_node;
   uint64_t *next_node;
@@ -243,9 +243,9 @@ void initialize_game_system_component_type5(void)
   uint64_t uStackX_18;
   
   // 获取系统管理器
-  system_manager = (longlong *)get_system_manager();
+  system_manager = (int64_t *)get_system_manager();
   system_root = (uint64_t *)*system_manager;
-  is_initialized = *(char *)((longlong)system_root[1] + 0x19);
+  is_initialized = *(char *)((int64_t)system_root[1] + 0x19);
   uStackX_18 = 0;
   previous_node = system_root;
   current_node = (uint64_t *)system_root[1];
@@ -262,7 +262,7 @@ void initialize_game_system_component_type5(void)
     }
     previous_node = current_node;
     current_node = next_node;
-    is_initialized = *(char *)((longlong)next_node + 0x19);
+    is_initialized = *(char *)((int64_t)next_node + 0x19);
   }
   
   // 如果需要创建新组件
@@ -290,8 +290,8 @@ void initialize_game_system_component_type6(void)
   char is_initialized;
   uint64_t *system_root;
   int compare_result;
-  longlong *system_manager;
-  longlong memory_offset;
+  int64_t *system_manager;
+  int64_t memory_offset;
   uint64_t *current_node;
   uint64_t *previous_node;
   uint64_t *next_node;
@@ -299,9 +299,9 @@ void initialize_game_system_component_type6(void)
   void *system_callback;
   
   // 获取系统管理器
-  system_manager = (longlong *)get_system_manager();
+  system_manager = (int64_t *)get_system_manager();
   system_root = (uint64_t *)*system_manager;
-  is_initialized = *(char *)((longlong)system_root[1] + 0x19);
+  is_initialized = *(char *)((int64_t)system_root[1] + 0x19);
   system_callback = get_system_callback();
   previous_node = system_root;
   current_node = (uint64_t *)system_root[1];
@@ -318,7 +318,7 @@ void initialize_game_system_component_type6(void)
     }
     previous_node = current_node;
     current_node = next_node;
-    is_initialized = *(char *)((longlong)next_node + 0x19);
+    is_initialized = *(char *)((int64_t)next_node + 0x19);
   }
   
   // 如果需要创建新组件
@@ -346,8 +346,8 @@ void initialize_game_system_component_type7(void)
   char is_initialized;
   uint64_t *system_root;
   int compare_result;
-  longlong *system_manager;
-  longlong memory_offset;
+  int64_t *system_manager;
+  int64_t memory_offset;
   uint64_t *current_node;
   uint64_t *previous_node;
   uint64_t *next_node;
@@ -355,9 +355,9 @@ void initialize_game_system_component_type7(void)
   uint64_t uStackX_18;
   
   // 获取系统管理器
-  system_manager = (longlong *)get_system_manager();
+  system_manager = (int64_t *)get_system_manager();
   system_root = (uint64_t *)*system_manager;
-  is_initialized = *(char *)((longlong)system_root[1] + 0x19);
+  is_initialized = *(char *)((int64_t)system_root[1] + 0x19);
   uStackX_18 = 0;
   previous_node = system_root;
   current_node = (uint64_t *)system_root[1];
@@ -374,7 +374,7 @@ void initialize_game_system_component_type7(void)
     }
     previous_node = current_node;
     current_node = next_node;
-    is_initialized = *(char *)((longlong)next_node + 0x19);
+    is_initialized = *(char *)((int64_t)next_node + 0x19);
   }
   
   // 如果需要创建新组件
@@ -402,8 +402,8 @@ void initialize_game_system_component_type8(void)
   char is_initialized;
   uint64_t *system_root;
   int compare_result;
-  longlong *system_manager;
-  longlong memory_offset;
+  int64_t *system_manager;
+  int64_t memory_offset;
   uint64_t *current_node;
   uint64_t *previous_node;
   uint64_t *next_node;
@@ -411,9 +411,9 @@ void initialize_game_system_component_type8(void)
   void *default_config;
   
   // 获取系统管理器
-  system_manager = (longlong *)get_system_manager();
+  system_manager = (int64_t *)get_system_manager();
   system_root = (uint64_t *)*system_manager;
-  is_initialized = *(char *)((longlong)system_root[1] + 0x19);
+  is_initialized = *(char *)((int64_t)system_root[1] + 0x19);
   default_config = &DEFAULT_CONFIG_1800868c0;
   previous_node = system_root;
   current_node = (uint64_t *)system_root[1];
@@ -430,7 +430,7 @@ void initialize_game_system_component_type8(void)
     }
     previous_node = current_node;
     current_node = next_node;
-    is_initialized = *(char *)((longlong)next_node + 0x19);
+    is_initialized = *(char *)((int64_t)next_node + 0x19);
   }
   
   // 如果需要创建新组件
@@ -458,8 +458,8 @@ void initialize_game_system_component_type9(void)
   char is_initialized;
   uint64_t *system_root;
   int compare_result;
-  longlong *system_manager;
-  longlong memory_offset;
+  int64_t *system_manager;
+  int64_t memory_offset;
   uint64_t *current_node;
   uint64_t *previous_node;
   uint64_t *next_node;
@@ -467,9 +467,9 @@ void initialize_game_system_component_type9(void)
   uint64_t uStackX_18;
   
   // 获取系统管理器
-  system_manager = (longlong *)get_system_manager();
+  system_manager = (int64_t *)get_system_manager();
   system_root = (uint64_t *)*system_manager;
-  is_initialized = *(char *)((longlong)system_root[1] + 0x19);
+  is_initialized = *(char *)((int64_t)system_root[1] + 0x19);
   uStackX_18 = 0;
   previous_node = system_root;
   current_node = (uint64_t *)system_root[1];
@@ -486,7 +486,7 @@ void initialize_game_system_component_type9(void)
     }
     previous_node = current_node;
     current_node = next_node;
-    is_initialized = *(char *)((longlong)next_node + 0x19);
+    is_initialized = *(char *)((int64_t)next_node + 0x19);
   }
   
   // 如果需要创建新组件
@@ -514,8 +514,8 @@ void initialize_game_system_component_type10(void)
   char is_initialized;
   uint64_t *system_root;
   int compare_result;
-  longlong *system_manager;
-  longlong memory_offset;
+  int64_t *system_manager;
+  int64_t memory_offset;
   uint64_t *current_node;
   uint64_t *previous_node;
   uint64_t *next_node;
@@ -523,9 +523,9 @@ void initialize_game_system_component_type10(void)
   void *component_callback;
   
   // 获取系统管理器
-  system_manager = (longlong *)get_system_manager();
+  system_manager = (int64_t *)get_system_manager();
   system_root = (uint64_t *)*system_manager;
-  is_initialized = *(char *)((longlong)system_root[1] + 0x19);
+  is_initialized = *(char *)((int64_t)system_root[1] + 0x19);
   component_callback = get_component_callback_handler();
   previous_node = system_root;
   current_node = (uint64_t *)system_root[1];
@@ -542,7 +542,7 @@ void initialize_game_system_component_type10(void)
     }
     previous_node = current_node;
     current_node = next_node;
-    is_initialized = *(char *)((longlong)next_node + 0x19);
+    is_initialized = *(char *)((int64_t)next_node + 0x19);
   }
   
   // 如果需要创建新组件
@@ -570,8 +570,8 @@ void initialize_game_system_component_type11(void)
   char is_initialized;
   uint64_t *system_root;
   int compare_result;
-  longlong *system_manager;
-  longlong memory_offset;
+  int64_t *system_manager;
+  int64_t memory_offset;
   uint64_t *current_node;
   uint64_t *previous_node;
   uint64_t *next_node;
@@ -579,9 +579,9 @@ void initialize_game_system_component_type11(void)
   void *component_handler;
   
   // 获取系统管理器
-  system_manager = (longlong *)get_system_manager();
+  system_manager = (int64_t *)get_system_manager();
   system_root = (uint64_t *)*system_manager;
-  is_initialized = *(char *)((longlong)system_root[1] + 0x19);
+  is_initialized = *(char *)((int64_t)system_root[1] + 0x19);
   component_handler = get_component_handler();
   previous_node = system_root;
   current_node = (uint64_t *)system_root[1];
@@ -598,7 +598,7 @@ void initialize_game_system_component_type11(void)
     }
     previous_node = current_node;
     current_node = next_node;
-    is_initialized = *(char *)((longlong)next_node + 0x19);
+    is_initialized = *(char *)((int64_t)next_node + 0x19);
   }
   
   // 如果需要创建新组件
@@ -626,8 +626,8 @@ void initialize_game_system_component_type12(void)
   char is_initialized;
   uint64_t *system_root;
   int compare_result;
-  longlong *system_manager;
-  longlong memory_offset;
+  int64_t *system_manager;
+  int64_t memory_offset;
   uint64_t *current_node;
   uint64_t *previous_node;
   uint64_t *next_node;
@@ -635,9 +635,9 @@ void initialize_game_system_component_type12(void)
   uint64_t uStackX_18;
   
   // 获取系统管理器
-  system_manager = (longlong *)get_system_manager();
+  system_manager = (int64_t *)get_system_manager();
   system_root = (uint64_t *)*system_manager;
-  is_initialized = *(char *)((longlong)system_root[1] + 0x19);
+  is_initialized = *(char *)((int64_t)system_root[1] + 0x19);
   uStackX_18 = 0;
   previous_node = system_root;
   current_node = (uint64_t *)system_root[1];
@@ -654,7 +654,7 @@ void initialize_game_system_component_type12(void)
     }
     previous_node = current_node;
     current_node = next_node;
-    is_initialized = *(char *)((longlong)next_node + 0x19);
+    is_initialized = *(char *)((int64_t)next_node + 0x19);
   }
   
   // 如果需要创建新组件
@@ -682,8 +682,8 @@ void initialize_game_system_component_type13(void)
   char is_initialized;
   uint64_t *system_root;
   int compare_result;
-  longlong *system_manager;
-  longlong memory_offset;
+  int64_t *system_manager;
+  int64_t memory_offset;
   uint64_t *current_node;
   uint64_t *previous_node;
   uint64_t *next_node;
@@ -691,9 +691,9 @@ void initialize_game_system_component_type13(void)
   void *system_callback;
   
   // 获取系统管理器
-  system_manager = (longlong *)get_system_manager();
+  system_manager = (int64_t *)get_system_manager();
   system_root = (uint64_t *)*system_manager;
-  is_initialized = *(char *)((longlong)system_root[1] + 0x19);
+  is_initialized = *(char *)((int64_t)system_root[1] + 0x19);
   system_callback = get_system_callback();
   previous_node = system_root;
   current_node = (uint64_t *)system_root[1];
@@ -710,7 +710,7 @@ void initialize_game_system_component_type13(void)
     }
     previous_node = current_node;
     current_node = next_node;
-    is_initialized = *(char *)((longlong)next_node + 0x19);
+    is_initialized = *(char *)((int64_t)next_node + 0x19);
   }
   
   // 如果需要创建新组件
@@ -738,8 +738,8 @@ void initialize_game_system_component_type14(void)
   char is_initialized;
   uint64_t *system_root;
   int compare_result;
-  longlong *system_manager;
-  longlong memory_offset;
+  int64_t *system_manager;
+  int64_t memory_offset;
   uint64_t *current_node;
   uint64_t *previous_node;
   uint64_t *next_node;
@@ -747,9 +747,9 @@ void initialize_game_system_component_type14(void)
   uint64_t uStackX_18;
   
   // 获取系统管理器
-  system_manager = (longlong *)get_system_manager();
+  system_manager = (int64_t *)get_system_manager();
   system_root = (uint64_t *)*system_manager;
-  is_initialized = *(char *)((longlong)system_root[1] + 0x19);
+  is_initialized = *(char *)((int64_t)system_root[1] + 0x19);
   uStackX_18 = 0;
   previous_node = system_root;
   current_node = (uint64_t *)system_root[1];
@@ -766,7 +766,7 @@ void initialize_game_system_component_type14(void)
     }
     previous_node = current_node;
     current_node = next_node;
-    is_initialized = *(char *)((longlong)next_node + 0x19);
+    is_initialized = *(char *)((int64_t)next_node + 0x19);
   }
   
   // 如果需要创建新组件
@@ -794,8 +794,8 @@ void initialize_game_system_component_type15(void)
   char is_initialized;
   uint64_t *system_root;
   int compare_result;
-  longlong *system_manager;
-  longlong memory_offset;
+  int64_t *system_manager;
+  int64_t memory_offset;
   uint64_t *current_node;
   uint64_t *previous_node;
   uint64_t *next_node;
@@ -803,9 +803,9 @@ void initialize_game_system_component_type15(void)
   void *default_config;
   
   // 获取系统管理器
-  system_manager = (longlong *)get_system_manager();
+  system_manager = (int64_t *)get_system_manager();
   system_root = (uint64_t *)*system_manager;
-  is_initialized = *(char *)((longlong)system_root[1] + 0x19);
+  is_initialized = *(char *)((int64_t)system_root[1] + 0x19);
   default_config = &DEFAULT_CONFIG_1800868c0;
   previous_node = system_root;
   current_node = (uint64_t *)system_root[1];
@@ -822,7 +822,7 @@ void initialize_game_system_component_type15(void)
     }
     previous_node = current_node;
     current_node = next_node;
-    is_initialized = *(char *)((longlong)next_node + 0x19);
+    is_initialized = *(char *)((int64_t)next_node + 0x19);
   }
   
   // 如果需要创建新组件
@@ -850,8 +850,8 @@ void initialize_game_system_component_type16(void)
   char is_initialized;
   uint64_t *system_root;
   int compare_result;
-  longlong *system_manager;
-  longlong memory_offset;
+  int64_t *system_manager;
+  int64_t memory_offset;
   uint64_t *current_node;
   uint64_t *previous_node;
   uint64_t *next_node;
@@ -859,9 +859,9 @@ void initialize_game_system_component_type16(void)
   uint64_t uStackX_18;
   
   // 获取系统管理器
-  system_manager = (longlong *)get_system_manager();
+  system_manager = (int64_t *)get_system_manager();
   system_root = (uint64_t *)*system_manager;
-  is_initialized = *(char *)((longlong)system_root[1] + 0x19);
+  is_initialized = *(char *)((int64_t)system_root[1] + 0x19);
   uStackX_18 = 0;
   previous_node = system_root;
   current_node = (uint64_t *)system_root[1];
@@ -878,7 +878,7 @@ void initialize_game_system_component_type16(void)
     }
     previous_node = current_node;
     current_node = next_node;
-    is_initialized = *(char *)((longlong)next_node + 0x19);
+    is_initialized = *(char *)((int64_t)next_node + 0x19);
   }
   
   // 如果需要创建新组件
@@ -906,8 +906,8 @@ void initialize_game_system_component_type17(void)
   char is_initialized;
   uint64_t *system_root;
   int compare_result;
-  longlong *system_manager;
-  longlong memory_offset;
+  int64_t *system_manager;
+  int64_t memory_offset;
   uint64_t *current_node;
   uint64_t *previous_node;
   uint64_t *next_node;
@@ -915,9 +915,9 @@ void initialize_game_system_component_type17(void)
   void *module_initializer;
   
   // 获取系统管理器
-  system_manager = (longlong *)get_system_manager();
+  system_manager = (int64_t *)get_system_manager();
   system_root = (uint64_t *)*system_manager;
-  is_initialized = *(char *)((longlong)system_root[1] + 0x19);
+  is_initialized = *(char *)((int64_t)system_root[1] + 0x19);
   module_initializer = get_module_initializer();
   previous_node = system_root;
   current_node = (uint64_t *)system_root[1];
@@ -934,7 +934,7 @@ void initialize_game_system_component_type17(void)
     }
     previous_node = current_node;
     current_node = next_node;
-    is_initialized = *(char *)((longlong)next_node + 0x19);
+    is_initialized = *(char *)((int64_t)next_node + 0x19);
   }
   
   // 如果需要创建新组件
@@ -962,8 +962,8 @@ void initialize_game_system_component_type18(void)
   char is_initialized;
   uint64_t *system_root;
   int compare_result;
-  longlong *system_manager;
-  longlong memory_offset;
+  int64_t *system_manager;
+  int64_t memory_offset;
   uint64_t *current_node;
   uint64_t *previous_node;
   uint64_t *next_node;
@@ -971,9 +971,9 @@ void initialize_game_system_component_type18(void)
   uint64_t uStackX_18;
   
   // 获取系统管理器
-  system_manager = (longlong *)get_system_manager();
+  system_manager = (int64_t *)get_system_manager();
   system_root = (uint64_t *)*system_manager;
-  is_initialized = *(char *)((longlong)system_root[1] + 0x19);
+  is_initialized = *(char *)((int64_t)system_root[1] + 0x19);
   uStackX_18 = 0;
   previous_node = system_root;
   current_node = (uint64_t *)system_root[1];
@@ -990,7 +990,7 @@ void initialize_game_system_component_type18(void)
     }
     previous_node = current_node;
     current_node = next_node;
-    is_initialized = *(char *)((longlong)next_node + 0x19);
+    is_initialized = *(char *)((int64_t)next_node + 0x19);
   }
   
   // 如果需要创建新组件
@@ -1018,8 +1018,8 @@ void initialize_game_system_component_type19(void)
   char is_initialized;
   uint64_t *system_root;
   int compare_result;
-  longlong *system_manager;
-  longlong memory_offset;
+  int64_t *system_manager;
+  int64_t memory_offset;
   uint64_t *current_node;
   uint64_t *previous_node;
   uint64_t *next_node;
@@ -1027,9 +1027,9 @@ void initialize_game_system_component_type19(void)
   uint64_t uStackX_18;
   
   // 获取系统管理器
-  system_manager = (longlong *)get_system_manager();
+  system_manager = (int64_t *)get_system_manager();
   system_root = (uint64_t *)*system_manager;
-  is_initialized = *(char *)((longlong)system_root[1] + 0x19);
+  is_initialized = *(char *)((int64_t)system_root[1] + 0x19);
   uStackX_18 = 0;
   previous_node = system_root;
   current_node = (uint64_t *)system_root[1];
@@ -1046,7 +1046,7 @@ void initialize_game_system_component_type19(void)
     }
     previous_node = current_node;
     current_node = next_node;
-    is_initialized = *(char *)((longlong)next_node + 0x19);
+    is_initialized = *(char *)((int64_t)next_node + 0x19);
   }
   
   // 如果需要创建新组件
@@ -1074,8 +1074,8 @@ void initialize_game_system_component_type20(void)
   char is_initialized;
   uint64_t *system_root;
   int compare_result;
-  longlong *system_manager;
-  longlong memory_offset;
+  int64_t *system_manager;
+  int64_t memory_offset;
   uint64_t *current_node;
   uint64_t *previous_node;
   uint64_t *next_node;
@@ -1083,9 +1083,9 @@ void initialize_game_system_component_type20(void)
   uint64_t uStackX_18;
   
   // 获取系统管理器
-  system_manager = (longlong *)get_system_manager();
+  system_manager = (int64_t *)get_system_manager();
   system_root = (uint64_t *)*system_manager;
-  is_initialized = *(char *)((longlong)system_root[1] + 0x19);
+  is_initialized = *(char *)((int64_t)system_root[1] + 0x19);
   uStackX_18 = 0;
   previous_node = system_root;
   current_node = (uint64_t *)system_root[1];
@@ -1102,7 +1102,7 @@ void initialize_game_system_component_type20(void)
     }
     previous_node = current_node;
     current_node = next_node;
-    is_initialized = *(char *)((longlong)next_node + 0x19);
+    is_initialized = *(char *)((int64_t)next_node + 0x19);
   }
   
   // 如果需要创建新组件
@@ -1130,8 +1130,8 @@ void initialize_game_system_component_type21(void)
   char is_initialized;
   uint64_t *system_root;
   int compare_result;
-  longlong *system_manager;
-  longlong memory_offset;
+  int64_t *system_manager;
+  int64_t memory_offset;
   uint64_t *current_node;
   uint64_t *previous_node;
   uint64_t *next_node;
@@ -1139,9 +1139,9 @@ void initialize_game_system_component_type21(void)
   uint64_t uStackX_18;
   
   // 获取系统管理器
-  system_manager = (longlong *)get_system_manager();
+  system_manager = (int64_t *)get_system_manager();
   system_root = (uint64_t *)*system_manager;
-  is_initialized = *(char *)((longlong)system_root[1] + 0x19);
+  is_initialized = *(char *)((int64_t)system_root[1] + 0x19);
   uStackX_18 = 0;
   previous_node = system_root;
   current_node = (uint64_t *)system_root[1];
@@ -1158,7 +1158,7 @@ void initialize_game_system_component_type21(void)
     }
     previous_node = current_node;
     current_node = next_node;
-    is_initialized = *(char *)((longlong)next_node + 0x19);
+    is_initialized = *(char *)((int64_t)next_node + 0x19);
   }
   
   // 如果需要创建新组件
@@ -1186,8 +1186,8 @@ void initialize_game_system_component_type22(void)
   char is_initialized;
   uint64_t *system_root;
   int compare_result;
-  longlong *system_manager;
-  longlong memory_offset;
+  int64_t *system_manager;
+  int64_t memory_offset;
   uint64_t *current_node;
   uint64_t *previous_node;
   uint64_t *next_node;
@@ -1195,9 +1195,9 @@ void initialize_game_system_component_type22(void)
   uint64_t uStackX_18;
   
   // 获取系统管理器
-  system_manager = (longlong *)get_system_manager();
+  system_manager = (int64_t *)get_system_manager();
   system_root = (uint64_t *)*system_manager;
-  is_initialized = *(char *)((longlong)system_root[1] + 0x19);
+  is_initialized = *(char *)((int64_t)system_root[1] + 0x19);
   uStackX_18 = 0;
   previous_node = system_root;
   current_node = (uint64_t *)system_root[1];
@@ -1214,7 +1214,7 @@ void initialize_game_system_component_type22(void)
     }
     previous_node = current_node;
     current_node = next_node;
-    is_initialized = *(char *)((longlong)next_node + 0x19);
+    is_initialized = *(char *)((int64_t)next_node + 0x19);
   }
   
   // 如果需要创建新组件
@@ -1242,8 +1242,8 @@ void initialize_game_system_component_type23(void)
   char is_initialized;
   uint64_t *system_root;
   int compare_result;
-  longlong *system_manager;
-  longlong memory_offset;
+  int64_t *system_manager;
+  int64_t memory_offset;
   uint64_t *current_node;
   uint64_t *previous_node;
   uint64_t *next_node;
@@ -1251,9 +1251,9 @@ void initialize_game_system_component_type23(void)
   uint64_t uStackX_18;
   
   // 获取系统管理器
-  system_manager = (longlong *)get_system_manager();
+  system_manager = (int64_t *)get_system_manager();
   system_root = (uint64_t *)*system_manager;
-  is_initialized = *(char *)((longlong)system_root[1] + 0x19);
+  is_initialized = *(char *)((int64_t)system_root[1] + 0x19);
   uStackX_18 = 0;
   previous_node = system_root;
   current_node = (uint64_t *)system_root[1];
@@ -1270,7 +1270,7 @@ void initialize_game_system_component_type23(void)
     }
     previous_node = current_node;
     current_node = next_node;
-    is_initialized = *(char *)((longlong)next_node + 0x19);
+    is_initialized = *(char *)((int64_t)next_node + 0x19);
   }
   
   // 如果需要创建新组件
@@ -1298,8 +1298,8 @@ void initialize_game_system_component_type24(void)
   char is_initialized;
   uint64_t *system_root;
   int compare_result;
-  longlong *system_manager;
-  longlong memory_offset;
+  int64_t *system_manager;
+  int64_t memory_offset;
   uint64_t *current_node;
   uint64_t *previous_node;
   uint64_t *next_node;
@@ -1307,9 +1307,9 @@ void initialize_game_system_component_type24(void)
   uint64_t uStackX_18;
   
   // 获取系统管理器
-  system_manager = (longlong *)get_system_manager();
+  system_manager = (int64_t *)get_system_manager();
   system_root = (uint64_t *)*system_manager;
-  is_initialized = *(char *)((longlong)system_root[1] + 0x19);
+  is_initialized = *(char *)((int64_t)system_root[1] + 0x19);
   uStackX_18 = 0;
   previous_node = system_root;
   current_node = (uint64_t *)system_root[1];
@@ -1326,7 +1326,7 @@ void initialize_game_system_component_type24(void)
     }
     previous_node = current_node;
     current_node = next_node;
-    is_initialized = *(char *)((longlong)next_node + 0x19);
+    is_initialized = *(char *)((int64_t)next_node + 0x19);
   }
   
   // 如果需要创建新组件
@@ -1354,8 +1354,8 @@ void initialize_game_system_component_type25(void)
   char is_initialized;
   uint64_t *system_root;
   int compare_result;
-  longlong *system_manager;
-  longlong memory_offset;
+  int64_t *system_manager;
+  int64_t memory_offset;
   uint64_t *current_node;
   uint64_t *previous_node;
   uint64_t *next_node;
@@ -1363,9 +1363,9 @@ void initialize_game_system_component_type25(void)
   void *system_processor;
   
   // 获取系统管理器
-  system_manager = (longlong *)get_system_manager();
+  system_manager = (int64_t *)get_system_manager();
   system_root = (uint64_t *)*system_manager;
-  is_initialized = *(char *)((longlong)system_root[1] + 0x19);
+  is_initialized = *(char *)((int64_t)system_root[1] + 0x19);
   system_processor = get_system_processor();
   previous_node = system_root;
   current_node = (uint64_t *)system_root[1];
@@ -1382,7 +1382,7 @@ void initialize_game_system_component_type25(void)
     }
     previous_node = current_node;
     current_node = next_node;
-    is_initialized = *(char *)((longlong)next_node + 0x19);
+    is_initialized = *(char *)((int64_t)next_node + 0x19);
   }
   
   // 如果需要创建新组件
@@ -1410,8 +1410,8 @@ void initialize_game_system_component_type26(void)
   char is_initialized;
   uint64_t *system_root;
   int compare_result;
-  longlong *system_manager;
-  longlong memory_offset;
+  int64_t *system_manager;
+  int64_t memory_offset;
   uint64_t *current_node;
   uint64_t *previous_node;
   uint64_t *next_node;
@@ -1419,9 +1419,9 @@ void initialize_game_system_component_type26(void)
   uint64_t uStackX_18;
   
   // 获取系统管理器
-  system_manager = (longlong *)get_system_manager();
+  system_manager = (int64_t *)get_system_manager();
   system_root = (uint64_t *)*system_manager;
-  is_initialized = *(char *)((longlong)system_root[1] + 0x19);
+  is_initialized = *(char *)((int64_t)system_root[1] + 0x19);
   uStackX_18 = 0;
   previous_node = system_root;
   current_node = (uint64_t *)system_root[1];
@@ -1438,7 +1438,7 @@ void initialize_game_system_component_type26(void)
     }
     previous_node = current_node;
     current_node = next_node;
-    is_initialized = *(char *)((longlong)next_node + 0x19);
+    is_initialized = *(char *)((int64_t)next_node + 0x19);
   }
   
   // 如果需要创建新组件

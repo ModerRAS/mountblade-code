@@ -35,7 +35,7 @@ void initialize_with_default_params(uint64_t system_handle, uint64_t config_para
   char initialization_flag;        // 初始化标志
   int32_t default_params[4];    // 默认参数数组
   void *stack_buffer;         // 栈缓冲区
-  longlong stack_check;            // 栈检查值
+  int64_t stack_check;            // 栈检查值
   
   // 调用系统初始化函数
   FUN_1800623b0(system_message_context, 0, 0x100000000, 1, &unknown_var_4968_ptr, config_param, 0xfffffffffffffffe);
@@ -63,8 +63,8 @@ void initialize_with_default_params(uint64_t system_handle, uint64_t config_para
     
     // 如果未初始化，则进行初始化
     if (initialization_flag == '\0') {
-      (**(code **)(*(longlong *)init_system_data_config[1] + 0x18))
-                ((longlong *)init_system_data_config[1], &stack_buffer, default_params);
+      (**(code **)(*(int64_t *)init_system_data_config[1] + 0x18))
+                ((int64_t *)init_system_data_config[1], &stack_buffer, default_params);
     }
     
     // 设置缓冲区指针
@@ -102,7 +102,7 @@ void initialize_with_custom_params(uint64_t system_handle, int32_t custom_param,
   char initialization_flag;        // 初始化标志
   int32_t custom_params[2];     // 自定义参数数组
   void *stack_buffer;         // 栈缓冲区
-  longlong stack_check;            // 栈检查值
+  int64_t stack_check;            // 栈检查值
   
   // 调用系统初始化函数（使用自定义参数模式）
   FUN_1800623b0(system_message_context, 0, 0x100000000, 0xc, &unknown_var_5000_ptr, additional_config, 0xfffffffffffffffe);
@@ -130,8 +130,8 @@ void initialize_with_custom_params(uint64_t system_handle, int32_t custom_param,
     
     // 如果未初始化，则进行初始化
     if (initialization_flag == '\0') {
-      (**(code **)(*(longlong *)init_system_data_config[1] + 0x18))
-                ((longlong *)init_system_data_config[1], &stack_buffer, custom_params);
+      (**(code **)(*(int64_t *)init_system_data_config[1] + 0x18))
+                ((int64_t *)init_system_data_config[1], &stack_buffer, custom_params);
     }
     
     // 设置缓冲区指针
@@ -228,18 +228,18 @@ void initialize_complex_structure(uint64_t main_handle, uint64_t base_config, ui
 void reset_structure_pointers(uint64_t *structure_ptr)
 {
   // 检查并重置偏移0x52处的指针
-  if (*(longlong *)((longlong)structure_ptr + 0x52) != 0) {
+  if (*(int64_t *)((int64_t)structure_ptr + 0x52) != 0) {
     // 错误：指针不为空，可能存在内存泄漏
     FUN_18064e900();
   }
-  *(uint64_t *)((longlong)structure_ptr + 0x52) = 0;
+  *(uint64_t *)((int64_t)structure_ptr + 0x52) = 0;
   
   // 检查并重置偏移0x5a处的指针
-  if (*(longlong *)((longlong)structure_ptr + 0x5a) != 0) {
+  if (*(int64_t *)((int64_t)structure_ptr + 0x5a) != 0) {
     // 错误：指针不为空，可能存在内存泄漏
     FUN_18064e900();
   }
-  *(uint64_t *)((longlong)structure_ptr + 0x5a) = 0;
+  *(uint64_t *)((int64_t)structure_ptr + 0x5a) = 0;
   
   // 检查并重置索引8处的指针
   if (structure_ptr[8] != 0) {
@@ -290,16 +290,16 @@ void reset_structure_pointers(uint64_t *structure_ptr)
  * 
  * @param list_head 指向链表头部的指针
  */
-void cleanup_linked_structure(longlong *list_head)
+void cleanup_linked_structure(int64_t *list_head)
 {
-  longlong *list_tail;             // 链表尾部指针
-  longlong *current_node;          // 当前节点指针
+  int64_t *list_tail;             // 链表尾部指针
+  int64_t *current_node;          // 当前节点指针
   
   // 获取链表尾部指针
-  list_tail = (longlong *)list_head[1];
+  list_tail = (int64_t *)list_head[1];
   
   // 获取第一个节点
-  current_node = (longlong *)*list_head;
+  current_node = (int64_t *)*list_head;
   
   // 遍历链表
   while (true) {
@@ -314,18 +314,18 @@ void cleanup_linked_structure(longlong *list_head)
     }
     
     // 检查并清理偏移0x12处的指针
-    if (*(longlong *)((longlong)current_node + 0x12) != 0) {
+    if (*(int64_t *)((int64_t)current_node + 0x12) != 0) {
       // 错误：指针未清理
       FUN_18064e900();
     }
-    *(uint64_t *)((longlong)current_node + 0x12) = 0;
+    *(uint64_t *)((int64_t)current_node + 0x12) = 0;
     
     // 检查偏移0x1a处的指针
-    if (*(longlong *)((longlong)current_node + 0x1a) != 0) {
+    if (*(int64_t *)((int64_t)current_node + 0x1a) != 0) {
       // 错误：指针未清理，跳出循环
       break;
     }
-    *(uint64_t *)((longlong)current_node + 0x1a) = 0;
+    *(uint64_t *)((int64_t)current_node + 0x1a) = 0;
     
     // 检查并清理主指针
     if (*current_node != 0) {
@@ -342,7 +342,7 @@ void cleanup_linked_structure(longlong *list_head)
     current_node[1] = 0;
     
     // 移动到下一个节点（节点大小为0x24字节）
-    current_node = (longlong *)((longlong)current_node + 0x24);
+    current_node = (int64_t *)((int64_t)current_node + 0x24);
   }
   
   // 错误处理
@@ -363,97 +363,97 @@ void cleanup_linked_structure(longlong *list_head)
  * @param mesh_handle 网格数据源句柄
  * @param buffer_ptr 目标缓冲区指针
  */
-void serialize_mesh_data(longlong mesh_handle, longlong *buffer_ptr)
+void serialize_mesh_data(int64_t mesh_handle, int64_t *buffer_ptr)
 {
   ushort vertex_count;             // 顶点计数
   uint64_t data_ptr;             // 数据指针
   int *buffer_pos;                 // 缓冲区位置指针
   int32_t *data_writer;          // 数据写入器
   uint *uint_writer;               // 无符号整数写入器
-  longlong mesh_size;              // 网格大小
-  longlong vertex_offset;          // 顶点偏移量
+  int64_t mesh_size;              // 网格大小
+  int64_t vertex_offset;          // 顶点偏移量
   int element_count;               // 元素计数
-  ulonglong data_size;             // 数据大小
-  longlong loop_counter;           // 循环计数器
+  uint64_t data_size;             // 数据大小
+  int64_t loop_counter;           // 循环计数器
   
   // 初始化序列化过程
   System_QueueProcessor(buffer_ptr, mesh_handle);
-  lVar6 = *(longlong *)(param_1 + 0x28) - *(longlong *)(param_1 + 0x20);
+  lVar6 = *(int64_t *)(param_1 + 0x28) - *(int64_t *)(param_1 + 0x20);
   piVar3 = (int *)param_2[1];
   lVar6 = lVar6 / 0x12 + (lVar6 >> 0x3f);
   iVar8 = (int)(lVar6 >> 1) - (int)(lVar6 >> 0x3f);
-  if ((ulonglong)((*param_2 - (longlong)piVar3) + param_2[2]) < 5) {
-    System_BufferManager(param_2,(longlong)piVar3 + (4 - *param_2));
+  if ((uint64_t)((*param_2 - (int64_t)piVar3) + param_2[2]) < 5) {
+    System_BufferManager(param_2,(int64_t)piVar3 + (4 - *param_2));
     piVar3 = (int *)param_2[1];
   }
   *piVar3 = iVar8;
   puVar4 = (int32_t *)(param_2[1] + 4);
-  param_2[1] = (longlong)puVar4;
-  lVar6 = (longlong)iVar8;
+  param_2[1] = (int64_t)puVar4;
+  lVar6 = (int64_t)iVar8;
   if (0 < iVar8) {
     lVar10 = 0;
     do {
-      lVar7 = *(longlong *)(param_1 + 0x20) + lVar10;
-      if ((ulonglong)((*param_2 - (longlong)puVar4) + param_2[2]) < 5) {
-        System_BufferManager(param_2,(longlong)puVar4 + (4 - *param_2));
+      lVar7 = *(int64_t *)(param_1 + 0x20) + lVar10;
+      if ((uint64_t)((*param_2 - (int64_t)puVar4) + param_2[2]) < 5) {
+        System_BufferManager(param_2,(int64_t)puVar4 + (4 - *param_2));
         puVar4 = (int32_t *)param_2[1];
       }
       *puVar4 = 0;
       param_2[1] = param_2[1] + 4;
       puVar4 = (int32_t *)param_2[1];
-      if ((ulonglong)((*param_2 - (longlong)puVar4) + param_2[2]) < 5) {
-        System_BufferManager(param_2,(longlong)puVar4 + (4 - *param_2));
+      if ((uint64_t)((*param_2 - (int64_t)puVar4) + param_2[2]) < 5) {
+        System_BufferManager(param_2,(int64_t)puVar4 + (4 - *param_2));
         puVar4 = (int32_t *)param_2[1];
       }
       *puVar4 = 0x10;
       param_2[1] = param_2[1] + 4;
       puVar5 = (uint *)param_2[1];
       uVar1 = *(ushort *)(lVar7 + 0x10);
-      if ((ulonglong)((*param_2 - (longlong)puVar5) + param_2[2]) < 5) {
-        System_BufferManager(param_2,(longlong)puVar5 + (4 - *param_2));
+      if ((uint64_t)((*param_2 - (int64_t)puVar5) + param_2[2]) < 5) {
+        System_BufferManager(param_2,(int64_t)puVar5 + (4 - *param_2));
         puVar5 = (uint *)param_2[1];
       }
       *puVar5 = (uint)uVar1;
       puVar4 = (int32_t *)(param_2[1] + 4);
-      param_2[1] = (longlong)puVar4;
+      param_2[1] = (int64_t)puVar4;
       if (*(ushort *)(lVar7 + 0x10) != 0) {
         uVar2 = *(uint64_t *)(lVar7 + 8);
-        uVar9 = (ulonglong)*(ushort *)(lVar7 + 0x10) * 4;
-        if ((ulonglong)((*param_2 - (longlong)puVar4) + param_2[2]) <= uVar9) {
-          System_BufferManager(param_2,(longlong)puVar4 + (uVar9 - *param_2));
+        uVar9 = (uint64_t)*(ushort *)(lVar7 + 0x10) * 4;
+        if ((uint64_t)((*param_2 - (int64_t)puVar4) + param_2[2]) <= uVar9) {
+          System_BufferManager(param_2,(int64_t)puVar4 + (uVar9 - *param_2));
           puVar4 = (int32_t *)param_2[1];
         }
                     // WARNING: Subroutine does not return
         memcpy(puVar4,uVar2,uVar9);
       }
-      lVar7 = *(longlong *)(param_1 + 0x20) + lVar10;
-      if ((ulonglong)((*param_2 - (longlong)puVar4) + param_2[2]) < 5) {
-        System_BufferManager(param_2,(longlong)puVar4 + (4 - *param_2));
+      lVar7 = *(int64_t *)(param_1 + 0x20) + lVar10;
+      if ((uint64_t)((*param_2 - (int64_t)puVar4) + param_2[2]) < 5) {
+        System_BufferManager(param_2,(int64_t)puVar4 + (4 - *param_2));
         puVar4 = (int32_t *)param_2[1];
       }
       *puVar4 = 0;
       param_2[1] = param_2[1] + 4;
       puVar4 = (int32_t *)param_2[1];
-      if ((ulonglong)((*param_2 - (longlong)puVar4) + param_2[2]) < 5) {
-        System_BufferManager(param_2,(longlong)puVar4 + (4 - *param_2));
+      if ((uint64_t)((*param_2 - (int64_t)puVar4) + param_2[2]) < 5) {
+        System_BufferManager(param_2,(int64_t)puVar4 + (4 - *param_2));
         puVar4 = (int32_t *)param_2[1];
       }
       *puVar4 = 0x10;
       param_2[1] = param_2[1] + 4;
       puVar5 = (uint *)param_2[1];
       uVar1 = *(ushort *)(lVar7 + 0x22);
-      if ((ulonglong)((*param_2 - (longlong)puVar5) + param_2[2]) < 5) {
-        System_BufferManager(param_2,(longlong)puVar5 + (4 - *param_2));
+      if ((uint64_t)((*param_2 - (int64_t)puVar5) + param_2[2]) < 5) {
+        System_BufferManager(param_2,(int64_t)puVar5 + (4 - *param_2));
         puVar5 = (uint *)param_2[1];
       }
       *puVar5 = (uint)uVar1;
       puVar4 = (int32_t *)(param_2[1] + 4);
-      param_2[1] = (longlong)puVar4;
+      param_2[1] = (int64_t)puVar4;
       if (*(ushort *)(lVar7 + 0x22) != 0) {
         uVar2 = *(uint64_t *)(lVar7 + 0x1a);
-        uVar9 = (ulonglong)*(ushort *)(lVar7 + 0x22) * 4;
-        if ((ulonglong)((*param_2 - (longlong)puVar4) + param_2[2]) <= uVar9) {
-          System_BufferManager(param_2,(longlong)puVar4 + (uVar9 - *param_2));
+        uVar9 = (uint64_t)*(ushort *)(lVar7 + 0x22) * 4;
+        if ((uint64_t)((*param_2 - (int64_t)puVar4) + param_2[2]) <= uVar9) {
+          System_BufferManager(param_2,(int64_t)puVar4 + (uVar9 - *param_2));
           puVar4 = (int32_t *)param_2[1];
         }
                     // WARNING: Subroutine does not return
@@ -463,55 +463,55 @@ void serialize_mesh_data(longlong mesh_handle, longlong *buffer_ptr)
       lVar6 = lVar6 + -1;
     } while (lVar6 != 0);
   }
-  if ((ulonglong)((*param_2 - (longlong)puVar4) + param_2[2]) < 5) {
-    System_BufferManager(param_2,(longlong)puVar4 + (4 - *param_2));
+  if ((uint64_t)((*param_2 - (int64_t)puVar4) + param_2[2]) < 5) {
+    System_BufferManager(param_2,(int64_t)puVar4 + (4 - *param_2));
     puVar4 = (int32_t *)param_2[1];
   }
   *puVar4 = 0;
   param_2[1] = param_2[1] + 4;
   puVar4 = (int32_t *)param_2[1];
-  if ((ulonglong)((*param_2 - (longlong)puVar4) + param_2[2]) < 5) {
-    System_BufferManager(param_2,(longlong)puVar4 + (4 - *param_2));
+  if ((uint64_t)((*param_2 - (int64_t)puVar4) + param_2[2]) < 5) {
+    System_BufferManager(param_2,(int64_t)puVar4 + (4 - *param_2));
     puVar4 = (int32_t *)param_2[1];
   }
   *puVar4 = 0x10;
   param_2[1] = param_2[1] + 4;
   puVar5 = (uint *)param_2[1];
   uVar1 = *(ushort *)(param_1 + 0x50);
-  if ((ulonglong)((*param_2 - (longlong)puVar5) + param_2[2]) < 5) {
-    System_BufferManager(param_2,(longlong)puVar5 + (4 - *param_2));
+  if ((uint64_t)((*param_2 - (int64_t)puVar5) + param_2[2]) < 5) {
+    System_BufferManager(param_2,(int64_t)puVar5 + (4 - *param_2));
     puVar5 = (uint *)param_2[1];
   }
   *puVar5 = (uint)uVar1;
   puVar4 = (int32_t *)(param_2[1] + 4);
-  param_2[1] = (longlong)puVar4;
+  param_2[1] = (int64_t)puVar4;
   if (*(ushort *)(param_1 + 0x50) != 0) {
     uVar2 = *(uint64_t *)(param_1 + 0x48);
-    uVar9 = (ulonglong)*(ushort *)(param_1 + 0x50) * 4;
-    if ((ulonglong)((*param_2 - (longlong)puVar4) + param_2[2]) <= uVar9) {
-      System_BufferManager(param_2,(longlong)puVar4 + (uVar9 - *param_2));
+    uVar9 = (uint64_t)*(ushort *)(param_1 + 0x50) * 4;
+    if ((uint64_t)((*param_2 - (int64_t)puVar4) + param_2[2]) <= uVar9) {
+      System_BufferManager(param_2,(int64_t)puVar4 + (uVar9 - *param_2));
       puVar4 = (int32_t *)param_2[1];
     }
                     // WARNING: Subroutine does not return
     memcpy(puVar4,uVar2,uVar9);
   }
-  if ((ulonglong)((*param_2 - (longlong)puVar4) + param_2[2]) < 5) {
-    System_BufferManager(param_2,(longlong)puVar4 + (4 - *param_2));
+  if ((uint64_t)((*param_2 - (int64_t)puVar4) + param_2[2]) < 5) {
+    System_BufferManager(param_2,(int64_t)puVar4 + (4 - *param_2));
     puVar4 = (int32_t *)param_2[1];
   }
   *puVar4 = 0;
   param_2[1] = param_2[1] + 4;
   puVar4 = (int32_t *)param_2[1];
-  if ((ulonglong)((*param_2 - (longlong)puVar4) + param_2[2]) < 5) {
-    System_BufferManager(param_2,(longlong)puVar4 + (4 - *param_2));
+  if ((uint64_t)((*param_2 - (int64_t)puVar4) + param_2[2]) < 5) {
+    System_BufferManager(param_2,(int64_t)puVar4 + (4 - *param_2));
     puVar4 = (int32_t *)param_2[1];
   }
   *puVar4 = 0x10;
   param_2[1] = param_2[1] + 4;
   puVar5 = (uint *)param_2[1];
   uVar1 = *(ushort *)(param_1 + 0x62);
-  if ((ulonglong)((*param_2 - (longlong)puVar5) + param_2[2]) < 5) {
-    System_BufferManager(param_2,(longlong)puVar5 + (4 - *param_2));
+  if ((uint64_t)((*param_2 - (int64_t)puVar5) + param_2[2]) < 5) {
+    System_BufferManager(param_2,(int64_t)puVar5 + (4 - *param_2));
     puVar5 = (uint *)param_2[1];
   }
   *puVar5 = (uint)uVar1;
@@ -521,8 +521,8 @@ void serialize_mesh_data(longlong mesh_handle, longlong *buffer_ptr)
     return;
   }
   uVar2 = *(uint64_t *)(param_1 + 0x5a);
-  uVar9 = (ulonglong)*(ushort *)(param_1 + 0x62) * 4;
-  if ((ulonglong)((*param_2 - lVar6) + param_2[2]) <= uVar9) {
+  uVar9 = (uint64_t)*(ushort *)(param_1 + 0x62) * 4;
+  if ((uint64_t)((*param_2 - lVar6) + param_2[2]) <= uVar9) {
     System_BufferManager(param_2,uVar9 + (lVar6 - *param_2));
     lVar6 = param_2[1];
   }
@@ -543,45 +543,45 @@ void serialize_mesh_data(longlong mesh_handle, longlong *buffer_ptr)
  * 
  * @param mesh_handle 网格数据源句柄
  */
-void serialize_mesh_data_buffer(longlong mesh_handle)
+void serialize_mesh_data_buffer(int64_t mesh_handle)
 {
   ushort vertex_count;             // 顶点计数
   uint64_t data_ptr;             // 数据指针
   int *buffer_pos;                 // 缓冲区位置指针
   int32_t *data_writer;          // 数据写入器
   uint *uint_writer;               // 无符号整数写入器
-  longlong mesh_size;              // 网格大小
-  longlong *global_buffer;          // 全局缓冲区指针
-  longlong vertex_offset;          // 顶点偏移量;
+  int64_t mesh_size;              // 网格大小
+  int64_t *global_buffer;          // 全局缓冲区指针
+  int64_t vertex_offset;          // 顶点偏移量;
   int iVar8;
-  ulonglong uVar9;
-  longlong lVar10;
+  uint64_t uVar9;
+  int64_t lVar10;
   
   System_QueueProcessor();
-  lVar6 = *(longlong *)(param_1 + 0x28) - *(longlong *)(param_1 + 0x20);
+  lVar6 = *(int64_t *)(param_1 + 0x28) - *(int64_t *)(param_1 + 0x20);
   piVar3 = (int *)unaff_RBX[1];
   lVar6 = lVar6 / 0x12 + (lVar6 >> 0x3f);
   iVar8 = (int)(lVar6 >> 1) - (int)(lVar6 >> 0x3f);
-  if ((ulonglong)((*unaff_RBX - (longlong)piVar3) + unaff_RBX[2]) < 5) {
+  if ((uint64_t)((*unaff_RBX - (int64_t)piVar3) + unaff_RBX[2]) < 5) {
     System_BufferManager();
     piVar3 = (int *)unaff_RBX[1];
   }
   *piVar3 = iVar8;
   puVar4 = (int32_t *)(unaff_RBX[1] + 4);
-  unaff_RBX[1] = (longlong)puVar4;
-  lVar6 = (longlong)iVar8;
+  unaff_RBX[1] = (int64_t)puVar4;
+  lVar6 = (int64_t)iVar8;
   if (0 < iVar8) {
     lVar10 = 0;
     do {
-      lVar7 = *(longlong *)(param_1 + 0x20) + lVar10;
-      if ((ulonglong)((*unaff_RBX - (longlong)puVar4) + unaff_RBX[2]) < 5) {
+      lVar7 = *(int64_t *)(param_1 + 0x20) + lVar10;
+      if ((uint64_t)((*unaff_RBX - (int64_t)puVar4) + unaff_RBX[2]) < 5) {
         System_BufferManager();
         puVar4 = (int32_t *)unaff_RBX[1];
       }
       *puVar4 = 0;
       unaff_RBX[1] = unaff_RBX[1] + 4;
       puVar4 = (int32_t *)unaff_RBX[1];
-      if ((ulonglong)((*unaff_RBX - (longlong)puVar4) + unaff_RBX[2]) < 5) {
+      if ((uint64_t)((*unaff_RBX - (int64_t)puVar4) + unaff_RBX[2]) < 5) {
         System_BufferManager();
         puVar4 = (int32_t *)unaff_RBX[1];
       }
@@ -589,32 +589,32 @@ void serialize_mesh_data_buffer(longlong mesh_handle)
       unaff_RBX[1] = unaff_RBX[1] + 4;
       puVar5 = (uint *)unaff_RBX[1];
       uVar1 = *(ushort *)(lVar7 + 0x10);
-      if ((ulonglong)((*unaff_RBX - (longlong)puVar5) + unaff_RBX[2]) < 5) {
+      if ((uint64_t)((*unaff_RBX - (int64_t)puVar5) + unaff_RBX[2]) < 5) {
         System_BufferManager();
         puVar5 = (uint *)unaff_RBX[1];
       }
       *puVar5 = (uint)uVar1;
       puVar4 = (int32_t *)(unaff_RBX[1] + 4);
-      unaff_RBX[1] = (longlong)puVar4;
+      unaff_RBX[1] = (int64_t)puVar4;
       if (*(ushort *)(lVar7 + 0x10) != 0) {
         uVar2 = *(uint64_t *)(lVar7 + 8);
-        uVar9 = (ulonglong)*(ushort *)(lVar7 + 0x10) * 4;
-        if ((ulonglong)((*unaff_RBX - (longlong)puVar4) + unaff_RBX[2]) <= uVar9) {
+        uVar9 = (uint64_t)*(ushort *)(lVar7 + 0x10) * 4;
+        if ((uint64_t)((*unaff_RBX - (int64_t)puVar4) + unaff_RBX[2]) <= uVar9) {
           System_BufferManager();
           puVar4 = (int32_t *)unaff_RBX[1];
         }
                     // WARNING: Subroutine does not return
         memcpy(puVar4,uVar2,uVar9);
       }
-      lVar7 = *(longlong *)(param_1 + 0x20) + lVar10;
-      if ((ulonglong)((*unaff_RBX - (longlong)puVar4) + unaff_RBX[2]) < 5) {
+      lVar7 = *(int64_t *)(param_1 + 0x20) + lVar10;
+      if ((uint64_t)((*unaff_RBX - (int64_t)puVar4) + unaff_RBX[2]) < 5) {
         System_BufferManager();
         puVar4 = (int32_t *)unaff_RBX[1];
       }
       *puVar4 = 0;
       unaff_RBX[1] = unaff_RBX[1] + 4;
       puVar4 = (int32_t *)unaff_RBX[1];
-      if ((ulonglong)((*unaff_RBX - (longlong)puVar4) + unaff_RBX[2]) < 5) {
+      if ((uint64_t)((*unaff_RBX - (int64_t)puVar4) + unaff_RBX[2]) < 5) {
         System_BufferManager();
         puVar4 = (int32_t *)unaff_RBX[1];
       }
@@ -622,17 +622,17 @@ void serialize_mesh_data_buffer(longlong mesh_handle)
       unaff_RBX[1] = unaff_RBX[1] + 4;
       puVar5 = (uint *)unaff_RBX[1];
       uVar1 = *(ushort *)(lVar7 + 0x22);
-      if ((ulonglong)((*unaff_RBX - (longlong)puVar5) + unaff_RBX[2]) < 5) {
+      if ((uint64_t)((*unaff_RBX - (int64_t)puVar5) + unaff_RBX[2]) < 5) {
         System_BufferManager();
         puVar5 = (uint *)unaff_RBX[1];
       }
       *puVar5 = (uint)uVar1;
       puVar4 = (int32_t *)(unaff_RBX[1] + 4);
-      unaff_RBX[1] = (longlong)puVar4;
+      unaff_RBX[1] = (int64_t)puVar4;
       if (*(ushort *)(lVar7 + 0x22) != 0) {
         uVar2 = *(uint64_t *)(lVar7 + 0x1a);
-        uVar9 = (ulonglong)*(ushort *)(lVar7 + 0x22) * 4;
-        if ((ulonglong)((*unaff_RBX - (longlong)puVar4) + unaff_RBX[2]) <= uVar9) {
+        uVar9 = (uint64_t)*(ushort *)(lVar7 + 0x22) * 4;
+        if ((uint64_t)((*unaff_RBX - (int64_t)puVar4) + unaff_RBX[2]) <= uVar9) {
           System_BufferManager();
           puVar4 = (int32_t *)unaff_RBX[1];
         }
@@ -643,14 +643,14 @@ void serialize_mesh_data_buffer(longlong mesh_handle)
       lVar6 = lVar6 + -1;
     } while (lVar6 != 0);
   }
-  if ((ulonglong)((*unaff_RBX - (longlong)puVar4) + unaff_RBX[2]) < 5) {
+  if ((uint64_t)((*unaff_RBX - (int64_t)puVar4) + unaff_RBX[2]) < 5) {
     System_BufferManager();
     puVar4 = (int32_t *)unaff_RBX[1];
   }
   *puVar4 = 0;
   unaff_RBX[1] = unaff_RBX[1] + 4;
   puVar4 = (int32_t *)unaff_RBX[1];
-  if ((ulonglong)((*unaff_RBX - (longlong)puVar4) + unaff_RBX[2]) < 5) {
+  if ((uint64_t)((*unaff_RBX - (int64_t)puVar4) + unaff_RBX[2]) < 5) {
     System_BufferManager();
     puVar4 = (int32_t *)unaff_RBX[1];
   }
@@ -658,31 +658,31 @@ void serialize_mesh_data_buffer(longlong mesh_handle)
   unaff_RBX[1] = unaff_RBX[1] + 4;
   puVar5 = (uint *)unaff_RBX[1];
   uVar1 = *(ushort *)(param_1 + 0x50);
-  if ((ulonglong)((*unaff_RBX - (longlong)puVar5) + unaff_RBX[2]) < 5) {
+  if ((uint64_t)((*unaff_RBX - (int64_t)puVar5) + unaff_RBX[2]) < 5) {
     System_BufferManager();
     puVar5 = (uint *)unaff_RBX[1];
   }
   *puVar5 = (uint)uVar1;
   puVar4 = (int32_t *)(unaff_RBX[1] + 4);
-  unaff_RBX[1] = (longlong)puVar4;
+  unaff_RBX[1] = (int64_t)puVar4;
   if (*(ushort *)(param_1 + 0x50) != 0) {
     uVar2 = *(uint64_t *)(param_1 + 0x48);
-    uVar9 = (ulonglong)*(ushort *)(param_1 + 0x50) * 4;
-    if ((ulonglong)((*unaff_RBX - (longlong)puVar4) + unaff_RBX[2]) <= uVar9) {
+    uVar9 = (uint64_t)*(ushort *)(param_1 + 0x50) * 4;
+    if ((uint64_t)((*unaff_RBX - (int64_t)puVar4) + unaff_RBX[2]) <= uVar9) {
       System_BufferManager();
       puVar4 = (int32_t *)unaff_RBX[1];
     }
                     // WARNING: Subroutine does not return
     memcpy(puVar4,uVar2,uVar9);
   }
-  if ((ulonglong)((*unaff_RBX - (longlong)puVar4) + unaff_RBX[2]) < 5) {
+  if ((uint64_t)((*unaff_RBX - (int64_t)puVar4) + unaff_RBX[2]) < 5) {
     System_BufferManager();
     puVar4 = (int32_t *)unaff_RBX[1];
   }
   *puVar4 = 0;
   unaff_RBX[1] = unaff_RBX[1] + 4;
   puVar4 = (int32_t *)unaff_RBX[1];
-  if ((ulonglong)((*unaff_RBX - (longlong)puVar4) + unaff_RBX[2]) < 5) {
+  if ((uint64_t)((*unaff_RBX - (int64_t)puVar4) + unaff_RBX[2]) < 5) {
     System_BufferManager();
     puVar4 = (int32_t *)unaff_RBX[1];
   }
@@ -690,7 +690,7 @@ void serialize_mesh_data_buffer(longlong mesh_handle)
   unaff_RBX[1] = unaff_RBX[1] + 4;
   puVar5 = (uint *)unaff_RBX[1];
   uVar1 = *(ushort *)(param_1 + 0x62);
-  if ((ulonglong)((*unaff_RBX - (longlong)puVar5) + unaff_RBX[2]) < 5) {
+  if ((uint64_t)((*unaff_RBX - (int64_t)puVar5) + unaff_RBX[2]) < 5) {
     System_BufferManager();
     puVar5 = (uint *)unaff_RBX[1];
   }
@@ -701,8 +701,8 @@ void serialize_mesh_data_buffer(longlong mesh_handle)
     return;
   }
   uVar2 = *(uint64_t *)(param_1 + 0x5a);
-  uVar9 = (ulonglong)*(ushort *)(param_1 + 0x62) * 4;
-  if ((ulonglong)((*unaff_RBX - lVar6) + unaff_RBX[2]) <= uVar9) {
+  uVar9 = (uint64_t)*(ushort *)(param_1 + 0x62) * 4;
+  if ((uint64_t)((*unaff_RBX - lVar6) + unaff_RBX[2]) <= uVar9) {
     System_BufferManager();
     lVar6 = unaff_RBX[1];
   }
@@ -729,24 +729,24 @@ void process_mesh_batch(uint *batch_params)
   uint64_t data_ptr;             // 数据指针
   int32_t *data_writer;          // 数据写入器
   uint *uint_writer;               // 无符号整数写入器
-  longlong *buffer_manager;        // 缓冲区管理器
-  longlong mesh_offset;             // 网格偏移量
-  ulonglong data_size;             // 数据大小
-  longlong batch_counter;          // 批处理计数器;
+  int64_t *buffer_manager;        // 缓冲区管理器
+  int64_t mesh_offset;             // 网格偏移量
+  uint64_t data_size;             // 数据大小
+  int64_t batch_counter;          // 批处理计数器;
   uint unaff_R13D;
-  longlong unaff_R15;
+  int64_t unaff_R15;
   
-  uVar6 = (ulonglong)unaff_R13D;
+  uVar6 = (uint64_t)unaff_R13D;
   do {
-    lVar5 = *(longlong *)(unaff_R15 + 0x20) + uVar6;
-    if ((ulonglong)((*unaff_RBX - (longlong)param_1) + unaff_RBX[2]) < 5) {
+    lVar5 = *(int64_t *)(unaff_R15 + 0x20) + uVar6;
+    if ((uint64_t)((*unaff_RBX - (int64_t)param_1) + unaff_RBX[2]) < 5) {
       System_BufferManager();
       param_1 = (uint *)unaff_RBX[1];
     }
     *param_1 = unaff_R13D;
     unaff_RBX[1] = unaff_RBX[1] + 4;
     puVar3 = (int32_t *)unaff_RBX[1];
-    if ((ulonglong)((*unaff_RBX - (longlong)puVar3) + unaff_RBX[2]) < 5) {
+    if ((uint64_t)((*unaff_RBX - (int64_t)puVar3) + unaff_RBX[2]) < 5) {
       System_BufferManager();
       puVar3 = (int32_t *)unaff_RBX[1];
     }
@@ -754,32 +754,32 @@ void process_mesh_batch(uint *batch_params)
     unaff_RBX[1] = unaff_RBX[1] + 4;
     puVar4 = (uint *)unaff_RBX[1];
     uVar1 = *(ushort *)(lVar5 + 0x10);
-    if ((ulonglong)((*unaff_RBX - (longlong)puVar4) + unaff_RBX[2]) < 5) {
+    if ((uint64_t)((*unaff_RBX - (int64_t)puVar4) + unaff_RBX[2]) < 5) {
       System_BufferManager();
       puVar4 = (uint *)unaff_RBX[1];
     }
     *puVar4 = (uint)uVar1;
     puVar4 = (uint *)(unaff_RBX[1] + 4);
-    unaff_RBX[1] = (longlong)puVar4;
+    unaff_RBX[1] = (int64_t)puVar4;
     if (*(ushort *)(lVar5 + 0x10) != 0) {
       uVar2 = *(uint64_t *)(lVar5 + 8);
-      uVar6 = (ulonglong)*(ushort *)(lVar5 + 0x10) * 4;
-      if ((ulonglong)((*unaff_RBX - (longlong)puVar4) + unaff_RBX[2]) <= uVar6) {
+      uVar6 = (uint64_t)*(ushort *)(lVar5 + 0x10) * 4;
+      if ((uint64_t)((*unaff_RBX - (int64_t)puVar4) + unaff_RBX[2]) <= uVar6) {
         System_BufferManager();
         puVar4 = (uint *)unaff_RBX[1];
       }
                     // WARNING: Subroutine does not return
       memcpy(puVar4,uVar2,uVar6);
     }
-    lVar5 = *(longlong *)(unaff_R15 + 0x20) + uVar6;
-    if ((ulonglong)((*unaff_RBX - (longlong)puVar4) + unaff_RBX[2]) < 5) {
+    lVar5 = *(int64_t *)(unaff_R15 + 0x20) + uVar6;
+    if ((uint64_t)((*unaff_RBX - (int64_t)puVar4) + unaff_RBX[2]) < 5) {
       System_BufferManager();
       puVar4 = (uint *)unaff_RBX[1];
     }
     *puVar4 = unaff_R13D;
     unaff_RBX[1] = unaff_RBX[1] + 4;
     puVar3 = (int32_t *)unaff_RBX[1];
-    if ((ulonglong)((*unaff_RBX - (longlong)puVar3) + unaff_RBX[2]) < 5) {
+    if ((uint64_t)((*unaff_RBX - (int64_t)puVar3) + unaff_RBX[2]) < 5) {
       System_BufferManager();
       puVar3 = (int32_t *)unaff_RBX[1];
     }
@@ -787,17 +787,17 @@ void process_mesh_batch(uint *batch_params)
     unaff_RBX[1] = unaff_RBX[1] + 4;
     puVar4 = (uint *)unaff_RBX[1];
     uVar1 = *(ushort *)(lVar5 + 0x22);
-    if ((ulonglong)((*unaff_RBX - (longlong)puVar4) + unaff_RBX[2]) < 5) {
+    if ((uint64_t)((*unaff_RBX - (int64_t)puVar4) + unaff_RBX[2]) < 5) {
       System_BufferManager();
       puVar4 = (uint *)unaff_RBX[1];
     }
     *puVar4 = (uint)uVar1;
     param_1 = (uint *)(unaff_RBX[1] + 4);
-    unaff_RBX[1] = (longlong)param_1;
+    unaff_RBX[1] = (int64_t)param_1;
     if (*(ushort *)(lVar5 + 0x22) != 0) {
       uVar2 = *(uint64_t *)(lVar5 + 0x1a);
-      uVar6 = (ulonglong)*(ushort *)(lVar5 + 0x22) * 4;
-      if ((ulonglong)((*unaff_RBX - (longlong)param_1) + unaff_RBX[2]) <= uVar6) {
+      uVar6 = (uint64_t)*(ushort *)(lVar5 + 0x22) * 4;
+      if ((uint64_t)((*unaff_RBX - (int64_t)param_1) + unaff_RBX[2]) <= uVar6) {
         System_BufferManager();
         param_1 = (uint *)unaff_RBX[1];
       }
@@ -807,14 +807,14 @@ void process_mesh_batch(uint *batch_params)
     uVar6 = uVar6 + 0x24;
     unaff_R12 = unaff_R12 + -1;
   } while (unaff_R12 != 0);
-  if ((ulonglong)((*unaff_RBX - (longlong)param_1) + unaff_RBX[2]) < 5) {
+  if ((uint64_t)((*unaff_RBX - (int64_t)param_1) + unaff_RBX[2]) < 5) {
     System_BufferManager();
     param_1 = (uint *)unaff_RBX[1];
   }
   *param_1 = unaff_R13D;
   unaff_RBX[1] = unaff_RBX[1] + 4;
   puVar3 = (int32_t *)unaff_RBX[1];
-  if ((ulonglong)((*unaff_RBX - (longlong)puVar3) + unaff_RBX[2]) < 5) {
+  if ((uint64_t)((*unaff_RBX - (int64_t)puVar3) + unaff_RBX[2]) < 5) {
     System_BufferManager();
     puVar3 = (int32_t *)unaff_RBX[1];
   }
@@ -822,31 +822,31 @@ void process_mesh_batch(uint *batch_params)
   unaff_RBX[1] = unaff_RBX[1] + 4;
   puVar4 = (uint *)unaff_RBX[1];
   uVar1 = *(ushort *)(unaff_R15 + 0x50);
-  if ((ulonglong)((*unaff_RBX - (longlong)puVar4) + unaff_RBX[2]) < 5) {
+  if ((uint64_t)((*unaff_RBX - (int64_t)puVar4) + unaff_RBX[2]) < 5) {
     System_BufferManager();
     puVar4 = (uint *)unaff_RBX[1];
   }
   *puVar4 = (uint)uVar1;
   puVar4 = (uint *)(unaff_RBX[1] + 4);
-  unaff_RBX[1] = (longlong)puVar4;
+  unaff_RBX[1] = (int64_t)puVar4;
   if (*(ushort *)(unaff_R15 + 0x50) != 0) {
     uVar2 = *(uint64_t *)(unaff_R15 + 0x48);
-    uVar6 = (ulonglong)*(ushort *)(unaff_R15 + 0x50) * 4;
-    if ((ulonglong)((*unaff_RBX - (longlong)puVar4) + unaff_RBX[2]) <= uVar6) {
+    uVar6 = (uint64_t)*(ushort *)(unaff_R15 + 0x50) * 4;
+    if ((uint64_t)((*unaff_RBX - (int64_t)puVar4) + unaff_RBX[2]) <= uVar6) {
       System_BufferManager();
       puVar4 = (uint *)unaff_RBX[1];
     }
                     // WARNING: Subroutine does not return
     memcpy(puVar4,uVar2,uVar6);
   }
-  if ((ulonglong)((*unaff_RBX - (longlong)puVar4) + unaff_RBX[2]) < 5) {
+  if ((uint64_t)((*unaff_RBX - (int64_t)puVar4) + unaff_RBX[2]) < 5) {
     System_BufferManager();
     puVar4 = (uint *)unaff_RBX[1];
   }
   *puVar4 = unaff_R13D;
   unaff_RBX[1] = unaff_RBX[1] + 4;
   puVar3 = (int32_t *)unaff_RBX[1];
-  if ((ulonglong)((*unaff_RBX - (longlong)puVar3) + unaff_RBX[2]) < 5) {
+  if ((uint64_t)((*unaff_RBX - (int64_t)puVar3) + unaff_RBX[2]) < 5) {
     System_BufferManager();
     puVar3 = (int32_t *)unaff_RBX[1];
   }
@@ -854,7 +854,7 @@ void process_mesh_batch(uint *batch_params)
   unaff_RBX[1] = unaff_RBX[1] + 4;
   puVar4 = (uint *)unaff_RBX[1];
   uVar1 = *(ushort *)(unaff_R15 + 0x62);
-  if ((ulonglong)((*unaff_RBX - (longlong)puVar4) + unaff_RBX[2]) < 5) {
+  if ((uint64_t)((*unaff_RBX - (int64_t)puVar4) + unaff_RBX[2]) < 5) {
     System_BufferManager();
     puVar4 = (uint *)unaff_RBX[1];
   }
@@ -863,8 +863,8 @@ void process_mesh_batch(uint *batch_params)
   unaff_RBX[1] = lVar5;
   if (*(ushort *)(unaff_R15 + 0x62) != 0) {
     uVar2 = *(uint64_t *)(unaff_R15 + 0x5a);
-    uVar6 = (ulonglong)*(ushort *)(unaff_R15 + 0x62) * 4;
-    if ((ulonglong)((*unaff_RBX - lVar5) + unaff_RBX[2]) <= uVar6) {
+    uVar6 = (uint64_t)*(ushort *)(unaff_R15 + 0x62) * 4;
+    if ((uint64_t)((*unaff_RBX - lVar5) + unaff_RBX[2]) <= uVar6) {
       System_BufferManager();
       lVar5 = unaff_RBX[1];
     }
@@ -893,20 +893,20 @@ void write_buffer_header(int32_t *buffer_ptr)
   uint64_t data_ptr;             // 数据指针
   int32_t *header_writer;       // 头部写入器
   uint *uint_writer;               // 无符号整数写入器
-  longlong write_offset;            // 写入偏移量
-  longlong *buffer_manager;        // 缓冲区管理器
-  ulonglong data_size;             // 数据大小
+  int64_t write_offset;            // 写入偏移量
+  int64_t *buffer_manager;        // 缓冲区管理器
+  uint64_t data_size;             // 数据大小
   int32_t header_flags;         // 头部标志;
-  longlong unaff_R15;
+  int64_t unaff_R15;
   
-  if ((ulonglong)((*unaff_RBX - (longlong)param_1) + unaff_RBX[2]) < 5) {
+  if ((uint64_t)((*unaff_RBX - (int64_t)param_1) + unaff_RBX[2]) < 5) {
     System_BufferManager();
     param_1 = (int32_t *)unaff_RBX[1];
   }
   *param_1 = unaff_R13D;
   unaff_RBX[1] = unaff_RBX[1] + 4;
   puVar3 = (int32_t *)unaff_RBX[1];
-  if ((ulonglong)((*unaff_RBX - (longlong)puVar3) + unaff_RBX[2]) < 5) {
+  if ((uint64_t)((*unaff_RBX - (int64_t)puVar3) + unaff_RBX[2]) < 5) {
     System_BufferManager();
     puVar3 = (int32_t *)unaff_RBX[1];
   }
@@ -914,31 +914,31 @@ void write_buffer_header(int32_t *buffer_ptr)
   unaff_RBX[1] = unaff_RBX[1] + 4;
   puVar4 = (uint *)unaff_RBX[1];
   uVar1 = *(ushort *)(unaff_R15 + 0x50);
-  if ((ulonglong)((*unaff_RBX - (longlong)puVar4) + unaff_RBX[2]) < 5) {
+  if ((uint64_t)((*unaff_RBX - (int64_t)puVar4) + unaff_RBX[2]) < 5) {
     System_BufferManager();
     puVar4 = (uint *)unaff_RBX[1];
   }
   *puVar4 = (uint)uVar1;
   puVar3 = (int32_t *)(unaff_RBX[1] + 4);
-  unaff_RBX[1] = (longlong)puVar3;
+  unaff_RBX[1] = (int64_t)puVar3;
   if (*(ushort *)(unaff_R15 + 0x50) != 0) {
     uVar2 = *(uint64_t *)(unaff_R15 + 0x48);
-    uVar6 = (ulonglong)*(ushort *)(unaff_R15 + 0x50) * 4;
-    if ((ulonglong)((*unaff_RBX - (longlong)puVar3) + unaff_RBX[2]) <= uVar6) {
+    uVar6 = (uint64_t)*(ushort *)(unaff_R15 + 0x50) * 4;
+    if ((uint64_t)((*unaff_RBX - (int64_t)puVar3) + unaff_RBX[2]) <= uVar6) {
       System_BufferManager();
       puVar3 = (int32_t *)unaff_RBX[1];
     }
                     // WARNING: Subroutine does not return
     memcpy(puVar3,uVar2,uVar6);
   }
-  if ((ulonglong)((*unaff_RBX - (longlong)puVar3) + unaff_RBX[2]) < 5) {
+  if ((uint64_t)((*unaff_RBX - (int64_t)puVar3) + unaff_RBX[2]) < 5) {
     System_BufferManager();
     puVar3 = (int32_t *)unaff_RBX[1];
   }
   *puVar3 = unaff_R13D;
   unaff_RBX[1] = unaff_RBX[1] + 4;
   puVar3 = (int32_t *)unaff_RBX[1];
-  if ((ulonglong)((*unaff_RBX - (longlong)puVar3) + unaff_RBX[2]) < 5) {
+  if ((uint64_t)((*unaff_RBX - (int64_t)puVar3) + unaff_RBX[2]) < 5) {
     System_BufferManager();
     puVar3 = (int32_t *)unaff_RBX[1];
   }
@@ -946,7 +946,7 @@ void write_buffer_header(int32_t *buffer_ptr)
   unaff_RBX[1] = unaff_RBX[1] + 4;
   puVar4 = (uint *)unaff_RBX[1];
   uVar1 = *(ushort *)(unaff_R15 + 0x62);
-  if ((ulonglong)((*unaff_RBX - (longlong)puVar4) + unaff_RBX[2]) < 5) {
+  if ((uint64_t)((*unaff_RBX - (int64_t)puVar4) + unaff_RBX[2]) < 5) {
     System_BufferManager();
     puVar4 = (uint *)unaff_RBX[1];
   }
@@ -955,8 +955,8 @@ void write_buffer_header(int32_t *buffer_ptr)
   unaff_RBX[1] = lVar5;
   if (*(ushort *)(unaff_R15 + 0x62) != 0) {
     uVar2 = *(uint64_t *)(unaff_R15 + 0x5a);
-    uVar6 = (ulonglong)*(ushort *)(unaff_R15 + 0x62) * 4;
-    if ((ulonglong)((*unaff_RBX - lVar5) + unaff_RBX[2]) <= uVar6) {
+    uVar6 = (uint64_t)*(ushort *)(unaff_R15 + 0x62) * 4;
+    if ((uint64_t)((*unaff_RBX - lVar5) + unaff_RBX[2]) <= uVar6) {
       System_BufferManager();
       lVar5 = unaff_RBX[1];
     }
@@ -985,17 +985,17 @@ void initialize_buffer_writer(void)
   uint64_t data_ptr;             // 数据指针
   int32_t *buffer_writer;       // 缓冲区写入器
   uint *uint_writer;               // 无符号整数写入器
-  longlong write_offset;            // 写入偏移量
-  longlong *buffer_manager;        // 缓冲区管理器
-  ulonglong data_size;             // 数据大小
+  int64_t write_offset;            // 写入偏移量
+  int64_t *buffer_manager;        // 缓冲区管理器
+  uint64_t data_size;             // 数据大小
   int32_t init_flags;           // 初始化标志;
-  longlong unaff_R15;
+  int64_t unaff_R15;
   
   System_BufferManager();
   *(int32_t *)unaff_RBX[1] = unaff_R13D;
   unaff_RBX[1] = unaff_RBX[1] + 4;
   puVar3 = (int32_t *)unaff_RBX[1];
-  if ((ulonglong)((*unaff_RBX - (longlong)puVar3) + unaff_RBX[2]) < 5) {
+  if ((uint64_t)((*unaff_RBX - (int64_t)puVar3) + unaff_RBX[2]) < 5) {
     System_BufferManager();
     puVar3 = (int32_t *)unaff_RBX[1];
   }
@@ -1003,31 +1003,31 @@ void initialize_buffer_writer(void)
   unaff_RBX[1] = unaff_RBX[1] + 4;
   puVar4 = (uint *)unaff_RBX[1];
   uVar1 = *(ushort *)(unaff_R15 + 0x50);
-  if ((ulonglong)((*unaff_RBX - (longlong)puVar4) + unaff_RBX[2]) < 5) {
+  if ((uint64_t)((*unaff_RBX - (int64_t)puVar4) + unaff_RBX[2]) < 5) {
     System_BufferManager();
     puVar4 = (uint *)unaff_RBX[1];
   }
   *puVar4 = (uint)uVar1;
   puVar3 = (int32_t *)(unaff_RBX[1] + 4);
-  unaff_RBX[1] = (longlong)puVar3;
+  unaff_RBX[1] = (int64_t)puVar3;
   if (*(ushort *)(unaff_R15 + 0x50) != 0) {
     uVar2 = *(uint64_t *)(unaff_R15 + 0x48);
-    uVar6 = (ulonglong)*(ushort *)(unaff_R15 + 0x50) * 4;
-    if ((ulonglong)((*unaff_RBX - (longlong)puVar3) + unaff_RBX[2]) <= uVar6) {
+    uVar6 = (uint64_t)*(ushort *)(unaff_R15 + 0x50) * 4;
+    if ((uint64_t)((*unaff_RBX - (int64_t)puVar3) + unaff_RBX[2]) <= uVar6) {
       System_BufferManager();
       puVar3 = (int32_t *)unaff_RBX[1];
     }
                     // WARNING: Subroutine does not return
     memcpy(puVar3,uVar2,uVar6);
   }
-  if ((ulonglong)((*unaff_RBX - (longlong)puVar3) + unaff_RBX[2]) < 5) {
+  if ((uint64_t)((*unaff_RBX - (int64_t)puVar3) + unaff_RBX[2]) < 5) {
     System_BufferManager();
     puVar3 = (int32_t *)unaff_RBX[1];
   }
   *puVar3 = unaff_R13D;
   unaff_RBX[1] = unaff_RBX[1] + 4;
   puVar3 = (int32_t *)unaff_RBX[1];
-  if ((ulonglong)((*unaff_RBX - (longlong)puVar3) + unaff_RBX[2]) < 5) {
+  if ((uint64_t)((*unaff_RBX - (int64_t)puVar3) + unaff_RBX[2]) < 5) {
     System_BufferManager();
     puVar3 = (int32_t *)unaff_RBX[1];
   }
@@ -1035,7 +1035,7 @@ void initialize_buffer_writer(void)
   unaff_RBX[1] = unaff_RBX[1] + 4;
   puVar4 = (uint *)unaff_RBX[1];
   uVar1 = *(ushort *)(unaff_R15 + 0x62);
-  if ((ulonglong)((*unaff_RBX - (longlong)puVar4) + unaff_RBX[2]) < 5) {
+  if ((uint64_t)((*unaff_RBX - (int64_t)puVar4) + unaff_RBX[2]) < 5) {
     System_BufferManager();
     puVar4 = (uint *)unaff_RBX[1];
   }
@@ -1044,8 +1044,8 @@ void initialize_buffer_writer(void)
   unaff_RBX[1] = lVar5;
   if (*(ushort *)(unaff_R15 + 0x62) != 0) {
     uVar2 = *(uint64_t *)(unaff_R15 + 0x5a);
-    uVar6 = (ulonglong)*(ushort *)(unaff_R15 + 0x62) * 4;
-    if ((ulonglong)((*unaff_RBX - lVar5) + unaff_RBX[2]) <= uVar6) {
+    uVar6 = (uint64_t)*(ushort *)(unaff_R15 + 0x62) * 4;
+    if ((uint64_t)((*unaff_RBX - lVar5) + unaff_RBX[2]) <= uVar6) {
       System_BufferManager();
       lVar5 = unaff_RBX[1];
     }
@@ -1073,17 +1073,17 @@ void finalize_buffer_writer(void)
   ushort final_value;              // 最终值
   uint64_t data_ptr;             // 数据指针
   uint *uint_writer;               // 无符号整数写入器
-  longlong final_offset;           // 最终偏移量
-  longlong *buffer_manager;        // 缓冲区管理器
-  ulonglong remaining_size;        // 剩余大小
-  longlong resource_handle;        // 资源句柄;
+  int64_t final_offset;           // 最终偏移量
+  int64_t *buffer_manager;        // 缓冲区管理器
+  uint64_t remaining_size;        // 剩余大小
+  int64_t resource_handle;        // 资源句柄;
   
   System_BufferManager();
   *(int32_t *)unaff_RBX[1] = 0x10;
   unaff_RBX[1] = unaff_RBX[1] + 4;
   puVar3 = (uint *)unaff_RBX[1];
   uVar1 = *(ushort *)(unaff_R15 + 0x62);
-  if ((ulonglong)((*unaff_RBX - (longlong)puVar3) + unaff_RBX[2]) < 5) {
+  if ((uint64_t)((*unaff_RBX - (int64_t)puVar3) + unaff_RBX[2]) < 5) {
     System_BufferManager();
     puVar3 = (uint *)unaff_RBX[1];
   }
@@ -1092,8 +1092,8 @@ void finalize_buffer_writer(void)
   unaff_RBX[1] = lVar4;
   if (*(ushort *)(unaff_R15 + 0x62) != 0) {
     uVar2 = *(uint64_t *)(unaff_R15 + 0x5a);
-    uVar5 = (ulonglong)*(ushort *)(unaff_R15 + 0x62) * 4;
-    if ((ulonglong)((*unaff_RBX - lVar4) + unaff_RBX[2]) <= uVar5) {
+    uVar5 = (uint64_t)*(ushort *)(unaff_R15 + 0x62) * 4;
+    if ((uint64_t)((*unaff_RBX - lVar4) + unaff_RBX[2]) <= uVar5) {
       System_BufferManager();
       lVar4 = unaff_RBX[1];
     }

@@ -96,18 +96,18 @@ uint64_t FUN_18001234a(uint64_t param_1, uint64_t param_2)
 {
     // 局部变量定义
     uint64_t uVar1;                            // 操作结果
-    longlong lVar2;                              // 上下文指针
+    int64_t lVar2;                              // 上下文指针
     int iVar3;                                  // 状态标志
     uint64_t auStack_28 [4];                   // 栈缓冲区 (32字节)
-    ulonglong uStack_8;                         // 安全检查值
+    uint64_t uStack_8;                         // 安全检查值
     
     // 安全检查：栈保护机制
-    uStack_8 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_28;
+    uStack_8 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_28;
     
     // 参数有效性检查
     if (param_1 != 0 && param_2 != 0) {
         // 获取子模块上下文
-        lVar2 = (longlong)param_1;
+        lVar2 = (int64_t)param_1;
         
         // 检查子模块管理器状态
         iVar3 = *(int *)(lVar2 + 0x30);
@@ -134,7 +134,7 @@ uint64_t FUN_18001234a(uint64_t param_1, uint64_t param_2)
     }
     
     // 安全退出：栈保护检查
-    FUN_1808fc050(uStack_8 ^ (ulonglong)auStack_28);
+    FUN_1808fc050(uStack_8 ^ (uint64_t)auStack_28);
     
     return uVar1;                                // 返回操作结果
 }
@@ -196,8 +196,8 @@ uint64_t FUN_18001234a(uint64_t param_1, uint64_t param_2)
 //------------------------------------------------------------------------------
 // 子模块操作函数声明
 //------------------------------------------------------------------------------
-uint64_t SubModuleOperation(longlong context, uint64_t operation, uint64_t *buffer);
-uint64_t ConfigureSubModule(longlong context, uint64_t *buffer);
-uint64_t MonitorSubModule(longlong context, uint64_t *buffer);
+uint64_t SubModuleOperation(int64_t context, uint64_t operation, uint64_t *buffer);
+uint64_t ConfigureSubModule(int64_t context, uint64_t *buffer);
+uint64_t MonitorSubModule(int64_t context, uint64_t *buffer);
 
 

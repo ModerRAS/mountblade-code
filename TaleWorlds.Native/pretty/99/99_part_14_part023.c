@@ -212,11 +212,11 @@ typedef struct {
  * @param param_4 帧管理上下文
  * @details 管理异常帧的生命周期，处理异常分发和清理
  */
-void ExceptionFrameManager(longlong param_1, uint64_t param_2, uint64_t param_3, longlong param_4) {
-    longlong frame_context;
+void ExceptionFrameManager(int64_t param_1, uint64_t param_2, uint64_t param_3, int64_t param_4) {
+    int64_t frame_context;
     
     // 获取帧管理上下文
-    frame_context = *(longlong *)(param_4 + 0x38);
+    frame_context = *(int64_t *)(param_4 + 0x38);
     
     // 执行异常处理
     FUN_1808fd18c(param_2, param_4);
@@ -236,8 +236,8 @@ void ExceptionFrameManager(longlong param_1, uint64_t param_2, uint64_t param_3,
  */
 void SystemRandomInitializer(void) {
     uint current_thread_id;
-    ulonglong time_value;
-    ulonglong performance_value;
+    uint64_t time_value;
+    uint64_t performance_value;
     uint current_process_id;
     uint performance_low;
     int32_t performance_high;
@@ -259,9 +259,9 @@ void SystemRandomInitializer(void) {
         QueryPerformanceCounter(&performance_low);
         
         // 生成随机种子
-        GET_SECURITY_COOKIE() = ((ulonglong)performance_low << 0x20 ^ 
+        GET_SECURITY_COOKIE() = ((uint64_t)performance_low << 0x20 ^ 
                          CONCAT44(performance_high, performance_low) ^ 
-                         time_value ^ (ulonglong)&time_value) & 0xffffffffffff;
+                         time_value ^ (uint64_t)&time_value) & 0xffffffffffff;
         
         // 防止种子值冲突
         if (GET_SECURITY_COOKIE() == SYSTEM_INIT_CHECK_VALUE) {
@@ -295,14 +295,14 @@ uint64_t ThreadLibraryManager(uint64_t param_1, int param_2) {
  * @details 设置系统状态标志和初始化系统组件
  */
 void SystemStateManager(void) {
-    ulonglong *system_flags;
+    uint64_t *system_flags;
     
     // 获取系统标志指针
-    system_flags = (ulonglong *)func_0x00018004b9a0();
+    system_flags = (uint64_t *)func_0x00018004b9a0();
     *system_flags = *system_flags | 4;
     
     // 获取配置标志指针
-    system_flags = (ulonglong *)func_0x00018010cbb0();
+    system_flags = (uint64_t *)func_0x00018010cbb0();
     *system_flags = *system_flags | 2;
     
     return;
@@ -345,10 +345,10 @@ void SystemCleanupHandler(int32_t param_1) {
  * @details 管理系统保护表和调用保护分发
  */
 void SystemGuardManager(void) {
-    longlong *guard_table;
+    int64_t *guard_table;
     
     // 遍历保护表并分发调用
-    for (guard_table = (longlong *)&unknown_var_8824_ptr; guard_table < &unknown_var_8824_ptr; guard_table = guard_table + 1) {
+    for (guard_table = (int64_t *)&unknown_var_8824_ptr; guard_table < &unknown_var_8824_ptr; guard_table = guard_table + 1) {
         if (*guard_table != 0) {
             _guard_dispatch_icall();
         }
@@ -362,10 +362,10 @@ void SystemGuardManager(void) {
  * @details 处理系统异常和错误恢复
  */
 void ExceptionHandler(void) {
-    longlong *exception_table;
+    int64_t *exception_table;
     
     // 遍历异常表并分发调用
-    for (exception_table = (longlong *)&unknown_var_8840_ptr; exception_table < &unknown_var_8840_ptr; exception_table = exception_table + 1) {
+    for (exception_table = (int64_t *)&unknown_var_8840_ptr; exception_table < &unknown_var_8840_ptr; exception_table = exception_table + 1) {
         if (*exception_table != 0) {
             _guard_dispatch_icall();
         }
@@ -392,7 +392,7 @@ void free(void) {
  * @return 分配的内存块指针
  * @details 分配内存并处理异常上下文
  */
-uint64_t * MemoryAllocator(uint64_t *param_1, longlong param_2) {
+uint64_t * MemoryAllocator(uint64_t *param_1, int64_t param_2) {
     *param_1 = &unknown_var_9816_ptr;
     param_1[1] = 0;
     param_1[2] = 0;
@@ -408,7 +408,7 @@ uint64_t * MemoryAllocator(uint64_t *param_1, longlong param_2) {
  * @return 释放后的内存块指针
  * @details 释放内存并处理异常清理
  */
-uint64_t * MemoryDeallocator(uint64_t *param_1, ulonglong param_2) {
+uint64_t * MemoryDeallocator(uint64_t *param_1, uint64_t param_2) {
     *param_1 = &unknown_var_9816_ptr;
     __std_exception_destroy(param_1 + 1);
     
@@ -450,12 +450,12 @@ void SystemErrorThrower(void) {
  * @return 计算结果
  * @details 高精度的三角函数计算器，支持sin/cos计算
  */
-ulonglong AdvancedTrigonometricCalculator(uint64_t param_1, int32_t param_2) {
+uint64_t AdvancedTrigonometricCalculator(uint64_t param_1, int32_t param_2) {
     int32_t input_param;
     uint range_flags;
-    ulonglong result_value;
+    uint64_t result_value;
     int integer_value;
-    longlong loop_counter;
+    int64_t loop_counter;
     float angle_x, angle_y;
     float temp_x, temp_y;
     int index_x, index_y;
@@ -474,7 +474,7 @@ ulonglong AdvancedTrigonometricCalculator(uint64_t param_1, int32_t param_2) {
     int8_t final_vector[16];
     int8_t loop_vector[16];
     float angle_values[8];
-    ulonglong stack_value;
+    uint64_t stack_value;
     uint stack_flags[2];
     int8_t result_matrix[3][16];
     int8_t temp_result[16];
@@ -520,7 +520,7 @@ ulonglong AdvancedTrigonometricCalculator(uint64_t param_1, int32_t param_2) {
                CONCAT44(index_x << 0x1f, integer_value << 0x1f);
     }
     
-    stack_value = (ulonglong)system_memory_f6d0 & input_vector._0_8_;
+    stack_value = (uint64_t)system_memory_f6d0 & input_vector._0_8_;
     index_x = (int)(vector_component * FLOAT_PRECISION_1);
     final_index = (int)(mask_result * FLOAT_PRECISION_1);
     temp_index = (int)(input_vector._8_4_ * FLOAT_PRECISION_1);
@@ -692,10 +692,10 @@ ulonglong AdvancedTrigonometricCalculator(uint64_t param_1, int32_t param_2) {
                     vector_component = vector_component - vector_component;
                 } else {
                     // 高精度数学计算
-                    result_value = (ulonglong)(((uint)ABS(vector_component) >> 0x17) - 0x8e & 0xfff8);
-                    double final_val = (double)(*(ulonglong *)(&unknown_var_4736_ptr + result_value * 2) & 0xffffffffff000000) *
+                    result_value = (uint64_t)(((uint)ABS(vector_component) >> 0x17) - 0x8e & 0xfff8);
+                    double final_val = (double)(*(uint64_t *)(&unknown_var_4736_ptr + result_value * 2) & 0xffffffffff000000) *
                                      temp_val;
-                    double result_val = (double)(*(ulonglong *)(&unknown_var_4736_ptr + result_value * 2) << 0x28) * temp_val;
+                    double result_val = (double)(*(uint64_t *)(&unknown_var_4736_ptr + result_value * 2) << 0x28) * temp_val;
                     
                     final_val = final_val + result_val;
                     integer_value = SUB84(final_val + 6755399441055744.0, 0);
@@ -706,15 +706,15 @@ ulonglong AdvancedTrigonometricCalculator(uint64_t param_1, int32_t param_2) {
                     temp_val = temp_val * *(double *)(&unknown_var_4744_ptr + result_value * 2) + result_val + 
                              (final_val - final_val) + (final_val - ((final_val + 6755399441055744.0) - 6755399441055744.0));
                     
-                    result_value = (ulonglong)((range_flags + stack_flags[1] ^ stack_flags[1]) & 0xfe);
+                    result_value = (uint64_t)((range_flags + stack_flags[1] ^ stack_flags[1]) & 0xfe);
                     
-                    vector_component = (float)((double)((ulonglong)
+                    vector_component = (float)((double)((uint64_t)
                                                       ((3320.092545592124 - temp_val * temp_val) *
                                                        *(double *)(&unknown_var_3704_ptr + result_value * 8)) ^
-                                                      (ulonglong)((range_flags & 0x100) << 0x17) << 0x20) +
+                                                      (uint64_t)((range_flags & 0x100) << 0x17) << 0x20) +
                                      *(double *)(&system_memory_f000 + result_value * 8) * temp_val *
-                                     (double)((ulonglong)(9960.277636776373 - temp_val * temp_val) ^
-                                             (ulonglong)(((range_flags & 0x180) + 0x80 & 0x100) << 0x17) << 0x20));
+                                     (double)((uint64_t)(9960.277636776373 - temp_val * temp_val) ^
+                                             (uint64_t)(((range_flags & 0x180) + 0x80 & 0x100) << 0x17) << 0x20));
                 }
                 
                 *(float *)(result_matrix[0] + loop_counter * 4) = vector_component;
@@ -735,12 +735,12 @@ ulonglong AdvancedTrigonometricCalculator(uint64_t param_1, int32_t param_2) {
  * @return 优化结果
  * @details 高精度的浮点数优化器，支持向量化计算
  */
-ulonglong FloatingPointOptimizer(uint64_t param_1, int32_t param_2) {
+uint64_t FloatingPointOptimizer(uint64_t param_1, int32_t param_2) {
     int32_t input_param;
     uint optimization_flags;
-    ulonglong result_value;
+    uint64_t result_value;
     int temp_index;
-    longlong loop_counter;
+    int64_t loop_counter;
     float input_x, input_y;
     float angle_x, angle_y;
     float temp_x, temp_y;
@@ -984,10 +984,10 @@ ulonglong FloatingPointOptimizer(uint64_t param_1, int32_t param_2) {
                     final_x = final_x - final_x;
                 } else {
                     // 高精度数学计算
-                    result_value = (ulonglong)(((uint)ABS(final_x) >> 0x17) - 0x8e & 0xfff8);
-                    double final_val = (double)(*(ulonglong *)(&unknown_var_6528_ptr + result_value * 2) & 0xffffffffff000000) *
+                    result_value = (uint64_t)(((uint)ABS(final_x) >> 0x17) - 0x8e & 0xfff8);
+                    double final_val = (double)(*(uint64_t *)(&unknown_var_6528_ptr + result_value * 2) & 0xffffffffff000000) *
                                      temp_val;
-                    double result_val = (double)(*(ulonglong *)(&unknown_var_6528_ptr + result_value * 2) << 0x28) * temp_val;
+                    double result_val = (double)(*(uint64_t *)(&unknown_var_6528_ptr + result_value * 2) << 0x28) * temp_val;
                     
                     final_val = final_val + result_val;
                     temp_index = SUB84(final_val + 6755399441055744.0, 0);
@@ -998,15 +998,15 @@ ulonglong FloatingPointOptimizer(uint64_t param_1, int32_t param_2) {
                     temp_val = temp_val * *(double *)(&unknown_var_6536_ptr + result_value * 2) + result_val + 
                              (final_val - final_val) + (final_val - ((final_val + 6755399441055744.0) - 6755399441055744.0));
                     
-                    result_value = (ulonglong)((optimization_flags + stack_flags[1] ^ stack_flags[1]) & 0xfe);
+                    result_value = (uint64_t)((optimization_flags + stack_flags[1] ^ stack_flags[1]) & 0xfe);
                     
-                    final_x = (float)((double)((ulonglong)
+                    final_x = (float)((double)((uint64_t)
                                              ((3320.092545592124 - temp_val * temp_val) *
                                               *(double *)(&unknown_var_5496_ptr + result_value * 8)) ^
-                                             (ulonglong)(((optimization_flags & 0x180) + 0x80 & 0x100) << 0x17) << 0x20) +
+                                             (uint64_t)(((optimization_flags & 0x180) + 0x80 & 0x100) << 0x17) << 0x20) +
                                     *(double *)(&unknown_var_5488_ptr + result_value * 8) * temp_val *
-                                    (double)((ulonglong)(9960.277636776373 - temp_val * temp_val) ^
-                                            (ulonglong)((optimization_flags & 0x100) << 0x17) << 0x20));
+                                    (double)((uint64_t)(9960.277636776373 - temp_val * temp_val) ^
+                                            (uint64_t)((optimization_flags & 0x100) << 0x17) << 0x20));
                 }
                 
                 *(float *)(result_matrix[0] + loop_counter * 4) = final_x;

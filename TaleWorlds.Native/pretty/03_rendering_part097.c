@@ -213,7 +213,7 @@ extern int32_t system_memory_9af8;               // 渲染系统属性表
  * @param param_6 渲染掩码
  * @return void 处理结果
  */
-void RenderingSystem_BufferProcessor(longlong param_1, longlong *param_2, uint *param_3, longlong *param_4, uint param_5, uint param_6);
+void RenderingSystem_BufferProcessor(int64_t param_1, int64_t *param_2, uint *param_3, int64_t *param_4, uint param_5, uint param_6);
 
 /**
  * @brief 渲染系统资源管理器
@@ -233,7 +233,7 @@ void RenderingSystem_BufferProcessor(longlong param_1, longlong *param_2, uint *
  * @param param_7 资源数据
  * @return uint 管理结果状态
  */
-uint RenderingSystem_ResourceManager(longlong param_1, longlong *param_2, uint *param_3, longlong param_4, uint param_5, uint param_6, uint64_t param_7);
+uint RenderingSystem_ResourceManager(int64_t param_1, int64_t *param_2, uint *param_3, int64_t param_4, uint param_5, uint param_6, uint64_t param_7);
 
 /**
  * @brief 渲染系统资源处理器
@@ -250,7 +250,7 @@ uint RenderingSystem_ResourceManager(longlong param_1, longlong *param_2, uint *
  * @param param_4 处理标志
  * @return void 处理结果
  */
-void RenderingSystem_ResourceHandler(longlong param_1, ulonglong param_2, uint64_t param_3, uint64_t param_4);
+void RenderingSystem_ResourceHandler(int64_t param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4);
 
 /* ============================================================================
  * 主要功能函数实现
@@ -311,7 +311,7 @@ void RenderingSystem_ResourceHandler(longlong param_1, ulonglong param_2, uint64
  * @param param_6 渲染掩码
  * @return void 处理结果
  */
-void FUN_1803248c0(longlong param_1, longlong *param_2, uint *param_3, longlong *param_4, uint param_5, uint param_6)
+void FUN_1803248c0(int64_t param_1, int64_t *param_2, uint *param_3, int64_t *param_4, uint param_5, uint param_6)
 {
     // 渲染系统缓冲区处理逻辑实现
     
@@ -457,7 +457,7 @@ void FUN_1803248c0(longlong param_1, longlong *param_2, uint *param_3, longlong 
  * @param param_7 资源数据
  * @return uint 管理结果状态
  */
-uint FUN_180325220(longlong param_1, longlong *param_2, uint *param_3, longlong param_4, uint param_5, uint param_6, uint64_t param_7)
+uint FUN_180325220(int64_t param_1, int64_t *param_2, uint *param_3, int64_t param_4, uint param_5, uint param_6, uint64_t param_7)
 {
     // 渲染系统资源管理逻辑实现
     
@@ -521,7 +521,7 @@ uint FUN_180325220(longlong param_1, longlong *param_2, uint *param_3, longlong 
  * @param param_4 处理标志
  * @return void 处理结果
  */
-void FUN_180325830(longlong param_1, ulonglong param_2, uint64_t param_3, uint64_t param_4)
+void FUN_180325830(int64_t param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
     // 渲染系统资源处理逻辑实现
     

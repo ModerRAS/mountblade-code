@@ -173,21 +173,21 @@ typedef struct {
  * @note 该函数会安全处理空指针，避免空指针异常
  * @warning 调用后资源将被释放，不应再使用这些资源
  */
-void FUN_1800f8a50(longlong *param_1)
+void FUN_1800f8a50(int64_t *param_1)
 {
-    longlong *resource_ptr;
+    int64_t *resource_ptr;
     int i;
     
     /* 遍历所有资源位置 */
     for (i = 0; i < MAX_RESOURCE_COUNT; i++) {
         /* 获取当前资源指针 */
-        resource_ptr = (longlong *)param_1[i];
+        resource_ptr = (int64_t *)param_1[i];
         
         /* 清空数组位置 */
         param_1[i] = 0;
         
         /* 如果资源非空，调用析构函数 */
-        if (resource_ptr != (longlong *)0x0) {
+        if (resource_ptr != (int64_t *)0x0) {
             /* 调用资源析构函数 */
             void (**destructor_func)() = (void (**)())(*resource_ptr + RESOURCE_DESTRUCTOR_OFFSET);
             if (*destructor_func) {
@@ -291,23 +291,23 @@ int8_t* FUN_1800f8be0(int8_t *param_1)
  * 
  * @param context 上下文指针
  * @param output 输出参数，用于存储资源引用
- * @return longlong* 返回输出参数指针
+ * @return int64_t* 返回输出参数指针
  * 
  * @note 该函数会安全处理空资源情况
  * @warning 调用者需要确保输出参数有效
  */
-longlong* FUN_1800f8dd0(longlong param_1, longlong *param_2)
+int64_t* FUN_1800f8dd0(int64_t param_1, int64_t *param_2)
 {
-    longlong *resource_ptr;
+    int64_t *resource_ptr;
     
     /* 获取资源指针 */
-    resource_ptr = *(longlong **)(param_1 + 0x118);
+    resource_ptr = *(int64_t **)(param_1 + 0x118);
     
     /* 设置输出参数 */
-    *param_2 = (longlong)resource_ptr;
+    *param_2 = (int64_t)resource_ptr;
     
     /* 如果资源非空，调用引用函数 */
-    if (resource_ptr != (longlong *)0x0) {
+    if (resource_ptr != (int64_t *)0x0) {
         void (**ref_func)() = (void (**)())(*resource_ptr + RESOURCE_REF_COUNT_OFFSET);
         if (*ref_func) {
             (*ref_func)();
@@ -330,16 +330,16 @@ longlong* FUN_1800f8dd0(longlong param_1, longlong *param_2)
  * @note 该函数会正确处理资源引用计数
  * @warning 调用后输入参数会被清理
  */
-void FUN_1800f8e20(longlong param_1, longlong *param_2)
+void FUN_1800f8e20(int64_t param_1, int64_t *param_2)
 {
-    longlong *old_resource;
-    longlong *new_resource;
+    int64_t *old_resource;
+    int64_t *new_resource;
     
     /* 获取新资源 */
-    new_resource = (longlong *)*param_2;
+    new_resource = (int64_t *)*param_2;
     
     /* 释放新资源（如果存在） */
-    if (new_resource != (longlong *)0x0) {
+    if (new_resource != (int64_t *)0x0) {
         void (**ref_func)() = (void (**)())(*new_resource + RESOURCE_REF_COUNT_OFFSET);
         if (*ref_func) {
             (*ref_func)(new_resource);
@@ -347,13 +347,13 @@ void FUN_1800f8e20(longlong param_1, longlong *param_2)
     }
     
     /* 获取旧资源 */
-    old_resource = *(longlong **)(param_1 + 0x118);
+    old_resource = *(int64_t **)(param_1 + 0x118);
     
     /* 设置新资源 */
-    *(longlong **)(param_1 + 0x118) = new_resource;
+    *(int64_t **)(param_1 + 0x118) = new_resource;
     
     /* 释放旧资源（如果存在） */
-    if (old_resource != (longlong *)0x0) {
+    if (old_resource != (int64_t *)0x0) {
         void (**destructor_func)() = (void (**)())(*old_resource + RESOURCE_DESTRUCTOR_OFFSET);
         if (*destructor_func) {
             (*destructor_func)();
@@ -361,8 +361,8 @@ void FUN_1800f8e20(longlong param_1, longlong *param_2)
     }
     
     /* 清理输入参数中的资源 */
-    if ((longlong *)*param_2 != (longlong *)0x0) {
-        void (**destructor_func)() = (void (**)())(*(longlong *)*param_2 + RESOURCE_DESTRUCTOR_OFFSET);
+    if ((int64_t *)*param_2 != (int64_t *)0x0) {
+        void (**destructor_func)() = (void (**)())(*(int64_t *)*param_2 + RESOURCE_DESTRUCTOR_OFFSET);
         if (*destructor_func) {
             (*destructor_func)();
         }
@@ -462,23 +462,23 @@ void FUN_1800f8f90(uint64_t *param_1)
  * 
  * @param system_context 系统上下文
  * @param output 输出参数
- * @return longlong* 返回输出参数指针
+ * @return int64_t* 返回输出参数指针
  * 
  * @note 该函数用于系统级资源管理
  * @warning 调用者需要确保上下文有效
  */
-longlong* FUN_1800f8fc0(longlong param_1, longlong *param_2)
+int64_t* FUN_1800f8fc0(int64_t param_1, int64_t *param_2)
 {
-    longlong *resource_ptr;
+    int64_t *resource_ptr;
     
     /* 获取系统资源指针 */
-    resource_ptr = *(longlong **)(param_1 + 0x18);
+    resource_ptr = *(int64_t **)(param_1 + 0x18);
     
     /* 设置输出参数 */
-    *param_2 = (longlong)resource_ptr;
+    *param_2 = (int64_t)resource_ptr;
     
     /* 如果资源非空，调用引用函数 */
-    if (resource_ptr != (longlong *)0x0) {
+    if (resource_ptr != (int64_t *)0x0) {
         void (**ref_func)() = (void (**)())(*resource_ptr + RESOURCE_REF_COUNT_OFFSET);
         if (*ref_func) {
             (*ref_func)();
@@ -517,7 +517,7 @@ int32_t* FUN_1800f9010(int32_t *param_1, int32_t param_2, uint64_t param_3, int8
     
     /* 分配资源 */
     resource_ptr = (uint64_t *)FUN_18062b1e0(system_memory_pool_ptr, 0x18, 8, 3);
-    *(int32_t *)((longlong)resource_ptr + 0x14) = 0;
+    *(int32_t *)((int64_t)resource_ptr + 0x14) = 0;
     *resource_ptr = 0;
     resource_ptr[1] = 0;
     *(int32_t *)(resource_ptr + 2) = param_2;
@@ -543,7 +543,7 @@ int32_t* FUN_1800f9010(int32_t *param_1, int32_t param_2, uint64_t param_3, int8
  * @note 该函数是系统初始化的核心函数
  * @warning 调用过程复杂，需要谨慎处理
  */
-void FUN_1800f9090(uint64_t param_1, longlong param_2)
+void FUN_1800f9090(uint64_t param_1, int64_t param_2)
 {
     /* 复杂的初始化逻辑 */
     /* 这里包含大量的系统级初始化代码 */
@@ -572,8 +572,8 @@ void FUN_1800f9350(void)
 {
     uint64_t system_data;
     uint64_t lock_timeout;
-    longlong *resource_ptr;
-    longlong **resource_ptr_ptr;
+    int64_t *resource_ptr;
+    int64_t **resource_ptr_ptr;
     uint64_t cleanup_flag;
     
     /* 获取系统数据 */
@@ -582,7 +582,7 @@ void FUN_1800f9350(void)
     
     /* 检查系统状态 */
     if ((system_system_data_config != 0) && 
-        (resource_ptr = *(longlong **)(system_system_data_config + 0x220), resource_ptr != (longlong *)0x0)) {
+        (resource_ptr = *(int64_t **)(system_system_data_config + 0x220), resource_ptr != (int64_t *)0x0)) {
         
         /* 执行资源清理 */
         resource_ptr_ptr = &resource_ptr;
@@ -595,11 +595,11 @@ void FUN_1800f9350(void)
         FUN_18005e6a0(system_data, &resource_ptr, 0, cleanup_flag, lock_timeout);
         
         /* 清理资源引用 */
-        resource_ptr = *(longlong **)(system_system_data_config + 0x220);
+        resource_ptr = *(int64_t **)(system_system_data_config + 0x220);
         *(uint64_t *)(system_system_data_config + 0x220) = 0;
         
         /* 释放资源 */
-        if (resource_ptr != (longlong *)0x0) {
+        if (resource_ptr != (int64_t *)0x0) {
             void (**destructor_func)() = (void (**)())(*resource_ptr + 0x38);
             if (*destructor_func) {
                 (*destructor_func)();

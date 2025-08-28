@@ -70,7 +70,7 @@
 // ============================================================================
 
 /** 渲染数据处理器句柄 */
-typedef longlong RenderingDataProcessorHandle;
+typedef int64_t RenderingDataProcessorHandle;
 
 /** 渲染数据块指针 */
 typedef void* RenderingDataBlockPtr;
@@ -125,8 +125,8 @@ typedef struct {
     } config;
     
     struct {
-        ulonglong processed_count;        /**< 处理计数 */
-        ulonglong error_count;            /**< 错误计数 */
+        uint64_t processed_count;        /**< 处理计数 */
+        uint64_t error_count;            /**< 错误计数 */
         float processing_time;             /**< 处理时间 */
         uint last_error_code;              /**< 最后错误码 */
     } stats;
@@ -286,16 +286,16 @@ extern const void* GET_SECURITY_COOKIE();     // 渲染系统全局数据
  * @see RenderingBatchItem
  */
 void RenderingSystem_AdvancedDataProcessorAndOptimizer(
-    longlong param_1,                          // 渲染数据处理器上下文
+    int64_t param_1,                          // 渲染数据处理器上下文
     uint in_stack_00000030,                    // 数据块数量
-    longlong in_stack_00000038,                // 输出缓冲区
-    longlong in_stack_00000040,                // 临时存储区
+    int64_t in_stack_00000038,                // 输出缓冲区
+    int64_t in_stack_00000040,                // 临时存储区
     char in_stack_00000048,                     // 处理模式
     uint in_stack_00000050                     // 数据类型标识符
 ) {
     // 栈变量声明和初始化
     float *pfVar1, *pfVar2, *pfVar3;           // 浮点指针变量
-    longlong lVar4, lVar11, lVar12, lVar16, lVar17, lVar18;  // 长整型变量
+    int64_t lVar4, lVar11, lVar12, lVar16, lVar17, lVar18;  // 长整型变量
     int32_t uVar5, uVar6;                   // 未定义4字节变量
     float fVar7, fVar8, fVar19, fVar27, fVar29, fVar31, fVar32, fVar34, fVar39, fVar40, fVar41, fVar42, fVar48, fVar49, fVar50, fVar55, fVar58, fVar61, fVar70, fVar76, fVar78, fVar80, fVar81, fVar82, fVar83, fVar84, fVar85, fVar88, fVar91, fVar92, fVar93;  // 浮点变量
     uint uVar10, uVar13, uVar15, uVar20, uVar28, uVar30, uVar33, uVar52, uVar57, uVar60, uVar63, uVar65, uVar67, uVar69, uVar72;  // 无符号整型变量
@@ -312,17 +312,17 @@ void RenderingSystem_AdvancedDataProcessorAndOptimizer(
     int32_t uStack_1fc;                   // 栈变量
     uint64_t uStack_1e8, uStack_1d8, uStack_1c8;  // 栈变量
     float fStack_1e0, fStack_1dc, fStack_1d0, fStack_1cc, fStack_1c0, fStack_1bc, fStack_1a0, fStack_19c;  // 浮点栈变量
-    longlong lStack_1b8, lStack_188;         // 长整型栈变量
+    int64_t lStack_1b8, lStack_188;         // 长整型栈变量
     int8_t auStack_198[16];               // 栈数组
-    longlong lStack_1a8;                      // 长整型栈变量
+    int64_t lStack_1a8;                      // 长整型栈变量
     int8_t auStack_138[16], auStack_128[16], auStack_118[16];  // 栈数组
     int aiStack_178[4], aiStack_158[4];      // 整型栈数组
     uint auStack_168[4], auStack_148[4];      // 无符号整型栈数组
     float afStack_108[4], afStack_f8[4], afStack_e8[4];  // 浮点栈数组
-    ulonglong uStack_d8;                      // 无符号长整型栈变量
+    uint64_t uStack_d8;                      // 无符号长整型栈变量
     
     // 初始化栈保护和数据完整性检查
-    uStack_d8 = GET_SECURITY_COOKIE() ^ (ulonglong)&uStack_208;
+    uStack_d8 = GET_SECURITY_COOKIE() ^ (uint64_t)&uStack_208;
     uStack_1f8 = 4;                           // 初始化批处理大小
     uVar15 = 0xf;                            // 初始化掩码
     uStack_200 = in_stack_00000030 + 1;     // 设置数据块数量
@@ -341,7 +341,7 @@ void RenderingSystem_AdvancedDataProcessorAndOptimizer(
         }
         
         // 获取数据块指针和索引信息
-        lVar18 = *(longlong *)(param_1 + 0x28 + (ulonglong)in_stack_00000050 * 8);
+        lVar18 = *(int64_t *)(param_1 + 0x28 + (uint64_t)in_stack_00000050 * 8);
         uVar28 = uStack_200;
         
         if (uStack_1f4 <= in_stack_00000030) {
@@ -349,9 +349,9 @@ void RenderingSystem_AdvancedDataProcessorAndOptimizer(
         }
         
         uStack_1f8 = uVar28;
-        lVar16 = *(longlong *)(*(longlong *)(param_1 + 0x10) + 0x48);
-        uVar10 = (ulonglong)*(uint *)(lVar16 + (ulonglong)(uVar20 * 3) * 4);
-        lVar16 = lVar16 + (ulonglong)(uVar20 * 3) * 4;
+        lVar16 = *(int64_t *)(*(int64_t *)(param_1 + 0x10) + 0x48);
+        uVar10 = (uint64_t)*(uint *)(lVar16 + (uint64_t)(uVar20 * 3) * 4);
+        lVar16 = lVar16 + (uint64_t)(uVar20 * 3) * 4;
         
         // 根据处理模式分支执行不同的数据处理逻辑
         if (in_stack_00000048 == '\0') {
@@ -374,41 +374,41 @@ void RenderingSystem_AdvancedDataProcessorAndOptimizer(
             fVar76 = *pfVar1;                 // 位置X
             fVar7 = pfVar1[1];                  // 位置Y
             afStack_108[0] = pfVar1[2];        // 位置Z
-            pfVar2 = (float *)(lVar18 + (ulonglong)*(uint *)(lVar17 + lVar16) * 0x10);
+            pfVar2 = (float *)(lVar18 + (uint64_t)*(uint *)(lVar17 + lVar16) * 0x10);
             fVar78 = *pfVar2;                  // 纹理U
             fVar70 = pfVar2[1];                // 纹理V
             afStack_108[1] = pfVar2[2];        // 纹理W
-            pfVar3 = (float *)(lVar18 + (ulonglong)*(uint *)(lVar11 + lVar16) * 0x10);
+            pfVar3 = (float *)(lVar18 + (uint64_t)*(uint *)(lVar11 + lVar16) * 0x10);
             fVar80 = *pfVar3;                  // 法线X
             fVar8 = pfVar3[1];                  // 法线Y
             fStack_1a0 = pfVar3[2];            // 法线Z
             fStack_1e0 = pfVar3[3];            // 法线W
-            pfVar3 = (float *)(lVar18 + (ulonglong)*(uint *)(lVar12 + lVar16) * 0x10);
+            pfVar3 = (float *)(lVar18 + (uint64_t)*(uint *)(lVar12 + lVar16) * 0x10);
             fVar81 = *pfVar3;                  // 颜色R
             fVar31 = pfVar3[1];                // 颜色G
-            lVar4 = lVar18 + (ulonglong)*(uint *)(lVar12 + lVar16) * 0x10;
+            lVar4 = lVar18 + (uint64_t)*(uint *)(lVar12 + lVar16) * 0x10;
             fStack_1dc = *(float *)(lVar4 + 4);  // 颜色B
             fStack_19c = *(float *)(lVar4 + 8);  // 颜色A
             
             // 处理辅助数据
             uStack_1e8 = CONCAT44(pfVar2[3], pfVar1[3]);
-            pfVar1 = (float *)(lVar18 + (ulonglong)*(uint *)(lVar16 + 4) * 0x10);
+            pfVar1 = (float *)(lVar18 + (uint64_t)*(uint *)(lVar16 + 4) * 0x10);
             fVar88 = *pfVar1;                  // 辅助数据X
             fVar82 = pfVar1[1];                // 辅助数据Y
             fVar34 = pfVar1[2];                // 辅助数据Z
             uStack_1a8 = CONCAT44(afStack_108[1], afStack_108[0]);
             
             // 继续处理更多数据块...
-            pfVar2 = (float *)(lVar18 + (ulonglong)*(uint *)(lVar17 + 4 + lVar16) * 0x10);
+            pfVar2 = (float *)(lVar18 + (uint64_t)*(uint *)(lVar17 + 4 + lVar16) * 0x10);
             fVar91 = *pfVar2;                  // 扩展数据X
             fVar83 = pfVar2[1];                // 扩展数据Y
             fVar39 = pfVar2[2];                // 扩展数据Z
-            pfVar3 = (float *)(lVar18 + (ulonglong)*(uint *)(lVar11 + 4 + lVar16) * 0x10);
+            pfVar3 = (float *)(lVar18 + (uint64_t)*(uint *)(lVar11 + 4 + lVar16) * 0x10);
             fVar92 = *pfVar3;                  // 扩展数据U
             fVar84 = pfVar3[1];                // 扩展数据V
             fVar40 = pfVar3[2];                // 扩展数据W
             fStack_1c0 = pfVar3[3];            // 扩展数据A
-            uVar10 = (ulonglong)*(uint *)(lVar12 + 4 + lVar16);
+            uVar10 = (uint64_t)*(uint *)(lVar12 + 4 + lVar16);
             pfVar3 = (float *)(lVar18 + uVar10 * 0x10);
             fVar93 = *pfVar3;                  // 最终数据X
             fVar85 = pfVar3[1];                // 最终数据Y
@@ -418,17 +418,17 @@ void RenderingSystem_AdvancedDataProcessorAndOptimizer(
             uStack_1c8 = CONCAT44(pfVar2[3], pfVar1[3]);
             
             // 处理第三组数据
-            pfVar1 = (float *)(lVar18 + (ulonglong)*(uint *)(lVar16 + 8) * 0x10);
+            pfVar1 = (float *)(lVar18 + (uint64_t)*(uint *)(lVar16 + 8) * 0x10);
             fVar50 = *pfVar1;                  // 第三组X
             fVar55 = pfVar1[1];                // 第三组Y
             fVar58 = pfVar1[2];                // 第三组Z
             fVar61 = pfVar1[3];                // 第三组W
-            pfVar1 = (float *)(lVar18 + (ulonglong)*(uint *)(lVar17 + 8 + lVar16) * 0x10);
+            pfVar1 = (float *)(lVar18 + (uint64_t)*(uint *)(lVar17 + 8 + lVar16) * 0x10);
             fVar19 = *pfVar1;                  // 第四组X
             fVar27 = pfVar1[1];                // 第四组Y
             fVar29 = pfVar1[2];                // 第四组Z
             fVar32 = pfVar1[3];                // 第四组W
-            pfVar1 = (float *)(lVar18 + (ulonglong)*(uint *)(lVar11 + 8 + lVar16) * 0x10);
+            pfVar1 = (float *)(lVar18 + (uint64_t)*(uint *)(lVar11 + 8 + lVar16) * 0x10);
             fVar42 = *pfVar1;                  // 第五组X
             fVar48 = pfVar1[1];                // 第五组Y
             fVar49 = pfVar1[2];                // 第五组Z
@@ -450,8 +450,8 @@ void RenderingSystem_AdvancedDataProcessorAndOptimizer(
         iVar71 = (int)fVar31;                 // 转换颜色G
         
         // 处理最终数据块
-        pfVar1 = (float *)(lVar18 + (ulonglong)uVar20 * 0x10);
-        lVar18 = lVar18 + (ulonglong)uVar20 * 0x10;
+        pfVar1 = (float *)(lVar18 + (uint64_t)uVar20 * 0x10);
+        lVar18 = lVar18 + (uint64_t)uVar20 * 0x10;
         fStack_1cc = *(float *)(lVar18 + 4);  // 获取最终数据Y
         uVar5 = *(int32_t *)(lVar18 + 8);   // 获取最终数据Z
         
@@ -477,7 +477,7 @@ void RenderingSystem_AdvancedDataProcessorAndOptimizer(
     lStack_188 = param_1;
     
     // 调用清理函数
-    FUN_1808fc050(uStack_d8 ^ (ulonglong)&uStack_208);
+    FUN_1808fc050(uStack_d8 ^ (uint64_t)&uStack_208);
 }
 
 /**
@@ -492,7 +492,7 @@ void RenderingSystem_AdvancedDataProcessorAndOptimizer(
  * @param normals 输出法线数组
  * @param colors 输出颜色数组
  */
-void extract_render_data_standard(longlong render_data, longlong vertex_buffer, uint batch_index,
+void extract_render_data_standard(int64_t render_data, int64_t vertex_buffer, uint batch_index,
                                  float* texture_coords, float* vertex_positions, 
                                  float* normals, float* colors)
 {
@@ -500,17 +500,17 @@ void extract_render_data_standard(longlong render_data, longlong vertex_buffer, 
     // 原实现包含复杂的数据提取和转换逻辑
     
     // 计算偏移量
-    longlong offset1 = 0;
+    int64_t offset1 = 0;
     if (1 < RENDERING_BATCH_SIZE) {
         offset1 = RENDERING_BATCH_OFFSET_1;
     }
     
-    longlong offset2 = 0;
+    int64_t offset2 = 0;
     if (2 < RENDERING_BATCH_SIZE) {
         offset2 = RENDERING_BATCH_OFFSET_2;
     }
     
-    longlong offset3 = 0;
+    int64_t offset3 = 0;
     if (3 < RENDERING_BATCH_SIZE) {
         offset3 = RENDERING_BATCH_OFFSET_3;
     }
@@ -553,7 +553,7 @@ void extract_render_data_standard(longlong render_data, longlong vertex_buffer, 
  * @param normals 输出法线数组
  * @param colors 输出颜色数组
  */
-void extract_render_data_optimized(longlong render_data, longlong vertex_buffer, uint batch_index,
+void extract_render_data_optimized(int64_t render_data, int64_t vertex_buffer, uint batch_index,
                                   float* texture_coords, float* vertex_positions,
                                   float* normals, float* colors)
 {
@@ -653,7 +653,7 @@ void apply_simd_optimizations(float* transformed_coords, float* transformed_norm
  * @param batch_index 批处理索引
  * @param vertex_offset 顶点偏移量
  */
-void process_batch_rendering(longlong param_1, longlong output_buffer, longlong batch_data,
+void process_batch_rendering(int64_t param_1, int64_t output_buffer, int64_t batch_data,
                              float* transformed_coords, float* transformed_normals, float* colors,
                              uint visibility_mask, uint batch_index, uint vertex_offset)
 {
@@ -692,14 +692,14 @@ void process_batch_rendering(longlong param_1, longlong output_buffer, longlong 
  * @param transformed_normals 变换后法线数组
  * @param colors 颜色数组
  */
-void render_fragment(longlong output_buffer, longlong batch_data, uint fragment_index,
+void render_fragment(int64_t output_buffer, int64_t batch_data, uint fragment_index,
                     float* transformed_coords, float* transformed_normals, float* colors)
 {
     // 简化实现：片段渲染
     // 原实现包含复杂的片段渲染和缓冲区写入逻辑
     
     // 计算输出位置
-    longlong output_offset = (longlong)fragment_index * RENDERING_VERTEX_SIZE;
+    int64_t output_offset = (int64_t)fragment_index * RENDERING_VERTEX_SIZE;
     
     // 写入顶点数据
     *(float*)(output_buffer + output_offset) = transformed_coords[fragment_index];
@@ -732,8 +732,8 @@ void render_fragment(longlong output_buffer, longlong batch_data, uint fragment_
 // ============================================================================
 
 /** 保持与原始函数名的兼容性 */
-void FUN_18049c310(longlong param_1, uint in_stack_00000030, longlong in_stack_00000038, 
-                  longlong in_stack_00000040, char in_stack_00000048, uint in_stack_00000050) 
+void FUN_18049c310(int64_t param_1, uint in_stack_00000030, int64_t in_stack_00000038, 
+                  int64_t in_stack_00000040, char in_stack_00000048, uint in_stack_00000050) 
     __attribute__((alias("RenderingSystem_AdvancedDataProcessorAndOptimizer")));
 
 // ============================================================================

@@ -69,7 +69,7 @@
 // =============================================================================
 
 /** 基础类型别名 */
-typedef longlong RenderingSystemHandle;              ///< 渲染系统句柄类型
+typedef int64_t RenderingSystemHandle;              ///< 渲染系统句柄类型
 typedef int32_t RenderingSystemState;              ///< 渲染系统状态类型
 typedef uint64_t RenderingSystemParameter;         ///< 渲染系统参数类型
 typedef int8_t RenderingSystemFlag;               ///< 渲染系统标志类型
@@ -80,10 +80,10 @@ typedef bool RenderingSystemBool;                    ///< 渲染系统布尔类�
 typedef char RenderingSystemChar;                    ///< 渲染系统字符类型
 
 /** 指针类型别名 */
-typedef longlong *RenderingSystemHandlePtr;          ///< 渲染系统句柄指针类型
+typedef int64_t *RenderingSystemHandlePtr;          ///< 渲染系统句柄指针类型
 typedef int32_t *RenderingSystemStatePtr;         ///< 渲染系统状态指针类型
 typedef uint64_t *RenderingSystemParameterPtr;    ///< 渲染系统参数指针类型
-typedef longlong **RenderingSystemComponentPtr;      ///< 渲染系统组件指针类型
+typedef int64_t **RenderingSystemComponentPtr;      ///< 渲染系统组件指针类型
 typedef void **RenderingSystemDataPtr;          ///< 渲染系统数据指针类型
 
 /** 函数指针类型别名 */
@@ -330,7 +330,7 @@ RenderingSystemStatePtr RenderingSystemResourceStateSynchronizer(
     
     // 设置返回状态
     stack_state_1 = SUB84(resource_handle, 0);
-    stack_state_2 = (RenderingSystemState)((ulonglong)resource_handle >> 0x20);
+    stack_state_2 = (RenderingSystemState)((uint64_t)resource_handle >> 0x20);
     *param_1 = stack_state_1;
     param_1[1] = stack_state_2;
     param_1[2] = result_state;
@@ -480,8 +480,8 @@ void RenderingSystemResourceAllocator(RenderingSystemHandle param_1)
             resource_count = resource_count + 1;
             resource_index = resource_index + 8;
             resource_base = *(RenderingSystemHandle *)(param_1 + RENDERING_OFFSET_STATE_1);
-        } while ((ulonglong)(RenderingSystemHandle)resource_count < 
-            (ulonglong)(*(RenderingSystemHandle *)(param_1 + RENDERING_OFFSET_STATE_2) - resource_base >> 3));
+        } while ((uint64_t)(RenderingSystemHandle)resource_count < 
+            (uint64_t)(*(RenderingSystemHandle *)(param_1 + RENDERING_OFFSET_STATE_2) - resource_base >> 3));
     }
     return;
 }
@@ -575,7 +575,7 @@ RenderingSystemState RenderingSystemStateUpdater(
 {
     RenderingSystemCount state_count;
     RenderingSystemState result_state;
-    ulonglong data_size;
+    uint64_t data_size;
     RenderingSystemDataPtr data_ptr;
     RenderingSystemHandle memory_handle;
     RenderingSystemState stack_state_1;
@@ -593,7 +593,7 @@ RenderingSystemState RenderingSystemStateUpdater(
             RENDERING_SYSTEM_HANDLE_INVALID);
     } else {
         state_count = *(RenderingSystemCount *)(param_1 + RENDERING_OFFSET_DATA_2);
-        data_size = (ulonglong)state_count;
+        data_size = (uint64_t)state_count;
         if (*(RenderingSystemHandle *)(param_1 + RENDERING_OFFSET_DATA_1) != 0) {
             FUN_1806277c0(&data_ptr, data_size);
         }
@@ -1197,7 +1197,7 @@ void RenderingSystemAdvancedRenderer(
     RenderingSystemHandlePtr resource_ptr;
     RenderingSystemHandle resource_base;
     RenderingSystemParameter render_param;
-    ulonglong data_size;
+    uint64_t data_size;
     RenderingSystemState stack_state[4];
     RenderingSystemDataPtr data_ptr;
     RenderingSystemHandle memory_handle;
@@ -1267,7 +1267,7 @@ void RenderingSystemAdvancedRenderer(
     
     if (resource_base != 0) {
         render_count = *(RenderingSystemCount *)(resource_base + 0x18);
-        data_size = (ulonglong)render_count;
+        data_size = (uint64_t)render_count;
         if (*(RenderingSystemHandle *)(resource_base + 0x10) != 0) {
             FUN_1806277c0(&data_ptr, data_size);
         }
@@ -1463,7 +1463,7 @@ void RenderingSystemFinalizer(RenderingSystemHandle param_1)
     int mutex_result;
     RenderingSystemCount resource_count;
     RenderingSystemHandlePtr resource_ptr;
-    ulonglong resource_size;
+    uint64_t resource_size;
     
     // 执行终结化操作
     (**(RenderingSystemCallback)(**(RenderingSystemHandlePtr *)(param_1 + 0x270) + 0x90))();
@@ -1481,7 +1481,7 @@ void RenderingSystemFinalizer(RenderingSystemHandle param_1)
             if (*resource_ptr == param_1) goto LAB_1801b0618;
             mutex_result = mutex_result + 1;
             resource_ptr = resource_ptr + 1;
-        } while ((ulonglong)(RenderingSystemHandle)mutex_result < resource_size);
+        } while ((uint64_t)(RenderingSystemHandle)mutex_result < resource_size);
     }
     mutex_result = -1;
 LAB_1801b0618:

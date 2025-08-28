@@ -166,8 +166,8 @@ extern float g_render_target_aspect_ratio;     // 渲染目标宽高比
 void UI_RenderController(void)
 
 {
-  longlong in_RAX;
-  longlong in_R11;
+  int64_t in_RAX;
+  int64_t in_R11;
   uint64_t unaff_R15;
   uint64_t unaff_XMM6_Qa;
   uint64_t unaff_XMM6_Qb;
@@ -180,8 +180,8 @@ void UI_RenderController(void)
   // 执行渲染指令分发
   // WARNING: Could not recover jumptable at 0x000180839a3d. Too many branches
   // WARNING: Treating indirect jump as call
-  (*(code *)((ulonglong)*(uint *)(&unknown_var_6400_ptr + in_RAX * 4) + 0x180000000))
-          ((code *)((ulonglong)*(uint *)(&unknown_var_6400_ptr + in_RAX * 4) + 0x180000000));
+  (*(code *)((uint64_t)*(uint *)(&unknown_var_6400_ptr + in_RAX * 4) + 0x180000000))
+          ((code *)((uint64_t)*(uint *)(&unknown_var_6400_ptr + in_RAX * 4) + 0x180000000));
   return;
 }
 
@@ -421,10 +421,10 @@ uint64_t UI_EmptyRenderHandler(void)
  * 
  * 返回值：处理状态码
  */
-uint64_t UI_TextureProcessor(longlong *param_1,longlong param_2,int *param_3,longlong param_4)
+uint64_t UI_TextureProcessor(int64_t *param_1,int64_t param_2,int *param_3,int64_t param_4)
 
 {
-  longlong lVar1;
+  int64_t lVar1;
   float fVar2;
   float fVar3;
   float fVar4;
@@ -436,21 +436,21 @@ uint64_t UI_TextureProcessor(longlong *param_1,longlong param_2,int *param_3,lon
   uint uVar10;
   float *pfVar11;
   int iVar12;
-  longlong lVar13;
-  longlong lVar14;
+  int64_t lVar13;
+  int64_t lVar14;
   int iVar15;
   int iVar16;
   int iVar17;
   int iVar18;
-  longlong lVar19;
-  ulonglong uVar20;
+  int64_t lVar19;
+  uint64_t uVar20;
   uint uVar21;
   uint uVar22;
-  longlong lVar23;
+  int64_t lVar23;
   
   // 计算纹理处理参数
-  uVar9 = *(int *)(*(longlong *)(*param_1 + 0x20) + (longlong)(int)param_1[5] * 4) / 2;
-  uVar20 = (ulonglong)(int)uVar9;
+  uVar9 = *(int *)(*(int64_t *)(*param_1 + 0x20) + (int64_t)(int)param_1[5] * 4) / 2;
+  uVar20 = (uint64_t)(int)uVar9;
   
   if (param_3 != (int *)0x0) {
     uVar10 = 0;
@@ -462,10 +462,10 @@ uint64_t UI_TextureProcessor(longlong *param_1,longlong param_2,int *param_3,lon
     if (1 < *(int *)(param_2 + 0x34)) {
       lVar23 = 1;
       do {
-        lVar13 = (longlong)*(char *)(lVar23 + *(longlong *)(param_2 + 0x18));
+        lVar13 = (int64_t)*(char *)(lVar23 + *(int64_t *)(param_2 + 0x18));
         if ((param_3[lVar13] & 0x7fffU) == param_3[lVar13]) {
           iVar15 = (param_3[lVar13] & 0x7fffU) * *(int *)(param_2 + 0x38);
-          uVar22 = (uint)*(ushort *)(*(longlong *)(param_2 + 0x10) + lVar13 * 2);
+          uVar22 = (uint)*(ushort *)(*(int64_t *)(param_2 + 0x10) + lVar13 * 2);
           iVar18 = iVar15 - iVar17;
           iVar5 = (iVar18 * 0x100000) / (int)(uVar22 - uVar10);
           uVar21 = uVar22;
@@ -473,7 +473,7 @@ uint64_t UI_TextureProcessor(longlong *param_1,longlong param_2,int *param_3,lon
             uVar21 = (uint)uVar20;
           }
           iVar12 = iVar5 * 4;
-          pfVar11 = (float *)(param_4 + (longlong)(int)uVar10 * 4);
+          pfVar11 = (float *)(param_4 + (int64_t)(int)uVar10 * 4);
           iVar17 = iVar17 * 0x100000 + 0x400 + (iVar18 >> 0x1f & 0xff800U);
           iVar6 = iVar5 * 3 + iVar17;
           iVar7 = iVar5 * 2 + iVar17;
@@ -485,10 +485,10 @@ uint64_t UI_TextureProcessor(longlong *param_1,longlong param_2,int *param_3,lon
             iRam0000000180c4ea74 = iVar7 >> 0x14;
             iRam0000000180c4ea78 = iVar8 >> 0x14;
             iRam0000000180c4ea7c = iVar17 >> 0x14;
-            fVar2 = *(float *)(&unknown_var_5936_ptr + (longlong)iRam0000000180c4ea74 * 4);
-            fVar3 = *(float *)(&unknown_var_5936_ptr + (longlong)ui_system_memory * 4);
-            fVar4 = *(float *)(&unknown_var_5936_ptr + (longlong)iRam0000000180c4ea78 * 4);
-            *pfVar11 = *(float *)(&unknown_var_5936_ptr + (longlong)iRam0000000180c4ea7c * 4) * *pfVar11;
+            fVar2 = *(float *)(&unknown_var_5936_ptr + (int64_t)iRam0000000180c4ea74 * 4);
+            fVar3 = *(float *)(&unknown_var_5936_ptr + (int64_t)ui_system_memory * 4);
+            fVar4 = *(float *)(&unknown_var_5936_ptr + (int64_t)iRam0000000180c4ea78 * 4);
+            *pfVar11 = *(float *)(&unknown_var_5936_ptr + (int64_t)iRam0000000180c4ea7c * 4) * *pfVar11;
             pfVar11[1] = fVar4 * pfVar11[1];
             pfVar11[2] = fVar2 * pfVar11[2];
             pfVar11[3] = fVar3 * pfVar11[3];
@@ -501,12 +501,12 @@ uint64_t UI_TextureProcessor(longlong *param_1,longlong param_2,int *param_3,lon
           
           // 处理剩余纹理操作
           for (uVar10 = uVar21 - uVar10 & 3; uVar10 != 0; uVar10 = uVar10 - 1) {
-            lVar13 = (longlong)iVar17;
+            lVar13 = (int64_t)iVar17;
             iVar17 = iVar17 + iVar5;
             *pfVar11 = *(float *)(&unknown_var_5936_ptr + (lVar13 >> 0x14) * 4) * *pfVar11;
             pfVar11 = pfVar11 + 1;
           }
-          uVar20 = (ulonglong)uVar9;
+          uVar20 = (uint64_t)uVar9;
           iVar17 = iVar15;
           uVar10 = uVar22;
         }
@@ -517,11 +517,11 @@ uint64_t UI_TextureProcessor(longlong *param_1,longlong param_2,int *param_3,lon
     }
     
     // 最终纹理处理
-    lVar23 = (longlong)(int)uVar22;
-    lVar13 = (longlong)(int)uVar21;
+    lVar23 = (int64_t)(int)uVar22;
+    lVar13 = (int64_t)(int)uVar21;
     if (lVar23 < lVar13) {
       if (3 < lVar13 - lVar23) {
-        lVar19 = (longlong)iVar17;
+        lVar19 = (int64_t)iVar17;
         lVar1 = lVar23 * 4;
         lVar14 = ((lVar13 - lVar23) - 4U >> 2) + 1;
         lVar23 = lVar23 + lVar14 * 4;
@@ -538,7 +538,7 @@ uint64_t UI_TextureProcessor(longlong *param_1,longlong param_2,int *param_3,lon
       if (lVar23 < lVar13) {
         do {
           *(float *)(param_4 + lVar23 * 4) =
-               *(float *)(param_4 + lVar23 * 4) * *(float *)(&unknown_var_5936_ptr + (longlong)iVar17 * 4);
+               *(float *)(param_4 + lVar23 * 4) * *(float *)(&unknown_var_5936_ptr + (int64_t)iVar17 * 4);
           lVar23 = lVar23 + 1;
         } while (lVar23 < lVar13);
       }
@@ -570,7 +570,7 @@ uint64_t UI_TextureProcessor(longlong *param_1,longlong param_2,int *param_3,lon
 uint64_t UI_PixelTransformer(uint64_t param_1,uint64_t param_2,int *param_3)
 
 {
-  longlong lVar1;
+  int64_t lVar1;
   float fVar2;
   float fVar3;
   float fVar4;
@@ -581,22 +581,22 @@ uint64_t UI_PixelTransformer(uint64_t param_1,uint64_t param_2,int *param_3)
   int iVar9;
   float *pfVar10;
   int iVar11;
-  longlong lVar12;
-  longlong lVar13;
+  int64_t lVar12;
+  int64_t lVar13;
   int iVar14;
   int iVar15;
   int iVar16;
   int iVar17;
-  longlong lVar18;
+  int64_t lVar18;
   uint uVar19;
   uint in_R10D;
   uint uVar20;
   uint uVar21;
-  longlong unaff_R13;
-  longlong unaff_R14;
-  longlong lVar22;
+  int64_t unaff_R13;
+  int64_t unaff_R14;
+  int64_t lVar22;
   uint in_stack_00000070;
-  longlong in_stack_00000078;
+  int64_t in_stack_00000078;
   int *in_stack_00000080;
   
   iVar15 = 1;
@@ -607,10 +607,10 @@ uint64_t UI_PixelTransformer(uint64_t param_1,uint64_t param_2,int *param_3)
   if (1 < *(int *)(unaff_R13 + 0x34)) {
     lVar22 = 1;
     do {
-      lVar12 = (longlong)*(char *)(lVar22 + *(longlong *)(unaff_R13 + 0x18));
+      lVar12 = (int64_t)*(char *)(lVar22 + *(int64_t *)(unaff_R13 + 0x18));
       if ((param_3[lVar12] & 0x7fffU) == param_3[lVar12]) {
         iVar14 = (param_3[lVar12] & 0x7fffU) * *(int *)(unaff_R13 + 0x38);
-        uVar5 = *(ushort *)(*(longlong *)(unaff_R13 + 0x10) + lVar12 * 2);
+        uVar5 = *(ushort *)(*(int64_t *)(unaff_R13 + 0x10) + lVar12 * 2);
         uVar21 = (uint)uVar5;
         iVar17 = iVar14 - iVar16;
         iVar6 = (iVar17 * 0x100000) / (int)(uVar21 - uVar19);
@@ -619,7 +619,7 @@ uint64_t UI_PixelTransformer(uint64_t param_1,uint64_t param_2,int *param_3)
           uVar20 = in_R10D;
         }
         iVar11 = iVar6 * 4;
-        pfVar10 = (float *)(unaff_R14 + (longlong)(int)uVar19 * 4);
+        pfVar10 = (float *)(unaff_R14 + (int64_t)(int)uVar19 * 4);
         iVar17 = iVar16 * 0x100000 + 0x400 + (iVar17 >> 0x1f & 0xff800U);
         iVar7 = iVar6 * 3 + iVar17;
         iVar8 = iVar6 * 2 + iVar17;
@@ -631,10 +631,10 @@ uint64_t UI_PixelTransformer(uint64_t param_1,uint64_t param_2,int *param_3)
           iRam0000000180c4ea74 = iVar8 >> 0x14;
           iRam0000000180c4ea78 = iVar9 >> 0x14;
           iRam0000000180c4ea7c = iVar17 >> 0x14;
-          fVar2 = *(float *)(&unknown_var_5936_ptr + (longlong)iRam0000000180c4ea74 * 4);
-          fVar3 = *(float *)(&unknown_var_5936_ptr + (longlong)ui_system_memory * 4);
-          fVar4 = *(float *)(&unknown_var_5936_ptr + (longlong)iRam0000000180c4ea78 * 4);
-          *pfVar10 = *(float *)(&unknown_var_5936_ptr + (longlong)iRam0000000180c4ea7c * 4) * *pfVar10;
+          fVar2 = *(float *)(&unknown_var_5936_ptr + (int64_t)iRam0000000180c4ea74 * 4);
+          fVar3 = *(float *)(&unknown_var_5936_ptr + (int64_t)ui_system_memory * 4);
+          fVar4 = *(float *)(&unknown_var_5936_ptr + (int64_t)iRam0000000180c4ea78 * 4);
+          *pfVar10 = *(float *)(&unknown_var_5936_ptr + (int64_t)iRam0000000180c4ea7c * 4) * *pfVar10;
           pfVar10[1] = fVar4 * pfVar10[1];
           pfVar10[2] = fVar2 * pfVar10[2];
           pfVar10[3] = fVar3 * pfVar10[3];
@@ -649,7 +649,7 @@ uint64_t UI_PixelTransformer(uint64_t param_1,uint64_t param_2,int *param_3)
         // 处理剩余像素变换
         for (uVar20 = uVar20 - uVar19 & 3; param_3 = in_stack_00000080, iVar16 = iVar14,
             uVar19 = uVar21, in_R10D = in_stack_00000070, uVar20 != 0; uVar20 = uVar20 - 1) {
-          lVar12 = (longlong)iVar17;
+          lVar12 = (int64_t)iVar17;
           iVar17 = iVar17 + iVar6;
           *pfVar10 = *(float *)(&unknown_var_5936_ptr + (lVar12 >> 0x14) * 4) * *pfVar10;
           pfVar10 = pfVar10 + 1;
@@ -661,11 +661,11 @@ uint64_t UI_PixelTransformer(uint64_t param_1,uint64_t param_2,int *param_3)
   }
   
   // 最终像素处理
-  lVar22 = (longlong)(int)uVar21;
-  lVar12 = (longlong)(int)in_R10D;
+  lVar22 = (int64_t)(int)uVar21;
+  lVar12 = (int64_t)(int)in_R10D;
   if (lVar22 < lVar12) {
     if (3 < lVar12 - lVar22) {
-      lVar18 = (longlong)iVar16;
+      lVar18 = (int64_t)iVar16;
       lVar1 = lVar22 * 4;
       lVar13 = ((lVar12 - lVar22) - 4U >> 2) + 1;
       lVar22 = lVar22 + lVar13 * 4;
@@ -682,7 +682,7 @@ uint64_t UI_PixelTransformer(uint64_t param_1,uint64_t param_2,int *param_3)
     if (lVar22 < lVar12) {
       do {
         *(float *)(unaff_R14 + lVar22 * 4) =
-             *(float *)(unaff_R14 + lVar22 * 4) * *(float *)(&unknown_var_5936_ptr + (longlong)iVar16 * 4);
+             *(float *)(unaff_R14 + lVar22 * 4) * *(float *)(&unknown_var_5936_ptr + (int64_t)iVar16 * 4);
         lVar22 = lVar22 + 1;
       } while (lVar22 < lVar12);
     }
@@ -709,10 +709,10 @@ uint64_t UI_PixelTransformer(uint64_t param_1,uint64_t param_2,int *param_3)
  * 
  * 返回值：处理状态码
  */
-uint64_t UI_ColorProcessor(uint64_t param_1,uint64_t param_2,longlong param_3,uint param_4)
+uint64_t UI_ColorProcessor(uint64_t param_1,uint64_t param_2,int64_t param_3,uint param_4)
 
 {
-  longlong lVar1;
+  int64_t lVar1;
   float fVar2;
   float fVar3;
   float fVar4;
@@ -723,34 +723,34 @@ uint64_t UI_ColorProcessor(uint64_t param_1,uint64_t param_2,longlong param_3,ui
   int iVar9;
   float *pfVar10;
   int iVar11;
-  longlong lVar12;
-  longlong lVar13;
+  int64_t lVar12;
+  int64_t lVar13;
   uint uVar14;
   int iVar15;
   uint unaff_EBP;
   int unaff_ESI;
   int iVar16;
   int iVar17;
-  longlong lVar18;
-  longlong lVar19;
+  int64_t lVar18;
+  int64_t lVar19;
   uint in_R10D;
   uint unaff_R12D;
-  longlong unaff_R13;
-  longlong unaff_R14;
-  ulonglong uVar20;
+  int64_t unaff_R13;
+  int64_t unaff_R14;
+  uint64_t uVar20;
   uint in_stack_00000070;
-  longlong in_stack_00000078;
-  longlong in_stack_00000080;
+  int64_t in_stack_00000078;
+  int64_t in_stack_00000080;
   
-  uVar20 = (ulonglong)unaff_EBP;
+  uVar20 = (uint64_t)unaff_EBP;
   
   // 颜色处理主循环
   do {
-    lVar12 = (longlong)*(char *)(uVar20 + *(longlong *)(unaff_R13 + 0x18));
+    lVar12 = (int64_t)*(char *)(uVar20 + *(int64_t *)(unaff_R13 + 0x18));
     uVar14 = *(uint *)(param_3 + lVar12 * 4) & 0x7fff;
     if (uVar14 == *(uint *)(param_3 + lVar12 * 4)) {
       iVar15 = uVar14 * *(int *)(unaff_R13 + 0x38);
-      uVar5 = *(ushort *)(*(longlong *)(unaff_R13 + 0x10) + lVar12 * 2);
+      uVar5 = *(ushort *)(*(int64_t *)(unaff_R13 + 0x10) + lVar12 * 2);
       unaff_R12D = (uint)uVar5;
       iVar17 = iVar15 - unaff_ESI;
       iVar6 = (iVar17 * 0x100000) / (int)(unaff_R12D - param_4);
@@ -759,7 +759,7 @@ uint64_t UI_ColorProcessor(uint64_t param_1,uint64_t param_2,longlong param_3,ui
         uVar14 = in_R10D;
       }
       iVar11 = iVar6 * 4;
-      pfVar10 = (float *)(unaff_R14 + (longlong)(int)param_4 * 4);
+      pfVar10 = (float *)(unaff_R14 + (int64_t)(int)param_4 * 4);
       iVar17 = unaff_ESI * 0x100000 + 0x400 + (iVar17 >> 0x1f & 0xff800U);
       iVar7 = iVar6 * 3 + iVar17;
       iVar8 = iVar6 * 2 + iVar17;
@@ -771,10 +771,10 @@ uint64_t UI_ColorProcessor(uint64_t param_1,uint64_t param_2,longlong param_3,ui
         iRam0000000180c4ea74 = iVar8 >> 0x14;
         iRam0000000180c4ea78 = iVar9 >> 0x14;
         iRam0000000180c4ea7c = iVar17 >> 0x14;
-        fVar2 = *(float *)(&unknown_var_5936_ptr + (longlong)iRam0000000180c4ea74 * 4);
-        fVar3 = *(float *)(&unknown_var_5936_ptr + (longlong)ui_system_memory * 4);
-        fVar4 = *(float *)(&unknown_var_5936_ptr + (longlong)iRam0000000180c4ea78 * 4);
-        *pfVar10 = *(float *)(&unknown_var_5936_ptr + (longlong)iRam0000000180c4ea7c * 4) * *pfVar10;
+        fVar2 = *(float *)(&unknown_var_5936_ptr + (int64_t)iRam0000000180c4ea74 * 4);
+        fVar3 = *(float *)(&unknown_var_5936_ptr + (int64_t)ui_system_memory * 4);
+        fVar4 = *(float *)(&unknown_var_5936_ptr + (int64_t)iRam0000000180c4ea78 * 4);
+        *pfVar10 = *(float *)(&unknown_var_5936_ptr + (int64_t)iRam0000000180c4ea7c * 4) * *pfVar10;
         pfVar10[1] = fVar4 * pfVar10[1];
         pfVar10[2] = fVar2 * pfVar10[2];
         pfVar10[3] = fVar3 * pfVar10[3];
@@ -789,7 +789,7 @@ uint64_t UI_ColorProcessor(uint64_t param_1,uint64_t param_2,longlong param_3,ui
       // 处理剩余颜色变换
       for (uVar14 = uVar14 - param_4 & 3; param_3 = in_stack_00000080, unaff_ESI = iVar15,
           param_4 = unaff_R12D, in_R10D = in_stack_00000070, uVar14 != 0; uVar14 = uVar14 - 1) {
-        lVar12 = (longlong)iVar17;
+        lVar12 = (int64_t)iVar17;
         iVar17 = iVar17 + iVar6;
         *pfVar10 = *(float *)(&unknown_var_5936_ptr + (lVar12 >> 0x14) * 4) * *pfVar10;
         pfVar10 = pfVar10 + 1;
@@ -800,11 +800,11 @@ uint64_t UI_ColorProcessor(uint64_t param_1,uint64_t param_2,longlong param_3,ui
   } while ((int)unaff_EBP < *(int *)(unaff_R13 + 0x34));
   
   // 最终颜色处理
-  lVar12 = (longlong)(int)unaff_R12D;
-  lVar19 = (longlong)(int)in_R10D;
+  lVar12 = (int64_t)(int)unaff_R12D;
+  lVar19 = (int64_t)(int)in_R10D;
   if (lVar12 < lVar19) {
     if (3 < lVar19 - lVar12) {
-      lVar18 = (longlong)unaff_ESI;
+      lVar18 = (int64_t)unaff_ESI;
       lVar1 = lVar12 * 4;
       lVar13 = ((lVar19 - lVar12) - 4U >> 2) + 1;
       lVar12 = lVar12 + lVar13 * 4;
@@ -822,7 +822,7 @@ uint64_t UI_ColorProcessor(uint64_t param_1,uint64_t param_2,longlong param_3,ui
       do {
         *(float *)(unaff_R14 + lVar12 * 4) =
              *(float *)(unaff_R14 + lVar12 * 4) *
-             *(float *)(&unknown_var_5936_ptr + (longlong)unaff_ESI * 4);
+             *(float *)(&unknown_var_5936_ptr + (int64_t)unaff_ESI * 4);
         lVar12 = lVar12 + 1;
       } while (lVar12 < lVar19);
     }
@@ -845,24 +845,24 @@ uint64_t UI_ColorProcessor(uint64_t param_1,uint64_t param_2,longlong param_3,ui
 uint64_t UI_DataProcessor(void)
 
 {
-  longlong lVar1;
+  int64_t lVar1;
   float *pfVar2;
-  longlong lVar3;
-  longlong lVar4;
+  int64_t lVar3;
+  int64_t lVar4;
   int unaff_ESI;
-  longlong lVar5;
-  longlong lVar6;
+  int64_t lVar5;
+  int64_t lVar6;
   int in_R10D;
-  longlong in_R11;
+  int64_t in_R11;
   int unaff_R12D;
-  longlong unaff_R14;
+  int64_t unaff_R14;
   
-  lVar3 = (longlong)unaff_R12D;
-  lVar6 = (longlong)in_R10D;
+  lVar3 = (int64_t)unaff_R12D;
+  lVar6 = (int64_t)in_R10D;
   
   if (lVar3 < lVar6) {
     if (3 < lVar6 - lVar3) {
-      lVar5 = (longlong)unaff_ESI;
+      lVar5 = (int64_t)unaff_ESI;
       lVar1 = lVar3 * 4;
       lVar4 = ((lVar6 - lVar3) - 4U >> 2) + 1;
       lVar3 = lVar3 + lVar4 * 4;
@@ -879,7 +879,7 @@ uint64_t UI_DataProcessor(void)
     if (lVar3 < lVar6) {
       do {
         *(float *)(unaff_R14 + lVar3 * 4) =
-             *(float *)(unaff_R14 + lVar3 * 4) * *(float *)(in_R11 + (longlong)unaff_ESI * 4);
+             *(float *)(unaff_R14 + lVar3 * 4) * *(float *)(in_R11 + (int64_t)unaff_ESI * 4);
         lVar3 = lVar3 + 1;
       } while (lVar3 < lVar6);
     }
@@ -904,20 +904,20 @@ uint64_t UI_DataProcessor(void)
  * 
  * 返回值：处理状态码
  */
-uint64_t UI_BufferProcessor(longlong param_1,uint64_t param_2,uint64_t param_3,longlong param_4)
+uint64_t UI_BufferProcessor(int64_t param_1,uint64_t param_2,uint64_t param_3,int64_t param_4)
 
 {
-  longlong lVar1;
+  int64_t lVar1;
   float *pfVar2;
-  longlong lVar3;
+  int64_t lVar3;
   int unaff_ESI;
-  longlong lVar4;
-  longlong in_R11;
-  longlong unaff_R14;
+  int64_t lVar4;
+  int64_t in_R11;
+  int64_t unaff_R14;
   
   // 批处理缓冲区操作
   if (3 < param_4 - param_1) {
-    lVar4 = (longlong)unaff_ESI;
+    lVar4 = (int64_t)unaff_ESI;
     lVar1 = param_1 * 4;
     lVar3 = ((param_4 - param_1) - 4U >> 2) + 1;
     param_1 = param_1 + lVar3 * 4;
@@ -936,7 +936,7 @@ uint64_t UI_BufferProcessor(longlong param_1,uint64_t param_2,uint64_t param_3,l
   if (param_1 < param_4) {
     do {
       *(float *)(unaff_R14 + param_1 * 4) =
-           *(float *)(unaff_R14 + param_1 * 4) * *(float *)(in_R11 + (longlong)unaff_ESI * 4);
+           *(float *)(unaff_R14 + param_1 * 4) * *(float *)(in_R11 + (int64_t)unaff_ESI * 4);
       param_1 = param_1 + 1;
     } while (param_1 < param_4);
   }
@@ -982,12 +982,12 @@ void UI_RenderTargetSetup(int param_1,uint64_t param_2)
 {
   int8_t auStack_98 [4];
   int32_t uStack_94;
-  ulonglong uStack_88;
+  uint64_t uStack_88;
   uint64_t uStack_78;
   uint64_t uStack_68;
-  ulonglong uStack_58;
+  uint64_t uStack_58;
   
-  uStack_58 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_98;
+  uStack_58 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_98;
   uStack_88 = 0x100;
   if (param_1 != 0) {
     uStack_88 = 0x800;
@@ -1021,7 +1021,7 @@ void UI_RenderTargetSetup(int param_1,uint64_t param_2)
  * 
  * 返回值：无
  */
-void UI_MatrixTransformer(longlong param_1,longlong param_2,int param_3,longlong param_4,longlong param_5)
+void UI_MatrixTransformer(int64_t param_1,int64_t param_2,int param_3,int64_t param_4,int64_t param_5)
 
 {
   float *pfVar1;
@@ -1033,7 +1033,7 @@ void UI_MatrixTransformer(longlong param_1,longlong param_2,int param_3,longlong
   float *pfVar7;
   float *pfVar8;
   float *pfVar9;
-  longlong lVar10;
+  int64_t lVar10;
   int *piVar11;
   float fVar12;
   float fVar13;
@@ -1049,21 +1049,21 @@ void UI_MatrixTransformer(longlong param_1,longlong param_2,int param_3,longlong
   float fVar23;
   
   piVar11 = (int *)(param_2 + 4);
-  pfVar7 = (float *)(param_1 + (longlong)param_3 * 4);
+  pfVar7 = (float *)(param_1 + (int64_t)param_3 * 4);
   lVar10 = (param_5 - param_2) + -4;
-  pfVar8 = (float *)(param_5 + ((longlong)param_3 >> 1) * 4);
+  pfVar8 = (float *)(param_5 + ((int64_t)param_3 >> 1) * 4);
   
   // 矩阵变换主循环
   do {
     pfVar9 = pfVar8 + -4;
-    pfVar1 = (float *)(param_4 + (longlong)piVar11[-1] * 4);
+    pfVar1 = (float *)(param_4 + (int64_t)piVar11[-1] * 4);
     fVar16 = *pfVar1;
     fVar17 = pfVar1[1];
-    pfVar1 = (float *)(param_4 + (longlong)piVar11[1] * 4);
+    pfVar1 = (float *)(param_4 + (int64_t)piVar11[1] * 4);
     fVar18 = *pfVar1;
     fVar19 = pfVar1[1];
-    pfVar1 = (float *)(param_4 + (longlong)*piVar11 * 4);
-    pfVar2 = (float *)(param_4 + (longlong)piVar11[2] * 4);
+    pfVar1 = (float *)(param_4 + (int64_t)*piVar11 * 4);
+    pfVar2 = (float *)(param_4 + (int64_t)piVar11[2] * 4);
     fVar3 = *pfVar7;
     pfVar4 = pfVar7 + 1;
     pfVar5 = pfVar7 + 2;
@@ -1085,7 +1085,7 @@ void UI_MatrixTransformer(longlong param_1,longlong param_2,int param_3,longlong
     fVar17 = fVar13 * *pfVar4 * 1.0 + fVar3 * fVar12;
     fVar18 = fVar15 * *pfVar5 * -1.0 + *pfVar6 * fVar14;
     fVar19 = fVar15 * *pfVar6 * 1.0 + *pfVar5 * fVar14;
-    pfVar1 = (float *)(lVar10 + (longlong)piVar11);
+    pfVar1 = (float *)(lVar10 + (int64_t)piVar11);
     *pfVar1 = fVar17 + fVar21;
     pfVar1[1] = fVar16 + fVar20;
     pfVar1[2] = fVar19 + fVar23;
@@ -1096,7 +1096,7 @@ void UI_MatrixTransformer(longlong param_1,longlong param_2,int param_3,longlong
     pfVar8[-2] = (fVar21 - fVar17) * 1.0;
     pfVar8[-1] = (fVar20 - fVar16) * -1.0;
     pfVar8 = pfVar9;
-  } while ((float *)(lVar10 + (longlong)piVar11) < pfVar9);
+  } while ((float *)(lVar10 + (int64_t)piVar11) < pfVar9);
   return;
 }
 

@@ -95,7 +95,7 @@
 
 typedef uint InitializationStatus;          // 初始化状态
 typedef uint ConfigParameter;              // 配置参数
-typedef ulonglong RegistryHandle;          // 注册表句柄
+typedef uint64_t RegistryHandle;          // 注册表句柄
 typedef void* MemoryBlockPtr;              // 内存块指针
 typedef int ErrorCode;                     // 错误代码
 
@@ -112,7 +112,7 @@ typedef struct {
     uint config_size;                      // 配置大小
     uint config_flags;                     // 配置标志
     uint config_status;                    // 配置状态
-    ulonglong config_timestamp;            // 配置时间戳
+    uint64_t config_timestamp;            // 配置时间戳
     void* config_data;                     // 配置数据指针
 } InitializationConfigBlock;
 
@@ -126,7 +126,7 @@ typedef struct {
     uint entry_size;                       // 项大小
     uint entry_flags;                      // 项标志
     void* entry_data;                      // 项数据指针
-    ulonglong entry_timestamp;             // 项时间戳
+    uint64_t entry_timestamp;             // 项时间戳
 } RegistryEntry;
 
 /**
@@ -272,7 +272,7 @@ uint FUN_18016e8b0(int32_t param_1)
  * @param entry 注册表项指针
  * @return 操作状态码
  */
-uint FUN_18016e8f0(ulonglong registry_handle, RegistryEntry* entry)
+uint FUN_18016e8f0(uint64_t registry_handle, RegistryEntry* entry)
 {
     // 语义化变量定义
     RegistryEntry* existing_entry;          // 现有注册表项

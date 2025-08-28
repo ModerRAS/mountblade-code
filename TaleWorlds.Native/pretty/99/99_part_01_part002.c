@@ -1229,18 +1229,18 @@ extern uint8_t global_state_8424;                       // 系统处理器7数�
  * @param param_4 控制标志，决定处理方式和操作类型
  * @return void 无返回值，结果通过参数缓冲区返回
  */
-void string_processor_system_1(uint64_t param_1, longlong *param_2, longlong param_3, byte param_4)
+void string_processor_system_1(uint64_t param_1, int64_t *param_2, int64_t param_3, byte param_4)
 {
     int8_t uVar1;              // 临时变量，用于存储字符数据
-    longlong lVar2;                // 临时变量，用于存储缓冲区指针
-    longlong lVar3;                // 临时变量，用于存储缓冲区指针
+    int64_t lVar2;                // 临时变量，用于存储缓冲区指针
+    int64_t lVar3;                // 临时变量，用于存储缓冲区指针
     int8_t *puVar4;            // 字符串数据指针
-    longlong lVar5;                // 临时变量，用于存储循环控制
+    int64_t lVar5;                // 临时变量，用于存储循环控制
     int8_t *puVar6;            // 字符串数据指针
-    longlong lVar7;                // 临时变量，用于存储字符串长度
-    ulonglong uVar8;               // 无符号长整型，用于循环计数
+    int64_t lVar7;                // 临时变量，用于存储字符串长度
+    uint64_t uVar8;               // 无符号长整型，用于循环计数
     int8_t *puVar9;            // 字符串数据指针
-    longlong *unaff_R15;           // 未使用的寄存器变量
+    int64_t *unaff_R15;           // 未使用的寄存器变量
     uint in_stack_00000080;        // 栈参数，用于传递附加信息
     
     /**
@@ -1253,7 +1253,7 @@ void string_processor_system_1(uint64_t param_1, longlong *param_2, longlong par
         
         // 如果有数据需要处理，执行初始化循环
         if (0 < (int)in_stack_00000080) {
-            uVar8 = (ulonglong)in_stack_00000080;
+            uVar8 = (uint64_t)in_stack_00000080;
             do {
                 // 写入超时标记
                 FUN_1800a0e50(lVar3, SYSTEM_TIMEOUT_VALUE);
@@ -1340,7 +1340,7 @@ void string_processor_system_1(uint64_t param_1, longlong *param_2, longlong par
     }
     else {
         // 获取数据源长度
-        lVar7 = *(longlong *)(param_3 + 0x18);
+        lVar7 = *(int64_t *)(param_3 + 0x18);
         puVar6 = puVar4;
     }
     

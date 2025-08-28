@@ -128,8 +128,8 @@ void ui_system_calculate_weighted_values(void *ui_context, void *data_source)
     uint data_index;
     int16_t temp_value;
     int weight_value;
-    longlong data_offset;
-    ulonglong data_count;
+    int64_t data_offset;
+    uint64_t data_count;
     int iteration_count;
     int max_weight_value;
     
@@ -139,7 +139,7 @@ void ui_system_calculate_weighted_values(void *ui_context, void *data_source)
     *(int *)((char *)ui_context + 0x105c) = (int)*(char *)((char *)ui_context + 0xae5);
     
     if (*(char *)((char *)ui_context + 0xae5) == '\x02') {
-        data_count = (ulonglong)*(int *)((char *)ui_context + 0x914);
+        data_count = (uint64_t)*(int *)((char *)ui_context + 0x914);
         iteration_count = 0;
         
         if (0 < *(int *)((char *)data_source + -4 + data_count * 4)) {
@@ -148,8 +148,8 @@ void ui_system_calculate_weighted_values(void *ui_context, void *data_source)
                 if (iteration_count == max_weight_value) break;
                 
                 data_index = *(uint *)((char *)ui_context + 0x914);
-                data_count = (ulonglong)data_index;
-                data_offset = (longlong)((max_weight_value - iteration_count) * UI_SYSTEM_VECTOR_COMPONENTS);
+                data_count = (uint64_t)data_index;
+                data_offset = (int64_t)((max_weight_value - iteration_count) * UI_SYSTEM_VECTOR_COMPONENTS);
                 
                 // 计算权重总和
                 max_weight_value = 
@@ -160,18 +160,18 @@ void ui_system_calculate_weighted_values(void *ui_context, void *data_source)
                     (int)*(short *)((char *)data_source + 0x56 + data_offset * 2);
                 
                 if (weight_value < max_weight_value) {
-                    data_offset = (longlong)((short)(*(short *)((char *)ui_context + 0x914) - (short)iteration_count) * UI_SYSTEM_VECTOR_COMPONENTS + -UI_SYSTEM_VECTOR_COMPONENTS);
+                    data_offset = (int64_t)((short)(*(short *)((char *)ui_context + 0x914) - (short)iteration_count) * UI_SYSTEM_VECTOR_COMPONENTS + -UI_SYSTEM_VECTOR_COMPONENTS);
                     
                     // 更新权重数据
                     *(uint64_t *)((char *)ui_context + 0x1068) = *(uint64_t *)((char *)data_source + 0x60 + data_offset * 2);
                     *(int16_t *)((char *)ui_context + 0x1070) = *(int16_t *)((char *)data_source + 0x68 + data_offset * 2);
                     *(int *)((char *)ui_context + 0x1064) =
-                         *(int *)((char *)data_source + -4 + (longlong)(int)(data_index - iteration_count) * 4) << 8;
+                         *(int *)((char *)data_source + -4 + (int64_t)(int)(data_index - iteration_count) * 4) << 8;
                     weight_value = max_weight_value;
                 }
                 iteration_count++;
             } while (*(int *)((char *)ui_context + 0x91c) * iteration_count < 
-                     *(int *)((char *)data_source + -4 + (longlong)(int)data_count * 4));
+                     *(int *)((char *)data_source + -4 + (int64_t)(int)data_count * 4));
         }
         
         // 重置权重数据
@@ -185,7 +185,7 @@ void ui_system_calculate_weighted_values(void *ui_context, void *data_source)
             if (1 < weight_value) {
                 iteration_count = weight_value;
             }
-            weight_value = (int)(short)(UI_SYSTEM_SCALE_FACTOR_HIGH / (longlong)iteration_count);
+            weight_value = (int)(short)(UI_SYSTEM_SCALE_FACTOR_HIGH / (int64_t)iteration_count);
             
             // 应用高精度缩放
             *(short *)((char *)ui_context + 0x1068) = (short)(*(short *)((char *)ui_context + 0x1068) * weight_value >> UI_SYSTEM_SHIFT_FACTOR_HIGH);
@@ -201,7 +201,7 @@ void ui_system_calculate_weighted_values(void *ui_context, void *data_source)
                 if (1 < weight_value) {
                     iteration_count = weight_value;
                 }
-                weight_value = (int)(short)(UI_SYSTEM_SCALE_FACTOR_LOW / (longlong)iteration_count);
+                weight_value = (int)(short)(UI_SYSTEM_SCALE_FACTOR_LOW / (int64_t)iteration_count);
                 
                 // 应用低精度缩放
                 *(short *)((char *)ui_context + 0x1068) = (short)(*(short *)((char *)ui_context + 0x1068) * weight_value >> UI_SYSTEM_SHIFT_FACTOR_LOW);
@@ -222,7 +222,7 @@ void ui_system_calculate_weighted_values(void *ui_context, void *data_source)
     
     // 复制处理后的数据
     memcpy((char *)ui_context + 0x1072, (char *)data_source + 0x40, 
-           (longlong)*(int *)((char *)ui_context + 0x924) * 2);
+           (int64_t)*(int *)((char *)ui_context + 0x924) * 2);
 }
 
 /**
@@ -241,22 +241,22 @@ void ui_system_calculate_weighted_values(void *ui_context, void *data_source)
  */
 void ui_system_process_data_arrays(void *ui_context, void *data_array, void *parameters, int data_type)
 {
-    longlong context_offset;
+    int64_t context_offset;
     int16_t *data_pointer;
-    ulonglong allocation_size;
+    uint64_t allocation_size;
     int array_size;
     int iteration_value;
     int max_iterations;
     short *short_pointer;
     int *int_pointer;
     int8_t stack_buffer[UI_SYSTEM_MEMORY_POOL_SIZE];
-    ulonglong stack_guard;
+    uint64_t stack_guard;
     
     // 栈保护机制
-    stack_guard = GET_SECURITY_COOKIE() ^ (ulonglong)stack_buffer;
+    stack_guard = GET_SECURITY_COOKIE() ^ (uint64_t)stack_buffer;
     
     max_iterations = *(int *)((char *)ui_context + 0x90c);
-    context_offset = (longlong)ui_context + 0xaec;
+    context_offset = (int64_t)ui_context + 0xaec;
     
     // 检查是否需要重新初始化
     if (max_iterations != *(int *)((char *)ui_context + 0x1054)) {
@@ -267,7 +267,7 @@ void ui_system_process_data_arrays(void *ui_context, void *data_array, void *par
         if (0 < array_size) {
             data_pointer = (int16_t *)((char *)ui_context + 0xfec);
             do {
-                max_iterations = max_iterations + (int)(0x7fff / (longlong)(array_size + 1));
+                max_iterations = max_iterations + (int)(0x7fff / (int64_t)(array_size + 1));
                 iteration_value++;
                 *data_pointer = (short)max_iterations;
                 data_pointer++;
@@ -289,8 +289,8 @@ void ui_system_process_data_arrays(void *ui_context, void *data_array, void *par
                 short_pointer = (short *)((char *)ui_context + 0xfec);
                 do {
                     max_iterations++;
-                    *short_pointer = (short)((ulonglong)
-                              (uint)((int)*(short *)((char *)ui_context - context_offset + 0x428 + (longlong)short_pointer) -
+                    *short_pointer = (short)((uint64_t)
+                              (uint)((int)*(short *)((char *)ui_context - context_offset + 0x428 + (int64_t)short_pointer) -
                                     (int)*short_pointer) * UI_SYSTEM_PRECISION_HIGH >> UI_SYSTEM_PRECISION_SHIFT) + *short_pointer;
                     short_pointer++;
                 } while (max_iterations < *(int *)((char *)ui_context + 0x924));
@@ -314,18 +314,18 @@ void ui_system_process_data_arrays(void *ui_context, void *data_array, void *par
             }
             
             // 移动数据以优化访问模式
-            memmove(context_offset + (longlong)*(int *)((char *)ui_context + 0x91c) * 4, context_offset,
-                   (longlong)((max_iterations + -1) * *(int *)((char *)ui_context + 0x91c)) << 2);
+            memmove(context_offset + (int64_t)*(int *)((char *)ui_context + 0x91c) * 4, context_offset,
+                   (int64_t)((max_iterations + -1) * *(int *)((char *)ui_context + 0x91c)) << 2);
         }
         
         if (*(int *)((char *)ui_context + 0x1058) == 0) {
-            memset((char *)ui_context + 0x100c, 0, (longlong)*(int *)((char *)ui_context + 0x924) << 2);
+            memset((char *)ui_context + 0x100c, 0, (int64_t)*(int *)((char *)ui_context + 0x924) << 2);
         }
     }
     
     // 计算内存分配大小
-    allocation_size = (longlong)data_type * 4 + 0x4f;
-    if (allocation_size <= (longlong)data_type * 4 + 0x40U) {
+    allocation_size = (int64_t)data_type * 4 + 0x4f;
+    if (allocation_size <= (int64_t)data_type * 4 + 0x40U) {
         allocation_size = 0xffffffffffffff0;
     }
     
@@ -351,16 +351,16 @@ void ui_system_transform_data_values(void *ui_context, void *source_data, void *
     short source_value;
     uint data_count;
     char transform_factor;
-    longlong data_offset;
-    ulonglong iteration_count;
+    int64_t data_offset;
+    uint64_t iteration_count;
     int8_t source_buffer[UI_SYSTEM_MEMORY_POOL_SIZE];
     int32_t transform_mode;
     short target_buffer[UI_SYSTEM_MEMORY_POOL_SIZE / 2];
     short temp_buffer[UI_SYSTEM_MEMORY_POOL_SIZE / 2];
-    ulonglong stack_guard;
+    uint64_t stack_guard;
     
     // 栈保护机制
-    stack_guard = GET_SECURITY_COOKIE() ^ (ulonglong)source_buffer;
+    stack_guard = GET_SECURITY_COOKIE() ^ (uint64_t)source_buffer;
     data_offset = 0;
     transform_mode = *(int32_t *)((char *)ui_context + 0x914);
     
@@ -387,17 +387,17 @@ void ui_system_transform_data_values(void *ui_context, void *source_data, void *
     // 执行数据复制（如果需要）
     if ('\x03' < transform_factor) {
         memcpy((char *)target_data + 0x20, (char *)target_data + 0x40, 
-               (longlong)(int)data_count * 2);
+               (int64_t)(int)data_count * 2);
     }
     
     // 执行数据变换
     if (0 < (int)data_count) {
-        iteration_count = (ulonglong)data_count;
+        iteration_count = (uint64_t)data_count;
         do {
-            source_value = *(short *)((char *)ui_context - (longlong)source_buffer + 0x928 + 
-                                     (longlong)source_buffer + data_offset);
-            *(short *)((longlong)temp_buffer + data_offset) =
-                 (short)(((int)*(short *)((longlong)source_buffer + data_offset) - (int)source_value) * 
+            source_value = *(short *)((char *)ui_context - (int64_t)source_buffer + 0x928 + 
+                                     (int64_t)source_buffer + data_offset);
+            *(short *)((int64_t)temp_buffer + data_offset) =
+                 (short)(((int)*(short *)((int64_t)source_buffer + data_offset) - (int)source_value) * 
                          (int)transform_factor >> 2) + source_value;
             data_offset += 2;
             iteration_count--;
@@ -405,12 +405,12 @@ void ui_system_transform_data_values(void *ui_context, void *source_data, void *
     }
     
     // 应用变换结果
-    FUN_18072f4d0((char *)target_data + 0x20, temp_buffer, (longlong)(int)data_count, 
+    FUN_18072f4d0((char *)target_data + 0x20, temp_buffer, (int64_t)(int)data_count, 
                    *(int32_t *)((char *)ui_context + 0x1060));
     
     // 保存变换后的数据
     memcpy((char *)ui_context + 0x928, source_buffer, 
-           (longlong)*(int *)((char *)ui_context + 0x924) * 2);
+           (int64_t)*(int *)((char *)ui_context + 0x924) * 2);
 }
 
 /**
@@ -429,9 +429,9 @@ void ui_system_optimize_data_processing(void *ui_context, void *optimization_par
     short source_value;
     uint data_count;
     char transform_factor;
-    longlong unaff_RSI;
-    longlong data_offset;
-    ulonglong iteration_count;
+    int64_t unaff_RSI;
+    int64_t data_offset;
+    uint64_t iteration_count;
     
     data_offset = 0;
     
@@ -458,15 +458,15 @@ void ui_system_optimize_data_processing(void *ui_context, void *optimization_par
     // 执行优化数据复制
     if ('\x03' < transform_factor) {
         memcpy((char *)unaff_RSI + 0x20, (char *)unaff_RSI + 0x40, 
-               (longlong)(int)data_count * 2);
+               (int64_t)(int)data_count * 2);
     }
     
     // 执行优化变换
     if (0 < (int)data_count) {
-        iteration_count = (ulonglong)data_count;
+        iteration_count = (uint64_t)data_count;
         do {
-            source_value = *(short *)((char *)ui_context - (longlong)&stack0x00000030 + 0x928 +
-                                    (longlong)(&stack0x00000030 + data_offset));
+            source_value = *(short *)((char *)ui_context - (int64_t)&stack0x00000030 + 0x928 +
+                                    (int64_t)(&stack0x00000030 + data_offset));
             *(short *)(&stack0x00000050 + data_offset) =
                  (short)(((int)*(short *)(&stack0x00000030 + data_offset) - (int)source_value) * 
                          (int)transform_factor >> 2) + source_value;
@@ -476,12 +476,12 @@ void ui_system_optimize_data_processing(void *ui_context, void *optimization_par
     }
     
     // 应用优化结果
-    FUN_18072f4d0((char *)unaff_RSI + 0x20, &stack0x00000050, (longlong)(int)data_count,
+    FUN_18072f4d0((char *)unaff_RSI + 0x20, &stack0x00000050, (int64_t)(int)data_count,
                    *(int32_t *)((char *)ui_context + 0x1060));
     
     // 保存优化后的数据
     memcpy((char *)ui_context + 0x928, &stack0x00000030, 
-           (longlong)*(int *)((char *)ui_context + 0x924) * 2);
+           (int64_t)*(int *)((char *)ui_context + 0x924) * 2);
 }
 
 // =============================================================================
@@ -497,19 +497,19 @@ void ui_system_optimize_data_processing(void *ui_context, void *optimization_par
  * @param transform_data 变换数据指针
  * @param data_size 数据大小
  */
-void ui_system_perform_fast_transform(uint64_t ui_context, uint64_t transform_data, ulonglong data_size)
+void ui_system_perform_fast_transform(uint64_t ui_context, uint64_t transform_data, uint64_t data_size)
 {
     short source_value;
     char transform_factor;
-    longlong unaff_RBX;
-    longlong unaff_RSI;
-    longlong unaff_RDI;
-    ulonglong iteration_count;
+    int64_t unaff_RBX;
+    int64_t unaff_RSI;
+    int64_t unaff_RDI;
+    uint64_t iteration_count;
     
     iteration_count = data_size & 0xffffffff;
     do {
-        source_value = *(short *)((unaff_RBX - (longlong)&stack0x00000030) + 0x928 +
-                                (longlong)(&stack0x00000030 + unaff_RDI));
+        source_value = *(short *)((unaff_RBX - (int64_t)&stack0x00000030) + 0x928 +
+                                (int64_t)(&stack0x00000030 + unaff_RDI));
         *(short *)(&stack0x00000050 + unaff_RDI) =
              (short)(((int)*(short *)(&stack0x00000030 + unaff_RDI) - (int)source_value) * 
                      (int)transform_factor >> 2) + source_value;
@@ -520,7 +520,7 @@ void ui_system_perform_fast_transform(uint64_t ui_context, uint64_t transform_da
     FUN_18072f4d0((char *)unaff_RSI + 0x20, &stack0x00000050, data_size, 
                    *(int32_t *)((char *)unaff_RBX + 0x1060));
     memcpy((char *)unaff_RBX + 0x928, &stack0x00000030, 
-           (longlong)*(int *)((char *)unaff_RBX + 0x924) * 2);
+           (int64_t)*(int *)((char *)unaff_RBX + 0x924) * 2);
 }
 
 /**
@@ -534,13 +534,13 @@ void ui_system_perform_fast_transform(uint64_t ui_context, uint64_t transform_da
  */
 void ui_system_execute_simple_transform(uint64_t ui_context, uint64_t simple_data, uint64_t data_size)
 {
-    longlong unaff_RBX;
-    longlong unaff_RSI;
+    int64_t unaff_RBX;
+    int64_t unaff_RSI;
     
     FUN_18072f4d0((char *)unaff_RSI + 0x20, &stack0x00000050, data_size, 
                    *(int32_t *)((char *)unaff_RBX + 0x1060));
     memcpy((char *)unaff_RBX + 0x928, &stack0x00000030, 
-           (longlong)*(int *)((char *)unaff_RBX + 0x924) * 2);
+           (int64_t)*(int *)((char *)unaff_RBX + 0x924) * 2);
 }
 
 /**
@@ -558,20 +558,20 @@ void ui_system_execute_simple_transform(uint64_t ui_context, uint64_t simple_dat
 void ui_system_process_audio_signals(void *ui_context, void *audio_data, int signal_type)
 {
     char signal_value;
-    longlong base_offset;
-    longlong data_offset;
+    int64_t base_offset;
+    int64_t data_offset;
     short *audio_pointer;
-    longlong unaff_RBX;
-    longlong unaff_RSI;
+    int64_t unaff_RBX;
+    int64_t unaff_RSI;
     int unaff_EDI;
     char *data_pointer;
-    ulonglong stack_param;
+    uint64_t stack_param;
     
     // 执行音频信号初始化
     FUN_1807342b0(*(int16_t *)((char *)unaff_RBX + 0xae2), 
                    *(int8_t *)((char *)unaff_RBX + 0xae4));
     
-    base_offset = *(longlong *)(&unknown_var_4360_ptr + (longlong)*(char *)((char *)unaff_RBX + 0xae8) * 8);
+    base_offset = *(int64_t *)(&unknown_var_4360_ptr + (int64_t)*(char *)((char *)unaff_RBX + 0xae8) * 8);
     
     if (unaff_EDI < *(int *)((char *)unaff_RBX + 0x914)) {
         data_pointer = (char *)((char *)unaff_RBX + 0xacc);
@@ -581,7 +581,7 @@ void ui_system_process_audio_signals(void *ui_context, void *audio_data, int sig
             signal_value = *data_pointer;
             data_pointer++;
             unaff_EDI++;
-            data_offset = (longlong)signal_value * UI_SYSTEM_VECTOR_COMPONENTS;
+            data_offset = (int64_t)signal_value * UI_SYSTEM_VECTOR_COMPONENTS;
             
             // 处理音频信号分量
             audio_pointer[-1] = (short)*(char *)(data_offset + base_offset) << 7;
@@ -595,9 +595,9 @@ void ui_system_process_audio_signals(void *ui_context, void *audio_data, int sig
     
     // 设置音频处理参数
     *(int *)((char *)unaff_RSI + 0x88) =
-         (int)*(short *)(&unknown_var_9600_ptr + (longlong)*(char *)((char *)unaff_RBX + 0xae9) * 2);
+         (int)*(short *)(&unknown_var_9600_ptr + (int64_t)*(char *)((char *)unaff_RBX + 0xae9) * 2);
     
-    FUN_1808fc050(stack_param ^ (ulonglong)&stack0x00000000);
+    FUN_1808fc050(stack_param ^ (uint64_t)&stack0x00000000);
 }
 
 /**
@@ -614,18 +614,18 @@ void ui_system_process_audio_signals(void *ui_context, void *audio_data, int sig
  */
 void ui_system_handle_memory_allocation(void *ui_context, uint64_t memory_params, uint64_t data_size)
 {
-    ulonglong allocation_size;
-    ulonglong aligned_size;
+    uint64_t allocation_size;
+    uint64_t aligned_size;
     int8_t stack_buffer[72];
     uint64_t param1;
     uint64_t param2;
-    ulonglong stack_guard;
+    uint64_t stack_guard;
     
     // 栈保护机制
-    stack_guard = GET_SECURITY_COOKIE() ^ (ulonglong)stack_buffer;
+    stack_guard = GET_SECURITY_COOKIE() ^ (uint64_t)stack_buffer;
     
     // 计算分配大小
-    allocation_size = (longlong)*(int *)((char *)ui_context + 0x920) * 2;
+    allocation_size = (int64_t)*(int *)((char *)ui_context + 0x920) * 2;
     aligned_size = allocation_size + 0xf;
     
     if (aligned_size <= allocation_size) {
@@ -658,21 +658,21 @@ void ui_system_handle_memory_allocation(void *ui_context, uint64_t memory_params
  * @param scale_factors 缩放因子指针
  * @param data_count 数据数量
  */
-void ui_system_calculate_scaled_values(int *data_source, longlong target_buffer, longlong source_array, short *scale_factors, int data_count)
+void ui_system_calculate_scaled_values(int *data_source, int64_t target_buffer, int64_t source_array, short *scale_factors, int data_count)
 {
     int scaled_value;
-    longlong iteration_index;
-    longlong scale_offset;
+    int64_t iteration_index;
+    int64_t scale_offset;
     
-    if (0 < (longlong)data_count) {
+    if (0 < (int64_t)data_count) {
         iteration_index = 0;
         do {
             scaled_value = *(short *)(source_array + iteration_index * 2) * 0x100 + *data_source;
             *(int *)(target_buffer + iteration_index * 4) = scaled_value;
             iteration_index++;
-            scale_offset = (longlong)(scaled_value * 4);
-            *data_source = (int)((ulonglong)(*scale_factors * scale_offset) >> 0x10) + data_source[1];
-            data_source[1] = (int)((ulonglong)(scale_factors[1] * scale_offset) >> 0x10);
+            scale_offset = (int64_t)(scaled_value * 4);
+            *data_source = (int)((uint64_t)(*scale_factors * scale_offset) >> 0x10) + data_source[1];
+            data_source[1] = (int)((uint64_t)(scale_factors[1] * scale_offset) >> 0x10);
         } while (iteration_index < data_count);
     }
 }
@@ -696,7 +696,7 @@ void ui_system_calculate_vector_magnitudes(int *magnitude_result, int *scale_res
     short vector_component;
     uint magnitude_value;
     byte scale_bits;
-    ulonglong iteration_count;
+    uint64_t iteration_count;
     uint running_total;
     short *current_vector;
     int magnitude_sum;
@@ -725,7 +725,7 @@ void ui_system_calculate_vector_magnitudes(int *magnitude_result, int *scale_res
     // 计算向量的平方和
     if (0 < (int)(vector_count - 1)) {
         magnitude_value = (vector_count - 2 >> 1) + 1;
-        iteration_count = (ulonglong)magnitude_value;
+        iteration_count = (uint64_t)magnitude_value;
         processed_count = magnitude_value * 2;
         current_vector = vector_data;
         
@@ -767,7 +767,7 @@ void ui_system_calculate_vector_magnitudes(int *magnitude_result, int *scale_res
     processed_count = 0;
     if (0 < (int)(vector_count - 1)) {
         running_total = (vector_count - 2 >> 1) + 1;
-        iteration_count = (ulonglong)running_total;
+        iteration_count = (uint64_t)running_total;
         processed_count = running_total * 2;
         current_vector = vector_data;
         
@@ -809,16 +809,16 @@ void ui_system_calculate_vector_magnitudes(int *magnitude_result, int *scale_res
  * @param shift_amount 位移量
  * @return 编码后的数据值
  */
-ulonglong ui_system_advanced_data_encoder(longlong data_array1, longlong data_array2, uint data_size, uint shift_amount)
+uint64_t ui_system_advanced_data_encoder(int64_t data_array1, int64_t data_array2, uint data_size, uint shift_amount)
 {
-    longlong data_offset;
+    int64_t data_offset;
     short *data_pointer;
     byte shift_bits;
     uint vector_component;
-    ulonglong *data_pointer64;
-    ulonglong total_value;
-    ulonglong running_sum;
-    longlong iteration_end;
+    uint64_t *data_pointer64;
+    uint64_t total_value;
+    uint64_t running_sum;
+    int64_t iteration_end;
     uint component_sum;
     int iteration_index;
     int vector_sum1;
@@ -837,10 +837,10 @@ ulonglong ui_system_advanced_data_encoder(longlong data_array1, longlong data_ar
     int8_t vector_data4[16];
     int8_t vector_data5[16];
     int8_t vector_data6[16];
-    ulonglong iteration_count;
+    uint64_t iteration_count;
     
     total_value = 0;
-    iteration_end = (longlong)(int)data_size;
+    iteration_end = (int64_t)(int)data_size;
     running_sum = 0;
     vector_data6 = ZEXT416(shift_amount);
     iteration_count = total_value;
@@ -863,15 +863,15 @@ ulonglong ui_system_advanced_data_encoder(longlong data_array1, longlong data_ar
             vector_component = (vector_component - 1 | 0xfffffff8) + 1;
         }
         
-        data_pointer64 = (ulonglong *)(data_array1 + 8);
+        data_pointer64 = (uint64_t *)(data_array1 + 8);
         iteration_count = total_value;
         total_value = 0;
         
         do {
             vector_data1._8_8_ = 0;
-            vector_data1._0_8_ = *(ulonglong *)((data_array2 - data_array1) + -8 + (longlong)data_pointer64);
+            vector_data1._0_8_ = *(uint64_t *)((data_array2 - data_array1) + -8 + (int64_t)data_pointer64);
             running_sum = (int)total_value + 8;
-            total_value = (ulonglong)running_sum;
+            total_value = (uint64_t)running_sum;
             
             vector_data3._8_8_ = 0;
             vector_data3._0_8_ = data_pointer64[-1];
@@ -890,7 +890,7 @@ ulonglong ui_system_advanced_data_encoder(longlong data_array1, longlong data_ar
             vector_sum4 = (vector_data1._12_4_ >> vector_data6) + vector_sum4;
             
             vector_data2._8_8_ = 0;
-            vector_data2._0_8_ = *(ulonglong *)((data_array2 - data_array1) + -0x10 + (longlong)(data_pointer64 + 2));
+            vector_data2._0_8_ = *(uint64_t *)((data_array2 - data_array1) + -0x10 + (int64_t)(data_pointer64 + 2));
             vector_data5 = pmovsxwd(vector_data6, vector_data2);
             vector_data1 = pmovsxwd(vector_data2, vector_data4);
             vector_data1 = pmulld(vector_data1, vector_data5);
@@ -901,12 +901,12 @@ ulonglong ui_system_advanced_data_encoder(longlong data_array1, longlong data_ar
             vector_sum8 = (vector_data1._12_4_ >> vector_data6) + vector_sum8;
             
             data_pointer64 += 2;
-        } while ((longlong)iteration_count < (longlong)(int)(data_size - vector_component));
+        } while ((int64_t)iteration_count < (int64_t)(int)(data_size - vector_component));
         
-        iteration_count = (ulonglong)(uint)(vector_sum5 + vector_sum1 + vector_sum7 + vector_sum3 + vector_sum6 + vector_sum2 + vector_sum8 + vector_sum4);
+        iteration_count = (uint64_t)(uint)(vector_sum5 + vector_sum1 + vector_sum7 + vector_sum3 + vector_sum6 + vector_sum2 + vector_sum8 + vector_sum4);
     }
     
-    iteration_end = (longlong)(int)running_sum;
+    iteration_end = (int64_t)(int)running_sum;
     running_sum = 0;
     iteration_index = (int)iteration_count;
     
@@ -922,13 +922,13 @@ ulonglong ui_system_advanced_data_encoder(longlong data_array1, longlong data_ar
             
             do {
                 vector_component = (int)iteration_count +
-                         ((int)*(short *)((data_array1 - data_array2) + -2 + (longlong)data_pointer) * 
+                         ((int)*(short *)((data_array1 - data_array2) + -2 + (int64_t)data_pointer) * 
                           (int)data_pointer[-1] >> (shift_bits & UI_SYSTEM_BIT_MASK_31));
-                iteration_count = (ulonglong)vector_component;
+                iteration_count = (uint64_t)vector_component;
                 running_sum = (int)0 +
-                         ((int)*(short *)((data_array1 - data_array2) + -4 + (longlong)(data_pointer + 2)) * 
+                         ((int)*(short *)((data_array1 - data_array2) + -4 + (int64_t)(data_pointer + 2)) * 
                           (int)*data_pointer >> (shift_bits & UI_SYSTEM_BIT_MASK_31));
-                iteration_count = (ulonglong)running_sum;
+                iteration_count = (uint64_t)running_sum;
                 running_sum--;
                 data_pointer += 2;
             } while (running_sum != 0);
@@ -959,38 +959,38 @@ ulonglong ui_system_advanced_data_encoder(longlong data_array1, longlong data_ar
  * @param data_vector 数据向量指针
  * @param element_count 元素数量
  */
-void ui_system_advanced_data_decoder(longlong ui_context, int *magnitude_result, int *scale_result, int *data_vector, int16_t *element_count, int count)
+void ui_system_advanced_data_decoder(int64_t ui_context, int *magnitude_result, int *scale_result, int *data_vector, int16_t *element_count, int count)
 {
     int decoded_value;
     int scale_value;
     int16_t element_data;
     int vector_component;
-    longlong data_offset;
+    int64_t data_offset;
     int scale_index;
-    longlong iteration_index;
-    longlong iteration_end;
+    int64_t iteration_index;
+    int64_t iteration_end;
     
     scale_value = *scale_result;
     vector_component = scale_result[1];
-    iteration_end = (longlong)count;
+    iteration_end = (int64_t)count;
     
     if (0 < iteration_end) {
-        ui_context = ui_context - (longlong)element_count;
+        ui_context = ui_context - (int64_t)element_count;
         do {
-            data_offset = (longlong)*(short *)(ui_context + (longlong)element_count);
-            scale_index = *data_vector * 4 + (int)((ulonglong)(*magnitude_result * data_offset) >> 0x10) * 4;
-            data_offset = (longlong)scale_index;
+            data_offset = (int64_t)*(short *)(ui_context + (int64_t)element_count);
+            scale_index = *data_vector * 4 + (int)((uint64_t)(*magnitude_result * data_offset) >> 0x10) * 4;
+            data_offset = (int64_t)scale_index;
             
             // 解码数据分量
-            vector_component = (((int)((ulonglong)(-scale_value & 0x3fff) * data_offset >> 0x10) >> 0xd) + 1 >> 1) +
-                    (int)((ulonglong)((short)(-scale_value >> 0xe) * data_offset) >> 0x10) + data_vector[1];
+            vector_component = (((int)((uint64_t)(-scale_value & 0x3fff) * data_offset >> 0x10) >> 0xd) + 1 >> 1) +
+                    (int)((uint64_t)((short)(-scale_value >> 0xe) * data_offset) >> 0x10) + data_vector[1];
             *data_vector = vector_component;
-            *data_vector = (int)((ulonglong)(scale_result[1] * data_offset) >> 0x10) + vector_component;
+            *data_vector = (int)((uint64_t)(scale_result[1] * data_offset) >> 0x10) + vector_component;
             
-            vector_component = (((int)((ulonglong)(-vector_component & 0x3fff) * data_offset >> 0x10) >> 0xd) + 1 >> 1) +
-                    (int)((ulonglong)((short)(-vector_component >> 0xe) * data_offset) >> 0x10);
+            vector_component = (((int)((uint64_t)(-vector_component & 0x3fff) * data_offset >> 0x10) >> 0xd) + 1 >> 1) +
+                    (int)((uint64_t)((short)(-vector_component >> 0xe) * data_offset) >> 0x10);
             data_vector[1] = vector_component;
-            data_vector[1] = (int)((ulonglong)(scale_result[2] * data_offset) >> 0x10) + vector_component;
+            data_vector[1] = (int)((uint64_t)(scale_result[2] * data_offset) >> 0x10) + vector_component;
             
             // 处理元素数据
             vector_component = scale_index + 0x3fff >> 0xe;

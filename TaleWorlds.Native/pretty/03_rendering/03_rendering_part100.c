@@ -29,17 +29,17 @@
  * @param resource_ptr 资源指针数组的指针
  * @param process_param 处理参数
  */
-void rendering_system_resource_processor(longlong render_context, longlong *resource_ptr, longlong process_param)
+void rendering_system_resource_processor(int64_t render_context, int64_t *resource_ptr, int64_t process_param)
 
 {
-  longlong temp_resource;
-  longlong *resource_manager;
+  int64_t temp_resource;
+  int64_t *resource_manager;
   void *error_handler;
-  longlong *stack_resource_ptr;
-  longlong *allocated_resource;
+  int64_t *stack_resource_ptr;
+  int64_t *allocated_resource;
   uint64_t resource_flag;
   void *stack_pointer;
-  longlong stack_value;
+  int64_t stack_value;
   int32_t status_flag;
   
   resource_flag = RENDERING_RESOURCE_FLAG_INVALID;
@@ -47,7 +47,7 @@ void rendering_system_resource_processor(longlong render_context, longlong *reso
   // 尝试获取资源管理器
   FUN_1800b30d0(system_resource_state, &stack_resource_ptr, process_param, 0);
   
-  if (stack_resource_ptr == (longlong *)0x0) {
+  if (stack_resource_ptr == (int64_t *)0x0) {
     // 资源管理器为空时的错误处理
     error_handler = &system_buffer_ptr;
     if (*(void **)(process_param + 8) != (void *)0x0) {
@@ -65,37 +65,37 @@ void rendering_system_resource_processor(longlong render_context, longlong *reso
     stack_value = 0;
     status_flag = 0;
     stack_pointer = &system_state_ptr;
-    resource_manager = (longlong *)allocated_resource[8];
+    resource_manager = (int64_t *)allocated_resource[8];
     
-    if (resource_manager != (longlong *)0x0) {
+    if (resource_manager != (int64_t *)0x0) {
       allocated_resource = resource_manager;
       // 调用资源管理器的释放函数
       (**(code **)(*resource_manager + 0x28))(resource_manager);
     }
     
-    allocated_resource = (longlong *)*resource_ptr;
-    *resource_ptr = (longlong)resource_manager;
+    allocated_resource = (int64_t *)*resource_ptr;
+    *resource_ptr = (int64_t)resource_manager;
   }
   else {
     // 正常资源处理流程
-    resource_manager = (longlong *)FUN_18022cb40(stack_resource_ptr, &allocated_resource);
+    resource_manager = (int64_t *)FUN_18022cb40(stack_resource_ptr, &allocated_resource);
     temp_resource = *resource_manager;
     *resource_manager = 0;
-    resource_manager = (longlong *)*resource_ptr;
+    resource_manager = (int64_t *)*resource_ptr;
     *resource_ptr = temp_resource;
     
-    if (resource_manager != (longlong *)0x0) {
+    if (resource_manager != (int64_t *)0x0) {
       // 调用资源管理器的清理函数
       (**(code **)(*resource_manager + 0x38))();
     }
   }
   
   // 清理分配的资源
-  if (allocated_resource != (longlong *)0x0) {
+  if (allocated_resource != (int64_t *)0x0) {
     (**(code **)(*allocated_resource + 0x38))();
   }
   
-  if (stack_resource_ptr != (longlong *)0x0) {
+  if (stack_resource_ptr != (int64_t *)0x0) {
     (**(code **)(*stack_resource_ptr + 0x38))();
   }
   
@@ -109,22 +109,22 @@ void rendering_system_resource_processor(longlong render_context, longlong *reso
  * @param render_context 渲染上下文指针
  * @return 处理结果的状态码
  */
-ulonglong rendering_system_advanced_data_sorter(longlong render_context)
+uint64_t rendering_system_advanced_data_sorter(int64_t render_context)
 
 {
   uint sort_value1;
   uint sort_value2;
   uint *data_ptr1;
   uint *data_ptr2;
-  longlong loop_counter;
+  int64_t loop_counter;
   uint *temp_ptr1;
   uint *temp_ptr2;
   uint *temp_ptr3;
-  ulonglong result;
+  uint64_t result;
   int sort_depth;
   int comparison_count;
   uint *swap_ptr;
-  longlong data_range;
+  int64_t data_range;
   uint *compare_ptr;
   uint64_t stack_param1;
   int32_t param_value;
@@ -138,12 +138,12 @@ ulonglong rendering_system_advanced_data_sorter(longlong render_context)
   uint *sort_array4;
   uint64_t sort_context2;
   int32_t sort_size2;
-  longlong stack_value;
+  int64_t stack_value;
   uint **callback_ptr;
   void *callback_func;
   code *sort_function;
   
-  param_value = (int32_t)((ulonglong)stack_param1 >> 0x20);
+  param_value = (int32_t)((uint64_t)stack_param1 >> 0x20);
   resource_flag = RENDERING_RESOURCE_FLAG_INVALID;
   sort_array1 = (uint *)0x0;
   sort_array2 = (uint *)0x0;
@@ -163,7 +163,7 @@ ulonglong rendering_system_advanced_data_sorter(longlong render_context)
   comparison_count = 0;
   
   if (sort_array1 != sort_array2) {
-    data_range = (longlong)sort_array2 - (longlong)sort_array1 >> 2;
+    data_range = (int64_t)sort_array2 - (int64_t)sort_array1 >> 2;
     sort_depth = comparison_count;
     
     // 计算排序深度
@@ -172,7 +172,7 @@ ulonglong rendering_system_advanced_data_sorter(longlong render_context)
     }
     
     // 执行排序算法
-    FUN_18033d680(sort_array1, sort_array2, (longlong)(sort_depth + -1) * 2);
+    FUN_18033d680(sort_array1, sort_array2, (int64_t)(sort_depth + -1) * 2);
     temp_ptr3 = data_ptr1;
     
     if (data_range < RENDERING_SORT_THRESHOLD) {
@@ -235,14 +235,14 @@ ulonglong rendering_system_advanced_data_sorter(longlong render_context)
   data_ptr1 = sort_array3;
   
   if (sort_array3 != sort_array4) {
-    data_range = (longlong)sort_array4 - (longlong)sort_array3 >> 2;
+    data_range = (int64_t)sort_array4 - (int64_t)sort_array3 >> 2;
     sort_depth = comparison_count;
     
     for (loop_counter = data_range; loop_counter != 0; loop_counter = loop_counter >> 1) {
       sort_depth = sort_depth + 1;
     }
     
-    FUN_18033d680(sort_array3, sort_array4, (longlong)(sort_depth + -1) * 2);
+    FUN_18033d680(sort_array3, sort_array4, (int64_t)(sort_depth + -1) * 2);
     temp_ptr3 = data_ptr1;
     
     if (data_range < RENDERING_SORT_THRESHOLD) {
@@ -298,7 +298,7 @@ ulonglong rendering_system_advanced_data_sorter(longlong render_context)
   }
   
   // 批量数据处理
-  result = CONCAT71((int7)((ulonglong)stack_param2 >> 8), 1);
+  result = CONCAT71((int7)((uint64_t)stack_param2 >> 8), 1);
   FUN_18032bd90(render_context, &sort_array3, &sort_array1, *(int *)(render_context + RENDERING_PARAM_OFFSET_150) + -1, CONCAT44(param_value, 4), result, resource_flag);
   FUN_18032bd90(render_context, &sort_array1, &sort_array3, *(int32_t *)(render_context + RENDERING_PARAM_OFFSET_150), 2, result & 0xffffffffffffff00);
   
@@ -307,7 +307,7 @@ ulonglong rendering_system_advanced_data_sorter(longlong render_context)
   sort_function = FUN_18033ced0;
   stack_value = render_context;
   
-  FUN_18015b810(&stack_value, 0, (longlong)sort_array2 - (longlong)sort_array1 >> 2 & 0xffffffff, 0x10, 0xffffffffffffffff, &stack_value);
+  FUN_18015b810(&stack_value, 0, (int64_t)sort_array2 - (int64_t)sort_array1 >> 2 & 0xffffffff, 0x10, 0xffffffffffffffff, &stack_value);
   
   if (sort_array3 != (uint *)0x0) {
     // 内存错误：无法释放资源
@@ -336,14 +336,14 @@ ulonglong rendering_system_advanced_data_sorter(longlong render_context)
   data_ptr1 = sort_array3;
   
   if (sort_array3 != sort_array4) {
-    data_range = (longlong)sort_array4 - (longlong)sort_array3 >> 2;
+    data_range = (int64_t)sort_array4 - (int64_t)sort_array3 >> 2;
     sort_depth = comparison_count;
     
     for (loop_counter = data_range; loop_counter != 0; loop_counter = loop_counter >> 1) {
       sort_depth = sort_depth + 1;
     }
     
-    FUN_18033d680(sort_array3, sort_array4, (longlong)(sort_depth + -1) * 2);
+    FUN_18033d680(sort_array3, sort_array4, (int64_t)(sort_depth + -1) * 2);
     temp_ptr3 = data_ptr1;
     
     if (data_range < RENDERING_SORT_THRESHOLD) {
@@ -402,13 +402,13 @@ ulonglong rendering_system_advanced_data_sorter(longlong render_context)
   data_ptr2 = sort_array1;
   
   if (sort_array1 != sort_array2) {
-    data_range = (longlong)sort_array2 - (longlong)sort_array1 >> 2;
+    data_range = (int64_t)sort_array2 - (int64_t)sort_array1 >> 2;
     
     for (loop_counter = data_range; loop_counter != 0; loop_counter = loop_counter >> 1) {
       comparison_count = comparison_count + 1;
     }
     
-    FUN_18033d680(sort_array1, sort_array2, (longlong)(comparison_count + -1) * 2);
+    FUN_18033d680(sort_array1, sort_array2, (int64_t)(comparison_count + -1) * 2);
     temp_ptr2 = data_ptr2;
     
     if (data_range < RENDERING_SORT_THRESHOLD) {
@@ -511,22 +511,22 @@ ulonglong rendering_system_advanced_data_sorter(longlong render_context)
  * @param validation_flag 验证标志
  * @return 比较结果的状态码
  */
-ulonglong rendering_system_data_comparator(longlong render_context, uint64_t compare_data, longlong *reference_data, char validation_flag)
+uint64_t rendering_system_data_comparator(int64_t render_context, uint64_t compare_data, int64_t *reference_data, char validation_flag)
 
 {
   char validation_result;
-  ulonglong process_result;
+  uint64_t process_result;
   uint *data_element;
-  longlong element_offset;
-  ulonglong element_count;
-  longlong loop_counter;
+  int64_t element_offset;
+  uint64_t element_count;
+  int64_t loop_counter;
   float float_value;
   uint64_t stack_param;
   int32_t temp_params[8];
   void *callback_ptr;
   code *callback_function;
   
-  process_result = CONCAT71((int7)((ulonglong)stack_param >> 8), 1);
+  process_result = CONCAT71((int7)((uint64_t)stack_param >> 8), 1);
   
   // 执行数据比较处理
   FUN_18032bd90(render_context, compare_data, reference_data, *(int *)(render_context + RENDERING_PARAM_OFFSET_150) + -1, 4, process_result, RENDERING_RESOURCE_FLAG_INVALID);
@@ -589,9 +589,9 @@ ulonglong rendering_system_data_comparator(longlong render_context, uint64_t com
     callback_ptr = &unknown_var_6576_ptr;
     callback_function = FUN_18033ced0;
     temp_params[0] = (int32_t)render_context;
-    temp_params[1] = (int32_t)((ulonglong)render_context >> 0x20);
+    temp_params[1] = (int32_t)((uint64_t)render_context >> 0x20);
     temp_params[2] = SUB84(reference_data, 0);
-    temp_params[3] = (int32_t)((ulonglong)reference_data >> 0x20);
+    temp_params[3] = (int32_t)((uint64_t)reference_data >> 0x20);
     temp_params[4] = temp_params[0];
     temp_params[5] = temp_params[1];
     temp_params[6] = temp_params[2];
@@ -614,21 +614,21 @@ ulonglong rendering_system_data_comparator(longlong render_context, uint64_t com
  * @param target_data 目标数据指针
  * @return 处理结果的状态码
  */
-ulonglong rendering_system_resource_data_processor(uint64_t process_param, int *source_data, int *target_data)
+uint64_t rendering_system_resource_data_processor(uint64_t process_param, int *source_data, int *target_data)
 
 {
   byte *source_ptr;
   byte *target_ptr;
-  ulonglong process_status;
+  uint64_t process_status;
   int source_length;
   int target_length;
   void *temp_ptr;
   uint *data_element;
-  ulonglong temp_result;
+  uint64_t temp_result;
   int comparison_result;
-  longlong offset_diff;
-  ulonglong diff_result;
-  ulonglong status_mask;
+  int64_t offset_diff;
+  uint64_t diff_result;
+  uint64_t status_mask;
   
   source_length = *target_data;
   process_status = 0;
@@ -655,7 +655,7 @@ ulonglong rendering_system_resource_data_processor(uint64_t process_param, int *
   if (source_length == target_length) {
     if (source_length != 0) {
       source_ptr = *(byte **)(source_data + 6);
-      offset_diff = *(longlong *)(target_data + 6) - (longlong)source_ptr;
+      offset_diff = *(int64_t *)(target_data + 6) - (int64_t)source_ptr;
       
       // 字节级比较
       do {
@@ -678,7 +678,7 @@ LAB_180328174:
   if (source_length == target_length) {
     if (source_length != 0) {
       source_ptr = *(byte **)(source_data + 6);
-      offset_diff = *(longlong *)(target_data + 6) - (longlong)source_ptr;
+      offset_diff = *(int64_t *)(target_data + 6) - (int64_t)source_ptr;
       
       do {
         target_ptr = source_ptr + offset_diff;
@@ -706,11 +706,11 @@ LAB_1803281b2:
   }
   
   // 计算数据块数量
-  diff_result = (*(longlong *)(target_data + 0x1c) - *(longlong *)(target_data + 0x1a)) / RENDERING_DATA_BLOCK_SIZE;
-  process_status = -(*(longlong *)(target_data + 0x1c) - *(longlong *)(target_data + 0x1a) >> 0x3f);
+  diff_result = (*(int64_t *)(target_data + 0x1c) - *(int64_t *)(target_data + 0x1a)) / RENDERING_DATA_BLOCK_SIZE;
+  process_status = -(*(int64_t *)(target_data + 0x1c) - *(int64_t *)(target_data + 0x1a) >> 0x3f);
   
   if ((int)diff_result != 0) {
-    offset_diff = *(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8);
+    offset_diff = *(int64_t *)((int64_t)ThreadLocalStoragePointer + (uint64_t)__tls_index * 8);
     temp_result = 0;
     diff_result = diff_result & 0xffffffff;
     status_mask = temp_result;

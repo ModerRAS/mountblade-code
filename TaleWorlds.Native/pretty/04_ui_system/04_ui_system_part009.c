@@ -14,8 +14,8 @@ void ui_system_internal_update(void* context);
 float ui_system_calculate_speed_factor(void* param_1, void* param_2, void* param_3);
 float ui_system_calculate_weight_factor(void* param_1, int param_2);
 void* ui_system_get_render_data(void* data_ptr);
-void ui_system_final_render(unsigned longlong render_params);
-void memory_allocation_error_handler(longlong error_code);
+void ui_system_final_render(unsigned int64_t render_params);
+void memory_allocation_error_handler(int64_t error_code);
 
 // 全局变量定义
 float ui_vector_normalization_buffer[16];     // UI向量归一化缓冲区
@@ -39,12 +39,12 @@ int ui_vector_optimization_flags;             // UI向量优化标志
  * @param scale_factor 缩放因子
  * @return 无返回值
  */
-void ui_system_normalize_vectors(longlong *vector_data, float scale_factor)
+void ui_system_normalize_vectors(int64_t *vector_data, float scale_factor)
 {
-    ulonglong vector_index;
-    longlong data_base;
+    uint64_t vector_index;
+    int64_t data_base;
     uint iteration_count;
-    ulonglong total_vectors;
+    uint64_t total_vectors;
     float vector_length;
     float inverse_length;
     float normalized_x;
@@ -62,7 +62,7 @@ void ui_system_normalize_vectors(longlong *vector_data, float scale_factor)
             iteration_count = (int)total_vectors + 1;
             
             // 提取向量Y和X分量
-            normalized_y = (float)((ulonglong)*(uint64_t *)(vector_index + data_base) >> 0x20);
+            normalized_y = (float)((uint64_t)*(uint64_t *)(vector_index + data_base) >> 0x20);
             normalized_x = (float)*(uint64_t *)(vector_index + data_base);
             
             // 计算向量长度
@@ -76,20 +76,20 @@ void ui_system_normalize_vectors(longlong *vector_data, float scale_factor)
             vector_length = inverse_length * 0.5f * (3.0f - vector_length * inverse_length * inverse_length);
             
             // 应用归一化和缩放
-            *(ulonglong *)(vector_index + vector_data[0x11]) = 
+            *(uint64_t *)(vector_index + vector_data[0x11]) = 
                 CONCAT44(vector_length * normalized_y * scale_factor + *(float *)(vector_index + 4 + data_base),
                          vector_length * normalized_x * scale_factor + *(float *)(vector_index + data_base));
             
             // 更新索引和计数器
             vector_index = vector_index + 8;
             data_base = *vector_data;
-            total_vectors = (ulonglong)iteration_count;
+            total_vectors = (uint64_t)iteration_count;
             
             // 更新全局变量
             ui_vector_normalization_buffer[iteration_count % 16] = vector_length;
             ui_vector_calculation_counters++;
             
-        } while ((ulonglong)(longlong)(int)iteration_count < (ulonglong)(vector_data[1] - data_base >> 3));
+        } while ((uint64_t)(int64_t)(int)iteration_count < (uint64_t)(vector_data[1] - data_base >> 3));
     }
     
     // 更新处理标志
@@ -110,9 +110,9 @@ void ui_system_normalize_vectors(longlong *vector_data, float scale_factor)
  * @param base_address 基地址
  * @return 无返回值
  */
-void ui_system_process_vectors_alternative(uint64_t context, longlong *vector_data, uint64_t param_3, longlong base_address)
+void ui_system_process_vectors_alternative(uint64_t context, int64_t *vector_data, uint64_t param_3, int64_t base_address)
 {
-    ulonglong vector_index;
+    uint64_t vector_index;
     uint element_counter;
     float vector_length;
     float inverse_length;
@@ -123,14 +123,14 @@ void ui_system_process_vectors_alternative(uint64_t context, longlong *vector_da
     float stack_component_x;
     float stack_component_y;
     
-    vector_index = (ulonglong)element_counter;
+    vector_index = (uint64_t)element_counter;
     scale_factor = 1.0f; // 默认缩放因子
     
     do {
         element_counter = element_counter + 1;
         
         // 提取向量分量
-        stack_component_y = (float)((ulonglong)*(uint64_t *)(vector_index + base_address) >> 0x20);
+        stack_component_y = (float)((uint64_t)*(uint64_t *)(vector_index + base_address) >> 0x20);
         stack_component_x = (float)*(uint64_t *)(vector_index + base_address);
         
         // 计算向量长度
@@ -144,7 +144,7 @@ void ui_system_process_vectors_alternative(uint64_t context, longlong *vector_da
         vector_length = inverse_length * 0.5f * (3.0f - vector_length * inverse_length * inverse_length);
         
         // 应用归一化和缩放
-        *(ulonglong *)(vector_index + vector_data[0x11]) = 
+        *(uint64_t *)(vector_index + vector_data[0x11]) = 
             CONCAT44(vector_length * stack_component_y * scale_factor + *(float *)(vector_index + 4 + base_address),
                      vector_length * stack_component_x * scale_factor + *(float *)(vector_index + base_address));
         
@@ -156,7 +156,7 @@ void ui_system_process_vectors_alternative(uint64_t context, longlong *vector_da
         ui_vector_scale_factors[element_counter % 8] = scale_factor;
         ui_vector_interpolation_values[element_counter % 12] = vector_length;
         
-    } while ((ulonglong)(longlong)(int)element_counter < (ulonglong)(vector_data[1] - base_address >> 3));
+    } while ((uint64_t)(int64_t)(int)element_counter < (uint64_t)(vector_data[1] - base_address >> 3));
     
     // 更新处理标志
     ui_vector_processing_flags |= 0x02;
@@ -206,7 +206,7 @@ void ui_system_placeholder_function(void)
  * @param param_10 参数10
  * @return 无返回值
  */
-void ui_system_process_complex_element(float *ui_element, float time_delta, longlong context, char flag_1, char flag_2,
+void ui_system_process_complex_element(float *ui_element, float time_delta, int64_t context, char flag_1, char flag_2,
                                       char flag_3, uint64_t param_7, uint64_t param_8, float param_9,
                                       uint64_t param_10)
 {

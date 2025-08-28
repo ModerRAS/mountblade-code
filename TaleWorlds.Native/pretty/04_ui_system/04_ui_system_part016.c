@@ -98,7 +98,7 @@
 #define UI_WIDGET_ERROR_OFFSET_20 0x20
 
 // 全局变量
-static ulonglong g_uiSystemHashMask = 0;
+static uint64_t g_uiSystemHashMask = 0;
 static void *g_uiSystemVTable = NULL;
 static float g_uiSystemDefaultValues[20] = {0};
 
@@ -124,30 +124,30 @@ static float g_uiSystemDefaultValues[20] = {0};
 // 前向声明
 void ui_system_error_handler(uint errorCode);
 void ui_system_complete_initialization(void);
-void ui_system_complete_render(ulonglong renderHash);
-void ui_system_swap_widgets(longlong widget1, longlong widget2);
-void ui_system_process_animation(longlong widgetPtr, longlong *stackContext, uint64_t contextPtr, int widgetIndex, int8_t *renderContext);
-float ui_system_get_animation_value(longlong animationPtr, uint value);
-float ui_system_get_animation_value_alt(longlong animationPtr, uint value);
+void ui_system_complete_render(uint64_t renderHash);
+void ui_system_swap_widgets(int64_t widget1, int64_t widget2);
+void ui_system_process_animation(int64_t widgetPtr, int64_t *stackContext, uint64_t contextPtr, int widgetIndex, int8_t *renderContext);
+float ui_system_get_animation_value(int64_t animationPtr, uint value);
+float ui_system_get_animation_value_alt(int64_t animationPtr, uint value);
 
 // UI系统动画处理器 - 处理UI组件动画和插值
 // 该函数实现了UI动画的平滑过渡，包括权重计算、插值处理和边界检查
-void ui_system_animate_widgets(longlong uiContext, longlong animationData, float *outputBuffer, char frameCount)
+void ui_system_animate_widgets(int64_t uiContext, int64_t animationData, float *outputBuffer, char frameCount)
 {
-  ulonglong animationMask;
-  longlong widgetCount;
-  ulonglong widgetIndex;
+  uint64_t animationMask;
+  int64_t widgetCount;
+  uint64_t widgetIndex;
   float *widgetData;
-  ulonglong frameIndex;
-  longlong processedWidgets;
-  longlong remainingWidgets;
+  uint64_t frameIndex;
+  int64_t processedWidgets;
+  int64_t remainingWidgets;
   float smoothFactor;
   float animationValue;
   
-  widgetCount = (longlong)*(int *)(uiContext + UI_CONTEXT_OFFSET_60);
+  widgetCount = (int64_t)*(int *)(uiContext + UI_CONTEXT_OFFSET_60);
   if (*(int *)(uiContext + UI_CONTEXT_OFFSET_60) == 0) {
     if ('\0' < frameCount) {
-      for (widgetCount = (longlong)frameCount; widgetCount != 0; widgetCount = widgetCount + -1) {
+      for (widgetCount = (int64_t)frameCount; widgetCount != 0; widgetCount = widgetCount + -1) {
         *outputBuffer = UI_ALPHA_ZERO;
         outputBuffer = outputBuffer + 1;
       }
@@ -156,7 +156,7 @@ void ui_system_animate_widgets(longlong uiContext, longlong animationData, float
   }
   else {
     processedWidgets = 0;
-    animationMask = *(ulonglong *)(animationData + UI_ANIMATION_PARAM_OFFSET);
+    animationMask = *(uint64_t *)(animationData + UI_ANIMATION_PARAM_OFFSET);
     animationValue = UI_ALPHA_FULL;
     if (3 < widgetCount) {
       widgetData = (float *)(uiContext + UI_CONTEXT_OFFSET_6C);
@@ -191,7 +191,7 @@ void ui_system_animate_widgets(longlong uiContext, longlong animationData, float
       } while (widgetCount != 0);
     }
     smoothFactor = *(float *)(uiContext + UI_CONTEXT_OFFSET_6150);
-    frameIndex = (ulonglong)(uint)(int)frameCount;
+    frameIndex = (uint64_t)(uint)(int)frameCount;
     animationValue = ((smoothFactor * UI_ANIMATION_SPEED_MULTIPLIER - UI_ANIMATION_OFFSET) * smoothFactor + UI_ANIMATION_SCALE) * smoothFactor * smoothFactor * smoothFactor * animationValue;
     if ('\0' < frameCount) {
       widgetIndex = 1;
@@ -209,7 +209,7 @@ LAB_ui_animation_skip:
         }
         *outputBuffer = smoothFactor;
         outputBuffer = outputBuffer + 1;
-        widgetIndex = widgetIndex << 1 | (ulonglong)((longlong)widgetIndex < 0);
+        widgetIndex = widgetIndex << 1 | (uint64_t)((int64_t)widgetIndex < 0);
         frameIndex = frameIndex - 1;
       } while (frameIndex != 0);
     }
@@ -219,22 +219,22 @@ LAB_ui_animation_skip:
 
 // UI系统动画处理器优化版 - 优化后的UI动画处理函数
 // 该函数是ui_system_animate_widgets的优化版本，使用寄存器变量提升性能
-void ui_system_animate_widgets_optimized(longlong uiContext, longlong animationData, float *outputBuffer)
+void ui_system_animate_widgets_optimized(int64_t uiContext, int64_t animationData, float *outputBuffer)
 {
-  ulonglong animationMask;
-  longlong widgetCount;
-  ulonglong widgetIndex;
+  uint64_t animationMask;
+  int64_t widgetCount;
+  uint64_t widgetIndex;
   float *widgetData;
-  ulonglong frameIndex;
-  longlong processedWidgets;
-  longlong remainingWidgets;
+  uint64_t frameIndex;
+  int64_t processedWidgets;
+  int64_t remainingWidgets;
   char frameCount;
-  longlong contextReg;
+  int64_t contextReg;
   float smoothFactor;
   float animationValue;
   
   processedWidgets = 0;
-  animationMask = *(ulonglong *)(animationData + UI_ANIMATION_PARAM_OFFSET);
+  animationMask = *(uint64_t *)(animationData + UI_ANIMATION_PARAM_OFFSET);
   animationValue = UI_ALPHA_FULL;
   if (3 < widgetCount) {
     widgetData = (float *)(uiContext + UI_CONTEXT_OFFSET_6C);
@@ -269,7 +269,7 @@ void ui_system_animate_widgets_optimized(longlong uiContext, longlong animationD
     } while (processedWidgets != 0);
   }
   smoothFactor = *(float *)(contextReg + UI_CONTEXT_OFFSET_6150);
-  frameIndex = (ulonglong)(uint)(int)frameCount;
+  frameIndex = (uint64_t)(uint)(int)frameCount;
   animationValue = ((smoothFactor * UI_ANIMATION_SPEED_MULTIPLIER - UI_ANIMATION_OFFSET) * smoothFactor + UI_ANIMATION_SCALE) * smoothFactor * smoothFactor * smoothFactor * animationValue;
   if ('\0' < frameCount) {
     widgetIndex = 1;
@@ -287,7 +287,7 @@ LAB_ui_animation_optimized_skip:
       }
       *outputBuffer = smoothFactor;
       outputBuffer = outputBuffer + 1;
-      widgetIndex = widgetIndex << 1 | (ulonglong)((longlong)widgetIndex < 0);
+      widgetIndex = widgetIndex << 1 | (uint64_t)((int64_t)widgetIndex < 0);
       frameIndex = frameIndex - 1;
     } while (frameIndex != 0);
   }
@@ -303,21 +303,21 @@ void ui_system_no_operation(void)
 
 // UI系统组件初始化器 - 初始化UI组件数据结构
 // 该函数负责初始化UI组件的数据结构，设置默认值和标志位
-void ui_system_initialize_widgets(longlong uiContext)
+void ui_system_initialize_widgets(int64_t uiContext)
 {
   uint64_t *widgetBlock;
-  longlong blockIndex;
-  longlong subBlockIndex;
+  int64_t blockIndex;
+  int64_t subBlockIndex;
   uint64_t *subBlockPtr;
   uint64_t *dataPtr;
-  longlong dataIndex;
+  int64_t dataIndex;
   
   widgetBlock = (uint64_t *)(uiContext + 0x1398);
   blockIndex = UI_WIDGET_COUNT;
   do {
     *(int32_t *)(widgetBlock + -0x266) = 0xffffffff;
     subBlockPtr = widgetBlock + -0x264;
-    *(int32_t *)((longlong)widgetBlock + -0x132c) = 0x3f800000;
+    *(int32_t *)((int64_t)widgetBlock + -0x132c) = 0x3f800000;
     dataIndex = UI_SUBWIDGET_COUNT;
     widgetBlock[-0x265] = 0x3f800000;
     widgetBlock[-0x1b] = 0;
@@ -337,53 +337,53 @@ void ui_system_initialize_widgets(longlong uiContext)
         subBlockIndex = subBlockIndex + -1;
         dataPtr = dataPtr + 8;
       } while (subBlockIndex != 0);
-      subBlockPtr = (uint64_t *)((longlong)subBlockPtr + UI_RENDER_BLOCK_SIZE);
+      subBlockPtr = (uint64_t *)((int64_t)subBlockPtr + UI_RENDER_BLOCK_SIZE);
       dataIndex = dataIndex + -1;
     } while (dataIndex != 0);
     widgetBlock[-0x1a] = 0;
     widgetBlock[-0x19] = 0;
     *(int32_t *)(widgetBlock + -0x17) = UI_MAGIC_NUMBER_1;
-    *(int32_t *)((longlong)widgetBlock + -0xb4) = UI_MAGIC_NUMBER_1;
+    *(int32_t *)((int64_t)widgetBlock + -0xb4) = UI_MAGIC_NUMBER_1;
     *(int32_t *)(widgetBlock + -0x16) = UI_MAGIC_NUMBER_1;
-    *(int32_t *)((longlong)widgetBlock + -0xac) = UI_MAGIC_NUMBER_2;
+    *(int32_t *)((int64_t)widgetBlock + -0xac) = UI_MAGIC_NUMBER_2;
     widgetBlock[-0x18] = UI_MAGIC_NUMBER_1 * 0x100000000 + UI_MAGIC_NUMBER_1;
     *(int32_t *)(widgetBlock + -0x15) = UI_MAGIC_NUMBER_1;
-    *(int32_t *)((longlong)widgetBlock + -0xa4) = UI_MAGIC_NUMBER_1;
+    *(int32_t *)((int64_t)widgetBlock + -0xa4) = UI_MAGIC_NUMBER_1;
     *(int32_t *)(widgetBlock + -0x14) = UI_MAGIC_NUMBER_1;
-    *(int32_t *)((longlong)widgetBlock + -0x9c) = UI_MAGIC_NUMBER_2;
+    *(int32_t *)((int64_t)widgetBlock + -0x9c) = UI_MAGIC_NUMBER_2;
     *(int16_t *)(widgetBlock + -0x13) = 0;
-    *(uint64_t *)((longlong)widgetBlock + -0x94) = 0;
-    *(uint64_t *)((longlong)widgetBlock + -0x8c) = 0;
-    *(uint64_t *)((longlong)widgetBlock + -0x84) = 0;
-    *(uint64_t *)((longlong)widgetBlock + -0x7c) = 0;
-    *(int32_t *)((longlong)widgetBlock + -0x74) = 0;
+    *(uint64_t *)((int64_t)widgetBlock + -0x94) = 0;
+    *(uint64_t *)((int64_t)widgetBlock + -0x8c) = 0;
+    *(uint64_t *)((int64_t)widgetBlock + -0x84) = 0;
+    *(uint64_t *)((int64_t)widgetBlock + -0x7c) = 0;
+    *(int32_t *)((int64_t)widgetBlock + -0x74) = 0;
     *(int8_t *)(widgetBlock + -0xe) = 0;
-    *(uint64_t *)((longlong)widgetBlock + -0x6c) = 0;
-    *(uint64_t *)((longlong)widgetBlock + -100) = 0;
-    *(int32_t *)((longlong)widgetBlock + -0x54) = UI_MAGIC_NUMBER_1;
+    *(uint64_t *)((int64_t)widgetBlock + -0x6c) = 0;
+    *(uint64_t *)((int64_t)widgetBlock + -100) = 0;
+    *(int32_t *)((int64_t)widgetBlock + -0x54) = UI_MAGIC_NUMBER_1;
     *(int32_t *)(widgetBlock + -10) = UI_MAGIC_NUMBER_1;
-    *(int32_t *)((longlong)widgetBlock + -0x4c) = UI_MAGIC_NUMBER_1;
+    *(int32_t *)((int64_t)widgetBlock + -0x4c) = UI_MAGIC_NUMBER_1;
     *(int32_t *)(widgetBlock + -9) = UI_MAGIC_NUMBER_2;
-    *(uint64_t *)((longlong)widgetBlock + -0x5c) = UI_MAGIC_NUMBER_1 * 0x100000000 + UI_MAGIC_NUMBER_1;
-    *(int32_t *)((longlong)widgetBlock + -0x44) = UI_MAGIC_NUMBER_1;
+    *(uint64_t *)((int64_t)widgetBlock + -0x5c) = UI_MAGIC_NUMBER_1 * 0x100000000 + UI_MAGIC_NUMBER_1;
+    *(int32_t *)((int64_t)widgetBlock + -0x44) = UI_MAGIC_NUMBER_1;
     *(int32_t *)(widgetBlock + -8) = UI_MAGIC_NUMBER_1;
-    *(int32_t *)((longlong)widgetBlock + -0x3c) = UI_MAGIC_NUMBER_1;
+    *(int32_t *)((int64_t)widgetBlock + -0x3c) = UI_MAGIC_NUMBER_1;
     *(int32_t *)(widgetBlock + -7) = UI_MAGIC_NUMBER_2;
-    *(int16_t *)((longlong)widgetBlock + -0x34) = 0;
+    *(int16_t *)((int64_t)widgetBlock + -0x34) = 0;
     widgetBlock[-6] = 0;
     widgetBlock[-5] = 0;
     widgetBlock[-4] = 0;
     widgetBlock[-3] = 0;
     *(int32_t *)(widgetBlock + -2) = 0;
-    *(int8_t *)((longlong)widgetBlock + -0xc) = 0;
+    *(int8_t *)((int64_t)widgetBlock + -0xc) = 0;
     widgetBlock[-1] = 0;
     *widgetBlock = 0;
     *(int32_t *)(widgetBlock + 1) = 0;
-    *(int32_t *)((longlong)widgetBlock + 0xc) = UI_RENDER_FLAG;
+    *(int32_t *)((int64_t)widgetBlock + 0xc) = UI_RENDER_FLAG;
     widgetBlock[2] = 0;
     widgetBlock[3] = 0;
     *(int32_t *)(widgetBlock + 4) = 0;
-    *(int32_t *)((longlong)widgetBlock + 0x24) = UI_RENDER_FLAG;
+    *(int32_t *)((int64_t)widgetBlock + 0x24) = UI_RENDER_FLAG;
     widgetBlock = widgetBlock + 0x26b;
     blockIndex = blockIndex + -1;
   } while (blockIndex != 0);
@@ -395,7 +395,7 @@ void ui_system_initialize_widgets(longlong uiContext)
 
 // UI系统错误处理器 - 处理UI系统错误
 // 该函数负责处理UI系统中的错误情况，调用错误处理函数
-void ui_system_handle_error(longlong errorContext)
+void ui_system_handle_error(int64_t errorContext)
 {
   // 调用错误处理函数
   ui_system_error_handler(*(uint *)(errorContext + UI_WIDGET_ERROR_OFFSET) ^ UI_ERROR_MASK);
@@ -403,7 +403,7 @@ void ui_system_handle_error(longlong errorContext)
 
 // UI系统错误处理器替代版 - 错误处理的替代实现
 // 该函数是ui_system_handle_error的替代版本，功能相同
-void ui_system_handle_error_alt(longlong errorContext)
+void ui_system_handle_error_alt(int64_t errorContext)
 {
   // 调用错误处理函数
   ui_system_error_handler(*(uint *)(errorContext + UI_WIDGET_ERROR_OFFSET) ^ UI_ERROR_MASK);
@@ -411,14 +411,14 @@ void ui_system_handle_error_alt(longlong errorContext)
 
 // UI系统动画更新器 - 更新UI动画状态
 // 该函数负责更新UI动画状态，处理复杂的动画逻辑和矩阵变换
-void ui_system_update_animations(longlong uiContext)
+void ui_system_update_animations(int64_t uiContext)
 {
   float controlX;
   float controlY;
   float controlZ;
   float controlW;
   float animationSpeed;
-  longlong frameContext;
+  int64_t frameContext;
   int8_t *renderContext;
   float *matrixData;
   char *widgetData;
@@ -426,8 +426,8 @@ void ui_system_update_animations(longlong uiContext)
   float *widgetProperties;
   float animationThreshold;
   float animationValue;
-  longlong stackContext;
-  longlong animationContext;
+  int64_t stackContext;
+  int64_t animationContext;
   int32_t renderFlags;
   int32_t animationType;
   int32_t widgetFlags;
@@ -445,7 +445,7 @@ void ui_system_update_animations(longlong uiContext)
     widgetData = widgetCharPtr;
     do {
       if (*widgetData != '\0') {
-        if (*(char *)((longlong)widgetProperties + UI_WIDGET_DATA_OFFSET) == '\0') {
+        if (*(char *)((int64_t)widgetProperties + UI_WIDGET_DATA_OFFSET) == '\0') {
           animationThreshold = UI_ALPHA_ZERO;
         }
         else {
@@ -503,7 +503,7 @@ void ui_system_update_animations(longlong uiContext)
 // 该函数用于设置UI系统的状态值
 void ui_system_set_state(int32_t stateValue)
 {
-  longlong contextReg;
+  int64_t contextReg;
   
   *(int32_t *)(contextReg + UI_WIDGET_RENDER_OFFSET_58) = stateValue;
   return;
@@ -519,7 +519,7 @@ void ui_system_initialization_complete(void)
 
 // UI系统组件清理器 - 清理无效的UI组件
 // 该函数负责清理无效的UI组件，重新排序有效组件
-void ui_system_cleanup_widgets(longlong uiContext)
+void ui_system_cleanup_widgets(int64_t uiContext)
 {
   int widgetCount;
   float *widgetData;
@@ -534,8 +534,8 @@ void ui_system_cleanup_widgets(longlong uiContext)
     do {
       if (threshold < *widgetData) {
         if (validCount < widgetCount) {
-          ui_system_swap_widgets((longlong)validCount * UI_WIDGET_STRUCT_SIZE + 0x68 + uiContext,
-                              uiContext + 0x68 + (longlong)widgetCount * UI_WIDGET_STRUCT_SIZE);
+          ui_system_swap_widgets((int64_t)validCount * UI_WIDGET_STRUCT_SIZE + 0x68 + uiContext,
+                              uiContext + 0x68 + (int64_t)widgetCount * UI_WIDGET_STRUCT_SIZE);
         }
         validCount = validCount + 1;
       }
@@ -551,11 +551,11 @@ void ui_system_cleanup_widgets(longlong uiContext)
 
 // UI系统组件清理器优化版 - 清理无效UI组件的优化版本
 // 该函数是ui_system_cleanup_widgets的优化版本，使用寄存器变量提升性能
-void ui_system_cleanup_widgets_optimized(longlong uiContext)
+void ui_system_cleanup_widgets_optimized(int64_t uiContext)
 {
   int widgetCount;
   float *widgetData;
-  longlong contextReg;
+  int64_t contextReg;
   int validCount;
   float threshold;
   
@@ -564,8 +564,8 @@ void ui_system_cleanup_widgets_optimized(longlong uiContext)
   do {
     if (threshold < *widgetData) {
       if (validCount < widgetCount) {
-        ui_system_swap_widgets((longlong)validCount * UI_WIDGET_STRUCT_SIZE + 0x68 + contextReg,
-                            contextReg + 0x68 + (longlong)widgetCount * UI_WIDGET_STRUCT_SIZE);
+        ui_system_swap_widgets((int64_t)validCount * UI_WIDGET_STRUCT_SIZE + 0x68 + contextReg,
+                            contextReg + 0x68 + (int64_t)widgetCount * UI_WIDGET_STRUCT_SIZE);
       }
       validCount = validCount + 1;
     }
@@ -578,7 +578,7 @@ void ui_system_cleanup_widgets_optimized(longlong uiContext)
 
 // UI系统组件计数设置器 - 设置UI组件数量
 // 该函数用于设置UI系统中组件的数量
-void ui_system_set_widget_count(longlong uiContext, int32_t widgetCount)
+void ui_system_set_widget_count(int64_t uiContext, int32_t widgetCount)
 {
   *(int32_t *)(uiContext + UI_CONTEXT_OFFSET_60) = widgetCount;
   return;
@@ -586,18 +586,18 @@ void ui_system_set_widget_count(longlong uiContext, int32_t widgetCount)
 
 // UI系统渲染器 - 渲染UI系统
 // 该函数负责渲染UI系统，处理渲染上下文和参数设置
-void ui_system_render(longlong uiContext)
+void ui_system_render(int64_t uiContext)
 {
-  longlong *renderContext;
-  ulonglong renderIndex;
+  int64_t *renderContext;
+  uint64_t renderIndex;
   uint renderParam;
   int32_t renderFlags;
   int8_t renderStack[32];
   void *renderPointers[UI_ANIMATION_POINTER_COUNT];
-  ulonglong renderHash;
-  ulonglong renderVar;
+  uint64_t renderHash;
+  uint64_t renderVar;
   
-  renderHash = g_uiSystemHashMask ^ (ulonglong)renderStack;
+  renderHash = g_uiSystemHashMask ^ (uint64_t)renderStack;
   renderPointers[0] = &g_uiSystemDefaultValues[0];
   renderPointers[1] = &g_uiSystemDefaultValues[1];
   renderPointers[2] = &g_uiSystemDefaultValues[2];
@@ -608,38 +608,38 @@ void ui_system_render(longlong uiContext)
   renderPointers[7] = &g_uiSystemDefaultValues[7];
   renderPointers[8] = &g_uiSystemDefaultValues[8];
   renderPointers[9] = &g_uiSystemDefaultValues[9];
-  renderContext = (longlong *)(**(code **)(g_uiSystemVTable + 0x70))(g_uiSystemVTable, &g_uiSystemDefaultValues[10]);
-  renderContext = (longlong *)(**(code **)(*renderContext + 0x28))(renderContext, *(int32_t *)(uiContext + 0x38));
+  renderContext = (int64_t *)(**(code **)(g_uiSystemVTable + 0x70))(g_uiSystemVTable, &g_uiSystemDefaultValues[10]);
+  renderContext = (int64_t *)(**(code **)(*renderContext + 0x28))(renderContext, *(int32_t *)(uiContext + 0x38));
   (**(code **)(*renderContext + 0x70))(renderContext, &g_uiSystemDefaultValues[11]);
-  renderContext = (longlong *)(**(code **)(g_uiSystemVTable + 0x70))(g_uiSystemVTable, &g_uiSystemDefaultValues[12]);
-  renderContext = (longlong *)(**(code **)(*renderContext + 0x28))(renderContext, *(int32_t *)(uiContext + 0x3c));
+  renderContext = (int64_t *)(**(code **)(g_uiSystemVTable + 0x70))(g_uiSystemVTable, &g_uiSystemDefaultValues[12]);
+  renderContext = (int64_t *)(**(code **)(*renderContext + 0x28))(renderContext, *(int32_t *)(uiContext + 0x3c));
   (**(code **)(*renderContext + 0x70))(renderContext, &g_uiSystemDefaultValues[11]);
-  renderContext = (longlong *)(**(code **)(g_uiSystemVTable + 0x70))(g_uiSystemVTable, &g_uiSystemDefaultValues[13]);
-  renderContext = (longlong *)(**(code **)(*renderContext + 0x28))(renderContext, *(int32_t *)(uiContext + 0x40));
+  renderContext = (int64_t *)(**(code **)(g_uiSystemVTable + 0x70))(g_uiSystemVTable, &g_uiSystemDefaultValues[13]);
+  renderContext = (int64_t *)(**(code **)(*renderContext + 0x28))(renderContext, *(int32_t *)(uiContext + 0x40));
   (**(code **)(*renderContext + 0x70))(renderContext, &g_uiSystemDefaultValues[11]);
-  renderContext = (longlong *)(**(code **)(g_uiSystemVTable + 0x70))(g_uiSystemVTable, &g_uiSystemDefaultValues[14]);
-  renderContext = (longlong *)(**(code **)(*renderContext + 0x28))(renderContext, *(int32_t *)(uiContext + 0x44));
+  renderContext = (int64_t *)(**(code **)(g_uiSystemVTable + 0x70))(g_uiSystemVTable, &g_uiSystemDefaultValues[14]);
+  renderContext = (int64_t *)(**(code **)(*renderContext + 0x28))(renderContext, *(int32_t *)(uiContext + 0x44));
   (**(code **)(*renderContext + 0x70))(renderContext, &g_uiSystemDefaultValues[11]);
   renderIndex = 0;
   renderVar = renderIndex;
   if (0 < *(int *)(uiContext + UI_CONTEXT_OFFSET_60)) {
     do {
-      renderContext = (longlong *)(**(code **)(g_uiSystemVTable + 0x70))(g_uiSystemVTable, &g_uiSystemDefaultValues[15]);
-      renderContext = (longlong *)(**(code **)(*renderContext + 0x28))(renderContext, *(int32_t *)(uiContext + 4));
+      renderContext = (int64_t *)(**(code **)(g_uiSystemVTable + 0x70))(g_uiSystemVTable, &g_uiSystemDefaultValues[15]);
+      renderContext = (int64_t *)(**(code **)(*renderContext + 0x28))(renderContext, *(int32_t *)(uiContext + 4));
       (**(code **)(*renderContext + 0x70))(renderContext, &g_uiSystemDefaultValues[11]);
       renderParam = (int)renderVar + 1;
-      renderVar = (ulonglong)renderParam;
+      renderVar = (uint64_t)renderParam;
     } while ((int)renderParam < *(int *)(uiContext + UI_CONTEXT_OFFSET_60));
   }
   do {
     if (UI_ALPHA_ZERO < *(float *)(uiContext + UI_CONTEXT_OFFSET_6150 + renderIndex * 4)) {
-      renderContext = (longlong *)(**(code **)(g_uiSystemVTable + 0x70))(g_uiSystemVTable, &g_uiSystemDefaultValues[16]);
-      renderContext = (longlong *)(**(code **)(*renderContext + 0x70))(renderContext, renderPointers[renderIndex]);
-      renderContext = (longlong *)(**(code **)(*renderContext + 0x70))(renderContext, &g_uiSystemDefaultValues[17]);
+      renderContext = (int64_t *)(**(code **)(g_uiSystemVTable + 0x70))(g_uiSystemVTable, &g_uiSystemDefaultValues[16]);
+      renderContext = (int64_t *)(**(code **)(*renderContext + 0x70))(renderContext, renderPointers[renderIndex]);
+      renderContext = (int64_t *)(**(code **)(*renderContext + 0x70))(renderContext, &g_uiSystemDefaultValues[17]);
       if (renderIndex == 0) {
         renderFlags = *(int32_t *)(uiContext + 0x3c);
       }
-      else if ((longlong)renderIndex < UI_MAX_WIDGET_INDEX) {
+      else if ((int64_t)renderIndex < UI_MAX_WIDGET_INDEX) {
         if (renderIndex - UI_SPECIAL_WIDGET_INDEX_2 < UI_SPECIAL_WIDGET_RANGE_1) {
           renderFlags = *(int32_t *)(uiContext + 0x44);
         }
@@ -650,33 +650,33 @@ void ui_system_render(longlong uiContext)
       else {
         renderFlags = *(int32_t *)(uiContext + 0x40);
       }
-      renderContext = (longlong *)(**(code **)(*renderContext + 0x28))(renderContext, renderFlags);
-      renderContext = (longlong *)(**(code **)(*renderContext + 0x70))(renderContext, &g_uiSystemDefaultValues[18]);
+      renderContext = (int64_t *)(**(code **)(*renderContext + 0x28))(renderContext, renderFlags);
+      renderContext = (int64_t *)(**(code **)(*renderContext + 0x70))(renderContext, &g_uiSystemDefaultValues[18]);
       (**(code **)(*renderContext + 0x28))(renderContext, *(int32_t *)(uiContext + UI_CONTEXT_OFFSET_6150 + renderIndex * 4));
     }
     renderIndex = renderIndex + 1;
-  } while ((longlong)renderIndex < UI_ANIMATION_POINTER_COUNT);
+  } while ((int64_t)renderIndex < UI_ANIMATION_POINTER_COUNT);
   // 调用渲染完成函数
-  ui_system_complete_render(renderHash ^ (ulonglong)renderStack);
+  ui_system_complete_render(renderHash ^ (uint64_t)renderStack);
 }
 
 // UI系统组件查找器 - 查找UI组件
 // 该函数负责在组件表中查找指定的UI组件
-uint64_t ui_system_find_widget(longlong widgetTable, int widgetIndex)
+uint64_t ui_system_find_widget(int64_t widgetTable, int widgetIndex)
 {
-  longlong widgetPtr;
+  int64_t widgetPtr;
   int checkResult;
   int searchIndex;
-  longlong *widgetArray;
+  int64_t *widgetArray;
   
   searchIndex = 0;
-  widgetPtr = *(longlong *)(widgetTable + (longlong)widgetIndex * 8);
-  widgetArray = (longlong *)(widgetPtr + UI_WIDGET_TABLE_OFFSET);
+  widgetPtr = *(int64_t *)(widgetTable + (int64_t)widgetIndex * 8);
+  widgetArray = (int64_t *)(widgetPtr + UI_WIDGET_TABLE_OFFSET);
   do {
-    if ((longlong *)*widgetArray != (longlong *)0x0) {
-      checkResult = (**(code **)(*(longlong *)*widgetArray + 0x18))();
+    if ((int64_t *)*widgetArray != (int64_t *)0x0) {
+      checkResult = (**(code **)(*(int64_t *)*widgetArray + 0x18))();
       if (checkResult == 1) {
-        return *(uint64_t *)(widgetPtr + UI_WIDGET_TABLE_OFFSET + (longlong)searchIndex * 8);
+        return *(uint64_t *)(widgetPtr + UI_WIDGET_TABLE_OFFSET + (int64_t)searchIndex * 8);
       }
     }
     searchIndex = searchIndex + 1;
@@ -687,7 +687,7 @@ uint64_t ui_system_find_widget(longlong widgetTable, int widgetIndex)
 
 // UI系统组件内存管理器 - 管理UI组件内存
 // 该函数负责管理UI组件的内存分配和释放
-uint64_t * ui_system_manage_widget_memory(uint64_t *widgetPtr, ulonglong freeFlag)
+uint64_t * ui_system_manage_widget_memory(uint64_t *widgetPtr, uint64_t freeFlag)
 {
   widgetPtr[UI_WIDGET_ARRAY_SIZE] = 0;
   *widgetPtr = &g_uiSystemDefaultValues[19];
@@ -699,30 +699,30 @@ uint64_t * ui_system_manage_widget_memory(uint64_t *widgetPtr, ulonglong freeFla
 
 // UI系统动画参数查找器 - 查找动画参数
 // 该函数负责在动画表中查找指定的动画参数
-ulonglong ui_system_find_animation_param(longlong animationTable, float animationValue)
+uint64_t ui_system_find_animation_param(int64_t animationTable, float animationValue)
 {
   int checkResult;
-  longlong animationPtr;
-  longlong *animationArray;
-  ulonglong animIndex;
-  longlong searchIndex;
+  int64_t animationPtr;
+  int64_t *animationArray;
+  uint64_t animIndex;
+  int64_t searchIndex;
   int searchCount;
-  ulonglong animCount;
-  longlong currentAnim;
+  uint64_t animCount;
+  int64_t currentAnim;
   
-  animIndex = (ulonglong)*(int *)(animationTable + 0x10);
+  animIndex = (uint64_t)*(int *)(animationTable + 0x10);
   currentAnim = animIndex * UI_ANIMATION_TABLE_OFFSET;
   animCount = animIndex;
   do {
     searchCount = 0;
     searchIndex = 0;
-    animationPtr = *(longlong *)(currentAnim + *(longlong *)(animationTable + UI_WIDGET_TABLE_OFFSET_C78));
-    animationArray = (longlong *)(animationPtr + UI_WIDGET_TABLE_OFFSET);
+    animationPtr = *(int64_t *)(currentAnim + *(int64_t *)(animationTable + UI_WIDGET_TABLE_OFFSET_C78));
+    animationArray = (int64_t *)(animationPtr + UI_WIDGET_TABLE_OFFSET);
     do {
-      if ((longlong *)*animationArray != (longlong *)0x0) {
-        checkResult = (**(code **)(*(longlong *)*animationArray + 0x18))();
+      if ((int64_t *)*animationArray != (int64_t *)0x0) {
+        checkResult = (**(code **)(*(int64_t *)*animationArray + 0x18))();
         if (checkResult == 1) {
-          animationPtr = *(longlong *)(animationPtr + UI_WIDGET_TABLE_OFFSET + searchIndex * 8);
+          animationPtr = *(int64_t *)(animationPtr + UI_WIDGET_TABLE_OFFSET + searchIndex * 8);
           goto LAB_ui_animation_found;
         }
       }
@@ -738,13 +738,13 @@ LAB_ui_animation_found:
       do {
         searchCount = 0;
         searchIndex = 0;
-        animationPtr = *(longlong *)(currentAnim + *(longlong *)(animationTable + UI_WIDGET_TABLE_OFFSET_C78));
-        animationArray = (longlong *)(animationPtr + UI_WIDGET_TABLE_OFFSET);
+        animationPtr = *(int64_t *)(currentAnim + *(int64_t *)(animationTable + UI_WIDGET_TABLE_OFFSET_C78));
+        animationArray = (int64_t *)(animationPtr + UI_WIDGET_TABLE_OFFSET);
         do {
-          if ((longlong *)*animationArray != (longlong *)0x0) {
-            checkResult = (**(code **)(*(longlong *)*animationArray + 0x18))();
+          if ((int64_t *)*animationArray != (int64_t *)0x0) {
+            checkResult = (**(code **)(*(int64_t *)*animationArray + 0x18))();
             if (checkResult == 1) {
-              animationPtr = *(longlong *)(animationPtr + UI_WIDGET_TABLE_OFFSET + searchIndex * 8);
+              animationPtr = *(int64_t *)(animationPtr + UI_WIDGET_TABLE_OFFSET + searchIndex * 8);
               goto LAB_ui_animation_check;
             }
           }
@@ -754,15 +754,15 @@ LAB_ui_animation_found:
         } while (searchCount < UI_WIDGET_SEARCH_COUNT);
         animationPtr = 0;
 LAB_ui_animation_check:
-        if ((*(float *)(animationPtr + UI_WIDGET_VALUE_OFFSET_C) <= animationValue) || ((longlong)animCount < 1)) {
+        if ((*(float *)(animationPtr + UI_WIDGET_VALUE_OFFSET_C) <= animationValue) || ((int64_t)animCount < 1)) {
           return animIndex & 0xffffffff;
         }
-        animIndex = (ulonglong)((int)animIndex - 1);
+        animIndex = (uint64_t)((int)animIndex - 1);
         animCount = animCount - 1;
         currentAnim = currentAnim + -UI_ANIMATION_TABLE_OFFSET;
       } while( true );
     }
-    animIndex = (ulonglong)((int)animIndex + 1);
+    animIndex = (uint64_t)((int)animIndex + 1);
     animCount = animCount + 1;
     currentAnim = currentAnim + UI_ANIMATION_TABLE_OFFSET;
   } while( true );
@@ -770,11 +770,11 @@ LAB_ui_animation_check:
 
 // UI系统高级动画处理器 - 处理高级UI动画
 // 该函数负责处理高级UI动画，包括复杂的插值、过渡和混合逻辑
-void ui_system_process_advanced_animation(longlong animationContext, float deltaTime, uint64_t animationParam, float blendFactor)
+void ui_system_process_advanced_animation(int64_t animationContext, float deltaTime, uint64_t animationParam, float blendFactor)
 {
   float currentValue;
   uint currentIndex;
-  longlong animPtr;
+  int64_t animPtr;
   uint targetIndex;
   int widgetState;
   float transitionSpeed;
@@ -906,19 +906,19 @@ LAB_ui_animation_active:
   animThreshold = *(float *)(animationContext + UI_WIDGET_ANIMATION_OFFSET);
   animThreshold = (UI_INTERPOLATION_FACTOR - (animThreshold + animThreshold)) * animThreshold * animThreshold;
   if (targetIndex == 1) {
-    resultValue = (float)ui_system_get_animation_value(*(longlong *)(animationContext + UI_WIDGET_TABLE_OFFSET_C78) + UI_ANIMATION_TABLE_OFFSET, resultValue);
+    resultValue = (float)ui_system_get_animation_value(*(int64_t *)(animationContext + UI_WIDGET_TABLE_OFFSET_C78) + UI_ANIMATION_TABLE_OFFSET, resultValue);
   }
   else {
-    resultValue = (float)ui_system_get_animation_value_alt((longlong)(int)targetIndex * UI_ANIMATION_TABLE_OFFSET + *(longlong *)(animationContext + UI_WIDGET_TABLE_OFFSET_C78),
+    resultValue = (float)ui_system_get_animation_value_alt((int64_t)(int)targetIndex * UI_ANIMATION_TABLE_OFFSET + *(int64_t *)(animationContext + UI_WIDGET_TABLE_OFFSET_C78),
                                   *(int32_t *)(animationContext + UI_WIDGET_SPEED_OFFSET));
   }
   if (*(int *)(animationContext + UI_WIDGET_TARGET_OFFSET) == 1) {
-    animationSpeed = (float)ui_system_get_animation_value(*(longlong *)(animationContext + UI_WIDGET_TABLE_OFFSET_C78) + UI_ANIMATION_TABLE_OFFSET,
+    animationSpeed = (float)ui_system_get_animation_value(*(int64_t *)(animationContext + UI_WIDGET_TABLE_OFFSET_C78) + UI_ANIMATION_TABLE_OFFSET,
                                  *(uint *)(animationContext + UI_WIDGET_VALUE_OFFSET_18) & UI_ABS_MASK);
   }
   else {
-    animationSpeed = (float)ui_system_get_animation_value_alt((longlong)*(int *)(animationContext + UI_WIDGET_TARGET_OFFSET) * UI_ANIMATION_TABLE_OFFSET +
-                                 *(longlong *)(animationContext + UI_WIDGET_TABLE_OFFSET_C78), *(int32_t *)(animationContext + UI_WIDGET_SPEED_OFFSET));
+    animationSpeed = (float)ui_system_get_animation_value_alt((int64_t)*(int *)(animationContext + UI_WIDGET_TARGET_OFFSET) * UI_ANIMATION_TABLE_OFFSET +
+                                 *(int64_t *)(animationContext + UI_WIDGET_TABLE_OFFSET_C78), *(int32_t *)(animationContext + UI_WIDGET_SPEED_OFFSET));
   }
   animThreshold = resultValue * animThreshold + animationSpeed * (UI_ALPHA_FULL - animThreshold);
   if (animThreshold <= UI_ALPHA_ZERO) {
@@ -926,7 +926,7 @@ LAB_ui_animation_zero:
     resultValue = UI_ALPHA_ZERO;
   }
   else {
-    animPtr = ui_system_find_widget((longlong)*(int *)(animationContext + UI_WIDGET_VALUE_OFFSET_10) * UI_ANIMATION_TABLE_OFFSET + *(longlong *)(animationContext + UI_WIDGET_TABLE_OFFSET_C78)
+    animPtr = ui_system_find_widget((int64_t)*(int *)(animationContext + UI_WIDGET_VALUE_OFFSET_10) * UI_ANIMATION_TABLE_OFFSET + *(int64_t *)(animationContext + UI_WIDGET_TABLE_OFFSET_C78)
                           , 0);
     resultValue = *(float *)(animPtr + UI_WIDGET_PARAM_OFFSET_8) / animThreshold;
     if ((resultValue == UI_ALPHA_ZERO) ||
@@ -937,7 +937,7 @@ LAB_ui_animation_zero:
     }
   }
   if ((*(char *)(animationContext + UI_WIDGET_FLAG_OFFSET_28) == '\0') && ((transitionSpeed != UI_ALPHA_ZERO || (blendProgress != UI_ALPHA_ZERO)))) {
-    animPtr = ui_system_find_widget((longlong)*(int *)(animationContext + UI_WIDGET_VALUE_OFFSET_10) * UI_ANIMATION_TABLE_OFFSET + *(longlong *)(animationContext + UI_WIDGET_TABLE_OFFSET_C78)
+    animPtr = ui_system_find_widget((int64_t)*(int *)(animationContext + UI_WIDGET_VALUE_OFFSET_10) * UI_ANIMATION_TABLE_OFFSET + *(int64_t *)(animationContext + UI_WIDGET_TABLE_OFFSET_C78)
                           , 2);
     animThreshold = (*(float *)(animationContext + UI_WIDGET_VALUE_OFFSET_18) * animThreshold) / *(float *)(animPtr + UI_WIDGET_PARAM_OFFSET_8);
     if (UI_ALPHA_ZERO <= *(float *)(animationContext + UI_WIDGET_VALUE_OFFSET_18)) {
@@ -1019,7 +1019,7 @@ LAB_ui_animation_skip:
   }
   widgetState = *(int *)(animationContext + UI_WIDGET_VALUE_OFFSET_10);
   if ((widgetState == 1) && ((animThreshold != UI_ALPHA_ZERO || (transitionSpeed != UI_ALPHA_ZERO)))) {
-    transitionSpeed = (float)ui_system_get_animation_value(*(longlong *)(animationContext + UI_WIDGET_TABLE_OFFSET_C78) + UI_ANIMATION_TABLE_OFFSET,
+    transitionSpeed = (float)ui_system_get_animation_value(*(int64_t *)(animationContext + UI_WIDGET_TABLE_OFFSET_C78) + UI_ANIMATION_TABLE_OFFSET,
                                  *(uint *)(animationContext + UI_WIDGET_VALUE_OFFSET_18) & UI_ABS_MASK);
     widgetState = *(int *)(animationContext + UI_WIDGET_VALUE_OFFSET_10);
     transitionSpeed = deltaTime / transitionSpeed;
@@ -1028,8 +1028,8 @@ LAB_ui_animation_skip:
     transitionSpeed = UI_ALPHA_ZERO;
   }
   if ((widgetState == 1) || ((*(int *)(animationContext + UI_WIDGET_TARGET_OFFSET) == 1 && (*(float *)(animationContext + UI_WIDGET_ANIMATION_OFFSET) != UI_ALPHA_FULL)))) {
-    animFlags = fmodf(deltaTime / *(float *)(*(longlong *)
-                                        (*(longlong *)(animationContext + UI_WIDGET_TABLE_OFFSET_C78) + UI_WIDGET_PARAM_OFFSET_8 + (longlong)widgetState * UI_ANIMATION_TABLE_OFFSET
+    animFlags = fmodf(deltaTime / *(float *)(*(int64_t *)
+                                        (*(int64_t *)(animationContext + UI_WIDGET_TABLE_OFFSET_C78) + UI_WIDGET_PARAM_OFFSET_8 + (int64_t)widgetState * UI_ANIMATION_TABLE_OFFSET
                                         ) + UI_ANIMATION_BLEND_OFFSET) + *(float *)(animationContext + UI_WIDGET_TRANSITION_OFFSET), UI_ALPHA_FULL);
     *(int32_t *)(animationContext + UI_WIDGET_TRANSITION_OFFSET) = animFlags;
   }
@@ -1040,7 +1040,7 @@ LAB_ui_animation_skip:
     *(int32_t *)(animationContext + UI_WIDGET_BLEND_OFFSET) = 0;
   }
   else {
-    animThreshold = (float)ui_system_get_animation_value_alt((longlong)widgetState * UI_ANIMATION_TABLE_OFFSET + *(longlong *)(animationContext + UI_WIDGET_TABLE_OFFSET_C78),
+    animThreshold = (float)ui_system_get_animation_value_alt((int64_t)widgetState * UI_ANIMATION_TABLE_OFFSET + *(int64_t *)(animationContext + UI_WIDGET_TABLE_OFFSET_C78),
                                  *(uint *)(animationContext + UI_WIDGET_SPEED_OFFSET) & UI_ABS_MASK);
     blendProgress = deltaTime / animThreshold;
     if (deltaTime / animThreshold <= transitionSpeed) {
@@ -1056,8 +1056,8 @@ LAB_ui_animation_skip:
   if ((UI_ALPHA_ZERO < *(float *)(animationContext + UI_WIDGET_VALUE_OFFSET_38)) || (UI_ALPHA_ZERO < *(float *)(animationContext + UI_WIDGET_VALUE_OFFSET_34))) {
     if (*(char *)(animationContext + UI_WIDGET_FLAG_OFFSET_28) != '\0') {
       transitionSpeed = *(float *)(animationContext + UI_WIDGET_SENSITIVITY_OFFSET);
-      animPtr = (longlong)*(int *)(animationContext + UI_WIDGET_VALUE_OFFSET_10) * UI_ANIMATION_TABLE_OFFSET + *(longlong *)(animationContext + UI_WIDGET_TABLE_OFFSET_C78);
-      blendProgress = *(float *)(*(longlong *)(animPtr + 0x20) + UI_ANIMATION_BLEND_OFFSET);
+      animPtr = (int64_t)*(int *)(animationContext + UI_WIDGET_VALUE_OFFSET_10) * UI_ANIMATION_TABLE_OFFSET + *(int64_t *)(animationContext + UI_WIDGET_TABLE_OFFSET_C78);
+      blendProgress = *(float *)(*(int64_t *)(animPtr + 0x20) + UI_ANIMATION_BLEND_OFFSET);
       animPtr = ui_system_find_widget(animPtr, 4);
       transitionSpeed = (ABS(transitionSpeed) / (blendProgress * *(float *)(animPtr + UI_WIDGET_PARAM_OFFSET_8))) * deltaTime;
     }

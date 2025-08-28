@@ -9,8 +9,8 @@ void initialize_render_system_component(void)
     char is_component_found;
     uint64_t *component_root;
     int compare_result;
-    longlong *system_context;
-    longlong allocation_size;
+    int64_t *system_context;
+    int64_t allocation_size;
     uint64_t *current_node;
     uint64_t *previous_node;
     uint64_t *next_node;
@@ -18,9 +18,9 @@ void initialize_render_system_component(void)
     void *default_callback;
     
     // 获取系统上下文
-    system_context = (longlong *)get_system_context();
+    system_context = (int64_t *)get_system_context();
     component_root = (uint64_t *)*system_context;
-    is_component_found = *(char *)((longlong)component_root[1] + 0x19);
+    is_component_found = *(char *)((int64_t)component_root[1] + 0x19);
     default_callback = &DEFAULT_RENDER_CALLBACK;
     previous_node = component_root;
     current_node = (uint64_t *)component_root[1];
@@ -37,7 +37,7 @@ void initialize_render_system_component(void)
         }
         previous_node = current_node;
         current_node = next_node;
-        is_component_found = *(char *)((longlong)next_node + 0x19);
+        is_component_found = *(char *)((int64_t)next_node + 0x19);
     }
     
     // 如果组件不存在或需要插入，则创建新组件
@@ -65,8 +65,8 @@ void initialize_texture_manager(void)
     char is_manager_found;
     uint64_t *manager_root;
     int compare_result;
-    longlong *system_context;
-    longlong allocation_size;
+    int64_t *system_context;
+    int64_t allocation_size;
     uint64_t *current_node;
     uint64_t *previous_node;
     uint64_t *next_node;
@@ -74,9 +74,9 @@ void initialize_texture_manager(void)
     uint64_t null_callback;
     
     // 获取系统上下文
-    system_context = (longlong *)get_system_context();
+    system_context = (int64_t *)get_system_context();
     manager_root = (uint64_t *)*system_context;
-    is_manager_found = *(char *)((longlong)manager_root[1] + 0x19);
+    is_manager_found = *(char *)((int64_t)manager_root[1] + 0x19);
     null_callback = 0;
     previous_node = manager_root;
     current_node = (uint64_t *)manager_root[1];
@@ -93,7 +93,7 @@ void initialize_texture_manager(void)
         }
         previous_node = current_node;
         current_node = next_node;
-        is_manager_found = *(char *)((longlong)next_node + 0x19);
+        is_manager_found = *(char *)((int64_t)next_node + 0x19);
     }
     
     // 如果管理器不存在或需要插入，则创建新管理器
@@ -121,8 +121,8 @@ void initialize_shader_system(void)
     char is_system_found;
     uint64_t *system_root;
     int compare_result;
-    longlong *system_context;
-    longlong allocation_size;
+    int64_t *system_context;
+    int64_t allocation_size;
     uint64_t *current_node;
     uint64_t *previous_node;
     uint64_t *next_node;
@@ -130,9 +130,9 @@ void initialize_shader_system(void)
     code *shader_callback;
     
     // 获取系统上下文
-    system_context = (longlong *)get_system_context();
+    system_context = (int64_t *)get_system_context();
     system_root = (uint64_t *)*system_context;
-    is_system_found = *(char *)((longlong)system_root[1] + 0x19);
+    is_system_found = *(char *)((int64_t)system_root[1] + 0x19);
     shader_callback = SHADER_COMPILE_CALLBACK;
     previous_node = system_root;
     current_node = (uint64_t *)system_root[1];
@@ -149,7 +149,7 @@ void initialize_shader_system(void)
         }
         previous_node = current_node;
         current_node = next_node;
-        is_system_found = *(char *)((longlong)next_node + 0x19);
+        is_system_found = *(char *)((int64_t)next_node + 0x19);
     }
     
     // 如果系统不存在或需要插入，则创建新系统
@@ -177,8 +177,8 @@ void initialize_buffer_manager(void)
     char is_manager_found;
     uint64_t *manager_root;
     int compare_result;
-    longlong *system_context;
-    longlong allocation_size;
+    int64_t *system_context;
+    int64_t allocation_size;
     uint64_t *current_node;
     uint64_t *previous_node;
     uint64_t *next_node;
@@ -186,9 +186,9 @@ void initialize_buffer_manager(void)
     code *buffer_callback;
     
     // 获取系统上下文
-    system_context = (longlong *)get_system_context();
+    system_context = (int64_t *)get_system_context();
     manager_root = (uint64_t *)*system_context;
-    is_manager_found = *(char *)((longlong)manager_root[1] + 0x19);
+    is_manager_found = *(char *)((int64_t)manager_root[1] + 0x19);
     buffer_callback = BUFFER_ALLOCATE_CALLBACK;
     previous_node = manager_root;
     current_node = (uint64_t *)manager_root[1];
@@ -205,7 +205,7 @@ void initialize_buffer_manager(void)
         }
         previous_node = current_node;
         current_node = next_node;
-        is_manager_found = *(char *)((longlong)next_node + 0x19);
+        is_manager_found = *(char *)((int64_t)next_node + 0x19);
     }
     
     // 如果管理器不存在或需要插入，则创建新管理器
@@ -233,8 +233,8 @@ void initialize_framebuffer(void)
     char is_framebuffer_found;
     uint64_t *framebuffer_root;
     int compare_result;
-    longlong *system_context;
-    longlong allocation_size;
+    int64_t *system_context;
+    int64_t allocation_size;
     uint64_t *current_node;
     uint64_t *previous_node;
     uint64_t *next_node;
@@ -242,9 +242,9 @@ void initialize_framebuffer(void)
     uint64_t null_callback;
     
     // 获取系统上下文
-    system_context = (longlong *)get_system_context();
+    system_context = (int64_t *)get_system_context();
     framebuffer_root = (uint64_t *)*system_context;
-    is_framebuffer_found = *(char *)((longlong)framebuffer_root[1] + 0x19);
+    is_framebuffer_found = *(char *)((int64_t)framebuffer_root[1] + 0x19);
     null_callback = 0;
     previous_node = framebuffer_root;
     current_node = (uint64_t *)framebuffer_root[1];
@@ -261,7 +261,7 @@ void initialize_framebuffer(void)
         }
         previous_node = current_node;
         current_node = next_node;
-        is_framebuffer_found = *(char *)((longlong)next_node + 0x19);
+        is_framebuffer_found = *(char *)((int64_t)next_node + 0x19);
     }
     
     // 如果帧缓冲区不存在或需要插入，则创建新帧缓冲区
@@ -289,8 +289,8 @@ void initialize_render_pipeline(void)
     char is_pipeline_found;
     uint64_t *pipeline_root;
     int compare_result;
-    longlong *system_context;
-    longlong allocation_size;
+    int64_t *system_context;
+    int64_t allocation_size;
     uint64_t *current_node;
     uint64_t *previous_node;
     uint64_t *next_node;
@@ -298,9 +298,9 @@ void initialize_render_pipeline(void)
     code *pipeline_callback;
     
     // 获取系统上下文
-    system_context = (longlong *)get_system_context();
+    system_context = (int64_t *)get_system_context();
     pipeline_root = (uint64_t *)*system_context;
-    is_pipeline_found = *(char *)((longlong)pipeline_root[1] + 0x19);
+    is_pipeline_found = *(char *)((int64_t)pipeline_root[1] + 0x19);
     pipeline_callback = PIPELINE_EXECUTE_CALLBACK;
     previous_node = pipeline_root;
     current_node = (uint64_t *)pipeline_root[1];
@@ -317,7 +317,7 @@ void initialize_render_pipeline(void)
         }
         previous_node = current_node;
         current_node = next_node;
-        is_pipeline_found = *(char *)((longlong)next_node + 0x19);
+        is_pipeline_found = *(char *)((int64_t)next_node + 0x19);
     }
     
     // 如果管线不存在或需要插入，则创建新管线
@@ -345,8 +345,8 @@ void initialize_render_target(void)
     char is_target_found;
     uint64_t *target_root;
     int compare_result;
-    longlong *system_context;
-    longlong allocation_size;
+    int64_t *system_context;
+    int64_t allocation_size;
     uint64_t *current_node;
     uint64_t *previous_node;
     uint64_t *next_node;
@@ -354,9 +354,9 @@ void initialize_render_target(void)
     uint64_t null_callback;
     
     // 获取系统上下文
-    system_context = (longlong *)get_system_context();
+    system_context = (int64_t *)get_system_context();
     target_root = (uint64_t *)*system_context;
-    is_target_found = *(char *)((longlong)target_root[1] + 0x19);
+    is_target_found = *(char *)((int64_t)target_root[1] + 0x19);
     null_callback = 0;
     previous_node = target_root;
     current_node = (uint64_t *)target_root[1];
@@ -373,7 +373,7 @@ void initialize_render_target(void)
         }
         previous_node = current_node;
         current_node = next_node;
-        is_target_found = *(char *)((longlong)next_node + 0x19);
+        is_target_found = *(char *)((int64_t)next_node + 0x19);
     }
     
     // 如果目标不存在或需要插入，则创建新目标
@@ -401,8 +401,8 @@ void initialize_depth_buffer(void)
     char is_buffer_found;
     uint64_t *buffer_root;
     int compare_result;
-    longlong *system_context;
-    longlong allocation_size;
+    int64_t *system_context;
+    int64_t allocation_size;
     uint64_t *current_node;
     uint64_t *previous_node;
     uint64_t *next_node;
@@ -410,9 +410,9 @@ void initialize_depth_buffer(void)
     void *default_callback;
     
     // 获取系统上下文
-    system_context = (longlong *)get_system_context();
+    system_context = (int64_t *)get_system_context();
     buffer_root = (uint64_t *)*system_context;
-    is_buffer_found = *(char *)((longlong)buffer_root[1] + 0x19);
+    is_buffer_found = *(char *)((int64_t)buffer_root[1] + 0x19);
     default_callback = &DEFAULT_DEPTH_CALLBACK;
     previous_node = buffer_root;
     current_node = (uint64_t *)buffer_root[1];
@@ -429,7 +429,7 @@ void initialize_depth_buffer(void)
         }
         previous_node = current_node;
         current_node = next_node;
-        is_buffer_found = *(char *)((longlong)next_node + 0x19);
+        is_buffer_found = *(char *)((int64_t)next_node + 0x19);
     }
     
     // 如果缓冲区不存在或需要插入，则创建新缓冲区
@@ -457,8 +457,8 @@ void initialize_stencil_buffer(void)
     char is_buffer_found;
     uint64_t *buffer_root;
     int compare_result;
-    longlong *system_context;
-    longlong allocation_size;
+    int64_t *system_context;
+    int64_t allocation_size;
     uint64_t *current_node;
     uint64_t *previous_node;
     uint64_t *next_node;
@@ -466,9 +466,9 @@ void initialize_stencil_buffer(void)
     uint64_t null_callback;
     
     // 获取系统上下文
-    system_context = (longlong *)get_system_context();
+    system_context = (int64_t *)get_system_context();
     buffer_root = (uint64_t *)*system_context;
-    is_buffer_found = *(char *)((longlong)buffer_root[1] + 0x19);
+    is_buffer_found = *(char *)((int64_t)buffer_root[1] + 0x19);
     null_callback = 0;
     previous_node = buffer_root;
     current_node = (uint64_t *)buffer_root[1];
@@ -485,7 +485,7 @@ void initialize_stencil_buffer(void)
         }
         previous_node = current_node;
         current_node = next_node;
-        is_buffer_found = *(char *)((longlong)next_node + 0x19);
+        is_buffer_found = *(char *)((int64_t)next_node + 0x19);
     }
     
     // 如果缓冲区不存在或需要插入，则创建新缓冲区
@@ -513,8 +513,8 @@ void initialize_blend_state(void)
     char is_state_found;
     uint64_t *state_root;
     int compare_result;
-    longlong *system_context;
-    longlong allocation_size;
+    int64_t *system_context;
+    int64_t allocation_size;
     uint64_t *current_node;
     uint64_t *previous_node;
     uint64_t *next_node;
@@ -522,9 +522,9 @@ void initialize_blend_state(void)
     code *blend_callback;
     
     // 获取系统上下文
-    system_context = (longlong *)get_system_context();
+    system_context = (int64_t *)get_system_context();
     state_root = (uint64_t *)*system_context;
-    is_state_found = *(char *)((longlong)state_root[1] + 0x19);
+    is_state_found = *(char *)((int64_t)state_root[1] + 0x19);
     blend_callback = BLEND_CALCULATE_CALLBACK;
     previous_node = state_root;
     current_node = (uint64_t *)state_root[1];
@@ -541,7 +541,7 @@ void initialize_blend_state(void)
         }
         previous_node = current_node;
         current_node = next_node;
-        is_state_found = *(char *)((longlong)next_node + 0x19);
+        is_state_found = *(char *)((int64_t)next_node + 0x19);
     }
     
     // 如果状态不存在或需要插入，则创建新状态
@@ -569,8 +569,8 @@ void initialize_rasterizer_state(void)
     char is_state_found;
     uint64_t *state_root;
     int compare_result;
-    longlong *system_context;
-    longlong allocation_size;
+    int64_t *system_context;
+    int64_t allocation_size;
     uint64_t *current_node;
     uint64_t *previous_node;
     uint64_t *next_node;
@@ -578,9 +578,9 @@ void initialize_rasterizer_state(void)
     code *raster_callback;
     
     // 获取系统上下文
-    system_context = (longlong *)get_system_context();
+    system_context = (int64_t *)get_system_context();
     state_root = (uint64_t *)*system_context;
-    is_state_found = *(char *)((longlong)state_root[1] + 0x19);
+    is_state_found = *(char *)((int64_t)state_root[1] + 0x19);
     raster_callback = RASTERIZE_CALLBACK;
     previous_node = state_root;
     current_node = (uint64_t *)state_root[1];
@@ -597,7 +597,7 @@ void initialize_rasterizer_state(void)
         }
         previous_node = current_node;
         current_node = next_node;
-        is_state_found = *(char *)((longlong)next_node + 0x19);
+        is_state_found = *(char *)((int64_t)next_node + 0x19);
     }
     
     // 如果状态不存在或需要插入，则创建新状态
@@ -625,8 +625,8 @@ void initialize_sampler_state(void)
     char is_state_found;
     uint64_t *state_root;
     int compare_result;
-    longlong *system_context;
-    longlong allocation_size;
+    int64_t *system_context;
+    int64_t allocation_size;
     uint64_t *current_node;
     uint64_t *previous_node;
     uint64_t *next_node;
@@ -634,9 +634,9 @@ void initialize_sampler_state(void)
     uint64_t null_callback;
     
     // 获取系统上下文
-    system_context = (longlong *)get_system_context();
+    system_context = (int64_t *)get_system_context();
     state_root = (uint64_t *)*system_context;
-    is_state_found = *(char *)((longlong)state_root[1] + 0x19);
+    is_state_found = *(char *)((int64_t)state_root[1] + 0x19);
     null_callback = 0;
     previous_node = state_root;
     current_node = (uint64_t *)state_root[1];
@@ -653,7 +653,7 @@ void initialize_sampler_state(void)
         }
         previous_node = current_node;
         current_node = next_node;
-        is_state_found = *(char *)((longlong)next_node + 0x19);
+        is_state_found = *(char *)((int64_t)next_node + 0x19);
     }
     
     // 如果状态不存在或需要插入，则创建新状态
@@ -681,8 +681,8 @@ void initialize_depth_stencil_state(void)
     char is_state_found;
     uint64_t *state_root;
     int compare_result;
-    longlong *system_context;
-    longlong allocation_size;
+    int64_t *system_context;
+    int64_t allocation_size;
     uint64_t *current_node;
     uint64_t *previous_node;
     uint64_t *next_node;
@@ -690,9 +690,9 @@ void initialize_depth_stencil_state(void)
     code *depth_callback;
     
     // 获取系统上下文
-    system_context = (longlong *)get_system_context();
+    system_context = (int64_t *)get_system_context();
     state_root = (uint64_t *)*system_context;
-    is_state_found = *(char *)((longlong)state_root[1] + 0x19);
+    is_state_found = *(char *)((int64_t)state_root[1] + 0x19);
     depth_callback = DEPTH_STENCIL_CALLBACK;
     previous_node = state_root;
     current_node = (uint64_t *)state_root[1];
@@ -709,7 +709,7 @@ void initialize_depth_stencil_state(void)
         }
         previous_node = current_node;
         current_node = next_node;
-        is_state_found = *(char *)((longlong)next_node + 0x19);
+        is_state_found = *(char *)((int64_t)next_node + 0x19);
     }
     
     // 如果状态不存在或需要插入，则创建新状态
@@ -737,8 +737,8 @@ void initialize_viewport_state(void)
     char is_state_found;
     uint64_t *state_root;
     int compare_result;
-    longlong *system_context;
-    longlong allocation_size;
+    int64_t *system_context;
+    int64_t allocation_size;
     uint64_t *current_node;
     uint64_t *previous_node;
     uint64_t *next_node;
@@ -746,9 +746,9 @@ void initialize_viewport_state(void)
     uint64_t null_callback;
     
     // 获取系统上下文
-    system_context = (longlong *)get_system_context();
+    system_context = (int64_t *)get_system_context();
     state_root = (uint64_t *)*system_context;
-    is_state_found = *(char *)((longlong)state_root[1] + 0x19);
+    is_state_found = *(char *)((int64_t)state_root[1] + 0x19);
     null_callback = 0;
     previous_node = state_root;
     current_node = (uint64_t *)state_root[1];
@@ -765,7 +765,7 @@ void initialize_viewport_state(void)
         }
         previous_node = current_node;
         current_node = next_node;
-        is_state_found = *(char *)((longlong)next_node + 0x19);
+        is_state_found = *(char *)((int64_t)next_node + 0x19);
     }
     
     // 如果状态不存在或需要插入，则创建新状态
@@ -793,8 +793,8 @@ void initialize_scissor_state(void)
     char is_state_found;
     uint64_t *state_root;
     int compare_result;
-    longlong *system_context;
-    longlong allocation_size;
+    int64_t *system_context;
+    int64_t allocation_size;
     uint64_t *current_node;
     uint64_t *previous_node;
     uint64_t *next_node;
@@ -802,9 +802,9 @@ void initialize_scissor_state(void)
     void *default_callback;
     
     // 获取系统上下文
-    system_context = (longlong *)get_system_context();
+    system_context = (int64_t *)get_system_context();
     state_root = (uint64_t *)*system_context;
-    is_state_found = *(char *)((longlong)state_root[1] + 0x19);
+    is_state_found = *(char *)((int64_t)state_root[1] + 0x19);
     default_callback = &DEFAULT_SCISSOR_CALLBACK;
     previous_node = state_root;
     current_node = (uint64_t *)state_root[1];
@@ -821,7 +821,7 @@ void initialize_scissor_state(void)
         }
         previous_node = current_node;
         current_node = next_node;
-        is_state_found = *(char *)((longlong)next_node + 0x19);
+        is_state_found = *(char *)((int64_t)next_node + 0x19);
     }
     
     // 如果状态不存在或需要插入，则创建新状态
@@ -849,8 +849,8 @@ void initialize_polygon_state(void)
     char is_state_found;
     uint64_t *state_root;
     int compare_result;
-    longlong *system_context;
-    longlong allocation_size;
+    int64_t *system_context;
+    int64_t allocation_size;
     uint64_t *current_node;
     uint64_t *previous_node;
     uint64_t *next_node;
@@ -858,9 +858,9 @@ void initialize_polygon_state(void)
     uint64_t null_callback;
     
     // 获取系统上下文
-    system_context = (longlong *)get_system_context();
+    system_context = (int64_t *)get_system_context();
     state_root = (uint64_t *)*system_context;
-    is_state_found = *(char *)((longlong)state_root[1] + 0x19);
+    is_state_found = *(char *)((int64_t)state_root[1] + 0x19);
     null_callback = 0;
     previous_node = state_root;
     current_node = (uint64_t *)state_root[1];
@@ -877,7 +877,7 @@ void initialize_polygon_state(void)
         }
         previous_node = current_node;
         current_node = next_node;
-        is_state_found = *(char *)((longlong)next_node + 0x19);
+        is_state_found = *(char *)((int64_t)next_node + 0x19);
     }
     
     // 如果状态不存在或需要插入，则创建新状态
@@ -905,8 +905,8 @@ void initialize_vertex_layout(void)
     char is_layout_found;
     uint64_t *layout_root;
     int compare_result;
-    longlong *system_context;
-    longlong allocation_size;
+    int64_t *system_context;
+    int64_t allocation_size;
     uint64_t *current_node;
     uint64_t *previous_node;
     uint64_t *next_node;
@@ -914,9 +914,9 @@ void initialize_vertex_layout(void)
     code *layout_callback;
     
     // 获取系统上下文
-    system_context = (longlong *)get_system_context();
+    system_context = (int64_t *)get_system_context();
     layout_root = (uint64_t *)*system_context;
-    is_layout_found = *(char *)((longlong)layout_root[1] + 0x19);
+    is_layout_found = *(char *)((int64_t)layout_root[1] + 0x19);
     layout_callback = VERTEX_LAYOUT_CALLBACK;
     previous_node = layout_root;
     current_node = (uint64_t *)layout_root[1];
@@ -933,7 +933,7 @@ void initialize_vertex_layout(void)
         }
         previous_node = current_node;
         current_node = next_node;
-        is_layout_found = *(char *)((longlong)next_node + 0x19);
+        is_layout_found = *(char *)((int64_t)next_node + 0x19);
     }
     
     // 如果布局不存在或需要插入，则创建新布局
@@ -961,8 +961,8 @@ void initialize_input_assembler(void)
     char is_assembler_found;
     uint64_t *assembler_root;
     int compare_result;
-    longlong *system_context;
-    longlong allocation_size;
+    int64_t *system_context;
+    int64_t allocation_size;
     uint64_t *current_node;
     uint64_t *previous_node;
     uint64_t *next_node;
@@ -970,9 +970,9 @@ void initialize_input_assembler(void)
     uint64_t null_callback;
     
     // 获取系统上下文
-    system_context = (longlong *)get_system_context();
+    system_context = (int64_t *)get_system_context();
     assembler_root = (uint64_t *)*system_context;
-    is_assembler_found = *(char *)((longlong)assembler_root[1] + 0x19);
+    is_assembler_found = *(char *)((int64_t)assembler_root[1] + 0x19);
     null_callback = 0;
     previous_node = assembler_root;
     current_node = (uint64_t *)assembler_root[1];
@@ -989,7 +989,7 @@ void initialize_input_assembler(void)
         }
         previous_node = current_node;
         current_node = next_node;
-        is_assembler_found = *(char *)((longlong)next_node + 0x19);
+        is_assembler_found = *(char *)((int64_t)next_node + 0x19);
     }
     
     // 如果装配器不存在或需要插入，则创建新装配器
@@ -1017,8 +1017,8 @@ void initialize_stream_output(void)
     char is_output_found;
     uint64_t *output_root;
     int compare_result;
-    longlong *system_context;
-    longlong allocation_size;
+    int64_t *system_context;
+    int64_t allocation_size;
     uint64_t *current_node;
     uint64_t *previous_node;
     uint64_t *next_node;
@@ -1026,9 +1026,9 @@ void initialize_stream_output(void)
     uint64_t null_callback;
     
     // 获取系统上下文
-    system_context = (longlong *)get_system_context();
+    system_context = (int64_t *)get_system_context();
     output_root = (uint64_t *)*system_context;
-    is_output_found = *(char *)((longlong)output_root[1] + 0x19);
+    is_output_found = *(char *)((int64_t)output_root[1] + 0x19);
     null_callback = 0;
     previous_node = output_root;
     current_node = (uint64_t *)output_root[1];
@@ -1045,7 +1045,7 @@ void initialize_stream_output(void)
         }
         previous_node = current_node;
         current_node = next_node;
-        is_output_found = *(char *)((longlong)next_node + 0x19);
+        is_output_found = *(char *)((int64_t)next_node + 0x19);
     }
     
     // 如果输出阶段不存在或需要插入，则创建新输出阶段
@@ -1073,8 +1073,8 @@ void initialize_rasterizer_stage(void)
     char is_stage_found;
     uint64_t *stage_root;
     int compare_result;
-    longlong *system_context;
-    longlong allocation_size;
+    int64_t *system_context;
+    int64_t allocation_size;
     uint64_t *current_node;
     uint64_t *previous_node;
     uint64_t *next_node;
@@ -1082,9 +1082,9 @@ void initialize_rasterizer_stage(void)
     uint64_t null_callback;
     
     // 获取系统上下文
-    system_context = (longlong *)get_system_context();
+    system_context = (int64_t *)get_system_context();
     stage_root = (uint64_t *)*system_context;
-    is_stage_found = *(char *)((longlong)stage_root[1] + 0x19);
+    is_stage_found = *(char *)((int64_t)stage_root[1] + 0x19);
     null_callback = 0;
     previous_node = stage_root;
     current_node = (uint64_t *)stage_root[1];
@@ -1101,7 +1101,7 @@ void initialize_rasterizer_stage(void)
         }
         previous_node = current_node;
         current_node = next_node;
-        is_stage_found = *(char *)((longlong)next_node + 0x19);
+        is_stage_found = *(char *)((int64_t)next_node + 0x19);
     }
     
     // 如果阶段不存在或需要插入，则创建新阶段
@@ -1129,8 +1129,8 @@ void initialize_pixel_shader_stage(void)
     char is_stage_found;
     uint64_t *stage_root;
     int compare_result;
-    longlong *system_context;
-    longlong allocation_size;
+    int64_t *system_context;
+    int64_t allocation_size;
     uint64_t *current_node;
     uint64_t *previous_node;
     uint64_t *next_node;
@@ -1138,9 +1138,9 @@ void initialize_pixel_shader_stage(void)
     uint64_t null_callback;
     
     // 获取系统上下文
-    system_context = (longlong *)get_system_context();
+    system_context = (int64_t *)get_system_context();
     stage_root = (uint64_t *)*system_context;
-    is_stage_found = *(char *)((longlong)stage_root[1] + 0x19);
+    is_stage_found = *(char *)((int64_t)stage_root[1] + 0x19);
     null_callback = 0;
     previous_node = stage_root;
     current_node = (uint64_t *)stage_root[1];
@@ -1157,7 +1157,7 @@ void initialize_pixel_shader_stage(void)
         }
         previous_node = current_node;
         current_node = next_node;
-        is_stage_found = *(char *)((longlong)next_node + 0x19);
+        is_stage_found = *(char *)((int64_t)next_node + 0x19);
     }
     
     // 如果阶段不存在或需要插入，则创建新阶段
@@ -1185,8 +1185,8 @@ void initialize_output_merger_stage(void)
     char is_stage_found;
     uint64_t *stage_root;
     int compare_result;
-    longlong *system_context;
-    longlong allocation_size;
+    int64_t *system_context;
+    int64_t allocation_size;
     uint64_t *current_node;
     uint64_t *previous_node;
     uint64_t *next_node;
@@ -1194,9 +1194,9 @@ void initialize_output_merger_stage(void)
     uint64_t null_callback;
     
     // 获取系统上下文
-    system_context = (longlong *)get_system_context();
+    system_context = (int64_t *)get_system_context();
     stage_root = (uint64_t *)*system_context;
-    is_stage_found = *(char *)((longlong)stage_root[1] + 0x19);
+    is_stage_found = *(char *)((int64_t)stage_root[1] + 0x19);
     null_callback = 0;
     previous_node = stage_root;
     current_node = (uint64_t *)stage_root[1];
@@ -1213,7 +1213,7 @@ void initialize_output_merger_stage(void)
         }
         previous_node = current_node;
         current_node = next_node;
-        is_stage_found = *(char *)((longlong)next_node + 0x19);
+        is_stage_found = *(char *)((int64_t)next_node + 0x19);
     }
     
     // 如果阶段不存在或需要插入，则创建新阶段
@@ -1241,8 +1241,8 @@ void initialize_compute_shader_stage(void)
     char is_stage_found;
     uint64_t *stage_root;
     int compare_result;
-    longlong *system_context;
-    longlong allocation_size;
+    int64_t *system_context;
+    int64_t allocation_size;
     uint64_t *current_node;
     uint64_t *previous_node;
     uint64_t *next_node;
@@ -1250,9 +1250,9 @@ void initialize_compute_shader_stage(void)
     uint64_t null_callback;
     
     // 获取系统上下文
-    system_context = (longlong *)get_system_context();
+    system_context = (int64_t *)get_system_context();
     stage_root = (uint64_t *)*system_context;
-    is_stage_found = *(char *)((longlong)stage_root[1] + 0x19);
+    is_stage_found = *(char *)((int64_t)stage_root[1] + 0x19);
     null_callback = 0;
     previous_node = stage_root;
     current_node = (uint64_t *)stage_root[1];
@@ -1269,7 +1269,7 @@ void initialize_compute_shader_stage(void)
         }
         previous_node = current_node;
         current_node = next_node;
-        is_stage_found = *(char *)((longlong)next_node + 0x19);
+        is_stage_found = *(char *)((int64_t)next_node + 0x19);
     }
     
     // 如果阶段不存在或需要插入，则创建新阶段
@@ -1297,8 +1297,8 @@ void initialize_geometry_shader_stage(void)
     char is_stage_found;
     uint64_t *stage_root;
     int compare_result;
-    longlong *system_context;
-    longlong allocation_size;
+    int64_t *system_context;
+    int64_t allocation_size;
     uint64_t *current_node;
     uint64_t *previous_node;
     uint64_t *next_node;
@@ -1306,9 +1306,9 @@ void initialize_geometry_shader_stage(void)
     uint64_t null_callback;
     
     // 获取系统上下文
-    system_context = (longlong *)get_system_context();
+    system_context = (int64_t *)get_system_context();
     stage_root = (uint64_t *)*system_context;
-    is_stage_found = *(char *)((longlong)stage_root[1] + 0x19);
+    is_stage_found = *(char *)((int64_t)stage_root[1] + 0x19);
     null_callback = 0;
     previous_node = stage_root;
     current_node = (uint64_t *)stage_root[1];
@@ -1325,7 +1325,7 @@ void initialize_geometry_shader_stage(void)
         }
         previous_node = current_node;
         current_node = next_node;
-        is_stage_found = *(char *)((longlong)next_node + 0x19);
+        is_stage_found = *(char *)((int64_t)next_node + 0x19);
     }
     
     // 如果阶段不存在或需要插入，则创建新阶段
@@ -1353,8 +1353,8 @@ void initialize_hull_shader_stage(void)
     char is_stage_found;
     uint64_t *stage_root;
     int compare_result;
-    longlong *system_context;
-    longlong allocation_size;
+    int64_t *system_context;
+    int64_t allocation_size;
     uint64_t *current_node;
     uint64_t *previous_node;
     uint64_t *next_node;
@@ -1362,9 +1362,9 @@ void initialize_hull_shader_stage(void)
     code *hull_callback;
     
     // 获取系统上下文
-    system_context = (longlong *)get_system_context();
+    system_context = (int64_t *)get_system_context();
     stage_root = (uint64_t *)*system_context;
-    is_stage_found = *(char *)((longlong)stage_root[1] + 0x19);
+    is_stage_found = *(char *)((int64_t)stage_root[1] + 0x19);
     hull_callback = HULL_SHADER_CALLBACK;
     previous_node = stage_root;
     current_node = (uint64_t *)stage_root[1];
@@ -1381,7 +1381,7 @@ void initialize_hull_shader_stage(void)
         }
         previous_node = current_node;
         current_node = next_node;
-        is_stage_found = *(char *)((longlong)next_node + 0x19);
+        is_stage_found = *(char *)((int64_t)next_node + 0x19);
     }
     
     // 如果阶段不存在或需要插入，则创建新阶段
@@ -1409,8 +1409,8 @@ void initialize_domain_shader_stage(void)
     char is_stage_found;
     uint64_t *stage_root;
     int compare_result;
-    longlong *system_context;
-    longlong allocation_size;
+    int64_t *system_context;
+    int64_t allocation_size;
     uint64_t *current_node;
     uint64_t *previous_node;
     uint64_t *next_node;
@@ -1418,9 +1418,9 @@ void initialize_domain_shader_stage(void)
     uint64_t null_callback;
     
     // 获取系统上下文
-    system_context = (longlong *)get_system_context();
+    system_context = (int64_t *)get_system_context();
     stage_root = (uint64_t *)*system_context;
-    is_stage_found = *(char *)((longlong)stage_root[1] + 0x19);
+    is_stage_found = *(char *)((int64_t)stage_root[1] + 0x19);
     null_callback = 0;
     previous_node = stage_root;
     current_node = (uint64_t *)stage_root[1];
@@ -1437,7 +1437,7 @@ void initialize_domain_shader_stage(void)
         }
         previous_node = current_node;
         current_node = next_node;
-        is_stage_found = *(char *)((longlong)next_node + 0x19);
+        is_stage_found = *(char *)((int64_t)next_node + 0x19);
     }
     
     // 如果阶段不存在或需要插入，则创建新阶段

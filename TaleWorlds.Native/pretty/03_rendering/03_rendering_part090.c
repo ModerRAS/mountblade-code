@@ -239,13 +239,13 @@ cleanup_handler:
  * @param transform_params 变换参数数组
  * @param param_count 参数数量
  */
-void rendering_transform_matrix_data(longlong *transform_params, int param_count)
+void rendering_transform_matrix_data(int64_t *transform_params, int param_count)
 {
     float *matrix_data;
     float transform_value;
     float rotation_value;
     float scale_value;
-    longlong *resource_ptr;
+    int64_t *resource_ptr;
     void *context_ptr;
     int process_result;
     float matrix_values[4];
@@ -262,9 +262,9 @@ void rendering_transform_matrix_data(longlong *transform_params, int param_count
     matrix_values[3] = 3.4028235e+38f; /* 最大浮点值 */
     
     /* 计算变换矩阵 */
-    transform_value = *(float *)((longlong)transform_params + 0x24);
+    transform_value = *(float *)((int64_t)transform_params + 0x24);
     rotation_value = *(float *)(transform_params + 5);
-    scale_value = *(float *)((longlong)transform_params + 0x2c);
+    scale_value = *(float *)((int64_t)transform_params + 0x2c);
     
     /* 应用变换公式 */
     stack_matrix[0] = matrix_values[0];                                    /* 基础变换 */
@@ -360,7 +360,7 @@ void rendering_control_render_state(void *state_params, void *context_data)
     
     /* 获取状态数据 */
     transform_data = (float *)state_params;
-    state_count = *(int *)((longlong)state_params + 0x78);
+    state_count = *(int *)((int64_t)state_params + 0x78);
     
     /* 初始化状态值 */
     state_values[0] = 0.2820948f;   /* 基础状态值 */
@@ -372,9 +372,9 @@ void rendering_control_render_state(void *state_params, void *context_data)
     if (state_count > 0) {
         for (state_index = 0; state_index < state_count; state_index++) {
             /* 获取变换数据 */
-            matrix_data = *(float *)((longlong)transform_data + state_index);
+            matrix_data = *(float *)((int64_t)transform_data + state_index);
             rotation_data = *(float *)(transform_data + 5 + state_index);
-            scale_data = *(float *)((longlong)transform_data + 0x2c + state_index);
+            scale_data = *(float *)((int64_t)transform_data + 0x2c + state_index);
             
             /* 应用状态变换 */
             rendering_apply_state_transform(matrix_data, rotation_data, scale_data, state_values);
@@ -403,7 +403,7 @@ void rendering_control_render_state(void *state_params, void *context_data)
  * @param loop_index 循环索引
  * @param context_ptr 上下文指针
  */
-void rendering_process_render_data(longlong data_params, int loop_index, void *context_ptr)
+void rendering_process_render_data(int64_t data_params, int loop_index, void *context_ptr)
 {
     float *data_ptr;
     float transform_value;
@@ -420,9 +420,9 @@ void rendering_process_render_data(longlong data_params, int loop_index, void *c
     /* 处理数据循环 */
     if (loop_index < data_count) {
         /* 获取变换数据 */
-        transform_value = *(float *)((longlong)data_ptr + 0x24);
+        transform_value = *(float *)((int64_t)data_ptr + 0x24);
         rotation_value = *(float *)(data_ptr + 5);
-        scale_value = *(float *)((longlong)data_ptr + 0x2c);
+        scale_value = *(float *)((int64_t)data_ptr + 0x2c);
         
         /* 计算结果值 */
         result_values[0] = transform_value * 0.2820948f * 0.94391274f;
@@ -487,10 +487,10 @@ static int rendering_validate_resource_pool(RenderContext *context);
 static int rendering_validate_render_state(RenderContext *context);
 static void rendering_set_render_idle(RenderContext *context);
 static void rendering_cleanup_security_context(void *security_context);
-static void rendering_initialize_matrix_transform(longlong *params, int count);
-static void rendering_process_transform_data(longlong *params, float *values, float *matrix, int count);
+static void rendering_initialize_matrix_transform(int64_t *params, int count);
+static void rendering_process_transform_data(int64_t *params, float *values, float *matrix, int count);
 static void rendering_update_transform_statistics(int count);
-static void rendering_execute_matrix_transform(float *matrix, longlong *params, int count);
+static void rendering_execute_matrix_transform(float *matrix, int64_t *params, int count);
 static RenderResource *rendering_get_resource_handle(RenderContext *context);
 static void rendering_set_performance_factor(RenderContext *context, float factor);
 static int rendering_process_resource_pool(RenderResource *resource, RenderContext *context);
@@ -501,7 +501,7 @@ static void rendering_clear_optimization_flag(RenderContext *context);
 static void rendering_apply_state_transform(float matrix, float rotation, float scale, float *values);
 static void rendering_update_state_statistics(int index);
 static void rendering_execute_state_control(void *params, int count);
-static void rendering_execute_data_processing(longlong params, int index, int count);
+static void rendering_execute_data_processing(int64_t params, int index, int count);
 static void rendering_update_data_statistics(int index);
 static void rendering_execute_context_management(RenderContext *context);
 

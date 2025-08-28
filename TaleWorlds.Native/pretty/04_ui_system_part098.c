@@ -14,11 +14,11 @@ void FUN_180725950(float *param_1,float param_2,float param_3,uint param_4)
   uint uVar5;
   int iVar6;
   int iVar7;
-  longlong lVar8;
-  longlong lVar9;
+  int64_t lVar8;
+  int64_t lVar9;
   int iVar10;
-  longlong lVar11;
-  longlong lVar12;
+  int64_t lVar11;
+  int64_t lVar12;
   uint uVar13;
   float fVar14;
   float fVar15;
@@ -26,9 +26,9 @@ void FUN_180725950(float *param_1,float param_2,float param_3,uint param_4)
   float fVar17;
   
   iVar3 = 0;
-  lVar11 = (longlong)(int)param_4;
+  lVar11 = (int64_t)(int)param_4;
   uVar13 = param_4 - 1;
-  lVar8 = (longlong)(int)uVar13;
+  lVar8 = (int64_t)(int)uVar13;
   if (3 < lVar8) {
     lVar12 = (lVar8 - 4U >> 2) + 1;
     pfVar4 = param_1 + lVar8 + -2;
@@ -85,7 +85,7 @@ void FUN_180725950(float *param_1,float param_2,float param_3,uint param_4)
       pfVar4 = pfVar4 + 0x10;
     } while (lVar8 < (int)(param_4 - uVar5));
   }
-  lVar8 = (longlong)iVar6;
+  lVar8 = (int64_t)iVar6;
   if (lVar8 < lVar11) {
     if (3 < lVar11 - lVar8) {
       lVar12 = lVar8 + 2;
@@ -352,26 +352,26 @@ void FUN_180725950(float *param_1,float param_2,float param_3,uint param_4)
 
 
 
-// 函数: void FUN_1807260d0(longlong param_1,uint64_t param_2,uint64_t param_3,longlong param_4)
-void FUN_1807260d0(longlong param_1,uint64_t param_2,uint64_t param_3,longlong param_4)
+// 函数: void FUN_1807260d0(int64_t param_1,uint64_t param_2,uint64_t param_3,int64_t param_4)
+void FUN_1807260d0(int64_t param_1,uint64_t param_2,uint64_t param_3,int64_t param_4)
 
 {
-  longlong lVar1;
-  longlong lVar2;
+  int64_t lVar1;
+  int64_t lVar2;
   int8_t auStack_778 [304];
   int8_t auStack_648 [1536];
-  ulonglong uStack_48;
+  uint64_t uStack_48;
   
-  uStack_48 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_778;
-  lVar1 = param_4 + (longlong)*(int *)(param_1 + 0x11ec) * -4 +
-          ((longlong)
+  uStack_48 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_778;
+  lVar1 = param_4 + (int64_t)*(int *)(param_1 + 0x11ec) * -4 +
+          ((int64_t)
            (*(int *)(param_1 + 0x11e4) + *(int *)(param_1 + 0x11ec) + *(int *)(param_1 + 0x11f0)) -
-          (longlong)*(int *)(param_1 + 0x11c0)) * 4;
+          (int64_t)*(int *)(param_1 + 0x11c0)) * 4;
   FUN_18072b830(auStack_648,lVar1,1);
-  lVar2 = (longlong)*(int *)(param_1 + 0x11f0) * 4;
+  lVar2 = (int64_t)*(int *)(param_1 + 0x11f0) * 4;
                     // WARNING: Subroutine does not return
   memcpy(auStack_648 + lVar2,lVar1 + lVar2,
-         (longlong)(*(int *)(param_1 + 0x11c0) + *(int *)(param_1 + 0x11f0) * -2) << 2);
+         (int64_t)(*(int *)(param_1 + 0x11c0) + *(int *)(param_1 + 0x11f0) * -2) << 2);
 }
 
 
@@ -380,8 +380,8 @@ void FUN_1807260d0(longlong param_1,uint64_t param_2,uint64_t param_3,longlong p
 
 
 
-// 函数: void FUN_1807263d0(longlong param_1,longlong param_2,uint64_t param_3,longlong param_4,
-void FUN_1807263d0(longlong param_1,longlong param_2,uint64_t param_3,longlong param_4,
+// 函数: void FUN_1807263d0(int64_t param_1,int64_t param_2,uint64_t param_3,int64_t param_4,
+void FUN_1807263d0(int64_t param_1,int64_t param_2,uint64_t param_3,int64_t param_4,
                   int32_t param_5)
 
 {
@@ -389,7 +389,7 @@ void FUN_1807263d0(longlong param_1,longlong param_2,uint64_t param_3,longlong p
   float *pfVar2;
   uint uVar3;
   int iVar4;
-  ulonglong uVar5;
+  uint64_t uVar5;
   int iVar6;
   int8_t *puVar7;
   float fVar8;
@@ -412,15 +412,15 @@ void FUN_1807263d0(longlong param_1,longlong param_2,uint64_t param_3,longlong p
   int32_t uStack_54;
   int32_t uStack_50;
   int32_t uStack_4c;
-  ulonglong uStack_48;
+  uint64_t uStack_48;
   
-  uStack_48 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_8a8;
+  uStack_48 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_8a8;
   uVar3 = *(uint *)(param_1 + 0x11e0);
   if (0 < (int)uVar3) {
-    uVar5 = (ulonglong)uVar3;
+    uVar5 = (uint64_t)uVar3;
     pfVar2 = afStack_858;
     do {
-      *pfVar2 = 1.0 / *(float *)((param_2 - (longlong)afStack_858) + -4 + (longlong)(pfVar2 + 1));
+      *pfVar2 = 1.0 / *(float *)((param_2 - (int64_t)afStack_858) + -4 + (int64_t)(pfVar2 + 1));
       uVar5 = uVar5 - 1;
       pfVar2 = pfVar2 + 1;
     } while (uVar5 != 0);
@@ -441,7 +441,7 @@ void FUN_1807263d0(longlong param_1,longlong param_2,uint64_t param_3,longlong p
     puStack_878 = (int8_t *)CONCAT44(puStack_878._4_4_,*(int32_t *)(param_1 + 0x11e0));
     puStack_880 = (int8_t *)CONCAT44(puStack_880._4_4_,*(int32_t *)(param_1 + 0x11e8));
     pfStack_888 = afStack_858;
-    FUN_18072eb00(auStack_668,param_4 + (longlong)iStack_870 * -4,param_2 + 0x90,param_2 + 0xe4);
+    FUN_18072eb00(auStack_668,param_4 + (int64_t)iStack_870 * -4,param_2 + 0x90,param_2 + 0xe4);
     if (*(int *)(param_1 + 0x1234) == 0) {
       dVar1 = (double)pow(0,SUB84((double)(*(float *)(param_2 + 0x2c4) * 0.33333334),0));
       fVar8 = ((float)dVar1 * 0.0001) / (*(float *)(param_2 + 700) * 0.75 + 0.25);
@@ -464,11 +464,11 @@ void FUN_1807263d0(longlong param_1,longlong param_2,uint64_t param_3,longlong p
     *(int32_t *)(param_1 + 0x11a8) = uStack_50;
     *(int32_t *)(param_1 + 0x11ac) = uStack_4c;
                     // WARNING: Subroutine does not return
-    FUN_1808fc050(uStack_48 ^ (ulonglong)auStack_8a8);
+    FUN_1808fc050(uStack_48 ^ (uint64_t)auStack_8a8);
   }
   puVar7 = auStack_668;
   iVar6 = 0;
-  param_4 = param_4 + (longlong)*(int *)(param_1 + 0x121c) * -4;
+  param_4 = param_4 + (int64_t)*(int *)(param_1 + 0x121c) * -4;
   if (0 < (int)uVar3) {
     iVar4 = *(int *)(param_1 + 0x121c) + *(int *)(param_1 + 0x11e8);
     pfVar2 = afStack_858;
@@ -477,30 +477,30 @@ void FUN_1807263d0(longlong param_1,longlong param_2,uint64_t param_3,longlong p
       pfVar2 = pfVar2 + 1;
       iVar6 = iVar6 + 1;
       iVar4 = *(int *)(param_1 + 0x121c) + *(int *)(param_1 + 0x11e8);
-      param_4 = param_4 + (longlong)*(int *)(param_1 + 0x11e8) * 4;
+      param_4 = param_4 + (int64_t)*(int *)(param_1 + 0x11e8) * 4;
       uVar3 = *(uint *)(param_1 + 0x11e0);
-      puVar7 = puVar7 + (longlong)iVar4 * 4;
+      puVar7 = puVar7 + (int64_t)iVar4 * 4;
     } while (iVar6 < (int)uVar3);
   }
                     // WARNING: Subroutine does not return
-  memset(param_2 + 0x90,0,(longlong)(int)(uVar3 * 5) << 2);
+  memset(param_2 + 0x90,0,(int64_t)(int)(uVar3 * 5) << 2);
 }
 
 
 
 
 
-// 函数: void FUN_1807263f2(longlong param_1,longlong param_2,uint64_t param_3,longlong param_4)
-void FUN_1807263f2(longlong param_1,longlong param_2,uint64_t param_3,longlong param_4)
+// 函数: void FUN_1807263f2(int64_t param_1,int64_t param_2,uint64_t param_3,int64_t param_4)
+void FUN_1807263f2(int64_t param_1,int64_t param_2,uint64_t param_3,int64_t param_4)
 
 {
   float *pfVar1;
   uint uVar2;
   int iVar3;
-  ulonglong uVar4;
+  uint64_t uVar4;
   int32_t *puVar5;
   int iVar6;
-  longlong unaff_RSI;
+  int64_t unaff_RSI;
   int8_t *puVar7;
   int32_t uVar8;
   double dVar9;
@@ -514,16 +514,16 @@ void FUN_1807263f2(longlong param_1,longlong param_2,uint64_t param_3,longlong p
   int32_t in_stack_00000854;
   int32_t in_stack_00000858;
   int32_t in_stack_0000085c;
-  ulonglong in_stack_00000860;
+  uint64_t in_stack_00000860;
   int32_t in_stack_000008d0;
   
   uVar2 = *(uint *)(param_1 + 0x11e0);
   if (0 < (int)uVar2) {
-    uVar4 = (ulonglong)uVar2;
+    uVar4 = (uint64_t)uVar2;
     pfVar1 = (float *)&stack0x00000050;
     do {
-      *pfVar1 = 1.0 / *(float *)((param_2 - (longlong)&stack0x00000050) + -4 +
-                                (longlong)(pfVar1 + 1));
+      *pfVar1 = 1.0 / *(float *)((param_2 - (int64_t)&stack0x00000050) + -4 +
+                                (int64_t)(pfVar1 + 1));
       uVar4 = uVar4 - 1;
       pfVar1 = pfVar1 + 1;
     } while (uVar4 != 0);
@@ -535,9 +535,9 @@ void FUN_1807263f2(longlong param_1,longlong param_2,uint64_t param_3,longlong p
                           (float *)(param_2 + 0x2c4));
     func_0x00018072e6b0(uVar8,param_2,in_stack_000008d0);
     puVar7 = &stack0x00000050;
-    uVar8 = FUN_18072eb00(&stack0x00000240,param_4 + (longlong)*(int *)(unaff_RSI + 0x121c) * -4,
+    uVar8 = FUN_18072eb00(&stack0x00000240,param_4 + (int64_t)*(int *)(unaff_RSI + 0x121c) * -4,
                           param_2 + 0x90,param_2 + 0xe4,puVar7);
-    uVar11 = (int32_t)((ulonglong)puVar7 >> 0x20);
+    uVar11 = (int32_t)((uint64_t)puVar7 >> 0x20);
     if (*(int *)(unaff_RSI + 0x1234) == 0) {
       dVar9 = (double)pow(0,SUB84((double)(*(float *)(param_2 + 0x2c4) * 0.33333334),0));
       uVar8 = SUB84(dVar9,0);
@@ -559,11 +559,11 @@ void FUN_1807263f2(longlong param_1,longlong param_2,uint64_t param_3,longlong p
     *(int32_t *)(unaff_RSI + 0x11a8) = in_stack_00000858;
     *(int32_t *)(unaff_RSI + 0x11ac) = in_stack_0000085c;
                     // WARNING: Subroutine does not return
-    FUN_1808fc050(in_stack_00000860 ^ (ulonglong)&stack0x00000000);
+    FUN_1808fc050(in_stack_00000860 ^ (uint64_t)&stack0x00000000);
   }
   puVar7 = &stack0x00000240;
   iVar6 = 0;
-  param_4 = param_4 + (longlong)*(int *)(unaff_RSI + 0x121c) * -4;
+  param_4 = param_4 + (int64_t)*(int *)(unaff_RSI + 0x121c) * -4;
   if (0 < (int)uVar2) {
     iVar3 = *(int *)(unaff_RSI + 0x121c) + *(int *)(unaff_RSI + 0x11e8);
     puVar5 = (int32_t *)&stack0x00000050;
@@ -572,13 +572,13 @@ void FUN_1807263f2(longlong param_1,longlong param_2,uint64_t param_3,longlong p
       puVar5 = puVar5 + 1;
       iVar6 = iVar6 + 1;
       iVar3 = *(int *)(unaff_RSI + 0x121c) + *(int *)(unaff_RSI + 0x11e8);
-      param_4 = param_4 + (longlong)*(int *)(unaff_RSI + 0x11e8) * 4;
+      param_4 = param_4 + (int64_t)*(int *)(unaff_RSI + 0x11e8) * 4;
       uVar2 = *(uint *)(unaff_RSI + 0x11e0);
-      puVar7 = puVar7 + (longlong)iVar3 * 4;
+      puVar7 = puVar7 + (int64_t)iVar3 * 4;
     } while (iVar6 < (int)uVar2);
   }
                     // WARNING: Subroutine does not return
-  memset(param_2 + 0x90,0,(longlong)(int)(uVar2 * 5) << 2);
+  memset(param_2 + 0x90,0,(int64_t)(int)(uVar2 * 5) << 2);
 }
 
 
@@ -589,8 +589,8 @@ void FUN_1807263f2(longlong param_1,longlong param_2,uint64_t param_3,longlong p
 void FUN_1807265fd(int32_t param_1)
 
 {
-  longlong unaff_RSI;
-  longlong unaff_R15;
+  int64_t unaff_RSI;
+  int64_t unaff_R15;
   int32_t uVar1;
   int32_t in_stack_00000840;
   int32_t in_stack_00000844;
@@ -600,7 +600,7 @@ void FUN_1807265fd(int32_t param_1)
   int32_t in_stack_00000854;
   int32_t in_stack_00000858;
   int32_t in_stack_0000085c;
-  ulonglong in_stack_00000860;
+  uint64_t in_stack_00000860;
   
   uVar1 = FUN_18072e720(param_1,&stack0x00000840,&stack0x00000240,0x3c23d70a);
   FUN_180726fd0(uVar1,unaff_R15 + 0x10,&stack0x00000840,unaff_RSI + 0x1190);
@@ -614,7 +614,7 @@ void FUN_1807265fd(int32_t param_1)
   *(int32_t *)(unaff_RSI + 0x11a8) = in_stack_00000858;
   *(int32_t *)(unaff_RSI + 0x11ac) = in_stack_0000085c;
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000860 ^ (ulonglong)&stack0x00000000);
+  FUN_1808fc050(in_stack_00000860 ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -623,8 +623,8 @@ void FUN_1807265fd(int32_t param_1)
 
 
 
-// 函数: void FUN_180726700(longlong param_1,float *param_2)
-void FUN_180726700(longlong param_1,float *param_2)
+// 函数: void FUN_180726700(int64_t param_1,float *param_2)
+void FUN_180726700(int64_t param_1,float *param_2)
 
 {
   float *pfVar1;
@@ -632,15 +632,15 @@ void FUN_180726700(longlong param_1,float *param_2)
   uint uVar3;
   int *piVar4;
   int iVar5;
-  ulonglong uVar6;
-  ulonglong uVar7;
+  uint64_t uVar6;
+  uint64_t uVar7;
   float fVar8;
   double dVar9;
   int8_t auStack_78 [48];
   int aiStack_48 [4];
-  ulonglong uStack_38;
+  uint64_t uStack_38;
   
-  uStack_38 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_78;
+  uStack_38 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_78;
   iVar5 = 0;
   if (*(char *)(param_1 + 0x12a5) == '\x02') {
     dVar9 = (double)exp((double)((param_2[0xb1] - 12.0) * -0.25));
@@ -658,7 +658,7 @@ void FUN_180726700(longlong param_1,float *param_2)
                       (double)(6.9300003 - (float)*(int *)(param_1 + 0x1274) * 0.002578125));
   iVar2 = *(int *)(param_1 + 0x11e8);
   uVar3 = *(uint *)(param_1 + 0x11e0);
-  uVar7 = (ulonglong)uVar3;
+  uVar7 = (uint64_t)uVar3;
   pfVar1 = param_2;
   if (0 < (int)uVar3) {
     do {
@@ -669,14 +669,14 @@ void FUN_180726700(longlong param_1,float *param_2)
       }
       *pfVar1 = fVar8;
       uVar3 = *(uint *)(param_1 + 0x11e0);
-      uVar7 = (ulonglong)uVar3;
+      uVar7 = (uint64_t)uVar3;
       pfVar1 = pfVar1 + 1;
     } while (iVar5 < (int)uVar3);
     if (0 < (int)uVar3) {
       piVar4 = aiStack_48;
       uVar6 = uVar7;
       do {
-        *piVar4 = (int)(*(float *)(((longlong)param_2 - (longlong)aiStack_48) + (longlong)piVar4) *
+        *piVar4 = (int)(*(float *)(((int64_t)param_2 - (int64_t)aiStack_48) + (int64_t)piVar4) *
                        65536.0);
         uVar6 = uVar6 - 1;
         piVar4 = piVar4 + 1;
@@ -684,7 +684,7 @@ void FUN_180726700(longlong param_1,float *param_2)
     }
   }
                     // WARNING: Subroutine does not return
-  memcpy(param_2 + 0xb6,aiStack_48,(longlong)(int)uVar3 << 2,uVar7);
+  memcpy(param_2 + 0xb6,aiStack_48,(int64_t)(int)uVar3 << 2,uVar7);
 }
 
 
@@ -693,16 +693,16 @@ void FUN_180726700(longlong param_1,float *param_2)
 
 
 
-// 函数: void FUN_180726a00(uint64_t param_1,longlong param_2,int param_3)
-void FUN_180726a00(uint64_t param_1,longlong param_2,int param_3)
+// 函数: void FUN_180726a00(uint64_t param_1,int64_t param_2,int param_3)
+void FUN_180726a00(uint64_t param_1,int64_t param_2,int param_3)
 
 {
-  longlong lVar1;
+  int64_t lVar1;
   int8_t auStack_88 [48];
   int aiStack_58 [16];
-  ulonglong uStack_18;
+  uint64_t uStack_18;
   
-  uStack_18 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_88;
+  uStack_18 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_88;
   if (0 < param_3) {
     lVar1 = 0;
     do {
@@ -712,7 +712,7 @@ void FUN_180726a00(uint64_t param_1,longlong param_2,int param_3)
   }
   FUN_18072edd0(param_1,aiStack_58);
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_18 ^ (ulonglong)auStack_88);
+  FUN_1808fc050(uStack_18 ^ (uint64_t)auStack_88);
 }
 
 
@@ -721,12 +721,12 @@ void FUN_180726a00(uint64_t param_1,longlong param_2,int param_3)
 
 
 
-// 函数: void FUN_180726a70(ulonglong param_1,uint64_t param_2,uint param_3)
-void FUN_180726a70(ulonglong param_1,uint64_t param_2,uint param_3)
+// 函数: void FUN_180726a70(uint64_t param_1,uint64_t param_2,uint param_3)
+void FUN_180726a70(uint64_t param_1,uint64_t param_2,uint param_3)
 
 {
-  ulonglong uVar1;
-  ulonglong uVar2;
+  uint64_t uVar1;
+  uint64_t uVar2;
   short sVar3;
   short sVar4;
   short sVar5;
@@ -736,17 +736,17 @@ void FUN_180726a70(ulonglong param_1,uint64_t param_2,uint param_3)
   int8_t auVar9 [12];
   float *pfVar10;
   uint uVar11;
-  longlong lVar12;
-  ulonglong uVar13;
-  longlong lVar14;
-  ulonglong uVar15;
+  int64_t lVar12;
+  uint64_t uVar13;
+  int64_t lVar14;
+  uint64_t uVar15;
   int8_t auVar16 [16];
   int8_t auVar20 [16];
   int8_t auVar23 [16];
   int8_t auVar26 [16];
   int8_t auStack_68 [32];
   uint64_t uStack_48;
-  ulonglong auStack_40 [6];
+  uint64_t auStack_40 [6];
   int8_t auVar17 [16];
   int8_t auVar18 [16];
   int16_t uVar19;
@@ -757,14 +757,14 @@ void FUN_180726a70(ulonglong param_1,uint64_t param_2,uint param_3)
   int8_t auVar27 [16];
   int8_t auVar28 [16];
   
-  auStack_40[3] = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_68;
-  lVar14 = (longlong)(int)param_3;
+  auStack_40[3] = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_68;
+  lVar14 = (int64_t)(int)param_3;
   FUN_18072f4d0(&uStack_48,param_2,param_3);
   uVar13 = 0;
   uVar15 = uVar13;
   if (((0 < (int)param_3) && (uVar15 = 0, 0xf < param_3)) &&
-     (((ulonglong)((longlong)&uStack_48 + (longlong)(int)(param_3 - 1) * 2) < param_1 ||
-      ((uint64_t *)(param_1 + (longlong)(int)(param_3 - 1) * 4) < &uStack_48)))) {
+     (((uint64_t)((int64_t)&uStack_48 + (int64_t)(int)(param_3 - 1) * 2) < param_1 ||
+      ((uint64_t *)(param_1 + (int64_t)(int)(param_3 - 1) * 4) < &uStack_48)))) {
     uVar11 = param_3 & 0x8000000f;
     if ((int)uVar11 < 0) {
       uVar11 = (uVar11 - 1 | 0xfffffff0) + 1;
@@ -772,9 +772,9 @@ void FUN_180726a70(ulonglong param_1,uint64_t param_2,uint param_3)
     pfVar10 = (float *)(param_1 + 0x20);
     uVar15 = uVar13;
     do {
-      uVar1 = *(ulonglong *)((longlong)&uStack_48 + uVar13 * 2);
-      uVar2 = *(ulonglong *)((longlong)auStack_40 + uVar13 * 2);
-      uVar15 = (ulonglong)((int)uVar15 + 0x10);
+      uVar1 = *(uint64_t *)((int64_t)&uStack_48 + uVar13 * 2);
+      uVar2 = *(uint64_t *)((int64_t)auStack_40 + uVar13 * 2);
+      uVar15 = (uint64_t)((int)uVar15 + 0x10);
       uVar19 = (int16_t)(uVar1 >> 0x30);
       auVar18._8_4_ = 0;
       auVar18._0_8_ = uVar1;
@@ -813,7 +813,7 @@ void FUN_180726a70(ulonglong param_1,uint64_t param_2,uint param_3)
       pfVar10[-7] = (float)(auVar6._0_4_ >> 0x10) * 0.00024414063;
       pfVar10[-6] = (float)(auVar16._8_4_ >> 0x10) * 0.00024414063;
       pfVar10[-5] = (float)(auVar17._12_4_ >> 0x10) * 0.00024414063;
-      uVar1 = *(ulonglong *)((longlong)auStack_40 + uVar13 * 2 + 8);
+      uVar1 = *(uint64_t *)((int64_t)auStack_40 + uVar13 * 2 + 8);
       uVar19 = (int16_t)(uVar1 >> 0x30);
       auVar25._8_4_ = 0;
       auVar25._0_8_ = uVar1;
@@ -835,7 +835,7 @@ void FUN_180726a70(ulonglong param_1,uint64_t param_2,uint param_3)
       pfVar10[-3] = (float)(auVar7._0_4_ >> 0x10) * 0.00024414063;
       pfVar10[-2] = (float)(auVar20._8_4_ >> 0x10) * 0.00024414063;
       pfVar10[-1] = (float)(auVar21._12_4_ >> 0x10) * 0.00024414063;
-      uVar2 = *(ulonglong *)((longlong)auStack_40 + uVar13 * 2 + 0x10);
+      uVar2 = *(uint64_t *)((int64_t)auStack_40 + uVar13 * 2 + 0x10);
       uVar13 = uVar13 + 0x10;
       uVar19 = (int16_t)(uVar2 >> 0x30);
       auVar28._8_4_ = 0;
@@ -863,17 +863,17 @@ void FUN_180726a70(ulonglong param_1,uint64_t param_2,uint param_3)
       pfVar10[6] = (float)(auVar26._8_4_ >> 0x10) * 0.00024414063;
       pfVar10[7] = (float)(auVar27._12_4_ >> 0x10) * 0.00024414063;
       pfVar10 = pfVar10 + 0x10;
-    } while ((longlong)uVar13 < (longlong)(int)(param_3 - uVar11));
+    } while ((int64_t)uVar13 < (int64_t)(int)(param_3 - uVar11));
   }
-  lVar12 = (longlong)(int)uVar15;
+  lVar12 = (int64_t)(int)uVar15;
   if (lVar12 < lVar14) {
     if (3 < lVar14 - lVar12) {
       pfVar10 = (float *)(param_1 + 8 + lVar12 * 4);
       do {
-        sVar3 = *(short *)((longlong)&uStack_48 + lVar12 * 2 + 2);
-        sVar4 = *(short *)((longlong)&uStack_48 + lVar12 * 2 + 4);
-        pfVar10[-2] = (float)(int)*(short *)((longlong)&uStack_48 + lVar12 * 2) * 0.00024414063;
-        sVar5 = *(short *)((longlong)&uStack_48 + lVar12 * 2 + 6);
+        sVar3 = *(short *)((int64_t)&uStack_48 + lVar12 * 2 + 2);
+        sVar4 = *(short *)((int64_t)&uStack_48 + lVar12 * 2 + 4);
+        pfVar10[-2] = (float)(int)*(short *)((int64_t)&uStack_48 + lVar12 * 2) * 0.00024414063;
+        sVar5 = *(short *)((int64_t)&uStack_48 + lVar12 * 2 + 6);
         lVar12 = lVar12 + 4;
         pfVar10[-1] = (float)(int)sVar3 * 0.00024414063;
         *pfVar10 = (float)(int)sVar4 * 0.00024414063;
@@ -883,11 +883,11 @@ void FUN_180726a70(ulonglong param_1,uint64_t param_2,uint param_3)
     }
     for (; lVar12 < lVar14; lVar12 = lVar12 + 1) {
       *(float *)(param_1 + lVar12 * 4) =
-           (float)(int)*(short *)((longlong)&uStack_48 + lVar12 * 2) * 0.00024414063;
+           (float)(int)*(short *)((int64_t)&uStack_48 + lVar12 * 2) * 0.00024414063;
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(auStack_40[3] ^ (ulonglong)auStack_68);
+  FUN_1808fc050(auStack_40[3] ^ (uint64_t)auStack_68);
 }
 
 

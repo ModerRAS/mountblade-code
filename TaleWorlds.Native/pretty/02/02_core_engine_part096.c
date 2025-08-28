@@ -4,7 +4,7 @@
 // 包含5个函数：渲染初始化、文本处理、坐标计算等
 
 // 全局变量定义
-ulonglong *g_engine_context;          // 引擎上下文指针
+uint64_t *g_engine_context;          // 引擎上下文指针
 float *g_font_size;                    // 字体大小
 float *g_line_height;                  // 行高
 float *g_text_color;                   // 文本颜色
@@ -32,10 +32,10 @@ void process_render_pipeline(void)
   int vertex_count;
   uint64_t texture_param;
   char *text_end;
-  longlong context_ptr;
+  int64_t context_ptr;
   int index_offset;
   uint texture_id;
-  longlong render_target;
+  int64_t render_target;
   float min_value;
   float max_value;
   float current_value;
@@ -54,7 +54,7 @@ void process_render_pipeline(void)
   float buffer_y;
   float buffer_width;
   float buffer_height;
-  longlong vertex_array;
+  int64_t vertex_array;
   float transform_x;
   float transform_y;
   float transform_width;
@@ -71,8 +71,8 @@ void process_render_pipeline(void)
   // 检查渲染状态和纹理缓存
   if (((((*(int *)(context_ptr + 0x1b18) == texture_id || 
          (*(char *)(context_ptr + 0x1b1c) != render_flag))
-        && (vertex_array = *(longlong *)(context_ptr + 0x1af8), 
-            *(longlong *)(context_ptr + 0x1b00) == vertex_array))
+        && (vertex_array = *(int64_t *)(context_ptr + 0x1af8), 
+            *(int64_t *)(context_ptr + 0x1b00) == vertex_array))
        && (((*(int *)(context_ptr + 0x1b2c) == texture_id || 
              (*(char *)(context_ptr + 0x1b3d) != render_flag))
            && ((render_flag = validate_texture_coordinates(&transform_height, &transform_width), 
@@ -90,7 +90,7 @@ void process_render_pipeline(void)
     texture_ready = false;
   }
   
-  render_mode = (int32_t)((ulonglong)texture_param >> 0x20);
+  render_mode = (int32_t)((uint64_t)texture_param >> 0x20);
   min_value = *(float *)(context_ptr + 0xd8);
   vertex_count = *(int *)(context_ptr + 0xc0);
   range_end = *(float *)(context_ptr + 0xe0);
@@ -104,7 +104,7 @@ void process_render_pipeline(void)
       texture_param = *(uint64_t *)(context_ptr + 0xb8);
       do {
         current_value = (float)get_vertex_value(texture_param, texture_id);
-        render_mode = (int32_t)((ulonglong)texture_param >> 0x20);
+        render_mode = (int32_t)((uint64_t)texture_param >> 0x20);
         
         if (current_value <= range_start) {
           range_start = current_value;
@@ -138,7 +138,7 @@ void process_render_pipeline(void)
   
   // 应用渲染变换
   texture_param = (double)CONCAT44(render_mode, *(int32_t *)(render_target + 0x1664));
-  *(ulonglong *)(context_ptr + -0x78) = CONCAT44(transform_x, render_mode);
+  *(uint64_t *)(context_ptr + -0x78) = CONCAT44(transform_x, render_mode);
   
   render_text_quad(CONCAT44(transform_x, render_mode), *(uint64_t *)(context_ptr + -0x70), 
                   texture_id, 1, texture_param);
@@ -156,7 +156,7 @@ void process_render_pipeline(void)
     }
     
     texture_id = buffer_index - 1;
-    vertex_count = (ulonglong)texture_id;
+    vertex_count = (uint64_t)texture_id;
     
     if (texture_ready) {
       range_start = (*(float *)(render_target + 0x118) - transform_x) / 
@@ -172,13 +172,13 @@ void process_render_pipeline(void)
       index_offset = buffer_index;
       
       max_value = (float)get_vertex_value(*(uint64_t *)(context_ptr + 0xb8),
-                                          (longlong)(buffer_index + start_index) % 
-                                          (longlong)vertex_count & 0xffffffff);
+                                          (int64_t)(buffer_index + start_index) % 
+                                          (int64_t)vertex_count & 0xffffffff);
       
       texture_param = *(uint64_t *)(context_ptr + 0xb8);
       range_start = (float)get_vertex_value(texture_param, 
-                                            (longlong)(buffer_index + start_index + 1) % 
-                                            (longlong)vertex_count & 0xffffffff);
+                                            (int64_t)(buffer_index + start_index + 1) % 
+                                            (int64_t)vertex_count & 0xffffffff);
       
       texture_param = (double)range_start;
       update_vertex_buffer(&g_vertex_buffer[0], buffer_index, (double)max_value, 
@@ -194,7 +194,7 @@ void process_render_pipeline(void)
     }
     
     range_end = (float)get_vertex_value(texture_param, 
-                                        (longlong)start_index % (longlong)vertex_count & 0xffffffff);
+                                        (int64_t)start_index % (int64_t)vertex_count & 0xffffffff);
     context_ptr = *g_engine_context;
     range_start = (range_end - min_value) * max_value;
     max_value = normalized_value;
@@ -232,14 +232,14 @@ void process_render_pipeline(void)
       normalized_value = normalized_value;
       
       do {
-        render_mode = (int32_t)((ulonglong)texture_param >> 0x20);
+        render_mode = (int32_t)((uint64_t)texture_param >> 0x20);
         scale_factor = (float)(vertex_count + -1) * normalized_value;
         normalized_value = normalized_value + 1.0 / (float)(int)vertex_count;
         vertex_count = (int)(scale_factor + 0.5);
         
         scale_factor = (float)get_vertex_value(*(uint64_t *)(context_ptr + 0xb8),
-                                                (longlong)(vertex_count + start_index + 1) % 
-                                                (longlong)vertex_count & 0xffffffff);
+                                                (int64_t)(vertex_count + start_index + 1) % 
+                                                (int64_t)vertex_count & 0xffffffff);
         
         current_value = (scale_factor - min_value) * max_value;
         scale_factor = normalized_value;
@@ -262,7 +262,7 @@ void process_render_pipeline(void)
         buffer_height = position_x * max_value + position_y;
         buffer_width = *(float *)(context_ptr + 0xb0) * normalized_value + *(float *)(context_ptr + 0xa0);
         
-        render_to_screen(*(uint64_t *)(*(longlong *)(context_ptr + -0x80) + 0x2e8), 
+        render_to_screen(*(uint64_t *)(*(int64_t *)(context_ptr + -0x80) + 0x2e8), 
                         &transform_height, &buffer_width, scale_factor, texture_param);
         
         vertex_count = vertex_count - 1;
@@ -293,7 +293,7 @@ void process_render_pipeline(void)
     }
     
     if (((int)text_end != (int)text_ptr) &&
-       (render_text_segment(*(uint64_t *)(*(longlong *)(context_ptr + 0x1af8) + 0x2e8), 
+       (render_text_segment(*(uint64_t *)(*(int64_t *)(context_ptr + 0x1af8) + 0x2e8), 
                            context_ptr + 0xb0, context_ptr + -0x70, text_ptr, text_end), 
         *(char *)(context_ptr + 0x2e38) != '\0')) {
       render_text_with_effects(context_ptr + 0xb0, text_ptr, text_end);
@@ -317,10 +317,10 @@ void process_render_pipeline(void)
 void render_text_simple(void)
 {
   char *text_ptr;
-  longlong context_ptr;
-  longlong render_context;
+  int64_t context_ptr;
+  int64_t render_context;
   char *text_start;
-  longlong vertex_array;
+  int64_t vertex_array;
   float normalized_value;
   float transform_x;
   int32_t render_mode;
@@ -339,7 +339,7 @@ void render_text_simple(void)
   }
   
   if ((int)text_ptr != (int)text_start) {
-    render_text_segment(*(uint64_t *)(*(longlong *)(render_context + 0x1af8) + 0x2e8), 
+    render_text_segment(*(uint64_t *)(*(int64_t *)(render_context + 0x1af8) + 0x2e8), 
                         context_ptr + 0xb0, context_ptr + -0x70);
     
     if (*(char *)(render_context + 0x2e38) != '\0') {
@@ -361,8 +361,8 @@ void render_text_simple(void)
  */
 void render_basic(void)
 {
-  longlong context_ptr;
-  longlong vertex_array;
+  int64_t context_ptr;
+  int64_t vertex_array;
   
   render_text_to_buffer(*(float *)(context_ptr + -0x70) + 
                        *(float *)(vertex_array + 0x1674));
@@ -384,10 +384,10 @@ void reserved_render_function(void)
 void render_text_advanced(void)
 {
   char *text_ptr;
-  longlong context_ptr;
+  int64_t context_ptr;
   char *text_end;
-  longlong render_context;
-  longlong vertex_array;
+  int64_t render_context;
+  int64_t vertex_array;
   float normalized_value;
   float transform_x;
   int32_t render_mode;
@@ -409,7 +409,7 @@ void render_text_advanced(void)
     }
     
     if ((int)text_end != (int)text_ptr) {
-      render_text_segment(*(uint64_t *)(*(longlong *)(context_ptr + 0x1af8) + 0x2e8), 
+      render_text_segment(*(uint64_t *)(*(int64_t *)(context_ptr + 0x1af8) + 0x2e8), 
                           render_context + 0xb0, render_context + -0x70, text_ptr, text_end);
       
       if (*(char *)(context_ptr + 0x2e38) != '\0') {
@@ -435,17 +435,17 @@ void render_text_advanced(void)
  * @param param_4 渲染上下文
  * @return 布局计算结果
  */
-ulonglong calculate_text_layout(char *text_content, ulonglong layout_params, 
+uint64_t calculate_text_layout(char *text_content, uint64_t layout_params, 
                                char alignment_flag, uint64_t render_context)
 {
   float text_width;
   float text_height;
   float line_spacing;
-  longlong context_ptr;
-  longlong texture_ptr;
+  int64_t context_ptr;
+  int64_t texture_ptr;
   byte layout_flag;
   int32_t render_mode;
-  ulonglong result;
+  uint64_t result;
   char *text_end;
   float *font_metrics;
   float font_size;
@@ -457,9 +457,9 @@ ulonglong calculate_text_layout(char *text_content, ulonglong layout_params,
   float texture_scale;
   
   context_ptr = *g_engine_context;
-  result = *(ulonglong *)(*g_engine_context + 0x1af8);
+  result = *(uint64_t *)(*g_engine_context + 0x1af8);
   *(int8_t *)(result + 0xb1) = 1;
-  texture_ptr = *(longlong *)(context_ptr + 0x1af8);
+  texture_ptr = *(int64_t *)(context_ptr + 0x1af8);
   
   if (*(char *)(texture_ptr + 0xb4) == '\0') {
     text_width = *(float *)(texture_ptr + 0x100);
@@ -510,7 +510,7 @@ ulonglong calculate_text_layout(char *text_content, ulonglong layout_params,
       *(float *)(context_ptr + 0x166c) = text_width + text_width;
       *(float *)(context_ptr + 0x1670) = text_height + text_height;
       
-      layout_data = (ulonglong)(uint)line_height;
+      layout_data = (uint64_t)(uint)line_height;
       layout_flag = render_text_simple_layout(text_content, 0, 0x1000, &layout_data);
       update_render_state(1);
       
@@ -522,7 +522,7 @@ ulonglong calculate_text_layout(char *text_content, ulonglong layout_params,
       process_texture_layout(texture_ptr + 0x288);
       font_metrics = (float *)get_layout_metrics(&layout_data);
       line_height = *font_metrics - calculated_width;
-      layout_data = (ulonglong)(uint)calculated_width;
+      layout_data = (uint64_t)(uint)calculated_width;
       
       if (line_height <= 0.0) {
         line_height = 0.0;
@@ -548,7 +548,7 @@ ulonglong calculate_text_layout(char *text_content, ulonglong layout_params,
       }
     }
     
-    result = (ulonglong)layout_flag;
+    result = (uint64_t)layout_flag;
   }
   else {
     result = result & 0xffffffffffffff00;
@@ -570,9 +570,9 @@ int8_t process_simple_layout(void)
   int32_t render_mode;
   char *text_ptr;
   float *font_metrics;
-  longlong context_ptr;
+  int64_t context_ptr;
   char *text_start;
-  longlong render_context;
+  int64_t render_context;
   char alignment_flag;
   float font_size;
   uint64_t layout_params;
@@ -678,8 +678,8 @@ int8_t process_fast_layout(void)
   float text_width;
   float text_height;
   int8_t layout_result;
-  longlong context_ptr;
-  longlong render_context;
+  int64_t context_ptr;
+  int64_t render_context;
   uint64_t layout_params;
   int32_t texture_flags[4];
   uint64_t layout_offset;
@@ -712,20 +712,20 @@ int8_t process_fast_layout(void)
 
 // 函数声明（简化实现）
 char validate_texture_coordinates(float *param_1, float *param_2, int param_3);
-char check_texture_state(longlong param_1, int param_2);
+char check_texture_state(int64_t param_1, int param_2);
 float get_vertex_value(uint64_t param_1, int param_2);
 uint get_render_transform(float *param_1);
 void render_text_quad(uint64_t param_1, uint64_t param_2, uint param_3, int param_4, uint64_t param_5);
 void update_vertex_buffer(float *param_1, int param_2, double param_3, int param_4, double param_5);
-void render_to_screen(uint64_t param_1, longlong *param_2, longlong *param_3, float param_4, uint64_t param_5);
-void render_text_segment(uint64_t param_1, longlong *param_2, longlong *param_3, char *param_4, char *param_5);
-void render_text_with_effects(longlong param_1, char *param_2, char *param_3);
+void render_to_screen(uint64_t param_1, int64_t *param_2, int64_t *param_3, float param_4, uint64_t param_5);
+void render_text_segment(uint64_t param_1, int64_t *param_2, int64_t *param_3, char *param_4, char *param_5);
+void render_text_with_effects(int64_t param_1, char *param_2, char *param_3);
 void render_text_to_buffer(uint64_t param_1, uint64_t param_2, int param_3, int param_4);
 void calculate_text_dimensions(float *param_1, uint64_t *param_2, float param_3, uint64_t param_4, uint64_t param_5, char *param_6, char *param_7, int param_8);
-void initialize_texture_layout(longlong param_1, int32_t *param_2);
+void initialize_texture_layout(int64_t param_1, int32_t *param_2);
 char render_text_simple_layout(uint64_t param_1, int param_2, int param_3, uint64_t *param_4);
 void update_render_state(int param_1);
-void process_texture_layout(longlong param_1);
+void process_texture_layout(int64_t param_1);
 float *get_layout_metrics(uint64_t *param_1);
 void render_text_with_shadow(uint64_t param_1, uint param_2, float param_3);
 

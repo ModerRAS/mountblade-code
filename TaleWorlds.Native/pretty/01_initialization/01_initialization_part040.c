@@ -12,7 +12,7 @@
  */
 void initialize_system_memory_pool(void)
 {
-  longlong memory_pool;
+  int64_t memory_pool;
   
   // 分配主内存池
   memory_pool = allocate_memory_block(GLOBAL_MEMORY_ALLOCATOR, 0x45ee8, 10);
@@ -178,7 +178,7 @@ void initialize_system_memory_pool(void)
  * @param flags 释放标志（位1表示需要释放内存）
  * @return 返回资源指针
  */
-uint64_t * set_resource_release_handler(uint64_t *resource_ptr, ulonglong flags)
+uint64_t * set_resource_release_handler(uint64_t *resource_ptr, uint64_t flags)
 {
   *resource_ptr = &GLOBAL_RESOURCE_RELEASE_HANDLER;
   if ((flags & 1) != 0) {
@@ -193,13 +193,13 @@ uint64_t * set_resource_release_handler(uint64_t *resource_ptr, ulonglong flags)
  * 
  * @param manager_ptr 资源管理器指针
  */
-void cleanup_resource_manager_list(longlong *manager_ptr)
+void cleanup_resource_manager_list(int64_t *manager_ptr)
 {
   int *reference_count;
   char *node_name;
   uint64_t *current_node;
-  longlong next_node;
-  ulonglong memory_base;
+  int64_t next_node;
+  uint64_t memory_base;
   
   current_node = (uint64_t *)*manager_ptr;
   if (current_node != (uint64_t *)0x0) {
@@ -211,14 +211,14 @@ void cleanup_resource_manager_list(longlong *manager_ptr)
     // 警告：子程序不返回
     deallocate_node_memory(current_node);
   }
-  if ((manager_ptr[6] != 0) && (*(longlong *)(manager_ptr[6] + 0x10) != 0)) {
+  if ((manager_ptr[6] != 0) && (*(int64_t *)(manager_ptr[6] + 0x10) != 0)) {
     // 警告：子程序不返回
     handle_memory_error();
   }
   next_node = manager_ptr[5];
   while (next_node != 0) {
     node_name = (char *)(next_node + 0x3541);
-    next_node = *(longlong *)(next_node + 0x3538);
+    next_node = *(int64_t *)(next_node + 0x3538);
     if (*node_name != '\0') {
       // 警告：子程序不返回
       handle_name_error();
@@ -228,10 +228,10 @@ void cleanup_resource_manager_list(longlong *manager_ptr)
   if (current_node == (uint64_t *)0x0) {
     return;
   }
-  memory_base = (ulonglong)current_node & 0xffffffffffc00000;
+  memory_base = (uint64_t)current_node & 0xffffffffffc00000;
   if (memory_base != 0) {
-    next_node = memory_base + 0x80 + ((longlong)current_node - memory_base >> 0x10) * 0x50;
-    next_node = next_node - (ulonglong)*(uint *)(next_node + 4);
+    next_node = memory_base + 0x80 + ((int64_t)current_node - memory_base >> 0x10) * 0x50;
+    next_node = next_node - (uint64_t)*(uint *)(next_node + 4);
     if ((*(void ***)(memory_base + 0x70) == &ExceptionList) && (*(char *)(next_node + 0xe) == '\0')) {
       *current_node = *(uint64_t *)(next_node + 0x20);
       *(uint64_t **)(next_node + 0x20) = current_node;
@@ -256,13 +256,13 @@ void cleanup_resource_manager_list(longlong *manager_ptr)
  * 
  * @param manager_ptr 资源管理器指针
  */
-void cleanup_resource_manager_list_variant(longlong *manager_ptr)
+void cleanup_resource_manager_list_variant(int64_t *manager_ptr)
 {
   int *reference_count;
   char *node_name;
   uint64_t *current_node;
-  longlong next_node;
-  ulonglong memory_base;
+  int64_t next_node;
+  uint64_t memory_base;
   
   current_node = (uint64_t *)*manager_ptr;
   if (current_node != (uint64_t *)0x0) {
@@ -274,14 +274,14 @@ void cleanup_resource_manager_list_variant(longlong *manager_ptr)
     // 警告：子程序不返回
     deallocate_node_memory(current_node);
   }
-  if ((manager_ptr[6] != 0) && (*(longlong *)(manager_ptr[6] + 0x10) != 0)) {
+  if ((manager_ptr[6] != 0) && (*(int64_t *)(manager_ptr[6] + 0x10) != 0)) {
     // 警告：子程序不返回
     handle_memory_error();
   }
   next_node = manager_ptr[5];
   while (next_node != 0) {
     node_name = (char *)(next_node + 0x3541);
-    next_node = *(longlong *)(next_node + 0x3538);
+    next_node = *(int64_t *)(next_node + 0x3538);
     if (*node_name != '\0') {
       // 警告：子程序不返回
       handle_name_error();
@@ -291,10 +291,10 @@ void cleanup_resource_manager_list_variant(longlong *manager_ptr)
   if (current_node == (uint64_t *)0x0) {
     return;
   }
-  memory_base = (ulonglong)current_node & 0xffffffffffc00000;
+  memory_base = (uint64_t)current_node & 0xffffffffffc00000;
   if (memory_base != 0) {
-    next_node = memory_base + 0x80 + ((longlong)current_node - memory_base >> 0x10) * 0x50;
-    next_node = next_node - (ulonglong)*(uint *)(next_node + 4);
+    next_node = memory_base + 0x80 + ((int64_t)current_node - memory_base >> 0x10) * 0x50;
+    next_node = next_node - (uint64_t)*(uint *)(next_node + 4);
     if ((*(void ***)(memory_base + 0x70) == &ExceptionList) && (*(char *)(next_node + 0xe) == '\0')) {
       *current_node = *(uint64_t *)(next_node + 0x20);
       *(uint64_t **)(next_node + 0x20) = current_node;
@@ -338,19 +338,19 @@ void cleanup_resource_context(void)
   int *reference_count;
   char *node_name;
   uint64_t *current_node;
-  longlong next_node;
-  longlong unaff_RSI;
-  ulonglong memory_base;
+  int64_t next_node;
+  int64_t unaff_RSI;
+  uint64_t memory_base;
   
-  if ((*(longlong *)(unaff_RSI + 0x30) != 0) &&
-     (*(longlong *)(*(longlong *)(unaff_RSI + 0x30) + 0x10) != 0)) {
+  if ((*(int64_t *)(unaff_RSI + 0x30) != 0) &&
+     (*(int64_t *)(*(int64_t *)(unaff_RSI + 0x30) + 0x10) != 0)) {
     // 警告：子程序不返回
     handle_memory_error();
   }
-  next_node = *(longlong *)(unaff_RSI + 0x28);
+  next_node = *(int64_t *)(unaff_RSI + 0x28);
   while (next_node != 0) {
     node_name = (char *)(next_node + 0x3541);
-    next_node = *(longlong *)(next_node + 0x3538);
+    next_node = *(int64_t *)(next_node + 0x3538);
     if (*node_name != '\0') {
       // 警告：子程序不返回
       handle_name_error();
@@ -358,10 +358,10 @@ void cleanup_resource_context(void)
   }
   current_node = *(uint64_t **)(unaff_RSI + 0x18);
   if (current_node != (uint64_t *)0x0) {
-    memory_base = (ulonglong)current_node & 0xffffffffffc00000;
+    memory_base = (uint64_t)current_node & 0xffffffffffc00000;
     if (memory_base != 0) {
-      next_node = memory_base + 0x80 + ((longlong)current_node - memory_base >> 0x10) * 0x50;
-      next_node = next_node - (ulonglong)*(uint *)(next_node + 4);
+      next_node = memory_base + 0x80 + ((int64_t)current_node - memory_base >> 0x10) * 0x50;
+      next_node = next_node - (uint64_t)*(uint *)(next_node + 4);
       if ((*(void ***)(memory_base + 0x70) == &ExceptionList) && (*(char *)(next_node + 0xe) == '\0')) {
         *current_node = *(uint64_t *)(next_node + 0x20);
         *(uint64_t **)(next_node + 0x20) = current_node;
@@ -391,13 +391,13 @@ void cleanup_resource_context(void)
 void remove_resource_from_pool(uint64_t *resource_ptr)
 {
   int *reference_count;
-  longlong pool_node;
-  ulonglong memory_base;
+  int64_t pool_node;
+  uint64_t memory_base;
   
-  memory_base = (ulonglong)resource_ptr & 0xffffffffffc00000;
+  memory_base = (uint64_t)resource_ptr & 0xffffffffffc00000;
   if (memory_base != 0) {
-    pool_node = memory_base + 0x80 + ((longlong)resource_ptr - memory_base >> 0x10) * 0x50;
-    pool_node = pool_node - (ulonglong)*(uint *)(pool_node + 4);
+    pool_node = memory_base + 0x80 + ((int64_t)resource_ptr - memory_base >> 0x10) * 0x50;
+    pool_node = pool_node - (uint64_t)*(uint *)(pool_node + 4);
     if ((*(void ***)(memory_base + 0x70) == &ExceptionList) && (*(char *)(pool_node + 0xe) == '\0')) {
       *resource_ptr = *(uint64_t *)(pool_node + 0x20);
       *(uint64_t **)(pool_node + 0x20) = resource_ptr;
@@ -422,13 +422,13 @@ void remove_resource_from_pool(uint64_t *resource_ptr)
  * 
  * @param manager_ptr 资源管理器指针
  */
-void destroy_resource_manager(longlong *manager_ptr)
+void destroy_resource_manager(int64_t *manager_ptr)
 {
   int *reference_count;
   char *node_name;
   uint64_t *current_node;
-  longlong next_node;
-  ulonglong memory_base;
+  int64_t next_node;
+  uint64_t memory_base;
   
   // 销毁同步对象
   _Mtx_destroy_in_situ();
@@ -444,14 +444,14 @@ void destroy_resource_manager(longlong *manager_ptr)
     // 警告：子程序不返回
     deallocate_node_memory(current_node);
   }
-  if ((manager_ptr[6] != 0) && (*(longlong *)(manager_ptr[6] + 0x10) != 0)) {
+  if ((manager_ptr[6] != 0) && (*(int64_t *)(manager_ptr[6] + 0x10) != 0)) {
     // 警告：子程序不返回
     handle_memory_error();
   }
   next_node = manager_ptr[5];
   while (next_node != 0) {
     node_name = (char *)(next_node + 0x3541);
-    next_node = *(longlong *)(next_node + 0x3538);
+    next_node = *(int64_t *)(next_node + 0x3538);
     if (*node_name != '\0') {
       // 警告：子程序不返回
       handle_name_error();
@@ -461,10 +461,10 @@ void destroy_resource_manager(longlong *manager_ptr)
   if (current_node == (uint64_t *)0x0) {
     return;
   }
-  memory_base = (ulonglong)current_node & 0xffffffffffc00000;
+  memory_base = (uint64_t)current_node & 0xffffffffffc00000;
   if (memory_base != 0) {
-    next_node = memory_base + 0x80 + ((longlong)current_node - memory_base >> 0x10) * 0x50;
-    next_node = next_node - (ulonglong)*(uint *)(next_node + 4);
+    next_node = memory_base + 0x80 + ((int64_t)current_node - memory_base >> 0x10) * 0x50;
+    next_node = next_node - (uint64_t)*(uint *)(next_node + 4);
     if ((*(void ***)(memory_base + 0x70) == &ExceptionList) && (*(char *)(next_node + 0xe) == '\0')) {
       *current_node = *(uint64_t *)(next_node + 0x20);
       *(uint64_t **)(next_node + 0x20) = current_node;
@@ -489,10 +489,10 @@ void destroy_resource_manager(longlong *manager_ptr)
  * 
  * @param resource_array 资源块数组指针
  */
-void cleanup_resource_block_array(longlong *resource_array)
+void cleanup_resource_block_array(int64_t *resource_array)
 {
-  longlong array_end;
-  longlong current_block;
+  int64_t array_end;
+  int64_t current_block;
   
   array_end = resource_array[1];
   for (current_block = *resource_array; current_block != array_end; current_block = current_block + 0x1a8) {
@@ -511,10 +511,10 @@ void cleanup_resource_block_array(longlong *resource_array)
  * 
  * @param resource_array 资源块数组指针
  */
-void cleanup_resource_block_array_variant(longlong *resource_array)
+void cleanup_resource_block_array_variant(int64_t *resource_array)
 {
-  longlong array_end;
-  longlong current_block;
+  int64_t array_end;
+  int64_t current_block;
   
   array_end = resource_array[1];
   for (current_block = *resource_array; current_block != array_end; current_block = current_block + 0x1a8) {
@@ -538,13 +538,13 @@ void cleanup_resource_block_array_variant(longlong *resource_array)
  */
 uint64_t * initialize_resource_manager(uint64_t *manager_ptr, uint64_t param2, uint64_t param3)
 {
-  ulonglong array_index;
-  ulonglong start_index;
-  ulonglong max_slots;
-  longlong memory_pool;
+  uint64_t array_index;
+  uint64_t start_index;
+  uint64_t max_slots;
+  int64_t memory_pool;
   uint64_t *slot_array;
   uint64_t *current_slot;
-  longlong slot_count;
+  int64_t slot_count;
   
   initialize_system_functions();
   *manager_ptr = &RESOURCE_MANAGER_VTABLE;
@@ -565,7 +565,7 @@ uint64_t * initialize_resource_manager(uint64_t *manager_ptr, uint64_t param2, u
   } while (max_slots != 0);
   
   start_index = 0;
-  *(uint64_t *)((longlong)manager_ptr + 0x324) = 0;  // 当前使用的槽位
+  *(uint64_t *)((int64_t)manager_ptr + 0x324) = 0;  // 当前使用的槽位
   *(int32_t *)(manager_ptr + 100) = 0;                // 槽位使用计数
   manager_ptr[0x20] = 0;           // 槽位数组基地址
   manager_ptr[0x21] = 0x20;         // 槽位数组大小
@@ -599,7 +599,7 @@ uint64_t * initialize_resource_manager(uint64_t *manager_ptr, uint64_t param2, u
       *(int8_t *)(start_index + 0x3541 + manager_ptr[0x1c]) = 0;
       array_index = array_index + 1;
       start_index = start_index + 0x3548;
-    } while (array_index < (ulonglong)manager_ptr[0x1d]);
+    } while (array_index < (uint64_t)manager_ptr[0x1d]);
   }
   
   // 初始化同步对象
@@ -613,7 +613,7 @@ uint64_t * initialize_resource_manager(uint64_t *manager_ptr, uint64_t param2, u
   *(int32_t *)(manager_ptr + 0x7c) = 3;  // 同步模式
   manager_ptr[0x7e] = 0;           // 超时计数器
   *(int32_t *)(manager_ptr + 0x7f) = 0;  // 错误计数器
-  *(int32_t *)((longlong)manager_ptr + 0x3fc) = 4000;  // 最大等待时间
+  *(int32_t *)((int64_t)manager_ptr + 0x3fc) = 4000;  // 最大等待时间
   
   manager_ptr[0x18] = param2;       // 用户参数2
   manager_ptr[0x7d] = param3;       // 用户参数3
@@ -623,7 +623,7 @@ uint64_t * initialize_resource_manager(uint64_t *manager_ptr, uint64_t param2, u
 }
 
 
-// 函数: void FUN_18006f160(longlong *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
+// 函数: void FUN_18006f160(int64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 // 美化函数名: increment_counter_and_cleanup_resource
 // 功能：增加资源计数器并清理资源
 // 参数：
@@ -632,13 +632,13 @@ uint64_t * initialize_resource_manager(uint64_t *manager_ptr, uint64_t param2, u
 //   param_3 - 清理参数2
 //   param_4 - 清理参数3
 // 返回值：无
-void increment_counter_and_cleanup_resource(longlong *manager_ptr, uint64_t cleanup_param1, uint64_t cleanup_param2, uint64_t cleanup_param3)
+void increment_counter_and_cleanup_resource(int64_t *manager_ptr, uint64_t cleanup_param1, uint64_t cleanup_param2, uint64_t cleanup_param3)
 {
-  longlong *resource_ptr;
+  int64_t *resource_ptr;
   int lock_result;
   
   // 增加资源计数器
-  *(int *)((longlong)manager_ptr + 0x74) = *(int *)((longlong)manager_ptr + 0x74) + 1;
+  *(int *)((int64_t)manager_ptr + 0x74) = *(int *)((int64_t)manager_ptr + 0x74) + 1;
   
   // 锁定资源管理器
   lock_result = _Mtx_lock(manager_ptr + 4, cleanup_param1, cleanup_param2, cleanup_param3, 0xfffffffffffffffe);
@@ -647,13 +647,13 @@ void increment_counter_and_cleanup_resource(longlong *manager_ptr, uint64_t clea
   }
   
   // 检查资源链表
-  resource_ptr = (longlong *)*manager_ptr;
-  if ((resource_ptr != manager_ptr) && (*(uint *)(resource_ptr + 2) < *(uint *)((longlong)manager_ptr + 0x74))) {
+  resource_ptr = (int64_t *)*manager_ptr;
+  if ((resource_ptr != manager_ptr) && (*(uint *)(resource_ptr + 2) < *(uint *)((int64_t)manager_ptr + 0x74))) {
     // 获取下一个资源
-    resource_ptr = *(longlong **)(*resource_ptr + 8);
+    resource_ptr = *(int64_t **)(*resource_ptr + 8);
     // 从链表中移除资源
-    *(longlong *)(*resource_ptr + 8) = resource_ptr[1];
-    *(longlong *)resource_ptr[1] = *resource_ptr;
+    *(int64_t *)(*resource_ptr + 8) = resource_ptr[1];
+    *(int64_t *)resource_ptr[1] = *resource_ptr;
     // 释放资源内存
     FUN_18064e900();
   }
@@ -666,37 +666,37 @@ void increment_counter_and_cleanup_resource(longlong *manager_ptr, uint64_t clea
 }
 
 
-// 函数: void FUN_18006f310(longlong *param_1)
+// 函数: void FUN_18006f310(int64_t *param_1)
 // 美化函数名: validate_resource_manager_integrity
 // 功能：验证资源管理器完整性
 // 参数：
 //   param_1 - 资源管理器指针
 // 返回值：无
-void validate_resource_manager_integrity(longlong *manager_ptr)
+void validate_resource_manager_integrity(int64_t *manager_ptr)
 {
   // 检查资源管理器是否自引用（完整性检查）
-  if ((longlong *)*manager_ptr != manager_ptr) {
+  if ((int64_t *)*manager_ptr != manager_ptr) {
     // 如果不是自引用，说明资源管理器已损坏
-    FUN_18064e900((longlong *)*manager_ptr);  // 终止程序
+    FUN_18064e900((int64_t *)*manager_ptr);  // 终止程序
   }
   return;
 }
 
 
-// 函数: void FUN_18006f340(longlong *param_1)
+// 函数: void FUN_18006f340(int64_t *param_1)
 // 美化函数名: process_resource_queue
 // 功能：处理资源队列
 // 参数：
 //   param_1 - 资源管理器指针
 // 返回值：无
-void process_resource_queue(longlong *manager_ptr)
+void process_resource_queue(int64_t *manager_ptr)
 {
   char resource_status;
   int lock_result;
-  longlong *queue_ptr;
+  int64_t *queue_ptr;
   
   // 增加处理计数器
-  *(int *)((longlong)manager_ptr + 0x74) = *(int *)((longlong)manager_ptr + 0x74) + 1;
+  *(int *)((int64_t)manager_ptr + 0x74) = *(int *)((int64_t)manager_ptr + 0x74) + 1;
   
   // 锁定管理器
   lock_result = _Mtx_lock(manager_ptr + 4);
@@ -705,7 +705,7 @@ void process_resource_queue(longlong *manager_ptr)
   }
   
   // 遍历资源队列
-  queue_ptr = (longlong *)*manager_ptr;
+  queue_ptr = (int64_t *)*manager_ptr;
   do {
     if (queue_ptr == manager_ptr) {
       // 队列为空，处理完成
@@ -717,15 +717,15 @@ void process_resource_queue(longlong *manager_ptr)
     }
     
     // 检查资源状态
-    resource_status = (**(code **)(*(longlong *)queue_ptr[3] + 0x40))();
+    resource_status = (**(code **)(*(int64_t *)queue_ptr[3] + 0x40))();
     if (resource_status != '\0') {
       // 资源已就绪，检查是否需要清理
-      if (*(uint *)(queue_ptr + 2) < *(uint *)((longlong)manager_ptr + 0x74)) {
+      if (*(uint *)(queue_ptr + 2) < *(uint *)((int64_t)manager_ptr + 0x74)) {
         // 获取下一个资源节点
-        queue_ptr = *(longlong **)(*queue_ptr + 8);
+        queue_ptr = *(int64_t **)(*queue_ptr + 8);
         // 从队列中移除当前资源
-        *(longlong *)(*queue_ptr + 8) = queue_ptr[1];
-        *(longlong *)queue_ptr[1] = *queue_ptr;
+        *(int64_t *)(*queue_ptr + 8) = queue_ptr[1];
+        *(int64_t *)queue_ptr[1] = *queue_ptr;
         // 释放资源内存
         FUN_18064e900();
       }
@@ -733,7 +733,7 @@ void process_resource_queue(longlong *manager_ptr)
     }
     
     // 移动到下一个资源
-    queue_ptr = (longlong *)*queue_ptr;
+    queue_ptr = (int64_t *)*queue_ptr;
   } while( true );
   
 queue_processing_complete:
@@ -753,7 +753,7 @@ queue_processing_complete:
 // 返回值：无
 void safe_call_resource_destructor(uint64_t *resource_ptr)
 {
-  longlong exception_handler;
+  int64_t exception_handler;
   
   if (resource_ptr != (uint64_t *)0x0) {
     exception_handler = __RTCastToVoid();
@@ -775,7 +775,7 @@ void safe_call_resource_destructor(uint64_t *resource_ptr)
 // 返回值：无
 void execute_global_callback(void)
 {
-  longlong exception_handler;
+  int64_t exception_handler;
   uint64_t *callback_ptr;
   
   exception_handler = __RTCastToVoid();
@@ -800,35 +800,35 @@ void empty_function_stub(void)
 }
 
 
-// 函数: void FUN_18006f500(longlong param_1)
+// 函数: void FUN_18006f500(int64_t param_1)
 // 美化函数名: trigger_resource_cleanup_callback
 // 功能：触发资源清理回调
 // 参数：
 //   param_1 - 资源管理器指针
 // 返回值：无
-void trigger_resource_cleanup_callback(longlong manager_ptr)
+void trigger_resource_cleanup_callback(int64_t manager_ptr)
 {
-  if (*(longlong **)(manager_ptr + 0x70) != (longlong *)0x0) {
+  if (*(int64_t **)(manager_ptr + 0x70) != (int64_t *)0x0) {
     // 调用资源清理回调函数
-    (**(code **)(**(longlong **)(manager_ptr + 0x70) + 0x38))();
+    (**(code **)(**(int64_t **)(manager_ptr + 0x70) + 0x38))();
   }
   return;
 }
 
 
-// 函数: void FUN_18006e4a4(longlong *param_1)
+// 函数: void FUN_18006e4a4(int64_t *param_1)
 // 美化函数名: cleanup_resource_node_extended
 // 功能：扩展的资源节点清理函数
 // 参数：
 //   param_1 - 资源管理器指针
 // 返回值：无
-void cleanup_resource_node_extended(longlong *manager_ptr)
+void cleanup_resource_node_extended(int64_t *manager_ptr)
 {
   int *counter_ptr;
   char *status_ptr;
   uint64_t *resource_ptr;
-  longlong cleanup_result;
-  ulonglong resource_index;
+  int64_t cleanup_result;
+  uint64_t resource_index;
   
   resource_ptr = (uint64_t *)*manager_ptr;
   if (resource_ptr != (uint64_t *)0x0) {
@@ -887,13 +887,13 @@ void validate_resource_pointer(uint64_t *resource_ptr)
 }
 
 
-// 函数: void FUN_18006e580(longlong *param_1)
+// 函数: void FUN_18006e580(int64_t *param_1)
 // 美化函数名: cleanup_resource_cache
 // 功能：清理资源缓存
 // 参数：
 //   param_1 - 缓存管理器指针
 // 返回值：无
-void cleanup_resource_cache(longlong *cache_manager_ptr)
+void cleanup_resource_cache(int64_t *cache_manager_ptr)
 {
   // 清理资源缓存中的所有条目
   // 释放缓存占用的内存
@@ -902,13 +902,13 @@ void cleanup_resource_cache(longlong *cache_manager_ptr)
 }
 
 
-// 函数: void FUN_18006e5d0(longlong *param_1)
+// 函数: void FUN_18006e5d0(int64_t *param_1)
 // 美化函数名: flush_resource_queue
 // 功能：刷新资源队列
 // 参数：
 //   param_1 - 队列管理器指针
 // 返回值：无
-void flush_resource_queue(longlong *queue_manager_ptr)
+void flush_resource_queue(int64_t *queue_manager_ptr)
 {
   // 刷新资源队列中的所有待处理项目
   // 确保所有资源都被正确处理或清理

@@ -8,11 +8,11 @@ void FUN_180202d4d(int32_t param_1,float *param_2)
 {
   float fVar1;
   float fVar2;
-  longlong lVar3;
+  int64_t lVar3;
   float *pfVar4;
   float *pfVar5;
   int8_t unaff_BL;
-  longlong unaff_RBP;
+  int64_t unaff_RBP;
   float *unaff_RSI;
   float fVar6;
   float fVar7;
@@ -20,7 +20,7 @@ void FUN_180202d4d(int32_t param_1,float *param_2)
   do {
     pfVar5 = param_2;
     if (unaff_RBP < 1) break;
-    lVar3 = (longlong)param_2 - (longlong)unaff_RSI >> 2;
+    lVar3 = (int64_t)param_2 - (int64_t)unaff_RSI >> 2;
     if (lVar3 < 0) {
       lVar3 = lVar3 + 1;
     }
@@ -58,7 +58,7 @@ void FUN_180202d4d(int32_t param_1,float *param_2)
     unaff_RBP = unaff_RBP + -1;
     param_1 = FUN_180202d20(pfVar5,param_2,unaff_RBP,unaff_BL);
     param_2 = pfVar5;
-  } while (0x70 < (longlong)((longlong)pfVar5 - (longlong)unaff_RSI & 0xfffffffffffffffcU));
+  } while (0x70 < (int64_t)((int64_t)pfVar5 - (int64_t)unaff_RSI & 0xfffffffffffffffcU));
   if (unaff_RBP == 0) {
     FUN_180203100(param_1,pfVar5,pfVar5,unaff_BL);
   }

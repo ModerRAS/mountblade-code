@@ -43,17 +43,17 @@
 // 该函数实现了高级UI动画控制算法，包括角度插值、平滑过渡、状态管理和矩阵变换
 void ui_system_advanced_animation_controller(void)
 {
-  longlong data_offset;
+  int64_t data_offset;
   uint32_t conversion_flag;
   float *animation_data_ptr;
   int loop_counter;
   int element_index;
   uint64_t animation_state;
-  longlong context_ptr;
+  int64_t context_ptr;
   char control_flag;
   int32_t render_flag;
   char state_flag_1;
-  longlong resource_ptr;
+  int64_t resource_ptr;
   char state_flag_2;
   float angle_value;
   float interpolation_value;
@@ -92,7 +92,7 @@ void ui_system_advanced_animation_controller(void)
   // 初始化动画参数
   *(float *)(resource_ptr + 0x4c) = base_parameter_1;
   angle_value = (float)animation_state;
-  temp_value_9 = (float)((ulonglong)animation_state >> 0x20);
+  temp_value_9 = (float)((uint64_t)animation_state >> 0x20);
   
   // 角度插值计算
   if ((control_parameter_2 != base_parameter_1) || (control_parameter_4 != base_parameter_1)) {
@@ -176,9 +176,9 @@ LAB_18065a17c:
     *(bool *)(resource_ptr + 0x5d) = control_parameter_2 < base_parameter_1;
   }
   
-  data_offset = *(longlong *)((longlong)*(int *)(resource_ptr + 0x60) * 0x1358 + -0x98 + resource_ptr);
-  angle_value = (*(float *)(*(longlong *)(data_offset + 8) + 0x188) /
-          *(float *)(*(longlong *)(data_offset + 0x38) + 0x188)) * base_parameter_4 * time_step
+  data_offset = *(int64_t *)((int64_t)*(int *)(resource_ptr + 0x60) * 0x1358 + -0x98 + resource_ptr);
+  angle_value = (*(float *)(*(int64_t *)(data_offset + 8) + 0x188) /
+          *(float *)(*(int64_t *)(data_offset + 0x38) + 0x188)) * base_parameter_4 * time_step
           + angle_value;
   if (base_parameter_3 <= angle_value) {
     angle_value = base_parameter_3;
@@ -300,7 +300,7 @@ LAB_18065a2e9:
   
   // 主动画处理循环
   do {
-    temp_value_4 = *(float *)(((longlong)animation_buffer - resource_ptr) + (longlong)animation_data_ptr);
+    temp_value_4 = *(float *)(((int64_t)animation_buffer - resource_ptr) + (int64_t)animation_data_ptr);
     temp_value_3 = temp_value_4 - animation_data_ptr[-10];
     temp_value_6 = ABS(temp_value_3);
     if (UI_ZERO_ZERO_ONE_FLOAT <= temp_value_6) {
@@ -346,7 +346,7 @@ LAB_18065a5b3:
     }
     
 LAB_18065a5d3:
-    temp_value_3 = *(float *)((longlong)animation_buffer + (4 - resource_ptr) + (longlong)animation_data_ptr);
+    temp_value_3 = *(float *)((int64_t)animation_buffer + (4 - resource_ptr) + (int64_t)animation_data_ptr);
     temp_value_6 = temp_value_3 - animation_data_ptr[-9];
     temp_value_7 = ABS(temp_value_6);
     if (UI_ZERO_ZERO_ONE_FLOAT <= temp_value_7) {
@@ -393,7 +393,7 @@ LAB_18065a67b:
     }
     
 LAB_18065a69c:
-    temp_value_6 = *(float *)((longlong)animation_buffer + (8 - resource_ptr) + (longlong)animation_data_ptr);
+    temp_value_6 = *(float *)((int64_t)animation_buffer + (8 - resource_ptr) + (int64_t)animation_data_ptr);
     temp_value_7 = temp_value_6 - animation_data_ptr[-8];
     temp_value_8 = ABS(temp_value_7);
     if (UI_ZERO_ZERO_ONE_FLOAT <= temp_value_8) {
@@ -490,7 +490,7 @@ LAB_18065a765:
         temp_value_9 = conversion_buffer._0_4_;
         time_step = time_step * UI_EIGHT_FLOAT;
         angle_value = temp_value_9 * UI_HALF_FLOAT * (UI_THREE_FLOAT - angle_value * temp_value_9 * temp_value_9);
-        *(ulonglong *)(resource_ptr + 0x6178) =
+        *(uint64_t *)(resource_ptr + 0x6178) =
              CONCAT44(angle_value * interpolation_value * time_step +
                       (base_parameter_3 - time_step) * *(float *)(resource_ptr + 0x617c),
                       angle_value * smooth_value_1 * time_step +
@@ -505,13 +505,13 @@ LAB_18065a765:
         *(float *)(resource_ptr + 0x6178) = interpolation_value * temp_value_9;
       }
       else {
-        *(ulonglong *)(resource_ptr + 0x6178) = CONCAT44(smooth_value_2,angle_value);
+        *(uint64_t *)(resource_ptr + 0x6178) = CONCAT44(smooth_value_2,angle_value);
       }
       
       // 调用渲染处理函数
       return_address = 0x18065aa9f;
       temp_storage_5 = temp_storage_2;
-      FUN_1808fc050(*(ulonglong *)(context_ptr + -0x70) ^ (ulonglong)&stack0x00000000);
+      FUN_1808fc050(*(uint64_t *)(context_ptr + -0x70) ^ (uint64_t)&stack0x00000000);
     }
   } while( true );
 }
@@ -527,10 +527,10 @@ void ui_system_parameterized_animation_processor(uint64_t param_1,uint64_t param
   int loop_counter_1;
   int loop_counter_2;
   float *base_animation_ptr;
-  longlong context_ptr;
+  int64_t context_ptr;
   char control_flag;
   int32_t render_flag;
-  longlong resource_ptr;
+  int64_t resource_ptr;
   float weight_value;
   float interpolation_value;
   float temp_value_1;
@@ -602,7 +602,7 @@ void ui_system_parameterized_animation_processor(uint64_t param_1,uint64_t param
   
   // 参数化动画处理主循环
   do {
-    interpolation_value = *(float *)(((longlong)animation_buffer - resource_ptr) + (longlong)animation_data_ptr);
+    interpolation_value = *(float *)(((int64_t)animation_buffer - resource_ptr) + (int64_t)animation_data_ptr);
     temp_value_1 = interpolation_value - animation_data_ptr[-10];
     temp_value_2 = (float)((uint)temp_value_1 & abs_mask);
     if (UI_ZERO_ZERO_ONE_FLOAT <= temp_value_2) {
@@ -650,7 +650,7 @@ LAB_18065a5b3:
     }
     
 LAB_18065a5d3:
-    temp_value_1 = *(float *)((longlong)animation_buffer + (4 - resource_ptr) + (longlong)animation_data_ptr);
+    temp_value_1 = *(float *)((int64_t)animation_buffer + (4 - resource_ptr) + (int64_t)animation_data_ptr);
     temp_value_2 = temp_value_1 - animation_data_ptr[-9];
     temp_value_3 = (float)((uint)temp_value_2 & abs_mask);
     if (UI_ZERO_ZERO_ONE_FLOAT <= temp_value_3) {
@@ -698,7 +698,7 @@ LAB_18065a67b:
     }
     
 LAB_18065a69c:
-    temp_value_2 = *(float *)((longlong)animation_buffer + (8 - resource_ptr) + (longlong)animation_data_ptr);
+    temp_value_2 = *(float *)((int64_t)animation_buffer + (8 - resource_ptr) + (int64_t)animation_data_ptr);
     temp_value_3 = temp_value_2 - animation_data_ptr[-8];
     temp_value_4 = (float)((uint)temp_value_3 & abs_mask);
     if (UI_ZERO_ZERO_ONE_FLOAT <= temp_value_4) {
@@ -801,7 +801,7 @@ LAB_18065a765:
         temp_storage =
              interpolation_value * temp_value_1 * param_6._4_4_ +
              (base_parameter_3 - param_6._4_4_) * *(float *)(resource_ptr + 0x617c);
-        *(ulonglong *)(resource_ptr + 0x6178) =
+        *(uint64_t *)(resource_ptr + 0x6178) =
              CONCAT44(temp_storage,
                       interpolation_value * temp_value_2 * param_6._4_4_ +
                       (base_parameter_3 - param_6._4_4_) * *(float *)(resource_ptr + 0x6178));
@@ -815,12 +815,12 @@ LAB_18065a765:
         *(float *)(resource_ptr + 0x6178) = temp_value_1 * weight_value;
       }
       else {
-        *(ulonglong *)(resource_ptr + 0x6178) = CONCAT44(temp_storage,interpolation_value);
+        *(uint64_t *)(resource_ptr + 0x6178) = CONCAT44(temp_storage,interpolation_value);
       }
       
       // 调用渲染处理函数
       return_address = 0x18065aa9f;
-      FUN_1808fc050(*(ulonglong *)(context_ptr + -0x70) ^ (ulonglong)&stack0x00000000);
+      FUN_1808fc050(*(uint64_t *)(context_ptr + -0x70) ^ (uint64_t)&stack0x00000000);
     }
   } while( true );
 }

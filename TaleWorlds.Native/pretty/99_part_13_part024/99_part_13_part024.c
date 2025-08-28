@@ -533,7 +533,7 @@ void SystemEmergencyExit(void)
  * @param param_2 操作数据
  * @return void
  */
-void SystemOperationHandler(longlong param_1, uint64_t *param_2)
+void SystemOperationHandler(int64_t param_1, uint64_t *param_2)
 {
     system_context_t* context = (system_context_t*)param_1;
     operation_data_ptr_t operation_data = (operation_data_ptr_t)param_2;
@@ -594,7 +594,7 @@ void SystemOperationHandler(longlong param_1, uint64_t *param_2)
  * @param param_1 系统对象指针
  * @return uint64_t 验证结果
  */
-uint64_t SystemValidationProcessor(longlong *param_1)
+uint64_t SystemValidationProcessor(int64_t *param_1)
 {
     system_object_ptr_t system_object = (system_object_ptr_t)param_1;
     error_code_t error_code;
@@ -646,7 +646,7 @@ uint64_t SystemValidationProcessor(longlong *param_1)
  * @param param_1 系统参数
  * @return uint64_t 检查结果
  */
-uint64_t SystemConfigurationChecker(longlong param_1)
+uint64_t SystemConfigurationChecker(int64_t param_1)
 {
     system_parameters_t* parameters = (system_parameters_t*)param_1;
     error_code_t error_code;
@@ -730,7 +730,7 @@ uint64_t SystemEventDispatcher(uint64_t param_1, int param_2, uint64_t *param_3)
  * @param param_1 系统句柄
  * @return uint64_t 清理结果
  */
-uint64_t SystemResourceCleaner(longlong param_1)
+uint64_t SystemResourceCleaner(int64_t param_1)
 {
     system_handle_t system_handle = (system_handle_t)param_1;
     error_code_t error_code;
@@ -769,7 +769,7 @@ uint64_t SystemResourceCleaner(longlong param_1)
  * @param param_1 系统句柄
  * @return uint64_t 操作结果
  */
-uint64_t SystemMemoryManager(longlong param_1)
+uint64_t SystemMemoryManager(int64_t param_1)
 {
     system_handle_t system_handle = (system_handle_t)param_1;
     error_code_t error_code;
@@ -808,7 +808,7 @@ uint64_t SystemMemoryManager(longlong param_1)
  * @param param_2 参数值
  * @return uint64_t 验证结果
  */
-uint64_t SystemParameterValidator(longlong param_1, longlong param_2)
+uint64_t SystemParameterValidator(int64_t param_1, int64_t param_2)
 {
     system_handle_t system_handle = (system_handle_t)param_1;
     parameter_value_t parameter_value = (parameter_value_t)param_2;
@@ -842,7 +842,7 @@ uint64_t SystemParameterValidator(longlong param_1, longlong param_2)
  * @param param_2 回调参数
  * @return uint64_t 处理结果
  */
-uint64_t SystemCallbackProcessor(longlong param_1, uint64_t param_2)
+uint64_t SystemCallbackProcessor(int64_t param_1, uint64_t param_2)
 {
     system_handle_t system_handle = (system_handle_t)param_1;
     callback_params_t* callback_params = (callback_params_t*)param_2;
@@ -882,7 +882,7 @@ uint64_t SystemCallbackProcessor(longlong param_1, uint64_t param_2)
  * @param param_3 控制参数
  * @return uint64_t 控制结果
  */
-uint64_t SystemStateController(longlong param_1, uint64_t param_2, uint64_t param_3)
+uint64_t SystemStateController(int64_t param_1, uint64_t param_2, uint64_t param_3)
 {
     system_handle_t system_handle = (system_handle_t)param_1;
     state_params_t* state_params = (state_params_t*)param_2;
@@ -923,7 +923,7 @@ uint64_t SystemStateController(longlong param_1, uint64_t param_2, uint64_t para
  * @param param_2 操作数据
  * @return void
  */
-void SystemMainProcessor(longlong param_1, uint64_t *param_2)
+void SystemMainProcessor(int64_t param_1, uint64_t *param_2)
 {
     system_handle_t system_handle = (system_handle_t)param_1;
     operation_data_ptr_t operation_data = (operation_data_ptr_t)param_2;

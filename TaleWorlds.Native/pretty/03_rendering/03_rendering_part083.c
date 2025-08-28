@@ -53,62 +53,62 @@
  * - 清空指针引用
  * - 重置状态标志
  */
-void rendering_system_cleanup_resources(longlong render_context)
+void rendering_system_cleanup_resources(int64_t render_context)
 {
-  longlong **resource_pointer_array;
-  longlong resource_object;
+  int64_t **resource_pointer_array;
+  int64_t resource_object;
   int i;
   
   // 清理指针数组资源（从0x100到0x128，步长为0x08）
   for (i = 0; i < 6; i++) {
-    resource_pointer_array = *(longlong ***)(render_context + OFFSET_POINTER_ARRAY_START + i * OFFSET_POINTER_ARRAY_STEP);
+    resource_pointer_array = *(int64_t ***)(render_context + OFFSET_POINTER_ARRAY_START + i * OFFSET_POINTER_ARRAY_STEP);
     *(uint64_t *)(render_context + OFFSET_POINTER_ARRAY_START + i * OFFSET_POINTER_ARRAY_STEP) = 0;
     
-    if (resource_pointer_array != (longlong **)0x0) {
+    if (resource_pointer_array != (int64_t **)0x0) {
       // 调用资源对象的清理函数（函数指针位于对象地址+0x38）
       (**(code **)(*resource_pointer_array + FUNCTION_POINTER_OFFSET))();
     }
   }
   
   // 检查并清理资源组1（偏移0x30）
-  resource_object = *(longlong *)(render_context + OFFSET_RESOURCE_GROUP_1);
+  resource_object = *(int64_t *)(render_context + OFFSET_RESOURCE_GROUP_1);
   if ((resource_object != 0) && ((*(uint *)(resource_object + OFFSET_RESOURCE_FLAG_CHECK) & RESOURCE_FLAG_ACTIVE) == 0)) {
     FUN_18023b050(resource_object, 0);
   }
   
   // 检查并清理资源组2（偏移0x38）
-  resource_object = *(longlong *)(render_context + OFFSET_RESOURCE_GROUP_2);
+  resource_object = *(int64_t *)(render_context + OFFSET_RESOURCE_GROUP_2);
   if ((resource_object != 0) && ((*(uint *)(resource_object + OFFSET_RESOURCE_FLAG_CHECK) & RESOURCE_FLAG_ACTIVE) == 0)) {
     FUN_18023b050(resource_object, 0);
   }
   
   // 检查并清理资源组3（偏移0x18）
-  resource_object = *(longlong *)(render_context + OFFSET_RESOURCE_GROUP_3);
+  resource_object = *(int64_t *)(render_context + OFFSET_RESOURCE_GROUP_3);
   if ((resource_object != 0) && ((*(uint *)(resource_object + OFFSET_RESOURCE_FLAG_CHECK) & RESOURCE_FLAG_ACTIVE) == 0)) {
     FUN_18023b050(resource_object, 0);
   }
   
   // 检查并清理资源组4（偏移0x20）
-  resource_object = *(longlong *)(render_context + OFFSET_RESOURCE_GROUP_4);
+  resource_object = *(int64_t *)(render_context + OFFSET_RESOURCE_GROUP_4);
   if ((resource_object != 0) && ((*(uint *)(resource_object + OFFSET_RESOURCE_FLAG_CHECK) & RESOURCE_FLAG_ACTIVE) == 0)) {
     FUN_18023b050(resource_object, 0);
   }
   
   // 清理剩余的资源组
-  longlong **cleanup_pointers[] = {
-    (longlong **)(render_context + OFFSET_RESOURCE_GROUP_1),
-    (longlong **)(render_context + OFFSET_RESOURCE_GROUP_2),
-    (longlong **)(render_context + OFFSET_RESOURCE_GROUP_3),
-    (longlong **)(render_context + OFFSET_RESOURCE_GROUP_4),
-    (longlong **)(render_context + OFFSET_RESOURCE_GROUP_5),
-    (longlong **)(render_context + OFFSET_RESOURCE_GROUP_6)
+  int64_t **cleanup_pointers[] = {
+    (int64_t **)(render_context + OFFSET_RESOURCE_GROUP_1),
+    (int64_t **)(render_context + OFFSET_RESOURCE_GROUP_2),
+    (int64_t **)(render_context + OFFSET_RESOURCE_GROUP_3),
+    (int64_t **)(render_context + OFFSET_RESOURCE_GROUP_4),
+    (int64_t **)(render_context + OFFSET_RESOURCE_GROUP_5),
+    (int64_t **)(render_context + OFFSET_RESOURCE_GROUP_6)
   };
   
   for (i = 0; i < 6; i++) {
     resource_pointer_array = *cleanup_pointers[i];
     *cleanup_pointers[i] = 0;
     
-    if (resource_pointer_array != (longlong **)0x0) {
+    if (resource_pointer_array != (int64_t **)0x0) {
       // 调用资源对象的清理函数
       (**(code **)(*resource_pointer_array + FUNCTION_POINTER_OFFSET))();
     }

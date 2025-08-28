@@ -107,12 +107,12 @@
 #define SYSTEM_SIZE_MASK 0x0000000f
 
 // 类型别名定义
-typedef longlong SystemHandle;
-typedef longlong* SystemHandlePtr;
+typedef int64_t SystemHandle;
+typedef int64_t* SystemHandlePtr;
 typedef char* SystemStringPtr;
 typedef void* SystemResourcePtr;
 typedef uint SystemStatus;
-typedef ulonglong SystemSize;
+typedef uint64_t SystemSize;
 typedef int SystemResult;
 typedef uint64_t SystemDataBlock;
 typedef int32_t SystemParameter;

@@ -127,13 +127,13 @@ static void RenderingSystemProcessDefaultValue(void* defaultNode, void* targetPt
  * @param param_2 配置参数指针
  * @param param_3 节点容器指针
  */
-void FUN_180416cc0(longlong *param_1, longlong param_2, longlong param_3)
+void FUN_180416cc0(int64_t *param_1, int64_t param_2, int64_t param_3)
 {
     // 局部变量声明
     char cVar1, cVar2;             // 字符比较变量
     char *pcVar3, *pcVar8, *pcVar10; // 字符串指针
-    ulonglong uVar4;               // 无符号长整型
-    longlong lVar5;                // 长整型变量
+    uint64_t uVar4;               // 无符号长整型
+    int64_t lVar5;                // 长整型变量
     void *puVar6, *puVar7, *puVar9; // 通用指针
     uint64_t uStackX_8;          // 栈变量
     int aiStackX_20[2];            // 整型数组
@@ -170,7 +170,7 @@ void FUN_180416cc0(longlong *param_1, longlong param_2, longlong param_3)
     puVar9 = RenderingSystemFindAnimationNode(puVar7, pcVar8);
     if (puVar9 != NULL) {
         // 验证名称匹配
-        lVar5 = param_2 - (longlong)pcVar8;
+        lVar5 = param_2 - (int64_t)pcVar8;
         if (lVar5 != 0) {
             // 名称不匹配，使用默认名称
             pcVar8 = (char*)RENDERING_DEFAULT_VALUE_ADDR;
@@ -191,7 +191,7 @@ void FUN_180416cc0(longlong *param_1, longlong param_2, longlong param_3)
     pcVar8 = RENDERING_DEFAULT_STRING;
     puVar9 = RenderingSystemFindAnimationNode(puVar7, pcVar8);
     if (puVar9 != NULL) {
-        RenderingSystemProcessDefaultValue(puVar9, (void*)((longlong)param_1 + 0x2c));
+        RenderingSystemProcessDefaultValue(puVar9, (void*)((int64_t)param_1 + 0x2c));
     }
     
     // 步骤6：处理曲线倍率

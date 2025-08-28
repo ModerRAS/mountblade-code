@@ -70,10 +70,10 @@ extern int32_t global_state_3656;
 extern void *global_state_3664;
 extern int8_t *global_state_3672;
 extern int32_t global_state_3680;
-extern longlong global_state_3752;
-extern longlong global_state_3760;
-extern longlong global_state_3784;
-extern longlong global_state_3792;
+extern int64_t global_state_3752;
+extern int64_t global_state_3760;
+extern int64_t global_state_3784;
+extern int64_t global_state_3792;
 extern int32_t global_state_3816;
 extern int32_t global_state_3820;
 extern uint8_t system_resource_config;
@@ -81,10 +81,10 @@ extern uint8_t system_module_config;
 extern uint8_t system_cache_config;
 extern uint8_t system_temp_config;
 extern uint8_t global_state_4856;
-extern longlong global_state_4872;
+extern int64_t global_state_4872;
 extern uint64_t global_state_4880;
-extern longlong global_state_4888;
-extern longlong *global_state_9112;
+extern int64_t global_state_4888;
+extern int64_t *global_state_9112;
 
 /* ============================================================================
  * 函数声明
@@ -119,7 +119,7 @@ void UISystem_DataBitProcessor(uint64_t param_1, uint *param_2);
  * @param param_3 处理参数
  * @return int 处理结果状态码
  */
-int UISystem_DataProcessor(longlong *param_1, longlong param_2, int param_3);
+int UISystem_DataProcessor(int64_t *param_1, int64_t param_2, int param_3);
 
 /**
  * @brief UI系统状态管理器
@@ -164,7 +164,7 @@ int32_t UISystem_DataReader(void);
  * @param param_3 管理标志
  * @return uint64_t 资源管理结果
  */
-uint64_t UISystem_ResourceManager(longlong *param_1, uint64_t param_2, int param_3);
+uint64_t UISystem_ResourceManager(int64_t *param_1, uint64_t param_2, int param_3);
 
 /**
  * @brief UI系统内存管理器
@@ -178,7 +178,7 @@ uint64_t UISystem_ResourceManager(longlong *param_1, uint64_t param_2, int param
  * @param param_1 内存管理参数
  * @return uint64_t 内存管理结果
  */
-uint64_t UISystem_MemoryManager(longlong param_1);
+uint64_t UISystem_MemoryManager(int64_t param_1);
 
 /**
  * @brief UI系统处理器
@@ -256,24 +256,24 @@ void UISystem_DataBitProcessor(uint64_t param_1, uint *param_2)
 {
     uint uVar1;                           // 临时变量
     uint in_EAX;                          // 输入数据计数
-    longlong lVar2;                       // 偏移量计算
+    int64_t lVar2;                       // 偏移量计算
     uint *puVar3;                         // 数据指针
     uint uVar4;                           // 循环计数器
-    ulonglong uVar5;                      // 主循环计数器
-    longlong in_R10;                      // 基址指针
+    uint64_t uVar5;                      // 主循环计数器
+    int64_t in_R10;                      // 基址指针
     uint uVar6;                           // 批量处理计数
     uint unaff_R15D;                      // 数据大小参数
     
     // 计算批量处理次数（8个数据为一组）
     uVar6 = (int)unaff_R15D >> 3;
-    uVar5 = (ulonglong)in_EAX;
+    uVar5 = (uint64_t)in_EAX;
     
     // 主循环处理数据
     do {
         lVar2 = 0;
         if (uVar6 != 0) {
             // 计算批量处理的偏移量
-            lVar2 = (ulonglong)uVar6 << 3;
+            lVar2 = (uint64_t)uVar6 << 3;
             puVar3 = (uint *)(in_R10 + 0x1ffc);
             uVar4 = uVar6;
             
@@ -335,13 +335,13 @@ void UISystem_DataBitProcessor(uint64_t param_1, uint *param_2)
  * @param param_3 处理参数
  * @return int 处理结果状态码
  */
-int UISystem_DataProcessor(longlong *param_1, longlong param_2, int param_3)
+int UISystem_DataProcessor(int64_t *param_1, int64_t param_2, int param_3)
 {
     int32_t uVar1;                      // 临时变量
-    longlong lVar2;                        // 上下文指针
+    int64_t lVar2;                        // 上下文指针
     int iVar3;                             // 当前索引
-    longlong lVar4;                        // 数据指针1
-    longlong lVar5;                        // 数据指针2
+    int64_t lVar4;                        // 数据指针1
+    int64_t lVar5;                        // 数据指针2
     int iVar6;                             // 处理数量
     int32_t auStackX_8 [2];            // 栈变量8
     int32_t auStackX_20 [2];           // 栈变量20
@@ -371,9 +371,9 @@ int UISystem_DataProcessor(longlong *param_1, longlong param_2, int param_3)
     iVar3 = (int)param_1[3];
     
     // 验证索引范围
-    if ((-1 < iVar3) && (iVar3 < *(int *)((longlong)param_1 + 0x1c))) {
+    if ((-1 < iVar3) && (iVar3 < *(int *)((int64_t)param_1 + 0x1c))) {
         // 计算可处理的数据数量
-        iVar6 = *(int *)((longlong)param_1 + 0x1c) - iVar3;
+        iVar6 = *(int *)((int64_t)param_1 + 0x1c) - iVar3;
         
         // 检查输出参数
         if (param_2 != 0) {
@@ -396,26 +396,26 @@ int UISystem_DataProcessor(longlong *param_1, longlong param_2, int param_3)
                           puVar11, puVar13, puVar15, piVar17, piVar19);
             
             // 提取高位数据
-            uVar8 = (int32_t)((ulonglong)puVar7 >> 0x20);
-            uVar10 = (int32_t)((ulonglong)puVar9 >> 0x20);
-            uVar12 = (int32_t)((ulonglong)puVar11 >> 0x20);
-            uVar14 = (int32_t)((ulonglong)puVar13 >> 0x20);
-            uVar16 = (int32_t)((ulonglong)puVar15 >> 0x20);
-            uVar18 = (int32_t)((ulonglong)piVar17 >> 0x20);
-            uVar20 = (int32_t)((ulonglong)piVar19 >> 0x20);
+            uVar8 = (int32_t)((uint64_t)puVar7 >> 0x20);
+            uVar10 = (int32_t)((uint64_t)puVar9 >> 0x20);
+            uVar12 = (int32_t)((uint64_t)puVar11 >> 0x20);
+            uVar14 = (int32_t)((uint64_t)puVar13 >> 0x20);
+            uVar16 = (int32_t)((uint64_t)puVar15 >> 0x20);
+            uVar18 = (int32_t)((uint64_t)piVar17 >> 0x20);
+            uVar20 = (int32_t)((uint64_t)piVar19 >> 0x20);
             
             // 设置数据指针
             lVar5 = 0x180be6500;
-            if (((int)param_1[5] == 0) || (lVar4 = 0x180be6500, *(int *)((longlong)param_1 + 0x24) == 0))
+            if (((int)param_1[5] == 0) || (lVar4 = 0x180be6500, *(int *)((int64_t)param_1 + 0x24) == 0))
             {
                 lVar4 = 0x180be6300;
             }
-            lVar4 = lVar4 + (longlong)iStack_38 * 4;
+            lVar4 = lVar4 + (int64_t)iStack_38 * 4;
             
-            if (((int)param_1[5] == 0) || (*(int *)((longlong)param_1 + 0x24) == 0)) {
+            if (((int)param_1[5] == 0) || (*(int *)((int64_t)param_1 + 0x24) == 0)) {
                 lVar5 = 0x180be6300;
             }
-            lVar5 = lVar5 + (longlong)aiStack_34[0] * 4;
+            lVar5 = lVar5 + (int64_t)aiStack_34[0] * 4;
             
             // 根据处理模式选择不同的处理函数
             iVar3 = FUN_1807681a0(2);
@@ -468,9 +468,9 @@ int UISystem_DataProcessor(longlong *param_1, longlong param_2, int param_3)
 int UISystem_StateManager(uint64_t param_1, uint64_t param_2, int param_3)
 {
     int iVar1;                             // 返回值
-    longlong unaff_RBP;                    // 基址指针
+    int64_t unaff_RBP;                    // 基址指针
     int unaff_EDI;                         // 状态值
-    longlong in_R11;                      // 寄存器R11
+    int64_t in_R11;                      // 寄存器R11
     uint64_t unaff_R14;                 // 寄存器R14
     uint64_t unaff_R15;                 // 寄存器R15
     bool in_ZF;                           // 零标志
@@ -480,7 +480,7 @@ int UISystem_StateManager(uint64_t param_1, uint64_t param_2, int param_3)
     // 设置系统上下文参数
     *(uint64_t *)(in_R11 + 0x10) = unaff_R14;
     *(uint64_t *)(in_R11 + 0x18) = unaff_R15;
-    *(longlong *)(in_R11 + -0x58) = unaff_RBP + -0xc;
+    *(int64_t *)(in_R11 + -0x58) = unaff_RBP + -0xc;
     
     // 根据标志条件设置状态值
     if (!in_ZF && in_OF == in_SF) {
@@ -488,11 +488,11 @@ int UISystem_StateManager(uint64_t param_1, uint64_t param_2, int param_3)
     }
     
     // 设置栈空间参数
-    *(longlong *)(in_R11 + -0x60) = unaff_RBP + -0x10;
-    *(longlong *)(in_R11 + -0x68) = unaff_RBP + -0x18;
-    *(longlong *)(in_R11 + -0x70) = unaff_RBP + -0x14;
-    *(longlong *)(in_R11 + -0x78) = unaff_RBP + 0x30;
-    *(longlong *)(in_R11 + -0x80) = unaff_RBP + 0x48;
+    *(int64_t *)(in_R11 + -0x60) = unaff_RBP + -0x10;
+    *(int64_t *)(in_R11 + -0x68) = unaff_RBP + -0x18;
+    *(int64_t *)(in_R11 + -0x70) = unaff_RBP + -0x14;
+    *(int64_t *)(in_R11 + -0x78) = unaff_RBP + 0x30;
+    *(int64_t *)(in_R11 + -0x80) = unaff_RBP + 0x48;
     
     // 调用状态处理函数
     FUN_18080c4a0(param_1, param_2, (int)param_2 + unaff_EDI, unaff_RBP + -0x1c, unaff_RBP + -0x20);
@@ -556,7 +556,7 @@ int32_t UISystem_DataReader(void)
  * 
  * @note 这是一个简化实现，保留了原始核心逻辑但优化了代码结构
  */
-uint64_t UISystem_ResourceManager(longlong *param_1, uint64_t param_2, int param_3)
+uint64_t UISystem_ResourceManager(int64_t *param_1, uint64_t param_2, int param_3)
 {
     // 简化实现：保留原始核心逻辑
     // 原始实现包含复杂的资源分配、状态管理和错误处理逻辑
@@ -590,7 +590,7 @@ uint64_t UISystem_ResourceManager(longlong *param_1, uint64_t param_2, int param
  * 
  * @note 这是一个简化实现，保留了原始核心逻辑但优化了代码结构
  */
-uint64_t UISystem_MemoryManager(longlong param_1)
+uint64_t UISystem_MemoryManager(int64_t param_1)
 {
     // 简化实现：保留原始核心逻辑
     // 原始实现包含复杂的内存分配、状态监控和优化逻辑

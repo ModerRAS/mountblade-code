@@ -10,19 +10,19 @@
  * @param offset1 偏移量1
  * @param offset2 偏移量2
  */
-void process_memory_allocation(uint64_t context, uint64_t data_ptr, longlong offset1, longlong offset2)
+void process_memory_allocation(uint64_t context, uint64_t data_ptr, int64_t offset1, int64_t offset2)
 {
-  longlong calculated_offset;
+  int64_t calculated_offset;
   uint64_t new_pointer;
-  longlong current_ptr;
-  ulonglong required_size;
-  longlong temp_ptr;
-  longlong base_ptr;
-  longlong size_limit;
-  ulonglong max_capacity;
+  int64_t current_ptr;
+  uint64_t required_size;
+  int64_t temp_ptr;
+  int64_t base_ptr;
+  int64_t size_limit;
+  uint64_t max_capacity;
   
   // 计算需要的内存大小
-  calculated_offset = SUB168(SEXT816(offset2) * SEXT816(*(longlong *)(base_ptr + 8) - offset1), 8);
+  calculated_offset = SUB168(SEXT816(offset2) * SEXT816(*(int64_t *)(base_ptr + 8) - offset1), 8);
   required_size = (calculated_offset >> 4) - (calculated_offset >> 0x3f);
   
   // 检查是否需要重新分配内存
@@ -34,13 +34,13 @@ void process_memory_allocation(uint64_t context, uint64_t data_ptr, longlong off
   else {
     // 释放现有内存块
     temp_ptr = allocate_memory_block();
-    current_ptr = *(longlong *)(base_ptr + 8);
+    current_ptr = *(int64_t *)(base_ptr + 8);
     
     // 遍历并释放所有内存块
     for (size_limit = temp_ptr; size_limit != current_ptr; size_limit = size_limit + 0x60) {
       cleanup_memory_block(size_limit);
     }
-    *(longlong *)(base_ptr + 8) = temp_ptr;
+    *(int64_t *)(base_ptr + 8) = temp_ptr;
   }
   return;
 }
@@ -52,7 +52,7 @@ void process_memory_allocation(uint64_t context, uint64_t data_ptr, longlong off
  * @param size 数据大小
  * @return 返回目标地址
  */
-longlong batch_memory_copy(longlong dest, longlong src, longlong size)
+int64_t batch_memory_copy(int64_t dest, int64_t src, int64_t size)
 {
   if (dest != src) {
     do {
@@ -71,34 +71,34 @@ longlong batch_memory_copy(longlong dest, longlong src, longlong size)
  * @param target_ptr 目标指针
  * @return 返回处理后的指针
  */
-uint64_t * process_structure_copy(longlong start_ptr, longlong end_ptr, uint64_t *target_ptr)
+uint64_t * process_structure_copy(int64_t start_ptr, int64_t end_ptr, uint64_t *target_ptr)
 {
   uint64_t *result_ptr;
   int32_t *data_ptr;
   uint data_size;
-  longlong source_block;
-  longlong target_block;
+  int64_t source_block;
+  int64_t target_block;
   int32_t temp_data;
   int32_t temp_data2;
   int32_t temp_data3;
   uint64_t temp_value;
-  longlong block_count;
-  ulonglong copy_size;
+  int64_t block_count;
+  uint64_t copy_size;
   
   // 计算需要处理的块数量
   block_count = (end_ptr - start_ptr) / 6 + (end_ptr - start_ptr >> 0x3f);
   block_count = (block_count >> 4) - (block_count >> 0x3f);
   
   if (0 < block_count) {
-    start_ptr = start_ptr - (longlong)target_ptr;
+    start_ptr = start_ptr - (int64_t)target_ptr;
     do {
-      source_block = *(longlong *)(start_ptr + 0x58 + (longlong)target_ptr);
+      source_block = *(int64_t *)(start_ptr + 0x58 + (int64_t)target_ptr);
       target_block = target_ptr[0xb];
       data_size = *(uint *)(source_block + 0x10);
-      copy_size = (ulonglong)data_size;
+      copy_size = (uint64_t)data_size;
       
       // 处理第一个数据块
-      if (*(longlong *)(source_block + 8) != 0) {
+      if (*(int64_t *)(source_block + 8) != 0) {
         allocate_buffer_memory(target_block, copy_size);
       }
       if (data_size != 0) {
@@ -106,72 +106,72 @@ uint64_t * process_structure_copy(longlong start_ptr, longlong end_ptr, uint64_t
         memcpy(*(uint64_t *)(target_block + 8), *(uint64_t *)(source_block + 8), copy_size);
       }
       *(int32_t *)(target_block + 0x10) = 0;
-      if (*(longlong *)(target_block + 8) != 0) {
-        *(int8_t *)(copy_size + *(longlong *)(target_block + 8)) = 0;
+      if (*(int64_t *)(target_block + 8) != 0) {
+        *(int8_t *)(copy_size + *(int64_t *)(target_block + 8)) = 0;
       }
       
       // 复制其他数据块
       *(int32_t *)(target_block + 0x1c) = *(int32_t *)(source_block + 0x1c);
       data_size = *(uint *)(source_block + 0x30);
-      copy_size = (ulonglong)data_size;
-      if (*(longlong *)(source_block + 0x28) != 0) {
+      copy_size = (uint64_t)data_size;
+      if (*(int64_t *)(source_block + 0x28) != 0) {
         allocate_buffer_memory(target_block + 0x20, copy_size);
       }
       if (data_size != 0) {
         memcpy(*(uint64_t *)(target_block + 0x28), *(uint64_t *)(source_block + 0x28), copy_size);
       }
       *(int32_t *)(target_block + 0x30) = 0;
-      if (*(longlong *)(target_block + 0x28) != 0) {
-        *(int8_t *)(copy_size + *(longlong *)(target_block + 0x28)) = 0;
+      if (*(int64_t *)(target_block + 0x28) != 0) {
+        *(int8_t *)(copy_size + *(int64_t *)(target_block + 0x28)) = 0;
       }
       
       *(int32_t *)(target_block + 0x3c) = *(int32_t *)(source_block + 0x3c);
       data_size = *(uint *)(source_block + 0x50);
-      copy_size = (ulonglong)data_size;
-      if (*(longlong *)(source_block + 0x48) != 0) {
+      copy_size = (uint64_t)data_size;
+      if (*(int64_t *)(source_block + 0x48) != 0) {
         allocate_buffer_memory(target_block + 0x40, copy_size);
       }
       if (data_size != 0) {
         memcpy(*(uint64_t *)(target_block + 0x48), *(uint64_t *)(source_block + 0x48), copy_size);
       }
       *(int32_t *)(target_block + 0x50) = 0;
-      if (*(longlong *)(target_block + 0x48) != 0) {
-        *(int8_t *)(copy_size + *(longlong *)(target_block + 0x48)) = 0;
+      if (*(int64_t *)(target_block + 0x48) != 0) {
+        *(int8_t *)(copy_size + *(int64_t *)(target_block + 0x48)) = 0;
       }
       
       block_count = block_count + -1;
       *(int32_t *)(target_block + 0x5c) = *(int32_t *)(source_block + 0x5c);
-      temp_value = ((uint64_t *)(start_ptr + (longlong)target_ptr))[1];
-      *target_ptr = *(uint64_t *)(start_ptr + (longlong)target_ptr);
+      temp_value = ((uint64_t *)(start_ptr + (int64_t)target_ptr))[1];
+      *target_ptr = *(uint64_t *)(start_ptr + (int64_t)target_ptr);
       target_ptr[1] = temp_value;
-      result_ptr = (uint64_t *)(start_ptr + 0x10 + (longlong)target_ptr);
+      result_ptr = (uint64_t *)(start_ptr + 0x10 + (int64_t)target_ptr);
       temp_value = result_ptr[1];
       target_ptr[2] = *result_ptr;
       target_ptr[3] = temp_value;
-      result_ptr = (uint64_t *)(start_ptr + 0x20 + (longlong)target_ptr);
+      result_ptr = (uint64_t *)(start_ptr + 0x20 + (int64_t)target_ptr);
       temp_value = result_ptr[1];
       target_ptr[4] = *result_ptr;
       target_ptr[5] = temp_value;
-      result_ptr = (uint64_t *)(start_ptr + 0x30 + (longlong)target_ptr);
+      result_ptr = (uint64_t *)(start_ptr + 0x30 + (int64_t)target_ptr);
       temp_value = result_ptr[1];
       target_ptr[6] = *result_ptr;
       target_ptr[7] = temp_value;
-      data_ptr = (int32_t *)(start_ptr + 0x40 + (longlong)target_ptr);
+      data_ptr = (int32_t *)(start_ptr + 0x40 + (int64_t)target_ptr);
       temp_data = data_ptr[1];
       temp_data2 = data_ptr[2];
       temp_data3 = data_ptr[3];
       *(int32_t *)(target_ptr + 8) = *data_ptr;
-      *(int32_t *)((longlong)target_ptr + 0x44) = temp_data;
+      *(int32_t *)((int64_t)target_ptr + 0x44) = temp_data;
       *(int32_t *)(target_ptr + 9) = temp_data2;
-      *(int32_t *)((longlong)target_ptr + 0x4c) = temp_data3;
-      data_ptr = (int32_t *)(start_ptr + 0x50 + (longlong)target_ptr);
+      *(int32_t *)((int64_t)target_ptr + 0x4c) = temp_data3;
+      data_ptr = (int32_t *)(start_ptr + 0x50 + (int64_t)target_ptr);
       temp_data = data_ptr[1];
       temp_data2 = data_ptr[2];
       temp_data3 = data_ptr[3];
       *(int32_t *)(target_ptr + 10) = *data_ptr;
-      *(int32_t *)((longlong)target_ptr + 0x54) = temp_data;
+      *(int32_t *)((int64_t)target_ptr + 0x54) = temp_data;
       *(int32_t *)(target_ptr + 0xb) = temp_data2;
-      *(int32_t *)((longlong)target_ptr + 0x5c) = temp_data3;
+      *(int32_t *)((int64_t)target_ptr + 0x5c) = temp_data3;
       target_ptr[0xb] = target_block;
       target_ptr = target_ptr + 0xc;
     } while (0 < block_count);
@@ -186,100 +186,100 @@ uint64_t * process_structure_copy(longlong start_ptr, longlong end_ptr, uint64_t
  * @param param3 参数3
  * @return 返回处理结果
  */
-uint64_t * batch_process_structures(uint64_t param1, uint64_t param2, longlong param3)
+uint64_t * batch_process_structures(uint64_t param1, uint64_t param2, int64_t param3)
 {
   uint64_t *result_ptr;
   int32_t *data_ptr;
   uint data_size;
-  longlong source_block;
-  longlong target_block;
+  int64_t source_block;
+  int64_t target_block;
   int32_t temp_data;
   int32_t temp_data2;
   int32_t temp_data3;
   uint64_t temp_value;
-  ulonglong copy_size;
-  longlong iteration_count;
+  uint64_t copy_size;
+  int64_t iteration_count;
   uint64_t *source_ptr;
-  longlong base_offset;
+  int64_t base_offset;
   
   param3 = base_offset - param3;
   while( true ) {
-    source_block = *(longlong *)(param3 + 0x58 + (longlong)source_ptr);
+    source_block = *(int64_t *)(param3 + 0x58 + (int64_t)source_ptr);
     target_block = source_ptr[0xb];
     data_size = *(uint *)(source_block + 0x10);
-    copy_size = (ulonglong)data_size;
+    copy_size = (uint64_t)data_size;
     
-    if (*(longlong *)(source_block + 8) != 0) {
+    if (*(int64_t *)(source_block + 8) != 0) {
       allocate_buffer_memory(target_block, copy_size);
     }
     if (data_size != 0) {
       memcpy(*(uint64_t *)(target_block + 8), *(uint64_t *)(source_block + 8), copy_size);
     }
     *(int32_t *)(target_block + 0x10) = 0;
-    if (*(longlong *)(target_block + 8) != 0) {
-      *(int8_t *)(copy_size + *(longlong *)(target_block + 8)) = 0;
+    if (*(int64_t *)(target_block + 8) != 0) {
+      *(int8_t *)(copy_size + *(int64_t *)(target_block + 8)) = 0;
     }
     
     *(int32_t *)(target_block + 0x1c) = *(int32_t *)(source_block + 0x1c);
     data_size = *(uint *)(source_block + 0x30);
-    copy_size = (ulonglong)data_size;
-    if (*(longlong *)(source_block + 0x28) != 0) {
+    copy_size = (uint64_t)data_size;
+    if (*(int64_t *)(source_block + 0x28) != 0) {
       allocate_buffer_memory(target_block + 0x20, copy_size);
     }
     if (data_size != 0) break;
     
     *(int32_t *)(target_block + 0x30) = 0;
-    if (*(longlong *)(target_block + 0x28) != 0) {
-      *(int8_t *)(copy_size + *(longlong *)(target_block + 0x28)) = 0;
+    if (*(int64_t *)(target_block + 0x28) != 0) {
+      *(int8_t *)(copy_size + *(int64_t *)(target_block + 0x28)) = 0;
     }
     
     *(int32_t *)(target_block + 0x3c) = *(int32_t *)(source_block + 0x3c);
     data_size = *(uint *)(source_block + 0x50);
-    copy_size = (ulonglong)data_size;
-    if (*(longlong *)(source_block + 0x48) != 0) {
+    copy_size = (uint64_t)data_size;
+    if (*(int64_t *)(source_block + 0x48) != 0) {
       allocate_buffer_memory(target_block + 0x40, copy_size);
     }
     if (data_size != 0) {
       memcpy(*(uint64_t *)(target_block + 0x48), *(uint64_t *)(source_block + 0x48), copy_size);
     }
     *(int32_t *)(target_block + 0x50) = 0;
-    if (*(longlong *)(target_block + 0x48) != 0) {
-      *(int8_t *)(copy_size + *(longlong *)(target_block + 0x48)) = 0;
+    if (*(int64_t *)(target_block + 0x48) != 0) {
+      *(int8_t *)(copy_size + *(int64_t *)(target_block + 0x48)) = 0;
     }
     
     iteration_count = iteration_count + -1;
     *(int32_t *)(target_block + 0x5c) = *(int32_t *)(source_block + 0x5c);
-    temp_value = ((uint64_t *)(param3 + (longlong)source_ptr))[1];
-    *source_ptr = *(uint64_t *)(param3 + (longlong)source_ptr);
+    temp_value = ((uint64_t *)(param3 + (int64_t)source_ptr))[1];
+    *source_ptr = *(uint64_t *)(param3 + (int64_t)source_ptr);
     source_ptr[1] = temp_value;
-    result_ptr = (uint64_t *)(param3 + 0x10 + (longlong)source_ptr);
+    result_ptr = (uint64_t *)(param3 + 0x10 + (int64_t)source_ptr);
     temp_value = result_ptr[1];
     source_ptr[2] = *result_ptr;
     source_ptr[3] = temp_value;
-    result_ptr = (uint64_t *)(param3 + 0x20 + (longlong)source_ptr);
+    result_ptr = (uint64_t *)(param3 + 0x20 + (int64_t)source_ptr);
     temp_value = result_ptr[1];
     source_ptr[4] = *result_ptr;
     source_ptr[5] = temp_value;
-    result_ptr = (uint64_t *)(param3 + 0x30 + (longlong)source_ptr);
+    result_ptr = (uint64_t *)(param3 + 0x30 + (int64_t)source_ptr);
     temp_value = result_ptr[1];
     source_ptr[6] = *result_ptr;
     source_ptr[7] = temp_value;
-    data_ptr = (int32_t *)(param3 + 0x40 + (longlong)source_ptr);
+    data_ptr = (int32_t *)(param3 + 0x40 + (int64_t)source_ptr);
     temp_data = data_ptr[1];
     temp_data2 = data_ptr[2];
     temp_data3 = data_ptr[3];
     *(int32_t *)(source_ptr + 8) = *data_ptr;
-    *(int32_t *)((longlong)source_ptr + 0x44) = temp_data;
+    *(int32_t *)((int64_t)source_ptr + 0x44) = temp_data;
     *(int32_t *)(source_ptr + 9) = temp_data2;
-    *(int32_t *)((longlong)source_ptr + 0x4c) = temp_data3;
-    data_ptr = (int32_t *)(param3 + 0x50 + (longlong)source_ptr);
+    *(int32_t *)((int64_t)source_ptr + 0x4c) = temp_data3;
+    data_ptr = (int32_t *)(param3 + 0x50 + (int64_t)source_ptr);
     temp_data = data_ptr[1];
     temp_data2 = data_ptr[2];
     temp_data3 = data_ptr[3];
     *(int32_t *)(source_ptr + 10) = *data_ptr;
-    *(int32_t *)((longlong)source_ptr + 0x54) = temp_data;
+    *(int32_t *)((int64_t)source_ptr + 0x54) = temp_data;
     *(int32_t *)(source_ptr + 0xb) = temp_data2;
-    *(int32_t *)((longlong)source_ptr + 0x5c) = temp_data3;
+    *(int32_t *)((int64_t)source_ptr + 0x5c) = temp_data3;
     source_ptr[0xb] = target_block;
     source_ptr = source_ptr + 0xc;
     if (iteration_count < 1) {
@@ -305,8 +305,8 @@ void initialize_placeholder(void)
  */
 uint64_t * copy_structure_content(uint64_t *dest, uint64_t *src)
 {
-  longlong dest_data;
-  longlong src_data;
+  int64_t dest_data;
+  int64_t src_data;
   uint64_t temp_value;
   
   dest_data = dest[0xb];
@@ -346,7 +346,7 @@ uint64_t * copy_structure_content(uint64_t *dest, uint64_t *src)
  * @return 返回初始化后的数据指针
  */
 uint64_t *
-initialize_data_structure(uint64_t *data_ptr, ulonglong flags, uint64_t param3, uint64_t param4)
+initialize_data_structure(uint64_t *data_ptr, uint64_t flags, uint64_t param3, uint64_t param4)
 {
   *data_ptr = &GLOBAL_DATA_TABLE_001;
   data_ptr[2] = &GLOBAL_DATA_TABLE_002;
@@ -367,7 +367,7 @@ initialize_data_structure(uint64_t *data_ptr, ulonglong flags, uint64_t param3, 
  * @param data_ptr 数据指针
  * @return 返回处理后的矩阵指针
  */
-longlong process_matrix_transform(longlong transform_matrix, char index, longlong data_ptr)
+int64_t process_matrix_transform(int64_t transform_matrix, char index, int64_t data_ptr)
 {
   uint64_t *vector_ptr;
   float *matrix_ptr;
@@ -376,9 +376,9 @@ longlong process_matrix_transform(longlong transform_matrix, char index, longlon
   float temp_float;
   uint64_t temp_value;
   uint64_t *source_ptr;
-  longlong row_index, col_index;
-  ulonglong bitmask;
-  ulonglong processed_mask;
+  int64_t row_index, col_index;
+  uint64_t bitmask;
+  uint64_t processed_mask;
   char iteration_flag;
   bool continue_processing;
   float result_x, result_y, result_z;
@@ -386,17 +386,17 @@ longlong process_matrix_transform(longlong transform_matrix, char index, longlon
   uint64_t stack_value1, stack_value2, stack_value3, stack_value4;
   
   iteration_flag = '\0';
-  processed_mask = *(ulonglong *)((longlong)index * 0x1b0 + 0xe0 + *(longlong *)(data_ptr + 0x140)) &
-                   *(ulonglong *)(transform_matrix + 0x800);
+  processed_mask = *(uint64_t *)((int64_t)index * 0x1b0 + 0xe0 + *(int64_t *)(data_ptr + 0x140)) &
+                   *(uint64_t *)(transform_matrix + 0x800);
   
   if (processed_mask != 0) {
     do {
       if ((processed_mask & 1) != 0) {
-        bitmask = (ulonglong)iteration_flag;
+        bitmask = (uint64_t)iteration_flag;
         flag = *(char *)(bitmask + 0x100 + data_ptr);
         
         if (*(char *)(transform_matrix + 0x1042) == '\0') {
-          vector_ptr = (uint64_t *)(bitmask * 0x1b0 + 0x80 + *(longlong *)(data_ptr + 0x140));
+          vector_ptr = (uint64_t *)(bitmask * 0x1b0 + 0x80 + *(int64_t *)(data_ptr + 0x140));
           source_ptr = &stack_value3;
           stack_value3 = *vector_ptr;
           stack_value4 = vector_ptr[1];
@@ -409,7 +409,7 @@ longlong process_matrix_transform(longlong transform_matrix, char index, longlon
         }
         
         stack_data1 = (float)*source_ptr;
-        stack_data2 = (float)((ulonglong)*source_ptr >> 0x20);
+        stack_data2 = (float)((uint64_t)*source_ptr >> 0x20);
         stack_data3 = (float)source_ptr[1];
         
         if (flag < '\0') {
@@ -430,7 +430,7 @@ longlong process_matrix_transform(longlong transform_matrix, char index, longlon
           z_component = matrix_ptr[2];
           w_component = matrix_ptr[3];
           
-          row_index = (longlong)flag;
+          row_index = (int64_t)flag;
           col_index = row_index + 0x40;
           matrix_ptr = (float *)(transform_matrix + row_index * 0x10);
           result_x = *matrix_ptr;
@@ -470,21 +470,21 @@ longlong process_matrix_transform(longlong transform_matrix, char index, longlon
         matrix_ptr[2] = stack_data3;
         matrix_ptr[3] = 3.4028235e+38; // 最大浮点数
         
-        *(ulonglong *)(transform_matrix + 0x800) = *(ulonglong *)(transform_matrix + 0x800) & ~(1L << (bitmask & 0x3f));
+        *(uint64_t *)(transform_matrix + 0x800) = *(uint64_t *)(transform_matrix + 0x800) & ~(1L << (bitmask & 0x3f));
       }
       iteration_flag = iteration_flag + '\x01';
       continue_processing = 1 < processed_mask;
       processed_mask = processed_mask >> 1;
     } while (continue_processing);
   }
-  return transform_matrix + (longlong)index * 0x10;
+  return transform_matrix + (int64_t)index * 0x10;
 }
 
 /**
  * @brief 优化矩阵变换处理
  * @return 返回处理后的矩阵指针
  */
-longlong optimized_matrix_transform(void)
+int64_t optimized_matrix_transform(void)
 {
   uint64_t *vector_ptr;
   float *matrix_ptr;
@@ -493,11 +493,11 @@ longlong optimized_matrix_transform(void)
   float temp_float;
   uint64_t temp_value;
   uint64_t *source_ptr;
-  longlong row_index, col_index;
-  longlong base_offset, data_offset;
-  ulonglong bitmask;
-  longlong matrix_base;
-  ulonglong iteration_mask;
+  int64_t row_index, col_index;
+  int64_t base_offset, data_offset;
+  uint64_t bitmask;
+  int64_t matrix_base;
+  uint64_t iteration_mask;
   char iteration_flag;
   bool continue_processing;
   float result_x, result_y, result_z, result_w;
@@ -506,11 +506,11 @@ longlong optimized_matrix_transform(void)
   
   do {
     if ((iteration_mask & 1) != 0) {
-      bitmask = (ulonglong)iteration_flag;
+      bitmask = (uint64_t)iteration_flag;
       flag = *(char *)(bitmask + 0x100 + base_offset);
       
       if (*(char *)(matrix_base + 0x1042) == '\0') {
-        vector_ptr = (uint64_t *)(bitmask * 0x1b0 + 0x80 + *(longlong *)(base_offset + 0x140));
+        vector_ptr = (uint64_t *)(bitmask * 0x1b0 + 0x80 + *(int64_t *)(base_offset + 0x140));
         source_ptr = &stack_value4;
         stack_value4 = *vector_ptr;
         stack_value1 = vector_ptr[1];
@@ -523,7 +523,7 @@ longlong optimized_matrix_transform(void)
       }
       
       result_y = (float)*source_ptr;
-      result_x = (float)((ulonglong)*source_ptr >> 0x20);
+      result_x = (float)((uint64_t)*source_ptr >> 0x20);
       stack_data_z = (float)source_ptr[1];
       
       if (flag < '\0') {
@@ -544,7 +544,7 @@ longlong optimized_matrix_transform(void)
         z_component = matrix_ptr[2];
         w_component = matrix_ptr[3];
         
-        row_index = (longlong)flag;
+        row_index = (int64_t)flag;
         col_index = row_index + 0x40;
         matrix_ptr = (float *)(matrix_base + row_index * 0x10);
         result_z = *matrix_ptr;
@@ -583,7 +583,7 @@ longlong optimized_matrix_transform(void)
       matrix_ptr[1] = result_x;
       matrix_ptr[2] = stack_data_z;
       matrix_ptr[3] = 3.4028235e+38;
-      *(ulonglong *)(matrix_base + 0x800) = *(ulonglong *)(matrix_base + 0x800) & ~(1L << (bitmask & 0x3f));
+      *(uint64_t *)(matrix_base + 0x800) = *(uint64_t *)(matrix_base + 0x800) & ~(1L << (bitmask & 0x3f));
     }
     iteration_flag = iteration_flag + '\x01';
     continue_processing = 1 < iteration_mask;
@@ -596,10 +596,10 @@ longlong optimized_matrix_transform(void)
  * @brief 简单的矩阵地址计算
  * @return 返回计算后的矩阵地址
  */
-longlong calculate_matrix_address(void)
+int64_t calculate_matrix_address(void)
 {
-  longlong offset;
-  longlong base_address;
+  int64_t offset;
+  int64_t base_address;
   
   return base_address + offset * 0x10;
 }
@@ -611,16 +611,16 @@ longlong calculate_matrix_address(void)
  * @param axis_index 轴索引
  * @param data_ptr 数据指针
  */
-void process_quaternion_rotation(longlong matrix_ptr, float *rotation_ptr, char axis_index, longlong data_ptr)
+void process_quaternion_rotation(int64_t matrix_ptr, float *rotation_ptr, char axis_index, int64_t data_ptr)
 {
-  longlong temp_offset;
+  int64_t temp_offset;
   char current_axis;
   int8_t axis_vector [16];
   int8_t temp_vector [16];
   int8_t result_vector [16];
   int8_t normalized_vector [16];
   uint mask_result;
-  ulonglong bitmask;
+  uint64_t bitmask;
   float qx, qy, qz, qw;
   float rx, ry, rz, rw;
   float nx, ny, nz, nw;
@@ -630,16 +630,16 @@ void process_quaternion_rotation(longlong matrix_ptr, float *rotation_ptr, char 
   float final_x, final_y, final_z, final_w;
   int8_t stack_data [32];
   uint64_t stack_value1, stack_value2, stack_value3, stack_value4;
-  ulonglong security_key;
+  uint64_t security_key;
   
   // 安全检查
-  security_key = GLOBAL_SECURITY_KEY ^ (ulonglong)stack_data;
+  security_key = GLOBAL_SECURITY_KEY ^ (uint64_t)stack_data;
   stack_value1 = 0x3f8000003f800000;
   stack_value2 = 0x3f8000003f800000;
   stack_value3 = 0xbf800000bf800000;
   stack_value4 = 0xbf800000bf800000;
   
-  temp_offset = (longlong)axis_index + 0x82;
+  temp_offset = (int64_t)axis_index + 0x82;
   normalized_vector = *(int8_t (*) [16])(matrix_ptr + temp_offset * 0x10);
   
   scale_x = normalized_vector._8_4_ * 0.0;
@@ -653,12 +653,12 @@ void process_quaternion_rotation(longlong matrix_ptr, float *rotation_ptr, char 
   result_vector._12_4_ = scale_y + scale_y;
   
   mask_result = movmskps((int)temp_offset * 2, result_vector);
-  bitmask = (ulonglong)(mask_result & 1);
+  bitmask = (uint64_t)(mask_result & 1);
   
   scale_x = *(float *)(&stack_value1 + bitmask * 2) * normalized_vector._0_4_;
-  scale_y = *(float *)((longlong)&stack_value1 + bitmask * 0x10 + 4) * normalized_vector._4_4_;
+  scale_y = *(float *)((int64_t)&stack_value1 + bitmask * 0x10 + 4) * normalized_vector._4_4_;
   qw = *(float *)(&stack_value2 + bitmask * 2) * normalized_vector._8_4_;
-  final_w = *(float *)((longlong)&stack_value2 + bitmask * 0x10 + 4) * normalized_vector._12_4_;
+  final_w = *(float *)((int64_t)&stack_value2 + bitmask * 0x10 + 4) * normalized_vector._12_4_;
   
   if (0.9995 < ABS(qz)) {
     // 处理奇点情况
@@ -707,15 +707,15 @@ void process_quaternion_rotation(longlong matrix_ptr, float *rotation_ptr, char 
   rotation_ptr[3] = qw;
   
   // 处理其他轴
-  for (current_axis = *(char *)((longlong)axis_index + 0x100 + data_ptr); -1 < current_axis;
-      current_axis = *(char *)((longlong)current_axis + 0x100 + data_ptr)) {
+  for (current_axis = *(char *)((int64_t)axis_index + 0x100 + data_ptr); -1 < current_axis;
+      current_axis = *(char *)((int64_t)current_axis + 0x100 + data_ptr)) {
     
     stack_value1 = 0x3f8000003f800000;
     stack_value2 = 0x3f8000003f800000;
     stack_value3 = 0xbf800000bf800000;
     stack_value4 = 0xbf800000bf800000;
     
-    temp_offset = (longlong)current_axis + 0x82;
+    temp_offset = (int64_t)current_axis + 0x82;
     normalized_vector = *(int8_t (*) [16])(matrix_ptr + temp_offset * 0x10);
     
     final_w = normalized_vector._8_4_ * 0.0;
@@ -729,12 +729,12 @@ void process_quaternion_rotation(longlong matrix_ptr, float *rotation_ptr, char 
     axis_vector._12_4_ = rx + rx;
     
     mask_result = movmskps((int)temp_offset * 2, axis_vector);
-    bitmask = (ulonglong)(mask_result & 1);
+    bitmask = (uint64_t)(mask_result & 1);
     
     final_w = *(float *)(&stack_value1 + bitmask * 2) * normalized_vector._0_4_;
-    rx = *(float *)((longlong)&stack_value1 + bitmask * 0x10 + 4) * normalized_vector._4_4_;
+    rx = *(float *)((int64_t)&stack_value1 + bitmask * 0x10 + 4) * normalized_vector._4_4_;
     qw = *(float *)(&stack_value2 + bitmask * 2) * normalized_vector._8_4_;
-    temp_w = *(float *)((longlong)&stack_value2 + bitmask * 0x10 + 4) * normalized_vector._12_4_;
+    temp_w = *(float *)((int64_t)&stack_value2 + bitmask * 0x10 + 4) * normalized_vector._12_4_;
     
     if (0.9995 < ABS(qz)) {
       // 奇点处理
@@ -796,7 +796,7 @@ void process_quaternion_rotation(longlong matrix_ptr, float *rotation_ptr, char 
   }
   
   // 安全清理
-  cleanup_security_data(security_key ^ (ulonglong)stack_data);
+  cleanup_security_data(security_key ^ (uint64_t)stack_data);
 }
 
 /**
@@ -804,12 +804,12 @@ void process_quaternion_rotation(longlong matrix_ptr, float *rotation_ptr, char 
  */
 void batch_process_rotations(void)
 {
-  longlong temp_offset;
+  int64_t temp_offset;
   int8_t axis_vector [16];
   int8_t temp_vector [16];
   char current_axis;
   uint mask_result;
-  ulonglong bitmask;
+  uint64_t bitmask;
   float qx, qy, qz, qw;
   float rx, ry, rz, rw;
   float nx, ny, nz, nw;
@@ -822,10 +822,10 @@ void batch_process_rotations(void)
   float unaff_xmm6_a, unaff_xmm6_b, unaff_xmm6_c, unaff_xmm6_d;
   float unaff_xmm7_a;
   float afStack_data [2];
-  ulonglong security_token;
+  uint64_t security_token;
   
   do {
-    temp_offset = (longlong)current_axis + 0x82;
+    temp_offset = (int64_t)current_axis + 0x82;
     normalized_vector = *(int8_t (*) [16])(base_ptr + temp_offset * 0x10);
     
     qw = normalized_vector._8_4_ * 0.0;
@@ -839,7 +839,7 @@ void batch_process_rotations(void)
     temp_vector._12_4_ = rx + rx;
     
     mask_result = movmskps((int)temp_offset * 2, temp_vector);
-    bitmask = (ulonglong)(mask_result & 1);
+    bitmask = (uint64_t)(mask_result & 1);
     
     qw = afStack_data[bitmask * 4] * normalized_vector._0_4_;
     rx = afStack_data[bitmask * 4 + 1] * normalized_vector._4_4_;
@@ -909,11 +909,11 @@ void batch_process_rotations(void)
     output_ptr[2] = unaff_xmm6_c;
     output_ptr[3] = unaff_xmm6_d;
     
-    current_axis = *(char *)((longlong)current_axis + 0x100 + data_offset);
+    current_axis = *(char *)((int64_t)current_axis + 0x100 + data_offset);
   } while (-1 < current_axis);
   
   // 安全清理
-  cleanup_security_data(security_token ^ (ulonglong)&stack_base);
+  cleanup_security_data(security_token ^ (uint64_t)&stack_base);
 }
 
 // 全局变量定义
@@ -922,4 +922,4 @@ static const uint64_t GLOBAL_DATA_TABLE_001 = 0x180a02e68;
 static const uint64_t GLOBAL_DATA_TABLE_002 = 0x18098bcb0;
 static const uint64_t GLOBAL_DATA_TABLE_003 = 0x180a21720;
 static const uint64_t GLOBAL_DATA_TABLE_004 = 0x180a21690;
-static const ulonglong GLOBAL_SECURITY_KEY = 0x180bf00a8;
+static const uint64_t GLOBAL_SECURITY_KEY = 0x180bf00a8;

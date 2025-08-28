@@ -121,15 +121,15 @@ void advanced_file_path_processor(
     uint32_t temp_uint32;
     uint32_t uint_var1;
     uint64_t uint64_var1;
-    longlong long_var1;
-    longlong long_var2;
-    longlong long_var3;
-    longlong long_var4;
+    int64_t long_var1;
+    int64_t long_var2;
+    int64_t long_var3;
+    int64_t long_var4;
     uint32_t* uint32_ptr1;
     uint32_t uint_var2;
     uint8_t* uint8_ptr1;
     uint64_t* uint64_ptr1;
-    longlong long_var5;
+    int64_t long_var5;
     void* void_ptr1;
     uint32_t uint_var3;
     int int_var1;
@@ -177,7 +177,7 @@ void advanced_file_path_processor(
     int stack_var_8c8;
     uint64_t stack_var_8c0;
     void* stack_ptr_8b8;
-    longlong stack_var_8b0;
+    int64_t stack_var_8b0;
     uint32_t stack_var_8a8;
     uint64_t stack_var_8a0;
     void* stack_ptr_898;
@@ -185,7 +185,7 @@ void advanced_file_path_processor(
     uint32_t stack_var_888;
     uint64_t stack_var_880;
     void* stack_ptr_878;
-    longlong stack_var_870;
+    int64_t stack_var_870;
     int stack_var_868;
     uint64_t stack_var_860;
     void* stack_ptr_858;
@@ -195,11 +195,11 @@ void advanced_file_path_processor(
     uint32_t stack_var_838;
     
     // 更多栈变量...
-    longlong stack_var_810;
-    longlong stack_var_808;
-    longlong stack_var_7f0;
+    int64_t stack_var_810;
+    int64_t stack_var_808;
+    int64_t stack_var_7f0;
     uint64_t stack_var_7e8;
-    longlong stack_array_7e0[2];
+    int64_t stack_array_7e0[2];
     void* stack_ptr_7d0;
     void* stack_ptr_7c8;
     int stack_var_7c0;
@@ -209,10 +209,10 @@ void advanced_file_path_processor(
     int stack_var_7a0;
     uint64_t stack_var_790;
     uint8_t stack_buffer_788[8];
-    longlong stack_var_780;
+    int64_t stack_var_780;
     int stack_var_778;
     uint64_t stack_var_768;
-    longlong stack_var_760;
+    int64_t stack_var_760;
     uint8_t stack_var_758;
     uint8_t stack_buffer_750[8];
     void* stack_ptr_748;
@@ -220,12 +220,12 @@ void advanced_file_path_processor(
     uint8_t stack_buffer_730[8];
     uint64_t stack_var_728;
     int stack_var_720;
-    longlong stack_array_710[4];
+    int64_t stack_array_710[4];
     uint64_t stack_var_6f0;
-    longlong stack_var_6e8;
+    int64_t stack_var_6e8;
     uint8_t stack_var_6e0;
     void* stack_ptr_6d8;
-    longlong stack_var_6d0;
+    int64_t stack_var_6d0;
     uint32_t stack_var_6c0;
     uint64_t stack_var_6b8;
     uint8_t stack_buffer_6a8[112];

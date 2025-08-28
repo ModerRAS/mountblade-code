@@ -28,10 +28,10 @@ void initialize_string_processor_016(void)
 uint64_t setup_thread_local_storage(void)
 
 {
-  longlong tls_ptr;
+  int64_t tls_ptr;
   int *thread_data_ptr;
   
-  tls_ptr = *(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8);
+  tls_ptr = *(int64_t *)((int64_t)ThreadLocalStoragePointer + (uint64_t)__tls_index * 8);
   *(uint64_t *)(tls_ptr + 0x18) = &TLS_STORAGE_BASE_001;
   *(uint64_t *)(tls_ptr + 0x20) = 0;
   *(int32_t *)(tls_ptr + 0x28) = 0;
@@ -39,7 +39,7 @@ uint64_t setup_thread_local_storage(void)
   *(uint64_t *)(tls_ptr + 0x30) = 0;
   *(uint64_t *)(tls_ptr + 0x20) = 0;
   *(int32_t *)(tls_ptr + 0x28) = 0;
-  tls_ptr = *(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8);
+  tls_ptr = *(int64_t *)((int64_t)ThreadLocalStoragePointer + (uint64_t)__tls_index * 8);
   thread_data_ptr = *(int **)(tls_ptr + 0x50);
   if (thread_data_ptr == (int *)0x0) {
     thread_data_ptr = (int *)(tls_ptr + 0x60);
@@ -56,7 +56,7 @@ uint64_t setup_thread_local_storage(void)
   *thread_data_ptr = 0;
   *(int **)(tls_ptr + 0x50) = thread_data_ptr;
 LAB_THREAD_STORAGE_INIT:
-  *(code **)(thread_data_ptr + (longlong)*thread_data_ptr * 2 + 4) = THREAD_CALLBACK_HANDLER;
+  *(code **)(thread_data_ptr + (int64_t)*thread_data_ptr * 2 + 4) = THREAD_CALLBACK_HANDLER;
   *thread_data_ptr = *thread_data_ptr + 1;
   return 0;
 }
@@ -106,7 +106,7 @@ void initialize_string_processor_017(void)
 int initialize_system_components_001(void)
 
 {
-  longlong result;
+  int64_t result;
   
   global_system_status_001 = 3;
   global_component_ptr_001 = &COMPONENT_DATA_001;
@@ -123,7 +123,7 @@ int initialize_system_components_001(void)
 int initialize_system_components_002(void)
 
 {
-  longlong result;
+  int64_t result;
   int index;
   
   global_system_config_001 = 0x100;
@@ -143,7 +143,7 @@ int initialize_system_components_002(void)
 int initialize_system_components_003(void)
 
 {
-  longlong result;
+  int64_t result;
   
   initialize_memory_pool_001(0x180c0c340);
   result = register_system_callback(&SYSTEM_CALLBACK_003);
@@ -271,7 +271,7 @@ int initialize_system_components_004(void)
 
 {
   uint64_t *component_ptr;
-  longlong counter;
+  int64_t counter;
   
   component_ptr = (uint64_t *)0x180c35590;
   counter = 0x10;
@@ -330,7 +330,7 @@ void configure_display_adapter_009(void)
 int initialize_system_components_005(void)
 
 {
-  longlong result;
+  int64_t result;
   
   initialize_debug_system(0x180c4f510);
   result = register_system_callback(&SYSTEM_CALLBACK_005);
@@ -342,7 +342,7 @@ int initialize_system_components_005(void)
 int initialize_system_components_006(void)
 
 {
-  longlong result;
+  int64_t result;
   
   initialize_mutex(0x180c82170,2);
   result = register_system_callback(&SYSTEM_CALLBACK_006);
@@ -359,25 +359,25 @@ void wots_main_sdll(uint64_t param_1)
   // SDL主函数实现
 }
 
-// 函数: void initialize_main_system(longlong param_1)
+// 函数: void initialize_main_system(int64_t param_1)
 // 初始化主系统
-void initialize_main_system(longlong param_1)
+void initialize_main_system(int64_t param_1)
 
 {
-  longlong system_state;
-  longlong *system_ptr;
+  int64_t system_state;
+  int64_t *system_ptr;
   char system_flag;
-  longlong *stack_ptr_8;
-  longlong **stack_ptr_10;
-  longlong *stack_ptr_18;
-  longlong *stack_ptr_20;
+  int64_t *stack_ptr_8;
+  int64_t **stack_ptr_10;
+  int64_t *stack_ptr_18;
+  int64_t *stack_ptr_20;
   uint64_t system_param;
   
   system_param = 0xfffffffffffffffe;
   initialize_system_base();
   global_system_counter = global_system_counter + 1;
   initialize_system_core();
-  if (global_system_root != (longlong *)0x0) {
+  if (global_system_root != (int64_t *)0x0) {
     if ((void *)*global_system_root == &SYSTEM_BASE_VTABLE) {
       system_flag = (char)global_system_root[2] != '\0';
     }
@@ -386,15 +386,15 @@ void initialize_main_system(longlong param_1)
     }
     if (system_flag == '\0') goto LAB_SYSTEM_INITIALIZED;
   }
-  system_ptr = (longlong *)allocate_system_memory(global_system_heap,0xc0,8,3,system_param);
+  system_ptr = (int64_t *)allocate_system_memory(global_system_heap,0xc0,8,3,system_param);
   stack_ptr_20 = system_ptr;
   initialize_system_component(system_ptr);
-  *system_ptr = (longlong)&SYSTEM_BASE_VTABLE;
+  *system_ptr = (int64_t)&SYSTEM_BASE_VTABLE;
   system_ptr[3] = -4;
-  stack_ptr_10 = (longlong **)system_ptr;
+  stack_ptr_10 = (int64_t **)system_ptr;
   (**(code **)(*system_ptr + 0x28))(system_ptr);
-  stack_ptr_10 = (longlong **)global_system_root;
-  if (global_system_root != (longlong *)0x0) {
+  stack_ptr_10 = (int64_t **)global_system_root;
+  if (global_system_root != (int64_t *)0x0) {
     system_state = *global_system_root;
     global_system_root = system_ptr;
     (**(code **)(system_state + 0x38))();
@@ -411,23 +411,23 @@ void initialize_main_system(longlong param_1)
   }
   system_ptr = global_system_root;
   stack_ptr_18 = global_system_root;
-  global_system_root = (longlong *)0x0;
-  if (system_ptr != (longlong *)0x0) {
+  global_system_root = (int64_t *)0x0;
+  if (system_ptr != (int64_t *)0x0) {
     (**(code **)(*system_ptr + 0x38))();
   }
 LAB_SYSTEM_INITIALIZED:
   cleanup_system_resources(*(uint64_t *)(param_1 + 0x20));
   if (*(char *)(global_system_base + 0x1ed) != '\0') {
-    system_ptr = (longlong *)allocate_system_memory(global_system_heap,0x28,8,3);
-    *system_ptr = (longlong)&EVENT_HANDLER_BASE_001;
-    *system_ptr = (longlong)&EVENT_HANDLER_BASE_002;
+    system_ptr = (int64_t *)allocate_system_memory(global_system_heap,0x28,8,3);
+    *system_ptr = (int64_t)&EVENT_HANDLER_BASE_001;
+    *system_ptr = (int64_t)&EVENT_HANDLER_BASE_002;
     *(int32_t *)(system_ptr + 1) = 0;
-    *system_ptr = (longlong)&THREAD_STORAGE_BASE_003;
+    *system_ptr = (int64_t)&THREAD_STORAGE_BASE_003;
     LOCK();
     *(int8_t *)(system_ptr + 2) = 0;
     UNLOCK();
     system_ptr[3] = -1;
-    *system_ptr = (longlong)&THREAD_STORAGE_BASE_004;
+    *system_ptr = (int64_t)&THREAD_STORAGE_BASE_004;
     system_ptr[4] = 0x180c91060;
     stack_ptr_20 = system_ptr;
     (**(code **)(*system_ptr + 0x28))(system_ptr);
@@ -441,9 +441,9 @@ LAB_SYSTEM_INITIALIZED:
   return;
 }
 
-// 函数: uint64_t * cleanup_system_memory(uint64_t *param_1,ulonglong param_2,uint64_t param_3,uint64_t param_4)
+// 函数: uint64_t * cleanup_system_memory(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 // 清理系统内存
-uint64_t * cleanup_system_memory(uint64_t *param_1,ulonglong param_2,uint64_t param_3,uint64_t param_4)
+uint64_t * cleanup_system_memory(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
   *param_1 = &THREAD_STORAGE_BASE_004;
@@ -481,50 +481,50 @@ void initialize_system_environment(void)
 {
   uint64_t *env_ptr;
   code *callback_func;
-  longlong env_state;
+  int64_t env_state;
   int init_result;
   uint64_t env_param;
-  longlong *env_data;
+  int64_t *env_data;
   int8_t env_buffer[32];
   void *stack_ptr_228;
   void *stack_ptr_220;
   void *stack_ptr_218;
-  longlong *stack_ptr_208;
+  int64_t *stack_ptr_208;
   int32_t stack_flag_200;
   void *stack_ptr_1f8;
   void *stack_ptr_1f0;
   int32_t stack_flag_1e8;
-  ulonglong stack_param_1e0;
+  uint64_t stack_param_1e0;
   void *stack_ptr_1d8;
   void *stack_ptr_1d0;
   int32_t stack_flag_1c8;
-  ulonglong stack_param_1c0;
+  uint64_t stack_param_1c0;
   void *stack_ptr_1b8;
-  longlong stack_param_1b0;
+  int64_t stack_param_1b0;
   int32_t stack_flag_1a0;
   uint64_t stack_param_198;
-  longlong *stack_ptr_190;
+  int64_t *stack_ptr_190;
   void *stack_ptr_188;
   void *stack_ptr_180;
   int32_t stack_flag_178;
   uint8_t stack_buffer_170[32];
-  longlong **stack_callback_ptr[3];
+  int64_t **stack_callback_ptr[3];
   int8_t stack_buffer_138[272];
-  ulonglong stack_checksum;
+  uint64_t stack_checksum;
   
   stack_param_198 = 0xfffffffffffffffe;
-  stack_checksum = global_system_checksum ^ (ulonglong)env_buffer;
+  stack_checksum = global_system_checksum ^ (uint64_t)env_buffer;
   stack_flag_200 = 0;
   if (*(char *)(global_system_config + 0x18) == '\0') {
     initialize_system_config(&stack_ptr_1b8);
-    (**(code **)(**(longlong **)(global_system_base + 0x2b0) + 0x98))
-              (*(longlong **)(global_system_base + 0x2b0),&stack_ptr_1b8);
+    (**(code **)(**(int64_t **)(global_system_base + 0x2b0) + 0x98))
+              (*(int64_t **)(global_system_base + 0x2b0),&stack_ptr_1b8);
     initialize_system_runtime();
     env_state = global_system_config;
     env_param = allocate_system_memory(global_system_heap,0x70,8,3);
-    env_data = (longlong *)initialize_system_component(env_param,8,env_state);
+    env_data = (int64_t *)initialize_system_component(env_param,8,env_state);
     stack_ptr_190 = env_data;
-    if (env_data != (longlong *)0x0) {
+    if (env_data != (int64_t *)0x0) {
       (**(code **)(*env_data + 0x28))(env_data);
     }
     *(int32_t *)(env_data + 0xd) = 0xbb80073;
@@ -544,23 +544,23 @@ void initialize_system_environment(void)
     stack_param_1e0 = 0;
     stack_ptr_1f0 = (void *)0x0;
     stack_flag_1e8 = 0;
-    stack_ptr_208 = (longlong *)CONCAT44(stack_ptr_208._4_4_,0x10);
+    stack_ptr_208 = (int64_t *)CONCAT44(stack_ptr_208._4_4_,0x10);
     init_result = GetComputerNameA(stack_callback_ptr,&stack_ptr_208);
     if (init_result == 0) {
       handle_system_error(&SYSTEM_ERROR_001);
     }
     else {
-      if (0xf < ((ulonglong)stack_ptr_208 & 0xffffffff)) goto LAB_ENV_INIT_ERROR;
-      *(int8_t *)((longlong)stack_callback_ptr + ((ulonglong)stack_ptr_208 & 0xffffffff)) = 0;
+      if (0xf < ((uint64_t)stack_ptr_208 & 0xffffffff)) goto LAB_ENV_INIT_ERROR;
+      *(int8_t *)((int64_t)stack_callback_ptr + ((uint64_t)stack_ptr_208 & 0xffffffff)) = 0;
       (**(code **)(stack_ptr_1d8 + 0x10))(&stack_ptr_1d8,stack_callback_ptr);
     }
-    stack_ptr_208 = (longlong *)CONCAT44(stack_ptr_208._4_4_,0x101);
+    stack_ptr_208 = (int64_t *)CONCAT44(stack_ptr_208._4_4_,0x101);
     init_result = GetUserNameA(stack_buffer_138,&stack_ptr_208);
     if (init_result == 0) {
       handle_system_error(&SYSTEM_ERROR_002);
     }
     else {
-      if (0x100 < ((ulonglong)stack_ptr_208 & 0xffffffff)) {
+      if (0x100 < ((uint64_t)stack_ptr_208 & 0xffffffff)) {
         handle_system_error();
 LAB_ENV_INIT_ERROR:
         handle_system_error();
@@ -568,7 +568,7 @@ LAB_ENV_INIT_ERROR:
         (*callback_func)();
         return;
       }
-      stack_buffer_138[(ulonglong)stack_ptr_208 & 0xffffffff] = 0;
+      stack_buffer_138[(uint64_t)stack_ptr_208 & 0xffffffff] = 0;
       (**(code **)(stack_ptr_1f8 + 0x10))(&stack_ptr_1f8,stack_buffer_138);
     }
     stack_ptr_218 = &SYSTEM_STRING_BASE_001;
@@ -622,51 +622,51 @@ LAB_ENV_INIT_ERROR:
   }
   stack_flag_200 = 0;
   // WARNING: 子函数不返回
-  system_exit_with_checksum(stack_checksum ^ (ulonglong)env_buffer);
+  system_exit_with_checksum(stack_checksum ^ (uint64_t)env_buffer);
 }
 
-// 函数: void initialize_debug_system_config(uint64_t param_1,longlong param_2)
+// 函数: void initialize_debug_system_config(uint64_t param_1,int64_t param_2)
 // 初始化调试系统配置
-void initialize_debug_system_config(uint64_t param_1,longlong param_2)
+void initialize_debug_system_config(uint64_t param_1,int64_t param_2)
 
 {
-  longlong **config_ptr;
+  int64_t **config_ptr;
   int mutex_result;
   uint debug_flag;
   int32_t debug_param;
   uint64_t system_handle;
-  longlong *debug_data;
-  longlong debug_state;
+  int64_t *debug_data;
+  int64_t debug_state;
   uint64_t *debug_ptr;
   uint64_t *debug_ptr2;
   uint64_t *debug_ptr3;
   int8_t *debug_flag_ptr;
   char *debug_string;
   void *debug_param_ptr;
-  ulonglong debug_size;
+  uint64_t debug_size;
   uint debug_length;
   char debug_char;
-  longlong *stack_ptr_10;
-  longlong **stack_ptr_18;
-  longlong stack_param_20;
+  int64_t *stack_ptr_10;
+  int64_t **stack_ptr_18;
+  int64_t stack_param_20;
   void *stack_ptr_b8;
   void *stack_ptr_b0;
   int32_t stack_flag_a0;
   void *stack_ptr_98;
-  longlong stack_param_90;
+  int64_t stack_param_90;
   uint stack_flag_88;
   void *stack_ptr_78;
   void *stack_ptr_70;
   int32_t stack_flag_60;
   uint64_t stack_param_58;
-  longlong **stack_ptr_50;
-  longlong *stack_ptr_48;
+  int64_t **stack_ptr_50;
+  int64_t *stack_ptr_48;
   
   stack_param_58 = 0xfffffffffffffffe;
   system_handle = system_exit_handler();
   initialize_system_debug();
-  debug_data = (longlong *)allocate_system_memory(global_system_heap,0x68,8,3);
-  config_ptr = (longlong **)(debug_data + 1);
+  debug_data = (int64_t *)allocate_system_memory(global_system_heap,0x68,8,3);
+  config_ptr = (int64_t **)(debug_data + 1);
   stack_ptr_10 = debug_data;
   stack_ptr_18 = config_ptr;
   initialize_mutex(config_ptr,2);
@@ -763,7 +763,7 @@ LAB_DEBUG_INITIALIZED:
   if (mutex_result == 0) {
     handle_system_error(&DEBUG_ERROR_001);
   }
-  global_performance_frequency = 1.0 / (double)(longlong)stack_ptr_18;
+  global_performance_frequency = 1.0 / (double)(int64_t)stack_ptr_18;
   timeBeginPeriod(1);
   QueryPerformanceCounter(&stack_param_20);
   if (global_performance_flag != '\0') {
@@ -811,22 +811,22 @@ LAB_DEBUG_INITIALIZED:
   {
     uint64_t *system_ptr;
     code *system_func;
-    longlong **system_config;
+    int64_t **system_config;
     int32_t system_result;
     int system_status;
-    longlong ****system_data;
+    int64_t ****system_data;
     uint64_t system_param;
-    longlong ****system_data2;
-    longlong ***system_component;
-    longlong system_state;
+    int64_t ****system_data2;
+    int64_t ***system_component;
+    int64_t system_state;
     char system_flag;
-    longlong ****stack_ptr_8;
-    longlong ***stack_ptr_10;
-    longlong **stack_ptr_18;
-    longlong ***stack_ptr_20;
+    int64_t ****stack_ptr_8;
+    int64_t ***stack_ptr_10;
+    int64_t **stack_ptr_18;
+    int64_t ***stack_ptr_20;
     uint64_t system_handle;
-    longlong *****system_manager;
-    longlong ****system_data3;
+    int64_t *****system_manager;
+    int64_t ****system_data3;
     
     system_handle = 0xfffffffffffffffe;
     if (global_system_root != (uint64_t *)0x0) {
@@ -841,11 +841,11 @@ LAB_DEBUG_INITIALIZED:
         Sleep(1);
       }
     }
-    system_data = (longlong ****)allocate_system_memory(global_system_heap,0xc0,8,3,system_handle);
+    system_data = (int64_t ****)allocate_system_memory(global_system_heap,0xc0,8,3,system_handle);
     stack_ptr_8 = system_data;
     initialize_system_component(system_data);
-    *system_data = (longlong ***)&SYSTEM_VTABLE_001;
-    stack_ptr_20 = (longlong ***)system_data;
+    *system_data = (int64_t ***)&SYSTEM_VTABLE_001;
+    stack_ptr_20 = (int64_t ***)system_data;
     (*(code *)(*system_data)[5])(system_data);
     system_state = global_system_param;
     system_manager = &stack_ptr_8;
@@ -853,7 +853,7 @@ LAB_DEBUG_INITIALIZED:
     (*(code *)(*system_data)[5])(system_data);
     process_system_events(system_state,&stack_ptr_8);
     while( true ) {
-      if (*system_data == (longlong ***)&SYSTEM_VTABLE_001) {
+      if (*system_data == (int64_t ***)&SYSTEM_VTABLE_001) {
         system_flag = *(char *)(system_data + 2) != '\0';
       }
       else {
@@ -865,44 +865,44 @@ LAB_DEBUG_INITIALIZED:
     cleanup_system_runtime();
     system_state = global_system_config;
     system_param = allocate_system_memory(global_system_heap,0x70,8,3);
-    system_data2 = (longlong ****)initialize_system_component(system_param,2,system_state);
+    system_data2 = (int64_t ****)initialize_system_component(system_param,2,system_state);
     system_data3 = system_data2;
-    if (system_data2 != (longlong ****)0x0) {
+    if (system_data2 != (int64_t ****)0x0) {
       (*(code *)(*system_data2)[5])(system_data2);
     }
     system_ptr = *(uint64_t **)(system_state + 400);
     system_func = *(code **)*system_ptr;
     stack_ptr_8 = &stack_ptr_10;
-    stack_ptr_10 = (longlong ***)system_data2;
-    if (system_data2 != (longlong ****)0x0) {
+    stack_ptr_10 = (int64_t ***)system_data2;
+    if (system_data2 != (int64_t ****)0x0) {
       (*(code *)(*system_data2)[5])(system_data2);
     }
     (*system_func)(system_ptr,&stack_ptr_10);
     system_handle = allocate_system_memory(global_system_heap,0x70,8,3,system_handle,system_manager,system_data3);
-    system_component = (longlong ***)initialize_system_component(system_handle,0,system_state);
-    if (system_component != (longlong ***)0x0) {
+    system_component = (int64_t ***)initialize_system_component(system_handle,0,system_state);
+    if (system_component != (int64_t ***)0x0) {
       (*(code *)(*system_component)[5])(system_component);
     }
     system_ptr = *(uint64_t **)(system_state + 400);
     system_func = *(code **)*system_ptr;
-    stack_ptr_8 = (longlong ****)&stack_ptr_18;
-    stack_ptr_18 = (longlong **)system_component;
-    if (system_component != (longlong ***)0x0) {
+    stack_ptr_8 = (int64_t ****)&stack_ptr_18;
+    stack_ptr_18 = (int64_t **)system_component;
+    if (system_component != (int64_t ***)0x0) {
       (*(code *)(*system_component)[5])(system_component);
     }
     (*system_func)(system_ptr,&stack_ptr_18);
     cleanup_system_object(*(uint64_t *)(system_state + 400));
-    if (system_component != (longlong ***)0x0) {
+    if (system_component != (int64_t ***)0x0) {
       (*(code *)(*system_component)[7])(system_component);
     }
-    if (system_data2 != (longlong ****)0x0) {
+    if (system_data2 != (int64_t ****)0x0) {
       (*(code *)(*system_data2)[7])(system_data2);
     }
     system_data3 = global_system_manager;
     *(int8_t *)(global_system_manager[1] + 0x80) = 1;
     while( true ) {
       system_config = *system_data3[1];
-      if (system_config == (longlong **)&SYSTEM_VTABLE_002) {
+      if (system_config == (int64_t **)&SYSTEM_VTABLE_002) {
         system_flag = *(char *)(system_data3[1] + 2) != '\0';
       }
       else {
@@ -913,19 +913,19 @@ LAB_DEBUG_INITIALIZED:
       Sleep(1);
     }
     stack_ptr_8 = global_system_manager;
-    if (global_system_manager != (longlong ****)0x0) {
+    if (global_system_manager != (int64_t ****)0x0) {
       system_state = __RTCastToVoid(global_system_manager);
-      *system_data2 = (longlong ***)&SYSTEM_VTABLE_003;
+      *system_data2 = (int64_t ***)&SYSTEM_VTABLE_003;
       PostQueuedCompletionStatus(system_data2[0x42686],0,0xffffffffffffffff);
       CloseHandle(system_data2[0x42686]);
-      stack_ptr_10 = (longlong ***)(system_data2 + 0x42687);
-      if ((longlong ***)*stack_ptr_10 != (longlong ***)0x0) {
+      stack_ptr_10 = (int64_t ***)(system_data2 + 0x42687);
+      if ((int64_t ***)*stack_ptr_10 != (int64_t ***)0x0) {
         // WARNING: 子函数不返回
         handle_system_critical_error();
       }
-      stack_ptr_10 = (longlong ***)(system_data2 + 0x4267c);
+      stack_ptr_10 = (int64_t ***)(system_data2 + 0x4267c);
       destroy_mutex();
-      stack_ptr_10 = (longlong ***)(system_data2 + 0x40070);
+      stack_ptr_10 = (int64_t ***)(system_data2 + 0x40070);
       destroy_mutex();
       cleanup_system_data(system_data2);
       if (system_state != 0) {
@@ -935,7 +935,7 @@ LAB_DEBUG_INITIALIZED:
     }
     system_data3 = global_system_manager2;
     system_state = global_system_param;
-    global_system_manager = (longlong ****)0x0;
+    global_system_manager = (int64_t ****)0x0;
     if (global_system_param != 0) {
       cleanup_system_memory(global_system_param);
       // WARNING: 子函数不返回
@@ -944,8 +944,8 @@ LAB_DEBUG_INITIALIZED:
     global_system_param = 0;
     *(int32_t *)(global_system_manager2 + 0x2d) = 2;
     stack_ptr_8 = system_data3;
-    if (system_data3 == (longlong ****)0x0) {
-      global_system_manager2 = (longlong ****)0x0;
+    if (system_data3 == (int64_t ****)0x0) {
+      global_system_manager2 = (int64_t ****)0x0;
       WaitForSingleObject(global_system_semaphore,0xffffffff);
       do {
         system_status = ReleaseSemaphore(global_system_semaphore,1);
@@ -975,23 +975,23 @@ LAB_DEBUG_INITIALIZED:
     // 主函数实现
   }
 
-  // 函数: void cleanup_system_object(longlong *param_1)
+  // 函数: void cleanup_system_object(int64_t *param_1)
   // 清理系统对象
-  void cleanup_system_object(longlong *param_1)
+  void cleanup_system_object(int64_t *param_1)
 
   {
-    if ((longlong *)*param_1 != (longlong *)0x0) {
-      (**(code **)(*(longlong *)*param_1 + 0x38))();
+    if ((int64_t *)*param_1 != (int64_t *)0x0) {
+      (**(code **)(*(int64_t *)*param_1 + 0x38))();
     }
     return;
   }
 
-  // 函数: void copy_string_data(longlong param_1,longlong param_2)
+  // 函数: void copy_string_data(int64_t param_1,int64_t param_2)
   // 复制字符串数据
-  void copy_string_data(longlong param_1,longlong param_2)
+  void copy_string_data(int64_t param_1,int64_t param_2)
 
   {
-    longlong string_length;
+    int64_t string_length;
     
     if (param_2 == 0) {
       *(int32_t *)(param_1 + 0x10) = 0;
@@ -1015,14 +1015,14 @@ LAB_DEBUG_INITIALIZED:
     return;
   }
 
-  // 函数: void copy_string_data_with_length(longlong param_1,uint64_t param_2,int param_3)
+  // 函数: void copy_string_data_with_length(int64_t param_1,uint64_t param_2,int param_3)
   // 复制带长度的字符串数据
-  void copy_string_data_with_length(longlong param_1,uint64_t param_2,int param_3)
+  void copy_string_data_with_length(int64_t param_1,uint64_t param_2,int param_3)
 
   {
     if (param_3 + 1 < 0x1000) {
       // WARNING: 子函数不返回
-      memcpy(*(int8_t **)(param_1 + 8),param_2,(longlong)param_3);
+      memcpy(*(int8_t **)(param_1 + 8),param_2,(int64_t)param_3);
     }
     **(int8_t **)(param_1 + 8) = 0;
     *(int32_t *)(param_1 + 0x10) = 0;
@@ -1043,7 +1043,7 @@ LAB_DEBUG_INITIALIZED:
   void reset_string_buffer(int8_t *param_1)
 
   {
-    longlong buffer_param;
+    int64_t buffer_param;
     
     *param_1 = 0;
     *(int32_t *)(buffer_param + 0x10) = 0;
@@ -1059,9 +1059,9 @@ LAB_DEBUG_INITIALIZED:
     system_exit();
   }
 
-  // 函数: uint64_t * cleanup_system_object_extended(uint64_t *param_1,ulonglong param_2,uint64_t param_3,uint64_t param_4)
+  // 函数: uint64_t * cleanup_system_object_extended(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
   // 扩展清理系统对象
-  uint64_t * cleanup_system_object_extended(uint64_t *param_1,ulonglong param_2,uint64_t param_3,uint64_t param_4)
+  uint64_t * cleanup_system_object_extended(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
   {
     *param_1 = &TLS_STORAGE_BASE_001;
@@ -1100,9 +1100,9 @@ LAB_DEBUG_INITIALIZED:
     return;
   }
 
-  // 函数: uint64_t * cleanup_system_object_final(uint64_t *param_1,ulonglong param_2,uint64_t param_3,uint64_t param_4)
+  // 函数: uint64_t * cleanup_system_object_final(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
   // 最终清理系统对象
-  uint64_t * cleanup_system_object_final(uint64_t *param_1,ulonglong param_2,uint64_t param_3,uint64_t param_4)
+  uint64_t * cleanup_system_object_final(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
   {
     *param_1 = &TLS_STORAGE_BASE_001;
@@ -1112,12 +1112,12 @@ LAB_DEBUG_INITIALIZED:
     return param_1;
   }
 
-  // 函数: void copy_string_data_short(longlong param_1,longlong param_2)
+  // 函数: void copy_string_data_short(int64_t param_1,int64_t param_2)
   // 复制短字符串数据
-  void copy_string_data_short(longlong param_1,longlong param_2)
+  void copy_string_data_short(int64_t param_1,int64_t param_2)
 
   {
-    longlong string_length;
+    int64_t string_length;
     
     if (param_2 == 0) {
       *(int32_t *)(param_1 + 0x10) = 0;
@@ -1141,14 +1141,14 @@ LAB_DEBUG_INITIALIZED:
     return;
   }
 
-  // 函数: void copy_string_data_short_with_length(longlong param_1,uint64_t param_2,int param_3)
+  // 函数: void copy_string_data_short_with_length(int64_t param_1,uint64_t param_2,int param_3)
   // 复制带长度的短字符串数据
-  void copy_string_data_short_with_length(longlong param_1,uint64_t param_2,int param_3)
+  void copy_string_data_short_with_length(int64_t param_1,uint64_t param_2,int param_3)
 
   {
     if (param_3 + 1 < 0x400) {
       // WARNING: 子函数不返回
-      memcpy(*(int8_t **)(param_1 + 8),param_2,(longlong)param_3);
+      memcpy(*(int8_t **)(param_1 + 8),param_2,(int64_t)param_3);
     }
     **(int8_t **)(param_1 + 8) = 0;
     *(int32_t *)(param_1 + 0x10) = 0;
@@ -1169,7 +1169,7 @@ LAB_DEBUG_INITIALIZED:
   void reset_string_buffer_short(int8_t *param_1)
 
   {
-    longlong buffer_param;
+    int64_t buffer_param;
     
     *param_1 = 0;
     *(int32_t *)(buffer_param + 0x10) = 0;

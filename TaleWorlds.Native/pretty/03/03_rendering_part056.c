@@ -16,14 +16,14 @@
 void calculate_rendering_arc_parameters(uint64_t render_context, float param1, float param2, float param3, float param4)
 {
     int *render_queue_count;
-    longlong render_data_ptr;
+    int64_t render_data_ptr;
     uint64_t render_state;
     int arc_count;
     int buffer_capacity;
     int render_flags;
-    longlong arc_base_ptr;
+    int64_t arc_base_ptr;
     int queue_capacity;
-    longlong render_buffer_ptr;
+    int64_t render_buffer_ptr;
     int32_t render_mode;
     int32_t arc_calc_param;
     float arc_start;
@@ -118,11 +118,11 @@ void calculate_rendering_arc_parameters(uint64_t render_context, float param1, f
         }
         
         // 添加渲染数据到队列
-        render_data_ptr = *(longlong *)(render_data_ptr + 0x88);
+        render_data_ptr = *(int64_t *)(render_data_ptr + 0x88);
         render_state = *(uint64_t *)(arc_base_ptr + -0x79);
         *(float *)(arc_base_ptr + -0x79) = arc_midpoint;
         *(float *)(arc_base_ptr + -0x75) = unaff_XMM13_Da;
-        *(uint64_t *)(render_data_ptr + (longlong)arc_count * 8) = render_state;
+        *(uint64_t *)(render_data_ptr + (int64_t)arc_count * 8) = render_state;
         *render_queue_count = *render_queue_count + 1;
         arc_count = *render_queue_count;
         buffer_capacity = *(int *)(render_data_ptr + 0x84);
@@ -142,7 +142,7 @@ void calculate_rendering_arc_parameters(uint64_t render_context, float param1, f
             resize_rendering_queue(render_queue_count, arc_count);
             arc_count = *render_queue_count;
         }
-        *(uint64_t *)(*(longlong *)(render_data_ptr + 0x88) + (longlong)arc_count * 8) =
+        *(uint64_t *)(*(int64_t *)(render_data_ptr + 0x88) + (int64_t)arc_count * 8) =
              *(uint64_t *)(arc_base_ptr + -0x79);
         *render_queue_count = *render_queue_count + 1;
     }
@@ -232,11 +232,11 @@ void calculate_rendering_arc_parameters(uint64_t render_context, float param1, f
             }
             
             // 添加渲染数据
-            render_data_ptr = *(longlong *)(render_data_ptr + 0x88);
+            render_data_ptr = *(int64_t *)(render_data_ptr + 0x88);
             render_state = *(uint64_t *)(arc_base_ptr + 0x67);
             *(float *)(arc_base_ptr + 0x67) = arc_end;
             *(float *)(arc_base_ptr + 0x6b) = unaff_XMM14_Da;
-            *(uint64_t *)(render_data_ptr + (longlong)arc_count * 8) = render_state;
+            *(uint64_t *)(render_data_ptr + (int64_t)arc_count * 8) = render_state;
             *render_queue_count = *render_queue_count + 1;
             arc_count = *render_queue_count;
             buffer_capacity = *(int *)(render_data_ptr + 0x84);
@@ -253,7 +253,7 @@ void calculate_rendering_arc_parameters(uint64_t render_context, float param1, f
                 arc_angle = (float)resize_rendering_queue(render_queue_count, buffer_capacity);
                 arc_count = *render_queue_count;
             }
-            *(uint64_t *)(*(longlong *)(render_data_ptr + 0x88) + (longlong)arc_count * 8) =
+            *(uint64_t *)(*(int64_t *)(render_data_ptr + 0x88) + (int64_t)arc_count * 8) =
                  *(uint64_t *)(arc_base_ptr + 0x67);
             *render_queue_count = *render_queue_count + 1;
         }
@@ -308,7 +308,7 @@ void rendering_system_empty_function(void)
  * @param render_mode 渲染模式
  */
 void process_rendering_bounding_box(uint64_t render_context, float *box_min, float *box_max, 
-                                    ulonglong render_flags, int32_t render_mode)
+                                    uint64_t render_flags, int32_t render_mode)
 {
     float min_x;
     float min_y;
@@ -326,7 +326,7 @@ void process_rendering_bounding_box(uint64_t render_context, float *box_min, flo
     bool y_max_check;
     bool z_max_check;
     bool w_max_check;
-    ulonglong effective_flags;
+    uint64_t effective_flags;
     float temp_box_min[4];
     float temp_box_max[4];
     
@@ -442,7 +442,7 @@ void process_rendering_bounding_box(uint64_t render_context, float *box_min, flo
  * @param source_data 源数据指针
  * @param data_size 数据大小
  */
-void copy_rendering_data(ulonglong source_data, uint data_size)
+void copy_rendering_data(uint64_t source_data, uint data_size)
 {
     // 检查数据边界条件
     if (global_render_data_buffer_size < data_size + global_render_data_offset) {
@@ -475,56 +475,56 @@ byte * decompress_rendering_data(byte *compressed_data)
     if (0x1f < compression_flag) {
         if (0x7f < compression_flag) {
             // 高级别压缩数据处理
-            process_high_compression_data((global_render_data_offset - (ulonglong)compressed_data[1]) + -1, 
+            process_high_compression_data((global_render_data_offset - (uint64_t)compressed_data[1]) + -1, 
                                         compression_flag - 0x7f);
             return compressed_data + 2;
         }
         if (0x3f < compression_flag) {
             // 中级别压缩数据处理
-            process_medium_compression_data(((global_render_data_offset + (ulonglong)compression_flag * -0x100) - 
-                                            (ulonglong)compressed_data[1]) + 0x3fff, compressed_data[2] + 1);
+            process_medium_compression_data(((global_render_data_offset + (uint64_t)compression_flag * -0x100) - 
+                                            (uint64_t)compressed_data[1]) + 0x3fff, compressed_data[2] + 1);
             return compressed_data + 3;
         }
         // 低级别压缩数据处理
         copy_rendering_data(compressed_data + 1, compression_flag - 0x1f);
-        return compressed_data + ((ulonglong)*compressed_data - 0x1e);
+        return compressed_data + ((uint64_t)*compressed_data - 0x1e);
     }
     
     // 处理扩展压缩格式
     if (0x17 < compression_flag) {
         process_extended_compression_data(((global_render_data_offset + 
-                                          (ulonglong)COMBINE_BYTES(compression_flag, compressed_data[1]) * -0x100) -
-                                         (ulonglong)compressed_data[2]) + 0x17ffff, compressed_data[3] + 1);
+                                          (uint64_t)COMBINE_BYTES(compression_flag, compressed_data[1]) * -0x100) -
+                                         (uint64_t)compressed_data[2]) + 0x17ffff, compressed_data[3] + 1);
         return compressed_data + 4;
     }
     if (0xf < compression_flag) {
         process_extended_compression_data(((global_render_data_offset + 
-                                          (ulonglong)COMBINE_BYTES(compression_flag, compressed_data[1]) * -0x100) -
-                                         (ulonglong)compressed_data[2]) + 0xfffff,
+                                          (uint64_t)COMBINE_BYTES(compression_flag, compressed_data[1]) * -0x100) -
+                                         (uint64_t)compressed_data[2]) + 0xfffff,
                                          (uint)compressed_data[4] + (uint)compressed_data[3] * 0x100 + 1);
         return compressed_data + 5;
     }
     if (7 < compression_flag) {
         copy_rendering_data(compressed_data + 2, (compressed_data[1] - 0x7ff) + (uint)compression_flag * 0x100);
-        return compressed_data + (ulonglong)*compressed_data * 0x100 + -0x7fd + (ulonglong)compressed_data[1];
+        return compressed_data + (uint64_t)*compressed_data * 0x100 + -0x7fd + (uint64_t)compressed_data[1];
     }
     
     // 处理特殊压缩格式
     if (compression_flag == 7) {
         copy_rendering_data(compressed_data + 3, (uint)compressed_data[2] + 
                            (uint)compressed_data[1] * 0x100 + 1);
-        return compressed_data + (ulonglong)compressed_data[1] * 0x100 + 4 + (ulonglong)compressed_data[2];
+        return compressed_data + (uint64_t)compressed_data[1] * 0x100 + 4 + (uint64_t)compressed_data[2];
     }
     if (compression_flag == 6) {
         process_special_compression_data(((global_render_data_offset + 
-                                          (ulonglong)COMBINE_BYTES(compressed_data[1], compressed_data[2]) * -0x100) -
-                                         (ulonglong)compressed_data[3]) + -1, compressed_data[4] + 1);
+                                          (uint64_t)COMBINE_BYTES(compressed_data[1], compressed_data[2]) * -0x100) -
+                                         (uint64_t)compressed_data[3]) + -1, compressed_data[4] + 1);
         return compressed_data + 5;
     }
     if (compression_flag == 4) {
         process_special_compression_data(((global_render_data_offset + 
-                                          (ulonglong)COMBINE_BYTES(compressed_data[1], compressed_data[2]) * -0x100) -
-                                         (ulonglong)compressed_data[3]) + -1, 
+                                          (uint64_t)COMBINE_BYTES(compressed_data[1], compressed_data[2]) * -0x100) -
+                                         (uint64_t)compressed_data[3]) + -1, 
                                         (uint)compressed_data[5] + (uint)compressed_data[4] * 0x100 + 1);
         compressed_data = compressed_data + 6;
     }
@@ -634,7 +634,7 @@ uint validate_rendering_data(byte *data_buffer, byte *signature)
                 if (partial_checksum3 < data_size) {
                     if (1 < data_size - partial_checksum3) {
                         block_size = ((data_size - partial_checksum3) - 2 >> 1) + 1;
-                        ulonglong temp_ulong = (ulonglong)block_size;
+                        uint64_t temp_ulong = (uint64_t)block_size;
                         partial_checksum3 = partial_checksum3 + block_size * 2;
                         do {
                             header_byte = *data_buffer;
@@ -704,10 +704,10 @@ void resize_rendering_dynamic_array(int *array_ptr, int new_size)
         if (global_render_manager != 0) {
             *(int *)(global_render_manager + 0x3a8) = *(int *)(global_render_manager + 0x3a8) + 1;
         }
-        new_buffer = allocate_rendering_memory((longlong)calculated_size << 4, global_memory_allocator);
-        if (*(longlong *)(array_ptr + 2) != 0) {
+        new_buffer = allocate_rendering_memory((int64_t)calculated_size << 4, global_memory_allocator);
+        if (*(int64_t *)(array_ptr + 2) != 0) {
             // 复制现有数据到新缓冲区
-            memcpy(new_buffer, *(longlong *)(array_ptr + 2), (longlong)*array_ptr << 4);
+            memcpy(new_buffer, *(int64_t *)(array_ptr + 2), (int64_t)*array_ptr << 4);
         }
         *(uint64_t *)(array_ptr + 2) = new_buffer;
         array_ptr[1] = calculated_size;
@@ -723,7 +723,7 @@ void resize_rendering_dynamic_array(int *array_ptr, int new_size)
  */
 void fast_resize_rendering_dynamic_array(void)
 {
-    longlong render_context;
+    int64_t render_context;
     uint64_t new_buffer;
     int *array_ptr;
     int array_size;
@@ -732,10 +732,10 @@ void fast_resize_rendering_dynamic_array(void)
     if (render_context != 0) {
         *(int *)(render_context + 0x3a8) = *(int *)(render_context + 0x3a8) + 1;
     }
-    new_buffer = allocate_rendering_memory((longlong)new_capacity << 4, global_memory_allocator);
-    if (*(longlong *)(array_ptr + 2) != 0) {
+    new_buffer = allocate_rendering_memory((int64_t)new_capacity << 4, global_memory_allocator);
+    if (*(int64_t *)(array_ptr + 2) != 0) {
         // 复制现有数据到新缓冲区
-        memcpy(new_buffer, *(longlong *)(array_ptr + 2), (longlong)*array_ptr << 4);
+        memcpy(new_buffer, *(int64_t *)(array_ptr + 2), (int64_t)*array_ptr << 4);
     }
     *(uint64_t *)(array_ptr + 2) = new_buffer;
     array_ptr[1] = new_capacity;
@@ -791,10 +791,10 @@ void extended_resize_rendering_dynamic_array(int *array_ptr, int new_size)
         if (global_render_manager != 0) {
             *(int *)(global_render_manager + 0x3a8) = *(int *)(global_render_manager + 0x3a8) + 1;
         }
-        new_buffer = allocate_rendering_memory((longlong)calculated_size * 0x28, global_memory_allocator);
-        if (*(longlong *)(array_ptr + 2) != 0) {
+        new_buffer = allocate_rendering_memory((int64_t)calculated_size * 0x28, global_memory_allocator);
+        if (*(int64_t *)(array_ptr + 2) != 0) {
             // 复制现有数据到新缓冲区
-            memcpy(new_buffer, *(longlong *)(array_ptr + 2), (longlong)*array_ptr * 0x28);
+            memcpy(new_buffer, *(int64_t *)(array_ptr + 2), (int64_t)*array_ptr * 0x28);
         }
         *(uint64_t *)(array_ptr + 2) = new_buffer;
         array_ptr[1] = calculated_size;
@@ -834,10 +834,10 @@ void parametric_resize_rendering_array(int param_size)
         if (global_render_manager != 0) {
             *(int *)(global_render_manager + 0x3a8) = *(int *)(global_render_manager + 0x3a8) + 1;
         }
-        new_buffer = allocate_rendering_memory((longlong)new_capacity * 0x28, global_memory_allocator);
-        if (*(longlong *)(array_ptr + 2) != 0) {
+        new_buffer = allocate_rendering_memory((int64_t)new_capacity * 0x28, global_memory_allocator);
+        if (*(int64_t *)(array_ptr + 2) != 0) {
             // 复制现有数据到新缓冲区
-            memcpy(new_buffer, *(longlong *)(array_ptr + 2), (longlong)*array_ptr * 0x28);
+            memcpy(new_buffer, *(int64_t *)(array_ptr + 2), (int64_t)*array_ptr * 0x28);
         }
         *(uint64_t *)(array_ptr + 2) = new_buffer;
         array_ptr[1] = new_capacity;
@@ -888,7 +888,7 @@ void insert_advanced_rendering_data(int *array_ptr, uint64_t *data_ptr)
 {
     uint64_t *target_element;
     int current_capacity;
-    longlong array_buffer;
+    int64_t array_buffer;
     int new_capacity;
     uint64_t new_buffer;
     int array_size;
@@ -909,10 +909,10 @@ void insert_advanced_rendering_data(int *array_ptr, uint64_t *data_ptr)
             if (global_render_manager != 0) {
                 *(int *)(global_render_manager + 0x3a8) = *(int *)(global_render_manager + 0x3a8) + 1;
             }
-            new_buffer = allocate_rendering_memory((longlong)array_size << 5, global_memory_allocator);
-            if (*(longlong *)(array_ptr + 2) != 0) {
+            new_buffer = allocate_rendering_memory((int64_t)array_size << 5, global_memory_allocator);
+            if (*(int64_t *)(array_ptr + 2) != 0) {
                 // 复制现有数据到新缓冲区
-                memcpy(new_buffer, *(longlong *)(array_ptr + 2), (longlong)*array_ptr << 5);
+                memcpy(new_buffer, *(int64_t *)(array_ptr + 2), (int64_t)*array_ptr << 5);
             }
             *(uint64_t *)(array_ptr + 2) = new_buffer;
             array_ptr[1] = array_size;
@@ -922,12 +922,12 @@ void insert_advanced_rendering_data(int *array_ptr, uint64_t *data_ptr)
     // 插入新数据元素
     array_size = *array_ptr;
     new_buffer = data_ptr[1];
-    array_buffer = *(longlong *)(array_ptr + 2);
-    target_element = (uint64_t *)((longlong)array_size * 0x20 + array_buffer);
+    array_buffer = *(int64_t *)(array_ptr + 2);
+    target_element = (uint64_t *)((int64_t)array_size * 0x20 + array_buffer);
     *target_element = *data_ptr;
     target_element[1] = new_buffer;
     new_buffer = data_ptr[3];
-    target_element = (uint64_t *)((longlong)array_size * 0x20 + 0x10 + array_buffer);
+    target_element = (uint64_t *)((int64_t)array_size * 0x20 + 0x10 + array_buffer);
     *target_element = data_ptr[2];
     target_element[1] = new_buffer;
     *array_ptr = *array_ptr + 1;
@@ -943,7 +943,7 @@ void fast_insert_rendering_data(void)
 {
     uint64_t *target_element;
     int array_size;
-    longlong array_buffer;
+    int64_t array_buffer;
     uint64_t new_buffer;
     int *array_ptr;
     uint64_t *data_ptr;
@@ -952,21 +952,21 @@ void fast_insert_rendering_data(void)
     if (global_render_manager != 0) {
         *(int *)(global_render_manager + 0x3a8) = *(int *)(global_render_manager + 0x3a8) + 1;
     }
-    new_buffer = allocate_rendering_memory((longlong)new_capacity << 5, global_memory_allocator);
-    if (*(longlong *)(array_ptr + 2) != 0) {
+    new_buffer = allocate_rendering_memory((int64_t)new_capacity << 5, global_memory_allocator);
+    if (*(int64_t *)(array_ptr + 2) != 0) {
         // 复制现有数据到新缓冲区
-        memcpy(new_buffer, *(longlong *)(array_ptr + 2), (longlong)*array_ptr << 5);
+        memcpy(new_buffer, *(int64_t *)(array_ptr + 2), (int64_t)*array_ptr << 5);
     }
     *(uint64_t *)(array_ptr + 2) = new_buffer;
     array_ptr[1] = new_capacity;
     array_size = *array_ptr;
     new_buffer = data_ptr[1];
-    array_buffer = *(longlong *)(array_ptr + 2);
-    target_element = (uint64_t *)((longlong)array_size * 0x20 + array_buffer);
+    array_buffer = *(int64_t *)(array_ptr + 2);
+    target_element = (uint64_t *)((int64_t)array_size * 0x20 + array_buffer);
     *target_element = *data_ptr;
     target_element[1] = new_buffer;
     new_buffer = data_ptr[3];
-    target_element = (uint64_t *)((longlong)array_size * 0x20 + 0x10 + array_buffer);
+    target_element = (uint64_t *)((int64_t)array_size * 0x20 + 0x10 + array_buffer);
     *target_element = data_ptr[2];
     target_element[1] = new_buffer;
     *array_ptr = *array_ptr + 1;
@@ -982,19 +982,19 @@ void optimized_insert_rendering_data(void)
 {
     uint64_t *target_element;
     int array_size;
-    longlong array_buffer;
+    int64_t array_buffer;
     uint64_t data_value;
     int *array_ptr;
     uint64_t *data_ptr;
     
     array_size = *array_ptr;
     data_value = data_ptr[1];
-    array_buffer = *(longlong *)(array_ptr + 2);
-    target_element = (uint64_t *)((longlong)array_size * 0x20 + array_buffer);
+    array_buffer = *(int64_t *)(array_ptr + 2);
+    target_element = (uint64_t *)((int64_t)array_size * 0x20 + array_buffer);
     *target_element = *data_ptr;
     target_element[1] = data_value;
     data_value = data_ptr[3];
-    target_element = (uint64_t *)((longlong)array_size * 0x20 + 0x10 + array_buffer);
+    target_element = (uint64_t *)((int64_t)array_size * 0x20 + 0x10 + array_buffer);
     *target_element = data_ptr[2];
     target_element[1] = data_value;
     *array_ptr = *array_ptr + 1;

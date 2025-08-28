@@ -14,8 +14,8 @@ void initialize_system_component_type_ba(void)
   char node_flag;
   uint64_t *root_node;
   int compare_result;
-  longlong *registry_ptr;
-  longlong allocation_size;
+  int64_t *registry_ptr;
+  int64_t allocation_size;
   uint64_t *current_node;
   uint64_t *parent_node;
   uint64_t *target_node;
@@ -23,11 +23,11 @@ void initialize_system_component_type_ba(void)
   code *component_handler;
   
   // 获取全局组件注册表指针
-  registry_ptr = (longlong *)get_global_registry();
+  registry_ptr = (int64_t *)get_global_registry();
   root_node = (uint64_t *)*registry_ptr;
   
   // 检查根节点的子节点标志
-  node_flag = *(char *)((longlong)root_node[1] + 0x19);
+  node_flag = *(char *)((int64_t)root_node[1] + 0x19);
   component_handler = handle_component_type_ba;
   parent_node = root_node;
   current_node = (uint64_t *)root_node[1];
@@ -44,7 +44,7 @@ void initialize_system_component_type_ba(void)
     }
     parent_node = current_node;
     current_node = target_node;
-    node_flag = *(char *)((longlong)target_node + 0x19);
+    node_flag = *(char *)((int64_t)target_node + 0x19);
   }
   
   // 如果需要创建新节点

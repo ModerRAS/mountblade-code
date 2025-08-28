@@ -82,7 +82,7 @@ static void RenderingSystemLinkAnimationNode(void* parent, void* child);
  * @param param_2 参数2：配置指针
  * @param param_3 参数3：数据指针
  */
-void FUN_180416926(uint64_t param_1, uint64_t param_2, longlong param_3)
+void FUN_180416926(uint64_t param_1, uint64_t param_2, int64_t param_3)
 {
     // 局部变量声明
     int iVar1;                    // 临时整型变量
@@ -97,12 +97,12 @@ void FUN_180416926(uint64_t param_1, uint64_t param_2, longlong param_3)
     
     // 寄存器变量（模拟编译器优化）
     void* unaff_RBX;              // RBX寄存器值
-    longlong unaff_RBP;           // RBP寄存器值
+    int64_t unaff_RBP;           // RBP寄存器值
     void* unaff_RDI;              // RDI寄存器值
-    longlong in_R11;              // R11寄存器值
+    int64_t in_R11;              // R11寄存器值
     void* unaff_R12;              // R12寄存器值
     void* unaff_R14;              // R14寄存器值
-    longlong unaff_R15;           // R15寄存器值
+    int64_t unaff_R15;           // R15寄存器值
     
     // 栈变量
     int iStack0000000000000034;   // 栈变量1
@@ -195,11 +195,11 @@ void FUN_180416a8c(void)
     char* pcVar3;                 // 字符串指针
     
     // 寄存器变量（模拟编译器优化）
-    longlong unaff_RBP;           // RBP寄存器值
+    int64_t unaff_RBP;           // RBP寄存器值
     int* unaff_RSI;               // RSI寄存器值
     void* unaff_RDI;              // RDI寄存器值
     void* unaff_R12;              // R12寄存器值
-    longlong unaff_R15;           // R15寄存器值
+    int64_t unaff_R15;           // R15寄存器值
     
     // 栈变量
     int iStack0000000000000030;   // 关键帧索引1
@@ -336,7 +336,7 @@ static void* RenderingSystemInitializeAnimationNode(void* node, const char* name
         pcVar8++;
     }
     *(void**)node = &unknown_var_5252_ptr;        // 名称表指针
-    *(longlong*)((char*)node + 16) = pcVar8 - name;  // 名称长度
+    *(int64_t*)((char*)node + 16) = pcVar8 - name;  // 名称长度
     
     return node;
 }

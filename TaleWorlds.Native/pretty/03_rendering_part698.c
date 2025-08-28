@@ -134,34 +134,34 @@ typedef struct {
 #define RenderingSystemOptimizer FUN_18066f715        // 渲染系统优化器
 
 // 简化实现：渲染系统管理器
-void RenderingSystemManager(longlong param_1, longlong param_2) {
+void RenderingSystemManager(int64_t param_1, int64_t param_2) {
     char render_mode;                         // 渲染模式
     char control_flag;                        // 控制标志
     int process_result;                       // 处理结果
-    longlong data_pointer;                    // 数据指针
-    longlong buffer_pointer;                   // 缓冲区指针
+    int64_t data_pointer;                    // 数据指针
+    int64_t buffer_pointer;                   // 缓冲区指针
     uint buffer_index;                         // 缓冲区索引
     int render_state;                          // 渲染状态
-    longlong context_pointer;                  // 上下文指针
+    int64_t context_pointer;                  // 上下文指针
     char* render_data;                        // 渲染数据
-    longlong offset_pointer;                   // 偏移指针
+    int64_t offset_pointer;                   // 偏移指针
     uint64_t* control_array;                   // 控制数组
-    longlong stack_pointer;                    // 栈指针
+    int64_t stack_pointer;                    // 栈指针
     uint64_t stack_data;                       // 栈数据
-    longlong temp_pointer;                     // 临时指针
+    int64_t temp_pointer;                     // 临时指针
     uint64_t temp_data;                        // 临时数据
     int32_t state_data;                        // 状态数据
     
     // 初始化状态数据
-    state_data = (int32_t)((ulonglong)stack_data >> 0x20);
+    state_data = (int32_t)((uint64_t)stack_data >> 0x20);
     
     // 检查渲染系统状态
-    if (*(char *)(*(longlong *)(param_2 + RENDERING_SYSTEM_OFFSET_F00) + 9) == '\0') {
+    if (*(char *)(*(int64_t *)(param_2 + RENDERING_SYSTEM_OFFSET_F00) + 9) == '\0') {
         // 检查缓存大小是否超过阈值
-        if (RENDERING_SYSTEM_CACHE_SIZE < *(int *)(*(longlong *)(param_2 + RENDERING_SYSTEM_OFFSET_FB8) + 0x18) - RENDERING_SYSTEM_THRESHOLD) {
+        if (RENDERING_SYSTEM_CACHE_SIZE < *(int *)(*(int64_t *)(param_2 + RENDERING_SYSTEM_OFFSET_FB8) + 0x18) - RENDERING_SYSTEM_THRESHOLD) {
             // 获取处理结果
             process_result = FUN_18069cf80(param_1);
-            *(bool *)(*(longlong *)(param_2 + RENDERING_SYSTEM_OFFSET_F00) + 9) = process_result == 0;
+            *(bool *)(*(int64_t *)(param_2 + RENDERING_SYSTEM_OFFSET_F00) + 9) = process_result == 0;
         }
     }
     else {
@@ -178,7 +178,7 @@ void RenderingSystemManager(longlong param_1, longlong param_2) {
     }
     
     // 检查控制状态
-    if (*(char *)(*(longlong *)(param_2 + RENDERING_SYSTEM_OFFSET_F00) + 2) == '\0') {
+    if (*(char *)(*(int64_t *)(param_2 + RENDERING_SYSTEM_OFFSET_F00) + 2) == '\0') {
         // 执行渲染控制操作
         FUN_18069c080(param_2, *(uint64_t *)(param_2 + RENDERING_SYSTEM_OFFSET_F20), *(uint64_t *)(param_2 + RENDERING_SYSTEM_OFFSET_F28),
                       *(uint64_t *)(param_2 + RENDERING_SYSTEM_OFFSET_F38), *(uint64_t *)(param_2 + RENDERING_SYSTEM_OFFSET_F40),
@@ -188,7 +188,7 @@ void RenderingSystemManager(longlong param_1, longlong param_2) {
         // 处理顶点渲染模式
         if (render_mode == '\x04') {
             process_result = *(int *)(param_2 + RENDERING_SYSTEM_OFFSET_E80);
-            if (*(char *)(*(longlong *)(param_2 + RENDERING_SYSTEM_OFFSET_F00) + 9) != '\0') {
+            if (*(char *)(*(int64_t *)(param_2 + RENDERING_SYSTEM_OFFSET_F00) + 9) != '\0') {
                 // 清理渲染缓冲区
                 *(uint64_t *)(param_2 + RENDERING_SYSTEM_OFFSET_7C0) = 0;
                 *(uint64_t *)(param_2 + RENDERING_SYSTEM_OFFSET_7C8) = 0;
@@ -197,12 +197,12 @@ void RenderingSystemManager(longlong param_1, longlong param_2) {
             }
             
             // 初始化渲染数据指针
-            buffer_pointer = *(longlong *)(param_2 + RENDERING_SYSTEM_OFFSET_F18);
+            buffer_pointer = *(int64_t *)(param_2 + RENDERING_SYSTEM_OFFSET_F18);
             render_data = (char *)(param_2 + RENDERING_SYSTEM_OFFSET_7C0);
-            data_pointer = (longlong)*(int *)(param_2 + RENDERING_SYSTEM_OFFSET_E80);
+            data_pointer = (int64_t)*(int *)(param_2 + RENDERING_SYSTEM_OFFSET_E80);
             control_array = (uint64_t *)(param_2 + RENDERING_SYSTEM_OFFSET_860);
             buffer_index = 0;
-            context_pointer = *(longlong *)(param_2 + RENDERING_SYSTEM_OFFSET_EA8) - data_pointer;
+            context_pointer = *(int64_t *)(param_2 + RENDERING_SYSTEM_OFFSET_EA8) - data_pointer;
             offset_pointer = 0xc;
             
             // 设置渲染缓冲区数据
@@ -213,16 +213,16 @@ void RenderingSystemManager(longlong param_1, longlong param_2) {
             
             // 渲染处理循环
             do {
-                buffer_pointer = *(longlong *)(param_2 + RENDERING_SYSTEM_OFFSET_EA8) + (longlong)*(int *)(control_array + 4);
+                buffer_pointer = *(int64_t *)(param_2 + RENDERING_SYSTEM_OFFSET_EA8) + (int64_t)*(int *)(control_array + 4);
                 if (((int)buffer_index < 4) && (*(int *)(param_1 + RENDERING_SYSTEM_OFFSET_2BE0) != 0)) {
-                    data_pointer = *(longlong *)(param_2 + RENDERING_SYSTEM_OFFSET_F18) + (longlong)*(int *)(control_array + 4);
+                    data_pointer = *(int64_t *)(param_2 + RENDERING_SYSTEM_OFFSET_F18) + (int64_t)*(int *)(control_array + 4);
                 }
                 else {
                     data_pointer = buffer_pointer - process_result;
                 }
                 
                 if (((buffer_index & 3) == 0) && (*(int *)(param_1 + RENDERING_SYSTEM_OFFSET_2BE0) != 0)) {
-                    context_pointer = stack_pointer + *(longlong *)(param_2 + RENDERING_SYSTEM_OFFSET_F30);
+                    context_pointer = stack_pointer + *(int64_t *)(param_2 + RENDERING_SYSTEM_OFFSET_F30);
                     render_state = 1;
                 }
                 else {
@@ -232,23 +232,23 @@ void RenderingSystemManager(longlong param_1, longlong param_2) {
                 
                 if ((((buffer_index - 4 & 0xfffffff3) == 0) && (buffer_index != 0x10)) &&
                    (*(int *)(param_1 + RENDERING_SYSTEM_OFFSET_2BE0) != 0)) {
-                    control_flag = render_data[(*(longlong *)(param_2 + RENDERING_SYSTEM_OFFSET_F30) - param_2) + -0x7c1];
+                    control_flag = render_data[(*(int64_t *)(param_2 + RENDERING_SYSTEM_OFFSET_F30) - param_2) + -0x7c1];
                 }
                 else {
                     control_flag = *(char *)(data_pointer + -1);
                 }
                 
                 temp_pointer = buffer_pointer;
-                FUN_18069d280(data_pointer, context_pointer, render_state, *(int32_t *)(*(longlong *)(param_2 + RENDERING_SYSTEM_OFFSET_F00) + offset_pointer),
+                FUN_18069d280(data_pointer, context_pointer, render_state, *(int32_t *)(*(int64_t *)(param_2 + RENDERING_SYSTEM_OFFSET_F00) + offset_pointer),
                               buffer_pointer, process_result, control_flag);
-                state_data = (int32_t)((ulonglong)temp_pointer >> 0x20);
+                state_data = (int32_t)((uint64_t)temp_pointer >> 0x20);
                 
                 if (*render_data != '\0') {
                     if (*render_data < '\x02') {
                         temp_data = CONCAT44(state_data, process_result);
                         func_0x00018001a59e((int)*(short *)*control_array * (int)*(short *)(param_2 + RENDERING_SYSTEM_OFFSET_7E0), buffer_pointer,
                                             process_result, buffer_pointer, temp_data);
-                        state_data = (int32_t)((ulonglong)temp_data >> 0x20);
+                        state_data = (int32_t)((uint64_t)temp_data >> 0x20);
                         *(int32_t *)*control_array = 0;
                     }
                     else {
@@ -268,7 +268,7 @@ void RenderingSystemManager(longlong param_1, longlong param_2) {
             temp_data = *(uint64_t *)(param_2 + RENDERING_SYSTEM_OFFSET_EA8);
             FUN_18069c200(param_2, *(uint64_t *)(param_2 + RENDERING_SYSTEM_OFFSET_F18), *(uint64_t *)(param_2 + RENDERING_SYSTEM_OFFSET_F30),
                           *(int32_t *)(param_2 + RENDERING_SYSTEM_OFFSET_F48), temp_data, *(int32_t *)(param_2 + RENDERING_SYSTEM_OFFSET_E80));
-            state_data = (int32_t)((ulonglong)temp_data >> 0x20);
+            state_data = (int32_t)((uint64_t)temp_data >> 0x20);
         }
     }
     else {
@@ -277,7 +277,7 @@ void RenderingSystemManager(longlong param_1, longlong param_2) {
     }
     
     // 最终渲染状态检查
-    if (*(char *)(*(longlong *)(param_2 + RENDERING_SYSTEM_OFFSET_F00) + 9) == '\0') {
+    if (*(char *)(*(int64_t *)(param_2 + RENDERING_SYSTEM_OFFSET_F00) + 9) == '\0') {
         if (render_mode != '\x04') {
             buffer_pointer = param_2 + RENDERING_SYSTEM_OFFSET_7E0;
             if (render_mode != '\t') {
@@ -301,7 +301,7 @@ void RenderingSystemManager(longlong param_1, longlong param_2) {
             data_pointer = param_2 + RENDERING_SYSTEM_OFFSET_7C0;
             FUN_18069c820(param_2 + 0x180, buffer_pointer, *(uint64_t *)(param_2 + RENDERING_SYSTEM_OFFSET_EA8),
                           *(int32_t *)(param_2 + RENDERING_SYSTEM_OFFSET_E80), data_pointer);
-            state_data = (int32_t)((ulonglong)data_pointer >> 0x20);
+            state_data = (int32_t)((uint64_t)data_pointer >> 0x20);
         }
         FUN_18069c710(param_2 + 0x380, param_2 + RENDERING_SYSTEM_OFFSET_840, *(uint64_t *)(param_2 + RENDERING_SYSTEM_OFFSET_EB0),
                       *(uint64_t *)(param_2 + RENDERING_SYSTEM_OFFSET_EB8), CONCAT44(state_data, *(int32_t *)(param_2 + RENDERING_SYSTEM_OFFSET_E94)),
@@ -310,32 +310,32 @@ void RenderingSystemManager(longlong param_1, longlong param_2) {
 }
 
 // 简化实现：渲染系统控制器
-void RenderingSystemController(longlong param_1, longlong param_2) {
+void RenderingSystemController(int64_t param_1, int64_t param_2) {
     char render_mode;                         // 渲染模式
     int control_result;                       // 控制结果
-    longlong context_data;                    // 上下文数据
-    longlong control_pointer;                 // 控制指针
-    longlong data_pointer;                    // 数据指针
+    int64_t context_data;                    // 上下文数据
+    int64_t control_pointer;                 // 控制指针
+    int64_t data_pointer;                    // 数据指针
     uint process_index;                        // 处理索引
     int render_state;                          // 渲染状态
-    longlong buffer_pointer;                   // 缓冲区指针
+    int64_t buffer_pointer;                   // 缓冲区指针
     char* render_data;                        // 渲染数据
-    longlong offset_pointer;                   // 偏移指针
+    int64_t offset_pointer;                   // 偏移指针
     uint64_t* control_array;                   // 控制数组
     uint64_t stack_data;                       // 栈数据
-    longlong temp_pointer;                     // 临时指针
+    int64_t temp_pointer;                     // 临时指针
     uint64_t temp_data;                        // 临时数据
     int32_t state_data;                        // 状态数据
-    longlong stack_buffer;                     // 栈缓冲区
+    int64_t stack_buffer;                     // 栈缓冲区
     
     // 初始化状态数据
-    state_data = (int32_t)((ulonglong)stack_data >> 0x20);
+    state_data = (int32_t)((uint64_t)stack_data >> 0x20);
     
     // 检查渲染控制状态
     if (*(char *)(context_data + 9) == '\0') {
-        if (RENDERING_SYSTEM_CACHE_SIZE < *(int *)(*(longlong *)(param_2 + RENDERING_SYSTEM_OFFSET_FB8) + 0x18) - RENDERING_SYSTEM_THRESHOLD) {
+        if (RENDERING_SYSTEM_CACHE_SIZE < *(int *)(*(int64_t *)(param_2 + RENDERING_SYSTEM_OFFSET_FB8) + 0x18) - RENDERING_SYSTEM_THRESHOLD) {
             control_result = FUN_18069cf80(param_1);
-            *(bool *)(*(longlong *)(control_pointer + RENDERING_SYSTEM_OFFSET_F00) + 9) = control_result == 0;
+            *(bool *)(*(int64_t *)(control_pointer + RENDERING_SYSTEM_OFFSET_F00) + 9) = control_result == 0;
         }
     }
     else {
@@ -351,11 +351,11 @@ void RenderingSystemController(longlong param_1, longlong param_2) {
     }
     
     // 检查渲染控制模式
-    if (*(char *)(*(longlong *)(control_pointer + RENDERING_SYSTEM_OFFSET_F00) + 2) == '\0') {
+    if (*(char *)(*(int64_t *)(control_pointer + RENDERING_SYSTEM_OFFSET_F00) + 2) == '\0') {
         FUN_18069c080();
         if (render_mode == '\x04') {
             control_result = *(int *)(control_pointer + RENDERING_SYSTEM_OFFSET_E80);
-            if (*(char *)(*(longlong *)(control_pointer + RENDERING_SYSTEM_OFFSET_F00) + 9) != '\0') {
+            if (*(char *)(*(int64_t *)(control_pointer + RENDERING_SYSTEM_OFFSET_F00) + 9) != '\0') {
                 // 清理控制缓冲区
                 *(uint64_t *)(control_pointer + RENDERING_SYSTEM_OFFSET_7C0) = 0;
                 *(uint64_t *)(control_pointer + RENDERING_SYSTEM_OFFSET_7C8) = 0;
@@ -364,12 +364,12 @@ void RenderingSystemController(longlong param_1, longlong param_2) {
             }
             
             // 初始化控制数据
-            data_pointer = *(longlong *)(control_pointer + RENDERING_SYSTEM_OFFSET_F18);
+            data_pointer = *(int64_t *)(control_pointer + RENDERING_SYSTEM_OFFSET_F18);
             render_data = (char *)(control_pointer + RENDERING_SYSTEM_OFFSET_7C0);
-            buffer_pointer = (longlong)*(int *)(control_pointer + RENDERING_SYSTEM_OFFSET_E80);
+            buffer_pointer = (int64_t)*(int *)(control_pointer + RENDERING_SYSTEM_OFFSET_E80);
             control_array = (uint64_t *)(control_pointer + RENDERING_SYSTEM_OFFSET_860);
             process_index = 0;
-            buffer_pointer = *(longlong *)(control_pointer + RENDERING_SYSTEM_OFFSET_EA8) - buffer_pointer;
+            buffer_pointer = *(int64_t *)(control_pointer + RENDERING_SYSTEM_OFFSET_EA8) - buffer_pointer;
             offset_pointer = 0xc;
             
             // 设置控制数据
@@ -380,16 +380,16 @@ void RenderingSystemController(longlong param_1, longlong param_2) {
             
             // 控制处理循环
             do {
-                data_pointer = *(longlong *)(control_pointer + RENDERING_SYSTEM_OFFSET_EA8) + (longlong)*(int *)(control_array + 4);
+                data_pointer = *(int64_t *)(control_pointer + RENDERING_SYSTEM_OFFSET_EA8) + (int64_t)*(int *)(control_array + 4);
                 if (((int)process_index < 4) && (*(int *)(param_1 + RENDERING_SYSTEM_OFFSET_2BE0) != 0)) {
-                    buffer_pointer = *(longlong *)(control_pointer + RENDERING_SYSTEM_OFFSET_F18) + (longlong)*(int *)(control_array + 4);
+                    buffer_pointer = *(int64_t *)(control_pointer + RENDERING_SYSTEM_OFFSET_F18) + (int64_t)*(int *)(control_array + 4);
                 }
                 else {
                     buffer_pointer = data_pointer - control_result;
                 }
                 
                 if (((process_index & 3) == 0) && (*(int *)(param_1 + RENDERING_SYSTEM_OFFSET_2BE0) != 0)) {
-                    buffer_pointer = stack_buffer + *(longlong *)(control_pointer + RENDERING_SYSTEM_OFFSET_F30);
+                    buffer_pointer = stack_buffer + *(int64_t *)(control_pointer + RENDERING_SYSTEM_OFFSET_F30);
                     render_state = 1;
                 }
                 else {
@@ -398,16 +398,16 @@ void RenderingSystemController(longlong param_1, longlong param_2) {
                 }
                 
                 temp_pointer = data_pointer;
-                FUN_18069d280(buffer_pointer, buffer_pointer, render_state, *(int32_t *)(*(longlong *)(control_pointer + RENDERING_SYSTEM_OFFSET_F00) + offset_pointer),
+                FUN_18069d280(buffer_pointer, buffer_pointer, render_state, *(int32_t *)(*(int64_t *)(control_pointer + RENDERING_SYSTEM_OFFSET_F00) + offset_pointer),
                               data_pointer);
-                state_data = (int32_t)((ulonglong)temp_pointer >> 0x20);
+                state_data = (int32_t)((uint64_t)temp_pointer >> 0x20);
                 
                 if (*render_data != '\0') {
                     if (*render_data < '\x02') {
                         temp_data = CONCAT44(state_data, control_result);
                         func_0x00018001a59e((int)*(short *)*control_array * (int)*(short *)(control_pointer + RENDERING_SYSTEM_OFFSET_7E0), data_pointer,
                                             control_result, data_pointer, temp_data);
-                        state_data = (int32_t)((ulonglong)temp_data >> 0x20);
+                        state_data = (int32_t)((uint64_t)temp_data >> 0x20);
                         *(int32_t *)*control_array = 0;
                     }
                     else {
@@ -423,7 +423,7 @@ void RenderingSystemController(longlong param_1, longlong param_2) {
             } while ((int)process_index < 0x10);
         }
         else {
-            state_data = (int32_t)((ulonglong)*(uint64_t *)(control_pointer + RENDERING_SYSTEM_OFFSET_EA8) >> 0x20);
+            state_data = (int32_t)((uint64_t)*(uint64_t *)(control_pointer + RENDERING_SYSTEM_OFFSET_EA8) >> 0x20);
             FUN_18069c200();
         }
     }
@@ -432,7 +432,7 @@ void RenderingSystemController(longlong param_1, longlong param_2) {
     }
     
     // 最终控制状态检查
-    if (*(char *)(*(longlong *)(control_pointer + RENDERING_SYSTEM_OFFSET_F00) + 9) == '\0') {
+    if (*(char *)(*(int64_t *)(control_pointer + RENDERING_SYSTEM_OFFSET_F00) + 9) == '\0') {
         if (render_mode != '\x04') {
             data_pointer = control_pointer + RENDERING_SYSTEM_OFFSET_7E0;
             if (render_mode != '\t') {
@@ -456,7 +456,7 @@ void RenderingSystemController(longlong param_1, longlong param_2) {
             buffer_pointer = control_pointer + RENDERING_SYSTEM_OFFSET_7C0;
             FUN_18069c820(control_pointer + 0x180, data_pointer, *(uint64_t *)(control_pointer + RENDERING_SYSTEM_OFFSET_EA8),
                           *(int32_t *)(control_pointer + RENDERING_SYSTEM_OFFSET_E80), buffer_pointer);
-            state_data = (int32_t)((ulonglong)buffer_pointer >> 0x20);
+            state_data = (int32_t)((uint64_t)buffer_pointer >> 0x20);
         }
         FUN_18069c710(control_pointer + 0x380, control_pointer + RENDERING_SYSTEM_OFFSET_840, *(uint64_t *)(control_pointer + RENDERING_SYSTEM_OFFSET_EB0),
                       *(uint64_t *)(control_pointer + RENDERING_SYSTEM_OFFSET_EB8), CONCAT44(state_data, *(int32_t *)(control_pointer + RENDERING_SYSTEM_OFFSET_E94)));
@@ -466,21 +466,21 @@ void RenderingSystemController(longlong param_1, longlong param_2) {
 // 简化实现：渲染系统处理器
 void RenderingSystemProcessor(void) {
     int process_result;                       // 处理结果
-    longlong context_data;                    // 上下文数据
-    longlong control_pointer;                 // 控制指针
-    longlong data_pointer;                    // 数据指针
+    int64_t context_data;                    // 上下文数据
+    int64_t control_pointer;                 // 控制指针
+    int64_t data_pointer;                    // 数据指针
     uint process_index;                        // 处理索引
     int render_state;                          // 渲染状态
-    longlong buffer_pointer;                   // 缓冲区指针
+    int64_t buffer_pointer;                   // 缓冲区指针
     char* render_data;                        // 渲染数据
-    longlong unaff_r15;                       // 寄存器R15
-    longlong temp_pointer;                     // 临时指针
+    int64_t unaff_r15;                       // 寄存器R15
+    int64_t temp_pointer;                     // 临时指针
     uint64_t temp_data;                        // 临时数据
     int32_t state_data;                        // 状态数据
     char stack_char;                           // 栈字符
-    longlong stack_offset;                     // 栈偏移
+    int64_t stack_offset;                     // 栈偏移
     int stack_data;                            // 栈数据
-    longlong stack_buffer;                     // 栈缓冲区
+    int64_t stack_buffer;                     // 栈缓冲区
     
     // 获取处理结果
     process_result = *(int *)(control_pointer + RENDERING_SYSTEM_OFFSET_E80);
@@ -495,12 +495,12 @@ void RenderingSystemProcessor(void) {
     }
     
     // 初始化处理数据
-    data_pointer = *(longlong *)(control_pointer + RENDERING_SYSTEM_OFFSET_F18);
+    data_pointer = *(int64_t *)(control_pointer + RENDERING_SYSTEM_OFFSET_F18);
     render_data = (char *)(control_pointer + RENDERING_SYSTEM_OFFSET_7C0);
-    buffer_pointer = (longlong)*(int *)(control_pointer + RENDERING_SYSTEM_OFFSET_E80);
+    buffer_pointer = (int64_t)*(int *)(control_pointer + RENDERING_SYSTEM_OFFSET_E80);
     uint64_t* control_array = (uint64_t *)(control_pointer + RENDERING_SYSTEM_OFFSET_860);
     process_index = 0;
-    buffer_pointer = *(longlong *)(control_pointer + RENDERING_SYSTEM_OFFSET_EA8) - buffer_pointer;
+    buffer_pointer = *(int64_t *)(control_pointer + RENDERING_SYSTEM_OFFSET_EA8) - buffer_pointer;
     stack_offset = -0x7c0 - control_pointer;
     temp_pointer = 0xc;
     
@@ -512,16 +512,16 @@ void RenderingSystemProcessor(void) {
     
     // 处理循环
     do {
-        data_pointer = *(longlong *)(control_pointer + RENDERING_SYSTEM_OFFSET_EA8) + (longlong)*(int *)(control_array + 4);
+        data_pointer = *(int64_t *)(control_pointer + RENDERING_SYSTEM_OFFSET_EA8) + (int64_t)*(int *)(control_array + 4);
         if (((int)process_index < 4) && (*(int *)(unaff_r15 + RENDERING_SYSTEM_OFFSET_2BE0) != 0)) {
-            buffer_pointer = *(longlong *)(control_pointer + RENDERING_SYSTEM_OFFSET_F18) + (longlong)*(int *)(control_array + 4);
+            buffer_pointer = *(int64_t *)(control_pointer + RENDERING_SYSTEM_OFFSET_F18) + (int64_t)*(int *)(control_array + 4);
         }
         else {
             buffer_pointer = data_pointer - process_result;
         }
         
         if (((process_index & 3) == 0) && (*(int *)(unaff_r15 + RENDERING_SYSTEM_OFFSET_2BE0) != 0)) {
-            buffer_pointer = stack_buffer + *(longlong *)(control_pointer + RENDERING_SYSTEM_OFFSET_F30);
+            buffer_pointer = stack_buffer + *(int64_t *)(control_pointer + RENDERING_SYSTEM_OFFSET_F30);
             render_state = 1;
         }
         else {
@@ -530,22 +530,22 @@ void RenderingSystemProcessor(void) {
         }
         
         if ((((process_index - 4 & 0xfffffff3) == 0) && (process_index != 0x10)) && (*(int *)(unaff_r15 + RENDERING_SYSTEM_OFFSET_2BE0) != 0)) {
-            stack_char = render_data[stack_offset + *(longlong *)(control_pointer + RENDERING_SYSTEM_OFFSET_F30) + -1];
+            stack_char = render_data[stack_offset + *(int64_t *)(control_pointer + RENDERING_SYSTEM_OFFSET_F30) + -1];
         }
         else {
             stack_char = *(char *)(buffer_pointer + -1);
         }
         
         temp_pointer = data_pointer;
-        FUN_18069d280(buffer_pointer, buffer_pointer, render_state, *(int32_t *)(*(longlong *)(control_pointer + RENDERING_SYSTEM_OFFSET_F00) + temp_pointer), data_pointer);
-        state_data = (int32_t)((ulonglong)temp_pointer >> 0x20);
+        FUN_18069d280(buffer_pointer, buffer_pointer, render_state, *(int32_t *)(*(int64_t *)(control_pointer + RENDERING_SYSTEM_OFFSET_F00) + temp_pointer), data_pointer);
+        state_data = (int32_t)((uint64_t)temp_pointer >> 0x20);
         
         if (*render_data != '\0') {
             if (*render_data < '\x02') {
                 temp_data = CONCAT44(state_data, process_result);
                 func_0x00018001a59e((int)*(short *)*control_array * (int)*(short *)(control_pointer + RENDERING_SYSTEM_OFFSET_7E0), data_pointer, process_result,
                                     data_pointer, temp_data);
-                state_data = (int32_t)((ulonglong)temp_data >> 0x20);
+                state_data = (int32_t)((uint64_t)temp_data >> 0x20);
                 *(int32_t *)*control_array = 0;
             }
             else {
@@ -561,7 +561,7 @@ void RenderingSystemProcessor(void) {
     } while ((int)process_index < 0x10);
     
     // 最终处理状态检查
-    if (*(char *)(*(longlong *)(control_pointer + RENDERING_SYSTEM_OFFSET_F00) + 9) == '\0') {
+    if (*(char *)(*(int64_t *)(control_pointer + RENDERING_SYSTEM_OFFSET_F00) + 9) == '\0') {
         if (stack_data != 4) {
             data_pointer = control_pointer + RENDERING_SYSTEM_OFFSET_7E0;
             if (stack_data != 9) {
@@ -585,7 +585,7 @@ void RenderingSystemProcessor(void) {
             buffer_pointer = control_pointer + RENDERING_SYSTEM_OFFSET_7C0;
             FUN_18069c820(control_pointer + 0x180, data_pointer, *(uint64_t *)(control_pointer + RENDERING_SYSTEM_OFFSET_EA8),
                           *(int32_t *)(control_pointer + RENDERING_SYSTEM_OFFSET_E80), buffer_pointer);
-            state_data = (int32_t)((ulonglong)buffer_pointer >> 0x20);
+            state_data = (int32_t)((uint64_t)buffer_pointer >> 0x20);
         }
         FUN_18069c710(control_pointer + 0x380, control_pointer + RENDERING_SYSTEM_OFFSET_840, *(uint64_t *)(control_pointer + RENDERING_SYSTEM_OFFSET_EB0),
                       *(uint64_t *)(control_pointer + RENDERING_SYSTEM_OFFSET_EB8), CONCAT44(state_data, *(int32_t *)(control_pointer + RENDERING_SYSTEM_OFFSET_E94)));
@@ -595,21 +595,21 @@ void RenderingSystemProcessor(void) {
 // 简化实现：渲染系统清理器
 void RenderingSystemCleaner(void) {
     uint64_t* control_array;                   // 控制数组
-    longlong data_pointer;                    // 数据指针
-    longlong control_pointer;                 // 控制指针
+    int64_t data_pointer;                    // 数据指针
+    int64_t control_pointer;                 // 控制指针
     int control_data;                          // 控制数据
     uint64_t stack_data;                       // 栈数据
-    longlong temp_pointer;                     // 临时指针
+    int64_t temp_pointer;                     // 临时指针
     int32_t state_data;                        // 状态数据
     
     // 初始化状态数据
-    state_data = (int32_t)((ulonglong)stack_data >> 0x20);
+    state_data = (int32_t)((uint64_t)stack_data >> 0x20);
     
     // 执行清理操作
     FUN_18069de90();
     
     // 检查清理状态
-    if (*(char *)(*(longlong *)(control_pointer + RENDERING_SYSTEM_OFFSET_F00) + 9) == '\0') {
+    if (*(char *)(*(int64_t *)(control_pointer + RENDERING_SYSTEM_OFFSET_F00) + 9) == '\0') {
         if (control_data != 4) {
             data_pointer = control_pointer + RENDERING_SYSTEM_OFFSET_7E0;
             if (control_data != 9) {
@@ -633,7 +633,7 @@ void RenderingSystemCleaner(void) {
             temp_pointer = control_pointer + RENDERING_SYSTEM_OFFSET_7C0;
             FUN_18069c820(control_pointer + 0x180, data_pointer, *(uint64_t *)(control_pointer + RENDERING_SYSTEM_OFFSET_EA8),
                           *(int32_t *)(control_pointer + RENDERING_SYSTEM_OFFSET_E80), temp_pointer);
-            state_data = (int32_t)((ulonglong)temp_pointer >> 0x20);
+            state_data = (int32_t)((uint64_t)temp_pointer >> 0x20);
         }
         FUN_18069c710(control_pointer + 0x380, control_pointer + RENDERING_SYSTEM_OFFSET_840, *(uint64_t *)(control_pointer + RENDERING_SYSTEM_OFFSET_EB0),
                       *(uint64_t *)(control_pointer + RENDERING_SYSTEM_OFFSET_EB8), CONCAT44(state_data, *(int32_t *)(control_pointer + RENDERING_SYSTEM_OFFSET_E94)));
@@ -643,8 +643,8 @@ void RenderingSystemCleaner(void) {
 // 简化实现：渲染系统优化器
 void RenderingSystemOptimizer(void) {
     uint64_t* control_array;                   // 控制数组
-    longlong data_pointer;                    // 数据指针
-    longlong control_pointer;                 // 控制指针
+    int64_t data_pointer;                    // 数据指针
+    int64_t control_pointer;                 // 控制指针
     int control_data;                          // 控制数据
     
     // 检查优化条件

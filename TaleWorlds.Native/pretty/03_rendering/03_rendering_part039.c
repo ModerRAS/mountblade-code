@@ -33,7 +33,7 @@ void calculate_texture_mapping(uint *render_context, int *texture_data, int text
   int height_limit;
   ushort *current_texture_ptr;
   ushort *previous_texture_ptr;
-  ulonglong optimal_offset;
+  uint64_t optimal_offset;
   
   calculated_position = texture_height + -1 + texture_data[2];
   texture_list_ptr = (ushort *)(texture_data + 6);
@@ -77,7 +77,7 @@ void calculate_texture_mapping(uint *render_context, int *texture_data, int text
     } while ((int)((uint)texture_offset + calculated_position) <= texture_capacity);
     mapping_result[0] = texture_value;
     if (previous_texture_ptr != (ushort *)0x0) {
-      optimal_offset = (ulonglong)**(ushort **)previous_texture_ptr;
+      optimal_offset = (uint64_t)**(ushort **)previous_texture_ptr;
       texture_value = (uint)**(ushort **)previous_texture_ptr;
       goto finalize_mapping;
     }
@@ -113,7 +113,7 @@ finalize_mapping:
       if ((((int)(height_limit + optimal_score) < texture_capacity) && ((int)optimal_score <= (int)optimal_score)) &&
          ((((int)optimal_score < (int)optimal_score || ((int)(uint)current_texture_ptr < (int)mapping_result[0])) ||
           (((uint)current_texture_ptr == mapping_result[0] && ((int)candidate_score < (int)texture_value)))))) {
-        optimal_offset = (ulonglong)candidate_score;
+        optimal_offset = (uint64_t)candidate_score;
         mapping_result[0] = (uint)current_texture_ptr;
         optimal_score = optimal_score;
         texture_value = candidate_score;
@@ -138,7 +138,7 @@ finalize_mapping:
  * @param partition_count 分区数量
  * @return 处理状态码
  */
-int32_t process_rendering_partitions(longlong space_data, longlong render_info, int partition_count)
+int32_t process_rendering_partitions(int64_t space_data, int64_t render_info, int partition_count)
 
 {
   ushort *partition_ptr;
@@ -146,19 +146,19 @@ int32_t process_rendering_partitions(longlong space_data, longlong render_info, 
   ushort partition_height;
   short *space_info;
   uint64_t mapping_result;
-  longlong *texture_mapping;
+  int64_t *texture_mapping;
   int partition_index;
   uint64_t *partition_data;
   ushort *texture_ptr;
   int32_t process_status;
   ushort *next_texture_ptr;
   short *partition_manager;
-  longlong space_offset;
+  int64_t space_offset;
   short partition_offset;
   int *index_array;
   short texture_id;
   int32_t success_flag;
-  longlong partition_size;
+  int64_t partition_size;
   int8_t temp_buffer[16];
   
   process_status = 1;
@@ -172,7 +172,7 @@ int32_t process_rendering_partitions(longlong space_data, longlong render_info, 
       partition_index = partition_index + 1;
     } while (partition_index < partition_count);
   }
-  partition_size = (longlong)partition_count;
+  partition_size = (int64_t)partition_count;
   qsort(render_info, partition_size, 0x10, &partition_comparator);
   // 处理每个分区
   if (0 < partition_size) {
@@ -189,18 +189,18 @@ int32_t process_rendering_partitions(longlong space_data, longlong render_info, 
       else {
         partition_data = (uint64_t *)calculate_texture_mapping(temp_buffer, space_data, partition_width, partition_height);
         mapping_result = *partition_data;
-        texture_mapping = (longlong *)partition_data[1];
+        texture_mapping = (int64_t *)partition_data[1];
         
         // 检查纹理映射有效性
-        if (((texture_mapping == (longlong *)0x0) ||
-            (*(int *)(space_data + 4) < (int)((int)((ulonglong)mapping_result >> 0x20) + (uint)partition_height))) ||
+        if (((texture_mapping == (int64_t *)0x0) ||
+            (*(int *)(space_data + 4) < (int)((int)((uint64_t)mapping_result >> 0x20) + (uint)partition_height))) ||
            (space_info = *(short **)(space_data + 0x20), space_info == (short *)0x0)) {
           partition_manager[-1] = -1;
           partition_manager[0] = -1;
         }
         else {
           // 设置分区信息
-          texture_id = (short)((ulonglong)mapping_result >> 0x20);
+          texture_id = (short)((uint64_t)mapping_result >> 0x20);
           space_info[1] = partition_height + texture_id;
           partition_offset = (short)mapping_result;
           *space_info = partition_offset;
@@ -216,7 +216,7 @@ int32_t process_rendering_partitions(longlong space_data, longlong render_info, 
             *(short **)next_texture_ptr = space_info;
           }
           else {
-            *texture_mapping = (longlong)space_info;
+            *texture_mapping = (int64_t)space_info;
           }
           
           // 处理纹理链表优化
@@ -286,7 +286,7 @@ int32_t process_rendering_partitions(longlong space_data, longlong render_info, 
  * @param partition_count 分区数量
  * @return 优化状态码
  */
-int optimize_rendering_layout(longlong render_context, longlong optimization_data, int partition_count)
+int optimize_rendering_layout(int64_t render_context, int64_t optimization_data, int partition_count)
 
 {
   ushort *partition_ptr;
@@ -294,7 +294,7 @@ int optimize_rendering_layout(longlong render_context, longlong optimization_dat
   ushort partition_height;
   short *space_info;
   uint64_t mapping_result;
-  longlong *texture_mapping;
+  int64_t *texture_mapping;
   int partition_index;
   uint64_t *partition_data;
   ushort *texture_ptr;
@@ -302,13 +302,13 @@ int optimize_rendering_layout(longlong render_context, longlong optimization_dat
   int next_status;
   ushort *next_texture_ptr;
   short *partition_manager;
-  longlong space_offset;
+  int64_t space_offset;
   short texture_id;
   int *index_array;
   short texture_offset;
   int validation_status;
-  longlong partition_size;
-  longlong in_stack_00000088;
+  int64_t partition_size;
+  int64_t in_stack_00000088;
   
   layout_status = 1;
   if (0 < partition_count) {
@@ -320,7 +320,7 @@ int optimize_rendering_layout(longlong render_context, longlong optimization_dat
       partition_index = partition_index + 1;
     } while (partition_index < partition_count);
   }
-  partition_size = (longlong)partition_count;
+  partition_size = (int64_t)partition_count;
   qsort(optimization_data, partition_size, 0x10, &partition_comparator);
   if (0 < partition_size) {
     partition_manager = (short *)(optimization_data + 10);
@@ -334,16 +334,16 @@ int optimize_rendering_layout(longlong render_context, longlong optimization_dat
       else {
         partition_data = (uint64_t *)calculate_texture_mapping(&stack_buffer, render_context, partition_width, partition_height);
         mapping_result = *partition_data;
-        texture_mapping = (longlong *)partition_data[1];
-        if (((texture_mapping == (longlong *)0x0) ||
-            (*(int *)(render_context + 4) < (int)((int)((ulonglong)mapping_result >> 0x20) + (uint)partition_height))) ||
+        texture_mapping = (int64_t *)partition_data[1];
+        if (((texture_mapping == (int64_t *)0x0) ||
+            (*(int *)(render_context + 4) < (int)((int)((uint64_t)mapping_result >> 0x20) + (uint)partition_height))) ||
            (space_info = *(short **)(render_context + 0x20), space_info == (short *)0x0)) {
           validation_status = 0;
           partition_manager[-1] = INVALID_TEXTURE_COORDINATE;
           partition_manager[0] = INVALID_TEXTURE_COORDINATE;
         }
         else {
-          texture_id = (short)((ulonglong)mapping_result >> 0x20);
+          texture_id = (short)((uint64_t)mapping_result >> 0x20);
           space_info[1] = partition_height + texture_id;
           texture_offset = (short)mapping_result;
           *space_info = texture_offset;
@@ -356,7 +356,7 @@ int optimize_rendering_layout(longlong render_context, longlong optimization_dat
             *(short **)next_texture_ptr = space_info;
           }
           else {
-            *texture_mapping = (longlong)space_info;
+            *texture_mapping = (int64_t)space_info;
           }
           if (*(ushort **)(texture_ptr + 4) != (ushort *)0x0) {
             next_texture_ptr = *(ushort **)(texture_ptr + 4);
@@ -406,7 +406,7 @@ int optimize_rendering_layout(longlong render_context, longlong optimization_dat
 
 
 
-// 函数: ulonglong process_advanced_rendering_data(void *render_context, void *data_buffer, int data_count, void *sort_context)
+// 函数: uint64_t process_advanced_rendering_data(void *render_context, void *data_buffer, int data_count, void *sort_context)
 // 渲染系统高级数据处理函数 - 处理复杂的渲染数据分区和优化
 // 参数:
 //   render_context - 渲染上下文指针
@@ -414,14 +414,14 @@ int optimize_rendering_layout(longlong render_context, longlong optimization_dat
 //   data_count - 数据计数
 //   sort_context - 排序上下文
 // 返回值: 处理结果状态码
-ulonglong process_advanced_rendering_data(void *render_context, void *data_buffer, int data_count, void *sort_context)
+uint64_t process_advanced_rendering_data(void *render_context, void *data_buffer, int data_count, void *sort_context)
 {
   ushort *texture_ptr;
   ushort texture_width;
   ushort texture_height;
   short *partition_data;
   uint64_t mapping_result;
-  longlong *texture_chain;
+  int64_t *texture_chain;
   uint64_t *texture_info;
   ushort *texture_node;
   uint result_flag;
@@ -430,17 +430,17 @@ ulonglong process_advanced_rendering_data(void *render_context, void *data_buffe
   void *data_start;
   short *current_partition;
   void *render_context_local;
-  longlong remaining_count;
+  int64_t remaining_count;
   short position_y;
   int position_x;
   short dimension_height;
   uint64_t loop_counter;
   uint status_flag;
-  longlong total_count;
+  int64_t total_count;
   void *sort_buffer;
   
   // 初始化分区数据指针
-  current_partition = (short *)((longlong)data_start + 10);
+  current_partition = (short *)((int64_t)data_start + 10);
   remaining_count = total_count;
   
   do {
@@ -455,10 +455,10 @@ ulonglong process_advanced_rendering_data(void *render_context, void *data_buffe
       // 计算纹理映射
       texture_info = (uint64_t *)calculate_texture_mapping(&stack_buffer, render_context_local, texture_width, texture_height);
       mapping_result = *texture_info;
-      texture_chain = (longlong *)texture_info[1];
+      texture_chain = (int64_t *)texture_info[1];
       
       // 检查映射结果的有效性
-      if (((texture_chain == (longlong *)0x0) ||
+      if (((texture_chain == (int64_t *)0x0) ||
           (*(int *)(render_context_local + 4) < (int)((int)(mapping_result >> 0x20) + (uint)texture_height))) ||
          (partition_data = *(short **)(render_context_local + 0x20), partition_data == (short *)0x0)) {
         // 映射失败，标记为错误
@@ -485,7 +485,7 @@ ulonglong process_advanced_rendering_data(void *render_context, void *data_buffe
           *(short **)next_texture = partition_data;
         }
         else {
-          *texture_chain = (longlong)partition_data;
+          *texture_chain = (int64_t)partition_data;
         }
         
         // 优化纹理链表结构
@@ -523,7 +523,7 @@ ulonglong process_advanced_rendering_data(void *render_context, void *data_buffe
       
       // 验证排序结果
       if (0 < total_count) {
-        current_partition = (short *)((longlong)sort_buffer + 10);
+        current_partition = (short *)((int64_t)sort_buffer + 10);
         do {
           if ((current_partition[-1] != -1) || (success_flag = status_flag, *current_partition != -1)) {
             success_flag = 1;
@@ -534,7 +534,7 @@ ulonglong process_advanced_rendering_data(void *render_context, void *data_buffe
             result_flag = (uint)loop_counter;
           }
           current_partition = current_partition + 8;
-          loop_counter = (ulonglong)result_flag;
+          loop_counter = (uint64_t)result_flag;
           total_count = total_count + -1;
         } while (total_count != 0);
       }
@@ -563,13 +563,13 @@ int validate_rendering_partitions(void *data_buffer, void *sort_context, int par
   int result;
   int loop_counter;
   int internal_flag;
-  longlong remaining_count;
+  int64_t remaining_count;
   
   // 对分区数据进行排序
   qsort(sort_context);
   
   if (0 < remaining_count) {
-    partition_ptr = (short *)((longlong)data_start + 10);
+    partition_ptr = (short *)((int64_t)data_start + 10);
     result = status_flag;
     do {
       // 检查分区数据的有效性
@@ -608,10 +608,10 @@ int optimize_partition_layout(void *data_buffer, int partition_count, int optimi
   short error_flag;
   int internal_status;
   int current_status;
-  longlong remaining_count;
+  int64_t remaining_count;
   
   // 初始化分区指针
-  partition_ptr = (short *)((longlong)data_start + 10);
+  partition_ptr = (short *)((int64_t)data_start + 10);
   
   do {
     // 检查并优化每个分区
@@ -633,20 +633,20 @@ int optimize_partition_layout(void *data_buffer, int partition_count, int optimi
 
 
 
-// 函数: longlong * extract_rendering_data_segment(longlong *output_buffer, longlong *input_stream)
+// 函数: int64_t * extract_rendering_data_segment(int64_t *output_buffer, int64_t *input_stream)
 // 渲染数据段提取函数 - 从输入流中提取渲染数据段
 // 参数:
 //   output_buffer - 输出缓冲区
 //   input_stream - 输入数据流
 // 返回值: 输出缓冲区指针
-longlong * extract_rendering_data_segment(longlong *output_buffer, longlong *input_stream)
+int64_t * extract_rendering_data_segment(int64_t *output_buffer, int64_t *input_stream)
 {
   int current_position;
   int stream_length;
   uint8_t first_byte;
   uint8_t second_byte;
   uint8_t length_byte;
-  longlong data_pointer;
+  int64_t data_pointer;
   int new_position;
   uint64_t remaining_bytes;
   uint compressed_value;
@@ -654,12 +654,12 @@ longlong * extract_rendering_data_segment(longlong *output_buffer, longlong *inp
   
   // 获取当前位置和流长度
   current_position = (int)input_stream[1];
-  stream_length = *(int *)((longlong)input_stream + 0xc);
+  stream_length = *(int *)((int64_t)input_stream + 0xc);
   
   // 读取第一个字节
   if (current_position < stream_length) {
     new_position = current_position + 1;
-    first_byte = *(uint8_t *)((longlong)current_position + *input_stream);
+    first_byte = *(uint8_t *)((int64_t)current_position + *input_stream);
     *(int *)(input_stream + 1) = new_position;
   }
   else {
@@ -669,7 +669,7 @@ longlong * extract_rendering_data_segment(longlong *output_buffer, longlong *inp
   
   // 读取第二个字节
   if (new_position < stream_length) {
-    data_pointer = (longlong)new_position;
+    data_pointer = (int64_t)new_position;
     new_position = new_position + 1;
     second_byte = *(uint8_t *)(data_pointer + *input_stream);
     *(int *)(input_stream + 1) = new_position;
@@ -682,7 +682,7 @@ longlong * extract_rendering_data_segment(longlong *output_buffer, longlong *inp
   if (((uint)first_byte << 8 | (uint)second_byte) != 0) {
     // 读取长度字节
     if (new_position < stream_length) {
-      data_pointer = (longlong)new_position;
+      data_pointer = (int64_t)new_position;
       new_position = new_position + 1;
       length_byte = *(uint8_t *)(data_pointer + *input_stream);
     }
@@ -705,7 +705,7 @@ longlong * extract_rendering_data_segment(longlong *output_buffer, longlong *inp
     if (length_byte != 0) {
       do {
         if (new_position < stream_length) {
-          data_pointer = (longlong)new_position;
+          data_pointer = (int64_t)new_position;
           new_position = new_position + 1;
           length_byte = *(uint8_t *)(data_pointer + *input_stream);
           *(int *)(input_stream + 1) = new_position;
@@ -734,14 +734,14 @@ longlong * extract_rendering_data_segment(longlong *output_buffer, longlong *inp
   // 验证段的有效性
   if ((((-1 < current_position) && (data_pointer = 0, -1 < segment_length)) && (segment_length = 0, data_pointer = 0, current_position <= stream_length)) &&
      (data_pointer = 0, segment_length <= stream_length - current_position)) {
-    data_pointer = (longlong)current_position + *input_stream;
+    data_pointer = (int64_t)current_position + *input_stream;
     segment_length = segment_length;
   }
   
   // 设置输出缓冲区
   *output_buffer = data_pointer;
   *(uint32_t *)(output_buffer + 1) = 0;
-  *(int *)((longlong)output_buffer + 0xc) = segment_length;
+  *(int *)((int64_t)output_buffer + 0xc) = segment_length;
   return output_buffer;
 }
 
@@ -749,7 +749,7 @@ longlong * extract_rendering_data_segment(longlong *output_buffer, longlong *inp
 
 
 
-// 函数: void process_rendering_bitstream(void *render_context, int bit_position, uint bit_pattern, longlong *bit_stream)
+// 函数: void process_rendering_bitstream(void *render_context, int bit_position, uint bit_pattern, int64_t *bit_stream)
 // 渲染位流处理函数 - 处理渲染相关的位流数据
 // 参数:
 //   render_context - 渲染上下文
@@ -757,12 +757,12 @@ longlong * extract_rendering_data_segment(longlong *output_buffer, longlong *inp
 //   bit_pattern - 位模式
 //   bit_stream - 位流数据
 // 返回值: 无
-void process_rendering_bitstream(void *render_context, int bit_position, uint bit_pattern, longlong *bit_stream)
+void process_rendering_bitstream(void *render_context, int bit_position, uint bit_pattern, int64_t *bit_stream)
 {
   uint8_t current_byte;
-  longlong bit_count;
-  longlong data_pointer;
-  longlong *output_buffer;
+  int64_t bit_count;
+  int64_t data_pointer;
+  int64_t *output_buffer;
   int stream_limit;
   int start_position;
   uint32_t segment_offset;
@@ -771,7 +771,7 @@ void process_rendering_bitstream(void *render_context, int bit_position, uint bi
   // 读取位流数据
   do {
     if (bit_position < stream_limit) {
-      data_pointer = (longlong)bit_position;
+      data_pointer = (int64_t)bit_position;
       bit_position = bit_position + 1;
       current_byte = *(uint8_t *)(data_pointer + *bit_stream);
       *(int *)(bit_stream + 1) = bit_position;
@@ -807,7 +807,7 @@ void process_rendering_bitstream(void *render_context, int bit_position, uint bi
   // 设置输出缓冲区
   *output_buffer = data_pointer;
   *(uint32_t *)(output_buffer + 1) = 0;
-  *(int *)((longlong)output_buffer + 0xc) = processed_length;
+  *(int *)((int64_t)output_buffer + 0xc) = processed_length;
   return;
 }
 

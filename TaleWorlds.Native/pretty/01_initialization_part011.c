@@ -1548,7 +1548,7 @@ void InitializationSystemCoreRegistrar23(void)
 int InitializationSystemInitializer(void)
 
 {
-    longlong init_result;
+    int64_t init_result;
     
     /* 初始化系统内存池 */
     InitializationSystem_InitializeMemoryPool(&INIT_MEMORY_POOL_CONFIG_1, 8, 5, 
@@ -1597,7 +1597,7 @@ int InitializationSystemInitializer(void)
 int InitializationSystemConfigManager(void)
 
 {
-    longlong config_result;
+    int64_t config_result;
     uint64_t config_param;
     
     /* 设置系统配置指针 */

@@ -10,17 +10,17 @@
  * 
  * @param component_ptr 组件指针，包含状态信息和回调函数
  */
-void check_component_initialization(longlong component_ptr)
+void check_component_initialization(int64_t component_ptr)
 {
   // 检查关键组件是否已初始化
-  if (*(longlong *)(component_ptr + 0x1d8) != 0) {
+  if (*(int64_t *)(component_ptr + 0x1d8) != 0) {
     // 触发严重错误处理（此函数不返回）
     trigger_critical_error();
   }
   
   // 调用组件的清理回调函数
-  if (*(longlong **)(component_ptr + 0x1b8) != (longlong *)0x0) {
-    (**(code **)(**(longlong **)(component_ptr + 0x1b8) + 0x38))();
+  if (*(int64_t **)(component_ptr + 0x1b8) != (int64_t *)0x0) {
+    (**(code **)(**(int64_t **)(component_ptr + 0x1b8) + 0x38))();
   }
   return;
 }
@@ -79,15 +79,15 @@ initialize_debug_output_system(uint64_t *output_config, uint64_t param2, uint64_
  * @param error_message 错误消息字符串
  * @return 返回错误代码
  */
-ulonglong handle_critical_error(uint64_t param1, uint64_t error_message)
+uint64_t handle_critical_error(uint64_t param1, uint64_t error_message)
 {
   code *pcVar1;
   bool is_debug_mode;
-  longlong thread_context;
+  int64_t thread_context;
   char check_result;
   int debugger_present;
   int thread_id;
-  ulonglong wait_result;
+  uint64_t wait_result;
   void *error_buffer;
   bool is_main_thread;
   void *local_stack_50;
@@ -122,7 +122,7 @@ ulonglong handle_critical_error(uint64_t param1, uint64_t error_message)
   
   // 验证当前线程是否为主线程
   if (thread_context != 0) {
-    debugger_present = *(int *)(**(longlong **)(thread_context + 8) + 0x48);
+    debugger_present = *(int *)(**(int64_t **)(thread_context + 8) + 0x48);
     thread_id = _Thrd_id();
     is_main_thread = thread_id == debugger_present;
   }
@@ -232,21 +232,21 @@ ulonglong handle_critical_error(uint64_t param1, uint64_t error_message)
  * @param error_type 错误类型标志
  * @return 返回处理结果标志
  */
-ulonglong handle_application_error(uint64_t param1, uint64_t error_message, char error_type)
+uint64_t handle_application_error(uint64_t param1, uint64_t error_message, char error_type)
 {
   int8_t local_flag;
   code *pcVar2;
   bool is_debug_mode;
-  longlong thread_context;
+  int64_t thread_context;
   void *error_buffer;
   char check_result;
   int debugger_present;
   int thread_id;
   int32_t format_result;
-  ulonglong process_state;
-  longlong buffer_pointer;
+  uint64_t process_state;
+  int64_t buffer_pointer;
   void *buffer_data;
-  ulonglong string_result;
+  uint64_t string_result;
   uint64_t string_pointer;
   uint64_t *alloc_pointer;
   bool should_generate_report;
@@ -254,7 +254,7 @@ ulonglong handle_application_error(uint64_t param1, uint64_t error_message, char
   void *local_stack_e0;
   uint64_t *local_stack_d8;
   int32_t local_stack_d0;
-  ulonglong local_stack_c8;
+  uint64_t local_stack_c8;
   void *local_stack_c0;
   void *local_stack_b8;
   int32_t local_stack_b0;
@@ -262,9 +262,9 @@ ulonglong handle_application_error(uint64_t param1, uint64_t error_message, char
   void *local_stack_a0;
   void *local_stack_98;
   int32_t local_stack_90;
-  ulonglong local_stack_88;
+  uint64_t local_stack_88;
   void *local_stack_80;
-  longlong local_stack_78;
+  int64_t local_stack_78;
   int32_t local_stack_68;
   uint64_t local_stack_40;
   
@@ -295,7 +295,7 @@ ulonglong handle_application_error(uint64_t param1, uint64_t error_message, char
     
     // 验证线程身份
     if (thread_context != 0) {
-      debugger_present = *(int *)(**(longlong **)(thread_context + 8) + 0x48);
+      debugger_present = *(int *)(**(int64_t **)(thread_context + 8) + 0x48);
       thread_id = _Thrd_id();
       should_generate_report = thread_id == debugger_present;
     }
@@ -378,8 +378,8 @@ ulonglong handle_application_error(uint64_t param1, uint64_t error_message, char
     // 显示错误对话框
     if (error_dialog_suppressed == '\0') {
       if (should_generate_report) {
-        if (*(longlong *)(global_system_object + 8) != 0) {
-          cleanup_system_resources(*(longlong *)(global_system_object + 8));
+        if (*(int64_t *)(global_system_object + 8) != 0) {
+          cleanup_system_resources(*(int64_t *)(global_system_object + 8));
         }
         
         thread_context = global_error_handler;
@@ -492,7 +492,7 @@ ulonglong handle_application_error(uint64_t param1, uint64_t error_message, char
     
     // 执行清理操作
     if ((error_dialog_suppressed == '\0') && (should_generate_report)) {
-      if (*(longlong *)(global_system_object + 8) != 0) {
+      if (*(int64_t *)(global_system_object + 8) != 0) {
         perform_system_cleanup();
       }
       
@@ -529,7 +529,7 @@ ulonglong handle_application_error(uint64_t param1, uint64_t error_message, char
       trigger_memory_error(error_buffer);
     }
     
-    string_result = (ulonglong)report_generated;
+    string_result = (uint64_t)report_generated;
   }
   
   return string_result;
@@ -546,19 +546,19 @@ ulonglong handle_application_error(uint64_t param1, uint64_t error_message, char
  * @param error_type 错误类型标志
  * @return 返回处理结果标志
  */
-ulonglong handle_module_loading_error(uint64_t param1, uint64_t error_message, char error_type)
+uint64_t handle_module_loading_error(uint64_t param1, uint64_t error_message, char error_type)
 {
   code *pcVar1;
-  longlong thread_context;
+  int64_t thread_context;
   char check_result;
   int debugger_present;
   int thread_id;
   int8_t *process_result;
-  longlong buffer_pointer;
+  int64_t buffer_pointer;
   void **buffer_pointer_ptr;
   uint64_t *alloc_pointer;
   void *buffer_data;
-  ulonglong error_flag;
+  uint64_t error_flag;
   void *error_buffer;
   int8_t local_flag;
   bool is_debug_mode;
@@ -568,16 +568,16 @@ ulonglong handle_module_loading_error(uint64_t param1, uint64_t error_message, c
   void *local_stack_b0;
   void *local_stack_a8;
   int32_t local_stack_a0;
-  ulonglong local_stack_98;
+  uint64_t local_stack_98;
   void *local_stack_90;
   uint64_t *local_stack_88;
   int32_t local_stack_80;
-  ulonglong local_stack_78;
+  uint64_t local_stack_78;
   void *local_stack_70;
-  longlong local_stack_68;
+  int64_t local_stack_68;
   int32_t local_stack_58;
   void *local_stack_50;
-  longlong local_stack_48;
+  int64_t local_stack_48;
   int32_t local_stack_38;
   uint64_t local_stack_30;
   
@@ -590,7 +590,7 @@ ulonglong handle_module_loading_error(uint64_t param1, uint64_t error_message, c
   if (((error_silent_mode == '\0') ||
       (process_result = (int8_t *)check_process_state(error_message), (char)process_result != '\0')) ||
      (process_result = (int8_t *)WaitForSingleObject(global_semaphore_handle, 0), (int)process_result != 0)) {
-    return (ulonglong)process_result & 0xffffffffffffff00;
+    return (uint64_t)process_result & 0xffffffffffffff00;
   }
   
   // 初始化线程上下文
@@ -609,7 +609,7 @@ ulonglong handle_module_loading_error(uint64_t param1, uint64_t error_message, c
   
   // 验证线程身份
   if (thread_context != 0) {
-    debugger_present = *(int *)(**(longlong **)(thread_context + 8) + 0x48);
+    debugger_present = *(int *)(**(int64_t **)(thread_context + 8) + 0x48);
     thread_id = _Thrd_id();
     should_handle_error = thread_id == debugger_present;
   }
@@ -697,8 +697,8 @@ skip_error_dialog:
   if (*(int *)(global_module_state + 0x460) == 0) {
     if (error_dialog_suppressed == '\0') {
       if (should_handle_error) {
-        if (*(longlong *)(global_system_object + 8) != 0) {
-          cleanup_system_resources(*(longlong *)(global_system_object + 8));
+        if (*(int64_t *)(global_system_object + 8) != 0) {
+          cleanup_system_resources(*(int64_t *)(global_system_object + 8));
         }
         
         buffer_pointer = global_error_handler;
@@ -750,9 +750,9 @@ skip_error_dialog:
         alloc_pointer[2] = 0x6c726f77656c6174;  // "taleworl"
         alloc_pointer[3] = 0x445c6d6f632e7364;  // "ds.Code\\D"
         *(int32_t *)(alloc_pointer + 4) = 0x50706d75;  // "umpP"
-        *(int32_t *)((longlong)alloc_pointer + 0x24) = 0x65636f72;  // "roce"
+        *(int32_t *)((int64_t)alloc_pointer + 0x24) = 0x65636f72;  // "roce"
         *(int32_t *)(alloc_pointer + 5) = 0x6e697373;  // "ssin"
-        *(int32_t *)((longlong)alloc_pointer + 0x2c) = 0x6c6f4667;  // "gFol"
+        *(int32_t *)((int64_t)alloc_pointer + 0x2c) = 0x6c6f4667;  // "gFol"
         *(int32_t *)(alloc_pointer + 6) = 0x726564;  // "der"
         local_stack_80 = 0x33;
         buffer_pointer_ptr = &local_stack_90;
@@ -829,7 +829,7 @@ skip_error_dialog:
     
     // 执行清理操作
     if ((error_dialog_suppressed == '\0') && (should_handle_error)) {
-      if (*(longlong *)(global_system_object + 8) != 0) {
+      if (*(int64_t *)(global_system_object + 8) != 0) {
         perform_system_cleanup();
       }
       
@@ -865,7 +865,7 @@ skip_error_dialog:
       trigger_memory_error(error_buffer);
     }
     
-    error_flag = (ulonglong)report_generated;
+    error_flag = (uint64_t)report_generated;
   }
   else {
     // 处理已加载模块的情况
@@ -907,7 +907,7 @@ void perform_emergency_exit(uint64_t param1, uint64_t error_message)
   char check_result;
   int debugger_present;
   int thread_id;
-  longlong thread_context;
+  int64_t thread_context;
   void *error_buffer;
   uint64_t error_info;
   void *buffer_data;
@@ -917,7 +917,7 @@ void perform_emergency_exit(uint64_t param1, uint64_t error_message)
   int32_t local_stack_60;
   uint64_t local_stack_58;
   void *local_stack_50;
-  longlong local_stack_48;
+  int64_t local_stack_48;
   int32_t local_stack_38;
   
   // 等待信号量
@@ -937,7 +937,7 @@ void perform_emergency_exit(uint64_t param1, uint64_t error_message)
   
   // 验证线程身份
   if (global_thread_context != 0) {
-    thread_id = *(int *)(**(longlong **)(global_thread_context + 8) + 0x48);
+    thread_id = *(int *)(**(int64_t **)(global_thread_context + 8) + 0x48);
     debugger_present = _Thrd_id();
     is_main_thread = debugger_present == thread_id;
   }

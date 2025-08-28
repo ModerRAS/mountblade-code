@@ -122,7 +122,7 @@ void rendering_system_process_render_batches(void)
 // 渲染管线执行函数 (简化版)
 // 原始实现：复杂的三阶段处理和内存优化
 // 简化实现：简化的管线执行流程
-void rendering_system_execute_render_pipeline(longlong *param_1, longlong *param_2, longlong param_3, longlong *param_4)
+void rendering_system_execute_render_pipeline(int64_t *param_1, int64_t *param_2, int64_t param_3, int64_t *param_4)
 {
     // 简化的管线执行逻辑
     static int pipeline_stage = 0;
@@ -148,7 +148,7 @@ void rendering_system_execute_render_pipeline(longlong *param_1, longlong *param
 // 渲染数据比较函数 (简化版)
 // 原始实现：复杂的资源比较和生命周期管理
 // 简化实现：简单的资源比较
-longlong *rendering_system_compare_render_data(longlong *param_1, longlong *param_2, longlong *param_3)
+int64_t *rendering_system_compare_render_data(int64_t *param_1, int64_t *param_2, int64_t *param_3)
 {
     // 简化的比较逻辑
     if (param_1 && param_2) {
@@ -164,7 +164,7 @@ longlong *rendering_system_compare_render_data(longlong *param_1, longlong *para
 // 渲染数据合并函数 (简化版)
 // 原始实现：复杂的数据合并和内存管理
 // 简化实现：简单的数据合并
-longlong *rendering_system_merge_render_data(longlong *param_1, longlong *param_2, longlong *param_3, longlong *param_4)
+int64_t *rendering_system_merge_render_data(int64_t *param_1, int64_t *param_2, int64_t *param_3, int64_t *param_4)
 {
     // 简化的合并逻辑
     if (param_1 && param_2) {
@@ -177,7 +177,7 @@ longlong *rendering_system_merge_render_data(longlong *param_1, longlong *param_
 // 渲染数据优化函数 (简化版)
 // 原始实现：复杂的三阶段优化和内存管理
 // 简化实现：简单的优化逻辑
-void rendering_system_optimize_render_data(longlong *param_1, longlong param_2, longlong param_3, longlong param_4, longlong *param_5)
+void rendering_system_optimize_render_data(int64_t *param_1, int64_t param_2, int64_t param_3, int64_t param_4, int64_t *param_5)
 {
     // 简化的优化逻辑
     static int optimization_pass = 0;
@@ -196,7 +196,7 @@ void rendering_system_optimize_render_data(longlong *param_1, longlong param_2, 
 // 渲染数据清理函数 (简化版)
 // 原始实现：复杂的内存清理和资源释放
 // 简化实现：简单的清理逻辑
-void rendering_system_cleanup_render_data(longlong *render_data_ptr)
+void rendering_system_cleanup_render_data(int64_t *render_data_ptr)
 {
     // 简化的清理逻辑
     if (render_data_ptr) {
@@ -210,7 +210,7 @@ void rendering_system_cleanup_render_data(longlong *render_data_ptr)
 // 渲染数据释放函数 (简化版)
 // 原始实现：复杂的内存释放和资源管理
 // 简化实现：简单的释放逻辑
-void rendering_system_release_render_data(longlong *render_data_ptr)
+void rendering_system_release_render_data(int64_t *render_data_ptr)
 {
     // 简化的释放逻辑
     rendering_system_cleanup_render_data(render_data_ptr);
@@ -221,7 +221,7 @@ void rendering_system_release_render_data(longlong *render_data_ptr)
 // 渲染数据初始化函数 (简化版)
 // 原始实现：复杂的初始化和内存分配
 // 简化实现：简单的初始化逻辑
-uint64_t *rendering_system_initialize_render_data(uint64_t *render_data_ptr, ulonglong memory_flags, uint64_t param_3, uint64_t param_4)
+uint64_t *rendering_system_initialize_render_data(uint64_t *render_data_ptr, uint64_t memory_flags, uint64_t param_3, uint64_t param_4)
 {
     // 简化的初始化逻辑
     if (render_data_ptr) {
@@ -251,7 +251,7 @@ void rendering_system_destroy_render_data(uint64_t *render_data_ptr)
 // 渲染队列处理函数 (简化版)
 // 原始实现：复杂的线程同步和队列处理
 // 简化实现：简化的队列处理
-void rendering_system_process_render_queue(longlong render_queue_handle)
+void rendering_system_process_render_queue(int64_t render_queue_handle)
 {
     // 简化的队列处理逻辑
     static int queue_items = 0;
@@ -295,7 +295,7 @@ uint64_t *rendering_system_create_render_object(uint64_t *render_object_ptr, int
 // 渲染对象释放函数 (简化版)
 // 原始实现：复杂的对象释放和资源清理
 // 简化实现：简化的对象释放
-uint64_t rendering_system_free_render_object(uint64_t render_object, ulonglong memory_flags)
+uint64_t rendering_system_free_render_object(uint64_t render_object, uint64_t memory_flags)
 {
     // 简化的对象释放逻辑
     rendering_system_cleanup_render_object(&render_object);

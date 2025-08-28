@@ -255,10 +255,10 @@ extern uint64_t global_state_4272;              // 哈希表状态标志
 extern uint64_t global_state_3536;              // 哈希表指针表
 extern int8_t *global_state_3672;             // 哈希表字节表
 extern int32_t global_state_3680;              // 哈希表计数器
-extern longlong global_state_3752;                // 哈希表时间戳1
-extern longlong global_state_3760;                // 哈希表时间戳2
-extern longlong global_state_3784;                // 哈希表性能计数器1
-extern longlong global_state_3792;                // 哈希表性能计数器2
+extern int64_t global_state_3752;                // 哈希表时间戳1
+extern int64_t global_state_3760;                // 哈希表时间戳2
+extern int64_t global_state_3784;                // 哈希表性能计数器1
+extern int64_t global_state_3792;                // 哈希表性能计数器2
 extern int32_t global_state_3816;              // 哈希表错误代码
 extern int32_t global_state_3820;              // 哈希表警告代码
 extern uint8_t system_resource_config;               // 哈希表配置数据
@@ -284,7 +284,7 @@ extern uint8_t system_temp_config;                // 哈希表临时数据
  * @param param_1 哈希表上下文参数
  * @return void 处理结果状态
  */
-void HashTable_Processor(longlong param_1);
+void HashTable_Processor(int64_t param_1);
 
 /**
  * @brief 哈希表搜索器
@@ -299,7 +299,7 @@ void HashTable_Processor(longlong param_1);
  * @param param_1 哈希表上下文参数
  * @return void 搜索结果状态
  */
-void HashTable_Search(longlong param_1);
+void HashTable_Search(int64_t param_1);
 
 /**
  * @brief 哈希表清理器
@@ -360,7 +360,7 @@ void HashTable_Clear(void);
  * @param param_1 数据上下文参数
  * @return void 处理结果状态
  */
-void Data_Processor(longlong *param_1);
+void Data_Processor(int64_t *param_1);
 
 /**
  * @brief 数据清理器
@@ -375,7 +375,7 @@ void Data_Processor(longlong *param_1);
  * @param param_1 数据上下文参数
  * @return void 清理结果状态
  */
-void Data_Cleaner(longlong *param_1);
+void Data_Cleaner(int64_t *param_1);
 
 /**
  * @brief 数据管理器
@@ -390,7 +390,7 @@ void Data_Cleaner(longlong *param_1);
  * @param param_1 数据上下文参数
  * @return void 管理结果状态
  */
-void Data_Manager(longlong param_1);
+void Data_Manager(int64_t param_1);
 
 /**
  * @brief 数据处理器
@@ -405,7 +405,7 @@ void Data_Manager(longlong param_1);
  * @param param_1 数据上下文参数
  * @return void 处理结果状态
  */
-void Data_Handler(longlong param_1);
+void Data_Handler(int64_t param_1);
 
 /**
  * @brief 数据迭代器
@@ -420,7 +420,7 @@ void Data_Handler(longlong param_1);
  * @param param_1 数据上下文参数
  * @return void 迭代结果状态
  */
-void Data_Iterator(longlong param_1);
+void Data_Iterator(int64_t param_1);
 
 /* ============================================================================
  * 缓冲区管理函数声明
@@ -468,7 +468,7 @@ void Buffer_Cleaner(void);
  * @param param_2 缓冲区操作参数
  * @return void 管理结果状态
  */
-void Buffer_Manager(longlong *param_1, uint64_t param_2);
+void Buffer_Manager(int64_t *param_1, uint64_t param_2);
 
 /* ============================================================================
  * 查找和哈希函数声明
@@ -489,7 +489,7 @@ void Buffer_Manager(longlong *param_1, uint64_t param_2);
  * @param param_3 查找范围参数
  * @return int16_t 查找结果状态
  */
-int16_t HashTable_Lookup(longlong param_1, longlong param_2, uint param_3);
+int16_t HashTable_Lookup(int64_t param_1, int64_t param_2, uint param_3);
 
 /**
  * @brief 哈希表插入器
@@ -537,7 +537,7 @@ void HashTable_Release(void);
  * @param param_2 字符串数据参数
  * @return int 添加结果状态
  */
-int String_Add(longlong *param_1, byte *param_2);
+int String_Add(int64_t *param_1, byte *param_2);
 
 /**
  * @brief 字符串插入器
@@ -585,7 +585,7 @@ int32_t String_Process(void);
  * @param param_2 内存输出参数
  * @return void 分配结果状态
  */
-void Memory_Allocate(longlong param_1, int32_t *param_2);
+void Memory_Allocate(int64_t param_1, int32_t *param_2);
 
 /**
  * @brief 内存扩展器
@@ -634,7 +634,7 @@ uint64_t * Memory_Resize(uint64_t *param_1, int32_t *param_2);
  * @param param_3 复制大小参数
  * @return void 复制结果状态
  */
-void Buffer_Copy(longlong *param_1, longlong param_2, uint param_3);
+void Buffer_Copy(int64_t *param_1, int64_t param_2, uint param_3);
 
 /**
  * @brief 缓冲区追加器
@@ -651,7 +651,7 @@ void Buffer_Copy(longlong *param_1, longlong param_2, uint param_3);
  * @param param_3 追加大小参数
  * @return void 追加结果状态
  */
-void Buffer_Append(longlong *param_1, longlong param_2, uint param_3);
+void Buffer_Append(int64_t *param_1, int64_t param_2, uint param_3);
 
 /* ============================================================================
  * 事件处理函数声明
@@ -672,7 +672,7 @@ void Buffer_Append(longlong *param_1, longlong param_2, uint param_3);
  * @param param_3 事件标志参数
  * @return void 处理结果状态
  */
-void Event_Handler(longlong param_1, uint64_t param_2, int32_t param_3);
+void Event_Handler(int64_t param_1, uint64_t param_2, int32_t param_3);
 
 /**
  * @brief 事件处理器
@@ -719,8 +719,8 @@ void Event_Cleaner(void);
  * @param param_6 事件优先级参数
  * @return void 分发结果状态
  */
-void Event_Dispatcher(longlong param_1, int32_t param_2, uint64_t param_3, 
-                      uint64_t param_4, int32_t param_5, longlong param_6);
+void Event_Dispatcher(int64_t param_1, int32_t param_2, uint64_t param_3, 
+                      uint64_t param_4, int32_t param_5, int64_t param_6);
 
 /* ============================================================================
  * 主要功能函数实现
@@ -776,7 +776,7 @@ void Event_Dispatcher(longlong param_1, int32_t param_2, uint64_t param_3,
  * @param param_1 哈希表上下文参数
  * @return void 处理结果状态
  */
-void HashTable_Processor(longlong param_1)
+void HashTable_Processor(int64_t param_1)
 {
     // 哈希表处理逻辑实现
     
@@ -899,7 +899,7 @@ void HashTable_Processor(longlong param_1)
  * @param param_1 哈希表上下文参数
  * @return void 搜索结果状态
  */
-void HashTable_Search(longlong param_1)
+void HashTable_Search(int64_t param_1)
 {
     // 哈希表搜索逻辑实现
     
@@ -1184,7 +1184,7 @@ void HashTable_Clear(void)
  * @param param_1 数据上下文参数
  * @return void 处理结果状态
  */
-void Data_Processor(longlong *param_1)
+void Data_Processor(int64_t *param_1)
 {
     // 数据处理逻辑实现
     
@@ -1255,7 +1255,7 @@ void Data_Processor(longlong *param_1)
  * @param param_1 数据上下文参数
  * @return void 清理结果状态
  */
-void Data_Cleaner(longlong *param_1)
+void Data_Cleaner(int64_t *param_1)
 {
     // 数据清理逻辑实现
     
@@ -1326,7 +1326,7 @@ void Data_Cleaner(longlong *param_1)
  * @param param_1 数据上下文参数
  * @return void 管理结果状态
  */
-void Data_Manager(longlong param_1)
+void Data_Manager(int64_t param_1)
 {
     // 数据管理逻辑实现
     
@@ -1397,7 +1397,7 @@ void Data_Manager(longlong param_1)
  * @param param_1 数据上下文参数
  * @return void 处理结果状态
  */
-void Data_Handler(longlong param_1)
+void Data_Handler(int64_t param_1)
 {
     // 数据处理逻辑实现
     
@@ -1468,7 +1468,7 @@ void Data_Handler(longlong param_1)
  * @param param_1 数据上下文参数
  * @return void 迭代结果状态
  */
-void Data_Iterator(longlong param_1)
+void Data_Iterator(int64_t param_1)
 {
     // 数据迭代逻辑实现
     
@@ -1684,7 +1684,7 @@ void Buffer_Cleaner(void)
  * @param param_2 缓冲区操作参数
  * @return void 管理结果状态
  */
-void Buffer_Manager(longlong *param_1, uint64_t param_2)
+void Buffer_Manager(int64_t *param_1, uint64_t param_2)
 {
     // 缓冲区管理逻辑实现
     
@@ -1761,7 +1761,7 @@ void Buffer_Manager(longlong *param_1, uint64_t param_2)
  * @param param_3 查找范围参数
  * @return int16_t 查找结果状态
  */
-int16_t HashTable_Lookup(longlong param_1, longlong param_2, uint param_3)
+int16_t HashTable_Lookup(int64_t param_1, int64_t param_2, uint param_3)
 {
     // 哈希表查找逻辑实现
     
@@ -1979,7 +1979,7 @@ void HashTable_Release(void)
  * @param param_2 字符串数据参数
  * @return int 添加结果状态
  */
-int String_Add(longlong *param_1, byte *param_2)
+int String_Add(int64_t *param_1, byte *param_2)
 {
     // 字符串添加逻辑实现
     
@@ -2201,7 +2201,7 @@ int32_t String_Process(void)
  * @param param_2 内存输出参数
  * @return void 分配结果状态
  */
-void Memory_Allocate(longlong param_1, int32_t *param_2)
+void Memory_Allocate(int64_t param_1, int32_t *param_2)
 {
     // 内存分配逻辑实现
     
@@ -2422,7 +2422,7 @@ uint64_t * Memory_Resize(uint64_t *param_1, int32_t *param_2)
  * @param param_3 复制大小参数
  * @return void 复制结果状态
  */
-void Buffer_Copy(longlong *param_1, longlong param_2, uint param_3)
+void Buffer_Copy(int64_t *param_1, int64_t param_2, uint param_3)
 {
     // 缓冲区复制逻辑实现
     
@@ -2495,7 +2495,7 @@ void Buffer_Copy(longlong *param_1, longlong param_2, uint param_3)
  * @param param_3 追加大小参数
  * @return void 追加结果状态
  */
-void Buffer_Append(longlong *param_1, longlong param_2, uint param_3)
+void Buffer_Append(int64_t *param_1, int64_t param_2, uint param_3)
 {
     // 缓冲区追加逻辑实现
     
@@ -2572,7 +2572,7 @@ void Buffer_Append(longlong *param_1, longlong param_2, uint param_3)
  * @param param_3 事件标志参数
  * @return void 处理结果状态
  */
-void Event_Handler(longlong param_1, uint64_t param_2, int32_t param_3)
+void Event_Handler(int64_t param_1, uint64_t param_2, int32_t param_3)
 {
     // 事件处理逻辑实现
     
@@ -2788,8 +2788,8 @@ void Event_Cleaner(void)
  * @param param_6 事件优先级参数
  * @return void 分配结果状态
  */
-void Event_Dispatcher(longlong param_1, int32_t param_2, uint64_t param_3, 
-                      uint64_t param_4, int32_t param_5, longlong param_6)
+void Event_Dispatcher(int64_t param_1, int32_t param_2, uint64_t param_3, 
+                      uint64_t param_4, int32_t param_5, int64_t param_6)
 {
     // 事件分配逻辑实现
     

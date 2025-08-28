@@ -33,13 +33,13 @@
  * @param matrix_ptr 4x4变换矩阵指针
  * @param bounding_box_ptr 边界框数据指针
  */
-void transform_bounding_box_with_matrix(longlong render_context, float *matrix_ptr, float *bounding_box_ptr)
+void transform_bounding_box_with_matrix(int64_t render_context, float *matrix_ptr, float *bounding_box_ptr)
 {
     float min_x, max_x, min_y, max_y, min_z, max_z;
     float temp_x, temp_y, temp_z;
     float bounding_values[8];
     float *current_point;
-    longlong point_count;
+    int64_t point_count;
     float center_x, center_y, center_z;
     float radius, extent_x, extent_y, extent_z;
     float matrix_row1[4], matrix_row2[4], matrix_row3[4], matrix_row4[4];
@@ -48,10 +48,10 @@ void transform_bounding_box_with_matrix(longlong render_context, float *matrix_p
     int32_t stack_value;
     float transform_matrix[12];
     float bounding_center[3];
-    ulonglong stack_guard;
+    uint64_t stack_guard;
     
     // 栈保护初始化
-    stack_guard = GET_SECURITY_COOKIE() ^ (ulonglong)stack_data;
+    stack_guard = GET_SECURITY_COOKIE() ^ (uint64_t)stack_data;
     
     // 提取矩阵数据
     transform_matrix[0] = matrix_ptr[0];  // 第一行第一列
@@ -212,7 +212,7 @@ void transform_bounding_box_with_matrix(longlong render_context, float *matrix_p
     FUN_1802864f0();
     
     // 栈保护清理
-    FUN_1808fc050(stack_guard ^ (ulonglong)stack_data);
+    FUN_1808fc050(stack_guard ^ (uint64_t)stack_data);
 }
 
 /**
@@ -222,7 +222,7 @@ void transform_bounding_box_with_matrix(longlong render_context, float *matrix_p
  * @param distance 距离参数
  * @return 输出点坐标指针
  */
-float * calculate_point_at_distance(longlong render_context, float *output_point, float distance)
+float * calculate_point_at_distance(int64_t render_context, float *output_point, float distance)
 {
     float transform_x, transform_y, transform_z;
     float direction_x, direction_y, direction_z;
@@ -322,15 +322,15 @@ float * transform_vector_by_matrix(float *input_matrix, float *output_vector)
  */
 uint64_t * initialize_rendering_pool(uint64_t *pool_data)
 {
-    longlong allocation_size;
-    longlong memory_alignment;
+    int64_t allocation_size;
+    int64_t memory_alignment;
     uint64_t *memory_block;
     uint64_t *previous_block;
     uint64_t *current_block;
     uint64_t *next_block;
     uint64_t *block_pointer;
-    ulonglong hash_mask;
-    ulonglong hash_value;
+    uint64_t hash_mask;
+    uint64_t hash_value;
     int8_t stack_data1[24];
     int8_t stack_data2[32];
     
@@ -370,7 +370,7 @@ uint64_t * initialize_rendering_pool(uint64_t *pool_data)
             memory_block = block_pointer;
             
             if (memory_alignment != 0) {
-                memory_block = (uint64_t *)((ulonglong)(-(int)memory_alignment & 7) + memory_alignment);
+                memory_block = (uint64_t *)((uint64_t)(-(int)memory_alignment & 7) + memory_alignment);
                 
                 // 初始化内存块
                 *memory_block = 0;
@@ -378,7 +378,7 @@ uint64_t * initialize_rendering_pool(uint64_t *pool_data)
                 memory_block[8] = 0;
                 memory_block[9] = 0;
                 memory_block[0x10] = 0;
-                memory_block[0x11] = (ulonglong)(-(int)(memory_block + 0x14) & 3) + (longlong)(memory_block + 0x14);
+                memory_block[0x11] = (uint64_t)(-(int)(memory_block + 0x14) & 3) + (int64_t)(memory_block + 0x14);
                 memory_block[0x12] = allocation_size + -1;
                 memory_block[0x13] = memory_alignment;
             }
@@ -396,7 +396,7 @@ uint64_t * initialize_rendering_pool(uint64_t *pool_data)
             }
             
             memory_block[0x10] = previous_block;
-            previous_block = (uint64_t *)((longlong)previous_block + 1);
+            previous_block = (uint64_t *)((int64_t)previous_block + 1);
             next_block = previous_block;
             current_block = memory_block;
         } while (previous_block != (uint64_t *)0x2);
@@ -446,7 +446,7 @@ void set_rendering_state(char *state_ptr, int param1, int param2)
  * @param exception_info 异常信息指针
  * @return 异常数据指针
  */
-uint64_t * create_exception_data(uint64_t *exception_data, longlong exception_info)
+uint64_t * create_exception_data(uint64_t *exception_data, int64_t exception_info)
 {
     *exception_data = &unknown_var_9816_ptr;
     exception_data[1] = 0;

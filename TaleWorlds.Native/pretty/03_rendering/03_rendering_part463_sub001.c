@@ -237,7 +237,7 @@
 // =============================================================================
 // 渲染系统高级矩阵变换器
 // =============================================================================
-// 函数: void FUN_180515a6e(uint64_t param_1,float *param_2,longlong param_3,longlong param_4)
+// 函数: void FUN_180515a6e(uint64_t param_1,float *param_2,int64_t param_3,int64_t param_4)
 // 功能: 执行高级矩阵变换操作，包括矩阵乘法、向量变换、投影变换等
 // 参数: 
 //   param_1 - 渲染上下文指针
@@ -245,7 +245,7 @@
 //   param_3 - 变换参数结构体指针
 //   param_4 - 输出缓冲区指针
 // 返回值: 无
-void rendering_system_advanced_matrix_transformer(void* render_context, float* input_vectors, longlong transform_params, longlong output_buffer)
+void rendering_system_advanced_matrix_transformer(void* render_context, float* input_vectors, int64_t transform_params, int64_t output_buffer)
 {
     // 局部变量声明
     float temp_float_1;
@@ -256,8 +256,8 @@ void rendering_system_advanced_matrix_transformer(void* render_context, float* i
     void* temp_pointer_3;
     float* temp_float_pointer_1;
     uint* temp_uint_pointer_1;
-    longlong temp_longlong_1;
-    longlong temp_longlong_2;
+    int64_t temp_int64_t_1;
+    int64_t temp_int64_t_2;
     float vector_components[16];
     float matrix_elements[32];
     
@@ -328,19 +328,19 @@ void rendering_system_advanced_matrix_transformer(void* render_context, float* i
 // =============================================================================
 // 渲染系统向量运算器
 // =============================================================================
-// 函数: void FUN_180515e40(uint64_t param_1,uint64_t param_2,longlong param_3)
+// 函数: void FUN_180515e40(uint64_t param_1,uint64_t param_2,int64_t param_3)
 // 功能: 执行向量运算操作，包括向量加法、减法、点积、叉积等
 // 参数: 
 //   param_1 - 渲染上下文指针
 //   param_2 - 向量运算参数结构体指针
 //   param_3 - 输出缓冲区指针
 // 返回值: 无
-void rendering_system_vector_operator(void* render_context, void* vector_params, longlong output_buffer)
+void rendering_system_vector_operator(void* render_context, void* vector_params, int64_t output_buffer)
 {
     // 局部变量声明
     uint temp_uint_1;
     int temp_int_1;
-    longlong temp_longlong_1;
+    int64_t temp_int64_t_1;
     void* temp_pointer_1;
     float temp_float_1;
     float temp_float_2;
@@ -352,8 +352,8 @@ void rendering_system_vector_operator(void* render_context, void* vector_params,
     void* temp_pointer_2;
     float* temp_float_pointer_1;
     uint* temp_uint_pointer_1;
-    longlong context_pointer_1;
-    longlong context_pointer_2;
+    int64_t context_pointer_1;
+    int64_t context_pointer_2;
     float vector_component_1;
     float vector_component_2;
     float vector_component_3;
@@ -372,7 +372,7 @@ void rendering_system_vector_operator(void* render_context, void* vector_params,
     *(float*)(output_buffer + 0x59c) = 0.1f;
     
     // 获取渲染数据指针
-    longlong render_data_pointer = *(longlong*)(context_pointer_1 + 0x728);
+    int64_t render_data_pointer = *(int64_t*)(context_pointer_1 + 0x728);
     
     // 提取向量数据
     float vector_data_1 = *(float*)(render_data_pointer + 0x40);
@@ -415,7 +415,7 @@ void rendering_system_vector_operator(void* render_context, void* vector_params,
 // 返回值: 无
 void rendering_system_quaternion_rotator(void)
 {
-    longlong context_pointer;
+    int64_t context_pointer;
     
     // 执行四元数旋转操作
     rendering_system_execute_quaternion_rotation();
@@ -424,21 +424,21 @@ void rendering_system_quaternion_rotator(void)
 // =============================================================================
 // 渲染系统投影变换器
 // =============================================================================
-// 函数: void FUN_1805162e0(longlong param_1)
+// 函数: void FUN_1805162e0(int64_t param_1)
 // 功能: 执行投影变换操作，包括透视投影和正交投影
 // 参数: 
 //   param_1 - 投影参数结构体指针
 // 返回值: 无
-void rendering_system_projection_transformer(longlong projection_params)
+void rendering_system_projection_transformer(int64_t projection_params)
 {
     // 局部变量声明
-    longlong temp_longlong_1;
+    int64_t temp_int64_t_1;
     float temp_vector_1[16];
     float temp_vector_2[16];
     float temp_float_1;
     uint temp_uint_1;
-    ulonglong temp_ulonglong_1;
-    longlong temp_longlong_2;
+    uint64_t temp_uint64_t_1;
+    int64_t temp_int64_t_2;
     float temp_float_2;
     uint temp_uint_2;
     float vector_result_1;
@@ -489,10 +489,10 @@ void rendering_system_projection_transformer(longlong projection_params)
     uint stack_data_15;
     uint stack_data_16;
     uint stack_data_17;
-    ulonglong stack_data_18;
+    uint64_t stack_data_18;
     
     // 计算投影参数
-    float projection_factor = 1.0f - *(float*)(*(longlong*)(projection_params + 0x590) + 0xa600);
+    float projection_factor = 1.0f - *(float*)(*(int64_t*)(projection_params + 0x590) + 0xa600);
     projection_factor = projection_factor + projection_factor;
     
     // 限制投影因子范围
@@ -501,8 +501,8 @@ void rendering_system_projection_transformer(longlong projection_params)
     }
     
     // 获取投影矩阵数据
-    longlong matrix_pointer = *(longlong*)(*(longlong*)(projection_params + 0x6d8) + 0x8a8);
-    longlong render_data_pointer = *(longlong*)(projection_params + 0x728);
+    int64_t matrix_pointer = *(int64_t*)(*(int64_t*)(projection_params + 0x6d8) + 0x8a8);
+    int64_t render_data_pointer = *(int64_t*)(projection_params + 0x728);
     
     // 计算投影变换矩阵
     vector_result_31 = *(float*)(matrix_pointer + 0x98) * *(float*)(render_data_pointer + 0xb8) + 
@@ -521,7 +521,7 @@ void rendering_system_projection_transformer(longlong projection_params)
     uint transform_result = rendering_system_calculate_projection_matrix(&stack_data_5, projection_params + 0x520);
     
     // 获取变换矩阵数据
-    render_data_pointer = *(longlong*)(projection_params + 0x728);
+    render_data_pointer = *(int64_t*)(projection_params + 0x728);
     float matrix_data_1 = *(float*)(render_data_pointer + 0x90);
     float matrix_data_2 = *(float*)(render_data_pointer + 0x94);
     float matrix_data_3 = *(float*)(render_data_pointer + 0x98);
@@ -566,7 +566,7 @@ static void rendering_system_initialize_context(void)
 }
 
 // 应用矩阵变换
-static void rendering_system_apply_matrix_transform(float* input_vectors, float* matrix_elements, longlong output_buffer)
+static void rendering_system_apply_matrix_transform(float* input_vectors, float* matrix_elements, int64_t output_buffer)
 {
     // 执行矩阵乘法运算
     // 应用变换到输入向量
@@ -589,7 +589,7 @@ static void rendering_system_normalize_vector(float* vector)
 }
 
 // 应用投影变换
-static void rendering_system_apply_projection_transform(float* vector, longlong projection_params)
+static void rendering_system_apply_projection_transform(float* vector, int64_t projection_params)
 {
     // 应用投影矩阵
     // 执行透视除法
@@ -597,7 +597,7 @@ static void rendering_system_apply_projection_transform(float* vector, longlong 
 }
 
 // 验证变换结果
-static int rendering_system_validate_transform_result(longlong output_buffer)
+static int rendering_system_validate_transform_result(int64_t output_buffer)
 {
     // 检查结果是否有效
     // 验证数值范围
@@ -605,7 +605,7 @@ static int rendering_system_validate_transform_result(longlong output_buffer)
 }
 
 // 更新渲染状态
-static void rendering_system_update_render_state(void* render_context, longlong output_buffer)
+static void rendering_system_update_render_state(void* render_context, int64_t output_buffer)
 {
     // 更新渲染系统状态
     // 设置变换矩阵
@@ -621,7 +621,7 @@ static void rendering_system_handle_transform_error(void* render_context)
 }
 
 // 应用向量运算
-static void rendering_system_apply_vector_operation(void* render_context, float* vector_result, longlong output_buffer)
+static void rendering_system_apply_vector_operation(void* render_context, float* vector_result, int64_t output_buffer)
 {
     // 应用向量运算结果
     // 更新渲染状态
@@ -637,7 +637,7 @@ static void rendering_system_execute_quaternion_rotation(void)
 }
 
 // 计算投影矩阵
-static uint rendering_system_calculate_projection_matrix(void* output_buffer, longlong projection_params)
+static uint rendering_system_calculate_projection_matrix(void* output_buffer, int64_t projection_params)
 {
     // 计算投影矩阵元素
     // 设置矩阵参数
@@ -646,7 +646,7 @@ static uint rendering_system_calculate_projection_matrix(void* output_buffer, lo
 }
 
 // 执行标准投影变换
-static void rendering_system_execute_standard_projection_transform(longlong render_data_pointer, float projection_factor, 
+static void rendering_system_execute_standard_projection_transform(int64_t render_data_pointer, float projection_factor, 
                                                                float* transform_matrix, float* result_vector)
 {
     // 执行标准投影变换计算
@@ -655,7 +655,7 @@ static void rendering_system_execute_standard_projection_transform(longlong rend
 }
 
 // 执行高级投影变换
-static void rendering_system_execute_advanced_projection_transform(longlong render_data_pointer, float projection_factor, 
+static void rendering_system_execute_advanced_projection_transform(int64_t render_data_pointer, float projection_factor, 
                                                                 float* transform_matrix, float* result_vector)
 {
     // 执行高级投影变换计算
@@ -664,7 +664,7 @@ static void rendering_system_execute_advanced_projection_transform(longlong rend
 }
 
 // 应用投影结果
-static void rendering_system_apply_projection_result(longlong projection_params, float* result_vector)
+static void rendering_system_apply_projection_result(int64_t projection_params, float* result_vector)
 {
     // 应用投影变换结果
     // 更新渲染参数

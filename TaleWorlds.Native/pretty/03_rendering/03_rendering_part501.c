@@ -58,7 +58,7 @@
 =============================================================================*/
 
 /* 渲染系统基础类型别名 */
-typedef longlong* RenderingSystemContextPtr;          /* 渲染系统上下文指针 */
+typedef int64_t* RenderingSystemContextPtr;          /* 渲染系统上下文指针 */
 typedef uint64_t RenderingSystemParam;               /* 渲染系统参数 */
 typedef int32_t RenderingSystemFlag;                /* 渲染系统标志 */
 typedef int8_t RenderingSystemState;               /* 渲染系统状态 */
@@ -68,7 +68,7 @@ typedef char RenderingSystemBool;                       /* 渲染系统布尔值
 
 /* 渲染系统数据结构别名 */
 typedef int RenderingSystemDataArray[2];                /* 渲染系统数据数组 */
-typedef longlong* RenderingSystemDataPtr;              /* 渲染系统数据指针 */
+typedef int64_t* RenderingSystemDataPtr;              /* 渲染系统数据指针 */
 typedef int* RenderingSystemIndexPtr;                  /* 渲染系统索引指针 */
 typedef uint64_t* RenderingSystemResourcePtr;        /* 渲染系统资源指针 */
 
@@ -105,11 +105,11 @@ typedef char (*RenderingSystemValidationFunc)(uint64_t param, int* output, void*
 typedef void (*RenderingSystemProcessorFunc)(void* context, char result, void* config, int* data);
 typedef int (*RenderingSystemCalculatorFunc)(uint64_t param1, int32_t param2, int param3, 
                                            uint64_t param4, int param5, int param6, char condition);
-typedef void (*RenderingSystemCleanupFunc)(longlong context, void* data);
+typedef void (*RenderingSystemCleanupFunc)(int64_t context, void* data);
 
 /* 渲染系统状态管理函数类型 */
-typedef void (*RenderingSystemStateFunc)(longlong context);
-typedef int32_t (*RenderingSystemParamFunc)(longlong context, ...);
+typedef void (*RenderingSystemStateFunc)(int64_t context);
+typedef int32_t (*RenderingSystemParamFunc)(int64_t context, ...);
 typedef char (*RenderingSystemCheckFunc)(void);
 
 /*=============================================================================
@@ -181,7 +181,7 @@ typedef enum {
  * 5. 处理渲染参数
  * 6. 执行清理操作
  */
-void FUN_180535970(longlong *param_1, uint64_t param_2, uint64_t param_3)
+void FUN_180535970(int64_t *param_1, uint64_t param_2, uint64_t param_3)
 {
     RenderingSystemContextPtr context = param_1;      /* 渲染系统上下文指针 */
     RenderingSystemParam system_param = param_2;      /* 渲染系统参数 */
@@ -203,7 +203,7 @@ void FUN_180535970(longlong *param_1, uint64_t param_2, uint64_t param_3)
     RenderingSystemFlag stack_flag2;                 /* 栈标志2 */
     RenderingSystemState stack_state;                /* 栈状态 */
     
-    longlong context_value = *context;                /* 上下文值 */
+    int64_t context_value = *context;                /* 上下文值 */
     
     /* 验证渲染系统上下文有效性 */
     if (context_value == 0) {
@@ -225,34 +225,34 @@ void FUN_180535970(longlong *param_1, uint64_t param_2, uint64_t param_3)
     }
     
     /* 计算渲染系统偏移量 */
-    context_value = (longlong)data_array[0] * RENDERING_SYSTEM_OFFSET_MULTIPLIER + 
+    context_value = (int64_t)data_array[0] * RENDERING_SYSTEM_OFFSET_MULTIPLIER + 
                     RENDERING_SYSTEM_BASE_OFFSET + context_value;
     
     /* 设置渲染系统标志 */
     if ((*(uint *)(context_value + RENDERING_SYSTEM_FLAG_OFFSET) >> 0xb & 1) == 0) {
-        *(RenderingSystemFlag *)(*(longlong *)(context_value + RENDERING_SYSTEM_DATA_OFFSET) + 0x148) = 0xbecccccd;
+        *(RenderingSystemFlag *)(*(int64_t *)(context_value + RENDERING_SYSTEM_DATA_OFFSET) + 0x148) = 0xbecccccd;
     } else {
-        *(RenderingSystemFlag *)(*(longlong *)(context_value + RENDERING_SYSTEM_DATA_OFFSET) + 0x148) = 0xbe19999a;
+        *(RenderingSystemFlag *)(*(int64_t *)(context_value + RENDERING_SYSTEM_DATA_OFFSET) + 0x148) = 0xbe19999a;
     }
     
     /* 处理渲染系统状态 */
     if ((*(uint *)(context_value + RENDERING_SYSTEM_FLAG_OFFSET) >> 0xb & 1) == 0) {
         flag_value = 0xffffffff;
-        float_x = *(RenderingSystemFloat *)(*(longlong *)(context_value + RENDERING_SYSTEM_DATA_OFFSET) + 0x20);
-        float_y = *(RenderingSystemFloat *)(*(longlong *)(context_value + RENDERING_SYSTEM_DATA_OFFSET) + 0x1c);
+        float_x = *(RenderingSystemFloat *)(*(int64_t *)(context_value + RENDERING_SYSTEM_DATA_OFFSET) + 0x20);
+        float_y = *(RenderingSystemFloat *)(*(int64_t *)(context_value + RENDERING_SYSTEM_DATA_OFFSET) + 0x1c);
         system_param = 2;
         
         /* 检查渲染系统配置 */
-        if (*(int *)(*(longlong *)(*(longlong *)(context_value + 0x590) + 0x2590) + 0x10) < 5) {
+        if (*(int *)(*(int64_t *)(*(int64_t *)(context_value + 0x590) + 0x2590) + 0x10) < 5) {
             system_param = 0xffffffff;
         }
         
         /* 处理渲染系统索引 */
         if (*(int *)(context_value + 0x564) != -1) {
             flag_value = *(RenderingSystemFlag *)
-                     (*(longlong *)
-                       ((longlong)*(int *)(context_value + 0x564) * RENDERING_SYSTEM_OFFSET_MULTIPLIER + 
-                        0x3638 + *(longlong *)(context_value + 0x8d8))
+                     (*(int64_t *)
+                       ((int64_t)*(int *)(context_value + 0x564) * RENDERING_SYSTEM_OFFSET_MULTIPLIER + 
+                        0x3638 + *(int64_t *)(context_value + 0x8d8))
                      + RENDERING_SYSTEM_DATA_OFFSET);
         }
         
@@ -261,9 +261,9 @@ void FUN_180535970(longlong *param_1, uint64_t param_2, uint64_t param_3)
                                     system_param, 0, 0, 1.0 < float_y * float_y + float_x * float_x);
         
         /* 验证渲染系统结果 */
-        if (*(int *)(*(longlong *)
-                      ((longlong)*(int *)(*(longlong *)(context_value + 0x590) + 0xac) * 0xe0 + 0x78 +
-                      render_system_render) + (longlong)index_result * 8) < 0) {
+        if (*(int *)(*(int64_t *)
+                      ((int64_t)*(int *)(*(int64_t *)(context_value + 0x590) + 0xac) * 0xe0 + 0x78 +
+                      render_system_render) + (int64_t)index_result * 8) < 0) {
             return;  /* 结果无效，直接返回 */
         }
         
@@ -291,15 +291,15 @@ void FUN_180535970(longlong *param_1, uint64_t param_2, uint64_t param_3)
         
         /* 处理渲染系统资源指针 */
         RenderingSystemResourcePtr resource_ptr = (RenderingSystemResourcePtr *)
-                                             (*(longlong *)(context_value + 0x8f8) + 0x9e8);
+                                             (*(int64_t *)(context_value + 0x8f8) + 0x9e8);
         RenderingSystemIndexPtr index_ptr = (RenderingSystemIndexPtr *)
-                                          (*(longlong *)(context_value + 0x8f8) + 0x9e0);
+                                          (*(int64_t *)(context_value + 0x8f8) + 0x9e0);
         
         /* 循环处理渲染系统资源 */
         do {
             if ((*index_ptr != -1) &&
-                 ((*(uint *)((longlong)*(int *)(*resource_ptr + 0xf0) * 0xa0 + 0x58 +
-                            *(longlong *)(*resource_ptr + 0xd0)) & RENDERING_STATE_FLAG_BIT_2000) != 0)) {
+                 ((*(uint *)((int64_t)*(int *)(*resource_ptr + 0xf0) * 0xa0 + 0x58 +
+                            *(int64_t *)(*resource_ptr + 0xd0)) & RENDERING_STATE_FLAG_BIT_2000) != 0)) {
                 FUN_180524260(context_value);
                 break;
             }
@@ -315,7 +315,7 @@ void FUN_180535970(longlong *param_1, uint64_t param_2, uint64_t param_3)
     }
     
     /* 处理渲染系统数据 */
-    system_param = *(longlong *)(context_value + RENDERING_SYSTEM_DATA_OFFSET);
+    system_param = *(int64_t *)(context_value + RENDERING_SYSTEM_DATA_OFFSET);
     validation_result = func_0x000180522f60();
     
     if (validation_result != '\0') {
@@ -344,7 +344,7 @@ void FUN_180535970(longlong *param_1, uint64_t param_2, uint64_t param_3)
             stack_index = 0;
             
             flag_value = func_0x00018052dcc0(context_value, *(RenderingSystemFlag *)(system_param + 0x1c),
-                                           *(RenderingSystemState *)(*(longlong *)(context_value + 0x590) + 0x34bc), 
+                                           *(RenderingSystemState *)(*(int64_t *)(context_value + 0x590) + 0x34bc), 
                                            validation_result);
             goto LAB_18052449f;  /* 跳转到渲染参数处理 */
         }
@@ -393,7 +393,7 @@ void FUN_180535970(longlong *param_1, uint64_t param_2, uint64_t param_3)
                 return;  /* 渲染状态为5，直接返回 */
             }
             
-            system_param = *(longlong *)(context_value + 0x590);
+            system_param = *(int64_t *)(context_value + 0x590);
             if (system_param == 0) {
                 return;  /* 系统参数无效，直接返回 */
             }
@@ -424,9 +424,9 @@ void FUN_180535970(longlong *param_1, uint64_t param_2, uint64_t param_3)
             stack_param1 = 0xbe4ccccdbe4ccccd;
         } else {
             flag_value = *(RenderingSystemFlag *)
-                     (*(longlong *)
-                       ((longlong)*(int *)(context_value + 0x564) * RENDERING_SYSTEM_OFFSET_MULTIPLIER + 
-                        0x3638 + *(longlong *)(context_value + 0x8d8))
+                     (*(int64_t *)
+                       ((int64_t)*(int *)(context_value + 0x564) * RENDERING_SYSTEM_OFFSET_MULTIPLIER + 
+                        0x3638 + *(int64_t *)(context_value + 0x8d8))
                      + RENDERING_SYSTEM_DATA_OFFSET);
         }
 LAB_18052449f:
@@ -463,11 +463,11 @@ void FUN_18053598c(int32_t param_1)
     RenderingSystemFlag state_param = param_1;          /* 渲染系统状态参数 */
     RenderingSystemBool validation_result;              /* 验证结果 */
     RenderingSystemFlag flag_value;                   /* 标志值 */
-    longlong context_value;                            /* 上下文值 */
-    longlong unaff_RDI;                               /* 寄存器RDI值 */
+    int64_t context_value;                            /* 上下文值 */
+    int64_t unaff_RDI;                               /* 寄存器RDI值 */
     RenderingSystemState state_flag;                   /* 状态标志 */
     RenderingSystemInt *index_ptr;                     /* 索引指针 */
-    longlong loop_counter;                             /* 循环计数器 */
+    int64_t loop_counter;                             /* 循环计数器 */
     RenderingSystemParam system_param;                  /* 系统参数 */
     RenderingSystemResourcePtr resource_ptr;            /* 资源指针 */
     RenderingSystemFloat float_x, float_y;             /* 浮点坐标 */
@@ -489,34 +489,34 @@ void FUN_18053598c(int32_t param_1)
     }
     
     /* 计算渲染系统上下文值 */
-    context_value = (longlong)stack0x00000030 * RENDERING_SYSTEM_OFFSET_MULTIPLIER + 
+    context_value = (int64_t)stack0x00000030 * RENDERING_SYSTEM_OFFSET_MULTIPLIER + 
                     RENDERING_SYSTEM_BASE_OFFSET + unaff_RDI;
     
     /* 设置渲染系统标志 */
     if ((*(uint *)(context_value + RENDERING_SYSTEM_FLAG_OFFSET) >> 0xb & 1) == 0) {
-        *(RenderingSystemFlag *)(*(longlong *)(context_value + RENDERING_SYSTEM_DATA_OFFSET) + 0x148) = 0xbecccccd;
+        *(RenderingSystemFlag *)(*(int64_t *)(context_value + RENDERING_SYSTEM_DATA_OFFSET) + 0x148) = 0xbecccccd;
     } else {
-        *(RenderingSystemFlag *)(*(longlong *)(context_value + RENDERING_SYSTEM_DATA_OFFSET) + 0x148) = 0xbe19999a;
+        *(RenderingSystemFlag *)(*(int64_t *)(context_value + RENDERING_SYSTEM_DATA_OFFSET) + 0x148) = 0xbe19999a;
     }
     
     /* 处理渲染系统状态 */
     if ((*(uint *)(context_value + RENDERING_SYSTEM_FLAG_OFFSET) >> 0xb & 1) == 0) {
         flag_value = 0xffffffff;
-        float_x = *(RenderingSystemFloat *)(*(longlong *)(context_value + RENDERING_SYSTEM_DATA_OFFSET) + 0x20);
-        float_y = *(RenderingSystemFloat *)(*(longlong *)(context_value + RENDERING_SYSTEM_DATA_OFFSET) + 0x1c);
+        float_x = *(RenderingSystemFloat *)(*(int64_t *)(context_value + RENDERING_SYSTEM_DATA_OFFSET) + 0x20);
+        float_y = *(RenderingSystemFloat *)(*(int64_t *)(context_value + RENDERING_SYSTEM_DATA_OFFSET) + 0x1c);
         system_param = 2;
         
         /* 检查渲染系统配置 */
-        if (*(int *)(*(longlong *)(*(longlong *)(context_value + 0x590) + 0x2590) + 0x10) < 5) {
+        if (*(int *)(*(int64_t *)(*(int64_t *)(context_value + 0x590) + 0x2590) + 0x10) < 5) {
             system_param = 0xffffffff;
         }
         
         /* 处理渲染系统索引 */
         if (*(int *)(context_value + 0x564) != -1) {
             flag_value = *(RenderingSystemFlag *)
-                     (*(longlong *)
-                       ((longlong)*(int *)(context_value + 0x564) * RENDERING_SYSTEM_OFFSET_MULTIPLIER + 
-                        0x3638 + *(longlong *)(context_value + 0x8d8))
+                     (*(int64_t *)
+                       ((int64_t)*(int *)(context_value + 0x564) * RENDERING_SYSTEM_OFFSET_MULTIPLIER + 
+                        0x3638 + *(int64_t *)(context_value + 0x8d8))
                      + RENDERING_SYSTEM_DATA_OFFSET);
         }
         
@@ -525,9 +525,9 @@ void FUN_18053598c(int32_t param_1)
                                   system_param, 0, 0, 1.0 < float_y * float_y + float_x * float_x);
         
         /* 验证渲染系统结果 */
-        if (*(int *)(*(longlong *)
-                      ((longlong)*(int *)(*(longlong *)(context_value + 0x590) + 0xac) * 0xe0 + 0x78 +
-                      render_system_render) + (longlong)stack_index * 8) < 0) {
+        if (*(int *)(*(int64_t *)
+                      ((int64_t)*(int *)(*(int64_t *)(context_value + 0x590) + 0xac) * 0xe0 + 0x78 +
+                      render_system_render) + (int64_t)stack_index * 8) < 0) {
             return;  /* 结果无效，直接返回 */
         }
         
@@ -549,15 +549,15 @@ void FUN_18053598c(int32_t param_1)
         
         /* 处理渲染系统资源指针 */
         resource_ptr = (RenderingSystemResourcePtr *)
-                      (*(longlong *)(context_value + 0x8f8) + 0x9e8);
+                      (*(int64_t *)(context_value + 0x8f8) + 0x9e8);
         index_ptr = (RenderingSystemInt *)
-                    (*(longlong *)(context_value + 0x8f8) + 0x9e0);
+                    (*(int64_t *)(context_value + 0x8f8) + 0x9e0);
         
         /* 循环处理渲染系统资源 */
         do {
             if ((*index_ptr != -1) &&
-                 ((*(uint *)((longlong)*(int *)(*resource_ptr + 0xf0) * 0xa0 + 0x58 +
-                            *(longlong *)(*resource_ptr + 0xd0)) & RENDERING_STATE_FLAG_BIT_2000) != 0)) {
+                 ((*(uint *)((int64_t)*(int *)(*resource_ptr + 0xf0) * 0xa0 + 0x58 +
+                            *(int64_t *)(*resource_ptr + 0xd0)) & RENDERING_STATE_FLAG_BIT_2000) != 0)) {
                 FUN_180524260(context_value);
                 break;
             }
@@ -573,7 +573,7 @@ void FUN_18053598c(int32_t param_1)
     }
     
     /* 处理渲染系统数据 */
-    loop_counter = *(longlong *)(context_value + RENDERING_SYSTEM_DATA_OFFSET);
+    loop_counter = *(int64_t *)(context_value + RENDERING_SYSTEM_DATA_OFFSET);
     validation_result = func_0x000180522f60();
     
     if (validation_result != '\0') {
@@ -596,7 +596,7 @@ void FUN_18053598c(int32_t param_1)
             stack_flag = 0;
             flag_value = func_0x00018052dcc0(*(RenderingSystemFlag *)(loop_counter + 0x20), 
                                            *(RenderingSystemFlag *)(loop_counter + 0x1c),
-                                           *(RenderingSystemState *)(*(longlong *)(context_value + 0x590) + 0x34bc), 
+                                           *(RenderingSystemState *)(*(int64_t *)(context_value + 0x590) + 0x34bc), 
                                            validation_result);
             goto LAB_18052449f;  /* 跳转到渲染参数处理 */
         }
@@ -639,7 +639,7 @@ void FUN_18053598c(int32_t param_1)
                 return;  /* 渲染状态为5，直接返回 */
             }
             
-            loop_counter = *(longlong *)(context_value + 0x590);
+            loop_counter = *(int64_t *)(context_value + 0x590);
             if (loop_counter == 0) {
                 return;  /* 系统参数无效，直接返回 */
             }
@@ -662,9 +662,9 @@ void FUN_18053598c(int32_t param_1)
             flag_value = 0xffffffff;
         } else {
             flag_value = *(RenderingSystemFlag *)
-                     (*(longlong *)
-                       ((longlong)*(int *)(context_value + 0x564) * RENDERING_SYSTEM_OFFSET_MULTIPLIER + 
-                        0x3638 + *(longlong *)(context_value + 0x8d8))
+                     (*(int64_t *)
+                       ((int64_t)*(int *)(context_value + 0x564) * RENDERING_SYSTEM_OFFSET_MULTIPLIER + 
+                        0x3638 + *(int64_t *)(context_value + 0x8d8))
                      + RENDERING_SYSTEM_DATA_OFFSET);
         }
 LAB_18052449f:
@@ -700,11 +700,11 @@ void FUN_1805359c5(void)
 {
     RenderingSystemBool validation_result;              /* 验证结果 */
     RenderingSystemFlag flag_value;                   /* 标志值 */
-    longlong context_value;                            /* 上下文值 */
-    longlong unaff_RDI;                               /* 寄存器RDI值 */
+    int64_t context_value;                            /* 上下文值 */
+    int64_t unaff_RDI;                               /* 寄存器RDI值 */
     RenderingSystemState state_flag;                   /* 状态标志 */
     RenderingSystemInt *index_ptr;                     /* 索引指针 */
-    longlong loop_counter;                             /* 循环计数器 */
+    int64_t loop_counter;                             /* 循环计数器 */
     RenderingSystemParam system_param;                  /* 系统参数 */
     RenderingSystemResourcePtr resource_ptr;            /* 资源指针 */
     RenderingSystemFloat float_x, float_y;             /* 浮点坐标 */
@@ -715,34 +715,34 @@ void FUN_1805359c5(void)
     RenderingSystemInt stack_value;                    /* 栈值 */
     
     /* 计算渲染系统上下文值 */
-    context_value = (longlong)stack0x00000030 * RENDERING_SYSTEM_OFFSET_MULTIPLIER + 
+    context_value = (int64_t)stack0x00000030 * RENDERING_SYSTEM_OFFSET_MULTIPLIER + 
                     RENDERING_SYSTEM_BASE_OFFSET + unaff_RDI;
     
     /* 设置渲染系统标志 */
     if ((*(uint *)(context_value + RENDERING_SYSTEM_FLAG_OFFSET) >> 0xb & 1) == 0) {
-        *(RenderingSystemFlag *)(*(longlong *)(context_value + RENDERING_SYSTEM_DATA_OFFSET) + 0x148) = 0xbecccccd;
+        *(RenderingSystemFlag *)(*(int64_t *)(context_value + RENDERING_SYSTEM_DATA_OFFSET) + 0x148) = 0xbecccccd;
     } else {
-        *(RenderingSystemFlag *)(*(longlong *)(context_value + RENDERING_SYSTEM_DATA_OFFSET) + 0x148) = 0xbe19999a;
+        *(RenderingSystemFlag *)(*(int64_t *)(context_value + RENDERING_SYSTEM_DATA_OFFSET) + 0x148) = 0xbe19999a;
     }
     
     /* 处理渲染系统配置 */
     if ((*(uint *)(context_value + RENDERING_SYSTEM_FLAG_OFFSET) >> 0xb & 1) == 0) {
         flag_value = 0xffffffff;
-        float_x = *(RenderingSystemFloat *)(*(longlong *)(context_value + RENDERING_SYSTEM_DATA_OFFSET) + 0x20);
-        float_y = *(RenderingSystemFloat *)(*(longlong *)(context_value + RENDERING_SYSTEM_DATA_OFFSET) + 0x1c);
+        float_x = *(RenderingSystemFloat *)(*(int64_t *)(context_value + RENDERING_SYSTEM_DATA_OFFSET) + 0x20);
+        float_y = *(RenderingSystemFloat *)(*(int64_t *)(context_value + RENDERING_SYSTEM_DATA_OFFSET) + 0x1c);
         system_param = 2;
         
         /* 检查渲染系统配置 */
-        if (*(int *)(*(longlong *)(*(longlong *)(context_value + 0x590) + 0x2590) + 0x10) < 5) {
+        if (*(int *)(*(int64_t *)(*(int64_t *)(context_value + 0x590) + 0x2590) + 0x10) < 5) {
             system_param = 0xffffffff;
         }
         
         /* 处理渲染系统索引 */
         if (*(int *)(context_value + 0x564) != -1) {
             flag_value = *(RenderingSystemFlag *)
-                     (*(longlong *)
-                       ((longlong)*(int *)(context_value + 0x564) * RENDERING_SYSTEM_OFFSET_MULTIPLIER + 
-                        0x3638 + *(longlong *)(context_value + 0x8d8))
+                     (*(int64_t *)
+                       ((int64_t)*(int *)(context_value + 0x564) * RENDERING_SYSTEM_OFFSET_MULTIPLIER + 
+                        0x3638 + *(int64_t *)(context_value + 0x8d8))
                      + RENDERING_SYSTEM_DATA_OFFSET);
         }
         
@@ -751,9 +751,9 @@ void FUN_1805359c5(void)
                                   system_param, 0, 0, 1.0 < float_y * float_y + float_x * float_x);
         
         /* 验证渲染系统结果 */
-        if (*(int *)(*(longlong *)
-                      ((longlong)*(int *)(*(longlong *)(context_value + 0x590) + 0xac) * 0xe0 + 0x78 +
-                      render_system_render) + (longlong)stack_index * 8) < 0) {
+        if (*(int *)(*(int64_t *)
+                      ((int64_t)*(int *)(*(int64_t *)(context_value + 0x590) + 0xac) * 0xe0 + 0x78 +
+                      render_system_render) + (int64_t)stack_index * 8) < 0) {
             return;  /* 结果无效，直接返回 */
         }
         
@@ -775,15 +775,15 @@ void FUN_1805359c5(void)
         
         /* 处理渲染系统资源指针 */
         resource_ptr = (RenderingSystemResourcePtr *)
-                      (*(longlong *)(context_value + 0x8f8) + 0x9e8);
+                      (*(int64_t *)(context_value + 0x8f8) + 0x9e8);
         index_ptr = (RenderingSystemInt *)
-                    (*(longlong *)(context_value + 0x8f8) + 0x9e0);
+                    (*(int64_t *)(context_value + 0x8f8) + 0x9e0);
         
         /* 循环处理渲染系统资源 */
         do {
             if ((*index_ptr != -1) &&
-                 ((*(uint *)((longlong)*(int *)(*resource_ptr + 0xf0) * 0xa0 + 0x58 +
-                            *(longlong *)(*resource_ptr + 0xd0)) & RENDERING_STATE_FLAG_BIT_2000) != 0)) {
+                 ((*(uint *)((int64_t)*(int *)(*resource_ptr + 0xf0) * 0xa0 + 0x58 +
+                            *(int64_t *)(*resource_ptr + 0xd0)) & RENDERING_STATE_FLAG_BIT_2000) != 0)) {
                 FUN_180524260(context_value);
                 break;
             }
@@ -799,7 +799,7 @@ void FUN_1805359c5(void)
     }
     
     /* 处理渲染系统数据 */
-    loop_counter = *(longlong *)(context_value + RENDERING_SYSTEM_DATA_OFFSET);
+    loop_counter = *(int64_t *)(context_value + RENDERING_SYSTEM_DATA_OFFSET);
     validation_result = func_0x000180522f60();
     
     if (validation_result != '\0') {
@@ -821,7 +821,7 @@ void FUN_1805359c5(void)
             stack_param = 0;
             stack_flag = 0;
             flag_value = func_0x00018052dcc0(context_value, *(RenderingSystemFlag *)(loop_counter + 0x1c),
-                                           *(RenderingSystemState *)(*(longlong *)(context_value + 0x590) + 0x34bc), 
+                                           *(RenderingSystemState *)(*(int64_t *)(context_value + 0x590) + 0x34bc), 
                                            validation_result);
             goto LAB_18052449f;  /* 跳转到渲染参数处理 */
         }
@@ -864,7 +864,7 @@ void FUN_1805359c5(void)
                 return;  /* 渲染状态为5，直接返回 */
             }
             
-            loop_counter = *(longlong *)(context_value + 0x590);
+            loop_counter = *(int64_t *)(context_value + 0x590);
             if (loop_counter == 0) {
                 return;  /* 系统参数无效，直接返回 */
             }
@@ -887,9 +887,9 @@ void FUN_1805359c5(void)
             flag_value = 0xffffffff;
         } else {
             flag_value = *(RenderingSystemFlag *)
-                     (*(longlong *)
-                       ((longlong)*(int *)(context_value + 0x564) * RENDERING_SYSTEM_OFFSET_MULTIPLIER + 
-                        0x3638 + *(longlong *)(context_value + 0x8d8))
+                     (*(int64_t *)
+                       ((int64_t)*(int *)(context_value + 0x564) * RENDERING_SYSTEM_OFFSET_MULTIPLIER + 
+                        0x3638 + *(int64_t *)(context_value + 0x8d8))
                      + RENDERING_SYSTEM_DATA_OFFSET);
         }
 LAB_18052449f:
@@ -923,13 +923,13 @@ LAB_18052490a:
  * 3. 处理资源验证
  * 4. 执行资源清理
  */
-void FUN_180535a30(longlong *param_1, uint64_t param_2, uint64_t param_3)
+void FUN_180535a30(int64_t *param_1, uint64_t param_2, uint64_t param_3)
 {
     RenderingSystemContextPtr context = param_1;      /* 渲染系统上下文指针 */
     RenderingSystemParam system_param = param_2;      /* 渲染系统参数 */
     RenderingSystemParam config_param = param_3;      /* 渲染配置参数 */
     
-    longlong context_value = *context;              /* 上下文值 */
+    int64_t context_value = *context;              /* 上下文值 */
     RenderingSystemBool validation_result;            /* 验证结果 */
     RenderingSystemInt data_array[2];                /* 数据数组 */
     
@@ -943,7 +943,7 @@ void FUN_180535a30(longlong *param_1, uint64_t param_2, uint64_t param_3)
         
         /* 设置渲染系统资源标志 */
         if (validation_result != '\0') {
-            *(RenderingSystemState *)((longlong)data_array[0] * RENDERING_SYSTEM_OFFSET_MULTIPLIER + 
+            *(RenderingSystemState *)((int64_t)data_array[0] * RENDERING_SYSTEM_OFFSET_MULTIPLIER + 
                                    0x3628 + context_value) = 1;
         }
     }
@@ -971,7 +971,7 @@ void FUN_180535a30(longlong *param_1, uint64_t param_2, uint64_t param_3)
 void FUN_180535a48(void)
 {
     RenderingSystemBool validation_result;            /* 验证结果 */
-    longlong unaff_RDI;                               /* 寄存器RDI值 */
+    int64_t unaff_RDI;                               /* 寄存器RDI值 */
     RenderingSystemInt stack_value;                    /* 栈值 */
     
     /* 执行渲染系统验证 */
@@ -982,7 +982,7 @@ void FUN_180535a48(void)
     
     /* 设置渲染系统内存标志 */
     if (validation_result != '\0') {
-        *(RenderingSystemState *)((longlong)stack0x00000030 * RENDERING_SYSTEM_OFFSET_MULTIPLIER + 
+        *(RenderingSystemState *)((int64_t)stack0x00000030 * RENDERING_SYSTEM_OFFSET_MULTIPLIER + 
                                0x3628 + unaff_RDI) = 1;
     }
     return;
@@ -1008,11 +1008,11 @@ void FUN_180535a48(void)
  */
 void FUN_180535a81(void)
 {
-    longlong unaff_RDI;                               /* 寄存器RDI值 */
+    int64_t unaff_RDI;                               /* 寄存器RDI值 */
     RenderingSystemInt stack_value;                    /* 栈值 */
     
     /* 设置渲染系统标志 */
-    *(RenderingSystemState *)((longlong)stack0x00000030 * RENDERING_SYSTEM_OFFSET_MULTIPLIER + 
+    *(RenderingSystemState *)((int64_t)stack0x00000030 * RENDERING_SYSTEM_OFFSET_MULTIPLIER + 
                            0x3628 + unaff_RDI) = 1;
     return;
 }
@@ -1038,17 +1038,17 @@ void FUN_180535a81(void)
  * 3. 处理参数验证
  * 4. 执行参数清理
  */
-void FUN_180535aa0(longlong *param_1, uint64_t param_2, uint64_t param_3)
+void FUN_180535aa0(int64_t *param_1, uint64_t param_2, uint64_t param_3)
 {
     RenderingSystemContextPtr context = param_1;      /* 渲染系统上下文指针 */
     RenderingSystemParam system_param = param_2;      /* 渲染系统参数 */
     RenderingSystemParam config_param = param_3;      /* 渲染配置参数 */
     
-    longlong context_value = *context;              /* 上下文值 */
+    int64_t context_value = *context;              /* 上下文值 */
     RenderingSystemBool validation_result;            /* 验证结果 */
     uint64_t extraout_XMM0_Qa;                    /* 扩展输出XMM0寄存器 */
     RenderingSystemInt data_array[2];                /* 数据数组 */
-    longlong config_offset;                          /* 配置偏移量 */
+    int64_t config_offset;                          /* 配置偏移量 */
     RenderingSystemConfig stack_config;               /* 栈配置 */
     
     /* 验证渲染系统上下文有效性 */
@@ -1076,14 +1076,14 @@ void FUN_180535aa0(longlong *param_1, uint64_t param_2, uint64_t param_3)
         
         /* 执行渲染系统验证 */
         validation_result = FUN_1805ae280(config_param, data_array, &stack_config);
-        config_offset = (longlong)&stack_config.field_40 + 4;
+        config_offset = (int64_t)&stack_config.field_40 + 4;
         
         /* 处理验证结果 */
         FUN_1804fe500(extraout_XMM0_Qa, validation_result);
         
         /* 处理渲染系统参数 */
         if (validation_result != '\0') {
-            FUN_18051d2d0((longlong)data_array[0] * RENDERING_SYSTEM_OFFSET_MULTIPLIER + 
+            FUN_18051d2d0((int64_t)data_array[0] * RENDERING_SYSTEM_OFFSET_MULTIPLIER + 
                          RENDERING_SYSTEM_BASE_OFFSET + context_value, 0, &stack_config, 
                          stack_config.field_56, config_offset);
         }
@@ -1113,8 +1113,8 @@ void FUN_180535b2e(void)
 {
     RenderingSystemBool validation_result;            /* 验证结果 */
     uint64_t unaff_RBX;                            /* 寄存器RBX值 */
-    longlong unaff_RDI;                               /* 寄存器RDI值 */
-    longlong in_R11;                                  /* 寄存器R11值 */
+    int64_t unaff_RDI;                               /* 寄存器RDI值 */
+    int64_t in_R11;                                  /* 寄存器R11值 */
     RenderingSystemState *state_ptr;                  /* 状态指针 */
     RenderingSystemInt stack_value1;                  /* 栈值1 */
     RenderingSystemInt stack_value2;                  /* 栈值2 */
@@ -1131,7 +1131,7 @@ void FUN_180535b2e(void)
     
     /* 处理渲染系统状态同步 */
     if (validation_result != '\0') {
-        FUN_18051d2d0((longlong)stack0x000000b0 * RENDERING_SYSTEM_OFFSET_MULTIPLIER + 
+        FUN_18051d2d0((int64_t)stack0x000000b0 * RENDERING_SYSTEM_OFFSET_MULTIPLIER + 
                      RENDERING_SYSTEM_BASE_OFFSET + unaff_RDI, 0, &stack0x00000030,
                      stack0x00000068, state_ptr);
     }
@@ -1158,12 +1158,12 @@ void FUN_180535b2e(void)
  */
 void FUN_180535b60(void)
 {
-    longlong unaff_RDI;                               /* 寄存器RDI值 */
+    int64_t unaff_RDI;                               /* 寄存器RDI值 */
     RenderingSystemInt stack_value1;                  /* 栈值1 */
     RenderingSystemInt stack_value2;                  /* 栈值2 */
     
     /* 执行渲染系统清理 */
-    FUN_18051d2d0((longlong)stack0x000000b0 * RENDERING_SYSTEM_OFFSET_MULTIPLIER + 
+    FUN_18051d2d0((int64_t)stack0x000000b0 * RENDERING_SYSTEM_OFFSET_MULTIPLIER + 
                  RENDERING_SYSTEM_BASE_OFFSET + unaff_RDI, 0, &stack0x00000030,
                  stack0x00000068);
     return;
@@ -1190,13 +1190,13 @@ void FUN_180535b60(void)
  * 3. 处理数据验证
  * 4. 执行数据清理
  */
-void FUN_180535ba0(longlong *param_1, uint64_t param_2, uint64_t param_3)
+void FUN_180535ba0(int64_t *param_1, uint64_t param_2, uint64_t param_3)
 {
     RenderingSystemContextPtr context = param_1;      /* 渲染系统上下文指针 */
     RenderingSystemParam system_param = param_2;      /* 渲染系统参数 */
     RenderingSystemParam config_param = param_3;      /* 渲染配置参数 */
     
-    longlong context_value = *context;              /* 上下文值 */
+    int64_t context_value = *context;              /* 上下文值 */
     RenderingSystemBool validation_result;            /* 验证结果 */
     uint flag_array[2];                              /* 标志数组 */
     RenderingSystemInt data_array[2];                /* 数据数组 */
@@ -1229,7 +1229,7 @@ LAB_180535c06:
     
     /* 执行数据处理操作 */
     if (validation_result != '\0') {
-        FUN_18051ac20((longlong)data_array[0] * RENDERING_SYSTEM_OFFSET_MULTIPLIER + 
+        FUN_18051ac20((int64_t)data_array[0] * RENDERING_SYSTEM_OFFSET_MULTIPLIER + 
                      RENDERING_SYSTEM_BASE_OFFSET + context_value, (char)flag_array[0]);
     }
     return;

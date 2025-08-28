@@ -23,7 +23,7 @@
  * @param control_context 控件上下文指针，包含控件的所有状态信息
  * @param state_value 要设置的状态值，通常为枚举类型的整数
  */
-void ui_set_control_state(longlong control_context, uint state_value)
+void ui_set_control_state(int64_t control_context, uint state_value)
 
 {
   int validation_result;
@@ -48,29 +48,29 @@ void ui_set_control_state(longlong control_context, uint state_value)
  * @param control_context 控件上下文指针，包含控件的配置信息
  * @return 初始化结果，0表示成功，非0表示失败代码
  */
-int ui_process_control_initialization(longlong control_context)
+int ui_process_control_initialization(int64_t control_context)
 
 {
-  longlong resource_handle;
-  longlong *resource_pointer;
+  int64_t resource_handle;
+  int64_t *resource_pointer;
   uint64_t function_result;
-  longlong *control_data;
+  int64_t *control_data;
   int operation_result;
-  ulonglong stack_parameter;
+  uint64_t stack_parameter;
   int32_t parameter_value;
   
   // 获取系统资源句柄
   resource_handle = FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), 0x4d0, &unknown_var_8576_ptr, 0x146,
                         stack_parameter & 0xffffffff00000000, 0, 1);
-  resource_pointer = (longlong *)0x0;
+  resource_pointer = (int64_t *)0x0;
   if (resource_handle != 0) {
-    resource_pointer = (longlong *)FUN_1807714c0(resource_handle);
+    resource_pointer = (int64_t *)FUN_1807714c0(resource_handle);
   }
-  control_data = (longlong *)(control_context + 0x11418);
-  *control_data = (longlong)resource_pointer;
-  if (resource_pointer == (longlong *)0x0) {
+  control_data = (int64_t *)(control_context + 0x11418);
+  *control_data = (int64_t)resource_pointer;
+  if (resource_pointer == (int64_t *)0x0) {
     operation_result = 0x26;  // 资源分配失败错误码
-    control_data = (longlong *)0x0;
+    control_data = (int64_t *)0x0;
   }
   else {
     operation_result = func_0x000180772860(resource_pointer, control_context);
@@ -319,7 +319,7 @@ int ui_process_control_initialization(longlong control_context)
     }
   }
   // 清理资源
-  if ((control_data != (longlong *)0x0) && (*control_data != 0)) {
+  if ((control_data != (int64_t *)0x0) && (*control_data != 0)) {
     FUN_1807726d0(*control_data, 0);
     *control_data = 0;
   }
@@ -335,7 +335,7 @@ int ui_process_control_initialization(longlong control_context)
  * @param control_context 控件上下文指针，包含控件的当前状态
  * @param property_value 要更新的属性值
  */
-void ui_update_control_properties(longlong control_context, uint property_value)
+void ui_update_control_properties(int64_t control_context, uint property_value)
 
 {
   int initialization_status;
@@ -357,7 +357,7 @@ void ui_update_control_properties(longlong control_context, uint property_value)
  * 
  * @param control_context 控件上下文指针，包含事件处理所需的状态信息
  */
-void ui_handle_control_events(longlong control_context)
+void ui_handle_control_events(int64_t control_context)
 
 {
   uint64_t *event_handler;
@@ -365,11 +365,11 @@ void ui_handle_control_events(longlong control_context)
   uint64_t *render_data;
   uint64_t render_value;
   int handler_result;
-  longlong render_target;
-  ulonglong event_timestamp;
+  int64_t render_target;
+  uint64_t event_timestamp;
   uint event_id;
-  ulonglong event_sequence;
-  ulonglong event_data;
+  uint64_t event_sequence;
+  uint64_t event_data;
   float animation_value;
   int8_t stack_data [32];
   float *animation_pointer;
@@ -395,9 +395,9 @@ void ui_handle_control_events(longlong control_context)
   uint64_t render_control8;
   uint64_t render_control9;
   int8_t render_workspace [48];
-  ulonglong workspace_size;
+  uint64_t workspace_size;
   
-  workspace_size = GET_SECURITY_COOKIE() ^ (ulonglong)stack_data;
+  workspace_size = GET_SECURITY_COOKIE() ^ (uint64_t)stack_data;
   if (*(byte *)(control_context + 8) != '\0') {
     // 检查是否有事件处理器注册
     if ((*(code **)(control_context + 0x11838) != (code *)0x0) &&
@@ -415,7 +415,7 @@ void ui_handle_control_events(longlong control_context)
       event_id = render_flags - *(int *)(control_context + 0x116b4);
     }
     *(uint *)(control_context + 0x116b4) = render_flags;
-    if ((*(longlong *)(control_context + 0x6b0) == 0) || (handler_result = func_0x000180069ee0(), handler_result == 0)) {
+    if ((*(int64_t *)(control_context + 0x6b0) == 0) || (handler_result = func_0x000180069ee0(), handler_result == 0)) {
       event_handler = (uint64_t *)(control_context + 0x12758);
       render_data = (uint64_t *)*event_handler;
       animation_value = 0.0;
@@ -468,7 +468,7 @@ void ui_handle_control_events(longlong control_context)
         if (event_handler == (uint64_t *)(control_context + 0x11708)) {
           handler_result = FUN_18078baf0(control_context, event_id);
           if ((handler_result != 0) || (handler_result = FUN_18078c760(control_context, event_id), handler_result != 0)) break;
-          if (*(longlong *)(control_context + 0x670) != 0) {
+          if (*(int64_t *)(control_context + 0x670) != 0) {
             FUN_180772c50(control_context + 0x11678, 1);
             handler_result = FUN_180789300(*(uint64_t *)(control_context + 0x670));
             if (handler_result != 0) break;
@@ -493,16 +493,16 @@ void ui_handle_control_events(longlong control_context)
   goto event_handler_exit;
   while( true ) {
     event_id = (int)event_sequence + 1;
-    event_sequence = (ulonglong)event_id;
+    event_sequence = (uint64_t)event_id;
     event_timestamp = event_timestamp + 0x38;
     if (*(int *)(control_context + 0x694) <= (int)event_id) break;
 event_loop_start:
-    render_target = *(longlong *)(*(longlong *)(control_context + 0x6a0) + 0x30 + event_timestamp);
+    render_target = *(int64_t *)(*(int64_t *)(control_context + 0x6a0) + 0x30 + event_timestamp);
     if (((render_target != 0) && (*(byte *)(render_target + 0x31) != '\0')) &&
        (handler_result = FUN_180748290(control_context, event_sequence), handler_result != 0)) goto event_handler_exit;
   }
 event_processing_complete:
-  if (((*(longlong *)(control_context + 0x11838) != 0) && ((*(uint *)(control_context + 0x11840) & 0x1000) != 0)) &&
+  if (((*(int64_t *)(control_context + 0x11838) != 0) && ((*(uint *)(control_context + 0x11840) & 0x1000) != 0)) &&
      (handler_result = FUN_1807499f0(control_context), handler_result != 0x39)) {
     if (handler_result != 0) goto event_handler_exit;
     if (*(byte *)(control_context + 0x6a8) != '\0') {
@@ -517,18 +517,18 @@ event_processing_complete:
       *(int16_t *)(render_target + -1) = 0;
       render_target = render_target + 0x70;
       event_data = (int)event_data + 1;
-      event_timestamp = (ulonglong)event_data;
+      event_timestamp = (uint64_t)event_data;
     } while ((int)event_data < *(int *)(control_context + 0x11400));
   }
   *(byte *)(control_context + 0x12440) = 0;
   if ((*(byte *)(control_context + 0x78) & 1) != 0) {
     FUN_18078c950(control_context);
   }
-  render_target = *(longlong *)(control_context + 0x670);
+  render_target = *(int64_t *)(control_context + 0x670);
   if ((render_target != 0) && (0 < *(int *)(control_context + 0x10f70))) {
     if (control_context != 0) {
       func_0x000180743c20(control_context, 7);
-      render_target = *(longlong *)(control_context + 0x670);
+      render_target = *(int64_t *)(control_context + 0x670);
     }
     event_type = *(int32_t *)(render_target + 0x318);
     for (event_handler = *(uint64_t **)(control_context + 0x10f58); event_handler != (uint64_t *)(control_context + 0x10f58);
@@ -554,7 +554,7 @@ event_processing_complete:
     while (event_handler != (uint64_t *)(control_context + 0x10ff0)) {
       render_target = event_handler[2];
       event_handler = (uint64_t *)*event_handler;
-      if (((*(longlong *)(render_target + 0x120) != 0) && ((*(byte *)(render_target + 0x11a) & 0x40) != 0)) &&
+      if (((*(int64_t *)(render_target + 0x120) != 0) && ((*(byte *)(render_target + 0x11a) & 0x40) != 0)) &&
          ((*(uint *)(render_target + 100) >> 10 & 1) == 0)) {
         (**(code **)(render_target + 0x120))(render_target + 0xb0, 0x40, 0);
       }
@@ -579,7 +579,7 @@ event_processing_complete:
     }
   }
 event_handler_exit:
-  FUN_1808fc050(workspace_size ^ (ulonglong)stack_data);
+  FUN_1808fc050(workspace_size ^ (uint64_t)stack_data);
 }
 
 /**
@@ -591,11 +591,11 @@ event_handler_exit:
  * @param control_context 控件上下文指针，包含控件的状态信息
  * @return 验证结果，0表示有效，非0表示无效状态代码
  */
-int ui_validate_control_state(longlong control_context)
+int ui_validate_control_state(int64_t control_context)
 
 {
   int validation_result;
-  longlong control_item;
+  int64_t control_item;
   int item_index;
   
   if (control_context != 0) {
@@ -605,7 +605,7 @@ int ui_validate_control_state(longlong control_context)
   if (0 < *(int *)(control_context + 0x694)) {
     control_item = 0;
     do {
-      if (*(longlong *)(control_item + 0x30 + *(longlong *)(control_context + 0x6a0)) != 0) {
+      if (*(int64_t *)(control_item + 0x30 + *(int64_t *)(control_context + 0x6a0)) != 0) {
         validation_result = FUN_180788e60(*(uint64_t *)(control_context + 0x670));
         if (validation_result != 0) goto validation_failed;
       }
@@ -630,11 +630,11 @@ validation_failed:
  * @param control_context 控件上下文指针，包含控件的显示信息
  * @return 可见性状态，0表示不可见，非0表示可见
  */
-int ui_check_control_visibility(longlong control_context)
+int ui_check_control_visibility(int64_t control_context)
 
 {
   int visibility_result;
-  longlong control_item;
+  int64_t control_item;
   int item_index;
   
   if (control_context != 0) {
@@ -644,7 +644,7 @@ int ui_check_control_visibility(longlong control_context)
   if (0 < *(int *)(control_context + 0x694)) {
     control_item = 0;
     do {
-      if (*(longlong *)(control_item + 0x30 + *(longlong *)(control_context + 0x6a0)) != 0) {
+      if (*(int64_t *)(control_item + 0x30 + *(int64_t *)(control_context + 0x6a0)) != 0) {
         visibility_result = FUN_180788e60(*(uint64_t *)(control_context + 0x670));
         if (visibility_result != 0) goto visibility_check_failed;
       }
@@ -680,30 +680,30 @@ void ui_cleanup_control_resources(void)
  * 
  * @param control_context 控件上下文指针，包含系统状态信息
  */
-void ui_reset_control_system(longlong control_context)
+void ui_reset_control_system(int64_t control_context)
 
 {
   int *state_pointer;
   uint *flag_pointer;
-  longlong system_handle;
+  int64_t system_handle;
   int reset_result;
   uint flag_value;
-  ulonglong reset_counter;
+  uint64_t reset_counter;
   int8_t reset_buffer [64];
   int reset_params [3];
   int reset_status;
   int reset_data [8];
   int8_t system_data [256];
-  ulonglong system_size;
-  ulonglong iteration_counter;
+  uint64_t system_size;
+  uint64_t iteration_counter;
   
-  system_size = GET_SECURITY_COOKIE() ^ (ulonglong)reset_buffer;
+  system_size = GET_SECURITY_COOKIE() ^ (uint64_t)reset_buffer;
   if (*(byte *)(control_context + 8) == '\0') goto reset_complete;
   iteration_counter = 0;
   reset_status = 0;
   reset_data[0] = 0;
   state_pointer = (int *)(control_context + 0x698);
-  if (*(longlong *)(*(longlong *)(control_context + 0x670) + 0x3e0) == 0) {
+  if (*(int64_t *)(*(int64_t *)(control_context + 0x670) + 0x3e0) == 0) {
 reset_validation:
     if (reset_status == *state_pointer) goto reset_complete;
   }
@@ -713,7 +713,7 @@ reset_validation:
     reset_status = *state_pointer;
     if ((*(int *)(control_context + 0x6ac) == 0) ||
        (999 < (uint)(reset_params[0] - *(int *)(control_context + 0x6ac)))) {
-      system_handle = *(longlong *)(control_context + 0x670);
+      system_handle = *(int64_t *)(control_context + 0x670);
       *(int *)(control_context + 0x6ac) = reset_params[0];
       reset_counter = system_handle + 8;
       if (system_handle == 0) {
@@ -728,8 +728,8 @@ reset_validation:
   if (0 < *(int *)(control_context + 0x694)) {
     do {
       flag_value = (int)iteration_counter + 1;
-      iteration_counter = (ulonglong)flag_value;
-      flag_pointer = (uint *)(reset_counter + 0x18 + *(longlong *)(control_context + 0x6a0));
+      iteration_counter = (uint64_t)flag_value;
+      flag_pointer = (uint *)(reset_counter + 0x18 + *(int64_t *)(control_context + 0x6a0));
       *flag_pointer = *flag_pointer & 0xfffffffe;
       reset_counter = reset_counter + 0x38;
     } while ((int)flag_value < *(int *)(control_context + 0x694));
@@ -740,5 +740,5 @@ reset_validation:
   }
   *(byte *)(control_context + 0x6a8) = 1;
 reset_complete:
-  FUN_1808fc050(system_size ^ (ulonglong)reset_buffer);
+  FUN_1808fc050(system_size ^ (uint64_t)reset_buffer);
 }

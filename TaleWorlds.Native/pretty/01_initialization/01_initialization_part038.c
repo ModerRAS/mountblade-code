@@ -9,40 +9,40 @@
  * 负责处理任务调度、内存分配、线程同步等核心功能
  * @param context 上下文指针，包含初始化所需的各种状态信息
  */
-void Initialization_MainLoop(longlong context)
+void Initialization_MainLoop(int64_t context)
 
 {
-  longlong *buffer_ptr;
+  int64_t *buffer_ptr;
   int *counter_ptr;
   byte *byte_ptr;
   uint64_t temp_value;
   uint64_t *ptr_array;
   uint64_t *ptr_array2;
   bool has_work;
-  longlong temp_long;
+  int64_t temp_long;
   char status_flag;
-  longlong offset;
-  longlong capacity;
-  longlong *link_ptr;
+  int64_t offset;
+  int64_t capacity;
+  int64_t *link_ptr;
   byte *string_buffer;
-  longlong time_value;
-  longlong time_limit;
-  longlong *sync_ptr;
+  int64_t time_value;
+  int64_t time_limit;
+  int64_t *sync_ptr;
   uint hash_value;
   int loop_counter;
-  longlong *resource_ptr;
+  int64_t *resource_ptr;
   uint64_t *manager_ptr;
-  longlong alloc_size;
+  int64_t alloc_size;
   code *callback_func;
-  longlong *data_ptr;
+  int64_t *data_ptr;
   void *temp_ptr;
-  ulonglong checksum;
+  uint64_t checksum;
   int8_t stack_buffer[32];
-  ulonglong security_cookie;
+  uint64_t security_cookie;
   void **callback_ptr;
-  longlong *lock_ptr;
-  longlong lock_timeout;
-  longlong wait_duration;
+  int64_t *lock_ptr;
+  int64_t lock_timeout;
+  int64_t wait_duration;
   int8_t cleanup_flag;
   uint64_t timespec_data;
   int wait_seconds;
@@ -53,10 +53,10 @@ void Initialization_MainLoop(longlong context)
   int name_length;
   byte name_storage[256];
   uint64_t resource_data;
-  ulonglong resource_size;
-  longlong resource_offset;
-  longlong resource_count;
-  longlong resource_capacity;
+  uint64_t resource_size;
+  int64_t resource_offset;
+  int64_t resource_count;
+  int64_t resource_capacity;
   int8_t resource_flag;
   int8_t cleanup_buffer[16];
   code *destructor1;
@@ -72,18 +72,18 @@ void Initialization_MainLoop(longlong context)
   int32_t status_word;
   int allocation_limit;
   int32_t memory_flag;
-  ulonglong allocated_size;
-  ulonglong total_processed;
+  uint64_t allocated_size;
+  uint64_t total_processed;
   
   // 初始化安全cookie和线程ID
   thread_id = 0xfffffffffffffffe;
-  security_cookie = GET_SECURITY_COOKIE() ^ (ulonglong)stack_buffer;
-  status_flag = *(char *)(*(longlong *)(context + 1000) + 0x58);
+  security_cookie = GET_SECURITY_COOKIE() ^ (uint64_t)stack_buffer;
+  status_flag = *(char *)(*(int64_t *)(context + 1000) + 0x58);
   do {
     // 检查初始化状态
     if ((status_flag == '\0') || (total_processed = 0, *(char *)(context + 0x400) != '\0')) {
                     // WARNING: Subroutine does not return
-      FUN_1808fc050(security_cookie ^ (ulonglong)stack_buffer);
+      FUN_1808fc050(security_cookie ^ (uint64_t)stack_buffer);
     }
     
     // 初始化任务管理器指针
@@ -104,8 +104,8 @@ void Initialization_MainLoop(longlong context)
     resource_flag = 0;
     
     // 获取资源队列信息
-    offset = *(longlong *)(context + 0x3c8);
-    capacity = *(longlong *)(context + 0x3d0) - offset;
+    offset = *(int64_t *)(context + 0x3c8);
+    capacity = *(int64_t *)(context + 0x3d0) - offset;
     time_value = capacity >> 0x3f;
     if (capacity / 0x1a8 + time_value == time_value) {
       // 尝试获取资源
@@ -125,7 +125,7 @@ void Initialization_MainLoop(longlong context)
         time_value = time_limit / 1000000000;
         active_count = (int)time_value;
         wait_seconds = (int)time_limit + active_count * -1000000000;
-        timespec_data._4_4_ = (int32_t)((ulonglong)time_value >> 0x20);
+        timespec_data._4_4_ = (int32_t)((uint64_t)time_value >> 0x20);
         status_word = timespec_data._4_4_;
         memory_flag = temp_data;
         timespec_data = time_value;
@@ -167,10 +167,10 @@ void Initialization_MainLoop(longlong context)
       }
       strcpy_s(name_buffer,0x100,temp_ptr);
       resource_data = *(uint64_t *)(offset + 0x118);
-      resource_size = *(ulonglong *)(offset + 0x120);
-      resource_offset = *(longlong *)(offset + 0x128);
-      resource_count = *(longlong *)(offset + 0x130);
-      resource_capacity = *(longlong *)(offset + 0x138);
+      resource_size = *(uint64_t *)(offset + 0x120);
+      resource_offset = *(int64_t *)(offset + 0x128);
+      resource_count = *(int64_t *)(offset + 0x130);
+      resource_capacity = *(int64_t *)(offset + 0x138);
       resource_flag = *(int8_t *)(offset + 0x140);
       if (cleanup_buffer != (int8_t *)(offset + 0x148)) {
         if (destructor1 != (code *)0x0) {
@@ -200,7 +200,7 @@ void Initialization_MainLoop(longlong context)
       metadata2 = *(uint64_t *)(offset + 400);
       metadata3 = *(uint64_t *)(offset + 0x198);
       metadata4 = *(uint64_t *)(offset + 0x1a0);
-      *(longlong *)(context + 0x3d0) = *(longlong *)(context + 0x3d0) + -0x1a8;
+      *(int64_t *)(context + 0x3d0) = *(int64_t *)(context + 0x3d0) + -0x1a8;
       FUN_180069530();
       has_work = true;
     }
@@ -209,44 +209,44 @@ void Initialization_MainLoop(longlong context)
     if ((void *)*manager_ptr == &unknown_var_2208_ptr) {
       status_flag = FUN_180068a90(manager_ptr + 2,&lock_ptr);
       while (status_flag != '\0') {
-        data_ptr = (longlong *)manager_ptr[99];
-        if (lock_ptr != (longlong *)0x0) {
+        data_ptr = (int64_t *)manager_ptr[99];
+        if (lock_ptr != (int64_t *)0x0) {
           *(int8_t *)(lock_ptr + 4) = 0;
           *data_ptr = *data_ptr - lock_ptr[1];
           data_ptr[2] = data_ptr[2] + lock_ptr[1];
-          resource_ptr = (longlong *)lock_ptr[3];
-          sync_ptr = (longlong *)data_ptr[3];
+          resource_ptr = (int64_t *)lock_ptr[3];
+          sync_ptr = (int64_t *)data_ptr[3];
           capacity = lock_ptr;
           if (resource_ptr != sync_ptr) {
             do {
-              if ((resource_ptr == (longlong *)0x0) || ((char)resource_ptr[4] != '\0')) break;
+              if ((resource_ptr == (int64_t *)0x0) || ((char)resource_ptr[4] != '\0')) break;
               offset = capacity[2];
               resource_ptr[2] = offset;
               if (offset != 0) {
-                *(longlong **)(offset + 0x18) = resource_ptr;
+                *(int64_t **)(offset + 0x18) = resource_ptr;
               }
               resource_ptr[1] = resource_ptr[1] + capacity[1];
               *capacity = data_ptr[0x28005];
-              data_ptr[0x28005] = (longlong)capacity;
+              data_ptr[0x28005] = (int64_t)capacity;
               buffer_ptr = resource_ptr + 3;
-              sync_ptr = (longlong *)data_ptr[3];
+              sync_ptr = (int64_t *)data_ptr[3];
               capacity = resource_ptr;
-              resource_ptr = (longlong *)*buffer_ptr;
-            } while ((longlong *)*buffer_ptr != sync_ptr);
+              resource_ptr = (int64_t *)*buffer_ptr;
+            } while ((int64_t *)*buffer_ptr != sync_ptr);
           }
-          resource_ptr = (longlong *)capacity[2];
-          while (((capacity != sync_ptr && (resource_ptr != (longlong *)0x0)) && ((char)resource_ptr[4] == '\0')
+          resource_ptr = (int64_t *)capacity[2];
+          while (((capacity != sync_ptr && (resource_ptr != (int64_t *)0x0)) && ((char)resource_ptr[4] == '\0')
                  )) {
             offset = resource_ptr[2];
             capacity[2] = offset;
             if (offset != 0) {
-              *(longlong **)(offset + 0x18) = capacity;
+              *(int64_t **)(offset + 0x18) = capacity;
             }
             capacity[1] = capacity[1] + resource_ptr[1];
             *resource_ptr = data_ptr[0x28005];
-            data_ptr[0x28005] = (longlong)resource_ptr;
-            sync_ptr = (longlong *)data_ptr[3];
-            resource_ptr = (longlong *)capacity[2];
+            data_ptr[0x28005] = (int64_t)resource_ptr;
+            sync_ptr = (int64_t *)data_ptr[3];
+            resource_ptr = (int64_t *)capacity[2];
           }
         }
         status_flag = FUN_180068a90(manager_ptr + 2,&lock_ptr);
@@ -257,26 +257,26 @@ void Initialization_MainLoop(longlong context)
     }
     if (has_work) {
       // 计算资源名称的哈希值
-      data_ptr = *(longlong **)(context + 0xc0);
+      data_ptr = *(int64_t **)(context + 0xc0);
       checksum = total_processed;
       if (0 < name_length) {
         do {
-          checksum = checksum * 0x1f + (longlong)(char)name_buffer[total_processed];
+          checksum = checksum * 0x1f + (int64_t)(char)name_buffer[total_processed];
           hash_value = (int)total_processed + 1;
-          total_processed = (ulonglong)hash_value;
+          total_processed = (uint64_t)hash_value;
         } while ((int)hash_value < name_length);
       }
       
       // 在哈希表中查找资源
-      resource_ptr = (longlong *)data_ptr[0x67];
-      for (offset = resource_ptr[checksum % (ulonglong)*(uint *)(data_ptr + 0x68)]; offset != 0;
-          offset = *(longlong *)(offset + 0x120)) {
+      resource_ptr = (int64_t *)data_ptr[0x67];
+      for (offset = resource_ptr[checksum % (uint64_t)*(uint *)(data_ptr + 0x68)]; offset != 0;
+          offset = *(int64_t *)(offset + 0x120)) {
         loop_counter = *(int *)(offset + 0x10);
         if (name_length == loop_counter) {
           if (name_length != 0) {
             string_buffer = name_buffer;
             do {
-              byte_ptr = string_buffer + (*(longlong *)(offset + 8) - (longlong)name_buffer);
+              byte_ptr = string_buffer + (*(int64_t *)(offset + 8) - (int64_t)name_buffer);
               loop_counter = (uint)*string_buffer - (uint)*byte_ptr;
               if (loop_counter != 0) break;
               string_buffer = string_buffer + 1;
@@ -296,7 +296,7 @@ LAB_18006c61e:
       time_value = data_ptr[0x68];
       offset = resource_ptr[time_value];
 LAB_18006c642:
-      if ((offset != resource_ptr[time_value]) && (offset = *(longlong *)(offset + 0x118), offset != 0)) {
+      if ((offset != resource_ptr[time_value]) && (offset = *(int64_t *)(offset + 0x118), offset != 0)) {
 LAB_18006c852:
         // 计算所需资源大小
         if (resource_count == 0) {
@@ -314,7 +314,7 @@ LAB_18006c852:
         
         // 原子操作更新计数器
         LOCK();
-        data_ptr = (longlong *)(context + 0x3f0);
+        data_ptr = (int64_t *)(context + 0x3f0);
         time_value = *data_ptr;
         *data_ptr = *data_ptr + total_processed;
         UNLOCK();
@@ -338,11 +338,11 @@ LAB_18006c852:
         
         // 执行资源分配
         if (((security_cookie < time_value + total_processed) ||
-            ((ulonglong)(longlong)*(int *)(context + 0x3fc) < (longlong)loop_counter + 1U)) ||
+            ((uint64_t)(int64_t)*(int *)(context + 0x3fc) < (int64_t)loop_counter + 1U)) ||
            (status_flag = (**(code **)*manager_ptr)(manager_ptr,offset,&cleanup_ptr), status_flag == '\0')) {
           // 回滚计数器
           LOCK();
-          *(longlong *)(context + 0x3f0) = *(longlong *)(context + 0x3f0) - total_processed;
+          *(int64_t *)(context + 0x3f0) = *(int64_t *)(context + 0x3f0) - total_processed;
           UNLOCK();
           LOCK();
           *(int *)(context + 0x3f8) = *(int *)(context + 0x3f8) + -1;
@@ -350,7 +350,7 @@ LAB_18006c852:
           FUN_18006cc50(context + 0x3c8,&cleanup_ptr);
 LAB_18006ca44:
           // 调用回调函数
-          callback_func = *(code **)(**(longlong **)(context + 0xc0) + 0x28);
+          callback_func = *(code **)(**(int64_t **)(context + 0xc0) + 0x28);
           if (callback_func != _guard_check_icall) {
             (*callback_func)();
           }
@@ -358,14 +358,14 @@ LAB_18006ca44:
         }
         
         // 执行后处理回调
-        callback_func = *(code **)(**(longlong **)(context + 0xc0) + 0x20);
+        callback_func = *(code **)(**(int64_t **)(context + 0xc0) + 0x20);
         if (callback_func != _guard_check_icall) {
           (*callback_func)();
         }
         goto LAB_18006ca95;
       }
       // 清理过期资源
-      if (*(int *)((longlong)data_ptr + 0x32c) < (int)data_ptr[0x65]) {
+      if (*(int *)((int64_t)data_ptr + 0x32c) < (int)data_ptr[0x65]) {
         manager_ptr = (uint64_t *)*resource_ptr;
         sync_ptr = resource_ptr;
         if (manager_ptr == (uint64_t *)0x0) {
@@ -394,7 +394,7 @@ LAB_18006ca44:
               ptr_array = (uint64_t *)*sync_ptr;
               ptr_array2 = (uint64_t *)ptr_array[0x24];
               if (ptr_array == manager_ptr) {
-                *sync_ptr = (longlong)ptr_array2;
+                *sync_ptr = (int64_t)ptr_array2;
               }
               else {
                 for (; ptr_array2 != manager_ptr; ptr_array2 = (uint64_t *)ptr_array2[0x24]) {
@@ -417,23 +417,23 @@ LAB_18006ca44:
       }
       
       // 资源队列扩容处理
-      resource_ptr = (longlong *)(context + 0x3c8);
+      resource_ptr = (int64_t *)(context + 0x3c8);
       offset = 0;
-      data_ptr = *(longlong **)(context + 0xc0);
-      if (*(int *)((longlong)data_ptr + 0x32c) < (int)data_ptr[0x65]) {
-        total_processed = *(ulonglong *)(context + 0x3d0);
-        if (total_processed < *(ulonglong *)(context + 0x3d8)) {
-          *(ulonglong *)(context + 0x3d0) = total_processed + 0x1a8;
+      data_ptr = *(int64_t **)(context + 0xc0);
+      if (*(int *)((int64_t)data_ptr + 0x32c) < (int)data_ptr[0x65]) {
+        total_processed = *(uint64_t *)(context + 0x3d0);
+        if (total_processed < *(uint64_t *)(context + 0x3d8)) {
+          *(uint64_t *)(context + 0x3d0) = total_processed + 0x1a8;
           FUN_18006cd80(total_processed,&cleanup_ptr);
           goto LAB_18006ca44;
         }
         time_value = *resource_ptr;
-        capacity = (longlong)(total_processed - time_value) / 0x1a8;
+        capacity = (int64_t)(total_processed - time_value) / 0x1a8;
         if (capacity == 0) {
           capacity = 1;
 LAB_18006c9ac:
           offset = FUN_18062b420(system_memory_pool_ptr,capacity * 0x1a8,*(int8_t *)(context + 0x3e0));
-          total_processed = *(ulonglong *)(context + 0x3d0);
+          total_processed = *(uint64_t *)(context + 0x3d0);
           time_value = *resource_ptr;
         }
         else {
@@ -443,7 +443,7 @@ LAB_18006c9ac:
         FUN_18006de00(&lock_timeout,time_value,total_processed,offset);
         temp_long = lock_timeout;
         FUN_18006cd80(lock_timeout,&cleanup_ptr);
-        time_value = *(longlong *)(context + 0x3d0);
+        time_value = *(int64_t *)(context + 0x3d0);
         alloc_size = *resource_ptr;
         if (alloc_size != time_value) {
           do {
@@ -457,8 +457,8 @@ LAB_18006c9ac:
           FUN_18064e900(alloc_size);
         }
         *resource_ptr = offset;
-        *(longlong *)(context + 0x3d0) = temp_long + 0x1a8;
-        *(longlong *)(context + 0x3d8) = capacity * 0x1a8 + offset;
+        *(int64_t *)(context + 0x3d0) = temp_long + 0x1a8;
+        *(int64_t *)(context + 0x3d8) = capacity * 0x1a8 + offset;
         goto LAB_18006ca44;
       }
       
@@ -478,7 +478,7 @@ LAB_18006c9ac:
     }
     else {
       // 执行清理回调
-      callback_func = *(code **)(**(longlong **)(context + 0xc0) + 0x28);
+      callback_func = *(code **)(**(int64_t **)(context + 0xc0) + 0x28);
       if (callback_func != _guard_check_icall) {
         (*callback_func)();
       }
@@ -497,7 +497,7 @@ LAB_18006ca95:
     // 重置清理指针
     callback_ptr = &cleanup_ptr;
     cleanup_ptr = &system_state_ptr;
-    status_flag = *(char *)(*(longlong *)(context + 1000) + 0x58);
+    status_flag = *(char *)(*(int64_t *)(context + 1000) + 0x58);
   } while( true );
 }
 
@@ -510,16 +510,16 @@ LAB_18006ca95:
  * 清理资源池中的所有资源并释放内存
  * @param pool_handle 资源池句柄
  */
-void ResourcePool_Cleanup(longlong pool_handle)
+void ResourcePool_Cleanup(int64_t pool_handle)
 
 {
-  longlong pool_base;
+  int64_t pool_base;
   uint64_t *resource_ptr;
-  ulonglong resource_count;
-  ulonglong index;
+  uint64_t resource_count;
+  uint64_t index;
   
-  resource_count = *(ulonglong *)(pool_handle + 0x10);
-  pool_base = *(longlong *)(pool_handle + 8);
+  resource_count = *(uint64_t *)(pool_handle + 0x10);
+  pool_base = *(int64_t *)(pool_handle + 8);
   index = 0;
   if (resource_count != 0) {
     do {
@@ -532,10 +532,10 @@ void ResourcePool_Cleanup(longlong pool_handle)
       *(uint64_t *)(pool_base + index * 8) = 0;
       index = index + 1;
     } while (index < resource_count);
-    resource_count = *(ulonglong *)(pool_handle + 0x10);
+    resource_count = *(uint64_t *)(pool_handle + 0x10);
   }
   *(uint64_t *)(pool_handle + 0x18) = 0;
-  if ((1 < resource_count) && (*(longlong *)(pool_handle + 8) != 0)) {
+  if ((1 < resource_count) && (*(int64_t *)(pool_handle + 8) != 0)) {
                     // WARNING: Subroutine does not return
     FUN_18064e900(pool_base);
   }
@@ -551,19 +551,19 @@ void ResourcePool_Cleanup(longlong pool_handle)
  * @param resource_data 资源数据指针
  * @return 分配的资源槽位地址
  */
-ulonglong ResourceQueue_Allocate(longlong *queue_ptr,longlong resource_data)
+uint64_t ResourceQueue_Allocate(int64_t *queue_ptr,int64_t resource_data)
 
 {
-  longlong old_buffer;
-  ulonglong current_pos;
-  longlong queue_end;
-  longlong queue_start;
+  int64_t old_buffer;
+  uint64_t current_pos;
+  int64_t queue_end;
+  int64_t queue_start;
   code *callback_func;
-  longlong new_buffer;
-  ulonglong new_position;
+  int64_t new_buffer;
+  uint64_t new_position;
   
   current_pos = queue_ptr[1];
-  if (current_pos < (ulonglong)queue_ptr[2]) {
+  if (current_pos < (uint64_t)queue_ptr[2]) {
     queue_ptr[1] = current_pos + 0x1a8;
     new_position = current_pos;
     FUN_180068ff0();
@@ -604,7 +604,7 @@ ulonglong ResourceQueue_Allocate(longlong *queue_ptr,longlong resource_data)
   
   // 队列已满，需要扩展
   new_buffer = *queue_ptr;
-  queue_start = (longlong)(current_pos - new_buffer) / 0x1a8;
+  queue_start = (int64_t)(current_pos - new_buffer) / 0x1a8;
   if (queue_start == 0) {
     queue_start = 1;
   }
@@ -650,18 +650,18 @@ expand_queue:
  * @param param2 未使用参数  
  * @param queue_ptr 资源队列指针
  */
-void ResourceQueue_Expand(uint64_t param1,uint64_t param2,longlong *queue_ptr)
+void ResourceQueue_Expand(uint64_t param1,uint64_t param2,int64_t *queue_ptr)
 
 {
-  longlong old_buffer;
-  longlong queue_end;
-  longlong range_start;
-  longlong range_end;
-  longlong capacity;
-  longlong new_buffer;
-  longlong new_position;
-  longlong unused_param1 = param1;
-  longlong unused_param2 = param2;
+  int64_t old_buffer;
+  int64_t queue_end;
+  int64_t range_start;
+  int64_t range_end;
+  int64_t capacity;
+  int64_t new_buffer;
+  int64_t new_position;
+  int64_t unused_param1 = param1;
+  int64_t unused_param2 = param2;
   
   // 计算新的队列容量  
   capacity = SUB168(SEXT816(range_end - range_start) * SEXT816(param2 - param1),8);
@@ -730,7 +730,7 @@ void Resource_Release(void)
  * @param param4 未使用参数
  * @return 目标位置指针
  */
-longlong Resource_Copy_Callback(longlong dest_ptr,longlong src_ptr,longlong param3,uint64_t param4)
+int64_t Resource_Copy_Callback(int64_t dest_ptr,int64_t src_ptr,int64_t param3,uint64_t param4)
 
 {
   code *callback_func;

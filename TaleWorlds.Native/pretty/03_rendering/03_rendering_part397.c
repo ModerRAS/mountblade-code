@@ -70,7 +70,7 @@
  * @brief 渲染系统资源管理器结构体
  */
 typedef struct {
-    longlong *resource_ptr;          /**< 资源指针 */
+    int64_t *resource_ptr;          /**< 资源指针 */
     uint resource_size;              /**< 资源大小 */
     uint resource_type;              /**< 资源类型 */
     int resource_status;             /**< 资源状态 */
@@ -84,7 +84,7 @@ typedef struct {
 typedef struct {
     int status_flags;                /**< 状态标志 */
     uint update_counter;             /**< 更新计数器 */
-    ulonglong last_update_time;      /**< 最后更新时间 */
+    uint64_t last_update_time;      /**< 最后更新时间 */
     void *status_data;               /**< 状态数据 */
     int thread_id;                   /**< 线程ID */
 } RenderingStatusManager;
@@ -138,50 +138,50 @@ typedef struct {
  * @note 包含线程安全机制和资源管理
  * @note 支持多种渲染模式和配置
  */
-void RenderingSystemAdvancedPipelineManager(longlong param_1, longlong *param_2, longlong param_3)
+void RenderingSystemAdvancedPipelineManager(int64_t param_1, int64_t *param_2, int64_t param_3)
 {
     int8_t uVar1;
     int32_t uVar2;
-    longlong *plVar3;
-    longlong *plVar4;
+    int64_t *plVar3;
+    int64_t *plVar4;
     int iVar5;
     int iVar6;
     int32_t uVar7;
-    longlong *plVar8;
-    ulonglong uVar9;
+    int64_t *plVar8;
+    uint64_t uVar9;
     uint64_t *puVar10;
     uint64_t uVar11;
-    longlong *plVar12;
-    longlong *plVar13;
-    longlong lVar14;
-    longlong *plVar15;
-    ulonglong uVar16;
+    int64_t *plVar12;
+    int64_t *plVar13;
+    int64_t lVar14;
+    int64_t *plVar15;
+    uint64_t uVar16;
     uint uVar17;
-    longlong lVar18;
+    int64_t lVar18;
     void *puVar19;
-    longlong *plVar20;
-    longlong *plVar21;
-    ulonglong uVar22;
-    ulonglong uVar23;
+    int64_t *plVar20;
+    int64_t *plVar21;
+    uint64_t uVar22;
+    uint64_t uVar23;
     int8_t auStack_418 [32];
     uint uStack_3f8;
     void *puStack_3f0;
     void *puStack_3e8;
     uint uStack_3e0;
-    ulonglong uStack_3d8;
-    longlong **pplStack_3d0;
-    longlong *plStack_3c8;
+    uint64_t uStack_3d8;
+    int64_t **pplStack_3d0;
+    int64_t *plStack_3c8;
     int32_t uStack_3c0;
     void *puStack_3b8;
     void *puStack_3b0;
     uint uStack_3a8;
-    ulonglong uStack_3a0;
-    longlong *plStack_398;
-    longlong *plStack_390;
-    longlong *plStack_388;
-    longlong *plStack_380;
+    uint64_t uStack_3a0;
+    int64_t *plStack_398;
+    int64_t *plStack_390;
+    int64_t *plStack_388;
+    int64_t *plStack_380;
     int aiStack_378 [2];
-    longlong *plStack_370;
+    int64_t *plStack_370;
     uint uStack_368;
     uint uStack_364;
     int32_t uStack_360;
@@ -196,8 +196,8 @@ void RenderingSystemAdvancedPipelineManager(longlong param_1, longlong *param_2,
     uint uStack_33c;
     int32_t uStack_338;
     uint uStack_334;
-    longlong lStack_330;
-    longlong *plStack_328;
+    int64_t lStack_330;
+    int64_t *plStack_328;
     int32_t uStack_320;
     int32_t uStack_31c;
     int32_t uStack_318;
@@ -217,7 +217,7 @@ void RenderingSystemAdvancedPipelineManager(longlong param_1, longlong *param_2,
     int32_t uStack_2d4;
     int8_t uStack_2d0;
     int *piStack_2c8;
-    longlong alStack_2c0 [3];
+    int64_t alStack_2c0 [3];
     int32_t uStack_2a8;
     uint64_t uStack_2a0;
     uint64_t uStack_298;
@@ -228,13 +228,13 @@ void RenderingSystemAdvancedPipelineManager(longlong param_1, longlong *param_2,
     int32_t uStack_284;
     int8_t uStack_280;
     uint64_t uStack_278;
-    longlong alStack_270 [3];
+    int64_t alStack_270 [3];
     int32_t uStack_258;
     uint64_t uStack_250;
-    longlong *plStack_248;
-    longlong *plStack_240;
-    longlong lStack_238;
-    longlong lStack_230;
+    int64_t *plStack_248;
+    int64_t *plStack_240;
+    int64_t lStack_238;
+    int64_t lStack_230;
     uint64_t uStack_228;
     int32_t uStack_220;
     uint64_t uStack_218;
@@ -266,44 +266,44 @@ void RenderingSystemAdvancedPipelineManager(longlong param_1, longlong *param_2,
     int8_t *puStack_e0;
     uint uStack_d8;
     int8_t auStack_d0 [136];
-    ulonglong uStack_48;
+    uint64_t uStack_48;
     
     // 初始化内存对齐和状态标志
     uStack_218 = RENDERING_MEMORY_ALIGNMENT_MASK;
-    uStack_48 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_418;
+    uStack_48 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_418;
     uVar16 = 0;
     uStack_3c0 = 0;
     
     // 获取主要资源管理器
-    plVar12 = (longlong *)*param_2;
+    plVar12 = (int64_t *)*param_2;
     plStack_3c8 = plVar12;
     plStack_390 = plVar12;
     lStack_330 = param_3;
     
     // 初始化主要资源管理器
-    if (plVar12 != (longlong *)0x0) {
+    if (plVar12 != (int64_t *)0x0) {
         (**(code **)(*plVar12 + 0x28))(plVar12);
     }
     
     // 初始化辅助资源管理器
-    plVar8 = (longlong *)FUN_18048c6f0(param_1 + 0x108, param_2);
-    plVar8 = (longlong *)*plVar8;
+    plVar8 = (int64_t *)FUN_18048c6f0(param_1 + 0x108, param_2);
+    plVar8 = (int64_t *)*plVar8;
     plStack_388 = plVar8;
-    if (plVar8 != (longlong *)0x0) {
+    if (plVar8 != (int64_t *)0x0) {
         (**(code **)(*plVar8 + 0x28))(plVar8);
     }
     
     // 初始化次要资源管理器
-    plVar21 = (longlong *)param_2[1];
+    plVar21 = (int64_t *)param_2[1];
     plStack_380 = plVar21;
-    if (plVar21 != (longlong *)0x0) {
+    if (plVar21 != (int64_t *)0x0) {
         (**(code **)(*plVar21 + 0x28))(plVar21);
     }
     
     // 初始化额外资源管理器
-    plVar20 = (longlong *)param_2[5];
+    plVar20 = (int64_t *)param_2[5];
     plStack_398 = plVar20;
-    if (plVar20 != (longlong *)0x0) {
+    if (plVar20 != (int64_t *)0x0) {
         (**(code **)(*plVar20 + 0x28))(plVar20);
     }
     
@@ -316,7 +316,7 @@ void RenderingSystemAdvancedPipelineManager(longlong param_1, longlong *param_2,
         uStack_2fb = RENDERING_STATUS_FLAG_ACTIVE;
         uStack_2ec = 0;
         uStack_320 = (int32_t)param_2[0xe];
-        uStack_31c = *(int32_t *)((longlong)param_2 + 0x74);
+        uStack_31c = *(int32_t *)((int64_t)param_2 + 0x74);
         uStack_310 = RENDERING_STATUS_FLAG_ACTIVE;
         uStack_2fc = RENDERING_STATUS_FLAG_ACTIVE;
         uStack_30c = 0;
@@ -348,9 +348,9 @@ void RenderingSystemAdvancedPipelineManager(longlong param_1, longlong *param_2,
                 puStack_3e8[uStack_3e0 + 1] = 0;
                 uStack_3e0 = uStack_3e0 + 1;
                 uStack_3f8 = uStack_3f8 + 1;
-                uVar9 = (ulonglong)uStack_3f8;
+                uVar9 = (uint64_t)uStack_3f8;
                 uVar23 = uVar23 + 1;
-            } while ((longlong)uVar23 < RENDERING_MAX_STRING_LENGTH);
+            } while ((int64_t)uVar23 < RENDERING_MAX_STRING_LENGTH);
             uStack_3a8 = uStack_3e0;
             if (puStack_3b0 != (void *)0x0) {
                 // 清理临时资源
@@ -380,19 +380,19 @@ void RenderingSystemAdvancedPipelineManager(longlong param_1, longlong *param_2,
         
         // 初始化渲染管线
         puVar10 = (uint64_t *)FUN_1800b1230(system_resource_state, &plStack_240, &puStack_e8, &uStack_320);
-        plStack_3c8 = (longlong *)*puVar10;
-        if (plStack_3c8 != (longlong *)0x0) {
+        plStack_3c8 = (int64_t *)*puVar10;
+        if (plStack_3c8 != (int64_t *)0x0) {
             plStack_248 = plStack_3c8;
             (**(code **)(*plStack_3c8 + 0x28))();
         }
         
         // 设置资源管理器
-        plStack_248 = (longlong *)param_2[2];
-        param_2[2] = (longlong)plStack_3c8;
-        if (plStack_248 != (longlong *)0x0) {
+        plStack_248 = (int64_t *)param_2[2];
+        param_2[2] = (int64_t)plStack_3c8;
+        if (plStack_248 != (int64_t *)0x0) {
             (**(code **)(*plStack_248 + 0x38))();
         }
-        if (plStack_240 != (longlong *)0x0) {
+        if (plStack_240 != (int64_t *)0x0) {
             (**(code **)(*plStack_240 + 0x38))();
         }
         
@@ -434,7 +434,7 @@ void RenderingSystemAdvancedPipelineManager(longlong param_1, longlong *param_2,
         uStack_338 = (int32_t)param_2[0xf];
         
         // 线程ID检查和处理
-        iVar6 = *(int *)(*(longlong *)(*(longlong *)(system_context_ptr + 8) + 8) + 0x48);
+        iVar6 = *(int *)(*(int64_t *)(*(int64_t *)(system_context_ptr + 8) + 8) + 0x48);
         iVar5 = _Thrd_id();
         if (iVar5 == iVar6) {
             // 同线程处理
@@ -455,7 +455,7 @@ void RenderingSystemAdvancedPipelineManager(longlong param_1, longlong *param_2,
         }
         else {
             // 跨线程处理
-            pplStack_3d0 = (longlong **)&puStack_1c8;
+            pplStack_3d0 = (int64_t **)&puStack_1c8;
             puStack_1c8 = &unknown_var_3432_ptr;
             puStack_1c0 = auStack_1b0;
             uStack_1b8 = 0;
@@ -482,22 +482,22 @@ void RenderingSystemAdvancedPipelineManager(longlong param_1, longlong *param_2,
             
             // 创建跨线程通信
             uVar11 = FUN_18062b1e0(system_memory_pool_ptr, 0x100, 8, 3);
-            plVar12 = (longlong *)FUN_18005ce30(uVar11, &puStack_1c8);
+            plVar12 = (int64_t *)FUN_18005ce30(uVar11, &puStack_1c8);
             plStack_328 = plVar12;
-            if (plVar12 != (longlong *)0x0) {
+            if (plVar12 != (int64_t *)0x0) {
                 (**(code **)(*plVar12 + 0x28))(plVar12);
             }
             lVar18 = system_context_ptr;
             pplStack_3d0 = &plStack_3c8;
             plStack_3c8 = plVar12;
-            if (plVar12 != (longlong *)0x0) {
+            if (plVar12 != (int64_t *)0x0) {
                 (**(code **)(*plVar12 + 0x28))(plVar12);
             }
             FUN_18005e370(lVar18, &plStack_3c8);
-            if (plVar12 != (longlong *)0x0) {
+            if (plVar12 != (int64_t *)0x0) {
                 (**(code **)(*plVar12 + 0x38))(plVar12);
             }
-            pplStack_3d0 = (longlong **)&puStack_1c8;
+            pplStack_3d0 = (int64_t **)&puStack_1c8;
             puStack_1c8 = &system_state_ptr;
             plVar20 = plStack_398;
             plVar21 = plStack_380;
@@ -508,7 +508,7 @@ void RenderingSystemAdvancedPipelineManager(longlong param_1, longlong *param_2,
     
     // 资源管理和清理
     uVar22 = RENDERING_DEFAULT_BUFFER_SIZE;
-    *(int8_t *)((longlong)plVar20 + 0x2e6) = 0;
+    *(int8_t *)((int64_t)plVar20 + 0x2e6) = 0;
     uVar9 = uVar16;
     uVar23 = uVar16;
     if (plVar20[0x39] - plVar20[0x38] >> 3 != 0) {
@@ -516,8 +516,8 @@ void RenderingSystemAdvancedPipelineManager(longlong param_1, longlong *param_2,
             iVar6 = (int)uVar23;
             FUN_1804439b0(*(uint64_t *)(uVar9 + plVar20[0x38]), 0);
             uVar9 = uVar9 + 8;
-            uVar23 = (ulonglong)(iVar6 + 1U);
-        } while ((ulonglong)(longlong)(int)(iVar6 + 1U) < (ulonglong)(plVar20[0x39] - plVar20[0x38] >> 3));
+            uVar23 = (uint64_t)(iVar6 + 1U);
+        } while ((uint64_t)(int64_t)(int)(iVar6 + 1U) < (uint64_t)(plVar20[0x39] - plVar20[0x38] >> 3));
     }
     
     // 根据配置设置缓冲区大小
@@ -567,7 +567,7 @@ void RenderingSystemAdvancedPipelineManager(longlong param_1, longlong *param_2,
     uStack_284 = RENDERING_RESOURCE_CLEANUP_FLAG;
     uStack_280 = RENDERING_STATUS_FLAG_ACTIVE;
     uStack_278 = 0;
-    pplStack_3d0 = (longlong **)alStack_270;
+    pplStack_3d0 = (int64_t **)alStack_270;
     alStack_270[0] = 0;
     alStack_270[1] = 0;
     alStack_270[2] = 0;
@@ -584,7 +584,7 @@ void RenderingSystemAdvancedPipelineManager(longlong param_1, longlong *param_2,
         __Throw_C_error_std__YAXH_Z(iVar6);
     }
     uVar7 = FUN_1801a3620(plVar12, &uStack_298);
-    pplStack_3d0 = (longlong **)CONCAT44(pplStack_3d0._4_4_, uVar7);
+    pplStack_3d0 = (int64_t **)CONCAT44(pplStack_3d0._4_4_, uVar7);
     iVar6 = _Mtx_unlock(plVar12 + 0xc0fc);
     if (iVar6 != 0) {
         __Throw_C_error_std__YAXH_Z(iVar6);
@@ -639,20 +639,20 @@ void RenderingSystemAdvancedPipelineManager(longlong param_1, longlong *param_2,
             lVar18 = plVar13[0x13];
             plVar15[0x12] = plVar13[0x12];
             plVar15[0x13] = lVar18;
-            uVar7 = *(int32_t *)((longlong)plVar13 + 0xa4);
+            uVar7 = *(int32_t *)((int64_t)plVar13 + 0xa4);
             lVar18 = plVar13[0x15];
-            uVar2 = *(int32_t *)((longlong)plVar13 + 0xac);
+            uVar2 = *(int32_t *)((int64_t)plVar13 + 0xac);
             *(int *)(plVar15 + 0x14) = (int)plVar13[0x14];
-            *(int32_t *)((longlong)plVar15 + 0xa4) = uVar7;
+            *(int32_t *)((int64_t)plVar15 + 0xa4) = uVar7;
             *(int *)(plVar15 + 0x15) = (int)lVar18;
-            *(int32_t *)((longlong)plVar15 + 0xac) = uVar2;
-            uVar7 = *(int32_t *)((longlong)plVar13 + 0xb4);
+            *(int32_t *)((int64_t)plVar15 + 0xac) = uVar2;
+            uVar7 = *(int32_t *)((int64_t)plVar13 + 0xb4);
             lVar18 = plVar13[0x17];
-            uVar2 = *(int32_t *)((longlong)plVar13 + 0xbc);
+            uVar2 = *(int32_t *)((int64_t)plVar13 + 0xbc);
             *(int *)(plVar15 + 0x16) = (int)plVar13[0x16];
-            *(int32_t *)((longlong)plVar15 + 0xb4) = uVar7;
+            *(int32_t *)((int64_t)plVar15 + 0xb4) = uVar7;
             *(int *)(plVar15 + 0x17) = (int)lVar18;
-            *(int32_t *)((longlong)plVar15 + 0xbc) = uVar2;
+            *(int32_t *)((int64_t)plVar15 + 0xbc) = uVar2;
             
             // 更新渲染状态
             (**(code **)(*plVar8 + 0x68))(plVar8, param_2[2]);
@@ -662,9 +662,9 @@ void RenderingSystemAdvancedPipelineManager(longlong param_1, longlong *param_2,
             
             // 执行渲染操作
             lVar18 = (**(code **)(*plVar8 + 0xd8))(plVar8, param_3);
-            plStack_370 = *(longlong **)(lVar18 + 0x96a8);
+            plStack_370 = *(int64_t **)(lVar18 + 0x96a8);
             *(uint64_t *)(lVar18 + 0x96a8) = 0;
-            if (plStack_370 != (longlong *)0x0) {
+            if (plStack_370 != (int64_t *)0x0) {
                 (**(code **)(*plStack_370 + 0x38))();
             }
             
@@ -674,7 +674,7 @@ void RenderingSystemAdvancedPipelineManager(longlong param_1, longlong *param_2,
             if ((void *)plVar20[0x52] != (void *)0x0) {
                 puVar19 = (void *)plVar20[0x52];
             }
-            (**(code **)(*(longlong *)(lVar18 + 0x3520) + 0x10))((longlong *)(lVar18 + 0x3520), puVar19);
+            (**(code **)(*(int64_t *)(lVar18 + 0x3520) + 0x10))((int64_t *)(lVar18 + 0x3520), puVar19);
             
             // 处理高级渲染特性
             if (((*(int *)(lVar18 + 0x124e8) < 1) && (*(int *)(lVar18 + 0x124ec) < 1)) && ((char)plVar8[0x104] != '\0')) {
@@ -694,7 +694,7 @@ void RenderingSystemAdvancedPipelineManager(longlong param_1, longlong *param_2,
                 *(void **)(lVar18 + 0x9640) = &unknown_var_7024_ptr;
                 *(void **)(lVar18 + 0x9648) = &unknown_var_7008_ptr;
                 *(code **)(lVar18 + 0x9630) = FUN_180489990;
-                *(longlong *)(lVar18 + 0x9658) = lVar14;
+                *(int64_t *)(lVar18 + 0x9658) = lVar14;
                 *(uint *)(lVar18 + 4) = *(uint *)(lVar18 + 4) | 0x4000;
                 FUN_1802ee720(plVar20, 0);
             }
@@ -719,16 +719,16 @@ void RenderingSystemAdvancedPipelineManager(longlong param_1, longlong *param_2,
                 
                 // 清理渲染资源
                 while (plVar20 = plStack_398, iVar6 = (int)uVar9, iVar6 < *(int *)(lStack_330 + 0x11a48)) {
-                    if (*(longlong *)(uVar16 + 0x9a48 + lStack_330) == lVar18) {
-                        *(uint64_t *)(lStack_330 + 0x9a48 + (longlong)iVar6 * 8) =
-                             *(uint64_t *)(lStack_330 + 0x9a40 + (longlong)*(int *)(lStack_330 + 0x11a48) * 8);
+                    if (*(int64_t *)(uVar16 + 0x9a48 + lStack_330) == lVar18) {
+                        *(uint64_t *)(lStack_330 + 0x9a48 + (int64_t)iVar6 * 8) =
+                             *(uint64_t *)(lStack_330 + 0x9a40 + (int64_t)*(int *)(lStack_330 + 0x11a48) * 8);
                         LOCK();
                         *(int *)(lStack_330 + 0x11a48) = *(int *)(lStack_330 + 0x11a48) + -1;
                         UNLOCK();
                         break;
                     }
                     uVar16 = uVar16 + 8;
-                    uVar9 = (ulonglong)(iVar6 + 1);
+                    uVar9 = (uint64_t)(iVar6 + 1);
                 }
                 FUN_1802ee720(plStack_398, 0);
                 plVar21 = plStack_380;
@@ -753,16 +753,16 @@ void RenderingSystemAdvancedPipelineManager(longlong param_1, longlong *param_2,
     if (alStack_2c0[0] == 0) {
         // 最终清理
         (**(code **)(*plVar20 + 0x38))(plVar20);
-        if (plVar21 != (longlong *)0x0) {
+        if (plVar21 != (int64_t *)0x0) {
             (**(code **)(*plVar21 + 0x38))(plVar21);
         }
-        if (plVar8 != (longlong *)0x0) {
+        if (plVar8 != (int64_t *)0x0) {
             (**(code **)(*plVar8 + 0x38))(plVar8);
         }
-        if (plVar12 != (longlong *)0x0) {
+        if (plVar12 != (int64_t *)0x0) {
             (**(code **)(*plVar12 + 0x38))(plVar12);
         }
-        FUN_1808fc050(uStack_48 ^ (ulonglong)auStack_418);
+        FUN_1808fc050(uStack_48 ^ (uint64_t)auStack_418);
     }
     FUN_18064e900();
 }
@@ -782,75 +782,75 @@ void RenderingSystemAdvancedPipelineManager(longlong param_1, longlong *param_2,
  * @note 处理复杂的资源依赖关系
  * @note 支持多种资源类型的同步
  */
-longlong * RenderingSystemResourceStateSynchronizer(longlong *param_1, longlong *param_2)
+int64_t * RenderingSystemResourceStateSynchronizer(int64_t *param_1, int64_t *param_2)
 {
-    longlong *plVar1;
-    longlong *plVar2;
+    int64_t *plVar1;
+    int64_t *plVar2;
     code *pcVar3;
     
     // 同步主要资源
-    plVar1 = (longlong *)*param_2;
-    if (plVar1 != (longlong *)0x0) {
+    plVar1 = (int64_t *)*param_2;
+    if (plVar1 != (int64_t *)0x0) {
         (**(code **)(*plVar1 + 0x28))(plVar1);
     }
-    plVar2 = (longlong *)*param_1;
-    *param_1 = (longlong)plVar1;
-    if (plVar2 != (longlong *)0x0) {
+    plVar2 = (int64_t *)*param_1;
+    *param_1 = (int64_t)plVar1;
+    if (plVar2 != (int64_t *)0x0) {
         (**(code **)(*plVar2 + 0x38))();
     }
     
     // 同步次要资源
-    plVar1 = (longlong *)param_2[1];
-    if (plVar1 != (longlong *)0x0) {
+    plVar1 = (int64_t *)param_2[1];
+    if (plVar1 != (int64_t *)0x0) {
         (**(code **)(*plVar1 + 0x28))(plVar1);
     }
-    plVar2 = (longlong *)param_1[1];
-    param_1[1] = (longlong)plVar1;
-    if (plVar2 != (longlong *)0x0) {
+    plVar2 = (int64_t *)param_1[1];
+    param_1[1] = (int64_t)plVar1;
+    if (plVar2 != (int64_t *)0x0) {
         (**(code **)(*plVar2 + 0x38))();
     }
     
     // 同步第三级资源
-    plVar1 = (longlong *)param_2[2];
-    if (plVar1 != (longlong *)0x0) {
+    plVar1 = (int64_t *)param_2[2];
+    if (plVar1 != (int64_t *)0x0) {
         (**(code **)(*plVar1 + 0x28))(plVar1);
     }
-    plVar2 = (longlong *)param_1[2];
-    param_1[2] = (longlong)plVar1;
-    if (plVar2 != (longlong *)0x0) {
+    plVar2 = (int64_t *)param_1[2];
+    param_1[2] = (int64_t)plVar1;
+    if (plVar2 != (int64_t *)0x0) {
         (**(code **)(*plVar2 + 0x38))();
     }
     
     // 同步第四级资源
-    plVar1 = (longlong *)param_2[3];
-    if (plVar1 != (longlong *)0x0) {
+    plVar1 = (int64_t *)param_2[3];
+    if (plVar1 != (int64_t *)0x0) {
         (**(code **)(*plVar1 + 0x28))(plVar1);
     }
-    plVar2 = (longlong *)param_1[3];
-    param_1[3] = (longlong)plVar1;
-    if (plVar2 != (longlong *)0x0) {
+    plVar2 = (int64_t *)param_1[3];
+    param_1[3] = (int64_t)plVar1;
+    if (plVar2 != (int64_t *)0x0) {
         (**(code **)(*plVar2 + 0x38))();
     }
     
     // 同步第五级资源
-    plVar1 = (longlong *)param_2[4];
-    if (plVar1 != (longlong *)0x0) {
+    plVar1 = (int64_t *)param_2[4];
+    if (plVar1 != (int64_t *)0x0) {
         (**(code **)(*plVar1 + 0x28))(plVar1);
     }
-    plVar2 = (longlong *)param_1[4];
-    param_1[4] = (longlong)plVar1;
-    if (plVar2 != (longlong *)0x0) {
+    plVar2 = (int64_t *)param_1[4];
+    param_1[4] = (int64_t)plVar1;
+    if (plVar2 != (int64_t *)0x0) {
         (**(code **)(*plVar2 + 0x38))();
     }
     
     // 同步第六级资源
-    plVar1 = (longlong *)param_2[5];
-    if (plVar1 != (longlong *)0x0) {
+    plVar1 = (int64_t *)param_2[5];
+    if (plVar1 != (int64_t *)0x0) {
         (**(code **)(*plVar1 + 0x28))(plVar1);
     }
-    plVar2 = (longlong *)param_1[5];
-    param_1[5] = (longlong)plVar1;
-    if (plVar2 != (longlong *)0x0) {
+    plVar2 = (int64_t *)param_1[5];
+    param_1[5] = (int64_t)plVar1;
+    if (plVar2 != (int64_t *)0x0) {
         (**(code **)(*plVar2 + 0x38))();
     }
     
@@ -860,9 +860,9 @@ longlong * RenderingSystemResourceStateSynchronizer(longlong *param_1, longlong 
     
     // 同步配置参数
     *(int *)(param_1 + 0xe) = (int)param_2[0xe];
-    *(int32_t *)((longlong)param_1 + 0x74) = *(int32_t *)((longlong)param_2 + 0x74);
+    *(int32_t *)((int64_t)param_1 + 0x74) = *(int32_t *)((int64_t)param_2 + 0x74);
     *(int *)(param_1 + 0xf) = (int)param_2[0xf];
-    *(int8_t *)((longlong)param_1 + 0x7c) = *(int8_t *)((longlong)param_2 + 0x7c);
+    *(int8_t *)((int64_t)param_1 + 0x7c) = *(int8_t *)((int64_t)param_2 + 0x7c);
     *(int *)(param_1 + 0x10) = (int)param_2[0x10];
     
     // 同步额外资源
@@ -876,7 +876,7 @@ longlong * RenderingSystemResourceStateSynchronizer(longlong *param_1, longlong 
             (*pcVar3)(plVar1, param_2 + 0x11, 1);
             pcVar3 = (code *)param_2[0x13];
         }
-        param_1[0x13] = (longlong)pcVar3;
+        param_1[0x13] = (int64_t)pcVar3;
         param_1[0x14] = param_2[0x14];
     }
     

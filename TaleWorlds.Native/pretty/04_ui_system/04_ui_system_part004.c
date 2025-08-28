@@ -64,7 +64,7 @@
 
 // 函数: ui_set_component_data - 设置UI组件数据
 // 参数: param_1 - UI组件对象指针, param_2 - 要设置的数据
-void ui_set_component_data(longlong param_1, uint64_t param_2)
+void ui_set_component_data(int64_t param_1, uint64_t param_2)
 {
   uint64_t auStackX_10 [3];
   
@@ -82,11 +82,11 @@ void ui_set_component_data(longlong param_1, uint64_t param_2)
 // 函数: ui_process_component_stack - 处理UI组件堆栈
 // 参数: param_1 - UI系统指针, param_2 - 组件堆栈指针, param_3/4 - 处理参数
 // 功能: 处理UI组件堆栈，执行组件的初始化和清理操作
-void ui_process_component_stack(longlong param_1, longlong *param_2, uint64_t param_3, uint64_t param_4)
+void ui_process_component_stack(int64_t param_1, int64_t *param_2, uint64_t param_3, uint64_t param_4)
 {
   void *puVar1;
   void *puVar2;
-  longlong *plStackX_10;
+  int64_t *plStackX_10;
   void *puStack_50;
   void *puStack_48;
   int32_t uStack_38;
@@ -132,7 +132,7 @@ void ui_process_component_stack(longlong param_1, longlong *param_2, uint64_t pa
 // 函数: ui_initialize_component_handlers - 初始化UI组件处理器
 // 参数: param_1 - UI系统指针, param_2/3 - 组件参数
 // 功能: 初始化UI组件的事件处理器和回调函数
-void ui_initialize_component_handlers(longlong param_1, longlong param_2, longlong param_3)
+void ui_initialize_component_handlers(int64_t param_1, int64_t param_2, int64_t param_3)
 {
   code *pcVar1;
   void *puVar2;
@@ -163,7 +163,7 @@ void ui_initialize_component_handlers(longlong param_1, longlong param_2, longlo
   }
   (*ui_system_data_config)();
 LAB_180651b0f:
-  *(longlong *)(param_1 + 0x10) = param_1;
+  *(int64_t *)(param_1 + 0x10) = param_1;
   // 注册UI组件事件处理器
   (**(code **)(param_1 + 0x78))(0, FUN_1806555f0);
   (**(code **)(param_1 + 0x78))(1, FUN_1806552e0);
@@ -212,25 +212,25 @@ LAB_180651b0f:
 // 函数: ui_execute_callback_queue - 执行UI回调队列
 // 参数: param_1 - UI系统指针
 // 功能: 执行UI系统中的回调函数队列
-void ui_execute_callback_queue(longlong param_1)
+void ui_execute_callback_queue(int64_t param_1)
 {
-  ulonglong uVar1;
+  uint64_t uVar1;
   uint uVar2;
-  ulonglong uVar3;
+  uint64_t uVar3;
   
   uVar1 = 0;
   uVar3 = uVar1;
-  if (*(longlong *)(param_1 + 0x170) - *(longlong *)(param_1 + 0x168) >> 3 == 0) {
+  if (*(int64_t *)(param_1 + 0x170) - *(int64_t *)(param_1 + 0x168) >> 3 == 0) {
     *(int8_t *)(param_1 + 0x188) = 1;
     return;
   }
   do {
-    (**(code **)**(uint64_t **)(uVar1 + *(longlong *)(param_1 + 0x168)))();
+    (**(code **)**(uint64_t **)(uVar1 + *(int64_t *)(param_1 + 0x168)))();
     uVar1 = uVar1 + 8;
     uVar2 = (int)uVar3 + 1;
-    uVar3 = (ulonglong)uVar2;
-  } while ((ulonglong)(longlong)(int)uVar2 <
-           (ulonglong)(*(longlong *)(param_1 + 0x170) - *(longlong *)(param_1 + 0x168) >> 3));
+    uVar3 = (uint64_t)uVar2;
+  } while ((uint64_t)(int64_t)(int)uVar2 <
+           (uint64_t)(*(int64_t *)(param_1 + 0x170) - *(int64_t *)(param_1 + 0x168) >> 3));
   *(int8_t *)(param_1 + 0x188) = 1;
   return;
 }
@@ -243,17 +243,17 @@ void ui_execute_callback_queue(longlong param_1)
 // 功能: 使用不同的寄存器变量执行UI回调队列
 void ui_execute_callback_queue_alt(void)
 {
-  longlong unaff_RBX;
-  ulonglong uVar1;
+  int64_t unaff_RBX;
+  uint64_t uVar1;
   uint unaff_EDI;
   
-  uVar1 = (ulonglong)unaff_EDI;
+  uVar1 = (uint64_t)unaff_EDI;
   do {
-    (**(code **)**(uint64_t **)(uVar1 + *(longlong *)(unaff_RBX + 0x168)))();
+    (**(code **)**(uint64_t **)(uVar1 + *(int64_t *)(unaff_RBX + 0x168)))();
     uVar1 = uVar1 + 8;
     unaff_EDI = unaff_EDI + 1;
-  } while ((ulonglong)(longlong)(int)unaff_EDI <
-           (ulonglong)(*(longlong *)(unaff_RBX + 0x170) - *(longlong *)(unaff_RBX + 0x168) >> 3));
+  } while ((uint64_t)(int64_t)(int)unaff_EDI <
+           (uint64_t)(*(int64_t *)(unaff_RBX + 0x170) - *(int64_t *)(unaff_RBX + 0x168) >> 3));
   *(int8_t *)(unaff_RBX + 0x188) = 1;
   return;
 }
@@ -265,7 +265,7 @@ void ui_execute_callback_queue_alt(void)
 // 函数: ui_mark_callback_complete - 标记UI回调完成
 // 参数: param_1 - UI系统指针
 // 功能: 标记UI系统的回调执行完成状态
-void ui_mark_callback_complete(longlong param_1)
+void ui_mark_callback_complete(int64_t param_1)
 {
   *(int8_t *)(param_1 + 0x188) = 1;
   return;
@@ -276,9 +276,9 @@ void ui_mark_callback_complete(longlong param_1)
 // 函数: ui_add_event_listener - 添加UI事件监听器
 // 参数: param_1 - UI系统指针, param_2 - 事件类型, param_3 - 事件参数
 // 功能: 为UI系统添加事件监听器
-uint64_t ui_add_event_listener(longlong param_1, uint64_t param_2, int32_t param_3)
+uint64_t ui_add_event_listener(int64_t param_1, uint64_t param_2, int32_t param_3)
 {
-  longlong lVar1;
+  int64_t lVar1;
   void *puVar2;
   
   lVar1 = (**(code **)(param_1 + 0x148))(param_3);
@@ -295,16 +295,16 @@ uint64_t ui_add_event_listener(longlong param_1, uint64_t param_2, int32_t param
 // 函数: ui_process_event_data - 处理UI事件数据
 // 参数: param_1 - UI系统指针, param_2 - 事件数据, param_3 - 事件参数, param_4 - 标志位
 // 功能: 处理UI系统的事件数据，包括字符串比较和内存操作
-ulonglong ui_process_event_data(longlong param_1, longlong param_2, longlong param_3, uint64_t param_4)
+uint64_t ui_process_event_data(int64_t param_1, int64_t param_2, int64_t param_3, uint64_t param_4)
 {
-  ulonglong in_RAX;
-  longlong lVar1;
-  longlong lVar2;
+  uint64_t in_RAX;
+  int64_t lVar1;
+  int64_t lVar2;
   void *puVar3;
-  ulonglong uVar4;
+  uint64_t uVar4;
   uint64_t uVar5;
   void *puStack_30;
-  longlong lStack_28;
+  int64_t lStack_28;
   uint uStack_20;
   int32_t uStack_14;
   
@@ -338,11 +338,11 @@ LAB_180652228:
     }
     if (uStack_20 != 0) {
       // 警告：子函数不返回
-      memcpy(*(uint64_t *)(param_2 + 8), lStack_28, (ulonglong)uStack_20, param_4, uVar5);
+      memcpy(*(uint64_t *)(param_2 + 8), lStack_28, (uint64_t)uStack_20, param_4, uVar5);
     }
     *(int32_t *)(param_2 + 0x10) = 0;
-    if (*(longlong *)(param_2 + 8) != 0) {
-      *(int8_t *)((ulonglong)uStack_20 + *(longlong *)(param_2 + 8)) = 0;
+    if (*(int64_t *)(param_2 + 8) != 0) {
+      *(int8_t *)((uint64_t)uStack_20 + *(int64_t *)(param_2 + 8)) = 0;
     }
     *(int32_t *)(param_2 + 0x1c) = uStack_14;
     uVar4 = 1;
@@ -360,7 +360,7 @@ LAB_180652228:
 // 函数: ui_enable_component - 启用UI组件
 // 参数: param_1 - UI系统指针, param_2 - 组件参数
 // 功能: 启用指定的UI组件
-uint64_t ui_enable_component(longlong param_1, longlong param_2)
+uint64_t ui_enable_component(int64_t param_1, int64_t param_2)
 {
   void *puVar1;
   
@@ -377,7 +377,7 @@ uint64_t ui_enable_component(longlong param_1, longlong param_2)
 // 函数: ui_disable_component - 禁用UI组件
 // 参数: param_1 - UI系统指针, param_2 - 组件参数
 // 功能: 禁用指定的UI组件
-uint64_t ui_disable_component(longlong param_1, longlong param_2)
+uint64_t ui_disable_component(int64_t param_1, int64_t param_2)
 {
   void *puVar1;
   
@@ -396,14 +396,14 @@ uint64_t ui_disable_component(longlong param_1, longlong param_2)
 // 函数: ui_process_component_list - 处理UI组件列表
 // 参数: param_1 - UI系统指针, param_2 - 结果指针, param_3 - 组件列表, param_4 - 标志位
 // 功能: 处理UI组件列表，初始化每个组件
-int * ui_process_component_list(longlong param_1, int *param_2, longlong *param_3, uint64_t param_4)
+int * ui_process_component_list(int64_t param_1, int *param_2, int64_t *param_3, uint64_t param_4)
 {
   void *puVar1;
   int iVar2;
-  longlong lVar3;
+  int64_t lVar3;
   uint uVar4;
-  ulonglong uVar5;
-  ulonglong uVar6;
+  uint64_t uVar5;
+  uint64_t uVar6;
   void *puVar7;
   int32_t uVar8;
   uint64_t uVar9;
@@ -427,10 +427,10 @@ int * ui_process_component_list(longlong param_1, int *param_2, longlong *param_
       }
       (**(code **)(param_1 + 0x128))(*param_2, uVar5, puVar7, param_4, uVar8, uVar9);
       uVar4 = (int)uVar5 + 1;
-      uVar5 = (ulonglong)uVar4;
+      uVar5 = (uint64_t)uVar4;
       lVar3 = *param_3;
       uVar6 = uVar6 + 0x20;
-    } while ((ulonglong)(longlong)(int)uVar4 < (ulonglong)(param_3[1] - lVar3 >> 5));
+    } while ((uint64_t)(int64_t)(int)uVar4 < (uint64_t)(param_3[1] - lVar3 >> 5));
   }
   return param_2;
 }
@@ -456,7 +456,7 @@ uint64_t get_ftdn_managed_interface(void)
 // 函数: ui_parse_dimension_data - 解析UI尺寸数据
 // 参数: param_1 - 尺寸数据数组指针, param_2 - 输入数据
 // 功能: 解析UI组件的尺寸数据，包括宽度和高度
-void ui_parse_dimension_data(longlong *param_1, longlong param_2)
+void ui_parse_dimension_data(int64_t *param_1, int64_t param_2)
 {
   int32_t *puVar1;
   int32_t uVar2;
@@ -466,22 +466,22 @@ void ui_parse_dimension_data(longlong *param_1, longlong param_2)
   uint64_t *puVar6;
   int iVar7;
   int iVar8;
-  ulonglong uVar9;
+  uint64_t uVar9;
   uint64_t *puVar10;
-  longlong lVar11;
-  longlong lVar12;
+  int64_t lVar11;
+  int64_t lVar12;
   uint64_t *puVar13;
-  longlong lVar14;
+  int64_t lVar14;
   uint64_t *puVar15;
   int16_t auStackX_10 [4];
-  ulonglong uStackX_18;
+  uint64_t uStackX_18;
   uint64_t uStackX_20;
   uint64_t *puStack_98;
   uint64_t *puStack_90;
   uint64_t uStack_88;
   int32_t uStack_80;
   void *puStack_78;
-  longlong lStack_70;
+  int64_t lStack_70;
   int32_t uStack_60;
   uint64_t *puStack_58;
   uint64_t *puStack_50;
@@ -494,10 +494,10 @@ void ui_parse_dimension_data(longlong *param_1, longlong param_2)
     uStack_88 = 0;
     uStack_80 = 3;
     auStackX_10[0] = 10;
-    if (*(longlong *)(param_2 + 8) != 0) {
+    if (*(int64_t *)(param_2 + 8) != 0) {
       FUN_180057980(param_2, &puStack_98, auStackX_10);
     }
-    uVar9 = (longlong)puStack_90 - (longlong)puStack_98 >> 5;
+    uVar9 = (int64_t)puStack_90 - (int64_t)puStack_98 >> 5;
     puVar15 = puStack_98;
     puVar13 = puStack_98;
     puVar5 = puStack_90;
@@ -516,7 +516,7 @@ void ui_parse_dimension_data(longlong *param_1, longlong param_2)
         puVar6 = puStack_50;
         puVar5 = puStack_58;
         puVar13 = puStack_58;
-        if (((longlong)puStack_50 - (longlong)puStack_58 & 0xffffffffffffffe0U) == 0x60) {
+        if (((int64_t)puStack_50 - (int64_t)puStack_58 & 0xffffffffffffffe0U) == 0x60) {
           FUN_180627ae0(&puStack_78, puStack_58);
           iVar7 = atoi(puVar5[5]);
           iVar8 = atoi(puVar5[9]);
@@ -524,13 +524,13 @@ void ui_parse_dimension_data(longlong *param_1, longlong param_2)
           puVar13 = (uint64_t *)param_1[1];
           if (puVar13 < (uint64_t *)param_1[2]) {
             *puVar13 = uStackX_20;
-            puVar13[1] = (longlong)iVar7;
-            puVar13[2] = (longlong)iVar8;
+            puVar13[1] = (int64_t)iVar7;
+            puVar13[2] = (int64_t)iVar8;
             param_1[1] = param_1[1] + 0x18;
           }
           else {
             lVar14 = *param_1;
-            lVar12 = ((longlong)puVar13 - lVar14) / 0x18;
+            lVar12 = ((int64_t)puVar13 - lVar14) / 0x18;
             if (lVar12 == 0) {
               lVar12 = 1;
 LAB_18065258b:
@@ -543,34 +543,34 @@ LAB_18065258b:
               if (lVar12 != 0) goto LAB_18065258b;
               puVar10 = (uint64_t *)0x0;
             }
-            lVar11 = ((longlong)puVar13 - lVar14) / 0x18;
+            lVar11 = ((int64_t)puVar13 - lVar14) / 0x18;
             puVar13 = puVar10;
             if (0 < lVar11) {
               do {
-                puVar1 = (int32_t *)((longlong)puVar13 + (lVar14 - (longlong)puVar10));
+                puVar1 = (int32_t *)((int64_t)puVar13 + (lVar14 - (int64_t)puVar10));
                 uVar2 = puVar1[1];
                 uVar3 = puVar1[2];
                 uVar4 = puVar1[3];
                 *(int32_t *)puVar13 = *puVar1;
-                *(int32_t *)((longlong)puVar13 + 4) = uVar2;
+                *(int32_t *)((int64_t)puVar13 + 4) = uVar2;
                 *(int32_t *)(puVar13 + 1) = uVar3;
-                *(int32_t *)((longlong)puVar13 + 0xc) = uVar4;
+                *(int32_t *)((int64_t)puVar13 + 0xc) = uVar4;
                 puVar13[2] = *(uint64_t *)
-                              ((longlong)puVar13 + (lVar14 - (longlong)puVar10) + 0x10);
+                              ((int64_t)puVar13 + (lVar14 - (int64_t)puVar10) + 0x10);
                 lVar11 = lVar11 + -1;
                 puVar13 = puVar13 + 3;
               } while (0 < lVar11);
             }
             *puVar13 = uStackX_20;
-            puVar13[1] = (longlong)iVar7;
-            puVar13[2] = (longlong)iVar8;
+            puVar13[1] = (int64_t)iVar7;
+            puVar13[2] = (int64_t)iVar8;
             if (*param_1 != 0) {
               // 警告：子函数不返回
               FUN_18064e900();
             }
-            *param_1 = (longlong)puVar10;
-            param_1[1] = (longlong)(puVar13 + 3);
-            param_1[2] = (longlong)(puVar10 + lVar12 * 3);
+            *param_1 = (int64_t)puVar10;
+            param_1[1] = (int64_t)(puVar13 + 3);
+            param_1[2] = (int64_t)(puVar10 + lVar12 * 3);
             uVar9 = uStackX_18;
           }
           puStack_78 = &system_data_buffer_ptr;
@@ -635,10 +635,10 @@ void ui_initialize_stack_buffer(void)
   int8_t auStack_2a8 [144];
   uint64_t uStack_218;
   int8_t auStack_178 [288];
-  ulonglong uStack_58;
+  uint64_t uStack_58;
   
   uStack_218 = 0xfffffffffffffffe;
-  uStack_58 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_2a8;
+  uStack_58 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_2a8;
   // 警告：子函数不返回
   memset(auStack_178, 0, 0x118);
 }
@@ -652,19 +652,19 @@ void ui_initialize_stack_buffer(void)
 // 函数: ui_process_thread_safe_operation - 处理UI线程安全操作
 // 参数: param_1 - 操作参数, param_2 - 数据指针
 // 功能: 在线程安全的环境下处理UI操作，使用互斥锁保护
-void ui_process_thread_safe_operation(uint64_t param_1, longlong *param_2)
+void ui_process_thread_safe_operation(uint64_t param_1, int64_t *param_2)
 {
   int iVar1;
-  longlong lVar2;
+  int64_t lVar2;
   int8_t auStack_de8 [184];
   int8_t auStack_d30 [32];
   uint64_t uStack_d10;
   uint64_t uStack_d08;
   int8_t auStack_848 [2048];
-  ulonglong uStack_48;
+  uint64_t uStack_48;
   
   uStack_d10 = 0xfffffffffffffffe;
-  uStack_48 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_de8;
+  uStack_48 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_de8;
   FUN_180057110();
   uStack_d08 = 0x180c96740;
   iVar1 = _Mtx_lock(0x180c96740);
@@ -682,7 +682,7 @@ void ui_process_thread_safe_operation(uint64_t param_1, longlong *param_2)
     __Throw_C_error_std__YAXH_Z(iVar1);
   }
   // 警告：子函数不返回
-  FUN_1808fc050(uStack_48 ^ (ulonglong)auStack_de8);
+  FUN_1808fc050(uStack_48 ^ (uint64_t)auStack_de8);
 }
 
 
@@ -691,20 +691,20 @@ void ui_process_thread_safe_operation(uint64_t param_1, longlong *param_2)
 // 参数: param_1 - 组件数据指针, param_2 - 输出字符串, param_3/4 - 格式化参数
 // 功能: 格式化UI组件的字符串表示
 uint64_t *
-ui_format_component_string(longlong *param_1, uint64_t *param_2, uint64_t param_3, uint64_t param_4)
+ui_format_component_string(int64_t *param_1, uint64_t *param_2, uint64_t param_3, uint64_t param_4)
 {
   char *pcVar1;
   void *puVar2;
-  longlong lVar3;
-  ulonglong uVar5;
-  longlong lVar6;
+  int64_t lVar3;
+  uint64_t uVar5;
+  int64_t lVar6;
   void *puVar7;
   void *puStack_38;
-  longlong lStack_30;
+  int64_t lStack_30;
   int32_t uStack_28;
   int32_t uStack_20;
   int32_t uStack_1c;
-  longlong lVar4;
+  int64_t lVar4;
   
   lVar6 = 0;
   FUN_180627910(&puStack_38, &DEFAULT_UI_STRING_PTR, param_3, param_4, 0, 0xfffffffffffffffe);
@@ -746,7 +746,7 @@ ui_format_component_string(longlong *param_1, uint64_t *param_2, uint64_t param_
   *param_2 = &system_data_buffer_ptr;
   *(int32_t *)(param_2 + 2) = uStack_28;
   param_2[1] = lStack_30;
-  *(int32_t *)((longlong)param_2 + 0x1c) = uStack_1c;
+  *(int32_t *)((int64_t)param_2 + 0x1c) = uStack_1c;
   *(int32_t *)(param_2 + 3) = uStack_20;
   return param_2;
 }
@@ -758,10 +758,10 @@ ui_format_component_string(longlong *param_1, uint64_t *param_2, uint64_t param_
 // 函数: ui_copy_string_safely - 安全复制UI字符串
 // 参数: param_1 - 源字符串指针
 // 功能: 安全地复制UI字符串，限制最大长度
-void ui_copy_string_safely(longlong param_1)
+void ui_copy_string_safely(int64_t param_1)
 {
   uint uVar1;
-  longlong lVar2;
+  int64_t lVar2;
   
   lVar2 = -1;
   do {
@@ -772,7 +772,7 @@ void ui_copy_string_safely(longlong param_1)
     uVar1 = 0x1fff;
   }
   // 警告：子函数不返回
-  memcpy(&system_memory_f020, param_1, (longlong)(int)uVar1);
+  memcpy(&system_memory_f020, param_1, (int64_t)(int)uVar1);
 }
 
 
@@ -797,7 +797,7 @@ void ui_execute_software_interrupt(void)
 // 参数: param_1 - 输出缓冲区, param_2 - Mono字符串, param_3/4 - 转换参数
 // 功能: 将Mono字符串转换为UTF-8字符串
 uint64_t *
-ui_convert_mono_string(uint64_t *param_1, longlong param_2, uint64_t param_3, uint64_t param_4)
+ui_convert_mono_string(uint64_t *param_1, int64_t param_2, uint64_t param_3, uint64_t param_4)
 {
   uint64_t uVar1;
   int32_t uVar2;
@@ -820,7 +820,7 @@ ui_convert_mono_string(uint64_t *param_1, longlong param_2, uint64_t param_3, ui
     *param_1 = &system_data_buffer_ptr;
     *(int32_t *)(param_1 + 2) = uStack_18;
     param_1[1] = uStack_20;
-    *(int32_t *)((longlong)param_1 + 0x1c) = uStack_c;
+    *(int32_t *)((int64_t)param_1 + 0x1c) = uStack_c;
     *(int32_t *)(param_1 + 3) = uStack_10;
     return param_1;
   }
@@ -846,7 +846,7 @@ void ui_output_debug_string(uint64_t param_1)
 // 函数: ui_allocate_zeroed_memory - 分配并清零UI内存
 // 参数: param_1 - 大小, param_2 - 数量
 // 功能: 为UI系统分配并清零内存
-void ui_allocate_zeroed_memory(longlong param_1, longlong param_2)
+void ui_allocate_zeroed_memory(int64_t param_1, int64_t param_2)
 {
   uint64_t uVar1;
   
@@ -883,14 +883,14 @@ void ui_initialize_mono_allocator(void)
   puVar2[2] = 0x657a6973;
   puVar2[3] = 0x3931383d;
   *(int16_t *)(puVar2 + 4) = 0x6b32;
-  *(int8_t *)((longlong)puVar2 + 0x12) = 0;
+  *(int8_t *)((int64_t)puVar2 + 0x12) = 0;
   puVar1 = (uint64_t *)FUN_18062b420(system_memory_pool_ptr, 0x10, 0x13);
   *(int8_t *)puVar1 = 0;
   FUN_18064e990(puVar1);
   *puVar1 = 0x5f43475f4f4e4f4d;
   *(int32_t *)(puVar1 + 1) = 0x41524150;
-  *(int16_t *)((longlong)puVar1 + 0xc) = 0x534d;
-  *(int8_t *)((longlong)puVar1 + 0xe) = 0;
+  *(int16_t *)((int64_t)puVar1 + 0xc) = 0x534d;
+  *(int8_t *)((int64_t)puVar1 + 0xe) = 0;
   SetEnvironmentVariableA(puVar1, puVar2);
   // 警告：子函数不返回
   FUN_18064e900(puVar1);
@@ -906,29 +906,29 @@ void ui_initialize_mono_allocator(void)
 // 功能: 加载UI系统的Mono程序集，并获取相关类信息
 void ui_load_mono_assembly(void)
 {
-  longlong *plVar1;
+  int64_t *plVar1;
   int32_t *puVar2;
   int32_t uVar3;
-  longlong lVar4;
+  int64_t lVar4;
   uint64_t *puVar5;
   int32_t *puVar6;
-  ulonglong uVar7;
+  uint64_t uVar7;
   int8_t auStack_d8 [32];
   void *puStack_b8;
   int32_t *puStack_b0;
   uint uStack_a8;
-  ulonglong uStack_a0;
+  uint64_t uStack_a0;
   int32_t uStack_98;
   void *puStack_90;
   uint64_t *puStack_88;
   int32_t uStack_80;
   uint64_t uStack_78;
   uint64_t uStack_50;
-  ulonglong uStack_30;
+  uint64_t uStack_30;
   
   plVar1 = ui_system_config;
   uStack_50 = 0xfffffffffffffffe;
-  uStack_30 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_d8;
+  uStack_30 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_d8;
   uStack_98 = 0;
   puStack_b8 = &system_data_buffer_ptr;
   uStack_a0 = 0;
@@ -936,14 +936,14 @@ void ui_load_mono_assembly(void)
   uStack_a8 = 0;
   FUN_1806277c0(&puStack_b8, 0x15);
   puVar2 = puStack_b0;
-  uVar7 = (ulonglong)uStack_a8;
-  puVar6 = (int32_t *)((longlong)puStack_b0 + uVar7);
+  uVar7 = (uint64_t)uStack_a8;
+  puVar6 = (int32_t *)((int64_t)puStack_b0 + uVar7);
   *puVar6 = 0x656c6154;
   puVar6[1] = 0x6c726f57;
   puVar6[2] = 0x442e7364;
   puVar6[3] = 0x654e746f;
-  *(int32_t *)((longlong)puStack_b0 + uVar7 + 0x10) = 0x6c642e74;
-  *(int16_t *)((longlong)puStack_b0 + uVar7 + 0x14) = 0x6c;
+  *(int32_t *)((int64_t)puStack_b0 + uVar7 + 0x10) = 0x6c642e74;
+  *(int16_t *)((int64_t)puStack_b0 + uVar7 + 0x14) = 0x6c;
   uStack_a8 = 0x15;
   puVar6 = (int32_t *)&DEFAULT_UI_STRING_PTR;
   if (puStack_b0 != (int32_t *)0x0) {
@@ -979,7 +979,7 @@ void ui_load_mono_assembly(void)
   uStack_78 = CONCAT44(uStack_78._4_4_, uVar3);
   *puVar5 = 0x6c6c6f72746e6f43;
   *(int16_t *)(puVar5 + 1) = 0x7265;
-  *(int8_t *)((longlong)puVar5 + 10) = 0;
+  *(int8_t *)((int64_t)puVar5 + 10) = 0;
   uStack_80 = 10;
   puStack_b8 = &system_data_buffer_ptr;
   uStack_a0 = 0;
@@ -1030,24 +1030,24 @@ ui_create_error_message(uint64_t param_1, uint64_t *param_2, uint64_t param_3, u
 // 函数: ui_resize_buffer - 调整UI缓冲区大小
 // 参数: param_1 - 缓冲区结构, param_2 - 数据, param_3 - 大小
 // 功能: 调整UI系统缓冲区的大小，必要时重新分配内存
-void ui_resize_buffer(longlong param_1, uint64_t param_2, int param_3)
+void ui_resize_buffer(int64_t param_1, uint64_t param_2, int param_3)
 {
-  longlong lVar1;
-  longlong lVar2;
-  ulonglong uVar3;
-  longlong lVar4;
-  ulonglong uVar5;
-  ulonglong uVar6;
+  int64_t lVar1;
+  int64_t lVar2;
+  uint64_t uVar3;
+  int64_t lVar4;
+  uint64_t uVar5;
+  uint64_t uVar6;
   int iVar7;
   
   iVar7 = *(int *)(param_1 + 0x18) - *(int *)(param_1 + 0x10);
-  lVar1 = *(longlong *)(param_1 + 0x18);
-  lVar2 = *(longlong *)(param_1 + 0x10);
+  lVar1 = *(int64_t *)(param_1 + 0x18);
+  lVar2 = *(int64_t *)(param_1 + 0x10);
   uVar3 = lVar1 - lVar2;
-  uVar6 = (ulonglong)(iVar7 + param_3);
+  uVar6 = (uint64_t)(iVar7 + param_3);
   if (uVar3 < uVar6) {
     uVar6 = (lVar2 - lVar1) + uVar6;
-    if ((ulonglong)(*(longlong *)(param_1 + 0x20) - lVar1) < uVar6) {
+    if ((uint64_t)(*(int64_t *)(param_1 + 0x20) - lVar1) < uVar6) {
       uVar5 = uVar3 * 2;
       if (uVar3 == 0) {
         uVar5 = 1;
@@ -1061,8 +1061,8 @@ void ui_resize_buffer(longlong param_1, uint64_t param_2, int param_3)
       }
       else {
         lVar1 = FUN_18062b420(system_memory_pool_ptr, uVar5, *(int8_t *)(param_1 + 0x28));
-        lVar2 = *(longlong *)(param_1 + 0x10);
-        lVar4 = *(longlong *)(param_1 + 0x18);
+        lVar2 = *(int64_t *)(param_1 + 0x10);
+        lVar4 = *(int64_t *)(param_1 + 0x18);
       }
       if (lVar2 != lVar4) {
         // 警告：子函数不返回
@@ -1072,12 +1072,12 @@ void ui_resize_buffer(longlong param_1, uint64_t param_2, int param_3)
         // 警告：子函数不返回
         memset(lVar1, 0, uVar6);
       }
-      if (*(longlong *)(param_1 + 0x10) != 0) {
+      if (*(int64_t *)(param_1 + 0x10) != 0) {
         // 警告：子函数不返回
         FUN_18064e900();
       }
-      *(longlong *)(param_1 + 0x10) = lVar1;
-      *(ulonglong *)(param_1 + 0x20) = lVar1 + uVar5;
+      *(int64_t *)(param_1 + 0x10) = lVar1;
+      *(uint64_t *)(param_1 + 0x20) = lVar1 + uVar5;
     }
     else if (uVar6 != 0) {
       // 警告：子函数不返回
@@ -1087,11 +1087,11 @@ void ui_resize_buffer(longlong param_1, uint64_t param_2, int param_3)
   else {
     lVar1 = lVar2 + uVar6;
   }
-  *(longlong *)(param_1 + 0x18) = lVar1;
+  *(int64_t *)(param_1 + 0x18) = lVar1;
   // 警告：无法恢复跳转表，分支过多
   // 警告：子函数不返回
   // 警告：将间接跳转作为调用处理
-  memcpy((longlong)iVar7 + *(longlong *)(param_1 + 0x10), param_2, (longlong)param_3);
+  memcpy((int64_t)iVar7 + *(int64_t *)(param_1 + 0x10), param_2, (int64_t)param_3);
   return;
 }
 
@@ -1104,21 +1104,21 @@ void ui_resize_buffer(longlong param_1, uint64_t param_2, int param_3)
 // 函数: ui_resize_buffer_alt - 调整UI缓冲区大小替代版本
 // 参数: param_1 - 缓冲区结构, param_2 - 当前大小, param_3 - 数据, param_4 - 新大小
 // 功能: 使用不同寄存器变量调整UI系统缓冲区大小
-void ui_resize_buffer_alt(longlong param_1, longlong param_2, uint64_t param_3, longlong param_4)
+void ui_resize_buffer_alt(int64_t param_1, int64_t param_2, uint64_t param_3, int64_t param_4)
 {
-  longlong in_RAX;
-  longlong unaff_RBX;
-  longlong lVar1;
+  int64_t in_RAX;
+  int64_t unaff_RBX;
+  int64_t lVar1;
   uint64_t unaff_RBP;
-  ulonglong uVar2;
-  longlong unaff_RSI;
-  ulonglong uVar3;
+  uint64_t uVar2;
+  int64_t unaff_RSI;
+  uint64_t uVar3;
   int unaff_R12D;
-  longlong *unaff_R15;
+  int64_t *unaff_R15;
   uint64_t in_stack_00000058;
   
   uVar3 = (param_1 - unaff_RBX) + param_4;
-  if ((ulonglong)(in_RAX - unaff_RBX) < uVar3) {
+  if ((uint64_t)(in_RAX - unaff_RBX) < uVar3) {
     uVar2 = param_2 * 2;
     if (param_2 == 0) {
       uVar2 = 1;
@@ -1132,7 +1132,7 @@ void ui_resize_buffer_alt(longlong param_1, longlong param_2, uint64_t param_3, 
     }
     else {
       unaff_RBX = FUN_18062b420(system_memory_pool_ptr, uVar2, *(int8_t *)(unaff_RSI + 0x28));
-      param_1 = *(longlong *)(unaff_RSI + 0x10);
+      param_1 = *(int64_t *)(unaff_RSI + 0x10);
       lVar1 = *unaff_R15;
     }
     if (param_1 != lVar1) {
@@ -1143,12 +1143,12 @@ void ui_resize_buffer_alt(longlong param_1, longlong param_2, uint64_t param_3, 
       // 警告：子函数不返回
       memset(unaff_RBX, 0, uVar3);
     }
-    if (*(longlong *)(unaff_RSI + 0x10) != 0) {
+    if (*(int64_t *)(unaff_RSI + 0x10) != 0) {
       // 警告：子函数不返回
       FUN_18064e900();
     }
-    *(longlong *)(unaff_RSI + 0x10) = unaff_RBX;
-    *(ulonglong *)(unaff_RSI + 0x20) = unaff_RBX + uVar2;
+    *(int64_t *)(unaff_RSI + 0x10) = unaff_RBX;
+    *(uint64_t *)(unaff_RSI + 0x20) = unaff_RBX + uVar2;
   }
   else {
     in_stack_00000058 = unaff_RBP;
@@ -1161,7 +1161,7 @@ void ui_resize_buffer_alt(longlong param_1, longlong param_2, uint64_t param_3, 
   // 警告：无法恢复跳转表，分支过多
   // 警告：子函数不返回
   // 警告：将间接跳转作为调用处理
-  memcpy((longlong)unaff_R12D + *(longlong *)(unaff_RSI + 0x10), in_stack_00000058);
+  memcpy((int64_t)unaff_R12D + *(int64_t *)(unaff_RSI + 0x10), in_stack_00000058);
   return;
 }
 
@@ -1174,8 +1174,8 @@ void ui_resize_buffer_alt(longlong param_1, longlong param_2, uint64_t param_3, 
 void ui_resize_buffer_final(void)
 {
   uint64_t unaff_RBX;
-  longlong unaff_RSI;
-  longlong unaff_RDI;
+  int64_t unaff_RSI;
+  int64_t unaff_RDI;
   int unaff_R12D;
   uint64_t *unaff_R15;
   
@@ -1187,7 +1187,7 @@ void ui_resize_buffer_final(void)
   // 警告：无法恢复跳转表，分支过多
   // 警告：子函数不返回
   // 警告：将间接跳转作为调用处理
-  memcpy((longlong)unaff_R12D + *(longlong *)(unaff_RSI + 0x10));
+  memcpy((int64_t)unaff_R12D + *(int64_t *)(unaff_RSI + 0x10));
   return;
 }
 

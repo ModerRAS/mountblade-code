@@ -68,7 +68,7 @@
  * @param param_4 渲染标志位参数
  * @param param_5 可选的渲染数据指针
  */
-void rendering_system_parameter_processor(longlong param_1, longlong param_2, longlong param_3, ulonglong param_4, longlong param_5);
+void rendering_system_parameter_processor(int64_t param_1, int64_t param_2, int64_t param_3, uint64_t param_4, int64_t param_5);
 
 /**
  * 渲染系统状态比较器
@@ -89,7 +89,7 @@ void rendering_system_parameter_processor(longlong param_1, longlong param_2, lo
  * @param param_2 目标渲染状态指针
  * @return bool 如果状态有变更返回true，否则返回false
  */
-bool rendering_system_state_comparator(longlong param_1, longlong param_2);
+bool rendering_system_state_comparator(int64_t param_1, int64_t param_2);
 
 /**
  * 渲染系统参数初始化器
@@ -149,7 +149,7 @@ void rendering_system_parameter_initializer(int32_t *param_1);
  * @param param_4 渲染标志位参数，控制处理流程
  * @param param_5 可选的渲染数据指针，提供额外的渲染信息
  */
-void rendering_system_parameter_processor(longlong param_1, longlong param_2, longlong param_3, ulonglong param_4, longlong param_5)
+void rendering_system_parameter_processor(int64_t param_1, int64_t param_2, int64_t param_3, uint64_t param_4, int64_t param_5)
 {
     // 局部变量声明
     int32_t *puVar1;
@@ -166,15 +166,15 @@ void rendering_system_parameter_processor(longlong param_1, longlong param_2, lo
     byte bVar12;
     int iVar13;
     uint64_t *puVar14;
-    longlong lVar15;
-    longlong *plVar16;
-    longlong lVar17;
-    ulonglong uVar18;
-    longlong lVar19;
+    int64_t lVar15;
+    int64_t *plVar16;
+    int64_t lVar17;
+    uint64_t uVar18;
+    int64_t lVar19;
     uint *puVar20;
     int32_t uVar21;
     int32_t uVar22;
-    ulonglong uVar23;
+    uint64_t uVar23;
     uint uVar24;
     int iVar25;
     int32_t uVar26;
@@ -190,32 +190,32 @@ void rendering_system_parameter_processor(longlong param_1, longlong param_2, lo
     char cStack_128;
     char cStack_127;
     char cStack_126;
-    longlong *plStack_120;
-    longlong *plStack_118;
+    int64_t *plStack_120;
+    int64_t *plStack_118;
     int32_t uStack_110;
     void *puStack_108;
-    longlong lStack_100;
-    ulonglong uStack_f8;
-    longlong *plStack_f0;
+    int64_t lStack_100;
+    uint64_t uStack_f8;
+    int64_t *plStack_f0;
     uint64_t uStack_e8;
     uint64_t uStack_e0;
     int32_t uStack_d8;
     int32_t uStack_d4;
     int32_t uStack_d0;
     int32_t uStack_cc;
-    longlong *plStack_c8;
-    longlong lStack_c0;
+    int64_t *plStack_c8;
+    int64_t lStack_c0;
     uint64_t uStack_b8;
-    longlong lStack_b0;
+    int64_t lStack_b0;
     void *puStack_a8;
     int8_t *puStack_a0;
     int32_t uStack_98;
     int8_t auStack_90 [72];
-    ulonglong uStack_48;
+    uint64_t uStack_48;
     
     // 初始化栈保护和安全检查
     uStack_b8 = STACK_CANARY_VALUE;
-    uStack_48 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_168;
+    uStack_48 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_168;
     lStack_c0 = param_5;
     uStack_110 = 0;
     
@@ -252,9 +252,9 @@ void rendering_system_parameter_processor(longlong param_1, longlong param_2, lo
     if (((param_4 >> 2 & 1) == 0) && (bVar9)) {
         // 复制渲染参数和状态数据
         puStack_108 = *(void **)(param_1 + 0xd0);
-        lStack_100 = *(longlong *)(param_1 + 0xd8);
-        uStack_f8 = *(ulonglong *)(param_1 + 0xe0);
-        plStack_f0 = *(longlong **)(param_1 + 0xe8);
+        lStack_100 = *(int64_t *)(param_1 + 0xd8);
+        uStack_f8 = *(uint64_t *)(param_1 + 0xe0);
+        plStack_f0 = *(int64_t **)(param_1 + 0xe8);
         uStack_e8 = *(uint64_t *)(param_1 + 0xf0);
         uStack_e0 = *(uint64_t *)(param_1 + 0xf8);
         uStack_d8 = *(int32_t *)(param_1 + 0x100);
@@ -272,13 +272,13 @@ void rendering_system_parameter_processor(longlong param_1, longlong param_2, lo
             puStack_108 = (void *)*puVar14;
             lStack_100 = puVar14[1];
             uStack_f8 = puVar14[2];
-            plStack_f0 = (longlong *)puVar14[3];
+            plStack_f0 = (int64_t *)puVar14[3];
             uStack_e8 = puVar14[4];
             uStack_e0 = puVar14[5];
             uStack_d8 = *(int32_t *)(puVar14 + 6);
-            uStack_d4 = *(int32_t *)((longlong)puVar14 + 0x34);
+            uStack_d4 = *(int32_t *)((int64_t)puVar14 + 0x34);
             uStack_d0 = *(int32_t *)(puVar14 + 7);
-            uStack_cc = *(int32_t *)((longlong)puVar14 + 0x3c);
+            uStack_cc = *(int32_t *)((int64_t)puVar14 + 0x3c);
         }
         
         // 复制渲染状态数据到目标
@@ -310,8 +310,8 @@ void rendering_system_parameter_processor(longlong param_1, longlong param_2, lo
     
     // 处理着色器相关的渲染逻辑
     if ((param_4 >> 2 & 1) != 0) goto LAB_180327215;
-    if ((bVar10) && (0 < (int)(*(longlong *)(param_1 + 0x138) - *(longlong *)(param_1 + 0x130) >> 3))) {
-        if (*(longlong *)(param_3 + 0x2d0) == 0) {
+    if ((bVar10) && (0 < (int)(*(int64_t *)(param_1 + 0x138) - *(int64_t *)(param_1 + 0x130) >> 3))) {
+        if (*(int64_t *)(param_3 + 0x2d0) == 0) {
             FUN_1806279c0(&puStack_108,param_3 + 0x10);
             
             // 字符串处理和搜索逻辑
@@ -323,7 +323,7 @@ void rendering_system_parameter_processor(longlong param_1, longlong param_2, lo
                 }
                 uVar24 = iVar13 + iVar25;
                 if (uVar24 < (uint)uStack_f8) {
-                    lVar15 = (longlong)(int)uVar24;
+                    lVar15 = (int64_t)(int)uVar24;
                     do {
                         *(int8_t *)((lVar15 - iVar25) + lStack_100) = *(int8_t *)(lVar15 + lStack_100);
                         uVar24 = uVar24 + 1;
@@ -332,30 +332,30 @@ void rendering_system_parameter_processor(longlong param_1, longlong param_2, lo
                 }
                 uVar24 = (uint)uStack_f8 - iVar25;
                 uStack_f8 = CONCAT44(uStack_f8._4_4_,uVar24);
-                *(int8_t *)((ulonglong)uVar24 + lStack_100) = 0;
+                *(int8_t *)((uint64_t)uVar24 + lStack_100) = 0;
             }
             
             // 资源管理和状态处理
             uVar26 = FUN_1800b33d0(system_resource_state,&plStack_118,&puStack_108);
             uStack_110 = 1;
-            if (plStack_118 == (longlong *)0x0) {
+            if (plStack_118 == (int64_t *)0x0) {
                 if (((uint)uStack_f8 == 0xb) && (iVar13 = strcmp(lStack_100,&unknown_var_9000_ptr), iVar13 == 0)) {
                     uVar26 = FUN_180626ee0(&unknown_var_7584_ptr,&unknown_var_9000_ptr);
                 }
                 else {
                     puVar14 = (uint64_t *)FUN_1800befa0(render_system_data_config,&plStack_c8);
-                    plVar16 = (longlong *)*puVar14;
+                    plVar16 = (int64_t *)*puVar14;
                     *puVar14 = 0;
                     plStack_120 = plStack_118;
                     uVar26 = extraout_XMM0_Da_00;
-                    if (plStack_118 != (longlong *)0x0) {
+                    if (plStack_118 != (int64_t *)0x0) {
                         lVar15 = *plStack_118;
                         plStack_118 = plVar16;
                         uVar26 = (**(code **)(lVar15 + 0x38))();
                         plVar16 = plStack_118;
                     }
                     plStack_118 = plVar16;
-                    if (plStack_c8 != (longlong *)0x0) {
+                    if (plStack_c8 != (int64_t *)0x0) {
                         uVar26 = (**(code **)(*plStack_c8 + 0x38))();
                     }
                 }
@@ -364,7 +364,7 @@ void rendering_system_parameter_processor(longlong param_1, longlong param_2, lo
             // 清理和状态重置
             lVar15 = 0;
             uStack_110 = 0;
-            if (plStack_118 != (longlong *)0x0) {
+            if (plStack_118 != (int64_t *)0x0) {
                 uVar26 = (**(code **)(*plStack_118 + 0x38))();
             }
             puStack_108 = &system_data_buffer_ptr;
@@ -372,7 +372,7 @@ void rendering_system_parameter_processor(longlong param_1, longlong param_2, lo
                 FUN_18064e900();
             }
             lStack_100 = 0;
-            plStack_f0 = (longlong *)((ulonglong)plStack_f0 & MEMORY_ALIGNMENT_MASK);
+            plStack_f0 = (int64_t *)((uint64_t)plStack_f0 & MEMORY_ALIGNMENT_MASK);
             puStack_108 = &system_state_ptr;
             
             // 渲染状态获取和处理
@@ -392,9 +392,9 @@ void rendering_system_parameter_processor(longlong param_1, longlong param_2, lo
                 }
             }
             else {
-                plStack_120 = (longlong *)CONCAT44(plStack_120._4_4_,*(int *)(param_1 + 0x198));
-                plVar16 = (longlong *)FUN_18033a740(param_2 + 0xb18,&plStack_120);
-                plVar16 = (longlong *)*plVar16;
+                plStack_120 = (int64_t *)CONCAT44(plStack_120._4_4_,*(int *)(param_1 + 0x198));
+                plVar16 = (int64_t *)FUN_18033a740(param_2 + 0xb18,&plStack_120);
+                plVar16 = (int64_t *)*plVar16;
                 lVar15 = *plVar16;
                 lVar17 = plVar16[0xe];
                 if ((int)lVar17 != -1) {
@@ -404,7 +404,7 @@ void rendering_system_parameter_processor(longlong param_1, longlong param_2, lo
                     if (iVar13 != 0) {
                         __Throw_C_error_std__YAXH_Z(iVar13);
                     }
-                    plStack_120 = (longlong *)CONCAT44(plStack_120._4_4_,(int)lVar17);
+                    plStack_120 = (int64_t *)CONCAT44(plStack_120._4_4_,(int)lVar17);
                     FUN_18033a740(param_2 + 0xb48,&plStack_120);
                     iVar13 = _Mtx_unlock(lVar19);
                     uVar26 = extraout_XMM0_Da;
@@ -414,10 +414,10 @@ void rendering_system_parameter_processor(longlong param_1, longlong param_2, lo
                     goto LAB_180326da7;
                 }
                 uStack_148 = 0;
-                plVar16 = (longlong *)FUN_1800b32c0(system_resource_state,&plStack_120,plVar16 + 10,0);
+                plVar16 = (int64_t *)FUN_1800b32c0(system_resource_state,&plStack_120,plVar16 + 10,0);
                 lVar17 = *plVar16;
                 uVar26 = extraout_XMM0_Da_01;
-                if (plStack_120 != (longlong *)0x0) {
+                if (plStack_120 != (int64_t *)0x0) {
                     uVar26 = (**(code **)(*plStack_120 + 0x38))();
                 }
                 if (lVar17 == 0) goto LAB_180326da7;
@@ -449,7 +449,7 @@ void rendering_system_parameter_processor(longlong param_1, longlong param_2, lo
             puVar14 = (uint64_t *)FUN_18062b1e0(system_memory_pool_ptr,0x20,8,3);
             *puVar14 = 0;
             *(int32_t *)(puVar14 + 1) = 0;
-            *(int32_t *)((longlong)puVar14 + 0xc) = 0xffffffff;
+            *(int32_t *)((int64_t)puVar14 + 0xc) = 0xffffffff;
             puVar14[2] = 0;
             *(int32_t *)(puVar14 + 3) = 0;
             *(uint64_t **)(param_3 + 0x2d0) = puVar14;
@@ -462,16 +462,16 @@ void rendering_system_parameter_processor(longlong param_1, longlong param_2, lo
     if (cStack_128 != '\0') {
         uVar24 = *(uint *)(param_1 + 0x6c);
         if (uVar24 != 0) {
-            for (puVar20 = *(uint **)(*(longlong *)(param_2 + 0xaf0) +
-                                     ((ulonglong)uVar24 % (ulonglong)*(uint *)(param_2 + 0xaf8)) * 8);
+            for (puVar20 = *(uint **)(*(int64_t *)(param_2 + 0xaf0) +
+                                     ((uint64_t)uVar24 % (uint64_t)*(uint *)(param_2 + 0xaf8)) * 8);
                 puVar20 != (uint *)0x0; puVar20 = *(uint **)(puVar20 + 4)) {
                 if (uVar24 == *puVar20) goto LAB_180326f61;
             }
-            puVar20 = *(uint **)(*(longlong *)(param_2 + 0xaf0) + *(longlong *)(param_2 + 0xaf8) * 8);
+            puVar20 = *(uint **)(*(int64_t *)(param_2 + 0xaf0) + *(int64_t *)(param_2 + 0xaf8) * 8);
         LAB_180326f61:
             uVar3 = *(uint64_t *)(puVar20 + 2);
-            if (*(longlong *)(*(longlong *)(param_3 + 0x1b8) + 0x3b8) != 0) {
-                FUN_18022cb40(*(longlong *)(param_3 + 0x1b8),&plStack_118);
+            if (*(int64_t *)(*(int64_t *)(param_3 + 0x1b8) + 0x3b8) != 0) {
+                FUN_18022cb40(*(int64_t *)(param_3 + 0x1b8),&plStack_118);
                 plVar16 = plStack_118;
                 puStack_a8 = &unknown_var_3480_ptr;
                 puStack_a0 = auStack_90;
@@ -485,7 +485,7 @@ void rendering_system_parameter_processor(longlong param_1, longlong param_2, lo
                 puStack_a8 = &system_state_ptr;
                 FUN_18022cd30(plStack_118,1,uVar3);
                 FUN_180076910(param_3);
-                if (plStack_118 != (longlong *)0x0) {
+                if (plStack_118 != (int64_t *)0x0) {
                     (**(code **)(*plStack_118 + 0x38))();
                 }
             }
@@ -495,25 +495,25 @@ void rendering_system_parameter_processor(longlong param_1, longlong param_2, lo
     // 处理材质相关的渲染逻辑
     uVar18 = 0;
     if (cStack_127 != '\0') {
-        if (*(int *)(*(longlong *)(param_3 + 600) + 0x1c) != *(int *)(param_1 + 0x7c)) {
-            *(int *)(*(longlong *)(param_3 + 600) + 0x1c) = *(int *)(param_1 + 0x7c);
-            FUN_18007e990(param_3,*(int *)(*(longlong *)(param_3 + 600) + 0x1c) +
-                          *(int *)(*(longlong *)(param_3 + 600) + 0x18));
+        if (*(int *)(*(int64_t *)(param_3 + 600) + 0x1c) != *(int *)(param_1 + 0x7c)) {
+            *(int *)(*(int64_t *)(param_3 + 600) + 0x1c) = *(int *)(param_1 + 0x7c);
+            FUN_18007e990(param_3,*(int *)(*(int64_t *)(param_3 + 600) + 0x1c) +
+                          *(int *)(*(int64_t *)(param_3 + 600) + 0x18));
         }
         iVar13 = *(int *)(param_1 + 0x78);
-        if ((iVar13 != 0) && (*(int *)(*(longlong *)(param_3 + 600) + 0x18) != (int)(char)iVar13)) {
+        if ((iVar13 != 0) && (*(int *)(*(int64_t *)(param_3 + 600) + 0x18) != (int)(char)iVar13)) {
             FUN_18007e880(param_3,iVar13,*(uint64_t *)(param_1 + 0x170));
         }
         uVar24 = *(uint *)(param_1 + 0x74);
         if (uVar24 != 0) {
-            lVar15 = **(longlong **)(param_3 + 600);
+            lVar15 = **(int64_t **)(param_3 + 600);
             if ((param_5 == 0) || (*(uint *)(param_5 + 0x74) != uVar24)) {
-                memcpy(lVar15,*(uint64_t *)(param_1 + 0x150),(ulonglong)uVar24 << 6);
+                memcpy(lVar15,*(uint64_t *)(param_1 + 0x150),(uint64_t)uVar24 << 6);
             }
             uVar23 = uVar18;
             if (uVar24 != 0) {
                 do {
-                    lVar17 = *(longlong *)(param_1 + 0x150);
+                    lVar17 = *(int64_t *)(param_1 + 0x150);
                     puVar1 = (int32_t *)(lVar17 + uVar18);
                     uVar26 = puVar1[1];
                     uVar22 = puVar1[2];
@@ -543,7 +543,7 @@ void rendering_system_parameter_processor(longlong param_1, longlong param_2, lo
                     puVar14[1] = uVar8;
                     uVar24 = (int)uVar23 + 1;
                     uVar18 = uVar18 + 0x40;
-                    uVar23 = (ulonglong)uVar24;
+                    uVar23 = (uint64_t)uVar24;
                 } while (uVar24 < *(uint *)(param_1 + 0x74));
             }
         }
@@ -553,26 +553,26 @@ void rendering_system_parameter_processor(longlong param_1, longlong param_2, lo
     if (cStack_126 != '\0') {
         uVar24 = *(uint *)(param_1 + 0x70);
         if (uVar24 != 0) {
-            for (puVar20 = *(uint **)(*(longlong *)(param_2 + 0xb50) +
-                                     ((ulonglong)uVar24 % (ulonglong)*(uint *)(param_2 + 0xb58)) * 8);
+            for (puVar20 = *(uint **)(*(int64_t *)(param_2 + 0xb50) +
+                                     ((uint64_t)uVar24 % (uint64_t)*(uint *)(param_2 + 0xb58)) * 8);
                 puVar20 != (uint *)0x0; puVar20 = *(uint **)(puVar20 + 4)) {
                 if (uVar24 == *puVar20) goto LAB_180327199;
             }
-            puVar20 = *(uint **)(*(longlong *)(param_2 + 0xb50) + *(longlong *)(param_2 + 0xb58) * 8);
+            puVar20 = *(uint **)(*(int64_t *)(param_2 + 0xb50) + *(int64_t *)(param_2 + 0xb58) * 8);
         LAB_180327199:
-            plVar16 = *(longlong **)(*(longlong *)(puVar20 + 2) + 8);
+            plVar16 = *(int64_t **)(*(int64_t *)(puVar20 + 2) + 8);
             lStack_c0 = 0;
-            plStack_f0 = (longlong *)0x0;
-            puStack_108 = (void *)((ulonglong)puStack_108 & 0xffffffffffffff00);
+            plStack_f0 = (int64_t *)0x0;
+            puStack_108 = (void *)((uint64_t)puStack_108 & 0xffffffffffffff00);
             uStack_f8 = uStack_f8 & 0xffffffff00000000;
             lStack_100 = param_3;
             FUN_18007f4c0(&puStack_108);
-            if (plVar16 != (longlong *)0x0) {
+            if (plVar16 != (int64_t *)0x0) {
                 plStack_c8 = plVar16;
                 (**(code **)(*plVar16 + 0x28))(plVar16);
             }
             plStack_c8 = plStack_f0;
-            if (plStack_f0 != (longlong *)0x0) {
+            if (plStack_f0 != (int64_t *)0x0) {
                 lVar15 = *plStack_f0;
                 plStack_f0 = plVar16;
                 (**(code **)(lVar15 + 0x38))();
@@ -580,7 +580,7 @@ void rendering_system_parameter_processor(longlong param_1, longlong param_2, lo
             }
             plStack_f0 = plVar16;
             FUN_18007f6a0(&puStack_108);
-            if (plStack_f0 != (longlong *)0x0) {
+            if (plStack_f0 != (int64_t *)0x0) {
                 (**(code **)(*plStack_f0 + 0x38))();
             }
         }
@@ -589,7 +589,7 @@ void rendering_system_parameter_processor(longlong param_1, longlong param_2, lo
     // 最终状态更新和安全检查
 LAB_180327215:
     *(byte *)(param_3 + 0xfd) = *(byte *)(param_3 + 0xfd) | 1;
-    FUN_1808fc050(uStack_48 ^ (ulonglong)auStack_168);
+    FUN_1808fc050(uStack_48 ^ (uint64_t)auStack_168);
 }
 
 /**
@@ -620,7 +620,7 @@ LAB_180327215:
  * @param param_2 目标渲染状态指针，包含要比较的目标状态数据
  * @return bool 如果检测到状态差异返回true，否则返回false
  */
-bool rendering_system_state_comparator(longlong param_1, longlong param_2)
+bool rendering_system_state_comparator(int64_t param_1, int64_t param_2)
 {
     // 局部变量声明
     uint uVar1;
@@ -728,7 +728,7 @@ bool rendering_system_state_comparator(longlong param_1, longlong param_2)
     // 比较材质数据块
     if ((uVar1 == *(uint *)(param_2 + 0x74)) &&
        (iVar3 = memcmp(*(uint64_t *)(param_1 + 0x150),*(uint64_t *)(param_2 + 0x150),
-                       (ulonglong)uVar1 << 6), iVar3 != 0)) {
+                       (uint64_t)uVar1 << 6), iVar3 != 0)) {
         *(uint *)(param_1 + 0x5c) = *(uint *)(param_1 + 0x5c) | RENDERING_STATE_FLAG_MATERIAL_CHANGED;
         bVar5 = true;
     }
@@ -820,12 +820,12 @@ void rendering_system_parameter_initializer(int32_t *param_1)
 // 原始函数实现（保持兼容性）
 // ============================================================================
 
-void FUN_1803269f0(longlong param_1, longlong param_2, longlong param_3, ulonglong param_4, longlong param_5)
+void FUN_1803269f0(int64_t param_1, int64_t param_2, int64_t param_3, uint64_t param_4, int64_t param_5)
 {
     rendering_system_parameter_processor(param_1, param_2, param_3, param_4, param_5);
 }
 
-bool FUN_180327250(longlong param_1, longlong param_2)
+bool FUN_180327250(int64_t param_1, int64_t param_2)
 {
     return rendering_system_state_comparator(param_1, param_2);
 }

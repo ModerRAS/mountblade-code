@@ -79,7 +79,7 @@ typedef struct {
 // - param_5: 输出向量X分量
 // - param_6: 输出向量Y分量
 // - param_7: 角度参数
-void rendering_system_advanced_param_processing_8args(uint64_t param_1, longlong param_2, uint64_t param_3, uint param_4,
+void rendering_system_advanced_param_processing_8args(uint64_t param_1, int64_t param_2, uint64_t param_3, uint param_4,
                                                       uint64_t param_5, uint64_t param_6, float param_7)
 {
     uint64_t uVar1;
@@ -89,21 +89,21 @@ void rendering_system_advanced_param_processing_8args(uint64_t param_1, longlong
     int32_t uVar5;
     uint uVar6;
     int iVar7;
-    longlong lVar8;
+    int64_t lVar8;
     uint64_t *unaff_RBX;
-    longlong unaff_RBP;
-    longlong unaff_RSI;
+    int64_t unaff_RBP;
+    int64_t unaff_RSI;
     int iVar9;
     uint64_t unaff_RDI;
     uint uVar10;
-    longlong *in_R10;
-    longlong in_R11;
+    int64_t *in_R10;
+    int64_t in_R11;
     uint64_t unaff_R12;
-    longlong lVar11;
+    int64_t lVar11;
     uint64_t unaff_R13;
-    longlong lVar12;
+    int64_t lVar12;
     uint64_t unaff_R14;
-    ulonglong uVar13;
+    uint64_t uVar13;
     uint64_t unaff_R15;
     float fVar14;
     float fVar15;
@@ -152,9 +152,9 @@ void rendering_system_advanced_param_processing_8args(uint64_t param_1, longlong
     *(uint64_t *)(in_R11 + 0x18) = unaff_R12;
     uVar10 = param_4 + 2;
     *(uint64_t *)(in_R11 + -0x18) = unaff_R13;
-    lVar12 = *(longlong *)(unaff_RBP + 0x170);
+    lVar12 = *(int64_t *)(unaff_RBP + 0x170);
     *(uint64_t *)(in_R11 + -0x20) = unaff_R14;
-    uVar13 = (ulonglong)param_4;
+    uVar13 = (uint64_t)param_4;
     *(uint64_t *)(in_R11 + 0x10) = unaff_RDI;
     *(uint64_t *)(in_R11 + -0x28) = unaff_R15;
     
@@ -187,13 +187,13 @@ void rendering_system_advanced_param_processing_8args(uint64_t param_1, longlong
     // 主处理循环
     do {
         iVar4 = *(int *)(param_2 + uVar13 * 4);          // 获取顶点索引
-        lVar11 = (longlong)iVar4 * 0x58;                  // 计算顶点数据偏移
+        lVar11 = (int64_t)iVar4 * 0x58;                  // 计算顶点数据偏移
         
         // 检查顶点是否启用
         if ((*(byte *)(lVar11 + 0x4c + lVar12) & 4) == 0) {
             iVar4 = iVar4 * 3;
             iVar7 = *(int *)(unaff_RBP + 0x180);
-            lVar8 = (longlong)iVar4;
+            lVar8 = (int64_t)iVar4;
             
             // 查找匹配的材质索引
             if (*(int *)(unaff_RSI + lVar8 * 4) != iVar7) {
@@ -209,8 +209,8 @@ void rendering_system_advanced_param_processing_8args(uint64_t param_1, longlong
             }
             
             // 处理顶点数据
-            *(longlong *)(unaff_RBP + -0x70) = (longlong)(int)(iVar4 + param_4);
-            uVar10 = *(uint *)(unaff_RSI + (longlong)(int)(iVar4 + param_4) * 4);
+            *(int64_t *)(unaff_RBP + -0x70) = (int64_t)(int)(iVar4 + param_4);
+            uVar10 = *(uint *)(unaff_RSI + (int64_t)(int)(iVar4 + param_4) * 4);
             (**(code **)(*in_R10 + 0x18))(in_R10, unaff_RBP + 0x40, (int)uVar10 >> 2, uVar10 & 3);
             
             // 获取顶点位置数据
@@ -227,10 +227,10 @@ void rendering_system_advanced_param_processing_8args(uint64_t param_1, longlong
             *(int32_t *)(unaff_RBP + -0x38) = uVar5;
             
             // 计算向量运算
-            fVar16 = fVar14 * (float)uVar1 + fVar15 * (float)((ulonglong)uVar1 >> 0x20) +
+            fVar16 = fVar14 * (float)uVar1 + fVar15 * (float)((uint64_t)uVar1 >> 0x20) +
                      fVar19 * *(float *)(unaff_RBP + -0x48);
             param_5._4_4_ = (float)uVar2 - fVar14 * fVar16;
-            param_6._0_4_ = (float)((ulonglong)uVar3 >> 0x20) - fVar15 * fVar16;
+            param_6._0_4_ = (float)((uint64_t)uVar3 >> 0x20) - fVar15 * fVar16;
             
             // 处理法线向量
             uVar1 = *(uint64_t *)(lVar11 + 0x34 + lVar12);
@@ -243,11 +243,11 @@ void rendering_system_advanced_param_processing_8args(uint64_t param_1, longlong
             *(int32_t *)(unaff_RBP + -0x18) = uVar5;
             
             // 计算法线向量运算
-            fVar17 = fVar15 * (float)((ulonglong)uVar1 >> 0x20) + fVar14 * (float)uVar1 +
+            fVar17 = fVar15 * (float)((uint64_t)uVar1 >> 0x20) + fVar14 * (float)uVar1 +
                      fVar19 * *(float *)(unaff_RBP + -0x28);
             fVar23 = (float)uVar2 - fVar14 * fVar17;
             fVar16 = *(float *)(unaff_RBP + -0x18) - fVar19 * fVar17;
-            fVar17 = (float)((ulonglong)*(uint64_t *)(lVar11 + 0x34 + lVar12) >> 0x20) - fVar15 * fVar17;
+            fVar17 = (float)((uint64_t)*(uint64_t *)(lVar11 + 0x34 + lVar12) >> 0x20) - fVar15 * fVar17;
             *(float *)(unaff_RBP + 0x18) = fVar16;
             *(int32_t *)(unaff_RBP + -0x80) = *(int32_t *)(unaff_RBP + 0x18);
             
@@ -281,8 +281,8 @@ void rendering_system_advanced_param_processing_8args(uint64_t param_1, longlong
             if (1 < (int)param_4) {
                 iVar7 = iVar4;
             }
-            iVar7 = *(int *)(unaff_RSI + (longlong)iVar7 * 4);
-            uVar10 = *(uint *)(unaff_RSI + *(longlong *)(unaff_RBP + -0x70) * 4);
+            iVar7 = *(int *)(unaff_RSI + (int64_t)iVar7 * 4);
+            uVar10 = *(uint *)(unaff_RSI + *(int64_t *)(unaff_RBP + -0x70) * 4);
             
             if ((int)param_4 < 1) {
                 iVar9 = 2;
@@ -291,8 +291,8 @@ void rendering_system_advanced_param_processing_8args(uint64_t param_1, longlong
                 iVar9 = param_4 - 1;
             }
             
-            in_R10 = *(longlong **)(unaff_RBP + -0x78);
-            uVar6 = *(uint *)(unaff_RSI + (longlong)(iVar4 + iVar9) * 4);
+            in_R10 = *(int64_t **)(unaff_RBP + -0x78);
+            uVar6 = *(uint *)(unaff_RSI + (int64_t)(iVar4 + iVar9) * 4);
             (**(code **)(*in_R10 + 0x10))(in_R10, unaff_RBP + 0x50, (int)uVar6 >> 2, uVar6 & 3);
             (**(code **)(*in_R10 + 0x10))(in_R10, unaff_RBP + 0x60, (int)uVar10 >> 2, uVar10 & 3);
             (**(code **)(*in_R10 + 0x10))(in_R10, unaff_RBP + 0x30, iVar7 >> 2);
@@ -350,14 +350,14 @@ void rendering_system_advanced_param_processing_8args(uint64_t param_1, longlong
             // 更新顶点数据
             uVar1 = *unaff_RBX;
             param_4 = 0;
-            fVar14 = *(float *)((longlong)unaff_RBX + 4);
-            lVar12 = *(longlong *)(unaff_RBP + 0x170);
+            fVar14 = *(float *)((int64_t)unaff_RBX + 4);
+            lVar12 = *(int64_t *)(unaff_RBP + 0x170);
             uVar10 = 2;
-            param_2 = *(longlong *)(unaff_RBP + -0x68);
+            param_2 = *(int64_t *)(unaff_RBP + -0x68);
             *(int32_t *)(unaff_RBP + -8) = *(int32_t *)(unaff_RBX + 1);
             fVar15 = *(float *)(unaff_RBP + -8);
             in_XMM5_Da = param_7 + fVar21;
-            fVar19 = *(float *)((longlong)unaff_RBX + 0x14);
+            fVar19 = *(float *)((int64_t)unaff_RBX + 0x14);
             
             // 应用变换矩阵
             *unaff_RBX = CONCAT44(fVar14 + (float)param_6 * fVar21, (float)uVar1 + param_5._4_4_ * fVar21);
@@ -365,16 +365,16 @@ void rendering_system_advanced_param_processing_8args(uint64_t param_1, longlong
             *(float *)(unaff_RBP + 0x28) = fVar15 + fVar27 * fVar21;
             *(int32_t *)(unaff_RBX + 1) = *(int32_t *)(unaff_RBP + 0x28);
             unaff_RBX[2] = CONCAT44(fVar19 + fVar17 * fVar21, (float)uVar1 + fVar23 * fVar21);
-            *(float *)((longlong)unaff_RBX + 0x1c) =
-                 fVar21 * *(float *)(lVar11 + 0x44 + lVar12) + *(float *)((longlong)unaff_RBX + 0x1c);
+            *(float *)((int64_t)unaff_RBX + 0x1c) =
+                 fVar21 * *(float *)(lVar11 + 0x44 + lVar12) + *(float *)((int64_t)unaff_RBX + 0x1c);
             fVar14 = *(float *)(lVar11 + 0x40 + lVar12);
             *(float *)(unaff_RBX + 3) = *(float *)(unaff_RBX + 3) + fVar16 * fVar21;
-            *(float *)((longlong)unaff_RBX + 0xc) =
-                 fVar21 * fVar14 + *(float *)((longlong)unaff_RBX + 0xc);
+            *(float *)((int64_t)unaff_RBX + 0xc) =
+                 fVar21 * fVar14 + *(float *)((int64_t)unaff_RBX + 0xc);
             param_7 = in_XMM5_Da;
         }
         uVar13 = uVar13 + 1;
-    } while ((longlong)uVar13 < *(longlong *)(unaff_RBP + -0x60));
+    } while ((int64_t)uVar13 < *(int64_t *)(unaff_RBP + -0x60));
     
     // 最终归一化处理
     uVar1 = *unaff_RBX;
@@ -386,7 +386,7 @@ void rendering_system_advanced_param_processing_8args(uint64_t param_1, longlong
        (unaff_XMM7_Da < (float)(*(uint *)(unaff_RBP + 0x38) & unaff_XMM6_Da))) {
         uVar1 = *unaff_RBX;
         *(float *)(unaff_RBP + 0x38) = fVar14;
-        fVar19 = (float)((ulonglong)uVar1 >> 0x20);
+        fVar19 = (float)((uint64_t)uVar1 >> 0x20);
         *(uint64_t *)(unaff_RBP + 0x30) = uVar1;
         fVar15 = unaff_XMM14_Da /
                  SQRT(fVar19 * fVar19 + *(float *)(unaff_RBP + 0x30) * *(float *)(unaff_RBP + 0x30) +
@@ -405,7 +405,7 @@ void rendering_system_advanced_param_processing_8args(uint64_t param_1, longlong
        (unaff_XMM7_Da < (float)(*(uint *)(unaff_RBP + 0x38) & unaff_XMM6_Da))) {
         uVar1 = unaff_RBX[2];
         *(float *)(unaff_RBP + 0x38) = fVar14;
-        fVar19 = (float)((ulonglong)uVar1 >> 0x20);
+        fVar19 = (float)((uint64_t)uVar1 >> 0x20);
         *(uint64_t *)(unaff_RBP + 0x30) = uVar1;
         fVar15 = unaff_XMM14_Da /
                  SQRT(fVar19 * fVar19 + *(float *)(unaff_RBP + 0x30) * *(float *)(unaff_RBP + 0x30) +
@@ -416,14 +416,14 @@ void rendering_system_advanced_param_processing_8args(uint64_t param_1, longlong
     
     // 最终标准化处理
     if (0.0 < in_XMM5_Da) {
-        *(float *)((longlong)unaff_RBX + 0x1c) =
-             (unaff_XMM14_Da / in_XMM5_Da) * *(float *)((longlong)unaff_RBX + 0x1c);
-        *(float *)((longlong)unaff_RBX + 0xc) =
-             (unaff_XMM14_Da / in_XMM5_Da) * *(float *)((longlong)unaff_RBX + 0xc);
+        *(float *)((int64_t)unaff_RBX + 0x1c) =
+             (unaff_XMM14_Da / in_XMM5_Da) * *(float *)((int64_t)unaff_RBX + 0x1c);
+        *(float *)((int64_t)unaff_RBX + 0xc) =
+             (unaff_XMM14_Da / in_XMM5_Da) * *(float *)((int64_t)unaff_RBX + 0xc);
     }
     
     // 调用系统函数完成处理
-    FUN_1808fc050(*(ulonglong *)(unaff_RBP + 0x70) ^ (ulonglong)&stack0x00000000);
+    FUN_1808fc050(*(uint64_t *)(unaff_RBP + 0x70) ^ (uint64_t)&stack0x00000000);
 }
 
 // 函数2: 渲染系统向量归一化和标准化处理
@@ -444,7 +444,7 @@ void rendering_system_vector_normalization(void)
     uint64_t uVar1;
     float fVar2;
     uint64_t *unaff_RBX;
-    longlong unaff_RBP;
+    int64_t unaff_RBP;
     float fVar3;
     float fVar4;
     float in_XMM5_Da;
@@ -465,7 +465,7 @@ void rendering_system_vector_normalization(void)
        (unaff_XMM7_Da < (float)(*(uint *)(unaff_RBP + 0x38) & unaff_XMM6_Da))) {
         uVar1 = *unaff_RBX;
         *(float *)(unaff_RBP + 0x38) = fVar2;
-        fVar4 = (float)((ulonglong)uVar1 >> 0x20);
+        fVar4 = (float)((uint64_t)uVar1 >> 0x20);
         *(uint64_t *)(unaff_RBP + 0x30) = uVar1;
         
         // 计算归一化系数
@@ -490,7 +490,7 @@ void rendering_system_vector_normalization(void)
        (unaff_XMM7_Da < (float)(*(uint *)(unaff_RBP + 0x38) & unaff_XMM6_Da))) {
         uVar1 = unaff_RBX[2];
         *(float *)(unaff_RBP + 0x38) = fVar2;
-        fVar4 = (float)((ulonglong)uVar1 >> 0x20);
+        fVar4 = (float)((uint64_t)uVar1 >> 0x20);
         *(uint64_t *)(unaff_RBP + 0x30) = uVar1;
         
         // 计算第二个向量的归一化系数
@@ -505,14 +505,14 @@ void rendering_system_vector_normalization(void)
     
     // 应用标准化系数
     if (unaff_XMM8_Da < in_XMM5_Da) {
-        *(float *)((longlong)unaff_RBX + 0x1c) =
-             (unaff_XMM14_Da / in_XMM5_Da) * *(float *)((longlong)unaff_RBX + 0x1c);
-        *(float *)((longlong)unaff_RBX + 0xc) =
-             (unaff_XMM14_Da / in_XMM5_Da) * *(float *)((longlong)unaff_RBX + 0xc);
+        *(float *)((int64_t)unaff_RBX + 0x1c) =
+             (unaff_XMM14_Da / in_XMM5_Da) * *(float *)((int64_t)unaff_RBX + 0x1c);
+        *(float *)((int64_t)unaff_RBX + 0xc) =
+             (unaff_XMM14_Da / in_XMM5_Da) * *(float *)((int64_t)unaff_RBX + 0xc);
     }
     
     // 调用系统函数完成处理
-    FUN_1808fc050(*(ulonglong *)(unaff_RBP + 0x70) ^ (ulonglong)&stack0x00000000);
+    FUN_1808fc050(*(uint64_t *)(unaff_RBP + 0x70) ^ (uint64_t)&stack0x00000000);
 }
 
 // 函数3: 渲染系统快速向量归一化处理
@@ -533,7 +533,7 @@ void rendering_system_fast_vector_normalization(void)
     uint64_t uVar1;
     float in_EAX;
     uint64_t *unaff_RBX;
-    longlong unaff_RBP;
+    int64_t unaff_RBP;
     float fVar2;
     float fVar3;
     float fVar4;
@@ -548,7 +548,7 @@ void rendering_system_fast_vector_normalization(void)
        (unaff_XMM7_Da < (float)(*(uint *)(unaff_RBP + 0x38) & unaff_XMM6_Da))) {
         uVar1 = *unaff_RBX;
         *(float *)(unaff_RBP + 0x38) = in_EAX;
-        fVar3 = (float)((ulonglong)uVar1 >> 0x20);
+        fVar3 = (float)((uint64_t)uVar1 >> 0x20);
         *(uint64_t *)(unaff_RBP + 0x30) = uVar1;
         
         // 计算快速归一化系数
@@ -573,7 +573,7 @@ void rendering_system_fast_vector_normalization(void)
        (unaff_XMM7_Da < (float)(*(uint *)(unaff_RBP + 0x38) & unaff_XMM6_Da))) {
         uVar1 = unaff_RBX[2];
         *(float *)(unaff_RBP + 0x38) = fVar2;
-        fVar4 = (float)((ulonglong)uVar1 >> 0x20);
+        fVar4 = (float)((uint64_t)uVar1 >> 0x20);
         *(uint64_t *)(unaff_RBP + 0x30) = uVar1;
         
         // 计算第二个向量的归一化系数
@@ -588,14 +588,14 @@ void rendering_system_fast_vector_normalization(void)
     
     // 应用快速标准化系数
     if (unaff_XMM8_Da < in_XMM5_Da) {
-        *(float *)((longlong)unaff_RBX + 0x1c) =
-             (unaff_XMM14_Da / in_XMM5_Da) * *(float *)((longlong)unaff_RBX + 0x1c);
-        *(float *)((longlong)unaff_RBX + 0xc) =
-             (unaff_XMM14_Da / in_XMM5_Da) * *(float *)((longlong)unaff_RBX + 0xc);
+        *(float *)((int64_t)unaff_RBX + 0x1c) =
+             (unaff_XMM14_Da / in_XMM5_Da) * *(float *)((int64_t)unaff_RBX + 0x1c);
+        *(float *)((int64_t)unaff_RBX + 0xc) =
+             (unaff_XMM14_Da / in_XMM5_Da) * *(float *)((int64_t)unaff_RBX + 0xc);
     }
     
     // 调用系统函数完成处理
-    FUN_1808fc050(*(ulonglong *)(unaff_RBP + 0x70) ^ (ulonglong)&stack0x00000000);
+    FUN_1808fc050(*(uint64_t *)(unaff_RBP + 0x70) ^ (uint64_t)&stack0x00000000);
 }
 
 // 函数4: 渲染系统标准化系数应用
@@ -613,8 +613,8 @@ void rendering_system_fast_vector_normalization(void)
 // - 验证处理结果
 void rendering_system_normalization_coefficient_application(void)
 {
-    longlong unaff_RBX;
-    longlong unaff_RBP;
+    int64_t unaff_RBX;
+    int64_t unaff_RBP;
     float in_XMM5_Da;
     float unaff_XMM14_Da;
     
@@ -623,7 +623,7 @@ void rendering_system_normalization_coefficient_application(void)
     *(float *)(unaff_RBX + 0xc) = (unaff_XMM14_Da / in_XMM5_Da) * *(float *)(unaff_RBX + 0xc);
     
     // 调用系统函数完成处理
-    FUN_1808fc050(*(ulonglong *)(unaff_RBP + 0x70) ^ (ulonglong)&stack0x00000000);
+    FUN_1808fc050(*(uint64_t *)(unaff_RBP + 0x70) ^ (uint64_t)&stack0x00000000);
 }
 
 // 函数5: 渲染系统快速排序算法实现
@@ -645,21 +645,21 @@ void rendering_system_normalization_coefficient_application(void)
 // - 处理大数据集排序
 // - 优化排序性能
 // - 确保排序正确性
-void rendering_system_quick_sort(longlong param_1, int param_2, int param_3, uint param_4)
+void rendering_system_quick_sort(int64_t param_1, int param_2, int param_3, uint param_4)
 {
     int iVar1;
     int iVar2;
     int32_t uVar3;
     byte bVar4;
     uint uVar5;
-    ulonglong uVar6;
+    uint64_t uVar6;
     int iVar7;
-    longlong lVar8;
+    int64_t lVar8;
     int iVar9;
-    ulonglong uVar10;
-    ulonglong uVar11;
+    uint64_t uVar10;
+    uint64_t uVar11;
     
-    uVar10 = (ulonglong)param_2;
+    uVar10 = (uint64_t)param_2;
     uVar11 = uVar10;
     
     // 主排序循环
@@ -670,8 +670,8 @@ void rendering_system_quick_sort(longlong param_1, int param_2, int param_3, uin
         param_4 = param_4 + (param_4 << bVar4 | param_4 >> 0x20 - bVar4) + 3;
         
         // 选择基准元素
-        iVar1 = *(int *)(param_1 + (longlong)(int)(iVar9 + param_4 % ((param_3 - iVar9) + 1U)) * 4);
-        lVar8 = (longlong)param_3;
+        iVar1 = *(int *)(param_1 + (int64_t)(int)(iVar9 + param_4 % ((param_3 - iVar9) + 1U)) * 4);
+        lVar8 = (int64_t)param_3;
         iVar7 = param_3;
         
         // 分区处理
@@ -681,7 +681,7 @@ void rendering_system_quick_sort(longlong param_1, int param_2, int param_3, uin
             while (iVar2 < iVar1) {
                 uVar10 = uVar10 + 1;
                 uVar5 = (int)uVar6 + 1;
-                uVar6 = (ulonglong)uVar5;
+                uVar6 = (uint64_t)uVar5;
                 iVar2 = *(int *)(param_1 + uVar10 * 4);
             }
             iVar2 = *(int *)(param_1 + lVar8 * 4);
@@ -690,18 +690,18 @@ void rendering_system_quick_sort(longlong param_1, int param_2, int param_3, uin
                 iVar7 = iVar7 + -1;
                 iVar2 = *(int *)(param_1 + lVar8 * 4);
             }
-            if (lVar8 < (longlong)uVar10) break;
+            if (lVar8 < (int64_t)uVar10) break;
             
             // 交换元素
             uVar3 = *(int32_t *)(param_1 + uVar10 * 4);
             uVar5 = uVar5 + 1;
-            uVar6 = (ulonglong)uVar5;
+            uVar6 = (uint64_t)uVar5;
             iVar7 = iVar7 + -1;
             *(int32_t *)(param_1 + uVar10 * 4) = *(int32_t *)(param_1 + lVar8 * 4);
             uVar10 = uVar10 + 1;
             *(int32_t *)(param_1 + lVar8 * 4) = uVar3;
             lVar8 = lVar8 + -1;
-        } while ((longlong)uVar10 <= lVar8);
+        } while ((int64_t)uVar10 <= lVar8);
         
         // 递归处理左分区
         if (iVar9 < iVar7) {
@@ -712,7 +712,7 @@ void rendering_system_quick_sort(longlong param_1, int param_2, int param_3, uin
         if (param_3 <= (int)uVar5) {
             return;
         }
-        uVar11 = (ulonglong)uVar5;
+        uVar11 = (uint64_t)uVar5;
     } while( true );
 }
 
@@ -735,7 +735,7 @@ void rendering_system_quick_sort(longlong param_1, int param_2, int param_3, uin
 // - 建立顶点关系
 // - 优化数据结构
 // - 处理邻接关系
-void rendering_system_vertex_data_processing(longlong param_1, longlong param_2, longlong param_3, int param_4)
+void rendering_system_vertex_data_processing(int64_t param_1, int64_t param_2, int64_t param_3, int param_4)
 {
     int iVar1;
     int iVar2;
@@ -745,18 +745,18 @@ void rendering_system_vertex_data_processing(longlong param_1, longlong param_2,
     int iVar6;
     int iVar7;
     int iVar8;
-    longlong lVar9;
+    int64_t lVar9;
     int *piVar10;
     int iVar11;
-    longlong lVar12;
-    longlong lVar13;
+    int64_t lVar12;
+    int64_t lVar13;
     int iVar14;
-    longlong lVar15;
+    int64_t lVar15;
     int *piVar16;
     int iVar17;
     int iStackX_20;
-    longlong lStack_50;
-    longlong lStack_48;
+    int64_t lStack_50;
+    int64_t lStack_48;
     
     iVar7 = 0;
     if (0 < param_4) {
@@ -803,7 +803,7 @@ void rendering_system_vertex_data_processing(longlong param_1, longlong param_2,
     
     // 调用数据处理函数
     FUN_180413bd0(param_2, 0, param_4 * 3 + -1, 0, 0x26065ca);
-    lVar15 = (longlong)(param_4 * 3);
+    lVar15 = (int64_t)(param_4 * 3);
     iVar7 = 0;
     iVar14 = 1;
     
@@ -833,7 +833,7 @@ void rendering_system_vertex_data_processing(longlong param_1, longlong param_2,
         lVar12 = lVar15 + -1;
         do {
             if ((*(int *)(lVar13 + param_2) != *piVar10) || (*(int *)(lVar13 + 4 + param_2) != piVar10[1])) {
-                lVar13 = (longlong)piVar10 - param_2;
+                lVar13 = (int64_t)piVar10 - param_2;
                 FUN_180413bd0(param_2, iVar7, iVar14 + -1, 2, 0x26065ca);
                 iVar7 = iVar14;
             }
@@ -853,7 +853,7 @@ void rendering_system_vertex_data_processing(longlong param_1, longlong param_2,
             iVar8 = 0;
             iVar14 = piVar10[-1];
             iVar1 = *piVar10;
-            lVar12 = (longlong)(iVar7 * 3);
+            lVar12 = (int64_t)(iVar7 * 3);
             iVar6 = *(int *)(param_3 + lVar12 * 4);
             
             // 检查顶点关系
@@ -879,7 +879,7 @@ void rendering_system_vertex_data_processing(longlong param_1, longlong param_2,
             }
             
             // 检查邻接关系
-            if ((*(int *)((longlong)iVar7 * 0x58 + lVar13 + param_1) == -1) &&
+            if ((*(int *)((int64_t)iVar7 * 0x58 + lVar13 + param_1) == -1) &&
                (bVar4 = true, lStack_50 < lVar15)) {
                 piVar16 = piVar10 + 4;
                 lVar12 = lStack_50;
@@ -887,7 +887,7 @@ void rendering_system_vertex_data_processing(longlong param_1, longlong param_2,
                     iVar6 = piVar16[-2];
                     if ((iVar14 != iVar6) || (iVar2 = piVar16[-1], iVar1 != iVar2)) break;
                     if (!bVar4) goto LAB_1804138ec;
-                    lVar9 = (longlong)(*piVar16 * 3);
+                    lVar9 = (int64_t)(*piVar16 * 3);
                     lVar13 = param_3 + lVar9 * 4;
                     iVar3 = *(int *)(param_3 + lVar9 * 4);
                     if ((iVar3 == iVar6) || (iVar3 == iVar2)) {
@@ -911,7 +911,7 @@ void rendering_system_vertex_data_processing(longlong param_1, longlong param_2,
                         iVar5 = *(int *)(lVar13 + 8);
                     }
                     if (((iVar11 == iVar5) && (iVar17 == iVar6)) &&
-                       (*(int *)((longlong)*piVar16 * 0x58 + lVar9 + param_1) == -1)) {
+                       (*(int *)((int64_t)*piVar16 * 0x58 + lVar9 + param_1) == -1)) {
                         bVar4 = false;
                     }
                     else {
@@ -922,8 +922,8 @@ void rendering_system_vertex_data_processing(longlong param_1, longlong param_2,
                 if (!bVar4) {
 LAB_1804138ec:
                     iVar14 = *(int *)(param_2 + 8 + lVar12 * 0xc);
-                    *(int *)(param_1 + ((longlong)iVar7 * 0x16 + (longlong)iStackX_20) * 4) = iVar14;
-                    *(int *)(param_1 + ((longlong)iVar14 * 0x16 + (longlong)iVar8) * 4) = iVar7;
+                    *(int *)(param_1 + ((int64_t)iVar7 * 0x16 + (int64_t)iStackX_20) * 4) = iVar14;
+                    *(int *)(param_1 + ((int64_t)iVar14 * 0x16 + (int64_t)iVar8) * 4) = iVar7;
                 }
             }
             piVar10 = piVar10 + 3;
@@ -956,8 +956,8 @@ LAB_1804138ec:
 // - 建立邻接关系
 // - 处理边缘数据
 // - 验证关系正确性
-void rendering_system_edge_detection(uint64_t param_1, uint64_t param_2, longlong param_3, longlong param_4,
-                                    uint64_t param_5, uint64_t param_6, longlong param_7)
+void rendering_system_edge_detection(uint64_t param_1, uint64_t param_2, int64_t param_3, int64_t param_4,
+                                    uint64_t param_5, uint64_t param_6, int64_t param_7)
 {
     int iVar1;
     int iVar2;
@@ -967,19 +967,19 @@ void rendering_system_edge_detection(uint64_t param_1, uint64_t param_2, longlon
     bool bVar6;
     int iVar7;
     int iVar8;
-    longlong lVar9;
-    longlong lVar10;
-    longlong lVar11;
+    int64_t lVar9;
+    int64_t lVar10;
+    int64_t lVar11;
     int iVar12;
     int iVar13;
     int *piVar14;
     int *piVar15;
     int iVar16;
-    longlong unaff_R15;
-    longlong lStack0000000000000048;
-    longlong lStack0000000000000050;
-    longlong in_stack_000000a0;
-    longlong in_stack_000000b0;
+    int64_t unaff_R15;
+    int64_t lStack0000000000000048;
+    int64_t lStack0000000000000050;
+    int64_t in_stack_000000a0;
+    int64_t in_stack_000000b0;
     int iStack00000000000000b8;
     
     piVar14 = (int *)(unaff_R15 + 4);
@@ -992,7 +992,7 @@ void rendering_system_edge_detection(uint64_t param_1, uint64_t param_2, longlon
         iVar12 = 0;
         iVar2 = piVar14[-1];
         iVar3 = *piVar14;
-        lVar9 = (longlong)(iVar1 * 3);
+        lVar9 = (int64_t)(iVar1 * 3);
         iVar8 = *(int *)(in_stack_000000b0 + lVar9 * 4);
         
         // 检查顶点关系
@@ -1018,7 +1018,7 @@ void rendering_system_edge_detection(uint64_t param_1, uint64_t param_2, longlon
         }
         
         // 检查边缘状态
-        if ((*(int *)((longlong)iVar1 * 0x58 + lVar11 + in_stack_000000a0) == -1) &&
+        if ((*(int *)((int64_t)iVar1 * 0x58 + lVar11 + in_stack_000000a0) == -1) &&
            (bVar6 = true, lStack0000000000000048 < param_3)) {
             piVar15 = piVar14 + 4;
             lVar9 = lStack0000000000000048;
@@ -1026,7 +1026,7 @@ void rendering_system_edge_detection(uint64_t param_1, uint64_t param_2, longlon
                 iVar8 = piVar15[-2];
                 if ((iVar2 != iVar8) || (iVar4 = piVar15[-1], iVar3 != iVar4)) break;
                 if (!bVar6) goto LAB_1804138ec;
-                lVar10 = (longlong)(*piVar15 * 3);
+                lVar10 = (int64_t)(*piVar15 * 3);
                 lVar11 = in_stack_000000b0 + lVar10 * 4;
                 iVar5 = *(int *)(in_stack_000000b0 + lVar10 * 4);
                 if ((iVar5 == iVar8) || (iVar5 == iVar4)) {
@@ -1050,7 +1050,7 @@ void rendering_system_edge_detection(uint64_t param_1, uint64_t param_2, longlon
                     iVar7 = *(int *)(lVar11 + 8);
                 }
                 if (((iVar13 == iVar7) && (iVar16 == iVar8)) &&
-                   (*(int *)((longlong)*piVar15 * 0x58 + lVar10 + in_stack_000000a0) == -1)) {
+                   (*(int *)((int64_t)*piVar15 * 0x58 + lVar10 + in_stack_000000a0) == -1)) {
                     bVar6 = false;
                 }
                 else {
@@ -1061,9 +1061,9 @@ void rendering_system_edge_detection(uint64_t param_1, uint64_t param_2, longlon
             if (!bVar6) {
 LAB_1804138ec:
                 iVar2 = *(int *)(unaff_R15 + 8 + lVar9 * 0xc);
-                *(int *)(in_stack_000000a0 + ((longlong)iVar1 * 0x16 + (longlong)iStack00000000000000b8) * 4
+                *(int *)(in_stack_000000a0 + ((int64_t)iVar1 * 0x16 + (int64_t)iStack00000000000000b8) * 4
                         ) = iVar2;
-                *(int *)(in_stack_000000a0 + ((longlong)iVar2 * 0x16 + (longlong)iVar12) * 4) = iVar1;
+                *(int *)(in_stack_000000a0 + ((int64_t)iVar2 * 0x16 + (int64_t)iVar12) * 4) = iVar1;
             }
         }
         piVar14 = piVar14 + 3;

@@ -76,28 +76,28 @@
  * @see SYSTEM_OPERATION_SUCCESS
  * @see SYSTEM_OPERATION_FAILURE
  */
-void advanced_data_structure_search_and_comparator(longlong *data_structure_ptr, int start_index, int end_index)
+void advanced_data_structure_search_and_comparator(int64_t *data_structure_ptr, int start_index, int end_index)
 {
     uint64_t *comparison_node_1;
-    ulonglong comparison_value_1;
+    uint64_t comparison_value_1;
     bool comparison_result;
     uint64_t *comparison_node_2;
     uint64_t *comparison_node_3;
-    longlong data_offset;
+    int64_t data_offset;
     uint64_t *search_root;
     uint64_t *current_node;
-    longlong *data_array;
+    int64_t *data_array;
     int iteration_count;
     int inner_loop_count;
-    ulonglong array_size;
+    uint64_t array_size;
     uint comparison_value_2;
-    ulonglong search_key;
-    longlong loop_index;
-    longlong temp_offset;
+    uint64_t search_key;
+    int64_t loop_index;
+    int64_t temp_offset;
     
-    search_key = (ulonglong)start_index;
+    search_key = (uint64_t)start_index;
     if (start_index < end_index) {
-        data_array = (longlong *)*data_structure_ptr;
+        data_array = (int64_t *)*data_structure_ptr;
         data_offset = search_key * 4;
         array_size = data_array[1] - *data_array >> 3;
         do {
@@ -106,11 +106,11 @@ void advanced_data_structure_search_and_comparator(longlong *data_structure_ptr,
                 temp_offset = *data_array;
                 loop_index = 0;
                 do {
-                    array_size = *(ulonglong *)(temp_offset + loop_index);
+                    array_size = *(uint64_t *)(temp_offset + loop_index);
                     comparison_node_1 = (uint64_t *)data_structure_ptr[4];
-                    comparison_value_2 = *(uint *)(*(longlong *)data_structure_ptr[1] + data_offset);
+                    comparison_value_2 = *(uint *)(*(int64_t *)data_structure_ptr[1] + data_offset);
                     inner_loop_count = (int)(data_array[1] - temp_offset >> 3) * (int)search_key + iteration_count;
-                    search_key = *(ulonglong *)data_structure_ptr[5];
+                    search_key = *(uint64_t *)data_structure_ptr[5];
                     current_node = (uint64_t *)comparison_node_1[2];
                     comparison_node_2 = comparison_node_1;
                     if (current_node == (uint64_t *)0x0) {
@@ -118,13 +118,13 @@ void advanced_data_structure_search_and_comparator(longlong *data_structure_ptr,
                     }
                     else {
                         do {
-                            if (((ulonglong)current_node[4] < search_key) ||
-                                (((ulonglong)current_node[4] <= search_key &&
-                                 (((ulonglong)current_node[5] < array_size ||
-                                  (((ulonglong)current_node[5] <= array_size &&
+                            if (((uint64_t)current_node[4] < search_key) ||
+                                (((uint64_t)current_node[4] <= search_key &&
+                                 (((uint64_t)current_node[5] < array_size ||
+                                  (((uint64_t)current_node[5] <= array_size &&
                                    ((*(uint *)(current_node + 6) < comparison_value_2 ||
                                     ((*(uint *)(current_node + 6) <= comparison_value_2 &&
-                                     (*(ushort *)((longlong)current_node + 0x34) < (ushort)*(byte *)data_structure_ptr[2]))))))))))))
+                                     (*(ushort *)((int64_t)current_node + 0x34) < (ushort)*(byte *)data_structure_ptr[2]))))))))))))
                             ) {
                                 comparison_node_3 = (uint64_t *)*current_node;
                                 comparison_result = true;
@@ -140,27 +140,27 @@ void advanced_data_structure_search_and_comparator(longlong *data_structure_ptr,
                             comparison_node_1 = comparison_node_2;
                             current_node = comparison_node_3;
                         } while (comparison_node_3 != (uint64_t *)0x0);
-                        if (((comparison_node_2 == comparison_node_1) || (search_key < (ulonglong)comparison_node_2[4])) ||
-                            ((search_key <= (ulonglong)comparison_node_2[4] &&
-                             ((array_size < (ulonglong)comparison_node_2[5] ||
-                              ((array_size <= (ulonglong)comparison_node_2[5] &&
+                        if (((comparison_node_2 == comparison_node_1) || (search_key < (uint64_t)comparison_node_2[4])) ||
+                            ((search_key <= (uint64_t)comparison_node_2[4] &&
+                             ((array_size < (uint64_t)comparison_node_2[5] ||
+                              ((array_size <= (uint64_t)comparison_node_2[5] &&
                                ((comparison_value_2 < *(uint *)(comparison_node_2 + 6) ||
                                 ((comparison_value_2 <= *(uint *)(comparison_node_2 + 6) &&
-                                 ((ushort)*(byte *)data_structure_ptr[2] < *(ushort *)((longlong)comparison_node_2 + 0x34)))))))))))))
+                                 ((ushort)*(byte *)data_structure_ptr[2] < *(ushort *)((int64_t)comparison_node_2 + 0x34)))))))))))))
                         {
                             comparison_node_3 = comparison_node_1;
                         }
                     }
                     iteration_count = iteration_count + 1;
                     loop_index = loop_index + 8;
-                    *(bool *)((longlong)inner_loop_count + *(longlong *)data_structure_ptr[3]) = comparison_node_2 == comparison_node_1;
-                    data_array = (longlong *)*data_structure_ptr;
+                    *(bool *)((int64_t)inner_loop_count + *(int64_t *)data_structure_ptr[3]) = comparison_node_2 == comparison_node_1;
+                    data_array = (int64_t *)*data_structure_ptr;
                     temp_offset = *data_array;
                     array_size = data_array[1] - temp_offset >> 3;
-                } while ((ulonglong)(longlong)iteration_count < array_size);
+                } while ((uint64_t)(int64_t)iteration_count < array_size);
             }
             comparison_value_2 = (int)search_key + 1;
-            search_key = (ulonglong)comparison_value_2;
+            search_key = (uint64_t)comparison_value_2;
             data_offset = data_offset + 4;
         } while ((int)comparison_value_2 < end_index);
     }
@@ -183,12 +183,12 @@ void advanced_data_structure_search_and_comparator(longlong *data_structure_ptr,
 void advanced_data_structure_processor(uint64_t param_1, uint64_t param_2, int param_3)
 {
     uint64_t *node_ptr_1;
-    ulonglong node_value_1;
+    uint64_t node_value_1;
     bool processing_result;
-    longlong register_rax;
+    int64_t register_rax;
     uint64_t *node_ptr_2;
     uint64_t *node_ptr_3;
-    longlong temp_offset;
+    int64_t temp_offset;
     uint64_t *node_ptr_4;
     uint64_t *node_ptr_5;
     uint64_t register_rbx;
@@ -197,15 +197,15 @@ void advanced_data_structure_processor(uint64_t param_1, uint64_t param_2, int p
     int loop_counter_2;
     uint64_t register_rsi;
     uint64_t register_rdi;
-    ulonglong array_size;
-    longlong *register_r10;
+    uint64_t array_size;
+    int64_t *register_r10;
     uint comparison_value;
-    ulonglong register_r12;
+    uint64_t register_r12;
     uint64_t register_r13;
-    longlong calculated_offset;
+    int64_t calculated_offset;
     uint64_t *register_r14;
     uint64_t register_r15;
-    longlong data_offset;
+    int64_t data_offset;
     int stack_param;
     
     *(uint64_t *)(register_rax + 8) = register_rbx;
@@ -224,11 +224,11 @@ void advanced_data_structure_processor(uint64_t param_1, uint64_t param_2, int p
             temp_offset = *register_r10;
             data_offset = 0;
             do {
-                array_size = *(ulonglong *)(temp_offset + data_offset);
+                array_size = *(uint64_t *)(temp_offset + data_offset);
                 node_ptr_1 = (uint64_t *)register_r14[4];
-                comparison_value = *(uint *)(*(longlong *)register_r14[1] + calculated_offset);
+                comparison_value = *(uint *)(*(int64_t *)register_r14[1] + calculated_offset);
                 loop_counter_2 = (int)(register_r10[1] - temp_offset >> 3) * (int)register_r12 + loop_counter_1;
-                node_value_1 = *(ulonglong *)register_r14[5];
+                node_value_1 = *(uint64_t *)register_r14[5];
                 node_ptr_4 = (uint64_t *)node_ptr_1[2];
                 node_ptr_2 = node_ptr_1;
                 if (node_ptr_4 == (uint64_t *)0x0) {
@@ -236,13 +236,13 @@ void advanced_data_structure_processor(uint64_t param_1, uint64_t param_2, int p
                 }
                 else {
                     do {
-                        if (((ulonglong)node_ptr_4[4] < node_value_1) ||
-                            (((ulonglong)node_ptr_4[4] <= node_value_1 &&
-                             (((ulonglong)node_ptr_4[5] < array_size ||
-                              (((ulonglong)node_ptr_4[5] <= array_size &&
+                        if (((uint64_t)node_ptr_4[4] < node_value_1) ||
+                            (((uint64_t)node_ptr_4[4] <= node_value_1 &&
+                             (((uint64_t)node_ptr_4[5] < array_size ||
+                              (((uint64_t)node_ptr_4[5] <= array_size &&
                                ((*(uint *)(node_ptr_4 + 6) < comparison_value ||
                                 ((*(uint *)(node_ptr_4 + 6) <= comparison_value &&
-                                 (*(ushort *)((longlong)node_ptr_4 + 0x34) < (ushort)*(byte *)register_r14[2])))))))))))
+                                 (*(ushort *)((int64_t)node_ptr_4 + 0x34) < (ushort)*(byte *)register_r14[2])))))))))))
                         ) {
                             node_ptr_5 = (uint64_t *)*node_ptr_4;
                             processing_result = true;
@@ -258,28 +258,28 @@ void advanced_data_structure_processor(uint64_t param_1, uint64_t param_2, int p
                         node_ptr_2 = node_ptr_3;
                         node_ptr_4 = node_ptr_5;
                     } while (node_ptr_5 != (uint64_t *)0x0);
-                    if (((node_ptr_3 == node_ptr_1) || (node_value_1 < (ulonglong)node_ptr_3[4])) ||
-                        ((node_value_1 <= (ulonglong)node_ptr_3[4] &&
-                         ((array_size < (ulonglong)node_ptr_3[5] ||
-                          ((array_size <= (ulonglong)node_ptr_3[5] &&
+                    if (((node_ptr_3 == node_ptr_1) || (node_value_1 < (uint64_t)node_ptr_3[4])) ||
+                        ((node_value_1 <= (uint64_t)node_ptr_3[4] &&
+                         ((array_size < (uint64_t)node_ptr_3[5] ||
+                          ((array_size <= (uint64_t)node_ptr_3[5] &&
                            ((comparison_value < *(uint *)(node_ptr_3 + 6) ||
                             ((comparison_value <= *(uint *)(node_ptr_3 + 6) &&
-                             ((ushort)*(byte *)register_r14[2] < *(ushort *)((longlong)node_ptr_3 + 0x34))))))))))))
+                             ((ushort)*(byte *)register_r14[2] < *(ushort *)((int64_t)node_ptr_3 + 0x34))))))))))))
                     {
                         node_ptr_3 = node_ptr_1;
                     }
                 }
                 loop_counter_1 = loop_counter_1 + 1;
                 data_offset = data_offset + 8;
-                *(bool *)((longlong)loop_counter_2 + *(longlong *)register_r14[3]) = node_ptr_3 == node_ptr_1;
-                register_r10 = (longlong *)*register_r14;
+                *(bool *)((int64_t)loop_counter_2 + *(int64_t *)register_r14[3]) = node_ptr_3 == node_ptr_1;
+                register_r10 = (int64_t *)*register_r14;
                 temp_offset = *register_r10;
                 array_size = register_r10[1] - temp_offset >> 3;
                 param_3 = stack_param;
-            } while ((ulonglong)(longlong)loop_counter_1 < array_size);
+            } while ((uint64_t)(int64_t)loop_counter_1 < array_size);
         }
         comparison_value = (int)register_r12 + 1;
-        register_r12 = (ulonglong)comparison_value;
+        register_r12 = (uint64_t)comparison_value;
         calculated_offset = calculated_offset + 4;
         if (param_3 <= (int)comparison_value) {
             return;
@@ -318,61 +318,61 @@ void system_null_operation_processor(void)
 void advanced_system_resource_manager(uint64_t system_handle, uint64_t *resource_manager_ptr, uint64_t resource_data, uint64_t resource_flags)
 {
     byte status_flag;
-    longlong temp_offset;
+    int64_t temp_offset;
     bool comparison_result;
-    ulonglong resource_size;
+    uint64_t resource_size;
     byte *string_ptr;
     int string_length;
-    longlong *resource_array;
+    int64_t *resource_array;
     void *data_ptr;
     uint64_t *node_ptr_1;
     uint64_t *node_ptr_2;
     uint64_t *node_ptr_3;
     uint64_t *node_ptr_4;
     uint64_t *node_ptr_5;
-    longlong data_offset;
-    ulonglong allocation_size;
+    int64_t data_offset;
+    uint64_t allocation_size;
     uint resource_id;
-    ulonglong temp_size;
+    uint64_t temp_size;
     int stack_index_18;
     void *stack_ptr_d0;
     byte *stack_ptr_c8;
     int stack_value_c0;
-    ulonglong stack_value_b8;
-    longlong *stack_ptr_b0;
+    uint64_t stack_value_b8;
+    int64_t *stack_ptr_b0;
     void *stack_ptr_a8;
-    longlong stack_value_a0;
+    int64_t stack_value_a0;
     int32_t stack_value_90;
     int16_t stack_value_88;
-    longlong *stack_ptr_80;
-    longlong stack_value_78;
+    int64_t *stack_ptr_80;
+    int64_t stack_value_78;
     uint64_t stack_value_70;
     int32_t stack_value_68;
     uint64_t stack_value_60;
     void **stack_ptr_58;
-    longlong *stack_ptr_50;
+    int64_t *stack_ptr_50;
     int8_t stack_buffer_48 [16];
     
     stack_value_60 = 0xfffffffffffffffe;
-    stack_ptr_80 = (longlong *)0x0;
+    stack_ptr_80 = (int64_t *)0x0;
     stack_value_78 = 0;
     stack_value_70 = 0;
     stack_value_68 = 3;
     FUN_1800b7eb0(0, &stack_ptr_80, resource_data, resource_flags, 0);
     stack_index_18 = 0;
-    resource_size = stack_value_78 - (longlong)stack_ptr_80 >> 3;
+    resource_size = stack_value_78 - (int64_t)stack_ptr_80 >> 3;
     resource_array = stack_ptr_80;
     if (resource_size != 0) {
         do {
             allocation_size = 0;
             temp_offset = *resource_array;
-            data_offset = *(longlong *)(temp_offset + 0x38);
+            data_offset = *(int64_t *)(temp_offset + 0x38);
             temp_size = allocation_size;
             stack_ptr_b0 = resource_array;
-            if (*(longlong *)(temp_offset + 0x40) - data_offset >> 4 != 0) {
+            if (*(int64_t *)(temp_offset + 0x40) - data_offset >> 4 != 0) {
                 do {
-                    if ((*(uint *)(*(longlong *)(allocation_size + data_offset) + 0x100) & 0x400000) != 0) {
-                        data_offset = *(longlong *)(*(longlong *)(allocation_size + data_offset) + 0x1b8);
+                    if ((*(uint *)(*(int64_t *)(allocation_size + data_offset) + 0x100) & 0x400000) != 0) {
+                        data_offset = *(int64_t *)(*(int64_t *)(allocation_size + data_offset) + 0x1b8);
                         stack_ptr_d0 = &system_data_buffer_ptr;
                         stack_value_b8 = 0;
                         stack_ptr_c8 = (byte *)0x0;
@@ -383,9 +383,9 @@ void advanced_system_resource_manager(uint64_t system_handle, uint64_t *resource
                             if (*(void **)(data_offset + 0x18) != (void *)0x0) {
                                 data_ptr = *(void **)(data_offset + 0x18);
                             }
-                            memcpy(stack_ptr_c8, data_ptr, (longlong)(*(int *)(data_offset + 0x20) + 1));
+                            memcpy(stack_ptr_c8, data_ptr, (int64_t)(*(int *)(data_offset + 0x20) + 1));
                         }
-                        if ((*(longlong *)(data_offset + 0x18) != 0) && (stack_value_c0 = 0, stack_ptr_c8 != (byte *)0x0)) {
+                        if ((*(int64_t *)(data_offset + 0x18) != 0) && (stack_value_c0 = 0, stack_ptr_c8 != (byte *)0x0)) {
                             *stack_ptr_c8 = 0;
                         }
                         node_ptr_1 = (uint64_t *)resource_manager_ptr[2];
@@ -406,7 +406,7 @@ void advanced_system_resource_manager(uint64_t system_handle, uint64_t *resource
                                     else {
                                         string_ptr = stack_ptr_c8;
                                         do {
-                                            resource_id = (uint)string_ptr[node_ptr_1[5] - (longlong)stack_ptr_c8];
+                                            resource_id = (uint)string_ptr[node_ptr_1[5] - (int64_t)stack_ptr_c8];
                                             string_length = *string_ptr - resource_id;
                                             if (*string_ptr != resource_id) break;
                                             string_ptr = string_ptr + 1;
@@ -433,7 +433,7 @@ void advanced_system_resource_manager(uint64_t system_handle, uint64_t *resource
                             if (*(int *)(node_ptr_2 + 6) != 0) {
                                 if (stack_value_c0 != 0) {
                                     string_ptr = (byte *)node_ptr_2[5];
-                                    data_offset = (longlong)stack_ptr_c8 - (longlong)string_ptr;
+                                    data_offset = (int64_t)stack_ptr_c8 - (int64_t)string_ptr;
                                     do {
                                         status_flag = *string_ptr;
                                         resource_id = (uint)string_ptr[data_offset];
@@ -476,7 +476,7 @@ void advanced_system_resource_manager(uint64_t system_handle, uint64_t *resource
                                         else {
                                             string_ptr = stack_ptr_c8;
                                             do {
-                                                resource_id = (uint)string_ptr[node_ptr_1[5] - (longlong)stack_ptr_c8];
+                                                resource_id = (uint)string_ptr[node_ptr_1[5] - (int64_t)stack_ptr_c8];
                                                 string_length = *string_ptr - resource_id;
                                                 if (*string_ptr != resource_id) break;
                                                 string_ptr = string_ptr + 1;
@@ -503,7 +503,7 @@ void advanced_system_resource_manager(uint64_t system_handle, uint64_t *resource
                                 if (*(int *)(node_ptr_2 + 6) != 0) {
                                     if (stack_value_c0 != 0) {
                                         string_ptr = (byte *)node_ptr_2[5];
-                                        data_offset = (longlong)stack_ptr_c8 - (longlong)string_ptr;
+                                        data_offset = (int64_t)stack_ptr_c8 - (int64_t)string_ptr;
                                         do {
                                             status_flag = *string_ptr;
                                             resource_id = (uint)string_ptr[data_offset];
@@ -516,10 +516,10 @@ void advanced_system_resource_manager(uint64_t system_handle, uint64_t *resource
                                     }
                                 }
                             }
-                            resource_array = *(longlong **)(*(longlong *)(temp_offset + 0x3c8) + 0x20);
+                            resource_array = *(int64_t **)(*(int64_t *)(temp_offset + 0x3c8) + 0x20);
                             stack_ptr_50 = resource_array;
-                            if (resource_array == (longlong *)0x0) {
-                                *(int8_t *)((longlong)node_ptr_2 + 0x41) = 1;
+                            if (resource_array == (int64_t *)0x0) {
+                                *(int8_t *)((int64_t)node_ptr_2 + 0x41) = 1;
                             }
                             else {
                                 (**(code **)(*resource_array + 0x28))(resource_array);
@@ -537,17 +537,17 @@ void advanced_system_resource_manager(uint64_t system_handle, uint64_t *resource
                     }
                     resource_id = (int)temp_size + 1;
                     allocation_size = allocation_size + 0x10;
-                    data_offset = *(longlong *)(temp_offset + 0x38);
-                    temp_size = (ulonglong)resource_id;
-                } while ((ulonglong)(longlong)(int)resource_id <
-                         (ulonglong)(*(longlong *)(temp_offset + 0x40) - data_offset >> 4));
+                    data_offset = *(int64_t *)(temp_offset + 0x38);
+                    temp_size = (uint64_t)resource_id;
+                } while ((uint64_t)(int64_t)(int)resource_id <
+                         (uint64_t)(*(int64_t *)(temp_offset + 0x40) - data_offset >> 4));
             }
             stack_index_18 = stack_index_18 + 1;
             stack_ptr_b0 = stack_ptr_b0 + 1;
             resource_array = stack_ptr_b0;
-        } while ((ulonglong)(longlong)stack_index_18 < resource_size);
+        } while ((uint64_t)(int64_t)stack_index_18 < resource_size);
     }
-    if (stack_ptr_80 != (longlong *)0x0) {
+    if (stack_ptr_80 != (int64_t *)0x0) {
         FUN_18064e900(stack_ptr_80);
     }
     return;

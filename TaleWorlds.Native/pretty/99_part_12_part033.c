@@ -167,8 +167,8 @@ void FUN_1807e0930(float *param_1,float *param_2,uint param_3,float *param_4,uin
 
 
 
-// 函数: void FUN_1807e0cf0(float *param_1,longlong param_2,uint param_3,float *param_4,uint64_t param_5,
-void FUN_1807e0cf0(float *param_1,longlong param_2,uint param_3,float *param_4,uint64_t param_5,
+// 函数: void FUN_1807e0cf0(float *param_1,int64_t param_2,uint param_3,float *param_4,uint64_t param_5,
+void FUN_1807e0cf0(float *param_1,int64_t param_2,uint param_3,float *param_4,uint64_t param_5,
                   uint64_t param_6,int param_7)
 
 {
@@ -234,7 +234,7 @@ void FUN_1807e0cf0(float *param_1,longlong param_2,uint param_3,float *param_4,u
   fVar24 = param_4[0xa3];
   if (param_7 != 0) {
                     // WARNING: Subroutine does not return
-    memset(param_2,0,(ulonglong)(param_3 * 6) << 2);
+    memset(param_2,0,(uint64_t)(param_3 * 6) << 2);
   }
   uVar33 = param_3 >> 1;
   if (uVar33 != 0) {
@@ -356,12 +356,12 @@ void FUN_1807e0d55(float *param_1,uint64_t param_2,uint64_t param_3)
   float fVar22;
   float fVar23;
   uint uVar24;
-  longlong in_RAX;
+  int64_t in_RAX;
   float *pfVar25;
   float *pfVar26;
   float *unaff_RBX;
-  longlong unaff_RBP;
-  longlong unaff_RSI;
+  int64_t unaff_RBP;
+  int64_t unaff_RSI;
   uint unaff_EDI;
   int in_R8D;
   uint64_t unaff_R14;
@@ -391,11 +391,11 @@ void FUN_1807e0d55(float *param_1,uint64_t param_2,uint64_t param_3)
   float unaff_XMM11_Dc;
   float unaff_XMM11_Dd;
   
-  fVar27 = (float)((ulonglong)param_3 >> 0x20);
+  fVar27 = (float)((uint64_t)param_3 >> 0x20);
   *(uint64_t *)(in_RAX + 8) = unaff_R14;
   if (!in_ZF) {
                     // WARNING: Subroutine does not return
-    memset(in_XMM0_Da,0,(ulonglong)(uint)(in_R8D * 6) << 2);
+    memset(in_XMM0_Da,0,(uint64_t)(uint)(in_R8D * 6) << 2);
   }
   uVar24 = unaff_EDI >> 1;
   if (uVar24 != 0) {
@@ -521,8 +521,8 @@ void FUN_1807e0f64(void)
   float *pfVar25;
   float *pfVar26;
   float *unaff_RBX;
-  longlong unaff_RBP;
-  longlong unaff_RSI;
+  int64_t unaff_RBP;
+  int64_t unaff_RSI;
   int unaff_EDI;
   
   fVar1 = unaff_RBX[1];
@@ -620,7 +620,7 @@ void FUN_1807e11a0(float *param_1,float *param_2,uint param_3,float *param_4,uin
   fVar12 = param_4[0x80];
   if (param_7 != 0) {
                     // WARNING: Subroutine does not return
-    memset(param_2,0,(ulonglong)(param_3 * 6) << 2,fVar2,fVar2);
+    memset(param_2,0,(uint64_t)(param_3 * 6) << 2,fVar2,fVar2);
   }
   if ((((((2e-05 <= ABS(fVar5)) || (2e-05 <= ABS(fVar6))) || (2e-05 <= ABS(fVar7))) ||
        ((2e-05 <= ABS(fVar8) || (2e-05 <= ABS(fVar9))))) ||

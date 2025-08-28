@@ -66,18 +66,18 @@
  * - 检查次级渲染对象指针
  * - 调用次级渲染对象析构函数
  */
-void rendering_system_cleanup_render_objects(longlong *render_context)
+void rendering_system_cleanup_render_objects(int64_t *render_context)
 {
   // 清理次级渲染对象（偏移0x08）
-  if ((longlong *)render_context[1] != (longlong *)0x0) {
+  if ((int64_t *)render_context[1] != (int64_t *)0x0) {
     // 调用次级渲染对象的析构函数（函数指针位于对象地址+0x38）
-    (**(code **)(*(longlong *)render_context[1] + FUNCTION_POINTER_OFFSET))();
+    (**(code **)(*(int64_t *)render_context[1] + FUNCTION_POINTER_OFFSET))();
   }
   
   // 清理主渲染对象（偏移0x00）
-  if ((longlong *)*render_context != (longlong *)0x0) {
+  if ((int64_t *)*render_context != (int64_t *)0x0) {
     // 调用主渲染对象的析构函数（函数指针位于对象地址+0x38）
-    (**(code **)(*(longlong *)*render_context + FUNCTION_POINTER_OFFSET))();
+    (**(code **)(*(int64_t *)*render_context + FUNCTION_POINTER_OFFSET))();
   }
   
   return;
@@ -103,7 +103,7 @@ void rendering_system_cleanup_render_objects(longlong *render_context)
  * - 计算法向量和纹理坐标
  * - 更新渲染对象属性
  */
-void rendering_system_advanced_data_processor(longlong data_processor, char process_flag)
+void rendering_system_advanced_data_processor(int64_t data_processor, char process_flag)
 {
   float *vertex_ptr;
   uint64_t *matrix_ptr;
@@ -115,25 +115,25 @@ void rendering_system_advanced_data_processor(longlong data_processor, char proc
   float transform_x;
   float transform_y;
   float transform_z;
-  longlong vertex_object;
-  longlong buffer_ptr_1;
-  longlong buffer_ptr_2;
-  longlong data_index;
-  longlong offset_calc;
+  int64_t vertex_object;
+  int64_t buffer_ptr_1;
+  int64_t buffer_ptr_2;
+  int64_t data_index;
+  int64_t offset_calc;
   int data_count;
-  ulonglong data_size;
+  uint64_t data_size;
   int process_index;
   int skip_index;
-  longlong loop_counter;
+  int64_t loop_counter;
   int current_index;
   bool should_process;
   uint64_t temp_data;
-  longlong *output_buffer_1;
-  longlong *output_buffer_2;
+  int64_t *output_buffer_1;
+  int64_t *output_buffer_2;
   
   // 计算数据数组大小（从0x18到0x10的差值除以8）
-  data_size = *(longlong *)(data_processor + OFFSET_DATA_ARRAY_END) - 
-              *(longlong *)(data_processor + OFFSET_DATA_ARRAY_START) >> 3;
+  data_size = *(int64_t *)(data_processor + OFFSET_DATA_ARRAY_END) - 
+              *(int64_t *)(data_processor + OFFSET_DATA_ARRAY_START) >> 3;
   data_count = (int)data_size;
   
   // 检查是否有数据需要处理并且处理标志已设置
@@ -163,7 +163,7 @@ void rendering_system_advanced_data_processor(longlong data_processor, char proc
         }
         
         // 获取当前顶点对象
-        vertex_object = *(longlong *)(*(longlong *)(data_processor + OFFSET_DATA_ARRAY_START) + 
+        vertex_object = *(int64_t *)(*(int64_t *)(data_processor + OFFSET_DATA_ARRAY_START) + 
                                        loop_counter * 8);
         
         // 读取纹理坐标
@@ -175,7 +175,7 @@ void rendering_system_advanced_data_processor(longlong data_processor, char proc
         normal_v = *(float *)(vertex_object + OFFSET_NORMAL_DATA + 4);
         
         // 计算输出偏移量
-        offset_calc = (longlong)(skip_index * 4);
+        offset_calc = (int64_t)(skip_index * 4);
         
         // 计算并写入顶点位置数据
         *(float *)(buffer_ptr_1 + offset_calc * 4) = 
@@ -194,7 +194,7 @@ void rendering_system_advanced_data_processor(longlong data_processor, char proc
         normal_v = *(float *)(vertex_object + OFFSET_NORMAL_DATA + 4);
         
         // 计算变换数据偏移量
-        offset_calc = (longlong)skip_index * 0x60;
+        offset_calc = (int64_t)skip_index * 0x60;
         vertex_ptr = (float *)(offset_calc + 0x40 + buffer_ptr_2);
         
         // 写入变换后的顶点数据
@@ -206,11 +206,11 @@ void rendering_system_advanced_data_processor(longlong data_processor, char proc
         
         // 写入颜色数据
         *(float *)(offset_calc + 0x4c + buffer_ptr_2) =
-             (float)*(byte *)(*(longlong *)(*(longlong *)(data_processor + OFFSET_DATA_ARRAY_START) + 
+             (float)*(byte *)(*(int64_t *)(*(int64_t *)(data_processor + OFFSET_DATA_ARRAY_START) + 
                                loop_counter * 8) + 0x149);
         
         // 重新获取顶点对象
-        vertex_object = *(longlong *)(*(longlong *)(data_processor + OFFSET_DATA_ARRAY_START) + 
+        vertex_object = *(int64_t *)(*(int64_t *)(data_processor + OFFSET_DATA_ARRAY_START) + 
                                      loop_counter * 8);
         
         // 读取变换数据
@@ -236,7 +236,7 @@ void rendering_system_advanced_data_processor(longlong data_processor, char proc
         vertex_ptr[3] = FLOAT_INFINITY;
         
         // 重新获取顶点对象
-        vertex_object = *(longlong *)(*(longlong *)(data_processor + OFFSET_DATA_ARRAY_START) + 
+        vertex_object = *(int64_t *)(*(int64_t *)(data_processor + OFFSET_DATA_ARRAY_START) + 
                                      loop_counter * 8);
         
         // 复制矩阵数据
@@ -262,16 +262,16 @@ void rendering_system_advanced_data_processor(longlong data_processor, char proc
         
         // 复制标志数据
         *(int32_t *)(offset_calc + 0xc + buffer_ptr_2) =
-             *(int32_t *)(*(longlong *)(*(longlong *)(data_processor + OFFSET_DATA_ARRAY_START) + 
+             *(int32_t *)(*(int64_t *)(*(int64_t *)(data_processor + OFFSET_DATA_ARRAY_START) + 
                                loop_counter * 8) + OFFSET_FLAG_DATA);
         *(int32_t *)(offset_calc + 0x1c + buffer_ptr_2) =
-             *(int32_t *)(*(longlong *)(*(longlong *)(data_processor + OFFSET_DATA_ARRAY_START) + 
+             *(int32_t *)(*(int64_t *)(*(int64_t *)(data_processor + OFFSET_DATA_ARRAY_START) + 
                                loop_counter * 8) + 0x144);
         
         // 清理顶点对象状态
-        *(int8_t *)(*(longlong *)(*(longlong *)(data_processor + OFFSET_DATA_ARRAY_START) + 
+        *(int8_t *)(*(int64_t *)(*(int64_t *)(data_processor + OFFSET_DATA_ARRAY_START) + 
                        loop_counter * 8) + 0x50) = 0;
-        *(int32_t *)(*(longlong *)(*(longlong *)(data_processor + OFFSET_DATA_ARRAY_START) + 
+        *(int32_t *)(*(int64_t *)(*(int64_t *)(data_processor + OFFSET_DATA_ARRAY_START) + 
                        loop_counter * 8) + 0x58) =
              *(int32_t *)(data_processor + 4);
         
@@ -289,10 +289,10 @@ void rendering_system_advanced_data_processor(longlong data_processor, char proc
                   output_buffer_1);
     
     // 释放缓冲区
-    if (output_buffer_1 != (longlong *)0x0) {
+    if (output_buffer_1 != (int64_t *)0x0) {
       (**(code **)(*output_buffer_1 + FUNCTION_POINTER_OFFSET))();
     }
-    if (output_buffer_2 != (longlong *)0x0) {
+    if (output_buffer_2 != (int64_t *)0x0) {
       (**(code **)(*output_buffer_2 + FUNCTION_POINTER_OFFSET))();
     }
   }
@@ -317,23 +317,23 @@ void rendering_system_advanced_data_processor(longlong data_processor, char proc
  * - 配置渲染上下文
  * - 设置默认参数
  */
-void rendering_system_initialize_state(longlong render_context)
+void rendering_system_initialize_state(int64_t render_context)
 {
-  longlong context_data;
+  int64_t context_data;
   int8_t security_stack_1 [32];
   uint64_t security_cookie;
   void *security_ptr_1;
   int8_t *security_ptr_2;
   int32_t security_param;
   int8_t security_stack_2 [32];
-  ulonglong security_hash;
+  uint64_t security_hash;
   
   // 设置安全栈检查
   security_cookie = 0xfffffffffffffffe;
-  security_hash = GET_SECURITY_COOKIE() ^ (ulonglong)security_stack_1;
+  security_hash = GET_SECURITY_COOKIE() ^ (uint64_t)security_stack_1;
   
   // 获取上下文数据
-  context_data = *(longlong *)(render_context + 0x9650);
+  context_data = *(int64_t *)(render_context + 0x9650);
   
   // 设置全局状态变量
   render_system_control_resource = 0x80;
@@ -368,9 +368,9 @@ void rendering_system_initialize_state(longlong render_context)
  * - 执行渲染命令
  * - 清理渲染资源
  */
-void rendering_system_advanced_render_control(longlong render_context, longlong render_params, 
-                                              longlong *render_data, uint64_t data_format,
-                                              longlong *texture_data, uint64_t shader_data, 
+void rendering_system_advanced_render_control(int64_t render_context, int64_t render_params, 
+                                              int64_t *render_data, uint64_t data_format,
+                                              int64_t *texture_data, uint64_t shader_data, 
                                               int32_t render_mode)
 {
   int *state_ptr;
@@ -381,17 +381,17 @@ void rendering_system_advanced_render_control(longlong render_context, longlong 
   int8_t render_flag;
   int32_t mode_param;
   int32_t *shader_params;
-  longlong *render_object;
+  int64_t *render_object;
   uint64_t *vertex_data;
   uint64_t *normal_data;
   uint64_t *texcoord_data;
-  longlong resource_manager;
+  int64_t resource_manager;
   byte resource_flag;
   uint64_t global_data;
   int8_t security_stack [32];
   uint64_t *security_ptr;
   int8_t security_flag;
-  longlong *render_buffer;
+  int64_t *render_buffer;
   void *buffer_ptr;
   uint64_t *data_ptr;
   int32_t buffer_param;
@@ -406,14 +406,14 @@ void rendering_system_advanced_render_control(longlong render_context, longlong 
   int32_t buffer_size_7;
   int32_t buffer_size_8;
   int32_t buffer_size_9;
-  longlong *resource_chain_1;
-  longlong *resource_chain_2;
-  longlong *resource_chain_3;
-  longlong *resource_chain_4;
-  longlong *resource_chain_5;
-  longlong *resource_chain_6;
-  longlong *resource_chain_7;
-  longlong *resource_chain_8;
+  int64_t *resource_chain_1;
+  int64_t *resource_chain_2;
+  int64_t *resource_chain_3;
+  int64_t *resource_chain_4;
+  int64_t *resource_chain_5;
+  int64_t *resource_chain_6;
+  int64_t *resource_chain_7;
+  int64_t *resource_chain_8;
   uint64_t resource_data_1;
   int32_t resource_data_2;
   int16_t resource_data_3;
@@ -425,18 +425,18 @@ void rendering_system_advanced_render_control(longlong render_context, longlong 
   uint64_t resource_data_9;
   uint64_t resource_data_10;
   uint64_t resource_data_11;
-  longlong render_param_1;
-  longlong render_param_2;
+  int64_t render_param_1;
+  int64_t render_param_2;
   void *render_ptr;
   int8_t *render_data_ptr;
   int32_t render_data_param;
   int8_t render_stack [136];
   uint64_t render_buffer_data [40];
-  ulonglong security_hash;
+  uint64_t security_hash;
   
   // 设置安全栈检查
   resource_data_10 = 0xfffffffffffffffe;
-  security_hash = GET_SECURITY_COOKIE() ^ (ulonglong)security_stack;
+  security_hash = GET_SECURITY_COOKIE() ^ (uint64_t)security_stack;
   
   // 设置渲染数据
   render_buffer = render_data;
@@ -467,42 +467,42 @@ void rendering_system_advanced_render_control(longlong render_context, longlong 
   }
   
   // 初始化渲染对象
-  render_object = (longlong *)FUN_1800bde30();
-  if (render_object != (longlong *)0x0) {
+  render_object = (int64_t *)FUN_1800bde30();
+  if (render_object != (int64_t *)0x0) {
     resource_chain_2 = render_object;
     (**(code **)(*render_object + 0x28))(render_object);
   }
   
   // 设置渲染对象链
-  resource_chain_2 = *(longlong **)(shader_params + 0x2662);
-  *(longlong **)(shader_params + 0x2662) = render_object;
-  if (resource_chain_2 != (longlong *)0x0) {
+  resource_chain_2 = *(int64_t **)(shader_params + 0x2662);
+  *(int64_t **)(shader_params + 0x2662) = render_object;
+  if (resource_chain_2 != (int64_t *)0x0) {
     (**(code **)(*resource_chain_2 + FUNCTION_POINTER_OFFSET))();
   }
   
   // 设置渲染状态
   *shader_params = RENDER_STATE_ACTIVE;
   *(uint64_t *)(shader_params + 0x4706) = 0;
-  shader_params[0x4708] = (float)*(ushort *)((longlong)texture_data + 0x32c);
-  shader_params[0x4709] = (float)*(ushort *)((longlong)texture_data + 0x32e);
+  shader_params[0x4708] = (float)*(ushort *)((int64_t)texture_data + 0x32c);
+  shader_params[0x4709] = (float)*(ushort *)((int64_t)texture_data + 0x32e);
   shader_params[0x470a] = 0;
   shader_params[0x470b] = FLOAT_ONE;
-  shader_params[0xd62] = (uint)*(ushort *)((longlong)texture_data + 0x32c);
-  shader_params[0xd63] = (uint)*(ushort *)((longlong)texture_data + 0x32e);
-  shader_params[0xd64] = (uint)*(ushort *)((longlong)texture_data + 0x32c);
-  shader_params[0xd65] = (uint)*(ushort *)((longlong)texture_data + 0x32e);
+  shader_params[0xd62] = (uint)*(ushort *)((int64_t)texture_data + 0x32c);
+  shader_params[0xd63] = (uint)*(ushort *)((int64_t)texture_data + 0x32e);
+  shader_params[0xd64] = (uint)*(ushort *)((int64_t)texture_data + 0x32c);
+  shader_params[0xd65] = (uint)*(ushort *)((int64_t)texture_data + 0x32e);
   shader_params[1] = RENDER_STATE_FLAG_1;
   shader_params[0x473c] = 0;
-  *(int8_t *)((longlong)shader_params + 0x11c37) = 1;
-  *(byte *)((longlong)shader_params + 0x1bd9) = 
-      *(byte *)((longlong)shader_params + 0x1bd9) | RENDER_FLAG_MODIFIED;
+  *(int8_t *)((int64_t)shader_params + 0x11c37) = 1;
+  *(byte *)((int64_t)shader_params + 0x1bd9) = 
+      *(byte *)((int64_t)shader_params + 0x1bd9) | RENDER_FLAG_MODIFIED;
   *(byte *)(shader_params + 0x6f6) = 
       *(byte *)(shader_params + 0x6f6) | RENDER_FLAG_ACTIVE_1;
-  *(int16_t *)((longlong)shader_params + 0x9a31) = 0;
+  *(int16_t *)((int64_t)shader_params + 0x9a31) = 0;
   *(int8_t *)(shader_params + 0x4931) = 1;
   
   // 检查是否需要高级渲染
-  if (*(longlong *)(shader_params + 0x2674) != 0) {
+  if (*(int64_t *)(shader_params + 0x2674) != 0) {
     // 设置高级渲染参数
     buffer_size_3 = 1;
     buffer_size_5 = 0x1018a;
@@ -525,22 +525,22 @@ void rendering_system_advanced_render_control(longlong render_context, longlong 
     *(uint64_t *)(shader_params + 0x2686) = 0;
     resource_chain_3 = resource_chain_1;
     
-    if (resource_chain_1 != (longlong *)0x0) {
+    if (resource_chain_1 != (int64_t *)0x0) {
       (**(code **)(*resource_chain_1 + 0x28))(resource_chain_1);
     }
     
-    resource_chain_3 = *(longlong **)(shader_params + 0x25aa);
-    *(longlong **)(shader_params + 0x25aa) = render_object;
-    if (resource_chain_3 != (longlong *)0x0) {
+    resource_chain_3 = *(int64_t **)(shader_params + 0x25aa);
+    *(int64_t **)(shader_params + 0x25aa) = render_object;
+    if (resource_chain_3 != (int64_t *)0x0) {
       (**(code **)(*resource_chain_3 + FUNCTION_POINTER_OFFSET))();
     }
     
     // 设置纹理数据
     resource_chain_4 = texture_data;
     (**(code **)(*texture_data + 0x28))(texture_data);
-    resource_chain_4 = *(longlong **)(shader_params + 0x25a4);
-    *(longlong **)(shader_params + 0x25a4) = texture_data;
-    if (resource_chain_4 != (longlong *)0x0) {
+    resource_chain_4 = *(int64_t **)(shader_params + 0x25a4);
+    *(int64_t **)(shader_params + 0x25a4) = texture_data;
+    if (resource_chain_4 != (int64_t *)0x0) {
       (**(code **)(*resource_chain_4 + FUNCTION_POINTER_OFFSET))();
     }
     
@@ -550,27 +550,27 @@ void rendering_system_advanced_render_control(longlong render_context, longlong 
     shader_params[0xd5e] = render_mode;
     
     // 清理资源链
-    resource_chain_5 = *(longlong **)(shader_params + 0x265c);
+    resource_chain_5 = *(int64_t **)(shader_params + 0x265c);
     *(uint64_t *)(shader_params + 0x265c) = 0;
-    if (resource_chain_5 != (longlong *)0x0) {
+    if (resource_chain_5 != (int64_t *)0x0) {
       (**(code **)(*resource_chain_5 + FUNCTION_POINTER_OFFSET))();
     }
     
     // 创建新资源对象
-    render_object = (longlong *)FUN_1800be440();
-    if (render_object != (longlong *)0x0) {
+    render_object = (int64_t *)FUN_1800be440();
+    if (render_object != (int64_t *)0x0) {
       resource_chain_6 = render_object;
       (**(code **)(*render_object + 0x28))(render_object);
     }
     
-    resource_chain_6 = *(longlong **)(shader_params + 0x2660);
-    *(longlong **)(shader_params + 0x2660) = render_object;
-    if (resource_chain_6 != (longlong *)0x0) {
+    resource_chain_6 = *(int64_t **)(shader_params + 0x2660);
+    *(int64_t **)(shader_params + 0x2660) = render_object;
+    if (resource_chain_6 != (int64_t *)0x0) {
       (**(code **)(*resource_chain_6 + FUNCTION_POINTER_OFFSET))();
     }
     
     // 获取渲染参数
-    resource_manager = *(longlong *)(*(longlong *)(render_context + 0x38) + 0x60b80);
+    resource_manager = *(int64_t *)(*(int64_t *)(render_context + 0x38) + 0x60b80);
     if (resource_manager == 0) {
       buffer_size_7 = FLOAT_ONE;
       buffer_size_8 = FLOAT_ONE;
@@ -636,19 +636,19 @@ void rendering_system_advanced_render_control(longlong render_context, longlong 
     normal_data[0x14] = texcoord_data[0x14];
     normal_data[0x15] = global_data;
     
-    mode_param = *(int32_t *)((longlong)texcoord_data + 0xb4);
+    mode_param = *(int32_t *)((int64_t)texcoord_data + 0xb4);
     texture_param_1 = *(int32_t *)(texcoord_data + 0x17);
-    texture_param_2 = *(int32_t *)((longlong)texcoord_data + 0xbc);
+    texture_param_2 = *(int32_t *)((int64_t)texcoord_data + 0xbc);
     *(int32_t *)(normal_data + 0x16) = *(int32_t *)(texcoord_data + 0x16);
-    *(int32_t *)((longlong)normal_data + 0xb4) = mode_param;
+    *(int32_t *)((int64_t)normal_data + 0xb4) = mode_param;
     *(int32_t *)(normal_data + 0x17) = texture_param_1;
-    *(int32_t *)((longlong)normal_data + 0xbc) = texture_param_2;
+    *(int32_t *)((int64_t)normal_data + 0xbc) = texture_param_2;
     
     // 执行渲染操作
     FUN_18024b8d0(shader_params);
     
     // 检查渲染上下文
-    if (*(longlong *)(render_context + 0x38) == -14000) {
+    if (*(int64_t *)(render_context + 0x38) == -14000) {
       *(int8_t *)(shader_params + 0x473d) = 0;
     } else {
       FUN_1801c1c40(shader_params + 0x4740);
@@ -661,33 +661,33 @@ void rendering_system_advanced_render_control(longlong render_context, longlong 
         *(byte *)(shader_params + 0x6f6) | RENDER_FLAG_ACTIVE_2;
     
     // 获取渲染管理器
-    render_object = *(longlong **)(render_params + 0x3580);
-    if (render_object != (longlong *)0x0) {
+    render_object = *(int64_t **)(render_params + 0x3580);
+    if (render_object != (int64_t *)0x0) {
       resource_chain_7 = render_object;
       (**(code **)(*render_object + 0x28))(render_object);
     }
     
-    resource_chain_7 = *(longlong **)(shader_params + 0xd60);
-    *(longlong **)(shader_params + 0xd60) = render_object;
-    if (resource_chain_7 != (longlong *)0x0) {
+    resource_chain_7 = *(int64_t **)(shader_params + 0xd60);
+    *(int64_t **)(shader_params + 0xd60) = render_object;
+    if (resource_chain_7 != (int64_t *)0x0) {
       (**(code **)(*resource_chain_7 + FUNCTION_POINTER_OFFSET))();
     }
     
     // 设置渲染参数
-    shader_params[0x4a7d] = *(int32_t *)(*(longlong *)(render_context + 0x38) + 0x3ec4);
-    shader_params[0x4a7e] = *(float *)(*(longlong *)(render_context + 0x38) + 0x3ec8) * 0.05 *
-                               *(float *)(*(longlong *)(*(longlong *)(render_context + 0x38) + 0x81f0) + 0xc);
+    shader_params[0x4a7d] = *(int32_t *)(*(int64_t *)(render_context + 0x38) + 0x3ec4);
+    shader_params[0x4a7e] = *(float *)(*(int64_t *)(render_context + 0x38) + 0x3ec8) * 0.05 *
+                               *(float *)(*(int64_t *)(*(int64_t *)(render_context + 0x38) + 0x81f0) + 0xc);
     *(int8_t *)(shader_params + 0x718) = 1;
     
     // 执行渲染函数
     render_flag = func_0x0001800e2bf0(system_parameter_buffer, shader_params);
-    *(int8_t *)((longlong)shader_params + 0x1c61) = render_flag;
+    *(int8_t *)((int64_t)shader_params + 0x1c61) = render_flag;
     
     // 检查渲染状态
     if (shader_params[2] != -1) {
       resource_flag = (byte)shader_params[6];
     }
-    *(byte *)((longlong)shader_params + 0x1c62) = resource_flag & 1;
+    *(byte *)((int64_t)shader_params + 0x1c62) = resource_flag & 1;
     
     mode_param = func_0x00018024c420(shader_params);
     shader_params[0x719] = mode_param;
@@ -710,26 +710,26 @@ void rendering_system_advanced_render_control(longlong render_context, longlong 
     resource_data_2 = 0;
     
     // 检查是否需要特殊渲染处理
-    if (*(char *)(*(longlong *)(render_context + 0x38) + 0x27b8) != '\0') {
-      render_object = (longlong *)
-               **(uint64_t **)(*(longlong *)(*(longlong *)(render_context + 0x38) + 0x81f8) + 0xf0);
+    if (*(char *)(*(int64_t *)(render_context + 0x38) + 0x27b8) != '\0') {
+      render_object = (int64_t *)
+               **(uint64_t **)(*(int64_t *)(*(int64_t *)(render_context + 0x38) + 0x81f8) + 0xf0);
       (**(code **)(*render_object + 0xa8))(render_object, &render_buffer);
       
-      if (render_buffer != (longlong *)0x0) {
+      if (render_buffer != (int64_t *)0x0) {
         resource_manager = (**(code **)(*render_buffer + 0x178))();
         *(int32_t *)(resource_manager + 0x2c4) = FLOAT_ONE;
         security_ptr = &resource_data_1;
         (**(code **)(*render_buffer + 0x1c8))
-                  (render_buffer, shader_params, *(longlong *)(render_context + 0x38),
-                   *(longlong *)(*(longlong *)(render_context + 0x38) + 0x81f8) + 0x70);
+                  (render_buffer, shader_params, *(int64_t *)(render_context + 0x38),
+                   *(int64_t *)(*(int64_t *)(render_context + 0x38) + 0x81f8) + 0x70);
       }
       
       security_ptr = &resource_data_1;
       (**(code **)(*render_buffer + 0x1c8))
-                (render_buffer, shader_params, *(longlong *)(render_context + 0x38),
-                 *(longlong *)(*(longlong *)(render_context + 0x38) + 0x81f8) + 0x70);
+                (render_buffer, shader_params, *(int64_t *)(render_context + 0x38),
+                 *(int64_t *)(*(int64_t *)(render_context + 0x38) + 0x81f8) + 0x70);
       
-      if (render_buffer != (longlong *)0x0) {
+      if (render_buffer != (int64_t *)0x0) {
         (**(code **)(*render_buffer + FUNCTION_POINTER_OFFSET))();
       }
     }
@@ -742,17 +742,17 @@ void rendering_system_advanced_render_control(longlong render_context, longlong 
     UNLOCK();
     
     // 存储渲染结果
-    *(int32_t **)(render_params + 0x9a48 + (longlong)state_value * 8) = shader_params;
+    *(int32_t **)(render_params + 0x9a48 + (int64_t)state_value * 8) = shader_params;
     global_data = *(uint64_t *)(render_params + 0x9a3c);
     *(uint64_t *)(shader_params + 0x268d) = *(uint64_t *)(render_params + 0x9a34);
     *(uint64_t *)(shader_params + 0x268f) = global_data;
     
-    if (resource_chain_1 != (longlong *)0x0) {
+    if (resource_chain_1 != (int64_t *)0x0) {
       (**(code **)(*resource_chain_1 + FUNCTION_POINTER_OFFSET))();
     }
     
     // 执行最终渲染操作
-    FUN_1808fc050(security_hash ^ (ulonglong)security_stack);
+    FUN_1808fc050(security_hash ^ (uint64_t)security_stack);
   }
   
   // 清理渲染资源
@@ -771,15 +771,15 @@ void rendering_system_advanced_render_control(longlong render_context, longlong 
   buffer_param = 0xf;
   
   // 创建渲染管理器
-  render_object = (longlong *)FUN_1801f20c0();
-  if (render_object != (longlong *)0x0) {
+  render_object = (int64_t *)FUN_1801f20c0();
+  if (render_object != (int64_t *)0x0) {
     resource_chain_8 = render_object;
     (**(code **)(*render_object + 0x28))(render_object);
   }
   
-  resource_chain_8 = *(longlong **)(shader_params + 0x2674);
-  *(longlong **)(shader_params + 0x2674) = render_object;
-  if (resource_chain_8 != (longlong *)0x0) {
+  resource_chain_8 = *(int64_t **)(shader_params + 0x2674);
+  *(int64_t **)(shader_params + 0x2674) = render_object;
+  if (resource_chain_8 != (int64_t *)0x0) {
     (**(code **)(*resource_chain_8 + FUNCTION_POINTER_OFFSET))();
   }
   

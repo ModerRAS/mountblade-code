@@ -7,8 +7,8 @@ void FUN_180892011(void)
 
 {
   int iVar1;
-  longlong unaff_RBP;
-  longlong unaff_RSI;
+  int64_t unaff_RBP;
+  int64_t unaff_RSI;
   uint64_t in_stack_00000030;
   
   iVar1 = func_0x0001808c8710(in_stack_00000030);

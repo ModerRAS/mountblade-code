@@ -36,8 +36,8 @@ void initialize_audio_system(void)
   char is_initialized;
   void **module_registry;
   int compare_result;
-  longlong *system_handle;
-  longlong allocation_size;
+  int64_t *system_handle;
+  int64_t allocation_size;
   void **current_node;
   void **parent_node;
   void **next_node;
@@ -45,11 +45,11 @@ void initialize_audio_system(void)
   void (*audio_handler)(void);
   
   // 获取系统句柄
-  system_handle = (longlong *)get_system_handle();
+  system_handle = (int64_t *)get_system_handle();
   module_registry = (void **)*system_handle;
   
   // 检查根节点是否已初始化
-  is_initialized = *(char *)((longlong)module_registry[1] + 0x19);
+  is_initialized = *(char *)((int64_t)module_registry[1] + 0x19);
   audio_handler = process_audio_data;
   parent_node = module_registry;
   current_node = (void **)module_registry[1];
@@ -66,7 +66,7 @@ void initialize_audio_system(void)
     }
     parent_node = current_node;
     current_node = next_node;
-    is_initialized = *(char *)((longlong)next_node + 0x19);
+    is_initialized = *(char *)((int64_t)next_node + 0x19);
   }
   
   // 如果未找到或需要插入，创建新节点
@@ -101,8 +101,8 @@ void initialize_network_module(void)
   char is_initialized;
   void **module_registry;
   int compare_result;
-  longlong *system_handle;
-  longlong allocation_size;
+  int64_t *system_handle;
+  int64_t allocation_size;
   void **current_node;
   void **parent_node;
   void **next_node;
@@ -110,11 +110,11 @@ void initialize_network_module(void)
   void (*network_handler)(void);
   
   // 获取系统句柄
-  system_handle = (longlong *)get_system_handle();
+  system_handle = (int64_t *)get_system_handle();
   module_registry = (void **)*system_handle;
   
   // 检查根节点是否已初始化
-  is_initialized = *(char *)((longlong)module_registry[1] + 0x19);
+  is_initialized = *(char *)((int64_t)module_registry[1] + 0x19);
   network_handler = process_network_data;
   parent_node = module_registry;
   current_node = (void **)module_registry[1];
@@ -131,7 +131,7 @@ void initialize_network_module(void)
     }
     parent_node = current_node;
     current_node = next_node;
-    is_initialized = *(char *)((longlong)next_node + 0x19);
+    is_initialized = *(char *)((int64_t)next_node + 0x19);
   }
   
   // 如果未找到或需要插入，创建新节点
@@ -166,8 +166,8 @@ void initialize_graphics_system(void)
   char is_initialized;
   void **module_registry;
   int compare_result;
-  longlong *system_handle;
-  longlong allocation_size;
+  int64_t *system_handle;
+  int64_t allocation_size;
   void **current_node;
   void **parent_node;
   void **next_node;
@@ -175,11 +175,11 @@ void initialize_graphics_system(void)
   void (*graphics_handler)(void);
   
   // 获取系统句柄
-  system_handle = (longlong *)get_system_handle();
+  system_handle = (int64_t *)get_system_handle();
   module_registry = (void **)*system_handle;
   
   // 检查根节点是否已初始化
-  is_initialized = *(char *)((longlong)module_registry[1] + 0x19);
+  is_initialized = *(char *)((int64_t)module_registry[1] + 0x19);
   graphics_handler = process_graphics_data;
   parent_node = module_registry;
   current_node = (void **)module_registry[1];
@@ -196,7 +196,7 @@ void initialize_graphics_system(void)
     }
     parent_node = current_node;
     current_node = next_node;
-    is_initialized = *(char *)((longlong)next_node + 0x19);
+    is_initialized = *(char *)((int64_t)next_node + 0x19);
   }
   
   // 如果未找到或需要插入，创建新节点
@@ -231,8 +231,8 @@ void initialize_input_system(void)
   char is_initialized;
   void **module_registry;
   int compare_result;
-  longlong *system_handle;
-  longlong allocation_size;
+  int64_t *system_handle;
+  int64_t allocation_size;
   void **current_node;
   void **parent_node;
   void **next_node;
@@ -240,11 +240,11 @@ void initialize_input_system(void)
   void *input_handler;
   
   // 获取系统句柄
-  system_handle = (longlong *)get_system_handle();
+  system_handle = (int64_t *)get_system_handle();
   module_registry = (void **)*system_handle;
   
   // 检查根节点是否已初始化
-  is_initialized = *(char *)((longlong)module_registry[1] + 0x19);
+  is_initialized = *(char *)((int64_t)module_registry[1] + 0x19);
   input_handler = NULL;  // 输入处理器为空
   parent_node = module_registry;
   current_node = (void **)module_registry[1];
@@ -261,7 +261,7 @@ void initialize_input_system(void)
     }
     parent_node = current_node;
     current_node = next_node;
-    is_initialized = *(char *)((longlong)next_node + 0x19);
+    is_initialized = *(char *)((int64_t)next_node + 0x19);
   }
   
   // 如果未找到或需要插入，创建新节点
@@ -296,8 +296,8 @@ void initialize_physics_system(void)
   char is_initialized;
   void **module_registry;
   int compare_result;
-  longlong *system_handle;
-  longlong allocation_size;
+  int64_t *system_handle;
+  int64_t allocation_size;
   void **current_node;
   void **parent_node;
   void **next_node;
@@ -305,11 +305,11 @@ void initialize_physics_system(void)
   void (*physics_handler)(void);
   
   // 获取系统句柄
-  system_handle = (longlong *)get_system_handle();
+  system_handle = (int64_t *)get_system_handle();
   module_registry = (void **)*system_handle;
   
   // 检查根节点是否已初始化
-  is_initialized = *(char *)((longlong)module_registry[1] + 0x19);
+  is_initialized = *(char *)((int64_t)module_registry[1] + 0x19);
   physics_handler = process_physics_data;
   parent_node = module_registry;
   current_node = (void **)module_registry[1];
@@ -326,7 +326,7 @@ void initialize_physics_system(void)
     }
     parent_node = current_node;
     current_node = next_node;
-    is_initialized = *(char *)((longlong)next_node + 0x19);
+    is_initialized = *(char *)((int64_t)next_node + 0x19);
   }
   
   // 如果未找到或需要插入，创建新节点
@@ -361,8 +361,8 @@ void initialize_ai_system(void)
   char is_initialized;
   void **module_registry;
   int compare_result;
-  longlong *system_handle;
-  longlong allocation_size;
+  int64_t *system_handle;
+  int64_t allocation_size;
   void **current_node;
   void **parent_node;
   void **next_node;
@@ -370,11 +370,11 @@ void initialize_ai_system(void)
   void *ai_handler;
   
   // 获取系统句柄
-  system_handle = (longlong *)get_system_handle();
+  system_handle = (int64_t *)get_system_handle();
   module_registry = (void **)*system_handle;
   
   // 检查根节点是否已初始化
-  is_initialized = *(char *)((longlong)module_registry[1] + 0x19);
+  is_initialized = *(char *)((int64_t)module_registry[1] + 0x19);
   ai_handler = NULL;  // AI处理器为空
   parent_node = module_registry;
   current_node = (void **)module_registry[1];
@@ -391,7 +391,7 @@ void initialize_ai_system(void)
     }
     parent_node = current_node;
     current_node = next_node;
-    is_initialized = *(char *)((longlong)next_node + 0x19);
+    is_initialized = *(char *)((int64_t)next_node + 0x19);
   }
   
   // 如果未找到或需要插入，创建新节点
@@ -426,8 +426,8 @@ void initialize_animation_system(void)
   char is_initialized;
   void **module_registry;
   int compare_result;
-  longlong *system_handle;
-  longlong allocation_size;
+  int64_t *system_handle;
+  int64_t allocation_size;
   void **current_node;
   void **parent_node;
   void **next_node;
@@ -435,11 +435,11 @@ void initialize_animation_system(void)
   void *animation_handler;
   
   // 获取系统句柄
-  system_handle = (longlong *)get_system_handle();
+  system_handle = (int64_t *)get_system_handle();
   module_registry = (void **)*system_handle;
   
   // 检查根节点是否已初始化
-  is_initialized = *(char *)((longlong)module_registry[1] + 0x19);
+  is_initialized = *(char *)((int64_t)module_registry[1] + 0x19);
   animation_handler = &animation_system_handler;  // 动画处理器指针
   parent_node = module_registry;
   current_node = (void **)module_registry[1];
@@ -456,7 +456,7 @@ void initialize_animation_system(void)
     }
     parent_node = current_node;
     current_node = next_node;
-    is_initialized = *(char *)((longlong)next_node + 0x19);
+    is_initialized = *(char *)((int64_t)next_node + 0x19);
   }
   
   // 如果未找到或需要插入，创建新节点
@@ -491,8 +491,8 @@ void initialize_particle_system(void)
   char is_initialized;
   void **module_registry;
   int compare_result;
-  longlong *system_handle;
-  longlong allocation_size;
+  int64_t *system_handle;
+  int64_t allocation_size;
   void **current_node;
   void **parent_node;
   void **next_node;
@@ -500,11 +500,11 @@ void initialize_particle_system(void)
   void *particle_handler;
   
   // 获取系统句柄
-  system_handle = (longlong *)get_system_handle();
+  system_handle = (int64_t *)get_system_handle();
   module_registry = (void **)*system_handle;
   
   // 检查根节点是否已初始化
-  is_initialized = *(char *)((longlong)module_registry[1] + 0x19);
+  is_initialized = *(char *)((int64_t)module_registry[1] + 0x19);
   particle_handler = NULL;  // 粒子处理器为空
   parent_node = module_registry;
   current_node = (void **)module_registry[1];
@@ -521,7 +521,7 @@ void initialize_particle_system(void)
     }
     parent_node = current_node;
     current_node = next_node;
-    is_initialized = *(char *)((longlong)next_node + 0x19);
+    is_initialized = *(char *)((int64_t)next_node + 0x19);
   }
   
   // 如果未找到或需要插入，创建新节点
@@ -587,17 +587,17 @@ void FUN_1800325a0(void)
   char cVar1;
   uint64_t *puVar2;
   int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  int64_t *plVar4;
+  int64_t lVar5;
   uint64_t *puVar6;
   uint64_t *puVar7;
   uint64_t *puVar8;
   uint64_t *puStackX_10;
   code *pcStackX_18;
   
-  plVar4 = (longlong *)FUN_18008d070();
+  plVar4 = (int64_t *)FUN_18008d070();
   puVar2 = (uint64_t *)*plVar4;
-  cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
+  cVar1 = *(char *)((int64_t)puVar2[1] + 0x19);
   pcStackX_18 = FUN_18025cc00;
   puVar7 = puVar2;
   puVar6 = (uint64_t *)puVar2[1];
@@ -612,7 +612,7 @@ void FUN_1800325a0(void)
     }
     puVar7 = puVar6;
     puVar6 = puVar8;
-    cVar1 = *(char *)((longlong)puVar8 + 0x19);
+    cVar1 = *(char *)((int64_t)puVar8 + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&system_memory_10a0,puVar7 + 4,0x10), iVar3 < 0)) {
     lVar5 = FUN_18008f0d0(plVar4);
@@ -639,17 +639,17 @@ void FUN_1800326a0(void)
   char cVar1;
   uint64_t *puVar2;
   int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  int64_t *plVar4;
+  int64_t lVar5;
   uint64_t *puVar6;
   uint64_t *puVar7;
   uint64_t *puVar8;
   uint64_t *puStackX_10;
   code *pcStackX_18;
   
-  plVar4 = (longlong *)FUN_18008d070();
+  plVar4 = (int64_t *)FUN_18008d070();
   puVar2 = (uint64_t *)*plVar4;
-  cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
+  cVar1 = *(char *)((int64_t)puVar2[1] + 0x19);
   pcStackX_18 = FUN_18025c000;
   puVar7 = puVar2;
   puVar6 = (uint64_t *)puVar2[1];
@@ -664,7 +664,7 @@ void FUN_1800326a0(void)
     }
     puVar7 = puVar6;
     puVar6 = puVar8;
-    cVar1 = *(char *)((longlong)puVar8 + 0x19);
+    cVar1 = *(char *)((int64_t)puVar8 + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&system_memory_1078,puVar7 + 4,0x10), iVar3 < 0)) {
     lVar5 = FUN_18008f0d0(plVar4);
@@ -691,17 +691,17 @@ void FUN_1800327a0(void)
   char cVar1;
   uint64_t *puVar2;
   int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  int64_t *plVar4;
+  int64_t lVar5;
   uint64_t *puVar6;
   uint64_t *puVar7;
   uint64_t *puVar8;
   uint64_t *puStackX_10;
   uint64_t uStackX_18;
   
-  plVar4 = (longlong *)FUN_18008d070();
+  plVar4 = (int64_t *)FUN_18008d070();
   puVar2 = (uint64_t *)*plVar4;
-  cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
+  cVar1 = *(char *)((int64_t)puVar2[1] + 0x19);
   uStackX_18 = 0;
   puVar7 = puVar2;
   puVar6 = (uint64_t *)puVar2[1];
@@ -716,7 +716,7 @@ void FUN_1800327a0(void)
     }
     puVar7 = puVar6;
     puVar6 = puVar8;
-    cVar1 = *(char *)((longlong)puVar8 + 0x19);
+    cVar1 = *(char *)((int64_t)puVar8 + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&system_memory_1050,puVar7 + 4,0x10), iVar3 < 0)) {
     lVar5 = FUN_18008f0d0(plVar4);
@@ -743,17 +743,17 @@ void FUN_1800328a0(void)
   char cVar1;
   uint64_t *puVar2;
   int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  int64_t *plVar4;
+  int64_t lVar5;
   uint64_t *puVar6;
   uint64_t *puVar7;
   uint64_t *puVar8;
   uint64_t *puStackX_10;
   code *pcStackX_18;
   
-  plVar4 = (longlong *)FUN_18008d070();
+  plVar4 = (int64_t *)FUN_18008d070();
   puVar2 = (uint64_t *)*plVar4;
-  cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
+  cVar1 = *(char *)((int64_t)puVar2[1] + 0x19);
   pcStackX_18 = FUN_18025d270;
   puVar7 = puVar2;
   puVar6 = (uint64_t *)puVar2[1];
@@ -768,7 +768,7 @@ void FUN_1800328a0(void)
     }
     puVar7 = puVar6;
     puVar6 = puVar8;
-    cVar1 = *(char *)((longlong)puVar8 + 0x19);
+    cVar1 = *(char *)((int64_t)puVar8 + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&system_memory_1028,puVar7 + 4,0x10), iVar3 < 0)) {
     lVar5 = FUN_18008f0d0(plVar4);
@@ -795,17 +795,17 @@ void FUN_1800329a0(void)
   char cVar1;
   uint64_t *puVar2;
   int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  int64_t *plVar4;
+  int64_t lVar5;
   uint64_t *puVar6;
   uint64_t *puVar7;
   uint64_t *puVar8;
   uint64_t *puStackX_10;
   uint64_t uStackX_18;
   
-  plVar4 = (longlong *)FUN_18008d070();
+  plVar4 = (int64_t *)FUN_18008d070();
   puVar2 = (uint64_t *)*plVar4;
-  cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
+  cVar1 = *(char *)((int64_t)puVar2[1] + 0x19);
   uStackX_18 = 0;
   puVar7 = puVar2;
   puVar6 = (uint64_t *)puVar2[1];
@@ -820,7 +820,7 @@ void FUN_1800329a0(void)
     }
     puVar7 = puVar6;
     puVar6 = puVar8;
-    cVar1 = *(char *)((longlong)puVar8 + 0x19);
+    cVar1 = *(char *)((int64_t)puVar8 + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&system_memory_1000,puVar7 + 4,0x10), iVar3 < 0)) {
     lVar5 = FUN_18008f0d0(plVar4);
@@ -847,17 +847,17 @@ void FUN_180032aa0(void)
   char cVar1;
   uint64_t *puVar2;
   int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  int64_t *plVar4;
+  int64_t lVar5;
   uint64_t *puVar6;
   uint64_t *puVar7;
   uint64_t *puVar8;
   uint64_t *puStackX_10;
   void *puStackX_18;
   
-  plVar4 = (longlong *)FUN_18008d070();
+  plVar4 = (int64_t *)FUN_18008d070();
   puVar2 = (uint64_t *)*plVar4;
-  cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
+  cVar1 = *(char *)((int64_t)puVar2[1] + 0x19);
   puStackX_18 = &unknown_var_2048_ptr;
   puVar7 = puVar2;
   puVar6 = (uint64_t *)puVar2[1];
@@ -872,7 +872,7 @@ void FUN_180032aa0(void)
     }
     puVar7 = puVar6;
     puVar6 = puVar8;
-    cVar1 = *(char *)((longlong)puVar8 + 0x19);
+    cVar1 = *(char *)((int64_t)puVar8 + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&system_memory_0fd8,puVar7 + 4,0x10), iVar3 < 0)) {
     lVar5 = FUN_18008f0d0(plVar4);
@@ -899,17 +899,17 @@ void FUN_180032ba0(void)
   char cVar1;
   uint64_t *puVar2;
   int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  int64_t *plVar4;
+  int64_t lVar5;
   uint64_t *puVar6;
   uint64_t *puVar7;
   uint64_t *puVar8;
   uint64_t *puStackX_10;
   uint64_t uStackX_18;
   
-  plVar4 = (longlong *)FUN_18008d070();
+  plVar4 = (int64_t *)FUN_18008d070();
   puVar2 = (uint64_t *)*plVar4;
-  cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
+  cVar1 = *(char *)((int64_t)puVar2[1] + 0x19);
   uStackX_18 = 0;
   puVar7 = puVar2;
   puVar6 = (uint64_t *)puVar2[1];
@@ -924,7 +924,7 @@ void FUN_180032ba0(void)
     }
     puVar7 = puVar6;
     puVar6 = puVar8;
-    cVar1 = *(char *)((longlong)puVar8 + 0x19);
+    cVar1 = *(char *)((int64_t)puVar8 + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&system_memory_0fb0,puVar7 + 4,0x10), iVar3 < 0)) {
     lVar5 = FUN_18008f0d0(plVar4);
@@ -980,7 +980,7 @@ void initialize_ui_resource_manager(void)
 int FUN_180032d30(void)
 
 {
-  longlong lVar1;
+  int64_t lVar1;
   uint64_t in_R9;
   
   init_system_control_resource = &unknown_var_3480_ptr;
@@ -1166,8 +1166,8 @@ void initialize_scene_manager(void)
   char is_initialized;
   void **module_registry;
   int compare_result;
-  longlong *system_handle;
-  longlong allocation_size;
+  int64_t *system_handle;
+  int64_t allocation_size;
   void **current_node;
   void **parent_node;
   void **next_node;
@@ -1175,11 +1175,11 @@ void initialize_scene_manager(void)
   void (*scene_handler)(void);
   
   // 获取系统句柄
-  system_handle = (longlong *)get_system_handle();
+  system_handle = (int64_t *)get_system_handle();
   module_registry = (void **)*system_handle;
   
   // 检查根节点是否已初始化
-  is_initialized = *(char *)((longlong)module_registry[1] + 0x19);
+  is_initialized = *(char *)((int64_t)module_registry[1] + 0x19);
   scene_handler = process_scene_data;
   parent_node = module_registry;
   current_node = (void **)module_registry[1];
@@ -1196,7 +1196,7 @@ void initialize_scene_manager(void)
     }
     parent_node = current_node;
     current_node = next_node;
-    is_initialized = *(char *)((longlong)next_node + 0x19);
+    is_initialized = *(char *)((int64_t)next_node + 0x19);
   }
   
   // 如果未找到或需要插入，创建新节点
@@ -1231,8 +1231,8 @@ void initialize_lighting_system(void)
   char is_initialized;
   void **module_registry;
   int compare_result;
-  longlong *system_handle;
-  longlong allocation_size;
+  int64_t *system_handle;
+  int64_t allocation_size;
   void **current_node;
   void **parent_node;
   void **next_node;
@@ -1240,11 +1240,11 @@ void initialize_lighting_system(void)
   void (*lighting_handler)(void);
   
   // 获取系统句柄
-  system_handle = (longlong *)get_system_handle();
+  system_handle = (int64_t *)get_system_handle();
   module_registry = (void **)*system_handle;
   
   // 检查根节点是否已初始化
-  is_initialized = *(char *)((longlong)module_registry[1] + 0x19);
+  is_initialized = *(char *)((int64_t)module_registry[1] + 0x19);
   lighting_handler = process_lighting_data;
   parent_node = module_registry;
   current_node = (void **)module_registry[1];
@@ -1261,7 +1261,7 @@ void initialize_lighting_system(void)
     }
     parent_node = current_node;
     current_node = next_node;
-    is_initialized = *(char *)((longlong)next_node + 0x19);
+    is_initialized = *(char *)((int64_t)next_node + 0x19);
   }
   
   // 如果未找到或需要插入，创建新节点

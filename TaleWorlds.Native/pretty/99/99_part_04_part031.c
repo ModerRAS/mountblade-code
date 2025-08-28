@@ -158,7 +158,7 @@ static void coordinate_calculator(uint64_t context, uint64_t param1, uint64_t pa
  * @param param_4 浮点缩放参数
  * @param param_5 处理模式标志
  */
-void FUN_1802a26b0(uint64_t param_1, uint64_t *param_2, longlong *param_3, float *param_4,
+void FUN_1802a26b0(uint64_t param_1, uint64_t *param_2, int64_t *param_3, float *param_4,
                    int param_5)
 {
   ushort uVar1;
@@ -169,7 +169,7 @@ void FUN_1802a26b0(uint64_t param_1, uint64_t *param_2, longlong *param_3, float
   int iVar6;
   int iVar7;
   uint64_t *puVar8;
-  longlong lVar9;
+  int64_t lVar9;
   int iVar10;
   uint uVar11;
   int iVar12;
@@ -183,17 +183,17 @@ void FUN_1802a26b0(uint64_t param_1, uint64_t *param_2, longlong *param_3, float
   uint64_t uStack_70;
   uint64_t uStack_68;
   uint64_t uStack_60;
-  ulonglong uStack_58;
+  uint64_t uStack_58;
   
   // 栈保护变量初始化
-  uStack_58 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_a8;
+  uStack_58 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_a8;
   puStack_80 = param_2;
   
   // 模式0：直接坐标映射
   if (param_5 == 0) {
     // 计算Y坐标索引
-    iVar5 = *(ushort *)((longlong)param_3 + COORDINATE_OFFSET_Y) + COORDINATE_ADJUSTMENT;
-    iVar6 = *(ushort *)((longlong)param_3 + COORDINATE_OFFSET_X) + COORDINATE_ADJUSTMENT;
+    iVar5 = *(ushort *)((int64_t)param_3 + COORDINATE_OFFSET_Y) + COORDINATE_ADJUSTMENT;
+    iVar6 = *(ushort *)((int64_t)param_3 + COORDINATE_OFFSET_X) + COORDINATE_ADJUSTMENT;
     
     // 应用Y轴缩放
     if ((int)((float)iVar6 * *param_4) <= iVar6) {
@@ -220,7 +220,7 @@ void FUN_1802a26b0(uint64_t param_1, uint64_t *param_2, longlong *param_3, float
     // 计算最终数据指针位置
     *param_2 = *(uint64_t *)
                 (*param_3 +
-                (longlong)(int)(iVar7 * (uint)*(ushort *)((longlong)param_3 + COORDINATE_OFFSET_X) + iVar5) * ARRAY_ELEMENT_SIZE_8);
+                (int64_t)(int)(iVar7 * (uint)*(ushort *)((int64_t)param_3 + COORDINATE_OFFSET_X) + iVar5) * ARRAY_ELEMENT_SIZE_8);
   }
   // 模式1：双线性插值
   else if (param_5 == 1) {
@@ -234,14 +234,14 @@ void FUN_1802a26b0(uint64_t param_1, uint64_t *param_2, longlong *param_3, float
     } while (lVar9 != 0);
     
     // 计算Y坐标和浮点部分
-    iVar6 = *(ushort *)((longlong)param_3 + COORDINATE_OFFSET_Y) + COORDINATE_ADJUSTMENT;
+    iVar6 = *(ushort *)((int64_t)param_3 + COORDINATE_OFFSET_Y) + COORDINATE_ADJUSTMENT;
     fVar15 = (float)iVar6 * param_4[1];
     if (fVar15 <= FLOAT_ZERO_THRESHOLD) {
       fVar15 = fVar15 - FLOAT_EPSILON;
     }
     
     // 获取X轴尺寸和计算整数部分
-    uVar1 = *(ushort *)((longlong)param_3 + COORDINATE_OFFSET_X);
+    uVar1 = *(ushort *)((int64_t)param_3 + COORDINATE_OFFSET_X);
     uVar11 = (uint)uVar1;
     iVar7 = (int)fVar15;
     iVar5 = uVar1 - 1;
@@ -297,10 +297,10 @@ void FUN_1802a26b0(uint64_t param_1, uint64_t *param_2, longlong *param_3, float
     
     // 加载四个角点的数据
     lVar9 = *param_3;
-    uStack_78 = *(uint64_t *)(lVar9 + (ulonglong)(uVar11 * iVar5 + iVar10) * ARRAY_ELEMENT_SIZE_8);
-    uStack_70 = *(uint64_t *)(lVar9 + (ulonglong)((uint)uVar1 * iVar7 + iVar13) * ARRAY_ELEMENT_SIZE_8);
-    uStack_68 = *(uint64_t *)(lVar9 + (ulonglong)(uVar11 * iVar4 + iVar10) * ARRAY_ELEMENT_SIZE_8);
-    uStack_60 = *(uint64_t *)(lVar9 + (ulonglong)(uVar11 * iVar12 + iVar13) * ARRAY_ELEMENT_SIZE_8);
+    uStack_78 = *(uint64_t *)(lVar9 + (uint64_t)(uVar11 * iVar5 + iVar10) * ARRAY_ELEMENT_SIZE_8);
+    uStack_70 = *(uint64_t *)(lVar9 + (uint64_t)((uint)uVar1 * iVar7 + iVar13) * ARRAY_ELEMENT_SIZE_8);
+    uStack_68 = *(uint64_t *)(lVar9 + (uint64_t)(uVar11 * iVar4 + iVar10) * ARRAY_ELEMENT_SIZE_8);
+    uStack_60 = *(uint64_t *)(lVar9 + (uint64_t)(uVar11 * iVar12 + iVar13) * ARRAY_ELEMENT_SIZE_8);
     
     // 执行双线性插值计算
     fVar15 = (float)modff(uStack_60, auStack_88);
@@ -337,17 +337,17 @@ void FUN_1802a26b0(uint64_t param_1, uint64_t *param_2, longlong *param_3, float
     uStack_70._0_2_ = (ushort)iVar13;
     *(ushort *)puStack_80 = (ushort)uStack_70;
     uStack_78._4_2_ = (ushort)iVar7;
-    *(ushort *)((longlong)puStack_80 + 2) = uStack_78._4_2_;
+    *(ushort *)((int64_t)puStack_80 + 2) = uStack_78._4_2_;
     uStack_78._0_2_ = (ushort)iVar5;
-    *(ushort *)((longlong)puStack_80 + 4) = (ushort)uStack_78;
+    *(ushort *)((int64_t)puStack_80 + 4) = (ushort)uStack_78;
     uStack_70._4_2_ = (ushort)iVar6;
-    *(ushort *)((longlong)puStack_80 + 6) = uStack_70._4_2_;
+    *(ushort *)((int64_t)puStack_80 + 6) = uStack_70._4_2_;
     uStack_78 = uVar2;
     uStack_70 = uVar3;
   }
   
   // 栈保护检查和退出
-  FUN_1808fc050(uStack_58 ^ (ulonglong)auStack_a8);
+  FUN_1808fc050(uStack_58 ^ (uint64_t)auStack_a8);
 }
 
 /**
@@ -366,10 +366,10 @@ void FUN_1802a26f0(uint64_t param_1, int param_2)
   int iVar5;
   int iVar6;
   int iVar7;
-  longlong lVar8;
-  longlong unaff_RBP;
-  longlong *unaff_RSI;
-  ulonglong uVar9;
+  int64_t lVar8;
+  int64_t unaff_RBP;
+  int64_t *unaff_RSI;
+  uint64_t uVar9;
   int iVar10;
   uint uVar11;
   int iVar12;
@@ -380,7 +380,7 @@ void FUN_1802a26f0(uint64_t param_1, int param_2)
   
   // 初始化输出缓冲区
   lVar8 = unaff_RBP + -0x29;
-  uVar9 = (ulonglong)(param_2 + 3);
+  uVar9 = (uint64_t)(param_2 + 3);
   do {
     func_0x000180074f10(lVar8);
     lVar8 = lVar8 + 8;
@@ -388,14 +388,14 @@ void FUN_1802a26f0(uint64_t param_1, int param_2)
   } while (uVar9 != 0);
   
   // 计算Y坐标和浮点部分
-  iVar6 = *(ushort *)((longlong)unaff_RSI + COORDINATE_OFFSET_Y) + COORDINATE_ADJUSTMENT;
+  iVar6 = *(ushort *)((int64_t)unaff_RSI + COORDINATE_OFFSET_Y) + COORDINATE_ADJUSTMENT;
   fVar15 = (float)iVar6 * unaff_R14[1];
   if (fVar15 <= FLOAT_ZERO_THRESHOLD) {
     fVar15 = fVar15 - FLOAT_EPSILON;
   }
   
   // 获取X轴尺寸和计算整数部分
-  uVar1 = *(ushort *)((longlong)unaff_RSI + COORDINATE_OFFSET_X);
+  uVar1 = *(ushort *)((int64_t)unaff_RSI + COORDINATE_OFFSET_X);
   uVar11 = (uint)uVar1;
   iVar7 = (int)fVar15;
   iVar5 = uVar1 - 1;
@@ -452,12 +452,12 @@ void FUN_1802a26f0(uint64_t param_1, int param_2)
   // 加载四个角点的数据
   lVar8 = *unaff_RSI;
   *(uint64_t *)(unaff_RBP + -0x29) =
-       *(uint64_t *)(lVar8 + (ulonglong)(uVar11 * iVar5 + iVar10) * ARRAY_ELEMENT_SIZE_8);
+       *(uint64_t *)(lVar8 + (uint64_t)(uVar11 * iVar5 + iVar10) * ARRAY_ELEMENT_SIZE_8);
   *(uint64_t *)(unaff_RBP + -0x21) =
-       *(uint64_t *)(lVar8 + (ulonglong)((uint)uVar1 * iVar7 + iVar13) * ARRAY_ELEMENT_SIZE_8);
+       *(uint64_t *)(lVar8 + (uint64_t)((uint)uVar1 * iVar7 + iVar13) * ARRAY_ELEMENT_SIZE_8);
   *(uint64_t *)(unaff_RBP + -0x19) =
-       *(uint64_t *)(lVar8 + (ulonglong)(uVar11 * iVar4 + iVar10) * ARRAY_ELEMENT_SIZE_8);
-  uVar2 = *(uint64_t *)(lVar8 + (ulonglong)(uVar11 * iVar12 + iVar13) * ARRAY_ELEMENT_SIZE_8);
+       *(uint64_t *)(lVar8 + (uint64_t)(uVar11 * iVar4 + iVar10) * ARRAY_ELEMENT_SIZE_8);
+  uVar2 = *(uint64_t *)(lVar8 + (uint64_t)(uVar11 * iVar12 + iVar13) * ARRAY_ELEMENT_SIZE_8);
   *(uint64_t *)(unaff_RBP + -0x11) = uVar2;
   
   // 执行双线性插值计算
@@ -504,7 +504,7 @@ void FUN_1802a26f0(uint64_t param_1, int param_2)
   puVar3[3] = *(int16_t *)(unaff_RBP + -0x1d);
   
   // 栈保护检查和退出
-  FUN_1808fc050(*(ulonglong *)(unaff_RBP + -9) ^ (ulonglong)&stack0x00000000);
+  FUN_1808fc050(*(uint64_t *)(unaff_RBP + -9) ^ (uint64_t)&stack0x00000000);
 }
 
 /**
@@ -515,18 +515,18 @@ void FUN_1802a26f0(uint64_t param_1, int param_2)
  * @param param_2 输出参数
  * @param param_3 输入数据指针
  */
-void FUN_1802a2a2a(uint64_t param_1, uint64_t param_2, longlong param_3)
+void FUN_1802a2a2a(uint64_t param_1, uint64_t param_2, int64_t param_3)
 {
   int iVar1;
   int iVar2;
-  longlong unaff_RBP;
-  longlong *unaff_RSI;
+  int64_t unaff_RBP;
+  int64_t *unaff_RSI;
   int iVar3;
   uint64_t *in_R11;
   float *unaff_R14;
   
   // 计算Y坐标索引
-  iVar2 = *(ushort *)((longlong)unaff_RSI + COORDINATE_OFFSET_Y) + COORDINATE_ADJUSTMENT;
+  iVar2 = *(ushort *)((int64_t)unaff_RSI + COORDINATE_OFFSET_Y) + COORDINATE_ADJUSTMENT;
   iVar3 = *(ushort *)(param_3 + COORDINATE_OFFSET_X) + COORDINATE_ADJUSTMENT;
   
   // 应用Y轴缩放
@@ -553,10 +553,10 @@ void FUN_1802a2a2a(uint64_t param_1, uint64_t param_2, longlong param_3)
   
   // 计算最终数据指针位置
   *in_R11 = *(uint64_t *)
-             (*unaff_RSI + (longlong)(int)(iVar1 * (uint)*(ushort *)(param_3 + COORDINATE_OFFSET_X) + iVar2) * ARRAY_ELEMENT_SIZE_8);
+             (*unaff_RSI + (int64_t)(int)(iVar1 * (uint)*(ushort *)(param_3 + COORDINATE_OFFSET_X) + iVar2) * ARRAY_ELEMENT_SIZE_8);
   
   // 栈保护检查和退出
-  FUN_1808fc050(*(ulonglong *)(unaff_RBP + -9) ^ (ulonglong)&stack0x00000000);
+  FUN_1808fc050(*(uint64_t *)(unaff_RBP + -9) ^ (uint64_t)&stack0x00000000);
 }
 
 /**
@@ -569,14 +569,14 @@ void FUN_1802a2a2a(uint64_t param_1, uint64_t param_2, longlong param_3)
  * @param param_4 浮点缩放参数
  * @param param_5 处理模式标志
  */
-void FUN_1802a2ab0(uint64_t param_1, short *param_2, longlong *param_3, float *param_4, int param_5)
+void FUN_1802a2ab0(uint64_t param_1, short *param_2, int64_t *param_3, float *param_4, int param_5)
 {
   short sVar1;
-  longlong lVar2;
+  int64_t lVar2;
   int iVar3;
   int iVar4;
   ushort *puVar5;
-  longlong lVar6;
+  int64_t lVar6;
   int iVar7;
   float fVar8;
   float fVar9;
@@ -594,16 +594,16 @@ void FUN_1802a2ab0(uint64_t param_1, short *param_2, longlong *param_3, float *p
   ushort uStack_5e;
   ushort uStack_5c;
   ushort uStack_5a;
-  ulonglong uStack_58;
+  uint64_t uStack_58;
   
   // 栈保护变量初始化
-  uStack_58 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_98;
+  uStack_58 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_98;
   
   // 模式0：直接坐标映射
   if (param_5 == 0) {
     // 计算Y坐标索引
-    iVar4 = *(ushort *)((longlong)param_3 + COORDINATE_OFFSET_Y) + COORDINATE_ADJUSTMENT;
-    iVar3 = *(ushort *)((longlong)param_3 + COORDINATE_OFFSET_X) + COORDINATE_ADJUSTMENT;
+    iVar4 = *(ushort *)((int64_t)param_3 + COORDINATE_OFFSET_Y) + COORDINATE_ADJUSTMENT;
+    iVar3 = *(ushort *)((int64_t)param_3 + COORDINATE_OFFSET_X) + COORDINATE_ADJUSTMENT;
     
     // 应用Y轴缩放
     if ((int)((float)iVar3 * *param_4) <= iVar3) {
@@ -629,7 +629,7 @@ void FUN_1802a2ab0(uint64_t param_1, short *param_2, longlong *param_3, float *p
     
     // 计算最终数据指针位置
     lVar6 = *param_3;
-    lVar2 = (longlong)(int)(iVar4 + iVar7 * (uint)*(ushort *)((longlong)param_3 + COORDINATE_OFFSET_X));
+    lVar2 = (int64_t)(int)(iVar4 + iVar7 * (uint)*(ushort *)((int64_t)param_3 + COORDINATE_OFFSET_X));
     *(int32_t *)param_2 = *(int32_t *)(lVar6 + lVar2 * ARRAY_ELEMENT_SIZE_6);
     sVar1 = *(short *)(lVar6 + 4 + lVar2 * ARRAY_ELEMENT_SIZE_6);
   }
@@ -650,7 +650,7 @@ void FUN_1802a2ab0(uint64_t param_1, short *param_2, longlong *param_3, float *p
     FUN_1802a4fa0(param_3, param_4);
     
     // 计算Y坐标和浮点部分
-    fVar8 = (float)modff((float)(int)(*(ushort *)((longlong)param_3 + COORDINATE_OFFSET_Y) + COORDINATE_ADJUSTMENT) * param_4[1],
+    fVar8 = (float)modff((float)(int)(*(ushort *)((int64_t)param_3 + COORDINATE_OFFSET_Y) + COORDINATE_ADJUSTMENT) * param_4[1],
                          auStack_78);
     fVar9 = (float)modff();
     
@@ -675,7 +675,7 @@ void FUN_1802a2ab0(uint64_t param_1, short *param_2, longlong *param_3, float *p
 LAB_1802a2ced:
   
   // 栈保护检查和退出
-  FUN_1808fc050(uStack_58 ^ (ulonglong)auStack_98);
+  FUN_1808fc050(uStack_58 ^ (uint64_t)auStack_98);
 }
 
 /**
@@ -692,26 +692,26 @@ LAB_1802a2ced:
  * @param param_8 栈保护参数
  */
 void FUN_1802a2aec(uint64_t param_1, int param_2, uint64_t param_3, uint64_t param_4,
-                   uint64_t param_5, uint64_t param_6, uint64_t param_7, ulonglong param_8)
+                   uint64_t param_5, uint64_t param_6, uint64_t param_7, uint64_t param_8)
 {
   int iVar1;
   int iVar2;
   uint64_t *puVar3;
-  longlong unaff_RBP;
+  int64_t unaff_RBP;
   short *unaff_RSI;
-  ulonglong uVar4;
+  uint64_t uVar4;
   int iVar5;
-  longlong unaff_R14;
+  int64_t unaff_R14;
   float fVar6;
   float fVar7;
   int8_t auStackX_20 [8];
   
   // 初始化输出缓冲区
   puVar3 = &param_5;
-  uVar4 = (ulonglong)(param_2 + 3);
+  uVar4 = (uint64_t)(param_2 + 3);
   do {
     func_0x000180074f10(puVar3);
-    puVar3 = (uint64_t *)((longlong)puVar3 + 6);
+    puVar3 = (uint64_t *)((int64_t)puVar3 + 6);
     uVar4 = uVar4 - 1;
   } while (uVar4 != 0);
   
@@ -743,7 +743,7 @@ void FUN_1802a2aec(uint64_t param_1, int param_2, uint64_t param_3, uint64_t par
                                            iVar2) + (uint)(ushort)param_7) * fVar6) + (short)iVar2;
   
   // 栈保护检查和退出
-  FUN_1808fc050(param_8 ^ (ulonglong)&stack0x00000000);
+  FUN_1808fc050(param_8 ^ (uint64_t)&stack0x00000000);
 }
 
 /**
@@ -754,20 +754,20 @@ void FUN_1802a2aec(uint64_t param_1, int param_2, uint64_t param_3, uint64_t par
  * @param param_2 输出数据指针
  * @param param_3 输入数据指针
  */
-void FUN_1802a2c83(uint64_t param_1, uint64_t param_2, longlong param_3)
+void FUN_1802a2c83(uint64_t param_1, uint64_t param_2, int64_t param_3)
 {
-  longlong lVar1;
-  longlong lVar2;
+  int64_t lVar1;
+  int64_t lVar2;
   int iVar3;
   int iVar4;
   float *unaff_RBP;
   int32_t *unaff_RSI;
   int iVar5;
-  longlong *unaff_R14;
-  ulonglong in_stack_00000040;
+  int64_t *unaff_R14;
+  uint64_t in_stack_00000040;
   
   // 计算Y坐标索引
-  iVar4 = *(ushort *)((longlong)unaff_R14 + COORDINATE_OFFSET_Y) + COORDINATE_ADJUSTMENT;
+  iVar4 = *(ushort *)((int64_t)unaff_R14 + COORDINATE_OFFSET_Y) + COORDINATE_ADJUSTMENT;
   iVar5 = *(ushort *)(param_3 + COORDINATE_OFFSET_X) + COORDINATE_ADJUSTMENT;
   
   // 应用Y轴缩放
@@ -794,12 +794,12 @@ void FUN_1802a2c83(uint64_t param_1, uint64_t param_2, longlong param_3)
   
   // 计算最终数据指针位置
   lVar1 = *unaff_R14;
-  lVar2 = (longlong)(int)(iVar4 + iVar3 * (uint)*(ushort *)(param_3 + COORDINATE_OFFSET_X));
+  lVar2 = (int64_t)(int)(iVar4 + iVar3 * (uint)*(ushort *)(param_3 + COORDINATE_OFFSET_X));
   *unaff_RSI = *(int32_t *)(lVar1 + lVar2 * ARRAY_ELEMENT_SIZE_6);
   *(int16_t *)(unaff_RSI + 1) = *(int16_t *)(lVar1 + 4 + lVar2 * ARRAY_ELEMENT_SIZE_6);
   
   // 栈保护检查和退出
-  FUN_1808fc050(in_stack_00000040 ^ (ulonglong)&stack0x00000000);
+  FUN_1808fc050(in_stack_00000040 ^ (uint64_t)&stack0x00000000);
 }
 
 /**
@@ -812,14 +812,14 @@ void FUN_1802a2c83(uint64_t param_1, uint64_t param_2, longlong param_3)
  * @param param_4 浮点缩放参数
  * @param param_5 处理模式标志
  */
-void FUN_1802a2d10(uint64_t param_1, char *param_2, longlong *param_3, float *param_4, int param_5)
+void FUN_1802a2d10(uint64_t param_1, char *param_2, int64_t *param_3, float *param_4, int param_5)
 {
   char cVar1;
   int iVar2;
   int16_t *puVar3;
   int iVar4;
   byte *pbVar5;
-  longlong lVar6;
+  int64_t lVar6;
   int iVar7;
   float fVar8;
   float fVar9;
@@ -837,16 +837,16 @@ void FUN_1802a2d10(uint64_t param_1, char *param_2, longlong *param_3, float *pa
   byte bStack_57;
   byte bStack_56;
   byte bStack_55;
-  ulonglong uStack_50;
+  uint64_t uStack_50;
   
   // 栈保护变量初始化
-  uStack_50 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_88;
+  uStack_50 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_88;
   
   // 模式0：直接坐标映射
   if (param_5 == 0) {
     // 计算Y坐标索引
-    iVar4 = *(ushort *)((longlong)param_3 + COORDINATE_OFFSET_Y) + COORDINATE_ADJUSTMENT;
-    iVar2 = *(ushort *)((longlong)param_3 + COORDINATE_OFFSET_X) + COORDINATE_ADJUSTMENT;
+    iVar4 = *(ushort *)((int64_t)param_3 + COORDINATE_OFFSET_Y) + COORDINATE_ADJUSTMENT;
+    iVar2 = *(ushort *)((int64_t)param_3 + COORDINATE_OFFSET_X) + COORDINATE_ADJUSTMENT;
     
     // 应用Y轴缩放
     if ((int)((float)iVar2 * *param_4) <= iVar2) {
@@ -872,7 +872,7 @@ void FUN_1802a2d10(uint64_t param_1, char *param_2, longlong *param_3, float *pa
     
     // 计算最终数据指针位置
     puVar3 = (int16_t *)
-             ((longlong)(int)(iVar4 + iVar7 * (uint)*(ushort *)((longlong)param_3 + COORDINATE_OFFSET_X)) * ARRAY_ELEMENT_SIZE_3 +
+             ((int64_t)(int)(iVar4 + iVar7 * (uint)*(ushort *)((int64_t)param_3 + COORDINATE_OFFSET_X)) * ARRAY_ELEMENT_SIZE_3 +
              *param_3);
     *(int16_t *)param_2 = *puVar3;
     cVar1 = *(char *)(puVar3 + 1);
@@ -894,7 +894,7 @@ void FUN_1802a2d10(uint64_t param_1, char *param_2, longlong *param_3, float *pa
     FUN_1802a5100(param_3, param_4);
     
     // 计算Y坐标和浮点部分
-    fVar8 = (float)modff((float)(int)(*(ushort *)((longlong)param_3 + COORDINATE_OFFSET_Y) + COORDINATE_ADJUSTMENT) * param_4[1],
+    fVar8 = (float)modff((float)(int)(*(ushort *)((int64_t)param_3 + COORDINATE_OFFSET_Y) + COORDINATE_ADJUSTMENT) * param_4[1],
                          auStack_68);
     fVar9 = (float)modff();
     
@@ -919,7 +919,7 @@ void FUN_1802a2d10(uint64_t param_1, char *param_2, longlong *param_3, float *pa
 LAB_1802a2f44:
   
   // 栈保护检查和退出
-  FUN_1808fc050(uStack_50 ^ (ulonglong)auStack_88);
+  FUN_1808fc050(uStack_50 ^ (uint64_t)auStack_88);
 }
 
 /**
@@ -935,26 +935,26 @@ LAB_1802a2f44:
  * @param param_7 栈保护参数
  */
 void FUN_1802a2d49(uint64_t param_1, int param_2, uint64_t param_3, uint64_t param_4,
-                   uint64_t param_5, uint64_t param_6, ulonglong param_7)
+                   uint64_t param_5, uint64_t param_6, uint64_t param_7)
 {
   int iVar1;
   int iVar2;
   uint64_t *puVar3;
-  longlong unaff_RBP;
+  int64_t unaff_RBP;
   char *unaff_RSI;
-  ulonglong uVar4;
+  uint64_t uVar4;
   int iVar5;
-  longlong unaff_R14;
+  int64_t unaff_R14;
   float fVar6;
   float fVar7;
   int8_t auStackX_20 [8];
   
   // 初始化输出缓冲区
   puVar3 = &param_5;
-  uVar4 = (ulonglong)(param_2 + 3);
+  uVar4 = (uint64_t)(param_2 + 3);
   do {
     func_0x000180074f10(puVar3);
-    puVar3 = (uint64_t *)((longlong)puVar3 + 3);
+    puVar3 = (uint64_t *)((int64_t)puVar3 + 3);
     uVar4 = uVar4 - 1;
   } while (uVar4 != 0);
   
@@ -986,7 +986,7 @@ void FUN_1802a2d49(uint64_t param_1, int param_2, uint64_t param_3, uint64_t par
                                            iVar2) + (uint)(byte)param_6) * fVar6) + (char)iVar2;
   
   // 栈保护检查和退出
-  FUN_1808fc050(param_7 ^ (ulonglong)&stack0x00000000);
+  FUN_1808fc050(param_7 ^ (uint64_t)&stack0x00000000);
 }
 
 /**
@@ -997,19 +997,19 @@ void FUN_1802a2d49(uint64_t param_1, int param_2, uint64_t param_3, uint64_t par
  * @param param_2 输出像素数据指针
  * @param param_3 输入数据指针
  */
-void FUN_1802a2eda(uint64_t param_1, uint64_t param_2, longlong param_3)
+void FUN_1802a2eda(uint64_t param_1, uint64_t param_2, int64_t param_3)
 {
   int iVar1;
   int16_t *puVar2;
   int iVar3;
-  longlong *unaff_RBP;
+  int64_t *unaff_RBP;
   int16_t *unaff_RSI;
   int iVar4;
   float *unaff_R14;
-  ulonglong in_stack_00000038;
+  uint64_t in_stack_00000038;
   
   // 计算Y坐标索引
-  iVar3 = *(ushort *)((longlong)unaff_RBP + COORDINATE_OFFSET_Y) + COORDINATE_ADJUSTMENT;
+  iVar3 = *(ushort *)((int64_t)unaff_RBP + COORDINATE_OFFSET_Y) + COORDINATE_ADJUSTMENT;
   iVar4 = *(ushort *)(param_3 + COORDINATE_OFFSET_X) + COORDINATE_ADJUSTMENT;
   
   // 应用Y轴缩放
@@ -1036,12 +1036,12 @@ void FUN_1802a2eda(uint64_t param_1, uint64_t param_2, longlong param_3)
   
   // 计算最终数据指针位置
   puVar2 = (int16_t *)
-           ((longlong)(int)(iVar3 + iVar1 * (uint)*(ushort *)(param_3 + COORDINATE_OFFSET_X)) * ARRAY_ELEMENT_SIZE_3 + *unaff_RBP);
+           ((int64_t)(int)(iVar3 + iVar1 * (uint)*(ushort *)(param_3 + COORDINATE_OFFSET_X)) * ARRAY_ELEMENT_SIZE_3 + *unaff_RBP);
   *unaff_RSI = *puVar2;
   *(int8_t *)(unaff_RSI + 1) = *(int8_t *)(puVar2 + 1);
   
   // 栈保护检查和退出
-  FUN_1808fc050(in_stack_00000038 ^ (ulonglong)&stack0x00000000);
+  FUN_1808fc050(in_stack_00000038 ^ (uint64_t)&stack0x00000000);
 }
 
 /**
@@ -1054,7 +1054,7 @@ void FUN_1802a2eda(uint64_t param_1, uint64_t param_2, longlong param_3)
  * @param param_4 浮点缩放参数
  * @param param_5 处理模式标志
  */
-void FUN_1802a2f60(uint64_t param_1, int32_t *param_2, longlong *param_3, float *param_4,
+void FUN_1802a2f60(uint64_t param_1, int32_t *param_2, int64_t *param_3, float *param_4,
                    int param_5)
 {
   ushort uVar1;
@@ -1064,7 +1064,7 @@ void FUN_1802a2f60(uint64_t param_1, int32_t *param_2, longlong *param_3, float 
   uint uVar5;
   int iVar6;
   uint *puVar7;
-  longlong lVar8;
+  int64_t lVar8;
   int iVar9;
   uint uVar10;
   uint uVar11;
@@ -1079,17 +1079,17 @@ void FUN_1802a2f60(uint64_t param_1, int32_t *param_2, longlong *param_3, float 
   uint uStack_64;
   int32_t uStack_60;
   uint uStack_5c;
-  ulonglong uStack_58;
+  uint64_t uStack_58;
   
   // 栈保护变量初始化
-  uStack_58 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_98;
+  uStack_58 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_98;
   puStack_70 = param_2;
   
   // 模式0：直接坐标映射
   if (param_5 == 0) {
     // 计算Y坐标索引
-    iVar3 = *(ushort *)((longlong)param_3 + COORDINATE_OFFSET_Y) + COORDINATE_ADJUSTMENT;
-    iVar4 = *(ushort *)((longlong)param_3 + COORDINATE_OFFSET_X) + COORDINATE_ADJUSTMENT;
+    iVar3 = *(ushort *)((int64_t)param_3 + COORDINATE_OFFSET_Y) + COORDINATE_ADJUSTMENT;
+    iVar4 = *(ushort *)((int64_t)param_3 + COORDINATE_OFFSET_X) + COORDINATE_ADJUSTMENT;
     
     // 应用Y轴缩放
     if ((int)((float)iVar4 * *param_4) <= iVar4) {
@@ -1116,7 +1116,7 @@ void FUN_1802a2f60(uint64_t param_1, int32_t *param_2, longlong *param_3, float 
     // 计算最终数据指针位置
     *param_2 = *(int32_t *)
                 (*param_3 +
-                (longlong)(int)(iVar6 * (uint)*(ushort *)((longlong)param_3 + COORDINATE_OFFSET_X) + iVar3) * ARRAY_ELEMENT_SIZE_4);
+                (int64_t)(int)(iVar6 * (uint)*(ushort *)((int64_t)param_3 + COORDINATE_OFFSET_X) + iVar3) * ARRAY_ELEMENT_SIZE_4);
   }
   // 模式1：双线性插值
   else if (param_5 == 1) {
@@ -1130,14 +1130,14 @@ void FUN_1802a2f60(uint64_t param_1, int32_t *param_2, longlong *param_3, float 
     } while (lVar8 != 0);
     
     // 计算Y坐标和浮点部分
-    iVar4 = *(ushort *)((longlong)param_3 + COORDINATE_OFFSET_Y) + COORDINATE_ADJUSTMENT;
+    iVar4 = *(ushort *)((int64_t)param_3 + COORDINATE_OFFSET_Y) + COORDINATE_ADJUSTMENT;
     fVar15 = (float)iVar4 * param_4[1];
     if (fVar15 <= FLOAT_ZERO_THRESHOLD) {
       fVar15 = fVar15 - FLOAT_EPSILON;
     }
     
     // 获取X轴尺寸和计算整数部分
-    uVar1 = *(ushort *)((longlong)param_3 + COORDINATE_OFFSET_X);
+    uVar1 = *(ushort *)((int64_t)param_3 + COORDINATE_OFFSET_X);
     uVar5 = (uint)uVar1;
     iVar6 = (int)fVar15;
     iVar3 = uVar1 - 1;
@@ -1193,10 +1193,10 @@ void FUN_1802a2f60(uint64_t param_1, int32_t *param_2, longlong *param_3, float 
     
     // 加载四个角点的数据
     lVar8 = *param_3;
-    uStack_68 = *(uint *)(lVar8 + (ulonglong)(uVar5 * iVar3 + iVar9) * ARRAY_ELEMENT_SIZE_4);
-    uStack_64 = *(uint *)(lVar8 + (ulonglong)((uint)uVar1 * iVar6 + iVar13) * ARRAY_ELEMENT_SIZE_4);
-    uStack_60 = *(uint *)(lVar8 + (ulonglong)(uVar5 * iVar2 + iVar9) * ARRAY_ELEMENT_SIZE_4);
-    uStack_5c = *(uint *)(lVar8 + (ulonglong)(uVar5 * iVar12 + iVar13) * ARRAY_ELEMENT_SIZE_4);
+    uStack_68 = *(uint *)(lVar8 + (uint64_t)(uVar5 * iVar3 + iVar9) * ARRAY_ELEMENT_SIZE_4);
+    uStack_64 = *(uint *)(lVar8 + (uint64_t)((uint)uVar1 * iVar6 + iVar13) * ARRAY_ELEMENT_SIZE_4);
+    uStack_60 = *(uint *)(lVar8 + (uint64_t)(uVar5 * iVar2 + iVar9) * ARRAY_ELEMENT_SIZE_4);
+    uStack_5c = *(uint *)(lVar8 + (uint64_t)(uVar5 * iVar12 + iVar13) * ARRAY_ELEMENT_SIZE_4);
     
     // 执行双线性插值计算
     fVar15 = (float)modff(uStack_5c, auStack_78);
@@ -1228,13 +1228,13 @@ void FUN_1802a2f60(uint64_t param_1, int32_t *param_2, longlong *param_3, float 
     
     // 存储插值结果
     *(int8_t *)puStack_70 = (int8_t)uStack_68;
-    *(int8_t *)((longlong)puStack_70 + 1) = (int8_t)uStack_64;
-    *(int8_t *)((longlong)puStack_70 + 2) = (int8_t)uStack_60;
-    *(int8_t *)((longlong)puStack_70 + 3) = (int8_t)uStack_5c;
+    *(int8_t *)((int64_t)puStack_70 + 1) = (int8_t)uStack_64;
+    *(int8_t *)((int64_t)puStack_70 + 2) = (int8_t)uStack_60;
+    *(int8_t *)((int64_t)puStack_70 + 3) = (int8_t)uStack_5c;
   }
   
   // 栈保护检查和退出
-  FUN_1808fc050(uStack_58 ^ (ulonglong)auStack_98);
+  FUN_1808fc050(uStack_58 ^ (uint64_t)auStack_98);
 }
 
 /*==========================================
@@ -1325,7 +1325,7 @@ void module_cleanup(void)
  * 导出函数：双线性插值数据处理器
  * 对应原始函数：FUN_1802a26b0
  */
-void BilinearInterpolationDataProcessor(uint64_t param_1, uint64_t *param_2, longlong *param_3, float *param_4,
+void BilinearInterpolationDataProcessor(uint64_t param_1, uint64_t *param_2, int64_t *param_3, float *param_4,
                                         int param_5)
 {
   FUN_1802a26b0(param_1, param_2, param_3, param_4, param_5);
@@ -1344,7 +1344,7 @@ void PixelDataInterpolationProcessor(uint64_t param_1, int param_2)
  * 导出函数：坐标映射数据处理器
  * 对应原始函数：FUN_1802a2a2a
  */
-void CoordinateMappingDataProcessor(uint64_t param_1, uint64_t param_2, longlong param_3)
+void CoordinateMappingDataProcessor(uint64_t param_1, uint64_t param_2, int64_t param_3)
 {
   FUN_1802a2a2a(param_1, param_2, param_3);
 }
@@ -1353,7 +1353,7 @@ void CoordinateMappingDataProcessor(uint64_t param_1, uint64_t param_2, longlong
  * 导出函数：像素数据采样处理器
  * 对应原始函数：FUN_1802a2ab0
  */
-void PixelDataSamplingProcessor(uint64_t param_1, short *param_2, longlong *param_3, float *param_4, int param_5)
+void PixelDataSamplingProcessor(uint64_t param_1, short *param_2, int64_t *param_3, float *param_4, int param_5)
 {
   FUN_1802a2ab0(param_1, param_2, param_3, param_4, param_5);
 }
@@ -1363,7 +1363,7 @@ void PixelDataSamplingProcessor(uint64_t param_1, short *param_2, longlong *para
  * 对应原始函数：FUN_1802a2aec
  */
 void PixelDataBatchProcessor(uint64_t param_1, int param_2, uint64_t param_3, uint64_t param_4,
-                              uint64_t param_5, uint64_t param_6, uint64_t param_7, ulonglong param_8)
+                              uint64_t param_5, uint64_t param_6, uint64_t param_7, uint64_t param_8)
 {
   FUN_1802a2aec(param_1, param_2, param_3, param_4, param_5, param_6, param_7, param_8);
 }
@@ -1372,7 +1372,7 @@ void PixelDataBatchProcessor(uint64_t param_1, int param_2, uint64_t param_3, ui
  * 导出函数：坐标映射数据处理器2
  * 对应原始函数：FUN_1802a2c83
  */
-void CoordinateMappingDataProcessor2(uint64_t param_1, uint64_t param_2, longlong param_3)
+void CoordinateMappingDataProcessor2(uint64_t param_1, uint64_t param_2, int64_t param_3)
 {
   FUN_1802a2c83(param_1, param_2, param_3);
 }
@@ -1381,7 +1381,7 @@ void CoordinateMappingDataProcessor2(uint64_t param_1, uint64_t param_2, longlon
  * 导出函数：字符数据采样处理器
  * 对应原始函数：FUN_1802a2d10
  */
-void CharacterDataSamplingProcessor(uint64_t param_1, char *param_2, longlong *param_3, float *param_4, int param_5)
+void CharacterDataSamplingProcessor(uint64_t param_1, char *param_2, int64_t *param_3, float *param_4, int param_5)
 {
   FUN_1802a2d10(param_1, param_2, param_3, param_4, param_5);
 }
@@ -1391,7 +1391,7 @@ void CharacterDataSamplingProcessor(uint64_t param_1, char *param_2, longlong *p
  * 对应原始函数：FUN_1802a2d49
  */
 void CharacterDataBatchProcessor(uint64_t param_1, int param_2, uint64_t param_3, uint64_t param_4,
-                                 uint64_t param_5, uint64_t param_6, ulonglong param_7)
+                                 uint64_t param_5, uint64_t param_6, uint64_t param_7)
 {
   FUN_1802a2d49(param_1, param_2, param_3, param_4, param_5, param_6, param_7);
 }
@@ -1400,7 +1400,7 @@ void CharacterDataBatchProcessor(uint64_t param_1, int param_2, uint64_t param_3
  * 导出函数：像素数据检索处理器
  * 对应原始函数：FUN_1802a2eda
  */
-void PixelDataRetrievalProcessor(uint64_t param_1, uint64_t param_2, longlong param_3)
+void PixelDataRetrievalProcessor(uint64_t param_1, uint64_t param_2, int64_t param_3)
 {
   FUN_1802a2eda(param_1, param_2, param_3);
 }
@@ -1409,7 +1409,7 @@ void PixelDataRetrievalProcessor(uint64_t param_1, uint64_t param_2, longlong pa
  * 导出函数：像素数据采样处理器2
  * 对应原始函数：FUN_1802a2f60
  */
-void PixelDataSamplingProcessor2(uint64_t param_1, int32_t *param_2, longlong *param_3, float *param_4,
+void PixelDataSamplingProcessor2(uint64_t param_1, int32_t *param_2, int64_t *param_3, float *param_4,
                                   int param_5)
 {
   FUN_1802a2f60(param_1, param_2, param_3, param_4, param_5);

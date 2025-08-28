@@ -5,7 +5,7 @@
 
 // 函数：渲染系统高级向量处理和几何计算
 // 功能：处理复杂的向量运算、几何变换和碰撞检测计算
-void RenderingSystem_AdvancedVectorProcessing(uint64_t render_context, longlong vertex_buffer, 
+void RenderingSystem_AdvancedVectorProcessing(uint64_t render_context, int64_t vertex_buffer, 
                                              uint64_t transform_matrix, uint face_count, 
                                              uint64_t normal_vector, uint64_t tangent_vector, 
                                              float angle_threshold)
@@ -19,28 +19,28 @@ void RenderingSystem_AdvancedVectorProcessing(uint64_t render_context, longlong 
   int32_t texture_coordinate;
   uint vertex_iterator;
   int material_index;
-  longlong vertex_offset;
+  int64_t vertex_offset;
   uint64_t *render_device;
-  longlong transform_offset;
-  longlong normal_offset;
+  int64_t transform_offset;
+  int64_t normal_offset;
   int render_state;
   uint64_t render_target;
   uint texture_id;
-  longlong *vertex_pointer;
-  longlong normal_pointer;
+  int64_t *vertex_pointer;
+  int64_t normal_pointer;
   uint64_t shader_program;
-  longlong vector_length;
+  int64_t vector_length;
   uint64_t depth_buffer;
-  ulonglong face_index_long;
+  uint64_t face_index_long;
   uint64_t stencil_buffer;
   
   // 初始化渲染设备状态
   *(uint64_t *)(vertex_pointer + 0x18) = depth_buffer;
   vertex_iterator = face_count + 2;
   *(uint64_t *)(vertex_pointer + -0x18) = stencil_buffer;
-  vector_length = *(longlong *)(transform_offset + 0x170);
+  vector_length = *(int64_t *)(transform_offset + 0x170);
   *(uint64_t *)(vertex_pointer + -0x20) = normal_offset;
-  face_index_long = (ulonglong)face_count;
+  face_index_long = (uint64_t)face_count;
   *(uint64_t *)(vertex_pointer + 0x10) = render_target;
   *(uint64_t *)(vertex_pointer + -0x28) = shader_program;
   
@@ -73,13 +73,13 @@ void RenderingSystem_AdvancedVectorProcessing(uint64_t render_context, longlong 
   // 主要的向量处理循环
   do {
     face_index = *(int *)(vertex_buffer + face_index_long * 4);
-    vector_length = (longlong)face_index * 0x58;
+    vector_length = (int64_t)face_index * 0x58;
     
     // 检查面片是否可见
     if ((*(byte *)(vector_length + 0x4c + vector_length) & 4) == 0) {
       face_index = face_index * 3;
       material_index = *(int *)(transform_offset + 0x180);
-      vertex_offset = (longlong)face_index;
+      vertex_offset = (int64_t)face_index;
       
       // 材质匹配和处理
       if (*(int *)(normal_offset + vertex_offset * 4) != material_index) {
@@ -95,8 +95,8 @@ void RenderingSystem_AdvancedVectorProcessing(uint64_t render_context, longlong 
       }
       
       // 计算顶点变换和投影
-      *(longlong *)(transform_offset + -0x70) = (longlong)(int)(face_index + face_count);
-      vertex_iterator = *(uint *)(normal_offset + (longlong)(int)(face_index + face_count) * 4);
+      *(int64_t *)(transform_offset + -0x70) = (int64_t)(int)(face_index + face_count);
+      vertex_iterator = *(uint *)(normal_offset + (int64_t)(int)(face_index + face_count) * 4);
       (**(code **)(*vertex_pointer + 0x18))(vertex_pointer, transform_offset + 0x40, (int)vertex_iterator >> 2, vertex_iterator & 3);
       
       // 读取变换后的顶点坐标
@@ -113,11 +113,11 @@ void RenderingSystem_AdvancedVectorProcessing(uint64_t render_context, longlong 
       *(int32_t *)(transform_offset + -0x38) = texture_coordinate;
       
       // 计算向量点积和投影
-      float dot_product = vertex_x * (float)vector_component_1 + vertex_y * (float)((ulonglong)vector_component_1 >> 0x20) +
+      float dot_product = vertex_x * (float)vector_component_1 + vertex_y * (float)((uint64_t)vector_component_1 >> 0x20) +
                          vertex_z * *(float *)(transform_offset + -0x48);
       
       normal_vector._4_4_ = (float)vector_component_2 - vertex_x * dot_product;
-      tangent_vector._0_4_ = (float)((ulonglong)vector_component_3 >> 0x20) - vertex_y * dot_product;
+      tangent_vector._0_4_ = (float)((uint64_t)vector_component_3 >> 0x20) - vertex_y * dot_product;
       
       vector_component_1 = *(uint64_t *)(vector_length + 0x34 + vector_length);
       float projected_z = *(float *)(transform_offset + -0x38) - vertex_z * dot_product;
@@ -130,12 +130,12 @@ void RenderingSystem_AdvancedVectorProcessing(uint64_t render_context, longlong 
       *(int32_t *)(transform_offset + -0x18) = texture_coordinate;
       
       // 第二组向量计算
-      float dot_product_2 = vertex_y * (float)((ulonglong)vector_component_1 >> 0x20) + vertex_x * (float)vector_component_1 +
+      float dot_product_2 = vertex_y * (float)((uint64_t)vector_component_1 >> 0x20) + vertex_x * (float)vector_component_1 +
                            vertex_z * *(float *)(transform_offset + -0x28);
       
       float transformed_x = (float)vector_component_2 - vertex_x * dot_product_2;
       float transformed_y = *(float *)(transform_offset + -0x18) - vertex_z * dot_product_2;
-      float transformed_z = (float)((ulonglong)*(uint64_t *)(vector_length + 0x34 + vector_length) >> 0x20) - vertex_y * dot_product_2;
+      float transformed_z = (float)((uint64_t)*(uint64_t *)(vector_length + 0x34 + vector_length) >> 0x20) - vertex_y * dot_product_2;
       
       *(float *)(transform_offset + 0x18) = transformed_y;
       *(int32_t *)(transform_offset + -0x80) = *(int32_t *)(transform_offset + 0x18);
@@ -170,8 +170,8 @@ void RenderingSystem_AdvancedVectorProcessing(uint64_t render_context, longlong 
         material_index = face_index;
       }
       
-      material_index = *(int *)(normal_offset + (longlong)material_index * 4);
-      vertex_iterator = *(uint *)(normal_offset + *(longlong *)(transform_offset + -0x70) * 4);
+      material_index = *(int *)(normal_offset + (int64_t)material_index * 4);
+      vertex_iterator = *(uint *)(normal_offset + *(int64_t *)(transform_offset + -0x70) * 4);
       
       if ((int)face_count < 1) {
         render_state = 2;
@@ -180,8 +180,8 @@ void RenderingSystem_AdvancedVectorProcessing(uint64_t render_context, longlong 
         render_state = face_count - 1;
       }
       
-      vertex_pointer = *(longlong **)(transform_offset + -0x78);
-      texture_id = *(uint *)(normal_offset + (longlong)(face_index + render_state) * 4);
+      vertex_pointer = *(int64_t **)(transform_offset + -0x78);
+      texture_id = *(uint *)(normal_offset + (int64_t)(face_index + render_state) * 4);
       (**(code **)(*vertex_pointer + 0x10))(vertex_pointer, transform_offset + 0x50, (int)texture_id >> 2, texture_id & 3);
       (**(code **)(*vertex_pointer + 0x10))(vertex_pointer, transform_offset + 0x60, (int)vertex_iterator >> 2, vertex_iterator & 3);
       (**(code **)(*vertex_pointer + 0x10))(vertex_pointer, transform_offset + 0x30, material_index >> 2);
@@ -237,14 +237,14 @@ void RenderingSystem_AdvancedVectorProcessing(uint64_t render_context, longlong 
       projected_z = (float)acosf(vertex_x);
       vector_component_1 = *render_device;
       face_count = 0;
-      vertex_x = *(float *)((longlong)render_device + 4);
-      vector_length = *(longlong *)(transform_offset + 0x170);
+      vertex_x = *(float *)((int64_t)render_device + 4);
+      vector_length = *(int64_t *)(transform_offset + 0x170);
       vertex_iterator = 2;
-      vertex_buffer = *(longlong *)(transform_offset + -0x68);
+      vertex_buffer = *(int64_t *)(transform_offset + -0x68);
       *(int32_t *)(transform_offset + -8) = *(int32_t *)(render_device + 1);
       vertex_y = *(float *)(transform_offset + -8);
       float angle_sum = angle_threshold + projected_z;
-      vertex_z = *(float *)((longlong)render_device + 0x14);
+      vertex_z = *(float *)((int64_t)render_device + 0x14);
       
       // 应用变换
       *render_device = CONCAT44(vertex_x + (float)tangent_vector * projected_z, (float)vector_component_1 + normal_vector._4_4_ * projected_z);
@@ -254,14 +254,14 @@ void RenderingSystem_AdvancedVectorProcessing(uint64_t render_context, longlong 
       render_device[2] = CONCAT44(vertex_z + transformed_z * projected_z, (float)vector_component_1 + transformed_x * projected_z);
       
       // 更新深度和纹理坐标
-      *(float *)((longlong)render_device + 0x1c) = projected_z * *(float *)(vector_length + 0x44 + vector_length) + *(float *)((longlong)render_device + 0x1c);
+      *(float *)((int64_t)render_device + 0x1c) = projected_z * *(float *)(vector_length + 0x44 + vector_length) + *(float *)((int64_t)render_device + 0x1c);
       vertex_x = *(float *)(vector_length + 0x40 + vector_length);
       *(float *)(render_device + 3) = *(float *)(render_device + 3) + transformed_y * projected_z;
-      *(float *)((longlong)render_device + 0xc) = projected_z * vertex_x + *(float *)((longlong)render_device + 0xc);
+      *(float *)((int64_t)render_device + 0xc) = projected_z * vertex_x + *(float *)((int64_t)render_device + 0xc);
       angle_threshold = angle_sum;
     }
     face_index_long = face_index_long + 1;
-  } while ((longlong)face_index_long < *(longlong *)(transform_offset + -0x60));
+  } while ((int64_t)face_index_long < *(int64_t *)(transform_offset + -0x60));
   
   // 最终向量和法线处理
   vector_component_1 = *render_device;
@@ -275,7 +275,7 @@ void RenderingSystem_AdvancedVectorProcessing(uint64_t render_context, longlong 
      (angle_threshold < (float)(*(uint *)(transform_offset + 0x38) & texture_id))) {
     vector_component_1 = *render_device;
     *(float *)(transform_offset + 0x38) = vertex_x;
-    vertex_z = (float)((ulonglong)vector_component_1 >> 0x20);
+    vertex_z = (float)((uint64_t)vector_component_1 >> 0x20);
     *(uint64_t *)(transform_offset + 0x30) = vector_component_1;
     vertex_y = 1.0f / SQRT(vertex_z * vertex_z + *(float *)(transform_offset + 0x30) * *(float *)(transform_offset + 0x30) +
                            *(float *)(transform_offset + 0x38) * *(float *)(transform_offset + 0x38));
@@ -294,7 +294,7 @@ void RenderingSystem_AdvancedVectorProcessing(uint64_t render_context, longlong 
      (angle_threshold < (float)(*(uint *)(transform_offset + 0x38) & texture_id))) {
     vector_component_1 = render_device[2];
     *(float *)(transform_offset + 0x38) = vertex_x;
-    vertex_z = (float)((ulonglong)vector_component_1 >> 0x20);
+    vertex_z = (float)((uint64_t)vector_component_1 >> 0x20);
     *(uint64_t *)(transform_offset + 0x30) = vector_component_1;
     vertex_y = 1.0f / SQRT(vertex_z * vertex_z + *(float *)(transform_offset + 0x30) * *(float *)(transform_offset + 0x30) +
                            *(float *)(transform_offset + 0x38) * *(float *)(transform_offset + 0x38));
@@ -304,12 +304,12 @@ void RenderingSystem_AdvancedVectorProcessing(uint64_t render_context, longlong 
   
   // 角度阈值处理
   if (0.0 < angle_sum) {
-    *(float *)((longlong)render_device + 0x1c) = (1.0f / angle_sum) * *(float *)((longlong)render_device + 0x1c);
-    *(float *)((longlong)render_device + 0xc) = (1.0f / angle_sum) * *(float *)((longlong)render_device + 0xc);
+    *(float *)((int64_t)render_device + 0x1c) = (1.0f / angle_sum) * *(float *)((int64_t)render_device + 0x1c);
+    *(float *)((int64_t)render_device + 0xc) = (1.0f / angle_sum) * *(float *)((int64_t)render_device + 0xc);
   }
   
   // 调用渲染结束函数
-  FUN_1808fc050(*(ulonglong *)(transform_offset + 0x70) ^ (ulonglong)&stack0x00000000);
+  FUN_1808fc050(*(uint64_t *)(transform_offset + 0x70) ^ (uint64_t)&stack0x00000000);
 }
 
 // 函数：渲染系统向量归一化处理
@@ -320,7 +320,7 @@ void RenderingSystem_VectorNormalization(void)
   uint64_t vector_component;
   float vector_y;
   uint64_t *render_device;
-  longlong transform_offset;
+  int64_t transform_offset;
   float vector_z;
   float vector_w;
   float angle_sum;
@@ -341,7 +341,7 @@ void RenderingSystem_VectorNormalization(void)
      (angle_threshold < (float)(*(uint *)(transform_offset + 0x38) & texture_mask))) {
     vector_component = *render_device;
     *(float *)(transform_offset + 0x38) = vector_y;
-    vector_w = (float)((ulonglong)vector_component >> 0x20);
+    vector_w = (float)((uint64_t)vector_component >> 0x20);
     *(uint64_t *)(transform_offset + 0x30) = vector_component;
     normalization_factor = 1.0f / SQRT(vector_w * vector_w + *(float *)(transform_offset + 0x30) * *(float *)(transform_offset + 0x30) +
                                      *(float *)(transform_offset + 0x38) * *(float *)(transform_offset + 0x38));
@@ -360,7 +360,7 @@ void RenderingSystem_VectorNormalization(void)
      (angle_threshold < (float)(*(uint *)(transform_offset + 0x38) & texture_mask))) {
     vector_component = render_device[2];
     *(float *)(transform_offset + 0x38) = vector_y;
-    vector_w = (float)((ulonglong)vector_component >> 0x20);
+    vector_w = (float)((uint64_t)vector_component >> 0x20);
     *(uint64_t *)(transform_offset + 0x30) = vector_component;
     normalization_factor = 1.0f / SQRT(vector_w * vector_w + *(float *)(transform_offset + 0x30) * *(float *)(transform_offset + 0x30) +
                                      *(float *)(transform_offset + 0x38) * *(float *)(transform_offset + 0x38));
@@ -370,12 +370,12 @@ void RenderingSystem_VectorNormalization(void)
   
   // 应用角度缩放
   if (scale_factor < angle_sum) {
-    *(float *)((longlong)render_device + 0x1c) = (1.0f / angle_sum) * *(float *)((longlong)render_device + 0x1c);
-    *(float *)((longlong)render_device + 0xc) = (1.0f / angle_sum) * *(float *)((longlong)render_device + 0xc);
+    *(float *)((int64_t)render_device + 0x1c) = (1.0f / angle_sum) * *(float *)((int64_t)render_device + 0x1c);
+    *(float *)((int64_t)render_device + 0xc) = (1.0f / angle_sum) * *(float *)((int64_t)render_device + 0xc);
   }
   
   // 调用渲染结束函数
-  FUN_1808fc050(*(ulonglong *)(transform_offset + 0x70) ^ (ulonglong)&stack0x00000000);
+  FUN_1808fc050(*(uint64_t *)(transform_offset + 0x70) ^ (uint64_t)&stack0x00000000);
 }
 
 // 函数：渲染系统简化向量归一化
@@ -386,7 +386,7 @@ void RenderingSystem_SimplifiedVectorNormalization(void)
   uint64_t vector_component;
   float vertex_component;
   uint64_t *render_device;
-  longlong transform_offset;
+  int64_t transform_offset;
   float vector_y;
   float vector_z;
   float vector_w;
@@ -401,7 +401,7 @@ void RenderingSystem_SimplifiedVectorNormalization(void)
      (angle_threshold < (float)(*(uint *)(transform_offset + 0x38) & texture_mask))) {
     vector_component = *render_device;
     *(float *)(transform_offset + 0x38) = vertex_component;
-    vector_z = (float)((ulonglong)vector_component >> 0x20);
+    vector_z = (float)((uint64_t)vector_component >> 0x20);
     *(uint64_t *)(transform_offset + 0x30) = vector_component;
     normalization_factor = 1.0f / SQRT(vector_z * vector_z + *(float *)(transform_offset + 0x30) * *(float *)(transform_offset + 0x30) +
                                      *(float *)(transform_offset + 0x38) * *(float *)(transform_offset + 0x38));
@@ -420,7 +420,7 @@ void RenderingSystem_SimplifiedVectorNormalization(void)
      (angle_threshold < (float)(*(uint *)(transform_offset + 0x38) & texture_mask))) {
     vector_component = render_device[2];
     *(float *)(transform_offset + 0x38) = normalization_factor;
-    vector_w = (float)((ulonglong)vector_component >> 0x20);
+    vector_w = (float)((uint64_t)vector_component >> 0x20);
     *(uint64_t *)(transform_offset + 0x30) = vector_component;
     vector_y = 1.0f / SQRT(vector_w * vector_w + *(float *)(transform_offset + 0x30) * *(float *)(transform_offset + 0x30) +
                            *(float *)(transform_offset + 0x38) * *(float *)(transform_offset + 0x38));
@@ -430,12 +430,12 @@ void RenderingSystem_SimplifiedVectorNormalization(void)
   
   // 应用缩放因子
   if (scale_factor < angle_sum) {
-    *(float *)((longlong)render_device + 0x1c) = (1.0f / angle_sum) * *(float *)((longlong)render_device + 0x1c);
-    *(float *)((longlong)render_device + 0xc) = (1.0f / angle_sum) * *(float *)((longlong)render_device + 0xc);
+    *(float *)((int64_t)render_device + 0x1c) = (1.0f / angle_sum) * *(float *)((int64_t)render_device + 0x1c);
+    *(float *)((int64_t)render_device + 0xc) = (1.0f / angle_sum) * *(float *)((int64_t)render_device + 0xc);
   }
   
   // 调用渲染结束函数
-  FUN_1808fc050(*(ulonglong *)(transform_offset + 0x70) ^ (ulonglong)&stack0x00000000);
+  FUN_1808fc050(*(uint64_t *)(transform_offset + 0x70) ^ (uint64_t)&stack0x00000000);
 }
 
 // 函数：渲染系统角度缩放处理
@@ -443,8 +443,8 @@ void RenderingSystem_SimplifiedVectorNormalization(void)
 void RenderingSystem_AngleScaling(void)
 
 {
-  longlong render_offset;
-  longlong transform_offset;
+  int64_t render_offset;
+  int64_t transform_offset;
   float angle_sum;
   float scale_factor;
   
@@ -453,12 +453,12 @@ void RenderingSystem_AngleScaling(void)
   *(float *)(render_offset + 0xc) = (1.0f / angle_sum) * *(float *)(render_offset + 0xc);
   
   // 调用渲染结束函数
-  FUN_1808fc050(*(ulonglong *)(transform_offset + 0x70) ^ (ulonglong)&stack0x00000000);
+  FUN_1808fc050(*(uint64_t *)(transform_offset + 0x70) ^ (uint64_t)&stack0x00000000);
 }
 
 // 函数：渲染系统快速排序算法
 // 功能：实现渲染数据的快速排序，用于优化渲染顺序
-void RenderingSystem_QuickSort(longlong data_array, int start_index, int end_index, uint sort_seed)
+void RenderingSystem_QuickSort(int64_t data_array, int start_index, int end_index, uint sort_seed)
 
 {
   int pivot_index;
@@ -466,14 +466,14 @@ void RenderingSystem_QuickSort(longlong data_array, int start_index, int end_ind
   int32_t temp_value;
   byte shift_bits;
   uint new_seed;
-  ulonglong current_index;
+  uint64_t current_index;
   int left_index;
-  longlong right_index;
+  int64_t right_index;
   int pivot_value;
-  ulonglong left_ulong;
-  ulonglong right_ulong;
+  uint64_t left_ulong;
+  uint64_t right_ulong;
   
-  current_index = (ulonglong)start_index;
+  current_index = (uint64_t)start_index;
   right_ulong = current_index;
   
   // 快速排序主循环
@@ -482,18 +482,18 @@ void RenderingSystem_QuickSort(longlong data_array, int start_index, int end_ind
     left_ulong = right_ulong & 0xffffffff;
     shift_bits = (byte)sort_seed & 0x1f;
     sort_seed = sort_seed + (sort_seed << shift_bits | sort_seed >> 0x20 - shift_bits) + 3;
-    pivot_value = *(int *)(data_array + (longlong)(int)(partition_index + sort_seed % ((end_index - partition_index) + 1U)) * 4);
-    right_index = (longlong)end_index;
+    pivot_value = *(int *)(data_array + (int64_t)(int)(partition_index + sort_seed % ((end_index - partition_index) + 1U)) * 4);
+    right_index = (int64_t)end_index;
     left_index = end_index;
     
     // 分区处理
     do {
-      left_ulong = (ulonglong)current_index;
+      left_ulong = (uint64_t)current_index;
       partition_index = *(int *)(data_array + start_index * 4);
       while (partition_index < pivot_value) {
         start_index = start_index + 1;
         left_ulong = (int)current_index + 1;
-        current_index = (ulonglong)left_ulong;
+        current_index = (uint64_t)left_ulong;
         partition_index = *(int *)(data_array + start_index * 4);
       }
       
@@ -504,17 +504,17 @@ void RenderingSystem_QuickSort(longlong data_array, int start_index, int end_ind
         partition_index = *(int *)(data_array + right_index * 4);
       }
       
-      if (right_index < (longlong)start_index) break;
+      if (right_index < (int64_t)start_index) break;
       
       temp_value = *(int32_t *)(data_array + start_index * 4);
       left_ulong = left_ulong + 1;
-      current_index = (ulonglong)left_ulong;
+      current_index = (uint64_t)left_ulong;
       left_index = left_index + -1;
       *(int32_t *)(data_array + start_index * 4) = *(int32_t *)(data_array + right_index * 4);
       start_index = start_index + 1;
       *(int32_t *)(data_array + right_index * 4) = temp_value;
       right_index = right_index + -1;
-    } while ((longlong)start_index <= right_index);
+    } while ((int64_t)start_index <= right_index);
     
     // 递归处理左分区
     if (partition_index < left_index) {
@@ -524,14 +524,14 @@ void RenderingSystem_QuickSort(longlong data_array, int start_index, int end_ind
     if (end_index <= (int)left_ulong) {
       return;
     }
-    right_ulong = (ulonglong)left_ulong;
+    right_ulong = (uint64_t)left_ulong;
   } while( true );
 }
 
 // 函数：渲染系统碰撞检测处理
 // 功能：处理渲染对象的碰撞检测和几何关系计算
-void RenderingSystem_CollisionDetection(longlong collision_data, longlong transform_data, 
-                                       longlong geometry_data, int object_count)
+void RenderingSystem_CollisionDetection(int64_t collision_data, int64_t transform_data, 
+                                       int64_t geometry_data, int object_count)
 
 {
   int triangle_index;
@@ -541,18 +541,18 @@ void RenderingSystem_CollisionDetection(longlong collision_data, longlong transf
   int material_id;
   int texture_id;
   int normal_index;
-  longlong collision_offset;
+  int64_t collision_offset;
   int *triangle_pointer;
   int vertex_id;
-  longlong edge_offset;
-  longlong geometry_offset;
+  int64_t edge_offset;
+  int64_t geometry_offset;
   int normal_component;
-  longlong vertex_offset;
+  int64_t vertex_offset;
   int *edge_pointer;
   int collision_type;
   int stack_index;
-  longlong stack_left;
-  longlong stack_right;
+  int64_t stack_left;
+  int64_t stack_right;
   
   triangle_index = 0;
   if (0 < object_count) {
@@ -599,7 +599,7 @@ void RenderingSystem_CollisionDetection(longlong collision_data, longlong transf
   
   // 执行碰撞检测
   FUN_180413bd0(transform_data, 0, object_count * 3 + -1, 0, 0x26065ca);
-  edge_offset = (longlong)(object_count * 3);
+  edge_offset = (int64_t)(object_count * 3);
   triangle_index = 0;
   normal_component = 1;
   
@@ -632,7 +632,7 @@ void RenderingSystem_CollisionDetection(longlong collision_data, longlong transf
     do {
       if ((*(int *)(geometry_offset + transform_data) != *triangle_pointer) || 
           (*(int *)(geometry_offset + 4 + transform_data) != triangle_pointer[1])) {
-        geometry_offset = (longlong)triangle_pointer - transform_data;
+        geometry_offset = (int64_t)triangle_pointer - transform_data;
         FUN_180413bd0(transform_data, triangle_index, normal_component + -1, 2, 0x26065ca);
         triangle_index = normal_component;
       }
@@ -653,7 +653,7 @@ void RenderingSystem_CollisionDetection(longlong collision_data, longlong transf
       texture_id = 0;
       normal_component = triangle_pointer[-1];
       triangle_index = *triangle_pointer;
-      collision_offset = (longlong)(material_id * 3);
+      collision_offset = (int64_t)(material_id * 3);
       vertex_index = *(int *)(geometry_data + collision_offset * 4);
       
       // 检查顶点匹配
@@ -679,7 +679,7 @@ void RenderingSystem_CollisionDetection(longlong collision_data, longlong transf
       }
       
       // 检查碰撞状态
-      if ((*(int *)((longlong)material_id * 0x58 + geometry_offset + collision_data) == -1) &&
+      if ((*(int *)((int64_t)material_id * 0x58 + geometry_offset + collision_data) == -1) &&
          (collision_found = true, stack_left < edge_offset)) {
         edge_pointer = triangle_pointer + 4;
         collision_offset = stack_left;
@@ -689,7 +689,7 @@ void RenderingSystem_CollisionDetection(longlong collision_data, longlong transf
           vertex_index = edge_pointer[-2];
           if ((normal_component != vertex_index) || (edge_index = edge_pointer[-1], triangle_index != edge_index)) break;
           if (!collision_found) goto LAB_1804138ec;
-          vertex_offset = (longlong)(*edge_pointer * 3);
+          vertex_offset = (int64_t)(*edge_pointer * 3);
           geometry_offset = geometry_data + vertex_offset * 4;
           normal_index = *(int *)(geometry_data + vertex_offset * 4);
           
@@ -715,7 +715,7 @@ void RenderingSystem_CollisionDetection(longlong collision_data, longlong transf
           }
           
           if (((vertex_id == texture_id) && (collision_type == vertex_index)) &&
-             (*(int *)((longlong)*edge_pointer * 0x58 + vertex_offset + collision_data) == -1)) {
+             (*(int *)((int64_t)*edge_pointer * 0x58 + vertex_offset + collision_data) == -1)) {
             collision_found = false;
           }
           else {
@@ -727,8 +727,8 @@ void RenderingSystem_CollisionDetection(longlong collision_data, longlong transf
         if (!collision_found) {
 LAB_1804138ec:
           normal_component = *(int *)(transform_data + 8 + collision_offset * 0xc);
-          *(int *)(collision_data + ((longlong)material_id * 0x16 + (longlong)stack_index) * 4) = normal_component;
-          *(int *)(collision_data + ((longlong)normal_component * 0x16 + (longlong)texture_id) * 4) = material_id;
+          *(int *)(collision_data + ((int64_t)material_id * 0x16 + (int64_t)stack_index) * 4) = normal_component;
+          *(int *)(collision_data + ((int64_t)normal_component * 0x16 + (int64_t)texture_id) * 4) = material_id;
         }
       }
       
@@ -744,9 +744,9 @@ LAB_1804138ec:
 // 函数：渲染系统高级碰撞处理
 // 功能：高级碰撞检测和处理，支持复杂的几何关系
 void RenderingSystem_AdvancedCollisionProcessing(uint64_t render_context, uint64_t collision_system, 
-                                                longlong transform_data, longlong geometry_data,
+                                                int64_t transform_data, int64_t geometry_data,
                                                 uint64_t material_system, uint64_t texture_system, 
-                                                longlong object_count)
+                                                int64_t object_count)
 
 {
   int triangle_index;
@@ -756,21 +756,21 @@ void RenderingSystem_AdvancedCollisionProcessing(uint64_t render_context, uint64
   int material_id;
   int texture_id;
   int normal_index;
-  longlong collision_offset;
+  int64_t collision_offset;
   int *triangle_pointer;
   int vertex_id;
-  longlong edge_offset;
-  longlong geometry_offset;
+  int64_t edge_offset;
+  int64_t geometry_offset;
   int normal_component;
-  longlong vertex_offset;
+  int64_t vertex_offset;
   int *edge_pointer;
   int collision_type;
   int stack_index;
-  longlong unaff_R15;
-  longlong stack_left;
-  longlong stack_right;
-  longlong render_offset;
-  longlong material_offset;
+  int64_t unaff_R15;
+  int64_t stack_left;
+  int64_t stack_right;
+  int64_t render_offset;
+  int64_t material_offset;
   int collision_state;
   
   triangle_pointer = (int *)(unaff_R15 + 4);
@@ -783,7 +783,7 @@ void RenderingSystem_AdvancedCollisionProcessing(uint64_t render_context, uint64
     collision_state = 0;
     edge_index = triangle_pointer[-1];
     vertex_index = *triangle_pointer;
-    collision_offset = (longlong)(triangle_index * 3);
+    collision_offset = (int64_t)(triangle_index * 3);
     material_id = *(int *)(material_offset + collision_offset * 4);
     
     // 材质匹配检查
@@ -809,7 +809,7 @@ void RenderingSystem_AdvancedCollisionProcessing(uint64_t render_context, uint64
     }
     
     // 碰撞状态检查
-    if ((*(int *)((longlong)triangle_index * 0x58 + geometry_offset + render_offset) == -1) &&
+    if ((*(int *)((int64_t)triangle_index * 0x58 + geometry_offset + render_offset) == -1) &&
        (collision_detected = true, stack_left < transform_data)) {
       edge_pointer = triangle_pointer + 4;
       collision_offset = stack_left;
@@ -819,7 +819,7 @@ void RenderingSystem_AdvancedCollisionProcessing(uint64_t render_context, uint64
         material_id = edge_pointer[-2];
         if ((edge_index != material_id) || (vertex_index = edge_pointer[-1], vertex_index != vertex_index)) break;
         if (!collision_detected) goto LAB_1804138ec;
-        vertex_offset = (longlong)(*edge_pointer * 3);
+        vertex_offset = (int64_t)(*edge_pointer * 3);
         geometry_offset = material_offset + vertex_offset * 4;
         vertex_index = *(int *)(material_offset + vertex_offset * 4);
         
@@ -845,7 +845,7 @@ void RenderingSystem_AdvancedCollisionProcessing(uint64_t render_context, uint64
         }
         
         if (((normal_index == texture_id) && (texture_id == vertex_index)) &&
-           (*(int *)((longlong)*edge_pointer * 0x58 + vertex_offset + render_offset) == -1)) {
+           (*(int *)((int64_t)*edge_pointer * 0x58 + vertex_offset + render_offset) == -1)) {
           collision_detected = false;
         }
         else {
@@ -857,8 +857,8 @@ void RenderingSystem_AdvancedCollisionProcessing(uint64_t render_context, uint64
       if (!collision_detected) {
 LAB_1804138ec:
         edge_index = *(int *)(unaff_R15 + 8 + collision_offset * 0xc);
-        *(int *)(render_offset + ((longlong)triangle_index * 0x16 + (longlong)collision_state) * 4) = edge_index;
-        *(int *)(render_offset + ((longlong)edge_index * 0x16 + (longlong)collision_state) * 4) = triangle_index;
+        *(int *)(render_offset + ((int64_t)triangle_index * 0x16 + (int64_t)collision_state) * 4) = edge_index;
+        *(int *)(render_offset + ((int64_t)edge_index * 0x16 + (int64_t)collision_state) * 4) = triangle_index;
       }
     }
     

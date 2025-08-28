@@ -62,7 +62,7 @@ void resize_render_object_array(render_context_t *render_context, size_t new_siz
   render_object_t *new_array_ptr;
   render_object_t *temp_ptr;
   char *string_data;
-  longlong size_diff;
+  int64_t size_diff;
   
   // 获取当前数组结束指针
   old_array_end = render_context->array_end;
@@ -93,7 +93,7 @@ void resize_render_object_array(render_context_t *render_context, size_t new_siz
     }
     temp_ptr = new_array_start;
     if (new_array_ptr != old_array_end) {
-      size_diff = (longlong)new_array_ptr - (longlong)temp_ptr;
+      size_diff = (int64_t)new_array_ptr - (int64_t)temp_ptr;
       
       // 复制现有对象到新数组
       do {
@@ -109,8 +109,8 @@ void resize_render_object_array(render_context_t *render_context, size_t new_siz
         temp_ptr->name[0] = '\0';
         
         // 复制对象的属性数据
-        temp_ptr->flags = *(uint32_t *)((longlong)temp_ptr + size_diff + 0x10);
-        object_ptr = *(render_object_t **)((longlong)temp_ptr + size_diff + 8);
+        temp_ptr->flags = *(uint32_t *)((int64_t)temp_ptr + size_diff + 0x10);
+        object_ptr = *(render_object_t **)((int64_t)temp_ptr + size_diff + 8);
         string_data = &system_buffer_ptr;  // 默认名称字符串
         if (object_ptr != NULL) {
           string_data = (char *)object_ptr;
@@ -119,7 +119,7 @@ void resize_render_object_array(render_context_t *render_context, size_t new_siz
         // 复制对象名称
         strncpy_s(temp_ptr->name, sizeof(temp_ptr->name), string_data, _TRUNCATE);
         temp_ptr = temp_ptr + 1;  // 移动到下一个对象
-      } while ((render_object_t *)((longlong)temp_ptr + size_diff) != old_array_end);
+      } while ((render_object_t *)((int64_t)temp_ptr + size_diff) != old_array_end);
     }
     // 初始化新增的对象
     if (new_size != 0) {
@@ -222,7 +222,7 @@ void cleanup_render_object_list(render_context_t *render_context, void *param2, 
   }
   
   // 检查是否还有对象需要清理
-  if (*(longlong *)((uint8_t *)render_context + 0x120) == 0) {
+  if (*(int64_t *)((uint8_t *)render_context + 0x120) == 0) {
     return;
   }
   
@@ -290,7 +290,7 @@ render_object_t **create_render_object_instance(render_context_t *render_context
   }
   
   // 设置对象所属的渲染上下文
-  *(longlong *)((uint8_t *)*instance_ptr + 0xa8) = (longlong)render_context;
+  *(int64_t *)((uint8_t *)*instance_ptr + 0xa8) = (int64_t)render_context;
   
   // 设置对象名称
   name_string = &system_buffer_ptr;  // 默认名称
@@ -329,24 +329,24 @@ void setup_render_object_properties(render_context_t *render_context, void *para
   texture_node_t *property_node;
   render_object_t **instance_ptr;
   
-  if (*(longlong *)(render_context + 0xb0) == 0) {
+  if (*(int64_t *)(render_context + 0xb0) == 0) {
     texture_list = (uint64_t *)create_render_object_instance(render_context,&instance_ptr,param3,param4,0xfffffffffffffffe);
     property_value = *texture_list;
     *texture_list = 0;
-    render_manager = *(longlong **)(render_context + 0xb0);
+    render_manager = *(int64_t **)(render_context + 0xb0);
     *(uint64_t *)(render_context + 0xb0) = property_value;
-    if (render_manager != (longlong *)0x0) {
+    if (render_manager != (int64_t *)0x0) {
       (**(code **)(*render_manager + 0x38))();
     }
-    if (instance_ptr != (longlong *)0x0) {
+    if (instance_ptr != (int64_t *)0x0) {
       (**(code **)(*instance_ptr + 0x38))();
     }
-    *(int8_t *)(*(longlong *)(render_context + 0xb0) + 0xb1) = 1;
+    *(int8_t *)(*(int64_t *)(render_context + 0xb0) + 0xb1) = 1;
     base_address = system_resource_state;
-    render_manager = *(longlong **)(render_context + 0xb0);
+    render_manager = *(int64_t **)(render_context + 0xb0);
     compare_result = (**(code **)(*render_manager + 0x60))(render_manager);
-    *(int8_t *)((longlong)render_manager + 0xb2) = 1;
-    register_render_object((longlong)compare_result * 0x98 + base_address + 8,render_manager);
+    *(int8_t *)((int64_t)render_manager + 0xb2) = 1;
+    register_render_object((int64_t)compare_result * 0x98 + base_address + 8,render_manager);
   }
   texture_list = (uint64_t *)(render_system_data_resource + 0x180);
   current_node = *(uint64_t **)(render_system_data_resource + 400);
@@ -371,12 +371,12 @@ LAB_1802733d5:
   if (parent_node != texture_list) {
     property_value = parent_node[6];
     texture_id = parent_node[7];
-    render_manager = *(longlong **)(render_context + 0xb0);
+    render_manager = *(int64_t **)(render_context + 0xb0);
     *(int32_t *)(render_manager + 0x170) = 0;
     **(int8_t **)(render_manager + 0x168) = 0;
     set_render_texture(render_manager + 0x160,&unknown_var_7284_ptr,property_value);
     *(uint64_t *)(render_manager + 0x148) = property_value;
-    render_manager = *(longlong **)(render_context + 0xb0);
+    render_manager = *(int64_t **)(render_context + 0xb0);
     *(int32_t *)(render_manager + 0x1a8) = 0;
     **(int8_t **)(render_manager + 0x1a0) = 0;
     set_render_texture(render_manager + 0x198,&unknown_var_7284_ptr,texture_id);
@@ -387,23 +387,23 @@ LAB_1802733d5:
 
 
 
-// 函数: void destroy_render_object_instance(longlong render_context)
+// 函数: void destroy_render_object_instance(int64_t render_context)
 // 功能: 销毁渲染对象实例，释放相关资源
-void destroy_render_object_instance(longlong render_context)
+void destroy_render_object_instance(int64_t render_context)
 
 {
-  longlong *instance_ref;
-  longlong *instance_ptr;
-  longlong **object_manager;
+  int64_t *instance_ref;
+  int64_t *instance_ptr;
+  int64_t **object_manager;
   
-  instance_ref = *(longlong **)(render_context + 0xb0);
-  if (instance_ref != (longlong *)0x0) {
+  instance_ref = *(int64_t **)(render_context + 0xb0);
+  if (instance_ref != (int64_t *)0x0) {
     object_manager = &instance_ref;
     (**(code **)(*instance_ref + 0x28))();
     cleanup_render_resources();
-    instance_ptr = *(longlong **)(render_context + 0xb0);
+    instance_ptr = *(int64_t **)(render_context + 0xb0);
     *(uint64_t *)(render_context + 0xb0) = 0;
-    if (instance_ptr != (longlong *)0x0) {
+    if (instance_ptr != (int64_t *)0x0) {
       // 调用对象销毁函数
       (**(code **)(*instance_ptr + 0x38))();
       return;
@@ -418,41 +418,41 @@ void destroy_render_object_instance(longlong render_context)
 
 
 
-// 函数: void process_render_object_creation(longlong render_context, uint64_t param2, uint64_t param3, uint64_t param4)
+// 函数: void process_render_object_creation(int64_t render_context, uint64_t param2, uint64_t param3, uint64_t param4)
 // 功能: 处理渲染对象创建过程，包括线程安全的对象管理
-void process_render_object_creation(longlong render_context, uint64_t param2, uint64_t param3, uint64_t param4)
+void process_render_object_creation(int64_t render_context, uint64_t param2, uint64_t param3, uint64_t param4)
 
 {
-  longlong **thread_manager;
+  int64_t **thread_manager;
   char creation_result;
   int mutex_result;
   uint64_t *new_object;
-  longlong *object_instance;
-  longlong *array_data;
-  longlong *buffer_ptr;
-  longlong buffer_size;
+  int64_t *object_instance;
+  int64_t *array_data;
+  int64_t *buffer_ptr;
+  int64_t buffer_size;
   void *object_name;
-  longlong *queue_head;
-  longlong **queue_lock;
+  int64_t *queue_head;
+  int64_t **queue_lock;
   uint64_t cleanup_flag;
   
-  object_instance = *(longlong **)(render_context + 0xb0);
-  if (object_instance == (longlong *)0x0) {
-    creation_result = check_render_object_creation(0,*(uint64_t *)(*(longlong *)(render_context + 0x88) + 8),param3,param4
+  object_instance = *(int64_t **)(render_context + 0xb0);
+  if (object_instance == (int64_t *)0x0) {
+    creation_result = check_render_object_creation(0,*(uint64_t *)(*(int64_t *)(render_context + 0x88) + 8),param3,param4
                                 ,0xfffffffffffffffe);
     if (creation_result != '\0') {
       new_object = (uint64_t *)create_render_object_instance(render_context,&queue_lock);
       cleanup_flag = *new_object;
       *new_object = 0;
-      object_instance = *(longlong **)(render_context + 0xb0);
+      object_instance = *(int64_t **)(render_context + 0xb0);
       *(uint64_t *)(render_context + 0xb0) = cleanup_flag;
-      if (object_instance != (longlong *)0x0) {
+      if (object_instance != (int64_t *)0x0) {
         (**(code **)(*object_instance + 0x38))();
       }
-      if (queue_lock != (longlong **)0x0) {
+      if (queue_lock != (int64_t **)0x0) {
         (*(code *)(*queue_lock)[7])();
       }
-      *(int8_t *)(*(longlong *)(render_context + 0xb0) + 0xb1) = 1;
+      *(int8_t *)(*(int64_t *)(render_context + 0xb0) + 0xb1) = 1;
       finalize_render_object_creation();
     }
     return;
@@ -464,40 +464,40 @@ void process_render_object_creation(longlong render_context, uint64_t param2, ui
   if (*(void **)(render_context + 0x70) != (void *)0x0) {
     object_name = *(void **)(render_context + 0x70);
   }
-  array_data = (longlong *)(*(longlong *)(render_context + 0xb0) + 0x10);
+  array_data = (int64_t *)(*(int64_t *)(render_context + 0xb0) + 0x10);
   (**(code **)(*array_data + 0x10))(array_data,object_name);
   buffer_size = system_resource_state;
-  array_data = *(longlong **)(render_context + 0xb0);
+  array_data = *(int64_t **)(render_context + 0xb0);
   mutex_result = (**(code **)(*array_data + 0x60))(array_data);
-  *(int8_t *)((longlong)array_data + 0xb2) = 1;
-  buffer_ptr = (longlong *)((longlong)mutex_result * 0x98 + buffer_size + 8);
+  *(int8_t *)((int64_t)array_data + 0xb2) = 1;
+  buffer_ptr = (int64_t *)((int64_t)mutex_result * 0x98 + buffer_size + 8);
   cleanup_flag = 0xfffffffffffffffe;
-  thread_manager = (longlong **)(buffer_ptr + 8);
+  thread_manager = (int64_t **)(buffer_ptr + 8);
   queue_lock = thread_manager;
   mutex_result = _Mtx_lock(thread_manager);
   if (mutex_result != 0) {
     __Throw_C_error_std__YAXH_Z(mutex_result);
   }
   object_instance = array_data;
-  if (array_data != (longlong *)0x0) {
+  if (array_data != (int64_t *)0x0) {
     (**(code **)(*array_data + 0x28))(array_data);
   }
-  queue_head = (longlong *)buffer_ptr[1];
-  object_instance = (longlong *)0x0;
-  if (queue_head < (longlong *)buffer_ptr[2]) {
-    buffer_ptr[1] = (longlong)(queue_head + 1);
-    *queue_head = (longlong)array_data;
-    object_instance = (longlong *)0x0;
+  queue_head = (int64_t *)buffer_ptr[1];
+  object_instance = (int64_t *)0x0;
+  if (queue_head < (int64_t *)buffer_ptr[2]) {
+    buffer_ptr[1] = (int64_t)(queue_head + 1);
+    *queue_head = (int64_t)array_data;
+    object_instance = (int64_t *)0x0;
     goto LAB_1802abf36;
   }
-  array_data = (longlong *)*buffer_ptr;
-  buffer_size = (longlong)queue_head - (longlong)array_data >> 3;
+  array_data = (int64_t *)*buffer_ptr;
+  buffer_size = (int64_t)queue_head - (int64_t)array_data >> 3;
   if (buffer_size == 0) {
     buffer_size = 1;
 LAB_1802abea0:
-    object_instance = (longlong *)allocate_render_object_memory(system_memory_pool_ptr,buffer_size * 8,(char)buffer_ptr[3],param4,cleanup_flag);
-    queue_head = (longlong *)buffer_ptr[1];
-    array_data = (longlong *)*buffer_ptr;
+    object_instance = (int64_t *)allocate_render_object_memory(system_memory_pool_ptr,buffer_size * 8,(char)buffer_ptr[3],param4,cleanup_flag);
+    queue_head = (int64_t *)buffer_ptr[1];
+    array_data = (int64_t *)*buffer_ptr;
     buffer_ptr = object_instance;
   }
   else {
@@ -510,26 +510,26 @@ LAB_1802abea0:
     *array_data = 0;
     object_instance = object_instance + 1;
   }
-  *object_instance = (longlong)array_data;
-  object_instance = (longlong *)0x0;
-  array_data = (longlong *)buffer_ptr[1];
-  queue_head = (longlong *)*buffer_ptr;
+  *object_instance = (int64_t)array_data;
+  object_instance = (int64_t *)0x0;
+  array_data = (int64_t *)buffer_ptr[1];
+  queue_head = (int64_t *)*buffer_ptr;
   if (queue_head != array_data) {
     do {
-      if ((longlong *)*queue_head != (longlong *)0x0) {
-        (**(code **)(*(longlong *)*queue_head + 0x38))();
+      if ((int64_t *)*queue_head != (int64_t *)0x0) {
+        (**(code **)(*(int64_t *)*queue_head + 0x38))();
       }
       queue_head = queue_head + 1;
     } while (queue_head != array_data);
-    queue_head = (longlong *)*buffer_ptr;
+    queue_head = (int64_t *)*buffer_ptr;
   }
-  if (queue_head != (longlong *)0x0) {
+  if (queue_head != (int64_t *)0x0) {
     // 释放对象队列内存
     free_render_object_queue(queue_head);
   }
-  *buffer_ptr = (longlong)buffer_ptr;
-  buffer_ptr[1] = (longlong)(object_instance + 1);
-  buffer_ptr[2] = (longlong)(buffer_ptr + buffer_size);
+  *buffer_ptr = (int64_t)buffer_ptr;
+  buffer_ptr[1] = (int64_t)(object_instance + 1);
+  buffer_ptr[2] = (int64_t)(buffer_ptr + buffer_size);
 LAB_1802abf36:
   *(int8_t *)(buffer_ptr + 0x12) = 1;
   mutex_result = _Mtx_unlock(thread_manager);
@@ -543,7 +543,7 @@ LAB_1802abf36:
 
 // 警告: 以'_'开头的全局变量与同一地址的较小符号重叠
 
-uint64_t * clone_render_object_data(uint64_t source_object, longlong clone_flags)
+uint64_t * clone_render_object_data(uint64_t source_object, int64_t clone_flags)
 
 {
   int32_t property_a;
@@ -556,16 +556,16 @@ uint64_t * clone_render_object_data(uint64_t source_object, longlong clone_flags
   *new_object = &unknown_var_5192_ptr;
   *new_object = &unknown_var_8792_ptr;
   *(int32_t *)(new_object + 1) = 0;
-  *(int32_t *)((longlong)new_object + 0xc) = 0;
+  *(int32_t *)((int64_t)new_object + 0xc) = 0;
   *(int32_t *)(new_object + 2) = 0;
-  *(int32_t *)((longlong)new_object + 0x14) = 0;
+  *(int32_t *)((int64_t)new_object + 0x14) = 0;
   initialize_render_object_properties(new_object + 3);
   if (clone_flags != 0) {
     data_ptr = *(uint64_t *)(clone_flags + 0x10);
     new_object[1] = *(uint64_t *)(clone_flags + 8);
     new_object[2] = data_ptr;
     *(int32_t *)(new_object + 3) = *(int32_t *)(clone_flags + 0x18);
-    *(int32_t *)((longlong)new_object + 0x1c) = *(int32_t *)(clone_flags + 0x1c);
+    *(int32_t *)((int64_t)new_object + 0x1c) = *(int32_t *)(clone_flags + 0x1c);
     data_ptr = *(uint64_t *)(clone_flags + 0x28);
     new_object[4] = *(uint64_t *)(clone_flags + 0x20);
     new_object[5] = data_ptr;
@@ -618,19 +618,19 @@ uint64_t * clone_render_object_data(uint64_t source_object, longlong clone_flags
     property_b = *(int32_t *)(clone_flags + 0x128);
     property_c = *(int32_t *)(clone_flags + 300);
     *(int32_t *)(new_object + 0x24) = *(int32_t *)(clone_flags + 0x120);
-    *(int32_t *)((longlong)new_object + 0x124) = property_a;
+    *(int32_t *)((int64_t)new_object + 0x124) = property_a;
     *(int32_t *)(new_object + 0x25) = property_b;
-    *(int32_t *)((longlong)new_object + 300) = property_c;
+    *(int32_t *)((int64_t)new_object + 300) = property_c;
     *(int32_t *)(new_object + 0x26) = *(int32_t *)(clone_flags + 0x130);
-    *(int8_t *)((longlong)new_object + 0x134) = *(int8_t *)(clone_flags + 0x134);
+    *(int8_t *)((int64_t)new_object + 0x134) = *(int8_t *)(clone_flags + 0x134);
     if (new_object + 0x27 != (uint64_t *)(clone_flags + 0x138)) {
       copy_render_object_data(new_object + 0x27,*(uint64_t *)(clone_flags + 0x138),*(uint64_t *)(clone_flags + 0x140))
       ;
     }
     *(int32_t *)(new_object + 0x2b) = *(int32_t *)(clone_flags + 0x158);
-    *(int32_t *)((longlong)new_object + 0x15c) = *(int32_t *)(clone_flags + 0x15c);
+    *(int32_t *)((int64_t)new_object + 0x15c) = *(int32_t *)(clone_flags + 0x15c);
     *(int32_t *)(new_object + 0x2c) = *(int32_t *)(clone_flags + 0x160);
-    *(int32_t *)((longlong)new_object + 0x164) = *(int32_t *)(clone_flags + 0x164);
+    *(int32_t *)((int64_t)new_object + 0x164) = *(int32_t *)(clone_flags + 0x164);
     data_ptr = *(uint64_t *)(clone_flags + 0x170);
     new_object[0x2d] = *(uint64_t *)(clone_flags + 0x168);
     new_object[0x2e] = data_ptr;
@@ -644,55 +644,55 @@ uint64_t * clone_render_object_data(uint64_t source_object, longlong clone_flags
     new_object[0x33] = *(uint64_t *)(clone_flags + 0x198);
     new_object[0x34] = data_ptr;
     *(int32_t *)(new_object + 0x35) = *(int32_t *)(clone_flags + 0x1a8);
-    *(int32_t *)((longlong)new_object + 0x1ac) = *(int32_t *)(clone_flags + 0x1ac);
+    *(int32_t *)((int64_t)new_object + 0x1ac) = *(int32_t *)(clone_flags + 0x1ac);
     *(int32_t *)(new_object + 0x36) = *(int32_t *)(clone_flags + 0x1b0);
-    *(int32_t *)((longlong)new_object + 0x1b4) = *(int32_t *)(clone_flags + 0x1b4);
+    *(int32_t *)((int64_t)new_object + 0x1b4) = *(int32_t *)(clone_flags + 0x1b4);
     *(int32_t *)(new_object + 0x37) = *(int32_t *)(clone_flags + 0x1b8);
-    *(int32_t *)((longlong)new_object + 0x1bc) = *(int32_t *)(clone_flags + 0x1bc);
+    *(int32_t *)((int64_t)new_object + 0x1bc) = *(int32_t *)(clone_flags + 0x1bc);
     *(int32_t *)(new_object + 0x38) = *(int32_t *)(clone_flags + 0x1c0);
-    *(int32_t *)((longlong)new_object + 0x1c4) = *(int32_t *)(clone_flags + 0x1c4);
+    *(int32_t *)((int64_t)new_object + 0x1c4) = *(int32_t *)(clone_flags + 0x1c4);
   }
   return new_object;
 }
 
 
 
-// 函数: void transfer_render_object_ownership(longlong source_context, longlong target_context)
+// 函数: void transfer_render_object_ownership(int64_t source_context, int64_t target_context)
 // 功能: 转移渲染对象所有权，处理对象引用和资源管理
-void transfer_render_object_ownership(longlong source_context, longlong target_context)
+void transfer_render_object_ownership(int64_t source_context, int64_t target_context)
 
 {
-  longlong *source_manager;
-  longlong *target_manager;
-  longlong **ownership_lock;
+  int64_t *source_manager;
+  int64_t *target_manager;
+  int64_t **ownership_lock;
   
-  if (*(longlong *)(target_context + 0xb0) == 0) {
-    source_manager = *(longlong **)(source_context + 0xb0);
-    if (source_manager != (longlong *)0x0) {
+  if (*(int64_t *)(target_context + 0xb0) == 0) {
+    source_manager = *(int64_t **)(source_context + 0xb0);
+    if (source_manager != (int64_t *)0x0) {
       target_manager = source_manager;
       (**(code **)(*source_manager + 0x28))(source_manager);
     }
-    target_manager = *(longlong **)(target_context + 0xb0);
-    *(longlong **)(target_context + 0xb0) = source_manager;
-    if (target_manager != (longlong *)0x0) {
+    target_manager = *(int64_t **)(target_context + 0xb0);
+    *(int64_t **)(target_context + 0xb0) = source_manager;
+    if (target_manager != (int64_t *)0x0) {
       (**(code **)(*target_manager + 0x38))();
     }
   }
   else {
     ownership_lock = &target_manager;
-    target_manager = *(longlong **)(source_context + 0xb0);
-    if (target_manager != (longlong *)0x0) {
+    target_manager = *(int64_t **)(source_context + 0xb0);
+    if (target_manager != (int64_t *)0x0) {
       (**(code **)(*target_manager + 0x28))(target_manager);
     }
     cleanup_render_resources();
   }
-  if (*(longlong *)(source_context + 0xb0) != 0) {
-    *(longlong *)(*(longlong *)(source_context + 0xb0) + 0xa8) = target_context;
+  if (*(int64_t *)(source_context + 0xb0) != 0) {
+    *(int64_t *)(*(int64_t *)(source_context + 0xb0) + 0xa8) = target_context;
     update_render_object_references();
   }
-  target_manager = *(longlong **)(source_context + 0xb0);
+  target_manager = *(int64_t **)(source_context + 0xb0);
   *(uint64_t *)(source_context + 0xb0) = 0;
-  if (target_manager != (longlong *)0x0) {
+  if (target_manager != (int64_t *)0x0) {
     (**(code **)(*target_manager + 0x38))();
   }
   return;

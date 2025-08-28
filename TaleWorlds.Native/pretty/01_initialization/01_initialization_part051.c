@@ -17,7 +17,7 @@ void FUN_180078051(uint64_t param_1, uint64_t param_2, float param_3, float para
   float matrix_element_7;
   float matrix_element_8;
   float matrix_element_9;
-  longlong transformation_base;
+  int64_t transformation_base;
   float *matrix_pointer;
   int32_t matrix_flag;
   float x_component_1;
@@ -61,7 +61,7 @@ void FUN_180078051(uint64_t param_1, uint64_t param_2, float param_3, float para
   
   // 第一行变换计算
   transformed_x_1 = matrix_element_7 * x_component_2 + (float)param_1 * matrix_element_1 + (float)param_2 * matrix_element_4;
-  transformed_y_1 = matrix_element_7 * y_component_2 + (float)((ulonglong)param_1 >> 0x20) * matrix_element_2 + (float)((ulonglong)param_2 >> 0x20) * matrix_element_5;
+  transformed_y_1 = matrix_element_7 * y_component_2 + (float)((uint64_t)param_1 >> 0x20) * matrix_element_2 + (float)((uint64_t)param_2 >> 0x20) * matrix_element_5;
   transformed_z_1 = matrix_element_7 * z_component_2 + x_component_1 * matrix_element_3 + y_component_1 * matrix_element_6;
   
   matrix_element_7 = *(float *)(transformation_base + 0x138);
@@ -110,11 +110,11 @@ void FUN_180078143(void)
   int32_t render_flags;
   int32_t stack_param_1;
   uint64_t context_data_1;
-  ulonglong context_data_2;
+  uint64_t context_data_2;
   uint64_t context_data_3;
-  ulonglong context_data_4;
+  uint64_t context_data_4;
   uint64_t context_data_5;
-  ulonglong context_data_6;
+  uint64_t context_data_6;
   int32_t render_param_1;
   int32_t render_param_2;
   int32_t render_param_3;
@@ -127,7 +127,7 @@ void FUN_180078143(void)
   context_data_3 = render_context[2];
   context_data_5 = render_context[4];
   render_param_1 = *(int32_t *)(render_context + 6);
-  render_param_2 = *(int32_t *)((longlong)render_context + 0x34);
+  render_param_2 = *(int32_t *)((int64_t)render_context + 0x34);
   render_param_3 = *(int32_t *)(render_context + 7);
   stack_param_1 = input_param_2;
   render_param_4 = 0x3f800000;  // 1.0f
@@ -144,19 +144,19 @@ void FUN_180078143(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-// 函数: void FUN_1800781e0(longlong param_1)
+// 函数: void FUN_1800781e0(int64_t param_1)
 // 功能: 初始化对象状态，设置渲染标志和变换参数
-void FUN_1800781e0(longlong param_1)
+void FUN_1800781e0(int64_t param_1)
 
 {
-  longlong object_data;
+  int64_t object_data;
   int32_t flag_1;
   int32_t flag_2;
   int32_t flag_3;
   char visibility_flag;
   int8_t render_mode;
   uint64_t *data_pointer;
-  longlong transform_data;
+  int64_t transform_data;
   uint render_flags;
   bool is_visible;
   float determinant;
@@ -164,8 +164,8 @@ void FUN_1800781e0(longlong param_1)
   transform_data = param_1;
   
   // 检查对象是否有变换数据
-  if ((*(longlong *)(param_1 + 0x1c8) != 0) &&
-     (object_data = *(longlong *)(*(longlong *)(param_1 + 0x1c8) + 0x28), object_data != 0)) {
+  if ((*(int64_t *)(param_1 + 0x1c8) != 0) &&
+     (object_data = *(int64_t *)(*(int64_t *)(param_1 + 0x1c8) + 0x28), object_data != 0)) {
     // 计算变换矩阵的行列式
     determinant = (*(float *)(object_data + 0x74) * *(float *)(object_data + 0x88) -
                   *(float *)(object_data + 0x78) * *(float *)(object_data + 0x84)) * *(float *)(object_data + 0x90);
@@ -178,12 +178,12 @@ void FUN_1800781e0(longlong param_1)
   }
   
   // 检查对象是否有渲染数据
-  if (*(longlong *)(transform_data + 0x1b8) == 0) {
+  if (*(int64_t *)(transform_data + 0x1b8) == 0) {
 LAB_1800782d4:
     is_visible = (*(byte *)(param_1 + 0xfd) & 2) != 0;
   }
   else {
-    render_flags = *(uint *)(*(longlong *)(transform_data + 0x1b8) + 0x138);
+    render_flags = *(uint *)(*(int64_t *)(transform_data + 0x1b8) + 0x138);
     if ((render_flags & 0x20) != 0) {
       visibility_flag = '\0';
       goto LAB_1800782e0;
@@ -195,7 +195,7 @@ LAB_1800782d4:
 LAB_1800782e0:
   *(char *)(param_1 + 0xff) = visibility_flag;
   
-  transform_data = *(longlong *)(param_1 + 0x1b8);
+  transform_data = *(int64_t *)(param_1 + 0x1b8);
   render_flags = *(uint *)(transform_data + 0x138) & 0x3000;
   render_mode = 0;
   
@@ -238,10 +238,10 @@ LAB_1800782e0:
   FUN_180077150(param_1);
   
   // 创建对象数据结构
-  if ((*(longlong *)(param_1 + 600) == 0) &&
-     ((*(uint *)(*(longlong *)(param_1 + 0x1b8) + 0x388) >> 0x19 & 1) != 0)) {
+  if ((*(int64_t *)(param_1 + 600) == 0) &&
+     ((*(uint *)(*(int64_t *)(param_1 + 0x1b8) + 0x388) >> 0x19 & 1) != 0)) {
     data_pointer = (uint64_t *)FUN_18062b1e0(system_memory_pool_ptr, 0x58, 8, 9);
-    *(uint64_t *)((longlong)data_pointer + 0x2c) = 0xffffffffffffffff;
+    *(uint64_t *)((int64_t)data_pointer + 0x2c) = 0xffffffffffffffff;
     *(int32_t *)(data_pointer + 9) = 0xffffffff;
     *data_pointer = 0;
     data_pointer[2] = 0;
@@ -251,8 +251,8 @@ LAB_1800782e0:
     data_pointer[3] = 0;
     *(int32_t *)(data_pointer + 8) = 0;
     *(int32_t *)(data_pointer + 1) = 0;
-    *(int8_t *)((longlong)data_pointer + 0x44) = 0;
-    *(int8_t *)((longlong)data_pointer + 0x24) = 0;
+    *(int8_t *)((int64_t)data_pointer + 0x44) = 0;
+    *(int8_t *)((int64_t)data_pointer + 0x24) = 0;
     *(uint64_t **)(param_1 + 600) = data_pointer;
   }
   return;
@@ -262,26 +262,26 @@ LAB_1800782e0:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-// 函数: void FUN_1800781f4(longlong param_1)
+// 函数: void FUN_1800781f4(int64_t param_1)
 // 功能: 简化版本的对象状态初始化，处理渲染和变换
-void FUN_1800781f4(longlong param_1)
+void FUN_1800781f4(int64_t param_1)
 
 {
-  longlong object_data;
+  int64_t object_data;
   int32_t flag_1;
   int32_t flag_2;
   int32_t flag_3;
   char visibility_flag;
   int8_t render_mode;
-  longlong transform_base;
+  int64_t transform_base;
   uint64_t *data_pointer;
   uint render_flags;
-  longlong object_base;
+  int64_t object_base;
   bool is_visible;
   float determinant;
   
   // 计算变换矩阵行列式
-  if ((transform_base != 0) && (object_data = *(longlong *)(transform_base + 0x28), object_data != 0)) {
+  if ((transform_base != 0) && (object_data = *(int64_t *)(transform_base + 0x28), object_data != 0)) {
     determinant = (*(float *)(object_data + 0x74) * *(float *)(object_data + 0x88) -
                   *(float *)(object_data + 0x78) * *(float *)(object_data + 0x84)) * *(float *)(object_data + 0x90);
     func_0x0001800773c0(determinant, (*(float *)(object_data + 0x78) * *(float *)(object_data + 0x80) -
@@ -293,12 +293,12 @@ void FUN_1800781f4(longlong param_1)
   }
   
   // 检查渲染数据
-  if (*(longlong *)(param_1 + 0x1b8) == 0) {
+  if (*(int64_t *)(param_1 + 0x1b8) == 0) {
 LAB_1800782d4:
     is_visible = (*(byte *)(object_base + 0xfd) & 2) != 0;
   }
   else {
-    render_flags = *(uint *)(*(longlong *)(param_1 + 0x1b8) + 0x138);
+    render_flags = *(uint *)(*(int64_t *)(param_1 + 0x1b8) + 0x138);
     if ((render_flags & 0x20) != 0) {
       visibility_flag = '\0';
       goto LAB_1800782e0;
@@ -310,7 +310,7 @@ LAB_1800782d4:
 LAB_1800782e0:
   *(char *)(object_base + 0xff) = visibility_flag;
   
-  object_data = *(longlong *)(object_base + 0x1b8);
+  object_data = *(int64_t *)(object_base + 0x1b8);
   render_flags = *(uint *)(object_data + 0x138) & 0x3000;
   render_mode = 0;
   
@@ -353,10 +353,10 @@ LAB_1800782e0:
   FUN_180077150();
   
   // 创建数据结构
-  if ((*(longlong *)(object_base + 600) == 0) &&
-     ((*(uint *)(*(longlong *)(object_base + 0x1b8) + 0x388) >> 0x19 & 1) != 0)) {
+  if ((*(int64_t *)(object_base + 600) == 0) &&
+     ((*(uint *)(*(int64_t *)(object_base + 0x1b8) + 0x388) >> 0x19 & 1) != 0)) {
     data_pointer = (uint64_t *)FUN_18062b1e0(system_memory_pool_ptr, 0x58, 8, 9);
-    *(uint64_t *)((longlong)data_pointer + 0x2c) = 0xffffffffffffffff;
+    *(uint64_t *)((int64_t)data_pointer + 0x2c) = 0xffffffffffffffff;
     *(int32_t *)(data_pointer + 9) = 0xffffffff;
     *data_pointer = 0;
     data_pointer[2] = 0;
@@ -366,8 +366,8 @@ LAB_1800782e0:
     data_pointer[3] = 0;
     *(int32_t *)(data_pointer + 8) = 0;
     *(int32_t *)(data_pointer + 1) = 0;
-    *(int8_t *)((longlong)data_pointer + 0x44) = 0;
-    *(int8_t *)((longlong)data_pointer + 0x24) = 0;
+    *(int8_t *)((int64_t)data_pointer + 0x44) = 0;
+    *(int8_t *)((int64_t)data_pointer + 0x24) = 0;
     *(uint64_t **)(object_base + 600) = data_pointer;
   }
   return;
@@ -382,17 +382,17 @@ LAB_1800782e0:
 void FUN_180078239(float param_1, float param_2, float param_3, float param_4)
 
 {
-  longlong object_data;
+  int64_t object_data;
   int32_t flag_1;
   int32_t flag_2;
   int32_t flag_3;
   char visibility_flag;
   int8_t render_mode;
-  longlong transform_base;
+  int64_t transform_base;
   uint64_t *data_pointer;
-  longlong context_data;
+  int64_t context_data;
   uint render_flags;
-  longlong object_base;
+  int64_t object_base;
   bool is_visible;
   float determinant;
   float transform_x;
@@ -407,12 +407,12 @@ void FUN_180078239(float param_1, float param_2, float param_3, float param_4)
                              *(float *)(transform_base + 0x98) < transform_z);
   
   // 检查渲染数据
-  if (*(longlong *)(context_data + 0x1b8) == 0) {
+  if (*(int64_t *)(context_data + 0x1b8) == 0) {
 LAB_1800782d4:
     is_visible = (*(byte *)(object_base + 0xfd) & 2) != 0;
   }
   else {
-    render_flags = *(uint *)(*(longlong *)(context_data + 0x1b8) + 0x138);
+    render_flags = *(uint *)(*(int64_t *)(context_data + 0x1b8) + 0x138);
     if ((render_flags & 0x20) != 0) {
       visibility_flag = '\0';
       goto LAB_1800782e0;
@@ -424,7 +424,7 @@ LAB_1800782d4:
 LAB_1800782e0:
   *(char *)(object_base + 0xff) = visibility_flag;
   
-  object_data = *(longlong *)(object_base + 0x1b8);
+  object_data = *(int64_t *)(object_base + 0x1b8);
   render_flags = *(uint *)(object_data + 0x138) & 0x3000;
   render_mode = 0;
   
@@ -467,10 +467,10 @@ LAB_1800782e0:
   FUN_180077150();
   
   // 创建数据结构
-  if ((*(longlong *)(object_base + 600) == 0) &&
-     ((*(uint *)(*(longlong *)(object_base + 0x1b8) + 0x388) >> 0x19 & 1) != 0)) {
+  if ((*(int64_t *)(object_base + 600) == 0) &&
+     ((*(uint *)(*(int64_t *)(object_base + 0x1b8) + 0x388) >> 0x19 & 1) != 0)) {
     data_pointer = (uint64_t *)FUN_18062b1e0(system_memory_pool_ptr, 0x58, 8, 9);
-    *(uint64_t *)((longlong)data_pointer + 0x2c) = 0xffffffffffffffff;
+    *(uint64_t *)((int64_t)data_pointer + 0x2c) = 0xffffffffffffffff;
     *(int32_t *)(data_pointer + 9) = 0xffffffff;
     *data_pointer = 0;
     data_pointer[2] = 0;
@@ -480,8 +480,8 @@ LAB_1800782e0:
     data_pointer[3] = 0;
     *(int32_t *)(data_pointer + 8) = 0;
     *(int32_t *)(data_pointer + 1) = 0;
-    *(int8_t *)((longlong)data_pointer + 0x44) = 0;
-    *(int8_t *)((longlong)data_pointer + 0x24) = 0;
+    *(int8_t *)((int64_t)data_pointer + 0x44) = 0;
+    *(int8_t *)((int64_t)data_pointer + 0x24) = 0;
     *(uint64_t **)(object_base + 600) = data_pointer;
   }
   return;
@@ -491,12 +491,12 @@ LAB_1800782e0:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-// 函数: void FUN_1800782a8(longlong param_1)
+// 函数: void FUN_1800782a8(int64_t param_1)
 // 功能: 最简化版本的对象状态初始化
-void FUN_1800782a8(longlong param_1)
+void FUN_1800782a8(int64_t param_1)
 
 {
-  longlong object_data;
+  int64_t object_data;
   int32_t flag_1;
   int32_t flag_2;
   int32_t flag_3;
@@ -504,17 +504,17 @@ void FUN_1800782a8(longlong param_1)
   int8_t render_mode;
   uint64_t *data_pointer;
   uint render_flags;
-  longlong object_base;
+  int64_t object_base;
   bool is_visible;
   float zero_threshold;
   
   // 检查渲染数据
-  if (*(longlong *)(param_1 + 0x1b8) == 0) {
+  if (*(int64_t *)(param_1 + 0x1b8) == 0) {
 LAB_1800782d4:
     is_visible = (*(byte *)(object_base + 0xfd) & 2) != 0;
   }
   else {
-    render_flags = *(uint *)(*(longlong *)(param_1 + 0x1b8) + 0x138);
+    render_flags = *(uint *)(*(int64_t *)(param_1 + 0x1b8) + 0x138);
     if ((render_flags & 0x20) != 0) {
       visibility_flag = '\0';
       goto LAB_1800782e0;
@@ -526,7 +526,7 @@ LAB_1800782d4:
 LAB_1800782e0:
   *(char *)(object_base + 0xff) = visibility_flag;
   
-  object_data = *(longlong *)(object_base + 0x1b8);
+  object_data = *(int64_t *)(object_base + 0x1b8);
   render_flags = *(uint *)(object_data + 0x138) & 0x3000;
   render_mode = 0;
   
@@ -569,10 +569,10 @@ LAB_1800782e0:
   FUN_180077150();
   
   // 创建数据结构
-  if ((*(longlong *)(object_base + 600) == 0) &&
-     ((*(uint *)(*(longlong *)(object_base + 0x1b8) + 0x388) >> 0x19 & 1) != 0)) {
+  if ((*(int64_t *)(object_base + 600) == 0) &&
+     ((*(uint *)(*(int64_t *)(object_base + 0x1b8) + 0x388) >> 0x19 & 1) != 0)) {
     data_pointer = (uint64_t *)FUN_18062b1e0(system_memory_pool_ptr, 0x58, 8, 9);
-    *(uint64_t *)((longlong)data_pointer + 0x2c) = 0xffffffffffffffff;
+    *(uint64_t *)((int64_t)data_pointer + 0x2c) = 0xffffffffffffffff;
     *(int32_t *)(data_pointer + 9) = 0xffffffff;
     *data_pointer = 0;
     data_pointer[2] = 0;
@@ -582,8 +582,8 @@ LAB_1800782e0:
     data_pointer[3] = 0;
     *(int32_t *)(data_pointer + 8) = 0;
     *(int32_t *)(data_pointer + 1) = 0;
-    *(int8_t *)((longlong)data_pointer + 0x44) = 0;
-    *(int8_t *)((longlong)data_pointer + 0x24) = 0;
+    *(int8_t *)((int64_t)data_pointer + 0x44) = 0;
+    *(int8_t *)((int64_t)data_pointer + 0x24) = 0;
     *(uint64_t **)(object_base + 600) = data_pointer;
   }
   return;
@@ -599,13 +599,13 @@ void FUN_1800783b0(void)
 
 {
   uint64_t *data_pointer;
-  longlong object_base;
+  int64_t object_base;
   uint64_t context_data;
   
   // 检查是否需要创建数据结构
-  if ((*(uint *)(*(longlong *)(object_base + 0x1b8) + 0x388) >> 0x19 & 1) != 0) {
+  if ((*(uint *)(*(int64_t *)(object_base + 0x1b8) + 0x388) >> 0x19 & 1) != 0) {
     data_pointer = (uint64_t *)FUN_18062b1e0(system_memory_pool_ptr, 0x58, 8, 9);
-    *(uint64_t *)((longlong)data_pointer + 0x2c) = 0xffffffffffffffff;
+    *(uint64_t *)((int64_t)data_pointer + 0x2c) = 0xffffffffffffffff;
     *(int32_t *)(data_pointer + 9) = 0xffffffff;
     *data_pointer = context_data;
     data_pointer[2] = context_data;
@@ -615,8 +615,8 @@ void FUN_1800783b0(void)
     data_pointer[3] = context_data;
     *(int *)(data_pointer + 8) = (int)context_data;
     *(int *)(data_pointer + 1) = (int)context_data;
-    *(char *)((longlong)data_pointer + 0x44) = (char)context_data;
-    *(char *)((longlong)data_pointer + 0x24) = (char)context_data;
+    *(char *)((int64_t)data_pointer + 0x44) = (char)context_data;
+    *(char *)((int64_t)data_pointer + 0x24) = (char)context_data;
     *(uint64_t **)(object_base + 600) = data_pointer;
   }
   return;
@@ -624,7 +624,7 @@ void FUN_1800783b0(void)
 
 
 
-uint64_t * FUN_1800784e0(uint64_t *param_1, ulonglong param_2)
+uint64_t * FUN_1800784e0(uint64_t *param_1, uint64_t param_2)
 
 {
   uint64_t memory_flag;
@@ -648,9 +648,9 @@ uint64_t * FUN_1800784e0(uint64_t *param_1, ulonglong param_2)
 void FUN_180078550(uint64_t *param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 
 {
-  longlong *callback_pointer;
-  longlong *context_data;
-  longlong loop_counter;
+  int64_t *callback_pointer;
+  int64_t *context_data;
+  int64_t loop_counter;
   int32_t render_param;
   uint64_t init_flag;
   
@@ -665,9 +665,9 @@ void FUN_180078550(uint64_t *param_1, uint64_t param_2, uint64_t param_3, uint64
   context_data = param_1 + 1;
   loop_counter = 7;
   do {
-    callback_pointer = (longlong *)*context_data;
+    callback_pointer = (int64_t *)*context_data;
     *context_data = 0;
-    if (callback_pointer != (longlong *)0x0) {
+    if (callback_pointer != (int64_t *)0x0) {
       (**(code **)(*callback_pointer + 0x38))();
     }
     context_data = context_data + 1;
@@ -679,28 +679,28 @@ void FUN_180078550(uint64_t *param_1, uint64_t param_2, uint64_t param_3, uint64
   param_1[0x21] = 0x3f8000003f800000;
   param_1[0x22] = 0;
   *(int32_t *)(param_1 + 0x23) = 0;
-  *(int32_t *)((longlong)param_1 + 0x11c) = 0x3f800000;
+  *(int32_t *)((int64_t)param_1 + 0x11c) = 0x3f800000;
   param_1[0x24] = 0x3f800000;
   *(int32_t *)(param_1 + 0x25) = 0;
-  *(uint64_t *)((longlong)param_1 + 0x13c) = 0;
-  *(int32_t *)((longlong)param_1 + 0x144) = 0;
+  *(uint64_t *)((int64_t)param_1 + 0x13c) = 0;
+  *(int32_t *)((int64_t)param_1 + 0x144) = 0;
   *(int32_t *)(param_1 + 0x29) = 0x3f800000;
-  *(int32_t *)((longlong)param_1 + 0x14c) = 0x3f800000;
+  *(int32_t *)((int64_t)param_1 + 0x14c) = 0x3f800000;
   *(int16_t *)(param_1 + 0x2a) = 0;
-  *(int8_t *)((longlong)param_1 + 0x152) = 1;
+  *(int8_t *)((int64_t)param_1 + 0x152) = 1;
   *(int32_t *)(param_1 + 0x27) = 0;
   param_1[8] = 0x3f800000;
   param_1[9] = 0;
   param_1[10] = 0x3f80000000000000;
   param_1[0xb] = 0;
   *(int32_t *)(param_1 + 0xc) = 0;
-  *(int32_t *)((longlong)param_1 + 100) = 0;
+  *(int32_t *)((int64_t)param_1 + 100) = 0;
   *(int32_t *)(param_1 + 0xd) = 0x3f800000;
-  *(int32_t *)((longlong)param_1 + 0x6c) = 0;
+  *(int32_t *)((int64_t)param_1 + 0x6c) = 0;
   *(int32_t *)(param_1 + 0xe) = 0;
-  *(int32_t *)((longlong)param_1 + 0x74) = 0;
+  *(int32_t *)((int64_t)param_1 + 0x74) = 0;
   *(int32_t *)(param_1 + 0xf) = 0;
-  *(int32_t *)((longlong)param_1 + 0x7c) = 0x3f800000;
+  *(int32_t *)((int64_t)param_1 + 0x7c) = 0x3f800000;
   
   // 根据上下文类型进行不同的初始化
   if ((void *)*param_1 == &unknown_var_7192_ptr) {
@@ -709,18 +709,18 @@ void FUN_180078550(uint64_t *param_1, uint64_t param_2, uint64_t param_3, uint64
     param_1[0x12] = param_1[10];
     param_1[0x13] = param_1[0xb];
     *(int32_t *)(param_1 + 0x14) = *(int32_t *)(param_1 + 0xc);
-    *(int32_t *)((longlong)param_1 + 0xa4) = *(int32_t *)((longlong)param_1 + 100);
+    *(int32_t *)((int64_t)param_1 + 0xa4) = *(int32_t *)((int64_t)param_1 + 100);
     *(int32_t *)(param_1 + 0x15) = *(int32_t *)(param_1 + 0xd);
-    *(int32_t *)((longlong)param_1 + 0xac) = *(int32_t *)((longlong)param_1 + 0x6c);
+    *(int32_t *)((int64_t)param_1 + 0xac) = *(int32_t *)((int64_t)param_1 + 0x6c);
     *(int32_t *)(param_1 + 0x16) = *(int32_t *)(param_1 + 0xe);
-    *(int32_t *)((longlong)param_1 + 0xb4) = *(int32_t *)((longlong)param_1 + 0x74);
+    *(int32_t *)((int64_t)param_1 + 0xb4) = *(int32_t *)((int64_t)param_1 + 0x74);
     *(int32_t *)(param_1 + 0x17) = *(int32_t *)(param_1 + 0xf);
-    *(int32_t *)((longlong)param_1 + 0xbc) = *(int32_t *)((longlong)param_1 + 0x7c);
+    *(int32_t *)((int64_t)param_1 + 0xbc) = *(int32_t *)((int64_t)param_1 + 0x7c);
     render_param = FUN_180084ae0();
-    *(int32_t *)((longlong)param_1 + 0x8c) = 0;
-    *(int32_t *)((longlong)param_1 + 0x9c) = 0;
-    *(int32_t *)((longlong)param_1 + 0xac) = 0;
-    *(int32_t *)((longlong)param_1 + 0xbc) = 0x3f800000;
+    *(int32_t *)((int64_t)param_1 + 0x8c) = 0;
+    *(int32_t *)((int64_t)param_1 + 0x9c) = 0;
+    *(int32_t *)((int64_t)param_1 + 0xac) = 0;
+    *(int32_t *)((int64_t)param_1 + 0xbc) = 0x3f800000;
     FUN_180084760(render_param, param_1 + 0x18);
   }
   else {

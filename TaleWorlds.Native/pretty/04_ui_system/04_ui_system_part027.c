@@ -71,7 +71,7 @@
 // ==================== 全局变量引用 ====================
 
 // UI系统全局数据
-extern ulonglong GET_SECURITY_COOKIE();                 // UI系统全局数据指针
+extern uint64_t GET_SECURITY_COOKIE();                 // UI系统全局数据指针
 extern uint64_t ui_system_ui;               // UI系统配置数据
 extern uint64_t ui_system_ui;               // UI系统状态数据
 extern uint64_t ui_system_ui;               // UI系统控制数据
@@ -99,36 +99,36 @@ extern uint64_t ui_system_ui;               // UI系统控制数据
 // - 提供完整的错误处理和恢复机制
 // - 支持动态事件配置和参数调整
 //
-void ui_system_event_handler(longlong ui_event_context, longlong ui_event_data)
+void ui_system_event_handler(int64_t ui_event_context, int64_t ui_event_data)
 
 {
   // 事件处理变量
   char ui_event_type;                    // UI事件类型
   char ui_event_subtype;                 // UI事件子类型
   int ui_status_code;                    // UI状态代码
-  longlong ui_context_ptr;               // UI上下文指针
-  longlong ui_data_ptr;                  // UI数据指针
+  int64_t ui_context_ptr;               // UI上下文指针
+  int64_t ui_data_ptr;                  // UI数据指针
   uint ui_loop_counter;                  // 循环计数器
   int ui_param1;                         // 参数1
-  longlong ui_temp_ptr1;                 // 临时指针1
+  int64_t ui_temp_ptr1;                 // 临时指针1
   char *ui_buffer_ptr;                   // UI缓冲区指针
-  longlong ui_temp_ptr2;                 // 临时指针2
+  int64_t ui_temp_ptr2;                 // 临时指针2
   uint64_t *ui_config_ptr;             // UI配置指针
-  longlong ui_stack_offset;              // 栈偏移
+  int64_t ui_stack_offset;              // 栈偏移
   uint64_t ui_stack_data;              // 栈数据
-  longlong ui_processor_ptr;             // 处理器指针
+  int64_t ui_processor_ptr;             // 处理器指针
   uint64_t ui_result_data;             // 结果数据
   int32_t ui_flag_data;               // 标志数据
   
   // 初始化标志数据
-  ui_flag_data = (int32_t)((ulonglong)ui_stack_data >> 0x20);
+  ui_flag_data = (int32_t)((uint64_t)ui_stack_data >> 0x20);
   
   // 检查事件初始化状态
-  if (*(char *)(*(longlong *)(ui_event_data + UI_CONFIG_OFFSET) + 9) == '\0') {
+  if (*(char *)(*(int64_t *)(ui_event_data + UI_CONFIG_OFFSET) + 9) == '\0') {
     // 验证状态有效性
-    if (UI_STATE_MASK_VALID < *(int *)(*(longlong *)(ui_event_data + UI_CONTROL_OFFSET) + 0x18) - UI_STATE_OFFSET) {
+    if (UI_STATE_MASK_VALID < *(int *)(*(int64_t *)(ui_event_data + UI_CONTROL_OFFSET) + 0x18) - UI_STATE_OFFSET) {
       ui_status_code = ui_system_validator(ui_event_context);
-      *(bool *)(*(longlong *)(ui_event_data + UI_CONFIG_OFFSET) + 9) = ui_status_code == 0;
+      *(bool *)(*(int64_t *)(ui_event_data + UI_CONFIG_OFFSET) + 9) = ui_status_code == 0;
     }
   }
   else {
@@ -146,7 +146,7 @@ void ui_system_event_handler(longlong ui_event_context, longlong ui_event_data)
   }
   
   // 检查事件处理状态
-  if (*(char *)(*(longlong *)(ui_event_data + UI_CONFIG_OFFSET) + 2) == '\0') {
+  if (*(char *)(*(int64_t *)(ui_event_data + UI_CONFIG_OFFSET) + 2) == '\0') {
     // 执行事件配置
     ui_system_configurator(ui_event_data, *(uint64_t *)(ui_event_data + 0xf20), *(uint64_t *)(ui_event_data + 0xf28),
                            *(uint64_t *)(ui_event_data + 0xf38), *(uint64_t *)(ui_event_data + 0xf40),
@@ -158,7 +158,7 @@ void ui_system_event_handler(longlong ui_event_context, longlong ui_event_data)
       ui_status_code = *(int *)(ui_event_data + 0xe80);
       
       // 检查事件初始化状态
-      if (*(char *)(*(longlong *)(ui_event_data + UI_CONFIG_OFFSET) + 9) != '\0') {
+      if (*(char *)(*(int64_t *)(ui_event_data + UI_CONFIG_OFFSET) + 9) != '\0') {
         // 初始化事件内存池
         *(uint64_t *)(ui_event_data + UI_MEMORY_POOL_SIZE) = 0;
         *(uint64_t *)(ui_event_data + UI_MEMORY_POOL_SIZE + 8) = 0;
@@ -167,12 +167,12 @@ void ui_system_event_handler(longlong ui_event_context, longlong ui_event_data)
       }
       
       // 设置处理参数
-      ui_data_ptr = *(longlong *)(ui_event_data + 0xf18);
+      ui_data_ptr = *(int64_t *)(ui_event_data + 0xf18);
       ui_buffer_ptr = (char *)(ui_event_data + UI_MEMORY_POOL_SIZE);
-      ui_context_ptr = (longlong)*(int *)(ui_event_data + 0xe80);
+      ui_context_ptr = (int64_t)*(int *)(ui_event_data + 0xe80);
       ui_config_ptr = (uint64_t *)(ui_event_data + 0x860);
       ui_loop_counter = 0;
-      ui_temp_ptr1 = *(longlong *)(ui_event_data + 0xea8) - ui_context_ptr;
+      ui_temp_ptr1 = *(int64_t *)(ui_event_data + 0xea8) - ui_context_ptr;
       ui_temp_ptr2 = 0xc;
       
       // 初始化处理数据
@@ -183,11 +183,11 @@ void ui_system_event_handler(longlong ui_event_context, longlong ui_event_data)
       
       // 执行事件处理循环
       do {
-        ui_data_ptr = *(longlong *)(ui_event_data + 0xea8) + (longlong)*(int *)(ui_config_ptr + 4);
+        ui_data_ptr = *(int64_t *)(ui_event_data + 0xea8) + (int64_t)*(int *)(ui_config_ptr + 4);
         
         // 计算处理参数
         if (((int)ui_loop_counter < 4) && (*(int *)(ui_event_context + 0x2be0) != 0)) {
-          ui_context_ptr = *(longlong *)(ui_event_data + 0xf18) + (longlong)*(int *)(ui_config_ptr + 4);
+          ui_context_ptr = *(int64_t *)(ui_event_data + 0xf18) + (int64_t)*(int *)(ui_config_ptr + 4);
         }
         else {
           ui_context_ptr = ui_data_ptr - ui_status_code;
@@ -195,7 +195,7 @@ void ui_system_event_handler(longlong ui_event_context, longlong ui_event_data)
         
         // 确定处理模式
         if (((ui_loop_counter & 3) == 0) && (*(int *)(ui_event_context + 0x2be0) != 0)) {
-          ui_temp_ptr1 = ui_stack_offset + *(longlong *)(ui_event_data + 0xf30);
+          ui_temp_ptr1 = ui_stack_offset + *(int64_t *)(ui_event_data + 0xf30);
           ui_param1 = 1;
         }
         else {
@@ -206,16 +206,16 @@ void ui_system_event_handler(longlong ui_event_context, longlong ui_event_data)
         // 获取事件子类型
         if ((((ui_loop_counter - 4 & 0xfffffff3) == 0) && (ui_loop_counter != UI_PROCESSOR_COUNT)) &&
             (*(int *)(ui_event_context + 0x2be0) != 0)) {
-          ui_event_subtype = ui_buffer_ptr[(*(longlong *)(ui_event_data + 0xf30) - ui_event_data) + -UI_MEMORY_POOL_SIZE - 1];
+          ui_event_subtype = ui_buffer_ptr[(*(int64_t *)(ui_event_data + 0xf30) - ui_event_data) + -UI_MEMORY_POOL_SIZE - 1];
         }
         else {
           ui_event_subtype = *(char *)(ui_context_ptr + -1);
         }
         
         ui_processor_ptr = ui_data_ptr;
-        ui_system_dispatcher(ui_context_ptr, ui_temp_ptr1, ui_param1, *(int32_t *)(*(longlong *)(ui_event_data + UI_CONFIG_OFFSET) + ui_temp_ptr2),
+        ui_system_dispatcher(ui_context_ptr, ui_temp_ptr1, ui_param1, *(int32_t *)(*(int64_t *)(ui_event_data + UI_CONFIG_OFFSET) + ui_temp_ptr2),
                             ui_data_ptr, ui_status_code, ui_event_subtype);
-        ui_flag_data = (int32_t)((ulonglong)ui_processor_ptr >> 0x20);
+        ui_flag_data = (int32_t)((uint64_t)ui_processor_ptr >> 0x20);
         
         // 处理事件结果
         if (*ui_buffer_ptr != '\0') {
@@ -223,7 +223,7 @@ void ui_system_event_handler(longlong ui_event_context, longlong ui_event_data)
             ui_result_data = CONCAT44(ui_flag_data, ui_status_code);
             ui_system_system_call_3((int)*(short *)*ui_config_ptr * (int)*(short *)(ui_event_data + 0x7e0), ui_data_ptr,
                                     ui_status_code, ui_data_ptr, ui_result_data);
-            ui_flag_data = (int32_t)((ulonglong)ui_result_data >> 0x20);
+            ui_flag_data = (int32_t)((uint64_t)ui_result_data >> 0x20);
             *(int32_t *)*ui_config_ptr = 0;
           }
           else {
@@ -244,7 +244,7 @@ void ui_system_event_handler(longlong ui_event_context, longlong ui_event_data)
       ui_result_data = *(uint64_t *)(ui_event_data + 0xea8);
       ui_system_renderer(ui_event_data, *(uint64_t *)(ui_event_data + 0xf18), *(uint64_t *)(ui_event_data + 0xf30),
                          *(int32_t *)(ui_event_data + 0xf48), ui_result_data, *(int32_t *)(ui_event_data + 0xe80));
-      ui_flag_data = (int32_t)((ulonglong)ui_result_data >> 0x20);
+      ui_flag_data = (int32_t)((uint64_t)ui_result_data >> 0x20);
     }
   }
   else {
@@ -253,7 +253,7 @@ void ui_system_event_handler(longlong ui_event_context, longlong ui_event_data)
   }
   
   // 检查事件完成状态
-  if (*(char *)(*(longlong *)(ui_event_data + UI_CONFIG_OFFSET) + 9) == '\0') {
+  if (*(char *)(*(int64_t *)(ui_event_data + UI_CONFIG_OFFSET) + 9) == '\0') {
     if (ui_event_type != UI_EVENT_FLAG_PROCESSING) {
       ui_data_ptr = ui_event_data + 0x7e0;
       if (ui_event_type != '\t') {
@@ -277,7 +277,7 @@ void ui_system_event_handler(longlong ui_event_context, longlong ui_event_data)
       ui_context_ptr = ui_event_data + UI_MEMORY_POOL_SIZE;
       ui_system_optimizer(ui_event_data + 0x180, ui_data_ptr, *(uint64_t *)(ui_event_data + 0xea8),
                           *(int32_t *)(ui_event_data + 0xe80), ui_context_ptr);
-      ui_flag_data = (int32_t)((ulonglong)ui_context_ptr >> 0x20);
+      ui_flag_data = (int32_t)((uint64_t)ui_context_ptr >> 0x20);
     }
     ui_system_synchronizer(ui_event_data + 0x380, ui_event_data + 0x840, *(uint64_t *)(ui_event_data + 0xeb0),
                           *(uint64_t *)(ui_event_data + 0xeb8), CONCAT44(ui_flag_data, *(int32_t *)(ui_event_data + 0xe94))
@@ -308,35 +308,35 @@ void ui_system_event_handler(longlong ui_event_context, longlong ui_event_data)
 // - 改进内存访问模式
 // - 提供完整的错误处理机制
 //
-void ui_system_event_processor(longlong ui_event_context, longlong ui_event_data)
+void ui_system_event_processor(int64_t ui_event_context, int64_t ui_event_data)
 
 {
   // 事件处理变量
   char ui_event_type;                    // UI事件类型
   int ui_status_code;                    // UI状态代码
-  longlong ui_context_ptr;               // UI上下文指针
-  longlong ui_data_ptr;                  // UI数据指针
+  int64_t ui_context_ptr;               // UI上下文指针
+  int64_t ui_data_ptr;                  // UI数据指针
   uint ui_loop_counter;                  // 循环计数器
   int ui_param1;                         // 参数1
-  longlong ui_temp_ptr1;                 // 临时指针1
+  int64_t ui_temp_ptr1;                 // 临时指针1
   char *ui_buffer_ptr;                   // UI缓冲区指针
-  longlong ui_temp_ptr2;                 // 临时指针2
+  int64_t ui_temp_ptr2;                 // 临时指针2
   uint64_t *ui_config_ptr;             // UI配置指针
   uint64_t ui_stack_data;              // 栈数据
-  longlong ui_processor_ptr;             // 处理器指针
+  int64_t ui_processor_ptr;             // 处理器指针
   uint64_t ui_result_data;             // 结果数据
   int32_t ui_flag_data;               // 标志数据
-  longlong ui_stack_offset;              // 栈偏移
+  int64_t ui_stack_offset;              // 栈偏移
   
   // 初始化标志数据
-  ui_flag_data = (int32_t)((ulonglong)ui_stack_data >> 0x20);
+  ui_flag_data = (int32_t)((uint64_t)ui_stack_data >> 0x20);
   
   // 检查事件初始化状态
   if (*(char *)(ui_event_context + 9) == '\0') {
     // 验证状态有效性
-    if (UI_STATE_MASK_VALID < *(int *)(*(longlong *)(ui_event_data + UI_CONTROL_OFFSET) + 0x18) - UI_STATE_OFFSET) {
+    if (UI_STATE_MASK_VALID < *(int *)(*(int64_t *)(ui_event_data + UI_CONTROL_OFFSET) + 0x18) - UI_STATE_OFFSET) {
       ui_status_code = ui_system_validator(ui_event_context);
-      *(bool *)(*(longlong *)(ui_event_data + UI_CONFIG_OFFSET) + 9) = ui_status_code == 0;
+      *(bool *)(*(int64_t *)(ui_event_data + UI_CONFIG_OFFSET) + 9) = ui_status_code == 0;
     }
   }
   else {
@@ -354,7 +354,7 @@ void ui_system_event_processor(longlong ui_event_context, longlong ui_event_data
   }
   
   // 检查事件处理状态
-  if (*(char *)(*(longlong *)(ui_event_data + UI_CONFIG_OFFSET) + 2) == '\0') {
+  if (*(char *)(*(int64_t *)(ui_event_data + UI_CONFIG_OFFSET) + 2) == '\0') {
     // 执行事件配置
     ui_system_configurator();
     
@@ -363,7 +363,7 @@ void ui_system_event_processor(longlong ui_event_context, longlong ui_event_data
       ui_status_code = *(int *)(ui_event_data + 0xe80);
       
       // 检查事件初始化状态
-      if (*(char *)(*(longlong *)(ui_event_data + UI_CONFIG_OFFSET) + 9) != '\0') {
+      if (*(char *)(*(int64_t *)(ui_event_data + UI_CONFIG_OFFSET) + 9) != '\0') {
         // 初始化事件内存池
         *(uint64_t *)(ui_event_data + UI_MEMORY_POOL_SIZE) = 0;
         *(uint64_t *)(ui_event_data + UI_MEMORY_POOL_SIZE + 8) = 0;
@@ -372,12 +372,12 @@ void ui_system_event_processor(longlong ui_event_context, longlong ui_event_data
       }
       
       // 设置处理参数
-      ui_data_ptr = *(longlong *)(ui_event_data + 0xf18);
+      ui_data_ptr = *(int64_t *)(ui_event_data + 0xf18);
       ui_buffer_ptr = (char *)(ui_event_data + UI_MEMORY_POOL_SIZE);
-      ui_context_ptr = (longlong)*(int *)(ui_event_data + 0xe80);
+      ui_context_ptr = (int64_t)*(int *)(ui_event_data + 0xe80);
       ui_config_ptr = (uint64_t *)(ui_event_data + 0x860);
       ui_loop_counter = 0;
-      ui_temp_ptr1 = *(longlong *)(ui_event_data + 0xea8) - ui_context_ptr;
+      ui_temp_ptr1 = *(int64_t *)(ui_event_data + 0xea8) - ui_context_ptr;
       ui_temp_ptr2 = 0xc;
       
       // 初始化处理数据
@@ -388,11 +388,11 @@ void ui_system_event_processor(longlong ui_event_context, longlong ui_event_data
       
       // 执行事件处理循环
       do {
-        ui_data_ptr = *(longlong *)(ui_event_data + 0xea8) + (longlong)*(int *)(ui_config_ptr + 4);
+        ui_data_ptr = *(int64_t *)(ui_event_data + 0xea8) + (int64_t)*(int *)(ui_config_ptr + 4);
         
         // 计算处理参数
         if (((int)ui_loop_counter < 4) && (*(int *)(ui_event_context + 0x2be0) != 0)) {
-          ui_context_ptr = *(longlong *)(ui_event_data + 0xf18) + (longlong)*(int *)(ui_config_ptr + 4);
+          ui_context_ptr = *(int64_t *)(ui_event_data + 0xf18) + (int64_t)*(int *)(ui_config_ptr + 4);
         }
         else {
           ui_context_ptr = ui_data_ptr - ui_status_code;
@@ -400,7 +400,7 @@ void ui_system_event_processor(longlong ui_event_context, longlong ui_event_data
         
         // 确定处理模式
         if (((ui_loop_counter & 3) == 0) && (*(int *)(ui_event_context + 0x2be0) != 0)) {
-          ui_temp_ptr1 = ui_stack_offset + *(longlong *)(ui_event_data + 0xf30);
+          ui_temp_ptr1 = ui_stack_offset + *(int64_t *)(ui_event_data + 0xf30);
           ui_param1 = 1;
         }
         else {
@@ -409,9 +409,9 @@ void ui_system_event_processor(longlong ui_event_context, longlong ui_event_data
         }
         
         ui_processor_ptr = ui_data_ptr;
-        ui_system_dispatcher(ui_context_ptr, ui_temp_ptr1, ui_param1, *(int32_t *)(*(longlong *)(ui_event_data + UI_CONFIG_OFFSET) + ui_temp_ptr2),
+        ui_system_dispatcher(ui_context_ptr, ui_temp_ptr1, ui_param1, *(int32_t *)(*(int64_t *)(ui_event_data + UI_CONFIG_OFFSET) + ui_temp_ptr2),
                             ui_data_ptr);
-        ui_flag_data = (int32_t)((ulonglong)ui_processor_ptr >> 0x20);
+        ui_flag_data = (int32_t)((uint64_t)ui_processor_ptr >> 0x20);
         
         // 处理事件结果
         if (*ui_buffer_ptr != '\0') {
@@ -419,7 +419,7 @@ void ui_system_event_processor(longlong ui_event_context, longlong ui_event_data
             ui_result_data = CONCAT44(ui_flag_data, ui_status_code);
             ui_system_system_call_3((int)*(short *)*ui_config_ptr * (int)*(short *)(ui_event_data + 0x7e0), ui_data_ptr,
                                     ui_status_code, ui_data_ptr, ui_result_data);
-            ui_flag_data = (int32_t)((ulonglong)ui_result_data >> 0x20);
+            ui_flag_data = (int32_t)((uint64_t)ui_result_data >> 0x20);
             *(int32_t *)*ui_config_ptr = 0;
           }
           else {
@@ -437,7 +437,7 @@ void ui_system_event_processor(longlong ui_event_context, longlong ui_event_data
     }
     else {
       // 处理其他事件类型
-      ui_flag_data = (int32_t)((ulonglong)*(uint64_t *)(ui_event_data + 0xea8) >> 0x20);
+      ui_flag_data = (int32_t)((uint64_t)*(uint64_t *)(ui_event_data + 0xea8) >> 0x20);
       ui_system_renderer();
     }
   }
@@ -447,7 +447,7 @@ void ui_system_event_processor(longlong ui_event_context, longlong ui_event_data
   }
   
   // 检查事件完成状态
-  if (*(char *)(*(longlong *)(ui_event_data + UI_CONFIG_OFFSET) + 9) == '\0') {
+  if (*(char *)(*(int64_t *)(ui_event_data + UI_CONFIG_OFFSET) + 9) == '\0') {
     if (ui_event_type != UI_EVENT_FLAG_PROCESSING) {
       ui_data_ptr = ui_event_data + 0x7e0;
       if (ui_event_type != '\t') {
@@ -471,7 +471,7 @@ void ui_system_event_processor(longlong ui_event_context, longlong ui_event_data
       ui_context_ptr = ui_event_data + UI_MEMORY_POOL_SIZE;
       ui_system_optimizer(ui_event_data + 0x180, ui_data_ptr, *(uint64_t *)(ui_event_data + 0xea8),
                           *(int32_t *)(ui_event_data + 0xe80), ui_context_ptr);
-      ui_flag_data = (int32_t)((ulonglong)ui_context_ptr >> 0x20);
+      ui_flag_data = (int32_t)((uint64_t)ui_context_ptr >> 0x20);
     }
     ui_system_synchronizer(ui_event_data + 0x380, ui_event_data + 0x840, *(uint64_t *)(ui_event_data + 0xeb0),
                           *(uint64_t *)(ui_event_data + 0xeb8), CONCAT44(ui_flag_data, *(int32_t *)(ui_event_data + 0xe94)));
@@ -502,20 +502,20 @@ void ui_system_state_manager(void)
 {
   // 状态管理变量
   int ui_status_code;                    // UI状态代码
-  longlong ui_context_ptr;               // UI上下文指针
-  longlong ui_data_ptr;                  // UI数据指针
+  int64_t ui_context_ptr;               // UI上下文指针
+  int64_t ui_data_ptr;                  // UI数据指针
   uint ui_loop_counter;                  // 循环计数器
   int ui_param1;                         // 参数1
-  longlong ui_temp_ptr1;                 // 临时指针1
+  int64_t ui_temp_ptr1;                 // 临时指针1
   char *ui_buffer_ptr;                   // UI缓冲区指针
-  longlong ui_temp_ptr2;                 // 临时指针2
+  int64_t ui_temp_ptr2;                 // 临时指针2
   uint64_t *ui_config_ptr;             // UI配置指针
   char ui_event_subtype;                 // UI事件子类型
-  longlong ui_processor_ptr;             // 处理器指针
+  int64_t ui_processor_ptr;             // 处理器指针
   uint64_t ui_result_data;             // 结果数据
   int32_t ui_flag_data;               // 标志数据
-  longlong ui_stack_offset;              // 栈偏移
-  longlong ui_buffer_offset;             // 缓冲区偏移
+  int64_t ui_stack_offset;              // 栈偏移
+  int64_t ui_buffer_offset;             // 缓冲区偏移
   int ui_event_type;                     // UI事件类型
   
   // 获取状态代码
@@ -531,12 +531,12 @@ void ui_system_state_manager(void)
   }
   
   // 设置处理参数
-  ui_data_ptr = *(longlong *)(ui_event_data + 0xf18);
+  ui_data_ptr = *(int64_t *)(ui_event_data + 0xf18);
   ui_buffer_ptr = (char *)(ui_event_data + UI_MEMORY_POOL_SIZE);
-  ui_context_ptr = (longlong)*(int *)(ui_event_data + 0xe80);
+  ui_context_ptr = (int64_t)*(int *)(ui_event_data + 0xe80);
   ui_config_ptr = (uint64_t *)(ui_event_data + 0x860);
   ui_loop_counter = 0;
-  ui_temp_ptr1 = *(longlong *)(ui_event_data + 0xea8) - ui_context_ptr;
+  ui_temp_ptr1 = *(int64_t *)(ui_event_data + 0xea8) - ui_context_ptr;
   ui_buffer_offset = -UI_MEMORY_POOL_SIZE - ui_event_data;
   ui_temp_ptr2 = 0xc;
   
@@ -548,11 +548,11 @@ void ui_system_state_manager(void)
   
   // 执行状态处理循环
   do {
-    ui_data_ptr = *(longlong *)(ui_event_data + 0xea8) + (longlong)*(int *)(ui_config_ptr + 4);
+    ui_data_ptr = *(int64_t *)(ui_event_data + 0xea8) + (int64_t)*(int *)(ui_config_ptr + 4);
     
     // 计算处理参数
     if (((int)ui_loop_counter < 4) && (*(int *)(ui_event_context + 0x2be0) != 0)) {
-      ui_context_ptr = *(longlong *)(ui_event_data + 0xf18) + (longlong)*(int *)(ui_config_ptr + 4);
+      ui_context_ptr = *(int64_t *)(ui_event_data + 0xf18) + (int64_t)*(int *)(ui_config_ptr + 4);
     }
     else {
       ui_context_ptr = ui_data_ptr - ui_status_code;
@@ -560,7 +560,7 @@ void ui_system_state_manager(void)
     
     // 确定处理模式
     if (((ui_loop_counter & 3) == 0) && (*(int *)(ui_event_context + 0x2be0) != 0)) {
-      ui_temp_ptr1 = ui_stack_offset + *(longlong *)(ui_event_data + 0xf30);
+      ui_temp_ptr1 = ui_stack_offset + *(int64_t *)(ui_event_data + 0xf30);
       ui_param1 = 1;
     }
     else {
@@ -571,16 +571,16 @@ void ui_system_state_manager(void)
     // 获取事件子类型
     if ((((ui_loop_counter - 4 & 0xfffffff3) == 0) && (ui_loop_counter != UI_PROCESSOR_COUNT)) && 
         (*(int *)(ui_event_context + 0x2be0) != 0)) {
-      ui_event_subtype = ui_buffer_ptr[ui_buffer_offset + *(longlong *)(ui_event_data + 0xf30) + -1];
+      ui_event_subtype = ui_buffer_ptr[ui_buffer_offset + *(int64_t *)(ui_event_data + 0xf30) + -1];
     }
     else {
       ui_event_subtype = *(char *)(ui_context_ptr + -1);
     }
     
     ui_processor_ptr = ui_data_ptr;
-    ui_system_dispatcher(ui_context_ptr, ui_temp_ptr1, ui_param1, *(int32_t *)(*(longlong *)(ui_event_data + UI_CONFIG_OFFSET) + ui_temp_ptr2),
+    ui_system_dispatcher(ui_context_ptr, ui_temp_ptr1, ui_param1, *(int32_t *)(*(int64_t *)(ui_event_data + UI_CONFIG_OFFSET) + ui_temp_ptr2),
                         ui_data_ptr);
-    ui_flag_data = (int32_t)((ulonglong)ui_processor_ptr >> 0x20);
+    ui_flag_data = (int32_t)((uint64_t)ui_processor_ptr >> 0x20);
     
     // 处理状态结果
     if (*ui_buffer_ptr != '\0') {
@@ -588,7 +588,7 @@ void ui_system_state_manager(void)
         ui_result_data = CONCAT44(ui_flag_data, ui_status_code);
         ui_system_system_call_3((int)*(short *)*ui_config_ptr * (int)*(short *)(ui_event_data + 0x7e0), ui_data_ptr,
                                 ui_status_code, ui_data_ptr, ui_result_data);
-        ui_flag_data = (int32_t)((ulonglong)ui_result_data >> 0x20);
+        ui_flag_data = (int32_t)((uint64_t)ui_result_data >> 0x20);
         *(int32_t *)*ui_config_ptr = 0;
       }
       else {
@@ -605,7 +605,7 @@ void ui_system_state_manager(void)
   } while ((int)ui_loop_counter < UI_PROCESSOR_COUNT);
   
   // 检查状态完成状态
-  if (*(char *)(*(longlong *)(ui_event_data + UI_CONFIG_OFFSET) + 9) == '\0') {
+  if (*(char *)(*(int64_t *)(ui_event_data + UI_CONFIG_OFFSET) + 9) == '\0') {
     if (ui_event_type != UI_EVENT_FLAG_PROCESSING) {
       ui_data_ptr = ui_event_data + 0x7e0;
       if (ui_event_type != 9) {
@@ -629,7 +629,7 @@ void ui_system_state_manager(void)
       ui_context_ptr = ui_event_data + UI_MEMORY_POOL_SIZE;
       ui_system_optimizer(ui_event_data + 0x180, ui_data_ptr, *(uint64_t *)(ui_event_data + 0xea8),
                           *(int32_t *)(ui_event_data + 0xe80), ui_context_ptr);
-      ui_flag_data = (int32_t)((ulonglong)ui_context_ptr >> 0x20);
+      ui_flag_data = (int32_t)((uint64_t)ui_context_ptr >> 0x20);
     }
     ui_system_synchronizer(ui_event_data + 0x380, ui_event_data + 0x840, *(uint64_t *)(ui_event_data + 0xeb0),
                           *(uint64_t *)(ui_event_data + 0xeb8), CONCAT44(ui_flag_data, *(int32_t *)(ui_event_data + 0xe94)));
@@ -660,20 +660,20 @@ void ui_system_resource_cleaner(void)
 {
   // 资源清理变量
   uint64_t *ui_config_ptr;             // UI配置指针
-  longlong ui_data_ptr;                  // UI数据指针
-  longlong ui_context_ptr;               // UI上下文指针
+  int64_t ui_data_ptr;                  // UI数据指针
+  int64_t ui_context_ptr;               // UI上下文指针
   int ui_event_type;                     // UI事件类型
   int32_t ui_flag_data;               // 标志数据
   uint64_t ui_stack_data;              // 栈数据
   
   // 初始化标志数据
-  ui_flag_data = (int32_t)((ulonglong)ui_stack_data >> 0x20);
+  ui_flag_data = (int32_t)((uint64_t)ui_stack_data >> 0x20);
   
   // 执行资源结束处理
   ui_system_finalizer();
   
   // 检查资源状态标志
-  if (*(char *)(*(longlong *)(ui_event_data + UI_CONFIG_OFFSET) + 9) == '\0') {
+  if (*(char *)(*(int64_t *)(ui_event_data + UI_CONFIG_OFFSET) + 9) == '\0') {
     if (ui_event_type != UI_EVENT_FLAG_PROCESSING) {
       ui_data_ptr = ui_event_data + 0x7e0;
       if (ui_event_type != 9) {
@@ -697,7 +697,7 @@ void ui_system_resource_cleaner(void)
       ui_context_ptr = ui_event_data + UI_MEMORY_POOL_SIZE;
       ui_system_optimizer(ui_event_data + 0x180, ui_data_ptr, *(uint64_t *)(ui_event_data + 0xea8),
                           *(int32_t *)(ui_event_data + 0xe80), ui_context_ptr);
-      ui_flag_data = (int32_t)((ulonglong)ui_context_ptr >> 0x20);
+      ui_flag_data = (int32_t)((uint64_t)ui_context_ptr >> 0x20);
     }
     ui_system_synchronizer(ui_event_data + 0x380, ui_event_data + 0x840, *(uint64_t *)(ui_event_data + 0xeb0),
                           *(uint64_t *)(ui_event_data + 0xeb8), CONCAT44(ui_flag_data, *(int32_t *)(ui_event_data + 0xe94)));
@@ -728,7 +728,7 @@ void ui_system_memory_manager(void)
 {
   // 内存管理变量
   uint64_t *ui_config_ptr;             // UI配置指针
-  longlong ui_data_ptr;                  // UI数据指针
+  int64_t ui_data_ptr;                  // UI数据指针
   int ui_event_type;                     // UI事件类型
   
   // 检查内存状态标志

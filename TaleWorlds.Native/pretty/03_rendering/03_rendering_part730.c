@@ -48,13 +48,13 @@ void rendering_system_image_difference_calculator_simd(uint *src_data, int src_s
   uint src_pixel, ref_pixel;
   int row_count, col_count;
   uint *src_line, *ref_line;
-  longlong line_iter;
-  ulonglong simd_processed;
+  int64_t line_iter;
+  uint64_t simd_processed;
   int sum1, sum2, sum3, sum4;
   int sum5, sum6, sum7, sum8;
   __m128i src_vec, ref_vec, diff_vec, abs_vec;
   uint *current_ref;
-  longlong block_count;
+  int64_t block_count;
   
   simd_support = render_system_control_buffer;
   block_count = 8;
@@ -114,21 +114,21 @@ void rendering_system_image_difference_calculator_simd(uint *src_data, int src_s
       int even_sum = 0;
       
       if (simd_processed < 8) {
-        if (1 < (longlong)(8 - simd_processed)) {
-          uint8_t *pixel_ptr = (uint8_t *)(simd_processed + (longlong)ref_line);
-          longlong remaining_pixels = (6 - simd_processed >> 1) + 1;
+        if (1 < (int64_t)(8 - simd_processed)) {
+          uint8_t *pixel_ptr = (uint8_t *)(simd_processed + (int64_t)ref_line);
+          int64_t remaining_pixels = (6 - simd_processed >> 1) + 1;
           simd_processed = simd_processed + remaining_pixels * 2;
           
           do {
             // 计算奇数位置像素的绝对差值
-            src_pixel = (uint)pixel_ptr[(longlong)src_line - (longlong)ref_line];
+            src_pixel = (uint)pixel_ptr[(int64_t)src_line - (int64_t)ref_line];
             ref_pixel = (uint)*pixel_ptr;
             uint32_t diff = src_pixel - ref_pixel;
             uint32_t abs_diff = (diff ^ (int32_t)(diff >> 31)) - (diff >> 31);
             odd_sum += abs_diff;
             
             // 计算偶数位置像素的绝对差值
-            src_pixel = (uint)(pixel_ptr + 2)[((longlong)src_line - (longlong)ref_line) + -1];
+            src_pixel = (uint)(pixel_ptr + 2)[((int64_t)src_line - (int64_t)ref_line) + -1];
             ref_pixel = (uint)pixel_ptr[1];
             diff = src_pixel - ref_pixel;
             abs_diff = (diff ^ (int32_t)(diff >> 31)) - (diff >> 31);
@@ -140,9 +140,9 @@ void rendering_system_image_difference_calculator_simd(uint *src_data, int src_s
         }
         
         // 处理最后一个像素（如果有）
-        if ((longlong)simd_processed < 8) {
-          src_pixel = (uint)*(uint8_t *)(simd_processed + (longlong)src_line);
-          ref_pixel = (uint)*(uint8_t *)(simd_processed + (longlong)ref_line);
+        if ((int64_t)simd_processed < 8) {
+          src_pixel = (uint)*(uint8_t *)(simd_processed + (int64_t)src_line);
+          ref_pixel = (uint)*(uint8_t *)(simd_processed + (int64_t)ref_line);
           uint32_t diff = src_pixel - ref_pixel;
           uint32_t abs_diff = (diff ^ (int32_t)(diff >> 31)) - (diff >> 31);
           col_count = abs_diff;
@@ -152,15 +152,15 @@ void rendering_system_image_difference_calculator_simd(uint *src_data, int src_s
       }
       
       // 移动到下一行
-      src_line = (uint *)((longlong)src_line + (longlong)src_stride);
-      ref_line = (uint *)((longlong)ref_line + (longlong)ref_stride);
+      src_line = (uint *)((int64_t)src_line + (int64_t)src_stride);
+      ref_line = (uint *)((int64_t)ref_line + (int64_t)ref_stride);
       line_iter--;
     } while (line_iter != 0);
     
     // 计算最终结果并存储
     *result = sum5 + sum1 + sum7 + sum3 + sum6 + sum2 + sum8 + sum4 + col_count;
     result++;
-    current_ref = (uint *)((longlong)current_ref + 1);
+    current_ref = (uint *)((int64_t)current_ref + 1);
     block_count--;
   } while (block_count != 0);
   
@@ -196,7 +196,7 @@ uint64_t rendering_system_avx2_mean_abs_difference_8byte(uint8_t (*block1)[32], 
 {
   __m128i low_result;
   __m256i sum_vec, avg_vec, sad_vec;
-  longlong row_count;
+  int64_t row_count;
   __m256i temp_vec, result_vec;
   
   row_count = 8;
@@ -262,7 +262,7 @@ uint32_t rendering_system_avx2_abs_difference_8byte(uint8_t (*block1)[32], int s
 {
   __m128i low_result;
   __m256i sum_vec, sad_vec;
-  longlong row_count;
+  int64_t row_count;
   __m256i temp_vec, result_vec;
   
   row_count = 8;
@@ -324,7 +324,7 @@ uint64_t rendering_system_avx2_mean_abs_difference_16byte(uint8_t (*block1)[32],
 {
   __m128i low_result;
   __m256i sum_vec, avg_vec, sad_vec;
-  longlong row_count;
+  int64_t row_count;
   __m256i temp_vec, result_vec;
   
   row_count = 16;
@@ -390,7 +390,7 @@ uint32_t rendering_system_avx2_abs_difference_16byte(uint8_t (*block1)[32], int 
 {
   __m128i low_result;
   __m256i sum_vec, sad_vec;
-  longlong row_count;
+  int64_t row_count;
   __m256i temp_vec, result_vec;
   
   row_count = 16;
@@ -452,7 +452,7 @@ uint64_t rendering_system_avx2_mean_abs_difference_32byte(uint8_t (*block1)[32],
 {
   __m128i low_result;
   __m256i sum_vec, avg_vec, sad_vec;
-  longlong row_count;
+  int64_t row_count;
   __m256i temp_vec, result_vec;
   
   row_count = 32;
@@ -518,7 +518,7 @@ uint32_t rendering_system_avx2_abs_difference_32byte(uint8_t (*block1)[32], int 
 {
   __m128i low_result;
   __m256i sum_vec, sad_vec;
-  longlong row_count;
+  int64_t row_count;
   __m256i temp_vec, result_vec;
   
   row_count = 32;
@@ -581,7 +581,7 @@ uint64_t rendering_system_avx2_mean_abs_difference_32byte_alt_addr(uint8_t (*blo
 {
   __m128i low_result;
   __m256i sum_vec, avg_vec, sad_vec;
-  longlong row_count;
+  int64_t row_count;
   __m256i temp_vec, result_vec;
   
   row_count = 32;
@@ -648,7 +648,7 @@ uint32_t rendering_system_avx2_abs_difference_32byte_alt_addr(uint8_t (*block1)[
 {
   __m128i low_result;
   __m256i sum_vec, sad_vec;
-  longlong row_count;
+  int64_t row_count;
   __m256i temp_vec, result_vec;
   
   row_count = 32;
@@ -710,7 +710,7 @@ uint64_t rendering_system_avx2_mean_abs_difference_64byte(uint8_t (*block1)[32],
 {
   __m128i low_result;
   __m256i sum_vec, avg_vec, sad_vec;
-  longlong row_count;
+  int64_t row_count;
   __m256i temp_vec, result_vec;
   
   row_count = 64;
@@ -776,7 +776,7 @@ uint32_t rendering_system_avx2_abs_difference_64byte(uint8_t (*block1)[32], int 
 {
   __m128i low_result;
   __m256i sum_vec, sad_vec;
-  longlong row_count;
+  int64_t row_count;
   __m256i temp_vec, result_vec;
   
   row_count = 64;
@@ -843,16 +843,16 @@ void rendering_system_avx2_multi_reference_frame_calculator(uint8_t (*src_block)
   __m256i sum_vec1, sum_vec2, sum_vec3, sum_vec4;
   __m256i temp_vec1, temp_vec2, result_vec1, result_vec2;
   uint8_t (*current_ref)[32];
-  longlong ref_offset1, ref_offset2, ref_offset3;
-  longlong row_count;
+  int64_t ref_offset1, ref_offset2, ref_offset3;
+  int64_t row_count;
   __m256i sad_vec;
   
   // 获取参考帧地址和偏移量
   current_ref = (uint8_t (*)[32])ref_frames[2];
-  ref_offset1 = ref_frames[1] - (longlong)current_ref;
-  ref_offset2 = ref_frames[3] - (longlong)current_ref;
+  ref_offset1 = ref_frames[1] - (int64_t)current_ref;
+  ref_offset2 = ref_frames[3] - (int64_t)current_ref;
   sum_vec2 = _mm256_setzero_si256();
-  ref_offset3 = *ref_frames - (longlong)current_ref;
+  ref_offset3 = *ref_frames - (int64_t)current_ref;
   row_count = 32;
   sum_vec1 = sum_vec2;
   sum_vec3 = sum_vec2;
@@ -864,11 +864,11 @@ void rendering_system_avx2_multi_reference_frame_calculator(uint8_t (*src_block)
     src_vec = _mm256_loadu_si256((__m256i*)src_block);
     
     // 计算与第一个参考帧的绝对差值和
-    sad_vec = _mm256_sad_epu8(src_vec, _mm256_loadu_si256((__m256i*)(ref_offset3 + (longlong)current_ref)));
+    sad_vec = _mm256_sad_epu8(src_vec, _mm256_loadu_si256((__m256i*)(ref_offset3 + (int64_t)current_ref)));
     sum_vec2 = _mm256_add_epi32(sad_vec, sum_vec2);
     
     // 计算与第二个参考帧的绝对差值和
-    sad_vec = _mm256_sad_epu8(src_vec, _mm256_loadu_si256((__m256i*)(ref_offset1 + (longlong)current_ref)));
+    sad_vec = _mm256_sad_epu8(src_vec, _mm256_loadu_si256((__m256i*)(ref_offset1 + (int64_t)current_ref)));
     sum_vec1 = _mm256_add_epi32(sad_vec, sum_vec1);
     
     // 计算与第三个参考帧的绝对差值和
@@ -876,7 +876,7 @@ void rendering_system_avx2_multi_reference_frame_calculator(uint8_t (*src_block)
     sum_vec3 = _mm256_add_epi32(sad_vec, sum_vec3);
     
     // 计算与第四个参考帧的绝对差值和
-    sad_vec = _mm256_sad_epu8(src_vec, _mm256_loadu_si256((__m256i*)(ref_offset2 + (longlong)current_ref)));
+    sad_vec = _mm256_sad_epu8(src_vec, _mm256_loadu_si256((__m256i*)(ref_offset2 + (int64_t)current_ref)));
     current_ref = (uint8_t (*)[32])((uint8_t*)current_ref + ref_stride);
     src_block = (uint8_t (*)[32])((uint8_t*)src_block + src_stride);
     sum_vec4 = _mm256_add_epi32(sad_vec, sum_vec4);
@@ -935,15 +935,15 @@ void rendering_system_avx2_multi_reference_frame_calculator_64byte(uint8_t (*src
   __m256i temp_vec1, temp_vec2, result_vec1, result_vec2;
   __m256i sad_vec1, sad_vec2;
   uint8_t (*current_ref)[32];
-  longlong ref_offset1, ref_offset2, ref_offset3;
-  longlong row_count;
+  int64_t ref_offset1, ref_offset2, ref_offset3;
+  int64_t row_count;
   
   // 获取参考帧地址和偏移量
   current_ref = (uint8_t (*)[32])ref_frames[2];
-  ref_offset1 = ref_frames[1] - (longlong)current_ref;
-  ref_offset2 = ref_frames[3] - (longlong)current_ref;
+  ref_offset1 = ref_frames[1] - (int64_t)current_ref;
+  ref_offset2 = ref_frames[3] - (int64_t)current_ref;
   sum_vec2 = _mm256_setzero_si256();
-  ref_offset3 = *ref_frames - (longlong)current_ref;
+  ref_offset3 = *ref_frames - (int64_t)current_ref;
   row_count = 64;
   sum_vec1 = sum_vec2;
   sum_vec3 = sum_vec2;
@@ -956,14 +956,14 @@ void rendering_system_avx2_multi_reference_frame_calculator_64byte(uint8_t (*src
     src_vec2 = _mm256_loadu_si256((__m256i*)(src_block + 1));
     
     // 计算与第一个参考帧的绝对差值和（上下两部分）
-    sad_vec1 = _mm256_sad_epu8(src_vec1, _mm256_loadu_si256((__m256i*)(ref_offset3 + (longlong)current_ref)));
-    sad_vec2 = _mm256_sad_epu8(src_vec2, _mm256_loadu_si256((__m256i*)(ref_offset3 + 0x20 + (longlong)current_ref)));
+    sad_vec1 = _mm256_sad_epu8(src_vec1, _mm256_loadu_si256((__m256i*)(ref_offset3 + (int64_t)current_ref)));
+    sad_vec2 = _mm256_sad_epu8(src_vec2, _mm256_loadu_si256((__m256i*)(ref_offset3 + 0x20 + (int64_t)current_ref)));
     sum_vec2 = _mm256_add_epi32(sad_vec1, sum_vec2);
     sum_vec2 = _mm256_add_epi32(sum_vec2, sad_vec2);
     
     // 计算与第二个参考帧的绝对差值和（上下两部分）
-    sad_vec1 = _mm256_sad_epu8(src_vec1, _mm256_loadu_si256((__m256i*)(ref_offset1 + (longlong)current_ref)));
-    sad_vec2 = _mm256_sad_epu8(src_vec2, _mm256_loadu_si256((__m256i*)(ref_offset1 + 0x20 + (longlong)current_ref)));
+    sad_vec1 = _mm256_sad_epu8(src_vec1, _mm256_loadu_si256((__m256i*)(ref_offset1 + (int64_t)current_ref)));
+    sad_vec2 = _mm256_sad_epu8(src_vec2, _mm256_loadu_si256((__m256i*)(ref_offset1 + 0x20 + (int64_t)current_ref)));
     sum_vec1 = _mm256_add_epi32(sad_vec1, sum_vec1);
     sum_vec1 = _mm256_add_epi32(sum_vec1, sad_vec2);
     
@@ -974,8 +974,8 @@ void rendering_system_avx2_multi_reference_frame_calculator_64byte(uint8_t (*src
     sum_vec3 = _mm256_add_epi32(sum_vec3, sad_vec2);
     
     // 计算与第四个参考帧的绝对差值和（上下两部分）
-    sad_vec1 = _mm256_sad_epu8(src_vec1, _mm256_loadu_si256((__m256i*)(ref_offset2 + (longlong)current_ref)));
-    sad_vec2 = _mm256_sad_epu8(src_vec2, _mm256_loadu_si256((__m256i*)(ref_offset2 + 0x20 + (longlong)current_ref)));
+    sad_vec1 = _mm256_sad_epu8(src_vec1, _mm256_loadu_si256((__m256i*)(ref_offset2 + (int64_t)current_ref)));
+    sad_vec2 = _mm256_sad_epu8(src_vec2, _mm256_loadu_si256((__m256i*)(ref_offset2 + 0x20 + (int64_t)current_ref)));
     sum_vec4 = _mm256_add_epi32(sad_vec1, sum_vec4);
     sum_vec4 = _mm256_add_epi32(sum_vec4, sad_vec2);
     
@@ -1059,32 +1059,32 @@ void rendering_system_initializer(void)
  * - 高效的内存访问模式
  * - 适用于各种滤波算法（高斯、均值、边缘检测等）
  */
-void rendering_system_image_convolution_filter(longlong src_ptr, longlong src_stride, longlong dst_ptr, longlong dst_stride,
-                                              longlong kernel_ptr, uint kernel_offset, int kernel_step, int width, uint height)
+void rendering_system_image_convolution_filter(int64_t src_ptr, int64_t src_stride, int64_t dst_ptr, int64_t dst_stride,
+                                              int64_t kernel_ptr, uint kernel_offset, int kernel_step, int width, uint height)
 {
   uint pixel_value;
   int conv_result;
   uint8_t *src_pixel;
   int16_t *kernel_coeff;
-  longlong col_index;
-  ulonglong row_count;
+  int64_t col_index;
+  uint64_t row_count;
   
   // 调整源指针以处理边界
   src_ptr = src_ptr - 3;
   
   if (0 < (int)height) {
-    row_count = (ulonglong)height;
+    row_count = (uint64_t)height;
     do {
       col_index = 0;
       pixel_value = kernel_offset;
       
-      if (0 < (longlong)width) {
+      if (0 < (int64_t)width) {
         do {
           // 获取卷积核系数
-          kernel_coeff = (int16_t *)((ulonglong)(pixel_value & 0xf) * 0x10 + kernel_ptr);
+          kernel_coeff = (int16_t *)((uint64_t)(pixel_value & 0xf) * 0x10 + kernel_ptr);
           
           // 获取源像素位置（8x8区域）
-          src_pixel = (uint8_t *)(((longlong)(int)pixel_value >> 4) + src_ptr);
+          src_pixel = (uint8_t *)(((int64_t)(int)pixel_value >> 4) + src_ptr);
           
           // 执行8x8卷积运算
           conv_result = (int)((uint)*src_pixel * (int)*kernel_coeff +
@@ -1150,18 +1150,18 @@ void rendering_system_image_convolution_filter_simplified(void)
   uint pixel_value;
   uint height;
   int conv_result;
-  longlong dst_ptr;
-  longlong src_ptr;
-  longlong width;
+  int64_t dst_ptr;
+  int64_t src_ptr;
+  int64_t width;
   uint8_t *src_pixel;
   int16_t *kernel_coeff;
-  longlong col_index;
-  ulonglong row_count;
-  longlong kernel_ptr;
+  int64_t col_index;
+  uint64_t row_count;
+  int64_t kernel_ptr;
   uint kernel_offset;
   int kernel_step;
   
-  row_count = (ulonglong)height;
+  row_count = (uint64_t)height;
   
   do {
     col_index = 0;
@@ -1170,10 +1170,10 @@ void rendering_system_image_convolution_filter_simplified(void)
     if (0 < width) {
       do {
         // 获取卷积核系数
-        kernel_coeff = (int16_t *)((ulonglong)(pixel_value & 0xf) * 0x10 + kernel_ptr);
+        kernel_coeff = (int16_t *)((uint64_t)(pixel_value & 0xf) * 0x10 + kernel_ptr);
         
         // 获取源像素位置
-        src_pixel = (uint8_t *)(((longlong)(int)pixel_value >> 4) + src_ptr);
+        src_pixel = (uint8_t *)(((int64_t)(int)pixel_value >> 4) + src_ptr);
         
         // 执行卷积运算
         conv_result = (int)((uint)*src_pixel * (int)*kernel_coeff +
@@ -1262,26 +1262,26 @@ void rendering_system_empty_function(void)
  * - 灵活的内存访问模式
  * - 适用于下采样和特殊滤波场景
  */
-void rendering_system_image_convolution_filter_with_stride(longlong src_ptr, longlong src_stride, uint8_t *dst_ptr, longlong dst_stride,
-                                                             longlong kernel_ptr, uint kernel_offset, int kernel_step, uint width, int height)
+void rendering_system_image_convolution_filter_with_stride(int64_t src_ptr, int64_t src_stride, uint8_t *dst_ptr, int64_t dst_stride,
+                                                             int64_t kernel_ptr, uint kernel_offset, int kernel_step, uint width, int height)
 {
   uint8_t pixel_result;
   int conv_result;
-  longlong row_count;
+  int64_t row_count;
   uint8_t *src_pixel;
   int16_t *kernel_coeff;
   uint8_t *dst_pixel;
   uint pixel_value;
-  ulonglong height_count;
+  uint64_t height_count;
   
   // 调整源指针以处理边界
   src_ptr = src_ptr + src_stride * -3;
-  height_count = (ulonglong)height;
+  height_count = (uint64_t)height;
   dst_ptr = dst_ptr;
   
   if (0 < (int)height) {
     do {
-      row_count = (longlong)height;
+      row_count = (int64_t)height;
       
       if (0 < row_count) {
         dst_pixel = dst_ptr;
@@ -1289,10 +1289,10 @@ void rendering_system_image_convolution_filter_with_stride(longlong src_ptr, lon
         
         do {
           // 获取卷积核系数
-          kernel_coeff = (int16_t *)((ulonglong)(pixel_value & 0xf) * 0x10 + kernel_ptr);
+          kernel_coeff = (int16_t *)((uint64_t)(pixel_value & 0xf) * 0x10 + kernel_ptr);
           
           // 获取源像素位置（考虑步长）
-          src_pixel = (uint8_t *)(((longlong)(int)pixel_value >> 4) * src_stride + src_ptr);
+          src_pixel = (uint8_t *)(((int64_t)(int)pixel_value >> 4) * src_stride + src_ptr);
           
           // 执行8x8卷积运算（考虑步长）
           conv_result = (int)((uint)*src_pixel * (int)*kernel_coeff +
@@ -1360,17 +1360,17 @@ void rendering_system_image_convolution_filter_with_stride_simplified(void)
 {
   uint8_t pixel_result;
   int conv_result;
-  ulonglong height;
-  longlong src_stride;
-  longlong width;
+  uint64_t height;
+  int64_t src_stride;
+  int64_t width;
   uint8_t *src_pixel;
   int16_t *kernel_coeff;
   uint pixel_value;
-  ulonglong row_count;
-  longlong dst_stride;
+  uint64_t row_count;
+  int64_t dst_stride;
   uint8_t *dst_pixel;
-  ulonglong height_count;
-  longlong kernel_ptr;
+  uint64_t height_count;
+  int64_t kernel_ptr;
   uint kernel_offset;
   int kernel_step;
   
@@ -1383,10 +1383,10 @@ void rendering_system_image_convolution_filter_with_stride_simplified(void)
       
       do {
         // 获取卷积核系数
-        kernel_coeff = (int16_t *)((ulonglong)(pixel_value & 0xf) * 0x10 + kernel_ptr);
+        kernel_coeff = (int16_t *)((uint64_t)(pixel_value & 0xf) * 0x10 + kernel_ptr);
         
         // 获取源像素位置（考虑步长）
-        src_pixel = (uint8_t *)(((longlong)(int)pixel_value >> 4) * src_stride + width);
+        src_pixel = (uint8_t *)(((int64_t)(int)pixel_value >> 4) * src_stride + width);
         
         // 执行卷积运算（考虑步长）
         conv_result = (int)((uint)*src_pixel * (int)*kernel_coeff +

@@ -171,7 +171,7 @@ void execute_advanced_matrix_transformations(void* context_ptr, void* matrix_ptr
                 source_data = *((int64_t*)(hash_table_offset + 0x20 + data_block_offset));
                 data_index++;
                 data_pointer += 4;
-            } while ((ulonglong)(longlong)data_index < (ulonglong)(*((int64_t*)(hash_table_offset + 0x28 + data_block_offset)) - source_data >> 2));
+            } while ((uint64_t)(int64_t)data_index < (uint64_t)(*((int64_t*)(hash_table_offset + 0x28 + data_block_offset)) - source_data >> 2));
         }
         
         // 应用矩阵变换

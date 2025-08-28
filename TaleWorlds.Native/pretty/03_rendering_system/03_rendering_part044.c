@@ -188,7 +188,7 @@
 // 原始函数声明
 // =============================================================================
 
-void FUN_18028f350(uint64_t param_1,longlong param_2,int *param_3,uint param_4,float param_5,
+void FUN_18028f350(uint64_t param_1,int64_t param_2,int *param_3,uint param_4,float param_5,
                   float param_6,uint64_t param_7,uint64_t param_8,int32_t param_9,
                   int32_t param_10);
 void FUN_18028f499(float param_1);
@@ -197,11 +197,11 @@ void FUN_18028f4d4(float param_1,uint64_t param_2,float param_3);
 void FUN_18028f5d1(int32_t param_1);
 void FUN_18028f5ec(int32_t param_1,float param_2);
 void FUN_18028f68e(void);
-uint64_t FUN_18028f6d0(longlong param_1,int *param_2,float param_3,float param_4,float param_5,float param_6,
+uint64_t FUN_18028f6d0(int64_t param_1,int *param_2,float param_3,float param_4,float param_5,float param_6,
              float param_7,float param_8,float param_9,int param_10);
 uint64_t FUN_18028f7d7(float param_1,int *param_2,float param_3);
 uint64_t FUN_18028f898(void);
-void FUN_18028f8f0(longlong param_1,int *param_2,float param_3,float param_4,float param_5,
+void FUN_18028f8f0(int64_t param_1,int *param_2,float param_3,float param_4,float param_5,
                   float param_6,float param_7,float param_8,float param_9,float param_10,
                   float param_11,int param_12);
 void FUN_18028fa3b(uint64_t param_1,float param_2);
@@ -211,7 +211,7 @@ void FUN_18028fa3b(uint64_t param_1,float param_2);
 // =============================================================================
 
 // 渲染数据批量处理实现
-void FUN_18028f350(uint64_t param_1,longlong param_2,int *param_3,uint param_4,float param_5,
+void FUN_18028f350(uint64_t param_1,int64_t param_2,int *param_3,uint param_4,float param_5,
                   float param_6,uint64_t param_7,uint64_t param_8,int32_t param_9,
                   int32_t param_10)
 {
@@ -222,7 +222,7 @@ void FUN_18028f350(uint64_t param_1,longlong param_2,int *param_3,uint param_4,f
 }
 
 // 渲染几何体递归细分实现
-uint64_t FUN_18028f6d0(longlong param_1,int *param_2,float param_3,float param_4,float param_5,float param_6,
+uint64_t FUN_18028f6d0(int64_t param_1,int *param_2,float param_3,float param_4,float param_5,float param_6,
              float param_7,float param_8,float param_9,int param_10)
 {
     // 递归细分算法的实现
@@ -233,7 +233,7 @@ uint64_t FUN_18028f6d0(longlong param_1,int *param_2,float param_3,float param_4
 }
 
 // 渲染几何体三角形细分实现
-void FUN_18028f8f0(longlong param_1,int *param_2,float param_3,float param_4,float param_5,
+void FUN_18028f8f0(int64_t param_1,int *param_2,float param_3,float param_4,float param_5,
                   float param_6,float param_7,float param_8,float param_9,float param_10,
                   float param_11,int param_12)
 {

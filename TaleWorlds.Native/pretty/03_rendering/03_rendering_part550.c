@@ -90,14 +90,14 @@
 // 类型别名
 // ============================================================================
 
-typedef longlong RenderingHandle;             // 渲染句柄类型
+typedef int64_t RenderingHandle;             // 渲染句柄类型
 typedef uint64_t RenderingResourceHandle;   // 渲染资源句柄类型
 typedef int8_t RenderingStateFlag;        // 渲染状态标志类型
 typedef byte RenderingStatusCode;             // 渲染状态码类型
 typedef uint RenderingParamID;               // 渲染参数ID类型
-typedef ulonglong RenderingMemoryAddress;     // 渲染内存地址类型
+typedef uint64_t RenderingMemoryAddress;     // 渲染内存地址类型
 typedef uint64_t* RenderingPointer;        // 渲染指针类型
-typedef longlong* RenderingLongPointer;      // 渲染长整型指针类型
+typedef int64_t* RenderingLongPointer;      // 渲染长整型指针类型
 typedef int32_t* RenderingFloatPointer;   // 渲染浮点型指针类型
 typedef int* RenderingIntPointer;             // 渲染整型指针类型
 typedef void* RenderingVoidPointer;           // 渲染空指针类型
@@ -249,13 +249,13 @@ typedef struct {
 
 // 主要函数别名
 typedef void (*RenderingSystemParameterProcessorFunc)(RenderingHandle system_handle, int param_index, int param_offset, int32_t param_value_1, int32_t param_value_2);
-typedef int8_t (*RenderingSystemStateValidatorFunc)(uint64_t resource_handle, int32_t* param_data, longlong param_offset);
-typedef longlong (*RenderingSystemDataProcessorFunc)(longlong data_ptr, longlong start_ptr, longlong end_ptr);
-typedef ulonglong (*RenderingSystemOptimizationEngineFunc)(longlong* state_ptr, uint64_t resource_handle, uint param_value, int threshold);
-typedef ulonglong (*RenderingSystemAdvancedProcessorFunc)(longlong* state_ptr, uint64_t resource_handle, uint param_value, longlong data_offset);
-typedef uint (*RenderingSystemResourceHandlerFunc)(int current_param, uint64_t resource_handle, int threshold, longlong data_offset);
-typedef int (*RenderingSystemMemoryManagerFunc)(int min_param, uint64_t resource_handle, longlong data_offset);
-typedef int (*RenderingSystemStateInitializerFunc)(int current_param, uint64_t resource_handle, longlong data_offset);
+typedef int8_t (*RenderingSystemStateValidatorFunc)(uint64_t resource_handle, int32_t* param_data, int64_t param_offset);
+typedef int64_t (*RenderingSystemDataProcessorFunc)(int64_t data_ptr, int64_t start_ptr, int64_t end_ptr);
+typedef uint64_t (*RenderingSystemOptimizationEngineFunc)(int64_t* state_ptr, uint64_t resource_handle, uint param_value, int threshold);
+typedef uint64_t (*RenderingSystemAdvancedProcessorFunc)(int64_t* state_ptr, uint64_t resource_handle, uint param_value, int64_t data_offset);
+typedef uint (*RenderingSystemResourceHandlerFunc)(int current_param, uint64_t resource_handle, int threshold, int64_t data_offset);
+typedef int (*RenderingSystemMemoryManagerFunc)(int min_param, uint64_t resource_handle, int64_t data_offset);
+typedef int (*RenderingSystemStateInitializerFunc)(int current_param, uint64_t resource_handle, int64_t data_offset);
 
 // 辅助函数别名
 typedef int (*RenderingParamValidatorFunc)(RenderingParameterData* param_data);
@@ -302,14 +302,14 @@ void RenderingSystemParameterProcessor(RenderingHandle system_handle, int param_
 {
     // 局部变量声明
     int validation_result;
-    longlong* param_ptr;
+    int64_t* param_ptr;
     uint64_t resource_value;
     int32_t* param_data_ptr;
-    longlong current_data;
+    int64_t current_data;
     int required_capacity;
     
     // 获取参数指针
-    param_ptr = (longlong*)(system_handle + 0x4c488);
+    param_ptr = (int64_t*)(system_handle + 0x4c488);
     
     // 计算参数偏移
     param_offset = param_index * 0x10 + param_offset;
@@ -319,7 +319,7 @@ void RenderingSystemParameterProcessor(RenderingHandle system_handle, int param_
     required_capacity = param_offset + 1;
     
     // 检查容量并扩展内存
-    if ((int)((*(longlong*)(system_handle + 0x4c490) - current_data) / 0xe0) < required_capacity) {
+    if ((int)((*(int64_t*)(system_handle + 0x4c490) - current_data) / 0xe0) < required_capacity) {
         FUN_18056ef80(param_ptr, required_capacity);
         current_data = *param_ptr;
     }
@@ -328,7 +328,7 @@ void RenderingSystemParameterProcessor(RenderingHandle system_handle, int param_
     resource_value = render_system_render;
     
     // 计算参数数据指针
-    param_data_ptr = (int32_t*)((longlong)param_offset * 0xe0 + current_data);
+    param_data_ptr = (int32_t*)((int64_t)param_offset * 0xe0 + current_data);
     
     // 设置参数值
     param_data_ptr[0x36] = param_value_1;
@@ -366,7 +366,7 @@ void RenderingSystemParameterProcessor(RenderingHandle system_handle, int param_
  * - 处理验证过程中的异常
  * - 返回适当的验证结果
  */
-int8_t RenderingSystemStateValidator(uint64_t resource_handle, int32_t* param_data, longlong param_offset)
+int8_t RenderingSystemStateValidator(uint64_t resource_handle, int32_t* param_data, int64_t param_offset)
 {
     // 局部变量声明
     int8_t validation_result;
@@ -407,7 +407,7 @@ int8_t RenderingSystemStateValidator(uint64_t resource_handle, int32_t* param_da
  * - end_ptr: 结束指针，标识数据块的结束位置
  * 
  * 返回值：
- * - longlong: 处理后的数据指针位置
+ * - int64_t: 处理后的数据指针位置
  * 
  * 错误处理：
  * - 检查指针有效性
@@ -415,16 +415,16 @@ int8_t RenderingSystemStateValidator(uint64_t resource_handle, int32_t* param_da
  * - 处理内存操作失败
  * - 返回适当的指针位置
  */
-longlong RenderingSystemDataProcessor(longlong data_ptr, longlong start_ptr, longlong end_ptr)
+int64_t RenderingSystemDataProcessor(int64_t data_ptr, int64_t start_ptr, int64_t end_ptr)
 {
     // 局部变量声明
-    longlong data_end;
-    longlong block_size;
+    int64_t data_end;
+    int64_t block_size;
     
     // 检查数据范围
     if (start_ptr != end_ptr) {
         // 获取数据结束位置
-        data_end = *(longlong*)(data_ptr + 8);
+        data_end = *(int64_t*)(data_ptr + 8);
         
         // 检查是否需要内存移动
         if (end_ptr != data_end) {
@@ -433,7 +433,7 @@ longlong RenderingSystemDataProcessor(longlong data_ptr, longlong start_ptr, lon
         }
         
         // 更新数据指针
-        *(ulonglong*)(data_ptr + 8) = data_end - (end_ptr - start_ptr & 0xfffffffffffffff8U);
+        *(uint64_t*)(data_ptr + 8) = data_end - (end_ptr - start_ptr & 0xfffffffffffffff8U);
     }
     
     return start_ptr;
@@ -459,7 +459,7 @@ longlong RenderingSystemDataProcessor(longlong data_ptr, longlong start_ptr, lon
  * - threshold: 阈值，用于优化决策
  * 
  * 返回值：
- * - ulonglong: 优化结果值
+ * - uint64_t: 优化结果值
  * 
  * 错误处理：
  * - 检查状态指针有效性
@@ -467,13 +467,13 @@ longlong RenderingSystemDataProcessor(longlong data_ptr, longlong start_ptr, lon
  * - 处理优化过程中的异常
  * - 返回适当的优化结果
  */
-ulonglong RenderingSystemOptimizationEngine(longlong* state_ptr, uint64_t resource_handle, uint param_value, int threshold)
+uint64_t RenderingSystemOptimizationEngine(int64_t* state_ptr, uint64_t resource_handle, uint param_value, int threshold)
 {
     // 局部变量声明
     int iVar1, iVar2, iVar3, iVar4, iVar5, iVar6, iVar7;
     uint uVar14, uVar15, uVar17, uVar18, uVar20, uVar19, uVar21, uVar22, uVar23, uVar24;
-    longlong lVar8, lVar10, lVar13;
-    ulonglong uVar9, uVar12;
+    int64_t lVar8, lVar10, lVar13;
+    uint64_t uVar9, uVar12;
     
     // 计算优化参数
     uVar14 = *(int*)(param_value + 0x5c4) + 9;
@@ -535,7 +535,7 @@ ulonglong RenderingSystemOptimizationEngine(longlong* state_ptr, uint64_t resour
             uVar24 = ((uint)((int)uVar24 < iVar1) * iVar1 | ((int)uVar24 >= iVar1) * uVar24) & ~-(uint)(iVar2 < iVar1) | -(uint)(iVar2 < iVar1) & uVar24;
             
             uVar9 = uVar9 + 0x2ec0;
-        } while ((longlong)uVar12 < (longlong)(int)(uVar14 - uVar15));
+        } while ((int64_t)uVar12 < (int64_t)(int)(uVar14 - uVar15));
         
         // 计算最终优化结果
         uVar15 = ((int)uVar17 < (int)uVar21) * uVar21 | ((int)uVar17 >= (int)uVar21) * uVar17;
@@ -544,11 +544,11 @@ ulonglong RenderingSystemOptimizationEngine(longlong* state_ptr, uint64_t resour
         uVar20 = ((int)uVar19 < (int)uVar24) * uVar24 | ((int)uVar19 >= (int)uVar24) * uVar19;
         uVar15 = ((int)uVar15 < (int)uVar18) * uVar18 | ((int)uVar15 >= (int)uVar18) * uVar15;
         uVar17 = ((int)uVar17 < (int)uVar20) * uVar20 | ((int)uVar17 >= (int)uVar20) * uVar17;
-        uVar12 = (ulonglong)(((int)uVar15 < (int)uVar17) * uVar17 | ((int)uVar15 >= (int)uVar17) * uVar15);
+        uVar12 = (uint64_t)(((int)uVar15 < (int)uVar17) * uVar17 | ((int)uVar15 >= (int)uVar17) * uVar15);
     }
     
     // 执行后续优化
-    lVar10 = (longlong)iVar1;
+    lVar10 = (int64_t)iVar1;
     if (lVar10 < (int)uVar14) {
         lVar13 = lVar10 * 0x5d8;
         lVar10 = (int)uVar14 - lVar10;
@@ -557,7 +557,7 @@ ulonglong RenderingSystemOptimizationEngine(longlong* state_ptr, uint64_t resour
         do {
             uVar14 = *(uint*)(lVar13 + 0x5c8 + lVar8);
             if (((int)uVar14 <= iVar2) && ((int)uVar12 < (int)uVar14)) {
-                uVar12 = (ulonglong)uVar14;
+                uVar12 = (uint64_t)uVar14;
             }
             lVar13 = lVar13 + 0x5d8;
             lVar10 = lVar10 + -1;
@@ -587,7 +587,7 @@ ulonglong RenderingSystemOptimizationEngine(longlong* state_ptr, uint64_t resour
  * - threshold: 阈值，用于处理决策
  * 
  * 返回值：
- * - ulonglong: 处理结果值
+ * - uint64_t: 处理结果值
  * 
  * 错误处理：
  * - 检查状态指针有效性
@@ -595,13 +595,13 @@ ulonglong RenderingSystemOptimizationEngine(longlong* state_ptr, uint64_t resour
  * - 处理计算过程中的异常
  * - 返回适当的处理结果
  */
-ulonglong RenderingSystemAdvancedProcessor(longlong* state_ptr, uint64_t resource_handle, uint param_value, int threshold)
+uint64_t RenderingSystemAdvancedProcessor(int64_t* state_ptr, uint64_t resource_handle, uint param_value, int threshold)
 {
     // 局部变量声明
     int iVar1, iVar2, iVar3, iVar4, iVar5, iVar6, iVar7;
     uint uVar8, uVar14, uVar17, uVar18, uVar20, uVar19, uVar21, uVar22, uVar23, uVar24;
-    longlong lVar9, lVar11, lVar15;
-    ulonglong uVar10, uVar13;
+    int64_t lVar9, lVar11, lVar15;
+    uint64_t uVar10, uVar13;
     
     // 初始化处理变量
     uVar8 = (uint)((state_ptr[1] - *state_ptr) / 0x5d8);
@@ -646,7 +646,7 @@ ulonglong RenderingSystemAdvancedProcessor(longlong* state_ptr, uint64_t resourc
             uVar24 = ((uint)((int)uVar24 < iVar1) * iVar1 | ((int)uVar24 >= iVar1) * uVar24) & ~-(uint)(threshold < iVar1) | -(uint)(threshold < iVar1) & uVar24;
             
             uVar10 = uVar10 + 0x2ec0;
-        } while ((longlong)uVar10 < (longlong)(int)(uVar8 - uVar14));
+        } while ((int64_t)uVar10 < (int64_t)(int)(uVar8 - uVar14));
         
         // 计算最终处理结果
         uVar14 = ((int)uVar17 < (int)uVar21) * uVar21 | ((int)uVar17 >= (int)uVar21) * uVar17;
@@ -655,11 +655,11 @@ ulonglong RenderingSystemAdvancedProcessor(longlong* state_ptr, uint64_t resourc
         uVar20 = ((int)uVar19 < (int)uVar24) * uVar24 | ((int)uVar19 >= (int)uVar24) * uVar19;
         uVar14 = ((int)uVar14 < (int)uVar18) * uVar18 | ((int)uVar14 >= (int)uVar18) * uVar14;
         uVar17 = ((int)uVar17 < (int)uVar20) * uVar20 | ((int)uVar17 >= (int)uVar20) * uVar17;
-        uVar13 = (ulonglong)(((int)uVar14 < (int)uVar17) * uVar17 | ((int)uVar14 >= (int)uVar17) * uVar14);
+        uVar13 = (uint64_t)(((int)uVar14 < (int)uVar17) * uVar17 | ((int)uVar14 >= (int)uVar17) * uVar14);
     }
     
     // 执行后续处理
-    lVar11 = (longlong)iVar1;
+    lVar11 = (int64_t)iVar1;
     if (lVar11 < (int)uVar8) {
         lVar15 = lVar11 * 0x5d8;
         lVar11 = (int)uVar8 - lVar11;
@@ -668,7 +668,7 @@ ulonglong RenderingSystemAdvancedProcessor(longlong* state_ptr, uint64_t resourc
         do {
             uVar8 = *(uint*)(lVar15 + 0x5c8 + *state_ptr);
             if (((int)uVar8 <= threshold) && ((int)uVar13 < (int)uVar8)) {
-                uVar13 = (ulonglong)uVar8;
+                uVar13 = (uint64_t)uVar8;
             }
             lVar15 = lVar15 + 0x5d8;
             lVar11 = lVar11 + -1;
@@ -706,12 +706,12 @@ ulonglong RenderingSystemAdvancedProcessor(longlong* state_ptr, uint64_t resourc
  * - 处理资源管理异常
  * - 返回适当的处理结果
  */
-uint RenderingSystemResourceHandler(int current_param, uint64_t resource_handle, int threshold, longlong data_offset)
+uint RenderingSystemResourceHandler(int current_param, uint64_t resource_handle, int threshold, int64_t data_offset)
 {
     // 局部变量声明
     int iVar1, iVar2, iVar3, iVar4, iVar5, iVar6, iVar7;
     uint uVar10, uVar11, uVar12, uVar13, uVar14, uVar15, uVar16, uVar17;
-    longlong lVar8;
+    int64_t lVar8;
     
     // 初始化资源处理变量
     uVar10 = 0; uVar11 = 0; uVar12 = 0; uVar13 = 0;
@@ -762,7 +762,7 @@ uint RenderingSystemResourceHandler(int current_param, uint64_t resource_handle,
     uVar11 = ((int)uVar11 < (int)uVar13) * uVar13 | ((int)uVar11 >= (int)uVar13) * uVar11;
     uVar10 = ((int)uVar10 < (int)uVar11) * uVar11 | ((int)uVar10 >= (int)uVar11) * uVar10;
     
-    lVar8 = (longlong)current_param;
+    lVar8 = (int64_t)current_param;
     if (lVar8 < current_param) {
         lVar8 = lVar8 * 0x5d8;
         lVar8 = current_param - lVar8;
@@ -808,14 +808,14 @@ uint RenderingSystemResourceHandler(int current_param, uint64_t resource_handle,
  * - 处理内存管理异常
  * - 返回适当的管理结果
  */
-int RenderingSystemMemoryManager(int min_param, uint64_t resource_handle, longlong data_offset)
+int RenderingSystemMemoryManager(int min_param, uint64_t resource_handle, int64_t data_offset)
 {
     // 局部变量声明
     int iVar1;
-    longlong lVar2, lVar3;
+    int64_t lVar2, lVar3;
     
     // 获取内存数据
-    lVar2 = (longlong)min_param;
+    lVar2 = (int64_t)min_param;
     if (lVar2 < min_param) {
         // 计算内存偏移
         lVar3 = lVar2 * 0x5d8;
@@ -862,11 +862,11 @@ int RenderingSystemMemoryManager(int min_param, uint64_t resource_handle, longlo
  * - 处理状态初始化异常
  * - 返回适当的初始化结果
  */
-int RenderingSystemStateInitializer(int current_param, uint64_t resource_handle, longlong data_offset)
+int RenderingSystemStateInitializer(int current_param, uint64_t resource_handle, int64_t data_offset)
 {
     // 局部变量声明
     int iVar1;
-    longlong lVar2;
+    int64_t lVar2;
     
     // 计算状态初始化参数
     lVar2 = current_param * 0x5d8;

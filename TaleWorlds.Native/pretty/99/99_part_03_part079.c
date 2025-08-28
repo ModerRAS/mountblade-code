@@ -419,8 +419,8 @@ void FUN_180244e4d(void)
 {
     code *in_RAX;                      /**< 寄存器RAX内容 */
     void *puVar1;                 /**< 变量指针 */
-    longlong unaff_RSI;                /**< RSI寄存器值 */
-    longlong unaff_RDI;                /**< RDI寄存器值 */
+    int64_t unaff_RSI;                /**< RSI寄存器值 */
+    int64_t unaff_RDI;                /**< RDI寄存器值 */
     
     /* 验证系统状态 */
     if (validate_system_status() != OPERATION_SUCCESS) {
@@ -444,7 +444,7 @@ void FUN_180244e4d(void)
     }
     
     /* 执行系统配置操作 */
-    (**(code **)(*(longlong *)(unaff_RSI + 0x95c8) + 0x10))((longlong *)(unaff_RSI + 0x95c8), puVar1);
+    (**(code **)(*(int64_t *)(unaff_RSI + 0x95c8) + 0x10))((int64_t *)(unaff_RSI + 0x95c8), puVar1);
     
     /* 设置系统参数 */
     puVar1 = &system_buffer_ptr;
@@ -453,7 +453,7 @@ void FUN_180244e4d(void)
     }
     
     /* 执行参数配置操作 */
-    (**(code **)(*(longlong *)(unaff_RSI + 0x95e8) + 0x10))((longlong *)(unaff_RSI + 0x95e8), puVar1);
+    (**(code **)(*(int64_t *)(unaff_RSI + 0x95e8) + 0x10))((int64_t *)(unaff_RSI + 0x95e8), puVar1);
     
     /* 复制系统状态 */
     *(int32_t *)(unaff_RSI + 0x9608) = *(int32_t *)(unaff_RDI + MEMORY_THRESHOLD_SIZE);
@@ -488,16 +488,16 @@ void FUN_180244ef2(void)
  * @param param_2 分配标志
  * @return uint64_t* 分配的资源指针
  */
-uint64_t * FUN_180244f00(uint64_t *param_1, ulonglong param_2)
+uint64_t * FUN_180244f00(uint64_t *param_1, uint64_t param_2)
 {
-    longlong *plVar1;                  /**< 资源列表指针 */
+    int64_t *plVar1;                  /**< 资源列表指针 */
     
     /* 初始化资源管理器 */
     *param_1 = &unknown_var_9624_ptr;
-    plVar1 = (longlong *)param_1[SYSTEM_CONFIG_MAX_SLOTS];
+    plVar1 = (int64_t *)param_1[SYSTEM_CONFIG_MAX_SLOTS];
     
     /* 检查资源状态 */
-    if (plVar1 == (longlong *)0x0) {
+    if (plVar1 == (int64_t *)0x0) {
         /* 初始化新资源 */
         param_1[SYSTEM_CONFIG_MAX_SLOTS] = 0;
         param_1[0x18] = &system_data_buffer_ptr;
@@ -525,7 +525,7 @@ uint64_t * FUN_180244f00(uint64_t *param_1, ulonglong param_2)
     }
     
     /* 检查资源完整性 */
-    if (*(char *)((longlong)plVar1 + 0x11) == '\0') {
+    if (*(char *)((int64_t)plVar1 + 0x11) == '\0') {
         if (((char)plVar1[2] == '\0') && (*plVar1 != 0)) {
             /* 资源完整性检查失败 */
             FUN_18064e900();
@@ -549,7 +549,7 @@ uint64_t * FUN_180244f00(uint64_t *param_1, ulonglong param_2)
  * @param param_1 数据参数指针
  * @return void
  */
-void FUN_180244ff0(longlong param_1)
+void FUN_180244ff0(int64_t param_1)
 {
     int iVar1;                         /**< 整数变量1 */
     int iVar2;                         /**< 整数变量2 */
@@ -557,11 +557,11 @@ void FUN_180244ff0(longlong param_1)
     uint64_t uVar4;                  /**< 未定义8位变量 */
     char cVar5;                        /**< 字符变量 */
     int iVar6;                         /**< 整数变量6 */
-    longlong lVar7;                    /**< 长整数变量7 */
+    int64_t lVar7;                    /**< 长整数变量7 */
     uint64_t *puVar8;                /**< 未定义8位指针 */
     void *puVar9;                 /**< 未定义指针 */
-    ulonglong uVar10;                  /**< 无符号长整数变量 */
-    ulonglong extraout_XMM0_Qa;        /**< XMM0寄存器输出 */
+    uint64_t uVar10;                  /**< 无符号长整数变量 */
+    uint64_t extraout_XMM0_Qa;        /**< XMM0寄存器输出 */
     int8_t auStack_158 [32];       /**< 栈数组 */
     int32_t uStack_138;             /**< 栈变量 */
     int32_t uStack_134;             /**< 栈变量 */
@@ -576,21 +576,21 @@ void FUN_180244ff0(longlong param_1)
     uint64_t uStack_113;             /**< 栈变量 */
     int32_t uStack_108;             /**< 栈变量 */
     int8_t uStack_104;             /**< 栈变量 */
-    longlong *plStack_100;             /**< 长整数指针栈变量 */
-    longlong *aplStack_f8 [3];         /**< 长整数指针数组 */
+    int64_t *plStack_100;             /**< 长整数指针栈变量 */
+    int64_t *aplStack_f8 [3];         /**< 长整数指针数组 */
     uint64_t uStack_e0;              /**< 栈变量 */
     void *puStack_d8;              /**< 未定义指针栈变量 */
     int8_t *puStack_d0;             /**< 未定义指针栈变量 */
     uint uStack_c8;                    /**< 无符号整数栈变量 */
     int8_t auStack_c0 [136];       /**< 栈数组 */
-    ulonglong uStack_38;                /**< 无符号长整数栈变量 */
+    uint64_t uStack_38;                /**< 无符号长整数栈变量 */
     
     /* 初始化栈变量 */
     uStack_e0 = STATUS_PENDING;
-    uStack_38 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_158;
+    uStack_38 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_158;
     
     /* 检查系统状态 */
-    if ((*(char *)(param_1 + 0x9a31) != '\0') && (*(longlong *)(param_1 + 0x99b8) != 0)) {
+    if ((*(char *)(param_1 + 0x9a31) != '\0') && (*(int64_t *)(param_1 + 0x99b8) != 0)) {
         /* 获取系统参数 */
         iVar1 = *(int *)(param_1 + 0x3590);
         iVar2 = *(int *)(param_1 + 0x3594);
@@ -619,7 +619,7 @@ void FUN_180244ff0(longlong param_1)
         
         /* 连接字符串 */
         if ((0 < iVar6) && (uStack_c8 + iVar6 < RESOURCE_MAX_COUNT)) {
-            memcpy(puStack_d0 + uStack_c8, puVar9, (longlong)(iVar6 + 1));
+            memcpy(puStack_d0 + uStack_c8, puVar9, (int64_t)(iVar6 + 1));
         }
         
         /* 设置处理标志 */
@@ -630,8 +630,8 @@ void FUN_180244ff0(longlong param_1)
         uStack_104 = 0;
         
         /* 转换浮点参数 */
-        uStack_138 = (int32_t)(longlong)(float)iVar1;
-        uStack_134 = (int32_t)(longlong)(float)iVar2;
+        uStack_138 = (int32_t)(int64_t)(float)iVar1;
+        uStack_134 = (int32_t)(int64_t)(float)iVar2;
         uStack_128 = *(int32_t *)(param_1 + 0x9714);
         
         /* 获取颜色数据 */
@@ -639,12 +639,12 @@ void FUN_180244ff0(longlong param_1)
         fStack_118 = (float)(uVar3 >> 0x18) * RESOURCE_COLOR_SCALE;
         fStack_124 = (float)(uVar3 >> 0x10 & RESOURCE_COLOR_MASK) * RESOURCE_COLOR_SCALE;
         fStack_120 = (float)(uVar3 >> 8 & RESOURCE_COLOR_MASK) * RESOURCE_COLOR_SCALE;
-        uVar10 = (ulonglong)(uint)fStack_120;
+        uVar10 = (uint64_t)(uint)fStack_120;
         fStack_11c = (float)(uVar3 & RESOURCE_COLOR_MASK) * RESOURCE_COLOR_SCALE;
         
         /* 设置附加参数 */
         uStack_108 = *(int32_t *)(param_1 + 0x1bd4);
-        lVar7 = *(longlong *)(param_1 + 0x96a0);
+        lVar7 = *(int64_t *)(param_1 + 0x96a0);
         
         /* 检查资源状态 */
         if (((lVar7 == 0) ||
@@ -657,16 +657,16 @@ void FUN_180244ff0(longlong param_1)
             *puVar8 = 0;
             
             /* 更新资源管理器 */
-            plStack_100 = *(longlong **)(param_1 + 0x96a0);
+            plStack_100 = *(int64_t **)(param_1 + 0x96a0);
             *(uint64_t *)(param_1 + 0x96a0) = uVar4;
             
             /* 清理旧资源 */
-            if (plStack_100 != (longlong *)0x0) {
+            if (plStack_100 != (int64_t *)0x0) {
                 (**(code **)(*plStack_100 + 0x38))();
             }
             
             /* 清理临时资源 */
-            if (aplStack_f8[0] != (longlong *)0x0) {
+            if (aplStack_f8[0] != (int64_t *)0x0) {
                 (**(code **)(*aplStack_f8[0] + 0x38))();
             }
         }
@@ -677,7 +677,7 @@ void FUN_180244ff0(longlong param_1)
     }
     
     /* 执行系统操作 */
-    FUN_1808fc050(uStack_38 ^ (ulonglong)auStack_158);
+    FUN_1808fc050(uStack_38 ^ (uint64_t)auStack_158);
 }
 
 /**
@@ -688,10 +688,10 @@ void FUN_180244ff0(longlong param_1)
  * @param param_1 系统参数指针
  * @return void
  */
-void FUN_180245280(longlong param_1)
+void FUN_180245280(int64_t param_1)
 {
     uint64_t uVar1;                  /**< 未定义8位变量 */
-    longlong lVar2;                     /**< 长整数变量 */
+    int64_t lVar2;                     /**< 长整数变量 */
     uint64_t *puVar3;                /**< 未定义8位指针 */
     uint uVar4;                        /**< 无符号整数变量 */
     int32_t uVar5;                  /**< 未定义4位变量 */
@@ -703,21 +703,21 @@ void FUN_180245280(longlong param_1)
     int32_t uStack_e8;              /**< 栈变量 */
     int32_t uStack_e4;              /**< 栈变量 */
     int32_t uStack_e0;              /**< 栈变量 */
-    longlong *plStack_d8;              /**< 长整数指针栈变量 */
-    longlong *plStack_d0;              /**< 长整数指针栈变量 */
+    int64_t *plStack_d8;              /**< 长整数指针栈变量 */
+    int64_t *plStack_d0;              /**< 长整数指针栈变量 */
     uint64_t uStack_c8;             /**< 栈变量 */
     void *puStack_b8;             /**< 未定义指针栈变量 */
     int8_t *puStack_b0;            /**< 未定义指针栈变量 */
     int32_t uStack_a8;              /**< 栈变量 */
     int8_t auStack_a0 [136];       /**< 栈数组 */
-    ulonglong uStack_18;               /**< 无符号长整数栈变量 */
+    uint64_t uStack_18;               /**< 无符号长整数栈变量 */
     
     /* 初始化栈变量 */
     uStack_c8 = STATUS_PENDING;
-    uStack_18 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_118;
+    uStack_18 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_118;
     
     /* 检查系统状态 */
-    if (((*(byte *)(param_1 + 4) & 0x80) != 0) && (*(longlong *)(param_1 + 0x96a8) == 0)) {
+    if (((*(byte *)(param_1 + 4) & 0x80) != 0) && (*(int64_t *)(param_1 + 0x96a8) == 0)) {
         /* 初始化资源参数 */
         uVar4 = 1;
         lVar2 = FUN_180244ff0();
@@ -754,16 +754,16 @@ void FUN_180245280(longlong param_1)
         *puVar3 = 0;
         
         /* 更新资源管理器 */
-        plStack_d8 = *(longlong **)(param_1 + 0x96a8);
+        plStack_d8 = *(int64_t **)(param_1 + 0x96a8);
         *(uint64_t *)(param_1 + 0x96a8) = uVar1;
         
         /* 清理旧资源 */
-        if (plStack_d8 != (longlong *)0x0) {
+        if (plStack_d8 != (int64_t *)0x0) {
             (**(code **)(*plStack_d8 + 0x38))();
         }
         
         /* 清理临时资源 */
-        if (plStack_d0 != (longlong *)0x0) {
+        if (plStack_d0 != (int64_t *)0x0) {
             (**(code **)(*plStack_d0 + 0x38))();
         }
         
@@ -771,7 +771,7 @@ void FUN_180245280(longlong param_1)
     }
     
     /* 执行系统操作 */
-    FUN_1808fc050(uStack_18 ^ (ulonglong)auStack_118);
+    FUN_1808fc050(uStack_18 ^ (uint64_t)auStack_118);
 }
 
 /**
@@ -782,98 +782,98 @@ void FUN_180245280(longlong param_1)
  * @param param_1 系统参数指针
  * @return void
  */
-void FUN_180245420(longlong param_1)
+void FUN_180245420(int64_t param_1)
 {
-    longlong *plVar1;                  /**< 长整数指针变量 */
+    int64_t *plVar1;                  /**< 长整数指针变量 */
     
     /* 清理系统资源块1 */
-    plVar1 = *(longlong **)(param_1 + 0x9690);
+    plVar1 = *(int64_t **)(param_1 + 0x9690);
     *(uint64_t *)(param_1 + 0x9690) = 0;
-    if (plVar1 != (longlong *)0x0) {
+    if (plVar1 != (int64_t *)0x0) {
         (**(code **)(*plVar1 + 0x38))();
     }
     
     /* 清理系统资源块2 */
-    plVar1 = *(longlong **)(param_1 + 0x9698);
+    plVar1 = *(int64_t **)(param_1 + 0x9698);
     *(uint64_t *)(param_1 + 0x9698) = 0;
-    if (plVar1 != (longlong *)0x0) {
+    if (plVar1 != (int64_t *)0x0) {
         (**(code **)(*plVar1 + 0x38))();
     }
     
     /* 清理系统资源块3 */
-    plVar1 = *(longlong **)(param_1 + 0x96a8);
+    plVar1 = *(int64_t **)(param_1 + 0x96a8);
     *(uint64_t *)(param_1 + 0x96a8) = 0;
-    if (plVar1 != (longlong *)0x0) {
+    if (plVar1 != (int64_t *)0x0) {
         (**(code **)(*plVar1 + 0x38))();
     }
     
     /* 清理系统资源块4 */
-    plVar1 = *(longlong **)(param_1 + 0x96e8);
+    plVar1 = *(int64_t **)(param_1 + 0x96e8);
     *(uint64_t *)(param_1 + 0x96e8) = 0;
-    if (plVar1 != (longlong *)0x0) {
+    if (plVar1 != (int64_t *)0x0) {
         (**(code **)(*plVar1 + 0x38))();
     }
     
     /* 清理系统资源块5 */
-    plVar1 = *(longlong **)(param_1 + 0x96f0);
+    plVar1 = *(int64_t **)(param_1 + 0x96f0);
     *(uint64_t *)(param_1 + 0x96f0) = 0;
-    if (plVar1 != (longlong *)0x0) {
+    if (plVar1 != (int64_t *)0x0) {
         (**(code **)(*plVar1 + 0x38))();
     }
     
     /* 清理系统资源块6 */
-    plVar1 = *(longlong **)(param_1 + 0x96d8);
+    plVar1 = *(int64_t **)(param_1 + 0x96d8);
     *(uint64_t *)(param_1 + 0x96d8) = 0;
-    if (plVar1 != (longlong *)0x0) {
+    if (plVar1 != (int64_t *)0x0) {
         (**(code **)(*plVar1 + 0x38))();
     }
     
     /* 清理系统资源块7 */
-    plVar1 = *(longlong **)(param_1 + 0x96e0);
+    plVar1 = *(int64_t **)(param_1 + 0x96e0);
     *(uint64_t *)(param_1 + 0x96e0) = 0;
-    if (plVar1 != (longlong *)0x0) {
+    if (plVar1 != (int64_t *)0x0) {
         (**(code **)(*plVar1 + 0x38))();
     }
     
     /* 清理系统资源块8 */
-    plVar1 = *(longlong **)(param_1 + 0x96d0);
+    plVar1 = *(int64_t **)(param_1 + 0x96d0);
     *(uint64_t *)(param_1 + 0x96d0) = 0;
-    if (plVar1 != (longlong *)0x0) {
+    if (plVar1 != (int64_t *)0x0) {
         (**(code **)(*plVar1 + 0x38))();
     }
     
     /* 清理系统资源块9 */
-    plVar1 = *(longlong **)(param_1 + 0x96f8);
+    plVar1 = *(int64_t **)(param_1 + 0x96f8);
     *(uint64_t *)(param_1 + 0x96f8) = 0;
-    if (plVar1 != (longlong *)0x0) {
+    if (plVar1 != (int64_t *)0x0) {
         (**(code **)(*plVar1 + 0x38))();
     }
     
     /* 清理系统资源块10 */
-    plVar1 = *(longlong **)(param_1 + 0x9960);
+    plVar1 = *(int64_t **)(param_1 + 0x9960);
     *(uint64_t *)(param_1 + 0x9960) = 0;
-    if (plVar1 != (longlong *)0x0) {
+    if (plVar1 != (int64_t *)0x0) {
         (**(code **)(*plVar1 + 0x38))();
     }
     
     /* 清理系统资源块11 */
-    plVar1 = *(longlong **)(param_1 + 0x9968);
+    plVar1 = *(int64_t **)(param_1 + 0x9968);
     *(uint64_t *)(param_1 + 0x9968) = 0;
-    if (plVar1 != (longlong *)0x0) {
+    if (plVar1 != (int64_t *)0x0) {
         (**(code **)(*plVar1 + 0x38))();
     }
     
     /* 清理系统资源块12 */
-    plVar1 = *(longlong **)(param_1 + 0x99b8);
+    plVar1 = *(int64_t **)(param_1 + 0x99b8);
     *(uint64_t *)(param_1 + 0x99b8) = 0;
-    if (plVar1 != (longlong *)0x0) {
+    if (plVar1 != (int64_t *)0x0) {
         (**(code **)(*plVar1 + 0x38))();
     }
     
     /* 清理系统资源块13 */
-    plVar1 = *(longlong **)(param_1 + 0x12498);
+    plVar1 = *(int64_t **)(param_1 + 0x12498);
     *(uint64_t *)(param_1 + 0x12498) = 0;
-    if (plVar1 != (longlong *)0x0) {
+    if (plVar1 != (int64_t *)0x0) {
         (**(code **)(*plVar1 + 0x38))();
     }
     

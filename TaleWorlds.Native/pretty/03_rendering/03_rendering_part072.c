@@ -44,7 +44,7 @@
 
 // 全局变量声明
 extern uint64_t *rendering_resource_table;
-extern longlong global_resource_manager;
+extern int64_t global_resource_manager;
 extern uint64_t *rendering_null_pointer;
 extern uint64_t *rendering_cleanup_sequence1;
 extern uint64_t *rendering_cleanup_sequence2;
@@ -53,9 +53,9 @@ extern uint64_t *rendering_param_structure;
 extern uint64_t *rendering_param_string;
 
 // 辅助函数声明
-void AcquireSRWLockExclusive(longlong lock_handle);
-void ReleaseSRWLockExclusive(longlong lock_handle);
-void FUN_1800571e0(longlong param1, int *param2, uint64_t param3, uint64_t param4, uint64_t param5, longlong param6, int param7);
+void AcquireSRWLockExclusive(int64_t lock_handle);
+void ReleaseSRWLockExclusive(int64_t lock_handle);
+void FUN_1800571e0(int64_t param1, int *param2, uint64_t param3, uint64_t param4, uint64_t param5, int64_t param6, int param7);
 void FUN_1800f89b0(void);
 void FUN_18064e900(void *ptr);
 void *FUN_18062b1e0(void *allocator, int size, int alignment, int flags, uint64_t memory_flags);
@@ -82,7 +82,7 @@ float SQRT(float value);
  * @param update_flag 更新标志
  */
 void rendering_system_process_transform_data(
-    longlong render_context, 
+    int64_t render_context, 
     float transform_factor, 
     uint32_t render_flags, 
     char process_mode,
@@ -111,7 +111,7 @@ void rendering_system_process_transform_data(
             }
             else {
                 distance_x = *(float *)(render_context + 0x60) - *(float *)(transform_data + 7);
-                distance_y = *(float *)(render_context + 0x5c) - *(float *)((longlong)transform_data + 0x34);
+                distance_y = *(float *)(render_context + 0x5c) - *(float *)((int64_t)transform_data + 0x34);
                 distance_z = *(float *)(render_context + 0x58) - *(float *)(transform_data + 6);
                 
                 if (RENDERING_DISTANCE_THRESHOLD < 
@@ -162,7 +162,7 @@ void rendering_system_process_transform_data(
                 *(uint64_t *)(render_context + 0xf8) = temp_data;
                 
                 current_x = *(float *)(transform_data + 7);
-                current_y = *(float *)((longlong)transform_data + 0x34);
+                current_y = *(float *)((int64_t)transform_data + 0x34);
                 current_z = *(float *)(transform_data + 6);
                 
                 *(float *)(render_context + 0x124) = scale_factor;
@@ -236,7 +236,7 @@ void rendering_system_process_transform_data(
     }
     else {
         distance_x = *(float *)(render_context + 0x60) - *(float *)(transform_data + 7);
-        distance_y = *(float *)(render_context + 0x5c) - *(float *)((longlong)transform_data + 0x34);
+        distance_y = *(float *)(render_context + 0x5c) - *(float *)((int64_t)transform_data + 0x34);
         distance_z = *(float *)(render_context + 0x58) - *(float *)(transform_data + 6);
         scale_factor = 1.0f / transform_factor;
         
@@ -265,7 +265,7 @@ void rendering_system_process_transform_data(
         
         scale_factor = *(float *)(render_context + 0x8c);
         current_x = *(float *)(transform_data + 7);
-        current_y = *(float *)((longlong)transform_data + 0x34);
+        current_y = *(float *)((int64_t)transform_data + 0x34);
         
         *(float *)(render_context + 0x78) = 
             (*(float *)(transform_data + 6) - *(float *)(render_context + 0x100)) * scale_factor * scale_factor;
@@ -328,8 +328,8 @@ void rendering_system_process_transform_data(
  * @param process_flag 处理标志
  */
 void rendering_system_advanced_transform_processor(
-    longlong primary_context, 
-    longlong secondary_context, 
+    int64_t primary_context, 
+    int64_t secondary_context, 
     uint64_t *transform_data, 
     char process_flag
 ) {
@@ -356,7 +356,7 @@ void rendering_system_advanced_transform_processor(
         }
         else {
             distance_x = *(float *)(primary_context + 0x60) - *(float *)(transform_data + 7);
-            distance_y = *(float *)(primary_context + 0x5c) - *(float *)((longlong)transform_data + 0x34);
+            distance_y = *(float *)(primary_context + 0x5c) - *(float *)((int64_t)transform_data + 0x34);
             distance_z = *(float *)(primary_context + 0x58) - *(float *)(transform_data + 6);
             
             if (RENDERING_DISTANCE_THRESHOLD < 
@@ -408,7 +408,7 @@ void rendering_system_advanced_transform_processor(
             
             accumulated_distance = *(float *)(primary_context + 0xc4);
             distance_x = *(float *)(transform_data + 7);
-            distance_y = *(float *)((longlong)transform_data + 0x34);
+            distance_y = *(float *)((int64_t)transform_data + 0x34);
             distance_z = *(float *)(transform_data + 6);
             
             *(float *)(primary_context + 0x124) = scale_value;
@@ -510,7 +510,7 @@ void rendering_system_advanced_transform_processor(
  * @param distance_scale 距离缩放因子
  */
 void rendering_system_interpolation_handler(
-    longlong render_context, 
+    int64_t render_context, 
     float interpolation_factor, 
     uint64_t *transform_data, 
     float distance_scale
@@ -525,7 +525,7 @@ void rendering_system_interpolation_handler(
     float distance_factor;
     float stack_distance;
     uint32_t stack_flag;
-    longlong secondary_context;
+    int64_t secondary_context;
     
     if (RENDERING_DISTANCE_THRESHOLD < 
         SQRT(distance_factor + interpolation_factor + intensity_value) * distance_scale) {
@@ -574,7 +574,7 @@ void rendering_system_interpolation_handler(
     
     current_x = *(float *)(render_context + 0xc4);
     current_y = *(float *)(transform_data + 7);
-    current_z = *(float *)((longlong)transform_data + 0x34);
+    current_z = *(float *)((int64_t)transform_data + 0x34);
     target_x = *(float *)(transform_data + 6);
     
     *(float *)(render_context + 0x124) = scale_factor;
@@ -643,7 +643,7 @@ void rendering_system_interpolation_handler(
  */
 void rendering_system_batch_processor(
     uint64_t unused_param, 
-    longlong render_context, 
+    int64_t render_context, 
     uint64_t *transform_data
 ) {
     uint64_t temp_data;
@@ -685,7 +685,7 @@ void rendering_system_batch_processor(
  */
 void rendering_system_data_transformer(
     uint64_t unused_param, 
-    longlong render_context, 
+    int64_t render_context, 
     uint64_t *transform_data
 ) {
     uint64_t temp_data;
@@ -724,26 +724,26 @@ uint64_t *rendering_system_resource_allocator(
     uint64_t resource_param1, 
     uint64_t resource_param2
 ) {
-    longlong lock_context;
-    longlong resource_manager;
-    longlong lock_handle;
+    int64_t lock_context;
+    int64_t resource_manager;
+    int64_t lock_handle;
     int allocation_params[2];
     uint64_t *temp_ptr;
     uint64_t memory_flags;
-    longlong cleanup_context;
+    int64_t cleanup_context;
     
     memory_flags = RENDERING_MEMORY_FLAG_EXCLUSIVE;
     *resource_handle = &rendering_resource_table;
     resource_manager = global_resource_manager;
     allocation_params[0] = *(int *)(resource_handle + 2);
-    lock_handle = (longlong)allocation_params[0];
+    lock_handle = (int64_t)allocation_params[0];
     lock_context = global_resource_manager + RENDERING_LOCK_OFFSET;
     cleanup_context = lock_context;
     
     // 获取独占锁
     AcquireSRWLockExclusive(lock_context);
     *(uint8_t *)(resource_manager + 1) = 1;
-    *(uint8_t *)(*(longlong *)(resource_manager + RENDERING_RESOURCE_TABLE_OFFSET) + lock_handle * RENDERING_ENTRY_SIZE) = 0;
+    *(uint8_t *)(*(int64_t *)(resource_manager + RENDERING_RESOURCE_TABLE_OFFSET) + lock_handle * RENDERING_ENTRY_SIZE) = 0;
     
     // 初始化资源
     FUN_1800571e0(
@@ -760,8 +760,8 @@ uint64_t *rendering_system_resource_allocator(
     ReleaseSRWLockExclusive(lock_context);
     
     // 清理资源
-    if ((longlong *)resource_handle[0x30] != (longlong *)0x0) {
-        (**(code **)(*(longlong *)resource_handle[0x30] + RENDERING_CLEANUP_OFFSET))();
+    if ((int64_t *)resource_handle[0x30] != (int64_t *)0x0) {
+        (**(code **)(*(int64_t *)resource_handle[0x30] + RENDERING_CLEANUP_OFFSET))();
     }
     
     // 重置资源句柄
@@ -798,9 +798,9 @@ int *rendering_system_memory_manager(
     int allocation_size
 ) {
     uint block_size;
-    longlong *current_block;
-    longlong *next_block;
-    longlong pool_tail;
+    int64_t *current_block;
+    int64_t *next_block;
+    int64_t pool_tail;
     int pool_capacity;
     int lock_status;
     int new_capacity;
@@ -818,29 +818,29 @@ int *rendering_system_memory_manager(
     }
     
     while (true) {
-        current_block = *(longlong **)(memory_pool + 2);
+        current_block = *(int64_t **)(memory_pool + 2);
         
         // 遍历内存块链表
-        for (next_block = current_block; next_block != (longlong *)0x0; next_block = (longlong *)*next_block) {
+        for (next_block = current_block; next_block != (int64_t *)0x0; next_block = (int64_t *)*next_block) {
             block_size = *(uint *)(next_block + 2);
             
             if ((int)aligned_size <= (int)block_size) {
-                lock_status = *(int *)((longlong)next_block + 0x14);
+                lock_status = *(int *)((int64_t)next_block + 0x14);
                 
                 // 如果找到精确匹配的块
                 if (block_size == aligned_size) {
                     // 从链表中移除该块
                     if (next_block == current_block) {
-                        *(longlong *)(memory_pool + 2) = *current_block;
+                        *(int64_t *)(memory_pool + 2) = *current_block;
                     }
-                    if (next_block == *(longlong **)(memory_pool + 4)) {
-                        *(longlong *)(memory_pool + 4) = (*(longlong **)(memory_pool + 4))[1];
+                    if (next_block == *(int64_t **)(memory_pool + 4)) {
+                        *(int64_t *)(memory_pool + 4) = (*(int64_t **)(memory_pool + 4))[1];
                     }
-                    if ((longlong *)next_block[1] != (longlong *)0x0) {
-                        *(longlong *)next_block[1] = *next_block;
+                    if ((int64_t *)next_block[1] != (int64_t *)0x0) {
+                        *(int64_t *)next_block[1] = *next_block;
                     }
                     if (*next_block != 0) {
-                        *(longlong *)(*next_block + 8) = next_block[1];
+                        *(int64_t *)(*next_block + 8) = next_block[1];
                     }
                     
                     // 释放内存块
@@ -848,7 +848,7 @@ int *rendering_system_memory_manager(
                 }
                 
                 // 分割内存块
-                *(uint *)((longlong)next_block + 0x14) = lock_status + aligned_size;
+                *(uint *)((int64_t)next_block + 0x14) = lock_status + aligned_size;
                 *(uint *)(next_block + 2) = block_size - aligned_size;
                 *allocation_result = lock_status;
                 allocation_result[1] = aligned_size;
@@ -861,7 +861,7 @@ int *rendering_system_memory_manager(
         
         lock_status = *memory_pool;
         new_capacity = lock_status * 2;
-        pool_tail = *(longlong *)(memory_pool + 4);
+        pool_tail = *(int64_t *)(memory_pool + 4);
         
         if ((pool_tail == 0) || (*(int *)(pool_tail + 0x14) + *(int *)(pool_tail + 0x10) != lock_status)) {
             // 分配新的内存块
@@ -876,8 +876,8 @@ int *rendering_system_memory_manager(
             *new_block = 0;
             new_block[1] = 0;
             *(uint32_t *)(new_block + 2) = 0;
-            *(uint32_t *)((longlong)new_block + 0x14) = RENDERING_MAX_BLOCK_SIZE;
-            *(int *)((longlong)new_block + 0x14) = *memory_pool;
+            *(uint32_t *)((int64_t)new_block + 0x14) = RENDERING_MAX_BLOCK_SIZE;
+            *(int *)((int64_t)new_block + 0x14) = *memory_pool;
             *(int *)(new_block + 2) = new_capacity - *memory_pool;
             new_block[1] = *(uint64_t *)(memory_pool + 4);
             
@@ -885,7 +885,7 @@ int *rendering_system_memory_manager(
                 **(uint64_t **)(memory_pool + 4) = new_block;
             }
             
-            if ((*(longlong *)(memory_pool + 2) == 0) && (*(longlong *)(memory_pool + 4) == 0)) {
+            if ((*(int64_t *)(memory_pool + 2) == 0) && (*(int64_t *)(memory_pool + 4) == 0)) {
                 *(uint64_t **)(memory_pool + 2) = new_block;
             }
             
@@ -923,14 +923,14 @@ unlock_and_return:
  * @param data_size 数据大小
  */
 void rendering_system_data_handler(
-    longlong data_manager, 
+    int64_t data_manager, 
     uint64_t data_size
 ) {
     int block_start;
     int block_capacity;
-    longlong *current_block;
-    longlong *tail_block;
-    longlong *next_block;
+    int64_t *current_block;
+    int64_t *tail_block;
+    int64_t *next_block;
     int lock_status;
     uint64_t *new_block;
     int size_high;
@@ -944,13 +944,13 @@ void rendering_system_data_handler(
         __Throw_C_error_std__YAXH_Z(lock_status);
     }
     
-    current_block = *(longlong **)(data_manager + 8);
+    current_block = *(int64_t **)(data_manager + 8);
     lock_status = (int)data_size;
     size_high = (int)((uint64_t)data_size >> 0x20);
     
     do {
-        if (current_block == (longlong *)0x0) {
-            tail_block = *(longlong *)(data_manager + 0x10);
+        if (current_block == (int64_t *)0x0) {
+            tail_block = *(int64_t *)(data_manager + 0x10);
             
             if (tail_block == 0) {
                 // 创建新的数据块
@@ -961,7 +961,7 @@ void rendering_system_data_handler(
                     3, 
                     memory_flags
                 );
-                *(int *)((longlong)new_block + 0x14) = lock_status;
+                *(int *)((int64_t)new_block + 0x14) = lock_status;
                 *(int *)(new_block + 2) = size_high;
                 *new_block = 0;
                 new_block[1] = 0;
@@ -984,7 +984,7 @@ set_new_block:
                     memory_flags
                 );
                 new_block[1] = 0;
-                *(int *)((longlong)new_block + 0x14) = lock_status;
+                *(int *)((int64_t)new_block + 0x14) = lock_status;
                 *(int *)(new_block + 2) = size_high;
                 *new_block = 0;
                 new_block[1] = *(uint64_t *)(data_manager + 0x10);
@@ -1000,12 +1000,12 @@ unlock_and_return:
             return;
         }
         
-        block_start = *(int *)((longlong)current_block + 0x14);
+        block_start = *(int *)((int64_t)current_block + 0x14);
         
         if (lock_status < block_start) {
-            next_block = (longlong *)current_block[1];
+            next_block = (int64_t *)current_block[1];
             
-            if (next_block == (longlong *)0x0) {
+            if (next_block == (int64_t *)0x0) {
                 if (size_high + lock_status != block_start) {
                     // 在当前块前插入新块
                     new_block = (uint64_t *)FUN_18062b1e0(
@@ -1015,33 +1015,33 @@ unlock_and_return:
                         3, 
                         memory_flags
                     );
-                    *(int *)((longlong)new_block + 0x14) = lock_status;
+                    *(int *)((int64_t)new_block + 0x14) = lock_status;
                     *(int *)(new_block + 2) = size_high;
                     *new_block = current_block;
                     new_block[1] = 0;
-                    current_block[1] = (longlong)new_block;
+                    current_block[1] = (int64_t)new_block;
                     goto set_new_block;
                 }
                 
                 // 调整当前块
-                *(int *)((longlong)current_block + 0x14) = block_start - size_high;
+                *(int *)((int64_t)current_block + 0x14) = block_start - size_high;
                 *(int *)(current_block + 2) = (int)current_block[2] + size_high;
             }
             else {
                 block_capacity = (int)next_block[2];
                 
-                if (*(int *)((longlong)next_block + 0x14) + block_capacity == lock_status) {
+                if (*(int *)((int64_t)next_block + 0x14) + block_capacity == lock_status) {
                     if (size_high + lock_status == block_start) {
                         // 合并相邻块
-                        if (current_block == *(longlong **)(data_manager + 0x10)) {
-                            *(longlong **)(data_manager + 0x10) = next_block;
+                        if (current_block == *(int64_t **)(data_manager + 0x10)) {
+                            *(int64_t **)(data_manager + 0x10) = next_block;
                             block_capacity = (int)next_block[2];
                         }
                         *(int *)(next_block + 2) = (int)current_block[2] + block_capacity + size_high;
                         tail_block = *current_block;
                         *next_block = tail_block;
                         if (tail_block != 0) {
-                            *(longlong **)(tail_block + 8) = next_block;
+                            *(int64_t **)(tail_block + 8) = next_block;
                         }
                         
                         // 释放当前块
@@ -1052,7 +1052,7 @@ unlock_and_return:
                 }
                 else if (size_high + lock_status == block_start) {
                     // 调整当前块
-                    *(int *)((longlong)current_block + 0x14) = block_start - size_high;
+                    *(int *)((int64_t)current_block + 0x14) = block_start - size_high;
                     *(int *)(current_block + 2) = (int)current_block[2] + size_high;
                 }
                 else {
@@ -1064,19 +1064,19 @@ unlock_and_return:
                         3, 
                         memory_flags
                     );
-                    *(int *)((longlong)new_block + 0x14) = lock_status;
+                    *(int *)((int64_t)new_block + 0x14) = lock_status;
                     *(int *)(new_block + 2) = size_high;
                     *new_block = current_block;
                     new_block[1] = next_block;
-                    *next_block = (longlong)new_block;
-                    current_block[1] = (longlong)new_block;
+                    *next_block = (int64_t)new_block;
+                    current_block[1] = (int64_t)new_block;
                 }
             }
             
             goto unlock_and_return;
         }
         
-        current_block = (longlong *)*current_block;
+        current_block = (int64_t *)*current_block;
     } while (true);
 }
 

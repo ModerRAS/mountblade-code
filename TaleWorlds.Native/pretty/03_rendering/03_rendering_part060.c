@@ -21,28 +21,28 @@
  * @param param_1 渲染系统上下文指针
  * @param param_2 纹理参数和配置数据
  */
-void render_advanced_texture_processing(longlong *param_1, ulonglong param_2)
+void render_advanced_texture_processing(int64_t *param_1, uint64_t param_2)
 {
     byte texture_format;
     ushort texture_width;
     ushort texture_height;
     uint64_t texture_handle;
-    longlong *resource_ptr;
+    int64_t *resource_ptr;
     uint texture_flags;
     int render_state;
-    longlong *memory_block;
-    longlong texture_offset;
-    longlong *texture_data;
+    int64_t *memory_block;
+    int64_t texture_offset;
+    int64_t *texture_data;
     void *pixel_buffer;
-    ulonglong texture_size;
-    longlong *resource_manager;
+    uint64_t texture_size;
+    int64_t *resource_manager;
     uint pixel_count;
     uint mip_level;
     uint texture_id;
     uint texture_type;
     uint color_channels;
-    longlong pixel_data;
-    longlong *texture_allocator;
+    int64_t pixel_data;
+    int64_t *texture_allocator;
     uint *texture_index;
     bool is_compressed;
     int32_t compression_type;
@@ -56,20 +56,20 @@ void render_advanced_texture_processing(longlong *param_1, ulonglong param_2)
     int8_t anisotropy_level;
     int32_t mip_map_settings;
     int8_t compression_params[8];
-    longlong *texture_pool;
+    int64_t *texture_pool;
     uint texture_priority;
     uint texture_usage;
     uint texture_access;
     uint texture_binding;
-    ulonglong texture_memory;
+    uint64_t texture_memory;
     uint64_t texture_desc;
-    longlong *render_target;
-    longlong *depth_buffer;
-    longlong *stencil_buffer;
+    int64_t *render_target;
+    int64_t *depth_buffer;
+    int64_t *stencil_buffer;
     int32_t render_format;
-    longlong *shader_resource;
-    longlong *vertex_buffer;
-    longlong *index_buffer;
+    int64_t *shader_resource;
+    int64_t *vertex_buffer;
+    int64_t *index_buffer;
     void **texture_array;
     uint *sampler_state;
     int32_t blend_state;
@@ -110,12 +110,12 @@ void render_advanced_texture_processing(longlong *param_1, ulonglong param_2)
     int32_t texture_min_filter;
     int32_t texture_mag_filter;
     int32_t texture_mip_filter;
-    longlong *texture_sampler;
+    int64_t *texture_sampler;
     void *texture_shader;
     int8_t *shader_constant;
     int32_t shader_register;
     int8_t shader_buffer[72];
-    ulonglong texture_key;
+    uint64_t texture_key;
     
     // 初始化纹理处理参数
     texture_metadata[0] = 0xfffffffffffffffe;
@@ -127,7 +127,7 @@ void render_advanced_texture_processing(longlong *param_1, ulonglong param_2)
     initialize_texture_context(compression_params, &texture_format_table);
     
     if (param_2 != 0) {
-        resource_manager = (longlong *)0x0;
+        resource_manager = (int64_t *)0x0;
         
         // 检查是否需要初始化资源管理器
         if (param_1[0x1049] == 0) {
@@ -144,16 +144,16 @@ void render_advanced_texture_processing(longlong *param_1, ulonglong param_2)
             *texture_cache = 0;
             
             // 更新资源管理器指针
-            texture_address = (longlong *)param_1[0x1049];
+            texture_address = (int64_t *)param_1[0x1049];
             param_1[0x1049] = texture_offset;
             
             // 清理旧的资源管理器
-            if (texture_address != (longlong *)0x0) {
+            if (texture_address != (int64_t *)0x0) {
                 cleanup_resource_manager(texture_address);
             }
             
             // 清理纹理池
-            if (texture_pool != (longlong *)0x0) {
+            if (texture_pool != (int64_t *)0x0) {
                 cleanup_texture_pool(texture_pool);
             }
             
@@ -231,13 +231,13 @@ void render_advanced_texture_processing(longlong *param_1, ulonglong param_2)
             initialize_renderer(param_1, param_2, 0x40);
             
             // 设置纹理池
-            render_target = (longlong *)0x0;
-            depth_buffer = (longlong *)0x0;
-            stencil_buffer = (longlong *)0x0;
+            render_target = (int64_t *)0x0;
+            depth_buffer = (int64_t *)0x0;
+            stencil_buffer = (int64_t *)0x0;
             render_format = 3;
             
             mip_level = (uint)texture_format * (uint)texture_width;
-            texture_pool = (longlong *)(ulonglong)mip_level;
+            texture_pool = (int64_t *)(uint64_t)mip_level;
             color_channels = texture_format - 1;
             pixel_count = (uint)texture_height;
             texture_type = (uint)texture_width;
@@ -245,7 +245,7 @@ void render_advanced_texture_processing(longlong *param_1, ulonglong param_2)
             // 分配纹理内存
             if (mip_level != 0) {
                 memory_block = resource_manager;
-                texture_allocator = (longlong *)0x0;
+                texture_allocator = (int64_t *)0x0;
                 
                 do {
                     resource_ptr = depth_buffer;
@@ -255,7 +255,7 @@ void render_advanced_texture_processing(longlong *param_1, ulonglong param_2)
                     }
                     else {
                         // 计算纹理内存需求
-                        pixel_data = (longlong)depth_buffer - (longlong)texture_allocator >> 2;
+                        pixel_data = (int64_t)depth_buffer - (int64_t)texture_allocator >> 2;
                         texture_offset = pixel_data * 2;
                         if (pixel_data == 0) {
                             texture_offset = 1;
@@ -263,37 +263,37 @@ void render_advanced_texture_processing(longlong *param_1, ulonglong param_2)
                         texture_data = resource_manager;
                         
                         if (texture_offset != 0) {
-                            texture_data = (longlong *)
+                            texture_data = (int64_t *)
                                         allocate_texture_memory(global_memory_pool, texture_offset * 4,
-                                                               set_allocation_flags((int)((ulonglong)depth_buffer >> 8), 3));
+                                                               set_allocation_flags((int)((uint64_t)depth_buffer >> 8), 3));
                         }
                         
                         // 复制现有纹理数据
                         if (texture_allocator != resource_ptr) {
-                            memmove(texture_data, texture_allocator, (longlong)resource_ptr - (longlong)texture_allocator);
+                            memmove(texture_data, texture_allocator, (int64_t)resource_ptr - (int64_t)texture_allocator);
                         }
                         
                         *(int *)texture_data = 0x40;
                         
                         // 释放旧内存
-                        if (texture_allocator != (longlong *)0x0) {
+                        if (texture_allocator != (int64_t *)0x0) {
                             free_texture_memory(texture_allocator);
                         }
                         
-                        memory_block = (longlong *)((longlong)texture_data + texture_offset * 4);
+                        memory_block = (int64_t *)((int64_t)texture_data + texture_offset * 4);
                         render_target = texture_data;
                         stencil_buffer = memory_block;
                         depth_buffer = texture_data;
                     }
                     
-                    depth_buffer = (longlong *)((longlong)depth_buffer + 4);
-                    texture_pool = (longlong *)((longlong)texture_pool - 1);
+                    depth_buffer = (int64_t *)((int64_t)depth_buffer + 4);
+                    texture_pool = (int64_t *)((int64_t)texture_pool - 1);
                     param_2 = texture_address;
                     texture_allocator = texture_data;
                     color_channels = texture_usage;
                     pixel_count = cache_size;
                     texture_type = texture_access;
-                } while (texture_pool != (longlong *)0x0);
+                } while (texture_pool != (int64_t *)0x0);
             }
             
             // 处理纹理映射
@@ -368,30 +368,30 @@ void render_advanced_texture_processing(longlong *param_1, ulonglong param_2)
                                 convert_format = 0xd;
                                 strcpy_s(texture_compress_buffer, 0x40, &format_string_astc);
                                 texture_size = create_texture_sampler(pixel_buffer, &texture_converter, 1);
-                                texture_index = (uint *)((ulonglong)texture_index | texture_size);
+                                texture_index = (uint *)((uint64_t)texture_index | texture_size);
                                 texture_converter = &global_texture_cache;
                             }
                             
                             // 设置纹理渲染参数
                             blend_state = 0;
                             depth_stencil_state = 0;
-                            texture_sampler = (longlong *)0x0;
+                            texture_sampler = (int64_t *)0x0;
                             texture_shader = &global_texture_shader;
                             texture_key = 0;
                             pixel_data = 0;
                             render_format = 0;
-                            index_buffer = (longlong *)0x0;
+                            index_buffer = (int64_t *)0x0;
                             
                             // 设置纹理维度
                             texture_dimensions[0] = 2;
                             texture_min_filter = 0;
                             texture_mag_filter = 0;
                             texture_mip_filter = 0;
-                            texture_sampler = (longlong *)0x0;
+                            texture_sampler = (int64_t *)0x0;
                             
                             texture_handle = *(uint64_t *)(pixel_buffer + 0x15b8);
                             texture_array = &texture_validator;
-                            texture_address._4_4_ = (int32_t)(((ulonglong)texture_quality << 0x30) >> 0x20);
+                            texture_address._4_4_ = (int32_t)(((uint64_t)texture_quality << 0x30) >> 0x20);
                             validation_flags = 0;
                             texture_checksum = texture_address._4_4_;
                             validation_data[0] = 2;
@@ -399,7 +399,7 @@ void render_advanced_texture_processing(longlong *param_1, ulonglong param_2)
                             sampler_state = texture_index;
                             texture_cache = pixel_buffer;
                             texture_stream = texture_index;
-                            load_params = (ulonglong)texture_quality << 0x30;
+                            load_params = (uint64_t)texture_quality << 0x30;
                             texture_validator = pixel_buffer;
                             validation_result = texture_index;
                             
@@ -433,23 +433,23 @@ void render_advanced_texture_processing(longlong *param_1, ulonglong param_2)
                             is_compressed = 1 < (uint)texture_memory;
                             texture_memory = 1;
                             if (is_compressed) {
-                                texture_memory = (ulonglong)cache_size;
+                                texture_memory = (uint64_t)cache_size;
                             }
                             
                             is_compressed = 1 < (uint)texture_address;
                             texture_address = 1;
                             if (is_compressed) {
-                                texture_address = (ulonglong)texture_usage;
+                                texture_address = (uint64_t)texture_usage;
                             }
                             
                             // 更新纹理参数
-                            *(uint *)((longlong)param_1 + 0x8254) = color_channels;
+                            *(uint *)((int64_t)param_1 + 0x8254) = color_channels;
                             texture_cache = (uint *)(param_1 + 0x104a);
                             *texture_cache = texture_id;
                             
                             // 设置纹理缩放参数
-                            texture_address = (longlong *)setup_texture_scale(1.0f / (float)texture_address, 1.0f / (float)texture_memory);
-                            param_1[0x104c] = (longlong)texture_address;
+                            texture_address = (int64_t *)setup_texture_scale(1.0f / (float)texture_address, 1.0f / (float)texture_memory);
+                            param_1[0x104c] = (int64_t)texture_address;
                             
                             // 应用纹理过滤器
                             mip_map_settings = 0x20;
@@ -467,12 +467,12 @@ void render_advanced_texture_processing(longlong *param_1, ulonglong param_2)
                             resource_manager = render_target;
                             
                             // 检查纹理状态
-                            if (*(int *)((longlong)render_target + (longlong)render_state * 4) != 0x40) {
+                            if (*(int *)((int64_t)render_target + (int64_t)render_state * 4) != 0x40) {
                                 texture_cache._0_4_ = 0x40;
                                 update_texture_resource(param_1, param_2, render_state);
                             }
                             
-                            *(int *)((longlong)resource_manager + (longlong)render_state * 4) = 0x40;
+                            *(int *)((int64_t)resource_manager + (int64_t)render_state * 4) = 0x40;
                             texture_cache._0_4_ = render_state;
                             
                             // 绑定纹理到渲染管线
@@ -496,7 +496,7 @@ void render_advanced_texture_processing(longlong *param_1, ulonglong param_2)
                             // 处理MIP映射
                             resource_manager = render_target;
                             if (texture_usage != 0) {
-                                texture_size = (ulonglong)texture_usage;
+                                texture_size = (uint64_t)texture_usage;
                                 pixel_count = texture_binding;
                                 color_channels = texture_id;
                                 
@@ -510,12 +510,12 @@ void render_advanced_texture_processing(longlong *param_1, ulonglong param_2)
                                         texture_cache = (uint *)setup_texture_params(texture_cache._4_4_, render_state);
                                         bind_texture_to_pipeline(param_1, color_channels - texture_id, 1, param_2);
                                         
-                                        if (*(int *)((longlong)resource_manager + (longlong)render_state * 4) != 0x80) {
+                                        if (*(int *)((int64_t)resource_manager + (int64_t)render_state * 4) != 0x80) {
                                             texture_cache = (uint *)setup_texture_params(texture_cache._4_4_, 0x80);
                                             update_texture_resource(param_1, param_2, render_state);
                                         }
                                         
-                                        *(int *)((longlong)resource_manager + (longlong)render_state * 4) = 0x80;
+                                        *(int *)((int64_t)resource_manager + (int64_t)render_state * 4) = 0x80;
                                         pixel_count = texture_binding;
                                         texture_id = texture_priority;
                                     }
@@ -538,7 +538,7 @@ void render_advanced_texture_processing(longlong *param_1, ulonglong param_2)
                             texture_priority = texture_id;
                             
                             // 清理纹理资源
-                            if (index_buffer != (longlong *)0x0) {
+                            if (index_buffer != (int64_t *)0x0) {
                                 cleanup_texture_resource(index_buffer);
                             }
                             
@@ -552,7 +552,7 @@ void render_advanced_texture_processing(longlong *param_1, ulonglong param_2)
                             texture_key = texture_key & 0xffffffff00000000;
                             texture_shader = &global_texture_cache;
                             
-                            if (texture_sampler != (longlong *)0x0) {
+                            if (texture_sampler != (int64_t *)0x0) {
                                 cleanup_texture_sampler(texture_sampler);
                             }
                             
@@ -564,7 +564,7 @@ void render_advanced_texture_processing(longlong *param_1, ulonglong param_2)
                     }
                     
                     texture_binding = texture_type + 1;
-                    resource_manager = (longlong *)(ulonglong)texture_binding;
+                    resource_manager = (int64_t *)(uint64_t)texture_binding;
                     pixel_count = cache_size;
                 } while (texture_binding < mip_level);
             }
@@ -572,11 +572,11 @@ void render_advanced_texture_processing(longlong *param_1, ulonglong param_2)
             // 验证纹理资源
             resource_manager = render_target;
             render_state = 0;
-            memory_block = (longlong *)((longlong)depth_buffer - (longlong)render_target >> 2);
+            memory_block = (int64_t *)((int64_t)depth_buffer - (int64_t)render_target >> 2);
             texture_data = render_target;
             texture_pool = memory_block;
             
-            if (memory_block != (longlong *)0x0) {
+            if (memory_block != (int64_t *)0x0) {
                 do {
                     if ((int)*texture_data != 0x40) {
                         texture_cache = (uint *)setup_texture_params(texture_cache._4_4_, 0x40);
@@ -584,8 +584,8 @@ void render_advanced_texture_processing(longlong *param_1, ulonglong param_2)
                         memory_block = texture_pool;
                     }
                     render_state = render_state + 1;
-                    texture_data = (longlong *)((longlong)texture_data + 4);
-                } while ((longlong)(longlong)render_state < memory_block);
+                    texture_data = (int64_t *)((int64_t)texture_data + 4);
+                } while ((int64_t)(int64_t)render_state < memory_block);
             }
             
             // 完成渲染
@@ -606,21 +606,21 @@ void render_advanced_texture_processing(longlong *param_1, ulonglong param_2)
             complete_rendering(param_1, param_2, 0x20);
             
             // 释放纹理内存
-            if (resource_manager != (longlong *)0x0) {
+            if (resource_manager != (int64_t *)0x0) {
                 free_texture_memory(resource_manager);
             }
             
             // 清理资源
-            if (vertex_buffer != (longlong *)0x0) {
+            if (vertex_buffer != (int64_t *)0x0) {
                 cleanup_texture_resource(vertex_buffer);
             }
-            if (stencil_buffer != (longlong *)0x0) {
+            if (stencil_buffer != (int64_t *)0x0) {
                 cleanup_texture_resource(stencil_buffer);
             }
-            if (depth_buffer != (longlong *)0x0) {
+            if (depth_buffer != (int64_t *)0x0) {
                 cleanup_texture_resource(depth_buffer);
             }
-            if (shader_resource != (longlong *)0x0) {
+            if (shader_resource != (int64_t *)0x0) {
                 cleanup_texture_resource(shader_resource);
             }
         }
@@ -628,7 +628,7 @@ void render_advanced_texture_processing(longlong *param_1, ulonglong param_2)
     
     // 更新全局纹理计数器
     global_texture_count = global_texture_count - 1;
-    execute_texture_cleanup(texture_key ^ (ulonglong)compression_params);
+    execute_texture_cleanup(texture_key ^ (uint64_t)compression_params);
     return;
 }
 
@@ -641,42 +641,42 @@ void render_advanced_texture_processing(longlong *param_1, ulonglong param_2)
  * @param param_3 清理标志
  * @param param_4 保留参数
  */
-void render_resource_cleanup_manager(longlong param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
+void render_resource_cleanup_manager(int64_t param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
-    longlong *resource_array;
+    int64_t *resource_array;
     uint64_t *resource_entry;
-    longlong array_start;
-    longlong array_end;
-    ulonglong resource_index;
+    int64_t array_start;
+    int64_t array_end;
+    uint64_t resource_index;
     
     resource_index = 0;
-    resource_array = (longlong *)(param_1 + 0x170);
+    resource_array = (int64_t *)(param_1 + 0x170);
     array_start = *resource_array;
     
     // 遍历资源数组
-    if (*(longlong *)(param_1 + 0x178) - array_start >> 3 != 0) {
+    if (*(int64_t *)(param_1 + 0x178) - array_start >> 3 != 0) {
         do {
             resource_entry = *(uint64_t **)(resource_index * 8 + array_start);
             if (resource_entry != (uint64_t *)0x0) {
                 // 清理资源各个组件
-                if ((longlong *)resource_entry[0xd] != (longlong *)0x0) {
-                    cleanup_resource_component(*(longlong *)resource_entry[0xd]);
+                if ((int64_t *)resource_entry[0xd] != (int64_t *)0x0) {
+                    cleanup_resource_component(*(int64_t *)resource_entry[0xd]);
                     resource_entry[0xd] = 0;
                 }
-                if ((longlong *)resource_entry[0xe] != (longlong *)0x0) {
-                    cleanup_resource_component(*(longlong *)resource_entry[0xe]);
+                if ((int64_t *)resource_entry[0xe] != (int64_t *)0x0) {
+                    cleanup_resource_component(*(int64_t *)resource_entry[0xe]);
                     resource_entry[0xe] = 0;
                 }
-                if ((longlong *)resource_entry[0xf] != (longlong *)0x0) {
-                    cleanup_resource_component(*(longlong *)resource_entry[0xf]);
+                if ((int64_t *)resource_entry[0xf] != (int64_t *)0x0) {
+                    cleanup_resource_component(*(int64_t *)resource_entry[0xf]);
                     resource_entry[0xf] = 0;
                 }
-                if ((longlong *)resource_entry[0x10] != (longlong *)0x0) {
-                    cleanup_resource_component(*(longlong *)resource_entry[0x10]);
+                if ((int64_t *)resource_entry[0x10] != (int64_t *)0x0) {
+                    cleanup_resource_component(*(int64_t *)resource_entry[0x10]);
                     resource_entry[0x10] = 0;
                 }
-                if ((longlong *)resource_entry[0x11] != (longlong *)0x0) {
-                    cleanup_resource_component(*(longlong *)resource_entry[0x11]);
+                if ((int64_t *)resource_entry[0x11] != (int64_t *)0x0) {
+                    cleanup_resource_component(*(int64_t *)resource_entry[0x11]);
                     resource_entry[0x11] = 0;
                 }
                 
@@ -687,13 +687,13 @@ void render_resource_cleanup_manager(longlong param_1, uint64_t param_2, uint64_
             
             // 清空数组槽位
             *(uint64_t *)(resource_index * 8 + *resource_array) = 0;
-            resource_index = (ulonglong)((int)resource_index + 1);
+            resource_index = (uint64_t)((int)resource_index + 1);
             array_start = *resource_array;
-        } while (resource_index < (ulonglong)(*(longlong *)(param_1 + 0x178) - array_start >> 3));
+        } while (resource_index < (uint64_t)(*(int64_t *)(param_1 + 0x178) - array_start >> 3));
     }
     
     // 更新数组边界
-    *(longlong *)(param_1 + 0x178) = array_start;
+    *(int64_t *)(param_1 + 0x178) = array_start;
     
     // 清理纹理资源
     resource_entry = *(uint64_t **)(param_1 + 0x2f8);
@@ -720,13 +720,13 @@ void render_resource_cleanup_manager(longlong param_1, uint64_t param_2, uint64_
     cleanup_render_hash_table(param_1 + 200, 0x20, 5, hash_table_cleanup_function);
     
     // 清理渲染队列
-    array_start = *(longlong *)(param_1 + 0xb0);
-    for (array_end = *(longlong *)(param_1 + 0xa8); array_end != array_start; array_end = array_end + 0x40) {
+    array_start = *(int64_t *)(param_1 + 0xb0);
+    for (array_end = *(int64_t *)(param_1 + 0xa8); array_end != array_start; array_end = array_end + 0x40) {
         cleanup_render_queue_item(array_end);
     }
     
     // 释放渲染队列内存
-    if (*(longlong *)(param_1 + 0xa8) != 0) {
+    if (*(int64_t *)(param_1 + 0xa8) != 0) {
         free_resource_memory();
     }
     
@@ -739,10 +739,10 @@ void render_resource_cleanup_manager(longlong param_1, uint64_t param_2, uint64_
  * 
  * @param param_1 渲染内存管理器指针
  */
-void render_memory_cleanup_helper(longlong *param_1)
+void render_memory_cleanup_helper(int64_t *param_1)
 {
-    longlong memory_start;
-    longlong memory_end;
+    int64_t memory_start;
+    int64_t memory_end;
     
     memory_start = param_1[1];
     for (memory_end = *param_1; memory_end != memory_start; memory_end = memory_end + 0x40) {
@@ -762,10 +762,10 @@ void render_memory_cleanup_helper(longlong *param_1)
  * 
  * @param param_1 渲染资源管理器指针
  */
-void render_resource_destructor(longlong *param_1)
+void render_resource_destructor(int64_t *param_1)
 {
-    longlong resource_start;
-    longlong resource_end;
+    int64_t resource_start;
+    int64_t resource_end;
     
     resource_start = param_1[1];
     for (resource_end = *param_1; resource_end != resource_start; resource_end = resource_end + 0x40) {
@@ -786,11 +786,11 @@ void render_resource_destructor(longlong *param_1)
  * @param param_1 渲染系统上下文
  * @return 初始化后的系统上下文
  */
-longlong render_texture_system_initializer(longlong param_1)
+int64_t render_texture_system_initializer(int64_t param_1)
 {
-    longlong texture_offset;
-    longlong loop_counter;
-    longlong system_offset;
+    int64_t texture_offset;
+    int64_t loop_counter;
+    int64_t system_offset;
     
     system_offset = param_1 + 100;
     texture_offset = 4;
@@ -831,8 +831,8 @@ longlong render_texture_system_initializer(longlong param_1)
     system_offset = param_1 + 600;
     *(uint64_t *)(param_1 + 0x270) = 0;
     *(int32_t *)(param_1 + 0x280) = 3;
-    *(longlong *)system_offset = system_offset;
-    *(longlong *)(param_1 + 0x260) = system_offset;
+    *(int64_t *)system_offset = system_offset;
+    *(int64_t *)(param_1 + 0x260) = system_offset;
     *(uint64_t *)(param_1 + 0x268) = 0;
     *(int8_t *)(param_1 + 0x270) = 0;
     *(uint64_t *)(param_1 + 0x278) = 0;
@@ -841,8 +841,8 @@ longlong render_texture_system_initializer(longlong param_1)
     system_offset = param_1 + 0x288;
     *(uint64_t *)(param_1 + 0x2a0) = 0;
     *(int32_t *)(param_1 + 0x2b0) = 3;
-    *(longlong *)system_offset = system_offset;
-    *(longlong *)(param_1 + 0x290) = system_offset;
+    *(int64_t *)system_offset = system_offset;
+    *(int64_t *)(param_1 + 0x290) = system_offset;
     *(uint64_t *)(param_1 + 0x298) = 0;
     *(int8_t *)(param_1 + 0x2a0) = 0;
     *(uint64_t *)(param_1 + 0x2a8) = 0;
@@ -851,8 +851,8 @@ longlong render_texture_system_initializer(longlong param_1)
     system_offset = param_1 + 0x2b8;
     *(uint64_t *)(param_1 + 0x2d0) = 0;
     *(int32_t *)(param_1 + 0x2e0) = 3;
-    *(longlong *)system_offset = system_offset;
-    *(longlong *)(param_1 + 0x2c0) = system_offset;
+    *(int64_t *)system_offset = system_offset;
+    *(int64_t *)(param_1 + 0x2c0) = system_offset;
     *(uint64_t *)(param_1 + 0x2c8) = 0;
     *(int8_t *)(param_1 + 0x2d0) = 0;
     *(uint64_t *)(param_1 + 0x2d8) = 0;
@@ -861,8 +861,8 @@ longlong render_texture_system_initializer(longlong param_1)
     system_offset = param_1 + 0x2e8;
     *(uint64_t *)(param_1 + 0x300) = 0;
     *(int32_t *)(param_1 + 0x310) = 3;
-    *(longlong *)system_offset = system_offset;
-    *(longlong *)(param_1 + 0x2f0) = system_offset;
+    *(int64_t *)system_offset = system_offset;
+    *(int64_t *)(param_1 + 0x2f0) = system_offset;
     *(uint64_t *)(param_1 + 0x2f8) = 0;
     *(int8_t *)(param_1 + 0x300) = 0;
     *(uint64_t *)(param_1 + 0x308) = 0;
@@ -884,10 +884,10 @@ longlong render_texture_system_initializer(longlong param_1)
  * @param param_5 颜色空间标识
  * @param param_6 纹理索引
  */
-void render_color_processing_engine(longlong param_1, uint param_2, uint64_t param_3, int32_t param_4,
+void render_color_processing_engine(int64_t param_1, uint param_2, uint64_t param_3, int32_t param_4,
                                    int8_t param_5, uint param_6)
 {
-    longlong texture_resource;
+    int64_t texture_resource;
     float red_component;
     float green_component;
     float blue_component;
@@ -896,9 +896,9 @@ void render_color_processing_engine(longlong param_1, uint param_2, uint64_t par
     // 处理颜色格式转换
     if ((param_2 & 1) != 0) {
         // 提取RGBA分量并归一化到0.0-1.0范围
-        red_component = (float)((uint)((ulonglong)param_3 >> 0x10) & 0xff) * 0.003921569f;
-        green_component = (float)((uint)((ulonglong)param_3 >> 8) & 0xff) * 0.003921569f;
-        texture_resource = *(longlong *)(param_1 + 0x83b8 + (ulonglong)param_6 * 8);
+        red_component = (float)((uint)((uint64_t)param_3 >> 0x10) & 0xff) * 0.003921569f;
+        green_component = (float)((uint)((uint64_t)param_3 >> 8) & 0xff) * 0.003921569f;
+        texture_resource = *(int64_t *)(param_1 + 0x83b8 + (uint64_t)param_6 * 8);
         blue_component = (float)((uint)param_3 & 0xff) * 0.003921569f;
         alpha_component = (float)((uint)param_3 >> 0x18) * 0.003921569f;
         
@@ -912,8 +912,8 @@ void render_color_processing_engine(longlong param_1, uint param_2, uint64_t par
     
     // 处理颜色空间变换
     if ((param_2 & 6) != 0) {
-        if ((*(longlong *)(param_1 + 0x83f0) != 0) &&
-           (texture_resource = *(longlong *)(*(longlong *)(param_1 + 0x83f0) + 8), texture_resource != 0)) {
+        if ((*(int64_t *)(param_1 + 0x83f0) != 0) &&
+           (texture_resource = *(int64_t *)(*(int64_t *)(param_1 + 0x83f0) + 8), texture_resource != 0)) {
             // 执行颜色空间转换
             convert_color_space(get_render_context(param_1), 
                               texture_resource, 
@@ -932,9 +932,9 @@ void render_color_processing_engine(longlong param_1, uint param_2, uint64_t par
  * 
  * @param param_1 渲染系统上下文
  */
-void render_rendering_state_initializer(longlong param_1)
+void render_rendering_state_initializer(int64_t param_1)
 {
-    longlong state_offset;
+    int64_t state_offset;
     int state_index;
     uint64_t state_data;
     
@@ -982,7 +982,7 @@ void render_rendering_state_initializer(longlong param_1)
  * 
  * @param param_1 渲染系统上下文
  */
-void render_rendering_state_reset(longlong param_1)
+void render_rendering_state_reset(int64_t param_1)
 {
     int32_t *state_register;
     int register_index;
@@ -1043,57 +1043,57 @@ static uint64_t texture_quality_params = 0;
 
 // 辅助函数声明（简化实现）
 static void initialize_texture_context(int8_t *params, uint64_t *format_table) { /* 简化实现 */ }
-static longlong *setup_texture_cache(int32_t type, longlong **pool, uint flags, uint64_t **stream) { return 0; }
-static void cleanup_resource_manager(longlong *manager) { /* 简化实现 */ }
-static void cleanup_texture_pool(longlong *pool) { /* 简化实现 */ }
-static void setup_quality_renderer(uint64_t renderer, longlong **resource, uint64_t **validator, uint64_t **loader) { /* 简化实现 */ }
+static int64_t *setup_texture_cache(int32_t type, int64_t **pool, uint flags, uint64_t **stream) { return 0; }
+static void cleanup_resource_manager(int64_t *manager) { /* 简化实现 */ }
+static void cleanup_texture_pool(int64_t *pool) { /* 简化实现 */ }
+static void setup_quality_renderer(uint64_t renderer, int64_t **resource, uint64_t **validator, uint64_t **loader) { /* 简化实现 */ }
 static uint *setup_texture_params(uint param1, uint param2) { return 0; }
 static uint64_t setup_load_params(uint64_t params, uint value) { return 0; }
-static void initialize_renderer(longlong **context, ulonglong params, uint flags) { /* 简化实现 */ }
-static longlong *allocate_texture_memory(uint64_t pool, ulonglong size, uint flags) { return 0; }
+static void initialize_renderer(int64_t **context, uint64_t params, uint flags) { /* 简化实现 */ }
+static int64_t *allocate_texture_memory(uint64_t pool, uint64_t size, uint flags) { return 0; }
 static uint set_allocation_flags(int shift, int value) { return 0; }
-static void free_texture_memory(longlong *memory) { /* 简化实现 */ }
+static void free_texture_memory(int64_t *memory) { /* 简化实现 */ }
 static void *get_texture_context() { return 0; }
 static uint *create_texture_sampler(void *context, uint64_t **formats, uint flags) { return 0; }
 static void execute_texture_rendering(uint64_t *params, uint64_t **shader) { /* 简化实现 */ }
-static longlong *setup_texture_scale(float scale1, float scale2) { return 0; }
-static void apply_texture_filter(longlong **context, uint filter, uint resource) { /* 简化实现 */ }
-static int create_texture_resource(longlong **context, uint id, uint binding, uint flags) { return 0; }
-static void update_texture_resource(longlong **context, ulonglong params, int resource) { /* 简化实现 */ }
-static void bind_texture_to_pipeline(longlong **context, uint stage, uint count, uint64_t *resource) { /* 简化实现 */ }
+static int64_t *setup_texture_scale(float scale1, float scale2) { return 0; }
+static void apply_texture_filter(int64_t **context, uint filter, uint resource) { /* 简化实现 */ }
+static int create_texture_resource(int64_t **context, uint id, uint binding, uint flags) { return 0; }
+static void update_texture_resource(int64_t **context, uint64_t params, int resource) { /* 简化实现 */ }
+static void bind_texture_to_pipeline(int64_t **context, uint stage, uint count, uint64_t *resource) { /* 简化实现 */ }
 static uint64_t combine_texture_flags(int32_t flags1, int32_t flags2) { return 0; }
-static void complete_texture_processing(longlong **context, int param1, int param2, uint flags) { /* 简化实现 */ }
-static void finalize_renderer(void *interface, longlong **context) { /* 简化实现 */ }
-static void execute_render_pipeline(void *interface, longlong **context, ulonglong params) { /* 简化实现 */ }
-static void cleanup_texture_resource(longlong *resource) { /* 简化实现 */ }
-static void cleanup_texture_sampler(longlong *sampler) { /* 简化实现 */ }
-static void complete_rendering(longlong **context, ulonglong params, uint flags) { /* 简化实现 */ }
-static void execute_texture_cleanup(ulonglong key) { /* 简化实现 */ }
-static void cleanup_resource_component(longlong component) { /* 简化实现 */ }
+static void complete_texture_processing(int64_t **context, int param1, int param2, uint flags) { /* 简化实现 */ }
+static void finalize_renderer(void *interface, int64_t **context) { /* 简化实现 */ }
+static void execute_render_pipeline(void *interface, int64_t **context, uint64_t params) { /* 简化实现 */ }
+static void cleanup_texture_resource(int64_t *resource) { /* 简化实现 */ }
+static void cleanup_texture_sampler(int64_t *sampler) { /* 简化实现 */ }
+static void complete_rendering(int64_t **context, uint64_t params, uint flags) { /* 简化实现 */ }
+static void execute_texture_cleanup(uint64_t key) { /* 简化实现 */ }
+static void cleanup_resource_component(int64_t component) { /* 简化实现 */ }
 static void free_resource_memory(uint64_t *memory) { /* 简化实现 */ }
-static void cleanup_texture_resource_manager(longlong manager, uint64_t resource) { /* 简化实现 */ }
-static void cleanup_render_buffer(longlong buffer, uint64_t param2, uint64_t param3, uint64_t param4, ulonglong flags) { /* 简化实现 */ }
-static void cleanup_render_hash_table(longlong table, uint size, uint flags, void (*cleanup_func)()) { /* 简化实现 */ }
-static void cleanup_render_queue_item(longlong item) { /* 简化实现 */ }
-static void cleanup_memory_block(longlong block) { /* 简化实现 */ }
-static void cleanup_resource_block(longlong block) { /* 简化实现 */ }
-static void initialize_texture_component(longlong component) { /* 简化实现 */ }
-static void initialize_texture_cache_entry(longlong entry) { /* 简化实现 */ }
-static void initialize_render_hash_table(longlong table, uint size, uint flags, void (*init_func)(), void (*cleanup_func)()) { /* 简化实现 */ }
+static void cleanup_texture_resource_manager(int64_t manager, uint64_t resource) { /* 简化实现 */ }
+static void cleanup_render_buffer(int64_t buffer, uint64_t param2, uint64_t param3, uint64_t param4, uint64_t flags) { /* 简化实现 */ }
+static void cleanup_render_hash_table(int64_t table, uint size, uint flags, void (*cleanup_func)()) { /* 简化实现 */ }
+static void cleanup_render_queue_item(int64_t item) { /* 简化实现 */ }
+static void cleanup_memory_block(int64_t block) { /* 简化实现 */ }
+static void cleanup_resource_block(int64_t block) { /* 简化实现 */ }
+static void initialize_texture_component(int64_t component) { /* 简化实现 */ }
+static void initialize_texture_cache_entry(int64_t entry) { /* 简化实现 */ }
+static void initialize_render_hash_table(int64_t table, uint size, uint flags, void (*init_func)(), void (*cleanup_func)()) { /* 简化实现 */ }
 static void texture_hash_init_function() { /* 简化实现 */ }
 static void hash_table_cleanup_function() { /* 简化实现 */ }
-static void apply_color_to_texture(longlong **context, uint64_t texture, float *color) { /* 简化实现 */ }
-static longlong **get_render_context(longlong param1) { return 0; }
-static void convert_color_space(longlong **context, longlong resource, int space, int32_t format, int8_t identifier) { /* 简化实现 */ }
-static void initialize_renderer_backend(longlong **context) { /* 简化实现 */ }
-static void initialize_renderer_frontend(longlong **context) { /* 简化实现 */ }
-static void set_render_state(longlong **context, int index, uint count, uint64_t *data) { /* 简化实现 */ }
-static void set_render_parameter(longlong **context, int index, uint count, uint64_t *data) { /* 简化实现 */ }
-static void set_render_flag(longlong **context, int index, uint count, uint64_t *data) { /* 简化实现 */ }
-static void set_render_option(longlong **context, int index, uint count, uint64_t *data) { /* 简化实现 */ }
-static void reset_texture_state(longlong **context, int index, uint count, uint64_t *data) { /* 简化实现 */ }
-static void reset_render_parameter(longlong **context, int index, uint count, uint64_t *data) { /* 简化实现 */ }
-static void reset_render_flag(longlong **context, int index, uint count, uint64_t *data) { /* 简化实现 */ }
-static void reset_sampler_state(longlong **context, int index, uint count, uint64_t *data) { /* 简化实现 */ }
-static void reset_shader_constant(longlong **context, int index, uint count, uint64_t *data) { /* 简化实现 */ }
-static void reset_blend_state(longlong **context, int index, uint count, uint64_t *data) { /* 简化实现 */ }
+static void apply_color_to_texture(int64_t **context, uint64_t texture, float *color) { /* 简化实现 */ }
+static int64_t **get_render_context(int64_t param1) { return 0; }
+static void convert_color_space(int64_t **context, int64_t resource, int space, int32_t format, int8_t identifier) { /* 简化实现 */ }
+static void initialize_renderer_backend(int64_t **context) { /* 简化实现 */ }
+static void initialize_renderer_frontend(int64_t **context) { /* 简化实现 */ }
+static void set_render_state(int64_t **context, int index, uint count, uint64_t *data) { /* 简化实现 */ }
+static void set_render_parameter(int64_t **context, int index, uint count, uint64_t *data) { /* 简化实现 */ }
+static void set_render_flag(int64_t **context, int index, uint count, uint64_t *data) { /* 简化实现 */ }
+static void set_render_option(int64_t **context, int index, uint count, uint64_t *data) { /* 简化实现 */ }
+static void reset_texture_state(int64_t **context, int index, uint count, uint64_t *data) { /* 简化实现 */ }
+static void reset_render_parameter(int64_t **context, int index, uint count, uint64_t *data) { /* 简化实现 */ }
+static void reset_render_flag(int64_t **context, int index, uint count, uint64_t *data) { /* 简化实现 */ }
+static void reset_sampler_state(int64_t **context, int index, uint count, uint64_t *data) { /* 简化实现 */ }
+static void reset_shader_constant(int64_t **context, int index, uint count, uint64_t *data) { /* 简化实现 */ }
+static void reset_blend_state(int64_t **context, int index, uint count, uint64_t *data) { /* 简化实现 */ }

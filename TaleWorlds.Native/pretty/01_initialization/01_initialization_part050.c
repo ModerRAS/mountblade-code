@@ -43,16 +43,16 @@ void initialize_render_state_and_transform_matrix(void)
   uint64_t transform_matrix_6;
   uint64_t transform_matrix_7;
   uint64_t transform_matrix_8;
-  longlong render_context;
+  int64_t render_context;
   byte status_byte;
   byte mode_byte;
   int32_t render_flag;
-  longlong context_ptr;
+  int64_t context_ptr;
   int32_t *texture_ptr;
-  longlong engine_base;
+  int64_t engine_base;
   float *matrix_ptr;
   int32_t render_param_1;
-  longlong render_param_2;
+  int64_t render_param_2;
   uint64_t render_param_3;
   uint64_t render_param_4;
   uint64_t render_param_5;
@@ -87,46 +87,46 @@ void initialize_render_state_and_transform_matrix(void)
   int32_t stack_param_7;
   int32_t stack_param_8;
   int32_t stack_param_9;
-  longlong stack_param_10;
+  int64_t stack_param_10;
   float *stack_param_11;
   uint64_t stack_param_12;
-  longlong stack_param_13;
+  int64_t stack_param_13;
   
   // 初始化变量
   engine_base = stack_param_10;
-  render_context = *(longlong *)(engine_base + 0x1b8);
+  render_context = *(int64_t *)(engine_base + 0x1b8);
   status_byte = *(byte *)(render_context + 0x38c);
   context_ptr = engine_base;
   if (status_byte == 9) {
     status_byte = get_next_render_mode();
     *(byte *)(render_context + 0x38c) = status_byte;
   }
-  context_ptr = *(longlong *)(context_ptr + 0x1e0);
+  context_ptr = *(int64_t *)(context_ptr + 0x1e0);
   // 设置渲染参数指针
   render_param_3_ptr = &render_param_3;
-  *render_param_3_ptr = *(uint64_t *)(context_ptr + (ulonglong)status_byte * 0x18);
-  render_param_3_ptr[1] = *(uint64_t *)(context_ptr + 8 + (ulonglong)status_byte * 0x18);
-  *(int32_t *)(render_param_2 + 0x10) = *(int32_t *)(*(longlong *)(engine_base + 600) + 0x2c);
-  *(int32_t *)(render_param_2 + 0x14) = *(int32_t *)(*(longlong *)(engine_base + 600) + 0x4c);
-  *(int *)(render_param_2 + 0x48) = (int)*(char *)(*(longlong *)(engine_base + 600) + 0x44);
-  if ((*(longlong *)(engine_base + 0x2d0) == 0) ||
-     (*(int *)(*(longlong *)(engine_base + 0x2d0) + 0x14) == 0)) {
+  *render_param_3_ptr = *(uint64_t *)(context_ptr + (uint64_t)status_byte * 0x18);
+  render_param_3_ptr[1] = *(uint64_t *)(context_ptr + 8 + (uint64_t)status_byte * 0x18);
+  *(int32_t *)(render_param_2 + 0x10) = *(int32_t *)(*(int64_t *)(engine_base + 600) + 0x2c);
+  *(int32_t *)(render_param_2 + 0x14) = *(int32_t *)(*(int64_t *)(engine_base + 600) + 0x4c);
+  *(int *)(render_param_2 + 0x48) = (int)*(char *)(*(int64_t *)(engine_base + 600) + 0x44);
+  if ((*(int64_t *)(engine_base + 0x2d0) == 0) ||
+     (*(int *)(*(int64_t *)(engine_base + 0x2d0) + 0x14) == 0)) {
     render_flag = 0xffffffff;
   }
   else {
     render_flag = *(int32_t *)(engine_base + 0x108);
   }
   *(int32_t *)(render_param_2 + 0x18) = render_flag;
-  if ((*(longlong *)(engine_base + 0x2d0) == 0) ||
-     (*(int *)(*(longlong *)(engine_base + 0x2d0) + 0x14) == 0)) {
+  if ((*(int64_t *)(engine_base + 0x2d0) == 0) ||
+     (*(int *)(*(int64_t *)(engine_base + 0x2d0) + 0x14) == 0)) {
     render_flag = 0xffffffff;
   }
   else {
     render_flag = *(int32_t *)(engine_base + 0x10c);
   }
   *(int32_t *)(render_param_2 + 0x1c) = render_flag;
-  if ((*(longlong *)(engine_base + 0x2d0) == 0) ||
-     (*(int *)(*(longlong *)(engine_base + 0x2d0) + 0x14) == 0)) {
+  if ((*(int64_t *)(engine_base + 0x2d0) == 0) ||
+     (*(int *)(*(int64_t *)(engine_base + 0x2d0) + 0x14) == 0)) {
     render_flag = 0xffffffff;
   }
   else {
@@ -147,8 +147,8 @@ void initialize_render_state_and_transform_matrix(void)
     *(uint64_t *)(render_param_2 + 0x38) = *(uint64_t *)(texture_ptr + 4);
     *(uint64_t *)(render_param_2 + 0x40) = transform_matrix_1;
   }
-  *(int8_t *)(render_param_2 + 0x4f) = *(int8_t *)(*(longlong *)(engine_base + 600) + 0x24);
-  context_ptr = *(longlong *)(engine_base + 600);
+  *(int8_t *)(render_param_2 + 0x4f) = *(int8_t *)(*(int64_t *)(engine_base + 600) + 0x24);
+  context_ptr = *(int64_t *)(engine_base + 600);
   if (*(char *)(context_ptr + 0x24) != '\0') {
     render_flag = *(int32_t *)(engine_base + 0x2ac);
     texture_id_1 = *(int32_t *)(engine_base + 0x2b0);
@@ -157,15 +157,15 @@ void initialize_render_state_and_transform_matrix(void)
     *(int32_t *)(render_param_2 + 0x54) = render_flag;
     *(int32_t *)(render_param_2 + 0x58) = texture_id_1;
     *(int32_t *)(render_param_2 + 0x5c) = texture_id_2;
-    context_ptr = *(longlong *)(engine_base + 600);
+    context_ptr = *(int64_t *)(engine_base + 600);
   }
-  *(bool *)(render_param_2 + 0x4c) = *(longlong *)(context_ptr + 0x10) != 0;
+  *(bool *)(render_param_2 + 0x4c) = *(int64_t *)(context_ptr + 0x10) != 0;
   *(int8_t *)(render_param_2 + 0x4d) = 1;
   if ((*(char *)(stack_param_13 + 0xc) != '\0') ||
-     (0 < *(int *)(*(longlong *)(engine_base + 600) + 0x1c))) {
+     (0 < *(int *)(*(int64_t *)(engine_base + 600) + 0x1c))) {
     *(int8_t *)(render_param_2 + 0x4d) = 0;
   }
-  if (*(longlong *)(stack_param_10 + 0x28) == 0) {
+  if (*(int64_t *)(stack_param_10 + 0x28) == 0) {
     render_param_1 = 0xffffffff;
     texture_ptr = &stack_param_1;
     context_ptr = stack_param_10;
@@ -173,7 +173,7 @@ void initialize_render_state_and_transform_matrix(void)
   else {
     stack_param_9 = 0xffffffff;
     texture_ptr = &stack_param_9;
-    context_ptr = *(longlong *)(stack_param_10 + 0x28);
+    context_ptr = *(int64_t *)(stack_param_10 + 0x28);
   }
   // 设置渲染参数
   render_param_2 = stack_param_2;
@@ -318,10 +318,10 @@ void process_conditional_render_state(void)
   uint64_t transform_matrix_7;
   uint64_t transform_matrix_8;
   byte status_byte;
-  longlong engine_base;
+  int64_t engine_base;
   byte mode_byte;
   float *matrix_ptr;
-  longlong render_context;
+  int64_t render_context;
   bool condition_flag;
   uint64_t render_param_1;
   uint64_t render_param_2;
@@ -353,7 +353,7 @@ void process_conditional_render_state(void)
   engine_base = stack_param_10;
   condition_flag = *(byte *)(engine_base + 0x108) != 0xff;
   matrix_ptr = stack_param_11;
-  render_context = *(longlong *)(engine_base + 0x1b8);
+  render_context = *(int64_t *)(engine_base + 0x1b8);
   
   // 根据条件标志处理矩阵计算
   if (!condition_flag) {
@@ -485,10 +485,10 @@ void simplified_render_state_handler(void)
   uint64_t transform_matrix_7;
   uint64_t transform_matrix_8;
   byte status_byte;
-  longlong engine_base;
+  int64_t engine_base;
   byte mode_byte;
   float *matrix_ptr;
-  longlong render_context;
+  int64_t render_context;
   int32_t stack_param_1;
   uint64_t render_param_1;
   uint64_t render_param_2;
@@ -528,7 +528,7 @@ void simplified_render_state_handler(void)
   
   // 初始化变量
   engine_base = stack_param_10;
-  render_context = *(longlong *)(engine_base + 0x1b8);
+  render_context = *(int64_t *)(engine_base + 0x1b8);
   
   // 设置渲染参数
   stack_param_1 = 0xffffffff;
@@ -648,9 +648,9 @@ void minimal_render_state_handler(void)
   uint64_t transform_matrix_8;
   uint64_t transform_matrix_9;
   byte status_byte;
-  longlong engine_base;
+  int64_t engine_base;
   byte mode_byte;
-  longlong render_context;
+  int64_t render_context;
   uint64_t render_param_1;
   uint64_t render_param_2;
   uint64_t render_param_3;
@@ -663,7 +663,7 @@ void minimal_render_state_handler(void)
   
   // 初始化变量
   engine_base = stack_param_10;
-  render_context = *(longlong *)(engine_base + 0x1b8);
+  render_context = *(int64_t *)(engine_base + 0x1b8);
   
   // 应用渲染变换
   apply_render_transform(&stack_param_1, render_context + 0x30, *(int8_t *)(engine_base + 0xf7));
@@ -731,7 +731,7 @@ int8_t get_render_state_flag(void)
 //        transform_params - 变换参数
 // 返回值: 处理结果
 // 功能: 执行高级渲染处理，包括状态检查、矩阵计算和渲染调用
-ulonglong advanced_render_processing(longlong engine_base, uint64_t render_params, int32_t texture_id, float *matrix_ptr,
+uint64_t advanced_render_processing(int64_t engine_base, uint64_t render_params, int32_t texture_id, float *matrix_ptr,
                                      int32_t render_flags, int32_t transform_params)
 
 {
@@ -759,23 +759,23 @@ ulonglong advanced_render_processing(longlong engine_base, uint64_t render_param
   float transform_element_17;
   float transform_element_18;
   char render_mode;
-  ulonglong result;
-  longlong context_ptr;
-  ulonglong render_result;
-  longlong render_context;
+  uint64_t result;
+  int64_t context_ptr;
+  uint64_t render_result;
+  int64_t render_context;
   byte mode_flag;
   uint64_t transform_param_1;
-  ulonglong transform_param_2;
+  uint64_t transform_param_2;
   uint64_t transform_param_3;
-  ulonglong transform_param_4;
+  uint64_t transform_param_4;
   uint64_t transform_param_5;
-  ulonglong transform_param_6;
+  uint64_t transform_param_6;
   float matrix_stack_1;
   float matrix_stack_2;
   float matrix_stack_3;
   int32_t render_param_stack;
   
-  render_context = *(longlong *)(engine_base + 0x1b8);
+  render_context = *(int64_t *)(engine_base + 0x1b8);
   if (render_context != 0) {
     mode_flag = *(byte *)(engine_base + 0xfd) & 0x20;
     context_ptr = engine_base;
@@ -791,7 +791,7 @@ ulonglong advanced_render_processing(longlong engine_base, uint64_t render_param
     }
     if ((*(byte *)(engine_base + 0x100) & 4) != 0) {
 PROCESS_RENDER:
-      render_context = *(longlong *)(engine_base + 0x1b8);
+      render_context = *(int64_t *)(engine_base + 0x1b8);
       render_mode = *(char *)(render_context + 0x38c);
       if (render_mode == '\t') {
         render_mode = get_next_render_mode();
@@ -848,9 +848,9 @@ PROCESS_RENDER:
         matrix_stack_3 = transform_y2 * transform_element_12 + transform_element_6 * transform_element_15 + transform_element_7 * transform_element_18 + matrix_ptr[0xe];
       }
       render_param_stack = 0x3f800000;
-      transform_param_6 = (ulonglong)(uint)(float)transform_param_6;
-      transform_param_4 = (ulonglong)(uint)(float)transform_param_4;
-      transform_param_2 = (ulonglong)(uint)(float)transform_param_2;
+      transform_param_6 = (uint64_t)(uint)(float)transform_param_6;
+      transform_param_4 = (uint64_t)(uint)(float)transform_param_4;
+      transform_param_2 = (uint64_t)(uint)(float)transform_param_2;
       render_result = execute_render_operation(render_params, engine_base, texture_id, &transform_param_1, render_flags, transform_params);
       return render_result;
     }

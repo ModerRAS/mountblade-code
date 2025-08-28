@@ -70,7 +70,7 @@
  * 原始函数名: FUN_1806917c0
  * 简化说明：此为简化实现，原始代码使用大量SIMD指令进行优化
  */
-void ui_system_advanced_simd_image_processor(int8_t (*param_1) [16], ulonglong *param_2, int param_3)
+void ui_system_advanced_simd_image_processor(int8_t (*param_1) [16], uint64_t *param_2, int param_3)
 
 {
   // =============================================================================
@@ -198,18 +198,18 @@ void ui_system_advanced_simd_image_processor(int8_t (*param_1) [16], ulonglong *
   
   // 将结果写入输出缓冲区
   // 注意：根据原始代码的语义，这里使用param_2作为输出指针
-  ulonglong* output_buffer = param_2;
+  uint64_t* output_buffer = param_2;
   
   // 将16字节的处理结果写入输出缓冲区
   // 假设输出缓冲区足够大以容纳处理结果
-  for (int i = 0; i < 2; i++) { // 16字节 = 2个ulonglong
+  for (int i = 0; i < 2; i++) { // 16字节 = 2个uint64_t
     if (i < 2) { // 边界检查
-      // 将8字节转换为ulonglong
-      ulonglong value = 0;
+      // 将8字节转换为uint64_t
+      uint64_t value = 0;
       for (int j = 0; j < 8; j++) {
         int byte_offset = i * 8 + j;
         if (byte_offset < 16) {
-          value |= ((ulonglong)filtered_data[byte_offset]) << (j * 8);
+          value |= ((uint64_t)filtered_data[byte_offset]) << (j * 8);
         }
       }
       output_buffer[i] = value;

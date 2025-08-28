@@ -3,9 +3,9 @@
 
 // 03_rendering_part714.c - 15 个函数
 
-// 函数: void FUN_180677ae0(int8_t (*param_1) [16],longlong param_2,int8_t (*param_3) [16],
-void FUN_180677ae0(int8_t (*param_1) [16],longlong param_2,int8_t (*param_3) [16],
-                  longlong param_4,uint param_5,int8_t (*param_6) [16])
+// 函数: void FUN_180677ae0(int8_t (*param_1) [16],int64_t param_2,int8_t (*param_3) [16],
+void FUN_180677ae0(int8_t (*param_1) [16],int64_t param_2,int8_t (*param_3) [16],
+                  int64_t param_4,uint param_5,int8_t (*param_6) [16])
 
 {
   int8_t auVar1 [16];
@@ -22,7 +22,7 @@ void FUN_180677ae0(int8_t (*param_1) [16],longlong param_2,int8_t (*param_3) [16
   int8_t auVar12 [32];
   int8_t auVar13 [32];
   int8_t auVar14 [32];
-  ulonglong uVar15;
+  uint64_t uVar15;
   int8_t auVar16 [32];
   int8_t auVar17 [32];
   int8_t auVar18 [32];
@@ -87,7 +87,7 @@ void FUN_180677ae0(int8_t (*param_1) [16],longlong param_2,int8_t (*param_3) [16
   auVar19 = vpunpckhbw_avx2(auVar26,auVar19);
   auStack_1e0 = auVar19._0_16_;
   if (1 < param_5) {
-    uVar15 = (ulonglong)((param_5 - 2 >> 1) + 1);
+    uVar15 = (uint64_t)((param_5 - 2 >> 1) + 1);
     do {
       auVar27 = auVar17;
       auVar11 = auVar10;
@@ -182,8 +182,8 @@ void FUN_180677ae0(int8_t (*param_1) [16],longlong param_2,int8_t (*param_3) [16
 
 
 
-// 函数: void FUN_180677eb0(int8_t *param_1,longlong param_2,byte *param_3,byte *param_4)
-void FUN_180677eb0(int8_t *param_1,longlong param_2,byte *param_3,byte *param_4)
+// 函数: void FUN_180677eb0(int8_t *param_1,int64_t param_2,byte *param_3,byte *param_4)
+void FUN_180677eb0(int8_t *param_1,int64_t param_2,byte *param_3,byte *param_4)
 
 {
   int8_t *puVar1;
@@ -235,8 +235,8 @@ void FUN_180677eb0(int8_t *param_1,longlong param_2,byte *param_3,byte *param_4)
 
 
 
-// 函数: void FUN_180677fc0(int8_t *param_1,longlong param_2,byte *param_3,byte *param_4)
-void FUN_180677fc0(int8_t *param_1,longlong param_2,byte *param_3,byte *param_4)
+// 函数: void FUN_180677fc0(int8_t *param_1,int64_t param_2,byte *param_3,byte *param_4)
+void FUN_180677fc0(int8_t *param_1,int64_t param_2,byte *param_3,byte *param_4)
 
 {
   int8_t *puVar1;
@@ -287,16 +287,16 @@ void FUN_180677fc0(int8_t *param_1,longlong param_2,byte *param_3,byte *param_4)
 
 
 
-// 函数: void FUN_1806780c0(int8_t *param_1,longlong param_2,byte *param_3,byte *param_4)
-void FUN_1806780c0(int8_t *param_1,longlong param_2,byte *param_3,byte *param_4)
+// 函数: void FUN_1806780c0(int8_t *param_1,int64_t param_2,byte *param_3,byte *param_4)
+void FUN_1806780c0(int8_t *param_1,int64_t param_2,byte *param_3,byte *param_4)
 
 {
-  longlong lVar1;
+  int64_t lVar1;
   byte *pbVar2;
   int8_t *puVar3;
   byte *pbVar4;
   int8_t *puVar5;
-  longlong lVar6;
+  int64_t lVar6;
   
   pbVar2 = param_3 + -1;
   puVar3 = param_1 + param_2 * 3;
@@ -327,7 +327,7 @@ void FUN_1806780c0(int8_t *param_1,longlong param_2,byte *param_3,byte *param_4)
   param_1 = param_1 + 2;
   lVar6 = 0xe;
   do {
-    (pbVar2 + 1)[(longlong)param_1 - (longlong)param_3] =
+    (pbVar2 + 1)[(int64_t)param_1 - (int64_t)param_3] =
          (byte)((int)(pbVar2[2] + 2 + (uint)pbVar2[1] * 2 + (uint)*pbVar2) >> 2);
     lVar6 = lVar6 + -1;
     pbVar2 = pbVar2 + 1;
@@ -351,19 +351,19 @@ void FUN_1806780c0(int8_t *param_1,longlong param_2,byte *param_3,byte *param_4)
 
 
 
-// 函数: void FUN_1806782c0(int8_t *param_1,longlong param_2,byte *param_3,byte *param_4)
-void FUN_1806782c0(int8_t *param_1,longlong param_2,byte *param_3,byte *param_4)
+// 函数: void FUN_1806782c0(int8_t *param_1,int64_t param_2,byte *param_3,byte *param_4)
+void FUN_1806782c0(int8_t *param_1,int64_t param_2,byte *param_3,byte *param_4)
 
 {
   byte *pbVar1;
   byte bVar2;
   byte *pbVar3;
-  longlong lVar4;
+  int64_t lVar4;
   byte *pbVar5;
   int8_t *puVar6;
   int8_t *puVar7;
-  longlong lVar8;
-  longlong lVar9;
+  int64_t lVar8;
+  int64_t lVar9;
   
   pbVar3 = param_3 + -1;
   puVar6 = param_1 + param_2;
@@ -392,7 +392,7 @@ void FUN_1806782c0(int8_t *param_1,longlong param_2,byte *param_3,byte *param_4)
     param_4 = param_4 + 1;
   } while (lVar9 != 0);
   do {
-    (pbVar3 + 1)[(longlong)(param_1 + (2 - (longlong)param_3))] =
+    (pbVar3 + 1)[(int64_t)(param_1 + (2 - (int64_t)param_3))] =
          (byte)((int)(pbVar3[2] + 2 + (uint)pbVar3[1] * 2 + (uint)*pbVar3) >> 2);
     lVar4 = lVar4 + -1;
     pbVar3 = pbVar3 + 1;
@@ -416,8 +416,8 @@ void FUN_1806782c0(int8_t *param_1,longlong param_2,byte *param_3,byte *param_4)
 
 
 
-// 函数: void FUN_180678430(int8_t *param_1,longlong param_2,byte *param_3,byte *param_4)
-void FUN_180678430(int8_t *param_1,longlong param_2,byte *param_3,byte *param_4)
+// 函数: void FUN_180678430(int8_t *param_1,int64_t param_2,byte *param_3,byte *param_4)
+void FUN_180678430(int8_t *param_1,int64_t param_2,byte *param_3,byte *param_4)
 
 {
   int8_t *puVar1;
@@ -469,12 +469,12 @@ void FUN_180678430(int8_t *param_1,longlong param_2,byte *param_3,byte *param_4)
 
 
 
-// 函数: void FUN_180678540(int8_t *param_1,longlong param_2,byte *param_3,byte *param_4)
-void FUN_180678540(int8_t *param_1,longlong param_2,byte *param_3,byte *param_4)
+// 函数: void FUN_180678540(int8_t *param_1,int64_t param_2,byte *param_3,byte *param_4)
+void FUN_180678540(int8_t *param_1,int64_t param_2,byte *param_3,byte *param_4)
 
 {
   int8_t *puVar1;
-  longlong lVar2;
+  int64_t lVar2;
   int8_t *puVar3;
   
   *param_1 = (char)((int)((uint)param_3[-1] + *param_4 + 1) >> 1);
@@ -527,15 +527,15 @@ void FUN_180678540(int8_t *param_1,longlong param_2,byte *param_3,byte *param_4)
 
 
 
-// 函数: void FUN_180678810(longlong param_1,longlong param_2,uint64_t param_3,longlong param_4)
-void FUN_180678810(longlong param_1,longlong param_2,uint64_t param_3,longlong param_4)
+// 函数: void FUN_180678810(int64_t param_1,int64_t param_2,uint64_t param_3,int64_t param_4)
+void FUN_180678810(int64_t param_1,int64_t param_2,uint64_t param_3,int64_t param_4)
 
 {
   int8_t *puVar1;
-  longlong lVar2;
+  int64_t lVar2;
   byte *pbVar3;
   int8_t *puVar4;
-  longlong lVar5;
+  int64_t lVar5;
   
   puVar4 = (int8_t *)(param_1 + param_2 * 2);
   lVar2 = 3;
@@ -590,16 +590,16 @@ void FUN_180678810(longlong param_1,longlong param_2,uint64_t param_3,longlong p
 
 
 
-// 函数: void FUN_1806789c0(int8_t *param_1,longlong param_2,uint64_t param_3,byte *param_4)
-void FUN_1806789c0(int8_t *param_1,longlong param_2,uint64_t param_3,byte *param_4)
+// 函数: void FUN_1806789c0(int8_t *param_1,int64_t param_2,uint64_t param_3,byte *param_4)
+void FUN_1806789c0(int8_t *param_1,int64_t param_2,uint64_t param_3,byte *param_4)
 
 {
   byte *pbVar1;
-  longlong lVar2;
+  int64_t lVar2;
   int8_t *puVar3;
   int8_t *puVar4;
-  longlong lVar5;
-  longlong lVar6;
+  int64_t lVar5;
+  int64_t lVar6;
   
   lVar2 = 0x1f;
   pbVar1 = param_4;
@@ -654,8 +654,8 @@ void FUN_1806789c0(int8_t *param_1,longlong param_2,uint64_t param_3,byte *param
 
 
 
-// 函数: void FUN_180678b10(int8_t *param_1,longlong param_2,uint64_t param_3,byte *param_4)
-void FUN_180678b10(int8_t *param_1,longlong param_2,uint64_t param_3,byte *param_4)
+// 函数: void FUN_180678b10(int8_t *param_1,int64_t param_2,uint64_t param_3,byte *param_4)
+void FUN_180678b10(int8_t *param_1,int64_t param_2,uint64_t param_3,byte *param_4)
 
 {
   byte bVar1;
@@ -697,13 +697,13 @@ void FUN_180678b10(int8_t *param_1,longlong param_2,uint64_t param_3,byte *param
 
 
 
-// 函数: void FUN_180678bc0(int8_t *param_1,longlong param_2,uint64_t param_3,byte *param_4)
-void FUN_180678bc0(int8_t *param_1,longlong param_2,uint64_t param_3,byte *param_4)
+// 函数: void FUN_180678bc0(int8_t *param_1,int64_t param_2,uint64_t param_3,byte *param_4)
+void FUN_180678bc0(int8_t *param_1,int64_t param_2,uint64_t param_3,byte *param_4)
 
 {
   int8_t *puVar1;
-  longlong lVar2;
-  longlong lVar3;
+  int64_t lVar2;
+  int64_t lVar3;
   
   *param_1 = (char)((int)((uint)*param_4 + param_4[1] + 1) >> 1);
   puVar1 = param_1 + 1;
@@ -753,8 +753,8 @@ void FUN_180678bc0(int8_t *param_1,longlong param_2,uint64_t param_3,byte *param
 
 
 
-// 函数: void FUN_180678e20(longlong param_1,longlong param_2,longlong param_3)
-void FUN_180678e20(longlong param_1,longlong param_2,longlong param_3)
+// 函数: void FUN_180678e20(int64_t param_1,int64_t param_2,int64_t param_3)
+void FUN_180678e20(int64_t param_1,int64_t param_2,int64_t param_3)
 
 {
   byte *pbVar1;
@@ -762,7 +762,7 @@ void FUN_180678e20(longlong param_1,longlong param_2,longlong param_3)
   int8_t uVar3;
   byte bVar4;
   byte *pbVar5;
-  longlong lVar6;
+  int64_t lVar6;
   
   uVar3 = *(int8_t *)(param_3 + 0xf);
   pbVar5 = (byte *)(param_3 + 2);
@@ -785,8 +785,8 @@ void FUN_180678e20(longlong param_1,longlong param_2,longlong param_3)
 
 
 
-// 函数: void FUN_180678ef0(longlong param_1,longlong param_2,longlong param_3)
-void FUN_180678ef0(longlong param_1,longlong param_2,longlong param_3)
+// 函数: void FUN_180678ef0(int64_t param_1,int64_t param_2,int64_t param_3)
+void FUN_180678ef0(int64_t param_1,int64_t param_2,int64_t param_3)
 
 {
   byte *pbVar1;
@@ -794,7 +794,7 @@ void FUN_180678ef0(longlong param_1,longlong param_2,longlong param_3)
   int8_t uVar3;
   byte bVar4;
   byte *pbVar5;
-  longlong lVar6;
+  int64_t lVar6;
   
   uVar3 = *(int8_t *)(param_3 + 0x1f);
   pbVar5 = (byte *)(param_3 + 2);
@@ -817,8 +817,8 @@ void FUN_180678ef0(longlong param_1,longlong param_2,longlong param_3)
 
 
 
-// 函数: void FUN_180678fc0(int8_t *param_1,longlong param_2,byte *param_3)
-void FUN_180678fc0(int8_t *param_1,longlong param_2,byte *param_3)
+// 函数: void FUN_180678fc0(int8_t *param_1,int64_t param_2,byte *param_3)
+void FUN_180678fc0(int8_t *param_1,int64_t param_2,byte *param_3)
 
 {
   int8_t *puVar1;
@@ -867,8 +867,8 @@ void FUN_180678fc0(int8_t *param_1,longlong param_2,byte *param_3)
 
 
 
-// 函数: void FUN_1806790b0(int8_t *param_1,longlong param_2,byte *param_3)
-void FUN_1806790b0(int8_t *param_1,longlong param_2,byte *param_3)
+// 函数: void FUN_1806790b0(int8_t *param_1,int64_t param_2,byte *param_3)
+void FUN_1806790b0(int8_t *param_1,int64_t param_2,byte *param_3)
 
 {
   byte bVar1;

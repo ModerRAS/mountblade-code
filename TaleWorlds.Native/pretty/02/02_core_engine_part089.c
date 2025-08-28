@@ -5,8 +5,8 @@
 // 包含文本处理、数值计算和渲染相关的函数
 
 // 全局变量
-extern longlong SYSTEM_DATA_MANAGER_A;      // 引擎全局上下文
-extern ulonglong GET_SECURITY_COOKIE();     // 安全检查相关
+extern int64_t SYSTEM_DATA_MANAGER_A;      // 引擎全局上下文
+extern uint64_t GET_SECURITY_COOKIE();     // 安全检查相关
 extern char global_var_5912_ptr[];          // 数据类型映射表
 extern char system_buffer_ptr;            // 默认格式字符串
 extern char global_var_2224_ptr;            // 操作符标识
@@ -27,11 +27,11 @@ extern uint global_var_3596_ptr[];          // 函数跳转表2
 void process_formatted_text_render(float *param_1, int param_2, uint64_t param_3, uint64_t param_4, 
                                   float *param_5, char *param_6)
 {
-  longlong engine_context;
+  int64_t engine_context;
   char current_char;
   int format_length;
   char *format_ptr;
-  longlong temp_ptr;
+  int64_t temp_ptr;
   char *text_start;
   char *text_end;
   int buffer_size;
@@ -44,13 +44,13 @@ void process_formatted_text_render(float *param_1, int param_2, uint64_t param_3
   float height_value;
   char format_buffer[31];
   char processed_text[33];
-  ulonglong security_token;
+  uint64_t security_token;
   
   engine_context = SYSTEM_DATA_MANAGER_A;
-  security_token = GET_SECURITY_COOKIE() ^ (ulonglong)security_buffer;
+  security_token = GET_SECURITY_COOKIE() ^ (uint64_t)security_buffer;
   
   // 初始化渲染状态
-  *(int8_t *)(*(longlong *)(engine_context + 0x1af8) + 0xb1) = 1;
+  *(int8_t *)(*(int64_t *)(engine_context + 0x1af8) + 0xb1) = 1;
   func_0x000180123e90(*(int32_t *)(engine_context + 0x2da0), 
                       *(uint64_t *)(engine_context + 0x1af8));
   *(int32_t *)(engine_context + 0x1b18) = 0;
@@ -82,7 +82,7 @@ void process_formatted_text_render(float *param_1, int param_2, uint64_t param_3
     if (format_length < 0x20) {
       buffer_size = format_length;
     }
-    temp_ptr = (longlong)buffer_size;
+    temp_ptr = (int64_t)buffer_size;
     if (temp_ptr != 0) {
       strncpy(processed_text + 1, format_ptr, temp_ptr);
       processed_text[buffer_size] = '\0';
@@ -111,7 +111,7 @@ void process_formatted_text_render(float *param_1, int param_2, uint64_t param_3
   }
   
   if (text_start != format_buffer) {
-    memmove(format_buffer, text_start, (longlong)text_start - (longlong)text_start);
+    memmove(format_buffer, text_start, (int64_t)text_start - (int64_t)text_start);
   }
   
   // 计算尺寸
@@ -120,7 +120,7 @@ void process_formatted_text_render(float *param_1, int param_2, uint64_t param_3
   security_check3 = 0;
   security_check2 = 0;
   security_check1 = CONCAT44(security_check1._4_4_, 0x20010);
-  text_start[(longlong)(format_buffer + -(longlong)text_start)] = '\0';
+  text_start[(int64_t)(format_buffer + -(int64_t)text_start)] = '\0';
   
   // 执行渲染
   current_char = FUN_1801166f0(param_3, format_buffer, 0x20, &width_value);
@@ -142,7 +142,7 @@ void process_formatted_text_render(float *param_1, int param_2, uint64_t param_3
   }
   
   // 安全检查清理
-  FUN_1808fc050(security_token ^ (ulonglong)security_buffer);
+  FUN_1808fc050(security_token ^ (uint64_t)security_buffer);
 }
 
 /**
@@ -156,11 +156,11 @@ void process_formatted_text_render(float *param_1, int param_2, uint64_t param_3
  * @param param_7 操作标志
  */
 void execute_numeric_operation(char *param_1, uint param_2, double *param_3, double *param_4, 
-                              double *param_5, ulonglong param_6, uint param_7)
+                              double *param_5, uint64_t param_6, uint param_7)
 {
   int *render_counter;
   double converted_value;
-  longlong engine_context;
+  int64_t engine_context;
   char operation_result;
   double *value_ptr;
   char *string_ptr;
@@ -174,18 +174,18 @@ void execute_numeric_operation(char *param_1, uint param_2, double *param_3, dou
   uint64_t render_param3;
   uint64_t render_param4;
   int8_t temp_buffer[64];
-  ulonglong security_token;
+  uint64_t security_token;
   
   engine_context = SYSTEM_DATA_MANAGER_A;
-  security_token = GET_SECURITY_COOKIE() ^ (ulonglong)security_buffer;
-  *(int8_t *)(*(longlong *)(engine_context + 0x1af8) + 0xb1) = 1;
+  security_token = GET_SECURITY_COOKIE() ^ (uint64_t)security_buffer;
+  *(int8_t *)(*(int64_t *)(engine_context + 0x1af8) + 0xb1) = 1;
   
   // 检查渲染状态
-  if (*(char *)(*(longlong *)(engine_context + 0x1af8) + 0xb4) != '\0') goto cleanup_and_exit;
+  if (*(char *)(*(int64_t *)(engine_context + 0x1af8) + 0xb4) != '\0') goto cleanup_and_exit;
   
   // 获取格式字符串
   if (param_6 == 0) {
-    param_6 = *(ulonglong *)(&global_var_5912_ptr + (longlong)(int)param_2 * 0x18);
+    param_6 = *(uint64_t *)(&global_var_5912_ptr + (int64_t)(int)param_2 * 0x18);
   }
   
   // 格式化数值
@@ -268,7 +268,7 @@ skip_format_conversion:
         break;
       case 2:
       case 3:
-        *param_3 = (double)((longlong)*param_3 - (longlong)*value_ptr);
+        *param_3 = (double)((int64_t)*param_3 - (int64_t)*value_ptr);
         break;
       case 4:
         *(float *)param_3 = *(float *)param_3 - *(float *)value_ptr;
@@ -295,7 +295,7 @@ skip_format_conversion:
         break;
       case 2:
       case 3:
-        *param_3 = (double)((longlong)*param_3 + (longlong)*param_5);
+        *param_3 = (double)((int64_t)*param_3 + (int64_t)*param_5);
         break;
       case 4:
         *(float *)param_3 = *(float *)param_3 + *(float *)param_5;
@@ -314,13 +314,13 @@ skip_format_conversion:
       }
     }
     FUN_18010e8a0(param_1);
-    render_counter = (int *)(*(longlong *)(engine_context + 0x1af8) + 0x218);
+    render_counter = (int *)(*(int64_t *)(engine_context + 0x1af8) + 0x218);
     *render_counter = *render_counter + -1;
     FUN_18012e4e0();
   }
   
 cleanup_and_exit:
-  FUN_1808fc050(security_token ^ (ulonglong)security_buffer);
+  FUN_1808fc050(security_token ^ (uint64_t)security_buffer);
 }
 
 /**
@@ -336,8 +336,8 @@ void simplified_numeric_operation(int32_t param_1, uint64_t param_2, double *par
   char operation_result;
   uint data_type;
   char *target_string;
-  longlong engine_context;
-  longlong context_ptr;
+  int64_t engine_context;
+  int64_t context_ptr;
   float timing_factor1;
   float timing_factor2;
   float timing_factor3;
@@ -347,15 +347,15 @@ void simplified_numeric_operation(int32_t param_1, uint64_t param_2, double *par
   uint64_t stack_param1;
   int32_t format_param;
   uint64_t stack_param2;
-  ulonglong security_token;
+  uint64_t security_token;
   int32_t stack_param3;
   int32_t stack_param4;
-  longlong stack_param5;
+  int64_t stack_param5;
   uint operation_flags;
   
-  format_param = (int32_t)((ulonglong)stack_param1 >> 0x20);
+  format_param = (int32_t)((uint64_t)stack_param1 >> 0x20);
   if (stack_param5 == 0) {
-    stack_param5 = *(longlong *)(&global_var_5912_ptr + 
+    stack_param5 = *(int64_t *)(&global_var_5912_ptr + 
             (CONCAT44(stack_param4, data_type) * 2 + CONCAT44(stack_param4, data_type)) * 8);
   }
   
@@ -423,9 +423,9 @@ skip_format:
     
     if ((operation_result != '\0') && (data_type < 6)) {
       // 执行减法操作（通过跳转表）
-      (*(code *)((ulonglong)*(uint *)(&global_var_3572_ptr + CONCAT44(stack_param4, data_type) * 4) +
+      (*(code *)((uint64_t)*(uint *)(&global_var_3572_ptr + CONCAT44(stack_param4, data_type) * 4) +
                 0x180000000))
-                ((code *)((ulonglong)
+                ((code *)((uint64_t)
                           *(uint *)(&global_var_3572_ptr + CONCAT44(stack_param4, data_type) * 4) +
                          0x180000000));
       return;
@@ -436,9 +436,9 @@ skip_format:
     operation_result = FUN_18010f6f0(&global_var_2240_ptr, &stack_param2, operation_flags);
     if ((operation_result != '\0') && (data_type < 6)) {
       // 执行加法操作（通过跳转表）
-      (*(code *)((ulonglong)*(uint *)(&global_var_3596_ptr + CONCAT44(stack_param4, data_type) * 4) +
+      (*(code *)((uint64_t)*(uint *)(&global_var_3596_ptr + CONCAT44(stack_param4, data_type) * 4) +
                 0x180000000))
-                ((code *)((ulonglong)
+                ((code *)((uint64_t)
                           *(uint *)(&global_var_3596_ptr + CONCAT44(stack_param4, data_type) * 4) +
                          0x180000000));
       return;
@@ -452,12 +452,12 @@ skip_format:
       }
     }
     FUN_18010e8a0();
-    render_counter = (int *)(*(longlong *)(engine_context + 0x1af8) + 0x218);
+    render_counter = (int *)(*(int64_t *)(engine_context + 0x1af8) + 0x218);
     *render_counter = *render_counter + -1;
     FUN_18012e4e0();
   }
   
-  FUN_1808fc050(security_token ^ (ulonglong)&stack0x00000000);
+  FUN_1808fc050(security_token ^ (uint64_t)&stack0x00000000);
 }
 
 /**
@@ -467,22 +467,22 @@ void execute_core_engine_operation(void)
 {
   int *render_counter;
   char operation_result;
-  longlong engine_context;
+  int64_t engine_context;
   uint data_type;
   int32_t format_param;
   uint operation_flags;
   char *target_string;
-  longlong context_ptr;
+  int64_t context_ptr;
   float timing_factor1;
   float timing_factor2;
   float timing_factor3;
   uint64_t stack_param1;
   int32_t format_value;
   uint64_t stack_param2;
-  ulonglong security_token;
+  uint64_t security_token;
   uint64_t stack_param3;
   
-  format_value = (int32_t)((ulonglong)stack_param1 >> 0x20);
+  format_value = (int32_t)((uint64_t)stack_param1 >> 0x20);
   timing_factor3 = *(float *)(engine_context + 0x1660) + *(float *)(engine_context + 0x1660) + 
                   *(float *)(engine_context + 0x19f8);
   FUN_18012e3b0();
@@ -510,9 +510,9 @@ void execute_core_engine_operation(void)
   
   if ((operation_result != '\0') && (data_type < 6)) {
     // 执行减法操作（通过跳转表）
-    (*(code *)((ulonglong)*(uint *)(&global_var_3572_ptr + CONCAT44(format_param, data_type) * 4) +
+    (*(code *)((uint64_t)*(uint *)(&global_var_3572_ptr + CONCAT44(format_param, data_type) * 4) +
               0x180000000))
-              ((code *)((ulonglong)
+              ((code *)((uint64_t)
                         *(uint *)(&global_var_3572_ptr + CONCAT44(format_param, data_type) * 4) +
                        0x180000000));
     return;
@@ -523,9 +523,9 @@ void execute_core_engine_operation(void)
   operation_result = FUN_18010f6f0(&global_var_2240_ptr, &stack_param2, operation_flags);
   if ((operation_result != '\0') && (data_type < 6)) {
     // 执行加法操作（通过跳转表）
-    (*(code *)((ulonglong)*(uint *)(&global_var_3596_ptr + CONCAT44(format_param, data_type) * 4) +
+    (*(code *)((uint64_t)*(uint *)(&global_var_3596_ptr + CONCAT44(format_param, data_type) * 4) +
               0x180000000))
-              ((code *)((ulonglong)
+              ((code *)((uint64_t)
                         *(uint *)(&global_var_3596_ptr + CONCAT44(format_param, data_type) * 4) +
                        0x180000000));
     return;
@@ -539,11 +539,11 @@ void execute_core_engine_operation(void)
     }
   }
   FUN_18010e8a0();
-  render_counter = (int *)(*(longlong *)(engine_context + 0x1af8) + 0x218);
+  render_counter = (int *)(*(int64_t *)(engine_context + 0x1af8) + 0x218);
   *render_counter = *render_counter + -1;
   FUN_18012e4e0();
   
-  FUN_1808fc050(security_token ^ (ulonglong)&stack0x00000000);
+  FUN_1808fc050(security_token ^ (uint64_t)&stack0x00000000);
 }
 
 /**
@@ -554,14 +554,14 @@ void execute_addition_operation(void)
   uint data_type;
   int32_t format_param;
   char *target_string;
-  longlong context_ptr;
-  ulonglong security_token;
+  int64_t context_ptr;
+  uint64_t security_token;
   
   if (data_type < 6) {
     // 执行加法操作（通过跳转表）
-    (*(code *)((ulonglong)*(uint *)(&global_var_3596_ptr + CONCAT44(format_param, data_type) * 4) +
+    (*(code *)((uint64_t)*(uint *)(&global_var_3596_ptr + CONCAT44(format_param, data_type) * 4) +
               0x180000000))
-              ((code *)((ulonglong)
+              ((code *)((uint64_t)
                         *(uint *)(&global_var_3596_ptr + CONCAT44(format_param, data_type) * 4) +
                        0x180000000));
     return;
@@ -575,11 +575,11 @@ void execute_addition_operation(void)
     }
   }
   FUN_18010e8a0();
-  render_counter = (int *)(*(longlong *)(engine_context + 0x1af8) + 0x218);
+  render_counter = (int *)(*(int64_t *)(engine_context + 0x1af8) + 0x218);
   *render_counter = *render_counter + -1;
   FUN_18012e4e0();
   
-  FUN_1808fc050(security_token ^ (ulonglong)&stack0x00000000);
+  FUN_1808fc050(security_token ^ (uint64_t)&stack0x00000000);
 }
 
 /**
@@ -587,8 +587,8 @@ void execute_addition_operation(void)
  */
 void cleanup_operation(void)
 {
-  ulonglong security_token;
-  FUN_1808fc050(security_token ^ (ulonglong)&stack0x00000000);
+  uint64_t security_token;
+  FUN_1808fc050(security_token ^ (uint64_t)&stack0x00000000);
 }
 
 /**
@@ -602,26 +602,26 @@ void cleanup_operation(void)
  * @param param_7 操作标志
  * @return 操作结果状态
  */
-ulonglong process_batch_numeric_operations(char *param_1, uint64_t param_2, longlong param_3, 
+uint64_t process_batch_numeric_operations(char *param_1, uint64_t param_2, int64_t param_3, 
                                          int param_4, uint64_t param_5, uint64_t param_6, 
                                          uint64_t param_7)
 {
   int operation_result;
-  ulonglong status_flag;
-  longlong engine_context;
-  longlong render_context;
+  uint64_t status_flag;
+  int64_t engine_context;
+  int64_t render_context;
   byte operation_success;
   int index;
   int *render_counter;
   char *string_ptr;
   int array_index;
-  longlong context_base;
+  int64_t context_base;
   byte batch_result;
   int32_t operation_flag;
   
   context_base = SYSTEM_DATA_MANAGER_A;
-  *(int8_t *)(*(longlong *)(context_base + 0x1af8) + 0xb1) = 1;
-  status_flag = *(ulonglong *)(context_base + 0x1af8);
+  *(int8_t *)(*(int64_t *)(context_base + 0x1af8) + 0xb1) = 1;
+  status_flag = *(uint64_t *)(context_base + 0x1af8);
   
   // 检查渲染状态
   if (*(char *)(status_flag + 0xb4) != '\0') {
@@ -642,10 +642,10 @@ ulonglong process_batch_numeric_operations(char *param_1, uint64_t param_2, long
       batch_result = batch_result | operation_success;
       func_0x00018012e760(0, *(int32_t *)(engine_context + 0x1674));
       context_base = SYSTEM_DATA_MANAGER_A;
-      render_counter = (int *)(*(longlong *)(context_base + 0x1af8) + 0x218);
+      render_counter = (int *)(*(int64_t *)(context_base + 0x1af8) + 0x218);
       *render_counter = *render_counter + -1;
-      *(int8_t *)(*(longlong *)(context_base + 0x1af8) + 0xb1) = 1;
-      render_context = *(longlong *)(context_base + 0x1af8);
+      *(int8_t *)(*(int64_t *)(context_base + 0x1af8) + 0xb1) = 1;
+      render_context = *(int64_t *)(context_base + 0x1af8);
       operation_result = *(int *)(render_context + 0x1c8);
       index = operation_result + -1;
       *(int *)(render_context + 0x1c8) = index;
@@ -653,7 +653,7 @@ ulonglong process_batch_numeric_operations(char *param_1, uint64_t param_2, long
         operation_flag = *(int32_t *)(render_context + 0x284);
       }
       else {
-        operation_flag = *(int32_t *)(*(longlong *)(render_context + 0x1d0) + -8 + (longlong)operation_result * 4);
+        operation_flag = *(int32_t *)(*(int64_t *)(render_context + 0x1d0) + -8 + (int64_t)operation_result * 4);
       }
       param_3 = param_3 + 4;
       *(int32_t *)(render_context + 0x1ac) = operation_flag;
@@ -661,7 +661,7 @@ ulonglong process_batch_numeric_operations(char *param_1, uint64_t param_2, long
     } while (array_index < param_4);
   }
   
-  render_counter = (int *)(*(longlong *)(context_base + 0x1af8) + 0x218);
+  render_counter = (int *)(*(int64_t *)(context_base + 0x1af8) + 0x218);
   *render_counter = *render_counter + -1;
   string_ptr = param_1;
   if (param_1 != (char *)0xffffffffffffffff) {
@@ -672,7 +672,7 @@ ulonglong process_batch_numeric_operations(char *param_1, uint64_t param_2, long
   }
   FUN_18010e8a0(param_1);
   FUN_18012e4e0();
-  return (ulonglong)batch_result;
+  return (uint64_t)batch_result;
 }
 
 /**
@@ -682,14 +682,14 @@ ulonglong process_batch_numeric_operations(char *param_1, uint64_t param_2, long
 byte process_batch_numeric_operations_simple(void)
 {
   int operation_result;
-  longlong engine_context;
-  longlong render_context;
+  int64_t engine_context;
+  int64_t render_context;
   byte operation_success;
   int index;
   int *render_counter;
   char *target_string;
   int array_index;
-  longlong context_base;
+  int64_t context_base;
   byte batch_result;
   int32_t operation_flag;
   
@@ -707,10 +707,10 @@ byte process_batch_numeric_operations_simple(void)
       batch_result = batch_result | operation_success;
       func_0x00018012e760(0, *(int32_t *)(context_ptr + 0x1674));
       context_base = SYSTEM_DATA_MANAGER_A;
-      render_counter = (int *)(*(longlong *)(context_base + 0x1af8) + 0x218);
+      render_counter = (int *)(*(int64_t *)(context_base + 0x1af8) + 0x218);
       *render_counter = *render_counter + -1;
-      *(int8_t *)(*(longlong *)(context_base + 0x1af8) + 0xb1) = 1;
-      render_context = *(longlong *)(context_base + 0x1af8);
+      *(int8_t *)(*(int64_t *)(context_base + 0x1af8) + 0xb1) = 1;
+      render_context = *(int64_t *)(context_base + 0x1af8);
       operation_result = *(int *)(render_context + 0x1c8);
       index = operation_result + -1;
       *(int *)(render_context + 0x1c8) = index;
@@ -718,7 +718,7 @@ byte process_batch_numeric_operations_simple(void)
         operation_flag = *(int32_t *)(render_context + 0x284);
       }
       else {
-        operation_flag = *(int32_t *)(*(longlong *)(render_context + 0x1d0) + -8 + (longlong)operation_result * 4);
+        operation_flag = *(int32_t *)(*(int64_t *)(render_context + 0x1d0) + -8 + (int64_t)operation_result * 4);
       }
       value_array = value_array + 4;
       *(int32_t *)(render_context + 0x1ac) = operation_flag;
@@ -726,7 +726,7 @@ byte process_batch_numeric_operations_simple(void)
     } while (array_index < operation_count);
   }
   
-  render_counter = (int *)(*(longlong *)(context_base + 0x1af8) + 0x218);
+  render_counter = (int *)(*(int64_t *)(context_base + 0x1af8) + 0x218);
   *render_counter = *render_counter + -1;
   if (target_string != (char *)0xffffffffffffffff) {
     while (*target_string != '\0') {
@@ -746,14 +746,14 @@ byte process_batch_numeric_operations_simple(void)
 byte process_loop_batch_numeric_operations(void)
 {
   int operation_result;
-  longlong engine_context;
-  longlong render_context;
+  int64_t engine_context;
+  int64_t render_context;
   byte operation_success;
   int index;
   int *render_counter;
   char *target_string;
   int loop_index;
-  longlong context_base;
+  int64_t context_base;
   byte loop_result;
   int32_t operation_flag;
   
@@ -763,10 +763,10 @@ byte process_loop_batch_numeric_operations(void)
     loop_result = loop_result | operation_success;
     func_0x00018012e760(0, *(int32_t *)(context_ptr + 0x1674));
     context_base = SYSTEM_DATA_MANAGER_A;
-    render_counter = (int *)(*(longlong *)(context_base + 0x1af8) + 0x218);
+    render_counter = (int *)(*(int64_t *)(context_base + 0x1af8) + 0x218);
     *render_counter = *render_counter + -1;
-    *(int8_t *)(*(longlong *)(context_base + 0x1af8) + 0xb1) = 1;
-    render_context = *(longlong *)(context_base + 0x1af8);
+    *(int8_t *)(*(int64_t *)(context_base + 0x1af8) + 0xb1) = 1;
+    render_context = *(int64_t *)(context_base + 0x1af8);
     operation_result = *(int *)(render_context + 0x1c8);
     index = operation_result + -1;
     *(int *)(render_context + 0x1c8) = index;
@@ -774,14 +774,14 @@ byte process_loop_batch_numeric_operations(void)
       operation_flag = *(int32_t *)(render_context + 0x284);
     }
     else {
-      operation_flag = *(int32_t *)(*(longlong *)(render_context + 0x1d0) + -8 + (longlong)operation_result * 4);
+      operation_flag = *(int32_t *)(*(int64_t *)(render_context + 0x1d0) + -8 + (int64_t)operation_result * 4);
     }
     value_array = value_array + 4;
     *(int32_t *)(render_context + 0x1ac) = operation_flag;
     loop_index = loop_index + 1;
   } while (loop_index < operation_count);
   
-  render_counter = (int *)(*(longlong *)(context_base + 0x1af8) + 0x218);
+  render_counter = (int *)(*(int64_t *)(context_base + 0x1af8) + 0x218);
   *render_counter = *render_counter + -1;
   if (target_string != (char *)0xffffffffffffffff) {
     while (*target_string != '\0') {
@@ -804,7 +804,7 @@ int8_t cleanup_render_operation(void)
   char *target_string;
   int8_t cleanup_result;
   
-  render_counter = (int *)(*(longlong *)(engine_context + 0x1af8) + 0x218);
+  render_counter = (int *)(*(int64_t *)(engine_context + 0x1af8) + 0x218);
   *render_counter = *render_counter + -1;
   if (target_string != (char *)0xffffffffffffffff) {
     while (*target_string != '\0') {
@@ -881,7 +881,7 @@ float * process_ushort_array_to_float(float *param_1, ushort *param_2, ushort *p
       else if (current_ushort != 0xd) {
         // 处理普通字符
         if ((int)(uint)current_ushort < (int)result_ptr[8]) {
-          base_value = *(float *)(*(longlong *)(result_ptr + 10) + (ulonglong)current_ushort * 4);
+          base_value = *(float *)(*(int64_t *)(result_ptr + 10) + (uint64_t)current_ushort * 4);
         }
         else {
           base_value = result_ptr[0x12];
@@ -928,7 +928,7 @@ void optimized_ushort_array_processing(uint64_t param_1, ushort *param_2, float 
   ushort *array_end;
   uint64_t *output_ptr;
   float *result_ptr;
-  longlong context_ptr;
+  int64_t context_ptr;
   float accumulated_value;
   float timing_factor1;
   float timing_factor2;
@@ -950,7 +950,7 @@ void optimized_ushort_array_processing(uint64_t param_1, ushort *param_2, float 
     else if (current_ushort != 0xd) {
       // 处理普通字符
       if ((int)(uint)current_ushort < *(int *)(context_ptr + 0x20)) {
-        accumulated_value = *(float *)(*(longlong *)(context_ptr + 0x28) + (ulonglong)current_ushort * 4);
+        accumulated_value = *(float *)(*(int64_t *)(context_ptr + 0x28) + (uint64_t)current_ushort * 4);
       }
       else {
         accumulated_value = *(float *)(context_ptr + 0x48);

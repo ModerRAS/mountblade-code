@@ -44,10 +44,10 @@
 #define RENDER_QUEUE_SIZE 100
 
 // 全局变量引用
-extern longlong *g_render_context_manager;
-extern longlong *g_render_resource_pool;
+extern int64_t *g_render_context_manager;
+extern int64_t *g_render_resource_pool;
 extern char g_render_debug_mode;
-extern longlong *g_render_state_table;
+extern int64_t *g_render_state_table;
 extern char *g_render_shader_library;
 extern char *g_render_texture_library;
 extern char *g_render_material_library;
@@ -78,20 +78,20 @@ void rendering_system_execute_render_command(void *command);
  * @param render_data 渲染数据指针
  * @param force_reset 是否强制重置标志
  */
-void rendering_system_state_manager(void *render_context, longlong render_data, char force_reset)
+void rendering_system_state_manager(void *render_context, int64_t render_data, char force_reset)
 {
     int *state_counter;
     unsigned int render_flags;
-    longlong context_data;
-    longlong resource_manager;
-    longlong pipeline_state;
-    longlong *render_objects[MAX_RENDER_OBJECTS];
+    int64_t context_data;
+    int64_t resource_manager;
+    int64_t pipeline_state;
+    int64_t *render_objects[MAX_RENDER_OBJECTS];
     void *render_buffers[MAX_RENDER_BUFFERS];
     char buffer_data[MAX_RENDER_BUFFERS];
     int current_state;
-    longlong temp_pointer;
+    int64_t temp_pointer;
     void **resource_pointers[6];
-    longlong *state_data[6];
+    int64_t *state_data[6];
     void *buffer_pointers[6];
     int buffer_sizes[6];
     char temp_buffer[MAX_RENDER_BUFFERS];
@@ -102,28 +102,28 @@ void rendering_system_state_manager(void *render_context, longlong render_data, 
     security_cookie ^= *(unsigned long long *)buffer_data;
     
     // 检查渲染上下文有效性
-    if (*((longlong *)render_context + 8) != 0) {
+    if (*((int64_t *)render_context + 8) != 0) {
         rendering_system_resource_copier((void *)(render_data + 0x180), (void *)render_context + 2);
-        *((unsigned int *)((longlong)render_context + 0x4c)) = RENDER_STATE_INITIAL;
+        *((unsigned int *)((int64_t)render_context + 0x4c)) = RENDER_STATE_INITIAL;
     }
     
     // 获取渲染上下文数据
-    context_data = *((longlong *)render_context + 0x1f);
+    context_data = *((int64_t *)render_context + 0x1f);
     
     // 检查渲染状态标志
-    if ((*(char *)(*((longlong *)(context_data + 0x38)) + 0x331d) != '\0') &&
-        (*((int *)((longlong)render_context + 0x4c)) != RENDER_STATE_INITIAL)) {
-        rendering_system_state_resetter((longlong)render_context);
-        context_data = *((longlong *)render_context + 0x1f);
+    if ((*(char *)(*((int64_t *)(context_data + 0x38)) + 0x331d) != '\0') &&
+        (*((int *)((int64_t)render_context + 0x4c)) != RENDER_STATE_INITIAL)) {
+        rendering_system_state_resetter((int64_t)render_context);
+        context_data = *((int64_t *)render_context + 0x1f);
     }
     
     // 获取资源管理器
     resource_manager = g_render_context_manager;
-    pipeline_state = *((longlong *)(context_data + 0x38));
+    pipeline_state = *((int64_t *)(context_data + 0x38));
     
     // 检查管线状态
     if (*(char *)(pipeline_state + 0x2830) == '\0') {
-        current_state = *((int *)((longlong)render_context + 0x4c));
+        current_state = *((int *)((int64_t)render_context + 0x4c));
         
         if (current_state == RENDER_STATE_INITIAL) {
             // 处理初始状态
@@ -131,21 +131,21 @@ void rendering_system_state_manager(void *render_context, longlong render_data, 
                   (*((int *)((void *)render_context + 0x26)) != *((int *)(pipeline_state + 0x3358)))) &&
                  (*(char *)(context_data + 0x50) != '\0')) && 
                 (*(char *)(pipeline_state + 0x331d) == '\0')) {
-                *((unsigned int *)((longlong)render_context + 0x4c)) = RENDER_STATE_READY;
+                *((unsigned int *)((int64_t)render_context + 0x4c)) = RENDER_STATE_READY;
             } else {
-                context_data = *((longlong *)render_context + 0x20);
+                context_data = *((int64_t *)render_context + 0x20);
                 if (context_data != 0) {
                     if (*(char *)(pipeline_state + 0x331d) == '\0') {
                         if (*((int *)(context_data + 0x3a8)) != 
                             *((int *)(g_render_context_manager + 0x1500))) {
-                            *((unsigned int *)((longlong)render_context + 0x4c)) = RENDER_STATE_READY;
+                            *((unsigned int *)((int64_t)render_context + 0x4c)) = RENDER_STATE_READY;
                             *((unsigned int *)(context_data + 0x3a8)) = 
                                 *((unsigned int *)(resource_manager + 0x1500));
                         }
                     } else {
-                        *((unsigned int *)((longlong)render_context + 0x4c)) = RENDER_STATE_READY;
-                        resource_pointers[0] = (void **)*((longlong *)render_context + 0x20);
-                        *((longlong *)render_context + 0x20) = 0;
+                        *((unsigned int *)((int64_t)render_context + 0x4c)) = RENDER_STATE_READY;
+                        resource_pointers[0] = (void **)*((int64_t *)render_context + 0x20);
+                        *((int64_t *)render_context + 0x20) = 0;
                         if (resource_pointers[0] != (void **)0x0) {
                             ((void (*)(void))(*resource_pointers[0])[7])();
                         }
@@ -165,7 +165,7 @@ void rendering_system_state_manager(void *render_context, longlong render_data, 
             render_flags |= 1;
             render_objects[3] = 0;
             resource_pointers[0] = (void **)&render_objects[4];
-            render_objects[4] = (longlong *)0x0;
+            render_objects[4] = (int64_t *)0x0;
             render_objects[5] = 0;
             render_objects[6] = 0;
             buffer_sizes[1] = 3;
@@ -175,12 +175,12 @@ void rendering_system_state_manager(void *render_context, longlong render_data, 
             current_state = rendering_system_initialize_render_context((void *)pipeline_state, (void **)&render_objects[8]);
             
             if (current_state == 0) {
-                *((unsigned int *)((longlong)render_context + 0x4c)) = RENDER_STATE_PROCESSING;
-                *((unsigned int *)((longlong)render_context + 0xf4)) = 0;
+                *((unsigned int *)((int64_t)render_context + 0x4c)) = RENDER_STATE_PROCESSING;
+                *((unsigned int *)((int64_t)render_context + 0xf4)) = 0;
             } else {
-                *((int *)((longlong)render_context + 0x14c)) = 
-                    *((int *)((longlong)render_context + 0x14c)) + 1;
-                if (*((int *)((longlong)render_context + 0x14c)) == RENDER_QUEUE_SIZE) {
+                *((int *)((int64_t)render_context + 0x14c)) = 
+                    *((int *)((int64_t)render_context + 0x14c)) + 1;
+                if (*((int *)((int64_t)render_context + 0x14c)) == RENDER_QUEUE_SIZE) {
                     // 处理队列满的情况
                     render_objects[9] = 0;
                     buffer_sizes[2] = 0;
@@ -198,7 +198,7 @@ void rendering_system_state_manager(void *render_context, longlong render_data, 
                     render_objects[12] = 0;
                     render_flags |= 0x20000000;
                     rendering_system_initialize_render_context((void *)pipeline_state, (void *)&render_objects[9]);
-                    *((unsigned int *)((longlong)render_context + 0x14c)) = 0;
+                    *((unsigned int *)((int64_t)render_context + 0x14c)) = 0;
                     resource_pointers[0] = (void **)render_objects[9];
                     if (render_objects[9] != 0) {
                         // 警告：子函数不返回
@@ -207,7 +207,7 @@ void rendering_system_state_manager(void *render_context, longlong render_data, 
                 }
             }
             resource_pointers[0] = (void **)&render_objects[4];
-            if (render_objects[4] != (longlong *)0x0) {
+            if (render_objects[4] != (int64_t *)0x0) {
                 // 警告：子函数不返回
                 rendering_system_cleanup_render_resources(0);
             }
@@ -273,7 +273,7 @@ void rendering_system_state_manager(void *render_context, longlong render_data, 
                 security_cookie = render_context[0x24];
                 buffer_sizes[1] = current_state;
                 rendering_system_process_render_objects(
-                    render_context[0x1f], temp_pointer, (longlong)render_context + 0x94);
+                    render_context[0x1f], temp_pointer, (int64_t)render_context + 0x94);
                 current_state++;
             } while (current_state < MAX_RENDER_OBJECTS);
             
@@ -283,7 +283,7 @@ void rendering_system_state_manager(void *render_context, longlong render_data, 
             current_state = *state_counter;
             *state_counter = *state_counter + 1;
             UNLOCK();
-            *((longlong *)(render_data + 0x9a48 + (longlong)current_state * 8)) = temp_pointer;
+            *((int64_t *)(render_data + 0x9a48 + (int64_t)current_state * 8)) = temp_pointer;
             
             // 复制渲染参数
             render_flags = *((unsigned int *)(render_data + 0x9a38));
@@ -293,16 +293,16 @@ void rendering_system_state_manager(void *render_context, longlong render_data, 
             *((unsigned int *)(temp_pointer + 0x9a38)) = render_flags;
             *((unsigned int *)(temp_pointer + 0x9a3c)) = temp_flags;
             *((unsigned int *)(temp_pointer + 0x9a40)) = render_mode;
-            *((unsigned int *)((longlong)render_context + 0x4c)) = RENDER_STATE_ACTIVE;
+            *((unsigned int *)((int64_t)render_context + 0x4c)) = RENDER_STATE_ACTIVE;
         } else if (current_state != RENDER_STATE_ACTIVE) {
             // 处理其他状态转换
             if (current_state == RENDER_STATE_CONFIGURED) {
-                *((unsigned int *)((longlong)render_context + 0x4c)) = RENDER_STATE_PROCESSING;
+                *((unsigned int *)((int64_t)render_context + 0x4c)) = RENDER_STATE_PROCESSING;
             } else if (current_state == RENDER_STATE_INITIALIZED) {
-                *((unsigned int *)((longlong)render_context + 0x5c)) = 0;
-                *((unsigned int *)((longlong)render_context + 0x4c)) = RENDER_STATE_CONFIGURED;
+                *((unsigned int *)((int64_t)render_context + 0x5c)) = 0;
+                *((unsigned int *)((int64_t)render_context + 0x4c)) = RENDER_STATE_CONFIGURED;
                 resource_pointers[0] = (void **)&render_objects[0];
-                render_objects[0] = (longlong *)&g_render_material_library;
+                render_objects[0] = (int64_t *)&g_render_material_library;
                 buffer_pointers[0] = temp_buffer;
                 buffer_sizes[4] = 0;
                 temp_buffer[0] = 0;
@@ -310,30 +310,30 @@ void rendering_system_state_manager(void *render_context, longlong render_data, 
                 render_objects[1] = render_context[0x24];
                 temp_pointer = rendering_system_create_render_buffer(
                     g_render_resource_pool, RENDER_BUFFER_SIZE, 8, 3);
-                state_data[0] = (longlong *)rendering_system_allocate_render_resource(
+                state_data[0] = (int64_t *)rendering_system_allocate_render_resource(
                     temp_pointer, &resource_pointers[0]);
                 resource_pointers[1] = (void **)state_data[0];
-                if (state_data[0] != (longlong *)0x0) {
+                if (state_data[0] != (int64_t *)0x0) {
                     ((void (*)(void *))(*state_data[0] + 0x28))(state_data[0]);
                 }
                 temp_pointer = g_render_state_table;
                 resource_pointers[0] = (void **)&render_objects[2];
                 render_objects[2] = state_data[0];
-                if (state_data[0] != (longlong *)0x0) {
+                if (state_data[0] != (int64_t *)0x0) {
                     ((void (*)(void *))(*state_data[0] + 0x28))(state_data[0]);
                 }
                 rendering_system_release_render_resource(temp_pointer, &render_objects[2]);
-                if (state_data[0] != (longlong *)0x0) {
+                if (state_data[0] != (int64_t *)0x0) {
                     ((void (*)(void *))(*state_data[0] + 0x38))(state_data[0]);
                 }
                 resource_pointers[1] = (void **)&render_objects[0];
-                render_objects[0] = (longlong *)&g_render_shader_library;
+                render_objects[0] = (int64_t *)&g_render_shader_library;
             } else if (current_state == RENDER_STATE_CONFIGURED) {
-                *((unsigned int *)((longlong)render_context + 0x4c)) = RENDER_STATE_ENABLED;
+                *((unsigned int *)((int64_t)render_context + 0x4c)) = RENDER_STATE_ENABLED;
             } else if (current_state == RENDER_STATE_ENABLED) {
-                *((unsigned int *)((longlong)render_context + 0x4c)) = RENDER_STATE_TERMINATING;
+                *((unsigned int *)((int64_t)render_context + 0x4c)) = RENDER_STATE_TERMINATING;
                 resource_pointers[1] = (void **)&render_objects[3];
-                render_objects[3] = (longlong *)&g_render_material_library;
+                render_objects[3] = (int64_t *)&g_render_material_library;
                 buffer_pointers[1] = temp_buffer;
                 buffer_sizes[5] = 0;
                 temp_buffer[0] = 0;
@@ -349,24 +349,24 @@ void rendering_system_state_manager(void *render_context, longlong render_data, 
                 }
                 temp_pointer = rendering_system_create_render_buffer(
                     g_render_resource_pool, RENDER_BUFFER_SIZE, 8, 3);
-                state_data[0] = (longlong *)rendering_system_allocate_render_resource(
+                state_data[0] = (int64_t *)rendering_system_allocate_render_resource(
                     temp_pointer, &resource_pointers[1]);
                 resource_pointers[2] = (void **)state_data[0];
-                if (state_data[0] != (longlong *)0x0) {
+                if (state_data[0] != (int64_t *)0x0) {
                     ((void (*)(void *))(*state_data[0] + 0x28))(state_data[0]);
                 }
                 temp_pointer = g_render_state_table;
                 resource_pointers[1] = (void **)&render_objects[4];
                 render_objects[4] = state_data[0];
-                if (state_data[0] != (longlong *)0x0) {
+                if (state_data[0] != (int64_t *)0x0) {
                     ((void (*)(void *))(*state_data[0] + 0x28))(state_data[0]);
                 }
                 rendering_system_release_render_resource(temp_pointer, &render_objects[4]);
-                if (state_data[0] != (longlong *)0x0) {
+                if (state_data[0] != (int64_t *)0x0) {
                     ((void (*)(void *))(*state_data[0] + 0x38))(state_data[0]);
                 }
                 resource_pointers[2] = (void **)&render_objects[3];
-                render_objects[3] = (longlong *)&g_render_shader_library;
+                render_objects[3] = (int64_t *)&g_render_shader_library;
             } else if (current_state != RENDER_STATE_TERMINATING) {
                 if (current_state == RENDER_STATE_RUNNING) {
                     temp_pointer = rendering_system_get_current_context();
@@ -387,7 +387,7 @@ void rendering_system_state_manager(void *render_context, longlong render_data, 
                         buffer_pointers[0] = render_context;
                         buffer_sizes[1] = current_state;
                         rendering_system_process_render_objects_advanced(
-                            render_context[0x1f], temp_pointer, (longlong)render_context + 0x94, render_context[0x25]);
+                            render_context[0x1f], temp_pointer, (int64_t)render_context + 0x94, render_context[0x25]);
                         current_state++;
                     } while (current_state < MAX_RENDER_OBJECTS);
                     LOCK();
@@ -395,7 +395,7 @@ void rendering_system_state_manager(void *render_context, longlong render_data, 
                     current_state = *state_counter;
                     *state_counter = *state_counter + 1;
                     UNLOCK();
-                    *((longlong *)(render_data + 0x9a48 + (longlong)current_state * 8)) = temp_pointer;
+                    *((int64_t *)(render_data + 0x9a48 + (int64_t)current_state * 8)) = temp_pointer;
                     render_flags = *((unsigned int *)(render_data + 0x9a38));
                     temp_flags = *((unsigned int *)(render_data + 0x9a3c));
                     render_mode = *((unsigned int *)(render_data + 0x9a40));
@@ -403,14 +403,14 @@ void rendering_system_state_manager(void *render_context, longlong render_data, 
                     *((unsigned int *)(temp_pointer + 0x9a38)) = render_flags;
                     *((unsigned int *)(temp_pointer + 0x9a3c)) = temp_flags;
                     *((unsigned int *)(temp_pointer + 0x9a40)) = render_mode;
-                    *((unsigned int *)((longlong)render_context + 0x4c)) = RENDER_STATE_RUNNING;
+                    *((unsigned int *)((int64_t)render_context + 0x4c)) = RENDER_STATE_RUNNING;
                 } else if (current_state != RENDER_STATE_RUNNING) {
                     if (current_state == RENDER_STATE_PAUSED) {
-                        *((unsigned int *)((longlong)render_context + 0x4c)) = RENDER_STATE_ENABLED;
+                        *((unsigned int *)((int64_t)render_context + 0x4c)) = RENDER_STATE_ENABLED;
                     } else if (current_state == RENDER_STATE_CLOSING) {
-                        *((unsigned int *)((longlong)render_context + 0x4c)) = RENDER_STATE_FLUSHING;
+                        *((unsigned int *)((int64_t)render_context + 0x4c)) = RENDER_STATE_FLUSHING;
                         resource_pointers[2] = (void **)&render_objects[5];
-                        render_objects[5] = (longlong *)&g_render_material_library;
+                        render_objects[5] = (int64_t *)&g_render_material_library;
                         buffer_pointers[2] = temp_buffer;
                         buffer_sizes[4] = 0;
                         temp_buffer[0] = 0;
@@ -418,30 +418,30 @@ void rendering_system_state_manager(void *render_context, longlong render_data, 
                         render_objects[6] = render_context[0x22];
                         temp_pointer = rendering_system_create_render_buffer(
                             g_render_resource_pool, RENDER_BUFFER_SIZE, 8, 3);
-                        state_data[0] = (longlong *)rendering_system_allocate_render_resource(
+                        state_data[0] = (int64_t *)rendering_system_allocate_render_resource(
                             temp_pointer, &resource_pointers[2]);
                         resource_pointers[3] = (void **)state_data[0];
-                        if (state_data[0] != (longlong *)0x0) {
+                        if (state_data[0] != (int64_t *)0x0) {
                             ((void (*)(void *))(*state_data[0] + 0x28))(state_data[0]);
                         }
                         temp_pointer = g_render_state_table;
                         resource_pointers[2] = (void **)&render_objects[7];
                         render_objects[7] = state_data[0];
-                        if (state_data[0] != (longlong *)0x0) {
+                        if (state_data[0] != (int64_t *)0x0) {
                             ((void (*)(void *))(*state_data[0] + 0x28))(state_data[0]);
                         }
                         rendering_system_release_render_resource(temp_pointer, &render_objects[7]);
-                        if (state_data[0] != (longlong *)0x0) {
+                        if (state_data[0] != (int64_t *)0x0) {
                             ((void (*)(void *))(*state_data[0] + 0x38))(state_data[0]);
                         }
                         resource_pointers[3] = (void **)&render_objects[5];
-                        render_objects[5] = (longlong *)&g_render_shader_library;
+                        render_objects[5] = (int64_t *)&g_render_shader_library;
                     } else if (current_state == RENDER_STATE_FLUSHING) {
-                        *((unsigned int *)((longlong)render_context + 0x4c)) = RENDER_STATE_CLEANUP;
+                        *((unsigned int *)((int64_t)render_context + 0x4c)) = RENDER_STATE_CLEANUP;
                     } else if (current_state == RENDER_STATE_CLEANUP) {
-                        *((unsigned int *)((longlong)render_context + 0x4c)) = RENDER_STATE_TERMINATING;
+                        *((unsigned int *)((int64_t)render_context + 0x4c)) = RENDER_STATE_TERMINATING;
                         resource_pointers[3] = (void **)&render_objects[8];
-                        render_objects[8] = (longlong *)&g_render_material_library;
+                        render_objects[8] = (int64_t *)&g_render_material_library;
                         buffer_pointers[3] = temp_buffer;
                         buffer_sizes[5] = 0;
                         temp_buffer[0] = 0;
@@ -457,24 +457,24 @@ void rendering_system_state_manager(void *render_context, longlong render_data, 
                         }
                         temp_pointer = rendering_system_create_render_buffer(
                             g_render_resource_pool, RENDER_BUFFER_SIZE, 8, 3);
-                        state_data[0] = (longlong *)rendering_system_allocate_render_resource(
+                        state_data[0] = (int64_t *)rendering_system_allocate_render_resource(
                             temp_pointer, &resource_pointers[3]);
                         resource_pointers[4] = (void **)state_data[0];
-                        if (state_data[0] != (longlong *)0x0) {
+                        if (state_data[0] != (int64_t *)0x0) {
                             ((void (*)(void *))(*state_data[0] + 0x28))(state_data[0]);
                         }
                         temp_pointer = g_render_state_table;
                         resource_pointers[3] = (void **)&render_objects[9];
                         render_objects[9] = state_data[0];
-                        if (state_data[0] != (longlong *)0x0) {
+                        if (state_data[0] != (int64_t *)0x0) {
                             ((void (*)(void *))(*state_data[0] + 0x28))(state_data[0]);
                         }
                         rendering_system_release_render_resource(temp_pointer, &render_objects[9]);
-                        if (state_data[0] != (longlong *)0x0) {
+                        if (state_data[0] != (int64_t *)0x0) {
                             ((void (*)(void *))(*state_data[0] + 0x38))(state_data[0]);
                         }
                         resource_pointers[4] = (void **)&render_objects[8];
-                        render_objects[8] = (longlong *)&g_render_shader_library;
+                        render_objects[8] = (int64_t *)&g_render_shader_library;
                     } else if (current_state == RENDER_STATE_FINALIZING) {
                         temp_pointer = rendering_system_get_current_context();
                         *((unsigned int *)(temp_pointer + 4)) |= 0x8000000;
@@ -505,7 +505,7 @@ void rendering_system_state_manager(void *render_context, longlong render_data, 
                             buffer_pointers[0] = render_context;
                             buffer_sizes[1] = current_state;
                             rendering_system_process_render_objects_advanced(
-                                render_context[0x1f], temp_pointer, (longlong)render_context + 0x94, render_context[0x23]);
+                                render_context[0x1f], temp_pointer, (int64_t)render_context + 0x94, render_context[0x23]);
                             current_state++;
                         } while (current_state < MAX_RENDER_OBJECTS);
                         LOCK();
@@ -513,7 +513,7 @@ void rendering_system_state_manager(void *render_context, longlong render_data, 
                         current_state = *state_counter;
                         *state_counter = *state_counter + 1;
                         UNLOCK();
-                        *((longlong *)(render_data + 0x9a48 + (longlong)current_state * 8)) = temp_pointer;
+                        *((int64_t *)(render_data + 0x9a48 + (int64_t)current_state * 8)) = temp_pointer;
                         render_flags = *((unsigned int *)(render_data + 0x9a38));
                         temp_flags = *((unsigned int *)(render_data + 0x9a3c));
                         render_mode = *((unsigned int *)(render_data + 0x9a40));
@@ -521,14 +521,14 @@ void rendering_system_state_manager(void *render_context, longlong render_data, 
                         *((unsigned int *)(temp_pointer + 0x9a38)) = render_flags;
                         *((unsigned int *)(temp_pointer + 0x9a3c)) = temp_flags;
                         *((unsigned int *)(temp_pointer + 0x9a40)) = render_mode;
-                        *((unsigned int *)((longlong)render_context + 0x4c)) = RENDER_STATE_FINALIZING;
+                        *((unsigned int *)((int64_t)render_context + 0x4c)) = RENDER_STATE_FINALIZING;
                     } else if (current_state != RENDER_STATE_FINALIZING) {
                         if (current_state == RENDER_STATE_RESETTING) {
-                            *((unsigned int *)((longlong)render_context + 0x4c)) = RENDER_STATE_CLOSING;
+                            *((unsigned int *)((int64_t)render_context + 0x4c)) = RENDER_STATE_CLOSING;
                         } else if (current_state == RENDER_STATE_DISPOSING) {
-                            *((unsigned int *)((longlong)render_context + 0x4c)) = RENDER_STATE_FLUSHING;
+                            *((unsigned int *)((int64_t)render_context + 0x4c)) = RENDER_STATE_FLUSHING;
                             resource_pointers[4] = (void **)&render_objects[10];
-                            render_objects[10] = (longlong *)&g_render_material_library;
+                            render_objects[10] = (int64_t *)&g_render_material_library;
                             buffer_pointers[4] = temp_buffer;
                             buffer_sizes[4] = 0;
                             temp_buffer[0] = 0;
@@ -536,30 +536,30 @@ void rendering_system_state_manager(void *render_context, longlong render_data, 
                             render_objects[11] = render_context[0x21];
                             temp_pointer = rendering_system_create_render_buffer(
                                 g_render_resource_pool, RENDER_BUFFER_SIZE, 8, 3);
-                            state_data[0] = (longlong *)rendering_system_allocate_render_resource(
+                            state_data[0] = (int64_t *)rendering_system_allocate_render_resource(
                                 temp_pointer, &resource_pointers[4]);
                             resource_pointers[5] = (void **)state_data[0];
-                            if (state_data[0] != (longlong *)0x0) {
+                            if (state_data[0] != (int64_t *)0x0) {
                                 ((void (*)(void *))(*state_data[0] + 0x28))(state_data[0]);
                             }
                             temp_pointer = g_render_state_table;
                             resource_pointers[4] = (void **)&render_objects[12];
                             render_objects[12] = state_data[0];
-                            if (state_data[0] != (longlong *)0x0) {
+                            if (state_data[0] != (int64_t *)0x0) {
                                 ((void (*)(void *))(*state_data[0] + 0x28))(state_data[0]);
                             }
                             rendering_system_release_render_resource(temp_pointer, &render_objects[12]);
-                            if (state_data[0] != (longlong *)0x0) {
+                            if (state_data[0] != (int64_t *)0x0) {
                                 ((void (*)(void *))(*state_data[0] + 0x38))(state_data[0]);
                             }
                             resource_pointers[5] = (void **)&render_objects[10];
-                            render_objects[10] = (longlong *)&g_render_shader_library;
+                            render_objects[10] = (int64_t *)&g_render_shader_library;
                         } else if (current_state == RENDER_STATE_FLUSHING) {
-                            *((unsigned int *)((longlong)render_context + 0x4c)) = RENDER_STATE_CLEANUP;
+                            *((unsigned int *)((int64_t)render_context + 0x4c)) = RENDER_STATE_CLEANUP;
                         } else if (current_state == RENDER_STATE_CLEANUP) {
-                            *((unsigned int *)((longlong)render_context + 0x4c)) = RENDER_STATE_TERMINATING;
+                            *((unsigned int *)((int64_t)render_context + 0x4c)) = RENDER_STATE_TERMINATING;
                             resource_pointers[4] = (void **)&render_objects[13];
-                            render_objects[13] = (longlong *)&g_render_material_library;
+                            render_objects[13] = (int64_t *)&g_render_material_library;
                             buffer_pointers[4] = temp_buffer;
                             buffer_sizes[5] = 0;
                             temp_buffer[0] = 0;
@@ -575,35 +575,35 @@ void rendering_system_state_manager(void *render_context, longlong render_data, 
                             }
                             temp_pointer = rendering_system_create_render_buffer(
                                 g_render_resource_pool, RENDER_BUFFER_SIZE, 8, 3);
-                            state_data[0] = (longlong *)rendering_system_allocate_render_resource(
+                            state_data[0] = (int64_t *)rendering_system_allocate_render_resource(
                                 temp_pointer, &resource_pointers[4]);
                             resource_pointers[5] = (void **)state_data[0];
-                            if (state_data[0] != (longlong *)0x0) {
+                            if (state_data[0] != (int64_t *)0x0) {
                                 ((void (*)(void *))(*state_data[0] + 0x28))(state_data[0]);
                             }
                             temp_pointer = g_render_state_table;
                             resource_pointers[4] = (void **)&render_objects[14];
                             render_objects[14] = state_data[0];
-                            if (state_data[0] != (longlong *)0x0) {
+                            if (state_data[0] != (int64_t *)0x0) {
                                 ((void (*)(void *))(*state_data[0] + 0x28))(state_data[0]);
                             }
                             rendering_system_release_render_resource(temp_pointer, &render_objects[14]);
-                            if (state_data[0] != (longlong *)0x0) {
+                            if (state_data[0] != (int64_t *)0x0) {
                                 ((void (*)(void *))(*state_data[0] + 0x38))(state_data[0]);
                             }
                             resource_pointers[5] = (void **)&render_objects[13];
-                            render_objects[13] = (longlong *)&g_render_shader_library;
+                            render_objects[13] = (int64_t *)&g_render_shader_library;
                         } else if (current_state == RENDER_STATE_DISPOSED) {
-                            rendering_system_state_resetter((longlong)render_context);
+                            rendering_system_state_resetter((int64_t)render_context);
                             if ((force_reset != '\0') &&
-                                (*((longlong *)(*((longlong *)(render_context[0x1f] + 0x38)) + 800)) != 0)) {
-                                *((unsigned int *)((longlong)render_context + 0x4c)) = RENDER_STATE_DISPOSED;
+                                (*((int64_t *)(*((int64_t *)(render_context[0x1f] + 0x38)) + 800)) != 0)) {
+                                *((unsigned int *)((int64_t)render_context + 0x4c)) = RENDER_STATE_DISPOSED;
                                 rendering_system_process_render_resources(
-                                    *((unsigned long long *)(*((longlong *)(render_context[0x1f] + 0x38)) + 800)));
+                                    *((unsigned long long *)(*((int64_t *)(render_context[0x1f] + 0x38)) + 800)));
                             }
                         } else if (current_state == RENDER_STATE_COMPLETE) {
-                            *((unsigned int *)((longlong)render_context + 0x4c)) = RENDER_STATE_INITIAL;
-                            *((unsigned int *)((longlong)render_context + 0x5c)) = RENDER_STATE_MASK;
+                            *((unsigned int *)((int64_t)render_context + 0x4c)) = RENDER_STATE_INITIAL;
+                            *((unsigned int *)((int64_t)render_context + 0x5c)) = RENDER_STATE_MASK;
                         }
                     }
                 }
@@ -629,75 +629,75 @@ void rendering_system_state_manager(void *render_context, longlong render_data, 
  */
 unsigned int *rendering_system_resource_copier(unsigned int *dest_resource, unsigned int *src_resource)
 {
-    longlong *src_obj_ptr;
-    longlong *dest_obj_ptr;
+    int64_t *src_obj_ptr;
+    int64_t *dest_obj_ptr;
     
     // 复制基本资源数据
     *dest_resource = *src_resource;
     
     // 复制并转移材质资源
-    src_obj_ptr = *((longlong **)(src_resource + 2));
-    if (src_obj_ptr != (longlong *)0x0) {
+    src_obj_ptr = *((int64_t **)(src_resource + 2));
+    if (src_obj_ptr != (int64_t *)0x0) {
         ((void (*)(void *))(*src_obj_ptr + 0x28))(src_obj_ptr);
     }
-    dest_obj_ptr = *((longlong **)(dest_resource + 2));
-    *((longlong **)(dest_resource + 2)) = src_obj_ptr;
-    if (dest_obj_ptr != (longlong *)0x0) {
+    dest_obj_ptr = *((int64_t **)(dest_resource + 2));
+    *((int64_t **)(dest_resource + 2)) = src_obj_ptr;
+    if (dest_obj_ptr != (int64_t *)0x0) {
         ((void (*)(void))(*dest_obj_ptr + 0x38))();
     }
     
     // 复制并转移纹理资源
-    src_obj_ptr = *((longlong **)(src_resource + 4));
-    if (src_obj_ptr != (longlong *)0x0) {
+    src_obj_ptr = *((int64_t **)(src_resource + 4));
+    if (src_obj_ptr != (int64_t *)0x0) {
         ((void (*)(void *))(*src_obj_ptr + 0x28))(src_obj_ptr);
     }
-    dest_obj_ptr = *((longlong **)(dest_resource + 4));
-    *((longlong **)(dest_resource + 4)) = src_obj_ptr;
-    if (dest_obj_ptr != (longlong *)0x0) {
+    dest_obj_ptr = *((int64_t **)(dest_resource + 4));
+    *((int64_t **)(dest_resource + 4)) = src_obj_ptr;
+    if (dest_obj_ptr != (int64_t *)0x0) {
         ((void (*)(void))(*dest_obj_ptr + 0x38))();
     }
     
     // 复制并转移着色器资源
-    src_obj_ptr = *((longlong **)(src_resource + 6));
-    if (src_obj_ptr != (longlong *)0x0) {
+    src_obj_ptr = *((int64_t **)(src_resource + 6));
+    if (src_obj_ptr != (int64_t *)0x0) {
         ((void (*)(void *))(*src_obj_ptr + 0x28))(src_obj_ptr);
     }
-    dest_obj_ptr = *((longlong **)(dest_resource + 6));
-    *((longlong **)(dest_resource + 6)) = src_obj_ptr;
-    if (dest_obj_ptr != (longlong *)0x0) {
+    dest_obj_ptr = *((int64_t **)(dest_resource + 6));
+    *((int64_t **)(dest_resource + 6)) = src_obj_ptr;
+    if (dest_obj_ptr != (int64_t *)0x0) {
         ((void (*)(void))(*dest_obj_ptr + 0x38))();
     }
     
     // 复制并转移渲染缓冲区资源
-    src_obj_ptr = *((longlong **)(src_resource + 8));
-    if (src_obj_ptr != (longlong *)0x0) {
+    src_obj_ptr = *((int64_t **)(src_resource + 8));
+    if (src_obj_ptr != (int64_t *)0x0) {
         ((void (*)(void *))(*src_obj_ptr + 0x28))(src_obj_ptr);
     }
-    dest_obj_ptr = *((longlong **)(dest_resource + 8));
-    *((longlong **)(dest_resource + 8)) = src_obj_ptr;
-    if (dest_obj_ptr != (longlong *)0x0) {
+    dest_obj_ptr = *((int64_t **)(dest_resource + 8));
+    *((int64_t **)(dest_resource + 8)) = src_obj_ptr;
+    if (dest_obj_ptr != (int64_t *)0x0) {
         ((void (*)(void))(*dest_obj_ptr + 0x38))();
     }
     
     // 复制并转移渲染管线资源
-    src_obj_ptr = *((longlong **)(src_resource + 10));
-    if (src_obj_ptr != (longlong *)0x0) {
+    src_obj_ptr = *((int64_t **)(src_resource + 10));
+    if (src_obj_ptr != (int64_t *)0x0) {
         ((void (*)(void *))(*src_obj_ptr + 0x28))(src_obj_ptr);
     }
-    dest_obj_ptr = *((longlong **)(dest_resource + 10));
-    *((longlong **)(dest_resource + 10)) = src_obj_ptr;
-    if (dest_obj_ptr != (longlong *)0x0) {
+    dest_obj_ptr = *((int64_t **)(dest_resource + 10));
+    *((int64_t **)(dest_resource + 10)) = src_obj_ptr;
+    if (dest_obj_ptr != (int64_t *)0x0) {
         ((void (*)(void))(*dest_obj_ptr + 0x38))();
     }
     
     // 复制并转移渲染状态资源
-    src_obj_ptr = *((longlong **)(src_resource + 0xc));
-    if (src_obj_ptr != (longlong *)0x0) {
+    src_obj_ptr = *((int64_t **)(src_resource + 0xc));
+    if (src_obj_ptr != (int64_t *)0x0) {
         ((void (*)(void *))(*src_obj_ptr + 0x28))(src_obj_ptr);
     }
-    dest_obj_ptr = *((longlong **)(dest_resource + 0xc));
-    *((longlong **)(dest_resource + 0xc)) = src_obj_ptr;
-    if (dest_obj_ptr != (longlong *)0x0) {
+    dest_obj_ptr = *((int64_t **)(dest_resource + 0xc));
+    *((int64_t **)(dest_resource + 0xc)) = src_obj_ptr;
+    if (dest_obj_ptr != (int64_t *)0x0) {
         ((void (*)(void))(*dest_obj_ptr + 0x38))();
     }
     
@@ -718,14 +718,14 @@ unsigned int *rendering_system_resource_copier(unsigned int *dest_resource, unsi
  * @param blend_mode 混合模式
  * @param render_flags 渲染标志
  */
-void rendering_system_pipeline_setter(longlong pipeline_context, longlong *vertex_shader, 
-                                     longlong *fragment_shader, unsigned int blend_mode,
+void rendering_system_pipeline_setter(int64_t pipeline_context, int64_t *vertex_shader, 
+                                     int64_t *fragment_shader, unsigned int blend_mode,
                                      unsigned int render_flags)
 {
     char buffer_data[32];
     char force_init;
     unsigned int shader_flags;
-    longlong *shader_ptr;
+    int64_t *shader_ptr;
     unsigned long long security_cookie;
     void *texture_pointers[2];
     char temp_buffer[72];
@@ -736,28 +736,28 @@ void rendering_system_pipeline_setter(longlong pipeline_context, longlong *verte
     cookie_value = *(unsigned long long *)buffer_data ^ security_cookie;
     
     // 处理顶点着色器
-    if (vertex_shader != (longlong *)0x0) {
+    if (vertex_shader != (int64_t *)0x0) {
         shader_ptr = vertex_shader;
         ((void (*)(void *))(*vertex_shader + 0x28))(vertex_shader);
     }
     
     // 设置顶点着色器
-    shader_ptr = *((longlong **)(pipeline_context + 0x30));
-    *((longlong **)(pipeline_context + 0x30)) = vertex_shader;
-    if (shader_ptr != (longlong *)0x0) {
+    shader_ptr = *((int64_t **)(pipeline_context + 0x30));
+    *((int64_t **)(pipeline_context + 0x30)) = vertex_shader;
+    if (shader_ptr != (int64_t *)0x0) {
         ((void (*)(void))(*shader_ptr + 0x38))();
     }
     
     // 处理片段着色器
-    if (fragment_shader != (longlong *)0x0) {
+    if (fragment_shader != (int64_t *)0x0) {
         shader_ptr = fragment_shader;
         ((void (*)(void *))(*fragment_shader + 0x28))(fragment_shader);
     }
     
     // 设置片段着色器
-    shader_ptr = *((longlong **)(pipeline_context + 0x38));
-    *((longlong **)(pipeline_context + 0x38)) = fragment_shader;
-    if (shader_ptr != (longlong *)0x0) {
+    shader_ptr = *((int64_t **)(pipeline_context + 0x38));
+    *((int64_t **)(pipeline_context + 0x38)) = fragment_shader;
+    if (shader_ptr != (int64_t *)0x0) {
         ((void (*)(void))(*shader_ptr + 0x38))();
     }
     
@@ -765,7 +765,7 @@ void rendering_system_pipeline_setter(longlong pipeline_context, longlong *verte
     *((unsigned int *)(pipeline_context + 0x10)) = blend_mode;
     
     // 初始化渲染纹理（如果需要）
-    if (*((longlong *)(pipeline_context + 0x40)) == 0) {
+    if (*((int64_t *)(pipeline_context + 0x40)) == 0) {
         texture_pointers[0] = &g_render_texture_library;
         texture_pointers[1] = temp_buffer;
         temp_buffer[0] = 0;
@@ -789,21 +789,21 @@ void rendering_system_pipeline_setter(longlong pipeline_context, longlong *verte
  * 
  * @param render_context 渲染上下文指针
  */
-void rendering_system_state_resetter(longlong render_context)
+void rendering_system_state_resetter(int64_t render_context)
 {
     // 清理渲染对象1
-    if (*((longlong *)(render_context + 0x110)) != 0) {
-        rendering_system_cleanup_render_object(*((longlong *)(render_context + 0x110)), 0);
+    if (*((int64_t *)(render_context + 0x110)) != 0) {
+        rendering_system_cleanup_render_object(*((int64_t *)(render_context + 0x110)), 0);
     }
     
     // 清理渲染对象2
-    if (*((longlong *)(render_context + 0x108)) != 0) {
-        rendering_system_cleanup_render_object(*((longlong *)(render_context + 0x108)), 0);
+    if (*((int64_t *)(render_context + 0x108)) != 0) {
+        rendering_system_cleanup_render_object(*((int64_t *)(render_context + 0x108)), 0);
     }
     
     // 清理渲染对象3
-    if (*((longlong *)(render_context + 0x118)) != 0) {
-        rendering_system_cleanup_render_object(*((longlong *)(render_context + 0x118)), 0);
+    if (*((int64_t *)(render_context + 0x118)) != 0) {
+        rendering_system_cleanup_render_object(*((int64_t *)(render_context + 0x118)), 0);
     }
     
     // 重置渲染状态
@@ -812,7 +812,7 @@ void rendering_system_state_resetter(longlong render_context)
     
     // 重置渲染参数
     *((unsigned int *)(render_context + 0x130)) = 
-        *((unsigned int *)(*((longlong *)(*((longlong *)(render_context + 0xf8) + 0x38)) + 0x3358)));
+        *((unsigned int *)(*((int64_t *)(*((int64_t *)(render_context + 0xf8) + 0x38)) + 0x3358)));
 }
 
 /**
@@ -825,7 +825,7 @@ void rendering_system_state_resetter(longlong render_context)
  * @param param_data 参数数据数组
  * @param apply_changes 是否应用更改标志
  */
-void rendering_system_parameter_setter(longlong render_object, float *param_data, char apply_changes)
+void rendering_system_parameter_setter(int64_t render_object, float *param_data, char apply_changes)
 {
     unsigned long long temp_data;
     unsigned int temp_flags;
@@ -917,24 +917,24 @@ unsigned long long *rendering_system_object_creator(unsigned long long *render_o
     
     // 设置上下文数据
     render_object[0x1f] = context_data;
-    *((unsigned int *)((longlong)render_object + 0x4c)) = RENDER_STATE_READY;
-    *((unsigned int *)((longlong)render_object + 0xf4)) = RENDER_STATE_MASK;
-    *((unsigned long long *)((longlong)render_object + 0xe4)) = 0;
-    *((unsigned long long *)((longlong)render_object + 0xec)) = 0;
+    *((unsigned int *)((int64_t)render_object + 0x4c)) = RENDER_STATE_READY;
+    *((unsigned int *)((int64_t)render_object + 0xf4)) = RENDER_STATE_MASK;
+    *((unsigned long long *)((int64_t)render_object + 0xe4)) = 0;
+    *((unsigned long long *)((int64_t)render_object + 0xec)) = 0;
     *((unsigned int *)(render_object + 0x26)) = 0;
-    *((unsigned long long *)((longlong)render_object + 0x134)) = 0;
-    *((unsigned long long *)((longlong)render_object + 0x13c)) = 0;
-    *((unsigned int *)((longlong)render_object + 0x144)) = 0x3f800000; // 1.0f
+    *((unsigned long long *)((int64_t)render_object + 0x134)) = 0;
+    *((unsigned long long *)((int64_t)render_object + 0x13c)) = 0;
+    *((unsigned int *)((int64_t)render_object + 0x144)) = 0x3f800000; // 1.0f
     *((char *)(render_object + 10)) = 0;
-    *((unsigned int *)((longlong)render_object + 0x14c)) = 0;
-    *((unsigned int *)((longlong)render_object + 0x5c)) = RENDER_STATE_MASK;
+    *((unsigned int *)((int64_t)render_object + 0x14c)) = 0;
+    *((unsigned int *)((int64_t)render_object + 0x5c)) = RENDER_STATE_MASK;
     
     // 初始化渲染参数
     init_flag = 1;
-    rendering_system_parameter_setter((longlong)render_object, (float *)&g_render_material_library, 1, temp_data);
+    rendering_system_parameter_setter((int64_t)render_object, (float *)&g_render_material_library, 1, temp_data);
     
     // 设置对象属性
-    *((unsigned int *)((longlong)render_object + 0x54)) = 0;
+    *((unsigned int *)((int64_t)render_object + 0x54)) = 0;
     *((char *)(render_object + 10)) = init_flag;
     
     return render_object;
@@ -956,8 +956,8 @@ unsigned long long *rendering_system_resource_destroyer(unsigned long long *rend
     
     // 销毁渲染对象数组
     for (i = 0; i < 6; i++) {
-        if ((longlong *)render_object[0x20 + i] != (longlong *)0x0) {
-            ((void (*)(void))(*((longlong *)render_object[0x20 + i]) + 0x38))();
+        if ((int64_t *)render_object[0x20 + i] != (int64_t *)0x0) {
+            ((void (*)(void))(*((int64_t *)render_object[0x20 + i]) + 0x38))();
         }
     }
     

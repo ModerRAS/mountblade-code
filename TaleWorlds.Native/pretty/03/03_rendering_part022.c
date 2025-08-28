@@ -13,7 +13,7 @@
  * @param parent_mesh_ptr 父网格指针
  * @param render_flags 渲染标志
  */
-void process_mesh_component(uint64_t *mesh_component_ptr, longlong render_context_ptr, longlong scene_object_ptr, uint64_t *parent_mesh_ptr, int render_flags)
+void process_mesh_component(uint64_t *mesh_component_ptr, int64_t render_context_ptr, int64_t scene_object_ptr, uint64_t *parent_mesh_ptr, int render_flags)
 {
   byte *byte_ptr;
   char char_val;
@@ -25,24 +25,24 @@ void process_mesh_component(uint64_t *mesh_component_ptr, longlong render_contex
   uint64_t *component_data_ptr;
   char *string_ptr;
   char *string_ptr2;
-  longlong long_val;
-  longlong long_val2;
+  int64_t long_val;
+  int64_t long_val2;
   uint64_t *mesh_data_ptr;
   int8_t *data_ptr;
   byte *byte_ptr2;
-  longlong long_val3;
+  int64_t long_val3;
   uint64_t *texture_ptr;
   uint uint_val3;
   uint uint_val4;
   void *render_obj_ptr;
-  longlong mesh_index;
+  int64_t mesh_index;
   uint uint_val5;
   uint *uint_ptr;
   uint uint_val6;
   void *material_ptr;
   int int_val2;
-  ulonglong ulong_val;
-  ulonglong ulong_val2;
+  uint64_t ulong_val;
+  uint64_t ulong_val2;
   int8_t *buffer_ptr;
   bool is_equal;
   int stack_index;
@@ -50,15 +50,15 @@ void process_mesh_component(uint64_t *mesh_component_ptr, longlong render_contex
   void *stack_render_ptr;
   byte *stack_buffer_ptr;
   uint buffer_size;
-  ulonglong buffer_capacity;
+  uint64_t buffer_capacity;
   void *stack_data_ptr;
   int8_t *stack_char_ptr;
   uint stack_uint;
-  ulonglong stack_ulong;
+  uint64_t stack_ulong;
   void *stack_ptr;
   int8_t *stack_char_ptr2;
   uint stack_uint2;
-  ulonglong stack_ulong2;
+  uint64_t stack_ulong2;
   int stack_int;
   float float_val;
   float float_val2;
@@ -68,8 +68,8 @@ void process_mesh_component(uint64_t *mesh_component_ptr, longlong render_contex
   float float_val5;
   float float_val6;
   int32_t float_pack2;
-  longlong stack_long;
-  longlong stack_array [2];
+  int64_t stack_long;
+  int64_t stack_array [2];
   uint64_t stack_guard;
   
   // 初始化组件数据结构
@@ -105,7 +105,7 @@ LAB_18027c7b0:
         string_ptr2 = string_ptr;
         do {
           char_val2 = *string_ptr2;
-          char_val = string_ptr2[*(longlong *)(long_val + 8) - (longlong)string_ptr];
+          char_val = string_ptr2[*(int64_t *)(long_val + 8) - (int64_t)string_ptr];
           if (char_val2 != char_val) break;
           string_ptr2 = string_ptr2 + 1;
         } while (char_val != '\0');
@@ -143,7 +143,7 @@ LAB_18027c733:
     string_ptr2 = string_ptr;
     do {
       char_val2 = *string_ptr2;
-      char_val = string_ptr2[parent_mesh_ptr[0x3f] - (longlong)string_ptr];
+      char_val = string_ptr2[parent_mesh_ptr[0x3f] - (int64_t)string_ptr];
       if (char_val2 != char_val) break;
       string_ptr2 = string_ptr2 + 1;
     } while (char_val != '\0');
@@ -162,7 +162,7 @@ LAB_18027c73b:
 LAB_18027c801:
   
   // 检查渲染标志差异
-  if (*(int *)((longlong)mesh_component_ptr + 0x324) != *(int *)((longlong)stack_mesh_ptr + 0x324)) {
+  if (*(int *)((int64_t)mesh_component_ptr + 0x324) != *(int *)((int64_t)stack_mesh_ptr + 0x324)) {
     FUN_180630c80(render_context_ptr, component_data_ptr, &unknown_var_8904_ptr);
   }
   
@@ -185,9 +185,9 @@ LAB_18027c801:
   if (char_val2 == '\0') {
     // 处理网格位置、旋转和变换
     float_val4 = *(float *)(mesh_component_ptr + 0x6c);
-    float_val5 = *(float *)((longlong)mesh_component_ptr + 0x364);
+    float_val5 = *(float *)((int64_t)mesh_component_ptr + 0x364);
     float_val6 = *(float *)(mesh_component_ptr + 0x6d);
-    float_pack2 = *(int32_t *)((longlong)mesh_component_ptr + 0x36c);
+    float_pack2 = *(int32_t *)((int64_t)mesh_component_ptr + 0x36c);
     FUN_1801c1720(mesh_component_ptr + 0x66, &float_val);
     FUN_180085020(mesh_component_ptr + 0x66, stack_array);
     FUN_18062fb40(render_context_ptr, component_data_ptr, &unknown_var_8872_ptr, &float_val4);
@@ -213,10 +213,10 @@ LAB_18027c801:
     do {
       mesh_index = stack_array[0];
       render_obj_ptr = &system_data_buffer_ptr;
-      long_val = *(longlong *)(long_val + mesh_index * 0x10);
+      long_val = *(int64_t *)(long_val + mesh_index * 0x10);
       
       // 获取网格数据
-      if (*(longlong *)(long_val + 0x1b0) == 0) {
+      if (*(int64_t *)(long_val + 0x1b0) == 0) {
         long_val2 = long_val + 0x10;
       }
       else {
@@ -234,11 +234,11 @@ LAB_18027c801:
         if (*(void **)(long_val2 + 8) != (void *)0x0) {
           render_obj_ptr = *(void **)(long_val2 + 8);
         }
-        memcpy(stack_buffer_ptr, render_obj_ptr, (longlong)(*(int *)(long_val2 + 0x10) + 1));
+        memcpy(stack_buffer_ptr, render_obj_ptr, (int64_t)(*(int *)(long_val2 + 0x10) + 1));
       }
       
       // 清理网格名称中的特殊字符
-      if ((*(longlong *)(long_val2 + 8) != 0) && (buffer_size = 0, stack_buffer_ptr != (byte *)0x0)) {
+      if ((*(int64_t *)(long_val2 + 8) != 0) && (buffer_size = 0, stack_buffer_ptr != (byte *)0x0)) {
         *stack_buffer_ptr = 0;
       }
       while ((0 < (int)buffer_size && (long_val2 = strstr(stack_buffer_ptr, &system_buffer_ff10), long_val2 != 0))) {
@@ -249,7 +249,7 @@ LAB_18027c801:
         }
         uint_val6 = int_val + int_val2;
         if (uint_val6 < buffer_size) {
-          long_val2 = (longlong)(int)uint_val6;
+          long_val2 = (int64_t)(int)uint_val6;
           do {
             stack_buffer_ptr[long_val2 - int_val2] = stack_buffer_ptr[long_val2];
             uint_val6 = uint_val6 + 1;
@@ -279,11 +279,11 @@ LAB_18027c801:
       // 处理子网格数据
       stack_index = 0;
       stack_long = 0;
-      if ((longlong)(mesh_component_ptr[8] - mesh_component_ptr[7]) >> 4 != 0) {
+      if ((int64_t)(mesh_component_ptr[8] - mesh_component_ptr[7]) >> 4 != 0) {
         do {
           data_ptr = (int8_t *)0x0;
-          mesh_index = *(longlong *)(stack_mesh_ptr[7] + stack_long * 0x10);
-          if (*(longlong *)(mesh_index + 0x1b0) == 0) {
+          mesh_index = *(int64_t *)(stack_mesh_ptr[7] + stack_long * 0x10);
+          if (*(int64_t *)(mesh_index + 0x1b0) == 0) {
             long_val2 = mesh_index + 0x10;
           }
           else {
@@ -301,16 +301,16 @@ LAB_18027c801:
               int_val = 0x10;
             }
             stack_char_ptr2 = data_ptr;
-            data_ptr = (int8_t *)FUN_18062b420(system_memory_pool_ptr, (longlong)int_val, 0x13);
+            data_ptr = (int8_t *)FUN_18062b420(system_memory_pool_ptr, (int64_t)int_val, 0x13);
             *data_ptr = 0;
-            ulong_val = (ulonglong)data_ptr & 0xffffffffffc00000;
+            ulong_val = (uint64_t)data_ptr & 0xffffffffffc00000;
             if (ulong_val == 0) {
               uint_val6 = 0;
             }
             else {
-              long_val3 = ulong_val + 0x80 + ((longlong)data_ptr - ulong_val >> 0x10) * 0x50;
-              uint_ptr = (uint *)(long_val3 - (ulonglong)*(uint *)(long_val3 + 4));
-              if ((*(byte *)((longlong)uint_ptr + 0xe) & 2) == 0) {
+              long_val3 = ulong_val + 0x80 + ((int64_t)data_ptr - ulong_val >> 0x10) * 0x50;
+              uint_ptr = (uint *)(long_val3 - (uint64_t)*(uint *)(long_val3 + 4));
+              if ((*(byte *)((int64_t)uint_ptr + 0xe) & 2) == 0) {
                 uint_val6 = uint_ptr[7];
                 if (0x3ffffff < uint_val6) {
                   uint_val6 = *uint_ptr << 0x10;
@@ -319,16 +319,16 @@ LAB_18027c801:
               else {
                 uint_val6 = uint_ptr[7];
                 if (uint_val6 < 0x4000000) {
-                  ulong_val2 = (ulonglong)uint_val6;
+                  ulong_val2 = (uint64_t)uint_val6;
                 }
                 else {
-                  ulong_val2 = (ulonglong)*uint_ptr << 0x10;
+                  ulong_val2 = (uint64_t)*uint_ptr << 0x10;
                 }
                 if (0x3ffffff < uint_val6) {
                   uint_val6 = *uint_ptr << 0x10;
                 }
-                uint_val6 = uint_val6 - (int)(((longlong)data_ptr -
-                                        (((longlong)((longlong)uint_ptr + (-0x80 - ulong_val)) / 0x50) *
+                uint_val6 = uint_val6 - (int)(((int64_t)data_ptr -
+                                        (((int64_t)((int64_t)uint_ptr + (-0x80 - ulong_val)) / 0x50) *
                                          0x10000 + ulong_val)) % ulong_val2);
               }
             }
@@ -340,11 +340,11 @@ LAB_18027c801:
                 render_obj_ptr = *(void **)(long_val2 + 8);
               }
               stack_char_ptr2 = data_ptr;
-              memcpy(data_ptr, render_obj_ptr, (longlong)(*(int *)(long_val2 + 0x10) + 1));
+              memcpy(data_ptr, render_obj_ptr, (int64_t)(*(int *)(long_val2 + 0x10) + 1));
             }
           }
           stack_char_ptr2 = data_ptr;
-          if ((*(longlong *)(long_val2 + 8) != 0) &&
+          if ((*(int64_t *)(long_val2 + 8) != 0) &&
              (stack_uint2 = (uint)data_ptr, data_ptr != (int8_t *)0x0)) {
             *data_ptr = 0;
           }
@@ -358,7 +358,7 @@ LAB_18027c801:
             }
             uint_val6 = int_val + int_val2;
             if (uint_val6 < stack_uint2) {
-              long_val2 = (longlong)(int)uint_val6;
+              long_val2 = (int64_t)(int)uint_val6;
               do {
                 stack_char_ptr2[long_val2 - int_val2] = stack_char_ptr2[long_val2];
                 uint_val6 = uint_val6 + 1;
@@ -375,7 +375,7 @@ LAB_18027c801:
             if (buffer_size != 0) {
               byte_ptr2 = stack_buffer_ptr;
               do {
-                byte_ptr = byte_ptr2 + ((longlong)stack_char_ptr2 - (longlong)stack_buffer_ptr);
+                byte_ptr = byte_ptr2 + ((int64_t)stack_char_ptr2 - (int64_t)stack_buffer_ptr);
                 uint_val6 = (uint)*byte_ptr2 - (uint)*byte_ptr;
                 if (uint_val6 != 0) break;
                 byte_ptr2 = byte_ptr2 + 1;
@@ -384,8 +384,8 @@ LAB_18027c801:
 LAB_18027cd22:
             if (uint_val6 == 0) {
               // 处理材质差异
-              if ((*(longlong *)(long_val + 0x1b8) != 0) &&
-                 (*(longlong *)(*(longlong *)(long_val + 0x1b8) + 0xa8) != 0)) {
+              if ((*(int64_t *)(long_val + 0x1b8) != 0) &&
+                 (*(int64_t *)(*(int64_t *)(long_val + 0x1b8) + 0xa8) != 0)) {
                 long_val2 = FUN_180079430(long_val);
                 long_val3 = FUN_180079430(mesh_index);
                 int_val = *(int *)(long_val2 + 0x10);
@@ -397,7 +397,7 @@ LAB_18027cd90:
                   }
                   else {
                     string_ptr = *(char **)(long_val2 + 8);
-                    long_val2 = *(longlong *)(long_val3 + 8) - (longlong)string_ptr;
+                    long_val2 = *(int64_t *)(long_val3 + 8) - (int64_t)string_ptr;
                     do {
                       char_val2 = *string_ptr;
                       char_val = string_ptr[long_val2];
@@ -431,7 +431,7 @@ LAB_18027cd98:
                       int_val2 = 0x10;
                     }
                     stack_char_ptr2 = (int8_t *)
-                                 FUN_18062b420(system_memory_pool_ptr, (longlong)int_val2, 0x13);
+                                 FUN_18062b420(system_memory_pool_ptr, (int64_t)int_val2, 0x13);
                     *stack_char_ptr2 = 0;
                     uint_val = FUN_18064e990(stack_char_ptr2);
                     stack_ulong2 = CONCAT44(stack_ulong2._4_4_, uint_val);
@@ -440,10 +440,10 @@ LAB_18027cd98:
                       if (*(void **)(long_val2 + 8) != (void *)0x0) {
                         render_obj_ptr = *(void **)(long_val2 + 8);
                       }
-                      memcpy(stack_char_ptr2, render_obj_ptr, (longlong)(*(int *)(long_val2 + 0x10) + 1));
+                      memcpy(stack_char_ptr2, render_obj_ptr, (int64_t)(*(int *)(long_val2 + 0x10) + 1));
                     }
                   }
-                  if ((*(longlong *)(long_val2 + 8) != 0) &&
+                  if ((*(int64_t *)(long_val2 + 8) != 0) &&
                      (stack_uint2 = 0, stack_char_ptr2 != (int8_t *)0x0)) {
                     *stack_char_ptr2 = 0;
                   }
@@ -456,7 +456,7 @@ LAB_18027cd98:
                     }
                     uint_val6 = int_val + int_val2;
                     if (uint_val6 < stack_uint2) {
-                      long_val2 = (longlong)(int)uint_val6;
+                      long_val2 = (int64_t)(int)uint_val6;
                       do {
                         stack_char_ptr2[long_val2 - int_val2] = stack_char_ptr2[long_val2];
                         uint_val6 = uint_val6 + 1;
@@ -499,22 +499,22 @@ LAB_18027cd98:
                   FUN_180630b20(render_context_ptr, mesh_data_ptr, &system_buffer_3a84, byte_ptr2);
                   bool_flag = false;
                 }
-                uint_val2 = (uint)(longlong)(*(float *)(long_val + 0x244) * 256.0);
+                uint_val2 = (uint)(int64_t)(*(float *)(long_val + 0x244) * 256.0);
                 uint_val6 = 0xff;
                 if (uint_val2 < 0xff) {
                   uint_val6 = uint_val2;
                 }
-                uint_val3 = (uint)(longlong)(*(float *)(long_val + 0x238) * 256.0);
+                uint_val3 = (uint)(int64_t)(*(float *)(long_val + 0x238) * 256.0);
                 uint_val2 = 0xff;
                 if (uint_val3 < 0xff) {
                   uint_val2 = uint_val3;
                 }
-                uint_val4 = (uint)(longlong)(*(float *)(long_val + 0x23c) * 256.0);
+                uint_val4 = (uint)(int64_t)(*(float *)(long_val + 0x23c) * 256.0);
                 uint_val3 = 0xff;
                 if (uint_val4 < 0xff) {
                   uint_val3 = uint_val4;
                 }
-                uint_val5 = (uint)(longlong)(*(float *)(long_val + 0x240) * 256.0);
+                uint_val5 = (uint)(int64_t)(*(float *)(long_val + 0x240) * 256.0);
                 uint_val4 = 0xff;
                 if (uint_val5 < 0xff) {
                   uint_val4 = uint_val5;
@@ -541,22 +541,22 @@ LAB_18027cd98:
                   FUN_180630b20(render_context_ptr, mesh_data_ptr, &system_buffer_3a84, byte_ptr2);
                   bool_flag = false;
                 }
-                uint_val2 = (uint)(longlong)(*(float *)(long_val + 0x254) * 256.0);
+                uint_val2 = (uint)(int64_t)(*(float *)(long_val + 0x254) * 256.0);
                 uint_val6 = 0xff;
                 if (uint_val2 < 0xff) {
                   uint_val6 = uint_val2;
                 }
-                uint_val3 = (uint)(longlong)(*(float *)(long_val + 0x248) * 256.0);
+                uint_val3 = (uint)(int64_t)(*(float *)(long_val + 0x248) * 256.0);
                 uint_val2 = 0xff;
                 if (uint_val3 < 0xff) {
                   uint_val2 = uint_val3;
                 }
-                uint_val4 = (uint)(longlong)(*(float *)(long_val + 0x24c) * 256.0);
+                uint_val4 = (uint)(int64_t)(*(float *)(long_val + 0x24c) * 256.0);
                 uint_val3 = 0xff;
                 if (uint_val4 < 0xff) {
                   uint_val3 = uint_val4;
                 }
-                uint_val5 = (uint)(longlong)(*(float *)(long_val + 0x250) * 256.0);
+                uint_val5 = (uint)(int64_t)(*(float *)(long_val + 0x250) * 256.0);
                 uint_val4 = 0xff;
                 if (uint_val5 < 0xff) {
                   uint_val4 = uint_val5;
@@ -620,8 +620,8 @@ LAB_18027cd98:
           stack_index = stack_index + 1;
           stack_long = stack_long + 1;
           mesh_index = stack_array[0];
-        } while ((ulonglong)(longlong)stack_index <
-                 (ulonglong)((longlong)(mesh_component_ptr[8] - mesh_component_ptr[7]) >> 4));
+        } while ((uint64_t)(int64_t)stack_index <
+                 (uint64_t)((int64_t)(mesh_component_ptr[8] - mesh_component_ptr[7]) >> 4));
       }
       stack_render_ptr = &system_data_buffer_ptr;
       if (stack_buffer_ptr != (byte *)0x0) {
@@ -633,7 +633,7 @@ LAB_18027cd98:
       iStack_a8 = iStack_a8 + 1;
       stack_array[0] = mesh_index + 1;
       long_val = mesh_component_ptr[7];
-    } while ((ulonglong)(longlong)iStack_a8 < (ulonglong)(mesh_component_ptr[8] - long_val >> 4));
+    } while ((uint64_t)(int64_t)iStack_a8 < (uint64_t)(mesh_component_ptr[8] - long_val >> 4));
   }
   
   // 将组件添加到场景对象
@@ -641,13 +641,13 @@ LAB_18027cd98:
     if (render_flags != 0) {
       FUN_180630c80(render_context_ptr, component_data_ptr, &unknown_var_9168_ptr);
     }
-    if (*(longlong *)(scene_object_ptr + 0x30) == 0) {
+    if (*(int64_t *)(scene_object_ptr + 0x30) == 0) {
       component_data_ptr[10] = 0;
       *(uint64_t **)(scene_object_ptr + 0x30) = component_data_ptr;
     }
     else {
       component_data_ptr[10] = *(uint64_t *)(scene_object_ptr + 0x38);
-      *(uint64_t **)(*(longlong)(scene_object_ptr + 0x38) + 0x58) = component_data_ptr;
+      *(uint64_t **)(*(int64_t)(scene_object_ptr + 0x38) + 0x58) = component_data_ptr;
     }
     *(uint64_t **)(scene_object_ptr + 0x38) = component_data_ptr;
     component_data_ptr[4] = scene_object_ptr;
@@ -664,20 +664,20 @@ LAB_18027cd98:
  * 
  * @param mesh_data_ptr 网格数据指针
  */
-void export_material_data(longlong mesh_data_ptr)
+void export_material_data(int64_t mesh_data_ptr)
 {
   int *int_ptr;
   char char_val;
-  longlong file_offset;
+  int64_t file_offset;
   uint64_t *file_handle;
   int32_t *buffer_ptr;
   void *data_ptr;
   int32_t *data_ptr2;
   uint file_size;
-  ulonglong write_count;
+  uint64_t write_count;
   int index;
-  longlong mesh_offset;
-  ulonglong mesh_count;
+  int64_t mesh_offset;
+  uint64_t mesh_count;
   bool is_locked;
   int header_array [2];
   int count_array [2];
@@ -688,11 +688,11 @@ void export_material_data(longlong mesh_data_ptr)
   uint64_t file_info;
   int32_t magic_number;
   int mesh_index;
-  longlong file_pos;
+  int64_t file_pos;
   int32_t version;
-  longlong *ref_count_ptr;
+  int64_t *ref_count_ptr;
   void *temp_ptr;
-  longlong temp_size;
+  int64_t temp_size;
   int32_t temp_data;
   uint64_t stack_guard;
   
@@ -704,10 +704,10 @@ void export_material_data(longlong mesh_data_ptr)
   // 初始化文件路径缓冲区
   FUN_1806279c0(path_buffer);
   index = path_length + -1;
-  file_offset = (longlong)index;
+  file_offset = (int64_t)index;
   if (-1 < index) {
     do {
-      if (*(char *)(file_offset + (longlong)path_ptr) == '/') goto LAB_18027d492;
+      if (*(char *)(file_offset + (int64_t)path_ptr) == '/') goto LAB_18027d492;
       index = index + -1;
       file_offset = file_offset + -1;
     } while (-1 < file_offset);
@@ -737,13 +737,13 @@ LAB_18027d492:
   file_size = path_length + 4;
   FUN_1806277c0(path_buffer, file_size);
   *(int32_t *)(path_ptr + path_length) = 0x646d6d2f;  // "/mmd"
-  *(int8_t *)((longlong)(path_ptr + path_length) + 4) = 0;
+  *(int8_t *)((int64_t)(path_ptr + path_length) + 4) = 0;
   path_length = file_size;
   FUN_180628380(path_buffer, *(int32_t *)(mesh_data_ptr + 0x324));
   index = path_length + 4;
   FUN_1806277c0(path_buffer, index);
   *(int32_t *)(path_ptr + path_length) = 0x646d6d2e;  // ".mmd"
-  *(int8_t *)((longlong)(path_ptr + path_length) + 4) = 0;
+  *(int8_t *)((int64_t)(path_ptr + path_length) + 4) = 0;
   path_length = index;
   
   // 创建文件句柄
@@ -759,20 +759,20 @@ LAB_18027d492:
   fwrite(&magic_number, 4, 1, file_handle[1]);
   
   // 写入网格数量
-  count_array[0] = (int)(*(longlong *)(mesh_data_ptr + 0x40) - *(longlong *)(mesh_data_ptr + 0x38) >> 4);
+  count_array[0] = (int)(*(int64_t *)(mesh_data_ptr + 0x40) - *(int64_t *)(mesh_data_ptr + 0x38) >> 4);
   fwrite(count_array, 4, 1, file_handle[1]);
   mesh_count = write_count;
   if (0 < count_array[0]) {
     do {
       // 处理每个网格
-      file_offset = *(longlong *)(mesh_count + *(longlong *)(mesh_data_ptr + 0x38));
+      file_offset = *(int64_t *)(mesh_count + *(int64_t *)(mesh_data_ptr + 0x38));
       size_array[0] = *(int *)(file_offset + 0x20);
       fwrite(size_array, 4, 1, file_handle[1]);
       data_ptr = &system_buffer_ptr;
       if (*(void **)(file_offset + 0x18) != (void *)0x0) {
         data_ptr = *(void **)(file_offset + 0x18);
       }
-      fwrite(data_ptr, 1, (longlong)size_array[0], file_handle[1]);
+      fwrite(data_ptr, 1, (int64_t)size_array[0], file_handle[1]);
       mesh_index = (int)write_count;
       fwrite(&mesh_index, 4, 1, file_handle[1]);
       temp_data = 0;
@@ -781,19 +781,19 @@ LAB_18027d492:
       file_offset = temp_size;
       header_array[0] = *(int *)(temp_size + 0x60);
       fwrite(header_array, 4, 1, file_handle[1]);
-      buffer_ptr = (int32_t *)FUN_18062b1e0(system_memory_pool_ptr, (longlong)header_array[0] << 2, 0x10);
+      buffer_ptr = (int32_t *)FUN_18062b1e0(system_memory_pool_ptr, (int64_t)header_array[0] << 2, 0x10);
       index = 0;
       if (0 < header_array[0]) {
         mesh_offset = 0;
         data_ptr2 = buffer_ptr;
         do {
-          *data_ptr2 = *(int32_t *)(mesh_offset + 0x54 + *(longlong *)(file_offset + 0x68));
+          *data_ptr2 = *(int32_t *)(mesh_offset + 0x54 + *(int64_t *)(file_offset + 0x68));
           index = index + 1;
           mesh_offset = mesh_offset + 0x5c;
           data_ptr2 = data_ptr2 + 1;
         } while (index < header_array[0]);
       }
-      fwrite(buffer_ptr, 4, (longlong)header_array[0], file_handle[1]);
+      fwrite(buffer_ptr, 4, (int64_t)header_array[0], file_handle[1]);
       file_offset = file_pos;
       if (buffer_ptr != (int32_t *)0x0) {
         FUN_18064e900(buffer_ptr);
@@ -824,14 +824,14 @@ LAB_18027d773:
         *int_ptr = *int_ptr + -1;
         UNLOCK();
         if (char_val == '\0') {
-          if ((((index == 1) && (*(longlong *)(file_pos + 0x210) != 0)) &&
+          if ((((index == 1) && (*(int64_t *)(file_pos + 0x210) != 0)) &&
               (mesh_offset = file_pos, FUN_1800791a0(file_pos), *(char *)(mesh_offset + 0xfc) == '\0')) &&
              ((*(char *)(mesh_offset + 0xf4) == '\0' &&
               (((*(byte *)(mesh_offset + 0xfd) & 0x20) == 0 || ((*(byte *)(mesh_offset + 0xfe) & 1) == 0))))))
           {
-            ref_count_ptr = *(longlong **)(mesh_offset + 0x210);
+            ref_count_ptr = *(int64_t **)(mesh_offset + 0x210);
             *(uint64_t *)(mesh_offset + 0x210) = 0;
-            if (ref_count_ptr != (longlong *)0x0) {
+            if (ref_count_ptr != (int64_t *)0x0) {
               (**(code **)(*ref_count_ptr + 0x38))();
             }
           }
@@ -842,7 +842,7 @@ LAB_18027d773:
         file_pos = 0;
       }
       file_size = (int)write_count + 1;
-      write_count = (ulonglong)file_size;
+      write_count = (uint64_t)file_size;
       mesh_count = mesh_count + 0x10;
     } while ((int)file_size < count_array[0]);
   }

@@ -51,7 +51,7 @@ typedef struct {
 typedef struct {
     float *curve_data;        // 曲线数据指针
     float *key_data;          // 关键数据指针
-    longlong data_offset;     // 数据偏移量
+    int64_t data_offset;     // 数据偏移量
     int frame_count;          // 帧计数
     int channel_count;       // 通道计数
 } RenderingParameters;
@@ -106,7 +106,7 @@ typedef struct {
  * @warning 包含复杂的内存管理逻辑，需要谨慎处理
  * @see 相关函数：FUN_180416880, FUN_180416900
  */
-void rendering_curve_processor_and_animation_interpolator(float *param_1, longlong param_2)
+void rendering_curve_processor_and_animation_interpolator(float *param_1, int64_t param_2)
 {
     // 局部变量声明
     float *curve_ptr;                    // 曲线指针
@@ -119,21 +119,21 @@ void rendering_curve_processor_and_animation_interpolator(float *param_1, longlo
     float temp_float6;                    // 临时浮点数6
     float temp_float7;                    // 临时浮点数7
     float temp_float8;                    // 临时浮点数8
-    longlong temp_long1;                  // 临时长整数1
+    int64_t temp_long1;                  // 临时长整数1
     char *string_ptr1;                    // 字符串指针1
     int32_t *uint_ptr1;               // 无符号整数指针1
     uint64_t *render_state_ptr1;          // 渲染状态指针1
     float *float_ptr1;                   // 浮点指针1
     float *float_ptr2;                   // 浮点指针2
     float *float_ptr3;                   // 浮点指针3
-    longlong temp_long2;                  // 临时长整数2
+    int64_t temp_long2;                  // 临时长整数2
     uint64_t *render_state_ptr2;          // 渲染状态指针2
     uint64_t *render_state_ptr3;          // 渲染状态指针3
     uint64_t *render_state_ptr4;          // 渲染状态指针4
     int32_t *uint_ptr2;               // 无符号整数指针2
     int temp_int1;                       // 临时整数1
-    longlong temp_long3;                  // 临时长整数3
-    ulonglong temp_ulong1;                // 临时无符号长整数1
+    int64_t temp_long3;                  // 临时长整数3
+    uint64_t temp_ulong1;                // 临时无符号长整数1
     char *string_ptr2;                    // 字符串指针2
     int32_t *uint_ptr3;               // 无符号整数指针3
     char *string_ptr3;                    // 字符串指针3
@@ -179,9 +179,9 @@ color_curve_processing:
         
         // 验证颜色曲线节点
         if (string_ptr3 != string_ptr2 + -0x180a2481b) goto color_curve_node_validation;
-        string_ptr3 = string_ptr1 + (longlong)string_ptr3;
+        string_ptr3 = string_ptr1 + (int64_t)string_ptr3;
         if (string_ptr1 < string_ptr3) {
-            temp_long2 = (longlong)&unknown_var_6236_ptr - (longlong)string_ptr1;
+            temp_long2 = (int64_t)&unknown_var_6236_ptr - (int64_t)string_ptr1;
             while (*string_ptr1 == string_ptr1[temp_long2]) {
                 string_ptr1 = string_ptr1 + 1;
                 if (string_ptr3 <= string_ptr1) goto color_curve_key_processing;
@@ -211,7 +211,7 @@ color_curve_key_processing:
             
             // 验证关键帧节点
             if (string_ptr3 == string_ptr2 + -0x180a180c3) {
-                string_ptr3 = string_ptr3 + (longlong)string_ptr1;
+                string_ptr3 = string_ptr3 + (int64_t)string_ptr1;
                 if (string_ptr3 <= string_ptr1) {
 color_curve_time_processing:
                     // 处理时间轴数据
@@ -237,7 +237,7 @@ color_curve_time_processing:
                         
                         // 验证时间节点
                         if (string_ptr3 == string_ptr2 + -0x180a18107) {
-                            string_ptr3 = string_ptr1 + (longlong)string_ptr3;
+                            string_ptr3 = string_ptr1 + (int64_t)string_ptr3;
                             if (string_ptr3 <= string_ptr1) {
 color_curve_value_extraction:
                                 // 提取曲线数值
@@ -261,7 +261,7 @@ color_curve_value_extraction:
                                     
                                     // 验证时间数值
                                     if (string_ptr3 == string_ptr2 + -0x180a1810b) {
-                                        string_ptr3 = string_ptr3 + (longlong)string_ptr1;
+                                        string_ptr3 = string_ptr3 + (int64_t)string_ptr1;
                                         if (string_ptr3 <= string_ptr1) {
 time_value_processing:
                                             // 处理时间数值
@@ -274,7 +274,7 @@ time_value_processing:
                                         }
                                         
                                         // 时间字符串比较
-                                        temp_long2 = (longlong)&unknown_var_5276_ptr - (longlong)string_ptr1;
+                                        temp_long2 = (int64_t)&unknown_var_5276_ptr - (int64_t)string_ptr1;
                                         while (*string_ptr1 == string_ptr1[temp_long2]) {
                                             string_ptr1 = string_ptr1 + 1;
                                             if (string_ptr3 <= string_ptr1) goto time_value_processing;
@@ -297,7 +297,7 @@ time_value_processing:
                                 else {
                                     // 扩展颜色数据缓冲区
                                     uint_ptr3 = *(int32_t **)(param_1 + 200);
-                                    temp_long2 = ((longlong)uint_ptr2 - (longlong)uint_ptr3) / ANIMATION_CURVE_SEGMENT_SIZE;
+                                    temp_long2 = ((int64_t)uint_ptr2 - (int64_t)uint_ptr3) / ANIMATION_CURVE_SEGMENT_SIZE;
                                     if (temp_long2 == 0) {
                                         temp_long2 = 1;
 curve_buffer_expansion:
@@ -313,7 +313,7 @@ curve_buffer_expansion:
                                     
                                     // 移动现有数据
                                     if (uint_ptr3 != uint_ptr2) {
-                                        memmove(uint_ptr1, uint_ptr3, (longlong)uint_ptr2 - (longlong)uint_ptr3);
+                                        memmove(uint_ptr1, uint_ptr3, (int64_t)uint_ptr2 - (int64_t)uint_ptr3);
                                     }
                                     
                                     // 写入新数据
@@ -324,7 +324,7 @@ curve_buffer_expansion:
                                     uint_ptr1[4] = stack_uint5;
                                     
                                     // 更新指针
-                                    if (*(longlong *)(param_1 + 200) != 0) {
+                                    if (*(int64_t *)(param_1 + 200) != 0) {
                                         FUN_18064e900();
                                     }
                                     *(int32_t **)(param_1 + 200) = uint_ptr1;
@@ -352,11 +352,11 @@ curve_buffer_expansion:
                                     
                                     // 验证关键帧
                                     if (string_ptr3 == string_ptr2 + -0x180a18107) {
-                                        string_ptr3 = string_ptr3 + (longlong)string_ptr1;
+                                        string_ptr3 = string_ptr3 + (int64_t)string_ptr1;
                                         if (string_ptr3 <= string_ptr1) goto alpha_channel_processing;
                                         
                                         // 关键帧字符串比较
-                                        temp_long2 = (longlong)&unknown_var_5272_ptr - (longlong)string_ptr1;
+                                        temp_long2 = (int64_t)&unknown_var_5272_ptr - (int64_t)string_ptr1;
                                         while (*string_ptr1 == string_ptr1[temp_long2]) {
                                             string_ptr1 = string_ptr1 + 1;
                                             if (string_ptr3 <= string_ptr1) goto alpha_channel_processing;
@@ -387,7 +387,7 @@ alpha_channel_processing:
                                         
                                         // 验证时间节点
                                         if (string_ptr3 == string_ptr2 + -0x180a1810b) {
-                                            string_ptr3 = string_ptr3 + (longlong)string_ptr1;
+                                            string_ptr3 = string_ptr3 + (int64_t)string_ptr1;
                                             if (string_ptr3 <= string_ptr1) {
 alpha_value_processing:
                                                 // 处理透明度数值
@@ -396,7 +396,7 @@ alpha_value_processing:
                                             }
                                             
                                             // 时间字符串比较
-                                            temp_long2 = (longlong)&unknown_var_5276_ptr - (longlong)string_ptr1;
+                                            temp_long2 = (int64_t)&unknown_var_5276_ptr - (int64_t)string_ptr1;
                                             while (*string_ptr1 == string_ptr1[temp_long2]) {
                                                 string_ptr1 = string_ptr1 + 1;
                                                 if (string_ptr3 <= string_ptr1) goto alpha_value_processing;
@@ -424,7 +424,7 @@ alpha_value_processing:
                                         
                                         // 验证数值节点
                                         if (string_ptr3 == string_ptr2 + -0x180a0696b) {
-                                            string_ptr3 = string_ptr3 + (longlong)string_ptr1;
+                                            string_ptr3 = string_ptr3 + (int64_t)string_ptr1;
                                             if (string_ptr3 <= string_ptr1) {
 value_processing:
                                                 // 处理数值
@@ -433,7 +433,7 @@ value_processing:
                                             }
                                             
                                             // 数值字符串比较
-                                            temp_long2 = (longlong)&unknown_var_3692_ptr - (longlong)string_ptr1;
+                                            temp_long2 = (int64_t)&unknown_var_3692_ptr - (int64_t)string_ptr1;
                                             while (*string_ptr1 == string_ptr1[temp_long2]) {
                                                 string_ptr1 = string_ptr1 + 1;
                                                 if (string_ptr3 <= string_ptr1) goto value_processing;
@@ -450,7 +450,7 @@ value_processing:
                                     else {
                                         // 扩展透明度数据缓冲区
                                         render_state_ptr3 = *(uint64_t **)(param_1 + 0xd0);
-                                        temp_long2 = (longlong)render_state_ptr4 - (longlong)render_state_ptr3 >> 3;
+                                        temp_long2 = (int64_t)render_state_ptr4 - (int64_t)render_state_ptr3 >> 3;
                                         if (temp_long2 == 0) {
                                             temp_long2 = 1;
 alpha_buffer_expansion:
@@ -466,14 +466,14 @@ alpha_buffer_expansion:
                                         
                                         // 移动现有数据
                                         if (render_state_ptr3 != render_state_ptr4) {
-                                            memmove(render_state_ptr1, render_state_ptr3, (longlong)render_state_ptr4 - (longlong)render_state_ptr3);
+                                            memmove(render_state_ptr1, render_state_ptr3, (int64_t)render_state_ptr4 - (int64_t)render_state_ptr3);
                                         }
                                         
                                         // 写入新数据
                                         *render_state_ptr1 = CONCAT44(stack_uint2, stack_uint1);
                                         
                                         // 更新指针
-                                        if (*(longlong *)(param_1 + 0xd0) != 0) {
+                                        if (*(int64_t *)(param_1 + 0xd0) != 0) {
                                             FUN_18064e900();
                                         }
                                         *(uint64_t **)(param_1 + 0xd0) = render_state_ptr1;
@@ -502,11 +502,11 @@ alpha_buffer_expansion:
                                             
                                             // 验证关键帧
                                             if (string_ptr3 == string_ptr2 + -0x180a18107) {
-                                                string_ptr3 = string_ptr3 + (longlong)string_ptr1;
+                                                string_ptr3 = string_ptr3 + (int64_t)string_ptr1;
                                                 if (string_ptr3 <= string_ptr1) goto alpha_channel_processing;
                                                 
                                                 // 关键帧字符串比较
-                                                temp_long2 = (longlong)&unknown_var_5272_ptr - (longlong)string_ptr1;
+                                                temp_long2 = (int64_t)&unknown_var_5272_ptr - (int64_t)string_ptr1;
                                                 while (*string_ptr1 == string_ptr1[temp_long2]) {
                                                     string_ptr1 = string_ptr1 + 1;
                                                     if (string_ptr3 <= string_ptr1) goto alpha_channel_processing;
@@ -520,7 +520,7 @@ alpha_buffer_expansion:
                                 }
                                 
                                 // 关键帧字符串比较
-                                temp_long2 = (longlong)&unknown_var_5272_ptr - (longlong)string_ptr1;
+                                temp_long2 = (int64_t)&unknown_var_5272_ptr - (int64_t)string_ptr1;
                                 while (*string_ptr1 == string_ptr1[temp_long2]) {
                                     string_ptr1 = string_ptr1 + 1;
                                     if (string_ptr3 <= string_ptr1) goto alpha_channel_processing;
@@ -532,7 +532,7 @@ alpha_buffer_expansion:
                     }
                     
                     // 关键帧字符串比较
-                    temp_long2 = (longlong)&unknown_var_5204_ptr - (longlong)string_ptr1;
+                    temp_long2 = (int64_t)&unknown_var_5204_ptr - (int64_t)string_ptr1;
                     while (*string_ptr1 == string_ptr1[temp_long2]) {
                         string_ptr1 = string_ptr1 + 1;
                         if (string_ptr3 <= string_ptr1) goto color_curve_time_processing;
@@ -569,7 +569,7 @@ alpha_curve_processing:
         
         // 验证透明度曲线节点
         if (string_ptr3 == string_ptr2 + -0x180a063c3) {
-            string_ptr3 = string_ptr1 + (longlong)string_ptr3;
+            string_ptr3 = string_ptr1 + (int64_t)string_ptr3;
             if (string_ptr3 <= string_ptr1) {
 alpha_curve_key_processing:
                 // 处理透明度关键帧
@@ -594,7 +594,7 @@ alpha_curve_key_processing:
                     
                     // 验证关键帧节点
                     if (string_ptr3 == string_ptr2 + -0x180a180c3) {
-                        string_ptr3 = string_ptr3 + (longlong)string_ptr1;
+                        string_ptr3 = string_ptr3 + (int64_t)string_ptr1;
                         if (string_ptr3 <= string_ptr1) {
 alpha_curve_time_processing:
                             // 处理透明度时间轴
@@ -619,7 +619,7 @@ alpha_curve_time_processing:
                                 
                                 // 验证时间节点
                                 if (string_ptr3 == string_ptr2 + -0x180a18107) {
-                                    string_ptr3 = string_ptr3 + (longlong)string_ptr1;
+                                    string_ptr3 = string_ptr3 + (int64_t)string_ptr1;
                                     if (string_ptr3 <= string_ptr1) {
 alpha_curve_value_extraction:
                                         // 提取透明度数值
@@ -642,7 +642,7 @@ alpha_curve_value_extraction:
                                             
                                             // 验证时间节点
                                             if (string_ptr3 == string_ptr2 + -0x180a1810b) {
-                                                string_ptr3 = string_ptr3 + (longlong)string_ptr1;
+                                                string_ptr3 = string_ptr3 + (int64_t)string_ptr1;
                                                 if (string_ptr3 <= string_ptr1) {
 alpha_time_processing:
                                                     // 处理透明度时间
@@ -651,7 +651,7 @@ alpha_time_processing:
                                                 }
                                                 
                                                 // 时间字符串比较
-                                                temp_long2 = (longlong)&unknown_var_5276_ptr - (longlong)string_ptr1;
+                                                temp_long2 = (int64_t)&unknown_var_5276_ptr - (int64_t)string_ptr1;
                                                 while (*string_ptr1 == string_ptr1[temp_long2]) {
                                                     string_ptr1 = string_ptr1 + 1;
                                                     if (string_ptr3 <= string_ptr1) goto alpha_time_processing;
@@ -679,7 +679,7 @@ alpha_time_processing:
                                             
                                             // 验证数值节点
                                             if (string_ptr3 == string_ptr2 + -0x180a0696b) {
-                                                string_ptr3 = string_ptr3 + (longlong)string_ptr1;
+                                                string_ptr3 = string_ptr3 + (int64_t)string_ptr1;
                                                 if (string_ptr3 <= string_ptr1) {
 alpha_value_extraction:
                                                     // 提取透明度数值
@@ -688,7 +688,7 @@ alpha_value_extraction:
                                                 }
                                                 
                                                 // 数值字符串比较
-                                                temp_long2 = (longlong)&unknown_var_3692_ptr - (longlong)string_ptr1;
+                                                temp_long2 = (int64_t)&unknown_var_3692_ptr - (int64_t)string_ptr1;
                                                 while (*string_ptr1 == string_ptr1[temp_long2]) {
                                                     string_ptr1 = string_ptr1 + 1;
                                                     if (string_ptr3 <= string_ptr1) goto alpha_value_extraction;
@@ -705,7 +705,7 @@ alpha_value_extraction:
                                         else {
                                             // 扩展透明度缓冲区
                                             render_state_ptr3 = *(uint64_t **)(param_1 + 0xd0);
-                                            temp_long2 = (longlong)render_state_ptr4 - (longlong)render_state_ptr3 >> 3;
+                                            temp_long2 = (int64_t)render_state_ptr4 - (int64_t)render_state_ptr3 >> 3;
                                             if (temp_long2 == 0) {
                                                 temp_long2 = 1;
 alpha_buffer_processing:
@@ -721,14 +721,14 @@ alpha_buffer_processing:
                                             
                                             // 移动现有数据
                                             if (render_state_ptr3 != render_state_ptr4) {
-                                                memmove(render_state_ptr1, render_state_ptr3, (longlong)render_state_ptr4 - (longlong)render_state_ptr3);
+                                                memmove(render_state_ptr1, render_state_ptr3, (int64_t)render_state_ptr4 - (int64_t)render_state_ptr3);
                                             }
                                             
                                             // 写入新数据
                                             *render_state_ptr1 = CONCAT44(stack_uint2, stack_uint1);
                                             
                                             // 更新指针
-                                            if (*(longlong *)(param_1 + 0xd0) != 0) {
+                                            if (*(int64_t *)(param_1 + 0xd0) != 0) {
                                                 FUN_18064e900();
                                             }
                                             *(uint64_t **)(param_1 + 0xd0) = render_state_ptr1;
@@ -757,11 +757,11 @@ alpha_buffer_processing:
                                                 
                                                 // 验证关键帧
                                                 if (string_ptr3 == string_ptr2 + -0x180a18107) {
-                                                    string_ptr3 = string_ptr3 + (longlong)string_ptr1;
+                                                    string_ptr3 = string_ptr3 + (int64_t)string_ptr1;
                                                     if (string_ptr3 <= string_ptr1) goto alpha_curve_value_extraction;
                                                     
                                                     // 关键帧字符串比较
-                                                    temp_long2 = (longlong)&unknown_var_5272_ptr - (longlong)string_ptr1;
+                                                    temp_long2 = (int64_t)&unknown_var_5272_ptr - (int64_t)string_ptr1;
                                                     while (*string_ptr1 == string_ptr1[temp_long2]) {
                                                         string_ptr1 = string_ptr1 + 1;
                                                         if (string_ptr3 <= string_ptr1) goto alpha_curve_value_extraction;
@@ -775,7 +775,7 @@ alpha_buffer_processing:
                                     }
                                     
                                     // 关键帧字符串比较
-                                    temp_long2 = (longlong)&unknown_var_5272_ptr - (longlong)string_ptr1;
+                                    temp_long2 = (int64_t)&unknown_var_5272_ptr - (int64_t)string_ptr1;
                                     while (*string_ptr1 == string_ptr1[temp_long2]) {
                                         string_ptr1 = string_ptr1 + 1;
                                         if (string_ptr3 <= string_ptr1) goto alpha_curve_time_processing;
@@ -787,7 +787,7 @@ alpha_buffer_processing:
                         }
                         
                         // 关键帧字符串比较
-                        temp_long2 = (longlong)&unknown_var_5204_ptr - (longlong)string_ptr1;
+                        temp_long2 = (int64_t)&unknown_var_5204_ptr - (int64_t)string_ptr1;
                         while (*string_ptr1 == string_ptr1[temp_long2]) {
                             string_ptr1 = string_ptr1 + 1;
                             if (string_ptr3 <= string_ptr1) goto alpha_curve_time_processing;
@@ -804,7 +804,7 @@ animation_data_optimization:
                 
                 if (float_ptr4 != float_ptr1) {
                     // 计算数据长度并优化
-                    temp_long2 = ((longlong)float_ptr1 - (longlong)float_ptr4) / ANIMATION_CURVE_SEGMENT_SIZE;
+                    temp_long2 = ((int64_t)float_ptr1 - (int64_t)float_ptr4) / ANIMATION_CURVE_SEGMENT_SIZE;
                     for (temp_long1 = temp_long2; temp_long1 != 0; temp_long1 = temp_long1 >> 1) {
                     }
                     
@@ -856,7 +856,7 @@ animation_data_optimization:
                 float_ptr1 = *(float **)(param_1 + 0xd0);
                 
                 if (float_ptr1 != float_ptr4) {
-                    temp_long1 = (longlong)float_ptr4 - (longlong)float_ptr1 >> 3;
+                    temp_long1 = (int64_t)float_ptr4 - (int64_t)float_ptr1 >> 3;
                     for (temp_long2 = temp_long1; temp_long2 != 0; temp_long2 = temp_long2 >> 1) {
                     }
                     
@@ -908,7 +908,7 @@ animation_data_optimization:
                     }
                     else {
                         // 插值计算颜色值
-                        temp_long1 = (longlong)*(float **)(param_1 + 0xca) - (longlong)float_ptr1;
+                        temp_long1 = (int64_t)*(float **)(param_1 + 0xca) - (int64_t)float_ptr1;
                         temp_int1 = 0;
                         temp_long3 = 0;
                         temp_long2 = temp_long1 >> 0x3f;
@@ -940,11 +940,11 @@ animation_data_optimization:
                                 temp_long3 = temp_long3 + 1;
                                 float_ptr1 = float_ptr1 + 5;
                                 float_ptr3 = *(float **)float_ptr2;
-                            } while ((ulonglong)(longlong)temp_int1 < (ulonglong)(temp_long1 - temp_long2));
+                            } while ((uint64_t)(int64_t)temp_int1 < (uint64_t)(temp_long1 - temp_long2));
                         }
                         
                         // 使用默认颜色值
-                        temp_long2 = *(longlong *)(param_1 + 0xca);
+                        temp_long2 = *(int64_t *)(param_1 + 0xca);
                         stack_float1 = *(float *)(temp_long2 + -0x10);
                         stack_float2 = *(float *)(temp_long2 + -0xc);
                         temp_float9 = *(float *)(temp_long2 + -8);
@@ -958,7 +958,7 @@ color_interpolation_complete:
                     }
                     else {
                         temp_int1 = 0;
-                        temp_ulong1 = (longlong)*(float **)(param_1 + 0xd2) - (longlong)float_ptr1 >> 3;
+                        temp_ulong1 = (int64_t)*(float **)(param_1 + 0xd2) - (int64_t)float_ptr1 >> 3;
                         temp_long2 = 0;
                         float_ptr3 = float_ptr1;
                         
@@ -982,11 +982,11 @@ color_interpolation_complete:
                                 temp_int1 = temp_int1 + 1;
                                 temp_long2 = temp_long2 + 1;
                                 float_ptr3 = float_ptr3 + 2;
-                            } while ((ulonglong)(longlong)temp_int1 < temp_ulong1);
+                            } while ((uint64_t)(int64_t)temp_int1 < temp_ulong1);
                         }
                         
                         // 使用默认透明度值
-                        temp_float10 = *(float *)(*(longlong *)(param_1 + 0xd2) + -4);
+                        temp_float10 = *(float *)(*(int64_t *)(param_1 + 0xd2) + -4);
                     }
                     
 alpha_interpolation_complete:
@@ -1005,7 +1005,7 @@ alpha_interpolation_complete:
             }
             
             // 透明度曲线节点验证
-            temp_long2 = (longlong)&unknown_var_2244_ptr - (longlong)string_ptr1;
+            temp_long2 = (int64_t)&unknown_var_2244_ptr - (int64_t)string_ptr1;
             while (*string_ptr1 == string_ptr1[temp_long2]) {
                 string_ptr1 = string_ptr1 + 1;
                 if (string_ptr3 <= string_ptr1) goto alpha_curve_key_processing;
@@ -1028,17 +1028,17 @@ color_curve_node_validation:
  * @param param_1 动画数据目标指针
  * @param param_2 动画数据源指针
  */
-void animation_data_batch_processor(longlong *param_1, longlong *param_2)
+void animation_data_batch_processor(int64_t *param_1, int64_t *param_2)
 {
-    longlong temp_long1;
+    int64_t temp_long1;
     int temp_int1;
-    longlong temp_long2;
-    longlong temp_long3;
+    int64_t temp_long2;
+    int64_t temp_long3;
     
     // 复制动画数据
     param_1[2] = param_1[1];
     temp_int1 = (int)(param_2[1] - *param_2 >> 4);
-    temp_long3 = (longlong)temp_int1;
+    temp_long3 = (int64_t)temp_int1;
     
     if (0 < temp_int1) {
         temp_long2 = 0;
@@ -1062,8 +1062,8 @@ void animation_data_batch_processor(longlong *param_1, longlong *param_2)
  */
 void animation_loop_processor(void)
 {
-    longlong unaff_RSI;
-    longlong *unaff_RDI;
+    int64_t unaff_RSI;
+    int64_t *unaff_RDI;
     
     do {
         (**(code **)(*unaff_RDI + 8))();
@@ -1092,7 +1092,7 @@ void null_operation_processor(void)
  * @param param_3 内存分配器
  * @param param_4 数据存储指针
  */
-void animation_parameter_configurator(longlong param_1, uint64_t param_2, longlong param_3, longlong param_4)
+void animation_parameter_configurator(int64_t param_1, uint64_t param_2, int64_t param_3, int64_t param_4)
 {
     int temp_int1;
     float temp_float1;
@@ -1109,7 +1109,7 @@ void animation_parameter_configurator(longlong param_1, uint64_t param_2, longlo
     int stack_int1;
     
     // 检查并创建动画曲线
-    if (*(longlong *)(param_1 + 8) != *(longlong *)(param_1 + 0x10)) {
+    if (*(int64_t *)(param_1 + 8) != *(int64_t *)(param_1 + 0x10)) {
         render_state_ptr1 = (uint64_t *)FUN_1804c1300(param_3 + 0x60, 0x60);
         *render_state_ptr1 = 0;
         render_state_ptr1[1] = 0;
@@ -1133,13 +1133,13 @@ void animation_parameter_configurator(longlong param_1, uint64_t param_2, longlo
         FUN_18062f990(param_3, render_state_ptr1, &unknown_var_5184_ptr);
         
         // 链接曲线节点
-        if (*(longlong *)(param_4 + 0x30) == 0) {
+        if (*(int64_t *)(param_4 + 0x30) == 0) {
             render_state_ptr1[10] = 0;
             *(uint64_t **)(param_4 + 0x30) = render_state_ptr1;
         }
         else {
             render_state_ptr1[10] = *(uint64_t *)(param_4 + 0x38);
-            *(uint64_t **)(*(longlong *)(param_4 + 0x38) + 0x58) = render_state_ptr1;
+            *(uint64_t **)(*(int64_t *)(param_4 + 0x38) + 0x58) = render_state_ptr1;
         }
         *(uint64_t **)(param_4 + 0x38) = render_state_ptr1;
         render_state_ptr1[4] = param_4;
@@ -1275,7 +1275,7 @@ void animation_parameter_configurator(longlong param_1, uint64_t param_2, longlo
  * 
  * @see FUN_1804160b0
  */
-void rendering_curve_processor(float *param_1, longlong param_2) __attribute__((alias("FUN_1804160b0")));
+void rendering_curve_processor(float *param_1, int64_t param_2) __attribute__((alias("FUN_1804160b0")));
 
 /**
  * 动画数据批量处理器（别名）
@@ -1284,7 +1284,7 @@ void rendering_curve_processor(float *param_1, longlong param_2) __attribute__((
  * 
  * @see FUN_180416880
  */
-void animation_batch_processor(longlong *param_1, longlong *param_2) __attribute__((alias("FUN_180416880")));
+void animation_batch_processor(int64_t *param_1, int64_t *param_2) __attribute__((alias("FUN_180416880")));
 
 /**
  * 动画循环处理器（别名）
@@ -1311,7 +1311,7 @@ void animation_sync_handler(void) __attribute__((alias("FUN_1804168ee")));
  * 
  * @see FUN_180416900
  */
-void animation_setup_manager(longlong param_1, uint64_t param_2, longlong param_3, longlong param_4) __attribute__((alias("FUN_180416900")));
+void animation_setup_manager(int64_t param_1, uint64_t param_2, int64_t param_3, int64_t param_4) __attribute__((alias("FUN_180416900")));
 
 // =============================================================================
 // 模块说明和版本信息

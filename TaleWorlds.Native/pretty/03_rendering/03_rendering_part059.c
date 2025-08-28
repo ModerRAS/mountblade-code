@@ -38,7 +38,7 @@ extern void FUN_18029c460(uint64_t *param_1);
 extern void FUN_1800f74f0(uint64_t *param_1, uint64_t param_2);
 extern void FUN_180058370(uint64_t *param_1, uint64_t param_2);
 extern void FUN_1808fc8a8(uint64_t *param_1, int param_2, int param_3, code *param_4);
-extern void FUN_180152b00(longlong *param_1);
+extern void FUN_180152b00(int64_t *param_1);
 extern void FUN_18064e900(uint64_t *param_1);
 extern uint64_t FUN_18062b1e0(uint64_t *param_1, int param_2, int param_3, int param_4);
 extern uint64_t *FUN_18005ce30(uint64_t *param_1, uint64_t **param_2);
@@ -57,19 +57,19 @@ extern uint _Thrd_id(void);
 void render_node_link_operation(void)
 
 {
-  longlong list_head_ptr;
-  longlong render_context;
-  longlong node_offset;
-  longlong node_ptr;
-  longlong *target_ptr;
+  int64_t list_head_ptr;
+  int64_t render_context;
+  int64_t node_offset;
+  int64_t node_ptr;
+  int64_t *target_ptr;
   
   // 将节点插入到链表头部
-  *(uint64_t *)(node_ptr + 0x18) = *(uint64_t *)(*(longlong *)(render_context + 8) + node_offset * 8);
-  *(longlong *)(*(longlong *)(render_context + 8) + node_offset * 8) = node_ptr;
-  list_head_ptr = *(longlong *)(render_context + 8);
+  *(uint64_t *)(node_ptr + 0x18) = *(uint64_t *)(*(int64_t *)(render_context + 8) + node_offset * 8);
+  *(int64_t *)(*(int64_t *)(render_context + 8) + node_offset * 8) = node_ptr;
+  list_head_ptr = *(int64_t *)(render_context + 8);
   
   // 更新链表计数器
-  *(longlong *)(render_context + 0x18) = *(longlong *)(render_context + 0x18) + 1;
+  *(int64_t *)(render_context + 0x18) = *(int64_t *)(render_context + 0x18) + 1;
   
   // 设置目标指针信息
   *target_ptr = node_ptr;
@@ -91,8 +91,8 @@ void render_node_link_operation(void)
 uint64_t * render_context_initialize(uint64_t *context_ptr)
 
 {
-  longlong *resource_ptr;
-  longlong loop_counter;
+  int64_t *resource_ptr;
+  int64_t loop_counter;
   uint64_t *init_ptr;
   
   // 设置虚函数表指针
@@ -165,9 +165,9 @@ uint64_t * render_context_initialize(uint64_t *context_ptr)
   context_ptr[0x101a] = 0;
   
   // 清理旧的资源指针
-  resource_ptr = (longlong *)context_ptr[0x1049];
+  resource_ptr = (int64_t *)context_ptr[0x1049];
   context_ptr[0x1049] = 0;
-  if (resource_ptr != (longlong *)0x0) {
+  if (resource_ptr != (int64_t *)0x0) {
     (**(code **)(*resource_ptr + 0x38))();
   }
   return context_ptr;
@@ -176,7 +176,7 @@ uint64_t * render_context_initialize(uint64_t *context_ptr)
 
 
 uint64_t *
-render_context_cleanup(uint64_t *context_ptr,ulonglong cleanup_flags,uint64_t param_3,uint64_t param_4)
+render_context_cleanup(uint64_t *context_ptr,uint64_t cleanup_flags,uint64_t param_3,uint64_t param_4)
 
 {
   uint64_t cleanup_result;
@@ -185,8 +185,8 @@ render_context_cleanup(uint64_t *context_ptr,ulonglong cleanup_flags,uint64_t pa
   *context_ptr = &global_state_928_ptr;
   
   // 清理资源
-  if ((longlong *)context_ptr[0x1049] != (longlong *)0x0) {
-    (**(code **)(*(longlong *)context_ptr[0x1049] + 0x38))();
+  if ((int64_t *)context_ptr[0x1049] != (int64_t *)0x0) {
+    (**(code **)(*(int64_t *)context_ptr[0x1049] + 0x38))();
   }
   
   // 清理渲染子系统
@@ -213,17 +213,17 @@ render_context_cleanup(uint64_t *context_ptr,ulonglong cleanup_flags,uint64_t pa
 void render_resource_manager_destroy(uint64_t *context_ptr)
 
 {
-  longlong *resource_array;
+  int64_t *resource_array;
   uint64_t *resource_ptr;
-  longlong array_start;
-  longlong array_end;
-  ulonglong resource_index;
+  int64_t array_start;
+  int64_t array_end;
+  uint64_t resource_index;
   
   *context_ptr = &global_state_928_ptr;
   
   // 清理主资源
-  if ((longlong *)context_ptr[0x1049] != (longlong *)0x0) {
-    (**(code **)(*(longlong *)context_ptr[0x1049] + 0x38))();
+  if ((int64_t *)context_ptr[0x1049] != (int64_t *)0x0) {
+    (**(code **)(*(int64_t *)context_ptr[0x1049] + 0x38))();
   }
   
   // 清理资源数组
@@ -235,24 +235,24 @@ void render_resource_manager_destroy(uint64_t *context_ptr)
       resource_ptr = *(uint64_t **)(resource_index * 8 + array_start);
       if (resource_ptr != (uint64_t *)0x0) {
         // 清理资源的各个组件
-        if ((longlong *)resource_ptr[0xd] != (longlong *)0x0) {
-          (**(code **)(*(longlong *)resource_ptr[0xd] + 0x10))();
+        if ((int64_t *)resource_ptr[0xd] != (int64_t *)0x0) {
+          (**(code **)(*(int64_t *)resource_ptr[0xd] + 0x10))();
           resource_ptr[0xd] = 0;
         }
-        if ((longlong *)resource_ptr[0xe] != (longlong *)0x0) {
-          (**(code **)(*(longlong *)resource_ptr[0xe] + 0x10))();
+        if ((int64_t *)resource_ptr[0xe] != (int64_t *)0x0) {
+          (**(code **)(*(int64_t *)resource_ptr[0xe] + 0x10))();
           resource_ptr[0xe] = 0;
         }
-        if ((longlong *)resource_ptr[0xf] != (longlong *)0x0) {
-          (**(code **)(*(longlong *)resource_ptr[0xf] + 0x10))();
+        if ((int64_t *)resource_ptr[0xf] != (int64_t *)0x0) {
+          (**(code **)(*(int64_t *)resource_ptr[0xf] + 0x10))();
           resource_ptr[0xf] = 0;
         }
-        if ((longlong *)resource_ptr[0x10] != (longlong *)0x0) {
-          (**(code **)(*(longlong *)resource_ptr[0x10] + 0x10))();
+        if ((int64_t *)resource_ptr[0x10] != (int64_t *)0x0) {
+          (**(code **)(*(int64_t *)resource_ptr[0x10] + 0x10))();
           resource_ptr[0x10] = 0;
         }
-        if ((longlong *)resource_ptr[0x11] != (longlong *)0x0) {
-          (**(code **)(*(longlong *)resource_ptr[0x11] + 0x10))();
+        if ((int64_t *)resource_ptr[0x11] != (int64_t *)0x0) {
+          (**(code **)(*(int64_t *)resource_ptr[0x11] + 0x10))();
           resource_ptr[0x11] = 0;
         }
         
@@ -261,9 +261,9 @@ void render_resource_manager_destroy(uint64_t *context_ptr)
         FUN_18064e900(resource_ptr);
       }
       *(uint64_t *)(resource_index * 8 + *resource_array) = 0;
-      resource_index = (ulonglong)((int)resource_index + 1);
+      resource_index = (uint64_t)((int)resource_index + 1);
       array_start = *resource_array;
-    } while (resource_index < (ulonglong)(context_ptr[0x1013] - array_start >> 3));
+    } while (resource_index < (uint64_t)(context_ptr[0x1013] - array_start >> 3));
   }
   
   // 重置数组大小
@@ -313,16 +313,16 @@ void render_resource_manager_destroy(uint64_t *context_ptr)
  * @param slot_index 纹理槽索引
  * @param texture_ptr 纹理资源指针
  */
-void render_resource_set_texture(longlong *render_context,int slot_index,longlong *texture_ptr)
+void render_resource_set_texture(int64_t *render_context,int slot_index,int64_t *texture_ptr)
 
 {
-  if ((texture_ptr != (longlong *)0x0) && (*texture_ptr != 0)) {
+  if ((texture_ptr != (int64_t *)0x0) && (*texture_ptr != 0)) {
     // 激活纹理资源
     (**(code **)(*render_context + 0x70))(render_context,*texture_ptr,1);
-    render_context[(longlong)slot_index + 0x1077] = (longlong)texture_ptr;
+    render_context[(int64_t)slot_index + 0x1077] = (int64_t)texture_ptr;
     return;
   }
-  render_context[(longlong)slot_index + 0x1077] = (longlong)texture_ptr;
+  render_context[(int64_t)slot_index + 0x1077] = (int64_t)texture_ptr;
   return;
 }
 
@@ -339,26 +339,26 @@ void render_resource_set_texture(longlong *render_context,int slot_index,longlon
  * @param shader_ptr 着色器资源指针
  * @param shader_type 着色器类型
  */
-void render_resource_set_shader(longlong *render_context,longlong *shader_ptr,int shader_type)
+void render_resource_set_shader(int64_t *render_context,int64_t *shader_ptr,int shader_type)
 
 {
-  longlong shader_handle;
+  int64_t shader_handle;
   
-  if ((shader_ptr != (longlong *)0x0) && (shader_handle = *shader_ptr, shader_handle != 0)) {
+  if ((shader_ptr != (int64_t *)0x0) && (shader_handle = *shader_ptr, shader_handle != 0)) {
     if (shader_type == 0) {
       // 顶点着色器
       (**(code **)(*render_context + 0x70))(render_context,shader_handle,2);
-      render_context[0x107e] = (longlong)shader_ptr;
+      render_context[0x107e] = (int64_t)shader_ptr;
       return;
     }
     if (shader_type == 1) {
       // 像素着色器
       (**(code **)(*render_context + 0x70))(render_context,shader_handle,4);
-      render_context[0x107e] = (longlong)shader_ptr;
+      render_context[0x107e] = (int64_t)shader_ptr;
       return;
     }
   }
-  render_context[0x107e] = (longlong)shader_ptr;
+  render_context[0x107e] = (int64_t)shader_ptr;
   return;
 }
 
@@ -375,14 +375,14 @@ void render_resource_set_shader(longlong *render_context,longlong *shader_ptr,in
  * 
  * @param render_context 渲染上下文指针
  */
-void render_state_initialize(longlong *render_context)
+void render_state_initialize(int64_t *render_context)
 
 {
-  longlong config_base;
-  longlong *state_array;
+  int64_t config_base;
+  int64_t *state_array;
   int state_index;
   int array_size;
-  longlong *array_ptr;
+  int64_t *array_ptr;
   float param_value;
   int32_t param_uint;
   float clamped_value;
@@ -405,24 +405,24 @@ void render_state_initialize(longlong *render_context)
     do {
       uStackX_8 = 0;
       // 初始化渲染器状态
-      (**(code **)(*(longlong *)render_context[0x1080] + 200))
-                ((longlong *)render_context[0x1080],array_size,1,&uStackX_8);
-      (**(code **)(*(longlong *)render_context[0x1080] + 0x1f8))
-                ((longlong *)render_context[0x1080],array_size,1,&uStackX_8);
-      (**(code **)(*(longlong *)render_context[0x1080] + 0x1d8))
-                ((longlong *)render_context[0x1080],array_size,1,&uStackX_8);
-      (**(code **)(*(longlong *)render_context[0x1080] + 0xf8))
-                ((longlong *)render_context[0x1080],array_size,1,&uStackX_8);
-      (**(code **)(*(longlong *)render_context[0x1080] + 0x40))
-                ((longlong *)render_context[0x1080],array_size,1,&uStackX_8);
-      (**(code **)(*(longlong *)render_context[0x1080] + 0x218))
-                ((longlong *)render_context[0x1080],array_size,1,&uStackX_8);
+      (**(code **)(*(int64_t *)render_context[0x1080] + 200))
+                ((int64_t *)render_context[0x1080],array_size,1,&uStackX_8);
+      (**(code **)(*(int64_t *)render_context[0x1080] + 0x1f8))
+                ((int64_t *)render_context[0x1080],array_size,1,&uStackX_8);
+      (**(code **)(*(int64_t *)render_context[0x1080] + 0x1d8))
+                ((int64_t *)render_context[0x1080],array_size,1,&uStackX_8);
+      (**(code **)(*(int64_t *)render_context[0x1080] + 0xf8))
+                ((int64_t *)render_context[0x1080],array_size,1,&uStackX_8);
+      (**(code **)(*(int64_t *)render_context[0x1080] + 0x40))
+                ((int64_t *)render_context[0x1080],array_size,1,&uStackX_8);
+      (**(code **)(*(int64_t *)render_context[0x1080] + 0x218))
+                ((int64_t *)render_context[0x1080],array_size,1,&uStackX_8);
       *array_ptr = 0;
       array_ptr = array_ptr + 1;
       array_size = array_size + 1;
       *(int32_t *)(state_array + -0x40) = 0xffffffff;
       *(int32_t *)state_array = 0xffffffff;
-      state_array = (longlong *)((longlong)state_array + 4);
+      state_array = (int64_t *)((int64_t)state_array + 4);
     } while (array_size < 0x80);
   }
   else {
@@ -445,8 +445,8 @@ void render_state_initialize(longlong *render_context)
   config_base = SYSTEM_STATE_MANAGER;
   param_value = *(float *)(SYSTEM_STATE_MANAGER + 0x1880);
   *(float *)(render_context + 0x2a4) = param_value;
-  *(float *)((longlong)render_context + 0x1524) = 1.0 / param_value;
-  *(float *)((longlong)render_context + 0x1d54) = *(float *)(config_base + 0x2060) * 0.01;
+  *(float *)((int64_t)render_context + 0x1524) = 1.0 / param_value;
+  *(float *)((int64_t)render_context + 0x1d54) = *(float *)(config_base + 0x2060) * 0.01;
   *(float *)(render_context + 0x2a5) = *(float *)(config_base + 0x1110) * 0.005 - 0.25;
   
   // 处理并限制参数值范围
@@ -466,7 +466,7 @@ void render_state_initialize(longlong *render_context)
   if ((0.0 <= param_value) && (clamped_value = param_value, 1.0 <= param_value)) {
     clamped_value = 1.0;
   }
-  *(float *)((longlong)render_context + 0x17a4) = clamped_value;
+  *(float *)((int64_t)render_context + 0x17a4) = clamped_value;
   
   // 计算并设置参数
   param_uint = powf(0x40000000,*(int32_t *)(config_base + 0x1260));
@@ -500,20 +500,20 @@ void render_state_initialize(longlong *render_context)
  * 
  * @param render_context 渲染上下文指针
  */
-void render_state_initialize_alt(longlong *render_context)
+void render_state_initialize_alt(int64_t *render_context)
 
 {
-  longlong config_base;
-  ulonglong init_param;
+  int64_t config_base;
+  uint64_t init_param;
   uint64_t init_value;
-  longlong *state_array;
+  int64_t *state_array;
   uint state_index;
-  ulonglong array_index;
-  ulonglong *array_ptr;
+  uint64_t array_index;
+  uint64_t *array_ptr;
   float param_value;
   int32_t param_uint;
   float clamped_value;
-  ulonglong in_stack_00000040;
+  uint64_t in_stack_00000040;
   uint64_t in_stack_00000048;
   
   // 设置初始参数
@@ -525,37 +525,37 @@ void render_state_initialize_alt(longlong *render_context)
   do {
     (**(code **)(*render_context + 0xb0))(render_context,array_index,array_index,0x33);
     state_index = (int)array_index + 1;
-    array_index = (ulonglong)state_index;
+    array_index = (uint64_t)state_index;
   } while ((int)state_index < 9);
   
   // 根据渲染器类型进行特定初始化
   if ((void *)*render_context == &global_state_2024_ptr) {
     array_index = init_param & 0xffffffff;
     state_array = render_context + 0x1147;
-    array_ptr = (ulonglong *)(render_context + 0x1087);
+    array_ptr = (uint64_t *)(render_context + 0x1087);
     in_stack_00000048 = init_value;
     do {
       in_stack_00000040 = init_param;
       // 初始化渲染器状态
-      (**(code **)(*(longlong *)render_context[0x1080] + 200))
-                ((longlong *)render_context[0x1080],array_index,1,&stack0x00000040);
-      (**(code **)(*(longlong *)render_context[0x1080] + 0x1f8))
-                ((longlong *)render_context[0x1080],array_index,1,&stack0x00000040);
-      (**(code **)(*(longlong *)render_context[0x1080] + 0x1d8))
-                ((longlong *)render_context[0x1080],array_index,1,&stack0x00000040);
-      (**(code **)(*(longlong *)render_context[0x1080] + 0xf8))
-                ((longlong *)render_context[0x1080],array_index,1,&stack0x00000040);
-      (**(code **)(*(longlong *)render_context[0x1080] + 0x40))
-                ((longlong *)render_context[0x1080],array_index,1,&stack0x00000040);
-      (**(code **)(*(longlong *)render_context[0x1080] + 0x218))
-                ((longlong *)render_context[0x1080],array_index,1,&stack0x00000040);
+      (**(code **)(*(int64_t *)render_context[0x1080] + 200))
+                ((int64_t *)render_context[0x1080],array_index,1,&stack0x00000040);
+      (**(code **)(*(int64_t *)render_context[0x1080] + 0x1f8))
+                ((int64_t *)render_context[0x1080],array_index,1,&stack0x00000040);
+      (**(code **)(*(int64_t *)render_context[0x1080] + 0x1d8))
+                ((int64_t *)render_context[0x1080],array_index,1,&stack0x00000040);
+      (**(code **)(*(int64_t *)render_context[0x1080] + 0xf8))
+                ((int64_t *)render_context[0x1080],array_index,1,&stack0x00000040);
+      (**(code **)(*(int64_t *)render_context[0x1080] + 0x40))
+                ((int64_t *)render_context[0x1080],array_index,1,&stack0x00000040);
+      (**(code **)(*(int64_t *)render_context[0x1080] + 0x218))
+                ((int64_t *)render_context[0x1080],array_index,1,&stack0x00000040);
       *array_ptr = init_param;
       array_ptr = array_ptr + 1;
       state_index = (int)array_index + 1;
-      array_index = (ulonglong)state_index;
+      array_index = (uint64_t)state_index;
       *(int32_t *)(state_array + -0x40) = 0xffffffff;
       *(int32_t *)state_array = 0xffffffff;
-      state_array = (longlong *)((longlong)state_array + 4);
+      state_array = (int64_t *)((int64_t)state_array + 4);
     } while ((int)state_index < 0x80);
   }
   else {
@@ -578,8 +578,8 @@ void render_state_initialize_alt(longlong *render_context)
   config_base = SYSTEM_STATE_MANAGER;
   param_value = *(float *)(SYSTEM_STATE_MANAGER + 0x1880);
   *(float *)(render_context + 0x2a4) = param_value;
-  *(float *)((longlong)render_context + 0x1524) = 1.0 / param_value;
-  *(float *)((longlong)render_context + 0x1d54) = *(float *)(config_base + 0x2060) * 0.01;
+  *(float *)((int64_t)render_context + 0x1524) = 1.0 / param_value;
+  *(float *)((int64_t)render_context + 0x1d54) = *(float *)(config_base + 0x2060) * 0.01;
   *(float *)(render_context + 0x2a5) = *(float *)(config_base + 0x1110) * 0.005 - 0.25;
   
   // 处理并限制参数值范围
@@ -599,7 +599,7 @@ void render_state_initialize_alt(longlong *render_context)
   if ((0.0 <= param_value) && (clamped_value = param_value, 1.0 <= param_value)) {
     clamped_value = 1.0;
   }
-  *(float *)((longlong)render_context + 0x17a4) = clamped_value;
+  *(float *)((int64_t)render_context + 0x17a4) = clamped_value;
   
   // 计算并设置参数
   param_uint = powf(0x40000000,*(int32_t *)(config_base + 0x1260));
@@ -634,42 +634,42 @@ void render_state_initialize_alt(longlong *render_context)
 void render_state_update_batch(void)
 
 {
-  longlong config_base;
-  longlong *render_context;
-  ulonglong update_param;
-  longlong *state_array;
+  int64_t config_base;
+  int64_t *render_context;
+  uint64_t update_param;
+  int64_t *state_array;
   uint state_index;
-  ulonglong array_index;
-  ulonglong *array_ptr;
+  uint64_t array_index;
+  uint64_t *array_ptr;
   int32_t update_result;
   float param_value;
   float clamped_value;
   
   array_index = update_param & 0xffffffff;
   state_array = render_context + 0x1147;
-  array_ptr = (ulonglong *)(render_context + 0x1087);
+  array_ptr = (uint64_t *)(render_context + 0x1087);
   
   // 批量更新渲染器状态
   do {
-    (**(code **)(*(longlong *)render_context[0x1080] + 200))
-              ((longlong *)render_context[0x1080],array_index,1,&stack0x00000040);
-    (**(code **)(*(longlong *)render_context[0x1080] + 0x1f8))
-              ((longlong *)render_context[0x1080],array_index,1,&stack0x00000040);
-    (**(code **)(*(longlong *)render_context[0x1080] + 0x1d8))
-              ((longlong *)render_context[0x1080],array_index,1,&stack0x00000040);
-    (**(code **)(*(longlong *)render_context[0x1080] + 0xf8))
-              ((longlong *)render_context[0x1080],array_index,1,&stack0x00000040);
-    (**(code **)(*(longlong *)render_context[0x1080] + 0x40))
-              ((longlong *)render_context[0x1080],array_index,1,&stack0x00000040);
-    update_result = (**(code **)(*(longlong *)render_context[0x1080] + 0x218))
-                      ((longlong *)render_context[0x1080],array_index,1,&stack0x00000040);
+    (**(code **)(*(int64_t *)render_context[0x1080] + 200))
+              ((int64_t *)render_context[0x1080],array_index,1,&stack0x00000040);
+    (**(code **)(*(int64_t *)render_context[0x1080] + 0x1f8))
+              ((int64_t *)render_context[0x1080],array_index,1,&stack0x00000040);
+    (**(code **)(*(int64_t *)render_context[0x1080] + 0x1d8))
+              ((int64_t *)render_context[0x1080],array_index,1,&stack0x00000040);
+    (**(code **)(*(int64_t *)render_context[0x1080] + 0xf8))
+              ((int64_t *)render_context[0x1080],array_index,1,&stack0x00000040);
+    (**(code **)(*(int64_t *)render_context[0x1080] + 0x40))
+              ((int64_t *)render_context[0x1080],array_index,1,&stack0x00000040);
+    update_result = (**(code **)(*(int64_t *)render_context[0x1080] + 0x218))
+                      ((int64_t *)render_context[0x1080],array_index,1,&stack0x00000040);
     *array_ptr = update_param;
     array_ptr = array_ptr + 1;
     state_index = (int)array_index + 1;
-    array_index = (ulonglong)state_index;
+    array_index = (uint64_t)state_index;
     *(int32_t *)(state_array + -0x40) = 0xffffffff;
     *(int32_t *)state_array = 0xffffffff;
-    state_array = (longlong *)((longlong)state_array + 4);
+    state_array = (int64_t *)((int64_t)state_array + 4);
   } while ((int)state_index < 0x80);
   
   // 批量设置渲染状态
@@ -687,8 +687,8 @@ void render_state_update_batch(void)
   config_base = SYSTEM_STATE_MANAGER;
   param_value = *(float *)(SYSTEM_STATE_MANAGER + 0x1880);
   *(float *)(render_context + 0x2a4) = param_value;
-  *(float *)((longlong)render_context + 0x1524) = 1.0 / param_value;
-  *(float *)((longlong)render_context + 0x1d54) = *(float *)(config_base + 0x2060) * 0.01;
+  *(float *)((int64_t)render_context + 0x1524) = 1.0 / param_value;
+  *(float *)((int64_t)render_context + 0x1d54) = *(float *)(config_base + 0x2060) * 0.01;
   *(float *)(render_context + 0x2a5) = *(float *)(config_base + 0x1110) * 0.005 - 0.25;
   
   // 处理并限制参数值范围
@@ -708,7 +708,7 @@ void render_state_update_batch(void)
   if ((0.0 <= param_value) && (clamped_value = param_value, 1.0 <= param_value)) {
     clamped_value = 1.0;
   }
-  *(float *)((longlong)render_context + 0x17a4) = clamped_value;
+  *(float *)((int64_t)render_context + 0x17a4) = clamped_value;
   
   // 计算并设置参数
   update_result = powf(0x40000000,*(int32_t *)(config_base + 0x1260));
@@ -745,9 +745,9 @@ void render_state_update_batch(void)
 void render_parameter_update(int32_t update_param)
 
 {
-  longlong config_base;
-  longlong *render_context;
-  longlong param_value;
+  int64_t config_base;
+  int64_t *render_context;
+  int64_t param_value;
   int32_t update_result;
   float param_float;
   float clamped_value;
@@ -767,8 +767,8 @@ void render_parameter_update(int32_t update_param)
   config_base = SYSTEM_STATE_MANAGER;
   param_float = *(float *)(SYSTEM_STATE_MANAGER + 0x1880);
   *(float *)(render_context + 0x2a4) = param_float;
-  *(float *)((longlong)render_context + 0x1524) = 1.0 / param_float;
-  *(float *)((longlong)render_context + 0x1d54) = *(float *)(config_base + 0x2060) * 0.01;
+  *(float *)((int64_t)render_context + 0x1524) = 1.0 / param_float;
+  *(float *)((int64_t)render_context + 0x1d54) = *(float *)(config_base + 0x2060) * 0.01;
   *(float *)(render_context + 0x2a5) = *(float *)(config_base + 0x1110) * 0.005 - 0.25;
   
   // 处理并限制参数值范围
@@ -788,7 +788,7 @@ void render_parameter_update(int32_t update_param)
   if ((0.0 <= param_float) && (clamped_value = param_float, 1.0 <= param_float)) {
     clamped_value = 1.0;
   }
-  *(float *)((longlong)render_context + 0x17a4) = clamped_value;
+  *(float *)((int64_t)render_context + 0x17a4) = clamped_value;
   
   // 计算并设置参数
   update_result = powf(0x40000000,*(int32_t *)(config_base + 0x1260));
@@ -825,9 +825,9 @@ void render_parameter_set_values(uint64_t param_1,uint64_t param_2,float param_3
 
 {
   float max_value;
-  longlong config_base;
-  longlong *render_context;
-  longlong param_value;
+  int64_t config_base;
+  int64_t *render_context;
+  int64_t param_value;
   int32_t calc_result;
   
   // 重置状态
@@ -838,7 +838,7 @@ void render_parameter_set_values(uint64_t param_1,uint64_t param_2,float param_3
   if ((param_3 <= max_value) && (param_3 = max_value, param_4 <= max_value)) {
     param_3 = param_4;
   }
-  *(float *)((longlong)render_context + 0x17a4) = param_3;
+  *(float *)((int64_t)render_context + 0x17a4) = param_3;
   
   // 计算并设置参数
   calc_result = powf(0x40000000,*(int32_t *)(config_base + 0x1260));
@@ -876,9 +876,9 @@ void render_parameter_set_values(uint64_t param_1,uint64_t param_2,float param_3
 void render_callback_execute(uint64_t param_1,code *callback_ptr)
 
 {
-  longlong config_base;
-  longlong *render_context;
-  longlong param_value;
+  int64_t config_base;
+  int64_t *render_context;
+  int64_t param_value;
   float param_float;
   int32_t callback_result;
   float clamped_value;
@@ -901,8 +901,8 @@ void render_callback_execute(uint64_t param_1,code *callback_ptr)
   config_base = SYSTEM_STATE_MANAGER;
   param_float = *(float *)(SYSTEM_STATE_MANAGER + 0x1880);
   *(float *)(render_context + 0x2a4) = param_float;
-  *(float *)((longlong)render_context + 0x1524) = 1.0 / param_float;
-  *(float *)((longlong)render_context + 0x1d54) = *(float *)(config_base + 0x2060) * 0.01;
+  *(float *)((int64_t)render_context + 0x1524) = 1.0 / param_float;
+  *(float *)((int64_t)render_context + 0x1d54) = *(float *)(config_base + 0x2060) * 0.01;
   *(float *)(render_context + 0x2a5) = *(float *)(config_base + 0x1110) * 0.005 - 0.25;
   
   // 处理并限制参数值范围
@@ -922,7 +922,7 @@ void render_callback_execute(uint64_t param_1,code *callback_ptr)
   if ((0.0 <= param_float) && (clamped_value = param_float, 1.0 <= param_float)) {
     clamped_value = 1.0;
   }
-  *(float *)((longlong)render_context + 0x17a4) = clamped_value;
+  *(float *)((int64_t)render_context + 0x17a4) = clamped_value;
   
   // 计算并设置参数
   callback_result = powf(0x40000000,*(int32_t *)(config_base + 0x1260));
@@ -961,12 +961,12 @@ void render_callback_execute(uint64_t param_1,code *callback_ptr)
  * @param data_flag 数据标志
  * @param operation_type 操作类型
  */
-void render_thread_safe_operation(longlong *render_context,uint64_t operation_param,int32_t operation_data,longlong *resource_ptr,
+void render_thread_safe_operation(int64_t *render_context,uint64_t operation_param,int32_t operation_data,int64_t *resource_ptr,
                                   int32_t data_flag,byte operation_type)
 
 {
   int main_thread_id;
-  longlong task_data;
+  int64_t task_data;
   int current_thread_id;
   uint64_t task_handle;
   void **task_ptr;
@@ -985,15 +985,15 @@ void render_thread_safe_operation(longlong *render_context,uint64_t operation_pa
   uint64_t task_param;
   int32_t task_data_2;
   uint task_type;
-  longlong *task_resource;
-  ulonglong stack_cookie;
+  int64_t *task_resource;
+  uint64_t stack_cookie;
   
   // 设置安全cookie
   security_cookie = 0xfffffffffffffffe;
-  stack_cookie = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_178;
+  stack_cookie = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_178;
   
   // 检查是否在主线程
-  main_thread_id = *(int *)(*(longlong *)(*(longlong *)(system_context_ptr + 8) + 8) + 0x48);
+  main_thread_id = *(int *)(*(int64_t *)(*(int64_t *)(system_context_ptr + 8) + 8) + 0x48);
   current_thread_id = _Thrd_id();
   if (current_thread_id == main_thread_id) {
     // 主线程直接执行
@@ -1050,7 +1050,7 @@ void render_thread_safe_operation(longlong *render_context,uint64_t operation_pa
   }
   
   // 验证安全cookie
-  FUN_1808fc050(stack_cookie ^ (ulonglong)auStack_178);
+  FUN_1808fc050(stack_cookie ^ (uint64_t)auStack_178);
 }
 
 
@@ -1068,11 +1068,11 @@ void render_thread_safe_operation(longlong *render_context,uint64_t operation_pa
  * @param operation_param 操作参数
  * @param resource_ptr 资源指针
  */
-void render_thread_operation_alt(longlong *render_context,uint64_t operation_param,longlong *resource_ptr)
+void render_thread_operation_alt(int64_t *render_context,uint64_t operation_param,int64_t *resource_ptr)
 
 {
   int main_thread_id;
-  longlong task_data;
+  int64_t task_data;
   int current_thread_id;
   uint64_t task_handle;
   void **task_ptr;
@@ -1087,21 +1087,21 @@ void render_thread_operation_alt(longlong *render_context,uint64_t operation_par
   int8_t auStack_f0 [128];
   int32_t task_priority;
   uint64_t task_param;
-  longlong *task_resource;
+  int64_t *task_resource;
   int32_t task_data_2;
-  ulonglong stack_cookie;
+  uint64_t stack_cookie;
   
   // 设置安全cookie
   security_cookie = 0xfffffffffffffffe;
-  stack_cookie = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_148;
+  stack_cookie = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_148;
   
   // 检查是否在主线程
-  main_thread_id = *(int *)(*(longlong *)(*(longlong *)(system_context_ptr + 8) + 8) + 0x48);
+  main_thread_id = *(int *)(*(int64_t *)(*(int64_t *)(system_context_ptr + 8) + 8) + 0x48);
   current_thread_id = _Thrd_id();
   if (current_thread_id == main_thread_id) {
     // 主线程直接执行操作
     (**(code **)(*render_context + 0x1e8))
-              (render_context,operation_param,resource_ptr[2],*(int32_t *)((longlong)resource_ptr + 0x1c));
+              (render_context,operation_param,resource_ptr[2],*(int32_t *)((int64_t)resource_ptr + 0x1c));
   }
   else {
     // 工作线程创建任务
@@ -1111,7 +1111,7 @@ void render_thread_operation_alt(longlong *render_context,uint64_t operation_par
     stack_data = 0;
     auStack_f0[0] = 0;
     task_priority = 9;
-    task_data_2 = *(int32_t *)((longlong)resource_ptr + 0x1c);
+    task_data_2 = *(int32_t *)((int64_t)resource_ptr + 0x1c);
     task_param = operation_param;
     task_resource = resource_ptr;
     
@@ -1151,7 +1151,7 @@ void render_thread_operation_alt(longlong *render_context,uint64_t operation_par
   }
   
   // 验证安全cookie
-  FUN_1808fc050(stack_cookie ^ (ulonglong)auStack_148);
+  FUN_1808fc050(stack_cookie ^ (uint64_t)auStack_148);
 }
 
 

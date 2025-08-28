@@ -6,23 +6,23 @@
 // 函数: 初始化渲染状态
 // 原始函数名: FUN_1800786e0
 // 功能: 初始化渲染状态，设置各种渲染参数和矩阵
-void initialize_render_state(uint64_t *render_context, longlong config_data)
+void initialize_render_state(uint64_t *render_context, int64_t config_data)
 {
-    longlong temp_value;
+    int64_t temp_value;
     int32_t temp_result;
-    longlong *object_ptr;
+    int64_t *object_ptr;
     uint64_t handle_result;
     float *float_ptr;
     void *data_ptr;
-    longlong offset_value;
-    longlong *array_ptr;
+    int64_t offset_value;
+    int64_t *array_ptr;
     int loop_counter;
     float float_temp1;
     int32_t temp_var1;
     int32_t temp_var2;
     int32_t temp_var3;
     float matrix_data[16];
-    longlong *stack_ptr;
+    int64_t *stack_ptr;
     uint64_t stack_array[2];
     uint64_t stack_var1;
     uint64_t stack_var2;
@@ -33,16 +33,16 @@ void initialize_render_state(uint64_t *render_context, longlong config_data)
     
     // 循环处理7个渲染对象
     do {
-        object_ptr = (longlong *)create_render_object(config_data, loop_counter);
-        if (object_ptr != (longlong *)0x0) {
+        object_ptr = (int64_t *)create_render_object(config_data, loop_counter);
+        if (object_ptr != (int64_t *)0x0) {
             stack_ptr = object_ptr;
             // 调用对象的初始化函数
             (**(code **)(*object_ptr + 0x28))(object_ptr);
         }
         
-        stack_ptr = (longlong *)*array_ptr;
-        *array_ptr = (longlong)object_ptr;
-        if (stack_ptr != (longlong *)0x0) {
+        stack_ptr = (int64_t *)*array_ptr;
+        *array_ptr = (int64_t)object_ptr;
+        if (stack_ptr != (int64_t *)0x0) {
             // 调用前一个对象的清理函数
             (**(code **)(*stack_ptr + 0x38))();
         }
@@ -66,8 +66,8 @@ void initialize_render_state(uint64_t *render_context, longlong config_data)
     temp_value = GLOBAL_RENDER_TABLE;
     loop_counter = find_render_entry(GLOBAL_RENDER_TABLE, handle_result);
     
-    if ((loop_counter == -1) || (offset_value = (longlong)loop_counter * 0x68 + *(longlong *)(temp_value + 0x38), offset_value == 0)) {
-        offset_value = *(longlong *)(temp_value + 0x28);
+    if ((loop_counter == -1) || (offset_value = (int64_t)loop_counter * 0x68 + *(int64_t *)(temp_value + 0x38), offset_value == 0)) {
+        offset_value = *(int64_t *)(temp_value + 0x28);
     }
     
     stack_var2 = &DEFAULT_SHADER;
@@ -81,7 +81,7 @@ void initialize_render_state(uint64_t *render_context, longlong config_data)
     stack_var2 = &TEXTURE_REGISTRY;
     
     if (offset_value == 0) {
-        offset_value = *(longlong *)(GLOBAL_RENDER_TABLE + 0x38);
+        offset_value = *(int64_t *)(GLOBAL_RENDER_TABLE + 0x38);
     }
     
     render_context[0x26] = offset_value;
@@ -91,8 +91,8 @@ void initialize_render_state(uint64_t *render_context, longlong config_data)
     set_render_parameter(render_context, config_data, 0x254, 0x24c, get_shader_param_2);
     
     // 设置颜色参数
-    if ((*(char *)(config_data + 0x2f0) == '\0') && (*(longlong *)(config_data + 0x3c8) != 0)) {
-        get_color_values(*(longlong *)(config_data + 0x3c8), &stack_var2);
+    if ((*(char *)(config_data + 0x2f0) == '\0') && (*(int64_t *)(config_data + 0x3c8) != 0)) {
+        get_color_values(*(int64_t *)(config_data + 0x3c8), &stack_var2);
         temp_result = (int32_t)stack_var2;
         temp_var1 = stack_var2._4_4_;
         temp_var2 = (int32_t)stack_var1;
@@ -106,9 +106,9 @@ void initialize_render_state(uint64_t *render_context, longlong config_data)
     }
     
     *(int32_t *)(render_context + 0x20) = temp_result;
-    *(int32_t *)((longlong)render_context + 0x104) = temp_var1;
+    *(int32_t *)((int64_t)render_context + 0x104) = temp_var1;
     *(int32_t *)(render_context + 0x21) = temp_var2;
-    *(int32_t *)((longlong)render_context + 0x10c) = temp_var3;
+    *(int32_t *)((int64_t)render_context + 0x10c) = temp_var3;
     
     // 设置其他渲染参数
     set_render_parameter(render_context, config_data, 0x2fc, 0x2f4, get_shader_param_3);
@@ -127,33 +127,33 @@ void initialize_render_state(uint64_t *render_context, longlong config_data)
     set_render_parameter(render_context, config_data, 0x29c, 0x294, get_shader_param_9);
     
     // 设置状态标志
-    *(int8_t *)((longlong)render_context + 0x152) = *(int8_t *)(config_data + 0x380);
+    *(int8_t *)((int64_t)render_context + 0x152) = *(int8_t *)(config_data + 0x380);
     *(int8_t *)(render_context + 0x2a) = *(int8_t *)(config_data + 0x381);
     
     // 获取纹理和材质数据
-    if ((*(char *)(config_data + 0x35c) == '\0') && (*(longlong *)(config_data + 0x3c8) != 0)) {
-        get_texture_data(*(longlong *)(config_data + 0x3c8), &stack_ptr);
+    if ((*(char *)(config_data + 0x35c) == '\0') && (*(int64_t *)(config_data + 0x3c8) != 0)) {
+        get_texture_data(*(int64_t *)(config_data + 0x3c8), &stack_ptr);
     }
     else {
-        stack_ptr = *(longlong **)(config_data + 0x34c);
+        stack_ptr = *(int64_t **)(config_data + 0x34c);
     }
     
-    if ((*(char *)(config_data + 0x348) == '\0') && (*(longlong *)(config_data + 0x3c8) != 0)) {
-        get_material_data(*(longlong *)(config_data + 0x3c8), stack_array);
+    if ((*(char *)(config_data + 0x348) == '\0') && (*(int64_t *)(config_data + 0x3c8) != 0)) {
+        get_material_data(*(int64_t *)(config_data + 0x3c8), stack_array);
     }
     else {
         stack_array[0] = *(uint64_t *)(config_data + 0x338);
     }
     
-    if ((*(char *)(config_data + 0x334) == '\0') && (*(longlong *)(config_data + 0x3c8) != 0)) {
-        get_shader_data(*(longlong *)(config_data + 0x3c8), &stack_var1);
+    if ((*(char *)(config_data + 0x334) == '\0') && (*(int64_t *)(config_data + 0x3c8) != 0)) {
+        get_shader_data(*(int64_t *)(config_data + 0x3c8), &stack_var1);
     }
     else {
         stack_var1 = *(uint64_t *)(config_data + 0x324);
     }
     
-    if ((*(char *)(config_data + 800) == '\0') && (*(longlong *)(config_data + 0x3c8) != 0)) {
-        get_render_target(*(longlong *)(config_data + 0x3c8), &stack_var2);
+    if ((*(char *)(config_data + 800) == '\0') && (*(int64_t *)(config_data + 0x3c8) != 0)) {
+        get_render_target(*(int64_t *)(config_data + 0x3c8), &stack_var2);
     }
     else {
         stack_var2 = *(void **)(config_data + 0x300);
@@ -177,7 +177,7 @@ void initialize_render_state(uint64_t *render_context, longlong config_data)
 // 函数: 计算变换矩阵
 // 原始函数名: FUN_180078c10
 // 功能: 计算3D变换矩阵，包括平移、旋转和缩放
-void calculate_transformation_matrix(longlong matrix_data)
+void calculate_transformation_matrix(int64_t matrix_data)
 {
     float *source_matrix;
     float temp_float1;
@@ -261,7 +261,7 @@ void calculate_transformation_matrix(longlong matrix_data)
 // 函数: 写入渲染数据
 // 原始函数名: FUN_180078c70
 // 功能: 将渲染数据写入缓冲区，处理缓冲区溢出
-void write_render_data(int32_t *data_buffer, longlong *buffer_info)
+void write_render_data(int32_t *data_buffer, int64_t *buffer_info)
 {
     int32_t data_value;
     int32_t *buffer_ptr;
@@ -270,8 +270,8 @@ void write_render_data(int32_t *data_buffer, longlong *buffer_info)
     buffer_ptr = (int32_t *)buffer_info[1];
     
     // 检查缓冲区空间
-    if ((ulonglong)((*buffer_info - (longlong)buffer_ptr) + buffer_info[2]) < 5) {
-        expand_buffer(buffer_info, (longlong)buffer_ptr + (4 - *buffer_info));
+    if ((uint64_t)((*buffer_info - (int64_t)buffer_ptr) + buffer_info[2]) < 5) {
+        expand_buffer(buffer_info, (int64_t)buffer_ptr + (4 - *buffer_info));
         buffer_ptr = (int32_t *)buffer_info[1];
     }
     
@@ -288,13 +288,13 @@ void write_render_data(int32_t *data_buffer, longlong *buffer_info)
 // 函数: 更新渲染状态
 // 原始函数名: FUN_1800791a0
 // 功能: 更新渲染状态信息，包括材质和纹理设置
-void update_render_state(longlong render_context)
+void update_render_state(int64_t render_context)
 {
-    longlong material_data;
-    longlong context_data;
+    int64_t material_data;
+    int64_t context_data;
     byte state_flags;
     
-    material_data = *(longlong *)(render_context + 0x210);
+    material_data = *(int64_t *)(render_context + 0x210);
     
     // 复制材质属性
     *(int32_t *)(render_context + 0x1f8) = *(int32_t *)(material_data + 0x10);
@@ -304,14 +304,14 @@ void update_render_state(longlong render_context)
     state_flags = *(byte *)(render_context + 0xfd) & 0x40;
     
     // 检查是否需要更新特殊材质
-    if ((((state_flags != 0) && (material_data != 0)) || (*(longlong *)(render_context + 0x1b0) == 0)) ||
+    if ((((state_flags != 0) && (material_data != 0)) || (*(int64_t *)(render_context + 0x1b0) == 0)) ||
        (context_data = get_current_context(), render_context == context_data)) {
         *(int32_t *)(render_context + 0x204) = *(int32_t *)(material_data + 200);
     }
     
     // 检查是否跳过更新
     if (((state_flags == 0) || (material_data == 0)) &&
-       ((*(longlong *)(render_context + 0x1b0) != 0 && (context_data = get_current_context(), render_context != context_data)))) {
+       ((*(int64_t *)(render_context + 0x1b0) != 0 && (context_data = get_current_context(), render_context != context_data)))) {
         return;
     }
     
@@ -321,11 +321,11 @@ void update_render_state(longlong render_context)
 }
 
 // 辅助函数: 设置渲染参数
-void set_render_parameter(uint64_t *render_context, longlong config_data, int flag_offset, int value_offset, int32_t (*get_param_func)())
+void set_render_parameter(uint64_t *render_context, int64_t config_data, int flag_offset, int value_offset, int32_t (*get_param_func)())
 {
     int32_t result;
     
-    if ((*(char *)(config_data + flag_offset) == '\0') && (*(longlong *)(config_data + 0x3c8) != 0)) {
+    if ((*(char *)(config_data + flag_offset) == '\0') && (*(int64_t *)(config_data + 0x3c8) != 0)) {
         result = get_param_func();
     }
     else {
@@ -336,7 +336,7 @@ void set_render_parameter(uint64_t *render_context, longlong config_data, int fl
 }
 
 // 辅助函数: 复制矩阵数据
-void copy_matrix_data(longlong dest, float *src)
+void copy_matrix_data(int64_t dest, float *src)
 {
     *(uint64_t *)(dest + 0x80) = *(uint64_t *)(src + 0x00);
     *(uint64_t *)(dest + 0x88) = *(uint64_t *)(src + 0x08);
@@ -353,7 +353,7 @@ void copy_matrix_data(longlong dest, float *src)
 }
 
 // 辅助函数: 初始化矩阵
-void initialize_matrix(longlong matrix_data)
+void initialize_matrix(int64_t matrix_data)
 {
     matrix_setup_function();
     *(int32_t *)(matrix_data + 0xbc) = 0x3f800000; // 1.0f
@@ -363,7 +363,7 @@ void initialize_matrix(longlong matrix_data)
 }
 
 // 辅助函数: 计算矩阵元素
-void calculate_matrix_elements(longlong dest, float *src)
+void calculate_matrix_elements(int64_t dest, float *src)
 {
     // 这里包含复杂的矩阵计算逻辑
     // 为了简化，只显示框架
@@ -374,7 +374,7 @@ void calculate_matrix_elements(longlong dest, float *src)
 }
 
 // 辅助函数: 归一化矩阵
-void normalize_matrix(longlong matrix_data, float factor)
+void normalize_matrix(int64_t matrix_data, float factor)
 {
     *(float *)(matrix_data + 0xd0) = *(float *)(matrix_data + 0xd0) * factor;
     *(float *)(matrix_data + 0xe0) = *(float *)(matrix_data + 0xe0) * factor;
@@ -392,7 +392,7 @@ void normalize_matrix(longlong matrix_data, float factor)
 }
 
 // 辅助函数: 写入额外数据
-void write_additional_data(int32_t *data_buffer, longlong *buffer_info)
+void write_additional_data(int32_t *data_buffer, int64_t *buffer_info)
 {
     int32_t *buffer_ptr;
     int32_t data_value;
@@ -402,8 +402,8 @@ void write_additional_data(int32_t *data_buffer, longlong *buffer_info)
         buffer_ptr = (int32_t *)buffer_info[1];
         data_value = data_buffer[i];
         
-        if ((ulonglong)((*buffer_info - (longlong)buffer_ptr) + buffer_info[2]) < 5) {
-            expand_buffer(buffer_info, (longlong)buffer_ptr + (4 - *buffer_info));
+        if ((uint64_t)((*buffer_info - (int64_t)buffer_ptr) + buffer_info[2]) < 5) {
+            expand_buffer(buffer_info, (int64_t)buffer_ptr + (4 - *buffer_info));
             buffer_ptr = (int32_t *)buffer_info[1];
         }
         
@@ -413,8 +413,8 @@ void write_additional_data(int32_t *data_buffer, longlong *buffer_info)
         // 每4个元素后写入1.0f
         if (i % 4 == 3) {
             buffer_ptr = (int32_t *)buffer_info[1];
-            if ((ulonglong)((*buffer_info - (longlong)buffer_ptr) + buffer_info[2]) < 5) {
-                expand_buffer(buffer_info, (longlong)buffer_ptr + (4 - *buffer_info));
+            if ((uint64_t)((*buffer_info - (int64_t)buffer_ptr) + buffer_info[2]) < 5) {
+                expand_buffer(buffer_info, (int64_t)buffer_ptr + (4 - *buffer_info));
                 buffer_ptr = (int32_t *)buffer_info[1];
             }
             *buffer_ptr = 0x3f800000; // 1.0f
@@ -439,16 +439,16 @@ void setup_transformation_matrices(uint64_t *render_context)
     
     // 设置矩阵参数
     *(int32_t *)(render_context + 0x14) = *(int32_t *)(render_context + 0xc);
-    *(int32_t *)((longlong)render_context + 0xa4) = *(int32_t *)((longlong)render_context + 100);
+    *(int32_t *)((int64_t)render_context + 0xa4) = *(int32_t *)((int64_t)render_context + 100);
     *(int32_t *)(render_context + 0x15) = *(int32_t *)(render_context + 0xd);
-    *(int32_t *)((longlong)render_context + 0xac) = *(int32_t *)((longlong)render_context + 0x6c);
+    *(int32_t *)((int64_t)render_context + 0xac) = *(int32_t *)((int64_t)render_context + 0x6c);
     
     // 初始化矩阵计算
     matrix_setup_function();
-    *(int32_t *)((longlong)render_context + 0x8c) = 0;
-    *(int32_t *)((longlong)render_context + 0x9c) = 0;
-    *(int32_t *)((longlong)render_context + 0xac) = 0;
-    *(int32_t *)((longlong)render_context + 0xbc) = 0x3f800000;
+    *(int32_t *)((int64_t)render_context + 0x8c) = 0;
+    *(int32_t *)((int64_t)render_context + 0x9c) = 0;
+    *(int32_t *)((int64_t)render_context + 0xac) = 0;
+    *(int32_t *)((int64_t)render_context + 0xbc) = 0x3f800000;
     
     // 计算最终的变换矩阵
     calculate_final_matrix(render_context, matrix_ptr);
@@ -503,19 +503,19 @@ void apply_normalization(uint64_t *render_context, float *matrix, float factor)
 // 为了代码完整性，这里提供了简化的占位符实现
 
 // 简化实现：创建渲染对象
-longlong *create_render_object(longlong config_data, int index) {
+int64_t *create_render_object(int64_t config_data, int index) {
     // 简化实现：原始实现应该包含复杂的对象创建逻辑
-    return (longlong *)0x0;
+    return (int64_t *)0x0;
 }
 
 // 简化实现：获取渲染配置
-uint64_t get_render_config(longlong config_data, uint64_t *output) {
+uint64_t get_render_config(int64_t config_data, uint64_t *output) {
     // 简化实现：原始实现应该包含复杂的配置获取逻辑
     return 0;
 }
 
 // 简化实现：查找渲染条目
-int find_render_entry(longlong table, uint64_t key) {
+int find_render_entry(int64_t table, uint64_t key) {
     // 简化实现：原始实现应该包含复杂的查找逻辑
     return -1;
 }
@@ -541,32 +541,32 @@ int32_t get_shader_param_12() { return 0; }
 int32_t get_shader_param_13() { return 0; }
 
 // 简化实现：获取颜色值
-void get_color_values(longlong context, uint64_t *output) {
+void get_color_values(int64_t context, uint64_t *output) {
     // 简化实现：原始实现应该包含复杂的颜色计算逻辑
 }
 
 // 简化实现：获取纹理数据
-void get_texture_data(longlong context, longlong **output) {
+void get_texture_data(int64_t context, int64_t **output) {
     // 简化实现：原始实现应该包含复杂的纹理数据获取逻辑
 }
 
 // 简化实现：获取材质数据
-void get_material_data(longlong context, uint64_t *output) {
+void get_material_data(int64_t context, uint64_t *output) {
     // 简化实现：原始实现应该包含复杂的材质数据获取逻辑
 }
 
 // 简化实现：获取着色器数据
-void get_shader_data(longlong context, uint64_t *output) {
+void get_shader_data(int64_t context, uint64_t *output) {
     // 简化实现：原始实现应该包含复杂的着色器数据获取逻辑
 }
 
 // 简化实现：获取渲染目标
-void get_render_target(longlong context, uint64_t *output) {
+void get_render_target(int64_t context, uint64_t *output) {
     // 简化实现：原始实现应该包含复杂的渲染目标获取逻辑
 }
 
 // 简化实现：设置渲染管线
-void setup_render_pipeline(uint64_t *context, uint64_t *target, uint64_t *shader, uint64_t *material, longlong **texture) {
+void setup_render_pipeline(uint64_t *context, uint64_t *target, uint64_t *shader, uint64_t *material, int64_t **texture) {
     // 简化实现：原始实现应该包含复杂的渲染管线设置逻辑
 }
 
@@ -581,12 +581,12 @@ void matrix_setup_function() {
 }
 
 // 简化实现：扩展缓冲区
-void expand_buffer(longlong *buffer_info, longlong new_size) {
+void expand_buffer(int64_t *buffer_info, int64_t new_size) {
     // 简化实现：原始实现应该包含复杂的缓冲区扩展逻辑
 }
 
 // 简化实现：获取当前上下文
-longlong get_current_context() {
+int64_t get_current_context() {
     // 简化实现：原始实现应该包含复杂的上下文获取逻辑
     return 0;
 }

@@ -269,21 +269,21 @@ typedef void (*SystemInitializationFunction)(void);                     /**< 系
 typedef void (*SystemCleanupFunction)(void);                            /**< 系统清理函数 */
 
 /** 数据序列化函数别名 */
-typedef uint64_t* (*DataSerializationProcessor)(uint64_t*, longlong*);  /**< 数据序列化处理器 */
-typedef ulonglong (*DataSerializationProcessorEx)(void);                 /**< 数据序列化处理器扩展 */
+typedef uint64_t* (*DataSerializationProcessor)(uint64_t*, int64_t*);  /**< 数据序列化处理器 */
+typedef uint64_t (*DataSerializationProcessorEx)(void);                 /**< 数据序列化处理器扩展 */
 
 /** 数据验证函数别名 */
 typedef uint64_t (*DataValidationFunction)(void);                      /**< 数据验证函数 */
-typedef uint64_t (*DataValidationFunctionEx)(uint64_t*, longlong*);  /**< 数据验证函数扩展 */
+typedef uint64_t (*DataValidationFunctionEx)(uint64_t*, int64_t*);  /**< 数据验证函数扩展 */
 
 /** 数据处理函数别名 */
 typedef uint64_t (*DataProcessingFunction)(void);                      /**< 数据处理函数 */
-typedef uint64_t (*DataProcessingFunctionEx)(uint64_t*, longlong*);  /**< 数据处理函数扩展 */
-typedef uint64_t (*DataProcessingFunctionAdvanced)(longlong*, ulonglong*, uint);  /**< 数据处理函数高级 */
+typedef uint64_t (*DataProcessingFunctionEx)(uint64_t*, int64_t*);  /**< 数据处理函数扩展 */
+typedef uint64_t (*DataProcessingFunctionAdvanced)(int64_t*, uint64_t*, uint);  /**< 数据处理函数高级 */
 
 /** 系统控制函数别名 */
 typedef uint64_t (*SystemControlFunction)(void);                        /**< 系统控制函数 */
-typedef uint64_t (*SystemControlFunctionEx)(uint64_t*, longlong*);    /**< 系统控制函数扩展 */
+typedef uint64_t (*SystemControlFunctionEx)(uint64_t*, int64_t*);    /**< 系统控制函数扩展 */
 
 /* ================================================ */
 /* 核心函数实现 */
@@ -319,14 +319,14 @@ void SystemInitializationFunction_001(void)
  * - 处理序列化过程中的错误
  * - 返回处理结果
  */
-uint64_t* DataSerializationProcessor_001(uint64_t *param_1, longlong *param_2)
+uint64_t* DataSerializationProcessor_001(uint64_t *param_1, int64_t *param_2)
 {
     int iVar1;
-    longlong lVar2;
+    int64_t lVar2;
     uint64_t uVar3;
     uint64_t *puVar4;
     uint64_t *puVar5;
-    longlong lVar6;
+    int64_t lVar6;
     uint64_t *puVar7;
     uint uVar8;
     uint uVar9;
@@ -342,10 +342,10 @@ uint64_t* DataSerializationProcessor_001(uint64_t *param_1, longlong *param_2)
     if ((int)puVar4 != 0) {
         return puVar4;
     }
-    uVar8 = (int)*(uint *)((longlong)param_2 + 0xc) >> 0x1f;
+    uVar8 = (int)*(uint *)((int64_t)param_2 + 0xc) >> 0x1f;
     uVar9 = auStackX_20[0] >> 1;
     uVar11 = auStackX_20[0] & 1;
-    if ((int)((*(uint *)((longlong)param_2 + 0xc) ^ uVar8) - uVar8) < (int)uVar9) {
+    if ((int)((*(uint *)((int64_t)param_2 + 0xc) ^ uVar8) - uVar8) < (int)uVar9) {
         if ((int)uVar9 < (int)param_2[1]) {
             puVar4 = (uint64_t *)0x1c;
             goto LAB_1808a53f9;
@@ -360,28 +360,28 @@ uint64_t* DataSerializationProcessor_001(uint64_t *param_1, longlong *param_2)
                 goto LAB_1808a53f9;
             }
             iVar1 = (int)param_2[1];
-            lVar6 = (longlong)iVar1;
+            lVar6 = (int64_t)iVar1;
             if ((iVar1 != 0) && (lVar2 = *param_2, 0 < iVar1)) {
                 puVar7 = puVar4;
                 do {
-                    *puVar7 = *(uint64_t *)((lVar2 - (longlong)puVar4) + (longlong)puVar7);
+                    *puVar7 = *(uint64_t *)((lVar2 - (int64_t)puVar4) + (int64_t)puVar7);
                     puVar7 = puVar7 + 1;
                     lVar6 = lVar6 + -1;
                 } while (lVar6 != 0);
             }
         }
-        if ((0 < *(int *)((longlong)param_2 + 0xc)) && (*param_2 != 0)) {
+        if ((0 < *(int *)((int64_t)param_2 + 0xc)) && (*param_2 != 0)) {
             // WARNING: Subroutine does not return
             FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), *param_2, &unknown_var_8432_ptr, 0x100, 1);
         }
-        *param_2 = (longlong)puVar4;
-        *(uint *)((longlong)param_2 + 0xc) = uVar9;
+        *param_2 = (int64_t)puVar4;
+        *(uint *)((int64_t)param_2 + 0xc) = uVar9;
     }
     iVar1 = (int)param_2[1];
     if (iVar1 < (int)uVar9) {
         if (0 < (int)(uVar9 - iVar1)) {
             // WARNING: Subroutine does not return
-            memset(*param_2 + (longlong)iVar1 * 8, 0, (ulonglong)(uVar9 - iVar1) << 3);
+            memset(*param_2 + (int64_t)iVar1 * 8, 0, (uint64_t)(uVar9 - iVar1) << 3);
         }
     }
     *(uint *)(param_2 + 1) = uVar9;
@@ -398,7 +398,7 @@ LAB_1808a53f9:
                 }
                 if (*(int *)(param_1[1] + 0x18) == 0) {
                     uVar3 = *param_1;
-                    lVar6 = *param_2 + (longlong)(int)puVar4 * 8;
+                    lVar6 = *param_2 + (int64_t)(int)puVar4 * 8;
                     puVar5 = (uint64_t *)FUN_1808aed00(uVar3, lVar6, 4);
                     if ((int)puVar5 != 0) {
                         return puVar5;
@@ -416,9 +416,9 @@ LAB_1808a53f9:
                     return puVar5;
                 }
                 uVar10 = (int)puVar4 + 1;
-                puVar4 = (uint64_t *)(ulonglong)uVar10;
+                puVar4 = (uint64_t *)(uint64_t)uVar10;
                 auStackX_8[0] = auStackX_8[0] & -uVar11;
-                puVar5 = (uint64_t *)(ulonglong)auStackX_8[0];
+                puVar5 = (uint64_t *)(uint64_t)auStackX_8[0];
             } while ((int)uVar10 < (int)uVar9);
         }
         puVar4 = (uint64_t *)0x0;
@@ -438,28 +438,28 @@ LAB_1808a53f9:
  * - 处理序列化过程中的特殊情况
  * - 返回处理结果
  */
-ulonglong DataSerializationProcessor_002(void)
+uint64_t DataSerializationProcessor_002(void)
 {
     int iVar1;
-    longlong lVar2;
+    int64_t lVar2;
     uint64_t uVar3;
     uint in_EAX;
     uint64_t *puVar4;
-    ulonglong uVar5;
-    ulonglong uVar6;
-    longlong lVar7;
+    uint64_t uVar5;
+    uint64_t uVar6;
+    int64_t lVar7;
     uint64_t *puVar8;
     uint64_t *unaff_RBX;
     uint uVar9;
     uint64_t *unaff_RSI;
     uint uVar10;
-    longlong *unaff_R14;
+    int64_t *unaff_R14;
     uint in_stack_00000088;
     
     uVar9 = in_stack_00000088 >> 1;
     if ((int)((in_EAX ^ (int)in_EAX >> 0x1f) - ((int)in_EAX >> 0x1f)) < (int)uVar9) {
         if ((int)uVar9 < (int)unaff_R14[1]) {
-            uVar6 = (ulonglong)((int)unaff_RBX + 0x1c);
+            uVar6 = (uint64_t)((int)unaff_RBX + 0x1c);
             goto LAB_1808a53f9;
         }
         puVar4 = unaff_RBX;
@@ -472,35 +472,35 @@ ulonglong DataSerializationProcessor_002(void)
                 goto LAB_1808a53f9;
             }
             iVar1 = (int)unaff_R14[1];
-            lVar7 = (longlong)iVar1;
+            lVar7 = (int64_t)iVar1;
             if ((iVar1 != 0) && (lVar2 = *unaff_R14, 0 < iVar1)) {
                 puVar8 = puVar4;
                 do {
-                    *puVar8 = *(uint64_t *)((lVar2 - (longlong)puVar4) + (longlong)puVar8);
+                    *puVar8 = *(uint64_t *)((lVar2 - (int64_t)puVar4) + (int64_t)puVar8);
                     puVar8 = puVar8 + 1;
                     lVar7 = lVar7 + -1;
                 } while (lVar7 != 0);
             }
         }
-        if (((int)unaff_RBX < *(int *)((longlong)unaff_R14 + 0xc)) && (*unaff_R14 != 0)) {
+        if (((int)unaff_RBX < *(int *)((int64_t)unaff_R14 + 0xc)) && (*unaff_R14 != 0)) {
             // WARNING: Subroutine does not return
             FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), *unaff_R14, &unknown_var_8432_ptr, 0x100, 1);
         }
-        *unaff_R14 = (longlong)puVar4;
-        *(uint *)((longlong)unaff_R14 + 0xc) = uVar9;
+        *unaff_R14 = (int64_t)puVar4;
+        *(uint *)((int64_t)unaff_R14 + 0xc) = uVar9;
     }
     iVar1 = (int)unaff_R14[1];
     if (iVar1 < (int)uVar9) {
         if (0 < (int)(uVar9 - iVar1)) {
             // WARNING: Subroutine does not return
-            memset(*unaff_R14 + (longlong)iVar1 * 8, 0, (ulonglong)(uVar9 - iVar1) << 3);
+            memset(*unaff_R14 + (int64_t)iVar1 * 8, 0, (uint64_t)(uVar9 - iVar1) << 3);
         }
     }
     *(uint *)(unaff_R14 + 1) = uVar9;
-    uVar6 = (ulonglong)unaff_RBX & 0xffffffff;
+    uVar6 = (uint64_t)unaff_RBX & 0xffffffff;
 LAB_1808a53f9:
     if ((int)uVar6 == 0) {
-        uVar6 = (ulonglong)unaff_RBX & 0xffffffff;
+        uVar6 = (uint64_t)unaff_RBX & 0xffffffff;
         if (in_stack_00000088 >> 1 != 0) {
             do {
                 uVar5 = FUN_1808dde10();
@@ -509,7 +509,7 @@ LAB_1808a53f9:
                 }
                 if (*(int *)(unaff_RSI[1] + 0x18) == 0) {
                     uVar3 = *unaff_RSI;
-                    lVar7 = *unaff_R14 + (longlong)(int)uVar6 * 8;
+                    lVar7 = *unaff_R14 + (int64_t)(int)uVar6 * 8;
                     uVar5 = FUN_1808aed00(uVar3, lVar7, 4);
                     if ((int)uVar5 != 0) {
                         return uVar5;
@@ -527,7 +527,7 @@ LAB_1808a53f9:
                     return uVar5;
                 }
                 uVar10 = (int)uVar6 + 1;
-                uVar6 = (ulonglong)uVar10;
+                uVar6 = (uint64_t)uVar10;
             } while ((int)uVar10 < (int)uVar9);
         }
         uVar6 = 0;
@@ -549,14 +549,14 @@ LAB_1808a53f9:
  */
 uint64_t DataValidationFunction_001(void)
 {
-    longlong lVar1;
+    int64_t lVar1;
     uint64_t uVar2;
     uint64_t uVar3;
     uint unaff_EBX;
     int unaff_EBP;
     uint64_t *unaff_RSI;
     uint unaff_R12D;
-    longlong *unaff_R14;
+    int64_t *unaff_R14;
     uint uStack0000000000000070;
     
     uStack0000000000000070 = unaff_EBX;
@@ -568,7 +568,7 @@ uint64_t DataValidationFunction_001(void)
             }
             if (*(int *)(unaff_RSI[1] + 0x18) == 0) {
                 uVar2 = *unaff_RSI;
-                lVar1 = *unaff_R14 + (longlong)(int)unaff_EBX * 8;
+                lVar1 = *unaff_R14 + (int64_t)(int)unaff_EBX * 8;
                 uVar3 = FUN_1808aed00(uVar2, lVar1, 4);
                 if ((int)uVar3 != 0) {
                     return uVar3;
@@ -623,17 +623,17 @@ uint64_t ErrorHandler_001(void)
  */
 uint64_t DataValidationFunction_002(void)
 {
-    longlong lVar1;
+    int64_t lVar1;
     uint64_t uVar2;
     uint64_t uVar3;
     int unaff_EBP;
     uint64_t *unaff_RSI;
     int unaff_EDI;
-    longlong *unaff_R14;
+    int64_t *unaff_R14;
     
     do {
         uVar3 = *unaff_RSI;
-        lVar1 = *unaff_R14 + (longlong)unaff_EDI * 8;
+        lVar1 = *unaff_R14 + (int64_t)unaff_EDI * 8;
         uVar2 = FUN_1808aed00(uVar3, lVar1, 4);
         if ((int)uVar2 != 0) {
             return uVar2;
@@ -687,9 +687,9 @@ void SystemIdleHandler_001(void)
  * @param param_2 数据参数指针
  * @return 处理结果状态码
  */
-uint64_t DataProcessingFunction_001(uint64_t *param_1, longlong *param_2)
+uint64_t DataProcessingFunction_001(uint64_t *param_1, int64_t *param_2)
 {
-    longlong lVar1;
+    int64_t lVar1;
     uint uVar2;
     uint64_t uVar3;
     uint64_t uVar4;
@@ -717,7 +717,7 @@ uint64_t DataProcessingFunction_001(uint64_t *param_1, longlong *param_2)
                     }
                     if (*(int *)(param_1[1] + 0x18) == 0) {
                         uVar3 = *param_1;
-                        lVar1 = *param_2 + (longlong)iVar6 * 0x18;
+                        lVar1 = *param_2 + (int64_t)iVar6 * 0x18;
                         uVar4 = FUN_1808aed00(uVar3, lVar1, 4);
                         if ((int)uVar4 != 0) {
                             return uVar4;
@@ -768,11 +768,11 @@ uint64_t DataProcessingFunction_001(uint64_t *param_1, longlong *param_2)
  */
 uint64_t DataProcessingFunction_002(void)
 {
-    longlong lVar1;
+    int64_t lVar1;
     uint64_t uVar2;
     uint64_t uVar3;
     int unaff_EBX;
-    longlong *unaff_R12;
+    int64_t *unaff_R12;
     uint64_t *unaff_R14;
     uint in_stack_00000068;
     
@@ -786,7 +786,7 @@ uint64_t DataProcessingFunction_002(void)
                 }
                 if (*(int *)(unaff_R14[1] + 0x18) == 0) {
                     uVar2 = *unaff_R14;
-                    lVar1 = *unaff_R12 + (longlong)unaff_EBX * 0x18;
+                    lVar1 = *unaff_R12 + (int64_t)unaff_EBX * 0x18;
                     uVar3 = FUN_1808aed00(uVar2, lVar1, 4);
                     if ((int)uVar3 != 0) {
                         return uVar3;
@@ -835,12 +835,12 @@ uint64_t DataProcessingFunction_002(void)
  */
 uint64_t DataProcessingFunction_003(void)
 {
-    longlong lVar1;
+    int64_t lVar1;
     uint64_t uVar2;
     uint64_t uVar3;
     uint unaff_EBX;
     int unaff_EBP;
-    longlong *unaff_R12;
+    int64_t *unaff_R12;
     uint64_t *unaff_R14;
     int unaff_R15D;
     uint uStack0000000000000050;
@@ -854,7 +854,7 @@ uint64_t DataProcessingFunction_003(void)
             }
             if (*(int *)(unaff_R14[1] + 0x18) == 0) {
                 uVar2 = *unaff_R14;
-                lVar1 = *unaff_R12 + (longlong)(int)unaff_EBX * 0x18;
+                lVar1 = *unaff_R12 + (int64_t)(int)unaff_EBX * 0x18;
                 uVar3 = FUN_1808aed00(uVar2, lVar1, 4);
                 if ((int)uVar3 != 0) {
                     return uVar3;
@@ -920,9 +920,9 @@ void SystemStateChecker_001(void)
  * @param param_2 状态参数指针
  * @return 控制结果状态码
  */
-uint64_t SystemControlFunction_001(uint64_t *param_1, longlong *param_2)
+uint64_t SystemControlFunction_001(uint64_t *param_1, int64_t *param_2)
 {
-    longlong lVar1;
+    int64_t lVar1;
     uint uVar2;
     uint64_t uVar3;
     uint64_t uVar4;
@@ -937,16 +937,16 @@ uint64_t SystemControlFunction_001(uint64_t *param_1, longlong *param_2)
     uVar3 = FUN_1808afe30(*param_1, auStackX_20);
     uVar2 = auStackX_20[0];
     if ((int)uVar3 == 0) {
-        uVar5 = (int)*(uint *)((longlong)param_2 + 0xc) >> 0x1f;
+        uVar5 = (int)*(uint *)((int64_t)param_2 + 0xc) >> 0x1f;
         uVar8 = auStackX_20[0] & 1;
         uVar6 = auStackX_20[0] >> 1;
-        if (((int)uVar6 <= (int)((*(uint *)((longlong)param_2 + 0xc) ^ uVar5) - uVar5)) ||
+        if (((int)uVar6 <= (int)((*(uint *)((int64_t)param_2 + 0xc) ^ uVar5) - uVar5)) ||
            (uVar3 = FUN_180882f00(param_2, uVar6), (int)uVar3 == 0)) {
             iVar7 = (int)param_2[1];
             if (iVar7 < (int)uVar6) {
                 if (0 < (int)(uVar6 - iVar7)) {
                     // WARNING: Subroutine does not return
-                    memset(*param_2 + (longlong)iVar7 * 8, 0, (ulonglong)(uVar6 - iVar7) << 3);
+                    memset(*param_2 + (int64_t)iVar7 * 8, 0, (uint64_t)(uVar6 - iVar7) << 3);
                 }
             }
             *(uint *)(param_2 + 1) = uVar6;
@@ -960,7 +960,7 @@ uint64_t SystemControlFunction_001(uint64_t *param_1, longlong *param_2)
                     }
                     if (*(int *)(param_1[1] + 0x18) == 0) {
                         uVar3 = *param_1;
-                        lVar1 = *param_2 + (longlong)iVar7 * 8;
+                        lVar1 = *param_2 + (int64_t)iVar7 * 8;
                         uVar4 = FUN_1808aed00(uVar3, lVar1, 4);
                         if ((int)uVar4 != 0) {
                             return uVar4;
@@ -993,17 +993,17 @@ uint64_t SystemControlFunction_001(uint64_t *param_1, longlong *param_2)
  * 
  * @return 控制结果状态码
  */
-ulonglong SystemControlFunction_002(void)
+uint64_t SystemControlFunction_002(void)
 {
-    longlong lVar1;
+    int64_t lVar1;
     uint64_t uVar2;
     uint in_EAX;
-    ulonglong uVar3;
+    uint64_t uVar3;
     uint unaff_EBX;
     uint uVar4;
     uint64_t *unaff_RSI;
     int iVar5;
-    longlong *unaff_R12;
+    int64_t *unaff_R12;
     uint in_stack_00000068;
     
     uVar4 = in_stack_00000068 >> 1;
@@ -1013,11 +1013,11 @@ ulonglong SystemControlFunction_002(void)
         if (iVar5 < (int)uVar4) {
             if (0 < (int)(uVar4 - iVar5)) {
                 // WARNING: Subroutine does not return
-                memset(*unaff_R12 + (longlong)iVar5 * 8, 0, (ulonglong)(uVar4 - iVar5) << 3);
+                memset(*unaff_R12 + (int64_t)iVar5 * 8, 0, (uint64_t)(uVar4 - iVar5) << 3);
             }
         }
         *(uint *)(unaff_R12 + 1) = uVar4;
-        uVar3 = (ulonglong)unaff_EBX;
+        uVar3 = (uint64_t)unaff_EBX;
         if (unaff_EBX == 0) {
             iVar5 = 0;
             if (in_stack_00000068 >> 1 != 0) {
@@ -1028,7 +1028,7 @@ ulonglong SystemControlFunction_002(void)
                     }
                     if (*(int *)(unaff_RSI[1] + 0x18) == 0) {
                         uVar2 = *unaff_RSI;
-                        lVar1 = *unaff_R12 + (longlong)iVar5 * 8;
+                        lVar1 = *unaff_R12 + (int64_t)iVar5 * 8;
                         uVar3 = FUN_1808aed00(uVar2, lVar1, 4);
                         if ((int)uVar3 != 0) {
                             return uVar3;
@@ -1062,13 +1062,13 @@ ulonglong SystemControlFunction_002(void)
  */
 uint64_t SystemControlFunction_003(void)
 {
-    longlong lVar1;
+    int64_t lVar1;
     uint64_t uVar2;
     uint64_t uVar3;
     uint unaff_EBX;
     int unaff_EBP;
     uint64_t *unaff_RSI;
-    longlong *unaff_R12;
+    int64_t *unaff_R12;
     int unaff_R15D;
     uint uStack0000000000000050;
     
@@ -1081,7 +1081,7 @@ uint64_t SystemControlFunction_003(void)
             }
             if (*(int *)(unaff_RSI[1] + 0x18) == 0) {
                 uVar2 = *unaff_RSI;
-                lVar1 = *unaff_R12 + (longlong)(int)unaff_EBX * 8;
+                lVar1 = *unaff_R12 + (int64_t)(int)unaff_EBX * 8;
                 uVar3 = FUN_1808aed00(uVar2, lVar1, 4);
                 if ((int)uVar3 != 0) {
                     return uVar3;
@@ -1131,12 +1131,12 @@ void SystemResourceReleaser_001(void)
  * @param param_2 数据参数指针
  * @return 处理结果状态码
  */
-uint64_t AdvancedDataProcessingFunction_001(uint64_t *param_1, longlong *param_2)
+uint64_t AdvancedDataProcessingFunction_001(uint64_t *param_1, int64_t *param_2)
 {
     uint uVar1;
     uint64_t uVar2;
     uint64_t uVar3;
-    longlong lVar4;
+    int64_t lVar4;
     uint uVar5;
     int iVar6;
     uint uVar7;
@@ -1161,7 +1161,7 @@ uint64_t AdvancedDataProcessingFunction_001(uint64_t *param_1, longlong *param_2
                     }
                     if (*(int *)(param_1[1] + 0x18) == 0) {
                         uVar2 = *param_1;
-                        lVar4 = (longlong)iVar6 * 0x1c + *param_2;
+                        lVar4 = (int64_t)iVar6 * 0x1c + *param_2;
                         uVar3 = FUN_1808aed00(uVar2, lVar4, 4);
                         if ((int)uVar3 != 0) {
                             return uVar3;
@@ -1219,8 +1219,8 @@ uint64_t AdvancedDataProcessingFunction_002(void)
     uint64_t uVar1;
     uint64_t uVar2;
     int unaff_EBX;
-    longlong lVar3;
-    longlong *unaff_R12;
+    int64_t lVar3;
+    int64_t *unaff_R12;
     uint64_t *unaff_R14;
     uint in_stack_00000068;
     
@@ -1234,7 +1234,7 @@ uint64_t AdvancedDataProcessingFunction_002(void)
                 }
                 if (*(int *)(unaff_R14[1] + 0x18) == 0) {
                     uVar1 = *unaff_R14;
-                    lVar3 = (longlong)unaff_EBX * 0x1c + *unaff_R12;
+                    lVar3 = (int64_t)unaff_EBX * 0x1c + *unaff_R12;
                     uVar2 = FUN_1808aed00(uVar1, lVar3, 4);
                     if ((int)uVar2 != 0) {
                         return uVar2;
@@ -1290,9 +1290,9 @@ uint64_t AdvancedDataProcessingFunction_003(void)
     uint64_t uVar1;
     uint64_t uVar2;
     uint unaff_EBX;
-    longlong lVar3;
+    int64_t lVar3;
     int unaff_EBP;
-    longlong *unaff_R12;
+    int64_t *unaff_R12;
     uint64_t *unaff_R14;
     int unaff_R15D;
     uint uStack0000000000000050;
@@ -1306,7 +1306,7 @@ uint64_t AdvancedDataProcessingFunction_003(void)
             }
             if (*(int *)(unaff_R14[1] + 0x18) == 0) {
                 uVar1 = *unaff_R14;
-                lVar3 = (longlong)(int)unaff_EBX * 0x1c + *unaff_R12;
+                lVar3 = (int64_t)(int)unaff_EBX * 0x1c + *unaff_R12;
                 uVar2 = FUN_1808aed00(uVar1, lVar3, 4);
                 if ((int)uVar2 != 0) {
                     return uVar2;
@@ -1377,11 +1377,11 @@ void SystemFinalizer_001(void)
  * @param param_3 序列化标志
  * @return 序列化结果状态码
  */
-uint64_t AdvancedDataSerializationFunction_001(longlong *param_1, ulonglong *param_2, uint param_3)
+uint64_t AdvancedDataSerializationFunction_001(int64_t *param_1, uint64_t *param_2, uint param_3)
 {
-    longlong lVar1;
+    int64_t lVar1;
     uint *puVar2;
-    ulonglong uVar3;
+    uint64_t uVar3;
     uint64_t uVar4;
     uint uVar5;
     uint auStackX_8[2];
@@ -1404,7 +1404,7 @@ uint64_t AdvancedDataSerializationFunction_001(longlong *param_1, ulonglong *par
     if ((int)uVar4 == 0) {
         auStackX_8[0] = 0;
         for (uVar3 = *param_2;
-            (*param_2 <= uVar3 && (uVar3 < (longlong)(int)param_2[1] * 0x1c + *param_2));
+            (*param_2 <= uVar3 && (uVar3 < (int64_t)(int)param_2[1] * 0x1c + *param_2));
             uVar3 = uVar3 + 0x1c) {
             uVar4 = FUN_1808ddf00(param_1);
             if ((int)uVar4 != 0) {
@@ -1452,12 +1452,12 @@ uint64_t AdvancedDataSerializationFunction_001(longlong *param_1, ulonglong *par
  */
 uint64_t AdvancedDataSerializationFunction_002(void)
 {
-    longlong lVar1;
+    int64_t lVar1;
     uint64_t uVar2;
-    ulonglong uVar3;
-    longlong *unaff_RSI;
+    uint64_t uVar3;
+    int64_t *unaff_RSI;
     uint64_t in_R9;
-    ulonglong *unaff_R14;
+    uint64_t *unaff_R14;
     int unaff_R15D;
     int32_t extraout_XMM0_Da;
     uint uStack0000000000000060;
@@ -1467,7 +1467,7 @@ uint64_t AdvancedDataSerializationFunction_002(void)
     uStack0000000000000060 = 0;
     uVar3 = *unaff_R14;
     while( true ) {
-        if ((uVar3 < *unaff_R14) || ((longlong)(int)unaff_R14[1] * 0x1c + *unaff_R14 <= uVar3)) {
+        if ((uVar3 < *unaff_R14) || ((int64_t)(int)unaff_R14[1] * 0x1c + *unaff_R14 <= uVar3)) {
             return 0;
         }
         uVar2 = FUN_1808ddf00();

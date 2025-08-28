@@ -3,15 +3,15 @@
 
 // 02_core_engine_part175_sub002_sub002.c - 1 个函数
 
-// 函数: void FUN_18015c450(longlong param_1)
-void FUN_18015c450(longlong param_1)
+// 函数: void FUN_18015c450(int64_t param_1)
+void FUN_18015c450(int64_t param_1)
 
 {
-  longlong lVar1;
+  int64_t lVar1;
   int8_t auStack_e18 [32];
-  longlong lStack_df8;
+  int64_t lStack_df8;
   int8_t uStack_de8;
-  longlong lStack_de0;
+  int64_t lStack_de0;
   uint64_t uStack_dd8;
   int8_t auStack_dd0 [56];
   int8_t auStack_d98 [56];
@@ -80,10 +80,10 @@ void FUN_18015c450(longlong param_1)
   uint64_t uStack_30;
   int32_t uStack_28;
   int32_t uStack_24;
-  ulonglong uStack_18;
+  uint64_t uStack_18;
   
   uStack_dd8 = 0xfffffffffffffffe;
-  uStack_18 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_e18;
+  uStack_18 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_e18;
   lStack_de0 = param_1;
   uStack_30 = param_1;
   func_0x000180160d00();
@@ -603,7 +603,7 @@ void FUN_18015c450(longlong param_1)
   func_0x00018015c3f0(auStack_dd0,&uStack_40,&uStack_30,1);
   FUN_1801601c0(param_1,0x2b,auStack_dd0);
   uStack_40 = CONCAT44(uStack_40._4_4_,0x2f);
-  uStack_30 = (ulonglong)uStack_30._4_4_ << 0x20;
+  uStack_30 = (uint64_t)uStack_30._4_4_ << 0x20;
   lStack_df8._0_1_ = 0;
   func_0x00018015c3f0(auStack_dd0,&uStack_40,&uStack_30,1);
   FUN_1801601c0(param_1,0x2c,auStack_dd0);
@@ -1131,12 +1131,12 @@ void FUN_18015c450(longlong param_1)
   func_0x00018015c3f0(auStack_d98,&uStack_40,&uStack_30,1);
   FUN_1801601c0(param_1,0xb8,auStack_d98);
   uStack_40 = CONCAT44(uStack_40._4_4_,0x4d);
-  uStack_30 = (ulonglong)uStack_30._4_4_ << 0x20;
-  lStack_df8 = (ulonglong)lStack_df8._1_7_ << 8;
+  uStack_30 = (uint64_t)uStack_30._4_4_ << 0x20;
+  lStack_df8 = (uint64_t)lStack_df8._1_7_ << 8;
   func_0x00018015c3f0(auStack_d60,&uStack_40,&uStack_30,1);
   FUN_1801601c0(param_1,0xba,auStack_d60);
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_18 ^ (ulonglong)auStack_e18);
+  FUN_1808fc050(uStack_18 ^ (uint64_t)auStack_e18);
 }
 
 

@@ -3,35 +3,35 @@
 
 // 01_initialization_part021.c - 11 个函数
 
-// 函数: void initialize_resource_manager(longlong *engine_context,longlong resource_params)
+// 函数: void initialize_resource_manager(int64_t *engine_context,int64_t resource_params)
 // 初始化资源管理器，处理游戏资源的加载和管理
-void initialize_resource_manager(longlong *engine_context,longlong resource_params)
+void initialize_resource_manager(int64_t *engine_context,int64_t resource_params)
 
 {
   uint resource_size;
   int resource_index;
   uint64_t resource_handle;
-  longlong *resource_ptr;
+  int64_t *resource_ptr;
   void *resource_data;
-  longlong resource_offset;
-  ulonglong resource_count;
+  int64_t resource_offset;
+  uint64_t resource_count;
   int8_t stack_buffer [32];
   int32_t stack_flags;
   void *stack_ptr;
-  longlong stack_data;
+  int64_t stack_data;
   uint stack_size;
   uint64_t stack_param1;
   int32_t stack_param2;
   void *stack_buffer_ptr;
-  longlong stack_offset;
+  int64_t stack_offset;
   uint stack_capacity;
   uint64_t stack_control;
   void *stack_string_ptr;
-  longlong stack_length;
+  int64_t stack_length;
   int32_t stack_id;
   void **stack_ptr_ptr;
   void *stack_resource_ptr;
-  longlong stack_resource_data;
+  int64_t stack_resource_data;
   int32_t stack_resource_flags[4];
   int32_t stack_resource_value;
   int32_t stack_resource_type;
@@ -45,10 +45,10 @@ void initialize_resource_manager(longlong *engine_context,longlong resource_para
   int8_t *stack_resource_data_ptr;
   int32_t stack_resource_config;
   int8_t resource_name_buffer [136];
-  ulonglong stack_checksum;
+  uint64_t stack_checksum;
   
   stack_resource_hash = 0xfffffffffffffffe;
-  stack_checksum = GET_SECURITY_COOKIE() ^ (ulonglong)stack_buffer;
+  stack_checksum = GET_SECURITY_COOKIE() ^ (uint64_t)stack_buffer;
   stack_param2 = 0;
   stack_ptr_ptr = &stack_string_ptr;
   stack_string_ptr = &system_data_buffer_ptr;
@@ -66,9 +66,9 @@ void initialize_resource_manager(longlong *engine_context,longlong resource_para
   stack_resource_value = 0;
   stack_capacity = stack_capacity & 0xffffff00;
   resource_handle = FUN_18062b1e0(system_memory_pool_ptr,0x60d30,0x10,0x1f);
-  resource_ptr = (longlong *)FUN_1801954d0(resource_handle,&stack_string_ptr);
+  resource_ptr = (int64_t *)FUN_1801954d0(resource_handle,&stack_string_ptr);
   stack_ptr_ptr = (void **)resource_ptr;
-  if (resource_ptr != (longlong *)0x0) {
+  if (resource_ptr != (int64_t *)0x0) {
     (**(code **)(*resource_ptr + 0x28))(resource_ptr);
   }
   stack_resource_flags[0] = 0x3f800000;
@@ -110,12 +110,12 @@ void initialize_resource_manager(longlong *engine_context,longlong resource_para
   stack_resource_flags[0] = 0;
   stack_resource_ptr = &system_state_ptr;
   if ((resource_index < 0) ||
-     (resource_offset = *(longlong *)(*engine_context + 0x888),
-     (ulonglong)(*(longlong *)(*engine_context + 0x890) - resource_offset >> 5) <= (ulonglong)(longlong)resource_index)) {
+     (resource_offset = *(int64_t *)(*engine_context + 0x888),
+     (uint64_t)(*(int64_t *)(*engine_context + 0x890) - resource_offset >> 5) <= (uint64_t)(int64_t)resource_index)) {
     resource_offset = FUN_180628ca0();
   }
   else {
-    resource_offset = (longlong)resource_index * 0x20 + resource_offset;
+    resource_offset = (int64_t)resource_index * 0x20 + resource_offset;
   }
   stack_ptr = &system_data_buffer_ptr;
   stack_param1 = 0;
@@ -123,8 +123,8 @@ void initialize_resource_manager(longlong *engine_context,longlong resource_para
   stack_size = 0;
   stack_param2 = 1;
   resource_size = *(uint *)(resource_offset + 0x10);
-  resource_count = (ulonglong)resource_size;
-  if (*(longlong *)(resource_offset + 8) != 0) {
+  resource_count = (uint64_t)resource_size;
+  if (*(int64_t *)(resource_offset + 8) != 0) {
     FUN_1806277c0(&stack_ptr,resource_count);
   }
   if (resource_size != 0) {
@@ -139,7 +139,7 @@ void initialize_resource_manager(longlong *engine_context,longlong resource_para
     stack_size = resource_size;
     FUN_1806277c0(&stack_ptr,stack_id);
                     // WARNING: Subroutine does not return
-    memcpy((ulonglong)stack_size + stack_data,stack_length,(longlong)(stack_id + 1));
+    memcpy((uint64_t)stack_size + stack_data,stack_length,(int64_t)(stack_id + 1));
   }
   stack_offset = stack_data;
   stack_control._0_4_ = (int32_t)stack_param1;
@@ -153,10 +153,10 @@ void initialize_resource_manager(longlong *engine_context,longlong resource_para
   stack_control._4_4_ = *(uint *)(resource_offset + 0x1c);
   FUN_1801a6440(resource_ptr,init_system_data_file,&stack_buffer_ptr,&stack_resource_flags);
   FUN_18019e260(resource_ptr);
-  (**(code **)(*(longlong *)engine_context[0x56] + 0x138))((longlong *)engine_context[0x56],resource_ptr);
+  (**(code **)(*(int64_t *)engine_context[0x56] + 0x138))((int64_t *)engine_context[0x56],resource_ptr);
   FUN_180199500(resource_ptr,0x3d072b02,1);
   FUN_1801a2ea0(resource_ptr);
-  (**(code **)(*(longlong *)engine_context[0x56] + 0x140))((longlong *)engine_context[0x56],resource_ptr);
+  (**(code **)(*(int64_t *)engine_context[0x56] + 0x140))((int64_t *)engine_context[0x56],resource_ptr);
   Sleep(1000);
   stack_buffer_ptr = &system_data_buffer_ptr;
   if (stack_offset != 0) {
@@ -164,7 +164,7 @@ void initialize_resource_manager(longlong *engine_context,longlong resource_para
     FUN_18064e900();
   }
   stack_offset = 0;
-  stack_control = (ulonglong)stack_control._4_4_ << 0x20;
+  stack_control = (uint64_t)stack_control._4_4_ << 0x20;
   stack_buffer_ptr = &system_state_ptr;
   stack_ptr = &system_data_buffer_ptr;
   if (stack_length != 0) {
@@ -174,7 +174,7 @@ void initialize_resource_manager(longlong *engine_context,longlong resource_para
   stack_length = 0;
   stack_id = 0;
   stack_ptr = &system_state_ptr;
-  if (resource_ptr != (longlong *)0x0) {
+  if (resource_ptr != (int64_t *)0x0) {
     (**(code **)(*resource_ptr + 0x38))(resource_ptr);
   }
   stack_ptr_ptr = &stack_string_ptr;
@@ -187,7 +187,7 @@ void initialize_resource_manager(longlong *engine_context,longlong resource_para
   stack_control = stack_control & 0xffffffff00000000;
   stack_string_ptr = &system_state_ptr;
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(stack_checksum ^ (ulonglong)stack_buffer);
+  FUN_1808fc050(stack_checksum ^ (uint64_t)stack_buffer);
 }
 
 
@@ -202,7 +202,7 @@ void process_shader_files(void)
 
 {
   uint file_size;
-  longlong *engine_ptr;
+  int64_t *engine_ptr;
   uint64_t *shader_data;
   char path_separator;
   uint64_t *shader_ptr;
@@ -210,11 +210,11 @@ void process_shader_files(void)
   int32_t *file_size_ptr;
   int file_count;
   int shader_index;
-  longlong file_offset;
-  ulonglong path_length;
+  int64_t file_offset;
+  uint64_t path_length;
   uint64_t *file_iterator;
   int file_id;
-  longlong total_files;
+  int64_t total_files;
   uint *shader_entry;
   void *file_handle;
   int32_t file_type;
@@ -226,29 +226,29 @@ void process_shader_files(void)
   void *shader_reader;
   int8_t *file_content;
   uint content_size;
-  ulonglong file_info;
+  uint64_t file_info;
   void *file_writer;
-  longlong file_data;
+  int64_t file_data;
   int max_path_length;
   int32_t buffer_size;
-  longlong *global_engine_ptr;
-  longlong file_count_limit;
+  int64_t *global_engine_ptr;
+  int64_t file_count_limit;
   void *temp_buffer;
   void *file_buffer;
   int32_t file_mode;
   void *resource_handle;
-  longlong resource_data;
+  int64_t resource_data;
   int32_t resource_flags;
   uint64_t *shader_array[2];
   uint64_t shader_metadata;
   int32_t shader_version;
   uint64_t shader_config;
-  ulonglong stack_guard;
+  uint64_t stack_guard;
   
   shader_config = 0xfffffffffffffffe;
-  stack_guard = GET_SECURITY_COOKIE() ^ (ulonglong)shader_buffer;
+  stack_guard = GET_SECURITY_COOKIE() ^ (uint64_t)shader_buffer;
   global_engine_ptr = system_main_module_state;
-  total_files = *(longlong *)(*system_main_module_state + 0x890) - *(longlong *)(*system_main_module_state + 0x888) >> 5;
+  total_files = *(int64_t *)(*system_main_module_state + 0x890) - *(int64_t *)(*system_main_module_state + 0x888) >> 5;
   file_count = 0;
   file_count_limit = total_files;
   if (0 < (int)total_files) {
@@ -260,10 +260,10 @@ LAB_file_processing_error:
         file_offset = FUN_180628ca0();
       }
       else {
-        file_offset = *(longlong *)(*system_main_module_state + 0x888);
-        if ((ulonglong)(*(longlong *)(*system_main_module_state + 0x890) - file_offset >> 5) <=
-            (ulonglong)(longlong)file_count) goto LAB_file_processing_error;
-        file_offset = (longlong)file_count * 0x20 + file_offset;
+        file_offset = *(int64_t *)(*system_main_module_state + 0x888);
+        if ((uint64_t)(*(int64_t *)(*system_main_module_state + 0x890) - file_offset >> 5) <=
+            (uint64_t)(int64_t)file_count) goto LAB_file_processing_error;
+        file_offset = (int64_t)file_count * 0x20 + file_offset;
       }
       shader_reader = &system_data_buffer_ptr;
       file_info = 0;
@@ -274,7 +274,7 @@ LAB_file_processing_error:
                     // WARNING: Subroutine does not return
         memcpy(file_content,*(uint64_t *)(file_offset + 8),*(int *)(file_offset + 0x10) + 1);
       }
-      if (*(longlong *)(file_offset + 8) != 0) {
+      if (*(int64_t *)(file_offset + 8) != 0) {
         content_size = 0;
         if (file_content != (int8_t *)0x0) {
           *file_content = 0;
@@ -286,10 +286,10 @@ LAB_path_processing_error:
         file_offset = FUN_180628ca0();
       }
       else {
-        file_offset = *(longlong *)(*system_main_module_state + 0x8a8);
-        if ((ulonglong)(*(longlong *)(*system_main_module_state + 0x8b0) - file_offset >> 5) <
-            (ulonglong)(longlong)shader_index) goto LAB_path_processing_error;
-        file_offset = (longlong)shader_index * 0x20 + file_offset;
+        file_offset = *(int64_t *)(*system_main_module_state + 0x8a8);
+        if ((uint64_t)(*(int64_t *)(*system_main_module_state + 0x8b0) - file_offset >> 5) <
+            (uint64_t)(int64_t)shader_index) goto LAB_path_processing_error;
+        file_offset = (int64_t)shader_index * 0x20 + file_offset;
       }
       file_writer = &system_data_buffer_ptr;
       file_data = 0;
@@ -300,7 +300,7 @@ LAB_path_processing_error:
                     // WARNING: Subroutine does not return
         memcpy(file_handle,*(uint64_t *)(file_offset + 8),*(int *)(file_offset + 0x10) + 1);
       }
-      if (*(longlong *)(file_offset + 8) != 0) {
+      if (*(int64_t *)(file_offset + 8) != 0) {
         file_type = 0;
         if (file_handle != (int8_t *)0x0) {
           *file_handle = 0;
@@ -310,7 +310,7 @@ LAB_path_processing_error:
       file_count = content_size + 8;
       FUN_1806277c0(&shader_reader,file_count);
       *(uint64_t *)(file_content + content_size) = 0x6a624f656e656353;
-      *(int8_t *)((longlong)(file_content + content_size) + 8) = 0;
+      *(int8_t *)((int64_t)(file_content + content_size) + 8) = 0;
       content_size = file_count;
       path_separator = FUN_180624a00(&shader_reader);
       if (path_separator == '\0') {
@@ -336,7 +336,7 @@ LAB_path_processing_error:
         FUN_18062c5f0(&shader_reader,&shader_array);
         shader_ptr = shader_array[1];
         shader_data = shader_array[0];
-        file_offset = (longlong)shader_array[1] - (longlong)shader_array[0];
+        file_offset = (int64_t)shader_array[1] - (int64_t)shader_array[0];
         FUN_18004b100(&file_buffer);
         file_path = &system_buffer_ptr;
         if (file_handle != (int8_t *)0x0) {
@@ -349,7 +349,7 @@ LAB_path_processing_error:
         }
         engine_ptr = global_engine_ptr;
         file_count = (int)(file_offset >> 5);
-        file_offset = (longlong)file_count;
+        file_offset = (int64_t)file_count;
         if (0 < file_count) {
           shader_entry = (uint *)(shader_data + 2);
           do {
@@ -365,7 +365,7 @@ LAB_path_processing_error:
                     // WARNING: Subroutine does not return
               memcpy(shader_input,*(uint64_t *)(shader_entry + -2),*shader_entry + 1);
             }
-            if (*(longlong *)(shader_entry + -2) != 0) {
+            if (*(int64_t *)(shader_entry + -2) != 0) {
               shader_length = 0;
               if (shader_input != (int8_t *)0x0) {
                 *shader_input = 0;
@@ -377,7 +377,7 @@ LAB_path_processing_error:
             shader_ptr = (uint64_t *)(shader_input + shader_length);
             *shader_ptr = 0x782e656e6563732f;
             *(int32_t *)(shader_ptr + 1) = 0x6e656373;
-            *(int16_t *)((longlong)shader_ptr + 0xc) = 0x65;
+            *(int16_t *)((int64_t)shader_ptr + 0xc) = 0x65;
             file_path = &system_buffer_ptr;
             if (shader_input != (int8_t *)0x0) {
               file_path = shader_input;
@@ -416,8 +416,8 @@ LAB_path_processing_error:
                   *shader_input = 0;
                 }
                 file_size = *shader_entry;
-                path_length = (ulonglong)file_size;
-                if (*(longlong *)(shader_entry + -2) != 0) {
+                path_length = (uint64_t)file_size;
+                if (*(int64_t *)(shader_entry + -2) != 0) {
                   FUN_1806277c0(&shader_output,path_length);
                 }
                 if (file_size != 0) {
@@ -436,7 +436,7 @@ LAB_path_processing_error:
                 file_size_ptr[2] = 0x2e6f6373;
                 file_size_ptr[3] = 0x65637378;
                 *(int16_t *)(file_size_ptr + 4) = 0x656e;
-                *(int8_t *)((longlong)file_size_ptr + 0x12) = 0;
+                *(int8_t *)((int64_t)file_size_ptr + 0x12) = 0;
                 shader_length = 0x12;
                 path_separator = FUN_180624af0(&shader_output);
                 if (path_separator != '\0') goto LAB_shader_processing;
@@ -445,22 +445,22 @@ LAB_path_processing_error:
                     // WARNING: Subroutine does not return
                   FUN_18064e900();
                 }
-                shader_info = (ulonglong)shader_info._4_4_ << 0x20;
+                shader_info = (uint64_t)shader_info._4_4_ << 0x20;
               }
               else {
 LAB_shader_processing:
                 shader_index = *shader_entry - 1;
                 if (-1 < shader_index) {
-                  total_files = (longlong)shader_index;
+                  total_files = (int64_t)shader_index;
                   do {
-                    if (*(char *)(total_files + *(longlong *)(shader_entry + -2)) == '/') goto LAB_shader_path_found;
+                    if (*(char *)(total_files + *(int64_t *)(shader_entry + -2)) == '/') goto LAB_shader_path_found;
                     shader_index = shader_index + -1;
                     total_files = total_files + -1;
                   } while (-1 < total_files);
                 }
                 shader_index = -1;
 LAB_shader_path_found:
-                FUN_180629a40(shader_data + (longlong)file_id * 4,&temp_buffer,shader_index + 1,0xffffffff);
+                FUN_180629a40(shader_data + (int64_t)file_id * 4,&temp_buffer,shader_index + 1,0xffffffff);
                 file_type = FUN_180054360(engine_ptr,&temp_buffer);
                 if (init_system_data_file != 0) {
                   FUN_18005c1c0(file_type,&resource_handle);
@@ -517,7 +517,7 @@ LAB_shader_path_found:
                     // WARNING: Subroutine does not return
                   FUN_18064e900();
                 }
-                shader_info = (ulonglong)shader_info._4_4_ << 0x20;
+                shader_info = (uint64_t)shader_info._4_4_ << 0x20;
               }
             }
             else {
@@ -527,7 +527,7 @@ LAB_shader_found:
                     // WARNING: Subroutine does not return
                 FUN_18064e900();
               }
-              shader_info = (ulonglong)shader_info._4_4_ << 0x20;
+              shader_info = (uint64_t)shader_info._4_4_ << 0x20;
             }
             shader_input = (int8_t *)0x0;
             shader_output = &system_state_ptr;
@@ -577,7 +577,7 @@ LAB_shader_found:
     } while (file_count < (int)total_files);
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(stack_guard ^ (ulonglong)shader_buffer);
+  FUN_1808fc050(stack_guard ^ (uint64_t)shader_buffer);
 }
 
 
@@ -594,7 +594,7 @@ void initialize_render_pipeline(void)
   uint64_t *render_target;
   uint64_t *render_state;
   uint64_t render_config;
-  longlong mutex_data;
+  int64_t mutex_data;
   
   render_state = (uint64_t *)FUN_18062b1e0(system_memory_pool_ptr,0x198,8,3);
   render_target = render_state + 4;
@@ -602,14 +602,14 @@ void initialize_render_pipeline(void)
   *render_target = &unknown_var_6384_ptr;
   *(int16_t *)(render_state + 0x1a) = 1;
   *(int32_t *)(render_state + 9) = 0;
-  *(int8_t *)((longlong)render_state + 0x54) = 0;
+  *(int8_t *)((int64_t)render_state + 0x54) = 0;
   *render_target = &unknown_var_264_ptr;
   render_target = render_state + 0x1b;
   FUN_180637560(render_target);
   *render_target = &unknown_var_6384_ptr;
   *(int16_t *)(render_state + 0x31) = 1;
   *(int32_t *)(render_state + 0x20) = 0;
-  *(int8_t *)((longlong)render_state + 0x10c) = 0;
+  *(int8_t *)((int64_t)render_state + 0x10c) = 0;
   *render_target = &unknown_var_264_ptr;
   *render_state = 0;
   *(int8_t *)(render_state + 3) = 0;
@@ -625,8 +625,8 @@ void initialize_render_pipeline(void)
   *(int16_t *)(init_system_data_file + 0x1d) = 0;
   *(int8_t *)(init_system_data_file + 0x1f) = 0;
   *(int32_t *)(init_system_data_file + 0x28) = 3;
-  *(longlong *)init_system_data_file = init_system_data_file;
-  *(longlong *)(init_system_data_file + 8) = init_system_data_file;
+  *(int64_t *)init_system_data_file = init_system_data_file;
+  *(int64_t *)(init_system_data_file + 8) = init_system_data_file;
   *(uint64_t *)(init_system_data_file + 0x10) = 0;
   *(int8_t *)(init_system_data_file + 0x18) = 0;
   *(uint64_t *)(init_system_data_file + 0x20) = 0;
@@ -655,13 +655,13 @@ void initialize_render_pipeline(void)
 
 
 
-// 函数: void cleanup_resource_array(longlong *resource_array)
+// 函数: void cleanup_resource_array(int64_t *resource_array)
 // 清理资源数组，释放分配的资源
-void cleanup_resource_array(longlong *resource_array)
+void cleanup_resource_array(int64_t *resource_array)
 
 {
-  longlong array_start;
-  longlong array_end;
+  int64_t array_start;
+  int64_t array_end;
   
   array_start = resource_array[1];
   for (array_end = *resource_array; array_end != array_start; array_end = array_end + 0x48) {
@@ -677,9 +677,9 @@ void cleanup_resource_array(longlong *resource_array)
 
 
 
-// 函数: void initialize_resource_handler(longlong resource_handle,uint64_t param2,uint64_t param3,uint64_t param4)
+// 函数: void initialize_resource_handler(int64_t resource_handle,uint64_t param2,uint64_t param3,uint64_t param4)
 // 初始化资源处理器，设置资源处理的相关参数
-void initialize_resource_handler(longlong resource_handle,uint64_t param2,uint64_t param3,uint64_t param4)
+void initialize_resource_handler(int64_t resource_handle,uint64_t param2,uint64_t param3,uint64_t param4)
 
 {
   FUN_180058210(resource_handle,*(uint64_t *)(resource_handle + 0x10),param3,param4,0xfffffffffffffffe);
@@ -689,25 +689,25 @@ void initialize_resource_handler(longlong resource_handle,uint64_t param2,uint64
 
 
 
-// 函数: void destroy_resource_handler(longlong resource_handle)
+// 函数: void destroy_resource_handler(int64_t resource_handle)
 // 销毁资源处理器，清理相关资源
-void destroy_resource_handler(longlong resource_handle)
+void destroy_resource_handler(int64_t resource_handle)
 
 {
-  longlong resource_data;
-  longlong resource_ptr;
-  ulonglong resource_count;
-  ulonglong resource_index;
+  int64_t resource_data;
+  int64_t resource_ptr;
+  uint64_t resource_count;
+  uint64_t resource_index;
   
-  resource_count = *(ulonglong *)(resource_handle + 0x10);
-  resource_data = *(longlong *)(resource_handle + 8);
+  resource_count = *(uint64_t *)(resource_handle + 0x10);
+  resource_data = *(int64_t *)(resource_handle + 8);
   resource_index = 0;
   if (resource_count != 0) {
     do {
-      resource_ptr = *(longlong *)(resource_data + resource_index * 8);
+      resource_ptr = *(int64_t *)(resource_data + resource_index * 8);
       if (resource_ptr != 0) {
-        if (*(longlong **)(resource_ptr + 0x10) != (longlong *)0x0) {
-          (**(code **)(**(longlong **)(resource_ptr + 0x10) + 0x38))();
+        if (*(int64_t **)(resource_ptr + 0x10) != (int64_t *)0x0) {
+          (**(code **)(**(int64_t **)(resource_ptr + 0x10) + 0x38))();
         }
                     // WARNING: Subroutine does not return
         FUN_18064e900(resource_ptr);
@@ -715,10 +715,10 @@ void destroy_resource_handler(longlong resource_handle)
       *(uint64_t *)(resource_data + resource_index * 8) = 0;
       resource_index = resource_index + 1;
     } while (resource_index < resource_count);
-    resource_count = *(ulonglong *)(resource_handle + 0x10);
+    resource_count = *(uint64_t *)(resource_handle + 0x10);
   }
   *(uint64_t *)(resource_handle + 0x18) = 0;
-  if ((1 < resource_count) && (*(longlong *)(resource_handle + 8) != 0)) {
+  if ((1 < resource_count) && (*(int64_t *)(resource_handle + 8) != 0)) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }
@@ -728,9 +728,9 @@ void destroy_resource_handler(longlong resource_handle)
 
 
 
-// 函数: longlong create_resource_context(longlong context_ptr)
+// 函数: int64_t create_resource_context(int64_t context_ptr)
 // 创建资源上下文，初始化资源管理所需的数据结构
-longlong create_resource_context(longlong context_ptr)
+int64_t create_resource_context(int64_t context_ptr)
 
 {
   *(uint64_t *)(context_ptr + 8) = &system_state_ptr;
@@ -746,13 +746,13 @@ longlong create_resource_context(longlong context_ptr)
 
 
 
-// 函数: void destroy_resource_context(longlong context_ptr)
+// 函数: void destroy_resource_context(int64_t context_ptr)
 // 销毁资源上下文，释放相关资源
-void destroy_resource_context(longlong context_ptr)
+void destroy_resource_context(int64_t context_ptr)
 
 {
   *(uint64_t *)(context_ptr + 8) = &system_data_buffer_ptr;
-  if (*(longlong *)(context_ptr + 0x10) != 0) {
+  if (*(int64_t *)(context_ptr + 0x10) != 0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }
@@ -765,9 +765,9 @@ void destroy_resource_context(longlong context_ptr)
 
 
 
-// 函数: void initialize_resource_manager_v2(longlong resource_handle,uint64_t param2,uint64_t param3,uint64_t param4)
+// 函数: void initialize_resource_manager_v2(int64_t resource_handle,uint64_t param2,uint64_t param3,uint64_t param4)
 // 初始化资源管理器版本2，提供更高级的资源管理功能
-void initialize_resource_manager_v2(longlong resource_handle,uint64_t param2,uint64_t param3,uint64_t param4)
+void initialize_resource_manager_v2(int64_t resource_handle,uint64_t param2,uint64_t param3,uint64_t param4)
 
 {
   FUN_180058210(resource_handle,*(uint64_t *)(resource_handle + 0x10),param3,param4,0xfffffffffffffffe);
@@ -777,25 +777,25 @@ void initialize_resource_manager_v2(longlong resource_handle,uint64_t param2,uin
 
 
 
-// 函数: void destroy_resource_manager_v2(longlong resource_handle)
+// 函数: void destroy_resource_manager_v2(int64_t resource_handle)
 // 销毁资源管理器版本2，清理所有相关资源
-void destroy_resource_manager_v2(longlong resource_handle)
+void destroy_resource_manager_v2(int64_t resource_handle)
 
 {
-  longlong resource_data;
-  longlong resource_ptr;
-  ulonglong resource_count;
-  ulonglong resource_index;
+  int64_t resource_data;
+  int64_t resource_ptr;
+  uint64_t resource_count;
+  uint64_t resource_index;
   
-  resource_count = *(ulonglong *)(resource_handle + 0x10);
-  resource_data = *(longlong *)(resource_handle + 8);
+  resource_count = *(uint64_t *)(resource_handle + 0x10);
+  resource_data = *(int64_t *)(resource_handle + 8);
   resource_index = 0;
   if (resource_count != 0) {
     do {
-      resource_ptr = *(longlong *)(resource_data + resource_index * 8);
+      resource_ptr = *(int64_t *)(resource_data + resource_index * 8);
       if (resource_ptr != 0) {
-        if (*(longlong **)(resource_ptr + 0x10) != (longlong *)0x0) {
-          (**(code **)(**(longlong **)(resource_ptr + 0x10) + 0x38))();
+        if (*(int64_t **)(resource_ptr + 0x10) != (int64_t *)0x0) {
+          (**(code **)(**(int64_t **)(resource_ptr + 0x10) + 0x38))();
         }
                     // WARNING: Subroutine does not return
         FUN_18064e900(resource_ptr);
@@ -803,10 +803,10 @@ void destroy_resource_manager_v2(longlong resource_handle)
       *(uint64_t *)(resource_data + resource_index * 8) = 0;
       resource_index = resource_index + 1;
     } while (resource_index < resource_count);
-    resource_count = *(ulonglong *)(resource_handle + 0x10);
+    resource_count = *(uint64_t *)(resource_handle + 0x10);
   }
   *(uint64_t *)(resource_handle + 0x18) = 0;
-  if ((1 < resource_count) && (*(longlong *)(resource_handle + 8) != 0)) {
+  if ((1 < resource_count) && (*(int64_t *)(resource_handle + 8) != 0)) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }

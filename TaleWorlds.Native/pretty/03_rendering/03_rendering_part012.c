@@ -40,7 +40,7 @@
  * @param render_object 渲染对象指针
  * @param buffer 输出缓冲区
  */
-void serialize_render_object_data(longlong render_object, longlong *buffer)
+void serialize_render_object_data(int64_t render_object, int64_t *buffer)
 
 {
   int loop_counter;
@@ -48,28 +48,28 @@ void serialize_render_object_data(longlong render_object, longlong *buffer)
   uint temp_value1;
   uint temp_value2;
   char *char_ptr;
-  longlong *long_ptr;
-  longlong offset_value;
-  ulonglong index_counter;
-  longlong buffer_start;
+  int64_t *long_ptr;
+  int64_t offset_value;
+  uint64_t index_counter;
+  int64_t buffer_start;
   int *int_ptr;
   uint *write_ptr;
   uint mask_value;
-  ulonglong entry_count;
+  uint64_t entry_count;
   uint64_t *entry_ptr;
-  longlong *data_array;
-  ulonglong zero_counter;
+  int64_t *data_array;
+  uint64_t zero_counter;
   
   write_ptr = (uint *)buffer[1];
-  if ((ulonglong)((*buffer - (longlong)write_ptr) + buffer[2]) < 5) {
-    expand_buffer_if_needed(buffer,(longlong)write_ptr + (4 - *buffer));
+  if ((uint64_t)((*buffer - (int64_t)write_ptr) + buffer[2]) < 5) {
+    expand_buffer_if_needed(buffer,(int64_t)write_ptr + (4 - *buffer));
     write_ptr = (uint *)buffer[1];
   }
   *write_ptr = 0;
   write_ptr = (uint *)(buffer[1] + 4);
-  buffer[1] = (longlong)write_ptr;
-  if ((ulonglong)((*buffer - (longlong)write_ptr) + buffer[2]) < 0x11) {
-    expand_buffer_if_needed(buffer,(longlong)write_ptr + (0x10 - *buffer));
+  buffer[1] = (int64_t)write_ptr;
+  if ((uint64_t)((*buffer - (int64_t)write_ptr) + buffer[2]) < 0x11) {
+    expand_buffer_if_needed(buffer,(int64_t)write_ptr + (0x10 - *buffer));
     write_ptr = (uint *)buffer[1];
   }
   temp_value1 = *(uint *)(render_object + 0xc);
@@ -81,8 +81,8 @@ void serialize_render_object_data(longlong render_object, longlong *buffer)
   write_ptr[3] = flag_value;
   buffer[1] = buffer[1] + 0x10;
   write_ptr = (uint *)buffer[1];
-  if ((ulonglong)((*buffer - (longlong)write_ptr) + buffer[2]) < 5) {
-    expand_buffer_if_needed(buffer,(longlong)write_ptr + (4 - *buffer));
+  if ((uint64_t)((*buffer - (int64_t)write_ptr) + buffer[2]) < 5) {
+    expand_buffer_if_needed(buffer,(int64_t)write_ptr + (4 - *buffer));
     write_ptr = (uint *)buffer[1];
   }
   *write_ptr = 2;
@@ -90,8 +90,8 @@ void serialize_render_object_data(longlong render_object, longlong *buffer)
   serialize_material_data(&RENDER_MATERIAL_TABLE,*(uint *)(render_object + 0x18),buffer);
   write_ptr = (uint *)buffer[1];
   mask_value = *(uint *)(render_object + 0x1c);
-  if ((ulonglong)((*buffer - (longlong)write_ptr) + buffer[2]) < 5) {
-    expand_buffer_if_needed(buffer,(longlong)write_ptr + (4 - *buffer));
+  if ((uint64_t)((*buffer - (int64_t)write_ptr) + buffer[2]) < 5) {
+    expand_buffer_if_needed(buffer,(int64_t)write_ptr + (4 - *buffer));
     write_ptr = (uint *)buffer[1];
   }
   zero_counter = 0;
@@ -103,7 +103,7 @@ void serialize_render_object_data(longlong render_object, longlong *buffer)
   if (buffer_start != 0) {
     index_counter = offset_value - buffer_start;
   }
-  if ((ulonglong)((buffer_start - offset_value) + buffer[2]) < 5) {
+  if ((uint64_t)((buffer_start - offset_value) + buffer[2]) < 5) {
     expand_buffer_if_needed(buffer,(offset_value - buffer_start) + 4);
     offset_value = buffer[1];
   }
@@ -113,30 +113,30 @@ void serialize_render_object_data(longlong render_object, longlong *buffer)
   do {
     if ((*(uint *)(entry_ptr + 1) & mask_value) != 0) {
       write_buffer_entry(buffer,*entry_ptr);
-      entry_count = (ulonglong)((int)entry_count + 1);
+      entry_count = (uint64_t)((int)entry_count + 1);
     }
     entry_ptr = entry_ptr + 2;
-  } while ((longlong)entry_ptr < 0x18098e220);
+  } while ((int64_t)entry_ptr < 0x18098e220);
   *(int *)(index_counter + *buffer) = (int)entry_count;
   char_ptr = (char *)0x180bf8ff8;
   index_counter = zero_counter;
   do {
     if (*char_ptr == *(char *)(render_object + 0x134)) {
-      write_buffer_entry(buffer,*(uint64_t *)((longlong)(int)index_counter * 0x10 + 0x180bf8ff0));
+      write_buffer_entry(buffer,*(uint64_t *)((int64_t)(int)index_counter * 0x10 + 0x180bf8ff0));
       break;
     }
-    index_counter = (ulonglong)((int)index_counter + 1);
+    index_counter = (uint64_t)((int)index_counter + 1);
     char_ptr = char_ptr + 0x10;
-  } while ((longlong)char_ptr < 0x180bf90b8);
+  } while ((int64_t)char_ptr < 0x180bf90b8);
   write_ptr = (uint *)buffer[1];
-  if ((ulonglong)((*buffer - (longlong)write_ptr) + buffer[2]) < 0x11) {
-    expand_buffer_if_needed(buffer,(longlong)write_ptr + (0x10 - *buffer));
+  if ((uint64_t)((*buffer - (int64_t)write_ptr) + buffer[2]) < 0x11) {
+    expand_buffer_if_needed(buffer,(int64_t)write_ptr + (0x10 - *buffer));
     write_ptr = (uint *)buffer[1];
   }
   temp_value1 = *(uint *)(render_object + 0x24);
   temp_value2 = *(uint *)(render_object + 0x28);
   flag_value = *(uint *)(render_object + 0x2c);
-  data_array = (longlong *)(render_object + 0x30);
+  data_array = (int64_t *)(render_object + 0x30);
   *write_ptr = *(uint *)(render_object + 0x20);
   write_ptr[1] = temp_value1;
   write_ptr[2] = temp_value2;
@@ -148,48 +148,48 @@ void serialize_render_object_data(longlong render_object, longlong *buffer)
   index_counter = zero_counter;
   do {
     if ((*long_ptr != 0) || (long_ptr[1] != 0)) {
-      index_counter = (ulonglong)((int)index_counter + 1);
+      index_counter = (uint64_t)((int)index_counter + 1);
     }
     long_ptr = long_ptr + 2;
     offset_value = offset_value + -1;
   } while (offset_value != 0);
   // 序列化渲染数据数组
-  if ((ulonglong)((*buffer - (longlong)write_ptr) + buffer[2]) < 5) {
-    expand_buffer_if_needed(buffer, (longlong)write_ptr + (4 - *buffer));
+  if ((uint64_t)((*buffer - (int64_t)write_ptr) + buffer[2]) < 5) {
+    expand_buffer_if_needed(buffer, (int64_t)write_ptr + (4 - *buffer));
     write_ptr = (uint *)buffer[1];
   }
   *write_ptr = (int)index_counter;
   buffer[1] = buffer[1] + 4;
   index_counter = 0;
-  data_array = (longlong *)render_object + 0x30;
+  data_array = (int64_t *)render_object + 0x30;
   do {
     if ((*data_array != 0) || (data_array[1] != 0)) {
-      index_counter = (ulonglong)((int)index_counter + 1);
+      index_counter = (uint64_t)((int)index_counter + 1);
     }
     data_array = data_array + 2;
     offset_value = offset_value + -1;
   } while (offset_value != 0);
   
   // 序列化数据数组内容
-  data_array = (longlong *)render_object + 0x30;
+  data_array = (int64_t *)render_object + 0x30;
   offset_value = 0;
   do {
     if ((*data_array != 0) || (data_array[1] != 0)) {
       write_ptr = (uint *)buffer[1];
-      if ((ulonglong)((*buffer - (longlong)write_ptr) + buffer[2]) < 5) {
-        expand_buffer_if_needed(buffer, (longlong)write_ptr + (4 - *buffer));
+      if ((uint64_t)((*buffer - (int64_t)write_ptr) + buffer[2]) < 5) {
+        expand_buffer_if_needed(buffer, (int64_t)write_ptr + (4 - *buffer));
         write_ptr = (uint *)buffer[1];
       }
       *write_ptr = (int)offset_value;
       buffer[1] = buffer[1] + 4;
       write_ptr = (uint *)buffer[1];
-      if ((ulonglong)((*buffer - (longlong)write_ptr) + buffer[2]) < 0x11) {
-        expand_buffer_if_needed(buffer, (longlong)write_ptr + (0x10 - *buffer));
+      if ((uint64_t)((*buffer - (int64_t)write_ptr) + buffer[2]) < 0x11) {
+        expand_buffer_if_needed(buffer, (int64_t)write_ptr + (0x10 - *buffer));
         write_ptr = (uint *)buffer[1];
       }
-      temp_value1 = *(uint *)((longlong)data_array + 4);
+      temp_value1 = *(uint *)((int64_t)data_array + 4);
       flag_value = data_array[1];
-      temp_value2 = *(uint *)((longlong)data_array + 0xc);
+      temp_value2 = *(uint *)((int64_t)data_array + 0xc);
       *write_ptr = (int)*data_array;
       write_ptr[1] = temp_value1;
       write_ptr[2] = (int)flag_value;
@@ -202,73 +202,73 @@ void serialize_render_object_data(longlong render_object, longlong *buffer)
   
   // 序列化额外渲染数据
   temp_value1 = *(uint *)(render_object + 0x130);
-  if ((ulonglong)((*buffer - (longlong)write_ptr) + buffer[2]) < 5) {
-    expand_buffer_if_needed(buffer, (longlong)write_ptr + (4 - *buffer));
+  if ((uint64_t)((*buffer - (int64_t)write_ptr) + buffer[2]) < 5) {
+    expand_buffer_if_needed(buffer, (int64_t)write_ptr + (4 - *buffer));
     write_ptr = (uint *)buffer[1];
   }
   *write_ptr = temp_value1;
   write_ptr = (uint *)(buffer[1] + 4);
-  buffer[1] = (longlong)write_ptr;
-  flag_value = *(longlong *)(render_object + 0x140);
-  temp_value1 = *(longlong *)(render_object + 0x138);
-  if ((ulonglong)((*buffer - (longlong)write_ptr) + buffer[2]) < 5) {
-    expand_buffer_if_needed(buffer, (longlong)write_ptr + (4 - *buffer));
+  buffer[1] = (int64_t)write_ptr;
+  flag_value = *(int64_t *)(render_object + 0x140);
+  temp_value1 = *(int64_t *)(render_object + 0x138);
+  if ((uint64_t)((*buffer - (int64_t)write_ptr) + buffer[2]) < 5) {
+    expand_buffer_if_needed(buffer, (int64_t)write_ptr + (4 - *buffer));
     write_ptr = (uint *)buffer[1];
   }
   *write_ptr = (int)((flag_value - temp_value1) / 0x58);
   buffer[1] = buffer[1] + 4;
   
   // 序列化渲染块数据
-  temp_value1 = *(longlong *)(render_object + 0x140) - *(longlong *)(render_object + 0x138);
+  temp_value1 = *(int64_t *)(render_object + 0x140) - *(int64_t *)(render_object + 0x138);
   write_ptr = (uint *)buffer[1];
   flag_value = temp_value1 >> 0x3f;
   index_counter = 0;
   if (temp_value1 / 0x58 + flag_value != flag_value) {
     do {
-      serialize_render_block_data(buffer, index_counter * 0x58 + *(longlong *)(render_object + 0x138));
+      serialize_render_block_data(buffer, index_counter * 0x58 + *(int64_t *)(render_object + 0x138));
       offset_value = (int)index_counter + 1;
-      index_counter = (ulonglong)(int)offset_value;
-    } while (index_counter < (ulonglong)((*(longlong *)(render_object + 0x140) - *(longlong *)(render_object + 0x138)) / 0x58));
+      index_counter = (uint64_t)(int)offset_value;
+    } while (index_counter < (uint64_t)((*(int64_t *)(render_object + 0x140) - *(int64_t *)(render_object + 0x138)) / 0x58));
     write_ptr = (uint *)buffer[1];
   }
   
   // 序列化渲染参数
   temp_value1 = *(uint *)(render_object + 0x158);
-  if ((ulonglong)((*buffer - (longlong)write_ptr) + buffer[2]) < 5) {
-    expand_buffer_if_needed(buffer, (longlong)write_ptr + (4 - *buffer));
+  if ((uint64_t)((*buffer - (int64_t)write_ptr) + buffer[2]) < 5) {
+    expand_buffer_if_needed(buffer, (int64_t)write_ptr + (4 - *buffer));
     write_ptr = (uint *)buffer[1];
   }
   *write_ptr = temp_value1;
   write_ptr = (uint *)(buffer[1] + 4);
-  buffer[1] = (longlong)write_ptr;
+  buffer[1] = (int64_t)write_ptr;
   temp_value1 = *(uint *)(render_object + 0x15c);
-  if ((ulonglong)((*buffer - (longlong)write_ptr) + buffer[2]) < 5) {
-    expand_buffer_if_needed(buffer, (longlong)write_ptr + (4 - *buffer));
+  if ((uint64_t)((*buffer - (int64_t)write_ptr) + buffer[2]) < 5) {
+    expand_buffer_if_needed(buffer, (int64_t)write_ptr + (4 - *buffer));
     write_ptr = (uint *)buffer[1];
   }
   *write_ptr = temp_value1;
   write_ptr = (uint *)(buffer[1] + 4);
-  buffer[1] = (longlong)write_ptr;
+  buffer[1] = (int64_t)write_ptr;
   temp_value1 = *(uint *)(render_object + 0x160);
-  if ((ulonglong)((*buffer - (longlong)write_ptr) + buffer[2]) < 5) {
-    expand_buffer_if_needed(buffer, (longlong)write_ptr + (4 - *buffer));
+  if ((uint64_t)((*buffer - (int64_t)write_ptr) + buffer[2]) < 5) {
+    expand_buffer_if_needed(buffer, (int64_t)write_ptr + (4 - *buffer));
     write_ptr = (uint *)buffer[1];
   }
   *write_ptr = temp_value1;
   write_ptr = (uint *)(buffer[1] + 4);
-  buffer[1] = (longlong)write_ptr;
+  buffer[1] = (int64_t)write_ptr;
   temp_value1 = *(uint *)(render_object + 0x164);
-  if ((ulonglong)((*buffer - (longlong)write_ptr) + buffer[2]) < 5) {
-    expand_buffer_if_needed(buffer, (longlong)write_ptr + (4 - *buffer));
+  if ((uint64_t)((*buffer - (int64_t)write_ptr) + buffer[2]) < 5) {
+    expand_buffer_if_needed(buffer, (int64_t)write_ptr + (4 - *buffer));
     write_ptr = (uint *)buffer[1];
   }
   *write_ptr = temp_value1;
   write_ptr = (uint *)(buffer[1] + 4);
-  buffer[1] = (longlong)write_ptr;
+  buffer[1] = (int64_t)write_ptr;
   
   // 序列化渲染变换矩阵
-  if ((ulonglong)((*buffer - (longlong)write_ptr) + buffer[2]) < 0x11) {
-    expand_buffer_if_needed(buffer, (longlong)write_ptr + (0x10 - *buffer));
+  if ((uint64_t)((*buffer - (int64_t)write_ptr) + buffer[2]) < 0x11) {
+    expand_buffer_if_needed(buffer, (int64_t)write_ptr + (0x10 - *buffer));
     write_ptr = (uint *)buffer[1];
   }
   *write_ptr = *(uint *)(render_object + 0x168);
@@ -282,11 +282,11 @@ void serialize_render_object_data(longlong render_object, longlong *buffer)
   buffer[1] = flag_value + 4;
   *(uint *)(flag_value + 4) = *(uint *)(render_object + 0x174);
   write_ptr = (uint *)(buffer[1] + 4);
-  buffer[1] = (longlong)write_ptr;
+  buffer[1] = (int64_t)write_ptr;
   
   // 序列化渲染颜色数据
-  if ((ulonglong)((*buffer - (longlong)write_ptr) + buffer[2]) < 0x11) {
-    expand_buffer_if_needed(buffer, (longlong)write_ptr + (0x10 - *buffer));
+  if ((uint64_t)((*buffer - (int64_t)write_ptr) + buffer[2]) < 0x11) {
+    expand_buffer_if_needed(buffer, (int64_t)write_ptr + (0x10 - *buffer));
     write_ptr = (uint *)buffer[1];
   }
   *write_ptr = *(uint *)(render_object + 0x178);
@@ -300,11 +300,11 @@ void serialize_render_object_data(longlong render_object, longlong *buffer)
   buffer[1] = flag_value + 4;
   *(uint *)(flag_value + 4) = *(uint *)(render_object + 0x184);
   write_ptr = (uint *)(buffer[1] + 4);
-  buffer[1] = (longlong)write_ptr;
+  buffer[1] = (int64_t)write_ptr;
   
   // 序列化渲染光照数据
-  if ((ulonglong)((*buffer - (longlong)write_ptr) + buffer[2]) < 0x11) {
-    expand_buffer_if_needed(buffer, (longlong)write_ptr + (0x10 - *buffer));
+  if ((uint64_t)((*buffer - (int64_t)write_ptr) + buffer[2]) < 0x11) {
+    expand_buffer_if_needed(buffer, (int64_t)write_ptr + (0x10 - *buffer));
     write_ptr = (uint *)buffer[1];
   }
   *write_ptr = *(uint *)(render_object + 0x188);
@@ -318,11 +318,11 @@ void serialize_render_object_data(longlong render_object, longlong *buffer)
   buffer[1] = flag_value + 4;
   *(uint *)(flag_value + 4) = *(uint *)(render_object + 0x194);
   write_ptr = (uint *)(buffer[1] + 4);
-  buffer[1] = (longlong)write_ptr;
+  buffer[1] = (int64_t)write_ptr;
   
   // 序列化渲染纹理数据
-  if ((ulonglong)((*buffer - (longlong)write_ptr) + buffer[2]) < 0x11) {
-    expand_buffer_if_needed(buffer, (longlong)write_ptr + (0x10 - *buffer));
+  if ((uint64_t)((*buffer - (int64_t)write_ptr) + buffer[2]) < 0x11) {
+    expand_buffer_if_needed(buffer, (int64_t)write_ptr + (0x10 - *buffer));
     write_ptr = (uint *)buffer[1];
   }
   *write_ptr = *(uint *)(render_object + 0x198);
@@ -336,68 +336,68 @@ void serialize_render_object_data(longlong render_object, longlong *buffer)
   buffer[1] = flag_value + 4;
   *(uint *)(flag_value + 4) = *(uint *)(render_object + 0x1a4);
   write_ptr = (uint *)(buffer[1] + 4);
-  buffer[1] = (longlong)write_ptr;
+  buffer[1] = (int64_t)write_ptr;
   
   // 序列化渲染状态数据
   temp_value1 = *(uint *)(render_object + 0x1a8);
-  if ((ulonglong)((*buffer - (longlong)write_ptr) + buffer[2]) < 5) {
-    expand_buffer_if_needed(buffer, (longlong)write_ptr + (4 - *buffer));
+  if ((uint64_t)((*buffer - (int64_t)write_ptr) + buffer[2]) < 5) {
+    expand_buffer_if_needed(buffer, (int64_t)write_ptr + (4 - *buffer));
     write_ptr = (uint *)buffer[1];
   }
   *write_ptr = temp_value1;
   write_ptr = (uint *)(buffer[1] + 4);
-  buffer[1] = (longlong)write_ptr;
+  buffer[1] = (int64_t)write_ptr;
   temp_value1 = *(uint *)(render_object + 0x1ac);
-  if ((ulonglong)((*buffer - (longlong)write_ptr) + buffer[2]) < 5) {
-    expand_buffer_if_needed(buffer, (longlong)write_ptr + (4 - *buffer));
+  if ((uint64_t)((*buffer - (int64_t)write_ptr) + buffer[2]) < 5) {
+    expand_buffer_if_needed(buffer, (int64_t)write_ptr + (4 - *buffer));
     write_ptr = (uint *)buffer[1];
   }
   *write_ptr = temp_value1;
   write_ptr = (uint *)(buffer[1] + 4);
-  buffer[1] = (longlong)write_ptr;
+  buffer[1] = (int64_t)write_ptr;
   temp_value1 = *(uint *)(render_object + 0x1b0);
-  if ((ulonglong)((*buffer - (longlong)write_ptr) + buffer[2]) < 5) {
-    expand_buffer_if_needed(buffer, (longlong)write_ptr + (4 - *buffer));
+  if ((uint64_t)((*buffer - (int64_t)write_ptr) + buffer[2]) < 5) {
+    expand_buffer_if_needed(buffer, (int64_t)write_ptr + (4 - *buffer));
     write_ptr = (uint *)buffer[1];
   }
   *write_ptr = temp_value1;
   write_ptr = (uint *)(buffer[1] + 4);
-  buffer[1] = (longlong)write_ptr;
+  buffer[1] = (int64_t)write_ptr;
   temp_value1 = *(uint *)(render_object + 0x1b4);
-  if ((ulonglong)((*buffer - (longlong)write_ptr) + buffer[2]) < 5) {
-    expand_buffer_if_needed(buffer, (longlong)write_ptr + (4 - *buffer));
+  if ((uint64_t)((*buffer - (int64_t)write_ptr) + buffer[2]) < 5) {
+    expand_buffer_if_needed(buffer, (int64_t)write_ptr + (4 - *buffer));
     write_ptr = (uint *)buffer[1];
   }
   *write_ptr = temp_value1;
   write_ptr = (uint *)(buffer[1] + 4);
-  buffer[1] = (longlong)write_ptr;
+  buffer[1] = (int64_t)write_ptr;
   temp_value1 = *(uint *)(render_object + 0x1b8);
-  if ((ulonglong)((*buffer - (longlong)write_ptr) + buffer[2]) < 5) {
-    expand_buffer_if_needed(buffer, (longlong)write_ptr + (4 - *buffer));
+  if ((uint64_t)((*buffer - (int64_t)write_ptr) + buffer[2]) < 5) {
+    expand_buffer_if_needed(buffer, (int64_t)write_ptr + (4 - *buffer));
     write_ptr = (uint *)buffer[1];
   }
   *write_ptr = temp_value1;
   write_ptr = (uint *)(buffer[1] + 4);
-  buffer[1] = (longlong)write_ptr;
+  buffer[1] = (int64_t)write_ptr;
   temp_value1 = *(uint *)(render_object + 0x1bc);
-  if ((ulonglong)((*buffer - (longlong)write_ptr) + buffer[2]) < 5) {
-    expand_buffer_if_needed(buffer, (longlong)write_ptr + (4 - *buffer));
+  if ((uint64_t)((*buffer - (int64_t)write_ptr) + buffer[2]) < 5) {
+    expand_buffer_if_needed(buffer, (int64_t)write_ptr + (4 - *buffer));
     write_ptr = (uint *)buffer[1];
   }
   *write_ptr = temp_value1;
   write_ptr = (uint *)(buffer[1] + 4);
-  buffer[1] = (longlong)write_ptr;
+  buffer[1] = (int64_t)write_ptr;
   temp_value1 = *(uint *)(render_object + 0x1c0);
-  if ((ulonglong)((*buffer - (longlong)write_ptr) + buffer[2]) < 5) {
-    expand_buffer_if_needed(buffer, (longlong)write_ptr + (4 - *buffer));
+  if ((uint64_t)((*buffer - (int64_t)write_ptr) + buffer[2]) < 5) {
+    expand_buffer_if_needed(buffer, (int64_t)write_ptr + (4 - *buffer));
     write_ptr = (uint *)buffer[1];
   }
   *write_ptr = temp_value1;
   write_ptr = (uint *)(buffer[1] + 4);
-  buffer[1] = (longlong)write_ptr;
+  buffer[1] = (int64_t)write_ptr;
   temp_value1 = *(uint *)(render_object + 0x1c4);
-  if ((ulonglong)((*buffer - (longlong)write_ptr) + buffer[2]) < 5) {
-    expand_buffer_if_needed(buffer, (longlong)write_ptr + (4 - *buffer));
+  if ((uint64_t)((*buffer - (int64_t)write_ptr) + buffer[2]) < 5) {
+    expand_buffer_if_needed(buffer, (int64_t)write_ptr + (4 - *buffer));
     *(uint *)buffer[1] = temp_value1;
   }
   else {
@@ -443,16 +443,16 @@ uint64_t * initialize_render_state(uint64_t *render_state)
   render_state[0x2f] = 0;
   render_state[0x30] = 0;
   *(int32_t *)(render_state + 0x31) = 3;
-  *(uint64_t *)((longlong)render_state + 0x5c) = 0;
-  *(int32_t *)((longlong)render_state + 100) = 0;
+  *(uint64_t *)((int64_t)render_state + 0x5c) = 0;
+  *(int32_t *)((int64_t)render_state + 100) = 0;
   *(int32_t *)(render_state + 0x10) = 0;
-  *(int32_t *)((longlong)render_state + 0x84) = 0;
+  *(int32_t *)((int64_t)render_state + 0x84) = 0;
   *(int32_t *)(render_state + 0x11) = 0;
-  *(int32_t *)((longlong)render_state + 0x8c) = 0x3f800000;
+  *(int32_t *)((int64_t)render_state + 0x8c) = 0x3f800000;
   *(int32_t *)(render_state + 0x12) = 0;
-  *(int32_t *)((longlong)render_state + 0x94) = 0;
+  *(int32_t *)((int64_t)render_state + 0x94) = 0;
   *(int32_t *)(render_state + 0x13) = 0;
-  *(int32_t *)((longlong)render_state + 0x9c) = 0x3f800000;
+  *(int32_t *)((int64_t)render_state + 0x9c) = 0x3f800000;
   render_state[0x14] = 0;
   render_state[0x15] = 0;
   render_state[0x16] = 0;
@@ -532,39 +532,39 @@ uint64_t * initialize_renderer(uint64_t *renderer)
   renderer[0x41] = 0;
   renderer[0x3f] = 0;
   *(int32_t *)(renderer + 0x40) = 0;
-  *(int32_t *)((longlong)renderer + 0x244) = 0;
-  *(uint64_t *)((longlong)renderer + 0x214) = 0;
-  *(uint64_t *)((longlong)renderer + 0x21c) = 0;
-  *(uint64_t *)((longlong)renderer + 0x224) = 0;
-  *(uint64_t *)((longlong)renderer + 0x22c) = 0;
-  *(uint64_t *)((longlong)renderer + 0x234) = 0;
-  *(uint64_t *)((longlong)renderer + 0x23c) = 0;
-  *(uint64_t *)((longlong)renderer + 0x24c) = 0;
-  *(uint64_t *)((longlong)renderer + 0x254) = 0x7f7fffff00000000;
-  *(uint64_t *)((longlong)renderer + 0x25c) = 0;
-  *(uint64_t *)((longlong)renderer + 0x264) = 0x7f7fffff00000000;
-  *(uint64_t *)((longlong)renderer + 0x26c) = 0;
-  *(uint64_t *)((longlong)renderer + 0x274) = 0x7f7fffff00000000;
-  *(uint64_t *)((longlong)renderer + 0x2fc) = 0;
-  *(uint64_t *)((longlong)renderer + 0x27c) = 0;
-  *(uint64_t *)((longlong)renderer + 0x284) = 0;
-  *(uint64_t *)((longlong)renderer + 0x28c) = 0;
-  *(uint64_t *)((longlong)renderer + 0x294) = 0;
-  *(uint64_t *)((longlong)renderer + 0x29c) = 0;
-  *(uint64_t *)((longlong)renderer + 0x2a4) = 0;
-  *(uint64_t *)((longlong)renderer + 0x2ac) = 0;
-  *(uint64_t *)((longlong)renderer + 0x2b4) = 0;
-  *(uint64_t *)((longlong)renderer + 700) = 0;
-  *(uint64_t *)((longlong)renderer + 0x2c4) = 0;
-  *(uint64_t *)((longlong)renderer + 0x2cc) = 0;
-  *(uint64_t *)((longlong)renderer + 0x2d4) = 0;
-  *(int32_t *)((longlong)renderer + 0x2dc) = 0;
+  *(int32_t *)((int64_t)renderer + 0x244) = 0;
+  *(uint64_t *)((int64_t)renderer + 0x214) = 0;
+  *(uint64_t *)((int64_t)renderer + 0x21c) = 0;
+  *(uint64_t *)((int64_t)renderer + 0x224) = 0;
+  *(uint64_t *)((int64_t)renderer + 0x22c) = 0;
+  *(uint64_t *)((int64_t)renderer + 0x234) = 0;
+  *(uint64_t *)((int64_t)renderer + 0x23c) = 0;
+  *(uint64_t *)((int64_t)renderer + 0x24c) = 0;
+  *(uint64_t *)((int64_t)renderer + 0x254) = 0x7f7fffff00000000;
+  *(uint64_t *)((int64_t)renderer + 0x25c) = 0;
+  *(uint64_t *)((int64_t)renderer + 0x264) = 0x7f7fffff00000000;
+  *(uint64_t *)((int64_t)renderer + 0x26c) = 0;
+  *(uint64_t *)((int64_t)renderer + 0x274) = 0x7f7fffff00000000;
+  *(uint64_t *)((int64_t)renderer + 0x2fc) = 0;
+  *(uint64_t *)((int64_t)renderer + 0x27c) = 0;
+  *(uint64_t *)((int64_t)renderer + 0x284) = 0;
+  *(uint64_t *)((int64_t)renderer + 0x28c) = 0;
+  *(uint64_t *)((int64_t)renderer + 0x294) = 0;
+  *(uint64_t *)((int64_t)renderer + 0x29c) = 0;
+  *(uint64_t *)((int64_t)renderer + 0x2a4) = 0;
+  *(uint64_t *)((int64_t)renderer + 0x2ac) = 0;
+  *(uint64_t *)((int64_t)renderer + 0x2b4) = 0;
+  *(uint64_t *)((int64_t)renderer + 700) = 0;
+  *(uint64_t *)((int64_t)renderer + 0x2c4) = 0;
+  *(uint64_t *)((int64_t)renderer + 0x2cc) = 0;
+  *(uint64_t *)((int64_t)renderer + 0x2d4) = 0;
+  *(int32_t *)((int64_t)renderer + 0x2dc) = 0;
   *(int32_t *)(renderer + 0x5c) = 0;
-  *(int32_t *)((longlong)renderer + 0x2e4) = 0;
+  *(int32_t *)((int64_t)renderer + 0x2e4) = 0;
   *(int32_t *)(renderer + 0x5d) = 0;
-  *(int32_t *)((longlong)renderer + 0x2ec) = 0;
+  *(int32_t *)((int64_t)renderer + 0x2ec) = 0;
   *(int32_t *)(renderer + 0x5e) = 0;
-  *(int32_t *)((longlong)renderer + 0x2f4) = 0;
+  *(int32_t *)((int64_t)renderer + 0x2f4) = 0;
   *(int32_t *)(renderer + 0x5f) = 0;
   renderer[0x61] = &RENDERER_LOCK_TABLE;
   LOCK();
@@ -586,7 +586,7 @@ uint64_t * initialize_renderer(uint64_t *renderer)
  * @param free_flags 释放标志位
  * @return 渲染对象指针
  */
-uint64_t release_render_resources(uint64_t render_object, ulonglong free_flags)
+uint64_t release_render_resources(uint64_t render_object, uint64_t free_flags)
 
 {
   destroy_render_object();
@@ -604,16 +604,16 @@ uint64_t release_render_resources(uint64_t render_object, ulonglong free_flags)
  * 清理渲染队列
  * @param render_queue 渲染队列指针
  */
-void cleanup_render_queue(longlong *render_queue)
+void cleanup_render_queue(int64_t *render_queue)
 
 {
-  longlong *current_entry;
-  longlong *queue_end;
+  int64_t *current_entry;
+  int64_t *queue_end;
   
-  current_entry = (longlong *)render_queue[1];
-  for (queue_end = (longlong *)*render_queue; queue_end != current_entry; queue_end = queue_end + 2) {
-    if ((longlong *)*queue_end != (longlong *)0x0) {
-      (**(code **)(*(longlong *)*queue_end + 0x38))();
+  current_entry = (int64_t *)render_queue[1];
+  for (queue_end = (int64_t *)*render_queue; queue_end != current_entry; queue_end = queue_end + 2) {
+    if ((int64_t *)*queue_end != (int64_t *)0x0) {
+      (**(code **)(*(int64_t *)*queue_end + 0x38))();
     }
   }
   if (*render_queue == 0) {
@@ -631,11 +631,11 @@ void cleanup_render_queue(longlong *render_queue)
  * 重置渲染状态
  * @param render_context 渲染上下文指针
  */
-void reset_render_state(longlong render_context)
+void reset_render_state(int64_t render_context)
 
 {
   *(uint64_t *)(render_context + 0x168) = &RENDER_MATERIAL_TABLE;
-  if (*(longlong *)(render_context + 0x170) != 0) {
+  if (*(int64_t *)(render_context + 0x170) != 0) {
     // WARNING: Subroutine does not return
     trigger_render_error();
   }
@@ -643,7 +643,7 @@ void reset_render_state(longlong render_context)
   *(int32_t *)(render_context + 0x180) = 0;
   *(uint64_t *)(render_context + 0x168) = &RENDER_STATE_NULL;
   *(uint64_t *)(render_context + 0x148) = &RENDER_MATERIAL_TABLE;
-  if (*(longlong *)(render_context + 0x150) != 0) {
+  if (*(int64_t *)(render_context + 0x150) != 0) {
     // WARNING: Subroutine does not return
     trigger_render_error();
   }
@@ -690,39 +690,39 @@ uint64_t * create_render_object_with_params(uint64_t *render_object, uint64_t pa
   render_object[0x41] = 0;
   render_object[0x3f] = 0;
   *(int32_t *)(render_object + 0x40) = 0;
-  *(int32_t *)((longlong)render_object + 0x244) = 0;
-  *(uint64_t *)((longlong)render_object + 0x214) = 0;
-  *(uint64_t *)((longlong)render_object + 0x21c) = 0;
-  *(uint64_t *)((longlong)render_object + 0x224) = 0;
-  *(uint64_t *)((longlong)render_object + 0x22c) = 0;
-  *(uint64_t *)((longlong)render_object + 0x234) = 0;
-  *(uint64_t *)((longlong)render_object + 0x23c) = 0;
-  *(uint64_t *)((longlong)render_object + 0x24c) = 0;
-  *(uint64_t *)((longlong)render_object + 0x254) = 0x7f7fffff00000000;
-  *(uint64_t *)((longlong)render_object + 0x25c) = 0;
-  *(uint64_t *)((longlong)render_object + 0x264) = 0x7f7fffff00000000;
-  *(uint64_t *)((longlong)render_object + 0x26c) = 0;
-  *(uint64_t *)((longlong)render_object + 0x274) = 0x7f7fffff00000000;
-  *(uint64_t *)((longlong)render_object + 0x2fc) = 0;
-  *(uint64_t *)((longlong)render_object + 0x27c) = 0;
-  *(uint64_t *)((longlong)render_object + 0x284) = 0;
-  *(uint64_t *)((longlong)render_object + 0x28c) = 0;
-  *(uint64_t *)((longlong)render_object + 0x294) = 0;
-  *(uint64_t *)((longlong)render_object + 0x29c) = 0;
-  *(uint64_t *)((longlong)render_object + 0x2a4) = 0;
-  *(uint64_t *)((longlong)render_object + 0x2ac) = 0;
-  *(uint64_t *)((longlong)render_object + 0x2b4) = 0;
-  *(uint64_t *)((longlong)render_object + 700) = 0;
-  *(uint64_t *)((longlong)render_object + 0x2c4) = 0;
-  *(uint64_t *)((longlong)render_object + 0x2cc) = 0;
-  *(uint64_t *)((longlong)render_object + 0x2d4) = 0;
-  *(int32_t *)((longlong)render_object + 0x2dc) = 0;
+  *(int32_t *)((int64_t)render_object + 0x244) = 0;
+  *(uint64_t *)((int64_t)render_object + 0x214) = 0;
+  *(uint64_t *)((int64_t)render_object + 0x21c) = 0;
+  *(uint64_t *)((int64_t)render_object + 0x224) = 0;
+  *(uint64_t *)((int64_t)render_object + 0x22c) = 0;
+  *(uint64_t *)((int64_t)render_object + 0x234) = 0;
+  *(uint64_t *)((int64_t)render_object + 0x23c) = 0;
+  *(uint64_t *)((int64_t)render_object + 0x24c) = 0;
+  *(uint64_t *)((int64_t)render_object + 0x254) = 0x7f7fffff00000000;
+  *(uint64_t *)((int64_t)render_object + 0x25c) = 0;
+  *(uint64_t *)((int64_t)render_object + 0x264) = 0x7f7fffff00000000;
+  *(uint64_t *)((int64_t)render_object + 0x26c) = 0;
+  *(uint64_t *)((int64_t)render_object + 0x274) = 0x7f7fffff00000000;
+  *(uint64_t *)((int64_t)render_object + 0x2fc) = 0;
+  *(uint64_t *)((int64_t)render_object + 0x27c) = 0;
+  *(uint64_t *)((int64_t)render_object + 0x284) = 0;
+  *(uint64_t *)((int64_t)render_object + 0x28c) = 0;
+  *(uint64_t *)((int64_t)render_object + 0x294) = 0;
+  *(uint64_t *)((int64_t)render_object + 0x29c) = 0;
+  *(uint64_t *)((int64_t)render_object + 0x2a4) = 0;
+  *(uint64_t *)((int64_t)render_object + 0x2ac) = 0;
+  *(uint64_t *)((int64_t)render_object + 0x2b4) = 0;
+  *(uint64_t *)((int64_t)render_object + 700) = 0;
+  *(uint64_t *)((int64_t)render_object + 0x2c4) = 0;
+  *(uint64_t *)((int64_t)render_object + 0x2cc) = 0;
+  *(uint64_t *)((int64_t)render_object + 0x2d4) = 0;
+  *(int32_t *)((int64_t)render_object + 0x2dc) = 0;
   *(int32_t *)(render_object + 0x5c) = 0;
-  *(int32_t *)((longlong)render_object + 0x2e4) = 0;
+  *(int32_t *)((int64_t)render_object + 0x2e4) = 0;
   *(int32_t *)(render_object + 0x5d) = 0;
-  *(int32_t *)((longlong)render_object + 0x2ec) = 0;
+  *(int32_t *)((int64_t)render_object + 0x2ec) = 0;
   *(int32_t *)(render_object + 0x5e) = 0;
-  *(int32_t *)((longlong)render_object + 0x2f4) = 0;
+  *(int32_t *)((int64_t)render_object + 0x2f4) = 0;
   *(int32_t *)(render_object + 0x5f) = 0;
   render_object[0x61] = &RENDERER_LOCK_TABLE;
   LOCK();
@@ -750,7 +750,7 @@ uint64_t * create_render_object_with_params(uint64_t *render_object, uint64_t pa
 uint64_t * create_special_render_object(uint64_t *render_object, uint64_t param1, uint64_t param2, uint64_t param3)
 
 {
-  longlong special_result;
+  int64_t special_result;
   
   *render_object = &RENDERER_VTABLE1;
   *render_object = &RENDERER_VTABLE2;
@@ -774,39 +774,39 @@ uint64_t * create_special_render_object(uint64_t *render_object, uint64_t param1
   render_object[0x41] = 0;
   render_object[0x3f] = 0;
   *(int32_t *)(render_object + 0x40) = 0;
-  *(int32_t *)((longlong)render_object + 0x244) = 0;
-  *(uint64_t *)((longlong)render_object + 0x214) = 0;
-  *(uint64_t *)((longlong)render_object + 0x21c) = 0;
-  *(uint64_t *)((longlong)render_object + 0x224) = 0;
-  *(uint64_t *)((longlong)render_object + 0x22c) = 0;
-  *(uint64_t *)((longlong)render_object + 0x234) = 0;
-  *(uint64_t *)((longlong)render_object + 0x23c) = 0;
-  *(uint64_t *)((longlong)render_object + 0x24c) = 0;
-  *(uint64_t *)((longlong)render_object + 0x254) = 0x7f7fffff00000000;
-  *(uint64_t *)((longlong)render_object + 0x25c) = 0;
-  *(uint64_t *)((longlong)render_object + 0x264) = 0x7f7fffff00000000;
-  *(uint64_t *)((longlong)render_object + 0x26c) = 0;
-  *(uint64_t *)((longlong)render_object + 0x274) = 0x7f7fffff00000000;
-  *(uint64_t *)((longlong)render_object + 0x2fc) = 0;
-  *(uint64_t *)((longlong)render_object + 0x27c) = 0;
-  *(uint64_t *)((longlong)render_object + 0x284) = 0;
-  *(uint64_t *)((longlong)render_object + 0x28c) = 0;
-  *(uint64_t *)((longlong)render_object + 0x294) = 0;
-  *(uint64_t *)((longlong)render_object + 0x29c) = 0;
-  *(uint64_t *)((longlong)render_object + 0x2a4) = 0;
-  *(uint64_t *)((longlong)render_object + 0x2ac) = 0;
-  *(uint64_t *)((longlong)render_object + 0x2b4) = 0;
-  *(uint64_t *)((longlong)render_object + 700) = 0;
-  *(uint64_t *)((longlong)render_object + 0x2c4) = 0;
-  *(uint64_t *)((longlong)render_object + 0x2cc) = 0;
-  *(uint64_t *)((longlong)render_object + 0x2d4) = 0;
-  *(int32_t *)((longlong)render_object + 0x2dc) = 0;
+  *(int32_t *)((int64_t)render_object + 0x244) = 0;
+  *(uint64_t *)((int64_t)render_object + 0x214) = 0;
+  *(uint64_t *)((int64_t)render_object + 0x21c) = 0;
+  *(uint64_t *)((int64_t)render_object + 0x224) = 0;
+  *(uint64_t *)((int64_t)render_object + 0x22c) = 0;
+  *(uint64_t *)((int64_t)render_object + 0x234) = 0;
+  *(uint64_t *)((int64_t)render_object + 0x23c) = 0;
+  *(uint64_t *)((int64_t)render_object + 0x24c) = 0;
+  *(uint64_t *)((int64_t)render_object + 0x254) = 0x7f7fffff00000000;
+  *(uint64_t *)((int64_t)render_object + 0x25c) = 0;
+  *(uint64_t *)((int64_t)render_object + 0x264) = 0x7f7fffff00000000;
+  *(uint64_t *)((int64_t)render_object + 0x26c) = 0;
+  *(uint64_t *)((int64_t)render_object + 0x274) = 0x7f7fffff00000000;
+  *(uint64_t *)((int64_t)render_object + 0x2fc) = 0;
+  *(uint64_t *)((int64_t)render_object + 0x27c) = 0;
+  *(uint64_t *)((int64_t)render_object + 0x284) = 0;
+  *(uint64_t *)((int64_t)render_object + 0x28c) = 0;
+  *(uint64_t *)((int64_t)render_object + 0x294) = 0;
+  *(uint64_t *)((int64_t)render_object + 0x29c) = 0;
+  *(uint64_t *)((int64_t)render_object + 0x2a4) = 0;
+  *(uint64_t *)((int64_t)render_object + 0x2ac) = 0;
+  *(uint64_t *)((int64_t)render_object + 0x2b4) = 0;
+  *(uint64_t *)((int64_t)render_object + 700) = 0;
+  *(uint64_t *)((int64_t)render_object + 0x2c4) = 0;
+  *(uint64_t *)((int64_t)render_object + 0x2cc) = 0;
+  *(uint64_t *)((int64_t)render_object + 0x2d4) = 0;
+  *(int32_t *)((int64_t)render_object + 0x2dc) = 0;
   *(int32_t *)(render_object + 0x5c) = 0;
-  *(int32_t *)((longlong)render_object + 0x2e4) = 0;
+  *(int32_t *)((int64_t)render_object + 0x2e4) = 0;
   *(int32_t *)(render_object + 0x5d) = 0;
-  *(int32_t *)((longlong)render_object + 0x2ec) = 0;
+  *(int32_t *)((int64_t)render_object + 0x2ec) = 0;
   *(int32_t *)(render_object + 0x5e) = 0;
-  *(int32_t *)((longlong)render_object + 0x2f4) = 0;
+  *(int32_t *)((int64_t)render_object + 0x2f4) = 0;
   *(int32_t *)(render_object + 0x5f) = 0;
   render_object[0x61] = &RENDERER_LOCK_TABLE;
   LOCK();
@@ -838,11 +838,11 @@ void destroy_render_object(uint64_t *render_object)
 {
   *render_object = &RENDERER_CONFIG_TABLE;
   cleanup_render_cache();
-  if ((longlong *)render_object[0x79] != (longlong *)0x0) {
-    (**(code **)(*(longlong *)render_object[0x79] + 0x38))();
+  if ((int64_t *)render_object[0x79] != (int64_t *)0x0) {
+    (**(code **)(*(int64_t *)render_object[0x79] + 0x38))();
   }
-  if ((longlong *)render_object[0x77] != (longlong *)0x0) {
-    (**(code **)(*(longlong *)render_object[0x77] + 0x38))();
+  if ((int64_t *)render_object[0x77] != (int64_t *)0x0) {
+    (**(code **)(*(int64_t *)render_object[0x77] + 0x38))();
   }
   render_object[0x61] = &RENDERER_LOCK_TABLE;
   render_object[0x3e] = &RENDER_MATERIAL_TABLE;
@@ -869,7 +869,7 @@ void destroy_render_object(uint64_t *render_object)
  * @param render_object 渲染对象指针
  * @return 渲染数据指针
  */
-uint64_t get_render_data(longlong *render_object)
+uint64_t get_render_data(int64_t *render_object)
 
 {
   char is_ready;
@@ -919,20 +919,20 @@ uint64_t check_render_status(uint64_t *render_object)
  * @param render_context 渲染上下文
  * @param flag_value 标志值
  */
-void set_render_flag(longlong render_context, char flag_value)
+void set_render_flag(int64_t render_context, char flag_value)
 
 {
-  ulonglong entry_index;
+  uint64_t entry_index;
   uint entry_count;
-  ulonglong max_entries;
-  longlong entry_ptr;
+  uint64_t max_entries;
+  int64_t entry_ptr;
   
-  entry_ptr = *(longlong *)(render_context + 0x38);
+  entry_ptr = *(int64_t *)(render_context + 0x38);
   entry_index = 0;
   max_entries = entry_index;
-  if (*(longlong *)(render_context + 0x40) - entry_ptr >> 4 != 0) {
+  if (*(int64_t *)(render_context + 0x40) - entry_ptr >> 4 != 0) {
     do {
-      entry_ptr = *(longlong *)(entry_index + entry_ptr);
+      entry_ptr = *(int64_t *)(entry_index + entry_ptr);
       if (flag_value == '\0') {
         if (*(char *)(entry_ptr + 0xfa) != '\0') {
           *(int8_t *)(entry_ptr + 0xfa) = 0;
@@ -944,12 +944,12 @@ FLAG_SET_TRIGGER:
         *(int8_t *)(entry_ptr + 0xfa) = 1;
         goto FLAG_SET_TRIGGER;
       }
-      entry_ptr = *(longlong *)(render_context + 0x38);
+      entry_ptr = *(int64_t *)(render_context + 0x38);
       entry_count = (int)max_entries + 1;
       entry_index = entry_index + 0x10;
-      max_entries = (ulonglong)entry_count;
-    } while ((ulonglong)(longlong)(int)entry_count <
-             (ulonglong)(*(longlong *)(render_context + 0x40) - entry_ptr >> 4));
+      max_entries = (uint64_t)entry_count;
+    } while ((uint64_t)(int64_t)(int)entry_count <
+             (uint64_t)(*(int64_t *)(render_context + 0x40) - entry_ptr >> 4));
   }
   return;
 }
@@ -964,18 +964,18 @@ FLAG_SET_TRIGGER:
  * @param param2 参数2
  * @param render_context 渲染上下文
  */
-void batch_set_render_flags(uint64_t param1, uint64_t param2, longlong render_context)
+void batch_set_render_flags(uint64_t param1, uint64_t param2, int64_t render_context)
 
 {
-  longlong entry_ptr;
-  ulonglong entry_index;
+  int64_t entry_ptr;
+  uint64_t entry_index;
   char flag_value;
-  longlong context_ptr;
+  int64_t context_ptr;
   uint entry_counter;
   
-  entry_index = (ulonglong)entry_counter;
+  entry_index = (uint64_t)entry_counter;
   do {
-    entry_ptr = *(longlong *)(entry_index + render_context);
+    entry_ptr = *(int64_t *)(entry_index + render_context);
     if (flag_value == '\0') {
       if (*(char *)(entry_ptr + 0xfa) != '\0') {
         *(int8_t *)(entry_ptr + 0xfa) = 0;
@@ -987,11 +987,11 @@ BATCH_FLAG_TRIGGER:
       *(int8_t *)(entry_ptr + 0xfa) = 1;
       goto BATCH_FLAG_TRIGGER;
     }
-    render_context = *(longlong *)(context_ptr + 0x38);
+    render_context = *(int64_t *)(context_ptr + 0x38);
     entry_counter = entry_counter + 1;
     entry_index = entry_index + 0x10;
-    if ((ulonglong)(*(longlong *)(context_ptr + 0x40) - render_context >> 4) <=
-        (ulonglong)(longlong)(int)entry_counter) {
+    if ((uint64_t)(*(int64_t *)(context_ptr + 0x40) - render_context >> 4) <=
+        (uint64_t)(int64_t)(int)entry_counter) {
       return;
     }
   } while( true );
@@ -1018,28 +1018,28 @@ void empty_function(void)
  * 清理渲染缓存
  * @param render_context 渲染上下文
  */
-void cleanup_render_cache(longlong render_context)
+void cleanup_render_cache(int64_t render_context)
 
 {
   int entry_count;
-  longlong entry_ptr;
-  longlong counter;
+  int64_t entry_ptr;
+  int64_t counter;
   
   entry_ptr = 0;
-  entry_count = (int)(*(longlong *)(render_context + 0x40) - *(longlong *)(render_context + 0x38) >> 4);
-  counter = (longlong)entry_count;
+  entry_count = (int)(*(int64_t *)(render_context + 0x40) - *(int64_t *)(render_context + 0x38) >> 4);
+  counter = (int64_t)entry_count;
   if (0 < entry_count) {
     do {
-      *(uint64_t *)(*(longlong *)(entry_ptr + *(longlong *)(render_context + 0x38)) + 0x1c8) = 0;
+      *(uint64_t *)(*(int64_t *)(entry_ptr + *(int64_t *)(render_context + 0x38)) + 0x1c8) = 0;
       counter = counter + -1;
       entry_ptr = entry_ptr + 0x10;
     } while (counter != 0);
   }
   cleanup_render_internal_data();
-  entry_ptr = *(longlong *)(render_context + 0x28);
+  entry_ptr = *(int64_t *)(render_context + 0x28);
   *(int32_t *)(render_context + 0x58) = 0;
   if ((entry_ptr != 0) &&
-     (*(short *)(entry_ptr + 0x2b0) = *(short *)(entry_ptr + 0x2b0) + 1, *(longlong *)(entry_ptr + 0x168) != 0))
+     (*(short *)(entry_ptr + 0x2b0) = *(short *)(entry_ptr + 0x2b0) + 1, *(int64_t *)(entry_ptr + 0x168) != 0))
   {
     trigger_render_cleanup();
   }
@@ -1058,12 +1058,12 @@ uint64_t * create_render_instance(uint64_t param1, uint64_t *render_instance_ptr
 
 {
   uint64_t instance_handle;
-  longlong *instance_data;
+  int64_t *instance_data;
   
   instance_handle = allocate_render_memory(RENDER_ALLOC_TABLE, 0x3d0, 8, 0x16, 0, 0xfffffffffffffffe);
-  instance_data = (longlong *)initialize_renderer(instance_handle);
+  instance_data = (int64_t *)initialize_renderer(instance_handle);
   *render_instance_ptr = instance_data;
-  if (instance_data != (longlong *)0x0) {
+  if (instance_data != (int64_t *)0x0) {
     (**(code **)(*instance_data + 0x28))(instance_data);
   }
   apply_special_render_settings(param1, *render_instance_ptr, 1);

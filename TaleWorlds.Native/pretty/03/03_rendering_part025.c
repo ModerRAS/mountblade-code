@@ -2,23 +2,23 @@
 
 // 03_rendering_part025.c - 渲染系统资源清理模块 - 2个函数
 
-// 函数: void clear_rendering_resource_array(longlong resource_manager)
+// 函数: void clear_rendering_resource_array(int64_t resource_manager)
 // 清理渲染资源数组，释放内存并重置状态
 // 参数: resource_manager - 资源管理器指针
-void clear_rendering_resource_array(longlong resource_manager)
+void clear_rendering_resource_array(int64_t resource_manager)
 
 {
-  longlong resource_array_ptr;
-  longlong resource_ptr;
-  ulonglong resource_count;
-  ulonglong index;
+  int64_t resource_array_ptr;
+  int64_t resource_ptr;
+  uint64_t resource_count;
+  uint64_t index;
   
-  resource_count = *(ulonglong *)(resource_manager + 0x10);
-  resource_array_ptr = *(longlong *)(resource_manager + 8);
+  resource_count = *(uint64_t *)(resource_manager + 0x10);
+  resource_array_ptr = *(int64_t *)(resource_manager + 8);
   index = 0;
   if (resource_count != 0) {
     do {
-      resource_ptr = *(longlong *)(resource_array_ptr + index * 8);
+      resource_ptr = *(int64_t *)(resource_array_ptr + index * 8);
       if (resource_ptr != 0) {
         cleanup_rendering_resource();
                     // WARNING: Subroutine does not return
@@ -27,10 +27,10 @@ void clear_rendering_resource_array(longlong resource_manager)
       *(uint64_t *)(resource_array_ptr + index * 8) = 0;
       index = index + 1;
     } while (index < resource_count);
-    resource_count = *(ulonglong *)(resource_manager + 0x10);
+    resource_count = *(uint64_t *)(resource_manager + 0x10);
   }
   *(uint64_t *)(resource_manager + 0x18) = 0;
-  if ((1 < resource_count) && (*(longlong *)(resource_manager + 8) != 0)) {
+  if ((1 < resource_count) && (*(int64_t *)(resource_manager + 8) != 0)) {
                     // WARNING: Subroutine does not return
     free_memory();
   }
@@ -41,23 +41,23 @@ void clear_rendering_resource_array(longlong resource_manager)
 
 
 
-// 函数: void reset_rendering_resource_manager(longlong resource_manager)
+// 函数: void reset_rendering_resource_manager(int64_t resource_manager)
 // 重置渲染资源管理器，清理所有资源并重置状态
 // 参数: resource_manager - 资源管理器指针
-void reset_rendering_resource_manager(longlong resource_manager)
+void reset_rendering_resource_manager(int64_t resource_manager)
 
 {
-  longlong resource_array_ptr;
-  longlong resource_ptr;
-  ulonglong resource_count;
-  ulonglong index;
+  int64_t resource_array_ptr;
+  int64_t resource_ptr;
+  uint64_t resource_count;
+  uint64_t index;
   
-  resource_count = *(ulonglong *)(resource_manager + 0x10);
-  resource_array_ptr = *(longlong *)(resource_manager + 8);
+  resource_count = *(uint64_t *)(resource_manager + 0x10);
+  resource_array_ptr = *(int64_t *)(resource_manager + 8);
   index = 0;
   if (resource_count != 0) {
     do {
-      resource_ptr = *(longlong *)(resource_array_ptr + index * 8);
+      resource_ptr = *(int64_t *)(resource_array_ptr + index * 8);
       if (resource_ptr != 0) {
         cleanup_rendering_resource();
                     // WARNING: Subroutine does not return
@@ -66,10 +66,10 @@ void reset_rendering_resource_manager(longlong resource_manager)
       *(uint64_t *)(resource_array_ptr + index * 8) = 0;
       index = index + 1;
     } while (index < resource_count);
-    resource_count = *(ulonglong *)(resource_manager + 0x10);
+    resource_count = *(uint64_t *)(resource_manager + 0x10);
   }
   *(uint64_t *)(resource_manager + 0x18) = 0;
-  if ((1 < resource_count) && (*(longlong *)(resource_manager + 8) != 0)) {
+  if ((1 < resource_count) && (*(int64_t *)(resource_manager + 8) != 0)) {
                     // WARNING: Subroutine does not return
     free_memory();
   }
@@ -79,12 +79,12 @@ void reset_rendering_resource_manager(longlong resource_manager)
 
 
 // 函数别名定义（保持与原始代码的兼容性）
-void FUN_18027f4d0(longlong resource_manager) { clear_rendering_resource_array(resource_manager); }
-void FUN_18027f4f0(longlong resource_manager) { reset_rendering_resource_manager(resource_manager); }
+void FUN_18027f4d0(int64_t resource_manager) { clear_rendering_resource_array(resource_manager); }
+void FUN_18027f4f0(int64_t resource_manager) { reset_rendering_resource_manager(resource_manager); }
 
 // 函数声明（用于外部调用）
 void cleanup_rendering_resource(void);
-void free_memory(longlong memory_ptr);
+void free_memory(int64_t memory_ptr);
 void free_memory(void);
 
 // =============================================================================

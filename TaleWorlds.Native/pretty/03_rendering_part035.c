@@ -3,8 +3,8 @@
 
 // 03_rendering_part035.c - 2 个函数
 
-// 函数: void FUN_180287610(longlong param_1,float *param_2,float *param_3)
-void FUN_180287610(longlong param_1,float *param_2,float *param_3)
+// 函数: void FUN_180287610(int64_t param_1,float *param_2,float *param_3)
+void FUN_180287610(int64_t param_1,float *param_2,float *param_3)
 
 {
   float fVar1;
@@ -14,7 +14,7 @@ void FUN_180287610(longlong param_1,float *param_2,float *param_3)
   uint64_t uVar5;
   uint64_t uVar6;
   float *pfVar7;
-  longlong lVar8;
+  int64_t lVar8;
   float fVar9;
   float fVar10;
   float fVar11;
@@ -58,9 +58,9 @@ void FUN_180287610(longlong param_1,float *param_2,float *param_3)
   float fStack_c8;
   float fStack_c4;
   float fStack_c0;
-  ulonglong uStack_b8;
+  uint64_t uStack_b8;
   
-  uStack_b8 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_198;
+  uStack_b8 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_198;
   fStack_158 = *param_2;
   fStack_154 = param_2[1];
   uVar5 = *(uint64_t *)param_2;
@@ -179,12 +179,12 @@ void FUN_180287610(longlong param_1,float *param_2,float *param_3)
   *(int32_t *)(param_1 + 0x114) = 0x3f800000;
   FUN_1802864f0();
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_b8 ^ (ulonglong)auStack_198);
+  FUN_1808fc050(uStack_b8 ^ (uint64_t)auStack_198);
 }
 
 
 
-float * FUN_1802879b0(longlong param_1,float *param_2,float param_3)
+float * FUN_1802879b0(int64_t param_1,float *param_2,float param_3)
 
 {
   float fVar1;
@@ -275,16 +275,16 @@ float * FUN_180287b30(float *param_1,float *param_2)
 uint64_t * FUN_180287d30(uint64_t *param_1)
 
 {
-  longlong lVar1;
-  longlong lVar2;
+  int64_t lVar1;
+  int64_t lVar2;
   uint64_t *puVar3;
   uint64_t *puVar4;
   uint64_t *puVar5;
   uint64_t *puVar6;
   uint64_t *puVar7;
   uint64_t *puVar8;
-  ulonglong uVar9;
-  ulonglong uVar10;
+  uint64_t uVar9;
+  uint64_t uVar10;
   int8_t auStack_50 [24];
   int8_t auStack_38 [32];
   
@@ -315,13 +315,13 @@ uint64_t * FUN_180287d30(uint64_t *param_1)
       lVar2 = FUN_18062b420(system_memory_pool_ptr,lVar1 * 0x1c + 0xaa,3);
       puVar3 = puVar8;
       if (lVar2 != 0) {
-        puVar3 = (uint64_t *)((ulonglong)(-(int)lVar2 & 7) + lVar2);
+        puVar3 = (uint64_t *)((uint64_t)(-(int)lVar2 & 7) + lVar2);
         *puVar3 = 0;
         puVar3[1] = 0;
         puVar3[8] = 0;
         puVar3[9] = 0;
         puVar3[0x10] = 0;
-        puVar3[0x11] = (ulonglong)(-(int)(puVar3 + 0x14) & 3) + (longlong)(puVar3 + 0x14);
+        puVar3[0x11] = (uint64_t)(-(int)(puVar3 + 0x14) & 3) + (int64_t)(puVar3 + 0x14);
         puVar3[0x12] = lVar1 + -1;
         puVar3[0x13] = lVar2;
       }
@@ -336,7 +336,7 @@ uint64_t * FUN_180287d30(uint64_t *param_1)
         puVar4 = puVar5;
       }
       puVar3[0x10] = puVar4;
-      puVar7 = (uint64_t *)((longlong)puVar7 + 1);
+      puVar7 = (uint64_t *)((int64_t)puVar7 + 1);
       puVar5 = puVar4;
       puVar6 = puVar3;
     } while (puVar7 != (uint64_t *)0x2);
@@ -375,7 +375,7 @@ void FUN_180287ed0(char *param_1,int param_2,int param_3)
 
 
 
-uint64_t * FUN_180287f20(uint64_t *param_1,longlong param_2)
+uint64_t * FUN_180287f20(uint64_t *param_1,int64_t param_2)
 
 {
   *param_1 = &unknown_var_9816_ptr;

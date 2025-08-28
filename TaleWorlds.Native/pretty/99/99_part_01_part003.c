@@ -88,7 +88,7 @@
  */
 void system_data_processor(void)
 {
-  longlong system_status;
+  int64_t system_status;
   int32_t *data_buffer;
   int32_t vector_component_1;
   int32_t vector_component_2;
@@ -131,13 +131,13 @@ void system_data_processor(void)
  * @param search_key 要搜索的字符串键
  * @return 找到的数据项指针，未找到返回NULL
  */
-uint64_t * string_hash_table_searcher(longlong data_structure, char *search_key)
+uint64_t * string_hash_table_searcher(int64_t data_structure, char *search_key)
 {
   char *key_pointer;
   char current_char;
   uint64_t *hash_entry;
   char *entry_key;
-  longlong key_length;
+  int64_t key_length;
   char *compare_pointer;
   
   // 处理空键值情况
@@ -171,14 +171,14 @@ uint64_t * string_hash_table_searcher(longlong data_structure, char *search_key)
     }
     
     // 检查键长度是否匹配
-    if (key_length == (longlong)key_pointer - (longlong)search_key) {
+    if (key_length == (int64_t)key_pointer - (int64_t)search_key) {
       compare_pointer = entry_key + key_length;
       if (compare_pointer <= entry_key) {
         return hash_entry;
       }
       
       // 执行字符串比较
-      key_length = (longlong)search_key - (longlong)entry_key;
+      key_length = (int64_t)search_key - (int64_t)entry_key;
       while (*entry_key == entry_key[key_length]) {
         entry_key = entry_key + 1;
         if (compare_pointer <= entry_key) {
@@ -208,9 +208,9 @@ uint64_t * string_comparator(uint64_t param1, uint64_t *string_list)
 {
   char *string1;
   char *string2;
-  longlong length1;
-  longlong compare_length1;
-  longlong compare_length2;
+  int64_t length1;
+  int64_t compare_length1;
+  int64_t compare_length2;
   
   if (string_list != (uint64_t *)0x0) {
     do {
@@ -231,7 +231,7 @@ uint64_t * string_comparator(uint64_t param1, uint64_t *string_list)
         }
         
         // 执行字符串比较
-        length1 = compare_length2 - (longlong)string2;
+        length1 = compare_length2 - (int64_t)string2;
         while (*string2 == string2[length1]) {
           string2 = string2 + 1;
           if (string1 <= string2) {
@@ -265,9 +265,9 @@ uint64_t * string_matcher(uint64_t param1, uint64_t *string_list)
   char *string1;
   char *string2;
   char *default_string;
-  longlong length1;
-  longlong compare_length1;
-  longlong compare_length2;
+  int64_t length1;
+  int64_t compare_length1;
+  int64_t compare_length2;
   
   while( true ) {
     do {
@@ -289,7 +289,7 @@ uint64_t * string_matcher(uint64_t param1, uint64_t *string_list)
     string1 = string2 + length1;
     if (string1 <= string2) break;
     
-    length1 = compare_length2 - (longlong)string2;
+    length1 = compare_length2 - (int64_t)string2;
     while (*string2 == string2[length1]) {
       string2 = string2 + 1;
       if (string1 <= string2) {
@@ -313,7 +313,7 @@ uint64_t * string_matcher(uint64_t param1, uint64_t *string_list)
  * @param data_structure 数据结构指针
  * @return 访问到的数据元素
  */
-uint64_t data_structure_accessor(longlong data_structure)
+uint64_t data_structure_accessor(int64_t data_structure)
 {
   return *(uint64_t *)(data_structure + 0x40);
 }
@@ -335,10 +335,10 @@ uint64_t data_structure_accessor(longlong data_structure)
  * @param context_buffer 上下文缓冲区
  * @return 处理后的缓冲区指针
  */
-longlong * html_escape_processor(longlong *output_buffer, char *input_start, char *input_end, char terminator, longlong *context_buffer)
+int64_t * html_escape_processor(int64_t *output_buffer, char *input_start, char *input_end, char terminator, int64_t *context_buffer)
 {
-  longlong buffer_data1;
-  longlong buffer_data2;
+  int64_t buffer_data1;
+  int64_t buffer_data2;
   char current_char;
   uint64_t escape_char;
   
@@ -463,15 +463,15 @@ NORMAL_CHAR_OUTPUT:
  */
 void html_escape_processor_advanced(void)
 {
-  longlong context_data1;
-  longlong context_data2;
+  int64_t context_data1;
+  int64_t context_data2;
   char current_char;
   uint64_t escape_char;
   char *input_pointer;
   char *input_end;
-  longlong *output_buffer;
+  int64_t *output_buffer;
   char terminator;
-  longlong *context_buffer;
+  int64_t *context_buffer;
   
   context_data1 = *context_buffer;
   context_data2 = context_buffer[1];
@@ -613,7 +613,7 @@ void data_copy_manager(void)
  * @param data_structure 数据结构
  * @return 格式化后的缓冲区指针
  */
-longlong * html_attribute_formatter(longlong *output_buffer, longlong *context_buffer, longlong data_structure)
+int64_t * html_attribute_formatter(int64_t *output_buffer, int64_t *context_buffer, int64_t data_structure)
 {
   int8_t current_char;
   char string_char;
@@ -628,18 +628,18 @@ longlong * html_attribute_formatter(longlong *output_buffer, longlong *context_b
   char *name_end;
   int32_t *result_buffer;
   int8_t *temp_ptr;
-  longlong name_length;
-  longlong value_length;
+  int64_t name_length;
+  int64_t value_length;
   uint8_t name_suffix;
-  longlong temp_long;
+  int64_t temp_long;
   uint64_t quote_char;
-  longlong temp_long2;
-  longlong temp_long3;
+  int64_t temp_long2;
+  int64_t temp_long3;
   int8_t *search_ptr;
-  longlong temp_long4;
+  int64_t temp_long4;
   uint64_t *attr_list;
-  longlong local_buffer1;
-  longlong local_buffer2;
+  int64_t local_buffer1;
+  int64_t local_buffer2;
   int8_t local_stack1 [16];
   int8_t local_stack2 [32];
   
@@ -727,7 +727,7 @@ longlong * html_attribute_formatter(longlong *output_buffer, longlong *context_b
       has_quotes = true;
       
 QUOTE_CHECK_DONE:
-      name_suffix = (uint8_t)((ulonglong)(name_start + name_length) >> 8);
+      name_suffix = (uint8_t)((uint64_t)(name_start + name_length) >> 8);
       
       if (has_quotes) {
         // 使用单引号包围
@@ -793,9 +793,9 @@ QUOTE_CHECK_DONE:
       temp_data2 = result_buffer[2];
       temp_data3 = result_buffer[3];
       *(int32_t *)context_buffer = *result_buffer;
-      *(int32_t *)((longlong)context_buffer + 4) = temp_data1;
+      *(int32_t *)((int64_t)context_buffer + 4) = temp_data1;
       *(int32_t *)(context_buffer + 1) = temp_data2;
-      *(int32_t *)((longlong)context_buffer + 0xc) = temp_data3;
+      *(int32_t *)((int64_t)context_buffer + 0xc) = temp_data3;
       
       temp_long3 = context_buffer[1];
       output_character(temp_long3, quote_char);
@@ -823,7 +823,7 @@ QUOTE_CHECK_DONE:
  * - 提供上下文相关的格式化
  * - 优化内存使用和性能
  */
-void html_attribute_formatter_advanced(uint64_t param1, longlong *context_buffer)
+void html_attribute_formatter_advanced(uint64_t param1, int64_t *context_buffer)
 {
   int8_t current_char;
   char string_char;
@@ -834,30 +834,30 @@ void html_attribute_formatter_advanced(uint64_t param1, longlong *context_buffer
   int32_t temp_data2;
   int32_t temp_data3;
   bool has_quotes;
-  longlong stack_data;
+  int64_t stack_data;
   char *name_start;
   char *name_end;
   int32_t *result_buffer;
   int8_t *temp_ptr;
-  longlong name_length;
-  longlong value_length;
+  int64_t name_length;
+  int64_t value_length;
   uint8_t name_suffix;
-  longlong temp_long;
+  int64_t temp_long;
   uint64_t quote_char;
-  longlong temp_long2;
-  longlong temp_long3;
+  int64_t temp_long2;
+  int64_t temp_long3;
   int8_t *search_ptr;
-  longlong temp_long4;
+  int64_t temp_long4;
   uint64_t *attr_data;
   uint64_t *attr_list;
-  longlong local_buffer1;
-  longlong local_buffer2;
+  int64_t local_buffer1;
+  int64_t local_buffer2;
   int32_t vector_component_1;
   int32_t vector_component_2;
   int32_t vector_component_3;
   int32_t vector_component_4;
-  longlong stack_param1;
-  longlong stack_param2;
+  int64_t stack_param1;
+  int64_t stack_param2;
   
   // 初始化堆栈数据
   *(uint64_t *)(stack_data + 8) = stack_data;
@@ -950,7 +950,7 @@ void html_attribute_formatter_advanced(uint64_t param1, longlong *context_buffer
     has_quotes = true;
     
 QUOTE_CHECK_DONE_ADVANCED:
-    name_suffix = (uint8_t)((ulonglong)(name_start + name_length) >> 8);
+    name_suffix = (uint8_t)((uint64_t)(name_start + name_length) >> 8);
     
     if (has_quotes) {
       // 使用单引号包围
@@ -1016,9 +1016,9 @@ QUOTE_CHECK_DONE_ADVANCED:
     temp_data2 = result_buffer[2];
     temp_data3 = result_buffer[3];
     *(int32_t *)context_buffer = *result_buffer;
-    *(int32_t *)((longlong)context_buffer + 4) = temp_data1;
+    *(int32_t *)((int64_t)context_buffer + 4) = temp_data1;
     *(int32_t *)(context_buffer + 1) = temp_data2;
-    *(int32_t *)((longlong)context_buffer + 0xc) = temp_data3;
+    *(int32_t *)((int64_t)context_buffer + 0xc) = temp_data3;
     
     temp_long4 = context_buffer[1];
     output_character(temp_long4, quote_char);
@@ -1074,22 +1074,22 @@ void system_resource_manager(void)
  * @param indent_level 缩进级别
  * @return 处理后的缓冲区指针
  */
-longlong * html_comment_generator(
-  longlong *output_buffer, 
-  longlong *context_buffer, 
-  longlong data_structure, 
+int64_t * html_comment_generator(
+  int64_t *output_buffer, 
+  int64_t *context_buffer, 
+  int64_t data_structure, 
   byte flags, 
   uint indent_level
 )
 {
   int8_t current_char;
-  longlong buffer_data1;
-  longlong buffer_data2;
+  int64_t buffer_data1;
+  int64_t buffer_data2;
   int8_t *string_ptr;
-  longlong string_length;
+  int64_t string_length;
   int8_t *temp_ptr;
-  longlong temp_length;
-  ulonglong loop_counter;
+  int64_t temp_length;
+  uint64_t loop_counter;
   int8_t *search_ptr;
   
   // 根据标志决定是否处理缩进
@@ -1098,7 +1098,7 @@ longlong * html_comment_generator(
     buffer_data2 = context_buffer[1];
     
     if (0 < (int)indent_level) {
-      loop_counter = (ulonglong)indent_level;
+      loop_counter = (uint64_t)indent_level;
       do {
         output_character(buffer_data2, FORMAT_TAB);
         if (buffer_data1 != 0) {
@@ -1152,7 +1152,7 @@ longlong * html_comment_generator(
     temp_length = 0;
   }
   else {
-    temp_length = *(longlong *)(data_structure + 0x18);
+    temp_length = *(int64_t *)(data_structure + 0x18);
     temp_ptr = string_ptr;
   }
   
@@ -1209,21 +1209,21 @@ longlong * html_comment_generator(
  */
 void html_comment_generator_advanced(
   uint64_t param1, 
-  longlong *context_buffer, 
-  longlong data_structure, 
+  int64_t *context_buffer, 
+  int64_t data_structure, 
   byte flags
 )
 {
   int8_t current_char;
-  longlong buffer_data1;
-  longlong buffer_data2;
+  int64_t buffer_data1;
+  int64_t buffer_data2;
   int8_t *string_ptr;
-  longlong string_length;
+  int64_t string_length;
   int8_t *temp_ptr;
-  longlong temp_length;
-  ulonglong loop_counter;
+  int64_t temp_length;
+  uint64_t loop_counter;
   int8_t *search_ptr;
-  longlong *output_buffer;
+  int64_t *output_buffer;
   uint indent_level;
   
   // 根据标志决定是否处理缩进
@@ -1232,7 +1232,7 @@ void html_comment_generator_advanced(
     buffer_data2 = context_buffer[1];
     
     if (0 < (int)indent_level) {
-      loop_counter = (ulonglong)indent_level;
+      loop_counter = (uint64_t)indent_level;
       do {
         output_character(buffer_data2, FORMAT_TAB);
         if (buffer_data1 != 0) {
@@ -1286,7 +1286,7 @@ void html_comment_generator_advanced(
     temp_length = 0;
   }
   else {
-    temp_length = *(longlong *)(data_structure + 0x18);
+    temp_length = *(int64_t *)(data_structure + 0x18);
     temp_ptr = string_ptr;
   }
   
@@ -1348,21 +1348,21 @@ void html_comment_generator_advanced(
  * @param indent_level 缩进级别
  * @return 处理后的缓冲区指针
  */
-longlong * html_doctype_generator(
-  longlong *output_buffer, 
-  longlong *context_buffer, 
-  longlong data_structure, 
+int64_t * html_doctype_generator(
+  int64_t *output_buffer, 
+  int64_t *context_buffer, 
+  int64_t data_structure, 
   byte flags, 
   uint indent_level
 )
 {
   int8_t current_char;
-  longlong buffer_data1;
-  longlong buffer_data2;
+  int64_t buffer_data1;
+  int64_t buffer_data2;
   int8_t *string_ptr;
   int8_t *temp_ptr;
-  longlong string_length;
-  ulonglong loop_counter;
+  int64_t string_length;
+  uint64_t loop_counter;
   int8_t *search_ptr;
   
   // 根据标志决定是否处理缩进
@@ -1371,7 +1371,7 @@ longlong * html_doctype_generator(
     buffer_data2 = context_buffer[1];
     
     if (0 < (int)indent_level) {
-      loop_counter = (ulonglong)indent_level;
+      loop_counter = (uint64_t)indent_level;
       do {
         output_character(buffer_data2, FORMAT_TAB);
         if (buffer_data1 != 0) {
@@ -1451,7 +1451,7 @@ longlong * html_doctype_generator(
     string_length = 0;
   }
   else {
-    string_length = *(longlong *)(data_structure + 0x18);
+    string_length = *(int64_t *)(data_structure + 0x18);
     temp_ptr = string_ptr;
   }
   
@@ -1497,20 +1497,20 @@ longlong * html_doctype_generator(
  */
 void html_doctype_generator_advanced(
   uint64_t param1, 
-  longlong *context_buffer, 
-  longlong data_structure, 
+  int64_t *context_buffer, 
+  int64_t data_structure, 
   byte flags
 )
 {
   int8_t current_char;
-  longlong buffer_data1;
-  longlong buffer_data2;
+  int64_t buffer_data1;
+  int64_t buffer_data2;
   int8_t *string_ptr;
   int8_t *temp_ptr;
-  longlong string_length;
-  ulonglong loop_counter;
+  int64_t string_length;
+  uint64_t loop_counter;
   int8_t *search_ptr;
-  longlong *output_buffer;
+  int64_t *output_buffer;
   uint indent_level;
   
   // 根据标志决定是否处理缩进
@@ -1519,7 +1519,7 @@ void html_doctype_generator_advanced(
     buffer_data2 = context_buffer[1];
     
     if (0 < (int)indent_level) {
-      loop_counter = (ulonglong)indent_level;
+      loop_counter = (uint64_t)indent_level;
       do {
         output_character(buffer_data2, FORMAT_TAB);
         if (buffer_data1 != 0) {
@@ -1599,7 +1599,7 @@ void html_doctype_generator_advanced(
     string_length = 0;
   }
   else {
-    string_length = *(longlong *)(data_structure + 0x18);
+    string_length = *(int64_t *)(data_structure + 0x18);
     temp_ptr = string_ptr;
   }
   
@@ -1645,7 +1645,7 @@ void html_doctype_generator_advanced(
  */
 void system_cleanup_handler(void)
 {
-  longlong system_status;
+  int64_t system_status;
   int32_t *data_buffer;
   int32_t vector_component_1;
   int32_t vector_component_2;
@@ -1704,14 +1704,14 @@ static void system_cleanup_phase2(void);
  * @param buffer 输出缓冲区
  * @param character 要输出的字符
  */
-static void output_character(longlong buffer, char character);
+static void output_character(int64_t buffer, char character);
 
 /**
  * @brief 带上下文的字符输出
  * @param buffer 输出缓冲区
  * @param context 上下文数据
  */
-static void output_character_with_context(longlong buffer, longlong context);
+static void output_character_with_context(int64_t buffer, int64_t context);
 
 // ============================================================================
 // 技术说明
@@ -1757,8 +1757,8 @@ static void output_character_with_context(longlong buffer, longlong context);
  * 
  * @code
  * // HTML转义处理示例
- * longlong output_buffer[2];
- * longlong context_buffer[2];
+ * int64_t output_buffer[2];
+ * int64_t context_buffer[2];
  * char *input_text = "Hello <World> & \"Friends\"";
  * 
  * html_escape_processor(output_buffer, input_text, 

@@ -6,45 +6,45 @@
 
 // 函数：处理资源加载和初始化
 // 原函数名：FUN_180054360
-void process_resource_initialization(longlong *engine_context, longlong resource_params)
+void process_resource_initialization(int64_t *engine_context, int64_t resource_params)
 
 {
   // 局部变量声明
   uint resource_id;         // 资源ID
   int init_result;          // 初始化结果
   uint64_t resource_handle; // 资源句柄
-  longlong *resource_data;  // 资源数据指针
+  int64_t *resource_data;  // 资源数据指针
   void *resource_name;  // 资源名称
-  longlong data_offset;     // 数据偏移量
-  ulonglong data_size;      // 数据大小
+  int64_t data_offset;     // 数据偏移量
+  uint64_t data_size;      // 数据大小
   
   // 栈变量
   int8_t stack_buffer[32];      // 栈缓冲区
   int32_t stack_guard;          // 栈保护
   void *resource_path;         // 资源路径
-  longlong path_length;            // 路径长度
+  int64_t path_length;            // 路径长度
   uint path_capacity;              // 路径容量
   uint64_t path_handle;          // 路径句柄
   int32_t path_flags;           // 路径标志
   void *path_data;            // 路径数据
-  longlong path_offset;            // 路径偏移量
+  int64_t path_offset;            // 路径偏移量
   uint path_size;                  // 路径大小
   uint64_t path_cookie;          // 路径cookie
   void *module_name;           // 模块名称
-  longlong name_offset;            // 名称偏移量
+  int64_t name_offset;            // 名称偏移量
   int32_t module_flags;         // 模块标志
-  ulonglong module_cookie;         // 模块cookie
+  uint64_t module_cookie;         // 模块cookie
   int32_t buffer_size;         // 缓冲区大小
   uint buffer_capacity;            // 缓冲区容量
   int8_t buffer_flag;          // 缓冲区标志
   int32_t alignment_flag;       // 对齐标志
   void *string_buffer;        // 字符串缓冲区
-  longlong string_offset;          // 字符串偏移量
+  int64_t string_offset;          // 字符串偏移量
   int string_length;               // 字符串长度
   int32_t string_flags;         // 字符串标志
   void **resource_ptr;        // 资源指针
   void *temp_buffer;          // 临时缓冲区
-  longlong temp_offset;            // 临时偏移量
+  int64_t temp_offset;            // 临时偏移量
   int32_t temp_flags;           // 临时标志
   int32_t float_values[12];     // 浮点数值数组
   int8_t byte_flag;            // 字节标志
@@ -56,11 +56,11 @@ void process_resource_initialization(longlong *engine_context, longlong resource
   int8_t *char_buffer;         // 字符缓冲区
   int32_t data_flags;           // 数据标志
   int8_t large_buffer[136];    // 大缓冲区
-  ulonglong security_cookie;       // 安全cookie
+  uint64_t security_cookie;       // 安全cookie
   
   // 初始化安全保护机制
   handle_guard = 0xfffffffffffffffe;
-  security_cookie = GET_SECURITY_COOKIE() ^ (ulonglong)stack_buffer;
+  security_cookie = GET_SECURITY_COOKIE() ^ (uint64_t)stack_buffer;
   
   // 初始化资源数据结构
   path_flags = 0;
@@ -84,9 +84,9 @@ void process_resource_initialization(longlong *engine_context, longlong resource
   buffer_size = 0;
   buffer_capacity = buffer_capacity & 0xffffff00;  // 对齐到256字节边界
   uint64_t alloc_result = FUN_18062b1e0(system_memory_pool_ptr,0x60d30,0x10,0x1f);
-  longlong *resource_manager = (longlong *)FUN_1801954d0(alloc_result,&puStack_1c0);
+  int64_t *resource_manager = (int64_t *)FUN_1801954d0(alloc_result,&puStack_1c0);
   ppuStack_170 = (void **)resource_manager;
-  if (resource_manager != (longlong *)0x0) {
+  if (resource_manager != (int64_t *)0x0) {
     (**(code **)(*resource_manager + 0x28))(resource_manager);
   }
   uStack_148 = 0x3f800000;
@@ -135,12 +135,12 @@ void process_resource_initialization(longlong *engine_context, longlong resource
   uStack_150 = 0;
   puStack_168 = &system_state_ptr;
   if ((iVar2 < 0) ||
-     (lVar6 = *(longlong *)(*param_1 + 0x888),
-     (ulonglong)(*(longlong *)(*param_1 + 0x890) - lVar6 >> 5) <= (ulonglong)(longlong)iVar2)) {
+     (lVar6 = *(int64_t *)(*param_1 + 0x888),
+     (uint64_t)(*(int64_t *)(*param_1 + 0x890) - lVar6 >> 5) <= (uint64_t)(int64_t)iVar2)) {
     lVar6 = FUN_180628ca0();
   }
   else {
-    lVar6 = (longlong)iVar2 * 0x20 + lVar6;
+    lVar6 = (int64_t)iVar2 * 0x20 + lVar6;
   }
   puStack_208 = &system_data_buffer_ptr;
   uStack_1f0 = 0;
@@ -148,8 +148,8 @@ void process_resource_initialization(longlong *engine_context, longlong resource
   uStack_1f8 = 0;
   uStack_1e8 = 1;
   uVar1 = *(uint *)(lVar6 + 0x10);
-  uVar7 = (ulonglong)uVar1;
-  if (*(longlong *)(lVar6 + 8) != 0) {
+  uVar7 = (uint64_t)uVar1;
+  if (*(int64_t *)(lVar6 + 8) != 0) {
     FUN_1806277c0(&puStack_208,uVar7);
   }
   if (uVar1 != 0) {
@@ -164,7 +164,7 @@ void process_resource_initialization(longlong *engine_context, longlong resource
     uStack_1f8 = uVar1;
     FUN_1806277c0(&puStack_208,iStack_180);
                     // WARNING: Subroutine does not return
-    memcpy((ulonglong)uStack_1f8 + lStack_200,lStack_188,(longlong)(iStack_180 + 1));
+    memcpy((uint64_t)uStack_1f8 + lStack_200,lStack_188,(int64_t)(iStack_180 + 1));
   }
   lStack_1d8 = lStack_200;
   uStack_1c8._0_4_ = (int32_t)uStack_1f0;
@@ -178,10 +178,10 @@ void process_resource_initialization(longlong *engine_context, longlong resource
   uStack_1c8._4_4_ = *(uint *)(lVar6 + 0x1c);
   FUN_1801a6440(resource_manager,init_system_data_memory,&puStack_1e0,&uStack_148);
   FUN_18019e260(resource_manager);
-  (**(code **)(*(longlong *)engine_context[0x56] + 0x138))((longlong *)engine_context[0x56],resource_manager);
+  (**(code **)(*(int64_t *)engine_context[0x56] + 0x138))((int64_t *)engine_context[0x56],resource_manager);
   FUN_180199500(resource_manager,0x3d072b02,1);
   FUN_1801a2ea0(resource_manager);
-  (**(code **)(*(longlong *)engine_context[0x56] + 0x140))((longlong *)engine_context[0x56],resource_manager);
+  (**(code **)(*(int64_t *)engine_context[0x56] + 0x140))((int64_t *)engine_context[0x56],resource_manager);
   Sleep(1000);
   puStack_1e0 = &system_data_buffer_ptr;
   if (lStack_1d8 != 0) {
@@ -189,7 +189,7 @@ void process_resource_initialization(longlong *engine_context, longlong resource
     FUN_18064e900();
   }
   lStack_1d8 = 0;
-  uStack_1c8 = (ulonglong)uStack_1c8._4_4_ << 0x20;
+  uStack_1c8 = (uint64_t)uStack_1c8._4_4_ << 0x20;
   puStack_1e0 = &system_state_ptr;
   puStack_190 = &system_data_buffer_ptr;
   if (lStack_188 != 0) {
@@ -199,7 +199,7 @@ void process_resource_initialization(longlong *engine_context, longlong resource
   lStack_188 = 0;
   uStack_178 = 0;
   puStack_190 = &system_state_ptr;
-  if (resource_manager != (longlong *)0x0) {
+  if (resource_manager != (int64_t *)0x0) {
     (**(code **)(*resource_manager + 0x38))(resource_manager);
   }
   ppuStack_170 = &puStack_1c0;
@@ -212,7 +212,7 @@ void process_resource_initialization(longlong *engine_context, longlong resource
   uStack_1a8 = uStack_1a8 & 0xffffffff00000000;
   puStack_1c0 = &system_state_ptr;
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_48 ^ (ulonglong)auStack_238);
+  FUN_1808fc050(uStack_48 ^ (uint64_t)auStack_238);
 }
 
 
@@ -231,7 +231,7 @@ void batch_initialize_game_modules(void)
 {
   // 模块遍历和初始化变量
   uint module_index;                    // 模块索引
-  longlong *module_registry;            // 模块注册表
+  int64_t *module_registry;            // 模块注册表
   uint64_t *module_array;             // 模块数组
   char path_separator;                  // 路径分隔符
   uint64_t *module_start;             // 模块起始地址
@@ -239,11 +239,11 @@ void batch_initialize_game_modules(void)
   int32_t *module_flags;             // 模块标志
   int dependency_index;                 // 依赖索引
   int current_index;                    // 当前索引
-  longlong module_address;              // 模块地址
-  ulonglong module_size;                // 模块大小
+  int64_t module_address;              // 模块地址
+  uint64_t module_size;                // 模块大小
   uint64_t *module_end;               // 模块结束地址
   int dependency_count;                 // 依赖计数
-  longlong total_modules;                // 总模块数
+  int64_t total_modules;                // 总模块数
   uint *module_entry;                   // 模块入口点
   void *module_data;               // 模块数据
   int32_t module_status;             // 模块状态
@@ -257,40 +257,40 @@ void batch_initialize_game_modules(void)
   void *path_data;                 // 路径数据
   int8_t *name_buffer;              // 名称缓冲区
   uint name_length;                     // 名称长度
-  ulonglong name_cookie;                // 名称cookie
+  uint64_t name_cookie;                // 名称cookie
   void *name_handle;               // 名称句柄
   int8_t *file_path;                // 文件路径
   int32_t file_size;                 // 文件大小
-  ulonglong file_cookie;                // 文件cookie
+  uint64_t file_cookie;                // 文件cookie
   int loop_counter;                     // 循环计数器
   void *temp_handle;                // 临时句柄
   int8_t *temp_buffer;              // 临时缓冲区
   int32_t temp_flags;                // 临时标志
-  ulonglong temp_cookie;                // 临时cookie
+  uint64_t temp_cookie;                // 临时cookie
   void *data_handle;               // 数据句柄
-  longlong data_offset;                 // 数据偏移量
+  int64_t data_offset;                 // 数据偏移量
   int data_size;                        // 数据大小
   int32_t data_flags;                // 数据标志
-  longlong *global_registry;            // 全局注册表
-  longlong module_count;                // 模块计数
+  int64_t *global_registry;            // 全局注册表
+  int64_t module_count;                // 模块计数
   void *module_info;               // 模块信息
   void *module_config;             // 模块配置
   int32_t config_flags;              // 配置标志
   void *init_data;                 // 初始化数据
   void *dependency_data;           // 依赖数据
-  longlong dependency_offset;           // 依赖偏移量
+  int64_t dependency_offset;           // 依赖偏移量
   int32_t dependency_flags;          // 依赖标志
   uint64_t *module_start_ptr;         // 模块起始指针
   uint64_t *module_end_ptr;           // 模块结束指针
   uint64_t uStack_48;
   int32_t uStack_40;
   uint64_t uStack_38;
-  ulonglong uStack_30;
+  uint64_t uStack_30;
   
   uStack_38 = 0xfffffffffffffffe;
-  uStack_30 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_178;
+  uStack_30 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_178;
   plStack_a8 = system_main_module_state;
-  lVar14 = *(longlong *)(*system_main_module_state + 0x890) - *(longlong *)(*system_main_module_state + 0x888) >> 5;
+  lVar14 = *(int64_t *)(*system_main_module_state + 0x890) - *(int64_t *)(*system_main_module_state + 0x888) >> 5;
   iStack_f8 = 0;
   lStack_a0 = lVar14;
   if (0 < (int)lVar14) {
@@ -302,10 +302,10 @@ LAB_18005485e:
         lVar10 = FUN_180628ca0();
       }
       else {
-        lVar10 = *(longlong *)(*system_main_module_state + 0x888);
-        if ((ulonglong)(*(longlong *)(*system_main_module_state + 0x890) - lVar10 >> 5) <=
-            (ulonglong)(longlong)iStack_f8) goto LAB_18005485e;
-        lVar10 = (longlong)iStack_f8 * 0x20 + lVar10;
+        lVar10 = *(int64_t *)(*system_main_module_state + 0x888);
+        if ((uint64_t)(*(int64_t *)(*system_main_module_state + 0x890) - lVar10 >> 5) <=
+            (uint64_t)(int64_t)iStack_f8) goto LAB_18005485e;
+        lVar10 = (int64_t)iStack_f8 * 0x20 + lVar10;
       }
       puStack_138 = &system_data_buffer_ptr;
       uStack_120 = 0;
@@ -316,7 +316,7 @@ LAB_18005485e:
                     // WARNING: Subroutine does not return
         memcpy(puStack_130,*(uint64_t *)(lVar10 + 8),*(int *)(lVar10 + 0x10) + 1);
       }
-      if (*(longlong *)(lVar10 + 8) != 0) {
+      if (*(int64_t *)(lVar10 + 8) != 0) {
         uStack_128 = 0;
         if (puStack_130 != (int8_t *)0x0) {
           *puStack_130 = 0;
@@ -328,10 +328,10 @@ LAB_180054912:
         lVar10 = FUN_180628ca0();
       }
       else {
-        lVar10 = *(longlong *)(*system_main_module_state + 0x8a8);
-        if ((ulonglong)(*(longlong *)(*system_main_module_state + 0x8b0) - lVar10 >> 5) <
-            (ulonglong)(longlong)iVar9) goto LAB_180054912;
-        lVar10 = (longlong)iVar9 * 0x20 + lVar10;
+        lVar10 = *(int64_t *)(*system_main_module_state + 0x8a8);
+        if ((uint64_t)(*(int64_t *)(*system_main_module_state + 0x8b0) - lVar10 >> 5) <
+            (uint64_t)(int64_t)iVar9) goto LAB_180054912;
+        lVar10 = (int64_t)iVar9 * 0x20 + lVar10;
       }
       puStack_118 = &system_data_buffer_ptr;
       uStack_100 = 0;
@@ -342,7 +342,7 @@ LAB_180054912:
                     // WARNING: Subroutine does not return
         memcpy(puStack_110,*(uint64_t *)(lVar10 + 8),*(int *)(lVar10 + 0x10) + 1);
       }
-      if (*(longlong *)(lVar10 + 8) != 0) {
+      if (*(int64_t *)(lVar10 + 8) != 0) {
         uStack_108 = 0;
         if (puStack_110 != (int8_t *)0x0) {
           *puStack_110 = 0;
@@ -352,7 +352,7 @@ LAB_180054912:
       iVar8 = uStack_128 + 8;
       FUN_1806277c0(&puStack_138,iVar8);
       *(uint64_t *)(puStack_130 + uStack_128) = 0x6a624f656e656353;
-      *(int8_t *)((longlong)(puStack_130 + uStack_128) + 8) = 0;
+      *(int8_t *)((int64_t)(puStack_130 + uStack_128) + 8) = 0;
       uStack_128 = iVar8;
       cVar4 = FUN_180624a00(&puStack_138);
       if (cVar4 == '\0') {
@@ -378,7 +378,7 @@ LAB_180054912:
         FUN_18062c5f0(&puStack_138,&puStack_58);
         puVar5 = puStack_50;
         puVar3 = puStack_58;
-        lVar10 = (longlong)puStack_50 - (longlong)puStack_58;
+        lVar10 = (int64_t)puStack_50 - (int64_t)puStack_58;
         FUN_18004b100(&puStack_d0);
         puVar6 = &system_buffer_ptr;
         if (puStack_110 != (int8_t *)0x0) {
@@ -389,9 +389,9 @@ LAB_180054912:
         if (cVar4 == '\0') {
           FUN_180624910(&puStack_d0);
         }
-        longlong *module_registry = global_registry;
+        int64_t *module_registry = global_registry;
         int dependency_count = (int)(lVar10 >> 5);
-        longlong dependency_offset = (longlong)dependency_count;
+        int64_t dependency_offset = (int64_t)dependency_count;
         if (0 < dependency_count) {
           uint *module_entry = (uint *)(puVar3 + 2);
           do {
@@ -407,7 +407,7 @@ LAB_180054912:
                     // WARNING: Subroutine does not return
               memcpy(puStack_150,*(uint64_t *)(puVar15 + -2),*puVar15 + 1);
             }
-            if (*(longlong *)(puVar15 + -2) != 0) {
+            if (*(int64_t *)(puVar15 + -2) != 0) {
               uStack_148 = 0;
               if (puStack_150 != (int8_t *)0x0) {
                 *puStack_150 = 0;
@@ -419,7 +419,7 @@ LAB_180054912:
             puVar5 = (uint64_t *)(puStack_150 + uStack_148);
             *puVar5 = 0x782e656e6563732f;
             *(int32_t *)(puVar5 + 1) = 0x6e656373;
-            *(int16_t *)((longlong)puVar5 + 0xc) = 0x65;
+            *(int16_t *)((int64_t)puVar5 + 0xc) = 0x65;
             puVar6 = &system_buffer_ptr;
             if (puStack_150 != (int8_t *)0x0) {
               puVar6 = puStack_150;
@@ -458,8 +458,8 @@ LAB_180054912:
                   *puStack_150 = 0;
                 }
                 uVar1 = *puVar15;
-                uVar11 = (ulonglong)uVar1;
-                if (*(longlong *)(puVar15 + -2) != 0) {
+                uVar11 = (uint64_t)uVar1;
+                if (*(int64_t *)(puVar15 + -2) != 0) {
                   FUN_1806277c0(&puStack_158,uVar11);
                 }
                 if (uVar1 != 0) {
@@ -478,7 +478,7 @@ LAB_180054912:
                 puVar7[2] = 0x2e6f6373;
                 puVar7[3] = 0x65637378;
                 *(int16_t *)(puVar7 + 4) = 0x656e;
-                *(int8_t *)((longlong)puVar7 + 0x12) = 0;
+                *(int8_t *)((int64_t)puVar7 + 0x12) = 0;
                 uStack_148 = 0x12;
                 cVar4 = FUN_180624af0(&puStack_158);
                 if (cVar4 != '\0') goto LAB_180054d28;
@@ -487,22 +487,22 @@ LAB_180054912:
                     // WARNING: Subroutine does not return
                   FUN_18064e900();
                 }
-                uStack_140 = (ulonglong)uStack_140._4_4_ << 0x20;
+                uStack_140 = (uint64_t)uStack_140._4_4_ << 0x20;
               }
               else {
 LAB_180054d28:
                 iVar9 = *puVar15 - 1;
                 if (-1 < iVar9) {
-                  lVar14 = (longlong)iVar9;
+                  lVar14 = (int64_t)iVar9;
                   do {
-                    if (*(char *)(lVar14 + *(longlong *)(puVar15 + -2)) == '/') goto LAB_180054d57;
+                    if (*(char *)(lVar14 + *(int64_t *)(puVar15 + -2)) == '/') goto LAB_180054d57;
                     iVar9 = iVar9 + -1;
                     lVar14 = lVar14 + -1;
                   } while (-1 < lVar14);
                 }
                 iVar9 = -1;
 LAB_180054d57:
-                FUN_180629a40(puVar3 + (longlong)iVar13 * 4,&puStack_98,iVar9 + 1,0xffffffff);
+                FUN_180629a40(puVar3 + (int64_t)iVar13 * 4,&puStack_98,iVar9 + 1,0xffffffff);
                 uVar17 = FUN_180054360(plVar2,&puStack_98);
                 if (init_system_data_memory != 0) {
                   FUN_18005c1c0(uVar17,&puStack_78);
@@ -559,7 +559,7 @@ LAB_180054d57:
                     // WARNING: Subroutine does not return
                   FUN_18064e900();
                 }
-                uStack_140 = (ulonglong)uStack_140._4_4_ << 0x20;
+                uStack_140 = (uint64_t)uStack_140._4_4_ << 0x20;
               }
             }
             else {
@@ -569,7 +569,7 @@ LAB_180054ec9:
                     // WARNING: Subroutine does not return
                 FUN_18064e900();
               }
-              uStack_140 = (ulonglong)uStack_140._4_4_ << 0x20;
+              uStack_140 = (uint64_t)uStack_140._4_4_ << 0x20;
             }
             puStack_150 = (int8_t *)0x0;
             puStack_158 = &system_state_ptr;
@@ -619,7 +619,7 @@ LAB_180054ec9:
     } while (module_index < (int)total_modules);
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_30 ^ (ulonglong)auStack_178);
+  FUN_1808fc050(uStack_30 ^ (uint64_t)auStack_178);
 }
 
 
@@ -640,7 +640,7 @@ void initialize_system_core(void)
   uint64_t *memory_pool;      // 内存池指针
   uint64_t *system_handle;    // 系统句柄
   uint64_t pool_size;         // 内存池大小
-  longlong mutex_handle;        // 互斥体句柄
+  int64_t mutex_handle;        // 互斥体句柄
   
   // 分配并初始化系统表1（408字节）
   memory_pool = (uint64_t *)FUN_18062b1e0(system_memory_pool_ptr,0x198,8,3);
@@ -649,7 +649,7 @@ void initialize_system_core(void)
   *system_handle = &unknown_var_6384_ptr;
   *(int16_t *)(memory_pool + 0x1a) = 1;
   *(int32_t *)(memory_pool + 9) = 0;
-  *(int8_t *)((longlong)memory_pool + 0x54) = 0;
+  *(int8_t *)((int64_t)memory_pool + 0x54) = 0;
   *system_handle = &unknown_var_264_ptr;
   
   // 初始化第二个系统表项
@@ -658,7 +658,7 @@ void initialize_system_core(void)
   *system_handle = &unknown_var_6384_ptr;
   *(int16_t *)(memory_pool + 0x31) = 1;
   *(int32_t *)(memory_pool + 0x20) = 0;
-  *(int8_t *)((longlong)memory_pool + 0x10c) = 0;
+  *(int8_t *)((int64_t)memory_pool + 0x10c) = 0;
   *system_handle = &unknown_var_264_ptr;
   
   // 设置系统表头部信息
@@ -682,8 +682,8 @@ void initialize_system_core(void)
   *(int16_t *)(init_system_data_memory + 0x1d) = 0;
   *(int8_t *)(init_system_data_memory + 0x1f) = 0;
   *(int32_t *)(init_system_data_memory + 0x28) = 3;  // 调试级别
-  *(longlong *)init_system_data_memory = init_system_data_memory;  // 自引用指针
-  *(longlong *)(init_system_data_memory + 8) = init_system_data_memory;
+  *(int64_t *)init_system_data_memory = init_system_data_memory;  // 自引用指针
+  *(int64_t *)(init_system_data_memory + 8) = init_system_data_memory;
   *(uint64_t *)(init_system_data_memory + 0x10) = 0;
   *(int8_t *)(init_system_data_memory + 0x18) = 0;
   *(uint64_t *)(init_system_data_memory + 0x20) = 0;
@@ -727,12 +727,12 @@ void initialize_system_core(void)
  * 遍历模块链表并释放所有分配的资源
  * 原函数名：FUN_180055e10
  */
-void cleanup_module_resources(longlong *module_list)
+void cleanup_module_resources(int64_t *module_list)
 
 {
   // 模块清理变量
-  longlong end_module;         // 结束模块
-  longlong current_module;     // 当前模块
+  int64_t end_module;         // 结束模块
+  int64_t current_module;     // 当前模块
   
   end_module = module_list[1];
   for (current_module = *module_list; current_module != end_module; current_module = current_module + 0x48) {
@@ -754,7 +754,7 @@ void cleanup_module_resources(longlong *module_list)
  * 创建并初始化模块的句柄结构
  * 原函数名：FUN_180055e30
  */
-void initialize_module_handle(longlong module_base, uint64_t handle_size, uint64_t init_flags, uint64_t context_data)
+void initialize_module_handle(int64_t module_base, uint64_t handle_size, uint64_t init_flags, uint64_t context_data)
 
 {
   // 调用模块初始化函数，使用提供的参数
@@ -771,25 +771,25 @@ void initialize_module_handle(longlong module_base, uint64_t handle_size, uint64
  * 释放模块资源数组中的所有元素并清理相关数据
  * 原函数名：FUN_180055e60
  */
-void free_module_resource_array(longlong resource_array)
+void free_module_resource_array(int64_t resource_array)
 
 {
   // 资源释放变量
-  longlong resource_data;      // 资源数据指针
-  longlong array_pointer;      // 数组指针
-  ulonglong array_size;        // 数组大小
-  ulonglong index;             // 索引计数器
+  int64_t resource_data;      // 资源数据指针
+  int64_t array_pointer;      // 数组指针
+  uint64_t array_size;        // 数组大小
+  uint64_t index;             // 索引计数器
   
-  array_size = *(ulonglong *)(resource_array + 0x10);
-  array_pointer = *(longlong *)(resource_array + 8);
+  array_size = *(uint64_t *)(resource_array + 0x10);
+  array_pointer = *(int64_t *)(resource_array + 8);
   index = 0;
   if (array_size != 0) {
     do {
-      resource_data = *(longlong *)(array_pointer + index * 8);
+      resource_data = *(int64_t *)(array_pointer + index * 8);
       if (resource_data != 0) {
         // 调用资源的清理函数
-        if (*(longlong **)(resource_data + 0x10) != (longlong *)0x0) {
-          (**(code **)(**(longlong **)(resource_data + 0x10) + 0x38))();
+        if (*(int64_t **)(resource_data + 0x10) != (int64_t *)0x0) {
+          (**(code **)(**(int64_t **)(resource_data + 0x10) + 0x38))();
         }
         // 释放资源内存
         FUN_18064e900(resource_data);
@@ -797,10 +797,10 @@ void free_module_resource_array(longlong resource_array)
       *(uint64_t *)(array_pointer + index * 8) = 0;
       index = index + 1;
     } while (index < array_size);
-    array_size = *(ulonglong *)(resource_array + 0x10);
+    array_size = *(uint64_t *)(resource_array + 0x10);
   }
   *(uint64_t *)(resource_array + 0x18) = 0;
-  if ((1 < array_size) && (*(longlong *)(resource_array + 8) != 0)) {
+  if ((1 < array_size) && (*(int64_t *)(resource_array + 8) != 0)) {
     // 如果还有未释放的资源，调用错误处理
     FUN_18064e900();
   }
@@ -814,7 +814,7 @@ void free_module_resource_array(longlong resource_array)
  * 初始化用于存储字符串的缓冲区结构
  * 原函数名：FUN_180055e80
  */
-longlong initialize_string_buffer(longlong buffer_handle)
+int64_t initialize_string_buffer(int64_t buffer_handle)
 
 {
   // 初始化字符串缓冲区的各个字段
@@ -837,12 +837,12 @@ longlong initialize_string_buffer(longlong buffer_handle)
  * 重置字符串缓冲区并释放相关资源
  * 原函数名：FUN_180055ed0
  */
-void reset_string_buffer(longlong buffer_handle)
+void reset_string_buffer(int64_t buffer_handle)
 
 {
   // 检查缓冲区是否有数据需要清理
   *(uint64_t *)(buffer_handle + 8) = &system_data_buffer_ptr;
-  if (*(longlong *)(buffer_handle + 0x10) != 0) {
+  if (*(int64_t *)(buffer_handle + 0x10) != 0) {
     // 如果有未释放的数据，调用错误处理
     FUN_18064e900();
   }
@@ -862,7 +862,7 @@ void reset_string_buffer(longlong buffer_handle)
  * 创建并初始化资源管理器实例
  * 原函数名：FUN_180055f20
  */
-void create_resource_manager(longlong manager_base, uint64_t manager_size, uint64_t init_flags, uint64_t context_data)
+void create_resource_manager(int64_t manager_base, uint64_t manager_size, uint64_t init_flags, uint64_t context_data)
 
 {
   // 调用资源管理器初始化函数，使用提供的参数
@@ -879,25 +879,25 @@ void create_resource_manager(longlong manager_base, uint64_t manager_size, uint6
  * 销毁资源管理器并释放所有相关资源
  * 原函数名：FUN_180055f50
  */
-void destroy_resource_manager(longlong manager_handle)
+void destroy_resource_manager(int64_t manager_handle)
 
 {
   // 资源管理器销毁变量
-  longlong resource_pointer;    // 资源指针
-  longlong array_base;          // 数组基址
-  ulonglong resource_count;     // 资源计数
-  ulonglong index;             // 索引计数器
+  int64_t resource_pointer;    // 资源指针
+  int64_t array_base;          // 数组基址
+  uint64_t resource_count;     // 资源计数
+  uint64_t index;             // 索引计数器
   
-  resource_count = *(ulonglong *)(manager_handle + 0x10);
-  array_base = *(longlong *)(manager_handle + 8);
+  resource_count = *(uint64_t *)(manager_handle + 0x10);
+  array_base = *(int64_t *)(manager_handle + 8);
   index = 0;
   if (resource_count != 0) {
     do {
-      resource_pointer = *(longlong *)(array_base + index * 8);
+      resource_pointer = *(int64_t *)(array_base + index * 8);
       if (resource_pointer != 0) {
         // 调用资源的清理函数
-        if (*(longlong **)(resource_pointer + 0x10) != (longlong *)0x0) {
-          (**(code **)(**(longlong **)(resource_pointer + 0x10) + 0x38))();
+        if (*(int64_t **)(resource_pointer + 0x10) != (int64_t *)0x0) {
+          (**(code **)(**(int64_t **)(resource_pointer + 0x10) + 0x38))();
         }
         // 释放资源内存
         FUN_18064e900(resource_pointer);
@@ -905,10 +905,10 @@ void destroy_resource_manager(longlong manager_handle)
       *(uint64_t *)(array_base + index * 8) = 0;
       index = index + 1;
     } while (index < resource_count);
-    resource_count = *(ulonglong *)(manager_handle + 0x10);
+    resource_count = *(uint64_t *)(manager_handle + 0x10);
   }
   *(uint64_t *)(manager_handle + 0x18) = 0;
-  if ((1 < resource_count) && (*(longlong *)(manager_handle + 8) != 0)) {
+  if ((1 < resource_count) && (*(int64_t *)(manager_handle + 8) != 0)) {
     // 如果还有未释放的资源，调用错误处理
     FUN_18064e900();
   }

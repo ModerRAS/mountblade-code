@@ -12,16 +12,16 @@
  * @param param3 未使用参数
  * @param param4 未使用参数
  */
-void calculate_render_quality_parameters(longlong render_context, float quality_param, uint64_t param3, uint64_t param4)
+void calculate_render_quality_parameters(int64_t render_context, float quality_param, uint64_t param3, uint64_t param4)
 {
-  ulonglong temp_ulong1;
+  uint64_t temp_ulong1;
   float temp_float1;
   float temp_float2;
-  ulonglong temp_ulong2;
-  ulonglong temp_ulong3;
+  uint64_t temp_ulong2;
+  uint64_t temp_ulong3;
   int temp_int1;
   uint temp_uint1;
-  longlong temp_long1;
+  int64_t temp_long1;
   uint temp_uint2;
   uint temp_uint3;
   uint temp_uint4;
@@ -39,7 +39,7 @@ void calculate_render_quality_parameters(longlong render_context, float quality_
   float stack_float2;
   
   temp_long1 = global_render_config;
-  if ((*(longlong *)(global_system_config + 0x7ab8) == 0) || (*(int *)(global_render_config + 0x540) < 1)) {
+  if ((*(int64_t *)(global_system_config + 0x7ab8) == 0) || (*(int *)(global_render_config + 0x540) < 1)) {
     is_quality_mode = *(int *)(global_render_config + 0x2140) != 0;
   }
   else {
@@ -49,7 +49,7 @@ void calculate_render_quality_parameters(longlong render_context, float quality_
   if (is_quality_mode) {
     quality_base = (float)exp2f(global_render_config, in_RDX, param3, param4, 0xfffffffffffffffe);
     if (*(char *)(render_context + 0x22d) == '\0') {
-      temp_long1 = *(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8);
+      temp_long1 = *(int64_t *)((int64_t)ThreadLocalStoragePointer + (uint64_t)__tls_index * 8);
       if ((*(int *)(temp_long1 + 0x48) < global_quality_threshold) &&
          (check_quality_threshold(&global_quality_threshold), global_quality_threshold == -1)) {
         global_quality_value = quality_param;
@@ -110,7 +110,7 @@ void calculate_render_quality_parameters(longlong render_context, float quality_
     temp_long1 = global_render_state;
   }
   
-  if ((*(longlong *)(global_system_config + 0x7ab8) == 0) || (*(int *)(temp_long1 + 0x540) < 1)) {
+  if ((*(int64_t *)(global_system_config + 0x7ab8) == 0) || (*(int *)(temp_long1 + 0x540) < 1)) {
     if (*(int *)(temp_long1 + 0x2140) == 0) {
       quality_base = *(float *)(temp_long1 + 0x20d0);
     }
@@ -146,7 +146,7 @@ void calculate_render_quality_parameters(longlong render_context, float quality_
       if (1 < temp_int1) {
         temp_uint2 = ((temp_uint2 - 1) - (int)(temp_uint2 - 1) % temp_int1) + temp_int1;
       }
-      temp_ulong1 = (longlong)(int)(((int)temp_uint4 / (int)temp_uint3) * temp_uint2) / (longlong)temp_int1;
+      temp_ulong1 = (int64_t)(int)(((int)temp_uint4 / (int)temp_uint3) * temp_uint2) / (int64_t)temp_int1;
       temp_uint1 = (uint)temp_ulong1;
       if (((temp_uint2 & 1) == 0) && ((temp_ulong1 & 1) == 0)) goto LAB_QUALITY_CALC_DONE;
       quality_base = quality_base + 0.01;
@@ -158,7 +158,7 @@ LAB_QUALITY_CALC_DONE:
     stack_float2 = (float)(int)temp_uint1 / (float)(int)temp_uint4;
     temp_uint4 = temp_uint1;
   }
-  *(ulonglong *)(render_context + 0x254) = CONCAT44(stack_float2, stack_float1);
+  *(uint64_t *)(render_context + 0x254) = CONCAT44(stack_float2, stack_float1);
   
   quality_base = *(float *)(render_context + 0x238);
   if (1.0 <= quality_base) {
@@ -166,13 +166,13 @@ LAB_QUALITY_CALC_DONE:
     stack_float2 = 1.0;
   }
   else {
-    temp_ulong3 = (ulonglong)temp_uint4;
-    temp_ulong1 = (ulonglong)temp_uint2;
+    temp_ulong3 = (uint64_t)temp_uint4;
+    temp_ulong1 = (uint64_t)temp_uint2;
     temp_uint3 = temp_uint2;
     temp_uint1 = temp_uint4;
     while (temp_ulong2 = temp_ulong3, 0 < (int)temp_uint1) {
       temp_uint3 = (uint)temp_ulong2;
-      temp_ulong1 = (longlong)(int)temp_ulong1 % (longlong)(int)temp_uint3;
+      temp_ulong1 = (int64_t)(int)temp_ulong1 % (int64_t)(int)temp_uint3;
       temp_uint1 = (uint)temp_ulong1;
       temp_ulong3 = temp_ulong1 & 0xffffffff;
       temp_ulong1 = temp_ulong2;
@@ -183,7 +183,7 @@ LAB_QUALITY_CALC_DONE:
       if (1 < temp_int1) {
         temp_uint1 = ((temp_uint1 - 1) - (int)(temp_uint1 - 1) % temp_int1) + temp_int1;
       }
-      temp_ulong1 = (longlong)(int)(((int)temp_uint4 / (int)temp_uint3) * temp_uint1) / (longlong)temp_int1;
+      temp_ulong1 = (int64_t)(int)(((int)temp_uint4 / (int)temp_uint3) * temp_uint1) / (int64_t)temp_int1;
       if (((temp_uint1 & 1) == 0) && ((temp_ulong1 & 1) == 0)) goto LAB_QUALITY_FINAL_DONE;
       quality_base = quality_base + 0.01;
       *(float *)(render_context + 0x238) = quality_base;
@@ -193,7 +193,7 @@ LAB_QUALITY_FINAL_DONE:
     stack_float1 = (float)(int)temp_uint1 / (float)(int)temp_uint2;
     stack_float2 = (float)(int)temp_ulong1 / (float)(int)temp_uint4;
   }
-  *(ulonglong *)(render_context + 0x25c) = CONCAT44(stack_float2, stack_float1);
+  *(uint64_t *)(render_context + 0x25c) = CONCAT44(stack_float2, stack_float1);
   return;
 }
 
@@ -206,27 +206,27 @@ LAB_QUALITY_FINAL_DONE:
  * @param param3 未使用参数
  * @param param4 未使用参数
  */
-void initialize_system_configuration(longlong *config_ptr, uint64_t param2, uint64_t param3, int8_t param4)
+void initialize_system_configuration(int64_t *config_ptr, uint64_t param2, uint64_t param3, int8_t param4)
 {
   int temp_int1;
-  longlong temp_long1;
-  longlong temp_long2;
+  int64_t temp_long1;
+  int64_t temp_long2;
   uint64_t temp_ulong1;
-  longlong *temp_ptr1;
+  int64_t *temp_ptr1;
   int *temp_ptr2;
-  longlong temp_long3;
-  ulonglong temp_ulong2;
+  int64_t temp_long3;
+  uint64_t temp_ulong2;
   uint temp_uint1;
-  ulonglong temp_ulong3;
+  uint64_t temp_ulong3;
   float temp_float1;
   float temp_float2;
-  longlong *stack_ptr1;
-  longlong *stack_ptr2;
-  longlong **stack_ptr3;
-  longlong stack_array1 [2];
+  int64_t *stack_ptr1;
+  int64_t *stack_ptr2;
+  int64_t **stack_ptr3;
+  int64_t stack_array1 [2];
   void *stack_ptr4;
   void *stack_ptr5;
-  longlong stack_array2 [2];
+  int64_t stack_array2 [2];
   void *stack_ptr6;
   void *stack_ptr7;
   
@@ -240,24 +240,24 @@ void initialize_system_configuration(longlong *config_ptr, uint64_t param2, uint
   temp_long2 = global_render_state;
   if (global_render_state != 0) {
     temp_ulong2 = 0;
-    temp_long3 = *(longlong *)(global_render_state + 0x1868);
+    temp_long3 = *(int64_t *)(global_render_state + 0x1868);
     temp_ulong3 = temp_ulong2;
-    if (*(longlong *)(global_render_state + 0x1870) - temp_long3 >> 3 != 0) {
+    if (*(int64_t *)(global_render_state + 0x1870) - temp_long3 >> 3 != 0) {
       do {
-        if (*(longlong **)(temp_ulong2 + temp_long3) != (longlong *)0x0) {
-          (**(code **)(**(longlong **)(temp_ulong2 + temp_long3) + 0x108))();
+        if (*(int64_t **)(temp_ulong2 + temp_long3) != (int64_t *)0x0) {
+          (**(code **)(**(int64_t **)(temp_ulong2 + temp_long3) + 0x108))();
         }
         temp_uint1 = (int)temp_ulong3 + 1;
         temp_ulong2 = temp_ulong2 + 8;
-        temp_long3 = *(longlong *)(temp_long2 + 0x1868);
-        temp_ulong3 = (ulonglong)temp_uint1;
-      } while ((ulonglong)(longlong)(int)temp_uint1 <
-               (ulonglong)(*(longlong *)(temp_long2 + 0x1870) - temp_long3 >> 3));
+        temp_long3 = *(int64_t *)(temp_long2 + 0x1868);
+        temp_ulong3 = (uint64_t)temp_uint1;
+      } while ((uint64_t)(int64_t)(int)temp_uint1 <
+               (uint64_t)(*(int64_t *)(temp_long2 + 0x1870) - temp_long3 >> 3));
     }
     (**(code **)(global_callback_table + 0x40))();
   }
   
-  (**(code **)(**(longlong **)(temp_long1 + 0x2b0) + 0xd0))();
+  (**(code **)(**(int64_t **)(temp_long1 + 0x2b0) + 0xd0))();
   
   if (((*(int *)(global_render_config + 0x4d4) != *(int *)(global_render_config + 0x4d0)) ||
       (*(int *)(global_render_config + 0x314) != *(int *)(global_render_config + 0x310))) ||
@@ -275,25 +275,25 @@ void initialize_system_configuration(longlong *config_ptr, uint64_t param2, uint
     stack_ptr1 = stack_array2;
     stack_ptr6 = &global_string_table3;
     stack_ptr7 = &global_string_table4;
-    temp_ptr1 = (longlong *)create_config_object(temp_ulong1, stack_array2);
+    temp_ptr1 = (int64_t *)create_config_object(temp_ulong1, stack_array2);
     stack_ptr2 = temp_ptr1;
-    if (temp_ptr1 != (longlong *)0x0) {
+    if (temp_ptr1 != (int64_t *)0x0) {
       (**(code **)(*temp_ptr1 + 0x28))(temp_ptr1);
     }
     temp_ulong1 = global_config_data;
     stack_ptr3 = &stack_ptr1;
     stack_ptr1 = temp_ptr1;
-    if (temp_ptr1 != (longlong *)0x0) {
+    if (temp_ptr1 != (int64_t *)0x0) {
       (**(code **)(*temp_ptr1 + 0x28))(temp_ptr1);
     }
     process_config_data(temp_ulong1, &stack_ptr1);
-    if (temp_ptr1 != (longlong *)0x0) {
+    if (temp_ptr1 != (int64_t *)0x0) {
       (**(code **)(*temp_ptr1 + 0x38))(temp_ptr1);
     }
   }
   
   temp_long2 = global_render_config;
-  if ((*(longlong *)(global_system_config + 0x7ab8) == 0) || (*(int *)(global_render_config + 0x540) < 1)) {
+  if ((*(int64_t *)(global_system_config + 0x7ab8) == 0) || (*(int *)(global_render_config + 0x540) < 1)) {
     if (*(int *)(global_render_config + 0x2140) == 0) {
       temp_float1 = *(float *)(global_render_config + 0x20d0);
     }
@@ -346,7 +346,7 @@ void initialize_system_configuration(longlong *config_ptr, uint64_t param2, uint
  * @param param1 未使用参数
  * @param buffer_ptr 输出缓冲区指针
  */
-void format_system_info_string(uint64_t param1, longlong buffer_ptr)
+void format_system_info_string(uint64_t param1, int64_t buffer_ptr)
 {
   int32_t *temp_ptr1;
   int temp_int1;
@@ -361,14 +361,14 @@ void format_system_info_string(uint64_t param1, longlong buffer_ptr)
   void *stack_ptr3;
   uint64_t stack_ulong3;
   int stack_int2;
-  ulonglong stack_ulong4;
+  uint64_t stack_ulong4;
   
   stack_ulong1 = 0xfffffffffffffffe;
-  stack_ulong4 = global_security_key ^ (ulonglong)stack_array1;
+  stack_ulong4 = global_security_key ^ (uint64_t)stack_array1;
   
   initialize_buffer_structure(stack_array2,
-                (longlong)*(int *)(global_system_config2 + 0x1d40) * 0xd0 +
-                *(longlong *)(global_system_config2 + 0x1d20));
+                (int64_t)*(int *)(global_system_config2 + 0x1d40) * 0xd0 +
+                *(int64_t *)(global_system_config2 + 0x1d20));
   
   create_string_buffer(&stack_ptr2);
   
@@ -383,37 +383,37 @@ void format_system_info_string(uint64_t param1, longlong buffer_ptr)
   temp_int2 = temp_int1 + 5;
   expand_buffer_capacity(buffer_ptr, temp_int2);
   
-  temp_ptr1 = (int32_t *)((ulonglong)*(uint *)(buffer_ptr + 0x10) + *(longlong *)(buffer_ptr + 8));
+  temp_ptr1 = (int32_t *)((uint64_t)*(uint *)(buffer_ptr + 0x10) + *(int64_t *)(buffer_ptr + 8));
   *temp_ptr1 = 0x3a757067;  // ":gup"
   *(int16_t *)(temp_ptr1 + 1) = 0x20;  // " "
   *(int *)(buffer_ptr + 0x10) = temp_int2;
   
   if (0 < stack_int2) {
     expand_buffer_capacity(buffer_ptr, temp_int2 + stack_int2);
-    memcpy((ulonglong)*(uint *)(buffer_ptr + 0x10) + *(longlong *)(buffer_ptr + 8), stack_ulong3,
-           (longlong)(stack_int2 + 1));
+    memcpy((uint64_t)*(uint *)(buffer_ptr + 0x10) + *(int64_t *)(buffer_ptr + 8), stack_ulong3,
+           (int64_t)(stack_int2 + 1));
   }
   
   expand_buffer_capacity(buffer_ptr, temp_int1 + 6);
-  *(int16_t *)((ulonglong)*(uint *)(buffer_ptr + 0x10) + *(longlong *)(buffer_ptr + 8)) = 10;  // '\n'
+  *(int16_t *)((uint64_t)*(uint *)(buffer_ptr + 0x10) + *(int64_t *)(buffer_ptr + 8)) = 10;  // '\n'
   *(int *)(buffer_ptr + 0x10) = temp_int1 + 6;
   
   temp_int2 = temp_int1 + 0xb;
   expand_buffer_capacity(buffer_ptr, temp_int2);
   
-  temp_ptr1 = (int32_t *)((ulonglong)*(uint *)(buffer_ptr + 0x10) + *(longlong *)(buffer_ptr + 8));
+  temp_ptr1 = (int32_t *)((uint64_t)*(uint *)(buffer_ptr + 0x10) + *(int64_t *)(buffer_ptr + 8));
   *temp_ptr1 = 0x3a757063;  // ":cup"
   *(int16_t *)(temp_ptr1 + 1) = 0x20;  // " "
   *(int *)(buffer_ptr + 0x10) = temp_int2;
   
   if (0 < stack_int1) {
     expand_buffer_capacity(buffer_ptr, temp_int2 + stack_int1);
-    memcpy((ulonglong)*(uint *)(buffer_ptr + 0x10) + *(longlong *)(buffer_ptr + 8), stack_ulong2,
-           (longlong)(stack_int1 + 1));
+    memcpy((uint64_t)*(uint *)(buffer_ptr + 0x10) + *(int64_t *)(buffer_ptr + 8), stack_ulong2,
+           (int64_t)(stack_int1 + 1));
   }
   
   expand_buffer_capacity(buffer_ptr, temp_int1 + 0xc);
-  *(int16_t *)((ulonglong)*(uint *)(buffer_ptr + 0x10) + *(longlong *)(buffer_ptr + 8)) = 10;  // '\n'
+  *(int16_t *)((uint64_t)*(uint *)(buffer_ptr + 0x10) + *(int64_t *)(buffer_ptr + 8)) = 10;  // '\n'
   *(int *)(buffer_ptr + 0x10) = temp_int1 + 0xc;
   
   stack_ptr2 = &global_format_string;
@@ -421,7 +421,7 @@ void format_system_info_string(uint64_t param1, longlong buffer_ptr)
   stack_ptr3 = &global_format_string;
   
   // 清理和返回
-  cleanup_string_operations(stack_ulong4 ^ (ulonglong)stack_array1);
+  cleanup_string_operations(stack_ulong4 ^ (uint64_t)stack_array1);
 }
 
 /**
@@ -432,18 +432,18 @@ void format_system_info_string(uint64_t param1, longlong buffer_ptr)
  * @param param2 参数数据
  * @param param3 参数长度
  */
-void process_system_parameters(uint64_t param1, uint64_t param2, longlong param3)
+void process_system_parameters(uint64_t param1, uint64_t param2, int64_t param3)
 {
-  longlong temp_long1;
-  longlong temp_long2;
+  int64_t temp_long1;
+  int64_t temp_long2;
   int32_t temp_uint1;
   int temp_int1;
   uint temp_uint2;
   uint temp_uint3;
   int8_t *temp_ptr1;
-  ulonglong temp_ulong1;
+  uint64_t temp_ulong1;
   void *temp_ptr2;
-  longlong temp_long3;
+  int64_t temp_long3;
   uint temp_uint4;
   int8_t stack_array1 [32];
   int8_t stack_byte1;
@@ -454,7 +454,7 @@ void process_system_parameters(uint64_t param1, uint64_t param2, longlong param3
   uint stack_uint3;
   uint64_t stack_ulong1;
   void *stack_ptr3;
-  longlong stack_long1;
+  int64_t stack_long1;
   uint stack_uint4;
   uint64_t stack_ulong2;
   uint64_t stack_ulong3;
@@ -466,10 +466,10 @@ void process_system_parameters(uint64_t param1, uint64_t param2, longlong param3
   uint64_t stack_ulong6;
   uint64_t stack_ulong7;
   char stack_char1 [16];
-  ulonglong stack_ulong8;
+  uint64_t stack_ulong8;
   
   stack_ulong6 = 0xfffffffffffffffe;
-  stack_ulong8 = global_security_key ^ (ulonglong)stack_array1;
+  stack_ulong8 = global_security_key ^ (uint64_t)stack_array1;
   
   temp_ptr1 = (int8_t *)0x0;
   stack_uint1 = 0;
@@ -484,7 +484,7 @@ void process_system_parameters(uint64_t param1, uint64_t param2, longlong param3
   
   initialize_debug_buffer(&stack_ptr3, 6);
   temp_long1 = stack_long1;
-  temp_ulong1 = (ulonglong)stack_uint4;
+  temp_ulong1 = (uint64_t)stack_uint4;
   
   *(int32_t *)(temp_ulong1 + stack_long1) = 0x44495020;  // "DIP "
   *(int16_t *)(temp_ulong1 + 4 + stack_long1) = 0x203a;  // ": "
@@ -501,7 +501,7 @@ void process_system_parameters(uint64_t param1, uint64_t param2, longlong param3
   
   if (0 < (int)(temp_long2 + 1)) {
     expand_debug_buffer(&stack_ptr3, (int)temp_long2 + 7);
-    memcpy((ulonglong)stack_uint4 + stack_long1, stack_char1, (longlong)((int)temp_long2 + 2));
+    memcpy((uint64_t)stack_uint4 + stack_long1, stack_char1, (int64_t)((int)temp_long2 + 2));
   }
   
   temp_ptr2 = &global_debug_prefix;
@@ -523,10 +523,10 @@ void process_system_parameters(uint64_t param1, uint64_t param2, longlong param3
   stack_uint1 = 2;
   
   temp_uint3 = *(uint *)(param3 + 0x10);
-  temp_ulong1 = (ulonglong)temp_uint3;
+  temp_ulong1 = (uint64_t)temp_uint3;
   temp_uint2 = 0;
   
-  if (*(longlong *)(param3 + 8) == 0) {
+  if (*(int64_t *)(param3 + 8) == 0) {
 LAB_PROCESS_PARAMS:
     temp_uint4 = temp_uint2;
     if (temp_uint3 != 0) {
@@ -538,7 +538,7 @@ LAB_PROCESS_PARAMS:
     if (temp_int1 < 0x10) {
       temp_int1 = 0x10;
     }
-    temp_ptr1 = (int8_t *)allocate_parameter_buffer(global_memory_pool, (longlong)temp_int1, 0x13);
+    temp_ptr1 = (int8_t *)allocate_parameter_buffer(global_memory_pool, (int64_t)temp_int1, 0x13);
     *temp_ptr1 = 0;
     stack_ptr2 = temp_ptr1;
     temp_uint2 = calculate_parameter_hash(temp_ptr1);
@@ -560,7 +560,7 @@ LAB_PROCESS_PARAMS:
       if ((int)temp_uint3 < 0x10) {
         temp_uint3 = 0x10;
       }
-      temp_ptr1 = (int8_t *)allocate_parameter_buffer(global_memory_pool, (longlong)(int)temp_uint3, 0x13);
+      temp_ptr1 = (int8_t *)allocate_parameter_buffer(global_memory_pool, (int64_t)(int)temp_uint3, 0x13);
       *temp_ptr1 = 0;
     }
     else {
@@ -593,17 +593,17 @@ uint64_t process_command_line_arguments(uint64_t param1, uint64_t param2, uint64
   uint64_t *temp_ptr1;
   uint64_t *temp_ptr2;
   uint64_t *temp_ptr3;
-  longlong temp_long1;
+  int64_t temp_long1;
   char *temp_ptr4;
   uint temp_uint1;
   int *temp_ptr5;
-  ulonglong temp_ulong1;
+  uint64_t temp_ulong1;
   uint64_t temp_ulong2;
-  ulonglong temp_ulong2;
-  ulonglong temp_ulong3;
-  longlong temp_long2;
+  uint64_t temp_ulong2;
+  uint64_t temp_ulong3;
+  int64_t temp_long2;
   uint64_t *temp_ptr6;
-  ulonglong temp_ulong4;
+  uint64_t temp_ulong4;
   void *stack_ptr1;
   int8_t *stack_ptr2;
   uint stack_uint1;
@@ -612,7 +612,7 @@ uint64_t process_command_line_arguments(uint64_t param1, uint64_t param2, uint64
   uint64_t *stack_ptr4;
   uint64_t stack_ulong2;
   int32_t stack_uint2;
-  ulonglong temp_ulong5;
+  uint64_t temp_ulong5;
   
   stack_ptr3 = (uint64_t *)0x0;
   stack_ptr4 = (uint64_t *)0x0;
@@ -624,7 +624,7 @@ uint64_t process_command_line_arguments(uint64_t param1, uint64_t param2, uint64
   
   temp_ptr3 = stack_ptr4;
   temp_ptr2 = stack_ptr3;
-  temp_ulong1 = (longlong)stack_ptr4 - (longlong)stack_ptr3 >> 5;
+  temp_ulong1 = (int64_t)stack_ptr4 - (int64_t)stack_ptr3 >> 5;
   temp_ptr1 = temp_ptr2;
   
   if (temp_ulong1 == 0) {
@@ -654,7 +654,7 @@ LAB_PROCESS_ARGUMENTS:
     memcpy(stack_ptr2, *(uint64_t *)(temp_ptr5 + -2), *temp_ptr5 + 1);
   }
   
-  if (*(longlong *)(temp_ptr5 + -2) != 0) {
+  if (*(int64_t *)(temp_ptr5 + -2) != 0) {
     stack_uint1 = 0;
     if (stack_ptr2 != (int8_t *)0x0) {
       *stack_ptr2 = 0;
@@ -671,7 +671,7 @@ LAB_PROCESS_ARGUMENTS:
         stack_ptr2[temp_ulong3] = stack_ptr2[temp_ulong3] + ' ';
       }
       temp_uint1 = (int)temp_ulong5 + 1;
-      temp_ulong5 = (ulonglong)temp_uint1;
+      temp_ulong5 = (uint64_t)temp_uint1;
       temp_ulong3 = temp_ulong3 + 1;
     } while (temp_uint1 < stack_uint1);
   }
@@ -681,7 +681,7 @@ LAB_PROCESS_ARGUMENTS:
   
   do {
     temp_ptr4 = (char *)*temp_ptr6;
-    temp_long2 = temp_long1 - (longlong)temp_ptr4;
+    temp_long2 = temp_long1 - (int64_t)temp_ptr4;
     do {
       temp_char1 = *temp_ptr4;
       temp_char2 = temp_ptr4[temp_long2];
@@ -690,13 +690,13 @@ LAB_PROCESS_ARGUMENTS:
     } while (temp_char2 != '\0');
     if (temp_char1 == temp_char2) break;
     temp_ptr6 = temp_ptr6 + 1;
-    if (0x1809fde87 < (longlong)temp_ptr6) {
+    if (0x1809fde87 < (int64_t)temp_ptr6) {
       stack_ptr1 = &global_debug_string;
       if (stack_ptr2 != (int8_t *)0x0) {
         free_allocated_memory();
       }
       stack_ptr2 = (int8_t *)0x0;
-      stack_ulong1 = (ulonglong)stack_ulong1._4_4_ << 0x20;
+      stack_ulong1 = (uint64_t)stack_ulong1._4_4_ << 0x20;
       stack_ptr1 = &global_error_string;
       temp_ulong2 = 1;
       goto LAB_EXECUTE_CALLBACKS;
@@ -708,69 +708,69 @@ LAB_PROCESS_ARGUMENTS:
     free_allocated_memory();
   }
   stack_ptr2 = (int8_t *)0x0;
-  stack_ulong1 = (ulonglong)stack_ulong1._4_4_ << 0x20;
+  stack_ulong1 = (uint64_t)stack_ulong1._4_4_ << 0x20;
   stack_ptr1 = &global_success_string;
   
   temp_uint1 = (int)temp_ulong2 + 1;
-  temp_ulong2 = (ulonglong)temp_uint1;
+  temp_ulong2 = (uint64_t)temp_uint1;
   temp_ptr5 = temp_ptr5 + 8;
   
-  if (temp_ulong1 <= (ulonglong)(longlong)(int)temp_uint1) goto LAB_PROCESS_COMPLETE;
+  if (temp_ulong1 <= (uint64_t)(int64_t)(int)temp_uint1) goto LAB_PROCESS_COMPLETE;
   goto LAB_PROCESS_ARGUMENTS;
 }
 
 // 全局变量声明（简化实现）
 // 注意：这些全局变量的实际地址和用途需要根据上下文确定
-static longlong global_render_config = 0;
-static longlong global_system_config = 0;
-static longlong global_render_state = 0;
-static longlong global_system_base = 0;
-static longlong global_system_config2 = 0;
-static longlong global_memory_pool = 0;
-static longlong global_config_manager = 0;
-static longlong global_config_data = 0;
-static longlong global_security_key = 0;
-static longlong global_quality_threshold = 0;
-static longlong global_quality_value = 0;
-static longlong global_quality_limit = 0;
-static longlong global_quality_limit_value = 0;
-static longlong global_callback_table = 0;
-static longlong global_string_table1 = 0;
-static longlong global_string_table2 = 0;
-static longlong global_string_table3 = 0;
-static longlong global_string_table4 = 0;
-static longlong global_format_string = 0;
-static longlong global_debug_string = 0;
-static longlong global_process_id_format = 0;
-static longlong global_debug_flag = 0;
-static longlong global_debug_prefix = 0;
-static longlong global_debug_prefix_extended = 0;
-static longlong global_command_table = 0;
-static longlong global_error_string = 0;
-static longlong global_success_string = 0;
+static int64_t global_render_config = 0;
+static int64_t global_system_config = 0;
+static int64_t global_render_state = 0;
+static int64_t global_system_base = 0;
+static int64_t global_system_config2 = 0;
+static int64_t global_memory_pool = 0;
+static int64_t global_config_manager = 0;
+static int64_t global_config_data = 0;
+static int64_t global_security_key = 0;
+static int64_t global_quality_threshold = 0;
+static int64_t global_quality_value = 0;
+static int64_t global_quality_limit = 0;
+static int64_t global_quality_limit_value = 0;
+static int64_t global_callback_table = 0;
+static int64_t global_string_table1 = 0;
+static int64_t global_string_table2 = 0;
+static int64_t global_string_table3 = 0;
+static int64_t global_string_table4 = 0;
+static int64_t global_format_string = 0;
+static int64_t global_debug_string = 0;
+static int64_t global_process_id_format = 0;
+static int64_t global_debug_flag = 0;
+static int64_t global_debug_prefix = 0;
+static int64_t global_debug_prefix_extended = 0;
+static int64_t global_command_table = 0;
+static int64_t global_error_string = 0;
+static int64_t global_success_string = 0;
 
 // 函数指针声明（简化实现）
 static void (*check_quality_threshold)(void*) = 0;
 static void (*update_quality_threshold)(void*) = 0;
 static void (*initialize_render_params)(void*, uint64_t, uint64_t, uint64_t, uint64_t) = 0;
-static uint64_t (*allocate_config_memory)(void*, longlong, longlong, longlong) = 0;
-static longlong (*create_config_object)(uint64_t, void*) = 0;
+static uint64_t (*allocate_config_memory)(void*, int64_t, int64_t, int64_t) = 0;
+static int64_t (*create_config_object)(uint64_t, void*) = 0;
 static void (*process_config_data)(uint64_t, void**) = 0;
 static int (*get_system_info)(uint64_t, void**) = 0;
-static void (*initialize_buffer_structure)(void*, longlong) = 0;
+static void (*initialize_buffer_structure)(void*, int64_t) = 0;
 static void (*create_string_buffer)(void**) = 0;
 static void (*expand_buffer_capacity)(void*, int) = 0;
-static void (*cleanup_string_operations)(ulonglong) = 0;
+static void (*cleanup_string_operations)(uint64_t) = 0;
 static void (*initialize_debug_buffer)(void**, int) = 0;
 static void (*expand_debug_buffer)(void**, int) = 0;
 static void (*convert_process_id_to_string)(char*, void*, int32_t) = 0;
 static void (*format_debug_string)(void*, void*) = 0;
-static int8_t (*allocate_parameter_buffer)(void*, longlong, longlong) = 0;
+static int8_t (*allocate_parameter_buffer)(void*, int64_t, int64_t) = 0;
 static uint (*calculate_parameter_hash)(int8_t*) = 0;
-static int8_t (*reallocate_parameter_buffer)(void*, int8_t*, ulonglong, longlong) = 0;
-static longlong (*calculate_argument_hash)(void**) = 0;
+static int8_t (*reallocate_parameter_buffer)(void*, int8_t*, uint64_t, int64_t) = 0;
+static int64_t (*calculate_argument_hash)(void**) = 0;
 static void (*free_allocated_memory)(void*) = 0;
 
 // 线程本地存储变量
-static ulonglong __tls_index = 0;
+static uint64_t __tls_index = 0;
 static void* ThreadLocalStoragePointer = 0;

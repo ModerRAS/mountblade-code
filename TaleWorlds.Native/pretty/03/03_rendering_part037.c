@@ -61,11 +61,11 @@ void* FUN_180288f30 = process_rendering_resources;
  *       resource_param - 资源参数
  * 返回：void - 无返回值
  */
-void process_rendering_resources(longlong render_context, uint64_t resource_param)
+void process_rendering_resources(int64_t render_context, uint64_t resource_param)
 
 {
     /* 局部变量声明 */
-    longlong *resource_ptr;
+    int64_t *resource_ptr;
     uint8_t byte_val;
     void *void_ptr;
     bool bool_result;
@@ -75,7 +75,7 @@ void process_rendering_resources(longlong render_context, uint64_t resource_para
     uint32_t uint_val;
     uint *uint_ptr;
     char *char_ptr;
-    longlong long_val;
+    int64_t long_val;
     uint64_t *uint64_ptr;
     void ******ptr_array_6;
     uint8_t *byte_ptr;
@@ -89,10 +89,10 @@ void process_rendering_resources(longlong render_context, uint64_t resource_para
     void *******ptr_array_7_3;
     void *******ptr_array_7_4;
     uint *uint_ptr_2;
-    longlong long_val_2;
+    int64_t long_val_2;
     uint64_t uint64_val;
-    ulonglong ulonglong_val;
-    ulonglong ulonglong_val_2;
+    uint64_t uint64_t_val;
+    uint64_t uint64_t_val_2;
     uint uint_val_3;
     char char_val;
     
@@ -116,11 +116,11 @@ void process_rendering_resources(longlong render_context, uint64_t resource_para
     is_processing = true;
     
     /* 初始化栈安全检查 */
-    uint64_t stack_cookie = get_stack_cookie() ^ (ulonglong)stack_buffer_32;
-    ulonglong_val = 0;
+    uint64_t stack_cookie = get_stack_cookie() ^ (uint64_t)stack_buffer_32;
+    uint64_t_val = 0;
     
     /* 保存渲染上下文和资源参数 */
-    longlong context_ptr = render_context;
+    int64_t context_ptr = render_context;
     uint64_t resource_data = resource_param;
     
     /* 检查渲染系统状态 */
@@ -152,7 +152,7 @@ void process_rendering_resources(longlong render_context, uint64_t resource_para
     if (has_resources_to_process()) {
         do {
             /* 获取下一个资源 */
-            long_val = get_next_resource(&ulonglong_val);
+            long_val = get_next_resource(&uint64_t_val);
             
             /* 处理资源名称 */
             string_buffer = process_resource_name(long_val, &string_size);
@@ -169,7 +169,7 @@ void process_rendering_resources(longlong render_context, uint64_t resource_para
                 }
             }
             
-            ulonglong_val++;
+            uint64_t_val++;
             uint_val_2 = update_random_seed(uint_val_2);
             
         } while (has_more_resources());
@@ -246,20 +246,20 @@ void process_rendering_resources(longlong render_context, uint64_t resource_para
 }
 
 /* 辅助函数声明 */
-ulonglong get_stack_cookie(void);
+uint64_t get_stack_cookie(void);
 bool is_render_system_initialized(void);
 bool is_debug_mode_enabled(void);
 int check_render_system_status(void);
 uint get_current_time(void);
-void initialize_resource_queue(int param_1, longlong *param_2);
+void initialize_resource_queue(int param_1, int64_t *param_2);
 void initialize_cache_system(uint64_t *cache, uint32_t size, uint32_t *index);
 void initialize_hash_table(uint64_t *table, uint32_t size, uint32_t *index);
 bool has_resources_to_process(void);
-longlong get_next_resource(ulonglong *index);
-char *process_resource_name(longlong resource, uint32_t *size);
+int64_t get_next_resource(uint64_t *index);
+char *process_resource_name(int64_t resource, uint32_t *size);
 uint get_min_name_length(void);
 bool validate_resource_name(char *name, uint32_t size);
-void process_valid_resource(longlong resource, char *name, uint32_t size, 
+void process_valid_resource(int64_t resource, char *name, uint32_t size, 
                            uint64_t *cache, uint32_t *index);
 uint update_random_seed(uint seed);
 bool has_more_resources(void);
@@ -272,20 +272,20 @@ void add_to_hash_table(uint64_t *table, char *str, uint len,
 bool has_more_strings(void);
 void cleanup_temporary_resources(char **buffer);
 bool check_random_condition(uint seed);
-void set_render_status_flag(longlong context, uint8_t flag);
+void set_render_status_flag(int64_t context, uint8_t flag);
 bool is_debug_mode(void);
-void perform_fast_object_lookup(longlong context, uint64_t *cache, 
+void perform_fast_object_lookup(int64_t context, uint64_t *cache, 
                                uint64_t *table, uint *seed);
-void perform_advanced_object_lookup(longlong context, uint64_t *cache, 
+void perform_advanced_object_lookup(int64_t context, uint64_t *cache, 
                                    uint64_t *table, uint *seed);
 void execute_render_callback(uint64_t address, uint64_t param, 
                            char *buffer, int flag);
 void cleanup_all_resources(uint64_t *cache, uint32_t *index, uint32_t size);
 void cleanup_hash_table(uint64_t *table, uint32_t *index, uint32_t size);
 void cleanup_string_processor(char **buffer);
-void safe_stack_exit(ulonglong cookie);
+void safe_stack_exit(uint64_t cookie);
 void handle_special_cases(uint *val1, uint *val2);
-void finalize_resource_processing(longlong context, uint64_t *cache, 
+void finalize_resource_processing(int64_t context, uint64_t *cache, 
                                  uint64_t *table, uint64_t *result);
 uint64_t get_callback_address(void);
 

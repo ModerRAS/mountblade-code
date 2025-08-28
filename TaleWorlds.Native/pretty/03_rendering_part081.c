@@ -3,19 +3,19 @@
 
 // 03_rendering_part081.c - 1 个函数
 
-// 函数: void FUN_180310a00(longlong *param_1,uint64_t *param_2)
-void FUN_180310a00(longlong *param_1,uint64_t *param_2)
+// 函数: void FUN_180310a00(int64_t *param_1,uint64_t *param_2)
+void FUN_180310a00(int64_t *param_1,uint64_t *param_2)
 
 {
   uint64_t *puVar1;
-  longlong lVar2;
+  int64_t lVar2;
   uint64_t uVar3;
   uint64_t uVar4;
   uint64_t uVar5;
   
   puVar1 = (uint64_t *)param_1[6];
   if (puVar1 + 2 != (uint64_t *)param_1[8]) {
-    param_1[6] = (longlong)(puVar1 + 2);
+    param_1[6] = (int64_t)(puVar1 + 2);
     uVar3 = param_2[1];
     *puVar1 = *param_2;
     puVar1[1] = uVar3;
@@ -33,7 +33,7 @@ void FUN_180310a00(longlong *param_1,uint64_t *param_2)
   puVar1[1] = uVar4;
   lVar2 = param_1[9];
   param_1[9] = lVar2 + 8;
-  lVar2 = *(longlong *)(lVar2 + 8);
+  lVar2 = *(int64_t *)(lVar2 + 8);
   param_1[7] = lVar2;
   param_1[8] = lVar2 + 0x100;
   param_1[6] = lVar2;

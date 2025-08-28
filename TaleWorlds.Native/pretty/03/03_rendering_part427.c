@@ -14,18 +14,18 @@
 #define RENDERING_TEXTURE_TILE_SIZE 0x4000
 
 // 函数别名定义
-void rendering_system_advanced_batch_processor(longlong rendering_context, uint64_t texture_data, int32_t render_param1, int32_t render_param2,
-                                             uint64_t render_param3, uint texture_count, longlong output_buffer1, longlong output_buffer2, longlong output_buffer3,
-                                             longlong output_buffer4, char texture_flag, uint texture_index);
+void rendering_system_advanced_batch_processor(int64_t rendering_context, uint64_t texture_data, int32_t render_param1, int32_t render_param2,
+                                             uint64_t render_param3, uint texture_count, int64_t output_buffer1, int64_t output_buffer2, int64_t output_buffer3,
+                                             int64_t output_buffer4, char texture_flag, uint texture_index);
 void rendering_system_initialize_texture_handler(uint64_t param1, uint64_t param2);
 void rendering_system_process_texture_data(uint64_t param1);
-void rendering_system_create_texture_manager(uint64_t *param1, ulonglong param2, uint64_t param3, uint64_t param4);
-void rendering_system_cleanup_texture_manager(uint64_t param1, ulonglong param2, uint64_t param3, uint64_t param4);
+void rendering_system_create_texture_manager(uint64_t *param1, uint64_t param2, uint64_t param3, uint64_t param4);
+void rendering_system_cleanup_texture_manager(uint64_t param1, uint64_t param2, uint64_t param3, uint64_t param4);
 void rendering_system_initialize_shader_manager(uint64_t param1, uint64_t param2);
 void rendering_system_create_shader_object(uint64_t param1, int32_t param2);
-void rendering_system_cleanup_shader_object(uint64_t param1, ulonglong param2, uint64_t param3, uint64_t param4);
+void rendering_system_cleanup_shader_object(uint64_t param1, uint64_t param2, uint64_t param3, uint64_t param4);
 void rendering_system_initialize_render_manager(uint64_t *param1);
-void rendering_system_process_render_data(uint64_t param1, longlong *param2, uint64_t param3, uint64_t param4);
+void rendering_system_process_render_data(uint64_t param1, int64_t *param2, uint64_t param3, uint64_t param4);
 void rendering_system_update_texture_cache(void);
 void rendering_system_update_render_cache(void);
 void rendering_system_empty_function_1(void);
@@ -51,9 +51,9 @@ void rendering_system_setup_render_pipeline(void);
  * @param texture_flag 纹理标志，控制纹理处理方式
  * @param texture_index 纹理索引，指定当前处理的纹理
  */
-void rendering_system_advanced_batch_processor(longlong rendering_context, uint64_t texture_data, int32_t render_param1, int32_t render_param2,
-                                             uint64_t render_param3, uint texture_count, longlong output_buffer1, longlong output_buffer2, longlong output_buffer3,
-                                             longlong output_buffer4, char texture_flag, uint texture_index)
+void rendering_system_advanced_batch_processor(int64_t rendering_context, uint64_t texture_data, int32_t render_param1, int32_t render_param2,
+                                             uint64_t render_param3, uint texture_count, int64_t output_buffer1, int64_t output_buffer2, int64_t output_buffer3,
+                                             int64_t output_buffer4, char texture_flag, uint texture_index)
 
 {
   uint64_t *texture_ptr1;
@@ -65,22 +65,22 @@ void rendering_system_advanced_batch_processor(longlong rendering_context, uint6
   uint64_t texture_data3;
   uint64_t texture_data4;
   int texture_height;
-  longlong texture_offset;
+  int64_t texture_offset;
   int *output_index_ptr;
   int texture_min_x;
-  longlong texture_base;
+  int64_t texture_base;
   uint texture_flag_internal;
   int texture_max_x;
-  longlong texture_stride;
+  int64_t texture_stride;
   int texture_min_y;
   int texture_max_y;
   int texture_x;
   int *batch_index_ptr;
   int texture_y;
-  longlong batch_offset;
+  int64_t batch_offset;
   int tile_width_count;
-  longlong batch_width;
-  longlong batch_height;
+  int64_t batch_width;
+  int64_t batch_height;
   uint64_t batch_param1;
   uint64_t batch_param2;
   float tex_coord_u;
@@ -89,20 +89,20 @@ void rendering_system_advanced_batch_processor(longlong rendering_context, uint6
   float tex_coord_t;
   uint64_t u_coord_data;
   uint64_t v_coord_data;
-  ulonglong security_hash;
+  uint64_t security_hash;
   
-  security_hash = GET_SECURITY_COOKIE() ^ (ulonglong)batch_index_ptr;
+  security_hash = GET_SECURITY_COOKIE() ^ (uint64_t)batch_index_ptr;
   current_texture = 0;
   batch_width = 8;
   batch_height = output_buffer4;
   do {
-    texture_base = *(longlong *)(rendering_context + 0x28 + (ulonglong)texture_index * 8);
-    texture_stride = *(longlong *)(*(longlong *)(rendering_context + 8) + 0x68);
-    texture_ptr1 = (uint64_t *)(texture_base + (ulonglong)*(uint *)(batch_width + -4 + texture_stride) * 0x10);
+    texture_base = *(int64_t *)(rendering_context + 0x28 + (uint64_t)texture_index * 8);
+    texture_stride = *(int64_t *)(*(int64_t *)(rendering_context + 8) + 0x68);
+    texture_ptr1 = (uint64_t *)(texture_base + (uint64_t)*(uint *)(batch_width + -4 + texture_stride) * 0x10);
     texture_data1 = *texture_ptr1;
     texture_data2 = texture_ptr1[1];
     if (texture_flag == '\0') {
-      texture_coords = (float *)(texture_base + (ulonglong)*(uint *)(batch_width + texture_stride) * 0x10);
+      texture_coords = (float *)(texture_base + (uint64_t)*(uint *)(batch_width + texture_stride) * 0x10);
       tex_coord_u = *texture_coords;
       tex_coord_v = texture_coords[1];
       tex_coord_s = texture_coords[2];
@@ -110,22 +110,22 @@ void rendering_system_advanced_batch_processor(longlong rendering_context, uint6
       texture_flag_internal = *(uint *)(texture_stride + 4 + batch_width);
     }
     else {
-      texture_coords = (float *)(texture_base + (ulonglong)*(uint *)(texture_stride + 4 + batch_width) * 0x10);
+      texture_coords = (float *)(texture_base + (uint64_t)*(uint *)(texture_stride + 4 + batch_width) * 0x10);
       tex_coord_u = *texture_coords;
       tex_coord_v = texture_coords[1];
       tex_coord_s = texture_coords[2];
       tex_coord_t = texture_coords[3];
       texture_flag_internal = *(uint *)(batch_width + texture_stride);
     }
-    u_coord_data._4_4_ = (float)((ulonglong)texture_data1 >> 0x20);
-    texture_ptr1 = (uint64_t *)(texture_base + (ulonglong)texture_flag_internal * 0x10);
+    u_coord_data._4_4_ = (float)((uint64_t)texture_data1 >> 0x20);
+    texture_ptr1 = (uint64_t *)(texture_base + (uint64_t)texture_flag_internal * 0x10);
     texture_data3 = *texture_ptr1;
     texture_data4 = texture_ptr1[1];
     u_coord_data._0_4_ = (float)texture_data1;
     texture_x = (int)(u_coord_data._4_4_ + 0.5);
     texture_width = (int)((float)u_coord_data + 0.5);
     texture_y = (int)(tex_coord_v + 0.5);
-    v_coord_data._4_4_ = (float)((ulonglong)texture_data3 >> 0x20);
+    v_coord_data._4_4_ = (float)((uint64_t)texture_data3 >> 0x20);
     texture_min_x = (int)(tex_coord_u + 0.5);
     v_coord_data._0_4_ = (float)texture_data3;
     texture_max_x = (int)(v_coord_data._4_4_ + 0.5);
@@ -182,9 +182,9 @@ void rendering_system_advanced_batch_processor(longlong rendering_context, uint6
     else if (texture_max_y != 0) {
 LAB_18049ce60:
       if (((batch_index_ptr[0] <= texture_min_x) && (texture_height <= texture_min_y)) &&
-          (batch_param2._4_4_ = (float)((ulonglong)texture_data2 >> 0x20), 0.0 < batch_param2._4_4_)) &&
+          (batch_param2._4_4_ = (float)((uint64_t)texture_data2 >> 0x20), 0.0 < batch_param2._4_4_)) &&
          ((0.0 < tex_coord_t &&
-          (batch_param1._4_4_ = (float)((ulonglong)texture_data4 >> 0x20), 0.0 < batch_param1._4_4_)))) {
+          (batch_param1._4_4_ = (float)((uint64_t)texture_data4 >> 0x20), 0.0 < batch_param1._4_4_)))) {
         texture_max_x = batch_index_ptr[0] / RENDERING_TEXTURE_SIZE_80;
         batch_index_ptr[0] = 0;
         if (0 < texture_max_x) {
@@ -198,14 +198,14 @@ LAB_18049ce60:
         if (texture_min_x / RENDERING_TEXTURE_SIZE_80 < 7) {
           texture_height = texture_min_x / RENDERING_TEXTURE_SIZE_80;
         }
-        texture_base = (longlong)texture_max_x;
-        batch_width = (longlong)texture_height;
+        texture_base = (int64_t)texture_max_x;
+        batch_width = (int64_t)texture_height;
         texture_min_x = 3;
         if (texture_min_y / RENDERING_TEXTURE_SIZE_96 < 3) {
           texture_min_x = texture_min_y / RENDERING_TEXTURE_SIZE_96;
         }
         if (texture_base <= texture_min_x) {
-          batch_offset = (longlong)batch_index_ptr[0];
+          batch_offset = (int64_t)batch_index_ptr[0];
           texture_max_x = texture_max_x << RENDERING_TILE_HEIGHT_SHIFT;
           texture_stride = (texture_min_x - texture_base) + 1;
           output_index_ptr = (int *)(output_buffer4 + (texture_base * 8 + batch_offset) * 4);
@@ -217,7 +217,7 @@ LAB_18049ce60:
               do {
                 texture_height = texture_max_x + texture_min_x;
                 texture_min_x = texture_min_x + RENDERING_TEXTURE_TILE_SIZE;
-                texture_offset = (longlong)(texture_height + *batch_index_ptr);
+                texture_offset = (int64_t)(texture_height + *batch_index_ptr);
                 *(uint *)(output_buffer1 + texture_offset * 4) = current_texture;
                 *(int32_t *)(output_buffer2 + texture_offset * 4) = render_param1;
                 *(int32_t *)(output_buffer3 + texture_offset * 4) = render_param2;
@@ -242,7 +242,7 @@ LAB_18049ce60:
       batch_param1 = texture_data3;
       batch_param1 = texture_data4;
                     // WARNING: Subroutine does not return
-      FUN_1808fc050(security_hash ^ (ulonglong)batch_index_ptr);
+      FUN_1808fc050(security_hash ^ (uint64_t)batch_index_ptr);
     }
   } while( true );
 }
@@ -282,7 +282,7 @@ void rendering_system_initialize_texture_handler(uint64_t param1, uint64_t param
   alloc_context = CONCAT44(alloc_context._4_4_,texture_config);
   *texture_ptr = 0x20726574736c6f48;
   *(int32_t *)(texture_ptr + 1) = 0x65646e49;
-  *(int16_t *)((longlong)texture_ptr + 0xc) = 0x78;
+  *(int16_t *)((int64_t)texture_ptr + 0xc) = 0x78;
   alloc_size = 0xd;
   FUN_1803460a0(texture_manager,&init_stack_ptr,texture_manager + 0xe,4);
   init_stack_ptr = &system_data_buffer_ptr;
@@ -310,10 +310,10 @@ void rendering_system_process_texture_data(uint64_t param1)
   int8_t data_buffer[136];
   void *data_array[19];
   int32_t array_size;
-  ulonglong security_hash;
+  uint64_t security_hash;
   
   process_context = 0xfffffffffffffffe;
-  security_hash = GET_SECURITY_COOKIE() ^ (ulonglong)texture_buffer;
+  security_hash = GET_SECURITY_COOKIE() ^ (uint64_t)texture_buffer;
   process_param = 0;
   process_ptr = &unknown_var_3432_ptr;
   texture_data_ptr = data_buffer;
@@ -329,7 +329,7 @@ void rendering_system_process_texture_data(uint64_t param1)
   data_array[0] = &system_state_ptr;
   process_ptr = &system_state_ptr;
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(security_hash ^ (ulonglong)texture_buffer);
+  FUN_1808fc050(security_hash ^ (uint64_t)texture_buffer);
 }
 
 /**
@@ -344,7 +344,7 @@ void rendering_system_process_texture_data(uint64_t param1)
  * @return 返回创建的纹理管理器指针
  */
 uint64_t *
-rendering_system_create_texture_manager(uint64_t *param1, ulonglong param2, uint64_t param3, uint64_t param4)
+rendering_system_create_texture_manager(uint64_t *param1, uint64_t param2, uint64_t param3, uint64_t param4)
 
 {
   uint64_t alloc_flag;
@@ -472,7 +472,7 @@ void rendering_system_initialize_shader_manager(uint64_t param1, uint64_t param2
   alloc_context = CONCAT44(alloc_context._4_4_,shader_config);
   *shader_ptr = 0x20646c6975626552;
   *(int32_t *)(shader_ptr + 1) = 0x64697247;
-  *(int8_t *)((longlong)shader_ptr + 0xc) = 0;
+  *(int8_t *)((int64_t)shader_ptr + 0xc) = 0;
   alloc_size = 0xc;
   FUN_1803460a0(shader_manager,&init_stack_ptr,0,0xb);
   init_stack_ptr = &system_data_buffer_ptr;
@@ -512,7 +512,7 @@ uint64_t * rendering_system_create_shader_object(uint64_t param1, int32_t param2
  * @param param4 参数4，包含清理所需的资源信息
  * @return 返回清理后的对象指针
  */
-uint64_t rendering_system_cleanup_shader_object(uint64_t param1, ulonglong param2, uint64_t param3, uint64_t param4)
+uint64_t rendering_system_cleanup_shader_object(uint64_t param1, uint64_t param2, uint64_t param3, uint64_t param4)
 
 {
   uint64_t cleanup_flag;
@@ -551,10 +551,10 @@ void rendering_system_initialize_render_manager(uint64_t *param1)
   void *alloc_ptr3;
   int string_size;
   uint8_t string_buffer[16];
-  ulonglong security_hash;
+  uint64_t security_hash;
   
   data_buffer = 0xfffffffffffffffe;
-  security_hash = GET_SECURITY_COOKIE() ^ (ulonglong)init_buffer;
+  security_hash = GET_SECURITY_COOKIE() ^ (uint64_t)init_buffer;
   data_param = 0;
   *param1 = &unknown_var_4416_ptr;
   *param1 = &unknown_var_2120_ptr;
@@ -583,7 +583,7 @@ void rendering_system_initialize_render_manager(uint64_t *param1)
       init_ptr = alloc_ptr3;
     }
                     // WARNING: Subroutine does not return
-    memcpy(data_ptr,init_ptr,(longlong)(string_size + 1));
+    memcpy(data_ptr,init_ptr,(int64_t)(string_size + 1));
   }
   if (alloc_ptr3 != (void *)0x0) {
     data_size = 0;
@@ -597,15 +597,15 @@ void rendering_system_initialize_render_manager(uint64_t *param1)
   init_flag = data_size + 8;
   FUN_1806277c0(&stack_ptr,init_flag);
   *(uint64_t *)(data_ptr + data_size) = 0x2f73656c75646f4d;
-  *(int8_t *)((longlong)(data_ptr + data_size) + 8) = 0;
+  *(int8_t *)((int64_t)(data_ptr + data_size) + 8) = 0;
   data_size = init_flag;
   if (0 < render_system_texture) {
     FUN_1806277c0(&stack_ptr,init_flag + render_system_texture);
                     // WARNING: Subroutine does not return
-    memcpy(data_ptr + data_size,render_system_texture,(longlong)(render_system_texture + 1));
+    memcpy(data_ptr + data_size,render_system_texture,(int64_t)(render_system_texture + 1));
   }
   process_flag = process_flag + 9;
-  FUN_1806277c0(&stack_ptr,(ulonglong)process_flag);
+  FUN_1806277c0(&stack_ptr,(uint64_t)process_flag);
   *(int16_t *)(data_ptr + data_size) = 0x2f;
   data_size = process_flag;
   if (data_ptr != (int8_t *)0x0) {
@@ -617,7 +617,7 @@ void rendering_system_initialize_render_manager(uint64_t *param1)
   }
   render_system_texture = process_flag;
   if (render_system_texture != 0) {
-    *(int8_t *)((ulonglong)process_flag + render_system_texture) = 0;
+    *(int8_t *)((uint64_t)process_flag + render_system_texture) = 0;
   }
   render_system_texture = data_context._4_4_;
   *(int32_t *)(param1 + 0x84) = 0;
@@ -627,10 +627,10 @@ void rendering_system_initialize_render_manager(uint64_t *param1)
     FUN_18064e900();
   }
   data_ptr = (int8_t *)0x0;
-  data_context = (ulonglong)data_context._4_4_ << 0x20;
+  data_context = (uint64_t)data_context._4_4_ << 0x20;
   stack_ptr = &system_state_ptr;
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(security_hash ^ (ulonglong)init_buffer,0);
+  FUN_1808fc050(security_hash ^ (uint64_t)init_buffer,0);
 }
 
 /**
@@ -643,7 +643,7 @@ void rendering_system_initialize_render_manager(uint64_t *param1)
  * @param param3 参数3，包含处理所需的配置信息
  * @param param4 参数4，包含处理所需的资源信息
  */
-void rendering_system_process_render_data(uint64_t param1, longlong *param2, uint64_t param3, uint64_t param4)
+void rendering_system_process_render_data(uint64_t param1, int64_t *param2, uint64_t param3, uint64_t param4)
 
 {
   int32_t data_config;
@@ -673,7 +673,7 @@ void rendering_system_process_render_data(uint64_t param1, longlong *param2, uin
     data_config = FUN_18064e990(data_ptr);
     *data_ptr = 0x6974614e;
     *(int16_t *)(data_ptr + 1) = 0x6576;
-    *(int8_t *)((longlong)data_ptr + 6) = 0;
+    *(int8_t *)((int64_t)data_ptr + 6) = 0;
     alloc_size = 6;
     alloc_context._0_4_ = data_config;
     FUN_180066df0(param2,&process_stack_ptr);
@@ -683,7 +683,7 @@ void rendering_system_process_render_data(uint64_t param1, longlong *param2, uin
       FUN_18064e900();
     }
     alloc_ptr = (uint64_t *)0x0;
-    alloc_context = (ulonglong)alloc_context._4_4_ << 0x20;
+    alloc_context = (uint64_t)alloc_context._4_4_ << 0x20;
     process_stack_ptr = &system_state_ptr;
     alloc_stack_ptr = &system_data_buffer_ptr;
     alloc_context2 = 0;
@@ -704,7 +704,7 @@ void rendering_system_process_render_data(uint64_t param1, longlong *param2, uin
       FUN_18064e900();
     }
     alloc_ptr2 = (uint64_t *)0x0;
-    alloc_context2 = (ulonglong)alloc_context2._4_4_ << 0x20;
+    alloc_context2 = (uint64_t)alloc_context2._4_4_ << 0x20;
     alloc_stack_ptr = &system_state_ptr;
     process_stack_ptr = &system_data_buffer_ptr;
     alloc_context = 0;
@@ -725,7 +725,7 @@ void rendering_system_process_render_data(uint64_t param1, longlong *param2, uin
       FUN_18064e900();
     }
     alloc_ptr = (uint64_t *)0x0;
-    alloc_context = (ulonglong)alloc_context._4_4_ << 0x20;
+    alloc_context = (uint64_t)alloc_context._4_4_ << 0x20;
     process_stack_ptr = &system_state_ptr;
     alloc_stack_ptr = &system_data_buffer_ptr;
     alloc_context2 = 0;
@@ -745,7 +745,7 @@ void rendering_system_process_render_data(uint64_t param1, longlong *param2, uin
       FUN_18064e900();
     }
     alloc_ptr2 = (uint64_t *)0x0;
-    alloc_context2 = (ulonglong)alloc_context2._4_4_ << 0x20;
+    alloc_context2 = (uint64_t)alloc_context2._4_4_ << 0x20;
     alloc_stack_ptr = &system_state_ptr;
     process_stack_ptr = &system_data_buffer_ptr;
     alloc_context = 0;
@@ -757,7 +757,7 @@ void rendering_system_process_render_data(uint64_t param1, longlong *param2, uin
     data_config = FUN_18064e990(texture_ptr);
     *texture_ptr = 0x61426d6f74737543;
     *(int32_t *)(texture_ptr + 1) = 0x656c7474;
-    *(int8_t *)((longlong)texture_ptr + 0xc) = 0;
+    *(int8_t *)((int64_t)texture_ptr + 0xc) = 0;
     alloc_size = 0xc;
     alloc_context._0_4_ = data_config;
     FUN_180066df0(param2,&process_stack_ptr);
@@ -767,7 +767,7 @@ void rendering_system_process_render_data(uint64_t param1, longlong *param2, uin
       FUN_18064e900();
     }
     alloc_ptr = (uint64_t *)0x0;
-    alloc_context = (ulonglong)alloc_context._4_4_ << 0x20;
+    alloc_context = (uint64_t)alloc_context._4_4_ << 0x20;
     process_stack_ptr = &system_state_ptr;
     alloc_stack_ptr = &system_data_buffer_ptr;
     alloc_context2 = 0;
@@ -803,34 +803,34 @@ void rendering_system_update_texture_cache(void)
   int cache_size;
   uint64_t *texture_manager;
   int *cache_end_ptr;
-  longlong cache_base;
+  int64_t cache_base;
   uint64_t manager_data;
-  longlong cache_offset;
-  longlong *cache_entry_ptr;
+  int64_t cache_offset;
+  int64_t *cache_entry_ptr;
   int *cache_start_ptr;
   char cache_flag;
   float cache_time;
-  longlong *cache_stack_ptr[2];
-  longlong *cache_stack_ptr2;
+  int64_t *cache_stack_ptr[2];
+  int64_t *cache_stack_ptr2;
   uint64_t cache_param;
   
   if ((((system_buffer_6098 != '\0') && (render_system_texture != 0)) &&
       (*(int *)(render_system_texture + 0x87b7a8) == 2)) && (*(char *)(render_system_texture + 0x87b750) != '\0'))
   {
-    cache_base = *(longlong *)(system_main_module_state + 0x3d8);
+    cache_base = *(int64_t *)(system_main_module_state + 0x3d8);
     cache_time = *(float *)(system_main_module_state + 0x220) + *(float *)(cache_base + 0x144);
     *(float *)(cache_base + 0x144) = cache_time;
     if (*(float *)(cache_base + 0x13c) <= cache_time) {
       *(float *)(cache_base + 0x144) = cache_time - *(float *)(cache_base + 0x13c);
       FUN_1803224b0(cache_base);
       FUN_1803277f0(cache_base);
-      *(longlong *)(cache_base + 0x150) = *(longlong *)(cache_base + 0x150) + 1;
-      *(longlong *)(cache_base + 0x160) = *(longlong *)(cache_base + 0x160) + 1;
+      *(int64_t *)(cache_base + 0x150) = *(int64_t *)(cache_base + 0x150) + 1;
+      *(int64_t *)(cache_base + 0x160) = *(int64_t *)(cache_base + 0x160) + 1;
       cache_param = 0xfffffffffffffffe;
       cache_start_ptr = *(int **)(cache_base + 0x230);
-      cache_offset = *(longlong *)(cache_base + 0x238) - (longlong)cache_start_ptr;
+      cache_offset = *(int64_t *)(cache_base + 0x238) - (int64_t)cache_start_ptr;
       while( true ) {
-        if ((ulonglong)(cache_offset >> 2) < 0xb) {
+        if ((uint64_t)(cache_offset >> 2) < 0xb) {
           return;
         }
         cache_size = *cache_start_ptr;
@@ -844,29 +844,29 @@ void rendering_system_update_texture_cache(void)
           }
           manager_data = system_context_ptr;
           if (cache_flag == '\0') {
-            cache_stack_ptr[0] = *(longlong **)(cache_base + 0x148);
-            if (cache_stack_ptr[0] != (longlong *)0x0) {
+            cache_stack_ptr[0] = *(int64_t **)(cache_base + 0x148);
+            if (cache_stack_ptr[0] != (int64_t *)0x0) {
               (**(code **)(*cache_stack_ptr[0] + 0x28))();
             }
             FUN_18005e6a0(manager_data,cache_stack_ptr,0);
           }
         }
-        cache_entry_ptr = (longlong *)FUN_18062b1e0(system_memory_pool_ptr,0xd0,8,3,cache_param);
+        cache_entry_ptr = (int64_t *)FUN_18062b1e0(system_memory_pool_ptr,0xd0,8,3,cache_param);
         cache_stack_ptr2 = cache_entry_ptr;
         FUN_180049830(cache_entry_ptr);
-        *cache_entry_ptr = (longlong)&unknown_var_8024_ptr;
+        *cache_entry_ptr = (int64_t)&unknown_var_8024_ptr;
         *(int *)(cache_entry_ptr + 0x18) = cache_size;
         cache_entry_ptr[0x19] = cache_base;
         cache_stack_ptr2 = cache_entry_ptr;
         (**(code **)(*cache_entry_ptr + 0x28))(cache_entry_ptr);
-        cache_stack_ptr2 = *(longlong **)(cache_base + 0x148);
-        *(longlong **)(cache_base + 0x148) = cache_entry_ptr;
-        if (cache_stack_ptr2 != (longlong *)0x0) {
+        cache_stack_ptr2 = *(int64_t **)(cache_base + 0x148);
+        *(int64_t **)(cache_base + 0x148) = cache_entry_ptr;
+        if (cache_stack_ptr2 != (int64_t *)0x0) {
           (**(code **)(*cache_stack_ptr2 + 0x38))();
         }
         manager_data = system_context_ptr;
-        cache_stack_ptr2 = *(longlong **)(cache_base + 0x148);
-        if (cache_stack_ptr2 != (longlong *)0x0) {
+        cache_stack_ptr2 = *(int64_t **)(cache_base + 0x148);
+        if (cache_stack_ptr2 != (int64_t *)0x0) {
           (**(code **)(*cache_stack_ptr2 + 0x28))();
         }
         FUN_18005e110(manager_data,&cache_stack_ptr2);
@@ -878,10 +878,10 @@ void rendering_system_update_texture_cache(void)
         if (cache_index_ptr < cache_end_ptr) break;
         *(int **)(cache_base + 0x238) = cache_end_ptr + -1;
         cache_start_ptr = *(int **)(cache_base + 0x230);
-        cache_offset = (longlong)(cache_end_ptr + -1) - (longlong)cache_start_ptr;
+        cache_offset = (int64_t)(cache_end_ptr + -1) - (int64_t)cache_start_ptr;
       }
                     // WARNING: Subroutine does not return
-      memmove(cache_start_ptr,cache_index_ptr,(longlong)cache_end_ptr - (longlong)cache_index_ptr);
+      memmove(cache_start_ptr,cache_index_ptr,(int64_t)cache_end_ptr - (int64_t)cache_index_ptr);
     }
   }
   return;
@@ -899,21 +899,21 @@ void rendering_system_update_render_cache(void)
   int cache_size;
   uint64_t *texture_manager;
   int *cache_end_ptr;
-  longlong cache_base;
+  int64_t cache_base;
   uint64_t manager_data;
-  longlong cache_offset;
-  longlong *cache_entry_ptr;
-  longlong in_RAX;
+  int64_t cache_offset;
+  int64_t *cache_entry_ptr;
+  int64_t in_RAX;
   int *cache_start_ptr;
   char cache_flag;
   float cache_time;
-  longlong *in_stack_00000030;
+  int64_t *in_stack_00000030;
   uint64_t in_stack_00000038;
-  longlong *in_stack_00000040;
-  longlong *in_stack_00000048;
+  int64_t *in_stack_00000040;
+  int64_t *in_stack_00000048;
   uint64_t cache_param;
   
-  cache_base = *(longlong *)(in_RAX + 0x3d8);
+  cache_base = *(int64_t *)(in_RAX + 0x3d8);
   cache_time = *(float *)(in_RAX + 0x220) + *(float *)(cache_base + 0x144);
   *(float *)(cache_base + 0x144) = cache_time;
   if (cache_time < *(float *)(cache_base + 0x13c)) {
@@ -922,13 +922,13 @@ void rendering_system_update_render_cache(void)
   *(float *)(cache_base + 0x144) = cache_time - *(float *)(cache_base + 0x13c);
   FUN_1803224b0(cache_base);
   FUN_1803277f0(cache_base);
-  *(longlong *)(cache_base + 0x150) = *(longlong *)(cache_base + 0x150) + 1;
-  *(longlong *)(cache_base + 0x160) = *(longlong *)(cache_base + 0x160) + 1;
+  *(int64_t *)(cache_base + 0x150) = *(int64_t *)(cache_base + 0x150) + 1;
+  *(int64_t *)(cache_base + 0x160) = *(int64_t *)(cache_base + 0x160) + 1;
   cache_param = 0xfffffffffffffffe;
   cache_start_ptr = *(int **)(cache_base + 0x230);
-  cache_offset = *(longlong *)(cache_base + 0x238) - (longlong)cache_start_ptr;
+  cache_offset = *(int64_t *)(cache_base + 0x238) - (int64_t)cache_start_ptr;
   while( true ) {
-    if ((ulonglong)(cache_offset >> 2) < 0xb) {
+    if ((uint64_t)(cache_offset >> 2) < 0xb) {
       return;
     }
     cache_size = *cache_start_ptr;
@@ -942,29 +942,29 @@ void rendering_system_update_render_cache(void)
       }
       manager_data = system_context_ptr;
       if (cache_flag == '\0') {
-        in_stack_00000030 = *(longlong **)(cache_base + 0x148);
-        if (in_stack_00000030 != (longlong *)0x0) {
+        in_stack_00000030 = *(int64_t **)(cache_base + 0x148);
+        if (in_stack_00000030 != (int64_t *)0x0) {
           (**(code **)(*in_stack_00000030 + 0x28))();
         }
         FUN_18005e6a0(manager_data,&in_stack_00000030,0);
       }
     }
-    cache_entry_ptr = (longlong *)FUN_18062b1e0(system_memory_pool_ptr,0xd0,8,3,cache_param);
+    cache_entry_ptr = (int64_t *)FUN_18062b1e0(system_memory_pool_ptr,0xd0,8,3,cache_param);
     in_stack_00000040 = cache_entry_ptr;
     FUN_180049830(cache_entry_ptr);
-    *cache_entry_ptr = (longlong)&unknown_var_8024_ptr;
+    *cache_entry_ptr = (int64_t)&unknown_var_8024_ptr;
     *(int *)(cache_entry_ptr + 0x18) = cache_size;
     cache_entry_ptr[0x19] = cache_base;
     in_stack_00000048 = cache_entry_ptr;
     (**(code **)(*cache_entry_ptr + 0x28))(cache_entry_ptr);
-    in_stack_00000048 = *(longlong **)(cache_base + 0x148);
-    *(longlong **)(cache_base + 0x148) = cache_entry_ptr;
-    if (in_stack_00000048 != (longlong *)0x0) {
+    in_stack_00000048 = *(int64_t **)(cache_base + 0x148);
+    *(int64_t **)(cache_base + 0x148) = cache_entry_ptr;
+    if (in_stack_00000048 != (int64_t *)0x0) {
       (**(code **)(*in_stack_00000048 + 0x38))();
     }
     manager_data = system_context_ptr;
-    in_stack_00000040 = *(longlong **)(cache_base + 0x148);
-    if (in_stack_00000040 != (longlong *)0x0) {
+    in_stack_00000040 = *(int64_t **)(cache_base + 0x148);
+    if (in_stack_00000040 != (int64_t *)0x0) {
       (**(code **)(*in_stack_00000040 + 0x28))();
     }
     FUN_18005e110(manager_data,&in_stack_00000040);
@@ -976,10 +976,10 @@ void rendering_system_update_render_cache(void)
     if (cache_index_ptr < cache_end_ptr) break;
     *(int **)(cache_base + 0x238) = cache_end_ptr + -1;
     cache_start_ptr = *(int **)(cache_base + 0x230);
-    cache_offset = (longlong)(cache_end_ptr + -1) - (longlong)cache_start_ptr;
+    cache_offset = (int64_t)(cache_end_ptr + -1) - (int64_t)cache_start_ptr;
   }
                     // WARNING: Subroutine does not return
-  memmove(cache_start_ptr,cache_index_ptr,(longlong)cache_end_ptr - (longlong)cache_index_ptr);
+  memmove(cache_start_ptr,cache_index_ptr,(int64_t)cache_end_ptr - (int64_t)cache_index_ptr);
 }
 
 /**
@@ -1017,8 +1017,8 @@ void rendering_system_empty_function_2(void)
 void rendering_system_initialize_rendering_system(uint64_t param1, uint64_t param2, uint64_t param3, uint64_t param4)
 
 {
-  longlong init_param1;
-  longlong init_param2;
+  int64_t init_param1;
+  int64_t init_param2;
   uint64_t init_flag;
   
   init_flag = 0xfffffffffffffffe;

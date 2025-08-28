@@ -10,12 +10,12 @@ void FUN_18073dba0(uint64_t param_1,int32_t param_2)
   int iVar1;
   int8_t auStack_168 [32];
   int8_t *puStack_148;
-  longlong lStack_138;
-  longlong *plStack_130;
+  int64_t lStack_138;
+  int64_t *plStack_130;
   int8_t auStack_128 [256];
-  ulonglong uStack_28;
+  uint64_t uStack_28;
   
-  uStack_28 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_168;
+  uStack_28 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_168;
   lStack_138 = 0;
   iVar1 = func_0x00018074fb10(param_1,&plStack_130,&lStack_138);
   if (iVar1 == 0) {
@@ -33,7 +33,7 @@ LAB_18073dc41:
     FUN_180743d80();
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_28 ^ (ulonglong)auStack_168);
+  FUN_1808fc050(uStack_28 ^ (uint64_t)auStack_168);
 }
 
 
@@ -49,12 +49,12 @@ void FUN_18073dc80(uint64_t param_1,int8_t param_2)
   int iVar1;
   int8_t auStack_158 [32];
   int8_t *puStack_138;
-  longlong lStack_128;
-  longlong *plStack_120;
+  int64_t lStack_128;
+  int64_t *plStack_120;
   int8_t auStack_118 [256];
-  ulonglong uStack_18;
+  uint64_t uStack_18;
   
-  uStack_18 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_158;
+  uStack_18 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_158;
   lStack_128 = 0;
   iVar1 = func_0x00018074fb10(param_1,&plStack_120,&lStack_128);
   if (iVar1 == 0) {
@@ -72,7 +72,7 @@ LAB_18073dd1d:
     FUN_180743d80();
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_18 ^ (ulonglong)auStack_158);
+  FUN_1808fc050(uStack_18 ^ (uint64_t)auStack_158);
 }
 
 
@@ -88,12 +88,12 @@ void FUN_18073dd60(uint64_t param_1)
   int iVar1;
   int8_t auStack_158 [32];
   int8_t *puStack_138;
-  longlong lStack_128;
-  longlong *plStack_120;
+  int64_t lStack_128;
+  int64_t *plStack_120;
   int8_t auStack_118 [256];
-  ulonglong uStack_18;
+  uint64_t uStack_18;
   
-  uStack_18 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_158;
+  uStack_18 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_158;
   lStack_128 = 0;
   iVar1 = func_0x00018074fb10(param_1,&plStack_120,&lStack_128);
   if (iVar1 == 0) {
@@ -111,7 +111,7 @@ LAB_18073dde3:
     FUN_180743d80();
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_18 ^ (ulonglong)auStack_158);
+  FUN_1808fc050(uStack_18 ^ (uint64_t)auStack_158);
 }
 
 
@@ -129,11 +129,11 @@ void FUN_18073de20(uint64_t param_1,uint64_t param_2,uint64_t param_3)
   int iVar3;
   int8_t auStack_178 [32];
   int8_t *puStack_158;
-  longlong *aplStack_148 [2];
+  int64_t *aplStack_148 [2];
   int8_t auStack_138 [256];
-  ulonglong uStack_38;
+  uint64_t uStack_38;
   
-  uStack_38 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_178;
+  uStack_38 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_178;
   iVar1 = FUN_180752c80(param_1,aplStack_148,0);
   if (iVar1 == 0) {
     if (((int)aplStack_148[0][0x22] == 0) || ((int)aplStack_148[0][0x22] == 7)) {
@@ -154,7 +154,7 @@ void FUN_18073de20(uint64_t param_1,uint64_t param_2,uint64_t param_3)
   }
 LAB_18073df0e:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_38 ^ (ulonglong)auStack_178);
+  FUN_1808fc050(uStack_38 ^ (uint64_t)auStack_178);
 }
 
 
@@ -184,10 +184,10 @@ void FUN_18073de94(void)
 void FUN_18073df0c(void)
 
 {
-  ulonglong in_stack_00000140;
+  uint64_t in_stack_00000140;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000140 ^ (ulonglong)&stack0x00000000);
+  FUN_1808fc050(in_stack_00000140 ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -206,11 +206,11 @@ void FUN_18073df50(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t p
   int iVar3;
   int8_t auStack_188 [32];
   int8_t *puStack_168;
-  longlong *aplStack_158 [2];
+  int64_t *aplStack_158 [2];
   int8_t auStack_148 [256];
-  ulonglong uStack_48;
+  uint64_t uStack_48;
   
-  uStack_48 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_188;
+  uStack_48 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_188;
   iVar1 = FUN_180752c80(param_1,aplStack_158,0);
   if (iVar1 == 0) {
     if (((int)aplStack_158[0][0x22] == 0) || ((int)aplStack_158[0][0x22] == 7)) {
@@ -240,7 +240,7 @@ void FUN_18073df50(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t p
   }
 LAB_18073e0bd:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_48 ^ (ulonglong)auStack_188);
+  FUN_1808fc050(uStack_48 ^ (uint64_t)auStack_188);
 }
 
 
@@ -278,10 +278,10 @@ void FUN_18073dfd7(void)
 void FUN_18073e0bb(void)
 
 {
-  ulonglong in_stack_00000140;
+  uint64_t in_stack_00000140;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000140 ^ (ulonglong)&stack0x00000000);
+  FUN_1808fc050(in_stack_00000140 ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -299,12 +299,12 @@ void FUN_18073e110(uint64_t param_1,uint64_t param_2,int32_t param_3)
   int iVar3;
   int8_t auStack_178 [32];
   int8_t *puStack_158;
-  longlong *plStack_148;
-  longlong lStack_140;
+  int64_t *plStack_148;
+  int64_t lStack_140;
   int8_t auStack_138 [256];
-  ulonglong uStack_38;
+  uint64_t uStack_38;
   
-  uStack_38 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_178;
+  uStack_38 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_178;
   lStack_140 = 0;
   iVar1 = FUN_180752c80(param_1,&plStack_148,&lStack_140);
   if (iVar1 == 0) {
@@ -330,7 +330,7 @@ FUN_18073e229:
     FUN_180743d60(lStack_140,0xc);
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_38 ^ (ulonglong)auStack_178);
+  FUN_1808fc050(uStack_38 ^ (uint64_t)auStack_178);
 }
 
 
@@ -341,7 +341,7 @@ FUN_18073e229:
 
 // 函数: void FUN_18073e12d(uint64_t param_1,uint64_t param_2,int32_t param_3,uint64_t param_4,
 void FUN_18073e12d(uint64_t param_1,uint64_t param_2,int32_t param_3,uint64_t param_4,
-                  uint64_t param_5,longlong *param_6)
+                  uint64_t param_5,int64_t *param_6)
 
 {
   int iVar1;
@@ -349,10 +349,10 @@ void FUN_18073e12d(uint64_t param_1,uint64_t param_2,int32_t param_3,uint64_t pa
   int iVar3;
   uint64_t unaff_RBX;
   uint64_t unaff_RBP;
-  longlong in_R11;
+  int64_t in_R11;
   uint64_t unaff_R14;
-  longlong lStack0000000000000038;
-  ulonglong in_stack_00000140;
+  int64_t lStack0000000000000038;
+  uint64_t in_stack_00000140;
   
   *(uint64_t *)(in_R11 + -0x10) = unaff_RBX;
   *(uint64_t *)(in_R11 + -0x18) = unaff_RBP;
@@ -381,7 +381,7 @@ FUN_18073e229:
     FUN_180743d60(lStack0000000000000038,0xc);
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000140 ^ (ulonglong)&stack0x00000000);
+  FUN_1808fc050(in_stack_00000140 ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -412,15 +412,15 @@ void FUN_18073e1b1(void)
 void FUN_18073e229(void)
 
 {
-  longlong in_stack_00000038;
-  ulonglong in_stack_00000140;
+  int64_t in_stack_00000038;
+  uint64_t in_stack_00000140;
   
   if (in_stack_00000038 != 0) {
                     // WARNING: Subroutine does not return
     FUN_180743d60(in_stack_00000038,0xc);
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000140 ^ (ulonglong)&stack0x00000000);
+  FUN_1808fc050(in_stack_00000140 ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -451,12 +451,12 @@ void FUN_18073e270(uint64_t param_1,uint64_t param_2,int32_t param_3,uint64_t pa
   int iVar3;
   int8_t auStack_188 [32];
   int8_t *puStack_168;
-  longlong *plStack_158;
-  longlong lStack_150;
+  int64_t *plStack_158;
+  int64_t lStack_150;
   int8_t auStack_148 [256];
-  ulonglong uStack_48;
+  uint64_t uStack_48;
   
-  uStack_48 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_188;
+  uStack_48 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_188;
   lStack_150 = 0;
   iVar1 = FUN_180752c80(param_1,&plStack_158,&lStack_150);
   if (iVar1 == 0) {
@@ -491,7 +491,7 @@ FUN_18073e414:
     FUN_180743d60(lStack_150,0xc);
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_48 ^ (ulonglong)auStack_188);
+  FUN_1808fc050(uStack_48 ^ (uint64_t)auStack_188);
 }
 
 
@@ -502,7 +502,7 @@ FUN_18073e414:
 
 // 函数: void FUN_18073e28d(uint64_t param_1,uint64_t param_2,int32_t param_3,uint64_t param_4,
 void FUN_18073e28d(uint64_t param_1,uint64_t param_2,int32_t param_3,uint64_t param_4,
-                  uint64_t param_5,longlong *param_6)
+                  uint64_t param_5,int64_t *param_6)
 
 {
   int iVar1;
@@ -510,17 +510,17 @@ void FUN_18073e28d(uint64_t param_1,uint64_t param_2,int32_t param_3,uint64_t pa
   int iVar3;
   uint64_t unaff_RBX;
   uint64_t unaff_RBP;
-  longlong in_R11;
+  int64_t in_R11;
   uint64_t unaff_R12;
   uint64_t unaff_R14;
   uint64_t unaff_R15;
   uint64_t in_stack_00000020;
   int32_t uVar4;
-  longlong lStack0000000000000038;
-  ulonglong in_stack_00000140;
+  int64_t lStack0000000000000038;
+  uint64_t in_stack_00000140;
   int32_t in_stack_000001b0;
   
-  uVar4 = (int32_t)((ulonglong)in_stack_00000020 >> 0x20);
+  uVar4 = (int32_t)((uint64_t)in_stack_00000020 >> 0x20);
   *(uint64_t *)(in_R11 + -0x10) = unaff_RBX;
   *(uint64_t *)(in_R11 + -0x18) = unaff_RBP;
   *(uint64_t *)(in_R11 + -0x28) = unaff_R12;
@@ -560,7 +560,7 @@ FUN_18073e414:
     FUN_180743d60(lStack0000000000000038,0xc);
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000140 ^ (ulonglong)&stack0x00000000);
+  FUN_1808fc050(in_stack_00000140 ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -600,15 +600,15 @@ void FUN_18073e330(void)
 void FUN_18073e414(void)
 
 {
-  longlong in_stack_00000038;
-  ulonglong in_stack_00000140;
+  int64_t in_stack_00000038;
+  uint64_t in_stack_00000140;
   
   if (in_stack_00000038 != 0) {
                     // WARNING: Subroutine does not return
     FUN_180743d60(in_stack_00000038,0xc);
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000140 ^ (ulonglong)&stack0x00000000);
+  FUN_1808fc050(in_stack_00000140 ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -636,11 +636,11 @@ void FUN_18073e470(uint64_t param_1,uint64_t param_2)
   int iVar1;
   int8_t auStack_158 [32];
   int8_t *puStack_138;
-  longlong *aplStack_128 [2];
+  int64_t *aplStack_128 [2];
   int8_t auStack_118 [256];
-  ulonglong uStack_18;
+  uint64_t uStack_18;
   
-  uStack_18 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_158;
+  uStack_18 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_158;
   iVar1 = FUN_180752c80(param_1,aplStack_128,0);
   if (iVar1 == 0) {
     if (((int)aplStack_128[0][0x22] == 0) || ((int)aplStack_128[0][0x22] == 7)) {
@@ -659,7 +659,7 @@ void FUN_18073e470(uint64_t param_1,uint64_t param_2)
   }
 LAB_18073e512:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_18 ^ (ulonglong)auStack_158);
+  FUN_1808fc050(uStack_18 ^ (uint64_t)auStack_158);
 }
 
 
@@ -678,12 +678,12 @@ void FUN_18073e550(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t p
   int iVar3;
   int8_t auStack_188 [32];
   int8_t *puStack_168;
-  longlong lStack_158;
-  longlong *plStack_150;
+  int64_t lStack_158;
+  int64_t *plStack_150;
   int8_t auStack_148 [256];
-  ulonglong uStack_48;
+  uint64_t uStack_48;
   
-  uStack_48 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_188;
+  uStack_48 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_188;
   lStack_158 = 0;
   iVar1 = FUN_180752c80(param_1,&plStack_150,&lStack_158);
   if (iVar1 == 0) {
@@ -713,7 +713,7 @@ FUN_18073e6ce:
     FUN_180743d60(lStack_158,0xc);
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_48 ^ (ulonglong)auStack_188);
+  FUN_1808fc050(uStack_48 ^ (uint64_t)auStack_188);
 }
 
 
@@ -724,7 +724,7 @@ FUN_18073e6ce:
 
 // 函数: void FUN_18073e56d(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4,
 void FUN_18073e56d(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4,
-                  uint64_t param_5,uint64_t param_6,longlong *param_7)
+                  uint64_t param_5,uint64_t param_6,int64_t *param_7)
 
 {
   int iVar1;
@@ -732,11 +732,11 @@ void FUN_18073e56d(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t p
   int iVar3;
   uint64_t unaff_RBX;
   uint64_t unaff_RBP;
-  longlong in_R11;
+  int64_t in_R11;
   uint64_t unaff_R12;
   uint64_t unaff_R14;
   uint64_t unaff_R15;
-  ulonglong in_stack_00000140;
+  uint64_t in_stack_00000140;
   uint64_t in_stack_000001b0;
   
   *(uint64_t *)(in_R11 + -0x10) = unaff_RBX;
@@ -771,7 +771,7 @@ FUN_18073e6ce:
     FUN_180743d60(param_6,0xc);
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000140 ^ (ulonglong)&stack0x00000000);
+  FUN_1808fc050(in_stack_00000140 ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -809,15 +809,15 @@ void FUN_18073e5ea(void)
 void FUN_18073e6ce(void)
 
 {
-  longlong in_stack_00000030;
-  ulonglong in_stack_00000140;
+  int64_t in_stack_00000030;
+  uint64_t in_stack_00000140;
   
   if (in_stack_00000030 != 0) {
                     // WARNING: Subroutine does not return
     FUN_180743d60(in_stack_00000030,0xc);
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000140 ^ (ulonglong)&stack0x00000000);
+  FUN_1808fc050(in_stack_00000140 ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -847,12 +847,12 @@ void FUN_18073e810(uint64_t param_1,int32_t param_2,uint64_t param_3)
   int iVar3;
   int8_t auStack_178 [32];
   int8_t *puStack_158;
-  longlong *plStack_148;
-  longlong lStack_140;
+  int64_t *plStack_148;
+  int64_t lStack_140;
   int8_t auStack_138 [256];
-  ulonglong uStack_38;
+  uint64_t uStack_38;
   
-  uStack_38 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_178;
+  uStack_38 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_178;
   iVar2 = 0;
   lStack_140 = 0;
   iVar1 = FUN_180752c80(param_1,&plStack_148,&lStack_140);
@@ -882,7 +882,7 @@ LAB_18073e90c:
     FUN_180743d60(lStack_140,0xc);
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_38 ^ (ulonglong)auStack_178);
+  FUN_1808fc050(uStack_38 ^ (uint64_t)auStack_178);
 }
 
 
@@ -903,13 +903,13 @@ void FUN_18073e940(uint64_t param_1,int32_t param_2,int32_t param_3,uint64_t par
   int8_t *puStack_198;
   uint64_t uStack_190;
   uint64_t uStack_188;
-  longlong *plStack_178;
-  longlong lStack_170;
+  int64_t *plStack_178;
+  int64_t lStack_170;
   uint64_t uStack_168;
   int8_t auStack_158 [256];
-  ulonglong uStack_58;
+  uint64_t uStack_58;
   
-  uStack_58 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_1b8;
+  uStack_58 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_1b8;
   lStack_170 = 0;
   uStack_168 = param_1;
   iVar1 = FUN_180752c80(param_1,&plStack_178,&lStack_170);
@@ -955,7 +955,7 @@ FUN_18073eb6d:
     FUN_180743d60(lStack_170,0xc);
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_58 ^ (ulonglong)auStack_1b8);
+  FUN_1808fc050(uStack_58 ^ (uint64_t)auStack_1b8);
 }
 
 

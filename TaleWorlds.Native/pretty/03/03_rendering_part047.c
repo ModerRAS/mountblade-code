@@ -26,9 +26,9 @@
  * 
  * @param render_context 渲染上下文指针，如果为NULL则使用默认上下文
  */
-void initialize_rendering_parameters(longlong render_context)
+void initialize_rendering_parameters(int64_t render_context)
 {
-  longlong context_ptr;
+  int64_t context_ptr;
   
   // 如果传入的上下文为空，使用默认渲染上下文
   if (render_context == 0) {
@@ -408,13 +408,13 @@ void reset_rendering_context(int32_t *context)
 void release_rendering_resources(uint64_t *resource_handle)
 {
   int *reference_counter;
-  longlong resource_ptr;
+  int64_t resource_ptr;
   uint64_t *sub_resource;
-  longlong global_context;
+  int64_t global_context;
   uint resource_index;
-  ulonglong iteration_count;
-  longlong array_offset;
-  ulonglong sub_resource_count;
+  uint64_t iteration_count;
+  int64_t array_offset;
+  uint64_t sub_resource_count;
   
   // 获取全局渲染上下文
   global_context = RENDER_CONTEXT_BASE;
@@ -476,7 +476,7 @@ void release_rendering_resources(uint64_t *resource_handle)
     if (resource_ptr == 0) {
       // 重置数组标志
       *(int32_t *)(resource_handle + 0x12) = 0;
-      *(int32_t *)((longlong)resource_handle + 0x94) = 1;
+      *(int32_t *)((int64_t)resource_handle + 0x94) = 1;
       
       // 遍历并清理数组中的资源
       iteration_count = 0;
@@ -493,7 +493,7 @@ void release_rendering_resources(uint64_t *resource_handle)
           // 清理数组元素资源
           global_context = RENDER_CONTEXT_BASE;
           array_offset = iteration_count * 0x20;
-          resource_ptr = *(longlong *)(resource_handle[0x14] + 8 + array_offset);
+          resource_ptr = *(int64_t *)(resource_handle[0x14] + 8 + array_offset);
           if (resource_ptr != 0) {
             *(uint64_t *)(resource_handle[0x14] + array_offset) = 0;
             if (global_context != 0) {
@@ -503,7 +503,7 @@ void release_rendering_resources(uint64_t *resource_handle)
           }
           
           // 清理数组元素扩展资源
-          resource_ptr = *(longlong *)(resource_handle[0x14] + 0x18 + array_offset);
+          resource_ptr = *(int64_t *)(resource_handle[0x14] + 0x18 + array_offset);
           if (resource_ptr != 0) {
             *(uint64_t *)(resource_handle[0x14] + 0x10 + array_offset) = 0;
             if (global_context != 0) {
@@ -513,7 +513,7 @@ void release_rendering_resources(uint64_t *resource_handle)
           }
           
           resource_index = (int)iteration_count + 1;
-          iteration_count = (ulonglong)resource_index;
+          iteration_count = (uint64_t)resource_index;
         } while ((int)resource_index < *(int *)(resource_handle + 0x13));
       }
       
@@ -553,21 +553,21 @@ void release_rendering_resources(uint64_t *resource_handle)
  * 
  * @param resource_context 资源上下文指针
  */
-void release_rendering_resources_extended(longlong resource_context)
+void release_rendering_resources_extended(int64_t resource_context)
 {
   int *reference_counter;
-  longlong resource_ptr;
+  int64_t resource_ptr;
   uint64_t *sub_resource;
-  longlong global_context;
+  int64_t global_context;
   uint64_t *resource_base;
   uint resource_index;
-  ulonglong iteration_count;
-  longlong array_offset;
-  ulonglong sub_resource_count;
+  uint64_t iteration_count;
+  int64_t array_offset;
+  uint64_t sub_resource_count;
   
   // 获取全局渲染上下文
   global_context = RENDER_CONTEXT_BASE;
-  resource_ptr = *(longlong *)(resource_context + 8);
+  resource_ptr = *(int64_t *)(resource_context + 8);
   iteration_count = 0;
   
   // 释放主要资源
@@ -624,7 +624,7 @@ void release_rendering_resources_extended(longlong resource_context)
     if (resource_ptr == 0) {
       // 重置数组标志
       *(int32_t *)(resource_base + 0x12) = 0;
-      *(int32_t *)((longlong)resource_base + 0x94) = 1;
+      *(int32_t *)((int64_t)resource_base + 0x94) = 1;
       
       // 遍历并清理数组中的资源
       iteration_count = 0;
@@ -641,7 +641,7 @@ void release_rendering_resources_extended(longlong resource_context)
           // 清理数组元素资源
           global_context = RENDER_CONTEXT_BASE;
           array_offset = iteration_count * 0x20;
-          resource_ptr = *(longlong *)(resource_base[0x14] + 8 + array_offset);
+          resource_ptr = *(int64_t *)(resource_base[0x14] + 8 + array_offset);
           if (resource_ptr != 0) {
             *(uint64_t *)(resource_base[0x14] + array_offset) = 0;
             if (global_context != 0) {
@@ -651,7 +651,7 @@ void release_rendering_resources_extended(longlong resource_context)
           }
           
           // 清理数组元素扩展资源
-          resource_ptr = *(longlong *)(resource_base[0x14] + 0x18 + array_offset);
+          resource_ptr = *(int64_t *)(resource_base[0x14] + 0x18 + array_offset);
           if (resource_ptr != 0) {
             *(uint64_t *)(resource_base[0x14] + 0x10 + array_offset) = 0;
             if (global_context != 0) {
@@ -661,7 +661,7 @@ void release_rendering_resources_extended(longlong resource_context)
           }
           
           resource_index = (int)iteration_count + 1;
-          iteration_count = (ulonglong)resource_index;
+          iteration_count = (uint64_t)resource_index;
         } while ((int)resource_index < *(int *)(resource_base + 0x13));
       }
       
@@ -704,12 +704,12 @@ void release_rendering_resources_extended(longlong resource_context)
 void cleanup_rendering_data_arrays(void)
 {
   uint64_t *array_element;
-  longlong resource_ptr;
-  longlong global_context;
-  longlong array_base;
-  longlong iteration_index;
+  int64_t resource_ptr;
+  int64_t global_context;
+  int64_t array_base;
+  int64_t iteration_index;
   int array_size;
-  longlong unaff_R15;
+  int64_t unaff_R15;
   
   // 获取数组基址和大小
   array_base = unaff_R15;
@@ -729,11 +729,11 @@ void cleanup_rendering_data_arrays(void)
     // 获取全局上下文
     global_context = RENDER_CONTEXT_BASE;
     resource_ptr = iteration_index * 0x20;
-    array_element = *(longlong *)(*(longlong *)(unaff_RBX + 0xa0) + 8 + resource_ptr);
+    array_element = *(int64_t *)(*(int64_t *)(unaff_RBX + 0xa0) + 8 + resource_ptr);
     
     // 释放元素资源
     if (array_element != 0) {
-      *(longlong *)(*(longlong *)(unaff_RBX + 0xa0) + resource_ptr) = unaff_R15;
+      *(int64_t *)(*(int64_t *)(unaff_RBX + 0xa0) + resource_ptr) = unaff_R15;
       if (global_context != 0) {
         *(int *)(global_context + 0x3a8) = *(int *)(global_context + 0x3a8) + -1;
       }
@@ -741,9 +741,9 @@ void cleanup_rendering_data_arrays(void)
     }
     
     // 释放元素扩展资源
-    array_element = *(longlong *)(*(longlong *)(unaff_RBX + 0xa0) + 0x18 + resource_ptr);
+    array_element = *(int64_t *)(*(int64_t *)(unaff_RBX + 0xa0) + 0x18 + resource_ptr);
     if (array_element != 0) {
-      *(longlong *)(*(longlong *)(unaff_RBX + 0xa0) + 0x10 + resource_ptr) = unaff_R15;
+      *(int64_t *)(*(int64_t *)(unaff_RBX + 0xa0) + 0x10 + resource_ptr) = unaff_R15;
       if (global_context != 0) {
         *(int *)(global_context + 0x3a8) = *(int *)(global_context + 0x3a8) + -1;
       }
@@ -756,9 +756,9 @@ void cleanup_rendering_data_arrays(void)
   } while (array_size < *(int *)(unaff_RBX + 0x98));
   
   // 释放数组容器
-  array_element = *(longlong *)(unaff_RBX + 0xa0);
+  array_element = *(int64_t *)(unaff_RBX + 0xa0);
   if (array_element != 0) {
-    *(longlong *)(unaff_RBX + 0x98) = unaff_R15;
+    *(int64_t *)(unaff_RBX + 0x98) = unaff_R15;
     if (global_context != 0) {
       *(int *)(global_context + 0x3a8) = *(int *)(global_context + 0x3a8) + -1;
     }
@@ -777,14 +777,14 @@ void cleanup_rendering_data_arrays(void)
 void release_rendering_memory_pool(void)
 {
   int *reference_counter;
-  longlong memory_pool;
-  longlong global_context;
-  longlong unaff_RBX;
+  int64_t memory_pool;
+  int64_t global_context;
+  int64_t unaff_RBX;
   uint64_t unaff_R15;
   
   // 获取全局渲染上下文
   global_context = RENDER_CONTEXT_BASE;
-  memory_pool = *(longlong *)(unaff_RBX + 0xa0);
+  memory_pool = *(int64_t *)(unaff_RBX + 0xa0);
   
   // 释放内存池
   if (memory_pool != 0) {
@@ -808,8 +808,8 @@ void release_rendering_memory_pool(void)
 void deallocate_rendering_buffer(uint64_t buffer_handle)
 {
   int *reference_counter;
-  longlong global_context;
-  longlong unaff_RBX;
+  int64_t global_context;
+  int64_t unaff_RBX;
   uint64_t unaff_R15;
   
   // 获取全局渲染上下文
@@ -832,13 +832,13 @@ void deallocate_rendering_buffer(uint64_t buffer_handle)
  */
 void add_rendering_parameter_entry(int *parameter_array)
 {
-  longlong *parameter_entry;
+  int64_t *parameter_entry;
   uint64_t *extended_data;
-  longlong array_base;
+  int64_t array_base;
   int current_count;
   uint parameter_id;
   uint parameter_flags;
-  longlong parameter_data;
+  int64_t parameter_data;
   int array_capacity;
   uint *source_entry;
   int32_t stack_param;
@@ -846,21 +846,21 @@ void add_rendering_parameter_entry(int *parameter_array)
   
   // 获取源参数条目
   if (parameter_array[0x18] == 0) {
-    source_entry = (uint *)(*(longlong *)(parameter_array + 0xe) + 0x18);
+    source_entry = (uint *)(*(int64_t *)(parameter_array + 0xe) + 0x18);
   } else {
-    source_entry = (uint *)((longlong)(parameter_array[0x18] + -1) * 0x10 + *(longlong *)(parameter_array + 0x1a));
+    source_entry = (uint *)((int64_t)(parameter_array[0x18] + -1) * 0x10 + *(int64_t *)(parameter_array + 0x1a));
   }
   
   // 读取参数数据
   parameter_id = *source_entry;
-  parameter_data = *(longlong *)(source_entry + 1);
+  parameter_data = *(int64_t *)(source_entry + 1);
   parameter_flags = source_entry[3];
   
   // 获取扩展数据
   if (parameter_array[0x1c] == 0) {
     extended_value = 0;
   } else {
-    extended_value = *(uint64_t *)(*(longlong *)(parameter_array + 0x1e) + -8 + (longlong)parameter_array[0x1c] * 8);
+    extended_value = *(uint64_t *)(*(int64_t *)(parameter_array + 0x1e) + -8 + (int64_t)parameter_array[0x1c] * 8);
   }
   
   // 检查并扩展数组容量
@@ -881,10 +881,10 @@ void add_rendering_parameter_entry(int *parameter_array)
   }
   
   // 创建新参数条目
-  array_base = (longlong)current_count;
-  array_base = *(longlong *)(parameter_array + 2);
-  parameter_entry = (longlong *)(array_base + array_base * 0x30);
-  *parameter_entry = (ulonglong)parameter_id << 0x20;
+  array_base = (int64_t)current_count;
+  array_base = *(int64_t *)(parameter_array + 2);
+  parameter_entry = (int64_t *)(array_base + array_base * 0x30);
+  *parameter_entry = (uint64_t)parameter_id << 0x20;
   parameter_entry[1] = parameter_data;
   
   // 设置扩展数据
@@ -912,14 +912,14 @@ void add_rendering_parameter_entry(int *parameter_array)
 void update_rendering_parameter_entry(int *parameter_array)
 {
   uint64_t *parameter_entry;
-  longlong resource_ptr;
+  int64_t resource_ptr;
   int current_count;
   uint parameter_id;
   uint parameter_flags;
-  longlong parameter_data;
+  int64_t parameter_data;
   int array_capacity;
   uint *source_entry;
-  longlong *existing_entry;
+  int64_t *existing_entry;
   int *previous_entry;
   int *prev_prev_entry;
   int32_t stack_param;
@@ -927,9 +927,9 @@ void update_rendering_parameter_entry(int *parameter_array)
   
   // 获取源参数条目
   if (parameter_array[0x18] == 0) {
-    existing_entry = (longlong *)(*(longlong *)(parameter_array + 0xe) + 0x18);
+    existing_entry = (int64_t *)(*(int64_t *)(parameter_array + 0xe) + 0x18);
   } else {
-    existing_entry = (longlong *)((longlong)(parameter_array[0x18] + -1) * 0x10 + *(longlong *)(parameter_array + 0x1a));
+    existing_entry = (int64_t *)((int64_t)(parameter_array[0x18] + -1) * 0x10 + *(int64_t *)(parameter_array + 0x1a));
   }
   
   parameter_data = *existing_entry;
@@ -940,30 +940,30 @@ void update_rendering_parameter_entry(int *parameter_array)
   
   // 查找现有条目
   if (0 < current_count) {
-    prev_prev_entry = (int *)((longlong)(current_count + -1) * 0x30 + *(longlong *)(parameter_array + 2));
+    prev_prev_entry = (int *)((int64_t)(current_count + -1) * 0x30 + *(int64_t *)(parameter_array + 2));
   }
   
   // 检查是否需要更新现有条目
   if (((prev_prev_entry == (int *)0x0) ||
       ((*prev_prev_entry != 0 &&
-       ((*(longlong *)(prev_prev_entry + 1) != parameter_data || (*(longlong *)(prev_prev_entry + 3) != resource_ptr)))))) ||
-     (*(longlong *)(prev_prev_entry + 8) != 0)) {
+       ((*(int64_t *)(prev_prev_entry + 1) != parameter_data || (*(int64_t *)(prev_prev_entry + 3) != resource_ptr)))))) ||
+     (*(int64_t *)(prev_prev_entry + 8) != 0)) {
     
     // 需要添加新条目
     if (parameter_array[0x18] == 0) {
-      source_entry = (uint *)(*(longlong *)(parameter_array + 0xe) + 0x18);
+      source_entry = (uint *)(*(int64_t *)(parameter_array + 0xe) + 0x18);
     } else {
-      source_entry = (uint *)((longlong)(parameter_array[0x18] + -1) * 0x10 + *(longlong *)(parameter_array + 0x1a));
+      source_entry = (uint *)((int64_t)(parameter_array[0x18] + -1) * 0x10 + *(int64_t *)(parameter_array + 0x1a));
     }
     
     parameter_id = *source_entry;
-    parameter_data = *(longlong *)(source_entry + 1);
+    parameter_data = *(int64_t *)(source_entry + 1);
     parameter_flags = source_entry[3];
     
     if (parameter_array[0x1c] == 0) {
       extended_value = 0;
     } else {
-      extended_value = *(uint64_t *)(*(longlong *)(parameter_array + 0x1e) + -8 + (longlong)parameter_array[0x1c] * 8);
+      extended_value = *(uint64_t *)(*(int64_t *)(parameter_array + 0x1e) + -8 + (int64_t)parameter_array[0x1c] * 8);
     }
     
     // 检查并扩展数组容量
@@ -984,10 +984,10 @@ void update_rendering_parameter_entry(int *parameter_array)
     }
     
     // 添加新条目
-    resource_ptr = (longlong)current_count;
-    parameter_data = *(longlong *)(parameter_array + 2);
-    existing_entry = (longlong *)(parameter_data + resource_ptr * 0x30);
-    *existing_entry = (ulonglong)parameter_id << 0x20;
+    resource_ptr = (int64_t)current_count;
+    parameter_data = *(int64_t *)(parameter_array + 2);
+    existing_entry = (int64_t *)(parameter_data + resource_ptr * 0x30);
+    *existing_entry = (uint64_t)parameter_id << 0x20;
     existing_entry[1] = parameter_data;
     parameter_entry = (uint64_t *)(parameter_data + 0x10 + resource_ptr * 0x30);
     *parameter_entry = CONCAT44(stack_param, parameter_flags);
@@ -1007,22 +1007,22 @@ void update_rendering_parameter_entry(int *parameter_array)
   }
   
   // 检查是否可以合并条目
-  if ((((*prev_prev_entry == 0) && (previous_entry != (int *)0x0)) && (*(longlong *)(previous_entry + 1) == parameter_data)) &&
-     (*(longlong *)(previous_entry + 3) == resource_ptr)) {
+  if ((((*prev_prev_entry == 0) && (previous_entry != (int *)0x0)) && (*(int64_t *)(previous_entry + 1) == parameter_data)) &&
+     (*(int64_t *)(previous_entry + 3) == resource_ptr)) {
     
     if (parameter_array[0x1c] != 0) {
-      prev_prev_entry = *(int **)(*(longlong *)(parameter_array + 0x1e) + -8 + (longlong)parameter_array[0x1c] * 8);
+      prev_prev_entry = *(int **)(*(int64_t *)(parameter_array + 0x1e) + -8 + (int64_t)parameter_array[0x1c] * 8);
     }
     
-    if ((*(int **)(previous_entry + 6) == prev_prev_entry) && (*(longlong *)(previous_entry + 8) == 0)) {
+    if ((*(int **)(previous_entry + 6) == prev_prev_entry) && (*(int64_t *)(previous_entry + 8) == 0)) {
       *parameter_array = current_count + -1;
       return;
     }
   }
   
   // 更新条目数据
-  *(longlong *)(prev_prev_entry + 1) = parameter_data;
-  *(longlong *)(prev_prev_entry + 3) = resource_ptr;
+  *(int64_t *)(prev_prev_entry + 1) = parameter_data;
+  *(int64_t *)(prev_prev_entry + 3) = resource_ptr;
   
   return;
 }
@@ -1036,14 +1036,14 @@ void update_rendering_parameter_entry(int *parameter_array)
 void remove_rendering_parameter_entry(int *parameter_array)
 {
   uint64_t *parameter_entry;
-  longlong resource_ptr;
+  int64_t resource_ptr;
   int current_count;
   uint parameter_id;
   uint parameter_flags;
-  longlong parameter_data;
+  int64_t parameter_data;
   int array_capacity;
   uint *source_entry;
-  longlong *existing_entry;
+  int64_t *existing_entry;
   int *previous_entry;
   int *prev_prev_entry;
   int32_t stack_param;
@@ -1052,16 +1052,16 @@ void remove_rendering_parameter_entry(int *parameter_array)
   // 获取当前参数引用
   prev_prev_entry = (int *)0x0;
   if (parameter_array[0x1c] != 0) {
-    prev_prev_entry = *(int **)(*(longlong *)(parameter_array + 0x1e) + -8 + (longlong)parameter_array[0x1c] * 8);
+    prev_prev_entry = *(int **)(*(int64_t *)(parameter_array + 0x1e) + -8 + (int64_t)parameter_array[0x1c] * 8);
   }
   
   current_count = *parameter_array;
   if (current_count != 0) {
-    previous_entry = (int *)(*(longlong *)(parameter_array + 2) + -0x30 + (longlong)current_count * 0x30);
+    previous_entry = (int *)(*(int64_t *)(parameter_array + 2) + -0x30 + (int64_t)current_count * 0x30);
     
     // 检查是否可以移除条目
     if ((previous_entry != (int *)0x0) &&
-       (((*previous_entry == 0 || (*(int **)(previous_entry + 6) == prev_prev_entry)) && (*(longlong *)(previous_entry + 8) == 0)
+       (((*previous_entry == 0 || (*(int **)(previous_entry + 6) == prev_prev_entry)) && (*(int64_t *)(previous_entry + 8) == 0)
         ))) {
       
       prev_prev_entry = previous_entry + -0xc;
@@ -1073,14 +1073,14 @@ void remove_rendering_parameter_entry(int *parameter_array)
       if (((*previous_entry == 0) && (prev_prev_entry != (int *)0x0)) && (*(int **)(prev_prev_entry + 6) == prev_prev_entry)) {
         
         if (parameter_array[0x18] == 0) {
-          existing_entry = (longlong *)(*(longlong *)(parameter_array + 0xe) + 0x18);
+          existing_entry = (int64_t *)(*(int64_t *)(parameter_array + 0xe) + 0x18);
         } else {
-          existing_entry = (longlong *)
-                    ((longlong)(parameter_array[0x18] + -1) * 0x10 + *(longlong *)(parameter_array + 0x1a));
+          existing_entry = (int64_t *)
+                    ((int64_t)(parameter_array[0x18] + -1) * 0x10 + *(int64_t *)(parameter_array + 0x1a));
         }
         
-        if (((*(longlong *)(prev_prev_entry + 1) == *existing_entry) && (*(longlong *)(prev_prev_entry + 3) == existing_entry[1]))
-           && (*(longlong *)(prev_prev_entry + 8) == 0)) {
+        if (((*(int64_t *)(prev_prev_entry + 1) == *existing_entry) && (*(int64_t *)(prev_prev_entry + 3) == existing_entry[1]))
+           && (*(int64_t *)(prev_prev_entry + 8) == 0)) {
           *parameter_array = current_count + -1;
           return;
         }
@@ -1094,19 +1094,19 @@ void remove_rendering_parameter_entry(int *parameter_array)
   
   // 需要添加新条目然后移除
   if (parameter_array[0x18] == 0) {
-    source_entry = (uint *)(*(longlong *)(parameter_array + 0xe) + 0x18);
+    source_entry = (uint *)(*(int64_t *)(parameter_array + 0xe) + 0x18);
   } else {
-    source_entry = (uint *)((longlong)(parameter_array[0x18] + -1) * 0x10 + *(longlong *)(parameter_array + 0x1a));
+    source_entry = (uint *)((int64_t)(parameter_array[0x18] + -1) * 0x10 + *(int64_t *)(parameter_array + 0x1a));
   }
   
   parameter_id = *source_entry;
-  parameter_data = *(longlong *)(source_entry + 1);
+  parameter_data = *(int64_t *)(source_entry + 1);
   parameter_flags = source_entry[3];
   
   if (parameter_array[0x1c] == 0) {
     extended_value = 0;
   } else {
-    extended_value = *(uint64_t *)(*(longlong *)(parameter_array + 0x1e) + -8 + (longlong)parameter_array[0x1c] * 8);
+    extended_value = *(uint64_t *)(*(int64_t *)(parameter_array + 0x1e) + -8 + (int64_t)parameter_array[0x1c] * 8);
   }
   
   // 检查并扩展数组容量
@@ -1127,10 +1127,10 @@ void remove_rendering_parameter_entry(int *parameter_array)
   }
   
   // 添加新条目
-  parameter_data = (longlong)current_count;
-  resource_ptr = *(longlong *)(parameter_array + 2);
-  existing_entry = (longlong *)(resource_ptr + parameter_data * 0x30);
-  *existing_entry = (ulonglong)parameter_id << 0x20;
+  parameter_data = (int64_t)current_count;
+  resource_ptr = *(int64_t *)(parameter_array + 2);
+  existing_entry = (int64_t *)(resource_ptr + parameter_data * 0x30);
+  *existing_entry = (uint64_t)parameter_id << 0x20;
   existing_entry[1] = parameter_data;
   parameter_entry = (uint64_t *)(resource_ptr + 0x10 + parameter_data * 0x30);
   *parameter_entry = CONCAT44(stack_param, parameter_flags);

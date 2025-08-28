@@ -112,10 +112,10 @@ typedef byte* RenderDataPointer;
 typedef uint* RenderParamPointer;
 typedef int32_t* RenderValuePointer;
 typedef int8_t* RenderFlagPointer;
-typedef longlong RenderStateHandle;
-typedef ulonglong RenderDataSize;
+typedef int64_t RenderStateHandle;
+typedef uint64_t RenderDataSize;
 typedef uint64_t* RenderObjectPointer;
-typedef longlong* RenderArrayPointer;
+typedef int64_t* RenderArrayPointer;
 
 // 渲染参数类型别名
 typedef uint RenderParameterCount;
@@ -229,7 +229,7 @@ typedef struct {
     RenderMemorySize memory_size;      // 内存大小
     RenderMemoryType memory_type;      // 内存类型
     uint allocation_flags;            // 分配标志
-    ulonglong checksum;               // 校验和
+    uint64_t checksum;               // 校验和
 } RenderParameterManager;
 
 //============================================================================
@@ -260,8 +260,8 @@ typedef struct {
  * 本函数是渲染系统中的核心数据处理组件，负责处理复杂的渲染数据流。
  * 它实现了高级的数据解析、参数处理、状态管理和资源分配功能。
  * 
- * @param target_ptr 目标渲染对象指针 (longlong)
- * @param source_ptr 源数据指针 (longlong)
+ * @param target_ptr 目标渲染对象指针 (int64_t)
+ * @param source_ptr 源数据指针 (int64_t)
  * 
  * 处理流程：
  * 1. 初始化处理环境和参数
@@ -278,7 +278,7 @@ typedef struct {
  * - 包含错误处理和状态验证
  * - 优化数据访问和处理性能
  */
-void RenderingSystem_AdvancedDataFlowProcessor(longlong target_ptr, longlong source_ptr) {
+void RenderingSystem_AdvancedDataFlowProcessor(int64_t target_ptr, int64_t source_ptr) {
     // 局部变量声明
     RenderDataPointer data_ptr_1;
     RenderParameterCount param_count_1, param_count_2;
@@ -303,11 +303,11 @@ void RenderingSystem_AdvancedDataFlowProcessor(longlong target_ptr, longlong sou
     RenderDataPointer stack_ptr_5;    // 栈指针5
     int stack_value_3;                // 栈值3
     byte stack_buffer_3[1032];        // 栈缓冲区3 - 主要数据处理区
-    ulonglong stack_checksum;          // 栈校验和
+    uint64_t stack_checksum;          // 栈校验和
     
     // 初始化栈保护和校验
     stack_value_1 = RENDERING_SYSTEM_FLAG_MASK;
-    stack_checksum = GET_SECURITY_COOKIE() ^ (ulonglong)stack_buffer_1;
+    stack_checksum = GET_SECURITY_COOKIE() ^ (uint64_t)stack_buffer_1;
     
     // 第一阶段：基础渲染参数解析
     param_count_1 = **(RenderParamPointer **)(source_ptr + RENDERING_SYSTEM_BASE_OFFSET);

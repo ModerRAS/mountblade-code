@@ -79,17 +79,17 @@ extern uint64_t system_memory_pool_ptr;
  * @param param_1 渲染上下文指针
  * @param param_2 参数配置结构体指针
  */
-void RenderingSystem_ParameterProcessor(longlong render_context, longlong parameter_config)
+void RenderingSystem_ParameterProcessor(int64_t render_context, int64_t parameter_config)
 {
     char char_val_1;
     char char_val_2;
     int int_val;
     char *string_ptr;
     uint64_t *data_ptr;
-    longlong long_val;
+    int64_t long_val;
     bool bool_result;
     int8_t security_buffer[32];
-    longlong *resource_ptr;
+    int64_t *resource_ptr;
     uint64_t stack_value;
     void *buffer_ptr_1;
     int8_t *buffer_ptr_2;
@@ -171,11 +171,11 @@ void RenderingSystem_ParameterProcessor(longlong render_context, longlong parame
     int8_t *buffer_ptr_41;
     int32_t buffer_size_20;
     int8_t string_buffer_20[72];
-    ulonglong security_hash;
+    uint64_t security_hash;
     
     // 初始化安全栈值
     stack_value = 0xfffffffffffffffe;
-    security_hash = GET_SECURITY_COOKIE() ^ (ulonglong)security_buffer;
+    security_hash = GET_SECURITY_COOKIE() ^ (uint64_t)security_buffer;
     
     // 初始化字符串缓冲区
     buffer_ptr_32 = &global_state_672_ptr;
@@ -197,7 +197,7 @@ void RenderingSystem_ParameterProcessor(longlong render_context, longlong parame
         } else {
             // 字符串比较处理
             string_ptr = *(char **)(parameter_config + PARAMETER_OFFSET_2);
-            long_val = (longlong)buffer_ptr_31 - (longlong)string_ptr;
+            long_val = (int64_t)buffer_ptr_31 - (int64_t)string_ptr;
             do {
                 char_val_1 = *string_ptr;
                 char_val_2 = string_ptr[long_val];
@@ -532,7 +532,7 @@ void RenderingSystem_ParameterProcessor(longlong render_context, longlong parame
                 bool_result = true;
             } else {
                 string_ptr = *(char **)(parameter_config + PARAMETER_OFFSET_2);
-                long_val = (longlong)buffer_ptr_31 - (longlong)string_ptr;
+                long_val = (int64_t)buffer_ptr_31 - (int64_t)string_ptr;
                 do {
                     char_val_1 = *string_ptr;
                     char_val_2 = string_ptr[long_val];
@@ -787,18 +787,18 @@ void RenderingSystem_ParameterProcessor(longlong render_context, longlong parame
     
     // 处理渲染系统资源
     data_ptr = (uint64_t *)
-               RenderingSystem_InternalProcessor(*(longlong *)(*(longlong *)(render_context + RENDER_CONTEXT_OFFSET_3) + BUFFER_OFFSET_1) + BUFFER_OFFSET_2, &resource_ptr,
+               RenderingSystem_InternalProcessor(*(int64_t *)(*(int64_t *)(render_context + RENDER_CONTEXT_OFFSET_3) + BUFFER_OFFSET_1) + BUFFER_OFFSET_2, &resource_ptr,
                              render_context + RENDER_CONTEXT_OFFSET_4);
     *(uint64_t *)(render_context + RENDER_CONTEXT_OFFSET_5) = *data_ptr;
-    if (resource_ptr != (longlong *)0x0) {
+    if (resource_ptr != (int64_t *)0x0) {
         (**(code **)(*resource_ptr + 0x38))();
     }
-    if (*(longlong *)(render_context + RENDER_CONTEXT_OFFSET_5) != 0) {
+    if (*(int64_t *)(render_context + RENDER_CONTEXT_OFFSET_5) != 0) {
         RenderingSystem_CleanupHandler(render_context);
     }
     
     // 执行组件处理器
-    RenderingSystem_ComponentProcessor(security_hash ^ (ulonglong)security_buffer);
+    RenderingSystem_ComponentProcessor(security_hash ^ (uint64_t)security_buffer);
 }
 
 /**
@@ -813,31 +813,31 @@ void RenderingSystem_ParameterProcessor(longlong render_context, longlong parame
  * 
  * @param param_1 渲染系统上下文指针
  */
-void RenderingSystem_StateManager(longlong render_context)
+void RenderingSystem_StateManager(int64_t render_context)
 {
     uint flag_value;
-    longlong context_ptr;
+    int64_t context_ptr;
     uint64_t object_ptr;
     int status_code;
     uint64_t resource_handle;
-    longlong *object_instance;
-    longlong component_data;
+    int64_t *object_instance;
+    int64_t component_data;
     byte flag_bit;
     char char_index;
-    longlong loop_counter;
-    longlong *component_array;
-    longlong **component_ptr;
+    int64_t loop_counter;
+    int64_t *component_array;
+    int64_t **component_ptr;
     
     // 获取渲染对象指针
-    object_ptr = *(uint64_t *)(*(longlong *)(render_context + RENDER_CONTEXT_OFFSET_3) + BUFFER_OFFSET_1);
+    object_ptr = *(uint64_t *)(*(int64_t *)(render_context + RENDER_CONTEXT_OFFSET_3) + BUFFER_OFFSET_1);
     
     // 分配渲染资源
     resource_handle = RenderingSystem_MemoryAllocator(system_memory_pool_ptr, 0x2f0, 0x10, 0xd);
-    object_instance = (longlong *)RenderingSystem_ObjectInitializer(resource_handle, 4);
+    object_instance = (int64_t *)RenderingSystem_ObjectInitializer(resource_handle, 4);
     component_array = object_instance;
     
     // 初始化渲染对象
-    if (object_instance != (longlong *)0x0) {
+    if (object_instance != (int64_t *)0x0) {
         (**(code **)(*object_instance + 0x28))(object_instance);
     }
     
@@ -854,31 +854,31 @@ void RenderingSystem_StateManager(longlong render_context)
     
     // 处理渲染数据
     RenderingSystem_DataProcessor(object_ptr, &context_ptr, 1, 1, 0, 1, 0);
-    component_array = (longlong *)0x0;
-    context_ptr = *(longlong **)(render_context + BUFFER_OFFSET_3);
-    *(longlong **)(render_context + BUFFER_OFFSET_3) = object_instance;
+    component_array = (int64_t *)0x0;
+    context_ptr = *(int64_t **)(render_context + BUFFER_OFFSET_3);
+    *(int64_t **)(render_context + BUFFER_OFFSET_3) = object_instance;
     
     // 清理旧资源
-    if (context_ptr != (longlong *)0x0) {
+    if (context_ptr != (int64_t *)0x0) {
         (**(code **)(*context_ptr + 0x38))();
     }
     
     // 初始化新对象
     RenderingSystem_ObjectCleanup(*(uint64_t *)(render_context + BUFFER_OFFSET_3), &global_state_2984_ptr);
-    component_data = *(longlong *)(render_context + BUFFER_OFFSET_3);
+    component_data = *(int64_t *)(render_context + BUFFER_OFFSET_3);
     flag_value = *(uint *)(component_data + BUFFER_OFFSET_4);
     *(uint *)(component_data + BUFFER_OFFSET_4) = flag_value | 0x2020000;
     RenderingSystem_FlagUpdater(component_data, flag_value);
     
     // 处理组件数据
-    context_ptr = *(longlong *)(component_data + BUFFER_OFFSET_5);
+    context_ptr = *(int64_t *)(component_data + BUFFER_OFFSET_5);
     if ((context_ptr != 0) && (((*(uint *)(component_data + BUFFER_OFFSET_4) ^ flag_value) >> 0x16 & 1) != 0)) {
         flag_bit = ~(byte)(*(uint *)(component_data + BUFFER_OFFSET_4) >> 0x16) & 1;
-        status_code = (int)(*(longlong *)(context_ptr + BUFFER_OFFSET_6) - *(longlong *)(context_ptr + BUFFER_OFFSET_7) >> 3);
+        status_code = (int)(*(int64_t *)(context_ptr + BUFFER_OFFSET_6) - *(int64_t *)(context_ptr + BUFFER_OFFSET_7) >> 3);
         if (0 < status_code) {
             component_data = 0;
             do {
-                object_instance = *(longlong **)(*(longlong *)(context_ptr + BUFFER_OFFSET_7) + component_data * 8);
+                object_instance = *(int64_t **)(*(int64_t *)(context_ptr + BUFFER_OFFSET_7) + component_data * 8);
                 (**(code **)(*object_instance + 0xe0))(object_instance, flag_bit);
                 component_data = component_data + 1;
             } while (component_data < status_code);
@@ -889,11 +889,11 @@ void RenderingSystem_StateManager(longlong render_context)
         if ('\0' < *(char *)(context_ptr + BUFFER_OFFSET_10)) {
             do {
                 component_data = 0;
-                loop_counter = (longlong)char_index * 0x100 + *(longlong *)(context_ptr + BUFFER_OFFSET_11);
-                status_code = (int)(*(longlong *)(loop_counter + BUFFER_OFFSET_8) - *(longlong *)(loop_counter + BUFFER_OFFSET_9) >> 3);
+                loop_counter = (int64_t)char_index * 0x100 + *(int64_t *)(context_ptr + BUFFER_OFFSET_11);
+                status_code = (int)(*(int64_t *)(loop_counter + BUFFER_OFFSET_8) - *(int64_t *)(loop_counter + BUFFER_OFFSET_9) >> 3);
                 if (0 < status_code) {
                     do {
-                        object_instance = *(longlong **)(*(longlong *)(loop_counter + BUFFER_OFFSET_9) + component_data * 8);
+                        object_instance = *(int64_t **)(*(int64_t *)(loop_counter + BUFFER_OFFSET_9) + component_data * 8);
                         (**(code **)(*object_instance + 0xe0))(object_instance, flag_bit);
                         component_data = component_data + 1;
                     } while (component_data < status_code);

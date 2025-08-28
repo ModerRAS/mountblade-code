@@ -3,27 +3,27 @@
 // 04_ui_system_part003.c - UI系统组件第3部分
 // 包含23个函数，主要处理UI日志记录、内存管理、模块加载和资源初始化
 
-// 函数: void log_ui_message_with_format(uint64_t log_context, uint64_t log_level, uint64_t log_source, longlong format_string, uint64_t format_args)
+// 函数: void log_ui_message_with_format(uint64_t log_context, uint64_t log_level, uint64_t log_source, int64_t format_string, uint64_t format_args)
 // 功能: 使用格式化字符串记录UI消息日志
-void log_ui_message_with_format(uint64_t log_context, uint64_t log_level, uint64_t log_source, longlong format_string,
+void log_ui_message_with_format(uint64_t log_context, uint64_t log_level, uint64_t log_source, int64_t format_string,
                                 uint64_t format_args)
 
 {
-  ulonglong *printf_ptr;
+  uint64_t *printf_ptr;
   char *thread_flag;
   int8_t stack_guard[32];
   uint64_t arg1;
   uint64_t arg2;
   int8_t format_buffer[512];
-  ulonglong security_cookie;
+  uint64_t security_cookie;
   
   if (format_string != 0) {
-    security_cookie = _security_cookie ^ (ulonglong)stack_guard;
-    thread_flag = (char *)(*(longlong *)
-                       ((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) + 8);
+    security_cookie = _security_cookie ^ (uint64_t)stack_guard;
+    thread_flag = (char *)(*(int64_t *)
+                       ((int64_t)ThreadLocalStoragePointer + (uint64_t)__tls_index * 8) + 8);
     if (*thread_flag == '\0') {
       *thread_flag = '\x01';
-      printf_ptr = (ulonglong *)get_stdio_function_table();
+      printf_ptr = (uint64_t *)get_stdio_function_table();
       arg2 = format_args;
       arg1 = 0;
       __stdio_common_vsprintf(*printf_ptr | 2, format_buffer, 0x1ff, format_string);
@@ -31,33 +31,33 @@ void log_ui_message_with_format(uint64_t log_context, uint64_t log_level, uint64
       log_ui_message_base(log_context, log_level, log_source, format_buffer);
     }
                     // WARNING: Subroutine does not return
-    security_check_fail(security_cookie ^ (ulonglong)stack_guard);
+    security_check_fail(security_cookie ^ (uint64_t)stack_guard);
   }
   return;
 }
 
 
 
-// 函数: void log_ui_message_simple(longlong log_context)
+// 函数: void log_ui_message_simple(int64_t log_context)
 // 功能: 记录简单的UI消息日志
-void log_ui_message_simple(longlong log_context)
+void log_ui_message_simple(int64_t log_context)
 
 {
-  longlong tls_base;
-  ulonglong *printf_ptr;
+  int64_t tls_base;
+  uint64_t *printf_ptr;
   char *thread_flag;
-  ulonglong stack_cookie;
+  uint64_t stack_cookie;
   
-  thread_flag = (char *)(*(longlong *)(tls_base + log_context * 8) + 8);
+  thread_flag = (char *)(*(int64_t *)(tls_base + log_context * 8) + 8);
   if (*thread_flag == '\0') {
     *thread_flag = '\x01';
-    printf_ptr = (ulonglong *)get_stdio_function_table();
+    printf_ptr = (uint64_t *)get_stdio_function_table();
     __stdio_common_vsprintf(*printf_ptr | 2, &stack_buffer, 0x1ff);
     *thread_flag = '\0';
     log_ui_message_base();
   }
                     // WARNING: Subroutine does not return
-  security_check_fail(stack_cookie ^ (ulonglong)&stack_base);
+  security_check_fail(stack_cookie ^ (uint64_t)&stack_base);
 }
 
 
@@ -115,7 +115,7 @@ void log_ui_warning_message(uint64_t message, uint64_t param2, uint64_t param3, 
 
 {
   bool should_log;
-  longlong message_count;
+  int64_t message_count;
   uint64_t stack_arg1;
   uint64_t stack_arg2;
   uint64_t stack_arg3;
@@ -153,7 +153,7 @@ void log_ui_error_message(int32_t error_code, uint64_t message, uint64_t param3,
 
 {
   bool should_log;
-  ulonglong error_count;
+  uint64_t error_count;
   uint64_t stack_arg2;
   uint64_t stack_arg3;
   
@@ -194,16 +194,16 @@ void parse_ui_config_value(int *config_param)
   char config_char;
   uint env_length;
   int config_value;
-  longlong parse_result;
-  ulonglong str_length;
-  ulonglong loop_counter;
+  int64_t parse_result;
+  uint64_t str_length;
+  uint64_t loop_counter;
   int8_t stack_guard[32];
   char *string_end[2];
   char config_buffer[80];
   char env_buffer[80];
-  ulonglong security_cookie;
+  uint64_t security_cookie;
   
-  security_cookie = _security_cookie ^ (ulonglong)stack_guard;
+  security_cookie = _security_cookie ^ (uint64_t)stack_guard;
   config_buffer[0] = '\0';
   strncpy(config_buffer, &_config_path_prefix, 0x40);
   config_buffer[0x40] = 0;
@@ -211,7 +211,7 @@ void parse_ui_config_value(int *config_param)
   config_buffer[0x40] = 0;
   env_buffer[0] = '\0';
   env_length = GetEnvironmentVariableA(config_buffer, env_buffer, 0x41);
-  if ((ulonglong)env_length - 1 < 0x40) {
+  if ((uint64_t)env_length - 1 < 0x40) {
     str_length = 0xffffffffffffffff;
     do {
       str_length = str_length + 1;
@@ -258,7 +258,7 @@ void parse_ui_config_value(int *config_param)
             string_end[0] = string_end[0] + 1;
           }
           else {
-            config_value = (int)((longlong)config_value + 0x3ffU >> 10);
+            config_value = (int)((int64_t)config_value + 0x3ffU >> 10);
           }
           if (*string_end[0] == 'B') {
             string_end[0] = string_end[0] + 1;
@@ -282,7 +282,7 @@ void parse_ui_config_value(int *config_param)
   }
 parse_complete:
                     // WARNING: Subroutine does not return
-  security_check_fail(security_cookie ^ (ulonglong)stack_guard);
+  security_check_fail(security_cookie ^ (uint64_t)stack_guard);
 }
 
 
@@ -296,13 +296,13 @@ void parse_ui_config_string(void)
   code *error_handler;
   int8_t format_flag;
   int config_value;
-  longlong parse_result;
+  int64_t parse_result;
   char *string_ptr;
-  ulonglong str_length;
-  longlong frame_base;
+  uint64_t str_length;
+  int64_t frame_base;
   int *config_param;
-  ulonglong frame_offset;
-  ulonglong loop_counter;
+  uint64_t frame_offset;
+  uint64_t loop_counter;
   
   loop_counter = 0xffffffffffffffff;
   do {
@@ -335,7 +335,7 @@ set_default_value:
     if (parse_result != 0) goto set_default_value;
     parse_result = strstr(&_false_value_string, frame_base + -0x59);
     if (parse_result == 0) {
-      *(longlong *)(frame_base + -0x69) = frame_base + -0x59;
+      *(int64_t *)(frame_base + -0x69) = frame_base + -0x59;
       config_value = strtol(frame_base + -0x59, frame_base + -0x69, 10);
       string_ptr = *(char **)(frame_base + -0x69);
       if (config_param[2] == 8) {
@@ -355,7 +355,7 @@ set_default_value:
           *(char **)(frame_base + -0x69) = string_ptr;
         }
         else {
-          config_value = (int)((longlong)config_value + 0x3ffU >> 10);
+          config_value = (int)((int64_t)config_value + 0x3ffU >> 10);
         }
         if (*string_ptr == 'B') {
           string_ptr = string_ptr + 1;
@@ -376,7 +376,7 @@ set_default_value:
   config_param[1] = 2;
 parse_string_complete:
                     // WARNING: Subroutine does not return
-  security_check_fail(*(ulonglong *)(frame_base + 0x47) ^ (ulonglong)&stack_base);
+  security_check_fail(*(uint64_t *)(frame_base + 0x47) ^ (uint64_t)&stack_base);
 }
 
 
@@ -386,10 +386,10 @@ parse_string_complete:
 void ui_config_cleanup(void)
 
 {
-  longlong frame_base;
+  int64_t frame_base;
   
                     // WARNING: Subroutine does not return
-  security_check_fail(*(ulonglong *)(frame_base + 0x47) ^ (ulonglong)&stack_base);
+  security_check_fail(*(uint64_t *)(frame_base + 0x47) ^ (uint64_t)&stack_base);
 }
 
 
@@ -402,10 +402,10 @@ void parse_ui_numeric_value(void)
   char value_char;
   int numeric_value;
   char *string_ptr;
-  longlong frame_base;
+  int64_t frame_base;
   int *config_param;
   
-  *(longlong *)(frame_base + -0x69) = frame_base + -0x59;
+  *(int64_t *)(frame_base + -0x69) = frame_base + -0x59;
   numeric_value = strtol(frame_base + -0x59, frame_base + -0x69, 10);
   string_ptr = *(char **)(frame_base + -0x69);
   if (config_param[2] == 8) {
@@ -425,7 +425,7 @@ void parse_ui_numeric_value(void)
       *(char **)(frame_base + -0x69) = string_ptr;
     }
     else {
-      numeric_value = (int)((longlong)numeric_value + 0x3ffU >> 10);
+      numeric_value = (int)((int64_t)numeric_value + 0x3ffU >> 10);
     }
     if (*string_ptr == 'B') {
       string_ptr = string_ptr + 1;
@@ -441,7 +441,7 @@ void parse_ui_numeric_value(void)
     config_param[1] = 1;
   }
                     // WARNING: Subroutine does not return
-  security_check_fail(*(ulonglong *)(frame_base + 0x47) ^ (ulonglong)&stack_base);
+  security_check_fail(*(uint64_t *)(frame_base + 0x47) ^ (uint64_t)&stack_base);
 }
 
 
@@ -451,14 +451,14 @@ void parse_ui_numeric_value(void)
 void ui_config_use_default(void)
 
 {
-  longlong frame_base;
-  longlong config_param;
+  int64_t frame_base;
+  int64_t config_param;
   
   if (_default_config_available == '\0') {
     *(int32_t *)(config_param + 4) = 1;
   }
                     // WARNING: Subroutine does not return
-  security_check_fail(*(ulonglong *)(frame_base + 0x47) ^ (ulonglong)&stack_base);
+  security_check_fail(*(uint64_t *)(frame_base + 0x47) ^ (uint64_t)&stack_base);
 }
 
 
@@ -591,14 +591,14 @@ void ui_system_idle(void)
 
 
 
-// 函数: void extract_ui_filename(longlong path_info, longlong output_buffer)
+// 函数: void extract_ui_filename(int64_t path_info, int64_t output_buffer)
 // 功能: 从路径信息中提取UI文件名
-void extract_ui_filename(longlong path_info, longlong output_buffer)
+void extract_ui_filename(int64_t path_info, int64_t output_buffer)
 
 {
   char path_char;
-  ulonglong last_separator1;
-  ulonglong last_separator2;
+  uint64_t last_separator1;
+  uint64_t last_separator2;
   void *default_path;
   char *path_string;
   
@@ -618,7 +618,7 @@ void extract_ui_filename(longlong path_info, longlong output_buffer)
       if (*(char **)(path_info + 8) != (char *)0x0) {
         path_string = *(char **)(path_info + 8);
       }
-      output_buffer = output_buffer - (longlong)path_string;
+      output_buffer = output_buffer - (int64_t)path_string;
       do {
         path_char = *path_string;
         path_string[output_buffer] = path_char;
@@ -627,7 +627,7 @@ void extract_ui_filename(longlong path_info, longlong output_buffer)
     }
     else {
       path_string = (char *)(last_separator2 + 1);
-      output_buffer = output_buffer - (longlong)path_string;
+      output_buffer = output_buffer - (int64_t)path_string;
       do {
         path_char = *path_string;
         path_string[output_buffer] = path_char;
@@ -637,7 +637,7 @@ void extract_ui_filename(longlong path_info, longlong output_buffer)
   }
   else if (last_separator2 == 0) {
     path_string = (char *)(last_separator1 + 1);
-    output_buffer = output_buffer - (longlong)path_string;
+    output_buffer = output_buffer - (int64_t)path_string;
     do {
       path_char = *path_string;
       path_string[output_buffer] = path_char;
@@ -646,7 +646,7 @@ void extract_ui_filename(longlong path_info, longlong output_buffer)
   }
   else if (last_separator2 < last_separator1) {
     path_string = (char *)(last_separator1 + 1);
-    output_buffer = output_buffer - (longlong)path_string;
+    output_buffer = output_buffer - (int64_t)path_string;
     do {
       path_char = *path_string;
       path_string[output_buffer] = path_char;
@@ -655,7 +655,7 @@ void extract_ui_filename(longlong path_info, longlong output_buffer)
   }
   else {
     path_string = (char *)(last_separator2 + 1);
-    output_buffer = output_buffer - (longlong)path_string;
+    output_buffer = output_buffer - (int64_t)path_string;
     do {
       path_char = *path_string;
       path_string[output_buffer] = path_char;
@@ -678,9 +678,9 @@ void load_ui_module(uint64_t module_handle, uint64_t param2, uint64_t param3, ui
 
 
 
-// 函数: longlong copy_ui_module_data(longlong dest_module, longlong src_module)
+// 函数: int64_t copy_ui_module_data(int64_t dest_module, int64_t src_module)
 // 功能: 复制UI模块数据
-longlong copy_ui_module_data(longlong dest_module, longlong src_module)
+int64_t copy_ui_module_data(int64_t dest_module, int64_t src_module)
 
 {
   uint64_t module_flag;
@@ -703,19 +703,19 @@ longlong copy_ui_module_data(longlong dest_module, longlong src_module)
 
 
 
-// 函数: ulonglong parse_ui_resource_header(longlong output_header, longlong file_offset, longlong file_base)
+// 函数: uint64_t parse_ui_resource_header(int64_t output_header, int64_t file_offset, int64_t file_base)
 // 功能: 解析UI资源头部信息
-ulonglong parse_ui_resource_header(longlong output_header, longlong file_offset, longlong file_base)
+uint64_t parse_ui_resource_header(int64_t output_header, int64_t file_offset, int64_t file_base)
 
 {
   uint section_count;
   uint section_size;
   uint resource_type;
-  ulonglong resource_data;
-  longlong section_offset;
+  uint64_t resource_data;
+  int64_t section_offset;
   int *section_ptr;
   uint section_index;
-  ulonglong parse_result;
+  uint64_t parse_result;
   uint *resource_data_ptr;
   
   section_offset = *(int *)(file_base + 0x3c) + file_offset;
@@ -724,7 +724,7 @@ ulonglong parse_ui_resource_header(longlong output_header, longlong file_offset,
   if ((*(ushort *)(section_offset + 0x16) & 0x200) != 0) {
     *(int8_t *)(output_header + 0x40) = 1;
   }
-  parse_result = (ulonglong)*(uint *)(section_offset + 0xbc);
+  parse_result = (uint64_t)*(uint *)(section_offset + 0xbc);
   resource_data = parse_result * 0x2492492492492493;
   section_index = (uint)((parse_result - parse_result / 7 >> 1) + parse_result / 7 >> 4);
   if (section_index == 0) {
@@ -734,15 +734,15 @@ parse_complete:
   else {
     resource_type = 0;
     if (section_index != 0) {
-      section_ptr = (int *)((ulonglong)*(uint *)(section_offset + 0xb8) + 0xc + file_offset);
+      section_ptr = (int *)((uint64_t)*(uint *)(section_offset + 0xb8) + 0xc + file_offset);
       do {
         if ((section_ptr[1] != 0) && (*section_ptr == 2)) {
-          resource_data_ptr = (uint *)((ulonglong)(uint)section_ptr[2] + file_offset);
+          resource_data_ptr = (uint *)((uint64_t)(uint)section_ptr[2] + file_offset);
           if (*resource_data_ptr != 0x53445352) goto parse_complete;
           *(uint *)(output_header + 0xac) = resource_data_ptr[5];
-          (**(code **)(*(longlong *)(output_header + 0x78) + 0x10))
-                    ((longlong *)(output_header + 0x78), resource_data_ptr + 6);
-          parse_result = (ulonglong)*resource_data_ptr;
+          (**(code **)(*(int64_t *)(output_header + 0x78) + 0x10))
+                    ((int64_t *)(output_header + 0x78), resource_data_ptr + 6);
+          parse_result = (uint64_t)*resource_data_ptr;
           *(uint *)(output_header + 0xa8) = *resource_data_ptr;
           resource_type = resource_data_ptr[2];
           section_size = resource_data_ptr[3];
@@ -763,9 +763,9 @@ parse_complete:
 
 
 
-// 函数: void load_ui_library(longlong library_info)
+// 函数: void load_ui_library(int64_t library_info)
 // 功能: 加载UI库文件
-void load_ui_library(longlong library_info)
+void load_ui_library(int64_t library_info)
 
 {
   short *library_handle;
@@ -773,18 +773,18 @@ void load_ui_library(longlong library_info)
   uint64_t *current_node;
   void *library_path;
   uint64_t *next_node;
-  ulonglong module_address;
+  uint64_t module_address;
   int8_t stack_guard[32];
   short **library_ptr;
   short *current_library;
   uint64_t stack_param;
   int8_t temp_buffer[16];
-  longlong module_data[4];
+  int64_t module_data[4];
   int8_t path_buffer[272];
-  ulonglong security_cookie;
+  uint64_t security_cookie;
   
   stack_param = 0xfffffffffffffffe;
-  security_cookie = _security_cookie ^ (ulonglong)stack_guard;
+  security_cookie = _security_cookie ^ (uint64_t)stack_guard;
   library_path = &_default_ui_path;
   if (*(void **)(library_info + 8) != (void *)0x0) {
     library_path = *(void **)(library_info + 8);
@@ -813,8 +813,8 @@ void load_ui_library(longlong library_info)
     library_ptr = library_handle;
     (**(code **)(module_data[0] + 0x10))(module_data, path_buffer);
     module_address = *(uint *)(library_info + 0x10);
-    parse_result = (ulonglong)module_address;
-    if (*(longlong *)(library_info + 8) != 0) {
+    parse_result = (uint64_t)module_address;
+    if (*(int64_t *)(library_info + 8) != 0) {
       copy_ui_string_data(temp_buffer, parse_result);
     }
     if (module_address != 0) {
@@ -849,7 +849,7 @@ void load_ui_library(longlong library_info)
   }
 library_found:
                     // WARNING: Subroutine does not return
-  security_check_fail(security_cookie ^ (ulonglong)stack_guard);
+  security_check_fail(security_cookie ^ (uint64_t)stack_guard);
 }
 
 
@@ -862,15 +862,15 @@ void initialize_ui_process_monitor(void)
   int mutex_result;
   int32_t process_id;
   uint64_t module_handle;
-  longlong snapshot_handle;
+  int64_t snapshot_handle;
   int8_t stack_guard[128];
   uint64_t stack_param1;
   uint64_t stack_param2;
   int8_t process_buffer[748];
-  ulonglong security_cookie;
+  uint64_t security_cookie;
   
   stack_param1 = 0xfffffffffffffffe;
-  security_cookie = _security_cookie ^ (ulonglong)stack_guard;
+  security_cookie = _security_cookie ^ (uint64_t)stack_guard;
   stack_param2 = _ui_mutex_address;
   mutex_result = _Mtx_lock(_ui_mutex_address);
   if (mutex_result != 0) {
@@ -893,7 +893,7 @@ void initialize_ui_process_monitor(void)
     __Throw_C_error_std__YAXH_Z(mutex_result);
   }
                     // WARNING: Subroutine does not return
-  security_check_fail(security_cookie ^ (ulonglong)stack_guard);
+  security_check_fail(security_cookie ^ (uint64_t)stack_guard);
 }
 
 
@@ -925,32 +925,32 @@ void cleanup_ui_module_registry(uint64_t module_handle, uint64_t *module_node, u
 
 
 
-// 函数: uint64_t * find_or_create_ui_module_node(uint64_t module_handle, uint64_t *module_node, uint64_t param3, longlong *param_4, ulonglong *param_5)
+// 函数: uint64_t * find_or_create_ui_module_node(uint64_t module_handle, uint64_t *module_node, uint64_t param3, int64_t *param_4, uint64_t *param_5)
 // 功能: 查找或创建UI模块节点
-uint64_t * find_or_create_ui_module_node(uint64_t module_handle, uint64_t *module_node, uint64_t param3, longlong *param_4,
-                                            ulonglong *param_5)
+uint64_t * find_or_create_ui_module_node(uint64_t module_handle, uint64_t *module_node, uint64_t param3, int64_t *param_4,
+                                            uint64_t *param_5)
 
 {
-  longlong *module_ptr;
+  int64_t *module_ptr;
   uint64_t *node_ptr;
-  ulonglong module_size;
-  longlong module_base;
+  uint64_t module_size;
+  int64_t module_base;
   uint64_t *target_node;
   int32_t node_flag;
   bool insert_before;
   
-  if ((param_4 == _ui_module_list_head) || (param_4 == (longlong *)&_ui_module_list_head)) {
-    if ((_ui_module_tail != 0) && (param_4 = _ui_module_list_head, (ulonglong)_ui_module_list_head[4] < *param_5)
+  if ((param_4 == _ui_module_list_head) || (param_4 == (int64_t *)&_ui_module_list_head)) {
+    if ((_ui_module_tail != 0) && (param_4 = _ui_module_list_head, (uint64_t)_ui_module_list_head[4] < *param_5)
        ) goto found_node;
   }
   else {
-    module_ptr = (longlong *)get_ui_module_info(param_4);
-    if (((ulonglong)param_4[4] < *param_5) && (*param_5 < (ulonglong)module_ptr[4])) {
+    module_ptr = (int64_t *)get_ui_module_info(param_4);
+    if (((uint64_t)param_4[4] < *param_5) && (*param_5 < (uint64_t)module_ptr[4])) {
       if (*param_4 != 0) {
         param_4 = module_ptr;
       }
 found_node:
-      if (param_4 != (longlong *)0x0) {
+      if (param_4 != (int64_t *)0x0) {
         initialize_ui_module_node();
         return module_node;
       }
@@ -962,7 +962,7 @@ found_node:
     node_ptr = _ui_module_registry;
     do {
       target_node = node_ptr;
-      insert_before = *param_5 < (ulonglong)target_node[4];
+      insert_before = *param_5 < (uint64_t)target_node[4];
       if (insert_before) {
         node_ptr = (uint64_t *)target_node[1];
       }
@@ -980,19 +980,19 @@ found_node:
     node_ptr = (uint64_t *)get_ui_module_prev(target_node);
   }
   module_size = *param_5;
-  if (module_size <= (ulonglong)node_ptr[4]) {
+  if (module_size <= (uint64_t)node_ptr[4]) {
     *module_node = node_ptr;
     return module_node;
   }
 allocate_node:
-  if ((target_node == (uint64_t *)&_ui_module_list_head) || (module_size < (ulonglong)target_node[4])) {
+  if ((target_node == (uint64_t *)&_ui_module_list_head) || (module_size < (uint64_t)target_node[4])) {
     node_flag = 0;
   }
   else {
     node_flag = 1;
   }
   module_base = allocate_ui_memory(_ui_memory_pool, 0xd8, _ui_module_flags);
-  *(ulonglong *)(module_base + 0x20) = *param_5;
+  *(uint64_t *)(module_base + 0x20) = *param_5;
   initialize_ui_module_data(module_base + 0x28);
                     // WARNING: Subroutine does not return
   insert_ui_module_node(module_base, target_node, &_ui_module_list_head, node_flag);
@@ -1000,24 +1000,24 @@ allocate_node:
 
 
 
-// 函数: void insert_ui_module_node(uint64_t module_handle, uint64_t module_node, void *list_head, uint64_t param4, ulonglong *param_5)
+// 函数: void insert_ui_module_node(uint64_t module_handle, uint64_t module_node, void *list_head, uint64_t param4, uint64_t *param_5)
 // 功能: 插入UI模块节点
 void insert_ui_module_node(uint64_t module_handle, uint64_t module_node, void *list_head, uint64_t param4,
-                           ulonglong *param_5)
+                           uint64_t *param_5)
 
 {
-  longlong module_offset;
+  int64_t module_offset;
   int32_t insert_flag;
   
   if ((((char)param4 == '\0') && (list_head != &_ui_module_list_head)) &&
-     (*(ulonglong *)(list_head + 0x20) <= *param_5)) {
+     (*(uint64_t *)(list_head + 0x20) <= *param_5)) {
     insert_flag = 1;
   }
   else {
     insert_flag = 0;
   }
   module_offset = allocate_ui_memory(_ui_memory_pool, 0xd8, _ui_module_flags, param4, 0xfffffffffffffffe);
-  *(ulonglong *)(module_offset + 0x20) = *param_5;
+  *(uint64_t *)(module_offset + 0x20) = *param_5;
   initialize_ui_module_data(module_offset + 0x28);
                     // WARNING: Subroutine does not return
   insert_ui_module_node(module_offset, list_head, &_ui_module_list_head, insert_flag);
@@ -1025,13 +1025,13 @@ void insert_ui_module_node(uint64_t module_handle, uint64_t module_node, void *l
 
 
 
-// 函数: void cleanup_ui_resource_manager(longlong resource_manager)
+// 函数: void cleanup_ui_resource_manager(int64_t resource_manager)
 // 功能: 清理UI资源管理器
-void cleanup_ui_resource_manager(longlong resource_manager)
+void cleanup_ui_resource_manager(int64_t resource_manager)
 
 {
   *(uint64_t *)(resource_manager + 0x80) = &_ui_resource_vtable;
-  if (*(longlong *)(resource_manager + 0x88) != 0) {
+  if (*(int64_t *)(resource_manager + 0x88) != 0) {
                     // WARNING: Subroutine does not return
     free_ui_memory();
   }
@@ -1039,7 +1039,7 @@ void cleanup_ui_resource_manager(longlong resource_manager)
   *(int32_t *)(resource_manager + 0x98) = 0;
   *(uint64_t *)(resource_manager + 0x80) = &_ui_object_vtable;
   *(uint64_t *)(resource_manager + 0x60) = &_ui_resource_vtable;
-  if (*(longlong *)(resource_manager + 0x68) != 0) {
+  if (*(int64_t *)(resource_manager + 0x68) != 0) {
                     // WARNING: Subroutine does not return
     free_ui_memory();
   }
@@ -1047,7 +1047,7 @@ void cleanup_ui_resource_manager(longlong resource_manager)
   *(int32_t *)(resource_manager + 0x78) = 0;
   *(uint64_t *)(resource_manager + 0x60) = &_ui_object_vtable;
   *(uint64_t *)(resource_manager + 0x28) = &_ui_resource_vtable;
-  if (*(longlong *)(resource_manager + 0x30) != 0) {
+  if (*(int64_t *)(resource_manager + 0x30) != 0) {
                     // WARNING: Subroutine does not return
     free_ui_memory();
   }
@@ -1055,7 +1055,7 @@ void cleanup_ui_resource_manager(longlong resource_manager)
   *(int32_t *)(resource_manager + 0x40) = 0;
   *(uint64_t *)(resource_manager + 0x28) = &_ui_object_vtable;
   *(uint64_t *)(resource_manager + 8) = &_ui_resource_vtable;
-  if (*(longlong *)(resource_manager + 0x10) != 0) {
+  if (*(int64_t *)(resource_manager + 0x10) != 0) {
                     // WARNING: Subroutine does not return
     free_ui_memory();
   }
@@ -1067,9 +1067,9 @@ void cleanup_ui_resource_manager(longlong resource_manager)
 
 
 
-// 函数: uint64_t * create_ui_resource_manager(uint64_t *resource_manager, ulonglong flags)
+// 函数: uint64_t * create_ui_resource_manager(uint64_t *resource_manager, uint64_t flags)
 // 功能: 创建UI资源管理器
-uint64_t * create_ui_resource_manager(uint64_t *resource_manager, ulonglong flags)
+uint64_t * create_ui_resource_manager(uint64_t *resource_manager, uint64_t flags)
 
 {
   *resource_manager = &_ui_manager_vtable;
@@ -1119,9 +1119,9 @@ void pass_managed_initialize_method_pointer(uint64_t init_method)
 
 
 
-// 函数: uint64_t initialize_ui_system(uint64_t system_handle, ulonglong flags)
+// 函数: uint64_t initialize_ui_system(uint64_t system_handle, uint64_t flags)
 // 功能: 初始化UI系统
-uint64_t initialize_ui_system(uint64_t system_handle, ulonglong flags)
+uint64_t initialize_ui_system(uint64_t system_handle, uint64_t flags)
 
 {
   initialize_ui_system_core();

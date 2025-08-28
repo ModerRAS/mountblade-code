@@ -31,25 +31,25 @@
 extern uint64_t *rendering_null_pointer;
 extern uint64_t *rendering_cleanup_sequence1;
 extern uint64_t *rendering_cleanup_sequence2;
-extern longlong global_memory_allocator;
-extern longlong global_cloth_manager;
+extern int64_t global_memory_allocator;
+extern int64_t global_cloth_manager;
 extern uint64_t *cloth_simulator_table;
 extern uint64_t *cloth_texture_table;
 extern uint64_t *cloth_name_registry;
 extern uint64_t *cloth_string_constants;
 
 // 辅助函数声明
-void FUN_18005d4b0(longlong param1, void *param2, int param3, uint64_t param4, uint64_t memory_flags);
-void FUN_1804c1300(longlong param1, int param2);
+void FUN_18005d4b0(int64_t param1, void *param2, int param3, uint64_t param4, uint64_t memory_flags);
+void FUN_1804c1300(int64_t param1, int param2);
 void FUN_18062b1e0(void *allocator, int size, int alignment, int flags, uint64_t memory_flags);
 void FUN_18062b420(void *allocator, int size, int flags, uint64_t param4, int param5, uint64_t memory_flags);
 void FUN_180275090(uint64_t param1);
-void FUN_180275370(uint64_t param1, longlong param2);
-void FUN_180275540(uint64_t param1, longlong param2, longlong param3);
-void FUN_180275a60(longlong param1, longlong *param2, int param3);
+void FUN_180275370(uint64_t param1, int64_t param2);
+void FUN_180275540(uint64_t param1, int64_t param2, int64_t param3);
+void FUN_180275a60(int64_t param1, int64_t *param2, int param3);
 void FUN_18064e990(void *ptr);
 void FUN_1806277c0(void *param1, int param2, uint64_t param3, uint64_t param4, int param5, uint64_t memory_flags);
-void FUN_180627c50(void *param1, longlong param2, uint64_t param3, uint64_t param4, uint64_t memory_flags);
+void FUN_180627c50(void *param1, int64_t param2, uint64_t param3, uint64_t param4, uint64_t memory_flags);
 void FUN_180628f30(void *param1, uint *param2, uint param3, uint64_t param4, uint64_t memory_flags);
 void System_QueueProcessor(uint64_t param1, void *param2);
 void FUN_1800f5a90(uint64_t param1, uint64_t param2, uint64_t param3, void *param4, uint64_t memory_flags);
@@ -67,26 +67,26 @@ void UNLOCK(void);
  * @param cloth_object 布料对象指针
  */
 void rendering_system_update_cloth_simulation(
-    longlong render_context, 
-    longlong *cloth_object
+    int64_t render_context, 
+    int64_t *cloth_object
 ) {
     float *position_ptr;
-    longlong *prev_object;
+    int64_t *prev_object;
     uint64_t *transform_data;
     float delta_x, delta_y, delta_z;
     float min_delta = 0.05f;
     
     // 处理之前的布料对象
-    if (cloth_object != (longlong *)0x0) {
+    if (cloth_object != (int64_t *)0x0) {
         (**(code **)(*cloth_object + 0x28))(cloth_object);
     }
     
     // 更新布料对象链表
-    prev_object = *(longlong **)(render_context + 0x48);
-    *(longlong **)(render_context + 0x48) = cloth_object;
+    prev_object = *(int64_t **)(render_context + 0x48);
+    *(int64_t **)(render_context + 0x48) = cloth_object;
     
     // 清理之前的对象
-    if (prev_object != (longlong *)0x0) {
+    if (prev_object != (int64_t *)0x0) {
         (**(code **)(*prev_object + 0x38))();
     }
     
@@ -94,7 +94,7 @@ void rendering_system_update_cloth_simulation(
     *(uint32_t *)(render_context + 0x30) = RENDERING_RESOURCE_HANDLE;
     
     // 如果没有布料对象，重置所有位置数据
-    if (*(longlong *)(render_context + 0x48) == 0) {
+    if (*(int64_t *)(render_context + 0x48) == 0) {
         *(uint64_t *)(render_context + 0x84) = 0;
         *(uint64_t *)(render_context + 0x8c) = 0;
         *(uint64_t *)(render_context + 0x94) = 0;
@@ -110,7 +110,7 @@ void rendering_system_update_cloth_simulation(
     
     // 获取变换数据
     if (*(code **)(*cloth_object + 0x198) == (code *)&cloth_simulator_table) {
-        transform_data = (uint64_t *)((longlong)cloth_object + 0x214);
+        transform_data = (uint64_t *)((int64_t)cloth_object + 0x214);
     }
     else {
         transform_data = (uint64_t *)(**(code **)(*cloth_object + 0x198))(cloth_object);
@@ -210,24 +210,24 @@ uint64_t *rendering_system_create_render_object_ext(
     render_object_ptr[0xb] = 0;
     render_object_ptr[0xc] = 0;
     *(uint32_t *)(render_object_ptr + 0xd) = 3;
-    *(uint32_t *)((longlong)render_object_ptr + 0xb4) = 0;
-    *(uint64_t *)((longlong)render_object_ptr + 0x84) = 0;
-    *(uint64_t *)((longlong)render_object_ptr + 0x8c) = 0;
-    *(uint64_t *)((longlong)render_object_ptr + 0x94) = 0;
-    *(uint64_t *)((longlong)render_object_ptr + 0x9c) = 0;
-    *(uint64_t *)((longlong)render_object_ptr + 0xa4) = 0;
-    *(uint64_t *)((longlong)render_object_ptr + 0xac) = 0;
+    *(uint32_t *)((int64_t)render_object_ptr + 0xb4) = 0;
+    *(uint64_t *)((int64_t)render_object_ptr + 0x84) = 0;
+    *(uint64_t *)((int64_t)render_object_ptr + 0x8c) = 0;
+    *(uint64_t *)((int64_t)render_object_ptr + 0x94) = 0;
+    *(uint64_t *)((int64_t)render_object_ptr + 0x9c) = 0;
+    *(uint64_t *)((int64_t)render_object_ptr + 0xa4) = 0;
+    *(uint64_t *)((int64_t)render_object_ptr + 0xac) = 0;
     *(uint32_t *)(render_object_ptr + 6) = RENDERING_RESOURCE_HANDLE;
-    *(uint16_t *)((longlong)render_object_ptr + 0x41) = 0;
-    *(uint8_t *)((longlong)render_object_ptr + 0x43) = cloth_flag;
-    *(uint8_t *)((longlong)render_object_ptr + 0x44) = 1;
-    *(uint32_t *)((longlong)render_object_ptr + 0xbc) = 0;
+    *(uint16_t *)((int64_t)render_object_ptr + 0x41) = 0;
+    *(uint8_t *)((int64_t)render_object_ptr + 0x43) = cloth_flag;
+    *(uint8_t *)((int64_t)render_object_ptr + 0x44) = 1;
+    *(uint32_t *)((int64_t)render_object_ptr + 0xbc) = 0;
     *(uint8_t *)(render_object_ptr + 8) = 0;
     *(uint8_t *)(render_object_ptr + 0x18) = 0;
     *(uint32_t *)(render_object_ptr + 0xe) = 0;
-    *(uint32_t *)((longlong)render_object_ptr + 0x74) = 0;
+    *(uint32_t *)((int64_t)render_object_ptr + 0x74) = 0;
     *(uint32_t *)(render_object_ptr + 0xf) = 0;
-    *(uint32_t *)((longlong)render_object_ptr + 0x7c) = 0;
+    *(uint32_t *)((int64_t)render_object_ptr + 0x7c) = 0;
     *(uint32_t *)(render_object_ptr + 0x10) = 0;
     *(uint32_t *)(render_object_ptr + 0x17) = 0x3f800000; // 1.0f
     
@@ -265,12 +265,12 @@ uint64_t *rendering_system_release_render_object_ext(
     }
     
     // 清理相关资源
-    if ((longlong *)render_object_ptr[9] != (longlong *)0x0) {
-        (**(code **)(*(longlong *)render_object_ptr[9] + 0x38))();
+    if ((int64_t *)render_object_ptr[9] != (int64_t *)0x0) {
+        (**(code **)(*(int64_t *)render_object_ptr[9] + 0x38))();
     }
     
-    if ((longlong *)render_object_ptr[7] != (longlong *)0x0) {
-        (**(code **)(*(longlong *)render_object_ptr[7] + 0x38))();
+    if ((int64_t *)render_object_ptr[7] != (int64_t *)0x0) {
+        (**(code **)(*(int64_t *)render_object_ptr[7] + 0x38))();
     }
     
     // 重置对象结构
@@ -295,7 +295,7 @@ uint64_t *rendering_system_release_render_object_ext(
  * @param render_context 渲染上下文指针
  * @return 渲染对象ID
  */
-uint64_t rendering_system_get_render_object_id(longlong render_context) {
+uint64_t rendering_system_get_render_object_id(int64_t render_context) {
     void *object_type;
     uint64_t object_id;
     
@@ -321,7 +321,7 @@ uint64_t rendering_system_get_render_object_id(longlong render_context) {
  * @param render_context 渲染上下文指针
  * @return 渲染对象数据指针
  */
-uint64_t *rendering_system_get_render_object_data(longlong render_context) {
+uint64_t *rendering_system_get_render_object_data(int64_t render_context) {
     void *object_type;
     uint64_t *object_data;
     
@@ -351,10 +351,10 @@ uint64_t *rendering_system_get_render_object_data(longlong render_context) {
  * @param render_flags 渲染标志
  */
 void rendering_system_setup_cloth_simulator(
-    longlong render_context, 
-    longlong simulator_param, 
-    longlong target_context, 
-    longlong source_data, 
+    int64_t render_context, 
+    int64_t simulator_param, 
+    int64_t target_context, 
+    int64_t source_data, 
     uint32_t render_flags
 ) {
     uint64_t *simulator_data;
@@ -390,17 +390,17 @@ void rendering_system_setup_cloth_simulator(
     }
     
     // 执行模拟器初始化
-    (**(code **)(**(longlong **)(render_context + 0x48) + 0x70))
-            (*(longlong **)(render_context + 0x48), simulator_param, simulator_data, source_param, render_flags);
+    (**(code **)(**(int64_t **)(render_context + 0x48) + 0x70))
+            (*(int64_t **)(render_context + 0x48), simulator_param, simulator_data, source_param, render_flags);
     
     // 添加到目标上下文的链表
-    if (*(longlong *)(target_context + 0x30) == 0) {
+    if (*(int64_t *)(target_context + 0x30) == 0) {
         simulator_data[10] = 0;
         *(uint64_t **)(target_context + 0x30) = simulator_data;
     }
     else {
         simulator_data[10] = *(uint64_t *)(target_context + 0x38);
-        *(uint64_t **)(*(longlong *)(target_context + 0x38) + 0x58) = simulator_data;
+        *(uint64_t **)(*(int64_t *)(target_context + 0x38) + 0x58) = simulator_data;
     }
     
     *(uint64_t **)(target_context + 0x38) = simulator_data;
@@ -421,22 +421,22 @@ void rendering_system_setup_cloth_simulator(
  * @param source_param 源参数
  */
 void rendering_system_process_cloth_simulation(
-    longlong render_context, 
+    int64_t render_context, 
     uint64_t cloth_param, 
     uint64_t target_param, 
     uint64_t source_param
 ) {
-    longlong resource_handle;
+    int64_t resource_handle;
     uint64_t cleanup_param;
-    longlong *resource_ptr;
+    int64_t *resource_ptr;
     char *name_ptr;
-    longlong name_length;
+    int64_t name_length;
     uint64_t *resource_data;
     char *resource_name;
     char *name_compare;
-    longlong name_offset;
+    int64_t name_offset;
     void *resource_cleanup;
-    longlong cleanup_flag = 0;
+    int64_t cleanup_flag = 0;
     
     // 获取资源句柄
     resource_handle = FUN_18005d4b0(cloth_param, &cloth_texture_table, 0, source_param, RENDERING_CLOTH_SIMULATOR_FLAG);
@@ -469,7 +469,7 @@ void rendering_system_process_cloth_simulation(
                 
                 // 比较资源名称
                 if (name_ptr == name_compare + -0x180a03a83) {
-                    name_ptr = name_ptr + (longlong)resource_name;
+                    name_ptr = name_ptr + (int64_t)resource_name;
                     if (name_ptr <= resource_name) {
 name_found:
                         name_length = 0x180d48d24;
@@ -480,7 +480,7 @@ name_found:
                         break;
                     }
                     
-                    name_offset = (longlong)&cloth_name_registry - (longlong)resource_name;
+                    name_offset = (int64_t)&cloth_name_registry - (int64_t)resource_name;
                     while (*resource_name == resource_name[name_offset]) {
                         resource_name = resource_name + 1;
                         if (name_ptr <= resource_name) goto name_found;
@@ -494,23 +494,23 @@ name_found:
         // 根据匹配结果处理资源
         if (match_count < 1) {
             cleanup_param = FUN_18062b1e0(global_memory_allocator, RENDERING_CLOTH_DATA_SIZE, 8, 0x16);
-            resource_ptr = (longlong *)FUN_180275540(cleanup_param, *(longlong *)(render_context + 0x48) + 0x1f0, resource_handle);
-            if (resource_ptr != (longlong *)0x0) {
+            resource_ptr = (int64_t *)FUN_180275540(cleanup_param, *(int64_t *)(render_context + 0x48) + 0x1f0, resource_handle);
+            if (resource_ptr != (int64_t *)0x0) {
                 (**(code **)(*resource_ptr + 0x28))(resource_ptr);
             }
             rendering_system_update_cloth_simulation(render_context, resource_ptr);
         }
         else {
             cleanup_param = FUN_18062b1e0(global_memory_allocator, RENDERING_CLOTH_DATA_SIZE, 8, 0x16);
-            resource_ptr = (longlong *)FUN_180275370(cleanup_param, resource_handle);
-            if (resource_ptr != (longlong *)0x0) {
+            resource_ptr = (int64_t *)FUN_180275370(cleanup_param, resource_handle);
+            if (resource_ptr != (int64_t *)0x0) {
                 (**(code **)(*resource_ptr + 0x28))(resource_ptr);
             }
             rendering_system_update_cloth_simulation(render_context, resource_ptr);
         }
         
         // 清理资源
-        if (resource_ptr != (longlong *)0x0) {
+        if (resource_ptr != (int64_t *)0x0) {
             (**(code **)(*resource_ptr + 0x38))(resource_ptr);
         }
         
@@ -535,15 +535,15 @@ name_found:
  * @return 创建的布料对象指针
  */
 uint64_t *rendering_system_create_cloth_object(
-    longlong render_context, 
+    int64_t render_context, 
     uint64_t *cloth_param, 
     uint8_t cloth_flag
 ) {
     uint64_t cloth_memory;
     uint8_t cloth_type;
     uint64_t cloth_data[4];
-    longlong *resource_ptr;
-    longlong *cloth_resource;
+    int64_t *resource_ptr;
+    int64_t *cloth_resource;
     
     // 分配布料对象内存
     cloth_memory = FUN_18062b1e0(global_memory_allocator, 200, 8, 3, 0, RENDERING_MEMORY_FLAG_EXCLUSIVE);
@@ -553,28 +553,28 @@ uint64_t *rendering_system_create_cloth_object(
     
     // 分配资源内存
     cloth_data[2] = FUN_18062b1e0(global_memory_allocator, RENDERING_CLOTH_DATA_SIZE, 8, 0x16);
-    resource_ptr = (longlong *)FUN_180275090(cloth_data[2]);
+    resource_ptr = (int64_t *)FUN_180275090(cloth_data[2]);
     
-    if (resource_ptr != (longlong *)0x0) {
+    if (resource_ptr != (int64_t *)0x0) {
         (**(code **)(*resource_ptr + 0x28))(resource_ptr);
     }
     
     FUN_180275a60(cloth_data[0], resource_ptr, 1);
     
     // 创建布料资源
-    cloth_resource = (longlong *)rendering_system_create_render_object_ext(cloth_memory, resource_ptr, cloth_type);
+    cloth_resource = (int64_t *)rendering_system_create_render_object_ext(cloth_memory, resource_ptr, cloth_type);
     
-    if (cloth_resource != (longlong *)0x0) {
+    if (cloth_resource != (int64_t *)0x0) {
         (**(code **)(*cloth_resource + 0x28))(cloth_resource);
     }
     
-    if (resource_ptr != (longlong *)0x0) {
+    if (resource_ptr != (int64_t *)0x0) {
         (**(code **)(*resource_ptr + 0x38))(resource_ptr);
     }
     
     *cloth_param = cloth_resource;
     
-    if (cloth_resource != (longlong *)0x0) {
+    if (cloth_resource != (int64_t *)0x0) {
         (**(code **)(*cloth_resource + 0x28))(cloth_resource);
         (**(code **)(*cloth_resource + 0x38))(cloth_resource);
     }
@@ -632,16 +632,16 @@ uint64_t *rendering_system_initialize_cloth_params(
  */
 void rendering_system_update_cloth_parameters(
     uint64_t render_context, 
-    longlong param2, 
+    int64_t param2, 
     uint64_t param3, 
     uint8_t cloth_flag
 ) {
     uint32_t *data_ptr;
     uint32_t data_size;
     uint64_t cleanup_param;
-    longlong *resource_ptr;
+    int64_t *resource_ptr;
     void *resource_cleanup;
-    longlong cleanup_flag = 0;
+    int64_t cleanup_flag = 0;
     uint64_t stack_data[3];
     
     // 初始化清理结构
@@ -658,14 +658,14 @@ void rendering_system_update_cloth_parameters(
     
     if (data_size != 0) {
         FUN_180628f30(&resource_cleanup, data_ptr, data_size, cloth_flag, RENDERING_MEMORY_FLAG_EXCLUSIVE);
-        *(longlong *)(param2 + 8) = *(longlong *)(param2 + 8) + (uint64_t)data_size;
+        *(int64_t *)(param2 + 8) = *(int64_t *)(param2 + 8) + (uint64_t)data_size;
     }
     
     // 分配资源内存
     cleanup_param = FUN_18062b1e0(global_memory_allocator, RENDERING_CLOTH_DATA_SIZE, 8, 3);
-    resource_ptr = (longlong *)FUN_180275090(cleanup_param);
+    resource_ptr = (int64_t *)FUN_180275090(cleanup_param);
     
-    if (resource_ptr != (longlong *)0x0) {
+    if (resource_ptr != (int64_t *)0x0) {
         (**(code **)(*resource_ptr + 0x28))(resource_ptr);
     }
     

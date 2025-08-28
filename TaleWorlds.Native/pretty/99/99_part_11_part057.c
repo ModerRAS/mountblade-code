@@ -124,13 +124,13 @@ extern uint64_t GET_SECURITY_COOKIE();                 ///< 系统数据表
  * 4. 处理协议命令
  * 5. 状态更新和清理
  */
-void AdvancedDataProcessor(longlong *param_1, char param_2, int8_t param_3)
+void AdvancedDataProcessor(int64_t *param_1, char param_2, int8_t param_3)
 {
     // 局部变量声明
     int8_t uVar1;                          ///< 临时变量1
     char cVar2;                                ///< 字符变量
-    longlong lVar3;                            ///< 长整型变量3
-    longlong lVar4;                            ///< 长整型变量4
+    int64_t lVar3;                            ///< 长整型变量3
+    int64_t lVar4;                            ///< 长整型变量4
     byte bVar5;                                ///< 字节变量5
     byte bVar6;                                ///< 字节变量6
     uint uVar7;                                ///< 无符号整型变量7
@@ -150,14 +150,14 @@ void AdvancedDataProcessor(longlong *param_1, char param_2, int8_t param_3)
     byte bStack_146;                            ///< 栈字节146
     int iStack_144;                             ///< 栈整型144
     int8_t auStack_138[BUFFER_SIZE_LARGE];  ///< 大栈缓冲区
-    ulonglong uStack_38;                        ///< 栈长整型38
-    ulonglong uVar9;                            ///< 无符号长整型变量9
+    uint64_t uStack_38;                        ///< 栈长整型38
+    uint64_t uVar9;                            ///< 无符号长整型变量9
     
     // 初始化栈变量
-    uStack_38 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_188;
+    uStack_38 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_188;
     
     // 状态检查和初始化
-    if ((param_1[1] != 0) && (*(char *)((longlong)param_1 + 0x24) == '\0')) {
+    if ((param_1[1] != 0) && (*(char *)((int64_t)param_1 + 0x24) == '\0')) {
         lVar4 = *param_1;
         fVar13 = *(float *)(param_1 + 4);
         
@@ -165,62 +165,62 @@ void AdvancedDataProcessor(longlong *param_1, char param_2, int8_t param_3)
         if (fVar13 < *(float *)(lVar4 + 0x3bec) || fVar13 == *(float *)(lVar4 + 0x3bec)) {
 LAB_1807bb170:
             // 处理状态标志
-            if (*(char *)((longlong)param_1 + 0x1c) == '\0') {
+            if (*(char *)((int64_t)param_1 + 0x1c) == '\0') {
                 cVar10 = '\0';
                 uVar7 = *(uint *)(param_1 + 2);
                 uVar11 = 0;
                 
                 // 数据长度验证和处理
-                if (uVar7 < *(uint *)((longlong)param_1 + 0x14)) {
+                if (uVar7 < *(uint *)((int64_t)param_1 + 0x14)) {
                     while( true ) {
                         if (cVar10 == '\x04') goto LAB_1807bb1c0;
                         cVar10 = cVar10 + '\x01';
-                        bVar6 = *(byte *)((ulonglong)uVar7 + param_1[1]);
+                        bVar6 = *(byte *)((uint64_t)uVar7 + param_1[1]);
                         uVar11 = uVar11 * 0x80 + (bVar6 & 0x7f);
                         uVar7 = uVar7 + 1;
                         *(uint *)(param_1 + 2) = uVar7;
                         if (-1 < (char)bVar6) break;
-                        if (*(uint *)((longlong)param_1 + 0x14) <= uVar7) goto LAB_1807bb1c0;
+                        if (*(uint *)((int64_t)param_1 + 0x14) <= uVar7) goto LAB_1807bb1c0;
                     }
                     
                     // 数据处理和状态更新
                     lVar4 = *param_1;
-                    *(int8_t *)((longlong)param_1 + 0x1c) = 0;
+                    *(int8_t *)((int64_t)param_1 + 0x1c) = 0;
                     fVar13 = (float)uVar11 + *(float *)(param_1 + 4);
                     *(float *)(param_1 + 4) = fVar13;
                     goto LAB_1807bb1ea;
                 }
 LAB_1807bb1c0:
-                *(int8_t *)((longlong)param_1 + 0x24) = 1;
+                *(int8_t *)((int64_t)param_1 + 0x24) = 1;
             }
             else {
 LAB_1807bb1ea:
                 // 进一步数据处理
                 if (fVar13 < *(float *)(lVar4 + 0x3bec) || fVar13 == *(float *)(lVar4 + 0x3bec)) {
                     uVar7 = *(uint *)(param_1 + 2);
-                    uVar11 = *(uint *)((longlong)param_1 + 0x14);
-                    *(int8_t *)((longlong)param_1 + 0x1c) = 0;
+                    uVar11 = *(uint *)((int64_t)param_1 + 0x14);
+                    *(int8_t *)((int64_t)param_1 + 0x1c) = 0;
                     
                     if (uVar11 <= uVar7) goto LAB_1807bb1c0;
                     
                     lVar3 = param_1[1];
-                    bVar6 = *(byte *)((ulonglong)uVar7 + lVar3);
+                    bVar6 = *(byte *)((uint64_t)uVar7 + lVar3);
                     uVar8 = uVar7 + 1;
-                    uVar9 = (ulonglong)uVar8;
+                    uVar9 = (uint64_t)uVar8;
                     *(uint *)(param_1 + 2) = uVar8;
                     
                     // 根据数据类型处理
                     if (bVar6 < DATA_TYPE_ENCODED) {
                         bVar5 = bVar6;
                         if (bVar6 < DATA_TYPE_RAW) {
-                            bVar5 = *(byte *)((longlong)param_1 + 0x26);
+                            bVar5 = *(byte *)((int64_t)param_1 + 0x26);
                         }
                         
                         // 数据处理操作
                         uStack_160 = CONCAT31(uStack_160._1_3_, param_3);
-                        lVar3 = (ulonglong)(bVar5 & 0xf) * 0x378;
+                        lVar3 = (uint64_t)(bVar5 & 0xf) * 0x378;
                         uStack_168 = CONCAT31(uStack_168._1_3_, param_2);
-                        *(longlong **)(lVar4 + 0x440 + lVar3) = param_1;
+                        *(int64_t **)(lVar4 + 0x440 + lVar3) = param_1;
                         InternalMemoryOperation(lVar3 + *param_1 + 0x428, bVar5, 
                                                CONCAT31((int3)(uVar8 >> 8), bVar6 < DATA_TYPE_RAW));
                         bVar6 = bVar5;
@@ -241,13 +241,13 @@ LAB_1807bb1ea:
                                     *(uint *)(param_1 + 2) = uVar7 + iVar12;
                                     goto LAB_1807bb778;
                                 }
-                                uVar9 = (ulonglong)uVar7;
+                                uVar9 = (uint64_t)uVar7;
                             } while (uVar7 < uVar11);
-                            *(int8_t *)((longlong)param_1 + 0x24) = 1;
+                            *(int8_t *)((int64_t)param_1 + 0x24) = 1;
                         }
                         else {
 LAB_1807bb47c:
-                            *(int8_t *)((longlong)param_1 + 0x24) = 1;
+                            *(int8_t *)((int64_t)param_1 + 0x24) = 1;
                         }
                     }
                     else if (bVar6 == DATA_TYPE_SPECIAL) {
@@ -261,9 +261,9 @@ LAB_1807bb47c:
                             uVar7 = (int)uVar9 + 1;
                             *(uint *)(param_1 + 2) = uVar7;
                             if (-1 < cVar2) goto LAB_1807bb778;
-                            uVar9 = (ulonglong)uVar7;
+                            uVar9 = (uint64_t)uVar7;
                         } while (uVar7 < uVar11);
-                        *(int8_t *)((longlong)param_1 + 0x24) = 1;
+                        *(int8_t *)((int64_t)param_1 + 0x24) = 1;
                     }
                     else if (bVar6 == DATA_TYPE_EXTENDED) {
                         // 扩展数据处理和协议命令处理
@@ -271,7 +271,7 @@ LAB_1807bb47c:
                             uVar1 = *(int8_t *)(uVar9 + lVar3);
                             cVar10 = '\0';
                             uVar7 = uVar7 + 2;
-                            uVar9 = (ulonglong)uVar7;
+                            uVar9 = (uint64_t)uVar7;
                             uVar8 = 0;
                             *(uint *)(param_1 + 2) = uVar7;
                             
@@ -284,7 +284,7 @@ LAB_1807bb271:
                                     uVar8 = uVar8 * 0x80 + (bVar5 & 0x7f);
                                     iVar12 = (int)uVar9;
                                     uVar7 = iVar12 + 1;
-                                    uVar9 = (ulonglong)uVar7;
+                                    uVar9 = (uint64_t)uVar7;
                                     *(uint *)(param_1 + 2) = uVar7;
                                     if ((char)bVar5 < '\0') goto code_r0x0001807bb29c;
                                     
@@ -365,12 +365,12 @@ LAB_1807bb271:
                                         // 标志设置命令
                                         if (uVar8 != 0) {
                                             if (uVar7 < uVar11) {
-                                                *(int8_t *)((longlong)param_1 + 0x25) = *(int8_t *)(uVar9 + lVar3);
+                                                *(int8_t *)((int64_t)param_1 + 0x25) = *(int8_t *)(uVar9 + lVar3);
 code_r0x0001807bb4a3:
                                                 *(int *)(param_1 + 2) = iVar12 + 2;
                                             }
                                             else {
-                                                *(int8_t *)((longlong)param_1 + 0x24) = 1;
+                                                *(int8_t *)((int64_t)param_1 + 0x24) = 1;
                                             }
                                         }
                                         break;
@@ -393,21 +393,21 @@ code_r0x0001807bb4a3:
                                         if (uVar11 <= uVar7) goto LAB_1807bb47c;
                                         *(int8_t *)(*param_1 + 0x3bd4) = *(int8_t *)(uVar9 + lVar3);
                                         *(int *)(param_1 + 2) = (int)param_1[2] + 1;
-                                        if (*(uint *)((longlong)param_1 + 0x14) <= *(uint *)(param_1 + 2))
+                                        if (*(uint *)((int64_t)param_1 + 0x14) <= *(uint *)(param_1 + 2))
                                             goto LAB_1807bb47c;
-                                        *(int8_t *)(*param_1 + 0x3bd5) = *(int8_t *)((ulonglong)*(uint *)(param_1 + 2) + param_1[1]);
+                                        *(int8_t *)(*param_1 + 0x3bd5) = *(int8_t *)((uint64_t)*(uint *)(param_1 + 2) + param_1[1]);
                                         *(int *)(param_1 + 2) = (int)param_1[2] + 1;
-                                        if (*(uint *)((longlong)param_1 + 0x14) <= *(uint *)(param_1 + 2))
+                                        if (*(uint *)((int64_t)param_1 + 0x14) <= *(uint *)(param_1 + 2))
                                             goto LAB_1807bb47c;
-                                        *(int8_t *)(*param_1 + 0x3bd6) = *(int8_t *)((ulonglong)*(uint *)(param_1 + 2) + param_1[1]);
+                                        *(int8_t *)(*param_1 + 0x3bd6) = *(int8_t *)((uint64_t)*(uint *)(param_1 + 2) + param_1[1]);
                                         *(int *)(param_1 + 2) = (int)param_1[2] + 1;
-                                        if (*(uint *)((longlong)param_1 + 0x14) <= *(uint *)(param_1 + 2))
+                                        if (*(uint *)((int64_t)param_1 + 0x14) <= *(uint *)(param_1 + 2))
                                             goto LAB_1807bb47c;
-                                        *(int8_t *)(*param_1 + 0x3bd7) = *(int8_t *)((ulonglong)*(uint *)(param_1 + 2) + param_1[1]);
+                                        *(int8_t *)(*param_1 + 0x3bd7) = *(int8_t *)((uint64_t)*(uint *)(param_1 + 2) + param_1[1]);
                                         *(int *)(param_1 + 2) = (int)param_1[2] + 1;
-                                        if (*(uint *)((longlong)param_1 + 0x14) <= *(uint *)(param_1 + 2))
+                                        if (*(uint *)((int64_t)param_1 + 0x14) <= *(uint *)(param_1 + 2))
                                             goto LAB_1807bb47c;
-                                        *(int8_t *)(*param_1 + 0x3bd8) = *(int8_t *)((ulonglong)*(uint *)(param_1 + 2) + param_1[1]);
+                                        *(int8_t *)(*param_1 + 0x3bd8) = *(int8_t *)((uint64_t)*(uint *)(param_1 + 2) + param_1[1]);
                                         *(int *)(param_1 + 2) = (int)param_1[2] + 1;
                                         break;
                                         
@@ -416,17 +416,17 @@ code_r0x0001807bb4a3:
                                         if (uVar11 <= uVar7) goto LAB_1807bb47c;
                                         *(int8_t *)(*param_1 + 0x3bd9) = *(int8_t *)(uVar9 + lVar3);
                                         *(int *)(param_1 + 2) = (int)param_1[2] + 1;
-                                        if (*(uint *)((longlong)param_1 + 0x14) <= *(uint *)(param_1 + 2))
+                                        if (*(uint *)((int64_t)param_1 + 0x14) <= *(uint *)(param_1 + 2))
                                             goto LAB_1807bb47c;
-                                        *(int8_t *)(*param_1 + 0x3bda) = *(int8_t *)((ulonglong)*(uint *)(param_1 + 2) + param_1[1]);
+                                        *(int8_t *)(*param_1 + 0x3bda) = *(int8_t *)((uint64_t)*(uint *)(param_1 + 2) + param_1[1]);
                                         *(int *)(param_1 + 2) = (int)param_1[2] + 1;
-                                        if (*(uint *)((longlong)param_1 + 0x14) <= *(uint *)(param_1 + 2))
+                                        if (*(uint *)((int64_t)param_1 + 0x14) <= *(uint *)(param_1 + 2))
                                             goto LAB_1807bb47c;
-                                        *(int8_t *)(*param_1 + 0x3bdb) = *(int8_t *)((ulonglong)*(uint *)(param_1 + 2) + param_1[1]);
+                                        *(int8_t *)(*param_1 + 0x3bdb) = *(int8_t *)((uint64_t)*(uint *)(param_1 + 2) + param_1[1]);
                                         *(int *)(param_1 + 2) = (int)param_1[2] + 1;
-                                        if (*(uint *)((longlong)param_1 + 0x14) <= *(uint *)(param_1 + 2))
+                                        if (*(uint *)((int64_t)param_1 + 0x14) <= *(uint *)(param_1 + 2))
                                             goto LAB_1807bb47c;
-                                        *(int8_t *)(*param_1 + 0x3bdc) = *(int8_t *)((ulonglong)*(uint *)(param_1 + 2) + param_1[1]);
+                                        *(int8_t *)(*param_1 + 0x3bdc) = *(int8_t *)((uint64_t)*(uint *)(param_1 + 2) + param_1[1]);
                                         *(int *)(param_1 + 2) = (int)param_1[2] + 1;
                                         break;
                                         
@@ -435,9 +435,9 @@ code_r0x0001807bb4a3:
                                         if (uVar11 <= uVar7) goto LAB_1807bb47c;
                                         *(int8_t *)(*param_1 + 0x3bdd) = *(int8_t *)(uVar9 + lVar3);
                                         *(int *)(param_1 + 2) = (int)param_1[2] + 1;
-                                        if (*(uint *)((longlong)param_1 + 0x14) <= *(uint *)(param_1 + 2))
+                                        if (*(uint *)((int64_t)param_1 + 0x14) <= *(uint *)(param_1 + 2))
                                             goto LAB_1807bb47c;
-                                        *(int8_t *)(*param_1 + 0x3bde) = *(int8_t *)((ulonglong)*(uint *)(param_1 + 2) + param_1[1]);
+                                        *(int8_t *)(*param_1 + 0x3bde) = *(int8_t *)((uint64_t)*(uint *)(param_1 + 2) + param_1[1]);
                                         *(int *)(param_1 + 2) = (int)param_1[2] + 1;
                                         break;
                                         
@@ -451,18 +451,18 @@ code_r0x0001807bb4a3:
                             }
                             goto LAB_1807bb47c;
                         }
-                        *(int8_t *)((longlong)param_1 + 0x24) = 1;
+                        *(int8_t *)((int64_t)param_1 + 0x24) = 1;
                     }
                     goto LAB_1807bb778;
                 }
-                *(int8_t *)((longlong)param_1 + 0x1c) = 1;
+                *(int8_t *)((int64_t)param_1 + 0x1c) = 1;
             }
         }
     }
     
 LAB_1807bb79f:
     // 系统退出调用
-    InternalSystemExit(uStack_38 ^ (ulonglong)auStack_188);
+    InternalSystemExit(uStack_38 ^ (uint64_t)auStack_188);
     
 code_r0x0001807bb29c:
     // 边界检查和错误处理
@@ -470,12 +470,12 @@ code_r0x0001807bb29c:
     goto LAB_1807bb271;
     
 code_r0x0001807bb2a1:
-    *(int8_t *)((longlong)param_1 + 0x24) = 1;
+    *(int8_t *)((int64_t)param_1 + 0x24) = 1;
     
 LAB_1807bb778:
     // 状态更新和循环处理
-    *(byte *)((longlong)param_1 + 0x26) = bVar6;
-    if (*(char *)((longlong)param_1 + 0x24) != '\0') goto LAB_1807bb79f;
+    *(byte *)((int64_t)param_1 + 0x26) = bVar6;
+    if (*(char *)((int64_t)param_1 + 0x24) != '\0') goto LAB_1807bb79f;
     lVar4 = *param_1;
     fVar13 = *(float *)(param_1 + 4);
     if (*(float *)(lVar4 + 0x3bec) <= fVar13 && fVar13 != *(float *)(lVar4 + 0x3bec))
@@ -498,7 +498,7 @@ LAB_1807bb778:
  * 
  * @return           操作状态码，0x10表示错误
  */
-uint64_t BufferCopyManager(longlong param_1, longlong param_2, int param_3)
+uint64_t BufferCopyManager(int64_t param_1, int64_t param_2, int param_3)
 {
     uint uVar1;                              ///< 当前缓冲区位置
     uint uVar2;                              ///< 缓冲区总长度
@@ -520,7 +520,7 @@ uint64_t BufferCopyManager(longlong param_1, longlong param_2, int param_3)
     
     // 执行内存复制操作
     if (param_2 != 0) {
-        memcpy(param_2, (ulonglong)uVar1 + *(longlong *)(param_1 + 8), (longlong)param_3);
+        memcpy(param_2, (uint64_t)uVar1 + *(int64_t *)(param_1 + 8), (int64_t)param_3);
     }
     
     // 更新缓冲区位置

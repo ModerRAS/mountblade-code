@@ -35,7 +35,7 @@
 // 类型别名定义
 // =============================================================================
 
-typedef longlong* DataPtr;
+typedef int64_t* DataPtr;
 typedef void** ResourcePtr;
 typedef uint64_t SystemFlags;
 typedef int32_t SystemStatus;
@@ -186,13 +186,13 @@ typedef enum {
  */
 #define SystemConfigManager SystemConfigManager
 
-// 函数: void SystemCoreDataProcessor(longlong *data_ptr)
-void SystemCoreDataProcessor(longlong *data_ptr)
+// 函数: void SystemCoreDataProcessor(int64_t *data_ptr)
+void SystemCoreDataProcessor(int64_t *data_ptr)
 
 {
-  ulonglong uVar1;
-  longlong lVar2;
-  longlong lVar3;
+  uint64_t uVar1;
+  int64_t lVar2;
+  int64_t lVar3;
   int8_t *puVar4;
   int8_t auStack_b38 [32];
   void **ppuStack_b18;
@@ -299,10 +299,10 @@ void SystemCoreDataProcessor(longlong *data_ptr)
   int8_t auStack_98 [32];
   int8_t auStack_78 [32];
   int8_t auStack_58 [32];
-  ulonglong uStack_38;
+  uint64_t uStack_38;
   
   uStack_9a0 = 0xfffffffffffffffe;
-  uStack_38 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_b38;
+  uStack_38 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_b38;
   ppuStack_b18 = (void **)SystemResourceCleaner;
   SystemMemoryManager(auStack_998,0xa0,0xf,SystemConfigManager);
   ppuStack_a68 = &puStack_b08;
@@ -313,7 +313,7 @@ void SystemCoreDataProcessor(longlong *data_ptr)
   uStack_af8 = 0;
   SystemParameterInitializer(&puStack_b08,4);
   *(int32_t *)puStack_b00 = 0x61757161;
-  *(int8_t *)((longlong)puStack_b00 + 4) = 0;
+  *(int8_t *)((int64_t)puStack_b00 + 4) = 0;
   uStack_af8 = 4;
   ppuStack_a60 = &puStack_ae8;
   puStack_ae8 = &system_data_buffer_ptr;
@@ -331,7 +331,7 @@ void SystemCoreDataProcessor(longlong *data_ptr)
   SystemParameterInitializer(&puStack_ac8,10);
   *puStack_ac0 = 0x6c735f6573726f68;
   *(int16_t *)(puStack_ac0 + 1) = 0x776f;
-  *(int8_t *)((longlong)puStack_ac0 + 10) = 0;
+  *(int8_t *)((int64_t)puStack_ac0 + 10) = 0;
   uStack_ab8 = 10;
   ppuStack_a50 = &puStack_aa8;
   puStack_aa8 = &system_data_buffer_ptr;
@@ -340,7 +340,7 @@ void SystemCoreDataProcessor(longlong *data_ptr)
   uStack_a98 = 0;
   SystemParameterInitializer(&puStack_aa8,5);
   *(int32_t *)puStack_aa0 = 0x73726f68;
-  *(int16_t *)((longlong)puStack_aa0 + 4) = 0x65;
+  *(int16_t *)((int64_t)puStack_aa0 + 4) = 0x65;
   uStack_a98 = 5;
   ppuStack_a48 = &puStack_a88;
   puStack_a88 = &system_data_buffer_ptr;
@@ -385,7 +385,7 @@ void SystemCoreDataProcessor(longlong *data_ptr)
   SystemParameterInitializer(&puStack_ac8,10);
   *puStack_ac0 = 0x6c735f6573726f68;
   *(int16_t *)(puStack_ac0 + 1) = 0x776f;
-  *(int8_t *)((longlong)puStack_ac0 + 10) = 0;
+  *(int8_t *)((int64_t)puStack_ac0 + 10) = 0;
   uStack_ab8 = 10;
   ppuStack_a60 = &puStack_ae8;
   puStack_ae8 = &system_data_buffer_ptr;
@@ -394,7 +394,7 @@ void SystemCoreDataProcessor(longlong *data_ptr)
   uStack_ad8 = 0;
   SystemParameterInitializer(&puStack_ae8,5);
   *(int32_t *)puStack_ae0 = 0x73726f68;
-  *(int16_t *)((longlong)puStack_ae0 + 4) = 0x65;
+  *(int16_t *)((int64_t)puStack_ae0 + 4) = 0x65;
   uStack_ad8 = 5;
   ppuStack_a68 = &puStack_b08;
   puStack_b08 = &system_data_buffer_ptr;
@@ -421,7 +421,7 @@ void SystemCoreDataProcessor(longlong *data_ptr)
   uStack_a78 = 0;
   SystemParameterInitializer(&puStack_a88,4);
   *(int32_t *)puStack_a80 = 0x776f6e73;
-  *(int8_t *)((longlong)puStack_a80 + 4) = 0;
+  *(int8_t *)((int64_t)puStack_a80 + 4) = 0;
   uStack_a78 = 4;
   ppuStack_a50 = &puStack_aa8;
   puStack_aa8 = &system_data_buffer_ptr;
@@ -439,7 +439,7 @@ void SystemCoreDataProcessor(longlong *data_ptr)
   SystemParameterInitializer(&puStack_ac8,10);
   *puStack_ac0 = 0x6c735f6573726f68;
   *(int16_t *)(puStack_ac0 + 1) = 0x776f;
-  *(int8_t *)((longlong)puStack_ac0 + 10) = 0;
+  *(int8_t *)((int64_t)puStack_ac0 + 10) = 0;
   uStack_ab8 = 10;
   ppuStack_a60 = &puStack_ae8;
   puStack_ae8 = &system_data_buffer_ptr;
@@ -448,7 +448,7 @@ void SystemCoreDataProcessor(longlong *data_ptr)
   uStack_ad8 = 0;
   SystemParameterInitializer(&puStack_ae8,5);
   *(int32_t *)puStack_ae0 = 0x73726f68;
-  *(int16_t *)((longlong)puStack_ae0 + 4) = 0x65;
+  *(int16_t *)((int64_t)puStack_ae0 + 4) = 0x65;
   uStack_ad8 = 5;
   ppuStack_a68 = &puStack_b08;
   puStack_b08 = &system_data_buffer_ptr;
@@ -475,7 +475,7 @@ void SystemCoreDataProcessor(longlong *data_ptr)
   uStack_a78 = 0;
   SystemParameterInitializer(&puStack_a88,4);
   *(int32_t *)puStack_a80 = 0x64697261;
-  *(int8_t *)((longlong)puStack_a80 + 4) = 0;
+  *(int8_t *)((int64_t)puStack_a80 + 4) = 0;
   uStack_a78 = 4;
   ppuStack_a50 = &puStack_aa8;
   puStack_aa8 = &system_data_buffer_ptr;
@@ -493,7 +493,7 @@ void SystemCoreDataProcessor(longlong *data_ptr)
   SystemParameterInitializer(&puStack_ac8,10);
   *puStack_ac0 = 0x6c735f6573726f68;
   *(int16_t *)(puStack_ac0 + 1) = 0x776f;
-  *(int8_t *)((longlong)puStack_ac0 + 10) = 0;
+  *(int8_t *)((int64_t)puStack_ac0 + 10) = 0;
   uStack_ab8 = 10;
   ppuStack_a60 = &puStack_ae8;
   puStack_ae8 = &system_data_buffer_ptr;
@@ -502,7 +502,7 @@ void SystemCoreDataProcessor(longlong *data_ptr)
   uStack_ad8 = 0;
   SystemParameterInitializer(&puStack_ae8,5);
   *(int32_t *)puStack_ae0 = 0x73726f68;
-  *(int16_t *)((longlong)puStack_ae0 + 4) = 0x65;
+  *(int16_t *)((int64_t)puStack_ae0 + 4) = 0x65;
   uStack_ad8 = 5;
   ppuStack_a68 = &puStack_b08;
   puStack_b08 = &system_data_buffer_ptr;
@@ -529,7 +529,7 @@ void SystemCoreDataProcessor(longlong *data_ptr)
   uStack_a78 = 0;
   SystemParameterInitializer(&puStack_a88,4);
   *(int32_t *)puStack_a80 = 0x6873756c;
-  *(int8_t *)((longlong)puStack_a80 + 4) = 0;
+  *(int8_t *)((int64_t)puStack_a80 + 4) = 0;
   uStack_a78 = 4;
   ppuStack_a50 = &puStack_aa8;
   puStack_aa8 = &system_data_buffer_ptr;
@@ -547,7 +547,7 @@ void SystemCoreDataProcessor(longlong *data_ptr)
   SystemParameterInitializer(&puStack_ac8,10);
   *puStack_ac0 = 0x6c735f6573726f68;
   *(int16_t *)(puStack_ac0 + 1) = 0x776f;
-  *(int8_t *)((longlong)puStack_ac0 + 10) = 0;
+  *(int8_t *)((int64_t)puStack_ac0 + 10) = 0;
   uStack_ab8 = 10;
   ppuStack_a60 = &puStack_ae8;
   puStack_ae8 = &system_data_buffer_ptr;
@@ -556,7 +556,7 @@ void SystemCoreDataProcessor(longlong *data_ptr)
   uStack_ad8 = 0;
   SystemParameterInitializer(&puStack_ae8,5);
   *(int32_t *)puStack_ae0 = 0x73726f68;
-  *(int16_t *)((longlong)puStack_ae0 + 4) = 0x65;
+  *(int16_t *)((int64_t)puStack_ae0 + 4) = 0x65;
   uStack_ad8 = 5;
   ppuStack_a68 = &puStack_b08;
   puStack_b08 = &system_data_buffer_ptr;
@@ -583,7 +583,7 @@ void SystemCoreDataProcessor(longlong *data_ptr)
   uStack_a78 = 0;
   SystemParameterInitializer(&puStack_a88,4);
   *(int32_t *)puStack_a80 = 0x64697261;
-  *(int8_t *)((longlong)puStack_a80 + 4) = 0;
+  *(int8_t *)((int64_t)puStack_a80 + 4) = 0;
   uStack_a78 = 4;
   ppuStack_a50 = &puStack_aa8;
   puStack_aa8 = &system_data_buffer_ptr;
@@ -601,7 +601,7 @@ void SystemCoreDataProcessor(longlong *data_ptr)
   SystemParameterInitializer(&puStack_ac8,10);
   *puStack_ac0 = 0x6c735f6573726f68;
   *(int16_t *)(puStack_ac0 + 1) = 0x776f;
-  *(int8_t *)((longlong)puStack_ac0 + 10) = 0;
+  *(int8_t *)((int64_t)puStack_ac0 + 10) = 0;
   uStack_ab8 = 10;
   ppuStack_a60 = &puStack_ae8;
   puStack_ae8 = &system_data_buffer_ptr;
@@ -610,7 +610,7 @@ void SystemCoreDataProcessor(longlong *data_ptr)
   uStack_ad8 = 0;
   SystemParameterInitializer(&puStack_ae8,5);
   *(int32_t *)puStack_ae0 = 0x73726f68;
-  *(int16_t *)((longlong)puStack_ae0 + 4) = 0x65;
+  *(int16_t *)((int64_t)puStack_ae0 + 4) = 0x65;
   uStack_ad8 = 5;
   ppuStack_a68 = &puStack_b08;
   puStack_b08 = &system_data_buffer_ptr;
@@ -637,7 +637,7 @@ void SystemCoreDataProcessor(longlong *data_ptr)
   uStack_a78 = 0;
   SystemParameterInitializer(&puStack_a88,4);
   *(int32_t *)puStack_a80 = 0x6873756c;
-  *(int8_t *)((longlong)puStack_a80 + 4) = 0;
+  *(int8_t *)((int64_t)puStack_a80 + 4) = 0;
   uStack_a78 = 4;
   ppuStack_a50 = &puStack_aa8;
   puStack_aa8 = &system_data_buffer_ptr;
@@ -655,7 +655,7 @@ void SystemCoreDataProcessor(longlong *data_ptr)
   SystemParameterInitializer(&puStack_ac8,10);
   *puStack_ac0 = 0x6c735f6573726f68;
   *(int16_t *)(puStack_ac0 + 1) = 0x776f;
-  *(int8_t *)((longlong)puStack_ac0 + 10) = 0;
+  *(int8_t *)((int64_t)puStack_ac0 + 10) = 0;
   uStack_ab8 = 10;
   ppuStack_a60 = &puStack_ae8;
   puStack_ae8 = &system_data_buffer_ptr;
@@ -664,7 +664,7 @@ void SystemCoreDataProcessor(longlong *data_ptr)
   uStack_ad8 = 0;
   SystemParameterInitializer(&puStack_ae8,5);
   *(int32_t *)puStack_ae0 = 0x73726f68;
-  *(int16_t *)((longlong)puStack_ae0 + 4) = 0x65;
+  *(int16_t *)((int64_t)puStack_ae0 + 4) = 0x65;
   uStack_ad8 = 5;
   ppuStack_a68 = &puStack_b08;
   puStack_b08 = &system_data_buffer_ptr;
@@ -691,7 +691,7 @@ void SystemCoreDataProcessor(longlong *data_ptr)
   uStack_a78 = 0;
   SystemParameterInitializer(&puStack_a88,4);
   *(int32_t *)puStack_a80 = 0x64697261;
-  *(int8_t *)((longlong)puStack_a80 + 4) = 0;
+  *(int8_t *)((int64_t)puStack_a80 + 4) = 0;
   uStack_a78 = 4;
   ppuStack_a50 = &puStack_aa8;
   puStack_aa8 = &system_data_buffer_ptr;
@@ -709,7 +709,7 @@ void SystemCoreDataProcessor(longlong *data_ptr)
   SystemParameterInitializer(&puStack_ac8,10);
   *puStack_ac0 = 0x6c735f6573726f68;
   *(int16_t *)(puStack_ac0 + 1) = 0x776f;
-  *(int8_t *)((longlong)puStack_ac0 + 10) = 0;
+  *(int8_t *)((int64_t)puStack_ac0 + 10) = 0;
   uStack_ab8 = 10;
   ppuStack_a60 = &puStack_ae8;
   puStack_ae8 = &system_data_buffer_ptr;
@@ -718,7 +718,7 @@ void SystemCoreDataProcessor(longlong *data_ptr)
   uStack_ad8 = 0;
   SystemParameterInitializer(&puStack_ae8,5);
   *(int32_t *)puStack_ae0 = 0x73726f68;
-  *(int16_t *)((longlong)puStack_ae0 + 4) = 0x65;
+  *(int16_t *)((int64_t)puStack_ae0 + 4) = 0x65;
   uStack_ad8 = 5;
   ppuStack_a68 = &puStack_b08;
   puStack_b08 = &system_data_buffer_ptr;
@@ -745,7 +745,7 @@ void SystemCoreDataProcessor(longlong *data_ptr)
   uStack_a78 = 0;
   SystemParameterInitializer(&puStack_a88,4);
   *(int32_t *)puStack_a80 = 0x61757161;
-  *(int8_t *)((longlong)puStack_a80 + 4) = 0;
+  *(int8_t *)((int64_t)puStack_a80 + 4) = 0;
   uStack_a78 = 4;
   ppuStack_a50 = &puStack_aa8;
   puStack_aa8 = &system_data_buffer_ptr;
@@ -763,7 +763,7 @@ void SystemCoreDataProcessor(longlong *data_ptr)
   SystemParameterInitializer(&puStack_ac8,10);
   *puStack_ac0 = 0x6c735f6573726f68;
   *(int16_t *)(puStack_ac0 + 1) = 0x776f;
-  *(int8_t *)((longlong)puStack_ac0 + 10) = 0;
+  *(int8_t *)((int64_t)puStack_ac0 + 10) = 0;
   uStack_ab8 = 10;
   ppuStack_a60 = &puStack_ae8;
   puStack_ae8 = &system_data_buffer_ptr;
@@ -772,7 +772,7 @@ void SystemCoreDataProcessor(longlong *data_ptr)
   uStack_ad8 = 0;
   SystemParameterInitializer(&puStack_ae8,5);
   *(int32_t *)puStack_ae0 = 0x73726f68;
-  *(int16_t *)((longlong)puStack_ae0 + 4) = 0x65;
+  *(int16_t *)((int64_t)puStack_ae0 + 4) = 0x65;
   uStack_ad8 = 5;
   ppuStack_a68 = &puStack_b08;
   puStack_b08 = &system_data_buffer_ptr;
@@ -799,7 +799,7 @@ void SystemCoreDataProcessor(longlong *data_ptr)
   uStack_a78 = 0;
   SystemParameterInitializer(&puStack_a88,4);
   *(int32_t *)puStack_a80 = 0x61757161;
-  *(int8_t *)((longlong)puStack_a80 + 4) = 0;
+  *(int8_t *)((int64_t)puStack_a80 + 4) = 0;
   uStack_a78 = 4;
   ppuStack_a50 = &puStack_aa8;
   puStack_aa8 = &system_data_buffer_ptr;
@@ -817,7 +817,7 @@ void SystemCoreDataProcessor(longlong *data_ptr)
   SystemParameterInitializer(&puStack_ac8,10);
   *puStack_ac0 = 0x6c735f6573726f68;
   *(int16_t *)(puStack_ac0 + 1) = 0x776f;
-  *(int8_t *)((longlong)puStack_ac0 + 10) = 0;
+  *(int8_t *)((int64_t)puStack_ac0 + 10) = 0;
   uStack_ab8 = 10;
   ppuStack_a60 = &puStack_ae8;
   puStack_ae8 = &system_data_buffer_ptr;
@@ -826,7 +826,7 @@ void SystemCoreDataProcessor(longlong *data_ptr)
   uStack_ad8 = 0;
   SystemParameterInitializer(&puStack_ae8,5);
   *(int32_t *)puStack_ae0 = 0x73726f68;
-  *(int16_t *)((longlong)puStack_ae0 + 4) = 0x65;
+  *(int16_t *)((int64_t)puStack_ae0 + 4) = 0x65;
   uStack_ad8 = 5;
   ppuStack_a68 = &puStack_b08;
   puStack_b08 = &system_data_buffer_ptr;
@@ -853,8 +853,8 @@ void SystemCoreDataProcessor(longlong *data_ptr)
   uStack_a78 = 0;
   SystemParameterInitializer(&puStack_a88,6);
   *(int32_t *)puStack_a80 = 0x65726f62;
-  *(int16_t *)((longlong)puStack_a80 + 4) = 0x6c61;
-  *(int8_t *)((longlong)puStack_a80 + 6) = 0;
+  *(int16_t *)((int64_t)puStack_a80 + 4) = 0x6c61;
+  *(int8_t *)((int64_t)puStack_a80 + 6) = 0;
   uStack_a78 = 6;
   ppuStack_a50 = &puStack_aa8;
   puStack_aa8 = &system_data_buffer_ptr;
@@ -872,7 +872,7 @@ void SystemCoreDataProcessor(longlong *data_ptr)
   SystemParameterInitializer(&puStack_ac8,10);
   *puStack_ac0 = 0x6c735f6573726f68;
   *(int16_t *)(puStack_ac0 + 1) = 0x776f;
-  *(int8_t *)((longlong)puStack_ac0 + 10) = 0;
+  *(int8_t *)((int64_t)puStack_ac0 + 10) = 0;
   uStack_ab8 = 10;
   ppuStack_a60 = &puStack_ae8;
   puStack_ae8 = &system_data_buffer_ptr;
@@ -881,7 +881,7 @@ void SystemCoreDataProcessor(longlong *data_ptr)
   uStack_ad8 = 0;
   SystemParameterInitializer(&puStack_ae8,5);
   *(int32_t *)puStack_ae0 = 0x73726f68;
-  *(int16_t *)((longlong)puStack_ae0 + 4) = 0x65;
+  *(int16_t *)((int64_t)puStack_ae0 + 4) = 0x65;
   uStack_ad8 = 5;
   ppuStack_a68 = &puStack_b08;
   puStack_b08 = &system_data_buffer_ptr;
@@ -908,7 +908,7 @@ void SystemCoreDataProcessor(longlong *data_ptr)
   uStack_a78 = 0;
   SystemParameterInitializer(&puStack_a88,4);
   *(int32_t *)puStack_a80 = 0x61757161;
-  *(int8_t *)((longlong)puStack_a80 + 4) = 0;
+  *(int8_t *)((int64_t)puStack_a80 + 4) = 0;
   uStack_a78 = 4;
   ppuStack_a50 = &puStack_aa8;
   puStack_aa8 = &system_data_buffer_ptr;
@@ -926,7 +926,7 @@ void SystemCoreDataProcessor(longlong *data_ptr)
   SystemParameterInitializer(&puStack_ac8,10);
   *puStack_ac0 = 0x6c735f6573726f68;
   *(int16_t *)(puStack_ac0 + 1) = 0x776f;
-  *(int8_t *)((longlong)puStack_ac0 + 10) = 0;
+  *(int8_t *)((int64_t)puStack_ac0 + 10) = 0;
   uStack_ab8 = 10;
   ppuStack_a60 = &puStack_ae8;
   puStack_ae8 = &system_data_buffer_ptr;
@@ -935,7 +935,7 @@ void SystemCoreDataProcessor(longlong *data_ptr)
   uStack_ad8 = 0;
   SystemParameterInitializer(&puStack_ae8,5);
   *(int32_t *)puStack_ae0 = 0x73726f68;
-  *(int16_t *)((longlong)puStack_ae0 + 4) = 0x65;
+  *(int16_t *)((int64_t)puStack_ae0 + 4) = 0x65;
   uStack_ad8 = 5;
   ppuStack_a68 = &puStack_b08;
   puStack_b08 = &system_data_buffer_ptr;
@@ -962,7 +962,7 @@ void SystemCoreDataProcessor(longlong *data_ptr)
   uStack_a78 = 0;
   SystemParameterInitializer(&puStack_a88,4);
   *(int32_t *)puStack_a80 = 0x61757161;
-  *(int8_t *)((longlong)puStack_a80 + 4) = 0;
+  *(int8_t *)((int64_t)puStack_a80 + 4) = 0;
   uStack_a78 = 4;
   ppuStack_a50 = &puStack_aa8;
   puStack_aa8 = &system_data_buffer_ptr;
@@ -980,7 +980,7 @@ void SystemCoreDataProcessor(longlong *data_ptr)
   SystemParameterInitializer(&puStack_ac8,10);
   *puStack_ac0 = 0x6c735f6573726f68;
   *(int16_t *)(puStack_ac0 + 1) = 0x776f;
-  *(int8_t *)((longlong)puStack_ac0 + 10) = 0;
+  *(int8_t *)((int64_t)puStack_ac0 + 10) = 0;
   uStack_ab8 = 10;
   ppuStack_a60 = &puStack_ae8;
   puStack_ae8 = &system_data_buffer_ptr;
@@ -989,7 +989,7 @@ void SystemCoreDataProcessor(longlong *data_ptr)
   uStack_ad8 = 0;
   SystemParameterInitializer(&puStack_ae8,5);
   *(int32_t *)puStack_ae0 = 0x73726f68;
-  *(int16_t *)((longlong)puStack_ae0 + 4) = 0x65;
+  *(int16_t *)((int64_t)puStack_ae0 + 4) = 0x65;
   uStack_ad8 = 5;
   ppuStack_a68 = &puStack_b08;
   puStack_b08 = &system_data_buffer_ptr;
@@ -1034,7 +1034,7 @@ void SystemCoreDataProcessor(longlong *data_ptr)
   SystemParameterInitializer(&puStack_ac8,10);
   *puStack_ac0 = 0x6c735f6573726f68;
   *(int16_t *)(puStack_ac0 + 1) = 0x776f;
-  *(int8_t *)((longlong)puStack_ac0 + 10) = 0;
+  *(int8_t *)((int64_t)puStack_ac0 + 10) = 0;
   uStack_ab8 = 10;
   ppuStack_a60 = &puStack_ae8;
   puStack_ae8 = &system_data_buffer_ptr;
@@ -1043,7 +1043,7 @@ void SystemCoreDataProcessor(longlong *data_ptr)
   uStack_ad8 = 0;
   SystemParameterInitializer(&puStack_ae8,5);
   *(int32_t *)puStack_ae0 = 0x73726f68;
-  *(int16_t *)((longlong)puStack_ae0 + 4) = 0x65;
+  *(int16_t *)((int64_t)puStack_ae0 + 4) = 0x65;
   uStack_ad8 = 5;
   ppuStack_a68 = &puStack_b08;
   puStack_b08 = &system_data_buffer_ptr;
@@ -1070,7 +1070,7 @@ void SystemCoreDataProcessor(longlong *data_ptr)
   uStack_a78 = 0;
   SystemParameterInitializer(&puStack_a88,4);
   *(int32_t *)puStack_a80 = 0x6873756c;
-  *(int8_t *)((longlong)puStack_a80 + 4) = 0;
+  *(int8_t *)((int64_t)puStack_a80 + 4) = 0;
   uStack_a78 = 4;
   ppuStack_a50 = &puStack_aa8;
   puStack_aa8 = &system_data_buffer_ptr;
@@ -1088,7 +1088,7 @@ void SystemCoreDataProcessor(longlong *data_ptr)
   SystemParameterInitializer(&puStack_ac8,10);
   *puStack_ac0 = 0x6c735f6573726f68;
   *(int16_t *)(puStack_ac0 + 1) = 0x776f;
-  *(int8_t *)((longlong)puStack_ac0 + 10) = 0;
+  *(int8_t *)((int64_t)puStack_ac0 + 10) = 0;
   uStack_ab8 = 10;
   ppuStack_a60 = &puStack_ae8;
   puStack_ae8 = &system_data_buffer_ptr;
@@ -1097,7 +1097,7 @@ void SystemCoreDataProcessor(longlong *data_ptr)
   uStack_ad8 = 0;
   SystemParameterInitializer(&puStack_ae8,5);
   *(int32_t *)puStack_ae0 = 0x73726f68;
-  *(int16_t *)((longlong)puStack_ae0 + 4) = 0x65;
+  *(int16_t *)((int64_t)puStack_ae0 + 4) = 0x65;
   uStack_ad8 = 5;
   ppuStack_a68 = &puStack_b08;
   puStack_b08 = &system_data_buffer_ptr;
@@ -1134,7 +1134,7 @@ void SystemCoreDataProcessor(longlong *data_ptr)
   } while (lVar2 != 0);
   SystemCacheManager(auStack_998,0xa0,0xf,SystemResourceCleaner);
                     // WARNING: Subroutine does not return
-  SystemStateValidator(uStack_38 ^ (ulonglong)auStack_b38);
+  SystemStateValidator(uStack_38 ^ (uint64_t)auStack_b38);
 }
 
 

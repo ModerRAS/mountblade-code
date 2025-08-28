@@ -239,12 +239,12 @@ typedef struct {
  * @param param_3 优化选项标志
  * @return 变换处理结果状态码
  */
-void RenderingGeometryTransformer(longlong param_1, char param_2, char param_3)
+void RenderingGeometryTransformer(int64_t param_1, char param_2, char param_3)
 {
-    longlong lVar1;
-    longlong lVar2;
-    longlong *plVar3;
-    ulonglong uVar4;
+    int64_t lVar1;
+    int64_t lVar2;
+    int64_t *plVar3;
+    uint64_t uVar4;
     int32_t uVar5;
     int32_t uVar6;
     uint64_t uVar7;
@@ -252,9 +252,9 @@ void RenderingGeometryTransformer(longlong param_1, char param_2, char param_3)
     uint64_t *puVar9;
     uint64_t *puVar10;
     uint64_t *puVar11;
-    longlong lVar12;
+    int64_t lVar12;
     int iVar13;
-    longlong lVar14;
+    int64_t lVar14;
     float fVar15;
     int8_t auVar16 [16];
     int8_t auVar17 [16];
@@ -372,7 +372,7 @@ void RenderingGeometryTransformer(longlong param_1, char param_2, char param_3)
     lVar1 = param_1;
     cVar8 = param_2;
     uVar7 = *(uint64_t *)(param_1 + 0x10);
-    lVar2 = *(longlong *)(param_1 + 0x18);
+    lVar2 = *(int64_t *)(param_1 + 0x18);
     
     // 验证变换参数有效性
     if (uVar7 == 0) {
@@ -493,10 +493,10 @@ void RenderingGeometryTransformer(longlong param_1, char param_2, char param_3)
     if (param_3 & RENDERING_FLAG_OPTIMIZATION_ENABLED) {
         // 执行SIMD优化处理
         for (int i = 0; i < 4; i++) {
-            uVar4 = *(ulonglong *)(uVar7 + i * 8);
+            uVar4 = *(uint64_t *)(uVar7 + i * 8);
             uVar4 = uVar4 & 0xffffffff00000000 | 
                     (uint32_t)(*(float *)(uVar7 + i * 4) * 2.0f);
-            *(ulonglong *)(uVar7 + i * 8) = uVar4;
+            *(uint64_t *)(uVar7 + i * 8) = uVar4;
         }
     }
     
@@ -519,7 +519,7 @@ void RenderingGeometryTransformer(longlong param_1, char param_2, char param_3)
  * @param param_3 输出矩阵句柄
  * @return 矩阵运算结果状态码
  */
-void RenderingMatrixOperator(longlong param_1, char param_2, char param_3)
+void RenderingMatrixOperator(int64_t param_1, char param_2, char param_3)
 {
     // 矩阵运算处理实现
     // [完整的矩阵运算逻辑将在这里实现]
@@ -543,7 +543,7 @@ void RenderingMatrixOperator(longlong param_1, char param_2, char param_3)
  * @param param_3 输出缓冲区句柄
  * @return 投影变换结果状态码
  */
-void RenderingProjectionTransformer(longlong param_1, char param_2, char param_3)
+void RenderingProjectionTransformer(int64_t param_1, char param_2, char param_3)
 {
     // 投影变换处理实现
     // [完整的投影变换逻辑将在这里实现]
@@ -567,7 +567,7 @@ void RenderingProjectionTransformer(longlong param_1, char param_2, char param_3
  * @param param_3 输出结果句柄
  * @return 裁剪处理结果状态码
  */
-void RenderingClipProcessor(longlong param_1, char param_2, char param_3)
+void RenderingClipProcessor(int64_t param_1, char param_2, char param_3)
 {
     // 裁剪处理实现
     // [完整的裁剪处理逻辑将在这里实现]

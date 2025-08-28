@@ -26,19 +26,19 @@ void execute_engine_cleanup(void)
 void heap_sort_float_array(float *array_start, float *array_end, float *buffer_end)
 {
   float temp_value;
-  ulonglong array_size;
-  ulonglong heap_size;
-  ulonglong node_index;
-  ulonglong child_index;
-  ulonglong parent_index;
-  ulonglong swap_index;
+  uint64_t array_size;
+  uint64_t heap_size;
+  uint64_t node_index;
+  uint64_t child_index;
+  uint64_t parent_index;
+  uint64_t swap_index;
   float *current_ptr;
-  ulonglong element_count;
+  uint64_t element_count;
   bool comparison_result;
   
-  element_count = (longlong)array_end - (longlong)array_start >> 2;
-  if (1 < (longlong)element_count) {
-    heap_size = ((longlong)(element_count - 2) >> 1) + 1;
+  element_count = (int64_t)array_end - (int64_t)array_start >> 2;
+  if (1 < (int64_t)element_count) {
+    heap_size = ((int64_t)(element_count - 2) >> 1) + 1;
     node_index = heap_size * 2 + 2;
     do {
       temp_value = array_start[heap_size - 1];
@@ -46,7 +46,7 @@ void heap_sort_float_array(float *array_start, float *array_end, float *buffer_e
       node_index = node_index - 2;
       parent_index = heap_size;
       child_index = node_index;
-      while ((longlong)child_index < (longlong)element_count) {
+      while ((int64_t)child_index < (int64_t)element_count) {
         swap_index = child_index - 1;
         if (array_start[child_index - 1] < array_start[child_index] || array_start[child_index - 1] == array_start[child_index]) {
           swap_index = child_index;
@@ -59,8 +59,8 @@ void heap_sort_float_array(float *array_start, float *array_end, float *buffer_e
         array_start[parent_index] = array_start[child_index - 1];
         parent_index = child_index - 1;
       }
-      while ((longlong)heap_size < (longlong)parent_index) {
-        child_index = (longlong)(parent_index - 1) >> 1;
+      while ((int64_t)heap_size < (int64_t)parent_index) {
+        child_index = (int64_t)(parent_index - 1) >> 1;
         if (temp_value <= array_start[child_index]) break;
         array_start[parent_index] = array_start[child_index];
         parent_index = child_index;
@@ -69,7 +69,7 @@ void heap_sort_float_array(float *array_start, float *array_end, float *buffer_e
     } while (heap_size != 0);
   }
   heap_size = 0;
-  node_index = (ulonglong)((longlong)buffer_end + (3 - (longlong)array_end)) >> 2;
+  node_index = (uint64_t)((int64_t)buffer_end + (3 - (int64_t)array_end)) >> 2;
   if (buffer_end < array_end) {
     node_index = heap_size;
   }
@@ -84,7 +84,7 @@ void heap_sort_float_array(float *array_start, float *array_end, float *buffer_e
         comparison_result = element_count == 2;
         swap_index = heap_size;
         child_index = heap_size;
-        if (2 < (longlong)element_count) {
+        if (2 < (int64_t)element_count) {
           do {
             swap_index = child_index - 1;
             if (array_start[child_index - 1] < array_start[child_index] || array_start[child_index - 1] == array_start[child_index]) {
@@ -94,14 +94,14 @@ void heap_sort_float_array(float *array_start, float *array_end, float *buffer_e
             array_start[child_index] = array_start[swap_index];
             comparison_result = child_index == element_count;
             child_index = swap_index;
-          } while ((longlong)child_index < (longlong)element_count);
+          } while ((int64_t)child_index < (int64_t)element_count);
         }
         if (comparison_result) {
           array_start[swap_index] = array_start[child_index - 1];
           swap_index = child_index - 1;
         }
-        while (0 < (longlong)swap_index) {
-          child_index = (longlong)(swap_index - 1) >> 1;
+        while (0 < (int64_t)swap_index) {
+          child_index = (int64_t)(swap_index - 1) >> 1;
           if (temp_value <= array_start[child_index]) break;
           array_start[swap_index] = array_start[child_index];
           swap_index = child_index;
@@ -112,7 +112,7 @@ void heap_sort_float_array(float *array_start, float *array_end, float *buffer_e
       current_ptr = current_ptr + 1;
     } while (parent_index < node_index);
   }
-  if (1 < (longlong)element_count) {
+  if (1 < (int64_t)element_count) {
     array_end = array_end + -1;
     do {
       temp_value = *array_end;
@@ -122,7 +122,7 @@ void heap_sort_float_array(float *array_start, float *array_end, float *buffer_e
       comparison_result = element_count == 2;
       swap_index = heap_size;
       node_index = heap_size;
-      if (2 < (longlong)element_count) {
+      if (2 < (int64_t)element_count) {
         do {
           node_index = parent_index - 1;
           if (array_start[parent_index - 1] < array_start[parent_index] || array_start[parent_index - 1] == array_start[parent_index]) {
@@ -132,22 +132,22 @@ void heap_sort_float_array(float *array_start, float *array_end, float *buffer_e
           array_start[swap_index] = array_start[node_index];
           comparison_result = parent_index == element_count;
           swap_index = node_index;
-        } while ((longlong)parent_index < (longlong)element_count);
+        } while ((int64_t)parent_index < (int64_t)element_count);
       }
       if (comparison_result) {
         array_start[node_index] = array_start[parent_index - 1];
         node_index = parent_index - 1;
       }
-      while (0 < (longlong)node_index) {
-        element_count = (longlong)(node_index - 1) >> 1;
+      while (0 < (int64_t)node_index) {
+        element_count = (int64_t)(node_index - 1) >> 1;
         if (temp_value <= array_start[element_count]) break;
         array_start[node_index] = array_start[element_count];
         node_index = element_count;
       }
       array_end = array_end + -1;
       array_start[node_index] = temp_value;
-      element_count = (4 - (longlong)array_start) + (longlong)array_end >> 2;
-    } while (1 < (longlong)element_count);
+      element_count = (4 - (int64_t)array_start) + (int64_t)array_end >> 2;
+    } while (1 < (int64_t)element_count);
   }
   return;
 }
@@ -160,19 +160,19 @@ void heap_sort_float_array(float *array_start, float *array_end, float *buffer_e
 void optimized_heap_sort(float *array_start, float *array_end, float *buffer_end)
 {
   float temp_value;
-  ulonglong array_size;
-  ulonglong heap_size;
-  ulonglong node_index;
-  ulonglong child_index;
-  ulonglong parent_index;
-  ulonglong swap_index;
+  uint64_t array_size;
+  uint64_t heap_size;
+  uint64_t node_index;
+  uint64_t child_index;
+  uint64_t parent_index;
+  uint64_t swap_index;
   float *current_ptr;
-  ulonglong element_count;
+  uint64_t element_count;
   bool comparison_result;
   
-  element_count = (longlong)array_end - (longlong)array_start >> 2;
-  if (1 < (longlong)element_count) {
-    heap_size = ((longlong)(element_count - 2) >> 1) + 1;
+  element_count = (int64_t)array_end - (int64_t)array_start >> 2;
+  if (1 < (int64_t)element_count) {
+    heap_size = ((int64_t)(element_count - 2) >> 1) + 1;
     node_index = heap_size * 2 + 2;
     do {
       temp_value = array_start[heap_size - 1];
@@ -180,7 +180,7 @@ void optimized_heap_sort(float *array_start, float *array_end, float *buffer_end
       node_index = node_index - 2;
       parent_index = heap_size;
       child_index = node_index;
-      while ((longlong)child_index < (longlong)element_count) {
+      while ((int64_t)child_index < (int64_t)element_count) {
         swap_index = child_index - 1;
         if (array_start[child_index - 1] < array_start[child_index] || array_start[child_index - 1] == array_start[child_index]) {
           swap_index = child_index;
@@ -193,8 +193,8 @@ void optimized_heap_sort(float *array_start, float *array_end, float *buffer_end
         array_start[parent_index] = array_start[child_index - 1];
         parent_index = child_index - 1;
       }
-      while ((longlong)heap_size < (longlong)parent_index) {
-        child_index = (longlong)(parent_index - 1) >> 1;
+      while ((int64_t)heap_size < (int64_t)parent_index) {
+        child_index = (int64_t)(parent_index - 1) >> 1;
         if (temp_value <= array_start[child_index]) break;
         array_start[parent_index] = array_start[child_index];
         parent_index = child_index;
@@ -203,7 +203,7 @@ void optimized_heap_sort(float *array_start, float *array_end, float *buffer_end
     } while (heap_size != 0);
   }
   heap_size = 0;
-  node_index = (ulonglong)((longlong)buffer_end + (3 - (longlong)array_end)) >> 2;
+  node_index = (uint64_t)((int64_t)buffer_end + (3 - (int64_t)array_end)) >> 2;
   if (buffer_end < array_end) {
     node_index = heap_size;
   }
@@ -218,7 +218,7 @@ void optimized_heap_sort(float *array_start, float *array_end, float *buffer_end
         comparison_result = element_count == 2;
         swap_index = heap_size;
         child_index = heap_size;
-        if (2 < (longlong)element_count) {
+        if (2 < (int64_t)element_count) {
           do {
             swap_index = child_index - 1;
             if (array_start[child_index - 1] < array_start[child_index] || array_start[child_index - 1] == array_start[child_index]) {
@@ -228,14 +228,14 @@ void optimized_heap_sort(float *array_start, float *array_end, float *buffer_end
             array_start[child_index] = array_start[swap_index];
             comparison_result = child_index == element_count;
             child_index = swap_index;
-          } while ((longlong)child_index < (longlong)element_count);
+          } while ((int64_t)child_index < (int64_t)element_count);
         }
         if (comparison_result) {
           array_start[swap_index] = array_start[child_index - 1];
           swap_index = child_index - 1;
         }
-        while (0 < (longlong)swap_index) {
-          child_index = (longlong)(swap_index - 1) >> 1;
+        while (0 < (int64_t)swap_index) {
+          child_index = (int64_t)(swap_index - 1) >> 1;
           if (temp_value <= array_start[child_index]) break;
           array_start[swap_index] = array_start[child_index];
           swap_index = child_index;
@@ -246,7 +246,7 @@ void optimized_heap_sort(float *array_start, float *array_end, float *buffer_end
       current_ptr = current_ptr + 1;
     } while (parent_index < node_index);
   }
-  if (1 < (longlong)element_count) {
+  if (1 < (int64_t)element_count) {
     array_end = array_end + -1;
     do {
       temp_value = *array_end;
@@ -256,7 +256,7 @@ void optimized_heap_sort(float *array_start, float *array_end, float *buffer_end
       comparison_result = element_count == 2;
       swap_index = heap_size;
       node_index = heap_size;
-      if (2 < (longlong)element_count) {
+      if (2 < (int64_t)element_count) {
         do {
           node_index = parent_index - 1;
           if (array_start[parent_index - 1] < array_start[parent_index] || array_start[parent_index - 1] == array_start[parent_index]) {
@@ -266,22 +266,22 @@ void optimized_heap_sort(float *array_start, float *array_end, float *buffer_end
           array_start[swap_index] = array_start[node_index];
           comparison_result = parent_index == element_count;
           swap_index = node_index;
-        } while ((longlong)parent_index < (longlong)element_count);
+        } while ((int64_t)parent_index < (int64_t)element_count);
       }
       if (comparison_result) {
         array_start[node_index] = array_start[parent_index - 1];
         node_index = parent_index - 1;
       }
-      while (0 < (longlong)node_index) {
-        element_count = (longlong)(node_index - 1) >> 1;
+      while (0 < (int64_t)node_index) {
+        element_count = (int64_t)(node_index - 1) >> 1;
         if (temp_value <= array_start[element_count]) break;
         array_start[node_index] = array_start[element_count];
         node_index = element_count;
       }
       array_end = array_end + -1;
       array_start[node_index] = temp_value;
-      element_count = (4 - (longlong)array_start) + (longlong)array_end >> 2;
-    } while (1 < (longlong)element_count);
+      element_count = (4 - (int64_t)array_start) + (int64_t)array_end >> 2;
+    } while (1 < (int64_t)element_count);
   }
   return;
 }
@@ -291,7 +291,7 @@ void optimized_heap_sort(float *array_start, float *array_end, float *buffer_end
 // 参数：context_ptr - 上下文指针
 //        compare_value - 比较值
 //        string_data - 字符串数据指针
-void process_string_comparison(uint64_t context_ptr, int compare_value, longlong string_data)
+void process_string_comparison(uint64_t context_ptr, int compare_value, int64_t string_data)
 {
   byte char_diff;
   bool is_greater;
@@ -300,7 +300,7 @@ void process_string_comparison(uint64_t context_ptr, int compare_value, longlong
   int *result_ptr;
   byte *string_ptr;
   uint string_length;
-  longlong table_base;
+  int64_t table_base;
   uint64_t *node_ptr;
   int temp_int;
   void *temp_ptr;
@@ -315,11 +315,11 @@ void process_string_comparison(uint64_t context_ptr, int compare_value, longlong
   int8_t *stack_ptr3;
   int32_t stack_uint1;
   int8_t stack_string_buffer2[72];
-  ulonglong stack_checksum;
+  uint64_t stack_checksum;
   
   table_base = global_string_table;
   stack_guard1 = 0xfffffffffffffffe;
-  stack_checksum = global_checksum ^ (ulonglong)stack_buffer1;
+  stack_checksum = global_checksum ^ (uint64_t)stack_buffer1;
   node_ptr = (uint64_t *)(global_string_table + 0x28);
   stack_ptr1 = &global_string_start;
   stack_string_ptr1 = stack_string_buffer1;
@@ -345,7 +345,7 @@ void process_string_comparison(uint64_t context_ptr, int compare_value, longlong
         else {
           string_ptr = stack_string_ptr1;
           do {
-            string_length = (uint)string_ptr[next_node[5] - (longlong)stack_string_ptr1];
+            string_length = (uint)string_ptr[next_node[5] - (int64_t)stack_string_ptr1];
             temp_int = *string_ptr - string_length;
             if (*string_ptr != string_length) break;
             string_ptr = string_ptr + 1;
@@ -370,7 +370,7 @@ NODE_FOUND:
       if (*(int *)(current_node + 6) == 0) goto MATCH_FOUND;
       if (stack_int1 != 0) {
         string_ptr = (byte *)current_node[5];
-        table_base = (longlong)stack_string_ptr1 - (longlong)string_ptr;
+        table_base = (int64_t)stack_string_ptr1 - (int64_t)string_ptr;
         do {
           char_diff = *string_ptr;
           string_length = (uint)string_ptr[table_base];
@@ -424,7 +424,7 @@ MATCH_FOUND:
   }
   stack_ptr2 = &global_string_end;
   // 注意：此函数不返回
-  perform_memory_cleanup(stack_checksum ^ (ulonglong)stack_buffer1);
+  perform_memory_cleanup(stack_checksum ^ (uint64_t)stack_buffer1);
 }
 
 // 函数：find_hash_entry
@@ -432,18 +432,18 @@ MATCH_FOUND:
 // 参数：hash_table - 哈希表指针
 //        search_key - 搜索键指针
 // 返回值：找到的条目指针
-uint64_t * find_hash_entry(uint64_t *hash_table, longlong search_key)
+uint64_t * find_hash_entry(uint64_t *hash_table, int64_t search_key)
 {
   byte char_diff;
   bool is_greater;
   byte *key_ptr;
-  longlong *entry_ptr;
+  int64_t *entry_ptr;
   uint key_length;
   int compare_result;
   uint64_t *current_entry;
   uint64_t *next_entry;
   uint64_t *prev_entry;
-  longlong key_offset;
+  int64_t key_offset;
   int8_t stack_buffer[8];
   
   next_entry = (uint64_t *)hash_table[2];
@@ -460,7 +460,7 @@ uint64_t * find_hash_entry(uint64_t *hash_table, longlong search_key)
         }
         else {
           key_ptr = *(byte **)(search_key + 8);
-          key_offset = next_entry[5] - (longlong)key_ptr;
+          key_offset = next_entry[5] - (int64_t)key_ptr;
           do {
             key_length = (uint)key_ptr[key_offset];
             compare_result = *key_ptr - key_length;
@@ -491,17 +491,17 @@ ENTRY_RETURN:
     }
     if (*(int *)(search_key + 0x10) != 0) {
       key_ptr = (byte *)prev_entry[5];
-      next_entry = (uint64_t *)(*(longlong *)(search_key + 8) - (longlong)key_ptr);
+      next_entry = (uint64_t *)(*(int64_t *)(search_key + 8) - (int64_t)key_ptr);
       do {
         char_diff = *key_ptr;
-        key_length = (uint)key_ptr[(longlong)next_entry];
+        key_length = (uint)key_ptr[(int64_t)next_entry];
         if (char_diff != key_length) break;
         key_ptr = key_ptr + 1;
       } while (key_length != 0);
       if ((int)(char_diff - key_length) < 1) goto ENTRY_RETURN;
     }
   }
-  entry_ptr = (longlong *)create_hash_entry(hash_table, stack_buffer, next_entry, prev_entry, search_key);
+  entry_ptr = (int64_t *)create_hash_entry(hash_table, stack_buffer, next_entry, prev_entry, search_key);
   return (uint64_t *)(*entry_ptr + 0x78);
 }
 
@@ -513,15 +513,15 @@ ENTRY_RETURN:
 //        prev_node - 前一个节点指针
 // 返回值：找到的条目指针
 uint64_t *
-search_hash_chain(uint64_t search_param, longlong key_data, uint64_t *current_node, uint64_t *prev_node)
+search_hash_chain(uint64_t search_param, int64_t key_data, uint64_t *current_node, uint64_t *prev_node)
 {
   byte char_diff;
   bool is_greater;
   byte *key_ptr;
-  longlong *entry_ptr;
+  int64_t *entry_ptr;
   uint key_length;
   int compare_result;
-  longlong key_offset;
+  int64_t key_offset;
   uint64_t *next_node;
   uint64_t *found_node;
   
@@ -536,7 +536,7 @@ search_hash_chain(uint64_t search_param, longlong key_data, uint64_t *current_no
       }
       else {
         key_ptr = *(byte **)(key_data + 8);
-        key_offset = current_node[5] - (longlong)key_ptr;
+        key_offset = current_node[5] - (int64_t)key_ptr;
         do {
           key_length = (uint)key_ptr[key_offset];
           compare_result = *key_ptr - key_length;
@@ -565,7 +565,7 @@ ENTRY_RETURN:
     }
     if (*(int *)(key_data + 0x10) != 0) {
       key_ptr = (byte *)prev_node[5];
-      key_offset = *(longlong *)(key_data + 8) - (longlong)key_ptr;
+      key_offset = *(int64_t *)(key_data + 8) - (int64_t)key_ptr;
       do {
         char_diff = *key_ptr;
         key_length = (uint)key_ptr[key_offset];
@@ -575,23 +575,23 @@ ENTRY_RETURN:
       if ((int)(char_diff - key_length) < 1) goto ENTRY_RETURN;
     }
   }
-  entry_ptr = (longlong *)create_hash_entry();
+  entry_ptr = (int64_t *)create_hash_entry();
   return (uint64_t *)(*entry_ptr + 0x78);
 }
 
 // 函数：get_hash_entry_offset
 // 功能：获取哈希表条目的偏移量
 // 返回值：条目偏移量
-longlong get_hash_entry_offset(void)
+int64_t get_hash_entry_offset(void)
 {
   byte char_diff;
   byte *key_ptr;
-  longlong *entry_ptr;
+  int64_t *entry_ptr;
   uint key_length;
-  longlong table_base;
-  longlong entry_base;
-  longlong key_offset;
-  longlong search_param;
+  int64_t table_base;
+  int64_t entry_base;
+  int64_t key_offset;
+  int64_t search_param;
   
   if (search_param != entry_base) {
     if (*(int *)(search_param + 0x30) == 0) {
@@ -600,7 +600,7 @@ ENTRY_RETURN:
     }
     if (*(int *)(table_base + 0x10) != 0) {
       key_ptr = *(byte **)(search_param + 0x28);
-      key_offset = *(longlong *)(table_base + 8) - (longlong)key_ptr;
+      key_offset = *(int64_t *)(table_base + 8) - (int64_t)key_ptr;
       do {
         char_diff = *key_ptr;
         key_length = (uint)key_ptr[key_offset];
@@ -610,7 +610,7 @@ ENTRY_RETURN:
       if ((int)(char_diff - key_length) < 1) goto ENTRY_RETURN;
     }
   }
-  entry_ptr = (longlong *)create_hash_entry();
+  entry_ptr = (int64_t *)create_hash_entry();
   return *entry_ptr + 0x78;
 }
 
@@ -623,50 +623,50 @@ ENTRY_RETURN:
 //        key_data - 键数据指针
 // 返回值：创建的条目指针
 uint64_t *
-create_hash_entry(longlong *table_ptr, uint64_t *buffer_ptr, uint64_t entry_param, longlong *node_ptr,
-             longlong key_data)
+create_hash_entry(int64_t *table_ptr, uint64_t *buffer_ptr, uint64_t entry_param, int64_t *node_ptr,
+             int64_t key_data)
 {
   byte char_diff;
   bool is_greater;
-  longlong *current_ptr;
+  int64_t *current_ptr;
   byte *key_ptr;
-  longlong *search_ptr;
+  int64_t *search_ptr;
   uint key_length;
-  longlong key_offset;
-  longlong *temp_ptr;
-  ulonglong entry_flags;
+  int64_t key_offset;
+  int64_t *temp_ptr;
+  uint64_t entry_flags;
   uint64_t entry_value;
   
-  temp_ptr = (longlong *)*table_ptr;
+  temp_ptr = (int64_t *)*table_ptr;
   if ((node_ptr == temp_ptr) || (node_ptr == table_ptr)) {
     if ((table_ptr[4] != 0) && (*(int *)(key_data + 0x10) != 0)) {
       search_ptr = node_ptr;
       if (*(int *)(temp_ptr + 6) != 0) {
         key_ptr = *(byte **)(key_data + 8);
-        search_ptr = (longlong *)(temp_ptr[5] - (longlong)key_ptr);
+        search_ptr = (int64_t *)(temp_ptr[5] - (int64_t)key_ptr);
         do {
           char_diff = *key_ptr;
-          key_length = (uint)key_ptr[(longlong)search_ptr];
+          key_length = (uint)key_ptr[(int64_t)search_ptr];
           if (char_diff != key_length) break;
           key_ptr = key_ptr + 1;
         } while (key_length != 0);
         if ((int)(char_diff - key_length) < 1) goto ENTRY_EXISTS;
       }
 ENTRY_INSERT:
-      entry_flags = (ulonglong)search_ptr & 0xffffffffffffff00;
+      entry_flags = (uint64_t)search_ptr & 0xffffffffffffff00;
 ENTRY_CONTINUE:
-      if (temp_ptr != (longlong *)0x0) {
+      if (temp_ptr != (int64_t *)0x0) {
         insert_hash_entry(table_ptr, buffer_ptr, temp_ptr, entry_flags, key_data);
         return buffer_ptr;
       }
     }
   }
   else {
-    current_ptr = (longlong *)get_node_reference(node_ptr);
+    current_ptr = (int64_t *)get_node_reference(node_ptr);
     if (*(int *)(key_data + 0x10) != 0) {
       if ((int)node_ptr[6] != 0) {
         key_ptr = *(byte **)(key_data + 8);
-        key_offset = node_ptr[5] - (longlong)key_ptr;
+        key_offset = node_ptr[5] - (int64_t)key_ptr;
         do {
           char_diff = *key_ptr;
           key_length = (uint)key_ptr[key_offset];
@@ -677,17 +677,17 @@ ENTRY_CONTINUE:
       }
       if ((int)current_ptr[6] != 0) {
         key_ptr = (byte *)current_ptr[5];
-        search_ptr = (longlong *)(*(longlong *)(key_data + 8) - (longlong)key_ptr);
+        search_ptr = (int64_t *)(*(int64_t *)(key_data + 8) - (int64_t)key_ptr);
         do {
           char_diff = *key_ptr;
-          key_length = (uint)key_ptr[(longlong)search_ptr];
+          key_length = (uint)key_ptr[(int64_t)search_ptr];
           if (char_diff != key_length) break;
           key_ptr = key_ptr + 1;
         } while (key_length != 0);
         if (0 < (int)(char_diff - key_length)) {
           temp_ptr = node_ptr;
           if (*node_ptr == 0) goto ENTRY_INSERT;
-          entry_flags = CONCAT71((int7)((ulonglong)search_ptr >> 8), 1);
+          entry_flags = CONCAT71((int7)((uint64_t)search_ptr >> 8), 1);
           temp_ptr = current_ptr;
           goto ENTRY_CONTINUE;
         }
@@ -696,14 +696,14 @@ ENTRY_CONTINUE:
   }
 ENTRY_EXISTS:
   is_greater = true;
-  temp_ptr = (longlong *)table_ptr[2];
+  temp_ptr = (int64_t *)table_ptr[2];
   search_ptr = table_ptr;
-  while (temp_ptr != (longlong *)0x0) {
+  while (temp_ptr != (int64_t *)0x0) {
     search_ptr = temp_ptr;
     if ((int)temp_ptr[6] == 0) {
       is_greater = false;
 TRAVERSE_NODE:
-      temp_ptr = (longlong *)*temp_ptr;
+      temp_ptr = (int64_t *)*temp_ptr;
     }
     else {
       if (*(int *)(key_data + 0x10) == 0) {
@@ -711,7 +711,7 @@ TRAVERSE_NODE:
       }
       else {
         key_ptr = (byte *)temp_ptr[5];
-        key_offset = *(longlong *)(key_data + 8) - (longlong)key_ptr;
+        key_offset = *(int64_t *)(key_data + 8) - (int64_t)key_ptr;
         do {
           char_diff = *key_ptr;
           key_length = (uint)key_ptr[key_offset];
@@ -721,13 +721,13 @@ TRAVERSE_NODE:
         is_greater = 0 < (int)(char_diff - key_length);
       }
       if (!is_greater) goto TRAVERSE_NODE;
-      temp_ptr = (longlong *)temp_ptr[1];
+      temp_ptr = (int64_t *)temp_ptr[1];
     }
   }
   temp_ptr = search_ptr;
   if (is_greater) {
-    if (search_ptr != (longlong *)table_ptr[1]) {
-      temp_ptr = (longlong *)remove_node_reference(search_ptr);
+    if (search_ptr != (int64_t *)table_ptr[1]) {
+      temp_ptr = (int64_t *)remove_node_reference(search_ptr);
       goto CREATE_NEW;
     }
   }
@@ -740,7 +740,7 @@ ENTRY_FINAL:
     }
     if ((int)temp_ptr[6] != 0) {
       key_ptr = *(byte **)(key_data + 8);
-      key_offset = temp_ptr[5] - (longlong)key_ptr;
+      key_offset = temp_ptr[5] - (int64_t)key_ptr;
       do {
         char_diff = *key_ptr;
         key_length = (uint)key_ptr[key_offset];
@@ -758,7 +758,7 @@ ALLOCATE_ENTRY:
     }
     if (*(int *)(key_data + 0x10) != 0) {
       key_ptr = (byte *)search_ptr[5];
-      key_offset = *(longlong *)(key_data + 8) - (longlong)key_ptr;
+      key_offset = *(int64_t *)(key_data + 8) - (int64_t)key_ptr;
       do {
         char_diff = *key_ptr;
         key_length = (uint)key_ptr[key_offset];

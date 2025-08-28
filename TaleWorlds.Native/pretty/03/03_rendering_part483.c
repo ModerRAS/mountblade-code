@@ -52,16 +52,16 @@
 void rendering_system_time_controller(float param_1)
 {
     int local_variable_1;
-    longlong *pointer_variable_2;
+    int64_t *pointer_variable_2;
     char char_variable_3;
     unsigned char byte_variable_4;
     int int_variable_5;
     unsigned int uint_variable_6;
-    longlong long_variable_7;
-    longlong long_variable_8;
-    longlong register_rbx;
-    longlong register_rbp;
-    longlong long_variable_9;
+    int64_t long_variable_7;
+    int64_t long_variable_8;
+    int64_t register_rbx;
+    int64_t register_rbp;
+    int64_t long_variable_9;
     int int_variable_10;
     char register_r15b;
     float float_variable_11;
@@ -74,27 +74,27 @@ void rendering_system_time_controller(float param_1)
     
     // 检查渲染状态标志并处理时间参数
     if (((*(uint *)(register_rbx + 0x56c) & RENDERING_STATE_MASK_800) != 0) &&
-        (param_1 = (float)(*(longlong *)
+        (param_1 = (float)(*(int64_t *)
                             (&system_error_code +
-                            (longlong)*(int *)(*(longlong *)(register_rbx + 0x728) + 0x590) * 8) -
-                          *(longlong *)(*(longlong *)(register_rbx + 0x728) + 0x588)) * RENDERING_TIME_SCALE_FACTOR,
+                            (int64_t)*(int *)(*(int64_t *)(register_rbx + 0x728) + 0x590) * 8) -
+                          *(int64_t *)(*(int64_t *)(register_rbx + 0x728) + 0x588)) * RENDERING_TIME_SCALE_FACTOR,
          register_xmm6 < param_1)) {
         
         // 更新渲染时间参数
-        long_variable_8 = *(longlong *)(register_rbx + 0x590);
+        long_variable_8 = *(int64_t *)(register_rbx + 0x590);
         *(unsigned int *)(long_variable_8 + 0xa414) = 0;
         *(unsigned int *)(long_variable_8 + 0xa418) = 0x40400000;
-        *(longlong *)(*(longlong *)(register_rbx + 0x728) + 0x588) =
-             *(longlong *)
-              (&system_error_code + (longlong)*(int *)(*(longlong *)(register_rbx + 0x728) + 0x590) * 8) +
+        *(int64_t *)(*(int64_t *)(register_rbx + 0x728) + 0x588) =
+             *(int64_t *)
+              (&system_error_code + (int64_t)*(int *)(*(int64_t *)(register_rbx + 0x728) + 0x590) * 8) +
              0x9184e700000;
              
         // 检查纹理标志并清理状态
-        if (((*(ushort *)(*(longlong *)(register_rbx + 0x728) + 0x5ac) |
-             *(ushort *)(*(longlong *)(register_rbx + 0x728) + 0x5aa)) & RENDERING_TEXTURE_FLAG_MASK) == 0) {
-            long_variable_8 = *(longlong *)(register_rbx + 0x590);
-            *(unsigned longlong *)(long_variable_8 + 0x3440) = 0;
-            *(unsigned longlong *)(long_variable_8 + 0x3448) = 0;
+        if (((*(ushort *)(*(int64_t *)(register_rbx + 0x728) + 0x5ac) |
+             *(ushort *)(*(int64_t *)(register_rbx + 0x728) + 0x5aa)) & RENDERING_TEXTURE_FLAG_MASK) == 0) {
+            long_variable_8 = *(int64_t *)(register_rbx + 0x590);
+            *(unsigned int64_t *)(long_variable_8 + 0x3440) = 0;
+            *(unsigned int64_t *)(long_variable_8 + 0x3448) = 0;
         }
     }
     
@@ -107,21 +107,21 @@ void rendering_system_time_controller(float param_1)
     else {
         // 处理动画参数和状态更新
         int_variable_5 = *(int *)(register_rbx + 0x564);
-        long_variable_8 = *(longlong *)(register_rbx + 0x8d8);
-        pointer_variable_2 = *(longlong **)((longlong)int_variable_5 * 0xa60 + 0x3630 + long_variable_8);
+        long_variable_8 = *(int64_t *)(register_rbx + 0x8d8);
+        pointer_variable_2 = *(int64_t **)((int64_t)int_variable_5 * 0xa60 + 0x3630 + long_variable_8);
         
-        if ((pointer_variable_2 != (longlong *)0x0) && ((int)pointer_variable_2[0x48a] != -1)) {
+        if ((pointer_variable_2 != (int64_t *)0x0) && ((int)pointer_variable_2[0x48a] != -1)) {
             param_1 = (float)(**(code **)(*pointer_variable_2 + 0x90))(pointer_variable_2, 0);
             int_variable_5 = *(int *)(register_rbx + 0x564);
-            long_variable_8 = *(longlong *)(register_rbx + 0x8d8);
+            long_variable_8 = *(int64_t *)(register_rbx + 0x8d8);
         }
         
         // 更新渲染参数和状态
-        if (*(longlong *)((longlong)int_variable_5 * 0xa60 + 0x3630 + long_variable_8) != 0) {
+        if (*(int64_t *)((int64_t)int_variable_5 * 0xa60 + 0x3630 + long_variable_8) != 0) {
             *(unsigned int *)(register_rbp + 0x67) = 0x3f800000;
             int_variable_5 = FUN_18050d480(param_1, register_rbp + 0x67);
             
-            if (*(int *)(*(longlong *)(register_rbx + 0x590) + 0x2450) != int_variable_5) {
+            if (*(int *)(*(int64_t *)(register_rbx + 0x590) + 0x2450) != int_variable_5) {
                 // 初始化渲染参数结构
                 *(unsigned int *)(register_rbp + -0x29) = 0;
                 *(unsigned int *)(register_rbp + -0x25) = 0;
@@ -133,15 +133,15 @@ void rendering_system_time_controller(float param_1)
                 *(unsigned char *)(register_rbp + -0xd) = 0;
                 *(unsigned int *)(register_rbp + -0x39) = 0;
                 *(unsigned int *)(register_rbp + -0x35) = 0xffffffff;
-                *(unsigned longlong *)(register_rbp + -0x31) = 0x2002;
+                *(unsigned int64_t *)(register_rbp + -0x31) = 0x2002;
                 
                 // 执行渲染参数设置
                 FUN_18051ec50(0, register_rbp + -0x39);
                 
                 if (int_variable_5 != -1) {
                     *(unsigned int *)(register_rbp + -0x21) = *(unsigned int *)(register_rbp + 0x67);
-                    *(unsigned longlong *)(register_rbp + -0x31) = 0;
-                    *(unsigned longlong *)(register_rbp + -0x29) = 0;
+                    *(unsigned int64_t *)(register_rbp + -0x31) = 0;
+                    *(unsigned int64_t *)(register_rbp + -0x29) = 0;
                     *(unsigned int *)(register_rbp + -0x11) = 0x1000000;
                     *(unsigned int *)(register_rbp + -0x1d) = 0xbe4ccccd;
                     *(unsigned int *)(register_rbp + -0x19) = 0xbe4ccccd;
@@ -156,7 +156,7 @@ void rendering_system_time_controller(float param_1)
         
         // 检查渲染状态并执行相应操作
         if (((*(uint *)(register_rbx + 0x56c) & RENDERING_STATE_MASK_800) != 0) &&
-           (*(int *)(*(longlong *)(register_rbx + 0x590) + 0x8228) < 0)) {
+           (*(int *)(*(int64_t *)(register_rbx + 0x590) + 0x8228) < 0)) {
 label_time_control_jump:
             func_0x0001805a7480(register_rbx + 0x28);
         }
@@ -165,16 +165,16 @@ label_time_control_jump:
     // 处理高级渲染状态和条件判断
     if ((((system_status_flag != 1) && (system_status_flag != 4)) &&
         ((*(uint *)(register_rbx + 0x56c) & RENDERING_STATE_MASK_4000) != 0)) &&
-       ((long_variable_8 = *(longlong *)(*(longlong *)(register_rbx + 0x8f8) + 0x9e8), long_variable_8 != 0 &&
-        ((*(byte *)((longlong)
-                    *(int *)((longlong)*(int *)(long_variable_8 + 0xf0) * 0xa0 + 100 +
-                            *(longlong *)(long_variable_8 + 0xd0)) * 0x170 + 0x140 + render_system_render) & 0x10) !=
+       ((long_variable_8 = *(int64_t *)(*(int64_t *)(register_rbx + 0x8f8) + 0x9e8), long_variable_8 != 0 &&
+        ((*(byte *)((int64_t)
+                    *(int *)((int64_t)*(int *)(long_variable_8 + 0xf0) * 0xa0 + 100 +
+                            *(int64_t *)(long_variable_8 + 0xd0)) * 0x170 + 0x140 + render_system_render) & 0x10) !=
          0)))) {
         
         char_variable_3 = StringProcessor(register_rbx + 0x28, register_rbp + 0x67);
         if (char_variable_3 == '\0') {
 label_animation_flow_control:
-            long_variable_7 = *(longlong *)(register_rbx + 0x8f8);
+            long_variable_7 = *(int64_t *)(register_rbx + 0x8f8);
             uint_variable_6 = FUN_180590480(long_variable_8, 0, *(unsigned int *)(register_rbx + 0x56c), register_r15b,
                                           (byte)((uint)*(unsigned int *)(long_variable_7 + 0x9e4) >> 0x1f) ^ 1);
             if (*(char *)(register_rbp + 0x67) != '\0') {
@@ -184,9 +184,9 @@ label_update_rendering_state:
             *(unsigned int *)(register_rbx + 0x2c0) = uint_variable_6;
         }
         else {
-            long_variable_7 = *(longlong *)(*(longlong *)(register_rbx + 0x8f8) + 0x9f0);
-            long_variable_9 = (longlong)
-                    *(int *)((longlong)*(int *)(long_variable_8 + 0xf0) * 0xa0 + 100 + *(longlong *)(long_variable_8 + 0xd0))
+            long_variable_7 = *(int64_t *)(*(int64_t *)(register_rbx + 0x8f8) + 0x9f0);
+            long_variable_9 = (int64_t)
+                    *(int *)((int64_t)*(int *)(long_variable_8 + 0xf0) * 0xa0 + 100 + *(int64_t *)(long_variable_8 + 0xd0))
                     * 0x170 + render_system_render;
             byte_variable_4 = func_0x000180525320();
             
@@ -195,29 +195,29 @@ label_update_rendering_state:
             }
             else {
                 uint_variable_6 = *(unsigned int *)
-                         ((longlong)*(int *)(long_variable_7 + 0xf0) * 0xa0 + 100 + *(longlong *)(long_variable_7 + 0xd0));
+                         ((int64_t)*(int *)(long_variable_7 + 0xf0) * 0xa0 + 100 + *(int64_t *)(long_variable_7 + 0xd0));
             }
             
             long_variable_7 = FUN_18054f900(long_variable_9, 9, register_r15b, uint_variable_6, byte_variable_4);
             if (long_variable_7 == 0) goto label_animation_flow_control;
             
             int_variable_5 = *(int *)(long_variable_7 + 0x1c);
-            local_variable_1 = *(int *)(*(longlong *)(register_rbx + 0x590) + 0x2498);
+            local_variable_1 = *(int *)(*(int64_t *)(register_rbx + 0x590) + 0x2498);
             
             if (int_variable_5 != local_variable_1) {
                 if (local_variable_1 != -1) {
-                    int_variable_10 = *(int *)((longlong)local_variable_1 * 0x68 + 0x58 + render_system_render);
+                    int_variable_10 = *(int *)((int64_t)local_variable_1 * 0x68 + 0x58 + render_system_render);
                 }
                 
                 // 初始化渲染参数结构
-                *(unsigned longlong *)(register_rbp + -0x31) = 0;
+                *(unsigned int64_t *)(register_rbp + -0x31) = 0;
                 *(unsigned int *)(register_rbp + -0x29) = 0;
                 *(unsigned int *)(register_rbp + -0x11) = 0x1000000;
                 *(unsigned char *)(register_rbp + -0xd) = 0;
                 *(unsigned int *)(register_rbp + -0x39) = 1;
                 *(int *)(register_rbp + -0x35) = int_variable_5;
-                *(unsigned longlong *)(register_rbp + -0x21) = 0xbe4ccccd3f800000;
-                *(unsigned longlong *)(register_rbp + -0x19) = 0x3ecccccdbe4ccccd;
+                *(unsigned int64_t *)(register_rbp + -0x21) = 0xbe4ccccd3f800000;
+                *(unsigned int64_t *)(register_rbp + -0x19) = 0x3ecccccdbe4ccccd;
                 
                 // 计算alpha值并设置阈值
                 if (register_r15b == '\0') {
@@ -242,41 +242,41 @@ label_update_rendering_state:
                     if (int_variable_10 != 0x20) {
                         // 设置渲染参数和状态
                         *(unsigned int *)(register_rbx + 0x7c) = 0xffff;
-                        *(unsigned longlong *)(register_rbx + 0x74) = 0xffffffffbf800000;
+                        *(unsigned int64_t *)(register_rbx + 0x74) = 0xffffffffbf800000;
                         *(unsigned char *)(register_rbx + 0x68) = 0;
                         *(unsigned int *)(register_rbx + 0xb0) = 0xf149f2ca;
                         *(unsigned int *)(register_rbx + 0xf0) = 0xf149f2ca;
                         *(unsigned char *)(register_rbx + 0x100) = 0xff;
                         *(unsigned int *)(register_rbx + 0x6c) = RENDERING_DEFAULT_ALPHA_VALUE;
                         *(unsigned int *)(register_rbx + 0x70) = 1;
-                        *(unsigned longlong *)(register_rbx + 0x280) = 0;
+                        *(unsigned int64_t *)(register_rbx + 0x280) = 0;
                     }
                     goto label_final_state_update;
                 }
                 
                 uint_variable_6 = FUN_180590480(long_variable_8, 0, *(unsigned int *)(register_rbx + 0x56c), register_r15b,
-                                              (byte)((uint)*(unsigned int *)(*(longlong *)(register_rbx + 0x8f8) + 0x9e4)
+                                              (byte)((uint)*(unsigned int *)(*(int64_t *)(register_rbx + 0x8f8) + 0x9e4)
                                                     >> 0x1f) ^ 1);
                 goto label_update_rendering_state;
             }
         }
 label_final_state_update:
         if (*(char *)(register_rbp + 0x67) == '\0') {
-            *(unsigned int *)(*(longlong *)(register_rbx + 0x8f8) + 0xa14) = 0xffffffff;
+            *(unsigned int *)(*(int64_t *)(register_rbx + 0x8f8) + 0xa14) = 0xffffffff;
         }
     }
     
     // 最终时间计算和状态更新
-    long_variable_8 = *(longlong *)(register_rbx + 0x590);
+    long_variable_8 = *(int64_t *)(register_rbx + 0x590);
     if (((*(int *)(long_variable_8 + 0x2498) == -1) ||
-        (*(int *)((longlong)*(int *)(long_variable_8 + 0x2498) * 0x68 + 0x58 + render_system_render) != 0x20)) ||
+        (*(int *)((int64_t)*(int *)(long_variable_8 + 0x2498) * 0x68 + 0x58 + render_system_render) != 0x20)) ||
        (register_r15b == '\0')) {
         long_variable_8 = RENDERING_LARGE_TIME_CONSTANT;
-        long_variable_7 = *(longlong *)(&system_error_code + (longlong)*(int *)(register_rbx + 0x5d0) * 8);
+        long_variable_7 = *(int64_t *)(&system_error_code + (int64_t)*(int *)(register_rbx + 0x5d0) * 8);
     }
     else {
-        long_variable_7 = *(longlong *)(&system_error_code + (longlong)*(int *)(register_rbx + 0x5d0) * 8);
-        float_variable_11 = (float)(long_variable_7 - *(longlong *)(register_rbx + 0x5c8)) * RENDERING_TIME_SCALE_FACTOR;
+        long_variable_7 = *(int64_t *)(&system_error_code + (int64_t)*(int *)(register_rbx + 0x5d0) * 8);
+        float_variable_11 = (float)(long_variable_7 - *(int64_t *)(register_rbx + 0x5c8)) * RENDERING_TIME_SCALE_FACTOR;
         
         if (register_xmm6 < float_variable_11) {
             float_variable_12 = *(float *)(register_rbx + 0x3cc);
@@ -296,12 +296,12 @@ label_final_state_update:
             }
             goto label_final_update_call;
         }
-        long_variable_8 = (longlong)register_xmm6;
+        long_variable_8 = (int64_t)register_xmm6;
     }
     
-    *(longlong *)(register_rbx + 0x5c8) = long_variable_7 - long_variable_8;
+    *(int64_t *)(register_rbx + 0x5c8) = long_variable_7 - long_variable_8;
 label_final_update_call:
-    FUN_18058ada0(*(unsigned longlong *)(register_rbx + 0x590));
+    FUN_18058ada0(*(unsigned int64_t *)(register_rbx + 0x590));
     return;
 }
 
@@ -321,17 +321,17 @@ label_final_update_call:
 void rendering_system_animation_manager(float param_1)
 {
     int local_variable_1;
-    longlong *pointer_variable_2;
+    int64_t *pointer_variable_2;
     char char_variable_3;
     unsigned char byte_variable_4;
     int int_variable_5;
     unsigned int uint_variable_6;
-    longlong long_variable_7;
-    longlong long_variable_8;
-    longlong register_rbx;
-    longlong register_rbp;
+    int64_t long_variable_7;
+    int64_t long_variable_8;
+    int64_t register_rbx;
+    int64_t register_rbp;
     void *register_rsi;
-    longlong long_variable_9;
+    int64_t long_variable_9;
     int int_variable_10;
     char register_r15b;
     float float_variable_11;
@@ -344,26 +344,26 @@ void rendering_system_animation_manager(float param_1)
     
     // 检查渲染状态标志并处理动画参数
     if (((*(uint *)(register_rbx + 0x56c) & RENDERING_STATE_MASK_800) != 0) &&
-        (param_1 = (float)(*(longlong *)
+        (param_1 = (float)(*(int64_t *)
                             (register_rsi +
-                            (longlong)*(int *)(*(longlong *)(register_rbx + 0x728) + 0x590) * 8) -
-                          *(longlong *)(*(longlong *)(register_rbx + 0x728) + 0x588)) * RENDERING_TIME_SCALE_FACTOR,
+                            (int64_t)*(int *)(*(int64_t *)(register_rbx + 0x728) + 0x590) * 8) -
+                          *(int64_t *)(*(int64_t *)(register_rbx + 0x728) + 0x588)) * RENDERING_TIME_SCALE_FACTOR,
          register_xmm6 < param_1)) {
         
         // 更新动画时间参数
-        long_variable_8 = *(longlong *)(register_rbx + 0x590);
+        long_variable_8 = *(int64_t *)(register_rbx + 0x590);
         *(unsigned int *)(long_variable_8 + 0xa414) = 0;
         *(unsigned int *)(long_variable_8 + 0xa418) = 0x40400000;
-        *(longlong *)(*(longlong *)(register_rbx + 0x728) + 0x588) =
-             *(longlong *)(register_rsi + (longlong)*(int *)(*(longlong *)(register_rbx + 0x728) + 0x590) * 8)
+        *(int64_t *)(*(int64_t *)(register_rbx + 0x728) + 0x588) =
+             *(int64_t *)(register_rsi + (int64_t)*(int *)(*(int64_t *)(register_rbx + 0x728) + 0x590) * 8)
              + 0x9184e700000;
              
         // 检查纹理标志并清理状态
-        if (((*(ushort *)(*(longlong *)(register_rbx + 0x728) + 0x5ac) |
-             *(ushort *)(*(longlong *)(register_rbx + 0x728) + 0x5aa)) & RENDERING_TEXTURE_FLAG_MASK) == 0) {
-            long_variable_8 = *(longlong *)(register_rbx + 0x590);
-            *(unsigned longlong *)(long_variable_8 + 0x3440) = 0;
-            *(unsigned longlong *)(long_variable_8 + 0x3448) = 0;
+        if (((*(ushort *)(*(int64_t *)(register_rbx + 0x728) + 0x5ac) |
+             *(ushort *)(*(int64_t *)(register_rbx + 0x728) + 0x5aa)) & RENDERING_TEXTURE_FLAG_MASK) == 0) {
+            long_variable_8 = *(int64_t *)(register_rbx + 0x590);
+            *(unsigned int64_t *)(long_variable_8 + 0x3440) = 0;
+            *(unsigned int64_t *)(long_variable_8 + 0x3448) = 0;
         }
     }
     
@@ -376,21 +376,21 @@ void rendering_system_animation_manager(float param_1)
     else {
         // 处理动画参数和状态更新
         int_variable_5 = *(int *)(register_rbx + 0x564);
-        long_variable_8 = *(longlong *)(register_rbx + 0x8d8);
-        pointer_variable_2 = *(longlong **)((longlong)int_variable_5 * 0xa60 + 0x3630 + long_variable_8);
+        long_variable_8 = *(int64_t *)(register_rbx + 0x8d8);
+        pointer_variable_2 = *(int64_t **)((int64_t)int_variable_5 * 0xa60 + 0x3630 + long_variable_8);
         
-        if ((pointer_variable_2 != (longlong *)0x0) && ((int)pointer_variable_2[0x48a] != -1)) {
+        if ((pointer_variable_2 != (int64_t *)0x0) && ((int)pointer_variable_2[0x48a] != -1)) {
             param_1 = (float)(**(code **)(*pointer_variable_2 + 0x90))(pointer_variable_2, 0);
             int_variable_5 = *(int *)(register_rbx + 0x564);
-            long_variable_8 = *(longlong *)(register_rbx + 0x8d8);
+            long_variable_8 = *(int64_t *)(register_rbx + 0x8d8);
         }
         
         // 更新动画参数和状态
-        if (*(longlong *)((longlong)int_variable_5 * 0xa60 + 0x3630 + long_variable_8) != 0) {
+        if (*(int64_t *)((int64_t)int_variable_5 * 0xa60 + 0x3630 + long_variable_8) != 0) {
             *(unsigned int *)(register_rbp + 0x67) = RENDERING_DEFAULT_ALPHA_VALUE;
             int_variable_5 = FUN_18050d480(param_1, register_rbp + 0x67);
             
-            if (*(int *)(*(longlong *)(register_rbx + 0x590) + 0x2450) != int_variable_5) {
+            if (*(int *)(*(int64_t *)(register_rbx + 0x590) + 0x2450) != int_variable_5) {
                 // 初始化动画参数结构
                 *(unsigned int *)(register_rbp + -0x29) = 0;
                 *(unsigned int *)(register_rbp + -0x25) = 0;
@@ -402,15 +402,15 @@ void rendering_system_animation_manager(float param_1)
                 *(unsigned char *)(register_rbp + -0xd) = 0;
                 *(unsigned int *)(register_rbp + -0x39) = 0;
                 *(unsigned int *)(register_rbp + -0x35) = 0xffffffff;
-                *(unsigned longlong *)(register_rbp + -0x31) = 0x2002;
+                *(unsigned int64_t *)(register_rbp + -0x31) = 0x2002;
                 
                 // 执行动画参数设置
                 FUN_18051ec50(0, register_rbp + -0x39);
                 
                 if (int_variable_5 != -1) {
                     *(unsigned int *)(register_rbp + -0x21) = *(unsigned int *)(register_rbp + 0x67);
-                    *(unsigned longlong *)(register_rbp + -0x31) = 0;
-                    *(unsigned longlong *)(register_rbp + -0x29) = 0;
+                    *(unsigned int64_t *)(register_rbp + -0x31) = 0;
+                    *(unsigned int64_t *)(register_rbp + -0x29) = 0;
                     *(unsigned int *)(register_rbp + -0x11) = 0x1000000;
                     *(unsigned int *)(register_rbp + -0x1d) = 0xbe4ccccd;
                     *(unsigned int *)(register_rbp + -0x19) = 0xbe4ccccd;
@@ -425,7 +425,7 @@ void rendering_system_animation_manager(float param_1)
         
         // 检查动画状态并执行相应操作
         if (((*(uint *)(register_rbx + 0x56c) & RENDERING_STATE_MASK_800) != 0) &&
-           (*(int *)(*(longlong *)(register_rbx + 0x590) + 0x8228) < 0)) {
+           (*(int *)(*(int64_t *)(register_rbx + 0x590) + 0x8228) < 0)) {
 label_animation_control_jump:
             func_0x0001805a7480(register_rbx + 0x28);
         }
@@ -434,16 +434,16 @@ label_animation_control_jump:
     // 处理高级动画状态和条件判断
     if ((((system_status_flag != 1) && (system_status_flag != 4)) &&
         ((*(uint *)(register_rbx + 0x56c) & RENDERING_STATE_MASK_4000) != 0)) &&
-       ((long_variable_8 = *(longlong *)(*(longlong *)(register_rbx + 0x8f8) + 0x9e8), long_variable_8 != 0 &&
-        ((*(byte *)((longlong)
-                    *(int *)((longlong)*(int *)(long_variable_8 + 0xf0) * 0xa0 + 100 +
-                            *(longlong *)(long_variable_8 + 0xd0)) * 0x170 + 0x140 + render_system_render) & 0x10) !=
+       ((long_variable_8 = *(int64_t *)(*(int64_t *)(register_rbx + 0x8f8) + 0x9e8), long_variable_8 != 0 &&
+        ((*(byte *)((int64_t)
+                    *(int *)((int64_t)*(int *)(long_variable_8 + 0xf0) * 0xa0 + 100 +
+                            *(int64_t *)(long_variable_8 + 0xd0)) * 0x170 + 0x140 + render_system_render) & 0x10) !=
          0)))) {
         
         char_variable_3 = StringProcessor(register_rbx + 0x28, register_rbp + 0x67);
         if (char_variable_3 == '\0') {
 label_animation_flow_control:
-            long_variable_7 = *(longlong *)(register_rbx + 0x8f8);
+            long_variable_7 = *(int64_t *)(register_rbx + 0x8f8);
             uint_variable_6 = FUN_180590480(long_variable_8, 0, *(unsigned int *)(register_rbx + 0x56c), register_r15b,
                                           (byte)((uint)*(unsigned int *)(long_variable_7 + 0x9e4) >> 0x1f) ^ 1);
             if (*(char *)(register_rbp + 0x67) != '\0') {
@@ -454,9 +454,9 @@ label_update_animation_state:
             *(unsigned int *)(register_rbx + 0x2c0) = uint_variable_6;
         }
         else {
-            long_variable_7 = *(longlong *)(*(longlong *)(register_rbx + 0x8f8) + 0x9f0);
-            long_variable_9 = (longlong)
-                    *(int *)((longlong)*(int *)(long_variable_8 + 0xf0) * 0xa0 + 100 + *(longlong *)(long_variable_8 + 0xd0))
+            long_variable_7 = *(int64_t *)(*(int64_t *)(register_rbx + 0x8f8) + 0x9f0);
+            long_variable_9 = (int64_t)
+                    *(int *)((int64_t)*(int *)(long_variable_8 + 0xf0) * 0xa0 + 100 + *(int64_t *)(long_variable_8 + 0xd0))
                     * 0x170 + render_system_render;
             byte_variable_4 = func_0x000180525320();
             
@@ -465,29 +465,29 @@ label_update_animation_state:
             }
             else {
                 uint_variable_6 = *(unsigned int *)
-                         ((longlong)*(int *)(long_variable_7 + 0xf0) * 0xa0 + 100 + *(longlong *)(long_variable_7 + 0xd0));
+                         ((int64_t)*(int *)(long_variable_7 + 0xf0) * 0xa0 + 100 + *(int64_t *)(long_variable_7 + 0xd0));
             }
             
             long_variable_7 = FUN_18054f900(long_variable_9, 9, register_r15b, uint_variable_6, byte_variable_4);
             if (long_variable_7 == 0) goto label_animation_flow_control;
             
             int_variable_5 = *(int *)(long_variable_7 + 0x1c);
-            local_variable_1 = *(int *)(*(longlong *)(register_rbx + 0x590) + 0x2498);
+            local_variable_1 = *(int *)(*(int64_t *)(register_rbx + 0x590) + 0x2498);
             
             if (int_variable_5 != local_variable_1) {
                 if (local_variable_1 != -1) {
-                    int_variable_10 = *(int *)((longlong)local_variable_1 * 0x68 + 0x58 + render_system_render);
+                    int_variable_10 = *(int *)((int64_t)local_variable_1 * 0x68 + 0x58 + render_system_render);
                 }
                 
                 // 初始化动画参数结构
-                *(unsigned longlong *)(register_rbp + -0x31) = 0;
+                *(unsigned int64_t *)(register_rbp + -0x31) = 0;
                 *(unsigned int *)(register_rbp + -0x29) = 0;
                 *(unsigned int *)(register_rbp + -0x11) = 0x1000000;
                 *(unsigned char *)(register_rbp + -0xd) = 0;
                 *(unsigned int *)(register_rbp + -0x39) = 1;
                 *(int *)(register_rbp + -0x35) = int_variable_5;
-                *(unsigned longlong *)(register_rbp + -0x21) = 0xbe4ccccd3f800000;
-                *(unsigned longlong *)(register_rbp + -0x19) = 0x3ecccccdbe4ccccd;
+                *(unsigned int64_t *)(register_rbp + -0x21) = 0xbe4ccccd3f800000;
+                *(unsigned int64_t *)(register_rbp + -0x19) = 0x3ecccccdbe4ccccd;
                 
                 // 计算alpha值并设置阈值
                 if (register_r15b == '\0') {
@@ -513,41 +513,41 @@ label_update_animation_state:
                     if (int_variable_10 != 0x20) {
                         // 设置动画参数和状态
                         *(unsigned int *)(register_rbx + 0x7c) = 0xffff;
-                        *(unsigned longlong *)(register_rbx + 0x74) = 0xffffffffbf800000;
+                        *(unsigned int64_t *)(register_rbx + 0x74) = 0xffffffffbf800000;
                         *(unsigned char *)(register_rbx + 0x68) = 0;
                         *(unsigned int *)(register_rbx + 0xb0) = 0xf149f2ca;
                         *(unsigned int *)(register_rbx + 0xf0) = 0xf149f2ca;
                         *(unsigned char *)(register_rbx + 0x100) = 0xff;
                         *(unsigned int *)(register_rbx + 0x6c) = RENDERING_DEFAULT_ALPHA_VALUE;
                         *(unsigned int *)(register_rbx + 0x70) = 1;
-                        *(unsigned longlong *)(register_rbx + 0x280) = 0;
+                        *(unsigned int64_t *)(register_rbx + 0x280) = 0;
                     }
                     goto label_final_animation_update;
                 }
                 
                 uint_variable_6 = FUN_180590480(long_variable_8, 0, *(unsigned int *)(register_rbx + 0x56c), register_r15b,
-                                              (byte)((uint)*(unsigned int *)(*(longlong *)(register_rbx + 0x8f8) + 0x9e4)
+                                              (byte)((uint)*(unsigned int *)(*(int64_t *)(register_rbx + 0x8f8) + 0x9e4)
                                                     >> 0x1f) ^ 1);
                 goto label_update_animation_state;
             }
         }
 label_final_animation_update:
         if (*(char *)(register_rbp + 0x67) == '\0') {
-            *(unsigned int *)(*(longlong *)(register_rbx + 0x8f8) + 0xa14) = 0xffffffff;
+            *(unsigned int *)(*(int64_t *)(register_rbx + 0x8f8) + 0xa14) = 0xffffffff;
         }
     }
     
     // 最终动画时间计算和状态更新
-    long_variable_8 = *(longlong *)(register_rbx + 0x590);
+    long_variable_8 = *(int64_t *)(register_rbx + 0x590);
     if (((*(int *)(long_variable_8 + 0x2498) == -1) ||
-        (*(int *)((longlong)*(int *)(long_variable_8 + 0x2498) * 0x68 + 0x58 + render_system_render) != 0x20)) ||
+        (*(int *)((int64_t)*(int *)(long_variable_8 + 0x2498) * 0x68 + 0x58 + render_system_render) != 0x20)) ||
        (register_r15b == '\0')) {
         long_variable_8 = RENDERING_LARGE_TIME_CONSTANT;
-        long_variable_7 = *(longlong *)(register_rsi + (longlong)*(int *)(register_rbx + 0x5d0) * 8);
+        long_variable_7 = *(int64_t *)(register_rsi + (int64_t)*(int *)(register_rbx + 0x5d0) * 8);
     }
     else {
-        long_variable_7 = *(longlong *)(register_rsi + (longlong)*(int *)(register_rbx + 0x5d0) * 8);
-        float_variable_11 = (float)(long_variable_7 - *(longlong *)(register_rbx + 0x5c8)) * RENDERING_TIME_SCALE_FACTOR;
+        long_variable_7 = *(int64_t *)(register_rsi + (int64_t)*(int *)(register_rbx + 0x5d0) * 8);
+        float_variable_11 = (float)(long_variable_7 - *(int64_t *)(register_rbx + 0x5c8)) * RENDERING_TIME_SCALE_FACTOR;
         
         if (register_xmm6 < float_variable_11) {
             float_variable_12 = *(float *)(register_rbx + 0x3cc);
@@ -567,12 +567,12 @@ label_final_animation_update:
             }
             goto label_final_animation_call;
         }
-        long_variable_8 = (longlong)register_xmm6;
+        long_variable_8 = (int64_t)register_xmm6;
     }
     
-    *(longlong *)(register_rbx + 0x5c8) = long_variable_7 - long_variable_8;
+    *(int64_t *)(register_rbx + 0x5c8) = long_variable_7 - long_variable_8;
 label_final_animation_call:
-    FUN_18058ada0(*(unsigned longlong *)(register_rbx + 0x590));
+    FUN_18058ada0(*(unsigned int64_t *)(register_rbx + 0x590));
     return;
 }
 
@@ -590,14 +590,14 @@ label_final_animation_call:
  * @param param_2 参数数据指针
  * @return void
  */
-void rendering_system_parameter_updater(unsigned longlong param_1, longlong param_2)
+void rendering_system_parameter_updater(unsigned int64_t param_1, int64_t param_2)
 {
     float float_variable_1;
-    longlong register_rax;
-    longlong long_variable_2;
-    longlong long_variable_3;
-    longlong register_rbx;
-    longlong register_rsi;
+    int64_t register_rax;
+    int64_t long_variable_2;
+    int64_t long_variable_3;
+    int64_t register_rbx;
+    int64_t register_rsi;
     char register_r15b;
     float register_xmm1;
     float register_xmm6;
@@ -606,8 +606,8 @@ void rendering_system_parameter_updater(unsigned longlong param_1, longlong para
     
     // 检查参数状态并执行更新
     if ((*(int *)(register_rax * 0x68 + 0x58 + render_system_render) == 0x20) && (register_r15b != '\0')) {
-        long_variable_3 = *(longlong *)(register_rsi + (longlong)*(int *)(register_rbx + 0x5d0) * 8);
-        register_xmm1 = (float)(long_variable_3 - *(longlong *)(register_rbx + 0x5c8)) * RENDERING_TIME_SCALE_FACTOR;
+        long_variable_3 = *(int64_t *)(register_rsi + (int64_t)*(int *)(register_rbx + 0x5d0) * 8);
+        register_xmm1 = (float)(long_variable_3 - *(int64_t *)(register_rbx + 0x5c8)) * RENDERING_TIME_SCALE_FACTOR;
         
         if (register_xmm6 < register_xmm1) {
             float_variable_1 = *(float *)(register_rbx + 0x3cc);
@@ -627,18 +627,18 @@ void rendering_system_parameter_updater(unsigned longlong param_1, longlong para
             }
             goto label_parameter_update_final;
         }
-        long_variable_2 = (longlong)register_xmm6;
+        long_variable_2 = (int64_t)register_xmm6;
     }
     else {
         long_variable_2 = RENDERING_LARGE_TIME_CONSTANT;
-        long_variable_3 = *(longlong *)(register_rsi + (longlong)*(int *)(register_rbx + 0x5d0) * 8);
+        long_variable_3 = *(int64_t *)(register_rsi + (int64_t)*(int *)(register_rbx + 0x5d0) * 8);
     }
     
     // 更新参数状态
-    *(longlong *)(register_rbx + 0x5c8) = long_variable_3 - long_variable_2;
+    *(int64_t *)(register_rbx + 0x5c8) = long_variable_3 - long_variable_2;
 label_parameter_update_final:
-    FUN_18058ada0(*(unsigned longlong *)(register_rbx + 0x590), register_xmm1,
-                  *(unsigned longlong *)(*(longlong *)(register_rbx + 0x658) + 0x208));
+    FUN_18058ada0(*(unsigned int64_t *)(register_rbx + 0x590), register_xmm1,
+                  *(unsigned int64_t *)(*(int64_t *)(register_rbx + 0x658) + 0x208));
     return;
 }
 

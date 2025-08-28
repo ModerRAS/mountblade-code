@@ -142,8 +142,8 @@ typedef float ImageLuminanceValue;                 /**< 图像亮度值类型 */
 typedef float ImageChromaValue;                     /**< 图像色度值类型 */
 typedef int ImageDimensionValue;                   /**< 图像维度值类型 */
 typedef uint ImageControlCode;                     /**< 图像控制码类型 */
-typedef ulonglong ImageMemoryOffset;               /**< 图像内存偏移量类型 */
-typedef longlong ImageDataPointer;                /**< 图像数据指针类型 */
+typedef uint64_t ImageMemoryOffset;               /**< 图像内存偏移量类型 */
+typedef int64_t ImageDataPointer;                /**< 图像数据指针类型 */
 
 /** 复杂数据结构别名 */
 typedef void* ImageProcessingContext;              /**< 图像处理上下文类型 */
@@ -161,7 +161,7 @@ typedef void (*ImageSamplingProcessor)(ImageProcessingContext, ImageCoefficientT
 typedef void (*ImageColorConverter)(ImageProcessingContext, ImageBufferRegion, ImageBufferRegion, ImageBufferRegion);
 typedef void (*ImageEncoderFunction)(ImageEncoderContext, void*, size_t);
 typedef void (*ImageControlFunction)(ImageEncoderContext, ImageControlData, size_t);
-typedef void (*ImageTerminationFunction)(ulonglong);
+typedef void (*ImageTerminationFunction)(uint64_t);
 
 // ============================================================================
 // 枚举定义
@@ -349,7 +349,7 @@ extern void* global_state_4224_ptr;                              /**< 未知数�
 
 /** 主要功能函数 */
 void RenderingAdvancedImageProcessor(void);                              /**< 渲染高级图像处理器 */
-void ImageColorSpaceConverter(int param_1, int param_2, longlong param_3); /**< 图像颜色空间代码分析器 */
+void ImageColorSpaceConverter(int param_1, int param_2, int64_t param_3); /**< 图像颜色空间代码分析器 */
 void ImageDataEncoder(uint64_t param_1, uint64_t param_2, uint param_3); /**< 图像数据编码器 */
 
 /** 质量处理函数 */
@@ -384,7 +384,7 @@ int HandleImageProcessingError(ImageProcessingContext* context, int error); /**<
 
 /** 外部依赖函数 */
 extern int FUN_18042f7d0(void* context, void* param1, void* param2, void* source, void* target); /**< 外部处理函数 */
-extern void FUN_1808fc050(ulonglong param);                               /**< 外部终止函数 */
+extern void FUN_1808fc050(uint64_t param);                               /**< 外部终止函数 */
 
 // ============================================================================
 // 主要功能函数实现
@@ -425,14 +425,14 @@ void RenderingAdvancedImageProcessor(void)
     int processingFlag;
     int compressionLevel;
     int encodingStep;
-    longlong dataOffset;
+    int64_t dataOffset;
     float *coefficientPointer;
     uint64_t contextParam1;
-    longlong contextParam2;
+    int64_t contextParam2;
     uint64_t *contextPointer;
     float sampleValue1, sampleValue2, sampleValue3;
     int32_t controlParam1;
-    longlong stackParam1;
+    int64_t stackParam1;
     int stackParam2;
     uint stackParam3;
     int stackParam4, stackParam5, stackParam6;
@@ -563,17 +563,17 @@ void RenderingAdvancedImageProcessor(void)
         
         qualityValue1 = *(ImageQualityValue *)(contextParam2 + BUFFER_OFFSET_OUTPUT_REGION_2 + memoryOffset);
         memoryOffset = (ImageMemoryOffset)*(byte *)(dataOffset + MEMORY_OFFSET_INDEX_TABLE_1 + 7 + dataPointer);
-        *(float *)((longlong)&stack0x00000070 + stackParam1 * 4 + 4) = IMAGE_SAMPLING_COEFFICIENT_0_4499881 / ((float)qualityValue2 * sampleValue1);
+        *(float *)((int64_t)&stack0x00000070 + stackParam1 * 4 + 4) = IMAGE_SAMPLING_COEFFICIENT_0_4499881 / ((float)qualityValue2 * sampleValue1);
         
         qualityValue2 = *(ImageQualityValue *)(contextParam2 + BUFFER_OFFSET_OUTPUT_REGION_1 + memoryOffset);
         *(float *)(contextParam2 + BUFFER_OFFSET_FLOAT_DATA_2 + stackParam1 * 4) = IMAGE_SAMPLING_COEFFICIENT_0_6532815 / ((float)qualityValue3 * sampleValue1);
         qualityValue3 = *(ImageQualityValue *)(contextParam2 + BUFFER_OFFSET_OUTPUT_REGION_2 + memoryOffset);
-        *(float *)((longlong)&stack0x00000078 + stackParam1 * 4) = IMAGE_SAMPLING_COEFFICIENT_0_6532815 / ((float)qualityValue1 * sampleValue1);
+        *(float *)((int64_t)&stack0x00000078 + stackParam1 * 4) = IMAGE_SAMPLING_COEFFICIENT_0_6532815 / ((float)qualityValue1 * sampleValue1);
         
         *(float *)(contextParam2 + BUFFER_OFFSET_FLOAT_DATA_3 + stackParam1 * 4) = IMAGE_SAMPLING_COEFFICIENT_1_2814577 / ((float)qualityValue2 * sampleValue1);
-        *(float *)((longlong)&stack0x00000078 + stackParam1 * 4 + 4) = IMAGE_SAMPLING_COEFFICIENT_1_2814577 / ((float)qualityValue3 * sampleValue1);
+        *(float *)((int64_t)&stack0x00000078 + stackParam1 * 4 + 4) = IMAGE_SAMPLING_COEFFICIENT_1_2814577 / ((float)qualityValue3 * sampleValue1);
         dataOffset = stackParam1;
-    } while ((longlong)coefficientPointer < MEMORY_OFFSET_COEFFICIENT_TABLE_END);
+    } while ((int64_t)coefficientPointer < MEMORY_OFFSET_COEFFICIENT_TABLE_END);
     
     // 设置控制码
     contextParam1 = stackPointer[1];
@@ -625,7 +625,7 @@ void RenderingAdvancedImageProcessor(void)
     processingFlag = DATA_PROCESSING_MAX_ITERATIONS < stackParam9;
     stackParam5 = 0;
     if (0 < stackParam2) {
-        dataOffset = *(longlong *)(contextParam2 + BUFFER_OFFSET_IMAGE_DATA);
+        dataOffset = *(int64_t *)(contextParam2 + BUFFER_OFFSET_IMAGE_DATA);
         processingCount = stackParam2;
         do {
             if (0 < stackParam2) {
@@ -771,7 +771,7 @@ void RenderingAdvancedImageProcessor(void)
     ((ImageControlFunction)*stackPointer)(stackPointer[1], &stack0x00000040, 1);
     
     // 调用终止函数
-    FUN_1808fc050(*(ulonglong *)(contextParam2 + BUFFER_OFFSET_ENCODE_DATA) ^ (ulonglong)&stack0x00000000);
+    FUN_1808fc050(*(uint64_t *)(contextParam2 + BUFFER_OFFSET_ENCODE_DATA) ^ (uint64_t)&stack0x00000000);
 }
 
 /**
@@ -788,7 +788,7 @@ void RenderingAdvancedImageProcessor(void)
  * @param param_2 图像高度参数
  * @param param_3 数据偏移量参数
  */
-void ImageColorSpaceConverter(int param_1, int param_2, longlong param_3)
+void ImageColorSpaceConverter(int param_1, int param_2, int64_t param_3)
 {
     // 变量声明
     ImageQualityValue qualityValue1, qualityValue2, qualityValue3;
@@ -804,7 +804,7 @@ void ImageColorSpaceConverter(int param_1, int param_2, longlong param_3)
     int colorComponent;
     int iterationCount;
     int processingFlag;
-    longlong dataOffset;
+    int64_t dataOffset;
     float sampleWeight1, sampleWeight2, sampleWeight3;
     char tempChar;
     int stackParam1, stackParam2, stackParam3, stackParam4;
@@ -926,9 +926,9 @@ void ImageColorSpaceConverter(int param_1, int param_2, longlong param_3)
                     }
                     param_2 = stackParam1;
                 }
-                stackControl1 = HelperImageProcessing(stackPointer, (longlong)&stack0x00000048 + 4, &stack0x00000050, contextParam2 + BUFFER_OFFSET_LUMINANCE_DATA_1, contextParam2 + BUFFER_OFFSET_FLOAT_DATA_1);
-                stackControl2 = HelperImageProcessing(stackPointer, (longlong)&stack0x00000048 + 4, &stack0x00000050, contextParam2 + BUFFER_OFFSET_LUMINANCE_DATA_2, contextParam2 + BUFFER_OFFSET_NEGATIVE_FLOAT_DATA_1);
-                stackControl3 = HelperImageProcessing(stackPointer, (longlong)&stack0x00000048 + 4, &stack0x00000050, contextParam2 + BUFFER_OFFSET_LUMINANCE_DATA_3, contextParam2 + BUFFER_OFFSET_NEGATIVE_FLOAT_DATA_1);
+                stackControl1 = HelperImageProcessing(stackPointer, (int64_t)&stack0x00000048 + 4, &stack0x00000050, contextParam2 + BUFFER_OFFSET_LUMINANCE_DATA_1, contextParam2 + BUFFER_OFFSET_FLOAT_DATA_1);
+                stackControl2 = HelperImageProcessing(stackPointer, (int64_t)&stack0x00000048 + 4, &stack0x00000050, contextParam2 + BUFFER_OFFSET_LUMINANCE_DATA_2, contextParam2 + BUFFER_OFFSET_NEGATIVE_FLOAT_DATA_1);
+                stackControl3 = HelperImageProcessing(stackPointer, (int64_t)&stack0x00000048 + 4, &stack0x00000050, contextParam2 + BUFFER_OFFSET_LUMINANCE_DATA_3, contextParam2 + BUFFER_OFFSET_NEGATIVE_FLOAT_DATA_1);
                 stackParam8 = qualityIndex + DATA_PROCESSING_CHUNK_SIZE;
                 param_3 = 0;
                 param_1 = stackParam5;
@@ -964,7 +964,7 @@ void ImageColorSpaceConverter(int param_1, int param_2, longlong param_3)
     ((ImageControlFunction)*stackPointer)(stackPointer[1], &stack0x00000040, 1);
     
     // 调用终止函数
-    FUN_1808fc050(*(ulonglong *)(contextParam2 + BUFFER_OFFSET_ENCODE_DATA) ^ (ulonglong)&stack0x00000000);
+    FUN_1808fc050(*(uint64_t *)(contextParam2 + BUFFER_OFFSET_ENCODE_DATA) ^ (uint64_t)&stack0x00000000);
 }
 
 /**
@@ -987,7 +987,7 @@ void ImageDataEncoder(uint64_t param_1, uint64_t param_2, uint param_3)
     int tempInt;
     uint tempUInt;
     char tempChar;
-    longlong contextPointer;
+    int64_t contextPointer;
     char tempChar2;
     ImageMemoryOffset memoryOffset;
     uint64_t *stackPointer;
@@ -1018,7 +1018,7 @@ void ImageDataEncoder(uint64_t param_1, uint64_t param_2, uint param_3)
     ((ImageControlFunction)*stackPointer)(stackPointer[1], &stack0x00000040, 1);
     
     // 调用终止函数
-    FUN_1808fc050(*(ulonglong *)(contextPointer + BUFFER_OFFSET_ENCODE_DATA) ^ (ulonglong)&stack0x00000000);
+    FUN_1808fc050(*(uint64_t *)(contextPointer + BUFFER_OFFSET_ENCODE_DATA) ^ (uint64_t)&stack0x00000000);
 }
 
 // ============================================================================

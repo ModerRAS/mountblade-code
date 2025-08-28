@@ -24,7 +24,7 @@ void process_rendering_text(uint32_t render_context, char* text_buffer, int char
     uint16_t glyph_index;
     int temp_counter;
     uint32_t char_code;
-    longlong glyph_data_ptr;
+    int64_t glyph_data_ptr;
     char* text_position;
     uint64_t char_data;
     char* line_end_ptr;
@@ -84,16 +84,16 @@ process_next_char:
 process_glyph_data:
                     if ((int)(char_code & 0xffff) < *(int*)(glyph_data_ptr + 0x30)) {
                         glyph_index = *(uint16_t*)
-                                 (*(longlong*)(glyph_data_ptr + 0x38) + (uint64_t)(char_code & 0xffff) * 2);
+                                 (*(int64_t*)(glyph_data_ptr + 0x38) + (uint64_t)(char_code & 0xffff) * 2);
                         if (glyph_index == 0xffff) {
-                            glyph_data_ptr = *(longlong*)(glyph_data_ptr + 0x40);
+                            glyph_data_ptr = *(int64_t*)(glyph_data_ptr + 0x40);
                         }
                         else {
-                            glyph_data_ptr = *(longlong*)(glyph_data_ptr + 0x18) + (uint64_t)glyph_index * 0x28;
+                            glyph_data_ptr = *(int64_t*)(glyph_data_ptr + 0x18) + (uint64_t)glyph_index * 0x28;
                         }
                     }
                     else {
-                        glyph_data_ptr = *(longlong*)(glyph_data_ptr + 0x40);
+                        glyph_data_ptr = *(int64_t*)(glyph_data_ptr + 0x40);
                     }
                     
                     if (((glyph_data_ptr != 0) &&
@@ -205,10 +205,10 @@ skip_glyph_render:
     }
 end_text_processing:
     finalize_render_batch(render_data_ptr + 8,
-                         ((longlong)vertex_buffer_ptr - *(longlong*)(render_data_ptr + 10)) / 0x14);
+                         ((int64_t)vertex_buffer_ptr - *(int64_t*)(render_data_ptr + 10)) / 0x14);
     
     temp_counter = render_data_ptr[5];
-    char_data = (longlong)index_buffer_ptr - *(longlong*)(render_data_ptr + 6) >> 1;
+    char_data = (int64_t)index_buffer_ptr - *(int64_t*)(render_data_ptr + 6) >> 1;
     temp_counter = (int)char_data;
     
     if (temp_counter < temp_counter) {
@@ -226,8 +226,8 @@ end_text_processing:
     }
     
     render_data_ptr[4] = temp_counter;
-    vertex_count_ptr = (int*)(*(longlong*)(render_data_ptr + 2) + -0x30 +
-                           (longlong)*render_data_ptr * 0x30);
+    vertex_count_ptr = (int*)(*(int64_t*)(render_data_ptr + 2) + -0x30 +
+                           (int64_t)*render_data_ptr * 0x30);
     *vertex_count_ptr = *vertex_count_ptr + (temp_counter - stack_vertex_count);
     *(float**)(render_data_ptr + 0x14) = vertex_buffer_ptr;
     *(short**)(render_data_ptr + 0x16) = index_buffer_ptr;
@@ -247,7 +247,7 @@ void render_glyph_character(void)
     uint16_t glyph_index;
     int temp_counter;
     uint32_t char_code;
-    longlong glyph_data_ptr;
+    int64_t glyph_data_ptr;
     char* text_position;
     uint64_t char_data;
     char* line_end_ptr;
@@ -255,7 +255,7 @@ void render_glyph_character(void)
     char* text_end_ptr;
     float* font_metrics_ptr;
     short glyph_index_base;
-    longlong glyph_cache_ptr;
+    int64_t glyph_cache_ptr;
     short* index_buffer_ptr;
     float cursor_x;
     float cursor_y;
@@ -300,16 +300,16 @@ process_next_char:
 process_glyph_data:
                 if ((int)(char_code & 0xffff) < *(int*)(glyph_cache_ptr + 0x30)) {
                     glyph_index = *(uint16_t*)
-                             (*(longlong*)(glyph_cache_ptr + 0x38) + (uint64_t)(char_code & 0xffff) * 2);
+                             (*(int64_t*)(glyph_cache_ptr + 0x38) + (uint64_t)(char_code & 0xffff) * 2);
                     if (glyph_index == 0xffff) {
-                        glyph_data_ptr = *(longlong*)(glyph_cache_ptr + 0x40);
+                        glyph_data_ptr = *(int64_t*)(glyph_cache_ptr + 0x40);
                     }
                     else {
-                        glyph_data_ptr = *(longlong*)(glyph_cache_ptr + 0x18) + (uint64_t)glyph_index * 0x28;
+                        glyph_data_ptr = *(int64_t*)(glyph_cache_ptr + 0x18) + (uint64_t)glyph_index * 0x28;
                     }
                 }
                 else {
-                    glyph_data_ptr = *(longlong*)(glyph_cache_ptr + 0x40);
+                    glyph_data_ptr = *(int64_t*)(glyph_cache_ptr + 0x40);
                 }
                 
                 if (((glyph_data_ptr != 0) &&
@@ -419,10 +419,10 @@ skip_glyph_render:
     } while (text_position < text_end_ptr);
 end_text_processing:
     finalize_render_batch(render_data_ptr + 8,
-                         ((longlong)vertex_buffer_ptr - *(longlong*)(render_data_ptr + 10)) / 0x14);
+                         ((int64_t)vertex_buffer_ptr - *(int64_t*)(render_data_ptr + 10)) / 0x14);
     
     temp_counter = render_data_ptr[5];
-    char_data = (longlong)index_buffer_ptr - *(longlong*)(render_data_ptr + 6) >> 1;
+    char_data = (int64_t)index_buffer_ptr - *(int64_t*)(render_data_ptr + 6) >> 1;
     temp_counter = (int)char_data;
     
     if (temp_counter < temp_counter) {
@@ -440,8 +440,8 @@ end_text_processing:
     }
     
     render_data_ptr[4] = temp_counter;
-    vertex_count_ptr = (int*)(*(longlong*)(render_data_ptr + 2) + -0x30 +
-                           (longlong)*render_data_ptr * 0x30);
+    vertex_count_ptr = (int*)(*(int64_t*)(render_data_ptr + 2) + -0x30 +
+                           (int64_t)*render_data_ptr * 0x30);
     *vertex_count_ptr = *vertex_count_ptr + (temp_counter - stack_vertex_count);
     *(float**)(render_data_ptr + 0x14) = vertex_buffer_ptr;
     *(short**)(render_data_ptr + 0x16) = index_buffer_ptr;
@@ -459,14 +459,14 @@ void finalize_render_batch_processing(void)
     uint32_t buffer_size;
     int index_count;
     uint64_t index_data;
-    longlong vertex_data_ptr;
-    longlong index_data_ptr;
+    int64_t vertex_data_ptr;
+    int64_t index_data_ptr;
     uint64_t stack_param;
     int* render_data_ptr;
     
-    finalize_render_batch(render_data_ptr + 8, (vertex_data_ptr - *(longlong*)(render_data_ptr + 10)) / 0x14);
+    finalize_render_batch(render_data_ptr + 8, (vertex_data_ptr - *(int64_t*)(render_data_ptr + 10)) / 0x14);
     batch_count = render_data_ptr[5];
-    index_data = index_data_ptr - *(longlong*)(render_data_ptr + 6) >> 1;
+    index_data = index_data_ptr - *(int64_t*)(render_data_ptr + 6) >> 1;
     index_count = (int)index_data;
     
     if (batch_count < index_count) {
@@ -484,11 +484,11 @@ void finalize_render_batch_processing(void)
     }
     
     render_data_ptr[4] = index_count;
-    vertex_count_ptr = (int*)(*(longlong*)(render_data_ptr + 2) + -0x30 +
-                           (longlong)*render_data_ptr * 0x30);
+    vertex_count_ptr = (int*)(*(int64_t*)(render_data_ptr + 2) + -0x30 +
+                           (int64_t)*render_data_ptr * 0x30);
     *vertex_count_ptr = *vertex_count_ptr + (index_count - stack_param._4_4_);
-    *(longlong*)(render_data_ptr + 0x14) = vertex_data_ptr;
-    *(longlong*)(render_data_ptr + 0x16) = index_data_ptr;
+    *(int64_t*)(render_data_ptr + 0x14) = vertex_data_ptr;
+    *(int64_t*)(render_data_ptr + 0x16) = index_data_ptr;
     render_data_ptr[0x12] = render_data_ptr[8];
     return;
 }
@@ -521,12 +521,12 @@ void advanced_render_control(uint64_t render_target, float render_scale, uint32_
     float char_width;
     float char_height;
     bool needs_update;
-    longlong render_context_ptr;
+    int64_t render_context_ptr;
     float* vertex_buffer_ptr;
-    longlong material_ptr;
-    longlong texture_ptr;
+    int64_t material_ptr;
+    int64_t texture_ptr;
     int index_count;
-    longlong shader_ptr;
+    int64_t shader_ptr;
     float x_offset;
     float y_offset;
     float z_offset;
@@ -542,17 +542,17 @@ void advanced_render_control(uint64_t render_target, float render_scale, uint32_
     float texture_width;
     float texture_height;
     float* texture_coords;
-    ulonglong checksum;
+    uint64_t checksum;
     
     render_context_ptr = get_render_context();
     checksum = get_render_checksum() ^ (uint64_t)temp_buffer;
-    material_ptr = (longlong)(int)render_flags;
+    material_ptr = (int64_t)(int)render_flags;
     render_params = render_target;
     
     if (render_flags != 0xffffffff) {
         vertex_buffer_ptr = &texture_y;
         texture_ptr = 4;
-        shader_ptr = *(longlong*)(render_context_ptr + 0xa0);
+        shader_ptr = *(int64_t*)(render_context_ptr + 0xa0);
         
         do {
             clear_vertex_buffer(vertex_buffer_ptr);
@@ -563,7 +563,7 @@ void advanced_render_control(uint64_t render_target, float render_scale, uint32_
         if ((render_flags < 8) && ((*(byte*)(shader_ptr + 4) & 2) == 0)) {
             char_height = render_params._4_4_ - *(float*)(material_ptr * 0x18 + 0x180bf9104);
             aspect_ratio = (float)render_params - *(float*)(material_ptr * 0x18 + 0x180bf9100);
-            texture_ptr = *(longlong*)(shader_ptr + 0x70) * 0x20 + *(longlong*)(shader_ptr + 0x58);
+            texture_ptr = *(int64_t*)(shader_ptr + 0x70) * 0x20 + *(int64_t*)(shader_ptr + 0x58);
             char_width = *(float*)(material_ptr * 0x18 + 0x180bf90f8);
             width_scale = *(float*)(material_ptr * 0x18 + 0x180bf90fc);
             render_params = CONCAT44(char_height, aspect_ratio);
@@ -577,13 +577,13 @@ void advanced_render_control(uint64_t render_target, float render_scale, uint32_
             texture_coords = x_offset * *(float*)(shader_ptr + 0x34);
             texture_coords = (height_scale + 109.0 + char_width) * *(float*)(shader_ptr + 0x30);
             texture_coords = (width_scale + x_offset) * *(float*)(shader_ptr + 0x34);
-            material_ptr = *(longlong*)(shader_ptr + 8);
+            material_ptr = *(int64_t*)(shader_ptr + 8);
             index_count = 0;
             
             if (0 < *(int*)(render_context_ptr + 0x1c68)) {
                 shader_ptr = 0;
                 do {
-                    texture_ptr = *(longlong*)(shader_ptr + *(longlong*)(render_context_ptr + 0x1c70));
+                    texture_ptr = *(int64_t*)(shader_ptr + *(int64_t*)(render_context_ptr + 0x1c70));
                     if (((char_height < *(float*)(texture_ptr + 0xc) + *(float*)(texture_ptr + 0x14)) &&
                          (*(float*)(texture_ptr + 0xc) < (width_scale + 2.0) * render_scale + char_height)) &&
                         (aspect_ratio < *(float*)(texture_ptr + 8) + *(float*)(texture_ptr + 0x10))) &&
@@ -599,8 +599,8 @@ void advanced_render_control(uint64_t render_target, float render_scale, uint32_
                         char_height = aspect_ratio;
                         
                         if ((*(int*)(texture_ptr + 0x70) == 0) ||
-                           (material_ptr != *(longlong*)
-                                      (*(longlong*)(texture_ptr + 0x78) + -8 + (longlong)*(int*)(texture_ptr + 0x70) * 8))) {
+                           (material_ptr != *(int64_t*)
+                                      (*(int64_t*)(texture_ptr + 0x78) + -8 + (int64_t)*(int*)(texture_ptr + 0x70) * 8))) {
                             needs_update = true;
                             set_render_state(texture_ptr, material_ptr);
                         }
@@ -625,8 +625,8 @@ void advanced_render_control(uint64_t render_target, float render_scale, uint32_
                         aspect_ratio = aspect_ratio;
                         
                         if ((*(int*)(texture_ptr + 0x70) == 0) ||
-                           (material_ptr != *(longlong*)
-                                      (*(longlong*)(texture_ptr + 0x78) + -8 + (longlong)*(int*)(texture_ptr + 0x70) * 8))) {
+                           (material_ptr != *(int64_t*)
+                                      (*(int64_t*)(texture_ptr + 0x78) + -8 + (int64_t)*(int*)(texture_ptr + 0x70) * 8))) {
                             needs_update = true;
                             set_render_state(texture_ptr, material_ptr);
                         }
@@ -650,8 +650,8 @@ void advanced_render_control(uint64_t render_target, float render_scale, uint32_
                         texture_height = width_scale;
                         
                         if ((*(int*)(texture_ptr + 0x70) == 0) ||
-                           (material_ptr != *(longlong*)
-                                      (*(longlong*)(texture_ptr + 0x78) + -8 + (longlong)*(int*)(texture_ptr + 0x70) * 8))) {
+                           (material_ptr != *(int64_t*)
+                                      (*(int64_t*)(texture_ptr + 0x78) + -8 + (int64_t)*(int*)(texture_ptr + 0x70) * 8))) {
                             needs_update = true;
                             set_render_state(texture_ptr, material_ptr);
                         }
@@ -673,8 +673,8 @@ void advanced_render_control(uint64_t render_target, float render_scale, uint32_
                         texture_width = width_scale;
                         
                         if ((*(int*)(texture_ptr + 0x70) == 0) ||
-                           (material_ptr != *(longlong*)
-                                      (*(longlong*)(texture_ptr + 0x78) + -8 + (longlong)*(int*)(texture_ptr + 0x70) * 8))) {
+                           (material_ptr != *(int64_t*)
+                                      (*(int64_t*)(texture_ptr + 0x78) + -8 + (int64_t)*(int*)(texture_ptr + 0x70) * 8))) {
                             needs_update = true;
                             set_render_state(texture_ptr, material_ptr);
                         }

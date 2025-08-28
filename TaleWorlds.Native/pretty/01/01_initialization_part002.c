@@ -72,8 +72,8 @@ void register_render_system_components(void)
   char component_flag;
   uint64_t *component_root;
   int compare_result;
-  longlong *system_manager;
-  longlong allocation_size;
+  int64_t *system_manager;
+  int64_t allocation_size;
   uint64_t *current_node;
   uint64_t *next_node;
   uint64_t *temp_node;
@@ -81,9 +81,9 @@ void register_render_system_components(void)
   code *component_handler;
   
   // 获取系统管理器指针
-  system_manager = (longlong *)get_system_manager();
+  system_manager = (int64_t *)get_system_manager();
   component_root = (uint64_t *)*system_manager;
-  component_flag = *(char *)((longlong)component_root[1] + 0x19);
+  component_flag = *(char *)((int64_t)component_root[1] + 0x19);
   component_handler = render_component_handler;
   next_node = component_root;
   current_node = (uint64_t *)component_root[1];
@@ -100,7 +100,7 @@ void register_render_system_components(void)
     }
     next_node = current_node;
     current_node = temp_node;
-    component_flag = *(char *)((longlong)temp_node + 0x19);
+    component_flag = *(char *)((int64_t)temp_node + 0x19);
   }
   
   // 如果需要创建新组件节点
@@ -123,7 +123,7 @@ void register_render_system_components(void)
 int initialize_mutex(uint64_t mutex_id, uint64_t mutex_attr, uint64_t lock_func, uint64_t unlock_func)
 
 {
-  longlong init_result;
+  int64_t init_result;
   
   // 初始化互斥锁
   _Mtx_init_in_situ(0x180c91910,2,lock_func,unlock_func,0xfffffffffffffffe);
@@ -160,8 +160,8 @@ void register_audio_system_component(void)
   char component_flag;
   uint64_t *component_root;
   int compare_result;
-  longlong *system_manager;
-  longlong allocation_size;
+  int64_t *system_manager;
+  int64_t allocation_size;
   uint64_t *current_node;
   uint64_t *next_node;
   uint64_t *temp_node;
@@ -169,9 +169,9 @@ void register_audio_system_component(void)
   code *audio_handler;
   
   // 获取系统管理器指针
-  system_manager = (longlong *)get_system_manager();
+  system_manager = (int64_t *)get_system_manager();
   component_root = (uint64_t *)*system_manager;
-  component_flag = *(char *)((longlong)component_root[1] + 0x19);
+  component_flag = *(char *)((int64_t)component_root[1] + 0x19);
   audio_handler = audio_component_handler;
   next_node = component_root;
   current_node = (uint64_t *)component_root[1];
@@ -188,7 +188,7 @@ void register_audio_system_component(void)
     }
     next_node = current_node;
     current_node = temp_node;
-    component_flag = *(char *)((longlong)temp_node + 0x19);
+    component_flag = *(char *)((int64_t)temp_node + 0x19);
   }
   
   // 如果需要创建新组件节点
@@ -214,8 +214,8 @@ void register_input_system_component(void)
   char component_flag;
   uint64_t *component_root;
   int compare_result;
-  longlong *system_manager;
-  longlong allocation_size;
+  int64_t *system_manager;
+  int64_t allocation_size;
   uint64_t *current_node;
   uint64_t *next_node;
   uint64_t *temp_node;
@@ -223,9 +223,9 @@ void register_input_system_component(void)
   code *input_handler;
   
   // 获取系统管理器指针
-  system_manager = (longlong *)get_system_manager();
+  system_manager = (int64_t *)get_system_manager();
   component_root = (uint64_t *)*system_manager;
-  component_flag = *(char *)((longlong)component_root[1] + 0x19);
+  component_flag = *(char *)((int64_t)component_root[1] + 0x19);
   input_handler = input_component_handler;
   next_node = component_root;
   current_node = (uint64_t *)component_root[1];
@@ -242,7 +242,7 @@ void register_input_system_component(void)
     }
     next_node = current_node;
     current_node = temp_node;
-    component_flag = *(char *)((longlong)temp_node + 0x19);
+    component_flag = *(char *)((int64_t)temp_node + 0x19);
   }
   
   // 如果需要创建新组件节点
@@ -268,8 +268,8 @@ void register_physics_system_component(void)
   char component_flag;
   uint64_t *component_root;
   int compare_result;
-  longlong *system_manager;
-  longlong allocation_size;
+  int64_t *system_manager;
+  int64_t allocation_size;
   uint64_t *current_node;
   uint64_t *next_node;
   uint64_t *temp_node;
@@ -277,9 +277,9 @@ void register_physics_system_component(void)
   uint64_t physics_handler;
   
   // 获取系统管理器指针
-  system_manager = (longlong *)get_system_manager();
+  system_manager = (int64_t *)get_system_manager();
   component_root = (uint64_t *)*system_manager;
-  component_flag = *(char *)((longlong)component_root[1] + 0x19);
+  component_flag = *(char *)((int64_t)component_root[1] + 0x19);
   physics_handler = 0;  // 物理系统处理函数为空
   next_node = component_root;
   current_node = (uint64_t *)component_root[1];
@@ -296,7 +296,7 @@ void register_physics_system_component(void)
     }
     next_node = current_node;
     current_node = temp_node;
-    component_flag = *(char *)((longlong)temp_node + 0x19);
+    component_flag = *(char *)((int64_t)temp_node + 0x19);
   }
   
   // 如果需要创建新组件节点
@@ -322,8 +322,8 @@ void register_network_system_component(void)
   char component_flag;
   uint64_t *component_root;
   int compare_result;
-  longlong *system_manager;
-  longlong allocation_size;
+  int64_t *system_manager;
+  int64_t allocation_size;
   uint64_t *current_node;
   uint64_t *next_node;
   uint64_t *temp_node;
@@ -331,9 +331,9 @@ void register_network_system_component(void)
   code *network_handler;
   
   // 获取系统管理器指针
-  system_manager = (longlong *)get_system_manager();
+  system_manager = (int64_t *)get_system_manager();
   component_root = (uint64_t *)*system_manager;
-  component_flag = *(char *)((longlong)component_root[1] + 0x19);
+  component_flag = *(char *)((int64_t)component_root[1] + 0x19);
   network_handler = network_component_handler;
   next_node = component_root;
   current_node = (uint64_t *)component_root[1];
@@ -350,7 +350,7 @@ void register_network_system_component(void)
     }
     next_node = current_node;
     current_node = temp_node;
-    component_flag = *(char *)((longlong)temp_node + 0x19);
+    component_flag = *(char *)((int64_t)temp_node + 0x19);
   }
   
   // 如果需要创建新组件节点
@@ -376,8 +376,8 @@ void register_ai_system_component(void)
   char component_flag;
   uint64_t *component_root;
   int compare_result;
-  longlong *system_manager;
-  longlong allocation_size;
+  int64_t *system_manager;
+  int64_t allocation_size;
   uint64_t *current_node;
   uint64_t *next_node;
   uint64_t *temp_node;
@@ -385,9 +385,9 @@ void register_ai_system_component(void)
   uint64_t ai_handler;
   
   // 获取系统管理器指针
-  system_manager = (longlong *)get_system_manager();
+  system_manager = (int64_t *)get_system_manager();
   component_root = (uint64_t *)*system_manager;
-  component_flag = *(char *)((longlong)component_root[1] + 0x19);
+  component_flag = *(char *)((int64_t)component_root[1] + 0x19);
   ai_handler = 0;  // AI系统处理函数为空
   next_node = component_root;
   current_node = (uint64_t *)component_root[1];
@@ -404,7 +404,7 @@ void register_ai_system_component(void)
     }
     next_node = current_node;
     current_node = temp_node;
-    component_flag = *(char *)((longlong)temp_node + 0x19);
+    component_flag = *(char *)((int64_t)temp_node + 0x19);
   }
   
   // 如果需要创建新组件节点
@@ -430,8 +430,8 @@ void register_ui_system_component(void)
   char component_flag;
   uint64_t *component_root;
   int compare_result;
-  longlong *system_manager;
-  longlong allocation_size;
+  int64_t *system_manager;
+  int64_t allocation_size;
   uint64_t *current_node;
   uint64_t *next_node;
   uint64_t *temp_node;
@@ -439,9 +439,9 @@ void register_ui_system_component(void)
   void *ui_handler;
   
   // 获取系统管理器指针
-  system_manager = (longlong *)get_system_manager();
+  system_manager = (int64_t *)get_system_manager();
   component_root = (uint64_t *)*system_manager;
-  component_flag = *(char *)((longlong)component_root[1] + 0x19);
+  component_flag = *(char *)((int64_t)component_root[1] + 0x19);
   ui_handler = &ui_system_handler;
   next_node = component_root;
   current_node = (uint64_t *)component_root[1];
@@ -458,7 +458,7 @@ void register_ui_system_component(void)
     }
     next_node = current_node;
     current_node = temp_node;
-    component_flag = *(char *)((longlong)temp_node + 0x19);
+    component_flag = *(char *)((int64_t)temp_node + 0x19);
   }
   
   // 如果需要创建新组件节点
@@ -484,8 +484,8 @@ void register_animation_system_component(void)
   char component_flag;
   uint64_t *component_root;
   int compare_result;
-  longlong *system_manager;
-  longlong allocation_size;
+  int64_t *system_manager;
+  int64_t allocation_size;
   uint64_t *current_node;
   uint64_t *next_node;
   uint64_t *temp_node;
@@ -493,9 +493,9 @@ void register_animation_system_component(void)
   uint64_t animation_handler;
   
   // 获取系统管理器指针
-  system_manager = (longlong *)get_system_manager();
+  system_manager = (int64_t *)get_system_manager();
   component_root = (uint64_t *)*system_manager;
-  component_flag = *(char *)((longlong)component_root[1] + 0x19);
+  component_flag = *(char *)((int64_t)component_root[1] + 0x19);
   animation_handler = 0;  // 动画系统处理函数为空
   next_node = component_root;
   current_node = (uint64_t *)component_root[1];
@@ -512,7 +512,7 @@ void register_animation_system_component(void)
     }
     next_node = current_node;
     current_node = temp_node;
-    component_flag = *(char *)((longlong)temp_node + 0x19);
+    component_flag = *(char *)((int64_t)temp_node + 0x19);
   }
   
   // 如果需要创建新组件节点
@@ -538,8 +538,8 @@ void register_scene_system_component(void)
   char component_flag;
   uint64_t *component_root;
   int compare_result;
-  longlong *system_manager;
-  longlong allocation_size;
+  int64_t *system_manager;
+  int64_t allocation_size;
   uint64_t *current_node;
   uint64_t *next_node;
   uint64_t *temp_node;
@@ -547,9 +547,9 @@ void register_scene_system_component(void)
   code *scene_handler;
   
   // 获取系统管理器指针
-  system_manager = (longlong *)get_system_manager();
+  system_manager = (int64_t *)get_system_manager();
   component_root = (uint64_t *)*system_manager;
-  component_flag = *(char *)((longlong)component_root[1] + 0x19);
+  component_flag = *(char *)((int64_t)component_root[1] + 0x19);
   scene_handler = scene_component_handler;
   next_node = component_root;
   current_node = (uint64_t *)component_root[1];
@@ -566,7 +566,7 @@ void register_scene_system_component(void)
     }
     next_node = current_node;
     current_node = temp_node;
-    component_flag = *(char *)((longlong)temp_node + 0x19);
+    component_flag = *(char *)((int64_t)temp_node + 0x19);
   }
   
   // 如果需要创建新组件节点
@@ -592,8 +592,8 @@ void register_script_system_component(void)
   char component_flag;
   uint64_t *component_root;
   int compare_result;
-  longlong *system_manager;
-  longlong allocation_size;
+  int64_t *system_manager;
+  int64_t allocation_size;
   uint64_t *current_node;
   uint64_t *next_node;
   uint64_t *temp_node;
@@ -601,9 +601,9 @@ void register_script_system_component(void)
   code *script_handler;
   
   // 获取系统管理器指针
-  system_manager = (longlong *)get_system_manager();
+  system_manager = (int64_t *)get_system_manager();
   component_root = (uint64_t *)*system_manager;
-  component_flag = *(char *)((longlong)component_root[1] + 0x19);
+  component_flag = *(char *)((int64_t)component_root[1] + 0x19);
   script_handler = script_component_handler;
   next_node = component_root;
   current_node = (uint64_t *)component_root[1];
@@ -620,7 +620,7 @@ void register_script_system_component(void)
     }
     next_node = current_node;
     current_node = temp_node;
-    component_flag = *(char *)((longlong)temp_node + 0x19);
+    component_flag = *(char *)((int64_t)temp_node + 0x19);
   }
   
   // 如果需要创建新组件节点
@@ -646,8 +646,8 @@ void register_resource_system_component(void)
   char component_flag;
   uint64_t *component_root;
   int compare_result;
-  longlong *system_manager;
-  longlong allocation_size;
+  int64_t *system_manager;
+  int64_t allocation_size;
   uint64_t *current_node;
   uint64_t *next_node;
   uint64_t *temp_node;
@@ -655,9 +655,9 @@ void register_resource_system_component(void)
   code *resource_handler;
   
   // 获取系统管理器指针
-  system_manager = (longlong *)get_system_manager();
+  system_manager = (int64_t *)get_system_manager();
   component_root = (uint64_t *)*system_manager;
-  component_flag = *(char *)((longlong)component_root[1] + 0x19);
+  component_flag = *(char *)((int64_t)component_root[1] + 0x19);
   resource_handler = resource_component_handler;
   next_node = component_root;
   current_node = (uint64_t *)component_root[1];
@@ -674,7 +674,7 @@ void register_resource_system_component(void)
     }
     next_node = current_node;
     current_node = temp_node;
-    component_flag = *(char *)((longlong)temp_node + 0x19);
+    component_flag = *(char *)((int64_t)temp_node + 0x19);
   }
   
   // 如果需要创建新组件节点
@@ -700,8 +700,8 @@ void register_debug_system_component(void)
   char component_flag;
   uint64_t *component_root;
   int compare_result;
-  longlong *system_manager;
-  longlong allocation_size;
+  int64_t *system_manager;
+  int64_t allocation_size;
   uint64_t *current_node;
   uint64_t *next_node;
   uint64_t *temp_node;
@@ -709,9 +709,9 @@ void register_debug_system_component(void)
   code *debug_handler;
   
   // 获取系统管理器指针
-  system_manager = (longlong *)get_system_manager();
+  system_manager = (int64_t *)get_system_manager();
   component_root = (uint64_t *)*system_manager;
-  component_flag = *(char *)((longlong)component_root[1] + 0x19);
+  component_flag = *(char *)((int64_t)component_root[1] + 0x19);
   debug_handler = debug_component_handler;
   next_node = component_root;
   current_node = (uint64_t *)component_root[1];
@@ -728,7 +728,7 @@ void register_debug_system_component(void)
     }
     next_node = current_node;
     current_node = temp_node;
-    component_flag = *(char *)((longlong)temp_node + 0x19);
+    component_flag = *(char *)((int64_t)temp_node + 0x19);
   }
   
   // 如果需要创建新组件节点
@@ -754,8 +754,8 @@ void register_save_system_component(void)
   char component_flag;
   uint64_t *component_root;
   int compare_result;
-  longlong *system_manager;
-  longlong allocation_size;
+  int64_t *system_manager;
+  int64_t allocation_size;
   uint64_t *current_node;
   uint64_t *next_node;
   uint64_t *temp_node;
@@ -763,9 +763,9 @@ void register_save_system_component(void)
   uint64_t save_handler;
   
   // 获取系统管理器指针
-  system_manager = (longlong *)get_system_manager();
+  system_manager = (int64_t *)get_system_manager();
   component_root = (uint64_t *)*system_manager;
-  component_flag = *(char *)((longlong)component_root[1] + 0x19);
+  component_flag = *(char *)((int64_t)component_root[1] + 0x19);
   save_handler = 0;  // 存档系统处理函数为空
   next_node = component_root;
   current_node = (uint64_t *)component_root[1];
@@ -782,7 +782,7 @@ void register_save_system_component(void)
     }
     next_node = current_node;
     current_node = temp_node;
-    component_flag = *(char *)((longlong)temp_node + 0x19);
+    component_flag = *(char *)((int64_t)temp_node + 0x19);
   }
   
   // 如果需要创建新组件节点
@@ -808,8 +808,8 @@ void register_module_system_component(void)
   char component_flag;
   uint64_t *component_root;
   int compare_result;
-  longlong *system_manager;
-  longlong allocation_size;
+  int64_t *system_manager;
+  int64_t allocation_size;
   uint64_t *current_node;
   uint64_t *next_node;
   uint64_t *temp_node;
@@ -817,9 +817,9 @@ void register_module_system_component(void)
   code *module_handler;
   
   // 获取系统管理器指针
-  system_manager = (longlong *)get_system_manager();
+  system_manager = (int64_t *)get_system_manager();
   component_root = (uint64_t *)*system_manager;
-  component_flag = *(char *)((longlong)component_root[1] + 0x19);
+  component_flag = *(char *)((int64_t)component_root[1] + 0x19);
   module_handler = module_component_handler;
   next_node = component_root;
   current_node = (uint64_t *)component_root[1];
@@ -836,7 +836,7 @@ void register_module_system_component(void)
     }
     next_node = current_node;
     current_node = temp_node;
-    component_flag = *(char *)((longlong)temp_node + 0x19);
+    component_flag = *(char *)((int64_t)temp_node + 0x19);
   }
   
   // 如果需要创建新组件节点
@@ -862,8 +862,8 @@ void register_game_logic_system_component(void)
   char component_flag;
   uint64_t *component_root;
   int compare_result;
-  longlong *system_manager;
-  longlong allocation_size;
+  int64_t *system_manager;
+  int64_t allocation_size;
   uint64_t *current_node;
   uint64_t *next_node;
   uint64_t *temp_node;
@@ -871,9 +871,9 @@ void register_game_logic_system_component(void)
   code *game_logic_handler;
   
   // 获取系统管理器指针
-  system_manager = (longlong *)get_system_manager();
+  system_manager = (int64_t *)get_system_manager();
   component_root = (uint64_t *)*system_manager;
-  component_flag = *(char *)((longlong)component_root[1] + 0x19);
+  component_flag = *(char *)((int64_t)component_root[1] + 0x19);
   game_logic_handler = game_logic_component_handler;
   next_node = component_root;
   current_node = (uint64_t *)component_root[1];
@@ -890,7 +890,7 @@ void register_game_logic_system_component(void)
     }
     next_node = current_node;
     current_node = temp_node;
-    component_flag = *(char *)((longlong)temp_node + 0x19);
+    component_flag = *(char *)((int64_t)temp_node + 0x19);
   }
   
   // 如果需要创建新组件节点
@@ -913,7 +913,7 @@ void register_game_logic_system_component(void)
 int FUN_18002e3e0(void)
 
 {
-  longlong lVar1;
+  int64_t lVar1;
   uint64_t in_R9;
   
   init_system_control_ui = &system_config_ptr;
@@ -947,17 +947,17 @@ void FUN_18002e970(void)
   char cVar1;
   uint64_t *puVar2;
   int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  int64_t *plVar4;
+  int64_t lVar5;
   uint64_t *puVar6;
   uint64_t *puVar7;
   uint64_t *puVar8;
   uint64_t *puStackX_10;
   code *pcStackX_18;
   
-  plVar4 = (longlong *)FUN_18008d070();
+  plVar4 = (int64_t *)FUN_18008d070();
   puVar2 = (uint64_t *)*plVar4;
-  cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
+  cVar1 = *(char *)((int64_t)puVar2[1] + 0x19);
   pcStackX_18 = FUN_18025cc00;
   puVar7 = puVar2;
   puVar6 = (uint64_t *)puVar2[1];
@@ -972,7 +972,7 @@ void FUN_18002e970(void)
     }
     puVar7 = puVar6;
     puVar6 = puVar8;
-    cVar1 = *(char *)((longlong)puVar8 + 0x19);
+    cVar1 = *(char *)((int64_t)puVar8 + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&system_memory_10a0,puVar7 + 4,0x10), iVar3 < 0)) {
     lVar5 = FUN_18008f0d0(plVar4);
@@ -994,17 +994,17 @@ void FUN_18002ea70(void)
   char cVar1;
   uint64_t *puVar2;
   int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  int64_t *plVar4;
+  int64_t lVar5;
   uint64_t *puVar6;
   uint64_t *puVar7;
   uint64_t *puVar8;
   uint64_t *puStackX_10;
   code *pcStackX_18;
   
-  plVar4 = (longlong *)FUN_18008d070();
+  plVar4 = (int64_t *)FUN_18008d070();
   puVar2 = (uint64_t *)*plVar4;
-  cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
+  cVar1 = *(char *)((int64_t)puVar2[1] + 0x19);
   pcStackX_18 = FUN_18025c000;
   puVar7 = puVar2;
   puVar6 = (uint64_t *)puVar2[1];
@@ -1019,7 +1019,7 @@ void FUN_18002ea70(void)
     }
     puVar7 = puVar6;
     puVar6 = puVar8;
-    cVar1 = *(char *)((longlong)puVar8 + 0x19);
+    cVar1 = *(char *)((int64_t)puVar8 + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&system_memory_1078,puVar7 + 4,0x10), iVar3 < 0)) {
     lVar5 = FUN_18008f0d0(plVar4);
@@ -1041,17 +1041,17 @@ void FUN_18002eb70(void)
   char cVar1;
   uint64_t *puVar2;
   int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  int64_t *plVar4;
+  int64_t lVar5;
   uint64_t *puVar6;
   uint64_t *puVar7;
   uint64_t *puVar8;
   uint64_t *puStackX_10;
   uint64_t uStackX_18;
   
-  plVar4 = (longlong *)FUN_18008d070();
+  plVar4 = (int64_t *)FUN_18008d070();
   puVar2 = (uint64_t *)*plVar4;
-  cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
+  cVar1 = *(char *)((int64_t)puVar2[1] + 0x19);
   uStackX_18 = 0;
   puVar7 = puVar2;
   puVar6 = (uint64_t *)puVar2[1];
@@ -1066,7 +1066,7 @@ void FUN_18002eb70(void)
     }
     puVar7 = puVar6;
     puVar6 = puVar8;
-    cVar1 = *(char *)((longlong)puVar8 + 0x19);
+    cVar1 = *(char *)((int64_t)puVar8 + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&system_memory_1050,puVar7 + 4,0x10), iVar3 < 0)) {
     lVar5 = FUN_18008f0d0(plVar4);
@@ -1088,17 +1088,17 @@ void FUN_18002ec70(void)
   char cVar1;
   uint64_t *puVar2;
   int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  int64_t *plVar4;
+  int64_t lVar5;
   uint64_t *puVar6;
   uint64_t *puVar7;
   uint64_t *puVar8;
   uint64_t *puStackX_10;
   code *pcStackX_18;
   
-  plVar4 = (longlong *)FUN_18008d070();
+  plVar4 = (int64_t *)FUN_18008d070();
   puVar2 = (uint64_t *)*plVar4;
-  cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
+  cVar1 = *(char *)((int64_t)puVar2[1] + 0x19);
   pcStackX_18 = FUN_18025d270;
   puVar7 = puVar2;
   puVar6 = (uint64_t *)puVar2[1];
@@ -1113,7 +1113,7 @@ void FUN_18002ec70(void)
     }
     puVar7 = puVar6;
     puVar6 = puVar8;
-    cVar1 = *(char *)((longlong)puVar8 + 0x19);
+    cVar1 = *(char *)((int64_t)puVar8 + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&system_memory_1028,puVar7 + 4,0x10), iVar3 < 0)) {
     lVar5 = FUN_18008f0d0(plVar4);
@@ -1135,17 +1135,17 @@ void FUN_18002ed70(void)
   char cVar1;
   uint64_t *puVar2;
   int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  int64_t *plVar4;
+  int64_t lVar5;
   uint64_t *puVar6;
   uint64_t *puVar7;
   uint64_t *puVar8;
   uint64_t *puStackX_10;
   uint64_t uStackX_18;
   
-  plVar4 = (longlong *)FUN_18008d070();
+  plVar4 = (int64_t *)FUN_18008d070();
   puVar2 = (uint64_t *)*plVar4;
-  cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
+  cVar1 = *(char *)((int64_t)puVar2[1] + 0x19);
   uStackX_18 = 0;
   puVar7 = puVar2;
   puVar6 = (uint64_t *)puVar2[1];
@@ -1160,7 +1160,7 @@ void FUN_18002ed70(void)
     }
     puVar7 = puVar6;
     puVar6 = puVar8;
-    cVar1 = *(char *)((longlong)puVar8 + 0x19);
+    cVar1 = *(char *)((int64_t)puVar8 + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&system_memory_1000,puVar7 + 4,0x10), iVar3 < 0)) {
     lVar5 = FUN_18008f0d0(plVar4);
@@ -1182,17 +1182,17 @@ void FUN_18002ee70(void)
   char cVar1;
   uint64_t *puVar2;
   int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  int64_t *plVar4;
+  int64_t lVar5;
   uint64_t *puVar6;
   uint64_t *puVar7;
   uint64_t *puVar8;
   uint64_t *puStackX_10;
   void *puStackX_18;
   
-  plVar4 = (longlong *)FUN_18008d070();
+  plVar4 = (int64_t *)FUN_18008d070();
   puVar2 = (uint64_t *)*plVar4;
-  cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
+  cVar1 = *(char *)((int64_t)puVar2[1] + 0x19);
   puStackX_18 = &unknown_var_2048_ptr;
   puVar7 = puVar2;
   puVar6 = (uint64_t *)puVar2[1];
@@ -1207,7 +1207,7 @@ void FUN_18002ee70(void)
     }
     puVar7 = puVar6;
     puVar6 = puVar8;
-    cVar1 = *(char *)((longlong)puVar8 + 0x19);
+    cVar1 = *(char *)((int64_t)puVar8 + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&system_memory_0fd8,puVar7 + 4,0x10), iVar3 < 0)) {
     lVar5 = FUN_18008f0d0(plVar4);
@@ -1229,17 +1229,17 @@ void FUN_18002ef70(void)
   char cVar1;
   uint64_t *puVar2;
   int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  int64_t *plVar4;
+  int64_t lVar5;
   uint64_t *puVar6;
   uint64_t *puVar7;
   uint64_t *puVar8;
   uint64_t *puStackX_10;
   uint64_t uStackX_18;
   
-  plVar4 = (longlong *)FUN_18008d070();
+  plVar4 = (int64_t *)FUN_18008d070();
   puVar2 = (uint64_t *)*plVar4;
-  cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
+  cVar1 = *(char *)((int64_t)puVar2[1] + 0x19);
   uStackX_18 = 0;
   puVar7 = puVar2;
   puVar6 = (uint64_t *)puVar2[1];
@@ -1254,7 +1254,7 @@ void FUN_18002ef70(void)
     }
     puVar7 = puVar6;
     puVar6 = puVar8;
-    cVar1 = *(char *)((longlong)puVar8 + 0x19);
+    cVar1 = *(char *)((int64_t)puVar8 + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&system_memory_0fb0,puVar7 + 4,0x10), iVar3 < 0)) {
     lVar5 = FUN_18008f0d0(plVar4);
@@ -1276,17 +1276,17 @@ void FUN_18002f070(void)
   char cVar1;
   uint64_t *puVar2;
   int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  int64_t *plVar4;
+  int64_t lVar5;
   uint64_t *puVar6;
   uint64_t *puVar7;
   uint64_t *puVar8;
   uint64_t *puStackX_10;
   code *pcStackX_18;
   
-  plVar4 = (longlong *)FUN_18008d070();
+  plVar4 = (int64_t *)FUN_18008d070();
   puVar2 = (uint64_t *)*plVar4;
-  cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
+  cVar1 = *(char *)((int64_t)puVar2[1] + 0x19);
   pcStackX_18 = FUN_18025e330;
   puVar7 = puVar2;
   puVar6 = (uint64_t *)puVar2[1];
@@ -1301,7 +1301,7 @@ void FUN_18002f070(void)
     }
     puVar7 = puVar6;
     puVar6 = puVar8;
-    cVar1 = *(char *)((longlong)puVar8 + 0x19);
+    cVar1 = *(char *)((int64_t)puVar8 + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&system_memory_0d48,puVar7 + 4,0x10), iVar3 < 0)) {
     lVar5 = FUN_18008f0d0(plVar4);
@@ -1323,17 +1323,17 @@ void FUN_18002f170(void)
   char cVar1;
   uint64_t *puVar2;
   int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  int64_t *plVar4;
+  int64_t lVar5;
   uint64_t *puVar6;
   uint64_t *puVar7;
   uint64_t *puVar8;
   uint64_t *puStackX_10;
   code *pcStackX_18;
   
-  plVar4 = (longlong *)FUN_18008d070();
+  plVar4 = (int64_t *)FUN_18008d070();
   puVar2 = (uint64_t *)*plVar4;
-  cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
+  cVar1 = *(char *)((int64_t)puVar2[1] + 0x19);
   pcStackX_18 = FUN_18025cc00;
   puVar7 = puVar2;
   puVar6 = (uint64_t *)puVar2[1];
@@ -1348,7 +1348,7 @@ void FUN_18002f170(void)
     }
     puVar7 = puVar6;
     puVar6 = puVar8;
-    cVar1 = *(char *)((longlong)puVar8 + 0x19);
+    cVar1 = *(char *)((int64_t)puVar8 + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&system_memory_10a0,puVar7 + 4,0x10), iVar3 < 0)) {
     lVar5 = FUN_18008f0d0(plVar4);

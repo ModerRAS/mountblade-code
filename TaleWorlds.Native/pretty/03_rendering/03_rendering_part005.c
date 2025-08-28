@@ -11,13 +11,13 @@
  * @param name_offset 名称偏移量
  * @param curve_data 曲线数据指针
  */
-void process_animation_curve_data(longlong animation_context, longlong name_offset, longlong curve_data)
+void process_animation_curve_data(int64_t animation_context, int64_t name_offset, int64_t curve_data)
 {
   char char_temp1;
   char char_temp2;
   char *string_ptr1;
-  ulonglong length_counter;
-  longlong offset_value;
+  uint64_t length_counter;
+  int64_t offset_value;
   void *data_ptr1;
   uint64_t *node_ptr1;
   char *string_ptr2;
@@ -66,10 +66,10 @@ void process_animation_curve_data(longlong animation_context, longlong name_offs
     
     // 检查是否为曲线类型
     if (string_ptr1 == string_ptr3 + -0x180a180f3) {
-      string_ptr1 = string_ptr1 + (longlong)string_ptr2;
+      string_ptr1 = string_ptr1 + (int64_t)string_ptr2;
       if (string_ptr1 <= string_ptr2) break;
       
-      offset_value = (longlong)&CURVE_TYPE_STRING - (longlong)string_ptr2;
+      offset_value = (int64_t)&CURVE_TYPE_STRING - (int64_t)string_ptr2;
       while (*string_ptr2 == string_ptr2[offset_value]) {
         string_ptr2 = string_ptr2 + 1;
         if (string_ptr1 <= string_ptr2) goto MATCH_FOUND_CURVE;
@@ -100,18 +100,18 @@ MATCH_FOUND_CURVE:
     
     // 检查名称属性
     if (string_ptr1 == string_ptr3 + -0x180a03a83) {
-      string_ptr1 = string_ptr2 + (longlong)string_ptr1;
+      string_ptr1 = string_ptr2 + (int64_t)string_ptr1;
       if (string_ptr1 <= string_ptr2) {
         // 获取名称值
         string_ptr2 = (char *)0x180d48d24;
         if ((char *)node_ptr2[1] != (char *)0x0) {
           string_ptr2 = (char *)node_ptr2[1];
         }
-        offset_value = name_offset - (longlong)string_ptr2;
+        offset_value = name_offset - (int64_t)string_ptr2;
         goto PROCESS_NAME_OFFSET;
       }
       
-      offset_value = (longlong)&NAME_STRING_CONSTANT - (longlong)string_ptr2;
+      offset_value = (int64_t)&NAME_STRING_CONSTANT - (int64_t)string_ptr2;
       while (*string_ptr2 == string_ptr2[offset_value]) {
         string_ptr2 = string_ptr2 + 1;
         if (string_ptr1 <= string_ptr2) goto GET_NAME_VALUE;
@@ -152,10 +152,10 @@ HANDLE_CURVE_DATA:
         }
       } while (string_ptr1 != string_ptr3 + -0x180a180f3);
       
-      string_ptr1 = string_ptr1 + (longlong)string_ptr2;
+      string_ptr1 = string_ptr1 + (int64_t)string_ptr2;
       if (string_ptr1 <= string_ptr2) break;
       
-      offset_value = (longlong)&CURVE_TYPE_STRING - (longlong)string_ptr2;
+      offset_value = (int64_t)&CURVE_TYPE_STRING - (int64_t)string_ptr2;
       while (*string_ptr2 == string_ptr2[offset_value]) {
         string_ptr2 = string_ptr2 + 1;
         if (string_ptr1 <= string_ptr2) goto MATCH_FOUND_CURVE;
@@ -187,7 +187,7 @@ HANDLE_CURVE_DATA:
     
     // 检查版本属性
     if (string_ptr1 == string_ptr3 + -0x180a015af) {
-      string_ptr1 = string_ptr1 + (longlong)string_ptr2;
+      string_ptr1 = string_ptr1 + (int64_t)string_ptr2;
       if (string_ptr1 <= string_ptr2) {
         // 获取版本字符串
         string_ptr2 = (char *)0x180d48d24;
@@ -235,7 +235,7 @@ PROCESS_DEFAULT_VALUE:
     
     // 检查默认值属性
     if (string_ptr1 == string_ptr3 + -0x180a0b1bf) {
-      string_ptr1 = string_ptr2 + (longlong)string_ptr1;
+      string_ptr1 = string_ptr2 + (int64_t)string_ptr1;
       if (string_ptr1 <= string_ptr2) {
         // 获取默认值
         offset_value = 0x180d48d24;
@@ -245,7 +245,7 @@ PROCESS_DEFAULT_VALUE:
         goto PROCESS_DEFAULT_VALUE_OFFSET;
       }
       
-      offset_value = (longlong)&DEFAULT_VALUE_STRING - (longlong)string_ptr2;
+      offset_value = (int64_t)&DEFAULT_VALUE_STRING - (int64_t)string_ptr2;
       while (*string_ptr2 == string_ptr2[offset_value]) {
         string_ptr2 = string_ptr2 + 1;
         if (string_ptr1 <= string_ptr2) goto GET_DEFAULT_VALUE;
@@ -281,7 +281,7 @@ PROCESS_DEFAULT_VALUE_OFFSET:
     
     // 检查曲线乘数属性
     if (string_ptr1 == string_ptr3 + -0x180a180af) {
-      string_ptr1 = string_ptr1 + (longlong)string_ptr2;
+      string_ptr1 = string_ptr1 + (int64_t)string_ptr2;
       if (string_ptr1 <= string_ptr2) {
         // 获取曲线乘数值
         offset_value = 0x180d48d24;
@@ -291,7 +291,7 @@ PROCESS_DEFAULT_VALUE_OFFSET:
         goto PROCESS_CURVE_MULTIPLIER;
       }
       
-      offset_value = (longlong)&CURVE_MULTIPLIER_STRING - (longlong)string_ptr2;
+      offset_value = (int64_t)&CURVE_MULTIPLIER_STRING - (int64_t)string_ptr2;
       while (*string_ptr2 == string_ptr2[offset_value]) {
         string_ptr2 = string_ptr2 + 1;
         if (string_ptr1 <= string_ptr2) goto GET_CURVE_MULTIPLIER;
@@ -332,7 +332,7 @@ PROCESS_CURVE_MULTIPLIER:
       
       // 检查关键帧属性
       if (string_ptr1 == string_ptr3 + -0x180a180c3) {
-        string_ptr1 = string_ptr2 + (longlong)string_ptr1;
+        string_ptr1 = string_ptr2 + (int64_t)string_ptr1;
         if (string_ptr1 <= string_ptr2) {
           // 处理单个关键帧
           process_single_keyframe(node_ptr1, animation_context);
@@ -353,12 +353,12 @@ PROCESS_CURVE_MULTIPLIER:
  * @param keyframe_node 关键帧节点指针
  * @param animation_context 动画上下文指针
  */
-static void process_single_keyframe(uint64_t *keyframe_node, longlong animation_context)
+static void process_single_keyframe(uint64_t *keyframe_node, int64_t animation_context)
 {
   char *string_ptr1;
   char *string_ptr2;
   char *string_ptr3;
-  longlong offset_value;
+  int64_t offset_value;
   uint64_t *sub_node_ptr;
   float time_values[2];
   float value_pairs[2];
@@ -386,7 +386,7 @@ static void process_single_keyframe(uint64_t *keyframe_node, longlong animation_
     
     // 检查时间属性
     if (string_ptr1 == string_ptr3 + -0x180a1810b) {
-      string_ptr1 = string_ptr1 + (longlong)string_ptr2;
+      string_ptr1 = string_ptr1 + (int64_t)string_ptr2;
       if (string_ptr1 <= string_ptr2) {
         // 获取时间值
         offset_value = 0x180d48d24;
@@ -397,7 +397,7 @@ static void process_single_keyframe(uint64_t *keyframe_node, longlong animation_
         break;
       }
       
-      offset_value = (longlong)&TIME_STRING - (longlong)string_ptr2;
+      offset_value = (int64_t)&TIME_STRING - (int64_t)string_ptr2;
       while (*string_ptr2 == string_ptr2[offset_value]) {
         string_ptr2 = string_ptr2 + 1;
         if (string_ptr1 <= string_ptr2) goto GET_TIME_VALUE;
@@ -425,7 +425,7 @@ static void process_single_keyframe(uint64_t *keyframe_node, longlong animation_
     
     // 检查值属性
     if (string_ptr1 == string_ptr3 + -0x180a0696b) {
-      string_ptr1 = string_ptr1 + (longlong)string_ptr2;
+      string_ptr1 = string_ptr1 + (int64_t)string_ptr2;
       if (string_ptr1 <= string_ptr2) {
         // 获取关键帧值
         offset_value = 0x180d48d24;
@@ -436,7 +436,7 @@ static void process_single_keyframe(uint64_t *keyframe_node, longlong animation_
         break;
       }
       
-      offset_value = (longlong)&VALUE_STRING - (longlong)string_ptr2;
+      offset_value = (int64_t)&VALUE_STRING - (int64_t)string_ptr2;
       while (*string_ptr2 == string_ptr2[offset_value]) {
         string_ptr2 = string_ptr2 + 1;
         if (string_ptr1 <= string_ptr2) goto GET_VALUE_VALUE;
@@ -448,8 +448,8 @@ static void process_single_keyframe(uint64_t *keyframe_node, longlong animation_
   process_keyframe_data(keyframe_node, &KEYFRAME_HANDLER, &stack0x00000008);
   
   // 调用关键帧处理回调
-  (**(code **)(*(longlong *)(animation_context + 8) + 8))
-            ((longlong *)(animation_context + 8), (int)time_values[0], value_pairs[0], 0, 0);
+  (**(code **)(*(int64_t *)(animation_context + 8) + 8))
+            ((int64_t *)(animation_context + 8), (int)time_values[0], value_pairs[0], 0, 0);
 }
 
 /**
@@ -463,7 +463,7 @@ static void process_single_keyframe(uint64_t *keyframe_node, longlong animation_
  * @return 初始化后的数据容器指针
  */
 uint64_t *
-create_animation_data_container(uint64_t *data_container, ulonglong allocation_flags, 
+create_animation_data_container(uint64_t *data_container, uint64_t allocation_flags, 
                                 uint64_t cleanup_param, uint64_t debug_param)
 {
   uint64_t management_flags;
@@ -498,9 +498,9 @@ create_animation_data_container(uint64_t *data_container, ulonglong allocation_f
 #define ANIMATION_CONTAINER_TYPE "animation_container"
 
 // 函数引用声明（原始代码中的函数调用）
-void initialize_curve_processor(longlong context, longlong data);
+void initialize_curve_processor(int64_t context, int64_t data);
 void parse_version_string(char *version_str, void *format_ptr, int *version_info);
-void parse_animation_value(longlong value_ptr, void *parser_table, void *output);
-void process_keyframe_array(uint64_t *keyframe_array, longlong context);
+void parse_animation_value(int64_t value_ptr, void *parser_table, void *output);
+void process_keyframe_array(uint64_t *keyframe_array, int64_t context);
 void process_keyframe_data(uint64_t *keyframe, void *handler, void *stack_data);
 void initialize_data_container(uint64_t *container);

@@ -38,26 +38,26 @@
 // 
 // @param render_context 渲染上下文指针
 // @param data_context 数据上下文指针
-void rendering_system_resource_manager(longlong render_context, longlong data_context)
+void rendering_system_resource_manager(int64_t render_context, int64_t data_context)
 
 {
   int *resource_count;
-  longlong *resource_array;
+  int64_t *resource_array;
   int array_size;
   int bit_count;
-  longlong **resource_pointer;
+  int64_t **resource_pointer;
   uint lock_value;
   uint resource_index;
   uint64_t *memory_block;
-  longlong base_address;
-  longlong temp_address;
-  longlong *buffer_pointer;
+  int64_t base_address;
+  int64_t temp_address;
+  int64_t *buffer_pointer;
   int buffer_size;
   char *string_pointer;
-  ulonglong checksum_value;
+  uint64_t checksum_value;
   uint *uint_pointer;
   int item_count;
-  longlong resource_item;
+  int64_t resource_item;
   bool allocation_success;
   float scale_factor;
   uint64_t temp_var;
@@ -75,22 +75,22 @@ void rendering_system_resource_manager(longlong render_context, longlong data_co
   uint temp_uint_1;
   uint temp_uint_2;
   int temp_int_2;
-  longlong **temp_pointer_array;
-  longlong temp_long_1;
-  longlong *temp_long_pointer_1;
-  longlong *temp_long_pointer_2;
+  int64_t **temp_pointer_array;
+  int64_t temp_long_1;
+  int64_t *temp_long_pointer_1;
+  int64_t *temp_long_pointer_2;
   int *temp_int_pointer;
   int32_t temp_param_3;
   uint temp_uint_3;
-  longlong *temp_long_pointer_3;
-  longlong *temp_long_pointer_4;
-  longlong *temp_long_pointer_5;
+  int64_t *temp_long_pointer_3;
+  int64_t *temp_long_pointer_4;
+  int64_t *temp_long_pointer_5;
   void **temp_var_pointer;
   uint64_t temp_var_3;
   int *temp_int_pointer_2;
   uint64_t temp_var_4;
   int *temp_int_pointer_3;
-  longlong temp_long_2;
+  int64_t temp_long_2;
   int *temp_int_pointer_4;
   uint64_t temp_var_5;
   int *temp_int_pointer_5;
@@ -98,7 +98,7 @@ void rendering_system_resource_manager(longlong render_context, longlong data_co
   int *temp_int_pointer_6;
   uint64_t temp_var_7;
   int *temp_int_pointer_7;
-  longlong temp_long_3;
+  int64_t temp_long_3;
   int8_t temp_buffer[12];
   int32_t temp_param_4;
   int32_t temp_param_5;
@@ -110,18 +110,18 @@ void rendering_system_resource_manager(longlong render_context, longlong data_co
   int8_t temp_buffer_2[128];
   int32_t temp_param_9;
   uint64_t temp_var_8;
-  longlong temp_long_4;
+  int64_t temp_long_4;
   uint64_t temp_var_9;
-  longlong temp_long_5;
+  int64_t temp_long_5;
   void *temp_var_3;
   int8_t *temp_var_4;
   int32_t temp_param_10;
   int8_t temp_buffer_3[128];
   int32_t temp_param_11;
   uint64_t temp_var_10;
-  longlong temp_long_6;
+  int64_t temp_long_6;
   uint64_t temp_var_11;
-  longlong temp_long_7;
+  int64_t temp_long_7;
   void *temp_var_5;
   int8_t *temp_var_6;
   int32_t temp_param_12;
@@ -130,19 +130,19 @@ void rendering_system_resource_manager(longlong render_context, longlong data_co
   int8_t *temp_var_8;
   int32_t temp_param_13;
   int8_t temp_buffer_5[72];
-  ulonglong stack_checksum;
+  uint64_t stack_checksum;
   
   temp_var_3 = RENDERING_SYSTEM_STACK_GUARD_VALUE;
-  stack_checksum = _DAT ^ (ulonglong)security_buffer;
+  stack_checksum = _DAT ^ (uint64_t)security_buffer;
   item_count = 0;
   bit_count = 0;
-  resource_array = *(longlong **)(render_context + 0x1b90);
+  resource_array = *(int64_t **)(render_context + 0x1b90);
   temp_long_4 = render_context;
-  if (resource_array != *(longlong **)(render_context + 0x1b98)) {
+  if (resource_array != *(int64_t **)(render_context + 0x1b98)) {
     do {
-      item_count = item_count + (int)(*(longlong *)(*resource_array + 0x90) - *(longlong *)(*resource_array + 0x88) >> 3);
+      item_count = item_count + (int)(*(int64_t *)(*resource_array + 0x90) - *(int64_t *)(*resource_array + 0x88) >> 3);
       resource_array = resource_array + 1;
-    } while (resource_array != *(longlong **)(render_context + 0x1b98));
+    } while (resource_array != *(int64_t **)(render_context + 0x1b98));
     if (0 < item_count) {
       resource_count = (int *)(render_context + 0x78);
       item_count = *resource_count;
@@ -151,7 +151,7 @@ void rendering_system_resource_manager(longlong render_context, longlong data_co
       if (0 < item_count) {
         array_size = *resource_count;
         temp_param_3 = 0;
-        temp_pointer_array = (longlong **)resource_count;
+        temp_pointer_array = (int64_t **)resource_count;
         temp_int_1 = array_size;
         temp_int_pointer = resource_count;
         bit_count = array_size;
@@ -160,12 +160,12 @@ void rendering_system_resource_manager(longlong render_context, longlong data_co
             bit_count = bit_count + 1;
           }
           temp_var = CONCAT44(temp_param_2,array_size);
-          temp_long_3 = (ulonglong)temp_uint_3 << 0x20;
+          temp_long_3 = (uint64_t)temp_uint_3 << 0x20;
           temp_int_pointer_3 = resource_count;
           temp_var_4 = temp_var;
           temp_int_pointer_2 = resource_count;
           temp_long_2 = temp_long_3;
-          FUN_180308a90(&temp_int_pointer_2,&temp_int_pointer_3,(longlong)(bit_count + -1) * 2);
+          FUN_180308a90(&temp_int_pointer_2,&temp_int_pointer_3,(int64_t)(bit_count + -1) * 2);
           if (array_size < RENDERING_SYSTEM_THRESHOLD_0X1D) {
             temp_int_pointer_7 = resource_count;
             temp_var_7 = temp_var;
@@ -176,14 +176,14 @@ void rendering_system_resource_manager(longlong render_context, longlong data_co
           else {
             temp_int_1 = RENDERING_SYSTEM_THRESHOLD_0X1C;
             temp_var_6 = CONCAT44(temp_param_2,RENDERING_SYSTEM_THRESHOLD_0X1C);
-            temp_pointer_array = (longlong **)resource_count;
+            temp_pointer_array = (int64_t **)resource_count;
             temp_int_pointer_5 = resource_count;
             temp_int_pointer_4 = resource_count;
             temp_long_5 = temp_long_3;
             FUN_180308670(&temp_int_pointer_4,&temp_int_pointer_5);
             temp_int_1 = RENDERING_SYSTEM_THRESHOLD_0X1C;
             temp_var_5 = CONCAT44(temp_param_2,RENDERING_SYSTEM_THRESHOLD_0X1C);
-            temp_pointer_array = (longlong **)resource_count;
+            temp_pointer_array = (int64_t **)resource_count;
             temp_int_pointer_6 = resource_count;
             temp_var_6 = temp_var;
             temp_int_pointer_5 = resource_count;
@@ -218,12 +218,12 @@ void rendering_system_resource_manager(longlong render_context, longlong data_co
                  FUN_1800b0a10(temp_var,&temp_long_pointer_4,*(int32_t *)(data_context + 0x1bd4),&temp_var_5);
         temp_var = *memory_block;
         *memory_block = 0;
-        temp_long_pointer_5 = *(longlong **)(render_context + 0x68);
+        temp_long_pointer_5 = *(int64_t **)(render_context + 0x68);
         *(uint64_t *)(render_context + 0x68) = temp_var;
-        if (temp_long_pointer_5 != (longlong *)0x0) {
+        if (temp_long_pointer_5 != (int64_t *)0x0) {
           (**(code **)(*temp_long_pointer_5 + 0x38))();
         }
-        if (temp_long_pointer_4 != (longlong *)0x0) {
+        if (temp_long_pointer_4 != (int64_t *)0x0) {
           (**(code **)(*temp_long_pointer_4 + 0x38))();
         }
         temp_var_5 = &system_state_ptr;
@@ -244,18 +244,18 @@ void rendering_system_resource_manager(longlong render_context, longlong data_co
                  FUN_1800b0a10(temp_var,&temp_long_pointer_3,*(int32_t *)(data_context + 0x1bd4),&temp_var_7);
         temp_var = *memory_block;
         *memory_block = 0;
-        temp_long_pointer_5 = *(longlong **)(render_context + 0x70);
+        temp_long_pointer_5 = *(int64_t **)(render_context + 0x70);
         *(uint64_t *)(render_context + 0x70) = temp_var;
-        if (temp_long_pointer_5 != (longlong *)0x0) {
+        if (temp_long_pointer_5 != (int64_t *)0x0) {
           (**(code **)(*temp_long_pointer_5 + 0x38))();
         }
-        if (temp_long_pointer_3 != (longlong *)0x0) {
+        if (temp_long_pointer_3 != (int64_t *)0x0) {
           (**(code **)(*temp_long_pointer_3 + 0x38))();
         }
         temp_var_7 = &system_state_ptr;
         temp_uint_2 = 0;
         if (0 < item_count) {
-          temp_pointer_array = (longlong **)(render_context + 0x980);
+          temp_pointer_array = (int64_t **)(render_context + 0x980);
           do {
             resource_pointer = temp_pointer_array;
             LOCK();
@@ -263,23 +263,23 @@ void rendering_system_resource_manager(longlong render_context, longlong data_co
             *(uint *)temp_pointer_array = *(uint *)temp_pointer_array + 1;
             UNLOCK();
             resource_index = lock_value >> RENDERING_SYSTEM_SHIFT_0XB;
-            checksum_value = (ulonglong)resource_index;
-            string_pointer = (char *)((longlong)temp_pointer_array + checksum_value + 0x808);
-            uint_pointer = (uint *)((longlong)temp_pointer_array + ((ulonglong)resource_index * 2 + 2) * 4);
-            temp_long_3 = -0x808 - (longlong)temp_pointer_array;
+            checksum_value = (uint64_t)resource_index;
+            string_pointer = (char *)((int64_t)temp_pointer_array + checksum_value + 0x808);
+            uint_pointer = (uint *)((int64_t)temp_pointer_array + ((uint64_t)resource_index * 2 + 2) * 4);
+            temp_long_3 = -0x808 - (int64_t)temp_pointer_array;
             do {
               bit_count = (int)checksum_value;
-              if (*(longlong *)uint_pointer == 0) {
+              if (*(int64_t *)uint_pointer == 0) {
                 base_address = FUN_18062b420(_DAT,RENDERING_SYSTEM_BUFFER_SIZE_0X28000,0x25);
                 LOCK();
-                allocation_success = *(longlong *)((longlong)resource_pointer + ((longlong)bit_count * 2 + 2) * 4) == 0;
+                allocation_success = *(int64_t *)((int64_t)resource_pointer + ((int64_t)bit_count * 2 + 2) * 4) == 0;
                 if (allocation_success) {
-                  *(longlong *)((longlong)resource_pointer + ((longlong)bit_count * 2 + 2) * 4) = base_address;
+                  *(int64_t *)((int64_t)resource_pointer + ((int64_t)bit_count * 2 + 2) * 4) = base_address;
                 }
                 UNLOCK();
                 if (allocation_success) {
                   LOCK();
-                  *(int8_t *)((longlong)bit_count + 0x808 + (longlong)resource_pointer) = 0;
+                  *(int8_t *)((int64_t)bit_count + 0x808 + (int64_t)resource_pointer) = 0;
                   UNLOCK();
                 }
                 else {
@@ -296,27 +296,27 @@ void rendering_system_resource_manager(longlong render_context, longlong data_co
                 } while (*string_pointer != '\0');
               }
               base_address = temp_long_4;
-              checksum_value = (ulonglong)(bit_count + 1);
+              checksum_value = (uint64_t)(bit_count + 1);
               uint_pointer = uint_pointer + 2;
               string_pointer = string_pointer + 1;
-            } while ((longlong)(string_pointer + temp_long_3) <= (longlong)(ulonglong)resource_index);
-            temp_int_pointer = (int *)(*(longlong *)((longlong)resource_pointer + ((ulonglong)resource_index * 2 + 2) * 4)
-                                 + (ulonglong)(lock_value - (lock_value & 0xfffff800)) * RENDERING_SYSTEM_SIZE_0X50);
+            } while ((int64_t)(string_pointer + temp_long_3) <= (int64_t)(uint64_t)resource_index);
+            temp_int_pointer = (int *)(*(int64_t *)((int64_t)resource_pointer + ((uint64_t)resource_index * 2 + 2) * 4)
+                                 + (uint64_t)(lock_value - (lock_value & 0xfffff800)) * RENDERING_SYSTEM_SIZE_0X50);
             LOCK();
             uint_pointer = (uint *)(temp_long_4 + 0x1288);
             temp_uint_1 = *uint_pointer;
             *uint_pointer = *uint_pointer + 1;
             UNLOCK();
             lock_value = temp_uint_1 >> RENDERING_SYSTEM_SHIFT_0XB;
-            checksum_value = (ulonglong)lock_value;
+            checksum_value = (uint64_t)lock_value;
             temp_long_3 = temp_long_4 + 0x1288;
             string_pointer = (char *)(temp_long_4 + 0x1a90 + checksum_value);
-            resource_array = (longlong *)(temp_long_4 + 0x1290 + (ulonglong)lock_value * 8);
+            resource_array = (int64_t *)(temp_long_4 + 0x1290 + (uint64_t)lock_value * 8);
             do {
               bit_count = (int)checksum_value;
               if (*resource_array == 0) {
                 temp_address = FUN_18062b420(_DAT,RENDERING_SYSTEM_BUFFER_SIZE_0XD8000,0x25);
-                buffer_pointer = (longlong *)(base_address + 0x1290 + (longlong)bit_count * 8);
+                buffer_pointer = (int64_t *)(base_address + 0x1290 + (int64_t)bit_count * 8);
                 LOCK();
                 allocation_success = *buffer_pointer == 0;
                 if (allocation_success) {
@@ -326,7 +326,7 @@ void rendering_system_resource_manager(longlong render_context, longlong data_co
                 if (allocation_success) {
                   FUN_1803085c0(temp_long_3,bit_count << RENDERING_SYSTEM_SHIFT_0XB);
                   LOCK();
-                  *(int8_t *)((longlong)bit_count + 0x808 + temp_long_3) = 0;
+                  *(int8_t *)((int64_t)bit_count + 0x808 + temp_long_3) = 0;
                   UNLOCK();
                 }
                 else {
@@ -344,24 +344,24 @@ void rendering_system_resource_manager(longlong render_context, longlong data_co
               }
               render_context = temp_long_4;
               resource_index = temp_uint_2;
-              checksum_value = (ulonglong)(bit_count + 1);
+              checksum_value = (uint64_t)(bit_count + 1);
               resource_array = resource_array + 1;
               string_pointer = string_pointer + 1;
-            } while ((longlong)(string_pointer + (-0x808 - temp_long_3)) <= (longlong)(ulonglong)lock_value);
+            } while ((int64_t)(string_pointer + (-0x808 - temp_long_3)) <= (int64_t)(uint64_t)lock_value);
             temp_var_2 = temp_buffer;
             temp_float_1 = normalized_factor * RENDERING_SYSTEM_SCALE_FACTOR_0_875;
             temp_float_2 = 1.0 / quality_factor;
             FUN_1803076d0(temp_long_4,
                           *(uint64_t *)
-                           (*(longlong *)(temp_long_4 + 0x80 + (ulonglong)(temp_uint_2 >> RENDERING_SYSTEM_SHIFT_0XB) * 8) +
-                           (ulonglong)(temp_uint_2 + (temp_uint_2 >> RENDERING_SYSTEM_SHIFT_0XB) * -RENDERING_SYSTEM_SHIFT_0X800) * 8),
-                          *(longlong *)(temp_long_4 + 0x1290 + (ulonglong)lock_value * 8) +
-                          (ulonglong)(temp_uint_1 - (temp_uint_1 & 0xfffff800)) * RENDERING_SYSTEM_SIZE_0X1B0,temp_int_pointer);
+                           (*(int64_t *)(temp_long_4 + 0x80 + (uint64_t)(temp_uint_2 >> RENDERING_SYSTEM_SHIFT_0XB) * 8) +
+                           (uint64_t)(temp_uint_2 + (temp_uint_2 >> RENDERING_SYSTEM_SHIFT_0XB) * -RENDERING_SYSTEM_SHIFT_0X800) * 8),
+                          *(int64_t *)(temp_long_4 + 0x1290 + (uint64_t)lock_value * 8) +
+                          (uint64_t)(temp_uint_1 - (temp_uint_1 & 0xfffff800)) * RENDERING_SYSTEM_SIZE_0X1B0,temp_int_pointer);
             temp_uint_2 = resource_index + 1;
             item_count = temp_int_2;
           } while ((int)temp_uint_2 < temp_int_2);
         }
-        temp_pointer_array = (longlong **)&temp_var_1;
+        temp_pointer_array = (int64_t **)&temp_var_1;
         temp_var_1 = &unknown_var_3432_ptr;
         temp_var_2 = temp_buffer_2;
         temp_param_8 = 0;
@@ -370,25 +370,25 @@ void rendering_system_resource_manager(longlong render_context, longlong data_co
         temp_var_8 = *(uint64_t *)(render_context + 0x68);
         temp_var_9 = RENDERING_SYSTEM_BUFFER_SIZE_0X28000;
         temp_long_6 = render_context + 0x988;
-        temp_long_5 = (longlong)item_count * RENDERING_SYSTEM_SIZE_0X50;
+        temp_long_5 = (int64_t)item_count * RENDERING_SYSTEM_SIZE_0X50;
         temp_var = FUN_18062b1e0(_DAT,RENDERING_SYSTEM_BUFFER_SIZE_0X100,8,3);
-        resource_array = (longlong *)FUN_18005ce30(temp_var,&temp_var_1);
-        temp_pointer_3 = (longlong **)resource_array;
-        if (resource_array != (longlong *)0x0) {
+        resource_array = (int64_t *)FUN_18005ce30(temp_var,&temp_var_1);
+        temp_pointer_3 = (int64_t **)resource_array;
+        if (resource_array != (int64_t *)0x0) {
           (**(code **)(*resource_array + 0x28))(resource_array);
         }
         temp_var = _DAT;
         temp_pointer_array = &temp_long_pointer_2;
         temp_long_pointer_2 = resource_array;
-        if (resource_array != (longlong *)0x0) {
+        if (resource_array != (int64_t *)0x0) {
           (**(code **)(*resource_array + 0x28))(resource_array);
         }
         FUN_18005e370(temp_var,&temp_long_pointer_2);
-        if (resource_array != (longlong *)0x0) {
+        if (resource_array != (int64_t *)0x0) {
           (**(code **)(*resource_array + 0x38))(resource_array);
         }
         temp_var_1 = &system_state_ptr;
-        temp_pointer_3 = (longlong **)&temp_var_3;
+        temp_pointer_3 = (int64_t **)&temp_var_3;
         temp_var_3 = &unknown_var_3432_ptr;
         temp_var_4 = temp_buffer_3;
         temp_param_10 = 0;
@@ -397,21 +397,21 @@ void rendering_system_resource_manager(longlong render_context, longlong data_co
         temp_var_10 = *(uint64_t *)(render_context + 0x70);
         temp_var_11 = RENDERING_SYSTEM_BUFFER_SIZE_0XD8000;
         temp_long_7 = render_context + 0x1290;
-        temp_long_6 = (longlong)item_count * RENDERING_SYSTEM_SIZE_0X1B0;
+        temp_long_6 = (int64_t)item_count * RENDERING_SYSTEM_SIZE_0X1B0;
         temp_var = FUN_18062b1e0(_DAT,RENDERING_SYSTEM_BUFFER_SIZE_0X100,8,3);
-        resource_array = (longlong *)FUN_18005ce30(temp_var,&temp_var_3);
+        resource_array = (int64_t *)FUN_18005ce30(temp_var,&temp_var_3);
         temp_var_pointer = (void **)resource_array;
-        if (resource_array != (longlong *)0x0) {
+        if (resource_array != (int64_t *)0x0) {
           (**(code **)(*resource_array + 0x28))(resource_array);
         }
         temp_var = _DAT;
         temp_pointer_3 = &temp_long_pointer_1;
         temp_long_pointer_1 = resource_array;
-        if (resource_array != (longlong *)0x0) {
+        if (resource_array != (int64_t *)0x0) {
           (**(code **)(*resource_array + 0x28))(resource_array);
         }
         FUN_18005e370(temp_var,&temp_long_pointer_1);
-        if (resource_array != (longlong *)0x0) {
+        if (resource_array != (int64_t *)0x0) {
           (**(code **)(*resource_array + 0x38))(resource_array);
         }
         temp_var_pointer = &temp_var_3;
@@ -423,7 +423,7 @@ void rendering_system_resource_manager(longlong render_context, longlong data_co
   *(int32_t *)(data_context + 0x124b8) = 0;
 LAB_1803084bf:
                     // 警告：子函数不返回
-  FUN_1808fc050(stack_checksum ^ (ulonglong)security_buffer);
+  FUN_1808fc050(stack_checksum ^ (uint64_t)security_buffer);
 }
 
 // 渲染系统数据处理器
@@ -436,8 +436,8 @@ void rendering_system_data_processor(uint *data_pointer, int32_t *data_value)
 {
   uint lock_value;
   uint resource_index;
-  longlong memory_block;
-  ulonglong checksum_value;
+  int64_t memory_block;
+  uint64_t checksum_value;
   bool allocation_success;
   
   LOCK();
@@ -445,18 +445,18 @@ void rendering_system_data_processor(uint *data_pointer, int32_t *data_value)
   *data_pointer = *data_pointer + 1;
   UNLOCK();
   resource_index = lock_value >> RENDERING_SYSTEM_SHIFT_0XB;
-  checksum_value = (ulonglong)resource_index;
-  if (*(longlong *)(data_pointer + (ulonglong)resource_index * 2 + 2) == 0) {
+  checksum_value = (uint64_t)resource_index;
+  if (*(int64_t *)(data_pointer + (uint64_t)resource_index * 2 + 2) == 0) {
     memory_block = FUN_18062b420(_DAT,RENDERING_SYSTEM_BUFFER_SIZE_0X2000,0x18);
     LOCK();
-    allocation_success = *(longlong *)(data_pointer + checksum_value * 2 + 2) == 0;
+    allocation_success = *(int64_t *)(data_pointer + checksum_value * 2 + 2) == 0;
     if (allocation_success) {
-      *(longlong *)(data_pointer + checksum_value * 2 + 2) = memory_block;
+      *(int64_t *)(data_pointer + checksum_value * 2 + 2) = memory_block;
     }
     UNLOCK();
     if (allocation_success) {
       LOCK();
-      *(int8_t *)(checksum_value + RENDERING_SYSTEM_SIZE_0X40 + (longlong)data_pointer) = 0;
+      *(int8_t *)(checksum_value + RENDERING_SYSTEM_SIZE_0X40 + (int64_t)data_pointer) = 0;
       UNLOCK();
     }
     else {
@@ -465,14 +465,14 @@ void rendering_system_data_processor(uint *data_pointer, int32_t *data_value)
         FUN_18064e900();
       }
       do {
-      } while (*(char *)(checksum_value + RENDERING_SYSTEM_SIZE_0X40 + (longlong)data_pointer) != '\0');
+      } while (*(char *)(checksum_value + RENDERING_SYSTEM_SIZE_0X40 + (int64_t)data_pointer) != '\0');
     }
   }
   else {
     do {
-    } while (*(char *)(checksum_value + RENDERING_SYSTEM_SIZE_0X40 + (longlong)data_pointer) != '\0');
+    } while (*(char *)(checksum_value + RENDERING_SYSTEM_SIZE_0X40 + (int64_t)data_pointer) != '\0');
   }
-  *(int32_t *)(*(longlong *)(data_pointer + checksum_value * 2 + 2) + (ulonglong)(lock_value + resource_index * -RENDERING_SYSTEM_SHIFT_0X800) * 4)
+  *(int32_t *)(*(int64_t *)(data_pointer + checksum_value * 2 + 2) + (uint64_t)(lock_value + resource_index * -RENDERING_SYSTEM_SHIFT_0X800) * 4)
        = *data_value;
   return;
 }
@@ -482,13 +482,13 @@ void rendering_system_data_processor(uint *data_pointer, int32_t *data_value)
 // 
 // @param memory_base 内存基地址
 // @param memory_offset 内存偏移量
-void rendering_system_memory_clearer(longlong memory_base, uint memory_offset)
+void rendering_system_memory_clearer(int64_t memory_base, uint memory_offset)
 
 {
   if ((int)memory_offset < (int)(memory_offset + RENDERING_SYSTEM_SHIFT_0X800)) {
                     // 警告：子函数不返回
-    memset(*(longlong *)(memory_base + 8 + (ulonglong)(memory_offset >> RENDERING_SYSTEM_SHIFT_0XB) * 8) +
-           (longlong)(int)(memory_offset + (memory_offset >> RENDERING_SYSTEM_SHIFT_0XB) * -RENDERING_SYSTEM_SHIFT_0X800) * RENDERING_SYSTEM_SIZE_0X1B0,0,0x100);
+    memset(*(int64_t *)(memory_base + 8 + (uint64_t)(memory_offset >> RENDERING_SYSTEM_SHIFT_0XB) * 8) +
+           (int64_t)(int)(memory_offset + (memory_offset >> RENDERING_SYSTEM_SHIFT_0XB) * -RENDERING_SYSTEM_SHIFT_0X800) * RENDERING_SYSTEM_SIZE_0X1B0,0,0x100);
   }
   return;
 }
@@ -498,12 +498,12 @@ void rendering_system_memory_clearer(longlong memory_base, uint memory_offset)
 void rendering_system_memory_cleaner(void)
 
 {
-  longlong unaff_RBP;
+  int64_t unaff_RBP;
   uint unaff_EDI;
   
                     // 警告：子函数不返回
-  memset(*(longlong *)(unaff_RBP + 8 + (ulonglong)(unaff_EDI >> RENDERING_SYSTEM_SHIFT_0XB) * 8) +
-         (longlong)(int)(unaff_EDI + (unaff_EDI >> RENDERING_SYSTEM_SHIFT_0XB) * -RENDERING_SYSTEM_SHIFT_0X800) * RENDERING_SYSTEM_SIZE_0X1B0,0,0x100);
+  memset(*(int64_t *)(unaff_RBP + 8 + (uint64_t)(unaff_EDI >> RENDERING_SYSTEM_SHIFT_0XB) * 8) +
+         (int64_t)(int)(unaff_EDI + (unaff_EDI >> RENDERING_SYSTEM_SHIFT_0XB) * -RENDERING_SYSTEM_SHIFT_0X800) * RENDERING_SYSTEM_SIZE_0X1B0,0,0x100);
 }
 
 // 渲染系统空函数
@@ -520,63 +520,63 @@ void rendering_system_empty_function(void)
 // @param resource_pointer 资源指针
 // @param target_pointer 目标指针
 // @param param_3 参数3
-void rendering_system_resource_handler(longlong *resource_pointer, longlong target_pointer, uint64_t param_3)
+void rendering_system_resource_handler(int64_t *resource_pointer, int64_t target_pointer, uint64_t param_3)
 
 {
   uint source_size;
-  longlong *temp_pointer;
-  longlong base_address;
-  longlong target_address;
+  int64_t *temp_pointer;
+  int64_t base_address;
+  int64_t target_address;
   uint source_index;
   char operation_result;
   uint temp_uint_1;
   uint temp_uint_2;
   uint temp_uint_3;
-  longlong *temp_stack_pointer;
+  int64_t *temp_stack_pointer;
   uint64_t temp_var;
-  longlong *temp_stack_pointer_2;
+  int64_t *temp_stack_pointer_2;
   
   temp_uint_3 = *(uint *)(resource_pointer + 1);
-  temp_var = CONCAT44((int)((ulonglong)param_3 >> 0x20),temp_uint_3);
+  temp_var = CONCAT44((int)((uint64_t)param_3 >> 0x20),temp_uint_3);
   source_size = *(uint *)(target_pointer + 8);
   if (temp_uint_3 != source_size) {
     target_address = *resource_pointer;
     base_address = *resource_pointer;
     temp_uint_1 = *(uint *)(resource_pointer + 1);
     while (temp_uint_1 = temp_uint_1 + 1, temp_uint_1 != source_size) {
-      temp_pointer = *(longlong **)
-                (*(longlong *)(base_address + 8 + (ulonglong)(temp_uint_1 >> RENDERING_SYSTEM_SHIFT_0XB) * 8) +
-                (ulonglong)(temp_uint_1 + (temp_uint_1 >> RENDERING_SYSTEM_SHIFT_0XB) * -RENDERING_SYSTEM_SHIFT_0X800) * 8);
+      temp_pointer = *(int64_t **)
+                (*(int64_t *)(base_address + 8 + (uint64_t)(temp_uint_1 >> RENDERING_SYSTEM_SHIFT_0XB) * 8) +
+                (uint64_t)(temp_uint_1 + (temp_uint_1 >> RENDERING_SYSTEM_SHIFT_0XB) * -RENDERING_SYSTEM_SHIFT_0X800) * 8);
       temp_uint_2 = temp_uint_1;
       source_index = temp_uint_1;
       if (temp_uint_1 != temp_uint_3) {
         do {
           source_index = source_index - 1;
-          temp_stack_pointer = *(longlong **)
-                         (*(longlong *)(target_address + 8 + (ulonglong)(source_index >> RENDERING_SYSTEM_SHIFT_0XB) * 8) +
-                         (ulonglong)(source_index & 0x7ff) * 8);
-          if (temp_stack_pointer != (longlong *)0x0) {
+          temp_stack_pointer = *(int64_t **)
+                         (*(int64_t *)(target_address + 8 + (uint64_t)(source_index >> RENDERING_SYSTEM_SHIFT_0XB) * 8) +
+                         (uint64_t)(source_index & 0x7ff) * 8);
+          if (temp_stack_pointer != (int64_t *)0x0) {
             (**(code **)(*temp_stack_pointer + 0x28))();
           }
           temp_stack_pointer_2 = temp_pointer;
-          if (temp_pointer != (longlong *)0x0) {
+          if (temp_pointer != (int64_t *)0x0) {
             (**(code **)(*temp_pointer + 0x28))(temp_pointer);
           }
           operation_result = FUN_180306d20(&temp_stack_pointer_2,&temp_stack_pointer);
           temp_uint_3 = (uint)temp_var;
           if (operation_result == '\0') break;
           *(uint64_t *)
-           (*(longlong *)(target_address + 8 + (ulonglong)(temp_uint_2 >> RENDERING_SYSTEM_SHIFT_0XB) * 8) +
-           (ulonglong)(temp_uint_2 + (temp_uint_2 >> RENDERING_SYSTEM_SHIFT_0XB) * -RENDERING_SYSTEM_SHIFT_0X800) * 8) =
+           (*(int64_t *)(target_address + 8 + (uint64_t)(temp_uint_2 >> RENDERING_SYSTEM_SHIFT_0XB) * 8) +
+           (uint64_t)(temp_uint_2 + (temp_uint_2 >> RENDERING_SYSTEM_SHIFT_0XB) * -RENDERING_SYSTEM_SHIFT_0X800) * 8) =
                *(uint64_t *)
-                (*(longlong *)(target_address + 8 + (ulonglong)(source_index >> RENDERING_SYSTEM_SHIFT_0XB) * 8) +
-                (ulonglong)(source_index & 0x7ff) * 8);
+                (*(int64_t *)(target_address + 8 + (uint64_t)(source_index >> RENDERING_SYSTEM_SHIFT_0XB) * 8) +
+                (uint64_t)(source_index & 0x7ff) * 8);
           temp_uint_2 = temp_uint_2 - 1;
         } while (source_index != (uint)temp_var);
       }
-      *(longlong **)
-       (*(longlong *)(target_address + 8 + (ulonglong)(temp_uint_2 >> RENDERING_SYSTEM_SHIFT_0XB) * 8) +
-       (ulonglong)(temp_uint_2 + (temp_uint_2 >> RENDERING_SYSTEM_SHIFT_0XB) * -RENDERING_SYSTEM_SHIFT_0X800) * 8) = temp_pointer;
+      *(int64_t **)
+       (*(int64_t *)(target_address + 8 + (uint64_t)(temp_uint_2 >> RENDERING_SYSTEM_SHIFT_0XB) * 8) +
+       (uint64_t)(temp_uint_2 + (temp_uint_2 >> RENDERING_SYSTEM_SHIFT_0XB) * -RENDERING_SYSTEM_SHIFT_0X800) * 8) = temp_pointer;
     }
   }
   return;
@@ -588,10 +588,10 @@ void rendering_system_resource_handler(longlong *resource_pointer, longlong targ
 // @param data_array 数据数组
 // @param target_address 目标地址
 // @param param_3 参数3
-void rendering_system_advanced_processor(int8_t (*data_array) [16], longlong target_address, uint64_t param_3)
+void rendering_system_advanced_processor(int8_t (*data_array) [16], int64_t target_address, uint64_t param_3)
 
 {
-  longlong *resource_pointer;
+  int64_t *resource_pointer;
   uint source_index;
   uint64_t temp_var;
   int8_t temp_buffer[16];
@@ -601,17 +601,17 @@ void rendering_system_advanced_processor(int8_t (*data_array) [16], longlong tar
   int32_t temp_param_1;
   int32_t temp_param_2;
   uint temp_uint_2;
-  longlong *temp_stack_pointer;
-  longlong *temp_stack_pointer_2;
+  int64_t *temp_stack_pointer;
+  int64_t *temp_stack_pointer_2;
   uint temp_uint_3;
   int32_t temp_param_3;
-  longlong **temp_pointer_array;
+  int64_t **temp_pointer_array;
   uint64_t temp_var_2;
   int8_t temp_buffer_3[16];
   
   temp_buffer_3 = *data_array;
   temp_uint_2 = temp_buffer_3._8_4_;
-  _temp_uint_3 = CONCAT44((int)((ulonglong)param_3 >> 0x20),*(uint *)(target_address + 8));
+  _temp_uint_3 = CONCAT44((int)((uint64_t)param_3 >> 0x20),*(uint *)(target_address + 8));
   if (temp_uint_2 != *(uint *)(target_address + 8)) {
     temp_var = temp_buffer_3._0_8_;
     temp_param_1 = temp_buffer_3._0_4_;
@@ -619,37 +619,37 @@ void rendering_system_advanced_processor(int8_t (*data_array) [16], longlong tar
     while( true ) {
       temp_buffer = temp_buffer_3;
       temp_var_2 = CONCAT44(temp_param_2,temp_param_1);
-      resource_pointer = *(longlong **)
-                (*(longlong *)(temp_var + 8 + (ulonglong)(temp_uint_2 >> RENDERING_SYSTEM_SHIFT_0XB) * 8) +
-                (ulonglong)(temp_uint_2 + (temp_uint_2 >> RENDERING_SYSTEM_SHIFT_0XB) * -RENDERING_SYSTEM_SHIFT_0X800) * 8);
+      resource_pointer = *(int64_t **)
+                (*(int64_t *)(temp_var + 8 + (uint64_t)(temp_uint_2 >> RENDERING_SYSTEM_SHIFT_0XB) * 8) +
+                (uint64_t)(temp_uint_2 + (temp_uint_2 >> RENDERING_SYSTEM_SHIFT_0XB) * -RENDERING_SYSTEM_SHIFT_0X800) * 8);
       temp_uint_1 = temp_uint_2;
       source_index = temp_uint_2;
       while( true ) {
         source_index = source_index - 1;
         temp_pointer_array = &temp_stack_pointer;
-        temp_stack_pointer = *(longlong **)
-                      (*(longlong *)(temp_var + 8 + (ulonglong)(source_index >> RENDERING_SYSTEM_SHIFT_0XB) * 8) +
-                      (ulonglong)(source_index & 0x7ff) * 8);
-        if (temp_stack_pointer != (longlong *)0x0) {
+        temp_stack_pointer = *(int64_t **)
+                      (*(int64_t *)(temp_var + 8 + (uint64_t)(source_index >> RENDERING_SYSTEM_SHIFT_0XB) * 8) +
+                      (uint64_t)(source_index & 0x7ff) * 8);
+        if (temp_stack_pointer != (int64_t *)0x0) {
           (**(code **)(*temp_stack_pointer + 0x28))();
         }
         temp_stack_pointer_2 = resource_pointer;
-        if (resource_pointer != (longlong *)0x0) {
+        if (resource_pointer != (int64_t *)0x0) {
           (**(code **)(*resource_pointer + 0x28))(resource_pointer);
         }
         operation_result = FUN_180306d20(&temp_stack_pointer_2,&temp_stack_pointer);
         if (operation_result == '\0') break;
         *(uint64_t *)
-         (*(longlong *)(temp_var_2 + 8 + (ulonglong)(temp_uint_1 >> RENDERING_SYSTEM_SHIFT_0XB) * 8) +
-         (ulonglong)(temp_uint_1 + (temp_uint_1 >> RENDERING_SYSTEM_SHIFT_0XB) * -RENDERING_SYSTEM_SHIFT_0X800) * 8) =
+         (*(int64_t *)(temp_var_2 + 8 + (uint64_t)(temp_uint_1 >> RENDERING_SYSTEM_SHIFT_0XB) * 8) +
+         (uint64_t)(temp_uint_1 + (temp_uint_1 >> RENDERING_SYSTEM_SHIFT_0XB) * -RENDERING_SYSTEM_SHIFT_0X800) * 8) =
              *(uint64_t *)
-              (*(longlong *)(temp_var + 8 + (ulonglong)(source_index >> RENDERING_SYSTEM_SHIFT_0XB) * 8) +
-              (ulonglong)(source_index & 0x7ff) * 8);
+              (*(int64_t *)(temp_var + 8 + (uint64_t)(source_index >> RENDERING_SYSTEM_SHIFT_0XB) * 8) +
+              (uint64_t)(source_index & 0x7ff) * 8);
         temp_uint_1 = temp_uint_1 - 1;
       }
-      *(longlong **)
-       (*(longlong *)(temp_var_2 + 8 + (ulonglong)(temp_uint_1 >> RENDERING_SYSTEM_SHIFT_0XB) * 8) +
-       (ulonglong)(temp_uint_1 + (temp_uint_1 >> RENDERING_SYSTEM_SHIFT_0XB) * -RENDERING_SYSTEM_SHIFT_0X800) * 8) = resource_pointer;
+      *(int64_t **)
+       (*(int64_t *)(temp_var_2 + 8 + (uint64_t)(temp_uint_1 >> RENDERING_SYSTEM_SHIFT_0XB) * 8) +
+       (uint64_t)(temp_uint_1 + (temp_uint_1 >> RENDERING_SYSTEM_SHIFT_0XB) * -RENDERING_SYSTEM_SHIFT_0X800) * 8) = resource_pointer;
       temp_uint_2 = temp_uint_2 + 1;
       temp_buffer_3._8_4_ = temp_uint_2;
       temp_buffer_2 = temp_buffer_3;
@@ -671,7 +671,7 @@ void rendering_system_advanced_processor(int8_t (*data_array) [16], longlong tar
 // @param target_pointer 目标指针
 // @param operation_type 操作类型
 // @return 操作结果
-longlong rendering_system_memory_manager(longlong *memory_pointer, longlong *target_pointer, int operation_type)
+int64_t rendering_system_memory_manager(int64_t *memory_pointer, int64_t *target_pointer, int operation_type)
 
 {
   uint64_t *source_pointer;
@@ -704,7 +704,7 @@ longlong rendering_system_memory_manager(longlong *memory_pointer, longlong *tar
       target_data[4] = source_pointer[4];
       target_data[5] = temp_var;
       target_data[6] = source_pointer[6];
-      *memory_pointer = (longlong)target_data;
+      *memory_pointer = (int64_t)target_data;
       return 0;
     }
     if (operation_type == 2) {
@@ -723,17 +723,17 @@ longlong rendering_system_memory_manager(longlong *memory_pointer, longlong *tar
 // @param target_pointer 目标指针
 // @param sync_count 同步计数
 // @param param_4 参数4
-void rendering_system_data_synchronizer(longlong *source_pointer, longlong *target_pointer, longlong sync_count, uint64_t param_4)
+void rendering_system_data_synchronizer(int64_t *source_pointer, int64_t *target_pointer, int64_t sync_count, uint64_t param_4)
 
 {
   uint source_size;
-  longlong temp_address;
+  int64_t temp_address;
   uint temp_uint_1;
-  longlong temp_address_2;
+  int64_t temp_address_2;
   uint64_t *memory_block;
   uint temp_uint_2;
   uint temp_uint_3;
-  longlong temp_address_3;
+  int64_t temp_address_3;
   uint temp_uint_4;
   uint64_t temp_var;
   int32_t temp_param_1;
@@ -745,26 +745,26 @@ void rendering_system_data_synchronizer(longlong *source_pointer, longlong *targ
   int32_t temp_param_7;
   int32_t temp_param_8;
   int32_t temp_param_9;
-  longlong temp_long_1;
-  longlong temp_long_2;
+  int64_t temp_long_1;
+  int64_t temp_long_2;
   int32_t temp_param_10;
   int32_t temp_param_11;
   int32_t temp_param_12;
   int32_t temp_param_13;
-  longlong temp_long_3;
-  longlong temp_long_4;
-  longlong temp_long_5;
-  longlong temp_long_6;
-  longlong temp_long_7;
-  longlong temp_long_8;
-  longlong temp_long_9;
+  int64_t temp_long_3;
+  int64_t temp_long_4;
+  int64_t temp_long_5;
+  int64_t temp_long_6;
+  int64_t temp_long_7;
+  int64_t temp_long_8;
+  int64_t temp_long_9;
   int32_t temp_param_14;
   int32_t temp_param_15;
   int32_t temp_param_16;
   int32_t temp_param_17;
   
   source_size = *(uint *)(source_pointer + 1);
-  temp_long_1 = (longlong)(int)source_size;
+  temp_long_1 = (int64_t)(int)source_size;
   temp_address_2 = (int)target_pointer[1] - temp_long_1;
   temp_var = param_4;
   while ((RENDERING_SYSTEM_THRESHOLD_0X1C < temp_address_2 && (0 < sync_count))) {
@@ -773,28 +773,28 @@ void rendering_system_data_synchronizer(longlong *source_pointer, longlong *targ
     temp_uint_1 = (int)(((int)target_pointer[1] - temp_long_1) / 2) + source_size;
     temp_uint_3 = temp_uint_1 >> RENDERING_SYSTEM_SHIFT_0XB;
     memory_block = (uint64_t *)
-             FUN_180308f10(*(longlong *)(*source_pointer + 8 + (ulonglong)(source_size >> RENDERING_SYSTEM_SHIFT_0XB) * 8) +
-                           (ulonglong)(source_size + (source_size >> RENDERING_SYSTEM_SHIFT_0XB) * -RENDERING_SYSTEM_SHIFT_0X800) * 8,
-                           *(longlong *)(*source_pointer + 8 + (ulonglong)temp_uint_3 * 8) +
-                           (ulonglong)(temp_uint_1 + temp_uint_3 * -RENDERING_SYSTEM_SHIFT_0X800) * 8,
-                           *(longlong *)(*target_pointer + 8 + (ulonglong)temp_uint_2 * 8) +
-                           (ulonglong)(temp_uint_4 + temp_uint_2 * -RENDERING_SYSTEM_SHIFT_0X800) * 8);
+             FUN_180308f10(*(int64_t *)(*source_pointer + 8 + (uint64_t)(source_size >> RENDERING_SYSTEM_SHIFT_0XB) * 8) +
+                           (uint64_t)(source_size + (source_size >> RENDERING_SYSTEM_SHIFT_0XB) * -RENDERING_SYSTEM_SHIFT_0X800) * 8,
+                           *(int64_t *)(*source_pointer + 8 + (uint64_t)temp_uint_3 * 8) +
+                           (uint64_t)(temp_uint_1 + temp_uint_3 * -RENDERING_SYSTEM_SHIFT_0X800) * 8,
+                           *(int64_t *)(*target_pointer + 8 + (uint64_t)temp_uint_2 * 8) +
+                           (uint64_t)(temp_uint_4 + temp_uint_2 * -RENDERING_SYSTEM_SHIFT_0X800) * 8);
     temp_param_1 = (int32_t)*target_pointer;
-    temp_param_2 = *(int32_t *)((longlong)target_pointer + 4);
+    temp_param_2 = *(int32_t *)((int64_t)target_pointer + 4);
     temp_param_3 = (int32_t)target_pointer[1];
-    temp_param_4 = *(int32_t *)((longlong)target_pointer + 0xc);
+    temp_param_4 = *(int32_t *)((int64_t)target_pointer + 0xc);
     temp_param_5 = (int32_t)*source_pointer;
-    temp_param_6 = *(int32_t *)((longlong)source_pointer + 4);
+    temp_param_6 = *(int32_t *)((int64_t)source_pointer + 4);
     temp_param_7 = (int32_t)source_pointer[1];
-    temp_param_8 = *(int32_t *)((longlong)source_pointer + 0xc);
+    temp_param_8 = *(int32_t *)((int64_t)source_pointer + 0xc);
     temp_var = *memory_block;
     FUN_1803090c0(&temp_long_9,&temp_param_5,&temp_param_1,&temp_var);
     temp_address = temp_long_8;
     temp_address_2 = temp_long_9;
     temp_param_10 = (int32_t)*target_pointer;
-    temp_param_11 = *(int32_t *)((longlong)target_pointer + 4);
+    temp_param_11 = *(int32_t *)((int64_t)target_pointer + 4);
     temp_param_12 = (int32_t)target_pointer[1];
-    temp_param_13 = *(int32_t *)((longlong)target_pointer + 0xc);
+    temp_param_13 = *(int32_t *)((int64_t)target_pointer + 0xc);
     sync_count = sync_count + -1;
     temp_long_7 = temp_long_9;
     temp_long_6 = temp_long_8;
@@ -807,9 +807,9 @@ void rendering_system_data_synchronizer(longlong *source_pointer, longlong *targ
     temp_long_5 = *target_pointer;
     temp_long_4 = target_pointer[1];
     temp_param_14 = (int32_t)*source_pointer;
-    temp_param_15 = *(int32_t *)((longlong)source_pointer + 4);
+    temp_param_15 = *(int32_t *)((int64_t)source_pointer + 4);
     temp_param_16 = (int32_t)source_pointer[1];
-    temp_param_17 = *(int32_t *)((longlong)source_pointer + 0xc);
+    temp_param_17 = *(int32_t *)((int64_t)source_pointer + 0xc);
     temp_long_3 = temp_long_5;
     temp_long_2 = temp_long_4;
     FUN_180308c30(&temp_param_14,&temp_long_3,&temp_long_5);
@@ -841,17 +841,17 @@ void rendering_system_data_synchronizer(longlong *source_pointer, longlong *targ
 // @param param_19 参数19
 // @param param_20 参数20
 // @param param_21 参数21
-void rendering_system_extended_processor(longlong *source_pointer, uint64_t param_2, longlong param_3, uint64_t param_4,
+void rendering_system_extended_processor(int64_t *source_pointer, uint64_t param_2, int64_t param_3, uint64_t param_4,
                                        uint64_t param_5, uint64_t param_6, uint64_t param_7, uint64_t param_8,
-                                       uint64_t param_9, longlong param_10, longlong param_11, uint64_t param_12,
-                                       uint64_t param_13, longlong param_14, longlong param_15, longlong param_16,
-                                       longlong param_17, longlong param_18, longlong param_19, int32_t param_20,
+                                       uint64_t param_9, int64_t param_10, int64_t param_11, uint64_t param_12,
+                                       uint64_t param_13, int64_t param_14, int64_t param_15, int64_t param_16,
+                                       int64_t param_17, int64_t param_18, int64_t param_19, int32_t param_20,
                                        int32_t param_21)
 
 {
   uint source_size;
-  longlong temp_address;
-  longlong temp_address_2;
+  int64_t temp_address;
+  int64_t temp_address_2;
   uint temp_uint_1;
   uint64_t *memory_block;
   uint temp_uint_2;
@@ -859,10 +859,10 @@ void rendering_system_extended_processor(longlong *source_pointer, uint64_t para
   uint64_t temp_var;
   uint64_t unaff_RBX;
   uint64_t unaff_RBP;
-  longlong temp_address_3;
-  longlong *unaff_RDI;
+  int64_t temp_address_3;
+  int64_t *unaff_RDI;
   uint temp_uint_4;
-  longlong in_R11;
+  int64_t in_R11;
   uint64_t unaff_R14;
   int32_t unaff_XMM6_Da;
   int32_t unaff_XMM6_Db;
@@ -875,7 +875,7 @@ void rendering_system_extended_processor(longlong *source_pointer, uint64_t para
   *(uint64_t *)(in_R11 + 8) = unaff_RBX;
   *(uint64_t *)(in_R11 + 0x10) = unaff_RBP;
   source_size = *(uint *)(source_pointer + 1);
-  temp_address_3 = (longlong)(int)source_size;
+  temp_address_3 = (int64_t)(int)source_size;
   *(uint64_t *)(in_R11 + -0x18) = unaff_R14;
   if (RENDERING_SYSTEM_THRESHOLD_0X1C < in_R11 - temp_address_3) {
     *(int32_t *)(in_R11 + -0x28) = unaff_XMM6_Da;
@@ -889,28 +889,28 @@ void rendering_system_extended_processor(longlong *source_pointer, uint64_t para
       temp_uint_1 = (int)(((int)unaff_RDI[1] - temp_address_3) / 2) + source_size;
       temp_uint_3 = temp_uint_1 >> RENDERING_SYSTEM_SHIFT_0XB;
       memory_block = (uint64_t *)
-               FUN_180308f10(*(longlong *)(*source_pointer + 8 + (ulonglong)(source_size >> RENDERING_SYSTEM_SHIFT_0XB) * 8) +
-                             (ulonglong)(source_size + (source_size >> RENDERING_SYSTEM_SHIFT_0XB) * -RENDERING_SYSTEM_SHIFT_0X800) * 8,
-                             *(longlong *)(*source_pointer + 8 + (ulonglong)temp_uint_3 * 8) +
-                             (ulonglong)(temp_uint_1 + temp_uint_3 * -RENDERING_SYSTEM_SHIFT_0X800) * 8,
-                             *(longlong *)(*unaff_RDI + 8 + (ulonglong)temp_uint_2 * 8) +
-                             (ulonglong)(temp_uint_4 + temp_uint_2 * -RENDERING_SYSTEM_SHIFT_0X800) * 8);
+               FUN_180308f10(*(int64_t *)(*source_pointer + 8 + (uint64_t)(source_size >> RENDERING_SYSTEM_SHIFT_0XB) * 8) +
+                             (uint64_t)(source_size + (source_size >> RENDERING_SYSTEM_SHIFT_0XB) * -RENDERING_SYSTEM_SHIFT_0X800) * 8,
+                             *(int64_t *)(*source_pointer + 8 + (uint64_t)temp_uint_3 * 8) +
+                             (uint64_t)(temp_uint_1 + temp_uint_3 * -RENDERING_SYSTEM_SHIFT_0X800) * 8,
+                             *(int64_t *)(*unaff_RDI + 8 + (uint64_t)temp_uint_2 * 8) +
+                             (uint64_t)(temp_uint_4 + temp_uint_2 * -RENDERING_SYSTEM_SHIFT_0X800) * 8);
       param_6._0_4_ = (int32_t)*unaff_RDI;
-      param_6._4_4_ = *(int32_t *)((longlong)unaff_RDI + 4);
+      param_6._4_4_ = *(int32_t *)((int64_t)unaff_RDI + 4);
       param_7._0_4_ = (int32_t)unaff_RDI[1];
-      param_7._4_4_ = *(int32_t *)((longlong)unaff_RDI + 0xc);
+      param_7._4_4_ = *(int32_t *)((int64_t)unaff_RDI + 0xc);
       param_8._0_4_ = (int32_t)*source_pointer;
-      param_8._4_4_ = *(int32_t *)((longlong)source_pointer + 4);
+      param_8._4_4_ = *(int32_t *)((int64_t)source_pointer + 4);
       param_9._0_4_ = (int32_t)source_pointer[1];
-      param_9._4_4_ = *(int32_t *)((longlong)source_pointer + 0xc);
+      param_9._4_4_ = *(int32_t *)((int64_t)source_pointer + 0xc);
       in_stack_000000f8 = *memory_block;
       FUN_1803090c0(&param_10,&param_8,&param_6,&stack0x000000f8);
       temp_address_2 = param_11;
       temp_address = param_10;
       param_12._0_4_ = (int32_t)*unaff_RDI;
-      param_12._4_4_ = *(int32_t *)((longlong)unaff_RDI + 4);
+      param_12._4_4_ = *(int32_t *)((int64_t)unaff_RDI + 4);
       param_13._0_4_ = (int32_t)unaff_RDI[1];
-      param_13._4_4_ = *(int32_t *)((longlong)unaff_RDI + 0xc);
+      param_13._4_4_ = *(int32_t *)((int64_t)unaff_RDI + 0xc);
       param_3 = param_3 + -1;
       param_14 = param_10;
       param_15 = param_11;
@@ -923,9 +923,9 @@ void rendering_system_extended_processor(longlong *source_pointer, uint64_t para
     param_16 = *unaff_RDI;
     param_17 = unaff_RDI[1];
     param_20 = (int32_t)*source_pointer;
-    temp_param_1 = *(int32_t *)((longlong)source_pointer + 4);
+    temp_param_1 = *(int32_t *)((int64_t)source_pointer + 4);
     param_21 = (int32_t)source_pointer[1];
-    temp_param_2 = *(int32_t *)((longlong)source_pointer + 0xc);
+    temp_param_2 = *(int32_t *)((int64_t)source_pointer + 0xc);
     param_18 = param_16;
     param_19 = param_17;
     FUN_180308c30(&param_20,&param_18,&param_16);

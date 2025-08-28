@@ -54,7 +54,7 @@ void* FUN_180287fc0 = setup_rendering_error_handler;
  *       projection_params - 投影参数指针
  * 返回：void - 无返回值
  */
-void calculate_rendering_bounding_box(longlong render_context, float *matrix_data, float *projection_params) {
+void calculate_rendering_bounding_box(int64_t render_context, float *matrix_data, float *projection_params) {
     if (!render_context || !matrix_data || !projection_params) {
         return;
     }
@@ -63,7 +63,7 @@ void calculate_rendering_bounding_box(longlong render_context, float *matrix_dat
     float temp_vars[20];
     float bounding_values[8];
     float *calc_ptr;
-    longlong loop_counter;
+    int64_t loop_counter;
     float min_max_values[8];
     
     /* 初始化边界值 */
@@ -191,7 +191,7 @@ void calculate_rendering_bounding_box(longlong render_context, float *matrix_dat
     complete_rendering_update();
     
     /* 栈安全检查 */
-    ulonglong stack_cookie = get_stack_cookie();
+    uint64_t stack_cookie = get_stack_cookie();
     safe_stack_exit(stack_cookie);
 }
 
@@ -204,7 +204,7 @@ void calculate_rendering_bounding_box(longlong render_context, float *matrix_dat
  *       distance - 距离参数
  * 返回：float* - 输出参数指针
  */
-float * calculate_projection_parameters(longlong render_context, float *output_params, float distance) {
+float * calculate_projection_parameters(int64_t render_context, float *output_params, float distance) {
     if (!render_context || !output_params) {
         return NULL;
     }
@@ -329,8 +329,8 @@ uint64_t * allocate_rendering_memory(uint64_t *memory_block) {
         uint64_t *next_block = temp_ptr;
         
         do {
-            longlong block_size = memory_block[9];
-            longlong allocated_size = allocate_memory_block(get_memory_pool_base(), block_size * 0x1c + 0xaa, 3);
+            int64_t block_size = memory_block[9];
+            int64_t allocated_size = allocate_memory_block(get_memory_pool_base(), block_size * 0x1c + 0xaa, 3);
             uint64_t *new_block = temp_ptr;
             
             if (allocated_size != 0) {
@@ -340,7 +340,7 @@ uint64_t * allocate_rendering_memory(uint64_t *memory_block) {
                 new_block[8] = 0;
                 new_block[9] = 0;
                 new_block[0x10] = 0;
-                new_block[0x11] = (uint64_t)((-(int)(new_block + 0x14) & 3) + (longlong)(new_block + 0x14));
+                new_block[0x11] = (uint64_t)((-(int)(new_block + 0x14) & 3) + (int64_t)(new_block + 0x14));
                 new_block[0x12] = block_size - 1;
                 new_block[0x13] = allocated_size;
             }
@@ -358,7 +358,7 @@ uint64_t * allocate_rendering_memory(uint64_t *memory_block) {
             }
             
             new_block[0x10] = return_block;
-            next_block = (uint64_t *)((longlong)next_block + 1);
+            next_block = (uint64_t *)((int64_t)next_block + 1);
             prev_block = return_block;
             current_block = new_block;
         } while (next_block != (uint64_t *)0x2);
@@ -417,7 +417,7 @@ void update_rendering_parameters(char *param_buffer, int param1, int param2) {
  *       context_data - 上下文数据指针
  * 返回：uint64_t* - 异常数据指针
  */
-uint64_t * initialize_rendering_exception(uint64_t *exception_data, longlong context_data) {
+uint64_t * initialize_rendering_exception(uint64_t *exception_data, int64_t context_data) {
     if (!exception_data) {
         return NULL;
     }
@@ -481,23 +481,23 @@ uint64_t * setup_rendering_error_handler(uint64_t error_param1, uint64_t *error_
 }
 
 /* 辅助函数声明 */
-void update_rendering_matrix(longlong render_context);
+void update_rendering_matrix(int64_t render_context);
 void complete_rendering_update(void);
-ulonglong get_stack_cookie(void);
-void safe_stack_exit(ulonglong cookie);
+uint64_t get_stack_cookie(void);
+void safe_stack_exit(uint64_t cookie);
 uint64_t * allocate_small_memory_block(void);
 void create_memory_exception(void);
 void throw_memory_exception(void);
 uint64_t get_memory_pool_base(void);
-longlong allocate_memory_block(uint64_t base, longlong size, int flags);
+int64_t allocate_memory_block(uint64_t base, int64_t size, int flags);
 void acquire_memory_lock(void);
 void set_global_memory_state(uint64_t state);
 void release_memory_lock(void);
-void throw_parameter_conflict_exception(longlong context, char *message, 
+void throw_parameter_conflict_exception(int64_t context, char *message, 
                                        int old_param1, uint32_t old_param2, 
                                        int new_param1, int new_param2);
-longlong get_error_context(void);
-void copy_std_exception_data(longlong context);
+int64_t get_error_context(void);
+void copy_std_exception_data(int64_t context);
 void copy_error_message(uint64_t dest, uint64_t size, char *src, 
                        uint64_t param4, uint64_t param5, uint64_t param6);
 

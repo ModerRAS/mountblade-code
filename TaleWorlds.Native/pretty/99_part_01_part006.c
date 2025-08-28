@@ -108,47 +108,47 @@ typedef enum {
 
 // 数据处理参数结构体
 typedef struct {
-    longlong dataHandle;            // 数据句柄
+    int64_t dataHandle;            // 数据句柄
     int parameter1;                 // 参数1
     int parameter2;                 // 参数2
     char flag;                      // 标志位
     float result1;                   // 结果1
     float result2;                   // 结果2
-    longlong timestamp;             // 时间戳
+    int64_t timestamp;             // 时间戳
     DataProcessingMode mode;        // 处理模式
     AlgorithmType algorithmType;    // 算法类型
 } DataProcessingParams;
 
 // 系统配置结构体
 typedef struct {
-    longlong systemHandle;           // 系统句柄
+    int64_t systemHandle;           // 系统句柄
     uint configFlags;               // 配置标志
     int bufferSize;                 // 缓冲区大小
     int timeout;                    // 超时时间
     ResourceManagementState state;   // 资源状态
     DataFormat format;              // 数据格式
-    longlong resourcePool;          // 资源池
+    int64_t resourcePool;          // 资源池
 } SystemConfiguration;
 
 // 算法执行上下文结构体
 typedef struct {
-    longlong contextHandle;          // 上下文句柄
+    int64_t contextHandle;          // 上下文句柄
     uint executionFlags;             // 执行标志
     int iterationCount;              // 迭代次数
     float precision;                 // 精度
-    longlong startTime;              // 开始时间
-    longlong endTime;                // 结束时间
+    int64_t startTime;              // 开始时间
+    int64_t endTime;                // 结束时间
     DataProcessorHandle processor;  // 数据处理器
 } AlgorithmExecutionContext;
 
 // 资源管理信息结构体
 typedef struct {
-    longlong resourceHandle;         // 资源句柄
+    int64_t resourceHandle;         // 资源句柄
     uint allocationSize;             // 分配大小
     ResourceManagementState state;   // 管理状态
-    longlong ownerHandle;            // 所有者句柄
+    int64_t ownerHandle;            // 所有者句柄
     int referenceCount;              // 引用计数
-    longlong lastAccessTime;         // 最后访问时间
+    int64_t lastAccessTime;         // 最后访问时间
 } ResourceManagementInfo;
 
 //------------------------------------------------------------------------------
@@ -170,36 +170,36 @@ typedef struct {
  * @param param_3 参数2，通常用于指定数据大小或数量
  * @param param_4 标志位，控制处理流程的特殊行为
  */
-void AdvancedDataProcessor(longlong param_1, int param_2, int param_3, char param_4)
+void AdvancedDataProcessor(int64_t param_1, int param_2, int param_3, char param_4)
 {
     // 局部变量声明
     float tempResult1, tempResult2;     // 临时计算结果
-    longlong systemVar1, systemVar2;   // 系统变量
+    int64_t systemVar1, systemVar2;   // 系统变量
     int threadId, processId;           // 线程ID和进程ID
     int tempInt1, tempInt2;            // 临时整数变量
     int32_t tempUint;               // 临时无符号整数
     uint64_t tempUlong;              // 临时无符号长整数
-    longlong *dataPointer;             // 数据指针
+    int64_t *dataPointer;             // 数据指针
     uint64_t *resourcePointer;       // 资源指针
-    longlong tempLong1;                // 临时长整数
+    int64_t tempLong1;                // 临时长整数
     uint tempCounter;                 // 计数器
-    ulonglong tempUlong1, tempUlong2;  // 临时无符号长整数
+    uint64_t tempUlong1, tempUlong2;  // 临时无符号长整数
     float tempFloat1, tempFloat2;      // 临时浮点数
     
     // 栈变量声明
     int8_t stackBuffer1[32];      // 栈缓冲区1
     int32_t stackUint1;             // 栈无符号整数1
     int32_t stackUint2;             // 栈无符号整数2
-    longlong *stackPointer1;           // 栈指针1
-    longlong *stackPointer2;           // 栈指针2
+    int64_t *stackPointer1;           // 栈指针1
+    int64_t *stackPointer2;           // 栈指针2
     uint64_t stackUlong1;            // 栈无符号长整数1
-    longlong *stackPointer3;           // 栈指针3
-    longlong *stackPointer4;           // 栈指针4
-    longlong *stackPointer5;           // 栈指针5
-    longlong *stackPointer6;           // 栈指针6
+    int64_t *stackPointer3;           // 栈指针3
+    int64_t *stackPointer4;           // 栈指针4
+    int64_t *stackPointer5;           // 栈指针5
+    int64_t *stackPointer6;           // 栈指针6
     void **stackPointerPtr1;      // 栈指针指针1
     void **stackPointerPtr2;      // 栈指针指针2
-    longlong stackArray1[2];           // 栈数组1
+    int64_t stackArray1[2];           // 栈数组1
     void *stackPtr1;              // 栈指针1
     code *stackCodePtr;                // 栈代码指针
     uint64_t stackUlong2;            // 栈无符号长整数2
@@ -212,7 +212,7 @@ void AdvancedDataProcessor(longlong param_1, int param_2, int param_3, char para
     int32_t stackUint4;             // 栈无符号整数4
     int8_t stackBuffer3[128];      // 栈缓冲区3
     uint64_t stackUlong3;            // 栈无符号长整数3
-    ulonglong stackUlong4;             // 栈无符号长整数4
+    uint64_t stackUlong4;             // 栈无符号长整数4
     uint64_t stackUlong5;            // 栈无符号长整数5
     int32_t stackUint5;             // 栈无符号整数5
     int stackInt1;                     // 栈整数1
@@ -222,27 +222,27 @@ void AdvancedDataProcessor(longlong param_1, int param_2, int param_3, char para
     int32_t stackUint6;             // 栈无符号整数6
     int32_t stackUint7;             // 栈无符号整数7
     int32_t stackUint8;             // 栈无符号整数8
-    ulonglong stackUlong6;             // 栈无符号长整数6
-    ulonglong tempVar14;               // 临时变量14
+    uint64_t stackUlong6;             // 栈无符号长整数6
+    uint64_t tempVar14;               // 临时变量14
     
     // 初始化栈保护值
     stackUlong2 = STACK_GUARD_VALUE;
-    stackUlong6 = GET_SECURITY_COOKIE() ^ (ulonglong)stackBuffer1;
+    stackUlong6 = GET_SECURITY_COOKIE() ^ (uint64_t)stackBuffer1;
     
     // 获取系统信息
-    tempInt2 = *(int *)(*(longlong *)(*(longlong *)(system_context_ptr + 8) + 8) + 0x48);
+    tempInt2 = *(int *)(*(int64_t *)(*(int64_t *)(system_context_ptr + 8) + 8) + 0x48);
     threadId = _Thrd_id();
     tempVar14 = 0;
     
     // 检查线程ID
     if (threadId == tempInt2) {
         // 主线程处理逻辑
-        if (*(longlong *)(param_1 + 0x121e0) != 0) {
+        if (*(int64_t *)(param_1 + 0x121e0) != 0) {
             // 执行清理函数
             FUN_18023b050();
-            stackPointer2 = *(longlong **)(param_1 + 0x121e0);
+            stackPointer2 = *(int64_t **)(param_1 + 0x121e0);
             *(uint64_t *)(param_1 + 0x121e0) = 0;
-            if (stackPointer2 != (longlong *)0x0) {
+            if (stackPointer2 != (int64_t *)0x0) {
                 // 调用清理回调函数
                 (**(code **)(*stackPointer2 + 0x38))();
             }
@@ -261,13 +261,13 @@ void AdvancedDataProcessor(longlong param_1, int param_2, int param_3, char para
     }
     
     // 执行系统调用
-    (**(code **)(**(longlong **)(param_1 + 0x1d70) + 0x48))
-            (*(longlong **)(param_1 + 0x1d70), 0, &unknown_var_6656_ptr, &stackPointer1);
+    (**(code **)(**(int64_t **)(param_1 + 0x1d70) + 0x48))
+            (*(int64_t **)(param_1 + 0x1d70), 0, &unknown_var_6656_ptr, &stackPointer1);
     
     // 处理返回结果
-    if (stackPointer1 != (longlong *)0x0) {
+    if (stackPointer1 != (int64_t *)0x0) {
         (**(code **)(*stackPointer1 + 0x10))();
-        stackPointer1 = (longlong *)0x0;
+        stackPointer1 = (int64_t *)0x0;
     }
     
     // 检查标志位
@@ -277,8 +277,8 @@ void AdvancedDataProcessor(longlong param_1, int param_2, int param_3, char para
             stackInt3 = 0x3c;
             stackInt4 = 1;
             tempFloat2 = 3.4028235e+38;
-            tempLong1 = *(longlong *)(system_main_module_state + 0x78);
-            tempUlong2 = *(longlong *)(system_main_module_state + 0x80) - tempLong1 >> 4;
+            tempLong1 = *(int64_t *)(system_main_module_state + 0x78);
+            tempUlong2 = *(int64_t *)(system_main_module_state + 0x80) - tempLong1 >> 4;
             
             if (tempUlong2 != 0) {
                 tempUlong1 = tempVar14;
@@ -295,7 +295,7 @@ void AdvancedDataProcessor(longlong param_1, int param_2, int param_3, char para
                             tempFloat2 = tempFloat1;
                         }
                     }
-                    tempUlong1 = (ulonglong)((int)tempUlong1 + 1);
+                    tempUlong1 = (uint64_t)((int)tempUlong1 + 1);
                 } while (tempUlong1 < tempUlong2);
             }
             
@@ -307,10 +307,10 @@ void AdvancedDataProcessor(longlong param_1, int param_2, int param_3, char para
             stackInt2 = param_3;
             
             // 执行数据处理
-            (**(code **)(**(longlong **)(param_1 + 0x1d70) + 0x78))
-                      (*(longlong **)(param_1 + 0x1d70), &stackPointer2);
+            (**(code **)(**(int64_t **)(param_1 + 0x1d70) + 0x78))
+                      (*(int64_t **)(param_1 + 0x1d70), &stackPointer2);
             
-            if (stackPointer2 == (longlong *)0x0) {
+            if (stackPointer2 == (int64_t *)0x0) {
                 // 创建新的处理上下文
                 stackUlong3 = CONCAT44(stackInt2, stackInt1);
                 stackUlong4 = CONCAT44(stackInt4, stackInt3);
@@ -329,10 +329,10 @@ void AdvancedDataProcessor(longlong param_1, int param_2, int param_3, char para
             }
             
             // 执行后续处理
-            (**(code **)(**(longlong **)(param_1 + 0x1d70) + 0x70))
-                      (*(longlong **)(param_1 + 0x1d70), &stackUlong3);
-            (**(code **)(**(longlong **)(param_1 + 0x1d70) + 0x50))
-                      (*(longlong **)(param_1 + 0x1d70), 1, stackPointer2);
+            (**(code **)(**(int64_t **)(param_1 + 0x1d70) + 0x70))
+                      (*(int64_t **)(param_1 + 0x1d70), &stackUlong3);
+            (**(code **)(**(int64_t **)(param_1 + 0x1d70) + 0x50))
+                      (*(int64_t **)(param_1 + 0x1d70), 1, stackPointer2);
             
             // 清理和更新
             FUN_18006b4c0(SYSTEM_STATE_MANAGER, stackUlong3 & 0xffffffff);
@@ -340,11 +340,11 @@ void AdvancedDataProcessor(longlong param_1, int param_2, int param_3, char para
             FUN_1800ae230((stackUlong4 & 0xffffffff) / (stackUlong4 >> 0x20),
                          (stackUlong4 & 0xffffffff) % (stackUlong4 >> 0x20));
             stackUlong4 = 0;
-            (**(code **)(**(longlong **)(param_1 + 0x1d70) + 0x70))();
+            (**(code **)(**(int64_t **)(param_1 + 0x1d70) + 0x70))();
         }
         else {
             // 简单处理模式
-            (**(code **)(**(longlong **)(param_1 + 0x1d70) + 0x50))(*(longlong **)(param_1 + 0x1d70), 0, 0);
+            (**(code **)(**(int64_t **)(param_1 + 0x1d70) + 0x50))(*(int64_t **)(param_1 + 0x1d70), 0, 0);
         }
     }
     
@@ -357,46 +357,46 @@ void AdvancedDataProcessor(longlong param_1, int param_2, int param_3, char para
     }
     
     stackUint1 = 0;
-    tempInt2 = (**(code **)(**(longlong **)(param_1 + 0x1d70) + 0x68))
-                    (*(longlong **)(param_1 + 0x1d70), 0, param_2, param_3);
+    tempInt2 = (**(code **)(**(int64_t **)(param_1 + 0x1d70) + 0x68))
+                    (*(int64_t **)(param_1 + 0x1d70), 0, param_2, param_3);
     
     // 错误处理
     if (tempInt2 < 0) {
         if ((tempInt2 + 0x7785fffbU & 0xfffffffd) == 0) {
-            tempUint = (**(code **)(**(longlong **)(param_1 + 0x1d78) + 0x138))();
+            tempUint = (**(code **)(**(int64_t **)(param_1 + 0x1d78) + 0x138))();
             FUN_180220810(tempUint, &unknown_var_6384_ptr);
         }
     }
     else {
         // 成功处理逻辑
-        (**(code **)(**(longlong **)(param_1 + 0x1d70) + 0x48))
-                  (*(longlong **)(param_1 + 0x1d70), 0, &unknown_var_6656_ptr, &stackPointer1);
+        (**(code **)(**(int64_t **)(param_1 + 0x1d70) + 0x48))
+                  (*(int64_t **)(param_1 + 0x1d70), 0, &unknown_var_6656_ptr, &stackPointer1);
         stackUlong1 = 0;
         
-        (**(code **)(**(longlong **)(param_1 + 0x1d78) + 0x48))
-                  (*(longlong **)(param_1 + 0x1d78), stackPointer1, 0, &stackUlong1);
+        (**(code **)(**(int64_t **)(param_1 + 0x1d78) + 0x48))
+                  (*(int64_t **)(param_1 + 0x1d78), stackPointer1, 0, &stackUlong1);
         
         // 分配资源
         tempUlong = FUN_18062b1e0(system_memory_pool_ptr, 0x3b0, 0x10, 3);
-        dataPointer = (longlong *)FUN_18023a2e0(tempUlong, 4);
+        dataPointer = (int64_t *)FUN_18023a2e0(tempUlong, 4);
         
-        if (dataPointer != (longlong *)0x0) {
+        if (dataPointer != (int64_t *)0x0) {
             stackPointer3 = dataPointer;
             (**(code **)(*dataPointer + 0x28))(dataPointer);
         }
         
         // 更新资源指针
-        stackPointer3 = *(longlong **)(param_1 + 0x121e0);
-        *(longlong **)(param_1 + 0x121e0) = dataPointer;
+        stackPointer3 = *(int64_t **)(param_1 + 0x121e0);
+        *(int64_t **)(param_1 + 0x121e0) = dataPointer;
         
-        if (stackPointer3 != (longlong *)0x0) {
+        if (stackPointer3 != (int64_t *)0x0) {
             (**(code **)(*stackPointer3 + 0x38))();
         }
         
         // 设置资源属性
-        dataPointer = (longlong *)(*(longlong *)(param_1 + 0x121e0) + 0x10);
+        dataPointer = (int64_t *)(*(int64_t *)(param_1 + 0x121e0) + 0x10);
         (**(code **)(*dataPointer + 0x10))(dataPointer, &unknown_var_3144_ptr);
-        *(longlong **)(*(longlong *)(param_1 + 0x121e0) + 0x170) = stackPointer1;
+        *(int64_t **)(*(int64_t *)(param_1 + 0x121e0) + 0x170) = stackPointer1;
         
         // 初始化资源数据
         stackPointerPtr1 = &stackPtr4;
@@ -407,7 +407,7 @@ void AdvancedDataProcessor(longlong param_1, int param_2, int param_3, char para
         strcpy_s(stackBuffer3, 0x80, &unknown_var_3144_ptr);
         
         stackPointerPtr2 = &stackPtr4;
-        *(longlong *)(*(longlong *)(param_1 + 0x121e0) + 0x168) = *(longlong *)(param_1 + 0x121e0);
+        *(int64_t *)(*(int64_t *)(param_1 + 0x121e0) + 0x168) = *(int64_t *)(param_1 + 0x121e0);
         
         // 分配和初始化资源块
         resourcePointer = (uint64_t *)FUN_18062b420(system_memory_pool_ptr, 0x10, 3);
@@ -418,32 +418,32 @@ void AdvancedDataProcessor(longlong param_1, int param_2, int param_3, char para
             *resourcePointer = 0;
             resourcePointer[1] = 0;
             tempCounter = (int)tempVar14 + 1;
-            tempVar14 = (ulonglong)tempCounter;
+            tempVar14 = (uint64_t)tempCounter;
             resourcePointer = resourcePointer + 2;
         } while (tempCounter == 0);
         
-        *(uint64_t **)(*(longlong *)(param_1 + 0x121e0) + 0x1d8) = tempUlong1;
-        *(int16_t *)(*(longlong *)(param_1 + 0x121e0) + 0x332) = 1;
+        *(uint64_t **)(*(int64_t *)(param_1 + 0x121e0) + 0x1d8) = tempUlong1;
+        *(int16_t *)(*(int64_t *)(param_1 + 0x121e0) + 0x332) = 1;
         
-        tempLong1 = *(longlong *)(param_1 + 0x121e0);
+        tempLong1 = *(int64_t *)(param_1 + 0x121e0);
         *(int8_t *)(tempLong1 + 0x335) = 1;
         *(int32_t *)(tempLong1 + 0x35c) = 1;
         
         // 更新系统配置
         tempLong1 = system_main_module_state;
-        tempLong1 = *(longlong *)(*(longlong *)(param_1 + 0x121e0) + 0x1d8);
+        tempLong1 = *(int64_t *)(*(int64_t *)(param_1 + 0x121e0) + 0x1d8);
         
         if (tempLong1 == 0) {
             tempLong1 = 0;
         }
         else if (system_main_module_state != 0) {
-            *(longlong *)(*(longlong *)(param_1 + 0x121e0) + 0x340) =
-                 (longlong)*(int *)(system_main_module_state + 0x224);
+            *(int64_t *)(*(int64_t *)(param_1 + 0x121e0) + 0x340) =
+                 (int64_t)*(int *)(system_main_module_state + 0x224);
         }
         
         *(uint64_t *)(tempLong1 + 8) = stackUlong1;
-        tempLong1 = *(longlong *)(param_1 + 0x121e0);
-        *(longlong *)(tempLong1 + 0x340) = (longlong)*(int *)(tempLong1 + 0x224);
+        tempLong1 = *(int64_t *)(param_1 + 0x121e0);
+        *(int64_t *)(tempLong1 + 0x340) = (int64_t)*(int *)(tempLong1 + 0x224);
         
         // 加锁操作
         LOCK();
@@ -457,9 +457,9 @@ void AdvancedDataProcessor(longlong param_1, int param_2, int param_3, char para
         // 执行系统初始化
         FUN_18023ce10(*(uint64_t *)(param_1 + 0x121e0));
         
-        if ((*(longlong *)(*(longlong *)(param_1 + 0x121e0) + 0x1d8) != 0) && (system_main_module_state != 0)) {
-            *(longlong *)(*(longlong *)(param_1 + 0x121e0) + 0x340) =
-                 (longlong)*(int *)(system_main_module_state + 0x224);
+        if ((*(int64_t *)(*(int64_t *)(param_1 + 0x121e0) + 0x1d8) != 0) && (system_main_module_state != 0)) {
+            *(int64_t *)(*(int64_t *)(param_1 + 0x121e0) + 0x340) =
+                 (int64_t)*(int *)(system_main_module_state + 0x224);
         }
         
         // 更新资源信息
@@ -472,22 +472,22 @@ void AdvancedDataProcessor(longlong param_1, int param_2, int param_3, char para
         
         stackPointerPtr1 = &stackPtr2;
         stackPtr2 = &system_state_ptr;
-        tempLong1 = *(longlong *)(param_1 + 0x121e0);
-        dataPointer = *(longlong **)(tempLong1 + 0x1d8);
+        tempLong1 = *(int64_t *)(param_1 + 0x121e0);
+        dataPointer = *(int64_t **)(tempLong1 + 0x1d8);
         
-        if (dataPointer == (longlong *)0x0) {
-            dataPointer = (longlong *)0x0;
+        if (dataPointer == (int64_t *)0x0) {
+            dataPointer = (int64_t *)0x0;
         }
         else if (system_main_module_state != 0) {
-            *(longlong *)(tempLong1 + 0x340) = (longlong)*(int *)(system_main_module_state + 0x224);
-            tempLong1 = *(longlong *)(param_1 + 0x121e0);
+            *(int64_t *)(tempLong1 + 0x340) = (int64_t)*(int *)(system_main_module_state + 0x224);
+            tempLong1 = *(int64_t *)(param_1 + 0x121e0);
         }
         
         *dataPointer = tempLong1;
     }
     
     // 清理栈并返回
-    FUN_1808fc050(stackUlong6 ^ (ulonglong)stackBuffer1);
+    FUN_1808fc050(stackUlong6 ^ (uint64_t)stackBuffer1);
 }
 
 /**
@@ -503,11 +503,11 @@ void AdvancedDataProcessor(longlong param_1, int param_2, int param_3, char para
  * @param param_2 参数指针，用于传递配置参数
  * @return 计算结果，0表示失败，1表示成功
  */
-uint64_t SystemParameterCalculator(longlong param_1, uint64_t *param_2)
+uint64_t SystemParameterCalculator(int64_t param_1, uint64_t *param_2)
 {
     int systemStatus;                // 系统状态
     int32_t errorFlag;            // 错误标志
-    longlong *systemHandle;          // 系统句柄
+    int64_t *systemHandle;          // 系统句柄
     int parameterLevel;              // 参数级别
     uint64_t resultFlag;           // 结果标志
     int stackParams[2];              // 栈参数
@@ -523,8 +523,8 @@ uint64_t SystemParameterCalculator(longlong param_1, uint64_t *param_2)
     
     // 检查参数有效性
     if ((((param_2 != (uint64_t *)0x0) || (*(char *)(param_1 + 0x121b8) == '\0')) ||
-         ((**(code **)(**(longlong **)(param_1 + 0x1d70) + 0x58))
-                    (*(longlong **)(param_1 + 0x1d70), stackParams, 0), stackParams[0] != 0)) ||
+         ((**(code **)(**(int64_t **)(param_1 + 0x1d70) + 0x58))
+                    (*(int64_t **)(param_1 + 0x1d70), stackParams, 0), stackParams[0] != 0)) ||
         (resultFlag = 0x200, systemStatus != 0)) {
         resultFlag = 0;
     }
@@ -537,10 +537,10 @@ uint64_t SystemParameterCalculator(longlong param_1, uint64_t *param_2)
     
     // 获取系统句柄
     if (param_2 == (uint64_t *)0x0) {
-        systemHandle = *(longlong **)(param_1 + 0x1d70);
+        systemHandle = *(int64_t **)(param_1 + 0x1d70);
     }
     else {
-        systemHandle = (longlong *)*param_2;
+        systemHandle = (int64_t *)*param_2;
     }
     
     // 执行参数计算
@@ -549,7 +549,7 @@ uint64_t SystemParameterCalculator(longlong param_1, uint64_t *param_2)
     // 处理计算结果
     if (systemStatus < 0) {
         if ((systemStatus + 0x7785fffbU & 0xfffffffd) == 0) {
-            errorFlag = (**(code **)(**(longlong **)(param_1 + 0x1d78) + 0x138))();
+            errorFlag = (**(code **)(**(int64_t **)(param_1 + 0x1d78) + 0x138))();
             FUN_180220810(errorFlag, &unknown_var_6384_ptr);
         }
         resultFlag = 0;
@@ -580,12 +580,12 @@ uint64_t SystemParameterCalculator(longlong param_1, uint64_t *param_2)
  * @param param_7 参数7，用于资源管理
  * @param param_8 参数8，用于结果存储
  */
-void ComplexAlgorithmHandler(longlong param_1, uint param_2, int param_3, int param_4, uint param_5,
-                            int32_t param_6, longlong param_7, longlong param_8)
+void ComplexAlgorithmHandler(int64_t param_1, uint param_2, int param_3, int param_4, uint param_5,
+                            int32_t param_6, int64_t param_7, int64_t param_8)
 {
     uint tempUint1;                  // 临时无符号整数
     int tempInt1;                    // 临时整数
-    longlong tempLong1;              // 临时长整数
+    int64_t tempLong1;              // 临时长整数
     uint64_t *resourcePtr1;        // 资源指针1
     void *tempPtr1;             // 临时指针1
     uint64_t *resourcePtr2;        // 资源指针2
@@ -598,7 +598,7 @@ void ComplexAlgorithmHandler(longlong param_1, uint param_2, int param_3, int pa
     uint64_t *stackPtr1;           // 栈指针1
     uint stackUint3;                 // 栈无符号整数3
     uint stackUint4;                 // 栈无符号整数4
-    longlong stackLong1;             // 栈长整数1
+    int64_t stackLong1;             // 栈长整数1
     uint64_t *stackPtr2;           // 栈指针2
     uint64_t *stackPtr3;           // 栈指针3
     uint64_t stackUlong2;          // 栈无符号长整数2
@@ -614,11 +614,11 @@ void ComplexAlgorithmHandler(longlong param_1, uint param_2, int param_3, int pa
     int8_t *stackPtr6;            // 栈指针6
     int32_t stackUint10;           // 栈无符号整数10
     int8_t stackBuffer2[136];    // 栈缓冲区2
-    ulonglong stackUlong4;            // 栈无符号长整数4
+    uint64_t stackUlong4;            // 栈无符号长整数4
     
     // 初始化栈保护值
     stackUlong3 = STACK_GUARD_VALUE;
-    stackUlong4 = GET_SECURITY_COOKIE() ^ (ulonglong)stackBuffer1;
+    stackUlong4 = GET_SECURITY_COOKIE() ^ (uint64_t)stackBuffer1;
     
     // 初始化资源指针
     resourcePtr2 = (uint64_t *)0x0;
@@ -712,8 +712,8 @@ void ComplexAlgorithmHandler(longlong param_1, uint param_2, int param_3, int pa
     stackPtr3 = resourcePtr2;
     
     // 执行算法初始化
-    tempInt1 = (**(code **)(**(longlong **)(stackLong1 + 0x1d78) + 0x18))
-                    (*(longlong **)(stackLong1 + 0x1d78), &stackInt2, resourcePtr1, &stackPtr1);
+    tempInt1 = (**(code **)(**(int64_t **)(stackLong1 + 0x1d78) + 0x18))
+                    (*(int64_t **)(stackLong1 + 0x1d78), &stackInt2, resourcePtr1, &stackPtr1);
     
     if (tempInt1 < 0) {
         FUN_180220810(tempInt1, &unknown_var_3072_ptr);
@@ -737,8 +737,8 @@ void ComplexAlgorithmHandler(longlong param_1, uint param_2, int param_3, int pa
             }
             
             tempLong1 = stackLong1;
-            tempInt1 = (**(code **)(**(longlong **)(stackLong1 + 0x1d78) + 0x38))
-                              (*(longlong **)(stackLong1 + 0x1d78), stackPtr1, &stackUint1, &stackPtr2);
+            tempInt1 = (**(code **)(**(int64_t **)(stackLong1 + 0x1d78) + 0x38))
+                              (*(int64_t **)(stackLong1 + 0x1d78), stackPtr1, &stackUint1, &stackPtr2);
             
             if (tempInt1 < 0) {
                 FUN_180220810(tempInt1, &unknown_var_3264_ptr);
@@ -774,8 +774,8 @@ void ComplexAlgorithmHandler(longlong param_1, uint param_2, int param_3, int pa
                 stackInt1 = param_4;
             }
             
-            tempInt1 = (**(code **)(**(longlong **)(tempLong1 + 0x1d78) + 0x40))
-                              (*(longlong **)(tempLong1 + 0x1d78), stackPtr1, &stackUint1, &stackPtr3);
+            tempInt1 = (**(code **)(**(int64_t **)(tempLong1 + 0x1d78) + 0x40))
+                              (*(int64_t **)(tempLong1 + 0x1d78), stackPtr1, &stackUint1, &stackPtr3);
             
             if (tempInt1 < 0) {
                 FUN_180220810(tempInt1, &unknown_var_3168_ptr);
@@ -805,7 +805,7 @@ void ComplexAlgorithmHandler(longlong param_1, uint param_2, int param_3, int pa
     
 LAB_1800a4380:
     // 清理栈并返回
-    FUN_1808fc050(stackUlong4 ^ (ulonglong)stackBuffer1);
+    FUN_1808fc050(stackUlong4 ^ (uint64_t)stackBuffer1);
 }
 
 /**
@@ -822,20 +822,20 @@ LAB_1800a4380:
  * @param param_2 无符号整数数组，包含数据配置信息
  * @param param_3 目标数据结构句柄，用于存储处理结果
  */
-void ResourceDataManager(void **param_1, uint *param_2, longlong param_3)
+void ResourceDataManager(void **param_1, uint *param_2, int64_t param_3)
 {
     char tempChar1;                   // 临时字符1
     byte tempByte;                   // 临时字节
     uint tempUint1;                  // 临时无符号整数1
-    ulonglong tempUlong1;            // 临时无符号长整数1
-    longlong tempLong1;              // 临时长整数1
+    uint64_t tempUlong1;            // 临时无符号长整数1
+    int64_t tempLong1;              // 临时长整数1
     void **tempPtrPtr1;          // 临时指针指针1
     int32_t tempUint2;            // 临时无符号整数2
     int tempInt1;                    // 临时整数1
     uint tempUint3;                  // 临时无符号整数3
     uint64_t *resourcePtr1;        // 资源指针1
     uint64_t tempUlong2;           // 临时无符号长整数2
-    longlong *dataPtr1;              // 数据指针1
+    int64_t *dataPtr1;              // 数据指针1
     ushort tempUshort;               // 临时无符号短整数
     uint64_t *resourcePtr2;       // 资源指针2
     uint tempUint4;                  // 临时无符号整数4
@@ -843,7 +843,7 @@ void ResourceDataManager(void **param_1, uint *param_2, longlong param_3)
     uint tempUint5;                  // 临时无符号整数5
     uint tempUint6;                  // 临时无符号整数6
     uint tempUint7;                  // 临时无符号整数7
-    longlong *dataPtr2;              // 数据指针2
+    int64_t *dataPtr2;              // 数据指针2
     int8_t stackBuffer1[32];     // 栈缓冲区1
     char stackChar1;                 // 栈字符1
     char stackChar2;                 // 栈字符2
@@ -863,7 +863,7 @@ void ResourceDataManager(void **param_1, uint *param_2, longlong param_3)
     int32_t stackUint8;           // 栈无符号整数8
     uint stackUint8;                 // 栈无符号整数8
     int32_t stackUint9;           // 栈无符号整数9
-    longlong stackLong1;             // 栈长整数1
+    int64_t stackLong1;             // 栈长整数1
     uint64_t stackUlong4;          // 栈无符号长整数4
     void **stackPtrPtr2;        // 栈指针指针2
     int32_t stackUint10;          // 栈无符号整数10
@@ -887,12 +887,12 @@ void ResourceDataManager(void **param_1, uint *param_2, longlong param_3)
     int32_t stackUint18;          // 栈无符号整数18
     uint64_t stackUlong8;          // 栈无符号长整数8
     uint stackUint19;                // 栈无符号整数19
-    ulonglong stackUlong9;            // 栈无符号长整数9
-    ulonglong tempUlong3;             // 临时无符号长整数3
+    uint64_t stackUlong9;            // 栈无符号长整数9
+    uint64_t tempUlong3;             // 临时无符号长整数3
     
     // 初始化栈保护值
     stackUlong6 = STACK_GUARD_VALUE;
-    stackUlong9 = GET_SECURITY_COOKIE() ^ (ulonglong)stackBuffer1;
+    stackUlong9 = GET_SECURITY_COOKIE() ^ (uint64_t)stackBuffer1;
     
     // 解析输入参数
     tempUlong2 = *(uint64_t *)(param_2 + 2);
@@ -956,7 +956,7 @@ void ResourceDataManager(void **param_1, uint *param_2, longlong param_3)
         // 计算位数
         for (; tempUint3 != 0; tempUint3 = tempUint3 >> 1) {
             tempUint6 = (int)tempUlong1 + 1;
-            tempUlong1 = (ulonglong)tempUint6;
+            tempUlong1 = (uint64_t)tempUint6;
         }
         stackUint15 = tempUint6 + 1;
     }
@@ -977,7 +977,7 @@ void ResourceDataManager(void **param_1, uint *param_2, longlong param_3)
     stackUlong7 = 1;
     stackUint18 = 0;
     tempUint6 = 0x20;
-    stackChar1 = *(char *)((longlong)param_2 + 0x25);
+    stackChar1 = *(char *)((int64_t)param_2 + 0x25);
     
     if (stackChar1 != '\0') {
         tempUint6 = 0x28;
@@ -995,7 +995,7 @@ void ResourceDataManager(void **param_1, uint *param_2, longlong param_3)
         // 计算位数
         for (; tempUint5 != 0; tempUint5 = tempUint5 >> 1) {
             tempUint7 = (int)tempUlong3 + 1;
-            tempUlong3 = (ulonglong)tempUint7;
+            tempUlong3 = (uint64_t)tempUint7;
         }
         
         *(char *)(param_3 + 0x335) = (char)(tempUint7 + 1);
@@ -1007,7 +1007,7 @@ void ResourceDataManager(void **param_1, uint *param_2, longlong param_3)
         stackUint19 = tempUint4 | 4;
     }
     
-    stackChar2 = *(char *)((longlong)param_2 + 0x26);
+    stackChar2 = *(char *)((int64_t)param_2 + 0x26);
     if (stackChar2 != '\0') {
         tempUint6 = tempUint6 | 0x80;
     }
@@ -1016,7 +1016,7 @@ void ResourceDataManager(void **param_1, uint *param_2, longlong param_3)
     stackUint17 = tempUint2;
     
     // 执行资源分配
-    tempInt1 = (**(code **)(*(longlong *)tempPtrPtr1[0x3af] + 0x28))
+    tempInt1 = (**(code **)(*(int64_t *)tempPtrPtr1[0x3af] + 0x28))
                     (tempPtrPtr1[0x3af], &stackUint13, 0, &stackUlong4);
     
     if (tempInt1 < 0) {
@@ -1026,7 +1026,7 @@ void ResourceDataManager(void **param_1, uint *param_2, longlong param_3)
     *(uint64_t *)(param_3 + 0x170) = stackUlong4;
     tempPtrPtr1 = (void **)FUN_180049b30(stackBuffer4, param_3 + 0x10);
     *tempPtrPtr1 = &system_state_ptr;
-    *(longlong *)(param_3 + 0x168) = param_3;
+    *(int64_t *)(param_3 + 0x168) = param_3;
     
     // 计算资源大小
     tempUshort = *(ushort *)(param_3 + 0x332);
@@ -1044,7 +1044,7 @@ void ResourceDataManager(void **param_1, uint *param_2, longlong param_3)
         resourcePtr1 = (uint64_t *)0x0;
     }
     else {
-        resourcePtr1 = (uint64_t *)FUN_18062b420(system_memory_pool_ptr, (ulonglong)tempUint6 << 4, 5);
+        resourcePtr1 = (uint64_t *)FUN_18062b420(system_memory_pool_ptr, (uint64_t)tempUint6 << 4, 5);
         tempInt1 = 0;
         resourcePtr2 = resourcePtr1;
         
@@ -1054,7 +1054,7 @@ void ResourceDataManager(void **param_1, uint *param_2, longlong param_3)
             resourcePtr2[1] = 0;
             tempInt1 = tempInt1 + 1;
             resourcePtr2 = resourcePtr2 + 2;
-        } while ((ulonglong)(longlong)tempInt1 < (ulonglong)tempUint6);
+        } while ((uint64_t)(int64_t)tempInt1 < (uint64_t)tempUint6);
         
         tempUshort = *(ushort *)(param_3 + 0x332);
     }
@@ -1064,7 +1064,7 @@ void ResourceDataManager(void **param_1, uint *param_2, longlong param_3)
     
     // 处理资源数据
     if (tempUshort != 0) {
-        dataPtr2 = (longlong *)0x0;
+        dataPtr2 = (int64_t *)0x0;
         
         do {
             tempUint7 = (uint)*(byte *)(param_3 + 0x335);
@@ -1095,25 +1095,25 @@ LAB_1800a46f5:
                     }
                     
                     stackLong1 = 0;
-                    (**(code **)(*(longlong *)tempPtrPtr1[0x3af] + 0x48))
+                    (**(code **)(*(int64_t *)tempPtrPtr1[0x3af] + 0x48))
                             (tempPtrPtr1[0x3af], *(uint64_t *)(param_3 + 0x170), &stackUint1, &stackLong1);
                     
                     tempLong1 = system_main_module_state;
                     dataPtr1 = dataPtr2;
                     
-                    if (*(longlong *)(param_3 + 0x1d8) != 0) {
+                    if (*(int64_t *)(param_3 + 0x1d8) != 0) {
                         if (system_main_module_state != 0) {
-                            *(longlong *)(param_3 + 0x340) = (longlong)*(int *)(system_main_module_state + 0x224);
+                            *(int64_t *)(param_3 + 0x340) = (int64_t)*(int *)(system_main_module_state + 0x224);
                         }
-                        dataPtr1 = (longlong *)
-                                  ((longlong)(int)(*(byte *)(param_3 + 0x335) * tempUint6 + tempInt1) * 0x10 +
-                                  *(longlong *)(param_3 + 0x1d8));
+                        dataPtr1 = (int64_t *)
+                                  ((int64_t)(int)(*(byte *)(param_3 + 0x335) * tempUint6 + tempInt1) * 0x10 +
+                                  *(int64_t *)(param_3 + 0x1d8));
                     }
                     
                     dataPtr1[1] = stackLong1;
                     
-                    if ((*(longlong *)(param_3 + 0x1d8) != 0) && (tempLong1 != 0)) {
-                        *(longlong *)(param_3 + 0x340) = (longlong)*(int *)(tempLong1 + 0x224);
+                    if ((*(int64_t *)(param_3 + 0x1d8) != 0) && (tempLong1 != 0)) {
+                        *(int64_t *)(param_3 + 0x340) = (int64_t)*(int *)(tempLong1 + 0x224);
                     }
                     
                     // 设置资源信息
@@ -1132,17 +1132,17 @@ LAB_1800a46f5:
                     stackPtr1 = &system_state_ptr;
                     dataPtr1 = dataPtr2;
                     
-                    if (*(longlong *)(param_3 + 0x1d8) != 0) {
+                    if (*(int64_t *)(param_3 + 0x1d8) != 0) {
                         if (system_main_module_state != 0) {
-                            *(longlong *)(param_3 + 0x340) = (longlong)*(int *)(system_main_module_state + 0x224);
+                            *(int64_t *)(param_3 + 0x340) = (int64_t)*(int *)(system_main_module_state + 0x224);
                         }
-                        dataPtr1 = (longlong *)
-                                  ((longlong)(int)(*(byte *)(param_3 + 0x335) * tempUint6 + tempInt1) * 0x10 +
-                                  *(longlong *)(param_3 + 0x1d8));
+                        dataPtr1 = (int64_t *)
+                                  ((int64_t)(int)(*(byte *)(param_3 + 0x335) * tempUint6 + tempInt1) * 0x10 +
+                                  *(int64_t *)(param_3 + 0x1d8));
                     }
                     
                     *dataPtr1 = param_3;
-                    dataPtr1 = (longlong *)(ulonglong)(tempInt1 + 1U);
+                    dataPtr1 = (int64_t *)(uint64_t)(tempInt1 + 1U);
                     tempUint7 = (uint)*(byte *)(param_3 + 0x335);
                     
                     if ((int)*(uint *)(param_3 + 0x35c) < (int)(uint)*(byte *)(param_3 + 0x335)) {
@@ -1171,7 +1171,7 @@ LAB_1800a46f5:
         }
         
         if (tempUint3 * tempUshort != 0) {
-            tempUlong2 = FUN_18062b420(system_memory_pool_ptr, (ulonglong)(tempUint3 * tempUshort) * 8,
+            tempUlong2 = FUN_18062b420(system_memory_pool_ptr, (uint64_t)(tempUint3 * tempUshort) * 8,
                                      CONCAT71((uint7)(byte)(tempUshort >> 8), 3));
             tempUint7 = (uint)*(byte *)(param_3 + 0x335);
             tempUint6 = *(uint *)(param_3 + 0x35c);
@@ -1185,7 +1185,7 @@ LAB_1800a46f5:
         }
         
         *(uint *)(param_3 + 0x188) = tempUint7 * tempUshort;
-        (**(code **)(*(longlong *)tempPtrPtr1[0x3af] + 0x38))
+        (**(code **)(*(int64_t *)tempPtrPtr1[0x3af] + 0x38))
                   (tempPtrPtr1[0x3af], *(uint64_t *)(param_3 + 0x170), 0, param_3 + 0x178);
         
         tempUint6 = 0;
@@ -1221,11 +1221,11 @@ LAB_1800a46f5:
                         
                         stackUint6 = tempUint2;
                         stackInt2 = tempInt1;
-                        (**(code **)(*(longlong *)tempPtrPtr1[0x3af] + 0x38))
+                        (**(code **)(*(int64_t *)tempPtrPtr1[0x3af] + 0x38))
                                   (tempPtrPtr1[0x3af], *(uint64_t *)(param_3 + 0x170), &stackUint6, &stackUlong2);
                         
                         *(uint64_t *)
-                         (*(longlong *)(param_3 + 0x180) + (longlong)(int)(tempUint4 * tempUint6 + tempInt1) * 8) =
+                         (*(int64_t *)(param_3 + 0x180) + (int64_t)(int)(tempUint4 * tempUint6 + tempInt1) * 8) =
                              stackUlong2;
                         
                         tempInt1 = tempInt1 + 1;
@@ -1260,7 +1260,7 @@ LAB_1800a46f5:
             tempUlong2 = 0;
         }
         else {
-            tempUlong2 = FUN_18062b420(system_memory_pool_ptr, (ulonglong)(tempUint3 * tempUshort) * 8,
+            tempUlong2 = FUN_18062b420(system_memory_pool_ptr, (uint64_t)(tempUint3 * tempUshort) * 8,
                                      CONCAT71((uint7)(byte)(tempUshort >> 8), 3));
             tempUint7 = (uint)*(byte *)(param_3 + 0x335);
             tempUint6 = *(uint *)(param_3 + 0x35c);
@@ -1276,10 +1276,10 @@ LAB_1800a46f5:
         *(uint *)(param_3 + 0x218) = tempUint7 * tempUshort;
         stackUlong5 = 4;
         stackUint10 = tempUint2;
-        (**(code **)(*(longlong *)tempPtrPtr1[0x3af] + 0x40))
+        (**(code **)(*(int64_t *)tempPtrPtr1[0x3af] + 0x40))
                   (tempPtrPtr1[0x3af], *(uint64_t *)(param_3 + 0x170), &stackUint10, param_3 + 0x208);
         
-        *(longlong *)(param_3 + 0x200) = param_3;
+        *(int64_t *)(param_3 + 0x200) = param_3;
         tempUint6 = 0;
         
         if (*(short *)(param_3 + 0x332) != 0) {
@@ -1312,11 +1312,11 @@ LAB_1800a46f5:
                         
                         stackUint2 = tempUint2;
                         stackInt1 = tempInt1;
-                        (**(code **)(*(longlong *)tempPtrPtr1[0x3af] + 0x40))
+                        (**(code **)(*(int64_t *)tempPtrPtr1[0x3af] + 0x40))
                                   (tempPtrPtr1[0x3af], *(uint64_t *)(param_3 + 0x170), &stackUint2, &tempPtrPtr1);
                         
                         *(void ***)
-                         (*(longlong *)(param_3 + 0x210) + (longlong)(int)(tempUint4 * tempUint6 + tempInt1) * 8) =
+                         (*(int64_t *)(param_3 + 0x210) + (int64_t)(int)(tempUint4 * tempUint6 + tempInt1) * 8) =
                              tempPtrPtr1;
                         
                         tempInt1 = tempInt1 + 1;
@@ -1344,7 +1344,7 @@ LAB_1800a46f5:
     system_system_config_buffer = 0;
     UNLOCK();
     
-    *(longlong *)(param_3 + 0x340) = (longlong)*(int *)(system_main_module_state + 0x224);
+    *(int64_t *)(param_3 + 0x340) = (int64_t)*(int *)(system_main_module_state + 0x224);
     
     LOCK();
     *(int32_t *)(param_3 + 0x380) = 2;
@@ -1372,7 +1372,7 @@ LAB_1800a46f5:
     tempPtrPtr1 = &stackPtr3;
     
     // 清理栈并返回
-    FUN_1808fc050(stackUlong9 ^ (ulonglong)stackBuffer1);
+    FUN_1808fc050(stackUlong9 ^ (uint64_t)stackBuffer1);
 }
 
 //==============================================================================

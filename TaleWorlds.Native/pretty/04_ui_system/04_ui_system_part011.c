@@ -18,7 +18,7 @@
  * 
  * @param param_1 动画参数1 (浮点数)
  * @param param_2 动画参数2 (浮点数) 
- * @param param_3 UI上下文数据指针 (longlong)
+ * @param param_3 UI上下文数据指针 (int64_t)
  * @param param_4 控制标志 (字符)
  * 
  * 处理流程：
@@ -29,23 +29,23 @@
  * 5. 优化动画参数并调整变换结果
  * 6. 更新UI元素的最终状态
  */
-void ui_advanced_animation_transform(float param_1, float param_2, longlong param_3, char param_4)
+void ui_advanced_animation_transform(float param_1, float param_2, int64_t param_3, char param_4)
 {
     char control_flag;
     bool condition_result;
     int loop_counter;
     uint64_t register_rax;
-    longlong temp_long_1;
+    int64_t temp_long_1;
     float *float_ptr_1;
-    longlong register_rcx;
-    longlong temp_long_2;
-    longlong temp_long_3;
+    int64_t register_rcx;
+    int64_t temp_long_2;
+    int64_t temp_long_3;
     float *float_ptr_2;
-    longlong register_rbp;
+    int64_t register_rbp;
     int temp_int_1;
     uint64_t register_rsi;
-    ulonglong ulong_temp;
-    longlong register_r11;
+    uint64_t ulong_temp;
+    int64_t register_r11;
     uint64_t register_r12;
     uint64_t register_r13;
     float *register_r14;
@@ -192,9 +192,9 @@ void ui_advanced_animation_transform(float param_1, float param_2, longlong para
     }
     
     // 进行角度归一化和范围限制
-    stack_float_3 = (float)((ulonglong)*(uint64_t *)(register_r14 + 4) >> 0x20);
+    stack_float_3 = (float)((uint64_t)*(uint64_t *)(register_r14 + 4) >> 0x20);
     stack_float_2 = (float)*(uint64_t *)(register_r14 + 4);
-    stack_float_7 = (float)((ulonglong)*(uint64_t *)(register_r14 + 2) >> 0x20);
+    stack_float_7 = (float)((uint64_t)*(uint64_t *)(register_r14 + 2) >> 0x20);
     stack_float_6 = (float)*(uint64_t *)(register_r14 + 2);
     temp_float_7 = register_r14[0x185d];
     if (((register_r14[0x10] == register_xmm6) || (register_r14[0x10] == 0.5)) || (temp_float_7 <= register_xmm6))
@@ -206,8 +206,8 @@ void ui_advanced_animation_transform(float param_1, float param_2, longlong para
     }
     
     stack_return_address = 0x1806599e0;
-    temp_float_1 = (float)atan2f(*(uint *)(*(longlong *)(param_3 + 0x10) + 0x80) ^ 0x80000000,
-                         *(int32_t *)(*(longlong *)(param_3 + 0x10) + 0x84));
+    temp_float_1 = (float)atan2f(*(uint *)(*(int64_t *)(param_3 + 0x10) + 0x80) ^ 0x80000000,
+                         *(int32_t *)(*(int64_t *)(param_3 + 0x10) + 0x84));
     temp_float_1 = temp_float_1 + register_r14[6];
     register_r14[0xb] = temp_float_1;
     
@@ -226,10 +226,10 @@ void ui_advanced_animation_transform(float param_1, float param_2, longlong para
     
     // 优化动画参数并调整变换结果
     temp_float_1 = register_r14[0x18];
-    temp_long_2 = (longlong)(int)temp_float_1;
+    temp_long_2 = (int64_t)(int)temp_float_1;
     if (0 < (int)temp_float_1) {
         temp_float_5 = register_xmm6;
-        if (*(char *)(temp_long_2 * 0x1358 + 0x4e + (longlong)register_r14) != '\0') {
+        if (*(char *)(temp_long_2 * 0x1358 + 0x4e + (int64_t)register_r14) != '\0') {
             temp_float_5 = register_r14[temp_long_2 * 0x4d6 + 0x12] * 0.05;
         }
         if ((temp_float_5 + register_r14[temp_long_2 * 0x4d6 + 0xe] < register_r14[temp_long_2 * 0x4d6 + 0x11]) ||
@@ -237,9 +237,9 @@ void ui_advanced_animation_transform(float param_1, float param_2, longlong para
             register_r14[0xc] = register_r14[0xb];
             temp_float_1 = register_r14[0x18];
         }
-        temp_long_2 = (longlong)(int)temp_float_1;
+        temp_long_2 = (int64_t)(int)temp_float_1;
         temp_float_5 = register_xmm6;
-        if (*(char *)(temp_long_2 * 0x1358 + 0x66 + (longlong)register_r14) != '\0') {
+        if (*(char *)(temp_long_2 * 0x1358 + 0x66 + (int64_t)register_r14) != '\0') {
             temp_float_5 = register_r14[temp_long_2 * 0x4d6 + 0x18] * 0.05;
         }
         if ((temp_float_5 + register_r14[temp_long_2 * 0x4d6 + 0x14] < register_r14[temp_long_2 * 0x4d6 + 0x17]) ||
@@ -297,13 +297,13 @@ void ui_advanced_animation_transform(float param_1, float param_2, longlong para
     // 处理动画缓冲区和高级渲染控制
     if ((condition_result) && (0 < (int)register_r14[0x18])) {
         float_ptr_1 = register_r14 + 0x1b;
-        ulong_temp = (ulonglong)(uint)register_r14[0x18];
+        ulong_temp = (uint64_t)(uint)register_r14[0x18];
         temp_float_7 = register_xmm6;
         do {
             float_ptr_2 = float_ptr_1 + 0x495;
             temp_float_1 = *float_ptr_1;
             float_ptr_1 = float_ptr_1 + 0x4d6;
-            temp_float_7 = temp_float_7 + *(float *)(*(longlong *)(*(longlong *)float_ptr_2 + 0x48) + 0x188) * temp_float_1;
+            temp_float_7 = temp_float_7 + *(float *)(*(int64_t *)(*(int64_t *)float_ptr_2 + 0x48) + 0x188) * temp_float_1;
             ulong_temp = ulong_temp - 1;
         } while (ulong_temp != 0);
         temp_float_1 = register_r14[0x10];
@@ -361,12 +361,12 @@ void ui_advanced_animation_transform(float param_1, float param_2, longlong para
         temp_float_5 = register_xmm6;
         if (0 < (int)register_r14[0x18]) {
             float_ptr_1 = register_r14 + 0x1b;
-            ulong_temp = (ulonglong)(uint)register_r14[0x18];
+            ulong_temp = (uint64_t)(uint)register_r14[0x18];
             do {
                 float_ptr_2 = float_ptr_1 + 0x495;
                 temp_float_8 = *float_ptr_1;
                 float_ptr_1 = float_ptr_1 + 0x4d6;
-                temp_float_5 = temp_float_5 + *(float *)(**(longlong **)float_ptr_2 + 0x188) * temp_float_8;
+                temp_float_5 = temp_float_5 + *(float *)(**(int64_t **)float_ptr_2 + 0x188) * temp_float_8;
                 ulong_temp = ulong_temp - 1;
             } while (ulong_temp != 0);
         }
@@ -408,7 +408,7 @@ void ui_advanced_animation_transform(float param_1, float param_2, longlong para
             if (*(char *)(register_r14 + 0x17) != '\0') {
                 temp_float_1 = -1.0;
             }
-            temp_long_2 = *(longlong *)(register_r14 + (longlong)(int)temp_float_8 * 0x4d6 + -0x26);
+            temp_long_2 = *(int64_t *)(register_r14 + (int64_t)(int)temp_float_8 * 0x4d6 + -0x26);
             stack_return_address = 0x180659ea7;
             temp_long_1 = FUN_18065fd40(*(uint64_t *)(temp_long_2 + 8));
             temp_long_3 = 0x14;
@@ -512,13 +512,13 @@ void ui_advanced_animation_transform(float param_1, float param_2, longlong para
     // 最终的渲染状态更新和动画同步
     temp_float_5 = register_r14[0x11];
     if (temp_float_5 == register_xmm6) {
-        *(bool *)((longlong)register_r14 + 0x5d) = stack_float_2 < register_xmm6;
+        *(bool *)((int64_t)register_r14 + 0x5d) = stack_float_2 < register_xmm6;
     }
-    temp_float_5 = (*(float *)(*(longlong *)
-                       (*(longlong *)(register_r14 + (longlong)(int)register_r14[0x18] * 0x4d6 + -0x26) +
+    temp_float_5 = (*(float *)(*(int64_t *)
+                       (*(int64_t *)(register_r14 + (int64_t)(int)register_r14[0x18] * 0x4d6 + -0x26) +
                        8) + 0x188) /
-              *(float *)(*(longlong *)
-                          (*(longlong *)(register_r14 + (longlong)(int)register_r14[0x18] * 0x4d6 + -0x26) +
+              *(float *)(*(int64_t *)
+                          (*(int64_t *)(register_r14 + (int64_t)(int)register_r14[0x18] * 0x4d6 + -0x26) +
                           0x38) + 0x188)) * temp_float_14 * stack_float_2 + temp_float_5;
     if (register_xmm8 <= temp_float_5) {
         temp_float_5 = register_xmm8;
@@ -527,12 +527,12 @@ void ui_advanced_animation_transform(float param_1, float param_2, longlong para
     
     if (register_r14[0x12] <= register_xmm6 && register_xmm6 != register_r14[0x12]) {
         temp_float_14 = register_xmm8;
-        if (*(char *)((longlong)register_r14 + 0x5d) != '\0') {
+        if (*(char *)((int64_t)register_r14 + 0x5d) != '\0') {
             temp_float_14 = -1.0;
         }
         if (register_xmm6 <= temp_float_14 * stack_float_2) {
             temp_float_14 = temp_float_5;
-            if (*(char *)((longlong)register_r14 + 0x5d) == '\0') {
+            if (*(char *)((int64_t)register_r14 + 0x5d) == '\0') {
                 stack_return_address = 0x18065a252;
                 temp_float_14 = (float)fmodf(temp_float_5 + 0.5);
             }
@@ -636,7 +636,7 @@ FINAL_RENDER_STATE:
     loop_counter = 1;
     temp_float_7 = register_xmm6;
     do {
-        temp_float_2 = *(float *)(((longlong)animation_buffer - (longlong)register_r14) + (longlong)float_ptr_1);
+        temp_float_2 = *(float *)(((int64_t)animation_buffer - (int64_t)register_r14) + (int64_t)float_ptr_1);
         temp_float_3 = temp_float_2 - float_ptr_1[-10];
         temp_float_9 = ABS(temp_float_3);
         if (0.001 <= temp_float_9) {
@@ -666,21 +666,21 @@ FINAL_RENDER_STATE:
             else {
                 temp_float_3 = register_xmm6;
                 if (loop_counter == 7) {
-                    if (*(char *)((longlong)register_r14 + 0x5d) == '\0') {
+                    if (*(char *)((int64_t)register_r14 + 0x5d) == '\0') {
                     ANIMATION_CONTROL_1:
                         temp_float_3 = temp_float_5;
                     }
                 }
                 else {
                     if (loop_counter != 8) goto ANIMATION_CONTROL_2;
-                    if (*(char *)((longlong)register_r14 + 0x5d) != '\0') goto ANIMATION_CONTROL_1;
+                    if (*(char *)((int64_t)register_r14 + 0x5d) != '\0') goto ANIMATION_CONTROL_1;
                 }
             }
             temp_float_2 = temp_float_3 * temp_float_2;
             *float_ptr_1 = temp_float_2;
         }
     ANIMATION_CONTROL_2:
-        temp_float_3 = *(float *)((longlong)animation_buffer + (4 - (longlong)register_r14) + (longlong)float_ptr_1);
+        temp_float_3 = *(float *)((int64_t)animation_buffer + (4 - (int64_t)register_r14) + (int64_t)float_ptr_1);
         temp_float_9 = temp_float_3 - float_ptr_1[-9];
         temp_float_10 = ABS(temp_float_9);
         if (0.001 <= temp_float_10) {
@@ -711,21 +711,21 @@ FINAL_RENDER_STATE:
             else {
                 temp_float_9 = register_xmm6;
                 if (temp_int_1 == 7) {
-                    if (*(char *)((longlong)register_r14 + 0x5d) == '\0') {
+                    if (*(char *)((int64_t)register_r14 + 0x5d) == '\0') {
                     ANIMATION_CONTROL_3:
                         temp_float_9 = temp_float_5;
                     }
                 }
                 else {
                     if (temp_int_1 != 8) goto ANIMATION_CONTROL_4;
-                    if (*(char *)((longlong)register_r14 + 0x5d) != '\0') goto ANIMATION_CONTROL_3;
+                    if (*(char *)((int64_t)register_r14 + 0x5d) != '\0') goto ANIMATION_CONTROL_3;
                 }
             }
             temp_float_3 = temp_float_9 * temp_float_3;
             float_ptr_1[1] = temp_float_3;
         }
     ANIMATION_CONTROL_4:
-        temp_float_9 = *(float *)((longlong)animation_buffer + (8 - (longlong)register_r14) + (longlong)float_ptr_1);
+        temp_float_9 = *(float *)((int64_t)animation_buffer + (8 - (int64_t)register_r14) + (int64_t)float_ptr_1);
         temp_float_10 = temp_float_9 - float_ptr_1[-8];
         temp_float_11 = ABS(temp_float_10);
         if (0.001 <= temp_float_11) {
@@ -756,14 +756,14 @@ FINAL_RENDER_STATE:
             else {
                 temp_float_10 = register_xmm6;
                 if (temp_int_1 == 7) {
-                    if (*(char *)((longlong)register_r14 + 0x5d) == '\0') {
+                    if (*(char *)((int64_t)register_r14 + 0x5d) == '\0') {
                     ANIMATION_CONTROL_5:
                         temp_float_10 = temp_float_5;
                     }
                 }
                 else {
                     if (temp_int_1 != 8) goto ANIMATION_CONTROL_6;
-                    if (*(char *)((longlong)register_r14 + 0x5d) != '\0') goto ANIMATION_CONTROL_5;
+                    if (*(char *)((int64_t)register_r14 + 0x5d) != '\0') goto ANIMATION_CONTROL_5;
                 }
             }
             temp_float_9 = temp_float_10 * temp_float_9;
@@ -832,7 +832,7 @@ FINAL_RENDER_STATE:
             }
             stack_return_address = 0x18065aa9f;
             stack_float_13 = stack_float_8;
-            FUN_1808fc050(*(ulonglong *)(register_rbp + -0x70) ^ (ulonglong)&stack0x00000000);
+            FUN_1808fc050(*(uint64_t *)(register_rbp + -0x70) ^ (uint64_t)&stack0x00000000);
         }
     } while( true );
 }

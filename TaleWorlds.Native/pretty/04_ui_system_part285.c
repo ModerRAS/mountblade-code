@@ -48,12 +48,12 @@ void FUN_18082b45b(void)
   float fVar40;
   float fVar41;
   float fVar42;
-  longlong lVar43;
+  int64_t lVar43;
   float *pfVar44;
   int iVar45;
   uint uVar46;
   float *pfVar47;
-  ulonglong uVar48;
+  uint64_t uVar48;
   int iVar49;
   int iVar50;
   int iVar51;
@@ -64,10 +64,10 @@ void FUN_18082b45b(void)
   float *in_R10;
   float *in_R11;
   int iVar54;
-  ulonglong unaff_R14;
-  ulonglong uVar55;
-  longlong unaff_R15;
-  longlong lVar56;
+  uint64_t unaff_R14;
+  uint64_t uVar55;
+  int64_t unaff_R15;
+  int64_t lVar56;
   float *in_stack_00000068;
   uint in_stack_00000120;
   uint in_stack_00000128;
@@ -116,17 +116,17 @@ void FUN_18082b45b(void)
           pfVar44[1] = fVar11;
           pfVar44[2] = fVar15;
           pfVar44[3] = fVar19;
-          pfVar47 = in_R11 + (longlong)iVar51 + unaff_R14;
+          pfVar47 = in_R11 + (int64_t)iVar51 + unaff_R14;
           *pfVar47 = fVar4;
           pfVar47[1] = fVar10;
           pfVar47[2] = fVar14;
           pfVar47[3] = fVar18;
-          pfVar47 = in_R11 + (longlong)iVar8 + (longlong)iVar51;
+          pfVar47 = in_R11 + (int64_t)iVar8 + (int64_t)iVar51;
           *pfVar47 = fVar3;
           pfVar47[1] = fVar9;
           pfVar47[2] = fVar13;
           pfVar47[3] = fVar17;
-          pfVar47 = in_R11 + (longlong)iVar51 + (longlong)iVar7;
+          pfVar47 = in_R11 + (int64_t)iVar51 + (int64_t)iVar7;
           *pfVar47 = fVar6;
           pfVar47[1] = fVar5;
           pfVar47[2] = fVar12;
@@ -139,16 +139,16 @@ void FUN_18082b45b(void)
         iVar52 = iVar49 << 9;
         uVar53 = uVar46 & 3;
         do {
-          lVar43 = (longlong)iVar52;
+          lVar43 = (int64_t)iVar52;
           iVar52 = iVar52 + 0x200;
           pfVar47 = in_R9 + lVar43;
           fVar6 = *pfVar47;
           fVar3 = pfVar47[1];
           fVar4 = pfVar47[2];
           in_R11[iVar49] = pfVar47[3];
-          in_R11[(longlong)iVar49 + unaff_R14] = fVar4;
-          in_R11[(longlong)iVar49 + (longlong)iVar8] = fVar3;
-          in_R11[(longlong)iVar7 + (longlong)iVar49] = fVar6;
+          in_R11[(int64_t)iVar49 + unaff_R14] = fVar4;
+          in_R11[(int64_t)iVar49 + (int64_t)iVar8] = fVar3;
+          in_R11[(int64_t)iVar7 + (int64_t)iVar49] = fVar6;
           uVar53 = uVar53 - 1;
           iVar49 = iVar49 + 1;
         } while (uVar53 != 0);
@@ -156,7 +156,7 @@ void FUN_18082b45b(void)
       in_R11 = in_R11 + (int)(uVar46 * 4);
       iVar45 = iVar45 + -1;
     } while (iVar45 != 0);
-    uVar55 = (ulonglong)in_stack_00000120;
+    uVar55 = (uint64_t)in_stack_00000120;
     in_R10 = in_stack_00000068;
   }
   uVar46 = (uint)uVar55;
@@ -239,17 +239,17 @@ void FUN_18082b45b(void)
           pfVar2[1] = fVar19 * fVar5 + fVar31 * fVar9;
           pfVar2[2] = fVar23 * fVar5 + fVar35 * fVar9;
           pfVar2[3] = fVar27 * fVar5 + fVar39 * fVar9;
-          pfVar47 = in_R11 + (longlong)iVar52 + unaff_R14;
+          pfVar47 = in_R11 + (int64_t)iVar52 + unaff_R14;
           *pfVar47 = fVar15 * fVar4 + fVar28 * fVar10;
           pfVar47[1] = fVar18 * fVar4 + fVar32 * fVar10;
           pfVar47[2] = fVar22 * fVar4 + fVar36 * fVar10;
           pfVar47[3] = fVar26 * fVar4 + fVar40 * fVar10;
-          pfVar47 = in_R11 + (longlong)iVar8 + (longlong)iVar52;
+          pfVar47 = in_R11 + (int64_t)iVar8 + (int64_t)iVar52;
           *pfVar47 = fVar14 * fVar3 + fVar29 * fVar11;
           pfVar47[1] = fVar17 * fVar3 + fVar33 * fVar11;
           pfVar47[2] = fVar21 * fVar3 + fVar37 * fVar11;
           pfVar47[3] = fVar25 * fVar3 + fVar41 * fVar11;
-          pfVar47 = in_R11 + (longlong)iVar52 + (longlong)iVar7;
+          pfVar47 = in_R11 + (int64_t)iVar52 + (int64_t)iVar7;
           *pfVar47 = fVar13 * fVar6 + fVar30 * fVar12;
           pfVar47[1] = fVar16 * fVar6 + fVar34 * fVar12;
           pfVar47[2] = fVar20 * fVar6 + fVar38 * fVar12;
@@ -263,22 +263,22 @@ void FUN_18082b45b(void)
         iVar51 = iVar49 << 9;
         uVar53 = uVar46 & 3;
         do {
-          lVar43 = (longlong)iVar51;
+          lVar43 = (int64_t)iVar51;
           iVar51 = iVar51 + 0x200;
           pfVar47 = in_R9 + lVar43;
           fVar13 = *pfVar47;
           fVar14 = pfVar47[1];
           fVar15 = pfVar47[2];
-          lVar43 = (longlong)iVar52;
+          lVar43 = (int64_t)iVar52;
           iVar52 = iVar52 + 0x400;
           pfVar44 = in_R10 + lVar43;
           fVar16 = pfVar44[1];
           fVar17 = pfVar44[2];
           fVar18 = pfVar44[3];
           in_R11[iVar49] = pfVar47[3] * fVar5 + *pfVar44 * fVar9;
-          in_R11[(longlong)iVar49 + unaff_R14] = fVar15 * fVar4 + fVar16 * fVar10;
-          in_R11[(longlong)iVar49 + (longlong)iVar8] = fVar14 * fVar3 + fVar17 * fVar11;
-          in_R11[(longlong)iVar49 + (longlong)iVar7] = fVar13 * fVar6 + fVar18 * fVar12;
+          in_R11[(int64_t)iVar49 + unaff_R14] = fVar15 * fVar4 + fVar16 * fVar10;
+          in_R11[(int64_t)iVar49 + (int64_t)iVar8] = fVar14 * fVar3 + fVar17 * fVar11;
+          in_R11[(int64_t)iVar49 + (int64_t)iVar7] = fVar13 * fVar6 + fVar18 * fVar12;
           uVar53 = uVar53 - 1;
           iVar49 = iVar49 + 1;
         } while (uVar53 != 0);
@@ -288,7 +288,7 @@ void FUN_18082b45b(void)
       unaff_RDI = unaff_RDI + 4;
       iVar45 = iVar45 + -1;
     } while (iVar45 != 0);
-    uVar55 = (ulonglong)in_stack_00000120;
+    uVar55 = (uint64_t)in_stack_00000120;
   }
   uVar46 = (uint)uVar55;
   for (in_stack_00000130 = in_stack_00000130 & 3; in_stack_00000130 != 0;
@@ -379,17 +379,17 @@ void FUN_18082b45b(void)
           pfVar2[1] = fVar16 * fVar5 - fVar38 * fVar9;
           pfVar2[2] = fVar20 * fVar5 - fVar34 * fVar9;
           pfVar2[3] = fVar24 * fVar5 - fVar42 * fVar9;
-          pfVar47 = in_R11 + (longlong)iVar52 + unaff_R14;
+          pfVar47 = in_R11 + (int64_t)iVar52 + unaff_R14;
           *pfVar47 = fVar13 * fVar4 - fVar30 * fVar10;
           pfVar47[1] = fVar17 * fVar4 - fVar37 * fVar10;
           pfVar47[2] = fVar21 * fVar4 - fVar33 * fVar10;
           pfVar47[3] = fVar25 * fVar4 - fVar41 * fVar10;
-          pfVar47 = in_R11 + (longlong)iVar52 + (longlong)iVar8;
+          pfVar47 = in_R11 + (int64_t)iVar52 + (int64_t)iVar8;
           *pfVar47 = fVar14 * fVar3 - fVar29 * fVar11;
           pfVar47[1] = fVar18 * fVar3 - fVar36 * fVar11;
           pfVar47[2] = fVar22 * fVar3 - fVar32 * fVar11;
           pfVar47[3] = fVar26 * fVar3 - fVar40 * fVar11;
-          pfVar47 = in_R11 + (longlong)iVar52 + (longlong)iVar7;
+          pfVar47 = in_R11 + (int64_t)iVar52 + (int64_t)iVar7;
           *pfVar47 = fVar15 * fVar6 - fVar28 * fVar12;
           pfVar47[1] = fVar19 * fVar6 - fVar35 * fVar12;
           pfVar47[2] = fVar23 * fVar6 - fVar31 * fVar12;
@@ -403,22 +403,22 @@ void FUN_18082b45b(void)
         iVar51 = iVar49 << 10;
         uVar53 = uVar46 & 3;
         do {
-          lVar43 = (longlong)iVar51;
+          lVar43 = (int64_t)iVar51;
           iVar51 = iVar51 + 0x400;
           pfVar47 = in_R10 + lVar43;
           fVar13 = *pfVar47;
           fVar14 = pfVar47[1];
           fVar15 = pfVar47[2];
-          lVar43 = (longlong)iVar52;
+          lVar43 = (int64_t)iVar52;
           iVar52 = iVar52 + 0x200;
           pfVar44 = in_R9 + lVar43;
           fVar16 = pfVar44[1];
           fVar17 = pfVar44[2];
           fVar18 = pfVar44[3];
           in_R11[iVar49] = *pfVar44 * fVar5 - pfVar47[3] * fVar9;
-          in_R11[(longlong)iVar49 + unaff_R14] = fVar16 * fVar4 - fVar15 * fVar10;
-          in_R11[(longlong)iVar49 + (longlong)iVar8] = fVar17 * fVar3 - fVar14 * fVar11;
-          in_R11[(longlong)iVar49 + (longlong)iVar7] = fVar18 * fVar6 - fVar13 * fVar12;
+          in_R11[(int64_t)iVar49 + unaff_R14] = fVar16 * fVar4 - fVar15 * fVar10;
+          in_R11[(int64_t)iVar49 + (int64_t)iVar8] = fVar17 * fVar3 - fVar14 * fVar11;
+          in_R11[(int64_t)iVar49 + (int64_t)iVar7] = fVar18 * fVar6 - fVar13 * fVar12;
           uVar53 = uVar53 - 1;
           iVar49 = iVar49 + 1;
         } while (uVar53 != 0);
@@ -428,20 +428,20 @@ void FUN_18082b45b(void)
       unaff_RDI = unaff_RDI + 4;
       iVar45 = iVar45 + -1;
     } while (iVar45 != 0);
-    uVar55 = (ulonglong)in_stack_00000120;
+    uVar55 = (uint64_t)in_stack_00000120;
   }
   in_stack_00000138 = in_stack_00000138 & 3;
   uVar46 = (uint)uVar55;
   if (in_stack_00000138 != 0) {
-    lVar56 = unaff_R15 - (longlong)in_R10;
-    lVar43 = (longlong)in_R9 - (longlong)unaff_RDI;
+    lVar56 = unaff_R15 - (int64_t)in_R10;
+    lVar43 = (int64_t)in_R9 - (int64_t)unaff_RDI;
     pfVar47 = in_R10;
     do {
       fVar6 = *unaff_RDI;
       in_R10 = pfVar47 + -1;
-      fVar3 = *(float *)((longlong)pfVar47 + lVar56 + -4);
+      fVar3 = *(float *)((int64_t)pfVar47 + lVar56 + -4);
       if (uVar46 != 0) {
-        pfVar47 = (float *)(lVar43 + (longlong)unaff_RDI);
+        pfVar47 = (float *)(lVar43 + (int64_t)unaff_RDI);
         pfVar44 = in_R10;
         uVar53 = uVar46;
         do {
@@ -496,17 +496,17 @@ void FUN_18082b45b(void)
           pfVar44[1] = fVar11 * -1.0;
           pfVar44[2] = fVar15 * -1.0;
           pfVar44[3] = fVar19 * -1.0;
-          pfVar47 = in_R11 + (longlong)iVar52 + unaff_R14;
+          pfVar47 = in_R11 + (int64_t)iVar52 + unaff_R14;
           *pfVar47 = fVar4 * -1.0;
           pfVar47[1] = fVar10 * -1.0;
           pfVar47[2] = fVar14 * -1.0;
           pfVar47[3] = fVar18 * -1.0;
-          pfVar47 = in_R11 + (longlong)iVar8 + (longlong)iVar52;
+          pfVar47 = in_R11 + (int64_t)iVar8 + (int64_t)iVar52;
           *pfVar47 = fVar3 * -1.0;
           pfVar47[1] = fVar9 * -1.0;
           pfVar47[2] = fVar13 * -1.0;
           pfVar47[3] = fVar17 * -1.0;
-          pfVar47 = in_R11 + (longlong)iVar7 + (longlong)iVar52;
+          pfVar47 = in_R11 + (int64_t)iVar7 + (int64_t)iVar52;
           *pfVar47 = fVar6 * -1.0;
           pfVar47[1] = fVar5 * -1.0;
           pfVar47[2] = fVar12 * -1.0;
@@ -519,16 +519,16 @@ void FUN_18082b45b(void)
         iVar52 = iVar49 << 10;
         uVar53 = uVar46 & 3;
         do {
-          lVar43 = (longlong)iVar52;
+          lVar43 = (int64_t)iVar52;
           iVar52 = iVar52 + 0x400;
           pfVar47 = in_R10 + lVar43;
           fVar6 = *pfVar47;
           fVar3 = pfVar47[1];
           fVar4 = pfVar47[2];
           in_R11[iVar49] = pfVar47[3] * -1.0;
-          in_R11[(longlong)iVar49 + unaff_R14] = fVar4 * -1.0;
-          in_R11[(longlong)iVar8 + (longlong)iVar49] = fVar3 * -1.0;
-          in_R11[(longlong)iVar7 + (longlong)iVar49] = fVar6 * -1.0;
+          in_R11[(int64_t)iVar49 + unaff_R14] = fVar4 * -1.0;
+          in_R11[(int64_t)iVar8 + (int64_t)iVar49] = fVar3 * -1.0;
+          in_R11[(int64_t)iVar7 + (int64_t)iVar49] = fVar6 * -1.0;
           uVar53 = uVar53 - 1;
           iVar49 = iVar49 + 1;
         } while (uVar53 != 0);
@@ -536,7 +536,7 @@ void FUN_18082b45b(void)
       in_R11 = in_R11 + (int)(uVar46 * 4);
       iVar45 = iVar45 + -1;
     } while (iVar45 != 0);
-    uVar55 = (ulonglong)in_stack_00000120;
+    uVar55 = (uint64_t)in_stack_00000120;
   }
   for (in_stack_00000140 = in_stack_00000140 & 3; in_stack_00000140 != 0;
       in_stack_00000140 = in_stack_00000140 - 1) {
@@ -550,7 +550,7 @@ void FUN_18082b45b(void)
       *in_R11 = -fVar6;
       in_R11 = in_R11 + 1;
       uVar46 = (int)uVar48 - 1;
-      uVar48 = (ulonglong)uVar46;
+      uVar48 = (uint64_t)uVar46;
     }
   }
   return;

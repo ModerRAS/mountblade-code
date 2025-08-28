@@ -113,30 +113,30 @@ typedef struct SystemResourceManager {
 
 /** 系统初始化和清理函数 */
 void system_resource_manager_initialize(void);
-longlong system_resource_manager_cleanup(longlong resource_handle, uint32_t cleanup_flags);
-longlong system_resource_manager_release(longlong resource_handle, uint64_t release_flags);
+int64_t system_resource_manager_cleanup(int64_t resource_handle, uint32_t cleanup_flags);
+int64_t system_resource_manager_release(int64_t resource_handle, uint64_t release_flags);
 
 /** 系统状态管理函数 */
-uint32_t system_state_manager_create(int state_id, longlong* state_handle);
-uint32_t system_state_manager_destroy(longlong* state_handle);
+uint32_t system_state_manager_create(int state_id, int64_t* state_handle);
+uint32_t system_state_manager_destroy(int64_t* state_handle);
 
 /** 数据处理函数 */
-void system_data_processor_execute(longlong processor_handle, void* command);
-uint32_t system_data_processor_configure(longlong processor_handle, longlong config_data, int32_t config_size);
+void system_data_processor_execute(int64_t processor_handle, void* command);
+uint32_t system_data_processor_configure(int64_t processor_handle, int64_t config_data, int32_t config_size);
 
 /** 内存管理函数 */
 uint32_t system_memory_manager_allocate(void** memory_handle, uint32_t allocation_flags);
 void system_memory_manager_free(void* memory_handle);
 
 /** 资源管理函数 */
-uint32_t system_resource_manager_query(longlong query_handle, uint32_t* query_params);
-longlong system_resource_manager_find(longlong resource_key);
+uint32_t system_resource_manager_query(int64_t query_handle, uint32_t* query_params);
+int64_t system_resource_manager_find(int64_t resource_key);
 void system_resource_manager_lock(void);
 void system_resource_manager_unlock(void);
 
 /** 异常处理函数 */
-uint32_t system_exception_handler_process(longlong exception_handle);
-uint32_t system_exception_handler_cleanup(longlong exception_handle);
+uint32_t system_exception_handler_process(int64_t exception_handle);
+uint32_t system_exception_handler_cleanup(int64_t exception_handle);
 
 /** 系统工具函数 */
 void system_utility_function_execute(void);
@@ -164,9 +164,9 @@ uint32_t system_utility_function_get_status(void);
  */
 void system_resource_manager_initialize(void)
 {
-    longlong* resource_ptr;
-    longlong* next_ptr;
-    longlong* current_ptr;
+    int64_t* resource_ptr;
+    int64_t* next_ptr;
+    int64_t* current_ptr;
     void* system_context;
     
     // 调用底层初始化函数
@@ -174,22 +174,22 @@ void system_resource_manager_initialize(void)
     
     // 初始化资源链表
     resource_ptr = system_context + 6;
-    *(longlong*)system_context[7] = *resource_ptr;
+    *(int64_t*)system_context[7] = *resource_ptr;
     *(void**)(*resource_ptr + 8) = system_context[7];
     system_context[7] = resource_ptr;
-    *resource_ptr = (longlong)resource_ptr;
-    *(longlong**)system_context[7] = resource_ptr;
+    *resource_ptr = (int64_t)resource_ptr;
+    *(int64_t**)system_context[7] = resource_ptr;
     *(void**)(*resource_ptr + 8) = system_context[7];
     system_context[7] = resource_ptr;
-    *resource_ptr = (longlong)resource_ptr;
+    *resource_ptr = (int64_t)resource_ptr;
     
     // 设置系统状态
     *system_context = &unknown_var_936_ptr;
     resource_ptr = system_context + 4;
-    next_ptr = (longlong*)*resource_ptr;
+    next_ptr = (int64_t*)*resource_ptr;
     
     // 检查系统状态
-    if ((next_ptr == resource_ptr) && ((longlong*)system_context[5] == resource_ptr)) {
+    if ((next_ptr == resource_ptr) && ((int64_t*)system_context[5] == resource_ptr)) {
         func_0x00018085dda0(resource_ptr);
         *system_context = &unknown_var_1544_ptr;
         *(uint32_t*)(system_context + 1) = 0xdeadf00d;
@@ -197,25 +197,25 @@ void system_resource_manager_initialize(void)
     }
     
     // 初始化当前指针
-    current_ptr = (longlong*)0x0;
+    current_ptr = (int64_t*)0x0;
     if (next_ptr != resource_ptr) {
         current_ptr = next_ptr;
     }
     
     // 设置资源状态
-    *(uint32_t*)((longlong)current_ptr + 0x44) = 0xffffffff;
+    *(uint32_t*)((int64_t)current_ptr + 0x44) = 0xffffffff;
     FUN_18084c220(current_ptr + 4);
     FUN_18084c220(current_ptr + 2);
     
     // 配置资源链接
-    *(longlong*)current_ptr[1] = *current_ptr;
-    *(longlong*)(*current_ptr + 8) = current_ptr[1];
-    current_ptr[1] = (longlong)current_ptr;
-    *current_ptr = (longlong)current_ptr;
-    *(longlong**)current_ptr[1] = current_ptr;
-    *(longlong*)(*current_ptr + 8) = current_ptr[1];
-    current_ptr[1] = (longlong)current_ptr;
-    *current_ptr = (longlong)current_ptr;
+    *(int64_t*)current_ptr[1] = *current_ptr;
+    *(int64_t*)(*current_ptr + 8) = current_ptr[1];
+    current_ptr[1] = (int64_t)current_ptr;
+    *current_ptr = (int64_t)current_ptr;
+    *(int64_t**)current_ptr[1] = current_ptr;
+    *(int64_t*)(*current_ptr + 8) = current_ptr[1];
+    current_ptr[1] = (int64_t)current_ptr;
+    *current_ptr = (int64_t)current_ptr;
     
     // 调用系统资源分配函数
     FUN_180742250(*(void**)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), current_ptr, &unknown_var_976_ptr, 0x30);
@@ -236,24 +236,24 @@ void system_resource_manager_initialize(void)
  * 
  * @param resource_handle 资源句柄
  * @param cleanup_flags 清理标志位
- * @return longlong 清理后的资源句柄
+ * @return int64_t 清理后的资源句柄
  */
-longlong system_resource_manager_cleanup(longlong resource_handle, uint32_t cleanup_flags)
+int64_t system_resource_manager_cleanup(int64_t resource_handle, uint32_t cleanup_flags)
 {
-    longlong* resource_ptr;
+    int64_t* resource_ptr;
     
     // 获取资源指针
-    resource_ptr = (longlong*)(resource_handle + 0x30);
+    resource_ptr = (int64_t*)(resource_handle + 0x30);
     
     // 更新链表连接
-    **(longlong***)(resource_handle + 0x38) = *resource_ptr;
+    **(int64_t***)(resource_handle + 0x38) = *resource_ptr;
     *(void**)(*resource_ptr + 8) = *(void**)(resource_handle + 0x38);
-    *(longlong**)(resource_handle + 0x38) = resource_ptr;
-    *resource_ptr = (longlong)resource_ptr;
-    **(longlong***)(resource_handle + 0x38) = (longlong)resource_ptr;
+    *(int64_t**)(resource_handle + 0x38) = resource_ptr;
+    *resource_ptr = (int64_t)resource_ptr;
+    **(int64_t***)(resource_handle + 0x38) = (int64_t)resource_ptr;
     *(void**)(*resource_ptr + 8) = *(void**)(resource_handle + 0x38);
-    *(longlong**)(resource_handle + 0x38) = resource_ptr;
-    *resource_ptr = (longlong)resource_ptr;
+    *(int64_t**)(resource_handle + 0x38) = resource_ptr;
+    *resource_ptr = (int64_t)resource_ptr;
     
     // 调用系统清理函数
     FUN_1808b02a0();
@@ -281,28 +281,28 @@ longlong system_resource_manager_cleanup(longlong resource_handle, uint32_t clea
  * 
  * @param resource_handle 资源句柄
  * @param release_flags 释放标志位
- * @return longlong 释放后的资源句柄
+ * @return int64_t 释放后的资源句柄
  */
-longlong system_resource_manager_release(longlong resource_handle, uint64_t release_flags)
+int64_t system_resource_manager_release(int64_t resource_handle, uint64_t release_flags)
 {
-    longlong* resource_ptr;
+    int64_t* resource_ptr;
     
     // 清理资源数据
     FUN_18084c220(resource_handle + 0x58);
     FUN_18084c220(resource_handle + 0x48);
     
     // 获取资源指针
-    resource_ptr = (longlong*)(resource_handle + 0x30);
+    resource_ptr = (int64_t*)(resource_handle + 0x30);
     
     // 更新链表连接
-    **(longlong***)(resource_handle + 0x38) = *resource_ptr;
+    **(int64_t***)(resource_handle + 0x38) = *resource_ptr;
     *(void**)(*resource_ptr + 8) = *(void**)(resource_handle + 0x38);
-    *(longlong**)(resource_handle + 0x38) = resource_ptr;
-    *resource_ptr = (longlong)resource_ptr;
-    **(longlong***)(resource_handle + 0x38) = (longlong)resource_ptr;
+    *(int64_t**)(resource_handle + 0x38) = resource_ptr;
+    *resource_ptr = (int64_t)resource_ptr;
+    **(int64_t***)(resource_handle + 0x38) = (int64_t)resource_ptr;
     *(void**)(*resource_ptr + 8) = *(void**)(resource_handle + 0x38);
-    *(longlong**)(resource_handle + 0x38) = resource_ptr;
-    *resource_ptr = (longlong)resource_ptr;
+    *(int64_t**)(resource_handle + 0x38) = resource_ptr;
+    *resource_ptr = (int64_t)resource_ptr;
     
     // 调用系统清理函数
     FUN_1808b02a0(resource_handle);
@@ -332,7 +332,7 @@ longlong system_resource_manager_release(longlong resource_handle, uint64_t rele
  * @param state_handle 状态句柄指针
  * @return uint32_t 操作结果代码
  */
-uint32_t system_state_manager_create(int state_id, longlong* state_handle)
+uint32_t system_state_manager_create(int state_id, int64_t* state_handle)
 {
     int* state_ptr;
     
@@ -348,7 +348,7 @@ uint32_t system_state_manager_create(int state_id, longlong* state_handle)
     // 初始化状态数据
     *state_ptr = state_id;
     state_ptr[1] = 0;
-    *state_handle = (longlong)state_ptr;
+    *state_handle = (int64_t)state_ptr;
     
     return ERROR_SUCCESS;
 }
@@ -369,9 +369,9 @@ uint32_t system_state_manager_create(int state_id, longlong* state_handle)
  * @param state_handle 状态句柄指针
  * @return uint32_t 操作结果代码
  */
-uint32_t system_state_manager_destroy(longlong* state_handle)
+uint32_t system_state_manager_destroy(int64_t* state_handle)
 {
-    longlong state_value;
+    int64_t state_value;
     
     // 获取状态值
     state_value = *state_handle;
@@ -413,7 +413,7 @@ uint32_t system_state_manager_destroy(longlong* state_handle)
  * @param command 命令参数
  * @return void
  */
-void system_data_processor_execute(longlong processor_handle, void* command)
+void system_data_processor_execute(int64_t processor_handle, void* command)
 {
     int command_result;
     void* stack_buffer[8];
@@ -457,7 +457,7 @@ void system_data_processor_execute(longlong processor_handle, void* command)
  * @param config_size 配置大小
  * @return uint32_t 操作结果代码
  */
-uint32_t system_data_processor_configure(longlong processor_handle, longlong config_data, int32_t config_size)
+uint32_t system_data_processor_configure(int64_t processor_handle, int64_t config_data, int32_t config_size)
 {
     int allocation_result;
     int* config_ptr;
@@ -465,11 +465,11 @@ uint32_t system_data_processor_configure(longlong processor_handle, longlong con
     uint64_t index;
     uint32_t param_flags;
     uint64_t allocation_size;
-    longlong base_address;
-    longlong config_iterator;
+    int64_t base_address;
+    int64_t config_iterator;
     
     // 获取基础地址
-    base_address = (longlong)*(int*)(processor_handle + 0x50);
+    base_address = (int64_t)*(int*)(processor_handle + 0x50);
     index = 0;
     
     // 检查配置大小
@@ -483,8 +483,8 @@ uint32_t system_data_processor_configure(longlong processor_handle, longlong con
         allocation_result = *(int*)(processor_handle + 0x50);
         if (allocation_result < config_size) {
             // 初始化新增内存
-            memset(*(longlong*)(processor_handle + 0x48) + (longlong)allocation_result * 8, 0, 
-                   (longlong)(config_size - allocation_result) << 3);
+            memset(*(int64_t*)(processor_handle + 0x48) + (int64_t)allocation_result * 8, 0, 
+                   (int64_t)(config_size - allocation_result) << 3);
         }
         *(int*)(processor_handle + 0x50) = config_size;
         
@@ -506,7 +506,7 @@ uint32_t system_data_processor_configure(longlong processor_handle, longlong con
                 resource_ptr[1] = 0;
                 *resource_ptr = &unknown_var_9360_ptr;
                 *(uint32_t*)(resource_ptr + 3) = 0;
-                *(void**)(*(longlong*)(processor_handle + 0x48) + index * 8) = resource_ptr;
+                *(void**)(*(int64_t*)(processor_handle + 0x48) + index * 8) = resource_ptr;
                 *(int*)(resource_ptr + 3) = config_ptr[0xe];
             } else if (allocation_result == 1) {
                 // 分配扩展类型资源
@@ -521,7 +521,7 @@ uint32_t system_data_processor_configure(longlong processor_handle, longlong con
                 resource_ptr[1] = 0;
                 *resource_ptr = &unknown_var_9360_ptr;
                 *(uint32_t*)(resource_ptr + 3) = 0;
-                *(void**)(*(longlong*)(processor_handle + 0x48) + index * 8) = resource_ptr;
+                *(void**)(*(int64_t*)(processor_handle + 0x48) + index * 8) = resource_ptr;
                 *(int*)(resource_ptr + 3) = config_ptr[0xe];
             } else if (allocation_result == 2) {
                 // 分配复杂类型资源
@@ -534,7 +534,7 @@ uint32_t system_data_processor_configure(longlong processor_handle, longlong con
                 *resource_ptr = &unknown_var_9360_ptr;
                 *(uint32_t*)(resource_ptr + 2) = 2;
                 *(uint8_t*)(resource_ptr + 3) = 0;
-                *(void**)(*(longlong*)(processor_handle + 0x48) + index * 8) = resource_ptr;
+                *(void**)(*(int64_t*)(processor_handle + 0x48) + index * 8) = resource_ptr;
                 *(bool*)(resource_ptr + 3) = config_ptr[0xc] != 0;
             } else if (allocation_result == 3) {
                 // 分配自定义类型资源
@@ -547,7 +547,7 @@ uint32_t system_data_processor_configure(longlong processor_handle, longlong con
                 *resource_ptr = &unknown_var_9368_ptr;
                 *(uint32_t*)(resource_ptr + 2) = 3;
                 resource_ptr[3] = 0;
-                *(void**)(*(longlong*)(processor_handle + 0x48) + index * 8) = resource_ptr;
+                *(void**)(*(int64_t*)(processor_handle + 0x48) + index * 8) = resource_ptr;
             } else {
                 return ERROR_INVALID_STATE;
             }
@@ -557,7 +557,7 @@ uint32_t system_data_processor_configure(longlong processor_handle, longlong con
     allocation_size = index;
     if (0 < config_size) {
         do {
-            base_address = *(longlong*)(index + *(longlong*)(processor_handle + 0x48));
+            base_address = *(int64_t*)(index + *(int64_t*)(processor_handle + 0x48));
             if (*(int*)(base_address + 0x10) != **(int**)(index + config_data)) {
                 return ERROR_OPERATION_FAILED;
             }
@@ -591,7 +591,7 @@ uint32_t system_data_processor_configure(longlong processor_handle, longlong con
  */
 uint32_t system_memory_manager_allocate(void** memory_handle, uint32_t allocation_flags)
 {
-    longlong allocation_result;
+    int64_t allocation_result;
     void* allocated_memory;
     
     if (memory_handle == (void**)0x0) {
@@ -664,15 +664,15 @@ void system_memory_manager_free(void* memory_handle)
  * @param query_params 查询参数
  * @return uint32_t 操作结果代码
  */
-uint32_t system_resource_manager_query(longlong query_handle, uint32_t* query_params)
+uint32_t system_resource_manager_query(int64_t query_handle, uint32_t* query_params)
 {
-    longlong* resource_ptr;
-    longlong resource_value;
+    int64_t* resource_ptr;
+    int64_t resource_value;
     uint32_t param1, param2, param3, param4;
-    longlong combined_value1, combined_value2;
-    longlong hash_result;
-    longlong resource_list;
-    longlong list_iterator;
+    int64_t combined_value1, combined_value2;
+    int64_t hash_result;
+    int64_t resource_list;
+    int64_t list_iterator;
     void* query_result;
     
     // 验证查询参数
@@ -684,14 +684,14 @@ uint32_t system_resource_manager_query(longlong query_handle, uint32_t* query_pa
     // 提取查询参数
     param1 = *query_params;
     param2 = query_params[1];
-    combined_value1 = *(longlong*)query_params;
+    combined_value1 = *(int64_t*)query_params;
     param3 = query_params[2];
     param4 = query_params[3];
-    combined_value2 = *(longlong*)(query_params + 2);
+    combined_value2 = *(int64_t*)(query_params + 2);
     
     // 初始化查询结果
     hash_result = 0;
-    resource_ptr = *(longlong**)(query_handle + 8);
+    resource_ptr = *(int64_t**)(query_handle + 8);
     resource_list = resource_ptr[5];
     list_iterator = hash_result;
     
@@ -702,16 +702,16 @@ uint32_t system_resource_manager_query(longlong query_handle, uint32_t* query_pa
     }
     
     // 执行哈希查询
-    if (((*(int*)((longlong)resource_ptr + 0x24) != 0) && 
+    if (((*(int*)((int64_t)resource_ptr + 0x24) != 0) && 
          ((int)resource_ptr[1] != 0)) &&
         (query_result = *(int*)(*resource_ptr + 
-                               (longlong)(int)((param2 ^ param3 ^ param1 ^ param4) & 
+                               (int64_t)(int)((param2 ^ param3 ^ param1 ^ param4) & 
                                              (int)resource_ptr[1] - 1U) * 4),
          query_result != (void*)-1)) {
         
         // 遍历哈希表
         do {
-            resource_ptr = (longlong*)((longlong)query_result * HASH_TABLE_SIZE + resource_ptr[2]);
+            resource_ptr = (int64_t*)((int64_t)query_result * HASH_TABLE_SIZE + resource_ptr[2]);
             if ((*resource_ptr == combined_value1) && (resource_ptr[1] == combined_value2)) {
                 hash_result = resource_ptr[3];
                 break;
@@ -749,21 +749,21 @@ uint32_t system_resource_manager_query(longlong query_handle, uint32_t* query_pa
  * - 处理查找异常
  * 
  * @param resource_key 资源键值
- * @return longlong 查找到的资源句柄
+ * @return int64_t 查找到的资源句柄
  */
-longlong system_resource_manager_find(longlong resource_key)
+int64_t system_resource_manager_find(int64_t resource_key)
 {
-    longlong* resource_ptr;
-    longlong resource_list;
-    longlong hash_result;
-    longlong list_iterator;
+    int64_t* resource_ptr;
+    int64_t resource_list;
+    int64_t hash_result;
+    int64_t list_iterator;
     void* search_result;
     uint32_t hash_value;
     uint32_t key_high, key_low;
     
     // 初始化查找结果
     hash_result = 0;
-    resource_ptr = *(longlong**)(resource_key + 8);
+    resource_ptr = *(int64_t**)(resource_key + 8);
     resource_list = resource_ptr[5];
     list_iterator = hash_result;
     
@@ -774,7 +774,7 @@ longlong system_resource_manager_find(longlong resource_key)
     }
     
     // 检查哈希表状态
-    if ((*(int*)((longlong)resource_ptr + 0x24) != 0) && 
+    if ((*(int*)((int64_t)resource_ptr + 0x24) != 0) && 
         ((int)resource_ptr[1] != 0)) {
         
         // 计算哈希值
@@ -783,12 +783,12 @@ longlong system_resource_manager_find(longlong resource_key)
         hash_value = (uint32_t)((key_high ^ key_low ^ key_low ^ key_low) & 
                                (uint32_t)resource_ptr[1] - 1U);
         
-        search_result = *(int*)(*resource_ptr + (longlong)hash_value * 4);
+        search_result = *(int*)(*resource_ptr + (int64_t)hash_value * 4);
         
         if (search_result != (void*)-1) {
             // 遍历哈希表
             do {
-                resource_ptr = (longlong*)((longlong)search_result * HASH_TABLE_SIZE + resource_ptr[2]);
+                resource_ptr = (int64_t*)((int64_t)search_result * HASH_TABLE_SIZE + resource_ptr[2]);
                 if ((*resource_ptr == resource_key) && (resource_ptr[1] == list_iterator)) {
                     hash_result = resource_ptr[3];
                     break;
@@ -871,7 +871,7 @@ void system_resource_manager_unlock(void)
  * @param exception_handle 异常句柄
  * @return uint32_t 处理结果代码
  */
-uint32_t system_exception_handler_process(longlong exception_handle)
+uint32_t system_exception_handler_process(int64_t exception_handle)
 {
     void* exception_result;
     
@@ -902,7 +902,7 @@ uint32_t system_exception_handler_process(longlong exception_handle)
  * @param exception_handle 异常句柄
  * @return uint32_t 清理结果代码
  */
-uint32_t system_exception_handler_cleanup(longlong exception_handle)
+uint32_t system_exception_handler_cleanup(int64_t exception_handle)
 {
     void* cleanup_result;
     

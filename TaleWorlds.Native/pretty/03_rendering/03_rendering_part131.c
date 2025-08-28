@@ -65,11 +65,11 @@
  * @param param_size 参数大小
  * @param execute_callback 是否执行回调标志
  */
-void rendering_system_process_render_parameters(longlong *render_context, uint64_t render_param, int32_t *param_data, uint64_t param_size, char execute_callback)
+void rendering_system_process_render_parameters(int64_t *render_context, uint64_t render_param, int32_t *param_data, uint64_t param_size, char execute_callback)
 {
   int32_t *vector_data_ptr;
   uint64_t parameter_value;
-  longlong render_object_ptr;
+  int64_t render_object_ptr;
   int param_type;
   int32_t matrix_element_1;
   int32_t matrix_element_2;
@@ -104,7 +104,7 @@ void rendering_system_process_render_parameters(longlong *render_context, uint64
   int32_t float_value_15;
   int32_t float_value_16;
   void *error_handler_ptr;
-  longlong error_handler_stack;
+  int64_t error_handler_stack;
   
   param_type = (int)param_size;
   if (param_type == RENDER_PARAM_TYPE_BASIC) {
@@ -250,19 +250,19 @@ void rendering_system_process_render_parameters(longlong *render_context, uint64
  * @param pool_header 渲染池头指针
  * @param pool_data 渲染池数据指针
  */
-void rendering_system_resize_render_pool(uint64_t *pool_header, longlong pool_data)
+void rendering_system_resize_render_pool(uint64_t *pool_header, int64_t pool_data)
 {
   uint64_t *pool_start_ptr;
   uint64_t *pool_end_ptr;
   uint64_t *pool_current_ptr;
   uint64_t *new_pool_ptr;
-  longlong pool_size;
-  longlong new_pool_size;
+  int64_t pool_size;
+  int64_t new_pool_size;
   uint64_t *temp_pool_ptr;
   
   temp_pool_ptr = (uint64_t *)pool_header[1];
   pool_start_ptr = (uint64_t *)*pool_header;
-  pool_size = ((longlong)temp_pool_ptr - (longlong)pool_start_ptr) / RENDER_POOL_SIZE_48;
+  pool_size = ((int64_t)temp_pool_ptr - (int64_t)pool_start_ptr) / RENDER_POOL_SIZE_48;
   new_pool_ptr = (uint64_t *)0x0;
   if (pool_size == 0) {
     pool_size = 1;
@@ -279,26 +279,26 @@ void rendering_system_resize_render_pool(uint64_t *pool_header, longlong pool_da
 LAB_1803464ba:
   temp_pool_ptr = new_pool_ptr;
   if (pool_start_ptr != temp_pool_ptr) {
-    new_pool_size = (longlong)new_pool_ptr - (longlong)pool_start_ptr;
+    new_pool_size = (int64_t)new_pool_ptr - (int64_t)pool_start_ptr;
     pool_start_ptr = pool_start_ptr + 1;
     do {
       // 数据迁移和清理
       *temp_pool_ptr = &system_state_ptr;
-      *(uint64_t *)(new_pool_size + (longlong)pool_start_ptr) = 0;
-      *(int32_t *)(new_pool_size + 8 + (longlong)pool_start_ptr) = 0;
+      *(uint64_t *)(new_pool_size + (int64_t)pool_start_ptr) = 0;
+      *(int32_t *)(new_pool_size + 8 + (int64_t)pool_start_ptr) = 0;
       *temp_pool_ptr = &system_data_buffer_ptr;
-      *(uint64_t *)(new_pool_size + 0x10 + (longlong)pool_start_ptr) = 0;
-      *(uint64_t *)(new_pool_size + (longlong)pool_start_ptr) = 0;
-      *(int32_t *)(new_pool_size + 8 + (longlong)pool_start_ptr) = 0;
-      *(int32_t *)(new_pool_size + 8 + (longlong)pool_start_ptr) = *(int32_t *)(pool_start_ptr + 1);
-      *(uint64_t *)(new_pool_size + (longlong)pool_start_ptr) = *pool_start_ptr;
-      *(int32_t *)(new_pool_size + 0x14 + (longlong)pool_start_ptr) = *(int32_t *)((longlong)pool_start_ptr + 0x14);
-      *(int32_t *)(new_pool_size + 0x10 + (longlong)pool_start_ptr) = *(int32_t *)(pool_start_ptr + 2);
+      *(uint64_t *)(new_pool_size + 0x10 + (int64_t)pool_start_ptr) = 0;
+      *(uint64_t *)(new_pool_size + (int64_t)pool_start_ptr) = 0;
+      *(int32_t *)(new_pool_size + 8 + (int64_t)pool_start_ptr) = 0;
+      *(int32_t *)(new_pool_size + 8 + (int64_t)pool_start_ptr) = *(int32_t *)(pool_start_ptr + 1);
+      *(uint64_t *)(new_pool_size + (int64_t)pool_start_ptr) = *pool_start_ptr;
+      *(int32_t *)(new_pool_size + 0x14 + (int64_t)pool_start_ptr) = *(int32_t *)((int64_t)pool_start_ptr + 0x14);
+      *(int32_t *)(new_pool_size + 0x10 + (int64_t)pool_start_ptr) = *(int32_t *)(pool_start_ptr + 2);
       *(int32_t *)(pool_start_ptr + 1) = 0;
       *pool_start_ptr = 0;
       pool_start_ptr[2] = 0;
-      *(uint64_t *)(new_pool_size + 0x18 + (longlong)pool_start_ptr) = pool_start_ptr[3];
-      *(int32_t *)(new_pool_size + 0x20 + (longlong)pool_start_ptr) = *(int32_t *)(pool_start_ptr + 4);
+      *(uint64_t *)(new_pool_size + 0x18 + (int64_t)pool_start_ptr) = pool_start_ptr[3];
+      *(int32_t *)(new_pool_size + 0x20 + (int64_t)pool_start_ptr) = *(int32_t *)(pool_start_ptr + 4);
       temp_pool_ptr = temp_pool_ptr + 6;
       pool_current_ptr = pool_start_ptr + 5;
       pool_start_ptr = pool_start_ptr + 6;
@@ -314,7 +314,7 @@ LAB_1803464ba:
   *(int32_t *)(temp_pool_ptr + 2) = 0;
   *(int32_t *)(temp_pool_ptr + 2) = *(int32_t *)(pool_data + 0x10);
   temp_pool_ptr[1] = *(uint64_t *)(pool_data + 8);
-  *(int32_t *)((longlong)temp_pool_ptr + 0x1c) = *(int32_t *)(pool_data + 0x1c);
+  *(int32_t *)((int64_t)temp_pool_ptr + 0x1c) = *(int32_t *)(pool_data + 0x1c);
   *(int32_t *)(temp_pool_ptr + 3) = *(int32_t *)(pool_data + 0x18);
   *(int32_t *)(pool_data + 0x10) = 0;
   *(uint64_t *)(pool_data + 8) = 0;
@@ -358,9 +358,9 @@ LAB_1803464ba:
  * @param param_data 参数数据
  * @param execute_callback 是否执行回调标志
  */
-void rendering_system_set_render_parameter_data(longlong *render_context, uint64_t render_param, uint64_t param_data, char execute_callback)
+void rendering_system_set_render_parameter_data(int64_t *render_context, uint64_t render_param, uint64_t param_data, char execute_callback)
 {
-  longlong render_object_ptr;
+  int64_t render_object_ptr;
   
   render_object_ptr = FUN_1803466a0();
   FUN_180627be0(*(uint64_t *)(render_object_ptr + 0x20), param_data);
@@ -379,22 +379,22 @@ void rendering_system_set_render_parameter_data(longlong *render_context, uint64
  * @param param_data 参数数据
  * @return 找到的参数指针，未找到返回0
  */
-longlong rendering_system_find_render_parameter(longlong param_table, longlong param_data)
+int64_t rendering_system_find_render_parameter(int64_t param_table, int64_t param_data)
 {
   char param_name_char_1;
   char param_name_char_2;
   int param_hash_value;
   char *param_name_ptr;
-  ulonglong param_index;
+  uint64_t param_index;
   uint param_count;
-  longlong table_start;
-  longlong table_size;
-  longlong table_end;
+  int64_t table_start;
+  int64_t table_size;
+  int64_t table_end;
   bool param_match_found;
-  ulonglong current_index;
+  uint64_t current_index;
   
-  table_start = *(longlong *)(param_table + 0x50);
-  table_size = *(longlong *)(param_table + 0x58) - table_start;
+  table_start = *(int64_t *)(param_table + 0x50);
+  table_size = *(int64_t *)(param_table + 0x58) - table_start;
   param_index = 0;
   table_end = table_size >> 0x3f;
   if (table_size / RENDER_POOL_SIZE_48 + table_end != table_end) {
@@ -403,7 +403,7 @@ longlong rendering_system_find_render_parameter(longlong param_table, longlong p
       param_hash_value = *(int *)(param_index + 0x10 + table_start);
       if ((param_hash_value == *(int *)(param_data + 0x10)) && (param_hash_value != 0)) {
         param_name_ptr = *(char **)(param_index + 8 + table_start);
-        table_end = *(longlong *)(param_data + 8) - (longlong)param_name_ptr;
+        table_end = *(int64_t *)(param_data + 8) - (int64_t)param_name_ptr;
         do {
           param_name_char_1 = *param_name_ptr;
           param_name_char_2 = param_name_ptr[table_end];
@@ -418,14 +418,14 @@ longlong rendering_system_find_render_parameter(longlong param_table, longlong p
       }
       if (param_match_found) {
 LAB_180346795:
-        return (longlong)(int)param_index * RENDER_POOL_SIZE_48 + table_start;
+        return (int64_t)(int)param_index * RENDER_POOL_SIZE_48 + table_start;
       }
-      table_start = *(longlong *)(param_table + 0x50);
+      table_start = *(int64_t *)(param_table + 0x50);
       param_count = (int)param_index + 1;
-      param_index = (ulonglong)param_count;
+      param_index = (uint64_t)param_count;
       param_index = param_index + RENDER_POOL_SIZE_48;
-    } while ((ulonglong)(longlong)(int)param_count <
-             (ulonglong)((*(longlong *)(param_table + 0x58) - table_start) / RENDER_POOL_SIZE_48));
+    } while ((uint64_t)(int64_t)(int)param_count <
+             (uint64_t)((*(int64_t *)(param_table + 0x58) - table_start) / RENDER_POOL_SIZE_48));
   }
   return 0;
 }
@@ -462,7 +462,7 @@ uint64_t * rendering_system_create_render_parameter_object(uint64_t *param_obj, 
  * @param param3 参数3
  * @param param4 参数4
  */
-void rendering_system_process_render_data_type1(longlong data_ptr, uint64_t param1, uint64_t param2, uint64_t param3, uint64_t param4)
+void rendering_system_process_render_data_type1(int64_t data_ptr, uint64_t param1, uint64_t param2, uint64_t param3, uint64_t param4)
 {
   FUN_1802f5b10(data_ptr, *(uint64_t *)(data_ptr + 0x10), param2, param3, 0xfffffffffffffffe);
   return;
@@ -478,7 +478,7 @@ void rendering_system_process_render_data_type1(longlong data_ptr, uint64_t para
  * @param param3 参数3
  * @param param4 参数4
  */
-void rendering_system_process_render_data_type2(longlong data_ptr, uint64_t param1, uint64_t param2, uint64_t param3, uint64_t param4)
+void rendering_system_process_render_data_type2(int64_t data_ptr, uint64_t param1, uint64_t param2, uint64_t param3, uint64_t param4)
 {
   FUN_1802f5b10(data_ptr, *(uint64_t *)(data_ptr + 0x10), param2, param3, 0xfffffffffffffffe);
   return;
@@ -494,7 +494,7 @@ void rendering_system_process_render_data_type2(longlong data_ptr, uint64_t para
  * @param param3 参数3
  * @param param4 参数4
  */
-void rendering_system_process_render_data_type3(longlong data_ptr, uint64_t param1, uint64_t param2, uint64_t param3, uint64_t param4)
+void rendering_system_process_render_data_type3(int64_t data_ptr, uint64_t param1, uint64_t param2, uint64_t param3, uint64_t param4)
 {
   FUN_1802f5b10(data_ptr, *(uint64_t *)(data_ptr + 0x10), param2, param3, 0xfffffffffffffffe);
   return;
@@ -508,7 +508,7 @@ void rendering_system_process_render_data_type3(longlong data_ptr, uint64_t para
  * @param manager_size 管理器大小
  * @return 创建的管理器对象指针
  */
-uint64_t * rendering_system_create_render_parameter_manager(uint64_t *manager_obj, ulonglong manager_size)
+uint64_t * rendering_system_create_render_parameter_manager(uint64_t *manager_obj, uint64_t manager_size)
 {
   *manager_obj = &unknown_var_5664_ptr;
   if (manager_obj[0x11] != 0) {
@@ -548,7 +548,7 @@ void rendering_system_initialize_render_parameter_system(uint64_t *system_ptr)
   *(int32_t *)(temp_ptr + 0x14) = 3;
   temp_ptr[0xf] = 0x4024000000000000;
   temp_ptr[0xe] = 0x3fe0000000000000;
-  *(int8_t *)((longlong)temp_ptr + 0x81) = 0;
+  *(int8_t *)((int64_t)temp_ptr + 0x81) = 0;
   error_handler_ptr = &system_data_buffer_ptr;
   error_handler_value = 0;
   error_handler_data_ptr = (uint64_t *)0x0;
@@ -574,10 +574,10 @@ void rendering_system_initialize_render_parameter_system(uint64_t *system_ptr)
  * 
  * @param state_ptr 状态指针
  */
-void rendering_system_cleanup_render_parameter_state(longlong state_ptr)
+void rendering_system_cleanup_render_parameter_state(int64_t state_ptr)
 {
   if ((*(char *)(state_ptr + 0x81) != '\0') &&
-     ((*(byte *)(*(longlong *)(state_ptr + 0x18) + 0x2e8) & 1) != 0)) {
+     ((*(byte *)(*(int64_t *)(state_ptr + 0x18) + 0x2e8) & 1) != 0)) {
     FUN_180348d90();
     *(int8_t *)(state_ptr + 0x81) = 0;
   }
@@ -590,7 +590,7 @@ void rendering_system_cleanup_render_parameter_state(longlong state_ptr)
  * 
  * @param state_ptr 状态指针
  */
-void rendering_system_reset_render_parameter_state(longlong state_ptr)
+void rendering_system_reset_render_parameter_state(int64_t state_ptr)
 {
   if (*(char *)(state_ptr + 0x80) == '\x01') {
     FUN_180348d90();
@@ -606,27 +606,27 @@ void rendering_system_reset_render_parameter_state(longlong state_ptr)
  * @param render_param 渲染参数
  * @param queue_ptr 队列指针
  */
-void rendering_system_process_render_parameter_queue(uint64_t render_param, longlong queue_ptr)
+void rendering_system_process_render_parameter_queue(uint64_t render_param, int64_t queue_ptr)
 {
-  longlong *queue_item_ptr;
+  int64_t *queue_item_ptr;
   int item_index;
-  longlong item_data;
+  int64_t item_data;
   void *temp_ptr;
-  longlong *temp_item_ptr;
+  int64_t *temp_item_ptr;
   uint process_count;
   int item_offset;
-  longlong *next_item_ptr;
+  int64_t *next_item_ptr;
   int32_t temp_value;
   int32_t temp_value_2;
-  longlong *current_item_ptr;
+  int64_t *current_item_ptr;
   void *error_handler_ptr;
   int8_t *string_buffer_ptr;
   uint string_length;
-  ulonglong string_data;
+  uint64_t string_data;
   void *string_data_ptr;
   int8_t *string_ptr;
   uint string_size;
-  ulonglong string_info;
+  uint64_t string_info;
   int32_t queue_param_1;
   int32_t queue_param_2;
   int32_t queue_param_3;
@@ -639,37 +639,37 @@ void rendering_system_process_render_parameter_queue(uint64_t render_param, long
   int32_t queue_param_10;
   int32_t queue_param_11;
   int32_t queue_param_12;
-  longlong *stack_item_ptr_1;
-  longlong *stack_item_ptr_2;
-  longlong *stack_item_ptr_3;
+  int64_t *stack_item_ptr_1;
+  int64_t *stack_item_ptr_2;
+  int64_t *stack_item_ptr_3;
   
   string_info = 0xfffffffffffffffe;
-  queue_item_ptr = *(longlong **)(queue_ptr + 0x1c0);
-  next_item_ptr = *(longlong **)(queue_ptr + 0x1c8);
+  queue_item_ptr = *(int64_t **)(queue_ptr + 0x1c0);
+  next_item_ptr = *(int64_t **)(queue_ptr + 0x1c8);
   if (queue_item_ptr != next_item_ptr) {
     do {
-      current_item_ptr = (longlong *)*queue_item_ptr;
+      current_item_ptr = (int64_t *)*queue_item_ptr;
       stack_item_ptr_1 = current_item_ptr;
-      if (current_item_ptr != (longlong *)0x0) {
+      if (current_item_ptr != (int64_t *)0x0) {
         // 处理队列项
         (**(code **)(*current_item_ptr + 0x28))(current_item_ptr);
       }
       FUN_180346b50(render_param, current_item_ptr);
-      if (current_item_ptr != (longlong *)0x0) {
+      if (current_item_ptr != (int64_t *)0x0) {
         (**(code **)(*current_item_ptr + 0x38))(current_item_ptr);
       }
       queue_item_ptr = queue_item_ptr + 1;
     } while (queue_item_ptr != next_item_ptr);
-    next_item_ptr = *(longlong **)(queue_ptr + 0x1c8);
+    next_item_ptr = *(int64_t **)(queue_ptr + 0x1c8);
   }
-  queue_item_ptr = *(longlong **)(queue_ptr + 0x1c0);
+  queue_item_ptr = *(int64_t **)(queue_ptr + 0x1c0);
   do {
     if (queue_item_ptr == next_item_ptr) {
       return;
     }
-    current_item_ptr = (longlong *)*queue_item_ptr;
+    current_item_ptr = (int64_t *)*queue_item_ptr;
     stack_item_ptr_3 = current_item_ptr;
-    if (current_item_ptr != (longlong *)0x0) {
+    if (current_item_ptr != (int64_t *)0x0) {
       (**(code **)(*current_item_ptr + 0x28))(current_item_ptr);
     }
     item_data = current_item_ptr[0x22];
@@ -686,9 +686,9 @@ void rendering_system_process_render_parameter_queue(uint64_t render_param, long
           string_data_ptr = *(void **)(item_data + 0x18);
         }
         // 复制字符串数据
-        memcpy(string_buffer_ptr, string_data_ptr, (longlong)(*(int *)(item_data + 0x20) + 1));
+        memcpy(string_buffer_ptr, string_data_ptr, (int64_t)(*(int *)(item_data + 0x20) + 1));
       }
-      if ((*(longlong *)(item_data + 0x18) != 0) && (string_length = 0, string_buffer_ptr != (int8_t *)0x0)) {
+      if ((*(int64_t *)(item_data + 0x18) != 0) && (string_length = 0, string_buffer_ptr != (int8_t *)0x0)) {
         *string_buffer_ptr = 0;
       }
       while ((0 < (int)string_length &&
@@ -700,7 +700,7 @@ void rendering_system_process_render_parameter_queue(uint64_t render_param, long
         }
         process_count = item_index + item_offset;
         if (process_count < string_length) {
-          item_data = (longlong)(int)process_count;
+          item_data = (int64_t)(int)process_count;
           do {
             string_buffer_ptr[item_data - item_offset] = string_buffer_ptr[item_data];
             process_count = process_count + 1;
@@ -717,7 +717,7 @@ void rendering_system_process_render_parameter_queue(uint64_t render_param, long
       queue_param_3 = queue_param_3;
       queue_param_4 = queue_param_4;
       FUN_18014cb90(queue_param_1, stack_item_ptr_1, &queue_param_1, 1);
-      if (stack_item_ptr_1 != (longlong *)0x0) {
+      if (stack_item_ptr_1 != (int64_t *)0x0) {
         (**(code **)(*stack_item_ptr_1 + 0x38))();
       }
       error_handler_ptr = &system_data_buffer_ptr;
@@ -743,9 +743,9 @@ void rendering_system_process_render_parameter_queue(uint64_t render_param, long
           string_data_ptr = *(void **)(item_data + 0x18);
         }
         // 复制字符串数据
-        memcpy(string_ptr, string_data_ptr, (longlong)(*(int *)(item_data + 0x20) + 1));
+        memcpy(string_ptr, string_data_ptr, (int64_t)(*(int *)(item_data + 0x20) + 1));
       }
-      if ((*(longlong *)(item_data + 0x18) != 0) && (string_size = 0, string_ptr != (int8_t *)0x0)) {
+      if ((*(int64_t *)(item_data + 0x18) != 0) && (string_size = 0, string_ptr != (int8_t *)0x0)) {
         *string_ptr = 0;
       }
       while ((0 < (int)string_size &&
@@ -758,7 +758,7 @@ void rendering_system_process_render_parameter_queue(uint64_t render_param, long
         }
         process_count = item_index + item_offset;
         if (process_count < string_size) {
-          item_data = (longlong)(int)process_count;
+          item_data = (int64_t)(int)process_count;
           do {
             string_ptr[item_data - item_offset] = string_ptr[item_data];
             process_count = process_count + 1;
@@ -775,7 +775,7 @@ void rendering_system_process_render_parameter_queue(uint64_t render_param, long
       queue_param_3 = queue_param_7;
       queue_param_4 = queue_param_8;
       FUN_18014cb90(queue_param_5, stack_item_ptr_2, &queue_param_1, 0);
-      if (stack_item_ptr_2 != (longlong *)0x0) {
+      if (stack_item_ptr_2 != (int64_t *)0x0) {
         (**(code **)(*stack_item_ptr_2 + 0x38))();
       }
       temp_ptr = &system_data_buffer_ptr;
@@ -798,11 +798,11 @@ void rendering_system_process_render_parameter_queue(uint64_t render_param, long
  * 
  * @param state_ptr 状态指针
  */
-void rendering_system_update_render_parameter_state(longlong state_ptr)
+void rendering_system_update_render_parameter_state(int64_t state_ptr)
 {
-  longlong render_context_ptr;
+  int64_t render_context_ptr;
   void *temp_ptr;
-  longlong stack_params [4];
+  int64_t stack_params [4];
   int32_t state_param_1;
   int32_t state_param_2;
   int32_t state_param_3;
@@ -822,11 +822,11 @@ void rendering_system_update_render_parameter_state(longlong state_ptr)
   FUN_180346b50(state_ptr, *(uint64_t *)(state_ptr + 0x18));
   state_param_13 = 0x180346f17;
   FUN_18014ccf0();
-  if ((*(byte *)(*(longlong *)(state_ptr + 0x18) + 0x2e8) & 1) == 0) {
+  if ((*(byte *)(*(int64_t *)(state_ptr + 0x18) + 0x2e8) & 1) == 0) {
     *(int8_t *)(state_ptr + 0x81) = 1;
     return;
   }
-  render_context_ptr = *(longlong *)(state_ptr + 0x18);
+  render_context_ptr = *(int64_t *)(state_ptr + 0x18);
   stack_params[0] = 0;
   state_param_14 = 0;
   state_param_9 = 0;
@@ -878,10 +878,10 @@ void rendering_system_execute_render_parameter_callback(uint64_t callback_param)
   int8_t callback_handler_buffer [72];
   void *callback_params [11];
   int32_t callback_param;
-  ulonglong callback_info;
+  uint64_t callback_info;
   
   callback_data = 0xfffffffffffffffe;
-  callback_info = GET_SECURITY_COOKIE() ^ (ulonglong)callback_stack;
+  callback_info = GET_SECURITY_COOKIE() ^ (uint64_t)callback_stack;
   callback_flag = 0;
   callback_ptr = &unknown_var_3480_ptr;
   callback_string_ptr = callback_buffer;
@@ -910,7 +910,7 @@ void rendering_system_execute_render_parameter_callback(uint64_t callback_param)
   callback_handler_ptr = &system_state_ptr;
   callback_array[0] = callback_params;
   // 错误处理：清理资源
-  FUN_1808fc050(callback_info ^ (ulonglong)callback_stack);
+  FUN_1808fc050(callback_info ^ (uint64_t)callback_stack);
 }
 
 /**
@@ -922,10 +922,10 @@ void rendering_system_execute_render_parameter_callback(uint64_t callback_param)
  * @param output_matrix 输出矩阵
  * @return 输出矩阵指针
  */
-float * rendering_system_calculate_matrix_transform(longlong transform_ptr, float *input_matrix, float *output_matrix)
+float * rendering_system_calculate_matrix_transform(int64_t transform_ptr, float *input_matrix, float *output_matrix)
 {
   float *matrix_ptr;
-  longlong transform_data;
+  int64_t transform_data;
   float transform_element_1;
   float transform_element_2;
   float transform_element_3;
@@ -948,7 +948,7 @@ float * rendering_system_calculate_matrix_transform(longlong transform_ptr, floa
   float transform_element_20;
   float transform_element_21;
   uint64_t transform_param;
-  longlong matrix_offset;
+  int64_t matrix_offset;
   float transform_element_22;
   float transform_element_23;
   float transform_element_24;
@@ -984,8 +984,8 @@ float * rendering_system_calculate_matrix_transform(longlong transform_ptr, floa
   
   transform_element_25 = input_matrix[5];
   matrix_ptr = *(float **)(transform_ptr + 0x88);
-  transform_data = *(longlong *)(transform_ptr + 0x18);
-  matrix_offset = *(longlong *)(transform_ptr + 0x90) - (longlong)matrix_ptr;
+  transform_data = *(int64_t *)(transform_ptr + 0x18);
+  matrix_offset = *(int64_t *)(transform_ptr + 0x90) - (int64_t)matrix_ptr;
   transform_element_1 = *(float *)(transform_data + 0x90);
   transform_element_2 = *(float *)(transform_data + 0x94);
   transform_element_3 = *(float *)(transform_data + 0x98);

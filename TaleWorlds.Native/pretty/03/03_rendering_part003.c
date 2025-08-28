@@ -8,13 +8,13 @@
 // 功能: 清零并初始化渲染缓冲区
 void initialize_render_buffer(uint64_t render_context, uint64_t *buffer_ptr)
 {
-  longlong buffer_offset;
-  longlong counter;
-  longlong context_offset;
-  longlong buffer_size;
+  int64_t buffer_offset;
+  int64_t counter;
+  int64_t context_offset;
+  int64_t buffer_size;
   
   if (buffer_size != 0) {
-    buffer_offset = (longlong)buffer_ptr + 0x1c;
+    buffer_offset = (int64_t)buffer_ptr + 0x1c;
     counter = buffer_size;
     do {
       // 清零缓冲区块
@@ -43,41 +43,41 @@ void initialize_render_buffer(uint64_t render_context, uint64_t *buffer_ptr)
 // 函数: 处理渲染数据
 // 参数: param_1 - 渲染目标, param_2 - 数据源, param_3 - 数据大小
 // 功能: 处理和转换渲染数据，应用缩放因子
-void process_render_data(longlong render_target, uint64_t data_source, longlong data_size)
+void process_render_data(int64_t render_target, uint64_t data_source, int64_t data_size)
 {
-  longlong *target_ptr;
+  int64_t *target_ptr;
   float scale_factor;
-  longlong temp_var1;
-  longlong temp_var2;
-  ulonglong data_count;
-  ulonglong remaining_count;
-  longlong loop_counter;
-  longlong base_offset;
-  longlong chunk_counter;
+  int64_t temp_var1;
+  int64_t temp_var2;
+  uint64_t data_count;
+  uint64_t remaining_count;
+  int64_t loop_counter;
+  int64_t base_offset;
+  int64_t chunk_counter;
   
-  temp_var1 = *(longlong *)(data_size + 8);
-  target_ptr = (longlong *)(render_target + 8);
+  temp_var1 = *(int64_t *)(data_size + 8);
+  target_ptr = (int64_t *)(render_target + 8);
   
   // 设置渲染参数
   *(int32_t *)(render_target + 0x2c) = *(int32_t *)(temp_var1 + 4);
   *(int32_t *)(render_target + 0x28) = *(int32_t *)(temp_var1 + 8);
   *(int **)(data_size + 8) = (int *)(temp_var1 + 0xc);
   
-  remaining_count = (ulonglong)*(int *)(temp_var1 + 0xc);
-  *(longlong *)(data_size + 8) = temp_var1 + 0x10;
+  remaining_count = (uint64_t)*(int *)(temp_var1 + 0xc);
+  *(int64_t *)(data_size + 8) = temp_var1 + 0x10;
   
   // 检查并分配缓冲区空间
-  data_count = *(longlong *)(render_target + 0x10) - *target_ptr >> 5;
+  data_count = *(int64_t *)(render_target + 0x10) - *target_ptr >> 5;
   if (data_count < remaining_count) {
     allocate_render_buffer(target_ptr, remaining_count - data_count);
   }
   else {
-    *(ulonglong *)(render_target + 0x10) = remaining_count * 0x20 + *target_ptr;
+    *(uint64_t *)(render_target + 0x10) = remaining_count * 0x20 + *target_ptr;
   }
   
   // 批量处理数据块（每块4个元素）
   temp_var1 = 0;
-  if (3 < (longlong)remaining_count) {
+  if (3 < (int64_t)remaining_count) {
     chunk_counter = (remaining_count - 4 >> 2) + 1;
     temp_var1 = chunk_counter * 4;
     base_offset = 0;
@@ -91,10 +91,10 @@ void process_render_data(longlong render_target, uint64_t data_source, longlong 
       *(int *)(base_offset + temp_var2) = (int)(scale_factor * 29.0);
       *(int32_t *)(base_offset + 4 + temp_var2) = **(int32_t **)(data_size + 8);
       
-      temp_var1 = *(longlong *)(data_size + 8);
+      temp_var1 = *(int64_t *)(data_size + 8);
       *(int32_t *)(base_offset + 8 + temp_var2) = *(int32_t *)(temp_var1 + 4);
       *(int32_t *)(base_offset + 0xc + temp_var2) = *(int32_t *)(temp_var1 + 8);
-      *(longlong *)(data_size + 8) = temp_var1 + 0xc;
+      *(int64_t *)(data_size + 8) = temp_var1 + 0xc;
       
       // 对Y分量应用缩放
       *(float *)(base_offset + 8 + temp_var2) = *(float *)(base_offset + 8 + temp_var2) * 29.0;
@@ -105,10 +105,10 @@ void process_render_data(longlong render_target, uint64_t data_source, longlong 
       *(int *)(base_offset + 0x10 + temp_var2) = (int)(scale_factor * 29.0);
       *(int32_t *)(base_offset + 0x14 + temp_var2) = **(int32_t **)(data_size + 8);
       
-      temp_var1 = *(longlong *)(data_size + 8);
+      temp_var1 = *(int64_t *)(data_size + 8);
       *(int32_t *)(base_offset + 0x18 + temp_var2) = *(int32_t *)(temp_var1 + 4);
       *(int32_t *)(base_offset + 0x1c + temp_var2) = *(int32_t *)(temp_var1 + 8);
-      *(longlong *)(data_size + 8) = temp_var1 + 0xc;
+      *(int64_t *)(data_size + 8) = temp_var1 + 0xc;
       *(float *)(base_offset + 0x18 + temp_var2) = *(float *)(base_offset + 0x18 + temp_var2) * 29.0;
       
       // 继续处理更多数据点...
@@ -118,10 +118,10 @@ void process_render_data(longlong render_target, uint64_t data_source, longlong 
       *(int *)(temp_var2 + 0x20 + base_offset) = (int)(scale_factor * 29.0);
       *(int32_t *)(temp_var2 + 0x24 + base_offset) = **(int32_t **)(data_size + 8);
       
-      temp_var1 = *(longlong *)(data_size + 8);
+      temp_var1 = *(int64_t *)(data_size + 8);
       *(int32_t *)(temp_var2 + 0x28 + base_offset) = *(int32_t *)(temp_var1 + 4);
       *(int32_t *)(temp_var2 + 0x2c + base_offset) = *(int32_t *)(temp_var1 + 8);
-      *(longlong *)(data_size + 8) = temp_var1 + 0xc;
+      *(int64_t *)(data_size + 8) = temp_var1 + 0xc;
       *(float *)(temp_var2 + 0x28 + base_offset) = *(float *)(temp_var2 + 0x28 + base_offset) * 29.0;
       
       scale_factor = **(float **)(data_size + 8);
@@ -129,10 +129,10 @@ void process_render_data(longlong render_target, uint64_t data_source, longlong 
       *(int *)(temp_var2 + 0x30 + base_offset) = (int)(scale_factor * 29.0);
       *(int32_t *)(temp_var2 + 0x34 + base_offset) = **(int32_t **)(data_size + 8);
       
-      temp_var1 = *(longlong *)(data_size + 8);
+      temp_var1 = *(int64_t *)(data_size + 8);
       *(int32_t *)(temp_var2 + 0x38 + base_offset) = *(int32_t *)(temp_var1 + 4);
       *(int32_t *)(temp_var2 + 0x3c + base_offset) = *(int32_t *)(temp_var1 + 8);
-      *(longlong *)(data_size + 8) = temp_var1 + 0xc;
+      *(int64_t *)(data_size + 8) = temp_var1 + 0xc;
       *(float *)(temp_var2 + 0x38 + base_offset) = *(float *)(temp_var2 + 0x38 + base_offset) * 29.0;
       
       temp_var2 = *target_ptr;
@@ -141,10 +141,10 @@ void process_render_data(longlong render_target, uint64_t data_source, longlong 
       *(int *)(temp_var2 + 0x40 + base_offset) = (int)(scale_factor * 29.0);
       *(int32_t *)(temp_var2 + 0x44 + base_offset) = **(int32_t **)(data_size + 8);
       
-      temp_var1 = *(longlong *)(data_size + 8);
+      temp_var1 = *(int64_t *)(data_size + 8);
       *(int32_t *)(temp_var2 + 0x48 + base_offset) = *(int32_t *)(temp_var1 + 4);
       *(int32_t *)(temp_var2 + 0x4c + base_offset) = *(int32_t *)(temp_var1 + 8);
-      *(longlong *)(data_size + 8) = temp_var1 + 0xc;
+      *(int64_t *)(data_size + 8) = temp_var1 + 0xc;
       *(float *)(temp_var2 + 0x48 + base_offset) = *(float *)(temp_var2 + 0x48 + base_offset) * 29.0;
       
       scale_factor = **(float **)(data_size + 8);
@@ -152,10 +152,10 @@ void process_render_data(longlong render_target, uint64_t data_source, longlong 
       *(int *)(temp_var2 + 0x50 + base_offset) = (int)(scale_factor * 29.0);
       *(int32_t *)(temp_var2 + 0x54 + base_offset) = **(int32_t **)(data_size + 8);
       
-      temp_var1 = *(longlong *)(data_size + 8);
+      temp_var1 = *(int64_t *)(data_size + 8);
       *(int32_t *)(temp_var2 + 0x58 + base_offset) = *(int32_t *)(temp_var1 + 4);
       *(int32_t *)(temp_var2 + 0x5c + base_offset) = *(int32_t *)(temp_var1 + 8);
-      *(longlong *)(data_size + 8) = temp_var1 + 0xc;
+      *(int64_t *)(data_size + 8) = temp_var1 + 0xc;
       *(float *)(temp_var2 + 0x58 + base_offset) = *(float *)(temp_var2 + 0x58 + base_offset) * 29.0;
       
       temp_var2 = *target_ptr;
@@ -164,10 +164,10 @@ void process_render_data(longlong render_target, uint64_t data_source, longlong 
       *(int *)(base_offset + 0x60 + temp_var2) = (int)(scale_factor * 29.0);
       *(int32_t *)(base_offset + 100 + temp_var2) = **(int32_t **)(data_size + 8);
       
-      temp_var1 = *(longlong *)(data_size + 8);
+      temp_var1 = *(int64_t *)(data_size + 8);
       *(int32_t *)(base_offset + 0x68 + temp_var2) = *(int32_t *)(temp_var1 + 4);
       *(int32_t *)(base_offset + 0x6c + temp_var2) = *(int32_t *)(temp_var1 + 8);
-      *(longlong *)(data_size + 8) = temp_var1 + 0xc;
+      *(int64_t *)(data_size + 8) = temp_var1 + 0xc;
       *(float *)(base_offset + 0x68 + temp_var2) = *(float *)(base_offset + 0x68 + temp_var2) * 29.0;
       
       scale_factor = **(float **)(data_size + 8);
@@ -175,10 +175,10 @@ void process_render_data(longlong render_target, uint64_t data_source, longlong 
       *(int *)(base_offset + 0x70 + temp_var2) = (int)(scale_factor * 29.0);
       *(int32_t *)(base_offset + 0x74 + temp_var2) = **(int32_t **)(data_size + 8);
       
-      temp_var1 = *(longlong *)(data_size + 8);
+      temp_var1 = *(int64_t *)(data_size + 8);
       *(int32_t *)(base_offset + 0x78 + temp_var2) = *(int32_t *)(temp_var1 + 4);
       *(int32_t *)(base_offset + 0x7c + temp_var2) = *(int32_t *)(temp_var1 + 8);
-      *(longlong *)(data_size + 8) = temp_var1 + 0xc;
+      *(int64_t *)(data_size + 8) = temp_var1 + 0xc;
       *(float *)(base_offset + 0x78 + temp_var2) = *(float *)(base_offset + 0x78 + temp_var2) * 29.0;
       
       chunk_counter = chunk_counter + -1;
@@ -187,7 +187,7 @@ void process_render_data(longlong render_target, uint64_t data_source, longlong 
   }
   
   // 处理剩余的数据元素
-  if (temp_var1 < (longlong)remaining_count) {
+  if (temp_var1 < (int64_t)remaining_count) {
     base_offset = remaining_count - temp_var1;
     temp_var1 = temp_var1 << 5;
     
@@ -199,11 +199,11 @@ void process_render_data(longlong render_target, uint64_t data_source, longlong 
       *(int *)(temp_var1 + temp_var2) = (int)(scale_factor * 29.0);
       *(int32_t *)(temp_var1 + 4 + temp_var2) = **(int32_t **)(data_size + 8);
       
-      temp_var1 = *(longlong *)(data_size + 8);
+      temp_var1 = *(int64_t *)(data_size + 8);
       scale_factor = *(float *)(temp_var1 + 4);
       *(float *)(temp_var1 + 8 + temp_var2) = scale_factor;
       *(int32_t *)(temp_var1 + 0xc + temp_var2) = *(int32_t *)(temp_var1 + 8);
-      *(longlong *)(data_size + 8) = temp_var1 + 0xc;
+      *(int64_t *)(data_size + 8) = temp_var1 + 0xc;
       *(float *)(temp_var1 + 8 + temp_var2) = scale_factor * 29.0;
       
       scale_factor = **(float **)(data_size + 8);
@@ -211,11 +211,11 @@ void process_render_data(longlong render_target, uint64_t data_source, longlong 
       *(int *)(temp_var1 + 0x10 + temp_var2) = (int)(scale_factor * 29.0);
       *(int32_t *)(temp_var1 + 0x14 + temp_var2) = **(int32_t **)(data_size + 8);
       
-      temp_var1 = *(longlong *)(data_size + 8);
+      temp_var1 = *(int64_t *)(data_size + 8);
       scale_factor = *(float *)(temp_var1 + 4);
       *(float *)(temp_var1 + 0x18 + temp_var2) = scale_factor;
       *(int32_t *)(temp_var1 + 0x1c + temp_var2) = *(int32_t *)(temp_var1 + 8);
-      *(longlong *)(data_size + 8) = temp_var1 + 0xc;
+      *(int64_t *)(data_size + 8) = temp_var1 + 0xc;
       *(float *)(temp_var1 + 0x18 + temp_var2) = scale_factor * 29.0;
       
       base_offset = base_offset + -1;
@@ -233,8 +233,8 @@ void free_render_resources(uint64_t *resource_ptr)
 {
   int *ref_count;
   uint64_t *resource_data;
-  longlong memory_block;
-  ulonglong memory_address;
+  int64_t memory_block;
+  uint64_t memory_address;
   
   *resource_ptr = &GLOBAL_RENDER_TABLE;
   cleanup_render_buffer(resource_ptr + 1);
@@ -245,10 +245,10 @@ void free_render_resources(uint64_t *resource_ptr)
   }
   
   // 检查内存地址有效性
-  memory_address = (ulonglong)resource_data & 0xffffffffffc00000;
+  memory_address = (uint64_t)resource_data & 0xffffffffffc00000;
   if (memory_address != 0) {
-    memory_block = memory_address + 0x80 + ((longlong)resource_data - memory_address >> 0x10) * 0x50;
-    memory_block = memory_block - (ulonglong)*(uint *)(memory_block + 4);
+    memory_block = memory_address + 0x80 + ((int64_t)resource_data - memory_address >> 0x10) * 0x50;
+    memory_block = memory_block - (uint64_t)*(uint *)(memory_block + 4);
     
     // 检查是否为有效的渲染资源
     if ((*(void ***)(memory_address + 0x70) == &ExceptionList) && (*(char *)(memory_block + 0xe) == '\0')) {
@@ -400,7 +400,7 @@ uint64_t * initialize_render_state(uint64_t *state_ptr)
 // 函数: 清理渲染上下文 (48字节)
 // 参数: param_1 - 上下文指针, param_2 - 清理标志, param_3/4 - 保留参数
 // 功能: 清理48字节的渲染上下文
-uint64_t * cleanup_render_context_48(uint64_t *context_ptr, ulonglong cleanup_flags, uint64_t reserved1, uint64_t reserved2)
+uint64_t * cleanup_render_context_48(uint64_t *context_ptr, uint64_t cleanup_flags, uint64_t reserved1, uint64_t reserved2)
 {
   uint64_t cleanup_code;
   
@@ -423,7 +423,7 @@ uint64_t * cleanup_render_context_48(uint64_t *context_ptr, ulonglong cleanup_fl
 // 函数: 清理渲染上下文 (40字节)
 // 参数: param_1 - 上下文指针, param_2 - 清理标志, param_3/4 - 保留参数
 // 功能: 清理40字节的渲染上下文
-uint64_t * cleanup_render_context_40(uint64_t *context_ptr, ulonglong cleanup_flags, uint64_t reserved1, uint64_t reserved2)
+uint64_t * cleanup_render_context_40(uint64_t *context_ptr, uint64_t cleanup_flags, uint64_t reserved1, uint64_t reserved2)
 {
   uint64_t cleanup_code;
   
@@ -446,12 +446,12 @@ uint64_t * cleanup_render_context_40(uint64_t *context_ptr, ulonglong cleanup_fl
 // 函数: 清理渲染缓冲区
 // 参数: param_1 - 缓冲区指针
 // 功能: 清理和重置渲染缓冲区
-void cleanup_render_buffer(ulonglong *buffer_ptr)
+void cleanup_render_buffer(uint64_t *buffer_ptr)
 {
   int *ref_count;
   uint64_t *buffer_data;
-  longlong memory_block;
-  ulonglong memory_address;
+  int64_t memory_block;
+  uint64_t memory_address;
   
   buffer_data = (uint64_t *)*buffer_ptr;
   *buffer_ptr = 0;
@@ -464,10 +464,10 @@ void cleanup_render_buffer(ulonglong *buffer_ptr)
   }
   
   // 检查内存地址有效性
-  memory_address = (ulonglong)buffer_data & 0xffffffffffc00000;
+  memory_address = (uint64_t)buffer_data & 0xffffffffffc00000;
   if (memory_address != 0) {
-    memory_block = memory_address + 0x80 + ((longlong)buffer_data - memory_address >> 0x10) * 0x50;
-    memory_block = memory_block - (ulonglong)*(uint *)(memory_block + 4);
+    memory_block = memory_address + 0x80 + ((int64_t)buffer_data - memory_address >> 0x10) * 0x50;
+    memory_block = memory_block - (uint64_t)*(uint *)(memory_block + 4);
     
     // 检查是否为有效的渲染缓冲区
     if ((*(void ***)(memory_address + 0x70) == &ExceptionList) && (*(char *)(memory_block + 0xe) == '\0')) {
@@ -503,8 +503,8 @@ void reset_render_pipeline(uint64_t *pipeline_ptr)
 {
   int *ref_count;
   uint64_t *pipeline_data;
-  longlong memory_block;
-  ulonglong memory_address;
+  int64_t memory_block;
+  uint64_t memory_address;
   
   *pipeline_ptr = &GLOBAL_RENDER_TABLE;
   cleanup_render_buffer(pipeline_ptr + 1);
@@ -515,10 +515,10 @@ void reset_render_pipeline(uint64_t *pipeline_ptr)
   }
   
   // 检查内存地址有效性
-  memory_address = (ulonglong)pipeline_data & 0xffffffffffc00000;
+  memory_address = (uint64_t)pipeline_data & 0xffffffffffc00000;
   if (memory_address != 0) {
-    memory_block = memory_address + 0x80 + ((longlong)pipeline_data - memory_address >> 0x10) * 0x50;
-    memory_block = memory_block - (ulonglong)*(uint *)(memory_block + 4);
+    memory_block = memory_address + 0x80 + ((int64_t)pipeline_data - memory_address >> 0x10) * 0x50;
+    memory_block = memory_block - (uint64_t)*(uint *)(memory_block + 4);
     
     // 检查是否为有效的渲染管线
     if ((*(void ***)(memory_address + 0x70) == &ExceptionList) && (*(char *)(memory_block + 0xe) == '\0')) {
@@ -554,8 +554,8 @@ void reset_shader_state(uint64_t *shader_ptr)
 {
   int *ref_count;
   uint64_t *shader_data;
-  longlong memory_block;
-  ulonglong memory_address;
+  int64_t memory_block;
+  uint64_t memory_address;
   
   *shader_ptr = &GLOBAL_RENDER_TABLE;
   cleanup_render_buffer(shader_ptr + 1);
@@ -566,10 +566,10 @@ void reset_shader_state(uint64_t *shader_ptr)
   }
   
   // 检查内存地址有效性
-  memory_address = (ulonglong)shader_data & 0xffffffffffc00000;
+  memory_address = (uint64_t)shader_data & 0xffffffffffc00000;
   if (memory_address != 0) {
-    memory_block = memory_address + 0x80 + ((longlong)shader_data - memory_address >> 0x10) * 0x50;
-    memory_block = memory_block - (ulonglong)*(uint *)(memory_block + 4);
+    memory_block = memory_address + 0x80 + ((int64_t)shader_data - memory_address >> 0x10) * 0x50;
+    memory_block = memory_block - (uint64_t)*(uint *)(memory_block + 4);
     
     // 检查是否为有效的着色器
     if ((*(void ***)(memory_address + 0x70) == &ExceptionList) && (*(char *)(memory_block + 0xe) == '\0')) {
@@ -601,27 +601,27 @@ void reset_shader_state(uint64_t *shader_ptr)
 // 函数: 比较渲染缓冲区
 // 参数: param_1 - 第一个缓冲区, param_2 - 第二个缓冲区
 // 功能: 比较两个渲染缓冲区是否相同
-ulonglong compare_render_buffers(longlong buffer1, longlong buffer2)
+uint64_t compare_render_buffers(int64_t buffer1, int64_t buffer2)
 {
   float *buffer1_ptr;
   float *buffer2_ptr;
   float *buffer1_start;
   float *buffer1_end;
-  longlong offset_diff;
+  int64_t offset_diff;
   
   buffer1_ptr = *(float **)(buffer1 + 0x328);
   buffer1_end = *(float **)(buffer1 + 800);
-  buffer1_start = (float *)-((longlong)buffer1_ptr - (longlong)buffer1_end >> 0x3f);
+  buffer1_start = (float *)-((int64_t)buffer1_ptr - (int64_t)buffer1_end >> 0x3f);
   
   // 比较缓冲区大小
-  if (((longlong)buffer1_ptr - (longlong)buffer1_end) / 0x14 !=
-      (*(longlong *)(buffer2 + 0x328) - *(longlong *)(buffer2 + 800)) / 0x14) {
+  if (((int64_t)buffer1_ptr - (int64_t)buffer1_end) / 0x14 !=
+      (*(int64_t *)(buffer2 + 0x328) - *(int64_t *)(buffer2 + 800)) / 0x14) {
     return 0;
   }
   
   // 比较缓冲区内容
   if (buffer1_end != buffer1_ptr) {
-    buffer2_ptr = (float *)(*(longlong *)(buffer2 + 800) + 8);
+    buffer2_ptr = (float *)(*(int64_t *)(buffer2 + 800) + 8);
     
     do {
       // 检查5个浮点数是否相等
@@ -638,22 +638,22 @@ ulonglong compare_render_buffers(longlong buffer1, longlong buffer2)
   // 比较第二组数据
   buffer1_ptr = *(float **)(buffer1 + 0x348);
   buffer1_end = *(float **)(buffer1 + 0x340);
-  buffer1_start = (float *)((longlong)buffer1_ptr - (longlong)buffer1_end);
+  buffer1_start = (float *)((int64_t)buffer1_ptr - (int64_t)buffer1_end);
   
   // 检查数据长度是否匹配
-  if (((*(longlong *)(buffer2 + 0x348) - *(longlong *)(buffer2 + 0x340) ^ (ulonglong)buffer1_start) &
+  if (((*(int64_t *)(buffer2 + 0x348) - *(int64_t *)(buffer2 + 0x340) ^ (uint64_t)buffer1_start) &
       0xfffffffffffffff8) != 0) {
     return 0;
   }
   
   // 比较第二组数据内容
   if (buffer1_end != buffer1_ptr) {
-    offset_diff = *(longlong *)(buffer2 + 0x340) - (longlong)buffer1_end;
+    offset_diff = *(int64_t *)(buffer2 + 0x340) - (int64_t)buffer1_end;
     
     do {
       // 检查2个浮点数是否相等
-      if ((*(float *)(offset_diff + (longlong)buffer1_end) != *buffer1_end) ||
-         (*(float *)(offset_diff + 4 + (longlong)buffer1_end) != buffer1_end[1])) {
+      if ((*(float *)(offset_diff + (int64_t)buffer1_end) != *buffer1_end) ||
+         (*(float *)(offset_diff + 4 + (int64_t)buffer1_end) != buffer1_end[1])) {
         return 0;
       }
       
@@ -662,7 +662,7 @@ ulonglong compare_render_buffers(longlong buffer1, longlong buffer2)
   }
   
   // 缓冲区相同
-  return CONCAT71((int7)((ulonglong)buffer1_start >> 8), 1);
+  return CONCAT71((int7)((uint64_t)buffer1_start >> 8), 1);
 }
 
 // 函数: 比较渲染材质

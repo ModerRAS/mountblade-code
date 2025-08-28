@@ -46,7 +46,7 @@
 /*================================================================================*/
 
 /** 渲染系统上下文指针类型 */
-typedef longlong* rendering_system_context_ptr;
+typedef int64_t* rendering_system_context_ptr;
 
 /** 渲染系统参数缓冲区类型 */
 typedef float* rendering_system_param_buffer;
@@ -95,24 +95,24 @@ typedef enum {
 /*================================================================================*/
 
 void rendering_system_calculate_collision_parameters(
-    longlong system_context, 
+    int64_t system_context, 
     rendering_system_collision_data* output_data, 
     char processing_mode, 
     rendering_system_param_buffer input_params
 );
 
 void rendering_system_process_render_pipeline(
-    longlong render_context, 
-    longlong pipeline_data
+    int64_t render_context, 
+    int64_t pipeline_data
 );
 
 void rendering_system_update_render_state(
-    longlong render_context, 
-    longlong state_data
+    int64_t render_context, 
+    int64_t state_data
 );
 
 void rendering_system_execute_render_command(
-    longlong render_context, 
+    int64_t render_context, 
     byte command_type, 
     int command_params
 );
@@ -153,7 +153,7 @@ void rendering_system_execute_render_command(
  * @param input_params 输入参数缓冲区
  */
 void rendering_system_calculate_collision_parameters(
-    longlong system_context, 
+    int64_t system_context, 
     rendering_system_collision_data* output_data, 
     char processing_mode, 
     rendering_system_param_buffer input_params
@@ -168,7 +168,7 @@ void rendering_system_calculate_collision_parameters(
     float collision_response_y;
     float collision_response_z;
     float collision_force;
-    longlong resource_manager_ptr;
+    int64_t resource_manager_ptr;
     uint *resource_data_ptr;
     float transform_scale;
     float rotation_angle;
@@ -192,14 +192,14 @@ void rendering_system_calculate_collision_parameters(
     float stack_protection_cc;
     uint64_t stack_protection_c8;
     uint64_t stack_protection_c0;
-    ulonglong stack_protection_b8;
+    uint64_t stack_protection_b8;
     
     /* 初始化栈保护 */
-    stack_protection_b8 = GET_SECURITY_COOKIE() ^ (ulonglong)&stack_protection_108;
+    stack_protection_b8 = GET_SECURITY_COOKIE() ^ (uint64_t)&stack_protection_108;
     
     /* 获取资源数据指针 */
-    resource_data_ptr = (uint *)((longlong)processing_mode * 0x100 +
-                    *(longlong *)(*(longlong *)(system_context + 0x658) + 0x18));
+    resource_data_ptr = (uint *)((int64_t)processing_mode * 0x100 +
+                    *(int64_t *)(*(int64_t *)(system_context + 0x658) + 0x18));
     
     /* 线程安全资源锁定 */
     do {
@@ -222,7 +222,7 @@ void rendering_system_calculate_collision_parameters(
     collision_angle = *input_params;
     
     /* 获取资源管理器指针 */
-    resource_manager_ptr = *(longlong *)(*(longlong *)(system_context + 0x6d8) + 0x8a8);
+    resource_manager_ptr = *(int64_t *)(*(int64_t *)(system_context + 0x6d8) + 0x8a8);
     collision_normal_x = input_params[1];
     collision_normal_y = input_params[2];
     
@@ -247,13 +247,13 @@ void rendering_system_calculate_collision_parameters(
     collision_force = *(float *)(system_context + 0x530);
     impact_force = impact_force + impact_force + rotation_angle + rotation_angle;
     stack_protection_f8._0_4_ = (float)stack_protection_c8;
-    stack_protection_f8._4_4_ = (float)((ulonglong)stack_protection_c8 >> 0x20);
+    stack_protection_f8._4_4_ = (float)((uint64_t)stack_protection_c8 >> 0x20);
     penetration_depth = penetration_depth + penetration_depth;
     collision_angle = *(float *)(system_context + 0x520);
     
     /* 初始化输出数据 */
     *output_data = 0;
-    *(int32_t *)((longlong)output_data + 0xc) = RENDERING_SYSTEM_MAX_PARAMETER_VALUE;
+    *(int32_t *)((int64_t)output_data + 0xc) = RENDERING_SYSTEM_MAX_PARAMETER_VALUE;
     
     /* 计算最终碰撞参数 */
     collision_force = (collision_angle - (stack_protection_f8._4_4_ * transform_scale + 
@@ -282,7 +282,7 @@ void rendering_system_calculate_collision_parameters(
     stack_protection_c0 = stack_protection_f0;
     
     /* 调用系统清理函数 */
-    FUN_1808fc050(stack_protection_b8 ^ (ulonglong)&stack_protection_108);
+    FUN_1808fc050(stack_protection_b8 ^ (uint64_t)&stack_protection_108);
 }
 
 /**
@@ -295,8 +295,8 @@ void rendering_system_calculate_collision_parameters(
  * @param pipeline_data 管线数据指针
  */
 void rendering_system_process_render_pipeline(
-    longlong render_context, 
-    longlong pipeline_data
+    int64_t render_context, 
+    int64_t pipeline_data
 ) {
     ushort *render_flags;
     bool is_high_quality;
@@ -305,15 +305,15 @@ void rendering_system_process_render_pipeline(
     char lighting_mode;
     int render_pass_count;
     int shader_program_id;
-    ulonglong texture_handle;
+    uint64_t texture_handle;
     uint64_t material_data;
     float *vertex_buffer;
     int32_t *index_buffer;
     int32_t render_state;
     uint texture_id;
     byte mip_level;
-    longlong frame_buffer_ptr;
-    ulonglong shader_handle;
+    int64_t frame_buffer_ptr;
+    uint64_t shader_handle;
     uint64_t transform_matrix;
     float render_distance;
     float lod_threshold;
@@ -368,13 +368,13 @@ void rendering_system_process_render_pipeline(
     
     /* 检查渲染目标有效性 */
     if (-1 < *(int *)(pipeline_data + 0xb0)) {
-        shader_handle = *(longlong *)(render_context + 0x8d8) + 0x30a0 + 
-                     (longlong)*(int *)(pipeline_data + 0xb0) * 0xa60;
+        shader_handle = *(int64_t *)(render_context + 0x8d8) + 0x30a0 + 
+                     (int64_t)*(int *)(pipeline_data + 0xb0) * 0xa60;
     }
     
     /* 高质量渲染模式设置 */
     if (*(int *)(render_context + 0x570) == 1) {
-        frame_buffer_ptr = *(longlong *)(render_context + 0x6e0);
+        frame_buffer_ptr = *(int64_t *)(render_context + 0x6e0);
         if (shader_handle == 0) {
             render_state = 0xffffffff;
         } else {
@@ -389,11 +389,11 @@ void rendering_system_process_render_pipeline(
     if (*(int *)(render_context + 0x568) == 1) {
         if ((*(uint *)(render_context + 0x56c) & 0x800) == 0) {
             if ((*(uint *)(pipeline_data + 0xac) & 0x200) != 0) {
-                frame_buffer_ptr = *(longlong *)(*(longlong *)(render_context + 0x590) + 0x2460);
+                frame_buffer_ptr = *(int64_t *)(*(int64_t *)(render_context + 0x590) + 0x2460);
                 if (frame_buffer_ptr != 0) {
-                    texture_handle = *(ulonglong *)(frame_buffer_ptr + 0x1d0);
+                    texture_handle = *(uint64_t *)(frame_buffer_ptr + 0x1d0);
                 }
-                mip_level = (byte)*(uint64_t *)(*(longlong *)(render_context + 0x590) + 0x2470);
+                mip_level = (byte)*(uint64_t *)(*(int64_t *)(render_context + 0x590) + 0x2470);
                 if (mip_level == 0) {
                     mip_level = (byte)texture_handle;
                 }
@@ -408,7 +408,7 @@ void rendering_system_process_render_pipeline(
                     bandwidth_usage = 0.4;
                     frame_counter = frame_counter & 0xffffff00;
                     render_settings = (void *)
-                                 ((ulonglong)*(uint *)(*(longlong *)(render_context + 0x598) + 0x1a4) << 0x20);
+                                 ((uint64_t)*(uint *)(*(int64_t *)(render_context + 0x598) + 0x1a4) << 0x20);
                     FUN_18051ec50(render_context, &render_settings);
                     return;
                 }
@@ -422,8 +422,8 @@ void rendering_system_process_render_pipeline(
                 *(uint *)(render_context + 0x748) = texture_id,
                 (float)(texture_id - 1) * 2.3283064e-10 <
                 *(float *)(pipeline_data + 0xc0) + *(float *)(pipeline_data + 0xc0))) {
-                if ((*(int *)(*(longlong *)
-                               ((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) + 0x48) <
+                if ((*(int *)(*(int64_t *)
+                               ((int64_t)ThreadLocalStoragePointer + (uint64_t)__tls_index * 8) + 0x48) <
                      render_system_config_render) && (SystemInitializer(&system_memory_9ec8), render_system_config_render == -1)) {
                     render_settings = &system_data_buffer_ptr;
                     gpu_time = 0.0;
@@ -464,39 +464,39 @@ void rendering_system_process_render_pipeline(
             shader_source = lighting_config;
             FUN_18052f6f0(render_context, pipeline_data, render_targets, render_targets, 
                          shader_source, vertex_shader, &render_settings);
-            render_state = (int32_t)((ulonglong)shader_source >> 0x20);
+            render_state = (int32_t)((uint64_t)shader_source >> 0x20);
             if (texture_filter[0] != '\0') {
-                render_pass_count = FUN_18053a410(&system_memory_5f30, *(int32_t *)(*(longlong *)(render_context + 0x590) + 0xac),
+                render_pass_count = FUN_18053a410(&system_memory_5f30, *(int32_t *)(*(int64_t *)(render_context + 0x590) + 0xac),
                               render_targets[0]);
-                render_pass_count = *(int *)(render_system_render + (longlong)render_pass_count * 4);
+                render_pass_count = *(int *)(render_system_render + (int64_t)render_pass_count * 4);
                 if (render_pass_count != -1) {
-                    texture_handle = *(ulonglong *)(render_system_render + (longlong)render_pass_count * 8);
+                    texture_handle = *(uint64_t *)(render_system_render + (int64_t)render_pass_count * 8);
                 }
-                frame_buffer_ptr = *(longlong *)(render_context + 0x8d8) + 0x30a0 +
-                                 (longlong)*(int *)(render_context + 0x564) * 0xa60;
+                frame_buffer_ptr = *(int64_t *)(render_context + 0x8d8) + 0x30a0 +
+                                 (int64_t)*(int *)(render_context + 0x564) * 0xa60;
                 *(int32_t *)(frame_buffer_ptr + 0x4c8) = 0;
                 *(uint64_t *)(frame_buffer_ptr + 0x4cc) = 0;
-                render_flags = (ushort *)(*(longlong *)(frame_buffer_ptr + 0x6e0) + 0x130);
+                render_flags = (ushort *)(*(int64_t *)(frame_buffer_ptr + 0x6e0) + 0x130);
                 *render_flags = *render_flags | 0x200;
                 memory_usage = *(float *)(texture_handle + 0x1dc);
                 if (memory_usage <= 0.0) {
                     memory_usage = *(float *)(texture_handle + 0x188);
                 }
-                *(longlong *)(frame_buffer_ptr + 0x6c8) =
-                     *(longlong *)(&system_error_code + (longlong)*(int *)(frame_buffer_ptr + 0x6d0) * 8) -
-                     (longlong)(memory_usage * -RENDERING_SYSTEM_DISTANCE_COEFFICIENT);
-                *(longlong *)(frame_buffer_ptr + 0x6b8) =
-                     *(longlong *)(&system_error_code + (longlong)*(int *)(frame_buffer_ptr + 0x6c0) * 8) + 200000;
+                *(int64_t *)(frame_buffer_ptr + 0x6c8) =
+                     *(int64_t *)(&system_error_code + (int64_t)*(int *)(frame_buffer_ptr + 0x6d0) * 8) -
+                     (int64_t)(memory_usage * -RENDERING_SYSTEM_DISTANCE_COEFFICIENT);
+                *(int64_t *)(frame_buffer_ptr + 0x6b8) =
+                     *(int64_t *)(&system_error_code + (int64_t)*(int *)(frame_buffer_ptr + 0x6c0) * 8) + 200000;
                 *(int32_t *)(render_context + 0x670) = 0xffffffff;
                 *(uint *)(render_context + 0x584) = *(uint *)(texture_handle + 0x1d8) ^ 0x80000000;
                 FUN_18052e130(frame_buffer_ptr, 0xffffffff, 0x180c8ed01);
                 if (((system_status_flag - 2U & 0xfffffffc) == 0) && (system_status_flag != 4)) {
                     FUN_1805ed670(system_status_flag, 0, *(int32_t *)(render_context + 0x564), 0xffffffff,
-                                CONCAT44(render_state, 0xffffffff), (ulonglong)vertex_shader & 0xffffffff00000000);
+                                CONCAT44(render_state, 0xffffffff), (uint64_t)vertex_shader & 0xffffffff00000000);
                 }
                 FUN_1805b8920(*(uint64_t *)(frame_buffer_ptr + 0x6e0));
-                *(int32_t *)(*(longlong *)(frame_buffer_ptr + 0x738) + 0xa4) =
-                     *(int32_t *)(*(longlong *)(frame_buffer_ptr + 0x6e0) + 0x14a8);
+                *(int32_t *)(*(int64_t *)(frame_buffer_ptr + 0x738) + 0xa4) =
+                     *(int32_t *)(*(int64_t *)(frame_buffer_ptr + 0x6e0) + 0x14a8);
                 FUN_180516f50(frame_buffer_ptr, &render_settings);
                 FUN_1808fd400();
             }
@@ -508,8 +508,8 @@ void rendering_system_process_render_pipeline(
         render_pass_count = render_targets[0];
         lighting_mode = lighting_config[0];
         if ((((*(byte *)(render_context + 0x56c) & 0x80) == 0) ||
-            ((float)(*(longlong *)(&system_error_code + (longlong)*(int *)(render_context + 0x6c0) * 8) -
-                    *(longlong *)(render_context + 0x6b8)) * 1e-05 <= 0.0)) ||
+            ((float)(*(int64_t *)(&system_error_code + (int64_t)*(int *)(render_context + 0x6c0) * 8) -
+                    *(int64_t *)(render_context + 0x6b8)) * 1e-05 <= 0.0)) ||
            ((*(int *)(render_context + 0x564) != -1 || (texture_format = func_0x000180522f60(render_context), texture_format != '\0'))))
         {
             is_shadow_enabled = false;
@@ -518,10 +518,10 @@ void rendering_system_process_render_pipeline(
         }
         
         if ((((lighting_mode != '\0') && (!is_high_quality)) && (is_shadow_enabled)) &&
-           (((*(byte *)(*(longlong *)(render_context + 0x20) + 0x40) & 1) != 0 ||
-            (0.0 <= *(float *)(*(longlong *)(render_context + 0x20) + 0x44))))) {
-            if (*(longlong *)(render_context + 0x590) != 0) {
-                texture_handle = func_0x000180534e20(*(longlong *)(render_context + 0x590), 0);
+           (((*(byte *)(*(int64_t *)(render_context + 0x20) + 0x40) & 1) != 0 ||
+            (0.0 <= *(float *)(*(int64_t *)(render_context + 0x20) + 0x44))))) {
+            if (*(int64_t *)(render_context + 0x590) != 0) {
+                texture_handle = func_0x000180534e20(*(int64_t *)(render_context + 0x590), 0);
             }
             if ((texture_handle >> 0x18 & 1) == 0) {
                 *(int32_t *)(render_context + 0x584) = 0xbf19999a;
@@ -539,9 +539,9 @@ void rendering_system_process_render_pipeline(
                 *(float *)(render_context + 0x574) = bandwidth_usage + *(float *)(render_context + 0x574);
                 *(float *)(render_context + 0x578) = shadow_bias + *(float *)(render_context + 0x578);
                 *(float *)(render_context + 0x57c) = anisotropy_level + *(float *)(render_context + 0x57c);
-                if ((((system_status_flag - 2U < 2) && (*(longlong **)(render_context + 0x8e8) != (longlong *)0x0)) &&
-                    (**(longlong **)(render_context + 0x8e8) != 0)) &&
-                   (frame_buffer_ptr = **(longlong **)(**(longlong **)(render_context + 0x8e0) + 0x8e8), frame_buffer_ptr != 0)) {
+                if ((((system_status_flag - 2U < 2) && (*(int64_t **)(render_context + 0x8e8) != (int64_t *)0x0)) &&
+                    (**(int64_t **)(render_context + 0x8e8) != 0)) &&
+                   (frame_buffer_ptr = **(int64_t **)(**(int64_t **)(render_context + 0x8e0) + 0x8e8), frame_buffer_ptr != 0)) {
                     if (*(char *)(frame_buffer_ptr + 0x31) == '\0') {
                         shader_program_id = _Mtx_lock(frame_buffer_ptr + 0x5990);
                         if (shader_program_id != 0) {
@@ -584,7 +584,7 @@ void rendering_system_process_render_pipeline(
             lod_threshold = fov;
             mip_level = aspect_ratio;
             if ((-1 < *(char *)(pipeline_data + 0xb4)) && ((*(uint *)(render_context + 0x56c) & 0x800) != 0)) {
-                vertex_buffer = (float *)FUN_180534930(*(longlong *)(*(longlong *)(render_context + 0x6d8) + 0x8a8) +
+                vertex_buffer = (float *)FUN_180534930(*(int64_t *)(*(int64_t *)(render_context + 0x6d8) + 0x8a8) +
                                          0x70, &render_settings, pipeline_data + 0x58);
                 anisotropy_level = *vertex_buffer;
                 shadow_bias = vertex_buffer[1];
@@ -607,8 +607,8 @@ void rendering_system_process_render_pipeline(
             }
             render_state = 0;
             if ((*(byte *)(pipeline_data + 0xac) & 0x40) == 0) {
-                if ((*(int *)(*(longlong *)
-                               ((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) + 0x48) <
+                if ((*(int *)(*(int64_t *)
+                               ((int64_t)ThreadLocalStoragePointer + (uint64_t)__tls_index * 8) + 0x48) <
                      render_system_config_render) && (SystemInitializer(&system_memory_9ed0), render_system_config_render == -1)) {
                     render_settings = &system_data_buffer_ptr;
                     gpu_time = 0.0;
@@ -708,8 +708,8 @@ void rendering_system_process_render_pipeline(
  * @param state_data 状态数据指针
  */
 void rendering_system_update_render_state(
-    longlong render_context, 
-    longlong state_data
+    int64_t render_context, 
+    int64_t state_data
 ) {
     float transform_x;
     float transform_y;
@@ -735,10 +735,10 @@ void rendering_system_update_render_state(
     /* 检查渲染模式 */
     if ((*(uint *)(render_context + 0x56c) & 0x800) == 0) {
         state_value = 0xffffffff;
-        scale_factor = *(float *)(*(longlong *)(render_context + 0x20) + 0x20);
-        transform_x = *(float *)(*(longlong *)(render_context + 0x20) + 0x1c);
+        scale_factor = *(float *)(*(int64_t *)(render_context + 0x20) + 0x20);
+        transform_x = *(float *)(*(int64_t *)(render_context + 0x20) + 0x1c);
         scale_factor = transform_x * transform_x + scale_factor * scale_factor;
-        state_id = *(int *)(*(longlong *)(*(longlong *)(render_context + 0x590) + 0x2590) + 0x10);
+        state_id = *(int *)(*(int64_t *)(*(int64_t *)(render_context + 0x590) + 0x2590) + 0x10);
         needs_update = 4 < state_id;
         update_mode = -1;
         if (2 < state_id) {
@@ -750,8 +750,8 @@ void rendering_system_update_render_state(
                 state_type = 0xff;
             } else {
                 state_type = *(int8_t *)
-                            (*(longlong *)(*(longlong *)(*(longlong *)(render_context + 0x658) + 0x208) + 0x140) +
-                             0x104 + (longlong)*(char *)(state_data + 0xb4) * 0x1b0);
+                            (*(int64_t *)(*(int64_t *)(*(int64_t *)(render_context + 0x658) + 0x208) + 0x140) +
+                             0x104 + (int64_t)*(char *)(state_data + 0xb4) * 0x1b0);
             }
             state_flag = func_0x000180522f60();
             state_value = 0xffffffff;
@@ -774,25 +774,25 @@ void rendering_system_update_render_state(
                 scale_factor = RENDERING_SYSTEM_ANGLE_NORMALIZATION_FACTOR;
             }
             state_buffer = *(uint64_t *)(render_context + 0x598);
-            transform_x = *(float *)(*(longlong *)(render_context + 0x20) + 0x20);
-            transform_y = *(float *)(*(longlong *)(render_context + 0x20) + 0x1c);
+            transform_x = *(float *)(*(int64_t *)(render_context + 0x20) + 0x20);
+            transform_y = *(float *)(*(int64_t *)(render_context + 0x20) + 0x1c);
             needs_update = ((float)*(int *)(state_data + 0x88) / *(float *)(state_data + 0xc0)) * scale_factor <
                            (float)*(int *)(state_data + 0x88);
             is_active = 1.0 < transform_y * transform_y + transform_x * transform_x;
-            if ((*(longlong *)(render_context + 0x590) == 0) ||
-               (*(char *)(*(longlong *)(render_context + 0x590) + 0x34bc) == '\0')) {
+            if ((*(int64_t *)(render_context + 0x590) == 0) ||
+               (*(char *)(*(int64_t *)(render_context + 0x590) + 0x34bc) == '\0')) {
                 render_config = 0;
             } else {
                 render_config = 1;
             }
             goto LAB_18051d023;
         }
-        scale_factor = *(float *)(*(longlong *)(render_context + 0x20) + 0x20);
-        transform_x = *(float *)(*(longlong *)(render_context + 0x20) + 0x1c);
+        scale_factor = *(float *)(*(int64_t *)(render_context + 0x20) + 0x20);
+        transform_x = *(float *)(*(int64_t *)(render_context + 0x20) + 0x1c);
         state_value = *(int32_t *)
-                 (*(longlong *)
-                   ((longlong)*(int *)(render_context + 0x564) * 0xa60 + 0x3638 +
-                   *(longlong *)(render_context + 0x8d8)) + 0x20);
+                 (*(int64_t *)
+                   ((int64_t)*(int *)(render_context + 0x564) * 0xa60 + 0x3638 +
+                   *(int64_t *)(render_context + 0x8d8)) + 0x20);
         needs_update = ((float)*(int *)(state_data + 0x88) / *(float *)(state_data + 0xc0)) * RENDERING_SYSTEM_TIME_SCALE_COEFFICIENT <
                        (float)*(int *)(state_data + 0x88);
         scale_factor = transform_x * transform_x + scale_factor * scale_factor;
@@ -818,7 +818,7 @@ LAB_18051d023:
  * @param command_params 命令参数
  */
 void rendering_system_execute_render_command(
-    longlong render_context, 
+    int64_t render_context, 
     byte command_type, 
     int command_params
 ) {
@@ -826,7 +826,7 @@ void rendering_system_execute_render_command(
     ushort flag_mask;
     int32_t command_data;
     int resource_id;
-    longlong resource_ptr;
+    int64_t resource_ptr;
     int32_t command_buffer;
     int command_status;
     uint64_t resource_data;
@@ -884,13 +884,13 @@ void rendering_system_execute_render_command(
     if (command_params != -1) {
         /* 高级渲染模式设置 */
         if ((*(uint *)(render_context + 0x56c) & 0x800) != 0) {
-            resource_ptr = *(longlong *)(render_context + 0x728);
+            resource_ptr = *(int64_t *)(render_context + 0x728);
             flag_mask = *(ushort *)(resource_ptr + 0x5aa);
             if (flag_mask != 0) {
                 *(ushort *)(resource_ptr + 0x5ac) = *(ushort *)(resource_ptr + 0x5ac) | flag_mask;
-                command_flags = (ushort *)(*(longlong *)(render_context + 0x728) + 0x5aa);
+                command_flags = (ushort *)(*(int64_t *)(render_context + 0x728) + 0x5aa);
                 *command_flags = *command_flags & ~flag_mask;
-                resource_ptr = *(longlong *)(render_context + 0x728);
+                resource_ptr = *(int64_t *)(render_context + 0x728);
             }
             *(int32_t *)(resource_ptr + 0x5a4) = 0xffffffff;
         }
@@ -908,8 +908,8 @@ void rendering_system_execute_render_command(
         FUN_18051ec50(render_context, &command_buffer);
         
         /* 配置高级渲染特性 */
-        if (((*(uint *)(render_context + 0x56c) & 0x800) != 0) && (*(longlong *)(render_context + 0x590) != 0)) {
-            resource_ptr = *(longlong *)(*(longlong *)(render_context + 0x590) + 0xabf0);
+        if (((*(uint *)(render_context + 0x56c) & 0x800) != 0) && (*(int64_t *)(render_context + 0x590) != 0)) {
+            resource_ptr = *(int64_t *)(*(int64_t *)(render_context + 0x590) + 0xabf0);
             if (resource_ptr != 0) {
                 *(int32_t *)(resource_ptr + 0x28) = 0xbe99999a;
                 *(int32_t *)(resource_ptr + 0x2c) = 0x3f000000;
@@ -961,7 +961,7 @@ void rendering_system_execute_render_command(
     
     /* 执行渲染操作 */
     (**(code **)(resource_ptr + 0x238))
-            (*(int32_t *)(*(longlong *)(render_context + 0x8d8) + 0x98d928), resource_id, 0, render_config, &shader_resource[0]);
+            (*(int32_t *)(*(int64_t *)(render_context + 0x8d8) + 0x98d928), resource_id, 0, render_config, &shader_resource[0]);
     
     /* 清理资源 */
     if ((resource_id != 0) && (system_cache_buffer != 0)) {

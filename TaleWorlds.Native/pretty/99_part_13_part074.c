@@ -1077,7 +1077,7 @@ success_exit:
  */
 uint64_t Resource_ReleaseCheck(void)
 {
-  longlong resource_ptr;
+  int64_t resource_ptr;
   
   /* 检查资源指针有效性 */
   if (resource_ptr == 0) {
@@ -1110,12 +1110,12 @@ uint64_t Resource_ReleaseCheck(void)
  * - 条件性数据处理
  * - 安全的指针验证
  */
-uint64_t ConditionalDataProcessor(longlong param_1, uint64_t param_2, longlong param_3)
+uint64_t ConditionalDataProcessor(int64_t param_1, uint64_t param_2, int64_t param_3)
 {
   /* 检查激活标志和数据有效性 */
-  if (((*(byte *)(param_3 + 0xc4) & 1) != 0) && (*(longlong *)(param_1 + 0x20) != 0)) {
+  if (((*(byte *)(param_3 + 0xc4) & 1) != 0) && (*(int64_t *)(param_1 + 0x20) != 0)) {
     /* 执行条件性数据处理 */
-    FUN_18088a0c0(*(longlong *)(param_1 + 0x20), param_3);
+    FUN_18088a0c0(*(int64_t *)(param_1 + 0x20), param_3);
   }
   return 0;  /* 操作成功 */
 }
@@ -1148,7 +1148,7 @@ uint64_t ConditionalDataProcessor(longlong param_1, uint64_t param_2, longlong p
  * - 条件分支优化
  * - 资源管理集成
  */
-uint64_t DataStructure_CopyAndProcess(longlong param_1, longlong param_2, longlong param_3)
+uint64_t DataStructure_CopyAndProcess(int64_t param_1, int64_t param_2, int64_t param_3)
 {
   uint32_t data_field1;
   uint32_t data_field2;
@@ -1156,8 +1156,8 @@ uint64_t DataStructure_CopyAndProcess(longlong param_1, longlong param_2, longlo
   uint64_t process_result;
   
   /* 条件性数据预处理 */
-  if (((*(byte *)(param_2 + 0xc4) & 1) != 0) && (*(longlong *)(param_1 + 0x20) != 0)) {
-    FUN_18088a0c0(*(longlong *)(param_1 + 0x20), param_2);
+  if (((*(byte *)(param_2 + 0xc4) & 1) != 0) && (*(int64_t *)(param_1 + 0x20) != 0)) {
+    FUN_18088a0c0(*(int64_t *)(param_1 + 0x20), param_2);
   }
   
   /* 数据结构内容复制 (16字节批量操作) */
@@ -1171,9 +1171,9 @@ uint64_t DataStructure_CopyAndProcess(longlong param_1, longlong param_2, longlo
   *(uint32_t *)(param_2 + 0x7c) = data_field3;
   
   /* 资源指针转移和处理 */
-  if (*(longlong *)(param_3 + 0x68) != 0) {
+  if (*(int64_t *)(param_3 + 0x68) != 0) {
     /* 转移资源所有权 */
-    *(longlong *)(param_2 + 0x68) = *(longlong *)(param_3 + 0x68);
+    *(int64_t *)(param_2 + 0x68) = *(int64_t *)(param_3 + 0x68);
     *(uint64_t *)(param_3 + 0x68) = 0;  /* 清空源指针 */
     
     /* 执行后处理回调 */
@@ -1213,22 +1213,22 @@ uint64_t DataStructure_CopyAndProcess(longlong param_1, longlong param_2, longlo
  * - 条件分支优化
  * - 哈希表查找效率
  */
-uint64_t ReferenceCount_Manager(longlong *param_1, uint64_t *param_2)
+uint64_t ReferenceCount_Manager(int64_t *param_1, uint64_t *param_2)
 {
   uint16_t ref_count;
-  longlong *hash_table;
-  longlong lock_handle;
+  int64_t *hash_table;
+  int64_t lock_handle;
   uint32_t hash_key1;
   uint32_t hash_key2;
   uint32_t hash_key3;
   uint32_t hash_key4;
   bool should_cleanup;
-  longlong data_value1;
+  int64_t data_value1;
   int hash_index;
-  longlong hash_offset;
+  int64_t hash_offset;
   uint64_t operation_result;
-  longlong table_base;
-  longlong data_value2;
+  int64_t table_base;
+  int64_t data_value2;
   uint16_t new_ref_count;
   uint16_t ref_threshold;
   int *hash_chain_ptr;

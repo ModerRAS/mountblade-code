@@ -138,13 +138,13 @@ typedef struct {
  * 
  * @note 该函数是曲线动画系统的核心处理器
  */
-void RenderingSystem_CurveAnimationProcessor(longlong param_1, uint64_t param_2, uint64_t param_3, longlong param_4)
+void RenderingSystem_CurveAnimationProcessor(int64_t param_1, uint64_t param_2, uint64_t param_3, int64_t param_4)
 {
     char cVar1;
     char cVar2;
     char *pcVar3;
-    ulonglong uVar4;
-    longlong lVar5;
+    uint64_t uVar4;
+    int64_t lVar5;
     void *puVar6;
     uint64_t *puVar7;
     char *pcVar8;
@@ -196,9 +196,9 @@ void RenderingSystem_CurveAnimationProcessor(longlong param_1, uint64_t param_2,
         
         // 匹配曲线名称
         if (pcVar3 == pcVar10 + -0x180a180f3) {
-            pcVar3 = pcVar3 + (longlong)pcVar8;
+            pcVar3 = pcVar3 + (int64_t)pcVar8;
             if (pcVar3 <= pcVar8) break;
-            lVar5 = (longlong)&unknown_var_5252_ptr - (longlong)pcVar8;
+            lVar5 = (int64_t)&unknown_var_5252_ptr - (int64_t)pcVar8;
             while (*pcVar8 == pcVar8[lVar5]) {
                 pcVar8 = pcVar8 + 1;
                 if (pcVar3 <= pcVar8) goto LAB_180416d70;
@@ -229,17 +229,17 @@ LAB_180416d70:
         
         // 匹配名称属性
         if (pcVar3 == pcVar10 + -0x180a03a83) {
-            pcVar3 = pcVar8 + (longlong)pcVar3;
+            pcVar3 = pcVar8 + (int64_t)pcVar3;
             if (pcVar3 <= pcVar8) {
 LAB_180416dd0:
                 pcVar8 = (char *)0x180d48d24;
                 if ((char *)puVar9[1] != (char *)0x0) {
                     pcVar8 = (char *)puVar9[1];
                 }
-                lVar5 = (longlong)&unknown_var_6808_ptr - (longlong)pcVar8;
+                lVar5 = (int64_t)&unknown_var_6808_ptr - (int64_t)pcVar8;
                 goto LAB_180416de4;
             }
-            lVar5 = (longlong)&system_config_3a84 - (longlong)pcVar8;
+            lVar5 = (int64_t)&system_config_3a84 - (int64_t)pcVar8;
             while (*pcVar8 == pcVar8[lVar5]) {
                 pcVar8 = pcVar8 + 1;
                 if (pcVar3 <= pcVar8) goto LAB_180416dd0;
@@ -281,9 +281,9 @@ LAB_180416dfb:
                 }
             } while (pcVar3 != pcVar10 + -0x180a180f3);
             
-            pcVar3 = pcVar3 + (longlong)pcVar8;
+            pcVar3 = pcVar3 + (int64_t)pcVar8;
             if (pcVar3 <= pcVar8) break;
-            lVar5 = (longlong)&unknown_var_5252_ptr - (longlong)pcVar8;
+            lVar5 = (int64_t)&unknown_var_5252_ptr - (int64_t)pcVar8;
             while (*pcVar8 == pcVar8[lVar5]) {
                 pcVar8 = pcVar8 + 1;
                 if (pcVar3 <= pcVar8) goto LAB_180416d70;
@@ -315,7 +315,7 @@ LAB_180416dfb:
         
         // 匹配版本属性
         if (pcVar3 == pcVar10 + -0x180a015af) {
-            pcVar3 = pcVar3 + (longlong)pcVar8;
+            pcVar3 = pcVar3 + (int64_t)pcVar8;
             if (pcVar3 <= pcVar8) {
 LAB_180416ed4:
                 pcVar8 = (char *)0x180d48d24;
@@ -359,7 +359,7 @@ LAB_180416f25:
                     
                     // 匹配默认值属性
                     if (pcVar3 == pcVar10 + -0x180a0b1bf) {
-                        pcVar3 = pcVar8 + (longlong)pcVar3;
+                        pcVar3 = pcVar8 + (int64_t)pcVar3;
                         if (pcVar3 <= pcVar8) {
 LAB_180416f88:
                             lVar5 = 0x180d48d24;
@@ -368,7 +368,7 @@ LAB_180416f88:
                             }
                             goto LAB_180416fa0;
                         }
-                        lVar5 = (longlong)&system_config_b1c0 - (longlong)pcVar8;
+                        lVar5 = (int64_t)&system_config_b1c0 - (int64_t)pcVar8;
                         while (*pcVar8 == pcVar8[lVar5]) {
                             pcVar8 = pcVar8 + 1;
                             if (pcVar3 <= pcVar8) goto LAB_180416f88;
@@ -404,7 +404,7 @@ LAB_180416fa0:
                     
                     // 匹配曲线乘数属性
                     if (pcVar3 == pcVar10 + -0x180a180af) {
-                        pcVar3 = pcVar8 + (longlong)pcVar3;
+                        pcVar3 = pcVar8 + (int64_t)pcVar3;
                         if (pcVar3 <= pcVar8) {
 LAB_180417020:
                             lVar5 = 0x180d48d24;
@@ -413,7 +413,7 @@ LAB_180417020:
                             }
                             goto LAB_180417038;
                         }
-                        lVar5 = (longlong)&unknown_var_5184_ptr - (longlong)pcVar8;
+                        lVar5 = (int64_t)&unknown_var_5184_ptr - (int64_t)pcVar8;
                         while (*pcVar8 == pcVar8[lVar5]) {
                             pcVar8 = pcVar8 + 1;
                             if (pcVar3 <= pcVar8) goto LAB_180417020;
@@ -453,7 +453,7 @@ LAB_180417038:
                         
                         // 匹配关键帧属性
                         if (pcVar3 == pcVar10 + -0x180a180c3) {
-                            pcVar3 = pcVar8 + (longlong)pcVar3;
+                            pcVar3 = pcVar8 + (int64_t)pcVar3;
                             if (pcVar3 <= pcVar8) {
 LAB_1804174f0:
                                 // 处理单个关键帧
@@ -480,7 +480,7 @@ LAB_1804174f0:
                                     
                                     // 匹配关键帧元素
                                     if (pcVar3 == pcVar10 + -0x180a18107) {
-                                        pcVar3 = pcVar3 + (longlong)pcVar8;
+                                        pcVar3 = pcVar3 + (int64_t)pcVar8;
                                         if (pcVar3 <= pcVar8) {
 LAB_180417570:
                                             // 处理时间属性
@@ -504,7 +504,7 @@ LAB_180417570:
                                                 
                                                 // 匹配时间属性
                                                 if (pcVar3 == pcVar10 + -0x180a1810b) {
-                                                    pcVar3 = pcVar3 + (longlong)pcVar8;
+                                                    pcVar3 = pcVar3 + (int64_t)pcVar8;
                                                     if (pcVar3 <= pcVar8) {
 LAB_1804175d5:
                                                         lVar5 = 0x180d48d24;
@@ -515,7 +515,7 @@ LAB_1804175d5:
                                                         FUN_18010cbc0(lVar5, &system_config_6430, afStack_80);
                                                         break;
                                                     }
-                                                    lVar5 = (longlong)&unknown_var_5276_ptr - (longlong)pcVar8;
+                                                    lVar5 = (int64_t)&unknown_var_5276_ptr - (int64_t)pcVar8;
                                                     while (*pcVar8 == pcVar8[lVar5]) {
                                                         pcVar8 = pcVar8 + 1;
                                                         if (pcVar3 <= pcVar8) goto LAB_1804175d5;
@@ -544,7 +544,7 @@ LAB_1804175d5:
                                                 
                                                 // 匹配值属性
                                                 if (pcVar3 == pcVar10 + -0x180a0696b) {
-                                                    pcVar3 = pcVar3 + (longlong)pcVar8;
+                                                    pcVar3 = pcVar3 + (int64_t)pcVar8;
                                                     if (pcVar3 <= pcVar8) {
 LAB_180417650:
                                                         lVar5 = 0x180d48d24;
@@ -555,7 +555,7 @@ LAB_180417650:
                                                         FUN_18010cbc0(lVar5, &system_config_6430, afStack_88);
                                                         break;
                                                     }
-                                                    lVar5 = (longlong)&unknown_var_3692_ptr - (longlong)pcVar8;
+                                                    lVar5 = (int64_t)&unknown_var_3692_ptr - (int64_t)pcVar8;
                                                     while (*pcVar8 == pcVar8[lVar5]) {
                                                         pcVar8 = pcVar8 + 1;
                                                         if (pcVar3 <= pcVar8) goto LAB_180417650;
@@ -567,8 +567,8 @@ LAB_180417650:
                                             FUN_180631850(puVar7, &unknown_var_5264_ptr, &stack0x00000008);
                                             
                                             // 调用曲线处理函数
-                                            (**(code **)(*(longlong *)(param_1 + 0x38) + 8))
-                                                      ((longlong *)(param_1 + 0x38), (int)afStack_80[0], afStack_88[0], 0, 0);
+                                            (**(code **)(*(int64_t *)(param_1 + 0x38) + 8))
+                                                      ((int64_t *)(param_1 + 0x38), (int)afStack_80[0], afStack_88[0], 0, 0);
                                             
                                             // 继续处理下一个关键帧
                                             pcVar8 = "key";
@@ -595,9 +595,9 @@ LAB_180417650:
                                                 
                                                 // 匹配关键帧元素
                                                 if (pcVar3 == pcVar10 + -0x180a18107) {
-                                                    pcVar3 = pcVar3 + (longlong)pcVar8;
+                                                    pcVar3 = pcVar3 + (int64_t)pcVar8;
                                                     if (pcVar3 <= pcVar8) goto LAB_180417570;
-                                                    lVar5 = (longlong)&unknown_var_5272_ptr - (longlong)pcVar8;
+                                                    lVar5 = (int64_t)&unknown_var_5272_ptr - (int64_t)pcVar8;
                                                     while (*pcVar8 == pcVar8[lVar5]) {
                                                         pcVar8 = pcVar8 + 1;
                                                         if (pcVar3 <= pcVar8) goto LAB_180417570;
@@ -609,7 +609,7 @@ LAB_180417650:
                                                 }
                                             } while( true );
                                         }
-                                        lVar5 = (longlong)&unknown_var_5272_ptr - (longlong)pcVar8;
+                                        lVar5 = (int64_t)&unknown_var_5272_ptr - (int64_t)pcVar8;
                                         while (*pcVar8 == pcVar8[lVar5]) {
                                             pcVar8 = pcVar8 + 1;
                                             if (pcVar3 <= pcVar8) goto LAB_180417570;
@@ -618,7 +618,7 @@ LAB_180417650:
                                     puVar7 = (uint64_t *)puVar7[0xb];
                                 } while( true );
                             }
-                            lVar5 = (longlong)&unknown_var_5204_ptr - (longlong)pcVar8;
+                            lVar5 = (int64_t)&unknown_var_5204_ptr - (int64_t)pcVar8;
                             while (*pcVar8 == pcVar8[lVar5]) {
                                 pcVar8 = pcVar8 + 1;
                                 if (pcVar3 <= pcVar8) goto LAB_1804174f0;
@@ -650,7 +650,7 @@ LAB_180417650:
                     
                     // 匹配关键帧属性
                     if (pcVar3 == pcVar10 + -0x180a180c3) {
-                        pcVar3 = pcVar8 + (longlong)pcVar3;
+                        pcVar3 = pcVar8 + (int64_t)pcVar3;
                         if (pcVar3 <= pcVar8) {
 LAB_1804170b5:
                             // 处理单个关键帧
@@ -674,9 +674,9 @@ LAB_1804170b5:
                                 
                                 // 匹配关键帧元素
                                 if (pcVar3 == pcVar10 + -0x180a18107) {
-                                    pcVar3 = pcVar3 + (longlong)pcVar8;
+                                    pcVar3 = pcVar3 + (int64_t)pcVar8;
                                     if (pcVar3 <= pcVar8) goto LAB_180417140;
-                                    lVar5 = (longlong)&unknown_var_5272_ptr - (longlong)pcVar8;
+                                    lVar5 = (int64_t)&unknown_var_5272_ptr - (int64_t)pcVar8;
                                     while (*pcVar8 == pcVar8[lVar5]) {
                                         pcVar8 = pcVar8 + 1;
                                         if (pcVar3 <= pcVar8) goto LAB_180417140;
@@ -708,7 +708,7 @@ LAB_180417140:
                                     
                                     // 匹配时间属性
                                     if (pcVar3 == pcVar10 + -0x180a1810b) {
-                                        pcVar3 = pcVar3 + (longlong)pcVar8;
+                                        pcVar3 = pcVar3 + (int64_t)pcVar8;
                                         if (pcVar3 <= pcVar8) {
 LAB_1804171a0:
                                             lVar5 = 0x180d48d24;
@@ -719,7 +719,7 @@ LAB_1804171a0:
                                             FUN_18010cbc0(lVar5, &system_config_6430, afStack_88);
                                             break;
                                         }
-                                        lVar5 = (longlong)&unknown_var_5276_ptr - (longlong)pcVar8;
+                                        lVar5 = (int64_t)&unknown_var_5276_ptr - (int64_t)pcVar8;
                                         while (*pcVar8 == pcVar8[lVar5]) {
                                             pcVar8 = pcVar8 + 1;
                                             if (pcVar3 <= pcVar8) goto LAB_1804171a0;
@@ -748,7 +748,7 @@ LAB_1804171a0:
                                     
                                     // 匹配值属性
                                     if (pcVar3 == pcVar10 + -0x180a0696b) {
-                                        pcVar3 = pcVar3 + (longlong)pcVar8;
+                                        pcVar3 = pcVar3 + (int64_t)pcVar8;
                                         if (pcVar3 <= pcVar8) {
 LAB_180417224:
                                             lVar5 = 0x180d48d24;
@@ -759,7 +759,7 @@ LAB_180417224:
                                             FUN_18010cbc0(lVar5, &system_config_6430, afStack_80);
                                             break;
                                         }
-                                        lVar5 = (longlong)&unknown_var_3692_ptr - (longlong)pcVar8;
+                                        lVar5 = (int64_t)&unknown_var_3692_ptr - (int64_t)pcVar8;
                                         while (*pcVar8 == pcVar8[lVar5]) {
                                             pcVar8 = pcVar8 + 1;
                                             if (pcVar3 <= pcVar8) goto LAB_180417224;
@@ -795,9 +795,9 @@ LAB_180417224:
                                     
                                     // 匹配关键帧元素
                                     if (pcVar3 == pcVar10 + -0x180a18107) {
-                                        pcVar3 = pcVar3 + (longlong)pcVar8;
+                                        pcVar3 = pcVar3 + (int64_t)pcVar8;
                                         if (pcVar3 <= pcVar8) goto LAB_1804172f2;
-                                        lVar5 = (longlong)&unknown_var_5272_ptr - (longlong)pcVar8;
+                                        lVar5 = (int64_t)&unknown_var_5272_ptr - (int64_t)pcVar8;
                                         while (*pcVar8 == pcVar8[lVar5]) {
                                             pcVar8 = pcVar8 + 1;
                                             if (pcVar3 <= pcVar8) goto LAB_1804172f2;
@@ -828,7 +828,7 @@ LAB_1804172f2:
                                     
                                     // 匹配时间属性
                                     if (pcVar3 == pcVar10 + -0x180a1810b) {
-                                        pcVar3 = pcVar3 + (longlong)pcVar8;
+                                        pcVar3 = pcVar3 + (int64_t)pcVar8;
                                         if (pcVar3 <= pcVar8) {
 LAB_180417341:
                                             lVar5 = 0x180d48d24;
@@ -839,7 +839,7 @@ LAB_180417341:
                                             FUN_18010cbc0(lVar5, &system_config_6430, afStack_88);
                                             break;
                                         }
-                                        lVar5 = (longlong)&unknown_var_5276_ptr - (longlong)pcVar8;
+                                        lVar5 = (int64_t)&unknown_var_5276_ptr - (int64_t)pcVar8;
                                         while (*pcVar8 == pcVar8[lVar5]) {
                                             pcVar8 = pcVar8 + 1;
                                             if (pcVar3 <= pcVar8) goto LAB_180417341;
@@ -868,7 +868,7 @@ LAB_180417341:
                                     
                                     // 匹配值属性
                                     if (pcVar3 == pcVar10 + -0x180a0696b) {
-                                        pcVar3 = pcVar3 + (longlong)pcVar8;
+                                        pcVar3 = pcVar3 + (int64_t)pcVar8;
                                         if (pcVar3 <= pcVar8) {
 LAB_1804173c4:
                                             lVar5 = 0x180d48d24;
@@ -879,7 +879,7 @@ LAB_1804173c4:
                                             FUN_18010cbc0(lVar5, &system_config_6430, afStack_80);
                                             break;
                                         }
-                                        lVar5 = (longlong)&unknown_var_3692_ptr - (longlong)pcVar8;
+                                        lVar5 = (int64_t)&unknown_var_3692_ptr - (int64_t)pcVar8;
                                         while (*pcVar8 == pcVar8[lVar5]) {
                                             pcVar8 = pcVar8 + 1;
                                             if (pcVar3 <= pcVar8) goto LAB_1804173c4;
@@ -921,9 +921,9 @@ LAB_1804173c4:
                                         }
                                     } while (pcVar3 != pcVar10 + -0x180a18107);
                                     
-                                    pcVar3 = pcVar8 + (longlong)pcVar3;
+                                    pcVar3 = pcVar8 + (int64_t)pcVar3;
                                     if (pcVar3 <= pcVar8) break;
-                                    lVar5 = (longlong)&unknown_var_5272_ptr - (longlong)pcVar8;
+                                    lVar5 = (int64_t)&unknown_var_5272_ptr - (int64_t)pcVar8;
                                     while (*pcVar8 == pcVar8[lVar5]) {
                                         pcVar8 = pcVar8 + 1;
                                         if (pcVar3 <= pcVar8) goto LAB_180417140;
@@ -931,7 +931,7 @@ LAB_1804173c4:
                                 }
                             } while( true );
                         }
-                        lVar5 = (longlong)&unknown_var_5204_ptr - (longlong)pcVar8;
+                        lVar5 = (int64_t)&unknown_var_5204_ptr - (int64_t)pcVar8;
                         while (*pcVar8 == pcVar8[lVar5]) {
                             pcVar8 = pcVar8 + 1;
                             if (pcVar3 <= pcVar8) goto LAB_1804170b5;
@@ -940,7 +940,7 @@ LAB_1804173c4:
                     puVar7 = (uint64_t *)puVar7[0xb];
                 } while( true );
             }
-            lVar5 = (longlong)&unknown_var_2256_ptr - (longlong)pcVar8;
+            lVar5 = (int64_t)&unknown_var_2256_ptr - (int64_t)pcVar8;
             while (*pcVar8 == pcVar8[lVar5]) {
                 pcVar8 = pcVar8 + 1;
                 if (pcVar3 <= pcVar8) goto LAB_180416ed4;
@@ -964,11 +964,11 @@ LAB_1804173c4:
  * 
  * @note 该函数负责曲线参数的基础配置
  */
-void RenderingSystem_CurveParameterConfigurator(longlong param_1, longlong param_2)
+void RenderingSystem_CurveParameterConfigurator(int64_t param_1, int64_t param_2)
 {
     uint64_t *puVar1;
     char *pcVar2;
-    longlong lVar3;
+    int64_t lVar3;
     char *pcVar4;
     char *pcVar5;
     
@@ -993,7 +993,7 @@ void RenderingSystem_CurveParameterConfigurator(longlong param_1, longlong param
         
         // 匹配基础参数
         if (pcVar2 == pcVar5 + -0x180a04ee3) {
-            pcVar2 = pcVar2 + (longlong)pcVar4;
+            pcVar2 = pcVar2 + (int64_t)pcVar4;
             if (pcVar2 <= pcVar4) {
 LAB_180270c78:
                 lVar3 = 0x180d48d24;
@@ -1002,7 +1002,7 @@ LAB_180270c78:
                 }
                 goto LAB_180270c93;
             }
-            lVar3 = (longlong)&system_config_4ee4 - (longlong)pcVar4;
+            lVar3 = (int64_t)&system_config_4ee4 - (int64_t)pcVar4;
             while (*pcVar4 == pcVar4[lVar3]) {
                 pcVar4 = pcVar4 + 1;
                 if (pcVar2 <= pcVar4) goto LAB_180270c78;
@@ -1047,7 +1047,7 @@ LAB_180270d29:
         
         // 匹配偏置参数
         if (pcVar2 == pcVar5 + -0x180a1628f) {
-            pcVar2 = pcVar2 + (longlong)pcVar4;
+            pcVar2 = pcVar2 + (int64_t)pcVar4;
             if (pcVar2 <= pcVar4) {
 LAB_180270d11:
                 lVar3 = 0x180d48d24;
@@ -1056,7 +1056,7 @@ LAB_180270d11:
                 }
                 goto LAB_180270d29;
             }
-            lVar3 = (longlong)&unknown_var_7472_ptr - (longlong)pcVar4;
+            lVar3 = (int64_t)&unknown_var_7472_ptr - (int64_t)pcVar4;
             while (*pcVar4 == pcVar4[lVar3]) {
                 pcVar4 = pcVar4 + 1;
                 if (pcVar2 <= pcVar4) goto LAB_180270d11;

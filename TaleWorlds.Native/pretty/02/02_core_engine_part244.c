@@ -5,32 +5,32 @@
 // 包含10个函数，主要负责资源管理、数据结构操作和字符串处理
 
 // 函数：清理资源管理器中的资源项
-// 原始实现：void FUN_18020cae0(longlong param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
-void cleanup_resource_manager_entries(longlong resource_manager, uint64_t param_2, uint64_t param_3, uint64_t param_4)
+// 原始实现：void FUN_18020cae0(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
+void cleanup_resource_manager_entries(int64_t resource_manager, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
-    longlong *entry_ptr;
+    int64_t *entry_ptr;
     uint64_t *resource_ptr;
     int item_count;
-    longlong current_entry;
-    longlong entry_data;
-    ulonglong resource_index;
+    int64_t current_entry;
+    int64_t entry_data;
+    uint64_t resource_index;
     uint item_index;
-    ulonglong loop_counter;
-    ulonglong entry_offset;
+    uint64_t loop_counter;
+    uint64_t entry_offset;
     uint64_t cleanup_flag;
     
     cleanup_flag = 0xfffffffffffffffe;
     resource_index = 0;
     
     // 遍历资源管理器中的所有条目
-    for (current_entry = *(longlong *)(resource_manager + 8); current_entry != resource_manager; 
+    for (current_entry = *(int64_t *)(resource_manager + 8); current_entry != resource_manager; 
          current_entry = func_0x00018066bd70(current_entry)) {
-        entry_data = *(longlong *)(current_entry + 0x28);
+        entry_data = *(int64_t *)(current_entry + 0x28);
         loop_counter = resource_index;
         entry_offset = resource_index;
         
         // 处理条目中的资源数组
-        if (*(longlong *)(current_entry + 0x30) - entry_data >> 3 != 0) {
+        if (*(int64_t *)(current_entry + 0x30) - entry_data >> 3 != 0) {
             do {
                 resource_ptr = *(uint64_t **)(entry_offset + entry_data);
                 if (resource_ptr != (uint64_t *)0x0) {
@@ -42,7 +42,7 @@ void cleanup_resource_manager_entries(longlong resource_manager, uint64_t param_
                         do {
                             cleanup_resource_item(*(uint64_t *)(*entry_ptr + resource_index * 8));
                             resource_index = resource_index + 1;
-                        } while ((longlong)resource_index < (longlong)item_count);
+                        } while ((int64_t)resource_index < (int64_t)item_count);
                     }
                     
                     // 释放资源内存
@@ -62,23 +62,23 @@ void cleanup_resource_manager_entries(longlong resource_manager, uint64_t param_
                     perform_resource_cleanup(resource_ptr);
                 }
                 
-                *(uint64_t *)(entry_offset + *(longlong *)(current_entry + 0x28)) = 0;
+                *(uint64_t *)(entry_offset + *(int64_t *)(current_entry + 0x28)) = 0;
                 item_index = (int)loop_counter + 1;
-                entry_data = *(longlong *)(current_entry + 0x28);
-                loop_counter = (ulonglong)item_index;
+                entry_data = *(int64_t *)(current_entry + 0x28);
+                loop_counter = (uint64_t)item_index;
                 entry_offset = entry_offset + 8;
-            } while ((ulonglong)(longlong)(int)item_index <
-                     (ulonglong)(*(longlong *)(current_entry + 0x30) - entry_data >> 3));
+            } while ((uint64_t)(int64_t)(int)item_index <
+                     (uint64_t)(*(int64_t *)(current_entry + 0x30) - entry_data >> 3));
         }
         
-        *(longlong *)(current_entry + 0x30) = entry_data;
+        *(int64_t *)(current_entry + 0x30) = entry_data;
     }
     
     // 重置资源管理器状态
     resource_ptr = *(uint64_t **)(resource_manager + 0x10);
     if (resource_ptr == (uint64_t *)0x0) {
-        *(longlong *)resource_manager = resource_manager;
-        *(longlong *)(resource_manager + 8) = resource_manager;
+        *(int64_t *)resource_manager = resource_manager;
+        *(int64_t *)(resource_manager + 8) = resource_manager;
         *(uint64_t *)(resource_manager + 0x10) = 0;
         *(int8_t *)(resource_manager + 0x18) = 0;
         *(uint64_t *)(resource_manager + 0x20) = 0;
@@ -96,8 +96,8 @@ void cleanup_resource_manager_entries(longlong resource_manager, uint64_t param_
 }
 
 // 函数：处理资源查找和匹配
-// 原始实现：void FUN_18020ccb0(uint64_t param_1,uint64_t param_2,longlong param_3,longlong *param_4)
-void process_resource_lookup(uint64_t param_1, uint64_t param_2, longlong search_pattern, longlong *result_buffer)
+// 原始实现：void FUN_18020ccb0(uint64_t param_1,uint64_t param_2,int64_t param_3,int64_t *param_4)
+void process_resource_lookup(uint64_t param_1, uint64_t param_2, int64_t search_pattern, int64_t *result_buffer)
 {
     byte comparison_result;
     void *temp_ptr;
@@ -106,36 +106,36 @@ void process_resource_lookup(uint64_t param_1, uint64_t param_2, longlong search
     uint search_index;
     uint64_t *current_resource;
     uint64_t *best_match;
-    longlong resource_offset;
-    longlong *resource_entry;
-    longlong entry_start;
+    int64_t resource_offset;
+    int64_t *resource_entry;
+    int64_t entry_start;
     void *pattern_ptr;
     byte *string_ptr;
     void *resource_name;
     uint64_t *temp_resource;
-    longlong *resource_data;
-    longlong string_length;
-    longlong compare_length;
+    int64_t *resource_data;
+    int64_t string_length;
+    int64_t compare_length;
     uint64_t search_flag;
-    longlong *matched_entry;
+    int64_t *matched_entry;
     int iteration_count;
     uint64_t stack_temp;
-    longlong *temp_stack_ptr;
-    longlong *stack_ptr_b0;
-    longlong *stack_ptr_a8;
+    int64_t *temp_stack_ptr;
+    int64_t *stack_ptr_b0;
+    int64_t *stack_ptr_a8;
     int32_t temp_flag;
     int stack_var_98;
     int stack_var_94;
     int stack_var_90;
     int stack_var_8c;
-    longlong stack_var_88;
-    longlong stack_var_80;
-    longlong *stack_ptr_78;
-    longlong *stack_ptr_70;
+    int64_t stack_var_88;
+    int64_t stack_var_80;
+    int64_t *stack_ptr_78;
+    int64_t *stack_ptr_70;
     uint64_t *stack_ptr_68;
     uint64_t *stack_ptr_60;
     uint64_t stack_var_58;
-    longlong *stack_ptr_50;
+    int64_t *stack_ptr_50;
     uint64_t *stack_ptr_48;
     
     resource_table = core_system_data_resource;
@@ -145,16 +145,16 @@ void process_resource_lookup(uint64_t param_1, uint64_t param_2, longlong search
     stack_temp = param_1;
     initialize_search_context(&stack_ptr_b8);
     stack_var_8c = calculate_search_hash(search_flag, &stack_ptr_b8);
-    stack_ptr_b8 = (longlong *)&EMPTY_RESOURCE_POOL;
+    stack_ptr_b8 = (int64_t *)&EMPTY_RESOURCE_POOL;
     
-    if (stack_ptr_b0 != (longlong *)0x0) {
+    if (stack_ptr_b0 != (int64_t *)0x0) {
         // 警告：子程序不返回
         trigger_resource_cleanup_error();
     }
     
-    stack_ptr_b0 = (longlong *)0x0;
+    stack_ptr_b0 = (int64_t *)0x0;
     temp_flag = 0;
-    stack_ptr_b8 = (longlong *)&RESOURCE_CLEANUP_POOL;
+    stack_ptr_b8 = (int64_t *)&RESOURCE_CLEANUP_POOL;
     current_resource = (uint64_t *)resource_table[2];
     best_match = resource_table;
     
@@ -179,7 +179,7 @@ void process_resource_lookup(uint64_t param_1, uint64_t param_2, longlong search
     best_match = resource_table;
 LAB_18020cd75:
     stack_var_90 = 0;
-    match_count = (int)((longlong)(best_match[6] - best_match[5]) >> 3);
+    match_count = (int)((int64_t)(best_match[6] - best_match[5]) >> 3);
     
     // 检查每个资源项是否匹配搜索模式
     if (0 < match_count) {
@@ -191,7 +191,7 @@ LAB_18020cd75:
                 pattern_ptr = *(void **)(search_pattern + 8);
             }
             
-            temp_ptr = *(void **)(*(longlong *)(best_match[5] + string_length * 8) + 8);
+            temp_ptr = *(void **)(*(int64_t *)(best_match[5] + string_length * 8) + 8);
             resource_name = &system_buffer_ptr;
             if (temp_ptr != (void *)0x0) {
                 resource_name = temp_ptr;
@@ -199,13 +199,13 @@ LAB_18020cd75:
             
             resource_offset = strstr(resource_name, pattern_ptr);
             if (resource_offset != 0) {
-                string_length = *(longlong *)(best_match[5] + (longlong)iteration_count * 8);
-                matched_entry = (longlong *)(string_length + 0x28);
+                string_length = *(int64_t *)(best_match[5] + (int64_t)iteration_count * 8);
+                matched_entry = (int64_t *)(string_length + 0x28);
                 stack_var_94 = 0;
                 resource_offset = *matched_entry;
                 stack_ptr_70 = matched_entry;
                 
-                if (*(longlong *)(string_length + 0x30) - resource_offset >> 3 == 0) {
+                if (*(int64_t *)(string_length + 0x30) - resource_offset >> 3 == 0) {
                     goto LAB_18020d12d;
                 }
                 
@@ -222,44 +222,44 @@ LAB_18020cd75:
     
 LAB_18020ce30:
     string_length = stack_var_80;
-    resource_data = *(longlong **)(stack_var_80 + resource_offset);
+    resource_data = *(int64_t **)(stack_var_80 + resource_offset);
     stack_ptr_78 = resource_data;
     stack_ptr_50 = resource_data;
     
-    if (resource_data != (longlong *)0x0) {
+    if (resource_data != (int64_t *)0x0) {
         (**(code **)(*resource_data + 0x28))(resource_data);
     }
     
-    stack_ptr_b8 = (longlong *)0x0;
-    stack_ptr_b0 = (longlong *)0x0;
-    stack_ptr_a8 = (longlong *)0x0;
+    stack_ptr_b8 = (int64_t *)0x0;
+    stack_ptr_b0 = (int64_t *)0x0;
+    stack_ptr_a8 = (int64_t *)0x0;
     temp_flag = 3;
     process_resource_allocation(resource_data);
     
     if (stack_ptr_b0 < stack_ptr_a8) {
-        *stack_ptr_b0 = (longlong)resource_data;
+        *stack_ptr_b0 = (int64_t)resource_data;
         resource_entry = stack_ptr_b0;
     }
     else {
-        resource_offset = (longlong)stack_ptr_b0 - (longlong)stack_ptr_b8 >> 3;
+        resource_offset = (int64_t)stack_ptr_b0 - (int64_t)stack_ptr_b8 >> 3;
         if (resource_offset == 0) {
             resource_offset = 1;
 LAB_18020ceb6:
-            resource_entry = (longlong *)allocate_resource_memory(system_memory_pool_ptr);
+            resource_entry = (int64_t *)allocate_resource_memory(system_memory_pool_ptr);
         }
         else {
             resource_offset = resource_offset * 2;
             if (resource_offset != 0) goto LAB_18020ceb6;
-            resource_entry = (longlong *)0x0;
+            resource_entry = (int64_t *)0x0;
         }
         
         if (stack_ptr_b8 != stack_ptr_b0) {
             // 警告：子程序不返回
-            memmove(resource_entry, stack_ptr_b8, (longlong)stack_ptr_b0 - (longlong)stack_ptr_b8);
+            memmove(resource_entry, stack_ptr_b8, (int64_t)stack_ptr_b0 - (int64_t)stack_ptr_b8);
         }
         
-        *resource_entry = (longlong)resource_data;
-        if (stack_ptr_b8 != (longlong *)0x0) {
+        *resource_entry = (int64_t)resource_data;
+        if (stack_ptr_b8 != (int64_t *)0x0) {
             // 警告：子程序不返回
             trigger_resource_cleanup_error();
         }
@@ -271,15 +271,15 @@ LAB_18020ceb6:
     stack_ptr_b0 = resource_entry + 1;
     stack_var_98 = 0;
     
-    if ((longlong)stack_ptr_b0 - (longlong)stack_ptr_b8 >> 3 != 0) {
+    if ((int64_t)stack_ptr_b0 - (int64_t)stack_ptr_b8 >> 3 != 0) {
         stack_var_88 = 0;
         do {
             string_length = *result_buffer;
             if (result_buffer[1] - string_length >> 5 != 0) {
-                resource_offset = *(longlong *)(stack_var_88 + (longlong)stack_ptr_b8) + 400;
+                resource_offset = *(int64_t *)(stack_var_88 + (int64_t)stack_ptr_b8) + 400;
                 compare_length = allocate_resource_memory(system_memory_pool_ptr, 0x78,
                                *(int8_t *)
-                                (*(longlong *)(stack_var_88 + (longlong)stack_ptr_b8) + 0x1b8));
+                                (*(int64_t *)(stack_var_88 + (int64_t)stack_ptr_b8) + 0x1b8));
                 stack_ptr_48 = (uint64_t *)(compare_length + 0x20);
                 *stack_ptr_48 = &RESOURCE_CLEANUP_POOL;
                 *(uint64_t *)(compare_length + 0x28) = 0;
@@ -311,7 +311,7 @@ LAB_18020ceb6:
                 if (*(int *)(compare_length + 0x30) == 0) goto LAB_18020d04f;
                 
                 string_ptr = *(byte **)(string_length + 0x28);
-                compare_length = *(longlong *)(compare_length + 0x28) - (longlong)string_ptr;
+                compare_length = *(int64_t *)(compare_length + 0x28) - (int64_t)string_ptr;
                 goto LAB_18020d030;
             }
             
@@ -320,16 +320,16 @@ LAB_18020ceb6:
             resource_data = stack_ptr_78;
             string_length = stack_var_80;
             matched_entry = stack_ptr_70;
-        } while ((ulonglong)(longlong)stack_var_98 <
-                 (ulonglong)((longlong)stack_ptr_b0 - (longlong)stack_ptr_b8 >> 3));
+        } while ((uint64_t)(int64_t)stack_var_98 <
+                 (uint64_t)((int64_t)stack_ptr_b0 - (int64_t)stack_ptr_b8 >> 3));
     }
     
-    if (stack_ptr_b8 != (longlong *)0x0) {
+    if (stack_ptr_b8 != (int64_t *)0x0) {
         // 警告：子程序不返回
         trigger_resource_cleanup_error();
     }
     
-    if (resource_data != (longlong *)0x0) {
+    if (resource_data != (int64_t *)0x0) {
         (**(code **)(*resource_data + 0x38))(resource_data);
     }
     
@@ -338,7 +338,7 @@ LAB_18020ceb6:
     resource_offset = *matched_entry;
     iteration_count = stack_var_90;
     
-    if ((ulonglong)(matched_entry[1] - resource_offset >> 3) <= (ulonglong)(longlong)stack_var_94) {
+    if ((uint64_t)(matched_entry[1] - resource_offset >> 3) <= (uint64_t)(int64_t)stack_var_94) {
 LAB_18020d12d:
         finalize_resource_search(stack_ptr_68, stack_var_8c, iteration_count);
         return;
@@ -367,27 +367,27 @@ LAB_18020d04f:
 }
 
 // 函数：执行资源清理操作
-// 原始实现：void FUN_18020d160(longlong param_1)
-void execute_resource_cleanup(longlong resource_context)
+// 原始实现：void FUN_18020d160(int64_t param_1)
+void execute_resource_cleanup(int64_t resource_context)
 {
     int resource_id;
-    longlong *resource_ptr;
-    longlong *temp_ptr;
-    longlong cleanup_handler;
-    longlong *iterator_ptr;
-    longlong manager_ptr;
+    int64_t *resource_ptr;
+    int64_t *temp_ptr;
+    int64_t cleanup_handler;
+    int64_t *iterator_ptr;
+    int64_t manager_ptr;
     uint cleanup_index;
-    ulonglong loop_counter;
-    ulonglong cleanup_offset;
-    ulonglong array_index;
-    longlong *stack_ptr_38;
-    longlong *stack_ptr_30;
+    uint64_t loop_counter;
+    uint64_t cleanup_offset;
+    uint64_t array_index;
+    int64_t *stack_ptr_38;
+    int64_t *stack_ptr_30;
     uint64_t cleanup_flag;
     int32_t cleanup_status;
     
     cleanup_offset = 0;
-    stack_ptr_38 = (longlong *)0x0;
-    stack_ptr_30 = (longlong *)0x0;
+    stack_ptr_38 = (int64_t *)0x0;
+    stack_ptr_30 = (int64_t *)0x0;
     cleanup_flag = 0;
     cleanup_status = 3;
     
@@ -398,15 +398,15 @@ void execute_resource_cleanup(longlong resource_context)
     array_index = cleanup_offset;
     
     // 处理资源数组中的每个项目
-    if (*(longlong *)(resource_context + 0x1c8) - *(longlong *)(resource_context + 0x1c0) >> 3 != 0) {
+    if (*(int64_t *)(resource_context + 0x1c8) - *(int64_t *)(resource_context + 0x1c0) >> 3 != 0) {
         do {
-            process_resource_item(*(uint64_t *)(array_index + *(longlong *)(resource_context + 0x1c0)), 
+            process_resource_item(*(uint64_t *)(array_index + *(int64_t *)(resource_context + 0x1c0)), 
                                    &stack_ptr_38);
             cleanup_index = (int)loop_counter + 1;
-            loop_counter = (ulonglong)cleanup_index;
+            loop_counter = (uint64_t)cleanup_index;
             array_index = array_index + 8;
-        } while ((ulonglong)(longlong)(int)cleanup_index <
-                 (ulonglong)(*(longlong *)(resource_context + 0x1c8) - *(longlong *)(resource_context + 0x1c0) >> 3));
+        } while ((uint64_t)(int64_t)(int)cleanup_index <
+                 (uint64_t)(*(int64_t *)(resource_context + 0x1c8) - *(int64_t *)(resource_context + 0x1c0) >> 3));
     }
     
     manager_ptr = system_cache_buffer;
@@ -415,11 +415,11 @@ void execute_resource_cleanup(longlong resource_context)
     temp_ptr = stack_ptr_30;
     
     // 执行实际的清理操作
-    if ((longlong)stack_ptr_30 - (longlong)stack_ptr_38 >> 3 != 0) {
+    if ((int64_t)stack_ptr_30 - (int64_t)stack_ptr_38 >> 3 != 0) {
         do {
             cleanup_handler = core_system_data_resource;
-            if (**(char **)(*(longlong *)(loop_counter + (longlong)stack_ptr_38) + 0x10) != '\0') {
-                resource_id = *(int *)(*(longlong *)(loop_counter + (longlong)stack_ptr_38) + 0x50);
+            if (**(char **)(*(int64_t *)(loop_counter + (int64_t)stack_ptr_38) + 0x10) != '\0') {
+                resource_id = *(int *)(*(int64_t *)(loop_counter + (int64_t)stack_ptr_38) + 0x50);
                 if ((resource_id != 0) && (manager_ptr != 0)) {
                     (**(code **)(manager_ptr + 0x30))(resource_id);
                 }
@@ -432,25 +432,25 @@ void execute_resource_cleanup(longlong resource_context)
             }
             
             cleanup_index = (int)cleanup_offset + 1;
-            cleanup_offset = (ulonglong)cleanup_index;
+            cleanup_offset = (uint64_t)cleanup_index;
             loop_counter = loop_counter + 8;
             resource_ptr = stack_ptr_38;
             temp_ptr = stack_ptr_30;
-        } while ((ulonglong)(longlong)(int)cleanup_index <
-                 (ulonglong)((longlong)stack_ptr_30 - (longlong)stack_ptr_38 >> 3));
+        } while ((uint64_t)(int64_t)(int)cleanup_index <
+                 (uint64_t)((int64_t)stack_ptr_30 - (int64_t)stack_ptr_38 >> 3));
     }
     
     // 清理栈上的资源
     for (; iterator_ptr = stack_ptr_30, resource_ptr != stack_ptr_30; resource_ptr = resource_ptr + 1) {
         stack_ptr_30 = temp_ptr;
-        if ((longlong *)*resource_ptr != (longlong *)0x0) {
-            (**(code **)(*(longlong *)*resource_ptr + 0x38))();
+        if ((int64_t *)*resource_ptr != (int64_t *)0x0) {
+            (**(code **)(*(int64_t *)*resource_ptr + 0x38))();
         }
         temp_ptr = stack_ptr_30;
         stack_ptr_30 = iterator_ptr;
     }
     
-    if (stack_ptr_38 == (longlong *)0x0) {
+    if (stack_ptr_38 == (int64_t *)0x0) {
         return;
     }
     
@@ -460,27 +460,27 @@ void execute_resource_cleanup(longlong resource_context)
 }
 
 // 函数：释放资源内存
-// 原始实现：void FUN_18020d310(longlong param_1)
-void release_resource_memory(longlong resource_handle)
+// 原始实现：void FUN_18020d310(int64_t param_1)
+void release_resource_memory(int64_t resource_handle)
 {
     int resource_id;
-    longlong *resource_ptr;
-    longlong *temp_ptr;
-    longlong release_handler;
-    longlong *iterator_ptr;
-    longlong manager_ptr;
+    int64_t *resource_ptr;
+    int64_t *temp_ptr;
+    int64_t release_handler;
+    int64_t *iterator_ptr;
+    int64_t manager_ptr;
     uint release_index;
-    ulonglong loop_counter;
-    ulonglong release_offset;
-    ulonglong array_index;
-    longlong *stack_ptr_38;
-    longlong *stack_ptr_30;
+    uint64_t loop_counter;
+    uint64_t release_offset;
+    uint64_t array_index;
+    int64_t *stack_ptr_38;
+    int64_t *stack_ptr_30;
     uint64_t release_flag;
     int32_t release_status;
     
     release_offset = 0;
-    stack_ptr_38 = (longlong *)0x0;
-    stack_ptr_30 = (longlong *)0x0;
+    stack_ptr_38 = (int64_t *)0x0;
+    stack_ptr_30 = (int64_t *)0x0;
     release_flag = 0;
     release_status = 3;
     
@@ -491,15 +491,15 @@ void release_resource_memory(longlong resource_handle)
     array_index = release_offset;
     
     // 处理资源数组中的每个项目
-    if (*(longlong *)(resource_handle + 0x1c8) - *(longlong *)(resource_handle + 0x1c0) >> 3 != 0) {
+    if (*(int64_t *)(resource_handle + 0x1c8) - *(int64_t *)(resource_handle + 0x1c0) >> 3 != 0) {
         do {
-            process_resource_release(*(uint64_t *)(array_index + *(longlong *)(resource_handle + 0x1c0)), 
+            process_resource_release(*(uint64_t *)(array_index + *(int64_t *)(resource_handle + 0x1c0)), 
                                      &stack_ptr_38);
             release_index = (int)loop_counter + 1;
-            loop_counter = (ulonglong)release_index;
+            loop_counter = (uint64_t)release_index;
             array_index = array_index + 8;
-        } while ((ulonglong)(longlong)(int)release_index <
-                 (ulonglong)(*(longlong *)(resource_handle + 0x1c8) - *(longlong *)(resource_handle + 0x1c0) >> 3));
+        } while ((uint64_t)(int64_t)(int)release_index <
+                 (uint64_t)(*(int64_t *)(resource_handle + 0x1c8) - *(int64_t *)(resource_handle + 0x1c0) >> 3));
     }
     
     manager_ptr = system_cache_buffer;
@@ -508,11 +508,11 @@ void release_resource_memory(longlong resource_handle)
     temp_ptr = stack_ptr_30;
     
     // 执行实际的释放操作
-    if ((longlong)stack_ptr_30 - (longlong)stack_ptr_38 >> 3 != 0) {
+    if ((int64_t)stack_ptr_30 - (int64_t)stack_ptr_38 >> 3 != 0) {
         do {
             release_handler = core_system_data_resource;
-            if (**(char **)(*(longlong *)(loop_counter + (longlong)stack_ptr_38) + 0x10) != '\0') {
-                resource_id = *(int *)(*(longlong *)(loop_counter + (longlong)stack_ptr_38) + 0x50);
+            if (**(char **)(*(int64_t *)(loop_counter + (int64_t)stack_ptr_38) + 0x10) != '\0') {
+                resource_id = *(int *)(*(int64_t *)(loop_counter + (int64_t)stack_ptr_38) + 0x50);
                 if ((resource_id != 0) && (manager_ptr != 0)) {
                     (**(code **)(manager_ptr + 0x30))(resource_id);
                 }
@@ -525,25 +525,25 @@ void release_resource_memory(longlong resource_handle)
             }
             
             release_index = (int)release_offset + 1;
-            release_offset = (ulonglong)release_index;
+            release_offset = (uint64_t)release_index;
             loop_counter = loop_counter + 8;
             resource_ptr = stack_ptr_38;
             temp_ptr = stack_ptr_30;
-        } while ((ulonglong)(longlong)(int)release_index <
-                 (ulonglong)((longlong)stack_ptr_30 - (longlong)stack_ptr_38 >> 3));
+        } while ((uint64_t)(int64_t)(int)release_index <
+                 (uint64_t)((int64_t)stack_ptr_30 - (int64_t)stack_ptr_38 >> 3));
     }
     
     // 清理栈上的资源
     for (; iterator_ptr = stack_ptr_30, resource_ptr != stack_ptr_30; resource_ptr = resource_ptr + 1) {
         stack_ptr_30 = temp_ptr;
-        if ((longlong *)*resource_ptr != (longlong *)0x0) {
-            (**(code **)(*(longlong *)*resource_ptr + 0x38))();
+        if ((int64_t *)*resource_ptr != (int64_t *)0x0) {
+            (**(code **)(*(int64_t *)*resource_ptr + 0x38))();
         }
         temp_ptr = stack_ptr_30;
         stack_ptr_30 = iterator_ptr;
     }
     
-    if (stack_ptr_38 == (longlong *)0x0) {
+    if (stack_ptr_38 == (int64_t *)0x0) {
         return;
     }
     
@@ -557,8 +557,8 @@ void release_resource_memory(longlong resource_handle)
 void batch_process_resources(uint64_t param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
     uint64_t resource_item;
-    ulonglong item_count;
-    longlong temp_offset;
+    uint64_t item_count;
+    int64_t temp_offset;
     uint64_t *resource_ptr;
     int process_count;
     int batch_index;
@@ -569,7 +569,7 @@ void batch_process_resources(uint64_t param_1, uint64_t param_2, uint64_t param_
     uint64_t *stack_ptr_68;
     int32_t stack_status;
     uint64_t *stack_ptr_58;
-    longlong stack_offset;
+    int64_t stack_offset;
     uint64_t stack_flag;
     int32_t stack_flag_40;
     
@@ -581,7 +581,7 @@ void batch_process_resources(uint64_t param_1, uint64_t param_2, uint64_t param_
     // 初始化批量处理
     initialize_batch_processing(core_system_data_resource, &stack_ptr_58, param_3, param_4, 0, 0xfffffffffffffffe);
     batch_index = 0;
-    item_count = stack_offset - (longlong)stack_ptr_58 >> 3;
+    item_count = stack_offset - (int64_t)stack_ptr_58 >> 3;
     resource_ptr = stack_ptr_58;
     
     // 处理每个资源项
@@ -600,7 +600,7 @@ void batch_process_resources(uint64_t param_1, uint64_t param_2, uint64_t param_
                 resource_ptr = stack_ptr_70;
             }
             else {
-                temp_offset = (longlong)stack_ptr_70 - (longlong)stack_ptr_78 >> 3;
+                temp_offset = (int64_t)stack_ptr_70 - (int64_t)stack_ptr_78 >> 3;
                 if (temp_offset == 0) {
                     temp_offset = 1;
 LAB_18020d5b5:
@@ -615,7 +615,7 @@ LAB_18020d5b5:
                 
                 if (stack_ptr_78 != stack_ptr_70) {
                     // 警告：子程序不返回
-                    memmove(resource_ptr, stack_ptr_78, (longlong)stack_ptr_70 - (longlong)stack_ptr_78);
+                    memmove(resource_ptr, stack_ptr_78, (int64_t)stack_ptr_70 - (int64_t)stack_ptr_78);
                 }
                 
                 *resource_ptr = resource_item;
@@ -631,14 +631,14 @@ LAB_18020d5b5:
             stack_ptr_70 = resource_ptr + 1;
             process_count = 0;
             
-            if ((longlong)stack_ptr_70 - (longlong)stack_ptr_78 >> 3 != 0) {
+            if ((int64_t)stack_ptr_70 - (int64_t)stack_ptr_78 >> 3 != 0) {
                 temp_offset = 0;
                 do {
-                    process_single_resource(*(uint64_t *)(temp_offset + (longlong)stack_ptr_78));
+                    process_single_resource(*(uint64_t *)(temp_offset + (int64_t)stack_ptr_78));
                     process_count = process_count + 1;
                     temp_offset = temp_offset + 8;
-                } while ((ulonglong)(longlong)process_count <
-                         (ulonglong)((longlong)stack_ptr_70 - (longlong)stack_ptr_78 >> 3));
+                } while ((uint64_t)(int64_t)process_count <
+                         (uint64_t)((int64_t)stack_ptr_70 - (int64_t)stack_ptr_78 >> 3));
             }
             
             if (stack_ptr_78 != (uint64_t *)0x0) {
@@ -648,7 +648,7 @@ LAB_18020d5b5:
             
             batch_index = batch_index + 1;
             resource_ptr = resource_ptr + 1;
-        } while ((ulonglong)(longlong)batch_index < item_count);
+        } while ((uint64_t)(int64_t)batch_index < item_count);
     }
     
     if (stack_ptr_58 == (uint64_t *)0x0) {
@@ -664,7 +664,7 @@ LAB_18020d5b5:
 uint64_t *find_resource_in_table(uint64_t *resource_table, int *search_key, uint64_t *param_3)
 {
     uint64_t *current_node;
-    longlong *result_ptr;
+    int64_t *result_ptr;
     uint64_t *best_match;
     int8_t search_buffer[32];
     
@@ -692,23 +692,23 @@ uint64_t *find_resource_in_table(uint64_t *resource_table, int *search_key, uint
     }
     
     // 如果没有找到，创建新项
-    result_ptr = (longlong *)create_resource_entry(resource_table, search_buffer, param_3, best_match, search_key);
+    result_ptr = (int64_t *)create_resource_entry(resource_table, search_buffer, param_3, best_match, search_key);
     return (uint64_t *)(*result_ptr + 0x28);
 }
 
 // 函数：创建资源表条目
-// 原始实现：uint64_t *FUN_18020d730(longlong *param_1,uint64_t *param_2,uint64_t param_3,longlong *param_4, int *param_5)
-uint64_t *create_resource_entry(longlong *resource_table, uint64_t *param_2, uint64_t param_3, 
-                                longlong *insert_point, int *entry_key)
+// 原始实现：uint64_t *FUN_18020d730(int64_t *param_1,uint64_t *param_2,uint64_t param_3,int64_t *param_4, int *param_5)
+uint64_t *create_resource_entry(int64_t *resource_table, uint64_t *param_2, uint64_t param_3, 
+                                int64_t *insert_point, int *entry_key)
 {
     bool insert_before;
     int key_value;
-    longlong *current_node;
-    longlong *next_node;
-    longlong new_entry;
+    int64_t *current_node;
+    int64_t *next_node;
+    int64_t new_entry;
     uint64_t insert_flag;
     
-    current_node = (longlong *)*resource_table;
+    current_node = (int64_t *)*resource_table;
     
     // 检查插入位置
     if ((insert_point == current_node) || (insert_point == resource_table)) {
@@ -719,13 +719,13 @@ LAB_18020d79f:
         }
     }
     else {
-        current_node = (longlong *)func_0x00018066bd70(insert_point);
+        current_node = (int64_t *)func_0x00018066bd70(insert_point);
         if (((int)insert_point[4] < *entry_key) && (*entry_key < (int)current_node[4])) {
             if (*insert_point == 0) goto LAB_18020d79f;
             insert_flag = 1;
             insert_point = current_node;
 LAB_18020d7a2:
-            if (insert_point != (longlong *)0x0) {
+            if (insert_point != (int64_t *)0x0) {
                 insert_resource_entry(resource_table, param_2, insert_point, insert_flag, entry_key);
                 return param_2;
             }
@@ -735,27 +735,27 @@ LAB_18020d7a2:
     // 查找合适的插入位置
     insert_before = true;
     current_node = resource_table;
-    if ((longlong *)resource_table[2] != (longlong *)0x0) {
-        next_node = (longlong *)resource_table[2];
+    if ((int64_t *)resource_table[2] != (int64_t *)0x0) {
+        next_node = (int64_t *)resource_table[2];
         do {
             current_node = next_node;
             insert_before = *entry_key < (int)current_node[4];
             if (*entry_key < (int)current_node[4]) {
-                next_node = (longlong *)current_node[1];
+                next_node = (int64_t *)current_node[1];
             }
             else {
-                next_node = (longlong *)*current_node;
+                next_node = (int64_t *)*current_node;
             }
-        } while (next_node != (longlong *)0x0);
+        } while (next_node != (int64_t *)0x0);
     }
     
     next_node = current_node;
     if (insert_before) {
-        if (current_node == (longlong *)resource_table[1]) {
+        if (current_node == (int64_t *)resource_table[1]) {
             key_value = *entry_key;
             goto LAB_18020d80a;
         }
-        next_node = (longlong *)func_0x00018066b9a0(current_node);
+        next_node = (int64_t *)func_0x00018066b9a0(current_node);
     }
     
     key_value = *entry_key;
@@ -785,23 +785,23 @@ LAB_18020d80a:
 }
 
 // 函数：扩展资源表容量
-// 原始实现：void FUN_18020d8a0(longlong *param_1,uint64_t *param_2,uint64_t param_3,uint64_t param_4)
-void expand_resource_table(longlong *resource_table, uint64_t *new_entry, uint64_t param_3, uint64_t param_4)
+// 原始实现：void FUN_18020d8a0(int64_t *param_1,uint64_t *param_2,uint64_t param_3,uint64_t param_4)
+void expand_resource_table(int64_t *resource_table, uint64_t *new_entry, uint64_t param_3, uint64_t param_4)
 {
     uint64_t *table_end;
-    longlong *current_ptr;
+    int64_t *current_ptr;
     uint64_t *table_start;
     uint64_t *copy_ptr;
-    longlong copy_offset;
+    int64_t copy_offset;
     uint64_t *new_table;
-    longlong table_size;
-    longlong old_capacity;
-    longlong new_capacity;
+    int64_t table_size;
+    int64_t old_capacity;
+    int64_t new_capacity;
     uint64_t *table_ptr;
     
     table_ptr = (uint64_t *)resource_table[1];
     table_start = (uint64_t *)*resource_table;
-    old_capacity = (longlong)table_ptr - (longlong)table_start >> 5;
+    old_capacity = (int64_t)table_ptr - (int64_t)table_start >> 5;
     new_table = (uint64_t *)0x0;
     
     if (old_capacity == 0) {
@@ -822,14 +822,14 @@ LAB_18020d911:
     
     // 复制现有数据到新表
     if (table_start != table_ptr) {
-        copy_offset = (longlong)new_table - (longlong)table_start;
+        copy_offset = (int64_t)new_table - (int64_t)table_start;
         table_start = table_start + 2;
         do {
             *copy_ptr = table_start[-2];
-            *(int32_t *)(copy_offset + -8 + (longlong)table_start) = *(int32_t *)(table_start + -1);
-            *(uint64_t *)(copy_offset + (longlong)table_start) = *table_start;
+            *(int32_t *)(copy_offset + -8 + (int64_t)table_start) = *(int32_t *)(table_start + -1);
+            *(uint64_t *)(copy_offset + (int64_t)table_start) = *table_start;
             *table_start = 0;
-            *(uint64_t *)(copy_offset + 8 + (longlong)table_start) = table_start[1];
+            *(uint64_t *)(copy_offset + 8 + (int64_t)table_start) = table_start[1];
             copy_ptr = copy_ptr + 4;
             table_end = table_start + 2;
             table_start = table_start + 4;
@@ -839,10 +839,10 @@ LAB_18020d911:
     // 添加新条目
     *copy_ptr = *new_entry;
     *(int32_t *)(copy_ptr + 1) = *(int32_t *)(new_entry + 1);
-    current_ptr = (longlong *)new_entry[2];
+    current_ptr = (int64_t *)new_entry[2];
     copy_ptr[2] = current_ptr;
     
-    if (current_ptr != (longlong *)0x0) {
+    if (current_ptr != (int64_t *)0x0) {
         (**(code **)(*current_ptr + 0x28))();
     }
     
@@ -853,8 +853,8 @@ LAB_18020d911:
     // 清理旧表数据
     if (old_capacity != table_size) {
         do {
-            if (*(longlong **)(old_capacity + 0x10) != (longlong *)0x0) {
-                (**(code **)(**(longlong **)(old_capacity + 0x10) + 0x38))();
+            if (*(int64_t **)(old_capacity + 0x10) != (int64_t *)0x0) {
+                (**(code **)(**(int64_t **)(old_capacity + 0x10) + 0x38))();
             }
             old_capacity = old_capacity + 0x20;
         } while (old_capacity != table_size);
@@ -862,9 +862,9 @@ LAB_18020d911:
     }
     
     if (old_capacity == 0) {
-        *resource_table = (longlong)new_table;
-        resource_table[1] = (longlong)(copy_ptr + 4);
-        resource_table[2] = (longlong)(new_table + old_capacity * 4);
+        *resource_table = (int64_t)new_table;
+        resource_table[1] = (int64_t)(copy_ptr + 4);
+        resource_table[2] = (int64_t)(new_table + old_capacity * 4);
         return;
     }
     
@@ -873,11 +873,11 @@ LAB_18020d911:
 }
 
 // 函数：插入资源表条目
-// 原始实现：void FUN_18020da10(longlong param_1,uint64_t param_2,longlong param_3,uint64_t param_4, int *param_5)
-void insert_resource_entry(longlong resource_table, uint64_t param_2, longlong insert_point, 
+// 原始实现：void FUN_18020da10(int64_t param_1,uint64_t param_2,int64_t param_3,uint64_t param_4, int *param_5)
+void insert_resource_entry(int64_t resource_table, uint64_t param_2, int64_t insert_point, 
                           uint64_t insert_flag, int *entry_key)
 {
-    longlong new_entry;
+    int64_t new_entry;
     int32_t insert_before;
     
     if ((((char)insert_flag == '\0') && (insert_point != resource_table)) && 
@@ -902,34 +902,34 @@ void insert_resource_entry(longlong resource_table, uint64_t param_2, longlong i
 }
 
 // 函数：处理资源索引范围
-// 原始实现：void FUN_18020dae0(uint param_1,int param_2,longlong *param_3)
-void process_resource_index_range(uint start_index, int end_index, longlong *resource_manager)
+// 原始实现：void FUN_18020dae0(uint param_1,int param_2,int64_t *param_3)
+void process_resource_index_range(uint start_index, int end_index, int64_t *resource_manager)
 {
-    longlong hash_offset;
-    longlong *resource_entry;
-    ulonglong hash_index;
+    int64_t hash_offset;
+    int64_t *resource_entry;
+    uint64_t hash_index;
     uint current_index;
-    ulonglong page_index;
+    uint64_t page_index;
     uint64_t process_flag;
     uint64_t stack_temp;
     int8_t stack_flag;
     uint64_t process_data;
-    longlong *stack_ptr;
+    int64_t *stack_ptr;
     uint64_t stack_flag_28;
     int16_t stack_flag_20;
     
     if ((int)start_index < end_index) {
-        page_index = (ulonglong)start_index;
+        page_index = (uint64_t)start_index;
         do {
-            hash_index = (ulonglong)((uint)page_index & 0xfff);
+            hash_index = (uint64_t)((uint)page_index & 0xfff);
             hash_offset = (page_index >> 0xc) * 8;
-            resource_entry = *(longlong **)(*(longlong *)(*resource_manager + 8 + hash_offset) + hash_index * 0x30);
+            resource_entry = *(int64_t **)(*(int64_t *)(*resource_manager + 8 + hash_offset) + hash_index * 0x30);
             process_flag = 0xffffffffffffffff;
             stack_temp = 0;
             stack_flag = 0;
             stack_ptr = resource_entry;
             
-            if (resource_entry != (longlong *)0x0) {
+            if (resource_entry != (int64_t *)0x0) {
                 (**(code **)(*resource_entry + 0x28))(resource_entry);
             }
             
@@ -940,10 +940,10 @@ void process_resource_index_range(uint start_index, int end_index, longlong *res
             
             // 处理资源项
             process_resource_data(&process_flag,
-                                 *(uint64_t *)(*(longlong *)(*resource_manager + 8 + hash_offset) + 8 + hash_index * 0x30));
+                                 *(uint64_t *)(*(int64_t *)(*resource_manager + 8 + hash_offset) + 8 + hash_index * 0x30));
             (**(code **)(*resource_entry + 0x38))(resource_entry);
             current_index = (uint)page_index + 1;
-            page_index = (ulonglong)current_index;
+            page_index = (uint64_t)current_index;
         } while ((int)current_index < end_index);
     }
     
@@ -951,35 +951,35 @@ void process_resource_index_range(uint start_index, int end_index, longlong *res
 }
 
 // 函数：处理资源块范围
-// 原始实现：void FUN_18020dc20(int param_1,int param_2,longlong *param_3)
-void process_resource_block_range(int start_block, int end_block, longlong *resource_manager)
+// 原始实现：void FUN_18020dc20(int param_1,int param_2,int64_t *param_3)
+void process_resource_block_range(int start_block, int end_block, int64_t *resource_manager)
 {
     uint64_t *resource_table;
-    longlong block_offset;
-    longlong block_count;
+    int64_t block_offset;
+    int64_t block_count;
     uint64_t process_flag;
     uint64_t stack_flag_48;
     uint64_t stack_flag_40;
     int8_t stack_flag_38;
     uint64_t stack_flag_30;
-    longlong *resource_entry;
+    int64_t *resource_entry;
     uint64_t stack_flag_18;
     int16_t stack_flag_10;
     
     process_flag = 0xfffffffffffffffe;
     resource_table = (uint64_t *)*resource_manager;
-    block_offset = (longlong)start_block;
+    block_offset = (int64_t)start_block;
     
     if (block_offset < end_block) {
         block_count = block_offset << 5;
         block_offset = end_block - block_offset;
         do {
-            resource_entry = *(longlong **)(block_count + 0x10 + *(longlong *)*resource_table);
+            resource_entry = *(int64_t **)(block_count + 0x10 + *(int64_t *)*resource_table);
             stack_flag_48 = 0xffffffffffffffff;
             stack_flag_40 = 0;
             stack_flag_38 = 0;
             
-            if (resource_entry != (longlong *)0x0) {
+            if (resource_entry != (int64_t *)0x0) {
                 (**(code **)(*resource_entry + 0x28))();
             }
             
@@ -989,11 +989,11 @@ void process_resource_block_range(int start_block, int end_block, longlong *reso
             stack_flag_30 = 0;
             
             // 处理资源块
-            process_resource_block(&stack_flag_48, *(uint64_t *)(*(longlong *)*resource_table + block_count), 
-                                   resource_table[1], *(uint64_t *)(*(longlong *)*resource_table + 0x18 + block_count), 
+            process_resource_block(&stack_flag_48, *(uint64_t *)(*(int64_t *)*resource_table + block_count), 
+                                   resource_table[1], *(uint64_t *)(*(int64_t *)*resource_table + 0x18 + block_count), 
                                    0, resource_table[2], process_flag);
             
-            if (resource_entry != (longlong *)0x0) {
+            if (resource_entry != (int64_t *)0x0) {
                 (**(code **)(*resource_entry + 0x38))();
             }
             
@@ -1006,8 +1006,8 @@ void process_resource_block_range(int start_block, int end_block, longlong *reso
 }
 
 // 函数：处理资源管理器操作
-// 原始实现：longlong FUN_18020dd10(longlong *param_1,longlong *param_2,int param_3)
-longlong process_manager_operation(longlong *manager_ptr, longlong *data_ptr, int operation_type)
+// 原始实现：int64_t FUN_18020dd10(int64_t *param_1,int64_t *param_2,int param_3)
+int64_t process_manager_operation(int64_t *manager_ptr, int64_t *data_ptr, int operation_type)
 {
     uint64_t *resource_data;
     uint64_t temp_value;
@@ -1035,7 +1035,7 @@ longlong process_manager_operation(longlong *manager_ptr, longlong *data_ptr, in
             *new_resource = *resource_data;
             new_resource[1] = temp_value;
             new_resource[2] = resource_data[2];
-            *manager_ptr = (longlong)new_resource;
+            *manager_ptr = (int64_t)new_resource;
             return 0;
         }
         
@@ -1050,10 +1050,10 @@ longlong process_manager_operation(longlong *manager_ptr, longlong *data_ptr, in
 }
 
 // 函数：格式化资源信息输出
-// 原始实现：void FUN_18020ddf0(uint64_t param_1,longlong param_2)
-void format_resource_info_output(uint64_t output_handle, longlong resource_info)
+// 原始实现：void FUN_18020ddf0(uint64_t param_1,int64_t param_2)
+void format_resource_info_output(uint64_t output_handle, int64_t resource_info)
 {
-    longlong string_length;
+    int64_t string_length;
     void *format_ptr;
     int8_t output_buffer[32];
     int8_t *output_ptr;
@@ -1078,10 +1078,10 @@ void format_resource_info_output(uint64_t output_handle, longlong resource_info)
     int8_t output_buffer_580[264];
     void *output_array[68];
     int8_t output_buffer_258[560];
-    ulonglong security_cookie;
+    uint64_t security_cookie;
     
     output_flag_7e8 = 0xfffffffffffffffe;
-    security_cookie = GET_SECURITY_COOKIE() ^ (ulonglong)output_buffer;
+    security_cookie = GET_SECURITY_COOKIE() ^ (uint64_t)output_buffer;
     output_length_808 = 0;
     output_ptr_6b8 = &unknown_var_2008_ptr;
     output_ptr_6b0 = output_buffer_6a0;
@@ -1123,29 +1123,29 @@ void format_resource_info_output(uint64_t output_handle, longlong resource_info)
     
     // 设置输出流
     setup_output_stream(&output_ptr_7d8, temp_buffer_7d0, 0, 0);
-    *(void **)(temp_buffer_7d0 + (longlong)*(int *)(output_ptr_7d8 + 4) + -8) = &unknown_var_2384_ptr;
-    *(int *)((longlong)&output_var_7dc + (longlong)*(int *)(output_ptr_7d8 + 4)) =
+    *(void **)(temp_buffer_7d0 + (int64_t)*(int *)(output_ptr_7d8 + 4) + -8) = &unknown_var_2384_ptr;
+    *(int *)((int64_t)&output_var_7dc + (int64_t)*(int *)(output_ptr_7d8 + 4)) =
          *(int *)(output_ptr_7d8 + 4) + -0xa8;
     format_output_string(temp_buffer_7d0);
     string_length = write_output_data(temp_buffer_7d0, output_buffer_258, 0x12);
     
     if (string_length == 0) {
-        set_output_stream_state(temp_buffer_7d0 + (longlong)*(int *)(output_ptr_7d8 + 4) + -8, 2);
+        set_output_stream_state(temp_buffer_7d0 + (int64_t)*(int *)(output_ptr_7d8 + 4) + -8, 2);
     }
     
     output_ptr_7f0 = &output_ptr_7d8;
     output_buffer_7f8 = (int8_t *)0x0;
-    output_ptr = (int8_t *)((ulonglong)output_ptr & 0xffffffff00000000);
+    output_ptr = (int8_t *)((uint64_t)output_ptr & 0xffffffff00000000);
     format_resource_name(output_buffer_6c8, &output_buffer_7f8, output_handle, 0);
     string_length = flush_output_stream(temp_buffer_7d0);
     
     if (string_length == 0) {
-        set_output_stream_state(temp_buffer_7d0 + (longlong)*(int *)(output_ptr_7d8 + 4) + -8, 2);
+        set_output_stream_state(temp_buffer_7d0 + (int64_t)*(int *)(output_ptr_7d8 + 4) + -8, 2);
     }
     
     output_buffer_7f8 = output_buffer_730;
-    *(void **)(temp_buffer_7d0 + (longlong)*(int *)(output_ptr_7d8 + 4) + -8) = &unknown_var_2384_ptr;
-    *(int *)((longlong)&output_var_7dc + (longlong)*(int *)(output_ptr_7d8 + 4)) =
+    *(void **)(temp_buffer_7d0 + (int64_t)*(int *)(output_ptr_7d8 + 4) + -8) = &unknown_var_2384_ptr;
+    *(int *)((int64_t)&output_var_7dc + (int64_t)*(int *)(output_ptr_7d8 + 4)) =
          *(int *)(output_ptr_7d8 + 4) + -0xa8;
     finalize_output_stream(temp_buffer_7d0);
     cleanup_output_stream(output_buffer_7c8);
@@ -1153,7 +1153,7 @@ void format_resource_info_output(uint64_t output_handle, longlong resource_info)
     output_ptr_598 = &system_state_ptr;
     
     // 警告：子程序不返回
-    cleanup_security_cookie(security_cookie ^ (ulonglong)output_buffer);
+    cleanup_security_cookie(security_cookie ^ (uint64_t)output_buffer);
 }
 
 /*

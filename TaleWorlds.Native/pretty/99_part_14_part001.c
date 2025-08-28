@@ -240,7 +240,7 @@ void MemoryCopyOperator(uint64_t param_1)
 {
     uint in_EAX;
     int unaff_ESI;
-    longlong unaff_RDI;
+    int64_t unaff_RDI;
     
     // 边界检查：验证复制的安全性
     if ((int)((*(int *)(unaff_RDI + 0x10) - 1U & in_EAX) + unaff_ESI) <= *(int *)(unaff_RDI + 0x10)) {
@@ -322,7 +322,7 @@ void FastMemoryAllocator(uint64_t param_1)
  */
 void BufferSizeInitializer(uint64_t param_1)
 {
-    longlong unaff_RDI;
+    int64_t unaff_RDI;
     
     // 初始化缓冲区大小和配置
     FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*(uint64_t *)(unaff_RDI + 8),
@@ -367,10 +367,10 @@ void BufferSizeInitializer(uint64_t param_1)
  * - 提供详细的错误状态报告
  * - 实现错误恢复机制
  */
-uint64_t QueueSizeManager(longlong param_1, uint param_2)
+uint64_t QueueSizeManager(int64_t param_1, uint param_2)
 {
     uint64_t uVar1;
-    longlong lVar2;
+    int64_t lVar2;
     
     // 验证队列大小是否为2的幂
     if ((param_2 & param_2 - 1) != 0) {
@@ -383,7 +383,7 @@ uint64_t QueueSizeManager(longlong param_1, uint param_2)
         // 分配队列节点内存
         lVar2 = FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), param_2, 
                             &unknown_var_9296_ptr, MEMORY_BLOCK_SIZE_36, 0, (char)uVar1, 1);
-        *(longlong *)(param_1 + 8) = lVar2;
+        *(int64_t *)(param_1 + 8) = lVar2;
         
         if (lVar2 == 0) {
             return QUEUE_DEFAULT_SIZE;  // 返回默认大小
@@ -464,15 +464,15 @@ void NullOperationHandler(void)
  * - 实现缓存友好的访问模式
  * - 提供最佳的读取性能
  */
-longlong BufferDataReader(longlong param_1, longlong *param_2, int *param_3)
+int64_t BufferDataReader(int64_t param_1, int64_t *param_2, int *param_3)
 {
     uint uVar1;
     int iVar2;
     uint uVar3;
     uint uVar4;
-    longlong lVar5;
+    int64_t lVar5;
     int iVar6;
-    longlong lVar7;
+    int64_t lVar7;
     
     lVar7 = 0;
     *param_3 = 0;
@@ -486,26 +486,26 @@ longlong BufferDataReader(longlong param_1, longlong *param_2, int *param_3)
         uVar1 = iVar2 - 1;
         uVar4 = *(uint *)(param_1 + 0x14) & uVar1;
         uVar3 = *(uint *)(param_1 + 0x20);
-        *param_2 = *(longlong *)(param_1 + 8) + (longlong)(int)uVar4;
-        lVar5 = *(longlong *)(param_1 + 8);
+        *param_2 = *(int64_t *)(param_1 + 8) + (int64_t)(int)uVar4;
+        lVar5 = *(int64_t *)(param_1 + 8);
         
         if (iVar2 < (int)(uVar4 + iVar6)) {
             param_2[1] = *(int *)(param_1 + 0x10) + lVar5;
-            lVar5 = *(longlong *)(param_1 + 8);
+            lVar5 = *(int64_t *)(param_1 + 8);
             param_2[2] = lVar5;
-            lVar7 = (longlong)(int)(uVar1 & uVar3) + *(longlong *)(param_1 + 8);
+            lVar7 = (int64_t)(int)(uVar1 & uVar3) + *(int64_t *)(param_1 + 8);
         }
         else {
             param_2[2] = 0;
-            lVar5 = (longlong)iVar6 + (longlong)(int)uVar4 + lVar5;
+            lVar5 = (int64_t)iVar6 + (int64_t)(int)uVar4 + lVar5;
             param_2[1] = lVar5;
         }
         
         param_2[3] = lVar7;
-        return CONCAT71((int7)((ulonglong)lVar5 >> 8), 1);
+        return CONCAT71((int7)((uint64_t)lVar5 >> 8), 1);
     }
     
-    return (ulonglong)(uint3)((uint)iVar2 >> 8) << 8;
+    return (uint64_t)(uint3)((uint)iVar2 >> 8) << 8;
 }
 
 /**
@@ -546,35 +546,35 @@ longlong BufferDataReader(longlong param_1, longlong *param_2, int *param_3)
  * - 实现缓存友好的访问模式
  * - 提供最佳的写入性能
  */
-uint64_t BufferDataWriter(longlong param_1, uint64_t param_2, int param_3, longlong param_4)
+uint64_t BufferDataWriter(int64_t param_1, uint64_t param_2, int param_3, int64_t param_4)
 {
     uint uVar1;
     uint in_EAX;
     uint uVar2;
-    longlong lVar3;
+    int64_t lVar3;
     int unaff_EBX;
-    longlong in_R10;
-    longlong *in_R11;
+    int64_t in_R10;
+    int64_t *in_R11;
     
     uVar2 = in_EAX & param_3 - 1U;
     uVar1 = *(uint *)(param_1 + 0x20);
-    *in_R11 = *(longlong *)(param_1 + 8) + (longlong)(int)uVar2;
-    lVar3 = *(longlong *)(in_R10 + 8);
+    *in_R11 = *(int64_t *)(param_1 + 8) + (int64_t)(int)uVar2;
+    lVar3 = *(int64_t *)(in_R10 + 8);
     
     if (param_3 < (int)(uVar2 + unaff_EBX)) {
         in_R11[1] = *(int *)(in_R10 + 0x10) + lVar3;
-        lVar3 = *(longlong *)(in_R10 + 8);
+        lVar3 = *(int64_t *)(in_R10 + 8);
         in_R11[2] = lVar3;
-        param_4 = (longlong)(int)(param_3 - 1U & uVar1) + *(longlong *)(in_R10 + 8);
+        param_4 = (int64_t)(int)(param_3 - 1U & uVar1) + *(int64_t *)(in_R10 + 8);
     }
     else {
         in_R11[2] = param_4;
-        lVar3 = (longlong)unaff_EBX + (longlong)(int)uVar2 + lVar3;
+        lVar3 = (int64_t)unaff_EBX + (int64_t)(int)uVar2 + lVar3;
         in_R11[1] = lVar3;
     }
     
     in_R11[3] = param_4;
-    return CONCAT71((int7)((ulonglong)lVar3 >> 8), 1);
+    return CONCAT71((int7)((uint64_t)lVar3 >> 8), 1);
 }
 
 /**
@@ -647,8 +647,8 @@ int8_t SystemStatusChecker(void)
  * - 实现缓存友好的访问模式
  * - 提供最佳的空间管理性能
  */
-uint64_t BufferSpaceCalculator(longlong param_1, longlong *param_2, int param_3, 
-                                longlong *param_4, int *param_5)
+uint64_t BufferSpaceCalculator(int64_t param_1, int64_t *param_2, int param_3, 
+                                int64_t *param_4, int *param_5)
 {
     int iVar1;
     int iVar2;
@@ -678,13 +678,13 @@ uint64_t BufferSpaceCalculator(longlong param_1, longlong *param_2, int param_3,
             uVar3 = uVar6;
         }
         
-        *param_2 = (longlong)(int)uVar3 + *(longlong *)(param_1 + 8);
+        *param_2 = (int64_t)(int)uVar3 + *(int64_t *)(param_1 + 8);
         
         if (iVar1 <= iVar2) {
             uVar6 = 0;
         }
         
-        *param_4 = (longlong)(int)uVar6 + *(longlong *)(param_1 + 8);
+        *param_4 = (int64_t)(int)uVar6 + *(int64_t *)(param_1 + 8);
         *param_5 = iVar5;
         uVar4 = SYSTEM_SUCCESS;
     }

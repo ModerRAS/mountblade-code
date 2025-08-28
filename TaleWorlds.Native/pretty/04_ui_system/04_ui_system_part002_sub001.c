@@ -83,7 +83,7 @@ typedef struct {
  * - 优化内存访问模式
  * - 支持多种数据格式转换
  */
-ulonglong ui_system_simd_data_processor(ulonglong param_1, uint* param_2, uint* param_3, uint param_4)
+uint64_t ui_system_simd_data_processor(uint64_t param_1, uint* param_2, uint* param_3, uint param_4)
 {
     uint32_t processed_size;
     int16_t channel_values[16];

@@ -91,7 +91,7 @@
 // ============================================================================
 
 /** 渲染系统句柄类型 */
-typedef longlong RenderingSystemHandle;
+typedef int64_t RenderingSystemHandle;
 
 /** 颜色值类型 */
 typedef uint ColorValue;
@@ -188,11 +188,11 @@ void RenderingSystemProcessMultiTextureData(uint64_t *param1, uint64_t *param2, 
 void RenderingSystemProcessRenderParameters(uint64_t param1, uint64_t param2, uint64_t param3, int32_t param4);
 void RenderingSystemProcessRenderParametersEx(uint64_t param1, uint64_t param2, uint64_t param3, int32_t param4, int8_t param5);
 void RenderingSystemManageRenderMemory(uint64_t param1, uint64_t param2, uint64_t param3, uint64_t param4);
-ColorValue RenderingSystemConvertColorFormat(longlong param1);
-ColorValue RenderingSystemConvertColorFormatEx(longlong param1);
+ColorValue RenderingSystemConvertColorFormat(int64_t param1);
+ColorValue RenderingSystemConvertColorFormatEx(int64_t param1);
 uint64_t RenderingSystemGetNullHandle(void);
-void RenderingSystemProcessColorData(longlong *param1, ColorValue param2);
-void RenderingSystemSetRenderParameters(longlong param1, int32_t param2, int32_t param3, int32_t param4, int32_t param5);
+void RenderingSystemProcessColorData(int64_t *param1, ColorValue param2);
+void RenderingSystemSetRenderParameters(int64_t param1, int32_t param2, int32_t param3, int32_t param4, int32_t param5);
 
 // ============================================================================
 // 函数实现
@@ -209,10 +209,10 @@ void RenderingSystemSetRenderParameters(longlong param1, int32_t param2, int32_t
  */
 void FUN_18043bff0(uint64_t param_1)
 {
-    longlong *plVar1;
+    int64_t *plVar1;
     
     // 获取系统句柄
-    plVar1 = (longlong *)(**(code **)(*render_system_data_config + RENDERING_SYSTEM_OFFSET_0X70))(render_system_data_config, &system_memory_cc18);
+    plVar1 = (int64_t *)(**(code **)(*render_system_data_config + RENDERING_SYSTEM_OFFSET_0X70))(render_system_data_config, &system_memory_cc18);
     
     // WARNING: 无法恢复0x00018043c01b处的跳转表，分支过多
     // WARNING: 将间接跳转作为调用处理
@@ -389,7 +389,7 @@ void FUN_18043c160(int32_t *param_1, uint64_t param_2, int32_t param_3, int32_t 
     int32_t uStack_38;
     int32_t uStack_34;
     void *puStack_30;
-    longlong lStack_28;
+    int64_t lStack_28;
     
     uVar1 = INVALID_HANDLE;
     FUN_180627910(&puStack_30);
@@ -422,7 +422,7 @@ void FUN_18043c160(int32_t *param_1, uint64_t param_2, int32_t param_3, int32_t 
 void FUN_18043c230(uint64_t param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
     void *puStack_30;
-    longlong lStack_28;
+    int64_t lStack_28;
     
     FUN_180627910(&puStack_30, param_3, param_3, param_4, INVALID_HANDLE);
     puStack_30 = &global_state_3456_ptr;
@@ -527,10 +527,10 @@ void FUN_18043c350(void)
  */
 void FUN_18043c370(int param_1)
 {
-    ulonglong uVar1;
+    uint64_t uVar1;
     
     uVar1 = FUN_180623ce0();
-    if ((ulonglong)(longlong)param_1 < uVar1 >> COLOR_COMPONENT_BITS) {
+    if ((uint64_t)(int64_t)param_1 < uVar1 >> COLOR_COMPONENT_BITS) {
         // WARNING: 子函数不返回
         FUN_1808fd200();
     }
@@ -551,7 +551,7 @@ void FUN_18043c370(int param_1)
  */
 void FUN_18043c3b0(int32_t *param_1, int32_t *param_2, int32_t param_3, int8_t param_4, int32_t param_5)
 {
-    longlong lVar1;
+    int64_t lVar1;
     int iVar2;
     int8_t auStack_f8[32];
     int32_t uStack_d8;
@@ -564,7 +564,7 @@ void FUN_18043c3b0(int32_t *param_1, int32_t *param_2, int32_t param_3, int8_t p
     int32_t uStack_b0;
     int32_t uStack_ac;
     uint64_t uStack_a8;
-    longlong lStack_a0;
+    int64_t lStack_a0;
     int32_t uStack_98;
     int32_t uStack_94;
     int32_t uStack_90;
@@ -589,11 +589,11 @@ void FUN_18043c3b0(int32_t *param_1, int32_t *param_2, int32_t param_3, int8_t p
     int32_t uStack_28;
     int32_t uStack_24;
     int32_t uStack_20;
-    ulonglong uStack_18;
+    uint64_t uStack_18;
     
     lVar1 = render_system_data_config;
     uStack_a8 = INVALID_HANDLE;
-    uStack_18 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_f8;
+    uStack_18 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_f8;
     uStack_b8 = *param_2;
     uStack_b4 = param_2[1];
     uStack_b0 = param_2[2];
@@ -647,7 +647,7 @@ void FUN_18043c3b0(int32_t *param_1, int32_t *param_2, int32_t param_3, int8_t p
     }
     
     // WARNING: 子函数不返回
-    FUN_1808fc050(uStack_18 ^ (ulonglong)auStack_f8);
+    FUN_1808fc050(uStack_18 ^ (uint64_t)auStack_f8);
 }
 
 /**
@@ -665,12 +665,12 @@ void FUN_18043c3b0(int32_t *param_1, int32_t *param_2, int32_t param_3, int8_t p
  */
 void FUN_18043c510(uint64_t *param_1, uint64_t *param_2, uint64_t *param_3, int32_t param_4, int8_t param_5, int32_t param_6)
 {
-    longlong lVar1;
+    int64_t lVar1;
     int iVar2;
     int8_t auStack_138[32];
     int32_t uStack_118;
     uint64_t uStack_108;
-    longlong lStack_100;
+    int64_t lStack_100;
     uint64_t uStack_f8;
     uint64_t uStack_f0;
     uint64_t uStack_e8;
@@ -688,11 +688,11 @@ void FUN_18043c510(uint64_t *param_1, uint64_t *param_2, uint64_t *param_3, int3
     int32_t uStack_a0;
     int32_t uStack_9c;
     int8_t auStack_98[BUFFER_SIZE_128];
-    ulonglong uStack_18;
+    uint64_t uStack_18;
     
     lVar1 = render_system_data_config;
     uStack_108 = INVALID_HANDLE;
-    uStack_18 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_138;
+    uStack_18 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_138;
     uStack_f8 = *param_2;
     uStack_f0 = param_2[1];
     uStack_e8 = *param_1;
@@ -702,13 +702,13 @@ void FUN_18043c510(uint64_t *param_1, uint64_t *param_2, uint64_t *param_3, int3
     uStack_c8 = param_3[2];
     uStack_c0 = param_3[3];
     uStack_b8 = *(int32_t *)(param_3 + 4);
-    uStack_b4 = *(int32_t *)((longlong)param_3 + 0x24);
+    uStack_b4 = *(int32_t *)((int64_t)param_3 + 0x24);
     uStack_b0 = *(int32_t *)(param_3 + 5);
-    uStack_ac = *(int32_t *)((longlong)param_3 + 0x2c);
+    uStack_ac = *(int32_t *)((int64_t)param_3 + 0x2c);
     uStack_a8 = *(int32_t *)(param_3 + 6);
-    uStack_a4 = *(int32_t *)((longlong)param_3 + 0x34);
+    uStack_a4 = *(int32_t *)((int64_t)param_3 + 0x34);
     uStack_a0 = *(int32_t *)(param_3 + 7);
-    uStack_9c = *(int32_t *)((longlong)param_3 + 0x3c);
+    uStack_9c = *(int32_t *)((int64_t)param_3 + 0x3c);
     
     // 检查渲染系统状态
     if (*(char *)(render_system_data_config + RENDERING_SYSTEM_OFFSET_0X50) != '\0') {
@@ -729,7 +729,7 @@ void FUN_18043c510(uint64_t *param_1, uint64_t *param_2, uint64_t *param_3, int3
     }
     
     // WARNING: 子函数不返回
-    FUN_1808fc050(uStack_18 ^ (ulonglong)auStack_138);
+    FUN_1808fc050(uStack_18 ^ (uint64_t)auStack_138);
 }
 
 /**
@@ -745,8 +745,8 @@ void FUN_18043c510(uint64_t *param_1, uint64_t *param_2, uint64_t *param_3, int3
  */
 void FUN_18043c6b0(uint64_t param_1, uint64_t param_2, uint64_t param_3, int32_t param_4)
 {
-    (**(code **)(*(longlong *)*render_system_data_config + VTABLE_OFFSET_PARAM_PROCESS_0X20))
-            ((longlong *)*render_system_data_config, param_2, param_4, param_1, 0, 1);
+    (**(code **)(*(int64_t *)*render_system_data_config + VTABLE_OFFSET_PARAM_PROCESS_0X20))
+            ((int64_t *)*render_system_data_config, param_2, param_4, param_1, 0, 1);
     return;
 }
 
@@ -764,8 +764,8 @@ void FUN_18043c6b0(uint64_t param_1, uint64_t param_2, uint64_t param_3, int32_t
  */
 void FUN_18043c6e0(uint64_t param_1, uint64_t param_2, uint64_t param_3, int32_t param_4, int8_t param_5)
 {
-    (**(code **)(*(longlong *)*render_system_data_config + VTABLE_OFFSET_PARAM_PROCESS_0X28))
-            ((longlong *)*render_system_data_config, param_2, param_4, param_1, param_5, 1);
+    (**(code **)(*(int64_t *)*render_system_data_config + VTABLE_OFFSET_PARAM_PROCESS_0X28))
+            ((int64_t *)*render_system_data_config, param_2, param_4, param_1, param_5, 1);
     return;
 }
 
@@ -783,7 +783,7 @@ void FUN_18043c6e0(uint64_t param_1, uint64_t param_2, uint64_t param_3, int32_t
 void FUN_18043c740(uint64_t param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
     void *puStack_30;
-    longlong lStack_28;
+    int64_t lStack_28;
     
     FUN_180627910(&puStack_30, param_1, param_3, param_4, INVALID_HANDLE);
     FUN_18016ae30();
@@ -805,18 +805,18 @@ void FUN_18043c740(uint64_t param_1, uint64_t param_2, uint64_t param_3, uint64_
  * @return 资源管理器指针
  * @note 函数地址0x00018043c7a0
  */
-longlong *FUN_18043c7a0(longlong *param_1, longlong param_2)
+int64_t *FUN_18043c7a0(int64_t *param_1, int64_t param_2)
 {
-    longlong *plVar1;
+    int64_t *plVar1;
     int32_t uVar2;
     int32_t uStack_c;
     
     // 获取资源管理器
-    plVar1 = *(longlong **)(param_2 + RENDERING_SYSTEM_OFFSET_0X158);
-    if (plVar1 != (longlong *)0x0) {
+    plVar1 = *(int64_t **)(param_2 + RENDERING_SYSTEM_OFFSET_0X158);
+    if (plVar1 != (int64_t *)0x0) {
         uVar2 = (**(code **)(*plVar1 + VTABLE_OFFSET_GET_DATA))(plVar1);
         (**(code **)(*plVar1 + VTABLE_OFFSET_PROCESS_DATA))(plVar1);
-        *param_1 = (longlong)plVar1;
+        *param_1 = (int64_t)plVar1;
         param_1[1] = CONCAT44(uStack_c, uVar2);
         return param_1;
     }
@@ -835,19 +835,19 @@ longlong *FUN_18043c7a0(longlong *param_1, longlong param_2)
  * @return 资源数据指针
  * @note 函数地址0x00018043c820
  */
-int32_t *FUN_18043c820(int32_t *param_1, longlong param_2)
+int32_t *FUN_18043c820(int32_t *param_1, int64_t param_2)
 {
     int32_t uVar1;
     uint64_t uVar2;
-    longlong *plVar3;
+    int64_t *plVar3;
     int32_t uStack_20;
     int32_t uStack_1c;
     int32_t uStack_14;
     
     // 分配资源内存
     uVar2 = FUN_18062b1e0(system_memory_pool_ptr, 0x298, MEMORY_ALIGNMENT_8, 3, INVALID_HANDLE);
-    plVar3 = (longlong *)FUN_1802f5f70(uVar2);
-    if (plVar3 != (longlong *)0x0) {
+    plVar3 = (int64_t *)FUN_1802f5f70(uVar2);
+    if (plVar3 != (int64_t *)0x0) {
         (**(code **)(*plVar3 + VTABLE_OFFSET_PROCESS_DATA))(plVar3);
     }
     
@@ -857,7 +857,7 @@ int32_t *FUN_18043c820(int32_t *param_1, longlong param_2)
     }
     
     // 获取资源状态
-    if (plVar3 == (longlong *)0x0) {
+    if (plVar3 == (int64_t *)0x0) {
         uVar1 = 0xffffffff;
     }
     else {
@@ -867,12 +867,12 @@ int32_t *FUN_18043c820(int32_t *param_1, longlong param_2)
     
     // 返回资源数据
     uStack_20 = SUB84(plVar3, 0);
-    uStack_1c = (int32_t)((ulonglong)plVar3 >> 0x20);
+    uStack_1c = (int32_t)((uint64_t)plVar3 >> 0x20);
     *param_1 = uStack_20;
     param_1[1] = uStack_1c;
     param_1[2] = uVar1;
     param_1[3] = uStack_14;
-    if (plVar3 != (longlong *)0x0) {
+    if (plVar3 != (int64_t *)0x0) {
         (**(code **)(*plVar3 + VTABLE_OFFSET_RENDER_DATA))(plVar3);
     }
     return param_1;
@@ -887,7 +887,7 @@ int32_t *FUN_18043c820(int32_t *param_1, longlong param_2)
  * @return 转换后的颜色值
  * @note 函数地址0x00018043c8e0
  */
-uint FUN_18043c8e0(longlong param_1)
+uint FUN_18043c8e0(int64_t param_1)
 {
     float fVar1;
     float fVar2;
@@ -913,25 +913,25 @@ uint FUN_18043c8e0(longlong param_1)
         dVar11 = (double)pow((double)fVar2, 0.3f);
         
         // 转换为8位颜色分量
-        uVar6 = (uint)(longlong)(fVar3 * COLOR_NORMALIZATION_FACTOR);
+        uVar6 = (uint)(int64_t)(fVar3 * COLOR_NORMALIZATION_FACTOR);
         uVar8 = MAX_COLOR_COMPONENT;
         if (uVar6 < MAX_COLOR_COMPONENT) {
             uVar8 = uVar6;
         }
         
-        uVar7 = (uint)(longlong)((float)dVar9 * COLOR_NORMALIZATION_FACTOR);
+        uVar7 = (uint)(int64_t)((float)dVar9 * COLOR_NORMALIZATION_FACTOR);
         uVar6 = MAX_COLOR_COMPONENT;
         if (uVar7 < MAX_COLOR_COMPONENT) {
             uVar6 = uVar7;
         }
         
-        uVar5 = (uint)(longlong)((float)dVar10 * COLOR_NORMALIZATION_FACTOR);
+        uVar5 = (uint)(int64_t)((float)dVar10 * COLOR_NORMALIZATION_FACTOR);
         uVar7 = MAX_COLOR_COMPONENT;
         if (uVar5 < MAX_COLOR_COMPONENT) {
             uVar7 = uVar5;
         }
         
-        uVar4 = (uint)(longlong)((float)dVar11 * COLOR_NORMALIZATION_FACTOR);
+        uVar4 = (uint)(int64_t)((float)dVar11 * COLOR_NORMALIZATION_FACTOR);
         uVar5 = MAX_COLOR_COMPONENT;
         if (uVar4 < MAX_COLOR_COMPONENT) {
             uVar5 = uVar4;
@@ -952,7 +952,7 @@ uint FUN_18043c8e0(longlong param_1)
  * @return 转换后的颜色值
  * @note 函数地址0x00018043c8f5
  */
-uint FUN_18043c8f5(longlong param_1)
+uint FUN_18043c8f5(int64_t param_1)
 {
     float fVar1;
     float fVar2;
@@ -977,25 +977,25 @@ uint FUN_18043c8f5(longlong param_1)
     dVar11 = (double)pow((double)fVar2, 0.3f);
     
     // 转换为8位颜色分量
-    uVar6 = (uint)(longlong)(fVar3 * COLOR_NORMALIZATION_FACTOR);
+    uVar6 = (uint)(int64_t)(fVar3 * COLOR_NORMALIZATION_FACTOR);
     uVar8 = MAX_COLOR_COMPONENT;
     if (uVar6 < MAX_COLOR_COMPONENT) {
         uVar8 = uVar6;
     }
     
-    uVar7 = (uint)(longlong)((float)dVar9 * COLOR_NORMALIZATION_FACTOR);
+    uVar7 = (uint)(int64_t)((float)dVar9 * COLOR_NORMALIZATION_FACTOR);
     uVar6 = MAX_COLOR_COMPONENT;
     if (uVar7 < MAX_COLOR_COMPONENT) {
         uVar6 = uVar7;
     }
     
-    uVar5 = (uint)(longlong)((float)dVar10 * COLOR_NORMALIZATION_FACTOR);
+    uVar5 = (uint)(int64_t)((float)dVar10 * COLOR_NORMALIZATION_FACTOR);
     uVar7 = MAX_COLOR_COMPONENT;
     if (uVar5 < MAX_COLOR_COMPONENT) {
         uVar7 = uVar5;
     }
     
-    uVar4 = (uint)(longlong)((float)dVar11 * COLOR_NORMALIZATION_FACTOR);
+    uVar4 = (uint)(int64_t)((float)dVar11 * COLOR_NORMALIZATION_FACTOR);
     uVar5 = MAX_COLOR_COMPONENT;
     if (uVar4 < MAX_COLOR_COMPONENT) {
         uVar5 = uVar4;
@@ -1027,14 +1027,14 @@ uint64_t FUN_18043c9fc(void)
  * @param param_2 颜色值参数
  * @note 函数地址0x00018043ca10
  */
-void FUN_18043ca10(longlong *param_1, uint param_2)
+void FUN_18043ca10(int64_t *param_1, uint param_2)
 {
     float fStack_18;
     float fStack_14;
     float fStack_10;
     float fStack_c;
     
-    if (param_1 != (longlong *)0x0) {
+    if (param_1 != (int64_t *)0x0) {
         // 将整数颜色转换为浮点颜色
         fStack_c = (float)(param_2 >> COLOR_COMPONENT_BITS) * COLOR_NORMALIZATION_INVERSE;
         fStack_18 = (float)((param_2 >> COLOR_COMPONENT_BITS) & COLOR_COMPONENT_MASK) * COLOR_NORMALIZATION_INVERSE;
@@ -1059,7 +1059,7 @@ void FUN_18043ca10(longlong *param_1, uint param_2)
  * @param param_5 参数4
  * @note 函数地址0x00018043caa0
  */
-void FUN_18043caa0(longlong param_1, int32_t param_2, int32_t param_3, int32_t param_4, int32_t param_5)
+void FUN_18043caa0(int64_t param_1, int32_t param_2, int32_t param_3, int32_t param_4, int32_t param_5)
 {
     if (param_1 != 0) {
         *(int32_t *)(param_1 + RENDER_PARAM_OFFSET_0X60) = param_2;

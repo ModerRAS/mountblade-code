@@ -69,7 +69,7 @@ typedef float TextureCoordinate;       // 纹理坐标类型
 /* 指针类型别名 */
 typedef float *FloatPointer;           // 浮点指针类型
 typedef uint *UintPointer;             // 无符号整数指针类型
-typedef longlong *LongLongPointer;     // 长整型指针类型
+typedef int64_t *LongLongPointer;     // 长整型指针类型
 typedef uint64_t *Undefined8Pointer; // 未定义8字节指针类型
 typedef void *FunctionPointer;         // 函数指针类型
 
@@ -175,14 +175,14 @@ void RenderingSystem_AdvancedParticleProcessor(void)
     FloatPointer float_ptr;
     void *register_rax;
     RandomSeed random_val;
-    longlong temp_long;
-    ulonglong ulong_val;
-    longlong temp_long2;
+    int64_t temp_long;
+    uint64_t ulong_val;
+    int64_t temp_long2;
     void *undef_ptr;
     RandomSeed random_val2;
     RandomSeed register_ebx;
-    longlong register_rbp;
-    longlong register_rsi;
+    int64_t register_rbp;
+    int64_t register_rsi;
     RandomSeed random_val3;
     RandomSeed random_val4;
     void *undef_ptr2;
@@ -219,7 +219,7 @@ void RenderingSystem_AdvancedParticleProcessor(void)
     /* 初始化渲染参数 */
     coord_x = (float)(**(FunctionPointer **)(register_rax + OFFSET_0x30))(register_r13);
     coord_z = HALF_VALUE;
-    temp_long = register_r13[*(longlong *)(register_rbp + 0x18) + OFFSET_0xf2];
+    temp_long = register_r13[*(int64_t *)(register_rbp + 0x18) + OFFSET_0xf2];
     
     do {
         /* 计算坐标变换参数 */
@@ -237,7 +237,7 @@ void RenderingSystem_AdvancedParticleProcessor(void)
         if (*float_ptr <= register_xmm10_da) {
             /* 处理简单粒子情况 */
             if (0 < (int)random_val) {
-                ulong_val = (ulonglong)random_val;
+                ulong_val = (uint64_t)random_val;
                 do {
                     /* 生成随机数序列 */
                     random_val = register_ebx ^ register_ebx << RANDOM_SEED_SHIFT_1;
@@ -257,7 +257,7 @@ void RenderingSystem_AdvancedParticleProcessor(void)
         }
         else if (0 < (int)random_val) {
             /* 处理复杂粒子情况 */
-            *(ulonglong *)(register_rbp + 0x40) = (ulonglong)random_val;
+            *(uint64_t *)(register_rbp + 0x40) = (uint64_t)random_val;
             *(int32_t *)(register_rbp + 0x80) = 0;
             *(int32_t *)(register_rbp + 0x84) = MAX_FLOAT_VALUE;
             
@@ -298,7 +298,7 @@ void RenderingSystem_AdvancedParticleProcessor(void)
                 }
                 
                 /* 计算变换参数 */
-                temp_var1 = register_r13[*(longlong *)(register_rbp + 0x18) + OFFSET_0xe2];
+                temp_var1 = register_r13[*(int64_t *)(register_rbp + 0x18) + OFFSET_0xe2];
                 coord_y = register_xmm12_da / ((float)*(int *)(register_r13 + OFFSET_0x0e) - register_xmm12_da);
                 *(float *)(register_rbp + 0x70) = (rotation_angle - coord_z * rotation_angle) * (register_xmm12_da / coord_w) * coord_y;
                 *(float *)(register_rbp + 0x74) = (distance_val - coord_z * scale_factor) * (register_xmm12_da / coord_w) * coord_y;
@@ -306,7 +306,7 @@ void RenderingSystem_AdvancedParticleProcessor(void)
                 float_ptr = (FloatPointer)FUN_1802a11e0(temp_var1, register_rbp + 0x1c8, temp_var2, 1);
                 coord_z = *float_ptr;
                 random_val = 0;
-                random_val4 = (uint)(*(longlong *)(*(longlong *)(register_rbp + 0x20) + 0x10) - *(longlong *)(*(longlong *)(register_rbp + 0x20) + 8) >> 3);
+                random_val4 = (uint)(*(int64_t *)(*(int64_t *)(register_rbp + 0x20) + 0x10) - *(int64_t *)(*(int64_t *)(register_rbp + 0x20) + 8) >> 3);
                 
                 if (random_val4 != 0) {
                     do {
@@ -315,9 +315,9 @@ void RenderingSystem_AdvancedParticleProcessor(void)
                 }
                 
                 /* 检查渲染标志 */
-                if ((*(uint *)(*(longlong *)(register_rbp + -0x40) + 0x60) & FLAG_0x400000) == 0) {
+                if ((*(uint *)(*(int64_t *)(register_rbp + -0x40) + 0x60) & FLAG_0x400000) == 0) {
                     rotation_angle = (float)register_r15 - rotation_angle;
-                    scale_factor = (float)((ulonglong)register_r15 >> 0x20) - distance_val;
+                    scale_factor = (float)((uint64_t)register_r15 >> 0x20) - distance_val;
                     *(uint64_t *)(register_rbp + -0x50) = register_r12;
                     coord_w = rotation_angle - *(float *)(register_rbp + -0x50);
                     
@@ -367,14 +367,14 @@ void RenderingSystem_AdvancedParticleProcessor(void)
                 if ((*(float *)(register_rbp + -0x30) <= coord_z && coord_z != *(float *)(register_rbp + -0x30)) && (condition_flag)) {
                     if (*(float *)(register_rbp + -0x28) == register_xmm10_da) {
                         /* 执行高级粒子渲染 */
-                        float_ptr = (FloatPointer)FUN_1802a11e0(*(uint64_t *)(*(longlong *)(register_rbp + -0x58) + 0x818), register_rbp + 0x1d8, temp_var2, 1);
+                        float_ptr = (FloatPointer)FUN_1802a11e0(*(uint64_t *)(*(int64_t *)(register_rbp + -0x58) + 0x818), register_rbp + 0x1d8, temp_var2, 1);
                         coord_z = *(float *)(register_rbp + -8) * *float_ptr + *(float *)(register_rbp + -4);
-                        random_val = *(uint *)(*(longlong *)(register_rbp + -0x40) + 0x60);
+                        random_val = *(uint *)(*(int64_t *)(register_rbp + -0x40) + 0x60);
                         *(float *)(register_rbp + -0x68) = coord_z;
                         distance_val = register_xmm10_da;
                         
                         if ((random_val >> FLAG_SHIFT_0x11 & 1) == 0) {
-                            if (((random_val >> FLAG_SHIFT_0x19 & 1) != 0) && (temp_long = *(longlong *)(*(longlong *)(register_rbp + -0x58) + 0x810), temp_long != 0)) {
+                            if (((random_val >> FLAG_SHIFT_0x19 & 1) != 0) && (temp_long = *(int64_t *)(*(int64_t *)(register_rbp + -0x58) + 0x810), temp_long != 0)) {
                                 /* 处理向量归一化 */
                                 float_ptr = (FloatPointer)FUN_1802a11e0(temp_long, register_rbp + 0x1e8, temp_var2, 1);
                                 *(int32_t *)(register_rbp + 0xa8) = 0;
@@ -427,7 +427,7 @@ void RenderingSystem_AdvancedParticleProcessor(void)
                                 scale_factor = align_array._0_4_;
                                 rotation_angle = scale_factor * HALF_VALUE * (THREE_VALUE - rotation_angle * scale_factor * scale_factor);
                                 *(int32_t *)(register_rbp + 0xcc) = MAX_FLOAT_VALUE;
-                                random_val = *(uint *)(*(longlong *)(register_rbp + -0x40) + 0x60);
+                                random_val = *(uint *)(*(int64_t *)(register_rbp + -0x40) + 0x60);
                                 *(float *)(register_rbp + 0xc0) = register_xmm12_da * coord_y * rotation_angle - distance_val * rotation_angle * rotation_angle;
                                 *(float *)(register_rbp + 0xc4) = register_xmm10_da * rotation_angle * rotation_angle - register_xmm12_da * coord_w * rotation_angle;
                                 *(float *)(register_rbp + 200) = distance_val * coord_w * rotation_angle - register_xmm10_da * coord_y * rotation_angle;
@@ -485,7 +485,7 @@ void RenderingSystem_AdvancedParticleProcessor(void)
                 *long_ptr = *long_ptr + -1;
                 register_xmm11_da = *(float *)(register_rbp + 4);
                 register_r13 = *(uint64_t **)(register_rbp + -0x58);
-                register_rsi = *(longlong *)(register_rbp + -0x20);
+                register_rsi = *(int64_t *)(register_rbp + -0x20);
             } while (*long_ptr != 0);
             
             register_r14d = *(uint *)(register_rbp + 8);
@@ -495,7 +495,7 @@ void RenderingSystem_AdvancedParticleProcessor(void)
         random_val = *(uint *)(register_rbp + -0x18);
         loop_counter = *(int *)(register_rbp + 0xc);
         coord_z = *(float *)(register_rbp + 0x10);
-        temp_long = *(longlong *)(register_rbp + -0x40);
+        temp_long = *(int64_t *)(register_rbp + -0x40);
         
         if (loop_counter <= (int)random_val) {
             random_val2 = *(uint *)(register_rbp + -0x24);
@@ -512,14 +512,14 @@ void RenderingSystem_AdvancedParticleProcessor(void)
                         if (undef_ptr != (void *)0x0) {
                             undef_ptr2 = undef_ptr;
                         }
-                        temp_long = (*(longlong **)(register_rbp + 0x68))[1] - **(longlong **)(register_rbp + 0x68);
+                        temp_long = (*(int64_t **)(register_rbp + 0x68))[1] - **(int64_t **)(register_rbp + 0x68);
                         undef_ptr = &unknown_var_3792_ptr;
                     }
                     else {
                         if (undef_ptr != (void *)0x0) {
                             undef_ptr2 = undef_ptr;
                         }
-                        temp_long = (*(longlong **)(register_rbp + 0x60))[1] - **(longlong **)(register_rbp + 0x60);
+                        temp_long = (*(int64_t **)(register_rbp + 0x60))[1] - **(int64_t **)(register_rbp + 0x60);
                         undef_ptr = &unknown_var_3824_ptr;
                     }
                     
@@ -598,28 +598,28 @@ void RenderingSystem_AdvancedParticleProcessor(void)
         /* 最终粒子处理 */
         coord_z = HALF_VALUE;
         random_val4 = *(uint *)(register_rsi + 0x48);
-        temp_long = *(longlong *)(register_rsi + 0x40);
+        temp_long = *(int64_t *)(register_rsi + 0x40);
         *(uint *)(register_rbp + -0x18) = random_val + 1;
         random_val3 = random_val >> 3;
-        ulong_val = (ulonglong)(longlong)(int)(random_val3 * 1000 + *(uint *)(register_rbp + -0x38)) % (ulonglong)random_val4;
+        ulong_val = (uint64_t)(int64_t)(int)(random_val3 * 1000 + *(uint *)(register_rbp + -0x38)) % (uint64_t)random_val4;
         
         for (data_pointer = *(UintPointer **)(temp_long + ulong_val * 8); data_pointer != (UintPointer *)0x0; data_pointer = *(UintPointer **)(data_pointer + 4)) {
             if ((random_val3 == *data_pointer) && (*(uint *)(register_rbp + -0x38) == data_pointer[1])) {
-                temp_long2 = *(longlong *)(register_rsi + 0x48);
+                temp_long2 = *(int64_t *)(register_rsi + 0x48);
                 *(UintPointer **)(register_rbp + 0x160) = data_pointer;
                 long_ptr = (LongLongPointer)(register_rbp + 0x160);
-                *(ulonglong *)(register_rbp + 0x168) = temp_long + ulong_val * 8;
+                *(uint64_t *)(register_rbp + 0x168) = temp_long + ulong_val * 8;
                 goto LAB_180377195;
             }
         }
         
-        temp_long2 = *(longlong *)(register_rsi + 0x48);
+        temp_long2 = *(int64_t *)(register_rsi + 0x48);
         *(uint64_t *)(register_rbp + 0x170) = *(uint64_t *)(temp_long + temp_long2 * 8);
         long_ptr = (LongLongPointer)(register_rbp + 0x170);
-        *(longlong *)(register_rbp + 0x178) = temp_long + temp_long2 * 8;
+        *(int64_t *)(register_rbp + 0x178) = temp_long + temp_long2 * 8;
         
     LAB_180377195:
-        if (*long_ptr == *(longlong *)(temp_long + temp_long2 * 8)) {
+        if (*long_ptr == *(int64_t *)(temp_long + temp_long2 * 8)) {
             register_r13 = (uint64_t *)0x0;
         }
         else {
@@ -658,9 +658,9 @@ void RenderingSystem_AdvancedParticleProcessor(void)
             register_xmm6_da = register_xmm12_da;
         }
         
-        if ((byte_flag != '\0') || (temp_long = register_r13[*(longlong *)(register_rbp + 0x18) + OFFSET_0xf2], temp_long == 0)) {
+        if ((byte_flag != '\0') || (temp_long = register_r13[*(int64_t *)(register_rbp + 0x18) + OFFSET_0xf2], temp_long == 0)) {
             if (0 < (int)(register_xmm6_da * register_xmm6_da)) {
-                ulong_val = (ulonglong)(uint)(int)(register_xmm6_da * register_xmm6_da);
+                ulong_val = (uint64_t)(uint)(int)(register_xmm6_da * register_xmm6_da);
                 do {
                     random_val = register_ebx ^ register_ebx << RANDOM_SEED_SHIFT_1;
                     random_val = random_val ^ random_val >> RANDOM_SEED_SHIFT_2;
@@ -718,34 +718,34 @@ void RenderingSystem_AdvancedParticleProcessor(void)
  * @param param_4 索引参数
  * @return void 无返回值
  */
-void RenderingSystem_DataSearchProcessor(longlong param_1, ulonglong *param_2, int param_3, int param_4)
+void RenderingSystem_DataSearchProcessor(int64_t param_1, uint64_t *param_2, int param_3, int param_4)
 {
-    longlong temp_long1;
+    int64_t temp_long1;
     Undefined8Pointer ptr2;
-    longlong temp_long3;
+    int64_t temp_long3;
     Undefined8Pointer ptr4;
     Undefined8Pointer ptr5;
-    longlong temp_long6;
+    int64_t temp_long6;
     int loop_counter;
     LongLongPointer ptr8;
     
     loop_counter = 0;
-    ptr8 = (LongLongPointer)(((longlong)param_4 + 0x10b) * 0x20 + param_1);
+    ptr8 = (LongLongPointer)(((int64_t)param_4 + 0x10b) * 0x20 + param_1);
     temp_long3 = *ptr8;
     
     if (ptr8[1] - temp_long3 >> 3 != 0) {
         temp_long6 = 0;
         do {
-            if (*(int *)(*(longlong *)(temp_long6 + temp_long3) + 0x30) == param_3) {
+            if (*(int *)(*(int64_t *)(temp_long6 + temp_long3) + 0x30) == param_3) {
                 ptr5 = (Undefined8Pointer)param_2[1];
                 
                 if (ptr5 < (Undefined8Pointer)param_2[2]) {
-                    param_2[1] = (ulonglong)(ptr5 + 1);
+                    param_2[1] = (uint64_t)(ptr5 + 1);
                     *ptr5 = *(uint64_t *)(temp_long6 + temp_long3);
                 }
                 else {
                     ptr4 = (Undefined8Pointer)*param_2;
-                    temp_long1 = (longlong)ptr5 - (longlong)ptr4 >> 3;
+                    temp_long1 = (int64_t)ptr5 - (int64_t)ptr4 >> 3;
                     
                     if (temp_long1 == 0) {
                         temp_long1 = 1;
@@ -763,7 +763,7 @@ void RenderingSystem_DataSearchProcessor(longlong param_1, ulonglong *param_2, i
                     }
                     
                     if (ptr4 != ptr5) {
-                        memmove(ptr2, ptr4, (longlong)ptr5 - (longlong)ptr4);
+                        memmove(ptr2, ptr4, (int64_t)ptr5 - (int64_t)ptr4);
                     }
                     
                     *ptr2 = *(uint64_t *)(temp_long6 + temp_long3);
@@ -772,16 +772,16 @@ void RenderingSystem_DataSearchProcessor(longlong param_1, ulonglong *param_2, i
                         FUN_18064e900();
                     }
                     
-                    param_2[2] = (ulonglong)(ptr2 + temp_long1);
-                    *param_2 = (ulonglong)ptr2;
-                    param_2[1] = (ulonglong)(ptr2 + 1);
+                    param_2[2] = (uint64_t)(ptr2 + temp_long1);
+                    *param_2 = (uint64_t)ptr2;
+                    param_2[1] = (uint64_t)(ptr2 + 1);
                 }
             }
             
             temp_long3 = *ptr8;
             loop_counter = loop_counter + 1;
             temp_long6 = temp_long6 + 8;
-        } while ((ulonglong)(longlong)loop_counter < (ulonglong)(ptr8[1] - temp_long3 >> 3));
+        } while ((uint64_t)(int64_t)loop_counter < (uint64_t)(ptr8[1] - temp_long3 >> 3));
     }
     
     return;
@@ -803,30 +803,30 @@ void RenderingSystem_DataSearchProcessor(longlong param_1, ulonglong *param_2, i
  * @param param_3 搜索条件
  * @return void 无返回值
  */
-void RenderingSystem_AlternateDataSearch(uint64_t param_1, longlong param_2, int param_3)
+void RenderingSystem_AlternateDataSearch(uint64_t param_1, int64_t param_2, int param_3)
 {
-    longlong temp_long1;
+    int64_t temp_long1;
     Undefined8Pointer ptr2;
     Undefined8Pointer ptr3;
-    ulonglong *register_rbx;
+    uint64_t *register_rbx;
     Undefined8Pointer ptr4;
-    longlong temp_long5;
+    int64_t temp_long5;
     int register_r13d;
     LongLongPointer register_r15;
     int stack_param_60;
     
     temp_long5 = 0;
     do {
-        if (*(int *)(*(longlong *)(temp_long5 + param_2) + 0x30) == param_3) {
+        if (*(int *)(*(int64_t *)(temp_long5 + param_2) + 0x30) == param_3) {
             ptr4 = (Undefined8Pointer)register_rbx[1];
             
             if (ptr4 < (Undefined8Pointer)register_rbx[2]) {
-                register_rbx[1] = (ulonglong)(ptr4 + 1);
+                register_rbx[1] = (uint64_t)(ptr4 + 1);
                 *ptr4 = *(uint64_t *)(temp_long5 + param_2);
             }
             else {
                 ptr3 = (Undefined8Pointer)*register_rbx;
-                temp_long1 = (longlong)ptr4 - (longlong)ptr3 >> 3;
+                temp_long1 = (int64_t)ptr4 - (int64_t)ptr3 >> 3;
                 
                 if (temp_long1 == 0) {
                     temp_long1 = 1;
@@ -844,7 +844,7 @@ void RenderingSystem_AlternateDataSearch(uint64_t param_1, longlong param_2, int
                 }
                 
                 if (ptr3 != ptr4) {
-                    memmove(ptr2, ptr3, (longlong)ptr4 - (longlong)ptr3);
+                    memmove(ptr2, ptr3, (int64_t)ptr4 - (int64_t)ptr3);
                 }
                 
                 *ptr2 = *(uint64_t *)(temp_long5 + param_2);
@@ -853,9 +853,9 @@ void RenderingSystem_AlternateDataSearch(uint64_t param_1, longlong param_2, int
                     FUN_18064e900();
                 }
                 
-                register_rbx[2] = (ulonglong)(ptr2 + temp_long1);
-                *register_rbx = (ulonglong)ptr2;
-                register_rbx[1] = (ulonglong)(ptr2 + 1);
+                register_rbx[2] = (uint64_t)(ptr2 + temp_long1);
+                *register_rbx = (uint64_t)ptr2;
+                register_rbx[1] = (uint64_t)(ptr2 + 1);
                 param_3 = stack_param_60;
             }
         }
@@ -864,7 +864,7 @@ void RenderingSystem_AlternateDataSearch(uint64_t param_1, longlong param_2, int
         register_r13d = register_r13d + 1;
         temp_long5 = temp_long5 + 8;
         
-        if ((ulonglong)(register_r15[1] - param_2 >> 3) <= (ulonglong)(longlong)register_r13d) {
+        if ((uint64_t)(register_r15[1] - param_2 >> 3) <= (uint64_t)(int64_t)register_r13d) {
             return;
         }
     } while( true );

@@ -68,15 +68,15 @@ typedef struct {
  */
 uint32_t extract_render_data_block(void* context, int32_t offset, int32_t size, void** data_ptr)
 {
-    longlong* context_ptr = (longlong*)context;
+    int64_t* context_ptr = (int64_t*)context;
     int data_size;
     int max_size;
     void* result_ptr;
     
     // 计算实际数据大小
-    data_size = size - 1 + *(int*)((longlong)context_ptr + 0xc);
-    if ((*(int*)((longlong)context_ptr + 4) < data_size) || (data_size < 0)) {
-        data_size = *(int*)((longlong)context_ptr + 4);
+    data_size = size - 1 + *(int*)((int64_t)context_ptr + 0xc);
+    if ((*(int*)((int64_t)context_ptr + 4) < data_size) || (data_size < 0)) {
+        data_size = *(int*)((int64_t)context_ptr + 4);
     }
     *(int*)(context_ptr + 1) = data_size;
     
@@ -87,15 +87,15 @@ uint32_t extract_render_data_block(void* context, int32_t offset, int32_t size, 
     
     // 验证参数有效性
     if ((((-1 < offset) && (result_ptr = 0, -1 < data_size)) &&
-         (valid_size = 0, result_ptr = 0, offset <= *(int*)((longlong)context_ptr + 4))) &&
-        (result_ptr = 0, data_size <= *(int*)((longlong)context_ptr + 4) - offset)) {
-        result_ptr = (void*)((longlong)offset + *context_ptr);
+         (valid_size = 0, result_ptr = 0, offset <= *(int*)((int64_t)context_ptr + 4))) &&
+        (result_ptr = 0, data_size <= *(int*)((int64_t)context_ptr + 4) - offset)) {
+        result_ptr = (void*)((int64_t)offset + *context_ptr);
         valid_size = data_size;
     }
     
     *data_ptr = result_ptr;
-    *(uint32_t*)((longlong)data_ptr + 4) = 0;
-    *(int*)((longlong)data_ptr + 0xc) = valid_size;
+    *(uint32_t*)((int64_t)data_ptr + 4) = 0;
+    *(int*)((int64_t)data_ptr + 0xc) = valid_size;
     return valid_size;
 }
 
@@ -112,13 +112,13 @@ uint32_t* find_render_data_marker(uint32_t* output, void* input, uint32_t marker
     uint8_t byte3;
     uint32_t value;
     uint64_t size;
-    longlong position;
+    int64_t position;
     uint32_t current_size;
     uint32_t temp_size;
     uint32_t result;
     uint32_t stack_data[4];
     
-    current_size = *(uint32_t*)((longlong)input + 0xc);
+    current_size = *(uint32_t*)((int64_t)input + 0xc);
     size = (uint64_t)current_size;
     result = 0;
     
@@ -143,7 +143,7 @@ uint32_t* find_render_data_marker(uint32_t* output, void* input, uint32_t marker
                 
                 // 检查结束标记
                 if ((current_size < temp_size) && 
-                    (*(char*)((longlong)current_size + *input) == '\x1e')) {
+                    (*(char*)((int64_t)current_size + *input) == '\x1e')) {
                     result = current_size + 1;
                     size = (uint64_t)result;
                     
@@ -162,7 +162,7 @@ uint32_t* find_render_data_marker(uint32_t* output, void* input, uint32_t marker
                         while (((current_size = (int)size, (byte3 & 0xf) != 0xf && 
                                ((byte3 & 0xf0) != 0xf0)) && (current_size < temp_size))) {
 LAB_FOUND_MARKER:
-                            byte3 = *(uint8_t*)((longlong)current_size + *input);
+                            byte3 = *(uint8_t*)((int64_t)current_size + *input);
                             *(uint32_t*)(input + 1) = current_size + 1U;
                             size = (uint64_t)(current_size + 1U);
                         }
@@ -170,8 +170,8 @@ LAB_FOUND_MARKER:
                 }
                 else {
                     func_0x00018028b140(input);
-                    size = (uint64_t)*(uint32_t*)((longlong)input + 0xc);
-                    temp_size = (uint64_t)*(uint32_t*)((longlong)input + 0xc);
+                    size = (uint64_t)*(uint32_t*)((int64_t)input + 0xc);
+                    temp_size = (uint64_t)*(uint32_t*)((int64_t)input + 0xc);
                     result = (uint64_t)*(uint32_t*)(input + 1);
                 }
                 byte3 = func_0x00018028afe0();
@@ -182,7 +182,7 @@ LAB_FOUND_MARKER:
             
             if (current_size < (int)temp_size) {
                 size = (uint64_t)(current_size + 1U);
-                byte3 = *(uint8_t*)((longlong)current_size + *input);
+                byte3 = *(uint8_t*)((int64_t)current_size + *input);
                 *(uint32_t*)(input + 1) = current_size + 1U;
             }
             else {
@@ -197,7 +197,7 @@ LAB_FOUND_MARKER:
                 temp_size = (int)size;
                 if (temp_size < (int)temp_size) {
                     size = (uint64_t)(temp_size + 1U);
-                    byte3 = *(uint8_t*)((longlong)temp_size + *input);
+                    byte3 = *(uint8_t*)((int64_t)temp_size + *input);
                     *(uint32_t*)(input + 1) = temp_size + 1U;
                 }
                 else {
@@ -221,7 +221,7 @@ LAB_FOUND_MARKER:
                     goto LAB_RETURN_RESULT;
                 }
                 
-                position = (longlong)temp_size + *input;
+                position = (int64_t)temp_size + *input;
                 stack_data[2] = current_size;
                 goto LAB_RETURN_OUTPUT;
             }
@@ -260,13 +260,13 @@ void* parse_render_resource_data(void* output, void* input, int32_t param)
     uint8_t byte1, byte2;
     uint8_t byte3;
     int offset;
-    longlong position;
+    int64_t position;
     uint64_t size1, size2;
     int result_size;
     uint32_t value1, value2;
     int output_size;
     
-    input_size = *(int*)((longlong)input + 0xc);
+    input_size = *(int*)((int64_t)input + 0xc);
     offset = 0;
     
     // 处理负数大小
@@ -274,7 +274,7 @@ void* parse_render_resource_data(void* output, void* input, int32_t param)
         offset = input_size;
     }
     *(int*)(input + 1) = offset;
-    position = (longlong)offset;
+    position = (int64_t)offset;
     
     // 读取前两个字节
     if (position < input_size) {
@@ -296,7 +296,7 @@ void* parse_render_resource_data(void* output, void* input, int32_t param)
     
     // 读取第三个字节作为大小
     if (offset < input_size) {
-        position = (longlong)offset;
+        position = (int64_t)offset;
         offset = offset + 1;
         size1 = (uint64_t)*(uint8_t*)(position + *input);
     }
@@ -320,7 +320,7 @@ void* parse_render_resource_data(void* output, void* input, int32_t param)
     if ((uint8_t)size1 != '\0') {
         do {
             if (offset < input_size) {
-                position = (longlong)offset;
+                position = (int64_t)offset;
                 offset = offset + 1;
                 byte3 = *(uint8_t*)(position + *input);
             }
@@ -337,7 +337,7 @@ void* parse_render_resource_data(void* output, void* input, int32_t param)
     if (result_size != 0) {
         do {
             if (offset < input_size) {
-                position = (longlong)offset;
+                position = (int64_t)offset;
                 offset = offset + 1;
                 byte3 = *(uint8_t*)(position + *input);
             }
@@ -359,13 +359,13 @@ void* parse_render_resource_data(void* output, void* input, int32_t param)
     if ((((-1 < offset) && (position = 0, -1 < result_size)) && 
          (output_size = 0, position = 0, offset <= input_size)) &&
         (position = 0, result_size <= input_size - offset)) {
-        position = (longlong)offset + *input;
+        position = (int64_t)offset + *input;
         output_size = result_size;
     }
     
     *(void**)output = position;
-    *(uint32_t*)((longlong)output + 4) = 0;
-    *(int*)((longlong)output + 0xc) = output_size;
+    *(uint32_t*)((int64_t)output + 4) = 0;
+    *(int*)((int64_t)output + 0xc) = output_size;
     return output;
 }
 
@@ -376,7 +376,7 @@ void* parse_render_resource_data(void* output, void* input, int32_t param)
  * @param signature 签名
  * @return 资源偏移量，失败返回0
  */
-int32_t find_render_resource_info(longlong base_address, uint32_t resource_id, char* signature)
+int32_t find_render_resource_info(int64_t base_address, uint32_t resource_id, char* signature)
 {
     uint32_t offset;
     uint64_t position;
@@ -421,7 +421,7 @@ void* process_render_coordinate_transform(void* output, void* input, void* param
     int32_t count1, count2;
     void* temp_ptr;
     void* result_ptr;
-    longlong position1, position2;
+    int64_t position1, position2;
     int32_t stack_data[2];
     void* stack_data1[2];
     void* stack_data2[2];
@@ -435,13 +435,13 @@ void* process_render_coordinate_transform(void* output, void* input, void* param
     result_ptr = (void*)find_render_data_marker(stack_data2, param, 0x12);
     stack_data2[0] = *result_ptr;
     stack_data2[1] = result_ptr[1];
-    stack_data1[1] = *(int*)((longlong)result_ptr + 0xc);
+    stack_data1[1] = *(int*)((int64_t)result_ptr + 0xc);
     
     position1 = position2;
     do {
         if ((int)stack_data1[1] <= (int)stack_data2[0]) break;
         value1 = func_0x00018028b140(stack_data2);
-        *(uint32_t*)((longlong)&stack_data1[0] + position1 * 4) = value1;
+        *(uint32_t*)((int64_t)&stack_data1[0] + position1 * 4) = value1;
         position1 = position1 + 1;
     } while (position1 < 2);
     
@@ -455,9 +455,9 @@ void* process_render_coordinate_transform(void* output, void* input, void* param
         // 验证数据范围
         if ((-1 < stack_data1[0]) &&
             (((stack_data2[0] = 0, -1 < (int)(uint32_t)stack_data1[0] &&
-              (stack_data1[1] = 0, stack_data2[0] = 0, stack_data1[0] <= *(int*)((longlong)input + 0xc))) &&
-             (stack_data2[0] = 0, (int)(uint32_t)stack_data1[0] <= *(int*)((longlong)input + 0xc) - stack_data1[1])))) {
-            stack_data2[0] = (void*)((longlong)stack_data1[1] + *input);
+              (stack_data1[1] = 0, stack_data2[0] = 0, stack_data1[0] <= *(int*)((int64_t)input + 0xc))) &&
+             (stack_data2[0] = 0, (int)(uint32_t)stack_data1[0] <= *(int*)((int64_t)input + 0xc) - stack_data1[1])))) {
+            stack_data2[0] = (void*)((int64_t)stack_data1[1] + *input);
             stack_data1[1] = (uint32_t)stack_data1[0];
         }
         
@@ -465,7 +465,7 @@ void* process_render_coordinate_transform(void* output, void* input, void* param
         temp_ptr = (void*)find_render_data_marker(temp_buffer, stack_data2, 0x13);
         stack_data2[0] = *temp_ptr;
         stack_data2[1] = temp_ptr[1];
-        stack_data1[1] = *(int*)((longlong)temp_ptr + 0xc);
+        stack_data1[1] = *(int*)((int64_t)temp_ptr + 0xc);
         
         do {
             if ((int)stack_data1[1] <= (int)stack_data2[0]) break;
@@ -476,15 +476,15 @@ void* process_render_coordinate_transform(void* output, void* input, void* param
         
         if (stack_data[0] != 0) {
             count2 = stack_data[0] + count2;
-            if ((*(int*)((longlong)input + 0xc) < count2) || (count2 < 0)) {
-                count2 = *(int*)((longlong)input + 0xc);
+            if ((*(int*)((int64_t)input + 0xc) < count2) || (count2 < 0)) {
+                count2 = *(int*)((int64_t)input + 0xc);
             }
             *(int*)(input + 1) = count2;
             result_ptr = (void*)parse_render_resource_data(temp_buffer, stack_data2, 0);
             stack_data2[0] = *result_ptr;
             stack_data2[1] = result_ptr[1];
             stack_data1[0] = result_ptr[2];
-            stack_data1[1] = *(int*)((longlong)result_ptr + 0xc);
+            stack_data1[1] = *(int*)((int64_t)result_ptr + 0xc);
             goto LAB_RETURN_RESULT;
         }
     }
@@ -527,7 +527,7 @@ int32_t initialize_render_resource(void* context, void* data_ptr, uint32_t param
     void* stack_data6[2];
     uint8_t stack_buffer[24];
     
-    *(longlong*)(context + 8) = (longlong)data_ptr;
+    *(int64_t*)(context + 8) = (int64_t)data_ptr;
     *(uint32_t*)(context + 0x10) = param;
     result = 0;
     stack_data5[0] = 0;
@@ -539,20 +539,20 @@ int32_t initialize_render_resource(void* context, void* data_ptr, uint32_t param
     stack_value1 = param;
     
     // 查找资源信息
-    value1 = find_render_resource_info((longlong)data_ptr, param, &unknown_var_624_ptr);
-    value2 = find_render_resource_info((longlong)data_ptr, param, &unknown_var_648_ptr);
+    value1 = find_render_resource_info((int64_t)data_ptr, param, &unknown_var_624_ptr);
+    value2 = find_render_resource_info((int64_t)data_ptr, param, &unknown_var_648_ptr);
     *(int*)(context + 0x18) = value2;
-    value3 = find_render_resource_info((longlong)data_ptr, param, &unknown_var_6872_ptr);
+    value3 = find_render_resource_info((int64_t)data_ptr, param, &unknown_var_6872_ptr);
     *(int*)(context + 0x1c) = value3;
-    stack_data[2] = find_render_resource_info((longlong)data_ptr, param, &unknown_var_656_ptr);
+    stack_data[2] = find_render_resource_info((int64_t)data_ptr, param, &unknown_var_656_ptr);
     *(int*)(context + 0x20) = stack_data[2];
-    value4 = find_render_resource_info((longlong)data_ptr, param, &unknown_var_632_ptr);
+    value4 = find_render_resource_info((int64_t)data_ptr, param, &unknown_var_632_ptr);
     *(int*)(context + 0x24) = value4;
-    stack_data[0] = find_render_resource_info((longlong)data_ptr, stack_value1, &unknown_var_640_ptr);
+    stack_data[0] = find_render_resource_info((int64_t)data_ptr, stack_value1, &unknown_var_640_ptr);
     *(int*)(context + 0x28) = stack_data[0];
-    value5 = find_render_resource_info((longlong)data_ptr, stack_value1, &unknown_var_680_ptr);
+    value5 = find_render_resource_info((int64_t)data_ptr, stack_value1, &unknown_var_680_ptr);
     *(uint32_t*)(context + 0x2c) = value5;
-    value5 = find_render_resource_info((longlong)data_ptr, stack_value1, &unknown_var_688_ptr);
+    value5 = find_render_resource_info((int64_t)data_ptr, stack_value1, &unknown_var_688_ptr);
     *(uint32_t*)(context + 0x30) = value5;
     
     // 验证必要资源
@@ -580,14 +580,14 @@ int32_t initialize_render_resource(void* context, void* data_ptr, uint32_t param
     stack_data[0] = 2;
     stack_data2[0] = 0;
     stack_data3[0] = 0;
-    value5 = find_render_resource_info((longlong)data_ptr, stack_value1, &unknown_var_664_ptr);
+    value5 = find_render_resource_info((int64_t)data_ptr, stack_value1, &unknown_var_664_ptr);
     if (value5 == 0) {
         return 0;
     }
     
     *(void**)(context + 0x80) = 0;
     *(void**)(context + 0x88) = 0;
-    stack_data6[0] = (void*)((uint64_t)value5 + (longlong)data_ptr);
+    stack_data6[0] = (void*)((uint64_t)value5 + (int64_t)data_ptr);
     stack_data6[1] = (void*)0x20000000;
     *(void**)(context + 0x90) = 0;
     *(void**)(context + 0x98) = 0;
@@ -633,7 +633,7 @@ int32_t initialize_render_resource(void* context, void* data_ptr, uint32_t param
         value2 = func_0x00018028b140(&stack_data5[0]);
         stack_data[result + 2] = value2;
         result = result + 1;
-    } while ((longlong)result < 1);
+    } while ((int64_t)result < 1);
     
     data_ptr = (void*)find_render_data_marker(&stack_data5[0], &stack_data6[0], 0x106);
     stack_data5[0] = *data_ptr;
@@ -645,7 +645,7 @@ int32_t initialize_render_resource(void* context, void* data_ptr, uint32_t param
         value2 = func_0x00018028b140(&stack_data5[0]);
         stack_data[result] = value2;
         result = result + 1;
-    } while ((longlong)result < 1);
+    } while ((int64_t)result < 1);
     
     data_ptr = (void*)find_render_data_marker(&stack_data5[0], &stack_data6[0], 0x124);
     stack_data5[0] = *data_ptr;
@@ -657,7 +657,7 @@ int32_t initialize_render_resource(void* context, void* data_ptr, uint32_t param
         value2 = func_0x00018028b140(&stack_data5[0]);
         stack_data2[result] = value2;
         result = result + 1;
-    } while ((longlong)result < 1);
+    } while ((int64_t)result < 1);
     
     data_ptr = (void*)find_render_data_marker(&stack_data5[0], &stack_data6[0], 0x125);
     stack_data5[0] = *data_ptr;
@@ -669,7 +669,7 @@ int32_t initialize_render_resource(void* context, void* data_ptr, uint32_t param
         value2 = func_0x00018028b140(&stack_data5[0]);
         stack_data3[result] = value2;
         result = result + 1;
-    } while ((longlong)result < 1);
+    } while ((int64_t)result < 1);
     
     stack_data5[0] = (void*)((uint32_t)stack_data6[1] << 0x20 | (uint32_t)stack_data6[0]);
     stack_data6[1] = (void*)((uint32_t)stack_data6[1] << 0x20 | (uint32_t)stack_data5[0]);
@@ -718,11 +718,11 @@ LAB_SET_STACK_VALUE:
         if (((-1 < value3) && (-1 < (int)(stack_value3 - value3))) && 
             (value3 <= (int)stack_value3)) {
             stack_data6[1] = (void*)((uint64_t)(stack_value3 - value3) << 0x20);
-            stack_data5[0] = (void*)((longlong)value3 + (longlong)stack_data4[0]);
+            stack_data5[0] = (void*)((int64_t)value3 + (int64_t)stack_data4[0]);
         }
         
-        *(longlong*)(context + 0x90) = (longlong)stack_data5[0];
-        *(longlong*)(context + 0x98) = (longlong)stack_data6[1];
+        *(int64_t*)(context + 0x90) = (int64_t)stack_data5[0];
+        *(int64_t*)(context + 0x98) = (int64_t)stack_data6[1];
         result = stack_value3;
     }
     
@@ -741,18 +741,18 @@ LAB_SET_RESULT:
     *(void**)(context + 0x58) = (void*)result;
     
 LAB_PROCESS_RESOURCE:
-    value5 = find_render_resource_info((longlong)data_ptr, stack_value1, &unknown_var_672_ptr);
+    value5 = find_render_resource_info((int64_t)data_ptr, stack_value1, &unknown_var_672_ptr);
     if (value5 == 0) {
         value2 = 0xffff;
     }
     else {
-        value2 = (uint32_t)*(uint8_t*)((uint64_t)value5 + 4 + (longlong)data_ptr) * 0x100 +
-                (uint32_t)*(uint8_t*)((uint64_t)value5 + 5 + (longlong)data_ptr);
+        value2 = (uint32_t)*(uint8_t*)((uint64_t)value5 + 4 + (int64_t)data_ptr) * 0x100 +
+                (uint32_t)*(uint8_t*)((uint64_t)value5 + 5 + (int64_t)data_ptr);
     }
     *(int*)(context + 0x14) = value2;
     
-    byte1 = *(uint8_t*)((uint64_t)value1 + 2 + (longlong)data_ptr);
-    byte2 = *(uint8_t*)((uint64_t)value1 + 3 + (longlong)data_ptr);
+    byte1 = *(uint8_t*)((uint64_t)value1 + 2 + (int64_t)data_ptr);
+    byte2 = *(uint8_t*)((uint64_t)value1 + 3 + (int64_t)data_ptr);
     *(uint32_t*)(context + 0x34) = 0;
     value2 = (uint32_t)byte1 * 0x100 + (uint32_t)byte2;
     
@@ -760,20 +760,20 @@ LAB_PROCESS_RESOURCE:
         do {
             value5 = value1 + 4 + (int)result * 8;
             result = (uint64_t)value5;
-            value3 = (uint32_t)*(uint8_t*)((uint64_t)value5 + (longlong)data_ptr) * 0x100 +
-                    (uint32_t)*(uint8_t*)((uint64_t)value5 + 1 + (longlong)data_ptr);
+            value3 = (uint32_t)*(uint8_t*)((uint64_t)value5 + (int64_t)data_ptr) * 0x100 +
+                    (uint32_t)*(uint8_t*)((uint64_t)value5 + 1 + (int64_t)data_ptr);
             
             if ((value3 == 0) ||
                 ((value3 == 3 &&
-                 ((value3 = (uint32_t)*(uint8_t*)(result + 3 + (longlong)data_ptr) +
-                           (uint32_t)*(uint8_t*)(result + 2 + (longlong)data_ptr) * 0x100, 
+                 ((value3 = (uint32_t)*(uint8_t*)(result + 3 + (int64_t)data_ptr) +
+                           (uint32_t)*(uint8_t*)(result + 2 + (int64_t)data_ptr) * 0x100, 
                            value3 == 1 || (value3 == 10))))))
             {
                 *(uint32_t*)(context + 0x34) =
-                     (uint32_t)*(uint8_t*)(result + 7 + (longlong)data_ptr) +
-                     ((uint32_t)*(uint8_t*)(result + 6 + (longlong)data_ptr) +
-                     ((uint32_t)*(uint8_t*)(result + 5 + (longlong)data_ptr) + 
-                     (uint32_t)*(uint8_t*)(result + 4 + (longlong)data_ptr) * 0x100) * 0x100) + value1;
+                     (uint32_t)*(uint8_t*)(result + 7 + (int64_t)data_ptr) +
+                     ((uint32_t)*(uint8_t*)(result + 6 + (int64_t)data_ptr) +
+                     ((uint32_t)*(uint8_t*)(result + 5 + (int64_t)data_ptr) + 
+                     (uint32_t)*(uint8_t*)(result + 4 + (int64_t)data_ptr) * 0x100) * 0x100) + value1;
             }
             value5 = (int)result + 1;
             result = (uint64_t)value5;
@@ -781,8 +781,8 @@ LAB_PROCESS_RESOURCE:
         
         if (*(uint32_t*)(context + 0x34) != 0) {
             *(uint32_t*)(context + 0x38) =
-                 (uint32_t)*(uint8_t*)((longlong)*(int*)(context + 0x1c) + 0x33 + (longlong)data_ptr) +
-                 (uint32_t)*(uint8_t*)((longlong)*(int*)(context + 0x1c) + 0x32 + (longlong)data_ptr) * 0x100;
+                 (uint32_t)*(uint8_t*)((int64_t)*(int*)(context + 0x1c) + 0x33 + (int64_t)data_ptr) +
+                 (uint32_t)*(uint8_t*)((int64_t)*(int*)(context + 0x1c) + 0x32 + (int64_t)data_ptr) * 0x100;
             return 1;
         }
     }
@@ -798,28 +798,28 @@ LAB_PROCESS_RESOURCE:
 uint32_t get_render_data_value(void* context, uint32_t offset)
 {
     int32_t value1;
-    longlong position1, position2;
+    int64_t position1, position2;
     uint32_t value2;
     uint16_t value3;
-    longlong position3;
+    int64_t position3;
     int32_t value4;
     uint32_t value5;
     int32_t value6;
     uint16_t value7;
     uint64_t result;
     uint64_t result2;
-    longlong position4;
+    int64_t position4;
     uint16_t value8;
     
     result = (uint64_t)*(uint32_t*)(context + 0x34);
-    position2 = *(longlong*)(context + 8);
+    position2 = *(int64_t*)(context + 8);
     value3 = (uint16_t)*(uint8_t*)(result + position2) * 0x100 + (uint16_t)*(uint8_t*)(result + 1 + position2);
     
     if (value3 == 0) {
         if ((int)offset <
             (int)((uint32_t)*(uint8_t*)(result + 2 + position2) * 0x100 + 
                   (*(uint8_t*)(result + 3 + position2) - 6))) {
-            return (uint32_t)*(uint8_t*)(result + (longlong)(int)offset + 6 + position2);
+            return (uint32_t)*(uint8_t*)(result + (int64_t)(int)offset + 6 + position2);
         }
     }
     else if (value3 == 6) {
@@ -880,7 +880,7 @@ uint32_t get_render_data_value(void* context, uint32_t offset)
                                                   (uint16_t)*(uint8_t*)(position1 + 0x11 + position2) + (int16_t)offset);
                     }
                     
-                    position1 = (uint64_t)value7 + (longlong)(int)((offset - value4) * 2) + (uint64_t)value2 +
+                    position1 = (uint64_t)value7 + (int64_t)(int)((offset - value4) * 2) + (uint64_t)value2 +
                             result2 + result;
                     return (uint32_t)*(uint8_t*)(position1 + 0x11 + position2) +
                            (uint32_t)*(uint8_t*)(position1 + 0x10 + position2) * 0x100;
@@ -899,7 +899,7 @@ uint32_t get_render_data_value(void* context, uint32_t offset)
                 position4 = result + position2;
                 do {
                     value1 = (value6 - value4 >> 1) + value4;
-                    position3 = (longlong)(value1 * 0xc);
+                    position3 = (int64_t)(value1 * 0xc);
                     value2 = (uint32_t)*(uint8_t*)(position3 + 0x11 + position1) * 0x10000 +
                             (uint32_t)*(uint8_t*)(position3 + 0x12 + position1) * 0x100 +
                             (uint32_t)*(uint8_t*)(position3 + 0x10 + position1) * 0x1000000 +
@@ -949,11 +949,11 @@ int32_t add_render_batch_item(void* data_ptr, int32_t index, int32_t flag1, int3
                               uint16_t x, uint16_t y, int32_t width, int32_t height, 
                               uint32_t color)
 {
-    longlong position;
+    int64_t position;
     
     if (flag2 != 0) {
         if (flag1 != 0) {
-            position = (longlong)index * 0xe;
+            position = (int64_t)index * 0xe;
             index = index + 1;
             *(int16_t*)(position + data_ptr) = (int16_t)(width + color >> 1);
             *(uint8_t*)(position + 0xc + data_ptr) = 3;
@@ -961,7 +961,7 @@ int32_t add_render_batch_item(void* data_ptr, int32_t index, int32_t flag1, int3
             *(uint16_t*)(position + 6 + data_ptr) = (uint16_t)height;
             *(int16_t*)(position + 2 + data_ptr) = (int16_t)(height + height >> 1);
         }
-        position = (longlong)index * 0xe;
+        position = (int64_t)index * 0xe;
         *(uint16_t*)(position + data_ptr) = x;
         *(uint16_t*)(position + 2 + data_ptr) = y;
         *(int16_t*)(position + 4 + data_ptr) = (int16_t)width;
@@ -970,7 +970,7 @@ int32_t add_render_batch_item(void* data_ptr, int32_t index, int32_t flag1, int3
         return index + 1;
     }
     
-    position = (longlong)index * 0xe;
+    position = (int64_t)index * 0xe;
     *(uint16_t*)(position + data_ptr) = x;
     *(uint16_t*)(position + 2 + data_ptr) = y;
     
@@ -991,28 +991,28 @@ int32_t add_render_batch_item(void* data_ptr, int32_t index, int32_t flag1, int3
 // ============================================================================
 
 // 原始函数别名
-void FUN_18028b0d2(uint64_t param_1, int param_2, int param_3, longlong *param_4)
+void FUN_18028b0d2(uint64_t param_1, int param_2, int param_3, int64_t *param_4)
     __attribute__((alias("extract_render_data_block")));
 
-uint32_t* FUN_18028b2f0(int32_t *param_1, longlong *param_2, uint param_3)
+uint32_t* FUN_18028b2f0(int32_t *param_1, int64_t *param_2, uint param_3)
     __attribute__((alias("find_render_data_marker")));
 
-void* FUN_18028b4c0(longlong *param_1, longlong *param_2, int param_3)
+void* FUN_18028b4c0(int64_t *param_1, int64_t *param_2, int param_3)
     __attribute__((alias("parse_render_resource_data")));
 
-int32_t FUN_18028b630(longlong param_1, uint param_2, char *param_3)
+int32_t FUN_18028b630(int64_t param_1, uint param_2, char *param_3)
     __attribute__((alias("find_render_resource_info")));
 
-void* FUN_18028b820(int32_t *param_1, longlong *param_2, uint64_t param_3)
+void* FUN_18028b820(int32_t *param_1, int64_t *param_2, uint64_t param_3)
     __attribute__((alias("process_render_coordinate_transform")));
 
-int32_t FUN_18028b960(longlong param_1, longlong param_2, int32_t param_3)
+int32_t FUN_18028b960(int64_t param_1, int64_t param_2, int32_t param_3)
     __attribute__((alias("initialize_render_resource")));
 
-uint32_t FUN_18028be60(longlong param_1, uint param_2)
+uint32_t FUN_18028be60(int64_t param_1, uint param_2)
     __attribute__((alias("get_render_data_value")));
 
-int32_t FUN_18028c2f0(longlong param_1, int param_2, int param_3, int param_4, 
+int32_t FUN_18028c2f0(int64_t param_1, int param_2, int param_3, int param_4, 
                        int16_t param_5, int16_t param_6, int param_7, 
                        int param_8, int param_9, int param_10)
     __attribute__((alias("add_render_batch_item")));

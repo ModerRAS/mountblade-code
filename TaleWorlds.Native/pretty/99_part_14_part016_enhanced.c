@@ -257,7 +257,7 @@ int DataStatisticsProcessor(DataStatistics* stats, short x, short y, short z, fl
     }
     
     // 更新计数器
-    *(short*)((longlong)stats + PARAM_OFFSET_COUNT) = *(short*)((longlong)stats + PARAM_OFFSET_COUNT) + 1;
+    *(short*)((int64_t)stats + PARAM_OFFSET_COUNT) = *(short*)((int64_t)stats + PARAM_OFFSET_COUNT) + 1;
     current_x = (int)x;
     current_y = (int)y;
     current_z = (int)z;
@@ -268,7 +268,7 @@ int DataStatisticsProcessor(DataStatistics* stats, short x, short y, short z, fl
     stats[PARAM_OFFSET_Z] = stats[PARAM_OFFSET_Z] + current_z;
     
     // 首次处理初始化极值
-    if (*(short*)((longlong)stats + PARAM_OFFSET_COUNT) == 1) {
+    if (*(short*)((int64_t)stats + PARAM_OFFSET_COUNT) == 1) {
         stats[0x1b] = current_x;
         stats[0x1c] = current_y;
         stats[0x1d] = current_z;
@@ -323,7 +323,7 @@ LAB_SET_CURRENT_VALUES:
     
     // 获取当前计数
     current_count = *(ushort*)(stats + PARAM_OFFSET_MAX);
-    if (*(short*)((longlong)stats + PARAM_OFFSET_COUNT) != current_count) {
+    if (*(short*)((int64_t)stats + PARAM_OFFSET_COUNT) != current_count) {
         return 0;
     }
     
@@ -432,7 +432,7 @@ LAB_CLEANUP_STATS:
     stats[0x13] = (int)temp_context;
     
     // 重置极值
-    *(short*)((longlong)stats + PARAM_OFFSET_COUNT) = (short)temp_context;
+    *(short*)((int64_t)stats + PARAM_OFFSET_COUNT) = (short)temp_context;
     stats[0x1b] = 0;
     stats[0x1c] = 0;
     stats[0x1d] = 0;
@@ -482,9 +482,9 @@ unsigned long long AdvancedDataProcessorAndStateManager(void* context, float val
     
     // 计算平均值
     temp_float1 = (float)unaff_ebx;
-    temp_float5 = (float)*(int*)((longlong)context + 0x84) / temp_float1;
-    temp_float6 = (float)*(int*)((longlong)context + 0x88) / temp_float1;
-    temp_float1 = (float)*(int*)((longlong)context + 0x8c) / temp_float1;
+    temp_float5 = (float)*(int*)((int64_t)context + 0x84) / temp_float1;
+    temp_float6 = (float)*(int*)((int64_t)context + 0x88) / temp_float1;
+    temp_float1 = (float)*(int*)((int64_t)context + 0x8c) / temp_float1;
     
     // 计算方差
     temp_float4 = (temp_float5 - (float)unaff_esi) * (temp_float5 - (float)unaff_esi) +
@@ -497,98 +497,98 @@ unsigned long long AdvancedDataProcessorAndStateManager(void* context, float val
     threshold_met = false;
     
     // 阈值检查
-    if (((temp_float4 < *(float*)((longlong)context + 0x5c)) && 
-         (threshold_met = false, temp_float2 < *(float*)((longlong)context + 0x60))) &&
-        (threshold_met = false, temp_float3 < *(float*)((longlong)context + 100))) {
+    if (((temp_float4 < *(float*)((int64_t)context + 0x5c)) && 
+         (threshold_met = false, temp_float2 < *(float*)((int64_t)context + 0x60))) &&
+        (threshold_met = false, temp_float3 < *(float*)((int64_t)context + 100))) {
         threshold_met = true;
     }
     
     // 高精度模式处理
-    if ((threshold_met) && ((*(byte*)((longlong)context + 0x1c) & 1) != 0)) {
-        temp_float2 = *(float*)((longlong)context + 0x50);
-        temp_float5 = *(float*)((longlong)context + 0x10) - temp_float5;
+    if ((threshold_met) && ((*(byte*)((int64_t)context + 0x1c) & 1) != 0)) {
+        temp_float2 = *(float*)((int64_t)context + 0x50);
+        temp_float5 = *(float*)((int64_t)context + 0x10) - temp_float5;
         temp_float3 = temp_float2;
         if ((temp_float5 <= temp_float2) && (temp_float3 = -temp_float2, -temp_float2 <= temp_float5)) {
             temp_float3 = temp_float5;
         }
-        *result_ptr = *(float*)((longlong)context + 0x10) - temp_float3;
-        temp_float5 = *(float*)((longlong)context + 0x54);
-        temp_float6 = *(float*)((longlong)context + 0x14) - temp_float6;
+        *result_ptr = *(float*)((int64_t)context + 0x10) - temp_float3;
+        temp_float5 = *(float*)((int64_t)context + 0x54);
+        temp_float6 = *(float*)((int64_t)context + 0x14) - temp_float6;
         temp_float2 = temp_float5;
         if ((temp_float6 <= temp_float5) && (temp_float2 = -temp_float5, -temp_float5 <= temp_float6)) {
             temp_float2 = temp_float6;
         }
-        result_ptr[1] = *(float*)((longlong)context + 0x14) - temp_float2;
-        temp_float6 = *(float*)((longlong)context + 0x58);
-        temp_float1 = *(float*)((longlong)context + 0x18) - temp_float1;
+        result_ptr[1] = *(float*)((int64_t)context + 0x14) - temp_float2;
+        temp_float6 = *(float*)((int64_t)context + 0x58);
+        temp_float1 = *(float*)((int64_t)context + 0x18) - temp_float1;
         temp_float5 = temp_float6;
         if ((temp_float1 <= temp_float6) && (temp_float5 = -temp_float6, -temp_float6 <= temp_float1)) {
             temp_float5 = temp_float1;
         }
-        result_ptr[2] = *(float*)((longlong)context + 0x18) - temp_float5;
+        result_ptr[2] = *(float*)((int64_t)context + 0x18) - temp_float5;
 LAB_CALL_PROCESSOR:
         func_0x0001808f7c40(temp_float5, result_ptr, stack_context);
         unaff_rbp = result & 0xffffffff;
-        *(float*)((longlong)context + 0x10) = *result_ptr;
-        *(float*)((longlong)context + 0x14) = result_ptr[1];
-        *(float*)((longlong)context + 0x18) = result_ptr[2];
+        *(float*)((int64_t)context + 0x10) = *result_ptr;
+        *(float*)((int64_t)context + 0x14) = result_ptr[1];
+        *(float*)((int64_t)context + 0x18) = result_ptr[2];
     }
     // 普通模式处理
     else {
-        if (((temp_float4 < *(float*)((longlong)context + 0x2c)) &&
-            ((temp_float2 < *(float*)((longlong)context + 0x30) && 
-              (temp_float3 < *(float*)((longlong)context + 0x34))))) &&
-           ((*(byte*)((longlong)context + 0x1c) & 2) != 0)) {
-            *(int*)((longlong)context + 0x3c) = *(int*)((longlong)context + 0x3c) + unaff_edi;
-            *(int*)((longlong)context + 0x40) = *(int*)((longlong)context + 0x40) + unaff_esi;
-            *(int*)((longlong)context + 0x44) = *(int*)((longlong)context + 0x44) + unaff_ebx;
-            *(int*)((longlong)context + 0x48) = *(int*)((longlong)context + 0x48) + 1;
+        if (((temp_float4 < *(float*)((int64_t)context + 0x2c)) &&
+            ((temp_float2 < *(float*)((int64_t)context + 0x30) && 
+              (temp_float3 < *(float*)((int64_t)context + 0x34))))) &&
+           ((*(byte*)((int64_t)context + 0x1c) & 2) != 0)) {
+            *(int*)((int64_t)context + 0x3c) = *(int*)((int64_t)context + 0x3c) + unaff_edi;
+            *(int*)((int64_t)context + 0x40) = *(int*)((int64_t)context + 0x40) + unaff_esi;
+            *(int*)((int64_t)context + 0x44) = *(int*)((int64_t)context + 0x44) + unaff_ebx;
+            *(int*)((int64_t)context + 0x48) = *(int*)((int64_t)context + 0x48) + 1;
         }
         if (unaff_edi != MAX_DATA_LENGTH) goto LAB_CLEANUP_CONTEXT;
-        if (STATISTICS_THRESHOLD < *(uint*)((longlong)context + 0x48)) {
-            temp_int1 = *(int*)((longlong)context + 0x40);
-            temp_int2 = *(int*)((longlong)context + 0x44);
-            temp_float6 = (float)(*(uint*)((longlong)context + 0x48) * unaff_ebx);
-            temp_float2 = *(float*)((longlong)context + 0x10) - 
-                          (float)*(int*)((longlong)context + 0x3c) / temp_float6;
-            temp_float1 = *(float*)((longlong)context + 0x20);
+        if (STATISTICS_THRESHOLD < *(uint*)((int64_t)context + 0x48)) {
+            temp_int1 = *(int*)((int64_t)context + 0x40);
+            temp_int2 = *(int*)((int64_t)context + 0x44);
+            temp_float6 = (float)(*(uint*)((int64_t)context + 0x48) * unaff_ebx);
+            temp_float2 = *(float*)((int64_t)context + 0x10) - 
+                          (float)*(int*)((int64_t)context + 0x3c) / temp_float6;
+            temp_float1 = *(float*)((int64_t)context + 0x20);
             temp_float5 = temp_float1;
             if ((temp_float2 <= temp_float1) && (temp_float5 = -temp_float1, -temp_float1 <= temp_float2)) {
                 temp_float5 = temp_float2;
             }
-            *result_ptr = *(float*)((longlong)context + 0x10) - temp_float5;
-            temp_float1 = *(float*)((longlong)context + 0x24);
-            temp_float2 = *(float*)((longlong)context + 0x14) - (float)temp_int1 / temp_float6;
+            *result_ptr = *(float*)((int64_t)context + 0x10) - temp_float5;
+            temp_float1 = *(float*)((int64_t)context + 0x24);
+            temp_float2 = *(float*)((int64_t)context + 0x14) - (float)temp_int1 / temp_float6;
             temp_float5 = temp_float1;
             if ((temp_float2 <= temp_float1) && (temp_float5 = -temp_float1, -temp_float1 <= temp_float2)) {
                 temp_float5 = temp_float2;
             }
-            result_ptr[1] = *(float*)((longlong)context + 0x14) - temp_float5;
-            temp_float1 = *(float*)((longlong)context + 0x28);
-            temp_float6 = *(float*)((longlong)context + 0x18) - (float)temp_int2 / temp_float6;
+            result_ptr[1] = *(float*)((int64_t)context + 0x14) - temp_float5;
+            temp_float1 = *(float*)((int64_t)context + 0x28);
+            temp_float6 = *(float*)((int64_t)context + 0x18) - (float)temp_int2 / temp_float6;
             temp_float5 = temp_float1;
             if ((temp_float6 <= temp_float1) && (temp_float5 = -temp_float1, -temp_float1 <= temp_float6)) {
                 temp_float5 = temp_float6;
             }
-            result_ptr[2] = *(float*)((longlong)context + 0x18) - temp_float5;
+            result_ptr[2] = *(float*)((int64_t)context + 0x18) - temp_float5;
             goto LAB_CALL_PROCESSOR;
         }
     }
     
 LAB_CLEANUP_CONTEXT:
     // 清理上下文数据
-    *(void**)((longlong)context + 0x3c) = NULL;
-    *(void**)((longlong)context + 0x44) = NULL;
-    *(int*)((longlong)context + 0x4c) = (int)temp_context;
+    *(void**)((int64_t)context + 0x3c) = NULL;
+    *(void**)((int64_t)context + 0x44) = NULL;
+    *(int*)((int64_t)context + 0x4c) = (int)temp_context;
     
     // 重置状态
-    *(short*)((longlong)context + 0x92) = (short)temp_context;
-    *(void**)((longlong)context + 0x6c) = NULL;
-    *(int*)((longlong)context + 0x74) = 0;
-    *(void**)((longlong)context + 0x78) = NULL;
-    *(int*)((longlong)context + 0x80) = 0;
-    *(void**)((longlong)context + 0x84) = NULL;
-    *(int*)((longlong)context + 0x8c) = 0;
+    *(short*)((int64_t)context + 0x92) = (short)temp_context;
+    *(void**)((int64_t)context + 0x6c) = NULL;
+    *(int*)((int64_t)context + 0x74) = 0;
+    *(void**)((int64_t)context + 0x78) = NULL;
+    *(int*)((int64_t)context + 0x80) = 0;
+    *(void**)((int64_t)context + 0x84) = NULL;
+    *(int*)((int64_t)context + 0x8c) = 0;
     
     return unaff_rbp & 0xffffffff;
 }
@@ -1022,7 +1022,7 @@ void ThreadLocalStorageManager(FunctionPointer func, void* param1, void* param2,
     
     // 获取线程局部存储指针
     tls_ptr = (void**)
-             (*(longlong*)((longlong)ThreadLocalStoragePointer + (unsigned long long)__tls_index * 8) + TLS_STORAGE_OFFSET);
+             (*(int64_t*)((int64_t)ThreadLocalStoragePointer + (unsigned long long)__tls_index * 8) + TLS_STORAGE_OFFSET);
     
     // 设置上下文
     *tls_ptr = context;
@@ -1209,7 +1209,7 @@ void ThreadLocalStorageCallback(int param1, void* param2)
     
     // 获取线程局部存储函数指针
     tls_function = *(FunctionPointer*)
-                  (*(longlong*)((longlong)ThreadLocalStoragePointer + 
+                  (*(int64_t*)((int64_t)ThreadLocalStoragePointer + 
                   (unsigned long long)__tls_index * 8) + TLS_STORAGE_OFFSET);
     
     // 如果函数指针有效，则调用

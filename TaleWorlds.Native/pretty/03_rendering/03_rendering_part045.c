@@ -30,26 +30,26 @@ void initialize_rendering_data_parser(void)
  * @param data_count 数据计数
  * @return 处理结果状态码
  */
-ulonglong parse_rendering_data_block(longlong data_block, int block_size, uint64_t config, 
-                                    longlong *output_data, int *data_count)
+uint64_t parse_rendering_data_block(int64_t data_block, int block_size, uint64_t config, 
+                                    int64_t *output_data, int *data_count)
 {
     char data_type;
     short data_value;
-    ulonglong result;
-    longlong remaining_size;
+    uint64_t result;
+    int64_t remaining_size;
     char *data_ptr;
-    ulonglong valid_count;
-    longlong iteration_count;
-    ulonglong data_index;
+    uint64_t valid_count;
+    int64_t iteration_count;
+    uint64_t data_index;
     int processed_count;
-    longlong current_offset;
-    longlong max_offset;
+    int64_t current_offset;
+    int64_t max_offset;
     uint temp_value;
-    ulonglong loop_counter;
+    uint64_t loop_counter;
     uint stack_buffer[2];
     
     result = 0;
-    max_offset = (longlong)block_size;
+    max_offset = (int64_t)block_size;
     valid_count = result;
     
     // 第一阶段：计算有效数据数量
@@ -61,7 +61,7 @@ ulonglong parse_rendering_data_block(longlong data_block, int block_size, uint64
         do {
             data_type = *data_ptr;
             data_ptr = data_ptr + 0xe;
-            valid_count = (ulonglong)((int)loop_counter + 1);
+            valid_count = (uint64_t)((int)loop_counter + 1);
             
             // 检查数据类型是否为有效类型
             if (data_type != '\x01') {
@@ -84,7 +84,7 @@ ulonglong parse_rendering_data_block(longlong data_block, int block_size, uint64
         }
         
         // 分配输出缓冲区
-        remaining_size = allocate_rendering_memory((longlong)processed_count << 2, g_rendering_allocator);
+        remaining_size = allocate_rendering_memory((int64_t)processed_count << 2, g_rendering_allocator);
         *output_data = remaining_size;
         
         valid_count = result;
@@ -99,7 +99,7 @@ ulonglong parse_rendering_data_block(longlong data_block, int block_size, uint64
                     }
                     
                     // 分配数据存储空间
-                    loop_counter = allocate_rendering_memory((longlong)(int)result << 3, g_rendering_allocator);
+                    loop_counter = allocate_rendering_memory((int64_t)(int)result << 3, g_rendering_allocator);
                     if (loop_counter == 0) {
                         // 内存分配失败，调用错误处理
                         handle_rendering_error(0, g_rendering_allocator);
@@ -125,10 +125,10 @@ ulonglong parse_rendering_data_block(longlong data_block, int block_size, uint64
                             }
                             
                             remaining_size = remaining_size + 1;
-                            valid_count = (ulonglong)processed_count;
+                            valid_count = (uint64_t)processed_count;
                             data_value = *(short *)(current_offset + -8);
                             stack_buffer[0] = processed_count + 1;
-                            result = (ulonglong)stack_buffer[0];
+                            result = (uint64_t)stack_buffer[0];
                             
                             if (loop_counter != 0) {
                                 // 存储浮点数据
@@ -140,11 +140,11 @@ ulonglong parse_rendering_data_block(longlong data_block, int block_size, uint64
                             // 类型2数据处理
                             data_value = *(short *)(current_offset + -8);
                             stack_buffer[0] = processed_count + 1;
-                            result = (ulonglong)stack_buffer[0];
+                            result = (uint64_t)stack_buffer[0];
                             
                             if (loop_counter != 0) {
-                                *(float *)(loop_counter + (longlong)processed_count * 8) = (float)(int)*(short *)(current_offset + -10);
-                                *(float *)(loop_counter + 4 + (longlong)processed_count * 8) = (float)(int)data_value;
+                                *(float *)(loop_counter + (int64_t)processed_count * 8) = (float)(int)*(short *)(current_offset + -10);
+                                *(float *)(loop_counter + 4 + (int64_t)processed_count * 8) = (float)(int)data_value;
                             }
                         }
                         else {
@@ -157,7 +157,7 @@ ulonglong parse_rendering_data_block(longlong data_block, int block_size, uint64
                                 // 类型4数据处理
                                 process_rendering_data_type4(loop_counter, stack_buffer);
                             }
-                            result = (ulonglong)stack_buffer[0];
+                            result = (uint64_t)stack_buffer[0];
                         }
                         
                     continue_processing:
@@ -168,7 +168,7 @@ ulonglong parse_rendering_data_block(longlong data_block, int block_size, uint64
                 
                 temp_value = (int)data_index + 1;
                 *(int *)(*output_data + remaining_size * 4) = (int)result - (int)valid_count;
-                data_index = (ulonglong)temp_value;
+                data_index = (uint64_t)temp_value;
                 
                 if (1 < (int)temp_value) {
                     return loop_counter;
@@ -188,18 +188,18 @@ ulonglong parse_rendering_data_block(longlong data_block, int block_size, uint64
  * 处理渲染数据块的内部函数
  * @return 处理结果指针
  */
-longlong process_rendering_data_internal(void)
+int64_t process_rendering_data_internal(void)
 {
     char data_type;
     short data_value;
-    longlong block_size;
+    int64_t block_size;
     int data_offset;
-    longlong data_count;
-    longlong data_position;
-    longlong buffer_ptr;
-    longlong config_ptr;
-    longlong result_ptr;
-    longlong *output_ptr;
+    int64_t data_count;
+    int64_t data_position;
+    int64_t buffer_ptr;
+    int64_t config_ptr;
+    int64_t result_ptr;
+    int64_t *output_ptr;
     int output_count;
     int stack_value;
     
@@ -210,7 +210,7 @@ longlong process_rendering_data_internal(void)
             }
             
             // 分配处理缓冲区
-            config_ptr = allocate_rendering_memory((longlong)data_offset << 3, g_rendering_allocator);
+            config_ptr = allocate_rendering_memory((int64_t)data_offset << 3, g_rendering_allocator);
             if (config_ptr == 0) {
                 // 内存分配失败，调用错误处理
                 handle_rendering_error(0, g_rendering_allocator);
@@ -235,7 +235,7 @@ longlong process_rendering_data_internal(void)
                     }
                     
                     block_size = block_size + 1;
-                    config_ptr = (longlong)data_offset;
+                    config_ptr = (int64_t)data_offset;
                     data_value = *(short *)(buffer_ptr + -8);
                     stack_value = data_offset + 1;
                     data_offset = stack_value;
@@ -248,7 +248,7 @@ longlong process_rendering_data_internal(void)
                 else if (data_type == '\x02') {
                     // 类型2数据处理
                     data_value = *(short *)(buffer_ptr + -8);
-                    buffer_ptr = (longlong)data_offset;
+                    buffer_ptr = (int64_t)data_offset;
                     stack_value = data_offset + 1;
                     data_offset = stack_value;
                     
@@ -333,7 +333,7 @@ void handle_rendering_error(void)
  * @param flags_param 标志参数
  * 简化实现：处理参数验证和内存分配
  */
-void process_rendering_parameters(longlong render_context, uint64_t config_param, int width_param, int height_param, int32_t format_param,
+void process_rendering_parameters(int64_t render_context, uint64_t config_param, int width_param, int height_param, int32_t format_param,
                                  float scale_x_param, float scale_y_param, uint64_t reserved_param1, uint64_t reserved_param2,
                                  int32_t flags_param)
 {
@@ -348,9 +348,9 @@ void process_rendering_parameters(longlong render_context, uint64_t config_param
     uint render_flags;
     uint data_type;
     int texture_id;
-    longlong data_ptr;
-    longlong offset;
-    ulonglong valid_count;
+    int64_t data_ptr;
+    int64_t offset;
+    uint64_t valid_count;
     int texture_height;
     int8_t scale_vector1 [16];
     int8_t scale_vector2 [16];
@@ -375,15 +375,15 @@ void process_rendering_parameters(longlong render_context, uint64_t config_param
     render_flags = get_rendering_flags(render_context, flags_param, &buffer_ptr);
     scale_y = scale_y_param;
     scale_x = scale_x_param;
-    valid_count = (ulonglong)render_flags;
+    valid_count = (uint64_t)render_flags;
     
     // 检查渲染上下文状态
     if (*(int *)(render_context + 0x4c) == 0) {
         // 标准渲染路径
         texture_id = get_texture_index(render_context, flags);
         if (texture_id < 0) goto error_handler;
-        data_ptr = *(longlong *)(render_context + 8);
-        offset = (longlong)texture_id;
+        data_ptr = *(int64_t *)(render_context + 8);
+        offset = (int64_t)texture_id;
         data_byte = *(byte *)(data_ptr + 3 + offset);
         data_type = (uint)data_byte;
         texture_height = (int)(short)((ushort)*(byte *)(data_ptr + 8 + offset) * 0x100 +
@@ -400,7 +400,7 @@ void process_rendering_parameters(longlong render_context, uint64_t config_param
         buffer6 = 0;
         buffer7 = 0;
         data_type = get_advanced_rendering_data(render_context, flags, &buffer1);
-        valid_count = (ulonglong)render_flags;
+        valid_count = (uint64_t)render_flags;
         texture_height = 0;
         if (data_type != 0) {
             texture_height = buffer7._4_4_;
@@ -468,10 +468,10 @@ error_handler:
     
     if (temp_ptr1 != (uint64_t *)0x0) {
         // 内存清理逻辑
-        valid_count = (ulonglong)temp_ptr1 & 0xffffffffffc00000;
+        valid_count = (uint64_t)temp_ptr1 & 0xffffffffffc00000;
         if (valid_count != 0) {
-            data_ptr = valid_count + 0x80 + ((longlong)temp_ptr1 - valid_count >> 0x10) * 0x50;
-            data_ptr = data_ptr - (ulonglong)*(uint *)(data_ptr + 4);
+            data_ptr = valid_count + 0x80 + ((int64_t)temp_ptr1 - valid_count >> 0x10) * 0x50;
+            data_ptr = data_ptr - (uint64_t)*(uint *)(data_ptr + 4);
             
             if ((*(void ***)(valid_count + 0x70) == &ExceptionList) && (*(char *)(data_ptr + 0xe) == '\0')) {
                 *temp_ptr1 = *(uint64_t *)(data_ptr + 0x20);
@@ -510,7 +510,7 @@ error_handler:
  * @param height_param 高度参数
  * 简化实现：处理寄存器保存和恢复逻辑
  */
-void save_restore_rendering_registers(longlong render_context, uint64_t config_param, int width_param, int height_param)
+void save_restore_rendering_registers(int64_t render_context, uint64_t config_param, int width_param, int height_param)
 {
     int *memory_ref;
     float min_scale;
@@ -522,10 +522,10 @@ void save_restore_rendering_registers(longlong render_context, uint64_t config_p
     int32_t flags;
     uint render_flags;
     int texture_id;
-    longlong context_ptr;
-    longlong data_ptr;
-    longlong offset;
-    ulonglong valid_count;
+    int64_t context_ptr;
+    int64_t data_ptr;
+    int64_t offset;
+    uint64_t valid_count;
     int texture_height;
     uint64_t reg_rbx;
     uint64_t reg_rbp;
@@ -588,15 +588,15 @@ void save_restore_rendering_registers(longlong render_context, uint64_t config_p
     data_count = get_rendering_flags(render_context, data_flags, context_ptr + 8);
     scale_y_value = scale_y_value;
     scale_x_value = scale_x_value;
-    valid_count = (ulonglong)data_count;
+    valid_count = (uint64_t)data_count;
     
     // 检查渲染上下文状态
     if (*(int *)(render_context + 0x4c) == 0) {
         // 标准渲染路径
         texture_id = get_texture_index(render_context, data_flags);
         if (texture_id < 0) goto error_handler;
-        data_ptr = *(longlong *)(render_context + 8);
-        offset = (longlong)texture_id;
+        data_ptr = *(int64_t *)(render_context + 8);
+        offset = (int64_t)texture_id;
         data_byte = *(byte *)(data_ptr + 3 + offset);
         render_flags = (uint)data_byte;
         texture_height = (int)(short)((ushort)*(byte *)(data_ptr + 8 + offset) * 0x100 +
@@ -613,7 +613,7 @@ void save_restore_rendering_registers(longlong render_context, uint64_t config_p
         stack_counter = 0;
         stack_buffer7 = 0;
         render_flags = get_advanced_rendering_data(render_context, data_flags, &stack_buffer2);
-        valid_count = (ulonglong)data_count;
+        valid_count = (uint64_t)data_count;
         texture_height = 0;
         if (render_flags != 0) {
             texture_height = stack_buffer7._4_4_;
@@ -681,10 +681,10 @@ error_handler:
     
     if (temp_ptr1 != (uint64_t *)0x0) {
         // 内存清理逻辑
-        valid_count = (ulonglong)temp_ptr1 & 0xffffffffffc00000;
+        valid_count = (uint64_t)temp_ptr1 & 0xffffffffffc00000;
         if (valid_count != 0) {
-            data_ptr = valid_count + 0x80 + ((longlong)temp_ptr1 - valid_count >> 0x10) * 0x50;
-            data_ptr = data_ptr - (ulonglong)*(uint *)(data_ptr + 4);
+            data_ptr = valid_count + 0x80 + ((int64_t)temp_ptr1 - valid_count >> 0x10) * 0x50;
+            data_ptr = data_ptr - (uint64_t)*(uint *)(data_ptr + 4);
             
             if ((*(void ***)(valid_count + 0x70) == &ExceptionList) && (*(char *)(data_ptr + 0xe) == '\0')) {
                 *temp_ptr1 = *(uint64_t *)(data_ptr + 0x20);

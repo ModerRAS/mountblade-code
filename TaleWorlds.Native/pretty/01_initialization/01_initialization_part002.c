@@ -78,7 +78,7 @@ typedef void (*init_function_ptr)(void);  /* 初始化函数指针 */
  */
 void system_register_base_function(uint64 hash_value, init_function_ptr callback, uint32 priority, void_ptr config_data)
 {
-    longlong *registry_ptr;
+    int64_t *registry_ptr;
     uint64_t *current_node;
     uint64_t *next_node;
     uint64_t *parent_node;
@@ -87,11 +87,11 @@ void system_register_base_function(uint64 hash_value, init_function_ptr callback
     int compare_result;
     
     /* 获取系统注册表根指针 */
-    registry_ptr = (longlong *)FUN_18008d070();
+    registry_ptr = (int64_t *)FUN_18008d070();
     current_node = (uint64_t *)*registry_ptr;
     
     /* 遍历注册表查找匹配项 */
-    status_flag = *(char *)((longlong)current_node[1] + 0x19);
+    status_flag = *(char *)((int64_t)current_node[1] + 0x19);
     parent_node = current_node;
     next_node = (uint64_t *)current_node[1];
     
@@ -105,13 +105,13 @@ void system_register_base_function(uint64 hash_value, init_function_ptr callback
         }
         parent_node = next_node;
         next_node = (uint64_t *)next_node;
-        status_flag = *(char *)((longlong)next_node + 0x19);
+        status_flag = *(char *)((int64_t)next_node + 0x19);
     }
     
     /* 检查是否需要插入新节点 */
     if ((parent_node == current_node) || 
         (compare_result = memcmp(&hash_value, parent_node + 4, INIT_HASH_SIZE), compare_result < 0)) {
-        longlong allocation_size = FUN_18008f0d0(registry_ptr);
+        int64_t allocation_size = FUN_18008f0d0(registry_ptr);
         FUN_18008f140(registry_ptr, &new_node, parent_node, allocation_size + 0x20, allocation_size);
         parent_node = new_node;
     }
@@ -144,7 +144,7 @@ int system_initialize_function(uint32 init_type, void_ptr param_block)
     _Mtx_init_in_situ(0x180c91910, 2, param_block, 0xfffffffffffffffe, 0xfffffffffffffffe);
     
     /* 执行系统初始化 */
-    longlong init_result = FUN_1808fc7d0(FUN_1809417c0);
+    int64_t init_result = FUN_1808fc7d0(FUN_1809417c0);
     return (init_result != 0) - 1;
 }
 
@@ -1001,7 +1001,7 @@ int system_initialization_main(void)
 int system_initialization_verify(void)
 {
     /* 执行系统初始化验证 */
-    longlong verify_result = FUN_1808fc7d0(FUN_1809417c0);
+    int64_t verify_result = FUN_1808fc7d0(FUN_1809417c0);
     return (verify_result != 0) - 1;
 }
 

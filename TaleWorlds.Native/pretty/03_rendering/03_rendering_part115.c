@@ -59,11 +59,11 @@ void rendering_system_empty_function(void)
  * @param object_context 对象上下文指针
  * @return 创建的对象指针，失败返回NULL
  */
-longlong *rendering_system_create_object_by_type(longlong object_context)
+int64_t *rendering_system_create_object_by_type(int64_t object_context)
 {
   uint32_t object_type;
   void *object_memory;
-  longlong *render_object;
+  int64_t *render_object;
   
   // 获取对象类型
   object_type = **(uint32_t **)(object_context + 8);
@@ -74,40 +74,40 @@ longlong *rendering_system_create_object_by_type(longlong object_context)
   case RENDER_OBJECT_TYPE_EXTENDED:
     // 创建基础类型对象
     object_memory = rendering_system_allocate_memory(g_rendering_memory_pool, RENDER_OBJECT_SIZE_BASIC, 8, 3);
-    render_object = (longlong *)rendering_system_initialize_basic_object(object_memory);
+    render_object = (int64_t *)rendering_system_initialize_basic_object(object_memory);
     rendering_system_setup_object_callbacks(render_object, object_context, 0);
-    *(uint32_t *)((longlong)render_object + 0x8c) = object_type;
+    *(uint32_t *)((int64_t)render_object + 0x8c) = object_type;
     return render_object;
     
   case RENDER_OBJECT_TYPE_BASIC:
     // 创建高级类型对象
     object_memory = rendering_system_allocate_memory(g_rendering_memory_pool, RENDER_OBJECT_SIZE_ADVANCED, 8, 3);
-    render_object = (longlong *)rendering_system_initialize_advanced_object(object_memory);
+    render_object = (int64_t *)rendering_system_initialize_advanced_object(object_memory);
     rendering_system_setup_object_callbacks(render_object, object_context, 0);
-    *(uint32_t *)((longlong)render_object + 0x8c) = RENDER_OBJECT_TYPE_BASIC;
+    *(uint32_t *)((int64_t)render_object + 0x8c) = RENDER_OBJECT_TYPE_BASIC;
     return render_object;
     
   case RENDER_OBJECT_TYPE_ADVANCED:
     // 创建特殊类型对象
     object_memory = rendering_system_allocate_memory(g_rendering_memory_pool, RENDER_OBJECT_SIZE_SPECIAL, 8, 3);
-    render_object = (longlong *)rendering_system_initialize_special_object(object_memory);
+    render_object = (int64_t *)rendering_system_initialize_special_object(object_memory);
     rendering_system_setup_object_callbacks(render_object, object_context, 0);
-    *(uint32_t *)((longlong)render_object + 0x8c) = RENDER_OBJECT_TYPE_ADVANCED;
+    *(uint32_t *)((int64_t)render_object + 0x8c) = RENDER_OBJECT_TYPE_ADVANCED;
     return render_object;
     
   case RENDER_OBJECT_TYPE_SPECIAL:
     // 创建增强类型对象
     object_memory = rendering_system_allocate_memory(g_rendering_memory_pool, RENDER_OBJECT_SIZE_ENHANCED, 8, 3);
-    render_object = (longlong *)rendering_system_initialize_enhanced_object(object_memory);
+    render_object = (int64_t *)rendering_system_initialize_enhanced_object(object_memory);
     rendering_system_setup_object_callbacks(render_object, object_context, 0);
-    *(uint32_t *)((longlong)render_object + 0x8c) = RENDER_OBJECT_TYPE_SPECIAL;
+    *(uint32_t *)((int64_t)render_object + 0x8c) = RENDER_OBJECT_TYPE_SPECIAL;
     return render_object;
     
   case RENDER_OBJECT_TYPE_ENHANCED:
     // 创建扩展类型对象
-    render_object = (longlong *)rendering_system_create_extended_object(&g_rendering_object_factory);
+    render_object = (int64_t *)rendering_system_create_extended_object(&g_rendering_object_factory);
     rendering_system_setup_object_callbacks(render_object, object_context, 0);
-    *(uint32_t *)((longlong)render_object + 0x8c) = RENDER_OBJECT_TYPE_ENHANCED;
+    *(uint32_t *)((int64_t)render_object + 0x8c) = RENDER_OBJECT_TYPE_ENHANCED;
     return render_object;
     
   default:
@@ -124,20 +124,20 @@ longlong *rendering_system_create_object_by_type(longlong object_context)
  * @param operation_type 操作类型
  * @param data_buffer 数据缓冲区指针
  */
-void rendering_system_process_object_data(longlong object_context, uint64_t operation_type, uint64_t *data_buffer)
+void rendering_system_process_object_data(int64_t object_context, uint64_t operation_type, uint64_t *data_buffer)
 {
-  longlong data_start;
-  longlong data_end;
-  longlong data_size;
-  longlong *buffer_ptr;
-  longlong *buffer_end;
-  longlong *new_buffer;
+  int64_t data_start;
+  int64_t data_end;
+  int64_t data_size;
+  int64_t *buffer_ptr;
+  int64_t *buffer_end;
+  int64_t *new_buffer;
   uint64_t chunk_index;
-  longlong chunk_offset;
+  int64_t chunk_offset;
   int buffer_capacity;
   
-  data_start = *(longlong *)(object_context + 0x90);
-  data_end = *(longlong *)(object_context + 0x98) - data_start;
+  data_start = *(int64_t *)(object_context + 0x90);
+  data_end = *(int64_t *)(object_context + 0x98) - data_start;
   buffer_capacity = 0;
   
   // 计算数据块数量
@@ -145,29 +145,29 @@ void rendering_system_process_object_data(longlong object_context, uint64_t oper
   if (data_end / RENDER_OBJECT_CHUNK_SIZE + chunk_offset != chunk_offset) {
     chunk_index = 0;
     do {
-      buffer_ptr = (longlong *)data_buffer[1];
+      buffer_ptr = (int64_t *)data_buffer[1];
       chunk_offset = chunk_index * RENDER_OBJECT_CHUNK_SIZE + data_start;
       
       // 检查缓冲区容量
-      if (buffer_ptr < (longlong *)data_buffer[2]) {
+      if (buffer_ptr < (int64_t *)data_buffer[2]) {
         data_buffer[1] = (uint64_t)(buffer_ptr + 1);
         *buffer_ptr = chunk_offset;
       }
       else {
         // 扩展缓冲区
-        buffer_end = (longlong *)*data_buffer;
-        data_size = (longlong)buffer_ptr - (longlong)buffer_end >> 3;
+        buffer_end = (int64_t *)*data_buffer;
+        data_size = (int64_t)buffer_ptr - (int64_t)buffer_end >> 3;
         
         if (data_size == 0) {
           data_size = 1;
         }
         
-        new_buffer = (longlong *)rendering_system_reallocate_memory(g_rendering_memory_pool, data_size * 8, (char)data_buffer[3]);
-        buffer_end = (longlong *)*data_buffer;
-        buffer_ptr = (longlong *)data_buffer[1];
+        new_buffer = (int64_t *)rendering_system_reallocate_memory(g_rendering_memory_pool, data_size * 8, (char)data_buffer[3]);
+        buffer_end = (int64_t *)*data_buffer;
+        buffer_ptr = (int64_t *)data_buffer[1];
         
         if (buffer_end != buffer_ptr) {
-          memmove(new_buffer, buffer_end, (longlong)buffer_ptr - (longlong)buffer_end);
+          memmove(new_buffer, buffer_end, (int64_t)buffer_ptr - (int64_t)buffer_end);
         }
         
         *new_buffer = chunk_offset;
@@ -181,10 +181,10 @@ void rendering_system_process_object_data(longlong object_context, uint64_t oper
         data_buffer[1] = (uint64_t)(new_buffer + 1);
       }
       
-      data_start = *(longlong *)(object_context + 0x90);
+      data_start = *(int64_t *)(object_context + 0x90);
       buffer_capacity = buffer_capacity + 1;
       chunk_index = (uint64_t)buffer_capacity;
-    } while (chunk_index < (uint64_t)((*(longlong *)(object_context + 0x98) - data_start) / RENDER_OBJECT_CHUNK_SIZE));
+    } while (chunk_index < (uint64_t)((*(int64_t *)(object_context + 0x98) - data_start) / RENDER_OBJECT_CHUNK_SIZE));
   }
   
   return;
@@ -199,41 +199,41 @@ void rendering_system_process_object_data(longlong object_context, uint64_t oper
  * @param operation_params 操作参数
  * @param object_data 对象数据
  */
-void rendering_system_batch_process_objects(uint64_t operation_context, uint64_t operation_params, longlong object_data)
+void rendering_system_batch_process_objects(uint64_t operation_context, uint64_t operation_params, int64_t object_data)
 {
-  longlong *buffer_ptr;
-  longlong *buffer_end;
-  longlong buffer_size;
+  int64_t *buffer_ptr;
+  int64_t *buffer_end;
+  int64_t buffer_size;
   uint64_t *data_buffer;
-  longlong *new_buffer;
+  int64_t *new_buffer;
   uint64_t chunk_index;
-  longlong chunk_offset;
+  int64_t chunk_offset;
   int buffer_capacity;
   
   chunk_index = 0;
   do {
-    buffer_ptr = (longlong *)data_buffer[1];
+    buffer_ptr = (int64_t *)data_buffer[1];
     object_data = chunk_index * RENDER_OBJECT_CHUNK_SIZE + object_data;
     
-    if (buffer_ptr < (longlong *)data_buffer[2]) {
+    if (buffer_ptr < (int64_t *)data_buffer[2]) {
       data_buffer[1] = (uint64_t)(buffer_ptr + 1);
       *buffer_ptr = object_data;
     }
     else {
       // 缓冲区扩展逻辑
-      buffer_end = (longlong *)*data_buffer;
-      buffer_size = (longlong)buffer_ptr - (longlong)buffer_end >> 3;
+      buffer_end = (int64_t *)*data_buffer;
+      buffer_size = (int64_t)buffer_ptr - (int64_t)buffer_end >> 3;
       
       if (buffer_size == 0) {
         buffer_size = 1;
       }
       
-      new_buffer = (longlong *)rendering_system_reallocate_memory(g_rendering_memory_pool, buffer_size * 8, (char)data_buffer[3]);
-      buffer_end = (longlong *)*data_buffer;
-      buffer_ptr = (longlong *)data_buffer[1];
+      new_buffer = (int64_t *)rendering_system_reallocate_memory(g_rendering_memory_pool, buffer_size * 8, (char)data_buffer[3]);
+      buffer_end = (int64_t *)*data_buffer;
+      buffer_ptr = (int64_t *)data_buffer[1];
       
       if (buffer_end != buffer_ptr) {
-        memmove(new_buffer, buffer_end, (longlong)buffer_ptr - (longlong)buffer_end);
+        memmove(new_buffer, buffer_end, (int64_t)buffer_ptr - (int64_t)buffer_end);
       }
       
       *new_buffer = object_data;
@@ -247,12 +247,12 @@ void rendering_system_batch_process_objects(uint64_t operation_context, uint64_t
       data_buffer[1] = (uint64_t)(new_buffer + 1);
     }
     
-    object_data = *(longlong *)(operation_context + 0x90);
+    object_data = *(int64_t *)(operation_context + 0x90);
     buffer_capacity = buffer_capacity + 1;
     chunk_index = (uint64_t)buffer_capacity;
     
     // 检查是否完成所有对象处理
-    buffer_size = (longlong)((*(longlong *)(operation_context + 0x98) - object_data) / RENDER_OBJECT_CHUNK_SIZE);
+    buffer_size = (int64_t)((*(int64_t *)(operation_context + 0x98) - object_data) / RENDER_OBJECT_CHUNK_SIZE);
     if ((uint64_t)((buffer_size >> 7) - (buffer_size >> 0x3f)) <= chunk_index) {
       return;
     }
@@ -278,21 +278,21 @@ void rendering_system_empty_function_2(void)
  * @param source_object 源对象
  * @return 目标对象指针
  */
-longlong rendering_system_copy_object_data(longlong target_object, longlong source_object)
+int64_t rendering_system_copy_object_data(int64_t target_object, int64_t source_object)
 {
   uint32_t value1;
   uint32_t value2;
   uint32_t value3;
   uint64_t data_ptr;
-  longlong offset1;
-  longlong offset2;
-  longlong offset3;
-  longlong offset4;
-  longlong offset5;
+  int64_t offset1;
+  int64_t offset2;
+  int64_t offset3;
+  int64_t offset4;
+  int64_t offset5;
   uint64_t chunk_index;
   uint64_t buffer_size;
   int chunk_count;
-  longlong stack_var;
+  int64_t stack_var;
   
   // 复制基础属性
   *(uint32_t *)(target_object + 8) = *(uint32_t *)(source_object + 8);
@@ -337,8 +337,8 @@ longlong rendering_system_copy_object_data(longlong target_object, longlong sour
   *(uint32_t *)(target_object + 0x8c) = *(uint32_t *)(source_object + 0x8c);
   
   // 复制数据块
-  offset1 = *(longlong *)(source_object + 0x90);
-  offset2 = *(longlong *)(source_object + 0x98) - offset1;
+  offset1 = *(int64_t *)(source_object + 0x90);
+  offset2 = *(int64_t *)(source_object + 0x98) - offset1;
   offset3 = offset2 >> 0x3f;
   
   if (offset2 / RENDER_OBJECT_CHUNK_SIZE + offset3 != offset3) {
@@ -353,8 +353,8 @@ longlong rendering_system_copy_object_data(longlong target_object, longlong sour
       }
       else {
         // 重新分配内存
-        offset3 = *(longlong *)(target_object + 0x90);
-        offset2 = (longlong)(chunk_index - offset3) / RENDER_OBJECT_CHUNK_SIZE;
+        offset3 = *(int64_t *)(target_object + 0x90);
+        offset2 = (int64_t)(chunk_index - offset3) / RENDER_OBJECT_CHUNK_SIZE;
         
         if (offset2 == 0) {
           offset2 = 1;
@@ -362,14 +362,14 @@ longlong rendering_system_copy_object_data(longlong target_object, longlong sour
         
         offset4 = rendering_system_reallocate_memory(g_rendering_memory_pool, offset2 * RENDER_OBJECT_CHUNK_SIZE, *(uint8_t *)(target_object + 0xa8));
         chunk_index = *(uint64_t *)(target_object + 0x98);
-        offset3 = *(longlong *)(target_object + 0x90);
+        offset3 = *(int64_t *)(target_object + 0x90);
         
         rendering_system_transfer_data(&stack_var, offset3, chunk_index, offset4);
         offset5 = stack_var;
         rendering_system_copy_data_chunk(stack_var, offset1);
         
         chunk_index = *(uint64_t *)(target_object + 0x98);
-        offset3 = *(longlong *)(target_object + 0x90);
+        offset3 = *(int64_t *)(target_object + 0x90);
         
         // 清理旧内存
         if (offset3 != chunk_index) {
@@ -377,22 +377,22 @@ longlong rendering_system_copy_object_data(longlong target_object, longlong sour
             rendering_system_free_data_chunk(offset3);
             offset3 = offset3 + RENDER_OBJECT_CHUNK_SIZE;
           } while (offset3 != chunk_index);
-          offset3 = *(longlong *)(target_object + 0x90);
+          offset3 = *(int64_t *)(target_object + 0x90);
         }
         
         if (offset3 != 0) {
           rendering_system_free_memory(offset3);
         }
         
-        *(longlong *)(target_object + 0x90) = offset4;
-        *(longlong *)(target_object + 0x98) = offset5 + RENDER_OBJECT_CHUNK_SIZE;
-        *(longlong *)(target_object + 0xa0) = offset2 * RENDER_OBJECT_CHUNK_SIZE + offset4;
+        *(int64_t *)(target_object + 0x90) = offset4;
+        *(int64_t *)(target_object + 0x98) = offset5 + RENDER_OBJECT_CHUNK_SIZE;
+        *(int64_t *)(target_object + 0xa0) = offset2 * RENDER_OBJECT_CHUNK_SIZE + offset4;
       }
       
-      offset1 = *(longlong *)(source_object + 0x90);
+      offset1 = *(int64_t *)(source_object + 0x90);
       chunk_count = chunk_count + 1;
       buffer_size = (uint64_t)chunk_count;
-    } while (buffer_size < (uint64_t)((*(longlong *)(source_object + 0x98) - offset1) / RENDER_OBJECT_CHUNK_SIZE));
+    } while (buffer_size < (uint64_t)((*(int64_t *)(source_object + 0x98) - offset1) / RENDER_OBJECT_CHUNK_SIZE));
   }
   
   return target_object;
@@ -406,15 +406,15 @@ longlong rendering_system_copy_object_data(longlong target_object, longlong sour
  * @param allocation_context 分配上下文
  * @param allocation_params 分配参数
  */
-void rendering_system_allocate_object_memory(longlong allocation_context, longlong *allocation_params)
+void rendering_system_allocate_object_memory(int64_t allocation_context, int64_t *allocation_params)
 {
-  longlong buffer_size;
-  longlong new_buffer;
-  longlong buffer_start;
-  longlong buffer_end;
+  int64_t buffer_size;
+  int64_t new_buffer;
+  int64_t buffer_start;
+  int64_t buffer_end;
   uint64_t allocation_size;
   uint64_t chunk_index;
-  longlong chunk_offset;
+  int64_t chunk_offset;
   int allocation_count;
   
   chunk_index = 0;
@@ -427,8 +427,8 @@ void rendering_system_allocate_object_memory(longlong allocation_context, longlo
       rendering_system_copy_data_chunk(allocation_size, chunk_offset);
     }
     else {
-      buffer_start = *(longlong *)(allocation_context + 0x90);
-      buffer_size = (longlong)((longlong)allocation_size - buffer_start) / RENDER_OBJECT_CHUNK_SIZE;
+      buffer_start = *(int64_t *)(allocation_context + 0x90);
+      buffer_size = (int64_t)((int64_t)allocation_size - buffer_start) / RENDER_OBJECT_CHUNK_SIZE;
       buffer_size = (buffer_size >> 7) - (buffer_size >> 0x3f);
       
       if (buffer_size == 0) {
@@ -437,15 +437,15 @@ void rendering_system_allocate_object_memory(longlong allocation_context, longlo
       
       new_buffer = rendering_system_reallocate_memory(g_rendering_memory_pool, buffer_size * RENDER_OBJECT_CHUNK_SIZE, *(uint8_t *)(allocation_context + 0xa8));
       allocation_size = *(uint64_t *)(allocation_context + 0x98);
-      buffer_start = *(longlong *)(allocation_context + 0x90);
+      buffer_start = *(int64_t *)(allocation_context + 0x90);
       
       rendering_system_transfer_data(&allocation_params, buffer_start, allocation_size, new_buffer);
       buffer_end = allocation_params;
       rendering_system_copy_data_chunk(allocation_params, chunk_offset);
       
       allocation_size = *(uint64_t *)(allocation_context + 0x98);
-      buffer_start = *(longlong *)(allocation_context + 0x90);
-      buffer_end = *(longlong *)(allocation_context + 0x90);
+      buffer_start = *(int64_t *)(allocation_context + 0x90);
+      buffer_end = *(int64_t *)(allocation_context + 0x90);
       
       // 清理旧内存
       if (buffer_end != allocation_size) {
@@ -453,23 +453,23 @@ void rendering_system_allocate_object_memory(longlong allocation_context, longlo
           rendering_system_free_data_chunk(buffer_end);
           buffer_end = buffer_end + RENDER_OBJECT_CHUNK_SIZE;
         } while (buffer_end != allocation_size);
-        buffer_end = *(longlong *)(allocation_context + 0x90);
+        buffer_end = *(int64_t *)(allocation_context + 0x90);
       }
       
       if (buffer_end != 0) {
         rendering_system_free_memory(buffer_end);
       }
       
-      *(longlong *)(allocation_context + 0x90) = new_buffer;
-      *(longlong *)(allocation_context + 0x98) = buffer_end + RENDER_OBJECT_CHUNK_SIZE;
-      *(longlong *)(allocation_context + 0xa0) = buffer_size * RENDER_OBJECT_CHUNK_SIZE + new_buffer;
+      *(int64_t *)(allocation_context + 0x90) = new_buffer;
+      *(int64_t *)(allocation_context + 0x98) = buffer_end + RENDER_OBJECT_CHUNK_SIZE;
+      *(int64_t *)(allocation_context + 0xa0) = buffer_size * RENDER_OBJECT_CHUNK_SIZE + new_buffer;
     }
     
-    chunk_offset = *(longlong *)(allocation_context + 0x90);
+    chunk_offset = *(int64_t *)(allocation_context + 0x90);
     allocation_count = allocation_count + 1;
     chunk_index = (uint64_t)allocation_count;
     
-    if ((uint64_t)((*(longlong *)(allocation_context + 0x98) - chunk_offset) / RENDER_OBJECT_CHUNK_SIZE) <= chunk_index) {
+    if ((uint64_t)((*(int64_t *)(allocation_context + 0x98) - chunk_offset) / RENDER_OBJECT_CHUNK_SIZE) <= chunk_index) {
       return;
     }
   } while( true );
@@ -493,20 +493,20 @@ void rendering_system_empty_function_3(void)
  * @param object_data 对象数据
  * @param output_buffer 输出缓冲区
  */
-void rendering_system_serialize_object(longlong object_data, longlong *output_buffer)
+void rendering_system_serialize_object(int64_t object_data, int64_t *output_buffer)
 {
   uint32_t header_value;
-  longlong data_offset;
+  int64_t data_offset;
   char *buffer_ptr;
   int *int_ptr;
   uint32_t *uint_ptr;
-  longlong array_size;
+  int64_t array_size;
   char flag_value;
   int element_count;
   uint64_t write_index;
   uint64_t read_index;
-  longlong array_start;
-  longlong array_end;
+  int64_t array_start;
+  int64_t array_end;
   uint element_count_uint;
   uint64_t element_index;
   
@@ -516,8 +516,8 @@ void rendering_system_serialize_object(longlong object_data, longlong *output_bu
   header_value = *(uint32_t *)(object_data + 0x5c);
   
   // 检查缓冲区空间
-  if ((uint64_t)((*output_buffer - (longlong)uint_ptr) + output_buffer[2]) < 5) {
-    rendering_system_expand_buffer(output_buffer, (longlong)uint_ptr + (4 - *output_buffer));
+  if ((uint64_t)((*output_buffer - (int64_t)uint_ptr) + output_buffer[2]) < 5) {
+    rendering_system_expand_buffer(output_buffer, (int64_t)uint_ptr + (4 - *output_buffer));
     uint_ptr = (uint32_t *)output_buffer[1];
   }
   
@@ -527,8 +527,8 @@ void rendering_system_serialize_object(longlong object_data, longlong *output_bu
   uint_ptr = (uint32_t *)output_buffer[1];
   header_value = *(uint32_t *)(object_data + 0x58);
   
-  if ((uint64_t)((*output_buffer - (longlong)uint_ptr) + output_buffer[2]) < 5) {
-    rendering_system_expand_buffer(output_buffer, (longlong)uint_ptr + (4 - *output_buffer));
+  if ((uint64_t)((*output_buffer - (int64_t)uint_ptr) + output_buffer[2]) < 5) {
+    rendering_system_expand_buffer(output_buffer, (int64_t)uint_ptr + (4 - *output_buffer));
     uint_ptr = (uint32_t *)output_buffer[1];
   }
   
@@ -537,8 +537,8 @@ void rendering_system_serialize_object(longlong object_data, longlong *output_bu
   uint_ptr = (uint32_t *)output_buffer[1];
   header_value = *(uint32_t *)(object_data + 0x60);
   
-  if ((uint64_t)((*output_buffer - (longlong)uint_ptr) + output_buffer[2]) < 5) {
-    rendering_system_expand_buffer(output_buffer, (longlong)uint_ptr + (4 - *output_buffer));
+  if ((uint64_t)((*output_buffer - (int64_t)uint_ptr) + output_buffer[2]) < 5) {
+    rendering_system_expand_buffer(output_buffer, (int64_t)uint_ptr + (4 - *output_buffer));
     uint_ptr = (uint32_t *)output_buffer[1];
   }
   
@@ -562,7 +562,7 @@ void rendering_system_serialize_object(longlong object_data, longlong *output_bu
   }
   
   // 写入标志
-  if ((uint64_t)((*output_buffer - (longlong)buffer_ptr) + output_buffer[2]) < 2) {
+  if ((uint64_t)((*output_buffer - (int64_t)buffer_ptr) + output_buffer[2]) < 2) {
     rendering_system_expand_buffer(output_buffer, buffer_ptr + (1 - *output_buffer));
     buffer_ptr = (char *)output_buffer[1];
   }
@@ -579,8 +579,8 @@ void rendering_system_serialize_object(longlong object_data, longlong *output_bu
   
   // 写入对象ID
   header_value = *(uint32_t *)(object_data + 100);
-  if ((uint64_t)((*output_buffer - (longlong)uint_ptr) + output_buffer[2]) < 5) {
-    rendering_system_expand_buffer(output_buffer, (longlong)uint_ptr + (4 - *output_buffer));
+  if ((uint64_t)((*output_buffer - (int64_t)uint_ptr) + output_buffer[2]) < 5) {
+    rendering_system_expand_buffer(output_buffer, (int64_t)uint_ptr + (4 - *output_buffer));
     uint_ptr = (uint32_t *)output_buffer[1];
   }
   
@@ -597,8 +597,8 @@ void rendering_system_serialize_object(longlong object_data, longlong *output_bu
   // 写入状态信息
   uint_ptr = (uint32_t *)output_buffer[1];
   header_value = *(uint32_t *)(object_data + 0x68);
-  if ((uint64_t)((*output_buffer - (longlong)uint_ptr) + output_buffer[2]) < 5) {
-    rendering_system_expand_buffer(output_buffer, (longlong)uint_ptr + (4 - *output_buffer));
+  if ((uint64_t)((*output_buffer - (int64_t)uint_ptr) + output_buffer[2]) < 5) {
+    rendering_system_expand_buffer(output_buffer, (int64_t)uint_ptr + (4 - *output_buffer));
     uint_ptr = (uint32_t *)output_buffer[1];
   }
   
@@ -607,8 +607,8 @@ void rendering_system_serialize_object(longlong object_data, longlong *output_bu
   uint_ptr = (uint32_t *)output_buffer[1];
   header_value = *(uint32_t *)(object_data + 0x198);
   
-  if ((uint64_t)((*output_buffer - (longlong)uint_ptr) + output_buffer[2]) < 5) {
-    rendering_system_expand_buffer(output_buffer, (longlong)uint_ptr + (4 - *output_buffer));
+  if ((uint64_t)((*output_buffer - (int64_t)uint_ptr) + output_buffer[2]) < 5) {
+    rendering_system_expand_buffer(output_buffer, (int64_t)uint_ptr + (4 - *output_buffer));
     uint_ptr = (uint32_t *)output_buffer[1];
   }
   
@@ -617,11 +617,11 @@ void rendering_system_serialize_object(longlong object_data, longlong *output_bu
   
   // 处理数组数据
   int_ptr = (int *)output_buffer[1];
-  array_size = *(longlong *)(object_data + 0x138);
-  array_start = *(longlong *)(object_data + 0x130);
+  array_size = *(int64_t *)(object_data + 0x138);
+  array_start = *(int64_t *)(object_data + 0x130);
   
-  if ((uint64_t)((*output_buffer - (longlong)int_ptr) + output_buffer[2]) < 5) {
-    rendering_system_expand_buffer(output_buffer, (longlong)int_ptr + (4 - *output_buffer));
+  if ((uint64_t)((*output_buffer - (int64_t)int_ptr) + output_buffer[2]) < 5) {
+    rendering_system_expand_buffer(output_buffer, (int64_t)int_ptr + (4 - *output_buffer));
     int_ptr = (int *)output_buffer[1];
   }
   
@@ -629,14 +629,14 @@ void rendering_system_serialize_object(longlong object_data, longlong *output_bu
   *int_ptr = element_count;
   element_index = 0;
   uint_ptr = (uint32_t *)(output_buffer[1] + 4);
-  output_buffer[1] = (longlong)uint_ptr;
+  output_buffer[1] = (int64_t)uint_ptr;
   read_index = element_index;
   
   if (0 < element_count) {
     do {
-      array_size = *(longlong *)(object_data + 0x130);
-      if ((uint64_t)((*output_buffer - (longlong)uint_ptr) + output_buffer[2]) < 9) {
-        rendering_system_expand_buffer(output_buffer, (longlong)uint_ptr + (8 - *output_buffer));
+      array_size = *(int64_t *)(object_data + 0x130);
+      if ((uint64_t)((*output_buffer - (int64_t)uint_ptr) + output_buffer[2]) < 9) {
+        rendering_system_expand_buffer(output_buffer, (int64_t)uint_ptr + (8 - *output_buffer));
         uint_ptr = (uint32_t *)output_buffer[1];
       }
       
@@ -645,15 +645,15 @@ void rendering_system_serialize_object(longlong object_data, longlong *output_bu
       element_index = read_index + 1;
       *(uint32_t *)output_buffer[1] = *(uint32_t *)(array_size + 4 + read_index * 8);
       uint_ptr = (uint32_t *)(output_buffer[1] + 4);
-      output_buffer[1] = (longlong)uint_ptr;
+      output_buffer[1] = (int64_t)uint_ptr;
       read_index = element_index;
-    } while ((longlong)element_index < (longlong)element_count);
+    } while ((int64_t)element_index < (int64_t)element_count);
   }
   
   // 写入其他属性
   header_value = *(uint32_t *)(object_data + 0x7c);
-  if ((uint64_t)((*output_buffer - (longlong)uint_ptr) + output_buffer[2]) < 5) {
-    rendering_system_expand_buffer(output_buffer, (longlong)uint_ptr + (4 - *output_buffer));
+  if ((uint64_t)((*output_buffer - (int64_t)uint_ptr) + output_buffer[2]) < 5) {
+    rendering_system_expand_buffer(output_buffer, (int64_t)uint_ptr + (4 - *output_buffer));
     uint_ptr = (uint32_t *)output_buffer[1];
   }
   
@@ -662,14 +662,14 @@ void rendering_system_serialize_object(longlong object_data, longlong *output_bu
   uint_ptr = (uint32_t *)output_buffer[1];
   header_value = *(uint32_t *)(object_data + 0x74);
   
-  if ((uint64_t)((*output_buffer - (longlong)uint_ptr) + output_buffer[2]) < 5) {
-    rendering_system_expand_buffer(output_buffer, (longlong)uint_ptr + (4 - *output_buffer));
+  if ((uint64_t)((*output_buffer - (int64_t)uint_ptr) + output_buffer[2]) < 5) {
+    rendering_system_expand_buffer(output_buffer, (int64_t)uint_ptr + (4 - *output_buffer));
     uint_ptr = (uint32_t *)output_buffer[1];
   }
   
   *uint_ptr = header_value;
   uint_ptr = (uint32_t *)(output_buffer[1] + 4);
-  output_buffer[1] = (longlong)uint_ptr;
+  output_buffer[1] = (int64_t)uint_ptr;
   element_index = 0;
   read_index = 0;
   
@@ -678,17 +678,17 @@ void rendering_system_serialize_object(longlong object_data, longlong *output_bu
     do {
       array_size = *output_buffer;
       array_end = output_buffer[2];
-      data_offset = *(longlong *)(object_data + 0x150);
+      data_offset = *(int64_t *)(object_data + 0x150);
       
-      if ((uint64_t)((array_size - (longlong)uint_ptr) + array_end) < 0x41) {
-        rendering_system_expand_buffer(output_buffer, (longlong)uint_ptr + (0x40 - array_size));
+      if ((uint64_t)((array_size - (int64_t)uint_ptr) + array_end) < 0x41) {
+        rendering_system_expand_buffer(output_buffer, (int64_t)uint_ptr + (0x40 - array_size));
         uint_ptr = (uint32_t *)output_buffer[1];
         array_end = output_buffer[2];
         array_size = *output_buffer;
       }
       
-      if ((uint64_t)((array_size - (longlong)uint_ptr) + array_end) < 0x11) {
-        rendering_system_expand_buffer(output_buffer, (longlong)uint_ptr + (0x10 - array_size));
+      if ((uint64_t)((array_size - (int64_t)uint_ptr) + array_end) < 0x11) {
+        rendering_system_expand_buffer(output_buffer, (int64_t)uint_ptr + (0x10 - array_size));
         uint_ptr = (uint32_t *)output_buffer[1];
       }
       
@@ -701,11 +701,11 @@ void rendering_system_serialize_object(longlong object_data, longlong *output_bu
       output_buffer[1] = output_buffer[1] + 4;
       *(uint32_t *)output_buffer[1] = *(uint32_t *)(element_index + 0xc + data_offset);
       uint_ptr = (uint32_t *)(output_buffer[1] + 4);
-      output_buffer[1] = (longlong)uint_ptr;
+      output_buffer[1] = (int64_t)uint_ptr;
       
       // 写入UV数据
-      if ((uint64_t)((*output_buffer - (longlong)uint_ptr) + output_buffer[2]) < 0x11) {
-        rendering_system_expand_buffer(output_buffer, (longlong)uint_ptr + (0x10 - *output_buffer));
+      if ((uint64_t)((*output_buffer - (int64_t)uint_ptr) + output_buffer[2]) < 0x11) {
+        rendering_system_expand_buffer(output_buffer, (int64_t)uint_ptr + (0x10 - *output_buffer));
         uint_ptr = (uint32_t *)output_buffer[1];
       }
       
@@ -717,11 +717,11 @@ void rendering_system_serialize_object(longlong object_data, longlong *output_bu
       output_buffer[1] = output_buffer[1] + 4;
       *(uint32_t *)output_buffer[1] = *(uint32_t *)(element_index + 0x1c + data_offset);
       uint_ptr = (uint32_t *)(output_buffer[1] + 4);
-      output_buffer[1] = (longlong)uint_ptr;
+      output_buffer[1] = (int64_t)uint_ptr;
       
       // 写入法线数据
-      if ((uint64_t)((*output_buffer - (longlong)uint_ptr) + output_buffer[2]) < 0x11) {
-        rendering_system_expand_buffer(output_buffer, (longlong)uint_ptr + (0x10 - *output_buffer));
+      if ((uint64_t)((*output_buffer - (int64_t)uint_ptr) + output_buffer[2]) < 0x11) {
+        rendering_system_expand_buffer(output_buffer, (int64_t)uint_ptr + (0x10 - *output_buffer));
         uint_ptr = (uint32_t *)output_buffer[1];
       }
       
@@ -733,11 +733,11 @@ void rendering_system_serialize_object(longlong object_data, longlong *output_bu
       output_buffer[1] = output_buffer[1] + 4;
       *(uint32_t *)output_buffer[1] = *(uint32_t *)(element_index + 0x2c + data_offset);
       uint_ptr = (uint32_t *)(output_buffer[1] + 4);
-      output_buffer[1] = (longlong)uint_ptr;
+      output_buffer[1] = (int64_t)uint_ptr;
       
       // 写入切线数据
-      if ((uint64_t)((*output_buffer - (longlong)uint_ptr) + output_buffer[2]) < 0x11) {
-        rendering_system_expand_buffer(output_buffer, (longlong)uint_ptr + (0x10 - *output_buffer));
+      if ((uint64_t)((*output_buffer - (int64_t)uint_ptr) + output_buffer[2]) < 0x11) {
+        rendering_system_expand_buffer(output_buffer, (int64_t)uint_ptr + (0x10 - *output_buffer));
         uint_ptr = (uint32_t *)output_buffer[1];
       }
       
@@ -750,7 +750,7 @@ void rendering_system_serialize_object(longlong object_data, longlong *output_bu
       output_buffer[1] = output_buffer[1] + 4;
       *(uint32_t *)output_buffer[1] = *(uint32_t *)(element_index + 0x3c + data_offset);
       uint_ptr = (uint32_t *)(output_buffer[1] + 4);
-      output_buffer[1] = (longlong)uint_ptr;
+      output_buffer[1] = (int64_t)uint_ptr;
       element_index = element_index + 0x40;
       read_index = (uint64_t)element_count_uint;
     } while (element_count_uint < *(uint *)(object_data + 0x74));
@@ -758,23 +758,23 @@ void rendering_system_serialize_object(longlong object_data, longlong *output_bu
   
   // 写入材质数据
   header_value = *(uint32_t *)(object_data + 0x78);
-  if ((uint64_t)((*output_buffer - (longlong)uint_ptr) + output_buffer[2]) < 5) {
-    rendering_system_expand_buffer(output_buffer, (longlong)uint_ptr + (4 - *output_buffer));
+  if ((uint64_t)((*output_buffer - (int64_t)uint_ptr) + output_buffer[2]) < 5) {
+    rendering_system_expand_buffer(output_buffer, (int64_t)uint_ptr + (4 - *output_buffer));
     uint_ptr = (uint32_t *)output_buffer[1];
   }
   
   *uint_ptr = header_value;
   uint_ptr = (uint32_t *)(output_buffer[1] + 4);
-  output_buffer[1] = (longlong)uint_ptr;
+  output_buffer[1] = (int64_t)uint_ptr;
   
   // 处理材质属性
   if (*(int *)(object_data + 0x78) != 0) {
     do {
       element_count = (int)element_index;
-      array_size = *(longlong *)(object_data + 0x170);
+      array_size = *(int64_t *)(object_data + 0x170);
       
-      if ((uint64_t)((*output_buffer - (longlong)uint_ptr) + output_buffer[2]) < 2) {
-        rendering_system_expand_buffer(output_buffer, (uint8_t *)((longlong)uint_ptr + (1 - *output_buffer)));
+      if ((uint64_t)((*output_buffer - (int64_t)uint_ptr) + output_buffer[2]) < 2) {
+        rendering_system_expand_buffer(output_buffer, (uint8_t *)((int64_t)uint_ptr + (1 - *output_buffer)));
         uint_ptr = (uint32_t *)output_buffer[1];
       }
       
@@ -782,14 +782,14 @@ void rendering_system_serialize_object(longlong object_data, longlong *output_bu
       element_index = (uint64_t)element_count_uint;
       *(uint8_t *)uint_ptr = *(uint8_t *)(element_count + array_size);
       uint_ptr = (uint32_t *)(output_buffer[1] + 1);
-      output_buffer[1] = (longlong)uint_ptr;
+      output_buffer[1] = (int64_t)uint_ptr;
     } while (element_count_uint < *(uint *)(object_data + 0x78));
   }
   
   // 写入最终属性
   header_value = *(uint32_t *)(object_data + 0x6c);
-  if ((uint64_t)((*output_buffer - (longlong)uint_ptr) + output_buffer[2]) < 5) {
-    rendering_system_expand_buffer(output_buffer, (uint8_t *)((longlong)uint_ptr + (4 - *output_buffer)));
+  if ((uint64_t)((*output_buffer - (int64_t)uint_ptr) + output_buffer[2]) < 5) {
+    rendering_system_expand_buffer(output_buffer, (uint8_t *)((int64_t)uint_ptr + (4 - *output_buffer)));
     uint_ptr = (uint32_t *)output_buffer[1];
   }
   
@@ -799,8 +799,8 @@ void rendering_system_serialize_object(longlong object_data, longlong *output_bu
   uint_ptr = (uint32_t *)output_buffer[1];
   header_value = *(uint32_t *)(object_data + 0x70);
   
-  if ((uint64_t)((*output_buffer - (longlong)uint_ptr) + output_buffer[2]) < 5) {
-    rendering_system_expand_buffer(output_buffer, (longlong)uint_ptr + (4 - *output_buffer));
+  if ((uint64_t)((*output_buffer - (int64_t)uint_ptr) + output_buffer[2]) < 5) {
+    rendering_system_expand_buffer(output_buffer, (int64_t)uint_ptr + (4 - *output_buffer));
     *(uint32_t *)output_buffer[1] = header_value;
   }
   else {

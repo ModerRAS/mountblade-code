@@ -2,27 +2,27 @@
 
 // 03_rendering_part049.c - 渲染系统高级图形处理模块 - 29 个函数
 
-// 函数: void FUN_180293190(longlong param_1,uint64_t *param_2,uint param_3,uint param_4)
+// 函数: void FUN_180293190(int64_t param_1,uint64_t *param_2,uint param_3,uint param_4)
 // 功能: 渲染系统顶点索引缓冲区处理函数
 // 参数: param_1 - 渲染上下文指针, param_2 - 顶点数据数组, param_3 - 顶点数量, param_4 - 渲染标志
-void RenderingSystem_ProcessVertexIndexBuffer(longlong render_context, uint64_t *vertex_data, uint vertex_count, uint render_flags)
+void RenderingSystem_ProcessVertexIndexBuffer(int64_t render_context, uint64_t *vertex_data, uint vertex_count, uint render_flags)
 
 {
   int32_t render_flag1;
   int32_t render_flag2;
   uint64_t vertex_data_item;
-  longlong vertex_buffer_ptr;
-  ulonglong vertex_loop_counter;
+  int64_t vertex_buffer_ptr;
+  uint64_t vertex_loop_counter;
   short index_offset;
   int triangle_counter;
   short base_index;
   uint processed_render_flags;
   int index_buffer_size;
-  ulonglong stack_protection;
+  uint64_t stack_protection;
   
   // 栈保护机制初始化
-  stack_protection = STACK_PROTECTION_COOKIE ^ (ulonglong)&processed_render_flags;
-  vertex_loop_counter = (ulonglong)vertex_count;
+  stack_protection = STACK_PROTECTION_COOKIE ^ (uint64_t)&processed_render_flags;
+  vertex_loop_counter = (uint64_t)vertex_count;
   
   // 处理顶点数量大于2的情况
   if (2 < (int)vertex_count) {
@@ -41,13 +41,13 @@ void RenderingSystem_ProcessVertexIndexBuffer(longlong render_context, uint64_t 
           base_index = (short)render_flag1;
           index_offset = index_offset * 2 + base_index;
           **(short **)(render_context + 0x58) = base_index;
-          *(short *)(*(longlong *)(render_context + 0x58) + 2) = index_offset + -2;
-          *(short *)(*(longlong *)(render_context + 0x58) + 4) = index_offset;
-          *(longlong *)(render_context + 0x58) = *(longlong *)(render_context + 0x58) + 6;
+          *(short *)(*(int64_t *)(render_context + 0x58) + 2) = index_offset + -2;
+          *(short *)(*(int64_t *)(render_context + 0x58) + 4) = index_offset;
+          *(int64_t *)(render_context + 0x58) = *(int64_t *)(render_context + 0x58) + 6;
         } while (triangle_counter < (int)vertex_count);
       }
-      vertex_loop_counter = (longlong)(int)vertex_count * 8 + 0xf;
-      if (vertex_loop_counter <= (ulonglong)((longlong)(int)vertex_count * 8)) {
+      vertex_loop_counter = (int64_t)(int)vertex_count * 8 + 0xf;
+      if (vertex_loop_counter <= (uint64_t)((int64_t)(int)vertex_count * 8)) {
         vertex_loop_counter = 0xffffffffffffff0;
       }
       // 分配顶点缓冲区内存（此函数不返回）
@@ -59,11 +59,11 @@ void RenderingSystem_ProcessVertexIndexBuffer(longlong render_context, uint64_t 
         vertex_data_item = *vertex_data;
         vertex_data = vertex_data + 1;
         **(uint64_t **)(render_context + 0x50) = vertex_data_item;
-        vertex_buffer_ptr = *(longlong *)(render_context + 0x50);
+        vertex_buffer_ptr = *(int64_t *)(render_context + 0x50);
         *(int32_t *)(vertex_buffer_ptr + 8) = render_flag1;
         *(int32_t *)(vertex_buffer_ptr + 0xc) = render_flag2;
-        *(uint *)(*(longlong *)(render_context + 0x50) + 0x10) = render_flags;
-        *(longlong *)(render_context + 0x50) = *(longlong *)(render_context + 0x50) + 0x14;
+        *(uint *)(*(int64_t *)(render_context + 0x50) + 0x10) = render_flags;
+        *(int64_t *)(render_context + 0x50) = *(int64_t *)(render_context + 0x50) + 0x14;
         vertex_loop_counter = vertex_loop_counter - 1;
       } while (vertex_loop_counter != 0);
     }
@@ -72,22 +72,22 @@ void RenderingSystem_ProcessVertexIndexBuffer(longlong render_context, uint64_t 
       do {
         **(int16_t **)(render_context + 0x58) = *(int16_t *)(render_context + 0x48);
         index_offset = (short)triangle_counter;
-        *(short *)(*(longlong *)(render_context + 0x58) + 2) = index_offset + -1 + *(short *)(render_context + 0x48);
+        *(short *)(*(int64_t *)(render_context + 0x58) + 2) = index_offset + -1 + *(short *)(render_context + 0x48);
         triangle_counter = triangle_counter + 1;
-        *(short *)(*(longlong *)(render_context + 0x58) + 4) = index_offset + *(short *)(render_context + 0x48);
-        *(longlong *)(render_context + 0x58) = *(longlong *)(render_context + 0x58) + 6;
+        *(short *)(*(int64_t *)(render_context + 0x58) + 4) = index_offset + *(short *)(render_context + 0x48);
+        *(int64_t *)(render_context + 0x58) = *(int64_t *)(render_context + 0x58) + 6;
       } while (triangle_counter < (int)vertex_count);
     }
     *(int *)(render_context + 0x48) = *(int *)(render_context + 0x48) + (vertex_count & 0xffff);
   }
   // 栈保护检查（此函数不返回）
-  check_stack_protection(stack_protection ^ (ulonglong)&processed_render_flags);
+  check_stack_protection(stack_protection ^ (uint64_t)&processed_render_flags);
 }
 
 
 
 // 函数: 渲染纹理坐标变换处理
-void RenderingSystem_TextureCoordinateTransform(longlong render_context, float *texture_coords, float scale_factor, int start_index, int end_index)
+void RenderingSystem_TextureCoordinateTransform(int64_t render_context, float *texture_coords, float scale_factor, int start_index, int end_index)
 
 {
   int *buffer_ptr;
@@ -112,8 +112,8 @@ void RenderingSystem_TextureCoordinateTransform(longlong render_context, float *
     do {
       buffer_capacity = *(int *)(render_context + 0x84);
       // 获取基础纹理坐标
-      tex_coord_u = *(float *)(*(longlong *)(render_context + 0x38) + 0x28 + (longlong)(start_index % 0xc) * 8);
-      tex_coord_v = *(float *)(*(longlong *)(render_context + 0x38) + 0x2c + (longlong)(start_index % 0xc) * 8);
+      tex_coord_u = *(float *)(*(int64_t *)(render_context + 0x38) + 0x28 + (int64_t)(start_index % 0xc) * 8);
+      tex_coord_v = *(float *)(*(int64_t *)(render_context + 0x38) + 0x2c + (int64_t)(start_index % 0xc) * 8);
       base_coord_u = *texture_coords;
       base_coord_v = texture_coords[1];
       if (loop_counter == buffer_capacity) {
@@ -133,7 +133,7 @@ void RenderingSystem_TextureCoordinateTransform(longlong render_context, float *
       }
       start_index = start_index + 1;
       // 应用缩放变换并存储变换后的纹理坐标
-      *(ulonglong *)(*(longlong *)(render_context + 0x88) + (longlong)loop_counter * 8) =
+      *(uint64_t *)(*(int64_t *)(render_context + 0x88) + (int64_t)loop_counter * 8) =
            CONCAT44(scale_factor * tex_coord_v + base_coord_v, scale_factor * tex_coord_u + base_coord_u);
       *buffer_ptr = *buffer_ptr + 1;
       loop_counter = *buffer_ptr;
@@ -144,10 +144,10 @@ void RenderingSystem_TextureCoordinateTransform(longlong render_context, float *
 
 
 
-// 函数: void FUN_180293772(longlong param_1,int param_2,uint64_t param_3,int param_4)
+// 函数: void FUN_180293772(int64_t param_1,int param_2,uint64_t param_3,int param_4)
 // 功能: 渲染系统高级坐标变换处理函数（寄存器变量版本）
 // 参数: param_1 - 渲染上下文指针, param_2 - 坐标数量, param_3 - 坐标数据指针, param_4 - 起始索引
-void RenderingSystem_AdvancedCoordinateTransform(longlong render_context, int coordinate_count, uint64_t coordinate_data, int start_index)
+void RenderingSystem_AdvancedCoordinateTransform(int64_t render_context, int coordinate_count, uint64_t coordinate_data, int start_index)
 
 {
   int *buffer_count_ptr;
@@ -157,7 +157,7 @@ void RenderingSystem_AdvancedCoordinateTransform(longlong render_context, int co
   float coord_y;
   int buffer_capacity;
   int new_capacity;
-  longlong context_reg;
+  int64_t context_reg;
   int end_index_reg;
   int current_index_reg;
   int current_count;
@@ -173,8 +173,8 @@ void RenderingSystem_AdvancedCoordinateTransform(longlong render_context, int co
   do {
     buffer_capacity = *(int *)(render_context + 0x84);
     // 获取变换矩阵中的坐标值
-    transform_x = *(float *)(*(longlong *)(context_reg + 0x38) + 0x28 + (longlong)(current_index_reg % 0xc) * 8);
-    transform_y = *(float *)(*(longlong *)(context_reg + 0x38) + 0x2c + (longlong)(current_index_reg % 0xc) * 8);
+    transform_x = *(float *)(*(int64_t *)(context_reg + 0x38) + 0x28 + (int64_t)(current_index_reg % 0xc) * 8);
+    transform_y = *(float *)(*(int64_t *)(context_reg + 0x38) + 0x2c + (int64_t)(current_index_reg % 0xc) * 8);
     coord_x = *coord_array_reg;
     coord_y = coord_array_reg[1];
     
@@ -196,7 +196,7 @@ void RenderingSystem_AdvancedCoordinateTransform(longlong render_context, int co
     
     current_index_reg = current_index_reg + 1;
     // 应用变换并存储结果
-    *(ulonglong *)(*(longlong *)(render_context + 0x88) + (longlong)current_count * 8) =
+    *(uint64_t *)(*(int64_t *)(render_context + 0x88) + (int64_t)current_count * 8) =
          CONCAT44(scale_factor_reg * transform_y + coord_y, scale_factor_reg * transform_x + coord_x);
     *buffer_count_ptr = *buffer_count_ptr + 1;
     current_count = *buffer_count_ptr;
@@ -206,10 +206,10 @@ void RenderingSystem_AdvancedCoordinateTransform(longlong render_context, int co
 
 
 
-// 函数: void FUN_180293836(longlong param_1)
+// 函数: void FUN_180293836(int64_t param_1)
 // 功能: 渲染系统缓冲区清理函数
 // 参数: param_1 - 渲染上下文指针
-void RenderingSystem_ClearBuffer(longlong render_context)
+void RenderingSystem_ClearBuffer(int64_t render_context)
 
 {
   // 清理渲染缓冲区
@@ -219,10 +219,10 @@ void RenderingSystem_ClearBuffer(longlong render_context)
 
 
 
-// 函数: void FUN_180293860(longlong param_1,uint64_t param_2,float param_3,uint64_t param_4,
+// 函数: void FUN_180293860(int64_t param_1,uint64_t param_2,float param_3,uint64_t param_4,
 // 功能: 渲染系统缩放和初始化函数
 // 参数: param_1 - 渲染上下文指针, param_2 - 数据指针, param_3 - 缩放因子, param_4 - 数据指针2, param_5 - 数据指针3, param_6 - 索引数量
-void RenderingSystem_ScaleAndInitialize(longlong render_context, uint64_t data_ptr, float scale_factor, uint64_t data_ptr2, uint64_t data_ptr3, int index_count)
+void RenderingSystem_ScaleAndInitialize(int64_t render_context, uint64_t data_ptr, float scale_factor, uint64_t data_ptr2, uint64_t data_ptr3, int index_count)
 
 {
   // 检查缩放因子是否为0
@@ -293,10 +293,10 @@ void RenderingSystem_NoOperation2(void)
 
 
 
-// 函数: void FUN_1802939e0(longlong param_1,float *param_2,float *param_3,float param_4,uint param_5)
+// 函数: void FUN_1802939e0(int64_t param_1,float *param_2,float *param_3,float param_4,uint param_5)
 // 功能: 渲染系统矩形区域处理函数
 // 参数: param_1 - 渲染上下文指针, param_2 - 起始坐标点, param_3 - 结束坐标点, param_4 - 距离阈值, param_5 - 处理标志
-void RenderingSystem_ProcessRectangleArea(longlong render_context, float *start_coord, float *end_coord, float distance_threshold, uint process_flags)
+void RenderingSystem_ProcessRectangleArea(int64_t render_context, float *start_coord, float *end_coord, float distance_threshold, uint process_flags)
 
 {
   byte process_flags_byte;
@@ -368,7 +368,7 @@ void RenderingSystem_ProcessRectangleArea(longlong render_context, float *start_
     }
     
     // 存储第一个坐标点
-    *(ulonglong *)(*(longlong *)(render_context + 0x88) + (longlong)current_count * 8) =
+    *(uint64_t *)(*(int64_t *)(render_context + 0x88) + (int64_t)current_count * 8) =
          CONCAT44(temp_coord_y, temp_coord_x);
     *buffer_count_ptr = *buffer_count_ptr + 1;
     
@@ -392,7 +392,7 @@ void RenderingSystem_ProcessRectangleArea(longlong render_context, float *start_
     }
     
     // 存储第二个坐标点
-    *(ulonglong *)(*(longlong *)(render_context + 0x88) + (longlong)current_count * 8) =
+    *(uint64_t *)(*(int64_t *)(render_context + 0x88) + (int64_t)current_count * 8) =
          CONCAT44(temp_coord_y, temp_coord_x);
     *buffer_count_ptr = *buffer_count_ptr + 1;
   }
@@ -500,7 +500,7 @@ void RenderingSystem_ProcessDualCoordinates(void)
   int buffer_capacity;
   int current_count;
   int new_capacity;
-  longlong render_context_reg;
+  int64_t render_context_reg;
   int *buffer_count_ptr;
   int32_t *coord_ptr1;
   int32_t *coord_ptr2;
@@ -532,7 +532,7 @@ void RenderingSystem_ProcessDualCoordinates(void)
   }
   
   // 存储第一个坐标点
-  *(ulonglong *)(*(longlong *)(render_context_reg + 0x88) + (longlong)current_count * 8) =
+  *(uint64_t *)(*(int64_t *)(render_context_reg + 0x88) + (int64_t)current_count * 8) =
        CONCAT44(coord_y, coord_x);
   *buffer_count_ptr = *buffer_count_ptr + 1;
   
@@ -556,7 +556,7 @@ void RenderingSystem_ProcessDualCoordinates(void)
   }
   
   // 存储第二个坐标点
-  *(ulonglong *)(*(longlong *)(render_context_reg + 0x88) + (longlong)current_count * 8) =
+  *(uint64_t *)(*(int64_t *)(render_context_reg + 0x88) + (int64_t)current_count * 8) =
        CONCAT44(coord_y, coord_x);
   *buffer_count_ptr = *buffer_count_ptr + 1;
   return;
@@ -603,7 +603,7 @@ void RenderingSystem_ProcessDualCoordinates2(void)
   }
   
   // 存储第一个坐标点
-  *(ulonglong *)(*(longlong *)(buffer_count_ptr + 2) + (longlong)current_count * 8) =
+  *(uint64_t *)(*(int64_t *)(buffer_count_ptr + 2) + (int64_t)current_count * 8) =
        CONCAT44(coord_y, coord_x);
   *buffer_count_ptr = *buffer_count_ptr + 1;
   
@@ -627,7 +627,7 @@ void RenderingSystem_ProcessDualCoordinates2(void)
   }
   
   // 存储第二个坐标点
-  *(ulonglong *)(*(longlong *)(buffer_count_ptr + 2) + (longlong)current_count * 8) =
+  *(uint64_t *)(*(int64_t *)(buffer_count_ptr + 2) + (int64_t)current_count * 8) =
        CONCAT44(coord_y, coord_x);
   *buffer_count_ptr = *buffer_count_ptr + 1;
   return;
@@ -646,10 +646,10 @@ void RenderingSystem_NoOperation3(void)
 
 
 
-// 函数: void FUN_180293d20(longlong param_1,float *param_2,float *param_3,uint param_4,int32_t param_5)
+// 函数: void FUN_180293d20(int64_t param_1,float *param_2,float *param_3,uint param_4,int32_t param_5)
 // 功能: 渲染系统纹理坐标对齐处理函数
 // 参数: param_1 - 渲染上下文指针, param_2 - 起始纹理坐标, param_3 - 结束纹理坐标, param_4 - 渲染标志, param_5 - 纹理参数
-void RenderingSystem_AlignTextureCoordinates(longlong render_context, float *start_texcoord, float *end_texcoord, uint render_flags, int32_t texture_param)
+void RenderingSystem_AlignTextureCoordinates(int64_t render_context, float *start_texcoord, float *end_texcoord, uint render_flags, int32_t texture_param)
 
 {
   int *buffer_count_ptr;
@@ -686,7 +686,7 @@ void RenderingSystem_AlignTextureCoordinates(longlong render_context, float *sta
     }
     
     // 存储对齐后的起始纹理坐标
-    *(ulonglong *)(*(longlong *)(render_context + 0x88) + (longlong)current_count * 8) =
+    *(uint64_t *)(*(int64_t *)(render_context + 0x88) + (int64_t)current_count * 8) =
          CONCAT44(texcoord_v + 0.5, texcoord_u + 0.5);
     *buffer_count_ptr = *buffer_count_ptr + 1;
     
@@ -709,7 +709,7 @@ void RenderingSystem_AlignTextureCoordinates(longlong render_context, float *sta
     }
     
     // 存储对齐后的结束纹理坐标
-    *(ulonglong *)(*(longlong *)(render_context + 0x88) + (longlong)buffer_capacity * 8) =
+    *(uint64_t *)(*(int64_t *)(render_context + 0x88) + (int64_t)buffer_capacity * 8) =
          CONCAT44(texcoord_v + 0.5, texcoord_u + 0.5);
     *buffer_count_ptr = *buffer_count_ptr + 1;
     
@@ -722,10 +722,10 @@ void RenderingSystem_AlignTextureCoordinates(longlong render_context, float *sta
 
 
 
-// 函数: void FUN_180293d4c(float param_1,longlong param_2,float *param_3,uint64_t param_4,
+// 函数: void FUN_180293d4c(float param_1,int64_t param_2,float *param_3,uint64_t param_4,
 // 功能: 渲染系统高级纹理坐标处理函数（寄存器变量版本）
 // 参数: param_1 - 坐标X, param_2 - 渲染上下文指针, param_3 - 纹理坐标数组, param_4 - 数据指针1, param_5 - 数据指针2, param_6 - 数据指针3
-void RenderingSystem_AdvancedTextureCoordProcess(float coord_x, longlong render_context, float *texture_coords, uint64_t data_ptr1, uint64_t data_ptr2, uint64_t data_ptr3)
+void RenderingSystem_AdvancedTextureCoordProcess(float coord_x, int64_t render_context, float *texture_coords, uint64_t data_ptr1, uint64_t data_ptr2, uint64_t data_ptr3)
 
 {
   int *buffer_count_ptr;
@@ -734,10 +734,10 @@ void RenderingSystem_AdvancedTextureCoordProcess(float coord_x, longlong render_
   int new_capacity;
   int buffer_capacity;
   int current_count;
-  longlong data_ptr_reg;
-  longlong context_reg;
+  int64_t data_ptr_reg;
+  int64_t context_reg;
   int32_t render_flags;
-  longlong context_reg2;
+  int64_t context_reg2;
   int default_capacity;
   uint64_t texture_data;
   int32_t color_r;
@@ -780,7 +780,7 @@ void RenderingSystem_AdvancedTextureCoordProcess(float coord_x, longlong render_
   }
   
   // 存储纹理数据
-  *(uint64_t *)(*(longlong *)(context_reg + 0x88) + (longlong)current_count * 8) = data_ptr3;
+  *(uint64_t *)(*(int64_t *)(context_reg + 0x88) + (int64_t)current_count * 8) = data_ptr3;
   *buffer_count_ptr = *buffer_count_ptr + 1;
   
   texcoord_u = *texture_coords;
@@ -802,7 +802,7 @@ void RenderingSystem_AdvancedTextureCoordProcess(float coord_x, longlong render_
   }
   
   // 存储对齐后的纹理坐标
-  *(ulonglong *)(*(longlong *)(context_reg + 0x88) + (longlong)buffer_capacity * 8) =
+  *(uint64_t *)(*(int64_t *)(context_reg + 0x88) + (int64_t)buffer_capacity * 8) =
        CONCAT44(texcoord_v + 0.5, texcoord_u + 0.5);
   *buffer_count_ptr = *buffer_count_ptr + 1;
   
@@ -814,20 +814,20 @@ void RenderingSystem_AdvancedTextureCoordProcess(float coord_x, longlong render_
 
 
 
-// 函数: void FUN_180293d5d(float param_1,longlong param_2)
+// 函数: void FUN_180293d5d(float param_1,int64_t param_2)
 // 功能: 渲染系统坐标对齐处理函数（寄存器变量版本）
 // 参数: param_1 - 坐标X, param_2 - 渲染上下文指针
-void RenderingSystem_AlignCoordinates(float coord_x, longlong render_context)
+void RenderingSystem_AlignCoordinates(float coord_x, int64_t render_context)
 
 {
   float coord_y;
   int current_count;
-  longlong data_ptr_reg;
+  int64_t data_ptr_reg;
   int buffer_capacity;
   int new_capacity;
   int *buffer_count_ptr;
   int32_t render_flags;
-  longlong context_reg;
+  int64_t context_reg;
   int default_capacity;
   float *coord_array_reg;
   float aligned_coord;
@@ -868,7 +868,7 @@ void RenderingSystem_AlignCoordinates(float coord_x, longlong render_context)
   }
   
   // 存储纹理数据
-  *(uint64_t *)(*(longlong *)(buffer_count_ptr + 2) + (longlong)current_count * 8) = texture_data;
+  *(uint64_t *)(*(int64_t *)(buffer_count_ptr + 2) + (int64_t)current_count * 8) = texture_data;
   *buffer_count_ptr = *buffer_count_ptr + 1;
   
   aligned_coord = *coord_array_reg;
@@ -890,7 +890,7 @@ void RenderingSystem_AlignCoordinates(float coord_x, longlong render_context)
   }
   
   // 存储对齐后的坐标
-  *(ulonglong *)(*(longlong *)(buffer_count_ptr + 2) + (longlong)current_count * 8) =
+  *(uint64_t *)(*(int64_t *)(buffer_count_ptr + 2) + (int64_t)current_count * 8) =
        CONCAT44(coord_y + 0.5, aligned_coord + 0.5);
   *buffer_count_ptr = *buffer_count_ptr + 1;
   
@@ -912,7 +912,7 @@ void RenderingSystem_ExpandBufferAndProcessData(int32_t buffer_ptr, uint64_t dat
   int new_size;
   int *buffer_count_ptr;
   int32_t render_flags;
-  longlong context_reg;
+  int64_t context_reg;
   int expanded_size;
   int32_t stack_param;
   
@@ -929,7 +929,7 @@ void RenderingSystem_ExpandBufferAndProcessData(int32_t buffer_ptr, uint64_t dat
   FUN_18011dc70(buffer_ptr, new_size);
   
   // 存储数据
-  *(uint64_t *)(*(longlong *)(buffer_count_ptr + 2) + (longlong)*buffer_count_ptr * 8) = data_ptr4;
+  *(uint64_t *)(*(int64_t *)(buffer_count_ptr + 2) + (int64_t)*buffer_count_ptr * 8) = data_ptr4;
   *buffer_count_ptr = *buffer_count_ptr + 1;
   
   // 执行数据处理
@@ -951,8 +951,8 @@ void RenderingSystem_NoOperation4(void)
 
 
 
-// 函数: void FUN_180293e80(longlong param_1,float *param_2,float *param_3,int32_t param_4,
-void RenderingSystem_LineDrawingProcess(longlong render_context, float *start_point, float *end_point, int32_t line_color,
+// 函数: void FUN_180293e80(int64_t param_1,float *param_2,float *param_3,int32_t param_4,
+void RenderingSystem_LineDrawingProcess(int64_t render_context, float *start_point, float *end_point, int32_t line_color,
                                         int32_t line_width, int32_t line_style)
 
 {
@@ -982,8 +982,8 @@ void RenderingSystem_LineDrawingProcess(longlong render_context, float *start_po
 
 
 
-// 函数: void FUN_180293f50(longlong param_1,uint64_t *param_2,uint64_t *param_3,uint param_4,
-void RenderingSystem_QuadDrawingProcess(longlong render_context, uint64_t *vertex_data_1, uint64_t *vertex_data_2, uint render_flags,
+// 函数: void FUN_180293f50(int64_t param_1,uint64_t *param_2,uint64_t *param_3,uint param_4,
+void RenderingSystem_QuadDrawingProcess(int64_t render_context, uint64_t *vertex_data_1, uint64_t *vertex_data_2, uint render_flags,
                                        float quad_scale, int32_t render_params)
 
 {
@@ -994,7 +994,7 @@ void RenderingSystem_QuadDrawingProcess(longlong render_context, uint64_t *verte
   int32_t vertex_data_1_e;
   int32_t vertex_data_1_f;
   short index_value;
-  longlong data_offset;
+  int64_t data_offset;
   
   if ((render_flags & 0xff000000) != 0) {
     if (quad_scale <= 0.0) {
@@ -1002,46 +1002,46 @@ void RenderingSystem_QuadDrawingProcess(longlong render_context, uint64_t *verte
       FUN_1802921e0(0, 6, 4);
       index_value = *(short *)(render_context + 0x48);
       vertex_data_1_a = *(int32_t *)vertex_data_2;
-      vertex_data_1_b = *(int32_t *)((longlong)vertex_data_1 + 4);
+      vertex_data_1_b = *(int32_t *)((int64_t)vertex_data_1 + 4);
       vertex_data_1_c = *(int32_t *)vertex_data_1;
       vertex_data_1_d = (*(int32_t **)(render_context + 0x38))[1];
       vertex_data_1_e = **(int32_t **)(render_context + 0x38);
-      vertex_data_1_f = *(int32_t *)((longlong)vertex_data_2 + 4);
+      vertex_data_1_f = *(int32_t *)((int64_t)vertex_data_2 + 4);
       // 设置四边形索引
       **(short **)(render_context + 0x58) = index_value;
-      *(short *)(*(longlong *)(render_context + 0x58) + 2) = index_value + 1;
-      *(short *)(*(longlong *)(render_context + 0x58) + 4) = index_value + 2;
-      *(short *)(*(longlong *)(render_context + 0x58) + 6) = index_value;
-      *(short *)(*(longlong *)(render_context + 0x58) + 8) = index_value + 2;
-      *(short *)(*(longlong *)(render_context + 0x58) + 10) = index_value + 3;
+      *(short *)(*(int64_t *)(render_context + 0x58) + 2) = index_value + 1;
+      *(short *)(*(int64_t *)(render_context + 0x58) + 4) = index_value + 2;
+      *(short *)(*(int64_t *)(render_context + 0x58) + 6) = index_value;
+      *(short *)(*(int64_t *)(render_context + 0x58) + 8) = index_value + 2;
+      *(short *)(*(int64_t *)(render_context + 0x58) + 10) = index_value + 3;
       // 处理四边形顶点数据
       **(uint64_t **)(render_context + 0x50) = *vertex_data_1;
-      data_offset = *(longlong *)(render_context + 0x50);
+      data_offset = *(int64_t *)(render_context + 0x50);
       *(int32_t *)(data_offset + 8) = vertex_data_1_e;
       *(int32_t *)(data_offset + 0xc) = vertex_data_1_d;
-      *(uint *)(*(longlong *)(render_context + 0x50) + 0x10) = render_flags;
-      data_offset = *(longlong *)(render_context + 0x50);
+      *(uint *)(*(int64_t *)(render_context + 0x50) + 0x10) = render_flags;
+      data_offset = *(int64_t *)(render_context + 0x50);
       *(int32_t *)(data_offset + 0x14) = vertex_data_1_a;
       *(int32_t *)(data_offset + 0x18) = vertex_data_1_b;
-      data_offset = *(longlong *)(render_context + 0x50);
+      data_offset = *(int64_t *)(render_context + 0x50);
       *(int32_t *)(data_offset + 0x1c) = vertex_data_1_e;
       *(int32_t *)(data_offset + 0x20) = vertex_data_1_d;
-      *(uint *)(*(longlong *)(render_context + 0x50) + 0x24) = render_flags;
-      *(uint64_t *)(*(longlong *)(render_context + 0x50) + 0x28) = *vertex_data_2;
-      data_offset = *(longlong *)(render_context + 0x50);
+      *(uint *)(*(int64_t *)(render_context + 0x50) + 0x24) = render_flags;
+      *(uint64_t *)(*(int64_t *)(render_context + 0x50) + 0x28) = *vertex_data_2;
+      data_offset = *(int64_t *)(render_context + 0x50);
       *(int32_t *)(data_offset + 0x30) = vertex_data_1_e;
       *(int32_t *)(data_offset + 0x34) = vertex_data_1_d;
-      *(uint *)(*(longlong *)(render_context + 0x50) + 0x38) = render_flags;
-      data_offset = *(longlong *)(render_context + 0x50);
+      *(uint *)(*(int64_t *)(render_context + 0x50) + 0x38) = render_flags;
+      data_offset = *(int64_t *)(render_context + 0x50);
       *(int32_t *)(data_offset + 0x3c) = vertex_data_1_c;
       *(int32_t *)(data_offset + 0x40) = vertex_data_1_f;
-      data_offset = *(longlong *)(render_context + 0x50);
+      data_offset = *(int64_t *)(render_context + 0x50);
       *(int32_t *)(data_offset + 0x44) = vertex_data_1_e;
       *(int32_t *)(data_offset + 0x48) = vertex_data_1_d;
-      *(uint *)(*(longlong *)(render_context + 0x50) + 0x4c) = render_flags;
-      *(longlong *)(render_context + 0x50) = *(longlong *)(render_context + 0x50) + 0x50;
+      *(uint *)(*(int64_t *)(render_context + 0x50) + 0x4c) = render_flags;
+      *(int64_t *)(render_context + 0x50) = *(int64_t *)(render_context + 0x50) + 0x50;
       *(int *)(render_context + 0x48) = *(int *)(render_context + 0x48) + 4;
-      *(longlong *)(render_context + 0x58) = *(longlong *)(render_context + 0x58) + 0xc;
+      *(int64_t *)(render_context + 0x58) = *(int64_t *)(render_context + 0x58) + 0xc;
     }
     else {
       // 处理缩放的四边形绘制
@@ -1066,8 +1066,8 @@ void RenderingSystem_QuadBatchProcess(uint64_t batch_size, uint64_t vertex_count
   int32_t vertex_data_1_e;
   int32_t vertex_data_1_f;
   short index_value;
-  longlong data_offset;
-  longlong render_context;
+  int64_t data_offset;
+  int64_t render_context;
   uint64_t *vertex_ptr_1;
   uint64_t *vertex_ptr_2;
   int32_t render_flags;
@@ -1076,46 +1076,46 @@ void RenderingSystem_QuadBatchProcess(uint64_t batch_size, uint64_t vertex_count
   FUN_1802921e0(batch_size, vertex_count, (int)vertex_count + -2);
   index_value = *(short *)(render_context + 0x48);
   vertex_data_1 = *(int32_t *)vertex_ptr_2;
-  vertex_data_1_b = *(int32_t *)((longlong)vertex_ptr_1 + 4);
+  vertex_data_1_b = *(int32_t *)((int64_t)vertex_ptr_1 + 4);
   vertex_data_1_c = *(int32_t *)vertex_ptr_1;
   vertex_data_1_d = (*(int32_t **)(render_context + 0x38))[1];
   vertex_data_1_e = **(int32_t **)(render_context + 0x38);
-  vertex_data_1_f = *(int32_t *)((longlong)vertex_ptr_2 + 4);
+  vertex_data_1_f = *(int32_t *)((int64_t)vertex_ptr_2 + 4);
   // 设置四边形索引
   **(short **)(render_context + 0x58) = index_value;
-  *(short *)(*(longlong *)(render_context + 0x58) + 2) = index_value + 1;
-  *(short *)(*(longlong *)(render_context + 0x58) + 4) = index_value + 2;
-  *(short *)(*(longlong *)(render_context + 0x58) + 6) = index_value;
-  *(short *)(*(longlong *)(render_context + 0x58) + 8) = index_value + 2;
-  *(short *)(*(longlong *)(render_context + 0x58) + 10) = index_value + 3;
+  *(short *)(*(int64_t *)(render_context + 0x58) + 2) = index_value + 1;
+  *(short *)(*(int64_t *)(render_context + 0x58) + 4) = index_value + 2;
+  *(short *)(*(int64_t *)(render_context + 0x58) + 6) = index_value;
+  *(short *)(*(int64_t *)(render_context + 0x58) + 8) = index_value + 2;
+  *(short *)(*(int64_t *)(render_context + 0x58) + 10) = index_value + 3;
   // 处理四边形顶点数据
   **(uint64_t **)(render_context + 0x50) = *vertex_ptr_1;
-  data_offset = *(longlong *)(render_context + 0x50);
+  data_offset = *(int64_t *)(render_context + 0x50);
   *(int32_t *)(data_offset + 8) = vertex_data_1_e;
   *(int32_t *)(data_offset + 0xc) = vertex_data_1_d;
-  *(int32_t *)(*(longlong *)(render_context + 0x50) + 0x10) = render_flags;
-  data_offset = *(longlong *)(render_context + 0x50);
+  *(int32_t *)(*(int64_t *)(render_context + 0x50) + 0x10) = render_flags;
+  data_offset = *(int64_t *)(render_context + 0x50);
   *(int32_t *)(data_offset + 0x14) = vertex_data_1;
   *(int32_t *)(data_offset + 0x18) = vertex_data_1_b;
-  data_offset = *(longlong *)(render_context + 0x50);
+  data_offset = *(int64_t *)(render_context + 0x50);
   *(int32_t *)(data_offset + 0x1c) = vertex_data_1_e;
   *(int32_t *)(data_offset + 0x20) = vertex_data_1_d;
-  *(int32_t *)(*(longlong *)(render_context + 0x50) + 0x24) = render_flags;
-  *(uint64_t *)(*(longlong *)(render_context + 0x50) + 0x28) = *vertex_ptr_2;
-  data_offset = *(longlong *)(render_context + 0x50);
+  *(int32_t *)(*(int64_t *)(render_context + 0x50) + 0x24) = render_flags;
+  *(uint64_t *)(*(int64_t *)(render_context + 0x50) + 0x28) = *vertex_ptr_2;
+  data_offset = *(int64_t *)(render_context + 0x50);
   *(int32_t *)(data_offset + 0x30) = vertex_data_1_e;
   *(int32_t *)(data_offset + 0x34) = vertex_data_1_d;
-  *(int32_t *)(*(longlong *)(render_context + 0x50) + 0x38) = render_flags;
-  data_offset = *(longlong *)(render_context + 0x50);
+  *(int32_t *)(*(int64_t *)(render_context + 0x50) + 0x38) = render_flags;
+  data_offset = *(int64_t *)(render_context + 0x50);
   *(int32_t *)(data_offset + 0x3c) = vertex_data_1_c;
   *(int32_t *)(data_offset + 0x40) = vertex_data_1_f;
-  data_offset = *(longlong *)(render_context + 0x50);
+  data_offset = *(int64_t *)(render_context + 0x50);
   *(int32_t *)(data_offset + 0x44) = vertex_data_1_e;
   *(int32_t *)(data_offset + 0x48) = vertex_data_1_d;
-  *(int32_t *)(*(longlong *)(render_context + 0x50) + 0x4c) = render_flags;
-  *(longlong *)(render_context + 0x50) = *(longlong *)(render_context + 0x50) + 0x50;
+  *(int32_t *)(*(int64_t *)(render_context + 0x50) + 0x4c) = render_flags;
+  *(int64_t *)(render_context + 0x50) = *(int64_t *)(render_context + 0x50) + 0x50;
   *(int *)(render_context + 0x48) = *(int *)(render_context + 0x48) + 4;
-  *(longlong *)(render_context + 0x58) = *(longlong *)(render_context + 0x58) + 0xc;
+  *(int64_t *)(render_context + 0x58) = *(int64_t *)(render_context + 0x58) + 0xc;
   return;
 }
 
@@ -1132,8 +1132,8 @@ void RenderingSystem_NoOperation5(void)
 
 
 
-// 函数: void FUN_1802940f0(longlong param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4,
-void RenderingSystem_TriangleBatchProcess(longlong render_context, uint64_t vertex_data_1, uint64_t vertex_data_2, uint64_t vertex_data_3,
+// 函数: void FUN_1802940f0(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4,
+void RenderingSystem_TriangleBatchProcess(int64_t render_context, uint64_t vertex_data_1, uint64_t vertex_data_2, uint64_t vertex_data_3,
                                            uint render_flags)
 
 {
@@ -1154,7 +1154,7 @@ void RenderingSystem_TriangleBatchProcess(longlong render_context, uint64_t vert
 void RenderingSystem_TriangleBatchProcessVariant(void)
 
 {
-  longlong render_context;
+  int64_t render_context;
   
   FUN_18011d9a0();
   FUN_18011d9a0(render_context + 0x80);
@@ -1177,8 +1177,8 @@ void RenderingSystem_NoOperation6(void)
 
 
 
-// 函数: void FUN_180294180(longlong param_1,uint64_t param_2,float param_3,uint param_4,uint64_t param_5
-void RenderingSystem_CircleDrawingProcess(longlong render_context, uint64_t circle_data, uint64_t center_point, uint64_t radius_data,
+// 函数: void FUN_180294180(int64_t param_1,uint64_t param_2,float param_3,uint param_4,uint64_t param_5
+void RenderingSystem_CircleDrawingProcess(int64_t render_context, uint64_t circle_data, uint64_t center_point, uint64_t radius_data,
                                          uint render_flags)
 
 {
@@ -1193,9 +1193,9 @@ void RenderingSystem_CircleDrawingProcess(longlong render_context, uint64_t circ
 
 
 
-// 函数: void FUN_180294200(longlong param_1,longlong param_2,float param_3,uint64_t *param_4,uint param_5,
-void RenderingSystem_TextDrawingProcess(longlong render_context, longlong font_data, float font_size, uint64_t *text_data, uint text_flags,
-                                       longlong text_length, longlong text_buffer, int32_t text_color, float *text_position)
+// 函数: void FUN_180294200(int64_t param_1,int64_t param_2,float param_3,uint64_t *param_4,uint param_5,
+void RenderingSystem_TextDrawingProcess(int64_t render_context, int64_t font_data, float font_size, uint64_t *text_data, uint text_flags,
+                                       int64_t text_length, int64_t text_buffer, int32_t text_color, float *text_position)
 
 {
   uint64_t *texture_ptr;
@@ -1212,26 +1212,26 @@ void RenderingSystem_TextDrawingProcess(longlong render_context, longlong font_d
     }
     if (text_buffer != text_length) {
       if (font_data == 0) {
-        font_data = *(longlong *)(*(longlong *)(render_context + 0x38) + 8);
+        font_data = *(int64_t *)(*(int64_t *)(render_context + 0x38) + 8);
       }
       if (font_size == 0.0) {
-        font_size = *(float *)(*(longlong *)(render_context + 0x38) + 0x10);
+        font_size = *(float *)(*(int64_t *)(render_context + 0x38) + 0x10);
       }
       texture_ptr = (uint64_t *)
-               (*(longlong *)(render_context + 0x68) + -0x10 + (longlong)*(int *)(render_context + 0x60) * 0x10);
+               (*(int64_t *)(render_context + 0x68) + -0x10 + (int64_t)*(int *)(render_context + 0x60) * 0x10);
       stack_data_1 = *texture_ptr;
       stack_data_2 = texture_ptr[1];
       if (text_position != (float *)0x0) {
         // 调整文本位置边界
         if ((float)stack_data_1 < *text_position) {
-          stack_data_1._4_4_ = (float)((ulonglong)stack_data_1 >> 0x20);
+          stack_data_1._4_4_ = (float)((uint64_t)stack_data_1 >> 0x20);
           stack_data_1 = CONCAT44(stack_data_1._4_4_, *text_position);
         }
         if (stack_data_1._4_4_ < text_position[1]) {
           stack_data_1 = CONCAT44(text_position[1], (float)stack_data_1);
         }
         if (text_position[2] <= (float)stack_data_2) {
-          stack_data_2._4_4_ = (float)((ulonglong)stack_data_2 >> 0x20);
+          stack_data_2._4_4_ = (float)((uint64_t)stack_data_2 >> 0x20);
           stack_data_2 = CONCAT44(stack_data_2._4_4_, text_position[2]);
         }
         if (text_position[3] <= stack_data_2._4_4_) {
@@ -1248,12 +1248,12 @@ void RenderingSystem_TextDrawingProcess(longlong render_context, longlong font_d
 
 
 
-// 函数: void FUN_180294330(longlong param_1,uint64_t *param_2,uint param_3,longlong param_4)
-void RenderingSystem_TextBatchProcess(longlong render_context, uint64_t *text_data, uint text_flags, longlong text_buffer)
+// 函数: void FUN_180294330(int64_t param_1,uint64_t *param_2,uint param_3,int64_t param_4)
+void RenderingSystem_TextBatchProcess(int64_t render_context, uint64_t *text_data, uint text_flags, int64_t text_buffer)
 
 {
   int32_t *texture_ptr;
-  longlong data_offset;
+  int64_t data_offset;
   int32_t stack_data_1;
   int32_t stack_data_2;
   int32_t stack_data_3;
@@ -1266,13 +1266,13 @@ void RenderingSystem_TextBatchProcess(longlong render_context, uint64_t *text_da
     } while (*(char *)(text_buffer + data_offset) != '\0');
     if (text_buffer != data_offset + text_buffer) {
       texture_ptr = (int32_t *)
-               (*(longlong *)(render_context + 0x68) + -0x10 + (longlong)*(int *)(render_context + 0x60) * 0x10);
+               (*(int64_t *)(render_context + 0x68) + -0x10 + (int64_t)*(int *)(render_context + 0x60) * 0x10);
       stack_data_1 = *texture_ptr;
       stack_data_2 = texture_ptr[1];
       stack_data_3 = texture_ptr[2];
       stack_data_4 = texture_ptr[3];
-      FUN_180297590(*(uint64_t *)(*(longlong *)(render_context + 0x38) + 8), render_context,
-                    *(int32_t *)(*(longlong *)(render_context + 0x38) + 0x10), *text_data, text_flags,
+      FUN_180297590(*(uint64_t *)(*(int64_t *)(render_context + 0x38) + 8), render_context,
+                    *(int32_t *)(*(int64_t *)(render_context + 0x38) + 0x10), *text_data, text_flags,
                     &stack_data_1, text_buffer, data_offset + text_buffer, 0, 0);
     }
   }

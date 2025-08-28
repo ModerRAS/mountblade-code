@@ -44,13 +44,13 @@ void ui_system_advanced_animation_transform(void* ui_context, uint animation_par
     float* animation_data;
     char state_flag;
     bool animation_active;
-    longlong temp_offset;
+    int64_t temp_offset;
     float* transform_ptr;
     int index_counter;
-    longlong data_offset;
-    longlong structure_offset;
+    int64_t data_offset;
+    int64_t structure_offset;
     void* context_ptr;
-    longlong timing_data;
+    int64_t timing_data;
     char status_flag;
     float base_velocity;
     float current_angle;
@@ -87,8 +87,8 @@ void ui_system_advanced_animation_transform(void* ui_context, uint animation_par
     stack_context = (void*)0x1806599e0;
     
     // 计算目标角度
-    current_angle = (float)atan2f(*(uint*)(*(longlong*)(timing_data + 16) + 128) ^ animation_param2,
-                                  *(uint*)(*(longlong*)(timing_data + 16) + 132));
+    current_angle = (float)atan2f(*(uint*)(*(int64_t*)(timing_data + 16) + 128) ^ animation_param2,
+                                  *(uint*)(*(int64_t*)(timing_data + 16) + 132));
     current_angle = current_angle + transform_ptr[6];
     transform_ptr[11] = current_angle;
     
@@ -106,12 +106,12 @@ void ui_system_advanced_animation_transform(void* ui_context, uint animation_par
     
     // 动画帧处理
     current_angle = transform_ptr[24];
-    data_offset = (longlong)(int)current_angle;
+    data_offset = (int64_t)(int)current_angle;
     status_flag = ui_system_get_animation_state(base_velocity, 0);
     
     if (0 < (int)current_angle) {
         position_x = base_velocity;
-        if (*(char*)(data_offset * 4952 + 78 + (longlong)transform_ptr) != status_flag) {
+        if (*(char*)(data_offset * 4952 + 78 + (int64_t)transform_ptr) != status_flag) {
             position_x = transform_ptr[data_offset * 1238 + 18] * 0.05f;
         }
         
@@ -121,9 +121,9 @@ void ui_system_advanced_animation_transform(void* ui_context, uint animation_par
             current_angle = transform_ptr[24];
         }
         
-        data_offset = (longlong)(int)current_angle;
+        data_offset = (int64_t)(int)current_angle;
         position_x = base_velocity;
-        if (*(char*)(data_offset * 4952 + 102 + (longlong)transform_ptr) != status_flag) {
+        if (*(char*)(data_offset * 4952 + 102 + (int64_t)transform_ptr) != status_flag) {
             position_x = transform_ptr[data_offset * 1238 + 24] * 0.05f;
         }
         
@@ -184,14 +184,14 @@ void ui_system_advanced_animation_transform(void* ui_context, uint animation_par
     // 高级动画处理
     if ((animation_active) && (0 < (int)transform_ptr[24])) {
         transform_ptr = transform_ptr + 27;
-        timing_data = (ulonglong)(uint)transform_ptr[24];
+        timing_data = (uint64_t)(uint)transform_ptr[24];
         rotation_speed = base_velocity;
         
         do {
             animation_data = transform_ptr + 1173;
             current_angle = *transform_ptr;
             transform_ptr = transform_ptr + 1238;
-            rotation_speed = rotation_speed + *(float*)(*(longlong*)(*(longlong*)animation_data + 72) + 392) * current_angle;
+            rotation_speed = rotation_speed + *(float*)(*(int64_t*)(*(int64_t*)animation_data + 72) + 392) * current_angle;
             timing_data = timing_data - 1;
         } while (timing_data != 0);
         
@@ -254,13 +254,13 @@ void ui_system_advanced_animation_transform(void* ui_context, uint animation_par
         current_angle = base_velocity;
         if (0 < (int)transform_ptr[24]) {
             transform_ptr = transform_ptr + 27;
-            timing_data = (ulonglong)(uint)transform_ptr[24];
+            timing_data = (uint64_t)(uint)transform_ptr[24];
             
             do {
                 animation_data = transform_ptr + 1173;
                 position_x = *transform_ptr;
                 transform_ptr = transform_ptr + 1238;
-                current_angle = current_angle + *(float*)(**(longlong**)animation_data + 392) * position_x;
+                current_angle = current_angle + *(float*)(**(int64_t**)animation_data + 392) * position_x;
                 timing_data = timing_data - 1;
             } while (timing_data != 0);
         }
@@ -304,7 +304,7 @@ void ui_system_advanced_animation_transform(void* ui_context, uint animation_par
                 current_angle = -1.0f;
             }
             
-            data_offset = *(longlong*)(transform_ptr + (longlong)(int)position_x * 1238 + -38);
+            data_offset = *(int64_t*)(transform_ptr + (int64_t)(int)position_x * 1238 + -38);
             stack_context = (void*)0x180659ea7;
             temp_offset = ui_system_get_animation_data(*(void*)(data_offset + 8));
             structure_offset = 20;
@@ -321,7 +321,7 @@ void ui_system_advanced_animation_transform(void* ui_context, uint animation_par
     }
     
     // 矩阵归一化处理
-    animation_buffer[15] = (float)((ulonglong)context_ptr >> 32);
+    animation_buffer[15] = (float)((uint64_t)context_ptr >> 32);
     animation_buffer[14] = (float)context_ptr;
     position_x = animation_buffer[15] * animation_buffer[15] + animation_buffer[14] * animation_buffer[14];
     position_x = (float)(position_x <= 1.1754944e-38f) * 1.1754944e-38f + position_x;
@@ -337,7 +337,7 @@ void ui_system_advanced_animation_transform(void* ui_context, uint animation_par
     
     transform_ptr[19] = current_angle;
     animation_buffer[14] = (float)context_ptr;
-    animation_buffer[15] = (float)((ulonglong)context_ptr >> 32);
+    animation_buffer[15] = (float)((uint64_t)context_ptr >> 32);
     
     // 向量合成处理
     if ((target_angle != base_velocity) || (scale_y != base_velocity)) {
@@ -416,11 +416,11 @@ void ui_system_advanced_animation_transform(void* ui_context, uint animation_par
     
     scale_y = transform_ptr[17];
     if (scale_y == base_velocity) {
-        *(bool*)((longlong)transform_ptr + 93) = target_angle < base_velocity;
+        *(bool*)((int64_t)transform_ptr + 93) = target_angle < base_velocity;
     }
     
-    scale_y = (*(float*)(*(longlong*)((*(longlong*)(transform_ptr + (longlong)(int)transform_ptr[24] * 1238 + -38) + 8) + 392) /
-               *(float*)(*(longlong*)((*(longlong*)(transform_ptr + (longlong)(int)transform_ptr[24] * 1238 + -38) + 56) + 392))) * 
+    scale_y = (*(float*)(*(int64_t*)((*(int64_t*)(transform_ptr + (int64_t)(int)transform_ptr[24] * 1238 + -38) + 8) + 392) /
+               *(float*)(*(int64_t*)((*(int64_t*)(transform_ptr + (int64_t)(int)transform_ptr[24] * 1238 + -38) + 56) + 392))) * 
                scale_x * velocity_params->velocity_y + scale_y;
     
     if (position_x <= scale_y) {
@@ -431,13 +431,13 @@ void ui_system_advanced_animation_transform(void* ui_context, uint animation_par
     
     if (transform_ptr[18] <= base_velocity && base_velocity != transform_ptr[18]) {
         position_x = position_x;
-        if (*(char*)((longlong)transform_ptr + 93) != '\0') {
+        if (*(char*)((int64_t)transform_ptr + 93) != '\0') {
             position_x = -1.0f;
         }
         
         if (base_velocity <= position_x * target_angle) {
             target_angle = scale_y;
-            if (*(char*)((longlong)transform_ptr + 93) == '\0') {
+            if (*(char*)((int64_t)transform_ptr + 93) == '\0') {
                 stack_context = (void*)0x18065a252;
                 target_angle = (float)fmodf(scale_y + 0.5f);
             }
@@ -538,7 +538,7 @@ final_processing:
     rotation_speed = base_velocity;
     
     do {
-        scale_x = *(float*)(((longlong)animation_buffer - (longlong)transform_ptr) + (longlong)transform_ptr);
+        scale_x = *(float*)(((int64_t)animation_buffer - (int64_t)transform_ptr) + (int64_t)transform_ptr);
         target_angle = scale_x - transform_ptr[-10];
         scale_y = ABS(target_angle);
         
@@ -571,13 +571,13 @@ final_processing:
             } else {
                 target_angle = base_velocity;
                 if (index_counter == 7) {
-                    if (*(char*)((longlong)transform_ptr + 93) == '\0') {
+                    if (*(char*)((int64_t)transform_ptr + 93) == '\0') {
                     target_angle_set:
                         target_angle = target_angle;
                     }
                 } else {
                     if (index_counter != 8) goto target_angle_set;
-                    if (*(char*)((longlong)transform_ptr + 93) != '\0') goto target_angle_set;
+                    if (*(char*)((int64_t)transform_ptr + 93) != '\0') goto target_angle_set;
                 }
             }
             scale_x = target_angle * scale_x;
@@ -585,7 +585,7 @@ final_processing:
         }
         
     target_angle_set:
-        target_angle = *(float*)((longlong)animation_buffer + (4 - (longlong)transform_ptr) + (longlong)transform_ptr);
+        target_angle = *(float*)((int64_t)animation_buffer + (4 - (int64_t)transform_ptr) + (int64_t)transform_ptr);
         scale_y = target_angle - transform_ptr[-9];
         position_x = ABS(scale_y);
         
@@ -619,13 +619,13 @@ final_processing:
             } else {
                 scale_y = base_velocity;
                 if (data_offset == 7) {
-                    if (*(char*)((longlong)transform_ptr + 93) == '\0') {
+                    if (*(char*)((int64_t)transform_ptr + 93) == '\0') {
                     scale_y_set:
                         scale_y = target_angle;
                     }
                 } else {
                     if (data_offset != 8) goto scale_y_set;
-                    if (*(char*)((longlong)transform_ptr + 93) != '\0') goto scale_y_set;
+                    if (*(char*)((int64_t)transform_ptr + 93) != '\0') goto scale_y_set;
                 }
             }
             target_angle = scale_y * target_angle;
@@ -633,7 +633,7 @@ final_processing:
         }
         
     scale_y_set:
-        scale_y = *(float*)((longlong)animation_buffer + (8 - (longlong)transform_ptr) + (longlong)transform_ptr);
+        scale_y = *(float*)((int64_t)animation_buffer + (8 - (int64_t)transform_ptr) + (int64_t)transform_ptr);
         position_x = scale_y - transform_ptr[-8];
         current_angle = ABS(position_x);
         
@@ -667,13 +667,13 @@ final_processing:
             } else {
                 position_x = base_velocity;
                 if (data_offset == 7) {
-                    if (*(char*)((longlong)transform_ptr + 93) == '\0') {
+                    if (*(char*)((int64_t)transform_ptr + 93) == '\0') {
                     position_x_set:
                         position_x = target_angle;
                     }
                 } else {
                     if (data_offset != 8) goto position_x_set;
-                    if (*(char*)((longlong)transform_ptr + 93) != '\0') goto position_x_set;
+                    if (*(char*)((int64_t)transform_ptr + 93) != '\0') goto position_x_set;
                 }
             }
             scale_y = position_x * scale_y;
@@ -749,7 +749,7 @@ final_processing:
             // 最终渲染处理
             stack_context = (void*)0x18065aa9f;
             animation_buffer[31] = timing_params->timing_param;
-            ui_system_render_final_processing(*(ulonglong*)(structure_offset + -112) ^ (ulonglong)&stack0x00000000);
+            ui_system_render_final_processing(*(uint64_t*)(structure_offset + -112) ^ (uint64_t)&stack0x00000000);
         }
     } while (true);
 }

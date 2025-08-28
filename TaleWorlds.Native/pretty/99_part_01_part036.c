@@ -261,7 +261,7 @@ void SystemCrashHandler(void)
  * - 简化实现：优化查找算法，减少不必要的比较
  * - 优化点：提前终止条件，边界检查优化
  */
-int SystemFindDataEntry(uint64_t param_1, longlong param_2)
+int SystemFindDataEntry(uint64_t param_1, int64_t param_2)
 {
     byte *pbVar1;
     int iVar2;
@@ -269,27 +269,27 @@ int SystemFindDataEntry(uint64_t param_1, longlong param_2)
     int iVar4;
     void *puVar5;
     int iVar6;
-    longlong lVar7;
-    longlong lVar8;
+    int64_t lVar7;
+    int64_t lVar8;
     int iVar9;
     
     // 初始化查找索引
     iVar9 = 0;
     
     // 获取系统数据表的哈希表基址和大小
-    lVar7 = *(longlong *)(system_system_data_config + 200);
-    iVar6 = (int)(*(longlong *)(system_system_data_config + 0xd0) - lVar7 >> 3);
+    lVar7 = *(int64_t *)(system_system_data_config + 200);
+    iVar6 = (int)(*(int64_t *)(system_system_data_config + 0xd0) - lVar7 >> 3);
     
     // 遍历哈希表
     if (0 < iVar6) {
         do {
             // 计算当前索引
             if (iVar9 < 0) {
-                lVar7 = *(longlong *)(system_system_data_config + 200);
+                lVar7 = *(int64_t *)(system_system_data_config + 200);
                 iVar2 = 0;
             }
             else {
-                lVar8 = *(longlong *)(system_system_data_config + 0xd0) - lVar7 >> 3;
+                lVar8 = *(int64_t *)(system_system_data_config + 0xd0) - lVar7 >> 3;
                 iVar2 = (int)lVar8 + -1;
                 if (iVar9 != lVar8) {
                     iVar2 = iVar9;
@@ -297,13 +297,13 @@ int SystemFindDataEntry(uint64_t param_1, longlong param_2)
             }
             
             // 获取数据项
-            lVar8 = *(longlong *)(lVar7 + (longlong)iVar2 * 8);
+            lVar8 = *(int64_t *)(lVar7 + (int64_t)iVar2 * 8);
             iVar2 = *(int *)(lVar8 + 0x18);
             
             // 比较标识符
             if ((iVar2 == *(int *)(param_2 + 0x10)) && (iVar2 != 0)) {
                 pbVar3 = *(byte **)(lVar8 + 0x10);
-                lVar8 = *(longlong *)(param_2 + 8) - (longlong)pbVar3;
+                lVar8 = *(int64_t *)(param_2 + 8) - (int64_t)pbVar3;
                 
                 // 字符串比较
                 do {
@@ -354,7 +354,7 @@ int SystemFindDataEntry(uint64_t param_1, longlong param_2)
  * @param param_2 流类型标志
  * @param param_3 流配置参数
  * @param param_4 流缓冲区大小
- * @return longlong* 初始化后的流对象指针
+ * @return int64_t* 初始化后的流对象指针
  * 
  * 初始化步骤：
  * 1. 设置流对象的基本属性
@@ -367,7 +367,7 @@ int SystemFindDataEntry(uint64_t param_1, longlong param_2)
  * - 简化实现：使用标准库函数简化初始化流程
  * - 优化点：减少重复代码，提高初始化效率
  */
-longlong * SystemInitializeStream(longlong *param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
+int64_t * SystemInitializeStream(int64_t *param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
     uint64_t uVar1;
     
@@ -375,8 +375,8 @@ longlong * SystemInitializeStream(longlong *param_1, uint64_t param_2, uint64_t 
     uVar1 = 0xfffffffffffffffe;
     
     // 初始化流对象成员
-    *param_1 = (longlong)&unknown_var_1752_ptr;
-    param_1[2] = (longlong)&unknown_var_2368_ptr;
+    *param_1 = (int64_t)&unknown_var_1752_ptr;
+    param_1[2] = (int64_t)&unknown_var_2368_ptr;
     
     // 初始化基本IO流
     __0__basic_ios_DU__char_traits_D_std___std__IEAA_XZ(param_1 + 0x17);
@@ -386,8 +386,8 @@ longlong * SystemInitializeStream(longlong *param_1, uint64_t param_2, uint64_t 
             (param_1, param_1 + 3, 0, param_4, 1, uVar1);
     
     // 设置流缓冲区和状态
-    *(void **)((longlong)*(int *)(*param_1 + 4) + (longlong)param_1) = &unknown_var_1768_ptr;
-    *(int *)((longlong)*(int *)(*param_1 + 4) + -4 + (longlong)param_1) =
+    *(void **)((int64_t)*(int *)(*param_1 + 4) + (int64_t)param_1) = &unknown_var_1768_ptr;
+    *(int *)((int64_t)*(int *)(*param_1 + 4) + -4 + (int64_t)param_1) =
          *(int *)(*param_1 + 4) + -0xb8;
     
     // 初始化流缓冲区
@@ -406,7 +406,7 @@ longlong * SystemInitializeStream(longlong *param_1, uint64_t param_2, uint64_t 
  * 
  * @param param_1 流对象指针
  * @param param_2 清理标志位
- * @return longlong 清理后的对象指针
+ * @return int64_t 清理后的对象指针
  * 
  * 清理步骤：
  * 1. 调整指针到正确的对象基址
@@ -422,7 +422,7 @@ longlong * SystemInitializeStream(longlong *param_1, uint64_t param_2, uint64_t 
  * - 简化实现：简化清理流程，提高效率
  * - 优化点：条件判断优化，内存释放优化
  */
-longlong SystemCleanupStream(longlong param_1, ulonglong param_2)
+int64_t SystemCleanupStream(int64_t param_1, uint64_t param_2)
 {
     // 调整指针到对象基址
     param_1 = param_1 + -0xb8;
@@ -449,7 +449,7 @@ longlong SystemCleanupStream(longlong param_1, ulonglong param_2)
  * @param param_1 流对象指针
  * @param param_2 文件路径
  * @param param_3 文件打开模式
- * @return longlong 成功返回流对象指针，失败返回0
+ * @return int64_t 成功返回流对象指针，失败返回0
  * 
  * 文件模式：
  * - 0x40: 二进制模式
@@ -467,17 +467,17 @@ longlong SystemCleanupStream(longlong param_1, ulonglong param_2)
  * - 简化实现：使用标准库函数简化文件操作
  * - 优化点：错误处理优化，编码转换优化
  */
-longlong SystemOpenFileStream(longlong param_1, uint64_t param_2, int32_t param_3)
+int64_t SystemOpenFileStream(int64_t param_1, uint64_t param_2, int32_t param_3)
 {
     char cVar1;
-    longlong lVar2;
+    int64_t lVar2;
     uint64_t uVar3;
     uint64_t *puVar4;
     int8_t auStack_20 [8];
-    longlong *plStack_18;
+    int64_t *plStack_18;
     
     // 检查流对象是否已打开
-    if (*(longlong *)(param_1 + 0x80) == 0) {
+    if (*(int64_t *)(param_1 + 0x80) == 0) {
         // 打开文件
         lVar2 = __Fiopen_std__YAPEAU_iobuf__PEBDHH_Z(param_2, param_3, 0x40, param_2, 0xfffffffffffffffe);
         
@@ -501,7 +501,7 @@ longlong SystemOpenFileStream(longlong param_1, uint64_t param_2, int32_t param_
             }
             
             // 处理栈上的回调
-            if (plStack_18 != (longlong *)0x0) {
+            if (plStack_18 != (int64_t *)0x0) {
                 puVar4 = (uint64_t *)(**(code **)(*plStack_18 + 0x10))();
                 if (puVar4 != (uint64_t *)0x0) {
                     (**(code **)*puVar4)(puVar4, 1);
@@ -548,7 +548,7 @@ longlong SystemOpenFileStream(longlong param_1, uint64_t param_2, int32_t param_
  */
 uint64_t * SystemAllocateResource(uint64_t param_1, uint64_t *param_2, uint64_t param_3, int8_t param_4)
 {
-    longlong lVar1;
+    int64_t lVar1;
     
     // 调用资源分配器
     lVar1 = SystemResourceManager(system_resource_state, param_3, param_4, param_4, 0, 0xfffffffffffffffe);
@@ -574,7 +574,7 @@ uint64_t * SystemAllocateResource(uint64_t param_1, uint64_t *param_2, uint64_t 
  * 遍历多个内存池和资源区域，统计总内存使用量。
  * 
  * @param param_1 系统内存管理器指针
- * @return longlong 总内存使用量（字节）
+ * @return int64_t 总内存使用量（字节）
  * 
  * 内存统计区域：
  * - 0x1a20: 大块内存池 (0x80项 * 0x40字节)
@@ -594,29 +594,29 @@ uint64_t * SystemAllocateResource(uint64_t param_1, uint64_t *param_2, uint64_t 
  * - 简化实现：优化循环结构，减少重复计算
  * - 优化点：提前终止条件，边界检查优化
  */
-longlong SystemCalculateMemoryUsage(longlong param_1)
+int64_t SystemCalculateMemoryUsage(int64_t param_1)
 {
-    longlong *plVar1;
-    longlong lVar2;
+    int64_t *plVar1;
+    int64_t lVar2;
     uint uVar3;
     int iVar4;
     int iVar5;
-    longlong lVar6;
-    longlong lVar7;
-    longlong lVar8;
-    longlong lVar9;
-    longlong lVar10;
-    longlong lVar11;
-    longlong lVar12;
-    longlong lVar13;
-    longlong lVar14;
-    longlong lVar15;
-    longlong lVar16;
-    longlong *plVar17;
+    int64_t lVar6;
+    int64_t lVar7;
+    int64_t lVar8;
+    int64_t lVar9;
+    int64_t lVar10;
+    int64_t lVar11;
+    int64_t lVar12;
+    int64_t lVar13;
+    int64_t lVar14;
+    int64_t lVar15;
+    int64_t lVar16;
+    int64_t *plVar17;
     
     // 初始化统计变量
     lVar16 = 2;
-    plVar17 = (longlong *)(param_1 + 0x1a20);
+    plVar17 = (int64_t *)(param_1 + 0x1a20);
     lVar6 = 2;
     lVar2 = 0;
     
@@ -632,13 +632,13 @@ longlong SystemCalculateMemoryUsage(longlong param_1)
             plVar1 = plVar1 + 1;
         } while (uVar3 < 0x80);
         plVar17 = plVar17 + 0x91;
-        lVar2 = lVar2 + (ulonglong)(uint)(iVar5 << 0xe) * 0x40;
+        lVar2 = lVar2 + (uint64_t)(uint)(iVar5 << 0xe) * 0x40;
         lVar6 = lVar6 + -1;
     } while (lVar6 != 0);
     
     // 统计中块内存池 (0x2380)
     lVar6 = 0;
-    plVar17 = (longlong *)(param_1 + 0x2380);
+    plVar17 = (int64_t *)(param_1 + 0x2380);
     lVar7 = 2;
     do {
         iVar5 = 0;
@@ -651,14 +651,14 @@ longlong SystemCalculateMemoryUsage(longlong param_1)
             plVar1 = plVar1 + 1;
         } while (uVar3 < 0x40);
         plVar17 = plVar17 + 0x49;
-        lVar6 = lVar6 + (ulonglong)(uint)(iVar5 << 0xc) * 0xa0;
+        lVar6 = lVar6 + (uint64_t)(uint)(iVar5 << 0xc) * 0xa0;
         lVar7 = lVar7 + -1;
     } while (lVar7 != 0);
     
     // 统计中块内存池 (0x2818)
     lVar8 = 2;
     lVar7 = 0;
-    plVar17 = (longlong *)(param_1 + 0x2818);
+    plVar17 = (int64_t *)(param_1 + 0x2818);
     do {
         iVar5 = 0;
         uVar3 = 0;
@@ -670,12 +670,12 @@ longlong SystemCalculateMemoryUsage(longlong param_1)
             plVar1 = plVar1 + 1;
         } while (uVar3 < 0x40);
         plVar17 = plVar17 + 0x49;
-        lVar7 = lVar7 + (ulonglong)(uint)(iVar5 << 0xc) * 0x130;
+        lVar7 = lVar7 + (uint64_t)(uint)(iVar5 << 0xc) * 0x130;
         lVar8 = lVar8 + -1;
     } while (lVar8 != 0);
     
     // 统计大块内存池 (0x4658)
-    plVar17 = (longlong *)(param_1 + 0x4658);
+    plVar17 = (int64_t *)(param_1 + 0x4658);
     lVar8 = 0;
     lVar9 = 2;
     do {
@@ -689,12 +689,12 @@ longlong SystemCalculateMemoryUsage(longlong param_1)
             plVar1 = plVar1 + 1;
         } while (uVar3 < 0x100);
         plVar17 = plVar17 + 0x121;
-        lVar8 = lVar8 + (ulonglong)(uint)(iVar5 << 9) * 0x330;
+        lVar8 = lVar8 + (uint64_t)(uint)(iVar5 << 9) * 0x330;
         lVar9 = lVar9 + -1;
     } while (lVar9 != 0);
     
     // 统计大块内存池 (0x5870)
-    plVar17 = (longlong *)(param_1 + 0x5870);
+    plVar17 = (int64_t *)(param_1 + 0x5870);
     lVar9 = 0;
     lVar10 = 2;
     do {
@@ -708,12 +708,12 @@ longlong SystemCalculateMemoryUsage(longlong param_1)
             plVar1 = plVar1 + 1;
         } while (uVar3 < 0x100);
         plVar17 = plVar17 + 0x121;
-        lVar9 = lVar9 + (ulonglong)(uint)(iVar5 << 9) * 0x60;
+        lVar9 = lVar9 + (uint64_t)(uint)(iVar5 << 9) * 0x60;
         lVar10 = lVar10 + -1;
     } while (lVar10 != 0);
     
     // 统计小块内存池 (0x6a88)
-    plVar17 = (longlong *)(param_1 + 0x6a88);
+    plVar17 = (int64_t *)(param_1 + 0x6a88);
     lVar10 = 0;
     lVar11 = 2;
     do {
@@ -727,12 +727,12 @@ longlong SystemCalculateMemoryUsage(longlong param_1)
             plVar1 = plVar1 + 1;
         } while (uVar3 < 8);
         plVar17 = plVar17 + 10;
-        lVar10 = lVar10 + (ulonglong)(uint)(iVar5 << 9) * 0x2f0;
+        lVar10 = lVar10 + (uint64_t)(uint)(iVar5 << 9) * 0x2f0;
         lVar11 = lVar11 + -1;
     } while (lVar11 != 0);
     
     // 统计中块内存池 (0x6b30)
-    plVar17 = (longlong *)(param_1 + 0x6b30);
+    plVar17 = (int64_t *)(param_1 + 0x6b30);
     lVar11 = 0;
     lVar12 = 2;
     do {
@@ -746,12 +746,12 @@ longlong SystemCalculateMemoryUsage(longlong param_1)
             plVar1 = plVar1 + 1;
         } while (uVar3 < 0x80);
         plVar17 = plVar17 + 0x91;
-        lVar11 = lVar11 + (ulonglong)(uint)(iVar5 << 9) * 0x340;
+        lVar11 = lVar11 + (uint64_t)(uint)(iVar5 << 9) * 0x340;
         lVar12 = lVar12 + -1;
     } while (lVar12 != 0);
     
     // 统计小块内存池 (0x7448)
-    plVar17 = (longlong *)(param_1 + 0x7448);
+    plVar17 = (int64_t *)(param_1 + 0x7448);
     lVar12 = 0;
     lVar13 = 2;
     do {
@@ -765,12 +765,12 @@ longlong SystemCalculateMemoryUsage(longlong param_1)
             plVar1 = plVar1 + 1;
         } while (uVar3 < 8);
         plVar17 = plVar17 + 10;
-        lVar12 = lVar12 + (ulonglong)(uint)(iVar5 << 9) * 0x240;
+        lVar12 = lVar12 + (uint64_t)(uint)(iVar5 << 9) * 0x240;
         lVar13 = lVar13 + -1;
     } while (lVar13 != 0);
     
     // 统计小块内存池 (0x74f0)
-    plVar17 = (longlong *)(param_1 + 0x74f0);
+    plVar17 = (int64_t *)(param_1 + 0x74f0);
     lVar13 = 0;
     lVar14 = 2;
     do {
@@ -784,12 +784,12 @@ longlong SystemCalculateMemoryUsage(longlong param_1)
             plVar1 = plVar1 + 1;
         } while (uVar3 < 0x10);
         plVar17 = plVar17 + 0x13;
-        lVar13 = lVar13 + (ulonglong)(uint)(iVar5 << 9) * 0xfc;
+        lVar13 = lVar13 + (uint64_t)(uint)(iVar5 << 9) * 0xfc;
         lVar14 = lVar14 + -1;
     } while (lVar14 != 0);
     
     // 统计中块内存池 (0x7628)
-    plVar17 = (longlong *)(param_1 + 0x7628);
+    plVar17 = (int64_t *)(param_1 + 0x7628);
     lVar14 = 0;
     lVar15 = 2;
     do {
@@ -803,7 +803,7 @@ longlong SystemCalculateMemoryUsage(longlong param_1)
             plVar1 = plVar1 + 1;
         } while (uVar3 < 0x40);
         plVar17 = plVar17 + 0x49;
-        lVar14 = lVar14 + (ulonglong)(uint)(iVar5 << 0xc) * 0x120;
+        lVar14 = lVar14 + (uint64_t)(uint)(iVar5 << 0xc) * 0x120;
         lVar15 = lVar15 + -1;
     } while (lVar15 != 0);
     
@@ -811,7 +811,7 @@ longlong SystemCalculateMemoryUsage(longlong param_1)
     lVar14 = lVar6 + lVar2 + lVar7 + lVar8 + lVar9 + lVar10 + lVar11 + lVar12 + lVar13 + lVar14;
     
     // 统计特殊内存池 (0x3d40)
-    plVar17 = (longlong *)(param_1 + 0x3d40);
+    plVar17 = (int64_t *)(param_1 + 0x3d40);
     do {
         iVar5 = 0;
         uVar3 = 0;
@@ -823,7 +823,7 @@ longlong SystemCalculateMemoryUsage(longlong param_1)
             plVar1 = plVar1 + 1;
         } while (uVar3 < 0x80);
         iVar4 = 0;
-        lVar14 = lVar14 + (ulonglong)(uint)(iVar5 << 4) * 0x12c30;
+        lVar14 = lVar14 + (uint64_t)(uint)(iVar5 << 4) * 0x12c30;
         uVar3 = 0;
         plVar1 = plVar17;
         do {
@@ -832,7 +832,7 @@ longlong SystemCalculateMemoryUsage(longlong param_1)
             uVar3 = uVar3 + 1;
             plVar1 = plVar1 + 1;
         } while (uVar3 < 0x80);
-        lVar2 = (longlong)iVar4;
+        lVar2 = (int64_t)iVar4;
         plVar1 = plVar17;
         if (0 < iVar4) {
             do {
@@ -865,7 +865,7 @@ longlong SystemCalculateMemoryUsage(longlong param_1)
  * 遍历多个资源管理区域，统计总资源数量。
  * 
  * @param param_1 系统资源管理器指针
- * @return longlong 总资源数量
+ * @return int64_t 总资源数量
  * 
  * 资源统计区域：
  * - 0x1a18: 大块资源池 (2组，每组0x122字节偏移)
@@ -885,24 +885,24 @@ longlong SystemCalculateMemoryUsage(longlong param_1)
  * - 简化实现：优化循环结构，减少重复计算
  * - 优化点：提前终止条件，边界检查优化
  */
-longlong SystemCalculateResourceCount(longlong param_1)
+int64_t SystemCalculateResourceCount(int64_t param_1)
 {
     uint uVar1;
-    longlong lVar2;
+    int64_t lVar2;
     uint *puVar3;
     uint uVar4;
-    ulonglong uVar5;
-    longlong lVar6;
-    longlong lVar7;
-    longlong lVar8;
-    longlong lVar9;
-    longlong lVar10;
-    longlong lVar11;
-    longlong lVar12;
-    longlong lVar13;
-    longlong lVar14;
-    longlong lVar15;
-    longlong lVar16;
+    uint64_t uVar5;
+    int64_t lVar6;
+    int64_t lVar7;
+    int64_t lVar8;
+    int64_t lVar9;
+    int64_t lVar10;
+    int64_t lVar11;
+    int64_t lVar12;
+    int64_t lVar13;
+    int64_t lVar14;
+    int64_t lVar15;
+    int64_t lVar16;
     
     // 初始化统计变量
     lVar2 = 2;
@@ -914,7 +914,7 @@ longlong SystemCalculateResourceCount(longlong param_1)
     do {
         uVar1 = *puVar3;
         puVar3 = puVar3 + 0x122;
-        lVar6 = lVar6 + (ulonglong)uVar1 * 0x40;
+        lVar6 = lVar6 + (uint64_t)uVar1 * 0x40;
         lVar15 = lVar15 + -1;
     } while (lVar15 != 0);
     
@@ -925,7 +925,7 @@ longlong SystemCalculateResourceCount(longlong param_1)
     do {
         uVar1 = *puVar3;
         puVar3 = puVar3 + 0x92;
-        lVar15 = lVar15 + (ulonglong)uVar1 * 0xa0;
+        lVar15 = lVar15 + (uint64_t)uVar1 * 0xa0;
         lVar16 = lVar16 + -1;
     } while (lVar16 != 0);
     
@@ -936,7 +936,7 @@ longlong SystemCalculateResourceCount(longlong param_1)
     do {
         uVar1 = *puVar3;
         puVar3 = puVar3 + 0x92;
-        lVar16 = lVar16 + (ulonglong)uVar1 * 0x130;
+        lVar16 = lVar16 + (uint64_t)uVar1 * 0x130;
         lVar7 = lVar7 + -1;
     } while (lVar7 != 0);
     
@@ -947,7 +947,7 @@ longlong SystemCalculateResourceCount(longlong param_1)
     do {
         uVar1 = *puVar3;
         puVar3 = puVar3 + 0x242;
-        lVar7 = lVar7 + (ulonglong)uVar1 * 0x330;
+        lVar7 = lVar7 + (uint64_t)uVar1 * 0x330;
         lVar8 = lVar8 + -1;
     } while (lVar8 != 0);
     
@@ -958,7 +958,7 @@ longlong SystemCalculateResourceCount(longlong param_1)
     do {
         uVar1 = *puVar3;
         puVar3 = puVar3 + 0x242;
-        lVar8 = lVar8 + (ulonglong)uVar1 * 0x60;
+        lVar8 = lVar8 + (uint64_t)uVar1 * 0x60;
         lVar9 = lVar9 + -1;
     } while (lVar9 != 0);
     
@@ -969,7 +969,7 @@ longlong SystemCalculateResourceCount(longlong param_1)
     do {
         uVar1 = *puVar3;
         puVar3 = puVar3 + 0x14;
-        lVar9 = lVar9 + (ulonglong)uVar1 * 0x2f0;
+        lVar9 = lVar9 + (uint64_t)uVar1 * 0x2f0;
         lVar10 = lVar10 + -1;
     } while (lVar10 != 0);
     
@@ -980,7 +980,7 @@ longlong SystemCalculateResourceCount(longlong param_1)
     do {
         uVar1 = *puVar3;
         puVar3 = puVar3 + 0x122;
-        lVar10 = lVar10 + (ulonglong)uVar1 * 0x340;
+        lVar10 = lVar10 + (uint64_t)uVar1 * 0x340;
         lVar11 = lVar11 + -1;
     } while (lVar11 != 0);
     
@@ -991,7 +991,7 @@ longlong SystemCalculateResourceCount(longlong param_1)
     do {
         uVar1 = *puVar3;
         puVar3 = puVar3 + 0x14;
-        lVar11 = lVar11 + (ulonglong)uVar1 * 0x240;
+        lVar11 = lVar11 + (uint64_t)uVar1 * 0x240;
         lVar12 = lVar12 + -1;
     } while (lVar12 != 0);
     
@@ -1002,7 +1002,7 @@ longlong SystemCalculateResourceCount(longlong param_1)
     do {
         uVar1 = *puVar3;
         puVar3 = puVar3 + 0x26;
-        lVar12 = lVar12 + (ulonglong)uVar1 * 0xfc;
+        lVar12 = lVar12 + (uint64_t)uVar1 * 0xfc;
         lVar13 = lVar13 + -1;
     } while (lVar13 != 0);
     
@@ -1013,7 +1013,7 @@ longlong SystemCalculateResourceCount(longlong param_1)
     do {
         uVar1 = *puVar3;
         puVar3 = puVar3 + 0x92;
-        lVar13 = lVar13 + (ulonglong)uVar1 * 0x120;
+        lVar13 = lVar13 + (uint64_t)uVar1 * 0x120;
         lVar14 = lVar14 + -1;
     } while (lVar14 != 0);
     
@@ -1024,15 +1024,15 @@ longlong SystemCalculateResourceCount(longlong param_1)
     puVar3 = (uint *)(param_1 + 0x3d38);
     do {
         uVar1 = *puVar3;
-        lVar13 = lVar13 + (ulonglong)*puVar3 * 0x12c30;
+        lVar13 = lVar13 + (uint64_t)*puVar3 * 0x12c30;
         uVar5 = 0;
         if (0 < (int)uVar1) {
             do {
-                lVar6 = SystemOptimizer((ulonglong)(uint)((int)uVar5 + (int)(uVar5 >> 4) * -0x10) * 0x12c30 +
-                                      *(longlong *)(puVar3 + (uVar5 >> 4) * 2 + 2));
+                lVar6 = SystemOptimizer((uint64_t)(uint)((int)uVar5 + (int)(uVar5 >> 4) * -0x10) * 0x12c30 +
+                                      *(int64_t *)(puVar3 + (uVar5 >> 4) * 2 + 2));
                 lVar13 = lVar13 + lVar6;
                 uVar4 = (int)uVar5 + 1;
-                uVar5 = (ulonglong)uVar4;
+                uVar5 = (uint64_t)uVar4;
             } while ((int)uVar4 < (int)uVar1);
         }
         puVar3 = puVar3 + 0x122;
@@ -1051,7 +1051,7 @@ longlong SystemCalculateResourceCount(longlong param_1)
  * 按照特定的顺序和策略释放资源，确保系统稳定性。
  * 
  * @param param_1 系统资源管理器指针
- * @return ulonglong 清理结果，0表示成功
+ * @return uint64_t 清理结果，0表示成功
  * 
  * 清理策略：
  * 1. 按照资源类型分组清理
@@ -1076,34 +1076,34 @@ longlong SystemCalculateResourceCount(longlong param_1)
  * - 简化实现：优化清理流程，减少重复代码
  * - 优化点：错误处理优化，线程安全优化
  */
-ulonglong SystemCleanupAllResources(longlong param_1)
+uint64_t SystemCleanupAllResources(int64_t param_1)
 {
     int iVar1;
     byte *pbVar2;
     byte bVar3;
-    longlong *plVar4;
-    ulonglong uVar5;
+    int64_t *plVar4;
+    uint64_t uVar5;
     uint uVar6;
     uint uVar7;
     uint *puVar8;
-    longlong lVar9;
+    int64_t lVar9;
     uint *puVar10;
     
     // 清理大块内存池 (0x1a18)
-    puVar8 = (uint *)((longlong)*(int *)(param_1 + 9000) * 0x488 + param_1 + 0x1a18);
+    puVar8 = (uint *)((int64_t)*(int *)(param_1 + 9000) * 0x488 + param_1 + 0x1a18);
     uVar6 = (*puVar8 >> 0xe) + 1;
     if (uVar6 < 0x80) {
-        puVar10 = puVar8 + ((ulonglong)uVar6 + 1) * 2;
+        puVar10 = puVar8 + ((uint64_t)uVar6 + 1) * 2;
         do {
-            if (*(longlong *)puVar10 == 0) break;
-            if (*(longlong *)puVar10 != 0) {
+            if (*(int64_t *)puVar10 == 0) break;
+            if (*(int64_t *)puVar10 != 0) {
                 // WARNING: 此函数不会返回
                 SystemErrorHandler();
             }
-            (puVar8 + (longlong)(int)uVar6 * 2 + 2)[0] = 0;
-            (puVar8 + (longlong)(int)uVar6 * 2 + 2)[1] = 0;
+            (puVar8 + (int64_t)(int)uVar6 * 2 + 2)[0] = 0;
+            (puVar8 + (int64_t)(int)uVar6 * 2 + 2)[1] = 0;
             LOCK();
-            *(int8_t *)((longlong)puVar8 + (longlong)(int)uVar6 + 0x408) = 1;
+            *(int8_t *)((int64_t)puVar8 + (int64_t)(int)uVar6 + 0x408) = 1;
             UNLOCK();
             uVar6 = uVar6 + 1;
             puVar10 = puVar10 + 2;
@@ -1111,20 +1111,20 @@ ulonglong SystemCleanupAllResources(longlong param_1)
     }
     
     // 清理中块内存池 (0x2378)
-    puVar8 = (uint *)((longlong)*(int *)(param_1 + 0x2808) * 0x248 + param_1 + 0x2378);
+    puVar8 = (uint *)((int64_t)*(int *)(param_1 + 0x2808) * 0x248 + param_1 + 0x2378);
     uVar6 = (*puVar8 >> 0xc) + 1;
     if (uVar6 < 0x40) {
-        puVar10 = puVar8 + ((ulonglong)uVar6 + 1) * 2;
+        puVar10 = puVar8 + ((uint64_t)uVar6 + 1) * 2;
         do {
-            if (*(longlong *)puVar10 == 0) break;
-            if (*(longlong *)puVar10 != 0) {
+            if (*(int64_t *)puVar10 == 0) break;
+            if (*(int64_t *)puVar10 != 0) {
                 // WARNING: 此函数不会返回
                 SystemErrorHandler();
             }
-            (puVar8 + (longlong)(int)uVar6 * 2 + 2)[0] = 0;
-            (puVar8 + (longlong)(int)uVar6 * 2 + 2)[1] = 0;
+            (puVar8 + (int64_t)(int)uVar6 * 2 + 2)[0] = 0;
+            (puVar8 + (int64_t)(int)uVar6 * 2 + 2)[1] = 0;
             LOCK();
-            *(int8_t *)((longlong)puVar8 + (longlong)(int)uVar6 + 0x208) = 1;
+            *(int8_t *)((int64_t)puVar8 + (int64_t)(int)uVar6 + 0x208) = 1;
             UNLOCK();
             uVar6 = uVar6 + 1;
             puVar10 = puVar10 + 2;
@@ -1132,20 +1132,20 @@ ulonglong SystemCleanupAllResources(longlong param_1)
     }
     
     // 清理中块内存池 (0x2810)
-    puVar8 = (uint *)((longlong)*(int *)(param_1 + 0x2ca0) * 0x248 + param_1 + 0x2810);
+    puVar8 = (uint *)((int64_t)*(int *)(param_1 + 0x2ca0) * 0x248 + param_1 + 0x2810);
     uVar6 = (*puVar8 >> 0xc) + 1;
     if (uVar6 < 0x40) {
-        puVar10 = puVar8 + ((ulonglong)uVar6 + 1) * 2;
+        puVar10 = puVar8 + ((uint64_t)uVar6 + 1) * 2;
         do {
-            if (*(longlong *)puVar10 == 0) break;
-            if (*(longlong *)puVar10 != 0) {
+            if (*(int64_t *)puVar10 == 0) break;
+            if (*(int64_t *)puVar10 != 0) {
                 // WARNING: 此函数不会返回
                 SystemErrorHandler();
             }
-            (puVar8 + (longlong)(int)uVar6 * 2 + 2)[0] = 0;
-            (puVar8 + (longlong)(int)uVar6 * 2 + 2)[1] = 0;
+            (puVar8 + (int64_t)(int)uVar6 * 2 + 2)[0] = 0;
+            (puVar8 + (int64_t)(int)uVar6 * 2 + 2)[1] = 0;
             LOCK();
-            *(int8_t *)((longlong)puVar8 + (longlong)(int)uVar6 + 0x208) = 1;
+            *(int8_t *)((int64_t)puVar8 + (int64_t)(int)uVar6 + 0x208) = 1;
             UNLOCK();
             uVar6 = uVar6 + 1;
             puVar10 = puVar10 + 2;
@@ -1153,34 +1153,34 @@ ulonglong SystemCleanupAllResources(longlong param_1)
     }
     
     // 清理大块内存池 (18000)
-    puVar8 = (uint *)((longlong)*(int *)(param_1 + 0x5860) * 0x908 + param_1 + 18000);
+    puVar8 = (uint *)((int64_t)*(int *)(param_1 + 0x5860) * 0x908 + param_1 + 18000);
     uVar6 = (*puVar8 >> 9) + 1;
     if (uVar6 < 0x100) {
-        puVar10 = puVar8 + ((ulonglong)uVar6 + 1) * 2;
+        puVar10 = puVar8 + ((uint64_t)uVar6 + 1) * 2;
         do {
-            if (*(longlong *)puVar10 == 0) break;
+            if (*(int64_t *)puVar10 == 0) break;
             uVar7 = uVar6 * 0x200;
             iVar1 = uVar7 + 0x200;
             for (; (int)uVar7 < iVar1; uVar7 = uVar7 + 1) {
-                lVar9 = *(longlong *)(puVar8 + (ulonglong)(uVar7 >> 9) * 2 + 2) +
-                        (longlong)(int)(uVar7 + (uVar7 >> 9) * -0x200) * 0x330;
-                if (*(longlong *)(lVar9 + 0x1d8) != 0) {
+                lVar9 = *(int64_t *)(puVar8 + (uint64_t)(uVar7 >> 9) * 2 + 2) +
+                        (int64_t)(int)(uVar7 + (uVar7 >> 9) * -0x200) * 0x330;
+                if (*(int64_t *)(lVar9 + 0x1d8) != 0) {
                     // WARNING: 此函数不会返回
                     SystemErrorHandler();
                 }
-                plVar4 = *(longlong **)(lVar9 + 0x1b8);
-                if (plVar4 != (longlong *)0x0) {
+                plVar4 = *(int64_t **)(lVar9 + 0x1b8);
+                if (plVar4 != (int64_t *)0x0) {
                     (**(code **)(*plVar4 + 0x38))();
                 }
             }
-            if (*(longlong *)puVar10 != 0) {
+            if (*(int64_t *)puVar10 != 0) {
                 // WARNING: 此函数不会返回
                 SystemErrorHandler();
             }
-            (puVar8 + (longlong)(int)uVar6 * 2 + 2)[0] = 0;
-            (puVar8 + (longlong)(int)uVar6 * 2 + 2)[1] = 0;
+            (puVar8 + (int64_t)(int)uVar6 * 2 + 2)[0] = 0;
+            (puVar8 + (int64_t)(int)uVar6 * 2 + 2)[1] = 0;
             LOCK();
-            *(int8_t *)((longlong)puVar8 + (longlong)(int)uVar6 + 0x808) = 1;
+            *(int8_t *)((int64_t)puVar8 + (int64_t)(int)uVar6 + 0x808) = 1;
             UNLOCK();
             uVar6 = uVar6 + 1;
             puVar10 = puVar10 + 2;
@@ -1188,20 +1188,20 @@ ulonglong SystemCleanupAllResources(longlong param_1)
     }
     
     // 清理大块内存池 (0x5868)
-    puVar8 = (uint *)((longlong)*(int *)(param_1 + 0x6a78) * 0x908 + param_1 + 0x5868);
+    puVar8 = (uint *)((int64_t)*(int *)(param_1 + 0x6a78) * 0x908 + param_1 + 0x5868);
     uVar6 = (*puVar8 >> 9) + 1;
     if (uVar6 < 0x100) {
-        puVar10 = puVar8 + ((ulonglong)uVar6 + 1) * 2;
+        puVar10 = puVar8 + ((uint64_t)uVar6 + 1) * 2;
         do {
-            if (*(longlong *)puVar10 == 0) break;
-            if (*(longlong *)puVar10 != 0) {
+            if (*(int64_t *)puVar10 == 0) break;
+            if (*(int64_t *)puVar10 != 0) {
                 // WARNING: 此函数不会返回
                 SystemErrorHandler();
             }
-            (puVar8 + (longlong)(int)uVar6 * 2 + 2)[0] = 0;
-            (puVar8 + (longlong)(int)uVar6 * 2 + 2)[1] = 0;
+            (puVar8 + (int64_t)(int)uVar6 * 2 + 2)[0] = 0;
+            (puVar8 + (int64_t)(int)uVar6 * 2 + 2)[1] = 0;
             LOCK();
-            *(int8_t *)((longlong)puVar8 + (longlong)(int)uVar6 + 0x808) = 1;
+            *(int8_t *)((int64_t)puVar8 + (int64_t)(int)uVar6 + 0x808) = 1;
             UNLOCK();
             uVar6 = uVar6 + 1;
             puVar10 = puVar10 + 2;
@@ -1209,35 +1209,35 @@ ulonglong SystemCleanupAllResources(longlong param_1)
     }
     
     // 清理小块内存池 (0x6a80)
-    puVar8 = (uint *)((longlong)*(int *)(param_1 + 0x6b20) * 0x50 + param_1 + 0x6a80);
+    puVar8 = (uint *)((int64_t)*(int *)(param_1 + 0x6b20) * 0x50 + param_1 + 0x6a80);
     uVar6 = (*puVar8 >> 9) + 1;
     if (uVar6 < 8) {
-        puVar10 = puVar8 + ((ulonglong)uVar6 + 1) * 2;
+        puVar10 = puVar8 + ((uint64_t)uVar6 + 1) * 2;
         do {
-            if (*(longlong *)puVar10 == 0) break;
+            if (*(int64_t *)puVar10 == 0) break;
             uVar7 = uVar6 * 0x200;
             iVar1 = uVar7 + 0x200;
             for (; (int)uVar7 < iVar1; uVar7 = uVar7 + 1) {
-                lVar9 = *(longlong *)(puVar8 + (ulonglong)(uVar7 >> 9) * 2 + 2) +
-                        (longlong)(int)(uVar7 + (uVar7 >> 9) * -0x200) * 0x2f0;
-                if (*(longlong *)(lVar9 + 0x2d0) != 0) {
+                lVar9 = *(int64_t *)(puVar8 + (uint64_t)(uVar7 >> 9) * 2 + 2) +
+                        (int64_t)(int)(uVar7 + (uVar7 >> 9) * -0x200) * 0x2f0;
+                if (*(int64_t *)(lVar9 + 0x2d0) != 0) {
                     // WARNING: 此函数不会返回
                     SystemErrorHandler();
                 }
                 SystemDebugOutput(lVar9 + 0x80);
-                if (*(longlong *)(lVar9 + 8) != 0) {
+                if (*(int64_t *)(lVar9 + 8) != 0) {
                     // WARNING: 此函数不会返回
                     SystemErrorHandler();
                 }
             }
-            if (*(longlong *)puVar10 != 0) {
+            if (*(int64_t *)puVar10 != 0) {
                 // WARNING: 此函数不会返回
                 SystemErrorHandler();
             }
-            (puVar8 + (longlong)(int)uVar6 * 2 + 2)[0] = 0;
-            (puVar8 + (longlong)(int)uVar6 * 2 + 2)[1] = 0;
+            (puVar8 + (int64_t)(int)uVar6 * 2 + 2)[0] = 0;
+            (puVar8 + (int64_t)(int)uVar6 * 2 + 2)[1] = 0;
             LOCK();
-            *(int8_t *)((longlong)puVar8 + (longlong)(int)uVar6 + 0x48) = 1;
+            *(int8_t *)((int64_t)puVar8 + (int64_t)(int)uVar6 + 0x48) = 1;
             UNLOCK();
             uVar6 = uVar6 + 1;
             puVar10 = puVar10 + 2;
@@ -1245,34 +1245,34 @@ ulonglong SystemCleanupAllResources(longlong param_1)
     }
     
     // 清理中块内存池 (0x6b28)
-    puVar8 = (uint *)((longlong)*(int *)(param_1 + 0x7438) * 0x488 + param_1 + 0x6b28);
+    puVar8 = (uint *)((int64_t)*(int *)(param_1 + 0x7438) * 0x488 + param_1 + 0x6b28);
     uVar6 = (*puVar8 >> 9) + 1;
     if (uVar6 < 0x80) {
-        puVar10 = puVar8 + ((ulonglong)uVar6 + 1) * 2;
+        puVar10 = puVar8 + ((uint64_t)uVar6 + 1) * 2;
         do {
-            if (*(longlong *)puVar10 == 0) break;
+            if (*(int64_t *)puVar10 == 0) break;
             uVar7 = uVar6 * 0x200;
             iVar1 = uVar7 + 0x200;
             for (; (int)uVar7 < iVar1; uVar7 = uVar7 + 1) {
-                lVar9 = *(longlong *)(puVar8 + (ulonglong)(uVar7 >> 9) * 2 + 2) +
-                        (longlong)(int)(uVar7 + (uVar7 >> 9) * -0x200) * 0x340;
-                if (*(longlong *)(lVar9 + 0x1d8) != 0) {
+                lVar9 = *(int64_t *)(puVar8 + (uint64_t)(uVar7 >> 9) * 2 + 2) +
+                        (int64_t)(int)(uVar7 + (uVar7 >> 9) * -0x200) * 0x340;
+                if (*(int64_t *)(lVar9 + 0x1d8) != 0) {
                     // WARNING: 此函数不会返回
                     SystemErrorHandler();
                 }
-                plVar4 = *(longlong **)(lVar9 + 0x1b8);
-                if (plVar4 != (longlong *)0x0) {
+                plVar4 = *(int64_t **)(lVar9 + 0x1b8);
+                if (plVar4 != (int64_t *)0x0) {
                     (**(code **)(*plVar4 + 0x38))();
                 }
             }
-            if (*(longlong *)puVar10 != 0) {
+            if (*(int64_t *)puVar10 != 0) {
                 // WARNING: 此函数不会返回
                 SystemErrorHandler();
             }
-            (puVar8 + (longlong)(int)uVar6 * 2 + 2)[0] = 0;
-            (puVar8 + (longlong)(int)uVar6 * 2 + 2)[1] = 0;
+            (puVar8 + (int64_t)(int)uVar6 * 2 + 2)[0] = 0;
+            (puVar8 + (int64_t)(int)uVar6 * 2 + 2)[1] = 0;
             LOCK();
-            *(int8_t *)((longlong)puVar8 + (longlong)(int)uVar6 + 0x408) = 1;
+            *(int8_t *)((int64_t)puVar8 + (int64_t)(int)uVar6 + 0x408) = 1;
             UNLOCK();
             uVar6 = uVar6 + 1;
             puVar10 = puVar10 + 2;
@@ -1280,20 +1280,20 @@ ulonglong SystemCleanupAllResources(longlong param_1)
     }
     
     // 清理小块内存池 (0x7440)
-    puVar8 = (uint *)((longlong)*(int *)(param_1 + 0x74e0) * 0x50 + param_1 + 0x7440);
+    puVar8 = (uint *)((int64_t)*(int *)(param_1 + 0x74e0) * 0x50 + param_1 + 0x7440);
     uVar6 = (*puVar8 >> 9) + 1;
     if (uVar6 < 8) {
-        puVar10 = puVar8 + ((ulonglong)uVar6 + 1) * 2;
+        puVar10 = puVar8 + ((uint64_t)uVar6 + 1) * 2;
         do {
-            if (*(longlong *)puVar10 == 0) break;
-            if (*(longlong *)puVar10 != 0) {
+            if (*(int64_t *)puVar10 == 0) break;
+            if (*(int64_t *)puVar10 != 0) {
                 // WARNING: 此函数不会返回
                 SystemErrorHandler();
             }
-            (puVar8 + (longlong)(int)uVar6 * 2 + 2)[0] = 0;
-            (puVar8 + (longlong)(int)uVar6 * 2 + 2)[1] = 0;
+            (puVar8 + (int64_t)(int)uVar6 * 2 + 2)[0] = 0;
+            (puVar8 + (int64_t)(int)uVar6 * 2 + 2)[1] = 0;
             LOCK();
-            *(int8_t *)((longlong)puVar8 + (longlong)(int)uVar6 + 0x48) = 1;
+            *(int8_t *)((int64_t)puVar8 + (int64_t)(int)uVar6 + 0x48) = 1;
             UNLOCK();
             uVar6 = uVar6 + 1;
             puVar10 = puVar10 + 2;
@@ -1301,20 +1301,20 @@ ulonglong SystemCleanupAllResources(longlong param_1)
     }
     
     // 清理小块内存池 (0x74e8)
-    puVar8 = (uint *)((longlong)*(int *)(param_1 + 0x7618) * 0x98 + param_1 + 0x74e8);
+    puVar8 = (uint *)((int64_t)*(int *)(param_1 + 0x7618) * 0x98 + param_1 + 0x74e8);
     uVar6 = (*puVar8 >> 9) + 1;
     if (uVar6 < 0x10) {
-        puVar10 = puVar8 + ((ulonglong)uVar6 + 1) * 2;
+        puVar10 = puVar8 + ((uint64_t)uVar6 + 1) * 2;
         do {
-            if (*(longlong *)puVar10 == 0) break;
-            if (*(longlong *)puVar10 != 0) {
+            if (*(int64_t *)puVar10 == 0) break;
+            if (*(int64_t *)puVar10 != 0) {
                 // WARNING: 此函数不会返回
                 SystemErrorHandler();
             }
-            (puVar8 + (longlong)(int)uVar6 * 2 + 2)[0] = 0;
-            (puVar8 + (longlong)(int)uVar6 * 2 + 2)[1] = 0;
+            (puVar8 + (int64_t)(int)uVar6 * 2 + 2)[0] = 0;
+            (puVar8 + (int64_t)(int)uVar6 * 2 + 2)[1] = 0;
             LOCK();
-            *(int8_t *)((longlong)puVar8 + (longlong)(int)uVar6 + 0x88) = 1;
+            *(int8_t *)((int64_t)puVar8 + (int64_t)(int)uVar6 + 0x88) = 1;
             UNLOCK();
             uVar6 = uVar6 + 1;
             puVar10 = puVar10 + 2;
@@ -1322,26 +1322,26 @@ ulonglong SystemCleanupAllResources(longlong param_1)
     }
     
     // 清理中块内存池 (0x7620)
-    uVar5 = (ulonglong)*(int *)(param_1 + 0x7ab0);
+    uVar5 = (uint64_t)*(int *)(param_1 + 0x7ab0);
     puVar8 = (uint *)(uVar5 * 0x248 + param_1 + 0x7620);
     uVar6 = (*puVar8 >> 0xc) + 1;
     if (uVar6 < 0x40) {
-        puVar10 = puVar8 + ((ulonglong)uVar6 + 1) * 2;
+        puVar10 = puVar8 + ((uint64_t)uVar6 + 1) * 2;
         do {
-            if (*(longlong *)puVar10 == 0) {
+            if (*(int64_t *)puVar10 == 0) {
                 return 0;
             }
-            if (*(longlong *)puVar10 != 0) {
+            if (*(int64_t *)puVar10 != 0) {
                 // WARNING: 此函数不会返回
                 SystemErrorHandler();
             }
-            (puVar8 + (longlong)(int)uVar6 * 2 + 2)[0] = 0;
-            (puVar8 + (longlong)(int)uVar6 * 2 + 2)[1] = 0;
+            (puVar8 + (int64_t)(int)uVar6 * 2 + 2)[0] = 0;
+            (puVar8 + (int64_t)(int)uVar6 * 2 + 2)[1] = 0;
             LOCK();
-            pbVar2 = (byte *)((longlong)puVar8 + (longlong)(int)uVar6 + 0x208);
+            pbVar2 = (byte *)((int64_t)puVar8 + (int64_t)(int)uVar6 + 0x208);
             bVar3 = *pbVar2;
             *pbVar2 = 1;
-            uVar5 = (ulonglong)bVar3;
+            uVar5 = (uint64_t)bVar3;
             UNLOCK();
             uVar6 = uVar6 + 1;
             puVar10 = puVar10 + 2;

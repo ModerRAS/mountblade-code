@@ -110,13 +110,13 @@ void NetworkInitializePacket(uint64_t packet_context)
     int status_code;
     int8_t buffer_area[32];           // 缓冲区区域
     int8_t *packet_buffer;            // 数据包缓冲区指针
-    longlong network_handles[2];         // 网络句柄数组
+    int64_t network_handles[2];         // 网络句柄数组
     uint64_t *data_pointers[2];         // 数据指针数组
     int8_t stack_buffer[256];         // 栈缓冲区
-    ulonglong security_key;               // 安全密钥
+    uint64_t security_key;               // 安全密钥
     
     // 安全密钥初始化（用于数据包验证）
-    security_key = GET_SECURITY_COOKIE() ^ (ulonglong)buffer_area;
+    security_key = GET_SECURITY_COOKIE() ^ (uint64_t)buffer_area;
     
     // 获取网络句柄
     status_code = func_0x00018088c590(packet_context, network_handles);
@@ -132,7 +132,7 @@ void NetworkInitializePacket(uint64_t packet_context)
         
         if (status_code == 0) {
             // 检查网络配置是否有效
-            if (*(int *)(*(longlong *)(network_handles[0] + 0x98) + 0x200) != 0) {
+            if (*(int *)(*(int64_t *)(network_handles[0] + 0x98) + 0x200) != 0) {
                 // 初始化数据包处理器
                 network_handles[1] = 0;
                 status_code = FUN_18088c740(network_handles + 1);
@@ -166,7 +166,7 @@ void NetworkInitializePacket(uint64_t packet_context)
 cleanup:
 error_handling:
     // 安全清理和资源释放
-    FUN_1808fc050(security_key ^ (ulonglong)buffer_area);
+    FUN_1808fc050(security_key ^ (uint64_t)buffer_area);
 }
 
 /**
@@ -182,7 +182,7 @@ error_handling:
  * @param buffer_size 缓冲区大小
  * @return int 序列化的字节数，失败返回-1
  */
-int SerializeInt32Data(longlong data_ptr, longlong buffer_ptr, int buffer_size)
+int SerializeInt32Data(int64_t data_ptr, int64_t buffer_ptr, int buffer_size)
 {
     int32_t header_value;
     int serialized_bytes;
@@ -221,7 +221,7 @@ int SerializeInt32Data(longlong data_ptr, longlong buffer_ptr, int buffer_size)
  * @param packet_size 数据包大小
  * @return void
  */
-void SerializePacketHeader(longlong header_ptr, uint64_t target_ptr, int32_t packet_size)
+void SerializePacketHeader(int64_t header_ptr, uint64_t target_ptr, int32_t packet_size)
 {
     // 调用底层发送函数传输包头
     FUN_18083faf0(target_ptr, packet_size, *(int32_t *)(header_ptr + 0x10),
@@ -242,7 +242,7 @@ void SerializePacketHeader(longlong header_ptr, uint64_t target_ptr, int32_t pac
  * @param buffer_size 缓冲区大小
  * @return int 序列化的字节数，失败返回-1
  */
-int SerializeInt64Data(longlong data_ptr, longlong buffer_ptr, int buffer_size)
+int SerializeInt64Data(int64_t data_ptr, int64_t buffer_ptr, int buffer_size)
 {
     int32_t config_values[4];  // 配置值数组
     int32_t main_header;       // 主头部信息
@@ -308,7 +308,7 @@ int SerializeInt64Data(longlong data_ptr, longlong buffer_ptr, int buffer_size)
  * @param buffer_size 缓冲区大小
  * @return int 序列化的字节数，失败返回-1
  */
-int SerializeStringData(longlong data_ptr, longlong buffer_ptr, int buffer_size)
+int SerializeStringData(int64_t data_ptr, int64_t buffer_ptr, int buffer_size)
 {
     uint64_t string_config;   // 字符串配置信息
     int serialized_bytes;       // 已序列化字节数
@@ -346,7 +346,7 @@ int SerializeStringData(longlong data_ptr, longlong buffer_ptr, int buffer_size)
  * @param buffer_size 缓冲区大小
  * @return int 序列化的字节数，失败返回-1
  */
-int SerializeFloatData(longlong data_ptr, longlong buffer_ptr, int buffer_size)
+int SerializeFloatData(int64_t data_ptr, int64_t buffer_ptr, int buffer_size)
 {
     int8_t float_config;    // 浮点数配置
     int serialized_bytes;       // 已序列化字节数
@@ -384,7 +384,7 @@ int SerializeFloatData(longlong data_ptr, longlong buffer_ptr, int buffer_size)
  * @param buffer_size 缓冲区大小
  * @return int 序列化的字节数，失败返回-1
  */
-int SerializeBooleanData(longlong data_ptr, longlong buffer_ptr, int buffer_size)
+int SerializeBooleanData(int64_t data_ptr, int64_t buffer_ptr, int buffer_size)
 {
     int32_t bool_config;     // 布尔值配置
     int serialized_bytes;       // 已序列化字节数
@@ -422,7 +422,7 @@ int SerializeBooleanData(longlong data_ptr, longlong buffer_ptr, int buffer_size
  * @param buffer_size 缓冲区大小
  * @return int 序列化的字节数，失败返回-1
  */
-int SerializeArrayData(longlong data_ptr, longlong buffer_ptr, int buffer_size)
+int SerializeArrayData(int64_t data_ptr, int64_t buffer_ptr, int buffer_size)
 {
     int32_t array_config;    // 数组配置
     int serialized_bytes;       // 已序列化字节数
@@ -460,7 +460,7 @@ int SerializeArrayData(longlong data_ptr, longlong buffer_ptr, int buffer_size)
  * @param buffer_size 缓冲区大小
  * @return int 序列化的字节数，失败返回-1
  */
-int SerializeStructData(longlong data_ptr, longlong buffer_ptr, int buffer_size)
+int SerializeStructData(int64_t data_ptr, int64_t buffer_ptr, int buffer_size)
 {
     int32_t struct_config[2]; // 结构体配置
     int serialized_bytes;        // 已序列化字节数
@@ -509,7 +509,7 @@ int SerializeStructData(longlong data_ptr, longlong buffer_ptr, int buffer_size)
  * @param buffer_size 缓冲区大小
  * @return int 序列化的字节数，失败返回-1
  */
-int SerializeVector2Data(longlong data_ptr, longlong buffer_ptr, int buffer_size)
+int SerializeVector2Data(int64_t data_ptr, int64_t buffer_ptr, int buffer_size)
 {
     int32_t vector_config[2]; // 向量配置
     int serialized_bytes;        // 已序列化字节数
@@ -558,7 +558,7 @@ int SerializeVector2Data(longlong data_ptr, longlong buffer_ptr, int buffer_size
  * @param buffer_size 缓冲区大小
  * @return int 序列化的字节数，失败返回-1
  */
-int SerializeComplexData(longlong data_ptr, longlong buffer_ptr, int buffer_size)
+int SerializeComplexData(int64_t data_ptr, int64_t buffer_ptr, int buffer_size)
 {
     int serialized_bytes;        // 已序列化字节数
     int processed_bytes;         // 已处理字节数
@@ -605,7 +605,7 @@ int SerializeComplexData(longlong data_ptr, longlong buffer_ptr, int buffer_size
  * @param buffer_size 缓冲区大小
  * @return int 序列化的字节数，失败返回-1
  */
-int SerializeMatrixData(longlong data_ptr, longlong buffer_ptr, int buffer_size)
+int SerializeMatrixData(int64_t data_ptr, int64_t buffer_ptr, int buffer_size)
 {
     int32_t matrix_config;    // 矩阵配置
     int serialized_bytes;        // 已序列化字节数
@@ -643,7 +643,7 @@ int SerializeMatrixData(longlong data_ptr, longlong buffer_ptr, int buffer_size)
  * @param buffer_size 缓冲区大小
  * @return int 序列化的字节数，失败返回-1
  */
-int SerializeTransformData(longlong data_ptr, longlong buffer_ptr, int buffer_size)
+int SerializeTransformData(int64_t data_ptr, int64_t buffer_ptr, int buffer_size)
 {
     int32_t transform_config[2]; // 变换配置
     int8_t transform_type;      // 变换类型
@@ -705,7 +705,7 @@ int SerializeTransformData(longlong data_ptr, longlong buffer_ptr, int buffer_si
  * @param buffer_size 缓冲区大小
  * @return int 序列化的字节数，失败返回-1
  */
-int SerializeAnimationData(longlong data_ptr, longlong buffer_ptr, int buffer_size)
+int SerializeAnimationData(int64_t data_ptr, int64_t buffer_ptr, int buffer_size)
 {
     int8_t animation_type;    // 动画类型
     int serialized_bytes;         // 已序列化字节数
@@ -765,7 +765,7 @@ int SerializeAnimationData(longlong data_ptr, longlong buffer_ptr, int buffer_si
  * @param buffer_size 缓冲区大小
  * @return int 序列化的字节数，失败返回-1
  */
-int SerializeAudioData(longlong data_ptr, longlong buffer_ptr, int buffer_size)
+int SerializeAudioData(int64_t data_ptr, int64_t buffer_ptr, int buffer_size)
 {
     int32_t audio_config[2];   // 音频配置
     int8_t audio_type;        // 音频类型
@@ -825,7 +825,7 @@ int SerializeAudioData(longlong data_ptr, longlong buffer_ptr, int buffer_size)
  * @param buffer_size 缓冲区大小
  * @return int 序列化的字节数，失败返回-1
  */
-int SerializeVideoData(longlong data_ptr, longlong buffer_ptr, int buffer_size)
+int SerializeVideoData(int64_t data_ptr, int64_t buffer_ptr, int buffer_size)
 {
     int8_t video_type;        // 视频类型
     int serialized_bytes;          // 已序列化字节数
@@ -883,7 +883,7 @@ int SerializeVideoData(longlong data_ptr, longlong buffer_ptr, int buffer_size)
  * @param buffer_size 缓冲区大小
  * @return int 序列化的字节数，失败返回-1
  */
-int SerializeImageData(longlong data_ptr, longlong buffer_ptr, int buffer_size)
+int SerializeImageData(int64_t data_ptr, int64_t buffer_ptr, int buffer_size)
 {
     int32_t image_config[2];   // 图像配置
     int serialized_bytes;          // 已序列化字节数
@@ -932,7 +932,7 @@ int SerializeImageData(longlong data_ptr, longlong buffer_ptr, int buffer_size)
  * @param buffer_size 缓冲区大小
  * @return int 序列化的字节数，失败返回-1
  */
-int SerializeNetworkConfig(longlong data_ptr, longlong buffer_ptr, int buffer_size)
+int SerializeNetworkConfig(int64_t data_ptr, int64_t buffer_ptr, int buffer_size)
 {
     int32_t config_params[4];  // 配置参数
     int32_t main_config;       // 主配置
@@ -974,7 +974,7 @@ int SerializeNetworkConfig(longlong data_ptr, longlong buffer_ptr, int buffer_si
  * @param buffer_size 缓冲区大小
  * @return int 序列化的字节数，失败返回-1
  */
-int SerializeConnectionInfo(longlong data_ptr, longlong buffer_ptr, int buffer_size)
+int SerializeConnectionInfo(int64_t data_ptr, int64_t buffer_ptr, int buffer_size)
 {
     int32_t connection_config;  // 连接配置
     int serialized_bytes;          // 已序列化字节数
@@ -1012,7 +1012,7 @@ int SerializeConnectionInfo(longlong data_ptr, longlong buffer_ptr, int buffer_s
  * @param buffer_size 缓冲区大小
  * @return int 序列化的字节数，失败返回-1
  */
-int SerializePlayerState(longlong data_ptr, longlong buffer_ptr, int buffer_size)
+int SerializePlayerState(int64_t data_ptr, int64_t buffer_ptr, int buffer_size)
 {
     int32_t player_config;     // 玩家配置
     int serialized_bytes;         // 已序列化字节数
@@ -1050,7 +1050,7 @@ int SerializePlayerState(longlong data_ptr, longlong buffer_ptr, int buffer_size
  * @param buffer_size 缓冲区大小
  * @return int 序列化的字节数，失败返回-1
  */
-int SerializeGameState(longlong data_ptr, longlong buffer_ptr, int buffer_size)
+int SerializeGameState(int64_t data_ptr, int64_t buffer_ptr, int buffer_size)
 {
     int32_t game_config[2];     // 游戏配置
     int serialized_bytes;          // 已序列化字节数
@@ -1108,7 +1108,7 @@ int SerializeGameState(longlong data_ptr, longlong buffer_ptr, int buffer_size)
  * @param buffer_size 缓冲区大小
  * @return int 序列化的字节数，失败返回-1
  */
-int SerializeEntityData(longlong data_ptr, longlong buffer_ptr, int buffer_size)
+int SerializeEntityData(int64_t data_ptr, int64_t buffer_ptr, int buffer_size)
 {
     int32_t entity_config[2];   // 实体配置
     int serialized_bytes;          // 已序列化字节数
@@ -1156,7 +1156,7 @@ int SerializeEntityData(longlong data_ptr, longlong buffer_ptr, int buffer_size)
  * @param buffer_size 缓冲区大小
  * @return int 序列化的字节数，失败返回-1
  */
-int SerializeWorldState(longlong data_ptr, longlong buffer_ptr, int buffer_size)
+int SerializeWorldState(int64_t data_ptr, int64_t buffer_ptr, int buffer_size)
 {
     int32_t world_config[4];   // 世界配置
     int serialized_bytes;          // 已序列化字节数
@@ -1227,7 +1227,7 @@ int SerializeWorldState(longlong data_ptr, longlong buffer_ptr, int buffer_size)
  * @param buffer_size 缓冲区大小
  * @return int 序列化的字节数，失败返回-1
  */
-int SerializePhysicsData(longlong data_ptr, longlong buffer_ptr, int buffer_size)
+int SerializePhysicsData(int64_t data_ptr, int64_t buffer_ptr, int buffer_size)
 {
     int8_t physics_type;       // 物理类型
     int serialized_bytes;          // 已序列化字节数
@@ -1298,7 +1298,7 @@ int SerializePhysicsData(longlong data_ptr, longlong buffer_ptr, int buffer_size
  * @param buffer_size 缓冲区大小
  * @return int 序列化的字节数，失败返回-1
  */
-int SerializeInputData(longlong data_ptr, longlong buffer_ptr, int buffer_size)
+int SerializeInputData(int64_t data_ptr, int64_t buffer_ptr, int buffer_size)
 {
     int32_t input_config;      // 输入配置
     int serialized_bytes;          // 已序列化字节数
@@ -1336,7 +1336,7 @@ int SerializeInputData(longlong data_ptr, longlong buffer_ptr, int buffer_size)
  * @param buffer_size 缓冲区大小
  * @return int 序列化的字节数，失败返回-1
  */
-int SerializeRenderData(longlong data_ptr, longlong buffer_ptr, int buffer_size)
+int SerializeRenderData(int64_t data_ptr, int64_t buffer_ptr, int buffer_size)
 {
     int32_t render_config;      // 渲染配置
     int8_t render_type;        // 渲染类型
@@ -1387,7 +1387,7 @@ int SerializeRenderData(longlong data_ptr, longlong buffer_ptr, int buffer_size)
  * @param buffer_size 缓冲区大小
  * @return int 序列化的字节数，失败返回-1
  */
-int SerializeShaderData(longlong data_ptr, longlong buffer_ptr, int buffer_size)
+int SerializeShaderData(int64_t data_ptr, int64_t buffer_ptr, int buffer_size)
 {
     int8_t shader_type;        // 着色器类型
     int serialized_bytes;          // 已序列化字节数
@@ -1436,7 +1436,7 @@ int SerializeShaderData(longlong data_ptr, longlong buffer_ptr, int buffer_size)
  * @param buffer_size 缓冲区大小
  * @return int 序列化的字节数，失败返回-1
  */
-int SerializeTextureData(longlong data_ptr, longlong buffer_ptr, int buffer_size)
+int SerializeTextureData(int64_t data_ptr, int64_t buffer_ptr, int buffer_size)
 {
     int32_t texture_config;     // 纹理配置
     int8_t texture_type;       // 纹理类型
@@ -1485,7 +1485,7 @@ int SerializeTextureData(longlong data_ptr, longlong buffer_ptr, int buffer_size
  * @param buffer_size 缓冲区大小
  * @return int 序列化的字节数，失败返回-1
  */
-int SerializeMaterialData(longlong data_ptr, longlong buffer_ptr, int buffer_size)
+int SerializeMaterialData(int64_t data_ptr, int64_t buffer_ptr, int buffer_size)
 {
     int8_t material_type;      // 材质类型
     int serialized_bytes;          // 已序列化字节数
@@ -1533,7 +1533,7 @@ int SerializeMaterialData(longlong data_ptr, longlong buffer_ptr, int buffer_siz
  * @param packet_size 数据包大小
  * @return void
  */
-void SendPacketHeader(longlong header_ptr, uint64_t target_ptr, int32_t packet_size)
+void SendPacketHeader(int64_t header_ptr, uint64_t target_ptr, int32_t packet_size)
 {
     // 调用底层发送函数传输包头
     FUN_18083f850(target_ptr, packet_size, &unknown_var_4736_ptr, 
@@ -1554,7 +1554,7 @@ void SendPacketHeader(longlong header_ptr, uint64_t target_ptr, int32_t packet_s
  * @param packet_size 数据包大小
  * @return void
  */
-void SendPacketFooter(longlong footer_ptr, uint64_t target_ptr, int32_t packet_size)
+void SendPacketFooter(int64_t footer_ptr, uint64_t target_ptr, int32_t packet_size)
 {
     // 调用底层发送函数传输包尾
     FUN_18083f8f0(target_ptr, packet_size, &unknown_var_4864_ptr, 
@@ -1577,7 +1577,7 @@ void SendPacketFooter(longlong footer_ptr, uint64_t target_ptr, int32_t packet_s
  * @param packet_size 数据包大小
  * @return int 发送的字节数，失败返回-1
  */
-int SendDataPacket(longlong packet_ptr, longlong target_ptr, int packet_size)
+int SendDataPacket(int64_t packet_ptr, int64_t target_ptr, int packet_size)
 {
     int32_t packet_params[4];   // 数据包参数
     int32_t main_header;        // 主头部信息
@@ -1653,7 +1653,7 @@ int SendDataPacket(longlong packet_ptr, longlong target_ptr, int packet_size)
  * @param ack_size 确认包大小
  * @return void
  */
-void SendAckPacket(longlong ack_ptr, uint64_t target_ptr, int32_t ack_size)
+void SendAckPacket(int64_t ack_ptr, uint64_t target_ptr, int32_t ack_size)
 {
     // 调用底层发送函数传输确认包
     FUN_18083f850(target_ptr, ack_size, &unknown_var_4352_ptr, 
@@ -1674,7 +1674,7 @@ void SendAckPacket(longlong ack_ptr, uint64_t target_ptr, int32_t ack_size)
  * @param nack_size 非确认包大小
  * @return void
  */
-void SendNackPacket(longlong nack_ptr, uint64_t target_ptr, int32_t nack_size)
+void SendNackPacket(int64_t nack_ptr, uint64_t target_ptr, int32_t nack_size)
 {
     // 调用底层发送函数传输非确认包
     FUN_18083f8f0(target_ptr, nack_size, &unknown_var_4480_ptr, 
@@ -1696,7 +1696,7 @@ void SendNackPacket(longlong nack_ptr, uint64_t target_ptr, int32_t nack_size)
  * @param heartbeat_size 心跳包大小
  * @return int 发送的字节数，失败返回-1
  */
-int SendHeartbeatPacket(longlong heartbeat_ptr, longlong target_ptr, int heartbeat_size)
+int SendHeartbeatPacket(int64_t heartbeat_ptr, int64_t target_ptr, int heartbeat_size)
 {
     int32_t heartbeat_params[4]; // 心跳参数
     int32_t main_header;        // 主头部信息
@@ -1772,7 +1772,7 @@ int SendHeartbeatPacket(longlong heartbeat_ptr, longlong target_ptr, int heartbe
  * @param disconnect_size 断开包大小
  * @return void
  */
-void SendDisconnectPacket(longlong disconnect_ptr, uint64_t target_ptr, int32_t disconnect_size)
+void SendDisconnectPacket(int64_t disconnect_ptr, uint64_t target_ptr, int32_t disconnect_size)
 {
     // 调用底层发送函数传输断开连接包
     FUN_18083f850(target_ptr, disconnect_size, &unknown_var_3712_ptr, 
@@ -1793,7 +1793,7 @@ void SendDisconnectPacket(longlong disconnect_ptr, uint64_t target_ptr, int32_t 
  * @param ping_size Ping包大小
  * @return void
  */
-void SendPingPacket(longlong ping_ptr, uint64_t target_ptr, int32_t ping_size)
+void SendPingPacket(int64_t ping_ptr, uint64_t target_ptr, int32_t ping_size)
 {
     // 调用底层发送函数传输Ping包
     FUN_18083f850(target_ptr, ping_size, &unknown_var_3840_ptr, 
@@ -1814,7 +1814,7 @@ void SendPingPacket(longlong ping_ptr, uint64_t target_ptr, int32_t ping_size)
  * @param pong_size Pong包大小
  * @return void
  */
-void SendPongPacket(longlong pong_ptr, uint64_t target_ptr, int32_t pong_size)
+void SendPongPacket(int64_t pong_ptr, uint64_t target_ptr, int32_t pong_size)
 {
     // 调用底层发送函数传输Pong包
     FUN_18083f850(target_ptr, pong_size, &unknown_var_5120_ptr, 

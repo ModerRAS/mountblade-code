@@ -50,7 +50,7 @@
  */
 static uint64_t memory_pool_header;
 static uint64_t memory_block_pointer;
-static longlong memory_reference_count;
+static int64_t memory_reference_count;
 static uint64_t memory_state_flags;
 static uint64_t memory_cleanup_handler;
 
@@ -59,15 +59,15 @@ static uint64_t memory_cleanup_handler;
  */
 static uint64_t resource_allocator;
 static uint64_t resource_cleaner;
-static longlong resource_counter;
+static int64_t resource_counter;
 static uint64_t resource_state_manager;
 
 /**
  * 线程同步系统全局变量
  */
-static longlong thread_sync_counter;
+static int64_t thread_sync_counter;
 static uint64_t thread_sync_mutex;
-static longlong thread_sync_event;
+static int64_t thread_sync_event;
 static char thread_pool_status;
 static char thread_queue_status;
 
@@ -80,23 +80,23 @@ static char thread_queue_status;
  */
 static void memory_block_initializer(uint64_t context);
 static void memory_cleanup_processor(uint64_t context);
-static void memory_state_synchronizer(uint64_t context, longlong param_1);
-static void memory_resource_manager(uint64_t context, longlong param_1, longlong param_2);
+static void memory_state_synchronizer(uint64_t context, int64_t param_1);
+static void memory_resource_manager(uint64_t context, int64_t param_1, int64_t param_2);
 
 /**
  * 资源管理函数
  */
-static void resource_allocator_controller(uint64_t context, longlong param_1);
-static void resource_cleanup_handler(uint64_t context, longlong param_1);
-static void resource_state_validator(uint64_t context, longlong param_1);
-static void resource_counter_manager(uint64_t context, longlong param_1);
+static void resource_allocator_controller(uint64_t context, int64_t param_1);
+static void resource_cleanup_handler(uint64_t context, int64_t param_1);
+static void resource_state_validator(uint64_t context, int64_t param_1);
+static void resource_counter_manager(uint64_t context, int64_t param_1);
 
 /**
  * 线程同步函数
  */
 static void thread_sync_initializer(uint64_t context);
-static void thread_sync_processor(uint64_t context, longlong param_1);
-static void thread_state_manager(uint64_t context, longlong param_1);
+static void thread_sync_processor(uint64_t context, int64_t param_1);
+static void thread_state_manager(uint64_t context, int64_t param_1);
 
 /*==========================================
 =            函数定义            =
@@ -110,8 +110,8 @@ static void thread_state_manager(uint64_t context, longlong param_1);
  */
 void FUN_18064c335(void)
 {
-  longlong memory_context;
-  longlong resource_context;
+  int64_t memory_context;
+  int64_t resource_context;
   
   // 清理内存状态标志
   *(byte *)(memory_context + 8) = *(byte *)(memory_context + 8) & MEMORY_CLEANUP_FLAG;
@@ -132,7 +132,7 @@ void FUN_18064c335(void)
   FUN_18064b830();
   
   // 更新资源计数器
-  *(longlong *)(resource_context + 0x48) = *(longlong *)(resource_context + 0x48) - 1;
+  *(int64_t *)(resource_context + 0x48) = *(int64_t *)(resource_context + 0x48) - 1;
   return;
 }
 
@@ -144,22 +144,22 @@ void FUN_18064c335(void)
  * @param param_2 参数2
  * @param param_3 上下文参数
  */
-void FUN_18064c390(ulonglong param_1, uint64_t param_2, longlong param_3)
+void FUN_18064c390(uint64_t param_1, uint64_t param_2, int64_t param_3)
 {
-  longlong *memory_block_ptr;
+  int64_t *memory_block_ptr;
   uint64_t *memory_link_ptr;
-  longlong block_count;
-  longlong memory_size;
-  longlong bit_position;
-  longlong current_bit;
-  longlong max_bit;
+  int64_t block_count;
+  int64_t memory_size;
+  int64_t bit_position;
+  int64_t current_bit;
+  int64_t max_bit;
   uint *memory_pool_ptr;
-  longlong *memory_counter_ptr;
-  longlong allocation_size;
-  ulonglong memory_base;
-  ulonglong block_size;
-  ulonglong temp_size;
-  ulonglong calculated_size;
+  int64_t *memory_counter_ptr;
+  int64_t allocation_size;
+  uint64_t memory_base;
+  uint64_t block_size;
+  uint64_t temp_size;
+  uint64_t calculated_size;
   bool lock_acquired;
   
   // 获取内存基地址
@@ -169,8 +169,8 @@ void FUN_18064c390(ulonglong param_1, uint64_t param_2, longlong param_3)
   FUN_18064c220(param_1, param_3);
   
   // 检查内存状态
-  if (*(longlong *)(memory_base + 0x48) != 0) {
-    if (*(longlong *)(memory_base + 0x48) == *(longlong *)(memory_base + 0x38)) {
+  if (*(int64_t *)(memory_base + 0x48) != 0) {
+    if (*(int64_t *)(memory_base + 0x48) == *(int64_t *)(memory_base + 0x38)) {
       // 执行内存清理
       FUN_18064c570(memory_base, param_3);
     }
@@ -178,14 +178,14 @@ void FUN_18064c390(ulonglong param_1, uint64_t param_2, longlong param_3)
   }
   
   // 处理内存池
-  block_count = *(longlong *)(memory_base + 0x78);
+  block_count = *(int64_t *)(memory_base + 0x78);
   for (memory_pool_ptr = (uint *)(memory_base + 0x80); 
        memory_pool_ptr < (uint *)(memory_base + 0x80 + block_count * 0x50);
-       memory_pool_ptr = memory_pool_ptr + (ulonglong)*memory_pool_ptr * 0x14) {
+       memory_pool_ptr = memory_pool_ptr + (uint64_t)*memory_pool_ptr * 0x14) {
     
     // 检查内存块状态
     if ((memory_pool_ptr[7] == 0) && (*(int *)(memory_base + 0x68) != 1)) {
-      calculated_size = (ulonglong)*memory_pool_ptr;
+      calculated_size = (uint64_t)*memory_pool_ptr;
       
       // 计算块大小
       if (1 < calculated_size) {
@@ -199,23 +199,23 @@ void FUN_18064c390(ulonglong param_1, uint64_t param_2, longlong param_3)
             for (; temp_size >> bit_position == 0; bit_position = bit_position + -1) {
             }
           }
-          block_size = 0x3f - (ulonglong)(0x3f - (int)bit_position);
+          block_size = 0x3f - (uint64_t)(0x3f - (int)bit_position);
           if (block_size < 3) goto LAB_memory_cleanup;
         }
-        calculated_size = ((ulonglong)((uint)(temp_size >> ((char)block_size - 2U & 0x3f)) & 3) | block_size * 4) - 4;
+        calculated_size = ((uint64_t)((uint)(temp_size >> ((char)block_size - 2U & 0x3f)) & 3) | block_size * 4) - 4;
       }
       
 LAB_memory_cleanup:
       // 执行内存清理
       memory_link_ptr = (uint64_t *)(param_3 + calculated_size * 0x18);
-      if (*(longlong *)(memory_pool_ptr + 0x10) != 0) {
-        *(uint64_t *)(*(longlong *)(memory_pool_ptr + 0x10) + 0x38) = *(uint64_t *)(memory_pool_ptr + 0xe);
+      if (*(int64_t *)(memory_pool_ptr + 0x10) != 0) {
+        *(uint64_t *)(*(int64_t *)(memory_pool_ptr + 0x10) + 0x38) = *(uint64_t *)(memory_pool_ptr + 0xe);
       }
       if (memory_pool_ptr == (uint *)*memory_link_ptr) {
         *memory_link_ptr = *(uint64_t *)(memory_pool_ptr + 0xe);
       }
-      if (*(longlong *)(memory_pool_ptr + 0xe) != 0) {
-        *(uint64_t *)(*(longlong *)(memory_pool_ptr + 0xe) + 0x40) = *(uint64_t *)(memory_pool_ptr + 0x10);
+      if (*(int64_t *)(memory_pool_ptr + 0xe) != 0) {
+        *(uint64_t *)(*(int64_t *)(memory_pool_ptr + 0xe) + 0x40) = *(uint64_t *)(memory_pool_ptr + 0x10);
       }
       if (memory_pool_ptr == (uint *)memory_link_ptr[1]) {
         memory_link_ptr[1] = *(uint64_t *)(memory_pool_ptr + 0x10);
@@ -231,28 +231,28 @@ LAB_memory_cleanup:
   }
   
   // 处理内存分配
-  memory_size = *(longlong *)(memory_base + 0x60);
-  block_count = *(longlong *)(param_3 + 0x398);
+  memory_size = *(int64_t *)(memory_base + 0x60);
+  block_count = *(int64_t *)(param_3 + 0x398);
   allocation_size = memory_size * -0x10000;
-  memory_counter_ptr = (longlong *)(block_count + 0xa0);
+  memory_counter_ptr = (int64_t *)(block_count + 0xa0);
   
   if (allocation_size != 0) {
     // 检查内存范围
-    if (((longlong *)0x180c8ed7f < memory_counter_ptr) && (memory_counter_ptr < &system_memory_efc0)) {
+    if (((int64_t *)0x180c8ed7f < memory_counter_ptr) && (memory_counter_ptr < &system_memory_efc0)) {
       LOCK();
-      memory_block_ptr = (longlong *)(block_count + 0xb8);
+      memory_block_ptr = (int64_t *)(block_count + 0xb8);
       current_bit = *memory_block_ptr;
       *memory_block_ptr = *memory_block_ptr + allocation_size;
       UNLOCK();
       
-      max_bit = *(longlong *)(block_count + 0xb0);
+      max_bit = *(int64_t *)(block_count + 0xb0);
       do {
         if (current_bit + allocation_size <= max_bit) break;
         LOCK();
-        bit_position = *(longlong *)(block_count + 0xb0);
+        bit_position = *(int64_t *)(block_count + 0xb0);
         lock_acquired = max_bit == bit_position;
         if (lock_acquired) {
-          *(longlong *)(block_count + 0xb0) = current_bit + allocation_size;
+          *(int64_t *)(block_count + 0xb0) = current_bit + allocation_size;
           bit_position = max_bit;
         }
         UNLOCK();
@@ -260,7 +260,7 @@ LAB_memory_cleanup:
       } while (!lock_acquired);
       
       if (allocation_size < 1) {
-        memory_counter_ptr = (longlong *)(block_count + 0xa8);
+        memory_counter_ptr = (int64_t *)(block_count + 0xa8);
         allocation_size = memory_size * 0x10000;
       }
       
@@ -271,9 +271,9 @@ LAB_memory_cleanup:
     }
     
     // 更新内存计数器
-    *(longlong *)(block_count + 0xb8) = *(longlong *)(block_count + 0xb8) + allocation_size;
-    if (*(longlong *)(block_count + 0xb0) < *(longlong *)(block_count + 0xb8)) {
-      *(longlong *)(block_count + 0xb0) = *(longlong *)(block_count + 0xb8);
+    *(int64_t *)(block_count + 0xb8) = *(int64_t *)(block_count + 0xb8) + allocation_size;
+    if (*(int64_t *)(block_count + 0xb0) < *(int64_t *)(block_count + 0xb8)) {
+      *(int64_t *)(block_count + 0xb0) = *(int64_t *)(block_count + 0xb8);
     }
     
     if (0 < allocation_size) {
@@ -281,7 +281,7 @@ LAB_memory_cleanup:
       return;
     }
     
-    *(longlong *)(block_count + 0xa8) = *(longlong *)(block_count + 0xa8) + memory_size * 0x10000;
+    *(int64_t *)(block_count + 0xa8) = *(int64_t *)(block_count + 0xa8) + memory_size * 0x10000;
   }
   return;
 }
@@ -293,20 +293,20 @@ LAB_memory_cleanup:
  * @param param_1 资源基地址
  * @param param_2 上下文参数
  */
-void FUN_18064c570(ulonglong param_1, longlong param_2)
+void FUN_18064c570(uint64_t param_1, int64_t param_2)
 {
   uint64_t *resource_link_ptr;
-  longlong resource_count;
-  longlong bit_position;
+  int64_t resource_count;
+  int64_t bit_position;
   uint *resource_pool_ptr;
-  ulonglong resource_base;
-  ulonglong block_size;
-  ulonglong temp_size;
-  ulonglong calculated_size;
+  uint64_t resource_base;
+  uint64_t block_size;
+  uint64_t temp_size;
+  uint64_t calculated_size;
   bool cleanup_complete;
   
   // 获取资源信息
-  resource_count = *(longlong *)(param_1 + 0x78);
+  resource_count = *(int64_t *)(param_1 + 0x78);
   resource_pool_ptr = (uint *)(param_1 + 0x80);
   
   do {
@@ -316,7 +316,7 @@ void FUN_18064c570(ulonglong param_1, longlong param_2)
         FUN_180650490(&system_memory_be88);
       }
       FUN_18064b460(param_1, render_system_control_memory != 0);
-      func_0x000180646ff0(*(longlong *)(param_2 + 0x398) + 0xc0, 1);
+      func_0x000180646ff0(*(int64_t *)(param_2 + 0x398) + 0xc0, 1);
       FUN_18064ae40(*(int *)(param_1 + 0x58) * -0x10000, param_2);
       
       // 清理状态
@@ -329,7 +329,7 @@ void FUN_18064c570(ulonglong param_1, longlong param_2)
       // 更新全局状态
       resource_base = render_system_memory;
       do {
-        *(ulonglong *)(param_1 + 0x28) = resource_base & 0xffffffffffc00000;
+        *(uint64_t *)(param_1 + 0x28) = resource_base & 0xffffffffffc00000;
         LOCK();
         cleanup_complete = resource_base != render_system_memory;
         resource_base = (int)resource_base + 1U & 0x3fffff | param_1;
@@ -350,7 +350,7 @@ void FUN_18064c570(ulonglong param_1, longlong param_2)
     
     // 清理资源池
     if (resource_pool_ptr[7] == 0) {
-      calculated_size = (ulonglong)*resource_pool_ptr;
+      calculated_size = (uint64_t)*resource_pool_ptr;
       if (1 < calculated_size) {
         temp_size = calculated_size - 1;
         if (temp_size == 0) {
@@ -362,22 +362,22 @@ void FUN_18064c570(ulonglong param_1, longlong param_2)
             for (; temp_size >> bit_position == 0; bit_position = bit_position + -1) {
             }
           }
-          block_size = 0x3f - (ulonglong)(0x3f - (int)bit_position);
+          block_size = 0x3f - (uint64_t)(0x3f - (int)bit_position);
           if (block_size < 3) goto LAB_resource_cleanup;
         }
-        calculated_size = ((ulonglong)((uint)(temp_size >> ((char)block_size - 2U & 0x3f)) & 3) | block_size * 4) - 4;
+        calculated_size = ((uint64_t)((uint)(temp_size >> ((char)block_size - 2U & 0x3f)) & 3) | block_size * 4) - 4;
       }
       
 LAB_resource_cleanup:
       resource_link_ptr = (uint64_t *)(param_2 + calculated_size * 0x18);
-      if (*(longlong *)(resource_pool_ptr + 0x10) != 0) {
-        *(uint64_t *)(*(longlong *)(resource_pool_ptr + 0x10) + 0x38) = *(uint64_t *)(resource_pool_ptr + 0xe);
+      if (*(int64_t *)(resource_pool_ptr + 0x10) != 0) {
+        *(uint64_t *)(*(int64_t *)(resource_pool_ptr + 0x10) + 0x38) = *(uint64_t *)(resource_pool_ptr + 0xe);
       }
       if (resource_pool_ptr == (uint *)*resource_link_ptr) {
         *resource_link_ptr = *(uint64_t *)(resource_pool_ptr + 0xe);
       }
-      if (*(longlong *)(resource_pool_ptr + 0xe) != 0) {
-        *(uint64_t *)(*(longlong *)(resource_pool_ptr + 0xe) + 0x40) = *(uint64_t *)(resource_pool_ptr + 0x10);
+      if (*(int64_t *)(resource_pool_ptr + 0xe) != 0) {
+        *(uint64_t *)(*(int64_t *)(resource_pool_ptr + 0xe) + 0x40) = *(uint64_t *)(resource_pool_ptr + 0x10);
       }
       if (resource_pool_ptr == (uint *)resource_link_ptr[1]) {
         resource_link_ptr[1] = *(uint64_t *)(resource_pool_ptr + 0x10);
@@ -390,7 +390,7 @@ LAB_resource_cleanup:
       resource_pool_ptr[0xf] = 0;
       resource_pool_ptr[7] = 0;
     }
-    resource_pool_ptr = resource_pool_ptr + (ulonglong)*resource_pool_ptr * 0x14;
+    resource_pool_ptr = resource_pool_ptr + (uint64_t)*resource_pool_ptr * 0x14;
   } while( true );
 }
 
@@ -404,28 +404,28 @@ LAB_resource_cleanup:
  * @param param_4 上下文参数
  * @return 分配结果
  */
-uint64_t FUN_18064c730(longlong param_1, ulonglong param_2, ulonglong param_3, longlong param_4)
+uint64_t FUN_18064c730(int64_t param_1, uint64_t param_2, uint64_t param_3, int64_t param_4)
 {
-  longlong *resource_ptr;
-  longlong resource_count;
-  longlong temp_resource;
-  longlong max_resource;
+  int64_t *resource_ptr;
+  int64_t resource_count;
+  int64_t temp_resource;
+  int64_t max_resource;
   uint64_t *link_ptr1;
   uint64_t *link_ptr2;
-  ulonglong resource_size;
-  longlong allocation_size;
-  longlong current_size;
+  uint64_t resource_size;
+  int64_t allocation_size;
+  int64_t current_size;
   uint *resource_pool_ptr;
-  ulonglong block_size;
+  uint64_t block_size;
   uint resource_counter;
   uint64_t *temp_ptr;
   uint64_t temp_value;
   bool resource_allocated;
   
   // 获取资源信息
-  resource_count = *(longlong *)(param_1 + 0x78);
+  resource_count = *(int64_t *)(param_1 + 0x78);
   temp_value = 0;
-  resource_pool_ptr = (uint *)(param_1 + 0x80) + (ulonglong)*(uint *)(param_1 + 0x80) * 0x14;
+  resource_pool_ptr = (uint *)(param_1 + 0x80) + (uint64_t)*(uint *)(param_1 + 0x80) * 0x14;
   
   do {
     if ((uint *)(param_1 + 0x80 + resource_count * 0x50) <= resource_pool_ptr) {
@@ -434,22 +434,22 @@ uint64_t FUN_18064c730(longlong param_1, ulonglong param_2, ulonglong param_3, l
     
     // 检查资源池状态
     if (resource_pool_ptr[7] == 0) {
-      resource_size = (ulonglong)*resource_pool_ptr;
+      resource_size = (uint64_t)*resource_pool_ptr;
       if (param_2 <= resource_size) {
         temp_value = 1;
       }
     }
     else {
       // 处理资源链表
-      if ((*(ulonglong *)(resource_pool_ptr + 10) & 0xfffffffffffffffc) != 0) {
-        resource_size = *(ulonglong *)(resource_pool_ptr + 10);
+      if ((*(uint64_t *)(resource_pool_ptr + 10) & 0xfffffffffffffffc) != 0) {
+        resource_size = *(uint64_t *)(resource_pool_ptr + 10);
         do {
           temp_ptr = (uint64_t *)(resource_size & 0xfffffffffffffffc);
           LOCK();
-          resource_size = *(ulonglong *)(resource_pool_ptr + 10);
+          resource_size = *(uint64_t *)(resource_pool_ptr + 10);
           resource_allocated = resource_size == resource_size;
           if (resource_allocated) {
-            *(ulonglong *)(resource_pool_ptr + 10) = (ulonglong)((uint)resource_size & 3);
+            *(uint64_t *)(resource_pool_ptr + 10) = (uint64_t)((uint)resource_size & 3);
             resource_size = resource_size;
           }
           UNLOCK();
@@ -461,12 +461,12 @@ uint64_t FUN_18064c730(longlong param_1, ulonglong param_2, ulonglong param_3, l
           link_ptr1 = temp_ptr;
           for (link_ptr2 = (uint64_t *)*temp_ptr; link_ptr2 != (uint64_t *)0x0;
                link_ptr2 = (uint64_t *)*link_ptr2) {
-            if (*(ushort *)((longlong)resource_pool_ptr + 10) < resource_counter) goto LAB_resource_error;
+            if (*(ushort *)((int64_t)resource_pool_ptr + 10) < resource_counter) goto LAB_resource_error;
             resource_counter = resource_counter + 1;
             link_ptr1 = link_ptr2;
           }
           
-          if (*(ushort *)((longlong)resource_pool_ptr + 10) < resource_counter) {
+          if (*(ushort *)((int64_t)resource_pool_ptr + 10) < resource_counter) {
 LAB_resource_error:
             FUN_1806503d0(0xe, &unknown_var_8816_ptr);
           }
@@ -479,62 +479,62 @@ LAB_resource_error:
       }
       
       // 处理资源引用
-      if ((*(longlong *)(resource_pool_ptr + 8) != 0) && (*(longlong *)(resource_pool_ptr + 4) == 0)) {
-        *(byte *)((longlong)resource_pool_ptr + 0xf) = *(byte *)((longlong)resource_pool_ptr + 0xf) & 0xfe;
-        *(longlong *)(resource_pool_ptr + 4) = *(longlong *)(resource_pool_ptr + 8);
+      if ((*(int64_t *)(resource_pool_ptr + 8) != 0) && (*(int64_t *)(resource_pool_ptr + 4) == 0)) {
+        *(byte *)((int64_t)resource_pool_ptr + 0xf) = *(byte *)((int64_t)resource_pool_ptr + 0xf) & 0xfe;
+        *(int64_t *)(resource_pool_ptr + 4) = *(int64_t *)(resource_pool_ptr + 8);
         resource_pool_ptr[8] = 0;
         resource_pool_ptr[9] = 0;
       }
       
       // 清理空资源
       if (resource_pool_ptr[6] == 0) {
-        allocation_size = *(longlong *)(param_4 + 0x398);
+        allocation_size = *(int64_t *)(param_4 + 0x398);
         if (((void *)(allocation_size + 0xe0) < &system_memory_ed80) ||
            ((void *)0x180c8efbf < (void *)(allocation_size + 0xe0))) {
-          *(longlong *)(allocation_size + 0xf8) = *(longlong *)(allocation_size + 0xf8) + -1;
-          if (*(longlong *)(allocation_size + 0xf0) < *(longlong *)(allocation_size + 0xf8)) {
-            *(longlong *)(allocation_size + 0xf0) = *(longlong *)(allocation_size + 0xf8);
+          *(int64_t *)(allocation_size + 0xf8) = *(int64_t *)(allocation_size + 0xf8) + -1;
+          if (*(int64_t *)(allocation_size + 0xf0) < *(int64_t *)(allocation_size + 0xf8)) {
+            *(int64_t *)(allocation_size + 0xf0) = *(int64_t *)(allocation_size + 0xf8);
           }
-          *(longlong *)(allocation_size + 0xe8) = *(longlong *)(allocation_size + 0xe8) + 1;
+          *(int64_t *)(allocation_size + 0xe8) = *(int64_t *)(allocation_size + 0xe8) + 1;
         }
         else {
           LOCK();
-          resource_ptr = (longlong *)(allocation_size + 0xf8);
+          resource_ptr = (int64_t *)(allocation_size + 0xf8);
           temp_resource = *resource_ptr;
           *resource_ptr = *resource_ptr + -1;
           UNLOCK();
-          current_size = *(longlong *)(allocation_size + 0xf0);
+          current_size = *(int64_t *)(allocation_size + 0xf0);
           do {
             if (temp_resource + -1 <= current_size) break;
             LOCK();
-            max_resource = *(longlong *)(allocation_size + 0xf0);
+            max_resource = *(int64_t *)(allocation_size + 0xf0);
             resource_allocated = current_size == max_resource;
             if (resource_allocated) {
-              *(longlong *)(allocation_size + 0xf0) = temp_resource + -1;
+              *(int64_t *)(allocation_size + 0xf0) = temp_resource + -1;
               max_resource = current_size;
             }
             UNLOCK();
             current_size = max_resource;
           } while (!resource_allocated);
           LOCK();
-          *(longlong *)(allocation_size + 0xe8) = *(longlong *)(allocation_size + 0xe8) + 1;
+          *(int64_t *)(allocation_size + 0xe8) = *(int64_t *)(allocation_size + 0xe8) + 1;
           UNLOCK();
         }
         
-        *(longlong *)(param_1 + 0x38) = *(longlong *)(param_1 + 0x38) + -1;
+        *(int64_t *)(param_1 + 0x38) = *(int64_t *)(param_1 + 0x38) + -1;
         resource_pool_ptr = (uint *)FUN_18064c220(resource_pool_ptr, param_4);
         if (param_2 <= *resource_pool_ptr) {
-          resource_size = (ulonglong)*resource_pool_ptr;
+          resource_size = (uint64_t)*resource_pool_ptr;
           temp_value = 1;
           goto LAB_allocation_complete;
         }
       }
       else if ((resource_pool_ptr[7] == param_3) &&
               ((resource_pool_ptr[6] < (uint)(ushort)resource_pool_ptr[3] ||
-               ((*(ulonglong *)(resource_pool_ptr + 10) & 0xfffffffffffffffc) != 0)))) {
+               ((*(uint64_t *)(resource_pool_ptr + 10) & 0xfffffffffffffffc) != 0)))) {
         temp_value = 1;
       }
-      resource_size = (ulonglong)*resource_pool_ptr;
+      resource_size = (uint64_t)*resource_pool_ptr;
     }
     
 LAB_allocation_complete:
@@ -550,43 +550,43 @@ LAB_allocation_complete:
  */
 int8_t FUN_18064c789(void)
 {
-  longlong *resource_ptr;
-  longlong temp_resource;
-  longlong max_resource;
+  int64_t *resource_ptr;
+  int64_t temp_resource;
+  int64_t max_resource;
   uint64_t *link_ptr1;
   uint64_t *link_ptr2;
-  ulonglong resource_size;
-  longlong allocation_size;
-  longlong current_size;
-  ulonglong block_size;
+  uint64_t resource_size;
+  int64_t allocation_size;
+  int64_t current_size;
+  uint64_t block_size;
   uint resource_counter;
   uint64_t *temp_ptr;
   uint *resource_pool_ptr;
-  longlong resource_context;
-  longlong resource_manager;
+  int64_t resource_context;
+  int64_t resource_manager;
   int8_t resource_status;
-  ulonglong resource_type;
+  uint64_t resource_type;
   uint *resource_limit;
   bool resource_allocated;
   
   do {
     if (resource_pool_ptr[7] == 0) {
-      block_size = (ulonglong)*resource_pool_ptr;
+      block_size = (uint64_t)*resource_pool_ptr;
       if (resource_type <= block_size) {
         resource_status = 1;
       }
     }
     else {
       // 处理资源链表
-      if ((*(ulonglong *)(resource_pool_ptr + 10) & 0xfffffffffffffffc) != 0) {
-        block_size = *(ulonglong *)(resource_pool_ptr + 10);
+      if ((*(uint64_t *)(resource_pool_ptr + 10) & 0xfffffffffffffffc) != 0) {
+        block_size = *(uint64_t *)(resource_pool_ptr + 10);
         do {
           temp_ptr = (uint64_t *)(block_size & 0xfffffffffffffffc);
           LOCK();
-          block_size = *(ulonglong *)(resource_pool_ptr + 10);
+          block_size = *(uint64_t *)(resource_pool_ptr + 10);
           resource_allocated = block_size == block_size;
           if (resource_allocated) {
-            *(ulonglong *)(resource_pool_ptr + 10) = (ulonglong)((uint)block_size & 3);
+            *(uint64_t *)(resource_pool_ptr + 10) = (uint64_t)((uint)block_size & 3);
             block_size = block_size;
           }
           UNLOCK();
@@ -598,12 +598,12 @@ int8_t FUN_18064c789(void)
           link_ptr1 = temp_ptr;
           for (link_ptr2 = (uint64_t *)*temp_ptr; link_ptr2 != (uint64_t *)0x0;
                link_ptr2 = (uint64_t *)*link_ptr2) {
-            if (*(ushort *)((longlong)resource_pool_ptr + 10) < resource_counter) goto LAB_resource_error;
+            if (*(ushort *)((int64_t)resource_pool_ptr + 10) < resource_counter) goto LAB_resource_error;
             resource_counter = resource_counter + 1;
             link_ptr1 = link_ptr2;
           }
           
-          if (*(ushort *)((longlong)resource_pool_ptr + 10) < resource_counter) {
+          if (*(ushort *)((int64_t)resource_pool_ptr + 10) < resource_counter) {
 LAB_resource_error:
             FUN_1806503d0(0xe, &unknown_var_8816_ptr);
           }
@@ -616,62 +616,62 @@ LAB_resource_error:
       }
       
       // 处理资源引用
-      if ((*(longlong *)(resource_pool_ptr + 8) != 0) && (*(longlong *)(resource_pool_ptr + 4) == 0)) {
-        *(byte *)((longlong)resource_pool_ptr + 0xf) = *(byte *)((longlong)resource_pool_ptr + 0xf) & 0xfe;
-        *(longlong *)(resource_pool_ptr + 4) = *(longlong *)(resource_pool_ptr + 8);
+      if ((*(int64_t *)(resource_pool_ptr + 8) != 0) && (*(int64_t *)(resource_pool_ptr + 4) == 0)) {
+        *(byte *)((int64_t)resource_pool_ptr + 0xf) = *(byte *)((int64_t)resource_pool_ptr + 0xf) & 0xfe;
+        *(int64_t *)(resource_pool_ptr + 4) = *(int64_t *)(resource_pool_ptr + 8);
         resource_pool_ptr[8] = 0;
         resource_pool_ptr[9] = 0;
       }
       
       // 清理空资源
       if (resource_pool_ptr[6] == 0) {
-        allocation_size = *(longlong *)(resource_context + 0x398);
+        allocation_size = *(int64_t *)(resource_context + 0x398);
         if (((void *)(allocation_size + 0xe0) < &system_memory_ed80) ||
            ((void *)0x180c8efbf < (void *)(allocation_size + 0xe0))) {
-          *(longlong *)(allocation_size + 0xf8) = *(longlong *)(allocation_size + 0xf8) + -1;
-          if (*(longlong *)(allocation_size + 0xf0) < *(longlong *)(allocation_size + 0xf8)) {
-            *(longlong *)(allocation_size + 0xf0) = *(longlong *)(allocation_size + 0xf8);
+          *(int64_t *)(allocation_size + 0xf8) = *(int64_t *)(allocation_size + 0xf8) + -1;
+          if (*(int64_t *)(allocation_size + 0xf0) < *(int64_t *)(allocation_size + 0xf8)) {
+            *(int64_t *)(allocation_size + 0xf0) = *(int64_t *)(allocation_size + 0xf8);
           }
-          *(longlong *)(allocation_size + 0xe8) = *(longlong *)(allocation_size + 0xe8) + 1;
+          *(int64_t *)(allocation_size + 0xe8) = *(int64_t *)(allocation_size + 0xe8) + 1;
         }
         else {
           LOCK();
-          resource_ptr = (longlong *)(allocation_size + 0xf8);
+          resource_ptr = (int64_t *)(allocation_size + 0xf8);
           temp_resource = *resource_ptr;
           *resource_ptr = *resource_ptr + -1;
           UNLOCK();
-          current_size = *(longlong *)(allocation_size + 0xf0);
+          current_size = *(int64_t *)(allocation_size + 0xf0);
           do {
             if (temp_resource + -1 <= current_size) break;
             LOCK();
-            max_resource = *(longlong *)(allocation_size + 0xf0);
+            max_resource = *(int64_t *)(allocation_size + 0xf0);
             resource_allocated = current_size == max_resource;
             if (resource_allocated) {
-              *(longlong *)(allocation_size + 0xf0) = temp_resource + -1;
+              *(int64_t *)(allocation_size + 0xf0) = temp_resource + -1;
               max_resource = current_size;
             }
             UNLOCK();
             current_size = max_resource;
           } while (!resource_allocated);
           LOCK();
-          *(longlong *)(allocation_size + 0xe8) = *(longlong *)(allocation_size + 0xe8) + 1;
+          *(int64_t *)(allocation_size + 0xe8) = *(int64_t *)(allocation_size + 0xe8) + 1;
           UNLOCK();
         }
         
-        *(longlong *)(resource_manager + 0x38) = *(longlong *)(resource_manager + 0x38) + -1;
+        *(int64_t *)(resource_manager + 0x38) = *(int64_t *)(resource_manager + 0x38) + -1;
         resource_pool_ptr = (uint *)FUN_18064c220(resource_pool_ptr);
         if (resource_type <= *resource_pool_ptr) {
-          block_size = (ulonglong)*resource_pool_ptr;
+          block_size = (uint64_t)*resource_pool_ptr;
           resource_status = 1;
           goto LAB_status_check;
         }
       }
       else if ((resource_pool_ptr[7] == resource_type) &&
               ((resource_pool_ptr[6] < (uint)(ushort)resource_pool_ptr[3] ||
-               ((*(ulonglong *)(resource_pool_ptr + 10) & 0xfffffffffffffffc) != 0)))) {
+               ((*(uint64_t *)(resource_pool_ptr + 10) & 0xfffffffffffffffc) != 0)))) {
         resource_status = 1;
       }
-      block_size = (ulonglong)*resource_pool_ptr;
+      block_size = (uint64_t)*resource_pool_ptr;
     }
     
 LAB_status_check:
@@ -706,19 +706,19 @@ int8_t FUN_18064c922(void)
  * @param param_5 上下文参数
  * @return 管理结果
  */
-longlong FUN_18064c940(longlong param_1, longlong param_2, ulonglong param_3, int8_t *param_4,
-                      longlong param_5)
+int64_t FUN_18064c940(int64_t param_1, int64_t param_2, uint64_t param_3, int8_t *param_4,
+                      int64_t param_5)
 {
-  longlong *resource_ptr;
-  longlong temp_resource;
-  longlong max_resource;
+  int64_t *resource_ptr;
+  int64_t temp_resource;
+  int64_t max_resource;
   uint64_t *link_ptr1;
   uint64_t *link_ptr2;
   byte allocation_flag;
-  longlong allocation_size;
-  longlong current_size;
-  ulonglong resource_size;
-  ulonglong block_size;
+  int64_t allocation_size;
+  int64_t current_size;
+  uint64_t resource_size;
+  uint64_t block_size;
   uint *resource_pool_ptr;
   uint resource_counter;
   uint64_t *temp_ptr;
@@ -735,15 +735,15 @@ longlong FUN_18064c940(longlong param_1, longlong param_2, ulonglong param_3, in
   UNLOCK();
   *(uint64_t *)(param_1 + 0x40) = 0;
   FUN_18064ae40(*(int *)(param_1 + 0x58) << 0x10, param_5);
-  func_0x000180646ff0(*(longlong *)(param_5 + 0x398) + 0xc0, 0xffffffffffffffff);
+  func_0x000180646ff0(*(int64_t *)(param_5 + 0x398) + 0xc0, 0xffffffffffffffff);
   
   // 处理资源池
-  temp_resource = *(longlong *)(param_1 + 0x78);
-  resource_pool_ptr = (uint *)(param_1 + 0x80) + (ulonglong)*(uint *)(param_1 + 0x80) * 0x14;
+  temp_resource = *(int64_t *)(param_1 + 0x78);
+  resource_pool_ptr = (uint *)(param_1 + 0x80) + (uint64_t)*(uint *)(param_1 + 0x80) * 0x14;
   
   do {
     if ((uint *)(param_1 + 0x80 + temp_resource * 0x50) <= resource_pool_ptr) {
-      if (*(longlong *)(param_1 + 0x48) == 0) {
+      if (*(int64_t *)(param_1 + 0x48) == 0) {
         FUN_18064bf60(param_1, 0, param_5);
         param_1 = 0;
       }
@@ -756,68 +756,68 @@ longlong FUN_18064c940(longlong param_1, longlong param_2, ulonglong param_3, in
     }
     else {
       // 处理资源计数
-      allocation_size = *(longlong *)(param_5 + 0x398);
+      allocation_size = *(int64_t *)(param_5 + 0x398);
       if (((void *)(allocation_size + 0xe0) < &system_memory_ed80) ||
          ((void *)0x180c8efbf < (void *)(allocation_size + 0xe0))) {
-        *(longlong *)(allocation_size + 0xf8) = *(longlong *)(allocation_size + 0xf8) + -1;
-        if (*(longlong *)(allocation_size + 0xf0) < *(longlong *)(allocation_size + 0xf8)) {
-          *(longlong *)(allocation_size + 0xf0) = *(longlong *)(allocation_size + 0xf8);
+        *(int64_t *)(allocation_size + 0xf8) = *(int64_t *)(allocation_size + 0xf8) + -1;
+        if (*(int64_t *)(allocation_size + 0xf0) < *(int64_t *)(allocation_size + 0xf8)) {
+          *(int64_t *)(allocation_size + 0xf0) = *(int64_t *)(allocation_size + 0xf8);
         }
-        *(longlong *)(allocation_size + 0xe8) = *(longlong *)(allocation_size + 0xe8) + 1;
+        *(int64_t *)(allocation_size + 0xe8) = *(int64_t *)(allocation_size + 0xe8) + 1;
       }
       else {
         LOCK();
-        resource_ptr = (longlong *)(allocation_size + 0xf8);
+        resource_ptr = (int64_t *)(allocation_size + 0xf8);
         temp_resource = *resource_ptr;
         *resource_ptr = *resource_ptr + -1;
         UNLOCK();
-        current_size = *(longlong *)(allocation_size + 0xf0);
+        current_size = *(int64_t *)(allocation_size + 0xf0);
         do {
           if (temp_resource + -1 <= current_size) break;
           LOCK();
-          max_resource = *(longlong *)(allocation_size + 0xf0);
+          max_resource = *(int64_t *)(allocation_size + 0xf0);
           resource_allocated = current_size == max_resource;
           if (resource_allocated) {
-            *(longlong *)(allocation_size + 0xf0) = temp_resource + -1;
+            *(int64_t *)(allocation_size + 0xf0) = temp_resource + -1;
             max_resource = current_size;
           }
           UNLOCK();
           current_size = max_resource;
         } while (!resource_allocated);
         LOCK();
-        *(longlong *)(allocation_size + 0xe8) = *(longlong *)(allocation_size + 0xe8) + 1;
+        *(int64_t *)(allocation_size + 0xe8) = *(int64_t *)(allocation_size + 0xe8) + 1;
         UNLOCK();
       }
       
-      *(longlong *)(param_1 + 0x38) = *(longlong *)(param_1 + 0x38) + -1;
-      *(longlong *)(resource_pool_ptr + 0xc) = param_2;
+      *(int64_t *)(param_1 + 0x38) = *(int64_t *)(param_1 + 0x38) + -1;
+      *(int64_t *)(resource_pool_ptr + 0xc) = param_2;
       
       // 处理资源锁定
       do {
         while( true ) {
-          resource_size = *(ulonglong *)(resource_pool_ptr + 10);
+          resource_size = *(uint64_t *)(resource_pool_ptr + 10);
           if (((uint)resource_size & 3) != 1) break;
           _Thrd_yield();
         }
         if ((resource_size & 3) == 0) break;
         LOCK();
-        resource_allocated = resource_size == *(ulonglong *)(resource_pool_ptr + 10);
+        resource_allocated = resource_size == *(uint64_t *)(resource_pool_ptr + 10);
         if (resource_allocated) {
-          *(ulonglong *)(resource_pool_ptr + 10) = resource_size & 0xfffffffffffffffc;
+          *(uint64_t *)(resource_pool_ptr + 10) = resource_size & 0xfffffffffffffffc;
         }
         UNLOCK();
       } while (!resource_allocated);
       
       // 处理资源链表
-      if ((*(ulonglong *)(resource_pool_ptr + 10) & 0xfffffffffffffffc) != 0) {
-        resource_size = *(ulonglong *)(resource_pool_ptr + 10);
+      if ((*(uint64_t *)(resource_pool_ptr + 10) & 0xfffffffffffffffc) != 0) {
+        resource_size = *(uint64_t *)(resource_pool_ptr + 10);
         do {
           temp_ptr = (uint64_t *)(resource_size & 0xfffffffffffffffc);
           LOCK();
-          block_size = *(ulonglong *)(resource_pool_ptr + 10);
+          block_size = *(uint64_t *)(resource_pool_ptr + 10);
           resource_allocated = resource_size == block_size;
           if (resource_allocated) {
-            *(ulonglong *)(resource_pool_ptr + 10) = (ulonglong)((uint)resource_size & 3);
+            *(uint64_t *)(resource_pool_ptr + 10) = (uint64_t)((uint)resource_size & 3);
             block_size = resource_size;
           }
           UNLOCK();
@@ -829,12 +829,12 @@ longlong FUN_18064c940(longlong param_1, longlong param_2, ulonglong param_3, in
           link_ptr1 = temp_ptr;
           for (link_ptr2 = (uint64_t *)*temp_ptr; link_ptr2 != (uint64_t *)0x0;
                link_ptr2 = (uint64_t *)*link_ptr2) {
-            if (*(ushort *)((longlong)resource_pool_ptr + 10) < resource_counter) goto LAB_allocation_error;
+            if (*(ushort *)((int64_t)resource_pool_ptr + 10) < resource_counter) goto LAB_allocation_error;
             resource_counter = resource_counter + 1;
             link_ptr1 = link_ptr2;
           }
           
-          if (*(ushort *)((longlong)resource_pool_ptr + 10) < resource_counter) {
+          if (*(ushort *)((int64_t)resource_pool_ptr + 10) < resource_counter) {
 LAB_allocation_error:
             FUN_1806503d0(0xe, &unknown_var_8816_ptr);
           }
@@ -847,9 +847,9 @@ LAB_allocation_error:
       }
       
       // 处理资源引用
-      if ((*(longlong *)(resource_pool_ptr + 8) != 0) && (*(longlong *)(resource_pool_ptr + 4) == 0)) {
-        *(byte *)((longlong)resource_pool_ptr + 0xf) = *(byte *)((longlong)resource_pool_ptr + 0xf) & 0xfe;
-        *(longlong *)(resource_pool_ptr + 4) = *(longlong *)(resource_pool_ptr + 8);
+      if ((*(int64_t *)(resource_pool_ptr + 8) != 0) && (*(int64_t *)(resource_pool_ptr + 4) == 0)) {
+        *(byte *)((int64_t)resource_pool_ptr + 0xf) = *(byte *)((int64_t)resource_pool_ptr + 0xf) & 0xfe;
+        *(int64_t *)(resource_pool_ptr + 4) = *(int64_t *)(resource_pool_ptr + 8);
         resource_pool_ptr[8] = 0;
         resource_pool_ptr[9] = 0;
       }
@@ -860,31 +860,31 @@ LAB_allocation_error:
       }
       else {
         allocation_flag = func_0x00018064ceb0();
-        resource_ptr = (longlong *)(param_2 + 0x410 + (ulonglong)allocation_flag * 0x18);
-        *(byte *)((longlong)resource_pool_ptr + 0xe) =
-             *(longlong *)(param_2 + 0x420 + (ulonglong)allocation_flag * 0x18) == 0x4010 |
-             *(byte *)((longlong)resource_pool_ptr + 0xe) & 0xfe;
-        *(longlong *)(resource_pool_ptr + 0xe) = *resource_ptr;
+        resource_ptr = (int64_t *)(param_2 + 0x410 + (uint64_t)allocation_flag * 0x18);
+        *(byte *)((int64_t)resource_pool_ptr + 0xe) =
+             *(int64_t *)(param_2 + 0x420 + (uint64_t)allocation_flag * 0x18) == 0x4010 |
+             *(byte *)((int64_t)resource_pool_ptr + 0xe) & 0xfe;
+        *(int64_t *)(resource_pool_ptr + 0xe) = *resource_ptr;
         resource_pool_ptr[0x10] = 0;
         resource_pool_ptr[0x11] = 0;
         if (*resource_ptr == 0) {
-          resource_ptr[1] = (longlong)resource_pool_ptr;
+          resource_ptr[1] = (int64_t)resource_pool_ptr;
         }
         else {
           *(uint **)(*resource_ptr + 0x40) = resource_pool_ptr;
         }
-        *resource_ptr = (longlong)resource_pool_ptr;
+        *resource_ptr = (int64_t)resource_pool_ptr;
         FUN_18064cf20(param_2);
-        *(longlong *)(param_2 + 0xbc8) = *(longlong *)(param_2 + 0xbc8) + 1;
+        *(int64_t *)(param_2 + 0xbc8) = *(int64_t *)(param_2 + 0xbc8) + 1;
         if ((param_3 == resource_pool_ptr[7]) &&
            (((resource_pool_ptr[6] < (uint)(ushort)resource_pool_ptr[3] ||
-             ((*(ulonglong *)(resource_pool_ptr + 10) & 0xfffffffffffffffc) != 0)) &&
+             ((*(uint64_t *)(resource_pool_ptr + 10) & 0xfffffffffffffffc) != 0)) &&
             (param_4 != (int8_t *)0x0)))) {
           *param_4 = 1;
         }
       }
     }
-    resource_pool_ptr = resource_pool_ptr + (ulonglong)*resource_pool_ptr * 0x14;
+    resource_pool_ptr = resource_pool_ptr + (uint64_t)*resource_pool_ptr * 0x14;
   } while( true );
 }
 
@@ -899,21 +899,21 @@ LAB_allocation_error:
  * @param param_5 管理器参数
  * @return 分配结果
  */
-ulonglong FUN_18064cc40(uint64_t param_1, uint param_2, longlong param_3, uint64_t param_4,
-                       longlong param_5)
+uint64_t FUN_18064cc40(uint64_t param_1, uint param_2, int64_t param_3, uint64_t param_4,
+                       int64_t param_5)
 {
   uint *resource_pool_ptr;
-  longlong temp_resource;
+  int64_t temp_resource;
   char allocation_flag;
   uint64_t *link_ptr1;
-  ulonglong resource_size;
-  longlong allocation_size;
-  longlong current_size;
-  ulonglong block_size;
+  uint64_t resource_size;
+  int64_t allocation_size;
+  int64_t current_size;
+  uint64_t block_size;
   int bit_position;
-  ulonglong temp_size;
+  uint64_t temp_size;
   uint64_t temp_value;
-  ulonglong calculated_size;
+  uint64_t calculated_size;
   bool resource_allocated;
   uint allocation_params[4];
   uint64_t stack_param;
@@ -934,33 +934,33 @@ LAB_allocation_loop:
     for (; link_ptr1 <= (uint64_t *)(param_5 + 0x348U); link_ptr1 = link_ptr1 + 3) {
       for (resource_pool_ptr = (uint *)*link_ptr1; resource_pool_ptr != (uint *)0x0; resource_pool_ptr = *(uint **)(resource_pool_ptr + 0xe)) {
         if (resource_size <= *resource_pool_ptr) {
-          if (*(longlong *)(resource_pool_ptr + 0x10) != 0) {
-            *(uint64_t *)(*(longlong *)(resource_pool_ptr + 0x10) + 0x38) = *(uint64_t *)(resource_pool_ptr + 0xe);
+          if (*(int64_t *)(resource_pool_ptr + 0x10) != 0) {
+            *(uint64_t *)(*(int64_t *)(resource_pool_ptr + 0x10) + 0x38) = *(uint64_t *)(resource_pool_ptr + 0xe);
           }
           if (resource_pool_ptr == (uint *)*link_ptr1) {
             *link_ptr1 = *(uint64_t *)(resource_pool_ptr + 0xe);
           }
-          if (*(longlong *)(resource_pool_ptr + 0xe) != 0) {
-            *(uint64_t *)(*(longlong *)(resource_pool_ptr + 0xe) + 0x40) = *(uint64_t *)(resource_pool_ptr + 0x10);
+          if (*(int64_t *)(resource_pool_ptr + 0xe) != 0) {
+            *(uint64_t *)(*(int64_t *)(resource_pool_ptr + 0xe) + 0x40) = *(uint64_t *)(resource_pool_ptr + 0x10);
           }
           if (resource_pool_ptr == (uint *)link_ptr1[1]) {
             link_ptr1[1] = *(uint64_t *)(resource_pool_ptr + 0x10);
           }
           
-          temp_size = (ulonglong)*resource_pool_ptr;
+          temp_size = (uint64_t)*resource_pool_ptr;
           resource_pool_ptr[7] = 1;
-          block_size = (ulonglong)resource_pool_ptr & 0xffffffffffc00000;
+          block_size = (uint64_t)resource_pool_ptr & 0xffffffffffc00000;
           *(uint64_t *)(resource_pool_ptr + 0x10) = temp_value;
           *(uint64_t *)(resource_pool_ptr + 0xe) = temp_value;
           
           if (resource_size < temp_size) {
-            FUN_18064b590(block_size, (longlong)((longlong)resource_pool_ptr + (-0x80 - block_size)) / 0x50 + resource_size,
+            FUN_18064b590(block_size, (int64_t)((int64_t)resource_pool_ptr + (-0x80 - block_size)) / 0x50 + resource_size,
                           temp_size - resource_size, param_5);
             temp_size = resource_size & 0xffffffff;
             *resource_pool_ptr = (uint)resource_size;
           }
           
-          resource_size = FUN_18064b940(block_size, (longlong)((longlong)resource_pool_ptr + (-0x80 - block_size)) / 0x50, temp_size);
+          resource_size = FUN_18064b940(block_size, (int64_t)((int64_t)resource_pool_ptr + (-0x80 - block_size)) / 0x50, temp_size);
           if (resource_size != 0) {
             FUN_18064b460(resource_size & 0xffffffffffc00000, 0);
             return resource_size;
@@ -980,9 +980,9 @@ LAB_allocation_complete:
       bit_position = bit_position + -1;
       allocation_size = func_0x00018064c400();
       if (allocation_size == 0) break;
-      *(longlong *)(allocation_size + 0x40) = *(longlong *)(allocation_size + 0x40) + 1;
+      *(int64_t *)(allocation_size + 0x40) = *(int64_t *)(allocation_size + 0x40) + 1;
       allocation_flag = FUN_18064c730(allocation_size, calculated_size, param_4, param_5);
-      if (*(longlong *)(allocation_size + 0x48) == 0) {
+      if (*(int64_t *)(allocation_size + 0x48) == 0) {
 LAB_cleanup_complete:
         FUN_18064c940(allocation_size, param_1, 0, 0, param_5);
       }
@@ -995,11 +995,11 @@ LAB_cleanup_complete:
           if (allocation_size != 0) goto LAB_allocation_loop;
           break;
         }
-        if (3 < *(ulonglong *)(allocation_size + 0x40)) goto LAB_cleanup_complete;
+        if (3 < *(uint64_t *)(allocation_size + 0x40)) goto LAB_cleanup_complete;
         FUN_18064b460(allocation_size, 0);
         current_size = render_system_memory;
         do {
-          *(longlong *)(allocation_size + 0x28) = current_size;
+          *(int64_t *)(allocation_size + 0x28) = current_size;
           LOCK();
           resource_allocated = current_size != render_system_memory;
           temp_resource = allocation_size;
@@ -1029,20 +1029,20 @@ LAB_cleanup_complete:
  * @param param_1 资源管理器
  * @param param_2 资源参数
  */
-void FUN_18064cf20(longlong param_1, uint64_t *param_2)
+void FUN_18064cf20(int64_t param_1, uint64_t *param_2)
 {
-  longlong temp_resource;
+  int64_t temp_resource;
   byte size_flag;
-  ulonglong resource_size;
+  uint64_t resource_size;
   void *resource_ptr;
-  ulonglong block_size;
+  uint64_t block_size;
   uint64_t *link_ptr;
   char size_char;
   byte size_byte;
-  ulonglong calculated_size;
+  uint64_t calculated_size;
   
   // 检查资源大小
-  if ((ulonglong)param_2[2] < 0x401) {
+  if ((uint64_t)param_2[2] < 0x401) {
     resource_ptr = &unknown_var_6944_ptr;
     if ((void *)*param_2 != (void *)0x0) {
       resource_ptr = (void *)*param_2;
@@ -1215,7 +1215,7 @@ void Unwind_18064c335(void)
  * 导出函数：内存管理处理器
  * 对应原始函数：FUN_18064c390
  */
-void Unwind_18064c390(ulonglong param_1, uint64_t param_2, longlong param_3)
+void Unwind_18064c390(uint64_t param_1, uint64_t param_2, int64_t param_3)
 {
   MemoryManagementProcessor(param_1, param_2, param_3);
 }
@@ -1224,7 +1224,7 @@ void Unwind_18064c390(ulonglong param_1, uint64_t param_2, longlong param_3)
  * 导出函数：资源清理器
  * 对应原始函数：FUN_18064c570
  */
-void Unwind_18064c570(ulonglong param_1, longlong param_2)
+void Unwind_18064c570(uint64_t param_1, int64_t param_2)
 {
   ResourceCleanupHandler(param_1, param_2);
 }
@@ -1233,7 +1233,7 @@ void Unwind_18064c570(ulonglong param_1, longlong param_2)
  * 导出函数：资源分配器
  * 对应原始函数：FUN_18064c730
  */
-uint64_t Unwind_18064c730(longlong param_1, ulonglong param_2, ulonglong param_3, longlong param_4)
+uint64_t Unwind_18064c730(int64_t param_1, uint64_t param_2, uint64_t param_3, int64_t param_4)
 {
   return ResourceAllocator(param_1, param_2, param_3, param_4);
 }
@@ -1260,7 +1260,7 @@ int8_t Unwind_18064c922(void)
  * 导出函数：资源管理器
  * 对应原始函数：FUN_18064c940
  */
-longlong Unwind_18064c940(longlong param_1, longlong param_2, ulonglong param_3, int8_t *param_4, longlong param_5)
+int64_t Unwind_18064c940(int64_t param_1, int64_t param_2, uint64_t param_3, int8_t *param_4, int64_t param_5)
 {
   return ResourceManager(param_1, param_2, param_3, param_4, param_5);
 }
@@ -1269,7 +1269,7 @@ longlong Unwind_18064c940(longlong param_1, longlong param_2, ulonglong param_3,
  * 导出函数：资源分配控制器
  * 对应原始函数：FUN_18064cc40
  */
-ulonglong Unwind_18064cc40(uint64_t param_1, uint param_2, longlong param_3, uint64_t param_4, longlong param_5)
+uint64_t Unwind_18064cc40(uint64_t param_1, uint param_2, int64_t param_3, uint64_t param_4, int64_t param_5)
 {
   return ResourceAllocationController(param_1, param_2, param_3, param_4, param_5);
 }
@@ -1278,7 +1278,7 @@ ulonglong Unwind_18064cc40(uint64_t param_1, uint param_2, longlong param_3, uin
  * 导出函数：资源状态更新器
  * 对应原始函数：FUN_18064cf20
  */
-void Unwind_18064cf20(longlong param_1, uint64_t *param_2)
+void Unwind_18064cf20(int64_t param_1, uint64_t *param_2)
 {
   ResourceStateUpdater(param_1, param_2);
 }

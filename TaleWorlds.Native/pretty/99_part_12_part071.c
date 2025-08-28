@@ -4,7 +4,7 @@
 
 // 函数: void FUN_1807fafa0(float *param_1,float *param_2,uint param_3,int param_4,int param_5,
 void FUN_1807fafa0(float *param_1,float *param_2,uint param_3,int param_4,int param_5,
-                  longlong param_6,longlong param_7,longlong param_8,longlong param_9,float param_10
+                  int64_t param_6,int64_t param_7,int64_t param_8,int64_t param_9,float param_10
                   ,float param_11,float param_12)
 
 {
@@ -22,12 +22,12 @@ void FUN_1807fafa0(float *param_1,float *param_2,uint param_3,int param_4,int pa
   float fVar12;
   float fVar13;
   float fVar14;
-  longlong lVar15;
+  int64_t lVar15;
   int iVar16;
   int iVar17;
-  longlong lVar18;
-  longlong lVar19;
-  longlong lVar20;
+  int64_t lVar18;
+  int64_t lVar19;
+  int64_t lVar20;
   float *pfVar21;
   int iVar22;
   float fVar23;
@@ -39,14 +39,14 @@ void FUN_1807fafa0(float *param_1,float *param_2,uint param_3,int param_4,int pa
   float fVar29;
   float fVar30;
   
-  lVar19 = (longlong)param_5;
+  lVar19 = (int64_t)param_5;
   iVar22 = (int)param_3 >> 2;
   if (iVar22 != 0) {
     lVar18 = lVar19 + 0x20;
     iVar17 = param_4 * 2;
     iVar16 = param_4 * 3;
     do {
-      lVar20 = *(longlong *)(param_6 + 8 + lVar19 * 0x10);
+      lVar20 = *(int64_t *)(param_6 + 8 + lVar19 * 0x10);
       fVar1 = *(float *)(param_6 + lVar19 * 0x10);
       fVar2 = *(float *)(param_6 + 4 + lVar19 * 0x10);
       fVar3 = *(float *)(lVar20 + 0x14);
@@ -55,7 +55,7 @@ void FUN_1807fafa0(float *param_1,float *param_2,uint param_3,int param_4,int pa
       fVar30 = *(float *)(lVar20 + 0x10);
       *(float *)(param_6 + 4 + lVar19 * 0x10) = fVar1;
       *(float *)(param_6 + lVar19 * 0x10) = fVar23;
-      lVar20 = *(longlong *)(param_6 + 8 + lVar18 * 0x10);
+      lVar20 = *(int64_t *)(param_6 + 8 + lVar18 * 0x10);
       fVar4 = *(float *)(param_6 + 4 + lVar18 * 0x10);
       fVar5 = *(float *)(lVar20 + 0x18);
       fVar6 = *(float *)(param_6 + lVar18 * 0x10);
@@ -65,7 +65,7 @@ void FUN_1807fafa0(float *param_1,float *param_2,uint param_3,int param_4,int pa
       fVar1 = *(float *)(lVar20 + 0x10);
       *(float *)(param_6 + lVar18 * 0x10) = fVar27;
       *(float *)(param_6 + 4 + lVar18 * 0x10) = fVar6;
-      lVar20 = *(longlong *)(param_8 + 8 + lVar19 * 0x10);
+      lVar20 = *(int64_t *)(param_8 + 8 + lVar19 * 0x10);
       fVar2 = *(float *)(param_8 + lVar19 * 0x10);
       fVar3 = *(float *)(param_8 + 4 + lVar19 * 0x10);
       fVar29 = *(float *)(lVar20 + 0x14);
@@ -74,7 +74,7 @@ void FUN_1807fafa0(float *param_1,float *param_2,uint param_3,int param_4,int pa
       fVar23 = *(float *)(lVar20 + 0x10);
       *(float *)(param_8 + 4 + lVar19 * 0x10) = fVar2;
       *(float *)(param_8 + lVar19 * 0x10) = fVar24;
-      lVar20 = *(longlong *)(param_8 + 8 + lVar18 * 0x10);
+      lVar20 = *(int64_t *)(param_8 + 8 + lVar18 * 0x10);
       fVar7 = *(float *)(param_8 + 4 + lVar18 * 0x10);
       fVar8 = *(float *)(lVar20 + 0x18);
       fVar9 = *(float *)(param_8 + lVar18 * 0x10);
@@ -84,7 +84,7 @@ void FUN_1807fafa0(float *param_1,float *param_2,uint param_3,int param_4,int pa
       fVar2 = *(float *)(lVar20 + 0x10);
       *(float *)(param_8 + 4 + lVar18 * 0x10) = fVar9;
       *(float *)(param_8 + lVar18 * 0x10) = fVar24;
-      lVar20 = *(longlong *)(param_7 + 8 + lVar19 * 0x10);
+      lVar20 = *(int64_t *)(param_7 + 8 + lVar19 * 0x10);
       fVar3 = *(float *)(param_7 + lVar19 * 0x10);
       fVar29 = *(float *)(param_7 + 4 + lVar19 * 0x10);
       fVar30 = *(float *)(lVar20 + 0x18);
@@ -94,7 +94,7 @@ void FUN_1807fafa0(float *param_1,float *param_2,uint param_3,int param_4,int pa
       fVar2 = *(float *)(lVar20 + 0x10);
       *(float *)(param_7 + 4 + lVar19 * 0x10) = fVar3;
       *(float *)(param_7 + lVar19 * 0x10) = fVar24;
-      lVar20 = *(longlong *)(param_7 + 8 + lVar18 * 0x10);
+      lVar20 = *(int64_t *)(param_7 + 8 + lVar18 * 0x10);
       fVar7 = *(float *)(param_7 + lVar18 * 0x10);
       fVar8 = *(float *)(lVar20 + 0x14);
       fVar9 = *(float *)(param_7 + 4 + lVar18 * 0x10);
@@ -104,7 +104,7 @@ void FUN_1807fafa0(float *param_1,float *param_2,uint param_3,int param_4,int pa
       fVar2 = *(float *)(lVar20 + 0x10);
       *(float *)(param_7 + lVar18 * 0x10) = fVar28;
       *(float *)(param_7 + 4 + lVar18 * 0x10) = fVar7;
-      lVar20 = *(longlong *)(param_9 + 8 + lVar19 * 0x10);
+      lVar20 = *(int64_t *)(param_9 + 8 + lVar19 * 0x10);
       fVar3 = *(float *)(param_9 + lVar19 * 0x10);
       fVar29 = *(float *)(param_9 + 4 + lVar19 * 0x10);
       fVar30 = *(float *)(lVar20 + 0x18);
@@ -113,7 +113,7 @@ void FUN_1807fafa0(float *param_1,float *param_2,uint param_3,int param_4,int pa
       fVar24 = *(float *)(lVar20 + 0x10);
       *(float *)(param_9 + lVar19 * 0x10) = fVar25;
       *(float *)(param_9 + 4 + lVar19 * 0x10) = fVar3;
-      lVar20 = *(longlong *)(param_9 + 8 + lVar18 * 0x10);
+      lVar20 = *(int64_t *)(param_9 + 8 + lVar18 * 0x10);
       fVar11 = *(float *)(param_9 + lVar18 * 0x10);
       fVar12 = *(float *)(param_9 + 4 + lVar18 * 0x10);
       fVar13 = *(float *)(lVar20 + 0x18);
@@ -126,7 +126,7 @@ void FUN_1807fafa0(float *param_1,float *param_2,uint param_3,int param_4,int pa
       *param_1 = (fVar7 * fVar8 + fVar28 * fVar2 + fVar9 * fVar10) * param_11 +
                  (fVar6 * fVar26 + fVar27 * fVar1 + fVar4 * fVar5) * param_10 +
                  (fVar11 * fVar14 + fVar29 * fVar3 + fVar12 * fVar13) * param_12;
-      lVar20 = *(longlong *)(param_6 + 8 + lVar19 * 0x10);
+      lVar20 = *(int64_t *)(param_6 + 8 + lVar19 * 0x10);
       fVar1 = *(float *)(param_6 + lVar19 * 0x10);
       fVar2 = *(float *)(param_6 + 4 + lVar19 * 0x10);
       fVar3 = *(float *)(lVar20 + 0x18);
@@ -136,7 +136,7 @@ void FUN_1807fafa0(float *param_1,float *param_2,uint param_3,int param_4,int pa
       fVar30 = *(float *)(lVar20 + 0x10);
       *(float *)(param_6 + 4 + lVar19 * 0x10) = fVar1;
       *(float *)(param_6 + lVar19 * 0x10) = fVar23;
-      lVar20 = *(longlong *)(param_6 + 8 + lVar18 * 0x10);
+      lVar20 = *(int64_t *)(param_6 + 8 + lVar18 * 0x10);
       fVar4 = *(float *)(param_6 + 4 + lVar18 * 0x10);
       fVar5 = *(float *)(lVar20 + 0x18);
       fVar6 = *(float *)(param_6 + lVar18 * 0x10);
@@ -146,7 +146,7 @@ void FUN_1807fafa0(float *param_1,float *param_2,uint param_3,int param_4,int pa
       fVar1 = *(float *)(lVar20 + 0x10);
       *(float *)(param_6 + lVar18 * 0x10) = fVar27;
       *(float *)(param_6 + 4 + lVar18 * 0x10) = fVar6;
-      lVar20 = *(longlong *)(param_8 + 8 + lVar19 * 0x10);
+      lVar20 = *(int64_t *)(param_8 + 8 + lVar19 * 0x10);
       fVar2 = *(float *)(param_8 + lVar19 * 0x10);
       fVar3 = *(float *)(param_8 + 4 + lVar19 * 0x10);
       fVar29 = *(float *)(lVar20 + 0x14);
@@ -156,7 +156,7 @@ void FUN_1807fafa0(float *param_1,float *param_2,uint param_3,int param_4,int pa
       fVar23 = *(float *)(lVar20 + 0x10);
       *(float *)(param_8 + 4 + lVar19 * 0x10) = fVar2;
       *(float *)(param_8 + lVar19 * 0x10) = fVar24;
-      lVar20 = *(longlong *)(param_8 + 8 + lVar18 * 0x10);
+      lVar20 = *(int64_t *)(param_8 + 8 + lVar18 * 0x10);
       fVar7 = *(float *)(param_8 + 4 + lVar18 * 0x10);
       fVar8 = *(float *)(lVar20 + 0x18);
       fVar9 = *(float *)(param_8 + lVar18 * 0x10);
@@ -166,7 +166,7 @@ void FUN_1807fafa0(float *param_1,float *param_2,uint param_3,int param_4,int pa
       fVar2 = *(float *)(lVar20 + 0x10);
       *(float *)(param_8 + lVar18 * 0x10) = fVar24;
       *(float *)(param_8 + 4 + lVar18 * 0x10) = fVar9;
-      lVar20 = *(longlong *)(param_7 + 8 + lVar19 * 0x10);
+      lVar20 = *(int64_t *)(param_7 + 8 + lVar19 * 0x10);
       fVar3 = *(float *)(param_7 + lVar19 * 0x10);
       fVar29 = *(float *)(lVar20 + 0x14);
       fVar30 = *(float *)(param_7 + 4 + lVar19 * 0x10);
@@ -176,7 +176,7 @@ void FUN_1807fafa0(float *param_1,float *param_2,uint param_3,int param_4,int pa
       fVar2 = *(float *)(lVar20 + 0x10);
       *(float *)(param_7 + 4 + lVar19 * 0x10) = fVar3;
       *(float *)(param_7 + lVar19 * 0x10) = fVar24;
-      lVar20 = *(longlong *)(param_7 + 8 + lVar18 * 0x10);
+      lVar20 = *(int64_t *)(param_7 + 8 + lVar18 * 0x10);
       fVar7 = *(float *)(param_7 + lVar18 * 0x10);
       fVar8 = *(float *)(param_7 + 4 + lVar18 * 0x10);
       fVar9 = *(float *)(lVar20 + 0x18);
@@ -186,7 +186,7 @@ void FUN_1807fafa0(float *param_1,float *param_2,uint param_3,int param_4,int pa
       fVar2 = *(float *)(lVar20 + 0x10);
       *(float *)(param_7 + lVar18 * 0x10) = fVar28;
       *(float *)(param_7 + 4 + lVar18 * 0x10) = fVar7;
-      lVar20 = *(longlong *)(param_9 + 8 + lVar19 * 0x10);
+      lVar20 = *(int64_t *)(param_9 + 8 + lVar19 * 0x10);
       fVar3 = *(float *)(param_9 + lVar19 * 0x10);
       fVar29 = *(float *)(param_9 + 4 + lVar19 * 0x10);
       fVar30 = *(float *)(lVar20 + 0x18);
@@ -196,7 +196,7 @@ void FUN_1807fafa0(float *param_1,float *param_2,uint param_3,int param_4,int pa
       fVar24 = *(float *)(lVar20 + 0x10);
       *(float *)(param_9 + lVar19 * 0x10) = fVar25;
       *(float *)(param_9 + 4 + lVar19 * 0x10) = fVar3;
-      lVar20 = *(longlong *)(param_9 + 8 + lVar18 * 0x10);
+      lVar20 = *(int64_t *)(param_9 + 8 + lVar18 * 0x10);
       fVar11 = *(float *)(param_9 + lVar18 * 0x10);
       fVar12 = *(float *)(param_9 + 4 + lVar18 * 0x10);
       fVar13 = *(float *)(lVar20 + 0x18);
@@ -210,7 +210,7 @@ void FUN_1807fafa0(float *param_1,float *param_2,uint param_3,int param_4,int pa
            (fVar28 * fVar2 + fVar7 * fVar10 + fVar8 * fVar9) * param_11 +
            (fVar6 * fVar26 + fVar27 * fVar1 + fVar4 * fVar5) * param_10 +
            (fVar29 * fVar3 + fVar11 * fVar14 + fVar12 * fVar13) * param_12;
-      lVar20 = *(longlong *)(param_6 + 8 + lVar19 * 0x10);
+      lVar20 = *(int64_t *)(param_6 + 8 + lVar19 * 0x10);
       fVar1 = *(float *)(param_6 + lVar19 * 0x10);
       fVar2 = *(float *)(param_6 + 4 + lVar19 * 0x10);
       fVar3 = *(float *)(lVar20 + 0x18);
@@ -220,7 +220,7 @@ void FUN_1807fafa0(float *param_1,float *param_2,uint param_3,int param_4,int pa
       fVar30 = *(float *)(lVar20 + 0x10);
       *(float *)(param_6 + 4 + lVar19 * 0x10) = fVar1;
       *(float *)(param_6 + lVar19 * 0x10) = fVar23;
-      lVar20 = *(longlong *)(param_6 + 8 + lVar18 * 0x10);
+      lVar20 = *(int64_t *)(param_6 + 8 + lVar18 * 0x10);
       fVar4 = *(float *)(param_6 + lVar18 * 0x10);
       fVar5 = *(float *)(param_6 + 4 + lVar18 * 0x10);
       fVar6 = *(float *)(lVar20 + 0x18);
@@ -230,7 +230,7 @@ void FUN_1807fafa0(float *param_1,float *param_2,uint param_3,int param_4,int pa
       fVar1 = *(float *)(lVar20 + 0x10);
       *(float *)(param_6 + lVar18 * 0x10) = fVar27;
       *(float *)(param_6 + 4 + lVar18 * 0x10) = fVar4;
-      lVar20 = *(longlong *)(param_8 + 8 + lVar19 * 0x10);
+      lVar20 = *(int64_t *)(param_8 + 8 + lVar19 * 0x10);
       fVar2 = *(float *)(param_8 + lVar19 * 0x10);
       fVar3 = *(float *)(param_8 + 4 + lVar19 * 0x10);
       fVar29 = *(float *)(lVar20 + 0x18);
@@ -240,7 +240,7 @@ void FUN_1807fafa0(float *param_1,float *param_2,uint param_3,int param_4,int pa
       fVar23 = *(float *)(lVar20 + 0x10);
       *(float *)(param_8 + 4 + lVar19 * 0x10) = fVar2;
       *(float *)(param_8 + lVar19 * 0x10) = fVar24;
-      lVar20 = *(longlong *)(param_8 + 8 + lVar18 * 0x10);
+      lVar20 = *(int64_t *)(param_8 + 8 + lVar18 * 0x10);
       fVar7 = *(float *)(param_8 + 4 + lVar18 * 0x10);
       fVar8 = *(float *)(lVar20 + 0x18);
       fVar9 = *(float *)(param_8 + lVar18 * 0x10);
@@ -250,7 +250,7 @@ void FUN_1807fafa0(float *param_1,float *param_2,uint param_3,int param_4,int pa
       fVar2 = *(float *)(lVar20 + 0x10);
       *(float *)(param_8 + lVar18 * 0x10) = fVar24;
       *(float *)(param_8 + 4 + lVar18 * 0x10) = fVar9;
-      lVar20 = *(longlong *)(param_7 + 8 + lVar19 * 0x10);
+      lVar20 = *(int64_t *)(param_7 + 8 + lVar19 * 0x10);
       fVar3 = *(float *)(param_7 + lVar19 * 0x10);
       fVar29 = *(float *)(param_7 + 4 + lVar19 * 0x10);
       fVar30 = *(float *)(lVar20 + 0x18);
@@ -260,7 +260,7 @@ void FUN_1807fafa0(float *param_1,float *param_2,uint param_3,int param_4,int pa
       fVar2 = *(float *)(lVar20 + 0x10);
       *(float *)(param_7 + 4 + lVar19 * 0x10) = fVar3;
       *(float *)(param_7 + lVar19 * 0x10) = fVar24;
-      lVar20 = *(longlong *)(param_7 + 8 + lVar18 * 0x10);
+      lVar20 = *(int64_t *)(param_7 + 8 + lVar18 * 0x10);
       fVar7 = *(float *)(param_7 + lVar18 * 0x10);
       fVar8 = *(float *)(param_7 + 4 + lVar18 * 0x10);
       fVar9 = *(float *)(lVar20 + 0x18);
@@ -270,7 +270,7 @@ void FUN_1807fafa0(float *param_1,float *param_2,uint param_3,int param_4,int pa
       fVar2 = *(float *)(lVar20 + 0x10);
       *(float *)(param_7 + lVar18 * 0x10) = fVar28;
       *(float *)(param_7 + 4 + lVar18 * 0x10) = fVar7;
-      lVar20 = *(longlong *)(param_9 + 8 + lVar19 * 0x10);
+      lVar20 = *(int64_t *)(param_9 + 8 + lVar19 * 0x10);
       fVar3 = *(float *)(param_9 + lVar19 * 0x10);
       fVar29 = *(float *)(param_9 + 4 + lVar19 * 0x10);
       fVar30 = *(float *)(lVar20 + 0x14);
@@ -280,7 +280,7 @@ void FUN_1807fafa0(float *param_1,float *param_2,uint param_3,int param_4,int pa
       fVar24 = *(float *)(lVar20 + 0x10);
       *(float *)(param_9 + lVar19 * 0x10) = fVar25;
       *(float *)(param_9 + 4 + lVar19 * 0x10) = fVar3;
-      lVar20 = *(longlong *)(param_9 + 8 + lVar18 * 0x10);
+      lVar20 = *(int64_t *)(param_9 + 8 + lVar18 * 0x10);
       fVar11 = *(float *)(param_9 + lVar18 * 0x10);
       fVar12 = *(float *)(param_9 + 4 + lVar18 * 0x10);
       fVar13 = *(float *)(lVar20 + 0x18);
@@ -294,7 +294,7 @@ void FUN_1807fafa0(float *param_1,float *param_2,uint param_3,int param_4,int pa
            (fVar7 * fVar10 + fVar28 * fVar2 + fVar8 * fVar9) * param_11 +
            (fVar27 * fVar1 + fVar4 * fVar26 + fVar5 * fVar6) * param_10 +
            (fVar29 * fVar3 + fVar11 * fVar14 + fVar12 * fVar13) * param_12;
-      lVar20 = *(longlong *)(param_6 + 8 + lVar19 * 0x10);
+      lVar20 = *(int64_t *)(param_6 + 8 + lVar19 * 0x10);
       fVar1 = *(float *)(param_6 + lVar19 * 0x10);
       fVar2 = *(float *)(param_6 + 4 + lVar19 * 0x10);
       fVar3 = *(float *)(lVar20 + 0x18);
@@ -304,7 +304,7 @@ void FUN_1807fafa0(float *param_1,float *param_2,uint param_3,int param_4,int pa
       fVar30 = *(float *)(lVar20 + 0x10);
       *(float *)(param_6 + 4 + lVar19 * 0x10) = fVar1;
       *(float *)(param_6 + lVar19 * 0x10) = fVar26;
-      lVar20 = *(longlong *)(param_6 + 8 + lVar18 * 0x10);
+      lVar20 = *(int64_t *)(param_6 + 8 + lVar18 * 0x10);
       fVar4 = *(float *)(param_6 + 4 + lVar18 * 0x10);
       fVar5 = *(float *)(param_6 + lVar18 * 0x10);
       fVar6 = *(float *)(lVar20 + 0x18);
@@ -314,7 +314,7 @@ void FUN_1807fafa0(float *param_1,float *param_2,uint param_3,int param_4,int pa
       fVar2 = *(float *)(lVar20 + 0x10);
       *(float *)(param_6 + lVar18 * 0x10) = fVar27;
       *(float *)(param_6 + 4 + lVar18 * 0x10) = fVar5;
-      lVar20 = *(longlong *)(param_8 + 8 + lVar19 * 0x10);
+      lVar20 = *(int64_t *)(param_8 + 8 + lVar19 * 0x10);
       fVar3 = *(float *)(param_8 + lVar19 * 0x10);
       fVar29 = *(float *)(param_8 + 4 + lVar19 * 0x10);
       fVar30 = *(float *)(lVar20 + 0x14);
@@ -324,7 +324,7 @@ void FUN_1807fafa0(float *param_1,float *param_2,uint param_3,int param_4,int pa
       fVar23 = *(float *)(lVar20 + 0x10);
       *(float *)(param_8 + 4 + lVar19 * 0x10) = fVar3;
       *(float *)(param_8 + lVar19 * 0x10) = fVar24;
-      lVar20 = *(longlong *)(param_8 + 8 + lVar18 * 0x10);
+      lVar20 = *(int64_t *)(param_8 + 8 + lVar18 * 0x10);
       fVar7 = *(float *)(param_8 + 4 + lVar18 * 0x10);
       fVar8 = *(float *)(lVar20 + 0x18);
       fVar9 = *(float *)(param_8 + lVar18 * 0x10);
@@ -334,7 +334,7 @@ void FUN_1807fafa0(float *param_1,float *param_2,uint param_3,int param_4,int pa
       fVar3 = *(float *)(lVar20 + 0x10);
       *(float *)(param_8 + lVar18 * 0x10) = fVar24;
       *(float *)(param_8 + 4 + lVar18 * 0x10) = fVar9;
-      lVar20 = *(longlong *)(param_7 + 8 + lVar19 * 0x10);
+      lVar20 = *(int64_t *)(param_7 + 8 + lVar19 * 0x10);
       fVar29 = *(float *)(param_7 + lVar19 * 0x10);
       fVar30 = *(float *)(lVar20 + 0x14);
       fVar26 = *(float *)(param_7 + 4 + lVar19 * 0x10);
@@ -344,7 +344,7 @@ void FUN_1807fafa0(float *param_1,float *param_2,uint param_3,int param_4,int pa
       fVar3 = *(float *)(lVar20 + 0x10);
       *(float *)(param_7 + 4 + lVar19 * 0x10) = fVar29;
       *(float *)(param_7 + lVar19 * 0x10) = fVar24;
-      lVar20 = *(longlong *)(param_7 + 8 + lVar18 * 0x10);
+      lVar20 = *(int64_t *)(param_7 + 8 + lVar18 * 0x10);
       fVar7 = *(float *)(param_7 + lVar18 * 0x10);
       fVar8 = *(float *)(lVar20 + 0x14);
       fVar9 = *(float *)(param_7 + 4 + lVar18 * 0x10);
@@ -354,7 +354,7 @@ void FUN_1807fafa0(float *param_1,float *param_2,uint param_3,int param_4,int pa
       fVar3 = *(float *)(lVar20 + 0x10);
       *(float *)(param_7 + lVar18 * 0x10) = fVar28;
       *(float *)(param_7 + 4 + lVar18 * 0x10) = fVar7;
-      lVar20 = *(longlong *)(param_9 + 8 + lVar19 * 0x10);
+      lVar20 = *(int64_t *)(param_9 + 8 + lVar19 * 0x10);
       pfVar21 = param_2 + iVar16;
       param_2 = param_2 + param_4 * 4;
       fVar29 = *(float *)(param_9 + lVar19 * 0x10);
@@ -365,7 +365,7 @@ void FUN_1807fafa0(float *param_1,float *param_2,uint param_3,int param_4,int pa
       fVar24 = *(float *)(lVar20 + 0x10);
       *(float *)(param_9 + 4 + lVar19 * 0x10) = fVar29;
       *(float *)(param_9 + lVar19 * 0x10) = fVar25;
-      lVar20 = *(longlong *)(param_9 + 8 + lVar18 * 0x10);
+      lVar20 = *(int64_t *)(param_9 + 8 + lVar18 * 0x10);
       fVar11 = *(float *)(param_9 + 4 + lVar18 * 0x10);
       fVar12 = *(float *)(lVar20 + 0x18);
       fVar13 = *(float *)(param_9 + lVar18 * 0x10);
@@ -387,9 +387,9 @@ void FUN_1807fafa0(float *param_1,float *param_2,uint param_3,int param_4,int pa
   if (param_3 != 0) {
     lVar20 = lVar19 + 0x20;
     pfVar21 = (float *)(lVar20 * 0x10 + param_9);
-    lVar18 = (longlong)param_1 - (longlong)param_2;
+    lVar18 = (int64_t)param_1 - (int64_t)param_2;
     do {
-      lVar15 = *(longlong *)(param_6 + 8 + lVar19 * 0x10);
+      lVar15 = *(int64_t *)(param_6 + 8 + lVar19 * 0x10);
       fVar1 = *(float *)(param_6 + lVar19 * 0x10);
       fVar2 = *(float *)(param_6 + 4 + lVar19 * 0x10);
       fVar3 = *(float *)(lVar15 + 0x14);
@@ -398,7 +398,7 @@ void FUN_1807fafa0(float *param_1,float *param_2,uint param_3,int param_4,int pa
       fVar30 = *(float *)(lVar15 + 0x10);
       *(float *)(param_6 + 4 + lVar19 * 0x10) = fVar1;
       *(float *)(param_6 + lVar19 * 0x10) = fVar23;
-      lVar15 = *(longlong *)(param_6 + 8 + lVar20 * 0x10);
+      lVar15 = *(int64_t *)(param_6 + 8 + lVar20 * 0x10);
       fVar4 = *(float *)(param_6 + 4 + lVar20 * 0x10);
       fVar5 = *(float *)(lVar15 + 0x18);
       fVar6 = *(float *)(param_6 + lVar20 * 0x10);
@@ -408,7 +408,7 @@ void FUN_1807fafa0(float *param_1,float *param_2,uint param_3,int param_4,int pa
       fVar1 = *(float *)(lVar15 + 0x10);
       *(float *)(param_6 + lVar20 * 0x10) = fVar27;
       *(float *)(param_6 + 4 + lVar20 * 0x10) = fVar6;
-      lVar15 = *(longlong *)(param_8 + 8 + lVar19 * 0x10);
+      lVar15 = *(int64_t *)(param_8 + 8 + lVar19 * 0x10);
       fVar2 = *(float *)(param_8 + lVar19 * 0x10);
       fVar3 = *(float *)(param_8 + 4 + lVar19 * 0x10);
       fVar29 = *(float *)(lVar15 + 0x18);
@@ -417,7 +417,7 @@ void FUN_1807fafa0(float *param_1,float *param_2,uint param_3,int param_4,int pa
       fVar23 = *(float *)(lVar15 + 0x10);
       *(float *)(param_8 + 4 + lVar19 * 0x10) = fVar2;
       *(float *)(param_8 + lVar19 * 0x10) = fVar24;
-      lVar15 = *(longlong *)(param_8 + 8 + lVar20 * 0x10);
+      lVar15 = *(int64_t *)(param_8 + 8 + lVar20 * 0x10);
       fVar7 = *(float *)(param_8 + 4 + lVar20 * 0x10);
       fVar8 = *(float *)(lVar15 + 0x18);
       fVar9 = *(float *)(param_8 + lVar20 * 0x10);
@@ -427,7 +427,7 @@ void FUN_1807fafa0(float *param_1,float *param_2,uint param_3,int param_4,int pa
       fVar2 = *(float *)(lVar15 + 0x10);
       *(float *)(param_8 + 4 + lVar20 * 0x10) = fVar9;
       *(float *)(param_8 + lVar20 * 0x10) = fVar24;
-      lVar15 = *(longlong *)(param_7 + 8 + lVar19 * 0x10);
+      lVar15 = *(int64_t *)(param_7 + 8 + lVar19 * 0x10);
       fVar3 = *(float *)(param_7 + lVar19 * 0x10);
       fVar29 = *(float *)(param_7 + 4 + lVar19 * 0x10);
       fVar30 = *(float *)(lVar15 + 0x18);
@@ -437,7 +437,7 @@ void FUN_1807fafa0(float *param_1,float *param_2,uint param_3,int param_4,int pa
       fVar2 = *(float *)(lVar15 + 0x10);
       *(float *)(param_7 + lVar19 * 0x10) = fVar24;
       *(float *)(param_7 + 4 + lVar19 * 0x10) = fVar3;
-      lVar15 = *(longlong *)(param_7 + 8 + lVar20 * 0x10);
+      lVar15 = *(int64_t *)(param_7 + 8 + lVar20 * 0x10);
       fVar7 = *(float *)(param_7 + lVar20 * 0x10);
       fVar8 = *(float *)(param_7 + 4 + lVar20 * 0x10);
       fVar9 = *(float *)(lVar15 + 0x18);
@@ -447,7 +447,7 @@ void FUN_1807fafa0(float *param_1,float *param_2,uint param_3,int param_4,int pa
       fVar2 = *(float *)(lVar15 + 0x10);
       *(float *)(param_7 + lVar20 * 0x10) = fVar28;
       *(float *)(param_7 + 4 + lVar20 * 0x10) = fVar7;
-      lVar15 = *(longlong *)(param_9 + 8 + lVar19 * 0x10);
+      lVar15 = *(int64_t *)(param_9 + 8 + lVar19 * 0x10);
       fVar3 = *(float *)(param_9 + lVar19 * 0x10);
       fVar29 = *(float *)(param_9 + 4 + lVar19 * 0x10);
       fVar30 = *(float *)(lVar15 + 0x18);
@@ -456,7 +456,7 @@ void FUN_1807fafa0(float *param_1,float *param_2,uint param_3,int param_4,int pa
       fVar24 = *(float *)(lVar15 + 0x10);
       *(float *)(param_9 + 4 + lVar19 * 0x10) = fVar3;
       *(float *)(param_9 + lVar19 * 0x10) = fVar25;
-      lVar15 = *(longlong *)(pfVar21 + 2);
+      lVar15 = *(int64_t *)(pfVar21 + 2);
       fVar11 = pfVar21[1];
       fVar12 = *(float *)(lVar15 + 0x18);
       fVar13 = *pfVar21;
@@ -466,7 +466,7 @@ void FUN_1807fafa0(float *param_1,float *param_2,uint param_3,int param_4,int pa
       fVar3 = *(float *)(lVar15 + 0x10);
       pfVar21[1] = fVar13;
       *pfVar21 = fVar29;
-      *(float *)((longlong)param_2 + lVar18) =
+      *(float *)((int64_t)param_2 + lVar18) =
            (fVar28 * fVar2 + fVar7 * fVar10 + fVar8 * fVar9) * param_11 +
            (fVar27 * fVar1 + fVar6 * fVar26 + fVar4 * fVar5) * param_10 +
            (fVar29 * fVar3 + fVar13 * fVar14 + fVar11 * fVar12) * param_12;

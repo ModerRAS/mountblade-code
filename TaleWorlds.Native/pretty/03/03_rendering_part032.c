@@ -24,7 +24,7 @@ uint64_t system_buffer_ptr;   // 默认渲染数据
  * @param data_struct_ptr 渲染数据结构指针
  * @param data_item_ptr 要插入的数据项指针
  */
-void insert_rendering_data_item(ulonglong *data_struct_ptr, uint64_t *data_item_ptr)
+void insert_rendering_data_item(uint64_t *data_struct_ptr, uint64_t *data_item_ptr)
 
 {
   int32_t data_field1;
@@ -34,13 +34,13 @@ void insert_rendering_data_item(ulonglong *data_struct_ptr, uint64_t *data_item_
   uint64_t *buffer_ptr;
   uint64_t *source_ptr;
   uint64_t *dest_ptr;
-  longlong capacity;
+  int64_t capacity;
   uint64_t *current_ptr;
   
   current_ptr = (uint64_t *)data_struct_ptr[1];
   if (current_ptr < (uint64_t *)data_struct_ptr[2]) {
     // 有足够空间，直接插入
-    data_struct_ptr[1] = (ulonglong)(current_ptr + 2);
+    data_struct_ptr[1] = (uint64_t)(current_ptr + 2);
     data_value1 = data_item_ptr[1];
     *current_ptr = *data_item_ptr;
     current_ptr[1] = data_value1;
@@ -49,7 +49,7 @@ void insert_rendering_data_item(ulonglong *data_struct_ptr, uint64_t *data_item_
   
   // 空间不足，需要扩容
   source_ptr = (uint64_t *)*data_struct_ptr;
-  capacity = (longlong)current_ptr - (longlong)source_ptr >> 4;
+  capacity = (int64_t)current_ptr - (int64_t)source_ptr >> 4;
   if (capacity == 0) {
     capacity = 1;
   }
@@ -78,18 +78,18 @@ copy_data:
   }
   
   // 插入新数据
-  data_field1 = *(int32_t *)((longlong)data_item_ptr + 4);
+  data_field1 = *(int32_t *)((int64_t)data_item_ptr + 4);
   data_field2 = *(int32_t *)(data_item_ptr + 1);
-  data_field3 = *(int32_t *)((longlong)data_item_ptr + 0xc);
+  data_field3 = *(int32_t *)((int64_t)data_item_ptr + 0xc);
   *(int32_t *)buffer_ptr = *(int32_t *)data_item_ptr;
-  *(int32_t *)((longlong)buffer_ptr + 4) = data_field1;
+  *(int32_t *)((int64_t)buffer_ptr + 4) = data_field1;
   *(int32_t *)(buffer_ptr + 1) = data_field2;
-  *(int32_t *)((longlong)buffer_ptr + 0xc) = data_field3;
+  *(int32_t *)((int64_t)buffer_ptr + 0xc) = data_field3;
   
   if (*data_struct_ptr == 0) {
-    *data_struct_ptr = (ulonglong)buffer_ptr;
-    data_struct_ptr[2] = (ulonglong)(buffer_ptr + capacity * 2);
-    data_struct_ptr[1] = (ulonglong)(buffer_ptr + 2);
+    *data_struct_ptr = (uint64_t)buffer_ptr;
+    data_struct_ptr[2] = (uint64_t)(buffer_ptr + capacity * 2);
+    data_struct_ptr[1] = (uint64_t)(buffer_ptr + 2);
     return;
   }
   // 错误处理
@@ -105,25 +105,25 @@ copy_data:
  * @param buffer_ptr 缓冲区指针
  * @param reserve_size 预留大小
  */
-void reserve_rendering_buffer(longlong *buffer_ptr, ulonglong reserve_size)
+void reserve_rendering_buffer(int64_t *buffer_ptr, uint64_t reserve_size)
 
 {
   int32_t *data_ptr;
-  longlong *size_ptr;
+  int64_t *size_ptr;
   uint64_t *buffer_start;
   uint64_t *buffer_end;
   uint64_t *new_buffer;
-  longlong current_size;
+  int64_t current_size;
   uint64_t *temp_ptr;
-  ulonglong new_size;
-  longlong *iter_ptr;
-  ulonglong required_size;
-  longlong offset;
+  uint64_t new_size;
+  int64_t *iter_ptr;
+  uint64_t required_size;
+  int64_t offset;
   
   buffer_end = (uint64_t *)buffer_ptr[1];
-  if ((ulonglong)(buffer_ptr[2] - (longlong)buffer_end >> 4) < reserve_size) {
+  if ((uint64_t)(buffer_ptr[2] - (int64_t)buffer_end >> 4) < reserve_size) {
     buffer_start = (uint64_t *)*buffer_ptr;
-    current_size = (longlong)buffer_end - (longlong)buffer_start >> 4;
+    current_size = (int64_t)buffer_end - (int64_t)buffer_start >> 4;
     required_size = current_size * 2;
     if (current_size == 0) {
       required_size = 1;
@@ -140,13 +140,13 @@ void reserve_rendering_buffer(longlong *buffer_ptr, ulonglong reserve_size)
     
     // 复制数据并清理旧数据
     if (buffer_start != buffer_end) {
-      offset = (longlong)buffer_start - (longlong)new_buffer;
-      current_size = 8 - (longlong)buffer_start;
+      offset = (int64_t)buffer_start - (int64_t)new_buffer;
+      current_size = 8 - (int64_t)buffer_start;
       do {
         *temp_ptr = *buffer_start;
         *buffer_start = 0;
-        data_ptr = (int32_t *)((longlong)new_buffer + current_size + (longlong)buffer_start);
-        *data_ptr = *(int32_t *)((longlong)data_ptr + offset);
+        data_ptr = (int32_t *)((int64_t)new_buffer + current_size + (int64_t)buffer_start);
+        *data_ptr = *(int32_t *)((int64_t)data_ptr + offset);
         buffer_start = buffer_start + 2;
         temp_ptr = temp_ptr + 2;
       } while (buffer_start != buffer_end);
@@ -165,25 +165,25 @@ void reserve_rendering_buffer(longlong *buffer_ptr, ulonglong reserve_size)
     }
     
     // 释放旧缓冲区
-    size_ptr = (longlong *)buffer_ptr[1];
-    iter_ptr = (longlong *)*buffer_ptr;
+    size_ptr = (int64_t *)buffer_ptr[1];
+    iter_ptr = (int64_t *)*buffer_ptr;
     if (iter_ptr != size_ptr) {
       do {
-        if ((longlong *)*iter_ptr != (longlong *)0x0) {
-          (**(code **)(*(longlong *)*iter_ptr + 0x38))();
+        if ((int64_t *)*iter_ptr != (int64_t *)0x0) {
+          (**(code **)(*(int64_t *)*iter_ptr + 0x38))();
         }
         iter_ptr = iter_ptr + 2;
       } while (iter_ptr != size_ptr);
-      iter_ptr = (longlong *)*buffer_ptr;
+      iter_ptr = (int64_t *)*buffer_ptr;
     }
-    if (iter_ptr != (longlong *)0x0) {
+    if (iter_ptr != (int64_t *)0x0) {
       FUN_18064e900(iter_ptr);
     }
     
     // 更新指针
-    *buffer_ptr = (longlong)new_buffer;
-    buffer_ptr[1] = (longlong)(temp_ptr + reserve_size * 2);
-    buffer_ptr[2] = (longlong)(new_buffer + required_size * 2);
+    *buffer_ptr = (int64_t)new_buffer;
+    buffer_ptr[1] = (int64_t)(temp_ptr + reserve_size * 2);
+    buffer_ptr[2] = (int64_t)(new_buffer + required_size * 2);
   }
   else {
     // 有足够空间，直接预留
@@ -197,7 +197,7 @@ void reserve_rendering_buffer(longlong *buffer_ptr, ulonglong reserve_size)
       } while (new_size != 0);
       buffer_end = (uint64_t *)buffer_ptr[1];
     }
-    buffer_ptr[1] = (longlong)(buffer_end + reserve_size * 2);
+    buffer_ptr[1] = (int64_t)(buffer_end + reserve_size * 2);
   }
   return;
 }
@@ -211,13 +211,13 @@ void reserve_rendering_buffer(longlong *buffer_ptr, ulonglong reserve_size)
  * @param data_start_ptr 数据起始指针
  * @param data_end_ptr 数据结束指针
  */
-void cleanup_rendering_data(longlong *data_start_ptr, longlong *data_end_ptr)
+void cleanup_rendering_data(int64_t *data_start_ptr, int64_t *data_end_ptr)
 
 {
   if (data_start_ptr != data_end_ptr) {
     do {
-      if ((longlong *)*data_start_ptr != (longlong *)0x0) {
-        (**(code **)(*(longlong *)*data_start_ptr + 0x38))();
+      if ((int64_t *)*data_start_ptr != (int64_t *)0x0) {
+        (**(code **)(*(int64_t *)*data_start_ptr + 0x38))();
       }
       data_start_ptr = data_start_ptr + 2;
     } while (data_start_ptr != data_end_ptr);
@@ -240,17 +240,17 @@ uint64_t * move_rendering_data(uint64_t *source_ptr, uint64_t *source_end_ptr, u
 
 {
   int32_t *data_ptr;
-  longlong offset;
-  longlong dest_offset;
+  int64_t offset;
+  int64_t dest_offset;
   
   if (source_ptr != source_end_ptr) {
-    offset = (longlong)source_ptr - (longlong)dest_ptr;
-    dest_offset = (longlong)dest_ptr + (8 - (longlong)source_ptr);
+    offset = (int64_t)source_ptr - (int64_t)dest_ptr;
+    dest_offset = (int64_t)dest_ptr + (8 - (int64_t)source_ptr);
     do {
       *dest_ptr = *source_ptr;
       *source_ptr = 0;
-      data_ptr = (int32_t *)(dest_offset + (longlong)source_ptr);
-      *data_ptr = *(int32_t *)((longlong)data_ptr + offset);
+      data_ptr = (int32_t *)(dest_offset + (int64_t)source_ptr);
+      *data_ptr = *(int32_t *)((int64_t)data_ptr + offset);
       source_ptr = source_ptr + 2;
       dest_ptr = dest_ptr + 2;
     } while (source_ptr != source_end_ptr);
@@ -266,16 +266,16 @@ uint64_t * move_rendering_data(uint64_t *source_ptr, uint64_t *source_end_ptr, u
  * 
  * @param resource_ptr 资源指针
  */
-void cleanup_rendering_resources_type1(longlong resource_ptr)
+void cleanup_rendering_resources_type1(int64_t resource_ptr)
 
 {
-  longlong resource_array_ptr;
+  int64_t resource_array_ptr;
   uint64_t *current_resource;
-  ulonglong resource_count;
-  ulonglong resource_index;
+  uint64_t resource_count;
+  uint64_t resource_index;
   
-  resource_count = *(ulonglong *)(resource_ptr + 0x10);
-  resource_array_ptr = *(longlong *)(resource_ptr + 8);
+  resource_count = *(uint64_t *)(resource_ptr + 0x10);
+  resource_array_ptr = *(int64_t *)(resource_ptr + 8);
   resource_index = 0;
   if (resource_count != 0) {
     do {
@@ -296,10 +296,10 @@ void cleanup_rendering_resources_type1(longlong resource_ptr)
       *(uint64_t *)(resource_array_ptr + resource_index * 8) = 0;
       resource_index = resource_index + 1;
     } while (resource_index < resource_count);
-    resource_count = *(ulonglong *)(resource_ptr + 0x10);
+    resource_count = *(uint64_t *)(resource_ptr + 0x10);
   }
   *(uint64_t *)(resource_ptr + 0x18) = 0;
-  if ((1 < resource_count) && (*(longlong *)(resource_ptr + 8) != 0)) {
+  if ((1 < resource_count) && (*(int64_t *)(resource_ptr + 8) != 0)) {
     FUN_18064e900();
   }
   return;
@@ -313,16 +313,16 @@ void cleanup_rendering_resources_type1(longlong resource_ptr)
  * 
  * @param resource_ptr 资源指针
  */
-void cleanup_rendering_resources_type2(longlong resource_ptr)
+void cleanup_rendering_resources_type2(int64_t resource_ptr)
 
 {
-  longlong resource_array_ptr;
+  int64_t resource_array_ptr;
   uint64_t *current_resource;
-  ulonglong resource_count;
-  ulonglong resource_index;
+  uint64_t resource_count;
+  uint64_t resource_index;
   
-  resource_count = *(ulonglong *)(resource_ptr + 0x10);
-  resource_array_ptr = *(longlong *)(resource_ptr + 8);
+  resource_count = *(uint64_t *)(resource_ptr + 0x10);
+  resource_array_ptr = *(int64_t *)(resource_ptr + 8);
   resource_index = 0;
   if (resource_count != 0) {
     do {
@@ -343,10 +343,10 @@ void cleanup_rendering_resources_type2(longlong resource_ptr)
       *(uint64_t *)(resource_array_ptr + resource_index * 8) = 0;
       resource_index = resource_index + 1;
     } while (resource_index < resource_count);
-    resource_count = *(ulonglong *)(resource_ptr + 0x10);
+    resource_count = *(uint64_t *)(resource_ptr + 0x10);
   }
   *(uint64_t *)(resource_ptr + 0x18) = 0;
-  if ((1 < resource_count) && (*(longlong *)(resource_ptr + 8) != 0)) {
+  if ((1 < resource_count) && (*(int64_t *)(resource_ptr + 8) != 0)) {
     FUN_18064e900();
   }
   return;
@@ -360,16 +360,16 @@ void cleanup_rendering_resources_type2(longlong resource_ptr)
  * 
  * @param resource_ptr 资源指针
  */
-void cleanup_rendering_resources_type3(longlong resource_ptr)
+void cleanup_rendering_resources_type3(int64_t resource_ptr)
 
 {
-  longlong resource_array_ptr;
+  int64_t resource_array_ptr;
   uint64_t *current_resource;
-  ulonglong resource_count;
-  ulonglong resource_index;
+  uint64_t resource_count;
+  uint64_t resource_index;
   
-  resource_count = *(ulonglong *)(resource_ptr + 0x10);
-  resource_array_ptr = *(longlong *)(resource_ptr + 8);
+  resource_count = *(uint64_t *)(resource_ptr + 0x10);
+  resource_array_ptr = *(int64_t *)(resource_ptr + 8);
   resource_index = 0;
   if (resource_count != 0) {
     do {
@@ -390,10 +390,10 @@ void cleanup_rendering_resources_type3(longlong resource_ptr)
       *(uint64_t *)(resource_array_ptr + resource_index * 8) = 0;
       resource_index = resource_index + 1;
     } while (resource_index < resource_count);
-    resource_count = *(ulonglong *)(resource_ptr + 0x10);
+    resource_count = *(uint64_t *)(resource_ptr + 0x10);
   }
   *(uint64_t *)(resource_ptr + 0x18) = 0;
-  if ((1 < resource_count) && (*(longlong *)(resource_ptr + 8) != 0)) {
+  if ((1 < resource_count) && (*(int64_t *)(resource_ptr + 8) != 0)) {
     FUN_18064e900();
   }
   return;
@@ -408,7 +408,7 @@ void cleanup_rendering_resources_type3(longlong resource_ptr)
  * @param data_ptr 数据指针
  * @param init_count 初始化数量
  */
-void initialize_rendering_data(longlong data_ptr, longlong init_count)
+void initialize_rendering_data(int64_t data_ptr, int64_t init_count)
 
 {
   int32_t *data_field_ptr;
@@ -494,16 +494,16 @@ void initialize_rendering_data(longlong data_ptr, longlong init_count)
  * 
  * @param resource_ptr 资源指针
  */
-void cleanup_rendering_resources_type4(longlong resource_ptr)
+void cleanup_rendering_resources_type4(int64_t resource_ptr)
 
 {
-  longlong resource_array_ptr;
+  int64_t resource_array_ptr;
   uint64_t *current_resource;
-  ulonglong resource_count;
-  ulonglong resource_index;
+  uint64_t resource_count;
+  uint64_t resource_index;
   
-  resource_count = *(ulonglong *)(resource_ptr + 0x18);
-  resource_array_ptr = *(longlong *)(resource_ptr + 0x10);
+  resource_count = *(uint64_t *)(resource_ptr + 0x18);
+  resource_array_ptr = *(int64_t *)(resource_ptr + 0x10);
   resource_index = 0;
   if (resource_count != 0) {
     do {
@@ -524,10 +524,10 @@ void cleanup_rendering_resources_type4(longlong resource_ptr)
       *(uint64_t *)(resource_array_ptr + resource_index * 8) = 0;
       resource_index = resource_index + 1;
     } while (resource_index < resource_count);
-    resource_count = *(ulonglong *)(resource_ptr + 0x18);
+    resource_count = *(uint64_t *)(resource_ptr + 0x18);
   }
   *(uint64_t *)(resource_ptr + 0x20) = 0;
-  if ((1 < resource_count) && (*(longlong *)(resource_ptr + 0x10) != 0)) {
+  if ((1 < resource_count) && (*(int64_t *)(resource_ptr + 0x10) != 0)) {
     FUN_18064e900();
   }
   return;
@@ -545,7 +545,7 @@ void cleanup_rendering_resources_type4(longlong resource_ptr)
  * @param dest_data_ptr 目标数据指针
  * @return 创建后的数据指针
  */
-longlong * create_rendering_data(longlong *data_ptr, int32_t *src_data_ptr, int32_t *src_data_end_ptr, uint64_t *dest_data_ptr)
+int64_t * create_rendering_data(int64_t *data_ptr, int32_t *src_data_ptr, int32_t *src_data_end_ptr, uint64_t *dest_data_ptr)
 
 {
   uint64_t *new_data_ptr;
@@ -557,7 +557,7 @@ longlong * create_rendering_data(longlong *data_ptr, int32_t *src_data_ptr, int3
   int32_t *temp_ptr;
   void *name_ptr;
   
-  *data_ptr = (longlong)dest_data_ptr;
+  *data_ptr = (int64_t)dest_data_ptr;
   if (src_data_ptr != src_data_end_ptr) {
     src_field_ptr = src_data_ptr + 0x5a;
     do {
@@ -580,15 +580,15 @@ longlong * create_rendering_data(longlong *data_ptr, int32_t *src_data_ptr, int3
       
       // 复制渲染参数
       *(int32_t *)(dest_data_ptr + 0xb) = src_field_ptr[-0x44];
-      *(int32_t *)((longlong)dest_data_ptr + 0x5c) = src_field_ptr[-0x43];
+      *(int32_t *)((int64_t)dest_data_ptr + 0x5c) = src_field_ptr[-0x43];
       *(int32_t *)(dest_data_ptr + 0xc) = src_field_ptr[-0x42];
-      *(int32_t *)((longlong)dest_data_ptr + 100) = src_field_ptr[-0x41];
+      *(int32_t *)((int64_t)dest_data_ptr + 100) = src_field_ptr[-0x41];
       *(int32_t *)(dest_data_ptr + 0xd) = src_field_ptr[-0x40];
-      *(int32_t *)((longlong)dest_data_ptr + 0x6c) = src_field_ptr[-0x3f];
+      *(int32_t *)((int64_t)dest_data_ptr + 0x6c) = src_field_ptr[-0x3f];
       *(int32_t *)(dest_data_ptr + 0xe) = src_field_ptr[-0x3e];
-      *(int32_t *)((longlong)dest_data_ptr + 0x74) = src_field_ptr[-0x3d];
+      *(int32_t *)((int64_t)dest_data_ptr + 0x74) = src_field_ptr[-0x3d];
       *(int32_t *)(dest_data_ptr + 0xf) = src_field_ptr[-0x3c];
-      *(int32_t *)((longlong)dest_data_ptr + 0x7c) = src_field_ptr[-0x3b];
+      *(int32_t *)((int64_t)dest_data_ptr + 0x7c) = src_field_ptr[-0x3b];
       
       // 复制变换矩阵
       data_value1 = *(uint64_t *)(src_field_ptr + -0x38);
@@ -618,16 +618,16 @@ longlong * create_rendering_data(longlong *data_ptr, int32_t *src_data_ptr, int3
       data_field2 = src_field_ptr[-0x1c];
       data_field3 = src_field_ptr[-0x1b];
       *(int32_t *)(dest_data_ptr + 0x1e) = src_field_ptr[-0x1e];
-      *(int32_t *)((longlong)dest_data_ptr + 0xf4) = data_field1;
+      *(int32_t *)((int64_t)dest_data_ptr + 0xf4) = data_field1;
       *(int32_t *)(dest_data_ptr + 0x1f) = data_field2;
-      *(int32_t *)((longlong)dest_data_ptr + 0xfc) = data_field3;
+      *(int32_t *)((int64_t)dest_data_ptr + 0xfc) = data_field3;
       data_field1 = src_field_ptr[-0x19];
       data_field2 = src_field_ptr[-0x18];
       data_field3 = src_field_ptr[-0x17];
       *(int32_t *)(dest_data_ptr + 0x20) = src_field_ptr[-0x1a];
-      *(int32_t *)((longlong)dest_data_ptr + 0x104) = data_field1;
+      *(int32_t *)((int64_t)dest_data_ptr + 0x104) = data_field1;
       *(int32_t *)(dest_data_ptr + 0x21) = data_field2;
-      *(int32_t *)((longlong)dest_data_ptr + 0x10c) = data_field3;
+      *(int32_t *)((int64_t)dest_data_ptr + 0x10c) = data_field3;
       
       // 设置渲染状态
       dest_data_ptr[0x22] = &system_state_ptr;
@@ -639,7 +639,7 @@ longlong * create_rendering_data(longlong *data_ptr, int32_t *src_data_ptr, int3
       *(int32_t *)(dest_data_ptr + 0x24) = 0;
       *(int32_t *)(dest_data_ptr + 0x24) = src_field_ptr[-0x12];
       dest_data_ptr[0x23] = *(uint64_t *)(src_field_ptr + -0x14);
-      *(int32_t *)((longlong)dest_data_ptr + 300) = src_field_ptr[-0xf];
+      *(int32_t *)((int64_t)dest_data_ptr + 300) = src_field_ptr[-0xf];
       *(int32_t *)(dest_data_ptr + 0x25) = src_field_ptr[-0x10];
       src_field_ptr[-0x12] = 0;
       *(uint64_t *)(src_field_ptr + -0x14) = 0;
@@ -723,14 +723,14 @@ longlong * create_rendering_data(longlong *data_ptr, int32_t *src_data_ptr, int3
  * @param memory_ptr 内存指针
  * @param allocation_size 分配大小
  */
-void allocate_rendering_memory(longlong memory_ptr, longlong allocation_size)
+void allocate_rendering_memory(int64_t memory_ptr, int64_t allocation_size)
 
 {
-  longlong *memory_manager_ptr;
-  ulonglong aligned_size;
+  int64_t *memory_manager_ptr;
+  uint64_t aligned_size;
   
-  memory_manager_ptr = *(longlong **)(memory_ptr + 0x30);
-  aligned_size = (longlong)(int)memory_manager_ptr[2] + 7U & 0xfffffffffffffff8;
+  memory_manager_ptr = *(int64_t **)(memory_ptr + 0x30);
+  aligned_size = (int64_t)(int)memory_manager_ptr[2] + 7U & 0xfffffffffffffff8;
   *(int *)(memory_manager_ptr + 2) = (int)aligned_size + ((int)allocation_size + 1) * 8;
   memset(*memory_manager_ptr + aligned_size, 0, allocation_size * 8);
 }
@@ -745,28 +745,28 @@ void allocate_rendering_memory(longlong memory_ptr, longlong allocation_size)
  * @param update_flag 更新标志
  * @return 更新结果
  */
-int8_t update_rendering_state(longlong state_ptr, int8_t update_flag)
+int8_t update_rendering_state(int64_t state_ptr, int8_t update_flag)
 
 {
   uint state_flags;
-  longlong state_data_ptr;
+  int64_t state_data_ptr;
   char state_char;
   int8_t update_result;
   uint flag_mask;
   int8_t temp_flag;
-  longlong list_offset;
-  longlong list_start;
+  int64_t list_offset;
+  int64_t list_start;
   int list_index;
   
-  list_start = *(longlong *)(state_ptr + 0x38);
+  list_start = *(int64_t *)(state_ptr + 0x38);
   list_index = 0;
   update_result = 1;
-  if (*(longlong *)(state_ptr + 0x40) - list_start >> 4 != 0) {
+  if (*(int64_t *)(state_ptr + 0x40) - list_start >> 4 != 0) {
     list_offset = 0;
     temp_flag = update_result;
     do {
-      list_start = *(longlong *)(list_offset + list_start);
-      state_data_ptr = *(longlong *)(list_start + 0x1b8);
+      list_start = *(int64_t *)(list_offset + list_start);
+      state_data_ptr = *(int64_t *)(list_start + 0x1b8);
       state_char = *(char *)(state_data_ptr + 0x38c);
       if (state_char == '\t') {
         state_flags = *(uint *)(state_data_ptr + 0x388);
@@ -801,7 +801,7 @@ int8_t update_rendering_state(longlong state_ptr, int8_t update_flag)
       if (state_char == '\0') {
         *(byte *)(list_start + 0xfe) = *(byte *)(list_start + 0xfe) & 0xfb;
       }
-      list_start = *(longlong *)(state_ptr + 0x38);
+      list_start = *(int64_t *)(state_ptr + 0x38);
       update_result = 0;
       if (state_char != '\0') {
         update_result = temp_flag;
@@ -809,7 +809,7 @@ int8_t update_rendering_state(longlong state_ptr, int8_t update_flag)
       list_index = list_index + 1;
       list_offset = list_offset + 0x10;
       temp_flag = update_result;
-    } while ((ulonglong)(longlong)list_index < (ulonglong)(*(longlong *)(state_ptr + 0x40) - list_start >> 4));
+    } while ((uint64_t)(int64_t)list_index < (uint64_t)(*(int64_t *)(state_ptr + 0x40) - list_start >> 4));
   }
   return update_result;
 }
@@ -825,22 +825,22 @@ int8_t update_rendering_state(longlong state_ptr, int8_t update_flag)
  * @param param3 参数3
  * @return 更新结果
  */
-int8_t update_rendering_state_variant(uint64_t param1, uint64_t param2, longlong param3)
+int8_t update_rendering_state_variant(uint64_t param1, uint64_t param2, int64_t param3)
 
 {
   uint state_flags;
-  longlong state_data_ptr;
-  longlong list_offset;
+  int64_t state_data_ptr;
+  int64_t list_offset;
   char state_char;
   int8_t update_result;
   uint flag_mask;
-  longlong list_start;
+  int64_t list_start;
   int list_index;
   
   list_offset = 0;
   do {
-    state_data_ptr = *(longlong *)(list_offset + param3);
-    list_start = *(longlong *)(state_data_ptr + 0x1b8);
+    state_data_ptr = *(int64_t *)(list_offset + param3);
+    list_start = *(int64_t *)(state_data_ptr + 0x1b8);
     state_char = *(char *)(list_start + 0x38c);
     if (state_char == '\t') {
       state_flags = *(uint *)(list_start + 0x388);
@@ -875,7 +875,7 @@ int8_t update_rendering_state_variant(uint64_t param1, uint64_t param2, longlong
     if (state_char == '\0') {
       *(byte *)(state_data_ptr + 0xfe) = *(byte *)(state_data_ptr + 0xfe) & 0xfb;
     }
-    param3 = *(longlong *)(param1 + 0x38);
+    param3 = *(int64_t *)(param1 + 0x38);
     update_result = 0;
     if (state_char != '\0') {
       update_result = param2;
@@ -883,7 +883,7 @@ int8_t update_rendering_state_variant(uint64_t param1, uint64_t param2, longlong
     list_index = list_index + 1;
     list_offset = list_offset + 0x10;
     param2 = update_result;
-  } while ((ulonglong)(longlong)list_index < (ulonglong)(*(longlong *)(param1 + 0x40) - param3 >> 4));
+  } while ((uint64_t)(int64_t)list_index < (uint64_t)(*(int64_t *)(param1 + 0x40) - param3 >> 4));
   return update_result;
 }
 
@@ -915,17 +915,17 @@ int8_t get_rendering_state(void)
  * @param param4 参数4
  * @return 释放后的资源指针
  */
-uint64_t * release_rendering_resource(uint64_t *resource_ptr, ulonglong release_flags, uint64_t param3, uint64_t param4)
+uint64_t * release_rendering_resource(uint64_t *resource_ptr, uint64_t release_flags, uint64_t param3, uint64_t param4)
 
 {
   uint64_t free_flag;
   
   free_flag = 0xfffffffffffffffe;
-  if ((longlong *)resource_ptr[4] != (longlong *)0x0) {
-    (**(code **)(*(longlong *)resource_ptr[4] + 0x38))();
+  if ((int64_t *)resource_ptr[4] != (int64_t *)0x0) {
+    (**(code **)(*(int64_t *)resource_ptr[4] + 0x38))();
   }
-  if ((longlong *)resource_ptr[3] != (longlong *)0x0) {
-    (**(code **)(*(longlong *)resource_ptr[3] + 0x38))();
+  if ((int64_t *)resource_ptr[3] != (int64_t *)0x0) {
+    (**(code **)(*(int64_t *)resource_ptr[3] + 0x38))();
   }
   *resource_ptr = &system_handler2_ptr;
   *resource_ptr = &system_handler1_ptr;
@@ -998,7 +998,7 @@ float * calculate_rendering_vector(float *vector_ptr1, float *result_ptr, float 
  * @param position_ptr 位置指针
  * @return 计算结果
  */
-uint64_t calculate_rendering_distance(longlong param1, uint64_t param2, float *position_ptr)
+uint64_t calculate_rendering_distance(int64_t param1, uint64_t param2, float *position_ptr)
 
 {
   float distance_x;
@@ -1015,9 +1015,9 @@ uint64_t calculate_rendering_distance(longlong param1, uint64_t param2, float *p
 }
 
 // 辅助函数声明（在其他文件中实现）
-void FUN_18062b420(uint64_t allocator, ulonglong size, char flags);
+void FUN_18062b420(uint64_t allocator, uint64_t size, char flags);
 void FUN_18064e900(void);
-void FUN_18007b240(longlong param1, longlong param2, char param3, int8_t param4);
+void FUN_18007b240(int64_t param1, int64_t param2, char param3, int8_t param4);
 void memset(void *ptr, int value, size_t num);
 void free(void *ptr, size_t size, uint64_t param3, uint64_t param4, uint64_t param5);
 void strcpy_s(char *dest, size_t dest_size, const char *src);

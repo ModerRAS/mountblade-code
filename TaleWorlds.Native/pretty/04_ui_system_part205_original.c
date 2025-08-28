@@ -204,17 +204,17 @@ extern uint64_t ui_system_ui;              /**< UI系统处理函数表 */
  * 
  * 原始实现：FUN_180789283
  */
-uint64_t UI_BatchProcess(longlong system_ptr)
+uint64_t UI_BatchProcess(int64_t system_ptr)
 {
     uint64_t *current_node;
     uint64_t *list_head;
     
     // 批量处理渲染资源
-    if (*(longlong *)(system_ptr + UI_OFFSET_RENDER) != 0) {
-        list_head = (uint64_t *)(*(longlong *)(system_ptr + UI_OFFSET_DATA) + 0x6c0);
+    if (*(int64_t *)(system_ptr + UI_OFFSET_RENDER) != 0) {
+        list_head = (uint64_t *)(*(int64_t *)(system_ptr + UI_OFFSET_DATA) + 0x6c0);
         for (current_node = (uint64_t *)*list_head; current_node != list_head; current_node = (uint64_t *)*current_node) {
             // 调用渲染处理函数
-            (**(code **)(system_ptr + UI_OFFSET_RENDER))(system_ptr + 8, *(int32_t *)((longlong)current_node + 0x24));
+            (**(code **)(system_ptr + UI_OFFSET_RENDER))(system_ptr + 8, *(int32_t *)((int64_t)current_node + 0x24));
         }
     }
     
@@ -231,16 +231,16 @@ uint64_t UI_BatchProcess(longlong system_ptr)
  * 
  * 原始实现：FUN_180789292
  */
-uint64_t UI_ProcessLinkedList(longlong system_ptr)
+uint64_t UI_ProcessLinkedList(int64_t system_ptr)
 {
     uint64_t *current_node;
     uint64_t *list_head;
     
     // 处理链表结构
-    list_head = (uint64_t *)(*(longlong *)(system_ptr + UI_OFFSET_DATA) + 0x6c0);
+    list_head = (uint64_t *)(*(int64_t *)(system_ptr + UI_OFFSET_DATA) + 0x6c0);
     for (current_node = (uint64_t *)*list_head; current_node != list_head; current_node = (uint64_t *)*current_node) {
         // 调用链表处理函数
-        (**(code **)(system_ptr + UI_OFFSET_RENDER))(system_ptr + 8, *(int32_t *)((longlong)current_node + 0x24));
+        (**(code **)(system_ptr + UI_OFFSET_RENDER))(system_ptr + 8, *(int32_t *)((int64_t)current_node + 0x24));
     }
     
     return UI_SYSTEM_SUCCESS;
@@ -280,7 +280,7 @@ void UI_EmptyFunction3(void)
  * 
  * 原始实现：FUN_180789300
  */
-uint64_t UI_CheckStatus(longlong system_ptr)
+uint64_t UI_CheckStatus(int64_t system_ptr)
 {
     uint64_t result;
     
@@ -354,7 +354,7 @@ void UI_EmptyFunction(void)
  * 
  * 原始实现：FUN_180788e60
  */
-uint64_t UI_InitializeSystem(longlong system_ptr, longlong component_ptr)
+uint64_t UI_InitializeSystem(int64_t system_ptr, int64_t component_ptr)
 {
     int result1;
     int result2;
@@ -392,13 +392,13 @@ uint64_t UI_InitializeSystem(longlong system_ptr, longlong component_ptr)
         }
         
         // 检查数据指针
-        if (*(longlong *)(component_ptr + UI_OFFSET_DATA) == 0) {
+        if (*(int64_t *)(component_ptr + UI_OFFSET_DATA) == 0) {
             if (result2 < 1) {
                 return UI_SYSTEM_SUCCESS;
             }
         } else {
             // 获取宽度信息
-            result1 = *(int *)(*(longlong *)(component_ptr + UI_OFFSET_DATA) + UI_OFFSET_WIDTH);
+            result1 = *(int *)(*(int64_t *)(component_ptr + UI_OFFSET_DATA) + UI_OFFSET_WIDTH);
             if (result2 < result1 * 3) {
                 return UI_SYSTEM_SUCCESS;
             }
@@ -434,7 +434,7 @@ uint64_t UI_InitializeSystem(longlong system_ptr, longlong component_ptr)
  * 
  * 原始实现：FUN_180788f20
  */
-void UI_ShutdownSystem(longlong system_ptr)
+void UI_ShutdownSystem(int64_t system_ptr)
 {
     // 检查清理函数是否存在
     if (*(code **)(system_ptr + UI_OFFSET_CLEANUP) != (code *)0x0) {
@@ -460,7 +460,7 @@ void UI_ShutdownSystem(longlong system_ptr)
  * 
  * 原始实现：FUN_180788f70
  */
-uint64_t UI_SecurityCheck(longlong *system_ptr_ptr)
+uint64_t UI_SecurityCheck(int64_t *system_ptr_ptr)
 {
     // 检查系统指针是否有效
     if (*system_ptr_ptr != 0) {
@@ -483,9 +483,9 @@ uint64_t UI_SecurityCheck(longlong *system_ptr_ptr)
  * 
  * 原始实现：FUN_180788fe0
  */
-uint64_t UI_ProcessEvents(longlong system_ptr)
+uint64_t UI_ProcessEvents(int64_t system_ptr)
 {
-    longlong data_ptr;
+    int64_t data_ptr;
     uint64_t *current_node;
     uint64_t result;
     uint64_t *list_head;
@@ -496,49 +496,49 @@ uint64_t UI_ProcessEvents(longlong system_ptr)
     uint param_x;
     uint64_t stack_param2;
     uint7 param_y;
-    ulonglong combined_param;
+    uint64_t combined_param;
     uint64_t stack_param3;
     uint param_z;
-    ulonglong extended_param;
+    uint64_t extended_param;
     
     // 解析栈参数
-    param_x = (uint)((ulonglong)stack_param1 >> 0x20);
-    param_z = (uint)((ulonglong)stack_param3 >> 0x20);
+    param_x = (uint)((uint64_t)stack_param1 >> 0x20);
+    param_z = (uint)((uint64_t)stack_param3 >> 0x20);
     
     // 重置UI状态
-    *(int16_t *)(*(longlong *)(system_ptr + UI_OFFSET_DATA) + 0x127f4) = 0;
-    *(int16_t *)(*(longlong *)(system_ptr + UI_OFFSET_DATA) + 0x127f2) = 0;
-    *(int16_t *)(*(longlong *)(system_ptr + UI_OFFSET_DATA) + 0x127f0) = 0;
+    *(int16_t *)(*(int64_t *)(system_ptr + UI_OFFSET_DATA) + 0x127f4) = 0;
+    *(int16_t *)(*(int64_t *)(system_ptr + UI_OFFSET_DATA) + 0x127f2) = 0;
+    *(int16_t *)(*(int64_t *)(system_ptr + UI_OFFSET_DATA) + 0x127f0) = 0;
     
     // 检查事件处理器
     if ((*(code **)(system_ptr + 0x358) == (code *)0x0) ||
         (result = (**(code **)(system_ptr + 0x358))(system_ptr + 8), (int)result == 0)) {
         
-        data_ptr = *(longlong *)(system_ptr + UI_OFFSET_DATA);
-        param_y = (uint7)((ulonglong)stack_param2 >> 8);
+        data_ptr = *(int64_t *)(system_ptr + UI_OFFSET_DATA);
+        param_y = (uint7)((uint64_t)stack_param2 >> 8);
         
         // 检查是否有特殊模式
-        if (*(longlong *)(data_ptr + 0x10f88) == 0) {
+        if (*(int64_t *)(data_ptr + 0x10f88) == 0) {
             // 常规事件处理
-            if ((*(longlong *)(system_ptr + 0x380) != 0) &&
+            if ((*(int64_t *)(system_ptr + 0x380) != 0) &&
                 (result = UI_EventProcessor(system_ptr + 0x1c0, &global_state_104_ptr, &global_state_4608_ptr, system_ptr,
-                                      (ulonglong)param_x << 0x20, (ulonglong)param_y << 8,
-                                      (ulonglong)param_z << 0x20, data_ptr, 1), (int)result != 0)) {
+                                      (uint64_t)param_x << 0x20, (uint64_t)param_y << 8,
+                                      (uint64_t)param_z << 0x20, data_ptr, 1), (int)result != 0)) {
                 return result;
             }
         } else {
             // 特殊模式事件处理
-            extended_param = (ulonglong)param_z << 0x20;
+            extended_param = (uint64_t)param_z << 0x20;
             combined_param = CONCAT71(param_y, 1);
             
             result = UI_EventProcessor(system_ptr + 0x70, &global_state_104_ptr, UI_DataTransformer, system_ptr,
-                                  (ulonglong)param_x << 0x20, combined_param, extended_param, data_ptr, 1);
+                                  (uint64_t)param_x << 0x20, combined_param, extended_param, data_ptr, 1);
             if ((int)result != 0) {
                 return result;
             }
             
             // 处理特殊事件
-            if ((*(longlong *)(system_ptr + 0x380) != 0) &&
+            if ((*(int64_t *)(system_ptr + 0x380) != 0) &&
                 (result = UI_EventProcessor(system_ptr + 0x1c0, &global_state_128_ptr, &global_state_4608_ptr, system_ptr, 1,
                                       combined_param & 0xffffffffffffff00, extended_param & 0xffffffff00000000,
                                       *(uint64_t *)(system_ptr + UI_OFFSET_DATA), 1), (int)result != 0)) {
@@ -547,8 +547,8 @@ uint64_t UI_ProcessEvents(longlong system_ptr)
         }
         
         // 处理事件队列
-        if (*(longlong *)(system_ptr + UI_OFFSET_HANDLER) != 0) {
-            list_head = (uint64_t *)(*(longlong *)(system_ptr + UI_OFFSET_DATA) + 0x6c0);
+        if (*(int64_t *)(system_ptr + UI_OFFSET_HANDLER) != 0) {
+            list_head = (uint64_t *)(*(int64_t *)(system_ptr + UI_OFFSET_DATA) + 0x6c0);
             for (current_node = (uint64_t *)*list_head; current_node != list_head; current_node = (uint64_t *)*current_node) {
                 // 初始化参数数组
                 param_array1[0] = 0;
@@ -557,7 +557,7 @@ uint64_t UI_ProcessEvents(longlong system_ptr)
                 
                 // 调用事件处理器
                 (**(code **)(system_ptr + UI_OFFSET_HANDLER))
-                    (system_ptr + 8, *(int32_t *)(current_node + 4), current_node[3], (longlong)current_node + 0x24,
+                    (system_ptr + 8, *(int32_t *)(current_node + 4), current_node[3], (int64_t)current_node + 0x24,
                      param_array1, param_array2, param_array3);
             }
         }
@@ -582,13 +582,13 @@ uint64_t UI_ProcessEvents(longlong system_ptr)
 uint64_t UI_TraverseComponents(void)
 {
     uint64_t *current_component;
-    longlong system_ptr;
+    int64_t system_ptr;
     uint64_t *list_head;
     int8_t *stack_param1;
     int8_t *stack_param2;
     
     // 获取组件链表头
-    list_head = (uint64_t *)(*(longlong *)(system_ptr + UI_OFFSET_DATA) + 0x6c0);
+    list_head = (uint64_t *)(*(int64_t *)(system_ptr + UI_OFFSET_DATA) + 0x6c0);
     
     // 遍历所有组件
     for (current_component = (uint64_t *)*list_head; current_component != list_head; current_component = (uint64_t *)*current_component) {
@@ -598,7 +598,7 @@ uint64_t UI_TraverseComponents(void)
         
         // 调用组件处理函数
         (**(code **)(system_ptr + UI_OFFSET_HANDLER))
-            (system_ptr + 8, *(int32_t *)(current_component + 4), current_component[3], (longlong)current_component + 0x24,
+            (system_ptr + 8, *(int32_t *)(current_component + 4), current_component[3], (int64_t)current_component + 0x24,
              &stack0x00000090);
     }
     
@@ -618,9 +618,9 @@ uint64_t UI_TraverseComponents(void)
  */
 uint64_t UI_ProcessLoop(void)
 {
-    longlong system_ptr;
-    longlong end_ptr;
-    longlong *current_ptr;
+    int64_t system_ptr;
+    int64_t end_ptr;
+    int64_t *current_ptr;
     int8_t *stack_param1;
     int8_t *stack_param2;
     
@@ -632,12 +632,12 @@ uint64_t UI_ProcessLoop(void)
         
         // 调用组件处理函数
         (**(code **)(system_ptr + UI_OFFSET_HANDLER))
-            (system_ptr + 8, (int)current_ptr[4], current_ptr[3], (longlong)current_ptr + 0x24,
+            (system_ptr + 8, (int)current_ptr[4], current_ptr[3], (int64_t)current_ptr + 0x24,
              &stack0x00000090);
         
         // 移动到下一个组件
-        current_ptr = (longlong *)*current_ptr;
-    } while (current_ptr != (longlong *)end_ptr);
+        current_ptr = (int64_t *)*current_ptr;
+    } while (current_ptr != (int64_t *)end_ptr);
     
     return UI_SYSTEM_SUCCESS;
 }
@@ -684,14 +684,14 @@ uint64_t UI_ReturnSuccess2(void)
  * 
  * 原始实现：FUN_1807891d0
  */
-uint64_t UI_CleanupResources(longlong system_ptr)
+uint64_t UI_CleanupResources(int64_t system_ptr)
 {
-    longlong resource_ptr;
+    int64_t resource_ptr;
     uint64_t *current_node;
     uint64_t result;
     uint64_t *list_head;
-    longlong index;
-    longlong resource_count;
+    int64_t index;
+    int64_t resource_count;
     
     // 验证系统状态
     result = SystemState_Validator(system_ptr + 0x1c0);
@@ -700,17 +700,17 @@ uint64_t UI_CleanupResources(longlong system_ptr)
          (result = (**(code **)(system_ptr + 0x360))(system_ptr + 8), (int)result == 0)))) {
         
         // 获取资源数量
-        resource_count = (longlong)*(int *)(*(longlong *)(system_ptr + UI_OFFSET_DATA) + 0x127e8);
+        resource_count = (int64_t)*(int *)(*(int64_t *)(system_ptr + UI_OFFSET_DATA) + 0x127e8);
         
         // 清理所有资源
         if (0 < resource_count) {
             index = 0;
             do {
                 // 获取资源指针
-                resource_ptr = *(longlong *)(*(longlong *)(*(longlong *)(system_ptr + UI_OFFSET_DATA) + 0x127e0) + index * 8);
+                resource_ptr = *(int64_t *)(*(int64_t *)(*(int64_t *)(system_ptr + UI_OFFSET_DATA) + 0x127e0) + index * 8);
                 
                 // 如果资源存在则清理
-                if (*(longlong *)(resource_ptr + 0x18) != 0) {
+                if (*(int64_t *)(resource_ptr + 0x18) != 0) {
                     // 调用资源清理函数
                     (**(code **)(system_ptr + 0x398))(system_ptr + 8);
                     *(uint64_t *)(resource_ptr + 0x18) = 0;
@@ -721,11 +721,11 @@ uint64_t UI_CleanupResources(longlong system_ptr)
         }
         
         // 清理渲染资源
-        if (*(longlong *)(system_ptr + UI_OFFSET_RENDER) != 0) {
-            list_head = (uint64_t *)(*(longlong *)(system_ptr + UI_OFFSET_DATA) + 0x6c0);
+        if (*(int64_t *)(system_ptr + UI_OFFSET_RENDER) != 0) {
+            list_head = (uint64_t *)(*(int64_t *)(system_ptr + UI_OFFSET_DATA) + 0x6c0);
             for (current_node = (uint64_t *)*list_head; current_node != list_head; current_node = (uint64_t *)*current_node) {
                 // 调用渲染清理函数
-                (**(code **)(system_ptr + UI_OFFSET_RENDER))(system_ptr + 8, *(int32_t *)((longlong)current_node + 0x24));
+                (**(code **)(system_ptr + UI_OFFSET_RENDER))(system_ptr + 8, *(int32_t *)((int64_t)current_node + 0x24));
             }
         }
         
@@ -748,29 +748,29 @@ uint64_t UI_CleanupResources(longlong system_ptr)
  * 
  * 原始实现：FUN_180789205
  */
-uint64_t UI_ReleaseResources(code *cleanup_func, longlong system_ptr)
+uint64_t UI_ReleaseResources(code *cleanup_func, int64_t system_ptr)
 {
-    longlong resource_ptr;
+    int64_t resource_ptr;
     uint64_t *current_node;
     uint64_t result;
     uint64_t *list_head;
-    longlong index;
-    longlong resource_count;
+    int64_t index;
+    int64_t resource_count;
     
     // 检查清理函数并执行
     if ((cleanup_func == (code *)0x0) || (result = (*cleanup_func)(system_ptr + 8), (int)result == 0)) {
         // 获取资源数量
-        resource_count = (longlong)*(int *)(*(longlong *)(system_ptr + UI_OFFSET_DATA) + 0x127e8);
+        resource_count = (int64_t)*(int *)(*(int64_t *)(system_ptr + UI_OFFSET_DATA) + 0x127e8);
         
         // 释放所有资源
         if (0 < resource_count) {
             index = 0;
             do {
                 // 获取资源指针
-                resource_ptr = *(longlong *)(*(longlong *)(*(longlong *)(system_ptr + UI_OFFSET_DATA) + 0x127e0) + index * 8);
+                resource_ptr = *(int64_t *)(*(int64_t *)(*(int64_t *)(system_ptr + UI_OFFSET_DATA) + 0x127e0) + index * 8);
                 
                 // 如果资源存在则释放
-                if (*(longlong *)(resource_ptr + 0x18) != 0) {
+                if (*(int64_t *)(resource_ptr + 0x18) != 0) {
                     // 调用资源释放函数
                     (**(code **)(system_ptr + 0x398))(system_ptr + 8);
                     *(uint64_t *)(resource_ptr + 0x18) = 0;
@@ -781,11 +781,11 @@ uint64_t UI_ReleaseResources(code *cleanup_func, longlong system_ptr)
         }
         
         // 释放渲染资源
-        if (*(longlong *)(system_ptr + UI_OFFSET_RENDER) != 0) {
-            list_head = (uint64_t *)(*(longlong *)(system_ptr + UI_OFFSET_DATA) + 0x6c0);
+        if (*(int64_t *)(system_ptr + UI_OFFSET_RENDER) != 0) {
+            list_head = (uint64_t *)(*(int64_t *)(system_ptr + UI_OFFSET_DATA) + 0x6c0);
             for (current_node = (uint64_t *)*list_head; current_node != list_head; current_node = (uint64_t *)*current_node) {
                 // 调用渲染释放函数
-                (**(code **)(system_ptr + UI_OFFSET_RENDER))(system_ptr + 8, *(int32_t *)((longlong)current_node + 0x24));
+                (**(code **)(system_ptr + UI_OFFSET_RENDER))(system_ptr + 8, *(int32_t *)((int64_t)current_node + 0x24));
             }
         }
         
@@ -808,12 +808,12 @@ uint64_t UI_ReleaseResources(code *cleanup_func, longlong system_ptr)
  * 
  * 原始实现：FUN_180789221
  */
-uint64_t UI_ResetSystem(longlong data_ptr, longlong system_ptr)
+uint64_t UI_ResetSystem(int64_t data_ptr, int64_t system_ptr)
 {
     int resource_count;
-    longlong resource_ptr;
+    int64_t resource_ptr;
     uint64_t *current_node;
-    longlong index;
+    int64_t index;
     
     // 获取资源数量
     resource_count = *(int *)(data_ptr + 0x127e8);
@@ -823,10 +823,10 @@ uint64_t UI_ResetSystem(longlong data_ptr, longlong system_ptr)
         index = 0;
         do {
             // 获取资源指针
-            resource_ptr = *(longlong *)(*(longlong *)(*(longlong *)(system_ptr + UI_OFFSET_DATA) + 0x127e0) + index * 8);
+            resource_ptr = *(int64_t *)(*(int64_t *)(*(int64_t *)(system_ptr + UI_OFFSET_DATA) + 0x127e0) + index * 8);
             
             // 如果资源存在则释放
-            if (*(longlong *)(resource_ptr + 0x18) != 0) {
+            if (*(int64_t *)(resource_ptr + 0x18) != 0) {
                 // 调用资源释放函数
                 (**(code **)(system_ptr + 0x398))(system_ptr + 8);
                 *(uint64_t *)(resource_ptr + 0x18) = 0;
@@ -837,11 +837,11 @@ uint64_t UI_ResetSystem(longlong data_ptr, longlong system_ptr)
     }
     
     // 释放渲染资源
-    if (*(longlong *)(system_ptr + UI_OFFSET_RENDER) != 0) {
-        uint64_t *list_head = (uint64_t *)(*(longlong *)(system_ptr + UI_OFFSET_DATA) + 0x6c0);
+    if (*(int64_t *)(system_ptr + UI_OFFSET_RENDER) != 0) {
+        uint64_t *list_head = (uint64_t *)(*(int64_t *)(system_ptr + UI_OFFSET_DATA) + 0x6c0);
         for (current_node = (uint64_t *)*list_head; current_node != list_head; current_node = (uint64_t *)*current_node) {
             // 调用渲染释放函数
-            (**(code **)(system_ptr + UI_OFFSET_RENDER))(system_ptr + 8, *(int32_t *)((longlong)current_node + 0x24));
+            (**(code **)(system_ptr + UI_OFFSET_RENDER))(system_ptr + 8, *(int32_t *)((int64_t)current_node + 0x24));
         }
     }
     
@@ -861,12 +861,12 @@ uint64_t UI_ResetSystem(longlong data_ptr, longlong system_ptr)
  * 
  * 原始实现：FUN_18078922b
  */
-uint64_t UI_ResetSystem2(longlong data_ptr, longlong system_ptr)
+uint64_t UI_ResetSystem2(int64_t data_ptr, int64_t system_ptr)
 {
     int resource_count;
-    longlong resource_ptr;
+    int64_t resource_ptr;
     uint64_t *current_node;
-    longlong index;
+    int64_t index;
     
     // 获取资源数量
     resource_count = *(int *)(data_ptr + 0x127e8);
@@ -876,10 +876,10 @@ uint64_t UI_ResetSystem2(longlong data_ptr, longlong system_ptr)
         index = 0;
         do {
             // 获取资源指针
-            resource_ptr = *(longlong *)(*(longlong *)(*(longlong *)(system_ptr + UI_OFFSET_DATA) + 0x127e0) + index * 8);
+            resource_ptr = *(int64_t *)(*(int64_t *)(*(int64_t *)(system_ptr + UI_OFFSET_DATA) + 0x127e0) + index * 8);
             
             // 如果资源存在则释放
-            if (*(longlong *)(resource_ptr + 0x18) != 0) {
+            if (*(int64_t *)(resource_ptr + 0x18) != 0) {
                 // 调用资源释放函数
                 (**(code **)(system_ptr + 0x398))(system_ptr + 8);
                 *(uint64_t *)(resource_ptr + 0x18) = 0;
@@ -890,11 +890,11 @@ uint64_t UI_ResetSystem2(longlong data_ptr, longlong system_ptr)
     }
     
     // 释放渲染资源
-    if (*(longlong *)(system_ptr + UI_OFFSET_RENDER) != 0) {
-        uint64_t *list_head = (uint64_t *)(*(longlong *)(system_ptr + UI_OFFSET_DATA) + 0x6c0);
+    if (*(int64_t *)(system_ptr + UI_OFFSET_RENDER) != 0) {
+        uint64_t *list_head = (uint64_t *)(*(int64_t *)(system_ptr + UI_OFFSET_DATA) + 0x6c0);
         for (current_node = (uint64_t *)*list_head; current_node != list_head; current_node = (uint64_t *)*current_node) {
             // 调用渲染释放函数
-            (**(code **)(system_ptr + UI_OFFSET_RENDER))(system_ptr + 8, *(int32_t *)((longlong)current_node + 0x24));
+            (**(code **)(system_ptr + UI_OFFSET_RENDER))(system_ptr + 8, *(int32_t *)((int64_t)current_node + 0x24));
         }
     }
     
@@ -914,20 +914,20 @@ uint64_t UI_ResetSystem2(longlong data_ptr, longlong system_ptr)
  * 
  * 原始实现：FUN_18078923c
  */
-uint64_t UI_ClearSystem(longlong system_ptr, longlong resource_count)
+uint64_t UI_ClearSystem(int64_t system_ptr, int64_t resource_count)
 {
-    longlong resource_ptr;
+    int64_t resource_ptr;
     uint64_t *current_node;
-    longlong index;
+    int64_t index;
     
     // 清理所有资源
     index = 0;
     do {
         // 获取资源指针
-        resource_ptr = *(longlong *)(*(longlong *)(*(longlong *)(system_ptr + UI_OFFSET_DATA) + 0x127e0) + index * 8);
+        resource_ptr = *(int64_t *)(*(int64_t *)(*(int64_t *)(system_ptr + UI_OFFSET_DATA) + 0x127e0) + index * 8);
         
         // 如果资源存在则清理
-        if (*(longlong *)(resource_ptr + 0x18) != 0) {
+        if (*(int64_t *)(resource_ptr + 0x18) != 0) {
             // 调用资源清理函数
             (**(code **)(system_ptr + 0x398))(system_ptr + 8);
             *(uint64_t *)(resource_ptr + 0x18) = 0;
@@ -937,11 +937,11 @@ uint64_t UI_ClearSystem(longlong system_ptr, longlong resource_count)
     } while (index < resource_count);
     
     // 清理渲染资源
-    if (*(longlong *)(system_ptr + UI_OFFSET_RENDER) != 0) {
-        uint64_t *list_head = (uint64_t *)(*(longlong *)(system_ptr + UI_OFFSET_DATA) + 0x6c0);
+    if (*(int64_t *)(system_ptr + UI_OFFSET_RENDER) != 0) {
+        uint64_t *list_head = (uint64_t *)(*(int64_t *)(system_ptr + UI_OFFSET_DATA) + 0x6c0);
         for (current_node = (uint64_t *)*list_head; current_node != list_head; current_node = (uint64_t *)*current_node) {
             // 调用渲染清理函数
-            (**(code **)(system_ptr + UI_OFFSET_RENDER))(system_ptr + 8, *(int32_t *)((longlong)current_node + 0x24));
+            (**(code **)(system_ptr + UI_OFFSET_RENDER))(system_ptr + 8, *(int32_t *)((int64_t)current_node + 0x24));
         }
     }
     
@@ -962,17 +962,17 @@ uint64_t UI_ClearSystem(longlong system_ptr, longlong resource_count)
 uint64_t UI_BatchProcess(void)
 {
     uint64_t *current_node;
-    longlong system_ptr;
+    int64_t system_ptr;
     uint64_t *list_head;
     
     // 检查渲染函数是否存在
-    if (*(longlong *)(system_ptr + UI_OFFSET_RENDER) != 0) {
-        list_head = (uint64_t *)(*(longlong *)(system_ptr + UI_OFFSET_DATA) + 0x6c0);
+    if (*(int64_t *)(system_ptr + UI_OFFSET_RENDER) != 0) {
+        list_head = (uint64_t *)(*(int64_t *)(system_ptr + UI_OFFSET_DATA) + 0x6c0);
         
         // 遍历链表执行批量处理
         for (current_node = (uint64_t *)*list_head; current_node != list_head; current_node = (uint64_t *)*current_node) {
             // 调用渲染处理函数
-            (**(code **)(system_ptr + UI_OFFSET_RENDER))(system_ptr + 8, *(int32_t *)((longlong)current_node + 0x24));
+            (**(code **)(system_ptr + UI_OFFSET_RENDER))(system_ptr + 8, *(int32_t *)((int64_t)current_node + 0x24));
         }
     }
     
@@ -993,16 +993,16 @@ uint64_t UI_BatchProcess(void)
 uint64_t UI_ProcessLinkedList(void)
 {
     uint64_t *current_node;
-    longlong system_ptr;
+    int64_t system_ptr;
     uint64_t *list_head;
     
     // 获取链表头指针
-    list_head = (uint64_t *)(*(longlong *)(system_ptr + UI_OFFSET_DATA) + 0x6c0);
+    list_head = (uint64_t *)(*(int64_t *)(system_ptr + UI_OFFSET_DATA) + 0x6c0);
     
     // 遍历链表处理每个节点
     for (current_node = (uint64_t *)*list_head; current_node != list_head; current_node = (uint64_t *)*current_node) {
         // 调用链表节点处理函数
-        (**(code **)(system_ptr + UI_OFFSET_RENDER))(system_ptr + 8, *(int32_t *)((longlong)current_node + 0x24));
+        (**(code **)(system_ptr + UI_OFFSET_RENDER))(system_ptr + 8, *(int32_t *)((int64_t)current_node + 0x24));
     }
     
     return UI_SYSTEM_SUCCESS;
@@ -1054,7 +1054,7 @@ void UI_EmptyFunction3(void)
  * 
  * 原始实现：FUN_180789300
  */
-uint64_t UI_CheckStatus(longlong system_ptr)
+uint64_t UI_CheckStatus(int64_t system_ptr)
 {
     uint64_t status_result;
     
@@ -1134,18 +1134,18 @@ void UI_RecursiveProcess(uint *data_ptr, uint base_value, int step_size, int pro
  * 
  * 原始实现：FUN_180789470
  */
-uint64_t UI_AllocateMemory(longlong system_ptr, uint size, char flags)
+uint64_t UI_AllocateMemory(int64_t system_ptr, uint size, char flags)
 
 {
   uint uVar1;
   uint uVar2;
   uint64_t uVar3;
-  longlong lVar4;
-  ulonglong uVar5;
+  int64_t lVar4;
+  uint64_t uVar5;
   int iVar6;
   
-  *(longlong *)(param_1 + 8) = param_1;
-  *(longlong *)param_1 = param_1;
+  *(int64_t *)(param_1 + 8) = param_1;
+  *(int64_t *)param_1 = param_1;
   *(uint64_t *)(param_1 + 0x10) = 0;
   if (((*(int *)(param_1 + 0x18) != 0) || (0xfff0 < param_2 - 0x10)) ||
      ((param_2 & param_2 - 1) != 0)) {
@@ -1157,23 +1157,23 @@ uint64_t UI_AllocateMemory(longlong system_ptr, uint size, char flags)
   }
   iVar6 = param_2 * 8 + 0x10;
   lVar4 = UI_MemoryAllocator(*(uint64_t *)(system_data_buffer + 0x1a0),iVar6,&global_state_160_ptr,0x4f,0,0,1);
-  *(longlong *)(param_1 + 0x40) = lVar4;
+  *(int64_t *)(param_1 + 0x40) = lVar4;
   if (lVar4 != 0) {
     uVar5 = lVar4 + 0xfU & 0xfffffffffffffff0;
-    *(ulonglong *)(param_1 + 0x20) = uVar5;
+    *(uint64_t *)(param_1 + 0x20) = uVar5;
     if (param_3 == '\0') {
-      *(ulonglong *)(param_1 + 0x28) = uVar5;
+      *(uint64_t *)(param_1 + 0x28) = uVar5;
       *(uint64_t *)(param_1 + 0x68) = *(uint64_t *)(param_1 + 0x60);
       *(uint64_t *)(param_1 + 0x48) = 0;
     }
     else {
       lVar4 = UI_MemoryAllocator(*(uint64_t *)(system_data_buffer + 0x1a0),iVar6,&global_state_160_ptr,0x58,0,0,1)
       ;
-      *(longlong *)(param_1 + 0x48) = lVar4;
+      *(int64_t *)(param_1 + 0x48) = lVar4;
       if (lVar4 == 0) {
         return 0x26;
       }
-      *(ulonglong *)(param_1 + 0x28) = lVar4 + 0xfU & 0xfffffffffffffff0;
+      *(uint64_t *)(param_1 + 0x28) = lVar4 + 0xfU & 0xfffffffffffffff0;
       uVar3 = UI_ProcessorInit(param_1 + 0x68,0);
       if ((int)uVar3 != 0) {
         return uVar3;
@@ -1182,9 +1182,9 @@ uint64_t UI_AllocateMemory(longlong system_ptr, uint size, char flags)
     uVar1 = param_2 >> 1;
     lVar4 = UI_MemoryAllocator(*(uint64_t *)(system_data_buffer + 0x1a0),
                           ((param_2 >> 2) + uVar1) * 8 + 0x10,&global_state_160_ptr,0x6b,0,0,1);
-    *(longlong *)(param_1 + 0x50) = lVar4;
+    *(int64_t *)(param_1 + 0x50) = lVar4;
     if (lVar4 != 0) {
-      *(ulonglong *)(param_1 + 0x30) = lVar4 + 0xfU & 0xfffffffffffffff0;
+      *(uint64_t *)(param_1 + 0x30) = lVar4 + 0xfU & 0xfffffffffffffff0;
       uVar2 = uVar1;
       if (0 < (int)param_2 / 2) {
                     // WARNING: Subroutine does not return
@@ -1224,21 +1224,21 @@ uint64_t UI_AllocateMemory(longlong system_ptr, uint size, char flags)
  * 
  * 原始实现：FUN_1807894bb
  */
-uint64_t UI_AllocateMemory2(longlong system_ptr)
+uint64_t UI_AllocateMemory2(int64_t system_ptr)
 
 {
   int iVar1;
-  ulonglong uVar2;
+  uint64_t uVar2;
   uint64_t uVar3;
-  longlong lVar4;
-  ulonglong uVar5;
+  int64_t lVar4;
+  uint64_t uVar5;
   char unaff_BPL;
   uint uVar6;
-  longlong unaff_RSI;
+  int64_t unaff_RSI;
   int iVar7;
   uint64_t unaff_R12;
   uint uVar8;
-  ulonglong unaff_R15;
+  uint64_t unaff_R15;
   
   uVar3 = UI_ProcessorInit(param_1 + 0x60);
   if ((int)uVar3 != 0) {
@@ -1248,23 +1248,23 @@ uint64_t UI_AllocateMemory2(longlong system_ptr)
   iVar7 = iVar1 * 8 + 0x10;
   lVar4 = UI_MemoryAllocator(*(uint64_t *)(system_data_buffer + 0x1a0),iVar7,&global_state_160_ptr,
                         (int)unaff_R12 + 0x4f);
-  *(longlong *)(unaff_RSI + 0x40) = lVar4;
+  *(int64_t *)(unaff_RSI + 0x40) = lVar4;
   if (lVar4 != 0) {
     uVar5 = lVar4 + 0xfU & 0xfffffffffffffff0;
-    *(ulonglong *)(unaff_RSI + 0x20) = uVar5;
+    *(uint64_t *)(unaff_RSI + 0x20) = uVar5;
     if (unaff_BPL == '\0') {
-      *(ulonglong *)(unaff_RSI + 0x28) = uVar5;
+      *(uint64_t *)(unaff_RSI + 0x28) = uVar5;
       *(uint64_t *)(unaff_RSI + 0x68) = *(uint64_t *)(unaff_RSI + 0x60);
       *(uint64_t *)(unaff_RSI + 0x48) = unaff_R12;
     }
     else {
       lVar4 = UI_MemoryAllocator(*(uint64_t *)(system_data_buffer + 0x1a0),iVar7,&global_state_160_ptr,
                             (int)unaff_R12 + 0x58);
-      *(longlong *)(unaff_RSI + 0x48) = lVar4;
+      *(int64_t *)(unaff_RSI + 0x48) = lVar4;
       if (lVar4 == 0) {
         return 0x26;
       }
-      *(ulonglong *)(unaff_RSI + 0x28) = lVar4 + 0xfU & 0xfffffffffffffff0;
+      *(uint64_t *)(unaff_RSI + 0x28) = lVar4 + 0xfU & 0xfffffffffffffff0;
       uVar3 = UI_ProcessorInit(unaff_RSI + 0x68,0);
       if ((int)uVar3 != 0) {
         return uVar3;
@@ -1275,9 +1275,9 @@ uint64_t UI_AllocateMemory2(longlong system_ptr)
     lVar4 = UI_MemoryAllocator(*(uint64_t *)(system_data_buffer + 0x1a0),
                           (((uint)(unaff_R15 >> 2) & 0x3fffffff) + uVar8) * 8 + 0x10,&global_state_160_ptr,
                           0x6b);
-    *(longlong *)(unaff_RSI + 0x50) = lVar4;
+    *(int64_t *)(unaff_RSI + 0x50) = lVar4;
     if (lVar4 != 0) {
-      *(ulonglong *)(unaff_RSI + 0x30) = lVar4 + 0xfU & 0xfffffffffffffff0;
+      *(uint64_t *)(unaff_RSI + 0x30) = lVar4 + 0xfU & 0xfffffffffffffff0;
       uVar2 = uVar5;
       uVar6 = uVar8;
       if (0 < iVar1 / 2) {
@@ -1296,7 +1296,7 @@ uint64_t UI_AllocateMemory2(longlong system_ptr)
         }
         if ((int)uVar2 >> 2 != 0) break;
         uVar6 = (int)uVar2 >> 1;
-        uVar2 = (ulonglong)uVar6;
+        uVar2 = (uint64_t)uVar6;
       }
                     // WARNING: Subroutine does not return
       UI_ErrorHandler();
@@ -1319,22 +1319,22 @@ uint64_t UI_AllocateMemory2(longlong system_ptr)
  * 
  * 原始实现：FUN_1807894e0
  */
-uint64_t UI_AllocateMemory3(longlong system_ptr)
+uint64_t UI_AllocateMemory3(int64_t system_ptr)
 
 {
   int iVar1;
-  ulonglong uVar2;
-  longlong lVar3;
-  ulonglong uVar4;
+  uint64_t uVar2;
+  int64_t lVar3;
+  uint64_t uVar4;
   uint64_t uVar5;
   char unaff_BPL;
   uint uVar6;
-  longlong unaff_RSI;
+  int64_t unaff_RSI;
   int iVar7;
   int8_t uVar8;
   uint64_t unaff_R12;
   uint uVar9;
-  ulonglong unaff_R15;
+  uint64_t unaff_R15;
   int8_t uStack0000000000000028;
   int8_t uStack0000000000000030;
   
@@ -1344,12 +1344,12 @@ uint64_t UI_AllocateMemory3(longlong system_ptr)
   uVar8 = (int8_t)unaff_R12;
   uStack0000000000000028 = uVar8;
   lVar3 = UI_MemoryAllocator(*(uint64_t *)(param_1 + 0x1a0),iVar7,&global_state_160_ptr);
-  *(longlong *)(unaff_RSI + 0x40) = lVar3;
+  *(int64_t *)(unaff_RSI + 0x40) = lVar3;
   if (lVar3 != 0) {
     uVar4 = lVar3 + 0xfU & 0xfffffffffffffff0;
-    *(ulonglong *)(unaff_RSI + 0x20) = uVar4;
+    *(uint64_t *)(unaff_RSI + 0x20) = uVar4;
     if (unaff_BPL == '\0') {
-      *(ulonglong *)(unaff_RSI + 0x28) = uVar4;
+      *(uint64_t *)(unaff_RSI + 0x28) = uVar4;
       *(uint64_t *)(unaff_RSI + 0x68) = *(uint64_t *)(unaff_RSI + 0x60);
       *(uint64_t *)(unaff_RSI + 0x48) = unaff_R12;
     }
@@ -1358,11 +1358,11 @@ uint64_t UI_AllocateMemory3(longlong system_ptr)
       uStack0000000000000028 = uVar8;
       lVar3 = UI_MemoryAllocator(*(uint64_t *)(system_data_buffer + 0x1a0),iVar7,&global_state_160_ptr,
                             (int)unaff_R12 + 0x58);
-      *(longlong *)(unaff_RSI + 0x48) = lVar3;
+      *(int64_t *)(unaff_RSI + 0x48) = lVar3;
       if (lVar3 == 0) {
         return 0x26;
       }
-      *(ulonglong *)(unaff_RSI + 0x28) = lVar3 + 0xfU & 0xfffffffffffffff0;
+      *(uint64_t *)(unaff_RSI + 0x28) = lVar3 + 0xfU & 0xfffffffffffffff0;
       uVar5 = UI_ProcessorInit(unaff_RSI + 0x68,0);
       if ((int)uVar5 != 0) {
         return uVar5;
@@ -1375,9 +1375,9 @@ uint64_t UI_AllocateMemory3(longlong system_ptr)
     lVar3 = UI_MemoryAllocator(*(uint64_t *)(system_data_buffer + 0x1a0),
                           (((uint)(unaff_R15 >> 2) & 0x3fffffff) + uVar9) * 8 + 0x10,&global_state_160_ptr,
                           0x6b);
-    *(longlong *)(unaff_RSI + 0x50) = lVar3;
+    *(int64_t *)(unaff_RSI + 0x50) = lVar3;
     if (lVar3 != 0) {
-      *(ulonglong *)(unaff_RSI + 0x30) = lVar3 + 0xfU & 0xfffffffffffffff0;
+      *(uint64_t *)(unaff_RSI + 0x30) = lVar3 + 0xfU & 0xfffffffffffffff0;
       uVar2 = uVar4;
       uVar6 = uVar9;
       if (0 < iVar1 / 2) {
@@ -1398,7 +1398,7 @@ uint64_t UI_AllocateMemory3(longlong system_ptr)
         }
         if ((int)uVar2 >> 2 != 0) break;
         uVar6 = (int)uVar2 >> 1;
-        uVar2 = (ulonglong)uVar6;
+        uVar2 = (uint64_t)uVar6;
       }
                     // WARNING: Subroutine does not return
       UI_ErrorHandler();
@@ -1440,16 +1440,16 @@ void UI_EmptyFunction4(void)
 uint64_t UI_SetupMemory(void)
 
 {
-  ulonglong uVar1;
+  uint64_t uVar1;
   uint64_t in_RAX;
-  longlong lVar2;
+  int64_t lVar2;
   uint64_t uVar3;
   uint uVar4;
-  longlong unaff_RSI;
+  int64_t unaff_RSI;
   uint64_t unaff_R12;
   uint uVar5;
-  ulonglong uVar6;
-  ulonglong unaff_R15;
+  uint64_t uVar6;
+  uint64_t unaff_R15;
   int8_t uStack0000000000000028;
   int8_t uStack0000000000000030;
   
@@ -1463,12 +1463,12 @@ uint64_t UI_SetupMemory(void)
   lVar2 = UI_MemoryAllocator(*(uint64_t *)(system_data_buffer + 0x1a0),
                         (((uint)(unaff_R15 >> 2) & 0x3fffffff) + uVar5) * 8 + 0x10,&global_state_160_ptr,
                         0x6b);
-  *(longlong *)(unaff_RSI + 0x50) = lVar2;
+  *(int64_t *)(unaff_RSI + 0x50) = lVar2;
   if (lVar2 == 0) {
     uVar3 = 0x26;
   }
   else {
-    *(ulonglong *)(unaff_RSI + 0x30) = lVar2 + 0xfU & 0xfffffffffffffff0;
+    *(uint64_t *)(unaff_RSI + 0x30) = lVar2 + 0xfU & 0xfffffffffffffff0;
     uVar1 = uVar6;
     uVar4 = uVar5;
     if (0 < (int)unaff_R15 / 2) {
@@ -1481,7 +1481,7 @@ uint64_t UI_SetupMemory(void)
         UI_ErrorHandler();
       }
       uVar4 = (int)uVar1 >> 1;
-      uVar1 = (ulonglong)uVar4;
+      uVar1 = (uint64_t)uVar4;
     }
     uStack0000000000000030 = 1;
     uStack0000000000000028 = (char)unaff_R12;
@@ -1514,14 +1514,14 @@ uint64_t UI_InitializeRenderer(uint64_t param1)
 
 {
   uint64_t uVar1;
-  ulonglong unaff_RBX;
+  uint64_t unaff_RBX;
   int iVar2;
-  longlong unaff_RSI;
+  int64_t unaff_RSI;
   int unaff_R12D;
   int unaff_R13D;
-  longlong unaff_R15;
+  int64_t unaff_R15;
   
-  *(ulonglong *)(unaff_RSI + 0x30) = unaff_RBX & 0xfffffffffffffff0;
+  *(uint64_t *)(unaff_RSI + 0x30) = unaff_RBX & 0xfffffffffffffff0;
   if (0 < (int)unaff_R15 / 2) {
                     // WARNING: Subroutine does not return
     UI_ErrorHandler(param_1,(float)unaff_R12D * -6.2831855 * (1.0 / (float)unaff_R15));
@@ -1563,7 +1563,7 @@ uint64_t UI_InitializeRenderer2(uint64_t param1)
 {
   uint64_t uVar1;
   int unaff_EBP;
-  longlong unaff_RSI;
+  int64_t unaff_RSI;
   int unaff_R12D;
   int unaff_R13D;
   int32_t unaff_R15D;
@@ -1602,7 +1602,7 @@ uint64_t UI_InitializeRenderer3(void)
 
 {
   uint64_t uVar1;
-  longlong unaff_RSI;
+  int64_t unaff_RSI;
   int unaff_R13D;
   int32_t unaff_R15D;
   int8_t uStack0000000000000030;
@@ -1668,13 +1668,13 @@ uint64_t UI_HandleInitError(void)
  * 
  * 原始实现：FUN_1807897b0
  */
-int32_t UI_ProcessData(longlong data_ptr, longlong source_ptr, uint64_t param3, longlong transform_ptr, int mode)
+int32_t UI_ProcessData(int64_t data_ptr, int64_t source_ptr, uint64_t param3, int64_t transform_ptr, int mode)
 {
     uint64_t resource_id;
     float *float_buffer;
     int processed_count;
     int total_count;
-    longlong index;
+    int64_t index;
     float *current_float;
     
     // 检查数据是否有效
@@ -1706,11 +1706,11 @@ int32_t UI_ProcessData(longlong data_ptr, longlong source_ptr, uint64_t param3, 
                     
                     // 复制第一个浮点数
                     *current_float = *(float *)(source_ptr +
-                                           (longlong)(*(int *)(index + *(longlong *)(data_ptr + 0x38)) * 2) * 4);
+                                           (int64_t)(*(int *)(index + *(int64_t *)(data_ptr + 0x38)) * 2) * 4);
                     
                     // 复制第二个浮点数
                     current_float[1] = *(float *)(source_ptr + 4 +
-                                               (longlong)(*(int *)(index + *(longlong *)(data_ptr + 0x38)) * 2) * 4);
+                                               (int64_t)(*(int *)(index + *(int64_t *)(data_ptr + 0x38)) * 2) * 4);
                     
                     total_count = *(int *)(data_ptr + 0x18);
                     index = index + 4;
@@ -1731,13 +1731,13 @@ int32_t UI_ProcessData(longlong data_ptr, longlong source_ptr, uint64_t param3, 
                 
                 // 复制第一个浮点数（带间隔）
                 *current_float = *(float *)(source_ptr +
-                                        (longlong)
-                                        (*(int *)(index + *(longlong *)(data_ptr + 0x38)) * mode * 2) * 4);
+                                        (int64_t)
+                                        (*(int *)(index + *(int64_t *)(data_ptr + 0x38)) * mode * 2) * 4);
                 
                 // 复制第二个浮点数（带间隔）
                 current_float[1] = *(float *)(source_ptr +
-                                            (longlong)
-                                            ((*(int *)(index + *(longlong *)(data_ptr + 0x38)) * 2 + 1) * mode)
+                                            (int64_t)
+                                            ((*(int *)(index + *(int64_t *)(data_ptr + 0x38)) * 2 + 1) * mode)
                                             * 4);
                 
                 total_count = *(int *)(data_ptr + 0x18);
@@ -1755,17 +1755,17 @@ int32_t UI_ProcessData(longlong data_ptr, longlong source_ptr, uint64_t param3, 
         current_float = float_buffer;
         do {
             processed_count = processed_count + 1;
-            total_count = *(int *)(index + *(longlong *)(data_ptr + 0x38));
+            total_count = *(int *)(index + *(int64_t *)(data_ptr + 0x38));
             
             // 第一个浮点数：源数据与变换数据相乘
-            *current_float = *(float *)(source_ptr + (longlong)(total_count * mode * 2) * 4) *
-                              *(float *)(transform_ptr + (longlong)(total_count * 2) * 4);
+            *current_float = *(float *)(source_ptr + (int64_t)(total_count * mode * 2) * 4) *
+                              *(float *)(transform_ptr + (int64_t)(total_count * 2) * 4);
             
-            total_count = *(int *)(index + *(longlong *)(data_ptr + 0x38)) * 2;
+            total_count = *(int *)(index + *(int64_t *)(data_ptr + 0x38)) * 2;
             
             // 第二个浮点数：源数据与变换数据相乘
-            current_float[1] = *(float *)(source_ptr + (longlong)((total_count + 1) * mode) * 4) *
-                                *(float *)(transform_ptr + 4 + (longlong)total_count * 4);
+            current_float[1] = *(float *)(source_ptr + (int64_t)((total_count + 1) * mode) * 4) *
+                                *(float *)(transform_ptr + 4 + (int64_t)total_count * 4);
             
             total_count = *(int *)(data_ptr + 0x18);
             index = index + 4;
@@ -1775,7 +1775,7 @@ int32_t UI_ProcessData(longlong data_ptr, longlong source_ptr, uint64_t param3, 
 
 PROCESS_COMPLETE:
     // 调用处理完成回调
-    (*(code *)*ui_system_ui)(float_buffer, *(longlong *)(data_ptr + 0x30) + (longlong)total_count * 4, total_count / 2);
+    (*(code *)*ui_system_ui)(float_buffer, *(int64_t *)(data_ptr + 0x30) + (int64_t)total_count * 4, total_count / 2);
     (*(code *)ui_system_ui[2])(float_buffer, param3, *(uint64_t *)(data_ptr + 0x30), *(int32_t *)(data_ptr + 0x18));
     
     // 清理资源（此函数不返回）

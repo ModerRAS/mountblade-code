@@ -106,7 +106,7 @@ void register_audio_renderer_component(void)
   // 获取引擎注册表
   registry = (engine_registry *)get_engine_registry();
   component_table = (engine_component_table *)*registry;
-  component_flag = *(char *)((longlong)component_table[1] + 0x19);
+  component_flag = *(char *)((int64_t)component_table[1] + 0x19);
   init_function = initialize_audio_renderer;
   target_component = component_table;
   current_component = (engine_component *)component_table[1];
@@ -123,7 +123,7 @@ void register_audio_renderer_component(void)
     }
     target_component = current_component;
     current_component = next_component;
-    component_flag = *(char *)((longlong)next_component + 0x19);
+    component_flag = *(char *)((int64_t)next_component + 0x19);
   }
   
   // 如果需要，创建新组件节点
@@ -164,7 +164,7 @@ void register_video_renderer_component(void)
   // 获取引擎注册表
   registry = (engine_registry *)get_engine_registry();
   component_table = (engine_component_table *)*registry;
-  component_flag = *(char *)((longlong)component_table[1] + 0x19);
+  component_flag = *(char *)((int64_t)component_table[1] + 0x19);
   init_function = initialize_video_renderer;
   target_component = component_table;
   current_component = (engine_component *)component_table[1];
@@ -181,7 +181,7 @@ void register_video_renderer_component(void)
     }
     target_component = current_component;
     current_component = next_component;
-    component_flag = *(char *)((longlong)next_component + 0x19);
+    component_flag = *(char *)((int64_t)next_component + 0x19);
   }
   
   // 如果需要，创建新组件节点
@@ -222,7 +222,7 @@ void register_3d_renderer_component(void)
   // 获取引擎注册表
   registry = (engine_registry *)get_engine_registry();
   component_table = (engine_component_table *)*registry;
-  component_flag = *(char *)((longlong)component_table[1] + 0x19);
+  component_flag = *(char *)((int64_t)component_table[1] + 0x19);
   init_function = initialize_3d_renderer;
   target_component = component_table;
   current_component = (engine_component *)component_table[1];
@@ -239,7 +239,7 @@ void register_3d_renderer_component(void)
     }
     target_component = current_component;
     current_component = next_component;
-    component_flag = *(char *)((longlong)next_component + 0x19);
+    component_flag = *(char *)((int64_t)next_component + 0x19);
   }
   
   // 如果需要，创建新组件节点
@@ -280,7 +280,7 @@ void register_2d_renderer_component(void)
   // 获取引擎注册表
   registry = (engine_registry *)get_engine_registry();
   component_table = (engine_component_table *)*registry;
-  component_flag = *(char *)((longlong)component_table[1] + 0x19);
+  component_flag = *(char *)((int64_t)component_table[1] + 0x19);
   init_function = NULL;  // 2D渲染器没有初始化函数
   target_component = component_table;
   current_component = (engine_component *)component_table[1];
@@ -297,7 +297,7 @@ void register_2d_renderer_component(void)
     }
     target_component = current_component;
     current_component = next_component;
-    component_flag = *(char *)((longlong)next_component + 0x19);
+    component_flag = *(char *)((int64_t)next_component + 0x19);
   }
   
   // 如果需要，创建新组件节点
@@ -338,7 +338,7 @@ void register_ui_renderer_component(void)
   // 获取引擎注册表
   registry = (engine_registry *)get_engine_registry();
   component_table = (engine_component_table *)*registry;
-  component_flag = *(char *)((longlong)component_table[1] + 0x19);
+  component_flag = *(char *)((int64_t)component_table[1] + 0x19);
   init_function = initialize_ui_renderer;
   target_component = component_table;
   current_component = (engine_component *)component_table[1];
@@ -355,7 +355,7 @@ void register_ui_renderer_component(void)
     }
     target_component = current_component;
     current_component = next_component;
-    component_flag = *(char *)((longlong)next_component + 0x19);
+    component_flag = *(char *)((int64_t)next_component + 0x19);
   }
   
   // 如果需要，创建新组件节点
@@ -396,7 +396,7 @@ void register_texture_renderer_component(void)
   // 获取引擎注册表
   registry = (engine_registry *)get_engine_registry();
   component_table = (engine_component_table *)*registry;
-  component_flag = *(char *)((longlong)component_table[1] + 0x19);
+  component_flag = *(char *)((int64_t)component_table[1] + 0x19);
   init_function = NULL;  // 纹理渲染器没有初始化函数
   target_component = component_table;
   current_component = (engine_component *)component_table[1];
@@ -413,7 +413,7 @@ void register_texture_renderer_component(void)
     }
     target_component = current_component;
     current_component = next_component;
-    component_flag = *(char *)((longlong)next_component + 0x19);
+    component_flag = *(char *)((int64_t)next_component + 0x19);
   }
   
   // 如果需要，创建新组件节点
@@ -454,7 +454,7 @@ void register_shadow_renderer_component(void)
   // 获取引擎注册表
   registry = (engine_registry *)get_engine_registry();
   component_table = (engine_component_table *)*registry;
-  component_flag = *(char *)((longlong)component_table[1] + 0x19);
+  component_flag = *(char *)((int64_t)component_table[1] + 0x19);
   init_function = &shadow_renderer_handler;  // 阴影渲染器处理函数
   target_component = component_table;
   current_component = (engine_component *)component_table[1];
@@ -471,7 +471,7 @@ void register_shadow_renderer_component(void)
     }
     target_component = current_component;
     current_component = next_component;
-    component_flag = *(char *)((longlong)next_component + 0x19);
+    component_flag = *(char *)((int64_t)next_component + 0x19);
   }
   
   // 如果需要，创建新组件节点
@@ -512,7 +512,7 @@ void register_postprocess_renderer_component(void)
   // 获取引擎注册表
   registry = (engine_registry *)get_engine_registry();
   component_table = (engine_component_table *)*registry;
-  component_flag = *(char *)((longlong)component_table[1] + 0x19);
+  component_flag = *(char *)((int64_t)component_table[1] + 0x19);
   init_function = NULL;  // 后处理渲染器没有初始化函数
   target_component = component_table;
   current_component = (engine_component *)component_table[1];
@@ -529,7 +529,7 @@ void register_postprocess_renderer_component(void)
     }
     target_component = current_component;
     current_component = next_component;
-    component_flag = *(char *)((longlong)next_component + 0x19);
+    component_flag = *(char *)((int64_t)next_component + 0x19);
   }
   
   // 如果需要，创建新组件节点
@@ -582,7 +582,7 @@ void initialize_network_system_component(void)
  */
 int validate_network_system_configuration(void)
 {
-  longlong validation_result;
+  int64_t validation_result;
   uint64_t system_parameter;
   
   network_config_base = &network_config_template;
@@ -609,7 +609,7 @@ void register_physics_system_component(void)
   // 获取引擎注册表
   registry = (engine_registry *)get_engine_registry();
   component_table = (engine_component_table *)*registry;
-  component_flag = *(char *)((longlong)component_table[1] + 0x19);
+  component_flag = *(char *)((int64_t)component_table[1] + 0x19);
   init_function = initialize_physics_system;
   target_component = component_table;
   current_component = (engine_component *)component_table[1];
@@ -626,7 +626,7 @@ void register_physics_system_component(void)
     }
     target_component = current_component;
     current_component = next_component;
-    component_flag = *(char *)((longlong)next_component + 0x19);
+    component_flag = *(char *)((int64_t)next_component + 0x19);
   }
   
   // 如果需要，创建新组件节点
@@ -667,7 +667,7 @@ void register_animation_system_component(void)
   // 获取引擎注册表
   registry = (engine_registry *)get_engine_registry();
   component_table = (engine_component_table *)*registry;
-  component_flag = *(char *)((longlong)component_table[1] + 0x19);
+  component_flag = *(char *)((int64_t)component_table[1] + 0x19);
   init_function = initialize_animation_system;
   target_component = component_table;
   current_component = (engine_component *)component_table[1];
@@ -684,7 +684,7 @@ void register_animation_system_component(void)
     }
     target_component = current_component;
     current_component = next_component;
-    component_flag = *(char *)((longlong)next_component + 0x19);
+    component_flag = *(char *)((int64_t)next_component + 0x19);
   }
   
   // 如果需要，创建新组件节点
@@ -725,7 +725,7 @@ void register_collision_system_component(void)
   // 获取引擎注册表
   registry = (engine_registry *)get_engine_registry();
   component_table = (engine_component_table *)*registry;
-  component_flag = *(char *)((longlong)component_table[1] + 0x19);
+  component_flag = *(char *)((int64_t)component_table[1] + 0x19);
   init_function = initialize_collision_system;
   target_component = component_table;
   current_component = (engine_component *)component_table[1];
@@ -742,7 +742,7 @@ void register_collision_system_component(void)
     }
     target_component = current_component;
     current_component = next_component;
-    component_flag = *(char *)((longlong)next_component + 0x19);
+    component_flag = *(char *)((int64_t)next_component + 0x19);
   }
   
   // 如果需要，创建新组件节点
@@ -783,7 +783,7 @@ void register_rigidbody_system_component(void)
   // 获取引擎注册表
   registry = (engine_registry *)get_engine_registry();
   component_table = (engine_component_table *)*registry;
-  component_flag = *(char *)((longlong)component_table[1] + 0x19);
+  component_flag = *(char *)((int64_t)component_table[1] + 0x19);
   init_function = initialize_rigidbody_system;
   target_component = component_table;
   current_component = (engine_component *)component_table[1];
@@ -800,7 +800,7 @@ void register_rigidbody_system_component(void)
     }
     target_component = current_component;
     current_component = next_component;
-    component_flag = *(char *)((longlong)next_component + 0x19);
+    component_flag = *(char *)((int64_t)next_component + 0x19);
   }
   
   // 如果需要，创建新组件节点
@@ -841,7 +841,7 @@ void register_constraint_system_component(void)
   // 获取引擎注册表
   registry = (engine_registry *)get_engine_registry();
   component_table = (engine_component_table *)*registry;
-  component_flag = *(char *)((longlong)component_table[1] + 0x19);
+  component_flag = *(char *)((int64_t)component_table[1] + 0x19);
   init_function = NULL;  // 约束系统没有初始化函数
   target_component = component_table;
   current_component = (engine_component *)component_table[1];
@@ -858,7 +858,7 @@ void register_constraint_system_component(void)
     }
     target_component = current_component;
     current_component = next_component;
-    component_flag = *(char *)((longlong)next_component + 0x19);
+    component_flag = *(char *)((int64_t)next_component + 0x19);
   }
   
   // 如果需要，创建新组件节点
@@ -899,7 +899,7 @@ void register_trigger_system_component(void)
   // 获取引擎注册表
   registry = (engine_registry *)get_engine_registry();
   component_table = (engine_component_table *)*registry;
-  component_flag = *(char *)((longlong)component_table[1] + 0x19);
+  component_flag = *(char *)((int64_t)component_table[1] + 0x19);
   init_function = initialize_trigger_system;
   target_component = component_table;
   current_component = (engine_component *)component_table[1];
@@ -916,7 +916,7 @@ void register_trigger_system_component(void)
     }
     target_component = current_component;
     current_component = next_component;
-    component_flag = *(char *)((longlong)next_component + 0x19);
+    component_flag = *(char *)((int64_t)next_component + 0x19);
   }
   
   // 如果需要，创建新组件节点
@@ -957,7 +957,7 @@ void register_forcefield_system_component(void)
   // 获取引擎注册表
   registry = (engine_registry *)get_engine_registry();
   component_table = (engine_component_table *)*registry;
-  component_flag = *(char *)((longlong)component_table[1] + 0x19);
+  component_flag = *(char *)((int64_t)component_table[1] + 0x19);
   init_function = NULL;  // 力场系统没有初始化函数
   target_component = component_table;
   current_component = (engine_component *)component_table[1];
@@ -974,7 +974,7 @@ void register_forcefield_system_component(void)
     }
     target_component = current_component;
     current_component = next_component;
-    component_flag = *(char *)((longlong)next_component + 0x19);
+    component_flag = *(char *)((int64_t)next_component + 0x19);
   }
   
   // 如果需要，创建新组件节点
@@ -1015,7 +1015,7 @@ void register_cloth_system_component(void)
   // 获取引擎注册表
   registry = (engine_registry *)get_engine_registry();
   component_table = (engine_component_table *)*registry;
-  component_flag = *(char *)((longlong)component_table[1] + 0x19);
+  component_flag = *(char *)((int64_t)component_table[1] + 0x19);
   init_function = &cloth_system_handler;  // 布料系统处理函数
   target_component = component_table;
   current_component = (engine_component *)component_table[1];
@@ -1032,7 +1032,7 @@ void register_cloth_system_component(void)
     }
     target_component = current_component;
     current_component = next_component;
-    component_flag = *(char *)((longlong)next_component + 0x19);
+    component_flag = *(char *)((int64_t)next_component + 0x19);
   }
   
   // 如果需要，创建新组件节点
@@ -1073,7 +1073,7 @@ void register_fluid_system_component(void)
   // 获取引擎注册表
   registry = (engine_registry *)get_engine_registry();
   component_table = (engine_component_table *)*registry;
-  component_flag = *(char *)((longlong)component_table[1] + 0x19);
+  component_flag = *(char *)((int64_t)component_table[1] + 0x19);
   init_function = NULL;  // 流体系统没有初始化函数
   target_component = component_table;
   current_component = (engine_component *)component_table[1];
@@ -1090,7 +1090,7 @@ void register_fluid_system_component(void)
     }
     target_component = current_component;
     current_component = next_component;
-    component_flag = *(char *)((longlong)next_component + 0x19);
+    component_flag = *(char *)((int64_t)next_component + 0x19);
   }
   
   // 如果需要，创建新组件节点
@@ -1155,7 +1155,7 @@ void register_audio_system_component(void)
   // 获取引擎注册表
   registry = (engine_registry *)get_engine_registry();
   component_table = (engine_component_table *)*registry;
-  component_flag = *(char *)((longlong)component_table[1] + 0x19);
+  component_flag = *(char *)((int64_t)component_table[1] + 0x19);
   init_function = initialize_audio_system;
   target_component = component_table;
   current_component = (engine_component *)component_table[1];
@@ -1172,7 +1172,7 @@ void register_audio_system_component(void)
     }
     target_component = current_component;
     current_component = next_component;
-    component_flag = *(char *)((longlong)next_component + 0x19);
+    component_flag = *(char *)((int64_t)next_component + 0x19);
   }
   
   // 如果需要，创建新组件节点
@@ -1213,7 +1213,7 @@ void register_3d_audio_system_component(void)
   // 获取引擎注册表
   registry = (engine_registry *)get_engine_registry();
   component_table = (engine_component_table *)*registry;
-  component_flag = *(char *)((longlong)component_table[1] + 0x19);
+  component_flag = *(char *)((int64_t)component_table[1] + 0x19);
   init_function = initialize_3d_audio_system;
   target_component = component_table;
   current_component = (engine_component *)component_table[1];
@@ -1230,7 +1230,7 @@ void register_3d_audio_system_component(void)
     }
     target_component = current_component;
     current_component = next_component;
-    component_flag = *(char *)((longlong)next_component + 0x19);
+    component_flag = *(char *)((int64_t)next_component + 0x19);
   }
   
   // 如果需要，创建新组件节点
@@ -1271,7 +1271,7 @@ void register_audio_stream_system_component(void)
   // 获取引擎注册表
   registry = (engine_registry *)get_engine_registry();
   component_table = (engine_component_table *)*registry;
-  component_flag = *(char *)((longlong)component_table[1] + 0x19);
+  component_flag = *(char *)((int64_t)component_table[1] + 0x19);
   init_function = NULL;  // 音频流系统没有初始化函数
   target_component = component_table;
   current_component = (engine_component *)component_table[1];
@@ -1288,7 +1288,7 @@ void register_audio_stream_system_component(void)
     }
     target_component = current_component;
     current_component = next_component;
-    component_flag = *(char *)((longlong)next_component + 0x19);
+    component_flag = *(char *)((int64_t)next_component + 0x19);
   }
   
   // 如果需要，创建新组件节点
@@ -1329,7 +1329,7 @@ void register_audio_mixer_system_component(void)
   // 获取引擎注册表
   registry = (engine_registry *)get_engine_registry();
   component_table = (engine_component_table *)*registry;
-  component_flag = *(char *)((longlong)component_table[1] + 0x19);
+  component_flag = *(char *)((int64_t)component_table[1] + 0x19);
   init_function = initialize_audio_mixer_system;
   target_component = component_table;
   current_component = (engine_component *)component_table[1];
@@ -1346,7 +1346,7 @@ void register_audio_mixer_system_component(void)
     }
     target_component = current_component;
     current_component = next_component;
-    component_flag = *(char *)((longlong)next_component + 0x19);
+    component_flag = *(char *)((int64_t)next_component + 0x19);
   }
   
   // 如果需要，创建新组件节点

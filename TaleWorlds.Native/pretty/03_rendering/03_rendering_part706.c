@@ -87,8 +87,8 @@ typedef ushort RenderUInt16;                      // 渲染系统16位无符号�
 typedef int RenderInt32;                          // 渲染系统32位整数
 typedef uint RenderUInt32;                        // 渲染系统32位无符号整数
 typedef float RenderFloat;                        // 渲染系统浮点数
-typedef longlong RenderInt64;                     // 渲染系统64位整数
-typedef ulonglong RenderUInt64;                   // 渲染系统64位无符号整数
+typedef int64_t RenderInt64;                     // 渲染系统64位整数
+typedef uint64_t RenderUInt64;                   // 渲染系统64位无符号整数
 
 // SIMD向量类型
 typedef struct {
@@ -208,7 +208,7 @@ void RenderingCleanup_706_012(void);
  * @author Claude Code
  * @completion_date 2025-08-28
  */
-void FUN_180673850(longlong param_1, longlong *param_2)
+void FUN_180673850(int64_t param_1, int64_t *param_2)
 {
     // SIMD寄存器变量声明
     SimdVector16 reg_source1;              // 源寄存器1
@@ -255,7 +255,7 @@ void FUN_180673850(longlong param_1, longlong *param_2)
     
     // 加载向量数据
     memcpy(vector_data, (void*)param_2[3], sizeof(vector_data));
-    memcpy(multiplier, (void*)*(longlong*)(param_1 + 0x38), sizeof(multiplier));
+    memcpy(multiplier, (void*)*(int64_t*)(param_1 + 0x38), sizeof(multiplier));
     
     // 执行向量加法运算
     for (int i = 0; i < 8; i++) {
@@ -378,7 +378,7 @@ void FUN_180673850(longlong param_1, longlong *param_2)
  * @author Claude Code
  * @completion_date 2025-08-28
  */
-void FUN_180673970(longlong param_1, longlong *param_2)
+void FUN_180673970(int64_t param_1, int64_t *param_2)
 {
     // SIMD处理上下文
     simd_processing_context_t context;
@@ -410,7 +410,7 @@ void FUN_180673970(longlong param_1, longlong *param_2)
     
     // 加载输入数据
     memcpy(input_vectors, (void*)param_2[3], sizeof(input_vectors));
-    memcpy(multiplier_vectors, (void*)*(longlong*)(param_1 + 0x30), sizeof(multiplier_vectors));
+    memcpy(multiplier_vectors, (void*)*(int64_t*)(param_1 + 0x30), sizeof(multiplier_vectors));
     
     // 加载SIMD寄存器
     context.reg_a = *(simd_register128_t*)(*(void**)(param_1 + 8));
@@ -518,7 +518,7 @@ void FUN_180673970(longlong param_1, longlong *param_2)
  * @param param_5 目标地址
  * @param param_6 操作标志
  */
-void FUN_180673e10(longlong param_1, int param_2, int param_3, int param_4, 
+void FUN_180673e10(int64_t param_1, int param_2, int param_3, int param_4, 
                   uint64_t param_5, int32_t param_6)
 {
     // 内存管理参数
@@ -560,19 +560,19 @@ void FUN_180673e10(longlong param_1, int param_2, int param_3, int param_4,
         if (param_4 == 0) {
             // 模式1：优化内存处理
             operation_type = 0x10;
-            source_buffer = (void*)(GLOBAL_MEMORY_BASE + (longlong)param_3 * 0x60);
+            source_buffer = (void*)(GLOBAL_MEMORY_BASE + (int64_t)param_3 * 0x60);
             SIMDMemoryCopy(param_1, param_2, param_5, param_6);
             goto cleanup_handler;
         }
         
         // 模式2：扩展内存处理
-        source_buffer = (void*)(GLOBAL_MEMORY_BASE + (longlong)param_3 * 0x60);
+        source_buffer = (void*)(GLOBAL_MEMORY_BASE + (int64_t)param_3 * 0x60);
         operation_type = 0x15;
         SIMDMemoryTransform(param_1 - param_2 * 2, temp_buffer_1, param_2, 1);
     }
     
     // 设置目标缓冲区
-    target_buffer = (void*)(GLOBAL_MEMORY_BASE + (longlong)param_4 * 0x60);
+    target_buffer = (void*)(GLOBAL_MEMORY_BASE + (int64_t)param_4 * 0x60);
     source_buffer = (void*)((uintptr_t)source_buffer | (uintptr_t)param_6);
     operation_type = 0x10;
     
@@ -597,7 +597,7 @@ cleanup_handler:
  * @param param_5 目标地址
  * @param param_6 操作标志
  */
-void FUN_180673f50(longlong param_1, uint64_t param_2, int param_3, int param_4, 
+void FUN_180673f50(int64_t param_1, uint64_t param_2, int param_3, int param_4, 
                   uint64_t param_5, int32_t param_6)
 {
     // 数据变换参数
@@ -673,7 +673,7 @@ void FUN_180673f50(longlong param_1, uint64_t param_2, int param_3, int param_4,
  * @param param_5 目标地址
  * @param param_6 操作标志
  */
-void FUN_180674040(longlong param_1, int param_2, int param_3, int param_4, 
+void FUN_180674040(int64_t param_1, int param_2, int param_3, int param_4, 
                   uint64_t param_5, int32_t param_6)
 {
     // 参数处理变量
@@ -707,7 +707,7 @@ void FUN_180674040(longlong param_1, int param_2, int param_3, int param_4,
     operation_flags = param_4;
     
     // 设置处理缓冲区
-    param_buffer = (void*)(GLOBAL_MEMORY_BASE + (longlong)param_3 * 0x60);
+    param_buffer = (void*)(GLOBAL_MEMORY_BASE + (int64_t)param_3 * 0x60);
     operation_flags = 8;
     param_count = 9;
     
@@ -715,7 +715,7 @@ void FUN_180674040(longlong param_1, int param_2, int param_3, int param_4,
     SIMDDataCompress(param_1 - param_2 * 2, temp_buffer_1, param_2, 1);
     
     // 设置结果缓冲区
-    result_buffer = (void*)(GLOBAL_MEMORY_BASE + (longlong)param_4 * 0x60);
+    result_buffer = (void*)(GLOBAL_MEMORY_BASE + (int64_t)param_4 * 0x60);
     param_buffer = (void*)((uintptr_t)param_buffer | 4);
     operation_flags = 4;
     param_count = 4;
@@ -803,7 +803,7 @@ void FUN_180674120(int8_t *param_1, int param_2, int param_3, int param_4,
             // 模式1：坐标数据传输
             transform_mode = 4;
             coord_count = param_4;
-            SIMDDataTransfer((longlong)param_1 - (longlong)(param_2 * 2), param_2, param_5, param_6);
+            SIMDDataTransfer((int64_t)param_1 - (int64_t)(param_2 * 2), param_2, param_5, param_6);
         }
     } else {
         coord_count = param_3;
@@ -814,7 +814,7 @@ void FUN_180674120(int8_t *param_1, int param_2, int param_3, int param_4,
         } else {
             // 模式3：高级坐标变换
             transform_mode = 9;
-            SIMDDataConvert((longlong)param_1 - (longlong)(param_2 * 2), param_2, temp_buffer, 4);
+            SIMDDataConvert((int64_t)param_1 - (int64_t)(param_2 * 2), param_2, temp_buffer, 4);
             transform_mode = 4;
             coord_count = param_4;
             SIMDDataTransfer(temp_buffer, 4, param_5, param_6);
@@ -838,7 +838,7 @@ void FUN_180674120(int8_t *param_1, int param_2, int param_3, int param_4,
  * @param param_5 目标地址
  * @param param_6 优化标志
  */
-void FUN_1806742a0(longlong param_1, int param_2, int param_3, int param_4, 
+void FUN_1806742a0(int64_t param_1, int param_2, int param_3, int param_4, 
                   uint64_t param_5, int32_t param_6)
 {
     // 优化参数
@@ -873,22 +873,22 @@ void FUN_1806742a0(longlong param_1, int param_2, int param_3, int param_4,
     // 根据优化模式执行不同的操作
     if (param_3 == 0) {
         // 模式0：内存优化
-        optimization_buffer = (void*)(GLOBAL_MEMORY_BASE + (longlong)param_4 * 0x60);
+        optimization_buffer = (void*)(GLOBAL_MEMORY_BASE + (int64_t)param_4 * 0x60);
         optimization_level = 4;
         SIMDDataFilter(param_1 - param_2 * 2, param_2, param_5, param_6);
     } else if (param_4 == 0) {
         // 模式1：算法优化
         optimization_level = 4;
-        optimization_buffer = (void*)(GLOBAL_MEMORY_BASE + (longlong)param_3 * 0x60);
+        optimization_buffer = (void*)(GLOBAL_MEMORY_BASE + (int64_t)param_3 * 0x60);
         SIMDDataTransformEx(param_1, param_2, param_5, param_6);
     } else {
         // 模式2：综合优化
         memory_alignment = 0x10;
         optimization_level = 9;
-        optimization_buffer = (void*)(GLOBAL_MEMORY_BASE + (longlong)param_3 * 0x60);
+        optimization_buffer = (void*)(GLOBAL_MEMORY_BASE + (int64_t)param_3 * 0x60);
         SIMDDataProcessEx(param_1 - param_2 * 2, temp_buffer_1, param_2, 1);
         
-        optimization_buffer = (void*)(GLOBAL_MEMORY_BASE + (longlong)param_4 * 0x60);
+        optimization_buffer = (void*)(GLOBAL_MEMORY_BASE + (int64_t)param_4 * 0x60);
         optimization_buffer = (void*)((uintptr_t)optimization_buffer | (uintptr_t)param_6);
         memory_alignment = 0x10;
         optimization_level = 8;
@@ -913,7 +913,7 @@ void FUN_1806742a0(longlong param_1, int param_2, int param_3, int param_4,
  * @param param_5 目标地址
  * @param param_6 操作标志
  */
-void FUN_1806743e0(longlong param_1, uint64_t param_2, int param_3, int param_4, 
+void FUN_1806743e0(int64_t param_1, uint64_t param_2, int param_3, int param_4, 
                   uint64_t param_5, int32_t param_6)
 {
     // 资源处理变量
@@ -988,7 +988,7 @@ void FUN_1806743e0(longlong param_1, uint64_t param_2, int param_3, int param_4,
  * @param param_5 目标地址
  * @param param_6 分配标志
  */
-void FUN_1806744d0(longlong param_1, int param_2, int param_3, int param_4, 
+void FUN_1806744d0(int64_t param_1, int param_2, int param_3, int param_4, 
                   uint64_t param_5, int32_t param_6)
 {
     // 内存分配参数
@@ -1023,22 +1023,22 @@ void FUN_1806744d0(longlong param_1, int param_2, int param_3, int param_4,
     // 根据分配模式执行不同的操作
     if (param_3 == 0) {
         // 模式0：标准内存分配
-        memory_buffer = (void*)(GLOBAL_MEMORY_BASE + (longlong)param_4 * 0x60);
+        memory_buffer = (void*)(GLOBAL_MEMORY_BASE + (int64_t)param_4 * 0x60);
         allocation_mode = 8;
         SIMDDataFilter(param_1 - param_2 * 2, param_2, param_5, param_6);
     } else if (param_4 == 0) {
         // 模式1：对齐内存分配
         allocation_mode = 8;
-        memory_buffer = (void*)(GLOBAL_MEMORY_BASE + (longlong)param_3 * 0x60);
+        memory_buffer = (void*)(GLOBAL_MEMORY_BASE + (int64_t)param_3 * 0x60);
         SIMDDataTransformEx(param_1, param_2, param_5, param_6);
     } else {
         // 模式2：高级内存分配
         memory_alignment = 0x10;
         allocation_mode = 0xD;
-        memory_buffer = (void*)(GLOBAL_MEMORY_BASE + (longlong)param_3 * 0x60);
+        memory_buffer = (void*)(GLOBAL_MEMORY_BASE + (int64_t)param_3 * 0x60);
         SIMDDataProcessEx(param_1 - param_2 * 2, temp_buffer_1, param_2, 1);
         
-        memory_buffer = (void*)(GLOBAL_MEMORY_BASE + (longlong)param_4 * 0x60);
+        memory_buffer = (void*)(GLOBAL_MEMORY_BASE + (int64_t)param_4 * 0x60);
         memory_buffer = (void*)((uintptr_t)memory_buffer | (uintptr_t)param_6);
         memory_alignment = 0x10;
         allocation_mode = 8;
@@ -1063,7 +1063,7 @@ void FUN_1806744d0(longlong param_1, int param_2, int param_3, int param_4,
  * @param param_5 目标地址
  * @param param_6 初始化标志
  */
-void FUN_180674610(longlong param_1, uint64_t param_2, int param_3, int param_4, 
+void FUN_180674610(int64_t param_1, uint64_t param_2, int param_3, int param_4, 
                   uint64_t param_5, int32_t param_6)
 {
     // 初始化参数
@@ -1138,7 +1138,7 @@ void FUN_180674610(longlong param_1, uint64_t param_2, int param_3, int param_4,
  * @param param_5 目标地址
  * @param param_6 处理标志
  */
-void FUN_180674700(longlong param_1, uint64_t param_2, longlong param_3, 
+void FUN_180674700(int64_t param_1, uint64_t param_2, int64_t param_3, 
                   uint64_t param_4, short *param_5)
 {
     // 数据处理参数
@@ -1192,7 +1192,7 @@ void FUN_180674700(longlong param_1, uint64_t param_2, longlong param_3,
         }
         
         if (3 < (int)stack_param_1) {
-            longlong offset = param_1 - param_3;
+            int64_t offset = param_1 - param_3;
             uint64_t iterations = (uint64_t)(stack_param_1 >> 2);
             do {
                 SIMDVectorProcessStandard(offset + param_3, param_2, param_3, param_4, stack_param_2, param_5);

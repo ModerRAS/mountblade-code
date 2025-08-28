@@ -45,7 +45,7 @@
 typedef uint64_t* ConfigHandle;
 typedef char* StringPtr;
 typedef float* FloatPtr;
-typedef longlong* ArrayPtr;
+typedef int64_t* ArrayPtr;
 typedef uint64_t EntityHandle;
 typedef int32_t SystemStatus;
 
@@ -99,11 +99,11 @@ typedef struct {
 // 主要数据处理函数
 void DataProcessor_ProcessConfigData(void);
 void StringProcessor_HandleStrings(int32_t param_1);
-void ParameterProcessor_HandleParams(int32_t param_1, uint64_t param_2, uint64_t param_3, longlong param_4);
+void ParameterProcessor_HandleParams(int32_t param_1, uint64_t param_2, uint64_t param_3, int64_t param_4);
 void ConfigProcessor_HandleConfig(int32_t param_1, uint64_t* param_2);
-void DataValidator_ValidateData(longlong param_1);
+void DataValidator_ValidateData(int64_t param_1);
 void System_EmptyFunction(void);
-void EntityManager_ProcessEntities(longlong param_1, longlong* param_2);
+void EntityManager_ProcessEntities(int64_t param_1, int64_t* param_2);
 void ArrayProcessor_ProcessArrays(uint64_t* param_1, int param_2, int param_3);
 void SystemCaller_InvokeSystem(void);
 
@@ -145,12 +145,12 @@ void DataProcessor_ProcessConfigData(void)
     uint64_t* config_ptr;
     char* name_ptr;
     char* value_ptr;
-    longlong length;
+    int64_t length;
     uint64_t* base_ptr;
-    longlong context_ptr;
+    int64_t context_ptr;
     float* float_ptr;
-    longlong param_r9;
-    longlong param_r10;
+    int64_t param_r9;
+    int64_t param_r10;
     char* temp_ptr;
     
     // 遍历配置链表
@@ -188,7 +188,7 @@ void DataProcessor_ProcessConfigData(void)
                     }
                     
                     if (value_ptr == temp_ptr + -DEFAULT_STRING_OFFSET) {
-                        value_ptr = value_ptr + (longlong)name_ptr;
+                        value_ptr = value_ptr + (int64_t)name_ptr;
                         if (value_ptr <= name_ptr) {
                             // 获取配置值
                             length = STRING_POOL_ADDR;
@@ -199,7 +199,7 @@ void DataProcessor_ProcessConfigData(void)
                         }
                         
                         // 验证配置项
-                        length = (longlong)&unknown_var_3408_ptr - (longlong)name_ptr;
+                        length = (int64_t)&unknown_var_3408_ptr - (int64_t)name_ptr;
                         while (*name_ptr == name_ptr[length]) {
                             name_ptr = name_ptr + 1;
                             if (value_ptr <= name_ptr) {
@@ -245,7 +245,7 @@ void DataProcessor_ProcessConfigData(void)
                     }
                     
                     if (value_ptr == temp_ptr + -FAR_PLANE_OFFSET) {
-                        value_ptr = value_ptr + (longlong)name_ptr;
+                        value_ptr = value_ptr + (int64_t)name_ptr;
                         if (value_ptr <= name_ptr) {
                             length = STRING_POOL_ADDR;
                             if (config_ptr[1] != 0) {
@@ -254,7 +254,7 @@ void DataProcessor_ProcessConfigData(void)
                             goto handle_far_plane;
                         }
                         
-                        length = (longlong)&unknown_var_3392_ptr - (longlong)name_ptr;
+                        length = (int64_t)&unknown_var_3392_ptr - (int64_t)name_ptr;
                         while (*name_ptr == name_ptr[length]) {
                             name_ptr = name_ptr + 1;
                             if (value_ptr <= name_ptr) {
@@ -271,7 +271,7 @@ void DataProcessor_ProcessConfigData(void)
             }
             
             // 验证配置项匹配
-            length = param_r10 - (longlong)name_ptr;
+            length = param_r10 - (int64_t)name_ptr;
             while (*name_ptr == name_ptr[length]) {
                 name_ptr = name_ptr + 1;
                 if (value_ptr <= name_ptr) {
@@ -294,7 +294,7 @@ void DataProcessor_ProcessConfigData(void)
                         }
                         
                         if (value_ptr == temp_ptr + -DEFAULT_STRING_OFFSET) {
-                            value_ptr = value_ptr + (longlong)name_ptr;
+                            value_ptr = value_ptr + (int64_t)name_ptr;
                             if (value_ptr <= name_ptr) {
                                 length = STRING_POOL_ADDR;
                                 if (config_ptr[1] != 0) {
@@ -303,7 +303,7 @@ void DataProcessor_ProcessConfigData(void)
                                 goto handle_near_plane;
                             }
                             
-                            length = (longlong)&unknown_var_3408_ptr - (longlong)name_ptr;
+                            length = (int64_t)&unknown_var_3408_ptr - (int64_t)name_ptr;
                             while (*name_ptr == name_ptr[length]) {
                                 name_ptr = name_ptr + 1;
                                 if (value_ptr <= name_ptr) {
@@ -357,11 +357,11 @@ void StringProcessor_HandleStrings(int32_t param_1)
     uint64_t* config_ptr;
     char* name_ptr;
     char* value_ptr;
-    longlong base_ptr;
+    int64_t base_ptr;
     char* string_ptr;
-    longlong context_ptr;
+    int64_t context_ptr;
     float* float_ptr;
-    longlong length;
+    int64_t length;
     char* temp_ptr;
     char* end_ptr;
     
@@ -385,7 +385,7 @@ void StringProcessor_HandleStrings(int32_t param_1)
         }
         
         if (name_ptr == end_ptr + -DEFAULT_STRING_OFFSET) {
-            name_ptr = name_ptr + (longlong)value_ptr;
+            name_ptr = name_ptr + (int64_t)value_ptr;
             if (name_ptr <= value_ptr) {
                 name_ptr = string_ptr;
                 if ((char*)config_ptr[1] != (char*)0x0) {
@@ -394,7 +394,7 @@ void StringProcessor_HandleStrings(int32_t param_1)
                 goto apply_near_plane;
             }
             
-            length = (longlong)&unknown_var_3408_ptr - (longlong)value_ptr;
+            length = (int64_t)&unknown_var_3408_ptr - (int64_t)value_ptr;
             while (*value_ptr == value_ptr[length]) {
                 value_ptr = value_ptr + 1;
                 if (name_ptr <= value_ptr) {
@@ -441,7 +441,7 @@ apply_near_plane:
         }
         
         if (name_ptr == end_ptr + -FAR_PLANE_OFFSET) {
-            name_ptr = name_ptr + (longlong)value_ptr;
+            name_ptr = name_ptr + (int64_t)value_ptr;
             if (name_ptr <= value_ptr) {
                 if ((char*)config_ptr[1] != (char*)0x0) {
                     string_ptr = (char*)config_ptr[1];
@@ -449,7 +449,7 @@ apply_near_plane:
                 goto apply_far_plane;
             }
             
-            length = (longlong)&unknown_var_3392_ptr - (longlong)value_ptr;
+            length = (int64_t)&unknown_var_3392_ptr - (int64_t)value_ptr;
             while (*value_ptr == value_ptr[length]) {
                 value_ptr = value_ptr + 1;
                 if (name_ptr <= value_ptr) {
@@ -488,17 +488,17 @@ apply_far_plane:
  * @param param_4 参数长度
  * @return void 无返回值
  */
-void ParameterProcessor_HandleParams(int32_t param_1, uint64_t param_2, uint64_t param_3, longlong param_4)
+void ParameterProcessor_HandleParams(int32_t param_1, uint64_t param_2, uint64_t param_3, int64_t param_4)
 {
     uint64_t* config_ptr;
     char* name_ptr;
     char* value_ptr;
-    longlong length;
+    int64_t length;
     uint64_t* base_ptr;
     char* string_ptr;
-    longlong context_ptr;
+    int64_t context_ptr;
     float* float_ptr;
-    longlong param_r10;
+    int64_t param_r10;
     char* temp_ptr;
     
     // 遍历配置项查找匹配参数
@@ -522,7 +522,7 @@ void ParameterProcessor_HandleParams(int32_t param_1, uint64_t param_2, uint64_t
         value_ptr = name_ptr + length;
         if (value_ptr <= name_ptr) break;
         
-        length = param_r10 - (longlong)name_ptr;
+        length = param_r10 - (int64_t)name_ptr;
         while (*name_ptr == name_ptr[length]) {
             name_ptr = name_ptr + 1;
             if (value_ptr <= name_ptr) {
@@ -553,7 +553,7 @@ process_string_config:
         }
         
         if (name_ptr == temp_ptr + -DEFAULT_STRING_OFFSET) {
-            name_ptr = name_ptr + (longlong)value_ptr;
+            name_ptr = name_ptr + (int64_t)value_ptr;
             if (name_ptr <= value_ptr) {
                 name_ptr = string_ptr;
                 if ((char*)config_ptr[1] != (char*)0x0) {
@@ -562,7 +562,7 @@ process_string_config:
                 goto apply_near_plane_config;
             }
             
-            length = (longlong)&unknown_var_3408_ptr - (longlong)value_ptr;
+            length = (int64_t)&unknown_var_3408_ptr - (int64_t)value_ptr;
             while (*value_ptr == value_ptr[length]) {
                 value_ptr = value_ptr + 1;
                 if (name_ptr <= value_ptr) {
@@ -609,7 +609,7 @@ apply_near_plane_config:
         }
         
         if (name_ptr == temp_ptr + -FAR_PLANE_OFFSET) {
-            name_ptr = name_ptr + (longlong)value_ptr;
+            name_ptr = name_ptr + (int64_t)value_ptr;
             if (name_ptr <= value_ptr) {
                 if ((char*)config_ptr[1] != (char*)0x0) {
                     string_ptr = (char*)config_ptr[1];
@@ -617,7 +617,7 @@ apply_near_plane_config:
                 goto apply_far_plane_config;
             }
             
-            length = (longlong)&unknown_var_3392_ptr - (longlong)value_ptr;
+            length = (int64_t)&unknown_var_3392_ptr - (int64_t)value_ptr;
             while (*value_ptr == value_ptr[length]) {
                 value_ptr = value_ptr + 1;
                 if (name_ptr <= value_ptr) {
@@ -659,15 +659,15 @@ void ConfigProcessor_HandleConfig(int32_t param_1, uint64_t* param_2)
     uint64_t* config_ptr;
     char* name_ptr;
     char* value_ptr;
-    longlong base_ptr;
-    longlong base_ptr2;
+    int64_t base_ptr;
+    int64_t base_ptr2;
     char* string_ptr;
-    longlong context_ptr;
+    int64_t context_ptr;
     float* float_ptr;
-    longlong length;
-    longlong param_r10;
+    int64_t length;
+    int64_t param_r10;
     char* temp_ptr;
-    longlong param_r11;
+    int64_t param_r11;
     
     // 初始化配置处理
     length = 0;
@@ -677,7 +677,7 @@ void ConfigProcessor_HandleConfig(int32_t param_1, uint64_t* param_2)
         if (length == param_r10) {
             temp_ptr = name_ptr + length;
             if (name_ptr < temp_ptr) {
-                length = base_ptr2 - (longlong)name_ptr;
+                length = base_ptr2 - (int64_t)name_ptr;
                 while (*name_ptr == name_ptr[length]) {
                     name_ptr = name_ptr + 1;
                     if (temp_ptr <= name_ptr) {
@@ -728,9 +728,9 @@ void ConfigProcessor_HandleConfig(int32_t param_1, uint64_t* param_2)
                 config_ptr = (uint64_t*)config_ptr[6];
             }
             
-            name_ptr = name_ptr + (longlong)value_ptr;
+            name_ptr = name_ptr + (int64_t)value_ptr;
             if (value_ptr < name_ptr) {
-                length = (longlong)&unknown_var_3392_ptr - (longlong)value_ptr;
+                length = (int64_t)&unknown_var_3392_ptr - (int64_t)value_ptr;
                 do {
                     if (*value_ptr != value_ptr[length]) goto move_to_next_config;
                     value_ptr = value_ptr + 1;
@@ -776,7 +776,7 @@ do_config_loop:
     if (length == param_r10) {
         temp_ptr = name_ptr + length;
         if (name_ptr < temp_ptr) {
-            length = base_ptr2 - (longlong)name_ptr;
+            length = base_ptr2 - (int64_t)name_ptr;
             while (*name_ptr == name_ptr[length]) {
                 name_ptr = name_ptr + 1;
                 if (temp_ptr <= name_ptr) {
@@ -799,16 +799,16 @@ do_config_loop:
  * @param param_1 数据验证参数
  * @return void 无返回值
  */
-void DataValidator_ValidateData(longlong param_1)
+void DataValidator_ValidateData(int64_t param_1)
 {
     uint64_t* config_ptr;
     char* name_ptr;
     char* value_ptr;
-    longlong base_ptr;
+    int64_t base_ptr;
     char* string_ptr;
-    longlong context_ptr;
+    int64_t context_ptr;
     float* float_ptr;
-    longlong length;
+    int64_t length;
     char* temp_ptr;
     char* end_ptr;
     
@@ -842,7 +842,7 @@ void DataValidator_ValidateData(longlong param_1)
         }
         
         if (name_ptr == end_ptr + -FAR_PLANE_OFFSET) {
-            name_ptr = name_ptr + (longlong)value_ptr;
+            name_ptr = name_ptr + (int64_t)value_ptr;
             if (name_ptr <= value_ptr) {
                 if ((char*)config_ptr[1] != (char*)0x0) {
                     string_ptr = (char*)config_ptr[1];
@@ -850,7 +850,7 @@ void DataValidator_ValidateData(longlong param_1)
                 goto apply_validation;
             }
             
-            length = (longlong)&unknown_var_3392_ptr - (longlong)value_ptr;
+            length = (int64_t)&unknown_var_3392_ptr - (int64_t)value_ptr;
             while (*value_ptr == value_ptr[length]) {
                 value_ptr = value_ptr + 1;
                 if (name_ptr <= value_ptr) {
@@ -900,14 +900,14 @@ void System_EmptyFunction(void)
  * @param param_2 实体数组指针
  * @return void 无返回值
  */
-void EntityManager_ProcessEntities(longlong param_1, longlong* param_2)
+void EntityManager_ProcessEntities(int64_t param_1, int64_t* param_2)
 {
     char* entity_type;
     uint64_t entity_handle;
     char* entity_id;
     char* temp_ptr;
     char* end_ptr;
-    longlong length;
+    int64_t length;
     uint64_t* config_ptr;
     char* string_ptr;
     int8_t stack_buffer[16];
@@ -916,10 +916,10 @@ void EntityManager_ProcessEntities(longlong param_1, longlong* param_2)
     uint64_t process_handle;
     char** string_array_ptr;
     char* stack_string;
-    longlong* stack_ptr;
+    int64_t* stack_ptr;
     void* stack_void_ptr;
-    longlong* stack_long_ptr;
-    longlong stack_long;
+    int64_t* stack_long_ptr;
+    int64_t stack_long;
     uint64_t stack_uint64_1;
     uint64_t stack_uint64_2;
     int* int_ptr;
@@ -932,7 +932,7 @@ void EntityManager_ProcessEntities(longlong param_1, longlong* param_2)
         entity_type = end_ptr + 1;
     } while (*entity_type != '\0');
     
-    config_ptr = *(uint64_t**)(*(longlong*)(param_1 + 0x81a0) + 0x30);
+    config_ptr = *(uint64_t**)(*(int64_t*)(param_1 + 0x81a0) + 0x30);
     if (config_ptr != (uint64_t*)0x0) {
         entity_type = (char*)0x0;
         do {
@@ -946,7 +946,7 @@ void EntityManager_ProcessEntities(longlong param_1, longlong* param_2)
             }
             
             if (temp_ptr == end_ptr + -ENTITIES_OFFSET) {
-                temp_ptr = entity_id + (longlong)temp_ptr;
+                temp_ptr = entity_id + (int64_t)temp_ptr;
                 if (temp_ptr <= entity_id) {
                     // 处理游戏实体
                     entity_type = "game_entity";
@@ -969,7 +969,7 @@ void EntityManager_ProcessEntities(longlong param_1, longlong* param_2)
                             stack_buffer[0] = 1;
                             
                             entity_handle = FUN_18062b1e0(system_memory_pool_ptr, 0x70, 8, 
-                                                         CONCAT71((int7)((ulonglong)entity_id >> 8), 3));
+                                                         CONCAT71((int7)((uint64_t)entity_id >> 8), 3));
                             entity_handle = FUN_18039fc00(entity_handle);
                             *(uint64_t*)(param_1 + 600) = entity_handle;
                             
@@ -980,8 +980,8 @@ void EntityManager_ProcessEntities(longlong param_1, longlong* param_2)
                             int_ptr = array_params;
                             
                             stack_string = (char*)FUN_18062b1e0(system_memory_pool_ptr, 0x28, 8, system_allocation_flags);
-                            *(longlong**)stack_string = stack_ptr;
-                            *(longlong*)(stack_string + 8) = stack_long;
+                            *(int64_t**)stack_string = stack_ptr;
+                            *(int64_t*)(stack_string + 8) = stack_long;
                             *(int32_t*)(stack_string + 0x10) = (int32_t)stack_uint64_1;
                             *(int32_t*)(stack_string + 0x14) = stack_uint64_1._4_4_;
                             *(int32_t*)(stack_string + 0x18) = (int32_t)stack_uint64_2;
@@ -1003,27 +1003,27 @@ void EntityManager_ProcessEntities(longlong param_1, longlong* param_2)
                         }
                         
                         if (entity_id == entity_id + -GAME_ENTITY_OFFSET) {
-                            entity_id = entity_id + (longlong)temp_ptr;
+                            entity_id = entity_id + (int64_t)temp_ptr;
                             if (entity_id <= temp_ptr) {
                                 // 处理实体数组
                                 do {
-                                    stack_ptr = (longlong*)0x0;
-                                    stack_void_ptr = (void*)((ulonglong)stack_void_ptr & 0xffffffffffffff00);
+                                    stack_ptr = (int64_t*)0x0;
+                                    stack_void_ptr = (void*)((uint64_t)stack_void_ptr & 0xffffffffffffff00);
                                     config_ptr = (uint64_t*)param_2[1];
                                     stack_string = entity_type;
                                     
                                     if (config_ptr < (uint64_t*)param_2[2]) {
-                                        param_2[1] = (longlong)(config_ptr + 3);
+                                        param_2[1] = (int64_t)(config_ptr + 3);
                                         *config_ptr = entity_type;
                                         config_ptr[1] = 0;
-                                        stack_ptr = (longlong*)0x0;
+                                        stack_ptr = (int64_t*)0x0;
                                         *(int8_t*)(config_ptr + 2) = 0;
                                     }
                                     else {
                                         FUN_1801bb560(param_2, &stack_string);
                                     }
                                     
-                                    if (stack_ptr != (longlong*)0x0) {
+                                    if (stack_ptr != (int64_t*)0x0) {
                                         (**(code**)(*stack_ptr + 0x38))(stack_ptr);
                                     }
                                     
@@ -1048,11 +1048,11 @@ void EntityManager_ProcessEntities(longlong param_1, longlong* param_2)
                                         }
                                         
                                         if (end_ptr == entity_id) {
-                                            end_ptr = entity_id + (longlong)end_ptr;
+                                            end_ptr = entity_id + (int64_t)end_ptr;
                                             entity_type = temp_ptr;
                                             if (end_ptr <= entity_id) break;
                                             
-                                            length = (longlong)&unknown_var_3424_ptr - (longlong)entity_id;
+                                            length = (int64_t)&unknown_var_3424_ptr - (int64_t)entity_id;
                                             while (*entity_id == entity_id[length]) {
                                                 entity_id = entity_id + 1;
                                                 if (end_ptr <= entity_id) goto continue_entity_processing;
@@ -1066,29 +1066,29 @@ void EntityManager_ProcessEntities(longlong param_1, longlong* param_2)
                                 goto process_entity_init;
                             }
                             
-                            length = (longlong)&unknown_var_3424_ptr - (longlong)temp_ptr;
+                            length = (int64_t)&unknown_var_3424_ptr - (int64_t)temp_ptr;
                             while (*temp_ptr == temp_ptr[length]) {
                                 temp_ptr = temp_ptr + 1;
                                 if (entity_id <= temp_ptr) {
                                     // 处理实体数组
                                     do {
-                                        stack_ptr = (longlong*)0x0;
-                                        stack_void_ptr = (void*)((ulonglong)stack_void_ptr & 0xffffffffffffff00);
+                                        stack_ptr = (int64_t*)0x0;
+                                        stack_void_ptr = (void*)((uint64_t)stack_void_ptr & 0xffffffffffffff00);
                                         config_ptr = (uint64_t*)param_2[1];
                                         stack_string = entity_type;
                                         
                                         if (config_ptr < (uint64_t*)param_2[2]) {
-                                            param_2[1] = (longlong)(config_ptr + 3);
+                                            param_2[1] = (int64_t)(config_ptr + 3);
                                             *config_ptr = entity_type;
                                             config_ptr[1] = 0;
-                                            stack_ptr = (longlong*)0x0;
+                                            stack_ptr = (int64_t*)0x0;
                                             *(int8_t*)(config_ptr + 2) = 0;
                                         }
                                         else {
                                             FUN_1801bb560(param_2, &stack_string);
                                         }
                                         
-                                        if (stack_ptr != (longlong*)0x0) {
+                                        if (stack_ptr != (int64_t*)0x0) {
                                             (**(code**)(*stack_ptr + 0x38))(stack_ptr);
                                         }
                                         
@@ -1113,11 +1113,11 @@ void EntityManager_ProcessEntities(longlong param_1, longlong* param_2)
                                             }
                                             
                                             if (end_ptr == entity_id) {
-                                                end_ptr = entity_id + (longlong)end_ptr;
+                                                end_ptr = entity_id + (int64_t)end_ptr;
                                                 entity_type = temp_ptr;
                                                 if (end_ptr <= entity_id) break;
                                                 
-                                                length = (longlong)&unknown_var_3424_ptr - (longlong)entity_id;
+                                                length = (int64_t)&unknown_var_3424_ptr - (int64_t)entity_id;
                                                 while (*entity_id == entity_id[length]) {
                                                     entity_id = entity_id + 1;
                                                     if (end_ptr <= entity_id) goto continue_entity_processing;
@@ -1135,7 +1135,7 @@ void EntityManager_ProcessEntities(longlong param_1, longlong* param_2)
                     } while (true);
                 }
                 
-                length = (longlong)&unknown_var_3440_ptr - (longlong)entity_id;
+                length = (int64_t)&unknown_var_3440_ptr - (int64_t)entity_id;
                 while (*entity_id == entity_id[length]) {
                     entity_id = entity_id + 1;
                     if (temp_ptr <= entity_id) {
@@ -1160,7 +1160,7 @@ void EntityManager_ProcessEntities(longlong param_1, longlong* param_2)
                                 stack_buffer[0] = 1;
                                 
                                 entity_handle = FUN_18062b1e0(system_memory_pool_ptr, 0x70, 8, 
-                                                             CONCAT71((int7)((ulonglong)entity_id >> 8), 3));
+                                                             CONCAT71((int7)((uint64_t)entity_id >> 8), 3));
                                 entity_handle = FUN_18039fc00(entity_handle);
                                 *(uint64_t*)(param_1 + 600) = entity_handle;
                                 
@@ -1171,8 +1171,8 @@ void EntityManager_ProcessEntities(longlong param_1, longlong* param_2)
                                 int_ptr = array_params;
                                 
                                 stack_string = (char*)FUN_18062b1e0(system_memory_pool_ptr, 0x28, 8, system_allocation_flags);
-                                *(longlong**)stack_string = stack_ptr;
-                                *(longlong*)(stack_string + 8) = stack_long;
+                                *(int64_t**)stack_string = stack_ptr;
+                                *(int64_t*)(stack_string + 8) = stack_long;
                                 *(int32_t*)(stack_string + 0x10) = (int32_t)stack_uint64_1;
                                 *(int32_t*)(stack_string + 0x14) = stack_uint64_1._4_4_;
                                 *(int32_t*)(stack_string + 0x18) = (int32_t)stack_uint64_2;
@@ -1194,27 +1194,27 @@ void EntityManager_ProcessEntities(longlong param_1, longlong* param_2)
                             }
                             
                             if (entity_id == entity_id + -GAME_ENTITY_OFFSET) {
-                                entity_id = entity_id + (longlong)temp_ptr;
+                                entity_id = entity_id + (int64_t)temp_ptr;
                                 if (entity_id <= temp_ptr) {
                                     // 处理实体数组
                                     do {
-                                        stack_ptr = (longlong*)0x0;
-                                        stack_void_ptr = (void*)((ulonglong)stack_void_ptr & 0xffffffffffffff00);
+                                        stack_ptr = (int64_t*)0x0;
+                                        stack_void_ptr = (void*)((uint64_t)stack_void_ptr & 0xffffffffffffff00);
                                         config_ptr = (uint64_t*)param_2[1];
                                         stack_string = entity_type;
                                         
                                         if (config_ptr < (uint64_t*)param_2[2]) {
-                                            param_2[1] = (longlong)(config_ptr + 3);
+                                            param_2[1] = (int64_t)(config_ptr + 3);
                                             *config_ptr = entity_type;
                                             config_ptr[1] = 0;
-                                            stack_ptr = (longlong*)0x0;
+                                            stack_ptr = (int64_t*)0x0;
                                             *(int8_t*)(config_ptr + 2) = 0;
                                         }
                                         else {
                                             FUN_1801bb560(param_2, &stack_string);
                                         }
                                         
-                                        if (stack_ptr != (longlong*)0x0) {
+                                        if (stack_ptr != (int64_t*)0x0) {
                                             (**(code**)(*stack_ptr + 0x38))(stack_ptr);
                                         }
                                         
@@ -1239,11 +1239,11 @@ void EntityManager_ProcessEntities(longlong param_1, longlong* param_2)
                                             }
                                             
                                             if (end_ptr == entity_id) {
-                                                end_ptr = entity_id + (longlong)end_ptr;
+                                                end_ptr = entity_id + (int64_t)end_ptr;
                                                 entity_type = temp_ptr;
                                                 if (end_ptr <= entity_id) break;
                                                 
-                                                length = (longlong)&unknown_var_3424_ptr - (longlong)entity_id;
+                                                length = (int64_t)&unknown_var_3424_ptr - (int64_t)entity_id;
                                                 while (*entity_id == entity_id[length]) {
                                                     entity_id = entity_id + 1;
                                                     if (end_ptr <= entity_id) goto continue_entity_processing;
@@ -1256,29 +1256,29 @@ void EntityManager_ProcessEntities(longlong param_1, longlong* param_2)
                                     goto process_entity_init;
                                 }
                                 
-                                length = (longlong)&unknown_var_3424_ptr - (longlong)temp_ptr;
+                                length = (int64_t)&unknown_var_3424_ptr - (int64_t)temp_ptr;
                                 while (*temp_ptr == temp_ptr[length]) {
                                     temp_ptr = temp_ptr + 1;
                                     if (entity_id <= temp_ptr) {
                                         // 处理实体数组
                                         do {
-                                            stack_ptr = (longlong*)0x0;
-                                            stack_void_ptr = (void*)((ulonglong)stack_void_ptr & 0xffffffffffffff00);
+                                            stack_ptr = (int64_t*)0x0;
+                                            stack_void_ptr = (void*)((uint64_t)stack_void_ptr & 0xffffffffffffff00);
                                             config_ptr = (uint64_t*)param_2[1];
                                             stack_string = entity_type;
                                             
                                             if (config_ptr < (uint64_t*)param_2[2]) {
-                                                param_2[1] = (longlong)(config_ptr + 3);
+                                                param_2[1] = (int64_t)(config_ptr + 3);
                                                 *config_ptr = entity_type;
                                                 config_ptr[1] = 0;
-                                                stack_ptr = (longlong*)0x0;
+                                                stack_ptr = (int64_t*)0x0;
                                                 *(int8_t*)(config_ptr + 2) = 0;
                                             }
                                             else {
                                                 FUN_1801bb560(param_2, &stack_string);
                                             }
                                             
-                                            if (stack_ptr != (longlong*)0x0) {
+                                            if (stack_ptr != (int64_t*)0x0) {
                                                 (**(code**)(*stack_ptr + 0x38))(stack_ptr);
                                             }
                                             
@@ -1303,11 +1303,11 @@ void EntityManager_ProcessEntities(longlong param_1, longlong* param_2)
                                                 }
                                                 
                                                 if (end_ptr == entity_id) {
-                                                    end_ptr = entity_id + (longlong)end_ptr;
+                                                    end_ptr = entity_id + (int64_t)end_ptr;
                                                     entity_type = temp_ptr;
                                                     if (end_ptr <= entity_id) break;
                                                     
-                                                    length = (longlong)&unknown_var_3424_ptr - (longlong)entity_id;
+                                                    length = (int64_t)&unknown_var_3424_ptr - (int64_t)entity_id;
                                                     while (*entity_id == entity_id[length]) {
                                                         entity_id = entity_id + 1;
                                                         if (end_ptr <= entity_id) goto continue_entity_processing;
@@ -1326,7 +1326,7 @@ void EntityManager_ProcessEntities(longlong param_1, longlong* param_2)
                     }
                 }
                 
-                length = (longlong)&unknown_var_3440_ptr - (longlong)entity_id;
+                length = (int64_t)&unknown_var_3440_ptr - (int64_t)entity_id;
                 while (*entity_id == entity_id[length]) {
                     entity_id = entity_id + 1;
                     if (temp_ptr <= entity_id) goto process_game_entity;
@@ -1348,7 +1348,7 @@ process_entity_init:
     stack_buffer[0] = 1;
     
     entity_handle = FUN_18062b1e0(system_memory_pool_ptr, 0x70, 8, 
-                                 CONCAT71((int7)((ulonglong)entity_id >> 8), 3));
+                                 CONCAT71((int7)((uint64_t)entity_id >> 8), 3));
     entity_handle = FUN_18039fc00(entity_handle);
     *(uint64_t*)(param_1 + 600) = entity_handle;
     
@@ -1359,8 +1359,8 @@ process_entity_init:
     int_ptr = array_params;
     
     stack_string = (char*)FUN_18062b1e0(system_memory_pool_ptr, 0x28, 8, system_allocation_flags);
-    *(longlong**)stack_string = stack_ptr;
-    *(longlong*)(stack_string + 8) = stack_long;
+    *(int64_t**)stack_string = stack_ptr;
+    *(int64_t*)(stack_string + 8) = stack_long;
     *(int32_t*)(stack_string + 0x10) = (int32_t)stack_uint64_1;
     *(int32_t*)(stack_string + 0x14) = stack_uint64_1._4_4_;
     *(int32_t*)(stack_string + 0x18) = (int32_t)stack_uint64_2;
@@ -1393,7 +1393,7 @@ process_game_entity:
             stack_buffer[0] = 1;
             
             entity_handle = FUN_18062b1e0(system_memory_pool_ptr, 0x70, 8, 
-                                         CONCAT71((int7)((ulonglong)entity_id >> 8), 3));
+                                         CONCAT71((int7)((uint64_t)entity_id >> 8), 3));
             entity_handle = FUN_18039fc00(entity_handle);
             *(uint64_t*)(param_1 + 600) = entity_handle;
             
@@ -1404,8 +1404,8 @@ process_game_entity:
             int_ptr = array_params;
             
             stack_string = (char*)FUN_18062b1e0(system_memory_pool_ptr, 0x28, 8, system_allocation_flags);
-            *(longlong**)stack_string = stack_ptr;
-            *(longlong*)(stack_string + 8) = stack_long;
+            *(int64_t**)stack_string = stack_ptr;
+            *(int64_t*)(stack_string + 8) = stack_long;
             *(int32_t*)(stack_string + 0x10) = (int32_t)stack_uint64_1;
             *(int32_t*)(stack_string + 0x14) = stack_uint64_1._4_4_;
             *(int32_t*)(stack_string + 0x18) = (int32_t)stack_uint64_2;
@@ -1427,27 +1427,27 @@ process_game_entity:
         }
         
         if (entity_id == entity_id + -GAME_ENTITY_OFFSET) {
-            entity_id = entity_id + (longlong)temp_ptr;
+            entity_id = entity_id + (int64_t)temp_ptr;
             if (entity_id <= temp_ptr) {
                 // 处理实体数组
                 do {
-                    stack_ptr = (longlong*)0x0;
-                    stack_void_ptr = (void*)((ulonglong)stack_void_ptr & 0xffffffffffffff00);
+                    stack_ptr = (int64_t*)0x0;
+                    stack_void_ptr = (void*)((uint64_t)stack_void_ptr & 0xffffffffffffff00);
                     config_ptr = (uint64_t*)param_2[1];
                     stack_string = entity_type;
                     
                     if (config_ptr < (uint64_t*)param_2[2]) {
-                        param_2[1] = (longlong)(config_ptr + 3);
+                        param_2[1] = (int64_t)(config_ptr + 3);
                         *config_ptr = entity_type;
                         config_ptr[1] = 0;
-                        stack_ptr = (longlong*)0x0;
+                        stack_ptr = (int64_t*)0x0;
                         *(int8_t*)(config_ptr + 2) = 0;
                     }
                     else {
                         FUN_1801bb560(param_2, &stack_string);
                     }
                     
-                    if (stack_ptr != (longlong*)0x0) {
+                    if (stack_ptr != (int64_t*)0x0) {
                         (**(code**)(*stack_ptr + 0x38))(stack_ptr);
                     }
                     
@@ -1472,11 +1472,11 @@ process_game_entity:
                         }
                         
                         if (end_ptr == entity_id) {
-                            end_ptr = entity_id + (longlong)end_ptr;
+                            end_ptr = entity_id + (int64_t)end_ptr;
                             entity_type = temp_ptr;
                             if (end_ptr <= entity_id) break;
                             
-                            length = (longlong)&unknown_var_3424_ptr - (longlong)entity_id;
+                            length = (int64_t)&unknown_var_3424_ptr - (int64_t)entity_id;
                             while (*entity_id == entity_id[length]) {
                                 entity_id = entity_id + 1;
                                 if (end_ptr <= entity_id) goto continue_entity_processing;
@@ -1489,29 +1489,29 @@ process_game_entity:
                 goto process_entity_init;
             }
             
-            length = (longlong)&unknown_var_3424_ptr - (longlong)temp_ptr;
+            length = (int64_t)&unknown_var_3424_ptr - (int64_t)temp_ptr;
             while (*temp_ptr == temp_ptr[length]) {
                 temp_ptr = temp_ptr + 1;
                 if (entity_id <= temp_ptr) {
                     // 处理实体数组
                     do {
-                        stack_ptr = (longlong*)0x0;
-                        stack_void_ptr = (void*)((ulonglong)stack_void_ptr & 0xffffffffffffff00);
+                        stack_ptr = (int64_t*)0x0;
+                        stack_void_ptr = (void*)((uint64_t)stack_void_ptr & 0xffffffffffffff00);
                         config_ptr = (uint64_t*)param_2[1];
                         stack_string = entity_type;
                         
                         if (config_ptr < (uint64_t*)param_2[2]) {
-                            param_2[1] = (longlong)(config_ptr + 3);
+                            param_2[1] = (int64_t)(config_ptr + 3);
                             *config_ptr = entity_type;
                             config_ptr[1] = 0;
-                            stack_ptr = (longlong*)0x0;
+                            stack_ptr = (int64_t*)0x0;
                             *(int8_t*)(config_ptr + 2) = 0;
                         }
                         else {
                             FUN_1801bb560(param_2, &stack_string);
                         }
                         
-                        if (stack_ptr != (longlong*)0x0) {
+                        if (stack_ptr != (int64_t*)0x0) {
                             (**(code**)(*stack_ptr + 0x38))(stack_ptr);
                         }
                         
@@ -1536,11 +1536,11 @@ process_game_entity:
                             }
                             
                             if (end_ptr == entity_id) {
-                                end_ptr = entity_id + (longlong)end_ptr;
+                                end_ptr = entity_id + (int64_t)end_ptr;
                                 entity_type = temp_ptr;
                                 if (end_ptr <= entity_id) break;
                                 
-                                length = (longlong)&unknown_var_3424_ptr - (longlong)entity_id;
+                                length = (int64_t)&unknown_var_3424_ptr - (int64_t)entity_id;
                                 while (*entity_id == entity_id[length]) {
                                     entity_id = entity_id + 1;
                                     if (end_ptr <= entity_id) goto continue_entity_processing;
@@ -1573,20 +1573,20 @@ void ArrayProcessor_ProcessArrays(uint64_t* param_1, int param_2, int param_3)
 {
     uint array_handle;
     uint64_t resource_handle;
-    longlong* resource_ptr;
-    longlong length;
-    longlong index;
+    int64_t* resource_ptr;
+    int64_t length;
+    int64_t index;
     uint64_t config_handle;
-    longlong* config_ptr;
+    int64_t* config_ptr;
     uint64_t array_config;
-    longlong stack_param;
+    int64_t stack_param;
     uint8_t stack_byte;
     uint64_t stack_config_1;
     uint64_t stack_config_2;
-    longlong* stack_ptr;
+    int64_t* stack_ptr;
     uint64_t stack_config_3;
     uint16_t stack_short;
-    longlong* stack_ptr2;
+    int64_t* stack_ptr2;
     uint64_t stack_config_4;
     int32_t stack_int_1;
     int32_t stack_int_2;
@@ -1595,40 +1595,40 @@ void ArrayProcessor_ProcessArrays(uint64_t* param_1, int param_2, int param_3)
     int32_t stack_int_3;
     int8_t stack_byte_3;
     uint64_t stack_config_5;
-    longlong stack_array[3];
+    int64_t stack_array[3];
     int32_t stack_int_4;
     uint64_t stack_config_6;
     uint64_t stack_config_7;
-    longlong* stack_ptr3;
+    int64_t* stack_ptr3;
     
     // 初始化数组处理
     stack_config_7 = 0xfffffffffffffffe;
-    length = (longlong)param_2;
+    length = (int64_t)param_2;
     
     if (length < param_3) {
         index = length * ARRAY_ELEMENT_SIZE;
         length = param_3 - length;
         
         do {
-            resource_ptr = (longlong*)(*(longlong*)*param_1 + index);
+            resource_ptr = (int64_t*)(*(int64_t*)*param_1 + index);
             resource_handle = *resource_ptr;
             
             // 创建配置句柄
             config_handle = FUN_18062b1e0(system_memory_pool_ptr, 0x2f0, 0x10, 0xd);
-            config_ptr = (longlong*)FUN_1802e6b00(config_handle, 4);
+            config_ptr = (int64_t*)FUN_1802e6b00(config_handle, 4);
             stack_ptr3 = config_ptr;
             
             // 初始化配置指针
-            if (config_ptr != (longlong*)0x0) {
+            if (config_ptr != (int64_t*)0x0) {
                 (**(code**)(*config_ptr + 0x28))(config_ptr);
                 (**(code**)(*config_ptr + 0x28))(config_ptr);
             }
             
             // 更新资源指针
-            resource_ptr = (longlong*)resource_ptr[1];
+            resource_ptr = (int64_t*)resource_ptr[1];
             resource_ptr[1] = config_ptr;
             
-            if (resource_ptr != (longlong*)0x0) {
+            if (resource_ptr != (int64_t*)0x0) {
                 (**(code**)(*resource_ptr + 0x38))();
             }
             
@@ -1639,7 +1639,7 @@ void ArrayProcessor_ProcessArrays(uint64_t* param_1, int param_2, int param_3)
             stack_byte = 0;
             stack_ptr = config_ptr;
             
-            if (config_ptr != (longlong*)0x0) {
+            if (config_ptr != (int64_t*)0x0) {
                 (**(code**)(*config_ptr + 0x28))(config_ptr);
             }
             
@@ -1667,8 +1667,8 @@ void ArrayProcessor_ProcessArrays(uint64_t* param_1, int param_2, int param_3)
                     FUN_1802ed5d0(config_ptr, stack_config_6._4_4_, stack_config_6 & 0xffffffff);
                 }
                 
-                array_handle = *(uint*)((longlong)config_ptr + 0x2ac);
-                *(uint*)((longlong)config_ptr + 0x2ac) = array_handle | 0x1000000;
+                array_handle = *(uint*)((int64_t)config_ptr + 0x2ac);
+                *(uint*)((int64_t)config_ptr + 0x2ac) = array_handle | 0x1000000;
                 FUN_1802ee810(config_ptr, array_handle);
                 FUN_1802ee990(config_ptr, array_handle);
                 
@@ -1697,16 +1697,16 @@ void ArrayProcessor_ProcessArrays(uint64_t* param_1, int param_2, int param_3)
                     FUN_18064e900();
                 }
                 
-                if (stack_ptr != (longlong*)0x0) {
+                if (stack_ptr != (int64_t*)0x0) {
                     (**(code**)(*stack_ptr + 0x38))();
                 }
             }
             else {
                 *(int8_t*)(resource_ptr + 2) = 1;
-                if (stack_ptr != (longlong*)0x0) {
+                if (stack_ptr != (int64_t*)0x0) {
                     (**(code**)(*stack_ptr + 0x38))();
                 }
-                if (config_ptr != (longlong*)0x0) {
+                if (config_ptr != (int64_t*)0x0) {
                     (**(code**)(*config_ptr + 0x38))(config_ptr);
                 }
             }

@@ -277,8 +277,8 @@ void FUN_18003e510(void)
     char component_status;                // 组件状态标志
     uint64_t *registry_root;           // 注册表根节点
     int comparison_result;               // 比较结果
-    longlong *system_context;            // 系统上下文
-    longlong memory_size;                 // 内存大小
+    int64_t *system_context;            // 系统上下文
+    int64_t memory_size;                 // 内存大小
     uint64_t *current_node;            // 当前节点
     uint64_t *previous_node;           // 前一个节点
     uint64_t *next_node;               // 下一个节点
@@ -286,11 +286,11 @@ void FUN_18003e510(void)
     uint64_t component_flags;           // 组件标志
 
     // 获取系统上下文
-    system_context = (longlong *)FUN_18008d070();
+    system_context = (int64_t *)FUN_18008d070();
     registry_root = (uint64_t *)*system_context;
     
     // 检查组件状态
-    component_status = *(char *)((longlong)registry_root[1] + 0x19);
+    component_status = *(char *)((int64_t)registry_root[1] + 0x19);
     component_flags = 0;
     
     previous_node = registry_root;
@@ -308,7 +308,7 @@ void FUN_18003e510(void)
         }
         previous_node = current_node;
         current_node = next_node;
-        component_status = *(char *)((longlong)next_node + 0x19);
+        component_status = *(char *)((int64_t)next_node + 0x19);
     }
     
     // 检查是否需要创建新组件
@@ -348,8 +348,8 @@ void FUN_18003e610(void)
     char component_status;                // 组件状态标志
     uint64_t *registry_root;           // 注册表根节点
     int comparison_result;               // 比较结果
-    longlong *system_context;            // 系统上下文
-    longlong memory_size;                 // 内存大小
+    int64_t *system_context;            // 系统上下文
+    int64_t memory_size;                 // 内存大小
     uint64_t *current_node;            // 当前节点
     uint64_t *previous_node;           // 前一个节点
     uint64_t *next_node;               // 下一个节点
@@ -357,11 +357,11 @@ void FUN_18003e610(void)
     code *callback_function;             // 回调函数
 
     // 获取系统上下文
-    system_context = (longlong *)FUN_18008d070();
+    system_context = (int64_t *)FUN_18008d070();
     registry_root = (uint64_t *)*system_context;
     
     // 检查组件状态
-    component_status = *(char *)((longlong)registry_root[1] + 0x19);
+    component_status = *(char *)((int64_t)registry_root[1] + 0x19);
     callback_function = FUN_18025cc00;    // 设置回调函数
     
     previous_node = registry_root;
@@ -379,7 +379,7 @@ void FUN_18003e610(void)
         }
         previous_node = current_node;
         current_node = next_node;
-        component_status = *(char *)((longlong)next_node + 0x19);
+        component_status = *(char *)((int64_t)next_node + 0x19);
     }
     
     // 检查是否需要创建新组件
@@ -419,8 +419,8 @@ void FUN_18003e710(void)
     char component_status;                // 组件状态标志
     uint64_t *registry_root;           // 注册表根节点
     int comparison_result;               // 比较结果
-    longlong *system_context;            // 系统上下文
-    longlong memory_size;                 // 内存大小
+    int64_t *system_context;            // 系统上下文
+    int64_t memory_size;                 // 内存大小
     uint64_t *current_node;            // 当前节点
     uint64_t *previous_node;           // 前一个节点
     uint64_t *next_node;               // 下一个节点
@@ -428,11 +428,11 @@ void FUN_18003e710(void)
     code *service_handler;               // 服务处理函数
 
     // 获取系统上下文
-    system_context = (longlong *)FUN_18008d070();
+    system_context = (int64_t *)FUN_18008d070();
     registry_root = (uint64_t *)*system_context;
     
     // 检查组件状态
-    component_status = *(char *)((longlong)registry_root[1] + 0x19);
+    component_status = *(char *)((int64_t)registry_root[1] + 0x19);
     service_handler = FUN_18025c000;      // 设置服务处理函数
     
     previous_node = registry_root;
@@ -450,7 +450,7 @@ void FUN_18003e710(void)
         }
         previous_node = current_node;
         current_node = next_node;
-        component_status = *(char *)((longlong)next_node + 0x19);
+        component_status = *(char *)((int64_t)next_node + 0x19);
     }
     
     // 检查是否需要创建新组件
@@ -490,8 +490,8 @@ void FUN_18003e810(void)
     char component_status;                // 组件状态标志
     uint64_t *registry_root;           // 注册表根节点
     int comparison_result;               // 比较结果
-    longlong *system_context;            // 系统上下文
-    longlong memory_size;                 // 内存大小
+    int64_t *system_context;            // 系统上下文
+    int64_t memory_size;                 // 内存大小
     uint64_t *current_node;            // 当前节点
     uint64_t *previous_node;           // 前一个节点
     uint64_t *next_node;               // 下一个节点
@@ -499,11 +499,11 @@ void FUN_18003e810(void)
     uint64_t resource_flags;            // 资源标志
 
     // 获取系统上下文
-    system_context = (longlong *)FUN_18008d070();
+    system_context = (int64_t *)FUN_18008d070();
     registry_root = (uint64_t *)*system_context;
     
     // 检查组件状态
-    component_status = *(char *)((longlong)registry_root[1] + 0x19);
+    component_status = *(char *)((int64_t)registry_root[1] + 0x19);
     resource_flags = 0;                   // 初始化资源标志
     
     previous_node = registry_root;
@@ -521,7 +521,7 @@ void FUN_18003e810(void)
         }
         previous_node = current_node;
         current_node = next_node;
-        component_status = *(char *)((longlong)next_node + 0x19);
+        component_status = *(char *)((int64_t)next_node + 0x19);
     }
     
     // 检查是否需要创建新组件
@@ -561,8 +561,8 @@ void FUN_18003e910(void)
     char component_status;                // 组件状态标志
     uint64_t *registry_root;           // 注册表根节点
     int comparison_result;               // 比较结果
-    longlong *system_context;            // 系统上下文
-    longlong memory_size;                 // 内存大小
+    int64_t *system_context;            // 系统上下文
+    int64_t memory_size;                 // 内存大小
     uint64_t *current_node;            // 当前节点
     uint64_t *previous_node;           // 前一个节点
     uint64_t *next_node;               // 下一个节点
@@ -570,11 +570,11 @@ void FUN_18003e910(void)
     code *log_handler;                    // 日志处理函数
 
     // 获取系统上下文
-    system_context = (longlong *)FUN_18008d070();
+    system_context = (int64_t *)FUN_18008d070();
     registry_root = (uint64_t *)*system_context;
     
     // 检查组件状态
-    component_status = *(char *)((longlong)registry_root[1] + 0x19);
+    component_status = *(char *)((int64_t)registry_root[1] + 0x19);
     log_handler = FUN_18025d270;          // 设置日志处理函数
     
     previous_node = registry_root;
@@ -592,7 +592,7 @@ void FUN_18003e910(void)
         }
         previous_node = current_node;
         current_node = next_node;
-        component_status = *(char *)((longlong)next_node + 0x19);
+        component_status = *(char *)((int64_t)next_node + 0x19);
     }
     
     // 检查是否需要创建新组件
@@ -632,8 +632,8 @@ void FUN_18003ea10(void)
     char component_status;                // 组件状态标志
     uint64_t *registry_root;           // 注册表根节点
     int comparison_result;               // 比较结果
-    longlong *system_context;            // 系统上下文
-    longlong memory_size;                 // 内存大小
+    int64_t *system_context;            // 系统上下文
+    int64_t memory_size;                 // 内存大小
     uint64_t *current_node;            // 当前节点
     uint64_t *previous_node;           // 前一个节点
     uint64_t *next_node;               // 下一个节点
@@ -641,11 +641,11 @@ void FUN_18003ea10(void)
     uint64_t config_flags;             // 配置标志
 
     // 获取系统上下文
-    system_context = (longlong *)FUN_18008d070();
+    system_context = (int64_t *)FUN_18008d070();
     registry_root = (uint64_t *)*system_context;
     
     // 检查组件状态
-    component_status = *(char *)((longlong)registry_root[1] + 0x19);
+    component_status = *(char *)((int64_t)registry_root[1] + 0x19);
     config_flags = 0;                     // 初始化配置标志
     
     previous_node = registry_root;
@@ -663,7 +663,7 @@ void FUN_18003ea10(void)
         }
         previous_node = current_node;
         current_node = next_node;
-        component_status = *(char *)((longlong)next_node + 0x19);
+        component_status = *(char *)((int64_t)next_node + 0x19);
     }
     
     // 检查是否需要创建新组件
@@ -703,8 +703,8 @@ void FUN_18003eb10(void)
     char component_status;                // 组件状态标志
     uint64_t *registry_root;           // 注册表根节点
     int comparison_result;               // 比较结果
-    longlong *system_context;            // 系统上下文
-    longlong memory_size;                 // 内存大小
+    int64_t *system_context;            // 系统上下文
+    int64_t memory_size;                 // 内存大小
     uint64_t *current_node;            // 当前节点
     uint64_t *previous_node;           // 前一个节点
     uint64_t *next_node;               // 下一个节点
@@ -712,11 +712,11 @@ void FUN_18003eb10(void)
     void *cache_handler;             // 缓存处理函数
 
     // 获取系统上下文
-    system_context = (longlong *)FUN_18008d070();
+    system_context = (int64_t *)FUN_18008d070();
     registry_root = (uint64_t *)*system_context;
     
     // 检查组件状态
-    component_status = *(char *)((longlong)registry_root[1] + 0x19);
+    component_status = *(char *)((int64_t)registry_root[1] + 0x19);
     cache_handler = &unknown_var_2048_ptr;       // 设置缓存处理函数
     
     previous_node = registry_root;
@@ -734,7 +734,7 @@ void FUN_18003eb10(void)
         }
         previous_node = current_node;
         current_node = next_node;
-        component_status = *(char *)((longlong)next_node + 0x19);
+        component_status = *(char *)((int64_t)next_node + 0x19);
     }
     
     // 检查是否需要创建新组件
@@ -774,8 +774,8 @@ void FUN_18003ec10(void)
     char component_status;                // 组件状态标志
     uint64_t *registry_root;           // 注册表根节点
     int comparison_result;               // 比较结果
-    longlong *system_context;            // 系统上下文
-    longlong memory_size;                 // 内存大小
+    int64_t *system_context;            // 系统上下文
+    int64_t memory_size;                 // 内存大小
     uint64_t *current_node;            // 当前节点
     uint64_t *previous_node;           // 前一个节点
     uint64_t *next_node;               // 下一个节点
@@ -783,11 +783,11 @@ void FUN_18003ec10(void)
     uint64_t storage_flags;            // 存储标志
 
     // 获取系统上下文
-    system_context = (longlong *)FUN_18008d070();
+    system_context = (int64_t *)FUN_18008d070();
     registry_root = (uint64_t *)*system_context;
     
     // 检查组件状态
-    component_status = *(char *)((longlong)registry_root[1] + 0x19);
+    component_status = *(char *)((int64_t)registry_root[1] + 0x19);
     storage_flags = 0;                   // 初始化存储标志
     
     previous_node = registry_root;
@@ -805,7 +805,7 @@ void FUN_18003ec10(void)
         }
         previous_node = current_node;
         current_node = next_node;
-        component_status = *(char *)((longlong)next_node + 0x19);
+        component_status = *(char *)((int64_t)next_node + 0x19);
     }
     
     // 检查是否需要创建新组件
@@ -881,7 +881,7 @@ void FUN_18003ed10(void)
  */
 int FUN_18003eda0(void)
 {
-    longlong system_health;               // 系统健康状态
+    int64_t system_health;               // 系统健康状态
     
     // 执行系统健康检查
     FUN_1804777d0();
@@ -910,7 +910,7 @@ int FUN_18003eda0(void)
  */
 int FUN_18003edc0(void)
 {
-    longlong validation_result;           // 验证结果
+    int64_t validation_result;           // 验证结果
     int8_t config_data[32];          // 配置数据缓冲区
     
     // 初始化配置数据
@@ -943,7 +943,7 @@ int FUN_18003edc0(void)
  */
 int FUN_18003edf0(void)
 {
-    longlong load_result;                // 加载结果
+    int64_t load_result;                // 加载结果
     int8_t load_data[32];            // 加载数据缓冲区
     
     // 初始化加载数据
@@ -976,7 +976,7 @@ int FUN_18003edf0(void)
  */
 int FUN_18003ee20(void)
 {
-    longlong monitor_status;             // 监控状态
+    int64_t monitor_status;             // 监控状态
     
     // 获取监控状态
     monitor_status = FUN_1808fc7d0(FUN_180942a20);
@@ -1002,7 +1002,7 @@ int FUN_18003ee20(void)
  */
 int FUN_18003ee40(void)
 {
-    longlong debug_status;               // 调试状态
+    int64_t debug_status;               // 调试状态
     
     // 初始化调试功能
     FUN_1803f2eb0(0x180d49d50);
@@ -1029,8 +1029,8 @@ void FUN_18003ee90(void)
     char resource_status;                // 资源状态标志
     uint64_t *resource_root;           // 资源根节点
     int comparison_result;               // 比较结果
-    longlong *system_context;            // 系统上下文
-    longlong resource_size;               // 资源大小
+    int64_t *system_context;            // 系统上下文
+    int64_t resource_size;               // 资源大小
     uint64_t *current_node;            // 当前节点
     uint64_t *previous_node;           // 前一个节点
     uint64_t *next_node;               // 下一个节点
@@ -1038,11 +1038,11 @@ void FUN_18003ee90(void)
     code *resource_loader;               // 资源加载器
 
     // 获取系统上下文
-    system_context = (longlong *)FUN_18008d070();
+    system_context = (int64_t *)FUN_18008d070();
     resource_root = (uint64_t *)*system_context;
     
     // 检查资源状态
-    resource_status = *(char *)((longlong)resource_root[1] + 0x19);
+    resource_status = *(char *)((int64_t)resource_root[1] + 0x19);
     resource_loader = FUN_18007fcd0;      // 设置资源加载器
     
     previous_node = resource_root;
@@ -1060,7 +1060,7 @@ void FUN_18003ee90(void)
         }
         previous_node = current_node;
         current_node = next_node;
-        resource_status = *(char *)((longlong)next_node + 0x19);
+        resource_status = *(char *)((int64_t)next_node + 0x19);
     }
     
     // 检查是否需要创建新资源

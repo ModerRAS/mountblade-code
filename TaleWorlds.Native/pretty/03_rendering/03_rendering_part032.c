@@ -119,7 +119,7 @@ extern uint64_t system_buffer_ptr;
  * @param container_ptr 容器指针数组
  * @param element_ptr 要添加的元素指针
  */
-void add_render_container_element(ulonglong *container_ptr, uint64_t *element_ptr)
+void add_render_container_element(uint64_t *container_ptr, uint64_t *element_ptr)
 {
   int32_t temp_var1;
   int32_t temp_var2;
@@ -128,13 +128,13 @@ void add_render_container_element(ulonglong *container_ptr, uint64_t *element_pt
   uint64_t *container_data_ptr;
   uint64_t *container_start_ptr;
   uint64_t *new_container_ptr;
-  longlong element_count;
+  int64_t element_count;
   uint64_t *current_ptr;
   
   current_ptr = (uint64_t *)container_ptr[1];
   if (current_ptr < (uint64_t *)container_ptr[2]) {
     // 容器中还有空间，直接添加元素
-    container_ptr[1] = (ulonglong)(current_ptr + 2);
+    container_ptr[1] = (uint64_t)(current_ptr + 2);
     temp_var4 = element_ptr[1];
     *current_ptr = *element_ptr;
     current_ptr[1] = temp_var4;
@@ -143,7 +143,7 @@ void add_render_container_element(ulonglong *container_ptr, uint64_t *element_pt
   
   // 容器已满，需要扩容
   container_start_ptr = (uint64_t *)*container_ptr;
-  element_count = (longlong)current_ptr - (longlong)container_start_ptr >> 4;
+  element_count = (int64_t)current_ptr - (int64_t)container_start_ptr >> 4;
   if (element_count == 0) {
     element_count = 1;
   }
@@ -172,19 +172,19 @@ container_copy_loop:
   }
   
   // 添加新元素
-  temp_var1 = *(int32_t *)((longlong)element_ptr + 4);
+  temp_var1 = *(int32_t *)((int64_t)element_ptr + 4);
   temp_var2 = *(int32_t *)(element_ptr + 1);
-  temp_var3 = *(int32_t *)((longlong)element_ptr + 0xc);
+  temp_var3 = *(int32_t *)((int64_t)element_ptr + 0xc);
   *(int32_t *)container_data_ptr = *(int32_t *)element_ptr;
-  *(int32_t *)((longlong)container_data_ptr + 4) = temp_var1;
+  *(int32_t *)((int64_t)container_data_ptr + 4) = temp_var1;
   *(int32_t *)(container_data_ptr + 1) = temp_var2;
-  *(int32_t *)((longlong)container_data_ptr + 0xc) = temp_var3;
+  *(int32_t *)((int64_t)container_data_ptr + 0xc) = temp_var3;
   
   if (*container_ptr == 0) {
     // 更新容器指针
-    *container_ptr = (ulonglong)container_data_ptr;
-    container_ptr[2] = (ulonglong)(container_data_ptr + element_count * 2);
-    container_ptr[1] = (ulonglong)(container_data_ptr + 2);
+    *container_ptr = (uint64_t)container_data_ptr;
+    container_ptr[2] = (uint64_t)(container_data_ptr + element_count * 2);
+    container_ptr[1] = (uint64_t)(container_data_ptr + 2);
     return;
   }
   // 内存分配失败，触发错误处理
@@ -196,25 +196,25 @@ container_copy_loop:
  * @param container_ptr 容器指针
  * @param new_size 新的大小
  */
-void resize_render_container(longlong *container_ptr, ulonglong new_size)
+void resize_render_container(int64_t *container_ptr, uint64_t new_size)
 {
   int32_t *temp_ptr1;
-  longlong *temp_ptr2;
+  int64_t *temp_ptr2;
   uint64_t *new_data_ptr;
   uint64_t *old_data_ptr;
   uint64_t *copy_ptr;
-  longlong old_size;
+  int64_t old_size;
   uint64_t *current_ptr;
-  ulonglong allocated_size;
-  longlong *iter_ptr;
-  ulonglong copy_count;
-  longlong offset;
+  uint64_t allocated_size;
+  int64_t *iter_ptr;
+  uint64_t copy_count;
+  int64_t offset;
   
   current_ptr = (uint64_t *)container_ptr[1];
-  if ((ulonglong)(container_ptr[2] - (longlong)current_ptr >> 4) < new_size) {
+  if ((uint64_t)(container_ptr[2] - (int64_t)current_ptr >> 4) < new_size) {
     // 需要扩容
     old_data_ptr = (uint64_t *)*container_ptr;
-    old_size = (longlong)current_ptr - (longlong)old_data_ptr >> 4;
+    old_size = (int64_t)current_ptr - (int64_t)old_data_ptr >> 4;
     allocated_size = old_size * 2;
     if (old_size == 0) {
       allocated_size = 1;
@@ -235,13 +235,13 @@ void resize_render_container(longlong *container_ptr, ulonglong new_size)
     copy_ptr = new_data_ptr;
     if (old_data_ptr != current_ptr) {
       // 移动现有数据
-      offset = (longlong)old_data_ptr - (longlong)new_data_ptr;
-      old_size = 8 - (longlong)old_data_ptr;
+      offset = (int64_t)old_data_ptr - (int64_t)new_data_ptr;
+      old_size = 8 - (int64_t)old_data_ptr;
       do {
         *copy_ptr = *old_data_ptr;
         *old_data_ptr = 0;
-        temp_ptr1 = (int32_t *)((longlong)new_data_ptr + old_size + (longlong)old_data_ptr);
-        *temp_ptr1 = *(int32_t *)((longlong)temp_ptr1 + offset);
+        temp_ptr1 = (int32_t *)((int64_t)new_data_ptr + old_size + (int64_t)old_data_ptr);
+        *temp_ptr1 = *(int32_t *)((int64_t)temp_ptr1 + offset);
         old_data_ptr = old_data_ptr + 2;
         copy_ptr = copy_ptr + 2;
       } while (old_data_ptr != current_ptr);
@@ -260,28 +260,28 @@ void resize_render_container(longlong *container_ptr, ulonglong new_size)
     }
     
     // 清理旧数据
-    iter_ptr = (longlong *)container_ptr[1];
-    temp_ptr2 = (longlong *)*container_ptr;
+    iter_ptr = (int64_t *)container_ptr[1];
+    temp_ptr2 = (int64_t *)*container_ptr;
     if (temp_ptr2 != iter_ptr) {
       do {
-        if ((longlong *)*temp_ptr2 != (longlong *)0x0) {
+        if ((int64_t *)*temp_ptr2 != (int64_t *)0x0) {
           // 调用对象的析构函数
-          (**(code **)(*(longlong *)*temp_ptr2 + 0x38))();
+          (**(code **)(*(int64_t *)*temp_ptr2 + 0x38))();
         }
         temp_ptr2 = temp_ptr2 + 2;
       } while (temp_ptr2 != iter_ptr);
-      temp_ptr2 = (longlong *)*container_ptr;
+      temp_ptr2 = (int64_t *)*container_ptr;
     }
     
-    if (temp_ptr2 != (longlong *)0x0) {
+    if (temp_ptr2 != (int64_t *)0x0) {
       // 释放旧内存
       free_render_memory(temp_ptr2);
     }
     
     // 更新容器指针
-    *container_ptr = (longlong)new_data_ptr;
-    container_ptr[1] = (longlong)(copy_ptr + new_size * 2);
-    container_ptr[2] = (longlong)(new_data_ptr + allocated_size * 2);
+    *container_ptr = (int64_t)new_data_ptr;
+    container_ptr[1] = (int64_t)(copy_ptr + new_size * 2);
+    container_ptr[2] = (int64_t)(new_data_ptr + allocated_size * 2);
   }
   else {
     // 只需要增加大小，不需要重新分配
@@ -295,7 +295,7 @@ void resize_render_container(longlong *container_ptr, ulonglong new_size)
       } while (allocated_size != 0);
       current_ptr = (uint64_t *)container_ptr[1];
     }
-    container_ptr[1] = (longlong)(current_ptr + new_size * 2);
+    container_ptr[1] = (int64_t)(current_ptr + new_size * 2);
   }
   return;
 }
@@ -305,13 +305,13 @@ void resize_render_container(longlong *container_ptr, ulonglong new_size)
  * @param start_ptr 起始指针
  * @param end_ptr 结束指针
  */
-void cleanup_render_objects(longlong *start_ptr, longlong *end_ptr)
+void cleanup_render_objects(int64_t *start_ptr, int64_t *end_ptr)
 {
   if (start_ptr != end_ptr) {
     do {
-      if ((longlong *)*start_ptr != (longlong *)0x0) {
+      if ((int64_t *)*start_ptr != (int64_t *)0x0) {
         // 调用对象的析构函数
-        (**(code **)(*(longlong *)*start_ptr + 0x38))();
+        (**(code **)(*(int64_t *)*start_ptr + 0x38))();
       }
       start_ptr = start_ptr + 2;
     } while (start_ptr != end_ptr);
@@ -329,17 +329,17 @@ void cleanup_render_objects(longlong *start_ptr, longlong *end_ptr)
 uint64_t * move_render_data(uint64_t *src_ptr, uint64_t *src_end, uint64_t *dest_ptr)
 {
   int32_t *temp_ptr1;
-  longlong offset;
-  longlong target_offset;
+  int64_t offset;
+  int64_t target_offset;
   
   if (src_ptr != src_end) {
-    offset = (longlong)src_ptr - (longlong)dest_ptr;
-    target_offset = (longlong)dest_ptr + (8 - (longlong)src_ptr);
+    offset = (int64_t)src_ptr - (int64_t)dest_ptr;
+    target_offset = (int64_t)dest_ptr + (8 - (int64_t)src_ptr);
     do {
       *dest_ptr = *src_ptr;
       *src_ptr = 0;
-      temp_ptr1 = (int32_t *)(target_offset + (longlong)src_ptr);
-      *temp_ptr1 = *(int32_t *)((longlong)temp_ptr1 + offset);
+      temp_ptr1 = (int32_t *)(target_offset + (int64_t)src_ptr);
+      *temp_ptr1 = *(int32_t *)((int64_t)temp_ptr1 + offset);
       src_ptr = src_ptr + 2;
       dest_ptr = dest_ptr + 2;
     } while (src_ptr != src_end);
@@ -351,15 +351,15 @@ uint64_t * move_render_data(uint64_t *src_ptr, uint64_t *src_end, uint64_t *dest
  * 清理渲染资源池（类型1）
  * @param pool_ptr 资源池指针
  */
-void cleanup_render_pool_type1(longlong pool_ptr)
+void cleanup_render_pool_type1(int64_t pool_ptr)
 {
-  longlong array_ptr;
+  int64_t array_ptr;
   uint64_t *resource_ptr;
-  ulonglong pool_size;
-  ulonglong index;
+  uint64_t pool_size;
+  uint64_t index;
   
-  pool_size = *(ulonglong *)(pool_ptr + 0x10);
-  array_ptr = *(longlong *)(pool_ptr + 8);
+  pool_size = *(uint64_t *)(pool_ptr + 0x10);
+  array_ptr = *(int64_t *)(pool_ptr + 8);
   index = 0;
   if (pool_size != 0) {
     do {
@@ -383,10 +383,10 @@ void cleanup_render_pool_type1(longlong pool_ptr)
       *(uint64_t *)(array_ptr + index * 8) = 0;
       index = index + 1;
     } while (index < pool_size);
-    pool_size = *(ulonglong *)(pool_ptr + 0x10);
+    pool_size = *(uint64_t *)(pool_ptr + 0x10);
   }
   *(uint64_t *)(pool_ptr + 0x18) = 0;
-  if ((1 < pool_size) && (*(longlong *)(pool_ptr + 8) != 0)) {
+  if ((1 < pool_size) && (*(int64_t *)(pool_ptr + 8) != 0)) {
     // 资源池状态异常
     render_error_handler();
   }
@@ -397,15 +397,15 @@ void cleanup_render_pool_type1(longlong pool_ptr)
  * 清理渲染资源池（类型2）
  * @param pool_ptr 资源池指针
  */
-void cleanup_render_pool_type2(longlong pool_ptr)
+void cleanup_render_pool_type2(int64_t pool_ptr)
 {
-  longlong array_ptr;
+  int64_t array_ptr;
   uint64_t *resource_ptr;
-  ulonglong pool_size;
-  ulonglong index;
+  uint64_t pool_size;
+  uint64_t index;
   
-  pool_size = *(ulonglong *)(pool_ptr + 0x10);
-  array_ptr = *(longlong *)(pool_ptr + 8);
+  pool_size = *(uint64_t *)(pool_ptr + 0x10);
+  array_ptr = *(int64_t *)(pool_ptr + 8);
   index = 0;
   if (pool_size != 0) {
     do {
@@ -429,10 +429,10 @@ void cleanup_render_pool_type2(longlong pool_ptr)
       *(uint64_t *)(array_ptr + index * 8) = 0;
       index = index + 1;
     } while (index < pool_size);
-    pool_size = *(ulonglong *)(pool_ptr + 0x10);
+    pool_size = *(uint64_t *)(pool_ptr + 0x10);
   }
   *(uint64_t *)(pool_ptr + 0x18) = 0;
-  if ((1 < pool_size) && (*(longlong *)(pool_ptr + 8) != 0)) {
+  if ((1 < pool_size) && (*(int64_t *)(pool_ptr + 8) != 0)) {
     // 资源池状态异常
     render_error_handler();
   }
@@ -443,15 +443,15 @@ void cleanup_render_pool_type2(longlong pool_ptr)
  * 清理渲染资源池（类型3）
  * @param pool_ptr 资源池指针
  */
-void cleanup_render_pool_type3(longlong pool_ptr)
+void cleanup_render_pool_type3(int64_t pool_ptr)
 {
-  longlong array_ptr;
+  int64_t array_ptr;
   uint64_t *resource_ptr;
-  ulonglong pool_size;
-  ulonglong index;
+  uint64_t pool_size;
+  uint64_t index;
   
-  pool_size = *(ulonglong *)(pool_ptr + 0x10);
-  array_ptr = *(longlong *)(pool_ptr + 8);
+  pool_size = *(uint64_t *)(pool_ptr + 0x10);
+  array_ptr = *(int64_t *)(pool_ptr + 8);
   index = 0;
   if (pool_size != 0) {
     do {
@@ -475,10 +475,10 @@ void cleanup_render_pool_type3(longlong pool_ptr)
       *(uint64_t *)(array_ptr + index * 8) = 0;
       index = index + 1;
     } while (index < pool_size);
-    pool_size = *(ulonglong *)(pool_ptr + 0x10);
+    pool_size = *(uint64_t *)(pool_ptr + 0x10);
   }
   *(uint64_t *)(pool_ptr + 0x18) = 0;
-  if ((1 < pool_size) && (*(longlong *)(pool_ptr + 8) != 0)) {
+  if ((1 < pool_size) && (*(int64_t *)(pool_ptr + 8) != 0)) {
     // 资源池状态异常
     render_error_handler();
   }
@@ -490,7 +490,7 @@ void cleanup_render_pool_type3(longlong pool_ptr)
  * @param buffer_ptr 缓冲区指针
  * @param count 初始化数量
  */
-void initialize_render_buffer(longlong buffer_ptr, longlong count)
+void initialize_render_buffer(int64_t buffer_ptr, int64_t count)
 {
   int32_t *data_ptr;
   
@@ -571,15 +571,15 @@ void initialize_render_buffer(longlong buffer_ptr, longlong count)
  * 清理渲染资源池（类型4）
  * @param pool_ptr 资源池指针
  */
-void cleanup_render_pool_type4(longlong pool_ptr)
+void cleanup_render_pool_type4(int64_t pool_ptr)
 {
-  longlong array_ptr;
+  int64_t array_ptr;
   uint64_t *resource_ptr;
-  ulonglong pool_size;
-  ulonglong index;
+  uint64_t pool_size;
+  uint64_t index;
   
-  pool_size = *(ulonglong *)(pool_ptr + 0x18);
-  array_ptr = *(longlong *)(pool_ptr + 0x10);
+  pool_size = *(uint64_t *)(pool_ptr + 0x18);
+  array_ptr = *(int64_t *)(pool_ptr + 0x10);
   index = 0;
   if (pool_size != 0) {
     do {
@@ -603,10 +603,10 @@ void cleanup_render_pool_type4(longlong pool_ptr)
       *(uint64_t *)(array_ptr + index * 8) = 0;
       index = index + 1;
     } while (index < pool_size);
-    pool_size = *(ulonglong *)(pool_ptr + 0x18);
+    pool_size = *(uint64_t *)(pool_ptr + 0x18);
   }
   *(uint64_t *)(pool_ptr + 0x20) = 0;
-  if ((1 < pool_size) && (*(longlong *)(pool_ptr + 0x10) != 0)) {
+  if ((1 < pool_size) && (*(int64_t *)(pool_ptr + 0x10) != 0)) {
     // 资源池状态异常
     render_error_handler();
   }
@@ -621,7 +621,7 @@ void cleanup_render_pool_type4(longlong pool_ptr)
  * @param dest_ptr 目标数据指针
  * @return 更新后的列表指针
  */
-longlong * build_render_object_list(longlong *list_ptr, int32_t *src_begin, int32_t *src_end, uint64_t *dest_ptr)
+int64_t * build_render_object_list(int64_t *list_ptr, int32_t *src_begin, int32_t *src_end, uint64_t *dest_ptr)
 {
   uint64_t *obj_ptr;
   int32_t *src_ptr;
@@ -632,7 +632,7 @@ longlong * build_render_object_list(longlong *list_ptr, int32_t *src_begin, int3
   int32_t *data_ptr;
   void *vtable_ptr;
   
-  *list_ptr = (longlong)dest_ptr;
+  *list_ptr = (int64_t)dest_ptr;
   if (src_begin != src_end) {
     data_ptr = src_begin + 0x5a;
     do {
@@ -655,15 +655,15 @@ longlong * build_render_object_list(longlong *list_ptr, int32_t *src_begin, int3
       
       // 复制渲染属性
       *(int32_t *)(dest_ptr + 0xb) = data_ptr[-0x44];
-      *(int32_t *)((longlong)dest_ptr + 0x5c) = data_ptr[-0x43];
+      *(int32_t *)((int64_t)dest_ptr + 0x5c) = data_ptr[-0x43];
       *(int32_t *)(dest_ptr + 0xc) = data_ptr[-0x42];
-      *(int32_t *)((longlong)dest_ptr + 100) = data_ptr[-0x41];
+      *(int32_t *)((int64_t)dest_ptr + 100) = data_ptr[-0x41];
       *(int32_t *)(dest_ptr + 0xd) = data_ptr[-0x40];
-      *(int32_t *)((longlong)dest_ptr + 0x6c) = data_ptr[-0x3f];
+      *(int32_t *)((int64_t)dest_ptr + 0x6c) = data_ptr[-0x3f];
       *(int32_t *)(dest_ptr + 0xe) = data_ptr[-0x3e];
-      *(int32_t *)((longlong)dest_ptr + 0x74) = data_ptr[-0x3d];
+      *(int32_t *)((int64_t)dest_ptr + 0x74) = data_ptr[-0x3d];
       *(int32_t *)(dest_ptr + 0xf) = data_ptr[-0x3c];
-      *(int32_t *)((longlong)dest_ptr + 0x7c) = data_ptr[-0x3b];
+      *(int32_t *)((int64_t)dest_ptr + 0x7c) = data_ptr[-0x3b];
       
       // 复制变换矩阵数据
       temp_var4 = *(uint64_t *)(data_ptr + -0x38);
@@ -693,16 +693,16 @@ longlong * build_render_object_list(longlong *list_ptr, int32_t *src_begin, int3
       temp_var5 = data_ptr[-0x1c];
       temp_var6 = data_ptr[-0x1b];
       *(int32_t *)(dest_ptr + 0x1e) = data_ptr[-0x1e];
-      *(int32_t *)((longlong)dest_ptr + 0xf4) = temp_var3;
+      *(int32_t *)((int64_t)dest_ptr + 0xf4) = temp_var3;
       *(int32_t *)(dest_ptr + 0x1f) = temp_var5;
-      *(int32_t *)((longlong)dest_ptr + 0xfc) = temp_var6;
+      *(int32_t *)((int64_t)dest_ptr + 0xfc) = temp_var6;
       temp_var3 = data_ptr[-0x19];
       temp_var5 = data_ptr[-0x18];
       temp_var6 = data_ptr[-0x17];
       *(int32_t *)(dest_ptr + 0x20) = data_ptr[-0x1a];
-      *(int32_t *)((longlong)dest_ptr + 0x104) = temp_var3;
+      *(int32_t *)((int64_t)dest_ptr + 0x104) = temp_var3;
       *(int32_t *)(dest_ptr + 0x21) = temp_var5;
-      *(int32_t *)((longlong)dest_ptr + 0x10c) = temp_var6;
+      *(int32_t *)((int64_t)dest_ptr + 0x10c) = temp_var6;
       
       // 设置渲染状态
       dest_ptr[0x22] = &DEFAULT_RENDER_VTABLE_2;
@@ -714,7 +714,7 @@ longlong * build_render_object_list(longlong *list_ptr, int32_t *src_begin, int3
       *(int32_t *)(dest_ptr + 0x24) = 0;
       *(int32_t *)(dest_ptr + 0x24) = data_ptr[-0x12];
       dest_ptr[0x23] = *(uint64_t *)(data_ptr + -0x14);
-      *(int32_t *)((longlong)dest_ptr + 300) = data_ptr[-0xf];
+      *(int32_t *)((int64_t)dest_ptr + 300) = data_ptr[-0xf];
       *(int32_t *)(dest_ptr + 0x25) = data_ptr[-0x10];
       
       // 清理源数据
@@ -796,13 +796,13 @@ longlong * build_render_object_list(longlong *list_ptr, int32_t *src_begin, int3
  * @param pool_ptr 内存池指针
  * @param additional_size 需要增加的大小
  */
-void expand_render_memory_pool(longlong pool_ptr, longlong additional_size)
+void expand_render_memory_pool(int64_t pool_ptr, int64_t additional_size)
 {
-  longlong *memory_ptr;
-  ulonglong aligned_size;
+  int64_t *memory_ptr;
+  uint64_t aligned_size;
   
-  memory_ptr = *(longlong **)(pool_ptr + 0x30);
-  aligned_size = (longlong)(int)memory_ptr[2] + 7U & 0xfffffffffffffff8;
+  memory_ptr = *(int64_t **)(pool_ptr + 0x30);
+  aligned_size = (int64_t)(int)memory_ptr[2] + 7U & 0xfffffffffffffff8;
   *(int *)(memory_ptr + 2) = (int)aligned_size + ((int)additional_size + 1) * 8;
   // 清理新增内存
   memset(*memory_ptr + aligned_size, 0, additional_size * 8);
@@ -814,27 +814,27 @@ void expand_render_memory_pool(longlong pool_ptr, longlong additional_size)
  * @param state_flag 状态标志
  * @return 处理结果
  */
-int8_t process_render_state_change(longlong context_ptr, int8_t state_flag)
+int8_t process_render_state_change(int64_t context_ptr, int8_t state_flag)
 {
   uint material_flags;
-  longlong object_ptr;
+  int64_t object_ptr;
   char render_type;
   int8_t result;
   uint blend_mode;
   int8_t continue_flag;
-  longlong array_ptr;
-  longlong current_pos;
+  int64_t array_ptr;
+  int64_t current_pos;
   int index;
   
-  current_pos = *(longlong *)(context_ptr + 0x38);
+  current_pos = *(int64_t *)(context_ptr + 0x38);
   index = 0;
   result = 1;
-  if (*(longlong *)(context_ptr + 0x40) - current_pos >> 4 != 0) {
+  if (*(int64_t *)(context_ptr + 0x40) - current_pos >> 4 != 0) {
     array_ptr = 0;
     continue_flag = result;
     do {
-      current_pos = *(longlong *)(array_ptr + current_pos);
-      object_ptr = *(longlong *)(current_pos + 0x1b8);
+      current_pos = *(int64_t *)(array_ptr + current_pos);
+      object_ptr = *(int64_t *)(current_pos + 0x1b8);
       render_type = *(char *)(object_ptr + 0x38c);
       if (render_type == '\t') {
         material_flags = *(uint *)(object_ptr + 0x388);
@@ -869,7 +869,7 @@ int8_t process_render_state_change(longlong context_ptr, int8_t state_flag)
       if (render_type == '\0') {
         *(byte *)(current_pos + 0xfe) = *(byte *)(current_pos + 0xfe) & 0xfb;
       }
-      current_pos = *(longlong *)(context_ptr + 0x38);
+      current_pos = *(int64_t *)(context_ptr + 0x38);
       result = 0;
       if (render_type != '\0') {
         result = continue_flag;
@@ -877,7 +877,7 @@ int8_t process_render_state_change(longlong context_ptr, int8_t state_flag)
       index = index + 1;
       array_ptr = array_ptr + 0x10;
       continue_flag = result;
-    } while ((ulonglong)(longlong)index < (ulonglong)(*(longlong *)(context_ptr + 0x40) - current_pos >> 4));
+    } while ((uint64_t)(int64_t)index < (uint64_t)(*(int64_t *)(context_ptr + 0x40) - current_pos >> 4));
   }
   return result;
 }
@@ -889,22 +889,22 @@ int8_t process_render_state_change(longlong context_ptr, int8_t state_flag)
  * @param context_ptr 渲染上下文指针
  * @return 处理结果
  */
-int8_t batch_process_render_states(uint64_t param1, uint64_t param2, longlong context_ptr)
+int8_t batch_process_render_states(uint64_t param1, uint64_t param2, int64_t context_ptr)
 {
   uint material_flags;
-  longlong object_ptr;
-  longlong render_data;
+  int64_t object_ptr;
+  int64_t render_data;
   char render_type;
   int8_t result;
   uint blend_mode;
-  longlong array_ptr;
-  longlong current_pos;
+  int64_t array_ptr;
+  int64_t current_pos;
   int index;
   
   array_ptr = 0;
   do {
-    render_data = *(longlong *)(array_ptr + context_ptr);
-    object_ptr = *(longlong *)(render_data + 0x1b8);
+    render_data = *(int64_t *)(array_ptr + context_ptr);
+    object_ptr = *(int64_t *)(render_data + 0x1b8);
     render_type = *(char *)(object_ptr + 0x38c);
     if (render_type == '\t') {
       material_flags = *(uint *)(object_ptr + 0x388);
@@ -939,7 +939,7 @@ int8_t batch_process_render_states(uint64_t param1, uint64_t param2, longlong co
     if (render_type == '\0') {
       *(byte *)(render_data + 0xfe) = *(byte *)(render_data + 0xfe) & 0xfb;
     }
-    context_ptr = *(longlong *)(param1 + 0x38);
+    context_ptr = *(int64_t *)(param1 + 0x38);
     result = 0;
     if (render_type != '\0') {
       result = param1;
@@ -947,8 +947,8 @@ int8_t batch_process_render_states(uint64_t param1, uint64_t param2, longlong co
     index = index + 1;
     array_ptr = array_ptr + 0x10;
     param1 = result;
-  } while ((ulonglong)(longlong)index <
-         (ulonglong)(*(longlong *)(param1 + 0x40) - context_ptr >> 4));
+  } while ((uint64_t)(int64_t)index <
+         (uint64_t)(*(int64_t *)(param1 + 0x40) - context_ptr >> 4));
   return result;
 }
 
@@ -971,18 +971,18 @@ int8_t get_render_state_flag(void)
  * @param param4 参数4
  * @return 释放后的资源指针
  */
-uint64_t * free_render_resource(uint64_t *resource_ptr, ulonglong size, uint64_t param3, uint64_t param4)
+uint64_t * free_render_resource(uint64_t *resource_ptr, uint64_t size, uint64_t param3, uint64_t param4)
 {
   uint64_t free_flag;
   
   free_flag = 0xfffffffffffffffe;
-  if ((longlong *)resource_ptr[4] != (longlong *)0x0) {
+  if ((int64_t *)resource_ptr[4] != (int64_t *)0x0) {
     // 调用资源清理函数
-    (**(code **)(*(longlong *)resource_ptr[4] + 0x38))();
+    (**(code **)(*(int64_t *)resource_ptr[4] + 0x38))();
   }
-  if ((longlong *)resource_ptr[3] != (longlong *)0x0) {
+  if ((int64_t *)resource_ptr[3] != (int64_t *)0x0) {
     // 调用资源清理函数
-    (**(code **)(*(longlong *)resource_ptr[3] + 0x38))();
+    (**(code **)(*(int64_t *)resource_ptr[3] + 0x38))();
   }
   *resource_ptr = &DEFAULT_RESOURCE_VTABLE_1;
   *resource_ptr = &DEFAULT_RESOURCE_VTABLE_2;
@@ -1036,7 +1036,7 @@ float * compute_vector_cross_product(float *vec1, float *result_ptr, float *vec2
  * @param position_ptr 位置指针
  * @return 计算结果
  */
-uint64_t compute_render_distance(longlong object_ptr, uint64_t param2, float *position_ptr)
+uint64_t compute_render_distance(int64_t object_ptr, uint64_t param2, float *position_ptr)
 {
   float distance_x;
   float distance_y;

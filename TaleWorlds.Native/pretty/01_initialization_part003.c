@@ -70,8 +70,8 @@
 // ===========================================
 
 /** 系统句柄类型别名 */
-typedef longlong* SystemHandle;
-typedef const longlong* ConstSystemHandle;
+typedef int64_t* SystemHandle;
+typedef const int64_t* ConstSystemHandle;
 typedef uint64_t* ComponentPointer;
 typedef const uint64_t* ConstComponentPointer;
 
@@ -242,7 +242,7 @@ void FUN_18002f270(void)
     component_ptr = (ComponentPointer)*system_handle;
     
     // 遍历组件链表
-    char status_flag = *(char *)((longlong)component_ptr[1] + 0x19);
+    char status_flag = *(char *)((int64_t)component_ptr[1] + 0x19);
     callback_func = FUN_18025c000;
     current_node = component_ptr;
     next_node = (ComponentPointer)component_ptr[1];
@@ -257,13 +257,13 @@ void FUN_18002f270(void)
         }
         current_node = next_node;
         next_node = temp_node;
-        status_flag = *(char *)((longlong)temp_node + 0x19);
+        status_flag = *(char *)((int64_t)temp_node + 0x19);
     }
     
     // 如果未找到合适节点，创建新节点
     if ((current_node == component_ptr) || 
         (compare_result = memcmp(&system_memory_1078, current_node + 4, 0x10), compare_result < 0)) {
-        longlong allocation_size = FUN_18008f0d0(system_handle);
+        int64_t allocation_size = FUN_18008f0d0(system_handle);
         FUN_18008f140(system_handle, &found_node, current_node, allocation_size + 0x20, allocation_size);
         current_node = found_node;
     }
@@ -299,7 +299,7 @@ void FUN_18002f370(void)
     component_ptr = (ComponentPointer)*system_handle;
     
     // 遍历组件链表
-    char status_flag = *(char *)((longlong)component_ptr[1] + 0x19);
+    char status_flag = *(char *)((int64_t)component_ptr[1] + 0x19);
     null_callback = 0;
     current_node = component_ptr;
     next_node = (ComponentPointer)component_ptr[1];
@@ -314,13 +314,13 @@ void FUN_18002f370(void)
         }
         current_node = next_node;
         next_node = temp_node;
-        status_flag = *(char *)((longlong)temp_node + 0x19);
+        status_flag = *(char *)((int64_t)temp_node + 0x19);
     }
     
     // 如果未找到合适节点，创建新节点
     if ((current_node == component_ptr) || 
         (compare_result = memcmp(&system_memory_1050, current_node + 4, 0x10), compare_result < 0)) {
-        longlong allocation_size = FUN_18008f0d0(system_handle);
+        int64_t allocation_size = FUN_18008f0d0(system_handle);
         FUN_18008f140(system_handle, &found_node, current_node, allocation_size + 0x20, allocation_size);
         current_node = found_node;
     }
@@ -356,7 +356,7 @@ void FUN_18002f470(void)
     component_ptr = (ComponentPointer)*system_handle;
     
     // 遍历组件链表
-    char status_flag = *(char *)((longlong)component_ptr[1] + 0x19);
+    char status_flag = *(char *)((int64_t)component_ptr[1] + 0x19);
     callback_func = FUN_18025d270;
     current_node = component_ptr;
     next_node = (ComponentPointer)component_ptr[1];
@@ -371,13 +371,13 @@ void FUN_18002f470(void)
         }
         current_node = next_node;
         next_node = temp_node;
-        status_flag = *(char *)((longlong)temp_node + 0x19);
+        status_flag = *(char *)((int64_t)temp_node + 0x19);
     }
     
     // 如果未找到合适节点，创建新节点
     if ((current_node == component_ptr) || 
         (compare_result = memcmp(&system_memory_1028, current_node + 4, 0x10), compare_result < 0)) {
-        longlong allocation_size = FUN_18008f0d0(system_handle);
+        int64_t allocation_size = FUN_18008f0d0(system_handle);
         FUN_18008f140(system_handle, &found_node, current_node, allocation_size + 0x20, allocation_size);
         current_node = found_node;
     }
@@ -413,7 +413,7 @@ void FUN_18002f570(void)
     component_ptr = (ComponentPointer)*system_handle;
     
     // 遍历组件链表
-    char status_flag = *(char *)((longlong)component_ptr[1] + 0x19);
+    char status_flag = *(char *)((int64_t)component_ptr[1] + 0x19);
     null_callback = 0;
     current_node = component_ptr;
     next_node = (ComponentPointer)component_ptr[1];
@@ -428,13 +428,13 @@ void FUN_18002f570(void)
         }
         current_node = next_node;
         next_node = temp_node;
-        status_flag = *(char *)((longlong)temp_node + 0x19);
+        status_flag = *(char *)((int64_t)temp_node + 0x19);
     }
     
     // 如果未找到合适节点，创建新节点
     if ((current_node == component_ptr) || 
         (compare_result = memcmp(&system_memory_1000, current_node + 4, 0x10), compare_result < 0)) {
-        longlong allocation_size = FUN_18008f0d0(system_handle);
+        int64_t allocation_size = FUN_18008f0d0(system_handle);
         FUN_18008f140(system_handle, &found_node, current_node, allocation_size + 0x20, allocation_size);
         current_node = found_node;
     }
@@ -470,7 +470,7 @@ void FUN_18002f670(void)
     component_ptr = (ComponentPointer)*system_handle;
     
     // 遍历组件链表
-    char status_flag = *(char *)((longlong)component_ptr[1] + 0x19);
+    char status_flag = *(char *)((int64_t)component_ptr[1] + 0x19);
     system_data_ptr = &unknown_var_2048_ptr;
     current_node = component_ptr;
     next_node = (ComponentPointer)component_ptr[1];
@@ -485,13 +485,13 @@ void FUN_18002f670(void)
         }
         current_node = next_node;
         next_node = temp_node;
-        status_flag = *(char *)((longlong)temp_node + 0x19);
+        status_flag = *(char *)((int64_t)temp_node + 0x19);
     }
     
     // 如果未找到合适节点，创建新节点
     if ((current_node == component_ptr) || 
         (compare_result = memcmp(&system_memory_0fd8, current_node + 4, 0x10), compare_result < 0)) {
-        longlong allocation_size = FUN_18008f0d0(system_handle);
+        int64_t allocation_size = FUN_18008f0d0(system_handle);
         FUN_18008f140(system_handle, &found_node, current_node, allocation_size + 0x20, allocation_size);
         current_node = found_node;
     }
@@ -527,7 +527,7 @@ void FUN_18002f770(void)
     component_ptr = (ComponentPointer)*system_handle;
     
     // 遍历组件链表
-    char status_flag = *(char *)((longlong)component_ptr[1] + 0x19);
+    char status_flag = *(char *)((int64_t)component_ptr[1] + 0x19);
     null_callback = 0;
     current_node = component_ptr;
     next_node = (ComponentPointer)component_ptr[1];
@@ -542,13 +542,13 @@ void FUN_18002f770(void)
         }
         current_node = next_node;
         next_node = temp_node;
-        status_flag = *(char *)((longlong)temp_node + 0x19);
+        status_flag = *(char *)((int64_t)temp_node + 0x19);
     }
     
     // 如果未找到合适节点，创建新节点
     if ((current_node == component_ptr) || 
         (compare_result = memcmp(&system_memory_0fb0, current_node + 4, 0x10), compare_result < 0)) {
-        longlong allocation_size = FUN_18008f0d0(system_handle);
+        int64_t allocation_size = FUN_18008f0d0(system_handle);
         FUN_18008f140(system_handle, &found_node, current_node, allocation_size + 0x20, allocation_size);
         current_node = found_node;
     }
@@ -584,7 +584,7 @@ void FUN_18002f870(void)
     component_ptr = (ComponentPointer)*system_handle;
     
     // 遍历组件链表
-    char status_flag = *(char *)((longlong)component_ptr[1] + 0x19);
+    char status_flag = *(char *)((int64_t)component_ptr[1] + 0x19);
     callback_func = FUN_18025cc00;
     current_node = component_ptr;
     next_node = (ComponentPointer)component_ptr[1];
@@ -599,13 +599,13 @@ void FUN_18002f870(void)
         }
         current_node = next_node;
         next_node = temp_node;
-        status_flag = *(char *)((longlong)temp_node + 0x19);
+        status_flag = *(char *)((int64_t)temp_node + 0x19);
     }
     
     // 如果未找到合适节点，创建新节点
     if ((current_node == component_ptr) || 
         (compare_result = memcmp(&system_memory_10a0, current_node + 4, 0x10), compare_result < 0)) {
-        longlong allocation_size = FUN_18008f0d0(system_handle);
+        int64_t allocation_size = FUN_18008f0d0(system_handle);
         FUN_18008f140(system_handle, &found_node, current_node, allocation_size + 0x20, allocation_size);
         current_node = found_node;
     }
@@ -641,7 +641,7 @@ void FUN_18002f970(void)
     component_ptr = (ComponentPointer)*system_handle;
     
     // 遍历组件链表
-    char status_flag = *(char *)((longlong)component_ptr[1] + 0x19);
+    char status_flag = *(char *)((int64_t)component_ptr[1] + 0x19);
     callback_func = FUN_18025c000;
     current_node = component_ptr;
     next_node = (ComponentPointer)component_ptr[1];
@@ -656,13 +656,13 @@ void FUN_18002f970(void)
         }
         current_node = next_node;
         next_node = temp_node;
-        status_flag = *(char *)((longlong)temp_node + 0x19);
+        status_flag = *(char *)((int64_t)temp_node + 0x19);
     }
     
     // 如果未找到合适节点，创建新节点
     if ((current_node == component_ptr) || 
         (compare_result = memcmp(&system_memory_1078, current_node + 4, 0x10), compare_result < 0)) {
-        longlong allocation_size = FUN_18008f0d0(system_handle);
+        int64_t allocation_size = FUN_18008f0d0(system_handle);
         FUN_18008f140(system_handle, &found_node, current_node, allocation_size + 0x20, allocation_size);
         current_node = found_node;
     }
@@ -698,7 +698,7 @@ void FUN_18002fa70(void)
     component_ptr = (ComponentPointer)*system_handle;
     
     // 遍历组件链表
-    char status_flag = *(char *)((longlong)component_ptr[1] + 0x19);
+    char status_flag = *(char *)((int64_t)component_ptr[1] + 0x19);
     null_callback = 0;
     current_node = component_ptr;
     next_node = (ComponentPointer)component_ptr[1];
@@ -713,13 +713,13 @@ void FUN_18002fa70(void)
         }
         current_node = next_node;
         next_node = temp_node;
-        status_flag = *(char *)((longlong)temp_node + 0x19);
+        status_flag = *(char *)((int64_t)temp_node + 0x19);
     }
     
     // 如果未找到合适节点，创建新节点
     if ((current_node == component_ptr) || 
         (compare_result = memcmp(&system_memory_1050, current_node + 4, 0x10), compare_result < 0)) {
-        longlong allocation_size = FUN_18008f0d0(system_handle);
+        int64_t allocation_size = FUN_18008f0d0(system_handle);
         FUN_18008f140(system_handle, &found_node, current_node, allocation_size + 0x20, allocation_size);
         current_node = found_node;
     }
@@ -755,7 +755,7 @@ void FUN_18002fb70(void)
     component_ptr = (ComponentPointer)*system_handle;
     
     // 遍历组件链表
-    char status_flag = *(char *)((longlong)component_ptr[1] + 0x19);
+    char status_flag = *(char *)((int64_t)component_ptr[1] + 0x19);
     callback_func = FUN_18025d270;
     current_node = component_ptr;
     next_node = (ComponentPointer)component_ptr[1];
@@ -770,13 +770,13 @@ void FUN_18002fb70(void)
         }
         current_node = next_node;
         next_node = temp_node;
-        status_flag = *(char *)((longlong)temp_node + 0x19);
+        status_flag = *(char *)((int64_t)temp_node + 0x19);
     }
     
     // 如果未找到合适节点，创建新节点
     if ((current_node == component_ptr) || 
         (compare_result = memcmp(&system_memory_1028, current_node + 4, 0x10), compare_result < 0)) {
-        longlong allocation_size = FUN_18008f0d0(system_handle);
+        int64_t allocation_size = FUN_18008f0d0(system_handle);
         FUN_18008f140(system_handle, &found_node, current_node, allocation_size + 0x20, allocation_size);
         current_node = found_node;
     }
@@ -812,7 +812,7 @@ void FUN_18002fc70(void)
     component_ptr = (ComponentPointer)*system_handle;
     
     // 遍历组件链表
-    char status_flag = *(char *)((longlong)component_ptr[1] + 0x19);
+    char status_flag = *(char *)((int64_t)component_ptr[1] + 0x19);
     null_callback = 0;
     current_node = component_ptr;
     next_node = (ComponentPointer)component_ptr[1];
@@ -827,13 +827,13 @@ void FUN_18002fc70(void)
         }
         current_node = next_node;
         next_node = temp_node;
-        status_flag = *(char *)((longlong)temp_node + 0x19);
+        status_flag = *(char *)((int64_t)temp_node + 0x19);
     }
     
     // 如果未找到合适节点，创建新节点
     if ((current_node == component_ptr) || 
         (compare_result = memcmp(&system_memory_1000, current_node + 4, 0x10), compare_result < 0)) {
-        longlong allocation_size = FUN_18008f0d0(system_handle);
+        int64_t allocation_size = FUN_18008f0d0(system_handle);
         FUN_18008f140(system_handle, &found_node, current_node, allocation_size + 0x20, allocation_size);
         current_node = found_node;
     }
@@ -869,7 +869,7 @@ void FUN_18002fd70(void)
     component_ptr = (ComponentPointer)*system_handle;
     
     // 遍历组件链表
-    char status_flag = *(char *)((longlong)component_ptr[1] + 0x19);
+    char status_flag = *(char *)((int64_t)component_ptr[1] + 0x19);
     system_data_ptr = &unknown_var_2048_ptr;
     current_node = component_ptr;
     next_node = (ComponentPointer)component_ptr[1];
@@ -884,13 +884,13 @@ void FUN_18002fd70(void)
         }
         current_node = next_node;
         next_node = temp_node;
-        status_flag = *(char *)((longlong)temp_node + 0x19);
+        status_flag = *(char *)((int64_t)temp_node + 0x19);
     }
     
     // 如果未找到合适节点，创建新节点
     if ((current_node == component_ptr) || 
         (compare_result = memcmp(&system_memory_0fd8, current_node + 4, 0x10), compare_result < 0)) {
-        longlong allocation_size = FUN_18008f0d0(system_handle);
+        int64_t allocation_size = FUN_18008f0d0(system_handle);
         FUN_18008f140(system_handle, &found_node, current_node, allocation_size + 0x20, allocation_size);
         current_node = found_node;
     }
@@ -926,7 +926,7 @@ void FUN_18002fe70(void)
     component_ptr = (ComponentPointer)*system_handle;
     
     // 遍历组件链表
-    char status_flag = *(char *)((longlong)component_ptr[1] + 0x19);
+    char status_flag = *(char *)((int64_t)component_ptr[1] + 0x19);
     null_callback = 0;
     current_node = component_ptr;
     next_node = (ComponentPointer)component_ptr[1];
@@ -941,13 +941,13 @@ void FUN_18002fe70(void)
         }
         current_node = next_node;
         next_node = temp_node;
-        status_flag = *(char *)((longlong)temp_node + 0x19);
+        status_flag = *(char *)((int64_t)temp_node + 0x19);
     }
     
     // 如果未找到合适节点，创建新节点
     if ((current_node == component_ptr) || 
         (compare_result = memcmp(&system_memory_0fb0, current_node + 4, 0x10), compare_result < 0)) {
-        longlong allocation_size = FUN_18008f0d0(system_handle);
+        int64_t allocation_size = FUN_18008f0d0(system_handle);
         FUN_18008f140(system_handle, &found_node, current_node, allocation_size + 0x20, allocation_size);
         current_node = found_node;
     }
@@ -983,7 +983,7 @@ void FUN_18002ff70(void)
     component_ptr = (ComponentPointer)*system_handle;
     
     // 遍历组件链表
-    char status_flag = *(char *)((longlong)component_ptr[1] + 0x19);
+    char status_flag = *(char *)((int64_t)component_ptr[1] + 0x19);
     null_callback = 0;
     current_node = component_ptr;
     next_node = (ComponentPointer)component_ptr[1];
@@ -998,13 +998,13 @@ void FUN_18002ff70(void)
         }
         current_node = next_node;
         next_node = temp_node;
-        status_flag = *(char *)((longlong)temp_node + 0x19);
+        status_flag = *(char *)((int64_t)temp_node + 0x19);
     }
     
     // 如果未找到合适节点，创建新节点
     if ((current_node == component_ptr) || 
         (compare_result = memcmp(&system_memory_e0d0, current_node + 4, 0x10), compare_result < 0)) {
-        longlong allocation_size = FUN_18008f0d0(system_handle);
+        int64_t allocation_size = FUN_18008f0d0(system_handle);
         FUN_18008f140(system_handle, &found_node, current_node, allocation_size + 0x20, allocation_size);
         current_node = found_node;
     }
@@ -1040,7 +1040,7 @@ void FUN_180030070(void)
     component_ptr = (ComponentPointer)*system_handle;
     
     // 遍历组件链表
-    char status_flag = *(char *)((longlong)component_ptr[1] + 0x19);
+    char status_flag = *(char *)((int64_t)component_ptr[1] + 0x19);
     callback_func = FUN_18025e330;
     current_node = component_ptr;
     next_node = (ComponentPointer)component_ptr[1];
@@ -1055,13 +1055,13 @@ void FUN_180030070(void)
         }
         current_node = next_node;
         next_node = temp_node;
-        status_flag = *(char *)((longlong)temp_node + 0x19);
+        status_flag = *(char *)((int64_t)temp_node + 0x19);
     }
     
     // 如果未找到合适节点，创建新节点
     if ((current_node == component_ptr) || 
         (compare_result = memcmp(&system_memory_0d48, current_node + 4, 0x10), compare_result < 0)) {
-        longlong allocation_size = FUN_18008f0d0(system_handle);
+        int64_t allocation_size = FUN_18008f0d0(system_handle);
         FUN_18008f140(system_handle, &found_node, current_node, allocation_size + 0x20, allocation_size);
         current_node = found_node;
     }
@@ -1097,7 +1097,7 @@ void FUN_180030170(void)
     component_ptr = (ComponentPointer)*system_handle;
     
     // 遍历组件链表
-    char status_flag = *(char *)((longlong)component_ptr[1] + 0x19);
+    char status_flag = *(char *)((int64_t)component_ptr[1] + 0x19);
     callback_func = FUN_18025cc00;
     current_node = component_ptr;
     next_node = (ComponentPointer)component_ptr[1];
@@ -1112,13 +1112,13 @@ void FUN_180030170(void)
         }
         current_node = next_node;
         next_node = temp_node;
-        status_flag = *(char *)((longlong)temp_node + 0x19);
+        status_flag = *(char *)((int64_t)temp_node + 0x19);
     }
     
     // 如果未找到合适节点，创建新节点
     if ((current_node == component_ptr) || 
         (compare_result = memcmp(&system_memory_10a0, current_node + 4, 0x10), compare_result < 0)) {
-        longlong allocation_size = FUN_18008f0d0(system_handle);
+        int64_t allocation_size = FUN_18008f0d0(system_handle);
         FUN_18008f140(system_handle, &found_node, current_node, allocation_size + 0x20, allocation_size);
         current_node = found_node;
     }
@@ -1154,7 +1154,7 @@ void FUN_180030270(void)
     component_ptr = (ComponentPointer)*system_handle;
     
     // 遍历组件链表
-    char status_flag = *(char *)((longlong)component_ptr[1] + 0x19);
+    char status_flag = *(char *)((int64_t)component_ptr[1] + 0x19);
     callback_func = FUN_18025c000;
     current_node = component_ptr;
     next_node = (ComponentPointer)component_ptr[1];
@@ -1169,13 +1169,13 @@ void FUN_180030270(void)
         }
         current_node = next_node;
         next_node = temp_node;
-        status_flag = *(char *)((longlong)temp_node + 0x19);
+        status_flag = *(char *)((int64_t)temp_node + 0x19);
     }
     
     // 如果未找到合适节点，创建新节点
     if ((current_node == component_ptr) || 
         (compare_result = memcmp(&system_memory_1078, current_node + 4, 0x10), compare_result < 0)) {
-        longlong allocation_size = FUN_18008f0d0(system_handle);
+        int64_t allocation_size = FUN_18008f0d0(system_handle);
         FUN_18008f140(system_handle, &found_node, current_node, allocation_size + 0x20, allocation_size);
         current_node = found_node;
     }
@@ -1211,7 +1211,7 @@ void FUN_180030370(void)
     component_ptr = (ComponentPointer)*system_handle;
     
     // 遍历组件链表
-    char status_flag = *(char *)((longlong)component_ptr[1] + 0x19);
+    char status_flag = *(char *)((int64_t)component_ptr[1] + 0x19);
     null_callback = 0;
     current_node = component_ptr;
     next_node = (ComponentPointer)component_ptr[1];
@@ -1226,13 +1226,13 @@ void FUN_180030370(void)
         }
         current_node = next_node;
         next_node = temp_node;
-        status_flag = *(char *)((longlong)temp_node + 0x19);
+        status_flag = *(char *)((int64_t)temp_node + 0x19);
     }
     
     // 如果未找到合适节点，创建新节点
     if ((current_node == component_ptr) || 
         (compare_result = memcmp(&system_memory_1050, current_node + 4, 0x10), compare_result < 0)) {
-        longlong allocation_size = FUN_18008f0d0(system_handle);
+        int64_t allocation_size = FUN_18008f0d0(system_handle);
         FUN_18008f140(system_handle, &found_node, current_node, allocation_size + 0x20, allocation_size);
         current_node = found_node;
     }
@@ -1268,7 +1268,7 @@ void FUN_180030470(void)
     component_ptr = (ComponentPointer)*system_handle;
     
     // 遍历组件链表
-    char status_flag = *(char *)((longlong)component_ptr[1] + 0x19);
+    char status_flag = *(char *)((int64_t)component_ptr[1] + 0x19);
     callback_func = FUN_18025d270;
     current_node = component_ptr;
     next_node = (ComponentPointer)component_ptr[1];
@@ -1283,13 +1283,13 @@ void FUN_180030470(void)
         }
         current_node = next_node;
         next_node = temp_node;
-        status_flag = *(char *)((longlong)temp_node + 0x19);
+        status_flag = *(char *)((int64_t)temp_node + 0x19);
     }
     
     // 如果未找到合适节点，创建新节点
     if ((current_node == component_ptr) || 
         (compare_result = memcmp(&system_memory_1028, current_node + 4, 0x10), compare_result < 0)) {
-        longlong allocation_size = FUN_18008f0d0(system_handle);
+        int64_t allocation_size = FUN_18008f0d0(system_handle);
         FUN_18008f140(system_handle, &found_node, current_node, allocation_size + 0x20, allocation_size);
         current_node = found_node;
     }
@@ -1325,7 +1325,7 @@ void FUN_180030570(void)
     component_ptr = (ComponentPointer)*system_handle;
     
     // 遍历组件链表
-    char status_flag = *(char *)((longlong)component_ptr[1] + 0x19);
+    char status_flag = *(char *)((int64_t)component_ptr[1] + 0x19);
     null_callback = 0;
     current_node = component_ptr;
     next_node = (ComponentPointer)component_ptr[1];
@@ -1340,13 +1340,13 @@ void FUN_180030570(void)
         }
         current_node = next_node;
         next_node = temp_node;
-        status_flag = *(char *)((longlong)temp_node + 0x19);
+        status_flag = *(char *)((int64_t)temp_node + 0x19);
     }
     
     // 如果未找到合适节点，创建新节点
     if ((current_node == component_ptr) || 
         (compare_result = memcmp(&system_memory_1000, current_node + 4, 0x10), compare_result < 0)) {
-        longlong allocation_size = FUN_18008f0d0(system_handle);
+        int64_t allocation_size = FUN_18008f0d0(system_handle);
         FUN_18008f140(system_handle, &found_node, current_node, allocation_size + 0x20, allocation_size);
         current_node = found_node;
     }
@@ -1382,7 +1382,7 @@ void FUN_180030670(void)
     component_ptr = (ComponentPointer)*system_handle;
     
     // 遍历组件链表
-    char status_flag = *(char *)((longlong)component_ptr[1] + 0x19);
+    char status_flag = *(char *)((int64_t)component_ptr[1] + 0x19);
     system_data_ptr = &unknown_var_2048_ptr;
     current_node = component_ptr;
     next_node = (ComponentPointer)component_ptr[1];
@@ -1397,13 +1397,13 @@ void FUN_180030670(void)
         }
         current_node = next_node;
         next_node = temp_node;
-        status_flag = *(char *)((longlong)temp_node + 0x19);
+        status_flag = *(char *)((int64_t)temp_node + 0x19);
     }
     
     // 如果未找到合适节点，创建新节点
     if ((current_node == component_ptr) || 
         (compare_result = memcmp(&system_memory_0fd8, current_node + 4, 0x10), compare_result < 0)) {
-        longlong allocation_size = FUN_18008f0d0(system_handle);
+        int64_t allocation_size = FUN_18008f0d0(system_handle);
         FUN_18008f140(system_handle, &found_node, current_node, allocation_size + 0x20, allocation_size);
         current_node = found_node;
     }
@@ -1439,7 +1439,7 @@ void FUN_180030770(void)
     component_ptr = (ComponentPointer)*system_handle;
     
     // 遍历组件链表
-    char status_flag = *(char *)((longlong)component_ptr[1] + 0x19);
+    char status_flag = *(char *)((int64_t)component_ptr[1] + 0x19);
     null_callback = 0;
     current_node = component_ptr;
     next_node = (ComponentPointer)component_ptr[1];
@@ -1454,13 +1454,13 @@ void FUN_180030770(void)
         }
         current_node = next_node;
         next_node = temp_node;
-        status_flag = *(char *)((longlong)temp_node + 0x19);
+        status_flag = *(char *)((int64_t)temp_node + 0x19);
     }
     
     // 如果未找到合适节点，创建新节点
     if ((current_node == component_ptr) || 
         (compare_result = memcmp(&system_memory_0fb0, current_node + 4, 0x10), compare_result < 0)) {
-        longlong allocation_size = FUN_18008f0d0(system_handle);
+        int64_t allocation_size = FUN_18008f0d0(system_handle);
         FUN_18008f140(system_handle, &found_node, current_node, allocation_size + 0x20, allocation_size);
         current_node = found_node;
     }
@@ -1510,7 +1510,7 @@ void FUN_180030870(void)
  */
 int FUN_180030900(void)
 {
-    longlong status_result;
+    int64_t status_result;
     uint64_t register_value;
     
     // 设置系统状态指针
@@ -1543,7 +1543,7 @@ void FUN_180031a10(void)
     component_ptr = (ComponentPointer)*system_handle;
     
     // 遍历组件链表
-    char status_flag = *(char *)((longlong)component_ptr[1] + 0x19);
+    char status_flag = *(char *)((int64_t)component_ptr[1] + 0x19);
     callback_func = FUN_1802281a0;
     current_node = component_ptr;
     next_node = (ComponentPointer)component_ptr[1];
@@ -1558,13 +1558,13 @@ void FUN_180031a10(void)
         }
         current_node = next_node;
         next_node = temp_node;
-        status_flag = *(char *)((longlong)temp_node + 0x19);
+        status_flag = *(char *)((int64_t)temp_node + 0x19);
     }
     
     // 如果未找到合适节点，创建新节点
     if ((current_node == component_ptr) || 
         (compare_result = memcmp(&system_memory_f9e8, current_node + 4, 0x10), compare_result < 0)) {
-        longlong allocation_size = FUN_18008f0d0(system_handle);
+        int64_t allocation_size = FUN_18008f0d0(system_handle);
         FUN_18008f140(system_handle, &found_node, current_node, allocation_size + 0x20, allocation_size);
         current_node = found_node;
     }
@@ -1600,7 +1600,7 @@ void FUN_180031b10(void)
     component_ptr = (ComponentPointer)*system_handle;
     
     // 遍历组件链表
-    char status_flag = *(char *)((longlong)component_ptr[1] + 0x19);
+    char status_flag = *(char *)((int64_t)component_ptr[1] + 0x19);
     callback_func = FUN_1802285e0;
     current_node = component_ptr;
     next_node = (ComponentPointer)component_ptr[1];
@@ -1615,13 +1615,13 @@ void FUN_180031b10(void)
         }
         current_node = next_node;
         next_node = temp_node;
-        status_flag = *(char *)((longlong)temp_node + 0x19);
+        status_flag = *(char *)((int64_t)temp_node + 0x19);
     }
     
     // 如果未找到合适节点，创建新节点
     if ((current_node == component_ptr) || 
         (compare_result = memcmp(&system_memory_f9c0, current_node + 4, 0x10), compare_result < 0)) {
-        longlong allocation_size = FUN_18008f0d0(system_handle);
+        int64_t allocation_size = FUN_18008f0d0(system_handle);
         FUN_18008f140(system_handle, &found_node, current_node, allocation_size + 0x20, allocation_size);
         current_node = found_node;
     }
@@ -1657,7 +1657,7 @@ void FUN_180031c10(void)
     component_ptr = (ComponentPointer)*system_handle;
     
     // 遍历组件链表
-    char status_flag = *(char *)((longlong)component_ptr[1] + 0x19);
+    char status_flag = *(char *)((int64_t)component_ptr[1] + 0x19);
     callback_func = FUN_1802281a0;
     current_node = component_ptr;
     next_node = (ComponentPointer)component_ptr[1];
@@ -1672,13 +1672,13 @@ void FUN_180031c10(void)
         }
         current_node = next_node;
         next_node = temp_node;
-        status_flag = *(char *)((longlong)temp_node + 0x19);
+        status_flag = *(char *)((int64_t)temp_node + 0x19);
     }
     
     // 如果未找到合适节点，创建新节点
     if ((current_node == component_ptr) || 
         (compare_result = memcmp(&system_memory_f9e8, current_node + 4, 0x10), compare_result < 0)) {
-        longlong allocation_size = FUN_18008f0d0(system_handle);
+        int64_t allocation_size = FUN_18008f0d0(system_handle);
         FUN_18008f140(system_handle, &found_node, current_node, allocation_size + 0x20, allocation_size);
         current_node = found_node;
     }

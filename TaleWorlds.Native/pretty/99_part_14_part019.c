@@ -84,7 +84,7 @@ static int8_t optimized_time_buffer[16];
  *==============================================================================*/
 
 /** 系统句柄类型 */
-typedef longlong SYSTEM_HANDLE;
+typedef int64_t SYSTEM_HANDLE;
 /** 系统时间戳类型 */
 typedef uint64_t SYSTEM_TIMESTAMP;
 /** 系统状态枚举 */
@@ -119,13 +119,13 @@ typedef struct {
 
 /** 证书时间验证处理器 - 原FUN_1808fac70函数 */
 void CertificateTimeValidator_ValidateCertificateTime(
-    longlong system_context, 
+    int64_t system_context, 
     uint64_t validation_timestamp
 );
 
 /** 证书链验证器 - 原FUN_1808fade0函数 */
 bool CertificateChainValidator_ValidateChainWithTime(
-    longlong system_context,
+    int64_t system_context,
     uint64_t start_time,
     uint64_t end_time
 );
@@ -156,12 +156,12 @@ uint64_t SystemLibraryLoader_LoadSystemLibrary(void);
 
 /** 证书时间转换器 - 辅助函数 */
 char CertificateTimeConverter_ConvertCertificateTime(
-    longlong chain_context,
+    int64_t chain_context,
     int8_t* time_buffer
 );
 
 /** 证书验证结果处理器 - 辅助函数 */
-longlong CertificateTimeValidator_ProcessValidationResult(
+int64_t CertificateTimeValidator_ProcessValidationResult(
     uint64_t validation_result,
     int32_t result_flags,
     int32_t reserved
@@ -244,13 +244,13 @@ void SystemSecurity_PerformGuardCheck(uint64_t guard_value);
  * - 集成错误处理机制
  */
 void CertificateTimeValidator_ValidateCertificateTime(
-    longlong system_context, 
+    int64_t system_context, 
     uint64_t validation_timestamp
 ) {
     int32_t* certificate_data;
     void* system_interface;
     int comparison_result;
-    longlong validation_result;
+    int64_t validation_result;
     uint iteration_index;
     uint64_t certificate_index;
     
@@ -258,9 +258,9 @@ void CertificateTimeValidator_ValidateCertificateTime(
     int8_t security_buffer[32];
     int32_t operation_flags;
     uint64_t context_handle;
-    longlong* result_pointer;
+    int64_t* result_pointer;
     int8_t* data_pointer;
-    longlong memory_handle;
+    int64_t memory_handle;
     int8_t certificate_buffer[8];
     int8_t system_time_buffer[16];
     uint64_t stack_guard;
@@ -275,14 +275,14 @@ void CertificateTimeValidator_ValidateCertificateTime(
         do {
             /* 比较证书名称以找到目标证书 */
             comparison_result = lstrcmpA(
-                *(uint64_t*)(*(longlong*)(system_context + 0x80) + certificate_index * 0x18),
+                *(uint64_t*)(*(int64_t*)(system_context + 0x80) + certificate_index * 0x18),
                 g_target_certificate_name
             );
             
             system_interface = g_system_validation_interface;
             if (comparison_result == 0) {
                 /* 获取证书数据指针 */
-                certificate_data = *(int32_t**)(*(longlong*)(system_context + 0x80) + 0x10 + certificate_index * 0x18);
+                certificate_data = *(int32_t**)(*(int64_t*)(system_context + 0x80) + 0x10 + certificate_index * 0x18);
                 
                 /* 执行安全调用检查 */
                 _guard_check_icall(g_system_validation_interface);
@@ -361,7 +361,7 @@ void CertificateTimeValidator_ValidateCertificateTime(
  * - 集成错误恢复机制
  */
 bool CertificateChainValidator_ValidateChainWithTime(
-    longlong system_context,
+    int64_t system_context,
     uint64_t start_time,
     uint64_t end_time
 ) {
@@ -369,13 +369,13 @@ bool CertificateChainValidator_ValidateChainWithTime(
     void* validation_interface;
     char time_conversion_result;
     int operation_result;
-    longlong verification_handle;
+    int64_t verification_handle;
     uint iteration_index;
     bool validation_success;
     
     /* 安全验证缓冲区 */
     int8_t verification_buffer[8];
-    longlong chain_context;
+    int64_t chain_context;
     int8_t* context_pointer;
     int32_t extended_flags;
     
@@ -402,7 +402,7 @@ bool CertificateChainValidator_ValidateChainWithTime(
             
             /* 比较证书名称以找到目标证书 */
             operation_result = lstrcmpA(
-                *(uint64_t*)(*(longlong*)(system_context + 0x80) + certificate_index * 0x18),
+                *(uint64_t*)(*(int64_t*)(system_context + 0x80) + certificate_index * 0x18),
                 g_chain_certificate_name
             );
             
@@ -411,13 +411,13 @@ bool CertificateChainValidator_ValidateChainWithTime(
             
             if (operation_result == 0) {
                 /* 获取证书数据指针 */
-                certificate_data = *(int32_t**)(*(longlong*)(system_context + 0x80) + 0x10 + certificate_index * 0x18);
+                certificate_data = *(int32_t**)(*(int64_t*)(system_context + 0x80) + 0x10 + certificate_index * 0x18);
                 
                 /* 执行安全调用检查 */
                 _guard_check_icall(g_system_validation_interface);
                 
                 /* 执行证书链验证 */
-                operation_result = ((int(*)(uint64_t, int, uint64_t, int32_t, uint32_t, int, longlong*, int8_t*))validation_interface)(
+                operation_result = ((int(*)(uint64_t, int, uint64_t, int32_t, uint32_t, int, int64_t*, int8_t*))validation_interface)(
                     SYSTEM_ACCESS_PERMISSION,
                     SYSTEM_VERIFY_OPCODE,
                     *(uint64_t*)(certificate_data + 2),
@@ -444,7 +444,7 @@ bool CertificateChainValidator_ValidateChainWithTime(
                 
                 /* 准备时间验证上下文 */
                 context_pointer = context_buffer;
-                verification_handle = ((longlong(*)(uint64_t, uint64_t, int, int, int8_t*, int))validation_interface)(
+                verification_handle = ((int64_t(*)(uint64_t, uint64_t, int, int, int8_t*, int))validation_interface)(
                     start_time,
                     SYSTEM_ACCESS_PERMISSION,
                     0,
@@ -470,7 +470,7 @@ bool CertificateChainValidator_ValidateChainWithTime(
                 /* 清理验证资源 */
                 validation_interface = g_system_cleanup_interface;
                 _guard_check_icall(g_system_cleanup_interface);
-                ((void(*)(longlong))validation_interface)(verification_handle);
+                ((void(*)(int64_t))validation_interface)(verification_handle);
             }
             iteration_index = (uint)certificate_index + 1;
             certificate_index = (uint64_t)iteration_index;
@@ -519,12 +519,12 @@ char CertificateValidator_OptimizeValidationProcess(void) {
     void* validation_interface;
     char time_conversion_result;
     int comparison_result;
-    longlong context_register;
-    longlong verification_handle;
+    int64_t context_register;
+    int64_t verification_handle;
     
     /* 寄存器优化变量 */
     uint64_t data_register;
-    longlong base_pointer;
+    int64_t base_pointer;
     uint source_index;
     uint64_t destination_index;
     char result_register;
@@ -539,7 +539,7 @@ char CertificateValidator_OptimizeValidationProcess(void) {
     int32_t security_flags;
     uint64_t creation_time;
     uint64_t modification_time;
-    longlong optimized_context;
+    int64_t optimized_context;
   
     /* 设置寄存器优化的上下文 */
     *(uint64_t*)(context_register + 0x10) = data_register;
@@ -551,7 +551,7 @@ char CertificateValidator_OptimizeValidationProcess(void) {
         
         /* 使用寄存器优化的字符串比较 */
         comparison_result = lstrcmpA(
-            *(uint64_t*)(*(longlong*)(base_pointer + 0x80) + (uint64_t)source_index * 0x18),
+            *(uint64_t*)(*(int64_t*)(base_pointer + 0x80) + (uint64_t)source_index * 0x18),
             g_chain_certificate_name
         );
         
@@ -560,7 +560,7 @@ char CertificateValidator_OptimizeValidationProcess(void) {
         
         if (comparison_result == 0) {
             /* 获取证书数据指针 */
-            certificate_data = *(int32_t**)(*(longlong*)(base_pointer + 0x80) + 0x10 + (uint64_t)source_index * 0x18);
+            certificate_data = *(int32_t**)(*(int64_t*)(base_pointer + 0x80) + 0x10 + (uint64_t)source_index * 0x18);
             
             /* 执行安全调用检查 */
             _guard_check_icall(g_system_validation_interface);
@@ -590,7 +590,7 @@ char CertificateValidator_OptimizeValidationProcess(void) {
             
             /* 准备优化的上下文指针 */
             optimized_pointer = &optimized_stack_buffer;
-            verification_handle = ((longlong(*)(int32_t, uint64_t, int, int, int8_t*))validation_interface)(
+            verification_handle = ((int64_t(*)(int32_t, uint64_t, int, int, int8_t*))validation_interface)(
                 flags_register,
                 SYSTEM_ACCESS_PERMISSION,
                 0,
@@ -615,7 +615,7 @@ char CertificateValidator_OptimizeValidationProcess(void) {
             /* 清理优化的验证资源 */
             validation_interface = g_system_cleanup_interface;
             _guard_check_icall(g_system_cleanup_interface);
-            ((void(*)(longlong))validation_interface)(verification_handle);
+            ((void(*)(int64_t))validation_interface)(verification_handle);
         }
         source_index = source_index + 1;
     } while (source_index < *(uint*)(base_pointer + 0x78));
@@ -712,7 +712,7 @@ char* DynamicLibraryLoader_LoadLibraryWithVerification(
     char verification_result;
     int validation_result;
     uint file_attributes;
-    longlong file_handle;
+    int64_t file_handle;
     char* library_handle;
     int32_t error_code;
     char* verification_buffer;
@@ -834,7 +834,7 @@ uint64_t FileCreator_CreateFileWithAccess(
     uint64_t security_attributes
 ) {
     char verification_result;
-    longlong file_handle;
+    int64_t file_handle;
     int32_t error_code;
     char buffer_status;
     uint64_t library_handle;
@@ -919,7 +919,7 @@ uint64_t SystemLibraryLoader_LoadSystemLibrary(void) {
     char verification_result;
     int32_t error_code;
     char verification_mode;
-    longlong file_handle;
+    int64_t file_handle;
     uint64_t library_handle;
     char stack_buffer;
     
@@ -973,7 +973,7 @@ CLEANUP_AND_RETURN:
  * @return char 转换结果
  */
 char CertificateTimeConverter_ConvertCertificateTime(
-    longlong chain_context,
+    int64_t chain_context,
     int8_t* time_buffer
 ) {
     if (chain_context == 0 || time_buffer == 0) {
@@ -993,9 +993,9 @@ char CertificateTimeConverter_ConvertCertificateTime(
  * @param validation_result 验证结果
  * @param result_flags 结果标志
  * @param reserved 保留参数
- * @return longlong 处理后的结果
+ * @return int64_t 处理后的结果
  */
-longlong CertificateTimeValidator_ProcessValidationResult(
+int64_t CertificateTimeValidator_ProcessValidationResult(
     uint64_t validation_result,
     int32_t result_flags,
     int32_t reserved
@@ -1005,7 +1005,7 @@ longlong CertificateTimeValidator_ProcessValidationResult(
     }
     
     /* 简化的验证结果处理 */
-    return (longlong)validation_result;
+    return (int64_t)validation_result;
 }
 
 /**

@@ -51,22 +51,22 @@
  * 4. 更新系统状态和输出结果
  * 5. 清理临时资源并返回
  */
-void ui_system_advanced_data_processor(longlong *param_1, longlong *param_2, longlong *param_3)
+void ui_system_advanced_data_processor(int64_t *param_1, int64_t *param_2, int64_t *param_3)
 
 {
   int32_t uVar1;
   int32_t uVar2;
   uint64_t *puVar3;
   int iVar4;
-  longlong lVar5;
-  longlong lVar6;
+  int64_t lVar5;
+  int64_t lVar6;
   uint64_t *puVar7;
   uint64_t *puVar8;
   uint64_t *puVar9;
   uint64_t *puVar10;
   uint64_t *puVar11;
   uint uVar12;
-  longlong lStackX_8;
+  int64_t lStackX_8;
   uint64_t uStackX_18;
   uint64_t uVar13;
   uint64_t *puStack_60;
@@ -85,13 +85,13 @@ void ui_system_advanced_data_processor(longlong *param_1, longlong *param_2, lon
   lVar5 = param_2[5];
   param_1[0xd] = param_2[4];
   param_1[0xe] = lVar5;
-  uVar1 = *(int32_t *)((longlong)param_2 + 0x34);
+  uVar1 = *(int32_t *)((int64_t)param_2 + 0x34);
   lVar5 = param_2[7];
-  uVar2 = *(int32_t *)((longlong)param_2 + 0x3c);
+  uVar2 = *(int32_t *)((int64_t)param_2 + 0x3c);
   *(int *)(param_1 + 0xf) = (int)param_2[6];
-  *(int32_t *)((longlong)param_1 + 0x7c) = uVar1;
+  *(int32_t *)((int64_t)param_1 + 0x7c) = uVar1;
   *(int *)(param_1 + 0x10) = (int)lVar5;
-  *(int32_t *)((longlong)param_1 + 0x84) = uVar2;
+  *(int32_t *)((int64_t)param_1 + 0x84) = uVar2;
   
   // 计算处理范围和初始化缓冲区
   lVar5 = param_3[1] - *param_3 >> 4;
@@ -101,13 +101,13 @@ void ui_system_advanced_data_processor(longlong *param_1, longlong *param_2, lon
   puStack_50 = (uint64_t *)0x0;
   uStack_48 = 3;
   iVar4 = (int)lVar5;
-  lStackX_8 = (longlong)iVar4;
+  lStackX_8 = (int64_t)iVar4;
   
   // 分配处理所需的内存缓冲区
   if (iVar4 != 0) {
     puStack_58 = (uint64_t *)
                  FUN_18062b420(system_memory_pool_ptr,lStackX_8 * 8,
-                               CONCAT71((int7)(int3)((ulonglong)lVar5 >> 8),3),param_3,
+                               CONCAT71((int7)(int3)((uint64_t)lVar5 >> 8),3),param_3,
                                0xfffffffffffffffe);
     puStack_50 = puStack_58 + lStackX_8;
   }
@@ -126,19 +126,19 @@ void ui_system_advanced_data_processor(longlong *param_1, longlong *param_2, lon
       lVar5 = *param_3;
       if (puStack_58 < puVar8) {
         // 直接数据复制操作
-        *puStack_58 = *(uint64_t *)((longlong)puVar11 + lVar5);
+        *puStack_58 = *(uint64_t *)((int64_t)puVar11 + lVar5);
         puVar7 = puVar10;
       }
       else {
         // 动态内存扩展和数据迁移
-        lVar6 = (longlong)puStack_58 - (longlong)puVar10 >> 3;
+        lVar6 = (int64_t)puStack_58 - (int64_t)puVar10 >> 3;
         if (lVar6 == 0) {
           lVar6 = 1;
 LAB_1806588f2:
           // 分配新的内存块
           puVar7 = (uint64_t *)
                    FUN_18062b420(system_memory_pool_ptr,lVar6 * 8,
-                                 CONCAT71((int7)((ulonglong)lStackX_8 >> 8),3),param_3,uVar13);
+                                 CONCAT71((int7)((uint64_t)lStackX_8 >> 8),3),param_3,uVar13);
         }
         else {
           lVar6 = lVar6 * 2;
@@ -148,9 +148,9 @@ LAB_1806588f2:
         // 执行数据迁移
         if (puVar10 != puVar3) {
                     // WARNING: Subroutine does not return
-          memmove(puVar7,puVar10,(longlong)puVar3 - (longlong)puVar10);
+          memmove(puVar7,puVar10,(int64_t)puVar3 - (int64_t)puVar10);
         }
-        *puVar7 = *(uint64_t *)((longlong)puVar11 + lVar5);
+        *puVar7 = *(uint64_t *)((int64_t)puVar11 + lVar5);
         // 释放旧的内存块
         if (puVar10 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
@@ -169,7 +169,7 @@ LAB_1806588f2:
   }
   
   // 清理和处理最终结果
-  lVar5 = (longlong)puStack_58 - (longlong)puVar7;
+  lVar5 = (int64_t)puStack_58 - (int64_t)puVar7;
   FUN_180640330(puVar7,puStack_58);
   FUN_18063efb0(param_1,&puStack_60,lVar5 >> 3 & 0xffffffff,1);
   FUN_18033a920(param_1 + 0x11,param_1[1] - *param_1 >> 3);
@@ -178,13 +178,13 @@ LAB_1806588f2:
   puVar8 = puVar9;
   if (param_1[1] - *param_1 >> 3 != 0) {
     do {
-      uStackX_18 = CONCAT44(*(int32_t *)((longlong)puVar9 + *param_1 + 4),
-                            *(int32_t *)((longlong)puVar9 + *param_1));
-      *(uint64_t *)((longlong)puVar9 + param_1[0x11]) = uStackX_18;
+      uStackX_18 = CONCAT44(*(int32_t *)((int64_t)puVar9 + *param_1 + 4),
+                            *(int32_t *)((int64_t)puVar9 + *param_1));
+      *(uint64_t *)((int64_t)puVar9 + param_1[0x11]) = uStackX_18;
       uVar12 = (int)puVar8 + 1;
       puVar9 = puVar9 + 1;
-      puVar8 = (uint64_t *)(ulonglong)uVar12;
-    } while ((ulonglong)(longlong)(int)uVar12 < (ulonglong)(param_1[1] - *param_1 >> 3));
+      puVar8 = (uint64_t *)(uint64_t)uVar12;
+    } while ((uint64_t)(int64_t)(int)uVar12 < (uint64_t)(param_1[1] - *param_1 >> 3));
   }
   
   // 释放临时内存资源
@@ -214,12 +214,12 @@ LAB_1806588f2:
  * - 采用浮点运算保证精度
  * - 包含边界检查和错误处理
  */
-uint64_t ui_system_matrix_transformer(longlong *param_1, float *param_2, float *param_3, float *param_4, char param_5)
+uint64_t ui_system_matrix_transformer(int64_t *param_1, float *param_2, float *param_3, float *param_4, char param_5)
 
 {
   // 输入参数和中间变量
   float fVar1, fVar2, fVar3, fVar4, fVar5, fVar6, fVar7, fVar8, fVar9, fVar10, fVar11, fVar12;
-  longlong lVar4, lVar15, lVar22, lVar23;
+  int64_t lVar4, lVar15, lVar22, lVar23;
   bool bVar5;
   char cVar14;
   uint64_t uVar16;
@@ -240,7 +240,7 @@ uint64_t ui_system_matrix_transformer(longlong *param_1, float *param_2, float *
   float fStack_1c8, fStack_1c4, fStack_1c0, fStack_1bc, fStack_1b8, fStack_1b4, fStack_1b0, fStack_1ac;
   
   // 控制变量和状态
-  longlong lStack_1a8, lStack_1a0;
+  int64_t lStack_1a8, lStack_1a0;
   int32_t uStack_198, uStack_194, uStack_190, uStack_18c, uStack_188, uStack_184, uStack_180, uStack_17c;
   
   // 临时计算缓冲区
@@ -269,10 +269,10 @@ uint64_t ui_system_matrix_transformer(longlong *param_1, float *param_2, float *
   // 从矩阵参数加载变换系数
   fVar1 = *(float *)(param_1 + 9);
   fVar27 = *(float *)(param_1 + 10);
-  fVar25 = *(float *)((longlong)param_1 + 0x4c);
-  fVar26 = *(float *)((longlong)param_1 + 0x7c);
-  fVar28 = *(float *)((longlong)param_1 + 0x6c);
-  fVar2 = *(float *)((longlong)param_1 + 0x5c);
+  fVar25 = *(float *)((int64_t)param_1 + 0x4c);
+  fVar26 = *(float *)((int64_t)param_1 + 0x7c);
+  fVar28 = *(float *)((int64_t)param_1 + 0x6c);
+  fVar2 = *(float *)((int64_t)param_1 + 0x5c);
   fVar3 = *(float *)(param_1 + 0xb);
   
   // 执行第一轮矩阵变换计算
@@ -329,7 +329,7 @@ uint64_t ui_system_matrix_transformer(longlong *param_1, float *param_2, float *
     fVar26 = 3.4028235e+38;
     lVar23 = param_1[0x11];
     iVar18 = (int)(param_1[0x12] - lVar23 >> 3);
-    lStack_1a0 = (longlong)iVar18;
+    lStack_1a0 = (int64_t)iVar18;
     fStackX_10 = 0.0;
     fStackX_14 = 0.0;
     fVar28 = 3.4028235e+38;
@@ -361,9 +361,9 @@ uint64_t ui_system_matrix_transformer(longlong *param_1, float *param_2, float *
       
       // 主优化循环
       do {
-        uStack_198 = *(int32_t *)((lVar23 - lVar4) + -4 + (longlong)puVar19);
-        uStack_194 = *(int32_t *)((lVar23 - lVar4) + (longlong)puVar19);
-        lVar22 = (longlong)(iVar24 % iVar18);
+        uStack_198 = *(int32_t *)((lVar23 - lVar4) + -4 + (int64_t)puVar19);
+        uStack_194 = *(int32_t *)((lVar23 - lVar4) + (int64_t)puVar19);
+        lVar22 = (int64_t)(iVar24 % iVar18);
         uStack_188 = *(int32_t *)(lVar23 + lVar22 * 8);
         uStack_184 = *(int32_t *)(lVar23 + 4 + lVar22 * 8);
         FUN_1806457f0(&uStack_188, &uStack_198, &fStack_1b8, &fStack_1c8, &fStack_138, &fStack_178);
@@ -423,7 +423,7 @@ uint64_t ui_system_matrix_transformer(longlong *param_1, float *param_2, float *
       
       // 批量凸包验证
       do {
-        lVar15 = (longlong)((iVar21 + -1) % iVar18);
+        lVar15 = (int64_t)((iVar21 + -1) % iVar18);
         if ((!bVar5) ||
            ((fVar31 = (pfVar17[-4] - *(float *)(lVar4 + 4 + lVar15 * 8)) *
                       (fStackX_18 - pfVar17[-5]) -
@@ -436,10 +436,10 @@ uint64_t ui_system_matrix_transformer(longlong *param_1, float *param_2, float *
         }
         
         if ((!bVar5) ||
-           ((fVar31 = (pfVar17[-2] - *(float *)(lVar4 + 4 + (longlong)(iVar21 % iVar18) * 8)) *
+           ((fVar31 = (pfVar17[-2] - *(float *)(lVar4 + 4 + (int64_t)(iVar21 % iVar18) * 8)) *
                       (fStackX_18 - pfVar17[-3]) -
                       (fStackX_1c - pfVar17[-2]) *
-                      (pfVar17[-3] - *(float *)(lVar4 + (longlong)(iVar21 % iVar18) * 8)),
+                      (pfVar17[-3] - *(float *)(lVar4 + (int64_t)(iVar21 % iVar18) * 8)),
             fVar31 <= 0.0 && (fVar31 < 0.0)))) {
           bVar5 = false;
         }
@@ -447,7 +447,7 @@ uint64_t ui_system_matrix_transformer(longlong *param_1, float *param_2, float *
           bVar5 = true;
         }
         
-        lVar15 = (longlong)((iVar21 + 1) % iVar18);
+        lVar15 = (int64_t)((iVar21 + 1) % iVar18);
         if ((!bVar5) ||
            ((fVar31 = (*pfVar17 - *(float *)(lVar4 + 4 + lVar15 * 8)) * (fStackX_18 - pfVar17[-1]) -
                       (fStackX_1c - *pfVar17) * (pfVar17[-1] - *(float *)(lVar4 + lVar15 * 8)),
@@ -458,7 +458,7 @@ uint64_t ui_system_matrix_transformer(longlong *param_1, float *param_2, float *
           bVar5 = true;
         }
         
-        lVar15 = (longlong)((iVar21 + 2) % iVar18);
+        lVar15 = (int64_t)((iVar21 + 2) % iVar18);
         if ((!bVar5) ||
            ((fVar31 = (pfVar17[2] - *(float *)(lVar4 + 4 + lVar15 * 8)) * (fStackX_18 - pfVar17[1]) -
                       (fStackX_1c - pfVar17[2]) * (pfVar17[1] - *(float *)(lVar4 + lVar15 * 8)),
@@ -482,10 +482,10 @@ uint64_t ui_system_matrix_transformer(longlong *param_1, float *param_2, float *
         iVar24 = iVar24 + 1;
         if ((!bVar5) ||
            ((fVar31 = *(float *)(lVar4 + 4 + lVar23 * 8), fVar33 = *(float *)(lVar4 + lVar23 * 8),
-            fVar31 = (fVar31 - *(float *)(lVar4 + 4 + (longlong)(iVar24 % iVar18) * 8)) *
+            fVar31 = (fVar31 - *(float *)(lVar4 + 4 + (int64_t)(iVar24 % iVar18) * 8)) *
                      (fStackX_18 - fVar33) -
                      (fStackX_1c - fVar31) *
-                     (fVar33 - *(float *)(lVar4 + (longlong)(iVar24 % iVar18) * 8)), fVar31 <= 0.0
+                     (fVar33 - *(float *)(lVar4 + (int64_t)(iVar24 % iVar18) * 8)), fVar31 <= 0.0
             && (fVar31 < 0.0)))) {
           bVar5 = false;
         }
@@ -562,17 +562,17 @@ LAB_180659172:
  * - 延迟加载和惰性计算
  * - 资源生命周期管理
  */
-uint64_t ui_system_optimization_handler(longlong *param_1)
+uint64_t ui_system_optimization_handler(int64_t *param_1)
 
 {
   float fVar1, fVar2, fVar3, fVar4, fVar5, fVar6, fVar7, fVar8;
-  longlong lVar2, lVar10, lVar16, lVar17;
+  int64_t lVar2, lVar10, lVar16, lVar17;
   bool bVar3;
   char cVar9;
   float *pfVar11;
   int iVar12, iVar15, iVar18;
   uint64_t uVar13, uVar14;
-  longlong unaff_RBX, unaff_R12;
+  int64_t unaff_RBX, unaff_R12;
   float *unaff_RBP, *unaff_R13;
   float fVar19, fVar20, fVar21;
   float unaff_XMM6_Da, unaff_XMM8_Da, unaff_XMM9_Da, unaff_XMM10_Da;
@@ -585,7 +585,7 @@ uint64_t ui_system_optimization_handler(longlong *param_1)
   lVar17 = param_1[0x11];
   unaff_RBP[0x42] = unaff_XMM14_Da;
   iVar12 = (int)(unaff_RBX - lVar17 >> 3);
-  lStack0000000000000058 = (longlong)iVar12;
+  lStack0000000000000058 = (int64_t)iVar12;
   unaff_RBP[0x43] = unaff_XMM15_Da;
   uVar14 = *(uint64_t *)(unaff_RBP + 0x42);
   unaff_RBP[0x44] = 0.0;
@@ -611,9 +611,9 @@ uint64_t ui_system_optimization_handler(longlong *param_1)
     
     // 优化计算主循环
     do {
-      uStack0000000000000060 = *(int32_t *)((lVar17 - lVar2) + -4 + (longlong)pfVar11);
-      uStack0000000000000064 = *(int32_t *)((lVar17 - lVar2) + (longlong)pfVar11);
-      lVar16 = (longlong)(iVar18 % iVar12);
+      uStack0000000000000060 = *(int32_t *)((lVar17 - lVar2) + -4 + (int64_t)pfVar11);
+      uStack0000000000000064 = *(int32_t *)((lVar17 - lVar2) + (int64_t)pfVar11);
+      lVar16 = (int64_t)(iVar18 % iVar12);
       uStack0000000000000070 = *(int32_t *)(lVar17 + lVar16 * 8);
       uStack0000000000000074 = *(int32_t *)(lVar17 + 4 + lVar16 * 8);
       FUN_1806457f0(&stack0x00000070, &stack0x00000060, &stack0x00000040, &stack0x00000030, unaff_RBP + -0x10);
@@ -649,7 +649,7 @@ uint64_t ui_system_optimization_handler(longlong *param_1)
       fVar20 = fVar19;
     } while (in_stack_00000050 != 0);
     
-    unaff_R12 = *(longlong *)(unaff_RBP + 0x40);
+    unaff_R12 = *(int64_t *)(unaff_RBP + 0x40);
     unaff_R13 = *(float **)(unaff_RBP + 0x46);
     *(uint64_t *)(unaff_RBP + 0x44) = uVar13;
     fVar21 = unaff_RBP[0x45];
@@ -666,7 +666,7 @@ uint64_t ui_system_optimization_handler(longlong *param_1)
   
   // 执行优化验证和结果计算
   if (3 < lStack0000000000000058) {
-    lVar2 = *(longlong *)(unaff_R12 + 0x88);
+    lVar2 = *(int64_t *)(unaff_R12 + 0x88);
     iVar15 = 2;
     lVar16 = (lStack0000000000000058 - 4U >> 2) + 1;
     pfVar11 = (float *)(lVar2 + 0x14);
@@ -675,7 +675,7 @@ uint64_t ui_system_optimization_handler(longlong *param_1)
     
     // 批量优化验证
     do {
-      lVar10 = (longlong)((iVar15 + -1) % iVar12);
+      lVar10 = (int64_t)((iVar15 + -1) % iVar12);
       if ((!bVar3) ||
          ((fVar19 = (pfVar11[-4] - *(float *)(lVar2 + 4 + lVar10 * 8)) * (fVar20 - pfVar11[-5]) -
                     (fVar21 - pfVar11[-4]) * (pfVar11[-5] - *(float *)(lVar2 + lVar10 * 8)),
@@ -687,10 +687,10 @@ uint64_t ui_system_optimization_handler(longlong *param_1)
       }
       
       if ((!bVar3) ||
-         ((fVar19 = (pfVar11[-2] - *(float *)(lVar2 + 4 + (longlong)(iVar15 % iVar12) * 8)) *
+         ((fVar19 = (pfVar11[-2] - *(float *)(lVar2 + 4 + (int64_t)(iVar15 % iVar12) * 8)) *
                     (fVar20 - pfVar11[-3]) -
                     (fVar21 - pfVar11[-2]) *
-                    (pfVar11[-3] - *(float *)(lVar2 + (longlong)(iVar15 % iVar12) * 8)),
+                    (pfVar11[-3] - *(float *)(lVar2 + (int64_t)(iVar15 % iVar12) * 8)),
           fVar19 <= unaff_XMM6_Da && (fVar19 < unaff_XMM6_Da)))) {
         bVar3 = false;
       }
@@ -698,7 +698,7 @@ uint64_t ui_system_optimization_handler(longlong *param_1)
         bVar3 = true;
       }
       
-      lVar10 = (longlong)((iVar15 + 1) % iVar12);
+      lVar10 = (int64_t)((iVar15 + 1) % iVar12);
       if ((!bVar3) ||
          ((fVar19 = (*pfVar11 - *(float *)(lVar2 + 4 + lVar10 * 8)) * (fVar20 - pfVar11[-1]) -
                     (fVar21 - *pfVar11) * (pfVar11[-1] - *(float *)(lVar2 + lVar10 * 8)),
@@ -709,7 +709,7 @@ uint64_t ui_system_optimization_handler(longlong *param_1)
         bVar3 = true;
       }
       
-      lVar10 = (longlong)((iVar15 + 2) % iVar12);
+      lVar10 = (int64_t)((iVar15 + 2) % iVar12);
       if ((!bVar3) ||
          ((fVar19 = (pfVar11[2] - *(float *)(lVar2 + 4 + lVar10 * 8)) * (fVar20 - pfVar11[1]) -
                     (fVar21 - pfVar11[2]) * (pfVar11[1] - *(float *)(lVar2 + lVar10 * 8)),
@@ -728,14 +728,14 @@ uint64_t ui_system_optimization_handler(longlong *param_1)
   
   // 剩余点的优化验证
   if (lVar17 < lStack0000000000000058) {
-    lVar2 = *(longlong *)(unaff_R12 + 0x88);
+    lVar2 = *(int64_t *)(unaff_R12 + 0x88);
     do {
       iVar18 = iVar18 + 1;
       if ((!bVar3) ||
          ((fVar19 = *(float *)(lVar2 + 4 + lVar17 * 8), fVar1 = *(float *)(lVar2 + lVar17 * 8),
-          fVar19 = (fVar19 - *(float *)(lVar2 + 4 + (longlong)(iVar18 % iVar12) * 8)) *
+          fVar19 = (fVar19 - *(float *)(lVar2 + 4 + (int64_t)(iVar18 % iVar12) * 8)) *
                    (fVar20 - fVar1) -
-                   (fVar21 - fVar19) * (fVar1 - *(float *)(lVar2 + (longlong)(iVar18 % iVar12) * 8))
+                   (fVar21 - fVar19) * (fVar1 - *(float *)(lVar2 + (int64_t)(iVar18 % iVar12) * 8))
           , fVar19 <= unaff_XMM6_Da && (fVar19 < unaff_XMM6_Da)))) {
         bVar3 = false;
       }
@@ -820,18 +820,18 @@ uint64_t ui_system_optimization_handler(longlong *param_1)
  * - 高级算法执行
  * - 系统状态监控
  */
-uint64_t ui_system_advanced_processor(longlong *param_1)
+uint64_t ui_system_advanced_processor(int64_t *param_1)
 
 {
   bool bVar1;
   float fVar2, fVar3, fVar4, fVar5, fVar6, fVar7;
   char cVar8;
-  longlong lVar9, lVar12, lVar14, lVar15;
+  int64_t lVar9, lVar12, lVar14, lVar15;
   float *pfVar10;
   int unaff_EBX, iVar13, iVar16;
   uint64_t uVar11, unaff_RDI;
   float *unaff_RBP;
-  longlong unaff_R12, unaff_R14, unaff_R15;
+  int64_t unaff_R12, unaff_R14, unaff_R15;
   float *unaff_R13;
   float fVar17, fVar18, fVar19;
   float in_XMM5_Da, unaff_XMM6_Da, unaff_XMM7_Da, unaff_XMM8_Da, unaff_XMM9_Da, unaff_XMM10_Da;
@@ -862,9 +862,9 @@ uint64_t ui_system_advanced_processor(longlong *param_1)
     
     // 高级处理主循环
     do {
-      uStack0000000000000060 = *(int32_t *)((unaff_R15 - lVar15) + -4 + (longlong)pfVar10);
-      uStack0000000000000064 = *(int32_t *)((unaff_R15 - lVar15) + (longlong)pfVar10);
-      lVar14 = (longlong)(iVar16 % unaff_EBX);
+      uStack0000000000000060 = *(int32_t *)((unaff_R15 - lVar15) + -4 + (int64_t)pfVar10);
+      uStack0000000000000064 = *(int32_t *)((unaff_R15 - lVar15) + (int64_t)pfVar10);
+      lVar14 = (int64_t)(iVar16 % unaff_EBX);
       uStack0000000000000070 = *(int32_t *)(unaff_R15 + lVar14 * 8);
       uStack0000000000000074 = *(int32_t *)(unaff_R15 + 4 + lVar14 * 8);
       FUN_1806457f0(&stack0x00000070, &stack0x00000060, &stack0x00000040, &stack0x00000030, unaff_RBP + -0x10);
@@ -900,7 +900,7 @@ uint64_t ui_system_advanced_processor(longlong *param_1)
       fVar19 = fVar17;
     } while (in_stack_00000050 != 0);
     
-    unaff_R12 = *(longlong *)(unaff_RBP + 0x40);
+    unaff_R12 = *(int64_t *)(unaff_RBP + 0x40);
     unaff_R13 = *(float **)(unaff_RBP + 0x46);
     *(uint64_t *)(unaff_RBP + 0x44) = uVar11;
     unaff_XMM7_Da = unaff_RBP[0x45];
@@ -917,7 +917,7 @@ uint64_t ui_system_advanced_processor(longlong *param_1)
   
   // 执行高级处理验证
   if (3 < unaff_R14) {
-    lVar14 = *(longlong *)(unaff_R12 + 0x88);
+    lVar14 = *(int64_t *)(unaff_R12 + 0x88);
     iVar13 = 2;
     lVar12 = (unaff_R14 - 4U >> 2) + 1;
     pfVar10 = (float *)(lVar14 + 0x14);
@@ -926,7 +926,7 @@ uint64_t ui_system_advanced_processor(longlong *param_1)
     
     // 批量验证处理
     do {
-      lVar9 = (longlong)((iVar13 + -1) % unaff_EBX);
+      lVar9 = (int64_t)((iVar13 + -1) % unaff_EBX);
       if ((!bVar1) ||
          ((fVar18 = (pfVar10[-4] - *(float *)(lVar14 + 4 + lVar9 * 8)) * (in_XMM5_Da - pfVar10[-5])
                     - (unaff_XMM7_Da - pfVar10[-4]) * (pfVar10[-5] - *(float *)(lVar14 + lVar9 * 8))
@@ -938,10 +938,10 @@ uint64_t ui_system_advanced_processor(longlong *param_1)
       }
       
       if ((!bVar1) ||
-         ((fVar18 = (pfVar10[-2] - *(float *)(lVar14 + 4 + (longlong)(iVar13 % unaff_EBX) * 8)) *
+         ((fVar18 = (pfVar10[-2] - *(float *)(lVar14 + 4 + (int64_t)(iVar13 % unaff_EBX) * 8)) *
                     (in_XMM5_Da - pfVar10[-3]) -
                     (unaff_XMM7_Da - pfVar10[-2]) *
-                    (pfVar10[-3] - *(float *)(lVar14 + (longlong)(iVar13 % unaff_EBX) * 8)),
+                    (pfVar10[-3] - *(float *)(lVar14 + (int64_t)(iVar13 % unaff_EBX) * 8)),
           fVar18 <= unaff_XMM6_Da && (fVar18 < unaff_XMM6_Da)))) {
         bVar1 = false;
       }
@@ -949,7 +949,7 @@ uint64_t ui_system_advanced_processor(longlong *param_1)
         bVar1 = true;
       }
       
-      lVar9 = (longlong)((iVar13 + 1) % unaff_EBX);
+      lVar9 = (int64_t)((iVar13 + 1) % unaff_EBX);
       if ((!bVar1) ||
          ((fVar18 = (*pfVar10 - *(float *)(lVar14 + 4 + lVar9 * 8)) * (in_XMM5_Da - pfVar10[-1]) -
                     (unaff_XMM7_Da - *pfVar10) * (pfVar10[-1] - *(float *)(lVar14 + lVar9 * 8)),
@@ -960,7 +960,7 @@ uint64_t ui_system_advanced_processor(longlong *param_1)
         bVar1 = true;
       }
       
-      lVar9 = (longlong)((iVar13 + 2) % unaff_EBX);
+      lVar9 = (int64_t)((iVar13 + 2) % unaff_EBX);
       if ((!bVar1) ||
          ((fVar18 = (pfVar10[2] - *(float *)(lVar14 + 4 + lVar9 * 8)) * (in_XMM5_Da - pfVar10[1]) -
                     (unaff_XMM7_Da - pfVar10[2]) * (pfVar10[1] - *(float *)(lVar14 + lVar9 * 8)),
@@ -979,15 +979,15 @@ uint64_t ui_system_advanced_processor(longlong *param_1)
   
   // 剩余点的高级处理验证
   if (lVar15 < unaff_R14) {
-    lVar14 = *(longlong *)(unaff_R12 + 0x88);
+    lVar14 = *(int64_t *)(unaff_R12 + 0x88);
     do {
       iVar16 = iVar16 + 1;
       if ((!bVar1) ||
          ((fVar18 = *(float *)(lVar14 + 4 + lVar15 * 8), fVar19 = *(float *)(lVar14 + lVar15 * 8),
-          fVar18 = (fVar18 - *(float *)(lVar14 + 4 + (longlong)(iVar16 % unaff_EBX) * 8)) *
+          fVar18 = (fVar18 - *(float *)(lVar14 + 4 + (int64_t)(iVar16 % unaff_EBX) * 8)) *
                    (in_XMM5_Da - fVar19) -
                    (unaff_XMM7_Da - fVar18) *
-                   (fVar19 - *(float *)(lVar14 + (longlong)(iVar16 % unaff_EBX) * 8)),
+                   (fVar19 - *(float *)(lVar14 + (int64_t)(iVar16 % unaff_EBX) * 8)),
           fVar18 <= unaff_XMM6_Da && (fVar18 < unaff_XMM6_Da)))) {
         bVar1 = false;
       }
@@ -1075,20 +1075,20 @@ uint64_t ui_system_validation_handler(void)
 
 {
   float fVar1, fVar2, fVar3, fVar4, fVar5, fVar6, fVar7, fVar8, fVar9;
-  longlong lVar2;
+  int64_t lVar2;
   bool bVar10;
   char cVar11;
-  longlong lVar12;
+  int64_t lVar12;
   float *pfVar13;
   int unaff_EBX;
   float *unaff_RBP;
-  longlong lVar14;
+  int64_t lVar14;
   uint64_t unaff_RDI;
   char in_R9B;
   int iVar15;
-  longlong unaff_R12;
+  int64_t unaff_R12;
   float *unaff_R13;
-  longlong unaff_R14;
+  int64_t unaff_R14;
   int unaff_R15D;
   int iVar17;
   float fVar18;
@@ -1097,7 +1097,7 @@ uint64_t ui_system_validation_handler(void)
   float unaff_XMM13_Da, unaff_XMM14_Da, unaff_XMM15_Da;
   
   // 初始化验证处理状态
-  lVar2 = *(longlong *)(unaff_R12 + 0x88);
+  lVar2 = *(int64_t *)(unaff_R12 + 0x88);
   iVar15 = unaff_R15D + 2;
   lVar14 = (unaff_R14 - 4U >> 2) + 1;
   pfVar13 = (float *)(lVar2 + 0x14);
@@ -1106,7 +1106,7 @@ uint64_t ui_system_validation_handler(void)
   
   // 执行验证算法主循环
   do {
-    lVar12 = (longlong)((iVar15 + -1) % unaff_EBX);
+    lVar12 = (int64_t)((iVar15 + -1) % unaff_EBX);
     if ((in_R9B == '\0') ||
        ((fVar18 = (pfVar13[-4] - *(float *)(lVar2 + 4 + lVar12 * 8)) * (in_XMM5_Da - pfVar13[-5]) -
                   (unaff_XMM7_Da - pfVar13[-4]) * (pfVar13[-5] - *(float *)(lVar2 + lVar12 * 8)),
@@ -1118,10 +1118,10 @@ uint64_t ui_system_validation_handler(void)
     }
     
     if ((!bVar10) ||
-       ((fVar18 = (pfVar13[-2] - *(float *)(lVar2 + 4 + (longlong)(iVar15 % unaff_EBX) * 8)) *
+       ((fVar18 = (pfVar13[-2] - *(float *)(lVar2 + 4 + (int64_t)(iVar15 % unaff_EBX) * 8)) *
                   (in_XMM5_Da - pfVar13[-3]) -
                   (unaff_XMM7_Da - pfVar13[-2]) *
-                  (pfVar13[-3] - *(float *)(lVar2 + (longlong)(iVar15 % unaff_EBX) * 8)),
+                  (pfVar13[-3] - *(float *)(lVar2 + (int64_t)(iVar15 % unaff_EBX) * 8)),
         fVar18 <= unaff_XMM6_Da && (fVar18 < unaff_XMM6_Da)))) {
       bVar10 = false;
     }
@@ -1129,7 +1129,7 @@ uint64_t ui_system_validation_handler(void)
       bVar10 = true;
     }
     
-    lVar12 = (longlong)((iVar15 + 1) % unaff_EBX);
+    lVar12 = (int64_t)((iVar15 + 1) % unaff_EBX);
     if ((!bVar10) ||
        ((fVar18 = (*pfVar13 - *(float *)(lVar2 + 4 + lVar12 * 8)) * (in_XMM5_Da - pfVar13[-1]) -
                   (unaff_XMM7_Da - *pfVar13) * (pfVar13[-1] - *(float *)(lVar2 + lVar12 * 8)),
@@ -1140,7 +1140,7 @@ uint64_t ui_system_validation_handler(void)
       bVar10 = true;
     }
     
-    lVar12 = (longlong)((iVar15 + 2) % unaff_EBX);
+    lVar12 = (int64_t)((iVar15 + 2) % unaff_EBX);
     if ((!bVar10) ||
        ((fVar18 = (pfVar13[2] - *(float *)(lVar2 + 4 + lVar12 * 8)) * (in_XMM5_Da - pfVar13[1]) -
                   (unaff_XMM7_Da - pfVar13[2]) * (pfVar13[1] - *(float *)(lVar2 + lVar12 * 8)),
@@ -1158,15 +1158,15 @@ uint64_t ui_system_validation_handler(void)
   
   // 执行剩余点的验证
   if (lVar16 < unaff_R14) {
-    lVar2 = *(longlong *)(unaff_R12 + 0x88);
+    lVar2 = *(int64_t *)(unaff_R12 + 0x88);
     do {
       iVar17 = iVar17 + 1;
       if ((in_R9B == '\0') ||
          ((fVar18 = *(float *)(lVar2 + 4 + lVar16 * 8), fVar1 = *(float *)(lVar2 + lVar16 * 8),
-          fVar18 = (fVar18 - *(float *)(lVar2 + 4 + (longlong)(iVar17 % unaff_EBX) * 8)) *
+          fVar18 = (fVar18 - *(float *)(lVar2 + 4 + (int64_t)(iVar17 % unaff_EBX) * 8)) *
                    (in_XMM5_Da - fVar1) -
                    (unaff_XMM7_Da - fVar18) *
-                   (fVar1 - *(float *)(lVar2 + (longlong)(iVar17 % unaff_EBX) * 8)),
+                   (fVar1 - *(float *)(lVar2 + (int64_t)(iVar17 % unaff_EBX) * 8)),
           fVar18 <= unaff_XMM6_Da && (fVar18 < unaff_XMM6_Da)))) {
         in_R9B = '\0';
       }
@@ -1262,10 +1262,10 @@ uint64_t ui_system_final_processor(void)
   uint64_t unaff_RDI;
   int iVar11;
   char in_R9B;
-  longlong in_R11;
-  longlong unaff_R12;
+  int64_t in_R11;
+  int64_t unaff_R12;
   float *unaff_R13;
-  longlong unaff_R14;
+  int64_t unaff_R14;
   int unaff_R15D;
   float fVar12;
   float in_XMM5_Da, unaff_XMM6_Da, unaff_XMM7_Da, unaff_XMM8_Da, unaff_XMM9_Da, unaff_XMM10_Da;
@@ -1273,17 +1273,17 @@ uint64_t ui_system_final_processor(void)
   float unaff_XMM13_Da, unaff_XMM14_Da, unaff_XMM15_Da;
   
   // 初始化最终处理状态
-  lVar2 = *(longlong *)(unaff_R12 + 0x88);
+  lVar2 = *(int64_t *)(unaff_R12 + 0x88);
   iVar11 = unaff_R15D + 1;
   
   // 执行最终处理算法
   do {
     if ((in_R9B == '\0') ||
        ((fVar12 = *(float *)(lVar2 + 4 + in_R11 * 8), fVar1 = *(float *)(lVar2 + in_R11 * 8),
-        fVar12 = (fVar12 - *(float *)(lVar2 + 4 + (longlong)(iVar11 % unaff_EBX) * 8)) *
+        fVar12 = (fVar12 - *(float *)(lVar2 + 4 + (int64_t)(iVar11 % unaff_EBX) * 8)) *
                  (in_XMM5_Da - fVar1) -
                  (unaff_XMM7_Da - fVar12) *
-                 (fVar1 - *(float *)(lVar2 + (longlong)(iVar11 % unaff_EBX) * 8)),
+                 (fVar1 - *(float *)(lVar2 + (int64_t)(iVar11 % unaff_EBX) * 8)),
         fVar12 <= unaff_XMM6_Da && (fVar12 < unaff_XMM6_Da)))) {
       in_R9B = '\0';
     }

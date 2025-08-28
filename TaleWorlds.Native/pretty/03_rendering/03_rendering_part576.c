@@ -176,17 +176,17 @@ extern uint64_t render_system_data_render;
 // ============================================================================
 
 extern void FUN_180585590(void);
-extern void FUN_180588680(longlong param_1, float *param_2);
-extern void FUN_1805815f0(longlong param_1, uint64_t *param_2, longlong param_3);
-extern void FUN_1802ee720(longlong param_1, int param_2);
-extern void FUN_1802e5ad0(longlong param_1, int param_2, uint64_t *param_3, float *param_4);
-extern void FUN_1805817b0(longlong param_1, float *param_2);
-extern void FUN_18057f420(longlong param_1, float *param_2, longlong param_3);
-extern void FUN_1805800a0(longlong param_1, float *param_2, longlong param_3);
-extern void FUN_180587800(longlong param_1, longlong param_2, longlong param_3, int8_t param_4);
+extern void FUN_180588680(int64_t param_1, float *param_2);
+extern void FUN_1805815f0(int64_t param_1, uint64_t *param_2, int64_t param_3);
+extern void FUN_1802ee720(int64_t param_1, int param_2);
+extern void FUN_1802e5ad0(int64_t param_1, int param_2, uint64_t *param_3, float *param_4);
+extern void FUN_1805817b0(int64_t param_1, float *param_2);
+extern void FUN_18057f420(int64_t param_1, float *param_2, int64_t param_3);
+extern void FUN_1805800a0(int64_t param_1, float *param_2, int64_t param_3);
+extern void FUN_180587800(int64_t param_1, int64_t param_2, int64_t param_3, int8_t param_4);
 extern uint64_t FUN_1801b4cd0(uint64_t param_1);
 extern char FUN_18063e7e0(uint64_t param_1, uint64_t *param_2);
-extern float FUN_1801a5620(uint64_t param_1, longlong param_2, int8_t param_3);
+extern float FUN_1801a5620(uint64_t param_1, int64_t param_2, int8_t param_3);
 extern code *FUN_18004a130(void);
 extern void FUN_1808fc838(int8_t *param_1, int param_2, int param_3, code *param_4);
 extern void FUN_1801594d0(int8_t *param_1, float *param_2);
@@ -198,7 +198,7 @@ extern void FUN_1808fc050(uint64_t param_1);
 // 函数声明
 // ============================================================================
 
-void RenderingSystem_AdvancedAnimationController(longlong animation_context, float time_delta);
+void RenderingSystem_AdvancedAnimationController(int64_t animation_context, float time_delta);
 
 // ============================================================================
 // 函数别名定义（用于向后兼容）
@@ -315,7 +315,7 @@ static inline float smooth_lerp(float a, float b, float t) {
  * 原始代码包含更复杂的动画控制逻辑、物理模拟和优化算法。
  * 在实际使用中，需要根据具体需求完善实现细节。
  */
-void rendering_system_advanced_animation_controller(longlong animation_context, float time_delta)
+void rendering_system_advanced_animation_controller(int64_t animation_context, float time_delta)
 {
     // 参数有效性检查
     if (animation_context == NULL || time_delta <= 0.0f) {

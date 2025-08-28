@@ -3,8 +3,8 @@
 
 // 03_rendering_part291.c - 2 个函数
 
-// 函数: void FUN_180423b90(int8_t (*param_1) [16],longlong param_2,longlong param_3,longlong param_4,
-void FUN_180423b90(int8_t (*param_1) [16],longlong param_2,longlong param_3,longlong param_4,
+// 函数: void FUN_180423b90(int8_t (*param_1) [16],int64_t param_2,int64_t param_3,int64_t param_4,
+void FUN_180423b90(int8_t (*param_1) [16],int64_t param_2,int64_t param_3,int64_t param_4,
                   int param_5,int param_6)
 
 {
@@ -52,7 +52,7 @@ void FUN_180423b90(int8_t (*param_1) [16],longlong param_2,longlong param_3,long
   int8_t auVar42 [16];
   int8_t auVar43 [16];
   uint uVar44;
-  longlong lVar45;
+  int64_t lVar45;
   uint uVar46;
   byte *pbVar47;
   int iVar48;
@@ -115,10 +115,10 @@ void FUN_180423b90(int8_t (*param_1) [16],longlong param_2,longlong param_3,long
   iVar49 = 0;
   if ((param_6 == 4) && (iVar48 = iVar49, 7 < param_5)) {
     do {
-      lVar45 = (longlong)iVar48;
+      lVar45 = (int64_t)iVar48;
       iVar49 = iVar48 + 8;
       auVar53._8_8_ = 0;
-      auVar53._0_8_ = *(ulonglong *)(lVar45 + param_4);
+      auVar53._0_8_ = *(uint64_t *)(lVar45 + param_4);
       auVar53 = auVar53 ^ auVar41;
       auVar81._0_14_ = ZEXT814(0);
       auVar81[0xe] = 0;
@@ -138,7 +138,7 @@ void FUN_180423b90(int8_t (*param_1) [16],longlong param_2,longlong param_3,long
       auVar76._10_6_ = auVar77._10_6_;
       auVar76._0_9_ = auVar81._0_9_;
       auVar76[9] = auVar53[4];
-      auVar33._1_10_ = (unkuint10)CONCAT81((ulonglong)auVar76._9_7_ << 8,auVar53[3]) << 8;
+      auVar33._1_10_ = (unkuint10)CONCAT81((uint64_t)auVar76._9_7_ << 8,auVar53[3]) << 8;
       auVar33[0] = auVar53[2];
       auVar33[0xb] = 0;
       auVar32._1_12_ = auVar33 << 8;
@@ -148,7 +148,7 @@ void FUN_180423b90(int8_t (*param_1) [16],longlong param_2,longlong param_3,long
       auVar56[0] = auVar53[0];
       auVar56[0xf] = 0;
       auVar54._8_8_ = 0;
-      auVar54._0_8_ = *(ulonglong *)(lVar45 + param_3);
+      auVar54._0_8_ = *(uint64_t *)(lVar45 + param_3);
       auVar54 = auVar54 ^ auVar41;
       auVar53 = pmulhw(auVar56 << 8,auVar39);
       auVar96._0_14_ = ZEXT814(0);
@@ -169,7 +169,7 @@ void FUN_180423b90(int8_t (*param_1) [16],longlong param_2,longlong param_3,long
       auVar91._10_6_ = auVar92._10_6_;
       auVar91._0_9_ = auVar96._0_9_;
       auVar91[9] = auVar54[4];
-      auVar35._1_10_ = (unkuint10)CONCAT81((ulonglong)auVar91._9_7_ << 8,auVar54[3]) << 8;
+      auVar35._1_10_ = (unkuint10)CONCAT81((uint64_t)auVar91._9_7_ << 8,auVar54[3]) << 8;
       auVar35[0] = auVar54[2];
       auVar35[0xb] = 0;
       auVar34._1_12_ = auVar35 << 8;
@@ -182,31 +182,31 @@ void FUN_180423b90(int8_t (*param_1) [16],longlong param_2,longlong param_3,long
       iVar1 = iVar48 + 0xf;
       auVar67._0_14_ = auVar41._0_14_;
       auVar67[0xe] = auVar41[7];
-      auVar67[0xf] = (char)((ulonglong)uVar86 >> 0x38);
+      auVar67[0xf] = (char)((uint64_t)uVar86 >> 0x38);
       auVar66._14_2_ = auVar67._14_2_;
       auVar66._0_13_ = auVar41._0_13_;
-      auVar66[0xd] = (char)((ulonglong)uVar86 >> 0x30);
+      auVar66[0xd] = (char)((uint64_t)uVar86 >> 0x30);
       auVar65._13_3_ = auVar66._13_3_;
       auVar65._0_12_ = auVar41._0_12_;
       auVar65[0xc] = auVar41[6];
       auVar64._12_4_ = auVar65._12_4_;
       auVar64._0_11_ = auVar41._0_11_;
-      auVar64[0xb] = (char)((ulonglong)uVar86 >> 0x28);
+      auVar64[0xb] = (char)((uint64_t)uVar86 >> 0x28);
       auVar63._11_5_ = auVar64._11_5_;
       auVar63._0_10_ = auVar41._0_10_;
       auVar63[10] = auVar41[5];
       auVar62._10_6_ = auVar63._10_6_;
       auVar62._0_9_ = auVar41._0_9_;
-      auVar62[9] = (char)((ulonglong)uVar86 >> 0x20);
+      auVar62[9] = (char)((uint64_t)uVar86 >> 0x20);
       auVar61._9_7_ = auVar62._9_7_;
       auVar61._0_8_ = auVar41._0_8_;
       auVar61[8] = auVar41[4];
-      Var28 = CONCAT91(CONCAT81(auVar61._8_8_,(char)((ulonglong)uVar86 >> 0x18)),auVar41[3]);
+      Var28 = CONCAT91(CONCAT81(auVar61._8_8_,(char)((uint64_t)uVar86 >> 0x18)),auVar41[3]);
       auVar27._2_10_ = Var28;
-      auVar27[1] = (char)((ulonglong)uVar86 >> 0x10);
+      auVar27[1] = (char)((uint64_t)uVar86 >> 0x10);
       auVar27[0] = auVar41[2];
       auVar26._2_12_ = auVar27;
-      auVar26[1] = (char)((ulonglong)uVar86 >> 8);
+      auVar26[1] = (char)((uint64_t)uVar86 >> 8);
       auVar26[0] = auVar41[1];
       uVar60 = CONCAT11((char)uVar86,auVar41[0]) >> 4;
       uVar69 = auVar26._0_2_ >> 4;
@@ -282,7 +282,7 @@ void FUN_180423b90(int8_t (*param_1) [16],longlong param_2,longlong param_3,long
                                        (0xff < sVar11)),
                        CONCAT11((0 < sVar10) * (sVar10 < 0x100) * auVar54[8] - (0xff < sVar10),cVar2
                                ));
-      Var28 = CONCAT91(CONCAT81((longlong)((unkuint9)Var31 >> 8),
+      Var28 = CONCAT91(CONCAT81((int64_t)((unkuint9)Var31 >> 8),
                                 (0 < sVar9) * (sVar9 < 0x100) * auVar82[6] - (0xff < sVar9)),
                        (0 < sVar8) * (sVar8 < 0x100) * auVar54[6] - (0xff < sVar8));
       auVar30._2_10_ = Var28;
@@ -315,7 +315,7 @@ void FUN_180423b90(int8_t (*param_1) [16],longlong param_2,longlong param_3,long
       auVar90[0xf] = 0xff;
       auVar59._0_12_ = auVar68._0_12_;
       auVar59._12_2_ = (short)Var28;
-      auVar59._14_2_ = (short)((ulonglong)uVar86 >> 0x30);
+      auVar59._14_2_ = (short)((uint64_t)uVar86 >> 0x30);
       auVar58._12_4_ = auVar59._12_4_;
       auVar58._0_10_ = auVar68._0_10_;
       auVar58._10_2_ = (short)((uint6)uVar85 >> 0x20);
@@ -340,7 +340,7 @@ void FUN_180423b90(int8_t (*param_1) [16],longlong param_2,longlong param_3,long
       iVar48 = iVar49;
     } while (iVar1 < param_5);
   }
-  lVar45 = (longlong)iVar49;
+  lVar45 = (int64_t)iVar49;
   if (lVar45 < param_5) {
     puVar51 = *param_1 + 2;
     pbVar47 = (byte *)(lVar45 + param_4);
@@ -379,8 +379,8 @@ void FUN_180423b90(int8_t (*param_1) [16],longlong param_2,longlong param_3,long
 
 
 
-// 函数: void FUN_180423bcb(int8_t (*param_1) [16],longlong param_2,int param_3,longlong param_4)
-void FUN_180423bcb(int8_t (*param_1) [16],longlong param_2,int param_3,longlong param_4)
+// 函数: void FUN_180423bcb(int8_t (*param_1) [16],int64_t param_2,int param_3,int64_t param_4)
+void FUN_180423bcb(int8_t (*param_1) [16],int64_t param_2,int param_3,int64_t param_4)
 
 {
   int iVar1;
@@ -426,15 +426,15 @@ void FUN_180423bcb(int8_t (*param_1) [16],longlong param_2,int param_3,longlong 
   int8_t auVar41 [16];
   int8_t auVar42 [16];
   uint uVar43;
-  longlong lVar44;
+  int64_t lVar44;
   uint uVar45;
   byte *pbVar46;
-  longlong unaff_RBP;
-  longlong unaff_RSI;
+  int64_t unaff_RBP;
+  int64_t unaff_RSI;
   int iVar47;
   uint uVar48;
   uint uVar49;
-  longlong in_R10;
+  int64_t in_R10;
   int8_t *puVar50;
   uint unaff_R15D;
   int8_t auVar51 [16];
@@ -492,10 +492,10 @@ void FUN_180423bcb(int8_t (*param_1) [16],longlong param_2,int param_3,longlong 
   iVar47 = param_3;
   if (7 < (int)param_2) {
     do {
-      lVar44 = (longlong)param_3;
+      lVar44 = (int64_t)param_3;
       iVar47 = param_3 + 8;
       auVar51._8_8_ = 0;
-      auVar51._0_8_ = *(ulonglong *)(lVar44 + param_4);
+      auVar51._0_8_ = *(uint64_t *)(lVar44 + param_4);
       auVar51 = auVar51 ^ in_XMM5;
       auVar79._0_14_ = ZEXT814(0);
       auVar79[0xe] = 0;
@@ -515,7 +515,7 @@ void FUN_180423bcb(int8_t (*param_1) [16],longlong param_2,int param_3,longlong 
       auVar74._10_6_ = auVar75._10_6_;
       auVar74._0_9_ = auVar79._0_9_;
       auVar74[9] = auVar51[4];
-      auVar33._1_10_ = (unkuint10)CONCAT81((ulonglong)auVar74._9_7_ << 8,auVar51[3]) << 8;
+      auVar33._1_10_ = (unkuint10)CONCAT81((uint64_t)auVar74._9_7_ << 8,auVar51[3]) << 8;
       auVar33[0] = auVar51[2];
       auVar33[0xb] = 0;
       auVar32._1_12_ = auVar33 << 8;
@@ -525,7 +525,7 @@ void FUN_180423bcb(int8_t (*param_1) [16],longlong param_2,int param_3,longlong 
       auVar54[0] = auVar51[0];
       auVar54[0xf] = 0;
       auVar52._8_8_ = 0;
-      auVar52._0_8_ = *(ulonglong *)(lVar44 + unaff_RSI);
+      auVar52._0_8_ = *(uint64_t *)(lVar44 + unaff_RSI);
       auVar52 = auVar52 ^ in_XMM5;
       auVar51 = pmulhw(auVar54 << 8,auVar39);
       auVar94._0_14_ = ZEXT814(0);
@@ -546,7 +546,7 @@ void FUN_180423bcb(int8_t (*param_1) [16],longlong param_2,int param_3,longlong 
       auVar89._10_6_ = auVar90._10_6_;
       auVar89._0_9_ = auVar94._0_9_;
       auVar89[9] = auVar52[4];
-      auVar35._1_10_ = (unkuint10)CONCAT81((ulonglong)auVar89._9_7_ << 8,auVar52[3]) << 8;
+      auVar35._1_10_ = (unkuint10)CONCAT81((uint64_t)auVar89._9_7_ << 8,auVar52[3]) << 8;
       auVar35[0] = auVar52[2];
       auVar35[0xb] = 0;
       auVar34._1_12_ = auVar35 << 8;
@@ -559,31 +559,31 @@ void FUN_180423bcb(int8_t (*param_1) [16],longlong param_2,int param_3,longlong 
       iVar1 = param_3 + 0xf;
       auVar65._0_14_ = in_XMM5._0_14_;
       auVar65[0xe] = in_XMM5[7];
-      auVar65[0xf] = (char)((ulonglong)uVar84 >> 0x38);
+      auVar65[0xf] = (char)((uint64_t)uVar84 >> 0x38);
       auVar64._14_2_ = auVar65._14_2_;
       auVar64._0_13_ = in_XMM5._0_13_;
-      auVar64[0xd] = (char)((ulonglong)uVar84 >> 0x30);
+      auVar64[0xd] = (char)((uint64_t)uVar84 >> 0x30);
       auVar63._13_3_ = auVar64._13_3_;
       auVar63._0_12_ = in_XMM5._0_12_;
       auVar63[0xc] = in_XMM5[6];
       auVar62._12_4_ = auVar63._12_4_;
       auVar62._0_11_ = in_XMM5._0_11_;
-      auVar62[0xb] = (char)((ulonglong)uVar84 >> 0x28);
+      auVar62[0xb] = (char)((uint64_t)uVar84 >> 0x28);
       auVar61._11_5_ = auVar62._11_5_;
       auVar61._0_10_ = in_XMM5._0_10_;
       auVar61[10] = in_XMM5[5];
       auVar60._10_6_ = auVar61._10_6_;
       auVar60._0_9_ = in_XMM5._0_9_;
-      auVar60[9] = (char)((ulonglong)uVar84 >> 0x20);
+      auVar60[9] = (char)((uint64_t)uVar84 >> 0x20);
       auVar59._9_7_ = auVar60._9_7_;
       auVar59._0_8_ = in_XMM5._0_8_;
       auVar59[8] = in_XMM5[4];
-      Var28 = CONCAT91(CONCAT81(auVar59._8_8_,(char)((ulonglong)uVar84 >> 0x18)),in_XMM5[3]);
+      Var28 = CONCAT91(CONCAT81(auVar59._8_8_,(char)((uint64_t)uVar84 >> 0x18)),in_XMM5[3]);
       auVar27._2_10_ = Var28;
-      auVar27[1] = (char)((ulonglong)uVar84 >> 0x10);
+      auVar27[1] = (char)((uint64_t)uVar84 >> 0x10);
       auVar27[0] = in_XMM5[2];
       auVar26._2_12_ = auVar27;
-      auVar26[1] = (char)((ulonglong)uVar84 >> 8);
+      auVar26[1] = (char)((uint64_t)uVar84 >> 8);
       auVar26[0] = in_XMM5[1];
       uVar58 = CONCAT11((char)uVar84,in_XMM5[0]) >> 4;
       uVar67 = auVar26._0_2_ >> 4;
@@ -659,7 +659,7 @@ void FUN_180423bcb(int8_t (*param_1) [16],longlong param_2,int param_3,longlong 
                                        (0xff < sVar11)),
                        CONCAT11((0 < sVar10) * (sVar10 < 0x100) * auVar52[8] - (0xff < sVar10),cVar2
                                ));
-      Var28 = CONCAT91(CONCAT81((longlong)((unkuint9)Var31 >> 8),
+      Var28 = CONCAT91(CONCAT81((int64_t)((unkuint9)Var31 >> 8),
                                 (0 < sVar9) * (sVar9 < 0x100) * auVar80[6] - (0xff < sVar9)),
                        (0 < sVar8) * (sVar8 < 0x100) * auVar52[6] - (0xff < sVar8));
       auVar30._2_10_ = Var28;
@@ -692,7 +692,7 @@ void FUN_180423bcb(int8_t (*param_1) [16],longlong param_2,int param_3,longlong 
       auVar88[0xf] = 0xff;
       auVar57._0_12_ = auVar66._0_12_;
       auVar57._12_2_ = (short)Var28;
-      auVar57._14_2_ = (short)((ulonglong)uVar84 >> 0x30);
+      auVar57._14_2_ = (short)((uint64_t)uVar84 >> 0x30);
       auVar56._12_4_ = auVar57._12_4_;
       auVar56._0_10_ = auVar66._0_10_;
       auVar56._10_2_ = (short)((uint6)uVar83 >> 0x20);
@@ -717,7 +717,7 @@ void FUN_180423bcb(int8_t (*param_1) [16],longlong param_2,int param_3,longlong 
       param_3 = iVar47;
     } while (iVar1 < (int)param_2);
   }
-  lVar44 = (longlong)iVar47;
+  lVar44 = (int64_t)iVar47;
   if (lVar44 < param_2) {
     puVar50 = *param_1 + 2;
     pbVar46 = (byte *)(lVar44 + param_4);

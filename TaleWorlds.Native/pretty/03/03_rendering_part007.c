@@ -21,12 +21,12 @@
 #define RENDER_LARGE_OFFSET_1       0x18c9
 #define RENDER_DATA_ARRAY_SIZE      0x10
 
-// 函数: void serialize_render_data(int32_t *render_params, longlong *buffer_manager)
+// 函数: void serialize_render_data(int32_t *render_params, int64_t *buffer_manager)
 // 功能: 序列化渲染数据，处理各种渲染参数和缓冲区管理
 // 参数: render_params - 渲染参数数组, buffer_manager - 缓冲区管理器指针
 // 返回: 无
 // 说明: 此函数负责序列化渲染数据到缓冲区，包括处理各种渲染参数和状态标志
-void serialize_render_data(int32_t *render_params, longlong *buffer_manager)
+void serialize_render_data(int32_t *render_params, int64_t *buffer_manager)
 
 {
   int8_t uVar1;
@@ -34,14 +34,14 @@ void serialize_render_data(int32_t *render_params, longlong *buffer_manager)
   int8_t *puVar3;
   int32_t *puVar4;
   int *piVar5;
-  longlong lVar6;
-  longlong *unaff_RBX;
+  int64_t lVar6;
+  int64_t *unaff_RBX;
   int iVar7;
   int iVar8;
-  longlong lVar9;
+  int64_t lVar9;
   
   puVar4 = (int32_t *)buffer_manager[1];
-  if ((ulonglong)((*buffer_manager - (longlong)puVar4) + unaff_RBX[2]) < 5) {
+  if ((uint64_t)((*buffer_manager - (int64_t)puVar4) + unaff_RBX[2]) < 5) {
     System_BufferManager();
     puVar4 = (int32_t *)unaff_RBX[1];
   }
@@ -57,32 +57,32 @@ void serialize_render_data(int32_t *render_params, longlong *buffer_manager)
   System_QueueProcessor();
   System_QueueProcessor();
   System_QueueProcessor();
-  lVar6 = (*(longlong *)(render_params + RENDER_DATA_END_OFFSET) - *(longlong *)(render_params + RENDER_DATA_START_OFFSET)) / RENDER_DATA_SIZE_DIVISOR +
-          (*(longlong *)(render_params + RENDER_DATA_END_OFFSET) - *(longlong *)(render_params + RENDER_DATA_START_OFFSET) >> RENDER_DATA_SHIFT_DIVISOR);
+  lVar6 = (*(int64_t *)(render_params + RENDER_DATA_END_OFFSET) - *(int64_t *)(render_params + RENDER_DATA_START_OFFSET)) / RENDER_DATA_SIZE_DIVISOR +
+          (*(int64_t *)(render_params + RENDER_DATA_END_OFFSET) - *(int64_t *)(render_params + RENDER_DATA_START_OFFSET) >> RENDER_DATA_SHIFT_DIVISOR);
   piVar5 = (int *)unaff_RBX[1];
   iVar8 = (int)(lVar6 >> 4) - (int)(lVar6 >> RENDER_DATA_SHIFT_DIVISOR);
-  if ((ulonglong)((*unaff_RBX - (longlong)piVar5) + unaff_RBX[2]) < 5) {
+  if ((uint64_t)((*unaff_RBX - (int64_t)piVar5) + unaff_RBX[2]) < 5) {
     System_BufferManager();
     piVar5 = (int *)unaff_RBX[1];
   }
   *piVar5 = iVar8;
   unaff_RBX[1] = unaff_RBX[1] + 4;
-  lVar6 = (longlong)iVar8;
+  lVar6 = (int64_t)iVar8;
   if (0 < iVar8) {
     lVar9 = 0;
     do {
       System_QueueProcessor();
       puVar4 = (int32_t *)unaff_RBX[1];
-      uVar2 = *(int32_t *)(lVar9 + RENDER_DATA_FIELD_OFFSET + *(longlong *)(render_params + RENDER_DATA_START_OFFSET));
-      if ((ulonglong)((*unaff_RBX - (longlong)puVar4) + unaff_RBX[2]) < 5) {
+      uVar2 = *(int32_t *)(lVar9 + RENDER_DATA_FIELD_OFFSET + *(int64_t *)(render_params + RENDER_DATA_START_OFFSET));
+      if ((uint64_t)((*unaff_RBX - (int64_t)puVar4) + unaff_RBX[2]) < 5) {
         System_BufferManager();
         puVar4 = (int32_t *)unaff_RBX[1];
       }
       *puVar4 = uVar2;
       unaff_RBX[1] = unaff_RBX[1] + 4;
       puVar4 = (int32_t *)unaff_RBX[1];
-      uVar2 = *(int32_t *)(lVar9 + RENDER_DATA_SECOND_OFFSET + *(longlong *)(render_params + RENDER_DATA_START_OFFSET));
-      if ((ulonglong)((*unaff_RBX - (longlong)puVar4) + unaff_RBX[2]) < 5) {
+      uVar2 = *(int32_t *)(lVar9 + RENDER_DATA_SECOND_OFFSET + *(int64_t *)(render_params + RENDER_DATA_START_OFFSET));
+      if ((uint64_t)((*unaff_RBX - (int64_t)puVar4) + unaff_RBX[2]) < 5) {
         System_BufferManager();
         puVar4 = (int32_t *)unaff_RBX[1];
       }
@@ -108,7 +108,7 @@ void serialize_render_data(int32_t *render_params, longlong *buffer_manager)
   FUN_18025a940(&unknown_var_9712_ptr,render_params[0x1f2]);
   puVar3 = (int8_t *)unaff_RBX[1];
   uVar1 = *(int8_t *)(render_params + RENDER_FLAG_OFFSET);
-  if ((ulonglong)((*unaff_RBX - (longlong)puVar3) + unaff_RBX[2]) < 2) {
+  if ((uint64_t)((*unaff_RBX - (int64_t)puVar3) + unaff_RBX[2]) < 2) {
     System_BufferManager();
     puVar3 = (int8_t *)unaff_RBX[1];
   }
@@ -118,7 +118,7 @@ void serialize_render_data(int32_t *render_params, longlong *buffer_manager)
     return;
   }
   puVar4 = (int32_t *)unaff_RBX[1];
-  if ((ulonglong)((*unaff_RBX - (longlong)puVar4) + unaff_RBX[2]) < 5) {
+  if ((uint64_t)((*unaff_RBX - (int64_t)puVar4) + unaff_RBX[2]) < 5) {
     System_BufferManager();
     puVar4 = (int32_t *)unaff_RBX[1];
   }
@@ -126,27 +126,27 @@ void serialize_render_data(int32_t *render_params, longlong *buffer_manager)
   *puVar4 = 0;
   unaff_RBX[1] = unaff_RBX[1] + 4;
   piVar5 = (int *)unaff_RBX[1];
-  lVar6 = (*(longlong *)(render_params + RENDER_EXTENDED_OFFSET_2) - *(longlong *)(render_params + RENDER_EXTENDED_OFFSET_1)) / RENDER_CHUNK_SIZE_1 +
-          (*(longlong *)(render_params + RENDER_EXTENDED_OFFSET_2) - *(longlong *)(render_params + RENDER_EXTENDED_OFFSET_1) >> RENDER_DATA_SHIFT_DIVISOR);
-  if ((ulonglong)((*unaff_RBX - (longlong)piVar5) + unaff_RBX[2]) < 5) {
+  lVar6 = (*(int64_t *)(render_params + RENDER_EXTENDED_OFFSET_2) - *(int64_t *)(render_params + RENDER_EXTENDED_OFFSET_1)) / RENDER_CHUNK_SIZE_1 +
+          (*(int64_t *)(render_params + RENDER_EXTENDED_OFFSET_2) - *(int64_t *)(render_params + RENDER_EXTENDED_OFFSET_1) >> RENDER_DATA_SHIFT_DIVISOR);
+  if ((uint64_t)((*unaff_RBX - (int64_t)piVar5) + unaff_RBX[2]) < 5) {
     System_BufferManager();
     piVar5 = (int *)unaff_RBX[1];
   }
   *piVar5 = (int)(lVar6 >> 2) - (int)(lVar6 >> RENDER_DATA_SHIFT_DIVISOR);
   unaff_RBX[1] = unaff_RBX[1] + 4;
-  lVar6 = *(longlong *)(render_params + RENDER_EXTENDED_OFFSET_2) - *(longlong *)(render_params + RENDER_EXTENDED_OFFSET_1) >> RENDER_DATA_SHIFT_DIVISOR;
+  lVar6 = *(int64_t *)(render_params + RENDER_EXTENDED_OFFSET_2) - *(int64_t *)(render_params + RENDER_EXTENDED_OFFSET_1) >> RENDER_DATA_SHIFT_DIVISOR;
   iVar7 = iVar8;
-  if ((*(longlong *)(render_params + RENDER_EXTENDED_OFFSET_2) - *(longlong *)(render_params + RENDER_EXTENDED_OFFSET_1)) / RENDER_CHUNK_SIZE_2 + lVar6 != lVar6) {
+  if ((*(int64_t *)(render_params + RENDER_EXTENDED_OFFSET_2) - *(int64_t *)(render_params + RENDER_EXTENDED_OFFSET_1)) / RENDER_CHUNK_SIZE_2 + lVar6 != lVar6) {
     do {
       System_QueueProcessor();
       iVar7 = iVar7 + 1;
-    } while ((ulonglong)(longlong)iVar7 <
-             (ulonglong)((*(longlong *)(render_params + RENDER_EXTENDED_OFFSET_2) - *(longlong *)(render_params + RENDER_EXTENDED_OFFSET_1)) / RENDER_CHUNK_SIZE_2));
+    } while ((uint64_t)(int64_t)iVar7 <
+             (uint64_t)((*(int64_t *)(render_params + RENDER_EXTENDED_OFFSET_2) - *(int64_t *)(render_params + RENDER_EXTENDED_OFFSET_1)) / RENDER_CHUNK_SIZE_2));
   }
   System_QueueProcessor();
   puVar3 = (int8_t *)unaff_RBX[1];
   uVar1 = *(int8_t *)(render_params + 0x22a);
-  if ((ulonglong)((*unaff_RBX - (longlong)puVar3) + unaff_RBX[2]) < 2) {
+  if ((uint64_t)((*unaff_RBX - (int64_t)puVar3) + unaff_RBX[2]) < 2) {
     System_BufferManager();
     puVar3 = (int8_t *)unaff_RBX[1];
   }
@@ -154,53 +154,53 @@ void serialize_render_data(int32_t *render_params, longlong *buffer_manager)
   unaff_RBX[1] = unaff_RBX[1] + 1;
   puVar4 = (int32_t *)unaff_RBX[1];
   uVar2 = render_params[0x22b];
-  if ((ulonglong)((*unaff_RBX - (longlong)puVar4) + unaff_RBX[2]) < 5) {
+  if ((uint64_t)((*unaff_RBX - (int64_t)puVar4) + unaff_RBX[2]) < 5) {
     System_BufferManager();
     puVar4 = (int32_t *)unaff_RBX[1];
   }
   *puVar4 = uVar2;
   unaff_RBX[1] = unaff_RBX[1] + 4;
   System_QueueProcessor();
-  lVar6 = (*(longlong *)(render_params + 0x254) - *(longlong *)(render_params + 0x252)) / RENDER_CHUNK_SIZE_1 +
-          (*(longlong *)(render_params + 0x254) - *(longlong *)(render_params + 0x252) >> RENDER_DATA_SHIFT_DIVISOR);
+  lVar6 = (*(int64_t *)(render_params + 0x254) - *(int64_t *)(render_params + 0x252)) / RENDER_CHUNK_SIZE_1 +
+          (*(int64_t *)(render_params + 0x254) - *(int64_t *)(render_params + 0x252) >> RENDER_DATA_SHIFT_DIVISOR);
   piVar5 = (int *)unaff_RBX[1];
-  if ((ulonglong)((*unaff_RBX - (longlong)piVar5) + unaff_RBX[2]) < 5) {
+  if ((uint64_t)((*unaff_RBX - (int64_t)piVar5) + unaff_RBX[2]) < 5) {
     System_BufferManager();
     piVar5 = (int *)unaff_RBX[1];
   }
   *piVar5 = (int)(lVar6 >> 2) - (int)(lVar6 >> RENDER_DATA_SHIFT_DIVISOR);
   unaff_RBX[1] = unaff_RBX[1] + 4;
-  lVar6 = *(longlong *)(render_params + 0x254) - *(longlong *)(render_params + 0x252) >> RENDER_DATA_SHIFT_DIVISOR;
+  lVar6 = *(int64_t *)(render_params + 0x254) - *(int64_t *)(render_params + 0x252) >> RENDER_DATA_SHIFT_DIVISOR;
   iVar7 = iVar8;
-  if ((*(longlong *)(render_params + 0x254) - *(longlong *)(render_params + 0x252)) / RENDER_CHUNK_SIZE_2 + lVar6 != lVar6) {
+  if ((*(int64_t *)(render_params + 0x254) - *(int64_t *)(render_params + 0x252)) / RENDER_CHUNK_SIZE_2 + lVar6 != lVar6) {
     do {
       System_QueueProcessor();
       iVar7 = iVar7 + 1;
-    } while ((ulonglong)(longlong)iVar7 <
-             (ulonglong)((*(longlong *)(render_params + 0x254) - *(longlong *)(render_params + 0x252)) / RENDER_CHUNK_SIZE_2));
+    } while ((uint64_t)(int64_t)iVar7 <
+             (uint64_t)((*(int64_t *)(render_params + 0x254) - *(int64_t *)(render_params + 0x252)) / RENDER_CHUNK_SIZE_2));
   }
   lVar6 = RENDER_PADDING_COUNT_1;
   do {
     System_QueueProcessor();
     lVar6 = lVar6 + -1;
   } while (lVar6 != 0);
-  lVar6 = (*(longlong *)(render_params + 0x31a) - *(longlong *)(render_params + 0x318)) / RENDER_CHUNK_SIZE_1 +
-          (*(longlong *)(render_params + 0x31a) - *(longlong *)(render_params + 0x318) >> RENDER_DATA_SHIFT_DIVISOR);
+  lVar6 = (*(int64_t *)(render_params + 0x31a) - *(int64_t *)(render_params + 0x318)) / RENDER_CHUNK_SIZE_1 +
+          (*(int64_t *)(render_params + 0x31a) - *(int64_t *)(render_params + 0x318) >> RENDER_DATA_SHIFT_DIVISOR);
   piVar5 = (int *)unaff_RBX[1];
-  if ((ulonglong)((*unaff_RBX - (longlong)piVar5) + unaff_RBX[2]) < 5) {
+  if ((uint64_t)((*unaff_RBX - (int64_t)piVar5) + unaff_RBX[2]) < 5) {
     System_BufferManager();
     piVar5 = (int *)unaff_RBX[1];
   }
   *piVar5 = (int)(lVar6 >> 2) - (int)(lVar6 >> RENDER_DATA_SHIFT_DIVISOR);
   unaff_RBX[1] = unaff_RBX[1] + 4;
-  lVar6 = *(longlong *)(render_params + 0x31a) - *(longlong *)(render_params + 0x318) >> RENDER_DATA_SHIFT_DIVISOR;
+  lVar6 = *(int64_t *)(render_params + 0x31a) - *(int64_t *)(render_params + 0x318) >> RENDER_DATA_SHIFT_DIVISOR;
   iVar7 = iVar8;
-  if ((*(longlong *)(render_params + 0x31a) - *(longlong *)(render_params + 0x318)) / RENDER_CHUNK_SIZE_2 + lVar6 != lVar6) {
+  if ((*(int64_t *)(render_params + 0x31a) - *(int64_t *)(render_params + 0x318)) / RENDER_CHUNK_SIZE_2 + lVar6 != lVar6) {
     do {
       System_QueueProcessor();
       iVar7 = iVar7 + 1;
-    } while ((ulonglong)(longlong)iVar7 <
-             (ulonglong)((*(longlong *)(render_params + 0x31a) - *(longlong *)(render_params + 0x318)) / RENDER_CHUNK_SIZE_2));
+    } while ((uint64_t)(int64_t)iVar7 <
+             (uint64_t)((*(int64_t *)(render_params + 0x31a) - *(int64_t *)(render_params + 0x318)) / RENDER_CHUNK_SIZE_2));
   }
   lVar6 = RENDER_PADDING_COUNT_2;
   do {
@@ -209,35 +209,35 @@ void serialize_render_data(int32_t *render_params, longlong *buffer_manager)
   } while (lVar6 != 0);
   System_QueueProcessor();
   System_QueueProcessor();
-  lVar6 = (*(longlong *)(render_params + 0x624) - *(longlong *)(render_params + 0x622)) / RENDER_CHUNK_SIZE_1 +
-          (*(longlong *)(render_params + 0x624) - *(longlong *)(render_params + 0x622) >> RENDER_DATA_SHIFT_DIVISOR);
+  lVar6 = (*(int64_t *)(render_params + 0x624) - *(int64_t *)(render_params + 0x622)) / RENDER_CHUNK_SIZE_1 +
+          (*(int64_t *)(render_params + 0x624) - *(int64_t *)(render_params + 0x622) >> RENDER_DATA_SHIFT_DIVISOR);
   piVar5 = (int *)unaff_RBX[1];
-  if ((ulonglong)((*unaff_RBX - (longlong)piVar5) + unaff_RBX[2]) < 5) {
+  if ((uint64_t)((*unaff_RBX - (int64_t)piVar5) + unaff_RBX[2]) < 5) {
     System_BufferManager();
     piVar5 = (int *)unaff_RBX[1];
   }
   *piVar5 = (int)(lVar6 >> 2) - (int)(lVar6 >> RENDER_DATA_SHIFT_DIVISOR);
   unaff_RBX[1] = unaff_RBX[1] + 4;
-  lVar6 = *(longlong *)(render_params + 0x624) - *(longlong *)(render_params + 0x622) >> RENDER_DATA_SHIFT_DIVISOR;
+  lVar6 = *(int64_t *)(render_params + 0x624) - *(int64_t *)(render_params + 0x622) >> RENDER_DATA_SHIFT_DIVISOR;
   iVar7 = iVar8;
-  if ((*(longlong *)(render_params + 0x624) - *(longlong *)(render_params + 0x622)) / RENDER_CHUNK_SIZE_2 + lVar6 != lVar6) {
+  if ((*(int64_t *)(render_params + 0x624) - *(int64_t *)(render_params + 0x622)) / RENDER_CHUNK_SIZE_2 + lVar6 != lVar6) {
     do {
       System_QueueProcessor();
       iVar7 = iVar7 + 1;
-    } while ((ulonglong)(longlong)iVar7 <
-             (ulonglong)((*(longlong *)(render_params + 0x624) - *(longlong *)(render_params + 0x622)) / RENDER_CHUNK_SIZE_2));
+    } while ((uint64_t)(int64_t)iVar7 <
+             (uint64_t)((*(int64_t *)(render_params + 0x624) - *(int64_t *)(render_params + 0x622)) / RENDER_CHUNK_SIZE_2));
   }
   System_QueueProcessor();
   puVar3 = (int8_t *)unaff_RBX[1];
-  uVar1 = *(int8_t *)((longlong)render_params + RENDER_LARGE_OFFSET_1);
-  if ((ulonglong)((*unaff_RBX - (longlong)puVar3) + unaff_RBX[2]) < 2) {
+  uVar1 = *(int8_t *)((int64_t)render_params + RENDER_LARGE_OFFSET_1);
+  if ((uint64_t)((*unaff_RBX - (int64_t)puVar3) + unaff_RBX[2]) < 2) {
     System_BufferManager();
     puVar3 = (int8_t *)unaff_RBX[1];
   }
   *puVar3 = uVar1;
   unaff_RBX[1] = unaff_RBX[1] + 1;
   puVar4 = (int32_t *)unaff_RBX[1];
-  if (*(char *)((longlong)render_params + RENDER_LARGE_OFFSET_1) != '\0') {
+  if (*(char *)((int64_t)render_params + RENDER_LARGE_OFFSET_1) != '\0') {
     System_QueueProcessor();
     System_QueueProcessor();
     System_QueueProcessor();
@@ -246,7 +246,7 @@ void serialize_render_data(int32_t *render_params, longlong *buffer_manager)
     System_QueueProcessor();
     puVar4 = (int32_t *)unaff_RBX[1];
   }
-  if ((ulonglong)((*unaff_RBX - (longlong)puVar4) + unaff_RBX[2]) < 5) {
+  if ((uint64_t)((*unaff_RBX - (int64_t)puVar4) + unaff_RBX[2]) < 5) {
     System_BufferManager();
     puVar4 = (int32_t *)unaff_RBX[1];
   }
@@ -254,7 +254,7 @@ void serialize_render_data(int32_t *render_params, longlong *buffer_manager)
   unaff_RBX[1] = unaff_RBX[1] + 4;
   do {
     piVar5 = (int *)unaff_RBX[1];
-    if ((ulonglong)((*unaff_RBX - (longlong)piVar5) + unaff_RBX[2]) < 5) {
+    if ((uint64_t)((*unaff_RBX - (int64_t)piVar5) + unaff_RBX[2]) < 5) {
       System_BufferManager();
       piVar5 = (int *)unaff_RBX[1];
     }
@@ -276,18 +276,18 @@ void process_render_batch(int32_t *render_params)
 {
   int8_t uVar1;
   int32_t uVar2;
-  longlong in_RAX;
+  int64_t in_RAX;
   int8_t *puVar3;
   int32_t *puVar4;
   int *piVar5;
-  longlong lVar6;
-  longlong *unaff_RBX;
+  int64_t lVar6;
+  int64_t *unaff_RBX;
   int iVar7;
   int iVar8;
-  longlong lVar9;
+  int64_t lVar9;
   int32_t *unaff_RDI;
   
-  if ((ulonglong)((in_RAX - (longlong)render_params) + unaff_RBX[2]) < 5) {
+  if ((uint64_t)((in_RAX - (int64_t)render_params) + unaff_RBX[2]) < 5) {
     System_BufferManager();
     render_params = (int32_t *)unaff_RBX[1];
   }
@@ -303,32 +303,32 @@ void process_render_batch(int32_t *render_params)
   System_QueueProcessor();
   System_QueueProcessor();
   System_QueueProcessor();
-  lVar6 = (*(longlong *)(unaff_RDI + RENDER_DATA_END_OFFSET) - *(longlong *)(unaff_RDI + RENDER_DATA_START_OFFSET)) / RENDER_DATA_SIZE_DIVISOR +
-          (*(longlong *)(unaff_RDI + RENDER_DATA_END_OFFSET) - *(longlong *)(unaff_RDI + RENDER_DATA_START_OFFSET) >> RENDER_DATA_SHIFT_DIVISOR);
+  lVar6 = (*(int64_t *)(unaff_RDI + RENDER_DATA_END_OFFSET) - *(int64_t *)(unaff_RDI + RENDER_DATA_START_OFFSET)) / RENDER_DATA_SIZE_DIVISOR +
+          (*(int64_t *)(unaff_RDI + RENDER_DATA_END_OFFSET) - *(int64_t *)(unaff_RDI + RENDER_DATA_START_OFFSET) >> RENDER_DATA_SHIFT_DIVISOR);
   piVar5 = (int *)unaff_RBX[1];
   iVar8 = (int)(lVar6 >> 4) - (int)(lVar6 >> RENDER_DATA_SHIFT_DIVISOR);
-  if ((ulonglong)((*unaff_RBX - (longlong)piVar5) + unaff_RBX[2]) < 5) {
+  if ((uint64_t)((*unaff_RBX - (int64_t)piVar5) + unaff_RBX[2]) < 5) {
     System_BufferManager();
     piVar5 = (int *)unaff_RBX[1];
   }
   *piVar5 = iVar8;
   unaff_RBX[1] = unaff_RBX[1] + 4;
-  lVar6 = (longlong)iVar8;
+  lVar6 = (int64_t)iVar8;
   if (0 < iVar8) {
     lVar9 = 0;
     do {
       System_QueueProcessor();
       puVar4 = (int32_t *)unaff_RBX[1];
-      uVar2 = *(int32_t *)(lVar9 + RENDER_DATA_FIELD_OFFSET + *(longlong *)(unaff_RDI + RENDER_DATA_START_OFFSET));
-      if ((ulonglong)((*unaff_RBX - (longlong)puVar4) + unaff_RBX[2]) < 5) {
+      uVar2 = *(int32_t *)(lVar9 + RENDER_DATA_FIELD_OFFSET + *(int64_t *)(unaff_RDI + RENDER_DATA_START_OFFSET));
+      if ((uint64_t)((*unaff_RBX - (int64_t)puVar4) + unaff_RBX[2]) < 5) {
         System_BufferManager();
         puVar4 = (int32_t *)unaff_RBX[1];
       }
       *puVar4 = uVar2;
       unaff_RBX[1] = unaff_RBX[1] + 4;
       puVar4 = (int32_t *)unaff_RBX[1];
-      uVar2 = *(int32_t *)(lVar9 + RENDER_DATA_SECOND_OFFSET + *(longlong *)(unaff_RDI + RENDER_DATA_START_OFFSET));
-      if ((ulonglong)((*unaff_RBX - (longlong)puVar4) + unaff_RBX[2]) < 5) {
+      uVar2 = *(int32_t *)(lVar9 + RENDER_DATA_SECOND_OFFSET + *(int64_t *)(unaff_RDI + RENDER_DATA_START_OFFSET));
+      if ((uint64_t)((*unaff_RBX - (int64_t)puVar4) + unaff_RBX[2]) < 5) {
         System_BufferManager();
         puVar4 = (int32_t *)unaff_RBX[1];
       }
@@ -354,7 +354,7 @@ void process_render_batch(int32_t *render_params)
   FUN_18025a940(&unknown_var_9712_ptr,unaff_RDI[0x1f2]);
   puVar3 = (int8_t *)unaff_RBX[1];
   uVar1 = *(int8_t *)(unaff_RDI + RENDER_FLAG_OFFSET);
-  if ((ulonglong)((*unaff_RBX - (longlong)puVar3) + unaff_RBX[2]) < 2) {
+  if ((uint64_t)((*unaff_RBX - (int64_t)puVar3) + unaff_RBX[2]) < 2) {
     System_BufferManager();
     puVar3 = (int8_t *)unaff_RBX[1];
   }
@@ -364,7 +364,7 @@ void process_render_batch(int32_t *render_params)
     return;
   }
   puVar4 = (int32_t *)unaff_RBX[1];
-  if ((ulonglong)((*unaff_RBX - (longlong)puVar4) + unaff_RBX[2]) < 5) {
+  if ((uint64_t)((*unaff_RBX - (int64_t)puVar4) + unaff_RBX[2]) < 5) {
     System_BufferManager();
     puVar4 = (int32_t *)unaff_RBX[1];
   }
@@ -372,29 +372,29 @@ void process_render_batch(int32_t *render_params)
   *puVar4 = 0;
   unaff_RBX[1] = unaff_RBX[1] + 4;
   piVar5 = (int *)unaff_RBX[1];
-  lVar6 = (*(longlong *)(unaff_RDI + RENDER_EXTENDED_OFFSET_2) - *(longlong *)(unaff_RDI + RENDER_EXTENDED_OFFSET_1)) / RENDER_CHUNK_SIZE_1 +
-          (*(longlong *)(unaff_RDI + RENDER_EXTENDED_OFFSET_2) - *(longlong *)(unaff_RDI + RENDER_EXTENDED_OFFSET_1) >> RENDER_DATA_SHIFT_DIVISOR);
-  if ((ulonglong)((*unaff_RBX - (longlong)piVar5) + unaff_RBX[2]) < 5) {
+  lVar6 = (*(int64_t *)(unaff_RDI + RENDER_EXTENDED_OFFSET_2) - *(int64_t *)(unaff_RDI + RENDER_EXTENDED_OFFSET_1)) / RENDER_CHUNK_SIZE_1 +
+          (*(int64_t *)(unaff_RDI + RENDER_EXTENDED_OFFSET_2) - *(int64_t *)(unaff_RDI + RENDER_EXTENDED_OFFSET_1) >> RENDER_DATA_SHIFT_DIVISOR);
+  if ((uint64_t)((*unaff_RBX - (int64_t)piVar5) + unaff_RBX[2]) < 5) {
     System_BufferManager();
     piVar5 = (int *)unaff_RBX[1];
   }
   *piVar5 = (int)(lVar6 >> 2) - (int)(lVar6 >> RENDER_DATA_SHIFT_DIVISOR);
   unaff_RBX[1] = unaff_RBX[1] + 4;
-  lVar6 = *(longlong *)(unaff_RDI + RENDER_EXTENDED_OFFSET_2) - *(longlong *)(unaff_RDI + RENDER_EXTENDED_OFFSET_1) >> RENDER_DATA_SHIFT_DIVISOR;
+  lVar6 = *(int64_t *)(unaff_RDI + RENDER_EXTENDED_OFFSET_2) - *(int64_t *)(unaff_RDI + RENDER_EXTENDED_OFFSET_1) >> RENDER_DATA_SHIFT_DIVISOR;
   iVar7 = iVar8;
-  if ((*(longlong *)(unaff_RDI + RENDER_EXTENDED_OFFSET_2) - *(longlong *)(unaff_RDI + RENDER_EXTENDED_OFFSET_1)) / RENDER_CHUNK_SIZE_2 + lVar6 != lVar6)
+  if ((*(int64_t *)(unaff_RDI + RENDER_EXTENDED_OFFSET_2) - *(int64_t *)(unaff_RDI + RENDER_EXTENDED_OFFSET_1)) / RENDER_CHUNK_SIZE_2 + lVar6 != lVar6)
   {
     do {
       System_QueueProcessor();
       iVar7 = iVar7 + 1;
-    } while ((ulonglong)(longlong)iVar7 <
-             (ulonglong)
-             ((*(longlong *)(unaff_RDI + RENDER_EXTENDED_OFFSET_2) - *(longlong *)(unaff_RDI + RENDER_EXTENDED_OFFSET_1)) / RENDER_CHUNK_SIZE_2));
+    } while ((uint64_t)(int64_t)iVar7 <
+             (uint64_t)
+             ((*(int64_t *)(unaff_RDI + RENDER_EXTENDED_OFFSET_2) - *(int64_t *)(unaff_RDI + RENDER_EXTENDED_OFFSET_1)) / RENDER_CHUNK_SIZE_2));
   }
   System_QueueProcessor();
   puVar3 = (int8_t *)unaff_RBX[1];
   uVar1 = *(int8_t *)(unaff_RDI + 0x22a);
-  if ((ulonglong)((*unaff_RBX - (longlong)puVar3) + unaff_RBX[2]) < 2) {
+  if ((uint64_t)((*unaff_RBX - (int64_t)puVar3) + unaff_RBX[2]) < 2) {
     System_BufferManager();
     puVar3 = (int8_t *)unaff_RBX[1];
   }
@@ -402,57 +402,57 @@ void process_render_batch(int32_t *render_params)
   unaff_RBX[1] = unaff_RBX[1] + 1;
   puVar4 = (int32_t *)unaff_RBX[1];
   uVar2 = unaff_RDI[0x22b];
-  if ((ulonglong)((*unaff_RBX - (longlong)puVar4) + unaff_RBX[2]) < 5) {
+  if ((uint64_t)((*unaff_RBX - (int64_t)puVar4) + unaff_RBX[2]) < 5) {
     System_BufferManager();
     puVar4 = (int32_t *)unaff_RBX[1];
   }
   *puVar4 = uVar2;
   unaff_RBX[1] = unaff_RBX[1] + 4;
   System_QueueProcessor();
-  lVar6 = (*(longlong *)(unaff_RDI + 0x254) - *(longlong *)(unaff_RDI + 0x252)) / RENDER_CHUNK_SIZE_1 +
-          (*(longlong *)(unaff_RDI + 0x254) - *(longlong *)(unaff_RDI + 0x252) >> RENDER_DATA_SHIFT_DIVISOR);
+  lVar6 = (*(int64_t *)(unaff_RDI + 0x254) - *(int64_t *)(unaff_RDI + 0x252)) / RENDER_CHUNK_SIZE_1 +
+          (*(int64_t *)(unaff_RDI + 0x254) - *(int64_t *)(unaff_RDI + 0x252) >> RENDER_DATA_SHIFT_DIVISOR);
   piVar5 = (int *)unaff_RBX[1];
-  if ((ulonglong)((*unaff_RBX - (longlong)piVar5) + unaff_RBX[2]) < 5) {
+  if ((uint64_t)((*unaff_RBX - (int64_t)piVar5) + unaff_RBX[2]) < 5) {
     System_BufferManager();
     piVar5 = (int *)unaff_RBX[1];
   }
   *piVar5 = (int)(lVar6 >> 2) - (int)(lVar6 >> RENDER_DATA_SHIFT_DIVISOR);
   unaff_RBX[1] = unaff_RBX[1] + 4;
-  lVar6 = *(longlong *)(unaff_RDI + 0x254) - *(longlong *)(unaff_RDI + 0x252) >> RENDER_DATA_SHIFT_DIVISOR;
+  lVar6 = *(int64_t *)(unaff_RDI + 0x254) - *(int64_t *)(unaff_RDI + 0x252) >> RENDER_DATA_SHIFT_DIVISOR;
   iVar7 = iVar8;
-  if ((*(longlong *)(unaff_RDI + 0x254) - *(longlong *)(unaff_RDI + 0x252)) / RENDER_CHUNK_SIZE_2 + lVar6 != lVar6)
+  if ((*(int64_t *)(unaff_RDI + 0x254) - *(int64_t *)(unaff_RDI + 0x252)) / RENDER_CHUNK_SIZE_2 + lVar6 != lVar6)
   {
     do {
       System_QueueProcessor();
       iVar7 = iVar7 + 1;
-    } while ((ulonglong)(longlong)iVar7 <
-             (ulonglong)
-             ((*(longlong *)(unaff_RDI + 0x254) - *(longlong *)(unaff_RDI + 0x252)) / RENDER_CHUNK_SIZE_2));
+    } while ((uint64_t)(int64_t)iVar7 <
+             (uint64_t)
+             ((*(int64_t *)(unaff_RDI + 0x254) - *(int64_t *)(unaff_RDI + 0x252)) / RENDER_CHUNK_SIZE_2));
   }
   lVar6 = RENDER_PADDING_COUNT_1;
   do {
     System_QueueProcessor();
     lVar6 = lVar6 + -1;
   } while (lVar6 != 0);
-  lVar6 = (*(longlong *)(unaff_RDI + 0x31a) - *(longlong *)(unaff_RDI + 0x318)) / RENDER_CHUNK_SIZE_1 +
-          (*(longlong *)(unaff_RDI + 0x31a) - *(longlong *)(unaff_RDI + 0x318) >> RENDER_DATA_SHIFT_DIVISOR);
+  lVar6 = (*(int64_t *)(unaff_RDI + 0x31a) - *(int64_t *)(unaff_RDI + 0x318)) / RENDER_CHUNK_SIZE_1 +
+          (*(int64_t *)(unaff_RDI + 0x31a) - *(int64_t *)(unaff_RDI + 0x318) >> RENDER_DATA_SHIFT_DIVISOR);
   piVar5 = (int *)unaff_RBX[1];
-  if ((ulonglong)((*unaff_RBX - (longlong)piVar5) + unaff_RBX[2]) < 5) {
+  if ((uint64_t)((*unaff_RBX - (int64_t)piVar5) + unaff_RBX[2]) < 5) {
     System_BufferManager();
     piVar5 = (int *)unaff_RBX[1];
   }
   *piVar5 = (int)(lVar6 >> 2) - (int)(lVar6 >> RENDER_DATA_SHIFT_DIVISOR);
   unaff_RBX[1] = unaff_RBX[1] + 4;
-  lVar6 = *(longlong *)(unaff_RDI + 0x31a) - *(longlong *)(unaff_RDI + 0x318) >> RENDER_DATA_SHIFT_DIVISOR;
+  lVar6 = *(int64_t *)(unaff_RDI + 0x31a) - *(int64_t *)(unaff_RDI + 0x318) >> RENDER_DATA_SHIFT_DIVISOR;
   iVar7 = iVar8;
-  if ((*(longlong *)(unaff_RDI + 0x31a) - *(longlong *)(unaff_RDI + 0x318)) / RENDER_CHUNK_SIZE_2 + lVar6 != lVar6)
+  if ((*(int64_t *)(unaff_RDI + 0x31a) - *(int64_t *)(unaff_RDI + 0x318)) / RENDER_CHUNK_SIZE_2 + lVar6 != lVar6)
   {
     do {
       System_QueueProcessor();
       iVar7 = iVar7 + 1;
-    } while ((ulonglong)(longlong)iVar7 <
-             (ulonglong)
-             ((*(longlong *)(unaff_RDI + 0x31a) - *(longlong *)(unaff_RDI + 0x318)) / RENDER_CHUNK_SIZE_2));
+    } while ((uint64_t)(int64_t)iVar7 <
+             (uint64_t)
+             ((*(int64_t *)(unaff_RDI + 0x31a) - *(int64_t *)(unaff_RDI + 0x318)) / RENDER_CHUNK_SIZE_2));
   }
   lVar6 = RENDER_PADDING_COUNT_2;
   do {
@@ -461,37 +461,37 @@ void process_render_batch(int32_t *render_params)
   } while (lVar6 != 0);
   System_QueueProcessor();
   System_QueueProcessor();
-  lVar6 = (*(longlong *)(unaff_RDI + 0x624) - *(longlong *)(unaff_RDI + 0x622)) / RENDER_CHUNK_SIZE_1 +
-          (*(longlong *)(unaff_RDI + 0x624) - *(longlong *)(unaff_RDI + 0x622) >> RENDER_DATA_SHIFT_DIVISOR);
+  lVar6 = (*(int64_t *)(unaff_RDI + 0x624) - *(int64_t *)(unaff_RDI + 0x622)) / RENDER_CHUNK_SIZE_1 +
+          (*(int64_t *)(unaff_RDI + 0x624) - *(int64_t *)(unaff_RDI + 0x622) >> RENDER_DATA_SHIFT_DIVISOR);
   piVar5 = (int *)unaff_RBX[1];
-  if ((ulonglong)((*unaff_RBX - (longlong)piVar5) + unaff_RBX[2]) < 5) {
+  if ((uint64_t)((*unaff_RBX - (int64_t)piVar5) + unaff_RBX[2]) < 5) {
     System_BufferManager();
     piVar5 = (int *)unaff_RBX[1];
   }
   *piVar5 = (int)(lVar6 >> 2) - (int)(lVar6 >> RENDER_DATA_SHIFT_DIVISOR);
   unaff_RBX[1] = unaff_RBX[1] + 4;
-  lVar6 = *(longlong *)(unaff_RDI + 0x624) - *(longlong *)(unaff_RDI + 0x622) >> RENDER_DATA_SHIFT_DIVISOR;
+  lVar6 = *(int64_t *)(unaff_RDI + 0x624) - *(int64_t *)(unaff_RDI + 0x622) >> RENDER_DATA_SHIFT_DIVISOR;
   iVar7 = iVar8;
-  if ((*(longlong *)(unaff_RDI + 0x624) - *(longlong *)(unaff_RDI + 0x622)) / RENDER_CHUNK_SIZE_2 + lVar6 != lVar6)
+  if ((*(int64_t *)(unaff_RDI + 0x624) - *(int64_t *)(unaff_RDI + 0x622)) / RENDER_CHUNK_SIZE_2 + lVar6 != lVar6)
   {
     do {
       System_QueueProcessor();
       iVar7 = iVar7 + 1;
-    } while ((ulonglong)(longlong)iVar7 <
-             (ulonglong)
-             ((*(longlong *)(unaff_RDI + 0x624) - *(longlong *)(unaff_RDI + 0x622)) / RENDER_CHUNK_SIZE_2));
+    } while ((uint64_t)(int64_t)iVar7 <
+             (uint64_t)
+             ((*(int64_t *)(unaff_RDI + 0x624) - *(int64_t *)(unaff_RDI + 0x622)) / RENDER_CHUNK_SIZE_2));
   }
   System_QueueProcessor();
   puVar3 = (int8_t *)unaff_RBX[1];
-  uVar1 = *(int8_t *)((longlong)unaff_RDI + RENDER_LARGE_OFFSET_1);
-  if ((ulonglong)((*unaff_RBX - (longlong)puVar3) + unaff_RBX[2]) < 2) {
+  uVar1 = *(int8_t *)((int64_t)unaff_RDI + RENDER_LARGE_OFFSET_1);
+  if ((uint64_t)((*unaff_RBX - (int64_t)puVar3) + unaff_RBX[2]) < 2) {
     System_BufferManager();
     puVar3 = (int8_t *)unaff_RBX[1];
   }
   *puVar3 = uVar1;
   unaff_RBX[1] = unaff_RBX[1] + 1;
   puVar4 = (int32_t *)unaff_RBX[1];
-  if (*(char *)((longlong)unaff_RDI + RENDER_LARGE_OFFSET_1) != '\0') {
+  if (*(char *)((int64_t)unaff_RDI + RENDER_LARGE_OFFSET_1) != '\0') {
     System_QueueProcessor();
     System_QueueProcessor();
     System_QueueProcessor();
@@ -500,7 +500,7 @@ void process_render_batch(int32_t *render_params)
     System_QueueProcessor();
     puVar4 = (int32_t *)unaff_RBX[1];
   }
-  if ((ulonglong)((*unaff_RBX - (longlong)puVar4) + unaff_RBX[2]) < 5) {
+  if ((uint64_t)((*unaff_RBX - (int64_t)puVar4) + unaff_RBX[2]) < 5) {
     System_BufferManager();
     puVar4 = (int32_t *)unaff_RBX[1];
   }
@@ -508,7 +508,7 @@ void process_render_batch(int32_t *render_params)
   unaff_RBX[1] = unaff_RBX[1] + 4;
   do {
     piVar5 = (int *)unaff_RBX[1];
-    if ((ulonglong)((*unaff_RBX - (longlong)piVar5) + unaff_RBX[2]) < 5) {
+    if ((uint64_t)((*unaff_RBX - (int64_t)piVar5) + unaff_RBX[2]) < 5) {
       System_BufferManager();
       piVar5 = (int *)unaff_RBX[1];
     }
@@ -527,33 +527,33 @@ void serialize_vertex_attributes(void)
 {
   int8_t byte_value;
   int32_t dword_value;
-  longlong temp_var;
+  int64_t temp_var;
   int8_t *byte_ptr;
   int32_t *dword_ptr;
   int *int_ptr;
-  longlong *unaff_RBX;
+  int64_t *unaff_RBX;
   uint unaff_EBP;
   int loop_counter;
-  longlong data_count;
+  int64_t data_count;
   int item_count;
-  ulonglong uVar10;
-  longlong unaff_RDI;
-  longlong unaff_R14;
+  uint64_t uVar10;
+  int64_t unaff_RDI;
+  int64_t unaff_R14;
   
-  uVar10 = (ulonglong)unaff_EBP;
+  uVar10 = (uint64_t)unaff_EBP;
   do {
     System_QueueProcessor();
     dword_ptr = (int32_t *)unaff_RBX[1];
-    dword_value = *(int32_t *)(uVar10 + 0x58 + *(longlong *)(unaff_RDI + 0x128));
-    if ((ulonglong)((*unaff_RBX - (longlong)dword_ptr) + unaff_RBX[2]) < 5) {
+    dword_value = *(int32_t *)(uVar10 + 0x58 + *(int64_t *)(unaff_RDI + 0x128));
+    if ((uint64_t)((*unaff_RBX - (int64_t)dword_ptr) + unaff_RBX[2]) < 5) {
       System_BufferManager();
       dword_ptr = (int32_t *)unaff_RBX[1];
     }
     *dword_ptr = dword_value;
     unaff_RBX[1] = unaff_RBX[1] + 4;
     dword_ptr = (int32_t *)unaff_RBX[1];
-    dword_value = *(int32_t *)(uVar10 + 0x5c + *(longlong *)(unaff_RDI + 0x128));
-    if ((ulonglong)((*unaff_RBX - (longlong)dword_ptr) + unaff_RBX[2]) < 5) {
+    dword_value = *(int32_t *)(uVar10 + 0x5c + *(int64_t *)(unaff_RDI + 0x128));
+    if ((uint64_t)((*unaff_RBX - (int64_t)dword_ptr) + unaff_RBX[2]) < 5) {
       System_BufferManager();
       dword_ptr = (int32_t *)unaff_RBX[1];
     }
@@ -582,7 +582,7 @@ void serialize_vertex_attributes(void)
   FUN_18025a940(&unknown_var_9712_ptr, *(int32_t *)(unaff_RDI + 0x7c8));
   byte_ptr = (int8_t *)unaff_RBX[1];
   byte_value = *(int8_t *)(unaff_RDI + 0x7cc);
-  if ((ulonglong)((*unaff_RBX - (longlong)byte_ptr) + unaff_RBX[2]) < 2) {
+  if ((uint64_t)((*unaff_RBX - (int64_t)byte_ptr) + unaff_RBX[2]) < 2) {
     System_BufferManager();
     byte_ptr = (int8_t *)unaff_RBX[1];
   }
@@ -594,37 +594,37 @@ void serialize_vertex_attributes(void)
   
   // 序列化材质属性
   dword_ptr = (int32_t *)unaff_RBX[1];
-  if ((ulonglong)((*unaff_RBX - (longlong)dword_ptr) + unaff_RBX[2]) < 5) {
+  if ((uint64_t)((*unaff_RBX - (int64_t)dword_ptr) + unaff_RBX[2]) < 5) {
     System_BufferManager();
     dword_ptr = (int32_t *)unaff_RBX[1];
   }
   item_count = 0;
   *dword_ptr = 0;
   unaff_RBX[1] = unaff_RBX[1] + 4;
-  data_count = *(longlong *)(unaff_RDI + 0x7f8) - *(longlong *)(unaff_RDI + 0x7f0);
+  data_count = *(int64_t *)(unaff_RDI + 0x7f8) - *(int64_t *)(unaff_RDI + 0x7f0);
   int_ptr = (int *)unaff_RBX[1];
   data_count = data_count / 0x26 + (data_count >> 0x3f);
-  if ((ulonglong)((*unaff_RBX - (longlong)int_ptr) + unaff_RBX[2]) < 5) {
+  if ((uint64_t)((*unaff_RBX - (int64_t)int_ptr) + unaff_RBX[2]) < 5) {
     System_BufferManager();
     int_ptr = (int *)unaff_RBX[1];
   }
   *int_ptr = (int)(data_count >> 2) - (int)(data_count >> 0x3f);
   unaff_RBX[1] = unaff_RBX[1] + 4;
-  temp_var = *(longlong *)(unaff_RDI + 0x7f8) - *(longlong *)(unaff_RDI + 0x7f0);
+  temp_var = *(int64_t *)(unaff_RDI + 0x7f8) - *(int64_t *)(unaff_RDI + 0x7f0);
   data_count = temp_var >> 0x3f;
   loop_counter = item_count;
   if (temp_var / 0x98 + data_count != data_count) {
     do {
       System_QueueProcessor();
       loop_counter = loop_counter + 1;
-    } while ((ulonglong)(longlong)loop_counter <
-             (ulonglong)
-             ((*(longlong *)(unaff_RDI + 0x7f8) - *(longlong *)(unaff_RDI + 0x7f0)) / 0x98));
+    } while ((uint64_t)(int64_t)loop_counter <
+             (uint64_t)
+             ((*(int64_t *)(unaff_RDI + 0x7f8) - *(int64_t *)(unaff_RDI + 0x7f0)) / 0x98));
   }
   System_QueueProcessor();
   byte_ptr = (int8_t *)unaff_RBX[1];
   byte_value = *(int8_t *)(unaff_RDI + 0x8a8);
-  if ((ulonglong)((*unaff_RBX - (longlong)byte_ptr) + unaff_RBX[2]) < 2) {
+  if ((uint64_t)((*unaff_RBX - (int64_t)byte_ptr) + unaff_RBX[2]) < 2) {
     System_BufferManager();
     byte_ptr = (int8_t *)unaff_RBX[1];
   }
@@ -632,7 +632,7 @@ void serialize_vertex_attributes(void)
   unaff_RBX[1] = unaff_RBX[1] + 1;
   dword_ptr = (int32_t *)unaff_RBX[1];
   dword_value = *(int32_t *)(unaff_RDI + 0x8ac);
-  if ((ulonglong)((*unaff_RBX - (longlong)dword_ptr) + unaff_RBX[2]) < 5) {
+  if ((uint64_t)((*unaff_RBX - (int64_t)dword_ptr) + unaff_RBX[2]) < 5) {
     System_BufferManager();
     dword_ptr = (int32_t *)unaff_RBX[1];
   }
@@ -641,25 +641,25 @@ void serialize_vertex_attributes(void)
   System_QueueProcessor();
   
   // 序列化纹理坐标数据
-  data_count = *(longlong *)(unaff_RDI + 0x950) - *(longlong *)(unaff_RDI + 0x948);
+  data_count = *(int64_t *)(unaff_RDI + 0x950) - *(int64_t *)(unaff_RDI + 0x948);
   data_count = data_count / 0x26 + (data_count >> 0x3f);
   int_ptr = (int *)unaff_RBX[1];
-  if ((ulonglong)((*unaff_RBX - (longlong)int_ptr) + unaff_RBX[2]) < 5) {
+  if ((uint64_t)((*unaff_RBX - (int64_t)int_ptr) + unaff_RBX[2]) < 5) {
     System_BufferManager();
     int_ptr = (int *)unaff_RBX[1];
   }
   *int_ptr = (int)(data_count >> 2) - (int)(data_count >> 0x3f);
   unaff_RBX[1] = unaff_RBX[1] + 4;
-  temp_var = *(longlong *)(unaff_RDI + 0x950) - *(longlong *)(unaff_RDI + 0x948);
+  temp_var = *(int64_t *)(unaff_RDI + 0x950) - *(int64_t *)(unaff_RDI + 0x948);
   data_count = temp_var >> 0x3f;
   loop_counter = item_count;
   if (temp_var / 0x98 + data_count != data_count) {
     do {
       System_QueueProcessor();
       loop_counter = loop_counter + 1;
-    } while ((ulonglong)(longlong)loop_counter <
-             (ulonglong)
-             ((*(longlong *)(unaff_RDI + 0x950) - *(longlong *)(unaff_RDI + 0x948)) / 0x98));
+    } while ((uint64_t)(int64_t)loop_counter <
+             (uint64_t)
+             ((*(int64_t *)(unaff_RDI + 0x950) - *(int64_t *)(unaff_RDI + 0x948)) / 0x98));
   }
   
   // 填充纹理数据间隔
@@ -670,25 +670,25 @@ void serialize_vertex_attributes(void)
   } while (data_count != 0);
   
   // 序列化法线数据
-  data_count = *(longlong *)(unaff_RDI + 0xc68) - *(longlong *)(unaff_RDI + 0xc60);
+  data_count = *(int64_t *)(unaff_RDI + 0xc68) - *(int64_t *)(unaff_RDI + 0xc60);
   data_count = data_count / 0x26 + (data_count >> 0x3f);
   int_ptr = (int *)unaff_RBX[1];
-  if ((ulonglong)((*unaff_RBX - (longlong)int_ptr) + unaff_RBX[2]) < 5) {
+  if ((uint64_t)((*unaff_RBX - (int64_t)int_ptr) + unaff_RBX[2]) < 5) {
     System_BufferManager();
     int_ptr = (int *)unaff_RBX[1];
   }
   *int_ptr = (int)(data_count >> 2) - (int)(data_count >> 0x3f);
   unaff_RBX[1] = unaff_RBX[1] + 4;
-  temp_var = *(longlong *)(unaff_RDI + 0xc68) - *(longlong *)(unaff_RDI + 0xc60);
+  temp_var = *(int64_t *)(unaff_RDI + 0xc68) - *(int64_t *)(unaff_RDI + 0xc60);
   data_count = temp_var >> 0x3f;
   loop_counter = item_count;
   if (temp_var / 0x98 + data_count != data_count) {
     do {
       System_QueueProcessor();
       loop_counter = loop_counter + 1;
-    } while ((ulonglong)(longlong)loop_counter <
-             (ulonglong)
-             ((*(longlong *)(unaff_RDI + 0xc68) - *(longlong *)(unaff_RDI + 0xc60)) / 0x98));
+    } while ((uint64_t)(int64_t)loop_counter <
+             (uint64_t)
+             ((*(int64_t *)(unaff_RDI + 0xc68) - *(int64_t *)(unaff_RDI + 0xc60)) / 0x98));
   }
   
   // 填充法线数据间隔
@@ -702,30 +702,30 @@ void serialize_vertex_attributes(void)
   System_QueueProcessor();
   
   // 序列化颜色数据
-  data_count = *(longlong *)(unaff_RDI + 0x1890) - *(longlong *)(unaff_RDI + 0x1888);
+  data_count = *(int64_t *)(unaff_RDI + 0x1890) - *(int64_t *)(unaff_RDI + 0x1888);
   data_count = data_count / 0x26 + (data_count >> 0x3f);
   int_ptr = (int *)unaff_RBX[1];
-  if ((ulonglong)((*unaff_RBX - (longlong)int_ptr) + unaff_RBX[2]) < 5) {
+  if ((uint64_t)((*unaff_RBX - (int64_t)int_ptr) + unaff_RBX[2]) < 5) {
     System_BufferManager();
     int_ptr = (int *)unaff_RBX[1];
   }
   *int_ptr = (int)(data_count >> 2) - (int)(data_count >> 0x3f);
   unaff_RBX[1] = unaff_RBX[1] + 4;
-  temp_var = *(longlong *)(unaff_RDI + 0x1890) - *(longlong *)(unaff_RDI + 0x1888);
+  temp_var = *(int64_t *)(unaff_RDI + 0x1890) - *(int64_t *)(unaff_RDI + 0x1888);
   data_count = temp_var >> 0x3f;
   loop_counter = item_count;
   if (temp_var / 0x98 + data_count != data_count) {
     do {
       System_QueueProcessor();
       loop_counter = loop_counter + 1;
-    } while ((ulonglong)(longlong)loop_counter <
-             (ulonglong)
-             ((*(longlong *)(unaff_RDI + 0x1890) - *(longlong *)(unaff_RDI + 0x1888)) / 0x98));
+    } while ((uint64_t)(int64_t)loop_counter <
+             (uint64_t)
+             ((*(int64_t *)(unaff_RDI + 0x1890) - *(int64_t *)(unaff_RDI + 0x1888)) / 0x98));
   }
   System_QueueProcessor();
   byte_ptr = (int8_t *)unaff_RBX[1];
   byte_value = *(int8_t *)(unaff_RDI + 0x18c9);
-  if ((ulonglong)((*unaff_RBX - (longlong)byte_ptr) + unaff_RBX[2]) < 2) {
+  if ((uint64_t)((*unaff_RBX - (int64_t)byte_ptr) + unaff_RBX[2]) < 2) {
     System_BufferManager();
     byte_ptr = (int8_t *)unaff_RBX[1];
   }
@@ -741,7 +741,7 @@ void serialize_vertex_attributes(void)
     System_QueueProcessor();
     dword_ptr = (int32_t *)unaff_RBX[1];
   }
-  if ((ulonglong)((*unaff_RBX - (longlong)dword_ptr) + unaff_RBX[2]) < 5) {
+  if ((uint64_t)((*unaff_RBX - (int64_t)dword_ptr) + unaff_RBX[2]) < 5) {
     System_BufferManager();
     dword_ptr = (int32_t *)unaff_RBX[1];
   }
@@ -751,7 +751,7 @@ void serialize_vertex_attributes(void)
   // 序列化额外的渲染属性
   do {
     int_ptr = (int *)unaff_RBX[1];
-    if ((ulonglong)((*unaff_RBX - (longlong)int_ptr) + unaff_RBX[2]) < 5) {
+    if ((uint64_t)((*unaff_RBX - (int64_t)int_ptr) + unaff_RBX[2]) < 5) {
       System_BufferManager();
       int_ptr = (int *)unaff_RBX[1];
     }
@@ -772,15 +772,15 @@ void serialize_material_properties(void)
 {
   int8_t byte_value;
   int32_t dword_value;
-  longlong temp_var;
+  int64_t temp_var;
   int8_t *byte_ptr;
   int32_t *dword_ptr;
   int *int_ptr;
-  longlong *unaff_RBX;
+  int64_t *unaff_RBX;
   int loop_counter;
-  longlong data_count;
+  int64_t data_count;
   int item_count;
-  longlong unaff_RDI;
+  int64_t unaff_RDI;
   
   // 填充空白字节
   System_QueueProcessor();
@@ -801,7 +801,7 @@ void serialize_material_properties(void)
   FUN_18025a940(&unknown_var_9712_ptr, *(int32_t *)(unaff_RDI + 0x7c8));
   byte_ptr = (int8_t *)unaff_RBX[1];
   byte_value = *(int8_t *)(unaff_RDI + 0x7cc);
-  if ((ulonglong)((*unaff_RBX - (longlong)byte_ptr) + unaff_RBX[2]) < 2) {
+  if ((uint64_t)((*unaff_RBX - (int64_t)byte_ptr) + unaff_RBX[2]) < 2) {
     System_BufferManager();
     byte_ptr = (int8_t *)unaff_RBX[1];
   }
@@ -813,37 +813,37 @@ void serialize_material_properties(void)
   
   // 序列化材质属性
   dword_ptr = (int32_t *)unaff_RBX[1];
-  if ((ulonglong)((*unaff_RBX - (longlong)dword_ptr) + unaff_RBX[2]) < 5) {
+  if ((uint64_t)((*unaff_RBX - (int64_t)dword_ptr) + unaff_RBX[2]) < 5) {
     System_BufferManager();
     dword_ptr = (int32_t *)unaff_RBX[1];
   }
   item_count = 0;
   *dword_ptr = 0;
   unaff_RBX[1] = unaff_RBX[1] + 4;
-  data_count = *(longlong *)(unaff_RDI + 0x7f8) - *(longlong *)(unaff_RDI + 0x7f0);
+  data_count = *(int64_t *)(unaff_RDI + 0x7f8) - *(int64_t *)(unaff_RDI + 0x7f0);
   int_ptr = (int *)unaff_RBX[1];
   data_count = data_count / 0x26 + (data_count >> 0x3f);
-  if ((ulonglong)((*unaff_RBX - (longlong)int_ptr) + unaff_RBX[2]) < 5) {
+  if ((uint64_t)((*unaff_RBX - (int64_t)int_ptr) + unaff_RBX[2]) < 5) {
     System_BufferManager();
     int_ptr = (int *)unaff_RBX[1];
   }
   *int_ptr = (int)(data_count >> 2) - (int)(data_count >> 0x3f);
   unaff_RBX[1] = unaff_RBX[1] + 4;
-  temp_var = *(longlong *)(unaff_RDI + 0x7f8) - *(longlong *)(unaff_RDI + 0x7f0);
+  temp_var = *(int64_t *)(unaff_RDI + 0x7f8) - *(int64_t *)(unaff_RDI + 0x7f0);
   data_count = temp_var >> 0x3f;
   loop_counter = item_count;
   if (temp_var / 0x98 + data_count != data_count) {
     do {
       System_QueueProcessor();
       loop_counter = loop_counter + 1;
-    } while ((ulonglong)(longlong)loop_counter <
-             (ulonglong)
-             ((*(longlong *)(unaff_RDI + 0x7f8) - *(longlong *)(unaff_RDI + 0x7f0)) / 0x98));
+    } while ((uint64_t)(int64_t)loop_counter <
+             (uint64_t)
+             ((*(int64_t *)(unaff_RDI + 0x7f8) - *(int64_t *)(unaff_RDI + 0x7f0)) / 0x98));
   }
   System_QueueProcessor();
   byte_ptr = (int8_t *)unaff_RBX[1];
   byte_value = *(int8_t *)(unaff_RDI + 0x8a8);
-  if ((ulonglong)((*unaff_RBX - (longlong)byte_ptr) + unaff_RBX[2]) < 2) {
+  if ((uint64_t)((*unaff_RBX - (int64_t)byte_ptr) + unaff_RBX[2]) < 2) {
     System_BufferManager();
     byte_ptr = (int8_t *)unaff_RBX[1];
   }
@@ -851,7 +851,7 @@ void serialize_material_properties(void)
   unaff_RBX[1] = unaff_RBX[1] + 1;
   dword_ptr = (int32_t *)unaff_RBX[1];
   dword_value = *(int32_t *)(unaff_RDI + 0x8ac);
-  if ((ulonglong)((*unaff_RBX - (longlong)dword_ptr) + unaff_RBX[2]) < 5) {
+  if ((uint64_t)((*unaff_RBX - (int64_t)dword_ptr) + unaff_RBX[2]) < 5) {
     System_BufferManager();
     dword_ptr = (int32_t *)unaff_RBX[1];
   }
@@ -860,25 +860,25 @@ void serialize_material_properties(void)
   System_QueueProcessor();
   
   // 序列化纹理坐标数据
-  data_count = *(longlong *)(unaff_RDI + 0x950) - *(longlong *)(unaff_RDI + 0x948);
+  data_count = *(int64_t *)(unaff_RDI + 0x950) - *(int64_t *)(unaff_RDI + 0x948);
   data_count = data_count / 0x26 + (data_count >> 0x3f);
   int_ptr = (int *)unaff_RBX[1];
-  if ((ulonglong)((*unaff_RBX - (longlong)int_ptr) + unaff_RBX[2]) < 5) {
+  if ((uint64_t)((*unaff_RBX - (int64_t)int_ptr) + unaff_RBX[2]) < 5) {
     System_BufferManager();
     int_ptr = (int *)unaff_RBX[1];
   }
   *int_ptr = (int)(data_count >> 2) - (int)(data_count >> 0x3f);
   unaff_RBX[1] = unaff_RBX[1] + 4;
-  temp_var = *(longlong *)(unaff_RDI + 0x950) - *(longlong *)(unaff_RDI + 0x948);
+  temp_var = *(int64_t *)(unaff_RDI + 0x950) - *(int64_t *)(unaff_RDI + 0x948);
   data_count = temp_var >> 0x3f;
   loop_counter = item_count;
   if (temp_var / 0x98 + data_count != data_count) {
     do {
       System_QueueProcessor();
       loop_counter = loop_counter + 1;
-    } while ((ulonglong)(longlong)loop_counter <
-             (ulonglong)
-             ((*(longlong *)(unaff_RDI + 0x950) - *(longlong *)(unaff_RDI + 0x948)) / 0x98));
+    } while ((uint64_t)(int64_t)loop_counter <
+             (uint64_t)
+             ((*(int64_t *)(unaff_RDI + 0x950) - *(int64_t *)(unaff_RDI + 0x948)) / 0x98));
   }
   
   // 填充纹理数据间隔
@@ -889,25 +889,25 @@ void serialize_material_properties(void)
   } while (data_count != 0);
   
   // 序列化法线数据
-  data_count = *(longlong *)(unaff_RDI + 0xc68) - *(longlong *)(unaff_RDI + 0xc60);
+  data_count = *(int64_t *)(unaff_RDI + 0xc68) - *(int64_t *)(unaff_RDI + 0xc60);
   data_count = data_count / 0x26 + (data_count >> 0x3f);
   int_ptr = (int *)unaff_RBX[1];
-  if ((ulonglong)((*unaff_RBX - (longlong)int_ptr) + unaff_RBX[2]) < 5) {
+  if ((uint64_t)((*unaff_RBX - (int64_t)int_ptr) + unaff_RBX[2]) < 5) {
     System_BufferManager();
     int_ptr = (int *)unaff_RBX[1];
   }
   *int_ptr = (int)(data_count >> 2) - (int)(data_count >> 0x3f);
   unaff_RBX[1] = unaff_RBX[1] + 4;
-  temp_var = *(longlong *)(unaff_RDI + 0xc68) - *(longlong *)(unaff_RDI + 0xc60);
+  temp_var = *(int64_t *)(unaff_RDI + 0xc68) - *(int64_t *)(unaff_RDI + 0xc60);
   data_count = temp_var >> 0x3f;
   loop_counter = item_count;
   if (temp_var / 0x98 + data_count != data_count) {
     do {
       System_QueueProcessor();
       loop_counter = loop_counter + 1;
-    } while ((ulonglong)(longlong)loop_counter <
-             (ulonglong)
-             ((*(longlong *)(unaff_RDI + 0xc68) - *(longlong *)(unaff_RDI + 0xc60)) / 0x98));
+    } while ((uint64_t)(int64_t)loop_counter <
+             (uint64_t)
+             ((*(int64_t *)(unaff_RDI + 0xc68) - *(int64_t *)(unaff_RDI + 0xc60)) / 0x98));
   }
   
   // 填充法线数据间隔
@@ -921,30 +921,30 @@ void serialize_material_properties(void)
   System_QueueProcessor();
   
   // 序列化颜色数据
-  data_count = *(longlong *)(unaff_RDI + 0x1890) - *(longlong *)(unaff_RDI + 0x1888);
+  data_count = *(int64_t *)(unaff_RDI + 0x1890) - *(int64_t *)(unaff_RDI + 0x1888);
   data_count = data_count / 0x26 + (data_count >> 0x3f);
   int_ptr = (int *)unaff_RBX[1];
-  if ((ulonglong)((*unaff_RBX - (longlong)int_ptr) + unaff_RBX[2]) < 5) {
+  if ((uint64_t)((*unaff_RBX - (int64_t)int_ptr) + unaff_RBX[2]) < 5) {
     System_BufferManager();
     int_ptr = (int *)unaff_RBX[1];
   }
   *int_ptr = (int)(data_count >> 2) - (int)(data_count >> 0x3f);
   unaff_RBX[1] = unaff_RBX[1] + 4;
-  temp_var = *(longlong *)(unaff_RDI + 0x1890) - *(longlong *)(unaff_RDI + 0x1888);
+  temp_var = *(int64_t *)(unaff_RDI + 0x1890) - *(int64_t *)(unaff_RDI + 0x1888);
   data_count = temp_var >> 0x3f;
   loop_counter = item_count;
   if (temp_var / 0x98 + data_count != data_count) {
     do {
       System_QueueProcessor();
       loop_counter = loop_counter + 1;
-    } while ((ulonglong)(longlong)loop_counter <
-             (ulonglong)
-             ((*(longlong *)(unaff_RDI + 0x1890) - *(longlong *)(unaff_RDI + 0x1888)) / 0x98));
+    } while ((uint64_t)(int64_t)loop_counter <
+             (uint64_t)
+             ((*(int64_t *)(unaff_RDI + 0x1890) - *(int64_t *)(unaff_RDI + 0x1888)) / 0x98));
   }
   System_QueueProcessor();
   byte_ptr = (int8_t *)unaff_RBX[1];
   byte_value = *(int8_t *)(unaff_RDI + 0x18c9);
-  if ((ulonglong)((*unaff_RBX - (longlong)byte_ptr) + unaff_RBX[2]) < 2) {
+  if ((uint64_t)((*unaff_RBX - (int64_t)byte_ptr) + unaff_RBX[2]) < 2) {
     System_BufferManager();
     byte_ptr = (int8_t *)unaff_RBX[1];
   }
@@ -960,7 +960,7 @@ void serialize_material_properties(void)
     System_QueueProcessor();
     dword_ptr = (int32_t *)unaff_RBX[1];
   }
-  if ((ulonglong)((*unaff_RBX - (longlong)dword_ptr) + unaff_RBX[2]) < 5) {
+  if ((uint64_t)((*unaff_RBX - (int64_t)dword_ptr) + unaff_RBX[2]) < 5) {
     System_BufferManager();
     dword_ptr = (int32_t *)unaff_RBX[1];
   }
@@ -970,7 +970,7 @@ void serialize_material_properties(void)
   // 序列化额外的渲染属性
   do {
     int_ptr = (int *)unaff_RBX[1];
-    if ((ulonglong)((*unaff_RBX - (longlong)int_ptr) + unaff_RBX[2]) < 5) {
+    if ((uint64_t)((*unaff_RBX - (int64_t)int_ptr) + unaff_RBX[2]) < 5) {
       System_BufferManager();
       int_ptr = (int *)unaff_RBX[1];
     }

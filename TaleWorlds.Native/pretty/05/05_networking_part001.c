@@ -8,20 +8,20 @@ void initialize_network_connection(void)
 {
   int8_t *connection_data;
   int connection_status;
-  longlong network_context;
+  int64_t network_context;
   int socket_handle;
   int32_t network_flags;
   int protocol_version;
-  ulonglong *connection_ptr;
-  longlong stack_parameter;
+  uint64_t *connection_ptr;
+  int64_t stack_parameter;
   
   connection_data = (int8_t *)(CONCAT44(network_flags, socket_handle) + 0x28);
-  if (*(int *)(*(longlong *)(network_context + 0x98) + 0x200) == protocol_version) {
+  if (*(int *)(*(int64_t *)(network_context + 0x98) + 0x200) == protocol_version) {
     *connection_data = 0;
     *(uint *)(CONCAT44(network_flags, socket_handle) + 8) = ((int)connection_data - socket_handle) + 4U & 0xfffffffc;
     connection_status = verify_network_connection(*(uint64_t *)(stack_parameter + 0x98));
     if (connection_status == 0) {
-      *connection_ptr = (ulonglong)*(uint *)(CONCAT44(network_flags, socket_handle) + 0x20);
+      *connection_ptr = (uint64_t)*(uint *)(CONCAT44(network_flags, socket_handle) + 0x20);
     }
     // 初始化网络连接回调
     initialize_network_callback(&stack0x00000078);
@@ -34,23 +34,23 @@ void initialize_network_connection(void)
 // 网络连接清理函数 - 清理网络连接资源
 void cleanup_network_connection(void)
 {
-  longlong socket_handle;
-  ulonglong *connection_ptr;
+  int64_t socket_handle;
+  uint64_t *connection_ptr;
   
-  *connection_ptr = (ulonglong)*(uint *)(socket_handle + 0x20);
+  *connection_ptr = (uint64_t)*(uint *)(socket_handle + 0x20);
   // 执行网络连接清理回调
   cleanup_network_callback(&stack0x00000078);
 }
 
-// 函数: uint FUN_180840100(longlong *param_1)
+// 函数: uint FUN_180840100(int64_t *param_1)
 // 网络缓冲区管理函数 - 管理网络数据缓冲区的分配和释放
-uint manage_network_buffer(longlong *buffer_manager)
+uint manage_network_buffer(int64_t *buffer_manager)
 {
   int buffer_status;
   uint buffer_size;
   uint buffer_capacity;
   
-  buffer_capacity = *(uint *)((longlong)buffer_manager + 0xc);
+  buffer_capacity = *(uint *)((int64_t)buffer_manager + 0xc);
   buffer_size = buffer_capacity ^ (int)buffer_capacity >> 0x1f;
   if ((int)(buffer_size - ((int)buffer_capacity >> 0x1f)) < 0) {
     if (0 < (int)buffer_manager[1]) {
@@ -62,13 +62,13 @@ uint manage_network_buffer(longlong *buffer_manager)
     }
     *buffer_manager = 0;
     buffer_capacity = 0;
-    *(int32_t *)((longlong)buffer_manager + 0xc) = 0;
+    *(int32_t *)((int64_t)buffer_manager + 0xc) = 0;
   }
   buffer_status = (int)buffer_manager[1];
   if (buffer_status < 0) {
     if (buffer_status < 0) {
       // 清理无效缓冲区数据
-      memset(*buffer_manager + (longlong)buffer_status * 0x14, 0, (ulonglong)(uint)-buffer_status * 0x14);
+      memset(*buffer_manager + (int64_t)buffer_status * 0x14, 0, (uint64_t)(uint)-buffer_status * 0x14);
     }
   }
   *(int32_t *)(buffer_manager + 1) = 0;
@@ -79,12 +79,12 @@ uint manage_network_buffer(longlong *buffer_manager)
   if (0 < (int)buffer_manager[1]) {
     return 0x1c;
   }
-  if ((0 < *(int *)((longlong)buffer_manager + 0xc)) && (*buffer_manager != 0)) {
+  if ((0 < *(int *)((int64_t)buffer_manager + 0xc)) && (*buffer_manager != 0)) {
     // 记录网络缓冲区错误
     log_network_buffer_error(*(uint64_t *)(NETWORK_ERROR_LOG + 0x1a0), *buffer_manager, &BUFFER_ERROR_CODE, 0x100, 1);
   }
   *buffer_manager = 0;
-  *(int32_t *)((longlong)buffer_manager + 0xc) = 0;
+  *(int32_t *)((int64_t)buffer_manager + 0xc) = 0;
   return 0;
 }
 
@@ -94,7 +94,7 @@ void process_network_packet(uint64_t packet_data)
 {
   int process_status;
   int socket_status;
-  longlong connection_info[2];
+  int64_t connection_info[2];
   uint64_t *packet_handler;
   
   connection_info[1] = 0;
@@ -113,15 +113,15 @@ void process_network_packet(uint64_t packet_data)
   cleanup_network_connection(connection_info + 1);
 }
 
-// 函数: uint64_t FUN_180840270(longlong *param_1)
+// 函数: uint64_t FUN_180840270(int64_t *param_1)
 // 网络数据发送函数 - 发送网络数据到指定连接
-uint64_t send_network_data(longlong *connection_handle)
+uint64_t send_network_data(int64_t *connection_handle)
 {
   int send_status;
   uint64_t send_result;
   uint data_size;
   
-  data_size = *(uint *)((longlong)connection_handle + 0xc);
+  data_size = *(uint *)((int64_t)connection_handle + 0xc);
   if ((int)((data_size ^ (int)data_size >> 0x1f) - ((int)data_size >> 0x1f)) < 0) {
     if (0 < (int)connection_handle[1]) {
       return 0x1c;
@@ -132,12 +132,12 @@ uint64_t send_network_data(longlong *connection_handle)
     }
     *connection_handle = 0;
     data_size = 0;
-    *(int32_t *)((longlong)connection_handle + 0xc) = 0;
+    *(int32_t *)((int64_t)connection_handle + 0xc) = 0;
   }
   send_status = (int)connection_handle[1];
   if (send_status < 0) {
     // 清理发送缓冲区
-    memset((longlong)send_status + *connection_handle, 0, (longlong)-send_status);
+    memset((int64_t)send_status + *connection_handle, 0, (int64_t)-send_status);
   }
   *(int32_t *)(connection_handle + 1) = 0;
   if ((0 < (int)((data_size ^ (int)data_size >> 0x1f) - ((int)data_size >> 0x1f))) &&
@@ -147,9 +147,9 @@ uint64_t send_network_data(longlong *connection_handle)
   return 0;
 }
 
-// 函数: void FUN_180840330(ulonglong *param_1,int param_2)
+// 函数: void FUN_180840330(uint64_t *param_1,int param_2)
 // 网络地址解析函数 - 解析网络地址和端口信息
-void resolve_network_address(ulonglong *address_info, int port_number)
+void resolve_network_address(uint64_t *address_info, int port_number)
 {
   int resolve_status;
   int socket_status;
@@ -157,14 +157,14 @@ void resolve_network_address(ulonglong *address_info, int port_number)
   int8_t address_buffer[32];
   int8_t *resolved_address;
   int socket_info[2];
-  longlong dns_context;
+  int64_t dns_context;
   uint resolved_data[4];
   int8_t hostname_buffer[256];
-  ulonglong stack_guard;
+  uint64_t stack_guard;
   
-  stack_guard = STACK_GUARD ^ (ulonglong)address_buffer;
+  stack_guard = STACK_GUARD ^ (uint64_t)address_buffer;
   initialize_network_resolver(&NETWORK_RESOLVER_BASE);
-  if (address_info == (ulonglong *)0x0) {
+  if (address_info == (uint64_t *)0x0) {
     protocol_status = 0x1f;
   }
   else {
@@ -182,7 +182,7 @@ void resolve_network_address(ulonglong *address_info, int port_number)
           }
           protocol_status = resolve_hostname(dns_context, resolved_data);
           if (protocol_status == 0) {
-            *address_info = (ulonglong)resolved_data[0];
+            *address_info = (uint64_t)resolved_data[0];
             goto resolution_complete;
           }
         }
@@ -204,27 +204,27 @@ address_resolution_failed:
   }
 resolution_complete:
   // 清理地址解析资源
-  cleanup_address_resolver(stack_guard ^ (ulonglong)address_buffer);
+  cleanup_address_resolver(stack_guard ^ (uint64_t)address_buffer);
 }
 
-// 函数: void FUN_180840490(uint64_t param_1,ulonglong *param_2)
+// 函数: void FUN_180840490(uint64_t param_1,uint64_t *param_2)
 // 网络连接建立函数 - 建立到指定地址的网络连接
-void establish_network_connection(uint64_t connection_params, ulonglong *connection_handle)
+void establish_network_connection(uint64_t connection_params, uint64_t *connection_handle)
 {
   int connect_status;
   int socket_status;
   int8_t connection_buffer[32];
   int8_t *connection_data;
-  longlong socket_info[2];
+  int64_t socket_info[2];
   uint64_t *protocol_handlers[2];
   int8_t packet_buffer[256];
-  ulonglong stack_guard;
+  uint64_t stack_guard;
   
-  stack_guard = STACK_GUARD ^ (ulonglong)connection_buffer;
-  if (connection_handle == (ulonglong *)0x0) {
+  stack_guard = STACK_GUARD ^ (uint64_t)connection_buffer;
+  if (connection_handle == (uint64_t *)0x0) {
     if ((*(byte *)(NETWORK_RESOLVER_BASE + 0x10) & 0x80) == 0) {
       // 清理连接资源
-      cleanup_connection_resources(stack_guard ^ (ulonglong)connection_buffer);
+      cleanup_connection_resources(stack_guard ^ (uint64_t)connection_buffer);
     }
     format_network_address(packet_buffer, 0x100, 0);
     connection_data = packet_buffer;
@@ -252,7 +252,7 @@ connection_established:
     *(int *)(protocol_handlers[0] + 2) = (int)connection_params;
     connect_status = initialize_network_protocol(*(uint64_t *)(socket_info[0] + 0x98), protocol_handlers[0]);
     if (connect_status == 0) {
-      *connection_handle = (ulonglong)*(uint *)(protocol_handlers[0] + 3);
+      *connection_handle = (uint64_t)*(uint *)(protocol_handlers[0] + 3);
       // 清理网络连接资源
       cleanup_network_connection(socket_info + 1);
     }
@@ -262,25 +262,25 @@ connection_failed:
   cleanup_network_connection(socket_info + 1);
 }
 
-// 函数: void FUN_180840600(int32_t param_1,int param_2,longlong param_3)
+// 函数: void FUN_180840600(int32_t param_1,int param_2,int64_t param_3)
 // 网络数据接收函数 - 从网络连接接收数据
-void receive_network_data(int32_t socket_handle, int buffer_size, longlong receive_callback)
+void receive_network_data(int32_t socket_handle, int buffer_size, int64_t receive_callback)
 {
-  longlong *socket_manager;
+  int64_t *socket_manager;
   int receive_status;
-  longlong connection_handle;
-  longlong data_stream;
+  int64_t connection_handle;
+  int64_t data_stream;
   int8_t receive_buffer[32];
   uint64_t socket_info;
-  longlong socket_context;
-  longlong protocol_handle;
+  int64_t socket_context;
+  int64_t protocol_handle;
   int8_t data_buffer[40];
-  ulonglong stack_guard;
+  uint64_t stack_guard;
   
-  stack_guard = STACK_GUARD ^ (ulonglong)receive_buffer;
+  stack_guard = STACK_GUARD ^ (uint64_t)receive_buffer;
   if (receive_callback == 0) {
     // 清理接收资源
-    cleanup_receive_resources(stack_guard ^ (ulonglong)receive_buffer);
+    cleanup_receive_resources(stack_guard ^ (uint64_t)receive_buffer);
   }
   protocol_handle = 0;
   socket_info = 0;
@@ -288,10 +288,10 @@ void receive_network_data(int32_t socket_handle, int buffer_size, longlong recei
   receive_status = create_receive_socket(0, &socket_context);
   if ((((receive_status == 0) && (receive_status = validate_socket_connection(&socket_info, socket_context), receive_status == 0)) &&
      (receive_status = create_socket_manager(socket_handle, &data_stream), receive_status == 0)) &&
-     ((protocol_handle = *(longlong *)(data_stream + 8), -1 < buffer_size &&
+     ((protocol_handle = *(int64_t *)(data_stream + 8), -1 < buffer_size &&
       (buffer_size < *(int *)(protocol_handle + 0x88))))) {
-    connection_handle = (longlong)buffer_size * 0x10 + *(longlong *)(protocol_handle + 0x80);
-    socket_manager = *(longlong **)(socket_context + 800);
+    connection_handle = (int64_t)buffer_size * 0x10 + *(int64_t *)(protocol_handle + 0x80);
+    socket_manager = *(int64_t **)(socket_context + 800);
     data_stream = (**(code **)(*socket_manager + 0x270))(socket_manager, connection_handle, 1);
     if (data_stream == 0) {
       // 处理接收错误
@@ -310,24 +310,24 @@ void receive_network_data(int32_t socket_handle, int buffer_size, longlong recei
 // 函数: void FUN_18084062e(uint64_t param_1,uint64_t param_2,int8_t param_3,uint64_t param_4,
 // 网络事件处理函数 - 处理网络连接事件
 void handle_network_event(uint64_t event_source, uint64_t event_data, int8_t event_type, uint64_t event_handler,
-                        uint64_t callback_data, uint64_t event_context, longlong event_params)
+                        uint64_t callback_data, uint64_t event_context, int64_t event_params)
 {
-  longlong *event_manager;
+  int64_t *event_manager;
   int event_status;
-  longlong connection_handle;
+  int64_t connection_handle;
   int32_t event_flags;
-  longlong event_id;
-  longlong socket_data;
+  int64_t event_id;
+  int64_t socket_data;
   
   event_context = 0;
   callback_data = 0;
   event_status = create_event_manager(0, &event_context, event_type, event_handler, 0);
   if (((event_status == 0) && (event_status = validate_event_connection(&stack0x00000020, event_context), event_status == 0)) &&
      (event_status = create_event_socket(event_flags, &event_params), event_status == 0)) {
-    event_context = *(longlong *)(event_params + 8);
+    event_context = *(int64_t *)(event_params + 8);
     if ((-1 < (int)event_id) && ((int)event_id < *(int)(event_context + 0x88))) {
-      socket_data = event_id * 0x10 + *(longlong *)(event_context + 0x80);
-      event_manager = *(longlong **)(event_context + 800);
+      socket_data = event_id * 0x10 + *(int64_t *)(event_context + 0x80);
+      event_manager = *(int64_t **)(event_context + 800);
       connection_handle = (**(code **)(*event_manager + 0x270))(event_manager, socket_data, 1);
       if (connection_handle == 0) {
         // 处理事件错误
@@ -347,25 +347,25 @@ void handle_network_event(uint64_t event_source, uint64_t event_data, int8_t eve
 // 函数: void FUN_18084063e(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4,
 // 网络消息处理函数 - 处理网络通信消息
 void process_network_message(uint64_t message_source, uint64_t message_data, uint64_t message_type, uint64_t message_handler,
-                           uint64_t callback_info, uint64_t message_context, longlong message_params)
+                           uint64_t callback_info, uint64_t message_context, int64_t message_params)
 {
-  longlong *message_manager;
+  int64_t *message_manager;
   int message_status;
-  longlong connection_handle;
+  int64_t connection_handle;
   int32_t message_flags;
-  longlong message_id;
-  longlong socket_data;
-  longlong message_value;
+  int64_t message_id;
+  int64_t socket_data;
+  int64_t message_value;
   
   message_context = 0;
   callback_info = message_value;
   message_status = create_message_manager();
   if (((message_status == 0) && (message_status = validate_message_connection(&stack0x00000020, callback_info), message_status == 0)) &&
      (message_status = create_message_socket(message_flags, &message_params), message_status == 0)) {
-    message_context = *(longlong *)(message_params + 8);
+    message_context = *(int64_t *)(message_params + 8);
     if ((-1 < (int)message_id) && ((int)message_id < *(int)(message_context + 0x88))) {
-      socket_data = message_id * 0x10 + *(longlong *)(message_context + 0x80);
-      message_manager = *(longlong **)(callback_info + 800);
+      socket_data = message_id * 0x10 + *(int64_t *)(message_context + 0x80);
+      message_manager = *(int64_t **)(callback_info + 800);
       connection_handle = (**(code **)(*message_manager + 0x270))(message_manager, socket_data, 1, message_handler, message_source);
       if (connection_handle == 0) {
         // 处理消息错误
@@ -387,7 +387,7 @@ void process_network_message(uint64_t message_source, uint64_t message_data, uin
 void initialize_network_state(void)
 {
   uint64_t *state_manager;
-  ulonglong stack_parameter;
+  uint64_t stack_parameter;
   
   *state_manager = 0;
   state_manager[1] = 0;
@@ -397,32 +397,32 @@ void initialize_network_state(void)
   state_manager[5] = 0;
   state_manager[6] = 0;
   // 清理状态初始化资源
-  cleanup_state_initialization(stack_parameter ^ (ulonglong)&stack0x00000000);
+  cleanup_state_initialization(stack_parameter ^ (uint64_t)&stack0x00000000);
 }
 
 // 函数: void FUN_18084076d(void)
 // 网络资源清理函数 - 清理网络相关资源
 void cleanup_network_resources(void)
 {
-  ulonglong stack_parameter;
+  uint64_t stack_parameter;
   
   // 清理网络资源
-  cleanup_network_stack(stack_parameter ^ (ulonglong)&stack0x00000000);
+  cleanup_network_stack(stack_parameter ^ (uint64_t)&stack0x00000000);
 }
 
-// 函数: int32_t FUN_180840790(int32_t param_1,longlong param_2,uint64_t *param_3)
+// 函数: int32_t FUN_180840790(int32_t param_1,int64_t param_2,uint64_t *param_3)
 // 网络协议查询函数 - 查询指定的网络协议
-int32_t query_network_protocol(int32_t protocol_id, longlong search_params, uint64_t *protocol_info)
+int32_t query_network_protocol(int32_t protocol_id, int64_t search_params, uint64_t *protocol_info)
 {
   uint64_t *protocol_table;
   uint64_t *protocol_entry;
   int query_status;
   void *protocol_data;
   void *protocol_name;
-  longlong search_info[2];
+  int64_t search_info[2];
   uint64_t search_context;
   uint64_t search_buffer;
-  longlong context_handle;
+  int64_t context_handle;
   
   if (protocol_info == (uint64_t *)0x0) {
     return 0x1f;
@@ -441,7 +441,7 @@ int32_t query_network_protocol(int32_t protocol_id, longlong search_params, uint
   query_status = create_protocol_search(0, &search_buffer);
   if (((query_status == 0) && (query_status = validate_protocol_search(&search_context, search_buffer), query_status == 0)) &&
      (query_status = search_protocol_database(protocol_id, search_info), query_status == 0)) {
-    context_handle = *(longlong *)(search_info[0] + 8);
+    context_handle = *(int64_t *)(search_info[0] + 8);
   }
   else if (query_status != 0) goto search_failed;
   protocol_table = (uint64_t *)(context_handle + 0xb0);
@@ -511,15 +511,15 @@ void configure_network_connection(uint64_t config_source, uint64_t config_data, 
   int32_t config_flags;
   uint64_t config_value_xmm;
   uint64_t config_stack;
-  longlong config_context;
-  longlong stack_parameter;
+  int64_t config_context;
+  int64_t stack_parameter;
   
   config_context = 0;
   config_stack = config_value_xmm;
   config_status = create_config_manager(target_context, &config_stack, config_type, config_target, config_source);
   if (((config_status == 0) && (config_status = validate_config_connection(&stack0x00000020, config_stack), config_status == 0))
      && (config_status = create_config_socket(config_flags, &stack_parameter), config_status == 0)) {
-    config_context = *(longlong)(stack_parameter + 8);
+    config_context = *(int64_t)(stack_parameter + 8);
   }
   else if (config_status != 0) goto config_failed;
   config_manager = (uint64_t *)(config_context + 0xb0);
@@ -600,46 +600,46 @@ void test_network_connection(void)
   execute_connection_test(test_buffer);
 }
 
-// 函数: void FUN_180840950(uint64_t param_1,longlong param_2,longlong param_3,int *param_4)
+// 函数: void FUN_180840950(uint64_t param_1,int64_t param_2,int64_t param_3,int *param_4)
 // 网络地址查找函数 - 在网络地址表中查找指定地址
-void find_network_address(uint64_t search_context, longlong address_table, longlong search_target, int *address_index)
+void find_network_address(uint64_t search_context, int64_t address_table, int64_t search_target, int *address_index)
 {
-  longlong table_entry;
+  int64_t table_entry;
   int search_status;
   int entry_index;
   uint64_t address_hash;
   int *hash_table;
-  ulonglong current_index;
-  ulonglong max_entries;
-  longlong database_handle;
+  uint64_t current_index;
+  uint64_t max_entries;
+  int64_t database_handle;
   void *address_data;
-  ulonglong entry_count;
+  uint64_t entry_count;
   int8_t address_buffer[32];
   uint64_t search_buffer;
   int8_t target_buffer[16];
-  ulonglong stack_guard;
+  uint64_t stack_guard;
   
-  stack_guard = STACK_GUARD ^ (ulonglong)address_buffer;
+  stack_guard = STACK_GUARD ^ (uint64_t)address_buffer;
   if (search_target != 0) {
     search_status = validate_address_format(search_target, &ADDRESS_FORMAT_CODE, 10);
     if (search_status == 0) {
       search_status = parse_network_address(search_context, search_target, target_buffer);
       if (search_status == 0) {
-        database_handle = *(longlong *)(address_table + 0x18);
+        database_handle = *(int64_t *)(address_table + 0x18);
         address_hash = calculate_address_hash(target_buffer);
         search_status = *(int *)(database_handle + 0x98);
         current_index = 0;
         if (0 < search_status) {
-          search_buffer._4_4_ = (int)((ulonglong)address_hash >> 0x20);
+          search_buffer._4_4_ = (int)((uint64_t)address_hash >> 0x20);
           hash_table = *(int **)(database_handle + 0x90);
           max_entries = current_index;
           do {
             entry_index = (int)max_entries;
             if ((*hash_table == (int)address_hash) && (hash_table[1] == search_buffer._4_4_)) goto address_found;
-            max_entries = (ulonglong)(entry_index + 1);
+            max_entries = (uint64_t)(entry_index + 1);
             current_index = current_index + 1;
             hash_table = hash_table + 2;
-          } while ((longlong)current_index < (longlong)search_status);
+          } while ((int64_t)current_index < (int64_t)search_status);
         }
         entry_index = -1;
 address_found:
@@ -652,7 +652,7 @@ address_found:
       if (0 < *(int *)(address_table + 0x28)) {
         database_handle = 0;
         do {
-          table_entry = *(longlong *)(database_handle + 0x10 + *(longlong *)(address_table + 0x20));
+          table_entry = *(int64_t *)(database_handle + 0x10 + *(int64_t *)(address_table + 0x20));
           if (table_entry == 0) break;
           if (*(int *)(table_entry + 0x58) < 1) {
             address_data = &DEFAULT_ADDRESS_NAME;
@@ -672,7 +672,7 @@ address_found:
     }
   }
   // 清理地址查找资源
-  cleanup_address_search(stack_guard ^ (ulonglong)address_buffer);
+  cleanup_address_search(stack_guard ^ (uint64_t)address_buffer);
 }
 
 // 函数: uint64_t FUN_180840a90(uint64_t *param_1,int *param_2,int *param_3)
@@ -682,7 +682,7 @@ uint64_t validate_network_connection(uint64_t *connection_table, int *connection
   uint64_t validation_status;
   int *connection_entry;
   int entry_index;
-  longlong table_offset;
+  int64_t table_offset;
   
   entry_index = 0;
   if (0 < *(int *)(connection_table + 1)) {
@@ -705,21 +705,21 @@ connection_valid:
   return validation_status;
 }
 
-// 函数: void FUN_180840af0(longlong param_1,longlong param_2,int *param_3)
+// 函数: void FUN_180840af0(int64_t param_1,int64_t param_2,int *param_3)
 // 网络端口扫描函数 - 扫描指定端口的状态
-void scan_network_port(longlong scan_context, longlong port_range, int *port_status)
+void scan_network_port(int64_t scan_context, int64_t port_range, int *port_status)
 {
   bool scan_found;
   int scan_status;
-  longlong port_entry;
+  int64_t port_entry;
   void *port_data;
   int port_index;
   int8_t scan_buffer[32];
-  longlong resolved_address;
-  longlong resolved_port;
-  ulonglong stack_guard;
+  int64_t resolved_address;
+  int64_t resolved_port;
+  uint64_t stack_guard;
   
-  stack_guard = STACK_GUARD ^ (ulonglong)scan_buffer;
+  stack_guard = STACK_GUARD ^ (uint64_t)scan_buffer;
   if (port_range != 0) {
     scan_found = false;
     scan_status = validate_port_format(port_range, &PORT_FORMAT_CODE, 10);
@@ -735,8 +735,8 @@ void scan_network_port(longlong scan_context, longlong port_range, int *port_sta
       if (0 < scan_status) {
         do {
           port_entry = get_port_entry(scan_context, port_index);
-          if ((*(longlong *)(port_entry + 0x10) == resolved_address) &&
-             (*(longlong *)(port_entry + 0x18) == resolved_port)) goto port_found;
+          if ((*(int64_t *)(port_entry + 0x10) == resolved_address) &&
+             (*(int64_t *)(port_entry + 0x18) == resolved_port)) goto port_found;
           port_index = port_index + 1;
           scan_status = enumerate_available_ports(scan_context);
         } while (port_index < scan_status);
@@ -767,7 +767,7 @@ port_found:
   *port_status = port_index;
 scan_complete:
   // 清理端口扫描资源
-  cleanup_port_scan(stack_guard ^ (ulonglong)scan_buffer);
+  cleanup_port_scan(stack_guard ^ (uint64_t)scan_buffer);
 }
 
 
@@ -795,69 +795,69 @@ void cleanup_network_callback(void *callback_data);
 int verify_network_connection(uint64_t connection_handle);
 void log_network_buffer_error(uint64_t log_handle, uint64_t buffer, void *error_code, int size, int flags);
 void log_network_send_error(uint64_t log_handle, uint64_t buffer, void *error_code, int size, int flags);
-int create_network_connection(uint64_t params, longlong *connection_info);
+int create_network_connection(uint64_t params, int64_t *connection_info);
 int setup_packet_handler(uint64_t context, uint64_t **handler, int size);
 void initialize_network_protocol(uint64_t protocol_data);
 void cleanup_network_connection(void *connection_data);
-uint64_t process_data_transmission(longlong *connection, int flags);
+uint64_t process_data_transmission(int64_t *connection, int flags);
 void initialize_network_resolver(uint64_t *resolver_base);
-int create_dns_context(longlong *context);
+int create_dns_context(int64_t *context);
 int query_dns_server(uint64_t server, int *socket_info);
-int resolve_hostname(longlong context, uint *resolved_data);
+int resolve_hostname(int64_t context, uint *resolved_data);
 void trigger_network_error(void);
-int format_network_address(char *buffer, int size, ulonglong *address);
+int format_network_address(char *buffer, int size, uint64_t *address);
 int append_network_protocol(char *buffer, int size, void *protocol);
 void format_network_port(char *buffer, int size, int port);
 void execute_address_callback(int status, int param1, int param2, void *callback_table);
-void cleanup_address_resolver(ulonglong guard);
-int create_network_socket(uint64_t params, longlong *socket_info);
-int validate_socket_connection(longlong *socket_info);
+void cleanup_address_resolver(uint64_t guard);
+int create_network_socket(uint64_t params, int64_t *socket_info);
+int validate_socket_connection(int64_t *socket_info);
 int setup_connection_protocol(uint64_t context, uint64_t **protocol, int size);
 int initialize_network_protocol(uint64_t protocol, uint64_t *handler);
-void cleanup_connection_resources(ulonglong guard);
+void cleanup_connection_resources(uint64_t guard);
 void execute_connection_error_callback(int status, int flags, uint64_t params, void *error_table);
-void create_receive_socket(uint64_t params, longlong *context);
-int validate_socket_connection(longlong *socket, longlong context);
-int create_socket_manager(int32_t handle, longlong *stream);
-void handle_receive_error(longlong handle, int8_t *buffer);
-longlong get_stream_handler(longlong *manager);
-void process_received_data(longlong stream, longlong callback, int flags);
-void create_event_manager(uint64_t source, longlong *context, int8_t type, uint64_t handler, int flags);
-int validate_event_connection(longlong *event, longlong context);
-int create_event_socket(int32_t flags, longlong *params);
-void handle_event_error(longlong error, int8_t *buffer);
-longlong get_event_handler(longlong *manager);
-void process_network_event(longlong event);
-void cleanup_event_resources(longlong *event);
+void create_receive_socket(uint64_t params, int64_t *context);
+int validate_socket_connection(int64_t *socket, int64_t context);
+int create_socket_manager(int32_t handle, int64_t *stream);
+void handle_receive_error(int64_t handle, int8_t *buffer);
+int64_t get_stream_handler(int64_t *manager);
+void process_received_data(int64_t stream, int64_t callback, int flags);
+void create_event_manager(uint64_t source, int64_t *context, int8_t type, uint64_t handler, int flags);
+int validate_event_connection(int64_t *event, int64_t context);
+int create_event_socket(int32_t flags, int64_t *params);
+void handle_event_error(int64_t error, int8_t *buffer);
+int64_t get_event_handler(int64_t *manager);
+void process_network_event(int64_t event);
+void cleanup_event_resources(int64_t *event);
 void create_message_manager(void);
-int validate_message_connection(longlong *message, longlong context);
-int create_message_socket(int32_t flags, longlong *params);
-void handle_message_error(longlong error, int8_t *buffer);
-longlong get_message_handler(longlong *manager);
-void process_network_message(longlong message);
-void cleanup_message_resources(longlong *message);
-void cleanup_state_initialization(ulonglong parameter);
-void cleanup_network_stack(ulonglong parameter);
+int validate_message_connection(int64_t *message, int64_t context);
+int create_message_socket(int32_t flags, int64_t *params);
+void handle_message_error(int64_t error, int8_t *buffer);
+int64_t get_message_handler(int64_t *manager);
+void process_network_message(int64_t message);
+void cleanup_message_resources(int64_t *message);
+void cleanup_state_initialization(uint64_t parameter);
+void cleanup_network_stack(uint64_t parameter);
 int create_protocol_search(uint64_t params, uint64_t *search);
-int validate_protocol_search(longlong *validation, uint64_t search);
-int search_protocol_database(int32_t id, longlong *info);
-int compare_protocol_data(void *data1, longlong data2);
-void cleanup_protocol_search(longlong *search);
+int validate_protocol_search(int64_t *validation, uint64_t search);
+int search_protocol_database(int32_t id, int64_t *info);
+int compare_protocol_data(void *data1, int64_t data2);
+void cleanup_protocol_search(int64_t *search);
 int create_config_manager(uint64_t source, uint64_t *stack, uint64_t type, uint64_t target, uint64_t context);
-int validate_config_connection(longlong *config, longlong stack);
-int create_config_socket(int32_t flags, longlong *params);
+int validate_config_connection(int64_t *config, int64_t stack);
+int create_config_socket(int32_t flags, int64_t *params);
 int validate_config_value(void *value);
-void cleanup_config_resources(longlong *config);
+void cleanup_config_resources(int64_t *config);
 void execute_connection_test(int8_t *buffer);
 int validate_address_format(uint64_t address, void *format, int length);
 int parse_network_address(uint64_t context, uint64_t address, int8_t *buffer);
 uint64_t calculate_address_hash(int8_t *buffer);
 int compare_address_data(void *data1, uint64_t data2);
-void cleanup_address_search(ulonglong guard);
-int enumerate_available_ports(longlong context);
-longlong get_port_entry(longlong context, int index);
+void cleanup_address_search(uint64_t guard);
+int enumerate_available_ports(int64_t context);
+int64_t get_port_entry(int64_t context, int index);
 int compare_port_data(void *data, uint64_t port);
-void cleanup_port_scan(ulonglong guard);
+void cleanup_port_scan(uint64_t guard);
 
 // 全局变量引用
 extern uint64_t NETWORK_ERROR_LOG;

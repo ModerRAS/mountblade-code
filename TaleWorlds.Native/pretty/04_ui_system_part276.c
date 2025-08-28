@@ -13,10 +13,10 @@ void FUN_1808240c2(int param_1,uint64_t param_2,uint64_t param_3,int param_4)
   int8_t auVar5 [12];
   int in_EAX;
   uint uVar6;
-  longlong unaff_RBX;
-  longlong unaff_RSI;
+  int64_t unaff_RBX;
+  int64_t unaff_RSI;
   int unaff_EDI;
-  ulonglong uVar7;
+  uint64_t uVar7;
   int16_t *in_R10;
   uint *in_R11;
   int unaff_R12D;
@@ -54,7 +54,7 @@ void FUN_1808240c2(int param_1,uint64_t param_2,uint64_t param_3,int param_4)
   int in_stack_00000100;
   
   uVar6 = (param_1 - 1U >> 3) + 1;
-  uVar7 = (ulonglong)uVar6;
+  uVar7 = (uint64_t)uVar6;
   do {
     uVar1 = in_R11[unaff_R13D];
     auVar20._4_4_ = uVar1;

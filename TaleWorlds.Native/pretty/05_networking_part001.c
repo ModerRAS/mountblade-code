@@ -817,7 +817,7 @@ uint64_t NetworkingSystem_FindConnectionIndex(uint32_t* connectionTable, int* se
  * @param resultIndex 结果索引
  * @return 搜索结果，0表示成功，非0表示失败
  */
-uint8_t NetworkingSystem_SearchConnection(longlong searchBase, longlong searchOffset, int* resultIndex) {
+uint8_t NetworkingSystem_SearchConnection(int64_t searchBase, int64_t searchOffset, int* resultIndex) {
     // 实现网络连接搜索逻辑
     return 0;
 }

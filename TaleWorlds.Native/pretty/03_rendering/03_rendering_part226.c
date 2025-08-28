@@ -101,7 +101,7 @@
 // - 实现高级纹理过滤和采样
 // - 优化内存访问和计算性能
 //============================================================================
-void RenderingSystemAdvancedTextureMapper(longlong texture_data, longlong mapping_params, float *transform_matrix, uint flags)
+void RenderingSystemAdvancedTextureMapper(int64_t texture_data, int64_t mapping_params, float *transform_matrix, uint flags)
 {
     int mapping_type, filter_mode, wrap_mode;
     float *texture_coords, *normal_vector, *tangent_vector;
@@ -230,7 +230,7 @@ void RenderingSystemAdvancedTextureMapper(longlong texture_data, longlong mappin
 // - 实现坐标的归一化和钳制
 // - 支持纹理 atlas 和子纹理处理
 //============================================================================
-void RenderingSystemTextureCoordinateTransformer(longlong coord_data, longlong transform_params, longlong matrix_stack, float *output_coords)
+void RenderingSystemTextureCoordinateTransformer(int64_t coord_data, int64_t transform_params, int64_t matrix_stack, float *output_coords)
 {
     int transform_type, coord_count, atlas_index;
     float *input_coords, *transform_matrix;
@@ -337,7 +337,7 @@ void RenderingSystemTextureCoordinateTransformer(longlong coord_data, longlong t
 // - 处理UV接缝和边界问题
 // - 优化UV布局和空间利用率
 //============================================================================
-void RenderingSystemUVMappingProcessor(longlong uv_data, longlong mesh_data, longlong mapping_config, float *output_data)
+void RenderingSystemUVMappingProcessor(int64_t uv_data, int64_t mesh_data, int64_t mapping_config, float *output_data)
 {
     int mapping_method, vertex_count, uv_channel;
     float *vertices, *normals, *uv_coords;
@@ -445,7 +445,7 @@ void RenderingSystemUVMappingProcessor(longlong uv_data, longlong mesh_data, lon
 // - 处理各向异性和纹理过滤
 // - 优化采样性能和质量
 //============================================================================
-void RenderingSystemTextureSampler(longlong sampler_data, longlong texture_data, float *sample_coords, float *output_color)
+void RenderingSystemTextureSampler(int64_t sampler_data, int64_t texture_data, float *sample_coords, float *output_color)
 {
     int sampler_type, filter_mode, address_mode;
     float *lod_params, *border_color;
@@ -537,7 +537,7 @@ void RenderingSystemTextureSampler(longlong sampler_data, longlong texture_data,
 // - 实现变换的组合和优化
 // - 处理变换的层级关系
 //============================================================================
-void RenderingSystemGeometryTransformer(longlong geometry_data, longlong transform_params, longlong matrix_data, float *output_data)
+void RenderingSystemGeometryTransformer(int64_t geometry_data, int64_t transform_params, int64_t matrix_data, float *output_data)
 {
     int transform_type, vertex_count, component_count;
     float *input_vertices, *input_normals, *input_tangents;
@@ -650,7 +650,7 @@ void RenderingSystemGeometryTransformer(longlong geometry_data, longlong transfo
 // - 优化矩阵计算性能
 // - 处理矩阵的特殊情况
 //============================================================================
-void RenderingSystemMatrixCalculator(longlong matrix_data, longlong operation_params, float *input_matrices, float *output_matrix)
+void RenderingSystemMatrixCalculator(int64_t matrix_data, int64_t operation_params, float *input_matrices, float *output_matrix)
 {
     int operation_type, matrix_count, matrix_size;
     float *matrix_a, *matrix_b, *matrix_c;
@@ -784,7 +784,7 @@ void RenderingSystemMatrixCalculator(longlong matrix_data, longlong operation_pa
 // - 处理向量的交叉和点积运算
 // - 优化向量计算性能
 //============================================================================
-void RenderingSystemVectorTransformer(longlong vector_data, longlong transform_params, longlong operation_data, float *output_vectors)
+void RenderingSystemVectorTransformer(int64_t vector_data, int64_t transform_params, int64_t operation_data, float *output_vectors)
 {
     int transform_type, vector_count, vector_size;
     float *input_vectors, *transform_matrix;
@@ -923,7 +923,7 @@ void RenderingSystemVectorTransformer(longlong vector_data, longlong transform_p
 // - 处理深度缓冲和Z缓冲
 // - 优化投影计算性能
 //============================================================================
-void RenderingSystemProjectionProcessor(longlong projection_data, longlong camera_params, longlong scene_data, float *output_matrix)
+void RenderingSystemProjectionProcessor(int64_t projection_data, int64_t camera_params, int64_t scene_data, float *output_matrix)
 {
     int projection_type, camera_type;
     float fov, aspect_ratio, near_plane, far_plane;

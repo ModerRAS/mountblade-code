@@ -23,7 +23,7 @@ void FUN_1808a3b6c(void)
 
 
 
-uint64_t FUN_1808a3b80(longlong param_1,uint64_t *param_2)
+uint64_t FUN_1808a3b80(int64_t param_1,uint64_t *param_2)
 
 {
   uint64_t uVar1;

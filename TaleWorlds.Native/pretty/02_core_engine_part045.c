@@ -149,18 +149,18 @@ void Engine_ProcessBatchData_0856c7(void)
     int32_t temp_val2;
     int32_t temp_val3;
     int16_t type_info;
-    longlong input_param;
-    ulonglong allocated_size;
-    longlong struct_ptr;
+    int64_t input_param;
+    uint64_t allocated_size;
+    int64_t struct_ptr;
     int index;
-    ulonglong current_pos;
+    uint64_t current_pos;
     uint *src_array;
-    ulonglong base_offset;
+    uint64_t base_offset;
     uint *dst_array;
     uint array_size;
-    ulonglong iterator;
-    longlong *src_base;
-    longlong *dst_base;
+    uint64_t iterator;
+    int64_t *src_base;
+    int64_t *dst_base;
     
     // 检查输入参数并分配内存
     if (input_param == 0) {
@@ -211,12 +211,12 @@ void Engine_ProcessBatchData_0856c7(void)
             if (*src_array != 0) {
                 do {
                     index = (int)current_pos;
-                    current_pos = (ulonglong)(index + 1U);
-                    src_ptr = (int32_t *)(*(longlong *)(src_array + 2) + (longlong)index * 0x10);
+                    current_pos = (uint64_t)(index + 1U);
+                    src_ptr = (int32_t *)(*(int64_t *)(src_array + 2) + (int64_t)index * 0x10);
                     temp_val1 = src_ptr[1];
                     temp_val2 = src_ptr[2];
                     temp_val3 = src_ptr[3];
-                    dst_ptr = (int32_t *)(*(longlong *)(dst_array + 2) + (longlong)index * 0x10);
+                    dst_ptr = (int32_t *)(*(int64_t *)(dst_array + 2) + (int64_t)index * 0x10);
                     *dst_ptr = *src_ptr;
                     dst_ptr[1] = temp_val1;
                     dst_ptr[2] = temp_val2;
@@ -249,12 +249,12 @@ void Engine_ProcessBatchData_0856c7(void)
             if (src_array[10] != 0) {
                 do {
                     index = (int)current_pos;
-                    current_pos = (ulonglong)(index + 1U);
-                    src_ptr = (int32_t *)(*(longlong *)(src_array + 0xc) + (longlong)index * 0x10);
+                    current_pos = (uint64_t)(index + 1U);
+                    src_ptr = (int32_t *)(*(int64_t *)(src_array + 0xc) + (int64_t)index * 0x10);
                     temp_val1 = src_ptr[1];
                     temp_val2 = src_ptr[2];
                     temp_val3 = src_ptr[3];
-                    dst_ptr = (int32_t *)(*(longlong *)(dst_array + 0xc) + (longlong)index * 0x10);
+                    dst_ptr = (int32_t *)(*(int64_t *)(dst_array + 0xc) + (int64_t)index * 0x10);
                     *dst_ptr = *src_ptr;
                     dst_ptr[1] = temp_val1;
                     dst_ptr[2] = temp_val2;
@@ -264,13 +264,13 @@ void Engine_ProcessBatchData_0856c7(void)
             
             element_count = *(ushort *)(dst_base + 2);
             array_size = (int)iterator + 1;
-            iterator = (ulonglong)array_size;
+            iterator = (uint64_t)array_size;
             allocated_size = allocated_size + 0x50;
         } while ((int)array_size < (int)(uint)element_count);
     }
     
     // 最终内存复制操作
-    memcpy(dst_base[1], src_base[1], (ulonglong)element_count << 2);
+    memcpy(dst_base[1], src_base[1], (uint64_t)element_count << 2);
 }
 
 /**
@@ -291,14 +291,14 @@ void Engine_ProcessArrayData_085714(void)
     int32_t temp_val2;
     int32_t temp_val3;
     int index;
-    ulonglong current_pos;
+    uint64_t current_pos;
     uint *src_array;
-    ulonglong base_offset;
+    uint64_t base_offset;
     uint *dst_array;
     int array_index;
-    longlong *src_base;
-    longlong *dst_base;
-    ulonglong iterator;
+    int64_t *src_base;
+    int64_t *dst_base;
+    uint64_t iterator;
     
     iterator = base_offset;
     do {
@@ -330,12 +330,12 @@ void Engine_ProcessArrayData_085714(void)
         if (*src_array != 0) {
             do {
                 index = (int)current_pos;
-                current_pos = (ulonglong)(index + 1U);
-                src_ptr = (int32_t *)(*(longlong *)(src_array + 2) + (longlong)index * 0x10);
+                current_pos = (uint64_t)(index + 1U);
+                src_ptr = (int32_t *)(*(int64_t *)(src_array + 2) + (int64_t)index * 0x10);
                 temp_val1 = src_ptr[1];
                 temp_val2 = src_ptr[2];
                 temp_val3 = src_ptr[3];
-                dst_ptr = (int32_t *)(*(longlong *)(dst_array + 2) + (longlong)index * 0x10);
+                dst_ptr = (int32_t *)(*(int64_t *)(dst_array + 2) + (int64_t)index * 0x10);
                 *dst_ptr = *src_ptr;
                 dst_ptr[1] = temp_val1;
                 dst_ptr[2] = temp_val2;
@@ -368,12 +368,12 @@ void Engine_ProcessArrayData_085714(void)
         if (src_array[10] != 0) {
             do {
                 index = (int)current_pos;
-                current_pos = (ulonglong)(index + 1U);
-                src_ptr = (int32_t *)(*(longlong *)(src_array + 0xc) + (longlong)index * 0x10);
+                current_pos = (uint64_t)(index + 1U);
+                src_ptr = (int32_t *)(*(int64_t *)(src_array + 0xc) + (int64_t)index * 0x10);
                 temp_val1 = src_ptr[1];
                 temp_val2 = src_ptr[2];
                 temp_val3 = src_ptr[3];
-                dst_ptr = (int32_t *)(*(longlong *)(dst_array + 0xc) + (longlong)index * 0x10);
+                dst_ptr = (int32_t *)(*(int64_t *)(dst_array + 0xc) + (int64_t)index * 0x10);
                 *dst_ptr = *src_ptr;
                 dst_ptr[1] = temp_val1;
                 dst_ptr[2] = temp_val2;
@@ -386,7 +386,7 @@ void Engine_ProcessArrayData_085714(void)
     } while (array_index < (int)(uint)*(ushort *)(dst_base + 2));
     
     // 最终内存复制操作
-    memcpy(dst_base[1], src_base[1], (ulonglong)*(ushort *)(dst_base + 2) << 2);
+    memcpy(dst_base[1], src_base[1], (uint64_t)*(ushort *)(dst_base + 2) << 2);
 }
 
 /**
@@ -400,11 +400,11 @@ void Engine_ProcessArrayData_085714(void)
 void Engine_CopyMemoryBlock_085826(void)
 {
     ushort copy_size;
-    longlong src_ptr;
-    longlong dst_ptr;
+    int64_t src_ptr;
+    int64_t dst_ptr;
     
     // 执行内存复制操作
-    memcpy(*(uint64_t *)(dst_ptr + 8), *(uint64_t *)(src_ptr + 8), (ulonglong)copy_size << 2);
+    memcpy(*(uint64_t *)(dst_ptr + 8), *(uint64_t *)(src_ptr + 8), (uint64_t)copy_size << 2);
 }
 
 /**
@@ -431,12 +431,12 @@ void Engine_NoOperation_085840(void)
  * 
  * 原始实现：FUN_180085900
  */
-longlong Engine_GetNextNode_085900(longlong current_node)
+int64_t Engine_GetNextNode_085900(int64_t current_node)
 {
     // 检查节点状态并获取下一个节点
-    if ((((*(byte *)(current_node + 0xfd) & 0x40) == 0) || (*(longlong *)(current_node + 0x210) == 0)) &&
-       (*(longlong *)(current_node + 0x1b0) != 0)) {
-        current_node = Engine_GetNextNode_085900(*(longlong *)(current_node + 0x1b0));
+    if ((((*(byte *)(current_node + 0xfd) & 0x40) == 0) || (*(int64_t *)(current_node + 0x210) == 0)) &&
+       (*(int64_t *)(current_node + 0x1b0) != 0)) {
+        current_node = Engine_GetNextNode_085900(*(int64_t *)(current_node + 0x1b0));
     }
     return current_node;
 }
@@ -505,7 +505,7 @@ void Engine_AllocateStructArray_085e30(int *array_ptr)
     
     // 检查数组容量
     if (array_ptr[1] < 1) {
-        if (*(longlong *)(array_ptr + 2) != 0) {
+        if (*(int64_t *)(array_ptr + 2) != 0) {
             Memory_FreeBlock();
         }
         array_ptr[2] = 0;
@@ -514,11 +514,11 @@ void Engine_AllocateStructArray_085e30(int *array_ptr)
     }
     
     // 分配新内存
-    new_memory = Memory_AllocateAligned(system_memory_pool_ptr, (longlong)array_ptr[1] * STRUCT_SIZE_20, (char)array_ptr[8]);
+    new_memory = Memory_AllocateAligned(system_memory_pool_ptr, (int64_t)array_ptr[1] * STRUCT_SIZE_20, (char)array_ptr[8]);
     
     // 复制现有数据
-    if (*(longlong *)(array_ptr + 2) != 0) {
-        memcpy(new_memory, *(longlong *)(array_ptr + 2), (longlong)*array_ptr * STRUCT_SIZE_20);
+    if (*(int64_t *)(array_ptr + 2) != 0) {
+        memcpy(new_memory, *(int64_t *)(array_ptr + 2), (int64_t)*array_ptr * STRUCT_SIZE_20);
     }
     
     *(uint64_t *)(array_ptr + 2) = new_memory;
@@ -539,8 +539,8 @@ void Engine_ReallocateStructArray_085e55(void)
     int *array_ptr;
     
     new_memory = Memory_AllocateAligned();
-    if (*(longlong *)(array_ptr + 2) != 0) {
-        memcpy(new_memory, *(longlong *)(array_ptr + 2), (longlong)*array_ptr * STRUCT_SIZE_20);
+    if (*(int64_t *)(array_ptr + 2) != 0) {
+        memcpy(new_memory, *(int64_t *)(array_ptr + 2), (int64_t)*array_ptr * STRUCT_SIZE_20);
     }
     *(uint64_t *)(array_ptr + 2) = new_memory;
     return;
@@ -556,11 +556,11 @@ void Engine_ReallocateStructArray_085e55(void)
  * 
  * 原始实现：FUN_180085e9b
  */
-void Engine_ClearMemoryPointer_085e9b(longlong param_1)
+void Engine_ClearMemoryPointer_085e9b(int64_t param_1)
 {
-    longlong target_ptr;
+    int64_t target_ptr;
     
-    if (*(longlong *)(param_1 + 8) != 0) {
+    if (*(int64_t *)(param_1 + 8) != 0) {
         Memory_FreeBlock();
     }
     *(uint64_t *)(target_ptr + 8) = 0;
@@ -599,7 +599,7 @@ void Engine_CopyStructArray_085ec0(int *dst_ptr, int *src_ptr)
     }
     
     // 执行数据复制
-    memcpy(*(uint64_t *)(dst_ptr + 2), src_data, (longlong)element_count * STRUCT_SIZE_20);
+    memcpy(*(uint64_t *)(dst_ptr + 2), src_data, (int64_t)element_count * STRUCT_SIZE_20);
     return;
 }
 
@@ -619,7 +619,7 @@ void Engine_AllocateInt32Array_085f20(int *array_ptr)
     
     // 检查数组容量
     if (array_ptr[1] < 1) {
-        if (*(longlong *)(array_ptr + 2) != 0) {
+        if (*(int64_t *)(array_ptr + 2) != 0) {
             Memory_FreeBlock();
         }
         array_ptr[2] = 0;
@@ -628,11 +628,11 @@ void Engine_AllocateInt32Array_085f20(int *array_ptr)
     }
     
     // 分配新内存
-    new_memory = Memory_AllocateAligned(system_memory_pool_ptr, (longlong)array_ptr[1] * STRUCT_SIZE_12, (char)array_ptr[8]);
+    new_memory = Memory_AllocateAligned(system_memory_pool_ptr, (int64_t)array_ptr[1] * STRUCT_SIZE_12, (char)array_ptr[8]);
     
     // 复制现有数据
-    if (*(longlong *)(array_ptr + 2) != 0) {
-        memcpy(new_memory, *(longlong *)(array_ptr + 2), (longlong)*array_ptr * STRUCT_SIZE_12);
+    if (*(int64_t *)(array_ptr + 2) != 0) {
+        memcpy(new_memory, *(int64_t *)(array_ptr + 2), (int64_t)*array_ptr * STRUCT_SIZE_12);
     }
     
     *(uint64_t *)(array_ptr + 2) = new_memory;
@@ -653,8 +653,8 @@ void Engine_ReallocateInt32Array_085f45(void)
     int *array_ptr;
     
     new_memory = Memory_AllocateAligned();
-    if (*(longlong *)(array_ptr + 2) != 0) {
-        memcpy(new_memory, *(longlong *)(array_ptr + 2), (longlong)*array_ptr * STRUCT_SIZE_12);
+    if (*(int64_t *)(array_ptr + 2) != 0) {
+        memcpy(new_memory, *(int64_t *)(array_ptr + 2), (int64_t)*array_ptr * STRUCT_SIZE_12);
     }
     *(uint64_t *)(array_ptr + 2) = new_memory;
     return;
@@ -669,11 +669,11 @@ void Engine_ReallocateInt32Array_085f45(void)
  * 
  * 原始实现：FUN_180085f8b
  */
-void Engine_ClearInt32Pointer_085f8b(longlong param_1)
+void Engine_ClearInt32Pointer_085f8b(int64_t param_1)
 {
-    longlong target_ptr;
+    int64_t target_ptr;
     
-    if (*(longlong *)(param_1 + 8) != 0) {
+    if (*(int64_t *)(param_1 + 8) != 0) {
         Memory_FreeBlock();
     }
     *(uint64_t *)(target_ptr + 8) = 0;
@@ -711,7 +711,7 @@ void Engine_CopyInt32Array_085fb0(int *dst_ptr, int *src_ptr)
     }
     
     // 执行数据复制
-    memcpy(*(uint64_t *)(dst_ptr + 2), src_data, (longlong)element_count * STRUCT_SIZE_12);
+    memcpy(*(uint64_t *)(dst_ptr + 2), src_data, (int64_t)element_count * STRUCT_SIZE_12);
     return;
 }
 
@@ -731,7 +731,7 @@ void Engine_AllocateComplexArray_086010(int *array_ptr)
     
     // 检查数组容量
     if (array_ptr[1] < 1) {
-        if (*(longlong *)(array_ptr + 2) != 0) {
+        if (*(int64_t *)(array_ptr + 2) != 0) {
             Memory_FreeBlock();
         }
         array_ptr[2] = 0;
@@ -740,11 +740,11 @@ void Engine_AllocateComplexArray_086010(int *array_ptr)
     }
     
     // 分配新内存
-    new_memory = Memory_AllocateAligned(system_memory_pool_ptr, (longlong)array_ptr[1] * STRUCT_SIZE_92, (char)array_ptr[8]);
+    new_memory = Memory_AllocateAligned(system_memory_pool_ptr, (int64_t)array_ptr[1] * STRUCT_SIZE_92, (char)array_ptr[8]);
     
     // 复制现有数据
-    if (*(longlong *)(array_ptr + 2) != 0) {
-        memcpy(new_memory, *(longlong *)(array_ptr + 2), (longlong)*array_ptr * STRUCT_SIZE_92);
+    if (*(int64_t *)(array_ptr + 2) != 0) {
+        memcpy(new_memory, *(int64_t *)(array_ptr + 2), (int64_t)*array_ptr * STRUCT_SIZE_92);
     }
     
     *(uint64_t *)(array_ptr + 2) = new_memory;
@@ -765,8 +765,8 @@ void Engine_ReallocateComplexArray_086031(void)
     int *array_ptr;
     
     new_memory = Memory_AllocateAligned();
-    if (*(longlong *)(array_ptr + 2) != 0) {
-        memcpy(new_memory, *(longlong *)(array_ptr + 2), (longlong)*array_ptr * STRUCT_SIZE_92);
+    if (*(int64_t *)(array_ptr + 2) != 0) {
+        memcpy(new_memory, *(int64_t *)(array_ptr + 2), (int64_t)*array_ptr * STRUCT_SIZE_92);
     }
     *(uint64_t *)(array_ptr + 2) = new_memory;
     return;
@@ -781,11 +781,11 @@ void Engine_ReallocateComplexArray_086031(void)
  * 
  * 原始实现：FUN_180086073
  */
-void Engine_ClearComplexPointer_086073(longlong param_1)
+void Engine_ClearComplexPointer_086073(int64_t param_1)
 {
-    longlong target_ptr;
+    int64_t target_ptr;
     
-    if (*(longlong *)(param_1 + 8) != 0) {
+    if (*(int64_t *)(param_1 + 8) != 0) {
         Memory_FreeBlock();
     }
     *(uint64_t *)(target_ptr + 8) = 0;
@@ -823,7 +823,7 @@ void Engine_CopyComplexArray_086090(int *dst_ptr, int *src_ptr)
     }
     
     // 执行数据复制
-    memcpy(*(uint64_t *)(dst_ptr + 2), src_data, (longlong)element_count * STRUCT_SIZE_92);
+    memcpy(*(uint64_t *)(dst_ptr + 2), src_data, (int64_t)element_count * STRUCT_SIZE_92);
     return;
 }
 
@@ -858,7 +858,7 @@ void Engine_CopyGenericArray_0860f0(int *dst_ptr, int *src_ptr)
     }
     
     // 执行数据复制
-    memcpy(*(uint64_t *)(dst_ptr + 2), src_data, (longlong)element_count << 4);
+    memcpy(*(uint64_t *)(dst_ptr + 2), src_data, (int64_t)element_count << 4);
     return;
 }
 
@@ -902,20 +902,20 @@ int8_t Engine_ValidateMatrixIdentity_0861a0(float *matrix_ptr)
  * 
  * 原始实现：FUN_180086270
  */
-void Engine_PushTripleData_086270(ulonglong *container_ptr, uint64_t *data_ptr)
+void Engine_PushTripleData_086270(uint64_t *container_ptr, uint64_t *data_ptr)
 {
     int32_t data_val1;
     int32_t data_val2;
     int32_t data_val3;
     uint64_t extra_data;
     int32_t *new_buffer;
-    longlong current_size;
+    int64_t current_size;
     uint64_t *current_pos;
     uint64_t *buffer_start;
     
     current_pos = (uint64_t *)container_ptr[1];
     if (current_pos < (uint64_t *)container_ptr[2]) {
-        container_ptr[1] = (ulonglong)(current_pos + 3);
+        container_ptr[1] = (uint64_t)(current_pos + 3);
         extra_data = data_ptr[1];
         *current_pos = *data_ptr;
         current_pos[1] = extra_data;
@@ -924,7 +924,7 @@ void Engine_PushTripleData_086270(ulonglong *container_ptr, uint64_t *data_ptr)
     }
     
     buffer_start = (uint64_t *)*container_ptr;
-    current_size = ((longlong)current_pos - (longlong)buffer_start) / TRIPLE_DATA_SIZE;
+    current_size = ((int64_t)current_pos - (int64_t)buffer_start) / TRIPLE_DATA_SIZE;
     if (current_size == 0) {
         current_size = 1;
     }
@@ -942,12 +942,12 @@ void Engine_PushTripleData_086270(ulonglong *container_ptr, uint64_t *data_ptr)
     
 LAB_180086316:
     if (buffer_start != current_pos) {
-        memmove(new_buffer, buffer_start, (longlong)current_pos - (longlong)buffer_start);
+        memmove(new_buffer, buffer_start, (int64_t)current_pos - (int64_t)buffer_start);
     }
     
-    data_val1 = *(int32_t *)((longlong)data_ptr + 4);
+    data_val1 = *(int32_t *)((int64_t)data_ptr + 4);
     data_val2 = *(int32_t *)(data_ptr + 1);
-    data_val3 = *(int32_t *)((longlong)data_ptr + 0xc);
+    data_val3 = *(int32_t *)((int64_t)data_ptr + 0xc);
     *new_buffer = *(int32_t *)data_ptr;
     new_buffer[1] = data_val1;
     new_buffer[2] = data_val2;
@@ -958,9 +958,9 @@ LAB_180086316:
         Memory_FreeBlock();
     }
     
-    *container_ptr = (ulonglong)new_buffer;
-    container_ptr[2] = (ulonglong)(new_buffer + current_size * 6);
-    container_ptr[1] = (ulonglong)(new_buffer + 6);
+    *container_ptr = (uint64_t)new_buffer;
+    container_ptr[2] = (uint64_t)(new_buffer + current_size * 6);
+    container_ptr[1] = (uint64_t)(new_buffer + 6);
     return;
 }
 
@@ -976,16 +976,16 @@ LAB_180086316:
  * 
  * 原始实现：FUN_1800862bb
  */
-void Engine_InsertTripleData_0862bb(longlong param_1, uint64_t param_2, uint64_t param_3, longlong param_4)
+void Engine_InsertTripleData_0862bb(int64_t param_1, uint64_t param_2, uint64_t param_3, int64_t param_4)
 {
     int32_t data_val1;
     int32_t data_val2;
     int32_t data_val3;
     int32_t *new_buffer;
-    longlong *container_ptr;
+    int64_t *container_ptr;
     int32_t *data_ptr;
-    longlong new_size;
-    longlong current_end;
+    int64_t new_size;
+    int64_t current_end;
     
     if (param_1 / TRIPLE_DATA_SIZE == 0) {
         new_size = 1;
@@ -1020,9 +1020,9 @@ LAB_180086316:
         Memory_FreeBlock();
     }
     
-    *container_ptr = (longlong)new_buffer;
-    container_ptr[2] = (longlong)(new_buffer + new_size * 6);
-    container_ptr[1] = (longlong)(new_buffer + 6);
+    *container_ptr = (int64_t)new_buffer;
+    container_ptr[2] = (int64_t)(new_buffer + new_size * 6);
+    container_ptr[1] = (int64_t)(new_buffer + 6);
     return;
 }
 
@@ -1049,7 +1049,7 @@ void thunk_FUN_18064e900(void)
  * 
  * 原始实现：FUN_1800863a0
  */
-void Engine_PushDoubleData_0863a0(ulonglong *container_ptr, uint64_t *data_ptr)
+void Engine_PushDoubleData_0863a0(uint64_t *container_ptr, uint64_t *data_ptr)
 {
     int32_t data_val1;
     int32_t data_val2;
@@ -1058,11 +1058,11 @@ void Engine_PushDoubleData_0863a0(ulonglong *container_ptr, uint64_t *data_ptr)
     int32_t *new_buffer;
     uint64_t *current_pos;
     uint64_t *buffer_start;
-    longlong current_size;
+    int64_t current_size;
     
     current_pos = (uint64_t *)container_ptr[1];
     if (current_pos < (uint64_t *)container_ptr[2]) {
-        container_ptr[1] = (ulonglong)(current_pos + 2);
+        container_ptr[1] = (uint64_t)(current_pos + 2);
         extra_data = data_ptr[1];
         *current_pos = *data_ptr;
         current_pos[1] = extra_data;
@@ -1070,7 +1070,7 @@ void Engine_PushDoubleData_0863a0(ulonglong *container_ptr, uint64_t *data_ptr)
     }
     
     buffer_start = (uint64_t *)*container_ptr;
-    current_size = (longlong)current_pos - (longlong)buffer_start >> 4;
+    current_size = (int64_t)current_pos - (int64_t)buffer_start >> 4;
     if (current_size == 0) {
         current_size = 1;
     }
@@ -1088,12 +1088,12 @@ void Engine_PushDoubleData_0863a0(ulonglong *container_ptr, uint64_t *data_ptr)
     
 LAB_18008642b:
     if (buffer_start != current_pos) {
-        memmove(new_buffer, buffer_start, (longlong)current_pos - (longlong)buffer_start);
+        memmove(new_buffer, buffer_start, (int64_t)current_pos - (int64_t)buffer_start);
     }
     
-    data_val1 = *(int32_t *)((longlong)data_ptr + 4);
+    data_val1 = *(int32_t *)((int64_t)data_ptr + 4);
     data_val2 = *(int32_t *)(data_ptr + 1);
-    data_val3 = *(int32_t *)((longlong)data_ptr + 0xc);
+    data_val3 = *(int32_t *)((int64_t)data_ptr + 0xc);
     *new_buffer = *(int32_t *)data_ptr;
     new_buffer[1] = data_val1;
     new_buffer[2] = data_val2;
@@ -1103,9 +1103,9 @@ LAB_18008642b:
         Memory_FreeBlock();
     }
     
-    *container_ptr = (ulonglong)new_buffer;
-    container_ptr[2] = (ulonglong)(new_buffer + current_size * 4);
-    container_ptr[1] = (ulonglong)(new_buffer + 4);
+    *container_ptr = (uint64_t)new_buffer;
+    container_ptr[2] = (uint64_t)(new_buffer + current_size * 4);
+    container_ptr[1] = (uint64_t)(new_buffer + 4);
     return;
 }
 
@@ -1122,7 +1122,7 @@ LAB_18008642b:
  * 
  * 原始实现：FUN_180086490
  */
-uint64_t *Engine_ReleaseObjectMemory_086490(uint64_t *obj_ptr, ulonglong param_2, uint64_t param_3, uint64_t param_4)
+uint64_t *Engine_ReleaseObjectMemory_086490(uint64_t *obj_ptr, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
     obj_ptr[4] = &global_var_3456_ptr;
     if (obj_ptr[5] != 0) {
@@ -1148,7 +1148,7 @@ uint64_t *Engine_ReleaseObjectMemory_086490(uint64_t *obj_ptr, ulonglong param_2
  * 
  * 原始实现：FUN_180086530
  */
-void Engine_HandleObjectReference_086530(longlong *obj_ptr)
+void Engine_HandleObjectReference_086530(int64_t *obj_ptr)
 {
     if (*obj_ptr != 0) {
         External_HandleReference();
@@ -1169,9 +1169,9 @@ void Engine_HandleObjectReference_086530(longlong *obj_ptr)
  * 
  * 原始实现：FUN_180086570
  */
-uint64_t *Engine_InitializeStringObject_086570(uint64_t *obj_ptr, longlong str_ptr, uint64_t param_3, uint64_t param_4)
+uint64_t *Engine_InitializeStringObject_086570(uint64_t *obj_ptr, int64_t str_ptr, uint64_t param_3, uint64_t param_4)
 {
-    longlong str_length;
+    int64_t str_length;
     
     *obj_ptr = &global_var_720_ptr;
     obj_ptr[1] = 0;
@@ -1249,7 +1249,7 @@ uint64_t *Engine_CreateVectorObject_086670(uint64_t param_1, int32_t param_2)
  * 
  * 原始实现：FUN_1800866f0
  */
-uint64_t Engine_ReleaseVectorObject_0866f0(uint64_t obj_ptr, ulonglong param_2, uint64_t param_3, uint64_t param_4)
+uint64_t Engine_ReleaseVectorObject_0866f0(uint64_t obj_ptr, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
     uint64_t flags;
     
@@ -1296,13 +1296,13 @@ uint64_t *Engine_CreateTransformObject_086740(uint64_t param_1, int32_t param_2)
  * 
  * 原始实现：FUN_1800867d0
  */
-longlong Engine_ReleaseTransformObject_0867d0(longlong obj_ptr, ulonglong param_2, uint64_t param_3, uint64_t param_4)
+int64_t Engine_ReleaseTransformObject_0867d0(int64_t obj_ptr, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
     uint64_t flags;
     
     flags = 0xfffffffffffffffe;
-    if (*(longlong **)(obj_ptr + 0xb0) != (longlong *)0x0) {
-        (**(code **)(**(longlong **)(obj_ptr + 0xb0) + 0x38))();
+    if (*(int64_t **)(obj_ptr + 0xb0) != (int64_t *)0x0) {
+        (**(code **)(**(int64_t **)(obj_ptr + 0xb0) + 0x38))();
     }
     Object_CleanupBase(obj_ptr);
     if ((param_2 & 1) != 0) {
@@ -1454,7 +1454,7 @@ uint64_t *Engine_CreateSphereObject_086b40(uint64_t param_1, int32_t param_2)
  * 
  * 原始实现：FUN_180086bd0
  */
-void Engine_InitializeRenderObject_086bd0(longlong obj_ptr, uint64_t param_2, longlong param_3)
+void Engine_InitializeRenderObject_086bd0(int64_t obj_ptr, uint64_t param_2, int64_t param_3)
 {
     void *texture_ptr;
     void *shader_ptr;
@@ -1569,10 +1569,10 @@ uint64_t *Engine_InitializeDataStructure_086ca0(uint64_t *data_ptr)
  * 
  * 原始实现：FUN_180086dc0
  */
-void Engine_CleanupResourceList_086dc0(longlong *list_ptr)
+void Engine_CleanupResourceList_086dc0(int64_t *list_ptr)
 {
-    longlong current_pos;
-    longlong end_pos;
+    int64_t current_pos;
+    int64_t end_pos;
     
     current_pos = list_ptr[1];
     for (end_pos = *list_ptr; end_pos != current_pos; end_pos = end_pos + 0x60) {
@@ -1598,7 +1598,7 @@ void Engine_CleanupResourceList_086dc0(longlong *list_ptr)
  * 
  * 原始实现：FUN_180086de0
  */
-void Engine_ReleaseRenderData_086de0(longlong data_ptr, uint64_t param_2, uint64_t param_3, uint64_t param_4)
+void Engine_ReleaseRenderData_086de0(int64_t data_ptr, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
     Data_ReleaseComplex(data_ptr, *(uint64_t *)(data_ptr + 0x10), param_3, param_4, 0xfffffffffffffffe);
     return;
@@ -1616,7 +1616,7 @@ void Engine_ReleaseRenderData_086de0(longlong data_ptr, uint64_t param_2, uint64
  * 
  * 原始实现：FUN_180086e10
  */
-void Engine_ReleaseComplexData_086e10(longlong data_ptr, uint64_t param_2, uint64_t param_3, uint64_t param_4)
+void Engine_ReleaseComplexData_086e10(int64_t data_ptr, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
     Data_ReleaseComplex(data_ptr, *(uint64_t *)(data_ptr + 0x10), param_3, param_4, 0xfffffffffffffffe);
     return;

@@ -3,16 +3,16 @@
 
 // 01_initialization_part058.c - 4 个函数
 
-// 函数: void FUN_18007c490(longlong *param_1,byte param_2,longlong *param_3,longlong *param_4,char param_5)
+// 函数: void FUN_18007c490(int64_t *param_1,byte param_2,int64_t *param_3,int64_t *param_4,char param_5)
 // 功能: 复杂的资源管理和回调处理函数，处理资源初始化和清理
-void FUN_18007c490(longlong *param_1, byte param_2, longlong *param_3, longlong *param_4, char param_5)
+void FUN_18007c490(int64_t *param_1, byte param_2, int64_t *param_3, int64_t *param_4, char param_5)
 
 {
   char *status_flag;
-  longlong *resource_1;
-  longlong *resource_2;
-  longlong *resource_3;
-  longlong *resource_4;
+  int64_t *resource_1;
+  int64_t *resource_2;
+  int64_t *resource_3;
+  int64_t *resource_4;
   code *callback_func;
   char operation_result;
   void *error_handler;
@@ -25,28 +25,28 @@ void FUN_18007c490(longlong *param_1, byte param_2, longlong *param_3, longlong 
   uint64_t context_data;
   int32_t flag_1;
   int32_t flag_2;
-  longlong *stack_resource_1;
+  int64_t *stack_resource_1;
   byte stack_byte_1;
-  longlong *stack_resource_2;
-  longlong *stack_resource_3;
-  longlong *stack_resource_4;
+  int64_t *stack_resource_2;
+  int64_t *stack_resource_3;
+  int64_t *stack_resource_4;
   byte stack_byte_2;
-  longlong *stack_resource_5;
-  longlong *stack_resource_6;
+  int64_t *stack_resource_5;
+  int64_t *stack_resource_6;
   uint64_t stack_data;
-  longlong **resource_pointer;
+  int64_t **resource_pointer;
   int8_t stack_buffer_1 [16];
   code *cleanup_callback_2;
   int8_t stack_buffer_2 [16];
   code *cleanup_callback_3;
   
   stack_data = 0xfffffffffffffffe;
-  resource_1 = (longlong *)*param_4;
-  if (resource_1 != (longlong *)0x0) {
+  resource_1 = (int64_t *)*param_4;
+  if (resource_1 != (int64_t *)0x0) {
     (**(code **)(*resource_1 + 0x28))(resource_1);
   }
-  resource_2 = (longlong *)*param_3;
-  if (resource_2 != (longlong *)0x0) {
+  resource_2 = (int64_t *)*param_3;
+  if (resource_2 != (int64_t *)0x0) {
     (**(code **)(*resource_2 + 0x28))(resource_2);
   }
   flag_1 = CONCAT31(flag_1._1_3_, param_2);
@@ -64,7 +64,7 @@ void FUN_18007c490(longlong *param_1, byte param_2, longlong *param_3, longlong 
   
   // 根据操作参数执行不同的处理路径
   if (param_5 == '\0') {
-    resource_3 = *(longlong **)(param_1[0x15] + 0x88);
+    resource_3 = *(int64_t **)(param_1[0x15] + 0x88);
     callback_func = *(code **)(*resource_3 + 0x70);
     cleanup_callback_1 = (code *)&unknown_var_7904_ptr;
     cleanup_data_1 = &unknown_var_7888_ptr;
@@ -75,11 +75,11 @@ void FUN_18007c490(longlong *param_1, byte param_2, longlong *param_3, longlong 
     stack_resource_4 = param_1;
     stack_byte_2 = param_2;
     stack_resource_5 = resource_1;
-    if (resource_1 != (longlong *)0x0) {
+    if (resource_1 != (int64_t *)0x0) {
       (**(code **)(*resource_1 + 0x28))(resource_1);
     }
     stack_resource_6 = resource_2;
-    if (resource_2 != (longlong *)0x0) {
+    if (resource_2 != (int64_t *)0x0) {
       (**(code **)(*resource_2 + 0x28))(resource_2);
     }
     FUN_180081120(stack_buffer_2, &stack_resource_4);
@@ -92,17 +92,17 @@ void FUN_18007c490(longlong *param_1, byte param_2, longlong *param_3, longlong 
     }
   }
   else {
-    resource_3 = *(longlong **)(param_1[0x15] + 0x88);
+    resource_3 = *(int64_t **)(param_1[0x15] + 0x88);
     callback_func = *(code **)(*resource_3 + 0x60);
     resource_pointer = &stack_resource_1;
     stack_resource_1 = param_1;
     stack_byte_1 = param_2;
     stack_resource_2 = resource_1;
-    if (resource_1 != (longlong *)0x0) {
+    if (resource_1 != (int64_t *)0x0) {
       (**(code **)(*resource_1 + 0x28))(resource_1);
     }
     stack_resource_3 = resource_2;
-    if (resource_2 != (longlong *)0x0) {
+    if (resource_2 != (int64_t *)0x0) {
       (**(code **)(*resource_2 + 0x28))(resource_2);
     }
     FUN_180081120(stack_buffer_1, &stack_resource_1);
@@ -118,7 +118,7 @@ void FUN_18007c490(longlong *param_1, byte param_2, longlong *param_3, longlong 
         error_handler = (void *)param_1[3];
       }
       FUN_180626f80(&unknown_var_5600_ptr, error_handler);
-      status_flag = (char *)(param_1[0x3c] + 0x15 + (ulonglong)param_2 * 0x18);
+      status_flag = (char *)(param_1[0x3c] + 0x15 + (uint64_t)param_2 * 0x18);
       LOCK();
       if (*status_flag == '\x01') {
         *status_flag = '\x04';
@@ -129,26 +129,26 @@ void FUN_18007c490(longlong *param_1, byte param_2, longlong *param_3, longlong 
   }
   
   // 清理资源
-  if (resource_2 != (longlong *)0x0) {
+  if (resource_2 != (int64_t *)0x0) {
     (**(code **)(*resource_2 + 0x38))(resource_2);
   }
-  if (resource_1 != (longlong *)0x0) {
+  if (resource_1 != (int64_t *)0x0) {
     (**(code **)(*resource_1 + 0x38))(resource_1);
   }
-  if ((longlong *)*param_3 != (longlong *)0x0) {
-    (**(code **)(*(longlong *)*param_3 + 0x38))();
+  if ((int64_t *)*param_3 != (int64_t *)0x0) {
+    (**(code **)(*(int64_t *)*param_3 + 0x38))();
   }
-  if ((longlong *)*param_4 != (longlong *)0x0) {
-    (**(code **)(*(longlong *)*param_4 + 0x38))();
+  if ((int64_t *)*param_4 != (int64_t *)0x0) {
+    (**(code **)(*(int64_t *)*param_4 + 0x38))();
   }
   return;
 }
 
 
 
-// 函数: void FUN_18007c790(longlong *param_1)
+// 函数: void FUN_18007c790(int64_t *param_1)
 // 功能: 简化的资源清理和状态更新函数
-void FUN_18007c790(longlong *param_1)
+void FUN_18007c790(int64_t *param_1)
 
 {
   char *status_flag;
@@ -159,8 +159,8 @@ void FUN_18007c790(longlong *param_1)
     error_handler = *(void **)(*param_1 + 0x18);
   }
   FUN_180626f80(&unknown_var_5600_ptr, error_handler);
-  status_flag = (char *)(*(longlong *)(*param_1 + 0x1e0) + 0x15 +
-                   (ulonglong)*(byte *)(param_1 + 1) * 0x18);
+  status_flag = (char *)(*(int64_t *)(*param_1 + 0x1e0) + 0x15 +
+                   (uint64_t)*(byte *)(param_1 + 1) * 0x18);
   LOCK();
   if (*status_flag == '\x01') {
     *status_flag = '\x04';
@@ -169,7 +169,7 @@ void FUN_18007c790(longlong *param_1)
   
   // WARNING: Could not recover jumptable at 0x00018007c7e6. Too many branches
   // WARNING: Treating indirect jump as call
-  (**(code **)(*(longlong *)*param_1 + 0x38))();
+  (**(code **)(*(int64_t *)*param_1 + 0x38))();
   return;
 }
 
@@ -180,23 +180,23 @@ void FUN_18007c790(longlong *param_1)
 uint64_t * FUN_18007c7f0(uint64_t *param_1, uint64_t *param_2)
 
 {
-  longlong *resource_ref;
+  int64_t *resource_ref;
   
   // 复制基本数据
   *param_1 = *param_2;
   *(int8_t *)(param_1 + 1) = *(int8_t *)(param_2 + 1);
   
   // 处理第一个资源引用
-  resource_ref = (longlong *)param_2[2];
+  resource_ref = (int64_t *)param_2[2];
   param_1[2] = resource_ref;
-  if (resource_ref != (longlong *)0x0) {
+  if (resource_ref != (int64_t *)0x0) {
     (**(code **)(*resource_ref + 0x28))();
   }
   
   // 处理第二个资源引用
-  resource_ref = (longlong *)param_2[3];
+  resource_ref = (int64_t *)param_2[3];
   param_1[3] = resource_ref;
-  if (resource_ref != (longlong *)0x0) {
+  if (resource_ref != (int64_t *)0x0) {
     (**(code **)(*resource_ref + 0x28))();
   }
   
@@ -205,13 +205,13 @@ uint64_t * FUN_18007c7f0(uint64_t *param_1, uint64_t *param_2)
 
 
 
-// 函数: void FUN_18007c860(longlong param_1,int8_t param_2)
+// 函数: void FUN_18007c860(int64_t param_1,int8_t param_2)
 // 功能: 条件性资源处理和状态更新函数
-void FUN_18007c860(longlong param_1, int8_t param_2)
+void FUN_18007c860(int64_t param_1, int8_t param_2)
 
 {
   char operation_result;
-  longlong resource_data;
+  int64_t resource_data;
   
   resource_data = param_1;
   
@@ -222,7 +222,7 @@ void FUN_18007c860(longlong param_1, int8_t param_2)
   
   // 如果有有效的资源计数，进行处理
   if (0 < *(int *)(resource_data + 0x200)) {
-    resource_data = *(longlong *)(param_1 + 0x1b8);
+    resource_data = *(int64_t *)(param_1 + 0x1b8);
     operation_result = *(char *)(resource_data + 0x38c);
     if (operation_result == '\t') {
       operation_result = func_0x00018022d300();
@@ -241,57 +241,57 @@ void FUN_18007c860(longlong param_1, int8_t param_2)
 // WARNING: Removing unreachable block (ram,0x00018007cad0)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-// 函数: void FUN_18007c8e0(longlong param_1,byte param_2,longlong *param_3,longlong *param_4)
+// 函数: void FUN_18007c8e0(int64_t param_1,byte param_2,int64_t *param_3,int64_t *param_4)
 // 功能: 线程安全的资源处理和状态管理函数
-void FUN_18007c8e0(longlong param_1, byte param_2, longlong *param_3, longlong *param_4)
+void FUN_18007c8e0(int64_t param_1, byte param_2, int64_t *param_3, int64_t *param_4)
 
 {
-  longlong resource_offset;
+  int64_t resource_offset;
   char *status_flag;
   int main_thread_id;
   int current_thread_id;
   uint64_t resource_data;
-  longlong *temp_resource;
-  longlong *stack_resource_1;
-  longlong *stack_resource_2;
-  longlong *stack_resource_3;
-  longlong **resource_pointer;
-  longlong stack_context;
+  int64_t *temp_resource;
+  int64_t *stack_resource_1;
+  int64_t *stack_resource_2;
+  int64_t *stack_resource_3;
+  int64_t **resource_pointer;
+  int64_t stack_context;
   byte stack_byte_1;
-  longlong *stack_resource_4;
-  longlong *stack_resource_5;
-  longlong stack_data_1;
+  int64_t *stack_resource_4;
+  int64_t *stack_resource_5;
+  int64_t stack_data_1;
   byte stack_byte_2;
-  longlong *stack_resource_6;
-  longlong *stack_resource_7;
-  longlong *resource_array [2];
+  int64_t *stack_resource_6;
+  int64_t *stack_resource_7;
+  int64_t *resource_array [2];
   code *callback_func_1;
   code *callback_func_2;
   uint64_t stack_data_2;
-  longlong *stack_resource_8;
+  int64_t *stack_resource_8;
   
   stack_data_2 = 0xfffffffffffffffe;
-  main_thread_id = *(int *)(*(longlong *)(*(longlong *)(system_context_ptr + 8) + 8) + 0x48);
+  main_thread_id = *(int *)(*(int64_t *)(*(int64_t *)(system_context_ptr + 8) + 8) + 0x48);
   current_thread_id = _Thrd_id();
   
   // 根据线程ID选择不同的处理路径
   if (current_thread_id == main_thread_id) {
-    resource_offset = (ulonglong)param_2 * 0x18;
-    resource_data = *(uint64_t *)(*(longlong *)(param_1 + 0x1e0) + resource_offset);
+    resource_offset = (uint64_t)param_2 * 0x18;
+    resource_data = *(uint64_t *)(*(int64_t *)(param_1 + 0x1e0) + resource_offset);
     resource_pointer = &stack_resource_3;
-    stack_resource_3 = (longlong *)*param_3;
-    if (stack_resource_3 != (longlong *)0x0) {
+    stack_resource_3 = (int64_t *)*param_3;
+    if (stack_resource_3 != (int64_t *)0x0) {
       (**(code **)(*stack_resource_3 + 0x28))();
     }
     FUN_180255880(resource_data, &stack_resource_3);
-    resource_data = *(uint64_t *)(*(longlong *)(param_1 + 0x1e0) + 8 + resource_offset);
+    resource_data = *(uint64_t *)(*(int64_t *)(param_1 + 0x1e0) + 8 + resource_offset);
     resource_pointer = &stack_resource_1;
-    stack_resource_1 = (longlong *)*param_4;
-    if (stack_resource_1 != (longlong *)0x0) {
+    stack_resource_1 = (int64_t *)*param_4;
+    if (stack_resource_1 != (int64_t *)0x0) {
       (**(code **)(*stack_resource_1 + 0x28))();
     }
     FUN_180255b70(resource_data, &stack_resource_1);
-    status_flag = (char *)(*(longlong *)(param_1 + 0x1e0) + 0x15 + resource_offset);
+    status_flag = (char *)(*(int64_t *)(param_1 + 0x1e0) + 0x15 + resource_offset);
     LOCK();
     if (*status_flag == '\x01') {
       *status_flag = '\x03';
@@ -303,68 +303,68 @@ void FUN_18007c8e0(longlong param_1, byte param_2, longlong *param_3, longlong *
     resource_data = FUN_18062b1e0(system_memory_pool_ptr, 0x40, 8, 0x20);
     resource_pointer = resource_array;
     stack_resource_2 = &stack_context;
-    stack_resource_4 = (longlong *)*param_3;
+    stack_resource_4 = (int64_t *)*param_3;
     stack_context = param_1;
     stack_byte_1 = param_2;
-    if (stack_resource_4 != (longlong *)0x0) {
+    if (stack_resource_4 != (int64_t *)0x0) {
       (**(code **)(*stack_resource_4 + 0x28))();
     }
-    stack_resource_5 = (longlong *)*param_4;
-    if (stack_resource_5 != (longlong *)0x0) {
+    stack_resource_5 = (int64_t *)*param_4;
+    if (stack_resource_5 != (int64_t *)0x0) {
       (**(code **)(*stack_resource_5 + 0x28))();
     }
     stack_resource_2 = &stack_context;
     stack_data_1 = stack_context;
     stack_byte_2 = stack_byte_1;
     stack_resource_6 = stack_resource_4;
-    stack_resource_4 = (longlong *)0x0;
+    stack_resource_4 = (int64_t *)0x0;
     stack_resource_7 = stack_resource_5;
-    stack_resource_5 = (longlong *)0x0;
+    stack_resource_5 = (int64_t *)0x0;
     stack_resource_1 = &stack_data_1;
     callback_func_1 = FUN_180082e70;
     callback_func_2 = FUN_180082da0;
-    stack_resource_3 = (longlong *)FUN_18062b1e0(system_memory_pool_ptr, 0x20, 8, system_allocation_flags);
+    stack_resource_3 = (int64_t *)FUN_18062b1e0(system_memory_pool_ptr, 0x20, 8, system_allocation_flags);
     *stack_resource_3 = stack_data_1;
     *(byte *)(stack_resource_3 + 1) = stack_byte_2;
-    stack_resource_3[2] = (longlong)stack_resource_6;
-    stack_resource_3[3] = (longlong)stack_resource_7;
-    stack_resource_7 = (longlong *)0x0;
-    stack_resource_6 = (longlong *)0x0;
+    stack_resource_3[2] = (int64_t)stack_resource_6;
+    stack_resource_3[3] = (int64_t)stack_resource_7;
+    stack_resource_7 = (int64_t *)0x0;
+    stack_resource_6 = (int64_t *)0x0;
     resource_array[0] = stack_resource_3;
-    if (stack_resource_5 != (longlong *)0x0) {
+    if (stack_resource_5 != (int64_t *)0x0) {
       (**(code **)(*stack_resource_5 + 0x38))();
     }
-    if (stack_resource_4 != (longlong *)0x0) {
+    if (stack_resource_4 != (int64_t *)0x0) {
       (**(code **)(*stack_resource_4 + 0x38))();
     }
-    temp_resource = (longlong *)FUN_18005c2a0(resource_data, resource_array);
+    temp_resource = (int64_t *)FUN_18005c2a0(resource_data, resource_array);
     stack_resource_8 = temp_resource;
-    if (temp_resource != (longlong *)0x0) {
+    if (temp_resource != (int64_t *)0x0) {
       (**(code **)(*temp_resource + 0x28))(temp_resource);
     }
     resource_pointer = &stack_resource_2;
     stack_resource_2 = temp_resource;
-    if (temp_resource != (longlong *)0x0) {
+    if (temp_resource != (int64_t *)0x0) {
       (**(code **)(*temp_resource + 0x28))(temp_resource);
     }
     FUN_18005e370(system_context_ptr, &stack_resource_2);
-    status_flag = (char *)(*(longlong *)(param_1 + 0x1e0) + 0x15 + (ulonglong)param_2 * 0x18);
+    status_flag = (char *)(*(int64_t *)(param_1 + 0x1e0) + 0x15 + (uint64_t)param_2 * 0x18);
     LOCK();
     if (*status_flag == '\x01') {
       *status_flag = '\x02';
     }
     UNLOCK();
-    if (temp_resource != (longlong *)0x0) {
+    if (temp_resource != (int64_t *)0x0) {
       (**(code **)(*temp_resource + 0x38))(temp_resource);
     }
   }
   
   // 清理资源
-  if ((longlong *)*param_3 != (longlong *)0x0) {
-    (**(code **)(*(longlong *)*param_3 + 0x38))();
+  if ((int64_t *)*param_3 != (int64_t *)0x0) {
+    (**(code **)(*(int64_t *)*param_3 + 0x38))();
   }
-  if ((longlong *)*param_4 != (longlong *)0x0) {
-    (**(code **)(*(longlong *)*param_4 + 0x38))();
+  if ((int64_t *)*param_4 != (int64_t *)0x0) {
+    (**(code **)(*(int64_t *)*param_4 + 0x38))();
   }
   return;
 }

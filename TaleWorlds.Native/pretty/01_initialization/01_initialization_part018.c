@@ -26,9 +26,9 @@ uint64_t system_memory_flags;  // 时间戳数据
  * 原始实现：FUN_18004caf0
  * 简化实现：渲染质量参数计算
  */
-void calculate_render_quality_parameters(longlong config_ptr)
+void calculate_render_quality_parameters(int64_t config_ptr)
 {
-  longlong engine_config;      // 引擎配置指针
+  int64_t engine_config;      // 引擎配置指针
   int quality_level;           // 质量等级
   int adjusted_level;          // 调整后的等级
   float level_float;           // 等级浮点值
@@ -79,10 +79,10 @@ void calculate_render_quality_parameters(longlong config_ptr)
  * 原始实现：FUN_18004cc20
  * 简化实现：资源管理器清理函数
  */
-void cleanup_resource_manager(longlong *config_ptr)
+void cleanup_resource_manager(int64_t *config_ptr)
 {
   uint64_t *resource_ptr;     // 资源指针
-  longlong temp_var;            // 临时变量
+  int64_t temp_var;            // 临时变量
   
   resource_ptr = (uint64_t *)config_ptr[0x7c];
   if (resource_ptr != (uint64_t *)0x0) {
@@ -184,89 +184,89 @@ void cleanup_resource_manager(longlong *config_ptr)
   config_ptr[6] = 0;
   
   // 清理配置块1
-  config_ptr[0x6d] = (longlong)&system_data_buffer_ptr;
+  config_ptr[0x6d] = (int64_t)&system_data_buffer_ptr;
   if (config_ptr[0x6e] != 0) {
     // 警告：子程序不返回
     FUN_18064e900();
   }
   config_ptr[0x6e] = 0;
   *(int32_t *)(config_ptr + 0x70) = 0;
-  config_ptr[0x6d] = (longlong)&system_state_ptr;
+  config_ptr[0x6d] = (int64_t)&system_state_ptr;
   
   // 清理配置块2
-  config_ptr[0x69] = (longlong)&system_data_buffer_ptr;
+  config_ptr[0x69] = (int64_t)&system_data_buffer_ptr;
   if (config_ptr[0x6a] != 0) {
     // 警告：子程序不返回
     FUN_18064e900();
   }
   config_ptr[0x6a] = 0;
   *(int32_t *)(config_ptr + 0x6c) = 0;
-  config_ptr[0x69] = (longlong)&system_state_ptr;
+  config_ptr[0x69] = (int64_t)&system_state_ptr;
   
   // 执行清理操作
   FUN_180057830();
   FUN_18005d260(config_ptr + 0x5c, config_ptr[0x5e]);
   
   // 清理配置块3
-  config_ptr[0x58] = (longlong)&system_data_buffer_ptr;
+  config_ptr[0x58] = (int64_t)&system_data_buffer_ptr;
   if (config_ptr[0x59] != 0) {
     // 警告：子程序不返回
     FUN_18064e900();
   }
   config_ptr[0x59] = 0;
   *(int32_t *)(config_ptr + 0x5b) = 0;
-  config_ptr[0x58] = (longlong)&system_state_ptr;
+  config_ptr[0x58] = (int64_t)&system_state_ptr;
   
   // 清理配置块4
-  config_ptr[0x52] = (longlong)&system_data_buffer_ptr;
+  config_ptr[0x52] = (int64_t)&system_data_buffer_ptr;
   if (config_ptr[0x53] != 0) {
     // 警告：子程序不返回
     FUN_18064e900();
   }
   config_ptr[0x53] = 0;
   *(int32_t *)(config_ptr + 0x55) = 0;
-  config_ptr[0x52] = (longlong)&system_state_ptr;
+  config_ptr[0x52] = (int64_t)&system_state_ptr;
   
   // 清理配置块5
-  config_ptr[0x4e] = (longlong)&system_data_buffer_ptr;
+  config_ptr[0x4e] = (int64_t)&system_data_buffer_ptr;
   if (config_ptr[0x4f] != 0) {
     // 警告：子程序不返回
     FUN_18064e900();
   }
   config_ptr[0x4f] = 0;
   *(int32_t *)(config_ptr + 0x51) = 0;
-  config_ptr[0x4e] = (longlong)&system_state_ptr;
+  config_ptr[0x4e] = (int64_t)&system_state_ptr;
   
   // 清理配置块6
-  config_ptr[0x39] = (longlong)&system_data_buffer_ptr;
+  config_ptr[0x39] = (int64_t)&system_data_buffer_ptr;
   if (config_ptr[0x3a] != 0) {
     // 警告：子程序不返回
     FUN_18064e900();
   }
   config_ptr[0x3a] = 0;
   *(int32_t *)(config_ptr + 0x3c) = 0;
-  config_ptr[0x39] = (longlong)&system_state_ptr;
+  config_ptr[0x39] = (int64_t)&system_state_ptr;
   
   // 清理配置块7
-  config_ptr[0x32] = (longlong)&system_state_ptr;
-  config_ptr[0x2e] = (longlong)&system_data_buffer_ptr;
+  config_ptr[0x32] = (int64_t)&system_state_ptr;
+  config_ptr[0x2e] = (int64_t)&system_data_buffer_ptr;
   if (config_ptr[0x2f] != 0) {
     // 警告：子程序不返回
     FUN_18064e900();
   }
   config_ptr[0x2f] = 0;
   *(int32_t *)(config_ptr + 0x31) = 0;
-  config_ptr[0x2e] = (longlong)&system_state_ptr;
+  config_ptr[0x2e] = (int64_t)&system_state_ptr;
   
   // 清理配置块8
-  config_ptr[0x29] = (longlong)&system_data_buffer_ptr;
+  config_ptr[0x29] = (int64_t)&system_data_buffer_ptr;
   if (config_ptr[0x2a] != 0) {
     // 警告：子程序不返回
     FUN_18064e900();
   }
   config_ptr[0x2a] = 0;
   *(int32_t *)(config_ptr + 0x2c) = 0;
-  config_ptr[0x29] = (longlong)&system_state_ptr;
+  config_ptr[0x29] = (int64_t)&system_state_ptr;
   
   // 清理配置块9
   if (config_ptr[0x21] != 0) {
@@ -278,14 +278,14 @@ void cleanup_resource_manager(longlong *config_ptr)
   FUN_18005d580();
   
   // 清理配置块10
-  config_ptr[0x17] = (longlong)&system_data_buffer_ptr;
+  config_ptr[0x17] = (int64_t)&system_data_buffer_ptr;
   if (config_ptr[0x18] != 0) {
     // 警告：子程序不返回
     FUN_18064e900();
   }
   config_ptr[0x18] = 0;
   *(int32_t *)(config_ptr + 0x1a) = 0;
-  config_ptr[0x17] = (longlong)&system_state_ptr;
+  config_ptr[0x17] = (int64_t)&system_state_ptr;
   
   // 清理配置块11
   if (config_ptr[0xf] != 0) {
@@ -294,8 +294,8 @@ void cleanup_resource_manager(longlong *config_ptr)
   }
   
   // 调用回调函数
-  if ((longlong *)config_ptr[9] != (longlong *)0x0) {
-    (**(code **)(*(longlong *)config_ptr[9] + 0x38))();
+  if ((int64_t *)config_ptr[9] != (int64_t *)0x0) {
+    (**(code **)(*(int64_t *)config_ptr[9] + 0x38))();
   }
   return;
 }
@@ -324,7 +324,7 @@ void cleanup_resource_manager(longlong *config_ptr)
  * 原始实现：FUN_18004d020
  * 简化实现：配置字符串解析处理函数
  */
-void parse_config_string(uint64_t config_handle, longlong string_param)
+void parse_config_string(uint64_t config_handle, int64_t string_param)
 
 {
   byte char_flag;              // 字符标志
@@ -335,8 +335,8 @@ void parse_config_string(uint64_t config_handle, longlong string_param)
   int int_val;                 // 整型值
   int32_t uint_val1;       // 无符号整型值1
   uint uint_val2;              // 无符号整型值2
-  longlong long_val1;          // 长整型值1
-  longlong long_val2;          // 长整型值2
+  int64_t long_val1;          // 长整型值1
+  int64_t long_val2;          // 长整型值2
   int8_t *byte_ptr1;      // 字节指针1
   char *char_ptr;              // 字符指针
   int32_t *uint_ptr1;       // 无符号整型指针1
@@ -346,16 +346,16 @@ void parse_config_string(uint64_t config_handle, longlong string_param)
   void *void_ptr1;        // 空指针1
   void *void_ptr2;        // 空指针2
   int int_val2;                // 整型值2
-  longlong long_val3;          // 长整型值3
-  ulonglong ulong_val1;        // 无符号长整型值1
+  int64_t long_val3;          // 长整型值3
+  uint64_t ulong_val1;        // 无符号长整型值1
   uint64_t *ptr_array3;      // 指针数组3
   uint uint_val3;              // 无符号整型值3
-  longlong long_val4;          // 长整型值4
-  ulonglong ulong_val2;        // 无符号长整型值2
+  int64_t long_val4;          // 长整型值4
+  uint64_t ulong_val2;        // 无符号长整型值2
   uint uint_val4;              // 无符号整型值4
   uint64_t uint_val5;        // 无符号整型值5
-  ulonglong ulong_val3;        // 无符号长整型值3
-  ulonglong ulong_val4;        // 无符号长整型值4
+  uint64_t ulong_val3;        // 无符号长整型值3
+  uint64_t ulong_val4;        // 无符号长整型值4
   uint uint_val5;              // 无符号整型值5
   bool bool_val;               // 布尔值
   int32_t xmm_reg1;         // XMM寄存器值1
@@ -374,15 +374,15 @@ void parse_config_string(uint64_t config_handle, longlong string_param)
   int8_t *stack_byte_ptr;    // 栈字节指针
   uint stack_uint3;              // 栈无符号整型3
   uint64_t stack_val3;         // 栈值3
-  ulonglong stack_ulong1;        // 栈无符号长整型1
+  uint64_t stack_ulong1;        // 栈无符号长整型1
   void *puStack_2e8;
   int8_t *puStack_2e0;
   uint uStack_2d8;
-  ulonglong uStack_2d0;
+  uint64_t uStack_2d0;
   void *puStack_2c8;
   int8_t *puStack_2c0;
   int32_t uStack_2b8;
-  ulonglong uStack_2b0;
+  uint64_t uStack_2b0;
   void *puStack_2a8;
   void *puStack_2a0;
   uint uStack_298;
@@ -393,26 +393,26 @@ void parse_config_string(uint64_t config_handle, longlong string_param)
   int32_t uStack_278;
   uint64_t uStack_270;
   void *puStack_268;
-  longlong lStack_260;
+  int64_t lStack_260;
   void *puStack_258;
-  longlong lStack_250;
+  int64_t lStack_250;
   uint uStack_248;
   int32_t uStack_240;
   int32_t uStack_23c;
   void *puStack_238;
-  longlong lStack_230;
+  int64_t lStack_230;
   uint uStack_228;
   int32_t uStack_220;
   void *puStack_218;
-  longlong lStack_210;
+  int64_t lStack_210;
   uint uStack_208;
   int32_t uStack_200;
   void *puStack_1f8;
-  longlong lStack_1f0;
+  int64_t lStack_1f0;
   uint uStack_1e8;
   int32_t uStack_1e0;
   void *puStack_1d8;
-  longlong lStack_1d0;
+  int64_t lStack_1d0;
   uint uStack_1c8;
   int32_t uStack_1c0;
   void *puStack_1b8;
@@ -424,36 +424,36 @@ void parse_config_string(uint64_t config_handle, longlong string_param)
   int iStack_188;
   int32_t uStack_180;
   void *puStack_178;
-  longlong lStack_170;
+  int64_t lStack_170;
   int32_t uStack_160;
   uint64_t uStack_158;
-  ulonglong uStack_150;
+  uint64_t uStack_150;
   void *puStack_148;
-  longlong lStack_140;
+  int64_t lStack_140;
   int32_t uStack_130;
   void *puStack_128;
-  longlong lStack_120;
+  int64_t lStack_120;
   int32_t uStack_110;
   void *puStack_108;
-  longlong lStack_100;
+  int64_t lStack_100;
   int32_t uStack_f0;
   uint64_t *puStack_e8;
   uint64_t *puStack_e0;
   uint64_t uStack_d8;
   int32_t uStack_d0;
   void *puStack_c8;
-  longlong lStack_c0;
+  int64_t lStack_c0;
   int32_t uStack_b0;
   uint64_t uStack_a8;
   void *puStack_98;
   int8_t *puStack_90;
   int32_t uStack_88;
   int8_t auStack_80 [72];
-  ulonglong uStack_38;
+  uint64_t uStack_38;
   
   lVar24 = system_main_module_state;
   uStack_a8 = 0xfffffffffffffffe;
-  uStack_38 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_368;
+  uStack_38 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_368;
   puVar11 = (int8_t *)0x0;
   uStack_334 = 0;
   lStack_260 = system_main_module_state;
@@ -474,8 +474,8 @@ void parse_config_string(uint64_t config_handle, longlong string_param)
   uStack_300 = 0;
   puStack_268 = puVar17;
   uStack_150 = uVar21;
-  (**(code **)(*(longlong *)(system_main_module_state + 0x2c0) + 0x10))
-            ((longlong *)(system_main_module_state + 0x2c0),puVar17);
+  (**(code **)(*(int64_t *)(system_main_module_state + 0x2c0) + 0x10))
+            ((int64_t *)(system_main_module_state + 0x2c0),puVar17);
   uStack_2f0 = 0;
   puVar14 = puVar11;
   if (uVar21 != 0) {
@@ -492,7 +492,7 @@ void parse_config_string(uint64_t config_handle, longlong string_param)
           if (*(int *)(lVar10 + 0x30) == 0) goto LAB_18004d1b9;
           if (*(int *)(lVar9 + 0x30) == 0) goto LAB_18004d1c1;
           pbVar15 = *(byte **)(lVar10 + 0x28);
-          lVar24 = *(longlong *)(lVar9 + 0x28) - (longlong)pbVar15;
+          lVar24 = *(int64_t *)(lVar9 + 0x28) - (int64_t)pbVar15;
           goto LAB_18004d1a2;
         }
         FUN_18005d1f0(extraout_XMM0_Da,lVar9);
@@ -513,7 +513,7 @@ void parse_config_string(uint64_t config_handle, longlong string_param)
  * 原始实现：FUN_18004e5f0
  * 简化实现：渲染配置更新函数
  */
-void update_render_config(longlong config_ptr)
+void update_render_config(int64_t config_ptr)
 {
   int *dimension_ptr;        // 尺寸指针
   int32_t temp_config;   // 临时配置
@@ -535,7 +535,7 @@ void update_render_config(longlong config_ptr)
   }
   
   // 处理渲染模式2
-  if (*(int *)(*(longlong *)(config_ptr + 8) + 0x38) == 2) {
+  if (*(int *)(*(int64_t *)(config_ptr + 8) + 0x38) == 2) {
     if ((*(char *)(config_ptr + 0x3d4) != '\0') || (*(char *)(config_ptr + 0x3d5) != '\0')) {
       temp_config = *(int32_t *)(SYSTEM_STATE_MANAGER + 0x1ea0);
       FUN_18005ca20(SYSTEM_STATE_MANAGER, 0);
@@ -559,7 +559,7 @@ void update_render_config(longlong config_ptr)
       else {
         update_flag = 0;
       }
-      FUN_1801725e0(*(longlong *)(config_ptr + 8), *(int32_t *)(config_ptr + 0x3cc), *dimension_ptr, update_flag);
+      FUN_1801725e0(*(int64_t *)(config_ptr + 8), *(int32_t *)(config_ptr + 0x3cc), *dimension_ptr, update_flag);
       use_secondary = render_mode == 2;
       goto APPLY_CHANGES;
     }
@@ -593,17 +593,17 @@ APPLY_CHANGES:
 uint initialize_graphics_driver_config(void)
 {
   int8_t config_data [16];   // 配置数据
-  longlong engine_ptr;         // 引擎指针
-  longlong main_engine;        // 主引擎指针
+  int64_t engine_ptr;         // 引擎指针
+  int64_t main_engine;        // 主引擎指针
   uint64_t *resource_ptr;    // 资源指针
   uint config_value;           // 配置值
   int temp_int;                // 临时整型
   void *cleanup_ptr;      // 清理指针
-  longlong buffer_ptr;         // 缓冲区指针
+  int64_t buffer_ptr;         // 缓冲区指针
   uint buffer_size;            // 缓冲区大小
-  ulonglong buffer_flags;      // 缓冲区标志
+  uint64_t buffer_flags;      // 缓冲区标志
   void *string_ptr;       // 字符串指针
-  longlong string_buffer;      // 字符串缓冲区
+  int64_t string_buffer;      // 字符串缓冲区
   uint string_length;          // 字符串长度
   uint64_t stack_guard1;     // 栈保护1
   uint64_t stack_guard2;     // 栈保护2
@@ -615,8 +615,8 @@ uint initialize_graphics_driver_config(void)
   
   // 读取第一个配置数据块
   config_data = *(int8_t (*) [16])
-            (*(longlong *)(system_main_module_state + 8) + 0xcc +
-            (ulonglong)(*(uint *)(*(longlong *)(system_main_module_state + 8) + 0x13c) & 1) * 0x48);
+            (*(int64_t *)(system_main_module_state + 8) + 0xcc +
+            (uint64_t)(*(uint *)(*(int64_t *)(system_main_module_state + 8) + 0x13c) & 1) * 0x48);
   
   // 处理第一个配置块
   if ((config_data._12_4_ != 0) && (config_data._8_4_ != 0)) {
@@ -629,19 +629,19 @@ uint initialize_graphics_driver_config(void)
     FUN_180628380(&cleanup_ptr, config_data._0_4_);
     config_value = buffer_size + 1;
     FUN_1806277c0(&cleanup_ptr, config_value);
-    *(int16_t *)((ulonglong)buffer_size + buffer_ptr) = 0x2c;
+    *(int16_t *)((uint64_t)buffer_size + buffer_ptr) = 0x2c;
     buffer_size = config_value;
     
     FUN_180628380(&cleanup_ptr, config_data._0_8_ >> 0x20);
     config_value = buffer_size + 1;
     FUN_1806277c0(&cleanup_ptr, config_value);
-    *(int16_t *)((ulonglong)buffer_size + buffer_ptr) = 0x2c;
+    *(int16_t *)((uint64_t)buffer_size + buffer_ptr) = 0x2c;
     buffer_size = config_value;
     
     FUN_180628380(&cleanup_ptr, config_data._8_8_ & 0xffffffff);
     temp_int = buffer_size + 1;
     FUN_1806277c0(&cleanup_ptr, temp_int);
-    *(int16_t *)((ulonglong)buffer_size + buffer_ptr) = 0x2c;
+    *(int16_t *)((uint64_t)buffer_size + buffer_ptr) = 0x2c;
     buffer_size = temp_int;
     
     FUN_180628380(&cleanup_ptr, config_data._8_8_ >> 0x20);
@@ -668,8 +668,8 @@ uint initialize_graphics_driver_config(void)
   }
   
   // 处理第二个配置块
-  engine_ptr = *(longlong *)(main_engine + 8);
-  config_data = *(int8_t (*) [16])(engine_ptr + 0xdc + (ulonglong)(*(uint *)(engine_ptr + 0x13c) & 1) * 0x48);
+  engine_ptr = *(int64_t *)(main_engine + 8);
+  config_data = *(int8_t (*) [16])(engine_ptr + 0xdc + (uint64_t)(*(uint *)(engine_ptr + 0x13c) & 1) * 0x48);
   if ((config_data._12_4_ != 0) && (config_data._8_4_ != 0)) {
     string_ptr = &system_data_buffer_ptr;
     stack_guard1 = 0;
@@ -680,19 +680,19 @@ uint initialize_graphics_driver_config(void)
     FUN_180628380(&string_ptr, config_data._0_4_);
     config_value = string_length + 1;
     FUN_1806277c0(&string_ptr, config_value);
-    *(int16_t *)((ulonglong)string_length + string_buffer) = 0x2c;
+    *(int16_t *)((uint64_t)string_length + string_buffer) = 0x2c;
     string_length = config_value;
     
     FUN_180628380(&string_ptr, config_data._0_8_ >> 0x20);
     config_value = string_length + 1;
     FUN_1806277c0(&string_ptr, config_value);
-    *(int16_t *)((ulonglong)string_length + string_buffer) = 0x2c;
+    *(int16_t *)((uint64_t)string_length + string_buffer) = 0x2c;
     string_length = config_value;
     
     FUN_180628380(&string_ptr, config_data._8_8_ & 0xffffffff);
     temp_int = string_length + 1;
     FUN_1806277c0(&string_ptr, temp_int);
-    *(int16_t *)((ulonglong)string_length + string_buffer) = 0x2c;
+    *(int16_t *)((uint64_t)string_length + string_buffer) = 0x2c;
     string_length = temp_int;
     
     FUN_180628380(&string_ptr, config_data._8_8_ >> 0x20);
@@ -716,7 +716,7 @@ uint initialize_graphics_driver_config(void)
   }
   
   // 返回配置结果
-  return *(int32_t *)(*(longlong *)(main_engine + 8) + 0x13c);
+  return *(int32_t *)(*(int64_t *)(main_engine + 8) + 0x13c);
 }
 
 
@@ -779,11 +779,11 @@ void manage_config_buffers(uint64_t param_1, uint64_t param_2, uint64_t param_3,
 {
   uint buffer_size1;          // 缓冲区大小1
   uint buffer_size2;          // 缓冲区大小2
-  longlong config_ptr1;       // 配置指针1
-  longlong config_ptr2;       // 配置指针2
-  ulonglong data_size;        // 数据大小
+  int64_t config_ptr1;       // 配置指针1
+  int64_t config_ptr2;       // 配置指针2
+  uint64_t data_size;        // 数据大小
   void *cleanup_ptr;     // 清理指针
-  longlong buffer_ptr;        // 缓冲区指针
+  int64_t buffer_ptr;        // 缓冲区指针
   uint buffer_size_total;     // 总缓冲区大小
   uint64_t result_flags;    // 结果标志
   
@@ -796,8 +796,8 @@ void manage_config_buffers(uint64_t param_1, uint64_t param_2, uint64_t param_3,
   // 处理第一个配置块
   if (*(int *)(SYSTEM_STATE_MANAGER + 0x1ea0) == 0) {
     buffer_size1 = *(uint *)(init_system_data_pointer + 0xe40);
-    data_size = (ulonglong)buffer_size1;
-    if (*(longlong *)(init_system_data_pointer + 0xe38) != 0) {
+    data_size = (uint64_t)buffer_size1;
+    if (*(int64_t *)(init_system_data_pointer + 0xe38) != 0) {
       FUN_1806277c0(&cleanup_ptr, data_size, param_3, param_4, 0xfffffffffffffffe);
     }
     if (buffer_size1 != 0) {
@@ -814,8 +814,8 @@ void manage_config_buffers(uint64_t param_1, uint64_t param_2, uint64_t param_3,
   config_ptr1 = init_system_data_pointer;
   buffer_size_total = 0;
   buffer_size1 = *(uint *)(init_system_data_pointer + 0xf00);
-  data_size = (ulonglong)buffer_size1;
-  if (*(longlong *)(init_system_data_pointer + 0xef8) != 0) {
+  data_size = (uint64_t)buffer_size1;
+  if (*(int64_t *)(init_system_data_pointer + 0xef8) != 0) {
     FUN_1806277c0(&cleanup_ptr, data_size);
   }
   if (buffer_size1 != 0) {
@@ -830,9 +830,9 @@ void manage_config_buffers(uint64_t param_1, uint64_t param_2, uint64_t param_3,
   config_ptr2 = init_system_data_pointer;
   result_flags = CONCAT44(*(int32_t *)(config_ptr1 + 0xf0c), (int32_t)result_flags);
   buffer_size2 = *(uint *)(init_system_data_pointer + 0xfc0);
-  data_size = (ulonglong)buffer_size2;
+  data_size = (uint64_t)buffer_size2;
   buffer_size_total = buffer_size1;
-  if (*(longlong *)(init_system_data_pointer + 0xfb8) != 0) {
+  if (*(int64_t *)(init_system_data_pointer + 0xfb8) != 0) {
     FUN_1806277c0(&cleanup_ptr, data_size);
   }
   if (buffer_size2 != 0) {
@@ -871,9 +871,9 @@ void initialize_system_parameters(void)
 
 {
   int temp_int;               // 临时整型
-  longlong engine_config;     // 引擎配置
-  longlong main_engine;      // 主引擎指针
-  longlong subsystem_config;  // 子系统配置
+  int64_t engine_config;     // 引擎配置
+  int64_t main_engine;      // 主引擎指针
+  int64_t subsystem_config;  // 子系统配置
   int *config_ptr;           // 配置指针
   uint64_t *resource_ptr;  // 资源指针
   int32_t *flag_ptr;      // 标志指针
@@ -883,9 +883,9 @@ void initialize_system_parameters(void)
   int32_t log_result;     // 对数计算结果
   float quality_factor;      // 质量因子
   int8_t temp_buffer1 [32]; // 临时缓冲区1
-  longlong temp_ptr1;        // 临时指针1
-  longlong temp_ptr2;        // 临时指针2
-  longlong temp_ptr3;        // 临时指针3
+  int64_t temp_ptr1;        // 临时指针1
+  int64_t temp_ptr2;        // 临时指针2
+  int64_t temp_ptr3;        // 临时指针3
   uint64_t *resource_array [10]; // 资源数组
   uint64_t stack_guard;    // 栈保护
   int8_t temp_buffer2 [8]; // 临时缓冲区2
@@ -893,11 +893,11 @@ void initialize_system_parameters(void)
   int8_t *data_ptr;      // 数据指针
   int32_t data_size;      // 数据大小
   int8_t temp_buffer3 [264]; // 临时缓冲区3
-  ulonglong security_hash;   // 安全哈希
+  uint64_t security_hash;   // 安全哈希
   
   main_engine = system_main_module_state;
   stack_guard = 0xfffffffffffffffe;
-  security_hash = GET_SECURITY_COOKIE() ^ (ulonglong)temp_buffer1;
+  security_hash = GET_SECURITY_COOKIE() ^ (uint64_t)temp_buffer1;
   
   // 检查系统状态并设置时间戳
   if (*(void **)*init_system_data_pointer == &unknown_var_424_ptr) {
@@ -919,7 +919,7 @@ void initialize_system_parameters(void)
   system_memory_flags = system_memory_flags ^ 0x41c64e6d;
   
   // 计算缩放因子
-  if ((*(longlong *)(system_parameter_buffer + 0x7ab8) == 0) || (*(int *)(SYSTEM_STATE_MANAGER + 0x540) < 1)) {
+  if ((*(int64_t *)(system_parameter_buffer + 0x7ab8) == 0) || (*(int *)(SYSTEM_STATE_MANAGER + 0x540) < 1)) {
     if (*(int *)(SYSTEM_STATE_MANAGER + 0x2140) == 0) {
       scale_factor = *(float *)(SYSTEM_STATE_MANAGER + 0x20d0);
     }
@@ -1004,20 +1004,20 @@ void initialize_system_parameters(void)
   if (*(void **)(lVar3 + 0x278) != (void *)0x0) {
     puVar8 = *(void **)(lVar3 + 0x278);
   }
-  (**(code **)(*(longlong *)(system_resource_state + 0x560) + 0x10))
-            ((longlong *)(system_resource_state + 0x560),puVar8);
+  (**(code **)(*(int64_t *)(system_resource_state + 0x560) + 0x10))
+            ((int64_t *)(system_resource_state + 0x560),puVar8);
   lVar3 = init_system_data_pointer;
   lStack_1d8 = FUN_18062b1e0(system_memory_pool_ptr,0x30,8,3);
   *(uint64_t *)(lStack_1d8 + 0x28) = 3;
   *(int32_t *)(lStack_1d8 + 0x19) = 0;
   *(int16_t *)(lStack_1d8 + 0x1d) = 0;
   *(int8_t *)(lStack_1d8 + 0x1f) = 0;
-  *(longlong *)lStack_1d8 = lStack_1d8;
-  *(longlong *)(lStack_1d8 + 8) = lStack_1d8;
+  *(int64_t *)lStack_1d8 = lStack_1d8;
+  *(int64_t *)(lStack_1d8 + 8) = lStack_1d8;
   *(uint64_t *)(lStack_1d8 + 0x10) = 0;
   *(int8_t *)(lStack_1d8 + 0x18) = 0;
   *(uint64_t *)(lStack_1d8 + 0x20) = 0;
-  *(longlong *)(lVar3 + 0xa8) = lStack_1d8;
+  *(int64_t *)(lVar3 + 0xa8) = lStack_1d8;
   lStack_1d0 = lStack_1d8;
   FUN_1802567b0(*(uint64_t *)(init_system_data_pointer + 0xa8),&system_buffer_12e0,&unknown_var_7552_ptr,FUN_180086670);
   FUN_1802567b0(*(uint64_t *)(init_system_data_pointer + 0xa8),&system_buffer_02e0,&system_buffer_0410,FUN_1800868d0);
@@ -1050,23 +1050,23 @@ void initialize_system_parameters(void)
  * 原始实现：FUN_18004f8e0
  * 简化实现：资源数组释放函数
  */
-void free_resource_array(longlong resource_array)
+void free_resource_array(int64_t resource_array)
 {
   int *ref_count;           // 引用计数指针
-  longlong element_ptr;     // 元素指针
+  int64_t element_ptr;     // 元素指针
   uint64_t *array_ptr;    // 数组指针
-  longlong mem_ptr;         // 内存指针
-  ulonglong index;          // 索引
-  ulonglong array_size;     // 数组大小
+  int64_t mem_ptr;         // 内存指针
+  uint64_t index;          // 索引
+  uint64_t array_size;     // 数组大小
   
-  array_size = *(ulonglong *)(resource_array + 0x10);
-  mem_ptr = *(longlong *)(resource_array + 8);
+  array_size = *(uint64_t *)(resource_array + 0x10);
+  mem_ptr = *(int64_t *)(resource_array + 8);
   index = 0;
   
   // 遍历并释放数组中的所有元素
   if (array_size != 0) {
     do {
-      element_ptr = *(longlong *)(mem_ptr + index * 8);
+      element_ptr = *(int64_t *)(mem_ptr + index * 8);
       if (element_ptr != 0) {
         // 警告：子程序不返回
         FUN_18064e900(element_ptr);
@@ -1074,7 +1074,7 @@ void free_resource_array(longlong resource_array)
       *(uint64_t *)(mem_ptr + index * 8) = 0;
       index = index + 1;
     } while (index < array_size);
-    array_size = *(ulonglong *)(resource_array + 0x10);
+    array_size = *(uint64_t *)(resource_array + 0x10);
   }
   
   *(uint64_t *)(resource_array + 0x18) = 0;
@@ -1082,10 +1082,10 @@ void free_resource_array(longlong resource_array)
   // 处理内存管理
   if ((1 < array_size) && (array_ptr = *(uint64_t **)(resource_array + 8), array_ptr != (uint64_t *)0x0)) {
     // 计算内存块地址
-    array_size = (ulonglong)array_ptr & 0xffffffffffc00000;
+    array_size = (uint64_t)array_ptr & 0xffffffffffc00000;
     if (array_size != 0) {
-      mem_ptr = array_size + 0x80 + ((longlong)array_ptr - array_size >> 0x10) * 0x50;
-      mem_ptr = mem_ptr - (ulonglong)*(uint *)(mem_ptr + 4);
+      mem_ptr = array_size + 0x80 + ((int64_t)array_ptr - array_size >> 0x10) * 0x50;
+      mem_ptr = mem_ptr - (uint64_t)*(uint *)(mem_ptr + 4);
       
       // 检查异常列表和内存状态
       if ((*(void ***)(array_size + 0x70) == &ExceptionList) && (*(char *)(mem_ptr + 0xe) == '\0')) {

@@ -59,17 +59,17 @@
 // =============================================================================
 // 类型别名定义
 // =============================================================================
-typedef longlong UIHandle;
+typedef int64_t UIHandle;
 typedef float* UIFloatPointer;
 typedef int* UIIntPointer;
 typedef uint* UIUIntPointer;
 typedef short* UIShortPointer;
-typedef longlong* UILongLongPointer;
+typedef int64_t* UILongLongPointer;
 typedef char UIByte;
 typedef int32_t UIFlag;
 typedef int UIIndex;
 typedef uint UICoordinate;
-typedef ulonglong UIULongLong;
+typedef uint64_t UIULongLong;
 typedef float UIFloat;
 typedef uint64_t UIUndefine8;
 
@@ -154,10 +154,10 @@ void UISystem_AdvancedCoordinateTransform(UIHandle context_handle, UIFloatPointe
 {
     // 变量声明和初始化
     UIIntPointer int_ptr_1, int_ptr_21;
-    UILongLongPointer longlong_ptr_2;
+    UILongLongPointer int64_t_ptr_2;
     UIUIntPointer uint_ptr_3, uint_ptr_23;
     UIByte byte_value;
-    UIULongLong ulonglong_value_5, ulonglong_value_8, ulonglong_value_9;
+    UIULongLong uint64_t_value_5, uint64_t_value_8, uint64_t_value_9;
     UIFlag flag_value_7;
     UIIndex index_6, index_11, index_12;
     UIShortPointer short_ptr_14;
@@ -195,7 +195,7 @@ void UISystem_AdvancedCoordinateTransform(UIHandle context_handle, UIFloatPointe
     index_12 = *(UIIndex *)(transform_data + UI_DATA_OFFSET_0x44);
     
     // 初始化循环变量
-    ulonglong_value_9 = 0;
+    uint64_t_value_9 = 0;
     index_6 = 0;
     *(UIUndefine8 *)(stack_0000000000000070 + UI_STACK_OFFSET_NEG_0x38) = stack_0000000000000068;
     stack_0000000000000098 = 0;
@@ -258,9 +258,9 @@ void UISystem_AdvancedCoordinateTransform(UIHandle context_handle, UIFloatPointe
         // 初始化处理变量
         stack_0000000000000068 = 0;
         stack_0000000000000050 = 0;
-        stack_value_16 = ulonglong_value_9;
-        stack_value_17 = ulonglong_value_9;
-        stack_value_19 = ulonglong_value_9;
+        stack_value_16 = uint64_t_value_9;
+        stack_value_17 = uint64_t_value_9;
+        stack_value_19 = uint64_t_value_9;
         stack_0000000000000028 = index_6;
         
         // 主要处理循环
@@ -288,18 +288,18 @@ void UISystem_AdvancedCoordinateTransform(UIHandle context_handle, UIFloatPointe
                         
                         // 纹理类型处理
                         if (coordinate_13 == UI_TEXTURE_TYPE_SPECIAL) {
-                            ulonglong_value_8 = *(UIHandle *)(stack_0000000000000030 + UI_DATA_OFFSET_0x70);
+                            uint64_t_value_8 = *(UIHandle *)(stack_0000000000000030 + UI_DATA_OFFSET_0x70);
                             stack_x_20 = 1;
                             stack_0000000000000068 = 1;
                         }
                         else {
-                            ulonglong_value_8 = *(UIHandle *)(stack_0000000000000030 + UI_DATA_OFFSET_0x58 + (UIULongLong)(UIIndex)coordinate_13 * 8);
+                            uint64_t_value_8 = *(UIHandle *)(stack_0000000000000030 + UI_DATA_OFFSET_0x58 + (UIULongLong)(UIIndex)coordinate_13 * 8);
                             stack_x_20 = 3;
                             stack_0000000000000068 = 3;
                         }
                         
                         // 计算缩放因子
-                        float_value_25 = *(UIFloat *)(ulonglong_value_8 + (UIULongLong)(index_12 << ((UIByte)stack_0000000000000038 & UI_BIT_SHIFT_MASK)) * 4);
+                        float_value_25 = *(UIFloat *)(uint64_t_value_8 + (UIULongLong)(index_12 << ((UIByte)stack_0000000000000038 & UI_BIT_SHIFT_MASK)) * 4);
                         stack_x_24 = coordinate_18;
                         stack_0000000000000044 = coordinate_13;
                     }
@@ -310,13 +310,13 @@ void UISystem_AdvancedCoordinateTransform(UIHandle context_handle, UIFloatPointe
                     
                     while (coordinate_22 = (UICoordinate)short_value_15, short_value_15 < 0) {
                         // 位字段处理循环
-                        ulonglong_value_8 = *(UIHandle *)(stack_0000000000000078 + UI_GLOBAL_RBP_OFFSET_0x178);
+                        uint64_t_value_8 = *(UIHandle *)(stack_0000000000000078 + UI_GLOBAL_RBP_OFFSET_0x178);
                         short_ptr_14 = short_ptr_14 + 1;
-                        index_12 = *(UIIndex *)(ulonglong_value_8 + UI_GLOBAL_RBP_OFFSET_0x48a8);
-                        byte_value = **(UIByte **)(ulonglong_value_8 + UI_GLOBAL_RBP_OFFSET_0x48b0);
-                        *(UIIndex *)(ulonglong_value_8 + UI_GLOBAL_RBP_OFFSET_0x48a8) = index_12 + 1;
-                        longlong_ptr_2 = (UILongLongPointer *)(*(UIHandle *)(stack_0000000000000078 + UI_GLOBAL_RBP_OFFSET_0x178) + UI_GLOBAL_RBP_OFFSET_0x48b0);
-                        *longlong_ptr_2 = *longlong_ptr_2 + ((UIULongLong)*(UIIndex *)(*(UIHandle *)(stack_0000000000000078 + UI_GLOBAL_RBP_OFFSET_0x178) + UI_GLOBAL_RBP_OFFSET_0x48a8) >> 3);
+                        index_12 = *(UIIndex *)(uint64_t_value_8 + UI_GLOBAL_RBP_OFFSET_0x48a8);
+                        byte_value = **(UIByte **)(uint64_t_value_8 + UI_GLOBAL_RBP_OFFSET_0x48b0);
+                        *(UIIndex *)(uint64_t_value_8 + UI_GLOBAL_RBP_OFFSET_0x48a8) = index_12 + 1;
+                        int64_t_ptr_2 = (UILongLongPointer *)(*(UIHandle *)(stack_0000000000000078 + UI_GLOBAL_RBP_OFFSET_0x178) + UI_GLOBAL_RBP_OFFSET_0x48b0);
+                        *int64_t_ptr_2 = *int64_t_ptr_2 + ((UIULongLong)*(UIIndex *)(*(UIHandle *)(stack_0000000000000078 + UI_GLOBAL_RBP_OFFSET_0x178) + UI_GLOBAL_RBP_OFFSET_0x48a8) >> 3);
                         uint_ptr_23 = (UIUIntPointer *)(*(UIHandle *)(stack_0000000000000078 + UI_GLOBAL_RBP_OFFSET_0x178) + UI_GLOBAL_RBP_OFFSET_0x48a8);
                         *uint_ptr_23 = *uint_ptr_23 & UI_BIT_OPERATION_MASK;
                         
@@ -328,21 +328,21 @@ void UISystem_AdvancedCoordinateTransform(UIHandle context_handle, UIFloatPointe
                     }
                     
                     // 坐标变换处理
-                    ulonglong_value_8 = (UIULongLong)(UIIndex)coordinate_13;
+                    uint64_t_value_8 = (UIULongLong)(UIIndex)coordinate_13;
                     index_12 = (UIIndex)coordinate_22 >> 4;
                     coordinate_22 = coordinate_22 & UI_BIT_FLAG_15;
                     
                     if (index_12 == UI_BIT_FLAG_15) {
                         // 特殊坐标变换处理
-                        *(UICoordinate *)((UIULongLong)&stack_0000000000000080 + ulonglong_value_8 * 4) = coordinate_18;
+                        *(UICoordinate *)((UIULongLong)&stack_0000000000000080 + uint64_t_value_8 * 4) = coordinate_18;
                         index_6 = index_6 + (-1 - *stack_0000000000000048);
                         index_6 = UISystem_GetRandomValue();
-                        ulonglong_value_5 = *(UIHandle *)(stack_0000000000000078 + UI_GLOBAL_RBP_OFFSET_0x178);
-                        index_12 = *(UIIndex *)(ulonglong_value_5 + UI_GLOBAL_RBP_OFFSET_0x48a8);
-                        byte_value = **(UIByte **)(ulonglong_value_5 + UI_GLOBAL_RBP_OFFSET_0x48b0);
-                        *(UIIndex *)(ulonglong_value_5 + UI_GLOBAL_RBP_OFFSET_0x48a8) = index_12 + 1;
-                        longlong_ptr_2 = (UILongLongPointer *)(*(UIHandle *)(stack_0000000000000078 + UI_GLOBAL_RBP_OFFSET_0x178) + UI_GLOBAL_RBP_OFFSET_0x48b0);
-                        *longlong_ptr_2 = *longlong_ptr_2 + ((UIULongLong)*(UIIndex *)(*(UIHandle *)(stack_0000000000000078 + UI_GLOBAL_RBP_OFFSET_0x178) + UI_GLOBAL_RBP_OFFSET_0x48a8) >> 3);
+                        uint64_t_value_5 = *(UIHandle *)(stack_0000000000000078 + UI_GLOBAL_RBP_OFFSET_0x178);
+                        index_12 = *(UIIndex *)(uint64_t_value_5 + UI_GLOBAL_RBP_OFFSET_0x48a8);
+                        byte_value = **(UIByte **)(uint64_t_value_5 + UI_GLOBAL_RBP_OFFSET_0x48b0);
+                        *(UIIndex *)(uint64_t_value_5 + UI_GLOBAL_RBP_OFFSET_0x48a8) = index_12 + 1;
+                        int64_t_ptr_2 = (UILongLongPointer *)(*(UIHandle *)(stack_0000000000000078 + UI_GLOBAL_RBP_OFFSET_0x178) + UI_GLOBAL_RBP_OFFSET_0x48b0);
+                        *int64_t_ptr_2 = *int64_t_ptr_2 + ((UIULongLong)*(UIIndex *)(*(UIHandle *)(stack_0000000000000078 + UI_GLOBAL_RBP_OFFSET_0x178) + UI_GLOBAL_RBP_OFFSET_0x48a8) >> 3);
                         uint_ptr_23 = (UIUIntPointer *)(*(UIHandle *)(stack_0000000000000078 + UI_GLOBAL_RBP_OFFSET_0x178) + UI_GLOBAL_RBP_OFFSET_0x48a8);
                         *uint_ptr_23 = *uint_ptr_23 & UI_BIT_OPERATION_MASK;
                         float_value_24 = float_value_25 * *(UIFloat *)((UIULongLong)(index_6 + 0xf) * 4 + UI_TEXTURE_BASE_ADDRESS_0x180c398a0);
@@ -361,13 +361,13 @@ void UISystem_AdvancedCoordinateTransform(UIHandle context_handle, UIFloatPointe
                     }
                     else {
                         // 标准坐标变换处理
-                        *(UICoordinate *)((UIULongLong)&stack_0000000000000080 + ulonglong_value_8 * 4) = coordinate_18;
-                        ulonglong_value_5 = *(UIHandle *)(stack_0000000000000078 + UI_GLOBAL_RBP_OFFSET_0x178);
-                        index_6 = *(UIIndex *)(ulonglong_value_5 + UI_GLOBAL_RBP_OFFSET_0x48a8);
-                        byte_value = **(UIByte **)(ulonglong_value_5 + UI_GLOBAL_RBP_OFFSET_0x48b0);
-                        *(UIIndex *)(ulonglong_value_5 + UI_GLOBAL_RBP_OFFSET_0x48a8) = index_6 + 1;
-                        longlong_ptr_2 = (UILongLongPointer *)(*(UIHandle *)(stack_0000000000000078 + UI_GLOBAL_RBP_OFFSET_0x178) + UI_GLOBAL_RBP_OFFSET_0x48b0);
-                        *longlong_ptr_2 = *longlong_ptr_2 + ((UIULongLong)*(UIIndex *)(*(UIHandle *)(stack_0000000000000078 + UI_GLOBAL_RBP_OFFSET_0x178) + UI_GLOBAL_RBP_OFFSET_0x48a8) >> 3);
+                        *(UICoordinate *)((UIULongLong)&stack_0000000000000080 + uint64_t_value_8 * 4) = coordinate_18;
+                        uint64_t_value_5 = *(UIHandle *)(stack_0000000000000078 + UI_GLOBAL_RBP_OFFSET_0x178);
+                        index_6 = *(UIIndex *)(uint64_t_value_5 + UI_GLOBAL_RBP_OFFSET_0x48a8);
+                        byte_value = **(UIByte **)(uint64_t_value_5 + UI_GLOBAL_RBP_OFFSET_0x48b0);
+                        *(UIIndex *)(uint64_t_value_5 + UI_GLOBAL_RBP_OFFSET_0x48a8) = index_6 + 1;
+                        int64_t_ptr_2 = (UILongLongPointer *)(*(UIHandle *)(stack_0000000000000078 + UI_GLOBAL_RBP_OFFSET_0x178) + UI_GLOBAL_RBP_OFFSET_0x48b0);
+                        *int64_t_ptr_2 = *int64_t_ptr_2 + ((UIULongLong)*(UIIndex *)(*(UIHandle *)(stack_0000000000000078 + UI_GLOBAL_RBP_OFFSET_0x178) + UI_GLOBAL_RBP_OFFSET_0x48a8) >> 3);
                         uint_ptr_23 = (UIUIntPointer *)(*(UIHandle *)(stack_0000000000000078 + UI_GLOBAL_RBP_OFFSET_0x178) + UI_GLOBAL_RBP_OFFSET_0x48a8);
                         *uint_ptr_23 = *uint_ptr_23 & UI_BIT_OPERATION_MASK;
                         float_value_24 = float_value_25 * *(UIFloat *)((UIULongLong)index_12 * 4 + UI_TEXTURE_BASE_ADDRESS_0x180c398a0);
@@ -390,15 +390,15 @@ void UISystem_AdvancedCoordinateTransform(UIHandle context_handle, UIFloatPointe
                     
                     // 第二轮坐标变换处理
                     if (coordinate_22 == UI_BIT_FLAG_15) {
-                        *(UICoordinate *)((UIULongLong)&stack_0000000000000080 + ulonglong_value_8 * 4) = stack_x_24;
+                        *(UICoordinate *)((UIULongLong)&stack_0000000000000080 + uint64_t_value_8 * 4) = stack_x_24;
                         index_6 = index_6 + (-1 - *stack_0000000000000048);
                         index_6 = UISystem_GetRandomValue();
-                        ulonglong_value_8 = *(UIHandle *)(stack_0000000000000078 + UI_GLOBAL_RBP_OFFSET_0x178);
-                        index_12 = *(UIIndex *)(ulonglong_value_8 + UI_GLOBAL_RBP_OFFSET_0x48a8);
-                        byte_value = **(UIByte **)(ulonglong_value_8 + UI_GLOBAL_RBP_OFFSET_0x48b0);
-                        *(UIIndex *)(ulonglong_value_8 + UI_GLOBAL_RBP_OFFSET_0x48a8) = index_12 + 1;
-                        longlong_ptr_2 = (UILongLongPointer *)(*(UIHandle *)(stack_0000000000000078 + UI_GLOBAL_RBP_OFFSET_0x178) + UI_GLOBAL_RBP_OFFSET_0x48b0);
-                        *longlong_ptr_2 = *longlong_ptr_2 + ((UIULongLong)*(UIIndex *)(*(UIHandle *)(stack_0000000000000078 + UI_GLOBAL_RBP_OFFSET_0x178) + UI_GLOBAL_RBP_OFFSET_0x48a8) >> 3);
+                        uint64_t_value_8 = *(UIHandle *)(stack_0000000000000078 + UI_GLOBAL_RBP_OFFSET_0x178);
+                        index_12 = *(UIIndex *)(uint64_t_value_8 + UI_GLOBAL_RBP_OFFSET_0x48a8);
+                        byte_value = **(UIByte **)(uint64_t_value_8 + UI_GLOBAL_RBP_OFFSET_0x48b0);
+                        *(UIIndex *)(uint64_t_value_8 + UI_GLOBAL_RBP_OFFSET_0x48a8) = index_12 + 1;
+                        int64_t_ptr_2 = (UILongLongPointer *)(*(UIHandle *)(stack_0000000000000078 + UI_GLOBAL_RBP_OFFSET_0x178) + UI_GLOBAL_RBP_OFFSET_0x48b0);
+                        *int64_t_ptr_2 = *int64_t_ptr_2 + ((UIULongLong)*(UIIndex *)(*(UIHandle *)(stack_0000000000000078 + UI_GLOBAL_RBP_OFFSET_0x178) + UI_GLOBAL_RBP_OFFSET_0x48a8) >> 3);
                         uint_ptr_23 = (UIUIntPointer *)(*(UIHandle *)(stack_0000000000000078 + UI_GLOBAL_RBP_OFFSET_0x178) + UI_GLOBAL_RBP_OFFSET_0x48a8);
                         *uint_ptr_23 = *uint_ptr_23 & UI_BIT_OPERATION_MASK;
                         float_value_24 = float_value_25 * *(UIFloat *)((UIULongLong)(index_6 + 0xf) * 4 + UI_TEXTURE_BASE_ADDRESS_0x180c398a0);
@@ -416,13 +416,13 @@ void UISystem_AdvancedCoordinateTransform(UIHandle context_handle, UIFloatPointe
                         *float_ptr_10 = *vertex_buffer;
                     }
                     else {
-                        *(UICoordinate *)((UIULongLong)&stack_0000000000000080 + ulonglong_value_8 * 4) = stack_x_24;
-                        ulonglong_value_8 = *(UIHandle *)(stack_0000000000000078 + UI_GLOBAL_RBP_OFFSET_0x178);
-                        index_12 = *(UIIndex *)(ulonglong_value_8 + UI_GLOBAL_RBP_OFFSET_0x48a8);
-                        byte_value = **(UIByte **)(ulonglong_value_8 + UI_GLOBAL_RBP_OFFSET_0x48b0);
-                        *(UIIndex *)(ulonglong_value_8 + UI_GLOBAL_RBP_OFFSET_0x48a8) = index_12 + 1;
-                        longlong_ptr_2 = (UILongLongPointer *)(*(UIHandle *)(stack_0000000000000078 + UI_GLOBAL_RBP_OFFSET_0x178) + UI_GLOBAL_RBP_OFFSET_0x48b0);
-                        *longlong_ptr_2 = *longlong_ptr_2 + ((UIULongLong)*(UIIndex *)(*(UIHandle *)(stack_0000000000000078 + UI_GLOBAL_RBP_OFFSET_0x178) + UI_GLOBAL_RBP_OFFSET_0x48a8) >> 3);
+                        *(UICoordinate *)((UIULongLong)&stack_0000000000000080 + uint64_t_value_8 * 4) = stack_x_24;
+                        uint64_t_value_8 = *(UIHandle *)(stack_0000000000000078 + UI_GLOBAL_RBP_OFFSET_0x178);
+                        index_12 = *(UIIndex *)(uint64_t_value_8 + UI_GLOBAL_RBP_OFFSET_0x48a8);
+                        byte_value = **(UIByte **)(uint64_t_value_8 + UI_GLOBAL_RBP_OFFSET_0x48b0);
+                        *(UIIndex *)(uint64_t_value_8 + UI_GLOBAL_RBP_OFFSET_0x48a8) = index_12 + 1;
+                        int64_t_ptr_2 = (UILongLongPointer *)(*(UIHandle *)(stack_0000000000000078 + UI_GLOBAL_RBP_OFFSET_0x178) + UI_GLOBAL_RBP_OFFSET_0x48b0);
+                        *int64_t_ptr_2 = *int64_t_ptr_2 + ((UIULongLong)*(UIIndex *)(*(UIHandle *)(stack_0000000000000078 + UI_GLOBAL_RBP_OFFSET_0x178) + UI_GLOBAL_RBP_OFFSET_0x48a8) >> 3);
                         uint_ptr_23 = (UIUIntPointer *)(*(UIHandle *)(stack_0000000000000078 + UI_GLOBAL_RBP_OFFSET_0x178) + UI_GLOBAL_RBP_OFFSET_0x48a8);
                         *uint_ptr_23 = *uint_ptr_23 & UI_BIT_OPERATION_MASK;
                         float_value_24 = float_value_25 * *(UIFloat *)((UIULongLong)coordinate_22 * 4 + UI_TEXTURE_BASE_ADDRESS_0x180c398a0);
@@ -441,11 +441,11 @@ void UISystem_AdvancedCoordinateTransform(UIHandle context_handle, UIFloatPointe
                     
                     // 更新处理状态
                     stack_value_16 = (UIULongLong)stack_x_24;
-                    ulonglong_value_9 = (UIULongLong)(UIIndex)stack_x_20;
+                    uint64_t_value_9 = (UIULongLong)(UIIndex)stack_x_20;
                     stack_value_19 = (UIULongLong)(index_11 - 1);
                     stack_value_17 = (UIULongLong)stack_0000000000000044;
-                    float_ptr_10 = float_ptr_10 + ulonglong_value_9;
-                    vertex_buffer = vertex_buffer + ulonglong_value_9;
+                    float_ptr_10 = float_ptr_10 + uint64_t_value_9;
+                    vertex_buffer = vertex_buffer + uint64_t_value_9;
                     stack_0000000000000040 = stack_0000000000000040 + -1;
                 } while (stack_0000000000000040 != 0);
                 
@@ -468,12 +468,12 @@ void UISystem_AdvancedCoordinateTransform(UIHandle context_handle, UIFloatPointe
                     short_value_15 = 0;
                     break;
                 }
-                ulonglong_value_8 = *(UIHandle *)(stack_0000000000000078 + UI_GLOBAL_RBP_OFFSET_0x178);
-                index_11 = *(UIIndex *)(ulonglong_value_8 + UI_GLOBAL_RBP_OFFSET_0x48a8);
-                byte_value = **(UIByte **)(ulonglong_value_8 + UI_GLOBAL_RBP_OFFSET_0x48b0);
-                *(UIIndex *)(ulonglong_value_8 + UI_GLOBAL_RBP_OFFSET_0x48a8) = index_11 + 1;
-                longlong_ptr_2 = (UILongLongPointer *)(*(UIHandle *)(stack_0000000000000078 + UI_GLOBAL_RBP_OFFSET_0x178) + UI_GLOBAL_RBP_OFFSET_0x48b0);
-                *longlong_ptr_2 = *longlong_ptr_2 + ((UIULongLong)*(UIIndex *)(*(UIHandle *)(stack_0000000000000078 + UI_GLOBAL_RBP_OFFSET_0x178) + UI_GLOBAL_RBP_OFFSET_0x48a8) >> 3);
+                uint64_t_value_8 = *(UIHandle *)(stack_0000000000000078 + UI_GLOBAL_RBP_OFFSET_0x178);
+                index_11 = *(UIIndex *)(uint64_t_value_8 + UI_GLOBAL_RBP_OFFSET_0x48a8);
+                byte_value = **(UIByte **)(uint64_t_value_8 + UI_GLOBAL_RBP_OFFSET_0x48b0);
+                *(UIIndex *)(uint64_t_value_8 + UI_GLOBAL_RBP_OFFSET_0x48a8) = index_11 + 1;
+                int64_t_ptr_2 = (UILongLongPointer *)(*(UIHandle *)(stack_0000000000000078 + UI_GLOBAL_RBP_OFFSET_0x178) + UI_GLOBAL_RBP_OFFSET_0x48b0);
+                *int64_t_ptr_2 = *int64_t_ptr_2 + ((UIULongLong)*(UIIndex *)(*(UIHandle *)(stack_0000000000000078 + UI_GLOBAL_RBP_OFFSET_0x178) + UI_GLOBAL_RBP_OFFSET_0x48a8) >> 3);
                 uint_ptr_23 = (UIUIntPointer *)(*(UIHandle *)(stack_0000000000000078 + UI_GLOBAL_RBP_OFFSET_0x178) + UI_GLOBAL_RBP_OFFSET_0x48a8);
                 *uint_ptr_23 = *uint_ptr_23 & UI_BIT_OPERATION_MASK;
                 
@@ -484,7 +484,7 @@ void UISystem_AdvancedCoordinateTransform(UIHandle context_handle, UIFloatPointe
                 short_value_15 = *short_ptr_14;
             }
             
-            ulonglong_value_9 = (UIULongLong)stack_x_20;
+            uint64_t_value_9 = (UIULongLong)stack_x_20;
             coordinate_13 = 0;
             
             do {
@@ -502,16 +502,16 @@ void UISystem_AdvancedCoordinateTransform(UIHandle context_handle, UIFloatPointe
                         index_buffer = index_buffer + 1;
                         
                         if (*int_ptr_1 == UI_TEXTURE_TYPE_SPECIAL) {
-                            ulonglong_value_8 = *(UIHandle *)(stack_0000000000000030 + UI_DATA_OFFSET_0x70);
-                            ulonglong_value_9 = 1;
+                            uint64_t_value_8 = *(UIHandle *)(stack_0000000000000030 + UI_DATA_OFFSET_0x70);
+                            uint64_t_value_9 = 1;
                         }
                         else {
-                            ulonglong_value_8 = *(UIHandle *)(stack_0000000000000030 + UI_DATA_OFFSET_0x58 + stack_value_17 * 8);
-                            ulonglong_value_9 = 3;
+                            uint64_t_value_8 = *(UIHandle *)(stack_0000000000000030 + UI_DATA_OFFSET_0x58 + stack_value_17 * 8);
+                            uint64_t_value_9 = 3;
                         }
                         
-                        float_value_25 = *(UIFloat *)(ulonglong_value_8 + (UIULongLong)(index_12 << ((UIByte)stack_0000000000000038 & UI_BIT_SHIFT_MASK)) * 4);
-                        stack_x_20 = (UICoordinate)ulonglong_value_9;
+                        float_value_25 = *(UIFloat *)(uint64_t_value_8 + (UIULongLong)(index_12 << ((UIByte)stack_0000000000000038 & UI_BIT_SHIFT_MASK)) * 4);
+                        stack_x_20 = (UICoordinate)uint64_t_value_9;
                     }
                     stack_value_19 = (UIULongLong)(index_11 - 1);
                 }
@@ -523,13 +523,13 @@ void UISystem_AdvancedCoordinateTransform(UIHandle context_handle, UIFloatPointe
                     index_11 = index_6 + -1;
                     *(UICoordinate *)((UIULongLong)&stack_0000000000000080 + (UIULongLong)(UIIndex)stack_value_17 * 4) = stack_x_24;
                     if (index_11 < 0) break;
-                    ulonglong_value_8 = *(UIHandle *)(stack_0000000000000078 + UI_GLOBAL_RBP_OFFSET_0x178);
-                    index_12 = *(UIIndex *)(ulonglong_value_8 + UI_GLOBAL_RBP_OFFSET_0x48a8);
-                    byte_value = **(UIByte **)(ulonglong_value_8 + UI_GLOBAL_RBP_OFFSET_0x48b0);
-                    *(UIIndex *)(ulonglong_value_8 + UI_GLOBAL_RBP_OFFSET_0x48a8) = index_12 + 1;
-                    longlong_ptr_2 = (UILongLongPointer *)(*(UIHandle *)(stack_0000000000000078 + UI_GLOBAL_RBP_OFFSET_0x178) + UI_GLOBAL_RBP_OFFSET_0x48b0);
-                    *longlong_ptr_2 = *longlong_ptr_2 + ((UIULongLong)*(UIIndex *)(*(UIHandle *)(stack_0000000000000078 + UI_GLOBAL_RBP_OFFSET_0x178) + UI_GLOBAL_RBP_OFFSET_0x48a8) >> 3);
-                    ulonglong_value_9 = (UIULongLong)stack_x_20;
+                    uint64_t_value_8 = *(UIHandle *)(stack_0000000000000078 + UI_GLOBAL_RBP_OFFSET_0x178);
+                    index_12 = *(UIIndex *)(uint64_t_value_8 + UI_GLOBAL_RBP_OFFSET_0x48a8);
+                    byte_value = **(UIByte **)(uint64_t_value_8 + UI_GLOBAL_RBP_OFFSET_0x48b0);
+                    *(UIIndex *)(uint64_t_value_8 + UI_GLOBAL_RBP_OFFSET_0x48a8) = index_12 + 1;
+                    int64_t_ptr_2 = (UILongLongPointer *)(*(UIHandle *)(stack_0000000000000078 + UI_GLOBAL_RBP_OFFSET_0x178) + UI_GLOBAL_RBP_OFFSET_0x48b0);
+                    *int64_t_ptr_2 = *int64_t_ptr_2 + ((UIULongLong)*(UIIndex *)(*(UIHandle *)(stack_0000000000000078 + UI_GLOBAL_RBP_OFFSET_0x178) + UI_GLOBAL_RBP_OFFSET_0x48a8) >> 3);
+                    uint64_t_value_9 = (UIULongLong)stack_x_20;
                     uint_ptr_23 = (UIUIntPointer *)(*(UIHandle *)(stack_0000000000000078 + UI_GLOBAL_RBP_OFFSET_0x178) + UI_GLOBAL_RBP_OFFSET_0x48a8);
                     *uint_ptr_23 = *uint_ptr_23 & UI_BIT_OPERATION_MASK;
                     index_6 = index_11;
@@ -545,8 +545,8 @@ void UISystem_AdvancedCoordinateTransform(UIHandle context_handle, UIFloatPointe
                 }
                 
                 coordinate_13 = coordinate_13 + 1;
-                float_ptr_10 = float_ptr_10 + (UIIndex)ulonglong_value_9;
-                vertex_buffer = vertex_buffer + (UIIndex)ulonglong_value_9;
+                float_ptr_10 = float_ptr_10 + (UIIndex)uint64_t_value_9;
+                vertex_buffer = vertex_buffer + (UIIndex)uint64_t_value_9;
             } while ((UIIndex)coordinate_13 < UI_TEXTURE_PROCESSING_COUNT);
             
             stack_000000000000003c = stack_000000000000003c + -1;
@@ -556,27 +556,27 @@ void UISystem_AdvancedCoordinateTransform(UIHandle context_handle, UIFloatPointe
         
         // 最终数据处理
         if (int_ptr_21 < stack_0000000000000058) {
-            ulonglong_value_8 = (UIULongLong)(UIIndex)ulonglong_value_9;
+            uint64_t_value_8 = (UIULongLong)(UIIndex)uint64_t_value_9;
             do {
                 index_11 = (UIIndex)stack_value_19;
                 if (index_11 == 0) {
                     index_11 = *int_ptr_21;
-                    ulonglong_value_8 = 1;
+                    uint64_t_value_8 = 1;
                     int_ptr_1 = int_ptr_21 + 2;
                     vertex_buffer = stack_0000000000000060 + int_ptr_21[1];
                     int_ptr_21 = int_ptr_21 + 4;
-                    ulonglong_value_9 = 1;
+                    uint64_t_value_9 = 1;
                     if (*int_ptr_1 != UI_TEXTURE_TYPE_SPECIAL) {
-                        ulonglong_value_9 = 3;
-                        ulonglong_value_8 = 3;
+                        uint64_t_value_9 = 3;
+                        uint64_t_value_8 = 3;
                     }
                     float_ptr_10 = vertex_buffer + UI_TEXTURE_COORDINATE_OFFSET;
                 }
                 stack_value_19 = (UIULongLong)(index_11 - 1);
                 *float_ptr_10 = *vertex_buffer;
-                float_ptr_10[ulonglong_value_8] = vertex_buffer[ulonglong_value_8];
-                float_ptr_10 = float_ptr_10 + ulonglong_value_8 + (UIIndex)ulonglong_value_9;
-                vertex_buffer = vertex_buffer + ulonglong_value_8 + (UIIndex)ulonglong_value_9;
+                float_ptr_10[uint64_t_value_8] = vertex_buffer[uint64_t_value_8];
+                float_ptr_10 = float_ptr_10 + uint64_t_value_8 + (UIIndex)uint64_t_value_9;
+                vertex_buffer = vertex_buffer + uint64_t_value_8 + (UIIndex)uint64_t_value_9;
                 stack_0000000000000078 = stack_0000000000000078;
                 index_6 = stack_0000000000000028;
             } while (int_ptr_21 < stack_0000000000000058);
@@ -601,7 +601,7 @@ void UISystem_AdvancedCoordinateTransform(UIHandle context_handle, UIFloatPointe
             flag_value_7 = *(UIFlag *)((stack_0000000000000070 * UI_TEXTURE_TABLE_SIZE + (UIULongLong)stack_0000000000000088) * 4 + UI_TEXTURE_BASE_ADDRESS_0x180c42734);
         }
         else {
-            ulonglong_value_9 = (UIULongLong)(stack_000000000000008c + 1);
+            uint64_t_value_9 = (UIULongLong)(stack_000000000000008c + 1);
         }
     }
     else {
@@ -614,13 +614,13 @@ void UISystem_AdvancedCoordinateTransform(UIHandle context_handle, UIFloatPointe
         stack_x_24 = 0xffffffff;
         stack_0000000000000050 = 0;
         uint_ptr_23 = *(UIUIntPointer **)(stack_0000000000000050 * 0x18 + UI_GLOBAL_BASE_ADDRESS_0x180c45ac0);
-        stack_value_17 = ulonglong_value_9;
+        stack_value_17 = uint64_t_value_9;
         stack_0000000000000058 = int_ptr_21;
         
         do {
             stack_0000000000000048 = (UIIntPointer *)((UIULongLong)*(UICoordinate *)(transform_data + UI_DATA_OFFSET_0x18 + stack_0000000000000050 * 4) * 0x10 + UI_TEXTURE_BASE_ADDRESS_0x180beb380);
             for (stack_0000000000000040 = *(UIIndex *)((UIULongLong)&stack_0000000000000090 + stack_0000000000000050 * 4); stack_0000000000000040 != 0; stack_0000000000000040 = stack_0000000000000040 + -1) {
-                coordinate_13 = (UICoordinate)ulonglong_value_9;
+                coordinate_13 = (UICoordinate)uint64_t_value_9;
                 coordinate_18 = (UICoordinate)stack_value_17;
                 if (coordinate_18 == 0) {
                     index_11 = *index_buffer;
@@ -628,7 +628,7 @@ void UISystem_AdvancedCoordinateTransform(UIHandle context_handle, UIFloatPointe
                     index_12 = *int_ptr_21;
                     int_ptr_21 = int_ptr_21 + 1;
                     coordinate_13 = uint_ptr_23[1];
-                    ulonglong_value_9 = (UIULongLong)coordinate_13;
+                    uint64_t_value_9 = (UIULongLong)coordinate_13;
                     coordinate_18 = *uint_ptr_23;
                     stack_value_17 = (UIULongLong)coordinate_18;
                     uint_ptr_23 = uint_ptr_23 + 2;
@@ -643,13 +643,13 @@ void UISystem_AdvancedCoordinateTransform(UIHandle context_handle, UIFloatPointe
                 short_ptr_14 = *(UIShortPointer **)(stack_0000000000000048 + 2);
                 short_value_15 = *short_ptr_14;
                 while (coordinate_22 = (UICoordinate)short_value_15, short_value_15 < 0) {
-                    ulonglong_value_8 = *(UIHandle *)(stack_0000000000000078 + UI_GLOBAL_RBP_OFFSET_0x178);
+                    uint64_t_value_8 = *(UIHandle *)(stack_0000000000000078 + UI_GLOBAL_RBP_OFFSET_0x178);
                     short_ptr_14 = short_ptr_14 + 1;
-                    index_11 = *(UIIndex *)(ulonglong_value_8 + UI_GLOBAL_RBP_OFFSET_0x48a8);
-                    byte_value = **(UIByte **)(ulonglong_value_8 + UI_GLOBAL_RBP_OFFSET_0x48b0);
-                    *(UIIndex *)(ulonglong_value_8 + UI_GLOBAL_RBP_OFFSET_0x48a8) = index_11 + 1;
-                    longlong_ptr_2 = (UILongLongPointer *)(*(UIHandle *)(stack_0000000000000078 + UI_GLOBAL_RBP_OFFSET_0x178) + UI_GLOBAL_RBP_OFFSET_0x48b0);
-                    *longlong_ptr_2 = *longlong_ptr_2 + ((UIULongLong)*(UIIndex *)(*(UIHandle *)(stack_0000000000000078 + UI_GLOBAL_RBP_OFFSET_0x178) + UI_GLOBAL_RBP_OFFSET_0x48a8) >> 3);
+                    index_11 = *(UIIndex *)(uint64_t_value_8 + UI_GLOBAL_RBP_OFFSET_0x48a8);
+                    byte_value = **(UIByte **)(uint64_t_value_8 + UI_GLOBAL_RBP_OFFSET_0x48b0);
+                    *(UIIndex *)(uint64_t_value_8 + UI_GLOBAL_RBP_OFFSET_0x48a8) = index_11 + 1;
+                    int64_t_ptr_2 = (UILongLongPointer *)(*(UIHandle *)(stack_0000000000000078 + UI_GLOBAL_RBP_OFFSET_0x178) + UI_GLOBAL_RBP_OFFSET_0x48b0);
+                    *int64_t_ptr_2 = *int64_t_ptr_2 + ((UIULongLong)*(UIIndex *)(*(UIHandle *)(stack_0000000000000078 + UI_GLOBAL_RBP_OFFSET_0x178) + UI_GLOBAL_RBP_OFFSET_0x48a8) >> 3);
                     uint_ptr_3 = (UIUIntPointer *)(*(UIHandle *)(stack_0000000000000078 + UI_GLOBAL_RBP_OFFSET_0x178) + UI_GLOBAL_RBP_OFFSET_0x48a8);
                     *uint_ptr_3 = *uint_ptr_3 & UI_BIT_OPERATION_MASK;
                     if ((UIByte)(byte_value << ((UIByte)index_11 & UI_BIT_SHIFT_MASK)) < 0) {
@@ -665,12 +665,12 @@ void UISystem_AdvancedCoordinateTransform(UIHandle context_handle, UIFloatPointe
                 if (index_11 == UI_BIT_FLAG_15) {
                     index_6 = index_6 + (-1 - *stack_0000000000000048);
                     index_12 = UISystem_GetRandomValue();
-                    ulonglong_value_8 = *(UIHandle *)(stack_0000000000000078 + UI_GLOBAL_RBP_OFFSET_0x178);
-                    index_11 = *(UIIndex *)(ulonglong_value_8 + UI_GLOBAL_RBP_OFFSET_0x48a8);
-                    byte_value = **(UIByte **)(ulonglong_value_8 + UI_GLOBAL_RBP_OFFSET_0x48b0);
-                    *(UIIndex *)(ulonglong_value_8 + UI_GLOBAL_RBP_OFFSET_0x48a8) = index_11 + 1;
-                    longlong_ptr_2 = (UILongLongPointer *)(*(UIHandle *)(stack_0000000000000078 + UI_GLOBAL_RBP_OFFSET_0x178) + UI_GLOBAL_RBP_OFFSET_0x48b0);
-                    *longlong_ptr_2 = *longlong_ptr_2 + ((UIULongLong)*(UIIndex *)(*(UIHandle *)(stack_0000000000000078 + UI_GLOBAL_RBP_OFFSET_0x178) + UI_GLOBAL_RBP_OFFSET_0x48a8) >> 3);
+                    uint64_t_value_8 = *(UIHandle *)(stack_0000000000000078 + UI_GLOBAL_RBP_OFFSET_0x178);
+                    index_11 = *(UIIndex *)(uint64_t_value_8 + UI_GLOBAL_RBP_OFFSET_0x48a8);
+                    byte_value = **(UIByte **)(uint64_t_value_8 + UI_GLOBAL_RBP_OFFSET_0x48b0);
+                    *(UIIndex *)(uint64_t_value_8 + UI_GLOBAL_RBP_OFFSET_0x48a8) = index_11 + 1;
+                    int64_t_ptr_2 = (UILongLongPointer *)(*(UIHandle *)(stack_0000000000000078 + UI_GLOBAL_RBP_OFFSET_0x178) + UI_GLOBAL_RBP_OFFSET_0x48b0);
+                    *int64_t_ptr_2 = *int64_t_ptr_2 + ((UIULongLong)*(UIIndex *)(*(UIHandle *)(stack_0000000000000078 + UI_GLOBAL_RBP_OFFSET_0x178) + UI_GLOBAL_RBP_OFFSET_0x48a8) >> 3);
                     uint_ptr_3 = (UIUIntPointer *)(*(UIHandle *)(stack_0000000000000078 + UI_GLOBAL_RBP_OFFSET_0x178) + UI_GLOBAL_RBP_OFFSET_0x48a8);
                     *uint_ptr_3 = *uint_ptr_3 & UI_BIT_OPERATION_MASK;
                     float_value_24 = float_value_25 * *(UIFloat *)((UIULongLong)(index_12 + 0xf) * 4 + UI_TEXTURE_BASE_ADDRESS_0x180c398a0);
@@ -689,12 +689,12 @@ void UISystem_AdvancedCoordinateTransform(UIHandle context_handle, UIFloatPointe
                     *float_ptr_10 = *vertex_buffer;
                 }
                 else {
-                    ulonglong_value_8 = *(UIHandle *)(stack_0000000000000078 + UI_GLOBAL_RBP_OFFSET_0x178);
-                    index_12 = *(UIIndex *)(ulonglong_value_8 + UI_GLOBAL_RBP_OFFSET_0x48a8);
-                    byte_value = **(UIByte **)(ulonglong_value_8 + UI_GLOBAL_RBP_OFFSET_0x48b0);
-                    *(UIIndex *)(ulonglong_value_8 + UI_GLOBAL_RBP_OFFSET_0x48a8) = index_12 + 1;
-                    longlong_ptr_2 = (UILongLongPointer *)(*(UIHandle *)(stack_0000000000000078 + UI_GLOBAL_RBP_OFFSET_0x178) + UI_GLOBAL_RBP_OFFSET_0x48b0);
-                    *longlong_ptr_2 = *longlong_ptr_2 + ((UIULongLong)*(UIIndex *)(*(UIHandle *)(stack_0000000000000078 + UI_GLOBAL_RBP_OFFSET_0x178) + UI_GLOBAL_RBP_OFFSET_0x48a8) >> 3);
+                    uint64_t_value_8 = *(UIHandle *)(stack_0000000000000078 + UI_GLOBAL_RBP_OFFSET_0x178);
+                    index_12 = *(UIIndex *)(uint64_t_value_8 + UI_GLOBAL_RBP_OFFSET_0x48a8);
+                    byte_value = **(UIByte **)(uint64_t_value_8 + UI_GLOBAL_RBP_OFFSET_0x48b0);
+                    *(UIIndex *)(uint64_t_value_8 + UI_GLOBAL_RBP_OFFSET_0x48a8) = index_12 + 1;
+                    int64_t_ptr_2 = (UILongLongPointer *)(*(UIHandle *)(stack_0000000000000078 + UI_GLOBAL_RBP_OFFSET_0x178) + UI_GLOBAL_RBP_OFFSET_0x48b0);
+                    *int64_t_ptr_2 = *int64_t_ptr_2 + ((UIULongLong)*(UIIndex *)(*(UIHandle *)(stack_0000000000000078 + UI_GLOBAL_RBP_OFFSET_0x178) + UI_GLOBAL_RBP_OFFSET_0x48a8) >> 3);
                     uint_ptr_3 = (UIUIntPointer *)(*(UIHandle *)(stack_0000000000000078 + UI_GLOBAL_RBP_OFFSET_0x178) + UI_GLOBAL_RBP_OFFSET_0x48a8);
                     *uint_ptr_3 = *uint_ptr_3 & UI_BIT_OPERATION_MASK;
                     float_value_24 = float_value_25 * *(UIFloat *)((UIULongLong)index_11 * 4 + UI_TEXTURE_BASE_ADDRESS_0x180c398a0);
@@ -717,12 +717,12 @@ void UISystem_AdvancedCoordinateTransform(UIHandle context_handle, UIFloatPointe
                     stack_x_24 = stack_x_20;
                     index_6 = index_6 + (-1 - *stack_0000000000000048);
                     index_12 = UISystem_GetRandomValue();
-                    ulonglong_value_8 = *(UIHandle *)(stack_0000000000000078 + UI_GLOBAL_RBP_OFFSET_0x178);
-                    index_11 = *(UIIndex *)(ulonglong_value_8 + UI_GLOBAL_RBP_OFFSET_0x48a8);
-                    byte_value = **(UIByte **)(ulonglong_value_8 + UI_GLOBAL_RBP_OFFSET_0x48b0);
-                    *(UIIndex *)(ulonglong_value_8 + UI_GLOBAL_RBP_OFFSET_0x48a8) = index_11 + 1;
-                    longlong_ptr_2 = (UILongLongPointer *)(*(UIHandle *)(stack_0000000000000078 + UI_GLOBAL_RBP_OFFSET_0x178) + UI_GLOBAL_RBP_OFFSET_0x48b0);
-                    *longlong_ptr_2 = *longlong_ptr_2 + ((UIULongLong)*(UIIndex *)(*(UIHandle *)(stack_0000000000000078 + UI_GLOBAL_RBP_OFFSET_0x178) + UI_GLOBAL_RBP_OFFSET_0x48a8) >> 3);
+                    uint64_t_value_8 = *(UIHandle *)(stack_0000000000000078 + UI_GLOBAL_RBP_OFFSET_0x178);
+                    index_11 = *(UIIndex *)(uint64_t_value_8 + UI_GLOBAL_RBP_OFFSET_0x48a8);
+                    byte_value = **(UIByte **)(uint64_t_value_8 + UI_GLOBAL_RBP_OFFSET_0x48b0);
+                    *(UIIndex *)(uint64_t_value_8 + UI_GLOBAL_RBP_OFFSET_0x48a8) = index_11 + 1;
+                    int64_t_ptr_2 = (UILongLongPointer *)(*(UIHandle *)(stack_0000000000000078 + UI_GLOBAL_RBP_OFFSET_0x178) + UI_GLOBAL_RBP_OFFSET_0x48b0);
+                    *int64_t_ptr_2 = *int64_t_ptr_2 + ((UIULongLong)*(UIIndex *)(*(UIHandle *)(stack_0000000000000078 + UI_GLOBAL_RBP_OFFSET_0x178) + UI_GLOBAL_RBP_OFFSET_0x48a8) >> 3);
                     uint_ptr_3 = (UIUIntPointer *)(*(UIHandle *)(stack_0000000000000078 + UI_GLOBAL_RBP_OFFSET_0x178) + UI_GLOBAL_RBP_OFFSET_0x48a8);
                     *uint_ptr_3 = *uint_ptr_3 & UI_BIT_OPERATION_MASK;
                     float_value_24 = float_value_25 * *(UIFloat *)((UIULongLong)(index_12 + 0xf) * 4 + UI_TEXTURE_BASE_ADDRESS_0x180c398a0);
@@ -739,13 +739,13 @@ void UISystem_AdvancedCoordinateTransform(UIHandle context_handle, UIFloatPointe
                     float_ptr_10[1] = vertex_buffer[1];
                 }
                 else {
-                    ulonglong_value_8 = *(UIHandle *)(stack_0000000000000078 + UI_GLOBAL_RBP_OFFSET_0x178);
+                    uint64_t_value_8 = *(UIHandle *)(stack_0000000000000078 + UI_GLOBAL_RBP_OFFSET_0x178);
                     stack_x_24 = stack_x_20;
-                    index_11 = *(UIIndex *)(ulonglong_value_8 + UI_GLOBAL_RBP_OFFSET_0x48a8);
-                    byte_value = **(UIByte **)(ulonglong_value_8 + UI_GLOBAL_RBP_OFFSET_0x48b0);
-                    *(UIIndex *)(ulonglong_value_8 + UI_GLOBAL_RBP_OFFSET_0x48a8) = index_11 + 1;
-                    longlong_ptr_2 = (UILongLongPointer *)(*(UIHandle *)(stack_0000000000000078 + UI_GLOBAL_RBP_OFFSET_0x178) + UI_GLOBAL_RBP_OFFSET_0x48b0);
-                    *longlong_ptr_2 = *longlong_ptr_2 + ((UIULongLong)*(UIIndex *)(*(UIHandle *)(stack_0000000000000078 + UI_GLOBAL_RBP_OFFSET_0x48a8) >> 3);
+                    index_11 = *(UIIndex *)(uint64_t_value_8 + UI_GLOBAL_RBP_OFFSET_0x48a8);
+                    byte_value = **(UIByte **)(uint64_t_value_8 + UI_GLOBAL_RBP_OFFSET_0x48b0);
+                    *(UIIndex *)(uint64_t_value_8 + UI_GLOBAL_RBP_OFFSET_0x48a8) = index_11 + 1;
+                    int64_t_ptr_2 = (UILongLongPointer *)(*(UIHandle *)(stack_0000000000000078 + UI_GLOBAL_RBP_OFFSET_0x178) + UI_GLOBAL_RBP_OFFSET_0x48b0);
+                    *int64_t_ptr_2 = *int64_t_ptr_2 + ((UIULongLong)*(UIIndex *)(*(UIHandle *)(stack_0000000000000078 + UI_GLOBAL_RBP_OFFSET_0x48a8) >> 3);
                     uint_ptr_3 = (UIUIntPointer *)(*(UIHandle *)(stack_0000000000000078 + UI_GLOBAL_RBP_OFFSET_0x178) + UI_GLOBAL_RBP_OFFSET_0x48a8);
                     *uint_ptr_3 = *uint_ptr_3 & UI_BIT_OPERATION_MASK;
                     float_value_24 = float_value_25 * *(UIFloat *)((UIULongLong)coordinate_20 * 4 + UI_TEXTURE_BASE_ADDRESS_0x180c398a0);
@@ -761,7 +761,7 @@ void UISystem_AdvancedCoordinateTransform(UIHandle context_handle, UIFloatPointe
                     }
                 }
                 
-                ulonglong_value_9 = (UIULongLong)stack_x_20;
+                uint64_t_value_9 = (UIULongLong)stack_x_20;
                 stack_value_17 = (UIULongLong)(coordinate_18 - 1);
                 float_ptr_10 = float_ptr_10 + UI_VERTEX_COMPONENT_COUNT;
                 vertex_buffer = vertex_buffer + UI_VERTEX_COMPONENT_COUNT;
@@ -782,12 +782,12 @@ void UISystem_AdvancedCoordinateTransform(UIHandle context_handle, UIFloatPointe
                     transform_data = stack_0000000000000030;
                     break;
                 }
-                ulonglong_value_8 = *(UIHandle *)(stack_0000000000000078 + UI_GLOBAL_RBP_OFFSET_0x178);
-                index_11 = *(UIIndex *)(ulonglong_value_8 + UI_GLOBAL_RBP_OFFSET_0x48a8);
-                byte_value = **(UIByte **)(ulonglong_value_8 + UI_GLOBAL_RBP_OFFSET_0x48b0);
-                *(UIIndex *)(ulonglong_value_8 + UI_GLOBAL_RBP_OFFSET_0x48a8) = index_11 + 1;
-                longlong_ptr_2 = (UILongLongPointer *)(*(UIHandle *)(stack_0000000000000078 + UI_GLOBAL_RBP_OFFSET_0x178) + UI_GLOBAL_RBP_OFFSET_0x48b0);
-                *longlong_ptr_2 = *longlong_ptr_2 + ((UIULongLong)*(UIIndex *)(*(UIHandle *)(stack_0000000000000078 + UI_GLOBAL_RBP_OFFSET_0x178) + UI_GLOBAL_RBP_OFFSET_0x48a8) >> 3);
+                uint64_t_value_8 = *(UIHandle *)(stack_0000000000000078 + UI_GLOBAL_RBP_OFFSET_0x178);
+                index_11 = *(UIIndex *)(uint64_t_value_8 + UI_GLOBAL_RBP_OFFSET_0x48a8);
+                byte_value = **(UIByte **)(uint64_t_value_8 + UI_GLOBAL_RBP_OFFSET_0x48b0);
+                *(UIIndex *)(uint64_t_value_8 + UI_GLOBAL_RBP_OFFSET_0x48a8) = index_11 + 1;
+                int64_t_ptr_2 = (UILongLongPointer *)(*(UIHandle *)(stack_0000000000000078 + UI_GLOBAL_RBP_OFFSET_0x178) + UI_GLOBAL_RBP_OFFSET_0x48b0);
+                *int64_t_ptr_2 = *int64_t_ptr_2 + ((UIULongLong)*(UIIndex *)(*(UIHandle *)(stack_0000000000000078 + UI_GLOBAL_RBP_OFFSET_0x178) + UI_GLOBAL_RBP_OFFSET_0x48a8) >> 3);
                 uint_ptr_3 = (UIUIntPointer *)(*(UIHandle *)(stack_0000000000000078 + UI_GLOBAL_RBP_OFFSET_0x178) + UI_GLOBAL_RBP_OFFSET_0x48a8);
                 *uint_ptr_3 = *uint_ptr_3 & UI_BIT_OPERATION_MASK;
                 if ((UIByte)(byte_value << ((UIByte)index_11 & UI_BIT_SHIFT_MASK)) < 0) {
@@ -822,12 +822,12 @@ void UISystem_AdvancedCoordinateTransform(UIHandle context_handle, UIFloatPointe
                     index_11 = index_6 + -1;
                     stack_x_24 = stack_x_20;
                     if (index_11 < 1) break;
-                    ulonglong_value_8 = *(UIHandle *)(stack_0000000000000078 + UI_GLOBAL_RBP_OFFSET_0x178);
-                    index_12 = *(UIIndex *)(ulonglong_value_8 + UI_GLOBAL_RBP_OFFSET_0x48a8);
-                    byte_value = **(UIByte **)(ulonglong_value_8 + UI_GLOBAL_RBP_OFFSET_0x48b0);
-                    *(UIIndex *)(ulonglong_value_8 + UI_GLOBAL_RBP_OFFSET_0x48a8) = index_12 + 1;
-                    longlong_ptr_2 = (UILongLongPointer *)(*(UIHandle *)(stack_0000000000000078 + UI_GLOBAL_RBP_OFFSET_0x178) + UI_GLOBAL_RBP_OFFSET_0x48b0);
-                    *longlong_ptr_2 = *longlong_ptr_2 + ((UIULongLong)*(UIIndex *)(*(UIHandle *)(stack_0000000000000078 + UI_GLOBAL_RBP_OFFSET_0x178) + UI_GLOBAL_RBP_OFFSET_0x48a8) >> 3);
+                    uint64_t_value_8 = *(UIHandle *)(stack_0000000000000078 + UI_GLOBAL_RBP_OFFSET_0x178);
+                    index_12 = *(UIIndex *)(uint64_t_value_8 + UI_GLOBAL_RBP_OFFSET_0x48a8);
+                    byte_value = **(UIByte **)(uint64_t_value_8 + UI_GLOBAL_RBP_OFFSET_0x48b0);
+                    *(UIIndex *)(uint64_t_value_8 + UI_GLOBAL_RBP_OFFSET_0x48a8) = index_12 + 1;
+                    int64_t_ptr_2 = (UILongLongPointer *)(*(UIHandle *)(stack_0000000000000078 + UI_GLOBAL_RBP_OFFSET_0x178) + UI_GLOBAL_RBP_OFFSET_0x48b0);
+                    *int64_t_ptr_2 = *int64_t_ptr_2 + ((UIULongLong)*(UIIndex *)(*(UIHandle *)(stack_0000000000000078 + UI_GLOBAL_RBP_OFFSET_0x178) + UI_GLOBAL_RBP_OFFSET_0x48a8) >> 3);
                     uint_ptr_3 = (UIUIntPointer *)(*(UIHandle *)(stack_0000000000000078 + UI_GLOBAL_RBP_OFFSET_0x178) + UI_GLOBAL_RBP_OFFSET_0x48a8);
                     *uint_ptr_3 = *uint_ptr_3 & UI_BIT_OPERATION_MASK;
                     index_6 = index_11;
@@ -859,11 +859,11 @@ void UISystem_AdvancedCoordinateTransform(UIHandle context_handle, UIFloatPointe
             vertex_buffer = vertex_buffer + UI_VERTEX_COMPONENT_COUNT;
             float_ptr_10 = float_ptr_10 + UI_VERTEX_COMPONENT_COUNT;
         }
-        ulonglong_value_9 = (UIULongLong)(stack_x_24 + 1);
+        uint64_t_value_9 = (UIULongLong)(stack_x_24 + 1);
         *(UICoordinate *)(stack_0000000000000030 + UI_DATA_OFFSET_0x3c) = stack_x_24 + 1;
     }
     
-    flag_value_7 = *(UIFlag *)((stack_0000000000000070 * UI_COORDINATE_TABLE_SIZE + ulonglong_value_9) * 4 + UI_TEXTURE_BASE_ADDRESS_0x180c423f0);
+    flag_value_7 = *(UIFlag *)((stack_0000000000000070 * UI_COORDINATE_TABLE_SIZE + uint64_t_value_9) * 4 + UI_TEXTURE_BASE_ADDRESS_0x180c423f0);
     
     // 保存最终状态
     *(UIFlag *)(stack_0000000000000030 + UI_DATA_OFFSET_0x40) = flag_value_7;
@@ -871,12 +871,12 @@ void UISystem_AdvancedCoordinateTransform(UIHandle context_handle, UIFloatPointe
     // 内存清理处理
     if (UI_MEMORY_BLOCK_SIZE < index_6) {
         coordinate_13 = (index_6 - UI_MEMORY_BLOCK_SIZE + 1 >> 4) + 1;
-        ulonglong_value_9 = (UIULongLong)coordinate_13;
+        uint64_t_value_9 = (UIULongLong)coordinate_13;
         index_6 = index_6 + coordinate_13 * -UI_MEMORY_BLOCK_SIZE;
         do {
             UISystem_GetRandomValue(stack_0000000000000078, UI_MEMORY_BLOCK_SIZE);
-            ulonglong_value_9 = ulonglong_value_9 - 1;
-        } while (ulonglong_value_9 != 0);
+            uint64_t_value_9 = uint64_t_value_9 - 1;
+        } while (uint64_t_value_9 != 0);
     }
     if (0 < index_6) {
         UISystem_GetRandomValue(stack_0000000000000078, index_6);

@@ -119,39 +119,39 @@ typedef struct {
  * 
  * @return void
  */
-void SystemResourceStateManager_SyncResourceLifecycle(longlong systemContext, uint64_t syncFlags, 
-                                                      longlong resourceManager, int32_t stateFlags, 
+void SystemResourceStateManager_SyncResourceLifecycle(int64_t systemContext, uint64_t syncFlags, 
+                                                      int64_t resourceManager, int32_t stateFlags, 
                                                       int32_t priorityFlags)
 {
   /* 变量声明和初始化 */
-  longlong *currentResourceManager;
-  longlong *previousResourceManager;
+  int64_t *currentResourceManager;
+  int64_t *previousResourceManager;
   bool isNewResourceCreated;
   bool isExistingResourceUsed;
-  longlong systemDataPointer;
+  int64_t systemDataPointer;
   int currentState;
-  longlong *newResourceManager;
-  longlong **resourceManagerRef;
-  longlong *tempResourceBuffer;
+  int64_t *newResourceManager;
+  int64_t **resourceManagerRef;
+  int64_t *tempResourceBuffer;
   uint64_t storedSyncFlags;
-  longlong *existingResourceBuffer;
+  int64_t *existingResourceBuffer;
   
   /* 获取当前资源管理器引用 */
-  currentResourceManager = *(longlong **)(systemContext + 0x460);
+  currentResourceManager = *(int64_t **)(systemContext + 0x460);
   storedSyncFlags = syncFlags;
   
   /* 释放当前资源管理器（如果存在） */
-  if (currentResourceManager != (longlong *)0x0) {
+  if (currentResourceManager != (int64_t *)0x0) {
     (**(code **)(*currentResourceManager + 0x28))(currentResourceManager);
   }
   
   /* 获取或创建新的资源管理器 */
-  newResourceManager = *(longlong **)(systemContext + 0x1a0);
-  if (newResourceManager == (longlong *)0x0) {
+  newResourceManager = *(int64_t **)(systemContext + 0x1a0);
+  if (newResourceManager == (int64_t *)0x0) {
     /* 创建新的资源管理器 */
-    newResourceManager = (longlong *)MemoryManager_CreateResourceBuffer();
+    newResourceManager = (int64_t *)MemoryManager_CreateResourceBuffer();
     tempResourceBuffer = newResourceManager;
-    if (newResourceManager != (longlong *)0x0) {
+    if (newResourceManager != (int64_t *)0x0) {
       (**(code **)(*newResourceManager + 0x28))(newResourceManager);
     }
     resourceManagerRef = &tempResourceBuffer;
@@ -168,20 +168,20 @@ void SystemResourceStateManager_SyncResourceLifecycle(longlong systemContext, ui
   }
   
   /* 清理资源管理器引用 */
-  *resourceManagerRef = (longlong *)0x0;
-  previousResourceManager = *(longlong **)(systemContext + 0x460);
-  *(longlong **)(systemContext + 0x460) = newResourceManager;
+  *resourceManagerRef = (int64_t *)0x0;
+  previousResourceManager = *(int64_t **)(systemContext + 0x460);
+  *(int64_t **)(systemContext + 0x460) = newResourceManager;
   
   /* 释放前一个资源管理器 */
-  if (previousResourceManager != (longlong *)0x0) {
+  if (previousResourceManager != (int64_t *)0x0) {
     (**(code **)(*previousResourceManager + 0x38))();
   }
   
   /* 清理临时资源缓冲区 */
-  if (isNewResourceCreated && (tempResourceBuffer != (longlong *)0x0)) {
+  if (isNewResourceCreated && (tempResourceBuffer != (int64_t *)0x0)) {
     (**(code **)(*tempResourceBuffer + 0x38))();
   }
-  if (isExistingResourceUsed && (existingResourceBuffer != (longlong *)0x0)) {
+  if (isExistingResourceUsed && (existingResourceBuffer != (int64_t *)0x0)) {
     (**(code **)(*existingResourceBuffer + 0x38))();
   }
   
@@ -190,10 +190,10 @@ void SystemResourceStateManager_SyncResourceLifecycle(longlong systemContext, ui
   isNewResourceCreated = false;
   
   /* 处理备用资源管理器 */
-  if (currentResourceManager == (longlong *)0x0) {
-    newResourceManager = (longlong *)MemoryManager_CreateSecondaryBuffer();
+  if (currentResourceManager == (int64_t *)0x0) {
+    newResourceManager = (int64_t *)MemoryManager_CreateSecondaryBuffer();
     tempResourceBuffer = newResourceManager;
-    if (newResourceManager != (longlong *)0x0) {
+    if (newResourceManager != (int64_t *)0x0) {
       (**(code **)(*newResourceManager + 0x28))(newResourceManager);
     }
     resourceManagerRef = &tempResourceBuffer;
@@ -208,20 +208,20 @@ void SystemResourceStateManager_SyncResourceLifecycle(longlong systemContext, ui
   }
   
   /* 清理备用资源管理器引用 */
-  *resourceManagerRef = (longlong *)0x0;
-  previousResourceManager = *(longlong **)(systemContext + 0x1a8);
-  *(longlong **)(systemContext + 0x1a8) = newResourceManager;
+  *resourceManagerRef = (int64_t *)0x0;
+  previousResourceManager = *(int64_t **)(systemContext + 0x1a8);
+  *(int64_t **)(systemContext + 0x1a8) = newResourceManager;
   
   /* 释放前一个备用资源管理器 */
-  if (previousResourceManager != (longlong *)0x0) {
+  if (previousResourceManager != (int64_t *)0x0) {
     (**(code **)(*previousResourceManager + 0x38))();
   }
   
   /* 清理临时缓冲区 */
-  if (isNewResourceCreated && (tempResourceBuffer != (longlong *)0x0)) {
+  if (isNewResourceCreated && (tempResourceBuffer != (int64_t *)0x0)) {
     (**(code **)(*tempResourceBuffer + 0x38))();
   }
-  if (isExistingResourceUsed && (existingResourceBuffer != (longlong *)0x0)) {
+  if (isExistingResourceUsed && (existingResourceBuffer != (int64_t *)0x0)) {
     (**(code **)(*existingResourceBuffer + 0x38))();
   }
   
@@ -251,15 +251,15 @@ void SystemResourceStateManager_SyncResourceLifecycle(longlong systemContext, ui
   
   /* 更新渲染系统参数 */
   systemDataPointer = system_message_buffer;
-  *(float *)(*(longlong *)(system_message_buffer + 0x1cd8) + 0x1c90) = (float)currentState + 0.2;
-  *(int32_t *)(*(longlong *)(systemDataPointer + 0x1cd8) + 0x1c80) = *(int32_t *)(resourceManager + 0x12c00);
-  *(int32_t *)(*(longlong *)(systemDataPointer + 0x1cd8) + 0x1c84) = *(int32_t *)(resourceManager + 0x12c04);
+  *(float *)(*(int64_t *)(system_message_buffer + 0x1cd8) + 0x1c90) = (float)currentState + 0.2;
+  *(int32_t *)(*(int64_t *)(systemDataPointer + 0x1cd8) + 0x1c80) = *(int32_t *)(resourceManager + 0x12c00);
+  *(int32_t *)(*(int64_t *)(systemDataPointer + 0x1cd8) + 0x1c84) = *(int32_t *)(resourceManager + 0x12c04);
   
   /* 调用后续处理函数 */
   SystemRenderer_UpdateRenderParameters(systemContext, storedSyncFlags, resourceManager, stateFlags, priorityFlags);
   
   /* 清理当前资源管理器 */
-  if (currentResourceManager != (longlong *)0x0) {
+  if (currentResourceManager != (int64_t *)0x0) {
     (**(code **)(*currentResourceManager + 0x38))(currentResourceManager);
   }
   
@@ -281,7 +281,7 @@ void SystemResourceStateManager_SyncResourceLifecycle(longlong systemContext, ui
  * 
  * @return 内存管理器指针
  */
-uint64_t * MemoryManager_Destroy(uint64_t *memoryManager, ulonglong freeFlags, uint64_t context, uint64_t userData)
+uint64_t * MemoryManager_Destroy(uint64_t *memoryManager, uint64_t freeFlags, uint64_t context, uint64_t userData)
 {
   uint64_t memoryFlags;
   
@@ -321,8 +321,8 @@ uint64_t * MemoryManager_Destroy(uint64_t *memoryManager, ulonglong freeFlags, u
  * 
  * @return void
  */
-void SystemRenderer_UpdateRenderParameters(longlong *rendererContext, uint64_t renderFlags, 
-                                          longlong renderData, int32_t qualityFlags, 
+void SystemRenderer_UpdateRenderParameters(int64_t *rendererContext, uint64_t renderFlags, 
+                                          int64_t renderData, int32_t qualityFlags, 
                                           int32_t performanceFlags)
 {
   /* 渲染参数变量 */
@@ -331,7 +331,7 @@ void SystemRenderer_UpdateRenderParameters(longlong *rendererContext, uint64_t r
   float fieldOfView;
   float nearPlane;
   int qualityLevel;
-  longlong renderSystem;
+  int64_t renderSystem;
   float inverseDepth;
   int8_t securityBuffer [32];
   int32_t renderWidth;
@@ -341,12 +341,12 @@ void SystemRenderer_UpdateRenderParameters(longlong *rendererContext, uint64_t r
   uint64_t qualityMatrix2;
   int32_t qualitySetting1;
   int32_t qualitySetting2;
-  ulonglong securityChecksum;
+  uint64_t securityChecksum;
   
   /* 安全检查和初始化 */
-  securityChecksum = GET_SECURITY_COOKIE() ^ (ulonglong)securityBuffer;
+  securityChecksum = GET_SECURITY_COOKIE() ^ (uint64_t)securityBuffer;
   qualityLevel = (int)rendererContext[0x8b];
-  renderSystem = *(longlong *)(system_message_buffer + 0x1cd8);
+  renderSystem = *(int64_t *)(system_message_buffer + 0x1cd8);
   
   /* 质量设置矩阵初始化 */
   qualityMatrix1 = 0x3f5555553e2aaaab;
@@ -358,10 +358,10 @@ void SystemRenderer_UpdateRenderParameters(longlong *rendererContext, uint64_t r
   /* 根据质量级别设置渲染参数 */
   *(int32_t *)(renderSystem + 0x1c88) =
        *(int32_t *)
-        ((longlong)&qualityMatrix1 +
-        (longlong)
+        ((int64_t)&qualityMatrix1 +
+        (int64_t)
         (qualityLevel + (qualityLevel / 6 + (qualityLevel >> 0x1f) +
-                 (int)(((longlong)qualityLevel / 6 + ((longlong)qualityLevel >> 0x3f) & 0xffffffffU) >> 0x1f)) *
+                 (int)(((int64_t)qualityLevel / 6 + ((int64_t)qualityLevel >> 0x3f) & 0xffffffffU) >> 0x1f)) *
                  -6) * 4);
   
   /* 从渲染数据中提取参数 */
@@ -384,10 +384,10 @@ void SystemRenderer_UpdateRenderParameters(longlong *rendererContext, uint64_t r
   
   /* 调用渲染更新函数 */
   (**(code **)(*rendererContext + 0x50))
-            (rendererContext, renderData, (int)rendererContext[0x8a], *(int32_t *)((longlong)rendererContext + 0x454));
+            (rendererContext, renderData, (int)rendererContext[0x8a], *(int32_t *)((int64_t)rendererContext + 0x454));
   
   /* 安全检查和清理 */
-  SecurityManager_VerifyChecksum(securityChecksum ^ (ulonglong)securityBuffer);
+  SecurityManager_VerifyChecksum(securityChecksum ^ (uint64_t)securityBuffer);
 }
 
 
@@ -405,7 +405,7 @@ void SystemRenderer_UpdateRenderParameters(longlong *rendererContext, uint64_t r
  * 
  * @return 渲染内存管理器指针
  */
-uint64_t * RenderMemoryManager_Destroy(uint64_t *renderMemoryManager, ulonglong destroyFlags, 
+uint64_t * RenderMemoryManager_Destroy(uint64_t *renderMemoryManager, uint64_t destroyFlags, 
                                       uint64_t renderContext, uint64_t additionalData)
 {
   uint64_t memoryFlags;
@@ -443,14 +443,14 @@ uint64_t * RenderMemoryManager_Destroy(uint64_t *renderMemoryManager, ulonglong 
  * 
  * @return void
  */
-void UIEventHandler_ProcessEvent(longlong *uiContext, longlong eventData)
+void UIEventHandler_ProcessEvent(int64_t *uiContext, int64_t eventData)
 {
   /* 事件处理变量 */
-  longlong *eventHandler;
-  longlong eventLength;
+  int64_t *eventHandler;
+  int64_t eventLength;
   uint64_t eventResult;
   int eventType;
-  ulonglong eventNameLength;
+  uint64_t eventNameLength;
   uint eventNameHash;
   void *eventName;
   int8_t eventTypeData [16];
@@ -459,7 +459,7 @@ void UIEventHandler_ProcessEvent(longlong *uiContext, longlong eventData)
   int8_t eventData3 [16];
   int8_t securityBuffer [32];
   int32_t renderTargetId;
-  longlong *resourceManager;
+  int64_t *resourceManager;
   int eventX;
   int eventY;
   int32_t eventFlags;
@@ -480,11 +480,11 @@ void UIEventHandler_ProcessEvent(longlong *uiContext, longlong eventData)
   int8_t *eventBuffer;
   uint bufferSize;
   int8_t eventDataBuffer [136];
-  ulonglong securityChecksum;
+  uint64_t securityChecksum;
   
   /* 初始化安全检查和内存管理 */
   memoryFlags = 0xfffffffffffffffe;
-  securityChecksum = GET_SECURITY_COOKIE() ^ (ulonglong)securityBuffer;
+  securityChecksum = GET_SECURITY_COOKIE() ^ (uint64_t)securityBuffer;
   UIEventSystem_Initialize();
   
   /* 初始化事件缓冲区 */
@@ -501,13 +501,13 @@ void UIEventHandler_ProcessEvent(longlong *uiContext, longlong eventData)
   
   /* 复制UI元素名称到事件缓冲区 */
   strcpy_s(eventDataBuffer, 0x80, eventName);
-  eventNameLength = (ulonglong)bufferSize;
+  eventNameLength = (uint64_t)bufferSize;
   eventNameHash = bufferSize + 1;
   
   /* 添加下划线分隔符（如果缓冲区空间足够） */
   if (eventNameHash < 0x7f) {
     *(int16_t *)(eventBuffer + eventNameLength) = 0x5f;
-    eventNameLength = (ulonglong)eventNameHash;
+    eventNameLength = (uint64_t)eventNameHash;
     bufferSize = eventNameHash;
   }
   
@@ -526,7 +526,7 @@ void UIEventHandler_ProcessEvent(longlong *uiContext, longlong eventData)
   
   /* 复制事件名称到缓冲区（如果空间足够） */
   if ((0 < eventType) && ((uint)((int)eventNameLength + eventType) < 0x7f)) {
-    memcpy(eventBuffer + eventNameLength, eventName, (longlong)(eventType + 1));
+    memcpy(eventBuffer + eventNameLength, eventName, (int64_t)(eventType + 1));
   }
   
   /* 处理特殊事件类型 */
@@ -548,8 +548,8 @@ void UIEventHandler_ProcessEvent(longlong *uiContext, longlong eventData)
     eventDeviceId = *(uint *)(eventData + 0x1bd4);
     
     /* 处理非字符事件 */
-        iStack_120 = (int)(longlong)(double)param_1[0xb];
-        iStack_11c = (int)(longlong)(double)param_1[0xc];
+        iStack_120 = (int)(int64_t)(double)param_1[0xb];
+        iStack_11c = (int)(int64_t)(double)param_1[0xc];
         if (param_1[0x85] != 0) goto LAB_1803f8744;
         /* 调用事件处理函数 */
         (**(code **)(*uiContext + 8))(uiContext, &eventX, eventData);
@@ -560,8 +560,8 @@ void UIEventHandler_ProcessEvent(longlong *uiContext, longlong eventData)
         /* 处理坐标事件（鼠标事件） */
         /* 注意：此部分包含复杂的浮点数运算和坐标转换逻辑 */
         /* 简化实现：处理鼠标坐标转换和边界检查 */
-        eventX = (int)(longlong)(double)uiContext[0xb];
-        eventY = (int)(longlong)(double)uiContext[0xc];
+        eventX = (int)(int64_t)(double)uiContext[0xb];
+        eventY = (int)(int64_t)(double)uiContext[0xc];
         
         /* 确保坐标在有效范围内 */
         if (eventX < 1) {
@@ -606,17 +606,17 @@ void UIEventHandler_ProcessEvent(longlong *uiContext, longlong eventData)
   }
   else {
     /* 处理资源管理事件 */
-    eventHandler = *(longlong **)(eventData + 0x9690);
-    if (eventHandler != (longlong *)0x0) {
+    eventHandler = *(int64_t **)(eventData + 0x9690);
+    if (eventHandler != (int64_t *)0x0) {
       resourceManager = eventHandler;
       (**(code **)(*eventHandler + 0x28))(eventHandler);
     }
-    resourceManager = (longlong *)uiContext[0x85];
-    uiContext[0x85] = (longlong)eventHandler;
+    resourceManager = (int64_t *)uiContext[0x85];
+    uiContext[0x85] = (int64_t)eventHandler;
   }
   
   /* 清理资源管理器 */
-  if (resourceManager != (longlong *)0x0) {
+  if (resourceManager != (int64_t *)0x0) {
     (**(code **)(*resourceManager + 0x38))();
   }
   
@@ -624,7 +624,7 @@ EVENT_HANDLER_EXIT:
   uiResource = &UIResource_CleanupHandler;
   
   /* 安全检查和清理 */
-  SecurityManager_VerifyChecksum(securityChecksum ^ (ulonglong)securityBuffer);
+  SecurityManager_VerifyChecksum(securityChecksum ^ (uint64_t)securityBuffer);
 }
 
 
@@ -644,7 +644,7 @@ EVENT_HANDLER_EXIT:
  * 
  * @return void
  */
-void SystemInitializer_SetInitializationState(uint64_t systemId, longlong systemState, uint64_t initFlags)
+void SystemInitializer_SetInitializationState(uint64_t systemId, int64_t systemState, uint64_t initFlags)
 {
   /* 执行系统初始化 */
   SystemInitializer_PerformInitialization(systemId, initFlags);
@@ -677,13 +677,13 @@ void SystemInitializer_SetInitializationState(uint64_t systemId, longlong system
  * 
  * @return void
  */
-void SystemResourceCleaner_CleanupAndUnload(longlong *resourceContext, uint64_t cleanupFlags, 
+void SystemResourceCleaner_CleanupAndUnload(int64_t *resourceContext, uint64_t cleanupFlags, 
                                             uint64_t contextData, int32_t priorityLevel, 
                                             int32_t timeoutMs)
 {
   /* 清理参数 */
   int resourceCount;
-  longlong resourceSize;
+  int64_t resourceSize;
   void *resourceName;
   int8_t securityBuffer [32];
   int32_t cleanupCounter;
@@ -700,11 +700,11 @@ void SystemResourceCleaner_CleanupAndUnload(longlong *resourceContext, uint64_t 
   void *resourceCache;
   uint resourceHash;
   uint8_t resourceData [136];
-  ulonglong securityChecksum;
+  uint64_t securityChecksum;
   
   /* 初始化安全检查和内存管理 */
   memoryFlags = 0xfffffffffffffffe;
-  securityChecksum = GET_SECURITY_COOKIE() ^ (ulonglong)securityBuffer;
+  securityChecksum = GET_SECURITY_COOKIE() ^ (uint64_t)securityBuffer;
   resourceManager = &ResourceManager_DefaultHandler;
   resourceCache = resourceData;
   resourceData[0] = 0;
@@ -728,7 +728,7 @@ void SystemResourceCleaner_CleanupAndUnload(longlong *resourceContext, uint64_t 
   
   /* 复制资源名称到缓存（如果空间足够） */
   if ((0 < resourceCount) && (resourceHash + resourceCount < 0x7f)) {
-    memcpy(resourceCache + resourceHash, resourceName, (longlong)(resourceCount + 1));
+    memcpy(resourceCache + resourceHash, resourceName, (int64_t)(resourceCount + 1));
   }
   
   /* 设置资源路径 */
@@ -756,7 +756,7 @@ void SystemResourceCleaner_CleanupAndUnload(longlong *resourceContext, uint64_t 
   /* 如果资源存在，添加到清理列表 */
   if (resourceName != (void *)0x0) {
     ResourceCleaner_AddToCleanupList(&currentResource, resourceName);
-    ResourceCleaner_RegisterForCleanup(*(longlong *)(system_message_buffer + 0x1cd8) + 0x7f20, &currentResource);
+    ResourceCleaner_RegisterForCleanup(*(int64_t *)(system_message_buffer + 0x1cd8) + 0x7f20, &currentResource);
   }
   
   /* 检查是否需要立即清理 */
@@ -767,7 +767,7 @@ void SystemResourceCleaner_CleanupAndUnload(longlong *resourceContext, uint64_t 
     
     /* 执行清理操作 */
     (**(code **)(*resourceContext + 0x50))
-              (resourceContext, contextData, (int)resourceContext[0x8a], *(int32_t *)((longlong)resourceContext + 0x454));
+              (resourceContext, contextData, (int)resourceContext[0x8a], *(int32_t *)((int64_t)resourceContext + 0x454));
     ResourceCleaner_ProcessCleanup(*(uint64_t *)(system_message_buffer + 0x1cd8), resourceContext[0x85]);
   }
   else {
@@ -783,7 +783,7 @@ void SystemResourceCleaner_CleanupAndUnload(longlong *resourceContext, uint64_t 
   SystemStateManager_UpdateState();
   
   /* 安全检查和清理 */
-  SecurityManager_VerifyChecksum(securityChecksum ^ (ulonglong)securityBuffer);
+  SecurityManager_VerifyChecksum(securityChecksum ^ (uint64_t)securityBuffer);
 }
 
 
@@ -801,41 +801,41 @@ void SystemResourceCleaner_CleanupAndUnload(longlong *resourceContext, uint64_t 
  * 
  * @return void
  */
-void DoubleBufferManager_SwapBuffers(longlong bufferManager)
+void DoubleBufferManager_SwapBuffers(int64_t bufferManager)
 {
-  longlong bufferOffset;
-  longlong *currentBuffer;
-  longlong *previousBuffer;
+  int64_t bufferOffset;
+  int64_t *currentBuffer;
+  int64_t *previousBuffer;
   
   /* 设置缓冲区状态为交换中 */
-  *(int32_t *)(bufferManager + 0x74 + (longlong)*(int *)(bufferManager + 0x474) * 4) = 0xffffffe8;
+  *(int32_t *)(bufferManager + 0x74 + (int64_t)*(int *)(bufferManager + 0x474) * 4) = 0xffffffe8;
   
   /* 计算当前缓冲区偏移 */
-  bufferOffset = bufferManager + (longlong)*(int *)(bufferManager + 0x474) * 8;
+  bufferOffset = bufferManager + (int64_t)*(int *)(bufferManager + 0x474) * 8;
   
   /* 获取当前缓冲区 */
-  currentBuffer = *(longlong **)(bufferManager + (longlong)*(int *)(bufferManager + 0x470) * 8 + 0x458);
-  if (currentBuffer != (longlong *)0x0) {
+  currentBuffer = *(int64_t **)(bufferManager + (int64_t)*(int *)(bufferManager + 0x470) * 8 + 0x458);
+  if (currentBuffer != (int64_t *)0x0) {
     (**(code **)(*currentBuffer + 0x28))(currentBuffer);
   }
   
   /* 交换缓冲区指针 */
-  previousBuffer = *(longlong **)(bufferOffset + 0x138);
-  *(longlong **)(bufferOffset + 0x138) = currentBuffer;
-  if (previousBuffer != (longlong *)0x0) {
+  previousBuffer = *(int64_t **)(bufferOffset + 0x138);
+  *(int64_t **)(bufferOffset + 0x138) = currentBuffer;
+  if (previousBuffer != (int64_t *)0x0) {
     (**(code **)(*previousBuffer + 0x38))();
   }
   
   /* 获取备用缓冲区 */
-  currentBuffer = *(longlong **)(bufferManager + 0x458 + (longlong)(1 - *(int *)(bufferManager + 0x470)) * 8);
-  if (currentBuffer != (longlong *)0x0) {
+  currentBuffer = *(int64_t **)(bufferManager + 0x458 + (int64_t)(1 - *(int *)(bufferManager + 0x470)) * 8);
+  if (currentBuffer != (int64_t *)0x0) {
     (**(code **)(*currentBuffer + 0x28))(currentBuffer);
   }
   
   /* 更新备用缓冲区指针 */
-  previousBuffer = *(longlong **)(bufferManager + 0x428);
-  *(longlong **)(bufferManager + 0x428) = currentBuffer;
-  if (previousBuffer != (longlong *)0x0) {
+  previousBuffer = *(int64_t **)(bufferManager + 0x428);
+  *(int64_t **)(bufferManager + 0x428) = currentBuffer;
+  if (previousBuffer != (int64_t *)0x0) {
     (**(code **)(*previousBuffer + 0x38))();
   }
   
@@ -861,8 +861,8 @@ void DoubleBufferManager_SwapBuffers(longlong bufferManager)
  */
 uint64_t * ResourceManager_Constructor(uint64_t *resourceManager, int32_t initialCapacity, int32_t maxCapacity)
 {
-  longlong *resourceList;
-  longlong *resourceCache;
+  int64_t *resourceList;
+  int64_t *resourceCache;
   
   /* 初始化资源管理器 */
   SystemResourceManager_Initialize();
@@ -870,7 +870,7 @@ uint64_t * ResourceManager_Constructor(uint64_t *resourceManager, int32_t initia
   
   /* 设置容量参数 */
   *(int32_t *)(resourceManager + 0x8a) = initialCapacity;
-  *(int32_t *)((longlong)resourceManager + 0x454) = maxCapacity;
+  *(int32_t *)((int64_t)resourceManager + 0x454) = maxCapacity;
   
   /* 设置资源管理器虚函数表 */
   *resourceManager = &ResourceManager_VTable_Main;
@@ -881,25 +881,25 @@ uint64_t * ResourceManager_Constructor(uint64_t *resourceManager, int32_t initia
   /* 初始化资源管理器状态 */
   resourceManager[0x8d] = 0;
   *(int32_t *)(resourceManager + 0x8e) = 0;
-  *(int32_t *)((longlong)resourceManager + 0x474) = 4;
+  *(int32_t *)((int64_t)resourceManager + 0x474) = 4;
   
   /* 清理资源列表 */
-  resourceList = (longlong *)resourceManager[0x8c];
+  resourceList = (int64_t *)resourceManager[0x8c];
   resourceManager[0x8c] = 0;
-  if (resourceList != (longlong *)0x0) {
+  if (resourceList != (int64_t *)0x0) {
     (**(code **)(*resourceList + 0x38))();
   }
   
   /* 再次清理资源列表（确保完全清理） */
-  resourceList = (longlong *)resourceManager[0x8c];
-  if (resourceList != (longlong *)0x0) {
+  resourceList = (int64_t *)resourceManager[0x8c];
+  if (resourceList != (int64_t *)0x0) {
     (**(code **)(*resourceList + 0x28))(resourceList);
   }
   
   /* 清理资源缓存 */
-  resourceCache = (longlong *)resourceManager[0x8b];
+  resourceCache = (int64_t *)resourceManager[0x8b];
   resourceManager[0x8b] = resourceList;
-  if (resourceCache != (longlong *)0x0) {
+  if (resourceCache != (int64_t *)0x0) {
     (**(code **)(*resourceCache + 0x38))();
   }
   
@@ -919,7 +919,7 @@ uint64_t * ResourceManager_Constructor(uint64_t *resourceManager, int32_t initia
  * 
  * @return 资源管理器指针
  */
-uint64_t * ResourceManager_Destructor(uint64_t *resourceManager, ulonglong destroyFlags)
+uint64_t * ResourceManager_Destructor(uint64_t *resourceManager, uint64_t destroyFlags)
 {
   uint64_t memoryFlags;
   
@@ -928,8 +928,8 @@ uint64_t * ResourceManager_Destructor(uint64_t *resourceManager, ulonglong destr
   *resourceManager = &ResourceManager_VTable_Main;
   
   /* 销毁资源管理器实例 */
-  if ((longlong *)resourceManager[0x8d] != (longlong *)0x0) {
-    (**(code **)(*(longlong *)resourceManager[0x8d] + 0x38))();
+  if ((int64_t *)resourceManager[0x8d] != (int64_t *)0x0) {
+    (**(code **)(*(int64_t *)resourceManager[0x8d] + 0x38))();
   }
   
   /* 清理资源缓存系统 */
@@ -960,14 +960,14 @@ uint64_t * ResourceManager_Destructor(uint64_t *resourceManager, ulonglong destr
  * 
  * @return 新创建的资源管理器指针
  */
-longlong ResourceManager_Clone(longlong sourceManager)
+int64_t ResourceManager_Clone(int64_t sourceManager)
 {
-  longlong *sourceResource;
-  longlong *targetResource;
+  int64_t *sourceResource;
+  int64_t *targetResource;
   uint64_t newManager;
-  longlong newResourceManager;
-  longlong resourceCount;
-  longlong *resourcePointer;
+  int64_t newResourceManager;
+  int64_t resourceCount;
+  int64_t *resourcePointer;
   
   /* 分配新的资源管理器内存 */
   newManager = MemoryManager_AllocateResourceMemory(system_memory_pool_ptr, 0x478, 8, 3, 0xfffffffffffffffe);
@@ -983,19 +983,19 @@ longlong ResourceManager_Clone(longlong sourceManager)
   *(int32_t *)(newResourceManager + 0x454) = *(int32_t *)(sourceManager + 0x454);
   
   /* 复制资源列表 */
-  resourcePointer = (longlong *)(newResourceManager + 0x458);
+  resourcePointer = (int64_t *)(newResourceManager + 0x458);
   resourceCount = 2;
   
   /* 遍历并复制资源 */
   do {
-    sourceResource = *(longlong **)((sourceManager - newResourceManager) + (longlong)resourcePointer);
-    if (sourceResource != (longlong *)0x0) {
+    sourceResource = *(int64_t **)((sourceManager - newResourceManager) + (int64_t)resourcePointer);
+    if (sourceResource != (int64_t *)0x0) {
       (**(code **)(*sourceResource + 0x28))(sourceResource);
     }
     
-    targetResource = (longlong *)*resourcePointer;
-    *resourcePointer = (longlong)sourceResource;
-    if (targetResource != (longlong *)0x0) {
+    targetResource = (int64_t *)*resourcePointer;
+    *resourcePointer = (int64_t)sourceResource;
+    if (targetResource != (int64_t *)0x0) {
       (**(code **)(*targetResource + 0x38))();
     }
     
@@ -1004,14 +1004,14 @@ longlong ResourceManager_Clone(longlong sourceManager)
   } while (resourceCount != 0);
   
   /* 复制资源管理器引用 */
-  resourcePointer = *(longlong **)(sourceManager + 0x468);
-  if (resourcePointer != (longlong *)0x0) {
+  resourcePointer = *(int64_t **)(sourceManager + 0x468);
+  if (resourcePointer != (int64_t *)0x0) {
     (**(code **)(*resourcePointer + 0x28))(resourcePointer);
   }
   
-  sourceResource = *(longlong **)(newResourceManager + 0x468);
-  *(longlong **)(newResourceManager + 0x468) = resourcePointer;
-  if (sourceResource != (longlong *)0x0) {
+  sourceResource = *(int64_t **)(newResourceManager + 0x468);
+  *(int64_t **)(newResourceManager + 0x468) = resourcePointer;
+  if (sourceResource != (int64_t *)0x0) {
     (**(code **)(*sourceResource + 0x38))();
   }
   
@@ -1043,42 +1043,42 @@ longlong ResourceManager_Clone(longlong sourceManager)
  * 
  * @return void
  */
-void SystemStateManager_ResetState(longlong *systemContext, uint64_t resetFlags, 
+void SystemStateManager_ResetState(int64_t *systemContext, uint64_t resetFlags, 
                                   uint64_t contextData, int32_t priorityLevel, 
                                   int32_t timeoutMs)
 {
-  longlong *stateManager;
+  int64_t *stateManager;
   bool isStateCreated;
   bool isStateExisting;
-  longlong systemData;
-  longlong *newStateManager;
-  longlong **stateManagerRef;
-  longlong *tempStateManager;
-  longlong *previousStateManager;
+  int64_t systemData;
+  int64_t *newStateManager;
+  int64_t **stateManagerRef;
+  int64_t *tempStateManager;
+  int64_t *previousStateManager;
   uint64_t memoryFlags;
-  longlong *currentStateManager;
+  int64_t *currentStateManager;
   
   uStack_40 = 0xfffffffffffffffe;
-  plVar1 = (longlong *)param_1[0x8d];
+  plVar1 = (int64_t *)param_1[0x8d];
   plStack_38 = plVar1;
-  if (plVar1 != (longlong *)0x0) {
+  if (plVar1 != (int64_t *)0x0) {
     (**(code **)(*plVar1 + 0x28))(plVar1);
   }
-  plVar5 = (longlong *)param_1[0x29];
-  if (plVar5 != (longlong *)0x0) {
+  plVar5 = (int64_t *)param_1[0x29];
+  if (plVar5 != (int64_t *)0x0) {
     plStackX_8 = plVar5;
     (**(code **)(*plVar5 + 0x28))(plVar5);
   }
-  plStackX_8 = (longlong *)param_1[0x8d];
-  param_1[0x8d] = (longlong)plVar5;
-  if (plStackX_8 != (longlong *)0x0) {
+  plStackX_8 = (int64_t *)param_1[0x8d];
+  param_1[0x8d] = (int64_t)plVar5;
+  if (plStackX_8 != (int64_t *)0x0) {
     (**(code **)(*plStackX_8 + 0x38))();
   }
-  *(int32_t *)((longlong)param_1 + 0x9c) = 0xffffffe8;
-  if (plVar1 == (longlong *)0x0) {
-    plVar5 = (longlong *)MemoryManager_CreateResourceBuffer();
+  *(int32_t *)((int64_t)param_1 + 0x9c) = 0xffffffe8;
+  if (plVar1 == (int64_t *)0x0) {
+    plVar5 = (int64_t *)MemoryManager_CreateResourceBuffer();
     plStackX_8 = plVar5;
-    if (plVar5 != (longlong *)0x0) {
+    if (plVar5 != (int64_t *)0x0) {
       (**(code **)(*plVar5 + 0x28))(plVar5);
     }
     pplVar6 = &plStackX_8;
@@ -1093,35 +1093,35 @@ void SystemStateManager_ResetState(longlong *systemContext, uint64_t resetFlags,
     bVar2 = false;
     plVar5 = plVar1;
   }
-  *pplVar6 = (longlong *)0x0;
-  plStack_48 = (longlong *)param_1[0x31];
-  param_1[0x31] = (longlong)plVar5;
-  if (plStack_48 != (longlong *)0x0) {
+  *pplVar6 = (int64_t *)0x0;
+  plStack_48 = (int64_t *)param_1[0x31];
+  param_1[0x31] = (int64_t)plVar5;
+  if (plStack_48 != (int64_t *)0x0) {
     (**(code **)(*plStack_48 + 0x38))();
   }
   if (bVar2) {
-    if (plStackX_8 != (longlong *)0x0) {
+    if (plStackX_8 != (int64_t *)0x0) {
       (**(code **)(*plStackX_8 + 0x38))();
     }
   }
   if (bVar3) {
-    if (plStack_50 != (longlong *)0x0) {
+    if (plStack_50 != (int64_t *)0x0) {
       (**(code **)(*plStack_50 + 0x38))();
     }
   }
   lVar4 = system_message_buffer;
-  *(uint64_t *)(*(longlong *)(system_message_buffer + 0x1cd8) + 0x83b8) = 0;
-  *(uint64_t *)(*(longlong *)(lVar4 + 0x1cd8) + 0x83c0) = 0;
-  *(uint64_t *)(*(longlong *)(lVar4 + 0x1cd8) + 0x83c8) = 0;
-  *(uint64_t *)(*(longlong *)(lVar4 + 0x1cd8) + 0x83d0) = 0;
-  *(uint64_t *)(*(longlong *)(lVar4 + 0x1cd8) + 0x83d8) = 0;
-  *(uint64_t *)(*(longlong *)(lVar4 + 0x1cd8) + 0x83e0) = 0;
-  *(uint64_t *)(*(longlong *)(lVar4 + 0x1cd8) + 0x83e8) = 0;
-  *(uint64_t *)(*(longlong *)(lVar4 + 0x1cd8) + 0x83f0) = 0;
+  *(uint64_t *)(*(int64_t *)(system_message_buffer + 0x1cd8) + 0x83b8) = 0;
+  *(uint64_t *)(*(int64_t *)(lVar4 + 0x1cd8) + 0x83c0) = 0;
+  *(uint64_t *)(*(int64_t *)(lVar4 + 0x1cd8) + 0x83c8) = 0;
+  *(uint64_t *)(*(int64_t *)(lVar4 + 0x1cd8) + 0x83d0) = 0;
+  *(uint64_t *)(*(int64_t *)(lVar4 + 0x1cd8) + 0x83d8) = 0;
+  *(uint64_t *)(*(int64_t *)(lVar4 + 0x1cd8) + 0x83e0) = 0;
+  *(uint64_t *)(*(int64_t *)(lVar4 + 0x1cd8) + 0x83e8) = 0;
+  *(uint64_t *)(*(int64_t *)(lVar4 + 0x1cd8) + 0x83f0) = 0;
   DataProcessor_DecompressData(*(uint64_t *)(lVar4 + 0x1cd8),7);
   (**(code **)(*param_1 + 0x50))
             (param_1,param_3,(int)param_1[0x8a],(int)param_1[0x8a],param_4,param_5,0);
-  if (plVar1 != (longlong *)0x0) {
+  if (plVar1 != (int64_t *)0x0) {
     (**(code **)(*plVar1 + 0x38))(plVar1);
   }
   return;
@@ -1145,21 +1145,21 @@ void SystemStateManager_ResetState(longlong *systemContext, uint64_t resetFlags,
  * 
  * @return void
  */
-void UIResourceManager_ManageUIResources(longlong *uiManager, longlong eventData)
+void UIResourceManager_ManageUIResources(int64_t *uiManager, int64_t eventData)
 {
   /* UI资源管理变量 */
-  longlong resourceSize;
+  int64_t resourceSize;
   uint resourceHash;
-  longlong *resourceHandler;
+  int64_t *resourceHandler;
   int resourceType;
   int8_t resourceData1 [16];
   int8_t resourceData2 [16];
   int8_t resourceData3 [16];
   int8_t resourceData4 [16];
   int8_t securityBuffer [32];
-  longlong *textureResource;
-  longlong *fontResource;
-  longlong *layoutResource;
+  int64_t *textureResource;
+  int64_t *fontResource;
+  int64_t *layoutResource;
   int resourceWidth;
   int resourceHeight;
   int32_t textureFlags;
@@ -1182,11 +1182,11 @@ void UIResourceManager_ManageUIResources(longlong *uiManager, longlong eventData
   int8_t *fontPath;
   int32_t fontSize;
   int8_t fontData [136];
-  ulonglong securityChecksum;
+  uint64_t securityChecksum;
   
   /* 初始化安全检查和内存管理 */
   memoryFlags = 0xfffffffffffffffe;
-  securityChecksum = GET_SECURITY_COOKIE() ^ (ulonglong)securityBuffer;
+  securityChecksum = GET_SECURITY_COOKIE() ^ (uint64_t)securityBuffer;
   UIResourceManager_Initialize();
   
   /* 初始化UI资源参数 */
@@ -1203,9 +1203,9 @@ void UIResourceManager_ManageUIResources(longlong *uiManager, longlong eventData
   resourceDeviceId = *(uint *)(eventData + 0x1bd4);
   
   /* 处理字符事件 */
-  if (*(char *)((longlong)uiManager + 0x4c) == '\0') {
-    resourceWidth = (int)(longlong)(double)uiManager[0xb];
-    resourceHeight = (int)(longlong)(double)uiManager[0xc];
+  if (*(char *)((int64_t)uiManager + 0x4c) == '\0') {
+    resourceWidth = (int)(int64_t)(double)uiManager[0xb];
+    resourceHeight = (int)(int64_t)(double)uiManager[0xc];
     
     /* 处理纹理资源 */
     if (uiManager[0x8b] == 0) {
@@ -1214,15 +1214,15 @@ void UIResourceManager_ManageUIResources(longlong *uiManager, longlong eventData
       textureInfo[0] = 0;
       textureSize = 0xe;
       strcpy_s(textureInfo, 0x80, &UITexture_DefaultPath);
-      resourceHandler = (longlong *)UIResourceManager_RegisterTexture(system_resource_state, &textureResource, &textureManager, &resourceWidth);
+      resourceHandler = (int64_t *)UIResourceManager_RegisterTexture(system_resource_state, &textureResource, &textureManager, &resourceWidth);
       resourceSize = *resourceHandler;
       *resourceHandler = 0;
-      textureResource = (longlong *)uiManager[0x8b];
+      textureResource = (int64_t *)uiManager[0x8b];
       uiManager[0x8b] = resourceSize;
-      if (textureResource != (longlong *)0x0) {
+      if (textureResource != (int64_t *)0x0) {
         (**(code **)(*textureResource + 0x38))();
       }
-      if (textureResource != (longlong *)0x0) {
+      if (textureResource != (int64_t *)0x0) {
         (**(code **)(*textureResource + 0x38))();
       }
       textureManager = &UITextureManager_Cleanup;
@@ -1235,15 +1235,15 @@ void UIResourceManager_ManageUIResources(longlong *uiManager, longlong eventData
       fontData[0] = 0;
       fontSize = 0xe;
       strcpy_s(fontData, 0x80, &UIFont_DefaultPath);
-      resourceHandler = (longlong *)UIResourceManager_RegisterFont(system_resource_state, &fontResource, &fontManager, &resourceWidth);
+      resourceHandler = (int64_t *)UIResourceManager_RegisterFont(system_resource_state, &fontResource, &fontManager, &resourceWidth);
       resourceSize = *resourceHandler;
       *resourceHandler = 0;
-      textureResource = (longlong *)uiManager[0x8c];
+      textureResource = (int64_t *)uiManager[0x8c];
       uiManager[0x8c] = resourceSize;
-      if (textureResource != (longlong *)0x0) {
+      if (textureResource != (int64_t *)0x0) {
         (**(code **)(*textureResource + 0x38))();
       }
-      if (fontResource != (longlong *)0x0) {
+      if (fontResource != (int64_t *)0x0) {
         (**(code **)(*fontResource + 0x38))();
       }
       fontManager = &UIFontManager_Cleanup;
@@ -1268,15 +1268,15 @@ void UIResourceManager_ManageUIResources(longlong *uiManager, longlong eventData
     fontData[0] = 0;
     fontSize = 0xe;
     strcpy_s(fontData, 0x80, &UITexture_DefaultPath);
-    resourceHandler = (longlong *)UIResourceManager_RegisterTexture(system_resource_state, &textureResource, &fontManager, &resourceWidth);
+    resourceHandler = (int64_t *)UIResourceManager_RegisterTexture(system_resource_state, &textureResource, &fontManager, &resourceWidth);
     resourceSize = *resourceHandler;
     *resourceHandler = 0;
-    fontResource = (longlong *)uiManager[0x8b];
+    fontResource = (int64_t *)uiManager[0x8b];
     uiManager[0x8b] = resourceSize;
-    if (fontResource != (longlong *)0x0) {
+    if (fontResource != (int64_t *)0x0) {
       (**(code **)(*fontResource + 0x38))();
     }
-    if (textureResource != (longlong *)0x0) {
+    if (textureResource != (int64_t *)0x0) {
       (**(code **)(*textureResource + 0x38))();
     }
     fontManager = &UIFontManager_Cleanup;
@@ -1287,15 +1287,15 @@ void UIResourceManager_ManageUIResources(longlong *uiManager, longlong eventData
     textureInfo[0] = 0;
     textureSize = 0xe;
     strcpy_s(textureInfo, 0x80, &UIFont_DefaultPath);
-    resourceHandler = (longlong *)UIResourceManager_RegisterFont(system_resource_state, &fontResource, &textureManager, &resourceWidth);
+    resourceHandler = (int64_t *)UIResourceManager_RegisterFont(system_resource_state, &fontResource, &textureManager, &resourceWidth);
     resourceSize = *resourceHandler;
     *resourceHandler = 0;
-    fontResource = (longlong *)uiManager[0x8c];
+    fontResource = (int64_t *)uiManager[0x8c];
     uiManager[0x8c] = resourceSize;
-    if (fontResource != (longlong *)0x0) {
+    if (fontResource != (int64_t *)0x0) {
       (**(code **)(*fontResource + 0x38))();
     }
-    if (fontResource != (longlong *)0x0) {
+    if (fontResource != (int64_t *)0x0) {
       (**(code **)(*fontResource + 0x38))();
     }
     textureManager = &UITextureManager_Cleanup;
@@ -1303,14 +1303,14 @@ void UIResourceManager_ManageUIResources(longlong *uiManager, longlong eventData
   
   /* 调用UI资源清理函数 */
   (**(code **)(*uiManager + 0x40))(uiManager, 0);
-  textureResource = (longlong *)uiManager[0x89];
+  textureResource = (int64_t *)uiManager[0x89];
   uiManager[0x89] = 0;
-  if (textureResource != (longlong *)0x0) {
+  if (textureResource != (int64_t *)0x0) {
     (**(code **)(*textureResource + 0x38))();
   }
   
   /* 安全检查和清理 */
-  SecurityManager_VerifyChecksum(securityChecksum ^ (ulonglong)securityBuffer);
+  SecurityManager_VerifyChecksum(securityChecksum ^ (uint64_t)securityBuffer);
 }
 
 
@@ -1328,7 +1328,7 @@ void UIResourceManager_ManageUIResources(longlong *uiManager, longlong eventData
  * 
  * @return UI内存管理器指针
  */
-uint64_t * UIMemoryManager_Destroy(uint64_t *uiMemoryManager, ulonglong destroyFlags, 
+uint64_t * UIMemoryManager_Destroy(uint64_t *uiMemoryManager, uint64_t destroyFlags, 
                                   uint64_t uiContext, uint64_t additionalData)
 {
   uint64_t memoryFlags;

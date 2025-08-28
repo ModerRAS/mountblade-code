@@ -52,13 +52,13 @@ void ui_system_initializer(void)
  * @param param_2 UI系统参数数组
  * @return 处理结果状态码，0表示成功，非0表示错误
  */
-ulonglong ui_system_processor_type1(longlong param_1,uint64_t *param_2)
+uint64_t ui_system_processor_type1(int64_t param_1,uint64_t *param_2)
 
 {
   uint64_t uVar1;
   uint uVar2;
-  ulonglong uVar3;
-  ulonglong uVar4;
+  uint64_t uVar3;
+  uint64_t uVar4;
   int8_t auStackX_18 [4];
   int8_t auStackX_1c [12];
   int8_t auStack_58 [32];
@@ -77,7 +77,7 @@ ulonglong ui_system_processor_type1(longlong param_1,uint64_t *param_2)
     }
     if (*(int *)(param_2[1] + 0x18) == 0) {
       uVar2 = FUN_1808aed00(*param_2,param_1 + 0xf8,4);
-      uVar3 = (ulonglong)uVar2;
+      uVar3 = (uint64_t)uVar2;
       if (uVar2 == 0) {
         if (((*(uint *)(param_2 + 8) < 0x8a) && (*(int *)(param_1 + 0xf8) == 0)) ||
            ((*(uint *)(param_2 + 8) < 0x8e && (*(int *)(param_1 + 0xf8) == 0x7fffffff)))) {
@@ -117,7 +117,7 @@ ulonglong ui_system_processor_type1(longlong param_1,uint64_t *param_2)
                 uVar3 = uVar4;
                 if (*(int *)(param_2[1] + 0x18) == 0) {
                   uVar2 = FUN_1808995c0(*param_2,param_1 + 0xfc);
-                  uVar3 = (ulonglong)uVar2;
+                  uVar3 = (uint64_t)uVar2;
                 }
               }
               if (((int)uVar3 == 0) &&
@@ -152,16 +152,16 @@ ulonglong ui_system_processor_type1(longlong param_1,uint64_t *param_2)
  * 
  * @return 处理结果状态码，0表示成功，非0表示错误
  */
-ulonglong ui_system_processor_type2(void)
+uint64_t ui_system_processor_type2(void)
 
 {
   uint64_t uVar1;
   uint uVar2;
-  longlong in_RAX;
-  ulonglong uVar3;
+  int64_t in_RAX;
+  uint64_t uVar3;
   uint64_t *unaff_RBX;
-  longlong unaff_RSI;
-  ulonglong uVar4;
+  int64_t unaff_RSI;
+  uint64_t uVar4;
   
   if (*(int *)(in_RAX + 0x18) != 0) {
     return 0x1c;
@@ -170,7 +170,7 @@ ulonglong ui_system_processor_type2(void)
   if ((int)uVar3 == 0) {
     if (*(int *)(unaff_RBX[1] + 0x18) == 0) {
       uVar2 = FUN_1808aed00(*unaff_RBX,unaff_RSI + 0xf8,4);
-      uVar3 = (ulonglong)uVar2;
+      uVar3 = (uint64_t)uVar2;
       if (uVar2 == 0) {
         if (((*(uint *)(unaff_RBX + 8) < 0x8a) && (*(int *)(unaff_RSI + 0xf8) == 0)) ||
            ((*(uint *)(unaff_RBX + 8) < 0x8e && (*(int *)(unaff_RSI + 0xf8) == 0x7fffffff)))) {
@@ -210,7 +210,7 @@ ulonglong ui_system_processor_type2(void)
                 uVar3 = uVar4;
                 if (*(int *)(unaff_RBX[1] + 0x18) == 0) {
                   uVar2 = FUN_1808995c0(*unaff_RBX,unaff_RSI + 0xfc);
-                  uVar3 = (ulonglong)uVar2;
+                  uVar3 = (uint64_t)uVar2;
                 }
               }
               if (((int)uVar3 == 0) &&
@@ -246,15 +246,15 @@ ulonglong ui_system_processor_type2(void)
  * 
  * @return 处理结果状态码，0表示成功，非0表示错误
  */
-ulonglong ui_system_processor_type3(void)
+uint64_t ui_system_processor_type3(void)
 
 {
   uint64_t uVar1;
   uint uVar2;
-  ulonglong uVar3;
+  uint64_t uVar3;
   uint64_t *unaff_RBX;
-  longlong unaff_RSI;
-  ulonglong uVar4;
+  int64_t unaff_RSI;
+  uint64_t uVar4;
   
   uVar3 = FUN_1808aed00(*unaff_RBX,unaff_RSI + 0xf0,4);
   if ((int)uVar3 != 0) {
@@ -262,7 +262,7 @@ ulonglong ui_system_processor_type3(void)
   }
   if (*(int *)(unaff_RBX[1] + 0x18) == 0) {
     uVar2 = FUN_1808aed00(*unaff_RBX,unaff_RSI + 0xf8,4);
-    uVar3 = (ulonglong)uVar2;
+    uVar3 = (uint64_t)uVar2;
     if (uVar2 == 0) {
       if (((*(uint *)(unaff_RBX + 8) < 0x8a) && (*(int *)(unaff_RSI + 0xf8) == 0)) ||
          ((*(uint *)(unaff_RBX + 8) < 0x8e && (*(int *)(unaff_RSI + 0xf8) == 0x7fffffff)))) {
@@ -302,7 +302,7 @@ ulonglong ui_system_processor_type3(void)
               uVar3 = uVar4;
               if (*(int *)(unaff_RBX[1] + 0x18) == 0) {
                 uVar2 = FUN_1808995c0(*unaff_RBX,unaff_RSI + 0xfc);
-                uVar3 = (ulonglong)uVar2;
+                uVar3 = (uint64_t)uVar2;
               }
             }
             if (((int)uVar3 == 0) &&
@@ -335,19 +335,19 @@ ulonglong ui_system_processor_type3(void)
  * 
  * @return 处理结果状态码，0表示成功，非0表示错误
  */
-ulonglong ui_system_processor_type4(void)
+uint64_t ui_system_processor_type4(void)
 
 {
   uint64_t uVar1;
   uint uVar2;
-  ulonglong uVar3;
+  uint64_t uVar3;
   uint64_t *unaff_RBX;
-  longlong unaff_RSI;
-  ulonglong uVar4;
+  int64_t unaff_RSI;
+  uint64_t uVar4;
   
   if (*(int *)(unaff_RBX[1] + 0x18) == 0) {
     uVar2 = FUN_1808aed00(*unaff_RBX,unaff_RSI + 0xf8,4);
-    uVar3 = (ulonglong)uVar2;
+    uVar3 = (uint64_t)uVar2;
     if (uVar2 == 0) {
       if (((*(uint *)(unaff_RBX + 8) < 0x8a) && (*(int *)(unaff_RSI + 0xf8) == 0)) ||
          ((*(uint *)(unaff_RBX + 8) < 0x8e && (*(int *)(unaff_RSI + 0xf8) == 0x7fffffff)))) {
@@ -387,7 +387,7 @@ ulonglong ui_system_processor_type4(void)
               uVar3 = uVar4;
               if (*(int *)(unaff_RBX[1] + 0x18) == 0) {
                 uVar2 = FUN_1808995c0(*unaff_RBX,unaff_RSI + 0xfc);
-                uVar3 = (ulonglong)uVar2;
+                uVar3 = (uint64_t)uVar2;
               }
             }
             if (((int)uVar3 == 0) &&
@@ -420,13 +420,13 @@ ulonglong ui_system_processor_type4(void)
  * 
  * @return 处理结果状态码，0表示成功，非0表示错误
  */
-ulonglong ui_system_processor_type5(void)
+uint64_t ui_system_processor_type5(void)
 
 {
   uint64_t uVar1;
-  ulonglong uVar2;
+  uint64_t uVar2;
   uint64_t *unaff_RBX;
-  longlong unaff_RSI;
+  int64_t unaff_RSI;
   uint unaff_EDI;
   
   uVar1 = *unaff_RBX;
@@ -442,7 +442,7 @@ ulonglong ui_system_processor_type5(void)
       uVar2 = FUN_1808aed00(*unaff_RBX,unaff_RSI + 0xf4,4);
     }
     else {
-      uVar2 = (ulonglong)unaff_EDI;
+      uVar2 = (uint64_t)unaff_EDI;
     }
     if ((int)uVar2 == 0) {
       if (*(uint *)(unaff_RBX + 8) < 0x5e) {
@@ -458,7 +458,7 @@ ulonglong ui_system_processor_type5(void)
                     // WARNING: Subroutine does not return
         FUN_1808ddf80();
       }
-      uVar2 = (ulonglong)unaff_EDI;
+      uVar2 = (uint64_t)unaff_EDI;
     }
   }
   return uVar2;
@@ -478,12 +478,12 @@ ulonglong ui_system_processor_type5(void)
  * 
  * @return 处理结果状态码，0表示成功，非0表示错误
  */
-ulonglong ui_system_processor_type6(void)
+uint64_t ui_system_processor_type6(void)
 
 {
-  ulonglong uVar1;
+  uint64_t uVar1;
   uint64_t *unaff_RBX;
-  longlong unaff_RSI;
+  int64_t unaff_RSI;
   uint unaff_EDI;
   
   if (*(uint *)(unaff_RBX + 8) < 0x39) {
@@ -493,7 +493,7 @@ ulonglong ui_system_processor_type6(void)
     uVar1 = FUN_1808aed00(*unaff_RBX,unaff_RSI + 0xf4,4);
   }
   else {
-    uVar1 = (ulonglong)unaff_EDI;
+    uVar1 = (uint64_t)unaff_EDI;
   }
   if ((int)uVar1 == 0) {
     if (*(uint *)(unaff_RBX + 8) < 0x5e) {
@@ -509,7 +509,7 @@ ulonglong ui_system_processor_type6(void)
       }
     }
     else {
-      uVar1 = (ulonglong)unaff_EDI;
+      uVar1 = (uint64_t)unaff_EDI;
     }
   }
   return uVar1;
@@ -553,7 +553,7 @@ void ui_system_cleaner_type1(void)
  * @param param_2 UI数据参数数组
  * @return 处理结果状态码，0表示成功，非0表示错误
  */
-uint64_t ui_system_data_processor_type1(longlong param_1,uint64_t *param_2)
+uint64_t ui_system_data_processor_type1(int64_t param_1,uint64_t *param_2)
 
 {
   uint64_t uVar1;
@@ -619,10 +619,10 @@ uint64_t ui_system_data_processor_type2(void)
 
 {
   uint64_t uVar1;
-  longlong in_RAX;
+  int64_t in_RAX;
   uint64_t uVar2;
   uint64_t *unaff_RBX;
-  longlong unaff_RDI;
+  int64_t unaff_RDI;
   
   if (*(int *)(in_RAX + 0x18) != 0) {
     return 0x1c;
@@ -677,7 +677,7 @@ uint64_t ui_system_data_processor_type3(void)
   uint64_t uVar1;
   uint64_t uVar2;
   uint64_t *unaff_RBX;
-  longlong unaff_RDI;
+  int64_t unaff_RDI;
   
   uVar1 = *unaff_RBX;
   uVar2 = FUN_1808aed00(uVar1,unaff_RDI + 0x4c,4);
@@ -733,7 +733,7 @@ uint64_t ui_system_data_processor_type4(void)
 {
   uint64_t uVar1;
   uint64_t *unaff_RBX;
-  longlong unaff_RDI;
+  int64_t unaff_RDI;
   
   if (*(int *)(unaff_RBX[1] + 0x18) != 0) {
     return 0x1c;
@@ -795,7 +795,7 @@ void ui_system_cleaner_type2(void)
  * @param param_2 UI高级数据参数数组
  * @return 处理结果状态码，0表示成功，非0表示错误
  */
-uint64_t ui_system_advanced_data_processor(longlong param_1,uint64_t *param_2)
+uint64_t ui_system_advanced_data_processor(int64_t param_1,uint64_t *param_2)
 
 {
   uint64_t uVar1;
@@ -855,20 +855,20 @@ uint64_t ui_system_advanced_data_processor(longlong param_1,uint64_t *param_2)
  * @param param_2 UI资源参数数组
  * @return 处理结果状态码，0表示成功，非0表示错误
  */
-ulonglong ui_system_resource_manager(longlong param_1,longlong *param_2)
+uint64_t ui_system_resource_manager(int64_t param_1,int64_t *param_2)
 
 {
-  longlong *plVar1;
-  ulonglong uVar2;
+  int64_t *plVar1;
+  uint64_t uVar2;
   uint uVar3;
   uint uVar4;
   uint uVar6;
-  ulonglong uVar7;
+  uint64_t uVar7;
   uint auStackX_18 [2];
   uint auStackX_20 [2];
   int8_t auStack_68 [32];
   int8_t auStack_48 [32];
-  ulonglong uVar5;
+  uint64_t uVar5;
   
   uVar2 = FUN_1808ddc20(param_2,auStack_48,1,0x50414e53);
   if ((int)uVar2 != 0) {
@@ -915,9 +915,9 @@ ulonglong ui_system_resource_manager(longlong param_1,longlong *param_2)
         return uVar2;
       }
       uVar4 = (int)uVar5 + 1;
-      uVar5 = (ulonglong)uVar4;
+      uVar5 = (uint64_t)uVar4;
       auStackX_18[0] = auStackX_18[0] & -uVar3;
-      uVar2 = (ulonglong)auStackX_18[0];
+      uVar2 = (uint64_t)auStackX_18[0];
     } while ((int)uVar4 < (int)uVar6);
   }
   if (*(int *)(param_2[1] + 0x18) != 0) {
@@ -925,12 +925,12 @@ ulonglong ui_system_resource_manager(longlong param_1,longlong *param_2)
   }
   uVar3 = FUN_1808a2e00(*param_2,param_1 + 0x48);
   if (uVar3 != 0) {
-    return (ulonglong)uVar3;
+    return (uint64_t)uVar3;
   }
   if (*(int *)(param_2[1] + 0x18) != 0) {
     return 0x1c;
   }
-  plVar1 = (longlong *)*param_2;
+  plVar1 = (int64_t *)*param_2;
   if (*plVar1 == 0) {
     uVar2 = 0x1c;
   }
@@ -941,7 +941,7 @@ ulonglong ui_system_resource_manager(longlong param_1,longlong *param_2)
       if ((int)uVar2 != 0) {
         return uVar2;
       }
-      if ((ulonglong)plVar1[2] < (ulonglong)auStackX_18[0] + 4) {
+      if ((uint64_t)plVar1[2] < (uint64_t)auStackX_18[0] + 4) {
         uVar2 = 0x11;
         goto LAB_18089e447;
       }
@@ -959,7 +959,7 @@ LAB_18089e447:
       uVar2 = uVar7;
       if ((0x32 < *(uint *)(param_2 + 8)) && (uVar2 = 0x1c, *(int *)(param_2[1] + 0x18) == 0)) {
         uVar3 = FUN_1808995c0(*param_2,param_1 + 0x40);
-        uVar2 = (ulonglong)uVar3;
+        uVar2 = (uint64_t)uVar3;
       }
       if ((int)uVar2 == 0) {
                     // WARNING: Subroutine does not return
@@ -984,19 +984,19 @@ LAB_18089e447:
  * 
  * @return 处理结果状态码，0表示成功，非0表示错误
  */
-ulonglong ui_system_resource_manager_type2(void)
+uint64_t ui_system_resource_manager_type2(void)
 
 {
-  longlong *plVar1;
-  longlong in_RAX;
-  ulonglong uVar2;
-  ulonglong uVar3;
-  longlong *unaff_RBX;
+  int64_t *plVar1;
+  int64_t in_RAX;
+  uint64_t uVar2;
+  uint64_t uVar3;
+  int64_t *unaff_RBX;
   uint uVar4;
-  longlong unaff_RSI;
+  int64_t unaff_RSI;
   uint uVar5;
   uint uVar6;
-  ulonglong uVar7;
+  uint64_t uVar7;
   uint in_stack_000000b0;
   uint in_stack_000000b8;
   
@@ -1032,7 +1032,7 @@ ulonglong ui_system_resource_manager_type2(void)
         return uVar3;
       }
       uVar5 = (int)uVar2 + 1;
-      uVar2 = (ulonglong)uVar5;
+      uVar2 = (uint64_t)uVar5;
       in_stack_000000b0 = in_stack_000000b0 & -uVar4;
     } while ((int)uVar5 < (int)uVar6);
   }
@@ -1041,12 +1041,12 @@ ulonglong ui_system_resource_manager_type2(void)
   }
   uVar4 = FUN_1808a2e00(*unaff_RBX,unaff_RSI + 0x48);
   if (uVar4 != 0) {
-    return (ulonglong)uVar4;
+    return (uint64_t)uVar4;
   }
   if (*(int *)(unaff_RBX[1] + 0x18) != 0) {
     return 0x1c;
   }
-  plVar1 = (longlong *)*unaff_RBX;
+  plVar1 = (int64_t *)*unaff_RBX;
   if (*plVar1 == 0) {
     uVar2 = 0x1c;
   }
@@ -1057,7 +1057,7 @@ ulonglong ui_system_resource_manager_type2(void)
       if ((int)uVar2 != 0) {
         return uVar2;
       }
-      if ((ulonglong)plVar1[2] < (ulonglong)in_stack_000000b0 + 4) {
+      if ((uint64_t)plVar1[2] < (uint64_t)in_stack_000000b0 + 4) {
         uVar2 = 0x11;
         goto LAB_18089e447;
       }
@@ -1075,7 +1075,7 @@ LAB_18089e447:
       uVar2 = uVar7;
       if ((0x32 < *(uint *)(unaff_RBX + 8)) && (uVar2 = 0x1c, *(int *)(unaff_RBX[1] + 0x18) == 0)) {
         uVar4 = FUN_1808995c0(*unaff_RBX,unaff_RSI + 0x40);
-        uVar2 = (ulonglong)uVar4;
+        uVar2 = (uint64_t)uVar4;
       }
       if ((int)uVar2 == 0) {
                     // WARNING: Subroutine does not return
@@ -1100,18 +1100,18 @@ LAB_18089e447:
  * 
  * @return 处理结果状态码，0表示成功，非0表示错误
  */
-ulonglong ui_system_resource_manager_type3(void)
+uint64_t ui_system_resource_manager_type3(void)
 
 {
-  longlong *plVar1;
-  ulonglong uVar2;
-  ulonglong uVar3;
-  longlong *unaff_RBX;
+  int64_t *plVar1;
+  uint64_t uVar2;
+  uint64_t uVar3;
+  int64_t *unaff_RBX;
   uint uVar4;
-  longlong unaff_RSI;
+  int64_t unaff_RSI;
   uint uVar5;
   uint uVar6;
-  ulonglong uVar7;
+  uint64_t uVar7;
   uint in_stack_000000b0;
   uint in_stack_000000b8;
   
@@ -1144,7 +1144,7 @@ ulonglong ui_system_resource_manager_type3(void)
         return uVar3;
       }
       uVar5 = (int)uVar2 + 1;
-      uVar2 = (ulonglong)uVar5;
+      uVar2 = (uint64_t)uVar5;
       in_stack_000000b0 = in_stack_000000b0 & -uVar4;
     } while ((int)uVar5 < (int)uVar6);
   }
@@ -1153,12 +1153,12 @@ ulonglong ui_system_resource_manager_type3(void)
   }
   uVar4 = FUN_1808a2e00(*unaff_RBX,unaff_RSI + 0x48);
   if (uVar4 != 0) {
-    return (ulonglong)uVar4;
+    return (uint64_t)uVar4;
   }
   if (*(int *)(unaff_RBX[1] + 0x18) != 0) {
     return 0x1c;
   }
-  plVar1 = (longlong *)*unaff_RBX;
+  plVar1 = (int64_t *)*unaff_RBX;
   if (*plVar1 == 0) {
     uVar2 = 0x1c;
   }
@@ -1169,7 +1169,7 @@ ulonglong ui_system_resource_manager_type3(void)
       if ((int)uVar2 != 0) {
         return uVar2;
       }
-      if ((ulonglong)plVar1[2] < (ulonglong)in_stack_000000b0 + 4) {
+      if ((uint64_t)plVar1[2] < (uint64_t)in_stack_000000b0 + 4) {
         uVar2 = 0x11;
         goto LAB_18089e447;
       }
@@ -1187,7 +1187,7 @@ LAB_18089e447:
       uVar2 = uVar7;
       if ((0x32 < *(uint *)(unaff_RBX + 8)) && (uVar2 = 0x1c, *(int *)(unaff_RBX[1] + 0x18) == 0)) {
         uVar4 = FUN_1808995c0(*unaff_RBX,unaff_RSI + 0x40);
-        uVar2 = (ulonglong)uVar4;
+        uVar2 = (uint64_t)uVar4;
       }
       if ((int)uVar2 == 0) {
                     // WARNING: Subroutine does not return
@@ -1212,18 +1212,18 @@ LAB_18089e447:
  * 
  * @return 处理结果状态码，0表示成功，非0表示错误
  */
-ulonglong ui_system_resource_manager_type4(void)
+uint64_t ui_system_resource_manager_type4(void)
 
 {
-  longlong *plVar1;
-  ulonglong uVar2;
-  ulonglong uVar3;
-  longlong *unaff_RBX;
+  int64_t *plVar1;
+  uint64_t uVar2;
+  uint64_t uVar3;
+  int64_t *unaff_RBX;
   uint uVar4;
-  longlong unaff_RSI;
+  int64_t unaff_RSI;
   uint uVar5;
   uint uVar6;
-  ulonglong uVar7;
+  uint64_t uVar7;
   uint in_stack_000000b0;
   uint uStack00000000000000b8;
   
@@ -1252,7 +1252,7 @@ ulonglong ui_system_resource_manager_type4(void)
         return uVar3;
       }
       uVar5 = (int)uVar2 + 1;
-      uVar2 = (ulonglong)uVar5;
+      uVar2 = (uint64_t)uVar5;
       in_stack_000000b0 = in_stack_000000b0 & -uVar4;
     } while ((int)uVar5 < (int)uVar6);
   }
@@ -1261,12 +1261,12 @@ ulonglong ui_system_resource_manager_type4(void)
   }
   uVar4 = FUN_1808a2e00(*unaff_RBX,unaff_RSI + 0x48);
   if (uVar4 != 0) {
-    return (ulonglong)uVar4;
+    return (uint64_t)uVar4;
   }
   if (*(int *)(unaff_RBX[1] + 0x18) != 0) {
     return 0x1c;
   }
-  plVar1 = (longlong *)*unaff_RBX;
+  plVar1 = (int64_t *)*unaff_RBX;
   if (*plVar1 == 0) {
     uVar2 = 0x1c;
   }
@@ -1277,7 +1277,7 @@ ulonglong ui_system_resource_manager_type4(void)
       if ((int)uVar2 != 0) {
         return uVar2;
       }
-      if ((ulonglong)plVar1[2] < (ulonglong)in_stack_000000b0 + 4) {
+      if ((uint64_t)plVar1[2] < (uint64_t)in_stack_000000b0 + 4) {
         uVar2 = 0x11;
         goto LAB_18089e447;
       }
@@ -1295,7 +1295,7 @@ LAB_18089e447:
       uVar2 = uVar7;
       if ((0x32 < *(uint *)(unaff_RBX + 8)) && (uVar2 = 0x1c, *(int *)(unaff_RBX[1] + 0x18) == 0)) {
         uVar4 = FUN_1808995c0(*unaff_RBX,unaff_RSI + 0x40);
-        uVar2 = (ulonglong)uVar4;
+        uVar2 = (uint64_t)uVar4;
       }
       if ((int)uVar2 == 0) {
                     // WARNING: Subroutine does not return

@@ -48,7 +48,7 @@
  * @param render_context 渲染上下文指针，包含渲染状态和参数
  * @param math_params 数学参数指针，包含计算所需的数学常量和配置
  */
-void RenderingSystem_AdvancedMathCalculator(longlong render_context, uint64_t math_params)
+void RenderingSystem_AdvancedMathCalculator(int64_t render_context, uint64_t math_params)
 
 {
   // 声明变量 - 用于各种数学计算和临时存储
@@ -58,11 +58,11 @@ void RenderingSystem_AdvancedMathCalculator(longlong render_context, uint64_t ma
   uint64_t temp_var3, temp_int32_t;       // 通用临时8字节变量
   float matrix_element1, matrix_element2;           // 矩阵元素变量
   float *result_array_ptr;                          // 结果数组指针
-  longlong temp_long1;                               // 通用临时长整型变量
-  longlong render_data_ptr;                          // 渲染数据指针
+  int64_t temp_long1;                               // 通用临时长整型变量
+  int64_t render_data_ptr;                          // 渲染数据指针
   float *stack_frame_ptr;                           // 栈帧指针
   char index_flag;                                   // 索引标志
-  longlong resource_ptr;                             // 资源指针
+  int64_t resource_ptr;                             // 资源指针
   float simd_input1;                                // SIMD输入参数1
   float vector_x, vector_y, vector_z;                // 向量分量
   int8_t simd_input2[16];                        // SIMD输入参数2数组
@@ -349,7 +349,7 @@ void RenderingSystem_AdvancedMathCalculator(longlong render_context, uint64_t ma
   
   // 获取缩放因子和资源指针
   scale_factor = *(float *)(render_data_ptr + 0xf8);
-  temp_long1 = *(longlong *)(*(longlong *)(resource_ptr + 0x10) + 0x168);
+  temp_long1 = *(int64_t *)(*(int64_t *)(resource_ptr + 0x10) + 0x168);
   
   // 计算位置偏移量
   normal_z = stack_frame_ptr[-0x1c] - *(float *)(temp_long1 + 0xa0);  // Z轴偏移
@@ -759,8 +759,8 @@ LAB_18057b6d9:
   
   // 获取时间参数和计算索引
   input_time = *(float *)(resource_ptr + 0x38);
-  temp_long1 = ((longlong)index_flag + -1) * 0x1b0;
-  *(longlong *)(stack_frame_ptr + -0xc) = temp_long1;
+  temp_long1 = ((int64_t)index_flag + -1) * 0x1b0;
+  *(int64_t *)(stack_frame_ptr + -0xc) = temp_long1;
   
   // 计算100倍缩放的时间相关变换参数
   result_z = result_z * HUNDRED * input_time + *(float *)(render_data_ptr + 0x58);
@@ -773,7 +773,7 @@ LAB_18057b6d9:
   *(float *)(render_data_ptr + 0x60) = normal_z;        // 存储Z变换参数
   
   // 获取骨骼索引和计算骨骼变换矩阵
-  bone_index = *(int *)(temp_long1 + 0x110 + *(longlong *)(*(longlong *)(resource_ptr + 0x208) + 0x140));
+  bone_index = *(int *)(temp_long1 + 0x110 + *(int64_t *)(*(int64_t *)(resource_ptr + 0x208) + 0x140));
   
   // 获取变换参数
   quaternion_x = *(float *)(render_data_ptr + 0x58);    // X变换参数
@@ -781,7 +781,7 @@ LAB_18057b6d9:
   input_time = *(float *)(render_data_ptr + 0x60);      // Z变换参数
   
   // 计算骨骼数据指针
-  temp_long1 = (longlong)bone_index * 0x60 + *(longlong *)(*(longlong *)(resource_ptr + 0x208) + 0x158);
+  temp_long1 = (int64_t)bone_index * 0x60 + *(int64_t *)(*(int64_t *)(resource_ptr + 0x208) + 0x158);
   
   // 计算权重因子
   quaternion_w = 1.0f - (*(float *)(temp_long1 + 0x40) + *(float *)(temp_long1 + 0x3c));

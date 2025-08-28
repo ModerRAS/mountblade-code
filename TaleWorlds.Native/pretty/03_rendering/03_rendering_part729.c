@@ -105,7 +105,7 @@ typedef struct {
  * 本函数为简化实现，保留了核心的差异计算逻辑。
  * 原始代码包含更复杂的SIMD优化、内存管理和错误处理机制。
  */
-void rendering_system_advanced_image_difference_calculator(longlong image_ptr1, int stride1, longlong image_ptr2, int stride2, int* result_ptr) {
+void rendering_system_advanced_image_difference_calculator(int64_t image_ptr1, int stride1, int64_t image_ptr2, int stride2, int* result_ptr) {
     // 变量重命名以提高可读性：
     // iVar1 -> max_iterations: 最大迭代次数
     // puVar2 -> pixel_data_ptr: 像素数据指针
@@ -128,7 +128,7 @@ void rendering_system_advanced_image_difference_calculator(longlong image_ptr1, 
     // 初始化处理参数
     int max_iterations = 8;  // 从系统配置获取最大迭代次数
     int process_count = 8;
-    longlong image_offset = image_ptr2;
+    int64_t image_offset = image_ptr2;
     
     do {
         // 初始化差异累加器
@@ -137,13 +137,13 @@ void rendering_system_advanced_image_difference_calculator(longlong image_ptr1, 
         int simd_accum_5 = 0, simd_accum_6 = 0, simd_accum_7 = 0, simd_accum_8 = 0;
         
         // 初始化像素处理参数
-        longlong current_pos1 = image_ptr1;
-        longlong current_pos2 = image_offset;
+        int64_t current_pos1 = image_ptr1;
+        int64_t current_pos2 = image_offset;
         int block_size = 16;
         
         do {
             // SIMD向量处理
-            longlong simd_processed = 0;
+            int64_t simd_processed = 0;
             if (max_iterations > 1) {
                 int simd_loop = 2;
                 simd_processed = 16;
@@ -241,9 +241,9 @@ void rendering_system_advanced_image_difference_calculator(longlong image_ptr1, 
  * 本函数为简化实现，保留了核心的SIMD计算逻辑。
  * 原始代码包含更复杂的SIMD指令优化和内存管理。
  */
-uint32_t rendering_system_calculate_simd_difference(longlong pos1, longlong pos2, uint32_t* pixel_ptr) {
+uint32_t rendering_system_calculate_simd_difference(int64_t pos1, int64_t pos2, uint32_t* pixel_ptr) {
     // 简化的SIMD差异计算
-    uint32_t pixel_diff = abs((int)(*(uint32_t*)((pos1 - pos2) - 4 + (longlong)pixel_ptr) - pixel_ptr[-1]));
+    uint32_t pixel_diff = abs((int)(*(uint32_t*)((pos1 - pos2) - 4 + (int64_t)pixel_ptr) - pixel_ptr[-1]));
     return pixel_diff;
 }
 
@@ -275,7 +275,7 @@ uint32_t rendering_system_calculate_simd_difference(longlong pos1, longlong pos2
  * 本函数为简化实现，保留了核心的优化计算逻辑。
  * 原始代码包含更复杂的优化策略和参数调整。
  */
-void rendering_system_optimized_image_difference_calculator(longlong image_ptr1, int stride1, longlong image_ptr2, int stride2, int* result_ptr) {
+void rendering_system_optimized_image_difference_calculator(int64_t image_ptr1, int stride1, int64_t image_ptr2, int stride2, int* result_ptr) {
     // 参数有效性检查
     if (image_ptr1 == NULL || image_ptr2 == NULL || result_ptr == NULL) {
         return;
@@ -284,7 +284,7 @@ void rendering_system_optimized_image_difference_calculator(longlong image_ptr1,
     // 初始化优化参数
     int max_iterations = 8;  // 从系统配置获取最大迭代次数
     int process_count = 3;
-    longlong image_offset = image_ptr2;
+    int64_t image_offset = image_ptr2;
     
     do {
         // 初始化差异累加器
@@ -293,13 +293,13 @@ void rendering_system_optimized_image_difference_calculator(longlong image_ptr1,
         int simd_accum_5 = 0, simd_accum_6 = 0, simd_accum_7 = 0, simd_accum_8 = 0;
         
         // 初始化像素处理参数
-        longlong current_pos1 = image_ptr1;
-        longlong current_pos2 = image_offset;
+        int64_t current_pos1 = image_ptr1;
+        int64_t current_pos2 = image_offset;
         int block_size = 8;
         
         do {
             // 优化的SIMD向量处理
-            longlong simd_processed = 0;
+            int64_t simd_processed = 0;
             if (max_iterations > 1) {
                 int simd_loop = 2;
                 simd_processed = 16;
@@ -388,9 +388,9 @@ void rendering_system_optimized_image_difference_calculator(longlong image_ptr1,
  * 简化实现说明：
  * 本函数为简化实现，保留了核心的优化SIMD计算逻辑。
  */
-uint32_t rendering_system_calculate_optimized_simd_difference(longlong pos1, longlong pos2, uint32_t* pixel_ptr) {
+uint32_t rendering_system_calculate_optimized_simd_difference(int64_t pos1, int64_t pos2, uint32_t* pixel_ptr) {
     // 简化的优化SIMD差异计算
-    uint32_t pixel_diff = abs((int)(*(uint32_t*)((pos1 - pos2) - 4 + (longlong)pixel_ptr) - pixel_ptr[-1]));
+    uint32_t pixel_diff = abs((int)(*(uint32_t*)((pos1 - pos2) - 4 + (int64_t)pixel_ptr) - pixel_ptr[-1]));
     return pixel_diff;
 }
 
@@ -478,7 +478,7 @@ void rendering_system_advanced_image_block_comparator(RenderingSystemImageBlock*
  * 本函数为简化实现，保留了核心的质量评估逻辑。
  * 原始代码包含更复杂的质量评估算法和分析机制。
  */
-void rendering_system_pixel_quality_assessor(longlong image_ptr, int width, int height, int stride, float* quality_score) {
+void rendering_system_pixel_quality_assessor(int64_t image_ptr, int width, int height, int stride, float* quality_score) {
     // 参数有效性检查
     if (image_ptr == NULL || quality_score == NULL) {
         return;
@@ -527,7 +527,7 @@ void rendering_system_pixel_quality_assessor(longlong image_ptr, int width, int 
  * 本函数为简化实现，保留了核心的处理逻辑。
  * 原始代码包含更复杂的处理算法和优化机制。
  */
-void rendering_system_high_performance_image_processor(longlong input_ptr, longlong output_ptr, 
+void rendering_system_high_performance_image_processor(int64_t input_ptr, int64_t output_ptr, 
                                                        int width, int height, 
                                                        RenderingSystemProcessParams* params) {
     // 参数有效性检查
@@ -572,7 +572,7 @@ void rendering_system_high_performance_image_processor(longlong input_ptr, longl
  * 本函数为简化实现，保留了核心的优化逻辑。
  * 原始代码包含更复杂的优化算法和内存管理。
  */
-void rendering_system_image_data_optimizer(longlong data_ptr, int data_size, 
+void rendering_system_image_data_optimizer(int64_t data_ptr, int data_size, 
                                            int optimization_level, int* optimized_size) {
     // 参数有效性检查
     if (data_ptr == NULL || optimized_size == NULL) {
@@ -629,8 +629,8 @@ void rendering_system_image_data_optimizer(longlong data_ptr, int data_size,
  * 本函数为简化实现，保留了核心的块处理逻辑。
  * 原始代码包含更复杂的处理算法和特征提取机制。
  */
-void rendering_system_image_block_processor(longlong block_ptr, int block_size, 
-                                           int process_mode, longlong result_ptr) {
+void rendering_system_image_block_processor(int64_t block_ptr, int block_size, 
+                                           int process_mode, int64_t result_ptr) {
     // 参数有效性检查
     if (block_ptr == NULL || result_ptr == NULL) {
         return;
@@ -646,10 +646,10 @@ void rendering_system_image_block_processor(longlong block_ptr, int block_size,
 }
 
 // 辅助函数声明（这些函数在原始代码中被调用）
-void rendering_system_basic_data_optimization(longlong data_ptr, int data_size);
-void rendering_system_intermediate_data_optimization(longlong data_ptr, int data_size);
-void rendering_system_advanced_data_optimization(longlong data_ptr, int data_size);
-void rendering_system_default_data_optimization(longlong data_ptr, int data_size);
+void rendering_system_basic_data_optimization(int64_t data_ptr, int data_size);
+void rendering_system_intermediate_data_optimization(int64_t data_ptr, int data_size);
+void rendering_system_advanced_data_optimization(int64_t data_ptr, int data_size);
+void rendering_system_default_data_optimization(int64_t data_ptr, int data_size);
 
 // 函数别名定义（为了保持与原始代码的兼容性）
 #define rendering_system_advanced_image_difference_calculator FUN_180696370

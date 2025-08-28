@@ -5,13 +5,13 @@
 // 渲染系统对象复制和骨骼动画处理模块
 
 // 函数: 复制渲染对象属性
-// 原始函数名: void FUN_180275a60(longlong param_1,longlong *param_2,uint64_t param_3,uint64_t param_4)
-void copy_rendering_object_properties(longlong source_object, longlong *target_object, uint64_t param_3, uint64_t param_4)
+// 原始函数名: void FUN_180275a60(int64_t param_1,int64_t *param_2,uint64_t param_3,uint64_t param_4)
+void copy_rendering_object_properties(int64_t source_object, int64_t *target_object, uint64_t param_3, uint64_t param_4)
 
 {
-  longlong *source_ref_manager;
-  longlong *target_ref_manager;
-  longlong bone_count;
+  int64_t *source_ref_manager;
+  int64_t *target_ref_manager;
+  int64_t bone_count;
   uint64_t transform_matrix1;
   int32_t matrix_element1;
   int32_t matrix_element2;
@@ -19,49 +19,49 @@ void copy_rendering_object_properties(longlong source_object, longlong *target_o
   uint64_t *bone_data;
   int bone_index;
   void *default_name;
-  longlong source_bone_start;
-  longlong target_bone_start;
-  longlong *temp_bone_ref;
+  int64_t source_bone_start;
+  int64_t target_bone_start;
+  int64_t *temp_bone_ref;
   
   // 复制变换矩阵数据
   FUN_180627be0(target_object + 0x3e, source_object + 0x1f0, param_3, param_4, 0xfffffffffffffffe);
-  target_object[6] = *(longlong *)(source_object + 0x30);
+  target_object[6] = *(int64_t *)(source_object + 0x30);
   *(int32_t *)(target_object + 0xb) = *(int32_t *)(source_object + 0x58);
   transform_matrix1 = *(uint64_t *)(source_object + 0x21c);
-  *(uint64_t *)((longlong)target_object + 0x214) = *(uint64_t *)(source_object + 0x214);
-  *(uint64_t *)((longlong)target_object + 0x21c) = transform_matrix1;
+  *(uint64_t *)((int64_t)target_object + 0x214) = *(uint64_t *)(source_object + 0x214);
+  *(uint64_t *)((int64_t)target_object + 0x21c) = transform_matrix1;
   
   // 复制矩阵元素
   matrix_element1 = *(int32_t *)(source_object + 0x228);
   matrix_element2 = *(int32_t *)(source_object + 0x22c);
   matrix_element3 = *(int32_t *)(source_object + 0x230);
-  *(int32_t *)((longlong)target_object + 0x224) = *(int32_t *)(source_object + 0x224);
+  *(int32_t *)((int64_t)target_object + 0x224) = *(int32_t *)(source_object + 0x224);
   *(int32_t *)(target_object + 0x45) = matrix_element1;
-  *(int32_t *)((longlong)target_object + 0x22c) = matrix_element2;
+  *(int32_t *)((int64_t)target_object + 0x22c) = matrix_element2;
   *(int32_t *)(target_object + 0x46) = matrix_element3;
   
   matrix_element1 = *(int32_t *)(source_object + 0x238);
   matrix_element2 = *(int32_t *)(source_object + 0x23c);
   matrix_element3 = *(int32_t *)(source_object + 0x240);
-  *(int32_t *)((longlong)target_object + 0x234) = *(int32_t *)(source_object + 0x234);
+  *(int32_t *)((int64_t)target_object + 0x234) = *(int32_t *)(source_object + 0x234);
   *(int32_t *)(target_object + 0x47) = matrix_element1;
-  *(int32_t *)((longlong)target_object + 0x23c) = matrix_element2;
+  *(int32_t *)((int64_t)target_object + 0x23c) = matrix_element2;
   *(int32_t *)(target_object + 0x48) = matrix_element3;
-  *(int32_t *)((longlong)target_object + 0x244) = *(int32_t *)(source_object + 0x244);
+  *(int32_t *)((int64_t)target_object + 0x244) = *(int32_t *)(source_object + 0x244);
   
   // 复制渲染标志
   *(int8_t *)(target_object + 0x78) = *(int8_t *)(source_object + 0x3c0);
-  *(int32_t *)((longlong)target_object + 0x3c4) = *(int32_t *)(source_object + 0x3c4);
+  *(int32_t *)((int64_t)target_object + 0x3c4) = *(int32_t *)(source_object + 0x3c4);
   *(int32_t *)(target_object + 0x42) = *(int32_t *)(source_object + 0x210);
   
   // 管理引用计数
-  source_ref_manager = *(longlong **)(source_object + 0x3b8);
-  if (source_ref_manager != (longlong *)0x0) {
+  source_ref_manager = *(int64_t **)(source_object + 0x3b8);
+  if (source_ref_manager != (int64_t *)0x0) {
     (**(code **)(*source_ref_manager + 0x28))(source_ref_manager);
   }
-  target_ref_manager = (longlong *)target_object[0x77];
-  target_object[0x77] = (longlong)source_ref_manager;
-  if (target_ref_manager != (longlong *)0x0) {
+  target_ref_manager = (int64_t *)target_object[0x77];
+  target_object[0x77] = (int64_t)source_ref_manager;
+  if (target_ref_manager != (int64_t *)0x0) {
     (**(code **)(*target_ref_manager + 0x38))();
   }
   
@@ -70,11 +70,11 @@ void copy_rendering_object_properties(longlong source_object, longlong *target_o
   matrix_element1 = *(int32_t *)(source_object + 0x70);
   matrix_element2 = *(int32_t *)(source_object + 0x74);
   matrix_element3 = *(int32_t *)(source_object + 0x78);
-  *(int32_t *)((longlong)target_object + 0x6c) = *(int32_t *)(source_object + 0x6c);
+  *(int32_t *)((int64_t)target_object + 0x6c) = *(int32_t *)(source_object + 0x6c);
   *(int32_t *)(target_object + 0xe) = matrix_element1;
-  *(int32_t *)((longlong)target_object + 0x74) = matrix_element2;
+  *(int32_t *)((int64_t)target_object + 0x74) = matrix_element2;
   *(int32_t *)(target_object + 0xf) = matrix_element3;
-  *(int32_t *)((longlong)target_object + 0x7c) = *(int32_t *)(source_object + 0x7c);
+  *(int32_t *)((int64_t)target_object + 0x7c) = *(int32_t *)(source_object + 0x7c);
   *(int32_t *)(target_object + 0x12) = *(int32_t *)(source_object + 0x90);
   
   // 复制对象名称
@@ -96,43 +96,43 @@ void copy_rendering_object_properties(longlong source_object, longlong *target_o
   FUN_180627be0(target_object + 0x3a, source_object + 0x1d0);
   
   // 管理材质引用
-  source_ref_manager = *(longlong **)(source_object + 0x3c8);
-  if (source_ref_manager != (longlong *)0x0) {
+  source_ref_manager = *(int64_t **)(source_object + 0x3c8);
+  if (source_ref_manager != (int64_t *)0x0) {
     (**(code **)(*source_ref_manager + 0x28))(source_ref_manager);
   }
-  target_ref_manager = (longlong *)target_object[0x79];
-  target_object[0x79] = (longlong)source_ref_manager;
-  if (target_ref_manager != (longlong *)0x0) {
+  target_ref_manager = (int64_t *)target_object[0x79];
+  target_object[0x79] = (int64_t)source_ref_manager;
+  if (target_ref_manager != (int64_t *)0x0) {
     (**(code **)(*target_ref_manager + 0x38))();
   }
   
-  *(int32_t *)((longlong)target_object + 0x5c) = *(int32_t *)(source_object + 0x5c);
+  *(int32_t *)((int64_t)target_object + 0x5c) = *(int32_t *)(source_object + 0x5c);
   
   // 如果需要，复制骨骼数据
   if ((char)param_3 != '\0') {
-    bone_count = *(longlong *)(source_object + 0x40) - *(longlong *)(source_object + 0x38) >> 4;
+    bone_count = *(int64_t *)(source_object + 0x40) - *(int64_t *)(source_object + 0x38) >> 4;
     FUN_180284240(target_object + 7, bone_count);
     bone_index = (int)bone_count;
-    bone_count = (longlong)bone_index;
+    bone_count = (int64_t)bone_index;
     if (0 < bone_index) {
       source_bone_start = 0;
       do {
         bone_data = (uint64_t *)
-                 FUN_1800763c0(*(uint64_t *)(source_bone_start + *(longlong *)(source_object + 0x38)), &temp_bone_ref);
+                 FUN_1800763c0(*(uint64_t *)(source_bone_start + *(int64_t *)(source_object + 0x38)), &temp_bone_ref);
         target_bone_start = target_object[7];
         transform_matrix1 = *bone_data;
         *bone_data = 0;
-        source_ref_manager = *(longlong **)(source_bone_start + target_bone_start);
+        source_ref_manager = *(int64_t **)(source_bone_start + target_bone_start);
         *(uint64_t *)(source_bone_start + target_bone_start) = transform_matrix1;
-        if (source_ref_manager != (longlong *)0x0) {
+        if (source_ref_manager != (int64_t *)0x0) {
           (**(code **)(*source_ref_manager + 0x38))();
         }
-        if (temp_bone_ref != (longlong *)0x0) {
+        if (temp_bone_ref != (int64_t *)0x0) {
           (**(code **)(*temp_bone_ref + 0x38))();
         }
-        *(longlong **)(*(longlong *)(source_bone_start + target_object[7]) + 0x1c8) = target_object;
+        *(int64_t **)(*(int64_t *)(source_bone_start + target_object[7]) + 0x1c8) = target_object;
         *(int32_t *)(source_bone_start + 8 + target_object[7]) =
-             *(int32_t *)(source_bone_start + 8 + *(longlong *)(source_object + 0x38));
+             *(int32_t *)(source_bone_start + 8 + *(int64_t *)(source_object + 0x38));
         source_bone_start = source_bone_start + 0x10;
         bone_count = bone_count + -1;
       } while (bone_count != 0);
@@ -147,24 +147,24 @@ void copy_rendering_object_properties(longlong source_object, longlong *target_o
 
 
 // 函数: 添加骨骼索引到渲染对象
-// 原始函数名: void FUN_180275cf0(longlong *param_1,int param_2,longlong *param_3,char param_4)
-void add_bone_index_to_render_object(longlong *render_object, int bone_index, longlong *bone_manager, char should_update)
+// 原始函数名: void FUN_180275cf0(int64_t *param_1,int param_2,int64_t *param_3,char param_4)
+void add_bone_index_to_render_object(int64_t *render_object, int bone_index, int64_t *bone_manager, char should_update)
 
 {
-  longlong *bone_ref;
-  longlong object_id;
-  longlong *temp_bone_ref;
+  int64_t *bone_ref;
+  int64_t object_id;
+  int64_t *temp_bone_ref;
   int index_mask;
   
-  temp_bone_ref = (longlong *)0x0;
-  bone_ref = (longlong *)*bone_manager;
-  if (bone_ref != (longlong *)0x0) {
+  temp_bone_ref = (int64_t *)0x0;
+  bone_ref = (int64_t *)*bone_manager;
+  if (bone_ref != (int64_t *)0x0) {
     (**(code **)(*bone_ref + 0x28))(bone_ref);
   }
   index_mask = 1 << ((byte)bone_index & 0x1f);
   temp_bone_ref = bone_ref;
   FUN_1802842e0(render_object + 7, &temp_bone_ref);
-  *(longlong **)(*bone_manager + 0x1c8) = render_object;
+  *(int64_t **)(*bone_manager + 0x1c8) = render_object;
   
   // 更新最大骨骼索引
   if ((int)render_object[0xb] < bone_index + 1) {
@@ -174,7 +174,7 @@ void add_bone_index_to_render_object(longlong *render_object, int bone_index, lo
   // 如果需要更新，触发更新
   if (should_update != '\0') {
     if (*(code **)(*render_object + 0x160) == (code *)&unknown_var_6368_ptr) {
-      FUN_180276f30(render_object, (longlong)render_object + 0x214, 0);
+      FUN_180276f30(render_object, (int64_t)render_object + 0x214, 0);
     }
     else {
       (**(code **)(*render_object + 0x160))(render_object);
@@ -182,18 +182,18 @@ void add_bone_index_to_render_object(longlong *render_object, int bone_index, lo
     object_id = render_object[5];
     if (object_id != 0) {
       *(short *)(object_id + 0x2b0) = *(short *)(object_id + 0x2b0) + 1;
-      if (*(longlong *)(object_id + 0x168) != 0) {
+      if (*(int64_t *)(object_id + 0x168) != 0) {
         func_0x0001802eeba0();
       }
     }
   }
   
   // 清理临时引用
-  if (temp_bone_ref != (longlong *)0x0) {
+  if (temp_bone_ref != (int64_t *)0x0) {
     (**(code **)(*temp_bone_ref + 0x38))();
   }
-  if ((longlong *)*bone_manager != (longlong *)0x0) {
-    (**(code **)(*(longlong *)*bone_manager + 0x38))();
+  if ((int64_t *)*bone_manager != (int64_t *)0x0) {
+    (**(code **)(*(int64_t *)*bone_manager + 0x38))();
   }
   return;
 }
@@ -201,25 +201,25 @@ void add_bone_index_to_render_object(longlong *render_object, int bone_index, lo
 
 
 // 函数: 添加骨骼位掩码到渲染对象
-// 原始函数名: void FUN_180275e10(longlong *param_1,uint param_2,longlong *param_3,char param_4)
-void add_bone_mask_to_render_object(longlong *render_object, uint bone_mask, longlong *bone_manager, char should_update)
+// 原始函数名: void FUN_180275e10(int64_t *param_1,uint param_2,int64_t *param_3,char param_4)
+void add_bone_mask_to_render_object(int64_t *render_object, uint bone_mask, int64_t *bone_manager, char should_update)
 
 {
-  longlong *bone_ref;
-  longlong object_id;
+  int64_t *bone_ref;
+  int64_t object_id;
   int highest_bit_index;
-  longlong *temp_bone_ref;
+  int64_t *temp_bone_ref;
   uint temp_mask;
   
-  temp_bone_ref = (longlong *)0x0;
-  bone_ref = (longlong *)*bone_manager;
+  temp_bone_ref = (int64_t *)0x0;
+  bone_ref = (int64_t *)*bone_manager;
   temp_mask = bone_mask;
-  if (bone_ref != (longlong *)0x0) {
+  if (bone_ref != (int64_t *)0x0) {
     (**(code **)(*bone_ref + 0x28))(bone_ref);
   }
   temp_bone_ref = bone_ref;
   FUN_1802842e0(render_object + 7, &temp_bone_ref);
-  *(longlong **)(*bone_manager + 0x1c8) = render_object;
+  *(int64_t **)(*bone_manager + 0x1c8) = render_object;
   
   // 计算最高位索引
   highest_bit_index = -1;
@@ -238,25 +238,25 @@ void add_bone_mask_to_render_object(longlong *render_object, uint bone_mask, lon
   // 如果需要更新，触发更新
   if (should_update != '\0') {
     if (*(code **)(*render_object + 0x160) == (code *)&unknown_var_6368_ptr) {
-      FUN_180276f30(render_object, (longlong)render_object + 0x214, 0);
+      FUN_180276f30(render_object, (int64_t)render_object + 0x214, 0);
     }
     else {
       (**(code **)(*render_object + 0x160))(render_object);
     }
     object_id = render_object[5];
     if ((object_id != 0) &&
-       (*(short *)(object_id + 0x2b0) = *(short *)(object_id + 0x2b0) + 1, *(longlong *)(object_id + 0x168) != 0
+       (*(short *)(object_id + 0x2b0) = *(short *)(object_id + 0x2b0) + 1, *(int64_t *)(object_id + 0x168) != 0
        )) {
       func_0x0001802eeba0();
     }
   }
   
   // 清理临时引用
-  if (temp_bone_ref != (longlong *)0x0) {
+  if (temp_bone_ref != (int64_t *)0x0) {
     (**(code **)(*temp_bone_ref + 0x38))();
   }
-  if ((longlong *)*bone_manager != (longlong *)0x0) {
-    (**(code **)(*(longlong *)*bone_manager + 0x38))();
+  if ((int64_t *)*bone_manager != (int64_t *)0x0) {
+    (**(code **)(*(int64_t *)*bone_manager + 0x38))();
   }
   return;
 }
@@ -264,8 +264,8 @@ void add_bone_mask_to_render_object(longlong *render_object, uint bone_mask, lon
 
 
 // 函数: 处理骨骼动画可见性检测
-// 原始函数名: ulonglong FUN_180275f30(uint64_t *param_1,uint *param_2,uint64_t param_3,float *param_4,uint64_t *param_5)
-ulonglong process_bone_animation_visibility(uint64_t *render_object, uint *visibility_flags, uint64_t param_3, float *transform_matrix, uint64_t *param_5)
+// 原始函数名: uint64_t FUN_180275f30(uint64_t *param_1,uint *param_2,uint64_t param_3,float *param_4,uint64_t *param_5)
+uint64_t process_bone_animation_visibility(uint64_t *render_object, uint *visibility_flags, uint64_t param_3, float *transform_matrix, uint64_t *param_5)
 
 {
   float transformed_x;
@@ -279,12 +279,12 @@ ulonglong process_bone_animation_visibility(uint64_t *render_object, uint *visib
   float max_distance_squared;
   uint64_t transform_backup1;
   byte visibility_result;
-  ulonglong visibility_mask;
+  uint64_t visibility_mask;
   int bone_index;
-  longlong bone_array_length;
+  int64_t bone_array_length;
   uint bone_bitmask;
   byte bone_visibility;
-  longlong current_bone;
+  int64_t current_bone;
   float bone_transform_x;
   float bone_transform_y;
   float bone_transform_z;
@@ -329,7 +329,7 @@ ulonglong process_bone_animation_visibility(uint64_t *render_object, uint *visib
   float stack_float15;
   float stack_float16;
   
-  visibility_mask = (ulonglong)*(uint *)(render_object + 0x42);
+  visibility_mask = (uint64_t)*(uint *)(render_object + 0x42);
   if (((*visibility_flags & *(uint *)(render_object + 0x42)) == 0) || (*(int *)(render_object + 0xb) == 0)) {
 LAB_180276376:
     visibility_mask = visibility_mask & 0xffffffffffffff00;
@@ -340,24 +340,24 @@ LAB_180276376:
     transform_backup1 = param_5[1];
     stack_data3 = param_5[3];
     stack_data4 = *(int32_t *)(param_5 + 4);
-    stack_data5 = *(int32_t *)((longlong)param_5 + 0x24);
+    stack_data5 = *(int32_t *)((int64_t)param_5 + 0x24);
     stack_data6 = *(int32_t *)(param_5 + 5);
-    stack_int1 = *(int *)((longlong)param_5 + 0x2c);
+    stack_int1 = *(int *)((int64_t)param_5 + 0x2c);
     stack_data7 = param_5[6];
     stack_data8 = param_5[7];
     stack_data9 = param_5[8];
     stack_data10 = param_5[9];
     stack_data11 = *(int32_t *)(param_5 + 10);
-    stack_data12 = *(int32_t *)((longlong)param_5 + 0x54);
+    stack_data12 = *(int32_t *)((int64_t)param_5 + 0x54);
     stack_data13 = *(int32_t *)(param_5 + 0xb);
-    stack_data14 = *(int32_t *)((longlong)param_5 + 0x5c);
+    stack_data14 = *(int32_t *)((int64_t)param_5 + 0x5c);
     stack_data15 = *(int32_t *)(param_5 + 0xc);
-    stack_data16 = *(int32_t *)((longlong)param_5 + 100);
+    stack_data16 = *(int32_t *)((int64_t)param_5 + 100);
     stack_data17 = *(int32_t *)(param_5 + 0xd);
-    stack_data18 = *(int32_t *)((longlong)param_5 + 0x6c);
+    stack_data18 = *(int32_t *)((int64_t)param_5 + 0x6c);
     stack_data1._0_4_ = (int)transform_backup1;
-    bone_index = (int)stack_data1 + *(int *)((longlong)render_object + 0x5c);
-    stack_data2 = (int16_t)((ulonglong)transform_backup1 >> 0x30);
+    bone_index = (int)stack_data1 + *(int *)((int64_t)render_object + 0x5c);
+    stack_data2 = (int16_t)((uint64_t)transform_backup1 >> 0x30);
     _uStack_e0 = CONCAT15(*(int8_t *)(render_object + 0x76), (int5)transform_backup1);
     _uStack_e0 = CONCAT44(stack0xffffffffffffff24, bone_index);
     if (stack_int1 == 0) {
@@ -387,11 +387,11 @@ LAB_180276376:
       transformed_w = transform_matrix[1];
       distance_x = transform_matrix[2];
       distance_y = transform_matrix[3];
-      visibility_mask = *(ulonglong *)(visibility_flags + 10);
-      bone_transform_z = *(float *)((longlong)render_object + 0x334);
+      visibility_mask = *(uint64_t *)(visibility_flags + 10);
+      bone_transform_z = *(float *)((int64_t)render_object + 0x334);
       bone_transform_x = *(float *)(render_object + 0x66);
       bone_transform_y = *(float *)(render_object + 0x67);
-      distance_squared = *(float *)((longlong)render_object + 0x344);
+      distance_squared = *(float *)((int64_t)render_object + 0x344);
       transformed_x = transform_matrix[8];
       transformed_y = transform_matrix[9];
       distance_z = transform_matrix[10];
@@ -403,13 +403,13 @@ LAB_180276376:
       stack_float4 = bone_transform_z * max_distance_squared + bone_transform_x * distance_y + bone_transform_y * distance_w;
       bone_transform_z = *(float *)(render_object + 0x69);
       bone_transform_x = *(float *)(render_object + 0x6a);
-      bone_transform_y = *(float *)((longlong)render_object + 0x354);
+      bone_transform_y = *(float *)((int64_t)render_object + 0x354);
       stack_float5 = distance_squared * bone_transform_w + bone_transform_x * transformed_z + bone_transform_z * transformed_x;
       stack_float6 = distance_squared * distance_y + bone_transform_x * transformed_w + bone_transform_z * transformed_y;
       stack_float7 = distance_squared * distance_z + bone_transform_x * distance_x + bone_transform_z * transformed_z;
       stack_float8 = distance_squared * max_distance_squared + bone_transform_x * distance_y + bone_transform_z * distance_w;
       bone_transform_z = *(float *)(render_object + 0x6b);
-      distance_squared = *(float *)((longlong)render_object + 0x364);
+      distance_squared = *(float *)((int64_t)render_object + 0x364);
       bone_transform_x = *(float *)(render_object + 0x6c);
       stack_float9 = bone_transform_y * bone_transform_w + bone_transform_x * transformed_z + bone_transform_z * transformed_x;
       stack_float10 = bone_transform_y * distance_y + bone_transform_x * transformed_w + bone_transform_z * transformed_y;
@@ -424,12 +424,12 @@ LAB_180276376:
       // 距离剔除检测
       if ((visibility_mask != 0) && (bone_transform_z = *(float *)(render_object + 0xd), bone_transform_z != 3.4028235e+38)) {
         if ((void *)*render_object == &unknown_var_9304_ptr) {
-          current_bone = (longlong)render_object + 0x214;
+          current_bone = (int64_t)render_object + 0x214;
         }
         else {
           current_bone = (**(code **)((void *)*render_object + 0x198))(render_object);
           bone_transform_z = *(float *)(render_object + 0xd);
-          visibility_mask = *(ulonglong *)(visibility_flags + 10);
+          visibility_mask = *(uint64_t *)(visibility_flags + 10);
         }
         distance_squared = *(float *)(visibility_mask + 0x124) - stack_float14;
         distance_y = *(float *)(visibility_mask + 0x120) - stack_float13;
@@ -440,11 +440,11 @@ LAB_180276376:
       }
       
       // 遍历骨骼进行可见性检测
-      bone_index = (int)((longlong)(render_object[8] - render_object[7]) >> 4);
-      current_bone = (longlong)bone_index;
+      bone_index = (int)((int64_t)(render_object[8] - render_object[7]) >> 4);
+      current_bone = (int64_t)bone_index;
       if (0 < bone_index) {
         do {
-          bone_array_length = *(longlong *)(bone_array_length + render_object[7]);
+          bone_array_length = *(int64_t *)(bone_array_length + render_object[7]);
           if ((bone_array_length != 0) && ((*(uint *)(bone_array_length + 8 + render_object[7]) & bone_bitmask) != 0)) {
             if (((visibility_flags[0x6f6] & 0x20) != 0) && ((*(uint *)(bone_array_length + 0x100) & 0x400000) != 0)) {
               *(int32_t *)(render_object + 0x65) = *(int32_t *)(system_main_module_state + 0x224);
@@ -455,20 +455,20 @@ LAB_180276376:
           bone_array_length = bone_array_length + 0x10;
           current_bone = current_bone + -1;
         } while (current_bone != 0);
-        return (ulonglong)bone_visibility;
+        return (uint64_t)bone_visibility;
       }
     }
     else {
       // 蒙皮动画处理
-      visibility_mask = *(ulonglong *)(visibility_flags + 10);
+      visibility_mask = *(uint64_t *)(visibility_flags + 10);
       if ((visibility_mask != 0) && (bone_transform_z = *(float *)(render_object + 0xd), bone_transform_z != 3.4028235e+38)) {
         if ((void *)*render_object == &unknown_var_9304_ptr) {
-          current_bone = (longlong)render_object + 0x214;
+          current_bone = (int64_t)render_object + 0x214;
         }
         else {
           current_bone = (**(code **)((void *)*render_object + 0x198))(render_object);
           bone_transform_z = *(float *)(render_object + 0xd);
-          visibility_mask = *(ulonglong *)(visibility_flags + 10);
+          visibility_mask = *(uint64_t *)(visibility_flags + 10);
         }
         distance_squared = *(float *)(visibility_mask + 0x124) - transform_matrix[0xd];
         distance_y = *(float *)(visibility_mask + 0x120) - transform_matrix[0xc];
@@ -479,11 +479,11 @@ LAB_180276376:
       }
       
       // 遍历骨骼进行蒙皮动画处理
-      bone_index = (int)((longlong)(render_object[8] - render_object[7]) >> 4);
-      current_bone = (longlong)bone_index;
+      bone_index = (int)((int64_t)(render_object[8] - render_object[7]) >> 4);
+      current_bone = (int64_t)bone_index;
       if (0 < bone_index) {
         do {
-          bone_array_length = *(longlong *)(bone_array_length + render_object[7]);
+          bone_array_length = *(int64_t *)(bone_array_length + render_object[7]);
           if ((bone_array_length != 0) && ((*(uint *)(bone_array_length + 8 + render_object[7]) & bone_bitmask) != 0)) {
             if (((visibility_flags[0x6f6] & 0x20) != 0) && ((*(uint *)(bone_array_length + 0x100) & 0x400000) != 0)) {
               *(int32_t *)(render_object + 0x65) = *(int32_t *)(system_main_module_state + 0x224);
@@ -501,7 +501,7 @@ LAB_180276376:
         } while (current_bone != 0);
       }
     }
-    visibility_mask = (ulonglong)bone_visibility;
+    visibility_mask = (uint64_t)bone_visibility;
   }
   return visibility_mask;
 }
@@ -509,13 +509,13 @@ LAB_180276376:
 
 
 // 函数: 处理顶点变换和可见性检测
-// 原始函数名: ulonglong FUN_18027606a(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
-ulonglong process_vertex_transform_visibility(uint64_t param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
+// 原始函数名: uint64_t FUN_18027606a(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
+uint64_t process_vertex_transform_visibility(uint64_t param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 
 {
   float transform_x;
   float transform_y;
-  longlong bone_ref;
+  int64_t bone_ref;
   float transform_z;
   float transform_w;
   float scale_x;
@@ -527,15 +527,15 @@ ulonglong process_vertex_transform_visibility(uint64_t param_1, uint64_t param_2
   float distance_z;
   byte visibility_result;
   int bone_count;
-  ulonglong visibility_mask;
-  ulonglong result;
+  uint64_t visibility_mask;
+  uint64_t result;
   uint64_t *render_object;
-  longlong transform_data;
-  longlong bone_data;
-  longlong bone_start;
+  int64_t transform_data;
+  int64_t bone_data;
+  int64_t bone_start;
   uint bone_flags;
   byte bone_visible;
-  longlong current_bone;
+  int64_t current_bone;
   float bone_transform_x;
   float transform_backup1;
   float transform_backup2;
@@ -561,18 +561,18 @@ ulonglong process_vertex_transform_visibility(uint64_t param_1, uint64_t param_2
   // 执行顶点变换
   *(float *)(unaff_RBP + -0x21) = (float)param_3 * scale_z + (float)param_1 + (float)param_2 * transform_z;
   *(float *)(unaff_RBP + -0x1d) =
-       (float)((ulonglong)param_3 >> 0x20) * scale_w + (float)((ulonglong)param_1 >> 0x20) +
-       (float)((ulonglong)param_2 >> 0x20) * transform_w;
+       (float)((uint64_t)param_3 >> 0x20) * scale_w + (float)((uint64_t)param_1 >> 0x20) +
+       (float)((uint64_t)param_2 >> 0x20) * transform_w;
   *(float *)(unaff_RBP + -0x19) = in_XMM2_Dc * distance_x + in_XMM0_Dc + in_XMM1_Dc * scale_x;
   *(float *)(unaff_RBP + -0x15) = in_XMM2_Dd * distance_y + in_XMM0_Dd + in_XMM1_Dd * scale_y;
-  transform_backup3 = *(float *)((longlong)unaff_RBX + 0x354);
+  transform_backup3 = *(float *)((int64_t)unaff_RBX + 0x354);
   transform_backup1 = *(float *)(unaff_RBX + 0x6b);
   *(float *)(unaff_RBP + -0x11) = (float)param_4 * scale_z + param4_float * in_XMM5_Da + param1_float * transform_z;
   *(float *)(unaff_RBP + -0xd) =
-       (float)((ulonglong)param_4 >> 0x20) * scale_w + param4_float * in_XMM5_Db + param1_float * transform_w;
+       (float)((uint64_t)param_4 >> 0x20) * scale_w + param4_float * in_XMM5_Db + param1_float * transform_w;
   *(float *)(unaff_RBP + -9) = in_XMM3_Dc * distance_x + param4_float * in_XMM5_Dc + param1_float * scale_x;
   *(float *)(unaff_RBP + -5) = in_XMM3_Dd * distance_y + param4_float * in_XMM5_Dd + param1_float * scale_y;
-  param4_float = *(float *)((longlong)unaff_RBX + 0x364);
+  param4_float = *(float *)((int64_t)unaff_RBX + 0x364);
   param1_float = *(float *)(unaff_RBX + 0x6c);
   transform_backup2 = *(float *)(unaff_RBX + 0x6d);
   *(float *)(unaff_RBP + -1) = transform_backup3 * scale_z + param2_float * in_XMM5_Da + transform_backup1 * transform_z;
@@ -591,12 +591,12 @@ ulonglong process_vertex_transform_visibility(uint64_t param_1, uint64_t param_2
   // 距离剔除检测
   if ((in_RAX != 0) && (param4_float = *(float *)(unaff_RBX + 0xd), param4_float != 3.4028235e+38)) {
     if ((void *)*unaff_RBX == &unknown_var_9304_ptr) {
-      current_bone = (longlong)unaff_RBX + 0x214;
+      current_bone = (int64_t)unaff_RBX + 0x214;
     }
     else {
       current_bone = (**(code **)((void *)*unaff_RBX + 0x198))();
       param4_float = *(float *)(unaff_RBX + 0xd);
-      in_RAX = *(ulonglong *)(unaff_RSI + 0x28);
+      in_RAX = *(uint64_t *)(unaff_RSI + 0x28);
     }
     transform_backup3 = *(float *)(in_RAX + 0x124) - *(float *)(unaff_RBP + 0x13);
     param2_float = *(float *)(in_RAX + 0x120) - *(float *)(unaff_RBP + 0xf);
@@ -609,14 +609,14 @@ ulonglong process_vertex_transform_visibility(uint64_t param_1, uint64_t param_2
   }
   
   // 遍历骨骼进行可见性检测
-  bone_count = (int)((longlong)(unaff_RBX[8] - unaff_RBX[7]) >> 4);
-  current_bone = (longlong)bone_count;
+  bone_count = (int)((int64_t)(unaff_RBX[8] - unaff_RBX[7]) >> 4);
+  current_bone = (int64_t)bone_count;
   if (bone_count < 1) {
-    result = (ulonglong)unaff_R14B;
+    result = (uint64_t)unaff_R14B;
   }
   else {
     do {
-      bone_ref = *(longlong *)(unaff_RDI + unaff_RBX[7]);
+      bone_ref = *(int64_t *)(unaff_RDI + unaff_RBX[7]);
       if ((bone_ref != 0) && ((*(uint *)(unaff_RDI + 8 + unaff_RBX[7]) & unaff_R13D) != 0)) {
         if (((*(byte *)(unaff_RSI + 0x1bd8) & 0x20) != 0) &&
            ((*(uint *)(bone_ref + 0x100) & 0x400000) != 0)) {
@@ -628,7 +628,7 @@ ulonglong process_vertex_transform_visibility(uint64_t param_1, uint64_t param_2
       unaff_RDI = unaff_RDI + 0x10;
       current_bone = current_bone + -1;
     } while (current_bone != 0);
-    result = (ulonglong)unaff_R14B;
+    result = (uint64_t)unaff_R14B;
   }
   return result;
 }
@@ -636,22 +636,22 @@ ulonglong process_vertex_transform_visibility(uint64_t param_1, uint64_t param_2
 
 
 // 函数: 处理骨骼可见性检测（简化版）
-// 原始函数名: ulonglong FUN_18027613a(void)
-ulonglong process_bone_visibility_simple(void)
+// 原始函数名: uint64_t FUN_18027613a(void)
+uint64_t process_bone_visibility_simple(void)
 
 {
-  longlong bone_ref;
+  int64_t bone_ref;
   byte bone_visibility;
   int bone_count;
-  ulonglong visibility_mask;
-  ulonglong result;
+  uint64_t visibility_mask;
+  uint64_t result;
   uint64_t *render_object;
-  longlong transform_data;
-  longlong bone_data;
-  longlong bone_start;
+  int64_t transform_data;
+  int64_t bone_data;
+  int64_t bone_start;
   uint bone_flags;
   byte bone_visible;
-  longlong current_bone;
+  int64_t current_bone;
   float distance_x;
   float distance_y;
   float distance_z;
@@ -660,12 +660,12 @@ ulonglong process_bone_visibility_simple(void)
   distance_z = *(float *)(unaff_RBX + 0xd);
   if (distance_z != 3.4028235e+38) {
     if ((void *)*unaff_RBX == &unknown_var_9304_ptr) {
-      current_bone = (longlong)unaff_RBX + 0x214;
+      current_bone = (int64_t)unaff_RBX + 0x214;
     }
     else {
       current_bone = (**(code **)((void *)*unaff_RBX + 0x198))();
       distance_z = *(float *)(unaff_RBX + 0xd);
-      in_RAX = *(ulonglong *)(unaff_RSI + 0x28);
+      in_RAX = *(uint64_t *)(unaff_RSI + 0x28);
     }
     distance_y = *(float *)(in_RAX + 0x124) - *(float *)(unaff_RBP + 0x13);
     distance_x = *(float *)(in_RAX + 0x120) - *(float *)(unaff_RBP + 0xf);
@@ -678,14 +678,14 @@ ulonglong process_bone_visibility_simple(void)
   }
   
   // 遍历骨骼进行可见性检测
-  bone_count = (int)((longlong)(unaff_RBX[8] - unaff_RBX[7]) >> 4);
-  current_bone = (longlong)bone_count;
+  bone_count = (int)((int64_t)(unaff_RBX[8] - unaff_RBX[7]) >> 4);
+  current_bone = (int64_t)bone_count;
   if (bone_count < 1) {
-    result = (ulonglong)unaff_R14B;
+    result = (uint64_t)unaff_R14B;
   }
   else {
     do {
-      bone_ref = *(longlong *)(unaff_RDI + unaff_RBX[7]);
+      bone_ref = *(int64_t *)(unaff_RDI + unaff_RBX[7]);
       if ((bone_ref != 0) && ((*(uint *)(unaff_RDI + 8 + unaff_RBX[7]) & unaff_R13D) != 0)) {
         if (((*(byte *)(unaff_RSI + 0x1bd8) & 0x20) != 0) &&
            ((*(uint *)(bone_ref + 0x100) & 0x400000) != 0)) {
@@ -697,7 +697,7 @@ ulonglong process_bone_visibility_simple(void)
       unaff_RDI = unaff_RDI + 0x10;
       current_bone = current_bone + -1;
     } while (current_bone != 0);
-    result = (ulonglong)unaff_R14B;
+    result = (uint64_t)unaff_R14B;
   }
   return result;
 }
@@ -709,22 +709,22 @@ ulonglong process_bone_visibility_simple(void)
 byte process_bone_array_visibility(void)
 
 {
-  longlong bone_ref;
+  int64_t bone_ref;
   byte bone_visibility;
   int bone_count;
-  longlong unaff_RBX;
-  longlong unaff_RSI;
-  longlong unaff_RDI;
-  longlong current_bone;
+  int64_t unaff_RBX;
+  int64_t unaff_RSI;
+  int64_t unaff_RDI;
+  int64_t current_bone;
   uint bone_flags;
   byte bone_visible;
   
-  current_bone = (longlong)in_EAX;
+  current_bone = (int64_t)in_EAX;
   if (0 < in_EAX) {
     do {
-      bone_ref = *(longlong *)(unaff_RDI + *(longlong *)(unaff_RBX + 0x38));
+      bone_ref = *(int64_t *)(unaff_RDI + *(int64_t *)(unaff_RBX + 0x38));
       if ((bone_ref != 0) &&
-         ((*(uint *)(unaff_RDI + 8 + *(longlong *)(unaff_RBX + 0x38)) & unaff_R13D) != 0)) {
+         ((*(uint *)(unaff_RDI + 8 + *(int64_t *)(unaff_RBX + 0x38)) & unaff_R13D) != 0)) {
         if (((*(byte *)(unaff_RSI + 0x1bd8) & 0x20) != 0) &&
            ((*(uint *)(bone_ref + 0x100) & 0x400000) != 0)) {
           *(int32_t *)(unaff_RBX + 0x328) = *(int32_t *)(system_main_module_state + 0x224);
@@ -759,17 +759,17 @@ int8_t get_visibility_flag(void)
 
 
 // 函数: 更新渲染对象距离数据
-// 原始函数名: ulonglong FUN_1802763d0(longlong param_1,longlong param_2,int param_3,uint64_t *param_4)
-ulonglong update_render_object_distance(longlong render_context, longlong distance_data, int param_3, uint64_t *transform_data)
+// 原始函数名: uint64_t FUN_1802763d0(int64_t param_1,int64_t param_2,int param_3,uint64_t *param_4)
+uint64_t update_render_object_distance(int64_t render_context, int64_t distance_data, int param_3, uint64_t *transform_data)
 
 {
   float max_view_distance;
   float object_distance;
-  ulonglong result;
-  longlong bone_count;
+  uint64_t result;
+  int64_t bone_count;
   int bone_index;
-  longlong bone_array_start;
-  ulonglong bone_array_length;
+  int64_t bone_array_start;
+  uint64_t bone_array_length;
   uint64_t stack_transform[9];
   
   // 检查是否有有效的距离数据
@@ -790,7 +790,7 @@ ulonglong update_render_object_distance(longlong render_context, longlong distan
     
     // 获取最大视距
     max_view_distance = *(float *)(render_context + 0x68);
-    bone_count = (longlong)param_3 * 0xbc + *(longlong *)(distance_data + 0x98);
+    bone_count = (int64_t)param_3 * 0xbc + *(int64_t *)(distance_data + 0x98);
     object_distance = 3.4028235e+38;
     
     // 计算对象距离
@@ -805,20 +805,20 @@ ulonglong update_render_object_distance(longlong render_context, longlong distan
     
     // 遍历骨骼数组更新距离数据
     bone_index = 0;
-    bone_array_start = *(longlong *)(render_context + 0x38);
-    result = *(longlong *)(render_context + 0x40) - bone_array_start >> 4;
+    bone_array_start = *(int64_t *)(render_context + 0x38);
+    result = *(int64_t *)(render_context + 0x40) - bone_array_start >> 4;
     if (result != 0) {
       bone_count = 0;
       do {
-        if (*(longlong *)(bone_count + bone_array_start) != 0) {
-          FUN_180077f20(*(longlong *)(bone_count + bone_array_start), distance_data, param_3, stack_transform,
+        if (*(int64_t *)(bone_count + bone_array_start) != 0) {
+          FUN_180077f20(*(int64_t *)(bone_count + bone_array_start), distance_data, param_3, stack_transform,
                         *(int32_t *)(bone_count + 8 + bone_array_start), *(int32_t *)(render_context + 0x58));
         }
-        bone_array_start = *(longlong *)(render_context + 0x38);
+        bone_array_start = *(int64_t *)(render_context + 0x38);
         bone_index = bone_index + 1;
         bone_count = bone_count + 0x10;
-        result = (ulonglong)bone_index;
-      } while (result < (ulonglong)(*(longlong *)(render_context + 0x40) - bone_array_start >> 4));
+        result = (uint64_t)bone_index;
+      } while (result < (uint64_t)(*(int64_t *)(render_context + 0x40) - bone_array_start >> 4));
     }
     return CONCAT71((int7)(result >> 8), 1);
   }
@@ -828,28 +828,28 @@ ulonglong update_render_object_distance(longlong render_context, longlong distan
 
 
 // 函数: 批量处理渲染对象
-// 原始函数名: uint64_t FUN_18027649f(uint64_t param_1,longlong param_2)
-uint64_t batch_process_render_objects(uint64_t param_1, longlong param_2)
+// 原始函数名: uint64_t FUN_18027649f(uint64_t param_1,int64_t param_2)
+uint64_t batch_process_render_objects(uint64_t param_1, int64_t param_2)
 
 {
-  longlong render_context;
+  int64_t render_context;
   uint object_index;
-  ulonglong processed_count;
+  uint64_t processed_count;
   int32_t render_flags;
   
   render_context = unaff_RBX;
   object_index = unaff_ESI;
-  processed_count = (ulonglong)object_index;
+  processed_count = (uint64_t)object_index;
   do {
-    if (*(longlong *)(processed_count + param_2) != 0) {
+    if (*(int64_t *)(processed_count + param_2) != 0) {
       render_flags = *(int32_t *)(render_context + 0x58);
       FUN_180077f20();
     }
-    param_2 = *(longlong *)(render_context + 0x38);
+    param_2 = *(int64_t *)(render_context + 0x38);
     object_index = object_index + 1;
     processed_count = processed_count + 0x10;
-  } while ((ulonglong)(longlong)(int)object_index <
-           (ulonglong)(*(longlong *)(render_context + 0x40) - param_2 >> 4));
+  } while ((uint64_t)(int64_t)(int)object_index <
+           (uint64_t)(*(int64_t *)(render_context + 0x40) - param_2 >> 4));
   return CONCAT71((int7)(int3)(object_index >> 8), 1);
 }
 
@@ -866,35 +866,35 @@ int8_t check_render_status(void)
 
 
 // 函数: 应用渲染属性到所有骨骼
-// 原始函数名: void FUN_180276610(longlong param_1,int32_t param_2)
-void apply_render_properties_to_bones(longlong render_object, int32_t render_properties)
+// 原始函数名: void FUN_180276610(int64_t param_1,int32_t param_2)
+void apply_render_properties_to_bones(int64_t render_object, int32_t render_properties)
 
 {
-  longlong *bone_ref;
-  longlong *bone_manager;
-  ulonglong bone_index;
+  int64_t *bone_ref;
+  int64_t *bone_manager;
+  uint64_t bone_index;
   uint property_index;
-  ulonglong property_count;
-  longlong *current_bone;
-  longlong *temp_bone_ref1;
+  uint64_t property_count;
+  int64_t *current_bone;
+  int64_t *temp_bone_ref1;
   int8_t bone_data[8];
-  longlong *temp_bone_ref2;
+  int64_t *temp_bone_ref2;
   int32_t property_data;
-  longlong *temp_bone_ref3;
+  int64_t *temp_bone_ref3;
   int16_t bone_flags;
   char bone_modified;
   
-  current_bone = *(longlong **)(render_object + 0x38);
-  if (current_bone < *(longlong **)(render_object + 0x40)) {
+  current_bone = *(int64_t **)(render_object + 0x38);
+  if (current_bone < *(int64_t **)(render_object + 0x40)) {
     do {
-      bone_ref = (longlong *)*current_bone;
-      if (bone_ref != (longlong *)0x0) {
+      bone_ref = (int64_t *)*current_bone;
+      if (bone_ref != (int64_t *)0x0) {
         (**(code **)(*bone_ref + 0x28))(bone_ref);
       }
-      temp_bone_ref3 = (longlong *)0x0;
-      temp_bone_ref2 = (longlong *)0x0;
+      temp_bone_ref3 = (int64_t *)0x0;
+      temp_bone_ref2 = (int64_t *)0x0;
       bone_data[0] = 0;
-      if (bone_ref != (longlong *)0x0) {
+      if (bone_ref != (int64_t *)0x0) {
         (**(code **)(*bone_ref + 0x28))(bone_ref);
       }
       property_data = 0;
@@ -903,7 +903,7 @@ void apply_render_properties_to_bones(longlong render_object, int32_t render_pro
       bone_manager = temp_bone_ref3;
       bone_flags = 0;
       bone_modified = '\0';
-      if (bone_ref != (longlong *)0x0) {
+      if (bone_ref != (int64_t *)0x0) {
         (**(code **)(*bone_ref + 0x38))(bone_ref);
       }
       bone_index = 0;
@@ -913,11 +913,11 @@ void apply_render_properties_to_bones(longlong render_object, int32_t render_pro
           *(int32_t *)(temp_bone_ref3[0xd] + 0x54 + bone_index) = render_properties;
           property_index = (int)property_count + 1;
           bone_index = bone_index + 0x5c;
-          property_count = (ulonglong)property_index;
+          property_count = (uint64_t)property_index;
         } while ((int)property_index < (int)temp_bone_ref3[0xc]);
       }
       bone_flags = CONCAT11(bone_flags._1_1_, 1);
-      if ((bone_ref != (longlong *)0x0) && (temp_bone_ref3 != (longlong *)0x0)) {
+      if ((bone_ref != (int64_t *)0x0) && (temp_bone_ref3 != (int64_t *)0x0)) {
         if (bone_modified != '\0') {
           FUN_180075b70();
         }
@@ -928,23 +928,23 @@ void apply_render_properties_to_bones(longlong render_object, int32_t render_pro
         if (bone_flags._1_1_ != '\0') {
           FUN_180079520(bone_ref);
         }
-        temp_bone_ref3 = (longlong *)0x0;
-        if (temp_bone_ref3 != (longlong *)0x0) {
+        temp_bone_ref3 = (int64_t *)0x0;
+        if (temp_bone_ref3 != (int64_t *)0x0) {
           (**(code **)(*temp_bone_ref3 + 0x38))();
         }
       }
       FUN_18007f6a0(bone_data);
-      if (temp_bone_ref2 != (longlong *)0x0) {
+      if (temp_bone_ref2 != (int64_t *)0x0) {
         (**(code **)(*temp_bone_ref2 + 0x38))();
       }
-      if (temp_bone_ref3 != (longlong *)0x0) {
+      if (temp_bone_ref3 != (int64_t *)0x0) {
         (**(code **)(*temp_bone_ref3 + 0x38))();
       }
-      if (bone_ref != (longlong *)0x0) {
+      if (bone_ref != (int64_t *)0x0) {
         (**(code **)(*bone_ref + 0x38))();
       }
       current_bone = current_bone + 2;
-    } while (current_bone < *(longlong **)(render_object + 0x40));
+    } while (current_bone < *(int64_t **)(render_object + 0x40));
   }
   return;
 }

@@ -57,35 +57,35 @@ void UIProcessVectorTransform(uint param_1, uint64_t param_2, uint64_t param_3, 
   short transform_AX;
   int16_t temp_result;
   int matrix_index;
-  longlong scale_factor;
+  int64_t scale_factor;
   int *input_buffer;
   int *transform_matrix;
-  longlong buffer_offset;
-  longlong temp_offset;
+  int64_t buffer_offset;
+  int64_t temp_offset;
   int result_value;
-  longlong loop_counter;
-  ulonglong scale_param;
-  longlong iteration_count;
+  int64_t loop_counter;
+  uint64_t scale_param;
+  int64_t iteration_count;
   int16_t *output_pointer;
   
   // 计算缓冲区偏移量
-  temp_offset = buffer_offset - (longlong)output_pointer;
+  temp_offset = buffer_offset - (int64_t)output_pointer;
   do {
     // 获取缩放因子
-    scale_factor = (longlong)*(short *)(temp_offset + (longlong)output_pointer);
+    scale_factor = (int64_t)*(short *)(temp_offset + (int64_t)output_pointer);
     // 计算矩阵索引和变换结果
-    matrix_index = *input_buffer * 4 + (int)((ulonglong)(*transform_matrix * scale_factor) >> 0x10) * 4;
-    scale_factor = (longlong)matrix_index;
+    matrix_index = *input_buffer * 4 + (int)((uint64_t)(*transform_matrix * scale_factor) >> 0x10) * 4;
+    scale_factor = (int64_t)matrix_index;
     // 执行矩阵变换计算
     result_value = (((int)((scale_param & 0xffffffff) * scale_factor >> 0x10) >> 0xd) + 1 >> 1) +
-                   (int)((ulonglong)(transform_AX * scale_factor) >> 0x10) + input_buffer[1];
+                   (int)((uint64_t)(transform_AX * scale_factor) >> 0x10) + input_buffer[1];
     *input_buffer = result_value;
-    *input_buffer = (int)((ulonglong)(transform_matrix[1] * scale_factor) >> 0x10) + result_value;
+    *input_buffer = (int)((uint64_t)(transform_matrix[1] * scale_factor) >> 0x10) + result_value;
     // 计算第二组变换结果
-    result_value = (((int)((ulonglong)param_1 * scale_factor >> 0x10) >> 0xd) + 1 >> 1) +
-                   (int)((ulonglong)(param_4 * scale_factor) >> 0x10);
+    result_value = (((int)((uint64_t)param_1 * scale_factor >> 0x10) >> 0xd) + 1 >> 1) +
+                   (int)((uint64_t)(param_4 * scale_factor) >> 0x10);
     input_buffer[1] = result_value;
-    input_buffer[1] = (int)((ulonglong)(transform_matrix[2] * scale_factor) >> 0x10) + result_value;
+    input_buffer[1] = (int)((uint64_t)(transform_matrix[2] * scale_factor) >> 0x10) + result_value;
     // 处理结果值范围限制
     result_value = matrix_index + 0x3fff >> 0xe;
     if (result_value < 0x8000) {
@@ -134,33 +134,33 @@ void UIEmptyOperationHandler(void)
 //   param_3 - 数据元素数量（矩阵维度）
 // 算法说明: 使用高斯消元法的变种进行矩阵求逆，支持极小值处理和数值稳定性优化
 // 安全机制: 包含栈保护cookie检查，防止栈溢出攻击
-void UIMatrixInverseTransform(longlong param_1, longlong param_2, int param_3)
+void UIMatrixInverseTransform(int64_t param_1, int64_t param_2, int param_3)
 {
   double input_value;
   double matrix_val1;
   double matrix_val2;
   double result_val;
   int8_t conversion_buffer [16];
-  longlong element_index;
+  int64_t element_index;
   double *matrix_pointer;
-  longlong row_count;
-  longlong col_count;
-  ulonglong element_count;
-  ulonglong remaining_elements;
-  longlong batch_size;
+  int64_t row_count;
+  int64_t col_count;
+  uint64_t element_count;
+  uint64_t remaining_elements;
+  int64_t batch_size;
   int8_t (*buffer_ptr) [16];
-  longlong processed_elements;
-  longlong matrix_offset;
+  int64_t processed_elements;
+  int64_t matrix_offset;
   int32_t float_part1;
   int32_t float_part2;
   double scale_factor;
   int8_t stack_protector [8];
   double matrix_stack [49];
-  ulonglong security_cookie;
+  uint64_t security_cookie;
   
   // 安全检查：栈保护cookie
-  security_cookie = GET_SECURITY_COOKIE() ^ (ulonglong)stack_protector;
-  element_count = (ulonglong)param_3;
+  security_cookie = GET_SECURITY_COOKIE() ^ (uint64_t)stack_protector;
+  element_count = (uint64_t)param_3;
   element_index = 0;
   buffer_ptr = (int8_t (*) [16])stack_protector;
   
@@ -170,10 +170,10 @@ void UIMatrixInverseTransform(longlong param_1, longlong param_2, int param_3)
     element_index = element_index + 1;
     conversion_buffer._8_4_ = SUB84(result_val, 0);
     conversion_buffer._0_8_ = result_val;
-    conversion_buffer._12_4_ = (int)((ulonglong)result_val >> 0x20);
+    conversion_buffer._12_4_ = (int)((uint64_t)result_val >> 0x20);
     *buffer_ptr = conversion_buffer;
     buffer_ptr = buffer_ptr + 1;
-  } while (element_index <= (longlong)element_count);
+  } while (element_index <= (int64_t)element_count);
   
   if (0 < param_3) {
     matrix_offset = 0;
@@ -183,18 +183,18 @@ void UIMatrixInverseTransform(longlong param_1, longlong param_2, int param_3)
     do {
       // 处理矩阵元素，进行数值范围检查
       float_part1 = SUB84(matrix_stack[0], 0);
-      float_part2 = (int32_t)((ulonglong)matrix_stack[0] >> 0x20);
+      float_part2 = (int32_t)((uint64_t)matrix_stack[0] >> 0x20);
       if (matrix_stack[0] <= 9.999999717180685e-10) {
         float_part1 = 0xe0000000;  // 极小值处理
         float_part2 = 0x3e112e0b;
       }
-      row_count = (longlong)(int)remaining_elements;
-      matrix_pointer = (double *)((longlong)matrix_stack + batch_size + 0x10);
+      row_count = (int64_t)(int)remaining_elements;
+      matrix_pointer = (double *)((int64_t)matrix_stack + batch_size + 0x10);
       processed_elements = 0;
       
       // 计算缩放因子
       result_val = (-1.0 / (double)CONCAT44(float_part2, float_part1)) *
-                   *(double *)((longlong)matrix_stack + batch_size);
+                   *(double *)((int64_t)matrix_stack + batch_size);
       *(float *)(param_1 + matrix_offset * 4) = (float)result_val;
       
       // 批量处理矩阵运算（4元素一组）
@@ -203,22 +203,22 @@ void UIMatrixInverseTransform(longlong param_1, longlong param_2, int param_3)
         processed_elements = batch_size * 4;
         do {
           // 执行4x4矩阵块运算
-          matrix_val1 = *(double *)((longlong)matrix_pointer + element_index + -0x10);
+          matrix_val1 = *(double *)((int64_t)matrix_pointer + element_index + -0x10);
           matrix_val2 = matrix_pointer[-2];
           matrix_pointer[-2] = matrix_val1 * result_val + matrix_val2;
-          result_val = *(double *)((longlong)matrix_pointer + element_index);
-          *(double *)((longlong)matrix_pointer + element_index + -0x10) = matrix_val2 * result_val + matrix_val1;
+          result_val = *(double *)((int64_t)matrix_pointer + element_index);
+          *(double *)((int64_t)matrix_pointer + element_index + -0x10) = matrix_val2 * result_val + matrix_val1;
           matrix_val1 = *matrix_pointer;
           *matrix_pointer = result_val * result_val + matrix_val1;
-          matrix_val2 = *(double *)((longlong)matrix_pointer + element_index + 0x10);
-          *(double *)((longlong)matrix_pointer + element_index) = matrix_val1 * result_val + result_val;
+          matrix_val2 = *(double *)((int64_t)matrix_pointer + element_index + 0x10);
+          *(double *)((int64_t)matrix_pointer + element_index) = matrix_val1 * result_val + result_val;
           matrix_val1 = matrix_pointer[2];
           matrix_pointer[2] = matrix_val2 * result_val + matrix_val1;
-          result_val = *(double *)((longlong)matrix_pointer + element_index + 0x20);
-          *(double *)((longlong)matrix_pointer + element_index + 0x10) = matrix_val1 * result_val + matrix_val2;
+          result_val = *(double *)((int64_t)matrix_pointer + element_index + 0x20);
+          *(double *)((int64_t)matrix_pointer + element_index + 0x10) = matrix_val1 * result_val + matrix_val2;
           matrix_val1 = matrix_pointer[4];
           matrix_pointer[4] = result_val * result_val + matrix_val1;
-          *(double *)((longlong)matrix_pointer + element_index + 0x20) = matrix_val1 * result_val + result_val;
+          *(double *)((int64_t)matrix_pointer + element_index + 0x20) = matrix_val1 * result_val + result_val;
           matrix_pointer = matrix_pointer + 8;
           batch_size = batch_size + -1;
         } while (batch_size != 0);
@@ -230,22 +230,22 @@ void UIMatrixInverseTransform(longlong param_1, longlong param_2, int param_3)
         row_count = row_count - processed_elements;
         do {
           matrix_val1 = *matrix_pointer;
-          matrix_val2 = *(double *)(batch_size + (longlong)matrix_pointer);
-          *(double *)(batch_size + (longlong)matrix_pointer) = matrix_val1 * result_val + matrix_val2;
+          matrix_val2 = *(double *)(batch_size + (int64_t)matrix_pointer);
+          *(double *)(batch_size + (int64_t)matrix_pointer) = matrix_val1 * result_val + matrix_val2;
           *matrix_pointer = matrix_val2 * result_val + matrix_val1;
           matrix_pointer = matrix_pointer + 2;
           row_count = row_count + -1;
         } while (row_count != 0);
       }
-      remaining_elements = (ulonglong)((int)remaining_elements - 1);
+      remaining_elements = (uint64_t)((int)remaining_elements - 1);
       matrix_offset = matrix_offset + 1;
       element_index = element_index + -0x10;
       batch_size = batch_size + 0x10;
-    } while (matrix_offset < (longlong)element_count);
+    } while (matrix_offset < (int64_t)element_count);
   }
   
   // 安全检查：函数不会返回
-  FUN_1808fc050(security_cookie ^ (ulonglong)stack_protector);
+  FUN_1808fc050(security_cookie ^ (uint64_t)stack_protector);
 }
 
 
@@ -265,20 +265,20 @@ void UIAdvancedMatrixProcessor(void)
   double matrix_val2;
   double matrix_val3;
   double *matrix_pointer;
-  longlong batch_counter;
-  longlong offset_val;
+  int64_t batch_counter;
+  int64_t offset_val;
   int matrix_rows;
-  longlong output_buffer;
-  longlong matrix_limit;
-  ulonglong element_offset;
-  longlong processed_count;
-  longlong total_elements;
-  longlong iteration_index;
+  int64_t output_buffer;
+  int64_t matrix_limit;
+  uint64_t element_offset;
+  int64_t processed_count;
+  int64_t total_elements;
+  int64_t iteration_index;
   double scale_factor;
   double threshold_value;
   double matrix_stack [4];
   
-  element_offset = (ulonglong)((int)iteration_index + 8);
+  element_offset = (uint64_t)((int)iteration_index + 8);
   offset_val = iteration_index + -8;
   do {
     // 获取缩放因子并进行阈值检查
@@ -286,12 +286,12 @@ void UIAdvancedMatrixProcessor(void)
     if (matrix_stack[0] <= threshold_value) {
       scale_factor = threshold_value;  // 应用阈值限制
     }
-    total_elements = (longlong)matrix_rows;
-    matrix_pointer = (double *)((longlong)matrix_stack + element_offset + 0x10);
+    total_elements = (int64_t)matrix_rows;
+    matrix_pointer = (double *)((int64_t)matrix_stack + element_offset + 0x10);
     processed_count = 0;
     
     // 计算逆变换因子
-    scale_factor = (-1.0 / scale_factor) * *(double *)((longlong)matrix_stack + element_offset);
+    scale_factor = (-1.0 / scale_factor) * *(double *)((int64_t)matrix_stack + element_offset);
     *(float *)(output_buffer + iteration_index * 4) = (float)scale_factor;
     
     // 批量处理矩阵元素（4元素优化）
@@ -300,22 +300,22 @@ void UIAdvancedMatrixProcessor(void)
       processed_count = batch_counter * 4;
       do {
         // 执行4x4矩阵块运算
-        matrix_val1 = *(double *)((longlong)matrix_pointer + offset_val + -0x10);
+        matrix_val1 = *(double *)((int64_t)matrix_pointer + offset_val + -0x10);
         matrix_val2 = matrix_pointer[-2];
         matrix_pointer[-2] = matrix_val1 * scale_factor + matrix_val2;
-        matrix_val3 = *(double *)((longlong)matrix_pointer + offset_val);
-        *(double *)((longlong)matrix_pointer + offset_val + -0x10) = matrix_val2 * scale_factor + matrix_val1;
+        matrix_val3 = *(double *)((int64_t)matrix_pointer + offset_val);
+        *(double *)((int64_t)matrix_pointer + offset_val + -0x10) = matrix_val2 * scale_factor + matrix_val1;
         matrix_val1 = *matrix_pointer;
         *matrix_pointer = matrix_val3 * scale_factor + matrix_val1;
-        matrix_val2 = *(double *)((longlong)matrix_pointer + offset_val + 0x10);
-        *(double *)((longlong)matrix_pointer + offset_val) = matrix_val1 * scale_factor + matrix_val3;
+        matrix_val2 = *(double *)((int64_t)matrix_pointer + offset_val + 0x10);
+        *(double *)((int64_t)matrix_pointer + offset_val) = matrix_val1 * scale_factor + matrix_val3;
         matrix_val1 = matrix_pointer[2];
         matrix_pointer[2] = matrix_val2 * scale_factor + matrix_val1;
-        matrix_val3 = *(double *)((longlong)matrix_pointer + offset_val + 0x20);
-        *(double *)((longlong)matrix_pointer + offset_val + 0x10) = matrix_val1 * scale_factor + matrix_val2;
+        matrix_val3 = *(double *)((int64_t)matrix_pointer + offset_val + 0x20);
+        *(double *)((int64_t)matrix_pointer + offset_val + 0x10) = matrix_val1 * scale_factor + matrix_val2;
         matrix_val1 = matrix_pointer[4];
         matrix_pointer[4] = matrix_val3 * scale_factor + matrix_val1;
-        *(double *)((longlong)matrix_pointer + offset_val + 0x20) = matrix_val1 * scale_factor + matrix_val3;
+        *(double *)((int64_t)matrix_pointer + offset_val + 0x20) = matrix_val1 * scale_factor + matrix_val3;
         matrix_pointer = matrix_pointer + 8;
         batch_counter = batch_counter + -1;
       } while (batch_counter != 0);
@@ -327,8 +327,8 @@ void UIAdvancedMatrixProcessor(void)
       total_elements = total_elements - processed_count;
       do {
         matrix_val1 = *matrix_pointer;
-        matrix_val2 = *(double *)(element_offset + (longlong)matrix_pointer);
-        *(double *)(element_offset + (longlong)matrix_pointer) = matrix_val1 * scale_factor + matrix_val2;
+        matrix_val2 = *(double *)(element_offset + (int64_t)matrix_pointer);
+        *(double *)(element_offset + (int64_t)matrix_pointer) = matrix_val1 * scale_factor + matrix_val2;
         *matrix_pointer = matrix_val2 * scale_factor + matrix_val1;
         matrix_pointer = matrix_pointer + 2;
         total_elements = total_elements + -1;
@@ -379,35 +379,35 @@ void UIStackProtectionHandler(void)
 // 算法说明: 使用分块处理策略，优化内存访问模式，提高缓存命中率
 // 性能优化: 4元素批量处理减少循环开销，内存对齐优化
 // 应用场景: UI元素变换、动画插值、坐标系统转换
-void UIFloatMatrixTransformer(longlong param_1, float *param_2, int param_3)
+void UIFloatMatrixTransformer(int64_t param_1, float *param_2, int param_3)
 {
   float transform_factor;
   float matrix_val1;
   float matrix_val2;
   float matrix_val3;
   float matrix_val4;
-  longlong batch_counter;
-  longlong element_count;
+  int64_t batch_counter;
+  int64_t element_count;
   float *output_matrix;
-  longlong row_index;
-  longlong matrix_offset;
+  int64_t row_index;
+  int64_t matrix_offset;
   int iteration_count;
-  longlong half_size;
+  int64_t half_size;
   float *input_matrix;
   
   if (0 < param_3) {
     row_index = 0;
-    matrix_offset = param_1 - (longlong)param_2;
+    matrix_offset = param_1 - (int64_t)param_2;
     iteration_count = 0;
     do {
       iteration_count = iteration_count + 1;
       transform_factor = *param_2;
       element_count = 0;
-      half_size = (longlong)iteration_count >> 1;
+      half_size = (int64_t)iteration_count >> 1;
       
       // 批量处理矩阵元素（4元素优化）
       if (3 < half_size) {
-        input_matrix = (float *)(matrix_offset + -8 + (longlong)param_2);
+        input_matrix = (float *)(matrix_offset + -8 + (int64_t)param_2);
         output_matrix = (float *)(param_1 + 8);
         batch_counter = (half_size - 4U >> 2) + 1;
         element_count = batch_counter * 4;
@@ -449,7 +449,7 @@ void UIFloatMatrixTransformer(longlong param_1, float *param_2, int param_3)
       }
       
       // 应用负变换因子
-      *(float *)(matrix_offset + (longlong)param_2) = -transform_factor;
+      *(float *)(matrix_offset + (int64_t)param_2) = -transform_factor;
       row_index = row_index + 1;
       param_2 = param_2 + 1;
     } while (row_index < param_3);
@@ -473,20 +473,20 @@ void UIFloatMatrixTransformer(longlong param_1, float *param_2, int param_3)
 // 加密算法: 使用XOR操作对变换后的数据进行加密保护
 // 安全机制: 通过地址计算和密钥XOR操作保护敏感数据
 // 应用场景: UI敏感数据处理、加密动画参数、安全配置存储
-void UIEncryptedMatrixTransformer(longlong param_1, longlong param_2, uint64_t param_3, longlong param_4)
+void UIEncryptedMatrixTransformer(int64_t param_1, int64_t param_2, uint64_t param_3, int64_t param_4)
 {
   float transform_factor;
   float matrix_val1;
   float matrix_val2;
   float matrix_val3;
   float matrix_val4;
-  longlong batch_counter;
-  longlong element_count;
+  int64_t batch_counter;
+  int64_t element_count;
   float *output_matrix;
-  longlong row_index;
-  longlong matrix_size;
+  int64_t row_index;
+  int64_t matrix_size;
   int iteration_count;
-  longlong half_size;
+  int64_t half_size;
   float *input_matrix;
   float *data_pointer;
   uint encryption_key;
@@ -497,11 +497,11 @@ void UIEncryptedMatrixTransformer(longlong param_1, longlong param_2, uint64_t p
     iteration_count = iteration_count + 1;
     transform_factor = *data_pointer;
     element_count = 0;
-    half_size = (longlong)iteration_count >> 1;
+    half_size = (int64_t)iteration_count >> 1;
     
     // 批量处理加密矩阵元素（4元素优化）
     if (3 < half_size) {
-      input_matrix = (float *)((param_1 - param_2) + -8 + (longlong)data_pointer);
+      input_matrix = (float *)((param_1 - param_2) + -8 + (int64_t)data_pointer);
       output_matrix = (float *)(param_4 + 8);
       batch_counter = (half_size - 4U >> 2) + 1;
       element_count = batch_counter * 4;
@@ -543,7 +543,7 @@ void UIEncryptedMatrixTransformer(longlong param_1, longlong param_2, uint64_t p
     }
     
     // 应用XOR加密
-    *(uint *)((param_1 - param_2) + (longlong)data_pointer) = (uint)transform_factor ^ encryption_key;
+    *(uint *)((param_1 - param_2) + (int64_t)data_pointer) = (uint)transform_factor ^ encryption_key;
     row_index = row_index + 1;
     data_pointer = data_pointer + 1;
   } while (row_index < matrix_size);
@@ -582,11 +582,11 @@ void UIEmptyOperationHandler2(void)
 // 算法说明: 根据输入参数动态调整处理范围，调用外部计算函数进行数据处理
 // 外部依赖: 调用FUN_180734500函数进行具体的数据计算
 // 应用场景: UI数据格式转换、动态数据处理、范围自适应计算
-void UIDataConversionProcessor(longlong param_1, longlong param_2, int param_3, int param_4)
+void UIDataConversionProcessor(int64_t param_1, int64_t param_2, int param_3, int param_4)
 {
   int range_limit;
-  ulonglong element_index;
-  ulonglong data_offset;
+  uint64_t element_index;
+  uint64_t data_offset;
   double calculated_value;
   
   element_index = 0;
@@ -599,12 +599,12 @@ void UIDataConversionProcessor(longlong param_1, longlong param_2, int param_3, 
   if (0 < range_limit) {
     do {
       // 调用外部计算函数进行数据处理
-      calculated_value = (double)FUN_180734500(param_2, param_2 + (longlong)(int)data_offset * 4, param_3);
+      calculated_value = (double)FUN_180734500(param_2, param_2 + (int64_t)(int)data_offset * 4, param_3);
       param_3 = param_3 + -1;
       *(float *)(param_1 + element_index * 4) = (float)calculated_value;
       element_index = element_index + 1;
-      data_offset = (ulonglong)((int)data_offset + 1);
-    } while ((longlong)element_index < (longlong)range_limit);
+      data_offset = (uint64_t)((int)data_offset + 1);
+    } while ((int64_t)element_index < (int64_t)range_limit);
   }
   return;
 }
@@ -625,22 +625,22 @@ void UIDataConversionProcessor(longlong param_1, longlong param_2, int param_3, 
 // 应用场景: UI动画插值、数据序列生成、递归计算处理
 void UIIterativeDataProcessor(double param_1)
 {
-  ulonglong element_index;
-  longlong array_size;
+  uint64_t element_index;
+  int64_t array_size;
   int data_count;
   uint start_index;
-  longlong data_pointer;
-  longlong output_pointer;
+  int64_t data_pointer;
+  int64_t output_pointer;
   
-  element_index = (ulonglong)start_index;
+  element_index = (uint64_t)start_index;
   do {
     // 调用外部函数进行迭代计算
-    param_1 = (double)FUN_180734500(param_1, data_pointer + (longlong)(int)start_index * 4, data_count);
+    param_1 = (double)FUN_180734500(param_1, data_pointer + (int64_t)(int)start_index * 4, data_count);
     start_index = start_index + 1;
     data_count = data_count + -1;
     *(float *)(output_pointer + element_index * 4) = (float)param_1;
     element_index = element_index + 1;
-  } while ((longlong)element_index < array_size);
+  } while ((int64_t)element_index < array_size);
   return;
 }
 
@@ -675,7 +675,7 @@ void UIEmptyOperationHandler3(void)
 // 性能优化: SIMD优化的批量计算，减少循环开销，内存访问优化
 // 数学公式: result = Σ(v[i]²)，其中i从0到n-1
 // 应用场景: 向量长度计算、归一化处理、距离计算、数值优化
-double UIVectorSquareSumCalculator(longlong param_1, int param_2)
+double UIVectorSquareSumCalculator(int64_t param_1, int param_2)
 {
   float *vector_ptr1;
   float *vector_ptr2;
@@ -683,11 +683,11 @@ double UIVectorSquareSumCalculator(longlong param_1, int param_2)
   uint64_t *data_ptr;
   float element_val;
   uint batch_count;
-  longlong remaining_elements;
+  int64_t remaining_elements;
   float *vector_array;
   int processed_elements;
   uint64_t *batch_ptr;
-  ulonglong batch_iterations;
+  uint64_t batch_iterations;
   double square_val1;
   double square_val2;
   double sum_part1;
@@ -705,7 +705,7 @@ double UIVectorSquareSumCalculator(longlong param_1, int param_2)
   if (0 < param_2 + -3) {
     vector_array = (float *)(param_1 + 8);
     batch_count = (param_2 - 4U >> 2) + 1;
-    batch_iterations = (ulonglong)batch_count;
+    batch_iterations = (uint64_t)batch_count;
     processed_elements = batch_count * 4;
     do {
       // 计算4个元素的平方和
@@ -732,17 +732,17 @@ double UIVectorSquareSumCalculator(longlong param_1, int param_2)
       sum_part2 = 0.0;
       sum_part3 = 0.0;
       temp_sum2 = 0.0;
-      batch_ptr = (uint64_t *)(param_1 + (longlong)processed_elements * 4);
+      batch_ptr = (uint64_t *)(param_1 + (int64_t)processed_elements * 4);
       do {
         processed_elements = processed_elements + 4;
         square_val1 = (double)(float)*batch_ptr;
-        square_val2 = (double)(float)((ulonglong)*batch_ptr >> 0x20);
+        square_val2 = (double)(float)((uint64_t)*batch_ptr >> 0x20);
         data_ptr = batch_ptr + 1;
         batch_ptr = batch_ptr + 2;
         sum_part1 = sum_part1 + square_val1 * square_val1;
         sum_part2 = sum_part2 + square_val2 * square_val2;
         square_val1 = (double)(float)*data_ptr;
-        square_val2 = (double)(float)((ulonglong)*data_ptr >> 0x20);
+        square_val2 = (double)(float)((uint64_t)*data_ptr >> 0x20);
         sum_part3 = sum_part3 + square_val1 * square_val1;
         temp_sum2 = temp_sum2 + square_val2 * square_val2;
       } while (processed_elements < (int)(param_2 - batch_count));
@@ -752,7 +752,7 @@ double UIVectorSquareSumCalculator(longlong param_1, int param_2)
     if (processed_elements < param_2) {
       if (3 < param_2 - processed_elements) {
         // 继续处理剩余的4元素组
-        vector_array = (float *)(param_1 + ((longlong)processed_elements + 2) * 4);
+        vector_array = (float *)(param_1 + ((int64_t)processed_elements + 2) * 4);
         do {
           vector_ptr1 = vector_array + -2;
           processed_elements = processed_elements + 4;
@@ -767,8 +767,8 @@ double UIVectorSquareSumCalculator(longlong param_1, int param_2)
       
       // 处理最后剩余的元素
       if (processed_elements < param_2) {
-        vector_array = (float *)(param_1 + (longlong)processed_elements * 4);
-        remaining_elements = (longlong)(param_2 - processed_elements);
+        vector_array = (float *)(param_1 + (int64_t)processed_elements * 4);
+        remaining_elements = (int64_t)(param_2 - processed_elements);
         do {
           element_val = *vector_array;
           vector_array = vector_array + 1;
@@ -802,28 +802,28 @@ double UIVectorSquareSumCalculator(longlong param_1, int param_2)
 // 性能优化: 批量数据处理，内存对齐访问，循环展开优化
 // 安全机制: 包含栈保护cookie检查，防止栈溢出攻击
 // 应用场景: UI数据平滑处理、噪声消除、信号滤波、数据预处理
-void UIDoubleArrayProcessor(double *param_1, longlong param_2, float param_3, int param_4, int param_5)
+void UIDoubleArrayProcessor(double *param_1, int64_t param_2, float param_3, int param_4, int param_5)
 {
   double filter_val1;
   double filter_val2;
-  ulonglong filter_index;
+  uint64_t filter_index;
   double *output_ptr;
   float *input_ptr;
   uint alignment_mask;
-  ulonglong base_index;
-  longlong remaining_elements;
-  longlong filter_order;
-  ulonglong element_count;
+  uint64_t base_index;
+  int64_t remaining_elements;
+  int64_t filter_order;
+  uint64_t element_count;
   uint output_size;
   double input_value;
   double processed_value;
   double filter_buffer1 [26];
   double filter_buffer2 [26];
-  ulonglong security_cookie;
+  uint64_t security_cookie;
   
   // 安全检查：栈保护cookie
-  security_cookie = GET_SECURITY_COOKIE() ^ (ulonglong)filter_buffer1;
-  filter_order = (longlong)param_5;
+  security_cookie = GET_SECURITY_COOKIE() ^ (uint64_t)filter_buffer1;
+  filter_order = (int64_t)param_5;
   
   // 初始化滤波器缓冲区
   filter_buffer2[0x11] = 0.0;
@@ -896,12 +896,12 @@ void UIDoubleArrayProcessor(double *param_1, longlong param_2, float param_3, in
           filter_buffer1[filter_index + 1] = input_value * filter_buffer2[0] + filter_buffer1[filter_index + 1];
           filter_index = filter_index + 2;
           processed_value = (processed_value - input_value) * (double)param_3 + filter_val1;
-        } while ((longlong)filter_index < filter_order);
+        } while ((int64_t)filter_index < filter_order);
       }
       filter_buffer2[filter_order] = processed_value;
       element_count = element_count + 1;
       filter_buffer1[filter_order] = processed_value * filter_buffer2[0] + filter_buffer1[filter_order];
-    } while ((longlong)element_count < (longlong)param_4);
+    } while ((int64_t)element_count < (int64_t)param_4);
   }
   
   output_size = param_5 + 1;
@@ -910,7 +910,7 @@ void UIDoubleArrayProcessor(double *param_1, longlong param_2, float param_3, in
   // 批量输出处理（8字节对齐优化）
   if (((0 < (int)output_size) && (element_count = 0, 7 < output_size)) &&
      ((filter_buffer1 + filter_order < param_1 ||
-      ((int8_t *)((longlong)param_1 + filter_order * 4) < filter_buffer1)))) {
+      ((int8_t *)((int64_t)param_1 + filter_order * 4) < filter_buffer1)))) {
     alignment_mask = output_size & 0x80000007;
     if ((int)alignment_mask < 0) {
       alignment_mask = (alignment_mask - 1 | 0xfffffff8) + 1;
@@ -918,7 +918,7 @@ void UIDoubleArrayProcessor(double *param_1, longlong param_2, float param_3, in
     output_ptr = param_1 + 2;
     element_count = base_index;
     do {
-      element_count = (ulonglong)((int)element_count + 8);
+      element_count = (uint64_t)((int)element_count + 8);
       processed_value = filter_buffer1[base_index + 2];
       filter_val1 = filter_buffer1[base_index + 3];
       output_ptr[-2] = (double)CONCAT44((float)filter_buffer1[base_index + 1], (float)filter_buffer1[base_index]);
@@ -931,15 +931,15 @@ void UIDoubleArrayProcessor(double *param_1, longlong param_2, float param_3, in
       *output_ptr = (double)CONCAT44((float)filter_val2, (float)input_value);
       output_ptr[1] = (double)CONCAT44((float)filter_val1, (float)processed_value);
       output_ptr = output_ptr + 4;
-    } while ((longlong)base_index < (longlong)(int)(output_size - alignment_mask));
+    } while ((int64_t)base_index < (int64_t)(int)(output_size - alignment_mask));
   }
   
   // 处理剩余元素
-  filter_order = (longlong)(int)element_count;
-  remaining_elements = (longlong)(int)output_size;
+  filter_order = (int64_t)(int)element_count;
+  remaining_elements = (int64_t)(int)output_size;
   if (filter_order < remaining_elements) {
     if (3 < remaining_elements - filter_order) {
-      input_ptr = (float *)((longlong)param_1 + filter_order * 4 + 8);
+      input_ptr = (float *)((int64_t)param_1 + filter_order * 4 + 8);
       do {
         processed_value = filter_buffer1[filter_order + 1];
         input_ptr[-2] = (float)filter_buffer1[filter_order];
@@ -955,12 +955,12 @@ void UIDoubleArrayProcessor(double *param_1, longlong param_2, float param_3, in
     
     // 处理最后剩余的元素
     for (; filter_order < remaining_elements; filter_order = filter_order + 1) {
-      *(float *)((longlong)param_1 + filter_order * 4) = (float)filter_buffer1[filter_order];
+      *(float *)((int64_t)param_1 + filter_order * 4) = (float)filter_buffer1[filter_order];
     }
   }
   
   // 安全检查：函数不会返回
-  FUN_1808fc050(security_cookie ^ (ulonglong)filter_buffer1);
+  FUN_1808fc050(security_cookie ^ (uint64_t)filter_buffer1);
 }
 
 
@@ -981,10 +981,10 @@ void UIDoubleArrayProcessor(double *param_1, longlong param_2, float param_3, in
 // 性能优化: 递推计算避免重复三角函数调用，4元素批量处理
 // 常量说明: 9.869605 ≈ π²，用于递推公式的系数计算
 // 应用场景: UI动画效果、波形生成、周期性变换、插值计算
-void UITrigonometricGenerator(longlong param_1, longlong param_2, int param_3, int param_4)
+void UITrigonometricGenerator(int64_t param_1, int64_t param_2, int param_3, int param_4)
 {
   float *output_ptr;
-  longlong batch_counter;
+  int64_t batch_counter;
   float angle_step;
   float cos_value;
   float sin_value;
@@ -1006,15 +1006,15 @@ void UITrigonometricGenerator(longlong param_1, longlong param_2, int param_3, i
   if (0 < param_4) {
     param_2 = param_2 - param_1;
     output_ptr = (float *)(param_1 + 4);
-    batch_counter = ((longlong)param_4 - 1U >> 2) + 1;
+    batch_counter = ((int64_t)param_4 - 1U >> 2) + 1;
     do {
       // 使用递推公式生成三角函数序列
-      output_ptr[-1] = *(float *)(param_2 + -4 + (longlong)output_ptr) * 0.5 * (angle_step + cos_value);
-      *output_ptr = angle_step * *(float *)(param_2 + (longlong)output_ptr);
+      output_ptr[-1] = *(float *)(param_2 + -4 + (int64_t)output_ptr) * 0.5 * (angle_step + cos_value);
+      *output_ptr = angle_step * *(float *)(param_2 + (int64_t)output_ptr);
       cos_value = angle_step * recurrence_factor - cos_value;
-      output_ptr[1] = *(float *)(param_2 + 4 + (longlong)output_ptr) * 0.5 * (angle_step + cos_value);
+      output_ptr[1] = *(float *)(param_2 + 4 + (int64_t)output_ptr) * 0.5 * (angle_step + cos_value);
       angle_step = cos_value * recurrence_factor - angle_step;
-      output_ptr[2] = cos_value * *(float *)(param_2 + 8 + (longlong)output_ptr);
+      output_ptr[2] = cos_value * *(float *)(param_2 + 8 + (int64_t)output_ptr);
       output_ptr = output_ptr + 4;
       batch_counter = batch_counter + -1;
     } while (batch_counter != 0);
@@ -1045,20 +1045,20 @@ void UITrigonometricGenerator(longlong param_1, longlong param_2, int param_3, i
 // 外部依赖: 调用FUN_180712f20函数进行数据预处理
 // 安全机制: 包含栈保护cookie检查，防止栈溢出攻击
 // 应用场景: UI数据编码、字符映射、数据压缩、格式转换
-void UIEncodedDataProcessor(longlong param_1, longlong param_2, int param_3, ulonglong param_4, uint param_5,
+void UIEncodedDataProcessor(int64_t param_1, int64_t param_2, int param_3, uint64_t param_4, uint param_5,
                             int param_6, int32_t param_7)
 {
   char encoding_char;
   int32_t data_word;
-  longlong range_start;
-  longlong range_end;
+  int64_t range_start;
+  int64_t range_end;
   int32_t *data_ptr;
   int32_t *output_ptr;
   int element_count;
-  longlong batch_counter;
-  longlong range_size;
+  int64_t batch_counter;
+  int64_t range_size;
   char *encoding_table;
-  longlong element_index;
+  int64_t element_index;
   int mapping_index;
   void *mapping_table;
   int32_t *output_buffer;
@@ -1068,23 +1068,23 @@ void UIEncodedDataProcessor(longlong param_1, longlong param_2, int param_3, ulo
   int32_t process_flag;
   int mapping_size;
   uint data_size;
-  ulonglong iteration_count;
-  longlong element_stride;
-  longlong data_stride;
-  longlong offset_val;
+  uint64_t iteration_count;
+  int64_t element_stride;
+  int64_t data_stride;
+  int64_t offset_val;
   int32_t work_buffer [22];
   int32_t conversion_buffer [26];
-  ulonglong security_cookie;
+  uint64_t security_cookie;
   
   // 安全检查：栈保护cookie
-  security_cookie = GET_SECURITY_COOKIE() ^ (ulonglong)stack_guard;
+  security_cookie = GET_SECURITY_COOKIE() ^ (uint64_t)stack_guard;
   data_size = (uint)param_4;
   
   // 根据编码模式选择参数
   if (param_5 == 4) {
     mapping_size = 0x22;  // 模式4的映射大小
     element_count = (int)(char)(&unknown_var_4108_ptr)[param_6];
-    encoding_table = &unknown_var_4248_ptr + (longlong)param_6 * 8;
+    encoding_table = &unknown_var_4248_ptr + (int64_t)param_6 * 8;
     mapping_table = &unknown_var_4112_ptr;
   }
   else {
@@ -1094,18 +1094,18 @@ void UIEncodedDataProcessor(longlong param_1, longlong param_2, int param_3, ulo
     mapping_table = &unknown_var_4280_ptr;
   }
   
-  element_stride = (longlong)element_count;
-  param_2 = param_2 + (longlong)(int)(data_size * 4) * 4;
+  element_stride = (int64_t)element_count;
+  param_2 = param_2 + (int64_t)(int)(data_size * 4) * 4;
   
   if (0 < (int)param_5) {
-    data_stride = (longlong)(int)data_size << 2;
-    offset_val = (longlong)param_3;
+    data_stride = (int64_t)(int)data_size << 2;
+    offset_val = (int64_t)param_3;
     element_count = 0;
     output_buffer = (int32_t *)(param_1 + 8);
-    iteration_count = (ulonglong)param_5;
+    iteration_count = (uint64_t)param_5;
     do {
-      range_start = (longlong)encoding_table[1];
-      range_size = (longlong)*encoding_table;
+      range_start = (int64_t)encoding_table[1];
+      range_size = (int64_t)*encoding_table;
       element_index = 0;
       buffer_size = ((int)encoding_table[1] - (int)*encoding_table) + 1;
       process_flag = param_7;
@@ -1153,7 +1153,7 @@ void UIEncodedDataProcessor(longlong param_1, longlong param_2, int param_3, ulo
       if (0 < element_stride) {
         do {
           // 根据映射表进行数据转换
-          range_start = (longlong)((int)(char)mapping_table[mapping_index] - (int)encoding_char);
+          range_start = (int64_t)((int)(char)mapping_table[mapping_index] - (int)encoding_char);
           data_ptr[-2] = work_buffer[range_start];
           data_ptr[-1] = work_buffer[range_start + 1];
           *data_ptr = work_buffer[range_start + 2];
@@ -1170,13 +1170,13 @@ void UIEncodedDataProcessor(longlong param_1, longlong param_2, int param_3, ulo
       element_count = element_count + mapping_size;
       output_buffer = output_buffer + 0xaa;
       iteration_count = iteration_count - 1;
-      param_4 = (ulonglong)data_size;
+      param_4 = (uint64_t)data_size;
     } while (iteration_count != 0);
     iteration_count = 0;
   }
   
   // 安全检查：函数不会返回
-  FUN_1808fc050(security_cookie ^ (ulonglong)stack_guard);
+  FUN_1808fc050(security_cookie ^ (uint64_t)stack_guard);
 }
 
 
@@ -1202,42 +1202,42 @@ void UIEncodedDataProcessor(longlong param_1, longlong param_2, int param_3, ulo
 // 性能优化: 寄存器变量优化，减少内存访问开销，提高处理效率
 // 安全机制: 包含栈保护cookie检查，防止栈溢出攻击
 // 应用场景: 高性能数据编码、批量数据处理、实时编码转换
-void UIAdvancedEncodedDataProcessor(uint64_t param_1, uint64_t param_2, int param_3, ulonglong param_4,
-                                   uint64_t param_5, ulonglong param_6, uint64_t param_7, longlong param_8)
+void UIAdvancedEncodedDataProcessor(uint64_t param_1, uint64_t param_2, int param_3, uint64_t param_4,
+                                   uint64_t param_5, uint64_t param_6, uint64_t param_7, int64_t param_8)
 {
   char encoding_char;
   int32_t data_word;
-  longlong range_start;
-  longlong range_end;
+  int64_t range_start;
+  int64_t range_end;
   int32_t *data_ptr;
   int32_t *output_ptr;
-  longlong batch_counter;
-  longlong base_pointer;
-  longlong range_size;
+  int64_t batch_counter;
+  int64_t base_pointer;
+  int64_t range_size;
   char *encoding_range;
-  longlong element_index;
+  int64_t element_index;
   int mapping_index;
-  longlong input_buffer;
-  longlong output_base;
-  longlong mapping_table;
+  int64_t input_buffer;
+  int64_t output_base;
+  int64_t mapping_table;
   int iteration_count;
   int32_t *output_buffer;
-  longlong data_stride;
-  longlong offset_val;
-  ulonglong stack_cookie;
+  int64_t data_stride;
+  int64_t offset_val;
+  uint64_t stack_cookie;
   int32_t process_flag;
   int32_t work_buffer [231];
   
   // 计算数据步长和偏移量
-  data_stride = (longlong)(int)param_4 << 2;
-  offset_val = (longlong)param_3;
+  data_stride = (int64_t)(int)param_4 << 2;
+  offset_val = (int64_t)param_3;
   iteration_count = 0;
   output_buffer = (int32_t *)(base_pointer + 8);
   param_7 = input_buffer;
   
   do {
-    range_start = (longlong)encoding_range[1];
-    range_size = (longlong)*encoding_range;
+    range_start = (int64_t)encoding_range[1];
+    range_size = (int64_t)*encoding_range;
     element_index = 0;
     param_5._0_4_ = process_flag;
     
@@ -1285,7 +1285,7 @@ void UIAdvancedEncodedDataProcessor(uint64_t param_1, uint64_t param_2, int para
     if (0 < param_8) {
       do {
         // 根据映射表进行高级数据转换
-        range_start = (longlong)((int)*(char *)(mapping_index + mapping_table) - (int)encoding_char);
+        range_start = (int64_t)((int)*(char *)(mapping_index + mapping_table) - (int)encoding_char);
         data_ptr[-2] = *(int32_t *)(&stack0x00000060 + range_start * 4);
         data_ptr[-1] = *(int32_t *)(&stack0x00000064 + range_start * 4);
         *data_ptr = *(int32_t *)(&stack0x00000068 + range_start * 4);
@@ -1306,7 +1306,7 @@ void UIAdvancedEncodedDataProcessor(uint64_t param_1, uint64_t param_2, int para
   } while (param_7 != 0);
   
   // 安全检查：函数不会返回
-  FUN_1808fc050(stack_cookie ^ (ulonglong)&stack0x00000000);
+  FUN_1808fc050(stack_cookie ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -1324,10 +1324,10 @@ void UIAdvancedEncodedDataProcessor(uint64_t param_1, uint64_t param_2, int para
 // 应用场景: 函数安全退出、系统完整性检查、安全审计
 void UIStackProtectionTerminator(void)
 {
-  ulonglong stack_cookie;
+  uint64_t stack_cookie;
   
   // 安全检查：函数不会返回
-  FUN_1808fc050(stack_cookie ^ (ulonglong)&stack0x00000000);
+  FUN_1808fc050(stack_cookie ^ (uint64_t)&stack0x00000000);
 }
 
 // =============================================================================

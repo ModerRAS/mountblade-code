@@ -76,7 +76,7 @@ extern void *SYSTEM_CONTEXT_POINTER;     // global_state_3480
  * 
  * @param engine_context 引擎上下文指针，包含引擎状态和配置信息
  */
-void initialize_resource_manager(longlong engine_context)
+void initialize_resource_manager(int64_t engine_context)
 {
   // 堆栈保护变量
   uint64_t stack_guard_value;
@@ -90,19 +90,19 @@ void initialize_resource_manager(longlong engine_context)
   uint64_t resource_handle;
   int8_t is_volatile;
   int32_t access_mode;
-  longlong *resource_callback;
-  longlong *cleanup_handler;
-  longlong *temp_resource_ptr;
+  int64_t *resource_callback;
+  int64_t *cleanup_handler;
+  int64_t *temp_resource_ptr;
   uint64_t cleanup_context;
   void *system_state_ptr;
   int8_t *name_buffer_ptr;
   int32_t name_length;
   int8_t temp_buffer[MAX_RESOURCE_NAME_LENGTH];
-  ulonglong checksum_value;
+  uint64_t checksum_value;
   
   // 初始化堆栈保护
   stack_guard_value = 0xfffffffffffffffe;
-  checksum_value = GET_SECURITY_COOKIE() ^ (ulonglong)resource_name_buffer;
+  checksum_value = GET_SECURITY_COOKIE() ^ (uint64_t)resource_name_buffer;
   
   // 初始化纹理资源
   system_state_ptr = SYSTEM_STATE_ACTIVE;
@@ -125,12 +125,12 @@ void initialize_resource_manager(longlong engine_context)
   *context_pointer = 0;
   
   // 设置纹理资源回调
-  resource_callback = *(longlong **)(engine_context + RESOURCE_HANDLE_OFFSET);
+  resource_callback = *(int64_t **)(engine_context + RESOURCE_HANDLE_OFFSET);
   *(uint64_t *)(engine_context + RESOURCE_HANDLE_OFFSET) = stack_guard_value;
-  if (resource_callback != (longlong *)0x0) {
+  if (resource_callback != (int64_t *)0x0) {
     (**(code **)(*resource_callback + RESOURCE_CALLBACK_OFFSET))();
   }
-  if (cleanup_handler != (longlong *)0x0) {
+  if (cleanup_handler != (int64_t *)0x0) {
     (**(code **)(*cleanup_handler + RESOURCE_CALLBACK_OFFSET))();
   }
   
@@ -156,12 +156,12 @@ void initialize_resource_manager(longlong engine_context)
   *context_pointer = 0;
   
   // 设置缓冲区资源回调
-  resource_callback = *(longlong **)(engine_context + RESOURCE_HANDLE_OFFSET + 0x48);
+  resource_callback = *(int64_t **)(engine_context + RESOURCE_HANDLE_OFFSET + 0x48);
   *(uint64_t *)(engine_context + RESOURCE_HANDLE_OFFSET + 0x48) = stack_guard_value;
-  if (resource_callback != (longlong *)0x0) {
+  if (resource_callback != (int64_t *)0x0) {
     (**(code **)(*resource_callback + RESOURCE_CALLBACK_OFFSET))();
   }
-  if (temp_resource_ptr != (longlong *)0x0) {
+  if (temp_resource_ptr != (int64_t *)0x0) {
     (**(code **)(*temp_resource_ptr + RESOURCE_CALLBACK_OFFSET))();
   }
   
@@ -187,12 +187,12 @@ void initialize_resource_manager(longlong engine_context)
   *context_pointer = 0;
   
   // 设置内存资源回调
-  cleanup_handler = *(longlong **)(engine_context + RESOURCE_HANDLE_OFFSET + 0x8);
+  cleanup_handler = *(int64_t **)(engine_context + RESOURCE_HANDLE_OFFSET + 0x8);
   *(uint64_t *)(engine_context + RESOURCE_HANDLE_OFFSET + 0x8) = stack_guard_value;
-  if (cleanup_handler != (longlong *)0x0) {
+  if (cleanup_handler != (int64_t *)0x0) {
     (**(code **)(*cleanup_handler + RESOURCE_CALLBACK_OFFSET))();
   }
-  if (resource_callback != (longlong *)0x0) {
+  if (resource_callback != (int64_t *)0x0) {
     (**(code **)(*resource_callback + RESOURCE_CALLBACK_OFFSET))();
   }
   
@@ -218,12 +218,12 @@ void initialize_resource_manager(longlong engine_context)
   *context_pointer = 0;
   
   // 设置着色器资源回调
-  temp_resource_ptr = *(longlong **)(engine_context + RESOURCE_HANDLE_OFFSET + 0x40);
+  temp_resource_ptr = *(int64_t **)(engine_context + RESOURCE_HANDLE_OFFSET + 0x40);
   *(uint64_t *)(engine_context + RESOURCE_HANDLE_OFFSET + 0x40) = stack_guard_value;
-  if (temp_resource_ptr != (longlong *)0x0) {
+  if (temp_resource_ptr != (int64_t *)0x0) {
     (**(code **)(*temp_resource_ptr + RESOURCE_CALLBACK_OFFSET))();
   }
-  if (cleanup_handler != (longlong *)0x0) {
+  if (cleanup_handler != (int64_t *)0x0) {
     (**(code **)(*cleanup_handler + RESOURCE_CALLBACK_OFFSET))();
   }
   
@@ -249,12 +249,12 @@ void initialize_resource_manager(longlong engine_context)
   *context_pointer = 0;
   
   // 设置网格资源回调
-  temp_resource_ptr = *(longlong **)(engine_context + RESOURCE_HANDLE_OFFSET + 0x10);
+  temp_resource_ptr = *(int64_t **)(engine_context + RESOURCE_HANDLE_OFFSET + 0x10);
   *(uint64_t *)(engine_context + RESOURCE_HANDLE_OFFSET + 0x10) = stack_guard_value;
-  if (temp_resource_ptr != (longlong *)0x0) {
+  if (temp_resource_ptr != (int64_t *)0x0) {
     (**(code **)(*temp_resource_ptr + RESOURCE_CALLBACK_OFFSET))();
   }
-  if (resource_callback != (longlong *)0x0) {
+  if (resource_callback != (int64_t *)0x0) {
     (**(code **)(*resource_callback + RESOURCE_CALLBACK_OFFSET))();
   }
   
@@ -280,12 +280,12 @@ void initialize_resource_manager(longlong engine_context)
   *context_pointer = 0;
   
   // 设置音频资源回调
-  temp_resource_ptr = *(longlong **)(engine_context + RESOURCE_HANDLE_OFFSET + 0x18);
+  temp_resource_ptr = *(int64_t **)(engine_context + RESOURCE_HANDLE_OFFSET + 0x18);
   *(uint64_t *)(engine_context + RESOURCE_HANDLE_OFFSET + 0x18) = stack_guard_value;
-  if (temp_resource_ptr != (longlong *)0x0) {
+  if (temp_resource_ptr != (int64_t *)0x0) {
     (**(code **)(*temp_resource_ptr + RESOURCE_CALLBACK_OFFSET))();
   }
-  if (cleanup_handler != (longlong *)0x0) {
+  if (cleanup_handler != (int64_t *)0x0) {
     (**(code **)(*cleanup_handler + RESOURCE_CALLBACK_OFFSET))();
   }
   
@@ -311,12 +311,12 @@ void initialize_resource_manager(longlong engine_context)
   *context_pointer = 0;
   
   // 设置大缓冲区资源回调
-  temp_resource_ptr = *(longlong **)(engine_context + RESOURCE_HANDLE_OFFSET + 0x20);
+  temp_resource_ptr = *(int64_t **)(engine_context + RESOURCE_HANDLE_OFFSET + 0x20);
   *(uint64_t *)(engine_context + RESOURCE_HANDLE_OFFSET + 0x20) = stack_guard_value;
-  if (temp_resource_ptr != (longlong *)0x0) {
+  if (temp_resource_ptr != (int64_t *)0x0) {
     (**(code **)(*temp_resource_ptr + RESOURCE_CALLBACK_OFFSET))();
   }
-  if (resource_callback != (longlong *)0x0) {
+  if (resource_callback != (int64_t *)0x0) {
     (**(code **)(*resource_callback + RESOURCE_CALLBACK_OFFSET))();
   }
   
@@ -342,12 +342,12 @@ void initialize_resource_manager(longlong engine_context)
   *context_pointer = 0;
   
   // 设置小缓冲区资源回调
-  temp_resource_ptr = *(longlong **)(engine_context + RESOURCE_HANDLE_OFFSET + 0x30);
+  temp_resource_ptr = *(int64_t **)(engine_context + RESOURCE_HANDLE_OFFSET + 0x30);
   *(uint64_t *)(engine_context + RESOURCE_HANDLE_OFFSET + 0x30) = stack_guard_value;
-  if (temp_resource_ptr != (longlong *)0x0) {
+  if (temp_resource_ptr != (int64_t *)0x0) {
     (**(code **)(*temp_resource_ptr + RESOURCE_CALLBACK_OFFSET))();
   }
-  if (cleanup_handler != (longlong *)0x0) {
+  if (cleanup_handler != (int64_t *)0x0) {
     (**(code **)(*cleanup_handler + RESOURCE_CALLBACK_OFFSET))();
   }
   
@@ -373,12 +373,12 @@ void initialize_resource_manager(longlong engine_context)
   *context_pointer = 0;
   
   // 设置流资源回调
-  temp_resource_ptr = *(longlong **)(engine_context + RESOURCE_HANDLE_OFFSET + 0x28);
+  temp_resource_ptr = *(int64_t **)(engine_context + RESOURCE_HANDLE_OFFSET + 0x28);
   *(uint64_t *)(engine_context + RESOURCE_HANDLE_OFFSET + 0x28) = stack_guard_value;
-  if (temp_resource_ptr != (longlong *)0x0) {
+  if (temp_resource_ptr != (int64_t *)0x0) {
     (**(code **)(*temp_resource_ptr + RESOURCE_CALLBACK_OFFSET))();
   }
-  if (resource_callback != (longlong *)0x0) {
+  if (resource_callback != (int64_t *)0x0) {
     (**(code **)(*resource_callback + RESOURCE_CALLBACK_OFFSET))();
   }
   
@@ -404,12 +404,12 @@ void initialize_resource_manager(longlong engine_context)
   *context_pointer = 0;
   
   // 设置配置资源回调
-  temp_resource_ptr = *(longlong **)(engine_context + RESOURCE_HANDLE_OFFSET + 0x58);
+  temp_resource_ptr = *(int64_t **)(engine_context + RESOURCE_HANDLE_OFFSET + 0x58);
   *(uint64_t *)(engine_context + RESOURCE_HANDLE_OFFSET + 0x58) = stack_guard_value;
-  if (temp_resource_ptr != (longlong *)0x0) {
+  if (temp_resource_ptr != (int64_t *)0x0) {
     (**(code **)(*temp_resource_ptr + RESOURCE_CALLBACK_OFFSET))();
   }
-  if (cleanup_handler != (longlong *)0x0) {
+  if (cleanup_handler != (int64_t *)0x0) {
     (**(code **)(*cleanup_handler + RESOURCE_CALLBACK_OFFSET))();
   }
   
@@ -435,12 +435,12 @@ void initialize_resource_manager(longlong engine_context)
   *context_pointer = 0;
   
   // 设置临时资源回调
-  temp_resource_ptr = *(longlong **)(engine_context + RESOURCE_HANDLE_OFFSET + 0x50);
+  temp_resource_ptr = *(int64_t **)(engine_context + RESOURCE_HANDLE_OFFSET + 0x50);
   *(uint64_t *)(engine_context + RESOURCE_HANDLE_OFFSET + 0x50) = stack_guard_value;
-  if (temp_resource_ptr != (longlong *)0x0) {
+  if (temp_resource_ptr != (int64_t *)0x0) {
     (**(code **)(*temp_resource_ptr + RESOURCE_CALLBACK_OFFSET))();
   }
-  if (cleanup_handler != (longlong *)0x0) {
+  if (cleanup_handler != (int64_t *)0x0) {
     (**(code **)(*cleanup_handler + RESOURCE_CALLBACK_OFFSET))();
   }
   
@@ -466,12 +466,12 @@ void initialize_resource_manager(longlong engine_context)
   *context_pointer = 0;
   
   // 设置缓存资源回调
-  temp_resource_ptr = *(longlong **)(engine_context + RESOURCE_HANDLE_OFFSET + 0x60);
+  temp_resource_ptr = *(int64_t **)(engine_context + RESOURCE_HANDLE_OFFSET + 0x60);
   *(uint64_t *)(engine_context + RESOURCE_HANDLE_OFFSET + 0x60) = stack_guard_value;
-  if (temp_resource_ptr != (longlong *)0x0) {
+  if (temp_resource_ptr != (int64_t *)0x0) {
     (**(code **)(*temp_resource_ptr + RESOURCE_CALLBACK_OFFSET))();
   }
-  if (resource_callback != (longlong *)0x0) {
+  if (resource_callback != (int64_t *)0x0) {
     (**(code **)(*resource_callback + RESOURCE_CALLBACK_OFFSET))();
   }
   
@@ -497,12 +497,12 @@ void initialize_resource_manager(longlong engine_context)
   *context_pointer = 0;
   
   // 设置堆资源回调
-  temp_resource_ptr = *(longlong **)(engine_context + RESOURCE_HANDLE_OFFSET + 0x68);
+  temp_resource_ptr = *(int64_t **)(engine_context + RESOURCE_HANDLE_OFFSET + 0x68);
   *(uint64_t *)(engine_context + RESOURCE_HANDLE_OFFSET + 0x68) = stack_guard_value;
-  if (temp_resource_ptr != (longlong *)0x0) {
+  if (temp_resource_ptr != (int64_t *)0x0) {
     (**(code **)(*temp_resource_ptr + RESOURCE_CALLBACK_OFFSET))();
   }
-  if (resource_callback != (longlong *)0x0) {
+  if (resource_callback != (int64_t *)0x0) {
     (**(code **)(*resource_callback + RESOURCE_CALLBACK_OFFSET))();
   }
   
@@ -510,7 +510,7 @@ void initialize_resource_manager(longlong engine_context)
   system_state_ptr = SYSTEM_STATE_ACTIVE;
   
   // 触发清理回调函数，不返回
-  trigger_cleanup_callback(checksum_value ^ (ulonglong)resource_name_buffer);
+  trigger_cleanup_callback(checksum_value ^ (uint64_t)resource_name_buffer);
 }
 
 /**

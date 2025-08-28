@@ -634,7 +634,7 @@ void core_engine_system_initializer_type11(void)
     uint64_t *parent_node;
     uint64_t *next_node;
     uint64_t *allocated_node;
-    code *callback_function;
+    func_ptr *callback_function;
 
     // 获取系统注册表管理器
     registry_manager = core_engine_registry_manager_get();
@@ -700,7 +700,7 @@ void core_engine_system_initializer_type12(void)
     uint64_t *parent_node;
     uint64_t *next_node;
     uint64_t *allocated_node;
-    code *callback_function;
+    func_ptr *callback_function;
 
     // 获取系统注册表管理器
     registry_manager = core_engine_registry_manager_get();
@@ -766,7 +766,7 @@ void core_engine_system_initializer_type13(void)
     uint64_t *parent_node;
     uint64_t *next_node;
     uint64_t *allocated_node;
-    code *callback_function;
+    func_ptr *callback_function;
 
     // 获取系统注册表管理器
     registry_manager = core_engine_registry_manager_get();
@@ -832,7 +832,7 @@ void core_engine_system_initializer_type14(void)
     uint64_t *parent_node;
     uint64_t *next_node;
     uint64_t *allocated_node;
-    code *callback_function;
+    func_ptr *callback_function;
 
     // 获取系统注册表管理器
     registry_manager = core_engine_registry_manager_get();
@@ -964,7 +964,7 @@ void core_engine_system_initializer_type16(void)
     uint64_t *parent_node;
     uint64_t *next_node;
     uint64_t *allocated_node;
-    code *callback_function;
+    func_ptr *callback_function;
 
     // 获取系统注册表管理器
     registry_manager = core_engine_registry_manager_get();
@@ -1228,7 +1228,7 @@ void core_engine_system_initializer_type20(void)
     uint64_t *parent_node;
     uint64_t *next_node;
     uint64_t *allocated_node;
-    code *callback_function;
+    func_ptr *callback_function;
 
     // 获取系统注册表管理器
     registry_manager = core_engine_registry_manager_get();
@@ -1294,7 +1294,7 @@ void core_engine_system_initializer_type21(void)
     uint64_t *parent_node;
     uint64_t *next_node;
     uint64_t *allocated_node;
-    code *callback_function;
+    func_ptr *callback_function;
 
     // 获取系统注册表管理器
     registry_manager = core_engine_registry_manager_get();
@@ -1426,7 +1426,7 @@ void core_engine_system_initializer_type23(void)
     uint64_t *parent_node;
     uint64_t *next_node;
     uint64_t *allocated_node;
-    code *callback_function;
+    func_ptr *callback_function;
 
     // 获取系统注册表管理器
     registry_manager = core_engine_registry_manager_get();
@@ -1629,7 +1629,7 @@ void core_engine_data_processor_type1(void)
     uint64_t *parent_node;
     uint64_t *next_node;
     uint64_t *allocated_node;
-    code *callback_function;
+    func_ptr *callback_function;
 
     // 获取系统注册表管理器
     registry_manager = core_engine_registry_manager_get();
@@ -1695,7 +1695,7 @@ void core_engine_data_processor_type2(void)
     uint64_t *parent_node;
     uint64_t *next_node;
     uint64_t *allocated_node;
-    code *callback_function;
+    func_ptr *callback_function;
 
     // 获取系统注册表管理器
     registry_manager = core_engine_registry_manager_get();
@@ -1761,7 +1761,7 @@ void core_engine_data_processor_type3(void)
     uint64_t *parent_node;
     uint64_t *next_node;
     uint64_t *allocated_node;
-    code *callback_function;
+    func_ptr *callback_function;
 
     // 获取系统注册表管理器
     registry_manager = core_engine_registry_manager_get();

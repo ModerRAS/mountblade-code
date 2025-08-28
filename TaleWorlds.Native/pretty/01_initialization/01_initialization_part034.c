@@ -18,19 +18,19 @@
 #define MAX_PATH_LENGTH 0x80
 
 // 全局数据引用
-extern longlong *system_cache_buffer;      // 日志系统全局状态
-extern longlong *init_system_data_memory;      // 字符串处理系统
-extern longlong system_memory_pool_ptr;       // 内存分配器
-extern longlong system_main_module_state;       // 引擎核心数据
-extern longlong init_system_data_memory;       // 性能计数器基准
+extern int64_t *system_cache_buffer;      // 日志系统全局状态
+extern int64_t *init_system_data_memory;      // 字符串处理系统
+extern int64_t system_memory_pool_ptr;       // 内存分配器
+extern int64_t system_main_module_state;       // 引擎核心数据
+extern int64_t init_system_data_memory;       // 性能计数器基准
 extern double init_system_data_memory;         // 性能计数器频率
-extern longlong init_system_data_memory;       // 性能计数器缓存
-extern longlong SYSTEM_FILE_COUNTER_ADDR;       // 文件句柄计数器
-extern longlong init_system_data_memory;       // 引擎管理器
-extern longlong SYSTEM_STATE_MANAGER;       // 路径配置
-extern longlong init_system_data_memory;       // 系统配置
-extern longlong system_message_context;       // 启动参数配置
-extern longlong system_context_ptr;       // 默认配置数据
+extern int64_t init_system_data_memory;       // 性能计数器缓存
+extern int64_t SYSTEM_FILE_COUNTER_ADDR;       // 文件句柄计数器
+extern int64_t init_system_data_memory;       // 引擎管理器
+extern int64_t SYSTEM_STATE_MANAGER;       // 路径配置
+extern int64_t init_system_data_memory;       // 系统配置
+extern int64_t system_message_context;       // 启动参数配置
+extern int64_t system_context_ptr;       // 默认配置数据
 
 extern char system_buffer_ptr;            // 空字符串常量
 extern char global_var_720_ptr;            // 字符串常量
@@ -65,7 +65,7 @@ extern char global_var_552_ptr;            // 格式字符串常量
 extern char system_memory_c7d8;            // 格式字符串常量
 extern char system_memory_cfc0;            // 格式字符串常量
 
-extern ulonglong GET_SECURITY_COOKIE();      // 栈保护常量
+extern uint64_t GET_SECURITY_COOKIE();      // 栈保护常量
 
 /**
  * 字符串处理和内存管理函数
@@ -80,7 +80,7 @@ extern ulonglong GET_SECURITY_COOKIE();      // 栈保护常量
  * @param param_2 源字符串参数1
  * @param param_3 源字符串参数2
  */
-void ProcessStringAndMemoryManagement(longlong *param_1, longlong param_2, longlong param_3)
+void ProcessStringAndMemoryManagement(int64_t *param_1, int64_t param_2, int64_t param_3)
 {
   uint uVar1;
   int iVar2;
@@ -89,15 +89,15 @@ void ProcessStringAndMemoryManagement(longlong *param_1, longlong param_2, longl
   int8_t *puVar5;
   void *puVar6;
   uint *puVar7;
-  ulonglong uVar8;
-  ulonglong uVar9;
-  longlong lVar10;
-  longlong lVar11;
-  longlong lVar12;
-  ulonglong uVar13;
+  uint64_t uVar8;
+  uint64_t uVar9;
+  int64_t lVar10;
+  int64_t lVar11;
+  int64_t lVar12;
+  uint64_t uVar13;
   uint64_t *puVar14;
   int8_t auStack_138 [32];
-  longlong lStack_118;
+  int64_t lStack_118;
   void *puStack_108;
   int8_t *puStack_100;
   int32_t uStack_f8;
@@ -109,28 +109,28 @@ void ProcessStringAndMemoryManagement(longlong *param_1, longlong param_2, longl
   int8_t uStack_c8;
   uint8_t uStack_c7;
   uint64_t *puStack_b8;
-  ulonglong uStack_b0;
+  uint64_t uStack_b0;
   uint uStack_a8;
   int32_t uStack_a4;
   int32_t uStack_a0;
   int32_t uStack_9c;
-  ulonglong uStack_98;
-  ulonglong uStack_90;
+  uint64_t uStack_98;
+  uint64_t uStack_90;
   int8_t uStack_88;
   uint8_t uStack_87;
-  longlong lStack_78;
-  ulonglong uStack_70;
+  int64_t lStack_78;
+  uint64_t uStack_70;
   uint uStack_68;
   int32_t uStack_64;
   int32_t uStack_60;
   int32_t uStack_5c;
-  ulonglong uStack_58;
-  ulonglong uStack_50;
-  ulonglong uStack_48;
+  uint64_t uStack_58;
+  uint64_t uStack_50;
+  uint64_t uStack_48;
   
   // 栈保护初始化
   uStack_d8 = 0xfffffffffffffffe;
-  uStack_48 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_138;
+  uStack_48 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_138;
   uStack_e8 = 0;
   
   // 初始化内存管理
@@ -198,7 +198,7 @@ void ProcessStringAndMemoryManagement(longlong *param_1, longlong param_2, longl
       uVar13 = uVar9;
       if (0xfff < uVar8) {
         uVar8 = uStack_90 + 0x28;
-        uVar13 = *(ulonglong *)(uVar9 - 8);
+        uVar13 = *(uint64_t *)(uVar9 - 8);
         if (0x1f < (uVar9 - uVar13) - 8) {
           // 内存分配错误处理
           _invalid_parameter_noinfo_noreturn();
@@ -216,7 +216,7 @@ void ProcessStringAndMemoryManagement(longlong *param_1, longlong param_2, longl
       lVar12 = lVar10;
       if (0xfff < uVar9) {
         uVar9 = uStack_70 + 0x28;
-        lVar12 = *(longlong *)(lVar10 + -8);
+        lVar12 = *(int64_t *)(lVar10 + -8);
         if (0x1f < (lVar10 - lVar12) - 8U) {
           // 内存分配错误处理
           _invalid_parameter_noinfo_noreturn();
@@ -235,7 +235,7 @@ void ProcessStringAndMemoryManagement(longlong *param_1, longlong param_2, longl
       lVar10 = lVar12;
       if (0xfff < uVar9) {
         uVar9 = uStack_b0 + 0x28;
-        lVar10 = *(longlong *)(lVar12 + -8);
+        lVar10 = *(int64_t *)(lVar12 + -8);
         if (0x1f < (lVar12 - lVar10) - 8U) {
           // 内存分配错误处理
           _invalid_parameter_noinfo_noreturn();
@@ -248,7 +248,7 @@ void ProcessStringAndMemoryManagement(longlong *param_1, longlong param_2, longl
     puStack_b8 = (uint64_t *)0x0;
     uStack_b0 = 0xf;
     uStack_c8 = 0;
-    FUN_1808fc050(uStack_48 ^ (ulonglong)auStack_138);
+    FUN_1808fc050(uStack_48 ^ (uint64_t)auStack_138);
   }
   
   // 处理字符串拼接
@@ -312,7 +312,7 @@ void ProcessStringAndMemoryManagement(longlong *param_1, longlong param_2, longl
   puVar4 = (uint64_t *)param_1[1];
   if (puVar4 < (uint64_t *)param_1[2]) {
     // 容器有空间，直接存储
-    param_1[1] = (longlong)(puVar4 + 4);
+    param_1[1] = (int64_t)(puVar4 + 4);
     *puVar4 = &global_var_720_ptr;
     puVar4[1] = 0;
     *(int32_t *)(puVar4 + 2) = 0;
@@ -322,7 +322,7 @@ void ProcessStringAndMemoryManagement(longlong *param_1, longlong param_2, longl
     *(int32_t *)(puVar4 + 2) = 0;
     *(int32_t *)(puVar4 + 2) = 0;
     puVar4[1] = puStack_100;
-    *(int32_t *)((longlong)puVar4 + 0x1c) = uStack_f0._4_4_;
+    *(int32_t *)((int64_t)puVar4 + 0x1c) = uStack_f0._4_4_;
     *(int32_t *)(puVar4 + 3) = (int32_t)uStack_f0;
     uStack_f8 = 0;
     puStack_100 = (int8_t *)0x0;
@@ -332,7 +332,7 @@ void ProcessStringAndMemoryManagement(longlong *param_1, longlong param_2, longl
   else {
     // 容器空间不足，需要扩展
     lVar12 = *param_1;
-    lVar11 = (longlong)puVar4 - lVar12 >> 5;
+    lVar11 = (int64_t)puVar4 - lVar12 >> 5;
     if (lVar11 == 0) {
       lVar11 = 1;
 LAB_180064eed:
@@ -357,7 +357,7 @@ LAB_180064eed:
     *(int32_t *)(puStack_d0 + 2) = 0;
     *(int32_t *)(puStack_d0 + 2) = uStack_f8;
     puStack_d0[1] = puStack_100;
-    *(int32_t *)((longlong)puStack_d0 + 0x1c) = uStack_f0._4_4_;
+    *(int32_t *)((int64_t)puStack_d0 + 0x1c) = uStack_f0._4_4_;
     *(int32_t *)(puStack_d0 + 3) = (int32_t)uStack_f0;
     uStack_f8 = 0;
     puStack_100 = (int8_t *)0x0;
@@ -380,7 +380,7 @@ LAB_180064eed:
     
     // 更新容器指针
     *param_1 = lVar10;
-    param_1[1] = (longlong)puVar14;
+    param_1[1] = (int64_t)puVar14;
     param_1[2] = lVar11 * 0x20 + lVar10;
     lVar12 = lStack_78;
     puVar3 = puStack_e0;
@@ -397,16 +397,16 @@ LAB_180064eed:
   
 LAB_180065009:
   // 清理字符串缓冲区
-  puVar4 = (uint64_t *)(lVar12 + (longlong)puVar3);
-  if (puStack_b8 < (uint64_t *)(lVar12 + (longlong)puVar3)) {
+  puVar4 = (uint64_t *)(lVar12 + (int64_t)puVar3);
+  if (puStack_b8 < (uint64_t *)(lVar12 + (int64_t)puVar3)) {
     puVar4 = puStack_b8;
   }
   puVar5 = &uStack_c8;
   if (0xf < uStack_b0) {
     puVar5 = (int8_t *)CONCAT71(uStack_c7, uStack_c8);
   }
-  puStack_b8 = (uint64_t *)((longlong)puStack_b8 - (longlong)puVar4);
-  memmove(puVar5, puVar5 + (longlong)puVar4, (longlong)puStack_b8 + 1);
+  puStack_b8 = (uint64_t *)((int64_t)puStack_b8 - (int64_t)puVar4);
+  memmove(puVar5, puVar5 + (int64_t)puVar4, (int64_t)puStack_b8 + 1);
 }
 
 /**
@@ -431,12 +431,12 @@ void PerformComplexInitializationAndLogging(uint64_t param_1)
   uint64_t *puVar6;
   char cVar7;
   int iVar8;
-  longlong lVar9;
-  ulonglong uVar10;
+  int64_t lVar9;
+  uint64_t uVar10;
   uint64_t uVar11;
-  ulonglong uVar12;
+  uint64_t uVar12;
   byte *pbVar13;
-  longlong lVar14;
+  int64_t lVar14;
   int iVar15;
   void *puVar16;
   uint64_t *puVar17;
@@ -448,36 +448,36 @@ void PerformComplexInitializationAndLogging(uint64_t param_1)
   int16_t auStack_338 [2];
   int16_t auStack_334 [2];
   void *puStack_330;
-  longlong lStack_328;
+  int64_t lStack_328;
   int iStack_320;
-  ulonglong uStack_318;
+  uint64_t uStack_318;
   int32_t uStack_310;
   void *puStack_308;
   void *puStack_300;
   int32_t uStack_2f8;
-  ulonglong uStack_2f0;
+  uint64_t uStack_2f0;
   void *puStack_2e8;
   void *puStack_2e0;
   int32_t uStack_2d8;
-  ulonglong uStack_2d0;
-  ulonglong uStack_2c8;
+  uint64_t uStack_2d0;
+  uint64_t uStack_2c8;
   void *puStack_2c0;
   uint64_t uStack_2b8;
   int32_t uStack_2b0;
-  ulonglong uStack_2a8;
+  uint64_t uStack_2a8;
   void *puStack_2a0;
   char *pcStack_298;
   int iStack_290;
   int32_t uStack_288;
   uint64_t uStack_280;
-  longlong lStack_278;
-  longlong lStack_268;
+  int64_t lStack_278;
+  int64_t lStack_268;
   uint64_t *puStack_260;
   uint64_t *puStack_258;
   uint64_t uStack_250;
   int32_t uStack_248;
   void *puStack_240;
-  longlong lStack_238;
+  int64_t lStack_238;
   int32_t uStack_228;
   uint64_t *puStack_220;
   uint64_t *puStack_218;
@@ -520,12 +520,12 @@ void PerformComplexInitializationAndLogging(uint64_t param_1)
   int32_t uStack_b8;
   uint8_t auStack_b0 [40];
   int32_t auStack_88 [14];
-  ulonglong uStack_50;
-  ulonglong uStack_38;
+  uint64_t uStack_50;
+  uint64_t uStack_38;
   
   // 栈保护初始化
   uStack_120 = 0xfffffffffffffffe;
-  uStack_38 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_368;
+  uStack_38 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_368;
   uStack_310 = 0;
   
   // 解析初始化参数
@@ -548,7 +548,7 @@ void PerformComplexInitializationAndLogging(uint64_t param_1)
   FUN_180052020(uVar20, &puStack_200);
   
   // 检查日志系统状态
-  if ((system_cache_buffer == (longlong *)0x0) ||
+  if ((system_cache_buffer == (int64_t *)0x0) ||
      (cVar7 = (**(code **)(*system_cache_buffer + 0x28))(), cVar7 == '\0')) {
     puVar16 = &global_var_832_ptr;
   }
@@ -565,7 +565,7 @@ void PerformComplexInitializationAndLogging(uint64_t param_1)
   FUN_180627910(&puStack_1c0, puVar16);
   
   // 检查日志系统状态并获取版本信息
-  if ((system_cache_buffer == (longlong *)0x0) ||
+  if ((system_cache_buffer == (int64_t *)0x0) ||
      (cVar7 = (**(code **)(*system_cache_buffer + 0x28))(), cVar7 == '\0')) {
     puVar16 = &global_var_856_ptr;
   }
@@ -726,7 +726,7 @@ void PerformComplexInitializationAndLogging(uint64_t param_1)
   puVar19 = puStack_160;
   
   // 处理多个日志条目
-  if (1 < (ulonglong)((longlong)puStack_158 - (longlong)puStack_160 >> 5)) {
+  if (1 < (uint64_t)((int64_t)puStack_158 - (int64_t)puStack_160 >> 5)) {
     puStack_118 = &global_var_7512_ptr;
     puStack_110 = auStack_100;
     auStack_100[0] = 0;
@@ -748,10 +748,10 @@ void PerformComplexInitializationAndLogging(uint64_t param_1)
   }
   
   // 处理剩余的日志条目
-  uVar10 = (longlong)puStack_218 - (longlong)puVar4 >> 5;
+  uVar10 = (int64_t)puStack_218 - (int64_t)puVar4 >> 5;
   if (uVar10 != 0) {
     // 检查日志系统状态
-    if ((system_cache_buffer == (longlong *)0x0) ||
+    if ((system_cache_buffer == (int64_t *)0x0) ||
        (cVar7 = (**(code **)(*system_cache_buffer + 0x28))(), cVar7 == '\0')) {
       puVar16 = &global_var_1000_ptr;
     }
@@ -776,7 +776,7 @@ void PerformComplexInitializationAndLogging(uint64_t param_1)
     }
     
     // 处理错误条目
-    uVar12 = (longlong)puStack_258 - (longlong)puStack_260 >> 5;
+    uVar12 = (int64_t)puStack_258 - (int64_t)puStack_260 >> 5;
     puVar19 = puStack_260;
     puVar18 = puStack_260;
     puVar17 = puStack_258;
@@ -796,7 +796,7 @@ void PerformComplexInitializationAndLogging(uint64_t param_1)
         puVar5 = puStack_138;
         puVar17 = puStack_140;
         puVar18 = puStack_140;
-        if (((longlong)puStack_138 - (longlong)puStack_140 & 0xffffffffffffffe0U) == 0x40) {
+        if (((int64_t)puStack_138 - (int64_t)puStack_140 & 0xffffffffffffffe0U) == 0x40) {
           FUN_180627ae0(&puStack_2a0, puStack_140);
           if (pcStack_298 != (char *)0x0) {
             // 清理字符串中的空白字符
@@ -828,7 +828,7 @@ void PerformComplexInitializationAndLogging(uint64_t param_1)
               if (iVar2 == iStack_290) {
                 if (iVar2 != 0) {
                   pbVar13 = (byte *)*puVar18;
-                  lVar9 = (longlong)pcStack_298 - (longlong)pbVar13;
+                  lVar9 = (int64_t)pcStack_298 - (int64_t)pbVar13;
                   do {
                     pbVar1 = pbVar13 + lVar9;
                     iVar15 = (uint)*pbVar13 - (uint)*pbVar1;
@@ -854,7 +854,7 @@ LAB_180065a3e:
               else if (iVar2 == 0) goto LAB_180065a3e;
               iVar8 = iVar8 + 1;
               puVar18 = puVar18 + 4;
-            } while ((ulonglong)(longlong)iVar8 < uVar10);
+            } while ((uint64_t)(int64_t)iVar8 < uVar10);
           }
           
           // 清理临时字符串
@@ -946,7 +946,7 @@ LAB_180065a3e:
   
   // 写入日志文件
   lVar9 = lStack_278;
-  fwrite(lStack_328, 1, (longlong)iStack_320, lStack_278);
+  fwrite(lStack_328, 1, (int64_t)iStack_320, lStack_278);
   puVar19 = puStack_218;
   puVar18 = puVar4;
   if (lVar9 != 0) {
@@ -1000,7 +1000,7 @@ LAB_180065a3e:
       puStack_178 = (void *)0x0;
       uStack_168 = 0;
       puStack_180 = &global_var_720_ptr;
-      FUN_1808fc050(uStack_38 ^ (ulonglong)auStack_368);
+      FUN_1808fc050(uStack_38 ^ (uint64_t)auStack_368);
     }
     FUN_18064e900();
   }
@@ -1032,10 +1032,10 @@ void PerformSimpleInitialization(void)
   int32_t uStack_230;
   int8_t uStack_22c;
   int8_t auStack_228 [512];
-  ulonglong uStack_28;
+  uint64_t uStack_28;
   
   // 栈保护初始化
-  uStack_28 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_2c8;
+  uStack_28 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_2c8;
   
   // 设置日志文件头标识
   uStack_230 = 0x22657865;  // "exe"
@@ -1073,22 +1073,22 @@ void PerformSimpleInitialization(void)
  * @param param_3 启动参数3
  * @param param_4 启动参数4
  */
-void ProcessStartupParametersAndInitialize(uint64_t param_1, longlong param_2, uint64_t param_3, uint64_t param_4)
+void ProcessStartupParametersAndInitialize(uint64_t param_1, int64_t param_2, uint64_t param_3, uint64_t param_4)
 {
   code *pcVar1;
   char cVar2;
   uint64_t uVar3;
-  longlong lVar4;
+  int64_t lVar4;
   int iVar5;
-  longlong *plStack_b0;
+  int64_t *plStack_b0;
   void *puStack_a8;
-  longlong lStack_a0;
+  int64_t lStack_a0;
   uint uStack_98;
   void *puStack_88;
-  longlong lStack_80;
+  int64_t lStack_80;
   int32_t uStack_70;
   void **ppuStack_68;
-  longlong **pplStack_60;
+  int64_t **pplStack_60;
   int32_t uStack_50;
   uint64_t uStack_48;
   
@@ -1096,7 +1096,7 @@ void ProcessStartupParametersAndInitialize(uint64_t param_1, longlong param_2, u
   uStack_48 = 0xfffffffffffffffe;
   
   // 获取引擎管理器
-  plStack_b0 = *(longlong **)(init_system_data_memory + 0x18);
+  plStack_b0 = *(int64_t **)(init_system_data_memory + 0x18);
   
   // 初始化参数缓冲区
   FUN_180627ae0(&puStack_a8, system_main_module_state + 0x170, param_3, param_4, 0);
@@ -1104,7 +1104,7 @@ void ProcessStartupParametersAndInitialize(uint64_t param_1, longlong param_2, u
   FUN_1806277c0(&puStack_a8, iVar5);
   
   // 设置参数类型标识
-  *(int32_t *)((ulonglong)uStack_98 + lStack_a0) = 0x706d74;  // "tmp"
+  *(int32_t *)((uint64_t)uStack_98 + lStack_a0) = 0x706d74;  // "tmp"
   uStack_98 = iVar5;
   
   // 处理参数字符串
@@ -1128,10 +1128,10 @@ void ProcessStartupParametersAndInitialize(uint64_t param_1, longlong param_2, u
   
   // 清理临时参数
   ppuStack_68 = (void **)&global_var_3456_ptr;
-  if (pplStack_60 != (longlong **)0x0) {
+  if (pplStack_60 != (int64_t **)0x0) {
     FUN_18064e900();
   }
-  pplStack_60 = (longlong **)0x0;
+  pplStack_60 = (int64_t **)0x0;
   uStack_50 = 0;
   ppuStack_68 = (void **)&global_var_720_ptr;
   

@@ -237,7 +237,7 @@ typedef uint8_t UISystem_StateMonitor_type;
  * @note 此函数在UI系统初始化和运行时被调用
  * @warning 错误的数据处理可能导致系统不稳定
  */
-void UISystem_CoreDataProcessor(uint64_t system_context, uint64_t operation_flag, void *data_buffer, uint64_t validation_flag, longlong processing_context);
+void UISystem_CoreDataProcessor(uint64_t system_context, uint64_t operation_flag, void *data_buffer, uint64_t validation_flag, int64_t processing_context);
 
 /**
  * @brief UI系统内存管理器
@@ -255,7 +255,7 @@ void UISystem_CoreDataProcessor(uint64_t system_context, uint64_t operation_flag
  * @note 此函数在UI系统运行时被频繁调用
  * @warning 错误的内存管理可能导致内存泄漏
  */
-uint64_t * UISystem_MemoryManager(uint64_t *memory_ptr, ulonglong allocation_flag);
+uint64_t * UISystem_MemoryManager(uint64_t *memory_ptr, uint64_t allocation_flag);
 
 /**
  * @brief UI系统Steam接口管理器（用户接口）
@@ -309,7 +309,7 @@ void UISystem_SteamInterfaceManager_Feature(uint64_t *interface_ptr);
  * @note 此函数在UI系统数据处理时被调用
  * @warning 错误的操作可能导致数据结构损坏
  */
-uint64_t * UISystem_DataStructureOperator(uint64_t *structure_ptr, ulonglong operation_flag, uint64_t data_param1, uint64_t data_param2);
+uint64_t * UISystem_DataStructureOperator(uint64_t *structure_ptr, uint64_t operation_flag, uint64_t data_param1, uint64_t data_param2);
 
 /**
  * @brief UI系统状态监控器（初始化）
@@ -345,7 +345,7 @@ void UISystem_StateMonitor_Initialize(void);
  * @note 此函数在UI系统运行时被频繁调用
  * @warning 错误的数据处理可能导致系统不稳定
  */
-void UISystem_DataProcessor(longlong data_source, longlong data_target, uint64_t processing_flag, uint64_t validation_flag);
+void UISystem_DataProcessor(int64_t data_source, int64_t data_target, uint64_t processing_flag, uint64_t validation_flag);
 
 /**
  * @brief UI系统状态监控器（清理）
@@ -396,14 +396,14 @@ void UISystem_StateMonitor_Cleanup(void);
  * @param processing_context 处理上下文指针
  * @return void 操作状态
  */
-void UISystem_CoreDataProcessor(uint64_t system_context, uint64_t operation_flag, void *data_buffer, uint64_t validation_flag, longlong processing_context)
+void UISystem_CoreDataProcessor(uint64_t system_context, uint64_t operation_flag, void *data_buffer, uint64_t validation_flag, int64_t processing_context)
 
 {
   byte *string_ptr1;
   byte *string_ptr2;
   uint char_comparison_result;
   int32_t validation_result;
-  longlong memory_allocation_result;
+  int64_t memory_allocation_result;
   
   // 检查验证标志和数据缓冲区有效性
   if (((char)validation_flag == '\0') && (data_buffer != &system_memory_67e0)) {
@@ -416,7 +416,7 @@ LAB_1806579e7:
     // 检查处理上下文中的长度信息
     if (*(int *)(processing_context + 0x10) != 0) {
       string_ptr1 = *(byte **)(data_buffer + 0x28);
-      memory_allocation_result = *(longlong *)(processing_context + 8) - (longlong)string_ptr1;
+      memory_allocation_result = *(int64_t *)(processing_context + 8) - (int64_t)string_ptr1;
       do {
         char_comparison_result = *string_ptr1;
         uint char_comparison_result2 = (uint)string_ptr1[memory_allocation_result];
@@ -449,7 +449,7 @@ LAB_1806579f0:
  * @param allocation_flag 分配标志
  * @return uint64_t* 内存指针
  */
-uint64_t * UISystem_MemoryManager(uint64_t *memory_ptr, ulonglong allocation_flag)
+uint64_t * UISystem_MemoryManager(uint64_t *memory_ptr, uint64_t allocation_flag)
 
 {
   *memory_ptr = &unknown_var_1792_ptr;
@@ -527,7 +527,7 @@ void UISystem_SteamInterfaceManager_Feature(uint64_t *interface_ptr)
  * @return uint64_t* 数据结构指针
  */
 uint64_t *
-UISystem_DataStructureOperator(uint64_t *structure_ptr, ulonglong operation_flag, uint64_t data_param1, uint64_t data_param2)
+UISystem_DataStructureOperator(uint64_t *structure_ptr, uint64_t operation_flag, uint64_t data_param1, uint64_t data_param2)
 
 {
   uint64_t memory_management_flag;
@@ -574,26 +574,26 @@ void UISystem_StateMonitor_Initialize(void)
  * @param validation_flag 验证标志
  * @return void 操作状态
  */
-void UISystem_DataProcessor(longlong data_source, longlong data_target, uint64_t processing_flag, uint64_t validation_flag)
+void UISystem_DataProcessor(int64_t data_source, int64_t data_target, uint64_t processing_flag, uint64_t validation_flag)
 
 {
   int data_length;
   uint64_t *data_structure_ptr;
-  longlong source_data_ptr;
-  ulonglong current_offset;
+  int64_t source_data_ptr;
+  uint64_t current_offset;
   uint data_item_id;
-  ulonglong item_count;
+  uint64_t item_count;
   uint64_t memory_management_flag;
   void *stack_data_buffer;
   int8_t *string_buffer_ptr;
   int string_length;
-  ulonglong buffer_size;
+  uint64_t buffer_size;
   
   memory_management_flag = 0xfffffffffffffffe;
   current_offset = 0;
-  source_data_ptr = *(longlong *)(data_source + 8);
+  source_data_ptr = *(int64_t *)(data_source + 8);
   item_count = current_offset;
-  if (*(longlong *)(data_source + 0x10) - source_data_ptr >> 5 != 0) {
+  if (*(int64_t *)(data_source + 0x10) - source_data_ptr >> 5 != 0) {
     do {
       stack_data_buffer = &system_data_buffer_ptr;
       buffer_size = 0;
@@ -604,7 +604,7 @@ void UISystem_DataProcessor(longlong data_source, longlong data_target, uint64_t
       if (data_length != 0) {
         memcpy(string_buffer_ptr,*(uint64_t *)(current_offset + 8 + source_data_ptr),data_length + 1,validation_flag,memory_management_flag);
       }
-      if (*(longlong *)(current_offset + 8 + source_data_ptr) != 0) {
+      if (*(int64_t *)(current_offset + 8 + source_data_ptr) != 0) {
         string_length = 0;
         if (string_buffer_ptr != (int8_t *)0x0) {
           *string_buffer_ptr = 0;
@@ -630,7 +630,7 @@ void UISystem_DataProcessor(longlong data_source, longlong data_target, uint64_t
           if ((int8_t *)data_structure_ptr[1] != (int8_t *)0x0) {
             *(int8_t *)data_structure_ptr[1] = 0;
           }
-          *(int32_t *)((longlong)data_structure_ptr + 0x1c) = 0;
+          *(int32_t *)((int64_t)data_structure_ptr + 0x1c) = 0;
         }
       }
       else {
@@ -642,10 +642,10 @@ void UISystem_DataProcessor(longlong data_source, longlong data_target, uint64_t
       }
       data_item_id = (int)item_count + 1;
       current_offset = current_offset + DATA_ELEMENT_SIZE;
-      source_data_ptr = *(longlong *)(data_source + 8);
-      item_count = (ulonglong)data_item_id;
-    } while ((ulonglong)(longlong)(int)data_item_id <
-             (ulonglong)(*(longlong *)(data_source + 0x10) - source_data_ptr >> 5));
+      source_data_ptr = *(int64_t *)(data_source + 8);
+      item_count = (uint64_t)data_item_id;
+    } while ((uint64_t)(int64_t)(int)data_item_id <
+             (uint64_t)(*(int64_t *)(data_source + 0x10) - source_data_ptr >> 5));
   }
   return;
 }

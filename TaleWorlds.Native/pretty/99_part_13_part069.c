@@ -59,11 +59,11 @@
  * 类型定义和别名
  * ============================================================================ */
 
-typedef longlong* DataStructurePtr;              // 数据结构指针
+typedef int64_t* DataStructurePtr;              // 数据结构指针
 typedef uint64_t* ResourceHandlePtr;             // 资源句柄指针
 typedef char SystemInitializationFlags;          // 系统初始化标志
 typedef uint32_t SystemOperationStatus;          // 系统操作状态
-typedef ulonglong ResourceCleanupFlags;          // 资源清理标志
+typedef uint64_t ResourceCleanupFlags;          // 资源清理标志
 
 /* ============================================================================
  * 函数别名定义
@@ -243,19 +243,19 @@ typedef ulonglong ResourceCleanupFlags;          // 资源清理标志
  * @warning 清理过程中会释放所有相关资源，请确保不再使用这些资源
  * @see ResourceManager, MemoryAllocator
  */
-void DataStructureCleanup(longlong *data_structure)
+void DataStructureCleanup(int64_t *data_structure)
 
 {
-  longlong *node_ptr1;
-  longlong *node_ptr2;
+  int64_t *node_ptr1;
+  int64_t *node_ptr2;
   uint count_var;
-  longlong *node_ptr3;
-  longlong *node_ptr4;
+  int64_t *node_ptr3;
+  int64_t *node_ptr4;
   
-  node_ptr4 = (longlong *)*data_structure;
+  node_ptr4 = (int64_t *)*data_structure;
   if (node_ptr4 == data_structure) {
-    if ((longlong *)data_structure[1] == data_structure) {
-      count_var = *(uint *)((longlong)data_structure + 0x6c);
+    if ((int64_t *)data_structure[1] == data_structure) {
+      count_var = *(uint *)((int64_t)data_structure + 0x6c);
       if ((int)((count_var ^ (int)count_var >> 0x1f) - ((int)count_var >> 0x1f)) < 0) {
         if (0 < (int)data_structure[0xd]) goto cleanup_complete;
         if ((0 < (int)count_var) && (data_structure[0xc] != 0)) {
@@ -263,7 +263,7 @@ void DataStructureCleanup(longlong *data_structure)
           ResourceReleaser(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),data_structure[0xc],&unknown_var_8432_ptr,0x100,1);
         }
         data_structure[0xc] = 0;
-        *(int32_t *)((longlong)data_structure + 0x6c) = 0;
+        *(int32_t *)((int64_t)data_structure + 0x6c) = 0;
         count_var = 0;
       }
       *(int32_t *)(data_structure + 0xd) = 0;
@@ -277,66 +277,66 @@ cleanup_complete:
       StateChecker(data_structure + 6);
       DataCleaner(data_structure + 4);
       DataCleaner(data_structure + 2);
-      node_ptr4 = (longlong *)*data_structure;
+      node_ptr4 = (int64_t *)*data_structure;
       if (node_ptr4 != data_structure) {
         do {
           if (node_ptr4 == data_structure) break;
-          node_ptr1 = (longlong *)*node_ptr4;
-          *(longlong **)node_ptr4[1] = node_ptr1;
-          *(longlong *)(*node_ptr4 + 8) = node_ptr4[1];
-          node_ptr4[1] = (longlong)node_ptr4;
-          *node_ptr4 = (longlong)node_ptr4;
+          node_ptr1 = (int64_t *)*node_ptr4;
+          *(int64_t **)node_ptr4[1] = node_ptr1;
+          *(int64_t *)(*node_ptr4 + 8) = node_ptr4[1];
+          node_ptr4[1] = (int64_t)node_ptr4;
+          *node_ptr4 = (int64_t)node_ptr4;
           node_ptr4 = node_ptr1;
         } while (node_ptr1 != data_structure);
-        node_ptr4 = (longlong *)*data_structure;
+        node_ptr4 = (int64_t *)*data_structure;
       }
-      *(longlong **)data_structure[1] = node_ptr4;
-      *(longlong *)(*data_structure + 8) = data_structure[1];
-      data_structure[1] = (longlong)data_structure;
-      *data_structure = (longlong)data_structure;
-      *(longlong **)data_structure[1] = data_structure;
-      *(longlong *)(*data_structure + 8) = data_structure[1];
-      data_structure[1] = (longlong)data_structure;
-      *data_structure = (longlong)data_structure;
+      *(int64_t **)data_structure[1] = node_ptr4;
+      *(int64_t *)(*data_structure + 8) = data_structure[1];
+      data_structure[1] = (int64_t)data_structure;
+      *data_structure = (int64_t)data_structure;
+      *(int64_t **)data_structure[1] = data_structure;
+      *(int64_t *)(*data_structure + 8) = data_structure[1];
+      data_structure[1] = (int64_t)data_structure;
+      *data_structure = (int64_t)data_structure;
       return;
     }
     if (node_ptr4 == data_structure) goto skip_cleanup;
   }
-  *(longlong *)node_ptr4[1] = *node_ptr4;
-  *(longlong *)(*node_ptr4 + 8) = node_ptr4[1];
-  node_ptr4[1] = (longlong)node_ptr4;
-  *node_ptr4 = (longlong)node_ptr4;
+  *(int64_t *)node_ptr4[1] = *node_ptr4;
+  *(int64_t *)(*node_ptr4 + 8) = node_ptr4[1];
+  node_ptr4[1] = (int64_t)node_ptr4;
+  *node_ptr4 = (int64_t)node_ptr4;
 skip_cleanup:
   node_ptr1 = node_ptr4 + 4;
   node_ptr3 = node_ptr4 + 4;
-  node_ptr2 = (longlong *)*node_ptr1;
-  if ((node_ptr2 == node_ptr1) && ((longlong *)node_ptr4[5] == node_ptr1)) {
+  node_ptr2 = (int64_t *)*node_ptr1;
+  if ((node_ptr2 == node_ptr1) && ((int64_t *)node_ptr4[5] == node_ptr1)) {
     ResourceManager2(node_ptr3);
-    *(longlong *)node_ptr4[1] = *node_ptr4;
-    *(longlong *)(*node_ptr4 + 8) = node_ptr4[1];
-    node_ptr4[1] = (longlong)node_ptr4;
-    *node_ptr4 = (longlong)node_ptr4;
-    *(longlong **)node_ptr4[1] = node_ptr4;
-    *(longlong *)(*node_ptr4 + 8) = node_ptr4[1];
-    node_ptr4[1] = (longlong)node_ptr4;
-    *node_ptr4 = (longlong)node_ptr4;
+    *(int64_t *)node_ptr4[1] = *node_ptr4;
+    *(int64_t *)(*node_ptr4 + 8) = node_ptr4[1];
+    node_ptr4[1] = (int64_t)node_ptr4;
+    *node_ptr4 = (int64_t)node_ptr4;
+    *(int64_t **)node_ptr4[1] = node_ptr4;
+    *(int64_t *)(*node_ptr4 + 8) = node_ptr4[1];
+    node_ptr4[1] = (int64_t)node_ptr4;
+    *node_ptr4 = (int64_t)node_ptr4;
     // 释放资源
     ResourceReleaser(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),node_ptr4,&unknown_var_7344_ptr,0x18d,1);
   }
   if (node_ptr2 == node_ptr3) {
-    node_ptr2 = (longlong *)0x0;
+    node_ptr2 = (int64_t *)0x0;
   }
-  if (node_ptr2 != (longlong *)0x0) {
+  if (node_ptr2 != (int64_t *)0x0) {
     node_ptr3 = node_ptr2;
   }
-  *(longlong *)node_ptr3[1] = *node_ptr3;
-  *(longlong *)(*node_ptr3 + 8) = node_ptr3[1];
-  node_ptr3[1] = (longlong)node_ptr3;
-  *node_ptr3 = (longlong)node_ptr3;
-  *(longlong **)node_ptr3[1] = node_ptr3;
-  *(longlong *)(*node_ptr3 + 8) = node_ptr3[1];
-  node_ptr3[1] = (longlong)node_ptr3;
-  *node_ptr3 = (longlong)node_ptr3;
+  *(int64_t *)node_ptr3[1] = *node_ptr3;
+  *(int64_t *)(*node_ptr3 + 8) = node_ptr3[1];
+  node_ptr3[1] = (int64_t)node_ptr3;
+  *node_ptr3 = (int64_t)node_ptr3;
+  *(int64_t **)node_ptr3[1] = node_ptr3;
+  *(int64_t *)(*node_ptr3 + 8) = node_ptr3[1];
+  node_ptr3[1] = (int64_t)node_ptr3;
+  *node_ptr3 = (int64_t)node_ptr3;
   // 释放资源
   ResourceReleaser(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),node_ptr3,&unknown_var_7344_ptr,0xc0,1);
 }
@@ -357,10 +357,10 @@ skip_cleanup:
  * @note 该函数提供完整的资源管理功能
  * @see DataStructureCleanup, MemoryAllocator
  */
-uint64_t * ResourceManager(uint64_t *resource_handle, ulonglong cleanup_flag)
+uint64_t * ResourceManager(uint64_t *resource_handle, uint64_t cleanup_flag)
 
 {
-  longlong *temp_ptr;
+  int64_t *temp_ptr;
   
   *resource_handle = &unknown_var_7280_ptr;
   if (*(int *)(resource_handle + 0x10) == 1) {
@@ -369,14 +369,14 @@ uint64_t * ResourceManager(uint64_t *resource_handle, ulonglong cleanup_flag)
   DataManager(resource_handle + 6);
   SystemConfigurator(resource_handle);
   temp_ptr = resource_handle + 4;
-  *(longlong *)resource_handle[5] = *temp_ptr;
+  *(int64_t *)resource_handle[5] = *temp_ptr;
   *(uint64_t *)(*temp_ptr + 8) = resource_handle[5];
   resource_handle[5] = temp_ptr;
-  *temp_ptr = (longlong)temp_ptr;
-  *(longlong **)resource_handle[5] = temp_ptr;
+  *temp_ptr = (int64_t)temp_ptr;
+  *(int64_t **)resource_handle[5] = temp_ptr;
   *(uint64_t *)(*temp_ptr + 8) = resource_handle[5];
   resource_handle[5] = temp_ptr;
-  *temp_ptr = (longlong)temp_ptr;
+  *temp_ptr = (int64_t)temp_ptr;
   if ((cleanup_flag & 1) != 0) {
     free(resource_handle,0x88);
   }
@@ -398,97 +398,97 @@ uint64_t * ResourceManager(uint64_t *resource_handle, ulonglong cleanup_flag)
  * @note 该函数提供完整的数据处理功能
  * @see DataStructureCleanup, ResourceManager
  */
-uint64_t DataProcessor(longlong data_ptr, longlong param_ptr)
+uint64_t DataProcessor(int64_t data_ptr, int64_t param_ptr)
 
 {
-  longlong *temp_ptr1;
+  int64_t *temp_ptr1;
   uint64_t status_code;
-  longlong *temp_ptr2;
-  longlong *temp_ptr3;
+  int64_t *temp_ptr2;
+  int64_t *temp_ptr3;
   uint count_var;
-  longlong *temp_ptr4;
-  longlong *temp_ptr5;
+  int64_t *temp_ptr4;
+  int64_t *temp_ptr5;
   
   status_code = DataInitializer(*(uint64_t *)(param_ptr + 0x50));
   if ((int)status_code != 0) {
     return status_code;
   }
-  temp_ptr1 = (longlong *)(data_ptr + 0x20);
-  temp_ptr4 = (longlong *)0x0;
-  temp_ptr2 = (longlong *)(*temp_ptr1 + -0x20);
+  temp_ptr1 = (int64_t *)(data_ptr + 0x20);
+  temp_ptr4 = (int64_t *)0x0;
+  temp_ptr2 = (int64_t *)(*temp_ptr1 + -0x20);
   if (*temp_ptr1 == 0) {
     temp_ptr2 = temp_ptr4;
   }
   temp_ptr3 = temp_ptr4;
-  if (temp_ptr2 != (longlong *)0x0) {
+  if (temp_ptr2 != (int64_t *)0x0) {
     temp_ptr3 = temp_ptr2 + 4;
   }
   while (temp_ptr3 != temp_ptr1) {
     temp_ptr2 = temp_ptr3 + 6;
-    if (temp_ptr3 == (longlong *)0x0) {
-      temp_ptr2 = (longlong *)0x50;
+    if (temp_ptr3 == (int64_t *)0x0) {
+      temp_ptr2 = (int64_t *)0x50;
     }
-    if (*(int *)(*(longlong *)(*(longlong *)(param_ptr + 0x50) + 0x10) + 0x44) <
-        *(int *)(*(longlong *)(*temp_ptr2 + 0x10) + 0x44)) {
+    if (*(int *)(*(int64_t *)(*(int64_t *)(param_ptr + 0x50) + 0x10) + 0x44) <
+        *(int *)(*(int64_t *)(*temp_ptr2 + 0x10) + 0x44)) {
       if (temp_ptr3 == temp_ptr1) {
         return 0x1f;
       }
-      temp_ptr1 = (longlong *)(param_ptr + 0x20);
-      if (temp_ptr1 == (longlong *)0x0) {
+      temp_ptr1 = (int64_t *)(param_ptr + 0x20);
+      if (temp_ptr1 == (int64_t *)0x0) {
         return 0x1c;
       }
-      temp_ptr2 = (longlong *)*temp_ptr1;
+      temp_ptr2 = (int64_t *)*temp_ptr1;
       temp_ptr5 = temp_ptr4;
       if (temp_ptr2 != temp_ptr1) goto search_loop;
       goto validation_complete;
     }
     if (temp_ptr3 == temp_ptr1) break;
-    temp_ptr2 = (longlong *)(*temp_ptr3 + -0x20);
+    temp_ptr2 = (int64_t *)(*temp_ptr3 + -0x20);
     if (*temp_ptr3 == 0) {
       temp_ptr2 = temp_ptr4;
     }
     temp_ptr3 = temp_ptr4;
-    if (temp_ptr2 != (longlong *)0x0) {
+    if (temp_ptr2 != (int64_t *)0x0) {
       temp_ptr3 = temp_ptr2 + 4;
     }
   }
-  temp_ptr2 = (longlong *)(param_ptr + 0x20);
-  if (temp_ptr2 == (longlong *)0x0) {
+  temp_ptr2 = (int64_t *)(param_ptr + 0x20);
+  if (temp_ptr2 == (int64_t *)0x0) {
     return 0x1c;
   }
-  temp_ptr3 = (longlong *)*temp_ptr2;
+  temp_ptr3 = (int64_t *)*temp_ptr2;
   if (temp_ptr3 != temp_ptr2) {
     do {
-      temp_ptr3 = (longlong *)*temp_ptr3;
+      temp_ptr3 = (int64_t *)*temp_ptr3;
       count_var = (int)temp_ptr4 + 1;
-      temp_ptr4 = (longlong *)(ulonglong)count_var;
+      temp_ptr4 = (int64_t *)(uint64_t)count_var;
     } while (temp_ptr3 != temp_ptr2);
     if (count_var != 0) {
       return 0x1c;
     }
   }
   *(uint64_t *)(param_ptr + 0x28) = *(uint64_t *)(data_ptr + 0x28);
-  *temp_ptr2 = (longlong)temp_ptr1;
-  *(longlong **)(data_ptr + 0x28) = temp_ptr2;
+  *temp_ptr2 = (int64_t)temp_ptr1;
+  *(int64_t **)(data_ptr + 0x28) = temp_ptr2;
 validation_complete:
-  **(longlong **)(param_ptr + 0x28) = param_ptr + 0x20;
+  **(int64_t **)(param_ptr + 0x28) = param_ptr + 0x20;
   return 0;
 search_loop:
   do {
-    temp_ptr2 = (longlong *)*temp_ptr2;
+    temp_ptr2 = (int64_t *)*temp_ptr2;
     count_var = (int)temp_ptr5 + 1;
-    temp_ptr5 = (longlong *)(ulonglong)count_var;
+    temp_ptr5 = (int64_t *)(uint64_t)count_var;
   } while (temp_ptr2 != temp_ptr1);
   if (count_var == 0) {
 validation_complete_2:
     temp_ptr2 = temp_ptr3 + -4;
-    if (temp_ptr3 == (longlong *)0x0) {
+    if (temp_ptr3 == (int64_t *)0x0) {
       temp_ptr2 = temp_ptr4;
     }
-    if ((temp_ptr2 != (longlong *)0x0) && (temp_ptr2 + 4 != (longlong *)0x0)) {
-      *(longlong *)(param_ptr + 0x28) = temp_ptr2[5];
-      *temp_ptr1 = (longlong)(temp_ptr2 + 4);
-      temp_ptr2[5] = (longlong)temp_ptr1;
+    if ((temp_ptr2 != (int64_t *)0x0) && (temp_ptr2 + 4 != (int64_t *)0x0)) {
+      *(int64_t *)(param_ptr + 0x28) = temp_ptr2[5];
+      *temp_ptr1 = (int64_t)(temp_ptr2 + 4);
+      temp_ptr2[5] = (int64_t)temp_ptr1;
       goto validation_complete;
     }
   }
@@ -506,80 +506,80 @@ validation_complete_2:
  * @param param1 参数1
  * @param param2 参数2
  * @param param3 参数3
- * @return longlong* 返回分配的内存指针
+ * @return int64_t* 返回分配的内存指针
  * 
  * @note 该函数提供完整的内存分配功能
  * @see ResourceManager, DataProcessor
  */
-longlong * MemoryAllocator(longlong param1, longlong param2, uint64_t *param3)
+int64_t * MemoryAllocator(int64_t param1, int64_t param2, uint64_t *param3)
 
 {
-  longlong temp_var1;
-  longlong temp_var2;
-  longlong *temp_ptr1;
-  longlong *temp_ptr2;
+  int64_t temp_var1;
+  int64_t temp_var2;
+  int64_t *temp_ptr1;
+  int64_t *temp_ptr2;
   uint count_var;
-  longlong *temp_ptr3;
-  longlong *temp_ptr4;
+  int64_t *temp_ptr3;
+  int64_t *temp_ptr4;
   
-  temp_ptr2 = (longlong *)0x0;
+  temp_ptr2 = (int64_t *)0x0;
   if (param3 != (uint64_t *)0x0) {
     *param3 = 0;
   }
-  temp_var1 = *(longlong *)(param1 + 0x18);
+  temp_var1 = *(int64_t *)(param1 + 0x18);
   temp_var2 = DataFinder(param2,temp_var1 + 0x30);
   if (((temp_var2 == 0) && (temp_var2 = DataFinder(param2,temp_var1 + 0x40), temp_var2 == 0)) &&
      (temp_var2 = DataFinder(param2,temp_var1 + 0x50), temp_var2 == 0)) {
-    return (longlong *)0x0;
+    return (int64_t *)0x0;
   }
   if ((*(uint *)(temp_var2 + 0x5c) >> 3 & 1) != 0) goto allocation_complete;
-  temp_var1 = *(longlong *)(param1 + 0x18);
+  temp_var1 = *(int64_t *)(param1 + 0x18);
   *(uint *)(temp_var2 + 0x5c) = *(uint *)(temp_var2 + 0x5c) | 0xc;
-  temp_ptr4 = (longlong *)(temp_var2 + 0x10);
+  temp_ptr4 = (int64_t *)(temp_var2 + 0x10);
   if (temp_var2 == 0) {
     temp_ptr4 = temp_ptr2;
   }
-  if (temp_ptr4 == (longlong *)0x0) {
+  if (temp_ptr4 == (int64_t *)0x0) {
 allocation_failed:
-    temp_ptr2 = (longlong *)0x1c;
+    temp_ptr2 = (int64_t *)0x1c;
   }
   else {
-    temp_ptr1 = (longlong *)*temp_ptr4;
+    temp_ptr1 = (int64_t *)*temp_ptr4;
     temp_ptr3 = temp_ptr2;
     if (temp_ptr1 != temp_ptr4) {
       do {
-        temp_ptr1 = (longlong *)*temp_ptr1;
+        temp_ptr1 = (int64_t *)*temp_ptr1;
         count_var = (int)temp_ptr3 + 1;
-        temp_ptr3 = (longlong *)(ulonglong)count_var;
+        temp_ptr3 = (int64_t *)(uint64_t)count_var;
       } while (temp_ptr1 != temp_ptr4);
       if (count_var != 0) goto allocation_failed;
     }
-    temp_ptr4[1] = *(longlong *)(temp_var1 + 0x38);
+    temp_ptr4[1] = *(int64_t *)(temp_var1 + 0x38);
     *temp_ptr4 = temp_var1 + 0x30;
-    *(longlong **)(temp_var1 + 0x38) = temp_ptr4;
-    *(longlong **)temp_ptr4[1] = temp_ptr4;
+    *(int64_t **)(temp_var1 + 0x38) = temp_ptr4;
+    *(int64_t **)temp_ptr4[1] = temp_ptr4;
   }
   if ((int)temp_ptr2 != 0) {
     return temp_ptr2;
   }
 allocation_complete:
-  temp_ptr2 = (longlong *)
+  temp_ptr2 = (int64_t *)
            MemoryAllocator2(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x20,&unknown_var_7344_ptr,300,0,0,1);
-  if (temp_ptr2 != (longlong *)0x0) {
-    *temp_ptr2 = (longlong)temp_ptr2;
-    temp_ptr2[1] = (longlong)temp_ptr2;
+  if (temp_ptr2 != (int64_t *)0x0) {
+    *temp_ptr2 = (int64_t)temp_ptr2;
+    temp_ptr2[1] = (int64_t)temp_ptr2;
     temp_ptr2[2] = param2;
     temp_ptr2[3] = temp_var2;
-    temp_ptr2[1] = *(longlong *)(param1 + 0x28);
+    temp_ptr2[1] = *(int64_t *)(param1 + 0x28);
     *temp_ptr2 = param1 + 0x20;
-    *(longlong **)(param1 + 0x28) = temp_ptr2;
-    *(longlong **)temp_ptr2[1] = temp_ptr2;
+    *(int64_t **)(param1 + 0x28) = temp_ptr2;
+    *(int64_t **)temp_ptr2[1] = temp_ptr2;
     if (param3 != (uint64_t *)0x0) {
       *param3 = temp_ptr2;
     }
-    return (longlong *)0x0;
+    return (int64_t *)0x0;
   }
-  return (longlong *)0x26;
+  return (int64_t *)0x26;
 }
 
 /* ============================================================================

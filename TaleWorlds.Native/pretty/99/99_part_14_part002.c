@@ -165,8 +165,8 @@ void CreateObjectTypeA(PoolHandle handle, ObjectParams* params, ObjectType type,
     int required_capacity;
     
     base_addr = pool[1];
-    sign_ext = (int)*(uint *)((longlong)pool + 0xc) >> 0x1f;
-    current_capacity = (*(uint *)((longlong)pool + 0xc) ^ sign_ext) - sign_ext;
+    sign_ext = (int)*(uint *)((int64_t)pool + 0xc) >> 0x1f;
+    current_capacity = (*(uint *)((int64_t)pool + 0xc) ^ sign_ext) - sign_ext;
     required_capacity = (int)base_addr + SMALL_OBJECT_SIZE;
     
     // 检查并扩容
@@ -186,8 +186,8 @@ void CreateObjectTypeA(PoolHandle handle, ObjectParams* params, ObjectType type,
     }
     
     // 再次检查容量
-    sign_ext = (int)*(uint *)((longlong)pool + 0xc) >> 0x1f;
-    if (((int)((*(uint *)((longlong)pool + 0xc) ^ sign_ext) - sign_ext) < required_capacity) &&
+    sign_ext = (int)*(uint *)((int64_t)pool + 0xc) >> 0x1f;
+    if (((int)((*(uint *)((int64_t)pool + 0xc) ^ sign_ext) - sign_ext) < required_capacity) &&
         (new_capacity = FUN_180849030(pool, required_capacity), new_capacity != 0)) {
         return;
     }
@@ -196,9 +196,9 @@ void CreateObjectTypeA(PoolHandle handle, ObjectParams* params, ObjectType type,
     new_capacity = (int)pool[1];
     if (required_capacity <= new_capacity) {
         *(int *)(pool + 1) = required_capacity;
-        object_ptr = (void *)((longlong)(int)base_addr + *pool);
-        *(uint64_t *)((longlong)object_ptr + 0xc) = 0;
-        *(uint32_t *)((longlong)object_ptr + 0x14) = 0;
+        object_ptr = (void *)((int64_t)(int)base_addr + *pool);
+        *(uint64_t *)((int64_t)object_ptr + 0xc) = 0;
+        *(uint32_t *)((int64_t)object_ptr + 0x14) = 0;
         *(void**)object_ptr = &global_var_3872_ptr;
         *(uint32_t *)(object_ptr + 1) = SMALL_OBJECT_SIZE;
         global_var_7856(object_ptr, type, params);
@@ -206,7 +206,7 @@ void CreateObjectTypeA(PoolHandle handle, ObjectParams* params, ObjectType type,
     }
     
     // 清理内存
-    memset((longlong)new_capacity + *pool, 0, (longlong)(required_capacity - new_capacity));
+    memset((int64_t)new_capacity + *pool, 0, (int64_t)(required_capacity - new_capacity));
 }
 
 /**
@@ -223,8 +223,8 @@ void CreateObjectTypeB(PoolHandle handle, ObjectParams* params, ObjectType type,
     int required_capacity;
     
     base_addr = pool[1];
-    sign_ext = (int)*(uint *)((longlong)pool + 0xc) >> 0x1f;
-    current_capacity = (*(uint *)((longlong)pool + 0xc) ^ sign_ext) - sign_ext;
+    sign_ext = (int)*(uint *)((int64_t)pool + 0xc) >> 0x1f;
+    current_capacity = (*(uint *)((int64_t)pool + 0xc) ^ sign_ext) - sign_ext;
     required_capacity = (int)base_addr + SMALL_OBJECT_SIZE;
     
     if (current_capacity < required_capacity) {
@@ -242,8 +242,8 @@ void CreateObjectTypeB(PoolHandle handle, ObjectParams* params, ObjectType type,
         }
     }
     
-    sign_ext = (int)*(uint *)((longlong)pool + 0xc) >> 0x1f;
-    if (((int)((*(uint *)((longlong)pool + 0xc) ^ sign_ext) - sign_ext) < required_capacity) &&
+    sign_ext = (int)*(uint *)((int64_t)pool + 0xc) >> 0x1f;
+    if (((int)((*(uint *)((int64_t)pool + 0xc) ^ sign_ext) - sign_ext) < required_capacity) &&
         (new_capacity = FUN_180849030(pool, required_capacity), new_capacity != 0)) {
         return;
     }
@@ -251,16 +251,16 @@ void CreateObjectTypeB(PoolHandle handle, ObjectParams* params, ObjectType type,
     new_capacity = (int)pool[1];
     if (required_capacity <= new_capacity) {
         *(int *)(pool + 1) = required_capacity;
-        object_ptr = (void *)((longlong)(int)base_addr + *pool);
-        *(uint64_t *)((longlong)object_ptr + 0xc) = 0;
-        *(uint32_t *)((longlong)object_ptr + 0x14) = 0;
+        object_ptr = (void *)((int64_t)(int)base_addr + *pool);
+        *(uint64_t *)((int64_t)object_ptr + 0xc) = 0;
+        *(uint32_t *)((int64_t)object_ptr + 0x14) = 0;
         *(void**)object_ptr = &global_var_4128_ptr;
         *(uint32_t *)(object_ptr + 1) = SMALL_OBJECT_SIZE;
         global_var_7856(object_ptr, type, params);
         return;
     }
     
-    memset((longlong)new_capacity + *pool, 0, (longlong)(required_capacity - new_capacity));
+    memset((int64_t)new_capacity + *pool, 0, (int64_t)(required_capacity - new_capacity));
 }
 
 /**
@@ -277,8 +277,8 @@ void CreateObjectTypeC(PoolHandle handle, ObjectParams* params, ObjectType type,
     int required_capacity;
     
     base_addr = pool[1];
-    sign_ext = (int)*(uint *)((longlong)pool + 0xc) >> 0x1f;
-    current_capacity = (*(uint *)((longlong)pool + 0xc) ^ sign_ext) - sign_ext;
+    sign_ext = (int)*(uint *)((int64_t)pool + 0xc) >> 0x1f;
+    current_capacity = (*(uint *)((int64_t)pool + 0xc) ^ sign_ext) - sign_ext;
     required_capacity = (int)base_addr + SMALL_OBJECT_SIZE;
     
     if (current_capacity < required_capacity) {
@@ -296,8 +296,8 @@ void CreateObjectTypeC(PoolHandle handle, ObjectParams* params, ObjectType type,
         }
     }
     
-    sign_ext = (int)*(uint *)((longlong)pool + 0xc) >> 0x1f;
-    if (((int)((*(uint *)((longlong)pool + 0xc) ^ sign_ext) - sign_ext) < required_capacity) &&
+    sign_ext = (int)*(uint *)((int64_t)pool + 0xc) >> 0x1f;
+    if (((int)((*(uint *)((int64_t)pool + 0xc) ^ sign_ext) - sign_ext) < required_capacity) &&
         (new_capacity = FUN_180849030(pool, required_capacity), new_capacity != 0)) {
         return;
     }
@@ -305,16 +305,16 @@ void CreateObjectTypeC(PoolHandle handle, ObjectParams* params, ObjectType type,
     new_capacity = (int)pool[1];
     if (required_capacity <= new_capacity) {
         *(int *)(pool + 1) = required_capacity;
-        object_ptr = (void *)((longlong)(int)base_addr + *pool);
-        *(uint64_t *)((longlong)object_ptr + 0xc) = 0;
-        *(uint32_t *)((longlong)object_ptr + 0x14) = 0;
+        object_ptr = (void *)((int64_t)(int)base_addr + *pool);
+        *(uint64_t *)((int64_t)object_ptr + 0xc) = 0;
+        *(uint32_t *)((int64_t)object_ptr + 0x14) = 0;
         *(void**)object_ptr = &global_var_4000_ptr;
         *(uint32_t *)(object_ptr + 1) = SMALL_OBJECT_SIZE;
         global_var_7856(object_ptr, type, params);
         return;
     }
     
-    memset((longlong)new_capacity + *pool, 0, (longlong)(required_capacity - new_capacity));
+    memset((int64_t)new_capacity + *pool, 0, (int64_t)(required_capacity - new_capacity));
 }
 
 /**
@@ -331,8 +331,8 @@ void CreateObjectTypeD(PoolHandle handle, ObjectParams* params, ObjectType type,
     int required_capacity;
     
     base_addr = pool[1];
-    sign_ext = (int)*(uint *)((longlong)pool + 0xc) >> 0x1f;
-    current_capacity = (*(uint *)((longlong)pool + 0xc) ^ sign_ext) - sign_ext;
+    sign_ext = (int)*(uint *)((int64_t)pool + 0xc) >> 0x1f;
+    current_capacity = (*(uint *)((int64_t)pool + 0xc) ^ sign_ext) - sign_ext;
     required_capacity = (int)base_addr + LARGE_OBJECT_SIZE;
     
     if (current_capacity < required_capacity) {
@@ -350,8 +350,8 @@ void CreateObjectTypeD(PoolHandle handle, ObjectParams* params, ObjectType type,
         }
     }
     
-    sign_ext = (int)*(uint *)((longlong)pool + 0xc) >> 0x1f;
-    if (((int)((*(uint *)((longlong)pool + 0xc) ^ sign_ext) - sign_ext) < required_capacity) &&
+    sign_ext = (int)*(uint *)((int64_t)pool + 0xc) >> 0x1f;
+    if (((int)((*(uint *)((int64_t)pool + 0xc) ^ sign_ext) - sign_ext) < required_capacity) &&
         (new_capacity = FUN_180849030(pool, required_capacity), new_capacity != 0)) {
         return;
     }
@@ -359,17 +359,17 @@ void CreateObjectTypeD(PoolHandle handle, ObjectParams* params, ObjectType type,
     new_capacity = (int)pool[1];
     if (required_capacity <= new_capacity) {
         *(int *)(pool + 1) = required_capacity;
-        object_ptr = (void *)((longlong)(int)base_addr + *pool);
-        *(uint64_t *)((longlong)object_ptr + 0xc) = 0;
-        *(uint64_t *)((longlong)object_ptr + 0x14) = 0;
-        *(uint32_t *)((longlong)object_ptr + 0x1c) = 0;
+        object_ptr = (void *)((int64_t)(int)base_addr + *pool);
+        *(uint64_t *)((int64_t)object_ptr + 0xc) = 0;
+        *(uint64_t *)((int64_t)object_ptr + 0x14) = 0;
+        *(uint32_t *)((int64_t)object_ptr + 0x1c) = 0;
         *(void**)object_ptr = &global_var_9408_ptr;
         *(uint32_t *)(object_ptr + 1) = LARGE_OBJECT_SIZE;
         global_var_7856(object_ptr, type, params);
         return;
     }
     
-    memset((longlong)new_capacity + *pool, 0, (longlong)(required_capacity - new_capacity));
+    memset((int64_t)new_capacity + *pool, 0, (int64_t)(required_capacity - new_capacity));
 }
 
 /**
@@ -386,8 +386,8 @@ void CreateObjectTypeE(PoolHandle handle, ObjectParams* params, ObjectType type,
     int required_capacity;
     
     base_addr = pool[1];
-    sign_ext = (int)*(uint *)((longlong)pool + 0xc) >> 0x1f;
-    current_capacity = (*(uint *)((longlong)pool + 0xc) ^ sign_ext) - sign_ext;
+    sign_ext = (int)*(uint *)((int64_t)pool + 0xc) >> 0x1f;
+    current_capacity = (*(uint *)((int64_t)pool + 0xc) ^ sign_ext) - sign_ext;
     required_capacity = (int)base_addr + SMALL_OBJECT_SIZE;
     
     if (current_capacity < required_capacity) {
@@ -405,8 +405,8 @@ void CreateObjectTypeE(PoolHandle handle, ObjectParams* params, ObjectType type,
         }
     }
     
-    sign_ext = (int)*(uint *)((longlong)pool + 0xc) >> 0x1f;
-    if (((int)((*(uint *)((longlong)pool + 0xc) ^ sign_ext) - sign_ext) < required_capacity) &&
+    sign_ext = (int)*(uint *)((int64_t)pool + 0xc) >> 0x1f;
+    if (((int)((*(uint *)((int64_t)pool + 0xc) ^ sign_ext) - sign_ext) < required_capacity) &&
         (new_capacity = FUN_180849030(pool, required_capacity), new_capacity != 0)) {
         return;
     }
@@ -414,16 +414,16 @@ void CreateObjectTypeE(PoolHandle handle, ObjectParams* params, ObjectType type,
     new_capacity = (int)pool[1];
     if (required_capacity <= new_capacity) {
         *(int *)(pool + 1) = required_capacity;
-        object_ptr = (void *)((longlong)(int)base_addr + *pool);
-        *(uint64_t *)((longlong)object_ptr + 0xc) = 0;
-        *(uint32_t *)((longlong)object_ptr + 0x14) = 0;
+        object_ptr = (void *)((int64_t)(int)base_addr + *pool);
+        *(uint64_t *)((int64_t)object_ptr + 0xc) = 0;
+        *(uint32_t *)((int64_t)object_ptr + 0x14) = 0;
         *(void**)object_ptr = &global_var_9152_ptr;
         *(uint32_t *)(object_ptr + 1) = SMALL_OBJECT_SIZE;
         global_var_7856(object_ptr, type, params);
         return;
     }
     
-    memset((longlong)new_capacity + *pool, 0, (longlong)(required_capacity - new_capacity));
+    memset((int64_t)new_capacity + *pool, 0, (int64_t)(required_capacity - new_capacity));
 }
 
 /**
@@ -440,8 +440,8 @@ void CreateObjectTypeF(PoolHandle handle, ObjectParams* params, ObjectType type,
     int required_capacity;
     
     base_addr = pool[1];
-    sign_ext = (int)*(uint *)((longlong)pool + 0xc) >> 0x1f;
-    current_capacity = (*(uint *)((longlong)pool + 0xc) ^ sign_ext) - sign_ext;
+    sign_ext = (int)*(uint *)((int64_t)pool + 0xc) >> 0x1f;
+    current_capacity = (*(uint *)((int64_t)pool + 0xc) ^ sign_ext) - sign_ext;
     required_capacity = (int)base_addr + LARGE_OBJECT_SIZE;
     
     if (current_capacity < required_capacity) {
@@ -459,8 +459,8 @@ void CreateObjectTypeF(PoolHandle handle, ObjectParams* params, ObjectType type,
         }
     }
     
-    sign_ext = (int)*(uint *)((longlong)pool + 0xc) >> 0x1f;
-    if (((int)((*(uint *)((longlong)pool + 0xc) ^ sign_ext) - sign_ext) < required_capacity) &&
+    sign_ext = (int)*(uint *)((int64_t)pool + 0xc) >> 0x1f;
+    if (((int)((*(uint *)((int64_t)pool + 0xc) ^ sign_ext) - sign_ext) < required_capacity) &&
         (new_capacity = FUN_180849030(pool, required_capacity), new_capacity != 0)) {
         return;
     }
@@ -468,17 +468,17 @@ void CreateObjectTypeF(PoolHandle handle, ObjectParams* params, ObjectType type,
     new_capacity = (int)pool[1];
     if (required_capacity <= new_capacity) {
         *(int *)(pool + 1) = required_capacity;
-        object_ptr = (void *)((longlong)(int)base_addr + *pool);
-        *(uint64_t *)((longlong)object_ptr + 0xc) = 0;
-        *(uint64_t *)((longlong)object_ptr + 0x14) = 0;
-        *(uint32_t *)((longlong)object_ptr + 0x1c) = 0;
+        object_ptr = (void *)((int64_t)(int)base_addr + *pool);
+        *(uint64_t *)((int64_t)object_ptr + 0xc) = 0;
+        *(uint64_t *)((int64_t)object_ptr + 0x14) = 0;
+        *(uint32_t *)((int64_t)object_ptr + 0x1c) = 0;
         *(void**)object_ptr = &global_var_9776_ptr;
         *(uint32_t *)(object_ptr + 1) = LARGE_OBJECT_SIZE;
         global_var_7856(object_ptr, type, params);
         return;
     }
     
-    memset((longlong)new_capacity + *pool, 0, (longlong)(required_capacity - new_capacity));
+    memset((int64_t)new_capacity + *pool, 0, (int64_t)(required_capacity - new_capacity));
 }
 
 /**
@@ -495,8 +495,8 @@ void CreateObjectTypeG(PoolHandle handle, ObjectParams* params, ObjectType type,
     int required_capacity;
     
     base_addr = pool[1];
-    sign_ext = (int)*(uint *)((longlong)pool + 0xc) >> 0x1f;
-    current_capacity = (*(uint *)((longlong)pool + 0xc) ^ sign_ext) - sign_ext;
+    sign_ext = (int)*(uint *)((int64_t)pool + 0xc) >> 0x1f;
+    current_capacity = (*(uint *)((int64_t)pool + 0xc) ^ sign_ext) - sign_ext;
     required_capacity = (int)base_addr + LARGE_OBJECT_SIZE;
     
     if (current_capacity < required_capacity) {
@@ -514,8 +514,8 @@ void CreateObjectTypeG(PoolHandle handle, ObjectParams* params, ObjectType type,
         }
     }
     
-    sign_ext = (int)*(uint *)((longlong)pool + 0xc) >> 0x1f;
-    if (((int)((*(uint *)((longlong)pool + 0xc) ^ sign_ext) - sign_ext) < required_capacity) &&
+    sign_ext = (int)*(uint *)((int64_t)pool + 0xc) >> 0x1f;
+    if (((int)((*(uint *)((int64_t)pool + 0xc) ^ sign_ext) - sign_ext) < required_capacity) &&
         (new_capacity = FUN_180849030(pool, required_capacity), new_capacity != 0)) {
         return;
     }
@@ -523,17 +523,17 @@ void CreateObjectTypeG(PoolHandle handle, ObjectParams* params, ObjectType type,
     new_capacity = (int)pool[1];
     if (required_capacity <= new_capacity) {
         *(int *)(pool + 1) = required_capacity;
-        object_ptr = (void *)((longlong)(int)base_addr + *pool);
-        *(uint64_t *)((longlong)object_ptr + 0xc) = 0;
-        *(uint64_t *)((longlong)object_ptr + 0x14) = 0;
-        *(uint32_t *)((longlong)object_ptr + 0x1c) = 0;
+        object_ptr = (void *)((int64_t)(int)base_addr + *pool);
+        *(uint64_t *)((int64_t)object_ptr + 0xc) = 0;
+        *(uint64_t *)((int64_t)object_ptr + 0x14) = 0;
+        *(uint32_t *)((int64_t)object_ptr + 0x1c) = 0;
         *(void**)object_ptr = &global_var_9656_ptr;
         *(uint32_t *)(object_ptr + 1) = LARGE_OBJECT_SIZE;
         global_var_7856(object_ptr, type, params);
         return;
     }
     
-    memset((longlong)new_capacity + *pool, 0, (longlong)(required_capacity - new_capacity));
+    memset((int64_t)new_capacity + *pool, 0, (int64_t)(required_capacity - new_capacity));
 }
 
 /**
@@ -550,8 +550,8 @@ void CreateObjectTypeH(PoolHandle handle, ObjectParams* params, ObjectType type,
     int required_capacity;
     
     base_addr = pool[1];
-    sign_ext = (int)*(uint *)((longlong)pool + 0xc) >> 0x1f;
-    current_capacity = (*(uint *)((longlong)pool + 0xc) ^ sign_ext) - sign_ext;
+    sign_ext = (int)*(uint *)((int64_t)pool + 0xc) >> 0x1f;
+    current_capacity = (*(uint *)((int64_t)pool + 0xc) ^ sign_ext) - sign_ext;
     required_capacity = (int)base_addr + LARGE_OBJECT_SIZE;
     
     if (current_capacity < required_capacity) {
@@ -569,8 +569,8 @@ void CreateObjectTypeH(PoolHandle handle, ObjectParams* params, ObjectType type,
         }
     }
     
-    sign_ext = (int)*(uint *)((longlong)pool + 0xc) >> 0x1f;
-    if (((int)((*(uint *)((longlong)pool + 0xc) ^ sign_ext) - sign_ext) < required_capacity) &&
+    sign_ext = (int)*(uint *)((int64_t)pool + 0xc) >> 0x1f;
+    if (((int)((*(uint *)((int64_t)pool + 0xc) ^ sign_ext) - sign_ext) < required_capacity) &&
         (new_capacity = FUN_180849030(pool, required_capacity), new_capacity != 0)) {
         return;
     }
@@ -578,17 +578,17 @@ void CreateObjectTypeH(PoolHandle handle, ObjectParams* params, ObjectType type,
     new_capacity = (int)pool[1];
     if (required_capacity <= new_capacity) {
         *(int *)(pool + 1) = required_capacity;
-        object_ptr = (void *)((longlong)(int)base_addr + *pool);
-        *(uint64_t *)((longlong)object_ptr + 0xc) = 0;
-        *(uint64_t *)((longlong)object_ptr + 0x14) = 0;
-        *(uint32_t *)((longlong)object_ptr + 0x1c) = 0;
+        object_ptr = (void *)((int64_t)(int)base_addr + *pool);
+        *(uint64_t *)((int64_t)object_ptr + 0xc) = 0;
+        *(uint64_t *)((int64_t)object_ptr + 0x14) = 0;
+        *(uint32_t *)((int64_t)object_ptr + 0x1c) = 0;
         *(void**)object_ptr = &global_var_9536_ptr;
         *(uint32_t *)(object_ptr + 1) = LARGE_OBJECT_SIZE;
         global_var_7856(object_ptr, type, params);
         return;
     }
     
-    memset((longlong)new_capacity + *pool, 0, (longlong)(required_capacity - new_capacity));
+    memset((int64_t)new_capacity + *pool, 0, (int64_t)(required_capacity - new_capacity));
 }
 
 /**
@@ -605,8 +605,8 @@ void CreateObjectTypeI(PoolHandle handle, ObjectParams* params, ObjectType type,
     int required_capacity;
     
     base_addr = pool[1];
-    sign_ext = (int)*(uint *)((longlong)pool + 0xc) >> 0x1f;
-    current_capacity = (*(uint *)((longlong)pool + 0xc) ^ sign_ext) - sign_ext;
+    sign_ext = (int)*(uint *)((int64_t)pool + 0xc) >> 0x1f;
+    current_capacity = (*(uint *)((int64_t)pool + 0xc) ^ sign_ext) - sign_ext;
     required_capacity = (int)base_addr + LARGE_OBJECT_SIZE;
     
     if (current_capacity < required_capacity) {
@@ -624,8 +624,8 @@ void CreateObjectTypeI(PoolHandle handle, ObjectParams* params, ObjectType type,
         }
     }
     
-    sign_ext = (int)*(uint *)((longlong)pool + 0xc) >> 0x1f;
-    if (((int)((*(uint *)((longlong)pool + 0xc) ^ sign_ext) - sign_ext) < required_capacity) &&
+    sign_ext = (int)*(uint *)((int64_t)pool + 0xc) >> 0x1f;
+    if (((int)((*(uint *)((int64_t)pool + 0xc) ^ sign_ext) - sign_ext) < required_capacity) &&
         (new_capacity = FUN_180849030(pool, required_capacity), new_capacity != 0)) {
         return;
     }
@@ -633,17 +633,17 @@ void CreateObjectTypeI(PoolHandle handle, ObjectParams* params, ObjectType type,
     new_capacity = (int)pool[1];
     if (required_capacity <= new_capacity) {
         *(int *)(pool + 1) = required_capacity;
-        object_ptr = (void *)((longlong)(int)base_addr + *pool);
-        *(uint64_t *)((longlong)object_ptr + 0xc) = 0;
-        *(uint64_t *)((longlong)object_ptr + 0x14) = 0;
-        *(uint32_t *)((longlong)object_ptr + 0x1c) = 0;
+        object_ptr = (void *)((int64_t)(int)base_addr + *pool);
+        *(uint64_t *)((int64_t)object_ptr + 0xc) = 0;
+        *(uint64_t *)((int64_t)object_ptr + 0x14) = 0;
+        *(uint32_t *)((int64_t)object_ptr + 0x1c) = 0;
         *(void**)object_ptr = &global_var_9896_ptr;
         *(uint32_t *)(object_ptr + 1) = LARGE_OBJECT_SIZE;
         global_var_7856(object_ptr, type, params);
         return;
     }
     
-    memset((longlong)new_capacity + *pool, 0, (longlong)(required_capacity - new_capacity));
+    memset((int64_t)new_capacity + *pool, 0, (int64_t)(required_capacity - new_capacity));
 }
 
 /**
@@ -660,8 +660,8 @@ void CreateObjectTypeJ(PoolHandle handle, ObjectParams* params, ObjectType type,
     int required_capacity;
     
     base_addr = pool[1];
-    sign_ext = (int)*(uint *)((longlong)pool + 0xc) >> 0x1f;
-    current_capacity = (*(uint *)((longlong)pool + 0xc) ^ sign_ext) - sign_ext;
+    sign_ext = (int)*(uint *)((int64_t)pool + 0xc) >> 0x1f;
+    current_capacity = (*(uint *)((int64_t)pool + 0xc) ^ sign_ext) - sign_ext;
     required_capacity = (int)base_addr + SMALL_OBJECT_SIZE;
     
     if (current_capacity < required_capacity) {
@@ -679,8 +679,8 @@ void CreateObjectTypeJ(PoolHandle handle, ObjectParams* params, ObjectType type,
         }
     }
     
-    sign_ext = (int)*(uint *)((longlong)pool + 0xc) >> 0x1f;
-    if (((int)((*(uint *)((longlong)pool + 0xc) ^ sign_ext) - sign_ext) < required_capacity) &&
+    sign_ext = (int)*(uint *)((int64_t)pool + 0xc) >> 0x1f;
+    if (((int)((*(uint *)((int64_t)pool + 0xc) ^ sign_ext) - sign_ext) < required_capacity) &&
         (new_capacity = FUN_180849030(pool, required_capacity), new_capacity != 0)) {
         return;
     }
@@ -688,16 +688,16 @@ void CreateObjectTypeJ(PoolHandle handle, ObjectParams* params, ObjectType type,
     new_capacity = (int)pool[1];
     if (required_capacity <= new_capacity) {
         *(int *)(pool + 1) = required_capacity;
-        object_ptr = (void *)((longlong)(int)base_addr + *pool);
-        *(uint64_t *)((longlong)object_ptr + 0xc) = 0;
-        *(uint32_t *)((longlong)object_ptr + 0x14) = 0;
+        object_ptr = (void *)((int64_t)(int)base_addr + *pool);
+        *(uint64_t *)((int64_t)object_ptr + 0xc) = 0;
+        *(uint32_t *)((int64_t)object_ptr + 0x14) = 0;
         *(void**)object_ptr = &global_var_9280_ptr;
         *(uint32_t *)(object_ptr + 1) = SMALL_OBJECT_SIZE;
         global_var_7856(object_ptr, type, params);
         return;
     }
     
-    memset((longlong)new_capacity + *pool, 0, (longlong)(required_capacity - new_capacity));
+    memset((int64_t)new_capacity + *pool, 0, (int64_t)(required_capacity - new_capacity));
 }
 
 /**
@@ -714,8 +714,8 @@ void CreateObjectTypeK(PoolHandle handle, ObjectParams* params, ObjectType type,
     int required_capacity;
     
     base_addr = pool[1];
-    sign_ext = (int)*(uint *)((longlong)pool + 0xc) >> 0x1f;
-    current_capacity = (*(uint *)((longlong)pool + 0xc) ^ sign_ext) - sign_ext;
+    sign_ext = (int)*(uint *)((int64_t)pool + 0xc) >> 0x1f;
+    current_capacity = (*(uint *)((int64_t)pool + 0xc) ^ sign_ext) - sign_ext;
     required_capacity = (int)base_addr + LARGE_OBJECT_SIZE;
     
     if (current_capacity < required_capacity) {
@@ -733,8 +733,8 @@ void CreateObjectTypeK(PoolHandle handle, ObjectParams* params, ObjectType type,
         }
     }
     
-    sign_ext = (int)*(uint *)((longlong)pool + 0xc) >> 0x1f;
-    if (((int)((*(uint *)((longlong)pool + 0xc) ^ sign_ext) - sign_ext) < required_capacity) &&
+    sign_ext = (int)*(uint *)((int64_t)pool + 0xc) >> 0x1f;
+    if (((int)((*(uint *)((int64_t)pool + 0xc) ^ sign_ext) - sign_ext) < required_capacity) &&
         (new_capacity = FUN_180849030(pool), new_capacity != 0)) {
         return;
     }
@@ -742,17 +742,17 @@ void CreateObjectTypeK(PoolHandle handle, ObjectParams* params, ObjectType type,
     new_capacity = (int)pool[1];
     if (required_capacity <= new_capacity) {
         *(int *)(pool + 1) = required_capacity;
-        object_ptr = (void *)((longlong)(int)base_addr + *pool);
-        *(uint64_t *)((longlong)object_ptr + 0xc) = 0;
-        *(uint64_t *)((longlong)object_ptr + 0x14) = 0;
-        *(uint32_t *)((longlong)object_ptr + 0x1c) = 0;
+        object_ptr = (void *)((int64_t)(int)base_addr + *pool);
+        *(uint64_t *)((int64_t)object_ptr + 0xc) = 0;
+        *(uint64_t *)((int64_t)object_ptr + 0x14) = 0;
+        *(uint32_t *)((int64_t)object_ptr + 0x1c) = 0;
         *(void**)object_ptr = &global_var_5400_ptr;
         *(uint32_t *)(object_ptr + 1) = LARGE_OBJECT_SIZE;
         global_var_7856(object_ptr, type, params);
         return;
     }
     
-    memset((longlong)new_capacity + *pool, 0, (longlong)(required_capacity - new_capacity));
+    memset((int64_t)new_capacity + *pool, 0, (int64_t)(required_capacity - new_capacity));
 }
 
 /**
@@ -769,8 +769,8 @@ void CreateObjectTypeL(PoolHandle handle, ObjectParams* params, ObjectType type,
     int required_capacity;
     
     base_addr = pool[1];
-    sign_ext = (int)*(uint *)((longlong)pool + 0xc) >> 0x1f;
-    current_capacity = (*(uint *)((longlong)pool + 0xc) ^ sign_ext) - sign_ext;
+    sign_ext = (int)*(uint *)((int64_t)pool + 0xc) >> 0x1f;
+    current_capacity = (*(uint *)((int64_t)pool + 0xc) ^ sign_ext) - sign_ext;
     required_capacity = (int)base_addr + LARGE_OBJECT_SIZE;
     
     if (current_capacity < required_capacity) {
@@ -788,8 +788,8 @@ void CreateObjectTypeL(PoolHandle handle, ObjectParams* params, ObjectType type,
         }
     }
     
-    sign_ext = (int)*(uint *)((longlong)pool + 0xc) >> 0x1f;
-    if (((int)((*(uint *)((longlong)pool + 0xc) ^ sign_ext) - sign_ext) < required_capacity) &&
+    sign_ext = (int)*(uint *)((int64_t)pool + 0xc) >> 0x1f;
+    if (((int)((*(uint *)((int64_t)pool + 0xc) ^ sign_ext) - sign_ext) < required_capacity) &&
         (new_capacity = FUN_180849030(pool, required_capacity), new_capacity != 0)) {
         return;
     }
@@ -797,17 +797,17 @@ void CreateObjectTypeL(PoolHandle handle, ObjectParams* params, ObjectType type,
     new_capacity = (int)pool[1];
     if (required_capacity <= new_capacity) {
         *(int *)(pool + 1) = required_capacity;
-        object_ptr = (void *)((longlong)(int)base_addr + *pool);
-        *(uint64_t *)((longlong)object_ptr + 0xc) = 0;
-        *(uint64_t *)((longlong)object_ptr + 0x14) = 0;
-        *(uint32_t *)((longlong)object_ptr + 0x1c) = 0;
+        object_ptr = (void *)((int64_t)(int)base_addr + *pool);
+        *(uint64_t *)((int64_t)object_ptr + 0xc) = 0;
+        *(uint64_t *)((int64_t)object_ptr + 0x14) = 0;
+        *(uint32_t *)((int64_t)object_ptr + 0x1c) = 0;
         *(void**)object_ptr = &global_var_5544_ptr;
         *(uint32_t *)(object_ptr + 1) = LARGE_OBJECT_SIZE;
         global_var_7856(object_ptr, type, params);
         return;
     }
     
-    memset((longlong)new_capacity + *pool, 0, (longlong)(required_capacity - new_capacity));
+    memset((int64_t)new_capacity + *pool, 0, (int64_t)(required_capacity - new_capacity));
 }
 
 /**
@@ -824,8 +824,8 @@ void CreateObjectTypeM(PoolHandle handle, ObjectParams* params, ObjectType type,
     int required_capacity;
     
     base_addr = pool[1];
-    sign_ext = (int)*(uint *)((longlong)pool + 0xc) >> 0x1f;
-    current_capacity = (*(uint *)((longlong)pool + 0xc) ^ sign_ext) - sign_ext;
+    sign_ext = (int)*(uint *)((int64_t)pool + 0xc) >> 0x1f;
+    current_capacity = (*(uint *)((int64_t)pool + 0xc) ^ sign_ext) - sign_ext;
     required_capacity = (int)base_addr + LARGE_OBJECT_SIZE;
     
     if (current_capacity < required_capacity) {
@@ -843,8 +843,8 @@ void CreateObjectTypeM(PoolHandle handle, ObjectParams* params, ObjectType type,
         }
     }
     
-    sign_ext = (int)*(uint *)((longlong)pool + 0xc) >> 0x1f;
-    if (((int)((*(uint *)((longlong)pool + 0xc) ^ sign_ext) - sign_ext) < required_capacity) &&
+    sign_ext = (int)*(uint *)((int64_t)pool + 0xc) >> 0x1f;
+    if (((int)((*(uint *)((int64_t)pool + 0xc) ^ sign_ext) - sign_ext) < required_capacity) &&
         (new_capacity = FUN_180849030(pool, required_capacity), new_capacity != 0)) {
         return;
     }
@@ -852,17 +852,17 @@ void CreateObjectTypeM(PoolHandle handle, ObjectParams* params, ObjectType type,
     new_capacity = (int)pool[1];
     if (required_capacity <= new_capacity) {
         *(int *)(pool + 1) = required_capacity;
-        object_ptr = (void *)((longlong)(int)base_addr + *pool);
-        *(uint64_t *)((longlong)object_ptr + 0xc) = 0;
-        *(uint64_t *)((longlong)object_ptr + 0x14) = 0;
-        *(uint32_t *)((longlong)object_ptr + 0x1c) = 0;
+        object_ptr = (void *)((int64_t)(int)base_addr + *pool);
+        *(uint64_t *)((int64_t)object_ptr + 0xc) = 0;
+        *(uint64_t *)((int64_t)object_ptr + 0x14) = 0;
+        *(uint32_t *)((int64_t)object_ptr + 0x1c) = 0;
         *(void**)object_ptr = &global_var_5688_ptr;
         *(uint32_t *)(object_ptr + 1) = LARGE_OBJECT_SIZE;
         global_var_7856(object_ptr, type, params);
         return;
     }
     
-    memset((longlong)new_capacity + *pool, 0, (longlong)(required_capacity - new_capacity));
+    memset((int64_t)new_capacity + *pool, 0, (int64_t)(required_capacity - new_capacity));
 }
 
 /**
@@ -879,8 +879,8 @@ void CreateObjectTypeN(PoolHandle handle, ObjectParams* params, ObjectType type,
     int required_capacity;
     
     base_addr = pool[1];
-    sign_ext = (int)*(uint *)((longlong)pool + 0xc) >> 0x1f;
-    current_capacity = (*(uint *)((longlong)pool + 0xc) ^ sign_ext) - sign_ext;
+    sign_ext = (int)*(uint *)((int64_t)pool + 0xc) >> 0x1f;
+    current_capacity = (*(uint *)((int64_t)pool + 0xc) ^ sign_ext) - sign_ext;
     required_capacity = (int)base_addr + LARGE_OBJECT_SIZE;
     
     if (current_capacity < required_capacity) {
@@ -898,8 +898,8 @@ void CreateObjectTypeN(PoolHandle handle, ObjectParams* params, ObjectType type,
         }
     }
     
-    sign_ext = (int)*(uint *)((longlong)pool + 0xc) >> 0x1f;
-    if (((int)((*(uint *)((longlong)pool + 0xc) ^ sign_ext) - sign_ext) < required_capacity) &&
+    sign_ext = (int)*(uint *)((int64_t)pool + 0xc) >> 0x1f;
+    if (((int)((*(uint *)((int64_t)pool + 0xc) ^ sign_ext) - sign_ext) < required_capacity) &&
         (new_capacity = FUN_180849030(pool), new_capacity != 0)) {
         return;
     }
@@ -907,17 +907,17 @@ void CreateObjectTypeN(PoolHandle handle, ObjectParams* params, ObjectType type,
     new_capacity = (int)pool[1];
     if (required_capacity <= new_capacity) {
         *(int *)(pool + 1) = required_capacity;
-        object_ptr = (void *)((longlong)(int)base_addr + *pool);
-        *(uint64_t *)((longlong)object_ptr + 0xc) = 0;
-        *(uint64_t *)((longlong)object_ptr + 0x14) = 0;
-        *(uint32_t *)((longlong)object_ptr + 0x1c) = 0;
+        object_ptr = (void *)((int64_t)(int)base_addr + *pool);
+        *(uint64_t *)((int64_t)object_ptr + 0xc) = 0;
+        *(uint64_t *)((int64_t)object_ptr + 0x14) = 0;
+        *(uint32_t *)((int64_t)object_ptr + 0x1c) = 0;
         *(void**)object_ptr = &global_var_5832_ptr;
         *(uint32_t *)(object_ptr + 1) = LARGE_OBJECT_SIZE;
         (*(void (**)(void*, ObjectType, void*))(*((void**)object_ptr) + 4))(object_ptr, type, params);
         return;
     }
     
-    memset((longlong)new_capacity + *pool, 0, (longlong)(required_capacity - new_capacity));
+    memset((int64_t)new_capacity + *pool, 0, (int64_t)(required_capacity - new_capacity));
 }
 
 /**
@@ -934,8 +934,8 @@ void CreateObjectTypeO(PoolHandle handle, ObjectParams* params, ObjectType type,
     int required_capacity;
     
     base_addr = pool[1];
-    sign_ext = (int)*(uint *)((longlong)pool + 0xc) >> 0x1f;
-    current_capacity = (*(uint *)((longlong)pool + 0xc) ^ sign_ext) - sign_ext;
+    sign_ext = (int)*(uint *)((int64_t)pool + 0xc) >> 0x1f;
+    current_capacity = (*(uint *)((int64_t)pool + 0xc) ^ sign_ext) - sign_ext;
     required_capacity = (int)base_addr + LARGE_OBJECT_SIZE;
     
     if (current_capacity < required_capacity) {
@@ -953,8 +953,8 @@ void CreateObjectTypeO(PoolHandle handle, ObjectParams* params, ObjectType type,
         }
     }
     
-    sign_ext = (int)*(uint *)((longlong)pool + 0xc) >> 0x1f;
-    if (((int)((*(uint *)((longlong)pool + 0xc) ^ sign_ext) - sign_ext) < required_capacity) &&
+    sign_ext = (int)*(uint *)((int64_t)pool + 0xc) >> 0x1f;
+    if (((int)((*(uint *)((int64_t)pool + 0xc) ^ sign_ext) - sign_ext) < required_capacity) &&
         (new_capacity = FUN_180849030(pool, required_capacity), new_capacity != 0)) {
         return;
     }
@@ -962,17 +962,17 @@ void CreateObjectTypeO(PoolHandle handle, ObjectParams* params, ObjectType type,
     new_capacity = (int)pool[1];
     if (required_capacity <= new_capacity) {
         *(int *)(pool + 1) = required_capacity;
-        object_ptr = (void *)((longlong)(int)base_addr + *pool);
-        *(uint64_t *)((longlong)object_ptr + 0xc) = 0;
-        *(uint64_t *)((longlong)object_ptr + 0x14) = 0;
-        *(uint32_t *)((longlong)object_ptr + 0x1c) = 0;
+        object_ptr = (void *)((int64_t)(int)base_addr + *pool);
+        *(uint64_t *)((int64_t)object_ptr + 0xc) = 0;
+        *(uint64_t *)((int64_t)object_ptr + 0x14) = 0;
+        *(uint32_t *)((int64_t)object_ptr + 0x1c) = 0;
         *(void**)object_ptr = &global_var_6264_ptr;
         *(uint32_t *)(object_ptr + 1) = LARGE_OBJECT_SIZE;
         global_var_7856(object_ptr, type, params);
         return;
     }
     
-    memset((longlong)new_capacity + *pool, 0, (longlong)(required_capacity - new_capacity));
+    memset((int64_t)new_capacity + *pool, 0, (int64_t)(required_capacity - new_capacity));
 }
 
 /**
@@ -989,8 +989,8 @@ void CreateObjectTypeP(PoolHandle handle, ObjectParams* params, ObjectType type,
     int required_capacity;
     
     base_addr = pool[1];
-    sign_ext = (int)*(uint *)((longlong)pool + 0xc) >> 0x1f;
-    current_capacity = (*(uint *)((longlong)pool + 0xc) ^ sign_ext) - sign_ext;
+    sign_ext = (int)*(uint *)((int64_t)pool + 0xc) >> 0x1f;
+    current_capacity = (*(uint *)((int64_t)pool + 0xc) ^ sign_ext) - sign_ext;
     required_capacity = (int)base_addr + SMALL_OBJECT_SIZE;
     
     if (current_capacity < required_capacity) {
@@ -1008,8 +1008,8 @@ void CreateObjectTypeP(PoolHandle handle, ObjectParams* params, ObjectType type,
         }
     }
     
-    sign_ext = (int)*(uint *)((longlong)pool + 0xc) >> 0x1f;
-    if (((int)((*(uint *)((longlong)pool + 0xc) ^ sign_ext) - sign_ext) < required_capacity) &&
+    sign_ext = (int)*(uint *)((int64_t)pool + 0xc) >> 0x1f;
+    if (((int)((*(uint *)((int64_t)pool + 0xc) ^ sign_ext) - sign_ext) < required_capacity) &&
         (new_capacity = FUN_180849030(pool, required_capacity), new_capacity != 0)) {
         return;
     }
@@ -1017,16 +1017,16 @@ void CreateObjectTypeP(PoolHandle handle, ObjectParams* params, ObjectType type,
     new_capacity = (int)pool[1];
     if (required_capacity <= new_capacity) {
         *(int *)(pool + 1) = required_capacity;
-        object_ptr = (void *)((longlong)(int)base_addr + *pool);
-        *(uint64_t *)((longlong)object_ptr + 0xc) = 0;
-        *(uint32_t *)((longlong)object_ptr + 0x14) = 0;
+        object_ptr = (void *)((int64_t)(int)base_addr + *pool);
+        *(uint64_t *)((int64_t)object_ptr + 0xc) = 0;
+        *(uint32_t *)((int64_t)object_ptr + 0x14) = 0;
         *(void**)object_ptr = &global_var_5976_ptr;
         *(uint32_t *)(object_ptr + 1) = SMALL_OBJECT_SIZE;
         global_var_7856(object_ptr, type, params);
         return;
     }
     
-    memset((longlong)new_capacity + *pool, 0, (longlong)(required_capacity - new_capacity));
+    memset((int64_t)new_capacity + *pool, 0, (int64_t)(required_capacity - new_capacity));
 }
 
 /**
@@ -1043,8 +1043,8 @@ void CreateObjectTypeQ(PoolHandle handle, ObjectParams* params, ObjectType type,
     int required_capacity;
     
     base_addr = pool[1];
-    sign_ext = (int)*(uint *)((longlong)pool + 0xc) >> 0x1f;
-    current_capacity = (*(uint *)((longlong)pool + 0xc) ^ sign_ext) - sign_ext;
+    sign_ext = (int)*(uint *)((int64_t)pool + 0xc) >> 0x1f;
+    current_capacity = (*(uint *)((int64_t)pool + 0xc) ^ sign_ext) - sign_ext;
     required_capacity = (int)base_addr + SMALL_OBJECT_SIZE;
     
     if (current_capacity < required_capacity) {
@@ -1062,8 +1062,8 @@ void CreateObjectTypeQ(PoolHandle handle, ObjectParams* params, ObjectType type,
         }
     }
     
-    sign_ext = (int)*(uint *)((longlong)pool + 0xc) >> 0x1f;
-    if (((int)((*(uint *)((longlong)pool + 0xc) ^ sign_ext) - sign_ext) < required_capacity) &&
+    sign_ext = (int)*(uint *)((int64_t)pool + 0xc) >> 0x1f;
+    if (((int)((*(uint *)((int64_t)pool + 0xc) ^ sign_ext) - sign_ext) < required_capacity) &&
         (new_capacity = FUN_180849030(pool, required_capacity), new_capacity != 0)) {
         return;
     }
@@ -1071,16 +1071,16 @@ void CreateObjectTypeQ(PoolHandle handle, ObjectParams* params, ObjectType type,
     new_capacity = (int)pool[1];
     if (required_capacity <= new_capacity) {
         *(int *)(pool + 1) = required_capacity;
-        object_ptr = (void *)((longlong)(int)base_addr + *pool);
-        *(uint64_t *)((longlong)object_ptr + 0xc) = 0;
-        *(uint32_t *)((longlong)object_ptr + 0x14) = 0;
+        object_ptr = (void *)((int64_t)(int)base_addr + *pool);
+        *(uint64_t *)((int64_t)object_ptr + 0xc) = 0;
+        *(uint32_t *)((int64_t)object_ptr + 0x14) = 0;
         *(void**)object_ptr = &global_var_6408_ptr;
         *(uint32_t *)(object_ptr + 1) = SMALL_OBJECT_SIZE;
         global_var_7856(object_ptr, type, params);
         return;
     }
     
-    memset((longlong)new_capacity + *pool, 0, (longlong)(required_capacity - new_capacity));
+    memset((int64_t)new_capacity + *pool, 0, (int64_t)(required_capacity - new_capacity));
 }
 
 /**
@@ -1097,8 +1097,8 @@ void CreateObjectTypeR(PoolHandle handle, ObjectParams* params, ObjectType type,
     int required_capacity;
     
     base_addr = pool[1];
-    sign_ext = (int)*(uint *)((longlong)pool + 0xc) >> 0x1f;
-    current_capacity = (*(uint *)((longlong)pool + 0xc) ^ sign_ext) - sign_ext;
+    sign_ext = (int)*(uint *)((int64_t)pool + 0xc) >> 0x1f;
+    current_capacity = (*(uint *)((int64_t)pool + 0xc) ^ sign_ext) - sign_ext;
     required_capacity = (int)base_addr + SMALL_OBJECT_SIZE;
     
     if (current_capacity < required_capacity) {
@@ -1116,8 +1116,8 @@ void CreateObjectTypeR(PoolHandle handle, ObjectParams* params, ObjectType type,
         }
     }
     
-    sign_ext = (int)*(uint *)((longlong)pool + 0xc) >> 0x1f;
-    if (((int)((*(uint *)((longlong)pool + 0xc) ^ sign_ext) - sign_ext) < required_capacity) &&
+    sign_ext = (int)*(uint *)((int64_t)pool + 0xc) >> 0x1f;
+    if (((int)((*(uint *)((int64_t)pool + 0xc) ^ sign_ext) - sign_ext) < required_capacity) &&
         (new_capacity = FUN_180849030(pool, required_capacity), new_capacity != 0)) {
         return;
     }
@@ -1125,16 +1125,16 @@ void CreateObjectTypeR(PoolHandle handle, ObjectParams* params, ObjectType type,
     new_capacity = (int)pool[1];
     if (required_capacity <= new_capacity) {
         *(int *)(pool + 1) = required_capacity;
-        object_ptr = (void *)((longlong)(int)base_addr + *pool);
-        *(uint64_t *)((longlong)object_ptr + 0xc) = 0;
-        *(uint32_t *)((longlong)object_ptr + 0x14) = 0;
+        object_ptr = (void *)((int64_t)(int)base_addr + *pool);
+        *(uint64_t *)((int64_t)object_ptr + 0xc) = 0;
+        *(uint32_t *)((int64_t)object_ptr + 0x14) = 0;
         *(void**)object_ptr = &global_var_6120_ptr;
         *(uint32_t *)(object_ptr + 1) = SMALL_OBJECT_SIZE;
         global_var_7856(object_ptr, type, params);
         return;
     }
     
-    memset((longlong)new_capacity + *pool, 0, (longlong)(required_capacity - new_capacity));
+    memset((int64_t)new_capacity + *pool, 0, (int64_t)(required_capacity - new_capacity));
 }
 
 /**
@@ -1151,8 +1151,8 @@ void CreateObjectTypeS(PoolHandle handle, ObjectParams* params, ObjectType type,
     int required_capacity;
     
     base_addr = pool[1];
-    sign_ext = (int)*(uint *)((longlong)pool + 0xc) >> 0x1f;
-    current_capacity = (*(uint *)((longlong)pool + 0xc) ^ sign_ext) - sign_ext;
+    sign_ext = (int)*(uint *)((int64_t)pool + 0xc) >> 0x1f;
+    current_capacity = (*(uint *)((int64_t)pool + 0xc) ^ sign_ext) - sign_ext;
     required_capacity = (int)base_addr + LARGE_OBJECT_SIZE;
     
     if (current_capacity < required_capacity) {
@@ -1170,8 +1170,8 @@ void CreateObjectTypeS(PoolHandle handle, ObjectParams* params, ObjectType type,
         }
     }
     
-    sign_ext = (int)*(uint *)((longlong)pool + 0xc) >> 0x1f;
-    if (((int)((*(uint *)((longlong)pool + 0xc) ^ sign_ext) - sign_ext) < required_capacity) &&
+    sign_ext = (int)*(uint *)((int64_t)pool + 0xc) >> 0x1f;
+    if (((int)((*(uint *)((int64_t)pool + 0xc) ^ sign_ext) - sign_ext) < required_capacity) &&
         (new_capacity = FUN_180849030(pool, required_capacity), new_capacity != 0)) {
         return;
     }
@@ -1179,17 +1179,17 @@ void CreateObjectTypeS(PoolHandle handle, ObjectParams* params, ObjectType type,
     new_capacity = (int)pool[1];
     if (required_capacity <= new_capacity) {
         *(int *)(pool + 1) = required_capacity;
-        object_ptr = (void *)((longlong)(int)base_addr + *pool);
-        *(uint64_t *)((longlong)object_ptr + 0xc) = 0;
-        *(uint64_t *)((longlong)object_ptr + 0x14) = 0;
-        *(uint32_t *)((longlong)object_ptr + 0x1c) = 0;
+        object_ptr = (void *)((int64_t)(int)base_addr + *pool);
+        *(uint64_t *)((int64_t)object_ptr + 0xc) = 0;
+        *(uint64_t *)((int64_t)object_ptr + 0x14) = 0;
+        *(uint32_t *)((int64_t)object_ptr + 0x1c) = 0;
         *(void**)object_ptr = &global_var_8288_ptr;
         *(uint32_t *)(object_ptr + 1) = LARGE_OBJECT_SIZE;
         global_var_7856(object_ptr, type, params);
         return;
     }
     
-    memset((longlong)new_capacity + *pool, 0, (longlong)(required_capacity - new_capacity));
+    memset((int64_t)new_capacity + *pool, 0, (int64_t)(required_capacity - new_capacity));
 }
 
 /**
@@ -1206,8 +1206,8 @@ void CreateObjectTypeT(PoolHandle handle, ObjectParams* params, ObjectType type,
     int required_capacity;
     
     base_addr = pool[1];
-    sign_ext = (int)*(uint *)((longlong)pool + 0xc) >> 0x1f;
-    current_capacity = (*(uint *)((longlong)pool + 0xc) ^ sign_ext) - sign_ext;
+    sign_ext = (int)*(uint *)((int64_t)pool + 0xc) >> 0x1f;
+    current_capacity = (*(uint *)((int64_t)pool + 0xc) ^ sign_ext) - sign_ext;
     required_capacity = (int)base_addr + LARGE_OBJECT_SIZE;
     
     if (current_capacity < required_capacity) {
@@ -1225,8 +1225,8 @@ void CreateObjectTypeT(PoolHandle handle, ObjectParams* params, ObjectType type,
         }
     }
     
-    sign_ext = (int)*(uint *)((longlong)pool + 0xc) >> 0x1f;
-    if (((int)((*(uint *)((longlong)pool + 0xc) ^ sign_ext) - sign_ext) < required_capacity) &&
+    sign_ext = (int)*(uint *)((int64_t)pool + 0xc) >> 0x1f;
+    if (((int)((*(uint *)((int64_t)pool + 0xc) ^ sign_ext) - sign_ext) < required_capacity) &&
         (new_capacity = FUN_180849030(pool), new_capacity != 0)) {
         return;
     }
@@ -1234,81 +1234,81 @@ void CreateObjectTypeT(PoolHandle handle, ObjectParams* params, ObjectType type,
     new_capacity = (int)pool[1];
     if (required_capacity <= new_capacity) {
         *(int *)(pool + 1) = required_capacity;
-        object_ptr = (void *)((longlong)(int)base_addr + *pool);
-        *(uint64_t *)((longlong)object_ptr + 0xc) = 0;
-        *(uint64_t *)((longlong)object_ptr + 0x14) = 0;
-        *(uint32_t *)((longlong)object_ptr + 0x1c) = 0;
+        object_ptr = (void *)((int64_t)(int)base_addr + *pool);
+        *(uint64_t *)((int64_t)object_ptr + 0xc) = 0;
+        *(uint64_t *)((int64_t)object_ptr + 0x14) = 0;
+        *(uint32_t *)((int64_t)object_ptr + 0x1c) = 0;
         *(void**)object_ptr = &global_var_8152_ptr;
         *(uint32_t *)(object_ptr + 1) = LARGE_OBJECT_SIZE;
         global_var_7856(object_ptr, type, params);
         return;
     }
     
-    memset((longlong)new_capacity + *pool, 0, (longlong)(required_capacity - new_capacity));
+    memset((int64_t)new_capacity + *pool, 0, (int64_t)(required_capacity - new_capacity));
 }
 
 /* ============================================================================
  * 原始函数别名映射
  * ============================================================================ */
 
-void FUN_1808e7860(uint64_t param_1, uint64_t param_2, int32_t param_3, longlong *param_4) 
+void FUN_1808e7860(uint64_t param_1, uint64_t param_2, int32_t param_3, int64_t *param_4) 
     __attribute__((alias("CreateObjectTypeA")));
 
-void FUN_1808e7930(uint64_t param_1, uint64_t param_2, int32_t param_3, longlong *param_4) 
+void FUN_1808e7930(uint64_t param_1, uint64_t param_2, int32_t param_3, int64_t *param_4) 
     __attribute__((alias("CreateObjectTypeB")));
 
-void FUN_1808e7a00(uint64_t param_1, uint64_t param_2, int32_t param_3, longlong *param_4) 
+void FUN_1808e7a00(uint64_t param_1, uint64_t param_2, int32_t param_3, int64_t *param_4) 
     __attribute__((alias("CreateObjectTypeC")));
 
-void FUN_1808e7ad0(uint64_t param_1, uint64_t param_2, int32_t param_3, longlong *param_4) 
+void FUN_1808e7ad0(uint64_t param_1, uint64_t param_2, int32_t param_3, int64_t *param_4) 
     __attribute__((alias("CreateObjectTypeD")));
 
-void FUN_1808e7bb0(uint64_t param_1, uint64_t param_2, int32_t param_3, longlong *param_4) 
+void FUN_1808e7bb0(uint64_t param_1, uint64_t param_2, int32_t param_3, int64_t *param_4) 
     __attribute__((alias("CreateObjectTypeE")));
 
-void FUN_1808e7c80(uint64_t param_1, uint64_t param_2, int32_t param_3, longlong *param_4) 
+void FUN_1808e7c80(uint64_t param_1, uint64_t param_2, int32_t param_3, int64_t *param_4) 
     __attribute__((alias("CreateObjectTypeF")));
 
-void FUN_1808e7d60(uint64_t param_1, uint64_t param_2, int32_t param_3, longlong *param_4) 
+void FUN_1808e7d60(uint64_t param_1, uint64_t param_2, int32_t param_3, int64_t *param_4) 
     __attribute__((alias("CreateObjectTypeG")));
 
-void FUN_1808e7e40(uint64_t param_1, uint64_t param_2, int32_t param_3, longlong *param_4) 
+void FUN_1808e7e40(uint64_t param_1, uint64_t param_2, int32_t param_3, int64_t *param_4) 
     __attribute__((alias("CreateObjectTypeH")));
 
-void FUN_1808e7f20(uint64_t param_1, uint64_t param_2, int32_t param_3, longlong *param_4) 
+void FUN_1808e7f20(uint64_t param_1, uint64_t param_2, int32_t param_3, int64_t *param_4) 
     __attribute__((alias("CreateObjectTypeI")));
 
-void FUN_1808e8000(uint64_t param_1, uint64_t param_2, int32_t param_3, longlong *param_4) 
+void FUN_1808e8000(uint64_t param_1, uint64_t param_2, int32_t param_3, int64_t *param_4) 
     __attribute__((alias("CreateObjectTypeJ")));
 
-void FUN_1808e80d0(uint64_t param_1, uint64_t param_2, int32_t param_3, longlong *param_4) 
+void FUN_1808e80d0(uint64_t param_1, uint64_t param_2, int32_t param_3, int64_t *param_4) 
     __attribute__((alias("CreateObjectTypeK")));
 
-void FUN_1808e81b0(uint64_t param_1, uint64_t param_2, int32_t param_3, longlong *param_4) 
+void FUN_1808e81b0(uint64_t param_1, uint64_t param_2, int32_t param_3, int64_t *param_4) 
     __attribute__((alias("CreateObjectTypeL")));
 
-void FUN_1808e8290(uint64_t param_1, uint64_t param_2, int32_t param_3, longlong *param_4) 
+void FUN_1808e8290(uint64_t param_1, uint64_t param_2, int32_t param_3, int64_t *param_4) 
     __attribute__((alias("CreateObjectTypeM")));
 
-void FUN_1808e8370(uint64_t param_1, uint64_t param_2, int32_t param_3, longlong *param_4) 
+void FUN_1808e8370(uint64_t param_1, uint64_t param_2, int32_t param_3, int64_t *param_4) 
     __attribute__((alias("CreateObjectTypeN")));
 
-void FUN_1808e8450(uint64_t param_1, uint64_t param_2, int32_t param_3, longlong *param_4) 
+void FUN_1808e8450(uint64_t param_1, uint64_t param_2, int32_t param_3, int64_t *param_4) 
     __attribute__((alias("CreateObjectTypeO")));
 
-void FUN_1808e8530(uint64_t param_1, uint64_t param_2, int32_t param_3, longlong *param_4) 
+void FUN_1808e8530(uint64_t param_1, uint64_t param_2, int32_t param_3, int64_t *param_4) 
     __attribute__((alias("CreateObjectTypeP")));
 
-void FUN_1808e8600(uint64_t param_1, uint64_t param_2, int32_t param_3, longlong *param_4) 
+void FUN_1808e8600(uint64_t param_1, uint64_t param_2, int32_t param_3, int64_t *param_4) 
     __attribute__((alias("CreateObjectTypeQ")));
 
-void FUN_1808e86d0(uint64_t param_1, uint64_t param_2, int32_t param_3, longlong *param_4) 
+void FUN_1808e86d0(uint64_t param_1, uint64_t param_2, int32_t param_3, int64_t *param_4) 
     __attribute__((alias("CreateObjectTypeR")));
 
-void FUN_1808e87a0(uint64_t param_1, uint64_t param_2, int32_t param_3, longlong *param_4) 
+void FUN_1808e87a0(uint64_t param_1, uint64_t param_2, int32_t param_3, int64_t *param_4) 
     __attribute__((alias("CreateObjectTypeS")));
 
-void FUN_1808e8880(uint64_t param_1, uint64_t param_2, int32_t param_3, longlong *param_4) 
+void FUN_1808e8880(uint64_t param_1, uint64_t param_2, int32_t param_3, int64_t *param_4) 
     __attribute__((alias("CreateObjectTypeT")));
 
 /* ============================================================================

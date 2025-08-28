@@ -11,11 +11,11 @@
  * 
  * @param object_ptr 对象指针，包含引用计数和其他状态信息
  */
-void DecrementReferenceAndCleanup(longlong object_ptr)
+void DecrementReferenceAndCleanup(int64_t object_ptr)
 
 {
   char *ref_count_ptr;
-  longlong *callback_ptr;
+  int64_t *callback_ptr;
   int lock_result;
   bool cleanup_flag;
   
@@ -49,13 +49,13 @@ void DecrementReferenceAndCleanup(longlong object_ptr)
     }
     
     // 检查是否需要执行回调
-    if ((((*(longlong *)(object_ptr + 0x210) != 0) &&
+    if ((((*(int64_t *)(object_ptr + 0x210) != 0) &&
          (FUN_1800791a0(object_ptr), *(char *)(object_ptr + 0xfc) == '\0')) &&
         (*(char *)(object_ptr + 0xf4) == '\0')) &&
        (((*(byte *)(object_ptr + 0xfd) & 0x20) == 0 || ((*(byte *)(object_ptr + 0xfe) & 1) == 0)))) {
-      callback_ptr = *(longlong **)(object_ptr + 0x210);
+      callback_ptr = *(int64_t **)(object_ptr + 0x210);
       *(uint64_t *)(object_ptr + 0x210) = 0;
-      if (callback_ptr != (longlong *)0x0) {
+      if (callback_ptr != (int64_t *)0x0) {
         (**(code **)(*callback_ptr + 0x38))();  // 执行清理回调
       }
     }
@@ -86,11 +86,11 @@ void DecrementReferenceAndCleanup(longlong object_ptr)
  * @param object_ptr 对象指针
  * @return 状态有效性标志，1表示有效，0表示无效
  */
-uint64_t CheckObjectStatusValid(longlong object_ptr)
+uint64_t CheckObjectStatusValid(int64_t object_ptr)
 
 {
   byte status_flags;
-  longlong status_ptr;
+  int64_t status_ptr;
   byte device_status;
   
   status_flags = *(byte *)(object_ptr + 0xfd);
@@ -103,7 +103,7 @@ uint64_t CheckObjectStatusValid(longlong object_ptr)
   
   // 检查计数器
   if (0 < *(int *)(status_ptr + 0x200)) {
-    status_ptr = *(longlong *)(object_ptr + 0x1b8);
+    status_ptr = *(int64_t *)(object_ptr + 0x1b8);
     device_status = *(byte *)(status_ptr + 0x38c);
     if (device_status == 9) {
       device_status = func_0x00018022d300();  // 更新设备状态
@@ -117,8 +117,8 @@ uint64_t CheckObjectStatusValid(longlong object_ptr)
     }
     
     // 验证设备状态
-    if ((*(longlong *)(object_ptr + 0x1e0) == 0) ||
-       (*(byte *)(*(longlong *)(object_ptr + 0x1e0) + 0x15 + (ulonglong)device_status * 0x18) < 2)) {
+    if ((*(int64_t *)(object_ptr + 0x1e0) == 0) ||
+       (*(byte *)(*(int64_t *)(object_ptr + 0x1e0) + 0x15 + (uint64_t)device_status * 0x18) < 2)) {
       return 0;  // 状态无效
     }
   }
@@ -138,23 +138,23 @@ uint64_t CheckObjectStatusValid(longlong object_ptr)
  * @param operation_params 操作参数指针
  * @return 操作结果码
  */
-int ProcessObjectOperations(longlong object_ptr, longlong *operation_params)
+int ProcessObjectOperations(int64_t object_ptr, int64_t *operation_params)
 
 {
-  longlong *hash_entry_ptr1;
-  longlong *hash_entry_ptr2;
-  ulonglong *hash_key_ptr;
+  int64_t *hash_entry_ptr1;
+  int64_t *hash_entry_ptr2;
+  uint64_t *hash_key_ptr;
   char operation_result;
   int result_code;
   uint hash_value;
-  longlong temp_ptr;
+  int64_t temp_ptr;
   char *string_ptr;
-  longlong list_ptr;
-  ulonglong computed_hash;
-  ulonglong final_hash;
-  ulonglong *existing_entry;
+  int64_t list_ptr;
+  uint64_t computed_hash;
+  uint64_t final_hash;
+  uint64_t *existing_entry;
   uint hash_modifier;
-  ulonglong list_size;
+  uint64_t list_size;
   int32_t extraout_XMM0_Da;
   int32_t temp_var;
   uint64_t stack_var1;
@@ -162,8 +162,8 @@ int ProcessObjectOperations(longlong object_ptr, longlong *operation_params)
   uint64_t *stack_ptr2;
   uint in_stack_param;
   uint64_t stack_var2;
-  ulonglong *stack_ptr3;
-  longlong *stack_ptr4;
+  uint64_t *stack_ptr3;
+  int64_t *stack_ptr4;
   code *callback_ptr1;
   code *callback_ptr2;
   uint64_t stack_var3;
@@ -175,8 +175,8 @@ int ProcessObjectOperations(longlong object_ptr, longlong *operation_params)
   result_code = 0;
   
   // 检查是否需要执行初始化操作
-  if (((*(longlong *)(object_ptr + 0x1b8) != 0) && (result_code = 0, (*(byte *)(operation_params + 1) & 4) == 0)) &&
-     (*(char *)((longlong)operation_params + 0x12) == '\0')) {
+  if (((*(int64_t *)(object_ptr + 0x1b8) != 0) && (result_code = 0, (*(byte *)(operation_params + 1) & 4) == 0)) &&
+     (*(char *)((int64_t)operation_params + 0x12) == '\0')) {
     result_code = FUN_18022d470();  // 执行初始化
   }
   
@@ -186,8 +186,8 @@ int ProcessObjectOperations(longlong object_ptr, longlong *operation_params)
     if (operation_result == '\0') {
       if ((char)operation_params[2] != '\0') {
         // 执行回调操作
-        stack_ptr3 = (ulonglong *)0x0;
-        stack_ptr4 = (longlong *)0x0;
+        stack_ptr3 = (uint64_t *)0x0;
+        stack_ptr4 = (int64_t *)0x0;
         callback_ptr1 = (code *)0x0;
         callback_ptr2 = _guard_check_icall;
         FUN_1800b6f90(extraout_XMM0_Da, object_ptr, &stack_ptr3);
@@ -234,23 +234,23 @@ int ProcessObjectOperations(longlong object_ptr, longlong *operation_params)
     hash_value = hash_value * 0x21 + (int)operation_result;
     operation_result = *string_ptr;
   }
-  computed_hash = (ulonglong)hash_value;
+  computed_hash = (uint64_t)hash_value;
   if ((hash_modifier & 1) != 0) {
-    computed_hash = (ulonglong)hash_value | 0x400000000;
+    computed_hash = (uint64_t)hash_value | 0x400000000;
   }
   
   // 检查哈希表中是否已存在该条目
   list_ptr = operation_params[9];
   if (list_ptr != 0) {
-    hash_entry_ptr1 = (longlong *)(*(longlong *)(list_ptr + 8) + *(ulonglong *)(list_ptr + 0x10) * 8);
-    existing_entry = (ulonglong *)*hash_entry_ptr1;
-    hash_entry_ptr2 = (longlong *)
-             (*(longlong *)(list_ptr + 8) + (computed_hash % (*(ulonglong *)(list_ptr + 0x10) & 0xffffffff)) * 8)
+    hash_entry_ptr1 = (int64_t *)(*(int64_t *)(list_ptr + 8) + *(uint64_t *)(list_ptr + 0x10) * 8);
+    existing_entry = (uint64_t *)*hash_entry_ptr1;
+    hash_entry_ptr2 = (int64_t *)
+             (*(int64_t *)(list_ptr + 8) + (computed_hash % (*(uint64_t *)(list_ptr + 0x10) & 0xffffffff)) * 8)
     ;
-    for (hash_key_ptr = (ulonglong *)*hash_entry_ptr2;
-        (stack_ptr3 = existing_entry, stack_ptr4 = hash_entry_ptr1, hash_key_ptr != (ulonglong *)0x0 &&
+    for (hash_key_ptr = (uint64_t *)*hash_entry_ptr2;
+        (stack_ptr3 = existing_entry, stack_ptr4 = hash_entry_ptr1, hash_key_ptr != (uint64_t *)0x0 &&
         (stack_ptr3 = hash_key_ptr, stack_ptr4 = hash_entry_ptr2, computed_hash != *hash_key_ptr));
-        hash_key_ptr = (ulonglong *)hash_key_ptr[1]) {
+        hash_key_ptr = (uint64_t *)hash_key_ptr[1]) {
     }
     if (stack_ptr3 != existing_entry) goto HASH_ENTRY_FOUND;
   }
@@ -258,7 +258,7 @@ int ProcessObjectOperations(longlong object_ptr, longlong *operation_params)
   // 扩展哈希表容量
   hash_entry_ptr1 = operation_params + 5;
   list_ptr = operation_params[7] - *hash_entry_ptr1;
-  if ((ulonglong)(list_ptr / 0x18) < 0x100) {
+  if ((uint64_t)(list_ptr / 0x18) < 0x100) {
     temp_ptr = FUN_18062b420(system_memory_pool_ptr, 0x1800, (char)operation_params[8]);
     list_ptr = *hash_entry_ptr1;
     if (list_ptr != operation_params[6]) {
@@ -288,30 +288,30 @@ int ProcessObjectOperations(longlong object_ptr, longlong *operation_params)
   }
   operation_params[6] = *hash_entry_ptr1;
   list_ptr = operation_params[9];
-  final_hash = computed_hash % (ulonglong)*(uint *)(list_ptr + 0x10);
+  final_hash = computed_hash % (uint64_t)*(uint *)(list_ptr + 0x10);
   
   // 在哈希表中查找插入位置
-  for (existing_entry = *(ulonglong **)(*(longlong *)(list_ptr + 8) + final_hash * 8); existing_entry != (ulonglong *)0x0
-      ; existing_entry = (ulonglong *)existing_entry[1]) {
+  for (existing_entry = *(uint64_t **)(*(int64_t *)(list_ptr + 8) + final_hash * 8); existing_entry != (uint64_t *)0x0
+      ; existing_entry = (uint64_t *)existing_entry[1]) {
     if (computed_hash == *existing_entry) goto HASH_ENTRY_FOUND;
   }
   
   // 插入新的哈希条目
-  hash_entry_ptr1 = *(longlong **)(list_ptr + 0x30);
-  list_size = (longlong)(int)hash_entry_ptr1[2] + 0xfU & 0xfffffffffffffff0;
+  hash_entry_ptr1 = *(int64_t **)(list_ptr + 0x30);
+  list_size = (int64_t)(int)hash_entry_ptr1[2] + 0xfU & 0xfffffffffffffff0;
   *(int *)(hash_entry_ptr1 + 2) = (int)list_size + 0x10;
-  existing_entry = (ulonglong *)(*hash_entry_ptr1 + list_size);
+  existing_entry = (uint64_t *)(*hash_entry_ptr1 + list_size);
   *existing_entry = computed_hash;
   existing_entry[1] = 0;
   FUN_18066c220(list_ptr + 0x20, &stack_var1, *(int32_t *)(list_ptr + 0x10), *(int32_t *)(list_ptr + 0x18),
                 1);
   if ((char)stack_var1 != '\0') {
-    final_hash = computed_hash % (ulonglong)stack_var1._4_4_;
+    final_hash = computed_hash % (uint64_t)stack_var1._4_4_;
     FUN_180083b20(list_ptr, stack_var1._4_4_);
   }
-  existing_entry[1] = *(ulonglong *)(*(longlong *)(list_ptr + 8) + final_hash * 8);
-  *(ulonglong **)(*(longlong *)(list_ptr + 8) + final_hash * 8) = existing_entry;
-  *(longlong *)(list_ptr + 0x18) = *(longlong *)(list_ptr + 0x18) + 1;
+  existing_entry[1] = *(uint64_t *)(*(int64_t *)(list_ptr + 8) + final_hash * 8);
+  *(uint64_t **)(*(int64_t *)(list_ptr + 8) + final_hash * 8) = existing_entry;
+  *(int64_t *)(list_ptr + 0x18) = *(int64_t *)(list_ptr + 0x18) + 1;
   
 HASH_ENTRY_FOUND:
   FUN_180080df0(&stack_var3);
@@ -322,10 +322,10 @@ HASH_ENTRY_FOUND:
 
 
 
-// 函数: void CleanupObjectList(longlong *object_list)
+// 函数: void CleanupObjectList(int64_t *object_list)
 // 功能: 清理对象列表，释放所有相关资源
 // 原函数名: FUN_180077020
-void CleanupObjectList(longlong *object_list)
+void CleanupObjectList(int64_t *object_list)
 
 {
   uint64_t *list_item;
@@ -361,32 +361,32 @@ void CleanupObjectList(longlong *object_list)
  * @param object_ptr 对象指针
  * @return 清理状态标志
  */
-ulonglong CleanupObjectState(longlong object_ptr)
+uint64_t CleanupObjectState(int64_t object_ptr)
 
 {
   int *status_counter;
   byte cleanup_flag;
-  longlong component_ptr;
-  ulonglong result_flag;
-  longlong temp_ptr;
-  longlong component_offset;
+  int64_t component_ptr;
+  uint64_t result_flag;
+  int64_t temp_ptr;
+  int64_t component_offset;
   
   // 清理组件状态
-  if (*(longlong *)(object_ptr + 0x1b8) != 0) {
+  if (*(int64_t *)(object_ptr + 0x1b8) != 0) {
     component_offset = 0xb8;
     temp_ptr = system_main_module_state;
     do {
-      component_ptr = *(longlong *)(component_offset + *(longlong *)(object_ptr + 0x1b8));
-      if ((((component_ptr != 0) && (*(longlong *)(*(longlong *)(object_ptr + 0x1b8) + 0x328 + component_offset) == 0)) &&
-          ((*(uint *)(component_ptr + 0x328) & 0x20000000) == 0)) && (*(longlong *)(component_ptr + 0x370) == 0)) {
-        if (*(longlong *)(component_ptr + 0x1d8) == 0) {
+      component_ptr = *(int64_t *)(component_offset + *(int64_t *)(object_ptr + 0x1b8));
+      if ((((component_ptr != 0) && (*(int64_t *)(*(int64_t *)(object_ptr + 0x1b8) + 0x328 + component_offset) == 0)) &&
+          ((*(uint *)(component_ptr + 0x328) & 0x20000000) == 0)) && (*(int64_t *)(component_ptr + 0x370) == 0)) {
+        if (*(int64_t *)(component_ptr + 0x1d8) == 0) {
           FUN_18023b050(component_ptr, 0);  // 初始化组件
           temp_ptr = system_main_module_state;
-          status_counter = (int *)(*(longlong *)(component_offset + *(longlong *)(object_ptr + 0x1b8)) + 0x3a8);
+          status_counter = (int *)(*(int64_t *)(component_offset + *(int64_t *)(object_ptr + 0x1b8)) + 0x3a8);
           *status_counter = *status_counter + 1;
         }
         else if (temp_ptr != 0) {
-          *(longlong *)(component_ptr + 0x340) = (longlong)*(int *)(temp_ptr + 0x224);
+          *(int64_t *)(component_ptr + 0x340) = (int64_t)*(int *)(temp_ptr + 0x224);
         }
       }
       component_offset = component_offset + 8;
@@ -396,7 +396,7 @@ ulonglong CleanupObjectState(longlong object_ptr)
   // 清理主对象状态
   cleanup_flag = *(byte *)(object_ptr + 0xf9);
   if (cleanup_flag != 0) {
-    if (*(longlong *)(object_ptr + 0x1d8) != 0) {
+    if (*(int64_t *)(object_ptr + 0x1d8) != 0) {
                     // WARNING: Subroutine does not return
       FUN_18064e900();  // 释放资源
     }
@@ -406,12 +406,12 @@ ulonglong CleanupObjectState(longlong object_ptr)
     *(byte *)(object_ptr + 0xf9) = 0;
     UNLOCK();
   }
-  result_flag = (ulonglong)cleanup_flag;
+  result_flag = (uint64_t)cleanup_flag;
   
   // 清理扩展状态
-  if (*(longlong *)(object_ptr + 0x1e8) != 0) {
+  if (*(int64_t *)(object_ptr + 0x1e8) != 0) {
     FUN_180080060();  // 执行清理
-    result_flag = *(ulonglong *)(object_ptr + 0x1f0);
+    result_flag = *(uint64_t *)(object_ptr + 0x1f0);
     *(uint64_t *)(object_ptr + 0x1e8) = 0;
     if (result_flag != 0) {
       *(byte *)(result_flag + 0xfe) = *(byte *)(result_flag + 0xfe) & 0xfb;
@@ -425,33 +425,33 @@ ulonglong CleanupObjectState(longlong object_ptr)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void ProcessDeviceOperations(longlong *device_params)
+// 函数: void ProcessDeviceOperations(int64_t *device_params)
 // 功能: 处理设备相关操作，包括状态检查和回调执行
 // 原函数名: FUN_180077150
-void ProcessDeviceOperations(longlong *device_params)
+void ProcessDeviceOperations(int64_t *device_params)
 
 {
   uint64_t device_config;
-  ulonglong *temp_ptr1;
-  ulonglong config_mask;
-  longlong *status_ptr;
-  longlong device_base;
+  uint64_t *temp_ptr1;
+  uint64_t config_mask;
+  int64_t *status_ptr;
+  int64_t device_base;
   byte device_flags;
   int8_t stack_buffer [32];
-  ulonglong *stack_ptr1;
+  uint64_t *stack_ptr1;
   uint64_t stack_var1;
   void *stack_ptr2;
-  ulonglong *stack_ptr3;
-  ulonglong stack_var2;
-  ulonglong stack_buffer2 [2];
+  uint64_t *stack_ptr3;
+  uint64_t stack_var2;
+  uint64_t stack_buffer2 [2];
   uint64_t stack_var3;
   char stack_flag1;
   char stack_flag2;
   char stack_flag3;
-  ulonglong security_cookie;
+  uint64_t security_cookie;
   
   stack_var3 = 0xfffffffffffffffe;
-  security_cookie = GET_SECURITY_COOKIE() ^ (ulonglong)stack_buffer;
+  security_cookie = GET_SECURITY_COOKIE() ^ (uint64_t)stack_buffer;
   device_config = *(uint64_t *)(device_params[0x37] + 0x1e0);
   stack_ptr2 = &unknown_var_672_ptr;
   stack_ptr3 = stack_buffer2;
@@ -463,17 +463,17 @@ void ProcessDeviceOperations(longlong *device_params)
   
   if (config_mask != 0) {
     device_base = device_params[0x37];
-    if ((*(ulonglong *)(device_base + 0x140) & config_mask) != 0) {
-      device_flags = *(byte *)((longlong)device_params + 0xfd) & 0x20;
+    if ((*(uint64_t *)(device_base + 0x140) & config_mask) != 0) {
+      device_flags = *(byte *)((int64_t)device_params + 0xfd) & 0x20;
       status_ptr = device_params;
       if (device_flags == 0) {
-        status_ptr = (longlong *)func_0x000180085de0(device_params[0x36]);
+        status_ptr = (int64_t *)func_0x000180085de0(device_params[0x36]);
       }
       if (((*(uint *)(status_ptr + 0x20) & 0x8000000) == 0) && (device_flags != 0)) {
-        stack_ptr1 = (ulonglong *)device_params;
+        stack_ptr1 = (uint64_t *)device_params;
         (**(code **)(*device_params + 0x28))(device_params);
         stack_ptr2 = (void *)0x0;
-        stack_ptr3 = (ulonglong *)0x0;
+        stack_ptr3 = (uint64_t *)0x0;
         stack_ptr1 = &stack_var2;
         stack_var1 = 0;
         stack_buffer2[0] = 0;
@@ -485,17 +485,17 @@ void ProcessDeviceOperations(longlong *device_params)
         FUN_18022f410(&stack_ptr2);
         device_base = device_params[0x37];
       }
-      if ((*(ulonglong *)(device_base + 0x140) & config_mask) != 0) goto OPERATION_COMPLETE;
+      if ((*(uint64_t *)(device_base + 0x140) & config_mask) != 0) goto OPERATION_COMPLETE;
     }
     status_ptr = device_params;
-    if ((*(byte *)((longlong)device_params + 0xfd) & 0x20) == 0) {
-      status_ptr = (longlong *)func_0x000180085de0(device_params[0x36]);
+    if ((*(byte *)((int64_t)device_params + 0xfd) & 0x20) == 0) {
+      status_ptr = (int64_t *)func_0x000180085de0(device_params[0x36]);
     }
     if ((*(uint *)(status_ptr + 0x20) & 0x8000000) != 0) {
-      stack_ptr1 = (ulonglong *)device_params;
+      stack_ptr1 = (uint64_t *)device_params;
       (**(code **)(*device_params + 0x28))(device_params);
       stack_ptr2 = (void *)0x0;
-      stack_ptr3 = (ulonglong *)0x0;
+      stack_ptr3 = (uint64_t *)0x0;
       stack_ptr1 = &stack_var2;
       stack_var1 = 0;
       stack_buffer2[0] = 0;
@@ -503,7 +503,7 @@ void ProcessDeviceOperations(longlong *device_params)
       FUN_18022f2e0(&stack_ptr2, device_params, 0);
       (**(code **)(*device_params + 0x38))(device_params);
       FUN_180238950(&stack_ptr2);
-      if (stack_ptr3 != (ulonglong *)0x0) {
+      if (stack_ptr3 != (uint64_t *)0x0) {
         if (stack_flag3 != '\0') {
           FUN_180075b70(stack_ptr2);
         }
@@ -516,8 +516,8 @@ void ProcessDeviceOperations(longlong *device_params)
         }
         temp_ptr1 = stack_ptr3;
         stack_ptr1 = stack_ptr3;
-        stack_ptr3 = (ulonglong *)0x0;
-        if (temp_ptr1 != (ulonglong *)0x0) {
+        stack_ptr3 = (uint64_t *)0x0;
+        if (temp_ptr1 != (uint64_t *)0x0) {
           (**(code **)(*temp_ptr1 + 0x38))();
         }
       }
@@ -527,7 +527,7 @@ void ProcessDeviceOperations(longlong *device_params)
   
 OPERATION_COMPLETE:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(security_cookie ^ (ulonglong)stack_buffer);
+  FUN_1808fc050(security_cookie ^ (uint64_t)stack_buffer);
 }
 
 
@@ -543,11 +543,11 @@ OPERATION_COMPLETE:
  * @param context_ptr 上下文指针
  * @return 处理结果状态
  */
-uint64_t ProcessDeviceStatusUpdate(longlong device_ptr, longlong context_ptr)
+uint64_t ProcessDeviceStatusUpdate(int64_t device_ptr, int64_t context_ptr)
 
 {
   uint *counter_ptr;
-  longlong *data_ptr;
+  int64_t *data_ptr;
   uint counter_value;
   code *callback_func;
   bool processing_complete;
@@ -555,9 +555,9 @@ uint64_t ProcessDeviceStatusUpdate(longlong device_ptr, longlong context_ptr)
   char status_char;
   int operation_result;
   uint hash_index;
-  longlong component_ptr;
-  longlong list_ptr;
-  ulonglong hash_value;
+  int64_t component_ptr;
+  int64_t list_ptr;
+  uint64_t hash_value;
   code *device_callback;
   bool entry_found;
   uint64_t stack_param1;
@@ -568,7 +568,7 @@ uint64_t ProcessDeviceStatusUpdate(longlong device_ptr, longlong context_ptr)
   int32_t stack_param6;
   int8_t stack_param7;
   uint64_t stack_param8;
-  longlong stack_param9;
+  int64_t stack_param9;
   uint64_t stack_param10;
   uint64_t stack_param11;
   int32_t stack_param12;
@@ -578,7 +578,7 @@ uint64_t ProcessDeviceStatusUpdate(longlong device_ptr, longlong context_ptr)
   if ((*(byte *)(device_ptr + 0xfd) & 0x20) == 0) {
     component_ptr = func_0x000180085de0(*(uint64_t *)(device_ptr + 0x1b0));
   }
-  list_ptr = *(longlong *)(device_ptr + 0x1b8);
+  list_ptr = *(int64_t *)(device_ptr + 0x1b8);
   device_status = *(byte *)(list_ptr + 0x38c);
   if (device_status == 9) {
     device_status = func_0x00018022d300();  // 更新设备状态
@@ -586,14 +586,14 @@ uint64_t ProcessDeviceStatusUpdate(longlong device_ptr, longlong context_ptr)
   }
   
   // 检查设备状态是否需要特殊处理
-  if ((*(longlong *)(component_ptr + 0x1e0) == 0) ||
-     (((list_ptr = (ulonglong)device_status * 0x18,
-       *(char *)(*(longlong *)(component_ptr + 0x1e0) + 0x15 + list_ptr) != '\x03' &&
-       (*(char *)(*(longlong *)(component_ptr + 0x1e0) + 0x15 + list_ptr) != '\x04')) &&
-      (*(char *)(*(longlong *)(component_ptr + 0x1e0) + list_ptr + 0x15) != '\x02')))) {
+  if ((*(int64_t *)(component_ptr + 0x1e0) == 0) ||
+     (((list_ptr = (uint64_t)device_status * 0x18,
+       *(char *)(*(int64_t *)(component_ptr + 0x1e0) + 0x15 + list_ptr) != '\x03' &&
+       (*(char *)(*(int64_t *)(component_ptr + 0x1e0) + 0x15 + list_ptr) != '\x04')) &&
+      (*(char *)(*(int64_t *)(component_ptr + 0x1e0) + list_ptr + 0x15) != '\x02')))) {
     *(int *)(context_ptr + 0x124e8) = *(int *)(context_ptr + 0x124e8) + 1;
   }
-  else if (*(char *)(*(longlong *)(component_ptr + 0x1e0) + list_ptr + 0x15) != '\x04') {
+  else if (*(char *)(*(int64_t *)(component_ptr + 0x1e0) + list_ptr + 0x15) != '\x04') {
     // 初始化栈参数
     stack_param1 = 0;
     stack_param2 = 0;
@@ -623,14 +623,14 @@ uint64_t ProcessDeviceStatusUpdate(longlong device_ptr, longlong context_ptr)
         component_ptr = 0xb8;
         device_callback = (code *)&unknown_var_128_ptr;
         do {
-          list_ptr = *(longlong *)(component_ptr + *(longlong *)(device_ptr + 0x1b8));
-          if (((list_ptr != 0) && (component_ptr = *(longlong *)(list_ptr + 0x370), component_ptr != 0)) &&
+          list_ptr = *(int64_t *)(component_ptr + *(int64_t *)(device_ptr + 0x1b8));
+          if (((list_ptr != 0) && (component_ptr = *(int64_t *)(list_ptr + 0x370), component_ptr != 0)) &&
              ((status_char = func_0x0001802434e0(), status_char != '\0' &&
               ((*(char *)(component_ptr + 0xde) != '\0' &&
                (processing_complete = true, (*(byte *)(context_ptr + 0x1bd8) & 0x20) != 0)))))) {
-            callback_func = *(code **)(**(longlong **)(context_ptr + 0x3580) + 0xb8);
+            callback_func = *(code **)(**(int64_t **)(context_ptr + 0x3580) + 0xb8);
             if (callback_func == device_callback) {
-              component_ptr = (*(longlong **)(context_ptr + 0x3580))[0xda];
+              component_ptr = (*(int64_t **)(context_ptr + 0x3580))[0xda];
             }
             else {
               component_ptr = (*callback_func)();
@@ -641,12 +641,12 @@ uint64_t ProcessDeviceStatusUpdate(longlong device_ptr, longlong context_ptr)
             *counter_ptr = *counter_ptr + 1;
             UNLOCK();
             hash_index = counter_value >> 10;
-            hash_value = (ulonglong)hash_index;
+            hash_value = (uint64_t)hash_index;
             
             // 检查是否需要分配新的哈希表项
-            if (*(longlong *)(component_ptr + 0x3f70 + (ulonglong)hash_index * 8) == 0) {
+            if (*(int64_t *)(component_ptr + 0x3f70 + (uint64_t)hash_index * 8) == 0) {
               component_ptr = FUN_18062b420(system_memory_pool_ptr, 0x2000, 0x25);
-              data_ptr = (longlong *)(component_ptr + 0x3f70 + hash_value * 8);
+              data_ptr = (int64_t *)(component_ptr + 0x3f70 + hash_value * 8);
               LOCK();
               entry_found = *data_ptr == 0;
               if (entry_found) {
@@ -655,7 +655,7 @@ uint64_t ProcessDeviceStatusUpdate(longlong device_ptr, longlong context_ptr)
               UNLOCK();
               if (entry_found) {
                 LOCK();
-                *(int8_t *)(hash_value + 0x48 + (longlong)counter_ptr) = 0;
+                *(int8_t *)(hash_value + 0x48 + (int64_t)counter_ptr) = 0;
                 UNLOCK();
               }
               else {
@@ -664,17 +664,17 @@ uint64_t ProcessDeviceStatusUpdate(longlong device_ptr, longlong context_ptr)
                   FUN_18064e900();
                 }
                 do {
-                } while (*(char *)(hash_value + 0x48 + (longlong)counter_ptr) != '\0');
+                } while (*(char *)(hash_value + 0x48 + (int64_t)counter_ptr) != '\0');
               }
             }
             else {
               do {
-              } while (*(char *)(hash_value + 0x48 + (longlong)counter_ptr) != '\0');
+              } while (*(char *)(hash_value + 0x48 + (int64_t)counter_ptr) != '\0');
             }
             
             // 插入哈希表项
-            *(longlong *)
-             (*(longlong *)(component_ptr + 0x3f70 + hash_value * 8) + (ulonglong)(counter_value + hash_index * -0x400) * 8)
+            *(int64_t *)
+             (*(int64_t *)(component_ptr + 0x3f70 + hash_value * 8) + (uint64_t)(counter_value + hash_index * -0x400) * 8)
                  = list_ptr;
             device_callback = (code *)&unknown_var_128_ptr;
           }

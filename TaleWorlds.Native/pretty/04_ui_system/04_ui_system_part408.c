@@ -41,11 +41,11 @@
 // =============================================================================
 // 类型别名定义
 // =============================================================================
-typedef longlong UI_System_ControlHandle;         // UI系统控件句柄
-typedef longlong UI_System_EventHandler;          // UI系统事件处理器
-typedef longlong UI_System_DataContext;            // UI系统数据上下文
-typedef longlong UI_System_ResourceManager;       // UI系统资源管理器
-typedef longlong UI_System_StateManager;          // UI系统状态管理器
+typedef int64_t UI_System_ControlHandle;         // UI系统控件句柄
+typedef int64_t UI_System_EventHandler;          // UI系统事件处理器
+typedef int64_t UI_System_DataContext;            // UI系统数据上下文
+typedef int64_t UI_System_ResourceManager;       // UI系统资源管理器
+typedef int64_t UI_System_StateManager;          // UI系统状态管理器
 typedef float UI_System_FloatValue;                // UI系统浮点数值
 typedef uint UI_System_UIntValue;                 // UI系统无符号整数值
 typedef int UI_System_IntValue;                    // UI系统整数值
@@ -276,10 +276,10 @@ UI_System_Result UI_System_ProcessControlState3(UI_System_ControlHandle param_1,
     UI_System_Result result;
     UI_System_Byte* control_ptr;
     UI_System_UIntValue index;
-    ulonglong context_offset;
+    uint64_t context_offset;
     UI_System_ControlHandle array_data;
-    ulonglong array_offset;
-    ulonglong element_offset;
+    uint64_t array_offset;
+    uint64_t element_offset;
     UI_System_DataContext context_data;
     
     // 验证参数
@@ -325,7 +325,7 @@ UI_System_Result UI_System_ProcessControlState3(UI_System_ControlHandle param_1,
                 }
                 
                 index = (UI_System_UIntValue)context_offset + 1;
-                context_offset = (ulonglong)index;
+                context_offset = (uint64_t)index;
                 element_offset = element_offset + 0x18;
             } while ((UI_System_IntValue)index < *(UI_System_IntValue *)(array_offset + 0x28));
         }
@@ -346,10 +346,10 @@ UI_System_Result UI_System_ProcessControlState4(void)
     UI_System_Result result;
     UI_System_Byte* control_ptr;
     UI_System_UIntValue index;
-    ulonglong context_offset;
+    uint64_t context_offset;
     UI_System_ControlHandle array_data;
-    ulonglong array_offset;
-    ulonglong element_offset;
+    uint64_t array_offset;
+    uint64_t element_offset;
     UI_System_ControlHandle unaff_R13;
     UI_System_ControlHandle unaff_R14;
     UI_System_ControlHandle in_stack_00000050;
@@ -389,7 +389,7 @@ UI_System_Result UI_System_ProcessControlState4(void)
             }
             
             index = (UI_System_UIntValue)context_offset + 1;
-            context_offset = (ulonglong)index;
+            context_offset = (uint64_t)index;
             element_offset = element_offset + 0x18;
         } while ((UI_System_IntValue)index < *(UI_System_IntValue *)(array_offset + 0x28));
     }
@@ -506,10 +506,10 @@ void UI_System_ProcessControlData2(UI_System_ControlHandle param_1, UI_System_Ev
     UI_System_Byte stack_data[32];
     UI_System_ControlHandle stack_data_48;
     UI_System_Byte stack_data_40[40];
-    ulonglong stack_checksum;
+    uint64_t stack_checksum;
     
     // 计算栈校验和
-    stack_checksum = GET_SECURITY_COOKIE() ^ (ulonglong)stack_data;
+    stack_checksum = GET_SECURITY_COOKIE() ^ (uint64_t)stack_data;
     
     // 验证控件状态
     validation_result = func_0x00018088c530(*(UI_System_UIntValue *)(param_1 + 0x10), &stack_data_48);
@@ -537,7 +537,7 @@ void UI_System_ProcessControlData2(UI_System_ControlHandle param_1, UI_System_Ev
     }
     
     // 清理栈数据
-    FUN_1808fc050(stack_checksum ^ (ulonglong)stack_data);
+    FUN_1808fc050(stack_checksum ^ (uint64_t)stack_data);
 }
 
 /**
@@ -551,7 +551,7 @@ void UI_System_ProcessControlData3(UI_System_ControlHandle* param_1, UI_System_E
     UI_System_ControlHandle resource_data;
     UI_System_ControlHandle* resource_ptr;
     UI_System_ControlHandle unaff_RDI;
-    ulonglong in_stack_00000050;
+    uint64_t in_stack_00000050;
     
     // 获取资源数据
     resource_data = (**(code **)(*param_1 + UI_SYSTEM_CALLBACK_OFFSET))(param_1, param_2 + 0x30);
@@ -562,7 +562,7 @@ void UI_System_ProcessControlData3(UI_System_ControlHandle* param_1, UI_System_E
     // 验证资源指针
     resource_ptr = (UI_System_ControlHandle *)(resource_data + 0x58);
     if (((UI_System_ControlHandle *)*resource_ptr == resource_ptr) && (*(UI_System_ControlHandle **)(resource_data + 0x60) == resource_ptr)) {
-        FUN_1808fc050(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+        FUN_1808fc050(in_stack_00000050 ^ (uint64_t)&stack0x00000000);
     }
     
     // 执行控件操作
@@ -576,9 +576,9 @@ void UI_System_ProcessControlData3(UI_System_ControlHandle* param_1, UI_System_E
  */
 void UI_System_ProcessControlData4(void)
 {
-    ulonglong in_stack_00000050;
+    uint64_t in_stack_00000050;
     
-    FUN_1808fc050(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+    FUN_1808fc050(in_stack_00000050 ^ (uint64_t)&stack0x00000000);
 }
 
 /**
@@ -1225,14 +1225,14 @@ UI_System_Result UI_System_ProcessControlState8(UI_System_ControlHandle param_1,
     UI_System_Result result;
     UI_System_FloatValue* float_ptr;
     UI_System_ControlHandle control_data;
-    ulonglong context_offset;
+    uint64_t context_offset;
     UI_System_FloatValue* float_ptr2;
-    ulonglong array_offset;
+    uint64_t array_offset;
     UI_System_UIntValue uint_value;
     UI_System_FloatValue float_value;
     UI_System_FloatValue stack_float;
     UI_System_UIntValue stack_uint;
-    ulonglong temp_offset;
+    uint64_t temp_offset;
     
     result = func_0x00018088c530(*(UI_System_UIntValue *)(param_1 + 0x10), &stack_float);
     if ((UI_System_IntValue)result != UI_SYSTEM_STATUS_SUCCESS) {
@@ -1280,7 +1280,7 @@ UI_System_Result UI_System_ProcessControlState8(UI_System_ControlHandle param_1,
                 *float_ptr = float_value;
             }
             uint_value = (UI_System_UIntValue)temp_offset + 1;
-            temp_offset = (ulonglong)uint_value;
+            temp_offset = (uint64_t)uint_value;
             float_ptr = float_ptr + 1;
         } while ((UI_System_IntValue)uint_value < *(UI_System_IntValue *)(param_1 + 0x18));
         
@@ -1292,7 +1292,7 @@ UI_System_Result UI_System_ProcessControlState8(UI_System_ControlHandle param_1,
                     *(UI_System_FloatValue *)(*(UI_System_ControlHandle *)(context_offset + 0x20) + 4 + (UI_System_ControlHandle)index * 0x18) = *float_ptr2;
                 }
                 uint_value = (UI_System_UIntValue)array_offset + 1;
-                array_offset = (ulonglong)uint_value;
+                array_offset = (uint64_t)uint_value;
                 float_ptr2 = float_ptr2 + 1;
             } while ((UI_System_IntValue)uint_value < *(UI_System_IntValue *)(param_1 + 0x18));
         }
@@ -1315,7 +1315,7 @@ UI_System_Result UI_System_ProcessControlState9(void)
     UI_System_FloatValue* float_ptr;
     UI_System_ControlHandle unaff_RBX;
     UI_System_ControlHandle control_data;
-    ulonglong context_offset;
+    uint64_t context_offset;
     UI_System_FloatValue* float_ptr2;
     UI_System_UIntValue in_R9D;
     UI_System_UIntValue uint_value;
@@ -1324,7 +1324,7 @@ UI_System_Result UI_System_ProcessControlState9(void)
     
     context_offset = in_RAX - 8;
     if (in_RAX == 0) {
-        context_offset = (ulonglong)in_R9D;
+        context_offset = (uint64_t)in_R9D;
     }
     
     index = *(UI_System_IntValue *)(context_offset + 0x28);
@@ -1411,14 +1411,14 @@ void UI_System_AllocateControlResources(UI_System_ControlHandle param_1, UI_Syst
 {
     UI_System_IntValue allocation_result;
     UI_System_ControlHandle control_data;
-    ulonglong allocation_size;
+    uint64_t allocation_size;
     UI_System_Bool is_null;
     UI_System_ControlHandle stack_data[3];
     UI_System_ControlHandle stack_data_40;
     UI_System_EventHandler stack_data_38;
-    ulonglong stack_checksum;
+    uint64_t stack_checksum;
     
-    stack_checksum = GET_SECURITY_COOKIE() ^ (ulonglong)stack_data;
+    stack_checksum = GET_SECURITY_COOKIE() ^ (uint64_t)stack_data;
     stack_data_38 = param_2;
     allocation_result = func_0x00018088c530(*(UI_System_UIntValue *)(param_1 + 0x10), stack_data);
     if (allocation_result == UI_SYSTEM_STATUS_SUCCESS) {
@@ -1430,12 +1430,12 @@ void UI_System_AllocateControlResources(UI_System_ControlHandle param_1, UI_Syst
         control_data = (UI_System_ControlHandle)*(UI_System_IntValue *)(param_1 + 0x18);
         allocation_size = control_data * 4 + UI_SYSTEM_ALIGNMENT_OFFSET;
         stack_data_40 = param_1 + 0x20 + control_data * 8;
-        if (allocation_size <= (ulonglong)(control_data * 4)) {
+        if (allocation_size <= (uint64_t)(control_data * 4)) {
             allocation_size = 0xffffffffffffff0;
         }
         FUN_1808fd200(control_data, allocation_size & 0xfffffffffffffff0);
     }
-    FUN_1808fc050(stack_checksum ^ (ulonglong)stack_data);
+    FUN_1808fc050(stack_checksum ^ (uint64_t)stack_data);
 }
 
 // =============================================================================

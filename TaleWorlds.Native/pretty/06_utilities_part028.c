@@ -329,15 +329,15 @@ void FUN_180942850(void)
  */
 void FUN_180942890(void)
 {
-    longlong *plVar1;
+    int64_t *plVar1;
     int *piVar2;
     int iVar3;
-    longlong lVar4;
-    longlong *plVar5;
+    int64_t lVar4;
+    int64_t *plVar5;
     
     // 获取系统上下文
     plVar5 = system_config_data_2478;
-    if (system_config_data_2478 != (longlong *)0x0) {
+    if (system_config_data_2478 != (int64_t *)0x0) {
         // 加锁保护
         LOCK();
         plVar1 = system_config_data_2478 + 1;
@@ -350,7 +350,7 @@ void FUN_180942890(void)
             // 调用清理函数
             (**(code **)*plVar5)(plVar5);
             LOCK();
-            piVar2 = (int *)((longlong)plVar5 + 0xc);
+            piVar2 = (int *)((int64_t)plVar5 + 0xc);
             iVar3 = *piVar2;
             *piVar2 = *piVar2 + -1;
             UNLOCK();
@@ -375,11 +375,11 @@ void FUN_180942890(void)
  */
 void FUN_1809428a2(void)
 {
-    longlong *plVar1;
+    int64_t *plVar1;
     int *piVar2;
     int iVar3;
-    longlong lVar4;
-    longlong *unaff_RBX;
+    int64_t lVar4;
+    int64_t *unaff_RBX;
     
     // 加锁保护内存分配
     LOCK();
@@ -392,7 +392,7 @@ void FUN_1809428a2(void)
     if ((int)lVar4 == 1) {
         (**(code **)*unaff_RBX)();
         LOCK();
-        piVar2 = (int *)((longlong)unaff_RBX + 0xc);
+        piVar2 = (int *)((int64_t)unaff_RBX + 0xc);
         iVar3 = *piVar2;
         *piVar2 = *piVar2 + -1;
         UNLOCK();
@@ -426,15 +426,15 @@ void FUN_1809428d8(void)
  */
 void FUN_1809428e0(void)
 {
-    longlong *plVar1;
+    int64_t *plVar1;
     int *piVar2;
     int iVar3;
-    longlong lVar4;
-    longlong *plVar5;
+    int64_t lVar4;
+    int64_t *plVar5;
     
     // 获取内存池上下文
     plVar5 = system_config_data_2498;
-    if (system_config_data_2498 != (longlong *)0x0) {
+    if (system_config_data_2498 != (int64_t *)0x0) {
         // 加锁保护初始化过程
         LOCK();
         plVar1 = system_config_data_2498 + 1;
@@ -446,7 +446,7 @@ void FUN_1809428e0(void)
         if ((int)lVar4 == 1) {
             (**(code **)*plVar5)(plVar5);
             LOCK();
-            piVar2 = (int *)((longlong)plVar5 + 0xc);
+            piVar2 = (int *)((int64_t)plVar5 + 0xc);
             iVar3 = *piVar2;
             *piVar2 = *piVar2 + -1;
             UNLOCK();
@@ -471,11 +471,11 @@ void FUN_1809428e0(void)
  */
 void FUN_1809428f2(void)
 {
-    longlong *plVar1;
+    int64_t *plVar1;
     int *piVar2;
     int iVar3;
-    longlong lVar4;
-    longlong *unaff_RBX;
+    int64_t lVar4;
+    int64_t *unaff_RBX;
     
     // 加锁保护内存分配
     LOCK();
@@ -488,7 +488,7 @@ void FUN_1809428f2(void)
     if ((int)lVar4 == 1) {
         (**(code **)*unaff_RBX)();
         LOCK();
-        piVar2 = (int *)((longlong)unaff_RBX + 0xc);
+        piVar2 = (int *)((int64_t)unaff_RBX + 0xc);
         iVar3 = *piVar2;
         *piVar2 = *piVar2 + -1;
         UNLOCK();
@@ -522,15 +522,15 @@ void FUN_180942928(void)
  */
 void FUN_180942930(void)
 {
-    longlong *plVar1;
+    int64_t *plVar1;
     int *piVar2;
     int iVar3;
-    longlong lVar4;
-    longlong *plVar5;
+    int64_t lVar4;
+    int64_t *plVar5;
     
     // 获取内存管理器上下文
     plVar5 = system_config_data_2488;
-    if (system_config_data_2488 != (longlong *)0x0) {
+    if (system_config_data_2488 != (int64_t *)0x0) {
         // 加锁保护重置过程
         LOCK();
         plVar1 = system_config_data_2488 + 1;
@@ -542,7 +542,7 @@ void FUN_180942930(void)
         if ((int)lVar4 == 1) {
             (**(code **)*plVar5)(plVar5);
             LOCK();
-            piVar2 = (int *)((longlong)plVar5 + 0xc);
+            piVar2 = (int *)((int64_t)plVar5 + 0xc);
             iVar3 = *piVar2;
             *piVar2 = *piVar2 + -1;
             UNLOCK();
@@ -567,11 +567,11 @@ void FUN_180942930(void)
  */
 void FUN_180942942(void)
 {
-    longlong *plVar1;
+    int64_t *plVar1;
     int *piVar2;
     int iVar3;
-    longlong lVar4;
-    longlong *unaff_RBX;
+    int64_t lVar4;
+    int64_t *unaff_RBX;
     
     // 加锁保护优化过程
     LOCK();
@@ -584,7 +584,7 @@ void FUN_180942942(void)
     if ((int)lVar4 == 1) {
         (**(code **)*unaff_RBX)();
         LOCK();
-        piVar2 = (int *)((longlong)unaff_RBX + 0xc);
+        piVar2 = (int *)((int64_t)unaff_RBX + 0xc);
         iVar3 = *piVar2;
         *piVar2 = *piVar2 + -1;
         UNLOCK();
@@ -618,8 +618,8 @@ void FUN_180942978(void)
  */
 void FUN_180942980(void)
 {
-    longlong lVar1;
-    longlong lVar2;
+    int64_t lVar1;
+    int64_t lVar2;
     
     // 检查内存池大小
     if (0xf < system_control_config_data_c188) {
@@ -628,7 +628,7 @@ void FUN_180942980(void)
         
         // 验证内存块大小
         if (0xfff < system_control_config_data_c188 + 1) {
-            lVar2 = *(longlong *)(lVar1 + -8);
+            lVar2 = *(int64_t *)(lVar1 + -8);
             if (0x1f < (lVar1 - lVar2) - 8U) {
                 // 内存块验证失败
                 _invalid_parameter_noinfo_noreturn(lVar1 - lVar2, system_control_config_data_c188 + 0x28);
@@ -653,8 +653,8 @@ void FUN_180942980(void)
  */
 void FUN_1809429f0(void)
 {
-    ulonglong uVar1;
-    longlong lVar2;
+    uint64_t uVar1;
+    int64_t lVar2;
     uint64_t in_R9;
     
     // 检查线程本地存储
@@ -664,7 +664,7 @@ void FUN_1809429f0(void)
         
         // 验证内存大小
         if (0xfff < uVar1) {
-            lVar2 = *(longlong *)(lRam0000000180d49d68 + -8);
+            lVar2 = *(int64_t *)(lRam0000000180d49d68 + -8);
             if (0x1f < (lRam0000000180d49d68 - lVar2) - 8U) {
                 // 内存验证失败
                 _invalid_parameter_noinfo_noreturn
@@ -696,8 +696,8 @@ void FUN_1809429f0(void)
  */
 void FUN_180942a20(void)
 {
-    longlong lVar1;
-    ulonglong uVar2;
+    int64_t lVar1;
+    uint64_t uVar2;
     
     // 检查互斥量状态
     if (lRam0000000180d49d90 != 0) {
@@ -708,7 +708,7 @@ void FUN_180942a20(void)
         
         // 验证内存大小
         if (0xfff < uVar2) {
-            lVar1 = *(longlong *)(lRam0000000180d49d90 + -8);
+            lVar1 = *(int64_t *)(lRam0000000180d49d90 + -8);
             if (0x1f < (lRam0000000180d49d90 - lVar1) - 8U) {
                 // 内存验证失败
                 _invalid_parameter_noinfo_noreturn(lRam0000000180d49d90 - lVar1, uVar2 + 0x27);
@@ -887,7 +887,7 @@ void FUN_180942c50(void)
     // 检查内存状态
     if (system_memory_6098 != '\0') {
         FUN_180057830();
-        if (system_config_data_6070 != (longlong *)0x0) {
+        if (system_config_data_6070 != (int64_t *)0x0) {
             (**(code **)(*system_config_data_6070 + 0x38))();
         }
     }
@@ -934,7 +934,7 @@ void FUN_180942ce0(void)
  */
 void FUN_180942d30(void)
 {
-    longlong lVar1;
+    int64_t lVar1;
     
     // 获取清理上下文
     lVar1 = system_config_data_6138;
@@ -984,19 +984,19 @@ void FUN_180942e20(void)
  */
 void FUN_180942e70(void)
 {
-    longlong *plVar1;
+    int64_t *plVar1;
     
     // 获取线程上下文
     plVar1 = system_config_data_5f18;
     if (system_memory_5f28 != '\0') {
         system_config_data_5f20 = 0xffffffff;
-        system_config_data_5f18 = (longlong *)0x0;
+        system_config_data_5f18 = (int64_t *)0x0;
         
         // 清理线程资源
-        if (plVar1 != (longlong *)0x0) {
+        if (plVar1 != (int64_t *)0x0) {
             (**(code **)(*plVar1 + 0x38))();
         }
-        if (system_config_data_5f18 != (longlong *)0x0) {
+        if (system_config_data_5f18 != (int64_t *)0x0) {
             (**(code **)(*system_config_data_5f18 + 0x38))();
         }
         if (system_config_data_5ef8 != 0) {
@@ -1223,14 +1223,14 @@ void FUN_180943180(uint64_t param_1, uint64_t param_2, uint64_t param_3, uint64_
  */
 void FUN_1809431a0(void)
 {
-    longlong lVar1;
+    int64_t lVar1;
     
     // 获取线程本地存储指针
-    lVar1 = *(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8);
+    lVar1 = *(int64_t *)((int64_t)ThreadLocalStoragePointer + (uint64_t)__tls_index * 8);
     
     // 初始化线程本地存储
     *(uint64_t *)(lVar1 + 0x18) = &system_data_buffer_ptr;
-    if (*(longlong *)(lVar1 + 0x20) != 0) {
+    if (*(int64_t *)(lVar1 + 0x20) != 0) {
         // 线程本地存储初始化失败
         FUN_18064e900();
     }

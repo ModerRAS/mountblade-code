@@ -248,7 +248,7 @@ typedef uint8_t UISystem_StateMonitor_type;
  * @note 此函数在数据结构创建时被调用
  * @warning 错误的初始化可能导致数据结构损坏
  */
-void UISystem_DataStructureInitializer(longlong structure_context, uint64_t operation_flag, uint64_t data_source, uint64_t validation_flag);
+void UISystem_DataStructureInitializer(int64_t structure_context, uint64_t operation_flag, uint64_t data_source, uint64_t validation_flag);
 
 /**
  * @brief UI系统字符串格式化器
@@ -266,7 +266,7 @@ void UISystem_DataStructureInitializer(longlong structure_context, uint64_t oper
  * @note 此函数在字符串处理时被调用
  * @warning 错误的格式化可能导致字符串损坏
  */
-uint64_t * UISystem_StringFormatter(longlong string_source, ulonglong format_flag);
+uint64_t * UISystem_StringFormatter(int64_t string_source, uint64_t format_flag);
 
 /**
  * @brief UI系统字符串复制器
@@ -343,7 +343,7 @@ void UISystem_ResourceAllocator(uint64_t allocation_context, uint64_t resource_t
  * @note 此函数在数据结构处理时被调用
  * @warning 错误的处理可能导致数据结构损坏
  */
-void UISystem_DataStructureProcessor(longlong *data_context);
+void UISystem_DataStructureProcessor(int64_t *data_context);
 
 /**
  * @brief UI系统资源管理器
@@ -360,7 +360,7 @@ void UISystem_DataStructureProcessor(longlong *data_context);
  * @note 此函数在资源管理时被调用
  * @warning 错误的管理可能导致资源泄漏
  */
-void UISystem_ResourceManager(ulonglong *resource_context);
+void UISystem_ResourceManager(uint64_t *resource_context);
 
 /**
  * @brief UI系统数据验证器
@@ -418,7 +418,7 @@ void UISystem_ResourceCleaner(uint64_t cleanup_context, uint64_t resource_type, 
  * @note 此函数在字符串查找时被调用
  * @warning 错误的查找可能导致错误结果
  */
-uint64_t * UISystem_StringFinder(uint64_t search_context, longlong *target_string);
+uint64_t * UISystem_StringFinder(uint64_t search_context, int64_t *target_string);
 
 /**
  * @brief UI系统数据结构管理器
@@ -456,7 +456,7 @@ void UISystem_DataStructureManager(uint64_t management_context, uint64_t *resour
  * @note 此函数在字符串转换时被调用
  * @warning 错误的转换可能导致数据丢失
  */
-uint64_t * UISystem_StringConverter(ulonglong conversion_context, uint64_t *target_data, uint64_t param_3, longlong param_4, longlong param_5);
+uint64_t * UISystem_StringConverter(uint64_t conversion_context, uint64_t *target_data, uint64_t param_3, int64_t param_4, int64_t param_5);
 
 /* ========================================
    函数别名定义（便于代码阅读和维护）
@@ -494,19 +494,19 @@ uint64_t * UISystem_StringConverter(ulonglong conversion_context, uint64_t *targ
  * @param validation_flag 验证标志
  * @return void 操作状态
  */
-void UISystem_DataStructureInitializer(longlong structure_context, uint64_t operation_flag, uint64_t data_source, uint64_t validation_flag)
+void UISystem_DataStructureInitializer(int64_t structure_context, uint64_t operation_flag, uint64_t data_source, uint64_t validation_flag)
 
 {
-  ulonglong data_length;
+  uint64_t data_length;
   uint64_t memory_management_flag;
   void *stack_data_buffer;
-  longlong string_buffer_ptr;
+  int64_t string_buffer_ptr;
   uint string_length;
   int32_t validation_result;
   
   memory_management_flag = 0xfffffffffffffffe;
   FUN_180627910(&stack_data_buffer);
-  data_length = (ulonglong)string_length;
+  data_length = (uint64_t)string_length;
   if (string_buffer_ptr != 0) {
     FUN_1806277c0(structure_context + 0x10,data_length);
   }
@@ -514,8 +514,8 @@ void UISystem_DataStructureInitializer(longlong structure_context, uint64_t oper
     memcpy(*(uint64_t *)(structure_context + 0x18),string_buffer_ptr,data_length,validation_flag,memory_management_flag);
   }
   *(int32_t *)(structure_context + 0x20) = 0;
-  if (*(longlong *)(structure_context + 0x18) != 0) {
-    *(int8_t *)(data_length + *(longlong *)(structure_context + 0x18)) = 0;
+  if (*(int64_t *)(structure_context + 0x18) != 0) {
+    *(int8_t *)(data_length + *(int64_t *)(structure_context + 0x18)) = 0;
   }
   *(int32_t *)(structure_context + 0x2c) = validation_result;
   stack_data_buffer = &system_data_buffer_ptr;
@@ -538,12 +538,12 @@ void UISystem_DataStructureInitializer(longlong structure_context, uint64_t oper
  * @param format_flag 格式化标志
  * @return uint64_t* 格式化后的字符串指针
  */
-uint64_t * UISystem_StringFormatter(longlong string_source)
+uint64_t * UISystem_StringFormatter(int64_t string_source)
 
 {
   uint64_t *formatted_string_ptr;
-  ulonglong string_length;
-  ulonglong char_index;
+  uint64_t string_length;
+  uint64_t char_index;
   
   formatted_string_ptr = (uint64_t *)FUN_18062b1e0(system_memory_pool_ptr,MEMORY_ALLOCATION_SIZE,8,3);
   *formatted_string_ptr = &system_state_ptr;
@@ -665,7 +665,7 @@ void UISystem_ResourceAllocator(uint64_t allocation_context, uint64_t resource_t
  * @param data_context 数据上下文指针
  * @return void 操作状态
  */
-void UISystem_DataStructureProcessor(longlong *data_context)
+void UISystem_DataStructureProcessor(int64_t *data_context)
 
 {
   byte char_comparison_result;
@@ -673,36 +673,36 @@ void UISystem_DataStructureProcessor(longlong *data_context)
   uint64_t *data_structure_ptr;
   uint64_t *next_structure_ptr;
   char string_char;
-  longlong string_length;
-  longlong *data_item_ptr;
+  int64_t string_length;
+  int64_t *data_item_ptr;
   byte *string_ptr1;
   byte *string_ptr2;
   uint64_t *structure_array_ptr;
   byte *temp_string_ptr;
   int item_count;
-  ulonglong current_offset;
+  uint64_t current_offset;
   int data_item_count;
-  longlong *data_array_ptr;
-  longlong array_size;
-  ulonglong processed_count;
+  int64_t *data_array_ptr;
+  int64_t array_size;
+  uint64_t processed_count;
   byte *comparison_string1;
   byte *comparison_string2;
-  ulonglong comparison_index;
-  longlong *temp_data_ptr;
+  uint64_t comparison_index;
+  int64_t *temp_data_ptr;
   uint temp_count;
-  longlong temp_length;
-  longlong *stack_data_ptr;
+  int64_t temp_length;
+  int64_t *stack_data_ptr;
   void *stack_buffer;
   byte *string_buffer_ptr;
   uint buffer_length;
-  ulonglong buffer_size;
+  uint64_t buffer_size;
   void *data_buffer;
   int8_t *data_string_ptr;
   uint string_data_length;
-  ulonglong data_buffer_size;
-  longlong *data_ptr_array;
-  longlong *data_ptr_array2;
-  longlong *data_ptr_array3;
+  uint64_t data_buffer_size;
+  int64_t *data_ptr_array;
+  int64_t *data_ptr_array2;
+  int64_t *data_ptr_array3;
   int32_t allocation_flag;
   uint64_t *memory_ptr1;
   uint64_t *memory_ptr2;
@@ -712,17 +712,17 @@ void UISystem_DataStructureProcessor(longlong *data_context)
   
   system_flag = 0xfffffffffffffffe;
   ui_system_string = data_context;
-  if (data_context != (longlong *)0x0) {
+  if (data_context != (int64_t *)0x0) {
     (**(code **)(*data_context + 8))();
   }
-  data_ptr_array = (longlong *)0x0;
-  data_ptr_array2 = (longlong *)0x0;
+  data_ptr_array = (int64_t *)0x0;
+  data_ptr_array2 = (int64_t *)0x0;
   processed_count = 0;
-  data_ptr_array3 = (longlong *)0x0;
+  data_ptr_array3 = (int64_t *)0x0;
   allocation_flag = 3;
   FUN_180657040(&data_ptr_array);
   data_array_ptr = data_ptr_array2;
-  if (ui_system_string != (longlong *)0x0) {
+  if (ui_system_string != (int64_t *)0x0) {
     memory_ptr1 = (uint64_t *)0x0;
     memory_ptr2 = (uint64_t *)0x0;
     memory_management_flag = 0;
@@ -731,7 +731,7 @@ void UISystem_DataStructureProcessor(longlong *data_context)
     structure_array_ptr = memory_ptr1;
     next_structure_ptr = memory_ptr2;
     data_array_ptr = data_ptr_array2;
-    if ((longlong)memory_ptr2 - (longlong)memory_ptr1 >> 5 != 0) {
+    if ((int64_t)memory_ptr2 - (int64_t)memory_ptr1 >> 5 != 0) {
       stack_data_ptr = data_ptr_array2;
       temp_data_ptr = data_ptr_array3;
       current_offset = processed_count;
@@ -742,12 +742,12 @@ void UISystem_DataStructureProcessor(longlong *data_context)
         buffer_size = 0;
         string_buffer_ptr = (int8_t *)0x0;
         buffer_length = 0;
-        FUN_1806277c0(&stack_buffer,*(int32_t *)(processed_count + 0x10 + (longlong)memory_ptr1));
-        data_item_count = *(int *)(processed_count + 0x10 + (longlong)structure_array_ptr);
+        FUN_1806277c0(&stack_buffer,*(int32_t *)(processed_count + 0x10 + (int64_t)memory_ptr1));
+        data_item_count = *(int *)(processed_count + 0x10 + (int64_t)structure_array_ptr);
         if (data_item_count != 0) {
-          memcpy(string_buffer_ptr,*(uint64_t *)(processed_count + 8 + (longlong)structure_array_ptr),data_item_count + 1);
+          memcpy(string_buffer_ptr,*(uint64_t *)(processed_count + 8 + (int64_t)structure_array_ptr),data_item_count + 1);
         }
-        if (*(longlong *)(processed_count + 8 + (longlong)structure_array_ptr) != 0) {
+        if (*(int64_t *)(processed_count + 8 + (int64_t)structure_array_ptr) != 0) {
           buffer_length = 0;
           if (string_buffer_ptr != (int8_t *)0x0) {
             *string_buffer_ptr = 0;
@@ -774,8 +774,8 @@ void UISystem_DataStructureProcessor(longlong *data_context)
         structure_array_ptr = (uint64_t *)(data_string_ptr + string_data_length);
         *structure_array_ptr = 0x75646f4d6275532f;
         *(int32_t *)(structure_array_ptr + 1) = 0x782e656c;
-        *(int16_t *)((longlong)structure_array_ptr + 0xc) = 0x6c6d;
-        *(int8_t *)((longlong)structure_array_ptr + 0xe) = 0;
+        *(int16_t *)((int64_t)structure_array_ptr + 0xc) = 0x6c6d;
+        *(int8_t *)((int64_t)structure_array_ptr + 0xe) = 0;
         string_data_length = data_item_count;
         string_char = FUN_180624af0(&data_buffer);
         data_array_ptr = data_item_ptr;
@@ -788,17 +788,17 @@ void UISystem_DataStructureProcessor(longlong *data_context)
             data_ptr_array2 = data_array_ptr;
           }
           else {
-            temp_length = (longlong)data_item_ptr - (longlong)data_ptr_array;
+            temp_length = (int64_t)data_item_ptr - (int64_t)data_ptr_array;
             array_size = temp_length >> 3;
             if (array_size == 0) {
               array_size = 1;
 LAB_180656abd:
-              data_item_ptr = (longlong *)FUN_18062b420(system_memory_pool_ptr,array_size * 8,(int8_t)allocation_flag);
+              data_item_ptr = (int64_t *)FUN_18062b420(system_memory_pool_ptr,array_size * 8,(int8_t)allocation_flag);
             }
             else {
               array_size = array_size * 2;
               if (array_size != 0) goto LAB_180656abd;
-              data_item_ptr = (longlong *)0x0;
+              data_item_ptr = (int64_t *)0x0;
             }
             if (data_ptr_array != stack_data_ptr) {
               memmove(data_item_ptr,data_ptr_array,temp_length);
@@ -806,7 +806,7 @@ LAB_180656abd:
             *data_item_ptr = string_length;
             data_array_ptr = data_item_ptr + 1;
             stack_data_ptr = data_array_ptr;
-            if (data_ptr_array != (longlong *)0x0) {
+            if (data_ptr_array != (int64_t *)0x0) {
               FUN_18064e900();
             }
             temp_data_ptr = data_item_ptr + array_size;
@@ -830,13 +830,13 @@ LAB_180656abd:
         buffer_size = buffer_size & 0xffffffff00000000;
         stack_buffer = &system_state_ptr;
         temp_count = (int)current_offset + 1;
-        current_offset = (ulonglong)temp_count;
+        current_offset = (uint64_t)temp_count;
         processed_count = processed_count + DATA_ELEMENT_SIZE;
         data_item_ptr = data_array_ptr;
         structure_array_ptr = memory_ptr1;
         next_structure_ptr = memory_ptr2;
-      } while ((ulonglong)(longlong)(int)temp_count <
-               (ulonglong)((longlong)memory_ptr2 - (longlong)memory_ptr1 >> 5));
+      } while ((uint64_t)(int64_t)(int)temp_count <
+               (uint64_t)((int64_t)memory_ptr2 - (int64_t)memory_ptr1 >> 5));
     }
     for (; next_structure_ptr = memory_ptr2, structure_array_ptr != memory_ptr2; structure_array_ptr = structure_array_ptr + 4) {
       memory_ptr2 = next_structure_ptr;
@@ -852,7 +852,7 @@ LAB_180656abd:
     memory_ptr2 = next_structure_ptr;
   }
   data_item_count = 0;
-  processed_count = (longlong)data_array_ptr - (longlong)data_ptr_array >> 3;
+  processed_count = (int64_t)data_array_ptr - (int64_t)data_ptr_array >> 3;
   data_array_ptr = data_ptr_array;
   if (processed_count != 0) {
     do {
@@ -867,7 +867,7 @@ LAB_180656abd:
       if (*(int *)(string_length + 0x10) != 0) {
         memcpy(string_buffer_ptr,*(uint64_t *)(string_length + 8),*(int *)(string_length + 0x10) + 1);
       }
-      if (*(longlong *)(string_length + 8) != 0) {
+      if (*(int64_t *)(string_length + 8) != 0) {
         buffer_length = 0;
         if (string_buffer_ptr != (byte *)0x0) {
           *string_buffer_ptr = 0;
@@ -881,7 +881,7 @@ LAB_180656abd:
             string_buffer_ptr[comparison_index] = string_buffer_ptr[comparison_index] + 0x20;
           }
           temp_count = (int)current_offset + 1;
-          current_offset = (ulonglong)temp_count;
+          current_offset = (uint64_t)temp_count;
           comparison_index = comparison_index + 1;
         } while (temp_count < buffer_length);
       }
@@ -902,9 +902,9 @@ LAB_180656d5b:
             else {
               comparison_string2 = string_buffer_ptr;
               do {
-                comparison_string2 = comparison_string2 + (*(longlong *)(string_ptr1 + 0x28) - (longlong)string_buffer_ptr);
+                comparison_string2 = comparison_string2 + (*(int64_t *)(string_ptr1 + 0x28) - (int64_t)string_buffer_ptr);
                 temp_count = (uint)*comparison_string2 - (uint)*string_ptr2;
-                comparison_string1 = (byte *)(ulonglong)temp_count;
+                comparison_string1 = (byte *)(uint64_t)temp_count;
                 if (temp_count != 0) break;
                 comparison_string2 = comparison_string2 + 1;
               } while (*string_ptr2 != 0);
@@ -931,11 +931,11 @@ LAB_180656df9:
         else if (*(int *)(string_ptr2 + 0x30) != 0) {
           if (buffer_length != 0) {
             string_ptr1 = *(byte **)(string_ptr2 + 0x28);
-            array_size = (longlong)string_buffer_ptr - (longlong)string_ptr1;
+            array_size = (int64_t)string_buffer_ptr - (int64_t)string_ptr1;
             do {
               comparison_string2 = string_ptr1 + array_size;
               temp_count = (uint)*string_ptr1 - (uint)*comparison_string2;
-              comparison_string1 = (byte *)(ulonglong)temp_count;
+              comparison_string1 = (byte *)(uint64_t)temp_count;
               if (temp_count != 0) break;
               string_ptr1 = string_ptr1 + 1;
             } while (*comparison_string2 != 0);
@@ -944,7 +944,7 @@ LAB_180656df9:
           goto LAB_180656df9;
         }
 LAB_180656e11:
-        *(longlong *)(string_ptr2 + 0x40) = string_length;
+        *(int64_t *)(string_ptr2 + 0x40) = string_length;
       }
       else {
         do {
@@ -959,7 +959,7 @@ LAB_180656e11:
             else {
               comparison_string2 = string_buffer_ptr;
               do {
-                temp_count = (uint)comparison_string2[*(longlong *)(comparison_string1 + 0x28) - (longlong)string_buffer_ptr];
+                temp_count = (uint)comparison_string2[*(int64_t *)(comparison_string1 + 0x28) - (int64_t)string_buffer_ptr];
                 data_item_count = *comparison_string2 - temp_count;
                 if (*comparison_string2 != temp_count) break;
                 comparison_string2 = comparison_string2 + 1;
@@ -984,10 +984,10 @@ LAB_180656d07:
         if (*(int *)(string_ptr1 + 0x30) != 0) {
           if (buffer_length != 0) {
             string_ptr1 = *(byte **)(string_ptr1 + 0x28);
-            comparison_string1 = string_buffer_ptr + -(longlong)string_ptr1;
+            comparison_string1 = string_buffer_ptr + -(int64_t)string_ptr1;
             do {
               char_comparison_result = *string_ptr1;
-              temp_count = (uint)string_ptr1[(longlong)comparison_string1];
+              temp_count = (uint)string_ptr1[(int64_t)comparison_string1];
               if (char_comparison_result != temp_count) break;
               string_ptr1 = string_ptr1 + 1;
             } while (temp_count != 0);
@@ -1006,9 +1006,9 @@ LAB_180656e1e:
       stack_buffer = &system_state_ptr;
       data_item_count = data_item_count + 1;
       data_array_ptr = data_array_ptr + 1;
-    } while ((ulonglong)(longlong)data_item_count < processed_count);
+    } while ((uint64_t)(int64_t)data_item_count < processed_count);
   }
-  if (data_ptr_array != (longlong *)0x0) {
+  if (data_ptr_array != (int64_t *)0x0) {
     FUN_18064e900(data_ptr_array);
   }
   return;
@@ -1026,43 +1026,43 @@ LAB_180656e1e:
  * @param resource_context 资源上下文指针
  * @return void 操作状态
  */
-void UISystem_ResourceManager(ulonglong *resource_context)
+void UISystem_ResourceManager(uint64_t *resource_context)
 
 {
   uint64_t *resource_ptr1;
   uint64_t *resource_ptr2;
   char format_char;
   uint64_t formatted_result;
-  longlong resource_length;
+  int64_t resource_length;
   uint64_t *resource_ptr3;
   uint64_t *resource_ptr4;
   uint64_t *resource_ptr5;
   int resource_count;
   int *resource_id_ptr;
   int resource_id;
-  ulonglong resource_index;
+  uint64_t resource_index;
   int8_t format_buffer [32];
   void *stack_buffer;
   int8_t *string_buffer_ptr;
   uint buffer_length;
-  ulonglong buffer_size;
+  uint64_t buffer_size;
   int32_t buffer_flag;
   void *data_buffer;
-  longlong data_length;
+  int64_t data_length;
   uint data_size;
   int32_t data_flag;
-  ulonglong data_buffer_size;
+  uint64_t data_buffer_size;
   uint64_t *memory_ptr1;
   uint64_t *memory_ptr2;
   uint64_t memory_management_flag;
   void *context_ptr;
-  ulonglong *context_array;
+  uint64_t *context_array;
   int context_size;
-  ulonglong context_buffer [2];
-  ulonglong security_cookie;
+  uint64_t context_buffer [2];
+  uint64_t security_cookie;
   
   memory_management_flag = 0xfffffffffffffffe;
-  security_cookie = GET_SECURITY_COOKIE() ^ (ulonglong)format_buffer;
+  security_cookie = GET_SECURITY_COOKIE() ^ (uint64_t)format_buffer;
   resource_id = 0;
   buffer_flag = 0;
   context_ptr = &system_config_ptr;
@@ -1076,15 +1076,15 @@ void UISystem_ResourceManager(ulonglong *resource_context)
   context_ptr = &system_state_ptr;
   resource_count = data_size + 8;
   FUN_1806277c0(&data_buffer,resource_count);
-  *(uint64_t *)((ulonglong)data_size + data_length) = 0x2f73656c75646f4d;
-  *(int8_t *)((uint64_t *)((ulonglong)data_size + data_length) + 1) = 0;
+  *(uint64_t *)((uint64_t)data_size + data_length) = 0x2f73656c75646f4d;
+  *(int8_t *)((uint64_t *)((uint64_t)data_size + data_length) + 1) = 0;
   memory_ptr1 = (uint64_t *)0x0;
   memory_ptr2 = (uint64_t *)0x0;
   memory_management_flag = 0;
   memory_flag = 3;
   data_size = resource_count;
   FUN_18062c5f0(&data_buffer,&memory_ptr1);
-  resource_index = (longlong)memory_ptr2 - (longlong)memory_ptr1 >> 5;
+  resource_index = (int64_t)memory_ptr2 - (int64_t)memory_ptr1 >> 5;
   data_buffer_size = resource_index;
   resource_ptr3 = memory_ptr1;
   resource_ptr4 = memory_ptr1;
@@ -1094,15 +1094,15 @@ void UISystem_ResourceManager(ulonglong *resource_context)
     do {
       context_ptr = &system_data_buffer_ptr;
       context_buffer[0] = 0;
-      context_array = (ulonglong *)0x0;
+      context_array = (uint64_t *)0x0;
       context_size = 0;
       FUN_1806277c0(&context_ptr,*resource_id_ptr);
       if (*resource_id_ptr != 0) {
         memcpy(context_array,*(uint64_t *)(resource_id_ptr + -2),*resource_id_ptr + 1);
       }
-      if (*(longlong *)(resource_id_ptr + -2) != 0) {
+      if (*(int64_t *)(resource_id_ptr + -2) != 0) {
         context_size = 0;
-        if (context_array != (ulonglong *)0x0) {
+        if (context_array != (uint64_t *)0x0) {
           *(int8_t *)context_array = 0;
         }
         context_buffer[0] = context_buffer[0] & 0xffffffff;
@@ -1115,7 +1115,7 @@ void UISystem_ResourceManager(ulonglong *resource_context)
       if (context_size != 0) {
         memcpy(string_buffer_ptr,context_array,context_size + 1);
       }
-      if (context_array != (ulonglong *)0x0) {
+      if (context_array != (uint64_t *)0x0) {
         buffer_length = 0;
         if (string_buffer_ptr != (int8_t *)0x0) {
           *string_buffer_ptr = 0;
@@ -1127,20 +1127,20 @@ void UISystem_ResourceManager(ulonglong *resource_context)
       resource_ptr3 = (uint64_t *)(string_buffer_ptr + buffer_length);
       *resource_ptr3 = 0x75646f4d6275532f;
       *(int32_t *)(resource_ptr3 + 1) = 0x782e656c;
-      *(int16_t *)((longlong)resource_ptr3 + 0xc) = 0x6c6d;
-      *(int8_t *)((longlong)resource_ptr3 + 0xe) = 0;
+      *(int16_t *)((int64_t)resource_ptr3 + 0xc) = 0x6c6d;
+      *(int8_t *)((int64_t)resource_ptr3 + 0xe) = 0;
       buffer_length = resource_count;
       format_char = FUN_180624af0(&stack_buffer);
       if (format_char != '\0') {
         formatted_result = FUN_180657fa0(&stack_buffer);
         resource_ptr3 = (uint64_t *)resource_context[1];
         if (resource_ptr3 < (uint64_t *)resource_context[2]) {
-          resource_context[1] = (ulonglong)(resource_ptr3 + 1);
+          resource_context[1] = (uint64_t)(resource_ptr3 + 1);
           *resource_ptr3 = formatted_result;
         }
         else {
           resource_ptr4 = (uint64_t *)*resource_context;
-          resource_length = (longlong)resource_ptr3 - (longlong)resource_ptr4 >> 3;
+          resource_length = (int64_t)resource_ptr3 - (int64_t)resource_ptr4 >> 3;
           if (resource_length == 0) {
             resource_length = 1;
 LAB_1806572f9:
@@ -1154,15 +1154,15 @@ LAB_1806572f9:
             resource_ptr5 = (uint64_t *)0x0;
           }
           if (resource_ptr4 != resource_ptr3) {
-            memmove(resource_ptr5,resource_ptr4,(longlong)resource_ptr3 - (longlong)resource_ptr4);
+            memmove(resource_ptr5,resource_ptr4,(int64_t)resource_ptr3 - (int64_t)resource_ptr4);
           }
           *resource_ptr5 = formatted_result;
           if (*resource_context != 0) {
             FUN_18064e900();
           }
-          *resource_context = (ulonglong)resource_ptr5;
-          resource_context[1] = (ulonglong)(resource_ptr5 + 1);
-          resource_context[2] = (ulonglong)(resource_ptr5 + resource_length);
+          *resource_context = (uint64_t)resource_ptr5;
+          resource_context[1] = (uint64_t)(resource_ptr5 + 1);
+          resource_context[2] = (uint64_t)(resource_ptr5 + resource_length);
           resource_index = data_buffer_size;
         }
       }
@@ -1174,10 +1174,10 @@ LAB_1806572f9:
       buffer_size = buffer_size & 0xffffffff00000000;
       stack_buffer = &system_state_ptr;
       context_ptr = &system_data_buffer_ptr;
-      if (context_array != (ulonglong *)0x0) {
+      if (context_array != (uint64_t *)0x0) {
         FUN_18064e900();
       }
-      context_array = (ulonglong *)0x0;
+      context_array = (uint64_t *)0x0;
       context_buffer[0] = context_buffer[0] & 0xffffffff00000000;
       context_ptr = &system_state_ptr;
       resource_id = resource_id + 1;
@@ -1185,7 +1185,7 @@ LAB_1806572f9:
       resource_ptr3 = memory_ptr1;
       resource_ptr4 = memory_ptr1;
       resource_ptr5 = memory_ptr2;
-    } while ((ulonglong)(longlong)resource_id < resource_index);
+    } while ((uint64_t)(int64_t)resource_id < resource_index);
   }
   for (; resource_ptr2 = memory_ptr2, resource_ptr1 = memory_ptr1, resource_ptr3 != memory_ptr2; resource_ptr3 = resource_ptr3 + 4) {
     memory_ptr1 = resource_ptr4;
@@ -1212,7 +1212,7 @@ LAB_1806572f9:
   data_buffer = &system_state_ptr;
   memory_ptr1 = resource_ptr4;
   memory_ptr2 = resource_ptr5;
-  FUN_1808fc050(security_cookie ^ (ulonglong)format_buffer);
+  FUN_1808fc050(security_cookie ^ (uint64_t)format_buffer);
 }
 
 /**
@@ -1236,10 +1236,10 @@ UISystem_DataValidator(uint64_t validation_context, uint64_t data_source, uint64
 {
   uint char_count;
   uint64_t memory_management_flag;
-  longlong string_length;
+  int64_t string_length;
   void *data_array [3];
   void *stack_buffer;
-  longlong string_buffer_ptr;
+  int64_t string_buffer_ptr;
   uint string_length_count;
   
   FUN_180627ae0(&stack_buffer,validation_context,data_source,validation_flag,0xfffffffffffffffe);
@@ -1303,7 +1303,7 @@ void UISystem_ResourceCleaner(uint64_t cleanup_context, uint64_t resource_type, 
  * @param target_string 目标字符串指针
  * @return uint64_t* 查找结果指针
  */
-uint64_t * UISystem_StringFinder(uint64_t search_context, longlong *target_string)
+uint64_t * UISystem_StringFinder(uint64_t search_context, int64_t *target_string)
 
 {
   byte char_comparison_result;
@@ -1311,7 +1311,7 @@ uint64_t * UISystem_StringFinder(uint64_t search_context, longlong *target_strin
   byte *string_ptr1;
   uint char_count;
   int comparison_int;
-  longlong string_length;
+  int64_t string_length;
   uint64_t *found_string_ptr;
   uint64_t *next_string_ptr;
   uint64_t *current_string_ptr;
@@ -1331,7 +1331,7 @@ uint64_t * UISystem_StringFinder(uint64_t search_context, longlong *target_strin
         }
         else {
           string_ptr1 = *(byte **)(target_string + 8);
-          string_length = found_string_ptr[5] - (longlong)string_ptr1;
+          string_length = found_string_ptr[5] - (int64_t)string_ptr1;
           do {
             char_count = (uint)string_ptr1[string_length];
             comparison_int = *string_ptr1 - char_count;
@@ -1362,7 +1362,7 @@ LAB_1806575f7:
       }
       if (*(int *)(target_string + 0x10) != 0) {
         string_ptr1 = (byte *)current_string_ptr[5];
-        string_length = *(longlong *)(target_string + 8) - (longlong)string_ptr1;
+        string_length = *(int64_t *)(target_string + 8) - (int64_t)string_ptr1;
         do {
           char_comparison_result = *string_ptr1;
           char_count = (uint)string_ptr1[string_length];
@@ -1423,54 +1423,54 @@ void UISystem_DataStructureManager(uint64_t management_context, uint64_t *resour
  * @return uint64_t* 转换后的字符串指针
  */
 uint64_t *
-UISystem_StringConverter(ulonglong conversion_context, uint64_t *target_data, uint64_t param_3, longlong *param_4,
-             longlong param_5)
+UISystem_StringConverter(uint64_t conversion_context, uint64_t *target_data, uint64_t param_3, int64_t *param_4,
+             int64_t param_5)
 
 {
   byte char_comparison_result;
   bool comparison_result;
   uint64_t *conversion_result;
-  longlong *data_ptr;
+  int64_t *data_ptr;
   byte *string_ptr1;
   uint64_t *string_ptr2;
   uint char_count;
-  longlong *data_ptr2;
-  longlong string_length;
-  longlong *data_ptr3;
-  ulonglong data_index;
+  int64_t *data_ptr2;
+  int64_t string_length;
+  int64_t *data_ptr3;
+  uint64_t data_index;
   uint64_t conversion_flag;
   
-  if ((param_4 == ui_system_string) || (param_4 == (longlong *)&system_memory_67e0)) {
+  if ((param_4 == ui_system_string) || (param_4 == (int64_t *)&system_memory_67e0)) {
     if ((ui_system_string != 0) && (*(int *)(param_5 + 0x10) != 0)) {
       data_ptr2 = ui_system_string;
       data_ptr3 = param_4;
       if ((int)ui_system_string[6] != 0) {
         string_ptr1 = *(byte **)(param_5 + 8);
-        data_ptr3 = (longlong *)(ui_system_string[5] - (longlong)string_ptr1);
+        data_ptr3 = (int64_t *)(ui_system_string[5] - (int64_t)string_ptr1);
         do {
           char_comparison_result = *string_ptr1;
-          conversion_context = (ulonglong)string_ptr1[(longlong)data_ptr3];
-          char_count = (uint)string_ptr1[(longlong)data_ptr3];
+          conversion_context = (uint64_t)string_ptr1[(int64_t)data_ptr3];
+          char_count = (uint)string_ptr1[(int64_t)data_ptr3];
           if (char_comparison_result != char_count) break;
           string_ptr1 = string_ptr1 + 1;
         } while (char_count != 0);
         if ((int)(char_comparison_result - char_count) < 1) goto LAB_1806577f1;
       }
 LAB_1806577d7:
-      data_index = (ulonglong)data_ptr3 & 0xffffffffffffff00;
+      data_index = (uint64_t)data_ptr3 & 0xffffffffffffff00;
 LAB_1806577da:
-      if (data_ptr2 != (longlong *)0x0) {
+      if (data_ptr2 != (int64_t *)0x0) {
         FUN_180657970(conversion_context,target_data,data_ptr2,data_index,param_5);
         return target_data;
       }
     }
   }
   else {
-    data_ptr = (longlong *)func_0x00018066bd70(param_4);
+    data_ptr = (int64_t *)func_0x00018066bd70(param_4);
     if (*(int *)(param_5 + 0x10) != 0) {
       if ((int)param_4[6] != 0) {
         string_ptr1 = *(byte **)(param_5 + 8);
-        string_length = param_4[5] - (longlong)string_ptr1;
+        string_length = param_4[5] - (int64_t)string_ptr1;
         do {
           char_comparison_result = *string_ptr1;
           char_count = (uint)string_ptr1[string_length];
@@ -1481,18 +1481,18 @@ LAB_1806577da:
       }
       if ((int)data_ptr[6] != 0) {
         string_ptr1 = (byte *)data_ptr[5];
-        data_ptr3 = (longlong *)(*(longlong *)(param_5 + 8) - (longlong)string_ptr1);
+        data_ptr3 = (int64_t *)(*(int64_t *)(param_5 + 8) - (int64_t)string_ptr1);
         do {
           char_comparison_result = *string_ptr1;
-          conversion_context = (ulonglong)string_ptr1[(longlong)data_ptr3];
-          char_count = (uint)string_ptr1[(longlong)data_ptr3];
+          conversion_context = (uint64_t)string_ptr1[(int64_t)data_ptr3];
+          char_count = (uint)string_ptr1[(int64_t)data_ptr3];
           if (char_comparison_result != char_count) break;
           string_ptr1 = string_ptr1 + 1;
         } while (char_count != 0);
         if (0 < (int)(char_comparison_result - char_count)) {
           data_ptr2 = param_4;
           if (*param_4 == 0) goto LAB_1806577d7;
-          data_index = CONCAT71((int7)((ulonglong)data_ptr3 >> 8),1);
+          data_index = CONCAT71((int7)((uint64_t)data_ptr3 >> 8),1);
           data_ptr2 = data_ptr;
           goto LAB_1806577da;
         }
@@ -1516,7 +1516,7 @@ LAB_180657812:
       }
       else {
         string_ptr1 = (byte *)string_ptr2[5];
-        string_length = *(longlong *)(param_5 + 8) - (longlong)string_ptr1;
+        string_length = *(int64_t *)(param_5 + 8) - (int64_t)string_ptr1;
         do {
           char_comparison_result = *string_ptr1;
           char_count = (uint)string_ptr1[string_length];
@@ -1545,7 +1545,7 @@ LAB_180657941:
     }
     if (*(int *)(string_ptr2 + 6) != 0) {
       string_ptr1 = *(byte **)(param_5 + 8);
-      string_length = string_ptr2[5] - (longlong)string_ptr1;
+      string_length = string_ptr2[5] - (int64_t)string_ptr1;
       do {
         char_comparison_result = *string_ptr1;
         char_count = (uint)string_ptr1[string_length];
@@ -1563,7 +1563,7 @@ LAB_1806578a7:
     }
     if (*(int *)(param_5 + 0x10) != 0) {
       string_ptr1 = (byte *)conversion_result[5];
-      string_length = *(longlong *)(param_5 + 8) - (longlong)string_ptr1;
+      string_length = *(int64_t *)(param_5 + 8) - (int64_t)string_ptr1;
       do {
         char_comparison_result = *string_ptr1;
         char_count = (uint)string_ptr1[string_length];

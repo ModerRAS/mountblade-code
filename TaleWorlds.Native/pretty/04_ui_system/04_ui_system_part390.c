@@ -220,7 +220,7 @@
  * 
  * @param ui_context UI系统上下文指针
  */
-void ui_system_event_handler_type1(longlong *ui_context)
+void ui_system_event_handler_type1(int64_t *ui_context)
 {
     uint64_t event_data;
     
@@ -240,7 +240,7 @@ void ui_system_event_handler_type1(longlong *ui_context)
  * 
  * @param ui_context UI系统上下文指针
  */
-void ui_system_event_handler_type2(longlong *ui_context)
+void ui_system_event_handler_type2(int64_t *ui_context)
 {
     uint64_t event_data;
     
@@ -260,7 +260,7 @@ void ui_system_event_handler_type2(longlong *ui_context)
  * 
  * @param ui_context UI系统上下文指针
  */
-void ui_system_event_handler_type3(longlong *ui_context)
+void ui_system_event_handler_type3(int64_t *ui_context)
 {
     uint64_t event_data;
     
@@ -280,7 +280,7 @@ void ui_system_event_handler_type3(longlong *ui_context)
  * 
  * @param ui_context UI系统上下文指针
  */
-void ui_system_event_handler_type4(longlong *ui_context)
+void ui_system_event_handler_type4(int64_t *ui_context)
 {
     uint64_t event_data;
     
@@ -300,7 +300,7 @@ void ui_system_event_handler_type4(longlong *ui_context)
  * 
  * @param ui_context UI系统上下文指针
  */
-void ui_system_event_handler_type5(longlong *ui_context)
+void ui_system_event_handler_type5(int64_t *ui_context)
 {
     uint64_t event_data;
     
@@ -320,7 +320,7 @@ void ui_system_event_handler_type5(longlong *ui_context)
  * 
  * @param ui_context UI系统上下文指针
  */
-void ui_system_event_handler_type6(longlong *ui_context)
+void ui_system_event_handler_type6(int64_t *ui_context)
 {
     uint64_t event_data;
     
@@ -340,7 +340,7 @@ void ui_system_event_handler_type6(longlong *ui_context)
  * 
  * @param ui_context UI系统上下文指针
  */
-void ui_system_event_handler_type7(longlong *ui_context)
+void ui_system_event_handler_type7(int64_t *ui_context)
 {
     uint64_t event_data;
     
@@ -360,7 +360,7 @@ void ui_system_event_handler_type7(longlong *ui_context)
  * 
  * @param ui_context UI系统上下文指针
  */
-void ui_system_event_handler_type8(longlong *ui_context)
+void ui_system_event_handler_type8(int64_t *ui_context)
 {
     uint64_t event_data;
     
@@ -380,7 +380,7 @@ void ui_system_event_handler_type8(longlong *ui_context)
  * 
  * @param ui_context UI系统上下文指针
  */
-void ui_system_event_handler_type9(longlong *ui_context)
+void ui_system_event_handler_type9(int64_t *ui_context)
 {
     uint64_t event_data;
     
@@ -400,7 +400,7 @@ void ui_system_event_handler_type9(longlong *ui_context)
  * 
  * @param ui_context UI系统上下文指针
  */
-void ui_system_event_handler_type10(longlong *ui_context)
+void ui_system_event_handler_type10(int64_t *ui_context)
 {
     uint64_t event_data;
     
@@ -420,7 +420,7 @@ void ui_system_event_handler_type10(longlong *ui_context)
  * 
  * @param ui_context UI系统上下文指针
  */
-void ui_system_event_handler_type11(longlong *ui_context)
+void ui_system_event_handler_type11(int64_t *ui_context)
 {
     uint64_t event_data;
     
@@ -440,7 +440,7 @@ void ui_system_event_handler_type11(longlong *ui_context)
  * 
  * @param ui_context UI系统上下文指针
  */
-void ui_system_event_handler_type12(longlong *ui_context)
+void ui_system_event_handler_type12(int64_t *ui_context)
 {
     uint64_t event_data;
     
@@ -460,7 +460,7 @@ void ui_system_event_handler_type12(longlong *ui_context)
  * 
  * @param ui_context UI系统上下文指针
  */
-void ui_system_event_handler_type13(longlong *ui_context)
+void ui_system_event_handler_type13(int64_t *ui_context)
 {
     uint64_t event_data;
     
@@ -480,7 +480,7 @@ void ui_system_event_handler_type13(longlong *ui_context)
  * 
  * @param ui_context UI系统上下文指针
  */
-void ui_system_event_handler_type14(longlong *ui_context)
+void ui_system_event_handler_type14(int64_t *ui_context)
 {
     uint64_t event_data;
     
@@ -500,7 +500,7 @@ void ui_system_event_handler_type14(longlong *ui_context)
  * 
  * @param ui_context UI系统上下文指针
  */
-void ui_system_event_handler_type15(longlong *ui_context)
+void ui_system_event_handler_type15(int64_t *ui_context)
 {
     uint64_t event_data;
     
@@ -520,7 +520,7 @@ void ui_system_event_handler_type15(longlong *ui_context)
  * 
  * @param ui_context UI系统上下文指针
  */
-void ui_system_event_handler_type16(longlong *ui_context)
+void ui_system_event_handler_type16(int64_t *ui_context)
 {
     uint64_t event_data;
     
@@ -540,7 +540,7 @@ void ui_system_event_handler_type16(longlong *ui_context)
  * 
  * @param ui_context UI系统上下文指针
  */
-void ui_system_event_handler_type17(longlong *ui_context)
+void ui_system_event_handler_type17(int64_t *ui_context)
 {
     uint64_t event_data;
     
@@ -560,7 +560,7 @@ void ui_system_event_handler_type17(longlong *ui_context)
  * 
  * @param ui_context UI系统上下文指针
  */
-void ui_system_event_handler_type18(longlong *ui_context)
+void ui_system_event_handler_type18(int64_t *ui_context)
 {
     uint64_t event_data;
     
@@ -580,7 +580,7 @@ void ui_system_event_handler_type18(longlong *ui_context)
  * 
  * @param ui_context UI系统上下文指针
  */
-void ui_system_event_handler_type19(longlong *ui_context)
+void ui_system_event_handler_type19(int64_t *ui_context)
 {
     uint64_t event_data;
     
@@ -600,7 +600,7 @@ void ui_system_event_handler_type19(longlong *ui_context)
  * 
  * @param ui_context UI系统上下文指针
  */
-void ui_system_event_handler_type20(longlong *ui_context)
+void ui_system_event_handler_type20(int64_t *ui_context)
 {
     uint64_t event_data;
     
@@ -627,27 +627,27 @@ void ui_system_event_handler_type20(longlong *ui_context)
  * @param search_key 搜索键值
  * @return 找到的数据指针，未找到返回0
  */
-longlong ui_system_hash_finder_type1(longlong ui_manager, uint64_t search_key)
+int64_t ui_system_hash_finder_type1(int64_t ui_manager, uint64_t search_key)
 {
-    longlong hash_table;
+    int64_t hash_table;
     int left_index;
     int right_index;
-    longlong current_entry;
+    int64_t current_entry;
     uint hash_mask;
     int compare_result;
     int middle_index;
     
     // 获取哈希表指针
-    hash_table = *(longlong *)(ui_manager + UI_CONTEXT_OFFSET);
+    hash_table = *(int64_t *)(ui_manager + UI_CONTEXT_OFFSET);
     if (hash_table != 0) {
         left_index = 0;
         right_index = *(int *)(hash_table + UI_HASH_TABLE_SIZE_1) + -1;
         if (-1 < right_index) {
-            hash_table = *(longlong *)(hash_table + UI_HASH_TABLE_OFFSET_1);
+            hash_table = *(int64_t *)(hash_table + UI_HASH_TABLE_OFFSET_1);
             do {
                 // 计算中间索引
                 middle_index = (right_index + left_index) / 2;
-                current_entry = *(longlong *)(hash_table + (longlong)middle_index * 8);
+                current_entry = *(int64_t *)(hash_table + (int64_t)middle_index * 8);
                 
                 // 比较键值
                 compare_result = memcmp(search_key, current_entry + 0x10, UI_COMPARE_SIZE);
@@ -680,8 +680,8 @@ longlong ui_system_hash_finder_type1(longlong ui_manager, uint64_t search_key)
     }
     
     // 未找到，调用虚拟函数处理
-    hash_table = (**(code **)(**(longlong **)(ui_manager + UI_MANAGER_OFFSET) + UI_VTABLE_OFFSET_1))
-                    (*(longlong **)(ui_manager + UI_MANAGER_OFFSET), search_key, 1);
+    hash_table = (**(code **)(**(int64_t **)(ui_manager + UI_MANAGER_OFFSET) + UI_VTABLE_OFFSET_1))
+                    (*(int64_t **)(ui_manager + UI_MANAGER_OFFSET), search_key, 1);
     return hash_table;
 }
 
@@ -696,20 +696,20 @@ longlong ui_system_hash_finder_type1(longlong ui_manager, uint64_t search_key)
  * @param ui_manager UI管理器指针
  * @param condition_data 条件数据
  */
-void ui_system_condition_checker_type1(longlong ui_manager, uint64_t condition_data)
+void ui_system_condition_checker_type1(int64_t ui_manager, uint64_t condition_data)
 {
-    longlong check_result;
+    int64_t check_result;
     
     // 检查条件是否满足
-    if ((*(longlong *)(ui_manager + UI_CONTEXT_OFFSET) != 0) &&
-        (check_result = FUN_1808761f0(*(longlong *)(ui_manager + UI_CONTEXT_OFFSET) + UI_CONDITION_CHECK_OFFSET_1), 
+    if ((*(int64_t *)(ui_manager + UI_CONTEXT_OFFSET) != 0) &&
+        (check_result = FUN_1808761f0(*(int64_t *)(ui_manager + UI_CONTEXT_OFFSET) + UI_CONDITION_CHECK_OFFSET_1), 
          check_result != 0)) {
         return;
     }
     
     // 条件不满足，调用虚拟函数处理
-    (**(code **)(**(longlong **)(ui_manager + UI_MANAGER_OFFSET) + UI_VTABLE_OFFSET_2))
-        (*(longlong **)(ui_manager + UI_MANAGER_OFFSET), condition_data, 1);
+    (**(code **)(**(int64_t **)(ui_manager + UI_MANAGER_OFFSET) + UI_VTABLE_OFFSET_2))
+        (*(int64_t **)(ui_manager + UI_MANAGER_OFFSET), condition_data, 1);
     return;
 }
 
@@ -720,20 +720,20 @@ void ui_system_condition_checker_type1(longlong ui_manager, uint64_t condition_d
  * @param ui_manager UI管理器指针
  * @param condition_data 条件数据
  */
-void ui_system_condition_checker_type2(longlong ui_manager, uint64_t condition_data)
+void ui_system_condition_checker_type2(int64_t ui_manager, uint64_t condition_data)
 {
-    longlong check_result;
+    int64_t check_result;
     
     // 检查条件是否满足
-    if ((*(longlong *)(ui_manager + UI_CONTEXT_OFFSET) != 0) &&
-        (check_result = FUN_1808761f0(*(longlong *)(ui_manager + UI_CONTEXT_OFFSET) + UI_CONDITION_CHECK_OFFSET_2), 
+    if ((*(int64_t *)(ui_manager + UI_CONTEXT_OFFSET) != 0) &&
+        (check_result = FUN_1808761f0(*(int64_t *)(ui_manager + UI_CONTEXT_OFFSET) + UI_CONDITION_CHECK_OFFSET_2), 
          check_result != 0)) {
         return;
     }
     
     // 条件不满足，调用虚拟函数处理
-    (**(code **)(**(longlong **)(ui_manager + UI_MANAGER_OFFSET) + UI_VTABLE_OFFSET_3))
-        (*(longlong **)(ui_manager + UI_MANAGER_OFFSET), condition_data, 1);
+    (**(code **)(**(int64_t **)(ui_manager + UI_MANAGER_OFFSET) + UI_VTABLE_OFFSET_3))
+        (*(int64_t **)(ui_manager + UI_MANAGER_OFFSET), condition_data, 1);
     return;
 }
 
@@ -744,20 +744,20 @@ void ui_system_condition_checker_type2(longlong ui_manager, uint64_t condition_d
  * @param ui_manager UI管理器指针
  * @param condition_data 条件数据
  */
-void ui_system_condition_checker_type3(longlong ui_manager, uint64_t condition_data)
+void ui_system_condition_checker_type3(int64_t ui_manager, uint64_t condition_data)
 {
-    longlong check_result;
+    int64_t check_result;
     
     // 检查条件是否满足
-    if ((*(longlong *)(ui_manager + UI_CONTEXT_OFFSET) != 0) &&
-        (check_result = FUN_1808761f0(*(longlong *)(ui_manager + UI_CONTEXT_OFFSET) + UI_CONDITION_CHECK_OFFSET_3), 
+    if ((*(int64_t *)(ui_manager + UI_CONTEXT_OFFSET) != 0) &&
+        (check_result = FUN_1808761f0(*(int64_t *)(ui_manager + UI_CONTEXT_OFFSET) + UI_CONDITION_CHECK_OFFSET_3), 
          check_result != 0)) {
         return;
     }
     
     // 条件不满足，调用虚拟函数处理
-    (**(code **)(**(longlong **)(ui_manager + UI_MANAGER_OFFSET) + UI_VTABLE_OFFSET_4))
-        (*(longlong **)(ui_manager + UI_MANAGER_OFFSET), condition_data, 1);
+    (**(code **)(**(int64_t **)(ui_manager + UI_MANAGER_OFFSET) + UI_VTABLE_OFFSET_4))
+        (*(int64_t **)(ui_manager + UI_MANAGER_OFFSET), condition_data, 1);
     return;
 }
 
@@ -768,20 +768,20 @@ void ui_system_condition_checker_type3(longlong ui_manager, uint64_t condition_d
  * @param ui_manager UI管理器指针
  * @param condition_data 条件数据
  */
-void ui_system_condition_checker_type4(longlong ui_manager, uint64_t condition_data)
+void ui_system_condition_checker_type4(int64_t ui_manager, uint64_t condition_data)
 {
-    longlong check_result;
+    int64_t check_result;
     
     // 检查条件是否满足
-    if ((*(longlong *)(ui_manager + UI_CONTEXT_OFFSET) != 0) &&
-        (check_result = FUN_1808761f0(*(longlong *)(ui_manager + UI_CONTEXT_OFFSET) + UI_CONDITION_CHECK_OFFSET_4), 
+    if ((*(int64_t *)(ui_manager + UI_CONTEXT_OFFSET) != 0) &&
+        (check_result = FUN_1808761f0(*(int64_t *)(ui_manager + UI_CONTEXT_OFFSET) + UI_CONDITION_CHECK_OFFSET_4), 
          check_result != 0)) {
         return;
     }
     
     // 条件不满足，调用虚拟函数处理
-    (**(code **)(**(longlong **)(ui_manager + UI_MANAGER_OFFSET) + UI_VTABLE_OFFSET_5))
-        (*(longlong **)(ui_manager + UI_MANAGER_OFFSET), condition_data, 1);
+    (**(code **)(**(int64_t **)(ui_manager + UI_MANAGER_OFFSET) + UI_VTABLE_OFFSET_5))
+        (*(int64_t **)(ui_manager + UI_MANAGER_OFFSET), condition_data, 1);
     return;
 }
 
@@ -792,20 +792,20 @@ void ui_system_condition_checker_type4(longlong ui_manager, uint64_t condition_d
  * @param ui_manager UI管理器指针
  * @param condition_data 条件数据
  */
-void ui_system_condition_checker_type5(longlong ui_manager, uint64_t condition_data)
+void ui_system_condition_checker_type5(int64_t ui_manager, uint64_t condition_data)
 {
-    longlong check_result;
+    int64_t check_result;
     
     // 检查条件是否满足
-    if ((*(longlong *)(ui_manager + UI_CONTEXT_OFFSET) != 0) &&
-        (check_result = FUN_1808761f0(*(longlong *)(ui_manager + UI_CONTEXT_OFFSET) + UI_CONDITION_CHECK_OFFSET_5), 
+    if ((*(int64_t *)(ui_manager + UI_CONTEXT_OFFSET) != 0) &&
+        (check_result = FUN_1808761f0(*(int64_t *)(ui_manager + UI_CONTEXT_OFFSET) + UI_CONDITION_CHECK_OFFSET_5), 
          check_result != 0)) {
         return;
     }
     
     // 条件不满足，调用虚拟函数处理
-    (**(code **)(**(longlong **)(ui_manager + UI_MANAGER_OFFSET) + UI_VTABLE_OFFSET_6))
-        (*(longlong **)(ui_manager + UI_MANAGER_OFFSET), condition_data, 1);
+    (**(code **)(**(int64_t **)(ui_manager + UI_MANAGER_OFFSET) + UI_VTABLE_OFFSET_6))
+        (*(int64_t **)(ui_manager + UI_MANAGER_OFFSET), condition_data, 1);
     return;
 }
 
@@ -816,20 +816,20 @@ void ui_system_condition_checker_type5(longlong ui_manager, uint64_t condition_d
  * @param ui_manager UI管理器指针
  * @param condition_data 条件数据
  */
-void ui_system_condition_checker_type6(longlong ui_manager, uint64_t condition_data)
+void ui_system_condition_checker_type6(int64_t ui_manager, uint64_t condition_data)
 {
-    longlong check_result;
+    int64_t check_result;
     
     // 检查条件是否满足
-    if ((*(longlong *)(ui_manager + UI_CONTEXT_OFFSET) != 0) &&
-        (check_result = FUN_1808761f0(*(longlong *)(ui_manager + UI_CONTEXT_OFFSET) + UI_CONDITION_CHECK_OFFSET_6), 
+    if ((*(int64_t *)(ui_manager + UI_CONTEXT_OFFSET) != 0) &&
+        (check_result = FUN_1808761f0(*(int64_t *)(ui_manager + UI_CONTEXT_OFFSET) + UI_CONDITION_CHECK_OFFSET_6), 
          check_result != 0)) {
         return;
     }
     
     // 条件不满足，调用虚拟函数处理
-    (**(code **)(**(longlong **)(ui_manager + UI_MANAGER_OFFSET) + UI_VTABLE_OFFSET_7))
-        (*(longlong **)(ui_manager + UI_MANAGER_OFFSET), condition_data, 1);
+    (**(code **)(**(int64_t **)(ui_manager + UI_MANAGER_OFFSET) + UI_VTABLE_OFFSET_7))
+        (*(int64_t **)(ui_manager + UI_MANAGER_OFFSET), condition_data, 1);
     return;
 }
 
@@ -840,20 +840,20 @@ void ui_system_condition_checker_type6(longlong ui_manager, uint64_t condition_d
  * @param ui_manager UI管理器指针
  * @param condition_data 条件数据
  */
-void ui_system_condition_checker_type7(longlong ui_manager, uint64_t condition_data)
+void ui_system_condition_checker_type7(int64_t ui_manager, uint64_t condition_data)
 {
-    longlong check_result;
+    int64_t check_result;
     
     // 检查条件是否满足
-    if ((*(longlong *)(ui_manager + UI_CONTEXT_OFFSET) != 0) &&
-        (check_result = FUN_1808761f0(*(longlong *)(ui_manager + UI_CONTEXT_OFFSET) + UI_CONDITION_CHECK_OFFSET_7), 
+    if ((*(int64_t *)(ui_manager + UI_CONTEXT_OFFSET) != 0) &&
+        (check_result = FUN_1808761f0(*(int64_t *)(ui_manager + UI_CONTEXT_OFFSET) + UI_CONDITION_CHECK_OFFSET_7), 
          check_result != 0)) {
         return;
     }
     
     // 条件不满足，调用虚拟函数处理
-    (**(code **)(**(longlong **)(ui_manager + UI_MANAGER_OFFSET) + UI_VTABLE_OFFSET_8))
-        (*(longlong **)(ui_manager + UI_MANAGER_OFFSET), condition_data, 1);
+    (**(code **)(**(int64_t **)(ui_manager + UI_MANAGER_OFFSET) + UI_VTABLE_OFFSET_8))
+        (*(int64_t **)(ui_manager + UI_MANAGER_OFFSET), condition_data, 1);
     return;
 }
 
@@ -864,20 +864,20 @@ void ui_system_condition_checker_type7(longlong ui_manager, uint64_t condition_d
  * @param ui_manager UI管理器指针
  * @param condition_data 条件数据
  */
-void ui_system_condition_checker_type8(longlong ui_manager, uint64_t condition_data)
+void ui_system_condition_checker_type8(int64_t ui_manager, uint64_t condition_data)
 {
-    longlong check_result;
+    int64_t check_result;
     
     // 检查条件是否满足
-    if ((*(longlong *)(ui_manager + UI_CONTEXT_OFFSET) != 0) &&
-        (check_result = FUN_1808761f0(*(longlong *)(ui_manager + UI_CONTEXT_OFFSET) + UI_CONDITION_CHECK_OFFSET_8), 
+    if ((*(int64_t *)(ui_manager + UI_CONTEXT_OFFSET) != 0) &&
+        (check_result = FUN_1808761f0(*(int64_t *)(ui_manager + UI_CONTEXT_OFFSET) + UI_CONDITION_CHECK_OFFSET_8), 
          check_result != 0)) {
         return;
     }
     
     // 条件不满足，调用虚拟函数处理
-    (**(code **)(**(longlong **)(ui_manager + UI_MANAGER_OFFSET) + UI_VTABLE_OFFSET_9))
-        (*(longlong **)(ui_manager + UI_MANAGER_OFFSET), condition_data, 1);
+    (**(code **)(**(int64_t **)(ui_manager + UI_MANAGER_OFFSET) + UI_VTABLE_OFFSET_9))
+        (*(int64_t **)(ui_manager + UI_MANAGER_OFFSET), condition_data, 1);
     return;
 }
 
@@ -888,20 +888,20 @@ void ui_system_condition_checker_type8(longlong ui_manager, uint64_t condition_d
  * @param ui_manager UI管理器指针
  * @param condition_data 条件数据
  */
-void ui_system_condition_checker_type9(longlong ui_manager, uint64_t condition_data)
+void ui_system_condition_checker_type9(int64_t ui_manager, uint64_t condition_data)
 {
-    longlong check_result;
+    int64_t check_result;
     
     // 检查条件是否满足
-    if ((*(longlong *)(ui_manager + UI_CONTEXT_OFFSET) != 0) &&
-        (check_result = FUN_1808761f0(*(longlong *)(ui_manager + UI_CONTEXT_OFFSET) + UI_CONDITION_CHECK_OFFSET_9), 
+    if ((*(int64_t *)(ui_manager + UI_CONTEXT_OFFSET) != 0) &&
+        (check_result = FUN_1808761f0(*(int64_t *)(ui_manager + UI_CONTEXT_OFFSET) + UI_CONDITION_CHECK_OFFSET_9), 
          check_result != 0)) {
         return;
     }
     
     // 条件不满足，调用虚拟函数处理
-    (**(code **)(**(longlong **)(ui_manager + UI_MANAGER_OFFSET) + UI_VTABLE_OFFSET_10))
-        (*(longlong **)(ui_manager + UI_MANAGER_OFFSET), condition_data, 1);
+    (**(code **)(**(int64_t **)(ui_manager + UI_MANAGER_OFFSET) + UI_VTABLE_OFFSET_10))
+        (*(int64_t **)(ui_manager + UI_MANAGER_OFFSET), condition_data, 1);
     return;
 }
 
@@ -912,20 +912,20 @@ void ui_system_condition_checker_type9(longlong ui_manager, uint64_t condition_d
  * @param ui_manager UI管理器指针
  * @param condition_data 条件数据
  */
-void ui_system_condition_checker_type10(longlong ui_manager, uint64_t condition_data)
+void ui_system_condition_checker_type10(int64_t ui_manager, uint64_t condition_data)
 {
-    longlong check_result;
+    int64_t check_result;
     
     // 检查条件是否满足
-    if ((*(longlong *)(ui_manager + UI_CONTEXT_OFFSET) != 0) &&
-        (check_result = FUN_1808761f0(*(longlong *)(ui_manager + UI_CONTEXT_OFFSET) + UI_CONDITION_CHECK_OFFSET_10), 
+    if ((*(int64_t *)(ui_manager + UI_CONTEXT_OFFSET) != 0) &&
+        (check_result = FUN_1808761f0(*(int64_t *)(ui_manager + UI_CONTEXT_OFFSET) + UI_CONDITION_CHECK_OFFSET_10), 
          check_result != 0)) {
         return;
     }
     
     // 条件不满足，调用虚拟函数处理
-    (**(code **)(**(longlong **)(ui_manager + UI_MANAGER_OFFSET) + UI_VTABLE_OFFSET_11))
-        (*(longlong **)(ui_manager + UI_MANAGER_OFFSET), condition_data, 1);
+    (**(code **)(**(int64_t **)(ui_manager + UI_MANAGER_OFFSET) + UI_VTABLE_OFFSET_11))
+        (*(int64_t **)(ui_manager + UI_MANAGER_OFFSET), condition_data, 1);
     return;
 }
 
@@ -936,20 +936,20 @@ void ui_system_condition_checker_type10(longlong ui_manager, uint64_t condition_
  * @param ui_manager UI管理器指针
  * @param condition_data 条件数据
  */
-void ui_system_condition_checker_type11(longlong ui_manager, uint64_t condition_data)
+void ui_system_condition_checker_type11(int64_t ui_manager, uint64_t condition_data)
 {
-    longlong check_result;
+    int64_t check_result;
     
     // 检查条件是否满足
-    if ((*(longlong *)(ui_manager + UI_CONTEXT_OFFSET) != 0) &&
-        (check_result = FUN_1808761f0(*(longlong *)(ui_manager + UI_CONTEXT_OFFSET) + UI_CONDITION_CHECK_OFFSET_11), 
+    if ((*(int64_t *)(ui_manager + UI_CONTEXT_OFFSET) != 0) &&
+        (check_result = FUN_1808761f0(*(int64_t *)(ui_manager + UI_CONTEXT_OFFSET) + UI_CONDITION_CHECK_OFFSET_11), 
          check_result != 0)) {
         return;
     }
     
     // 条件不满足，调用虚拟函数处理
-    (**(code **)(**(longlong **)(ui_manager + UI_MANAGER_OFFSET) + UI_VTABLE_OFFSET_12))
-        (*(longlong **)(ui_manager + UI_MANAGER_OFFSET), condition_data, 1);
+    (**(code **)(**(int64_t **)(ui_manager + UI_MANAGER_OFFSET) + UI_VTABLE_OFFSET_12))
+        (*(int64_t **)(ui_manager + UI_MANAGER_OFFSET), condition_data, 1);
     return;
 }
 
@@ -960,20 +960,20 @@ void ui_system_condition_checker_type11(longlong ui_manager, uint64_t condition_
  * @param ui_manager UI管理器指针
  * @param condition_data 条件数据
  */
-void ui_system_condition_checker_type12(longlong ui_manager, uint64_t condition_data)
+void ui_system_condition_checker_type12(int64_t ui_manager, uint64_t condition_data)
 {
-    longlong check_result;
+    int64_t check_result;
     
     // 检查条件是否满足
-    if ((*(longlong *)(ui_manager + UI_CONTEXT_OFFSET) != 0) &&
-        (check_result = FUN_1808761f0(*(longlong *)(ui_manager + UI_CONTEXT_OFFSET) + UI_CONDITION_CHECK_OFFSET_12), 
+    if ((*(int64_t *)(ui_manager + UI_CONTEXT_OFFSET) != 0) &&
+        (check_result = FUN_1808761f0(*(int64_t *)(ui_manager + UI_CONTEXT_OFFSET) + UI_CONDITION_CHECK_OFFSET_12), 
          check_result != 0)) {
         return;
     }
     
     // 条件不满足，调用虚拟函数处理
-    (**(code **)(**(longlong **)(ui_manager + UI_MANAGER_OFFSET) + UI_VTABLE_OFFSET_13))
-        (*(longlong **)(ui_manager + UI_MANAGER_OFFSET), condition_data, 1);
+    (**(code **)(**(int64_t **)(ui_manager + UI_MANAGER_OFFSET) + UI_VTABLE_OFFSET_13))
+        (*(int64_t **)(ui_manager + UI_MANAGER_OFFSET), condition_data, 1);
     return;
 }
 
@@ -984,20 +984,20 @@ void ui_system_condition_checker_type12(longlong ui_manager, uint64_t condition_
  * @param ui_manager UI管理器指针
  * @param condition_data 条件数据
  */
-void ui_system_condition_checker_type13(longlong ui_manager, uint64_t condition_data)
+void ui_system_condition_checker_type13(int64_t ui_manager, uint64_t condition_data)
 {
-    longlong check_result;
+    int64_t check_result;
     
     // 检查条件是否满足
-    if ((*(longlong *)(ui_manager + UI_CONTEXT_OFFSET) != 0) &&
-        (check_result = FUN_1808761f0(*(longlong *)(ui_manager + UI_CONTEXT_OFFSET) + UI_CONDITION_CHECK_OFFSET_13), 
+    if ((*(int64_t *)(ui_manager + UI_CONTEXT_OFFSET) != 0) &&
+        (check_result = FUN_1808761f0(*(int64_t *)(ui_manager + UI_CONTEXT_OFFSET) + UI_CONDITION_CHECK_OFFSET_13), 
          check_result != 0)) {
         return;
     }
     
     // 条件不满足，调用虚拟函数处理
-    (**(code **)(**(longlong **)(ui_manager + UI_MANAGER_OFFSET) + UI_VTABLE_OFFSET_14))
-        (*(longlong **)(ui_manager + UI_MANAGER_OFFSET), condition_data, 1);
+    (**(code **)(**(int64_t **)(ui_manager + UI_MANAGER_OFFSET) + UI_VTABLE_OFFSET_14))
+        (*(int64_t **)(ui_manager + UI_MANAGER_OFFSET), condition_data, 1);
     return;
 }
 
@@ -1008,20 +1008,20 @@ void ui_system_condition_checker_type13(longlong ui_manager, uint64_t condition_
  * @param ui_manager UI管理器指针
  * @param condition_data 条件数据
  */
-void ui_system_condition_checker_type14(longlong ui_manager, uint64_t condition_data)
+void ui_system_condition_checker_type14(int64_t ui_manager, uint64_t condition_data)
 {
-    longlong check_result;
+    int64_t check_result;
     
     // 检查条件是否满足
-    if ((*(longlong *)(ui_manager + UI_CONTEXT_OFFSET) != 0) &&
-        (check_result = FUN_1808761f0(*(longlong *)(ui_manager + UI_CONTEXT_OFFSET) + UI_CONDITION_CHECK_OFFSET_14), 
+    if ((*(int64_t *)(ui_manager + UI_CONTEXT_OFFSET) != 0) &&
+        (check_result = FUN_1808761f0(*(int64_t *)(ui_manager + UI_CONTEXT_OFFSET) + UI_CONDITION_CHECK_OFFSET_14), 
          check_result != 0)) {
         return;
     }
     
     // 条件不满足，调用虚拟函数处理
-    (**(code **)(**(longlong **)(ui_manager + UI_MANAGER_OFFSET) + UI_VTABLE_OFFSET_15))
-        (*(longlong **)(ui_manager + UI_MANAGER_OFFSET), condition_data, 1);
+    (**(code **)(**(int64_t **)(ui_manager + UI_MANAGER_OFFSET) + UI_VTABLE_OFFSET_15))
+        (*(int64_t **)(ui_manager + UI_MANAGER_OFFSET), condition_data, 1);
     return;
 }
 
@@ -1032,20 +1032,20 @@ void ui_system_condition_checker_type14(longlong ui_manager, uint64_t condition_
  * @param ui_manager UI管理器指针
  * @param condition_data 条件数据
  */
-void ui_system_condition_checker_type15(longlong ui_manager, uint64_t condition_data)
+void ui_system_condition_checker_type15(int64_t ui_manager, uint64_t condition_data)
 {
-    longlong check_result;
+    int64_t check_result;
     
     // 检查条件是否满足
-    if ((*(longlong *)(ui_manager + UI_CONTEXT_OFFSET) != 0) &&
-        (check_result = FUN_1808761f0(*(longlong *)(ui_manager + UI_CONTEXT_OFFSET) + UI_CONDITION_CHECK_OFFSET_15), 
+    if ((*(int64_t *)(ui_manager + UI_CONTEXT_OFFSET) != 0) &&
+        (check_result = FUN_1808761f0(*(int64_t *)(ui_manager + UI_CONTEXT_OFFSET) + UI_CONDITION_CHECK_OFFSET_15), 
          check_result != 0)) {
         return;
     }
     
     // 条件不满足，调用虚拟函数处理
-    (**(code **)(**(longlong **)(ui_manager + UI_MANAGER_OFFSET) + UI_VTABLE_OFFSET_16))
-        (*(longlong **)(ui_manager + UI_MANAGER_OFFSET), condition_data, 1);
+    (**(code **)(**(int64_t **)(ui_manager + UI_MANAGER_OFFSET) + UI_VTABLE_OFFSET_16))
+        (*(int64_t **)(ui_manager + UI_MANAGER_OFFSET), condition_data, 1);
     return;
 }
 
@@ -1056,20 +1056,20 @@ void ui_system_condition_checker_type15(longlong ui_manager, uint64_t condition_
  * @param ui_manager UI管理器指针
  * @param condition_data 条件数据
  */
-void ui_system_condition_checker_type16(longlong ui_manager, uint64_t condition_data)
+void ui_system_condition_checker_type16(int64_t ui_manager, uint64_t condition_data)
 {
-    longlong check_result;
+    int64_t check_result;
     
     // 检查条件是否满足
-    if ((*(longlong *)(ui_manager + UI_CONTEXT_OFFSET) != 0) &&
-        (check_result = FUN_1808761f0(*(longlong *)(ui_manager + UI_CONTEXT_OFFSET) + UI_CONDITION_CHECK_OFFSET_16), 
+    if ((*(int64_t *)(ui_manager + UI_CONTEXT_OFFSET) != 0) &&
+        (check_result = FUN_1808761f0(*(int64_t *)(ui_manager + UI_CONTEXT_OFFSET) + UI_CONDITION_CHECK_OFFSET_16), 
          check_result != 0)) {
         return;
     }
     
     // 条件不满足，调用虚拟函数处理
-    (**(code **)(**(longlong **)(ui_manager + UI_MANAGER_OFFSET) + UI_VTABLE_OFFSET_17))
-        (*(longlong **)(ui_manager + UI_MANAGER_OFFSET), condition_data, 1);
+    (**(code **)(**(int64_t **)(ui_manager + UI_MANAGER_OFFSET) + UI_VTABLE_OFFSET_17))
+        (*(int64_t **)(ui_manager + UI_MANAGER_OFFSET), condition_data, 1);
     return;
 }
 
@@ -1080,20 +1080,20 @@ void ui_system_condition_checker_type16(longlong ui_manager, uint64_t condition_
  * @param ui_manager UI管理器指针
  * @param condition_data 条件数据
  */
-void ui_system_condition_checker_type17(longlong ui_manager, uint64_t condition_data)
+void ui_system_condition_checker_type17(int64_t ui_manager, uint64_t condition_data)
 {
-    longlong check_result;
+    int64_t check_result;
     
     // 检查条件是否满足
-    if ((*(longlong *)(ui_manager + UI_CONTEXT_OFFSET) != 0) &&
-        (check_result = FUN_1808761f0(*(longlong *)(ui_manager + UI_CONTEXT_OFFSET) + UI_CONDITION_CHECK_OFFSET_17), 
+    if ((*(int64_t *)(ui_manager + UI_CONTEXT_OFFSET) != 0) &&
+        (check_result = FUN_1808761f0(*(int64_t *)(ui_manager + UI_CONTEXT_OFFSET) + UI_CONDITION_CHECK_OFFSET_17), 
          check_result != 0)) {
         return;
     }
     
     // 条件不满足，调用虚拟函数处理
-    (**(code **)(**(longlong **)(ui_manager + UI_MANAGER_OFFSET) + UI_VTABLE_OFFSET_18))
-        (*(longlong **)(ui_manager + UI_MANAGER_OFFSET), condition_data, 1);
+    (**(code **)(**(int64_t **)(ui_manager + UI_MANAGER_OFFSET) + UI_VTABLE_OFFSET_18))
+        (*(int64_t **)(ui_manager + UI_MANAGER_OFFSET), condition_data, 1);
     return;
 }
 
@@ -1104,20 +1104,20 @@ void ui_system_condition_checker_type17(longlong ui_manager, uint64_t condition_
  * @param ui_manager UI管理器指针
  * @param condition_data 条件数据
  */
-void ui_system_condition_checker_type18(longlong ui_manager, uint64_t condition_data)
+void ui_system_condition_checker_type18(int64_t ui_manager, uint64_t condition_data)
 {
-    longlong check_result;
+    int64_t check_result;
     
     // 检查条件是否满足
-    if ((*(longlong *)(ui_manager + UI_CONTEXT_OFFSET) != 0) &&
-        (check_result = FUN_1808761f0(*(longlong *)(ui_manager + UI_CONTEXT_OFFSET) + UI_CONDITION_CHECK_OFFSET_18), 
+    if ((*(int64_t *)(ui_manager + UI_CONTEXT_OFFSET) != 0) &&
+        (check_result = FUN_1808761f0(*(int64_t *)(ui_manager + UI_CONTEXT_OFFSET) + UI_CONDITION_CHECK_OFFSET_18), 
          check_result != 0)) {
         return;
     }
     
     // 条件不满足，调用虚拟函数处理
-    (**(code **)(**(longlong **)(ui_manager + UI_MANAGER_OFFSET) + UI_VTABLE_OFFSET_19))
-        (*(longlong **)(ui_manager + UI_MANAGER_OFFSET), condition_data, 1);
+    (**(code **)(**(int64_t **)(ui_manager + UI_MANAGER_OFFSET) + UI_VTABLE_OFFSET_19))
+        (*(int64_t **)(ui_manager + UI_MANAGER_OFFSET), condition_data, 1);
     return;
 }
 
@@ -1128,20 +1128,20 @@ void ui_system_condition_checker_type18(longlong ui_manager, uint64_t condition_
  * @param ui_manager UI管理器指针
  * @param condition_data 条件数据
  */
-void ui_system_condition_checker_type19(longlong ui_manager, uint64_t condition_data)
+void ui_system_condition_checker_type19(int64_t ui_manager, uint64_t condition_data)
 {
-    longlong check_result;
+    int64_t check_result;
     
     // 检查条件是否满足
-    if ((*(longlong *)(ui_manager + UI_CONTEXT_OFFSET) != 0) &&
-        (check_result = FUN_1808761f0(*(longlong *)(ui_manager + UI_CONTEXT_OFFSET) + UI_CONDITION_CHECK_OFFSET_19), 
+    if ((*(int64_t *)(ui_manager + UI_CONTEXT_OFFSET) != 0) &&
+        (check_result = FUN_1808761f0(*(int64_t *)(ui_manager + UI_CONTEXT_OFFSET) + UI_CONDITION_CHECK_OFFSET_19), 
          check_result != 0)) {
         return;
     }
     
     // 条件不满足，调用虚拟函数处理
-    (**(code **)(**(longlong **)(ui_manager + UI_MANAGER_OFFSET) + UI_VTABLE_OFFSET_20))
-        (*(longlong **)(ui_manager + UI_MANAGER_OFFSET), condition_data, 1);
+    (**(code **)(**(int64_t **)(ui_manager + UI_MANAGER_OFFSET) + UI_VTABLE_OFFSET_20))
+        (*(int64_t **)(ui_manager + UI_MANAGER_OFFSET), condition_data, 1);
     return;
 }
 
@@ -1152,20 +1152,20 @@ void ui_system_condition_checker_type19(longlong ui_manager, uint64_t condition_
  * @param ui_manager UI管理器指针
  * @param condition_data 条件数据
  */
-void ui_system_condition_checker_type20(longlong ui_manager, uint64_t condition_data)
+void ui_system_condition_checker_type20(int64_t ui_manager, uint64_t condition_data)
 {
-    longlong check_result;
+    int64_t check_result;
     
     // 检查条件是否满足
-    if ((*(longlong *)(ui_manager + UI_CONTEXT_OFFSET) != 0) &&
-        (check_result = FUN_1808761f0(*(longlong *)(ui_manager + UI_CONTEXT_OFFSET) + UI_CONDITION_CHECK_OFFSET_20), 
+    if ((*(int64_t *)(ui_manager + UI_CONTEXT_OFFSET) != 0) &&
+        (check_result = FUN_1808761f0(*(int64_t *)(ui_manager + UI_CONTEXT_OFFSET) + UI_CONDITION_CHECK_OFFSET_20), 
          check_result != 0)) {
         return;
     }
     
     // 条件不满足，调用虚拟函数处理
-    (**(code **)(**(longlong **)(ui_manager + UI_MANAGER_OFFSET) + UI_VTABLE_OFFSET_21))
-        (*(longlong **)(ui_manager + UI_MANAGER_OFFSET), condition_data, 1);
+    (**(code **)(**(int64_t **)(ui_manager + UI_MANAGER_OFFSET) + UI_VTABLE_OFFSET_21))
+        (*(int64_t **)(ui_manager + UI_MANAGER_OFFSET), condition_data, 1);
     return;
 }
 
@@ -1176,20 +1176,20 @@ void ui_system_condition_checker_type20(longlong ui_manager, uint64_t condition_
  * @param ui_manager UI管理器指针
  * @param condition_data 条件数据
  */
-void ui_system_condition_checker_type21(longlong ui_manager, uint64_t condition_data)
+void ui_system_condition_checker_type21(int64_t ui_manager, uint64_t condition_data)
 {
-    longlong check_result;
+    int64_t check_result;
     
     // 检查条件是否满足
-    if ((*(longlong *)(ui_manager + UI_CONTEXT_OFFSET) != 0) &&
-        (check_result = FUN_1808761f0(*(longlong *)(ui_manager + UI_CONTEXT_OFFSET) + UI_CONDITION_CHECK_OFFSET_21), 
+    if ((*(int64_t *)(ui_manager + UI_CONTEXT_OFFSET) != 0) &&
+        (check_result = FUN_1808761f0(*(int64_t *)(ui_manager + UI_CONTEXT_OFFSET) + UI_CONDITION_CHECK_OFFSET_21), 
          check_result != 0)) {
         return;
     }
     
     // 条件不满足，调用虚拟函数处理
-    (**(code **)(**(longlong **)(ui_manager + UI_MANAGER_OFFSET) + UI_VTABLE_OFFSET_23))
-        (*(longlong **)(ui_manager + UI_MANAGER_OFFSET), condition_data, 1);
+    (**(code **)(**(int64_t **)(ui_manager + UI_MANAGER_OFFSET) + UI_VTABLE_OFFSET_23))
+        (*(int64_t **)(ui_manager + UI_MANAGER_OFFSET), condition_data, 1);
     return;
 }
 
@@ -1200,20 +1200,20 @@ void ui_system_condition_checker_type21(longlong ui_manager, uint64_t condition_
  * @param ui_manager UI管理器指针
  * @param condition_data 条件数据
  */
-void ui_system_condition_checker_type22(longlong ui_manager, uint64_t condition_data)
+void ui_system_condition_checker_type22(int64_t ui_manager, uint64_t condition_data)
 {
-    longlong check_result;
+    int64_t check_result;
     
     // 检查条件是否满足
-    if ((*(longlong *)(ui_manager + UI_CONTEXT_OFFSET) != 0) &&
-        (check_result = FUN_1808761f0(*(longlong *)(ui_manager + UI_CONTEXT_OFFSET) + UI_CONDITION_CHECK_OFFSET_22), 
+    if ((*(int64_t *)(ui_manager + UI_CONTEXT_OFFSET) != 0) &&
+        (check_result = FUN_1808761f0(*(int64_t *)(ui_manager + UI_CONTEXT_OFFSET) + UI_CONDITION_CHECK_OFFSET_22), 
          check_result != 0)) {
         return;
     }
     
     // 条件不满足，调用虚拟函数处理
-    (**(code **)(**(longlong **)(ui_manager + UI_MANAGER_OFFSET) + UI_VTABLE_OFFSET_24))
-        (*(longlong **)(ui_manager + UI_MANAGER_OFFSET), condition_data, 1);
+    (**(code **)(**(int64_t **)(ui_manager + UI_MANAGER_OFFSET) + UI_VTABLE_OFFSET_24))
+        (*(int64_t **)(ui_manager + UI_MANAGER_OFFSET), condition_data, 1);
     return;
 }
 
@@ -1224,20 +1224,20 @@ void ui_system_condition_checker_type22(longlong ui_manager, uint64_t condition_
  * @param ui_manager UI管理器指针
  * @param condition_data 条件数据
  */
-void ui_system_condition_checker_type23(longlong ui_manager, uint64_t condition_data)
+void ui_system_condition_checker_type23(int64_t ui_manager, uint64_t condition_data)
 {
-    longlong check_result;
+    int64_t check_result;
     
     // 检查条件是否满足
-    if ((*(longlong *)(ui_manager + UI_CONTEXT_OFFSET) != 0) &&
-        (check_result = FUN_1808761f0(*(longlong *)(ui_manager + UI_CONTEXT_OFFSET) + UI_CONDITION_CHECK_OFFSET_23), 
+    if ((*(int64_t *)(ui_manager + UI_CONTEXT_OFFSET) != 0) &&
+        (check_result = FUN_1808761f0(*(int64_t *)(ui_manager + UI_CONTEXT_OFFSET) + UI_CONDITION_CHECK_OFFSET_23), 
          check_result != 0)) {
         return;
     }
     
     // 条件不满足，调用虚拟函数处理
-    (**(code **)(**(longlong **)(ui_manager + UI_MANAGER_OFFSET) + UI_VTABLE_OFFSET_25))
-        (*(longlong **)(ui_manager + UI_MANAGER_OFFSET), condition_data, 1);
+    (**(code **)(**(int64_t **)(ui_manager + UI_MANAGER_OFFSET) + UI_VTABLE_OFFSET_25))
+        (*(int64_t **)(ui_manager + UI_MANAGER_OFFSET), condition_data, 1);
     return;
 }
 
@@ -1248,20 +1248,20 @@ void ui_system_condition_checker_type23(longlong ui_manager, uint64_t condition_
  * @param ui_manager UI管理器指针
  * @param condition_data 条件数据
  */
-void ui_system_condition_checker_type24(longlong ui_manager, uint64_t condition_data)
+void ui_system_condition_checker_type24(int64_t ui_manager, uint64_t condition_data)
 {
-    longlong check_result;
+    int64_t check_result;
     
     // 检查条件是否满足
-    if ((*(longlong *)(ui_manager + UI_CONTEXT_OFFSET) != 0) &&
-        (check_result = FUN_1808761f0(*(longlong *)(ui_manager + UI_CONTEXT_OFFSET) + UI_CONDITION_CHECK_OFFSET_24), 
+    if ((*(int64_t *)(ui_manager + UI_CONTEXT_OFFSET) != 0) &&
+        (check_result = FUN_1808761f0(*(int64_t *)(ui_manager + UI_CONTEXT_OFFSET) + UI_CONDITION_CHECK_OFFSET_24), 
          check_result != 0)) {
         return;
     }
     
     // 条件不满足，调用虚拟函数处理
-    (**(code **)(**(longlong **)(ui_manager + UI_MANAGER_OFFSET) + UI_VTABLE_OFFSET_26))
-        (*(longlong **)(ui_manager + UI_MANAGER_OFFSET), condition_data, 1);
+    (**(code **)(**(int64_t **)(ui_manager + UI_MANAGER_OFFSET) + UI_VTABLE_OFFSET_26))
+        (*(int64_t **)(ui_manager + UI_MANAGER_OFFSET), condition_data, 1);
     return;
 }
 
@@ -1272,20 +1272,20 @@ void ui_system_condition_checker_type24(longlong ui_manager, uint64_t condition_
  * @param ui_manager UI管理器指针
  * @param condition_data 条件数据
  */
-void ui_system_condition_checker_type25(longlong ui_manager, uint64_t condition_data)
+void ui_system_condition_checker_type25(int64_t ui_manager, uint64_t condition_data)
 {
-    longlong check_result;
+    int64_t check_result;
     
     // 检查条件是否满足
-    if ((*(longlong *)(ui_manager + UI_CONTEXT_OFFSET) != 0) &&
-        (check_result = FUN_1808761f0(*(longlong *)(ui_manager + UI_CONTEXT_OFFSET) + UI_CONDITION_CHECK_OFFSET_25), 
+    if ((*(int64_t *)(ui_manager + UI_CONTEXT_OFFSET) != 0) &&
+        (check_result = FUN_1808761f0(*(int64_t *)(ui_manager + UI_CONTEXT_OFFSET) + UI_CONDITION_CHECK_OFFSET_25), 
          check_result != 0)) {
         return;
     }
     
     // 条件不满足，调用虚拟函数处理
-    (**(code **)(**(longlong **)(ui_manager + UI_MANAGER_OFFSET) + UI_VTABLE_OFFSET_27))
-        (*(longlong **)(ui_manager + UI_MANAGER_OFFSET), condition_data, 1);
+    (**(code **)(**(int64_t **)(ui_manager + UI_MANAGER_OFFSET) + UI_VTABLE_OFFSET_27))
+        (*(int64_t **)(ui_manager + UI_MANAGER_OFFSET), condition_data, 1);
     return;
 }
 
@@ -1296,20 +1296,20 @@ void ui_system_condition_checker_type25(longlong ui_manager, uint64_t condition_
  * @param ui_manager UI管理器指针
  * @param condition_data 条件数据
  */
-void ui_system_condition_checker_type26(longlong ui_manager, uint64_t condition_data)
+void ui_system_condition_checker_type26(int64_t ui_manager, uint64_t condition_data)
 {
-    longlong check_result;
+    int64_t check_result;
     
     // 检查条件是否满足
-    if ((*(longlong *)(ui_manager + UI_CONTEXT_OFFSET) != 0) &&
-        (check_result = FUN_1808761f0(*(longlong *)(ui_manager + UI_CONTEXT_OFFSET) + UI_CONDITION_CHECK_OFFSET_26), 
+    if ((*(int64_t *)(ui_manager + UI_CONTEXT_OFFSET) != 0) &&
+        (check_result = FUN_1808761f0(*(int64_t *)(ui_manager + UI_CONTEXT_OFFSET) + UI_CONDITION_CHECK_OFFSET_26), 
          check_result != 0)) {
         return;
     }
     
     // 条件不满足，调用虚拟函数处理
-    (**(code **)(**(longlong **)(ui_manager + UI_MANAGER_OFFSET) + UI_VTABLE_OFFSET_28))
-        (*(longlong **)(ui_manager + UI_MANAGER_OFFSET), condition_data, 1);
+    (**(code **)(**(int64_t **)(ui_manager + UI_MANAGER_OFFSET) + UI_VTABLE_OFFSET_28))
+        (*(int64_t **)(ui_manager + UI_MANAGER_OFFSET), condition_data, 1);
     return;
 }
 
@@ -1320,20 +1320,20 @@ void ui_system_condition_checker_type26(longlong ui_manager, uint64_t condition_
  * @param ui_manager UI管理器指针
  * @param condition_data 条件数据
  */
-void ui_system_condition_checker_type27(longlong ui_manager, uint64_t condition_data)
+void ui_system_condition_checker_type27(int64_t ui_manager, uint64_t condition_data)
 {
-    longlong check_result;
+    int64_t check_result;
     
     // 检查条件是否满足
-    if ((*(longlong *)(ui_manager + UI_CONTEXT_OFFSET) != 0) &&
-        (check_result = FUN_1808761f0(*(longlong *)(ui_manager + UI_CONTEXT_OFFSET) + UI_CONDITION_CHECK_OFFSET_27), 
+    if ((*(int64_t *)(ui_manager + UI_CONTEXT_OFFSET) != 0) &&
+        (check_result = FUN_1808761f0(*(int64_t *)(ui_manager + UI_CONTEXT_OFFSET) + UI_CONDITION_CHECK_OFFSET_27), 
          check_result != 0)) {
         return;
     }
     
     // 条件不满足，调用虚拟函数处理
-    (**(code **)(**(longlong **)(ui_manager + UI_MANAGER_OFFSET) + UI_VTABLE_OFFSET_29))
-        (*(longlong **)(ui_manager + UI_MANAGER_OFFSET), condition_data, 1);
+    (**(code **)(**(int64_t **)(ui_manager + UI_MANAGER_OFFSET) + UI_VTABLE_OFFSET_29))
+        (*(int64_t **)(ui_manager + UI_MANAGER_OFFSET), condition_data, 1);
     return;
 }
 
@@ -1344,20 +1344,20 @@ void ui_system_condition_checker_type27(longlong ui_manager, uint64_t condition_
  * @param ui_manager UI管理器指针
  * @param condition_data 条件数据
  */
-void ui_system_condition_checker_type28(longlong ui_manager, uint64_t condition_data)
+void ui_system_condition_checker_type28(int64_t ui_manager, uint64_t condition_data)
 {
-    longlong check_result;
+    int64_t check_result;
     
     // 检查条件是否满足
-    if ((*(longlong *)(ui_manager + UI_CONTEXT_OFFSET) != 0) &&
-        (check_result = FUN_1808761f0(*(longlong *)(ui_manager + UI_CONTEXT_OFFSET) + UI_CONDITION_CHECK_OFFSET_28), 
+    if ((*(int64_t *)(ui_manager + UI_CONTEXT_OFFSET) != 0) &&
+        (check_result = FUN_1808761f0(*(int64_t *)(ui_manager + UI_CONTEXT_OFFSET) + UI_CONDITION_CHECK_OFFSET_28), 
          check_result != 0)) {
         return;
     }
     
     // 条件不满足，调用虚拟函数处理
-    (**(code **)(**(longlong **)(ui_manager + UI_MANAGER_OFFSET) + UI_VTABLE_OFFSET_30))
-        (*(longlong **)(ui_manager + UI_MANAGER_OFFSET), condition_data, 1);
+    (**(code **)(**(int64_t **)(ui_manager + UI_MANAGER_OFFSET) + UI_VTABLE_OFFSET_30))
+        (*(int64_t **)(ui_manager + UI_MANAGER_OFFSET), condition_data, 1);
     return;
 }
 
@@ -1373,19 +1373,19 @@ void ui_system_condition_checker_type28(longlong ui_manager, uint64_t condition_
  * @param ui_manager UI管理器指针
  * @param resource_data 资源数据
  */
-void ui_system_resource_manager_type1(longlong ui_manager, uint64_t resource_data)
+void ui_system_resource_manager_type1(int64_t ui_manager, uint64_t resource_data)
 {
-    longlong handle_result;
+    int64_t handle_result;
     int8_t stack_protector_1 [UI_STACK_SIZE_1];
     int8_t stack_protector_2 [UI_STACK_SIZE_2];
-    ulonglong stack_guard;
+    uint64_t stack_guard;
     
     // 栈保护机制
-    stack_guard = GET_SECURITY_COOKIE() ^ (ulonglong)stack_protector_1;
+    stack_guard = GET_SECURITY_COOKIE() ^ (uint64_t)stack_protector_1;
     
     // 调用虚拟函数处理资源
-    handle_result = (**(code **)(**(longlong **)(ui_manager + UI_MANAGER_OFFSET) + UI_VTABLE_OFFSET_22))
-                      (*(longlong **)(ui_manager + UI_MANAGER_OFFSET), resource_data, 1);
+    handle_result = (**(code **)(**(int64_t **)(ui_manager + UI_MANAGER_OFFSET) + UI_VTABLE_OFFSET_22))
+                      (*(int64_t **)(ui_manager + UI_MANAGER_OFFSET), resource_data, 1);
     
     // 错误处理
     if (handle_result == 0) {
@@ -1394,7 +1394,7 @@ void ui_system_resource_manager_type1(longlong ui_manager, uint64_t resource_dat
     }
     
     // 警告：子函数不返回
-    FUN_1808fc050(stack_guard ^ (ulonglong)stack_protector_1);
+    FUN_1808fc050(stack_guard ^ (uint64_t)stack_protector_1);
 }
 
 // ============================================================================
@@ -1411,24 +1411,24 @@ void ui_system_resource_manager_type1(longlong ui_manager, uint64_t resource_dat
  * @param lock_flag 锁定标志
  * @return 找到的数据指针，未找到返回0
  */
-longlong ui_system_hash_finder_type2(longlong ui_manager, uint *search_key, char lock_flag)
+int64_t ui_system_hash_finder_type2(int64_t ui_manager, uint *search_key, char lock_flag)
 {
-    longlong hash_table;
+    int64_t hash_table;
     bool need_unlock;
-    longlong *current_entry;
+    int64_t *current_entry;
     int entry_index;
     uint *key_ptr;
-    longlong result;
-    longlong context_ptr;
+    int64_t result;
+    int64_t context_ptr;
     
     // 获取UI上下文
-    context_ptr = *(longlong *)(ui_manager + UI_MANAGER_OFFSET);
+    context_ptr = *(int64_t *)(ui_manager + UI_MANAGER_OFFSET);
     if (context_ptr == 0) {
         return 0;
     }
     
     // 获取哈希表
-    hash_table = *(longlong *)(context_ptr + UI_DATA_OFFSET_1);
+    hash_table = *(int64_t *)(context_ptr + UI_DATA_OFFSET_1);
     if ((hash_table == 0) || (lock_flag == '\0')) {
         need_unlock = false;
     }
@@ -1440,13 +1440,13 @@ longlong ui_system_hash_finder_type2(longlong ui_manager, uint *search_key, char
     // 哈希查找
     if (((*(int *)(context_ptr + UI_HASH_TABLE_SIZE_2) != 0) && 
          (*(int *)(context_ptr + UI_HASH_TABLE_SIZE_3) != 0)) &&
-        (entry_index = *(int *)(*(longlong *)(context_ptr + UI_HASH_TABLE_OFFSET_2) +
-                               (longlong)(int)((search_key[3] ^ search_key[2] ^ search_key[1] ^ *search_key) &
+        (entry_index = *(int *)(*(int64_t *)(context_ptr + UI_HASH_TABLE_OFFSET_2) +
+                               (int64_t)(int)((search_key[3] ^ search_key[2] ^ search_key[1] ^ *search_key) &
                                             *(int *)(context_ptr + UI_HASH_TABLE_SIZE_3) - 1U) * 4), 
          entry_index != -1)) {
         do {
-            current_entry = (longlong *)((longlong)entry_index * UI_MUTEX_SIZE + *(longlong *)(context_ptr + UI_HASH_TABLE_OFFSET_3));
-            if ((*current_entry == *(longlong *)search_key) && (current_entry[1] == *(longlong *)(search_key + 2))) {
+            current_entry = (int64_t *)((int64_t)entry_index * UI_MUTEX_SIZE + *(int64_t *)(context_ptr + UI_HASH_TABLE_OFFSET_3));
+            if ((*current_entry == *(int64_t *)search_key) && (current_entry[1] == *(int64_t *)(search_key + 2))) {
                 result = current_entry[3];
                 goto cleanup_and_return;
             }
@@ -1474,18 +1474,18 @@ cleanup_and_return:
  * @param param_3 参数3
  * @return 找到的数据指针，未找到返回0
  */
-longlong ui_system_hash_finder_type3(uint64_t param_1, uint64_t param_2, char param_3)
+int64_t ui_system_hash_finder_type3(uint64_t param_1, uint64_t param_2, char param_3)
 {
-    longlong hash_table;
+    int64_t hash_table;
     bool need_unlock;
-    longlong *current_entry;
+    int64_t *current_entry;
     int entry_index;
     uint *key_ptr;
-    longlong result;
-    longlong context_ptr;
+    int64_t result;
+    int64_t context_ptr;
     
     // 获取哈希表
-    hash_table = *(longlong *)(context_ptr + UI_DATA_OFFSET_1);
+    hash_table = *(int64_t *)(context_ptr + UI_DATA_OFFSET_1);
     if ((hash_table == 0) || (param_3 == '\0')) {
         need_unlock = false;
     }
@@ -1497,13 +1497,13 @@ longlong ui_system_hash_finder_type3(uint64_t param_1, uint64_t param_2, char pa
     // 哈希查找
     if (((*(int *)(context_ptr + UI_HASH_TABLE_SIZE_2) != 0) && 
          (*(int *)(context_ptr + UI_HASH_TABLE_SIZE_3) != 0)) &&
-        (entry_index = *(int *)(*(longlong *)(context_ptr + UI_HASH_TABLE_OFFSET_2) +
-                               (longlong)(int)((key_ptr[3] ^ key_ptr[2] ^ key_ptr[1] ^ *key_ptr) &
+        (entry_index = *(int *)(*(int64_t *)(context_ptr + UI_HASH_TABLE_OFFSET_2) +
+                               (int64_t)(int)((key_ptr[3] ^ key_ptr[2] ^ key_ptr[1] ^ *key_ptr) &
                                             *(int)(context_ptr + UI_HASH_TABLE_SIZE_3) - 1U) * 4), 
          entry_index != -1)) {
         do {
-            current_entry = (longlong *)((longlong)entry_index * UI_MUTEX_SIZE + *(longlong *)(context_ptr + UI_HASH_TABLE_OFFSET_3));
-            if ((*current_entry == *(longlong *)key_ptr) && (current_entry[1] == *(longlong *)(key_ptr + 2))) {
+            current_entry = (int64_t *)((int64_t)entry_index * UI_MUTEX_SIZE + *(int64_t *)(context_ptr + UI_HASH_TABLE_OFFSET_3));
+            if ((*current_entry == *(int64_t *)key_ptr) && (current_entry[1] == *(int64_t *)(key_ptr + 2))) {
                 result = current_entry[3];
                 goto cleanup_and_return;
             }
@@ -1531,22 +1531,22 @@ cleanup_and_return:
  * @param lock_flag 锁定标志
  * @return 找到的数据指针，未找到返回0
  */
-longlong ui_system_hash_finder_type4(longlong ui_manager, uint *search_key, char lock_flag)
+int64_t ui_system_hash_finder_type4(int64_t ui_manager, uint *search_key, char lock_flag)
 {
-    longlong hash_table;
+    int64_t hash_table;
     uint key_part_1;
     uint key_part_2;
     uint key_part_3;
     uint key_part_4;
     bool need_unlock;
-    longlong context_ptr;
-    longlong data_ptr;
-    longlong *current_entry;
+    int64_t context_ptr;
+    int64_t data_ptr;
+    int64_t *current_entry;
     int entry_index;
-    longlong result;
+    int64_t result;
     
     // 获取UI上下文
-    context_ptr = *(longlong *)(ui_manager + UI_MANAGER_OFFSET);
+    context_ptr = *(int64_t *)(ui_manager + UI_MANAGER_OFFSET);
     if (context_ptr == 0) {
         return 0;
     }
@@ -1554,12 +1554,12 @@ longlong ui_system_hash_finder_type4(longlong ui_manager, uint *search_key, char
     // 分解键值
     key_part_1 = *search_key;
     key_part_2 = search_key[1];
-    data_ptr = *(longlong *)search_key;
+    data_ptr = *(int64_t *)search_key;
     key_part_3 = search_key[2];
     key_part_4 = search_key[3];
     
     // 获取哈希表
-    hash_table = *(longlong *)(context_ptr + UI_DATA_OFFSET_2);
+    hash_table = *(int64_t *)(context_ptr + UI_DATA_OFFSET_2);
     if ((hash_table == 0) || (lock_flag == '\0')) {
         need_unlock = false;
     }
@@ -1570,13 +1570,13 @@ longlong ui_system_hash_finder_type4(longlong ui_manager, uint *search_key, char
     
     // 哈希查找
     if ((*(int *)(context_ptr + UI_HASH_TABLE_SIZE_4) != 0) && (*(int *)(context_ptr + UI_HASH_TABLE_SIZE_5) != 0)) {
-        entry_index = *(int *)(*(longlong *)(context_ptr + UI_HASH_TABLE_OFFSET_4) +
-                               (longlong)(int)((key_part_2 ^ key_part_1 ^ key_part_3 ^ key_part_4) & 
+        entry_index = *(int *)(*(int64_t *)(context_ptr + UI_HASH_TABLE_OFFSET_4) +
+                               (int64_t)(int)((key_part_2 ^ key_part_1 ^ key_part_3 ^ key_part_4) & 
                                             *(int)(context_ptr + UI_HASH_TABLE_SIZE_5) - 1U) * 4);
         if (entry_index != -1) {
             do {
-                current_entry = (longlong *)((longlong)entry_index * UI_MUTEX_SIZE + *(longlong *)(context_ptr + UI_HASH_TABLE_OFFSET_5));
-                if ((*current_entry == data_ptr) && (current_entry[1] == *(longlong *)(search_key + 2))) {
+                current_entry = (int64_t *)((int64_t)entry_index * UI_MUTEX_SIZE + *(int64_t *)(context_ptr + UI_HASH_TABLE_OFFSET_5));
+                if ((*current_entry == data_ptr) && (current_entry[1] == *(int64_t *)(search_key + 2))) {
                     result = current_entry[3];
                     goto cleanup_and_return;
                 }
@@ -1605,21 +1605,21 @@ cleanup_and_return:
  * @param param_3 参数3
  * @return 找到的数据指针，未找到返回0
  */
-longlong ui_system_hash_finder_type5(longlong param_1, uint64_t param_2, char param_3)
+int64_t ui_system_hash_finder_type5(int64_t param_1, uint64_t param_2, char param_3)
 {
-    longlong hash_table;
+    int64_t hash_table;
     bool need_unlock;
-    longlong *current_entry;
+    int64_t *current_entry;
     int entry_index;
-    longlong key_data;
-    longlong result;
-    longlong context_ptr;
-    longlong xmm_data;
+    int64_t key_data;
+    int64_t result;
+    int64_t context_ptr;
+    int64_t xmm_data;
     uint key_high;
-    longlong stack_data;
+    int64_t stack_data;
     
     // 获取哈希表
-    hash_table = *(longlong *)(context_ptr + UI_DATA_OFFSET_2);
+    hash_table = *(int64_t *)(context_ptr + UI_DATA_OFFSET_2);
     stack_data = xmm_data;
     if ((hash_table == 0) || (param_3 == '\0')) {
         need_unlock = false;
@@ -1631,13 +1631,13 @@ longlong ui_system_hash_finder_type5(longlong param_1, uint64_t param_2, char pa
     
     // 哈希查找
     if ((*(int *)(context_ptr + UI_HASH_TABLE_SIZE_4) != 0) && (*(int *)(context_ptr + UI_HASH_TABLE_SIZE_5) != 0)) {
-        key_high = (uint)((ulonglong)param_1 >> 0x20);
-        entry_index = *(int *)(*(longlong *)(context_ptr + UI_HASH_TABLE_OFFSET_4) +
-                               (longlong)(int)((key_high ^ (uint)param_1 ^ (uint)stack_data ^
+        key_high = (uint)((uint64_t)param_1 >> 0x20);
+        entry_index = *(int *)(*(int64_t *)(context_ptr + UI_HASH_TABLE_OFFSET_4) +
+                               (int64_t)(int)((key_high ^ (uint)param_1 ^ (uint)stack_data ^
                                             stack_data._4_4_) & *(int)(context_ptr + UI_HASH_TABLE_SIZE_5) - 1U) * 4);
         if (entry_index != -1) {
             do {
-                current_entry = (longlong *)((longlong)entry_index * UI_MUTEX_SIZE + *(longlong *)(context_ptr + UI_HASH_TABLE_OFFSET_5));
+                current_entry = (int64_t *)((int64_t)entry_index * UI_MUTEX_SIZE + *(int64_t *)(context_ptr + UI_HASH_TABLE_OFFSET_5));
                 if ((*current_entry == param_1) && (current_entry[1] == stack_data)) {
                     result = current_entry[3];
                     goto cleanup_and_return;
@@ -1667,23 +1667,23 @@ cleanup_and_return:
  * @param lock_flag 锁定标志
  * @return 找到的数据指针，未找到返回0
  */
-longlong ui_system_hash_finder_type6(longlong ui_manager, uint *search_key, char lock_flag)
+int64_t ui_system_hash_finder_type6(int64_t ui_manager, uint *search_key, char lock_flag)
 {
-    longlong hash_table;
+    int64_t hash_table;
     bool need_unlock;
-    longlong *current_entry;
+    int64_t *current_entry;
     int entry_index;
-    longlong result;
-    longlong context_ptr;
+    int64_t result;
+    int64_t context_ptr;
     
     // 获取UI上下文
-    context_ptr = *(longlong *)(ui_manager + UI_MANAGER_OFFSET);
+    context_ptr = *(int64_t *)(ui_manager + UI_MANAGER_OFFSET);
     if (context_ptr == 0) {
         return 0;
     }
     
     // 获取哈希表
-    hash_table = *(longlong *)(context_ptr + UI_DATA_OFFSET_3);
+    hash_table = *(int64_t *)(context_ptr + UI_DATA_OFFSET_3);
     if ((hash_table == 0) || (lock_flag == '\0')) {
         need_unlock = false;
     }
@@ -1695,13 +1695,13 @@ longlong ui_system_hash_finder_type6(longlong ui_manager, uint *search_key, char
     // 哈希查找
     if (((*(int *)(context_ptr + UI_HASH_TABLE_SIZE_6) != 0) && 
          (*(int *)(context_ptr + UI_HASH_TABLE_SIZE_7) != 0)) &&
-        (entry_index = *(int *)(*(longlong *)(context_ptr + UI_HASH_TABLE_OFFSET_6) +
-                               (longlong)(int)((search_key[3] ^ search_key[2] ^ search_key[1] ^ *search_key) &
+        (entry_index = *(int *)(*(int64_t *)(context_ptr + UI_HASH_TABLE_OFFSET_6) +
+                               (int64_t)(int)((search_key[3] ^ search_key[2] ^ search_key[1] ^ *search_key) &
                                             *(int)(context_ptr + UI_HASH_TABLE_SIZE_7) - 1U) * 4), 
          entry_index != -1)) {
         do {
-            current_entry = (longlong *)((longlong)entry_index * UI_MUTEX_SIZE + *(longlong *)(context_ptr + UI_HASH_TABLE_OFFSET_7));
-            if ((*current_entry == *(longlong *)search_key) && (current_entry[1] == *(longlong *)(search_key + 2))) {
+            current_entry = (int64_t *)((int64_t)entry_index * UI_MUTEX_SIZE + *(int64_t *)(context_ptr + UI_HASH_TABLE_OFFSET_7));
+            if ((*current_entry == *(int64_t *)search_key) && (current_entry[1] == *(int64_t *)(search_key + 2))) {
                 result = current_entry[3];
                 goto cleanup_and_return;
             }
@@ -1744,7 +1744,7 @@ void ui_system_resource_manager_type2(void)
  */
 uint64_t ui_system_status_query_type1(void)
 {
-    longlong context_ptr;
+    int64_t context_ptr;
     char status_flag;
     
     if (status_flag != '\0') {
@@ -1764,18 +1764,18 @@ uint64_t ui_system_status_query_type1(void)
  * @param param_3 参数3
  * @return 找到的数据指针，未找到返回0
  */
-longlong ui_system_hash_finder_type7(uint64_t param_1, uint64_t param_2, char param_3)
+int64_t ui_system_hash_finder_type7(uint64_t param_1, uint64_t param_2, char param_3)
 {
-    longlong hash_table;
+    int64_t hash_table;
     bool need_unlock;
-    longlong *current_entry;
+    int64_t *current_entry;
     int entry_index;
     uint *key_ptr;
-    longlong result;
-    longlong context_ptr;
+    int64_t result;
+    int64_t context_ptr;
     
     // 获取哈希表
-    hash_table = *(longlong *)(context_ptr + UI_DATA_OFFSET_3);
+    hash_table = *(int64_t *)(context_ptr + UI_DATA_OFFSET_3);
     if ((hash_table == 0) || (param_3 == '\0')) {
         need_unlock = false;
     }
@@ -1787,13 +1787,13 @@ longlong ui_system_hash_finder_type7(uint64_t param_1, uint64_t param_2, char pa
     // 哈希查找
     if (((*(int *)(context_ptr + UI_HASH_TABLE_SIZE_6) != 0) && 
          (*(int *)(context_ptr + UI_HASH_TABLE_SIZE_7) != 0)) &&
-        (entry_index = *(int *)(*(longlong *)(context_ptr + UI_HASH_TABLE_OFFSET_6) +
-                               (longlong)(int)((key_ptr[3] ^ key_ptr[2] ^ key_ptr[1] ^ *key_ptr) &
+        (entry_index = *(int *)(*(int64_t *)(context_ptr + UI_HASH_TABLE_OFFSET_6) +
+                               (int64_t)(int)((key_ptr[3] ^ key_ptr[2] ^ key_ptr[1] ^ *key_ptr) &
                                             *(int *)(context_ptr + UI_HASH_TABLE_SIZE_7) - 1U) * 4), 
          entry_index != -1)) {
         do {
-            current_entry = (longlong *)((longlong)entry_index * UI_MUTEX_SIZE + *(longlong *)(context_ptr + UI_HASH_TABLE_OFFSET_7));
-            if ((*current_entry == *(longlong *)key_ptr) && (current_entry[1] == *(longlong *)(key_ptr + 2))) {
+            current_entry = (int64_t *)((int64_t)entry_index * UI_MUTEX_SIZE + *(int64_t *)(context_ptr + UI_HASH_TABLE_OFFSET_7));
+            if ((*current_entry == *(int64_t *)key_ptr) && (current_entry[1] == *(int64_t *)(key_ptr + 2))) {
                 result = current_entry[3];
                 goto cleanup_and_return;
             }
@@ -1832,7 +1832,7 @@ void ui_system_resource_manager_type3(void)
  */
 uint64_t ui_system_status_query_type2(void)
 {
-    longlong context_ptr;
+    int64_t context_ptr;
     char status_flag;
     
     if (status_flag != '\0') {

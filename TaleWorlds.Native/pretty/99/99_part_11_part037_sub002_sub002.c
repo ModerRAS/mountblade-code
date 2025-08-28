@@ -411,17 +411,17 @@ void AudioSystem_Initializer(void)
  * 参数：param_1 - 音频上下文句柄，param_2 - 输入音频数据，param_3 - 输出音频数据，param_4 - 处理次数，param_5 - 音频通道数
  * 返回值：处理状态码
  */
-uint64_t AudioSystem_AdvancedProcessor(longlong param_1, float *param_2, float *param_3, int param_4, uint param_5)
+uint64_t AudioSystem_AdvancedProcessor(int64_t param_1, float *param_2, float *param_3, int param_4, uint param_5)
 {
     AudioSystem_FloatValue audio_value;
     AudioSystem_FloatValue gain_value;
     AudioSystem_FloatValue volume_value;
     AudioSystem_FloatValue pan_value;
     AudioSystem_FloatValue pitch_value;
-    longlong context_ptr;
+    int64_t context_ptr;
     int channel_count;
     float *audio_buffer;
-    longlong effect_ptr;
+    int64_t effect_ptr;
     uint channel_index;
     AudioSystem_FloatValue filter_coeff;
     AudioSystem_FloatValue effect_param;
@@ -522,9 +522,9 @@ uint64_t AudioSystem_AdvancedProcessor(longlong param_1, float *param_2, float *
                     channel_count = *(int *)(param_1 + 0x25ec);
                     if (channel_count == 0) {
                         audio_value = *param_2;
-                        context_ptr = (longlong)(int)channel_index;
+                        context_ptr = (int64_t)(int)channel_index;
                         audio_buffer = (float *)((context_ptr + 0x5a) * 0x10 + param_1);
-                        effect_ptr = *(longlong *)(audio_buffer + 2);
+                        effect_ptr = *(int64_t *)(audio_buffer + 2);
                         final_value = *audio_buffer;
                         mix_value = audio_buffer[1];
                         output_value = *(float *)(effect_ptr + 0x18);
@@ -534,7 +534,7 @@ uint64_t AudioSystem_AdvancedProcessor(longlong param_1, float *param_2, float *
                         *audio_buffer = filter_coeff;
                         audio_buffer[1] = final_value;
                         audio_buffer = (float *)((context_ptr + 0xda) * 0x10 + param_1);
-                        effect_ptr = *(longlong *)(audio_buffer + 2);
+                        effect_ptr = *(int64_t *)(audio_buffer + 2);
                         pan_value = *audio_buffer;
                         pitch_value = audio_buffer[1];
                         output_value = *(float *)(effect_ptr + 0x18);
@@ -544,7 +544,7 @@ uint64_t AudioSystem_AdvancedProcessor(longlong param_1, float *param_2, float *
                         audio_buffer[1] = pan_value;
                         *audio_buffer = effect_param;
                         audio_buffer = (float *)((context_ptr + 0x15a) * 0x10 + param_1);
-                        effect_ptr = *(longlong *)(audio_buffer + 2);
+                        effect_ptr = *(int64_t *)(audio_buffer + 2);
                         pan_value = *audio_buffer;
                         pitch_value = audio_buffer[1];
                         output_value = *(float *)(effect_ptr + 0x18);
@@ -554,7 +554,7 @@ uint64_t AudioSystem_AdvancedProcessor(longlong param_1, float *param_2, float *
                         audio_buffer[1] = pan_value;
                         *audio_buffer = filter_coeff;
                         audio_buffer = (float *)((context_ptr + 0x1da) * 0x10 + param_1);
-                        effect_ptr = *(longlong *)(audio_buffer + 2);
+                        effect_ptr = *(int64_t *)(audio_buffer + 2);
                         pitch_value = *audio_buffer;
                         effect_param = (audio_value - pitch_value * *(float *)(effect_ptr + 0x1c)) - audio_buffer[1] * *(float *)(effect_ptr + 0x20);
                         gain_value = effect_param * *(float *)(effect_ptr + 0x10);
@@ -589,15 +589,15 @@ uint64_t AudioSystem_Mixer(void)
     AudioSystem_FloatValue volume_value;
     AudioSystem_FloatValue pan_value;
     AudioSystem_FloatValue pitch_value;
-    longlong context_ptr;
+    int64_t context_ptr;
     int channel_count;
     float *audio_buffer;
-    longlong effect_ptr;
+    int64_t effect_ptr;
     float *unaff_RBX;
     int unaff_EDI;
     uint channel_index;
     uint in_R9D;
-    longlong in_R10;
+    int64_t in_R10;
     float *in_R11;
     AudioSystem_FloatValue filter_coeff;
     AudioSystem_FloatValue effect_param;
@@ -697,9 +697,9 @@ uint64_t AudioSystem_Mixer(void)
                 channel_count = *(int *)(in_R10 + 0x25ec);
                 if (channel_count == 0) {
                     audio_value = *unaff_RBX;
-                    context_ptr = (longlong)(int)channel_index;
+                    context_ptr = (int64_t)(int)channel_index;
                     audio_buffer = (float *)((context_ptr + 0x5a) * 0x10 + in_R10);
-                    effect_ptr = *(longlong *)(audio_buffer + 2);
+                    effect_ptr = *(int64_t *)(audio_buffer + 2);
                     final_value = *audio_buffer;
                     mix_value = audio_buffer[1];
                     output_value = *(float *)(effect_ptr + 0x18);
@@ -709,7 +709,7 @@ uint64_t AudioSystem_Mixer(void)
                     *audio_buffer = filter_coeff;
                     audio_buffer[1] = final_value;
                     audio_buffer = (float *)((context_ptr + 0xda) * 0x10 + in_R10);
-                    effect_ptr = *(longlong *)(audio_buffer + 2);
+                    effect_ptr = *(int64_t *)(audio_buffer + 2);
                     pan_value = *audio_buffer;
                     pitch_value = audio_buffer[1];
                     output_value = *(float *)(effect_ptr + 0x18);
@@ -719,7 +719,7 @@ uint64_t AudioSystem_Mixer(void)
                     audio_buffer[1] = pan_value;
                     *audio_buffer = effect_param;
                     audio_buffer = (float *)((context_ptr + 0x15a) * 0x10 + in_R10);
-                    effect_ptr = *(longlong *)(audio_buffer + 2);
+                    effect_ptr = *(int64_t *)(audio_buffer + 2);
                     pan_value = *audio_buffer;
                     pitch_value = audio_buffer[1];
                     output_value = *(float *)(effect_ptr + 0x18);
@@ -729,7 +729,7 @@ uint64_t AudioSystem_Mixer(void)
                     audio_buffer[1] = pan_value;
                     *audio_buffer = filter_coeff;
                     audio_buffer = (float *)((context_ptr + 0x1da) * 0x10 + in_R10);
-                    effect_ptr = *(longlong *)(audio_buffer + 2);
+                    effect_ptr = *(int64_t *)(audio_buffer + 2);
                     pitch_value = *audio_buffer;
                     effect_param = (audio_value - pitch_value * *(float *)(effect_ptr + 0x1c)) - audio_buffer[1] * *(float *)(effect_ptr + 0x20);
                     gain_value = effect_param * *(float *)(effect_ptr + 0x10);
@@ -770,14 +770,14 @@ uint64_t AudioSystem_Filter(void)
  * 参数：param_1 - 音频上下文句柄，param_2 - 输入音频数据，param_3 - 输出音频数据，param_4 - 缓冲区大小，param_5 - 特效参数
  * 返回值：处理状态码
  */
-uint64_t AudioSystem_EffectGenerator(longlong param_1, longlong param_2, longlong param_3, uint param_4, uint param_5)
+uint64_t AudioSystem_EffectGenerator(int64_t param_1, int64_t param_2, int64_t param_3, uint param_4, uint param_5)
 {
     int process_count;
     uint buffer_size;
     uint effect_size;
     uint64_t effect_result;
     int effect_type;
-    ulonglong effect_index;
+    uint64_t effect_index;
     AudioSystem_FloatValue gain_value;
     AudioSystem_FloatValue volume_value;
     
@@ -912,7 +912,7 @@ uint64_t AudioSystem_EffectGenerator(longlong param_1, longlong param_2, longlon
                              *(int32_t *)(param_1 + 0x25a4), *(int32_t *)(param_1 + 0x25b8),
                              *(int32_t *)(param_1 + 0x25cc));
                 }
-                effect_index = (ulonglong)(process_count + 1U);
+                effect_index = (uint64_t)(process_count + 1U);
             } while (process_count + 1U < param_5);
         }
     }
@@ -925,20 +925,20 @@ uint64_t AudioSystem_EffectGenerator(longlong param_1, longlong param_2, longlon
  * 参数：param_1 - 音频上下文句柄，param_2 - 音频增益值
  * 返回值：处理状态码
  */
-uint64_t AudioSystem_ParameterController(longlong param_1, float param_2)
+uint64_t AudioSystem_ParameterController(int64_t param_1, float param_2)
 {
     int effect_type;
     uint buffer_size;
     uint64_t effect_result;
-    longlong unaff_RBX;
+    int64_t unaff_RBX;
     uint64_t unaff_RBP;
     uint unaff_ESI;
     int process_count;
-    ulonglong unaff_RDI;
-    longlong in_R11;
-    longlong unaff_R12;
+    uint64_t unaff_RDI;
+    int64_t in_R11;
+    int64_t unaff_R12;
     int32_t unaff_R14D;
-    longlong unaff_R15;
+    int64_t unaff_R15;
     bool in_ZF;
     AudioSystem_FloatValue gain_value;
     AudioSystem_FloatValue volume_value;
@@ -1054,7 +1054,7 @@ uint64_t AudioSystem_ParameterController(longlong param_1, float param_2)
                             (unaff_R12 + unaff_RDI * 4, unaff_R15 + unaff_RDI * 4, unaff_R14D,
                              in_stack_000000b0, process_count);
                 }
-                unaff_RDI = (ulonglong)(process_count + 1U);
+                unaff_RDI = (uint64_t)(process_count + 1U);
             } while (process_count + 1U < in_stack_000000b0);
         }
         effect_result = 0;
@@ -1076,13 +1076,13 @@ uint64_t AudioSystem_StateManager(int32_t param_1)
     AudioSystem_FloatValue effect_value;
     int effect_type;
     uint64_t effect_result;
-    longlong unaff_RBX;
+    int64_t unaff_RBX;
     uint buffer_size;
     int process_count;
-    ulonglong unaff_RDI;
-    longlong unaff_R12;
+    uint64_t unaff_RDI;
+    int64_t unaff_R12;
     int32_t unaff_R14D;
-    longlong unaff_R15;
+    int64_t unaff_R15;
     int32_t effect_param;
     uint in_stack_000000b0;
     
@@ -1133,7 +1133,7 @@ uint64_t AudioSystem_StateManager(int32_t param_1)
                             (unaff_R12 + unaff_RDI * 4, unaff_R15 + unaff_RDI * 4, unaff_R14D,
                              in_stack_000000b0, process_count);
                 }
-                unaff_RDI = (ulonglong)(process_count + 1U);
+                unaff_RDI = (uint64_t)(process_count + 1U);
             } while (process_count + 1U < in_stack_000000b0);
         }
         effect_result = 0;

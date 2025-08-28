@@ -62,41 +62,41 @@
  * 5. 调整渲染质量参数
  * 6. 执行资源清理和优化
  */
-void rendering_system_advanced_initializer(longlong param_1, longlong param_2, longlong param_3)
+void rendering_system_advanced_initializer(int64_t param_1, int64_t param_2, int64_t param_3)
 
 {
-  longlong resource_manager;
+  int64_t resource_manager;
   int iteration_count;
-  ulonglong resource_size;
-  ulonglong resource_capacity;
-  longlong *resource_pool;
+  uint64_t resource_size;
+  uint64_t resource_capacity;
+  int64_t *resource_pool;
   float quality_factor;
-  longlong *stack_resources[3];
+  int64_t *stack_resources[3];
   int8_t alignment_buffer[32];
   uint64_t stack_guard;
-  longlong **resource_manager_ptr;
+  int64_t **resource_manager_ptr;
   int8_t temp_buffer[8];
-  longlong context_size;
-  longlong context_offset;
+  int64_t context_size;
+  int64_t context_offset;
   float quality_scale;
   float quality_threshold;
-  longlong *resource_allocator;
+  int64_t *resource_allocator;
   int8_t *string_processor;
   float *quality_param1;
   float *quality_param2;
-  longlong *batch_processor;
-  longlong resource_size2;
-  longlong *resource_array[2];
+  int64_t *batch_processor;
+  int64_t resource_size2;
+  int64_t *resource_array[2];
   code *cleanup_callback;
   void *global_data;
   uint64_t resource_config;
-  longlong **manager_pointer;
+  int64_t **manager_pointer;
   int quality_params[6];
-  ulonglong memory_guard;
+  uint64_t memory_guard;
   
   // 初始化堆栈保护和内存对齐
   stack_guard = 0xfffffffffffffffe;
-  memory_guard = GET_SECURITY_COOKIE() ^ (ulonglong)alignment_buffer;
+  memory_guard = GET_SECURITY_COOKIE() ^ (uint64_t)alignment_buffer;
   
   // 初始化系统状态计数器
   LOCK();
@@ -118,18 +118,18 @@ void rendering_system_advanced_initializer(longlong param_1, longlong param_2, l
     iteration_count = _Mtx_trylock(param_1 + 0x1bb0);
     if (iteration_count == 0) {
       // 处理高级资源初始化
-      if (*(longlong *)(stack_resources[0] + 0x60b80) != 0) {
+      if (*(int64_t *)(stack_resources[0] + 0x60b80) != 0) {
         *(uint64_t *)(context_size + 0x124c8) =
-             *(uint64_t *)(*(longlong *)(stack_resources[0] + 0x60b80) + 0x20);
+             *(uint64_t *)(*(int64_t *)(stack_resources[0] + 0x60b80) + 0x20);
       }
       
       // 遍历资源池进行初始化
-      resource_pool = *(longlong **)(param_1 + 0x1b90);
-      if (resource_pool != *(longlong **)(param_1 + 0x1b98)) {
+      resource_pool = *(int64_t **)(param_1 + 0x1b90);
+      if (resource_pool != *(int64_t **)(param_1 + 0x1b98)) {
         do {
           resource_manager = *resource_pool;
-          if (*(longlong *)(resource_manager + 0x90) - *(longlong *)(resource_manager + 0x88) >> 3 != 0) {
-            resource_manager = *(longlong *)(system_main_module_state + 0x3d8);
+          if (*(int64_t *)(resource_manager + 0x90) - *(int64_t *)(resource_manager + 0x88) >> 3 != 0) {
+            resource_manager = *(int64_t *)(system_main_module_state + 0x3d8);
             if ((resource_manager == 0) ||
                ((*(int *)(resource_manager + 0x110) != 2 && ((resource_manager == 0 || (*(int *)(resource_manager + 0x110) != 3))))))
             {
@@ -143,7 +143,7 @@ void rendering_system_advanced_initializer(longlong param_1, longlong param_2, l
             LOCK();
             *(int32_t *)(resource_manager + 0xa8) = 0;
             UNLOCK();
-            resource_manager = *(longlong *)(system_main_module_state + 0x3d8);
+            resource_manager = *(int64_t *)(system_main_module_state + 0x3d8);
             
             // 设置渲染质量参数
             if ((resource_manager == 0) || (*(int *)(resource_manager + 0x110) != 1)) {
@@ -168,13 +168,13 @@ void rendering_system_advanced_initializer(longlong param_1, longlong param_2, l
             // 应用质量调整算法
             if ((*(char *)(resource_manager + 0x7c) != '\0') &&
                ((resource_manager == 0 || (*(int *)(resource_manager + 0x110) != 1)))) {
-              resource_capacity = *(longlong *)(resource_manager + 0x90) - *(longlong *)(resource_manager + 0x88) >> 3;
+              resource_capacity = *(int64_t *)(resource_manager + 0x90) - *(int64_t *)(resource_manager + 0x88) >> 3;
               resource_size = 1;
               if (1 < resource_capacity) {
                 resource_size = resource_capacity;
               }
-              quality_factor = (float)(longlong)resource_size;
-              if ((longlong)resource_size < 0) {
+              quality_factor = (float)(int64_t)resource_size;
+              if ((int64_t)resource_size < 0) {
                 quality_factor = quality_factor + 1.8446744e+19;
               }
               quality_factor = RENDERING_QUALITY_SCALE / quality_factor;
@@ -207,16 +207,16 @@ void rendering_system_advanced_initializer(longlong param_1, longlong param_2, l
             cleanup_callback = FUN_1803089a0;
             global_data = &unknown_var_1888_ptr;
             context_offset = param_1;
-            resource_array[0] = (longlong *)FUN_18062b1e0(system_memory_pool_ptr, 0x38, 8, system_allocation_flags);
+            resource_array[0] = (int64_t *)FUN_18062b1e0(system_memory_pool_ptr, 0x38, 8, system_allocation_flags);
             
             // 设置资源参数
-            *resource_array[0] = (longlong)batch_processor;
-            resource_array[0][1] = (longlong)string_processor;
-            resource_array[0][2] = (longlong)quality_param1;
-            resource_array[0][3] = (longlong)quality_param2;
-            resource_array[0][4] = (longlong)resource_allocator;
+            *resource_array[0] = (int64_t)batch_processor;
+            resource_array[0][1] = (int64_t)string_processor;
+            resource_array[0][2] = (int64_t)quality_param1;
+            resource_array[0][3] = (int64_t)quality_param2;
+            resource_array[0][4] = (int64_t)resource_allocator;
             resource_array[0][5] = context_offset;
-            resource_array[0][6] = (longlong)resource_size2;
+            resource_array[0][6] = (int64_t)resource_size2;
             resource_manager_ptr = resource_array;
             stack_guard = 0xfffffffffffffffe;
             
@@ -225,7 +225,7 @@ void rendering_system_advanced_initializer(longlong param_1, longlong param_2, l
             FUN_1803a64f0(resource_manager);
           }
           resource_pool = resource_pool + 1;
-        } while (resource_pool != *(longlong **)(param_1 + 0x1b98));
+        } while (resource_pool != *(int64_t **)(param_1 + 0x1b98));
       }
       
       // 释放互斥锁并处理错误
@@ -250,7 +250,7 @@ void rendering_system_advanced_initializer(longlong param_1, longlong param_2, l
   }
   
   // 清理和返回
-  FUN_1808fc050(memory_guard ^ (ulonglong)alignment_buffer);
+  FUN_1808fc050(memory_guard ^ (uint64_t)alignment_buffer);
 }
 
 /**
@@ -275,49 +275,49 @@ void rendering_system_resource_optimizer(uint64_t *param_1, int param_2, int par
 
 {
   uint *resource_counter;
-  longlong *resource_manager;
+  int64_t *resource_manager;
   float quality_factor1;
   float quality_factor2;
   uint resource_index;
-  longlong system_context;
-  longlong *resource_data;
+  int64_t system_context;
+  int64_t *resource_data;
   char status_flag;
   uint batch_index;
-  ulonglong resource_capacity;
-  longlong memory_block;
+  uint64_t resource_capacity;
+  int64_t memory_block;
   bool allocation_success;
   int processing_index;
   
   processing_index = param_2;
   if (param_2 < param_3) {
     do {
-      system_context = *(longlong *)*param_1;
-      resource_data = *(longlong **)(*(longlong *)(system_context + 0x88) + (longlong)processing_index * 8);
+      system_context = *(int64_t *)*param_1;
+      resource_data = *(int64_t **)(*(int64_t *)(system_context + 0x88) + (int64_t)processing_index * 8);
       
       // 检查资源是否需要优化
       if ((((char)resource_data[7] == '\0') && (*(char *)param_1[1] == '\0')) &&
-         ((*(char *)((longlong)resource_data + 0x39) != '\0' ||
+         ((*(char *)((int64_t)resource_data + 0x39) != '\0' ||
           ((*(float *)param_1[2] < *(float *)(resource_data + 6) ||
-           (*(float *)param_1[3] < *(float *)((longlong)resource_data + 0x34))))))) {
+           (*(float *)param_1[3] < *(float *)((int64_t)resource_data + 0x34))))))) {
         
         // 执行资源优化
         if (*(char *)(system_context + 0x7d) != '\0') {
           quality_factor2 = *(float *)(resource_data + 0x52);
           quality_factor1 = *(float *)(&system_memory_3ff8 +
-                            (longlong)*(int *)(*(longlong *)param_1[4] + 0x5b98) * 4);
+                            (int64_t)*(int *)(*(int64_t *)param_1[4] + 0x5b98) * 4);
           (**(code **)(*resource_data + 0x108))(resource_data);
           if (RENDERING_QUALITY_THRESHOLD <= quality_factor2 + quality_factor1 * -0.1) goto LAB_1803066f9;
-          system_context = *(longlong *)*param_1;
+          system_context = *(int64_t *)*param_1;
         }
         
         // 批处理优化
         FUN_180308500(system_context + 0xa8);
-        *(int8_t *)((longlong)resource_data + 0x39) = 1;
+        *(int8_t *)((int64_t)resource_data + 0x39) = 1;
       }
       
 LAB_1803066f9:
       // 更新资源状态
-      if ((*(char *)((longlong)resource_data + 0x39) == '\0') && (status_flag = FUN_1803068a0(), status_flag != '\0')) {
+      if ((*(char *)((int64_t)resource_data + 0x39) == '\0') && (status_flag = FUN_1803068a0(), status_flag != '\0')) {
         status_flag = '\x01';
       }
       else {
@@ -326,23 +326,23 @@ LAB_1803066f9:
       *(char *)(resource_data + 9) = status_flag;
       
       // 应用质量调整
-      quality_factor1 = *(float *)(&system_memory_3ff8 + (longlong)*(int *)(*(longlong *)param_1[4] + 0x5b98) * 4);
+      quality_factor1 = *(float *)(&system_memory_3ff8 + (int64_t)*(int *)(*(int64_t *)param_1[4] + 0x5b98) * 4);
       quality_factor2 = *(float *)(resource_data + 6);
       *(float *)(resource_data + 6) = quality_factor1 + quality_factor2;
       
       if (status_flag == '\0') {
-        *(float *)((longlong)resource_data + 0x34) =
-             *(float *)(&system_memory_3ff8 + (longlong)*(int *)(*(longlong *)param_1[4] + 0x5b98) * 4) +
-             *(float *)((longlong)resource_data + 0x34);
+        *(float *)((int64_t)resource_data + 0x34) =
+             *(float *)(&system_memory_3ff8 + (int64_t)*(int *)(*(int64_t *)param_1[4] + 0x5b98) * 4) +
+             *(float *)((int64_t)resource_data + 0x34);
       }
       else {
         // 处理资源容量调整
         resource_capacity = resource_data[0x2b];
-        *(int32_t *)((longlong)resource_data + 0x34) = 0;
+        *(int32_t *)((int64_t)resource_data + 0x34) = 0;
         if (resource_capacity != 0) {
-          resource_capacity = (ulonglong)(byte)(*(char *)(resource_capacity + 0x2c8) + 8);
+          resource_capacity = (uint64_t)(byte)(*(char *)(resource_capacity + 0x2c8) + 8);
         }
-        *(uint *)((longlong)resource_data + 0x4c) =
+        *(uint *)((int64_t)resource_data + 0x4c) =
              ((int)(quality_factor1 + quality_factor2) & 0xfff0U | ((uint)resource_capacity & 0xff) << 0x14) << 8 |
              (int)resource_data >> 4 & 0xfffU;
         system_context = param_1[5];
@@ -356,9 +356,9 @@ LAB_1803066f9:
         batch_index = resource_index >> 0xb;
         
         // 检查是否需要分配新内存
-        if (*(longlong *)(system_context + 0x80 + (ulonglong)batch_index * 8) == 0) {
+        if (*(int64_t *)(system_context + 0x80 + (uint64_t)batch_index * 8) == 0) {
           memory_block = FUN_18062b420(system_memory_pool_ptr, 0x4000, 0x25);
-          resource_manager = (longlong *)(system_context + 0x80 + (ulonglong)batch_index * 8);
+          resource_manager = (int64_t *)(system_context + 0x80 + (uint64_t)batch_index * 8);
           LOCK();
           allocation_success = *resource_manager == 0;
           if (allocation_success) {
@@ -371,9 +371,9 @@ LAB_1803066f9:
         }
         
         // 存储资源数据
-        *(longlong **)
-         (*(longlong *)(system_context + 0x80 + (ulonglong)batch_index * 8) +
-         (ulonglong)(resource_index + batch_index * -0x800) * 8) = resource_data;
+        *(int64_t **)
+         (*(int64_t *)(system_context + 0x80 + (uint64_t)batch_index * 8) +
+         (uint64_t)(resource_index + batch_index * -0x800) * 8) = resource_data;
       }
       processing_index = processing_index + 1;
     } while (processing_index < param_3);
@@ -403,17 +403,17 @@ void rendering_system_state_controller(uint64_t *param_1, int param_2, int param
 
 {
   uint *state_counter;
-  longlong *state_manager;
+  int64_t *state_manager;
   float state_param1;
   float state_param2;
   uint state_index;
-  longlong system_context;
-  longlong *state_data;
+  int64_t system_context;
+  int64_t *state_data;
   char state_flag;
   uint batch_index;
-  longlong stack_context;
-  ulonglong resource_capacity;
-  longlong memory_block;
+  int64_t stack_context;
+  uint64_t resource_capacity;
+  int64_t memory_block;
   uint64_t stack_frame;
   uint64_t context_base;
   uint64_t temp_data;
@@ -452,33 +452,33 @@ void rendering_system_state_controller(uint64_t *param_1, int param_2, int param
   
   // 执行状态控制循环
   do {
-    system_context = *(longlong *)*param_1;
-    state_data = *(longlong **)(*(longlong *)(system_context + 0x88) + (longlong)param_2 * 8);
+    system_context = *(int64_t *)*param_1;
+    state_data = *(int64_t **)(*(int64_t *)(system_context + 0x88) + (int64_t)param_2 * 8);
     
     // 检查状态是否需要转换
     if ((((char)state_data[7] == '\0') && (*(char *)param_1[1] == '\0')) &&
-       ((*(char *)((longlong)state_data + 0x39) != '\0' ||
+       ((*(char *)((int64_t)state_data + 0x39) != '\0' ||
         ((*(float *)param_1[2] < *(float *)(state_data + 6) ||
-         (*(float *)param_1[3] < *(float *)((longlong)state_data + 0x34))))))) {
+         (*(float *)param_1[3] < *(float *)((int64_t)state_data + 0x34))))))) {
       
       // 执行状态转换
       if (*(char *)(system_context + 0x7d) != '\0') {
         state_param2 = *(float *)(state_data + 0x52);
-        state_param1 = *(float *)(&system_memory_3ff8 + (longlong)*(int *)(*(longlong *)param_1[4] + 0x5b98) * 4);
+        state_param1 = *(float *)(&system_memory_3ff8 + (int64_t)*(int *)(*(int64_t *)param_1[4] + 0x5b98) * 4);
         (**(code **)(*state_data + 0x108))(state_data);
         if (RENDERING_QUALITY_THRESHOLD <= state_param2 + state_param1 * -0.1) goto LAB_1803066f9;
-        system_context = *(longlong *)*param_1;
+        system_context = *(int64_t *)*param_1;
       }
       
       // 批处理状态转换
       FUN_180308500(system_context + 0xa8);
-      *(int8_t *)((longlong)state_data + 0x39) = 1;
+      *(int8_t *)((int64_t)state_data + 0x39) = 1;
       param_2 = stack_param;
     }
     
 LAB_1803066f9:
     // 更新状态标志
-    if ((*(char *)((longlong)state_data + 0x39) == '\0') && (state_flag = FUN_1803068a0(), state_flag != '\0')) {
+    if ((*(char *)((int64_t)state_data + 0x39) == '\0') && (state_flag = FUN_1803068a0(), state_flag != '\0')) {
       state_flag = '\x01';
     }
     else {
@@ -487,23 +487,23 @@ LAB_1803066f9:
     *(char *)(state_data + 9) = state_flag;
     
     // 应用状态参数调整
-    state_param1 = *(float *)(&system_memory_3ff8 + (longlong)*(int *)(*(longlong *)param_1[4] + 0x5b98) * 4);
+    state_param1 = *(float *)(&system_memory_3ff8 + (int64_t)*(int *)(*(int64_t *)param_1[4] + 0x5b98) * 4);
     state_param2 = *(float *)(state_data + 6);
     *(float *)(state_data + 6) = state_param1 + state_param2;
     
     if (state_flag == '\0') {
-      *(float *)((longlong)state_data + 0x34) =
-           *(float *)(&system_memory_3ff8 + (longlong)*(int *)(*(longlong *)param_1[4] + 0x5b98) * 4) +
-           *(float *)((longlong)state_data + 0x34);
+      *(float *)((int64_t)state_data + 0x34) =
+           *(float *)(&system_memory_3ff8 + (int64_t)*(int *)(*(int64_t *)param_1[4] + 0x5b98) * 4) +
+           *(float *)((int64_t)state_data + 0x34);
     }
     else {
       // 处理状态容量调整
       resource_capacity = state_data[0x2b];
-      *(int32_t *)((longlong)state_data + 0x34) = 0;
+      *(int32_t *)((int64_t)state_data + 0x34) = 0;
       if (resource_capacity != 0) {
-        resource_capacity = (ulonglong)(byte)(*(char *)(resource_capacity + 0x2c8) + 8);
+        resource_capacity = (uint64_t)(byte)(*(char *)(resource_capacity + 0x2c8) + 8);
       }
-      *(uint *)((longlong)state_data + 0x4c) =
+      *(uint *)((int64_t)state_data + 0x4c) =
            ((int)(state_param1 + state_param2) & 0xfff0U | ((uint)resource_capacity & 0xff) << 0x14) << 8 |
            (int)state_data >> 4 & 0xfffU;
       system_context = param_1[5];
@@ -517,9 +517,9 @@ LAB_1803066f9:
       batch_index = state_index >> 0xb;
       
       // 检查是否需要分配新内存
-      if (*(longlong *)(system_context + 0x80 + (ulonglong)batch_index * 8) == 0) {
+      if (*(int64_t *)(system_context + 0x80 + (uint64_t)batch_index * 8) == 0) {
         memory_block = FUN_18062b420(system_memory_pool_ptr, 0x4000, 0x25);
-        state_manager = (longlong *)(system_context + 0x80 + (ulonglong)batch_index * 8);
+        state_manager = (int64_t *)(system_context + 0x80 + (uint64_t)batch_index * 8);
         LOCK();
         allocation_success = *state_manager == 0;
         if (allocation_success) {
@@ -532,9 +532,9 @@ LAB_1803066f9:
       }
       
       // 存储状态数据
-      *(longlong **)
-       (*(longlong *)(system_context + 0x80 + (ulonglong)batch_index * 8) +
-       (ulonglong)(state_index + batch_index * -0x800) * 8) = state_data;
+      *(int64_t **)
+       (*(int64_t *)(system_context + 0x80 + (uint64_t)batch_index * 8) +
+       (uint64_t)(state_index + batch_index * -0x800) * 8) = state_data;
       param_2 = stack_param;
     }
     stack_param = param_2 + 1;
@@ -585,14 +585,14 @@ void rendering_system_empty_operation(void)
  * 4. 应用距离优化
  * 5. 更新可见性状态
  */
-bool rendering_system_visibility_checker(uint64_t param_1, longlong *param_2, longlong param_3,
+bool rendering_system_visibility_checker(uint64_t param_1, int64_t *param_2, int64_t param_3,
                                          uint64_t param_4, float param_5)
 
 {
   float distance_factor1;
   float distance_factor2;
   char visibility_flag;
-  longlong object_data;
+  int64_t object_data;
   uint visibility_mask;
   float depth_value;
   float stack_param1;
@@ -618,7 +618,7 @@ bool rendering_system_visibility_checker(uint64_t param_1, longlong *param_2, lo
   
   // 获取可见性掩码
   if ((void *)*param_2 == &unknown_var_1008_ptr) {
-    visibility_mask = *(uint *)((longlong)param_2 + 0x174);
+    visibility_mask = *(uint *)((int64_t)param_2 + 0x174);
   }
   else {
     visibility_mask = (**(code **)((void *)*param_2 + 0x130))(param_2);
@@ -699,12 +699,12 @@ bool rendering_system_occlusion_tester(void)
   float depth_factor1;
   float depth_factor2;
   char occlusion_flag;
-  ulonglong visibility_mask;
-  longlong object_data;
+  uint64_t visibility_mask;
+  int64_t object_data;
   uint occlusion_bits;
-  longlong *resource_manager;
-  longlong context_data;
-  longlong camera_data;
+  int64_t *resource_manager;
+  int64_t context_data;
+  int64_t camera_data;
   float depth_value;
   float stack_param1;
   float stack_param2;
@@ -808,13 +808,13 @@ bool rendering_system_depth_optimizer(void)
   float depth_factor1;
   float depth_factor2;
   char optimization_flag;
-  longlong object_data;
-  longlong stack_context;
-  ulonglong visibility_mask;
+  int64_t object_data;
+  int64_t stack_context;
+  uint64_t visibility_mask;
   uint optimization_bits;
-  longlong *resource_manager;
-  longlong context_data;
-  longlong camera_data;
+  int64_t *resource_manager;
+  int64_t context_data;
+  int64_t camera_data;
   float depth_value;
   float stack_param1;
   float stack_param2;
@@ -917,21 +917,21 @@ bool rendering_system_depth_optimizer(void)
  * 4. 重置系统状态
  * 5. 回收内存
  */
-void rendering_system_resource_cleaner(longlong param_1)
+void rendering_system_resource_cleaner(int64_t param_1)
 
 {
   uint *resource_counter;
-  longlong *resource_manager;
+  int64_t *resource_manager;
   
   // 检查是否需要清理资源
-  if (*(longlong *)(param_1 + 0x1c48) != 0) {
-    resource_counter = (uint *)(*(longlong *)(param_1 + 0x1c48) + 0x328);
+  if (*(int64_t *)(param_1 + 0x1c48) != 0) {
+    resource_counter = (uint *)(*(int64_t *)(param_1 + 0x1c48) + 0x328);
     *resource_counter = *resource_counter & 0xdfffffff;
-    resource_manager = *(longlong **)(param_1 + 0x1c48);
+    resource_manager = *(int64_t **)(param_1 + 0x1c48);
     *(uint64_t *)(param_1 + 0x1c48) = 0;
     
     // 执行资源清理
-    if (resource_manager != (longlong *)0x0) {
+    if (resource_manager != (int64_t *)0x0) {
       (**(code **)(*resource_manager + 0x38))();
       return;
     }
@@ -955,21 +955,21 @@ void rendering_system_resource_cleaner(longlong param_1)
  * 3. 检查匹配条件
  * 4. 返回匹配结果
  */
-longlong rendering_system_parameter_matcher(longlong param_1, longlong param_2)
+int64_t rendering_system_parameter_matcher(int64_t param_1, int64_t param_2)
 
 {
   byte *param_data1;
   int param_index1;
   int param_index2;
-  longlong param_block;
+  int64_t param_block;
   byte *param_data2;
   int comparison_result;
-  longlong data_offset;
-  longlong *param_pool;
+  int64_t data_offset;
+  int64_t *param_pool;
   
   // 遍历参数池进行匹配
-  param_pool = *(longlong **)(param_1 + 0x1b90);
-  if (param_pool != *(longlong **)(param_1 + 0x1b98)) {
+  param_pool = *(int64_t **)(param_1 + 0x1b90);
+  if (param_pool != *(int64_t **)(param_1 + 0x1b98)) {
     param_index1 = *(int *)(param_2 + 0x10);
     do {
       param_block = *param_pool;
@@ -980,7 +980,7 @@ longlong rendering_system_parameter_matcher(longlong param_1, longlong param_2)
       if (param_index2 == param_index1) {
         if (param_index2 != 0) {
           param_data2 = *(byte **)(param_block + 0x58);
-          data_offset = *(longlong *)(param_2 + 8) - (longlong)param_data2;
+          data_offset = *(int64_t *)(param_2 + 8) - (int64_t)param_data2;
           
           // 执行参数数据比较
           do {
@@ -999,7 +999,7 @@ LAB_180306bfe:
       }
       else if (param_index2 == 0) goto LAB_180306bfe;
       param_pool = param_pool + 1;
-    } while (param_pool != *(longlong **)(param_1 + 0x1b98));
+    } while (param_pool != *(int64_t **)(param_1 + 0x1b98));
   }
   return 0;
 }
@@ -1020,14 +1020,14 @@ LAB_180306bfe:
  * 4. 释放内存锁
  * 5. 错误处理
  */
-void rendering_system_memory_manager(longlong param_1)
+void rendering_system_memory_manager(int64_t param_1)
 
 {
-  longlong memory_block;
-  longlong *memory_manager;
+  int64_t memory_block;
+  int64_t *memory_manager;
   int lock_result;
-  longlong *memory_start;
-  longlong *memory_end;
+  int64_t *memory_start;
+  int64_t *memory_end;
   
   // 获取内存管理锁
   lock_result = _Mtx_lock(param_1 + 0x1bb0);
@@ -1036,8 +1036,8 @@ void rendering_system_memory_manager(longlong param_1)
   }
   
   // 遍历内存池进行管理
-  memory_manager = *(longlong **)(param_1 + 0x1b90);
-  if (memory_manager != *(longlong **)(param_1 + 0x1b98)) {
+  memory_manager = *(int64_t **)(param_1 + 0x1b90);
+  if (memory_manager != *(int64_t **)(param_1 + 0x1b98)) {
     do {
       memory_block = *memory_manager;
       lock_result = _Mtx_lock(memory_block);
@@ -1046,28 +1046,28 @@ void rendering_system_memory_manager(longlong param_1)
       }
       
       // 获取内存范围
-      memory_start = *(longlong **)(memory_block + 0x90);
-      memory_end = *(longlong **)(memory_block + 0x88);
+      memory_start = *(int64_t **)(memory_block + 0x90);
+      memory_end = *(int64_t **)(memory_block + 0x88);
       
       // 执行内存清理
       if (memory_end != memory_start) {
         do {
-          if ((longlong *)*memory_end != (longlong *)0x0) {
-            (**(code **)(*(longlong *)*memory_end + 0x38))();
+          if ((int64_t *)*memory_end != (int64_t *)0x0) {
+            (**(code **)(*(int64_t *)*memory_end + 0x38))();
           }
           memory_end = memory_end + 1;
         } while (memory_end != memory_start);
-        memory_end = *(longlong **)(memory_block + 0x88);
+        memory_end = *(int64_t **)(memory_block + 0x88);
       }
       
       // 重置内存指针
-      *(longlong **)(memory_block + 0x90) = memory_end;
+      *(int64_t **)(memory_block + 0x90) = memory_end;
       lock_result = _Mtx_unlock(memory_block);
       if (lock_result != 0) {
         __Throw_C_error_std__YAXH_Z(lock_result);
       }
       memory_manager = memory_manager + 1;
-    } while (memory_manager != *(longlong **)(param_1 + 0x1b98));
+    } while (memory_manager != *(int64_t **)(param_1 + 0x1b98));
   }
   
   // 释放内存管理锁
@@ -1094,7 +1094,7 @@ void rendering_system_memory_manager(longlong param_1)
  * 3. 释放相关资源
  * 4. 返回比较结果
  */
-bool rendering_system_resource_comparator(longlong *param_1, longlong *param_2)
+bool rendering_system_resource_comparator(int64_t *param_1, int64_t *param_2)
 
 {
   uint priority1;
@@ -1105,11 +1105,11 @@ bool rendering_system_resource_comparator(longlong *param_1, longlong *param_2)
   priority2 = *(uint *)(*param_1 + 0x4c);
   
   // 释放相关资源
-  if ((longlong *)*param_1 != (longlong *)0x0) {
-    (**(code **)(*(longlong *)*param_1 + 0x38))();
+  if ((int64_t *)*param_1 != (int64_t *)0x0) {
+    (**(code **)(*(int64_t *)*param_1 + 0x38))();
   }
-  if ((longlong *)*param_2 != (longlong *)0x0) {
-    (**(code **)(*(longlong *)*param_2 + 0x38))();
+  if ((int64_t *)*param_2 != (int64_t *)0x0) {
+    (**(code **)(*(int64_t *)*param_2 + 0x38))();
   }
   
   // 返回比较结果

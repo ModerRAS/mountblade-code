@@ -77,9 +77,9 @@ typedef struct {
  * 存储渲染连接边的相关信息
  */
 typedef struct {
-    longlong start_point;    /**< 起始点 */
-    longlong end_point;      /**< 结束点 */
-    longlong connection_data;/**< 连接数据 */
+    int64_t start_point;    /**< 起始点 */
+    int64_t end_point;      /**< 结束点 */
+    int64_t connection_data;/**< 连接数据 */
     int connection_type;     /**< 连接类型 */
     bool is_active;          /**< 是否激活 */
 } RenderingConnectionEdge;
@@ -127,7 +127,7 @@ typedef struct {
  * @note 使用了优化的几何计算算法
  * @note 支持动态连接关系管理
  */
-void rendering_system_advanced_connection_processor(longlong render_context, int target_id_1, int target_id_2, int target_id_3);
+void rendering_system_advanced_connection_processor(int64_t render_context, int target_id_1, int target_id_2, int target_id_3);
 
 /**
  * @brief 计算两点之间的距离
@@ -183,24 +183,24 @@ static void rendering_system_cleanup_connection_manager(RenderingConnectionManag
 // 函数实现
 // ============================================================================
 
-void rendering_system_advanced_connection_processor(longlong render_context, int target_id_1, int target_id_2, int target_id_3)
+void rendering_system_advanced_connection_processor(int64_t render_context, int target_id_1, int target_id_2, int target_id_3)
 {
     // 变量声明
     byte connection_flag;
-    longlong* object_array;
+    int64_t* object_array;
     float* position_data;
-    longlong* connection_array;
-    longlong loop_index_1, loop_index_2, loop_index_3, loop_index_4, loop_index_5;
+    int64_t* connection_array;
+    int64_t loop_index_1, loop_index_2, loop_index_3, loop_index_4, loop_index_5;
     bool is_valid_connection;
-    longlong* target_objects;
+    int64_t* target_objects;
     unsigned long long search_index_1, search_index_2, search_index_3;
     int object_id_1, object_id_2;
     unsigned int connection_count_1, connection_count_2, connection_count_3;
     unsigned long long current_object_1, current_object_2, current_object_3;
-    longlong* connection_data_1, *connection_data_2;
+    int64_t* connection_data_1, *connection_data_2;
     int temp_index_1, temp_index_2;
     unsigned int temp_count_1, temp_count_2;
-    longlong temp_object_1, temp_object_2;
+    int64_t temp_object_1, temp_object_2;
     char temp_flag;
     unsigned int temp_value_1;
     float temp_float_1, temp_float_2, temp_float_3, temp_float_4, temp_float_5;
@@ -215,11 +215,11 @@ void rendering_system_advanced_connection_processor(longlong render_context, int
     unsigned long long temp_var_1;
     
     // 获取对象数组
-    object_array = *(longlong**)(render_context + 0x478);
+    object_array = *(int64_t**)(render_context + 0x478);
     search_index_1 = 0;
     search_index_2 = 0;
     connection_count_1 = 0;
-    temp_object_1 = *(longlong*)(render_context + 0x480) - (longlong)object_array >> 3;
+    temp_object_1 = *(int64_t*)(render_context + 0x480) - (int64_t)object_array >> 3;
     search_index_3 = search_index_1;
     current_object_1 = search_index_1;
     current_object_2 = search_index_1;
@@ -248,7 +248,7 @@ void rendering_system_advanced_connection_processor(longlong render_context, int
             object_array = object_array + 1;
             search_index_3 = temp_object_2;
             temp_var_1 = current_object_2;
-        } while ((unsigned long long)(longlong)(int)temp_count_1 < temp_object_1);
+        } while ((unsigned long long)(int64_t)(int)temp_count_1 < temp_object_1);
         
         // 第二阶段：处理连接关系
         if (((temp_object_2 != 0) && (current_object_2 != 0)) && (current_object_1 != 0)) {
@@ -267,13 +267,13 @@ void rendering_system_advanced_connection_processor(longlong render_context, int
             
             // 第三阶段：分析连接点
             if (connection_flag != 0) {
-                connection_data_1 = (longlong*)(current_object_3 + 0x60);
+                connection_data_1 = (int64_t*)(current_object_3 + 0x60);
                 search_index_3 = search_index_1;
                 current_object_2 = search_index_1;
                 
                 do {
                     temp_count_2 = (unsigned int)search_index_3;
-                    connection_array = (longlong*)*connection_data_1;
+                    connection_array = (int64_t*)*connection_data_1;
                     
                     if (*(char*)(connection_array + 4) == '\x02') {
                         search_index_3 = connection_array[2];
@@ -311,19 +311,19 @@ void rendering_system_advanced_connection_processor(longlong render_context, int
                         
                         // 第四阶段：处理连接验证
                         if (*(byte*)(search_index_3 + 0xa8) != 0) {
-                            connection_data_2 = (longlong*)(search_index_3 + 0x60);
+                            connection_data_2 = (int64_t*)(search_index_3 + 0x60);
                             current_object_3 = search_index_1;
                             
                             do {
-                                temp_object_1 = (longlong*)*connection_data_2;
+                                temp_object_1 = (int64_t*)*connection_data_2;
                                 if (((*(char*)(temp_object_1 + 4) == '\x02') && (temp_object_1 != connection_array)) &&
                                    (((temp_object_1[2] == current_object_2 || (temp_object_1[3] == current_object_2)) &&
                                     (*(byte*)(current_object_1 + 0xa8) != 0)))) {
-                                    temp_object_1 = (longlong*)(current_object_1 + 0x60);
+                                    temp_object_1 = (int64_t*)(current_object_1 + 0x60);
                                     current_object_2 = search_index_1;
                                     
                                     do {
-                                        temp_object_2 = (longlong*)*temp_object_1;
+                                        temp_object_2 = (int64_t*)*temp_object_1;
                                         if (*(char*)(temp_object_2 + 4) != '\x02') {
                                             position_data = (float*)temp_object_2[1];
                                             temp_float_1 = *(float*)*temp_object_2;
@@ -413,19 +413,19 @@ void rendering_system_advanced_connection_processor(longlong render_context, int
                     ((object_id_1 < (int)(unsigned int)*(byte*)(current_object_2 + 0xa8) && (-1 < temp_index_1)))) &&
                    ((temp_index_1 < (int)(unsigned int)*(byte*)(current_object_1 + 0xa8) && (current_object_2 != 0)))) {
                     stack_count_1 = 0;
-                    loop_index_1 = *(longlong*)(temp_object_2 + 0x60 + (longlong)(int)temp_count_1 * 8);
-                    loop_index_2 = *(longlong*)(current_object_1 + 0x60 + (longlong)temp_index_1 * 8);
+                    loop_index_1 = *(int64_t*)(temp_object_2 + 0x60 + (int64_t)(int)temp_count_1 * 8);
+                    loop_index_2 = *(int64_t*)(current_object_1 + 0x60 + (int64_t)temp_index_1 * 8);
                     connection_flag = *(byte*)(current_object_2 + 0xa8);
-                    loop_index_3 = *(longlong*)(current_object_2 + 0x60 + (longlong)object_id_1 * 8);
+                    loop_index_3 = *(int64_t*)(current_object_2 + 0x60 + (int64_t)object_id_1 * 8);
                     
                     if (connection_flag != 0) {
-                        target_objects = (longlong*)(current_object_2 + 0x60);
+                        target_objects = (int64_t*)(current_object_2 + 0x60);
                         search_index_3 = search_index_1;
                         loop_index_4 = loop_index_3;
                         
                         do {
                             temp_count_1 = (unsigned int)search_index_3;
-                            target_objects = (longlong*)*target_objects;
+                            target_objects = (int64_t*)*target_objects;
                             if ((target_objects[2] != temp_object_2) && 
                                 (((char)target_objects[4] != '\x02' || (target_objects[3] != temp_object_2)))) {
                                 if (target_objects[2] != current_object_2) {
@@ -435,11 +435,11 @@ void rendering_system_advanced_connection_processor(longlong render_context, int
                                         
                                         do {
                                             temp_count_1 = (unsigned int)temp_var_1;
-                                            if (*target_objects == *(longlong*)(loop_index_1 + search_index_3 * 8)) break;
+                                            if (*target_objects == *(int64_t*)(loop_index_1 + search_index_3 * 8)) break;
                                             temp_var_1 = (unsigned long long)((unsigned int)temp_var_1 + 1);
                                             search_index_3 = search_index_3 + 1;
                                             temp_count_1 = RENDERING_INVALID_INDEX;
-                                        } while ((longlong)search_index_3 < RENDERING_ARRAY_SIZE);
+                                        } while ((int64_t)search_index_3 < RENDERING_ARRAY_SIZE);
                                         
                                         search_index_3 = search_index_1;
                                         temp_var_1 = search_index_1;
@@ -447,11 +447,11 @@ void rendering_system_advanced_connection_processor(longlong render_context, int
                                         do {
                                             temp_object_2 = search_index_1;
                                             temp_count_2 = (unsigned int)temp_var_1;
-                                            if (target_objects[1] == *(longlong*)(loop_index_1 + search_index_3 * 8)) break;
+                                            if (target_objects[1] == *(int64_t*)(loop_index_1 + search_index_3 * 8)) break;
                                             temp_var_1 = (unsigned long long)((unsigned int)temp_var_1 + 1);
                                             search_index_3 = search_index_3 + 1;
                                             temp_count_2 = temp_count_1;
-                                        } while ((longlong)search_index_3 < RENDERING_ARRAY_SIZE);
+                                        } while ((int64_t)search_index_3 < RENDERING_ARRAY_SIZE);
                                         
                                         do {
                                             loop_index_5 = target_objects[temp_object_2];
@@ -460,7 +460,7 @@ void rendering_system_advanced_connection_processor(longlong render_context, int
                                             
                                             do {
                                                 target_objects = target_objects;
-                                                if (loop_index_5 == *(longlong*)(loop_index_4 + search_index_3 * 8)) {
+                                                if (loop_index_5 == *(int64_t*)(loop_index_4 + search_index_3 * 8)) {
                                                     is_valid_connection = stack_flag_1 == '\0';
                                                     if ((char)target_objects[4] == '\x02') {
                                                         if (target_objects[2] == current_object_2) {
@@ -480,37 +480,37 @@ void rendering_system_advanced_connection_processor(longlong render_context, int
                                                     target_objects = target_objects;
                                                     if (temp_object_2 == 0) {
                                                         if (is_valid_connection) {
-                                                            target_objects = (longlong*)((longlong)(int)(unsigned int)(temp_count_2 == 0) * 8 + loop_index_2);
+                                                            target_objects = (int64_t*)((int64_t)(int)(unsigned int)(temp_count_2 == 0) * 8 + loop_index_2);
                                                         }
                                                         else {
-                                                            target_objects = (longlong*)((longlong)(int)temp_count_2 * 8 + loop_index_2);
+                                                            target_objects = (int64_t*)((int64_t)(int)temp_count_2 * 8 + loop_index_2);
                                                         }
                                                     }
                                                     
                                                     if (temp_object_2 == 1) {
                                                         if (is_valid_connection) {
-                                                            loop_index_4 = *(longlong*)(loop_index_2 + (longlong)(int)(unsigned int)(temp_count_2 == 0) * 8);
+                                                            loop_index_4 = *(int64_t*)(loop_index_2 + (int64_t)(int)(unsigned int)(temp_count_2 == 0) * 8);
                                                         }
                                                         else {
-                                                            loop_index_4 = *(longlong*)(loop_index_2 + (longlong)(int)temp_count_2 * 8);
+                                                            loop_index_4 = *(int64_t*)(loop_index_2 + (int64_t)(int)temp_count_2 * 8);
                                                         }
                                                     }
                                                     else {
                                                         loop_index_4 = target_objects[1];
                                                     }
                                                     
-                                                    connection_data_1 = *(longlong**)(render_context + 0x458);
-                                                    temp_var_1 = *(longlong*)(render_context + 0x460) - (longlong)connection_data_1 >> 3;
+                                                    connection_data_1 = *(int64_t**)(render_context + 0x458);
+                                                    temp_var_1 = *(int64_t*)(render_context + 0x460) - (int64_t)connection_data_1 >> 3;
                                                     current_object_2 = search_index_1;
                                                     
                                                     if (temp_var_1 != 0) {
                                                         do {
-                                                            target_objects = (longlong*)*connection_data_1;
+                                                            target_objects = (int64_t*)*connection_data_1;
                                                             if (((*target_objects == *target_objects) && (target_objects[1] == loop_index_4)) ||
                                                                ((*target_objects == loop_index_4 && (target_objects[1] == *target_objects)))) {
                                                                 *(char*)(target_objects + 4) = 2;
                                                                 target_objects[3] = stack_object_1;
-                                                                *target_objects = (longlong)target_objects;
+                                                                *target_objects = (int64_t)target_objects;
                                                                 FUN_18038b160(target_objects[2]);
                                                                 loop_index_4 = loop_index_3;
                                                                 current_object_2 = stack_object_1;
@@ -520,15 +520,15 @@ void rendering_system_advanced_connection_processor(longlong render_context, int
                                                             temp_count_1 = (int)current_object_2 + 1;
                                                             current_object_2 = (unsigned long long)temp_count_1;
                                                             connection_data_1 = connection_data_1 + 1;
-                                                        } while ((unsigned long long)(longlong)(int)temp_count_1 < temp_var_1);
+                                                        } while ((unsigned long long)(int64_t)(int)temp_count_1 < temp_var_1);
                                                     }
                                                     
                                                     if (temp_object_2 == 1) {
                                                         if (is_valid_connection) {
-                                                            loop_index_4 = *(longlong*)(loop_index_2 + (longlong)(int)(unsigned int)(temp_count_2 == 0) * 8);
+                                                            loop_index_4 = *(int64_t*)(loop_index_2 + (int64_t)(int)(unsigned int)(temp_count_2 == 0) * 8);
                                                         }
                                                         else {
-                                                            loop_index_4 = *(longlong*)(loop_index_2 + (longlong)(int)temp_count_2 * 8);
+                                                            loop_index_4 = *(int64_t*)(loop_index_2 + (int64_t)(int)temp_count_2 * 8);
                                                         }
                                                     }
                                                     else {
@@ -538,17 +538,17 @@ void rendering_system_advanced_connection_processor(longlong render_context, int
                                                             if (is_valid_connection) {
                                                                 temp_count_1 = (unsigned int)(temp_count_2 == 0);
                                                             }
-                                                            target_objects = (longlong*)((longlong)(int)temp_count_1 * 8 + loop_index_2);
+                                                            target_objects = (int64_t*)((int64_t)(int)temp_count_1 * 8 + loop_index_2);
                                                         }
                                                     }
                                                     
                                                     loop_index_5 = *target_objects;
-                                                    target_objects = (longlong*)FUN_18038c180(render_context);
+                                                    target_objects = (int64_t*)FUN_18038c180(render_context);
                                                     target_objects[1] = loop_index_4;
                                                     *target_objects = loop_index_5;
                                                     *(char*)(target_objects + 4) = 1;
                                                     target_objects[2] = stack_object_1;
-                                                    *target_objects = (longlong)target_objects;
+                                                    *target_objects = (int64_t)target_objects;
                                                     loop_index_4 = loop_index_3;
                                                     current_object_2 = stack_object_1;
                                                 }
@@ -556,11 +556,11 @@ void rendering_system_advanced_connection_processor(longlong render_context, int
                                                 search_index_3 = search_index_3 + 1;
                                                 target_objects = target_objects;
                                                 stack_flag_1 = stack_flag_1;
-                                            } while ((longlong)search_index_3 < RENDERING_ARRAY_SIZE);
+                                            } while ((int64_t)search_index_3 < RENDERING_ARRAY_SIZE);
                                             
                                             temp_object_2 = temp_object_2 + 1;
                                             temp_count_1 = stack_count_1;
-                                        } while ((longlong)temp_object_2 < RENDERING_ARRAY_SIZE);
+                                        } while ((int64_t)temp_object_2 < RENDERING_ARRAY_SIZE);
                                         goto CONNECTION_VALIDATED;
                                     }
                                     
@@ -585,25 +585,25 @@ void rendering_system_advanced_connection_processor(longlong render_context, int
                     
                     // 第六阶段：清理和优化连接
                     if (connection_flag != 0) {
-                        target_objects = (longlong*)(current_object_2 + 0x60);
+                        target_objects = (int64_t*)(current_object_2 + 0x60);
                         search_index_3 = search_index_1;
                         
                         do {
                             loop_index_1 = *target_objects;
                             *(char*)(loop_index_1 + 0x20) = 0;
-                            stack_flag_1 = *(longlong*)(loop_index_1 + 0x10) != 0;
+                            stack_flag_1 = *(int64_t*)(loop_index_1 + 0x10) != 0;
                             if ((bool)stack_flag_1) {
                                 *(char*)(loop_index_1 + 0x20) = 1;
                             }
                             
-                            if (*(longlong*)(loop_index_1 + 0x18) != 0) {
+                            if (*(int64_t*)(loop_index_1 + 0x18) != 0) {
                                 stack_flag_1 = stack_flag_1 + '\x01';
                                 *(char*)(loop_index_1 + 0x20) = stack_flag_1;
                             }
                             
-                            if ((stack_flag_1 == '\x01') && (*(longlong*)(loop_index_1 + 0x18) != 0)) {
-                                *(longlong*)(loop_index_1 + 0x10) = *(longlong*)(loop_index_1 + 0x18);
-                                *(longlong*)(loop_index_1 + 0x18) = 0;
+                            if ((stack_flag_1 == '\x01') && (*(int64_t*)(loop_index_1 + 0x18) != 0)) {
+                                *(int64_t*)(loop_index_1 + 0x10) = *(int64_t*)(loop_index_1 + 0x18);
+                                *(int64_t*)(loop_index_1 + 0x18) = 0;
                             }
                             
                             connection_flag = *(byte*)(current_object_2 + 0xa8);
@@ -618,14 +618,14 @@ void rendering_system_advanced_connection_processor(longlong render_context, int
                     temp_var_1 = search_index_1;
                     if (connection_flag != 0) {
                         do {
-                            target_objects = *(longlong**)(current_object_2 + 0x60 + temp_var_1 * 8);
+                            target_objects = *(int64_t**)(current_object_2 + 0x60 + temp_var_1 * 8);
                             temp_count_1 = (int)search_index_3 + 1;
                             search_index_3 = search_index_1;
                             if (temp_count_1 != connection_flag) {
                                 search_index_3 = temp_var_1 + 1;
                             }
                             
-                            target_objects = *(longlong**)(current_object_2 + 0x60 + search_index_3 * 8);
+                            target_objects = *(int64_t**)(current_object_2 + 0x60 + search_index_3 * 8);
                             if ((*target_objects == *target_objects) || (object_id_2 = -1, *target_objects == target_objects[1])) {
                                 object_id_2 = 0;
                             }
@@ -639,7 +639,7 @@ void rendering_system_advanced_connection_processor(longlong render_context, int
                                 search_index_3 = 8;
                             }
                             
-                            *(longlong*)(stack_object_1 + 0x80 + temp_var_1 * 8) = *(longlong*)(search_index_3 + (longlong)target_objects);
+                            *(int64_t*)(stack_object_1 + 0x80 + temp_var_1 * 8) = *(int64_t*)(search_index_3 + (int64_t)target_objects);
                             connection_flag = *(byte*)(stack_object_1 + 0xa8);
                             search_index_3 = (unsigned long long)temp_count_1;
                             temp_var_1 = temp_var_1 + 1;
@@ -652,20 +652,20 @@ void rendering_system_advanced_connection_processor(longlong render_context, int
                     FUN_18038af00(temp_object_2);
                     temp_count_1 = connection_count_1;
                     
-                    if (*(longlong*)(temp_object_2 + 0xb0) != 0) {
-                        temp_count_1 = *(unsigned int*)(*(longlong*)(temp_object_2 + 0xb0) + 0x134);
+                    if (*(int64_t*)(temp_object_2 + 0xb0) != 0) {
+                        temp_count_1 = *(unsigned int*)(*(int64_t*)(temp_object_2 + 0xb0) + 0x134);
                     }
                     
-                    if (*(longlong*)(temp_object_2 + 0xb8) != 0) {
-                        temp_count_1 = temp_count_1 | *(unsigned int*)(*(longlong*)(temp_object_2 + 0xb8) + 0x134);
+                    if (*(int64_t*)(temp_object_2 + 0xb8) != 0) {
+                        temp_count_1 = temp_count_1 | *(unsigned int*)(*(int64_t*)(temp_object_2 + 0xb8) + 0x134);
                     }
                     
-                    if (*(longlong*)(temp_object_2 + 0xc0) != 0) {
-                        temp_count_1 = temp_count_1 | *(unsigned int*)(*(longlong*)(temp_object_2 + 0xc0) + 0x134);
+                    if (*(int64_t*)(temp_object_2 + 0xc0) != 0) {
+                        temp_count_1 = temp_count_1 | *(unsigned int*)(*(int64_t*)(temp_object_2 + 0xc0) + 0x134);
                     }
                     
-                    if (*(longlong*)(temp_object_2 + 200) != 0) {
-                        temp_count_1 = temp_count_1 | *(unsigned int*)(*(longlong*)(temp_object_2 + 200) + 0x134);
+                    if (*(int64_t*)(temp_object_2 + 200) != 0) {
+                        temp_count_1 = temp_count_1 | *(unsigned int*)(*(int64_t*)(temp_object_2 + 200) + 0x134);
                     }
                     
                     temp_count_2 = RENDERING_INVALID_INDEX;
@@ -677,20 +677,20 @@ void rendering_system_advanced_connection_processor(longlong render_context, int
                     FUN_18038b160(current_object_2);
                     FUN_18038af00(current_object_2);
                     
-                    if (*(longlong*)(current_object_2 + 0xb0) != 0) {
-                        connection_count_1 = *(unsigned int*)(*(longlong*)(current_object_2 + 0xb0) + 0x134);
+                    if (*(int64_t*)(current_object_2 + 0xb0) != 0) {
+                        connection_count_1 = *(unsigned int*)(*(int64_t*)(current_object_2 + 0xb0) + 0x134);
                     }
                     
-                    if (*(longlong*)(current_object_2 + 0xb8) != 0) {
-                        connection_count_1 = connection_count_1 | *(unsigned int*)(*(longlong*)(current_object_2 + 0xb8) + 0x134);
+                    if (*(int64_t*)(current_object_2 + 0xb8) != 0) {
+                        connection_count_1 = connection_count_1 | *(unsigned int*)(*(int64_t*)(current_object_2 + 0xb8) + 0x134);
                     }
                     
-                    if (*(longlong*)(current_object_2 + 0xc0) != 0) {
-                        connection_count_1 = connection_count_1 | *(unsigned int*)(*(longlong*)(current_object_2 + 0xc0) + 0x134);
+                    if (*(int64_t*)(current_object_2 + 0xc0) != 0) {
+                        connection_count_1 = connection_count_1 | *(unsigned int*)(*(int64_t*)(current_object_2 + 0xc0) + 0x134);
                     }
                     
-                    if (*(longlong*)(current_object_2 + 200) != 0) {
-                        connection_count_1 = connection_count_1 | *(unsigned int*)(*(longlong*)(current_object_2 + 200) + 0x134);
+                    if (*(int64_t*)(current_object_2 + 200) != 0) {
+                        connection_count_1 = connection_count_1 | *(unsigned int*)(*(int64_t*)(current_object_2 + 200) + 0x134);
                     }
                     
                     temp_count_1 = RENDERING_INVALID_INDEX;
@@ -703,20 +703,20 @@ void rendering_system_advanced_connection_processor(longlong render_context, int
                     FUN_18038af00(current_object_1);
                     connection_count_1 = connection_count_2;
                     
-                    if (*(longlong*)(current_object_1 + 0xb0) != 0) {
-                        connection_count_1 = *(unsigned int*)(*(longlong*)(current_object_1 + 0xb0) + 0x134);
+                    if (*(int64_t*)(current_object_1 + 0xb0) != 0) {
+                        connection_count_1 = *(unsigned int*)(*(int64_t*)(current_object_1 + 0xb0) + 0x134);
                     }
                     
-                    if (*(longlong*)(current_object_1 + 0xb8) != 0) {
-                        connection_count_1 = connection_count_1 | *(unsigned int*)(*(longlong*)(current_object_1 + 0xb8) + 0x134);
+                    if (*(int64_t*)(current_object_1 + 0xb8) != 0) {
+                        connection_count_1 = connection_count_1 | *(unsigned int*)(*(int64_t*)(current_object_1 + 0xb8) + 0x134);
                     }
                     
-                    if (*(longlong*)(current_object_1 + 0xc0) != 0) {
-                        connection_count_1 = connection_count_1 | *(unsigned int*)(*(longlong*)(current_object_1 + 0xc0) + 0x134);
+                    if (*(int64_t*)(current_object_1 + 0xc0) != 0) {
+                        connection_count_1 = connection_count_1 | *(unsigned int*)(*(int64_t*)(current_object_1 + 0xc0) + 0x134);
                     }
                     
-                    if (*(longlong*)(current_object_1 + 200) != 0) {
-                        connection_count_1 = connection_count_1 | *(unsigned int*)(*(longlong*)(current_object_1 + 200) + 0x134);
+                    if (*(int64_t*)(current_object_1 + 200) != 0) {
+                        connection_count_1 = connection_count_1 | *(unsigned int*)(*(int64_t*)(current_object_1 + 200) + 0x134);
                     }
                     
                     temp_count_1 = RENDERING_INVALID_INDEX;
@@ -728,20 +728,20 @@ void rendering_system_advanced_connection_processor(longlong render_context, int
                     FUN_18038b160(stack_object_1);
                     temp_value_1 = FUN_18038af00(stack_object_1);
                     
-                    if (*(longlong*)(stack_object_1 + 0xb0) != 0) {
-                        connection_count_2 = *(unsigned int*)(*(longlong*)(stack_object_1 + 0xb0) + 0x134);
+                    if (*(int64_t*)(stack_object_1 + 0xb0) != 0) {
+                        connection_count_2 = *(unsigned int*)(*(int64_t*)(stack_object_1 + 0xb0) + 0x134);
                     }
                     
-                    if (*(longlong*)(stack_object_1 + 0xb8) != 0) {
-                        connection_count_2 = connection_count_2 | *(unsigned int*)(*(longlong*)(stack_object_1 + 0xb8) + 0x134);
+                    if (*(int64_t*)(stack_object_1 + 0xb8) != 0) {
+                        connection_count_2 = connection_count_2 | *(unsigned int*)(*(int64_t*)(stack_object_1 + 0xb8) + 0x134);
                     }
                     
-                    if (*(longlong*)(stack_object_1 + 0xc0) != 0) {
-                        connection_count_2 = connection_count_2 | *(unsigned int*)(*(longlong*)(stack_object_1 + 0xc0) + 0x134);
+                    if (*(int64_t*)(stack_object_1 + 0xc0) != 0) {
+                        connection_count_2 = connection_count_2 | *(unsigned int*)(*(int64_t*)(stack_object_1 + 0xc0) + 0x134);
                     }
                     
-                    if (*(longlong*)(stack_object_1 + 200) != 0) {
-                        connection_count_2 = connection_count_2 | *(unsigned int*)(*(longlong*)(stack_object_1 + 200) + 0x134);
+                    if (*(int64_t*)(stack_object_1 + 200) != 0) {
+                        connection_count_2 = connection_count_2 | *(unsigned int*)(*(int64_t*)(stack_object_1 + 200) + 0x134);
                     }
                     
                     connection_count_1 = RENDERING_INVALID_INDEX;

@@ -51,18 +51,18 @@
  * @param resource_data 资源数据指针
  * @return void
  */
-void RenderingSystem_ProcessResourceFile(longlong render_context, longlong output_handle, longlong resource_data)
+void RenderingSystem_ProcessResourceFile(int64_t render_context, int64_t output_handle, int64_t resource_data)
 
 {
-  longlong lVar1;
+  int64_t lVar1;
   int32_t *puVar2;
   uint64_t uVar3;
-  longlong *plVar4;
+  int64_t *plVar4;
   void *puVar5;
   int8_t *puVar6;
   uint uVar7;
   int iVar8;
-  longlong lVar9;
+  int64_t lVar9;
   int iVar10;
   int32_t *puVar11;
   int8_t auStack_128 [32];
@@ -70,27 +70,27 @@ void RenderingSystem_ProcessResourceFile(longlong render_context, longlong outpu
   void *puStack_100;
   int8_t *puStack_f8;
   uint uStack_f0;
-  ulonglong uStack_e8;
-  longlong lStack_e0;
-  longlong alStack_d8 [3];
+  uint64_t uStack_e8;
+  int64_t lStack_e0;
+  int64_t alStack_d8 [3];
   int16_t uStack_c0;
   int8_t uStack_be;
   int32_t *puStack_b8;
   uint64_t uStack_b0;
-  longlong lStack_a8;
+  int64_t lStack_a8;
   int8_t uStack_a0;
-  longlong *plStack_98;
-  longlong *plStack_90;
+  int64_t *plStack_98;
+  int64_t *plStack_90;
   int32_t auStack_88 [2];
   int32_t *puStack_80;
   uint64_t uStack_78;
   int32_t *puStack_70;
   int8_t auStack_68 [24];
   char acStack_50 [16];
-  ulonglong uStack_40;
+  uint64_t uStack_40;
   
   uStack_78 = 0xfffffffffffffffe;
-  uStack_40 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_128;
+  uStack_40 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_128;
   iVar10 = 0;
   aiStack_108[0] = 0;
   fread(aiStack_108,4,1,*(uint64_t *)(output_handle + 8));
@@ -99,10 +99,10 @@ void RenderingSystem_ProcessResourceFile(longlong render_context, longlong outpu
       puStack_b8 = (int32_t *)0x0;
     }
     else {
-      puStack_b8 = (int32_t *)FUN_18062b420(system_memory_pool_ptr,(longlong)aiStack_108[0] * 4,3);
+      puStack_b8 = (int32_t *)FUN_18062b420(system_memory_pool_ptr,(int64_t)aiStack_108[0] * 4,3);
     }
     puVar11 = puStack_b8;
-    fread(puStack_b8,4,(longlong)aiStack_108[0],*(uint64_t *)(output_handle + 8));
+    fread(puStack_b8,4,(int64_t)aiStack_108[0],*(uint64_t *)(output_handle + 8));
     puVar2 = puVar11;
     if (0 < aiStack_108[0]) {
       lStack_e0 = render_context + 0xb48;
@@ -118,9 +118,9 @@ void RenderingSystem_ProcessResourceFile(longlong render_context, longlong outpu
             puVar5 = *(void **)(resource_data + 8);
           }
                     // WARNING: Subroutine does not return
-          memcpy(puStack_f8,puVar5,(longlong)(*(int *)(resource_data + 0x10) + 1));
+          memcpy(puStack_f8,puVar5,(int64_t)(*(int *)(resource_data + 0x10) + 1));
         }
-        if ((*(longlong *)(resource_data + 8) != 0) && (uStack_f0 = 0, puStack_f8 != (int8_t *)0x0)) {
+        if ((*(int64_t *)(resource_data + 8) != 0) && (uStack_f0 = 0, puStack_f8 != (int8_t *)0x0)) {
           *puStack_f8 = 0;
         }
         uVar7 = uStack_f0 + 1;
@@ -137,12 +137,12 @@ void RenderingSystem_ProcessResourceFile(longlong render_context, longlong outpu
         if (0 < iVar8) {
           FUN_1806277c0(&puStack_100,uStack_f0 + iVar8);
                     // WARNING: Subroutine does not return
-          memcpy(puStack_f8 + uStack_f0,acStack_50,(longlong)((int)lVar9 + 2));
+          memcpy(puStack_f8 + uStack_f0,acStack_50,(int64_t)((int)lVar9 + 2));
         }
         iVar8 = uStack_f0 + 4;
         FUN_1806277c0(&puStack_100,iVar8);
         *(int32_t *)(puStack_f8 + uStack_f0) = 0x6664652e;
-        *(int8_t *)((longlong)(puStack_f8 + uStack_f0) + 4) = 0;
+        *(int8_t *)((int64_t)(puStack_f8 + uStack_f0) + 4) = 0;
         puVar6 = &system_buffer_ptr;
         if (puStack_f8 != (int8_t *)0x0) {
           puVar6 = puStack_f8;
@@ -166,21 +166,21 @@ void RenderingSystem_ProcessResourceFile(longlong render_context, longlong outpu
         puVar2 = (int32_t *)FUN_18062b1e0(system_memory_pool_ptr,0x10,8,3);
         *(uint64_t *)(puVar2 + 2) = 0;
         *puVar2 = 0xffffffff;
-        plStack_98 = *(longlong **)(puVar2 + 2);
+        plStack_98 = *(int64_t **)(puVar2 + 2);
         *(uint64_t *)(puVar2 + 2) = 0;
         puStack_70 = puVar2;
-        if (plStack_98 != (longlong *)0x0) {
+        if (plStack_98 != (int64_t *)0x0) {
           (**(code **)(*plStack_98 + 0x38))();
         }
         uVar3 = FUN_18062b1e0(system_memory_pool_ptr,0xf0,8,3);
-        plVar4 = (longlong *)FUN_18007f2f0(uVar3);
-        if (plVar4 != (longlong *)0x0) {
+        plVar4 = (int64_t *)FUN_18007f2f0(uVar3);
+        if (plVar4 != (int64_t *)0x0) {
           plStack_90 = plVar4;
           (**(code **)(*plVar4 + 0x28))(plVar4);
         }
-        plStack_90 = *(longlong **)(puVar2 + 2);
-        *(longlong **)(puVar2 + 2) = plVar4;
-        if (plStack_90 != (longlong *)0x0) {
+        plStack_90 = *(int64_t **)(puVar2 + 2);
+        *(int64_t **)(puVar2 + 2) = plVar4;
+        if (plStack_90 != (int64_t *)0x0) {
           (**(code **)(*plStack_90 + 0x38))();
         }
         FUN_18007e2b0(*(uint64_t *)(puVar2 + 2),alStack_d8);
@@ -217,7 +217,7 @@ void RenderingSystem_ProcessResourceFile(longlong render_context, longlong outpu
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_40 ^ (ulonglong)auStack_128);
+  FUN_1808fc050(uStack_40 ^ (uint64_t)auStack_128);
 }
 
 
@@ -237,18 +237,18 @@ void RenderingSystem_ProcessResourceFile(longlong render_context, longlong outpu
  * @param resource_data 资源数据指针
  * @return void
  */
-void RenderingSystem_ExportResourceData(uint64_t render_context, longlong output_handle, longlong resource_data)
+void RenderingSystem_ExportResourceData(uint64_t render_context, int64_t output_handle, int64_t resource_data)
 
 {
   int32_t *puVar1;
-  longlong lVar2;
+  int64_t lVar2;
   uint64_t *puVar3;
   uint64_t uVar4;
   void *puVar5;
   int8_t *puVar6;
   uint uVar7;
   int iVar8;
-  longlong lVar9;
+  int64_t lVar9;
   int *piVar10;
   int8_t auStack_138 [48];
   int aiStack_108 [2];
@@ -262,21 +262,21 @@ void RenderingSystem_ExportResourceData(uint64_t render_context, longlong output
   uint uStack_d0;
   uint64_t uStack_c8;
   int32_t uStack_c0;
-  longlong alStack_b8 [2];
+  int64_t alStack_b8 [2];
   int32_t *puStack_a8;
   int32_t *puStack_a0;
   uint64_t uStack_98;
   uint64_t uStack_90;
   int8_t uStack_88;
-  longlong lStack_80;
+  int64_t lStack_80;
   uint64_t uStack_68;
   uint64_t *puStack_60;
   uint64_t *puStack_58;
   char acStack_50 [16];
-  ulonglong uStack_40;
+  uint64_t uStack_40;
   
   uStack_68 = 0xfffffffffffffffe;
-  uStack_40 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_138;
+  uStack_40 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_138;
   aiStack_108[0] = 0;
   lStack_80 = resource_data;
   fread(aiStack_108,4,1,*(uint64_t *)(output_handle + 8));
@@ -285,10 +285,10 @@ void RenderingSystem_ExportResourceData(uint64_t render_context, longlong output
       puStack_a0 = (int32_t *)0x0;
     }
     else {
-      puStack_a0 = (int32_t *)FUN_18062b420(system_memory_pool_ptr,(longlong)aiStack_108[0] * 4,3);
+      puStack_a0 = (int32_t *)FUN_18062b420(system_memory_pool_ptr,(int64_t)aiStack_108[0] * 4,3);
     }
     puVar1 = puStack_a0;
-    fread(puStack_a0,4,(longlong)aiStack_108[0],*(uint64_t *)(output_handle + 8));
+    fread(puStack_a0,4,(int64_t)aiStack_108[0],*(uint64_t *)(output_handle + 8));
     uStack_c0 = 0;
     if (0 < aiStack_108[0]) {
       puStack_e0 = &system_data_buffer_ptr;
@@ -303,9 +303,9 @@ void RenderingSystem_ExportResourceData(uint64_t render_context, longlong output
           puVar5 = *(void **)(resource_data + 8);
         }
                     // WARNING: Subroutine does not return
-        memcpy(puStack_d8,puVar5,(longlong)(*(int *)(resource_data + 0x10) + 1));
+        memcpy(puStack_d8,puVar5,(int64_t)(*(int *)(resource_data + 0x10) + 1));
       }
-      if (*(longlong *)(resource_data + 8) != 0) {
+      if (*(int64_t *)(resource_data + 8) != 0) {
         uStack_d0 = 0;
         if (puStack_d8 != (int8_t *)0x0) {
           *puStack_d8 = 0;
@@ -325,12 +325,12 @@ void RenderingSystem_ExportResourceData(uint64_t render_context, longlong output
       if (0 < iVar8) {
         FUN_1806277c0(&puStack_e0,uStack_d0 + iVar8);
                     // WARNING: Subroutine does not return
-        memcpy(puStack_d8 + uStack_d0,acStack_50,(longlong)((int)lVar9 + 2));
+        memcpy(puStack_d8 + uStack_d0,acStack_50,(int64_t)((int)lVar9 + 2));
       }
       iVar8 = uStack_d0 + 4;
       FUN_1806277c0(&puStack_e0,iVar8);
       *(int32_t *)(puStack_d8 + uStack_d0) = 0x6662672e;
-      *(int8_t *)((longlong)(puStack_d8 + uStack_d0) + 4) = 0;
+      *(int8_t *)((int64_t)(puStack_d8 + uStack_d0) + 4) = 0;
       puVar6 = &system_buffer_ptr;
       if (puStack_d8 != (int8_t *)0x0) {
         puVar6 = puStack_d8;
@@ -371,12 +371,12 @@ void RenderingSystem_ExportResourceData(uint64_t render_context, longlong output
         iVar8 = 0;
       }
       else {
-        uVar4 = FUN_18062b420(system_memory_pool_ptr,(longlong)iVar8 * 4,3);
+        uVar4 = FUN_18062b420(system_memory_pool_ptr,(int64_t)iVar8 * 4,3);
         iVar8 = *(int *)(puVar3 + 1);
       }
       *puVar3 = uVar4;
                     // WARNING: Subroutine does not return
-      memcpy(uVar4,piVar10,(longlong)(iVar8 * 4));
+      memcpy(uVar4,piVar10,(int64_t)(iVar8 * 4));
     }
     if (puVar1 != (int32_t *)0x0) {
                     // WARNING: Subroutine does not return
@@ -384,7 +384,7 @@ void RenderingSystem_ExportResourceData(uint64_t render_context, longlong output
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_40 ^ (ulonglong)auStack_138);
+  FUN_1808fc050(uStack_40 ^ (uint64_t)auStack_138);
 }
 
 
@@ -404,14 +404,14 @@ void RenderingSystem_ExportResourceData(uint64_t render_context, longlong output
  * @param data_to_optimize 待优化的数据
  * @return void
  */
-void RenderingSystem_OptimizeResourceData(longlong render_context, longlong output_handle, uint64_t data_to_optimize)
+void RenderingSystem_OptimizeResourceData(int64_t render_context, int64_t output_handle, uint64_t data_to_optimize)
 
 {
   int iVar1;
   bool bVar2;
   uint64_t *puVar3;
   uint64_t *puVar4;
-  longlong lVar5;
+  int64_t lVar5;
   int32_t *puVar6;
   void *puVar7;
   uint uVar8;
@@ -420,29 +420,29 @@ void RenderingSystem_OptimizeResourceData(longlong render_context, longlong outp
   uint uVar11;
   uint64_t uVar12;
   int32_t *puVar13;
-  longlong lVar14;
-  longlong *plVar15;
-  longlong *plVar16;
+  int64_t lVar14;
+  int64_t *plVar15;
+  int64_t *plVar16;
   uint64_t *puVar17;
   int aiStackX_10 [4];
   int iStackX_20;
   void *puStack_e8;
   void *puStack_e0;
   uint uStack_d8;
-  longlong lStack_c8;
-  longlong lStack_c0;
-  longlong lStack_b8;
+  int64_t lStack_c8;
+  int64_t lStack_c0;
+  int64_t lStack_b8;
   uint64_t uStack_b0;
   uint64_t uStack_a8;
   int16_t uStack_a0;
   int8_t uStack_9e;
   int32_t *puStack_98;
-  longlong *plStack_90;
+  int64_t *plStack_90;
   uint64_t uStack_88;
-  longlong lStack_80;
+  int64_t lStack_80;
   int8_t uStack_78;
-  longlong lStack_70;
-  longlong lStack_68;
+  int64_t lStack_70;
+  int64_t lStack_68;
   int iStack_60;
   int32_t uStack_5c;
   uint64_t uStack_58;
@@ -457,34 +457,34 @@ void RenderingSystem_OptimizeResourceData(longlong render_context, longlong outp
       lStack_c0 = 0;
     }
     else {
-      lStack_c0 = FUN_18062b420(system_memory_pool_ptr,(longlong)aiStackX_10[0] * 4,3);
+      lStack_c0 = FUN_18062b420(system_memory_pool_ptr,(int64_t)aiStackX_10[0] * 4,3);
     }
     lVar5 = lStack_c0;
     if (aiStackX_10[0] == 0) {
       puStack_98 = (int32_t *)0x0;
     }
     else {
-      puStack_98 = (int32_t *)FUN_18062b420(system_memory_pool_ptr,(longlong)aiStackX_10[0] * 4,3);
+      puStack_98 = (int32_t *)FUN_18062b420(system_memory_pool_ptr,(int64_t)aiStackX_10[0] * 4,3);
     }
     puVar13 = puStack_98;
     if (aiStackX_10[0] == 0) {
       lStack_c8 = 0;
     }
     else {
-      lStack_c8 = FUN_18062b420(system_memory_pool_ptr,(longlong)aiStackX_10[0] * 4,3);
+      lStack_c8 = FUN_18062b420(system_memory_pool_ptr,(int64_t)aiStackX_10[0] * 4,3);
     }
     lVar14 = lStack_c8;
     if (aiStackX_10[0] == 0) {
-      plStack_90 = (longlong *)0x0;
+      plStack_90 = (int64_t *)0x0;
     }
     else {
-      plStack_90 = (longlong *)FUN_18062b420(system_memory_pool_ptr,(longlong)aiStackX_10[0] * 8,3);
+      plStack_90 = (int64_t *)FUN_18062b420(system_memory_pool_ptr,(int64_t)aiStackX_10[0] * 8,3);
     }
     plVar15 = plStack_90;
-    fread(lVar5,4,(longlong)aiStackX_10[0],*(uint64_t *)(output_handle + 8));
-    fread(puVar13,4,(longlong)aiStackX_10[0],*(uint64_t *)(output_handle + 8));
-    fread(lVar14,4,(longlong)aiStackX_10[0],*(uint64_t *)(output_handle + 8));
-    fread(plVar15,8,(longlong)aiStackX_10[0],*(uint64_t *)(output_handle + 8));
+    fread(lVar5,4,(int64_t)aiStackX_10[0],*(uint64_t *)(output_handle + 8));
+    fread(puVar13,4,(int64_t)aiStackX_10[0],*(uint64_t *)(output_handle + 8));
+    fread(lVar14,4,(int64_t)aiStackX_10[0],*(uint64_t *)(output_handle + 8));
+    fread(plVar15,8,(int64_t)aiStackX_10[0],*(uint64_t *)(output_handle + 8));
     FUN_1806279c0(&puStack_e8,data_to_optimize);
     uVar11 = uStack_d8;
     uVar8 = uStack_d8 + 1;
@@ -504,7 +504,7 @@ void RenderingSystem_OptimizeResourceData(longlong render_context, longlong outp
     uStack_d8 = uVar9;
     FUN_1806277c0(&puStack_e8,iVar10);
     *(int32_t *)(puStack_e0 + uStack_d8) = 0x6264732e;
-    *(int8_t *)((longlong)(puStack_e0 + uStack_d8) + 4) = 0;
+    *(int8_t *)((int64_t)(puStack_e0 + uStack_d8) + 4) = 0;
     puVar7 = &system_buffer_ptr;
     if (puStack_e0 != (void *)0x0) {
       puVar7 = puStack_e0;
@@ -518,8 +518,8 @@ void RenderingSystem_OptimizeResourceData(longlong render_context, longlong outp
     puVar6 = puVar13;
     if (0 < aiStackX_10[0]) {
       puVar17 = (uint64_t *)(render_context + 0x958);
-      lStack_68 = lStack_c8 - (longlong)puVar13;
-      lStack_70 = lStack_c0 - (longlong)puVar13;
+      lStack_68 = lStack_c8 - (int64_t)puVar13;
+      lStack_70 = lStack_c0 - (int64_t)puVar13;
       do {
         lVar14 = lStack_68;
         iVar10 = iStackX_20;
@@ -540,23 +540,23 @@ void RenderingSystem_OptimizeResourceData(longlong render_context, longlong outp
         *puVar6 = 0;
         UNLOCK();
         do {
-          *(uint64_t *)(puVar6 + (longlong)(int)uVar11 * 2 + 2) = 0;
+          *(uint64_t *)(puVar6 + (int64_t)(int)uVar11 * 2 + 2) = 0;
           LOCK();
-          *(int8_t *)((longlong)puVar6 + (longlong)(int)uVar11 + 0x808) = 1;
+          *(int8_t *)((int64_t)puVar6 + (int64_t)(int)uVar11 + 0x808) = 1;
           UNLOCK();
           uVar11 = uVar11 + 1;
         } while (uVar11 < 0x100);
         LOCK();
         *puVar6 = 0;
         UNLOCK();
-        iVar1 = *(int *)(lVar14 + (longlong)puVar13);
+        iVar1 = *(int *)(lVar14 + (int64_t)puVar13);
         puStack_48 = puVar6;
         FUN_1801b9a40(puVar6,*puVar13);
         if (0 < iVar1) {
                     // WARNING: Subroutine does not return
           memcpy(*(uint64_t *)(puVar6 + 2),uStack_b0,0x20000);
         }
-        iVar1 = *(int *)(lStack_70 + (longlong)puVar13);
+        iVar1 = *(int *)(lStack_70 + (int64_t)puVar13);
         bVar2 = true;
         puVar3 = puVar17;
         puVar4 = *(uint64_t **)(render_context + 0x968);
@@ -624,7 +624,7 @@ LAB_180330378:
                     // WARNING: Subroutine does not return
       FUN_18064e900(lVar14);
     }
-    if (plVar16 != (longlong *)0x0) {
+    if (plVar16 != (int64_t *)0x0) {
                     // WARNING: Subroutine does not return
       FUN_18064e900(plVar16);
     }
@@ -661,41 +661,41 @@ LAB_180330378:
  * @param data_to_compress 待压缩的数据
  * @return void
  */
-void RenderingSystem_CompressRenderData(longlong render_context, longlong output_handle, uint64_t data_to_compress)
+void RenderingSystem_CompressRenderData(int64_t render_context, int64_t output_handle, uint64_t data_to_compress)
 
 {
   int32_t *puVar1;
-  longlong lVar2;
+  int64_t lVar2;
   int iVar3;
   int32_t *puVar4;
   int32_t *puVar5;
   void *puVar6;
-  longlong lVar7;
-  ulonglong uVar8;
+  int64_t lVar7;
+  uint64_t uVar8;
   uint uVar9;
   uint uVar10;
   uint uVar11;
   int32_t *puVar12;
   int *piVar13;
-  longlong lVar14;
+  int64_t lVar14;
   int32_t *puVar15;
   int *piVar16;
   int aiStackX_8 [2];
-  longlong *plStackX_10;
+  int64_t *plStackX_10;
   int iStackX_20;
   void *puStack_148;
   void *puStack_140;
   uint uStack_138;
   int32_t uStack_130;
-  longlong lStack_128;
+  int64_t lStack_128;
   int32_t *puStack_120;
   uint64_t uStack_118;
   int16_t uStack_110;
   int8_t uStack_10e;
-  longlong lStack_108;
+  int64_t lStack_108;
   int *piStack_100;
   int *piStack_f8;
-  longlong lStack_f0;
+  int64_t lStack_f0;
   int32_t uStack_e8;
   int32_t uStack_e4;
   int32_t uStack_e0;
@@ -705,18 +705,18 @@ void RenderingSystem_CompressRenderData(longlong render_context, longlong output
   int32_t *puStack_c8;
   int32_t uStack_c0;
   uint64_t uStack_b8;
-  longlong lStack_b0;
+  int64_t lStack_b0;
   int8_t uStack_a8;
   int32_t uStack_a0;
-  longlong lStack_98;
-  longlong lStack_90;
-  longlong lStack_88;
+  int64_t lStack_98;
+  int64_t lStack_90;
+  int64_t lStack_88;
   int32_t uStack_80;
-  longlong lStack_78;
-  longlong lStack_70;
-  longlong lStack_68;
+  int64_t lStack_78;
+  int64_t lStack_70;
+  int64_t lStack_68;
   uint64_t uStack_60;
-  longlong *plStack_58;
+  int64_t *plStack_58;
   int8_t auStack_50 [24];
   
   uStack_60 = 0xfffffffffffffffe;
@@ -733,18 +733,18 @@ void RenderingSystem_CompressRenderData(longlong render_context, longlong output
       lStack_f0 = 0;
     }
     else {
-      lStack_f0 = FUN_18062b420(system_memory_pool_ptr,(longlong)aiStackX_8[0] * 4,3);
+      lStack_f0 = FUN_18062b420(system_memory_pool_ptr,(int64_t)aiStackX_8[0] * 4,3);
     }
     lVar14 = lStack_f0;
     if (aiStackX_8[0] == 0) {
       piStack_f8 = (int *)0x0;
     }
     else {
-      piStack_f8 = (int *)FUN_18062b420(system_memory_pool_ptr,(longlong)aiStackX_8[0] * 4,3);
+      piStack_f8 = (int *)FUN_18062b420(system_memory_pool_ptr,(int64_t)aiStackX_8[0] * 4,3);
     }
     piVar13 = piStack_f8;
-    fread(lVar14,4,(longlong)aiStackX_8[0],*(uint64_t *)(output_handle + 8));
-    fread(piVar13,4,(longlong)aiStackX_8[0],*(uint64_t *)(output_handle + 8));
+    fread(lVar14,4,(int64_t)aiStackX_8[0],*(uint64_t *)(output_handle + 8));
+    fread(piVar13,4,(int64_t)aiStackX_8[0],*(uint64_t *)(output_handle + 8));
     FUN_1806279c0(&puStack_148,data_to_compress);
     uVar11 = uStack_138;
     uVar9 = uStack_138 + 1;
@@ -764,7 +764,7 @@ void RenderingSystem_CompressRenderData(longlong render_context, longlong output
     uStack_138 = uVar10;
     FUN_1806277c0(&puStack_148,uVar11);
     *(int32_t *)(puStack_140 + uStack_138) = 0x6470612e;
-    *(int8_t *)((longlong)(puStack_140 + uStack_138) + 4) = 0;
+    *(int8_t *)((int64_t)(puStack_140 + uStack_138) + 4) = 0;
     puVar6 = &system_buffer_ptr;
     if (puStack_140 != (void *)0x0) {
       puVar6 = puStack_140;
@@ -779,7 +779,7 @@ void RenderingSystem_CompressRenderData(longlong render_context, longlong output
     if (0 < aiStackX_8[0]) {
       lStack_68 = render_context + 0x8d8;
       plStack_58 = &lStack_98;
-      lStack_70 = lVar14 - (longlong)piVar13;
+      lStack_70 = lVar14 - (int64_t)piVar13;
       do {
         lStack_128 = 0;
         puStack_120 = (int32_t *)0x0;
@@ -788,12 +788,12 @@ void RenderingSystem_CompressRenderData(longlong render_context, longlong output
         uStack_10e = 3;
         iVar3 = *piVar13;
         piStack_100 = piVar13;
-        if (((longlong)iVar3 & 0xfffffffffffffffU) != 0) {
+        if (((int64_t)iVar3 & 0xfffffffffffffffU) != 0) {
           System_BufferManager(&lStack_128);
           iVar3 = *piVar13;
         }
         lVar7 = lStack_128;
-        fread(lStack_128,(longlong)iVar3 << 4,1,lVar2);
+        fread(lStack_128,(int64_t)iVar3 << 4,1,lVar2);
         puStack_d8 = (int32_t *)0x0;
         puStack_d0 = (int32_t *)0x0;
         puStack_c8 = (int32_t *)0x0;
@@ -803,11 +803,11 @@ void RenderingSystem_CompressRenderData(longlong render_context, longlong output
           iVar3 = 0;
         }
         else {
-          puStack_d0 = (int32_t *)FUN_18062b420(system_memory_pool_ptr,(longlong)iVar3 * 0x10,3);
-          puStack_c8 = puStack_d0 + (longlong)iVar3 * 4;
+          puStack_d0 = (int32_t *)FUN_18062b420(system_memory_pool_ptr,(int64_t)iVar3 * 0x10,3);
+          puStack_c8 = puStack_d0 + (int64_t)iVar3 * 4;
           iVar3 = *piVar13;
         }
-        plStackX_10 = (longlong *)((ulonglong)plStackX_10 & 0xffffffff00000000);
+        plStackX_10 = (int64_t *)((uint64_t)plStackX_10 & 0xffffffff00000000);
         puVar5 = puStack_c8;
         puVar12 = puStack_120;
         puVar15 = puStack_d0;
@@ -830,7 +830,7 @@ void RenderingSystem_CompressRenderData(longlong render_context, longlong output
               puVar4 = puVar15;
             }
             else {
-              lStack_78 = (longlong)puStack_d0 - (longlong)puVar15;
+              lStack_78 = (int64_t)puStack_d0 - (int64_t)puVar15;
               if (lStack_78 >> 4 == 0) {
                 lVar7 = 1;
 LAB_18033084a:
@@ -861,22 +861,22 @@ LAB_18033084a:
             }
             puStack_d0 = puStack_d0 + 4;
             iVar3 = (int)plStackX_10 + 1;
-            plStackX_10 = (longlong *)CONCAT44(plStackX_10._4_4_,iVar3);
+            plStackX_10 = (int64_t *)CONCAT44(plStackX_10._4_4_,iVar3);
             lVar7 = lStack_128;
             puVar15 = puVar4;
           } while (iVar3 < *piVar13);
         }
         puVar5 = puStack_d0;
-        uStack_a0 = *(int32_t *)(lStack_70 + (longlong)piVar13);
-        uVar8 = (longlong)puStack_d0 - (longlong)puVar4;
+        uStack_a0 = *(int32_t *)(lStack_70 + (int64_t)piVar13);
+        uVar8 = (int64_t)puStack_d0 - (int64_t)puVar4;
         uStack_80 = 3;
         if (uVar8 < 0x10) {
           lStack_98 = 0;
         }
         else {
-          lStack_98 = FUN_18062b420(system_memory_pool_ptr,((longlong)uVar8 >> 4) << 4,3);
+          lStack_98 = FUN_18062b420(system_memory_pool_ptr,((int64_t)uVar8 >> 4) << 4,3);
         }
-        lStack_88 = lStack_98 + ((longlong)uVar8 >> 4) * 0x10;
+        lStack_88 = lStack_98 + ((int64_t)uVar8 >> 4) * 0x10;
         lStack_90 = lStack_98;
         if (puVar4 != puVar5) {
                     // WARNING: Subroutine does not return

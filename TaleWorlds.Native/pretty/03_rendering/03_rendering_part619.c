@@ -51,7 +51,7 @@ void rendering_system_empty_function(void);
  * @param effect_intensity 特效强度
  * @param output_buffer 输出缓冲区
  */
-void rendering_system_effect_processor(int effect_context, uint effect_type, float effect_intensity, longlong output_buffer);
+void rendering_system_effect_processor(int effect_context, uint effect_type, float effect_intensity, int64_t output_buffer);
 
 /**
  * 渲染系统数据比较器
@@ -72,7 +72,7 @@ int rendering_system_data_comparator(uint64_t data_item1, uint64_t data_item2, u
  * @param resource_name 资源名称
  * @return 资源索引
  */
-int rendering_system_resource_finder(longlong resource_name);
+int rendering_system_resource_finder(int64_t resource_name);
 
 /**
  * 渲染系统资源收集器
@@ -81,7 +81,7 @@ int rendering_system_resource_finder(longlong resource_name);
  * @param resource_context 资源上下文
  * @param output_array 输出数组
  */
-void rendering_system_resource_collector(longlong resource_context, int *output_array);
+void rendering_system_resource_collector(int64_t resource_context, int *output_array);
 
 /**
  * 渲染系统资源处理器
@@ -117,8 +117,8 @@ void rendering_system_state_switcher(char state_flag);
  * @param texture_data 纹理数据
  * @param processing_flag 处理标志
  */
-void rendering_system_advanced_effect_processor(uint64_t *effect_params, uint64_t render_context, longlong transform_data, longlong output_data,
-                                             uint64_t control_flags, longlong additional_params, longlong resource_data, uint64_t texture_data,
+void rendering_system_advanced_effect_processor(uint64_t *effect_params, uint64_t render_context, int64_t transform_data, int64_t output_data,
+                                             uint64_t control_flags, int64_t additional_params, int64_t resource_data, uint64_t texture_data,
                                              int8_t processing_flag);
 
 /**
@@ -128,7 +128,7 @@ void rendering_system_advanced_effect_processor(uint64_t *effect_params, uint64_
  * @param resource_handle 资源句柄
  * @return 资源位置
  */
-longlong rendering_system_resource_locator(longlong *resource_handle);
+int64_t rendering_system_resource_locator(int64_t *resource_handle);
 
 /**
  * 渲染系统资源管理器
@@ -138,7 +138,7 @@ longlong rendering_system_resource_locator(longlong *resource_handle);
  * @param resource_type 资源类型
  * @param processing_flag 处理标志
  */
-void rendering_system_resource_manager(longlong *resource_handle, int32_t resource_type, int8_t processing_flag);
+void rendering_system_resource_manager(int64_t *resource_handle, int32_t resource_type, int8_t processing_flag);
 
 /**
  * 渲染系统对象管理器
@@ -149,7 +149,7 @@ void rendering_system_resource_manager(longlong *resource_handle, int32_t resour
  * @param transform_params 变换参数
  * @param render_params 渲染参数
  */
-void rendering_system_object_manager(longlong object_handle, char visibility_flag, uint64_t transform_params, uint64_t render_params);
+void rendering_system_object_manager(int64_t object_handle, char visibility_flag, uint64_t transform_params, uint64_t render_params);
 
 /**
  * 渲染系统对象销毁器
@@ -234,7 +234,7 @@ void rendering_system_data_extractor(int resource_handle, uint64_t *output_data)
  * @param output_data 输出数据
  * @return 属性值
  */
-ulonglong rendering_system_resource_property_getter(uint64_t query_params, uint64_t render_context, uint64_t effect_data, uint64_t output_data);
+uint64_t rendering_system_resource_property_getter(uint64_t query_params, uint64_t render_context, uint64_t effect_data, uint64_t output_data);
 
 /**
  * 渲染系统材质属性获取器
@@ -281,18 +281,18 @@ void rendering_system_empty_function(void)
  * @param effect_intensity 特效强度
  * @param output_buffer 输出缓冲区
  */
-void rendering_system_effect_processor(int effect_context, uint effect_type, float effect_intensity, longlong output_buffer)
+void rendering_system_effect_processor(int effect_context, uint effect_type, float effect_intensity, int64_t output_buffer)
 {
   uint64_t temp_value1;
   int32_t temp_value2;
   uint temp_value3;
   uint64_t *pointer_value1;
-  longlong long_value1;
-  ulonglong ulong_value1;
+  int64_t long_value1;
+  uint64_t ulong_value1;
   uint64_t *pointer_value2;
   int32_t *pointer_value3;
   uint effect_level;
-  ulonglong temp_value4;
+  uint64_t temp_value4;
   uint temp_value5;
   int int_value1;
   uint64_t register_value;
@@ -303,7 +303,7 @@ void rendering_system_effect_processor(int effect_context, uint effect_type, flo
   uint stack_value1;
   uint64_t stack_value2;
   void *stack_pointer3;
-  longlong stack_long_value;
+  int64_t stack_long_value;
   int32_t stack_value3;
   
   ulong_value1 = 0;
@@ -357,13 +357,13 @@ void rendering_system_effect_processor(int effect_context, uint effect_type, flo
     
     // 处理特效数据
     do {
-      pointer_value2 = (uint64_t *)(ulong_value1 + *(longlong *)(long_value1 + 0x5c8));
+      pointer_value2 = (uint64_t *)(ulong_value1 + *(int64_t *)(long_value1 + 0x5c8));
       temp_value1 = pointer_value2[1];
       *(uint64_t *)(ulong_value1 + output_buffer) = *pointer_value2;
       ((uint64_t *)(ulong_value1 + output_buffer))[1] = temp_value1;
       effect_level = (int)temp_value4 + 1;
       ulong_value1 = ulong_value1 + 0x10;
-      temp_value4 = (ulonglong)effect_level;
+      temp_value4 = (uint64_t)effect_level;
     } while ((int)effect_level < *(int *)(long_value1 + 0x5d0));
     return;
   }
@@ -385,7 +385,7 @@ void rendering_system_effect_processor(int effect_context, uint effect_type, flo
   stack_pointer2[3] = 0x6f662065;  // "e fo"
   stack_pointer2[4] = 0x61722072;  // "r ra"
   *(int16_t *)(stack_pointer2 + 5) = 0x6563;  // "ce"
-  *(int8_t *)((longlong)stack_pointer2 + 0x16) = 0;
+  *(int8_t *)((int64_t)stack_pointer2 + 0x16) = 0;
   stack_value1 = 0x16;
   
   // 处理特效上下文
@@ -397,7 +397,7 @@ void rendering_system_effect_processor(int effect_context, uint effect_type, flo
       if ((int)temp_value3 < 0x10) {
         temp_value3 = 0x10;
       }
-      stack_pointer2 = (int32_t *)FUN_18062b420(system_memory_pool_ptr, (longlong)(int)temp_value3, 0x13);
+      stack_pointer2 = (int32_t *)FUN_18062b420(system_memory_pool_ptr, (int64_t)(int)temp_value3, 0x13);
       *(int8_t *)stack_pointer2 = 0;
     }
     else {
@@ -409,10 +409,10 @@ void rendering_system_effect_processor(int effect_context, uint effect_type, flo
   }
   
 EFFECT_PROCESSOR_LABEL1:
-  pointer_value2 = (uint64_t *)((ulonglong)stack_value1 + (longlong)stack_pointer2);
+  pointer_value2 = (uint64_t *)((uint64_t)stack_value1 + (int64_t)stack_pointer2);
   *pointer_value2 = 0x6e656720726f6620;  // " for render"
   *(int32_t *)(pointer_value2 + 1) = 0x20726564;  // "der "
-  *(int8_t *)((longlong)pointer_value2 + 0xc) = 0;
+  *(int8_t *)((int64_t)pointer_value2 + 0xc) = 0;
   stack_value1 = temp_value5;
   
   // 处理特效类型
@@ -424,7 +424,7 @@ EFFECT_PROCESSOR_LABEL1:
       if ((int)temp_value3 < 0x10) {
         temp_value3 = 0x10;
       }
-      stack_pointer2 = (int32_t *)FUN_18062b420(system_memory_pool_ptr, (longlong)(int)temp_value3, 0x13);
+      stack_pointer2 = (int32_t *)FUN_18062b420(system_memory_pool_ptr, (int64_t)(int)temp_value3, 0x13);
       *(int8_t *)stack_pointer2 = 0;
     }
     else {
@@ -436,7 +436,7 @@ EFFECT_PROCESSOR_LABEL1:
   }
   
 EFFECT_PROCESSOR_LABEL2:
-  pointer_value3 = (int32_t *)((ulonglong)stack_value1 + (longlong)stack_pointer2);
+  pointer_value3 = (int32_t *)((uint64_t)stack_value1 + (int64_t)stack_pointer2);
   *pointer_value3 = 0x726f6620;  // " for"
   pointer_value3[1] = 0x74616d20;  // " mat"
   pointer_value3[2] = 0x74697275;  // "urit"
@@ -453,7 +453,7 @@ EFFECT_PROCESSOR_LABEL2:
         if ((int)effect_level < 0x10) {
           effect_level = 0x10;
         }
-        stack_pointer2 = (int32_t *)FUN_18062b420(system_memory_pool_ptr, (longlong)(int)effect_level, 0x13);
+        stack_pointer2 = (int32_t *)FUN_18062b420(system_memory_pool_ptr, (int64_t)(int)effect_level, 0x13);
         *(int8_t *)stack_pointer2 = 0;
       }
       else {
@@ -466,8 +466,8 @@ EFFECT_PROCESSOR_LABEL2:
     
 EFFECT_PROCESSOR_LABEL3:
     // 复制特效数据
-    memcpy((int8_t *)((ulonglong)stack_value1 + (longlong)stack_pointer2), *(uint64_t *)(long_value1 + 8),
-           (longlong)(*(int *)(long_value1 + 0x10) + 1));
+    memcpy((int8_t *)((uint64_t)stack_value1 + (int64_t)stack_pointer2), *(uint64_t *)(long_value1 + 8),
+           (int64_t)(*(int *)(long_value1 + 0x10) + 1));
   }
   
   // 清理特效处理资源
@@ -486,7 +486,7 @@ EFFECT_PROCESSOR_LABEL3:
       if ((int)effect_level < 0x10) {
         effect_level = 0x10;
       }
-      stack_pointer2 = (int32_t *)FUN_18062b420(system_memory_pool_ptr, (longlong)(int)effect_level, 0x13);
+      stack_pointer2 = (int32_t *)FUN_18062b420(system_memory_pool_ptr, (int64_t)(int)effect_level, 0x13);
       *(int8_t *)stack_pointer2 = 0;
     }
     else {
@@ -498,17 +498,17 @@ EFFECT_PROCESSOR_LABEL3:
   }
   
 EFFECT_PROCESSOR_LABEL4:
-  pointer_value2 = (uint64_t *)((ulonglong)stack_value1 + (longlong)stack_pointer2);
+  pointer_value2 = (uint64_t *)((uint64_t)stack_value1 + (int64_t)stack_pointer2);
   *pointer_value2 = 0x6620746f6e207369;  // "f to not si"
   pointer_value2[1] = 0x206e6920646e756f;  // " n in undo"
   *(int32_t *)(pointer_value2 + 2) = 0x5f746567;  // "_teg"
-  *(int32_t *)((longlong)pointer_value2 + 0x14) = 0x6e696b73;  // "skin"
+  *(int32_t *)((int64_t)pointer_value2 + 0x14) = 0x6e696b73;  // "skin"
   *(int32_t *)(pointer_value2 + 3) = 0x6c6f635f;  // "loc_"
-  *(int32_t *)((longlong)pointer_value2 + 0x1c) = 0x675f726f;  // "g_ro"
+  *(int32_t *)((int64_t)pointer_value2 + 0x1c) = 0x675f726f;  // "g_ro"
   *(int32_t *)(pointer_value2 + 4) = 0x69646172;  // "idar"
-  *(int32_t *)((longlong)pointer_value2 + 0x24) = 0x5f746e65;  // "_tne"
+  *(int32_t *)((int64_t)pointer_value2 + 0x24) = 0x5f746e65;  // "_tne"
   *(int32_t *)(pointer_value2 + 5) = 0x6e696f70;  // "niop"
-  *(int32_t *)((longlong)pointer_value2 + 0x2c) = 0x217374;  // "!st"
+  *(int32_t *)((int64_t)pointer_value2 + 0x2c) = 0x217374;  // "!st"
   pointer_value3 = (int32_t *)&system_buffer_ptr;
   
   if (stack_pointer2 != (int32_t *)0x0) {
@@ -540,7 +540,7 @@ int rendering_system_data_comparator(uint64_t data_item1, uint64_t data_item2, u
 {
   short comparison_result;
   void *stack_pointer;
-  longlong stack_long_value;
+  int64_t stack_long_value;
   
   FUN_180627910(&stack_pointer, data_item1, data_item3, data_item4, 0xfffffffffffffffe);
   comparison_result = FUN_180571e20(&system_buffer_60c0, &stack_pointer);
@@ -560,21 +560,21 @@ int rendering_system_data_comparator(uint64_t data_item1, uint64_t data_item2, u
  * @param resource_name 资源名称
  * @return 资源索引
  */
-int rendering_system_resource_finder(longlong resource_name)
+int rendering_system_resource_finder(int64_t resource_name)
 {
   char char_value1;
   char char_value2;
   int result_index;
-  longlong string_length;
+  int64_t string_length;
   char *string_pointer;
-  longlong resource_index;
+  int64_t resource_index;
   uint64_t *resource_pointer;
   int temp_index;
   bool is_match;
   
   result_index = 0;
   temp_index = (int)((render_system_pointer - render_system_pointer) / RENDER_RESOURCE_SIZE_BASE);
-  resource_index = (longlong)temp_index;
+  resource_index = (int64_t)temp_index;
   
   if (0 < temp_index) {
     resource_pointer = (uint64_t *)(render_system_pointer + RENDER_RESOURCE_OFFSET_DATA);
@@ -593,7 +593,7 @@ RESOURCE_FINDER_LABEL1:
         }
         else {
           string_pointer = (char *)*resource_pointer;
-          string_length = resource_name - (longlong)string_pointer;
+          string_length = resource_name - (int64_t)string_pointer;
           do {
             char_value1 = *string_pointer;
             char_value2 = string_pointer[string_length];
@@ -629,21 +629,21 @@ RESOURCE_FINDER_LABEL2:
  * @param resource_context 资源上下文
  * @param output_array 输出数组
  */
-void rendering_system_resource_collector(longlong resource_context, int *output_array)
+void rendering_system_resource_collector(int64_t resource_context, int *output_array)
 {
   byte *byte_pointer1;
   int string_length1;
-  longlong temp_long;
+  int64_t temp_long;
   byte *byte_pointer2;
   int string_length2;
-  ulonglong resource_index;
-  longlong base_address;
-  longlong array_size;
-  ulonglong output_index;
+  uint64_t resource_index;
+  int64_t base_address;
+  int64_t array_size;
+  uint64_t output_index;
   
   resource_index = 0;
   string_length1 = (int)((render_system_pointer - render_system_pointer) / RENDER_RESOURCE_SIZE_BASE);
-  array_size = (longlong)string_length1;
+  array_size = (int64_t)string_length1;
   base_address = render_system_pointer;
   output_index = resource_index;
   
@@ -660,7 +660,7 @@ void rendering_system_resource_collector(longlong resource_context, int *output_
       if (string_length1 == string_length2) {
         if (string_length1 != 0) {
           byte_pointer2 = *(byte **)(resource_index + RENDER_RESOURCE_OFFSET_DATA + base_address);
-          temp_long = resource_context - (longlong)byte_pointer2;
+          temp_long = resource_context - (int64_t)byte_pointer2;
           do {
             byte_pointer1 = byte_pointer2 + temp_long;
             string_length2 = (uint)*byte_pointer2 - (uint)*byte_pointer1;
@@ -679,7 +679,7 @@ RESOURCE_COLLECTOR_LABEL1:
       
       resource_index = resource_index + RENDER_RESOURCE_SIZE_BASE;
       array_size = array_size + -1;
-      output_index = (ulonglong)((int)output_index + 1);
+      output_index = (uint64_t)((int)output_index + 1);
     } while (array_size != 0);
   }
   
@@ -694,14 +694,14 @@ void rendering_system_resource_processor(void)
 {
   byte *byte_pointer1;
   int string_length1;
-  longlong temp_long;
+  int64_t temp_long;
   byte *byte_pointer2;
   int string_length2;
-  ulonglong resource_index;
-  longlong base_address;
-  longlong array_size;
+  uint64_t resource_index;
+  int64_t base_address;
+  int64_t array_size;
   
-  resource_index = (ulonglong)in_R10D;
+  resource_index = (uint64_t)in_R10D;
   do {
     temp_long = -1;
     do {
@@ -714,7 +714,7 @@ void rendering_system_resource_processor(void)
     if (string_length1 == string_length2) {
       if (string_length1 != 0) {
         byte_pointer2 = *(byte **)(resource_index + RENDER_RESOURCE_OFFSET_DATA + unaff_RSI);
-        temp_long = in_R9 - (longlong)byte_pointer2;
+        temp_long = in_R9 - (int64_t)byte_pointer2;
         do {
           byte_pointer1 = byte_pointer2 + temp_long;
           string_length2 = (uint)*byte_pointer2 - (uint)*byte_pointer1;

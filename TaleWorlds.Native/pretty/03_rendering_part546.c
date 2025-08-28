@@ -9,18 +9,18 @@ void FUN_180568ac0(uint64_t *param_1,void **param_2)
 {
   uint uVar1;
   int *piVar2;
-  longlong lVar3;
+  int64_t lVar3;
   int iVar4;
   int iVar5;
   int32_t uVar6;
   void *puVar7;
-  ulonglong uVar8;
-  ulonglong uVar9;
-  ulonglong uVar10;
-  ulonglong uVar11;
-  longlong lVar12;
+  uint64_t uVar8;
+  uint64_t uVar9;
+  uint64_t uVar10;
+  uint64_t uVar11;
+  int64_t lVar12;
   int *piVar13;
-  longlong lVar14;
+  int64_t lVar14;
   int8_t auStack_bf8 [32];
   int *piStack_bd8;
   void *puStack_bd0;
@@ -48,12 +48,12 @@ void FUN_180568ac0(uint64_t *param_1,void **param_2)
   void *puStack_b60;
   int16_t uStack_b58;
   int8_t uStack_b56;
-  longlong lStack_b50;
-  longlong lStack_b48;
-  longlong lStack_b40;
+  int64_t lStack_b50;
+  int64_t lStack_b48;
+  int64_t lStack_b40;
   int16_t uStack_b38;
   int8_t uStack_b36;
-  longlong alStack_b30 [2];
+  int64_t alStack_b30 [2];
   uint64_t *puStack_b20;
   void **ppuStack_b18;
   void *puStack_b10;
@@ -68,17 +68,17 @@ void FUN_180568ac0(uint64_t *param_1,void **param_2)
   int8_t auStack_ac8 [24];
   char cStack_ab0;
   void *puStack_aa8;
-  longlong lStack_aa0;
+  int64_t lStack_aa0;
   int32_t uStack_a90;
   int8_t auStack_a88 [64];
   int8_t auStack_a48 [1024];
   int8_t auStack_648 [512];
   int8_t auStack_448 [512];
   int8_t auStack_248 [512];
-  ulonglong uStack_48;
+  uint64_t uStack_48;
   
   uStack_ad8 = 0xfffffffffffffffe;
-  uStack_48 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_bf8;
+  uStack_48 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_bf8;
   uVar9 = 0;
   puStack_b20 = param_1;
   ppuStack_b18 = param_2;
@@ -88,7 +88,7 @@ void FUN_180568ac0(uint64_t *param_1,void **param_2)
   if (0 < *(int *)(param_2 + 2)) {
     FUN_1806277c0(&puStack_b10,uStack_b00 + *(int *)(param_2 + 2));
                     // WARNING: Subroutine does not return
-    memcpy(puStack_b08 + uStack_b00,param_2[1],(longlong)(*(int *)(param_2 + 2) + 1));
+    memcpy(puStack_b08 + uStack_b00,param_2[1],(int64_t)(*(int *)(param_2 + 2) + 1));
   }
   alStack_b30[0] = -1;
   puVar7 = &system_buffer_ptr;
@@ -119,7 +119,7 @@ void FUN_180568ac0(uint64_t *param_1,void **param_2)
     }
     uStack_bb8 = 0;
     piStack_bd8 = (int *)0x0;
-    iVar4 = ReadFile(lVar12,(longlong)&iStack_bb0 + uVar8,uVar10,&uStack_bb8);
+    iVar4 = ReadFile(lVar12,(int64_t)&iStack_bb0 + uVar8,uVar10,&uStack_bb8);
     if (iVar4 == 0) goto LAB_18056945f;
   } while ((uStack_bb8 != 0) && (uVar8 = uVar8 + uStack_bb8, uVar8 < 4));
   if (uVar8 == 4) {
@@ -131,7 +131,7 @@ void FUN_180568ac0(uint64_t *param_1,void **param_2)
     uVar10 = uVar9;
     if (iVar4 != 0) {
       do {
-        uVar10 = (longlong)iVar4 - uVar8;
+        uVar10 = (int64_t)iVar4 - uVar8;
         uVar11 = 0x1000000;
         if (uVar10 < 0x1000000) {
           uVar11 = uVar10 & 0xffffffff;
@@ -141,14 +141,14 @@ void FUN_180568ac0(uint64_t *param_1,void **param_2)
         iVar5 = ReadFile(lVar12,auStack_648 + uVar8,uVar11,&uStack_bb4);
         uVar10 = uVar9;
       } while (((iVar5 != 0) && (uVar10 = uVar8, uStack_bb4 != 0)) &&
-              (uVar10 = uVar8 + uStack_bb4, uVar8 = uVar10, uVar10 < (ulonglong)(longlong)iVar4));
+              (uVar10 = uVar8 + uStack_bb4, uVar8 = uVar10, uVar10 < (uint64_t)(int64_t)iVar4));
     }
     iVar4 = 0x200;
     if (iStack_bb0 + 1 < 0x200) {
       iVar4 = iStack_bb0 + 1;
     }
     uVar8 = uVar9;
-    if (uVar10 == (longlong)iVar4) {
+    if (uVar10 == (int64_t)iVar4) {
       do {
         uVar10 = 0x1000000;
         if (4 - uVar8 < 0x1000000) {
@@ -156,7 +156,7 @@ void FUN_180568ac0(uint64_t *param_1,void **param_2)
         }
         uStack_bac = 0;
         piStack_bd8 = (int *)0x0;
-        iVar4 = ReadFile(lVar12,(longlong)&iStack_ba4 + uVar8,uVar10,&uStack_bac);
+        iVar4 = ReadFile(lVar12,(int64_t)&iStack_ba4 + uVar8,uVar10,&uStack_bac);
         if (iVar4 == 0) goto LAB_18056945f;
       } while ((uStack_bac != 0) && (uVar8 = uVar8 + uStack_bac, uVar8 < 4));
       if (uVar8 == 4) {
@@ -168,7 +168,7 @@ void FUN_180568ac0(uint64_t *param_1,void **param_2)
         uVar10 = uVar9;
         if (iVar4 != 0) {
           do {
-            uVar10 = (longlong)iVar4 - uVar8;
+            uVar10 = (int64_t)iVar4 - uVar8;
             uVar11 = 0x1000000;
             if (uVar10 < 0x1000000) {
               uVar11 = uVar10 & 0xffffffff;
@@ -178,14 +178,14 @@ void FUN_180568ac0(uint64_t *param_1,void **param_2)
             iVar5 = ReadFile(lVar12,auStack_448 + uVar8,uVar11,&uStack_ba8);
             uVar10 = uVar9;
           } while (((iVar5 != 0) && (uVar10 = uVar8, uStack_ba8 != 0)) &&
-                  (uVar8 = uVar8 + uStack_ba8, uVar10 = uVar8, uVar8 < (ulonglong)(longlong)iVar4));
+                  (uVar8 = uVar8 + uStack_ba8, uVar10 = uVar8, uVar8 < (uint64_t)(int64_t)iVar4));
         }
         iVar4 = 0x200;
         if (iStack_ba4 + 1 < 0x200) {
           iVar4 = iStack_ba4 + 1;
         }
         uVar8 = uVar9;
-        if (uVar10 == (longlong)iVar4) {
+        if (uVar10 == (int64_t)iVar4) {
           do {
             uVar10 = 0x1000000;
             if (4 - uVar8 < 0x1000000) {
@@ -193,7 +193,7 @@ void FUN_180568ac0(uint64_t *param_1,void **param_2)
             }
             uStack_ba0 = 0;
             piStack_bd8 = (int *)0x0;
-            iVar4 = ReadFile(lVar12,(longlong)&iStack_b98 + uVar8,uVar10,&uStack_ba0);
+            iVar4 = ReadFile(lVar12,(int64_t)&iStack_b98 + uVar8,uVar10,&uStack_ba0);
             if (iVar4 == 0) goto LAB_18056945f;
           } while ((uStack_ba0 != 0) && (uVar8 = uVar8 + uStack_ba0, uVar8 < 4));
           if (uVar8 == 4) {
@@ -205,7 +205,7 @@ void FUN_180568ac0(uint64_t *param_1,void **param_2)
             uVar10 = uVar9;
             if (iVar4 != 0) {
               do {
-                uVar10 = (longlong)iVar4 - uVar8;
+                uVar10 = (int64_t)iVar4 - uVar8;
                 uVar11 = 0x1000000;
                 if (uVar10 < 0x1000000) {
                   uVar11 = uVar10 & 0xffffffff;
@@ -216,14 +216,14 @@ void FUN_180568ac0(uint64_t *param_1,void **param_2)
                 uVar10 = uVar9;
               } while (((iVar5 != 0) && (uVar10 = uVar8, uStack_b9c != 0)) &&
                       (uVar8 = uVar8 + uStack_b9c, uVar10 = uVar8,
-                      uVar8 < (ulonglong)(longlong)iVar4));
+                      uVar8 < (uint64_t)(int64_t)iVar4));
             }
             iVar4 = 0x200;
             if (iStack_b98 + 1 < 0x200) {
               iVar4 = iStack_b98 + 1;
             }
             uVar8 = uVar9;
-            if (uVar10 == (longlong)iVar4) {
+            if (uVar10 == (int64_t)iVar4) {
               do {
                 uVar10 = 0x1000000;
                 if (4 - uVar8 < 0x1000000) {
@@ -231,7 +231,7 @@ void FUN_180568ac0(uint64_t *param_1,void **param_2)
                 }
                 uStack_b94 = 0;
                 piStack_bd8 = (int *)0x0;
-                iVar4 = ReadFile(lVar12,(longlong)&iStack_b8c + uVar8,uVar10,&uStack_b94);
+                iVar4 = ReadFile(lVar12,(int64_t)&iStack_b8c + uVar8,uVar10,&uStack_b94);
                 if (iVar4 == 0) goto LAB_18056945f;
               } while ((uStack_b94 != 0) && (uVar8 = uVar8 + uStack_b94, uVar8 < 4));
               if (uVar8 == 4) {
@@ -243,7 +243,7 @@ void FUN_180568ac0(uint64_t *param_1,void **param_2)
                 uVar10 = uVar9;
                 if (iVar4 != 0) {
                   do {
-                    uVar10 = (longlong)iVar4 - uVar8;
+                    uVar10 = (int64_t)iVar4 - uVar8;
                     uVar11 = 0x1000000;
                     if (uVar10 < 0x1000000) {
                       uVar11 = uVar10 & 0xffffffff;
@@ -254,14 +254,14 @@ void FUN_180568ac0(uint64_t *param_1,void **param_2)
                     uVar10 = uVar9;
                   } while (((iVar5 != 0) && (uVar10 = uVar8, uStack_b90 != 0)) &&
                           (uVar10 = uVar8 + uStack_b90, uVar8 = uVar10,
-                          uVar10 < (ulonglong)(longlong)iVar4));
+                          uVar10 < (uint64_t)(int64_t)iVar4));
                 }
                 iVar4 = 0x40;
                 if (iStack_b8c + 1 < 0x40) {
                   iVar4 = iStack_b8c + 1;
                 }
                 uVar8 = uVar9;
-                if (uVar10 == (longlong)iVar4) {
+                if (uVar10 == (int64_t)iVar4) {
                   do {
                     uVar10 = 0x1000000;
                     if (4 - uVar8 < 0x1000000) {
@@ -281,7 +281,7 @@ void FUN_180568ac0(uint64_t *param_1,void **param_2)
                       }
                       uStack_b84 = 0;
                       piStack_bd8 = (int *)0x0;
-                      iVar4 = ReadFile(lVar12,(longlong)&iStack_b7c + uVar10,uVar8,&uStack_b84);
+                      iVar4 = ReadFile(lVar12,(int64_t)&iStack_b7c + uVar10,uVar8,&uStack_b84);
                       if (iVar4 == 0) goto LAB_18056945f;
                     } while ((uStack_b84 != 0) && (uVar10 = uVar10 + uStack_b84, uVar10 < 4));
                     if (uVar10 == 4) {
@@ -292,7 +292,7 @@ void FUN_180568ac0(uint64_t *param_1,void **param_2)
                         }
                         uStack_b80 = 0;
                         piStack_bd8 = (int *)0x0;
-                        iVar4 = ReadFile(lVar12,(longlong)&uStack_b74 + uVar9,uVar8,&uStack_b80);
+                        iVar4 = ReadFile(lVar12,(int64_t)&uStack_b74 + uVar9,uVar8,&uStack_b80);
                         if (iVar4 == 0) goto LAB_18056945f;
                       } while ((uStack_b80 != 0) && (uVar9 = uVar9 + uStack_b80, uVar9 < 4));
                       if (uVar9 == 4) {
@@ -301,15 +301,15 @@ void FUN_180568ac0(uint64_t *param_1,void **param_2)
                         uStack_b38 = 0;
                         uStack_b36 = 3;
                         lStack_b48 = 0;
-                        System_BufferManager(&lStack_b50,(longlong)(iStack_b7c + 1));
+                        System_BufferManager(&lStack_b50,(int64_t)(iStack_b7c + 1));
                         piStack_b70 = (int *)0x0;
                         puStack_b60 = (void *)0x0;
                         uStack_b58 = 0;
                         uStack_b56 = 3;
                         piStack_b68 = (int *)0x0;
-                        System_BufferManager(&piStack_b70,(longlong)(iStack_b7c + 1));
+                        System_BufferManager(&piStack_b70,(int64_t)(iStack_b7c + 1));
                         uVar1 = uStack_b74;
-                        uVar9 = (ulonglong)uStack_b74;
+                        uVar9 = (uint64_t)uStack_b74;
                         if (uStack_b74 == 0) {
 LAB_1805691fd:
                           LOCK();
@@ -323,7 +323,7 @@ LAB_1805691fd:
                           puStack_bd0 = puStack_b60;
                           piStack_bd8 = piStack_b68;
                           FUN_18021f710(&puStack_ae8,auStack_ac8,lStack_b48,
-                                        (longlong)(int)uStack_b74);
+                                        (int64_t)(int)uStack_b74);
                           piVar2 = piStack_b70;
                           if ((cStack_ab0 == '\0') &&
                              (piStack_b68 = piStack_b70 + 1, 0 < *piStack_b70)) {
@@ -340,7 +340,7 @@ LAB_1805691fd:
                             FUN_180569620(lVar12,iVar4);
                     // WARNING: Subroutine does not return
                             memcpy(*(uint64_t *)(lVar12 + 0x598),piVar13,
-                                   (longlong)
+                                   (int64_t)
                                    (int)((uint)((*(uint *)(lVar12 + 0x5c8) & 7) != 0) +
                                         ((int)*(uint *)(lVar12 + 0x5c8) >> 3)));
                           }
@@ -356,7 +356,7 @@ LAB_1805691fd:
                           lVar14 = lStack_b50;
                         }
                         else {
-                          if ((ulonglong)((lStack_b40 - lStack_b48) + lStack_b50) <= uVar9) {
+                          if ((uint64_t)((lStack_b40 - lStack_b48) + lStack_b50) <= uVar9) {
                             System_BufferManager(&lStack_b50,uVar9 + (lStack_b48 - lStack_b50));
                           }
                           lVar3 = lStack_b48;
@@ -453,7 +453,7 @@ LAB_1805693bf:
       *(int32_t *)(param_2 + 3) = 0;
       *param_2 = &system_state_ptr;
                     // WARNING: Subroutine does not return
-      FUN_1808fc050(uStack_48 ^ (ulonglong)auStack_bf8);
+      FUN_1808fc050(uStack_48 ^ (uint64_t)auStack_bf8);
     }
                     // WARNING: Subroutine does not return
     FUN_18064e900();
@@ -466,20 +466,20 @@ LAB_1805693bf:
 
 
 
-// 函数: void FUN_180569560(longlong *param_1)
-void FUN_180569560(longlong *param_1)
+// 函数: void FUN_180569560(int64_t *param_1)
+void FUN_180569560(int64_t *param_1)
 
 {
-  longlong lVar1;
-  longlong *plVar2;
+  int64_t lVar1;
+  int64_t *plVar2;
   
-  plVar2 = (longlong *)*param_1;
+  plVar2 = (int64_t *)*param_1;
   if (plVar2 != param_1) {
     do {
       lVar1 = plVar2[2];
-      plVar2 = (longlong *)*plVar2;
+      plVar2 = (int64_t *)*plVar2;
       if (lVar1 != 0) {
-        if (*(longlong *)(lVar1 + 0x588) == 0) {
+        if (*(int64_t *)(lVar1 + 0x588) == 0) {
           *(uint64_t *)(lVar1 + 0x588) = 0;
                     // WARNING: Subroutine does not return
           FUN_18064e900(lVar1);
@@ -488,18 +488,18 @@ void FUN_180569560(longlong *param_1)
         FUN_18064e900();
       }
     } while (plVar2 != param_1);
-    plVar2 = (longlong *)*param_1;
+    plVar2 = (int64_t *)*param_1;
   }
   if (plVar2 == param_1) {
-    *param_1 = (longlong)param_1;
-    param_1[1] = (longlong)param_1;
+    *param_1 = (int64_t)param_1;
+    param_1[1] = (int64_t)param_1;
     param_1[3] = 0;
     *(int32_t *)(param_1 + 0xbe) = 0;
-    *(uint64_t *)((longlong)param_1 + 0x5e4) = 0;
+    *(uint64_t *)((int64_t)param_1 + 0x5e4) = 0;
                     // WARNING: Could not recover jumptable at 0x0001808ffc3b. Too many branches
                     // WARNING: Subroutine does not return
                     // WARNING: Treating indirect jump as call
-    memset(param_1[0xb7],0,(longlong)((int)param_1[0xb6] >> 3));
+    memset(param_1[0xb7],0,(int64_t)((int)param_1[0xb6] >> 3));
     return;
   }
                     // WARNING: Subroutine does not return
@@ -514,37 +514,37 @@ void FUN_180569560(longlong *param_1)
 void FUN_18056957c(void)
 
 {
-  longlong lVar1;
-  longlong *unaff_RBX;
-  longlong unaff_RBP;
-  longlong *unaff_RDI;
+  int64_t lVar1;
+  int64_t *unaff_RBX;
+  int64_t unaff_RBP;
+  int64_t *unaff_RDI;
   
   while( true ) {
     lVar1 = unaff_RBX[2];
-    unaff_RBX = (longlong *)*unaff_RBX;
+    unaff_RBX = (int64_t *)*unaff_RBX;
     if (lVar1 != 0) break;
     if (unaff_RBX == unaff_RDI) {
-      if ((longlong *)*unaff_RDI != unaff_RDI) {
+      if ((int64_t *)*unaff_RDI != unaff_RDI) {
                     // WARNING: Subroutine does not return
-        FUN_18064e900((longlong *)*unaff_RDI);
+        FUN_18064e900((int64_t *)*unaff_RDI);
       }
-      *unaff_RDI = (longlong)unaff_RDI;
-      unaff_RDI[1] = (longlong)unaff_RDI;
+      *unaff_RDI = (int64_t)unaff_RDI;
+      unaff_RDI[1] = (int64_t)unaff_RDI;
       unaff_RDI[3] = unaff_RBP;
       *(int *)(unaff_RDI + 0xbe) = (int)unaff_RBP;
-      *(longlong *)((longlong)unaff_RDI + 0x5e4) = unaff_RBP;
+      *(int64_t *)((int64_t)unaff_RDI + 0x5e4) = unaff_RBP;
                     // WARNING: Could not recover jumptable at 0x0001808ffc3b. Too many branches
                     // WARNING: Subroutine does not return
                     // WARNING: Treating indirect jump as call
-      memset(unaff_RDI[0xb7],0,(longlong)((int)unaff_RDI[0xb6] >> 3));
+      memset(unaff_RDI[0xb7],0,(int64_t)((int)unaff_RDI[0xb6] >> 3));
       return;
     }
   }
-  if (*(longlong *)(lVar1 + 0x588) != 0) {
+  if (*(int64_t *)(lVar1 + 0x588) != 0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }
-  *(longlong *)(lVar1 + 0x588) = unaff_RBP;
+  *(int64_t *)(lVar1 + 0x588) = unaff_RBP;
                     // WARNING: Subroutine does not return
   FUN_18064e900(lVar1);
 }
@@ -557,23 +557,23 @@ void FUN_18056957c(void)
 void FUN_1805695ba(void)
 
 {
-  longlong unaff_RBX;
+  int64_t unaff_RBX;
   uint64_t unaff_RBP;
-  longlong unaff_RDI;
+  int64_t unaff_RDI;
   
   if (unaff_RBX != unaff_RDI) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }
-  *(longlong *)unaff_RDI = unaff_RDI;
-  *(longlong *)(unaff_RDI + 8) = unaff_RDI;
+  *(int64_t *)unaff_RDI = unaff_RDI;
+  *(int64_t *)(unaff_RDI + 8) = unaff_RDI;
   *(uint64_t *)(unaff_RDI + 0x18) = unaff_RBP;
   *(int *)(unaff_RDI + 0x5f0) = (int)unaff_RBP;
   *(uint64_t *)(unaff_RDI + 0x5e4) = unaff_RBP;
                     // WARNING: Could not recover jumptable at 0x0001808ffc3b. Too many branches
                     // WARNING: Subroutine does not return
                     // WARNING: Treating indirect jump as call
-  memset(*(uint64_t *)(unaff_RDI + 0x5b8),0,(longlong)(*(int *)(unaff_RDI + 0x5b0) >> 3));
+  memset(*(uint64_t *)(unaff_RDI + 0x5b8),0,(int64_t)(*(int *)(unaff_RDI + 0x5b0) >> 3));
   return;
 }
 
@@ -581,8 +581,8 @@ void FUN_1805695ba(void)
 
 
 
-// 函数: void FUN_180569620(longlong param_1,int param_2)
-void FUN_180569620(longlong param_1,int param_2)
+// 函数: void FUN_180569620(int64_t param_1,int param_2)
+void FUN_180569620(int64_t param_1,int param_2)
 
 {
   FUN_18055f4e0(param_1,*(int *)(param_1 + 0x5c4) + param_2);
@@ -597,8 +597,8 @@ void FUN_180569620(longlong param_1,int param_2)
 
 
 
-// 函数: void FUN_180569670(longlong param_1)
-void FUN_180569670(longlong param_1)
+// 函数: void FUN_180569670(int64_t param_1)
+void FUN_180569670(int64_t param_1)
 
 {
   uint uVar1;
@@ -629,7 +629,7 @@ void FUN_180569670(longlong param_1)
 void FUN_1805696d0(void)
 
 {
-  longlong lVar1;
+  int64_t lVar1;
   
   lVar1 = FUN_18062b1e0(system_memory_pool_ptr,0x5d0,8,3);
   *(uint64_t *)(lVar1 + 0x598) = 0;
@@ -638,7 +638,7 @@ void FUN_1805696d0(void)
   *(uint64_t *)(lVar1 + 0x588) = 0;
   *(uint64_t *)(lVar1 + 0x5a0) = render_system_memory;
   *(uint64_t *)(lVar1 + 0x5c0) = 0;
-  *(longlong *)(lVar1 + 0x598) = lVar1;
+  *(int64_t *)(lVar1 + 0x598) = lVar1;
   *(int32_t *)(lVar1 + 0x590) = 0x2c40;
   *(int32_t *)(lVar1 + 0x5c8) = 0;
                     // WARNING: Subroutine does not return

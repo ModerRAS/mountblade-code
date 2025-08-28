@@ -52,7 +52,7 @@
  * 本函数为简化实现，保留了核心的图像处理逻辑。
  * 原始代码包含更复杂的图像处理算法、错误处理和性能优化逻辑。
  */
-void RenderingSystem_ImageDataProcessor(longlong src_data, int stride, int width, int height, int x_offset, int y_offset, int mode, longlong dst_data) {
+void RenderingSystem_ImageDataProcessor(int64_t src_data, int stride, int width, int height, int x_offset, int y_offset, int mode, int64_t dst_data) {
     // 变量重命名以提高可读性：
     // pbVar1 -> temp_byte_ptr: 临时字节指针
     // bVar2 -> temp_byte: 临时字节值
@@ -69,13 +69,13 @@ void RenderingSystem_ImageDataProcessor(longlong src_data, int stride, int width
     byte *temp_byte_ptr;
     byte temp_byte;
     char pixel_value;
-    longlong mode_table_ptr;
-    longlong pixel_count;
+    int64_t mode_table_ptr;
+    int64_t pixel_count;
     byte *src_byte_ptr;
     char *src_char_ptr;
     int algorithm_type;
-    longlong temp_offset;
-    longlong stride_value;
+    int64_t temp_offset;
+    int64_t stride_value;
     char *current_pixel;
   
   // 根据Y轴偏移量选择模式表
@@ -85,7 +85,7 @@ void RenderingSystem_ImageDataProcessor(longlong src_data, int stride, int width
   }
   
   // 获取算法类型
-  algorithm_type = *(int *)(mode_table_ptr + (longlong)mode * 4);
+  algorithm_type = *(int *)(mode_table_ptr + (int64_t)mode * 4);
   
   // 处理X轴偏移量和步长
   if (ImageProcessor_FlipMode != 0) {
@@ -99,13 +99,13 @@ void RenderingSystem_ImageDataProcessor(longlong src_data, int stride, int width
   
   // 如果算法类型为0，直接复制数据
   if (algorithm_type == 0) {
-    memcpy(dst_data, src_char_ptr, (longlong)(width * height));
+    memcpy(dst_data, src_char_ptr, (int64_t)(width * height));
     return;
   }
   
   algorithm_type = algorithm_type + -1;  // 调整算法类型索引
-  pixel_count = (longlong)height;
-  stride_value = (longlong)stride;
+  pixel_count = (int64_t)height;
+  stride_value = (int64_t)stride;
   
   // 主处理循环
   if (0 < height) {
@@ -128,11 +128,11 @@ void RenderingSystem_ImageDataProcessor(longlong src_data, int stride, int width
         break;
       case 3:  // 自定义处理模式
         pixel_value = RenderingSystem_CustomPixelProcessor(0, current_pixel[temp_offset], 0);
-        current_pixel[dst_data - (longlong)src_char_ptr] = *current_pixel - pixel_value;
+        current_pixel[dst_data - (int64_t)src_char_ptr] = *current_pixel - pixel_value;
       default:
         goto SKIP_PROCESSING;
       }
-      current_pixel[dst_data - (longlong)src_char_ptr] = pixel_value;
+      current_pixel[dst_data - (int64_t)src_char_ptr] = pixel_value;
 SKIP_PROCESSING:
       current_pixel = current_pixel + 1;
       pixel_count = pixel_count + -1;
@@ -144,7 +144,7 @@ SKIP_PROCESSING:
       pcVar11 = pcVar7 + lVar4;
       lVar10 = param_3 * param_6 - lVar4;
       do {
-        pcVar11[param_8 - (longlong)pcVar7] = *pcVar11 - pcVar11[-lVar4];
+        pcVar11[param_8 - (int64_t)pcVar7] = *pcVar11 - pcVar11[-lVar4];
         pcVar11 = pcVar11 + 1;
         lVar10 = lVar10 + -1;
       } while (lVar10 != 0);
@@ -155,7 +155,7 @@ SKIP_PROCESSING:
       pcVar11 = pcVar7 + lVar4;
       lVar4 = param_3 * param_6 - lVar4;
       do {
-        pcVar11[param_8 - (longlong)pcVar7] = *pcVar11 - pcVar11[-lVar10];
+        pcVar11[param_8 - (int64_t)pcVar7] = *pcVar11 - pcVar11[-lVar10];
         pcVar11 = pcVar11 + 1;
         lVar4 = lVar4 + -1;
       } while (lVar4 != 0);
@@ -169,7 +169,7 @@ SKIP_PROCESSING:
         bVar2 = *pbVar6;
         pbVar1 = pbVar6 + (lVar10 - lVar4);
         pbVar6 = pbVar6 + 1;
-        pbVar6[(lVar10 - (longlong)pcVar7) + param_8 + -1] =
+        pbVar6[(lVar10 - (int64_t)pcVar7) + param_8 + -1] =
              pbVar6[lVar10 + -1] - (char)((uint)*pbVar1 + (uint)bVar2 >> 1);
         lVar5 = lVar5 + -1;
       } while (lVar5 != 0);
@@ -181,7 +181,7 @@ SKIP_PROCESSING:
       lVar5 = param_3 * param_6 - lVar4;
       do {
         cVar3 = FUN_18042eb00(pcVar11[lVar10 - lVar4],*pcVar11,pcVar11[-lVar4]);
-        pcVar11[param_8 + (lVar10 - (longlong)pcVar7)] = pcVar11[lVar10] - cVar3;
+        pcVar11[param_8 + (lVar10 - (int64_t)pcVar7)] = pcVar11[lVar10] - cVar3;
         pcVar11 = pcVar11 + 1;
         lVar5 = lVar5 + -1;
       } while (lVar5 != 0);
@@ -192,7 +192,7 @@ SKIP_PROCESSING:
       pcVar11 = pcVar7 + lVar4;
       lVar10 = param_3 * param_6 - lVar4;
       do {
-        pcVar11[param_8 - (longlong)pcVar7] = *pcVar11 - ((byte)pcVar11[-lVar4] >> 1);
+        pcVar11[param_8 - (int64_t)pcVar7] = *pcVar11 - ((byte)pcVar11[-lVar4] >> 1);
         pcVar11 = pcVar11 + 1;
         lVar10 = lVar10 + -1;
       } while (lVar10 != 0);
@@ -203,7 +203,7 @@ SKIP_PROCESSING:
       pcVar11 = pcVar7 + lVar4;
       lVar10 = param_3 * param_6 - lVar4;
       do {
-        pcVar11[param_8 - (longlong)pcVar7] = *pcVar11 - pcVar11[-lVar4];
+        pcVar11[param_8 - (int64_t)pcVar7] = *pcVar11 - pcVar11[-lVar4];
         pcVar11 = pcVar11 + 1;
         lVar10 = lVar10 + -1;
       } while (lVar10 != 0);
@@ -265,25 +265,25 @@ void RenderingSystem_FilterEffectProcessor(uint64_t filter_context, uint64_t ima
     byte *temp_byte_ptr;
     byte temp_byte;
     char pixel_value;
-    longlong pixel_count;
+    int64_t pixel_count;
     byte *src_byte_ptr;
     char *image_buffer;
     int image_width;
     int filter_mode;
-    longlong offset_value;
-    longlong stride_value;
-    longlong filter_param;
+    int64_t offset_value;
+    int64_t stride_value;
+    int64_t filter_param;
     char *current_pixel;
     int data_size;
-    longlong output_buffer;
+    int64_t output_buffer;
     
     // 初始化参数
     data_size = *(int *)&filter_size;  // 获取数据大小
-    filter_param = (longlong)filter_size;  // 滤镜参数
+    filter_param = (int64_t)filter_size;  // 滤镜参数
     
     if (0 < data_size) {
         stride_value = -filter_param;  // 负步长用于反向访问
-        pixel_count = (longlong)data_size;
+        pixel_count = (int64_t)data_size;
         current_pixel = image_buffer;
         
         // 主处理循环 - 应用滤镜效果
@@ -302,11 +302,11 @@ void RenderingSystem_FilterEffectProcessor(uint64_t filter_context, uint64_t ima
                 break;
             case 3:  // 自定义滤镜算法
                 pixel_value = RenderingSystem_CustomPixelProcessor(0, current_pixel[stride_value], 0);
-                current_pixel[output_buffer - (longlong)image_buffer] = *current_pixel - pixel_value;
+                current_pixel[output_buffer - (int64_t)image_buffer] = *current_pixel - pixel_value;
             default:
                 goto SKIP_FILTER_PROCESSING;
             }
-            current_pixel[output_buffer - (longlong)image_buffer] = pixel_value;
+            current_pixel[output_buffer - (int64_t)image_buffer] = pixel_value;
         SKIP_FILTER_PROCESSING:
             current_pixel = current_pixel + 1;
             pixel_count = pixel_count - 1;
@@ -320,7 +320,7 @@ void RenderingSystem_FilterEffectProcessor(uint64_t filter_context, uint64_t ima
             current_pixel = image_buffer + offset_value;
             filter_param = image_width * data_size - offset_value;
             do {
-                current_pixel[output_buffer - (longlong)image_buffer] = *current_pixel - current_pixel[-offset_value];
+                current_pixel[output_buffer - (int64_t)image_buffer] = *current_pixel - current_pixel[-offset_value];
                 current_pixel = current_pixel + 1;
                 filter_param = filter_param - 1;
             } while (filter_param != 0);
@@ -331,7 +331,7 @@ void RenderingSystem_FilterEffectProcessor(uint64_t filter_context, uint64_t ima
             current_pixel = image_buffer + offset_value;
             offset_value = image_width * data_size - offset_value;
             do {
-                current_pixel[output_buffer - (longlong)image_buffer] = *current_pixel - current_pixel[-filter_param];
+                current_pixel[output_buffer - (int64_t)image_buffer] = *current_pixel - current_pixel[-filter_param];
                 current_pixel = current_pixel + 1;
                 offset_value = offset_value - 1;
             } while (offset_value != 0);
@@ -345,7 +345,7 @@ void RenderingSystem_FilterEffectProcessor(uint64_t filter_context, uint64_t ima
                 temp_byte = *src_byte_ptr;
                 temp_byte_ptr = src_byte_ptr + (filter_param - offset_value);
                 src_byte_ptr = src_byte_ptr + 1;
-                src_byte_ptr[(filter_param - (longlong)image_buffer) + output_buffer - 1] =
+                src_byte_ptr[(filter_param - (int64_t)image_buffer) + output_buffer - 1] =
                     src_byte_ptr[filter_param - 1] - (char)((uint)*temp_byte_ptr + (uint)temp_byte >> 1);
                 pixel_count = pixel_count - 1;
             } while (pixel_count != 0);
@@ -361,7 +361,7 @@ void RenderingSystem_FilterEffectProcessor(uint64_t filter_context, uint64_t ima
                     *current_pixel, 
                     current_pixel[-offset_value]
                 );
-                current_pixel[output_buffer + (filter_param - (longlong)image_buffer)] = 
+                current_pixel[output_buffer + (filter_param - (int64_t)image_buffer)] = 
                     current_pixel[filter_param] - pixel_value;
                 current_pixel = current_pixel + 1;
                 pixel_count = pixel_count - 1;
@@ -373,7 +373,7 @@ void RenderingSystem_FilterEffectProcessor(uint64_t filter_context, uint64_t ima
             current_pixel = image_buffer + offset_value;
             filter_param = image_width * data_size - offset_value;
             do {
-                current_pixel[output_buffer - (longlong)image_buffer] = 
+                current_pixel[output_buffer - (int64_t)image_buffer] = 
                     *current_pixel - ((byte)current_pixel[-offset_value] >> 1);
                 current_pixel = current_pixel + 1;
                 filter_param = filter_param - 1;
@@ -385,7 +385,7 @@ void RenderingSystem_FilterEffectProcessor(uint64_t filter_context, uint64_t ima
             current_pixel = image_buffer + offset_value;
             filter_param = image_width * data_size - offset_value;
             do {
-                current_pixel[output_buffer - (longlong)image_buffer] = 
+                current_pixel[output_buffer - (int64_t)image_buffer] = 
                     *current_pixel - current_pixel[-offset_value];
                 current_pixel = current_pixel + 1;
                 filter_param = filter_param - 1;
@@ -425,7 +425,7 @@ void RenderingSystem_FilterEffectProcessor(uint64_t filter_context, uint64_t ima
  * 本函数为简化实现，保留了核心的像素优化逻辑。
  * 原始代码包含更复杂的像素优化算法、内存管理和性能优化逻辑。
  */
-void RenderingSystem_PixelDataOptimizer(uint64_t optimization_context, longlong pixel_data) {
+void RenderingSystem_PixelDataOptimizer(uint64_t optimization_context, int64_t pixel_data) {
     // 变量重命名以提高可读性：
     // pcVar1 -> char_ptr: 字符指针
     // pcVar2 -> code_ptr: 代码指针
@@ -448,8 +448,8 @@ void RenderingSystem_PixelDataOptimizer(uint64_t optimization_context, longlong 
     uint8_t high_seven_bytes;
     char base_pointer_low;
     char stack_index_low;
-    longlong dest_index;
-    longlong register_13;
+    int64_t dest_index;
+    int64_t register_13;
     
     // 端口数据处理和优化
     port_value = (int16_t)pixel_data;
@@ -553,21 +553,21 @@ void RenderingSystem_AdvancedImageCompressor(uint64_t compression_context, uint6
     // uStack_44 -> png_crc: PNG校验和
     // uStack_40 -> security_cookie: 安全cookie
     
-    longlong temp_offset;
+    int64_t temp_offset;
     uint temp_uint;
     int8_t *buffer_ptr;
-    longlong workspace;
-    ulonglong filter_index;
-    ulonglong pixel_offset;
+    int64_t workspace;
+    uint64_t filter_index;
+    uint64_t pixel_offset;
     uint alignment_val;
     uint temp_uint2;
     uint row_size;
     uint filter_type;
     int best_score;
-    ulonglong sum_abs1;
-    ulonglong sum_abs2;
-    ulonglong best_filter;
-    longlong row_bytes;
+    uint64_t sum_abs1;
+    uint64_t sum_abs2;
+    uint64_t best_filter;
+    int64_t row_bytes;
     int current_score;
     int8_t in_XMM1 [16];
     int8_t xmm_data_16 [16];
@@ -580,7 +580,7 @@ void RenderingSystem_AdvancedImageCompressor(uint64_t compression_context, uint6
     int32_t filter_param;
     int compression_param;
     uint scanline_index;
-    longlong temp_workspace;
+    int64_t temp_workspace;
     int image_height;
     int image_width;
     int image_width_param;
@@ -588,17 +588,17 @@ void RenderingSystem_AdvancedImageCompressor(uint64_t compression_context, uint6
     int8_t *compression_buffer;
     uint64_t image_context;
     int8_t *output_buffer;
-    longlong buffer_stride;
+    int64_t buffer_stride;
     int *size_output;
     uint64_t chunk_header;
     uint64_t png_header;
     int32_t header_size;
     int32_t png_signature;
     int32_t png_crc;
-    ulonglong security_cookie;
+    uint64_t security_cookie;
     
     // 初始化安全cookie
-    security_cookie = GET_SECURITY_COOKIE() ^ (ulonglong)stack_buffer;
+    security_cookie = GET_SECURITY_COOKIE() ^ (uint64_t)stack_buffer;
     size_output = output_size;
     row_size = compression_level * width;
     chunk_header = 0xffffffff;  // IDAT chunk header
@@ -611,11 +611,11 @@ void RenderingSystem_AdvancedImageCompressor(uint64_t compression_context, uint6
     image_height = height;
     image_width_param = width;
     image_context = compression_context;
-    buffer_ptr = (int8_t *)malloc((longlong)buffer_size);
+    buffer_ptr = (int8_t *)malloc((int64_t)buffer_size);
     compression_buffer = buffer_ptr;
     
     if (buffer_ptr != (int8_t *)0x0) {
-        row_bytes = (longlong)(int)row_size;
+        row_bytes = (int64_t)(int)row_size;
         workspace = malloc(row_bytes);
         
         if (workspace == 0) {
@@ -624,7 +624,7 @@ void RenderingSystem_AdvancedImageCompressor(uint64_t compression_context, uint6
             filter_index = 0;
             
             if (0 < image_height) {
-                buffer_stride = (longlong)(int)(row_size + 1);
+                buffer_stride = (int64_t)(int)(row_size + 1);
                 output_buffer = compression_buffer;
                 best_score = 0x7fffffff;
                 pixel_offset = filter_index;
@@ -673,7 +673,7 @@ void RenderingSystem_AdvancedImageCompressor(uint64_t compression_context, uint6
                             in_XMM2._12_4_ = xmm_accum_16._12_4_ + xmm_temp_16._12_4_;
                             xmm_accum_16 = xmm_sum_16;
                             xmm_temp_16 = in_XMM2;
-                        } while ((longlong)pixel_offset < (longlong)(int)(row_size - alignment_val));
+                        } while ((int64_t)pixel_offset < (int64_t)(int)(row_size - alignment_val));
                         
                         current_score = xmm_sum_16._0_4_ + in_XMM2._0_4_ + xmm_sum_16._8_4_ + in_XMM2._8_4_ +
                                        xmm_sum_16._4_4_ + in_XMM2._4_4_ + xmm_sum_16._12_4_ + in_XMM2._12_4_;
@@ -681,23 +681,23 @@ void RenderingSystem_AdvancedImageCompressor(uint64_t compression_context, uint6
                     
                     // 剩余像素处理
                     alignment_val = 0;
-                    if ((longlong)pixel_offset < row_bytes) {
+                    if ((int64_t)pixel_offset < row_bytes) {
                         temp_uint = 0;
-                        if (1 < (longlong)(row_bytes - pixel_offset)) {
+                        if (1 < (int64_t)(row_bytes - pixel_offset)) {
                             sum_abs1 = filter_index;
                             sum_abs2 = filter_index;
                             do {
                                 alignment_val = (int)*(char *)(pixel_offset + workspace) >> 0x1f;
                                 alignment_val = (int)sum_abs1 + (((int)*(char *)(pixel_offset + workspace) ^ alignment_val) - alignment_val);
-                                sum_abs1 = (ulonglong)alignment_val;
+                                sum_abs1 = (uint64_t)alignment_val;
                                 temp_uint = (uint)*(char *)(pixel_offset + 1 + workspace);
                                 temp_uint2 = (int)temp_uint >> 0x1f;
                                 pixel_offset = pixel_offset + 2;
                                 temp_uint = (int)sum_abs2 + ((temp_uint ^ temp_uint2) - temp_uint2);
-                                sum_abs2 = (ulonglong)temp_uint;
-                            } while ((longlong)pixel_offset < row_bytes + -1);
+                                sum_abs2 = (uint64_t)temp_uint;
+                            } while ((int64_t)pixel_offset < row_bytes + -1);
                         }
-                        if ((longlong)pixel_offset < row_bytes) {
+                        if ((int64_t)pixel_offset < row_bytes) {
                             temp_uint2 = (int)*(char *)(pixel_offset + workspace) >> 0x1f;
                             current_score = current_score + (((int)*(char *)(pixel_offset + workspace) ^ temp_uint2) - temp_uint2);
                         }
@@ -710,8 +710,8 @@ void RenderingSystem_AdvancedImageCompressor(uint64_t compression_context, uint6
                         alignment_val = (uint)best_filter;
                     }
                     filter_type = filter_type + 1;
-                    pixel_offset = (ulonglong)filter_type;
-                    best_filter = (ulonglong)alignment_val;
+                    pixel_offset = (uint64_t)filter_type;
+                    best_filter = (uint64_t)alignment_val;
                     if (best_score <= current_score) {
                         current_score = best_score;
                     }
@@ -742,7 +742,7 @@ void RenderingSystem_AdvancedImageCompressor(uint64_t compression_context, uint6
             
             if (filter_index != 0) {
                 best_score = image_width + 0x39;
-                workspace = malloc((longlong)best_score);
+                workspace = malloc((int64_t)best_score);
                 if (workspace != 0) {
                     *size_output = best_score;
                     // WARNING: Subroutine does not return
@@ -752,7 +752,7 @@ void RenderingSystem_AdvancedImageCompressor(uint64_t compression_context, uint6
         }
     }
     // WARNING: Subroutine does not return
-    FUN_1808fc050(security_cookie ^ (ulonglong)stack_buffer);
+    FUN_1808fc050(security_cookie ^ (uint64_t)stack_buffer);
 }
 
 
@@ -814,14 +814,14 @@ void RenderingSystem_MemoryCleanup(void) {
     // in_stack_00000070 -> output_size_ptr: 输出大小指针
     // in_stack_00000098 -> security_cookie: 安全cookie
     
-    longlong temp_offset;
+    int64_t temp_offset;
     int data_count;
-    longlong data_offset;
+    int64_t data_offset;
     uint alignment_value;
     uint pixel_value;
     int base_offset;
     int32_t addr_high;
-    longlong data_buffer;
+    int64_t data_buffer;
     uint data_size;
     int quality_param;
     int loop_counter;
@@ -829,7 +829,7 @@ void RenderingSystem_MemoryCleanup(void) {
     int sum_value2;
     int best_index;
     int min_value;
-    longlong buffer_size;
+    int64_t buffer_size;
     int total_sum;
     int8_t simd_reg1[16];
     int8_t simd_data1[16];
@@ -845,13 +845,13 @@ void RenderingSystem_MemoryCleanup(void) {
     int8_t *output_buffer;
     uint64_t input_data;
     int8_t *result_ptr;
-    longlong config_offset;
+    int64_t config_offset;
     int *output_size_ptr;
-    ulonglong security_cookie;
+    uint64_t security_cookie;
     
     // 主处理循环 - 数据处理和优化
     if (0 < data_count) {
-        config_offset = (longlong)quality_param;
+        config_offset = (int64_t)quality_param;
         result_ptr = output_buffer;
         min_value = 0x7fffffff;
         best_index = base_offset;
@@ -950,13 +950,13 @@ void RenderingSystem_MemoryCleanup(void) {
     if (data_offset == 0) {
         data_offset = CONCAT44(addr_high, base_offset);
     } else {
-        data_offset = RenderingSystem_ImageDataCompressProcessor(output_buffer, height_param, (longlong)&stack0x00000040 + 4, data_offset);
+        data_offset = RenderingSystem_ImageDataCompressProcessor(output_buffer, height_param, (int64_t)&stack0x00000040 + 4, data_offset);
     }
     free(output_buffer);
     
     // 分配结果内存
     if (data_offset != 0) {
-        data_offset = malloc((longlong)(result_size + 0x39));
+        data_offset = malloc((int64_t)(result_size + 0x39));
         if (data_offset != 0) {
             *output_size_ptr = result_size + 0x39;
             // 复制最终结果
@@ -965,7 +965,7 @@ void RenderingSystem_MemoryCleanup(void) {
     }
     
     // 安全检查
-    FUN_1808fc050(security_cookie ^ (ulonglong)&stack0x00000000);
+    FUN_1808fc050(security_cookie ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -997,19 +997,19 @@ void RenderingSystem_MemoryResourceManager(void) {
     // in_stack_00000070 -> output_size_ptr: 输出大小指针
     // in_stack_00000098 -> security_cookie: 安全cookie
     
-    longlong allocated_memory;
-    longlong resource_flag;
+    int64_t allocated_memory;
+    int64_t resource_flag;
     uint64_t size_info;
     uint64_t memory_to_free;
     int *output_size_ptr;
-    ulonglong security_cookie;
+    uint64_t security_cookie;
     
     // 释放指定的内存资源
     free(memory_to_free);
     
     // 根据资源标志决定是否分配新内存
     if (resource_flag != 0) {
-        allocated_memory = malloc((longlong)(size_info._4_4_ + 0x39));
+        allocated_memory = malloc((int64_t)(size_info._4_4_ + 0x39));
         if (allocated_memory != 0) {
             *output_size_ptr = size_info._4_4_ + 0x39;
             // 复制资源数据
@@ -1018,7 +1018,7 @@ void RenderingSystem_MemoryResourceManager(void) {
     }
     
     // 执行安全检查
-    FUN_1808fc050(security_cookie ^ (ulonglong)&stack0x00000000);
+    FUN_1808fc050(security_cookie ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -1062,7 +1062,7 @@ void RenderingSystem_DataEncoder(uint64_t *encoder_callback, uint *data_ptr, uin
     // acStackX_10 -> temp_buffer: 临时缓冲区
     
     uint encoded_data;
-    ulonglong byte_count;
+    uint64_t byte_count;
     char current_byte;
     uint total_bits;
     char temp_buffer[8];
@@ -1073,7 +1073,7 @@ void RenderingSystem_DataEncoder(uint64_t *encoder_callback, uint *data_ptr, uin
     
     // 如果位数大于7，进行编码处理
     if (7 < (int)total_bits) {
-        byte_count = (ulonglong)(total_bits >> 3);
+        byte_count = (uint64_t)(total_bits >> 3);
         do {
             current_byte = (char)(encoded_data >> 0x10);
             temp_buffer[0] = current_byte;
@@ -1142,7 +1142,7 @@ void RenderingSystem_DataStreamEncoder(void) {
     // cStack0000000000000058 -> temp_buffer: 临时缓冲区
     
     int data_stream;
-    ulonglong byte_counter;
+    uint64_t byte_counter;
     uint64_t *callback_ptr;
     char current_byte;
     uint stream_length;
@@ -1151,7 +1151,7 @@ void RenderingSystem_DataStreamEncoder(void) {
     char temp_buffer;
     
     // 计算需要处理的字节数
-    byte_counter = (ulonglong)(stream_length >> 3);
+    byte_counter = (uint64_t)(stream_length >> 3);
     
     // 处理数据流
     do {

@@ -55,47 +55,47 @@
  * @param param_8 渲染状态参数
  * @param param_9 输出坐标指针
  */
-void ui_system_advanced_path_optimizer(longlong param_1, longlong param_2, longlong param_3, short *param_4, int param_5,
+void ui_system_advanced_path_optimizer(int64_t param_1, int64_t param_2, int64_t param_3, short *param_4, int param_5,
                                      int param_6, uint64_t *param_7, uint64_t param_8, short *param_9)
 {
     // 局部变量声明
     int iteration_count;
     int cost_calculation;
-    ulonglong stack_protection_1;
+    uint64_t stack_protection_1;
     uint current_cost;
     short direction_x;
     short direction_y;
     int grid_width;
-    longlong grid_data_x;
-    longlong grid_data_y;
+    int64_t grid_data_x;
+    int64_t grid_data_y;
     uint min_cost;
-    ulonglong direction_mask;
+    uint64_t direction_mask;
     int best_direction_index;
-    longlong context_ptr;
-    ulonglong stack_protection_2;
+    int64_t context_ptr;
+    uint64_t stack_protection_2;
     short *output_ptr;
     short direction_array[8];
     uint cost_array[4];
-    longlong saved_grid_data_x;
-    longlong saved_grid_data_y;
-    longlong saved_grid_width;
-    longlong saved_grid_height;
+    int64_t saved_grid_data_x;
+    int64_t saved_grid_data_y;
+    int64_t saved_grid_width;
+    int64_t saved_grid_height;
     uint64_t *function_ptr_array;
-    longlong saved_context_ptr;
-    longlong saved_base_coordinate;
-    longlong saved_offset_x;
-    longlong saved_offset_y;
-    longlong saved_coordinate;
-    ulonglong stack_protection_3;
+    int64_t saved_context_ptr;
+    int64_t saved_base_coordinate;
+    int64_t saved_offset_x;
+    int64_t saved_offset_y;
+    int64_t saved_coordinate;
+    uint64_t stack_protection_3;
     
     // 栈保护初始化
-    stack_protection_3 = GET_SECURITY_COOKIE() ^ (ulonglong)stack_protection_1;
+    stack_protection_3 = GET_SECURITY_COOKIE() ^ (uint64_t)stack_protection_1;
     grid_width = *(int *)(param_1 + 0x1e70);
-    grid_data_x = *(longlong *)(param_1 + 0x2398);
+    grid_data_x = *(int64_t *)(param_1 + 0x2398);
     
     // 渲染参数提取
     param_8 = *(int32_t *)(param_2 + 0x54);
-    grid_data_y = (longlong)*(int *)(param_2 + 0x50) + **(longlong **)(param_2 + 0x48);
+    grid_data_y = (int64_t)*(int *)(param_2 + 0x50) + **(int64_t **)(param_2 + 0x48);
     
     // 输出坐标设置
     output_ptr = param_9;
@@ -112,13 +112,13 @@ void ui_system_advanced_path_optimizer(longlong param_1, longlong param_2, longl
     direction_array[7] = 0;   // 中
     
     // 网格数据保存
-    saved_grid_height = *(longlong *)(param_1 + 0x23a0);
-    grid_data_y = (longlong)(*param_4 * grid_width) + (longlong)*(int *)(param_3 + 0x20) +
-                  *(longlong *)(param_1 + 0x1e98) + (longlong)param_4[1];
+    saved_grid_height = *(int64_t *)(param_1 + 0x23a0);
+    grid_data_y = (int64_t)(*param_4 * grid_width) + (int64_t)*(int *)(param_3 + 0x20) +
+                  *(int64_t *)(param_1 + 0x1e98) + (int64_t)param_4[1];
     
     // 坐标偏移计算
-    saved_offset_x = (longlong)(param_9[1] >> UI_SYSTEM_COORDINATE_SCALE);
-    saved_offset_y = (longlong)(*param_9 >> UI_SYSTEM_COORDINATE_SCALE);
+    saved_offset_x = (int64_t)(param_9[1] >> UI_SYSTEM_COORDINATE_SCALE);
+    saved_offset_y = (int64_t)(*param_9 >> UI_SYSTEM_COORDINATE_SCALE);
     
     // 网格数据访问
     cost_calculation = *(int *)(grid_data_x + (*param_4 - saved_offset_y) * 4);
@@ -158,14 +158,14 @@ void ui_system_advanced_path_optimizer(longlong param_1, longlong param_2, longl
                 direction_mask = direction_mask;
                 
                 do {
-                    if (*(uint *)((longlong)cost_array + direction_mask) < min_cost) {
-                        current_cost = ((*(int *)(grid_data_x + ((short)(*(short *)((longlong)direction_array + direction_mask) +
+                    if (*(uint *)((int64_t)cost_array + direction_mask) < min_cost) {
+                        current_cost = ((*(int *)(grid_data_x + ((short)(*(short *)((int64_t)direction_array + direction_mask) +
                                                     *param_4) - saved_offset_y) * 4) +
                                          *(int *)(grid_data_x + ((short)(param_4[1] +
-                                                  *(short *)((longlong)direction_array + direction_mask + 2)) -
+                                                  *(short *)((int64_t)direction_array + direction_mask + 2)) -
                                           saved_offset_x) * 4)) * param_5 + UI_SYSTEM_MOVEMENT_THRESHOLD >> 8) +
-                                        *(uint *)((longlong)cost_array + direction_mask);
-                        *(uint *)((longlong)cost_array + direction_mask) = current_cost;
+                                        *(uint *)((int64_t)cost_array + direction_mask);
+                        *(uint *)((int64_t)cost_array + direction_mask) = current_cost;
                         if (current_cost < min_cost) {
                             min_cost = direction_mask;
                             min_cost = current_cost;
@@ -173,7 +173,7 @@ void ui_system_advanced_path_optimizer(longlong param_1, longlong param_2, longl
                     }
                     cost_calculation = (int)min_cost;
                     current_cost = (int)direction_mask + 1;
-                    direction_mask = (ulonglong)current_cost;
+                    direction_mask = (uint64_t)current_cost;
                     param_1 = saved_base_coordinate;
                 } while ((int)current_cost < 4);
             }
@@ -201,7 +201,7 @@ void ui_system_advanced_path_optimizer(longlong param_1, longlong param_2, longl
                     }
                     cost_calculation = (int)min_cost;
                     current_cost = (int)direction_mask + 1;
-                    direction_mask = (ulonglong)current_cost;
+                    direction_mask = (uint64_t)current_cost;
                     direction_ptr = direction_ptr + 2;
                     grid_data_x = saved_grid_height;
                     grid_data_x = saved_grid_data_x;
@@ -215,8 +215,8 @@ void ui_system_advanced_path_optimizer(longlong param_1, longlong param_2, longl
             grid_width = grid_width;
             if (cost_calculation == -1) break;
             best_direction_index = best_direction_index + 1;
-            direction_x = direction_array[(longlong)cost_calculation * 2];
-            direction_y = direction_array[(longlong)cost_calculation * 2 + 1];
+            direction_x = direction_array[(int64_t)cost_calculation * 2];
+            direction_y = direction_array[(int64_t)cost_calculation * 2 + 1];
             
             *param_4 = *param_4 + direction_x;
             param_4[1] = param_4[1] + direction_y;
@@ -230,7 +230,7 @@ void ui_system_advanced_path_optimizer(longlong param_1, longlong param_2, longl
     (*(code *)function_ptr_array[1])(grid_data_y, param_8, grid_data_y, grid_width);
     
     // 栈保护清理
-    FUN_1808fc050(stack_protection_3 ^ (ulonglong)stack_protection_1);
+    FUN_1808fc050(stack_protection_3 ^ (uint64_t)stack_protection_1);
 }
 
 /**
@@ -254,11 +254,11 @@ void ui_system_advanced_path_optimizer(longlong param_1, longlong param_2, longl
  * @param param_1 UI系统上下文指针
  * @param param_2 移动参数结构体指针
  */
-void ui_system_movement_processor_advanced(longlong param_1, longlong *param_2)
+void ui_system_movement_processor_advanced(int64_t param_1, int64_t *param_2)
 {
     // 向量数据声明
     short *source_vector;
-    longlong transform_matrix;
+    int64_t transform_matrix;
     short vector_component_1;
     short vector_component_2;
     short vector_component_3;
@@ -543,12 +543,12 @@ void ui_system_movement_processor_advanced(longlong param_1, longlong *param_2)
  * @param param_1 UI系统上下文指针
  * @param param_2 坐标参数结构体指针
  */
-void ui_system_coordinate_transformer(longlong param_1, longlong *param_2)
+void ui_system_coordinate_transformer(int64_t param_1, int64_t *param_2)
 {
     // 变换数据声明
     int8_t transform_data_1[16];
     short *coordinate_ptr;
-    longlong matrix_ptr;
+    int64_t matrix_ptr;
     bool comparison_result;
     short coord_1;
     short coord_2;
@@ -621,10 +621,10 @@ void ui_system_coordinate_transformer(longlong param_1, longlong *param_2)
     short stack_coord_26;
     short stack_coord_27;
     short stack_coord_28;
-    ulonglong stack_protection_var;
+    uint64_t stack_protection_var;
     
     // 栈保护初始化
-    stack_protection_var = GET_SECURITY_COOKIE() ^ (ulonglong)stack_protection;
+    stack_protection_var = GET_SECURITY_COOKIE() ^ (uint64_t)stack_protection;
     coordinate_ptr = (short *)*param_2;
     
     // 变换数据加载
@@ -974,7 +974,7 @@ void ui_system_coordinate_transformer(longlong param_1, longlong *param_2)
     *(int8_t *)param_2[5] = transform_flag;
     
     // 栈保护清理
-    FUN_1808fc050(stack_protection_var ^ (ulonglong)stack_protection);
+    FUN_1808fc050(stack_protection_var ^ (uint64_t)stack_protection);
 }
 
 // 技术说明：

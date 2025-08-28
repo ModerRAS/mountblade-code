@@ -8,7 +8,7 @@
 void process_engine_state(void)
 
 {
-  longlong engine_context;
+  int64_t engine_context;
   code ****state_handler_ptr;
   code *handler_func;
   code ******global_handler;
@@ -17,16 +17,16 @@ void process_engine_state(void)
   int current_state;
   uint64_t memory_block;
   int32_t *string_buffer;
-  longlong temp_ptr;
+  int64_t temp_ptr;
   code *****callback_ptr;
   code ******event_handler;
-  longlong list_iterator;
-  longlong list_end;
-  ulonglong counter;
-  ulonglong loop_counter;
+  int64_t list_iterator;
+  int64_t list_end;
+  uint64_t counter;
+  uint64_t loop_counter;
   void *data_ptr;
-  longlong *list_head;
-  longlong node_data;
+  int64_t *list_head;
+  int64_t node_data;
   uint iteration_count;
   int8_t buffer1[32];
   code ***handler_array;
@@ -56,17 +56,17 @@ void process_engine_state(void)
   int8_t *alloc_string;
   int32_t alloc_size;
   int8_t buffer5[32];
-  ulonglong checksum;
+  uint64_t checksum;
   
   // 初始化引擎上下文和变量
   engine_context = global_engine_context;
   context_data = 0xfffffffffffffffe;
-  checksum = global_checksum ^ (ulonglong)buffer1;
+  checksum = global_checksum ^ (uint64_t)buffer1;
   counter = 0;
   timestamp = 0;
   
   // 线程管理初始化
-  if ((*(int *)(*(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) +
+  if ((*(int *)(*(int64_t *)((int64_t)ThreadLocalStoragePointer + (uint64_t)__tls_index * 8) +
                0x48) < max_thread_count) && (initialize_thread_manager(&max_thread_count), max_thread_count == -1)) {
     thread_manager_initialized = 0;
     setup_thread_pool(&thread_pool_config);
@@ -116,7 +116,7 @@ void process_engine_state(void)
       handler_array = (code ***)&event_handler_array;
       timestamp = (void *)0x0;
       error_code = (int32_t *)0x0;
-      address = (void *)((ulonglong)address & 0xffffffff00000000);
+      address = (void *)((uint64_t)address & 0xffffffff00000000);
       string_buffer = (int32_t *)allocate_string_buffer(memory_allocator,0x18,0x13);
       *(int8_t *)string_buffer = 0;
       error_code = string_buffer;
@@ -146,7 +146,7 @@ void process_engine_state(void)
       *(int32_t *)(task_queue + 0x30) = 3;
       *(int16_t *)(task_queue + 0x31) = 0;
       global_task_manager = (code ******)task_queue;
-      *(int32_t *)((longlong)task_queue + 0x18c) = 0;
+      *(int32_t *)((int64_t)task_queue + 0x18c) = 0;
       *(code ******)(engine_context + 0x40) = task_queue;
       execute_task_sequence(global_task_sequence,&global_state_config);
     }
@@ -163,14 +163,14 @@ void process_engine_state(void)
     *(int32_t *)((code ******)task_queue + 0x30) = 3;
     *(int16_t *)((code ******)task_queue + 0x31) = 0;
     global_task_manager = (code ******)task_queue;
-    *(int32_t *)((longlong)task_queue + 0x18c) = 0;
+    *(int32_t *)((int64_t)task_queue + 0x18c) = 0;
     *task_queue = (code ****)&event_handler_start;
     *(code ******)(engine_context + 0x40) = task_queue;
     memory_block = allocate_memory_block(memory_allocator,0x238,8,3);
     memory_block = initialize_memory_pool(memory_block);
-    (**(code **)(**(longlong **)(engine_context + 0x40) + 8))(*(longlong **)(engine_context + 0x40),memory_block);
-    (**(code **)(**(longlong **)(engine_context + 0x2b0) + 0x80))
-              (*(longlong **)(engine_context + 0x2b0),*(uint64_t *)(engine_context + 0x40));
+    (**(code **)(**(int64_t **)(engine_context + 0x40) + 8))(*(int64_t **)(engine_context + 0x40),memory_block);
+    (**(code **)(**(int64_t **)(engine_context + 0x2b0) + 0x80))
+              (*(int64_t **)(engine_context + 0x2b0),*(uint64_t *)(engine_context + 0x40));
     event_handler = (code ******)task_list;
     if ((*(int *)(engine_context + 0x3c) == -1) || (*(int *)(engine_context + 0x318) + 1 < *(int *)(engine_context + 0x3c)))
     {
@@ -183,21 +183,21 @@ void process_engine_state(void)
       cleanup_memory_block(global_memory_block,engine_context + 800,0);
       release_task_queue(engine_context + 800);
       temp_ptr = global_context_manager;
-      list_head = *(longlong **)(global_context_manager + 0x138);
-      if (list_head != *(longlong **)(global_context_manager + 0x140)) {
+      list_head = *(int64_t **)(global_context_manager + 0x138);
+      if (list_head != *(int64_t **)(global_context_manager + 0x140)) {
         do {
           list_end = *list_head;
-          if ((*(longlong *)(list_end + 0x15b8) == 0) && (*(int *)(list_end + 0x16c0) != 0)) {
+          if ((*(int64_t *)(list_end + 0x15b8) == 0) && (*(int *)(list_end + 0x16c0) != 0)) {
             node_data = find_or_create_node(temp_ptr + 0xac0,list_end + 0x16b0);
             if (node_data == 0) {
               memory_block = allocate_memory_block(memory_allocator,0x50,0x10,3);
               node_data = create_linked_node(memory_block,list_end + 0x16b0);
               add_node_to_list(temp_ptr + 0xac0,node_data);
             }
-            *(longlong *)(list_end + 0x15b8) = node_data;
+            *(int64_t *)(list_end + 0x15b8) = node_data;
           }
           list_head = list_head + 1;
-        } while (list_head != *(longlong **)(temp_ptr + 0x140));
+        } while (list_head != *(int64_t **)(temp_ptr + 0x140));
       }
       cleanup_list_manager(temp_ptr);
       shutdown_system_services();
@@ -242,8 +242,8 @@ STATE_INCREMENT:
         if (current_state == 6) {
           cleanup_memory_block(global_memory_block,engine_context + 800,0);
           release_task_queue(engine_context + 800);
-          (**(code **)(**(longlong **)(global_engine_context + 0x2b0) + 0x120))
-                    (*(longlong **)(global_engine_context + 0x2b0),0);
+          (**(code **)(**(int64_t **)(global_engine_context + 0x2b0) + 0x120))
+                    (*(int64_t **)(global_engine_context + 0x2b0),0);
           shutdown_render_system();
           if (*(int *)(engine_context + 0x3c) != -1) {
             if (*(int *)(engine_context + 0x318) + 1 < *(int *)(engine_context + 0x3c)) {
@@ -259,8 +259,8 @@ STATE_INCREMENT:
           }
           
           // 全局系统更新
-          (**(code **)(**(longlong **)(global_engine_context + 0x2b0) + 0x120))
-                    (*(longlong **)(global_engine_context + 0x2b0),1);
+          (**(code **)(**(int64_t **)(global_engine_context + 0x2b0) + 0x120))
+                    (*(int64_t **)(global_engine_context + 0x2b0),1);
           update_global_system_state();
           
           if ((*(int *)(engine_context + 0x3c) != -1) &&
@@ -280,15 +280,15 @@ STATE_INCREMENT:
   }
   
 STATE_UPDATE_COMPLETE:
-  cleanup_memory_management(checksum ^ (ulonglong)buffer1);
+  cleanup_memory_management(checksum ^ (uint64_t)buffer1);
 }
 
 // 辅助函数声明（这些函数在原始代码中被调用）
-void initialize_system_handlers(longlong engine_context);
-void process_state_machine_handlers(longlong engine_context);
-void handle_system_error(longlong engine_context);
+void initialize_system_handlers(int64_t engine_context);
+void process_state_machine_handlers(int64_t engine_context);
+void handle_system_error(int64_t engine_context);
 void update_global_system_state(void);
-void process_state_completion_handlers(longlong engine_context);
+void process_state_completion_handlers(int64_t engine_context);
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 

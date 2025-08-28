@@ -88,8 +88,8 @@
  *   - 包含复杂的条件分支逻辑
  */
 void rendering_system_string_comparator_and_config_processor(
-    longlong render_context, 
-    longlong string_params
+    int64_t render_context, 
+    int64_t string_params
 );
 
 /**
@@ -110,7 +110,7 @@ void rendering_system_string_comparator_and_config_processor(
  *   - 包含高级的状态管理逻辑
  */
 void rendering_system_advanced_initializer_and_state_manager(
-    longlong render_context
+    int64_t render_context
 );
 
 // =============================================================================
@@ -127,8 +127,8 @@ void rendering_system_advanced_initializer_and_state_manager(
  * 4. 处理多种渲染条件分支
  */
 void rendering_system_string_comparator_and_config_processor(
-    longlong render_context, 
-    longlong string_params
+    int64_t render_context, 
+    int64_t string_params
 ) {
     // 局部变量声明
     char comparison_result_1;
@@ -136,12 +136,12 @@ void rendering_system_string_comparator_and_config_processor(
     int string_length;
     char *string_pointer;
     uint64_t *config_data;
-    longlong offset_value;
+    int64_t offset_value;
     bool match_result;
     
     // 栈缓冲区 - 用于字符串处理和配置数据
     int8_t string_buffer_1[STRING_BUFFER_SIZE_SMALL];
-    longlong *stack_pointer_1;
+    int64_t *stack_pointer_1;
     uint64_t stack_value_1;
     void *pointer_1;
     int8_t *pointer_2;
@@ -269,11 +269,11 @@ void rendering_system_string_comparator_and_config_processor(
     int8_t *pointer_62;
     int32_t config_value_31;
     int8_t config_buffer_32[STRING_BUFFER_SIZE_LARGE];
-    ulonglong checksum_value;
+    uint64_t checksum_value;
     
     // 初始化栈值
     stack_value_1 = 0xfffffffffffffffe;
-    checksum_value = GET_SECURITY_COOKIE() ^ (ulonglong)string_buffer_1;
+    checksum_value = GET_SECURITY_COOKIE() ^ (uint64_t)string_buffer_1;
     
     // 初始化字符串缓冲区
     pointer_33 = &unknown_var_672_ptr;
@@ -294,7 +294,7 @@ void rendering_system_string_comparator_and_config_processor(
         } else {
             // 字符串比较操作
             string_pointer = *(char **)(string_params + 8);
-            offset_value = (longlong)pointer_34 - (longlong)string_pointer;
+            offset_value = (int64_t)pointer_34 - (int64_t)string_pointer;
             do {
                 comparison_result_1 = *string_pointer;
                 comparison_result_2 = string_pointer[offset_value];
@@ -396,7 +396,7 @@ STRING_COMPARE_FAILED:
                 match_result = true;
             } else {
                 string_pointer = *(char **)(string_params + 8);
-                offset_value = (longlong)pointer_34 - (longlong)string_pointer;
+                offset_value = (int64_t)pointer_34 - (int64_t)string_pointer;
                 do {
                     comparison_result_1 = *string_pointer;
                     comparison_result_2 = string_pointer[offset_value];
@@ -456,23 +456,23 @@ SECONDARY_COMPARE_FAILED:
 FINALIZE_RENDER_PROCESS:
     // 执行渲染管线处理
     config_data = (uint64_t *)
-        FUN_180389090(*(longlong *)(*(longlong *)(render_context + 0x18) + 0x20) + 0x2970, 
+        FUN_180389090(*(int64_t *)(*(int64_t *)(render_context + 0x18) + 0x20) + 0x2970, 
                      &stack_pointer_1, render_context + STACK_OFFSET_0x70);
     
     *(uint64_t *)(render_context + 0x108) = *config_data;
     
     // 执行栈指针回调
-    if (stack_pointer_1 != (longlong *)0x0) {
+    if (stack_pointer_1 != (int64_t *)0x0) {
         (**(code **)(*stack_pointer_1 + 0x38))();
     }
     
     // 执行渲染状态更新
-    if (*(longlong *)(render_context + 0x108) != 0) {
+    if (*(int64_t *)(render_context + 0x108) != 0) {
         FUN_180358b30(render_context);
     }
     
     // 最终处理（不返回）
-    FUN_1808fc050(checksum_value ^ (ulonglong)string_buffer_1);
+    FUN_1808fc050(checksum_value ^ (uint64_t)string_buffer_1);
 }
 
 /**
@@ -486,34 +486,34 @@ FINALIZE_RENDER_PROCESS:
  * 5. 执行状态同步操作
  */
 void rendering_system_advanced_initializer_and_state_manager(
-    longlong render_context
+    int64_t render_context
 ) {
     // 局部变量声明
     uint state_flags;
-    longlong render_data;
+    int64_t render_data;
     uint64_t memory_block;
     int allocation_size;
     uint64_t temp_value;
-    longlong *memory_pointer;
-    longlong context_data;
+    int64_t *memory_pointer;
+    int64_t context_data;
     byte state_bit;
     char iteration_char;
-    longlong loop_counter;
-    longlong *stack_pointer_1;
-    longlong *stack_pointer_2;
-    longlong *stack_pointer_3;
-    longlong **stack_pointer_4;
+    int64_t loop_counter;
+    int64_t *stack_pointer_1;
+    int64_t *stack_pointer_2;
+    int64_t *stack_pointer_3;
+    int64_t **stack_pointer_4;
     
     // 获取渲染数据指针
-    render_data = *(uint64_t *)(*(longlong *)(render_context + 0x18) + 0x20);
+    render_data = *(uint64_t *)(*(int64_t *)(render_context + 0x18) + 0x20);
     
     // 内存分配操作
     temp_value = FUN_18062b1e0(system_memory_pool_ptr, MEMORY_ALLOC_SIZE_0x2f0, MEMORY_ALLOC_SIZE_0x10, MEMORY_ALLOC_SIZE_0xd);
-    memory_pointer = (longlong *)FUN_1802e6b00(temp_value, 4);
+    memory_pointer = (int64_t *)FUN_1802e6b00(temp_value, 4);
     stack_pointer_2 = memory_pointer;
     
     // 内存分配验证和初始化
-    if (memory_pointer != (longlong *)0x0) {
+    if (memory_pointer != (int64_t *)0x0) {
         (**(code **)(*memory_pointer + 0x28))(memory_pointer);
     }
     
@@ -536,12 +536,12 @@ void rendering_system_advanced_initializer_and_state_manager(
     FUN_180198b90(render_data, &stack_pointer_1, 1, 1, 0, 1, 0);
     
     // 重置临时指针
-    stack_pointer_2 = (longlong *)0x0;
-    stack_pointer_3 = *(longlong **)(render_context + STACK_OFFSET_0x118);
-    *(longlong **)(render_context + STACK_OFFSET_0x118) = memory_pointer;
+    stack_pointer_2 = (int64_t *)0x0;
+    stack_pointer_3 = *(int64_t **)(render_context + STACK_OFFSET_0x118);
+    *(int64_t **)(render_context + STACK_OFFSET_0x118) = memory_pointer;
     
     // 执行旧的内存指针清理
-    if (stack_pointer_3 != (longlong *)0x0) {
+    if (stack_pointer_3 != (int64_t *)0x0) {
         (**(code **)(*stack_pointer_3 + 0x38))();
     }
     
@@ -549,22 +549,22 @@ void rendering_system_advanced_initializer_and_state_manager(
     FUN_180170ac0(*(uint64_t *)(render_context + STACK_OFFSET_0x118), &unknown_var_2984_ptr);
     
     // 获取新的上下文数据
-    context_data = *(longlong *)(render_context + STACK_OFFSET_0x118);
+    context_data = *(int64_t *)(render_context + STACK_OFFSET_0x118);
     state_flags = *(uint *)(context_data + 0x2ac);
     *(uint *)(context_data + 0x2ac) = state_flags | BIT_MASK_0x2020000;
     FUN_1802ee810(context_data, state_flags);
     
     // 处理渲染状态更新
-    render_data = *(longlong *)(context_data + 0x260);
+    render_data = *(int64_t *)(context_data + 0x260);
     if ((render_data != 0) && (((*(uint *)(context_data + 0x2ac) ^ state_flags) >> BIT_SHIFT_0x16 & 1) != 0)) {
         state_bit = ~(byte)(*(uint *)(context_data + 0x2ac) >> BIT_SHIFT_0x16) & 1;
-        allocation_size = (int)(*(longlong *)(render_data + 0x1b0) - *(longlong *)(render_data + 0x1a8) >> 3);
+        allocation_size = (int)(*(int64_t *)(render_data + 0x1b0) - *(int64_t *)(render_data + 0x1a8) >> 3);
         
         // 批量处理渲染对象
         if (0 < allocation_size) {
             context_data = 0;
             do {
-                memory_pointer = *(longlong **)(*(longlong *)(render_data + 0x1a8) + context_data * 8);
+                memory_pointer = *(int64_t **)(*(int64_t *)(render_data + 0x1a8) + context_data * 8);
                 (**(code **)(*memory_pointer + 0xe0))(memory_pointer, state_bit);
                 context_data = context_data + 1;
             } while (context_data < allocation_size);
@@ -575,13 +575,13 @@ void rendering_system_advanced_initializer_and_state_manager(
         if ('\0' < *(char *)(render_data + 0x20)) {
             do {
                 context_data = 0;
-                loop_counter = (longlong)iteration_char * 0x100 + *(longlong *)(render_data + 0x18);
-                allocation_size = (int)(*(longlong *)(loop_counter + 0xb8) - *(longlong *)(loop_counter + 0xb0) >> 3);
+                loop_counter = (int64_t)iteration_char * 0x100 + *(int64_t *)(render_data + 0x18);
+                allocation_size = (int)(*(int64_t *)(loop_counter + 0xb8) - *(int64_t *)(loop_counter + 0xb0) >> 3);
                 
                 // 内层循环处理
                 if (0 < allocation_size) {
                     do {
-                        memory_pointer = *(longlong **)(*(longlong *)(loop_counter + 0xb0) + context_data * 8);
+                        memory_pointer = *(int64_t **)(*(int64_t *)(loop_counter + 0xb0) + context_data * 8);
                         (**(code **)(*memory_pointer + 0xe0))(memory_pointer, state_bit);
                         context_data = context_data + 1;
                     } while (context_data < allocation_size);

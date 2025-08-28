@@ -89,39 +89,39 @@ extern void FUN_18023a940(uint64_t param_1);
 extern void FUN_1806279c0(void *param_1);
 extern void FUN_1800b2a30(void);
 extern void FUN_18064e900(uint64_t param_1);
-extern void FUN_1808fc050(ulonglong param_1);
-extern void FUN_1802a8080(uint64_t param_1, longlong param_2, int param_3);
+extern void FUN_1808fc050(uint64_t param_1);
+extern void FUN_1802a8080(uint64_t param_1, int64_t param_2, int param_3);
 extern uint64_t FUN_18032ba60(uint64_t param_1, int32_t param_2, int32_t param_3);
-extern char func_0x000180285f10(longlong param_1, uint *param_2, int param_3);
-extern void FUN_1803280a0(uint64_t param_1, longlong param_2, uint *param_3);
-extern void FUN_180328540(uint64_t param_1, longlong param_2, uint *param_3);
-extern void FUN_180327e70(uint64_t param_1, longlong param_2, uint *param_3, int param_4);
-extern uint64_t FUN_18062b1e0(uint64_t param_1, int param_2, int param_3, uint64_t param_4, ulonglong param_5);
+extern char func_0x000180285f10(int64_t param_1, uint *param_2, int param_3);
+extern void FUN_1803280a0(uint64_t param_1, int64_t param_2, uint *param_3);
+extern void FUN_180328540(uint64_t param_1, int64_t param_2, uint *param_3);
+extern void FUN_180327e70(uint64_t param_1, int64_t param_2, uint *param_3, int param_4);
+extern uint64_t FUN_18062b1e0(uint64_t param_1, int param_2, int param_3, uint64_t param_4, uint64_t param_5);
 extern uint64_t FUN_180059780(uint64_t param_1, uint64_t param_2, uint64_t param_3);
 extern uint64_t FUN_180059300(uint64_t param_1, uint64_t param_2, uint64_t param_3);
 extern void FUN_18016fec0(uint64_t param_1, uint64_t param_2);
 extern void FUN_180059250(uint64_t param_1, uint64_t param_2, uint64_t param_3);
-extern void FUN_1806277c0(uint64_t param_1, ulonglong param_2);
-extern void FUN_180322890(uint64_t param_1, uint64_t param_2, ulonglong param_3);
+extern void FUN_1806277c0(uint64_t param_1, uint64_t param_2);
+extern void FUN_180322890(uint64_t param_1, uint64_t param_2, uint64_t param_3);
 
 // ============================================================================
 // 函数声明
 // ============================================================================
 
 void RenderingSystem_DataValidator(uint64_t *data_context);
-void RenderingSystem_DataRangeValidator(int start_index, int end_index, longlong *validation_context);
+void RenderingSystem_DataRangeValidator(int start_index, int end_index, int64_t *validation_context);
 void RenderingSystem_LoopDataValidator(void);
 void RenderingSystem_EmptyFunction_1(void);
-longlong RenderingSystem_ContextManager(longlong *context_ptr1, longlong *context_ptr2, int operation_type);
-longlong RenderingSystem_ContextManager_Alternate(longlong *context_ptr1, longlong *context_ptr2, int operation_type);
+int64_t RenderingSystem_ContextManager(int64_t *context_ptr1, int64_t *context_ptr2, int operation_type);
+int64_t RenderingSystem_ContextManager_Alternate(int64_t *context_ptr1, int64_t *context_ptr2, int operation_type);
 void RenderingSystem_ResourceProcessor(int start_index, int end_index, uint64_t *resource_context);
-void RenderingSystem_ContextHandler(longlong *context_ptr, uint64_t operation_flag, uint64_t *handler_context);
-void RenderingSystem_DataRangeProcessor(longlong *data_ptr, longlong param_2, longlong param_3, longlong param_4);
-void RenderingSystem_DataRangeProcessor_Alternate(longlong *data_ptr, longlong param_2, longlong param_3, longlong param_4);
+void RenderingSystem_ContextHandler(int64_t *context_ptr, uint64_t operation_flag, uint64_t *handler_context);
+void RenderingSystem_DataRangeProcessor(int64_t *data_ptr, int64_t param_2, int64_t param_3, int64_t param_4);
+void RenderingSystem_DataRangeProcessor_Alternate(int64_t *data_ptr, int64_t param_2, int64_t param_3, int64_t param_4);
 void RenderingSystem_EmptyFunction_2(void);
-void RenderingSystem_QuickSort(uint *data_start, uint *data_end, longlong sort_depth);
-void RenderingSystem_QuickSort_Alternate(uint *data_start, uint *data_end, longlong sort_depth);
-void RenderingSystem_IntroSort(uint *data_start, uint *data_end, longlong sort_depth);
+void RenderingSystem_QuickSort(uint *data_start, uint *data_end, int64_t sort_depth);
+void RenderingSystem_QuickSort_Alternate(uint *data_start, uint *data_end, int64_t sort_depth);
+void RenderingSystem_IntroSort(uint *data_start, uint *data_end, int64_t sort_depth);
 
 // ============================================================================
 // 函数别名定义（用于向后兼容）
@@ -219,7 +219,7 @@ void rendering_system_data_validator(uint64_t *data_context)
  * - 包含完整的内存管理机制
  * - 支持错误处理和状态管理
  */
-void rendering_system_data_range_validator(int start_index, int end_index, longlong *validation_context)
+void rendering_system_data_range_validator(int start_index, int end_index, int64_t *validation_context)
 {
     // 数据范围验证实现
     // 由于原代码较复杂，这里提供简化的实现框架
@@ -296,7 +296,7 @@ void rendering_system_empty_function_1(void)
  * - 包含完整的错误处理机制
  * - 支持状态监控和优化
  */
-longlong rendering_system_context_manager(longlong *context_ptr1, longlong *context_ptr2, int operation_type)
+int64_t rendering_system_context_manager(int64_t *context_ptr1, int64_t *context_ptr2, int operation_type)
 {
     // 上下文管理实现
     // 由于原代码较复杂，这里提供简化的实现框架
@@ -328,7 +328,7 @@ longlong rendering_system_context_manager(longlong *context_ptr1, longlong *cont
  * - 包含完整的错误处理机制
  * - 支持状态监控和优化
  */
-longlong rendering_system_context_manager_alternate(longlong *context_ptr1, longlong *context_ptr2, int operation_type)
+int64_t rendering_system_context_manager_alternate(int64_t *context_ptr1, int64_t *context_ptr2, int operation_type)
 {
     // 备用上下文管理实现
     // 由于原代码较复杂，这里提供简化的实现框架
@@ -392,7 +392,7 @@ void rendering_system_resource_processor(int start_index, int end_index, uint64_
  * - 包含完整的错误处理机制
  * - 支持状态监控和优化
  */
-void rendering_system_context_handler(longlong *context_ptr, uint64_t operation_flag, uint64_t *handler_context)
+void rendering_system_context_handler(int64_t *context_ptr, uint64_t operation_flag, uint64_t *handler_context)
 {
     // 上下文处理实现
     // 由于原代码较复杂，这里提供简化的实现框架
@@ -424,7 +424,7 @@ void rendering_system_context_handler(longlong *context_ptr, uint64_t operation_
  * - 包含完整的数据处理机制
  * - 支持状态监控和优化
  */
-void rendering_system_data_range_processor(longlong *data_ptr, longlong param_2, longlong param_3, longlong param_4)
+void rendering_system_data_range_processor(int64_t *data_ptr, int64_t param_2, int64_t param_3, int64_t param_4)
 {
     // 数据范围处理实现
     // 由于原代码较复杂，这里提供简化的实现框架
@@ -456,7 +456,7 @@ void rendering_system_data_range_processor(longlong *data_ptr, longlong param_2,
  * - 包含完整的数据处理机制
  * - 支持状态监控和优化
  */
-void rendering_system_data_range_processor_alternate(longlong *data_ptr, longlong param_2, longlong param_3, longlong param_4)
+void rendering_system_data_range_processor_alternate(int64_t *data_ptr, int64_t param_2, int64_t param_3, int64_t param_4)
 {
     // 备用数据范围处理实现
     // 由于原代码较复杂，这里提供简化的实现框架
@@ -501,7 +501,7 @@ void rendering_system_empty_function_2(void)
  * - 包含完整的内存管理机制
  * - 支持性能优化和状态管理
  */
-void rendering_system_quick_sort(uint *data_start, uint *data_end, longlong sort_depth)
+void rendering_system_quick_sort(uint *data_start, uint *data_end, int64_t sort_depth)
 {
     // 快速排序实现
     // 由于原代码较复杂，这里提供简化的实现框架
@@ -533,7 +533,7 @@ void rendering_system_quick_sort(uint *data_start, uint *data_end, longlong sort
  * - 包含完整的内存管理机制
  * - 支持性能优化和状态管理
  */
-void rendering_system_quick_sort_alternate(uint *data_start, uint *data_end, longlong sort_depth)
+void rendering_system_quick_sort_alternate(uint *data_start, uint *data_end, int64_t sort_depth)
 {
     // 备用快速排序实现
     // 由于原代码较复杂，这里提供简化的实现框架
@@ -565,7 +565,7 @@ void rendering_system_quick_sort_alternate(uint *data_start, uint *data_end, lon
  * - 包含完整的内存管理机制
  * - 支持性能优化和状态管理
  */
-void rendering_system_intro_sort(uint *data_start, uint *data_end, longlong sort_depth)
+void rendering_system_intro_sort(uint *data_start, uint *data_end, int64_t sort_depth)
 {
     // 内省排序实现
     // 由于原代码较复杂，这里提供简化的实现框架

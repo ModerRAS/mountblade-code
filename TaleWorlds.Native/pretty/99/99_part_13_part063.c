@@ -116,10 +116,10 @@ void advanced_data_processor(float *input_data, int32_t *output_data, float *tra
     float stack_var_68;
     uint64_t stack_var_64;
     float stack_var_5c;
-    ulonglong stack_var_58;
+    uint64_t stack_var_58;
     
     // 初始化堆栈变量
-    stack_var_58 = GET_SECURITY_COOKIE() ^ (ulonglong)stack_buffer_148;
+    stack_var_58 = GET_SECURITY_COOKIE() ^ (uint64_t)stack_buffer_148;
     stack_var_128 = 0;
     stack_var_c8 = 0;
     stack_var_bc = 0;
@@ -165,7 +165,7 @@ void advanced_data_processor(float *input_data, int32_t *output_data, float *tra
         else {
             // 使用默认值
             stack_var_128 = *(uint64_t *)(input_data + 6);
-            float_var18 = (float)((ulonglong)stack_var_128 >> 0x20);
+            float_var18 = (float)((uint64_t)stack_var_128 >> 0x20);
             float_var14 = input_data[8];
             float_var17 = (float)stack_var_128;
             stack_var_120 = float_var14;
@@ -179,7 +179,7 @@ void advanced_data_processor(float *input_data, int32_t *output_data, float *tra
         stack_var_5c = transform_params[0xb];
         stack_var_118._0_4_ = (float)temp_var12;
         stack_var_88 = float_var17 * float_var15 + (float)stack_var_118;
-        stack_var_118._4_4_ = (float)((ulonglong)temp_var12 >> 0x20);
+        stack_var_118._4_4_ = (float)((uint64_t)temp_var12 >> 0x20);
         stack_var_84 = float_var18 * float_var15 + stack_var_118._4_4_;
         stack_var_80 = float_var14 * float_var15 + stack_var_110;
         stack_var_64 = *(uint64_t *)(transform_params + 9);
@@ -213,7 +213,7 @@ void advanced_data_processor(float *input_data, int32_t *output_data, float *tra
     output_data[0xb] = temp_var11;
     
     // 调用清理函数
-    FUN_1808fc050(stack_var_58 ^ (ulonglong)stack_buffer_148);
+    FUN_1808fc050(stack_var_58 ^ (uint64_t)stack_buffer_148);
 }
 
 /**
@@ -246,9 +246,9 @@ void coordinate_transform_processor(uint64_t transform_params, float x_param, fl
     int32_t temp_var11;
     int32_t temp_var12;
     int32_t *temp_ptr13;
-    longlong reg_rbx;
-    longlong reg_rbp;
-    longlong reg_rsi;
+    int64_t reg_rbx;
+    int64_t reg_rbp;
+    int64_t reg_rsi;
     int32_t *reg_rdi;
     float float_var14;
     float float_var15;
@@ -273,7 +273,7 @@ void coordinate_transform_processor(uint64_t transform_params, float x_param, fl
     }
     else {
         // 使用默认向量
-        float_var15 = (float)((ulonglong)*(uint64_t *)(reg_rbx + 0x18) >> 0x20);
+        float_var15 = (float)((uint64_t)*(uint64_t *)(reg_rbx + 0x18) >> 0x20);
         float_var14 = *(float *)(reg_rbx + 0x20);
         stack_xmm_20 = (float)*(uint64_t *)(reg_rbx + 0x18);
     }
@@ -319,7 +319,7 @@ void coordinate_transform_processor(uint64_t transform_params, float x_param, fl
     reg_rdi[0xb] = temp_var12;
     
     // 调用清理函数
-    FUN_1808fc050(*(ulonglong *)(reg_rbp + -0x10) ^ (ulonglong)&stack0x00000000);
+    FUN_1808fc050(*(uint64_t *)(reg_rbp + -0x10) ^ (uint64_t)&stack0x00000000);
 }
 
 /**
@@ -342,7 +342,7 @@ void system_state_initializer(void)
     int32_t temp_var10;
     int32_t temp_var11;
     int32_t *temp_ptr12;
-    longlong reg_rbp;
+    int64_t reg_rbp;
     int32_t *reg_rdi;
     
     // 执行初始化操作
@@ -372,7 +372,7 @@ void system_state_initializer(void)
     reg_rdi[0xb] = temp_var11;
     
     // 调用清理函数
-    FUN_1808fc050(*(ulonglong *)(reg_rbp + -0x10) ^ (ulonglong)&stack0x00000000);
+    FUN_1808fc050(*(uint64_t *)(reg_rbp + -0x10) ^ (uint64_t)&stack0x00000000);
 }
 
 /**
@@ -414,10 +414,10 @@ void resource_manager(uint64_t resource_params, int32_t *output_data, uint64_t r
     int32_t stack_var_3c;
     uint64_t stack_var_38;
     int32_t stack_var_30;
-    ulonglong stack_var_28;
+    uint64_t stack_var_28;
     
     // 初始化堆栈变量
-    stack_var_28 = GET_SECURITY_COOKIE() ^ (ulonglong)stack_buffer_d8;
+    stack_var_28 = GET_SECURITY_COOKIE() ^ (uint64_t)stack_buffer_d8;
     stack_var_60 = 0;
     stack_var_b8 = 0;
     stack_var_68 = 0;
@@ -461,7 +461,7 @@ void resource_manager(uint64_t resource_params, int32_t *output_data, uint64_t r
     output_data[0xb] = temp_var11;
     
     // 调用清理函数
-    FUN_1808fc050(stack_var_28 ^ (ulonglong)stack_buffer_d8);
+    FUN_1808fc050(stack_var_28 ^ (uint64_t)stack_buffer_d8);
 }
 
 /**
@@ -495,10 +495,10 @@ void matrix_transform_processor(uint64_t matrix_params, uint64_t *output_matrix,
     float stack_var_4c;
     uint64_t stack_var_48;
     int32_t stack_var_40;
-    ulonglong stack_var_38;
+    uint64_t stack_var_38;
     
     // 初始化堆栈变量
-    stack_var_38 = GET_SECURITY_COOKIE() ^ (ulonglong)stack_buffer_e8;
+    stack_var_38 = GET_SECURITY_COOKIE() ^ (uint64_t)stack_buffer_e8;
     stack_var_c8 = 0;
     stack_var_78 = 0;
     stack_var_6c = 0;
@@ -527,7 +527,7 @@ void matrix_transform_processor(uint64_t matrix_params, uint64_t *output_matrix,
     *(float *)(output_matrix + 1) = stack_var_c0;
     
     // 调用清理函数
-    FUN_1808fc050(stack_var_38 ^ (ulonglong)stack_buffer_e8);
+    FUN_1808fc050(stack_var_38 ^ (uint64_t)stack_buffer_e8);
 }
 
 /**
@@ -608,7 +608,7 @@ uint64_t *memory_pool_manager(uint64_t *memory_pool, uint64_t memory_params)
  * @return 配置后的系统指针
  */
 uint64_t *system_configurator(uint64_t *system_config, uint64_t config_param1, uint64_t config_param2, 
-                                longlong config_param3, uint64_t config_param4, uint64_t config_param5, 
+                                int64_t config_param3, uint64_t config_param4, uint64_t config_param5, 
                                 uint64_t config_param6)
 {
     // 调用初始化函数
@@ -645,18 +645,18 @@ uint64_t *system_configurator(uint64_t *system_config, uint64_t config_param1, u
  * @param param_6 参数设置5
  */
 void system_parameter_setup(uint64_t *system_params, uint64_t param_set1, uint64_t param_set2, 
-                           longlong param_set3, longlong param_set4, uint64_t param_set5, 
+                           int64_t param_set3, int64_t param_set4, uint64_t param_set5, 
                            uint64_t param_set6)
 {
     uint64_t *temp_ptr1;
     int *temp_ptr2;
-    longlong temp_var3;
+    int64_t temp_var3;
     int8_t stack_buffer_68 [32];
     int8_t stack_buffer_48 [40];
-    ulonglong stack_var_20;
+    uint64_t stack_var_20;
     
     // 初始化堆栈变量
-    stack_var_20 = GET_SECURITY_COOKIE() ^ (ulonglong)stack_buffer_68;
+    stack_var_20 = GET_SECURITY_COOKIE() ^ (uint64_t)stack_buffer_68;
     temp_ptr1 = system_params + 1;
     *temp_ptr1 = temp_ptr1;
     temp_ptr2 = (int *)(param_set3 + 0x30);
@@ -687,8 +687,8 @@ void system_parameter_setup(uint64_t *system_params, uint64_t param_set1, uint64
         system_params[0x12] = 0;
     }
     else {
-        temp_var3 = (**(code **)(**(longlong **)(param_set4 + 0x4b8) + 0x260))
-                          (*(longlong **)(param_set4 + 0x4b8), temp_ptr2, 1);
+        temp_var3 = (**(code **)(**(int64_t **)(param_set4 + 0x4b8) + 0x260))
+                          (*(int64_t **)(param_set4 + 0x4b8), temp_ptr2, 1);
         if (temp_var3 == 0) {
             // 错误处理
             FUN_18084b240(temp_ptr2, stack_buffer_48);
@@ -697,7 +697,7 @@ void system_parameter_setup(uint64_t *system_params, uint64_t param_set1, uint64
     }
     
     // 调用清理函数
-    FUN_1808fc050(stack_var_20 ^ (ulonglong)stack_buffer_68);
+    FUN_1808fc050(stack_var_20 ^ (uint64_t)stack_buffer_68);
 }
 
 /**
@@ -708,11 +708,11 @@ void system_parameter_setup(uint64_t *system_params, uint64_t param_set1, uint64
  * 
  * @param param_1 状态管理器指针
  */
-void system_state_manager(longlong *state_manager)
+void system_state_manager(int64_t *state_manager)
 {
-    longlong temp_var1;
-    longlong reg_rbx;
-    ulonglong stack_param_48;
+    int64_t temp_var1;
+    int64_t reg_rbx;
+    uint64_t stack_param_48;
     
     // 获取系统状态
     temp_var1 = (**(code **)(*state_manager + 0x260))();
@@ -720,10 +720,10 @@ void system_state_manager(longlong *state_manager)
         // 错误处理
         FUN_18084b240();
     }
-    *(longlong *)(reg_rbx + 0x90) = temp_var1;
+    *(int64_t *)(reg_rbx + 0x90) = temp_var1;
     
     // 调用清理函数
-    FUN_1808fc050(stack_param_48 ^ (ulonglong)&stack0x00000000);
+    FUN_1808fc050(stack_param_48 ^ (uint64_t)&stack0x00000000);
 }
 
 /**
@@ -734,10 +734,10 @@ void system_state_manager(longlong *state_manager)
  */
 void system_cleanup_handler(void)
 {
-    ulonglong stack_param_48;
+    uint64_t stack_param_48;
     
     // 调用清理函数
-    FUN_1808fc050(stack_param_48 ^ (ulonglong)&stack0x00000000);
+    FUN_1808fc050(stack_param_48 ^ (uint64_t)&stack0x00000000);
 }
 
 /**
@@ -753,7 +753,7 @@ void system_cleanup_handler(void)
  * @return 分配后的资源指针
  */
 uint64_t *resource_allocator(uint64_t *resource_allocator_ptr, uint64_t alloc_param, 
-                                longlong alloc_size, longlong alloc_flag)
+                                int64_t alloc_size, int64_t alloc_flag)
 {
     // 调用初始化函数
     FUN_1808d2f20();
@@ -766,7 +766,7 @@ uint64_t *resource_allocator(uint64_t *resource_allocator_ptr, uint64_t alloc_pa
     resource_allocator_ptr[0x13] = alloc_param;
     resource_allocator_ptr[0x15] = 0;
     *(int32_t *)(resource_allocator_ptr + 0x16) = 0;
-    *(uint *)((longlong)resource_allocator_ptr + 0xb4) = (uint)(*(int *)(alloc_size + 0x40) == 6);
+    *(uint *)((int64_t)resource_allocator_ptr + 0xb4) = (uint)(*(int *)(alloc_size + 0x40) == 6);
     resource_allocator_ptr[0x14] = alloc_flag + 0x4f0;
     
     return resource_allocator_ptr;
@@ -782,7 +782,7 @@ uint64_t *resource_allocator(uint64_t *resource_allocator_ptr, uint64_t alloc_pa
  */
 void object_initializer(uint64_t *object_ptr)
 {
-    longlong *temp_ptr1;
+    int64_t *temp_ptr1;
     
     // 设置对象参数
     *object_ptr = &unknown_var_6088_ptr;
@@ -796,35 +796,35 @@ void object_initializer(uint64_t *object_ptr)
     // 初始化对象链表
     temp_ptr1 = object_ptr + 7;
     object_ptr[6] = &unknown_var_6040_ptr;
-    *(longlong *)object_ptr[8] = *temp_ptr1;
+    *(int64_t *)object_ptr[8] = *temp_ptr1;
     *(uint64_t *)(*temp_ptr1 + 8) = object_ptr[8];
     object_ptr[8] = temp_ptr1;
-    *temp_ptr1 = (longlong)temp_ptr1;
-    *(longlong **)object_ptr[8] = temp_ptr1;
+    *temp_ptr1 = (int64_t)temp_ptr1;
+    *(int64_t **)object_ptr[8] = temp_ptr1;
     *(uint64_t *)(*temp_ptr1 + 8) = object_ptr[8];
     object_ptr[8] = temp_ptr1;
-    *temp_ptr1 = (longlong)temp_ptr1;
+    *temp_ptr1 = (int64_t)temp_ptr1;
     
     // 初始化其他链表
     temp_ptr1 = object_ptr + 4;
-    *(longlong *)object_ptr[5] = *temp_ptr1;
+    *(int64_t *)object_ptr[5] = *temp_ptr1;
     *(uint64_t *)(*temp_ptr1 + 8) = object_ptr[5];
     object_ptr[5] = temp_ptr1;
-    *temp_ptr1 = (longlong)temp_ptr1;
-    *(longlong **)object_ptr[5] = temp_ptr1;
+    *temp_ptr1 = (int64_t)temp_ptr1;
+    *(int64_t **)object_ptr[5] = temp_ptr1;
     *(uint64_t *)(*temp_ptr1 + 8) = object_ptr[5];
     object_ptr[5] = temp_ptr1;
-    *temp_ptr1 = (longlong)temp_ptr1;
+    *temp_ptr1 = (int64_t)temp_ptr1;
     
     temp_ptr1 = object_ptr + 1;
-    *(longlong *)object_ptr[2] = *temp_ptr1;
+    *(int64_t *)object_ptr[2] = *temp_ptr1;
     *(uint64_t *)(*temp_ptr1 + 8) = object_ptr[2];
     object_ptr[2] = temp_ptr1;
-    *temp_ptr1 = (longlong)temp_ptr1;
-    *(longlong **)object_ptr[2] = temp_ptr1;
+    *temp_ptr1 = (int64_t)temp_ptr1;
+    *(int64_t **)object_ptr[2] = temp_ptr1;
     *(uint64_t *)(*temp_ptr1 + 8) = object_ptr[2];
     object_ptr[2] = temp_ptr1;
-    *temp_ptr1 = (longlong)temp_ptr1;
+    *temp_ptr1 = (int64_t)temp_ptr1;
 }
 
 /**
@@ -837,7 +837,7 @@ void object_initializer(uint64_t *object_ptr)
  * @param param_2 管理标志
  * @return 管理后的内存指针
  */
-uint64_t memory_manager(uint64_t memory_ptr, ulonglong manage_flag)
+uint64_t memory_manager(uint64_t memory_ptr, uint64_t manage_flag)
 {
     // 调用初始化函数
     object_initializer((uint64_t *)memory_ptr);
@@ -860,7 +860,7 @@ uint64_t memory_manager(uint64_t memory_ptr, ulonglong manage_flag)
  * @param param_2 清理标志
  * @return 清理后的资源指针
  */
-longlong resource_cleaner(longlong resource_ptr, ulonglong clean_flag)
+int64_t resource_cleaner(int64_t resource_ptr, uint64_t clean_flag)
 {
     // 调用清理函数
     FUN_180744d60(resource_ptr + 0x98);
@@ -884,7 +884,7 @@ longlong resource_cleaner(longlong resource_ptr, ulonglong clean_flag)
  * @param param_2 管理标志
  * @return 管理后的缓冲区指针
  */
-uint64_t buffer_manager(uint64_t buffer_ptr, ulonglong manage_flag)
+uint64_t buffer_manager(uint64_t buffer_ptr, uint64_t manage_flag)
 {
     // 调用初始化函数
     object_initializer((uint64_t *)buffer_ptr);
@@ -907,7 +907,7 @@ uint64_t buffer_manager(uint64_t buffer_ptr, ulonglong manage_flag)
  * @param param_2 处理标志
  * @return 处理后的数组指针
  */
-uint64_t array_handler(uint64_t array_ptr, ulonglong process_flag)
+uint64_t array_handler(uint64_t array_ptr, uint64_t process_flag)
 {
     // 调用初始化函数
     object_initializer((uint64_t *)array_ptr);
@@ -930,21 +930,21 @@ uint64_t array_handler(uint64_t array_ptr, ulonglong process_flag)
  * @param param_2 初始化标志
  * @return 初始化后的链表指针
  */
-uint64_t *linked_list_initializer(uint64_t *linked_list, ulonglong init_flag)
+uint64_t *linked_list_initializer(uint64_t *linked_list, uint64_t init_flag)
 {
-    longlong *temp_ptr1;
+    int64_t *temp_ptr1;
     
     // 初始化链表
     temp_ptr1 = linked_list + 1;
     *linked_list = &unknown_var_6040_ptr;
-    *(longlong *)linked_list[2] = *temp_ptr1;
+    *(int64_t *)linked_list[2] = *temp_ptr1;
     *(uint64_t *)(*temp_ptr1 + 8) = linked_list[2];
     linked_list[2] = temp_ptr1;
-    *temp_ptr1 = (longlong)temp_ptr1;
-    *(longlong **)linked_list[2] = temp_ptr1;
+    *temp_ptr1 = (int64_t)temp_ptr1;
+    *(int64_t **)linked_list[2] = temp_ptr1;
     *(uint64_t *)(*temp_ptr1 + 8) = linked_list[2];
     linked_list[2] = temp_ptr1;
-    *temp_ptr1 = (longlong)temp_ptr1;
+    *temp_ptr1 = (int64_t)temp_ptr1;
     
     // 根据标志释放内存
     if ((init_flag & 1) != 0) {
@@ -964,7 +964,7 @@ uint64_t *linked_list_initializer(uint64_t *linked_list, ulonglong init_flag)
  * @param param_2 处理标志
  * @return 处理后的数据指针
  */
-uint64_t data_processor(uint64_t data_ptr, ulonglong process_flag)
+uint64_t data_processor(uint64_t data_ptr, uint64_t process_flag)
 {
     // 调用初始化函数
     object_initializer((uint64_t *)data_ptr);
@@ -986,35 +986,35 @@ uint64_t data_processor(uint64_t data_ptr, ulonglong process_flag)
  * @param param_1 查询处理器指针
  * @return 查询结果
  */
-uint64_t data_query_handler(longlong query_handler)
+uint64_t data_query_handler(int64_t query_handler)
 {
-    longlong *temp_ptr1;
+    int64_t *temp_ptr1;
     uint64_t *temp_ptr2;
-    longlong temp_var3;
+    int64_t temp_var3;
     uint64_t *temp_ptr4;
     uint64_t temp_var5;
     int temp_var6;
     int temp_var7;
     uint temp_var8;
     int temp_var9;
-    longlong *temp_ptr10;
-    ulonglong *temp_ptr11;
+    int64_t *temp_ptr10;
+    uint64_t *temp_ptr11;
     
     // 获取查询上下文
-    temp_var3 = (**(code **)(*(longlong *)(query_handler + 0x48) + 0x30))(query_handler + 0x48);
-    if (*(longlong *)(temp_var3 + 0x18) == 0) {
-        temp_ptr11 = (ulonglong *)(*(longlong *)(query_handler + 0x78) + 0x7a8);
+    temp_var3 = (**(code **)(*(int64_t *)(query_handler + 0x48) + 0x30))(query_handler + 0x48);
+    if (*(int64_t *)(temp_var3 + 0x18) == 0) {
+        temp_ptr11 = (uint64_t *)(*(int64_t *)(query_handler + 0x78) + 0x7a8);
     }
     else {
-        temp_var3 = (**(code **)(*(longlong *)(query_handler + 0x48) + 0x30))(query_handler + 0x48);
-        temp_ptr11 = (ulonglong *)(*(longlong *)(temp_var3 + 0x18) + 0x4b0);
+        temp_var3 = (**(code **)(*(int64_t *)(query_handler + 0x48) + 0x30))(query_handler + 0x48);
+        temp_ptr11 = (uint64_t *)(*(int64_t *)(temp_var3 + 0x18) + 0x4b0);
     }
     
-    temp_ptr10 = (longlong *)*temp_ptr11;
+    temp_ptr10 = (int64_t *)*temp_ptr11;
     
     // 查询循环
     while (true) {
-        if ((temp_ptr10 < (longlong *)*temp_ptr11) || ((longlong *)*temp_ptr11 + (int)temp_ptr11[1] <= temp_ptr10)) {
+        if ((temp_ptr10 < (int64_t *)*temp_ptr11) || ((int64_t *)*temp_ptr11 + (int)temp_ptr11[1] <= temp_ptr10)) {
             return 0;
         }
         
@@ -1028,13 +1028,13 @@ uint64_t data_query_handler(longlong query_handler)
         
         // 数据匹配循环
         do {
-            if ((*(longlong *)(*(longlong *)(temp_var3 + 0x58) + (longlong)temp_var7 * 0x10) ==
-                 *(longlong *)(*(longlong *)(query_handler + 0xa8) + 0x10)) &&
-                (*(longlong *)(*(longlong *)(temp_var3 + 0x58) + 8 + (longlong)temp_var7 * 0x10) ==
-                 *(longlong *)(*(longlong *)(query_handler + 0xa8) + 0x18))) {
+            if ((*(int64_t *)(*(int64_t *)(temp_var3 + 0x58) + (int64_t)temp_var7 * 0x10) ==
+                 *(int64_t *)(*(int64_t *)(query_handler + 0xa8) + 0x10)) &&
+                (*(int64_t *)(*(int64_t *)(temp_var3 + 0x58) + 8 + (int64_t)temp_var7 * 0x10) ==
+                 *(int64_t *)(*(int64_t *)(query_handler + 0xa8) + 0x18))) {
                 
                 // 处理匹配数据
-                temp_ptr1 = (longlong *)(query_handler + 0x98);
+                temp_ptr1 = (int64_t *)(query_handler + 0x98);
                 temp_var3 = 0;
                 if (*(int *)(query_handler + 0xa0) < 1) goto LAB_1808d3538;
                 temp_ptr4 = (uint64_t *)*temp_ptr1;
@@ -1057,7 +1057,7 @@ uint64_t data_query_handler(longlong query_handler)
     
 LAB_1808d3538:
     // 添加查询结果
-    FUN_1808b5e30(temp_ptr2, CONCAT71((int7)((ulonglong)temp_var3 >> 8), 1));
+    FUN_1808b5e30(temp_ptr2, CONCAT71((int7)((uint64_t)temp_var3 >> 8), 1));
     temp_var8 = (int)*(uint *)(query_handler + 0xa4) >> 0x1f;
     temp_var6 = *(int *)(query_handler + 0xa0) + 1;
     temp_var7 = (*(uint *)(query_handler + 0xa4) ^ temp_var8) - temp_var8;
@@ -1080,7 +1080,7 @@ LAB_1808d3538:
         }
     }
     
-    *(uint64_t **)(*temp_ptr1 + (longlong)*(int *)(query_handler + 0xa0) * 8) = temp_ptr2;
+    *(uint64_t **)(*temp_ptr1 + (int64_t)*(int *)(query_handler + 0xa0) * 8) = temp_ptr2;
     *(int *)(query_handler + 0xa0) = *(int *)(query_handler + 0xa0) + 1;
     
 LAB_1808d359b:
@@ -1102,7 +1102,7 @@ LAB_1808d359b:
  * @param param_5 输出时间2
  * @return 计算结果
  */
-float timing_calculator(longlong timer_ptr, float time_param, int *output_state, 
+float timing_calculator(int64_t timer_ptr, float time_param, int *output_state, 
                        float *output_time1, float *output_time2)
 {
     int temp_var1;
@@ -1173,21 +1173,21 @@ LAB_1808d371d:
  * @param param_2 资源参数
  * @return 注册结果
  */
-uint64_t resource_registrar(longlong registrar_ptr, longlong resource_param)
+uint64_t resource_registrar(int64_t registrar_ptr, int64_t resource_param)
 {
-    longlong *temp_ptr1;
+    int64_t *temp_ptr1;
     int temp_var2;
-    longlong *temp_ptr3;
+    int64_t *temp_ptr3;
     uint64_t temp_var4;
     int temp_var5;
-    longlong temp_var6;
+    int64_t temp_var6;
     uint temp_var7;
     int temp_var8;
     
-    temp_ptr1 = (longlong *)(registrar_ptr + 0x98);
+    temp_ptr1 = (int64_t *)(registrar_ptr + 0x98);
     if (0 < *(int *)(registrar_ptr + 0xa0)) {
         temp_var6 = 0;
-        temp_ptr3 = (longlong *)*temp_ptr1;
+        temp_ptr3 = (int64_t *)*temp_ptr1;
         
         // 检查资源是否已存在
         do {
@@ -1223,7 +1223,7 @@ uint64_t resource_registrar(longlong registrar_ptr, longlong resource_param)
         }
     }
     
-    *(longlong *)(*temp_ptr1 + (longlong)*(int *)(registrar_ptr + 0xa0) * 8) = resource_param;
+    *(int64_t *)(*temp_ptr1 + (int64_t)*(int *)(registrar_ptr + 0xa0) * 8) = resource_param;
     *(int *)(registrar_ptr + 0xa0) = *(int *)(registrar_ptr + 0xa0) + 1;
     
     return 0;
@@ -1239,17 +1239,17 @@ uint64_t resource_registrar(longlong registrar_ptr, longlong resource_param)
  * @param param_2 资源参数
  * @return 移除结果
  */
-uint64_t resource_remover(longlong remover_ptr, longlong resource_param)
+uint64_t resource_remover(int64_t remover_ptr, int64_t resource_param)
 {
     int temp_var1;
     int temp_var2;
     int temp_var3;
-    longlong *temp_ptr4;
+    int64_t *temp_ptr4;
     
     temp_var1 = *(int *)(remover_ptr + 0xa0);
     temp_var2 = 0;
     if (0 < temp_var1) {
-        temp_ptr4 = *(longlong **)(remover_ptr + 0x98);
+        temp_ptr4 = *(int64_t **)(remover_ptr + 0x98);
         
         // 查找并移除资源
         do {
@@ -1257,8 +1257,8 @@ uint64_t resource_remover(longlong remover_ptr, longlong resource_param)
                 if ((-1 < temp_var2) && (temp_var2 < temp_var1)) {
                     temp_var3 = (temp_var1 - temp_var2) + -1;
                     if (0 < temp_var3) {
-                        temp_ptr4 = *(longlong **)(remover_ptr + 0x98) + temp_var2;
-                        memmove(temp_ptr4, temp_ptr4 + 1, (longlong)temp_var3 << 3);
+                        temp_ptr4 = *(int64_t **)(remover_ptr + 0x98) + temp_var2;
+                        memmove(temp_ptr4, temp_ptr4 + 1, (int64_t)temp_var3 << 3);
                     }
                     *(int *)(remover_ptr + 0xa0) = temp_var1 + -1;
                     return 0;
@@ -1282,44 +1282,44 @@ uint64_t resource_remover(longlong remover_ptr, longlong resource_param)
  * @param param_1 验证器指针
  * @return 验证结果
  */
-uint64_t system_validator(longlong validator_ptr)
+uint64_t system_validator(int64_t validator_ptr)
 {
-    longlong *temp_ptr1;
+    int64_t *temp_ptr1;
     char temp_var2;
-    longlong *temp_ptr3;
-    longlong *temp_ptr4;
+    int64_t *temp_ptr3;
+    int64_t *temp_ptr4;
     
-    temp_ptr4 = (longlong *)0x0;
-    temp_ptr3 = (longlong *)(*(longlong *)(validator_ptr + 0x20) + -8);
-    if (*(longlong *)(validator_ptr + 0x20) == 0) {
+    temp_ptr4 = (int64_t *)0x0;
+    temp_ptr3 = (int64_t *)(*(int64_t *)(validator_ptr + 0x20) + -8);
+    if (*(int64_t *)(validator_ptr + 0x20) == 0) {
         temp_ptr3 = temp_ptr4;
     }
     
     temp_ptr1 = temp_ptr4;
-    if (temp_ptr3 != (longlong *)0x0) {
+    if (temp_ptr3 != (int64_t *)0x0) {
         temp_ptr1 = temp_ptr3 + 1;
     }
     
     // 验证循环
     while (true) {
-        if (temp_ptr1 == (longlong *)(validator_ptr + 0x20)) {
+        if (temp_ptr1 == (int64_t *)(validator_ptr + 0x20)) {
             return 1;
         }
         temp_ptr3 = temp_ptr1 + -1;
-        if (temp_ptr1 == (longlong *)0x0) {
+        if (temp_ptr1 == (int64_t *)0x0) {
             temp_ptr3 = temp_ptr4;
         }
         temp_var2 = (**(code **)(*temp_ptr3 + 0x20))();
         if (temp_var2 == '\0') break;
-        if (temp_ptr1 == (longlong *)(validator_ptr + 0x20)) {
+        if (temp_ptr1 == (int64_t *)(validator_ptr + 0x20)) {
             return 1;
         }
-        temp_ptr3 = (longlong *)(*temp_ptr1 + -8);
+        temp_ptr3 = (int64_t *)(*temp_ptr1 + -8);
         if (*temp_ptr1 == 0) {
             temp_ptr3 = temp_ptr4;
         }
         temp_ptr1 = temp_ptr4;
-        if (temp_ptr3 != (longlong *)0x0) {
+        if (temp_ptr3 != (int64_t *)0x0) {
             temp_ptr1 = temp_ptr3 + 1;
         }
     }
@@ -1336,44 +1336,44 @@ uint64_t system_validator(longlong validator_ptr)
  * @param param_1 检查器指针
  * @return 检查结果
  */
-uint64_t condition_checker(longlong checker_ptr)
+uint64_t condition_checker(int64_t checker_ptr)
 {
-    longlong *temp_ptr1;
+    int64_t *temp_ptr1;
     char temp_var2;
-    longlong *temp_ptr3;
-    longlong *temp_ptr4;
+    int64_t *temp_ptr3;
+    int64_t *temp_ptr4;
     
-    temp_ptr4 = (longlong *)0x0;
-    temp_ptr3 = (longlong *)(*(longlong *)(checker_ptr + 0x20) + -8);
-    if (*(longlong *)(checker_ptr + 0x20) == 0) {
+    temp_ptr4 = (int64_t *)0x0;
+    temp_ptr3 = (int64_t *)(*(int64_t *)(checker_ptr + 0x20) + -8);
+    if (*(int64_t *)(checker_ptr + 0x20) == 0) {
         temp_ptr3 = temp_ptr4;
     }
     
     temp_ptr1 = temp_ptr4;
-    if (temp_ptr3 != (longlong *)0x0) {
+    if (temp_ptr3 != (int64_t *)0x0) {
         temp_ptr1 = temp_ptr3 + 1;
     }
     
     // 检查循环
     while (true) {
-        if (temp_ptr1 == (longlong *)(checker_ptr + 0x20)) {
+        if (temp_ptr1 == (int64_t *)(checker_ptr + 0x20)) {
             return 0;
         }
         temp_ptr3 = temp_ptr1 + -1;
-        if (temp_ptr1 == (longlong *)0x0) {
+        if (temp_ptr1 == (int64_t *)0x0) {
             temp_ptr3 = temp_ptr4;
         }
         temp_var2 = (**(code **)(*temp_ptr3 + 0x18))();
         if (temp_var2 != '\0') break;
-        if (temp_ptr1 == (longlong *)(checker_ptr + 0x20)) {
+        if (temp_ptr1 == (int64_t *)(checker_ptr + 0x20)) {
             return 0;
         }
-        temp_ptr3 = (longlong *)(*temp_ptr1 + -8);
+        temp_ptr3 = (int64_t *)(*temp_ptr1 + -8);
         if (*temp_ptr1 == 0) {
             temp_ptr3 = temp_ptr4;
         }
         temp_ptr1 = temp_ptr4;
-        if (temp_ptr3 != (longlong *)0x0) {
+        if (temp_ptr3 != (int64_t *)0x0) {
             temp_ptr1 = temp_ptr3 + 1;
         }
     }
@@ -1390,25 +1390,25 @@ uint64_t condition_checker(longlong checker_ptr)
  * @param param_1 资源管理器指针
  * @param param_2 资源参数
  */
-void advanced_resource_manager(longlong *resource_manager, uint64_t *resource_params)
+void advanced_resource_manager(int64_t *resource_manager, uint64_t *resource_params)
 {
-    longlong temp_var1;
+    int64_t temp_var1;
     char temp_var2;
     int temp_var3;
-    longlong temp_var4;
+    int64_t temp_var4;
     uint64_t temp_var5;
     int8_t stack_buffer_68 [32];
     int8_t stack_buffer_48 [40];
-    ulonglong stack_var_20;
+    uint64_t stack_var_20;
     
     // 初始化堆栈变量
-    stack_var_20 = GET_SECURITY_COOKIE() ^ (ulonglong)stack_buffer_68;
+    stack_var_20 = GET_SECURITY_COOKIE() ^ (uint64_t)stack_buffer_68;
     temp_var4 = resource_manager[0x13];
     
     // 处理资源参数
     if (temp_var4 != 0) {
         temp_var1 = temp_var4 + 0x10;
-        temp_var4 = (**(code **)(*(longlong *)*resource_params + 0x290))((longlong *)*resource_params, temp_var1, 1);
+        temp_var4 = (**(code **)(*(int64_t *)*resource_params + 0x290))((int64_t *)*resource_params, temp_var1, 1);
         if (temp_var4 == 0) {
             // 错误处理
             FUN_18084b240(temp_var1, stack_buffer_48);
@@ -1422,7 +1422,7 @@ void advanced_resource_manager(longlong *resource_manager, uint64_t *resource_pa
     temp_var5 = (**(code **)resource_manager[6])(resource_manager + 6);
     temp_var2 = func_0x0001808d2c80(resource_params, temp_var5);
     if (temp_var2 != '\0') {
-        resource_manager[0x12] = *(longlong *)(resource_manager[0xe] + 0x30);
+        resource_manager[0x12] = *(int64_t *)(resource_manager[0xe] + 0x30);
     }
     
     temp_var2 = func_0x0001808d2c80(resource_params, temp_var4);
@@ -1454,7 +1454,7 @@ void advanced_resource_manager(longlong *resource_manager, uint64_t *resource_pa
     
 LAB_1808d3bd8:
     // 调用清理函数
-    FUN_1808fc050(stack_var_20 ^ (ulonglong)stack_buffer_68);
+    FUN_1808fc050(stack_var_20 ^ (uint64_t)stack_buffer_68);
 }
 
 /**
@@ -1466,25 +1466,25 @@ LAB_1808d3bd8:
  * @param param_1 资源处理器指针
  * @param param_2 资源参数
  */
-void system_resource_handler(longlong *resource_processor, uint64_t *resource_params)
+void system_resource_handler(int64_t *resource_processor, uint64_t *resource_params)
 {
-    longlong temp_var1;
+    int64_t temp_var1;
     char temp_var2;
     int temp_var3;
-    longlong temp_var4;
+    int64_t temp_var4;
     uint64_t temp_var5;
     int8_t stack_buffer_68 [32];
     int8_t stack_buffer_48 [40];
-    ulonglong stack_var_20;
+    uint64_t stack_var_20;
     
     // 初始化堆栈变量
-    stack_var_20 = GET_SECURITY_COOKIE() ^ (ulonglong)stack_buffer_68;
+    stack_var_20 = GET_SECURITY_COOKIE() ^ (uint64_t)stack_buffer_68;
     temp_var4 = resource_processor[0x15];
     
     // 处理资源参数
     if (temp_var4 != 0) {
         temp_var1 = temp_var4 + 0x10;
-        temp_var4 = (**(code **)(*(longlong *)*resource_params + 0x290))((longlong *)*resource_params, temp_var1, 1);
+        temp_var4 = (**(code **)(*(int64_t *)*resource_params + 0x290))((int64_t *)*resource_params, temp_var1, 1);
         if (temp_var4 == 0) {
             // 错误处理
             FUN_18084b240(temp_var1, stack_buffer_48);
@@ -1498,7 +1498,7 @@ void system_resource_handler(longlong *resource_processor, uint64_t *resource_pa
         temp_var5 = (**(code **)resource_processor[6])(resource_processor + 6);
         temp_var2 = func_0x0001808d2c80(resource_params, temp_var5);
         if (temp_var2 != '\0') {
-            resource_processor[0x12] = *(longlong *)(resource_processor[0xe] + 0x30);
+            resource_processor[0x12] = *(int64_t *)(resource_processor[0xe] + 0x30);
         }
         temp_var2 = func_0x0001808d2c80(resource_params, temp_var4);
         if (temp_var2 != '\0') {
@@ -1513,5 +1513,5 @@ void system_resource_handler(longlong *resource_processor, uint64_t *resource_pa
     }
     
     // 调用清理函数
-    FUN_1808fc050(stack_var_20 ^ (ulonglong)stack_buffer_68);
+    FUN_1808fc050(stack_var_20 ^ (uint64_t)stack_buffer_68);
 }

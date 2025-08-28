@@ -140,11 +140,11 @@ void FUN_1803691c0(uint64_t param_1)
     int8_t texture_name_buffer[72];  // 纹理名称缓冲区
     void *resource_pool[11];        // 资源池数组
     int32_t operation_type;           // 操作类型
-    ulonglong security_token;            // 安全令牌
+    uint64_t security_token;            // 安全令牌
     
     // 初始化资源管理器基础参数
     resource_manager_ptr = (uint64_t)0xfffffffffffffffe;
-    security_token = RENDERING_GLOBAL_DATA_TABLE ^ (ulonglong)stack_buffer_1;
+    security_token = RENDERING_GLOBAL_DATA_TABLE ^ (uint64_t)stack_buffer_1;
     resource_flags = 0;
     
     // 设置纹理缓存指针
@@ -175,7 +175,7 @@ void FUN_1803691c0(uint64_t param_1)
     texture_cache_ptr = &RENDERING_MATERIAL_REGISTRY;
     
     // 执行安全验证和清理操作
-    FUN_1808fc050(security_token ^ (ulonglong)stack_buffer_1);
+    FUN_1808fc050(security_token ^ (uint64_t)stack_buffer_1);
 }
 
 /**
@@ -202,7 +202,7 @@ void FUN_1803692d0(uint64_t *param_1)
     uint64_t *texture_data_ptr;        // 纹理数据指针
     int32_t texture_flags;            // 纹理标志位
     uint64_t texture_id;               // 纹理ID
-    ulonglong security_context;          // 安全上下文
+    uint64_t security_context;          // 安全上下文
     
     // 初始化安全上下文
     security_context = 0xfffffffffffffffe;
@@ -261,7 +261,7 @@ void FUN_1803692d0(uint64_t *param_1)
  * 返回值：
  * - uint64_t: 释放操作的结果状态
  */
-uint64_t FUN_1803697a0(uint64_t param_1, ulonglong param_2, uint64_t param_3, uint64_t param_4)
+uint64_t FUN_1803697a0(uint64_t param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
     uint64_t release_status;
     
@@ -307,7 +307,7 @@ void FUN_1803697f0(uint64_t param_1, uint64_t param_2)
     int32_t material_flags;            // 材质标志位
     uint64_t material_id;               // 材质ID
     uint64_t context_id;                // 上下文ID
-    ulonglong security_token;             // 安全令牌
+    uint64_t security_token;             // 安全令牌
     
     // 设置材质对象标识符
     context_id = 0x18036981a;
@@ -364,7 +364,7 @@ void FUN_1803697f0(uint64_t param_1, uint64_t param_2)
  * 返回值：
  * - 无
  */
-void FUN_180369850(longlong param_1, longlong param_2)
+void FUN_180369850(int64_t param_1, int64_t param_2)
 {
     int comparison_result;
     
@@ -430,11 +430,11 @@ void FUN_180369890(uint64_t param_1)
     int8_t *name_buffer_ptr_5;        // 名称缓冲区指针5
     int32_t name_length_5;             // 名称长度5
     int8_t name_buffer_6[72];         // 名称缓冲区6
-    ulonglong security_token;             // 安全令牌
+    uint64_t security_token;             // 安全令牌
     
     // 初始化批处理参数
     batch_id = 0xfffffffffffffffe;
-    security_token = RENDERING_GLOBAL_DATA_TABLE ^ (ulonglong)stack_buffer_1;
+    security_token = RENDERING_GLOBAL_DATA_TABLE ^ (uint64_t)stack_buffer_1;
     batch_flags = 0;
     
     // 设置纹理缓存指针
@@ -530,7 +530,7 @@ void FUN_180369890(uint64_t param_1)
     resource_ptr_5 = &RENDERING_MATERIAL_REGISTRY;
     
     // 执行批处理完成操作
-    FUN_1808fc050(security_token ^ (ulonglong)stack_buffer_1);
+    FUN_1808fc050(security_token ^ (uint64_t)stack_buffer_1);
 }
 
 /**
@@ -548,10 +548,10 @@ void FUN_180369890(uint64_t param_1)
  * 返回值：
  * - 无
  */
-void FUN_180369d50(longlong param_1)
+void FUN_180369d50(int64_t param_1)
 {
     float animation_time;               // 动画时间
-    longlong material_data_ptr;        // 材质数据指针
+    int64_t material_data_ptr;        // 材质数据指针
     int interpolation_mode;             // 插值模式
     float segment_start_time;          // 段开始时间
     float segment_end_time;            // 段结束时间
@@ -569,8 +569,8 @@ void FUN_180369d50(longlong param_1)
         current_time = segment_end_time + *(float *)(param_1 + 0x7c);
         
         // 计算当前动画时间
-        segment_start_time = (float)fmodf((float)(*(longlong *)(&RENDERING_GLOBAL_DATA_TABLE + 
-                                                         (longlong)RENDERING_TEXTURE_CACHE * 8) - 
+        segment_start_time = (float)fmodf((float)(*(int64_t *)(&RENDERING_GLOBAL_DATA_TABLE + 
+                                                         (int64_t)RENDERING_TEXTURE_CACHE * 8) - 
                                             RENDERING_MATERIAL_REGISTRY) * 1e-05 + 
                                      *(float *)(param_1 + 0x88));
         
@@ -639,13 +639,13 @@ void FUN_180369d50(longlong param_1)
  * 返回值：
  * - 无
  */
-void FUN_180369d8d(longlong param_1)
+void FUN_180369d8d(int64_t param_1)
 {
     float start_time;                  // 开始时间
-    longlong time_offset;              // 时间偏移量
+    int64_t time_offset;              // 时间偏移量
     int interpolation_mode;             // 插值模式
-    longlong material_object_ptr;      // 材质对象指针
-    longlong target_material_ptr;      // 目标材质指针
+    int64_t material_object_ptr;      // 材质对象指针
+    int64_t target_material_ptr;      // 目标材质指针
     float current_time;                // 当前时间
     float interpolation_factor;        // 插值因子
     int32_t color_result;            // 颜色结果
@@ -658,7 +658,7 @@ void FUN_180369d8d(longlong param_1)
     blend_time = end_time + *(float *)(material_object_ptr + 0x7c);
     
     // 计算当前插值时间
-    current_time = (float)fmodf((float)(*(longlong *)(param_1 + time_offset * 8) - 
+    current_time = (float)fmodf((float)(*(int64_t *)(param_1 + time_offset * 8) - 
                                        RENDERING_MATERIAL_REGISTRY) * 1e-05 +
                                 *(float *)(material_object_ptr + 0x88));
     
@@ -729,8 +729,8 @@ void FUN_180369d8d(longlong param_1)
  */
 void FUN_180369e32(int param_1, int32_t param_2)
 {
-    longlong source_material_ptr;       // 源材质指针
-    longlong target_material_ptr;      // 目标材质指针
+    int64_t source_material_ptr;       // 源材质指针
+    int64_t target_material_ptr;      // 目标材质指针
     float blend_factor;                 // 混合因子
     
     // 根据混合模式设置材质
@@ -775,8 +775,8 @@ void FUN_180369e32(int param_1, int32_t param_2)
 void FUN_180369ef0(uint64_t *param_1)
 {
     // 局部变量声明
-    longlong *object_data_ptr;          // 对象数据指针
-    longlong *texture_data_ptr;         // 纹理数据指针
+    int64_t *object_data_ptr;          // 对象数据指针
+    int64_t *texture_data_ptr;         // 纹理数据指针
     int32_t resource_flags;          // 资源标志位
     int32_t *resource_name_ptr;      // 资源名称指针
     uint64_t *resource_handle_ptr;     // 资源句柄指针
@@ -808,10 +808,10 @@ void FUN_180369ef0(uint64_t *param_1)
     
     // 设置对象数据指针
     object_data_ptr = texture_handle_ptr + 0x16;
-    *object_data_ptr = (longlong)&RENDERING_MATERIAL_REGISTRY;
+    *object_data_ptr = (int64_t)&RENDERING_MATERIAL_REGISTRY;
     texture_handle_ptr[0x17] = 0;
     *(int32_t *)(texture_handle_ptr + 0x18) = 0;
-    *object_data_ptr = (longlong)&RENDERING_MATERIAL_REGISTRY;
+    *object_data_ptr = (int64_t)&RENDERING_MATERIAL_REGISTRY;
     texture_handle_ptr[0x19] = 0;
     texture_handle_ptr[0x17] = 0;
     *(int32_t *)(texture_handle_ptr + 0x18) = 0;
@@ -849,24 +849,24 @@ void FUN_180369ef0(uint64_t *param_1)
     }
     
     context_data_ptr = (uint64_t *)0x0;
-    context_id = (ulonglong)context_id._4_4_ << 0x20;
+    context_id = (uint64_t)context_id._4_4_ << 0x20;
     resource_registry_ptr = &RENDERING_MATERIAL_REGISTRY;
-    texture_data_ptr = (longlong *)param_1[0x1c];
+    texture_data_ptr = (int64_t *)param_1[0x1c];
     param_1[0x1c] = 0;
     
     // 释放纹理数据
-    if (texture_data_ptr != (longlong *)0x0) {
+    if (texture_data_ptr != (int64_t *)0x0) {
         (**(code **)(*texture_data_ptr + 0x38))();
     }
     
     // 设置渲染对象属性
     param_1[0x13] = 0;
-    *(int32_t *)((longlong)param_1 + 0xa4) = 0x40200000;  // 2.5f
+    *(int32_t *)((int64_t)param_1 + 0xa4) = 0x40200000;  // 2.5f
     *(int8_t *)(param_1 + 0x15) = 0;
     (**(code **)(*object_data_ptr + 0x10))(object_data_ptr, &RENDERING_MATERIAL_REGISTRY);
     *(int16_t *)(param_1 + 0x1a) = 0x100;
-    *(int8_t *)((longlong)param_1 + 0xd2) = 1;
-    *(int8_t *)((longlong)param_1 + 0xd3) = 0;
+    *(int8_t *)((int64_t)param_1 + 0xd2) = 1;
+    *(int8_t *)((int64_t)param_1 + 0xd3) = 0;
     
     // 设置对象池参数
     resource_registry_ptr = &RENDERING_MATERIAL_REGISTRY;
@@ -910,25 +910,25 @@ void FUN_180369ef0(uint64_t *param_1)
  * 返回值：
  * - uint64_t: 销毁操作的结果状态
  */
-uint64_t * FUN_18036a6a0(uint64_t *param_1, ulonglong param_2)
+uint64_t * FUN_18036a6a0(uint64_t *param_1, uint64_t param_2)
 {
-    longlong *object_data_ptr;          // 对象数据指针
+    int64_t *object_data_ptr;          // 对象数据指针
     
     // 重置渲染对象
     *param_1 = &RENDERING_TEXTURE_CACHE;
-    object_data_ptr = (longlong *)param_1[0x1d];
+    object_data_ptr = (int64_t *)param_1[0x1d];
     param_1[0x1d] = 0;
     
     // 释放对象数据
-    if (object_data_ptr != (longlong *)0x0) {
+    if (object_data_ptr != (int64_t *)0x0) {
         (**(code **)(*object_data_ptr + 0x38))();
     }
     
-    object_data_ptr = (longlong *)param_1[0x1c];
+    object_data_ptr = (int64_t *)param_1[0x1c];
     param_1[0x1c] = 0;
     
     // 释放对象缓存
-    if (object_data_ptr != (longlong *)0x0) {
+    if (object_data_ptr != (int64_t *)0x0) {
         (**(code **)(*object_data_ptr + 0x38))();
     }
     
@@ -936,12 +936,12 @@ uint64_t * FUN_18036a6a0(uint64_t *param_1, ulonglong param_2)
     param_1[0x13] = 0;
     
     // 清理资源管理器
-    if ((longlong *)param_1[0x1d] != (longlong *)0x0) {
-        (**(code **)(*(longlong *)param_1[0x1d] + 0x38))();
+    if ((int64_t *)param_1[0x1d] != (int64_t *)0x0) {
+        (**(code **)(*(int64_t *)param_1[0x1d] + 0x38))();
     }
     
-    if ((longlong *)param_1[0x1c] != (longlong *)0x0) {
-        (**(code **)(*(longlong *)param_1[0x1c] + 0x38))();
+    if ((int64_t *)param_1[0x1c] != (int64_t *)0x0) {
+        (**(code **)(*(int64_t *)param_1[0x1c] + 0x38))();
     }
     
     // 重置资源指针
@@ -990,17 +990,17 @@ uint64_t * FUN_18036a6a0(uint64_t *param_1, ulonglong param_2)
  * 返回值：
  * - 无
  */
-void FUN_18036a7e0(longlong param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
+void FUN_18036a7e0(int64_t param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
     // 局部变量声明
-    longlong *texture_data_ptr;         // 纹理数据指针
+    int64_t *texture_data_ptr;         // 纹理数据指针
     int32_t setup_result;            // 设置结果
     int32_t *resource_name_ptr;      // 资源名称指针
     void *resource_registry_ptr;     // 资源注册表指针
     int32_t *resource_data_ptr;       // 资源数据指针
     int32_t resource_flags;          // 资源标志位
     uint64_t context_id;               // 上下文ID
-    ulonglong security_token;             // 安全令牌
+    uint64_t security_token;             // 安全令牌
     
     // 初始化资源注册表
     resource_registry_ptr = &RENDERING_MATERIAL_REGISTRY;
@@ -1033,13 +1033,13 @@ void FUN_18036a7e0(longlong param_1, uint64_t param_2, uint64_t param_3, uint64_
     }
     
     resource_data_ptr = (int32_t *)0x0;
-    context_id = (ulonglong)context_id._4_4_ << 0x20;
+    context_id = (uint64_t)context_id._4_4_ << 0x20;
     resource_registry_ptr = &RENDERING_MATERIAL_REGISTRY;
-    texture_data_ptr = *(longlong **)(param_1 + 0xe0);
+    texture_data_ptr = *(int64_t **)(param_1 + 0xe0);
     *(uint64_t *)(param_1 + 0xe0) = 0;
     
     // 释放纹理数据
-    if (texture_data_ptr != (longlong *)0x0) {
+    if (texture_data_ptr != (int64_t *)0x0) {
         (**(code **)(*texture_data_ptr + 0x38))();
     }
     
@@ -1069,23 +1069,23 @@ void FUN_18036a7e0(longlong param_1, uint64_t param_2, uint64_t param_3, uint64_
  * 返回值：
  * - 无
  */
-void FUN_18036a930(longlong param_1)
+void FUN_18036a930(int64_t param_1)
 {
     // 局部变量声明
     uint64_t resource_handle;          // 资源句柄
     uint64_t *texture_manager_ptr;     // 纹理管理器指针
     int8_t stack_buffer[32];         // 栈缓冲区
-    longlong *object_data_ptr;          // 对象数据指针
+    int64_t *object_data_ptr;          // 对象数据指针
     uint64_t security_context;        // 安全上下文
     void *resource_cache_ptr;       // 资源缓存指针
     int8_t *name_buffer_ptr;         // 名称缓冲区指针
     int32_t name_length;               // 名称长度
     int8_t name_buffer[16];          // 名称缓冲区
-    ulonglong security_token;             // 安全令牌
+    uint64_t security_token;             // 安全令牌
     
     // 初始化安全上下文
     security_context = 0xfffffffffffffffe;
-    security_token = RENDERING_GLOBAL_DATA_TABLE ^ (ulonglong)stack_buffer;
+    security_token = RENDERING_GLOBAL_DATA_TABLE ^ (uint64_t)stack_buffer;
     
     // 设置上下文标志
     *(int8_t *)(param_1 + 0xf0) = 0;
@@ -1107,12 +1107,12 @@ void FUN_18036a930(longlong param_1)
     
     // 获取纹理管理器
     texture_manager_ptr = (uint64_t *)
-        FUN_180389090(*(longlong *)(*(longlong *)(param_1 + 0x18) + 0x20) + 0x2970, &object_data_ptr,
+        FUN_180389090(*(int64_t *)(*(int64_t *)(param_1 + 0x18) + 0x20) + 0x2970, &object_data_ptr,
                       param_1 + 0x70);
     *(uint64_t *)(param_1 + 0xd8) = *texture_manager_ptr;
     
     // 释放对象数据
-    if (object_data_ptr != (longlong *)0x0) {
+    if (object_data_ptr != (int64_t *)0x0) {
         (**(code **)(*object_data_ptr + 0x38))();
     }
     
@@ -1121,11 +1121,11 @@ void FUN_18036a930(longlong param_1)
     
     // 检查渲染状态
     if (*(int *)(param_1 + 0xc0) == 0) {
-        (**(code **)(*(longlong *)(param_1 + 0xb0) + 0x10))((longlong *)(param_1 + 0xb0), "ready");
+        (**(code **)(*(int64_t *)(param_1 + 0xb0) + 0x10))((int64_t *)(param_1 + 0xb0), "ready");
     }
     
     // 执行安全验证
-    FUN_1808fc050(security_token ^ (ulonglong)stack_buffer);
+    FUN_1808fc050(security_token ^ (uint64_t)stack_buffer);
 }
 
 /**
@@ -1143,23 +1143,23 @@ void FUN_18036a930(longlong param_1)
  * 返回值：
  * - 无
  */
-void FUN_18036aa50(longlong param_1)
+void FUN_18036aa50(int64_t param_1)
 {
     // 局部变量声明
     uint64_t resource_handle;          // 资源句柄
     uint64_t *texture_manager_ptr;     // 纹理管理器指针
     int8_t stack_buffer[32];         // 栈缓冲区
-    longlong *object_data_ptr;          // 对象数据指针
+    int64_t *object_data_ptr;          // 对象数据指针
     uint64_t security_context;        // 安全上下文
     void *resource_cache_ptr;       // 资源缓存指针
     int8_t *name_buffer_ptr;         // 名称缓冲区指针
     int32_t name_length;               // 名称长度
     int8_t name_buffer[16];          // 名称缓冲区
-    ulonglong security_token;             // 安全令牌
+    uint64_t security_token;             // 安全令牌
     
     // 初始化安全上下文
     security_context = 0xfffffffffffffffe;
-    security_token = RENDERING_GLOBAL_DATA_TABLE ^ (ulonglong)stack_buffer;
+    security_token = RENDERING_GLOBAL_DATA_TABLE ^ (uint64_t)stack_buffer;
     
     // 设置激活标志
     *(int8_t *)(param_1 + 0xf0) = 1;
@@ -1181,12 +1181,12 @@ void FUN_18036aa50(longlong param_1)
     
     // 获取纹理管理器
     texture_manager_ptr = (uint64_t *)
-        FUN_180389090(*(longlong *)(*(longlong *)(param_1 + 0x18) + 0x20) + 0x2970, &object_data_ptr,
+        FUN_180389090(*(int64_t *)(*(int64_t *)(param_1 + 0x18) + 0x20) + 0x2970, &object_data_ptr,
                       param_1 + 0x70);
     *(uint64_t *)(param_1 + 0xd8) = *texture_manager_ptr;
     
     // 释放对象数据
-    if (object_data_ptr != (longlong *)0x0) {
+    if (object_data_ptr != (int64_t *)0x0) {
         (**(code **)(*object_data_ptr + 0x38))();
     }
     
@@ -1195,11 +1195,11 @@ void FUN_18036aa50(longlong param_1)
     
     // 检查渲染状态
     if (*(int *)(param_1 + 0xc0) == 0) {
-        (**(code **)(*(longlong *)(param_1 + 0xb0) + 0x10))((longlong *)(param_1 + 0xb0), "ready");
+        (**(code **)(*(int64_t *)(param_1 + 0xb0) + 0x10))((int64_t *)(param_1 + 0xb0), "ready");
     }
     
     // 执行安全验证
-    FUN_1808fc050(security_token ^ (ulonglong)stack_buffer);
+    FUN_1808fc050(security_token ^ (uint64_t)stack_buffer);
 }
 
 /**
@@ -1221,8 +1221,8 @@ void FUN_18036aa50(longlong param_1)
 void FUN_18036ab70(uint64_t param_1, uint64_t param_2)
 {
     // 局部变量声明
-    longlong *source_object_ptr;        // 源对象指针
-    longlong *target_object_ptr;        // 目标对象指针
+    int64_t *source_object_ptr;        // 源对象指针
+    int64_t *target_object_ptr;        // 目标对象指针
     int32_t copy_result;             // 复制结果
     int32_t *resource_name_ptr;      // 资源名称指针
     uint64_t *source_texture_ptr;      // 源纹理指针
@@ -1256,10 +1256,10 @@ void FUN_18036ab70(uint64_t param_1, uint64_t param_2)
     
     // 设置对象数据指针
     source_object_ptr = source_texture_ptr + 0x16;
-    *source_object_ptr = (longlong)&RENDERING_MATERIAL_REGISTRY;
+    *source_object_ptr = (int64_t)&RENDERING_MATERIAL_REGISTRY;
     source_texture_ptr[0x17] = 0;
     *(int32_t *)(source_texture_ptr + 0x18) = 0;
-    *source_object_ptr = (longlong)&RENDERING_MATERIAL_REGISTRY;
+    *source_object_ptr = (int64_t)&RENDERING_MATERIAL_REGISTRY;
     source_texture_ptr[0x19] = 0;
     source_texture_ptr[0x17] = 0;
     *(int32_t *)(source_texture_ptr + 0x18) = 0;
@@ -1297,24 +1297,24 @@ void FUN_18036ab70(uint64_t param_1, uint64_t param_2)
     }
     
     context_data_ptr = (uint64_t *)0x0;
-    context_id = (ulonglong)context_id._4_4_ << 0x20;
+    context_id = (uint64_t)context_id._4_4_ << 0x20;
     resource_registry_ptr = &RENDERING_MATERIAL_REGISTRY;
-    target_object_ptr = (longlong *)target_texture_ptr[0x1c];
+    target_object_ptr = (int64_t *)target_texture_ptr[0x1c];
     target_texture_ptr[0x1c] = 0;
     
     // 释放目标对象数据
-    if (target_object_ptr != (longlong *)0x0) {
+    if (target_object_ptr != (int64_t *)0x0) {
         (**(code **)(*target_object_ptr + 0x38))();
     }
     
     // 设置目标对象属性
     target_texture_ptr[0x13] = 0;
-    *(int32_t *)((longlong)target_texture_ptr + 0xa4) = 0x40200000;  // 2.5f
+    *(int32_t *)((int64_t)target_texture_ptr + 0xa4) = 0x40200000;  // 2.5f
     *(int8_t *)(target_texture_ptr + 0x15) = 0;
     (**(code **)(*source_object_ptr + 0x10))(source_object_ptr, &RENDERING_MATERIAL_REGISTRY);
     *(int16_t *)(target_texture_ptr + 0x1a) = 0x100;
-    *(int8_t *)((longlong)target_texture_ptr + 0xd2) = 1;
-    *(int8_t *)((longlong)target_texture_ptr + 0xd3) = 0;
+    *(int8_t *)((int64_t)target_texture_ptr + 0xd2) = 1;
+    *(int8_t *)((int64_t)target_texture_ptr + 0xd3) = 0;
     
     // 设置对象池参数
     resource_registry_ptr = &RENDERING_MATERIAL_REGISTRY;
@@ -1360,28 +1360,28 @@ void FUN_18036ab70(uint64_t param_1, uint64_t param_2)
  * 返回值：
  * - 无
  */
-void FUN_18036abc0(longlong param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
+void FUN_18036abc0(int64_t param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
     // 局部变量声明
-    longlong current_resource_ptr;      // 当前资源指针
-    longlong previous_resource_ptr;     // 前一个资源指针
-    longlong *resource_manager_ptr;     // 资源管理器指针
+    int64_t current_resource_ptr;      // 当前资源指针
+    int64_t previous_resource_ptr;     // 前一个资源指针
+    int64_t *resource_manager_ptr;     // 资源管理器指针
     void *resource_callback_ptr;    // 资源回调指针
-    longlong *stack_cleanup_ptr;        // 栈清理指针
+    int64_t *stack_cleanup_ptr;        // 栈清理指针
     
     // 获取资源管理器
-    resource_manager_ptr = (longlong *)
-        FUN_180389090(*(longlong *)(*(longlong *)(param_1 + 0x18) + 0x20) + 0x2970, &stack_cleanup_ptr,
+    resource_manager_ptr = (int64_t *)
+        FUN_180389090(*(int64_t *)(*(int64_t *)(param_1 + 0x18) + 0x20) + 0x2970, &stack_cleanup_ptr,
                       param_1 + 0x70, param_4, 0xfffffffffffffffe);
     current_resource_ptr = *resource_manager_ptr;
     
     // 清理栈资源
-    if (stack_cleanup_ptr != (longlong *)0x0) {
+    if (stack_cleanup_ptr != (int64_t *)0x0) {
         (**(code **)(*stack_cleanup_ptr + 0x38))();
     }
     
     // 获取前一个资源指针
-    previous_resource_ptr = *(longlong *)(param_1 + 0xd8);
+    previous_resource_ptr = *(int64_t *)(param_1 + 0xd8);
     
     // 检查资源变化
     if (current_resource_ptr != previous_resource_ptr) {
@@ -1392,8 +1392,8 @@ void FUN_18036abc0(longlong param_1, uint64_t param_2, uint64_t param_3, uint64_
     if ((current_resource_ptr != 0) &&
         ((current_resource_ptr != previous_resource_ptr || 
           ((previous_resource_ptr != 0 && (*(int *)(param_1 + 0xf4) < *(int *)(previous_resource_ptr + 0x70))))))) {
-        *(longlong *)(param_1 + 0xd8) = current_resource_ptr;
-        resource_manager_ptr = (longlong *)(*(longlong *)(param_1 + 0x18) + 0x288);
+        *(int64_t *)(param_1 + 0xd8) = current_resource_ptr;
+        resource_manager_ptr = (int64_t *)(*(int64_t *)(param_1 + 0x18) + 0x288);
         resource_callback_ptr = &RENDERING_MATERIAL_REGISTRY;
         
         // 检查资源回调
@@ -1404,7 +1404,7 @@ void FUN_18036abc0(longlong param_1, uint64_t param_2, uint64_t param_3, uint64_
         // 执行资源回调
         (**(code **)(*resource_manager_ptr + 0x10))(resource_manager_ptr, resource_callback_ptr);
         FUN_18036b380(param_1);
-        *(int32_t *)(param_1 + 0xf4) = *(int32_t *)(*(longlong *)(param_1 + 0xd8) + 0x70);
+        *(int32_t *)(param_1 + 0xf4) = *(int32_t *)(*(int64_t *)(param_1 + 0xd8) + 0x70);
     }
 }
 
@@ -1426,29 +1426,29 @@ void FUN_18036abc0(longlong param_1, uint64_t param_2, uint64_t param_3, uint64_
  * 返回值：
  * - 无
  */
-void FUN_18036ac90(longlong param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
+void FUN_18036ac90(int64_t param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
     // 局部变量声明
     uint64_t *resource_manager_ptr;     // 资源管理器指针
-    longlong *cleanup_stack_ptr[4];      // 清理栈指针数组
+    int64_t *cleanup_stack_ptr[4];      // 清理栈指针数组
     
     // 获取资源管理器
     resource_manager_ptr = (uint64_t *)
-        FUN_180389090(*(longlong *)(*(longlong *)(param_1 + 0x18) + 0x20) + 0x2970, cleanup_stack_ptr,
+        FUN_180389090(*(int64_t *)(*(int64_t *)(param_1 + 0x18) + 0x20) + 0x2970, cleanup_stack_ptr,
                       param_1 + 0x70, param_4, 0xfffffffffffffffe);
     
     // 更新资源指针
     *(uint64_t *)(param_1 + 0xd8) = *resource_manager_ptr;
     
     // 清理栈资源
-    if (cleanup_stack_ptr[0] != (longlong *)0x0) {
+    if (cleanup_stack_ptr[0] != (int64_t *)0x0) {
         (**(code **)(*cleanup_stack_ptr[0] + 0x38))();
     }
     
     // 处理资源同步
-    if (*(longlong *)(param_1 + 0xd8) != 0) {
+    if (*(int64_t *)(param_1 + 0xd8) != 0) {
         FUN_18036b380(param_1);
-        *(int32_t *)(param_1 + 0xf4) = *(int32_t *)(*(longlong *)(param_1 + 0xd8) + 0x70);
+        *(int32_t *)(param_1 + 0xf4) = *(int32_t *)(*(int64_t *)(param_1 + 0xd8) + 0x70);
     }
 }
 
@@ -1468,12 +1468,12 @@ void FUN_18036ac90(longlong param_1, uint64_t param_2, uint64_t param_3, uint64_
  * 返回值：
  * - uint64_t: 比较结果 (0=相同, 1=不同)
  */
-uint64_t FUN_18036adb0(uint64_t param_1, longlong param_2)
+uint64_t FUN_18036adb0(uint64_t param_1, int64_t param_2)
 {
     int property_type;                  // 属性类型
     int comparison_result;               // 比较结果
-    longlong match_length;               // 匹配长度
-    longlong current_position;           // 当前位置
+    int64_t match_length;               // 匹配长度
+    int64_t current_position;           // 当前位置
     
     // 获取属性类型
     property_type = *(int *)(param_2 + 0x10);
@@ -1482,7 +1482,7 @@ uint64_t FUN_18036adb0(uint64_t param_1, longlong param_2)
     if (property_type == 7) {
         match_length = 0;
         while (current_position = match_length + 1,
-              *(char *)(*(longlong *)(param_2 + 8) + match_length) == ("texture_type")[match_length]) {
+              *(char *)(*(int64_t *)(param_2 + 8) + match_length) == ("texture_type")[match_length]) {
             match_length = current_position;
             if (current_position == 8) {
                 return 0;  // 完全匹配

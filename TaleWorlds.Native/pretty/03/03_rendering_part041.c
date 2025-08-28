@@ -167,7 +167,7 @@ void update_render_boundary(render_boundary_t* boundary, char boundary_type,
     
     // 如果边界未激活，创建新的数据条目
     current_max_x = boundary->boundary_data_count;
-    render_data_entry_t* entry = (render_data_entry_t*)((longlong)current_max_x * RENDER_DATA_ENTRY_SIZE + *(longlong*)(boundary + 10));
+    render_data_entry_t* entry = (render_data_entry_t*)((int64_t)current_max_x * RENDER_DATA_ENTRY_SIZE + *(int64_t*)(boundary + 10));
     entry->entry_x2 = (short)x2;
     entry->entry_y2 = (short)y2;
     entry->entry_type = boundary_type;
@@ -262,7 +262,7 @@ void add_render_data_entry(void* context, void* params, void* data,
     char entry_type;
     
     entry_count = *(int*)(context + 0x30);
-    entry = (render_data_entry_t*)((longlong)entry_count * RENDER_DATA_ENTRY_SIZE + *(longlong*)(context + 0x28));
+    entry = (render_data_entry_t*)((int64_t)entry_count * RENDER_DATA_ENTRY_SIZE + *(int64_t*)(context + 0x28));
     entry->entry_x2 = x2;
     entry->entry_y2 = y2;
     entry->entry_type = entry_type;
@@ -281,8 +281,8 @@ void update_render_transform(render_transform_t* transform,
                              float delta_x, float delta_y)
 {
     int current_x;
-    longlong data_ptr;
-    longlong entry_offset;
+    int64_t data_ptr;
+    int64_t entry_offset;
     int current_y;
     int new_x;
     int new_y;
@@ -321,11 +321,11 @@ void update_render_transform(render_transform_t* transform,
     }
     
     // 如果变换未激活，创建新的数据条目
-    data_ptr = *(longlong*)(transform + 10);
+    data_ptr = *(int64_t*)(transform + 10);
     current_x = transform->transform_data_count;
-    entry_offset = (longlong)current_x * RENDER_DATA_ENTRY_SIZE;
+    entry_offset = (int64_t)current_x * RENDER_DATA_ENTRY_SIZE;
     *(short*)(entry_offset + 2 + data_ptr) = (short)new_y;
-    *(longlong*)(entry_offset + 4 + data_ptr) = 0;
+    *(int64_t*)(entry_offset + 4 + data_ptr) = 0;
     *(char*)(entry_offset + 0xc + data_ptr) = 1;
     *(short*)(entry_offset + data_ptr) = (short)new_x;
     transform->transform_data_count = current_x + 1;
@@ -373,7 +373,7 @@ void* extract_render_data_info(void** result, void* context, int offset)
     char data_size;
     byte data_value;
     char data_checksum;
-    longlong stream_position;
+    int64_t stream_position;
     void** stream_ptr;
     int stream_index;
     uint data_length;
@@ -385,11 +385,11 @@ void* extract_render_data_info(void** result, void* context, int offset)
     
     data_stream = *(char**)(context + 0x90);
     data_offset = 0;
-    stream_info[1] = (void*)((ulonglong)*(longlong*)(context + 0x98) >> 0x20);
+    stream_info[1] = (void*)((uint64_t)*(int64_t*)(context + 0x98) >> 0x20);
     stream_index = stream_info[1];
     
     // 读取流头部信息
-    if ((*(longlong*)(context + 0x98) < 0) || (stream_index = 0, stream_info[1] < 1)) {
+    if ((*(int64_t*)(context + 0x98) < 0) || (stream_index = 0, stream_info[1] < 1)) {
         stream_header = '\0';
     }
     else {
@@ -411,7 +411,7 @@ void* extract_render_data_info(void** result, void* context, int offset)
         if (stream_header == '\x03') {
             // 处理数据流头部
             if (stream_index < stream_info[1]) {
-                stream_position = (longlong)stream_index;
+                stream_position = (int64_t)stream_index;
                 stream_index = stream_index + 1;
                 stream_header = data_stream[stream_position];
             }
@@ -419,7 +419,7 @@ void* extract_render_data_info(void** result, void* context, int offset)
                 stream_header = '\0';
             }
             if (stream_index < stream_info[1]) {
-                stream_position = (longlong)stream_index;
+                stream_position = (int64_t)stream_index;
                 stream_index = stream_index + 1;
                 data_type = data_stream[stream_position];
             }
@@ -427,7 +427,7 @@ void* extract_render_data_info(void** result, void* context, int offset)
                 data_type = '\0';
             }
             if (stream_index < stream_info[1]) {
-                stream_position = (longlong)stream_index;
+                stream_position = (int64_t)stream_index;
                 stream_index = stream_index + 1;
                 data_checksum = data_stream[stream_position];
             }
@@ -435,7 +435,7 @@ void* extract_render_data_info(void** result, void* context, int offset)
                 data_checksum = '\0';
             }
             if (stream_index < stream_info[1]) {
-                stream_position = (longlong)stream_index;
+                stream_position = (int64_t)stream_index;
                 stream_index = stream_index + 1;
                 data_flags = data_stream[stream_position];
             }
@@ -447,7 +447,7 @@ void* extract_render_data_info(void** result, void* context, int offset)
             if (CONCAT11(stream_header, data_type) != 0) {
                 do {
                     if (stream_index < stream_info[1]) {
-                        stream_position = (longlong)stream_index;
+                        stream_position = (int64_t)stream_index;
                         stream_index = stream_index + 1;
                         data_value = data_stream[stream_position];
                     }
@@ -455,7 +455,7 @@ void* extract_render_data_info(void** result, void* context, int offset)
                         data_value = 0;
                     }
                     if (stream_index < stream_info[1]) {
-                        stream_position = (longlong)stream_index;
+                        stream_position = (int64_t)stream_index;
                         stream_index = stream_index + 1;
                         data_checksum = data_stream[stream_position];
                     }
@@ -463,7 +463,7 @@ void* extract_render_data_info(void** result, void* context, int offset)
                         data_checksum = '\0';
                     }
                     if (stream_index < stream_info[1]) {
-                        stream_position = (longlong)stream_index;
+                        stream_position = (int64_t)stream_index;
                         stream_index = stream_index + 1;
                         data_flags = data_stream[stream_position];
                     }
@@ -505,12 +505,12 @@ void process_render_data_stream(int position, void* stream, int stream_size,
     byte data_value;
     char data_type;
     char data_flags;
-    longlong stream_position;
+    int64_t stream_position;
     void** stream_ptr;
     uint stream_flags;
     int data_index;
     uint data_length;
-    longlong context_ptr;
+    int64_t context_ptr;
     uint data_chunk_size;
     void** result_ptr;
     void stream_info[2];
@@ -518,7 +518,7 @@ void process_render_data_stream(int position, void* stream, int stream_size,
     void temp_buffer2[16];
     
     if (position < stream_size) {
-        stream_position = (longlong)position;
+        stream_position = (int64_t)position;
         position = position + 1;
         data_type = *(char*)(stream_position + stream);
     }
@@ -526,7 +526,7 @@ void process_render_data_stream(int position, void* stream, int stream_size,
         data_type = 0;
     }
     if (position < stream_size) {
-        stream_position = (longlong)position;
+        stream_position = (int64_t)position;
         position = position + 1;
         data_flags = *(char*)(stream_position + stream);
     }
@@ -534,7 +534,7 @@ void process_render_data_stream(int position, void* stream, int stream_size,
         data_flags = 0;
     }
     if (position < stream_size) {
-        stream_position = (longlong)position;
+        stream_position = (int64_t)position;
         position = position + 1;
         data_value = *(byte*)(stream_position + stream);
     }
@@ -542,7 +542,7 @@ void process_render_data_stream(int position, void* stream, int stream_size,
         data_value = 0;
     }
     if (position < stream_size) {
-        stream_position = (longlong)position;
+        stream_position = (int64_t)position;
         position = position + 1;
         data_type = *(char*)(stream_position + stream);
     }
@@ -554,7 +554,7 @@ void process_render_data_stream(int position, void* stream, int stream_size,
     if (CONCAT11(data_type, data_flags) != 0) {
         do {
             if (position < stream_size) {
-                stream_position = (longlong)position;
+                stream_position = (int64_t)position;
                 position = position + 1;
                 data_value = *(byte*)(stream_position + stream);
             }
@@ -562,7 +562,7 @@ void process_render_data_stream(int position, void* stream, int stream_size,
                 data_value = 0;
             }
             if (position < stream_size) {
-                stream_position = (longlong)position;
+                stream_position = (int64_t)position;
                 position = position + 1;
                 data_flags = *(char*)(stream_position + stream);
             }
@@ -570,7 +570,7 @@ void process_render_data_stream(int position, void* stream, int stream_size,
                 data_flags = 0;
             }
             if (position < stream_size) {
-                stream_position = (longlong)position;
+                stream_position = (int64_t)position;
                 position = position + 1;
                 data_type = *(char*)(stream_position + stream);
             }
@@ -613,12 +613,12 @@ void process_render_data_stream_alt(int position, void* stream, int stream_size,
     byte data_value;
     char data_type;
     char data_flags;
-    longlong stream_position;
+    int64_t stream_position;
     void** stream_ptr;
     uint stream_flags;
     int data_index;
     uint data_length;
-    longlong context_ptr;
+    int64_t context_ptr;
     uint data_chunk_size;
     void** result_ptr;
     void stream_info[2];
@@ -627,7 +627,7 @@ void process_render_data_stream_alt(int position, void* stream, int stream_size,
     
     do {
         if (position < stream_size) {
-            stream_position = (longlong)position;
+            stream_position = (int64_t)position;
             position = position + 1;
             data_value = *(byte*)(stream_position + stream);
         }
@@ -635,7 +635,7 @@ void process_render_data_stream_alt(int position, void* stream, int stream_size,
             data_value = 0;
         }
         if (position < stream_size) {
-            stream_position = (longlong)position;
+            stream_position = (int64_t)position;
             position = position + 1;
             data_type = *(char*)(stream_position + stream);
         }
@@ -643,7 +643,7 @@ void process_render_data_stream_alt(int position, void* stream, int stream_size,
             data_type = 0;
         }
         if (position < stream_size) {
-            stream_position = (longlong)position;
+            stream_position = (int64_t)position;
             position = position + 1;
             data_flags = *(char*)(stream_position + stream);
         }

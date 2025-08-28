@@ -51,7 +51,7 @@
  * - 调用底层系统调用处理函数
  * - 处理系统调用结果
  */
-void system_call_dispatcher_type1(longlong system_context, uint64_t interface_ptr, uint64_t param3, uint64_t param4)
+void system_call_dispatcher_type1(int64_t system_context, uint64_t interface_ptr, uint64_t param3, uint64_t param4)
 {
     // 调用系统调用处理函数
     system_call_handler_080(system_context, *(uint64_t *)(system_context + OFFSET_0x10), param3, param4, INVALID_HANDLE);
@@ -79,7 +79,7 @@ void system_call_dispatcher_type1(longlong system_context, uint64_t interface_pt
  * - 调用底层系统调用处理函数130
  * - 处理系统调用结果
  */
-void system_call_dispatcher_type2(longlong system_context, uint64_t interface_ptr, uint64_t param3, uint64_t param4)
+void system_call_dispatcher_type2(int64_t system_context, uint64_t interface_ptr, uint64_t param3, uint64_t param4)
 {
     // 调用系统调用处理函数130
     system_call_handler_130(system_context, *(uint64_t *)(system_context + OFFSET_0x10), param3, param4, INVALID_HANDLE);
@@ -108,7 +108,7 @@ void system_call_dispatcher_type2(longlong system_context, uint64_t interface_pt
  * - 重置系统状态
  * - 验证资源释放结果
  */
-void resource_cleanup_and_reset(longlong resource_handle, uint64_t unused_param, uint64_t param3, uint64_t param4)
+void resource_cleanup_and_reset(int64_t resource_handle, uint64_t unused_param, uint64_t param3, uint64_t param4)
 {
     // 调用资源清理回调函数
     if (*(code **)(resource_handle + OFFSET_0x68) != (code *)0x0) {
@@ -116,20 +116,20 @@ void resource_cleanup_and_reset(longlong resource_handle, uint64_t unused_param,
     }
     
     // 释放48偏移处的资源
-    if (*(longlong **)(resource_handle + OFFSET_0x48) != (longlong *)0x0) {
-        (**(code **)(**(longlong **)(resource_handle + OFFSET_0x48) + OFFSET_0x30))();
+    if (*(int64_t **)(resource_handle + OFFSET_0x48) != (int64_t *)0x0) {
+        (**(code **)(**(int64_t **)(resource_handle + OFFSET_0x48) + OFFSET_0x30))();
     }
     
     // 释放40偏移处的资源
-    if (*(longlong **)(resource_handle + OFFSET_0x40) != (longlong *)0x0) {
-        (**(code **)(**(longlong **)(resource_handle + OFFSET_0x40) + OFFSET_0x30))();
+    if (*(int64_t **)(resource_handle + OFFSET_0x40) != (int64_t *)0x0) {
+        (**(code **)(**(int64_t **)(resource_handle + OFFSET_0x40) + OFFSET_0x30))();
     }
     
     // 设置清理标记
     *(uint64_t *)(resource_handle + OFFSET_0x18) = &CLEANUP_FLAG_ACTIVE;
     
     // 检查是否有未释放的资源
-    if (*(longlong *)(resource_handle + OFFSET_0x20) != 0) {
+    if (*(int64_t *)(resource_handle + OFFSET_0x20) != 0) {
         // 如果有未释放的资源，调用错误处理函数
         error_handler_critical();
     }
@@ -158,15 +158,15 @@ void resource_cleanup_and_reset(longlong resource_handle, uint64_t unused_param,
  * - 设置默认的配置参数
  * - 返回初始化后的数据结构指针
  */
-longlong data_structure_initializer(longlong data_structure)
+int64_t data_structure_initializer(int64_t data_structure)
 {
     // 初始化数据结构的基本字段
     *(uint64_t *)(data_structure + OFFSET_0x18) = 0;
     *(int32_t *)(data_structure + OFFSET_0x28) = 3;  // 设置状态为3
     
     // 设置自引用指针
-    *(longlong *)data_structure = data_structure;        // 头部指针指向自己
-    *(longlong *)(data_structure + 8) = data_structure;  // 尾部指针指向自己
+    *(int64_t *)data_structure = data_structure;        // 头部指针指向自己
+    *(int64_t *)(data_structure + 8) = data_structure;  // 尾部指针指向自己
     
     // 初始化其他字段
     *(uint64_t *)(data_structure + OFFSET_0x10) = 0;   // 清空接口指针
@@ -197,7 +197,7 @@ longlong data_structure_initializer(longlong data_structure)
  * - 调用底层系统调用处理函数080
  * - 处理系统调用结果
  */
-void system_call_dispatcher_type3(longlong system_context, uint64_t interface_ptr, uint64_t param3, uint64_t param4)
+void system_call_dispatcher_type3(int64_t system_context, uint64_t interface_ptr, uint64_t param3, uint64_t param4)
 {
     // 调用系统调用处理函数080
     system_call_handler_080(system_context, *(uint64_t *)(system_context + OFFSET_0x10), param3, param4, INVALID_HANDLE);
@@ -225,7 +225,7 @@ void system_call_dispatcher_type3(longlong system_context, uint64_t interface_pt
  * - 调用底层系统调用处理函数130
  * - 处理系统调用结果
  */
-void system_call_dispatcher_type4(longlong system_context, uint64_t interface_ptr, uint64_t param3, uint64_t param4)
+void system_call_dispatcher_type4(int64_t system_context, uint64_t interface_ptr, uint64_t param3, uint64_t param4)
 {
     // 调用系统调用处理函数130
     system_call_handler_130(system_context, *(uint64_t *)(system_context + OFFSET_0x10), param3, param4, INVALID_HANDLE);
@@ -251,16 +251,16 @@ void system_call_dispatcher_type4(longlong system_context, uint64_t interface_pt
  * - 验证资源释放结果
  * - 重置容器状态
  */
-void container_batch_cleanup(longlong *container_info)
+void container_batch_cleanup(int64_t *container_info)
 {
-    longlong current_block;
-    longlong block_end;
-    longlong *block_ptr;
+    int64_t current_block;
+    int64_t block_end;
+    int64_t *block_ptr;
     
     // 获取容器的基本信息
     current_block = container_info[2];      // 当前块起始地址
     block_end = container_info[4];          // 当前块结束地址
-    block_ptr = (longlong *)container_info[5]; // 块指针数组
+    block_ptr = (int64_t *)container_info[5]; // 块指针数组
     
     // 遍历所有块进行清理
     if (current_block != container_info[6]) {  // 如果不是结束状态
@@ -280,9 +280,9 @@ void container_batch_cleanup(longlong *container_info)
     
     // 验证所有资源都已释放
     if (*container_info != 0) {
-        block_ptr = (longlong *)container_info[5];
-        while (block_ptr < (longlong *)(container_info[9] + 8)) {
-            longlong block_check = *block_ptr;
+        block_ptr = (int64_t *)container_info[5];
+        while (block_ptr < (int64_t *)(container_info[9] + 8)) {
+            int64_t block_check = *block_ptr;
             block_ptr = block_ptr + 1;
             if (block_check != 0) {
                 // 如果还有未释放的资源，调用错误处理函数
@@ -323,10 +323,10 @@ void container_batch_cleanup(longlong *container_info)
  */
 void container_manager_cleanup(void)
 {
-    ulonglong container_start;
-    ulonglong container_end;
-    ulonglong *container_ptr;
-    longlong manager_context;
+    uint64_t container_start;
+    uint64_t container_end;
+    uint64_t *container_ptr;
+    int64_t manager_context;
     
     // 无限循环遍历所有容器
     while (true) {
@@ -350,7 +350,7 @@ void container_manager_cleanup(void)
         container_ptr = container_ptr + 1;
         
         // 检查是否已经遍历完所有容器
-        if (*(ulonglong **)(manager_context + OFFSET_0x48) <= container_ptr) {
+        if (*(uint64_t **)(manager_context + OFFSET_0x48) <= container_ptr) {
             // 重置容器管理器状态
             *(uint64_t *)(manager_context + OFFSET_0x30) = *(uint64_t *)(manager_context + OFFSET_0x10);
             *(uint64_t *)(manager_context + OFFSET_0x38) = *(uint64_t *)(manager_context + OFFSET_0x18);
@@ -383,7 +383,7 @@ void container_manager_cleanup(void)
  */
 void container_manager_state_reset(void)
 {
-    longlong manager_context;
+    int64_t manager_context;
     
     // 重置容器管理器的状态字段
     *(uint64_t *)(manager_context + OFFSET_0x30) = *(uint64_t *)(manager_context + OFFSET_0x10);  // 重置30偏移处状态
@@ -413,28 +413,28 @@ void container_manager_state_reset(void)
  * - 验证资源组状态
  * - 处理错误情况
  */
-void resource_group_cleanup(longlong *resource_group)
+void resource_group_cleanup(int64_t *resource_group)
 {
-    longlong *resource_end;
-    longlong *resource_current;
+    int64_t *resource_end;
+    int64_t *resource_current;
     
     // 获取资源组的基本信息
-    resource_end = (longlong *)resource_group[1];  // 资源组结束地址
+    resource_end = (int64_t *)resource_group[1];  // 资源组结束地址
     
     // 遍历资源组中的所有资源项
-    for (resource_current = (longlong *)*resource_group; resource_current != resource_end; resource_current = resource_current + 4) {
+    for (resource_current = (int64_t *)*resource_group; resource_current != resource_end; resource_current = resource_current + 4) {
         // 清理资源项中的各个资源
-        if ((longlong *)resource_current[3] != (longlong *)0x0) {
-            (**(code **)(*(longlong *)resource_current[3] + OFFSET_0x30))();  // 清理第三个资源
+        if ((int64_t *)resource_current[3] != (int64_t *)0x0) {
+            (**(code **)(*(int64_t *)resource_current[3] + OFFSET_0x30))();  // 清理第三个资源
         }
-        if ((longlong *)resource_current[2] != (longlong *)0x0) {
-            (**(code **)(*(longlong *)resource_current[2] + OFFSET_0x30))();  // 清理第二个资源
+        if ((int64_t *)resource_current[2] != (int64_t *)0x0) {
+            (**(code **)(*(int64_t *)resource_current[2] + OFFSET_0x30))();  // 清理第二个资源
         }
-        if ((longlong *)resource_current[1] != (longlong *)0x0) {
-            (**(code **)(*(longlong *)resource_current[1] + OFFSET_0x30))();  // 清理第一个资源
+        if ((int64_t *)resource_current[1] != (int64_t *)0x0) {
+            (**(code **)(*(int64_t *)resource_current[1] + OFFSET_0x30))();  // 清理第一个资源
         }
-        if ((longlong *)*resource_current != (longlong *)0x0) {
-            (**(code **)(*(longlong *)*resource_current + OFFSET_0x30))();    // 清理主资源
+        if ((int64_t *)*resource_current != (int64_t *)0x0) {
+            (**(code **)(*(int64_t *)*resource_current + OFFSET_0x30))();    // 清理主资源
         }
     }
     
@@ -527,8 +527,8 @@ void recursive_memory_cleanup_type2(uint64_t context, uint64_t *memory_block, ui
         recursive_memory_cleanup_type2(context, *memory_block, param3, param4, INVALID_HANDLE);
         
         // 调用内存块的清理回调函数
-        if ((longlong *)memory_block[5] != (longlong *)0x0) {
-            (**(code **)(*(longlong *)memory_block[5] + OFFSET_0x30))();
+        if ((int64_t *)memory_block[5] != (int64_t *)0x0) {
+            (**(code **)(*(int64_t *)memory_block[5] + OFFSET_0x30))();
         }
         
         // 释放内存块
@@ -557,10 +557,10 @@ void recursive_memory_cleanup_type2(uint64_t context, uint64_t *memory_block, ui
  * - 重置容器状态
  * - 处理验证失败情况
  */
-void container_integrity_verify(longlong *container_info)
+void container_integrity_verify(int64_t *container_info)
 {
-    longlong container_state;
-    longlong *block_ptr;
+    int64_t container_state;
+    int64_t *block_ptr;
     
     // 获取容器状态
     container_state = *container_info;
@@ -568,10 +568,10 @@ void container_integrity_verify(longlong *container_info)
     // 检查容器是否已清理
     if (container_state != 0) {
         // 获取块指针数组
-        block_ptr = (longlong *)container_info[5];
+        block_ptr = (int64_t *)container_info[5];
         
         // 验证所有块都已释放
-        if (block_ptr < (longlong *)(container_info[9] + 8)) {
+        if (block_ptr < (int64_t *)(container_info[9] + 8)) {
             do {
                 container_state = *block_ptr;
                 block_ptr = block_ptr + 1;
@@ -579,7 +579,7 @@ void container_integrity_verify(longlong *container_info)
                     // 如果还有未释放的块，调用错误处理函数
                     error_handler_critical();
                 }
-            } while (block_ptr < (longlong *)(container_info[9] + 8));
+            } while (block_ptr < (int64_t *)(container_info[9] + 8));
             
             // 重新获取容器状态
             container_state = *container_info;
@@ -616,17 +616,17 @@ void container_integrity_verify(longlong *container_info)
  * - 重置容器状态
  * - 处理清理失败情况
  */
-void container_state_cleanup(longlong container_context)
+void container_state_cleanup(int64_t container_context)
 {
-    longlong block_state;
-    longlong *block_ptr;
-    longlong *container_ptr;
+    int64_t block_state;
+    int64_t *block_ptr;
+    int64_t *container_ptr;
     
     // 获取容器指针
-    block_ptr = (longlong *)container_ptr[5];
+    block_ptr = (int64_t *)container_ptr[5];
     
     // 验证所有块都已释放
-    if (block_ptr < (longlong *)(container_ptr[9] + 8)) {
+    if (block_ptr < (int64_t *)(container_ptr[9] + 8)) {
         do {
             block_state = *block_ptr;
             block_ptr = block_ptr + 1;
@@ -634,7 +634,7 @@ void container_state_cleanup(longlong container_context)
                 // 如果还有未释放的块，调用错误处理函数
                 error_handler_critical();
             }
-        } while (block_ptr < (longlong *)(container_ptr[9] + 8));
+        } while (block_ptr < (int64_t *)(container_ptr[9] + 8));
         container_context = *container_ptr;
     }
     
@@ -695,26 +695,26 @@ void error_handler_critical(void)
  * - 清理旧的数据
  * - 更新数组信息
  */
-void dynamic_array_expand(longlong *array_info, ulonglong required_size, uint64_t param3, uint64_t param4)
+void dynamic_array_expand(int64_t *array_info, uint64_t required_size, uint64_t param3, uint64_t param4)
 {
     uint64_t *current_end;
-    longlong *current_start;
-    longlong size_diff;
+    int64_t *current_start;
+    int64_t size_diff;
     uint64_t *new_memory;
     uint64_t *new_pos;
     uint64_t *old_start;
     uint64_t *old_end;
-    ulonglong count;
-    longlong *old_array;
-    ulonglong new_capacity;
+    uint64_t count;
+    int64_t *old_array;
+    uint64_t new_capacity;
     
     // 获取当前数组信息
     current_end = (uint64_t *)array_info[1];
     
     // 检查是否需要扩容
-    if ((ulonglong)(array_info[2] - (longlong)current_end >> 5) < required_size) {
+    if ((uint64_t)(array_info[2] - (int64_t)current_end >> 5) < required_size) {
         old_start = (uint64_t *)*array_info;
-        size_diff = (longlong)current_end - (longlong)old_start >> 5;
+        size_diff = (int64_t)current_end - (int64_t)old_start >> 5;
         new_capacity = size_diff * 2;
         
         // 确保最小容量
@@ -740,16 +740,16 @@ void dynamic_array_expand(longlong *array_info, ulonglong required_size, uint64_
         
         // 复制现有数据
         if (old_start != current_end) {
-            size_diff = (longlong)new_memory - (longlong)old_start;
+            size_diff = (int64_t)new_memory - (int64_t)old_start;
             old_start = old_start + 1;
             do {
                 *new_pos = old_start[-1];
                 old_start[-1] = 0;
-                *(uint64_t *)((longlong)old_start + size_diff) = *old_start;
+                *(uint64_t *)((int64_t)old_start + size_diff) = *old_start;
                 *old_start = 0;
-                *(uint64_t *)(size_diff + 8 + (longlong)old_start) = old_start[1];
+                *(uint64_t *)(size_diff + 8 + (int64_t)old_start) = old_start[1];
                 old_start[1] = 0;
-                *(uint64_t *)(size_diff + 0x10 + (longlong)old_start) = old_start[2];
+                *(uint64_t *)(size_diff + 0x10 + (int64_t)old_start) = old_start[2];
                 old_start[2] = 0;
                 new_pos = new_pos + 4;
                 old_start = old_start + 4;
@@ -774,36 +774,36 @@ void dynamic_array_expand(longlong *array_info, ulonglong required_size, uint64_
         }
         
         // 清理旧数组中的资源
-        old_array = (longlong *)array_info[1];
-        current_start = (longlong *)*array_info;
+        old_array = (int64_t *)array_info[1];
+        current_start = (int64_t *)*array_info;
         if (current_start != old_array) {
             do {
-                if ((longlong *)current_start[3] != (longlong *)0x0) {
-                    (**(code **)(*(longlong *)current_start[3] + OFFSET_0x30))();
+                if ((int64_t *)current_start[3] != (int64_t *)0x0) {
+                    (**(code **)(*(int64_t *)current_start[3] + OFFSET_0x30))();
                 }
-                if ((longlong *)current_start[2] != (longlong *)0x0) {
-                    (**(code **)(*(longlong *)current_start[2] + OFFSET_0x30))();
+                if ((int64_t *)current_start[2] != (int64_t *)0x0) {
+                    (**(code **)(*(int64_t *)current_start[2] + OFFSET_0x30))();
                 }
-                if ((longlong *)current_start[1] != (longlong *)0x0) {
-                    (**(code **)(*(longlong *)current_start[1] + OFFSET_0x30))();
+                if ((int64_t *)current_start[1] != (int64_t *)0x0) {
+                    (**(code **)(*(int64_t *)current_start[1] + OFFSET_0x30))();
                 }
-                if ((longlong *)*current_start != (longlong *)0x0) {
-                    (**(code **)(*(longlong *)*current_start + OFFSET_0x30))();
+                if ((int64_t *)*current_start != (int64_t *)0x0) {
+                    (**(code **)(*(int64_t *)*current_start + OFFSET_0x30))();
                 }
                 current_start = current_start + 4;
             } while (current_start != old_array);
-            current_start = (longlong *)*array_info;
+            current_start = (int64_t *)*array_info;
         }
         
         // 释放旧内存
-        if (current_start != (longlong *)0x0) {
+        if (current_start != (int64_t *)0x0) {
             error_handler_critical(current_start);
         }
         
         // 更新数组信息
-        *array_info = (longlong)new_memory;
-        array_info[1] = (longlong)(new_pos + required_size * 4);
-        array_info[2] = (longlong)(new_memory + new_capacity * 4);
+        *array_info = (int64_t)new_memory;
+        array_info[1] = (int64_t)(new_pos + required_size * 4);
+        array_info[2] = (int64_t)(new_memory + new_capacity * 4);
     }
     else {
         // 不需要扩容，直接初始化新空间
@@ -822,7 +822,7 @@ void dynamic_array_expand(longlong *array_info, ulonglong required_size, uint64_
             } while (count != 0);
             current_end = (uint64_t *)array_info[1];
         }
-        array_info[1] = (longlong)(current_end + required_size * 4);
+        array_info[1] = (int64_t)(current_end + required_size * 4);
     }
     
     return;
@@ -847,13 +847,13 @@ void dynamic_array_expand(longlong *array_info, ulonglong required_size, uint64_
  * - 重置内存块字段
  * - 更新清理状态
  */
-void memory_block_cleanup(longlong memory_block)
+void memory_block_cleanup(int64_t memory_block)
 {
     // 设置清理标记
     *(uint64_t *)(memory_block + 8) = &CLEANUP_FLAG_ACTIVE;
     
     // 检查内存块是否已被占用
-    if (*(longlong *)(memory_block + OFFSET_0x10) != 0) {
+    if (*(int64_t *)(memory_block + OFFSET_0x10) != 0) {
         // 如果内存块被占用，调用错误处理函数
         error_handler_critical();
     }
@@ -883,12 +883,12 @@ void memory_block_cleanup(longlong memory_block)
  * - 检查资源是否有效
  * - 调用资源的释放回调函数
  */
-void resource_release_callback(longlong resource_handle)
+void resource_release_callback(int64_t resource_handle)
 {
     // 检查资源是否有效
-    if (*(longlong **)(resource_handle + 8) != (longlong *)0x0) {
+    if (*(int64_t **)(resource_handle + 8) != (int64_t *)0x0) {
         // 调用资源的释放回调函数
-        (**(code **)(**(longlong **)(resource_handle + 8) + OFFSET_0x30))();
+        (**(code **)(**(int64_t **)(resource_handle + 8) + OFFSET_0x30))();
     }
     
     return;
@@ -992,16 +992,16 @@ uint64_t *data_structure_initializer_ext(uint64_t *data_structure)
  * - 处理资源数组的递归清理
  * - 管理系统资源的状态
  */
-void system_resource_initializer(longlong param_1)
+void system_resource_initializer(int64_t param_1)
 {
-    longlong lVar1;
+    int64_t lVar1;
     uint64_t uVar2;
-    ulonglong uVar3;
+    uint64_t uVar3;
     uint uVar4;
-    ulonglong uVar5;
+    uint64_t uVar5;
     
     // 检查是否需要初始化资源管理器
-    if (*(longlong *)(param_1 + 0x28) == 0) {
+    if (*(int64_t *)(param_1 + 0x28) == 0) {
         // 创建资源管理器实例
         uVar2 = FUN_18062b1e0(system_memory_pool_ptr, 0x178, 8, 0x1c);
         uVar2 = FUN_1800ee510(uVar2);
@@ -1013,16 +1013,16 @@ void system_resource_initializer(longlong param_1)
     // 递归处理资源数组
     uVar3 = 0;
     uVar5 = uVar3;
-    if (*(longlong *)(param_1 + 0x1c8) - *(longlong *)(param_1 + 0x1c0) >> 3 != 0) {
+    if (*(int64_t *)(param_1 + 0x1c8) - *(int64_t *)(param_1 + 0x1c0) >> 3 != 0) {
         do {
-            lVar1 = *(longlong *)(uVar3 + *(longlong *)(param_1 + 0x1c0));
+            lVar1 = *(int64_t *)(uVar3 + *(int64_t *)(param_1 + 0x1c0));
             // 递归调用处理子资源
             FUN_1800ee650(lVar1, lVar1 + 0x70);
             uVar3 = uVar3 + 8;
             uVar4 = (int)uVar5 + 1;
-            uVar5 = (ulonglong)uVar4;
-        } while ((ulonglong)(longlong)(int)uVar4 <
-                 (ulonglong)(*(longlong *)(param_1 + 0x1c8) - *(longlong *)(param_1 + 0x1c0) >> 3));
+            uVar5 = (uint64_t)uVar4;
+        } while ((uint64_t)(int64_t)(int)uVar4 <
+                 (uint64_t)(*(int64_t *)(param_1 + 0x1c8) - *(int64_t *)(param_1 + 0x1c0) >> 3));
     }
     return;
 }
@@ -1047,21 +1047,21 @@ void system_resource_initializer(longlong param_1)
  */
 void batch_resource_cleanup(void)
 {
-    longlong lVar1;
-    longlong unaff_RBX;
-    ulonglong uVar2;
+    int64_t lVar1;
+    int64_t unaff_RBX;
+    uint64_t uVar2;
     uint unaff_EDI;
     
     // 遍历资源数组进行批量清理
-    uVar2 = (ulonglong)unaff_EDI;
+    uVar2 = (uint64_t)unaff_EDI;
     do {
-        lVar1 = *(longlong *)(uVar2 + *(longlong *)(unaff_RBX + 0x1c0));
+        lVar1 = *(int64_t *)(uVar2 + *(int64_t *)(unaff_RBX + 0x1c0));
         // 调用资源清理函数
         FUN_1800ee650(lVar1, lVar1 + 0x70);
         uVar2 = uVar2 + 8;
         unaff_EDI = unaff_EDI + 1;
-    } while ((ulonglong)(longlong)(int)unaff_EDI <
-             (ulonglong)(*(longlong *)(unaff_RBX + 0x1c8) - *(longlong *)(unaff_RBX + 0x1c0) >> 3));
+    } while ((uint64_t)(int64_t)(int)unaff_EDI <
+             (uint64_t)(*(int64_t *)(unaff_RBX + 0x1c8) - *(int64_t *)(unaff_RBX + 0x1c0) >> 3));
     return;
 }
 
@@ -1113,27 +1113,27 @@ void noop_function(void)
  * - 处理资源回调函数
  * - 执行资源清理操作
  */
-void advanced_resource_processor(uint64_t param_1, longlong *param_2, int8_t param_3)
+void advanced_resource_processor(uint64_t param_1, int64_t *param_2, int8_t param_3)
 {
     uint64_t uVar1;
-    longlong *plVar2;
-    longlong lVar3;
+    int64_t *plVar2;
+    int64_t lVar3;
     void *puVar4;
-    longlong *plStackX_20;
+    int64_t *plStackX_20;
     uint64_t uVar5;
-    longlong *plVar6;
-    longlong **pplVar7;
+    int64_t *plVar6;
+    int64_t **pplVar7;
     
     // 设置处理参数
     uVar5 = 0xfffffffffffffffe;
     
     // 创建资源处理器实例
     uVar1 = FUN_18062b1e0(system_memory_pool_ptr, 0x3d0, 8, 3, 0xfffffffffffffffe);
-    plVar2 = (longlong *)FUN_180275090(uVar1);
+    plVar2 = (int64_t *)FUN_180275090(uVar1);
     plVar6 = plVar2;
     
     // 初始化资源处理器
-    if (plVar2 != (longlong *)0x0) {
+    if (plVar2 != (int64_t *)0x0) {
         (**(code **)(*plVar2 + 0x28))(plVar2);
     }
     
@@ -1148,8 +1148,8 @@ void advanced_resource_processor(uint64_t param_1, longlong *param_2, int8_t par
     
     // 设置资源栈
     pplVar7 = &plStackX_20;
-    plStackX_20 = (longlong *)*param_2;
-    if (plStackX_20 != (longlong *)0x0) {
+    plStackX_20 = (int64_t *)*param_2;
+    if (plStackX_20 != (int64_t *)0x0) {
         (**(code **)(*plStackX_20 + 0x28))();
     }
     
@@ -1157,7 +1157,7 @@ void advanced_resource_processor(uint64_t param_1, longlong *param_2, int8_t par
     FUN_180275cf0(plVar2, 0, &plStackX_20, 1, uVar5, plVar6, pplVar7);
     
     // 获取资源句柄
-    if (*(longlong *)(*param_2 + 0x1b0) == 0) {
+    if (*(int64_t *)(*param_2 + 0x1b0) == 0) {
         lVar3 = *param_2 + 0x10;
     } else {
         lVar3 = func_0x000180079240();
@@ -1174,7 +1174,7 @@ void advanced_resource_processor(uint64_t param_1, longlong *param_2, int8_t par
     
     // 清理资源
     plStackX_20 = plVar2;
-    if (plVar2 != (longlong *)0x0) {
+    if (plVar2 != (int64_t *)0x0) {
         (**(code **)(*plVar2 + 0x28))(plVar2);
     }
     
@@ -1182,14 +1182,14 @@ void advanced_resource_processor(uint64_t param_1, longlong *param_2, int8_t par
     FUN_1802edcd0(param_1, plStackX_20, param_3);
     
     // 执行资源释放
-    if (plStackX_20 != (longlong *)0x0) {
+    if (plStackX_20 != (int64_t *)0x0) {
         (**(code **)(*plStackX_20 + 0x38))();
     }
-    if (plVar2 != (longlong *)0x0) {
+    if (plVar2 != (int64_t *)0x0) {
         (**(code **)(*plVar2 + 0x38))(plVar2);
     }
-    if ((longlong *)*param_2 != (longlong *)0x0) {
-        (**(code **)(*(longlong *)*param_2 + 0x38))();
+    if ((int64_t *)*param_2 != (int64_t *)0x0) {
+        (**(code **)(*(int64_t *)*param_2 + 0x38))();
     }
     return;
 }
@@ -1216,15 +1216,15 @@ void advanced_resource_processor(uint64_t param_1, longlong *param_2, int8_t par
  * - 处理资源回调函数
  * - 管理资源生命周期
  */
-void simplified_resource_processor(uint64_t param_1, longlong *param_2, uint64_t param_3, uint64_t param_4)
+void simplified_resource_processor(uint64_t param_1, int64_t *param_2, uint64_t param_3, uint64_t param_4)
 {
     // 执行基础资源处理操作
     FUN_1802edcd0(param_1, *param_2, param_3, param_4, INVALID_HANDLE);
     
     // 处理资源回调函数
-    if ((longlong *)*param_2 != (longlong *)0x0) {
+    if ((int64_t *)*param_2 != (int64_t *)0x0) {
         // 注意：此处包含复杂的跳转表逻辑，简化为直接调用
-        (**(code **)(*(longlong *)*param_2 + OFFSET_0x30))();
+        (**(code **)(*(int64_t *)*param_2 + OFFSET_0x30))();
         return;
     }
     
@@ -1314,9 +1314,9 @@ int32_t *complex_data_structure_initializer(int32_t *data_structure)
     
     // 初始化数组状态
     do {
-        *(uint64_t *)(data_structure + (longlong)(int)index * 2 + 0x96) = 0;
+        *(uint64_t *)(data_structure + (int64_t)(int)index * 2 + 0x96) = 0;
         LOCK();
-        *(int8_t *)((longlong)data_structure + (longlong)(int)index + 0x2a8) = 1;
+        *(int8_t *)((int64_t)data_structure + (int64_t)(int)index + 0x2a8) = 1;
         UNLOCK();
         index = index + 1;
     } while (index < ARRAY_SIZE_10);
@@ -1432,10 +1432,10 @@ int32_t *complex_data_structure_initializer(int32_t *data_structure)
  * - 处理空链情况
  * - 在错误情况下调用系统终止函数
  */
-void resource_chain_traverse(longlong *resource_chain)
+void resource_chain_traverse(int64_t *resource_chain)
 {
-    longlong chain_end;
-    longlong current_item;
+    int64_t chain_end;
+    int64_t current_item;
     
     // 获取资源链的结束位置
     chain_end = resource_chain[1];
@@ -1477,7 +1477,7 @@ void resource_chain_traverse(longlong *resource_chain)
  * - 调用底层资源处理函数
  * - 传递所有参数
  */
-void resource_processor_delegate_type1(longlong param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
+void resource_processor_delegate_type1(int64_t param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
     // 调用底层资源处理函数
     FUN_1800f7260(param_1, *(uint64_t *)(param_1 + OFFSET_0x10), param_3, param_4, INVALID_HANDLE);
@@ -1507,36 +1507,36 @@ void resource_processor_delegate_type1(longlong param_1, uint64_t param_2, uint6
  * - 清理68偏移处的资源
  * - 执行最终的清理操作
  */
-void multi_level_resource_cleanup(longlong resource_manager)
+void multi_level_resource_cleanup(int64_t resource_manager)
 {
     // 清理90偏移处的资源
-    if (*(longlong **)(resource_manager + OFFSET_0x90) != (longlong *)0x0) {
-        (**(code **)(**(longlong **)(resource_manager + OFFSET_0x90) + OFFSET_0x30))();
+    if (*(int64_t **)(resource_manager + OFFSET_0x90) != (int64_t *)0x0) {
+        (**(code **)(**(int64_t **)(resource_manager + OFFSET_0x90) + OFFSET_0x30))();
     }
     
     // 清理88偏移处的资源
-    if (*(longlong **)(resource_manager + OFFSET_0x88) != (longlong *)0x0) {
-        (**(code **)(**(longlong **)(resource_manager + OFFSET_0x88) + OFFSET_0x30))();
+    if (*(int64_t **)(resource_manager + OFFSET_0x88) != (int64_t *)0x0) {
+        (**(code **)(**(int64_t **)(resource_manager + OFFSET_0x88) + OFFSET_0x30))();
     }
     
     // 清理80偏移处的资源
-    if (*(longlong **)(resource_manager + OFFSET_0x80) != (longlong *)0x0) {
-        (**(code **)(**(longlong **)(resource_manager + OFFSET_0x80) + OFFSET_0x30))();
+    if (*(int64_t **)(resource_manager + OFFSET_0x80) != (int64_t *)0x0) {
+        (**(code **)(**(int64_t **)(resource_manager + OFFSET_0x80) + OFFSET_0x30))();
     }
     
     // 清理78偏移处的资源
-    if (*(longlong **)(resource_manager + OFFSET_0x78) != (longlong *)0x0) {
-        (**(code **)(**(longlong **)(resource_manager + OFFSET_0x78) + OFFSET_0x30))();
+    if (*(int64_t **)(resource_manager + OFFSET_0x78) != (int64_t *)0x0) {
+        (**(code **)(**(int64_t **)(resource_manager + OFFSET_0x78) + OFFSET_0x30))();
     }
     
     // 清理70偏移处的资源
-    if (*(longlong **)(resource_manager + OFFSET_0x70) != (longlong *)0x0) {
-        (**(code **)(**(longlong **)(resource_manager + OFFSET_0x70) + OFFSET_0x30))();
+    if (*(int64_t **)(resource_manager + OFFSET_0x70) != (int64_t *)0x0) {
+        (**(code **)(**(int64_t **)(resource_manager + OFFSET_0x70) + OFFSET_0x30))();
     }
     
     // 清理68偏移处的资源
-    if (*(longlong **)(resource_manager + OFFSET_0x68) != (longlong *)0x0) {
-        (**(code **)(**(longlong **)(resource_manager + OFFSET_0x68) + OFFSET_0x30))();
+    if (*(int64_t **)(resource_manager + OFFSET_0x68) != (int64_t *)0x0) {
+        (**(code **)(**(int64_t **)(resource_manager + OFFSET_0x68) + OFFSET_0x30))();
     }
     
     // 执行最终的清理操作
@@ -1566,7 +1566,7 @@ void multi_level_resource_cleanup(longlong resource_manager)
  * - 调用底层资源处理函数7320
  * - 传递所有参数
  */
-void resource_processor_delegate_type2(longlong param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
+void resource_processor_delegate_type2(int64_t param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
     // 调用底层资源处理函数7320
     FUN_1800f7320(param_1, *(uint64_t *)(param_1 + OFFSET_0x10), param_3, param_4, INVALID_HANDLE);
@@ -1595,7 +1595,7 @@ void resource_processor_delegate_type2(longlong param_1, uint64_t param_2, uint6
  * - 调用底层资源处理函数74f0
  * - 传递所有参数
  */
-void resource_processor_delegate_type3(longlong param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
+void resource_processor_delegate_type3(int64_t param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
     // 调用底层资源处理函数74f0
     FUN_1800f74f0(param_1, *(uint64_t *)(param_1 + OFFSET_0x10), param_3, param_4, INVALID_HANDLE);
@@ -1624,7 +1624,7 @@ void resource_processor_delegate_type3(longlong param_1, uint64_t param_2, uint6
  * - 调用底层资源处理函数7260
  * - 传递所有参数
  */
-void resource_processor_delegate_type4(longlong param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
+void resource_processor_delegate_type4(int64_t param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
     // 调用底层资源处理函数7260
     FUN_1800f7260(param_1, *(uint64_t *)(param_1 + OFFSET_0x10), param_3, param_4, INVALID_HANDLE);
@@ -1653,7 +1653,7 @@ void resource_processor_delegate_type4(longlong param_1, uint64_t param_2, uint6
  * - 调用底层资源处理函数7320
  * - 传递所有参数
  */
-void resource_processor_delegate_type5(longlong param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
+void resource_processor_delegate_type5(int64_t param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
     // 调用底层资源处理函数7320
     FUN_1800f7320(param_1, *(uint64_t *)(param_1 + OFFSET_0x10), param_3, param_4, INVALID_HANDLE);
@@ -1682,7 +1682,7 @@ void resource_processor_delegate_type5(longlong param_1, uint64_t param_2, uint6
  * - 调用底层资源处理函数74f0
  * - 传递所有参数
  */
-void resource_processor_delegate_type6(longlong param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
+void resource_processor_delegate_type6(int64_t param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
     // 调用底层资源处理函数74f0
     FUN_1800f74f0(param_1, *(uint64_t *)(param_1 + OFFSET_0x10), param_3, param_4, INVALID_HANDLE);

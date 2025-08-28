@@ -15,26 +15,26 @@ void initialize_empty_engine_component(void)
 // 参数：component_ptr - 组件结构指针
 //        config_params - 配置参数指针
 // 返回值：初始化后的组件结构指针
-uint64_t * initialize_engine_component_structure(uint64_t *component_ptr, longlong config_params)
+uint64_t * initialize_engine_component_structure(uint64_t *component_ptr, int64_t config_params)
 {
-  longlong *callback_ptr;
+  int64_t *callback_ptr;
   int8_t init_flag;
   int thread_id;
   int32_t config_value;
   uint64_t memory_block;
   int32_t *float_param_ptr;
-  longlong *resource_ptr;
+  int64_t *resource_ptr;
   uint loop_counter;
   uint init_counter;
   void *stack_ptr;
   uint64_t *guard_ptr;
   int32_t stack_params[2];
   int temp_int;
-  longlong *temp_ptr1;
-  longlong *temp_ptr2;
+  int64_t *temp_ptr1;
+  int64_t *temp_ptr2;
   int8_t stack_buffer[8];
   uint64_t stack_guard;
-  longlong *thread_manager_ptr;
+  int64_t *thread_manager_ptr;
   char debug_flag1;
   char debug_flag2;
   char debug_flag3;
@@ -46,15 +46,15 @@ uint64_t * initialize_engine_component_structure(uint64_t *component_ptr, longlo
   uint64_t float_array1;
   int32_t float_param3;
   int32_t float_param4;
-  longlong *context_ptr1;
-  longlong *context_ptr2;
-  longlong *resource_array1;
-  longlong *resource_array2;
-  longlong *resource_array3;
-  longlong *resource_array4;
-  longlong *resource_array5;
+  int64_t *context_ptr1;
+  int64_t *context_ptr2;
+  int64_t *resource_array1;
+  int64_t *resource_array2;
+  int64_t *resource_array3;
+  int64_t *resource_array4;
+  int64_t *resource_array5;
   uint64_t stack_checksum;
-  longlong *alloc_ptr;
+  int64_t *alloc_ptr;
   int32_t alignment_param[8];
   int32_t alignment_param2[8];
   int32_t alignment_param3[8];
@@ -67,7 +67,7 @@ uint64_t * initialize_engine_component_structure(uint64_t *component_ptr, longlo
   int32_t alignment_param10[8];
   int32_t alignment_param11[8];
   int32_t alignment_param12[8];
-  longlong *thread_pool_ptr;
+  int64_t *thread_pool_ptr;
   int32_t *thread_config_ptr;
   
   stack_guard = 0xfffffffffffffffe;
@@ -80,16 +80,16 @@ uint64_t * initialize_engine_component_structure(uint64_t *component_ptr, longlo
   *component_ptr = &global_resource_table;
   component_ptr[8] = 0;
   *(int16_t *)(component_ptr + 3) = 0x100;  // 设置缓冲区大小
-  *(int8_t *)((longlong)component_ptr + 0x1a) = 0;
-  *(uint64_t *)((longlong)component_ptr + 0x1c) = 0;
-  *(uint64_t *)((longlong)component_ptr + 0x24) = 0;
-  *(int32_t *)((longlong)component_ptr + 0x2c) = 0;
-  *(uint64_t *)((longlong)component_ptr + 0x34) = 0;
+  *(int8_t *)((int64_t)component_ptr + 0x1a) = 0;
+  *(uint64_t *)((int64_t)component_ptr + 0x1c) = 0;
+  *(uint64_t *)((int64_t)component_ptr + 0x24) = 0;
+  *(int32_t *)((int64_t)component_ptr + 0x2c) = 0;
+  *(uint64_t *)((int64_t)component_ptr + 0x34) = 0;
   
   // 清理现有回调
-  callback_ptr = (longlong *)component_ptr[8];
+  callback_ptr = (int64_t *)component_ptr[8];
   component_ptr[8] = 0;
-  if (callback_ptr != (longlong *)0x0) {
+  if (callback_ptr != (int64_t *)0x0) {
     (**(code **)(*callback_ptr + 0x38))();
   }
   
@@ -106,8 +106,8 @@ uint64_t * initialize_engine_component_structure(uint64_t *component_ptr, longlo
   *(int32_t *)(component_ptr + 0x11) = 3;
   component_ptr[0x12] = 0;
   *(int32_t *)(component_ptr + 0x1a) = 0x3f800000;  // 1.0f
-  *(uint64_t *)((longlong)component_ptr + 0xd4) = 0x40000000;  // 2.0f
-  *(int32_t *)((longlong)component_ptr + 0xdc) = 3;
+  *(uint64_t *)((int64_t)component_ptr + 0xd4) = 0x40000000;  // 2.0f
+  *(int32_t *)((int64_t)component_ptr + 0xdc) = 3;
   component_ptr[0x18] = 1;
   component_ptr[0x17] = &global_data_table;
   component_ptr[0x19] = 0;
@@ -147,13 +147,13 @@ uint64_t * initialize_engine_component_structure(uint64_t *component_ptr, longlo
   component_ptr[0x48] = 0;
   
   // 初始化渲染相关参数
-  *(uint64_t *)((longlong)component_ptr + 0x1dc) = 0;
+  *(uint64_t *)((int64_t)component_ptr + 0x1dc) = 0;
   *(int16_t *)(component_ptr + 0x3b) = 1;
-  *(int32_t *)((longlong)component_ptr + 0x1d4) = 0;
+  *(int32_t *)((int64_t)component_ptr + 0x1d4) = 0;
   *(int8_t *)(component_ptr + 0x4a) = 1;
   *(int8_t *)(component_ptr + 0x2e) = 1;
   component_ptr[0x55] = 0;
-  *(int8_t *)((longlong)component_ptr + 0x2c4) = 0;
+  *(int8_t *)((int64_t)component_ptr + 0x2c4) = 0;
   *(int32_t *)(component_ptr + 0x57) = 0;
   component_ptr[0x5a] = 0;
   component_ptr[0x5b] = 0;
@@ -185,7 +185,7 @@ uint64_t * initialize_engine_component_structure(uint64_t *component_ptr, longlo
 // 参数：component_handle - 组件句柄
 //        cleanup_flags - 清理标志
 // 返回值：清理后的组件句柄
-uint64_t cleanup_engine_component(uint64_t component_handle, ulonglong cleanup_flags)
+uint64_t cleanup_engine_component(uint64_t component_handle, uint64_t cleanup_flags)
 {
   perform_cleanup_sequence();
   if ((cleanup_flags & 1) != 0) {
@@ -197,13 +197,13 @@ uint64_t cleanup_engine_component(uint64_t component_handle, ulonglong cleanup_f
 // 函数：release_component_resources
 // 功能：释放组件资源
 // 参数：resource_manager - 资源管理器指针
-void release_component_resources(longlong resource_manager)
+void release_component_resources(int64_t resource_manager)
 {
-  longlong resource_count;
+  int64_t resource_count;
   uint64_t *resource_ptr;
-  ulonglong resource_index;
+  uint64_t resource_index;
   
-  resource_count = *(ulonglong *)(resource_manager + 0x10);
+  resource_count = *(uint64_t *)(resource_manager + 0x10);
   resource_ptr = *(uint64_t **)(resource_manager + 8);
   resource_index = 0;
   if (resource_count != 0) {
@@ -216,10 +216,10 @@ void release_component_resources(longlong resource_manager)
       *(uint64_t *)(resource_ptr + resource_index * 8) = 0;
       resource_index = resource_index + 1;
     } while (resource_index < resource_count);
-    resource_count = *(ulonglong *)(resource_manager + 0x10);
+    resource_count = *(uint64_t *)(resource_manager + 0x10);
   }
   *(uint64_t *)(resource_manager + 0x18) = 0;
-  if ((1 < resource_count) && (*(longlong *)(resource_manager + 8) != 0)) {
+  if ((1 < resource_count) && (*(int64_t *)(resource_manager + 8) != 0)) {
     execute_resource_cleanup();
   }
   return;
@@ -228,16 +228,16 @@ void release_component_resources(longlong resource_manager)
 // 函数：destroy_component_callbacks
 // 功能：销毁组件回调
 // 参数：callback_manager - 回调管理器指针
-void destroy_component_callbacks(longlong callback_manager)
+void destroy_component_callbacks(int64_t callback_manager)
 {
-  longlong *primary_callback;
+  int64_t *primary_callback;
   uint64_t *secondary_callback;
-  longlong cleanup_context;
-  longlong *temp_callback;
+  int64_t cleanup_context;
+  int64_t *temp_callback;
   
   cleanup_context = global_cleanup_context;
-  primary_callback = *(longlong **)(callback_manager + 8);
-  if ((primary_callback != (longlong *)0x0) && (global_cleanup_context != 0)) {
+  primary_callback = *(int64_t **)(callback_manager + 8);
+  if ((primary_callback != (int64_t *)0x0) && (global_cleanup_context != 0)) {
     temp_callback = &cleanup_context;
     cleanup_context = primary_callback;
     (**(code **)(*primary_callback + 0x28))();
@@ -252,8 +252,8 @@ void destroy_component_callbacks(longlong callback_manager)
     }
   }
   *(uint64_t *)(callback_manager + 0x10) = 0;
-  primary_callback = *(longlong **)(callback_manager + 8);
-  if (primary_callback != (longlong *)0x0) {
+  primary_callback = *(int64_t **)(callback_manager + 8);
+  if (primary_callback != (int64_t *)0x0) {
     (**(code **)(*primary_callback + 0x38))();
   }
   return;
@@ -262,10 +262,10 @@ void destroy_component_callbacks(longlong callback_manager)
 // 函数：reset_component_state
 // 功能：重置组件状态
 // 参数：component_state - 组件状态指针
-void reset_component_state(longlong component_state)
+void reset_component_state(int64_t component_state)
 {
   *(uint64_t *)(component_state + 0x40) = &global_alternate_table;
-  if (*(longlong *)(component_state + 0x48) != 0) {
+  if (*(int64_t *)(component_state + 0x48) != 0) {
     execute_resource_cleanup();
   }
   *(uint64_t *)(component_state + 0x48) = 0;
@@ -277,7 +277,7 @@ void reset_component_state(longlong component_state)
 // 函数：deinitialize_component_systems
 // 功能：反初始化组件系统
 // 参数：system_manager - 系统管理器指针
-void deinitialize_component_systems(longlong system_manager)
+void deinitialize_component_systems(int64_t system_manager)
 {
   uint64_t system_guard;
   
@@ -315,24 +315,24 @@ void setup_component_systems(uint64_t system_handle)
 // 函数：finalize_component_initialization
 // 功能：完成组件初始化
 // 参数：component_context - 组件上下文指针
-void finalize_component_initialization(longlong component_context)
+void finalize_component_initialization(int64_t component_context)
 {
-  if (*(longlong *)(component_context + 0xb0) != 0) {
+  if (*(int64_t *)(component_context + 0xb0) != 0) {
     execute_resource_cleanup();
   }
-  if (*(longlong *)(component_context + 0x90) != 0) {
+  if (*(int64_t *)(component_context + 0x90) != 0) {
     execute_resource_cleanup();
   }
   destroy_mutex_in_place();
   release_thread_resources(component_context + 0x30, 8, 2, thread_cleanup_callback);
-  if (*(longlong **)(component_context + 0x20) != (longlong *)0x0) {
-    (**(code **)(**(longlong **)(component_context + 0x20) + 0x38))();
+  if (*(int64_t **)(component_context + 0x20) != (int64_t *)0x0) {
+    (**(code **)(**(int64_t **)(component_context + 0x20) + 0x38))();
   }
-  if (*(longlong **)(component_context + 0x18) != (longlong *)0x0) {
-    (**(code **)(**(longlong **)(component_context + 0x18) + 0x38))();
+  if (*(int64_t **)(component_context + 0x18) != (int64_t *)0x0) {
+    (**(code **)(**(int64_t **)(component_context + 0x18) + 0x38))();
   }
-  if (*(longlong **)(component_context + 0x10) != (longlong *)0x0) {
-    (**(code **)(**(longlong **)(component_context + 0x10) + 0x38))();
+  if (*(int64_t **)(component_context + 0x10) != (int64_t *)0x0) {
+    (**(code **)(**(int64_t **)(component_context + 0x10) + 0x38))();
   }
   return;
 }
@@ -340,7 +340,7 @@ void finalize_component_initialization(longlong component_context)
 // 函数：cleanup_component_memory
 // 功能：清理组件内存
 // 参数：memory_manager - 内存管理器指针
-void cleanup_component_memory(longlong memory_manager)
+void cleanup_component_memory(int64_t memory_manager)
 {
   release_memory_resources(memory_manager + 8, 0x20, 0x20, memory_cleanup_callback, 0xfffffffffffffffe);
   return;

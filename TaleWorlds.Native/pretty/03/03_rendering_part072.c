@@ -22,7 +22,7 @@
  * - 处理位置、变换和状态数据的更新
  * - 管理多个渲染缓冲区的数据一致性
  */
-void render_system_advanced_data_processor(longlong render_context, float data_accumulator, int32_t render_mode, char processing_flag, uint64_t *transform_data, uint64_t config_param, char mode_selector)
+void render_system_advanced_data_processor(int64_t render_context, float data_accumulator, int32_t render_mode, char processing_flag, uint64_t *transform_data, uint64_t config_param, char mode_selector)
 {
   uint64_t temp_var1;
   int processed_count;
@@ -46,7 +46,7 @@ void render_system_advanced_data_processor(longlong render_context, float data_a
       else {
         // 计算距离并检查阈值
         distance_x = *(float *)(render_context + 0x60) - *(float *)(transform_data + 7);
-        distance_y = *(float *)(render_context + 0x5c) - *(float *)((longlong)transform_data + 0x34);
+        distance_y = *(float *)(render_context + 0x5c) - *(float *)((int64_t)transform_data + 0x34);
         distance_z = *(float *)(render_context + 0x58) - *(float *)(transform_data + 6);
         if (50.0 < SQRT(distance_y * distance_y + distance_z * distance_z + distance_x * distance_x) * (1.0 / data_accumulator)) {
           // 更新变换数据缓冲区
@@ -96,7 +96,7 @@ void render_system_advanced_data_processor(longlong render_context, float data_a
         
         // 执行插值计算
         accumulated_value = *(float *)(transform_data + 7);
-        distance_y = *(float *)((longlong)transform_data + 0x34);
+        distance_y = *(float *)((int64_t)transform_data + 0x34);
         distance_z = *(float *)(transform_data + 6);
         *(float *)(render_context + 0x124) = threshold_value;
         *(float *)(render_context + 0x128) = threshold_value;
@@ -161,7 +161,7 @@ void render_system_advanced_data_processor(longlong render_context, float data_a
   else {
     // 强制处理模式
     threshold_value = *(float *)(render_context + 0x60) - *(float *)(transform_data + 7);
-    distance_y = *(float *)(render_context + 0x5c) - *(float *)((longlong)transform_data + 0x34);
+    distance_y = *(float *)(render_context + 0x5c) - *(float *)((int64_t)transform_data + 0x34);
     distance_x = *(float *)(render_context + 0x58) - *(float *)(transform_data + 6);
     interpolation_factor = 1.0 / data_accumulator;
     if (50.0 < SQRT(distance_y * distance_y + distance_x * distance_x + threshold_value * threshold_value) * interpolation_factor) {
@@ -185,7 +185,7 @@ void render_system_advanced_data_processor(longlong render_context, float data_a
     *(int32_t *)(render_context + 0x114) = 0;
     threshold_value = *(float *)(render_context + 0x8c);
     distance_x = *(float *)(transform_data + 7);
-    distance_y = *(float *)((longlong)transform_data + 0x34);
+    distance_y = *(float *)((int64_t)transform_data + 0x34);
     *(float *)(render_context + 0x78) = (*(float *)(transform_data + 6) - *(float *)(render_context + 0x100)) * interpolation_factor * threshold_value;
     *(float *)(render_context + 0x7c) = (distance_y - *(float *)(render_context + 0x104)) * interpolation_factor * threshold_value;
     *(float *)(render_context + 0x80) = (distance_x - *(float *)(render_context + 0x108)) * interpolation_factor * threshold_value;
@@ -247,7 +247,7 @@ void render_system_advanced_data_processor(longlong render_context, float data_a
  * - 管理多个缓冲区的数据一致性
  * - 处理距离阈值和状态更新
  */
-void render_system_dual_context_data_processor(longlong primary_context, longlong secondary_context, uint64_t *transform_data, char processing_mode)
+void render_system_dual_context_data_processor(int64_t primary_context, int64_t secondary_context, uint64_t *transform_data, char processing_mode)
 {
   uint64_t temp_var1;
   int processed_count;
@@ -272,7 +272,7 @@ void render_system_dual_context_data_processor(longlong primary_context, longlon
     else {
       // 计算距离并检查阈值
       distance_x = *(float *)(primary_context + 0x60) - *(float *)(transform_data + 7);
-      distance_y = *(float *)(primary_context + 0x5c) - *(float *)((longlong)transform_data + 0x34);
+      distance_y = *(float *)(primary_context + 0x5c) - *(float *)((int64_t)transform_data + 0x34);
       distance_z = *(float *)(primary_context + 0x58) - *(float *)(transform_data + 6);
       if (50.0 < SQRT(distance_y * distance_y + distance_z * distance_z + distance_x * distance_x) * (distance_x / data_accumulator)) {
         // 更新主上下文缓冲区
@@ -319,7 +319,7 @@ void render_system_dual_context_data_processor(longlong primary_context, longlon
       *(uint64_t *)(primary_context + 0xf8) = temp_var1;
       data_accumulator = *(float *)(primary_context + 0xc4);
       distance_x = *(float *)(transform_data + 7);
-      distance_z = *(float *)((longlong)transform_data + 0x34);
+      distance_z = *(float *)((int64_t)transform_data + 0x34);
       distance_y = *(float *)(transform_data + 6);
       *(float *)(primary_context + 0x124) = threshold_value;
       *(float *)(primary_context + 0x128) = threshold_value;
@@ -418,13 +418,13 @@ void render_system_dual_context_data_processor(longlong primary_context, longlon
  * - 在多个缓冲区之间同步变换数据
  * - 实现平滑的变换过渡效果
  */
-void render_system_advanced_transform_processor(longlong render_context, float transform_param, uint64_t *transform_data, float scale_factor)
+void render_system_advanced_transform_processor(int64_t render_context, float transform_param, uint64_t *transform_data, float scale_factor)
 {
   float distance_squared_x;
   float distance_squared_y;
   float distance_squared_z;
   uint64_t temp_var5;
-  longlong context_register;
+  int64_t context_register;
   float xmm0_param;
   float xmm2_param;
   float interpolation_result;
@@ -481,7 +481,7 @@ void render_system_advanced_transform_processor(longlong render_context, float t
   *(uint64_t *)(render_context + 0xf8) = temp_var5;
   distance_squared_x = *(float *)(render_context + 0xc4);
   distance_squared_y = *(float *)(transform_data + 7);
-  distance_squared_z = *(float *)((longlong)transform_data + 0x34);
+  distance_squared_z = *(float *)((int64_t)transform_data + 0x34);
   distance_squared_z = *(float *)(transform_data + 6);
   *(float *)(render_context + 0x124) = unaff_xmm8_param;
   *(float *)(render_context + 0x128) = unaff_xmm8_param;
@@ -546,7 +546,7 @@ void render_system_advanced_transform_processor(longlong render_context, float t
  * - 管理资源状态和缓冲区更新
  * - 确保数据一致性
  */
-void render_system_resource_synchronizer(uint64_t resource_id, longlong render_context, uint64_t *resource_data)
+void render_system_resource_synchronizer(uint64_t resource_id, int64_t render_context, uint64_t *resource_data)
 {
   uint64_t temp_var1;
   
@@ -590,7 +590,7 @@ void render_system_resource_synchronizer(uint64_t resource_id, longlong render_c
  * - 处理资源数据的复制和同步
  * - 维护资源状态的一致性
  */
-void render_system_resource_data_updater(uint64_t resource_id, longlong render_context, uint64_t *resource_data)
+void render_system_resource_data_updater(uint64_t resource_id, int64_t render_context, uint64_t *resource_data)
 {
   uint64_t temp_var1;
   
@@ -630,35 +630,35 @@ void render_system_resource_data_updater(uint64_t resource_id, longlong render_c
  * - 处理资源的分配和释放
  * - 维护资源状态的一致性
  */
-uint64_t * render_system_advanced_resource_manager(uint64_t *resource_context, ulonglong resource_flags, uint64_t resource_config, uint64_t resource_options)
+uint64_t * render_system_advanced_resource_manager(uint64_t *resource_context, uint64_t resource_flags, uint64_t resource_config, uint64_t resource_options)
 {
-  longlong lock_handle;
-  longlong resource_table;
-  longlong lock_address;
+  int64_t lock_handle;
+  int64_t resource_table;
+  int64_t lock_address;
   int resource_indices [2];
   uint64_t *temp_stack_ptr;
   uint64_t temp_var4;
-  longlong resource_ptr;
+  int64_t resource_ptr;
   
   temp_var4 = 0xfffffffffffffffe;
   *resource_context = &unknown_var_4072_ptr;
   resource_table = render_system_data_texture;
   resource_indices[0] = *(int *)(resource_context + 2);
-  resource_ptr = (longlong)resource_indices[0];
+  resource_ptr = (int64_t)resource_indices[0];
   lock_address = render_system_data_texture + 0x2b8;
   lock_handle = lock_address;
   // 获取独占锁
   AcquireSRWLockExclusive(lock_address);
   *(int8_t *)(resource_table + 1) = 1;
-  *(int8_t *)(*(longlong *)(resource_table + 0x180) + resource_ptr * 0x30) = 0;
+  *(int8_t *)(*(int64_t *)(resource_table + 0x180) + resource_ptr * 0x30) = 0;
   // 调用资源管理函数
   FUN_1800571e0(resource_table + 0xe0, resource_indices, resource_config, resource_options, temp_var4, lock_handle, 1);
   *(int32_t *)(resource_context + 2) = 0xffffffff;
   // 释放独占锁
   ReleaseSRWLockExclusive(lock_address);
-  if ((longlong *)resource_context[0x30] != (longlong *)0x0) {
+  if ((int64_t *)resource_context[0x30] != (int64_t *)0x0) {
     // 调用资源清理回调
-    (**(code **)(*(longlong *)resource_context[0x30] + 0x38))();
+    (**(code **)(*(int64_t *)resource_context[0x30] + 0x38))();
   }
   // 设置资源上下文状态
   resource_context[0x1c] = &system_state_ptr;
@@ -696,9 +696,9 @@ uint64_t * render_system_advanced_resource_manager(uint64_t *resource_context, u
 int * render_system_memory_allocator(int *memory_context, int *allocation_result, int allocation_size)
 {
   uint requested_size;
-  longlong *block_ptr;
-  longlong *next_block;
-  longlong block_size;
+  int64_t *block_ptr;
+  int64_t *next_block;
+  int64_t block_size;
   int available_size;
   int total_size;
   uint64_t *new_block;
@@ -712,29 +712,29 @@ int * render_system_memory_allocator(int *memory_context, int *allocation_result
     __Throw_C_error_std__YAXH_Z(total_size);
   }
   while( true ) {
-    block_ptr = *(longlong **)(memory_context + 2);
-    for (next_block = block_ptr; next_block != (longlong *)0x0; next_block = (longlong *)*next_block) {
+    block_ptr = *(int64_t **)(memory_context + 2);
+    for (next_block = block_ptr; next_block != (int64_t *)0x0; next_block = (int64_t *)*next_block) {
       requested_size = *(uint *)(next_block + 2);
       if ((int)block_capacity <= (int)requested_size) {
-        available_size = *(int *)((longlong)next_block + 0x14);
+        available_size = *(int *)((int64_t)next_block + 0x14);
         if (requested_size == block_capacity) {
           // 精确匹配，直接使用该块
           if (next_block == block_ptr) {
-            *(longlong *)(memory_context + 2) = *block_ptr;
+            *(int64_t *)(memory_context + 2) = *block_ptr;
           }
-          if (next_block == *(longlong **)(memory_context + 4)) {
-            *(longlong *)(memory_context + 4) = (*(longlong **)(memory_context + 4))[1];
+          if (next_block == *(int64_t **)(memory_context + 4)) {
+            *(int64_t *)(memory_context + 4) = (*(int64_t **)(memory_context + 4))[1];
           }
-          if ((longlong *)next_block[1] != (longlong *)0x0) {
-            *(longlong *)next_block[1] = *next_block;
+          if ((int64_t *)next_block[1] != (int64_t *)0x0) {
+            *(int64_t *)next_block[1] = *next_block;
           }
           if (*next_block != 0) {
-            *(longlong *)(*next_block + 8) = next_block[1];
+            *(int64_t *)(*next_block + 8) = next_block[1];
           }
           // 释放匹配的块
           FUN_18064e900(next_block);
         }
-        *(uint *)((longlong)next_block + 0x14) = available_size + block_capacity;
+        *(uint *)((int64_t)next_block + 0x14) = available_size + block_capacity;
         *(uint *)(next_block + 2) = requested_size - block_capacity;
         *allocation_result = available_size;
         allocation_result[1] = block_capacity;
@@ -744,21 +744,21 @@ int * render_system_memory_allocator(int *memory_context, int *allocation_result
     if ((char)memory_context[1] == '\0') break;
     total_size = *memory_context;
     available_size = total_size * 2;
-    block_size = *(longlong *)(memory_context + 4);
+    block_size = *(int64_t *)(memory_context + 4);
     if ((block_size == 0) || (*(int *)(block_size + 0x14) + *(int *)(block_size + 0x10) != total_size)) {
       // 创建新的内存块
       new_block = (uint64_t *)FUN_18062b1e0(system_memory_pool_ptr, 0x18, 8, CONCAT71((uint7)(uint3)((uint)total_size >> 8), 3), temp_var9);
       *new_block = 0;
       new_block[1] = 0;
       *(int32_t *)(new_block + 2) = 0;
-      *(int32_t *)((longlong)new_block + 0x14) = 0xffffffff;
-      *(int *)((longlong)new_block + 0x14) = *memory_context;
+      *(int32_t *)((int64_t)new_block + 0x14) = 0xffffffff;
+      *(int *)((int64_t)new_block + 0x14) = *memory_context;
       *(int *)(new_block + 2) = available_size - *memory_context;
       new_block[1] = *(uint64_t *)(memory_context + 4);
       if (*(uint64_t **)(memory_context + 4) != (uint64_t *)0x0) {
         **(uint64_t **)(memory_context + 4) = new_block;
       }
-      if ((*(longlong *)(memory_context + 2) == 0) && (*(longlong *)(memory_context + 4) == 0)) {
+      if ((*(int64_t *)(memory_context + 2) == 0) && (*(int64_t *)(memory_context + 4) == 0)) {
         *(uint64_t **)(memory_context + 2) = new_block;
       }
       *(uint64_t **)(memory_context + 4) = new_block;
@@ -795,13 +795,13 @@ LAB_18030a42d:
  * - 维护内存池的完整性
  * - 实现高效的内存管理策略
  */
-void render_system_memory_block_manager(longlong memory_context, uint64_t block_size)
+void render_system_memory_block_manager(int64_t memory_context, uint64_t block_size)
 {
   int mutex_result;
   int block_index;
-  longlong *current_block;
-  longlong last_block;
-  longlong *next_block;
+  int64_t *current_block;
+  int64_t last_block;
+  int64_t *next_block;
   int block_count;
   uint64_t *new_block;
   int stack_size;
@@ -812,16 +812,16 @@ void render_system_memory_block_manager(longlong memory_context, uint64_t block_
   if (mutex_result != 0) {
     __Throw_C_error_std__YAXH_Z(mutex_result);
   }
-  current_block = *(longlong **)(memory_context + 8);
+  current_block = *(int64_t **)(memory_context + 8);
   mutex_result = (int)block_size;
-  stack_size = (int)((ulonglong)block_size >> 0x20);
+  stack_size = (int)((uint64_t)block_size >> 0x20);
   do {
-    if (current_block == (longlong *)0x0) {
-      last_block = *(longlong *)(memory_context + 0x10);
+    if (current_block == (int64_t *)0x0) {
+      last_block = *(int64_t *)(memory_context + 0x10);
       if (last_block == 0) {
         // 创建新的内存块
         new_block = (uint64_t *)FUN_18062b1e0(system_memory_pool_ptr, 0x18, 8, 3, temp_var8);
-        *(int *)((longlong)new_block + 0x14) = mutex_result;
+        *(int *)((int64_t)new_block + 0x14) = mutex_result;
         *(int *)(new_block + 2) = stack_size;
         *new_block = 0;
         new_block[1] = 0;
@@ -837,7 +837,7 @@ LAB_18030a65e:
         // 创建新的块并链接
         new_block = (uint64_t *)FUN_18062b1e0(system_memory_pool_ptr, 0x18, 8, 3, temp_var8);
         new_block[1] = 0;
-        *(int *)((longlong)new_block + 0x14) = mutex_result;
+        *(int *)((int64_t)new_block + 0x14) = mutex_result;
         *(int *)(new_block + 2) = stack_size;
         *new_block = 0;
         new_block[1] = *(uint64_t *)(memory_context + 0x10);
@@ -851,38 +851,38 @@ LAB_18030a662:
       }
       return;
     }
-    block_index = *(int *)((longlong)current_block + 0x14);
+    block_index = *(int *)((int64_t)current_block + 0x14);
     if (mutex_result < block_index) {
-      next_block = (longlong *)current_block[1];
-      if (next_block == (longlong *)0x0) {
+      next_block = (int64_t *)current_block[1];
+      if (next_block == (int64_t *)0x0) {
         if (stack_size + mutex_result != block_index) {
           // 创建新的块
           new_block = (uint64_t *)FUN_18062b1e0(system_memory_pool_ptr, 0x18, 8, 3, temp_var8);
-          *(int *)((longlong)new_block + 0x14) = mutex_result;
+          *(int *)((int64_t)new_block + 0x14) = mutex_result;
           *(int *)(new_block + 2) = stack_size;
           *new_block = current_block;
           new_block[1] = 0;
-          current_block[1] = (longlong)new_block;
+          current_block[1] = (int64_t)new_block;
           goto LAB_18030a65e;
         }
         // 调整当前块大小
-        *(int *)((longlong)current_block + 0x14) = block_index - stack_size;
+        *(int *)((int64_t)current_block + 0x14) = block_index - stack_size;
         *(int *)(current_block + 2) = (int)current_block[2] + stack_size;
       }
       else {
         block_count = (int)next_block[2];
-        if (*(int *)((longlong)next_block + 0x14) + block_count == mutex_result) {
+        if (*(int *)((int64_t)next_block + 0x14) + block_count == mutex_result) {
           if (stack_size + mutex_result == block_index) {
             // 合并块
-            if (current_block == *(longlong **)(memory_context + 0x10)) {
-              *(longlong **)(memory_context + 0x10) = next_block;
+            if (current_block == *(int64_t **)(memory_context + 0x10)) {
+              *(int64_t **)(memory_context + 0x10) = next_block;
               block_count = (int)next_block[2];
             }
             *(int *)(next_block + 2) = (int)current_block[2] + block_count + stack_size;
             last_block = *current_block;
             *next_block = last_block;
             if (last_block != 0) {
-              *(longlong **)(last_block + 8) = next_block;
+              *(int64_t **)(last_block + 8) = next_block;
             }
             // 释放当前块
             FUN_18064e900(current_block);
@@ -891,23 +891,23 @@ LAB_18030a662:
         }
         else if (stack_size + mutex_result == block_index) {
           // 调整当前块大小
-          *(int *)((longlong)current_block + 0x14) = block_index - stack_size;
+          *(int *)((int64_t)current_block + 0x14) = block_index - stack_size;
           *(int *)(current_block + 2) = (int)current_block[2] + stack_size;
         }
         else {
           // 在块之间插入新块
           new_block = (uint64_t *)FUN_18062b1e0(system_memory_pool_ptr, 0x18, 8, 3, temp_var8);
-          *(int *)((longlong)new_block + 0x14) = mutex_result;
+          *(int *)((int64_t)new_block + 0x14) = mutex_result;
           *(int *)(new_block + 2) = stack_size;
           *new_block = current_block;
           new_block[1] = next_block;
-          *next_block = (longlong)new_block;
-          current_block[1] = (longlong)new_block;
+          *next_block = (int64_t)new_block;
+          current_block[1] = (int64_t)new_block;
         }
       }
       goto LAB_18030a662;
     }
-    current_block = (longlong *)*current_block;
+    current_block = (int64_t *)*current_block;
   } while( true );
 }
 

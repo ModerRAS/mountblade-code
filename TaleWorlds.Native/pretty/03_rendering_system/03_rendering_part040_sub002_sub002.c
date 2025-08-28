@@ -19,12 +19,12 @@
 
 // 外部函数声明
 extern int32_t func_0x00018028afe0(void);
-extern void func_0x00018028b140(longlong *param_1);
+extern void func_0x00018028b140(int64_t *param_1);
 extern int FUN_18028c3e0(void);
-extern int FUN_18028e390(longlong param_1, uint param_2, char *param_3);
+extern int FUN_18028e390(int64_t param_1, uint param_2, char *param_3);
 extern int func_0x00018028c210(void);
-extern longlong func_0x000180120ce0(longlong param_1, longlong param_2);
-extern void FUN_180059ba0(longlong param_1, longlong param_2);
+extern int64_t func_0x000180120ce0(int64_t param_1, int64_t param_2);
+extern void FUN_180059ba0(int64_t param_1, int64_t param_2);
 
 // 外部常量声明
 extern char global_config_624_ptr[4];
@@ -37,20 +37,20 @@ extern char global_config_680_ptr[4];
 extern char global_config_688_ptr[4];
 extern char global_config_664_ptr[4];
 extern char global_config_672_ptr[4];
-extern longlong SYSTEM_DATA_MANAGER_B;
-extern longlong SYSTEM_DATA_MANAGER_A;
+extern int64_t SYSTEM_DATA_MANAGER_B;
+extern int64_t SYSTEM_DATA_MANAGER_A;
 
-// 函数: void validate_render_data(uint64_t render_context, int start_pos, int data_size, longlong *data_ptr)
+// 函数: void validate_render_data(uint64_t render_context, int start_pos, int data_size, int64_t *data_ptr)
 // 功能: 验证渲染数据的有效性
 // 参数:
 //   render_context - 渲染上下文
 //   start_pos - 起始位置
 //   data_size - 数据大小
 //   data_ptr - 数据指针
-void validate_render_data(uint64_t render_context, int start_pos, int data_size, longlong *data_ptr)
+void validate_render_data(uint64_t render_context, int start_pos, int data_size, int64_t *data_ptr)
 {
-  longlong data_offset;
-  longlong *result_ptr;
+  int64_t data_offset;
+  int64_t *result_ptr;
   int max_size;
   int start_offset;
   int32_t register_value;
@@ -75,39 +75,39 @@ void validate_render_data(uint64_t render_context, int start_pos, int data_size,
   
   *result_ptr = data_offset;
   *(int32_t *)(result_ptr + 1) = 0;
-  *(int *)((longlong)result_ptr + 0xc) = buffer_size;
+  *(int *)((int64_t)result_ptr + 0xc) = buffer_size;
   return;
 }
 
 
-// 函数: int32_t *process_render_stream(int32_t *result_ptr, longlong *data_ptr, uint stream_id)
+// 函数: int32_t *process_render_stream(int32_t *result_ptr, int64_t *data_ptr, uint stream_id)
 // 功能: 处理渲染数据流
 // 参数:
 //   result_ptr - 结果指针
 //   data_ptr - 数据指针
 //   stream_id - 流ID
 // 返回值: 处理结果指针
-int32_t *process_render_stream(int32_t *result_ptr, longlong *data_ptr, uint stream_id)
+int32_t *process_render_stream(int32_t *result_ptr, int64_t *data_ptr, uint stream_id)
 {
   int32_t first_byte;
   int32_t second_byte;
   byte third_byte;
   uint first_word;
-  ulonglong data_length;
-  longlong current_pos;
+  uint64_t data_length;
+  int64_t current_pos;
   uint word_value;
   int stream_index;
   int data_start;
   int current_offset;
-  ulonglong processed_length;
-  ulonglong total_length;
+  uint64_t processed_length;
+  uint64_t total_length;
   int32_t result_low;
   int32_t result_high;
   int32_t stream_stack[2];
   int buffer_size;
   
-  first_word = *(uint *)((longlong)data_ptr + 0xc);
-  total_length = (ulonglong)first_word;
+  first_word = *(uint *)((int64_t)data_ptr + 0xc);
+  total_length = (uint64_t)first_word;
   data_length = 0;
   
   // 检查数据有效性
@@ -117,7 +117,7 @@ int32_t *process_render_stream(int32_t *result_ptr, longlong *data_ptr, uint str
   *(int *)(data_ptr + 1) = (int)data_length;
   
   if ((int)data_length < (int)first_word) {
-    total_length = (ulonglong)first_word;
+    total_length = (uint64_t)first_word;
     do {
       data_start = (int)data_length;
       third_byte = func_0x00018028afe0();
@@ -129,9 +129,9 @@ int32_t *process_render_stream(int32_t *result_ptr, longlong *data_ptr, uint str
         total_length = total_length & 0xffffffff;
         
         // 检查转义字符
-        if ((stream_index < current_offset) && (*(char *)((longlong)stream_index + *data_ptr) == '\x1e')) {
+        if ((stream_index < current_offset) && (*(char *)((int64_t)stream_index + *data_ptr) == '\x1e')) {
           first_word = stream_index + 1;
-          data_length = (ulonglong)first_word;
+          data_length = (uint64_t)first_word;
           if ((current_offset < (int)first_word) || ((int)first_word < 0)) {
             data_length = total_length & 0xffffffff;
           }
@@ -144,17 +144,17 @@ int32_t *process_render_stream(int32_t *result_ptr, longlong *data_ptr, uint str
             while (((stream_index = (int)data_length, (third_byte & 0xf) != 0xf && ((third_byte & 0xf0) != 0xf0)) &&
                    (stream_index < current_offset))) {
             process_next_byte:
-              third_byte = *(byte *)((longlong)stream_index + *data_ptr);
+              third_byte = *(byte *)((int64_t)stream_index + *data_ptr);
               *(uint *)(data_ptr + 1) = stream_index + 1U;
-              data_length = (ulonglong)(stream_index + 1U);
+              data_length = (uint64_t)(stream_index + 1U);
             }
           }
         }
         else {
           func_0x00018028b140(data_ptr);
-          total_length = (ulonglong)*(uint *)((longlong)data_ptr + 0xc);
-          total_length = (ulonglong)*(uint *)((longlong)data_ptr + 0xc);
-          data_length = (ulonglong)*(uint *)(data_ptr + 1);
+          total_length = (uint64_t)*(uint *)((int64_t)data_ptr + 0xc);
+          total_length = (uint64_t)*(uint *)((int64_t)data_ptr + 0xc);
+          data_length = (uint64_t)*(uint *)(data_ptr + 1);
         }
         third_byte = func_0x00018028afe0();
       }
@@ -162,8 +162,8 @@ int32_t *process_render_stream(int32_t *result_ptr, longlong *data_ptr, uint str
       first_word = (uint)total_length;
       stream_index = (int)data_length;
       if (stream_index < (int)first_word) {
-        data_length = (ulonglong)(stream_index + 1U);
-        third_byte = *(byte *)((longlong)stream_index + *data_ptr);
+        data_length = (uint64_t)(stream_index + 1U);
+        third_byte = *(byte *)((int64_t)stream_index + *data_ptr);
         *(uint *)(data_ptr + 1) = stream_index + 1U;
       }
       else {
@@ -175,8 +175,8 @@ int32_t *process_render_stream(int32_t *result_ptr, longlong *data_ptr, uint str
       if (third_byte == 0xc) {
         current_offset = (int)data_length;
         if (current_offset < (int)first_word) {
-          data_length = (ulonglong)(current_offset + 1U);
-          third_byte = *(byte *)((longlong)current_offset + *data_ptr);
+          data_length = (uint64_t)(current_offset + 1U);
+          third_byte = *(byte *)((int64_t)current_offset + *data_ptr);
           *(uint *)(data_ptr + 1) = current_offset + 1U;
         }
         else {
@@ -198,7 +198,7 @@ int32_t *process_render_stream(int32_t *result_ptr, longlong *data_ptr, uint str
         if (((data_start < 0) || (result_low = first_byte, result_high = second_byte, buffer_size = current_offset, stream_index < 0)) ||
            (((int)first_word < data_start || ((int)(first_word - data_start) < stream_index)))) goto set_result_values;
         
-        current_pos = (longlong)data_start + *data_ptr;
+        current_pos = (int64_t)data_start + *data_ptr;
         buffer_size = stream_index;
         goto set_result_values;
       }
@@ -214,7 +214,7 @@ int32_t *process_render_stream(int32_t *result_ptr, longlong *data_ptr, uint str
     buffer_size = 0;
   set_result_values:
     result_low = (int32_t)current_pos;
-    result_high = (int32_t)((ulonglong)current_pos >> 0x20);
+    result_high = (int32_t)((uint64_t)current_pos >> 0x20);
   }
   
 set_result_values:
@@ -226,36 +226,36 @@ set_result_values:
 }
 
 
-// 函数: longlong *allocate_render_buffer(longlong *buffer_ptr, longlong *data_ptr, int multiplier)
+// 函数: int64_t *allocate_render_buffer(int64_t *buffer_ptr, int64_t *data_ptr, int multiplier)
 // 功能: 分配渲染缓冲区
 // 参数:
 //   buffer_ptr - 缓冲区指针
 //   data_ptr - 数据指针
 //   multiplier - 乘数
 // 返回值: 分配的缓冲区指针
-longlong *allocate_render_buffer(longlong *buffer_ptr, longlong *data_ptr, int multiplier)
+int64_t *allocate_render_buffer(int64_t *buffer_ptr, int64_t *data_ptr, int multiplier)
 {
   int current_index;
   int32_t first_byte;
   int32_t second_byte;
   byte third_byte;
   int data_start;
-  longlong data_offset;
-  ulonglong length;
+  int64_t data_offset;
+  uint64_t length;
   int hash_value;
   int max_size;
   int buffer_offset;
-  ulonglong checksum;
-  ulonglong data_value;
+  uint64_t checksum;
+  uint64_t data_value;
   int buffer_size;
   
-  current_index = *(int *)((longlong)data_ptr + 0xc);
+  current_index = *(int *)((int64_t)data_ptr + 0xc);
   data_start = 0;
   if (current_index < 0) {
     data_start = current_index;
   }
   *(int *)(data_ptr + 1) = data_start;
-  data_offset = (longlong)data_start;
+  data_offset = (int64_t)data_start;
   
   // 读取前两个字节
   if (data_offset < current_index) {
@@ -277,9 +277,9 @@ longlong *allocate_render_buffer(longlong *buffer_ptr, longlong *data_ptr, int m
   
   // 读取长度字节
   if (data_start < current_index) {
-    data_offset = (longlong)data_start;
+    data_offset = (int64_t)data_start;
     data_start = data_start + 1;
-    length = (ulonglong)*(byte *)(data_offset + *data_ptr);
+    length = (uint64_t)*(byte *)(data_offset + *data_ptr);
   }
   else {
     length = 0;
@@ -301,7 +301,7 @@ longlong *allocate_render_buffer(longlong *buffer_ptr, longlong *data_ptr, int m
   if ((char)length != '\0') {
     do {
       if (data_start < current_index) {
-        data_offset = (longlong)data_start;
+        data_offset = (int64_t)data_start;
         data_start = data_start + 1;
         third_byte = *(byte *)(data_offset + *data_ptr);
       }
@@ -318,7 +318,7 @@ longlong *allocate_render_buffer(longlong *buffer_ptr, longlong *data_ptr, int m
   if (hash_value != 0) {
     do {
       if (data_start < current_index) {
-        data_offset = (longlong)data_start;
+        data_offset = (int64_t)data_start;
         data_start = data_start + 1;
         third_byte = *(byte *)(data_offset + *data_ptr);
       }
@@ -339,42 +339,42 @@ longlong *allocate_render_buffer(longlong *buffer_ptr, longlong *data_ptr, int m
   // 验证数据范围
   if ((((-1 < data_start) && (data_offset = 0, -1 < buffer_offset)) && (buffer_size = 0, data_offset = 0, data_start <= current_index)) &&
      (data_offset = 0, buffer_offset <= current_index - data_start)) {
-    data_offset = (longlong)data_start + *data_ptr;
+    data_offset = (int64_t)data_start + *data_ptr;
     buffer_size = buffer_offset;
   }
   
   *buffer_ptr = data_offset;
   *(int32_t *)(buffer_ptr + 1) = 0;
-  *(int *)((longlong)buffer_ptr + 0xc) = buffer_size;
+  *(int *)((int64_t)buffer_ptr + 0xc) = buffer_size;
   return buffer_ptr;
 }
 
 
-// 函数: int find_texture_offset(longlong texture_data, uint texture_id, char *signature)
+// 函数: int find_texture_offset(int64_t texture_data, uint texture_id, char *signature)
 // 功能: 查找纹理偏移量
 // 参数:
 //   texture_data - 纹理数据指针
 //   texture_id - 纹理ID
 //   signature - 签名指针
 // 返回值: 纹理偏移量
-int find_texture_offset(longlong texture_data, uint texture_id, char *signature)
+int find_texture_offset(int64_t texture_data, uint texture_id, char *signature)
 {
   uint entry_count;
-  ulonglong entry_offset;
+  uint64_t entry_offset;
   int current_entry;
   int texture_offset;
   
   current_entry = 0;
-  texture_offset = (uint)*(byte *)((ulonglong)texture_id + 4 + texture_data) * 0x100 +
-                 (uint)*(byte *)((ulonglong)texture_id + 5 + texture_data);
+  texture_offset = (uint)*(byte *)((uint64_t)texture_id + 4 + texture_data) * 0x100 +
+                 (uint)*(byte *)((uint64_t)texture_id + 5 + texture_data);
   
   if (texture_offset != 0) {
     do {
       entry_count = current_entry * 0x10 + texture_id + 0xc;
-      entry_offset = (ulonglong)entry_count;
+      entry_offset = (uint64_t)entry_count;
       
       // 检查签名匹配
-      if (((((uint)*(byte *)((ulonglong)entry_count + texture_data) == (int)*signature) &&
+      if (((((uint)*(byte *)((uint64_t)entry_count + texture_data) == (int)*signature) &&
            ((uint)*(byte *)(entry_offset + 1 + texture_data) == (int)signature[1])) &&
           ((uint)*(byte *)(entry_offset + 2 + texture_data) == (int)signature[2])) &&
          ((uint)*(byte *)(entry_offset + 3 + texture_data) == (int)signature[3])) {
@@ -390,22 +390,22 @@ int find_texture_offset(longlong texture_data, uint texture_id, char *signature)
 }
 
 
-// 函数: int32_t *process_render_batch_advanced(int32_t *result_ptr, longlong *data_ptr, uint64_t render_context)
+// 函数: int32_t *process_render_batch_advanced(int32_t *result_ptr, int64_t *data_ptr, uint64_t render_context)
 // 功能: 高级处理渲染批次
 // 参数:
 //   result_ptr - 结果指针
 //   data_ptr - 数据指针
 //   render_context - 渲染上下文
 // 返回值: 处理结果指针
-int32_t *process_render_batch_advanced(int32_t *result_ptr, longlong *data_ptr, uint64_t render_context)
+int32_t *process_render_batch_advanced(int32_t *result_ptr, int64_t *data_ptr, uint64_t render_context)
 {
   int32_t stream_data;
   int batch_count;
   int texture_count;
   uint64_t *stream_ptr;
   int32_t *result_data_ptr;
-  longlong data_offset;
-  longlong texture_offset;
+  int64_t data_offset;
+  int64_t texture_offset;
   int batch_info[2];
   uint64_t context_data;
   uint64_t stream_info;
@@ -420,13 +420,13 @@ int32_t *process_render_batch_advanced(int32_t *result_ptr, longlong *data_ptr, 
   stream_ptr = (uint64_t *)process_render_stream(&batch_data, render_context, 0x12);
   batch_data = *stream_ptr;
   render_info._0_4_ = *(int *)(stream_ptr + 1);
-  render_info._4_4_ = *(int *)((longlong)stream_ptr + 0xc);
+  render_info._4_4_ = *(int *)((int64_t)stream_ptr + 0xc);
   
   data_offset = texture_offset;
   do {
     if ((int)render_info._4_4_ <= (int)render_info) break;
     stream_data = func_0x00018028b140(&batch_data);
-    *(int32_t *)((longlong)&context_data + data_offset * 4) = stream_data;
+    *(int32_t *)((int64_t)&context_data + data_offset * 4) = stream_data;
     data_offset = data_offset + 1;
   } while (data_offset < 2);
   
@@ -436,18 +436,18 @@ int32_t *process_render_batch_advanced(int32_t *result_ptr, longlong *data_ptr, 
     batch_data = 0;
     if ((-1 < context_data) &&
        (((batch_data = 0, -1 < (int)(uint)context_data &&
-         (render_info._4_4_ = 0, batch_data = 0, context_data._4_4_ <= *(int *)((longlong)data_ptr + 0xc))
+         (render_info._4_4_ = 0, batch_data = 0, context_data._4_4_ <= *(int *)((int64_t)data_ptr + 0xc))
          ) && (batch_data = 0,
-              (int)(uint)context_data <= *(int *)((longlong)data_ptr + 0xc) - context_data._4_4_)))) {
-      batch_data = (longlong)context_data._4_4_ + *data_ptr;
+              (int)(uint)context_data <= *(int *)((int64_t)data_ptr + 0xc) - context_data._4_4_)))) {
+      batch_data = (int64_t)context_data._4_4_ + *data_ptr;
       render_info._4_4_ = (uint)context_data;
     }
     
-    render_info = (ulonglong)render_info._4_4_ << 0x20;
+    render_info = (uint64_t)render_info._4_4_ << 0x20;
     stream_ptr = (uint64_t *)process_render_stream(local_stack, &batch_data, 0x13);
     batch_data = *stream_ptr;
     render_info._0_4_ = *(int *)(stream_ptr + 1);
-    render_info._4_4_ = *(int *)((longlong)stream_ptr + 0xc);
+    render_info._4_4_ = *(int *)((int64_t)stream_ptr + 0xc);
     
     do {
       if ((int)render_info._4_4_ <= (int)render_info) break;
@@ -458,8 +458,8 @@ int32_t *process_render_batch_advanced(int32_t *result_ptr, longlong *data_ptr, 
     
     if (batch_info[0] != 0) {
       texture_count = batch_info[0] + texture_count;
-      if ((*(int *)((longlong)data_ptr + 0xc) < texture_count) || (texture_count < 0)) {
-        texture_count = *(int *)((longlong)data_ptr + 0xc);
+      if ((*(int *)((int64_t)data_ptr + 0xc) < texture_count) || (texture_count < 0)) {
+        texture_count = *(int *)((int64_t)data_ptr + 0xc);
       }
       *(int *)(data_ptr + 1) = texture_count;
       result_data_ptr = (int32_t *)allocate_render_buffer(local_stack, data_ptr);
@@ -485,14 +485,14 @@ set_batch_result:
 }
 
 
-// 函数: uint64_t setup_render_pipeline(longlong pipeline_data, longlong texture_data, int32_t texture_format)
+// 函数: uint64_t setup_render_pipeline(int64_t pipeline_data, int64_t texture_data, int32_t texture_format)
 // 功能: 设置渲染管线
 // 参数:
 //   pipeline_data - 管线数据指针
 //   texture_data - 纹理数据指针
 //   texture_format - 纹理格式
 // 返回值: 渲染管线设置结果
-uint64_t setup_render_pipeline(longlong pipeline_data, longlong texture_data, int32_t texture_format)
+uint64_t setup_render_pipeline(int64_t pipeline_data, int64_t texture_data, int32_t texture_format)
 {
   byte first_byte;
   byte second_byte;
@@ -504,11 +504,11 @@ uint64_t setup_render_pipeline(longlong pipeline_data, longlong texture_data, in
   int render_index;
   int32_t render_config;
   uint texture_width;
-  longlong *data_ptr;
+  int64_t *data_ptr;
   uint64_t *stream_ptr;
-  ulonglong config_length;
-  ulonglong stream_length;
-  longlong texture_info;
+  uint64_t config_length;
+  uint64_t stream_length;
+  int64_t texture_info;
   int batch_info[4];
   int32_t batch_size;
   int texture_sizes[2];
@@ -517,11 +517,11 @@ uint64_t setup_render_pipeline(longlong pipeline_data, longlong texture_data, in
   uint texture_height;
   uint64_t render_buffer;
   int32_t render_size;
-  longlong buffer_offset;
+  int64_t buffer_offset;
   uint64_t stream_data;
   int8_t render_stack[24];
   
-  *(longlong *)(pipeline_data + 8) = texture_data;
+  *(int64_t *)(pipeline_data + 8) = texture_data;
   *(int32_t *)(pipeline_data + 0x10) = texture_format;
   config_length = 0;
   texture_buffer._0_4_ = 0;
@@ -581,7 +581,7 @@ uint64_t setup_render_pipeline(longlong pipeline_data, longlong texture_data, in
   
   *(uint64_t *)(pipeline_data + 0x80) = 0;
   *(uint64_t *)(pipeline_data + 0x88) = 0;
-  texture_buffer = (ulonglong)texture_width + texture_data;
+  texture_buffer = (uint64_t)texture_width + texture_data;
   render_buffer._4_4_ = 0x20000000;
   *(uint64_t *)(pipeline_data + 0x90) = 0;
   *(uint64_t *)(pipeline_data + 0x98) = 0;
@@ -601,25 +601,25 @@ uint64_t setup_render_pipeline(longlong pipeline_data, longlong texture_data, in
   
   // 处理纹理数据
   allocate_render_buffer(&buffer_offset, &stream_data);
-  data_ptr = (longlong *)allocate_render_buffer(&buffer_offset, &stream_data);
+  data_ptr = (int64_t *)allocate_render_buffer(&buffer_offset, &stream_data);
   buffer_offset = *data_ptr;
   stream_data = data_ptr[1];
   stream_ptr = (uint64_t *)allocate_render_buffer(&buffer_offset, &stream_data);
   texture_buffer._0_4_ = (int32_t)*stream_ptr;
-  texture_buffer._4_4_ = (int32_t)((ulonglong)*stream_ptr >> 0x20);
+  texture_buffer._4_4_ = (int32_t)((uint64_t)*stream_ptr >> 0x20);
   render_size = (int32_t)stream_ptr[1];
-  render_buffer._4_4_ = (int32_t)((ulonglong)stream_ptr[1] >> 0x20);
+  render_buffer._4_4_ = (int32_t)((uint64_t)stream_ptr[1] >> 0x20);
   
   // 处理批次信息
   allocate_render_buffer(&buffer_offset, &stream_data);
-  data_ptr = (longlong *)allocate_render_buffer(&buffer_offset, &stream_data);
+  data_ptr = (int64_t *)allocate_render_buffer(&buffer_offset, &stream_data);
   stream_data = *data_ptr;
   stream_ptr = (uint64_t *)allocate_render_buffer(&buffer_offset, &stream_data);
   pipeline_config = stream_ptr[1];
   *(uint64_t *)(pipeline_data + 0x60) = *stream_ptr;
   *(uint64_t *)(pipeline_data + 0x68) = pipeline_config;
   
-  data_ptr = (longlong *)process_render_stream(&buffer_offset, &texture_buffer, 0x11);
+  data_ptr = (int64_t *)process_render_stream(&buffer_offset, &texture_buffer, 0x11);
   buffer_offset = *data_ptr;
   stream_data = data_ptr[1];
   config_length = 0;
@@ -628,9 +628,9 @@ uint64_t setup_render_pipeline(longlong pipeline_data, longlong texture_data, in
     batch_index = func_0x00018028b140(&buffer_offset);
     batch_info[config_length + 2] = batch_index;
     config_length = config_length + 1;
-  } while ((longlong)config_length < 1);
+  } while ((int64_t)config_length < 1);
   
-  data_ptr = (longlong *)process_render_stream(&buffer_offset, &texture_buffer, 0x106);
+  data_ptr = (int64_t *)process_render_stream(&buffer_offset, &texture_buffer, 0x106);
   buffer_offset = *data_ptr;
   stream_data = data_ptr[1];
   config_length = 0;
@@ -639,9 +639,9 @@ uint64_t setup_render_pipeline(longlong pipeline_data, longlong texture_data, in
     batch_index = func_0x00018028b140(&buffer_offset);
     batch_info[config_length] = batch_index;
     config_length = config_length + 1;
-  } while ((longlong)config_length < 1);
+  } while ((int64_t)config_length < 1);
   
-  data_ptr = (longlong *)process_render_stream(&buffer_offset, &texture_buffer, 0x124);
+  data_ptr = (int64_t *)process_render_stream(&buffer_offset, &texture_buffer, 0x124);
   buffer_offset = *data_ptr;
   stream_data = data_ptr[1];
   config_length = 0;
@@ -650,9 +650,9 @@ uint64_t setup_render_pipeline(longlong pipeline_data, longlong texture_data, in
     batch_index = func_0x00018028b140(&buffer_offset);
     texture_sizes[config_length] = batch_index;
     config_length = config_length + 1;
-  } while ((longlong)config_length < 1);
+  } while ((int64_t)config_length < 1);
   
-  data_ptr = (longlong *)process_render_stream(&buffer_offset, &texture_buffer, 0x125);
+  data_ptr = (int64_t *)process_render_stream(&buffer_offset, &texture_buffer, 0x125);
   buffer_offset = *data_ptr;
   stream_data = data_ptr[1];
   config_length = 0;
@@ -661,7 +661,7 @@ uint64_t setup_render_pipeline(longlong pipeline_data, longlong texture_data, in
     batch_index = func_0x00018028b140(&buffer_offset);
     render_sizes[config_length] = batch_index;
     config_length = config_length + 1;
-  } while ((longlong)config_length < 1);
+  } while ((int64_t)config_length < 1);
   
   buffer_offset = CONCAT44(texture_buffer._4_4_, (int32_t)texture_buffer);
   stream_data = CONCAT44(render_buffer._4_4_, render_size);
@@ -686,7 +686,7 @@ uint64_t setup_render_pipeline(longlong pipeline_data, longlong texture_data, in
   
   texture_width = render_size;
   if (texture_sizes[0] != 0) {
-    texture_info = (longlong)render_sizes[0];
+    texture_info = (int64_t)render_sizes[0];
     if (render_sizes[0] == 0) {
       return 0;
     }
@@ -706,11 +706,11 @@ uint64_t setup_render_pipeline(longlong pipeline_data, longlong texture_data, in
     buffer_offset = 0;
     stream_data = 0;
     if (((-1 < batch_index) && (-1 < (int)(render_size - batch_index))) && (batch_index <= (int)render_size)) {
-      stream_data = (ulonglong)(render_size - batch_index) << 0x20;
+      stream_data = (uint64_t)(render_size - batch_index) << 0x20;
       buffer_offset = texture_info + stream_data;
     }
-    *(longlong *)(pipeline_data + 0x90) = buffer_offset;
-    *(longlong *)(pipeline_data + 0x98) = stream_data;
+    *(int64_t *)(pipeline_data + 0x90) = buffer_offset;
+    *(int64_t *)(pipeline_data + 0x98) = stream_data;
     texture_width = render_size;
   }
   
@@ -734,22 +734,22 @@ process_texture_data:
     batch_index = 0xffff;
   }
   else {
-    batch_index = (uint)*(byte *)((ulonglong)texture_width + 4 + texture_data) * 0x100 +
-            (uint)*(byte *)((ulonglong)texture_width + 5 + texture_data);
+    batch_index = (uint)*(byte *)((uint64_t)texture_width + 4 + texture_data) * 0x100 +
+            (uint)*(byte *)((uint64_t)texture_width + 5 + texture_data);
   }
   *(int *)(pipeline_data + 0x14) = batch_index;
   
-  first_byte = *(byte *)((ulonglong)texture_offset + 2 + texture_data);
-  second_byte = *(byte *)((ulonglong)texture_offset + 3 + texture_data);
+  first_byte = *(byte *)((uint64_t)texture_offset + 2 + texture_data);
+  second_byte = *(byte *)((uint64_t)texture_offset + 3 + texture_data);
   *(int32_t *)(pipeline_data + 0x34) = 0;
   batch_index = (uint)first_byte * 0x100 + (uint)second_byte;
   
   if (batch_index != 0) {
     do {
       texture_width = texture_offset + 4 + (int)config_length * 8;
-      stream_length = (ulonglong)texture_width;
-      texture_index = (uint)*(byte *)((ulonglong)texture_width + texture_data) * 0x100 +
-              (uint)*(byte *)((ulonglong)texture_width + 1 + texture_data);
+      stream_length = (uint64_t)texture_width;
+      texture_index = (uint)*(byte *)((uint64_t)texture_width + texture_data) * 0x100 +
+              (uint)*(byte *)((uint64_t)texture_width + 1 + texture_data);
       if ((texture_index == 0) ||
          ((texture_index == 3 &&
           ((texture_index = (uint)*(byte *)(stream_length + 3 + texture_data) +
@@ -762,13 +762,13 @@ process_texture_data:
              * 0x100) * 0x100 + texture_offset;
       }
       texture_width = (int)config_length + 1;
-      config_length = (ulonglong)texture_width;
+      config_length = (uint64_t)texture_width;
     } while ((int)texture_width < batch_index);
     
     if (*(int *)(pipeline_data + 0x34) != 0) {
       *(uint *)(pipeline_data + 0x38) =
-           (uint)*(byte *)((longlong)*(int *)(pipeline_data + 0x1c) + 0x33 + texture_data) +
-           (uint)*(byte *)((longlong)*(int *)(pipeline_data + 0x1c) + 0x32 + texture_data) * 0x100;
+           (uint)*(byte *)((int64_t)*(int *)(pipeline_data + 0x1c) + 0x33 + texture_data) +
+           (uint)*(byte *)((int64_t)*(int *)(pipeline_data + 0x1c) + 0x32 + texture_data) * 0x100;
       return 1;
     }
   }
@@ -777,39 +777,39 @@ process_texture_data:
 }
 
 
-// 函数: uint get_texture_data(longlong texture_data, uint texture_id)
+// 函数: uint get_texture_data(int64_t texture_data, uint texture_id)
 // 功能: 获取纹理数据
 // 参数:
 //   texture_data - 纹理数据指针
 //   texture_id - 纹理ID
 // 返回值: 纹理数据值
-uint get_texture_data(longlong texture_data, uint texture_id)
+uint get_texture_data(int64_t texture_data, uint texture_id)
 {
   int texture_offset;
-  longlong texture_base;
-  longlong texture_info;
+  int64_t texture_base;
+  int64_t texture_info;
   uint texture_width;
   ushort texture_height;
-  longlong texture_ptr;
+  int64_t texture_ptr;
   int texture_size;
   uint texture_value;
   int texture_index;
   ushort texture_type;
-  ulonglong texture_length;
-  ulonglong texture_pos;
-  longlong texture_entry;
+  uint64_t texture_length;
+  uint64_t texture_pos;
+  int64_t texture_entry;
   ushort texture_depth;
-  ulonglong texture_range;
+  uint64_t texture_range;
   ushort texture_format;
   
-  texture_length = (ulonglong)*(uint *)(texture_data + 0x34);
-  texture_base = *(longlong *)(texture_data + 8);
+  texture_length = (uint64_t)*(uint *)(texture_data + 0x34);
+  texture_base = *(int64_t *)(texture_data + 8);
   texture_height = (ushort)*(byte *)(texture_length + texture_base) * 0x100 + (ushort)*(byte *)(texture_length + 1 + texture_base);
   
   if (texture_height == 0) {
     if ((int)texture_id <
         (int)((uint)*(byte *)(texture_length + 2 + texture_base) * 0x100 + (*(byte *)(texture_length + 3 + texture_base) - 6))) {
-      return (uint)*(byte *)(texture_length + (longlong)(int)texture_id + 6 + texture_base);
+      return (uint)*(byte *)(texture_length + (int64_t)(int)texture_id + 6 + texture_base);
     }
   }
   else if (texture_height == 6) {
@@ -835,8 +835,8 @@ uint get_texture_data(longlong texture_data, uint texture_id)
       
       if ((int)texture_id < 0x10000) {
         texture_value = texture_width;
-        if ((int)((uint)*(byte *)((ulonglong)texture_value + texture_base + (ulonglong)texture_depth * 2) * 0x100 +
-                 (uint)*(byte *)((ulonglong)texture_value + texture_base + 1 + (ulonglong)texture_depth * 2)) <=
+        if ((int)((uint)*(byte *)((uint64_t)texture_value + texture_base + (uint64_t)texture_depth * 2) * 0x100 +
+                 (uint)*(byte *)((uint64_t)texture_value + texture_base + 1 + (uint64_t)texture_depth * 2)) <=
             (int)texture_id) {
           texture_value = texture_width + (uint)texture_depth * 2;
         }
@@ -844,14 +844,14 @@ uint get_texture_data(longlong texture_data, uint texture_id)
         texture_value = texture_value - 2;
         for (; texture_type != 0; texture_type = texture_type + -1) {
           texture_format = texture_format >> 1;
-          if ((int)((uint)*(byte *)((ulonglong)texture_value + texture_base + (ulonglong)texture_format * 2) * 0x100 +
-                   (uint)*(byte *)((ulonglong)texture_value + texture_base + 1 + (ulonglong)texture_format * 2)) <
+          if ((int)((uint)*(byte *)((uint64_t)texture_value + texture_base + (uint64_t)texture_format * 2) * 0x100 +
+                   (uint)*(byte *)((uint64_t)texture_value + texture_base + 1 + (uint64_t)texture_format * 2)) <
               (int)texture_id) {
             texture_value = texture_value + (uint)texture_format * 2;
           }
         }
         
-        texture_range = (ulonglong)(((texture_value - texture_width) + 2 >> 1 & 0xffff) * 2);
+        texture_range = (uint64_t)(((texture_value - texture_width) + 2 >> 1 & 0xffff) * 2);
         texture_info = ((uint)texture_depth + (uint)texture_depth * 2) * 2 + texture_range + texture_length;
         texture_size = (uint)*(byte *)(texture_info + 0x10 + texture_base) * 0x100 +
                 (uint)*(byte *)(texture_info + 0x11 + texture_base);
@@ -866,7 +866,7 @@ uint get_texture_data(longlong texture_data, uint texture_id)
             return (uint)(ushort)((ushort)*(byte *)(texture_info + 0x10 + texture_base) * 0x100 +
                                   (ushort)*(byte *)(texture_info + 0x11 + texture_base) + (short)texture_id);
           }
-          texture_info = (ulonglong)texture_format + (longlong)(int)((texture_id - texture_size) * 2) + (ulonglong)texture_width +
+          texture_info = (uint64_t)texture_format + (int64_t)(int)((texture_id - texture_size) * 2) + (uint64_t)texture_width +
                   texture_range + texture_length;
           return (uint)*(byte *)(texture_info + 0x11 + texture_base) +
                  (uint)*(byte *)(texture_info + 0x10 + texture_base) * 0x100;
@@ -884,7 +884,7 @@ uint get_texture_data(longlong texture_data, uint texture_id)
         texture_entry = texture_length + texture_base;
         do {
           texture_offset = (texture_index - texture_size >> 1) + texture_size;
-          texture_ptr = (longlong)(texture_offset * 0xc);
+          texture_ptr = (int64_t)(texture_offset * 0xc);
           texture_width = (uint)*(byte *)(texture_ptr + 0x11 + texture_info) * 0x10000 +
                   (uint)*(byte *)(texture_ptr + 0x12 + texture_info) * 0x100 +
                   (uint)*(byte *)(texture_ptr + 0x10 + texture_info) * 0x1000000 +
@@ -917,7 +917,7 @@ uint get_texture_data(longlong texture_data, uint texture_id)
 }
 
 
-// 函数: int create_render_entry(longlong render_buffer, int entry_index, int flag1, int flag2, int16_t x_coord, int16_t y_coord, int x_size, int y_size, int next_x, int next_y)
+// 函数: int create_render_entry(int64_t render_buffer, int entry_index, int flag1, int flag2, int16_t x_coord, int16_t y_coord, int x_size, int y_size, int next_x, int next_y)
 // 功能: 创建渲染条目
 // 参数:
 //   render_buffer - 渲染缓冲区指针
@@ -931,13 +931,13 @@ uint get_texture_data(longlong texture_data, uint texture_id)
 //   next_x - 下一个X坐标
 //   next_y - 下一个Y坐标
 // 返回值: 创建的条目索引
-int create_render_entry(longlong render_buffer, int entry_index, int flag1, int flag2, int16_t x_coord, int16_t y_coord, int x_size, int y_size, int next_x, int next_y)
+int create_render_entry(int64_t render_buffer, int entry_index, int flag1, int flag2, int16_t x_coord, int16_t y_coord, int x_size, int y_size, int next_x, int next_y)
 {
-  longlong entry_offset;
+  int64_t entry_offset;
   
   if (flag2 != 0) {
     if (flag1 != 0) {
-      entry_offset = (longlong)entry_index * 0xe;
+      entry_offset = (int64_t)entry_index * 0xe;
       entry_index = entry_index + 1;
       *(short *)(entry_offset + render_buffer) = (short)(x_size + next_x >> 1);
       *(int8_t *)(entry_offset + 0xc + render_buffer) = 3;
@@ -945,7 +945,7 @@ int create_render_entry(longlong render_buffer, int entry_index, int flag1, int 
       *(int16_t *)(entry_offset + 6 + render_buffer) = (int16_t)next_y;
       *(short *)(entry_offset + 2 + render_buffer) = (short)(y_size + next_y >> 1);
     }
-    entry_offset = (longlong)entry_index * 0xe;
+    entry_offset = (int64_t)entry_index * 0xe;
     *(int16_t *)(entry_offset + render_buffer) = x_coord;
     *(int16_t *)(entry_offset + 2 + render_buffer) = y_coord;
     *(short *)(entry_offset + 4 + render_buffer) = (short)x_size;
@@ -954,7 +954,7 @@ int create_render_entry(longlong render_buffer, int entry_index, int flag1, int 
     return entry_index + 1;
   }
   
-  entry_offset = (longlong)entry_index * 0xe;
+  entry_offset = (int64_t)entry_index * 0xe;
   *(int16_t *)(entry_offset + render_buffer) = x_coord;
   *(int16_t *)(entry_offset + 2 + render_buffer) = y_coord;
   if (flag1 != 0) {
@@ -970,7 +970,7 @@ int create_render_entry(longlong render_buffer, int entry_index, int flag1, int 
 }
 
 
-// 函数: int add_render_entry_advanced(longlong render_buffer, uint64_t render_context, int entry_index, int flag1, uint64_t context_data, int16_t x_coord, int16_t y_coord, int x_size, uint64_t texture_data, int y_size, int next_y)
+// 函数: int add_render_entry_advanced(int64_t render_buffer, uint64_t render_context, int entry_index, int flag1, uint64_t context_data, int16_t x_coord, int16_t y_coord, int x_size, uint64_t texture_data, int y_size, int next_y)
 // 功能: 高级添加渲染条目
 // 参数:
 //   render_buffer - 渲染缓冲区指针
@@ -985,15 +985,15 @@ int create_render_entry(longlong render_buffer, int entry_index, int flag1, int 
 //   y_size - Y尺寸
 //   next_y - 下一个Y坐标
 // 返回值: 添加的条目索引
-int add_render_entry_advanced(longlong render_buffer, uint64_t render_context, int entry_index, int flag1, uint64_t context_data, int16_t x_coord, int16_t y_coord, int x_size, uint64_t texture_data, int y_size, int next_y)
+int add_render_entry_advanced(int64_t render_buffer, uint64_t render_context, int entry_index, int flag1, uint64_t context_data, int16_t x_coord, int16_t y_coord, int x_size, uint64_t texture_data, int y_size, int next_y)
 {
-  longlong entry_offset;
-  ulonglong context_size;
-  longlong context_offset;
+  int64_t entry_offset;
+  uint64_t context_size;
+  int64_t context_offset;
   
   if (flag1 != 0) {
     entry_offset = context_size * 0xe;
-    context_size = (ulonglong)((int)context_size + 1);
+    context_size = (uint64_t)((int)context_size + 1);
     *(short *)(entry_offset + render_buffer) = (short)(x_size + next_y >> 1);
     *(int8_t *)(entry_offset + 0xc + render_buffer) = 3;
     *(short *)(entry_offset + 4 + context_offset) = (short)next_y;
@@ -1001,7 +1001,7 @@ int add_render_entry_advanced(longlong render_buffer, uint64_t render_context, i
     *(short *)(entry_offset + 2 + context_offset) = (short)(flag1 + next_y >> 1);
   }
   
-  entry_offset = (longlong)(int)context_size * 0xe;
+  entry_offset = (int64_t)(int)context_size * 0xe;
   *(int16_t *)(entry_offset + context_offset) = x_coord;
   *(int16_t *)(entry_offset + 2 + context_offset) = y_coord;
   *(short *)(entry_offset + 4 + context_offset) = (short)x_size;
@@ -1028,9 +1028,9 @@ int add_render_entry_advanced(longlong render_buffer, uint64_t render_context, i
 // 返回值: 添加的条目索引
 int add_render_entry_simple(uint64_t render_context, uint64_t context_data, int flag1, uint64_t texture_data, uint64_t pipeline_data, int16_t x_coord, int16_t y_coord, uint64_t texture_info, uint64_t render_info, int16_t next_x, int16_t next_y)
 {
-  longlong entry_offset;
-  longlong context_size;
-  longlong context_offset;
+  int64_t entry_offset;
+  int64_t context_size;
+  int64_t context_offset;
   
   entry_offset = context_size * 0xe;
   *(int16_t *)(entry_offset + context_offset) = x_coord;
@@ -1048,14 +1048,14 @@ int add_render_entry_simple(uint64_t render_context, uint64_t context_data, int 
 }
 
 
-// 函数: ulonglong process_vertex_transformations(longlong transform_data, uint64_t render_context, ulonglong *result_ptr)
+// 函数: uint64_t process_vertex_transformations(int64_t transform_data, uint64_t render_context, uint64_t *result_ptr)
 // 功能: 处理顶点变换
 // 参数:
 //   transform_data - 变换数据指针
 //   render_context - 渲染上下文
 //   result_ptr - 结果指针
 // 返回值: 处理结果
-ulonglong process_vertex_transformations(longlong transform_data, uint64_t render_context, ulonglong *result_ptr)
+uint64_t process_vertex_transformations(int64_t transform_data, uint64_t render_context, uint64_t *result_ptr)
 {
   byte *texture_ptr;
   byte *vertex_ptr;
@@ -1068,16 +1068,16 @@ ulonglong process_vertex_transformations(longlong transform_data, uint64_t rende
   uint texture_coord;
   int vertex_count;
   int batch_count;
-  ulonglong transform_result;
-  ulonglong texture_offset;
+  uint64_t transform_result;
+  uint64_t texture_offset;
   byte transform_flag;
   short vertex_weight;
-  ulonglong batch_result;
+  uint64_t batch_result;
   byte *batch_ptr;
   short *index_ptr;
   byte *vertex_buffer;
   int32_t batch_info;
-  ulonglong texture_size;
+  uint64_t texture_size;
   uint texture_width;
   uint texture_height;
   byte *texture_data;
@@ -1094,7 +1094,7 @@ ulonglong process_vertex_transformations(longlong transform_data, uint64_t rende
   float normal_y;
   float normal_z;
   float normal_w;
-  longlong local_offset;
+  int64_t local_offset;
   uint local_texture_size;
   float local_matrix[4];
   float *local_stack_e8;
@@ -1103,7 +1103,7 @@ ulonglong process_vertex_transformations(longlong transform_data, uint64_t rende
   float local_stack_d8;
   float local_stack_d4;
   
-  local_offset = *(longlong *)(transform_data + 8);
+  local_offset = *(int64_t *)(transform_data + 8);
   texture_offset = 0;
   transform_index = func_0x00018028c210();
   *result_ptr = 0;
@@ -1113,7 +1113,7 @@ ulonglong process_vertex_transformations(longlong transform_data, uint64_t rende
     transform_result = 0;
   }
   else {
-    batch_count = (longlong)transform_index;
+    batch_count = (int64_t)transform_index;
     vertex_index = (ushort)*(byte *)(batch_count + local_offset) * 0x100 + (ushort)*(byte *)(batch_count + 1 + local_offset);
     transform_matrix = 0;
     
@@ -1214,7 +1214,7 @@ ulonglong process_vertex_transformations(longlong transform_data, uint64_t rende
           }
         }
         
-        local_offset = (longlong)transform_index;
+        local_offset = (int64_t)transform_index;
         if (3 < local_offset) {
           batch_count = (local_offset - 4U >> 2) + 1;
           transform_result = batch_count * 4;
@@ -1274,7 +1274,7 @@ ulonglong process_vertex_transformations(longlong transform_data, uint64_t rende
           } while (batch_count != 0);
         }
         
-        if ((longlong)transform_result < local_offset) {
+        if ((int64_t)transform_result < local_offset) {
           batch_count = transform_result * 0xe;
           vertex_count = local_offset - transform_result;
           do {
@@ -1301,7 +1301,7 @@ ulonglong process_vertex_transformations(longlong transform_data, uint64_t rende
           *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + 1;
         }
         
-        batch_count = func_0x000180120ce0((longlong)transform_index * 0xe, SYSTEM_DATA_MANAGER_B);
+        batch_count = func_0x000180120ce0((int64_t)transform_index * 0xe, SYSTEM_DATA_MANAGER_B);
         if (batch_count != 0) {
           // 批量复制变换后的顶点数据
           memcpy(batch_count, local_offset, local_offset * 0xe);
@@ -1319,21 +1319,21 @@ ulonglong process_vertex_transformations(longlong transform_data, uint64_t rende
     else {
       texture_ptr = (byte *)(local_offset + 10 + batch_count);
       transform_flag = 0;
-      vertex_count = (longlong)(vertex_index * 2);
+      vertex_count = (int64_t)(vertex_index * 2);
       weight_data = texture_ptr[vertex_count + -2];
       vertex_weight = texture_ptr[vertex_count + -1];
       normal_ptr = (byte *)(local_offset + 0xc +
-                        (ulonglong)*(byte *)(vertex_count + batch_count + 0xb + local_offset) +
-                        (ulonglong)*(byte *)(vertex_count + batch_count + 10 + local_offset) * 0x100 + vertex_count +
+                        (uint64_t)*(byte *)(vertex_count + batch_count + 0xb + local_offset) +
+                        (uint64_t)*(byte *)(vertex_count + batch_count + 10 + local_offset) * 0x100 + vertex_count +
                         batch_count);
       texture_coord = vertex_weight + 1 + (uint)weight_data * 0x100;
-      transform_result = (ulonglong)texture_coord;
+      transform_result = (uint64_t)texture_coord;
       
       if (SYSTEM_DATA_MANAGER_A != 0) {
         *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + 1;
       }
       
-      texture_size = func_0x000180120ce0((longlong)(int)(vertex_weight + 1 + (uint)weight_data * 0x100 + vertex_index * 2) * 0xe);
+      texture_size = func_0x000180120ce0((int64_t)(int)(vertex_weight + 1 + (uint)weight_data * 0x100 + vertex_index * 2) * 0xe);
       if (texture_size == 0) goto set_transform_result;
       
       batch_result = 0;
@@ -1350,7 +1350,7 @@ ulonglong process_vertex_transformations(longlong transform_data, uint64_t rende
             if ((transform_flag & 8) != 0) {
               vertex_weight = normal_ptr[1];
             }
-            normal_ptr = normal_ptr + (ulonglong)((transform_flag & 8) != 0) + 1;
+            normal_ptr = normal_ptr + (uint64_t)((transform_flag & 8) != 0) + 1;
           }
           else {
             vertex_weight = vertex_weight - 1;
@@ -1368,7 +1368,7 @@ ulonglong process_vertex_transformations(longlong transform_data, uint64_t rende
         do {
           if ((*(byte *)(index_ptr + 6) & 2) == 0) {
             if ((*(byte *)(index_ptr + 6) & 0x10) == 0) {
-              texture_height = (ulonglong)
+              texture_height = (uint64_t)
                        (uint)((int)texture_height +
                              (int)(short)((ushort)*normal_ptr * 0x100 + (ushort)normal_ptr[1]));
               normal_ptr = normal_ptr + 2;
@@ -1381,7 +1381,7 @@ ulonglong process_vertex_transformations(longlong transform_data, uint64_t rende
             if ((*(byte *)(index_ptr + 6) & 0x10) == 0) {
               texture_coord = -(uint)weight_data;
             }
-            texture_height = (ulonglong)((int)texture_height + texture_coord);
+            texture_height = (uint64_t)((int)texture_height + texture_coord);
           }
           *index_ptr = (short)texture_height;
           index_ptr = index_ptr + 7;
@@ -1396,7 +1396,7 @@ ulonglong process_vertex_transformations(longlong transform_data, uint64_t rende
         do {
           if ((*(byte *)(index_ptr + 5) & 4) == 0) {
             if ((*(byte *)(index_ptr + 5) & 0x20) == 0) {
-              texture_height = (ulonglong)
+              texture_height = (uint64_t)
                        (uint)((int)texture_height +
                              (int)(short)((ushort)*normal_ptr * 0x100 + (ushort)normal_ptr[1]));
               normal_ptr = normal_ptr + 2;
@@ -1409,7 +1409,7 @@ ulonglong process_vertex_transformations(longlong transform_data, uint64_t rende
             if ((*(byte *)(index_ptr + 5) & 0x20) == 0) {
               texture_coord = -(uint)weight_data;
             }
-            texture_height = (ulonglong)((int)texture_height + texture_coord);
+            texture_height = (uint64_t)((int)texture_height + texture_coord);
           }
           *index_ptr = (short)texture_height;
           index_ptr = index_ptr + 7;
@@ -1437,7 +1437,7 @@ ulonglong process_vertex_transformations(longlong transform_data, uint64_t rende
         if (transform_result != 0) {
           vertex_index = (int)texture_height;
           texture_width = (uint)vertex_index;
-          texture_height = (ulonglong)texture_width;
+          texture_height = (uint64_t)texture_width;
           weight_data = *(byte *)(index_ptr + 6);
           vertex_weight = index_ptr[1];
           texture_coord = (uint)vertex_weight;
@@ -1446,23 +1446,23 @@ ulonglong process_vertex_transformations(longlong transform_data, uint64_t rende
           if (texture_width == transform_width) {
             if (texture_size != 0) {
               vertex_count = create_render_entry(texture_size, texture_height, batch_count, texture_size, (int)transform_flag, (int)transform_matrix, texture_height, texture_width, (int)batch_result, (int)transform_result);
-              transform_result = (ulonglong)texture_width;
-              texture_height = (ulonglong)texture_coord;
+              transform_result = (uint64_t)texture_width;
+              texture_height = (uint64_t)texture_coord;
               weight_data = (byte)local_offset;
               transform_width = texture_size;
             }
-            texture_size = (ulonglong)(~(uint)weight_data & 1);
+            texture_size = (uint64_t)(~(uint)weight_data & 1);
             if ((~(uint)weight_data & 1) == 0) {
-              transform_matrix = (ulonglong)texture_coord;
+              transform_matrix = (uint64_t)texture_coord;
             }
             else {
-              texture_height = (ulonglong)(uint)(int)index_ptr[7];
-              transform_result = (ulonglong)(uint)(int)index_ptr[8];
+              texture_height = (uint64_t)(uint)(int)index_ptr[7];
+              transform_result = (uint64_t)(uint)(int)index_ptr[8];
               texture_width = texture_coord;
               texture_height = transform_result;
               if ((*(byte *)(index_ptr + 0xd) & 1) == 0) {
-                texture_height = (ulonglong)(uint)((int)((int)index_ptr[7] + texture_width) >> 1);
-                transform_result = (ulonglong)(uint)((int)((int)index_ptr[8] + texture_coord) >> 1);
+                texture_height = (uint64_t)(uint)((int)((int)index_ptr[7] + texture_width) >> 1);
+                transform_result = (uint64_t)(uint)((int)((int)index_ptr[8] + texture_coord) >> 1);
               }
               else {
                 texture_size = texture_size + 1;
@@ -1471,7 +1471,7 @@ ulonglong process_vertex_transformations(longlong transform_data, uint64_t rende
               }
             }
             
-            texture_ptr = (int16_t *)((longlong)vertex_count * 0xe + texture_size);
+            texture_ptr = (int16_t *)((int64_t)vertex_count * 0xe + texture_size);
             *(int8_t *)(texture_ptr + 6) = 1;
             *texture_ptr = (short)texture_height;
             texture_ptr[1] = (short)transform_result;
@@ -1480,7 +1480,7 @@ ulonglong process_vertex_transformations(longlong transform_data, uint64_t rende
             texture_ptr = texture_ptr + 2;
             transform_flag = texture_height;
           set_next_entry:
-            texture_height = (ulonglong)(vertex_count + 1);
+            texture_height = (uint64_t)(vertex_count + 1);
             texture_coord = batch_result;
             transform_matrix = transform_result;
           }
@@ -1488,7 +1488,7 @@ ulonglong process_vertex_transformations(longlong transform_data, uint64_t rende
             batch_info = (int16_t)transform_matrix;
             vertex_count = (int)texture_size;
             if ((weight_data & 1) != 0) {
-              local_offset = (longlong)vertex_count * 0xe;
+              local_offset = (int64_t)vertex_count * 0xe;
               if (vertex_count == 0) {
                 transform_result = 0;
                 batch_info = 0;
@@ -1497,13 +1497,13 @@ ulonglong process_vertex_transformations(longlong transform_data, uint64_t rende
               *(short *)(local_offset + texture_size) = vertex_index;
               *(short *)(local_offset + 2 + texture_size) = vertex_weight;
               *(short *)(local_offset + 4 + texture_size) = (short)transform_result;
-              transform_result = (ulonglong)texture_width;
+              transform_result = (uint64_t)texture_width;
               *(int16_t *)(local_offset + 6 + texture_size) = batch_info;
               goto set_next_entry;
             }
             if (vertex_count != 0) {
-              texture_height = (ulonglong)(vertex_count + 1);
-              texture_ptr = (int16_t *)((longlong)vertex_count * 0xe + texture_size);
+              texture_height = (uint64_t)(vertex_count + 1);
+              texture_ptr = (int16_t *)((int64_t)vertex_count * 0xe + texture_size);
               *texture_ptr = (short)((int)((int)transform_result + texture_coord) >> 1);
               texture_ptr[1] = (short)((int)((int)transform_matrix + texture_width) >> 1);
               *(int8_t *)(texture_ptr + 6) = 3;
@@ -1516,7 +1516,7 @@ ulonglong process_vertex_transformations(longlong transform_data, uint64_t rende
           }
           transform_flag = (int32_t)transform_flag;
           transform_matrix = (int32_t)transform_result;
-          transform_result = (ulonglong)transform_width;
+          transform_result = (uint64_t)transform_width;
           texture_size = (int32_t)texture_coord;
           batch_info = (int32_t)texture_size;
           texture_width = (uint)texture_size + 1;
@@ -1528,7 +1528,7 @@ ulonglong process_vertex_transformations(longlong transform_data, uint64_t rende
       
       transform_width = create_render_entry(texture_size, texture_height, transform_matrix, transform_result, transform_flag, transform_matrix, texture_width, texture_height, transform_result, transform_matrix);
       texture_size = texture_size;
-      transform_result = (ulonglong)transform_width;
+      transform_result = (uint64_t)transform_width;
     }
     *result_ptr = texture_size;
   }

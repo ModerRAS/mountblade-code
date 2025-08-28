@@ -160,7 +160,7 @@ typedef struct {
  */
 void UI_SystemCleanupHandler(void) {
     // 局部变量声明
-    ulonglong stack_security_cookie;  // 栈安全cookie
+    uint64_t stack_security_cookie;  // 栈安全cookie
     
     // 栈安全初始化
     stack_security_cookie = 0;
@@ -177,7 +177,7 @@ void UI_SystemCleanupHandler(void) {
     // 这个函数不会返回，因为它会调用系统级的清理函数
     // 该函数会执行最终的清理操作并终止当前执行上下文
     
-    FUN_1808fc050(stack_security_cookie ^ (ulonglong)&stack0x00000000);
+    FUN_1808fc050(stack_security_cookie ^ (uint64_t)&stack0x00000000);
     
     // 注意：以下代码不会被执行，因为上面的函数调用不会返回
     // 这是设计的清理流程，确保系统资源的完整释放

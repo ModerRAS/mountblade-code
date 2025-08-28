@@ -12,10 +12,10 @@
  */
 void open_and_write_string_data(uint64_t file_path, uint64_t mode, uint64_t content1, uint64_t content2, uint64_t flags)
 {
-    longlong allocated_buffer;
+    int64_t allocated_buffer;
     int content1_length;
     int content2_length;
-    longlong buffer_size;
+    int64_t buffer_size;
     int total_length;
     
     // 计算第一个字符串的长度
@@ -40,7 +40,7 @@ void open_and_write_string_data(uint64_t file_path, uint64_t mode, uint64_t cont
                     *(int *)(memory_manager_instance + MEMORY_COUNTER_OFFSET) + 1;
             }
             // 分配缓冲区内存
-            buffer_size = allocate_memory((longlong)total_length * 2, memory_allocator_context);
+            buffer_size = allocate_memory((int64_t)total_length * 2, memory_allocator_context);
         }
     }
     
@@ -48,7 +48,7 @@ void open_and_write_string_data(uint64_t file_path, uint64_t mode, uint64_t cont
     copy_string_to_buffer(buffer_size, content1_length, content1, flags, 0);
     
     // 计算第二个字符串的写入位置
-    allocated_buffer = buffer_size + (longlong)content1_length * 2;
+    allocated_buffer = buffer_size + (int64_t)content1_length * 2;
     
     // 将第二个字符串复制到缓冲区
     copy_string_to_buffer(allocated_buffer, content2_length + 1, content2, flags, 0);
@@ -75,15 +75,15 @@ void open_and_write_string_data(uint64_t file_path, uint64_t mode, uint64_t cont
  * @param file_size_ptr 输出文件大小指针
  * @return 成功返回分配的缓冲区指针，失败返回0
  */
-longlong read_file_to_buffer(uint64_t file_path, uint64_t mode, longlong *file_size_ptr)
+int64_t read_file_to_buffer(uint64_t file_path, uint64_t mode, int64_t *file_size_ptr)
 {
     int file_operation_result;
-    longlong file_handle;
-    longlong buffer_size;
-    longlong bytes_read;
-    longlong allocated_buffer;
+    int64_t file_handle;
+    int64_t buffer_size;
+    int64_t bytes_read;
+    int64_t allocated_buffer;
     
-    if (file_size_ptr != (longlong *)0x0) {
+    if (file_size_ptr != (int64_t *)0x0) {
         *file_size_ptr = 0;
     }
     
@@ -97,7 +97,7 @@ longlong read_file_to_buffer(uint64_t file_path, uint64_t mode, longlong *file_s
     file_operation_result = fseek(file_handle, 0, 2);
     if (file_operation_result == 0) {
         file_operation_result = ftell(file_handle);
-        buffer_size = (longlong)file_operation_result;
+        buffer_size = (int64_t)file_operation_result;
         
         // 移回文件开头
         if ((file_operation_result != -1) && 
@@ -129,7 +129,7 @@ longlong read_file_to_buffer(uint64_t file_path, uint64_t mode, longlong *file_s
                 fclose(file_handle);
                 
                 // 返回结果
-                if (file_size_ptr == (longlong *)0x0) {
+                if (file_size_ptr == (int64_t *)0x0) {
                     return allocated_buffer;
                 }
                 *file_size_ptr = buffer_size;
@@ -149,7 +149,7 @@ longlong read_file_to_buffer(uint64_t file_path, uint64_t mode, longlong *file_s
  * @param max_length 最大长度限制
  * @return 返回消耗的字节数
  */
-uint64_t parse_utf8_to_unicode(uint *output_char_ptr, byte *input_string, longlong max_length)
+uint64_t parse_utf8_to_unicode(uint *output_char_ptr, byte *input_string, int64_t max_length)
 {
     byte first_byte;
     uint unicode_char;
@@ -165,7 +165,7 @@ uint64_t parse_utf8_to_unicode(uint *output_char_ptr, byte *input_string, longlo
     // 处理2字节UTF-8序列 (110xxxxx 10xxxxxx)
     if ((first_byte & 0xe0) == 0xc0) {
         *output_char_ptr = 0xfffd; // 默认无效字符
-        if ((max_length != 0) && (max_length - (longlong)input_string < 2)) {
+        if ((max_length != 0) && (max_length - (int64_t)input_string < 2)) {
             return 1;
         }
         if ((0xc1 < first_byte) && ((input_string[1] & 0xc0) == 0x80)) {
@@ -177,7 +177,7 @@ uint64_t parse_utf8_to_unicode(uint *output_char_ptr, byte *input_string, longlo
     // 处理3字节UTF-8序列 (1110xxxx 10xxxxxx 10xxxxxx)
     if ((first_byte & 0xf0) == 0xe0) {
         *output_char_ptr = 0xfffd; // 默认无效字符
-        if ((max_length != 0) && (max_length - (longlong)input_string < 3)) {
+        if ((max_length != 0) && (max_length - (int64_t)input_string < 3)) {
             return 1;
         }
         
@@ -207,7 +207,7 @@ uint64_t parse_utf8_to_unicode(uint *output_char_ptr, byte *input_string, longlo
     }
     
     *output_char_ptr = 0xfffd; // 默认无效字符
-    if ((max_length != 0) && (max_length - (longlong)input_string < 4)) {
+    if ((max_length != 0) && (max_length - (int64_t)input_string < 4)) {
         return 1;
     }
     
@@ -244,7 +244,7 @@ uint64_t parse_utf8_to_unicode(uint *output_char_ptr, byte *input_string, longlo
  * @param first_byte 首字节
  * @return 返回消耗的字节数
  */
-uint64_t process_utf8_4byte_sequence(uint64_t context, longlong string_ptr, uint64_t param3, byte first_byte)
+uint64_t process_utf8_4byte_sequence(uint64_t context, int64_t string_ptr, uint64_t param3, byte first_byte)
 {
     uint unicode_char;
     uint *output_ptr;
@@ -283,7 +283,7 @@ uint64_t process_utf8_4byte_sequence(uint64_t context, longlong string_ptr, uint
  * @param first_byte 首字节
  * @return 返回消耗的字节数
  */
-uint64_t process_utf8_special_sequence(uint64_t context, longlong string_ptr, uint64_t param3, byte first_byte)
+uint64_t process_utf8_special_sequence(uint64_t context, int64_t string_ptr, uint64_t param3, byte first_byte)
 {
     uint unicode_char;
     uint *output_ptr;
@@ -323,7 +323,7 @@ uint64_t set_default_character(int32_t *output_ptr)
  * @param end_ptr_ptr 结束指针指针
  * @return 返回转换的字符数
  */
-ulonglong convert_utf8_to_wstring(int16_t *output_buffer, int buffer_size, byte *input_string, 
+uint64_t convert_utf8_to_wstring(int16_t *output_buffer, int buffer_size, byte *input_string, 
                                  uint64_t param4, uint64_t param5, uint64_t *end_ptr_ptr)
 {
     byte current_byte;
@@ -333,7 +333,7 @@ ulonglong convert_utf8_to_wstring(int16_t *output_buffer, int buffer_size, byte 
     int16_t *output_pos;
     
     output_pos = output_buffer;
-    if (output_buffer < output_buffer + (longlong)buffer_size + -1) {
+    if (output_buffer < output_buffer + (int64_t)buffer_size + -1) {
         do {
             current_byte = *input_string;
             if (current_byte == 0) break;
@@ -493,7 +493,7 @@ handle_ascii:
                 *output_pos = (short)unicode_char;
                 output_pos = output_pos + 1;
             }
-        } while (output_pos < output_buffer + (longlong)buffer_size + -1);
+        } while (output_pos < output_buffer + (int64_t)buffer_size + -1);
     }
     
     // 字符串终止符
@@ -502,7 +502,7 @@ handle_ascii:
         *end_ptr_ptr = input_string;
     }
     
-    return (longlong)output_pos - (longlong)output_buffer >> 1 & 0xffffffff;
+    return (int64_t)output_pos - (int64_t)output_buffer >> 1 & 0xffffffff;
 }
 
 /**
@@ -515,7 +515,7 @@ handle_ascii:
  * @param end_ptr_ptr 结束指针指针
  * @return 返回转换的字符数
  */
-ulonglong convert_utf8_to_wstring_variant(int16_t *output_buffer, int buffer_size, byte *input_string, 
+uint64_t convert_utf8_to_wstring_variant(int16_t *output_buffer, int buffer_size, byte *input_string, 
                                         uint64_t param4, uint64_t param5, uint64_t *end_ptr_ptr)
 {
     byte current_byte;
@@ -525,7 +525,7 @@ ulonglong convert_utf8_to_wstring_variant(int16_t *output_buffer, int buffer_siz
     int16_t *output_pos;
     
     output_pos = output_buffer;
-    if (output_buffer < output_buffer + (longlong)buffer_size + -1) {
+    if (output_buffer < output_buffer + (int64_t)buffer_size + -1) {
         do {
             current_byte = *input_string;
             if (current_byte == 0) break;
@@ -685,7 +685,7 @@ handle_ascii_variant:
                 *output_pos = (short)unicode_char;
                 output_pos = output_pos + 1;
             }
-        } while (output_pos < output_buffer + (longlong)buffer_size + -1);
+        } while (output_pos < output_buffer + (int64_t)buffer_size + -1);
     }
     
     // 字符串终止符
@@ -694,7 +694,7 @@ handle_ascii_variant:
         *end_ptr_ptr = input_string;
     }
     
-    return (longlong)output_pos - (longlong)output_buffer >> 1 & 0xffffffff;
+    return (int64_t)output_pos - (int64_t)output_buffer >> 1 & 0xffffffff;
 }
 
 /**
@@ -707,13 +707,13 @@ handle_ascii_variant:
  * @param end_ptr_ptr 结束指针指针
  * @return 返回转换的字符数
  */
-ulonglong convert_utf8_to_wstring_variant2(uint64_t param1, uint64_t param2, byte *input_string, 
+uint64_t convert_utf8_to_wstring_variant2(uint64_t param1, uint64_t param2, byte *input_string, 
                                           uint64_t param4, uint64_t param5, uint64_t *end_ptr_ptr)
 {
     byte current_byte;
     int bytes_consumed;
     uint unicode_char;
-    longlong stack_base;
+    int64_t stack_base;
     int16_t *output_ptr;
     uint temp_unicode;
     int16_t *in_register;
@@ -884,7 +884,7 @@ handle_ascii_variant2:
         *end_ptr_ptr = input_string;
     }
     
-    return (longlong)in_register - stack_base >> 1 & 0xffffffff;
+    return (int64_t)in_register - stack_base >> 1 & 0xffffffff;
 }
 
 /**
@@ -897,17 +897,17 @@ handle_ascii_variant2:
  * @param end_ptr_ptr 结束指针指针
  * @return 返回0
  */
-ulonglong empty_conversion_function(uint64_t param1, uint64_t param2, uint64_t param3, uint64_t param4,
+uint64_t empty_conversion_function(uint64_t param1, uint64_t param2, uint64_t param3, uint64_t param4,
                                   uint64_t param5, uint64_t *end_ptr_ptr)
 {
-    longlong stack_base;
+    int64_t stack_base;
     int16_t *output_ptr;
     
     *output_ptr = 0;
     if (end_ptr_ptr != (uint64_t *)0x0) {
         *end_ptr_ptr = param3;
     }
-    return (longlong)output_ptr - stack_base >> 1 & 0xffffffff;
+    return (int64_t)output_ptr - stack_base >> 1 & 0xffffffff;
 }
 
 /**
@@ -917,11 +917,11 @@ ulonglong empty_conversion_function(uint64_t param1, uint64_t param2, uint64_t p
  * @param param3 第三个参数
  * @return 返回复制的字符数
  */
-ulonglong simple_string_copy(uint64_t param1, uint64_t param2, uint64_t param3)
+uint64_t simple_string_copy(uint64_t param1, uint64_t param2, uint64_t param3)
 {
     uint64_t *output_ptr;
-    longlong stack_base;
-    longlong register_value;
+    int64_t stack_base;
+    int64_t register_value;
     
     *output_ptr = param3;
     return register_value - stack_base >> 1 & 0xffffffff;
@@ -961,7 +961,7 @@ int calculate_string_length(byte *input_string, byte *end_ptr)
             if ((current_byte & 0xe0) == 0xc0) {
                 // 2字节序列
                 unicode_char = 0xfffd;
-                if ((end_ptr == (byte *)0x0) || (1 < (longlong)end_ptr - (longlong)input_string)) {
+                if ((end_ptr == (byte *)0x0) || (1 < (int64_t)end_ptr - (int64_t)input_string)) {
                     if (current_byte < 0xc2) {
                         bytes_consumed = 2;
                     }
@@ -981,7 +981,7 @@ int calculate_string_length(byte *input_string, byte *end_ptr)
                 if ((current_byte & 0xf8) == 0xf0) {
                     // 4字节序列
                     unicode_char = 0xfffd;
-                    if ((end_ptr == (byte *)0x0) || (3 < (longlong)end_ptr - (longlong)input_string)) {
+                    if ((end_ptr == (byte *)0x0) || (3 < (int64_t)end_ptr - (int64_t)input_string)) {
                         if (current_byte < 0xf5) {
                             if (current_byte == 0xf0) {
                                 if ((byte)(input_string[1] + 0x70) < 0x30) {
@@ -1060,7 +1060,7 @@ int calculate_string_length(byte *input_string, byte *end_ptr)
             
             // 3字节序列
             unicode_char = 0xfffd;
-            if ((end_ptr != (byte *)0x0) && ((longlong)end_ptr - (longlong)input_string < 3)) {
+            if ((end_ptr != (byte *)0x0) && ((int64_t)end_ptr - (int64_t)input_string < 3)) {
                 goto handle_invalid;
             }
             
@@ -1144,7 +1144,7 @@ int convert_wstring_to_utf8(byte *output_buffer, int buffer_size, ushort *input_
     ushort current_char;
     byte first_byte;
     byte second_byte;
-    longlong bytes_needed;
+    int64_t bytes_needed;
     int available_space;
     byte *output_pos;
     byte *buffer_end;
@@ -1260,13 +1260,13 @@ int calculate_utf8_size_needed(ushort *input_string, ushort *end_ptr)
 #define MEMORY_ALLOCATOR_CONTEXT_OFFSET 0x3a8
 
 // 函数指针和全局变量声明（简化实现）
-extern longlong memory_manager_instance;
-extern longlong memory_allocator_context;
+extern int64_t memory_manager_instance;
+extern int64_t memory_allocator_context;
 extern uint64_t default_file_mode;
 
 // 内存管理函数声明
-extern longlong allocate_memory(longlong size, longlong context);
-extern void free_memory(longlong ptr, longlong context);
+extern int64_t allocate_memory(int64_t size, int64_t context);
+extern void free_memory(int64_t ptr, int64_t context);
 
 // 字符串处理函数声明
 extern int calculate_string_length(uint64_t str, uint64_t end);
@@ -1280,7 +1280,7 @@ extern void fclose(uint64_t file);
 // 渲染和图形相关函数声明
 extern void func_0x000180121e20(int32_t *param);
 extern float *global_render_context;
-extern longlong *global_texture_manager;
+extern int64_t *global_texture_manager;
 
 /**
  * @brief 应用缩放变换到渲染对象
@@ -1295,7 +1295,7 @@ void apply_scale_transform(int object_id, float scale_factor)
     
     // 获取对象的变换矩阵
     transform_matrix = (int32_t *)(global_render_context + TRANSFORM_MATRIX_OFFSET + 
-                                     ((longlong)object_id + 10) * 0x10);
+                                     ((int64_t)object_id + 10) * 0x10);
     
     // 复制当前矩阵到栈
     stack_matrix[0] = *transform_matrix;
@@ -1321,13 +1321,13 @@ uint find_value_in_hash_table(int *hash_table_ptr, uint key, uint default_value)
 {
     int table_size;
     uint *table_data;
-    ulonglong search_range;
-    ulonglong mid_point;
+    uint64_t search_range;
+    uint64_t mid_point;
     uint *current_entry;
     
     table_size = *hash_table_ptr;
     table_data = *(uint **)(hash_table_ptr + 2);
-    search_range = (longlong)table_size;
+    search_range = (int64_t)table_size;
     current_entry = table_data;
     
     // 二分查找
@@ -1343,7 +1343,7 @@ uint find_value_in_hash_table(int *hash_table_ptr, uint key, uint default_value)
     }
     
     // 检查是否找到匹配项
-    if ((current_entry != table_data + (longlong)table_size * 4) && (*current_entry == key)) {
+    if ((current_entry != table_data + (int64_t)table_size * 4) && (*current_entry == key)) {
         return current_entry[2]; // 返回找到的值
     }
     return default_value; // 返回默认值
@@ -1359,13 +1359,13 @@ uint64_t find_pointer_in_hash_table(int *hash_table_ptr, uint key)
 {
     int table_size;
     uint *table_data;
-    ulonglong search_range;
-    ulonglong mid_point;
+    uint64_t search_range;
+    uint64_t mid_point;
     uint *current_entry;
     
     table_size = *hash_table_ptr;
     table_data = *(uint **)(hash_table_ptr + 2);
-    search_range = (longlong)table_size;
+    search_range = (int64_t)table_size;
     current_entry = table_data;
     
     // 二分查找
@@ -1381,7 +1381,7 @@ uint64_t find_pointer_in_hash_table(int *hash_table_ptr, uint key)
     }
     
     // 检查是否找到匹配项
-    if ((current_entry != table_data + (longlong)table_size * 4) && (*current_entry == key)) {
+    if ((current_entry != table_data + (int64_t)table_size * 4) && (*current_entry == key)) {
         return *(uint64_t *)(current_entry + 2); // 返回找到的指针
     }
     return 0; // 未找到返回0
@@ -1397,16 +1397,16 @@ void set_value_in_hash_table(int *hash_table_ptr, uint key, uint value)
 {
     int table_size;
     uint *table_data;
-    ulonglong search_range;
+    uint64_t search_range;
     uint *insert_position;
-    ulonglong mid_point;
+    uint64_t mid_point;
     uint new_entry[3];
     uint entry_value;
     
     table_size = *hash_table_ptr;
     table_data = *(uint **)(hash_table_ptr + 2);
     insert_position = table_data;
-    search_range = (longlong)table_size;
+    search_range = (int64_t)table_size;
     
     // 二分查找插入位置
     if (table_size != 0) {
@@ -1421,7 +1421,7 @@ void set_value_in_hash_table(int *hash_table_ptr, uint key, uint value)
     }
     
     // 如果键已存在，更新值
-    if ((insert_position != table_data + (longlong)table_size * 4) && (*insert_position == key)) {
+    if ((insert_position != table_data + (int64_t)table_size * 4) && (*insert_position == key)) {
         insert_position[2] = value;
         return;
     }
@@ -1443,16 +1443,16 @@ void set_pointer_in_hash_table(int *hash_table_ptr, uint key, uint64_t value)
 {
     int table_size;
     uint *table_data;
-    ulonglong search_range;
+    uint64_t search_range;
     uint *insert_position;
-    ulonglong mid_point;
+    uint64_t mid_point;
     uint new_entry[3];
     uint64_t pointer_value;
     
     table_size = *hash_table_ptr;
     table_data = *(uint **)(hash_table_ptr + 2);
     insert_position = table_data;
-    search_range = (longlong)table_size;
+    search_range = (int64_t)table_size;
     
     // 二分查找插入位置
     if (table_size != 0) {
@@ -1467,7 +1467,7 @@ void set_pointer_in_hash_table(int *hash_table_ptr, uint key, uint64_t value)
     }
     
     // 如果键已存在，更新值
-    if ((insert_position != table_data + (longlong)table_size * 4) && (*insert_position == key)) {
+    if ((insert_position != table_data + (int64_t)table_size * 4) && (*insert_position == key)) {
         *(uint64_t *)(insert_position + 2) = value;
         return;
     }
@@ -1508,7 +1508,7 @@ void concatenate_strings_internal(int *dest_ptr, uint64_t src, uint64_t params)
     int dest_capacity;
     int new_size;
     int required_size;
-    longlong dest_data;
+    int64_t dest_data;
     
     // 计算源字符串长度
     src_length = calculate_string_copy_length(0, 0, src, params);
@@ -1548,12 +1548,12 @@ void concatenate_strings_internal(int *dest_ptr, uint64_t src, uint64_t params)
         }
         
         *dest_ptr = required_size;
-        dest_data = (longlong)(dest_capacity + -1) + *(longlong *)(dest_ptr + 2);
-        src_length = calculate_string_copy_length(dest_data, (longlong)src_length + 1, src, params);
+        dest_data = (int64_t)(dest_capacity + -1) + *(int64_t *)(dest_ptr + 2);
+        src_length = calculate_string_copy_length(dest_data, (int64_t)src_length + 1, src, params);
         
         // 添加字符串终止符
         if (dest_data != 0) {
-            required_size = (int)((longlong)src_length + 1);
+            required_size = (int)((int64_t)src_length + 1);
             if ((src_length == -1) || (required_size <= src_length)) {
                 src_length = required_size + -1;
             }
@@ -1574,8 +1574,8 @@ void concatenate_strings_variant(int dest_ptr, uint64_t src, uint64_t params, in
 {
     int src_length;
     int dest_capacity;
-    longlong stack_base;
-    longlong param_value;
+    int64_t stack_base;
+    int64_t param_value;
     int *dest_pointer;
     bool has_capacity;
     
@@ -1592,7 +1592,7 @@ void concatenate_strings_variant(int dest_ptr, uint64_t src, uint64_t params, in
     }
     
     *dest_pointer = src_length;
-    param_value = (longlong)(dest_capacity + -1) + *(longlong *)(dest_pointer + 2);
+    param_value = (int64_t)(dest_capacity + -1) + *(int64_t *)(dest_pointer + 2);
     dest_capacity = calculate_string_copy_length(param_value, stack_base + 1);
     
     // 添加字符串终止符
@@ -1624,13 +1624,13 @@ void empty_function(void)
 void process_string_comments(uint64_t context, char *start_ptr, char *end_ptr, char comment_char)
 {
     int32_t *render_color;
-    longlong renderer_context;
+    int64_t renderer_context;
     uint render_flags;
-    longlong font_manager;
-    longlong texture_manager;
+    int64_t font_manager;
+    int64_t texture_manager;
     char *current_pos;
-    longlong font_data;
-    longlong texture_data;
+    int64_t font_data;
+    int64_t texture_data;
     float font_scale;
     uint64_t stack_params[5];
     int32_t stack_colors[3];
@@ -1641,7 +1641,7 @@ void process_string_comments(uint64_t context, char *start_ptr, char *end_ptr, c
     // 如果没有注释字符，处理到字符串末尾
     if (comment_char == '\0') {
         if (end_ptr == (char *)0x0) {
-            longlong string_length = -1;
+            int64_t string_length = -1;
             do {
                 string_length = string_length + 1;
             } while (start_ptr[string_length] != '\0');
@@ -1675,7 +1675,7 @@ void process_string_comments(uint64_t context, char *start_ptr, char *end_ptr, c
         stack_colors[2] = *(int32_t *)(global_render_context + RENDER_COLOR_OFFSET + 8);
         
         // 获取字体管理器
-        font_manager = *(longlong *)(*(longlong *)(global_render_context + FONT_MANAGER_OFFSET) + 0x2e8);
+        font_manager = *(int64_t *)(*(int64_t *)(global_render_context + FONT_MANAGER_OFFSET) + 0x2e8);
         
         // 计算字体大小
         scaled_font_size = *(float *)(global_render_context + FONT_SIZE_OFFSET) * 
@@ -1687,12 +1687,12 @@ void process_string_comments(uint64_t context, char *start_ptr, char *end_ptr, c
         
         // 获取字体和纹理数据
         font_scale = *(float *)(renderer_context + DEFAULT_FONT_SCALE_OFFSET);
-        font_data = *(longlong *)(renderer_context + FONT_DATA_OFFSET);
+        font_data = *(int64_t *)(renderer_context + FONT_DATA_OFFSET);
         
         if ((render_flags & 0xff000000) != 0) {
             current_pos = end_ptr;
             if (end_ptr == (char *)0x0) {
-                longlong string_length = -1;
+                int64_t string_length = -1;
                 do {
                     string_length = string_length + 1;
                 } while (start_ptr[string_length] != '\0');
@@ -1702,18 +1702,18 @@ void process_string_comments(uint64_t context, char *start_ptr, char *end_ptr, c
             if (start_ptr != current_pos) {
                 // 获取字体数据
                 if (font_data == 0) {
-                    font_data = *(longlong *)(*(longlong *)(font_manager + 0x38) + 8);
+                    font_data = *(int64_t *)(*(int64_t *)(font_manager + 0x38) + 8);
                 }
                 
                 // 获取字体大小
                 if (font_scale == 0.0) {
-                    font_scale = *(float *)(*(longlong *)(font_manager + 0x38) + 0x10);
+                    font_scale = *(float *)(*(int64_t *)(font_manager + 0x38) + 0x10);
                 }
                 
                 // 获取纹理数据
                 render_color = (int32_t *)
-                              (*(longlong *)(font_manager + 0x68) + -0x10 + 
-                               (longlong)*(int *)(font_manager + 0x60) * 0x10);
+                              (*(int64_t *)(font_manager + 0x68) + -0x10 + 
+                               (int64_t)*(int *)(font_manager + 0x60) * 0x10);
                 
                 stack_colors[0] = *render_color;
                 stack_colors[1] = render_color[1];
@@ -1751,7 +1751,7 @@ extern float *global_scale_factor;
 extern int calculate_string_copy_length(uint64_t dest, uint64_t size, uint64_t src, uint64_t params);
 extern void resize_string_buffer(int *buffer_ptr, int new_size);
 extern void insert_into_hash_table(int *table_ptr, uint *position, uint *entry);
-extern void render_text_with_font(longlong font_data, longlong font_manager, float font_scale, 
+extern void render_text_with_font(int64_t font_data, int64_t font_manager, float font_scale, 
                                  uint64_t context, uint flags, int32_t *colors, 
                                  char *text_start, char *text_end, int param1, int param2);
 extern void process_comment_text(uint64_t *params, char *start, char *end);

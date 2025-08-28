@@ -23,27 +23,27 @@
 #define cleanup_render_resources_internal FUN_18027f4d0
 #define cleanup_render_resources_extended  FUN_18027f4f0
 
-// 函数: void cleanup_render_resources_internal(longlong render_context)
+// 函数: void cleanup_render_resources_internal(int64_t render_context)
 // 内部渲染资源清理函数
 // 参数: render_context - 渲染上下文指针
 // 功能: 清理渲染资源数组中的所有资源，重置状态，执行内存释放
-void cleanup_render_resources_internal(longlong render_context)
+void cleanup_render_resources_internal(int64_t render_context)
 
 {
-  longlong resource_array_ptr;
-  longlong resource_handle;
-  ulonglong resource_count;
-  ulonglong resource_index;
+  int64_t resource_array_ptr;
+  int64_t resource_handle;
+  uint64_t resource_count;
+  uint64_t resource_index;
   
   // 获取资源数量和资源数组指针
-  resource_count = *(ulonglong *)(render_context + RENDER_RESOURCE_COUNT_OFFSET);
-  resource_array_ptr = *(longlong *)(render_context + RENDER_RESOURCE_ARRAY_OFFSET);
+  resource_count = *(uint64_t *)(render_context + RENDER_RESOURCE_COUNT_OFFSET);
+  resource_array_ptr = *(int64_t *)(render_context + RENDER_RESOURCE_ARRAY_OFFSET);
   resource_index = 0;
   
   // 遍历资源数组进行清理
   if (resource_count != 0) {
     do {
-      resource_handle = *(longlong *)(resource_array_ptr + resource_index * 8);
+      resource_handle = *(int64_t *)(resource_array_ptr + resource_index * 8);
       if (resource_handle != 0) {
         // 准备清理资源
         cleanup_render_resource();
@@ -55,14 +55,14 @@ void cleanup_render_resources_internal(longlong render_context)
       *(uint64_t *)(resource_array_ptr + resource_index * 8) = 0;
       resource_index = resource_index + 1;
     } while (resource_index < resource_count);
-    resource_count = *(ulonglong *)(render_context + RENDER_RESOURCE_COUNT_OFFSET);
+    resource_count = *(uint64_t *)(render_context + RENDER_RESOURCE_COUNT_OFFSET);
   }
   
   // 重置渲染状态
   *(uint64_t *)(render_context + RENDER_STATUS_OFFSET) = 0;
   
   // 检查是否需要额外清理
-  if ((1 < resource_count) && (*(longlong *)(render_context + RENDER_RESOURCE_ARRAY_OFFSET) != 0)) {
+  if ((1 < resource_count) && (*(int64_t *)(render_context + RENDER_RESOURCE_ARRAY_OFFSET) != 0)) {
                     // WARNING: Subroutine does not return
     // 执行批量内存释放
     release_render_memory();
@@ -72,27 +72,27 @@ void cleanup_render_resources_internal(longlong render_context)
 
 
 
-// 函数: void cleanup_render_resources_extended(longlong render_context)
+// 函数: void cleanup_render_resources_extended(int64_t render_context)
 // 扩展渲染资源清理函数
 // 参数: render_context - 渲染上下文指针
 // 功能: 扩展的资源清理功能，包含更完整的清理流程和状态重置
-void cleanup_render_resources_extended(longlong render_context)
+void cleanup_render_resources_extended(int64_t render_context)
 
 {
-  longlong resource_array_ptr;
-  longlong resource_handle;
-  ulonglong resource_count;
-  ulonglong resource_index;
+  int64_t resource_array_ptr;
+  int64_t resource_handle;
+  uint64_t resource_count;
+  uint64_t resource_index;
   
   // 获取资源数量和资源数组指针
-  resource_count = *(ulonglong *)(render_context + RENDER_RESOURCE_COUNT_OFFSET);
-  resource_array_ptr = *(longlong *)(render_context + RENDER_RESOURCE_ARRAY_OFFSET);
+  resource_count = *(uint64_t *)(render_context + RENDER_RESOURCE_COUNT_OFFSET);
+  resource_array_ptr = *(int64_t *)(render_context + RENDER_RESOURCE_ARRAY_OFFSET);
   resource_index = 0;
   
   // 遍历资源数组进行清理
   if (resource_count != 0) {
     do {
-      resource_handle = *(longlong *)(resource_array_ptr + resource_index * 8);
+      resource_handle = *(int64_t *)(resource_array_ptr + resource_index * 8);
       if (resource_handle != 0) {
         // 准备清理资源
         cleanup_render_resource();
@@ -104,14 +104,14 @@ void cleanup_render_resources_extended(longlong render_context)
       *(uint64_t *)(resource_array_ptr + resource_index * 8) = 0;
       resource_index = resource_index + 1;
     } while (resource_index < resource_count);
-    resource_count = *(ulonglong *)(render_context + RENDER_RESOURCE_COUNT_OFFSET);
+    resource_count = *(uint64_t *)(render_context + RENDER_RESOURCE_COUNT_OFFSET);
   }
   
   // 重置渲染状态
   *(uint64_t *)(render_context + RENDER_STATUS_OFFSET) = 0;
   
   // 检查是否需要额外清理
-  if ((1 < resource_count) && (*(longlong *)(render_context + RENDER_RESOURCE_ARRAY_OFFSET) != 0)) {
+  if ((1 < resource_count) && (*(int64_t *)(render_context + RENDER_RESOURCE_ARRAY_OFFSET) != 0)) {
                     // WARNING: Subroutine does not return
     // 执行批量内存释放
     release_render_memory();

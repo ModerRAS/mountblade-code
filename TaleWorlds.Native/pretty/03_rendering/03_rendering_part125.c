@@ -33,10 +33,10 @@
  * @param param_3 着色器参数
  * @param param_4 编译选项
  */
-void FUN_180340b00(uint64_t param_1, longlong param_2, longlong param_3, uint64_t param_4)
+void FUN_180340b00(uint64_t param_1, int64_t param_2, int64_t param_3, uint64_t param_4)
 
 {
-  longlong iteration_context;
+  int64_t iteration_context;
   int32_t pixel_shader_type;
   int32_t vertex_shader_type;
   int32_t geometry_shader_type;
@@ -47,9 +47,9 @@ void FUN_180340b00(uint64_t param_1, longlong param_2, longlong param_3, uint64_
   int source_buffer_size;
   int temp_buffer_size;
   int loop_counter;
-  ulonglong parameter_index;
+  uint64_t parameter_index;
   uint buffer_expansion_size;
-  ulonglong total_parameters;
+  uint64_t total_parameters;
   
   parameter_index = 0;
   shader_processor = (int32_t *)
@@ -64,7 +64,7 @@ void FUN_180340b00(uint64_t param_1, longlong param_2, longlong param_3, uint64_
   *(uint64_t *)(shader_processor + 4) = 0x657079745f7475;
   source_buffer_size = *(int *)(param_2 + 0x10);
   BufferExpander(param_2, source_buffer_size + 0x11);
-  buffer_writer = (int32_t *)((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8));
+  buffer_writer = (int32_t *)((uint64_t)*(uint *)(param_2 + 0x10) + *(int64_t *)(param_2 + 8));
   *buffer_writer = 0x20666923;
   buffer_writer[1] = 0x45584950;
   buffer_writer[2] = 0x48535f4c;
@@ -72,13 +72,13 @@ void FUN_180340b00(uint64_t param_1, longlong param_2, longlong param_3, uint64_
   *(int16_t *)(buffer_writer + 4) = 10;
   *(int *)(param_2 + 0x10) = source_buffer_size + 0x11;
   BufferExpander(param_2, source_buffer_size + 0x1e);
-  shader_generator = (uint64_t *)((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8));
+  shader_generator = (uint64_t *)((uint64_t)*(uint *)(param_2 + 0x10) + *(int64_t *)(param_2 + 8));
   *shader_generator = 0x69616d2064696f76;
   *(int32_t *)(shader_generator + 1) = 0x73705f6e;
-  *(int16_t *)((longlong)shader_generator + 0xc) = 0x28;
+  *(int16_t *)((int64_t)shader_generator + 0xc) = 0x28;
   *(int *)(param_2 + 0x10) = source_buffer_size + 0x1e;
   BufferExpander(param_2, source_buffer_size + 0x35);
-  buffer_writer = (int32_t *)((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8));
+  buffer_writer = (int32_t *)((uint64_t)*(uint *)(param_2 + 0x10) + *(int64_t *)(param_2 + 8));
   pixel_shader_type = shader_processor[1];
   vertex_shader_type = shader_processor[2];
   geometry_shader_type = shader_processor[3];
@@ -89,17 +89,17 @@ void FUN_180340b00(uint64_t param_1, longlong param_2, longlong param_3, uint64_
   *(uint64_t *)(buffer_writer + 4) = *(uint64_t *)(shader_processor + 4);
   *(int *)(param_2 + 0x10) = source_buffer_size + 0x35;
   BufferExpander(param_2, source_buffer_size + 0x3a);
-  buffer_writer = (int32_t *)((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8));
+  buffer_writer = (int32_t *)((uint64_t)*(uint *)(param_2 + 0x10) + *(int64_t *)(param_2 + 8));
   *buffer_writer = 0x296e4920;
   *(int16_t *)(buffer_writer + 1) = 10;
   *(int *)(param_2 + 0x10) = source_buffer_size + 0x3a;
   BufferExpander(param_2, source_buffer_size + 0x3c);
-  terminator_writer = (int16_t *)((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8));
+  terminator_writer = (int16_t *)((uint64_t)*(uint *)(param_2 + 0x10) + *(int64_t *)(param_2 + 8));
   *terminator_writer = 0xa7b;
   *(int8_t *)(terminator_writer + 1) = 0;
   *(int *)(param_2 + 0x10) = source_buffer_size + 0x3c;
   BufferExpander(param_2, source_buffer_size + 0x83);
-  shader_generator = (uint64_t *)((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8));
+  shader_generator = (uint64_t *)((uint64_t)*(uint *)(param_2 + 0x10) + *(int64_t *)(param_2 + 8));
   *shader_generator = 0x7869705f72655009;
   shader_generator[1] = 0x69746174735f6c65;
   shader_generator[2] = 0x6261697261765f63;
@@ -107,13 +107,13 @@ void FUN_180340b00(uint64_t param_1, longlong param_2, longlong param_3, uint64_
   shader_generator[4] = 0x203d206369746174;
   shader_generator[5] = 0x7869705f72655028;
   *(int32_t *)(shader_generator + 6) = 0x735f6c65;
-  *(int32_t *)((longlong)shader_generator + 0x34) = 0x69746174;
+  *(int32_t *)((int64_t)shader_generator + 0x34) = 0x69746174;
   *(int32_t *)(shader_generator + 7) = 0x61765f63;
-  *(int32_t *)((longlong)shader_generator + 0x3c) = 0x62616972;
+  *(int32_t *)((int64_t)shader_generator + 0x3c) = 0x62616972;
   shader_generator[8] = 0xa3b302973656c;
   *(int *)(param_2 + 0x10) = source_buffer_size + 0x83;
   BufferExpander(param_2, source_buffer_size + 0xd7);
-  shader_generator = (uint64_t *)((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8));
+  shader_generator = (uint64_t *)((uint64_t)*(uint *)(param_2 + 0x10) + *(int64_t *)(param_2 + 8));
   *shader_generator = 0x7869705f72655009;
   shader_generator[1] = 0x6669646f6d5f6c65;
   shader_generator[2] = 0x61765f656c626169;
@@ -121,18 +121,18 @@ void FUN_180340b00(uint64_t param_1, longlong param_2, longlong param_3, uint64_
   shader_generator[4] = 0x6669646f6d5f7070;
   shader_generator[5] = 0x203d20656c626169;
   *(int32_t *)(shader_generator + 6) = 0x72655028;
-  *(int32_t *)((longlong)shader_generator + 0x34) = 0x7869705f;
+  *(int32_t *)((int64_t)shader_generator + 0x34) = 0x7869705f;
   *(int32_t *)(shader_generator + 7) = 0x6d5f6c65;
-  *(int32_t *)((longlong)shader_generator + 0x3c) = 0x6669646f;
+  *(int32_t *)((int64_t)shader_generator + 0x3c) = 0x6669646f;
   *(int32_t *)(shader_generator + 8) = 0x6c626169;
-  *(int32_t *)((longlong)shader_generator + 0x44) = 0x61765f65;
+  *(int32_t *)((int64_t)shader_generator + 0x44) = 0x61765f65;
   *(int32_t *)(shader_generator + 9) = 0x62616972;
-  *(int32_t *)((longlong)shader_generator + 0x4c) = 0x2973656c;
+  *(int32_t *)((int64_t)shader_generator + 0x4c) = 0x2973656c;
   *(int32_t *)(shader_generator + 10) = 0xa0a3b30;
-  *(int8_t *)((longlong)shader_generator + 0x54) = 0;
+  *(int8_t *)((int64_t)shader_generator + 0x54) = 0;
   *(int *)(param_2 + 0x10) = source_buffer_size + 0xd7;
   BufferExpander(param_2, source_buffer_size + 0x122);
-  shader_generator = (uint64_t *)((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8));
+  shader_generator = (uint64_t *)((uint64_t)*(uint *)(param_2 + 0x10) + *(int64_t *)(param_2 + 8));
   *shader_generator = 0x7869705f72655009;
   shader_generator[1] = 0x6c697875615f6c65;
   shader_generator[2] = 0x7261765f79726169;
@@ -140,110 +140,110 @@ void FUN_180340b00(uint64_t param_1, longlong param_2, longlong param_3, uint64_
   shader_generator[4] = 0x203d207875615f70;
   shader_generator[5] = 0x7869705f72655028;
   *(int32_t *)(shader_generator + 6) = 0x615f6c65;
-  *(int32_t *)((longlong)shader_generator + 0x34) = 0x6c697875;
+  *(int32_t *)((int64_t)shader_generator + 0x34) = 0x6c697875;
   *(int32_t *)(shader_generator + 7) = 0x79726169;
-  *(int32_t *)((longlong)shader_generator + 0x3c) = 0x7261765f;
+  *(int32_t *)((int64_t)shader_generator + 0x3c) = 0x7261765f;
   shader_generator[8] = 0x302973656c626169;
   *(int32_t *)(shader_generator + 9) = 0xa0a3b;
   *(int *)(param_2 + 0x10) = source_buffer_size + 0x122;
   source_buffer_size = source_buffer_size + 0x159;
   BufferExpander(param_2, source_buffer_size);
-  shader_generator = (uint64_t *)((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8));
+  shader_generator = (uint64_t *)((uint64_t)*(uint *)(param_2 + 0x10) + *(int64_t *)(param_2 + 8));
   *shader_generator = 0x616c75636c616309;
   shader_generator[1] = 0x705f7265705f6574;
   shader_generator[2] = 0x6174735f6c657869;
   shader_generator[3] = 0x697261765f636974;
   *(int32_t *)(shader_generator + 4) = 0x656c6261;
-  *(int32_t *)((longlong)shader_generator + 0x24) = 0x6e492873;
+  *(int32_t *)((int64_t)shader_generator + 0x24) = 0x6e492873;
   *(int32_t *)(shader_generator + 5) = 0x7070202c;
-  *(int32_t *)((longlong)shader_generator + 0x2c) = 0x6174735f;
+  *(int32_t *)((int64_t)shader_generator + 0x2c) = 0x6174735f;
   shader_generator[6] = 0xa0a3b29636974;
   *(int *)(param_2 + 0x10) = source_buffer_size;
-  iteration_context = (longlong)(*(longlong *)(param_3 + 0x498) - *(longlong *)(param_3 + 0x490));
+  iteration_context = (int64_t)(*(int64_t *)(param_3 + 0x498) - *(int64_t *)(param_3 + 0x490));
   total_parameters = parameter_index;
-  if ((longlong)iteration_context / 0x98 + ((longlong)iteration_context >> 0x3f) != (longlong)iteration_context >> 0x3f) {
+  if ((int64_t)iteration_context / 0x98 + ((int64_t)iteration_context >> 0x3f) != (int64_t)iteration_context >> 0x3f) {
     do {
       temp_buffer_size = source_buffer_size + 1;
       BufferExpander(param_2, temp_buffer_size);
-      *(int16_t *)((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8)) = 9;
+      *(int16_t *)((uint64_t)*(uint *)(param_2 + 0x10) + *(int64_t *)(param_2 + 8)) = 9;
       *(int *)(param_2 + 0x10) = temp_buffer_size;
-      iteration_context = *(longlong *)(param_3 + 0x490);
+      iteration_context = *(int64_t *)(param_3 + 0x490);
       loop_counter = *(int *)(iteration_context + 0x10 + parameter_index);
       if (0 < loop_counter) {
         BufferExpander(param_2, temp_buffer_size + loop_counter);
                     // WARNING: Subroutine does not return
-        memcpy((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8),
-               *(uint64_t *)(iteration_context + 8 + parameter_index),(longlong)(*(int *)(iteration_context + 0x10 + parameter_index) + 1));
+        memcpy((uint64_t)*(uint *)(param_2 + 0x10) + *(int64_t *)(param_2 + 8),
+               *(uint64_t *)(iteration_context + 8 + parameter_index),(int64_t)(*(int *)(iteration_context + 0x10 + parameter_index) + 1));
       }
       source_buffer_size = source_buffer_size + 7;
       BufferExpander(param_2, source_buffer_size);
-      buffer_writer = (int32_t *)((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8));
+      buffer_writer = (int32_t *)((uint64_t)*(uint *)(param_2 + 0x10) + *(int64_t *)(param_2 + 8));
       *buffer_writer = 0x296e4928;
       *(int16_t *)(buffer_writer + 1) = 0xa3b;
-      *(int8_t *)((longlong)buffer_writer + 6) = 0;
+      *(int8_t *)((int64_t)buffer_writer + 6) = 0;
       *(int *)(param_2 + 0x10) = source_buffer_size;
       buffer_expansion_size = (int)total_parameters + 1;
       parameter_index = parameter_index + 0x98;
-      iteration_context = (longlong)(*(longlong *)(param_3 + 0x498) - *(longlong *)(param_3 + 0x490));
-      total_parameters = (ulonglong)buffer_expansion_size;
-    } while ((ulonglong)(longlong)(int)buffer_expansion_size < (ulonglong)((longlong)iteration_context / 0x98));
+      iteration_context = (int64_t)(*(int64_t *)(param_3 + 0x498) - *(int64_t *)(param_3 + 0x490));
+      total_parameters = (uint64_t)buffer_expansion_size;
+    } while ((uint64_t)(int64_t)(int)buffer_expansion_size < (uint64_t)((int64_t)iteration_context / 0x98));
   }
   if (*(int *)(param_3 + 0xa40) != 0) {
     loop_counter = source_buffer_size + 1;
     BufferExpander(param_2, loop_counter);
-    *(int16_t *)((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8)) = 9;
+    *(int16_t *)((uint64_t)*(uint *)(param_2 + 0x10) + *(int64_t *)(param_2 + 8)) = 9;
     *(int *)(param_2 + 0x10) = loop_counter;
     if (0 < *(int *)(param_3 + 0xa40)) {
       BufferExpander(param_2, loop_counter + *(int *)(param_3 + 0xa40));
                     // WARNING: Subroutine does not return
-      memcpy((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8),
-             *(uint64_t *)(param_3 + 0xa38),(longlong)(*(int *)(param_3 + 0xa40) + 1));
+      memcpy((uint64_t)*(uint *)(param_2 + 0x10) + *(int64_t *)(param_2 + 8),
+             *(uint64_t *)(param_3 + 0xa38),(int64_t)(*(int *)(param_3 + 0xa40) + 1));
     }
     source_buffer_size = source_buffer_size + 0x2b;
     BufferExpander(param_2, source_buffer_size);
-    shader_generator = (uint64_t *)((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8));
+    shader_generator = (uint64_t *)((uint64_t)*(uint *)(param_2 + 0x10) + *(int64_t *)(param_2 + 8));
     *shader_generator = 0x7070202c206e4928;
     shader_generator[1] = 0x206369746174735f;
     shader_generator[2] = 0x646f6d5f7070202c;
     shader_generator[3] = 0x2c656c6261696669;
     shader_generator[4] = 0x297875615f707020;
     *(int16_t *)(shader_generator + 5) = 0xa3b;
-    *(int8_t *)((longlong)shader_generator + 0x2a) = 0;
+    *(int8_t *)((int64_t)shader_generator + 0x2a) = 0;
     *(int *)(param_2 + 0x10) = source_buffer_size;
   }
   if (*(int *)(param_3 + 0xad8) != 0) {
     loop_counter = source_buffer_size + 1;
     BufferExpander(param_2, loop_counter);
-    *(int16_t *)((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8)) = 9;
+    *(int16_t *)((uint64_t)*(uint *)(param_2 + 0x10) + *(int64_t *)(param_2 + 8)) = 9;
     *(int *)(param_2 + 0x10) = loop_counter;
     if (0 < *(int *)(param_3 + 0xad8)) {
       BufferExpander(param_2, loop_counter + *(int *)(param_3 + 0xad8));
                     // WARNING: Subroutine does not return
-      memcpy((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8),
-             *(uint64_t *)(param_3 + 0xad0),(longlong)(*(int *)(param_3 + 0xad8) + 1));
+      memcpy((uint64_t)*(uint *)(param_2 + 0x10) + *(int64_t *)(param_2 + 8),
+             *(uint64_t *)(param_3 + 0xad0),(int64_t)(*(int *)(param_3 + 0xad8) + 1));
     }
     BufferExpander(param_2, source_buffer_size + 0x2b);
-    shader_generator = (uint64_t *)((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8));
+    shader_generator = (uint64_t *)((uint64_t)*(uint *)(param_2 + 0x10) + *(int64_t *)(param_2 + 8));
     *shader_generator = 0x7070202c206e4928;
     shader_generator[1] = 0x206369746174735f;
     shader_generator[2] = 0x646f6d5f7070202c;
     shader_generator[3] = 0x2c656c6261696669;
     shader_generator[4] = 0x297875615f707020;
     *(int16_t *)(shader_generator + 5) = 0xa3b;
-    *(int8_t *)((longlong)shader_generator + 0x2a) = 0;
+    *(int8_t *)((int64_t)shader_generator + 0x2a) = 0;
     *(int *)(param_2 + 0x10) = source_buffer_size + 0x2b;
   }
   ShaderTextureProcessor(shader_generator, param_2, param_3);
   source_buffer_size = *(int *)(param_2 + 0x10);
   loop_counter = source_buffer_size + 2;
   BufferExpander(param_2, loop_counter);
-  terminator_writer = (int16_t *)((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8));
+  terminator_writer = (int16_t *)((uint64_t)*(uint *)(param_2 + 0x10) + *(int64_t *)(param_2 + 8));
   *terminator_writer = 0xa7d;
   *(int8_t *)(terminator_writer + 1) = 0;
   *(int *)(param_2 + 0x10) = loop_counter;
   source_buffer_size = source_buffer_size + 9;
   BufferExpander(param_2, source_buffer_size);
-  *(uint64_t *)((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8)) =
+  *(uint64_t *)((uint64_t)*(uint *)(param_2 + 0x10) + *(int64_t *)(param_2 + 8)) =
        0xa6669646e6523;
   *(int *)(param_2 + 0x10) = source_buffer_size;
                     // WARNING: Subroutine does not return
@@ -269,7 +269,7 @@ void FUN_180340b00(uint64_t param_1, longlong param_2, longlong param_3, uint64_
  * @param param_2 着色器参数缓冲区
  * @param param_3 着色器配置选项
  */
-void FUN_180341100(uint64_t param_1, longlong param_2, uint64_t param_3)
+void FUN_180341100(uint64_t param_1, int64_t param_2, uint64_t param_3)
 
 {
   int32_t *file_header_writer;
@@ -277,7 +277,7 @@ void FUN_180341100(uint64_t param_1, longlong param_2, uint64_t param_3)
   void *memory_allocator;
   uint buffer_size;
   int file_content_size;
-  longlong file_handle;
+  int64_t file_handle;
   int8_t security_stack [32];
   int32_t security_flag;
   void *buffer_pointer;
@@ -285,7 +285,7 @@ void FUN_180341100(uint64_t param_1, longlong param_2, uint64_t param_3)
   uint write_buffer_size;
   int32_t file_handle_flag;
   uint64_t file_stream_context;
-  longlong file_operation_result;
+  int64_t file_operation_result;
   void *output_buffer;
   void *temp_buffer;
   int write_size;
@@ -295,10 +295,10 @@ void FUN_180341100(uint64_t param_1, longlong param_2, uint64_t param_3)
   int8_t *filename_buffer;
   int32_t filename_length;
   int8_t temp_filename [16];
-  ulonglong security_checksum;
+  uint64_t security_checksum;
   
   security_context = 0xfffffffffffffffe;
-  security_checksum = g_SecurityChecksum ^ (ulonglong)security_stack;
+  security_checksum = g_SecurityChecksum ^ (uint64_t)security_stack;
   security_flag = 0;
   ShaderHeaderGenerator(param_1, &file_context);
   file_context = &g_DefaultShaderConfig;
@@ -322,16 +322,16 @@ void FUN_180341100(uint64_t param_1, longlong param_2, uint64_t param_3)
   ShaderConfigSetter(param_2, param_3);
   file_content_size = *(int *)(param_2 + 0x10) + 10;
   BufferExpander(param_2, file_content_size);
-  parameter_processor = (uint64_t *)((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8));
+  parameter_processor = (uint64_t *)((uint64_t)*(uint *)(param_2 + 0x10) + *(int64_t *)(param_2 + 8));
   *parameter_processor = 0x6d776f646168735f;
   *(int16_t *)(parameter_processor + 1) = 0x7061;
-  *(int8_t *)((longlong)parameter_processor + 10) = 0;
+  *(int8_t *)((int64_t)parameter_processor + 10) = 0;
   *(int *)(param_2 + 0x10) = file_content_size;
   if (0 < file_content_size) {
     BufferExpander(&buffer_pointer, file_content_size + write_buffer_size);
                     // WARNING: Subroutine does not return
     memcpy(write_buffer + write_buffer_size,*(uint64_t *)(param_2 + 8),
-           (longlong)(*(int *)(param_2 + 0x10) + 1));
+           (int64_t)(*(int *)(param_2 + 0x10) + 1));
   }
   file_content_size = write_buffer_size + 3;
   BufferExpander(&buffer_pointer, file_content_size);
@@ -349,7 +349,7 @@ void FUN_180341100(uint64_t param_1, longlong param_2, uint64_t param_3)
   if (temp_buffer != (void *)0x0) {
     memory_allocator = temp_buffer;
   }
-  fwrite(memory_allocator, (longlong)write_size, 1, file_operation_result);
+  fwrite(memory_allocator, (int64_t)write_size, 1, file_operation_result);
   if (file_handle != 0) {
     fclose(file_handle);
     file_operation_result = 0;
@@ -382,7 +382,7 @@ void FUN_180341100(uint64_t param_1, longlong param_2, uint64_t param_3)
   cleanup_flag = 0;
   file_context = &g_BufferAllocator;
                     // WARNING: Subroutine does not return
-  SecurityCheckHandler(security_checksum ^ (ulonglong)security_stack);
+  SecurityCheckHandler(security_checksum ^ (uint64_t)security_stack);
 }
 
 
@@ -404,7 +404,7 @@ void FUN_180341100(uint64_t param_1, longlong param_2, uint64_t param_3)
  * @param param_2 管线参数缓冲区
  * @param param_3 管线配置选项
  */
-void FUN_180341380(uint64_t param_1, longlong param_2, uint64_t param_3)
+void FUN_180341380(uint64_t param_1, int64_t param_2, uint64_t param_3)
 
 {
   int32_t *pipeline_writer;
@@ -412,7 +412,7 @@ void FUN_180341380(uint64_t param_1, longlong param_2, uint64_t param_3)
   void *memory_allocator;
   uint buffer_size;
   int pipeline_size;
-  longlong file_handle;
+  int64_t file_handle;
   int8_t security_stack [32];
   int32_t security_flag;
   void *buffer_pointer;
@@ -420,7 +420,7 @@ void FUN_180341380(uint64_t param_1, longlong param_2, uint64_t param_3)
   uint write_buffer_size;
   int32_t file_handle_flag;
   uint64_t file_stream_context;
-  longlong file_operation_result;
+  int64_t file_operation_result;
   void *output_buffer;
   void *temp_buffer;
   int write_size;
@@ -430,10 +430,10 @@ void FUN_180341380(uint64_t param_1, longlong param_2, uint64_t param_3)
   int8_t *filename_buffer;
   int32_t filename_length;
   int8_t temp_filename [16];
-  ulonglong security_checksum;
+  uint64_t security_checksum;
   
   security_context = 0xfffffffffffffffe;
-  security_checksum = g_SecurityChecksum ^ (ulonglong)security_stack;
+  security_checksum = g_SecurityChecksum ^ (uint64_t)security_stack;
   security_flag = 0;
   ShaderPipelineGenerator(param_1, &file_context);
   file_context = &g_DefaultShaderConfig;
@@ -457,7 +457,7 @@ void FUN_180341380(uint64_t param_1, longlong param_2, uint64_t param_3)
   ShaderConfigSetter(param_2, param_3);
   pipeline_size = *(int *)(param_2 + 0x10) + 0xb;
   BufferExpander(param_2, pipeline_size);
-  pipeline_config = (uint64_t *)((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8));
+  pipeline_config = (uint64_t *)((uint64_t)*(uint *)(param_2 + 0x10) + *(int64_t *)(param_2 + 8));
   *pipeline_config = 0x696c746e696f705f;
   *(int32_t *)(pipeline_config + 1) = 0x746867;
   *(int *)(param_2 + 0x10) = pipeline_size;
@@ -465,7 +465,7 @@ void FUN_180341380(uint64_t param_1, longlong param_2, uint64_t param_3)
     BufferExpander(&buffer_pointer, pipeline_size + write_buffer_size);
                     // WARNING: Subroutine does not return
     memcpy(write_buffer + write_buffer_size,*(uint64_t *)(param_2 + 8),
-           (longlong)(*(int *)(param_2 + 0x10) + 1));
+           (int64_t)(*(int *)(param_2 + 0x10) + 1));
   }
   pipeline_size = write_buffer_size + 3;
   BufferExpander(&buffer_pointer, pipeline_size);
@@ -483,7 +483,7 @@ void FUN_180341380(uint64_t param_1, longlong param_2, uint64_t param_3)
   if (temp_buffer != (void *)0x0) {
     memory_allocator = temp_buffer;
   }
-  fwrite(memory_allocator, (longlong)write_size, 1, file_operation_result);
+  fwrite(memory_allocator, (int64_t)write_size, 1, file_operation_result);
   if (file_handle != 0) {
     fclose(file_handle);
     file_operation_result = 0;
@@ -516,7 +516,7 @@ void FUN_180341380(uint64_t param_1, longlong param_2, uint64_t param_3)
   cleanup_flag = 0;
   file_context = &g_BufferAllocator;
                     // WARNING: Subroutine does not return
-  SecurityCheckHandler(security_checksum ^ (ulonglong)security_stack);
+  SecurityCheckHandler(security_checksum ^ (uint64_t)security_stack);
 }
 
 
@@ -539,10 +539,10 @@ void FUN_180341380(uint64_t param_1, longlong param_2, uint64_t param_3)
  * @param param_3 管线参数
  * @param param_4 优化选项
  */
-void FUN_1803415f0(uint64_t param_1, longlong param_2, longlong param_3, uint64_t param_4)
+void FUN_1803415f0(uint64_t param_1, int64_t param_2, int64_t param_3, uint64_t param_4)
 
 {
-  longlong iteration_context;
+  int64_t iteration_context;
   int32_t pixel_shader_type;
   int32_t vertex_shader_type;
   int32_t geometry_shader_type;
@@ -550,13 +550,13 @@ void FUN_1803415f0(uint64_t param_1, longlong param_2, longlong param_3, uint64_
   int32_t *buffer_writer;
   uint64_t *shader_generator;
   int16_t *terminator_writer;
-  longlong pipeline_context;
+  int64_t pipeline_context;
   int source_buffer_size;
   int temp_buffer_size;
   int loop_counter;
-  ulonglong parameter_index;
+  uint64_t parameter_index;
   uint buffer_expansion_size;
-  ulonglong total_parameters;
+  uint64_t total_parameters;
   
   parameter_index = 0;
   shader_processor = (int32_t *)
@@ -571,7 +571,7 @@ void FUN_1803415f0(uint64_t param_1, longlong param_2, longlong param_3, uint64_
   *(uint64_t *)(shader_processor + 4) = 0x657079745f7475;
   source_buffer_size = *(int *)(param_2 + 0x10);
   BufferExpander(param_2, source_buffer_size + 0x11);
-  buffer_writer = (int32_t *)((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8));
+  buffer_writer = (int32_t *)((uint64_t)*(uint *)(param_2 + 0x10) + *(int64_t *)(param_2 + 8));
   *buffer_writer = 0x20666923;
   buffer_writer[1] = 0x45584950;
   buffer_writer[2] = 0x48535f4c;
@@ -579,13 +579,13 @@ void FUN_1803415f0(uint64_t param_1, longlong param_2, longlong param_3, uint64_
   *(int16_t *)(buffer_writer + 4) = 10;
   *(int *)(param_2 + 0x10) = source_buffer_size + 0x11;
   BufferExpander(param_2, source_buffer_size + 0x1e);
-  shader_generator = (uint64_t *)((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8));
+  shader_generator = (uint64_t *)((uint64_t)*(uint *)(param_2 + 0x10) + *(int64_t *)(param_2 + 8));
   *shader_generator = 0x69616d2064696f76;
   *(int32_t *)(shader_generator + 1) = 0x73705f6e;
-  *(int16_t *)((longlong)shader_generator + 0xc) = 0x28;
+  *(int16_t *)((int64_t)shader_generator + 0xc) = 0x28;
   *(int *)(param_2 + 0x10) = source_buffer_size + 0x1e;
   BufferExpander(param_2, source_buffer_size + 0x35);
-  buffer_writer = (int32_t *)((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8));
+  buffer_writer = (int32_t *)((uint64_t)*(uint *)(param_2 + 0x10) + *(int64_t *)(param_2 + 8));
   pixel_shader_type = shader_processor[1];
   vertex_shader_type = shader_processor[2];
   geometry_shader_type = shader_processor[3];
@@ -596,17 +596,17 @@ void FUN_1803415f0(uint64_t param_1, longlong param_2, longlong param_3, uint64_
   *(uint64_t *)(buffer_writer + 4) = *(uint64_t *)(shader_processor + 4);
   *(int *)(param_2 + 0x10) = source_buffer_size + 0x35;
   BufferExpander(param_2, source_buffer_size + 0x3a);
-  buffer_writer = (int32_t *)((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8));
+  buffer_writer = (int32_t *)((uint64_t)*(uint *)(param_2 + 0x10) + *(int64_t *)(param_2 + 8));
   *buffer_writer = 0x296e4920;
   *(int16_t *)(buffer_writer + 1) = 10;
   *(int *)(param_2 + 0x10) = source_buffer_size + 0x3a;
   BufferExpander(param_2, source_buffer_size + 0x3c);
-  terminator_writer = (int16_t *)((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8));
+  terminator_writer = (int16_t *)((uint64_t)*(uint *)(param_2 + 0x10) + *(int64_t *)(param_2 + 8));
   *terminator_writer = 0xa7b;
   *(int8_t *)(terminator_writer + 1) = 0;
   *(int *)(param_2 + 0x10) = source_buffer_size + 0x3c;
   BufferExpander(param_2, source_buffer_size + 0x83);
-  shader_generator = (uint64_t *)((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8));
+  shader_generator = (uint64_t *)((uint64_t)*(uint *)(param_2 + 0x10) + *(int64_t *)(param_2 + 8));
   *shader_generator = 0x7869705f72655009;
   shader_generator[1] = 0x69746174735f6c65;
   shader_generator[2] = 0x6261697261765f63;
@@ -614,13 +614,13 @@ void FUN_1803415f0(uint64_t param_1, longlong param_2, longlong param_3, uint64_
   shader_generator[4] = 0x203d206369746174;
   shader_generator[5] = 0x7869705f72655028;
   *(int32_t *)(shader_generator + 6) = 0x735f6c65;
-  *(int32_t *)((longlong)shader_generator + 0x34) = 0x69746174;
+  *(int32_t *)((int64_t)shader_generator + 0x34) = 0x69746174;
   *(int32_t *)(shader_generator + 7) = 0x61765f63;
-  *(int32_t *)((longlong)shader_generator + 0x3c) = 0x62616972;
+  *(int32_t *)((int64_t)shader_generator + 0x3c) = 0x62616972;
   shader_generator[8] = 0xa3b302973656c;
   *(int *)(param_2 + 0x10) = source_buffer_size + 0x83;
   BufferExpander(param_2, source_buffer_size + 0xd7);
-  shader_generator = (uint64_t *)((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8));
+  shader_generator = (uint64_t *)((uint64_t)*(uint *)(param_2 + 0x10) + *(int64_t *)(param_2 + 8));
   *shader_generator = 0x7869705f72655009;
   shader_generator[1] = 0x6669646f6d5f6c65;
   shader_generator[2] = 0x61765f656c626169;
@@ -628,18 +628,18 @@ void FUN_1803415f0(uint64_t param_1, longlong param_2, longlong param_3, uint64_
   shader_generator[4] = 0x6669646f6d5f7070;
   shader_generator[5] = 0x203d20656c626169;
   *(int32_t *)(shader_generator + 6) = 0x72655028;
-  *(int32_t *)((longlong)shader_generator + 0x34) = 0x7869705f;
+  *(int32_t *)((int64_t)shader_generator + 0x34) = 0x7869705f;
   *(int32_t *)(shader_generator + 7) = 0x6d5f6c65;
-  *(int32_t *)((longlong)shader_generator + 0x3c) = 0x6669646f;
+  *(int32_t *)((int64_t)shader_generator + 0x3c) = 0x6669646f;
   *(int32_t *)(shader_generator + 8) = 0x6c626169;
-  *(int32_t *)((longlong)shader_generator + 0x44) = 0x61765f65;
+  *(int32_t *)((int64_t)shader_generator + 0x44) = 0x61765f65;
   *(int32_t *)(shader_generator + 9) = 0x62616972;
-  *(int32_t *)((longlong)shader_generator + 0x4c) = 0x2973656c;
+  *(int32_t *)((int64_t)shader_generator + 0x4c) = 0x2973656c;
   *(int32_t *)(shader_generator + 10) = 0xa0a3b30;
-  *(int8_t *)((longlong)shader_generator + 0x54) = 0;
+  *(int8_t *)((int64_t)shader_generator + 0x54) = 0;
   *(int *)(param_2 + 0x10) = source_buffer_size + 0xd7;
   BufferExpander(param_2, source_buffer_size + 0x122);
-  shader_generator = (uint64_t *)((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8));
+  shader_generator = (uint64_t *)((uint64_t)*(uint *)(param_2 + 0x10) + *(int64_t *)(param_2 + 8));
   *shader_generator = 0x7869705f72655009;
   shader_generator[1] = 0x6c697875615f6c65;
   shader_generator[2] = 0x7261765f79726169;
@@ -647,106 +647,106 @@ void FUN_1803415f0(uint64_t param_1, longlong param_2, longlong param_3, uint64_
   shader_generator[4] = 0x203d207875615f70;
   shader_generator[5] = 0x7869705f72655028;
   *(int32_t *)(shader_generator + 6) = 0x615f6c65;
-  *(int32_t *)((longlong)shader_generator + 0x34) = 0x6c697875;
+  *(int32_t *)((int64_t)shader_generator + 0x34) = 0x6c697875;
   *(int32_t *)(shader_generator + 7) = 0x79726169;
-  *(int32_t *)((longlong)shader_generator + 0x3c) = 0x7261765f;
+  *(int32_t *)((int64_t)shader_generator + 0x3c) = 0x7261765f;
   shader_generator[8] = 0x302973656c626169;
   *(int32_t *)(shader_generator + 9) = 0xa0a3b;
   *(int *)(param_2 + 0x10) = source_buffer_size + 0x122;
   source_buffer_size = source_buffer_size + 0x159;
   BufferExpander(param_2, source_buffer_size);
-  shader_generator = (uint64_t *)((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8));
+  shader_generator = (uint64_t *)((uint64_t)*(uint *)(param_2 + 0x10) + *(int64_t *)(param_2 + 8));
   *shader_generator = 0x616c75636c616309;
   shader_generator[1] = 0x705f7265705f6574;
   shader_generator[2] = 0x6174735f6c657869;
   shader_generator[3] = 0x697261765f636974;
   *(int32_t *)(shader_generator + 4) = 0x656c6261;
-  *(int32_t *)((longlong)shader_generator + 0x24) = 0x6e492873;
+  *(int32_t *)((int64_t)shader_generator + 0x24) = 0x6e492873;
   *(int32_t *)(shader_generator + 5) = 0x7070202c;
-  *(int32_t *)((longlong)shader_generator + 0x2c) = 0x6174735f;
+  *(int32_t *)((int64_t)shader_generator + 0x2c) = 0x6174735f;
   shader_generator[6] = 0xa0a3b29636974;
   *(int *)(param_2 + 0x10) = source_buffer_size;
-  pipeline_context = *(longlong *)(param_3 + 0x498) - *(longlong *)(param_3 + 0x490);
+  pipeline_context = *(int64_t *)(param_3 + 0x498) - *(int64_t *)(param_3 + 0x490);
   iteration_context = pipeline_context >> 0x3f;
   total_parameters = parameter_index;
   if (pipeline_context / 0x98 + iteration_context != iteration_context) {
     do {
       temp_buffer_size = source_buffer_size + 1;
       BufferExpander(param_2, temp_buffer_size);
-      *(int16_t *)((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8)) = 9;
+      *(int16_t *)((uint64_t)*(uint *)(param_2 + 0x10) + *(int64_t *)(param_2 + 8)) = 9;
       *(int *)(param_2 + 0x10) = temp_buffer_size;
-      iteration_context = *(longlong *)(param_3 + 0x490);
+      iteration_context = *(int64_t *)(param_3 + 0x490);
       loop_counter = *(int *)(iteration_context + 0x10 + parameter_index);
       if (0 < loop_counter) {
         BufferExpander(param_2, temp_buffer_size + loop_counter);
                     // WARNING: Subroutine does not return
-        memcpy((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8),
-               *(uint64_t *)(iteration_context + 8 + parameter_index),(longlong)(*(int *)(iteration_context + 0x10 + parameter_index) + 1));
+        memcpy((uint64_t)*(uint *)(param_2 + 0x10) + *(int64_t *)(param_2 + 8),
+               *(uint64_t *)(iteration_context + 8 + parameter_index),(int64_t)(*(int *)(iteration_context + 0x10 + parameter_index) + 1));
       }
       source_buffer_size = source_buffer_size + 7;
       BufferExpander(param_2, source_buffer_size);
-      buffer_writer = (int32_t *)((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8));
+      buffer_writer = (int32_t *)((uint64_t)*(uint *)(param_2 + 0x10) + *(int64_t *)(param_2 + 8));
       *buffer_writer = 0x296e4928;
       *(int16_t *)(buffer_writer + 1) = 0xa3b;
-      *(int8_t *)((longlong)buffer_writer + 6) = 0;
+      *(int8_t *)((int64_t)buffer_writer + 6) = 0;
       *(int *)(param_2 + 0x10) = source_buffer_size;
       buffer_expansion_size = (int)total_parameters + 1;
       parameter_index = parameter_index + 0x98;
-      total_parameters = (ulonglong)buffer_expansion_size;
-    } while ((ulonglong)(longlong)(int)buffer_expansion_size <
-             (ulonglong)((*(longlong *)(param_3 + 0x498) - *(longlong *)(param_3 + 0x490)) / 0x98));
+      total_parameters = (uint64_t)buffer_expansion_size;
+    } while ((uint64_t)(int64_t)(int)buffer_expansion_size <
+             (uint64_t)((*(int64_t *)(param_3 + 0x498) - *(int64_t *)(param_3 + 0x490)) / 0x98));
   }
   if (*(int *)(param_3 + 0xa40) != 0) {
     loop_counter = source_buffer_size + 1;
     BufferExpander(param_2, loop_counter);
-    *(int16_t *)((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8)) = 9;
+    *(int16_t *)((uint64_t)*(uint *)(param_2 + 0x10) + *(int64_t *)(param_2 + 8)) = 9;
     *(int *)(param_2 + 0x10) = loop_counter;
     if (0 < *(int *)(param_3 + 0xa40)) {
       BufferExpander(param_2, loop_counter + *(int *)(param_3 + 0xa40));
                     // WARNING: Subroutine does not return
-      memcpy((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8),
-             *(uint64_t *)(param_3 + 0xa38),(longlong)(*(int *)(param_3 + 0xa40) + 1));
+      memcpy((uint64_t)*(uint *)(param_2 + 0x10) + *(int64_t *)(param_2 + 8),
+             *(uint64_t *)(param_3 + 0xa38),(int64_t)(*(int *)(param_3 + 0xa40) + 1));
     }
     source_buffer_size = source_buffer_size + 0x2b;
     BufferExpander(param_2, source_buffer_size);
-    shader_generator = (uint64_t *)((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8));
+    shader_generator = (uint64_t *)((uint64_t)*(uint *)(param_2 + 0x10) + *(int64_t *)(param_2 + 8));
     *shader_generator = 0x7070202c206e4928;
     shader_generator[1] = 0x206369746174735f;
     shader_generator[2] = 0x646f6d5f7070202c;
     shader_generator[3] = 0x2c656c6261696669;
     shader_generator[4] = 0x297875615f707020;
     *(int16_t *)(shader_generator + 5) = 0xa3b;
-    *(int8_t *)((longlong)shader_generator + 0x2a) = 0;
+    *(int8_t *)((int64_t)shader_generator + 0x2a) = 0;
     *(int *)(param_2 + 0x10) = source_buffer_size;
   }
   loop_counter = source_buffer_size + 1;
   BufferExpander(param_2, loop_counter);
-  *(int16_t *)((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8)) = 9;
+  *(int16_t *)((uint64_t)*(uint *)(param_2 + 0x10) + *(int64_t *)(param_2 + 8)) = 9;
   *(int *)(param_2 + 0x10) = loop_counter;
   if (*(int *)(param_3 + 0xad8) < 1) {
     BufferExpander(param_2, source_buffer_size + 0x2b);
-    shader_generator = (uint64_t *)((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8));
+    shader_generator = (uint64_t *)((uint64_t)*(uint *)(param_2 + 0x10) + *(int64_t *)(param_2 + 8));
     *shader_generator = 0x7070202c206e4928;
     shader_generator[1] = 0x206369746174735f;
     *(int32_t *)(shader_generator + 2) = 0x7070202c;
-    *(int32_t *)((longlong)shader_generator + 0x14) = 0x646f6d5f;
+    *(int32_t *)((int64_t)shader_generator + 0x14) = 0x646f6d5f;
     *(int32_t *)(shader_generator + 3) = 0x61696669;
-    *(int32_t *)((longlong)shader_generator + 0x1c) = 0x2c656c62;
+    *(int32_t *)((int64_t)shader_generator + 0x1c) = 0x2c656c62;
     shader_generator[4] = 0x297875615f707020;
     *(int16_t *)(shader_generator + 5) = 0xa3b;
-    *(int8_t *)((longlong)shader_generator + 0x2a) = 0;
+    *(int8_t *)((int64_t)shader_generator + 0x2a) = 0;
     *(int *)(param_2 + 0x10) = source_buffer_size + 0x2b;
     ShaderTextureProcessor(shader_generator, param_2, param_3);
     source_buffer_size = *(int *)(param_2 + 0x10);
     loop_counter = source_buffer_size + 2;
     BufferExpander(param_2, loop_counter);
-    terminator_writer = (int16_t *)((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8));
+    terminator_writer = (int16_t *)((uint64_t)*(uint *)(param_2 + 0x10) + *(int64_t *)(param_2 + 8));
     *terminator_writer = 0xa7d;
     *(int8_t *)(terminator_writer + 1) = 0;
     *(int *)(param_2 + 0x10) = loop_counter;
     source_buffer_size = source_buffer_size + 9;
     BufferExpander(param_2, source_buffer_size);
-    *(uint64_t *)((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8)) =
+    *(uint64_t *)((uint64_t)*(uint *)(param_2 + 0x10) + *(int64_t *)(param_2 + 8)) =
          0xa6669646e6523;
     *(int *)(param_2 + 0x10) = source_buffer_size;
                     // WARNING: Subroutine does not return
@@ -754,8 +754,8 @@ void FUN_1803415f0(uint64_t param_1, longlong param_2, longlong param_3, uint64_
   }
   BufferExpander(param_2, loop_counter + *(int *)(param_3 + 0xad8));
                     // WARNING: Subroutine does not return
-  memcpy((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8),
-         *(uint64_t *)(param_3 + 0xad0),(longlong)(*(int *)(param_3 + 0xad8) + 1));
+  memcpy((uint64_t)*(uint *)(param_2 + 0x10) + *(int64_t *)(param_2 + 8),
+         *(uint64_t *)(param_3 + 0xad0),(int64_t)(*(int *)(param_3 + 0xad8) + 1));
 }
 
 

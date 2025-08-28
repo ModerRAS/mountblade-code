@@ -4,13 +4,13 @@
 // 本文件包含10个核心函数，涵盖渲染系统参数初始化、资源清理、内存管理、数据结构操作等功能
 
 // 全局变量：渲染系统主数据结构指针
-static longlong *rendering_main_data_structure = (longlong *)0x180c8a9b0;
-static longlong *rendering_context_manager = (longlong *)0x180c8a9a8;
+static int64_t *rendering_main_data_structure = (int64_t *)0x180c8a9b0;
+static int64_t *rendering_context_manager = (int64_t *)0x180c8a9a8;
 
 // 函数：初始化渲染系统参数和状态
 // 参数：param_1 - 渲染对象指针，如果为NULL则使用默认渲染对象
 // 功能：设置渲染系统的各种参数，包括纹理坐标、变换矩阵、混合模式等
-void initialize_rendering_parameters(longlong render_object)
+void initialize_rendering_parameters(int64_t render_object)
 {
     // 检查并设置默认渲染对象
     if (render_object == 0) {
@@ -30,14 +30,14 @@ void initialize_rendering_parameters(longlong render_object)
     *(double *)(render_object + 0xb8) = 1.0;  // 混合因子B
     
     // 清空临时缓冲区
-    *(longlong *)(render_object + 0x100) = 0;
-    *(longlong *)(render_object + 0x108) = 0;
+    *(int64_t *)(render_object + 0x100) = 0;
+    *(int64_t *)(render_object + 0x108) = 0;
     
     // 设置渲染状态参数
     *(double *)(render_object + 0x120) = 0.59; // 深度参数1
     *(double *)(render_object + 0x128) = 0.4;  // 深度参数2
-    *(longlong *)(render_object + 0xd0) = 0;
-    *(longlong *)(render_object + 0xd8) = 0;
+    *(int64_t *)(render_object + 0xd0) = 0;
+    *(int64_t *)(render_object + 0xd8) = 0;
     
     // 设置光照参数
     *(double *)(render_object + 0x140) = 0.04; // 环境光强度
@@ -46,7 +46,7 @@ void initialize_rendering_parameters(longlong render_object)
     *(double *)(render_object + 0x118) = 0.52; // 镜面反射参数2
     
     // 设置雾效参数
-    *(longlong *)(render_object + 0x160) = 0;
+    *(int64_t *)(render_object + 0x160) = 0;
     *(double *)(render_object + 0x168) = 0.52;  // 雾效密度
     *(double *)(render_object + 0x130) = 0.59; // 雾效起始距离
     *(double *)(render_object + 0x138) = 0.67; // 雾效结束距离
@@ -324,12 +324,12 @@ void reset_render_object_state(uint32_t *render_object)
 void release_render_resource_array(uint64_t *resource_array)
 {
     int *resource_count_ptr;
-    longlong resource_handle;
+    int64_t resource_handle;
     uint64_t *resource_ptr;
-    longlong resource_manager;
+    int64_t resource_manager;
     uint resource_index;
     uint64_t resource_size;
-    longlong sub_resource_handle;
+    int64_t sub_resource_handle;
     uint64_t loop_counter;
     
     resource_manager = rendering_main_data_structure[0];
@@ -388,7 +388,7 @@ void release_render_resource_array(uint64_t *resource_array)
         if (resource_handle == 0) {
             // 重置高级资源标志
             *(uint32_t *)(resource_array + 0x12) = 0;
-            *(uint32_t *)((longlong)resource_array + 0x94) = 1;
+            *(uint32_t *)((int64_t)resource_array + 0x94) = 1;
             resource_size = loop_counter = 0;
             
             // 遍历并释放子资源
@@ -404,7 +404,7 @@ void release_render_resource_array(uint64_t *resource_array)
                     
                     resource_manager = rendering_main_data_structure[0];
                     sub_resource_handle = loop_counter * 0x20;
-                    resource_handle = *(longlong *)(resource_array[0x14] + 8 + sub_resource_handle);
+                    resource_handle = *(int64_t *)(resource_array[0x14] + 8 + sub_resource_handle);
                     
                     // 释放子资源1
                     if (resource_handle != 0) {
@@ -416,7 +416,7 @@ void release_render_resource_array(uint64_t *resource_array)
                     }
                     
                     // 释放子资源2
-                    resource_handle = *(longlong *)(resource_array[0x14] + 0x18 + sub_resource_handle);
+                    resource_handle = *(int64_t *)(resource_array[0x14] + 0x18 + sub_resource_handle);
                     if (resource_handle != 0) {
                         *(uint64_t *)(resource_array[0x14] + 0x10 + sub_resource_handle) = 0;
                         if (resource_manager != 0) {
@@ -464,19 +464,19 @@ void release_render_resource_array(uint64_t *resource_array)
 // 函数：释放渲染资源数组（简化版本）
 // 参数：param_1 - 渲染资源指针
 // 功能：简化版的资源释放函数，用于快速释放渲染资源
-void release_render_resource_array_simplified(longlong resource_ptr)
+void release_render_resource_array_simplified(int64_t resource_ptr)
 {
     int *resource_count_ptr;
-    longlong resource_handle;
+    int64_t resource_handle;
     uint64_t *resource_array_ptr;
-    longlong resource_manager;
+    int64_t resource_manager;
     uint resource_index;
     uint64_t resource_size;
-    longlong sub_resource_handle;
+    int64_t sub_resource_handle;
     uint64_t loop_counter;
     
     resource_manager = rendering_main_data_structure[0];
-    resource_handle = *(longlong *)(resource_ptr + 8);
+    resource_handle = *(int64_t *)(resource_ptr + 8);
     loop_counter = 0;
     
     // 释放主资源
@@ -531,7 +531,7 @@ void release_render_resource_array_simplified(longlong resource_ptr)
         if (resource_handle == 0) {
             // 重置高级资源标志
             *(uint32_t *)(resource_ptr + 144) = 0;
-            *(uint32_t *)((longlong)resource_ptr + 148) = 1;
+            *(uint32_t *)((int64_t)resource_ptr + 148) = 1;
             resource_size = loop_counter = 0;
             
             // 遍历并释放子资源
@@ -547,7 +547,7 @@ void release_render_resource_array_simplified(longlong resource_ptr)
                     
                     resource_manager = rendering_main_data_structure[0];
                     sub_resource_handle = loop_counter * 0x20;
-                    resource_handle = *(longlong *)(*(uint64_t *)(resource_ptr + 160) + 8 + sub_resource_handle);
+                    resource_handle = *(int64_t *)(*(uint64_t *)(resource_ptr + 160) + 8 + sub_resource_handle);
                     
                     // 释放子资源1
                     if (resource_handle != 0) {
@@ -559,7 +559,7 @@ void release_render_resource_array_simplified(longlong resource_ptr)
                     }
                     
                     // 释放子资源2
-                    resource_handle = *(longlong *)(*(uint64_t *)(resource_ptr + 160) + 24 + sub_resource_handle);
+                    resource_handle = *(int64_t *)(*(uint64_t *)(resource_ptr + 160) + 24 + sub_resource_handle);
                     if (resource_handle != 0) {
                         *(uint64_t *)(*(uint64_t *)(resource_ptr + 160) + 16 + sub_resource_handle) = 0;
                         if (resource_manager != 0) {
@@ -609,12 +609,12 @@ void release_render_resource_array_simplified(longlong resource_ptr)
 void batch_cleanup_render_resources(void)
 {
     uint64_t *resource_array;
-    longlong resource_handle;
-    longlong resource_manager;
-    longlong render_object;
+    int64_t resource_handle;
+    int64_t resource_manager;
+    int64_t render_object;
     int resource_count;
-    longlong resource_offset;
-    longlong sub_resource_handle;
+    int64_t resource_offset;
+    int64_t sub_resource_handle;
     uint64_t loop_counter;
     
     resource_manager = rendering_main_data_structure[0];
@@ -631,11 +631,11 @@ void batch_cleanup_render_resources(void)
         
         resource_manager = rendering_main_data_structure[0];
         resource_offset = render_object * 0x20;
-        resource_handle = *(longlong *)(*(longlong *)(resource_manager + 0xa0) + 8 + resource_offset);
+        resource_handle = *(int64_t *)(*(int64_t *)(resource_manager + 0xa0) + 8 + resource_offset);
         
         // 释放主资源
         if (resource_handle != 0) {
-            *(longlong *)(*(longlong *)(resource_manager + 0xa0) + resource_offset) = render_object;
+            *(int64_t *)(*(int64_t *)(resource_manager + 0xa0) + resource_offset) = render_object;
             if (resource_manager != 0) {
                 *(int *)(resource_manager + 0x3a8) = *(int *)(resource_manager + 0x3a8) - 1;
             }
@@ -643,9 +643,9 @@ void batch_cleanup_render_resources(void)
         }
         
         // 释放次资源
-        resource_handle = *(longlong *)(*(longlong *)(resource_manager + 0xa0) + 24 + resource_offset);
+        resource_handle = *(int64_t *)(*(int64_t *)(resource_manager + 0xa0) + 24 + resource_offset);
         if (resource_handle != 0) {
-            *(longlong *)(*(longlong *)(resource_manager + 0xa0) + 16 + resource_offset) = render_object;
+            *(int64_t *)(*(int64_t *)(resource_manager + 0xa0) + 16 + resource_offset) = render_object;
             if (resource_manager != 0) {
                 *(int *)(resource_manager + 0x3a8) = *(int *)(resource_manager + 0x3a8) - 1;
             }
@@ -657,9 +657,9 @@ void batch_cleanup_render_resources(void)
     } while (resource_count < *(int *)(resource_manager + 0x98));
     
     // 释放最终资源数组
-    resource_handle = *(longlong *)(resource_manager + 0xa0);
+    resource_handle = *(int64_t *)(resource_manager + 0xa0);
     if (resource_handle != 0) {
-        *(longlong *)(resource_manager + 0x98) = render_object;
+        *(int64_t *)(resource_manager + 0x98) = render_object;
         if (resource_manager != 0) {
             *(int *)(resource_manager + 0x3a8) = *(int *)(resource_manager + 0x3a8) - 1;
         }
@@ -674,13 +674,13 @@ void batch_cleanup_render_resources(void)
 void cleanup_render_resource_array(void)
 {
     int *resource_count_ptr;
-    longlong resource_handle;
-    longlong resource_manager;
-    longlong render_object;
+    int64_t resource_handle;
+    int64_t resource_manager;
+    int64_t render_object;
     uint64_t resource_value;
     
     resource_manager = rendering_main_data_structure[0];
-    resource_handle = *(longlong *)(render_object + 0xa0);
+    resource_handle = *(int64_t *)(render_object + 0xa0);
     
     if (resource_handle != 0) {
         *(uint64_t *)(render_object + 0x98) = resource_value;
@@ -700,8 +700,8 @@ void cleanup_render_resource_array(void)
 void release_render_resource_handle(uint64_t resource_handle)
 {
     int *resource_count_ptr;
-    longlong resource_manager;
-    longlong render_object;
+    int64_t resource_manager;
+    int64_t render_object;
     uint64_t resource_value;
     
     resource_manager = rendering_main_data_structure[0];
@@ -719,40 +719,40 @@ void release_render_resource_handle(uint64_t resource_handle)
 // 功能：将渲染数据添加到缓冲区中，处理缓冲区扩展和数据插入
 void add_render_data_to_buffer(int *render_buffer)
 {
-    longlong *data_ptr;
+    int64_t *data_ptr;
     uint64_t *resource_ptr;
-    longlong buffer_offset;
+    int64_t buffer_offset;
     int current_count;
     int max_count;
     uint texture_id;
     uint shader_id;
-    longlong data_offset;
+    int64_t data_offset;
     int new_count;
     int expanded_count;
-    longlong new_offset;
+    int64_t new_offset;
     uint *texture_data;
-    longlong *buffer_data;
+    int64_t *buffer_data;
     int buffer_capacity;
     int buffer_size;
-    longlong buffer_base;
+    int64_t buffer_base;
     uint *sub_texture_data;
     
     // 获取纹理数据
     if (render_buffer[0x18] == 0) {
-        texture_data = (uint *)(*(longlong *)(render_buffer + 0xe) + 0x18);
+        texture_data = (uint *)(*(int64_t *)(render_buffer + 0xe) + 0x18);
     } else {
-        texture_data = (uint *)((longlong)(render_buffer[0x18] + -1) * 0x10 + *(longlong *)(render_buffer + 0x1a));
+        texture_data = (uint *)((int64_t)(render_buffer[0x18] + -1) * 0x10 + *(int64_t *)(render_buffer + 0x1a));
     }
     
     texture_id = *texture_data;
-    data_offset = *(longlong *)(texture_data + 1);
+    data_offset = *(int64_t *)(texture_data + 1);
     shader_id = texture_data[3];
     
     // 获取资源数据
     if (render_buffer[0x1c] == 0) {
         buffer_offset = 0;
     } else {
-        buffer_offset = *(uint64_t *)(*(longlong *)(render_buffer + 0x1e) + -8 + (longlong)render_buffer[0x1c] * 8);
+        buffer_offset = *(uint64_t *)(*(int64_t *)(render_buffer + 0x1e) + -8 + (int64_t)render_buffer[0x1c] * 8);
     }
     
     buffer_size = *render_buffer;
@@ -773,9 +773,9 @@ void add_render_data_to_buffer(int *render_buffer)
         buffer_size = *render_buffer;
     }
     
-    new_offset = (longlong)buffer_size;
-    buffer_base = *(longlong *)(render_buffer + 2);
-    data_ptr = (longlong *)(buffer_base + new_offset * 0x30);
+    new_offset = (int64_t)buffer_size;
+    buffer_base = *(int64_t *)(render_buffer + 2);
+    data_ptr = (int64_t *)(buffer_base + new_offset * 0x30);
     
     // 存储纹理数据
     *data_ptr = (uint64_t)texture_id << 0x20;
@@ -803,16 +803,16 @@ void add_render_data_to_buffer(int *render_buffer)
 void update_render_data_buffer(int *render_buffer)
 {
     uint64_t *resource_ptr;
-    longlong resource_handle;
+    int64_t resource_handle;
     int current_count;
     uint texture_id;
     uint shader_id;
-    longlong data_offset;
+    int64_t data_offset;
     int buffer_size;
     int buffer_capacity;
-    longlong new_offset;
+    int64_t new_offset;
     uint *texture_data;
-    longlong *buffer_data;
+    int64_t *buffer_data;
     int *previous_data;
     int *current_data;
     int *previous_ptr;
@@ -821,9 +821,9 @@ void update_render_data_buffer(int *render_buffer)
     
     // 获取缓冲区数据
     if (render_buffer[0x18] == 0) {
-        buffer_data = (longlong *)(*(longlong *)(render_buffer + 0xe) + 0x18);
+        buffer_data = (int64_t *)(*(int64_t *)(render_buffer + 0xe) + 0x18);
     } else {
-        buffer_data = (longlong *)((longlong)(render_buffer[0x18] + -1) * 0x10 + *(longlong *)(render_buffer + 0x1a));
+        buffer_data = (int64_t *)((int64_t)(render_buffer[0x18] + -1) * 0x10 + *(int64_t *)(render_buffer + 0x1a));
     }
     
     data_offset = *buffer_data;
@@ -833,31 +833,31 @@ void update_render_data_buffer(int *render_buffer)
     previous_data = current_data;
     
     if (0 < buffer_size) {
-        previous_data = (int *)((longlong)(buffer_size + -1) * 0x30 + *(longlong *)(render_buffer + 2));
+        previous_data = (int *)((int64_t)(buffer_size + -1) * 0x30 + *(int64_t *)(render_buffer + 2));
     }
     
     // 检查是否需要更新现有数据
     if (((previous_data == (int *)0x0) ||
         ((*previous_data != 0 &&
-         ((*(longlong *)(previous_data + 1) != data_offset || (*(longlong *)(previous_data + 3) != resource_handle)))))) ||
-       (*(longlong *)(previous_data + 8) != 0)) {
+         ((*(int64_t *)(previous_data + 1) != data_offset || (*(int64_t *)(previous_data + 3) != resource_handle)))))) ||
+       (*(int64_t *)(previous_data + 8) != 0)) {
         
         // 获取纹理数据
         if (render_buffer[0x18] == 0) {
-            texture_data = (uint *)(*(longlong *)(render_buffer + 0xe) + 0x18);
+            texture_data = (uint *)(*(int64_t *)(render_buffer + 0xe) + 0x18);
         } else {
-            texture_data = (uint *)((longlong)(render_buffer[0x18] + -1) * 0x10 + *(longlong *)(render_buffer + 0x1a));
+            texture_data = (uint *)((int64_t)(render_buffer[0x18] + -1) * 0x10 + *(int64_t *)(render_buffer + 0x1a));
         }
         
         texture_id = *texture_data;
-        data_offset = *(longlong *)(texture_data + 1);
+        data_offset = *(int64_t *)(texture_data + 1);
         shader_id = texture_data[3];
         
         // 获取资源数据
         if (render_buffer[0x1c] == 0) {
             stack_offset = 0;
         } else {
-            stack_offset = *(uint64_t *)(*(longlong *)(render_buffer + 0x1e) + -8 + (longlong)render_buffer[0x1c] * 8);
+            stack_offset = *(uint64_t *)(*(int64_t *)(render_buffer + 0x1e) + -8 + (int64_t)render_buffer[0x1c] * 8);
         }
         
         buffer_size = *render_buffer;
@@ -878,9 +878,9 @@ void update_render_data_buffer(int *render_buffer)
             buffer_size = *render_buffer;
         }
         
-        new_offset = (longlong)buffer_size;
-        resource_handle = *(longlong *)(render_buffer + 2);
-        buffer_data = (longlong *)(resource_handle + new_offset * 0x30);
+        new_offset = (int64_t)buffer_size;
+        resource_handle = *(int64_t *)(render_buffer + 2);
+        buffer_data = (int64_t *)(resource_handle + new_offset * 0x30);
         
         // 存储纹理数据
         *buffer_data = (uint64_t)texture_id << 0x20;
@@ -907,22 +907,22 @@ void update_render_data_buffer(int *render_buffer)
         previous_ptr = (int *)0x0;
     }
     
-    if ((((*previous_data == 0) && (previous_ptr != (int *)0x0)) && (*(longlong *)(previous_ptr + 1) == data_offset)) &&
-       (*(longlong *)(previous_ptr + 3) == resource_handle)) {
+    if ((((*previous_data == 0) && (previous_ptr != (int *)0x0)) && (*(int64_t *)(previous_ptr + 1) == data_offset)) &&
+       (*(int64_t *)(previous_ptr + 3) == resource_handle)) {
         
         if (render_buffer[0x1c] != 0) {
-            current_data = *(int **)(*(longlong *)(render_buffer + 0x1e) + -8 + (longlong)render_buffer[0x1c] * 8);
+            current_data = *(int **)(*(int64_t *)(render_buffer + 0x1e) + -8 + (int64_t)render_buffer[0x1c] * 8);
         }
         
-        if ((*(int **)(previous_ptr + 6) == current_data) && (*(longlong *)(previous_ptr + 8) == 0)) {
+        if ((*(int **)(previous_ptr + 6) == current_data) && (*(int64_t *)(previous_ptr + 8) == 0)) {
             *render_buffer = buffer_size + -1;
             return;
         }
     }
     
     // 更新数据
-    *(longlong *)(previous_data + 1) = data_offset;
-    *(longlong *)(previous_data + 3) = resource_handle;
+    *(int64_t *)(previous_data + 1) = data_offset;
+    *(int64_t *)(previous_data + 3) = resource_handle;
     
     return;
 }
@@ -933,16 +933,16 @@ void update_render_data_buffer(int *render_buffer)
 void optimize_render_data_buffer(int *render_buffer)
 {
     uint64_t *resource_ptr;
-    longlong resource_handle;
+    int64_t resource_handle;
     int current_count;
     uint texture_id;
     uint shader_id;
-    longlong data_offset;
+    int64_t data_offset;
     int buffer_size;
     int buffer_capacity;
-    longlong new_offset;
+    int64_t new_offset;
     uint *texture_data;
-    longlong *buffer_data;
+    int64_t *buffer_data;
     int *previous_data;
     int *current_data;
     int *previous_ptr;
@@ -951,14 +951,14 @@ void optimize_render_data_buffer(int *render_buffer)
     
     current_data = (int *)0x0;
     if (render_buffer[0x1c] != 0) {
-        current_data = *(int **)(*(longlong *)(render_buffer + 0x1e) + -8 + (longlong)render_buffer[0x1c] * 8);
+        current_data = *(int **)(*(int64_t *)(render_buffer + 0x1e) + -8 + (int64_t)render_buffer[0x1c] * 8);
     }
     
     buffer_size = *render_buffer;
     if (buffer_size != 0) {
-        previous_data = (int *)(*(longlong *)(render_buffer + 2) + -0x30 + (longlong)buffer_size * 0x30);
+        previous_data = (int *)(*(int64_t *)(render_buffer + 2) + -0x30 + (int64_t)buffer_size * 0x30);
         if ((previous_data != (int *)0x0) &&
-           (((*previous_data == 0 || (*(int **)(previous_data + 6) == current_data)) && (*(longlong *)(previous_data + 8) == 0)
+           (((*previous_data == 0 || (*(int **)(previous_data + 6) == current_data)) && (*(int64_t *)(previous_data + 8) == 0)
             ))) {
             
             previous_ptr = previous_data + -0xc;
@@ -968,14 +968,14 @@ void optimize_render_data_buffer(int *render_buffer)
             
             if (((*previous_data == 0) && (previous_ptr != (int *)0x0)) && (*(int **)(previous_ptr + 6) == current_data)) {
                 if (render_buffer[0x18] == 0) {
-                    buffer_data = (longlong *)(*(longlong *)(render_buffer + 0xe) + 0x18);
+                    buffer_data = (int64_t *)(*(int64_t *)(render_buffer + 0xe) + 0x18);
                 } else {
-                    buffer_data = (longlong *)
-                              ((longlong)(render_buffer[0x18] + -1) * 0x10 + *(longlong *)(render_buffer + 0x1a));
+                    buffer_data = (int64_t *)
+                              ((int64_t)(render_buffer[0x18] + -1) * 0x10 + *(int64_t *)(render_buffer + 0x1a));
                 }
                 
-                if (((*(longlong *)(previous_ptr + 1) == *buffer_data) && (*(longlong *)(previous_ptr + 3) == buffer_data[1]))
-                   && (*(longlong *)(previous_ptr + 8) == 0)) {
+                if (((*(int64_t *)(previous_ptr + 1) == *buffer_data) && (*(int64_t *)(previous_ptr + 3) == buffer_data[1]))
+                   && (*(int64_t *)(previous_ptr + 8) == 0)) {
                     *render_buffer = buffer_size + -1;
                     return;
                 }
@@ -988,20 +988,20 @@ void optimize_render_data_buffer(int *render_buffer)
     
     // 获取纹理数据
     if (render_buffer[0x18] == 0) {
-        texture_data = (uint *)(*(longlong *)(render_buffer + 0xe) + 0x18);
+        texture_data = (uint *)(*(int64_t *)(render_buffer + 0xe) + 0x18);
     } else {
-        texture_data = (uint *)((longlong)(render_buffer[0x18] + -1) * 0x10 + *(longlong *)(render_buffer + 0x1a));
+        texture_data = (uint *)((int64_t)(render_buffer[0x18] + -1) * 0x10 + *(int64_t *)(render_buffer + 0x1a));
     }
     
     texture_id = *texture_data;
-    data_offset = *(longlong *)(texture_data + 1);
+    data_offset = *(int64_t *)(texture_data + 1);
     shader_id = texture_data[3];
     
     // 获取资源数据
     if (render_buffer[0x1c] == 0) {
         stack_offset = 0;
     } else {
-        stack_offset = *(uint64_t *)(*(longlong *)(render_buffer + 0x1e) + -8 + (longlong)render_buffer[0x1c] * 8);
+        stack_offset = *(uint64_t *)(*(int64_t *)(render_buffer + 0x1e) + -8 + (int64_t)render_buffer[0x1c] * 8);
     }
     
     buffer_size = *render_buffer;
@@ -1022,9 +1022,9 @@ void optimize_render_data_buffer(int *render_buffer)
         buffer_size = *render_buffer;
     }
     
-    new_offset = (longlong)buffer_size;
-    resource_handle = *(longlong *)(render_buffer + 2);
-    buffer_data = (longlong *)(resource_handle + new_offset * 0x30);
+    new_offset = (int64_t)buffer_size;
+    resource_handle = *(int64_t *)(render_buffer + 2);
+    buffer_data = (int64_t *)(resource_handle + new_offset * 0x30);
     
     // 存储纹理数据
     *buffer_data = (uint64_t)texture_id << 0x20;
@@ -1047,10 +1047,10 @@ void optimize_render_data_buffer(int *render_buffer)
 }
 
 // 函数别名 - 保持与原始函数名的兼容性
-void FUN_180290fd0(longlong param_1) __attribute__((alias("initialize_rendering_parameters")));
+void FUN_180290fd0(int64_t param_1) __attribute__((alias("initialize_rendering_parameters")));
 void FUN_180291500(uint32_t *param_1) __attribute__((alias("reset_render_object_state")));
 void FUN_180291610(uint64_t *param_1) __attribute__((alias("release_render_resource_array")));
-void FUN_18029161b(longlong param_1) __attribute__((alias("release_render_resource_array_simplified")));
+void FUN_18029161b(int64_t param_1) __attribute__((alias("release_render_resource_array_simplified")));
 void FUN_180291772(void) __attribute__((alias("batch_cleanup_render_resources")));
 void FUN_180291839(void) __attribute__((alias("cleanup_render_resource_array")));
 void FUN_18029184a(uint64_t param_1) __attribute__((alias("release_render_resource_handle")));

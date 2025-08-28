@@ -4,55 +4,55 @@
 
 // 函数: 序列化渲染对象数据到缓冲区
 // 原始函数名: FUN_1802722e0
-void serialize_render_object_data(longlong render_context, longlong *buffer_context)
+void serialize_render_object_data(int64_t render_context, int64_t *buffer_context)
 
 {
   int8_t byte_value;
   int32_t dword_value;
-  longlong range_size;
-  longlong temp_range;
+  int64_t range_size;
+  int64_t temp_range;
   int8_t *byte_ptr;
   int32_t *dword_ptr;
   int *int_ptr;
   uint counter;
-  ulonglong loop_index;
-  ulonglong start_addr;
-  ulonglong current_index;
+  uint64_t loop_index;
+  uint64_t start_addr;
+  uint64_t current_index;
   
   dword_ptr = (int32_t *)buffer_context[1];
-  if ((ulonglong)((*buffer_context - (longlong)dword_ptr) + buffer_context[2]) < 5) {
-    ensure_buffer_capacity(buffer_context, (longlong)dword_ptr + (4 - *buffer_context));
+  if ((uint64_t)((*buffer_context - (int64_t)dword_ptr) + buffer_context[2]) < 5) {
+    ensure_buffer_capacity(buffer_context, (int64_t)dword_ptr + (4 - *buffer_context));
     dword_ptr = (int32_t *)buffer_context[1];
   }
   start_addr = 0;
   *dword_ptr = 0;
   buffer_context[1] = buffer_context[1] + 4;
-  range_size = *(longlong *)(render_context + 0x28) - *(longlong *)(render_context + 0x20);
+  range_size = *(int64_t *)(render_context + 0x28) - *(int64_t *)(render_context + 0x20);
   int_ptr = (int *)buffer_context[1];
   range_size = range_size / 0x26 + (range_size >> 0x3f);
-  if ((ulonglong)((*buffer_context - (longlong)int_ptr) + buffer_context[2]) < 5) {
-    ensure_buffer_capacity(buffer_context, (longlong)int_ptr + (4 - *buffer_context));
+  if ((uint64_t)((*buffer_context - (int64_t)int_ptr) + buffer_context[2]) < 5) {
+    ensure_buffer_capacity(buffer_context, (int64_t)int_ptr + (4 - *buffer_context));
     int_ptr = (int *)buffer_context[1];
   }
   *int_ptr = (int)(range_size >> 2) - (int)(range_size >> 0x3f);
   buffer_context[1] = buffer_context[1] + 4;
-  temp_range = *(longlong *)(render_context + 0x28) - *(longlong *)(render_context + 0x20);
+  temp_range = *(int64_t *)(render_context + 0x28) - *(int64_t *)(render_context + 0x20);
   range_size = temp_range >> 0x3f;
   current_index = start_addr;
   loop_index = start_addr;
   if (temp_range / 0x98 + range_size != range_size) {
     do {
-      serialize_data_block(buffer_context, loop_index * 0x98 + *(longlong *)(render_context + 0x20));
+      serialize_data_block(buffer_context, loop_index * 0x98 + *(int64_t *)(render_context + 0x20));
       counter = (int)current_index + 1;
-      current_index = (ulonglong)counter;
-      loop_index = (longlong)(int)counter;
-    } while ((ulonglong)(longlong)(int)counter <
-             (ulonglong)((*(longlong *)(render_context + 0x28) - *(longlong *)(render_context + 0x20)) / 0x98));
+      current_index = (uint64_t)counter;
+      loop_index = (int64_t)(int)counter;
+    } while ((uint64_t)(int64_t)(int)counter <
+             (uint64_t)((*(int64_t *)(render_context + 0x28) - *(int64_t *)(render_context + 0x20)) / 0x98));
   }
   serialize_data_block(buffer_context, render_context + 0x40);
   byte_ptr = (int8_t *)buffer_context[1];
   byte_value = *(int8_t *)(render_context + 0xd8);
-  if ((ulonglong)((*buffer_context - (longlong)byte_ptr) + buffer_context[2]) < 2) {
+  if ((uint64_t)((*buffer_context - (int64_t)byte_ptr) + buffer_context[2]) < 2) {
     ensure_buffer_capacity(buffer_context, byte_ptr + (1 - *buffer_context));
     byte_ptr = (int8_t *)buffer_context[1];
   }
@@ -60,34 +60,34 @@ void serialize_render_object_data(longlong render_context, longlong *buffer_cont
   buffer_context[1] = buffer_context[1] + 1;
   dword_ptr = (int32_t *)buffer_context[1];
   dword_value = *(int32_t *)(render_context + 0xdc);
-  if ((ulonglong)((*buffer_context - (longlong)dword_ptr) + buffer_context[2]) < 5) {
-    ensure_buffer_capacity(buffer_context, (longlong)dword_ptr + (4 - *buffer_context));
+  if ((uint64_t)((*buffer_context - (int64_t)dword_ptr) + buffer_context[2]) < 5) {
+    ensure_buffer_capacity(buffer_context, (int64_t)dword_ptr + (4 - *buffer_context));
     dword_ptr = (int32_t *)buffer_context[1];
   }
   *dword_ptr = dword_value;
   buffer_context[1] = buffer_context[1] + 4;
   serialize_data_block(buffer_context, render_context + 0xe0);
-  range_size = *(longlong *)(render_context + 0x180) - *(longlong *)(render_context + 0x178);
+  range_size = *(int64_t *)(render_context + 0x180) - *(int64_t *)(render_context + 0x178);
   range_size = range_size / 0x26 + (range_size >> 0x3f);
   int_ptr = (int *)buffer_context[1];
-  if ((ulonglong)((*buffer_context - (longlong)int_ptr) + buffer_context[2]) < 5) {
-    ensure_buffer_capacity(buffer_context, (longlong)int_ptr + (4 - *buffer_context));
+  if ((uint64_t)((*buffer_context - (int64_t)int_ptr) + buffer_context[2]) < 5) {
+    ensure_buffer_capacity(buffer_context, (int64_t)int_ptr + (4 - *buffer_context));
     int_ptr = (int *)buffer_context[1];
   }
   *int_ptr = (int)(range_size >> 2) - (int)(range_size >> 0x3f);
   buffer_context[1] = buffer_context[1] + 4;
-  temp_range = *(longlong *)(render_context + 0x180) - *(longlong *)(render_context + 0x178);
+  temp_range = *(int64_t *)(render_context + 0x180) - *(int64_t *)(render_context + 0x178);
   range_size = temp_range >> 0x3f;
   current_index = start_addr;
   loop_index = start_addr;
   if (temp_range / 0x98 + range_size != range_size) {
     do {
-      serialize_data_block(buffer_context, loop_index * 0x98 + *(longlong *)(render_context + 0x178));
+      serialize_data_block(buffer_context, loop_index * 0x98 + *(int64_t *)(render_context + 0x178));
       counter = (int)current_index + 1;
-      current_index = (ulonglong)counter;
-      loop_index = (longlong)(int)counter;
-    } while ((ulonglong)(longlong)(int)counter <
-             (ulonglong)((*(longlong *)(render_context + 0x180) - *(longlong *)(render_context + 0x178)) / 0x98));
+      current_index = (uint64_t)counter;
+      loop_index = (int64_t)(int)counter;
+    } while ((uint64_t)(int64_t)(int)counter <
+             (uint64_t)((*(int64_t *)(render_context + 0x180) - *(int64_t *)(render_context + 0x178)) / 0x98));
   }
   range_size = render_context + 0x198;
   temp_range = 5;
@@ -96,27 +96,27 @@ void serialize_render_object_data(longlong render_context, longlong *buffer_cont
     range_size = range_size + 0x98;
     temp_range = temp_range + -1;
   } while (temp_range != 0);
-  range_size = *(longlong *)(render_context + 0x498) - *(longlong *)(render_context + 0x490);
+  range_size = *(int64_t *)(render_context + 0x498) - *(int64_t *)(render_context + 0x490);
   range_size = range_size / 0x26 + (range_size >> 0x3f);
   int_ptr = (int *)buffer_context[1];
-  if ((ulonglong)((*buffer_context - (longlong)int_ptr) + buffer_context[2]) < 5) {
-    ensure_buffer_capacity(buffer_context, (longlong)int_ptr + (4 - *buffer_context));
+  if ((uint64_t)((*buffer_context - (int64_t)int_ptr) + buffer_context[2]) < 5) {
+    ensure_buffer_capacity(buffer_context, (int64_t)int_ptr + (4 - *buffer_context));
     int_ptr = (int *)buffer_context[1];
   }
   *int_ptr = (int)(range_size >> 2) - (int)(range_size >> 0x3f);
   buffer_context[1] = buffer_context[1] + 4;
-  temp_range = *(longlong *)(render_context + 0x498) - *(longlong *)(render_context + 0x490);
+  temp_range = *(int64_t *)(render_context + 0x498) - *(int64_t *)(render_context + 0x490);
   range_size = temp_range >> 0x3f;
   current_index = start_addr;
   loop_index = start_addr;
   if (temp_range / 0x98 + range_size != range_size) {
     do {
-      serialize_data_block(buffer_context, loop_index * 0x98 + *(longlong *)(render_context + 0x490));
+      serialize_data_block(buffer_context, loop_index * 0x98 + *(int64_t *)(render_context + 0x490));
       counter = (int)current_index + 1;
-      current_index = (ulonglong)counter;
-      loop_index = (longlong)(int)counter;
-    } while ((ulonglong)(longlong)(int)counter <
-             (ulonglong)((*(longlong *)(render_context + 0x498) - *(longlong *)(render_context + 0x490)) / 0x98));
+      current_index = (uint64_t)counter;
+      loop_index = (int64_t)(int)counter;
+    } while ((uint64_t)(int64_t)(int)counter <
+             (uint64_t)((*(int64_t *)(render_context + 0x498) - *(int64_t *)(render_context + 0x490)) / 0x98));
   }
   range_size = render_context + 0xa30;
   temp_range = 9;
@@ -127,33 +127,33 @@ void serialize_render_object_data(longlong render_context, longlong *buffer_cont
   } while (temp_range != 0);
   serialize_data_block(buffer_context, render_context + 0xf88);
   serialize_data_block(buffer_context, render_context + 0x1020);
-  range_size = *(longlong *)(render_context + 0x10c0) - *(longlong *)(render_context + 0x10b8);
+  range_size = *(int64_t *)(render_context + 0x10c0) - *(int64_t *)(render_context + 0x10b8);
   range_size = range_size / 0x26 + (range_size >> 0x3f);
   int_ptr = (int *)buffer_context[1];
-  if ((ulonglong)((*buffer_context - (longlong)int_ptr) + buffer_context[2]) < 5) {
-    ensure_buffer_capacity(buffer_context, (longlong)int_ptr + (4 - *buffer_context));
+  if ((uint64_t)((*buffer_context - (int64_t)int_ptr) + buffer_context[2]) < 5) {
+    ensure_buffer_capacity(buffer_context, (int64_t)int_ptr + (4 - *buffer_context));
     int_ptr = (int *)buffer_context[1];
   }
   *int_ptr = (int)(range_size >> 2) - (int)(range_size >> 0x3f);
   buffer_context[1] = buffer_context[1] + 4;
-  temp_range = *(longlong *)(render_context + 0x10c0) - *(longlong *)(render_context + 0x10b8);
+  temp_range = *(int64_t *)(render_context + 0x10c0) - *(int64_t *)(render_context + 0x10b8);
   range_size = temp_range >> 0x3f;
   current_index = start_addr;
   loop_index = start_addr;
   if (temp_range / 0x98 + range_size != range_size) {
     do {
-      serialize_data_block(buffer_context, loop_index * 0x98 + *(longlong *)(render_context + 0x10b8));
+      serialize_data_block(buffer_context, loop_index * 0x98 + *(int64_t *)(render_context + 0x10b8));
       counter = (int)current_index + 1;
-      current_index = (ulonglong)counter;
-      loop_index = (longlong)(int)counter;
-    } while ((ulonglong)(longlong)(int)counter <
-             (ulonglong)((*(longlong *)(render_context + 0x10c0) - *(longlong *)(render_context + 0x10b8)) / 0x98)
+      current_index = (uint64_t)counter;
+      loop_index = (int64_t)(int)counter;
+    } while ((uint64_t)(int64_t)(int)counter <
+             (uint64_t)((*(int64_t *)(render_context + 0x10c0) - *(int64_t *)(render_context + 0x10b8)) / 0x98)
             );
   }
   serialize_data_block(buffer_context, render_context + 0x10d8);
   byte_ptr = (int8_t *)buffer_context[1];
   byte_value = *(int8_t *)(render_context + 0x10f9);
-  if ((ulonglong)((*buffer_context - (longlong)byte_ptr) + buffer_context[2]) < 2) {
+  if ((uint64_t)((*buffer_context - (int64_t)byte_ptr) + buffer_context[2]) < 2) {
     ensure_buffer_capacity(buffer_context, byte_ptr + (1 - *buffer_context));
     byte_ptr = (int8_t *)buffer_context[1];
   }
@@ -169,8 +169,8 @@ void serialize_render_object_data(longlong render_context, longlong *buffer_cont
     serialize_data_block(buffer_context, render_context + 0x13f8);
     dword_ptr = (int32_t *)buffer_context[1];
   }
-  if ((ulonglong)((*buffer_context - (longlong)dword_ptr) + buffer_context[2]) < 5) {
-    ensure_buffer_capacity(buffer_context, (longlong)dword_ptr + (4 - *buffer_context));
+  if ((uint64_t)((*buffer_context - (int64_t)dword_ptr) + buffer_context[2]) < 5) {
+    ensure_buffer_capacity(buffer_context, (int64_t)dword_ptr + (4 - *buffer_context));
     dword_ptr = (int32_t *)buffer_context[1];
   }
   *dword_ptr = 0x10;
@@ -178,15 +178,15 @@ void serialize_render_object_data(longlong render_context, longlong *buffer_cont
   render_context = render_context + 0x4b0;
   do {
     int_ptr = (int *)buffer_context[1];
-    if ((ulonglong)((*buffer_context - (longlong)int_ptr) + buffer_context[2]) < 5) {
-      ensure_buffer_capacity(buffer_context, (longlong)int_ptr + (4 - *buffer_context));
+    if ((uint64_t)((*buffer_context - (int64_t)int_ptr) + buffer_context[2]) < 5) {
+      ensure_buffer_capacity(buffer_context, (int64_t)int_ptr + (4 - *buffer_context));
       int_ptr = (int *)buffer_context[1];
     }
     *int_ptr = (int)start_addr;
     buffer_context[1] = buffer_context[1] + 4;
     serialize_data_block(buffer_context, render_context);
     counter = (int)start_addr + 1;
-    start_addr = (ulonglong)counter;
+    start_addr = (uint64_t)counter;
     render_context = render_context + 0x58;
   } while ((int)counter < 0x10);
   return;
@@ -332,36 +332,36 @@ int32_t * initialize_render_resource_manager(int32_t *resource_manager)
 
 // 函数: 序列化高级渲染数据
 // 原始函数名: FUN_180272b60
-void serialize_advanced_render_data(longlong render_context, longlong *buffer_context, uint64_t param_3, uint64_t param_4)
+void serialize_advanced_render_data(int64_t render_context, int64_t *buffer_context, uint64_t param_3, uint64_t param_4)
 
 {
   int8_t byte_value;
   int32_t dword_value;
-  longlong range_size;
+  int64_t range_size;
   int8_t *byte_ptr;
   int32_t *dword_ptr;
   int *int_ptr;
   int int_counter;
   uint uint_counter;
-  ulonglong loop_index;
+  uint64_t loop_index;
   int temp_int;
-  longlong temp_long;
-  ulonglong current_index;
+  int64_t temp_long;
+  uint64_t current_index;
   uint64_t unaff_RDI;
-  ulonglong start_addr;
+  uint64_t start_addr;
   uint64_t unaff_R14;
   uint64_t unaff_R15;
   
   dword_ptr = (int32_t *)buffer_context[1];
-  if ((ulonglong)((buffer_context[2] - (longlong)dword_ptr) + *buffer_context) < 5) {
-    ensure_buffer_capacity(buffer_context, (longlong)dword_ptr + (4 - *buffer_context));
+  if ((uint64_t)((buffer_context[2] - (int64_t)dword_ptr) + *buffer_context) < 5) {
+    ensure_buffer_capacity(buffer_context, (int64_t)dword_ptr + (4 - *buffer_context));
     dword_ptr = (int32_t *)buffer_context[1];
   }
   *dword_ptr = 0;
   buffer_context[1] = buffer_context[1] + 4;
   dword_ptr = (int32_t *)buffer_context[1];
-  if ((ulonglong)((*buffer_context - (longlong)dword_ptr) + buffer_context[2]) < 5) {
-    ensure_buffer_capacity(buffer_context, (longlong)dword_ptr + (4 - *buffer_context));
+  if ((uint64_t)((*buffer_context - (int64_t)dword_ptr) + buffer_context[2]) < 5) {
+    ensure_buffer_capacity(buffer_context, (int64_t)dword_ptr + (4 - *buffer_context));
     dword_ptr = (int32_t *)buffer_context[1];
   }
   *dword_ptr = 1;
@@ -376,34 +376,34 @@ void serialize_advanced_render_data(longlong render_context, longlong *buffer_co
   serialize_data_block(buffer_context, render_context + 0xd0);
   serialize_data_block(buffer_context, render_context + 0xf0);
   serialize_data_block(buffer_context, render_context + 0x110);
-  range_size = *(longlong *)(render_context + 0x138) - *(longlong *)(render_context + 0x130);
+  range_size = *(int64_t *)(render_context + 0x138) - *(int64_t *)(render_context + 0x130);
   range_size = range_size / 6 + (range_size >> 0x3f);
   int_ptr = (int *)buffer_context[1];
   temp_int = (int)(range_size >> 4) - (int)(range_size >> 0x3f);
-  if ((ulonglong)((*buffer_context - (longlong)int_ptr) + buffer_context[2]) < 5) {
-    ensure_buffer_capacity(buffer_context, (longlong)int_ptr + (4 - *buffer_context));
+  if ((uint64_t)((*buffer_context - (int64_t)int_ptr) + buffer_context[2]) < 5) {
+    ensure_buffer_capacity(buffer_context, (int64_t)int_ptr + (4 - *buffer_context));
     int_ptr = (int *)buffer_context[1];
   }
   *int_ptr = temp_int;
   int_counter = 0;
   buffer_context[1] = buffer_context[1] + 4;
-  range_size = (longlong)temp_int;
+  range_size = (int64_t)temp_int;
   if (0 < temp_int) {
     temp_long = 0;
     do {
-      serialize_data_block(buffer_context, (longlong)int_counter * 0x60 + *(longlong *)(render_context + 0x130));
+      serialize_data_block(buffer_context, (int64_t)int_counter * 0x60 + *(int64_t *)(render_context + 0x130));
       dword_ptr = (int32_t *)buffer_context[1];
-      dword_value = *(int32_t *)(temp_long + 0x58 + *(longlong *)(render_context + 0x130));
-      if ((ulonglong)((*buffer_context - (longlong)dword_ptr) + buffer_context[2]) < 5) {
-        ensure_buffer_capacity(buffer_context, (longlong)dword_ptr + (4 - *buffer_context));
+      dword_value = *(int32_t *)(temp_long + 0x58 + *(int64_t *)(render_context + 0x130));
+      if ((uint64_t)((*buffer_context - (int64_t)dword_ptr) + buffer_context[2]) < 5) {
+        ensure_buffer_capacity(buffer_context, (int64_t)dword_ptr + (4 - *buffer_context));
         dword_ptr = (int32_t *)buffer_context[1];
       }
       *dword_ptr = dword_value;
       buffer_context[1] = buffer_context[1] + 4;
       dword_ptr = (int32_t *)buffer_context[1];
-      dword_value = *(int32_t *)(temp_long + 0x5c + *(longlong *)(render_context + 0x130));
-      if ((ulonglong)((*buffer_context - (longlong)dword_ptr) + buffer_context[2]) < 5) {
-        ensure_buffer_capacity(buffer_context, (longlong)dword_ptr + (4 - *buffer_context));
+      dword_value = *(int32_t *)(temp_long + 0x5c + *(int64_t *)(render_context + 0x130));
+      if ((uint64_t)((*buffer_context - (int64_t)dword_ptr) + buffer_context[2]) < 5) {
+        ensure_buffer_capacity(buffer_context, (int64_t)dword_ptr + (4 - *buffer_context));
         dword_ptr = (int32_t *)buffer_context[1];
       }
       *dword_ptr = dword_value;
@@ -431,7 +431,7 @@ void serialize_advanced_render_data(longlong render_context, longlong *buffer_co
   serialize_render_shader_params(&RENDER_SHADER_PARAM_TABLE, *(int32_t *)(render_context + 2000), buffer_context);
   byte_ptr = (int8_t *)buffer_context[1];
   byte_value = *(int8_t *)(render_context + 0x7d4);
-  if ((ulonglong)((*buffer_context - (longlong)byte_ptr) + buffer_context[2]) < 2) {
+  if ((uint64_t)((*buffer_context - (int64_t)byte_ptr) + buffer_context[2]) < 2) {
     ensure_buffer_capacity(buffer_context, byte_ptr + (1 - *buffer_context));
     byte_ptr = (int8_t *)buffer_context[1];
   }
@@ -441,40 +441,40 @@ void serialize_advanced_render_data(longlong render_context, longlong *buffer_co
     return;
   }
   dword_ptr = (int32_t *)buffer_context[1];
-  if ((ulonglong)((*buffer_context - (longlong)dword_ptr) + buffer_context[2]) < 5) {
-    ensure_buffer_capacity(buffer_context, (longlong)dword_ptr + (4 - *buffer_context));
+  if ((uint64_t)((*buffer_context - (int64_t)dword_ptr) + buffer_context[2]) < 5) {
+    ensure_buffer_capacity(buffer_context, (int64_t)dword_ptr + (4 - *buffer_context));
     dword_ptr = (int32_t *)buffer_context[1];
   }
   start_addr = 0;
   *dword_ptr = 0;
   buffer_context[1] = buffer_context[1] + 4;
-  range_size = *(longlong *)(render_context + 0x800) - *(longlong *)(render_context + 0x7f8);
+  range_size = *(int64_t *)(render_context + 0x800) - *(int64_t *)(render_context + 0x7f8);
   int_ptr = (int *)buffer_context[1];
   range_size = range_size / 0x26 + (range_size >> 0x3f);
-  if ((ulonglong)((*buffer_context - (longlong)int_ptr) + buffer_context[2]) < 5) {
-    temp_long = (longlong)int_ptr - *buffer_context;
+  if ((uint64_t)((*buffer_context - (int64_t)int_ptr) + buffer_context[2]) < 5) {
+    temp_long = (int64_t)int_ptr - *buffer_context;
     ensure_buffer_capacity(buffer_context, temp_long + 4, temp_long, param_4, unaff_R15, unaff_R14, unaff_RDI);
     int_ptr = (int *)buffer_context[1];
   }
   *int_ptr = (int)(range_size >> 2) - (int)(range_size >> 0x3f);
   buffer_context[1] = buffer_context[1] + 4;
-  temp_long = *(longlong *)(render_context + 0x800) - *(longlong *)(render_context + 0x7f8);
+  temp_long = *(int64_t *)(render_context + 0x800) - *(int64_t *)(render_context + 0x7f8);
   range_size = temp_long >> 0x3f;
   loop_index = start_addr;
   current_index = start_addr;
   if (temp_long / 0x98 + range_size != range_size) {
     do {
-      serialize_data_block(buffer_context, current_index * 0x98 + *(longlong *)(render_context + 0x7f8));
+      serialize_data_block(buffer_context, current_index * 0x98 + *(int64_t *)(render_context + 0x7f8));
       uint_counter = (int)loop_index + 1;
-      loop_index = (ulonglong)uint_counter;
-      current_index = (longlong)(int)uint_counter;
-    } while ((ulonglong)(longlong)(int)uint_counter <
-             (ulonglong)((*(longlong *)(render_context + 0x800) - *(longlong *)(render_context + 0x7f8)) / 0x98));
+      loop_index = (uint64_t)uint_counter;
+      current_index = (int64_t)(int)uint_counter;
+    } while ((uint64_t)(int64_t)(int)uint_counter <
+             (uint64_t)((*(int64_t *)(render_context + 0x800) - *(int64_t *)(render_context + 0x7f8)) / 0x98));
   }
   serialize_data_block(buffer_context, render_context + 0x818);
   byte_ptr = (int8_t *)buffer_context[1];
   byte_value = *(int8_t *)(render_context + 0x8b0);
-  if ((ulonglong)((*buffer_context - (longlong)byte_ptr) + buffer_context[2]) < 2) {
+  if ((uint64_t)((*buffer_context - (int64_t)byte_ptr) + buffer_context[2]) < 2) {
     ensure_buffer_capacity(buffer_context, byte_ptr + (1 - *buffer_context));
     byte_ptr = (int8_t *)buffer_context[1];
   }
@@ -482,34 +482,34 @@ void serialize_advanced_render_data(longlong render_context, longlong *buffer_co
   buffer_context[1] = buffer_context[1] + 1;
   dword_ptr = (int32_t *)buffer_context[1];
   dword_value = *(int32_t *)(render_context + 0x8b4);
-  if ((ulonglong)((*buffer_context - (longlong)dword_ptr) + buffer_context[2]) < 5) {
-    ensure_buffer_capacity(buffer_context, (longlong)dword_ptr + (4 - *buffer_context));
+  if ((uint64_t)((*buffer_context - (int64_t)dword_ptr) + buffer_context[2]) < 5) {
+    ensure_buffer_capacity(buffer_context, (int64_t)dword_ptr + (4 - *buffer_context));
     dword_ptr = (int32_t *)buffer_context[1];
   }
   *dword_ptr = dword_value;
   buffer_context[1] = buffer_context[1] + 4;
   serialize_data_block(buffer_context, render_context + 0x8b8);
-  range_size = *(longlong *)(render_context + 0x958) - *(longlong *)(render_context + 0x950);
+  range_size = *(int64_t *)(render_context + 0x958) - *(int64_t *)(render_context + 0x950);
   range_size = range_size / 0x26 + (range_size >> 0x3f);
   int_ptr = (int *)buffer_context[1];
-  if ((ulonglong)((*buffer_context - (longlong)int_ptr) + buffer_context[2]) < 5) {
-    ensure_buffer_capacity(buffer_context, (longlong)int_ptr + (4 - *buffer_context));
+  if ((uint64_t)((*buffer_context - (int64_t)int_ptr) + buffer_context[2]) < 5) {
+    ensure_buffer_capacity(buffer_context, (int64_t)int_ptr + (4 - *buffer_context));
     int_ptr = (int *)buffer_context[1];
   }
   *int_ptr = (int)(range_size >> 2) - (int)(range_size >> 0x3f);
   buffer_context[1] = buffer_context[1] + 4;
-  temp_long = *(longlong *)(render_context + 0x958) - *(longlong *)(render_context + 0x950);
+  temp_long = *(int64_t *)(render_context + 0x958) - *(int64_t *)(render_context + 0x950);
   range_size = temp_long >> 0x3f;
   loop_index = start_addr;
   current_index = start_addr;
   if (temp_long / 0x98 + range_size != range_size) {
     do {
-      serialize_data_block(buffer_context, current_index * 0x98 + *(longlong *)(render_context + 0x950));
+      serialize_data_block(buffer_context, current_index * 0x98 + *(int64_t *)(render_context + 0x950));
       uint_counter = (int)loop_index + 1;
-      loop_index = (ulonglong)uint_counter;
-      current_index = (longlong)(int)uint_counter;
-    } while ((ulonglong)(longlong)(int)uint_counter <
-             (ulonglong)((*(longlong *)(render_context + 0x958) - *(longlong *)(render_context + 0x950)) / 0x98));
+      loop_index = (uint64_t)uint_counter;
+      current_index = (int64_t)(int)uint_counter;
+    } while ((uint64_t)(int64_t)(int)uint_counter <
+             (uint64_t)((*(int64_t *)(render_context + 0x958) - *(int64_t *)(render_context + 0x950)) / 0x98));
   }
   range_size = render_context + 0x970;
   temp_long = 5;
@@ -518,27 +518,27 @@ void serialize_advanced_render_data(longlong render_context, longlong *buffer_co
     range_size = range_size + 0x98;
     temp_long = temp_long + -1;
   } while (temp_long != 0);
-  range_size = *(longlong *)(render_context + 0xc70) - *(longlong *)(render_context + 0xc68);
+  range_size = *(int64_t *)(render_context + 0xc70) - *(int64_t *)(render_context + 0xc68);
   range_size = range_size / 0x26 + (range_size >> 0x3f);
   int_ptr = (int *)buffer_context[1];
-  if ((ulonglong)((*buffer_context - (longlong)int_ptr) + buffer_context[2]) < 5) {
-    ensure_buffer_capacity(buffer_context, (longlong)int_ptr + (4 - *buffer_context));
+  if ((uint64_t)((*buffer_context - (int64_t)int_ptr) + buffer_context[2]) < 5) {
+    ensure_buffer_capacity(buffer_context, (int64_t)int_ptr + (4 - *buffer_context));
     int_ptr = (int *)buffer_context[1];
   }
   *int_ptr = (int)(range_size >> 2) - (int)(range_size >> 0x3f);
   buffer_context[1] = buffer_context[1] + 4;
-  temp_long = *(longlong *)(render_context + 0xc70) - *(longlong *)(render_context + 0xc68);
+  temp_long = *(int64_t *)(render_context + 0xc70) - *(int64_t *)(render_context + 0xc68);
   range_size = temp_long >> 0x3f;
   loop_index = start_addr;
   current_index = start_addr;
   if (temp_long / 0x98 + range_size != range_size) {
     do {
-      serialize_data_block(buffer_context, current_index * 0x98 + *(longlong *)(render_context + 0xc68));
+      serialize_data_block(buffer_context, current_index * 0x98 + *(int64_t *)(render_context + 0xc68));
       uint_counter = (int)loop_index + 1;
-      loop_index = (ulonglong)uint_counter;
-      current_index = (longlong)(int)uint_counter;
-    } while ((ulonglong)(longlong)(int)uint_counter <
-             (ulonglong)((*(longlong *)(render_context + 0xc70) - *(longlong *)(render_context + 0xc68)) / 0x98));
+      loop_index = (uint64_t)uint_counter;
+      current_index = (int64_t)(int)uint_counter;
+    } while ((uint64_t)(int64_t)(int)uint_counter <
+             (uint64_t)((*(int64_t *)(render_context + 0xc70) - *(int64_t *)(render_context + 0xc68)) / 0x98));
   }
   range_size = render_context + 0x1208;
   temp_long = 9;
@@ -549,33 +549,33 @@ void serialize_advanced_render_data(longlong render_context, longlong *buffer_co
   } while (temp_long != 0);
   serialize_data_block(buffer_context, render_context + 0x1760);
   serialize_data_block(buffer_context, render_context + 0x17f8);
-  range_size = *(longlong *)(render_context + 0x1898) - *(longlong *)(render_context + 0x1890);
+  range_size = *(int64_t *)(render_context + 0x1898) - *(int64_t *)(render_context + 0x1890);
   range_size = range_size / 0x26 + (range_size >> 0x3f);
   int_ptr = (int *)buffer_context[1];
-  if ((ulonglong)((*buffer_context - (longlong)int_ptr) + buffer_context[2]) < 5) {
-    ensure_buffer_capacity(buffer_context, (longlong)int_ptr + (4 - *buffer_context));
+  if ((uint64_t)((*buffer_context - (int64_t)int_ptr) + buffer_context[2]) < 5) {
+    ensure_buffer_capacity(buffer_context, (int64_t)int_ptr + (4 - *buffer_context));
     int_ptr = (int *)buffer_context[1];
   }
   *int_ptr = (int)(range_size >> 2) - (int)(range_size >> 0x3f);
   buffer_context[1] = buffer_context[1] + 4;
-  temp_long = *(longlong *)(render_context + 0x1898) - *(longlong *)(render_context + 0x1890);
+  temp_long = *(int64_t *)(render_context + 0x1898) - *(int64_t *)(render_context + 0x1890);
   range_size = temp_long >> 0x3f;
   loop_index = start_addr;
   current_index = start_addr;
   if (temp_long / 0x98 + range_size != range_size) {
     do {
-      serialize_data_block(buffer_context, current_index * 0x98 + *(longlong *)(render_context + 0x1890));
+      serialize_data_block(buffer_context, current_index * 0x98 + *(int64_t *)(render_context + 0x1890));
       uint_counter = (int)loop_index + 1;
-      loop_index = (ulonglong)uint_counter;
-      current_index = (longlong)(int)uint_counter;
-    } while ((ulonglong)(longlong)(int)uint_counter <
-             (ulonglong)((*(longlong *)(render_context + 0x1898) - *(longlong *)(render_context + 0x1890)) / 0x98)
+      loop_index = (uint64_t)uint_counter;
+      current_index = (int64_t)(int)uint_counter;
+    } while ((uint64_t)(int64_t)(int)uint_counter <
+             (uint64_t)((*(int64_t *)(render_context + 0x1898) - *(int64_t *)(render_context + 0x1890)) / 0x98)
             );
   }
   serialize_data_block(buffer_context, render_context + 0x18b0);
   byte_ptr = (int8_t *)buffer_context[1];
   byte_value = *(int8_t *)(render_context + 0x18d1);
-  if ((ulonglong)((*buffer_context - (longlong)byte_ptr) + buffer_context[2]) < 2) {
+  if ((uint64_t)((*buffer_context - (int64_t)byte_ptr) + buffer_context[2]) < 2) {
     ensure_buffer_capacity(buffer_context, byte_ptr + (1 - *buffer_context));
     byte_ptr = (int8_t *)buffer_context[1];
   }
@@ -591,8 +591,8 @@ void serialize_advanced_render_data(longlong render_context, longlong *buffer_co
     serialize_data_block(buffer_context, render_context + 0x1bd0);
     dword_ptr = (int32_t *)buffer_context[1];
   }
-  if ((ulonglong)((*buffer_context - (longlong)dword_ptr) + buffer_context[2]) < 5) {
-    ensure_buffer_capacity(buffer_context, (longlong)dword_ptr + (4 - *buffer_context));
+  if ((uint64_t)((*buffer_context - (int64_t)dword_ptr) + buffer_context[2]) < 5) {
+    ensure_buffer_capacity(buffer_context, (int64_t)dword_ptr + (4 - *buffer_context));
     dword_ptr = (int32_t *)buffer_context[1];
   }
   *dword_ptr = 0x10;
@@ -600,15 +600,15 @@ void serialize_advanced_render_data(longlong render_context, longlong *buffer_co
   render_context = render_context + 0xc88;
   do {
     int_ptr = (int *)buffer_context[1];
-    if ((ulonglong)((*buffer_context - (longlong)int_ptr) + buffer_context[2]) < 5) {
-      ensure_buffer_capacity(buffer_context, (longlong)int_ptr + (4 - *buffer_context));
+    if ((uint64_t)((*buffer_context - (int64_t)int_ptr) + buffer_context[2]) < 5) {
+      ensure_buffer_capacity(buffer_context, (int64_t)int_ptr + (4 - *buffer_context));
       int_ptr = (int *)buffer_context[1];
     }
     *int_ptr = (int)start_addr;
     buffer_context[1] = buffer_context[1] + 4;
     serialize_data_block(buffer_context, render_context);
     uint_counter = (int)start_addr + 1;
-    start_addr = (ulonglong)uint_counter;
+    start_addr = (uint64_t)uint_counter;
     render_context = render_context + 0x58;
   } while ((int)uint_counter < 0x10);
   return;
@@ -620,34 +620,34 @@ void serialize_advanced_render_data(longlong render_context, longlong *buffer_co
 
 // 函数: 处理渲染字符串哈希表
 // 原始函数名: FUN_180272bd0
-void process_render_string_hash_table(longlong *hash_table, longlong data_offset, uint *result_flags)
+void process_render_string_hash_table(int64_t *hash_table, int64_t data_offset, uint *result_flags)
 
 {
   uint *hash_ptr;
   byte *string_buffer;
   uint hash_value;
-  longlong str_length;
+  int64_t str_length;
   byte *compare_buffer;
   int string_index;
-  ulonglong loop_counter;
-  longlong temp_long;
+  uint64_t loop_counter;
+  int64_t temp_long;
   byte *temp_ptr;
   int comparison_result;
-  longlong *current_entry;
+  int64_t *current_entry;
   int8_t stack_buffer [32];
   uint64_t stack_guard;
   void *vtable_ptr;
   byte *work_buffer;
   int work_index;
   byte temp_buffer [1032];
-  ulonglong canary_value;
+  uint64_t canary_value;
   
   stack_guard = 0xfffffffffffffffe;
-  canary_value = DATA_STACK_CANARY ^ (ulonglong)stack_buffer;
-  *(longlong *)(data_offset + 8) = *(longlong *)(data_offset + 8) + 4;
+  canary_value = DATA_STACK_CANARY ^ (uint64_t)stack_buffer;
+  *(int64_t *)(data_offset + 8) = *(int64_t *)(data_offset + 8) + 4;
   *result_flags = 0;
   hash_value = **(uint **)(data_offset + 8);
-  loop_counter = (ulonglong)hash_value;
+  loop_counter = (uint64_t)hash_value;
   *(uint **)(data_offset + 8) = *(uint **)(data_offset + 8) + 1;
   if (hash_value != 0) {
     do {
@@ -662,7 +662,7 @@ void process_render_string_hash_table(longlong *hash_table, longlong data_offset
       current_entry = hash_table;
       if (hash_value != 0) {
         process_render_string_data(&vtable_ptr, hash_ptr, hash_value);
-        *(longlong *)(data_offset + 8) = *(longlong *)(data_offset + 8) + (ulonglong)hash_value;
+        *(int64_t *)(data_offset + 8) = *(int64_t *)(data_offset + 8) + (uint64_t)hash_value;
       }
       do {
         str_length = -1;
@@ -674,7 +674,7 @@ void process_render_string_hash_table(longlong *hash_table, longlong data_offset
           if (work_index != 0) {
             temp_ptr = work_buffer;
             do {
-              string_buffer = temp_ptr + (*current_entry - (longlong)work_buffer);
+              string_buffer = temp_ptr + (*current_entry - (int64_t)work_buffer);
               comparison_result = (uint)*temp_ptr - (uint)*string_buffer;
               if (comparison_result != 0) break;
               temp_ptr = temp_ptr + 1;
@@ -695,24 +695,24 @@ HASH_MATCH_FOUND:
     } while (loop_counter != 0);
   }
                     // 警告: 子函数不返回
-  cleanup_stack_buffer(canary_value ^ (ulonglong)stack_buffer);
+  cleanup_stack_buffer(canary_value ^ (uint64_t)stack_buffer);
 }
 
 
 // 函数: 序列化渲染特性标志
 // 原始函数名: System_DataSerializer
-void serialize_render_feature_flags(uint64_t *feature_table, uint feature_mask, longlong *buffer_context)
+void serialize_render_feature_flags(uint64_t *feature_table, uint feature_mask, int64_t *buffer_context)
 
 {
   int32_t *dword_ptr;
-  longlong buffer_size;
-  longlong buffer_pos;
+  int64_t buffer_size;
+  int64_t buffer_pos;
   int feature_count;
-  longlong buffer_offset;
+  int64_t buffer_offset;
   
   dword_ptr = (int32_t *)buffer_context[1];
-  if ((ulonglong)((*buffer_context - (longlong)dword_ptr) + buffer_context[2]) < 5) {
-    ensure_buffer_capacity(buffer_context, (longlong)dword_ptr + (4 - *buffer_context));
+  if ((uint64_t)((*buffer_context - (int64_t)dword_ptr) + buffer_context[2]) < 5) {
+    ensure_buffer_capacity(buffer_context, (int64_t)dword_ptr + (4 - *buffer_context));
     dword_ptr = (int32_t *)buffer_context[1];
   }
   feature_count = 0;
@@ -724,7 +724,7 @@ void serialize_render_feature_flags(uint64_t *feature_table, uint feature_mask, 
   if (buffer_pos != 0) {
     buffer_offset = buffer_size - buffer_pos;
   }
-  if ((ulonglong)((buffer_pos - buffer_size) + buffer_context[2]) < 5) {
+  if ((uint64_t)((buffer_pos - buffer_size) + buffer_context[2]) < 5) {
     ensure_buffer_capacity(buffer_context, (buffer_size - buffer_pos) + 4);
     buffer_size = buffer_context[1];
   }
@@ -748,22 +748,22 @@ void serialize_render_feature_flags(uint64_t *feature_table, uint feature_mask, 
 
 // 函数: 调整渲染对象数组大小
 // 原始函数名: FUN_180272e40
-void resize_render_object_array(longlong *array_manager, ulonglong new_size)
+void resize_render_object_array(int64_t *array_manager, uint64_t new_size)
 
 {
   void *vtable_ptr;
   uint64_t *current_ptr;
-  ulonglong current_size;
+  uint64_t current_size;
   uint64_t *end_ptr;
-  ulonglong size_diff;
+  uint64_t size_diff;
   uint64_t *new_ptr;
   uint64_t *alloc_ptr;
   void *destructor_vtable;
-  longlong offset;
+  int64_t offset;
   
   current_ptr = (uint64_t *)array_manager[1];
   offset = *array_manager;
-  current_size = ((longlong)current_ptr - offset) / 0x98;
+  current_size = ((int64_t)current_ptr - offset) / 0x98;
   if (new_size <= current_size) {
     end_ptr = (uint64_t *)(new_size * 0x98 + offset);
     if (end_ptr != current_ptr) {
@@ -778,9 +778,9 @@ void resize_render_object_array(longlong *array_manager, ulonglong new_size)
   }
   new_size = new_size - current_size;
   current_ptr = (uint64_t *)array_manager[1];
-  if ((ulonglong)((array_manager[2] - (longlong)current_ptr) / 0x98) < new_size) {
+  if ((uint64_t)((array_manager[2] - (int64_t)current_ptr) / 0x98) < new_size) {
     end_ptr = (uint64_t *)*array_manager;
-    offset = ((longlong)current_ptr - (longlong)end_ptr) / 0x98;
+    offset = ((int64_t)current_ptr - (int64_t)end_ptr) / 0x98;
     current_size = offset * 2;
     if (offset == 0) {
       current_size = 1;
@@ -798,7 +798,7 @@ void resize_render_object_array(longlong *array_manager, ulonglong new_size)
     }
     new_ptr = alloc_ptr;
     if (end_ptr != current_ptr) {
-      offset = (longlong)end_ptr - (longlong)alloc_ptr;
+      offset = (int64_t)end_ptr - (int64_t)alloc_ptr;
       do {
         *new_ptr = &RENDER_RESOURCE_TABLE_BASE;
         new_ptr[1] = 0;
@@ -807,15 +807,15 @@ void resize_render_object_array(longlong *array_manager, ulonglong new_size)
         new_ptr[1] = new_ptr + 3;
         *(int32_t *)(new_ptr + 2) = 0;
         *(int8_t *)(new_ptr + 3) = 0;
-        *(int32_t *)(new_ptr + 2) = *(int32_t *)((longlong)new_ptr + offset + 0x10);
-        vtable_ptr = *(void **)((longlong)new_ptr + offset + 8);
+        *(int32_t *)(new_ptr + 2) = *(int32_t *)((int64_t)new_ptr + offset + 0x10);
+        vtable_ptr = *(void **)((int64_t)new_ptr + offset + 8);
         destructor_vtable = &RENDER_DEFAULT_DESTRUCTOR;
         if (vtable_ptr != (void *)0x0) {
           destructor_vtable = vtable_ptr;
         }
         strcpy_s(new_ptr[1], 0x80, destructor_vtable);
         new_ptr = new_ptr + 0x13;
-      } while ((uint64_t *)((longlong)new_ptr + offset) != current_ptr);
+      } while ((uint64_t *)((int64_t)new_ptr + offset) != current_ptr);
     }
     if (new_size != 0) {
       current_ptr = new_ptr + 1;
@@ -845,9 +845,9 @@ void resize_render_object_array(longlong *array_manager, ulonglong new_size)
                     // 警告: 子函数不返回
       free_render_memory(end_ptr);
     }
-    *array_manager = (longlong)alloc_ptr;
-    array_manager[1] = (longlong)(new_ptr + new_size * 0x13);
-    array_manager[2] = (longlong)(alloc_ptr + current_size * 0x13);
+    *array_manager = (int64_t)alloc_ptr;
+    array_manager[1] = (int64_t)(new_ptr + new_size * 0x13);
+    array_manager[2] = (int64_t)(alloc_ptr + current_size * 0x13);
   }
   else {
     current_size = new_size;
@@ -865,7 +865,7 @@ void resize_render_object_array(longlong *array_manager, ulonglong new_size)
       } while (current_size != 0);
       current_ptr = (uint64_t *)array_manager[1];
     }
-    array_manager[1] = (longlong)(current_ptr + new_size * 0x13);
+    array_manager[1] = (int64_t)(current_ptr + new_size * 0x13);
   }
   return;
 }

@@ -341,7 +341,7 @@ void AudioSimd_MixChannels(void* audio_context, uint sample_count, uint channel_
     
     // 特殊情况：单声道直接复制
     if (channel_count == 1) {
-        memmove(*(void**)((uintptr_t)audio_context + 8), input_data, (ulonglong)sample_count << 2);
+        memmove(*(void**)((uintptr_t)audio_context + 8), input_data, (uint64_t)sample_count << 2);
         return;
     }
     
@@ -514,7 +514,7 @@ void AudioSimd_MixChannels(void* audio_context, uint sample_count, uint channel_
                         do {
                             int current_offset = (int)sample_offset;
                             uint next_offset = current_offset + 8;
-                            sample_offset = (ulonglong)next_offset;
+                            sample_offset = (uint64_t)next_offset;
                             
                             float* current_input = input_data + (uint)(loop_count + current_offset);
                             
@@ -546,14 +546,14 @@ void AudioSimd_MixChannels(void* audio_context, uint sample_count, uint channel_
                     do {
                         int channel_index = (int)sample_offset;
                         uint next_channel = channel_index + 1;
-                        sample_offset = (ulonglong)next_channel;
+                        sample_offset = (uint64_t)next_channel;
                         sum += input_data[current_sample * channel_count + channel_index];
                     } while ((int)next_channel < (int)channel_count);
                     *(float*)((uintptr_t)output_buffer + vector_offset) = sum;
                 }
             }
             
-            sample_offset = (ulonglong)(current_sample + 1U);
+            sample_offset = (uint64_t)(current_sample + 1U);
             vector_offset += 4;
         } while (current_sample + 1U < sample_count);
     }
@@ -649,9 +649,9 @@ static simd_vector_t simd_rcp_ps(simd_vector_t a, simd_vector_t result)
 // 原始函数名称映射
 void FUN_1807eaa70(int8_t (*param_1)[16], float* param_2) 
     __attribute__((alias("SimdFastLog")));
-void FUN_1807eabe0(longlong param_1, float param_2) 
+void FUN_1807eabe0(int64_t param_1, float param_2) 
     __attribute__((alias("AudioSimd_InitializeBuffers")));
-void FUN_1807eb0a0(longlong param_1, uint param_2, uint param_3, float* param_4) 
+void FUN_1807eb0a0(int64_t param_1, uint param_2, uint param_3, float* param_4) 
     __attribute__((alias("AudioSimd_MixChannels")));
 
 // =============================================================================

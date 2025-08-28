@@ -173,7 +173,7 @@ typedef struct {
  * 
  * @see SystemDataInitializer
  */
-void SystemDataInitializer(longlong param_1, uint64_t param_2)
+void SystemDataInitializer(int64_t param_1, uint64_t param_2)
 {
     uint64_t auStackX_8 [4];
     
@@ -203,28 +203,28 @@ void SystemDataInitializer(longlong param_1, uint64_t param_2)
  * 
  * @see AdvancedDataProcessor
  */
-uint64_t AdvancedDataProcessor(longlong param_1, longlong param_2)
+uint64_t AdvancedDataProcessor(int64_t param_1, int64_t param_2)
 {
-    longlong *plVar1;
-    longlong *plVar2;
+    int64_t *plVar1;
+    int64_t *plVar2;
     uint64_t uVar3;
-    longlong *plVar4;
+    int64_t *plVar4;
     uint uVar5;
-    longlong *plVar6;
-    longlong lStackX_8;
+    int64_t *plVar6;
+    int64_t lStackX_8;
     
     /* 获取数据管理器指针 */
-    plVar1 = (longlong *)(param_1 + 0x28);
-    plVar6 = (longlong *)0x0;
+    plVar1 = (int64_t *)(param_1 + 0x28);
+    plVar6 = (int64_t *)0x0;
     
     /* 获取数据结构信息 */
-    plVar2 = (longlong *)(*(longlong *)(param_1 + 0x28) + -0x18);
-    if (*(longlong *)(param_1 + 0x28) == 0) {
+    plVar2 = (int64_t *)(*(int64_t *)(param_1 + 0x28) + -0x18);
+    if (*(int64_t *)(param_1 + 0x28) == 0) {
         plVar2 = plVar6;
     }
     
     plVar4 = plVar6;
-    if (plVar2 != (longlong *)0x0) {
+    if (plVar2 != (int64_t *)0x0) {
         plVar4 = plVar2 + 3;
     }
     
@@ -238,23 +238,23 @@ LAB_1808be19d:
             
             if ((int)uVar3 == 0) {
                 /* 获取数据结构指针 */
-                plVar2 = (longlong *)(lStackX_8 + 0x18);
+                plVar2 = (int64_t *)(lStackX_8 + 0x18);
                 if (lStackX_8 == 0) {
                     plVar2 = plVar6;
                 }
                 
                 /* 验证数据结构有效性 */
-                if (plVar2 == (longlong *)0x0) {
+                if (plVar2 == (int64_t *)0x0) {
                     return 0x1c;
                 }
                 
                 /* 遍历数据结构 */
-                plVar4 = (longlong *)*plVar2;
+                plVar4 = (int64_t *)*plVar2;
                 if (plVar4 != plVar2) {
                     do {
-                        plVar4 = (longlong *)*plVar4;
+                        plVar4 = (int64_t *)*plVar4;
                         uVar5 = (int)plVar6 + 1;
-                        plVar6 = (longlong *)(ulonglong)uVar5;
+                        plVar6 = (int64_t *)(uint64_t)uVar5;
                     } while (plVar4 != plVar2);
                     
                     if (uVar5 != 0) {
@@ -263,10 +263,10 @@ LAB_1808be19d:
                 }
                 
                 /* 更新数据结构 */
-                plVar2[1] = *(longlong *)(param_1 + 0x30);
-                *plVar2 = (longlong)plVar1;
-                *(longlong **)(param_1 + 0x30) = plVar2;
-                *(longlong **)plVar2[1] = plVar2;
+                plVar2[1] = *(int64_t *)(param_1 + 0x30);
+                *plVar2 = (int64_t)plVar1;
+                *(int64_t **)(param_1 + 0x30) = plVar2;
+                *(int64_t **)plVar2[1] = plVar2;
                 
                 /* 执行数据处理操作 */
                 uVar3 = FUN_1808d5bd0(lStackX_8);
@@ -280,8 +280,8 @@ LAB_1808be216:
         
         /* 处理下一个数据项 */
         plVar2 = plVar4 + 3;
-        if (plVar4 == (longlong *)0x0) {
-            plVar2 = (longlong *)0x30;
+        if (plVar4 == (int64_t *)0x0) {
+            plVar2 = (int64_t *)0x30;
         }
         
         /* 检查参数匹配 */
@@ -293,13 +293,13 @@ LAB_1808be216:
         if (plVar4 == plVar1) goto LAB_1808be19d;
         
         /* 获取下一个数据结构 */
-        plVar2 = (longlong *)(*plVar4 + -0x18);
+        plVar2 = (int64_t *)(*plVar4 + -0x18);
         if (*plVar4 == 0) {
             plVar2 = plVar6;
         }
         
         plVar4 = plVar6;
-        if (plVar2 != (longlong *)0x0) {
+        if (plVar2 != (int64_t *)0x0) {
             plVar4 = plVar2 + 3;
         }
     } while( true );
@@ -321,17 +321,17 @@ LAB_1808be216:
  * 
  * @see SystemStateValidator
  */
-int32_t SystemStateValidator(longlong *param_1, longlong *param_2)
+int32_t SystemStateValidator(int64_t *param_1, int64_t *param_2)
 {
     int32_t uVar1;
     int32_t uVar2;
     int32_t uVar3;
-    longlong lVar1;
-    longlong lVar2;
-    longlong lVar3;
+    int64_t lVar1;
+    int64_t lVar2;
+    int64_t lVar3;
     
     /* 验证参数有效性 */
-    if ((param_1 == (longlong *)0x0) || (param_2 == (longlong *)0x0)) {
+    if ((param_1 == (int64_t *)0x0) || (param_2 == (int64_t *)0x0)) {
         return 0x1c;
     }
     
@@ -344,8 +344,8 @@ int32_t SystemStateValidator(longlong *param_1, longlong *param_2)
     }
     
     /* 验证系统资源 */
-    lVar1 = *(longlong *)(*param_1 + 8);
-    lVar2 = *(longlong *)(*param_2 + 8);
+    lVar1 = *(int64_t *)(*param_1 + 8);
+    lVar2 = *(int64_t *)(*param_2 + 8);
     
     if (lVar1 != lVar2) {
         return 0x1f;
@@ -358,7 +358,7 @@ int32_t SystemStateValidator(longlong *param_1, longlong *param_2)
     }
     
     /* 检查系统配置 */
-    lVar3 = *(longlong *)(*param_1 + 0x10);
+    lVar3 = *(int64_t *)(*param_1 + 0x10);
     if (lVar3 != 0) {
         uVar3 = FUN_1808d73b0(lVar3, uVar1, 0);
         if ((int)uVar3 != 0) {
@@ -385,12 +385,12 @@ int32_t SystemStateValidator(longlong *param_1, longlong *param_2)
  * 
  * @see ResourceAllocator
  */
-uint64_t ResourceAllocator(longlong param_1, longlong param_2)
+uint64_t ResourceAllocator(int64_t param_1, int64_t param_2)
 {
     uint64_t uVar1;
     uint64_t uVar2;
-    longlong lVar1;
-    longlong lVar2;
+    int64_t lVar1;
+    int64_t lVar2;
     uint64_t auStackX_8 [4];
     
     /* 验证参数有效性 */
@@ -416,7 +416,7 @@ uint64_t ResourceAllocator(longlong param_1, longlong param_2)
     }
     
     /* 获取资源管理器 */
-    lVar1 = *(longlong *)(auStackX_8[0] + 0x18);
+    lVar1 = *(int64_t *)(auStackX_8[0] + 0x18);
     if (lVar1 == 0) {
         return 0x1f;
     }
@@ -428,7 +428,7 @@ uint64_t ResourceAllocator(longlong param_1, longlong param_2)
     }
     
     /* 配置资源参数 */
-    lVar2 = *(longlong *)(lVar1 + 8);
+    lVar2 = *(int64_t *)(lVar1 + 8);
     if (lVar2 != 0) {
         uVar2 = FUN_1808d73b0(lVar2, *(int32_t *)(param_1 + 4), 0);
         if ((int)uVar2 != 0) {
@@ -461,11 +461,11 @@ uint64_t ResourceAllocator(longlong param_1, longlong param_2)
  * 
  * @see DataConverter
  */
-uint64_t DataConverter(longlong param_1, longlong param_2)
+uint64_t DataConverter(int64_t param_1, int64_t param_2)
 {
     uint64_t uVar1;
-    longlong lVar1;
-    longlong lVar2;
+    int64_t lVar1;
+    int64_t lVar2;
     uint64_t auStackX_8 [4];
     
     /* 验证参数有效性 */
@@ -491,13 +491,13 @@ uint64_t DataConverter(longlong param_1, longlong param_2)
     }
     
     /* 获取数据管理器 */
-    lVar1 = *(longlong *)(auStackX_8[0] + 0x18);
+    lVar1 = *(int64_t *)(auStackX_8[0] + 0x18);
     if (lVar1 == 0) {
         return 0x1f;
     }
     
     /* 执行数据转换操作 */
-    lVar2 = *(longlong *)(lVar1 + 0x10);
+    lVar2 = *(int64_t *)(lVar1 + 0x10);
     if (lVar2 != 0) {
         uVar1 = FUN_1808d73b0(lVar2, *(int32_t *)(param_1 + 4), 0);
         if ((int)uVar1 != 0) {
@@ -530,11 +530,11 @@ uint64_t DataConverter(longlong param_1, longlong param_2)
  * 
  * @see SystemConfigurator
  */
-uint64_t SystemConfigurator(longlong param_1, longlong param_2)
+uint64_t SystemConfigurator(int64_t param_1, int64_t param_2)
 {
     uint64_t uVar1;
-    longlong lVar1;
-    longlong lVar2;
+    int64_t lVar1;
+    int64_t lVar2;
     uint64_t auStackX_8 [4];
     
     /* 验证参数有效性 */
@@ -560,13 +560,13 @@ uint64_t SystemConfigurator(longlong param_1, longlong param_2)
     }
     
     /* 获取配置管理器 */
-    lVar1 = *(longlong *)(auStackX_8[0] + 0x18);
+    lVar1 = *(int64_t *)(auStackX_8[0] + 0x18);
     if (lVar1 == 0) {
         return 0x1f;
     }
     
     /* 执行配置操作 */
-    lVar2 = *(longlong *)(lVar1 + 8);
+    lVar2 = *(int64_t *)(lVar1 + 8);
     if (lVar2 != 0) {
         uVar1 = FUN_1808d73b0(lVar2, *(int32_t *)(param_1 + 4), 0);
         if ((int)uVar1 != 0) {
@@ -599,11 +599,11 @@ uint64_t SystemConfigurator(longlong param_1, longlong param_2)
  * 
  * @see MemoryManager
  */
-uint64_t MemoryManager(longlong param_1, longlong param_2)
+uint64_t MemoryManager(int64_t param_1, int64_t param_2)
 {
     uint64_t uVar1;
-    longlong lVar1;
-    longlong lVar2;
+    int64_t lVar1;
+    int64_t lVar2;
     uint64_t auStackX_8 [4];
     
     /* 验证参数有效性 */
@@ -629,13 +629,13 @@ uint64_t MemoryManager(longlong param_1, longlong param_2)
     }
     
     /* 获取内存管理器 */
-    lVar1 = *(longlong *)(auStackX_8[0] + 0x18);
+    lVar1 = *(int64_t *)(auStackX_8[0] + 0x18);
     if (lVar1 == 0) {
         return 0x1f;
     }
     
     /* 执行内存管理操作 */
-    lVar2 = *(longlong *)(lVar1 + 0x10);
+    lVar2 = *(int64_t *)(lVar1 + 0x10);
     if (lVar2 != 0) {
         uVar1 = FUN_1808d73b0(lVar2, *(int32_t *)(param_1 + 4), 0);
         if ((int)uVar1 != 0) {
@@ -668,11 +668,11 @@ uint64_t MemoryManager(longlong param_1, longlong param_2)
  * 
  * @see StateSynchronizer
  */
-uint64_t StateSynchronizer(longlong param_1, longlong param_2)
+uint64_t StateSynchronizer(int64_t param_1, int64_t param_2)
 {
     uint64_t uVar1;
-    longlong lVar1;
-    longlong lVar2;
+    int64_t lVar1;
+    int64_t lVar2;
     uint64_t auStackX_8 [4];
     
     /* 验证参数有效性 */
@@ -698,13 +698,13 @@ uint64_t StateSynchronizer(longlong param_1, longlong param_2)
     }
     
     /* 获取状态管理器 */
-    lVar1 = *(longlong *)(auStackX_8[0] + 0x18);
+    lVar1 = *(int64_t *)(auStackX_8[0] + 0x18);
     if (lVar1 == 0) {
         return 0x1f;
     }
     
     /* 执行状态同步操作 */
-    lVar2 = *(longlong *)(lVar1 + 8);
+    lVar2 = *(int64_t *)(lVar1 + 8);
     if (lVar2 != 0) {
         uVar1 = FUN_1808d73b0(lVar2, *(int32_t *)(param_1 + 4), 0);
         if ((int)uVar1 != 0) {
@@ -737,11 +737,11 @@ uint64_t StateSynchronizer(longlong param_1, longlong param_2)
  * 
  * @see ExceptionHandler
  */
-uint64_t ExceptionHandler(longlong param_1, longlong param_2)
+uint64_t ExceptionHandler(int64_t param_1, int64_t param_2)
 {
     uint64_t uVar1;
-    longlong lVar1;
-    longlong lVar2;
+    int64_t lVar1;
+    int64_t lVar2;
     uint64_t auStackX_8 [4];
     
     /* 验证参数有效性 */
@@ -767,13 +767,13 @@ uint64_t ExceptionHandler(longlong param_1, longlong param_2)
     }
     
     /* 获取异常管理器 */
-    lVar1 = *(longlong *)(auStackX_8[0] + 0x18);
+    lVar1 = *(int64_t *)(auStackX_8[0] + 0x18);
     if (lVar1 == 0) {
         return 0x1f;
     }
     
     /* 执行异常处理操作 */
-    lVar2 = *(longlong *)(lVar1 + 0x10);
+    lVar2 = *(int64_t *)(lVar1 + 0x10);
     if (lVar2 != 0) {
         uVar1 = FUN_1808d73b0(lVar2, *(int32_t *)(param_1 + 4), 0);
         if ((int)uVar1 != 0) {
@@ -806,11 +806,11 @@ uint64_t ExceptionHandler(longlong param_1, longlong param_2)
  * 
  * @see ResourceCleaner
  */
-uint64_t ResourceCleaner(longlong param_1, longlong param_2)
+uint64_t ResourceCleaner(int64_t param_1, int64_t param_2)
 {
     uint64_t uVar1;
-    longlong lVar1;
-    longlong lVar2;
+    int64_t lVar1;
+    int64_t lVar2;
     uint64_t auStackX_8 [4];
     
     /* 验证参数有效性 */
@@ -836,13 +836,13 @@ uint64_t ResourceCleaner(longlong param_1, longlong param_2)
     }
     
     /* 获取资源管理器 */
-    lVar1 = *(longlong *)(auStackX_8[0] + 0x18);
+    lVar1 = *(int64_t *)(auStackX_8[0] + 0x18);
     if (lVar1 == 0) {
         return 0x1f;
     }
     
     /* 执行资源清理操作 */
-    lVar2 = *(longlong *)(lVar1 + 8);
+    lVar2 = *(int64_t *)(lVar1 + 8);
     if (lVar2 != 0) {
         uVar1 = FUN_1808d73b0(lVar2, *(int32_t *)(param_1 + 4), 0);
         if ((int)uVar1 != 0) {
@@ -875,11 +875,11 @@ uint64_t ResourceCleaner(longlong param_1, longlong param_2)
  * 
  * @see DataValidator
  */
-uint64_t DataValidator(longlong param_1, longlong param_2)
+uint64_t DataValidator(int64_t param_1, int64_t param_2)
 {
     uint64_t uVar1;
-    longlong lVar1;
-    longlong lVar2;
+    int64_t lVar1;
+    int64_t lVar2;
     uint64_t auStackX_8 [4];
     
     /* 验证参数有效性 */
@@ -905,13 +905,13 @@ uint64_t DataValidator(longlong param_1, longlong param_2)
     }
     
     /* 获取数据管理器 */
-    lVar1 = *(longlong *)(auStackX_8[0] + 0x18);
+    lVar1 = *(int64_t *)(auStackX_8[0] + 0x18);
     if (lVar1 == 0) {
         return 0x1f;
     }
     
     /* 执行数据验证操作 */
-    lVar2 = *(longlong *)(lVar1 + 0x10);
+    lVar2 = *(int64_t *)(lVar1 + 0x10);
     if (lVar2 != 0) {
         uVar1 = FUN_1808d73b0(lVar2, *(int32_t *)(param_1 + 4), 0);
         if ((int)uVar1 != 0) {
@@ -944,11 +944,11 @@ uint64_t DataValidator(longlong param_1, longlong param_2)
  * 
  * @see SystemInitializer
  */
-uint64_t SystemInitializer(longlong param_1, longlong param_2)
+uint64_t SystemInitializer(int64_t param_1, int64_t param_2)
 {
     uint64_t uVar1;
-    longlong lVar1;
-    longlong lVar2;
+    int64_t lVar1;
+    int64_t lVar2;
     uint64_t auStackX_8 [4];
     
     /* 验证参数有效性 */
@@ -974,13 +974,13 @@ uint64_t SystemInitializer(longlong param_1, longlong param_2)
     }
     
     /* 获取系统管理器 */
-    lVar1 = *(longlong *)(auStackX_8[0] + 0x18);
+    lVar1 = *(int64_t *)(auStackX_8[0] + 0x18);
     if (lVar1 == 0) {
         return 0x1f;
     }
     
     /* 执行系统初始化操作 */
-    lVar2 = *(longlong *)(lVar1 + 8);
+    lVar2 = *(int64_t *)(lVar1 + 8);
     if (lVar2 != 0) {
         uVar1 = FUN_1808d73b0(lVar2, *(int32_t *)(param_1 + 4), 0);
         if ((int)uVar1 != 0) {
@@ -1013,11 +1013,11 @@ uint64_t SystemInitializer(longlong param_1, longlong param_2)
  * 
  * @see SystemTerminator
  */
-uint64_t SystemTerminator(longlong param_1, longlong param_2)
+uint64_t SystemTerminator(int64_t param_1, int64_t param_2)
 {
     uint64_t uVar1;
-    longlong lVar1;
-    longlong lVar2;
+    int64_t lVar1;
+    int64_t lVar2;
     uint64_t auStackX_8 [4];
     
     /* 验证参数有效性 */
@@ -1043,13 +1043,13 @@ uint64_t SystemTerminator(longlong param_1, longlong param_2)
     }
     
     /* 获取系统管理器 */
-    lVar1 = *(longlong *)(auStackX_8[0] + 0x18);
+    lVar1 = *(int64_t *)(auStackX_8[0] + 0x18);
     if (lVar1 == 0) {
         return 0x1f;
     }
     
     /* 执行系统终止操作 */
-    lVar2 = *(longlong *)(lVar1 + 0x10);
+    lVar2 = *(int64_t *)(lVar1 + 0x10);
     if (lVar2 != 0) {
         uVar1 = FUN_1808d73b0(lVar2, *(int32_t *)(param_1 + 4), 0);
         if ((int)uVar1 != 0) {
@@ -1082,11 +1082,11 @@ uint64_t SystemTerminator(longlong param_1, longlong param_2)
  * 
  * @see DataOptimizer
  */
-uint64_t DataOptimizer(longlong param_1, longlong param_2)
+uint64_t DataOptimizer(int64_t param_1, int64_t param_2)
 {
     uint64_t uVar1;
-    longlong lVar1;
-    longlong lVar2;
+    int64_t lVar1;
+    int64_t lVar2;
     uint64_t auStackX_8 [4];
     
     /* 验证参数有效性 */
@@ -1112,13 +1112,13 @@ uint64_t DataOptimizer(longlong param_1, longlong param_2)
     }
     
     /* 获取数据管理器 */
-    lVar1 = *(longlong *)(auStackX_8[0] + 0x18);
+    lVar1 = *(int64_t *)(auStackX_8[0] + 0x18);
     if (lVar1 == 0) {
         return 0x1f;
     }
     
     /* 执行数据优化操作 */
-    lVar2 = *(longlong *)(lVar1 + 8);
+    lVar2 = *(int64_t *)(lVar1 + 8);
     if (lVar2 != 0) {
         uVar1 = FUN_1808d73b0(lVar2, *(int32_t *)(param_1 + 4), 0);
         if ((int)uVar1 != 0) {
@@ -1151,11 +1151,11 @@ uint64_t DataOptimizer(longlong param_1, longlong param_2)
  * 
  * @see SystemMonitor
  */
-uint64_t SystemMonitor(longlong param_1, longlong param_2)
+uint64_t SystemMonitor(int64_t param_1, int64_t param_2)
 {
     uint64_t uVar1;
-    longlong lVar1;
-    longlong lVar2;
+    int64_t lVar1;
+    int64_t lVar2;
     uint64_t auStackX_8 [4];
     
     /* 验证参数有效性 */
@@ -1181,13 +1181,13 @@ uint64_t SystemMonitor(longlong param_1, longlong param_2)
     }
     
     /* 获取监控管理器 */
-    lVar1 = *(longlong *)(auStackX_8[0] + 0x18);
+    lVar1 = *(int64_t *)(auStackX_8[0] + 0x18);
     if (lVar1 == 0) {
         return 0x1f;
     }
     
     /* 执行系统监控操作 */
-    lVar2 = *(longlong *)(lVar1 + 8);
+    lVar2 = *(int64_t *)(lVar1 + 8);
     if (lVar2 != 0) {
         uVar1 = FUN_1808d73b0(lVar2, *(int32_t *)(param_1 + 4), 0);
         if ((int)uVar1 != 0) {
@@ -1220,11 +1220,11 @@ uint64_t SystemMonitor(longlong param_1, longlong param_2)
  * 
  * @see CacheManager
  */
-uint64_t CacheManager(longlong param_1, longlong param_2)
+uint64_t CacheManager(int64_t param_1, int64_t param_2)
 {
     uint64_t uVar1;
-    longlong lVar1;
-    longlong lVar2;
+    int64_t lVar1;
+    int64_t lVar2;
     uint64_t auStackX_8 [4];
     
     /* 验证参数有效性 */
@@ -1250,13 +1250,13 @@ uint64_t CacheManager(longlong param_1, longlong param_2)
     }
     
     /* 获取缓存管理器 */
-    lVar1 = *(longlong *)(auStackX_8[0] + 0x18);
+    lVar1 = *(int64_t *)(auStackX_8[0] + 0x18);
     if (lVar1 == 0) {
         return 0x1f;
     }
     
     /* 执行缓存管理操作 */
-    lVar2 = *(longlong *)(lVar1 + 0x10);
+    lVar2 = *(int64_t *)(lVar1 + 0x10);
     if (lVar2 != 0) {
         uVar1 = FUN_1808d73b0(lVar2, *(int32_t *)(param_1 + 4), 0);
         if ((int)uVar1 != 0) {
@@ -1289,11 +1289,11 @@ uint64_t CacheManager(longlong param_1, longlong param_2)
  * 
  * @see ThreadSynchronizer
  */
-uint64_t ThreadSynchronizer(longlong param_1, longlong param_2)
+uint64_t ThreadSynchronizer(int64_t param_1, int64_t param_2)
 {
     uint64_t uVar1;
-    longlong lVar1;
-    longlong lVar2;
+    int64_t lVar1;
+    int64_t lVar2;
     uint64_t auStackX_8 [4];
     
     /* 验证参数有效性 */
@@ -1319,13 +1319,13 @@ uint64_t ThreadSynchronizer(longlong param_1, longlong param_2)
     }
     
     /* 获取同步管理器 */
-    lVar1 = *(longlong *)(auStackX_8[0] + 0x18);
+    lVar1 = *(int64_t *)(auStackX_8[0] + 0x18);
     if (lVar1 == 0) {
         return 0x1f;
     }
     
     /* 执行线程同步操作 */
-    lVar2 = *(longlong *)(lVar1 + 8);
+    lVar2 = *(int64_t *)(lVar1 + 8);
     if (lVar2 != 0) {
         uVar1 = FUN_1808d73b0(lVar2, *(int32_t *)(param_1 + 4), 0);
         if ((int)uVar1 != 0) {
@@ -1358,11 +1358,11 @@ uint64_t ThreadSynchronizer(longlong param_1, longlong param_2)
  * 
  * @see ParameterProcessor
  */
-uint64_t ParameterProcessor(longlong param_1, longlong param_2)
+uint64_t ParameterProcessor(int64_t param_1, int64_t param_2)
 {
     uint64_t uVar1;
-    longlong lVar1;
-    longlong lVar2;
+    int64_t lVar1;
+    int64_t lVar2;
     uint64_t auStackX_8 [4];
     
     /* 验证参数有效性 */
@@ -1388,13 +1388,13 @@ uint64_t ParameterProcessor(longlong param_1, longlong param_2)
     }
     
     /* 获取参数管理器 */
-    lVar1 = *(longlong *)(auStackX_8[0] + 0x18);
+    lVar1 = *(int64_t *)(auStackX_8[0] + 0x18);
     if (lVar1 == 0) {
         return 0x1f;
     }
     
     /* 执行参数处理操作 */
-    lVar2 = *(longlong *)(lVar1 + 0x10);
+    lVar2 = *(int64_t *)(lVar1 + 0x10);
     if (lVar2 != 0) {
         uVar1 = FUN_1808d73b0(lVar2, *(int32_t *)(param_1 + 4), 0);
         if ((int)uVar1 != 0) {

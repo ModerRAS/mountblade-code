@@ -22,14 +22,14 @@
 #define rendering_parameter_processor_optimized FUN_18029463f  // 渲染参数优化处理器
 
 // 函数声明
-void rendering_resource_advanced_cleaner(longlong resource_context);
-void rendering_resource_parameterized_cleaner(longlong resource_context, ulonglong clean_param);
+void rendering_resource_advanced_cleaner(int64_t resource_context);
+void rendering_resource_parameterized_cleaner(int64_t resource_context, uint64_t clean_param);
 void rendering_resource_batch_cleaner(void);
 void rendering_resource_memory_cleaner(void);
 void rendering_resource_direct_cleaner(uint64_t resource_ptr);
-void rendering_parameter_processor_advanced(longlong param_context, uint64_t *output_ptr, int32_t *param_3, int32_t *param_4);
-void rendering_parameter_processor_extended(longlong param_context, uint64_t *output_ptr, int32_t *param_3, uint64_t param_4, uint64_t param_5, uint64_t param_6, uint64_t param_7, uint64_t param_8, uint64_t param_9, uint64_t param_10, uint64_t param_11, uint64_t param_12, void *param_13, uint64_t param_14, uint64_t param_15);
-void rendering_parameter_processor_optimized(longlong param_context, uint64_t *output_ptr, int32_t *param_3, uint64_t param_4, uint64_t param_5, uint64_t param_6, uint64_t param_7, uint64_t param_8, uint64_t param_9, uint64_t param_10, uint64_t param_11, uint64_t param_12, void *param_13, uint64_t param_14, uint64_t param_15);
+void rendering_parameter_processor_advanced(int64_t param_context, uint64_t *output_ptr, int32_t *param_3, int32_t *param_4);
+void rendering_parameter_processor_extended(int64_t param_context, uint64_t *output_ptr, int32_t *param_3, uint64_t param_4, uint64_t param_5, uint64_t param_6, uint64_t param_7, uint64_t param_8, uint64_t param_9, uint64_t param_10, uint64_t param_11, uint64_t param_12, void *param_13, uint64_t param_14, uint64_t param_15);
+void rendering_parameter_processor_optimized(int64_t param_context, uint64_t *output_ptr, int32_t *param_3, uint64_t param_4, uint64_t param_5, uint64_t param_6, uint64_t param_7, uint64_t param_8, uint64_t param_9, uint64_t param_10, uint64_t param_11, uint64_t param_12, void *param_13, uint64_t param_14, uint64_t param_15);
 
 /**
  * 渲染资源基础清理器
@@ -45,13 +45,13 @@ void rendering_parameter_processor_optimized(longlong param_context, uint64_t *o
  * 3. 重置相关指针为NULL
  * 4. 更新全局资源计数器
  */
-void rendering_resource_basic_cleaner(longlong resource_context)
+void rendering_resource_basic_cleaner(int64_t resource_context)
 {
-    longlong resource_ptr_1;
-    longlong resource_ptr_2;
+    int64_t resource_ptr_1;
+    int64_t resource_ptr_2;
     
     // 获取第一个资源指针
-    resource_ptr_1 = *(longlong *)(resource_context + 0x18);
+    resource_ptr_1 = *(int64_t *)(resource_context + 0x18);
     if (resource_ptr_1 != 0) {
         // 更新全局资源计数器
         if (RENDERING_GLOBAL_CONTEXT_1 != 0) {
@@ -62,7 +62,7 @@ void rendering_resource_basic_cleaner(longlong resource_context)
     }
     
     // 获取第二个资源指针
-    resource_ptr_2 = *(longlong *)(resource_context + 0x20);
+    resource_ptr_2 = *(int64_t *)(resource_context + 0x20);
     if (resource_ptr_2 != 0) {
         // 更新全局资源计数器
         if (RENDERING_GLOBAL_CONTEXT_1 != 0) {
@@ -93,20 +93,20 @@ void rendering_resource_basic_cleaner(longlong resource_context)
  * 4. 管理资源引用计数
  * 5. 释放关联的内存块
  */
-void rendering_resource_advanced_cleaner(longlong resource_context)
+void rendering_resource_advanced_cleaner(int64_t resource_context)
 {
     int *resource_counter_ptr;
-    longlong resource_ptr;
-    ulonglong resource_index;
-    longlong context_ptr;
-    ulonglong iteration_count;
+    int64_t resource_ptr;
+    uint64_t resource_index;
+    int64_t context_ptr;
+    uint64_t iteration_count;
     uint process_count;
-    ulonglong array_size;
+    uint64_t array_size;
     uint64_t process_flag;
     void *stack_data_ptr;
     int8_t *memory_block_ptr;
     int memory_block_size;
-    ulonglong memory_block_flag;
+    uint64_t memory_block_flag;
     
     iteration_count = 0;
     array_size = 0;
@@ -115,9 +115,9 @@ void rendering_resource_advanced_cleaner(longlong resource_context)
     if (0 < *(int *)(resource_context + 0x60)) {
         do {
             // 获取资源指针
-            resource_ptr = *(longlong *)(array_size + *(longlong *)(resource_context + 0x68));
+            resource_ptr = *(int64_t *)(array_size + *(int64_t *)(resource_context + 0x68));
             if ((resource_ptr != 0) && 
-                (*(char *)(array_size + 0xc + *(longlong *)(resource_context + 0x68)) != '\0')) {
+                (*(char *)(array_size + 0xc + *(int64_t *)(resource_context + 0x68)) != '\0')) {
                 // 更新全局资源计数器
                 if (RENDERING_GLOBAL_CONTEXT_1 != 0) {
                     *(int *)(RENDERING_GLOBAL_CONTEXT_1 + 0x3a8) = *(int *)(RENDERING_GLOBAL_CONTEXT_1 + 0x3a8) + -1;
@@ -126,7 +126,7 @@ void rendering_resource_advanced_cleaner(longlong resource_context)
                 FUN_180059ba0(resource_ptr, RENDERING_GLOBAL_CONTEXT_2);
             }
             process_count = (int)array_size + 1;
-            array_size = (ulonglong)process_count;
+            array_size = (uint64_t)process_count;
             iteration_count = iteration_count + 0x88;
         } while ((int)process_count < *(int *)(resource_context + 0x60));
     }
@@ -137,25 +137,25 @@ void rendering_resource_advanced_cleaner(longlong resource_context)
     // 处理资源索引和关联
     if (0 < *(int *)(resource_context + 0x40)) {
         do {
-            resource_ptr = *(longlong *)(*(longlong *)(resource_context + 0x48) + array_size);
-            resource_index = *(ulonglong *)(resource_ptr + 0x50);
-            if ((*(ulonglong *)(resource_context + 0x68) <= resource_index) &&
-                (resource_index < (longlong)*(int *)(resource_context + 0x60) * 0x88 + *(ulonglong *)(resource_context + 0x68))) {
+            resource_ptr = *(int64_t *)(*(int64_t *)(resource_context + 0x48) + array_size);
+            resource_index = *(uint64_t *)(resource_ptr + 0x50);
+            if ((*(uint64_t *)(resource_context + 0x68) <= resource_index) &&
+                (resource_index < (int64_t)*(int *)(resource_context + 0x60) * 0x88 + *(uint64_t *)(resource_context + 0x68))) {
                 // 重置资源索引
                 *(uint64_t *)(resource_ptr + 0x50) = 0;
-                *(int16_t *)(*(longlong *)(*(longlong *)(resource_context + 0x48) + array_size) + 0x4e) = 0;
+                *(int16_t *)(*(int64_t *)(*(int64_t *)(resource_context + 0x48) + array_size) + 0x4e) = 0;
             }
             process_count = (int)iteration_count + 1;
             array_size = array_size + 8;
-            iteration_count = (ulonglong)process_count;
+            iteration_count = (uint64_t)process_count;
         } while ((int)process_count < *(int *)(resource_context + 0x40));
     }
     
     context_ptr = RENDERING_GLOBAL_CONTEXT_1;
-    resource_ptr = *(longlong *)(resource_context + 0x68);
+    resource_ptr = *(int64_t *)(resource_context + 0x68);
     if (resource_ptr == 0) {
         // 处理特殊情况
-        resource_ptr = *(longlong *)(resource_context + 0x58);
+        resource_ptr = *(int64_t *)(resource_context + 0x58);
         if (resource_ptr != 0) {
             *(uint64_t *)(resource_context + 0x50) = 0;
             if (context_ptr != 0) {
@@ -173,7 +173,7 @@ void rendering_resource_advanced_cleaner(longlong resource_context)
         array_size = 0;
         if (0 < *(int *)(resource_context + 0x40)) {
             do {
-                context_ptr = *(longlong *)(array_size + *(longlong *)(resource_context + 0x48));
+                context_ptr = *(int64_t *)(array_size + *(int64_t *)(resource_context + 0x48));
                 if (context_ptr != 0) {
                     FUN_180296ad0(context_ptr);
                     if (RENDERING_GLOBAL_CONTEXT_1 != 0) {
@@ -187,7 +187,7 @@ void rendering_resource_advanced_cleaner(longlong resource_context)
             } while ((int)process_count < *(int *)(resource_context + 0x40));
         }
         
-        context_ptr = *(longlong *)(resource_context + 0x48);
+        context_ptr = *(int64_t *)(resource_context + 0x48);
         if (context_ptr == 0) {
             return;
         }
@@ -225,17 +225,17 @@ void rendering_resource_advanced_cleaner(longlong resource_context)
  * 4. 执行批量资源清理
  * 5. 释放关联的内存块
  */
-void rendering_resource_parameterized_cleaner(longlong resource_context, ulonglong clean_param)
+void rendering_resource_parameterized_cleaner(int64_t resource_context, uint64_t clean_param)
 {
     int *resource_counter_ptr;
-    longlong resource_ptr;
-    ulonglong resource_index;
-    longlong context_ptr;
-    ulonglong iteration_count;
+    int64_t resource_ptr;
+    uint64_t resource_index;
+    int64_t context_ptr;
+    uint64_t iteration_count;
     int array_index;
-    ulonglong process_count;
+    uint64_t process_count;
     uint index_counter;
-    ulonglong array_size;
+    uint64_t array_size;
     
     array_index = (int)clean_param;
     array_size = clean_param & 0xffffffff;
@@ -244,9 +244,9 @@ void rendering_resource_parameterized_cleaner(longlong resource_context, ulonglo
     if (array_index < *(int *)(resource_context + 0x60)) {
         process_count = clean_param & 0xffffffff;
         do {
-            resource_ptr = *(longlong *)(process_count + *(longlong *)(resource_context + 0x68));
+            resource_ptr = *(int64_t *)(process_count + *(int64_t *)(resource_context + 0x68));
             if ((resource_ptr != 0) &&
-                (*(char *)(process_count + 0xc + *(longlong *)(resource_context + 0x68)) != (char)clean_param)) {
+                (*(char *)(process_count + 0xc + *(int64_t *)(resource_context + 0x68)) != (char)clean_param)) {
                 // 更新全局资源计数器
                 if (RENDERING_GLOBAL_CONTEXT_1 != 0) {
                     *(int *)(RENDERING_GLOBAL_CONTEXT_1 + 0x3a8) = *(int *)(RENDERING_GLOBAL_CONTEXT_1 + 0x3a8) + -1;
@@ -255,7 +255,7 @@ void rendering_resource_parameterized_cleaner(longlong resource_context, ulonglo
                 FUN_180059ba0(resource_ptr, RENDERING_GLOBAL_CONTEXT_2);
             }
             index_counter = (int)array_size + 1;
-            array_size = (ulonglong)index_counter;
+            array_size = (uint64_t)index_counter;
             process_count = process_count + 0x88;
         } while ((int)index_counter < *(int *)(resource_context + 0x60));
     }
@@ -264,27 +264,27 @@ void rendering_resource_parameterized_cleaner(longlong resource_context, ulonglo
     array_size = clean_param;
     if (array_index < *(int *)(resource_context + 0x40)) {
         do {
-            resource_ptr = *(longlong *)(*(longlong *)(resource_context + 0x48) + array_size);
-            resource_index = *(ulonglong *)(resource_ptr + 0x50);
-            if ((*(ulonglong *)(resource_context + 0x68) <= resource_index) &&
-                (resource_index < (longlong)*(int *)(resource_context + 0x60) * 0x88 + *(ulonglong *)(resource_context + 0x68))) {
+            resource_ptr = *(int64_t *)(*(int64_t *)(resource_context + 0x48) + array_size);
+            resource_index = *(uint64_t *)(resource_ptr + 0x50);
+            if ((*(uint64_t *)(resource_context + 0x68) <= resource_index) &&
+                (resource_index < (int64_t)*(int *)(resource_context + 0x60) * 0x88 + *(uint64_t *)(resource_context + 0x68))) {
                 // 设置参数化资源索引
-                *(ulonglong *)(resource_ptr + 0x50) = clean_param;
-                *(short *)(*(longlong *)(*(longlong *)(resource_context + 0x48) + array_size) + 0x4e) = (short)clean_param;
+                *(uint64_t *)(resource_ptr + 0x50) = clean_param;
+                *(short *)(*(int64_t *)(*(int64_t *)(resource_context + 0x48) + array_size) + 0x4e) = (short)clean_param;
             }
             index_counter = (int)process_count + 1;
-            process_count = (ulonglong)index_counter;
+            process_count = (uint64_t)index_counter;
             array_size = array_size + 8;
         } while ((int)index_counter < *(int *)(resource_context + 0x40));
     }
     
     context_ptr = RENDERING_GLOBAL_CONTEXT_1;
-    resource_ptr = *(longlong *)(resource_context + 0x68);
+    resource_ptr = *(int64_t *)(resource_context + 0x68);
     if (resource_ptr == 0) {
         // 处理特殊情况
-        resource_ptr = *(longlong *)(resource_context + 0x58);
+        resource_ptr = *(int64_t *)(resource_context + 0x58);
         if (resource_ptr != 0) {
-            *(ulonglong *)(resource_context + 0x50) = clean_param;
+            *(uint64_t *)(resource_context + 0x50) = clean_param;
             if (context_ptr != 0) {
                 *(int *)(context_ptr + 0x3a8) = *(int *)(context_ptr + 0x3a8) + -1;
             }
@@ -301,7 +301,7 @@ void rendering_resource_parameterized_cleaner(longlong resource_context, ulonglo
         array_size = clean_param;
         if (array_index < *(int *)(resource_context + 0x40)) {
             do {
-                context_ptr = *(longlong *)(array_size + *(longlong *)(resource_context + 0x48));
+                context_ptr = *(int64_t *)(array_size + *(int64_t *)(resource_context + 0x48));
                 if (context_ptr != 0) {
                     FUN_180296ad0(context_ptr);
                     if (RENDERING_GLOBAL_CONTEXT_1 != 0) {
@@ -311,16 +311,16 @@ void rendering_resource_parameterized_cleaner(longlong resource_context, ulonglo
                     FUN_180059ba0(context_ptr, RENDERING_GLOBAL_CONTEXT_2);
                 }
                 index_counter = (int)process_count + 1;
-                process_count = (ulonglong)index_counter;
+                process_count = (uint64_t)index_counter;
                 array_size = array_size + 8;
             } while ((int)index_counter < *(int *)(resource_context + 0x40));
         }
         
-        context_ptr = *(longlong *)(resource_context + 0x48);
+        context_ptr = *(int64_t *)(resource_context + 0x48);
         if (context_ptr == 0) {
             return;
         }
-        *(ulonglong *)(resource_context + 0x40) = clean_param;
+        *(uint64_t *)(resource_context + 0x40) = clean_param;
         if (resource_ptr != 0) {
             resource_counter_ptr = (int *)(resource_ptr + 0x3a8);
             *resource_counter_ptr = *resource_counter_ptr + -1;
@@ -330,7 +330,7 @@ void rendering_resource_parameterized_cleaner(longlong resource_context, ulonglo
     }
     
     // 设置参数化资源计数
-    *(ulonglong *)(resource_context + 0x60) = clean_param;
+    *(uint64_t *)(resource_context + 0x60) = clean_param;
     if (context_ptr != 0) {
         *(int *)(context_ptr + 0x3a8) = *(int *)(context_ptr + 0x3a8) + -1;
     }
@@ -353,19 +353,19 @@ void rendering_resource_parameterized_cleaner(longlong resource_context, ulonglo
 void rendering_resource_batch_cleaner(void)
 {
     int *resource_counter_ptr;
-    longlong resource_ptr;
-    longlong context_ptr;
-    longlong resource_base_ptr;
-    longlong array_offset;
+    int64_t resource_ptr;
+    int64_t context_ptr;
+    int64_t resource_base_ptr;
+    int64_t array_offset;
     int array_index;
-    longlong array_ptr;
+    int64_t array_ptr;
     
     context_ptr = RENDERING_GLOBAL_CONTEXT_1;
-    array_offset = *(longlong *)(resource_base_ptr + 0x48);
+    array_offset = *(int64_t *)(resource_base_ptr + 0x48);
     
     // 批量清理资源数组
     do {
-        resource_ptr = *(longlong *)(array_offset + *(longlong *)(resource_base_ptr + 0x48));
+        resource_ptr = *(int64_t *)(array_offset + *(int64_t *)(resource_base_ptr + 0x48));
         if (resource_ptr != 0) {
             FUN_180296ad0(resource_ptr);
             if (RENDERING_GLOBAL_CONTEXT_1 != 0) {
@@ -378,9 +378,9 @@ void rendering_resource_batch_cleaner(void)
         array_offset = array_offset + 8;
     } while (array_index < *(int *)(resource_base_ptr + 0x40));
     
-    array_offset = *(longlong *)(resource_base_ptr + 0x48);
+    array_offset = *(int64_t *)(resource_base_ptr + 0x48);
     if (array_offset != 0) {
-        *(longlong *)(resource_base_ptr + 0x40) = array_ptr;
+        *(int64_t *)(resource_base_ptr + 0x40) = array_ptr;
         if (context_ptr != 0) {
             resource_counter_ptr = (int *)(context_ptr + 0x3a8);
             *resource_counter_ptr = *resource_counter_ptr + -1;
@@ -406,13 +406,13 @@ void rendering_resource_batch_cleaner(void)
 void rendering_resource_memory_cleaner(void)
 {
     int *resource_counter_ptr;
-    longlong resource_ptr;
-    longlong context_ptr;
-    longlong resource_base_ptr;
+    int64_t resource_ptr;
+    int64_t context_ptr;
+    int64_t resource_base_ptr;
     uint64_t clean_flag;
     
     context_ptr = RENDERING_GLOBAL_CONTEXT_1;
-    resource_ptr = *(longlong *)(resource_base_ptr + 0x48);
+    resource_ptr = *(int64_t *)(resource_base_ptr + 0x48);
     if (resource_ptr != 0) {
         *(uint64_t *)(resource_base_ptr + 0x40) = clean_flag;
         if (context_ptr != 0) {
@@ -441,8 +441,8 @@ void rendering_resource_memory_cleaner(void)
 void rendering_resource_direct_cleaner(uint64_t resource_ptr)
 {
     int *resource_counter_ptr;
-    longlong context_ptr;
-    longlong resource_base_ptr;
+    int64_t context_ptr;
+    int64_t resource_base_ptr;
     uint64_t clean_flag;
     
     context_ptr = RENDERING_GLOBAL_CONTEXT_1;
@@ -473,26 +473,26 @@ void rendering_resource_direct_cleaner(uint64_t resource_ptr)
  * 4. 配置渲染参数结构
  * 5. 执行高级渲染操作
  */
-void rendering_parameter_processor_advanced(longlong param_context, uint64_t *output_ptr, int32_t *param_3, int32_t *param_4)
+void rendering_parameter_processor_advanced(int64_t param_context, uint64_t *output_ptr, int32_t *param_3, int32_t *param_4)
 {
     byte byte_data;
     int data_index;
     byte *byte_ptr;
     uint pixel_value;
-    longlong context_ptr;
+    int64_t context_ptr;
     uint *pixel_array_ptr;
     int array_size;
     int8_t param_stack[32];
     void *texture_ptr;
     uint64_t texture_handle;
-    longlong stack_offset_160;
+    int64_t stack_offset_160;
     uint64_t param_block_168;
     uint64_t param_block_158;
     uint64_t param_block_150;
     int8_t alpha_channel;
     uint7 color_channels;
     uint64_t param_block_140;
-    longlong stack_offset_138;
+    int64_t stack_offset_138;
     uint64_t param_block_130;
     int32_t width_param;
     int32_t height_param;
@@ -508,14 +508,14 @@ void rendering_parameter_processor_advanced(longlong param_context, uint64_t *ou
     int32_t stencil_param;
     uint64_t render_buffer;
     uint64_t frame_buffer;
-    ulonglong security_cookie;
+    uint64_t security_cookie;
     
     pixel_value = texture_size;
-    security_cookie = RENDERING_RESOURCE_DATA_1 ^ (ulonglong)param_stack;
+    security_cookie = RENDERING_RESOURCE_DATA_1 ^ (uint64_t)param_stack;
     
     // 检查渲染上下文状态
-    if (*(longlong *)(param_context + 0x20) == 0) {
-        if (*(longlong *)(param_context + 0x18) == 0) {
+    if (*(int64_t *)(param_context + 0x20) == 0) {
+        if (*(int64_t *)(param_context + 0x18) == 0) {
             if (*(int *)(param_context + 0x60) == 0) {
                 // 初始化默认渲染参数
                 red_channel = 0;
@@ -530,7 +530,7 @@ void rendering_parameter_processor_advanced(longlong param_context, uint64_t *ou
                 render_buffer = 0;
                 frame_buffer = 0;
                 texture_size = CONCAT31(texture_size._1_3_, 1);
-                stack_offset_160 = (ulonglong)texture_size << 0x20;
+                stack_offset_160 = (uint64_t)texture_size << 0x20;
                 param_block_168 = 0;
                 texture_size = texture_size & 0xffffff00;
                 width_param = 0;
@@ -544,7 +544,7 @@ void rendering_parameter_processor_advanced(longlong param_context, uint64_t *ou
                 frame_buffer = 0;
                 security_cookie = 0;
                 texture_size = CONCAT31(texture_size._1_3_, 1);
-                stack_offset_160 = (ulonglong)texture_size << 0x20;
+                stack_offset_160 = (uint64_t)texture_size << 0x20;
                 param_block_168 = 0;
                 texture_size = texture_size & 0xffffff00;
                 width_param = 0;
@@ -579,7 +579,7 @@ void rendering_parameter_processor_advanced(longlong param_context, uint64_t *ou
             if (RENDERING_GLOBAL_CONTEXT_1 != 0) {
                 *(int *)(RENDERING_GLOBAL_CONTEXT_1 + 0x3a8) = *(int *)(RENDERING_GLOBAL_CONTEXT_1 + 0x3a8) + 1;
             }
-            pixel_array_ptr = (uint *)func_0x000180120ce0((longlong)data_index * (longlong)array_size * 4, RENDERING_GLOBAL_CONTEXT_2);
+            pixel_array_ptr = (uint *)func_0x000180120ce0((int64_t)data_index * (int64_t)array_size * 4, RENDERING_GLOBAL_CONTEXT_2);
             *(uint **)(param_context + 0x20) = pixel_array_ptr;
             
             // 转换字节数据为像素数据
@@ -602,7 +602,7 @@ void rendering_parameter_processor_advanced(longlong param_context, uint64_t *ou
         *param_4 = *(int32_t *)(param_context + 0x2c);
     }
     // 执行安全检查（该函数不返回）
-    FUN_1808fc050(security_cookie ^ (ulonglong)param_stack);
+    FUN_1808fc050(security_cookie ^ (uint64_t)param_stack);
 }
 
 /**
@@ -624,7 +624,7 @@ void rendering_parameter_processor_advanced(longlong param_context, uint64_t *ou
  * 4. 复杂数据结构管理
  * 5. 优化的渲染参数设置
  */
-void rendering_parameter_processor_extended(longlong param_context, uint64_t *output_ptr, int32_t *param_3, uint64_t param_4,
+void rendering_parameter_processor_extended(int64_t param_context, uint64_t *output_ptr, int32_t *param_3, uint64_t param_4,
                                           uint64_t param_5, uint64_t param_6, uint64_t param_7, uint64_t param_8,
                                           uint64_t param_9, uint64_t param_10, uint64_t param_11, uint64_t param_12,
                                           void *param_13, uint64_t param_14, uint64_t param_15)
@@ -634,14 +634,14 @@ void rendering_parameter_processor_extended(longlong param_context, uint64_t *ou
     byte *byte_ptr;
     bool is_negative;
     uint64_t param_value;
-    longlong context_ptr;
+    int64_t context_ptr;
     uint *pixel_array_ptr;
     void *custom_param_ptr;
     int array_size;
     int32_t *param_block_ptr;
     int32_t *output_param_ptr;
     uint64_t param_base_ptr;
-    longlong stack_base_ptr;
+    int64_t stack_base_ptr;
     bool should_process;
     uint64_t param_buffer;
     int32_t format_type;
@@ -651,7 +651,7 @@ void rendering_parameter_processor_extended(longlong param_context, uint64_t *ou
     *(uint64_t *)(stack_base_ptr + -0x30) = param_11;
     
     if (should_process) {
-        context_ptr = *(longlong *)(param_context + 0x18);
+        context_ptr = *(int64_t *)(param_context + 0x18);
         *(uint64_t *)(stack_base_ptr + -0x20) = param_base_ptr;
         if (context_ptr == 0) {
             if (*(int *)(param_context + 0x60) == 0) {
@@ -682,21 +682,21 @@ void rendering_parameter_processor_extended(longlong param_context, uint64_t *ou
                 param_block_ptr[-9] = 1;
                 param_value = *(uint64_t *)(param_block_ptr + -0xc);
                 *(int8_t *)(param_block_ptr + -0x20) = 0;
-                *(int8_t *)((longlong)param_block_ptr + -0x7f) = 0;
-                *(int8_t *)((longlong)param_block_ptr + -0x7e) = 0x80;
-                *(int8_t *)((longlong)param_block_ptr + -0x7d) = 0x3f;
+                *(int8_t *)((int64_t)param_block_ptr + -0x7f) = 0;
+                *(int8_t *)((int64_t)param_block_ptr + -0x7e) = 0x80;
+                *(int8_t *)((int64_t)param_block_ptr + -0x7d) = 0x3f;
                 *(char *)(param_block_ptr + -0x1f) = *(char *)(param_block_ptr + 5);
-                *(int8_t *)((longlong)param_block_ptr + -0x7b) = *(int8_t *)((longlong)param_block_ptr + 0x15);
-                *(int8_t *)((longlong)param_block_ptr + -0x7a) = *(int8_t *)((longlong)param_block_ptr + 0x16);
-                *(int8_t *)((longlong)param_block_ptr + -0x79) = *(int8_t *)((longlong)param_block_ptr + 0x17);
+                *(int8_t *)((int64_t)param_block_ptr + -0x7b) = *(int8_t *)((int64_t)param_block_ptr + 0x15);
+                *(int8_t *)((int64_t)param_block_ptr + -0x7a) = *(int8_t *)((int64_t)param_block_ptr + 0x16);
+                *(int8_t *)((int64_t)param_block_ptr + -0x79) = *(int8_t *)((int64_t)param_block_ptr + 0x17);
                 *(int8_t *)(param_block_ptr + -0x1e) = *(int8_t *)(param_block_ptr + 6);
-                *(int8_t *)((longlong)param_block_ptr + -0x77) = *(int8_t *)((longlong)param_block_ptr + 0x19);
-                *(int8_t *)((longlong)param_block_ptr + -0x76) = *(int8_t *)((longlong)param_block_ptr + 0x1a);
-                *(int8_t *)((longlong)param_block_ptr + -0x75) = *(int8_t *)((longlong)param_block_ptr + 0x1b);
+                *(int8_t *)((int64_t)param_block_ptr + -0x77) = *(int8_t *)((int64_t)param_block_ptr + 0x19);
+                *(int8_t *)((int64_t)param_block_ptr + -0x76) = *(int8_t *)((int64_t)param_block_ptr + 0x1a);
+                *(int8_t *)((int64_t)param_block_ptr + -0x75) = *(int8_t *)((int64_t)param_block_ptr + 0x1b);
                 *(int8_t *)(param_block_ptr + -0x1d) = *(int8_t *)(param_block_ptr + 7);
-                *(int8_t *)((longlong)param_block_ptr + -0x73) = *(int8_t *)((longlong)param_block_ptr + 0x1d);
-                *(int8_t *)((longlong)param_block_ptr + -0x72) = *(int8_t *)((longlong)param_block_ptr + 0x1e);
-                *(int8_t *)((longlong)param_block_ptr + -0x71) = *(int8_t *)((longlong)param_block_ptr + 0x1f);
+                *(int8_t *)((int64_t)param_block_ptr + -0x73) = *(int8_t *)((int64_t)param_block_ptr + 0x1d);
+                *(int8_t *)((int64_t)param_block_ptr + -0x72) = *(int8_t *)((int64_t)param_block_ptr + 0x1e);
+                *(int8_t *)((int64_t)param_block_ptr + -0x71) = *(int8_t *)((int64_t)param_block_ptr + 0x1f);
                 *(uint64_t *)(param_block_ptr + -2) = 0;
                 param_12 = *(uint64_t *)(param_block_ptr + -4);
                 param_13 = *(void **)(param_block_ptr + -2);
@@ -709,7 +709,7 @@ void rendering_parameter_processor_extended(longlong param_context, uint64_t *ou
                 param_block_ptr[-0x15] = param_block_ptr[0xf];
                 *(uint64_t *)(param_block_ptr + -0x14) = *(uint64_t *)(param_block_ptr + 0x10);
                 param_9 = 0x100000001;
-                param_10 = CONCAT71((int7)((ulonglong)*(uint64_t *)(param_block_ptr + -8) >> 8), 1);
+                param_10 = CONCAT71((int7)((uint64_t)*(uint64_t *)(param_block_ptr + -8) >> 8), 1);
                 if (*(char *)(param_block_ptr + 5) == '\0') {
                     param_block_ptr[-0x1b] = 0x70333120;
                     param_block_ptr[-0x1f] = 0x676f7250;
@@ -718,7 +718,7 @@ void rendering_parameter_processor_extended(longlong param_context, uint64_t *ou
                     param_block_ptr[-0x1c] = 0x2c667474;
                     *(int16_t *)(param_block_ptr + -0x1a) = 0x78;
                 }
-                param_8._4_4_ = (float)((ulonglong)param_value >> 0x20);
+                param_8._4_4_ = (float)((uint64_t)param_value >> 0x20);
                 is_negative = param_8._4_4_ <= 0.0;
                 param_8 = param_value;
                 if (is_negative) {
@@ -742,7 +742,7 @@ void rendering_parameter_processor_extended(longlong param_context, uint64_t *ou
             if (RENDERING_GLOBAL_CONTEXT_1 != 0) {
                 *(int *)(RENDERING_GLOBAL_CONTEXT_1 + 0x3a8) = *(int *)(RENDERING_GLOBAL_CONTEXT_1 + 0x3a8) + 1;
             }
-            pixel_array_ptr = (uint *)func_0x000180120ce0((longlong)data_index * (longlong)array_size * 4, RENDERING_GLOBAL_CONTEXT_2);
+            pixel_array_ptr = (uint *)func_0x000180120ce0((int64_t)data_index * (int64_t)array_size * 4, RENDERING_GLOBAL_CONTEXT_2);
             *(uint **)(param_context + 0x20) = pixel_array_ptr;
             
             // 转换字节数据为像素数据
@@ -765,7 +765,7 @@ void rendering_parameter_processor_extended(longlong param_context, uint64_t *ou
         *output_param_ptr = *(int32_t *)(param_context + 0x2c);
     }
     // 执行安全检查（该函数不返回）
-    FUN_1808fc050(*(ulonglong *)(param_block_ptr + 0x14) ^ (ulonglong)&stack0x00000000);
+    FUN_1808fc050(*(uint64_t *)(param_block_ptr + 0x14) ^ (uint64_t)&stack0x00000000);
 }
 
 /**
@@ -787,7 +787,7 @@ void rendering_parameter_processor_extended(longlong param_context, uint64_t *ou
  * 4. 快速参数配置
  * 5. 优化的输出处理
  */
-void rendering_parameter_processor_optimized(longlong param_context, uint64_t *output_ptr, int32_t *param_3, uint64_t param_4,
+void rendering_parameter_processor_optimized(int64_t param_context, uint64_t *output_ptr, int32_t *param_3, uint64_t param_4,
                                           uint64_t param_5, uint64_t param_6, uint64_t param_7, uint64_t param_8,
                                           uint64_t param_9, uint64_t param_10, uint64_t param_11, uint64_t param_12,
                                           void *param_13, uint64_t param_14, uint64_t param_15)
@@ -797,15 +797,15 @@ void rendering_parameter_processor_optimized(longlong param_context, uint64_t *o
     byte *byte_ptr;
     bool is_negative;
     uint64_t param_value;
-    longlong context_ptr;
+    int64_t context_ptr;
     uint *pixel_array_ptr;
     void *custom_param_ptr;
     int array_size;
-    longlong resource_base_ptr;
+    int64_t resource_base_ptr;
     int32_t *param_block_ptr;
     int32_t *output_param_ptr;
     uint64_t param_base_ptr;
-    longlong stack_base_ptr;
+    int64_t stack_base_ptr;
     bool should_process;
     int32_t format_type;
     
@@ -813,7 +813,7 @@ void rendering_parameter_processor_optimized(longlong param_context, uint64_t *o
     *(uint64_t *)(stack_base_ptr + -0x30) = param_11;
     
     if (should_process) {
-        context_ptr = *(longlong *)(param_context + 0x18);
+        context_ptr = *(int64_t *)(param_context + 0x18);
         *(uint64_t *)(stack_base_ptr + -0x20) = param_base_ptr;
         if (context_ptr == 0) {
             if (*(int *)(param_context + 0x60) == 0) {
@@ -844,21 +844,21 @@ void rendering_parameter_processor_optimized(longlong param_context, uint64_t *o
                 param_block_ptr[-9] = 1;
                 param_value = *(uint64_t *)(param_block_ptr + -0xc);
                 *(int8_t *)(param_block_ptr + -0x20) = 0;
-                *(int8_t *)((longlong)param_block_ptr + -0x7f) = 0;
-                *(int8_t *)((longlong)param_block_ptr + -0x7e) = 0x80;
-                *(int8_t *)((longlong)param_block_ptr + -0x7d) = 0x3f;
+                *(int8_t *)((int64_t)param_block_ptr + -0x7f) = 0;
+                *(int8_t *)((int64_t)param_block_ptr + -0x7e) = 0x80;
+                *(int8_t *)((int64_t)param_block_ptr + -0x7d) = 0x3f;
                 *(char *)(param_block_ptr + -0x1f) = *(char *)(param_block_ptr + 5);
-                *(int8_t *)((longlong)param_block_ptr + -0x7b) = *(int8_t *)((longlong)param_block_ptr + 0x15);
-                *(int8_t *)((longlong)param_block_ptr + -0x7a) = *(int8_t *)((longlong)param_block_ptr + 0x16);
-                *(int8_t *)((longlong)param_block_ptr + -0x79) = *(int8_t *)((longlong)param_block_ptr + 0x17);
+                *(int8_t *)((int64_t)param_block_ptr + -0x7b) = *(int8_t *)((int64_t)param_block_ptr + 0x15);
+                *(int8_t *)((int64_t)param_block_ptr + -0x7a) = *(int8_t *)((int64_t)param_block_ptr + 0x16);
+                *(int8_t *)((int64_t)param_block_ptr + -0x79) = *(int8_t *)((int64_t)param_block_ptr + 0x17);
                 *(int8_t *)(param_block_ptr + -0x1e) = *(int8_t *)(param_block_ptr + 6);
-                *(int8_t *)((longlong)param_block_ptr + -0x77) = *(int8_t *)((longlong)param_block_ptr + 0x19);
-                *(int8_t *)((longlong)param_block_ptr + -0x76) = *(int8_t *)((longlong)param_block_ptr + 0x1a);
-                *(int8_t *)((longlong)param_block_ptr + -0x75) = *(int8_t *)((longlong)param_block_ptr + 0x1b);
+                *(int8_t *)((int64_t)param_block_ptr + -0x77) = *(int8_t *)((int64_t)param_block_ptr + 0x19);
+                *(int8_t *)((int64_t)param_block_ptr + -0x76) = *(int8_t *)((int64_t)param_block_ptr + 0x1a);
+                *(int8_t *)((int64_t)param_block_ptr + -0x75) = *(int8_t *)((int64_t)param_block_ptr + 0x1b);
                 *(int8_t *)(param_block_ptr + -0x1d) = *(int8_t *)(param_block_ptr + 7);
-                *(int8_t *)((longlong)param_block_ptr + -0x73) = *(int8_t *)((longlong)param_block_ptr + 0x1d);
-                *(int8_t *)((longlong)param_block_ptr + -0x72) = *(int8_t *)((longlong)param_block_ptr + 0x1e);
-                *(int8_t *)((longlong)param_block_ptr + -0x71) = *(int8_t *)((longlong)param_block_ptr + 0x1f);
+                *(int8_t *)((int64_t)param_block_ptr + -0x73) = *(int8_t *)((int64_t)param_block_ptr + 0x1d);
+                *(int8_t *)((int64_t)param_block_ptr + -0x72) = *(int8_t *)((int64_t)param_block_ptr + 0x1e);
+                *(int8_t *)((int64_t)param_block_ptr + -0x71) = *(int8_t *)((int64_t)param_block_ptr + 0x1f);
                 *(uint64_t *)(param_block_ptr + -2) = 0;
                 param_12 = *(uint64_t *)(param_block_ptr + -4);
                 param_13 = *(void **)(param_block_ptr + -2);
@@ -872,7 +872,7 @@ void rendering_parameter_processor_optimized(longlong param_context, uint64_t *o
                 param_block_ptr[-0x15] = param_block_ptr[0xf];
                 *(uint64_t *)(param_block_ptr + -0x14) = *(uint64_t *)(param_block_ptr + 0x10);
                 param_9 = 0x100000001;
-                param_10 = CONCAT71((int7)((ulonglong)*(uint64_t *)(param_block_ptr + -8) >> 8), 1);
+                param_10 = CONCAT71((int7)((uint64_t)*(uint64_t *)(param_block_ptr + -8) >> 8), 1);
                 if (*(char *)(param_block_ptr + 5) == '\0') {
                     format_type = 0x676f7250;
                     param_block_ptr[-0x1b] = 0x70333120;
@@ -882,7 +882,7 @@ void rendering_parameter_processor_optimized(longlong param_context, uint64_t *o
                     param_block_ptr[-0x1c] = 0x2c667474;
                     *(int16_t *)(param_block_ptr + -0x1a) = 0x78;
                 }
-                param_8._4_4_ = (float)((ulonglong)param_value >> 0x20);
+                param_8._4_4_ = (float)((uint64_t)param_value >> 0x20);
                 is_negative = param_8._4_4_ <= 0.0;
                 param_8 = param_value;
                 if (is_negative) {
@@ -906,7 +906,7 @@ void rendering_parameter_processor_optimized(longlong param_context, uint64_t *o
             if (RENDERING_GLOBAL_CONTEXT_1 != 0) {
                 *(int *)(RENDERING_GLOBAL_CONTEXT_1 + 0x3a8) = *(int *)(RENDERING_GLOBAL_CONTEXT_1 + 0x3a8) + 1;
             }
-            pixel_array_ptr = (uint *)func_0x000180120ce0((longlong)data_index * (longlong)array_size * 4, RENDERING_GLOBAL_CONTEXT_2);
+            pixel_array_ptr = (uint *)func_0x000180120ce0((int64_t)data_index * (int64_t)array_size * 4, RENDERING_GLOBAL_CONTEXT_2);
             *(uint **)(resource_base_ptr + 0x20) = pixel_array_ptr;
             
             // 优化的数据转换
@@ -929,7 +929,7 @@ void rendering_parameter_processor_optimized(longlong param_context, uint64_t *o
         *output_param_ptr = *(int32_t *)(resource_base_ptr + 0x2c);
     }
     // 执行安全检查（该函数不返回）
-    FUN_1808fc050(*(ulonglong *)(param_block_ptr + 0x14) ^ (ulonglong)&stack0x00000000);
+    FUN_1808fc050(*(uint64_t *)(param_block_ptr + 0x14) ^ (uint64_t)&stack0x00000000);
 }
 
 // 警告：以'_'开头的全局变量与相同地址的较小符号重叠

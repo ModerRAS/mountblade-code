@@ -879,7 +879,7 @@ typedef enum RenderingControlErrorEnum {
  * @param param_1 渲染系统上下文指针
  * @return void
  */
-void RenderingSystemAdvancedController(longlong param_1)
+void RenderingSystemAdvancedController(int64_t param_1)
 {
     ushort *puVar1;
     ushort uVar2;
@@ -888,13 +888,13 @@ void RenderingSystemAdvancedController(longlong param_1)
     FUN_18052d670();
     
     // 获取控制标志
-    uVar2 = *(ushort *)(*(longlong *)(param_1 + 0x728) + 0x5aa);
+    uVar2 = *(ushort *)(*(int64_t *)(param_1 + 0x728) + 0x5aa);
     if (uVar2 != 0) {
         // 更新控制标志
-        puVar1 = (ushort *)(*(longlong *)(param_1 + 0x728) + 0x5ac);
+        puVar1 = (ushort *)(*(int64_t *)(param_1 + 0x728) + 0x5ac);
         *puVar1 = *puVar1 | uVar2;
-        *(int16_t *)(*(longlong *)(param_1 + 0x728) + 0x5aa) = 0;
-        *(int32_t *)(*(longlong *)(param_1 + 0x728) + 0x5a4) = 0xffffffff;
+        *(int16_t *)(*(int64_t *)(param_1 + 0x728) + 0x5aa) = 0;
+        *(int32_t *)(*(int64_t *)(param_1 + 0x728) + 0x5a4) = 0xffffffff;
     }
     
     // 执行渲染操作
@@ -917,15 +917,15 @@ void RenderingSystemAdvancedController(longlong param_1)
  * @param param_1 渲染系统上下文指针
  * @return int 状态查询结果
  */
-int RenderingSystemStateQuerier(longlong param_1)
+int RenderingSystemStateQuerier(int64_t param_1)
 {
     int iVar1;
     
     // 检查状态索引是否有效
     if (-1 < *(int *)(param_1 + 0x564)) {
         // 获取状态信息
-        iVar1 = *(int *)((longlong)*(int *)(param_1 + 0x564) * 0xa60 + 0x30b8 +
-                        *(longlong *)(param_1 + 0x8d8));
+        iVar1 = *(int *)((int64_t)*(int *)(param_1 + 0x564) * 0xa60 + 0x30b8 +
+                        *(int64_t *)(param_1 + 0x8d8));
         if ((iVar1 != 0) && (system_cache_buffer != 0)) {
             // 执行状态处理函数
             (**(code **)(system_cache_buffer + 0x30))(iVar1);
@@ -949,7 +949,7 @@ int RenderingSystemStateQuerier(longlong param_1)
  * @param param_2 资源管理参数
  * @return void
  */
-void RenderingSystemResourceManager(longlong param_1, int param_2)
+void RenderingSystemResourceManager(int64_t param_1, int param_2)
 {
     // 资源管理实现
     // [函数实现占位符]
@@ -967,7 +967,7 @@ void RenderingSystemResourceManager(longlong param_1, int param_2)
  * @param param_2 性能优化参数
  * @return void
  */
-void RenderingSystemPerformanceOptimizer(longlong param_1, int param_2)
+void RenderingSystemPerformanceOptimizer(int64_t param_1, int param_2)
 {
     // 性能优化实现
     // [函数实现占位符]
@@ -985,7 +985,7 @@ void RenderingSystemPerformanceOptimizer(longlong param_1, int param_2)
  * @param param_2 错误处理参数
  * @return void
  */
-void RenderingSystemErrorHandler(longlong param_1, int param_2)
+void RenderingSystemErrorHandler(int64_t param_1, int param_2)
 {
     // 错误处理实现
     // [函数实现占位符]
@@ -1002,7 +1002,7 @@ void RenderingSystemErrorHandler(longlong param_1, int param_2)
  * @param param_2 内存管理参数
  * @return void
  */
-void RenderingSystemMemoryManager(longlong param_1, int param_2)
+void RenderingSystemMemoryManager(int64_t param_1, int param_2)
 {
     // 内存管理实现
     // [函数实现占位符]
@@ -1019,7 +1019,7 @@ void RenderingSystemMemoryManager(longlong param_1, int param_2)
  * @param param_2 管线管理参数
  * @return void
  */
-void RenderingSystemPipelineManager(longlong param_1, int param_2)
+void RenderingSystemPipelineManager(int64_t param_1, int param_2)
 {
     // 渲染管线管理实现
     // [函数实现占位符]
@@ -1036,7 +1036,7 @@ void RenderingSystemPipelineManager(longlong param_1, int param_2)
  * @param param_2 着色器管理参数
  * @return void
  */
-void RenderingSystemShaderManager(longlong param_1, int param_2)
+void RenderingSystemShaderManager(int64_t param_1, int param_2)
 {
     // 着色器管理实现
     // [函数实现占位符]
@@ -1053,7 +1053,7 @@ void RenderingSystemShaderManager(longlong param_1, int param_2)
  * @param param_2 纹理管理参数
  * @return void
  */
-void RenderingSystemTextureManager(longlong param_1, int param_2)
+void RenderingSystemTextureManager(int64_t param_1, int param_2)
 {
     // 纹理管理实现
     // [函数实现占位符]
@@ -1070,7 +1070,7 @@ void RenderingSystemTextureManager(longlong param_1, int param_2)
  * @param param_2 缓冲区管理参数
  * @return void
  */
-void RenderingSystemBufferManager(longlong param_1, int param_2)
+void RenderingSystemBufferManager(int64_t param_1, int param_2)
 {
     // 缓冲区管理实现
     // [函数实现占位符]
@@ -1087,7 +1087,7 @@ void RenderingSystemBufferManager(longlong param_1, int param_2)
  * @param param_2 采样器管理参数
  * @return void
  */
-void RenderingSystemSamplerManager(longlong param_1, int param_2)
+void RenderingSystemSamplerManager(int64_t param_1, int param_2)
 {
     // 采样器管理实现
     // [函数实现占位符]
@@ -1104,7 +1104,7 @@ void RenderingSystemSamplerManager(longlong param_1, int param_2)
  * @param param_2 帧缓冲区管理参数
  * @return void
  */
-void RenderingSystemFramebufferManager(longlong param_1, int param_2)
+void RenderingSystemFramebufferManager(int64_t param_1, int param_2)
 {
     // 帧缓冲区管理实现
     // [函数实现占位符]
@@ -1121,7 +1121,7 @@ void RenderingSystemFramebufferManager(longlong param_1, int param_2)
  * @param param_2 渲染通道管理参数
  * @return void
  */
-void RenderingSystemRenderPassManager(longlong param_1, int param_2)
+void RenderingSystemRenderPassManager(int64_t param_1, int param_2)
 {
     // 渲染通道管理实现
     // [函数实现占位符]
@@ -1138,7 +1138,7 @@ void RenderingSystemRenderPassManager(longlong param_1, int param_2)
  * @param param_2 命令缓冲区管理参数
  * @return void
  */
-void RenderingSystemCommandBufferManager(longlong param_1, int param_2)
+void RenderingSystemCommandBufferManager(int64_t param_1, int param_2)
 {
     // 命令缓冲区管理实现
     // [函数实现占位符]
@@ -1155,7 +1155,7 @@ void RenderingSystemCommandBufferManager(longlong param_1, int param_2)
  * @param param_2 队列管理参数
  * @return void
  */
-void RenderingSystemQueueManager(longlong param_1, int param_2)
+void RenderingSystemQueueManager(int64_t param_1, int param_2)
 {
     // 队列管理实现
     // [函数实现占位符]
@@ -1172,7 +1172,7 @@ void RenderingSystemQueueManager(longlong param_1, int param_2)
  * @param param_2 设备管理参数
  * @return void
  */
-void RenderingSystemDeviceManager(longlong param_1, int param_2)
+void RenderingSystemDeviceManager(int64_t param_1, int param_2)
 {
     // 设备管理实现
     // [函数实现占位符]
@@ -1189,7 +1189,7 @@ void RenderingSystemDeviceManager(longlong param_1, int param_2)
  * @param param_2 实例管理参数
  * @return void
  */
-void RenderingSystemInstanceManager(longlong param_1, int param_2)
+void RenderingSystemInstanceManager(int64_t param_1, int param_2)
 {
     // 实例管理实现
     // [函数实现占位符]
@@ -1206,7 +1206,7 @@ void RenderingSystemInstanceManager(longlong param_1, int param_2)
  * @param param_2 调试管理参数
  * @return void
  */
-void RenderingSystemDebugManager(longlong param_1, int param_2)
+void RenderingSystemDebugManager(int64_t param_1, int param_2)
 {
     // 调试管理实现
     // [函数实现占位符]
@@ -1223,7 +1223,7 @@ void RenderingSystemDebugManager(longlong param_1, int param_2)
  * @param param_2 性能监控参数
  * @return void
  */
-void RenderingSystemPerformanceMonitor(longlong param_1, int param_2)
+void RenderingSystemPerformanceMonitor(int64_t param_1, int param_2)
 {
     // 性能监控实现
     // [函数实现占位符]
@@ -1240,7 +1240,7 @@ void RenderingSystemPerformanceMonitor(longlong param_1, int param_2)
  * @param param_2 资源清理参数
  * @return void
  */
-void RenderingSystemResourceCleaner(longlong param_1, int param_2)
+void RenderingSystemResourceCleaner(int64_t param_1, int param_2)
 {
     // 资源清理实现
     // [函数实现占位符]
@@ -1257,7 +1257,7 @@ void RenderingSystemResourceCleaner(longlong param_1, int param_2)
  * @param param_2 状态同步参数
  * @return void
  */
-void RenderingSystemStateSynchronizer(longlong param_1, int param_2)
+void RenderingSystemStateSynchronizer(int64_t param_1, int param_2)
 {
     // 状态同步实现
     // [函数实现占位符]
@@ -1274,7 +1274,7 @@ void RenderingSystemStateSynchronizer(longlong param_1, int param_2)
  * @param param_2 配置管理参数
  * @return void
  */
-void RenderingSystemConfigurationManager(longlong param_1, int param_2)
+void RenderingSystemConfigurationManager(int64_t param_1, int param_2)
 {
     // 配置管理实现
     // [函数实现占位符]
@@ -1291,7 +1291,7 @@ void RenderingSystemConfigurationManager(longlong param_1, int param_2)
  * @param param_2 初始化参数
  * @return void
  */
-void RenderingSystemInitializer(longlong param_1, int param_2)
+void RenderingSystemInitializer(int64_t param_1, int param_2)
 {
     // 系统初始化实现
     // [函数实现占位符]
@@ -1308,7 +1308,7 @@ void RenderingSystemInitializer(longlong param_1, int param_2)
  * @param param_2 终止参数
  * @return void
  */
-void RenderingSystemTerminator(longlong param_1, int param_2)
+void RenderingSystemTerminator(int64_t param_1, int param_2)
 {
     // 系统终止实现
     // [函数实现占位符]
@@ -1325,7 +1325,7 @@ void RenderingSystemTerminator(longlong param_1, int param_2)
  * @param param_2 重置参数
  * @return void
  */
-void RenderingSystemResetter(longlong param_1, int param_2)
+void RenderingSystemResetter(int64_t param_1, int param_2)
 {
     // 系统重置实现
     // [函数实现占位符]
@@ -1342,7 +1342,7 @@ void RenderingSystemResetter(longlong param_1, int param_2)
  * @param param_2 更新参数
  * @return void
  */
-void RenderingSystemUpdater(longlong param_1, int param_2)
+void RenderingSystemUpdater(int64_t param_1, int param_2)
 {
     // 系统更新实现
     // [函数实现占位符]
@@ -1359,7 +1359,7 @@ void RenderingSystemUpdater(longlong param_1, int param_2)
  * @param param_2 验证参数
  * @return void
  */
-void RenderingSystemValidator(longlong param_1, int param_2)
+void RenderingSystemValidator(int64_t param_1, int param_2)
 {
     // 系统验证实现
     // [函数实现占位符]
@@ -1376,7 +1376,7 @@ void RenderingSystemValidator(longlong param_1, int param_2)
  * @param param_2 分析参数
  * @return void
  */
-void RenderingSystemAnalyzer(longlong param_1, int param_2)
+void RenderingSystemAnalyzer(int64_t param_1, int param_2)
 {
     // 系统分析实现
     // [函数实现占位符]
@@ -1393,7 +1393,7 @@ void RenderingSystemAnalyzer(longlong param_1, int param_2)
  * @param param_2 报告参数
  * @return void
  */
-void RenderingSystemReporter(longlong param_1, int param_2)
+void RenderingSystemReporter(int64_t param_1, int param_2)
 {
     // 系统报告实现
     // [函数实现占位符]
@@ -1410,7 +1410,7 @@ void RenderingSystemReporter(longlong param_1, int param_2)
  * @param param_2 备份参数
  * @return void
  */
-void RenderingSystemBackupManager(longlong param_1, int param_2)
+void RenderingSystemBackupManager(int64_t param_1, int param_2)
 {
     // 系统备份实现
     // [函数实现占位符]
@@ -1427,7 +1427,7 @@ void RenderingSystemBackupManager(longlong param_1, int param_2)
  * @param param_2 恢复参数
  * @return void
  */
-void RenderingSystemRestoreManager(longlong param_1, int param_2)
+void RenderingSystemRestoreManager(int64_t param_1, int param_2)
 {
     // 系统恢复实现
     // [函数实现占位符]
@@ -1444,7 +1444,7 @@ void RenderingSystemRestoreManager(longlong param_1, int param_2)
  * @param param_2 迁移参数
  * @return void
  */
-void RenderingSystemMigrationManager(longlong param_1, int param_2)
+void RenderingSystemMigrationManager(int64_t param_1, int param_2)
 {
     // 系统迁移实现
     // [函数实现占位符]

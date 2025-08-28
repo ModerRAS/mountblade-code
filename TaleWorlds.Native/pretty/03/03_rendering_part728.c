@@ -65,7 +65,7 @@
  * 
  * @note 这是一个高度优化的SIMD图像处理函数，使用了大量的SSE指令
  */
-void rendering_system_simd_image_processor(uint64_t param_1, longlong param_2, uint64_t param_3, short *param_4)
+void rendering_system_simd_image_processor(uint64_t param_1, int64_t param_2, uint64_t param_3, short *param_4)
 {
     // 局部变量声明
     ushort *puVar1;          // 无符号短整型指针
@@ -74,12 +74,12 @@ void rendering_system_simd_image_processor(uint64_t param_1, longlong param_2, u
     short sVar4;             // 短整型变量
     int8_t (*in_RAX) [16]; // SIMD寄存器指针
     ushort *puVar5;          // 无符号短整型指针
-    longlong lVar6;          // 长整型变量
-    longlong unaff_RBX;      // 未使用的RBX寄存器
-    longlong lVar7;          // 长整型变量
-    longlong unaff_RDI;      // 未使用的RDI寄存器
-    longlong in_R10;         // R10寄存器值
-    longlong in_R11;         // R11寄存器值
+    int64_t lVar6;          // 长整型变量
+    int64_t unaff_RBX;      // 未使用的RBX寄存器
+    int64_t lVar7;          // 长整型变量
+    int64_t unaff_RDI;      // 未使用的RDI寄存器
+    int64_t in_R10;         // R10寄存器值
+    int64_t in_R11;         // R11寄存器值
     ushort uVar9;           // 无符号短整型变量
     ushort uVar10;          // 无符号短整型变量
     ushort uVar11;           // 无符号短整型变量
@@ -398,10 +398,10 @@ void rendering_system_simd_image_processor(uint64_t param_1, longlong param_2, u
         
         do {
             puVar1 = puVar5 + 0x10;
-            auVar41 = psraw(*(int8_t (*) [16])(lVar7 + -0x10 + (longlong)puVar5), 0xf);
-            auVar45 = psraw(*(int8_t (*) [16])(lVar7 + (longlong)puVar5), 0xf);
-            auVar30 = auVar41 ^ *(int8_t (*) [16])(lVar7 + -0x30 + (longlong)puVar1);
-            auVar39 = auVar45 ^ *(int8_t (*) [16])(lVar7 + -0x20 + (longlong)puVar1);
+            auVar41 = psraw(*(int8_t (*) [16])(lVar7 + -0x10 + (int64_t)puVar5), 0xf);
+            auVar45 = psraw(*(int8_t (*) [16])(lVar7 + (int64_t)puVar5), 0xf);
+            auVar30 = auVar41 ^ *(int8_t (*) [16])(lVar7 + -0x30 + (int64_t)puVar1);
+            auVar39 = auVar45 ^ *(int8_t (*) [16])(lVar7 + -0x20 + (int64_t)puVar1);
             
             // 循环内的SIMD操作（与前面类似的处理逻辑）
             auVar44._0_2_ = auVar30._0_2_ - auVar41._0_2_;
@@ -501,7 +501,7 @@ void rendering_system_simd_image_processor(uint64_t param_1, longlong param_2, u
             puVar5[7] = uVar28;
             
             // 循环内的结果存储
-            psVar2 = (short *)((in_R10 - in_R11) + -0x30 + (longlong)puVar1);
+            psVar2 = (short *)((in_R10 - in_R11) + -0x30 + (int64_t)puVar1);
             *psVar2 = sVar35;
             psVar2[1] = sVar36;
             psVar2[2] = sVar37;
@@ -530,7 +530,7 @@ void rendering_system_simd_image_processor(uint64_t param_1, longlong param_2, u
             uVar25 = (ushort)((ushort)-(ushort)(sVar52 == sVar60) == sVar60);
             uVar27 = (ushort)((ushort)-(ushort)(sVar53 == sVar61) == sVar61);
             
-            psVar2 = (short *)((in_R10 - in_R11) + -0x20 + (longlong)puVar1);
+            psVar2 = (short *)((in_R10 - in_R11) + -0x20 + (int64_t)puVar1);
             *psVar2 = sVar43;
             psVar2[1] = sVar47;
             psVar2[2] = sVar48;
@@ -540,7 +540,7 @@ void rendering_system_simd_image_processor(uint64_t param_1, longlong param_2, u
             psVar2[6] = sVar33;
             psVar2[7] = sVar34;
             
-            psVar2 = (short *)((unaff_RDI - in_R11) + -0x30 + (longlong)puVar1);
+            psVar2 = (short *)((unaff_RDI - in_R11) + -0x30 + (int64_t)puVar1);
             uVar16 = (ushort)((ushort)-(ushort)(sVar43 == sVar54) == sVar54);
             uVar20 = (ushort)((ushort)-(ushort)(sVar47 == sVar55) == sVar55);
             uVar24 = (ushort)((ushort)-(ushort)(sVar48 == sVar56) == sVar56);
@@ -550,7 +550,7 @@ void rendering_system_simd_image_processor(uint64_t param_1, longlong param_2, u
             uVar11 = (ushort)((ushort)-(ushort)(sVar33 == sVar60) == sVar60);
             uVar12 = (ushort)((ushort)-(ushort)(sVar34 == sVar61) == sVar61);
             
-            psVar3 = (short *)((unaff_RDI - in_R11) + -0x20 + (longlong)puVar1);
+            psVar3 = (short *)((unaff_RDI - in_R11) + -0x20 + (int64_t)puVar1);
             uVar13 = *psVar2 + uVar14 & -uVar14;
             uVar15 = psVar2[1] + uVar18 & -uVar18;
             uVar17 = psVar2[2] + uVar22 & -uVar22;
@@ -684,13 +684,13 @@ void rendering_system_simd_image_processor(uint64_t param_1, longlong param_2, u
  * 
  * @note 这是一个高性能的内存填充函数，使用了SIMD指令优化
  */
-void rendering_system_memory_block_filler(uint64_t param_1, longlong param_2)
+void rendering_system_memory_block_filler(uint64_t param_1, int64_t param_2)
 {
     // 局部变量声明
     int32_t *puVar1;          // 无符号整型指针
     int32_t *puVar2;          // 无符号整型指针
-    longlong in_R10;             // R10寄存器值
-    longlong in_R11;             // R11寄存器值
+    int64_t in_R10;             // R10寄存器值
+    int64_t in_R11;             // R11寄存器值
     int32_t unaff_XMM7_Da;    // XMM7寄存器双字a
     int32_t unaff_XMM7_Db;    // XMM7寄存器双字b
     int32_t unaff_XMM7_Dc;    // XMM7寄存器双字c
@@ -705,14 +705,14 @@ void rendering_system_memory_block_filler(uint64_t param_1, longlong param_2)
         param_2 = param_2 + 0x10;  // 增加16字节（一个SIMD向量的大小）
         
         // 填充第一个内存块
-        puVar1 = (int32_t *)((longlong)puVar2 + (in_R10 - in_R11) + -0x10);
+        puVar1 = (int32_t *)((int64_t)puVar2 + (in_R10 - in_R11) + -0x10);
         *puVar1 = unaff_XMM7_Da;
         puVar1[1] = unaff_XMM7_Db;
         puVar1[2] = unaff_XMM7_Dc;
         puVar1[3] = unaff_XMM7_Dd;
         
         // 填充第二个内存块
-        puVar1 = (int32_t *)((longlong)puVar2 + (in_R10 - in_R11));
+        puVar1 = (int32_t *)((int64_t)puVar2 + (in_R10 - in_R11));
         *puVar1 = unaff_XMM7_Da;
         puVar1[1] = unaff_XMM7_Db;
         puVar1[2] = unaff_XMM7_Dc;
@@ -779,7 +779,7 @@ void rendering_system_error_handler(void)
  * 
  * @note 这是一个高度优化的像素差异计算函数，使用了AVX2指令集
  */
-void rendering_system_advanced_pixel_difference_calculator(longlong param_1, int param_2, longlong param_3, int param_4, int *param_5)
+void rendering_system_advanced_pixel_difference_calculator(int64_t param_1, int param_2, int64_t param_3, int param_4, int *param_5)
 {
     // 局部变量声明
     int iVar1;                  // 整型变量
@@ -787,14 +787,14 @@ void rendering_system_advanced_pixel_difference_calculator(longlong param_1, int
     byte *pbVar3;               // 字节指针
     uint uVar4;                 // 无符号整型变量
     uint uVar5;                 // 无符号整型变量
-    longlong lVar6;              // 长整型变量
+    int64_t lVar6;              // 长整型变量
     int iVar7;                  // 整型变量
-    longlong lVar8;              // 长整型变量
-    longlong lVar9;              // 长整型变量
-    ulonglong uVar10;           // 无符号长整型变量
+    int64_t lVar8;              // 长整型变量
+    int64_t lVar9;              // 长整型变量
+    uint64_t uVar10;           // 无符号长整型变量
     int iVar11;                 // 整型变量
     int iVar12;                 // 整型变量
-    longlong lVar13;             // 长整型变量
+    int64_t lVar13;             // 长整型变量
     int8_t auVar14 [16];    // SIMD数组变量
     int iVar15;                 // 整型变量
     int iVar16;                 // 整型变量
@@ -807,8 +807,8 @@ void rendering_system_advanced_pixel_difference_calculator(longlong param_1, int
     int8_t in_XMM2 [16];     // XMM2寄存器内容
     int8_t auVar23 [16];     // SIMD数组变量
     int8_t auVar24 [16];     // SIMD数组变量
-    longlong lStackX_18;        // 栈变量
-    longlong lStack_48;         // 栈变量
+    int64_t lStackX_18;        // 栈变量
+    int64_t lStack_48;         // 栈变量
     
     // 获取系统配置参数
     iVar1 = render_system_control_config;
@@ -843,7 +843,7 @@ void rendering_system_advanced_pixel_difference_calculator(longlong param_1, int
                 
                 do {
                     // 加载源像素和目标像素数据
-                    auVar14 = ZEXT416(*(uint *)((lVar8 - lVar9) + -4 + (longlong)puVar2));
+                    auVar14 = ZEXT416(*(uint *)((lVar8 - lVar9) + -4 + (int64_t)puVar2));
                     auVar23 = pmovzxbd(in_XMM2, auVar14);
                     auVar14 = pmovzxbd(auVar14, ZEXT416(puVar2[-1]));
                     
@@ -854,7 +854,7 @@ void rendering_system_advanced_pixel_difference_calculator(longlong param_1, int
                     auVar24._12_4_ = auVar23._12_4_ - auVar14._12_4_;
                     
                     // 加载下一组像素数据
-                    auVar14 = ZEXT416(*(uint *)((lVar8 - lVar9) + -8 + (longlong)(puVar2 + 2)));
+                    auVar14 = ZEXT416(*(uint *)((lVar8 - lVar9) + -8 + (int64_t)(puVar2 + 2)));
                     auVar23 = pabsd(ZEXT416(puVar2[-1]), auVar24);
                     
                     // 累加绝对差异值
@@ -891,7 +891,7 @@ void rendering_system_advanced_pixel_difference_calculator(longlong param_1, int
             
             if (uVar10 < 0x10) {
                 // 处理剩余的字节对
-                if (1 < (longlong)(0x10 - uVar10)) {
+                if (1 < (int64_t)(0x10 - uVar10)) {
                     pbVar3 = (byte *)(uVar10 + lVar9);
                     lVar6 = (0xe - uVar10 >> 1) + 1;
                     uVar10 = uVar10 + lVar6 * 2;
@@ -911,7 +911,7 @@ void rendering_system_advanced_pixel_difference_calculator(longlong param_1, int
                 }
                 
                 // 处理剩余的单个字节
-                if ((longlong)uVar10 < 0x10) {
+                if ((int64_t)uVar10 < 0x10) {
                     uVar4 = (uint)*(byte *)(uVar10 + lVar8) - (uint)*(byte *)(uVar10 + lVar9);
                     uVar5 = (int)uVar4 >> 0x1f;
                     iVar7 = iVar7 + ((uVar4 ^ uVar5) - uVar5);

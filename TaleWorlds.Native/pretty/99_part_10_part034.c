@@ -6,13 +6,13 @@
 void FUN_1806bae08(void)
 
 {
-  longlong in_RAX;
-  longlong lVar1;
+  int64_t in_RAX;
+  int64_t lVar1;
   float *unaff_RBX;
   float *unaff_RBP;
-  longlong *unaff_RSI;
+  int64_t *unaff_RSI;
   int32_t unaff_EDI;
-  longlong in_R11;
+  int64_t in_R11;
   int32_t uVar2;
   int32_t unaff_XMM6_Da;
   float fVar3;

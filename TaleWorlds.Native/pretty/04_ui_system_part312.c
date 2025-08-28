@@ -199,8 +199,8 @@ void FUN_18083a510(float *param_1)
 
 
 
-// 函数: void FUN_18083a850(longlong param_1,float *param_2,int param_3,int param_4)
-void FUN_18083a850(longlong param_1,float *param_2,int param_3,int param_4)
+// 函数: void FUN_18083a850(int64_t param_1,float *param_2,int param_3,int param_4)
+void FUN_18083a850(int64_t param_1,float *param_2,int param_3,int param_4)
 
 {
   float fVar1;
@@ -214,8 +214,8 @@ void FUN_18083a850(longlong param_1,float *param_2,int param_3,int param_4)
   float *pfVar9;
   float *pfVar10;
   float *pfVar11;
-  longlong lVar12;
-  longlong lVar13;
+  int64_t lVar12;
+  int64_t lVar13;
   float *pfVar14;
   float *pfVar15;
   float fVar16;
@@ -227,8 +227,8 @@ void FUN_18083a850(longlong param_1,float *param_2,int param_3,int param_4)
   float fVar22;
   float fVar23;
   
-  lVar12 = (longlong)(param_4 * 2);
-  lVar13 = (longlong)param_3 >> 1;
+  lVar12 = (int64_t)(param_4 * 2);
+  lVar13 = (int64_t)param_3 >> 1;
   pfVar10 = param_2 + lVar13 + -8;
   pfVar11 = (float *)(lVar12 * 4 + param_1);
   pfVar15 = pfVar10 + 4;

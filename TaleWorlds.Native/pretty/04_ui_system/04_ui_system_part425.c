@@ -123,9 +123,9 @@ void ui_system_state_manager(void);
  * @param event_buffer 事件缓冲区
  * @param data_size 数据大小
  * @param result_pointer 结果指针
- * @return ulonglong 处理结果码
+ * @return uint64_t 处理结果码
  */
-ulonglong ui_event_processor_and_validator(longlong ui_context, uint64_t *event_buffer, uint data_size, int32_t *result_pointer);
+uint64_t ui_event_processor_and_validator(int64_t ui_context, uint64_t *event_buffer, uint data_size, int32_t *result_pointer);
 
 /**
  * @brief UI事件响应处理器
@@ -133,9 +133,9 @@ ulonglong ui_event_processor_and_validator(longlong ui_context, uint64_t *event_
  * 响应UI系统事件，处理事件结果和状态更新。
  * 包含事件验证和状态管理。
  * 
- * @return ulonglong 处理结果码
+ * @return uint64_t 处理结果码
  */
-ulonglong ui_event_response_handler(void);
+uint64_t ui_event_response_handler(void);
 
 /**
  * @brief UI事件状态管理器
@@ -143,9 +143,9 @@ ulonglong ui_event_response_handler(void);
  * 管理UI事件状态信息，处理状态转换和同步。
  * 支持事件状态监控和错误检测。
  * 
- * @return ulonglong 状态信息
+ * @return uint64_t 状态信息
  */
-ulonglong ui_event_state_manager(void);
+uint64_t ui_event_state_manager(void);
 
 /**
  * @brief UI事件数据处理器
@@ -153,9 +153,9 @@ ulonglong ui_event_state_manager(void);
  * 处理UI事件数据，执行数据转换和验证。
  * 支持多种数据格式和处理规则。
  * 
- * @return ulonglong 处理结果
+ * @return uint64_t 处理结果
  */
-ulonglong ui_event_data_processor(void);
+uint64_t ui_event_data_processor(void);
 
 /**
  * @brief UI事件简化处理器
@@ -163,9 +163,9 @@ ulonglong ui_event_data_processor(void);
  * 提供简化的UI事件处理功能，优化性能。
  * 支持批量处理和状态管理。
  * 
- * @return ulonglong 处理结果
+ * @return uint64_t 处理结果
  */
-ulonglong ui_event_simplified_processor(void);
+uint64_t ui_event_simplified_processor(void);
 
 /** @} */
 
@@ -189,7 +189,7 @@ ulonglong ui_event_simplified_processor(void);
  * @param data_buffer 数据缓冲区
  * @return uint64_t 处理结果码
  */
-uint64_t ui_data_validator_and_converter(longlong ui_context, uint64_t *data_buffer);
+uint64_t ui_data_validator_and_converter(int64_t ui_context, uint64_t *data_buffer);
 
 /**
  * @brief UI数据状态检查器
@@ -251,9 +251,9 @@ void ui_buffer_initializer_and_cleaner(void);
  * 
  * @param ui_context UI系统上下文
  * @param data_stream 数据流指针
- * @return ulonglong 处理结果码
+ * @return uint64_t 处理结果码
  */
-ulonglong ui_data_stream_manager(longlong ui_context, longlong *data_stream);
+uint64_t ui_data_stream_manager(int64_t ui_context, int64_t *data_stream);
 
 /**
  * @brief UI数据流同步器
@@ -261,9 +261,9 @@ ulonglong ui_data_stream_manager(longlong ui_context, longlong *data_stream);
  * 同步UI系统数据流，处理数据一致性和完整性。
  * 支持多线程和异步处理。
  * 
- * @return ulonglong 同步结果
+ * @return uint64_t 同步结果
  */
-ulonglong ui_data_stream_synchronizer(void);
+uint64_t ui_data_stream_synchronizer(void);
 
 /**
  * @brief UI数据流优化器
@@ -271,9 +271,9 @@ ulonglong ui_data_stream_synchronizer(void);
  * 优化UI系统数据流处理，提高性能和效率。
  * 支持数据压缩和缓存管理。
  * 
- * @return ulonglong 优化结果
+ * @return uint64_t 优化结果
  */
-ulonglong ui_data_stream_optimizer(void);
+uint64_t ui_data_stream_optimizer(void);
 
 /** @} */
 

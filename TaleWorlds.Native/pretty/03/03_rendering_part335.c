@@ -91,7 +91,7 @@
  * 参数: param_1 - 长整型指针参数，param_2 - 字符参数
  * 返回值: 无
  */
-void RenderingSystem_AdvancedRenderer(longlong *param_1, char param_2)
+void RenderingSystem_AdvancedRenderer(int64_t *param_1, char param_2)
 {
   int32_t auStackX_10 [6];
   
@@ -111,7 +111,7 @@ void RenderingSystem_AdvancedRenderer(longlong *param_1, char param_2)
  * 参数: param_1 - 无符号8位指针参数，param_2 - 无符号长整型参数，param_3 - 无符号8位参数，param_4 - 无符号8位参数
  * 返回值: 无符号8位指针
  */
-uint64_t *RenderingSystem_ResourceManager(uint64_t *param_1, ulonglong param_2, uint64_t param_3, uint64_t param_4)
+uint64_t *RenderingSystem_ResourceManager(uint64_t *param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
   uint64_t uVar1;
   
@@ -133,20 +133,20 @@ uint64_t *RenderingSystem_ResourceManager(uint64_t *param_1, ulonglong param_2, 
  * 参数: param_1 - 无符号4位指针参数，param_2 - 长整型指针参数
  * 返回值: 无符号4位指针
  */
-int32_t *RenderingSystem_MaterialProcessor(int32_t *param_1, longlong *param_2)
+int32_t *RenderingSystem_MaterialProcessor(int32_t *param_1, int64_t *param_2)
 {
   int32_t uVar1;
-  longlong *plVar2;
+  int64_t *plVar2;
   int32_t uStack_40;
   int32_t uStack_3c;
   int32_t uStack_34;
   
-  plVar2 = (longlong *)FUN_18062b1e0(system_memory_pool_ptr, 0x48, 8, 3, 0xfffffffffffffffe);
-  *plVar2 = (longlong)&system_handler1_ptr;
-  *plVar2 = (longlong)&system_handler2_ptr;
+  plVar2 = (int64_t *)FUN_18062b1e0(system_memory_pool_ptr, 0x48, 8, 3, 0xfffffffffffffffe);
+  *plVar2 = (int64_t)&system_handler1_ptr;
+  *plVar2 = (int64_t)&system_handler2_ptr;
   *(int32_t *)(plVar2 + 1) = 0;
-  *plVar2 = (longlong)&unknown_var_9832_ptr;
-  if (param_2 != (longlong *)0x0) {
+  *plVar2 = (int64_t)&unknown_var_9832_ptr;
+  if (param_2 != (int64_t *)0x0) {
     (**(code **)(*param_2 + 0x28))(param_2);
   }
   plVar2[2] = 0;
@@ -155,14 +155,14 @@ int32_t *RenderingSystem_MaterialProcessor(int32_t *param_1, longlong *param_2)
   plVar2[5] = 0;
   *(int8_t *)(plVar2 + 4) = 0;
   FUN_18022f2e0(plVar2 + 2, param_2, 0);
-  if (param_2 != (longlong *)0x0) {
+  if (param_2 != (int64_t *)0x0) {
     (**(code **)(*param_2 + 0x38))(param_2);
   }
   (**(code **)(*plVar2 + 0x28))(plVar2);
   uVar1 = (**(code **)(*plVar2 + 8))(plVar2);
   (**(code **)(*plVar2 + 0x28))(plVar2);
   uStack_40 = SUB84(plVar2, 0);
-  uStack_3c = (int32_t)((ulonglong)plVar2 >> 0x20);
+  uStack_3c = (int32_t)((uint64_t)plVar2 >> 0x20);
   *param_1 = uStack_40;
   param_1[1] = uStack_3c;
   param_1[2] = uVar1;
@@ -178,7 +178,7 @@ int32_t *RenderingSystem_MaterialProcessor(int32_t *param_1, longlong *param_2)
  * 参数: param_1 - 长整型参数，param_2 - 无符号4位参数，param_3 - 无符号8位参数，param_4 - 浮点数指针参数，param_5 - 无符号8位参数
  * 返回值: 无
  */
-void RenderingSystem_ColorConverter(longlong param_1, int32_t param_2, uint64_t param_3, float *param_4, uint64_t param_5)
+void RenderingSystem_ColorConverter(int64_t param_1, int32_t param_2, uint64_t param_3, float *param_4, uint64_t param_5)
 {
   uint uVar1;
   uint uVar2;
@@ -186,22 +186,22 @@ void RenderingSystem_ColorConverter(longlong param_1, int32_t param_2, uint64_t 
   uint uVar4;
   uint auStackX_8 [2];
   
-  uVar1 = (uint)(longlong)(param_4[3] * 256.0);
+  uVar1 = (uint)(int64_t)(param_4[3] * 256.0);
   uVar3 = 0xff;
   if (uVar1 < 0xff) {
     uVar3 = uVar1;
   }
-  uVar4 = (uint)(longlong)(*param_4 * 256.0);
+  uVar4 = (uint)(int64_t)(*param_4 * 256.0);
   uVar1 = 0xff;
   if (uVar4 < 0xff) {
     uVar1 = uVar4;
   }
-  uVar2 = (uint)(longlong)(param_4[1] * 256.0);
+  uVar2 = (uint)(int64_t)(param_4[1] * 256.0);
   uVar4 = 0xff;
   if (uVar2 < 0xff) {
     uVar4 = uVar2;
   }
-  uVar2 = (uint)(longlong)(param_4[2] * 256.0);
+  uVar2 = (uint)(int64_t)(param_4[2] * 256.0);
   auStackX_8[0] = 0xff;
   if (uVar2 < 0xff) {
     auStackX_8[0] = uVar2;
@@ -218,29 +218,29 @@ void RenderingSystem_ColorConverter(longlong param_1, int32_t param_2, uint64_t 
  * 参数: param_1 - 长整型参数，param_2 - 无符号4位参数，param_3 - 无符号8位参数，param_4 - 无符号8位参数，param_5 - 浮点数指针参数，param_6 - 无符号8位参数
  * 返回值: 无
  */
-void RenderingSystem_ColorProcessor(longlong param_1, int32_t param_2, uint64_t param_3, uint64_t param_4, float *param_5, uint64_t param_6)
+void RenderingSystem_ColorProcessor(int64_t param_1, int32_t param_2, uint64_t param_3, uint64_t param_4, float *param_5, uint64_t param_6)
 {
   uint uVar1;
   uint uVar2;
   uint uVar3;
   uint uVar4;
   
-  uVar3 = (uint)(longlong)(param_5[3] * 256.0);
+  uVar3 = (uint)(int64_t)(param_5[3] * 256.0);
   uVar2 = 0xff;
   if (uVar3 < 0xff) {
     uVar2 = uVar3;
   }
-  uVar4 = (uint)(longlong)(*param_5 * 256.0);
+  uVar4 = (uint)(int64_t)(*param_5 * 256.0);
   uVar3 = 0xff;
   if (uVar4 < 0xff) {
     uVar3 = uVar4;
   }
-  uVar1 = (uint)(longlong)(param_5[1] * 256.0);
+  uVar1 = (uint)(int64_t)(param_5[1] * 256.0);
   uVar4 = 0xff;
   if (uVar1 < 0xff) {
     uVar4 = uVar1;
   }
-  uVar1 = (uint)(longlong)(param_5[2] * 256.0);
+  uVar1 = (uint)(int64_t)(param_5[2] * 256.0);
   param_5._0_4_ = 0xff;
   if (uVar1 < 0xff) {
     param_5._0_4_ = uVar1;
@@ -257,29 +257,29 @@ void RenderingSystem_ColorProcessor(longlong param_1, int32_t param_2, uint64_t 
  * 参数: param_1 - 长整型参数，param_2 - 无符号8位参数，param_3 - 无符号8位参数，param_4 - 无符号8位参数，param_5 - 无符号8位参数，param_6 - 无符号8位参数，param_7 - 无符号8位参数，param_8 - 浮点数指针参数
  * 返回值: 无
  */
-void RenderingSystem_AdvancedColorProcessor(longlong param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4, uint64_t param_5, uint64_t param_6, uint64_t param_7, float *param_8)
+void RenderingSystem_AdvancedColorProcessor(int64_t param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4, uint64_t param_5, uint64_t param_6, uint64_t param_7, float *param_8)
 {
   uint uVar1;
   uint uVar2;
   uint uVar3;
   uint uVar4;
   
-  uVar3 = (uint)(longlong)(param_8[3] * 256.0);
+  uVar3 = (uint)(int64_t)(param_8[3] * 256.0);
   uVar2 = 0xff;
   if (uVar3 < 0xff) {
     uVar2 = uVar3;
   }
-  uVar4 = (uint)(longlong)(*param_8 * 256.0);
+  uVar4 = (uint)(int64_t)(*param_8 * 256.0);
   uVar3 = 0xff;
   if (uVar4 < 0xff) {
     uVar3 = uVar4;
   }
-  uVar1 = (uint)(longlong)(param_8[1] * 256.0);
+  uVar1 = (uint)(int64_t)(param_8[1] * 256.0);
   uVar4 = 0xff;
   if (uVar1 < 0xff) {
     uVar4 = uVar1;
   }
-  uVar1 = (uint)(longlong)(param_8[2] * 256.0);
+  uVar1 = (uint)(int64_t)(param_8[2] * 256.0);
   param_8._0_4_ = 0xff;
   if (uVar1 < 0xff) {
     param_8._0_4_ = uVar1;
@@ -295,71 +295,71 @@ void RenderingSystem_AdvancedColorProcessor(longlong param_1, uint64_t param_2, 
  * 参数: param_1 - 长整型参数，param_2 - 无符号8位参数，param_3 - 无符号8位参数，param_4 - 无符号8位参数，param_5 - 无符号8位参数，param_6 - 无符号8位参数，param_7 - 无符号8位参数，param_8 - 无符号8位参数，param_9 - 无符号8位参数，param_10 - 无符号8位参数，param_11 - 浮点数指针参数，param_12 - 浮点数指针参数，param_13 - 浮点数指针参数
  * 返回值: 无
  */
-void RenderingSystem_MultiColorProcessor(longlong param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4, uint64_t param_5, uint64_t param_6, uint64_t param_7, uint64_t param_8, uint64_t param_9, uint64_t param_10, float *param_11, float *param_12, float *param_13)
+void RenderingSystem_MultiColorProcessor(int64_t param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4, uint64_t param_5, uint64_t param_6, uint64_t param_7, uint64_t param_8, uint64_t param_9, uint64_t param_10, float *param_11, float *param_12, float *param_13)
 {
   uint uVar1;
   uint uVar2;
   uint uVar3;
   uint uVar4;
   
-  uVar2 = (uint)(longlong)(param_13[3] * 256.0);
+  uVar2 = (uint)(int64_t)(param_13[3] * 256.0);
   uVar4 = 0xff;
   if (uVar2 < 0xff) {
     uVar4 = uVar2;
   }
-  uVar3 = (uint)(longlong)(*param_13 * 256.0);
+  uVar3 = (uint)(int64_t)(*param_13 * 256.0);
   uVar2 = 0xff;
   if (uVar3 < 0xff) {
     uVar2 = uVar3;
   }
-  uVar1 = (uint)(longlong)(param_13[1] * 256.0);
+  uVar1 = (uint)(int64_t)(param_13[1] * 256.0);
   uVar3 = 0xff;
   if (uVar1 < 0xff) {
     uVar3 = uVar1;
   }
-  uVar1 = (uint)(longlong)(param_13[2] * 256.0);
+  uVar1 = (uint)(int64_t)(param_13[2] * 256.0);
   param_13._0_4_ = 0xff;
   if (uVar1 < 0xff) {
     param_13._0_4_ = uVar1;
   }
   param_13._0_4_ = ((uVar4 << 8 | uVar2) << 8 | uVar3) << 8 | (uint)param_13;
-  uVar2 = (uint)(longlong)(param_12[3] * 256.0);
+  uVar2 = (uint)(int64_t)(param_12[3] * 256.0);
   uVar4 = 0xff;
   if (uVar2 < 0xff) {
     uVar4 = uVar2;
   }
-  uVar3 = (uint)(longlong)(*param_12 * 256.0);
+  uVar3 = (uint)(int64_t)(*param_12 * 256.0);
   uVar2 = 0xff;
   if (uVar3 < 0xff) {
     uVar2 = uVar3;
   }
-  uVar1 = (uint)(longlong)(param_12[1] * 256.0);
+  uVar1 = (uint)(int64_t)(param_12[1] * 256.0);
   uVar3 = 0xff;
   if (uVar1 < 0xff) {
     uVar3 = uVar1;
   }
-  uVar1 = (uint)(longlong)(param_12[2] * 256.0);
+  uVar1 = (uint)(int64_t)(param_12[2] * 256.0);
   param_12._0_4_ = 0xff;
   if (uVar1 < 0xff) {
     param_12._0_4_ = uVar1;
   }
   param_12._0_4_ = ((uVar4 << 8 | uVar2) << 8 | uVar3) << 8 | (uint)param_12;
-  uVar2 = (uint)(longlong)(param_11[3] * 256.0);
+  uVar2 = (uint)(int64_t)(param_11[3] * 256.0);
   uVar4 = 0xff;
   if (uVar2 < 0xff) {
     uVar4 = uVar2;
   }
-  uVar3 = (uint)(longlong)(*param_11 * 256.0);
+  uVar3 = (uint)(int64_t)(*param_11 * 256.0);
   uVar2 = 0xff;
   if (uVar3 < 0xff) {
     uVar2 = uVar3;
   }
-  uVar1 = (uint)(longlong)(param_11[1] * 256.0);
+  uVar1 = (uint)(int64_t)(param_11[1] * 256.0);
   uVar3 = 0xff;
   if (uVar1 < 0xff) {
     uVar3 = uVar1;
   }
-  uVar1 = (uint)(longlong)(param_11[2] * 256.0);
+  uVar1 = (uint)(int64_t)(param_11[2] * 256.0);
   param_11._0_4_ = 0xff;
   if (uVar1 < 0xff) {
     param_11._0_4_ = uVar1;
@@ -376,29 +376,29 @@ void RenderingSystem_MultiColorProcessor(longlong param_1, uint64_t param_2, uin
  * 参数: param_1 - 长整型参数，param_2 - 无符号8位参数，param_3 - 无符号8位参数，param_4 - 无符号8位参数，param_5 - 无符号8位参数，param_6 - 浮点数指针参数
  * 返回值: 无
  */
-void RenderingSystem_SingleColorProcessor(longlong param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4, uint64_t param_5, float *param_6)
+void RenderingSystem_SingleColorProcessor(int64_t param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4, uint64_t param_5, float *param_6)
 {
   uint uVar1;
   uint uVar2;
   uint uVar3;
   uint uVar4;
   
-  uVar3 = (uint)(longlong)(param_6[3] * 256.0);
+  uVar3 = (uint)(int64_t)(param_6[3] * 256.0);
   uVar2 = 0xff;
   if (uVar3 < 0xff) {
     uVar2 = uVar3;
   }
-  uVar4 = (uint)(longlong)(*param_6 * 256.0);
+  uVar4 = (uint)(int64_t)(*param_6 * 256.0);
   uVar3 = 0xff;
   if (uVar4 < /* (0x7f) */ 0xff) {
     uVar3 = uVar4;
   }
-  uVar1 = (uint)(longlong)(param_6[1] * 256.0);
+  uVar1 = (uint)(int64_t)(param_6[1] * 256.0);
   uVar4 = 0xff;
   if (uVar1 < 0xff) {
     uVar4 = uVar1;
   }
-  uVar1 = (uint)(longlong)(param_6[2] * 256.0);
+  uVar1 = (uint)(int64_t)(param_6[2] * 256.0);
   param_6._0_4_ = 0xff;
   if (uVar1 < 0xff) {
     param_6._0_4_ = uVar1;
@@ -415,29 +415,29 @@ void RenderingSystem_SingleColorProcessor(longlong param_1, uint64_t param_2, ui
  * 参数: param_1 - 长整型参数，param_2 - 无符号8位参数，param_3 - 无符号8位参数，param_4 - 无符号8位参数，param_5 - 无符号8位参数，param_6 - 浮点数指针参数
  * 返回值: 无
  */
-void RenderingSystem_StandardColorProcessor(longlong param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4, uint64_t param_5, float *param_6)
+void RenderingSystem_StandardColorProcessor(int64_t param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4, uint64_t param_5, float *param_6)
 {
   uint uVar1;
   uint uVar2;
   uint uVar3;
   uint uVar4;
   
-  uVar3 = (uint)(longlong)(param_6[3] * 256.0);
+  uVar3 = (uint)(int64_t)(param_6[3] * 256.0);
   uVar2 = 0xff;
   if (uVar3 < 0xff) {
     uVar2 = uVar3;
   }
-  uVar4 = (uint)(longlong)(*param_6 * 256.0);
+  uVar4 = (uint)(int64_t)(*param_6 * 256.0);
   uVar3 = 0xff;
   if (uVar4 < 0xff) {
     uVar3 = uVar4;
   }
-  uVar1 = (uint)(longlong)(param_6[1] * 256.0);
+  uVar1 = (uint)(int64_t)(param_6[1] * 256.0);
   uVar4 = 0xff;
   if (uVar1 < 0xff) {
     uVar4 = uVar1;
   }
-  uVar1 = (uint)(longlong)(param_6[2] * 256.0);
+  uVar1 = (uint)(int64_t)(param_6[2] * 256.0);
   param_6._0_4_ = 0xff;
   if (uVar1 < 0xff) {
     param_6._0_4_ = uVar1;
@@ -454,29 +454,29 @@ void RenderingSystem_StandardColorProcessor(longlong param_1, uint64_t param_2, 
  * 参数: param_1 - 长整型参数，param_2 - 无符号8位参数，param_3 - 无符号8位参数，param_4 - 无符号8位参数，param_5 - 无符号8位参数，param_6 - 浮点数指针参数
  * 返回值: 无
  */
-void RenderingSystem_EnhancedColorProcessor(longlong param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4, uint64_t param_5, float *param_6)
+void RenderingSystem_EnhancedColorProcessor(int64_t param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4, uint64_t param_5, float *param_6)
 {
   uint uVar1;
   uint uVar2;
   uint uVar3;
   uint uVar4;
   
-  uVar3 = (uint)(longlong)(param_6[3] * 256.0);
+  uVar3 = (uint)(int64_t)(param_6[3] * 256.0);
   uVar2 = 0xff;
   if (uVar3 < 0xff) {
     uVar2 = uVar3;
   }
-  uVar4 = (uint)(longlong)(*param_6 * 256.0);
+  uVar4 = (uint)(int64_t)(*param_6 * 256.0);
   uVar3 = 0xff;
   if (uVar4 < 0xff) {
     uVar3 = uVar4;
   }
-  uVar1 = (uint)(longlong)(param_6[1] * 256.0);
+  uVar1 = (uint)(int64_t)(param_6[1] * 256.0);
   uVar4 = 0xff;
   if (uVar1 < 0xff) {
     uVar4 = uVar1;
   }
-  uVar1 = (uint)(longlong)(param_6[2] * 256.0);
+  uVar1 = (uint)(int64_t)(param_6[2] * 256.0);
   param_6._0_4_ = 0xff;
   if (uVar1 < 0xff) {
     param_6._0_4_ = uVar1;
@@ -493,7 +493,7 @@ void RenderingSystem_EnhancedColorProcessor(longlong param_1, uint64_t param_2, 
  * 参数: param_1 - 长整型参数，param_2 - 无符号4位参数
  * 返回值: 无
  */
-void RenderingSystem_ParameterSetter(longlong param_1, int32_t param_2)
+void RenderingSystem_ParameterSetter(int64_t param_1, int32_t param_2)
 {
   int32_t auStackX_10 [6];
   
@@ -509,7 +509,7 @@ void RenderingSystem_ParameterSetter(longlong param_1, int32_t param_2)
  * 参数: param_1 - 长整型参数
  * 返回值: 无
  */
-void RenderingSystem_Cleaner(longlong param_1)
+void RenderingSystem_Cleaner(int64_t param_1)
 {
   FUN_180235ca0(param_1 + 0x10);
   return;
@@ -522,7 +522,7 @@ void RenderingSystem_Cleaner(longlong param_1)
  * 参数: param_1 - 长整型参数，param_2 - 无符号8位参数，param_3 - 无符号8位参数
  * 返回值: 无
  */
-void RenderingSystem_FloatProcessor(longlong param_1, uint64_t param_2, uint64_t param_3)
+void RenderingSystem_FloatProcessor(int64_t param_1, uint64_t param_2, uint64_t param_3)
 {
   int32_t uStack_18;
   int32_t uStack_14;
@@ -544,7 +544,7 @@ void RenderingSystem_FloatProcessor(longlong param_1, uint64_t param_2, uint64_t
  * 参数: param_1 - 长整型参数，param_2 - 无符号8位参数，param_3 - 无符号8位参数，param_4 - 无符号4位参数，param_5 - 无符号4位参数
  * 返回值: 无
  */
-void RenderingSystem_DoubleParameterProcessor(longlong param_1, uint64_t param_2, uint64_t param_3, int32_t param_4, int32_t param_5)
+void RenderingSystem_DoubleParameterProcessor(int64_t param_1, uint64_t param_2, uint64_t param_3, int32_t param_4, int32_t param_5)
 {
   int32_t auStackX_20 [2];
   
@@ -560,7 +560,7 @@ void RenderingSystem_DoubleParameterProcessor(longlong param_1, uint64_t param_2
  * 参数: param_1 - 长整型参数，param_2 - 无符号8位参数，param_3 - 无符号8位参数，param_4 - 无符号4位参数，param_5 - 无符号4位参数
  * 返回值: 无
  */
-void RenderingSystem_StandardParameterProcessor(longlong param_1, uint64_t param_2, uint64_t param_3, int32_t param_4, int32_t param_5)
+void RenderingSystem_StandardParameterProcessor(int64_t param_1, uint64_t param_2, uint64_t param_3, int32_t param_4, int32_t param_5)
 {
   int32_t auStackX_20 [2];
   
@@ -576,7 +576,7 @@ void RenderingSystem_StandardParameterProcessor(longlong param_1, uint64_t param
  * 参数: param_1 - 长整型参数，param_2 - 无符号8位参数，param_3 - 无符号8位参数，param_4 - 无符号4位参数，param_5 - 无符号4位参数，param_6 - 无符号4位参数
  * 返回值: 无
  */
-void RenderingSystem_TripleParameterProcessor(longlong param_1, uint64_t param_2, uint64_t param_3, int32_t param_4, int32_t param_5, int32_t param_6)
+void RenderingSystem_TripleParameterProcessor(int64_t param_1, uint64_t param_2, uint64_t param_3, int32_t param_4, int32_t param_5, int32_t param_6)
 {
   int32_t auStackX_20 [2];
   
@@ -592,7 +592,7 @@ void RenderingSystem_TripleParameterProcessor(longlong param_1, uint64_t param_2
  * 参数: param_1 - 长整型参数，param_2 - 无符号8位参数，param_3 - 无符号8位参数，param_4 - 无符号4位参数，param_5 - 无符号4位参数，param_6 - 无符号4位参数
  * 返回值: 无
  */
-void RenderingSystem_EnhancedParameterProcessor(longlong param_1, uint64_t param_2, uint64_t param_3, int32_t param_4, int32_t param_5, int32_t param_6)
+void RenderingSystem_EnhancedParameterProcessor(int64_t param_1, uint64_t param_2, uint64_t param_3, int32_t param_4, int32_t param_5, int32_t param_6)
 {
   int32_t auStackX_20 [2];
   
@@ -608,7 +608,7 @@ void RenderingSystem_EnhancedParameterProcessor(longlong param_1, uint64_t param
  * 参数: param_1 - 长整型参数，param_2 - 无符号8位参数，param_3 - 无符号8位参数，param_4 - 浮点数指针参数，param_5 - 无符号4位参数
  * 返回值: 无
  */
-void RenderingSystem_ColorParameterProcessor(longlong param_1, uint64_t param_2, uint64_t param_3, float *param_4, int32_t param_5)
+void RenderingSystem_ColorParameterProcessor(int64_t param_1, uint64_t param_2, uint64_t param_3, float *param_4, int32_t param_5)
 {
   uint uVar1;
   uint uVar2;
@@ -616,22 +616,22 @@ void RenderingSystem_ColorParameterProcessor(longlong param_1, uint64_t param_2,
   uint uVar4;
   uint auStackX_8 [2];
   
-  uVar1 = (uint)(longlong)(param_4[3] * 256.0);
+  uVar1 = (uint)(int64_t)(param_4[3] * 256.0);
   uVar3 = 0xff;
   if (uVar1 < 0xff) {
     uVar3 = uVar1;
   }
-  uVar4 = (uint)(longlong)(*param_4 * 256.0);
+  uVar4 = (uint)(int64_t)(*param_4 * 256.0);
   uVar1 = 0xff;
   if (uVar4 < 0xff) {
     uVar1 = uVar4;
   }
-  uVar2 = (uint)(longlong)(param_4[1] * 256.0);
+  uVar2 = (uint)(int64_t)(param_4[1] * 256.0);
   uVar4 = 0xff;
   if (uVar2 < 0xff) {
     uVar4 = uVar2;
   }
-  uVar2 = (uint)(longlong)(param_4[2] * 256.0);
+  uVar2 = (uint)(int64_t)(param_4[2] * 256.0);
   auStackX_8[0] = 0xff;
   if (uVar2 < 0xff) {
     auStackX_8[0] = uVar2;
@@ -648,7 +648,7 @@ void RenderingSystem_ColorParameterProcessor(longlong param_1, uint64_t param_2,
  * 参数: param_1 - 长整型参数，param_2 - 无符号8位参数，param_3 - 无符号8位参数
  * 返回值: 无
  */
-void RenderingSystem_DefaultParameterProcessor(longlong param_1, uint64_t param_2, uint64_t param_3)
+void RenderingSystem_DefaultParameterProcessor(int64_t param_1, uint64_t param_2, uint64_t param_3)
 {
   int32_t uStack_18;
   int32_t uStack_14;
@@ -670,7 +670,7 @@ void RenderingSystem_DefaultParameterProcessor(longlong param_1, uint64_t param_
  * 参数: param_1 - 长整型参数
  * 返回值: 无
  */
-void RenderingSystem_SimpleCleaner(longlong param_1)
+void RenderingSystem_SimpleCleaner(int64_t param_1)
 {
   FUN_180235ca0(param_1 + 0x10);
   return;
@@ -683,7 +683,7 @@ void RenderingSystem_SimpleCleaner(longlong param_1)
  * 参数: param_1 - 长整型参数，param_2 - 无符号8位参数，param_3 - 无符号8位参数，param_4 - 无符号4位指针参数，param_5 - 无符号1位参数
  * 返回值: 无
  */
-void RenderingSystem_ArrayParameterProcessor(longlong param_1, uint64_t param_2, uint64_t param_3, int32_t *param_4, int8_t param_5)
+void RenderingSystem_ArrayParameterProcessor(int64_t param_1, uint64_t param_2, uint64_t param_3, int32_t *param_4, int8_t param_5)
 {
   int32_t uStack_18;
   int32_t uStack_14;
@@ -705,7 +705,7 @@ void RenderingSystem_ArrayParameterProcessor(longlong param_1, uint64_t param_2,
  * 参数: param_1 - 长整型参数
  * 返回值: 无
  */
-void RenderingSystem_BasicCleaner(longlong param_1)
+void RenderingSystem_BasicCleaner(int64_t param_1)
 {
   FUN_180235ca0(param_1 + 0x10);
   return;
@@ -718,7 +718,7 @@ void RenderingSystem_BasicCleaner(longlong param_1)
  * 参数: param_1 - 长整型参数，param_2 - 无符号8位参数，param_3 - 无符号8位参数
  * 返回值: 无
  */
-void RenderingSystem_StandardInitializer(longlong param_1, uint64_t param_2, uint64_t param_3)
+void RenderingSystem_StandardInitializer(int64_t param_1, uint64_t param_2, uint64_t param_3)
 {
   int32_t uStack_18;
   int32_t uStack_14;
@@ -740,7 +740,7 @@ void RenderingSystem_StandardInitializer(longlong param_1, uint64_t param_2, uin
  * 参数: param_1 - 长整型参数，param_2 - 无符号8位参数，param_3 - 无符号8位参数
  * 返回值: 无
  */
-void RenderingSystem_EnhancedInitializer(longlong param_1, uint64_t param_2, uint64_t param_3)
+void RenderingSystem_EnhancedInitializer(int64_t param_1, uint64_t param_2, uint64_t param_3)
 {
   int32_t uStack_18;
   int32_t uStack_14;
@@ -762,7 +762,7 @@ void RenderingSystem_EnhancedInitializer(longlong param_1, uint64_t param_2, uin
  * 参数: param_1 - 长整型参数，param_2 - 无符号8位参数，param_3 - 无符号8位参数，param_4 - 无符号4位指针参数，param_5 - 无符号1位参数
  * 返回值: 无
  */
-void RenderingSystem_AdvancedArrayProcessor(longlong param_1, uint64_t param_2, uint64_t param_3, int32_t *param_4, int8_t param_5)
+void RenderingSystem_AdvancedArrayProcessor(int64_t param_1, uint64_t param_2, uint64_t param_3, int32_t *param_4, int8_t param_5)
 {
   int32_t uStack_18;
   int32_t uStack_14;
@@ -784,7 +784,7 @@ void RenderingSystem_AdvancedArrayProcessor(longlong param_1, uint64_t param_2, 
  * 参数: param_1 - 长整型参数，param_2 - 整数参数，param_3 - 浮点数指针参数
  * 返回值: 无
  */
-void RenderingSystem_ColorArrayProcessor(longlong param_1, int param_2, float *param_3)
+void RenderingSystem_ColorArrayProcessor(int64_t param_1, int param_2, float *param_3)
 {
   uint uVar1;
   uint uVar2;
@@ -792,27 +792,27 @@ void RenderingSystem_ColorArrayProcessor(longlong param_1, int param_2, float *p
   uint uVar4;
   uint uVar5;
   
-  uVar1 = (uint)(longlong)(param_3[3] * 256.0);
+  uVar1 = (uint)(int64_t)(param_3[3] * 256.0);
   uVar3 = 0xff;
   if (uVar1 < 0xff) {
     uVar3 = uVar1;
   }
-  uVar4 = (uint)(longlong)(*param_3 * 256.0);
+  uVar4 = (uint)(int64_t)(*param_3 * 256.0);
   uVar1 = 0xff;
   if (uVar4 < 0xff) {
     uVar1 = uVar4;
   }
-  uVar5 = (uint)(longlong)(param_3[1] * 256.0);
+  uVar5 = (uint)(int64_t)(param_3[1] * 256.0);
   uVar4 = 0xff;
   if (uVar5 < 0xff) {
     uVar4 = uVar5;
   }
-  uVar2 = (uint)(longlong)(param_3[2] * 256.0);
+  uVar2 = (uint)(int64_t)(param_3[2] * 256.0);
   uVar5 = 0xff;
   if (uVar2 < 0xff) {
     uVar5 = uVar2;
   }
-  *(uint *)(*(longlong *)(*(longlong *)(param_1 + 0x18) + 0x68) + 0x54 + (longlong)param_2 * 0x5c) = ((uVar3 << 8 | uVar1) << 8 | uVar4) << 8 | uVar5;
+  *(uint *)(*(int64_t *)(*(int64_t *)(param_1 + 0x18) + 0x68) + 0x54 + (int64_t)param_2 * 0x5c) = ((uVar3 << 8 | uVar1) << 8 | uVar4) << 8 | uVar5;
   *(int8_t *)(param_1 + 0x40) = 1;
   return;
 }
@@ -824,7 +824,7 @@ void RenderingSystem_ColorArrayProcessor(longlong param_1, int param_2, float *p
  * 参数: param_1 - 长整型参数，param_2 - 无符号8位指针参数
  * 返回值: 无
  */
-void RenderingSystem_MultiParameterProcessor(longlong param_1, uint64_t *param_2)
+void RenderingSystem_MultiParameterProcessor(int64_t param_1, uint64_t *param_2)
 {
   uint64_t uStack_48;
   uint64_t uStack_40;
@@ -844,13 +844,13 @@ void RenderingSystem_MultiParameterProcessor(longlong param_1, uint64_t *param_2
   uStack_38 = param_2[2];
   uStack_30 = param_2[3];
   uStack_28 = *(int32_t *)(param_2 + 4);
-  uStack_24 = *(int32_t *)((longlong)param_2 + 0x24);
+  uStack_24 = *(int32_t *)((int64_t)param_2 + 0x24);
   uStack_20 = *(int32_t *)(param_2 + 5);
-  uStack_1c = *(int32_t *)((longlong)param_2 + 0x2c);
+  uStack_1c = *(int32_t *)((int64_t)param_2 + 0x2c);
   uStack_18 = *(int32_t *)(param_2 + 6);
-  uStack_14 = *(int32_t *)((longlong)param_2 + 0x34);
+  uStack_14 = *(int32_t *)((int64_t)param_2 + 0x34);
   uStack_10 = *(int32_t *)(param_2 + 7);
-  uStack_c = *(int32_t *)((longlong)param_2 + 0x3c);
+  uStack_c = *(int32_t *)((int64_t)param_2 + 0x3c);
   FUN_1802379d0(param_1 + 0x10, &uStack_48);
   return;
 }
@@ -862,7 +862,7 @@ void RenderingSystem_MultiParameterProcessor(longlong param_1, uint64_t *param_2
  * 参数: param_1 - 长整型参数，param_2 - 无符号8位指针参数
  * 返回值: 无
  */
-void RenderingSystem_EnhancedMultiParameterProcessor(longlong param_1, uint64_t *param_2)
+void RenderingSystem_EnhancedMultiParameterProcessor(int64_t param_1, uint64_t *param_2)
 {
   uint64_t uStack_48;
   uint64_t uStack_40;
@@ -882,13 +882,13 @@ void RenderingSystem_EnhancedMultiParameterProcessor(longlong param_1, uint64_t 
   uStack_38 = param_2[2];
   uStack_30 = param_2[3];
   uStack_28 = *(int32_t *)(param_2 + 4);
-  uStack_24 = *(int32_t *)((longlong)param_2 + 0x24);
+  uStack_24 = *(int32_t *)((int64_t)param_2 + 0x24);
   uStack_20 = *(int32_t *)(param_2 + 5);
-  uStack_1c = *(int32_t *)((longlong)param_2 + 0x2c);
+  uStack_1c = *(int32_t *)((int64_t)param_2 + 0x2c);
   uStack_18 = *(int32_t *)(param_2 + 6);
-  uStack_14 = *(int32_t *)((longlong)param_2 + 0x34);
+  uStack_14 = *(int32_t *)((int64_t)param_2 + 0x34);
   uStack_10 = *(int32_t *)(param_2 + 7);
-  uStack_c = *(int32_t *)((longlong)param_2 + 0x3c);
+  uStack_c = *(int32_t *)((int64_t)param_2 + 0x3c);
   FUN_180237b10(param_1 + 0x10, &uStack_48);
   return;
 }
@@ -900,44 +900,44 @@ void RenderingSystem_EnhancedMultiParameterProcessor(longlong param_1, uint64_t 
  * 参数: param_1 - 长整型参数，param_2 - 浮点数指针参数
  * 返回值: 无
  */
-void RenderingSystem_ColorArrayManager(longlong param_1, float *param_2)
+void RenderingSystem_ColorArrayManager(int64_t param_1, float *param_2)
 {
   uint uVar1;
   uint uVar2;
   uint uVar3;
   int iVar4;
   uint uVar5;
-  longlong lVar6;
+  int64_t lVar6;
   uint uVar7;
   
-  uVar3 = (uint)(longlong)(param_2[3] * 256.0);
+  uVar3 = (uint)(int64_t)(param_2[3] * 256.0);
   uVar1 = 0xff;
   if (uVar3 < 0xff) {
     uVar1 = uVar3;
   }
-  uVar5 = (uint)(longlong)(*param_2 * 256.0);
+  uVar5 = (uint)(int64_t)(*param_2 * 256.0);
   uVar3 = 0xff;
   if (uVar5 < 0xff) {
     uVar3 = uVar5;
   }
-  uVar7 = (uint)(longlong)(param_2[1] * 256.0);
+  uVar7 = (uint)(int64_t)(param_2[1] * 256.0);
   uVar5 = 0xff;
   if (uVar7 < 0xff) {
     uVar5 = uVar7;
   }
-  uVar2 = (uint)(longlong)(param_2[2] * 256.0);
+  uVar2 = (uint)(int64_t)(param_2[2] * 256.0);
   uVar7 = 0xff;
   if (uVar2 < 0xff) {
     uVar7 = uVar2;
   }
   iVar4 = 0;
-  if (0 < *(int *)(*(longlong *)(param_1 + 0x18) + 0x60)) {
+  if (0 < *(int *)(*(int64_t *)(param_1 + 0x18) + 0x60)) {
     lVar6 = 0;
     do {
       lVar6 = lVar6 + 0x5c;
       iVar4 = iVar4 + 1;
-      *(uint *)(*(longlong *)(*(longlong *)(param_1 + 0x18) + 0x68) + -8 + lVar6) = ((uVar1 << 8 | uVar3) << 8 | uVar5) << 8 | uVar7;
-    } while (iVar4 < *(int *)(*(longlong *)(param_1 + 0x18) + 0x60));
+      *(uint *)(*(int64_t *)(*(int64_t *)(param_1 + 0x18) + 0x68) + -8 + lVar6) = ((uVar1 << 8 | uVar3) << 8 | uVar5) << 8 | uVar7;
+    } while (iVar4 < *(int *)(*(int64_t *)(param_1 + 0x18) + 0x60));
   }
   *(int8_t *)(param_1 + 0x40) = 1;
   return;
@@ -950,16 +950,16 @@ void RenderingSystem_ColorArrayManager(longlong param_1, float *param_2)
  * 参数: param_1 - 浮点数指针参数，param_2 - 长整型参数，param_3 - 整数参数
  * 返回值: 浮点数指针
  */
-float *RenderingSystem_ColorArrayGetter(float *param_1, longlong param_2, int param_3)
+float *RenderingSystem_ColorArrayGetter(float *param_1, int64_t param_2, int param_3)
 {
   uint uVar1;
   uint *puVar2;
   
-  if (*(int *)(*(longlong *)(param_2 + 0x18) + 0x60) < 1) {
+  if (*(int *)(*(int64_t *)(param_2 + 0x18) + 0x60) < 1) {
     puVar2 = (uint *)&system_memory_661c;
   }
   else {
-    puVar2 = (uint *)(*(longlong *)(*(longlong *)(param_2 + 0x18) + 0x68) + 0x54 + (longlong)param_3 * 0x5c);
+    puVar2 = (uint *)(*(int64_t *)(*(int64_t *)(param_2 + 0x18) + 0x68) + 0x54 + (int64_t)param_3 * 0x5c);
   }
   uVar1 = *puVar2;
   *param_1 = (float)(uVar1 >> 0x10 & 0xff) * 0.003921569;
@@ -976,47 +976,47 @@ float *RenderingSystem_ColorArrayGetter(float *param_1, longlong param_2, int pa
  * 参数: param_1 - 长整型参数，param_2 - 浮点数参数
  * 返回值: 无
  */
-void RenderingSystem_BrightnessAdjuster(longlong param_1, float param_2)
+void RenderingSystem_BrightnessAdjuster(int64_t param_1, float param_2)
 {
   uint uVar1;
   uint uVar2;
-  longlong lVar3;
+  int64_t lVar3;
   uint uVar4;
   uint uVar5;
-  longlong lVar6;
+  int64_t lVar6;
   int iVar7;
   uint uVar8;
   
   iVar7 = 0;
-  lVar3 = *(longlong *)(param_1 + 0x18);
+  lVar3 = *(int64_t *)(param_1 + 0x18);
   if (0 < *(int *)(lVar3 + 0x60)) {
     lVar6 = 0;
-    uVar1 = (uint)(longlong)(param_2 * 256.0);
+    uVar1 = (uint)(int64_t)(param_2 * 256.0);
     uVar5 = 0xff;
     if (uVar1 < 0xff) {
       uVar5 = uVar1;
     }
     do {
       lVar6 = lVar6 + 0x5c;
-      uVar1 = *(uint *)(*(longlong *)(lVar3 + 0x68) + -8 + lVar6);
-      uVar4 = (uint)(longlong)((float)(uVar1 >> 0x10 & 0xff) * 1.0039216);
+      uVar1 = *(uint *)(*(int64_t *)(lVar3 + 0x68) + -8 + lVar6);
+      uVar4 = (uint)(int64_t)((float)(uVar1 >> 0x10 & 0xff) * 1.0039216);
       uVar8 = 0xff;
       if (uVar4 < 0xff) {
         uVar8 = uVar4;
       }
-      uVar2 = (uint)(longlong)((float)(uVar1 >> 8 & 0xff) * 1.0039216);
+      uVar2 = (uint)(int64_t)((float)(uVar1 >> 8 & 0xff) * 1.0039216);
       uVar4 = 0xff;
       if (uVar2 < 0xff) {
         uVar4 = uVar2;
       }
-      uVar2 = (uint)(longlong)((float)(uVar1 & 0xff) * 1.0039216);
+      uVar2 = (uint)(int64_t)((float)(uVar1 & 0xff) * 1.0039216);
       uVar1 = 0xff;
       if (uVar2 < 0xff) {
         uVar1 = uVar2;
       }
       iVar7 = iVar7 + 1;
-      *(uint *)(*(longlong *)(lVar3 + 0x68) + -8 + lVar6) = ((uVar8 | uVar5 << 8) << 8 | uVar4) << 8 | uVar1;
-      lVar3 = *(longlong *)(param_1 + 0x18);
+      *(uint *)(*(int64_t *)(lVar3 + 0x68) + -8 + lVar6) = ((uVar8 | uVar5 << 8) << 8 | uVar4) << 8 | uVar1;
+      lVar3 = *(int64_t *)(param_1 + 0x18);
     } while (iVar7 < *(int *)(lVar3 + 0x60));
   }
   *(int8_t *)(param_1 + 0x40) = 1;
@@ -1030,43 +1030,43 @@ void RenderingSystem_BrightnessAdjuster(longlong param_1, float param_2)
  * 参数: param_1 - 长整型参数，param_2 - 浮点数参数
  * 返回值: 无
  */
-void RenderingSystem_ColorProcessor2(longlong param_1, float param_2)
+void RenderingSystem_ColorProcessor2(int64_t param_1, float param_2)
 {
   uint uVar1;
   uint uVar2;
   uint uVar3;
   uint uVar4;
-  ulonglong uVar5;
+  uint64_t uVar5;
   uint unaff_EDI;
   uint uVar6;
-  longlong in_R11;
+  int64_t in_R11;
   
-  uVar5 = (ulonglong)unaff_EDI;
+  uVar5 = (uint64_t)unaff_EDI;
   uVar4 = 0xff;
-  if ((uint)(longlong)param_2 < 0xff) {
-    uVar4 = (uint)(longlong)param_2;
+  if ((uint)(int64_t)param_2 < 0xff) {
+    uVar4 = (uint)(int64_t)param_2;
   }
   do {
     uVar5 = uVar5 + 0x5c;
-    uVar1 = *(uint *)(*(longlong *)(param_1 + 0x68) + -8 + uVar5);
-    uVar3 = (uint)(longlong)((float)(uVar1 >> 0x10 & 0xff) * 1.0039216);
+    uVar1 = *(uint *)(*(int64_t *)(param_1 + 0x68) + -8 + uVar5);
+    uVar3 = (uint)(int64_t)((float)(uVar1 >> 0x10 & 0xff) * 1.0039216);
     uVar6 = 0xff;
     if (uVar3 < 0xff) {
       uVar6 = uVar3;
     }
-    uVar2 = (uint)(longlong)((float)(uVar1 >> 8 & 0xff) * 1.0039216);
+    uVar2 = (uint)(int64_t)((float)(uVar1 >> 8 & 0xff) * 1.0039216);
     uVar3 = 0xff;
     if (uVar2 < 0xff) {
       uVar3 = uVar2;
     }
-    uVar2 = (uint)(longlong)((float)(uVar1 & 0xff) * 1.0039216);
+    uVar2 = (uint)(int64_t)((float)(uVar1 & 0xff) * 1.0039216);
     uVar1 = 0xff;
     if (uVar2 < 0xff) {
       uVar1 = uVar2;
     }
     unaff_EDI = unaff_EDI + 1;
-    *(uint *)(*(longlong *)(param_1 + 0x68) + -8 + uVar5) = ((uVar6 | uVar4 << 8) << 8 | uVar3) << 8 | uVar1;
-    param_1 = *(longlong *)(in_R11 + 0x18);
+    *(uint *)(*(int64_t *)(param_1 + 0x68) + -8 + uVar5) = ((uVar6 | uVar4 << 8) << 8 | uVar3) << 8 | uVar1;
+    param_1 = *(int64_t *)(in_R11 + 0x18);
   } while ((int)unaff_EDI < *(int *)(param_1 + 0x60));
   *(int8_t *)(in_R11 + 0x40) = 1;
   return;
@@ -1081,7 +1081,7 @@ void RenderingSystem_ColorProcessor2(longlong param_1, float param_2)
  */
 void RenderingSystem_StateActivator(void)
 {
-  longlong in_R11;
+  int64_t in_R11;
   
   *(int8_t *)(in_R11 + 0x40) = 1;
   return;
@@ -1094,7 +1094,7 @@ void RenderingSystem_StateActivator(void)
  * 参数: param_1 - 长整型参数，param_2 - 无符号8位参数，param_3 - 无符号8位参数，param_4 - 无符号4位参数
  * 返回值: 无
  */
-void RenderingSystem_ResourceProcessor(longlong param_1, uint64_t param_2, uint64_t param_3, int32_t param_4)
+void RenderingSystem_ResourceProcessor(int64_t param_1, uint64_t param_2, uint64_t param_3, int32_t param_4)
 {
   int8_t auStack_40 [16];
   uint64_t *puStack_30;
@@ -1114,7 +1114,7 @@ void RenderingSystem_ResourceProcessor(longlong param_1, uint64_t param_2, uint6
  * 参数: param_1 - 长整型参数，param_2 - 整数参数
  * 返回值: 无
  */
-void RenderingSystem_ArrayManager(longlong param_1, int param_2)
+void RenderingSystem_ArrayManager(int64_t param_1, int param_2)
 {
   int iVar1;
   int *piVar2;
@@ -1124,13 +1124,13 @@ void RenderingSystem_ArrayManager(longlong param_1, int param_2)
   int iStack_14;
   
   iVar4 = 0;
-  piVar2 = *(int **)(*(longlong *)(param_1 + 0x18) + 0x90);
-  iVar1 = *(int *)(*(longlong *)(param_1 + 0x18) + 0x88);
+  piVar2 = *(int **)(*(int64_t *)(param_1 + 0x18) + 0x90);
+  iVar1 = *(int *)(*(int64_t *)(param_1 + 0x18) + 0x88);
   if (0 < iVar1) {
-    iStack_14 = (int)((ulonglong)*(uint64_t *)(piVar2 + (longlong)param_2 * 3) >> 0x20);
-    iStack_18 = (int)*(uint64_t *)(piVar2 + (longlong)param_2 * 3);
+    iStack_14 = (int)((uint64_t)*(uint64_t *)(piVar2 + (int64_t)param_2 * 3) >> 0x20);
+    iStack_18 = (int)*(uint64_t *)(piVar2 + (int64_t)param_2 * 3);
     piVar3 = piVar2;
-    while (((*piVar3 != iStack_18 || (piVar3[1] != iStack_14)) || (piVar3[2] != piVar2[(longlong)param_2 * 3 + 2]))) {
+    while (((*piVar3 != iStack_18 || (piVar3[1] != iStack_14)) || (piVar3[2] != piVar2[(int64_t)param_2 * 3 + 2]))) {
       iVar4 = iVar4 + 1;
       piVar3 = piVar3 + 3;
       if (iVar1 <= iVar4) {
@@ -1138,7 +1138,7 @@ void RenderingSystem_ArrayManager(longlong param_1, int param_2)
       }
     }
     if (-1 < iVar4) {
-      memmove(piVar2 + (longlong)iVar4 * 3, piVar2 + (longlong)(iVar4 + 1) * 3, (longlong)((iVar1 - iVar4) + -1) * 0xc);
+      memmove(piVar2 + (int64_t)iVar4 * 3, piVar2 + (int64_t)(iVar4 + 1) * 3, (int64_t)((iVar1 - iVar4) + -1) * 0xc);
     }
   }
   return;
@@ -1153,16 +1153,16 @@ void RenderingSystem_ArrayManager(longlong param_1, int param_2)
  */
 int32_t *RenderingSystem_ParameterProcessor(int32_t *param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
-  longlong *plVar1;
+  int64_t *plVar1;
   int32_t uVar2;
-  longlong *plStackX_8;
+  int64_t *plStackX_8;
   int32_t uStack_20;
   int32_t uStack_1c;
   int32_t uStack_14;
   
   FUN_18022cb40(param_2, &plStackX_8, param_3, param_4, 0xfffffffffffffffe);
   plVar1 = plStackX_8;
-  if (plStackX_8 == (longlong *)0x0) {
+  if (plStackX_8 == (int64_t *)0x0) {
     uVar2 = 0xffffffff;
   }
   else {
@@ -1170,12 +1170,12 @@ int32_t *RenderingSystem_ParameterProcessor(int32_t *param_1, uint64_t param_2, 
     (**(code **)(*plVar1 + 0x28))(plVar1);
   }
   uStack_20 = SUB84(plVar1, 0);
-  uStack_1c = (int32_t)((ulonglong)plVar1 >> 0x20);
+  uStack_1c = (int32_t)((uint64_t)plVar1 >> 0x20);
   *param_1 = uStack_20;
   param_1[1] = uStack_1c;
   param_1[2] = uVar2;
   param_1[3] = uStack_14;
-  if (plStackX_8 != (longlong *)0x0) {
+  if (plStackX_8 != (int64_t *)0x0) {
     (**(code **)(*plStackX_8 + 0x38))();
   }
   return param_1;
@@ -1191,18 +1191,18 @@ int32_t *RenderingSystem_ParameterProcessor(int32_t *param_1, uint64_t param_2, 
 uint64_t *RenderingSystem_ResourceAllocator(uint64_t *param_1)
 {
   int32_t uVar1;
-  longlong *plStackX_8;
-  longlong *plStack_38;
+  int64_t *plStackX_8;
+  int64_t *plStack_38;
   int32_t uStack_30;
   int32_t uStack_2c;
   void *puStack_28;
-  longlong lStack_20;
+  int64_t lStack_20;
   
   uVar1 = FUN_180627910(&puStack_28);
   FUN_1800b3060(uVar1, &plStackX_8, &puStack_28);
   plStack_38 = plStackX_8;
-  if (plStackX_8 == (longlong *)0x0) {
-    plStack_38 = (longlong *)0x0;
+  if (plStackX_8 == (int64_t *)0x0) {
+    plStack_38 = (int64_t *)0x0;
     uStack_30 = 0xffffffff;
     puStack_28 = &system_data_buffer_ptr;
     if (lStack_20 != 0) {
@@ -1212,7 +1212,7 @@ uint64_t *RenderingSystem_ResourceAllocator(uint64_t *param_1)
   else {
     uStack_30 = (**(code **)(*plStackX_8 + 8))(plStackX_8);
     (**(code **)(*plStack_38 + 0x28))(plStack_38);
-    if (plStackX_8 != (longlong *)0x0) {
+    if (plStackX_8 != (int64_t *)0x0) {
       (**(code **)(*plStackX_8 + 0x38))();
     }
     puStack_28 = &system_data_buffer_ptr;
@@ -1234,16 +1234,16 @@ uint64_t *RenderingSystem_ResourceAllocator(uint64_t *param_1)
  */
 int32_t *RenderingSystem_ResourceManager2(int32_t *param_1)
 {
-  longlong *plVar1;
+  int64_t *plVar1;
   int32_t uVar2;
-  longlong *plStackX_8;
+  int64_t *plStackX_8;
   int32_t uStack_18;
   int32_t uStack_14;
   int32_t uStack_c;
   
   FUN_1800b5e80(param_1, &plStackX_8);
   plVar1 = plStackX_8;
-  if (plStackX_8 == (longlong *)0x0) {
+  if (plStackX_8 == (int64_t *)0x0) {
     uVar2 = 0xffffffff;
   }
   else {
@@ -1251,12 +1251,12 @@ int32_t *RenderingSystem_ResourceManager2(int32_t *param_1)
     (**(code **)(*plVar1 + 0x28))(plVar1);
   }
   uStack_18 = SUB84(plVar1, 0);
-  uStack_14 = (int32_t)((ulonglong)plVar1 >> 0x20);
+  uStack_14 = (int32_t)((uint64_t)plVar1 >> 0x20);
   *param_1 = uStack_18;
   param_1[1] = uStack_14;
   param_1[2] = uVar2;
   param_1[3] = uStack_c;
-  if (plStackX_8 != (longlong *)0x0) {
+  if (plStackX_8 != (int64_t *)0x0) {
     (**(code **)(*plStackX_8 + 0x38))();
   }
   return param_1;
@@ -1269,14 +1269,14 @@ int32_t *RenderingSystem_ResourceManager2(int32_t *param_1)
  * 参数: param_1 - 无符号4位指针参数，param_2 - 长整型参数
  * 返回值: 无符号4位指针
  */
-int32_t *RenderingSystem_ContextProcessor(int32_t *param_1, longlong param_2)
+int32_t *RenderingSystem_ContextProcessor(int32_t *param_1, int64_t param_2)
 {
-  longlong *plVar1;
+  int64_t *plVar1;
   char cVar2;
   int32_t uVar3;
   int32_t in_XMM0_Da;
   int32_t extraout_XMM0_Da;
-  longlong *plStackX_8;
+  int64_t *plStackX_8;
   int32_t uStack_18;
   int32_t uStack_14;
   int32_t uStack_c;
@@ -1289,7 +1289,7 @@ int32_t *RenderingSystem_ContextProcessor(int32_t *param_1, longlong param_2)
   }
   FUN_1800b5ec0(in_XMM0_Da, &plStackX_8, cVar2);
   plVar1 = plStackX_8;
-  if (plStackX_8 == (longlong *)0x0) {
+  if (plStackX_8 == (int64_t *)0x0) {
     uVar3 = 0xffffffff;
   }
   else {
@@ -1297,12 +1297,12 @@ int32_t *RenderingSystem_ContextProcessor(int32_t *param_1, longlong param_2)
     (**(code **)(*plVar1 + 0x28))(plVar1);
   }
   uStack_18 = SUB84(plVar1, 0);
-  uStack_14 = (int32_t)((ulonglong)plVar1 >> 0x20);
+  uStack_14 = (int32_t)((uint64_t)plVar1 >> 0x20);
   *param_1 = uStack_18;
   param_1[1] = uStack_14;
   param_1[2] = uVar3;
   param_1[3] = uStack_c;
-  if (plStackX_8 != (longlong *)0x0) {
+  if (plStackX_8 != (int64_t *)0x0) {
     (**(code **)(*plStackX_8 + 0x38))();
   }
   return param_1;
@@ -1315,7 +1315,7 @@ int32_t *RenderingSystem_ContextProcessor(int32_t *param_1, longlong param_2)
  * 参数: param_1 - 无符号8位参数，param_2 - 长整型参数，param_3 - 无符号8位参数，param_4 - 无符号8位参数
  * 返回值: 无
  */
-void RenderingSystem_DataProcessor(uint64_t param_1, longlong param_2, uint64_t param_3, uint64_t param_4)
+void RenderingSystem_DataProcessor(uint64_t param_1, int64_t param_2, uint64_t param_3, uint64_t param_4)
 {
   uint64_t uVar1;
   int8_t auStack_60 [88];
@@ -1332,15 +1332,15 @@ void RenderingSystem_DataProcessor(uint64_t param_1, longlong param_2, uint64_t 
  * 参数: param_1 - 长整型指针参数，param_2 - 长整型参数，param_3 - 整数参数
  * 返回值: 长整型指针
  */
-longlong *RenderingSystem_ResourceManager3(longlong *param_1, longlong param_2, int param_3)
+int64_t *RenderingSystem_ResourceManager3(int64_t *param_1, int64_t param_2, int param_3)
 {
-  longlong *plStack_20;
+  int64_t *plStack_20;
   int32_t uStack_18;
   int32_t uStack_14;
   
-  plStack_20 = *(longlong **)(param_2 + 0xb8 + (longlong)param_3 * 8);
-  if (plStack_20 == (longlong *)0x0) {
-    plStack_20 = (longlong *)0x0;
+  plStack_20 = *(int64_t **)(param_2 + 0xb8 + (int64_t)param_3 * 8);
+  if (plStack_20 == (int64_t *)0x0) {
+    plStack_20 = (int64_t *)0x0;
     uStack_18 = 0xffffffff;
   }
   else {
@@ -1349,7 +1349,7 @@ longlong *RenderingSystem_ResourceManager3(longlong *param_1, longlong param_2, 
     (**(code **)(*plStack_20 + 0x28))(plStack_20);
     (**(code **)(*plStack_20 + 0x38))(plStack_20);
   }
-  *param_1 = (longlong)plStack_20;
+  *param_1 = (int64_t)plStack_20;
   param_1[1] = CONCAT44(uStack_14, uStack_18);
   return param_1;
 }
@@ -1361,15 +1361,15 @@ longlong *RenderingSystem_ResourceManager3(longlong *param_1, longlong param_2, 
  * 参数: param_1 - 长整型指针参数，param_2 - 长整型参数
  * 返回值: 长整型指针
  */
-longlong *RenderingSystem_ResourceGetter(longlong *param_1, longlong param_2)
+int64_t *RenderingSystem_ResourceGetter(int64_t *param_1, int64_t param_2)
 {
-  longlong *plStack_20;
+  int64_t *plStack_20;
   int32_t uStack_18;
   int32_t uStack_14;
   
-  plStack_20 = *(longlong **)(param_2 + 0x1e0);
-  if (plStack_20 == (longlong *)0x0) {
-    plStack_20 = (longlong *)0x0;
+  plStack_20 = *(int64_t **)(param_2 + 0x1e0);
+  if (plStack_20 == (int64_t *)0x0) {
+    plStack_20 = (int64_t *)0x0;
     uStack_18 = 0xffffffff;
   }
   else {
@@ -1378,7 +1378,7 @@ longlong *RenderingSystem_ResourceGetter(longlong *param_1, longlong param_2)
     (**(code **)(*plStack_20 + 0x28))(plStack_20);
     (**(code **)(*plStack_20 + 0x38))(plStack_20);
   }
-  *param_1 = (longlong)plStack_20;
+  *param_1 = (int64_t)plStack_20;
   param_1[1] = CONCAT44(uStack_14, uStack_18);
   return param_1;
 }
@@ -1390,7 +1390,7 @@ longlong *RenderingSystem_ResourceGetter(longlong *param_1, longlong param_2)
  * 参数: param_1 - 长整型参数，param_2 - 无符号8位参数
  * 返回值: 无
  */
-void RenderingSystem_ResourceSetter(longlong param_1, uint64_t param_2)
+void RenderingSystem_ResourceSetter(int64_t param_1, uint64_t param_2)
 {
   *(uint64_t *)(param_1 + 0x140) = param_2;
   FUN_18022dd60();
@@ -1405,7 +1405,7 @@ void RenderingSystem_ResourceSetter(longlong param_1, uint64_t param_2)
  * 参数: param_1 - 长整型参数，param_2 - 无符号4位参数，param_3 - 无符号4位参数，param_4 - 无符号4位参数，param_5 - 无符号4位参数
  * 返回值: 无
  */
-void RenderingSystem_RenderParameterSetter(longlong param_1, int32_t param_2, int32_t param_3, int32_t param_4, int32_t param_5)
+void RenderingSystem_RenderParameterSetter(int64_t param_1, int32_t param_2, int32_t param_3, int32_t param_4, int32_t param_5)
 {
   *(int32_t *)(param_1 + 0x288) = param_2;
   *(int32_t *)(param_1 + 0x28c) = param_3;

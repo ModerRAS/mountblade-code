@@ -73,14 +73,14 @@ void initialize_rendering_device(uint64_t *device_context) {
     }
     
     /* 局部变量声明 */
-    longlong *resource_manager;
+    int64_t *resource_manager;
     uint64_t *resource_ptr;
     uint64_t *temp_ptr;
-    longlong device_config;
+    int64_t device_config;
     uint64_t device_flags;
     int resource_index;
-    longlong *resource_array;
-    longlong *current_resource;
+    int64_t *resource_array;
+    int64_t *current_resource;
     uint resource_count;
     uint64_t *new_resource;
     
@@ -93,14 +93,14 @@ void initialize_rendering_device(uint64_t *device_context) {
     *(uint32_t *)(device_context + 0x22) = 3;
     device_context[0x24] = 0;
     device_context[0x25] = 0;
-    longlong *secondary_manager = device_context + 0x27;
+    int64_t *secondary_manager = device_context + 0x27;
     *secondary_manager = 0;
     device_context[0x28] = 0;
     device_context[0x29] = 0;
     *(uint32_t *)(device_context + 0x2a) = 3;
     
     /* 设置设备状态标志 */
-    *(uint8_t *)((longlong)device_context + 0x11c) = 1;
+    *(uint8_t *)((int64_t)device_context + 0x11c) = 1;
     *(uint8_t *)(device_context + 0x1e) = 0;
     *(uint32_t *)(device_context + 0x23) = 0;
     
@@ -118,28 +118,28 @@ void initialize_rendering_device(uint64_t *device_context) {
     /* 设置设备资源 */
     device_flags = *main_resource;
     *main_resource = 0;
-    longlong *old_resource = (longlong *)device_context[0x24];
+    int64_t *old_resource = (int64_t *)device_context[0x24];
     device_context[0x24] = device_flags;
     
     /* 清理旧资源 */
-    if (old_resource != (longlong *)0x0) {
+    if (old_resource != (int64_t *)0x0) {
         release_rendering_resource(old_resource);
     }
     
     /* 清理临时资源 */
-    if (current_resource != (longlong *)0x0) {
+    if (current_resource != (int64_t *)0x0) {
         release_rendering_resource(current_resource);
     }
-    if (resource_array != (longlong *)0x0) {
+    if (resource_array != (int64_t *)0x0) {
         release_rendering_resource(resource_array);
     }
     
     /* 设置渲染管线 */
-    if ((device_context[0x24] != 0) && (current_resource != (longlong *)0x0)) {
+    if ((device_context[0x24] != 0) && (current_resource != (int64_t *)0x0)) {
         setup_rendering_pipeline(device_context, &resource_array);
         *(uint *)(resource_array + 0x65) = *(uint *)(resource_array + 0x65) | 0x20000000;
         
-        if (resource_array != (longlong *)0x0) {
+        if (resource_array != (int64_t *)0x0) {
             configure_resource_parameters(current_resource, 0);
         }
         
@@ -147,15 +147,15 @@ void initialize_rendering_device(uint64_t *device_context) {
         apply_rendering_settings(device_context[0x24], &current_resource);
         
         /* 处理资源数组 */
-        secondary_manager = (longlong *)(device_context[0x28] - *secondary_manager >> 5);
+        secondary_manager = (int64_t *)(device_context[0x28] - *secondary_manager >> 5);
         resource_index = 0;
-        longlong *array_ptr = secondary_manager;
+        int64_t *array_ptr = secondary_manager;
         
         if (0 < (int)secondary_manager) {
             do {
                 int current_index = resource_index;
                 new_resource = (uint64_t *)0x0;
-                allocate_rendering_resource(&new_resource, (longlong)resource_index * 0x20 + device_context[0x27]);
+                allocate_rendering_resource(&new_resource, (int64_t)resource_index * 0x20 + device_context[0x27]);
                 create_resource_instance(get_device_config_base(), &old_resource, &new_resource, 1);
                 *(uint *)(old_resource + 0x65) = *(uint *)(old_resource + 0x65) | 0x20000000;
                 
@@ -164,13 +164,13 @@ void initialize_rendering_device(uint64_t *device_context) {
                 if (resource_ptr < (uint64_t *)device_context[0x21]) {
                     device_context[0x20] = resource_ptr + 1;
                     *resource_ptr = old_resource;
-                    if (old_resource != (longlong *)0x0) {
+                    if (old_resource != (int64_t *)0x0) {
                         activate_rendering_resource(old_resource);
                     }
                 } else {
                     /* 扩展资源池 */
                     uint64_t *pool_start = (uint64_t *)*resource_manager;
-                    longlong pool_size = (longlong)resource_ptr - (longlong)pool_start >> 3;
+                    int64_t pool_size = (int64_t)resource_ptr - (int64_t)pool_start >> 3;
                     
                     if (pool_size == 0) {
                         pool_size = 1;
@@ -192,28 +192,28 @@ void initialize_rendering_device(uint64_t *device_context) {
                     }
                     
                     *copy_ptr = old_resource;
-                    if (old_resource != (longlong *)0x0) {
+                    if (old_resource != (int64_t *)0x0) {
                         activate_rendering_resource(old_resource);
                     }
                     
                     /* 清理旧池 */
-                    secondary_manager = (longlong *)device_context[0x20];
-                    longlong *old_pool_start = (longlong *)*resource_manager;
+                    secondary_manager = (int64_t *)device_context[0x20];
+                    int64_t *old_pool_start = (int64_t *)*resource_manager;
                     if (old_pool_start != secondary_manager) {
                         do {
-                            if ((longlong *)*old_pool_start != (longlong *)0x0) {
-                                release_rendering_resource((longlong *)*old_pool_start);
+                            if ((int64_t *)*old_pool_start != (int64_t *)0x0) {
+                                release_rendering_resource((int64_t *)*old_pool_start);
                             }
                             old_pool_start = old_pool_start + 1;
                         } while (old_pool_start != secondary_manager);
-                        old_pool_start = (longlong *)*resource_manager;
+                        old_pool_start = (int64_t *)*resource_manager;
                     }
                     
-                    if (old_pool_start != (longlong *)0x0) {
+                    if (old_pool_start != (int64_t *)0x0) {
                         free_memory_pool(old_pool_start);
                     }
                     
-                    *resource_manager = (longlong)new_pool;
+                    *resource_manager = (int64_t)new_pool;
                     device_context[0x20] = copy_ptr + 1;
                     device_context[0x21] = new_pool + pool_size;
                     secondary_manager = array_ptr;
@@ -222,20 +222,20 @@ void initialize_rendering_device(uint64_t *device_context) {
                 
                 /* 应用资源配置 */
                 if (current_index == 0) {
-                    if (old_resource != (longlong *)0x0) {
+                    if (old_resource != (int64_t *)0x0) {
                         device_flags = 0;
                         apply_resource_configuration(*(uint64_t *)(device_context[0x24] + 0x1b8), device_flags);
                     }
-                } else if ((current_index == 1) && (old_resource != (longlong *)0x0)) {
+                } else if ((current_index == 1) && (old_resource != (int64_t *)0x0)) {
                     device_flags = 1;
                     apply_resource_configuration(*(uint64_t *)(device_context[0x24] + 0x1b8), device_flags);
                 }
                 
-                if (((int)secondary_manager == 1) && (old_resource != (longlong *)0x0)) {
-                    apply_resource_configuration(*(uint64_t *)(device_context[0x24] + 0x1b8), (ulonglong)secondary_manager & 0xffffffff);
+                if (((int)secondary_manager == 1) && (old_resource != (int64_t *)0x0)) {
+                    apply_resource_configuration(*(uint64_t *)(device_context[0x24] + 0x1b8), (uint64_t)secondary_manager & 0xffffffff);
                 }
                 
-                if (old_resource != (longlong *)0x0) {
+                if (old_resource != (int64_t *)0x0) {
                     release_rendering_resource(old_resource);
                 }
                 
@@ -249,7 +249,7 @@ void initialize_rendering_device(uint64_t *device_context) {
         /* 完成设备初始化 */
         complete_device_initialization(device_context[0x24]);
         
-        if (resource_array != (longlong *)0x0) {
+        if (resource_array != (int64_t *)0x0) {
             release_rendering_resource(resource_array);
         }
     }
@@ -266,22 +266,22 @@ void initialize_rendering_device(uint64_t *device_context) {
  *       cleanup_flags - 清理标志
  * 返回：uint64_t* - 设备上下文指针
  */
-uint64_t * cleanup_rendering_device(uint64_t *device_context, ulonglong cleanup_flags) {
+uint64_t * cleanup_rendering_device(uint64_t *device_context, uint64_t cleanup_flags) {
     if (!device_context) {
         return NULL;
     }
     
     /* 重置设备上下文 */
     *device_context = &device_base_address;
-    longlong *primary_resource = (longlong *)device_context[0x25];
+    int64_t *primary_resource = (int64_t *)device_context[0x25];
     device_context[0x25] = 0;
-    if (primary_resource != (longlong *)0x0) {
+    if (primary_resource != (int64_t *)0x0) {
         release_rendering_resource(primary_resource);
     }
     
-    primary_resource = (longlong *)device_context[0x24];
+    primary_resource = (int64_t *)device_context[0x24];
     device_context[0x24] = 0;
-    if (primary_resource != (longlong *)0x0) {
+    if (primary_resource != (int64_t *)0x0) {
         release_rendering_resource(primary_resource);
     }
     
@@ -289,11 +289,11 @@ uint64_t * cleanup_rendering_device(uint64_t *device_context, ulonglong cleanup_
     cleanup_rendering_state();
     
     /* 清理剩余资源 */
-    if ((longlong *)device_context[0x25] != (longlong *)0x0) {
-        release_rendering_resource((longlong *)*(longlong *)device_context[0x25]);
+    if ((int64_t *)device_context[0x25] != (int64_t *)0x0) {
+        release_rendering_resource((int64_t *)*(int64_t *)device_context[0x25]);
     }
-    if ((longlong *)device_context[0x24] != (longlong *)0x0) {
-        release_rendering_resource((longlong *)*(longlong *)device_context[0x24]);
+    if ((int64_t *)device_context[0x24] != (int64_t *)0x0) {
+        release_rendering_resource((int64_t *)*(int64_t *)device_context[0x24]);
     }
     
     /* 执行最终清理 */
@@ -314,9 +314,9 @@ uint64_t * cleanup_rendering_device(uint64_t *device_context, ulonglong cleanup_
  * 
  * 参数：render_context - 渲染上下文指针
  *       parameter_data - 参数数据指针
- * 返回：longlong - 渲染句柄
+ * 返回：int64_t - 渲染句柄
  */
-longlong setup_rendering_parameters(longlong render_context, longlong parameter_data) {
+int64_t setup_rendering_parameters(int64_t render_context, int64_t parameter_data) {
     if (!render_context || !parameter_data) {
         return 0;
     }
@@ -325,11 +325,11 @@ longlong setup_rendering_parameters(longlong render_context, longlong parameter_
     int *config_ptr;
     float aspect_ratio;
     int config_value;
-    longlong *resource_ptr;
-    longlong *device_resource;
+    int64_t *resource_ptr;
+    int64_t *device_resource;
     uint32_t device_flags;
     uint32_t render_config;
-    longlong device_handle;
+    int64_t device_handle;
     uint64_t *texture_data;
     uint64_t *shader_data;
     uint8_t vsync_enabled;
@@ -368,21 +368,21 @@ longlong setup_rendering_parameters(longlong render_context, longlong parameter_
     set_device_configuration(device_handle, &parameter_config);
     
     /* 配置设备资源 */
-    resource_ptr = *(longlong **)(get_device_manager_base() + 0x121e0);
-    if (resource_ptr != (longlong *)0x0) {
+    resource_ptr = *(int64_t **)(get_device_manager_base() + 0x121e0);
+    if (resource_ptr != (int64_t *)0x0) {
         activate_device_resource(resource_ptr);
     }
     
-    device_resource = *(longlong **)(device_handle + 0x9690);
-    *(longlong **)(device_handle + 0x9690) = resource_ptr;
-    if (device_resource != (longlong *)0x0) {
+    device_resource = *(int64_t **)(device_handle + 0x9690);
+    *(int64_t **)(device_handle + 0x9690) = resource_ptr;
+    if (device_resource != (int64_t *)0x0) {
         release_rendering_resource(device_resource);
     }
     
     /* 清理着色器资源 */
-    resource_ptr = *(longlong **)(device_handle + 0x96a8);
+    resource_ptr = *(int64_t **)(device_handle + 0x96a8);
     *(uint64_t *)(device_handle + 0x96a8) = 0;
-    if (resource_ptr != (longlong *)0x0) {
+    if (resource_ptr != (int64_t *)0x0) {
         release_rendering_resource(resource_ptr);
     }
     
@@ -393,7 +393,7 @@ longlong setup_rendering_parameters(longlong render_context, longlong parameter_
     *(uint64_t *)(device_handle + 0x11c28) = *(uint64_t *)(render_context + 0x2c);
     
     /* 计算视口参数 */
-    longlong display_config = get_display_config_base();
+    int64_t display_config = get_display_config_base();
     float display_width = *(float *)(display_config + 0x17ec);
     float display_height = *(float *)(display_config + 0x17f0);
     aspect_ratio = display_width / display_height;
@@ -440,7 +440,7 @@ longlong setup_rendering_parameters(longlong render_context, longlong parameter_
     *(float *)(device_handle + 0x124e4) = (float)(get_render_timer() % 1000000000) * 1e-05;
     
     /* 复制设备配置 */
-    longlong config_copy_count = 2;
+    int64_t config_copy_count = 2;
     uint64_t *config_source = (uint64_t *)(display_config + 0x16a0);
     uint64_t *config_target = (uint64_t *)(device_handle + 0x30);
     
@@ -537,8 +537,8 @@ uint64_t * create_rendering_exception_handler(uint64_t exception_param1, uint64_
     *message_ptr = 0x6964616f4c6c6772;  // "globalLoadi"
     message_ptr[1] = 0x65657263735f676e;  // "ng_resources"
     *(uint32_t *)(message_ptr + 2) = 0x69765f6e;  // "n_vi"
-    *(uint16_t *)((longlong)message_ptr + 0x14) = 0x7765;  // "ew"
-    *(uint8_t *)((longlong)message_ptr + 0x16) = 0;
+    *(uint16_t *)((int64_t)message_ptr + 0x14) = 0x7765;  // "ew"
+    *(uint8_t *)((int64_t)message_ptr + 0x16) = 0;
     *(uint32_t *)(exception_handler + 2) = 0x16;
     
     return exception_handler;
@@ -549,9 +549,9 @@ uint64_t * create_rendering_exception_handler(uint64_t exception_param1, uint64_
  * 更新和管理渲染系统资源
  * 
  * 参数：resource_context - 资源上下文指针
- * 返回：ulonglong - 更新状态
+ * 返回：uint64_t - 更新状态
  */
-ulonglong update_rendering_resources(longlong resource_context) {
+uint64_t update_rendering_resources(int64_t resource_context) {
     if (!resource_context) {
         return 0;
     }
@@ -560,30 +560,30 @@ ulonglong update_rendering_resources(longlong resource_context) {
     cleanup_rendering_resources(*(uint64_t *)(resource_context + 0x120));
     
     /* 获取资源管理器 */
-    longlong resource_manager = *(longlong *)(resource_context + 0x128);
+    int64_t resource_manager = *(int64_t *)(resource_context + 0x128);
     
     /* 处理活动资源 */
-    if (*(longlong *)(resource_manager + 0x1b8) != 0) {
-        longlong resource_offset = 0xb8;
-        longlong config_base = get_resource_config_base();
+    if (*(int64_t *)(resource_manager + 0x1b8) != 0) {
+        int64_t resource_offset = 0xb8;
+        int64_t config_base = get_resource_config_base();
         
         do {
-            longlong resource_handle = *(longlong *)(resource_offset + *(longlong *)(resource_manager + 0x1b8));
+            int64_t resource_handle = *(int64_t *)(resource_offset + *(int64_t *)(resource_manager + 0x1b8));
             
             /* 检查资源状态 */
             if (((resource_handle != 0) && 
-                 (*(longlong *)(*(longlong *)(resource_manager + 0x1b8) + 0x328 + resource_offset) == 0)) &&
+                 (*(int64_t *)(*(int64_t *)(resource_manager + 0x1b8) + 0x328 + resource_offset) == 0)) &&
                 ((*(uint32_t *)(resource_handle + 0x328) & 0x20000000) == 0) && 
-                (*(longlong *)(resource_handle + 0x370) == 0)) {
+                (*(int64_t *)(resource_handle + 0x370) == 0)) {
                 
                 /* 处理资源 */
-                if (*(longlong *)(resource_handle + 0x1d8) == 0) {
+                if (*(int64_t *)(resource_handle + 0x1d8) == 0) {
                     initialize_resource(resource_handle, 0);
                     config_base = get_resource_config_base();
-                    int *usage_counter = (int *)(*(longlong *)(resource_offset + *(longlong *)(resource_manager + 0x1b8)) + 0x3a8);
+                    int *usage_counter = (int *)(*(int64_t *)(resource_offset + *(int64_t *)(resource_manager + 0x1b8)) + 0x3a8);
                     *usage_counter = *usage_counter + 1;
                 } else if (config_base != 0) {
-                    *(longlong *)(resource_handle + 0x340) = (longlong)*(int *)(config_base + 0x224);
+                    *(int64_t *)(resource_handle + 0x340) = (int64_t)*(int *)(config_base + 0x224);
                 }
             }
             
@@ -593,11 +593,11 @@ ulonglong update_rendering_resources(longlong resource_context) {
     
     /* 获取资源状态 */
     uint8_t resource_status = *(uint8_t *)(resource_manager + 0xf9);
-    ulonglong update_result = (ulonglong)resource_status;
+    uint64_t update_result = (uint64_t)resource_status;
     
     /* 处理资源锁定 */
     if (resource_status != 0) {
-        if (*(longlong *)(resource_manager + 0x1d8) != 0) {
+        if (*(int64_t *)(resource_manager + 0x1d8) != 0) {
             // 资源锁定异常，不会返回
             throw_resource_lock_exception();
         }
@@ -612,9 +612,9 @@ ulonglong update_rendering_resources(longlong resource_context) {
     }
     
     /* 处理资源缓存 */
-    if (*(longlong *)(resource_manager + 0x1e8) != 0) {
+    if (*(int64_t *)(resource_manager + 0x1e8) != 0) {
         process_resource_cache();
-        update_result = *(ulonglong *)(resource_manager + 0x1f0);
+        update_result = *(uint64_t *)(resource_manager + 0x1f0);
         *(uint64_t *)(resource_manager + 0x1e8) = 0;
         
         if (update_result != 0) {

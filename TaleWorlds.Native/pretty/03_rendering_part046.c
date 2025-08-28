@@ -187,8 +187,8 @@ void RenderSystemEmptyFunction(void)
  * @param param_5 像素数据指针
  * @return int 返回处理状态标志
  */
-int TextureCoordinateCalculator(longlong param_1, longlong param_2, float *param_3, 
-                               uint64_t param_4, longlong param_5)
+int TextureCoordinateCalculator(int64_t param_1, int64_t param_2, float *param_3, 
+                               uint64_t param_4, int64_t param_5)
 {
     byte bVar1;
     byte bVar2;
@@ -196,21 +196,21 @@ int TextureCoordinateCalculator(longlong param_1, longlong param_2, float *param
     byte bVar4;
     int32_t uVar5;
     int32_t uVar6;
-    ulonglong uVar7;
-    ulonglong uVar8;
+    uint64_t uVar7;
+    uint64_t uVar8;
     int iVar9;
     uint uVar10;
     ushort uVar11;
     int iVar12;
     int iVar13;
-    longlong lVar14;
+    int64_t lVar14;
     ushort *puVar15;
-    longlong lVar16;
+    int64_t lVar16;
     short sVar17;
     uint uVar18;
     int32_t uVar19;
-    longlong lVar20;
-    longlong lVar21;
+    int64_t lVar20;
+    int64_t lVar21;
     ushort uVar22;
     uint uVar23;
     ushort uVar24;
@@ -222,7 +222,7 @@ int TextureCoordinateCalculator(longlong param_1, longlong param_2, float *param
     ushort uStackX_8;
     int32_t uStack_114;
     int iStack_110;
-    longlong lStack_e8;
+    int64_t lStack_e8;
     uint64_t uStack_e0;
     uint64_t uStack_d8;
     uint64_t uStack_d0;
@@ -241,15 +241,15 @@ int TextureCoordinateCalculator(longlong param_1, longlong param_2, float *param
     // 计算纹理坐标缩放因子
     if (fVar27 <= FLOAT_ZERO_VALUE) {
         // 处理负值纹理坐标
-        fVar27 = -(fVar27 / (float)((uint)*(byte *)((longlong)*(int *)(param_2 + 0x1c) + 0x12 +
-                                               *(longlong *)(param_2 + 8)) * BIT_SHIFT_8 +
-                               (uint)*(byte *)((longlong)*(int *)(param_2 + 0x1c) + 0x13 +
-                                              *(longlong *)(param_2 + 8))));
+        fVar27 = -(fVar27 / (float)((uint)*(byte *)((int64_t)*(int *)(param_2 + 0x1c) + 0x12 +
+                                               *(int64_t *)(param_2 + 8)) * BIT_SHIFT_8 +
+                               (uint)*(byte *)((int64_t)*(int *)(param_2 + 0x1c) + 0x13 +
+                                              *(int64_t *)(param_2 + 8))));
     }
     else {
         // 处理正值纹理坐标
-        lVar20 = (longlong)*(int *)(param_2 + MEMORY_OFFSET_0X24);
-        lVar16 = *(longlong *)(param_2 + 8);
+        lVar20 = (int64_t)*(int *)(param_2 + MEMORY_OFFSET_0X24);
+        lVar16 = *(int64_t *)(param_2 + 8);
         fVar27 = fVar27 / (float)((int)(short)((ushort)*(byte *)(lVar20 + 4 + lVar16) * BIT_SHIFT_8 +
                                           (ushort)*(byte *)(lVar20 + 5 + lVar16)) -
                              (int)(short)((ushort)*(byte *)(lVar20 + 7 + lVar16) +
@@ -259,7 +259,7 @@ int TextureCoordinateCalculator(longlong param_1, longlong param_2, float *param
     // 设置纹理尺寸参数
     bVar1 = *(byte *)(param_3 + 8);
     *(uint *)(param_1 + MEMORY_OFFSET_0X20) = (uint)bVar1;
-    bVar2 = *(byte *)((longlong)param_3 + 0x21);
+    bVar2 = *(byte *)((int64_t)param_3 + 0x21);
     *(uint *)(param_1 + MEMORY_OFFSET_0X24) = (uint)bVar2;
     
     // 计算纹理坐标偏置因子
@@ -286,12 +286,12 @@ int TextureCoordinateCalculator(longlong param_1, longlong param_2, float *param
             }
             else {
                 // 计算纹理索引
-                lVar20 = *(longlong *)(param_3 + 6);
-                if (*(longlong *)(param_3 + 2) == 0) {
+                lVar20 = *(int64_t *)(param_3 + 6);
+                if (*(int64_t *)(param_3 + 2) == 0) {
                     iVar13 = (int)param_3[1] + iStack_110;
                 }
                 else {
-                    iVar13 = *(int *)(lStack_e8 + *(longlong *)(param_3 + 2));
+                    iVar13 = *(int *)(lStack_e8 + *(int64_t *)(param_3 + 2));
                 }
                 iVar13 = TextureIndexCalculator(param_2, iVar13);
                 
@@ -307,18 +307,18 @@ int TextureCoordinateCalculator(longlong param_1, longlong param_2, float *param
                 puVar15[1] = uVar11;
                 
                 // 获取纹理数据信息
-                lVar21 = *(longlong *)(param_2 + 8);
-                bVar3 = *(byte *)((longlong)*(int *)(param_2 + MEMORY_OFFSET_0X24) + 0x22 + lVar21);
-                bVar4 = *(byte *)((longlong)*(int *)(param_2 + MEMORY_OFFSET_0X24) + 0x23 + lVar21);
+                lVar21 = *(int64_t *)(param_2 + 8);
+                bVar3 = *(byte *)((int64_t)*(int *)(param_2 + MEMORY_OFFSET_0X24) + 0x22 + lVar21);
+                bVar4 = *(byte *)((int64_t)*(int *)(param_2 + MEMORY_OFFSET_0X24) + 0x23 + lVar21);
                 
                 // 计算纹理像素坐标
                 if (iVar13 < (int)((uint)bVar3 * BIT_SHIFT_8 + (uint)bVar4)) {
-                    lVar14 = (longlong)(iVar13 * ARRAY_ELEMENT_SIZE_4) + (longlong)*(int *)(param_2 + MEMORY_OFFSET_0X28);
+                    lVar14 = (int64_t)(iVar13 * ARRAY_ELEMENT_SIZE_4) + (int64_t)*(int *)(param_2 + MEMORY_OFFSET_0X28);
                     sVar17 = (ushort)*(byte *)(lVar14 + lVar21) * BIT_SHIFT_8 +
                              (ushort)*(byte *)(lVar14 + 1 + lVar21);
                 }
                 else {
-                    lVar14 = (longlong)*(int *)(param_2 + MEMORY_OFFSET_0X28) + (ulonglong)CONCAT11(bVar3, bVar4) * ARRAY_ELEMENT_SIZE_4;
+                    lVar14 = (int64_t)*(int *)(param_2 + MEMORY_OFFSET_0X28) + (uint64_t)CONCAT11(bVar3, bVar4) * ARRAY_ELEMENT_SIZE_4;
                     sVar17 = (ushort)*(byte *)(lVar14 + -3 + lVar21) +
                              (ushort)*(byte *)(lVar14 + -4 + lVar21) * BIT_SHIFT_8;
                 }
@@ -326,14 +326,14 @@ int TextureCoordinateCalculator(longlong param_1, longlong param_2, float *param
                 // 获取渲染参数
                 uVar23 = *(uint *)(param_1 + MEMORY_OFFSET_0X24);
                 uVar18 = *(uint *)(param_1 + MEMORY_OFFSET_0X20);
-                uVar7 = (ulonglong)uVar23;
-                uVar8 = (ulonglong)uVar18;
+                uVar7 = (uint64_t)uVar23;
+                uVar8 = (uint64_t)uVar18;
                 
                 // 处理纹理数据
                 if (*(int *)(param_2 + MEMORY_OFFSET_0X4C) == 0) {
                     iVar13 = TextureDataProcessor(param_2, iVar13);
                     if (-1 < iVar13) {
-                        lVar14 = (longlong)iVar13;
+                        lVar14 = (int64_t)iVar13;
                         bVar3 = *(byte *)(lVar14 + 9 + lVar21);
                         uVar10 = (uint)bVar3;
                         iVar13 = (int)(short)((ushort)*(byte *)(lVar14 + 8 + lVar21) * BIT_SHIFT_8 + (ushort)bVar3);
@@ -395,22 +395,22 @@ LAB_180290cc2:
                 }
                 
                 // 处理渲染缓冲区
-                RenderBufferProcessor(param_2, (longlong)(int)((uint)uVar11 * *(int *)(param_1 + MEMORY_OFFSET_0X18)) +
-                                     (ulonglong)uStackX_8 + *(longlong *)(param_1 + MEMORY_OFFSET_0X28),
+                RenderBufferProcessor(param_2, (int64_t)(int)((uint)uVar11 * *(int *)(param_1 + MEMORY_OFFSET_0X18)) +
+                                     (uint64_t)uStackX_8 + *(int64_t *)(param_1 + MEMORY_OFFSET_0X28),
                                      (uVar22 - uVar18) + 1, (uVar24 - uVar23) + 1, *(int *)(param_1 + MEMORY_OFFSET_0X18),
                                      (float)uVar18 * fVar27, (float)uVar23 * fVar27);
                 
                 // 处理U方向纹理
                 if (1 < *(uint *)(param_1 + MEMORY_OFFSET_0X20)) {
-                    RenderTextureProcessor((longlong)(int)((uint)puVar15[1] * *(int *)(param_1 + MEMORY_OFFSET_0X18)) +
-                                          (ulonglong)*puVar15 + *(longlong *)(param_1 + MEMORY_OFFSET_0X28), puVar15[-2], puVar15[-1],
+                    RenderTextureProcessor((int64_t)(int)((uint)puVar15[1] * *(int *)(param_1 + MEMORY_OFFSET_0X18)) +
+                                          (uint64_t)*puVar15 + *(int64_t *)(param_1 + MEMORY_OFFSET_0X28), puVar15[-2], puVar15[-1],
                                           *(int *)(param_1 + MEMORY_OFFSET_0X18), *(uint *)(param_1 + MEMORY_OFFSET_0X20));
                 }
                 
                 // 处理V方向纹理
                 if (1 < *(uint *)(param_1 + MEMORY_OFFSET_0X24)) {
-                    RenderUVProcessor((longlong)(int)((uint)puVar15[1] * *(int *)(param_1 + MEMORY_OFFSET_0X18)) +
-                                    (ulonglong)*puVar15 + *(longlong *)(param_1 + MEMORY_OFFSET_0X28), puVar15[-2], puVar15[-1],
+                    RenderUVProcessor((int64_t)(int)((uint)puVar15[1] * *(int *)(param_1 + MEMORY_OFFSET_0X18)) +
+                                    (uint64_t)*puVar15 + *(int64_t *)(param_1 + MEMORY_OFFSET_0X28), puVar15[-2], puVar15[-1],
                                     *(int *)(param_1 + MEMORY_OFFSET_0X18), *(uint *)(param_1 + MEMORY_OFFSET_0X24));
                 }
                 
@@ -462,28 +462,28 @@ LAB_180290cc2:
  * @param param_4 渲染标志
  * @return int 返回处理状态
  */
-int UVCoordinateProcessor(longlong param_1, longlong param_2, uint64_t param_3, int32_t param_4)
+int UVCoordinateProcessor(int64_t param_1, int64_t param_2, uint64_t param_3, int32_t param_4)
 {
     byte bVar1;
     byte bVar2;
-    longlong lVar3;
-    ulonglong uVar4;
-    ulonglong uVar5;
+    int64_t lVar3;
+    uint64_t uVar4;
+    uint64_t uVar5;
     int iVar6;
     uint uVar7;
     int iVar8;
     int iVar9;
-    longlong lVar10;
+    int64_t lVar10;
     ushort *puVar11;
-    longlong lVar12;
-    longlong unaff_RDI;
+    int64_t lVar12;
+    int64_t unaff_RDI;
     short sVar13;
     uint uVar14;
-    longlong lVar15;
+    int64_t lVar15;
     ushort uVar16;
     uint uVar17;
-    longlong unaff_R13;
-    longlong unaff_R14;
+    int64_t unaff_R13;
+    int64_t unaff_R14;
     ushort uVar18;
     float in_XMM1_Da;
     int8_t auVar19 [16];
@@ -497,7 +497,7 @@ int UVCoordinateProcessor(longlong param_1, longlong param_2, uint64_t param_3, 
     int iStack0000000000000058;
     uint64_t in_stack_00000060;
     int32_t in_stack_00000068;
-    longlong lStack0000000000000080;
+    int64_t lStack0000000000000080;
     uint64_t in_stack_00000088;
     uint64_t in_stack_00000090;
     uint64_t in_stack_00000098;
@@ -506,9 +506,9 @@ int UVCoordinateProcessor(longlong param_1, longlong param_2, uint64_t param_3, 
     uint64_t in_stack_000000b0;
     int32_t in_stack_000000b8;
     ushort uStack0000000000000170;
-    longlong in_stack_00000178;
+    int64_t in_stack_00000178;
     ushort uStack0000000000000188;
-    longlong in_stack_00000190;
+    int64_t in_stack_00000190;
     
     // 初始化UV坐标参数
     iVar9 = (int)param_1;
@@ -536,12 +536,12 @@ int UVCoordinateProcessor(longlong param_1, longlong param_2, uint64_t param_3, 
             }
             else {
                 // 计算UV坐标索引
-                lVar3 = *(longlong *)(unaff_R14 + MEMORY_OFFSET_0X18);
-                if (*(longlong *)(unaff_R14 + 8) == 0) {
+                lVar3 = *(int64_t *)(unaff_R14 + MEMORY_OFFSET_0X18);
+                if (*(int64_t *)(unaff_R14 + 8) == 0) {
                     iVar9 = *(int *)(unaff_R14 + 4) + iStack0000000000000058;
                 }
                 else {
-                    iVar9 = *(int *)(lStack0000000000000080 + *(longlong *)(unaff_R14 + 8));
+                    iVar9 = *(int *)(lStack0000000000000080 + *(int64_t *)(unaff_R14 + 8));
                 }
                 iVar9 = TextureIndexCalculator(unaff_R13, iVar9);
                 
@@ -557,18 +557,18 @@ int UVCoordinateProcessor(longlong param_1, longlong param_2, uint64_t param_3, 
                 puVar11[1] = uStack0000000000000188;
                 
                 // 获取UV纹理数据
-                lVar15 = *(longlong *)(unaff_R13 + 8);
-                bVar1 = *(byte *)((longlong)*(int *)(unaff_R13 + MEMORY_OFFSET_0X24) + 0x22 + lVar15);
-                bVar2 = *(byte *)((longlong)*(int *)(unaff_R13 + MEMORY_OFFSET_0X24) + 0x23 + lVar15);
+                lVar15 = *(int64_t *)(unaff_R13 + 8);
+                bVar1 = *(byte *)((int64_t)*(int *)(unaff_R13 + MEMORY_OFFSET_0X24) + 0x22 + lVar15);
+                bVar2 = *(byte *)((int64_t)*(int *)(unaff_R13 + MEMORY_OFFSET_0X24) + 0x23 + lVar15);
                 
                 // 计算UV像素坐标
                 if (iVar9 < (int)((uint)bVar1 * BIT_SHIFT_8 + (uint)bVar2)) {
-                    lVar10 = (longlong)(iVar9 * ARRAY_ELEMENT_SIZE_4) + (longlong)*(int *)(unaff_R13 + MEMORY_OFFSET_0X28);
+                    lVar10 = (int64_t)(iVar9 * ARRAY_ELEMENT_SIZE_4) + (int64_t)*(int *)(unaff_R13 + MEMORY_OFFSET_0X28);
                     sVar13 = (ushort)*(byte *)(lVar10 + lVar15) * BIT_SHIFT_8 +
                              (ushort)*(byte *)(lVar10 + 1 + lVar15);
                 }
                 else {
-                    lVar10 = (longlong)*(int *)(unaff_R13 + MEMORY_OFFSET_0X28) + (ulonglong)CONCAT11(bVar1, bVar2) * ARRAY_ELEMENT_SIZE_4;
+                    lVar10 = (int64_t)*(int *)(unaff_R13 + MEMORY_OFFSET_0X28) + (uint64_t)CONCAT11(bVar1, bVar2) * ARRAY_ELEMENT_SIZE_4;
                     sVar13 = (ushort)*(byte *)(lVar10 + -3 + lVar15) +
                              (ushort)*(byte *)(lVar10 + -4 + lVar15) * BIT_SHIFT_8;
                 }
@@ -576,14 +576,14 @@ int UVCoordinateProcessor(longlong param_1, longlong param_2, uint64_t param_3, 
                 // 获取UV渲染参数
                 uVar17 = *(uint *)(unaff_RDI + MEMORY_OFFSET_0X24);
                 uVar14 = *(uint *)(unaff_RDI + MEMORY_OFFSET_0X20);
-                uVar4 = (ulonglong)uVar17;
-                uVar5 = (ulonglong)uVar14;
+                uVar4 = (uint64_t)uVar17;
+                uVar5 = (uint64_t)uVar14;
                 
                 // 处理UV纹理数据
                 if (*(int *)(in_stack_00000178 + MEMORY_OFFSET_0X4C) == 0) {
                     iVar9 = TextureDataProcessor(in_stack_00000178, iVar9);
                     if (-1 < iVar9) {
-                        lVar10 = (longlong)iVar9;
+                        lVar10 = (int64_t)iVar9;
                         bVar1 = *(byte *)(lVar10 + 9 + lVar15);
                         uVar7 = (uint)bVar1;
                         iVar9 = (int)(short)((ushort)*(byte *)(lVar10 + 8 + lVar15) * BIT_SHIFT_8 + (ushort)bVar1);
@@ -646,21 +646,21 @@ LAB_180290cc2:
                 
                 // 处理UV渲染缓冲区
                 RenderBufferProcessor(in_stack_00000178,
-                                      (longlong)(int)((uint)uStack0000000000000188 * *(int *)(unaff_RDI + MEMORY_OFFSET_0X18)) +
-                                      (ulonglong)uStack0000000000000170 + *(longlong *)(unaff_RDI + MEMORY_OFFSET_0X28),
+                                      (int64_t)(int)((uint)uStack0000000000000188 * *(int *)(unaff_RDI + MEMORY_OFFSET_0X18)) +
+                                      (uint64_t)uStack0000000000000170 + *(int64_t *)(unaff_RDI + MEMORY_OFFSET_0X28),
                                       (uVar16 - uVar14) + 1, (uVar18 - uVar17) + 1, *(int *)(unaff_RDI + MEMORY_OFFSET_0X18));
                 
                 // 处理U方向UV纹理
                 if (1 < *(uint *)(unaff_RDI + MEMORY_OFFSET_0X20)) {
-                    RenderTextureProcessor((longlong)(int)((uint)puVar11[1] * *(int *)(unaff_RDI + MEMORY_OFFSET_0X18)) +
-                                          (ulonglong)*puVar11 + *(longlong *)(unaff_RDI + MEMORY_OFFSET_0X28), puVar11[-2],
+                    RenderTextureProcessor((int64_t)(int)((uint)puVar11[1] * *(int *)(unaff_RDI + MEMORY_OFFSET_0X18)) +
+                                          (uint64_t)*puVar11 + *(int64_t *)(unaff_RDI + MEMORY_OFFSET_0X28), puVar11[-2],
                                           puVar11[-1], *(int *)(unaff_RDI + MEMORY_OFFSET_0X18), *(uint *)(unaff_RDI + MEMORY_OFFSET_0X20));
                 }
                 
                 // 处理V方向UV纹理
                 if (1 < *(uint *)(unaff_RDI + MEMORY_OFFSET_0X24)) {
-                    RenderUVProcessor((longlong)(int)((uint)puVar11[1] * *(int *)(unaff_RDI + MEMORY_OFFSET_0X18)) +
-                                    (ulonglong)*puVar11 + *(longlong *)(unaff_RDI + MEMORY_OFFSET_0X28), puVar11[-2], puVar11[-1],
+                    RenderUVProcessor((int64_t)(int)((uint)puVar11[1] * *(int *)(unaff_RDI + MEMORY_OFFSET_0X18)) +
+                                    (uint64_t)*puVar11 + *(int64_t *)(unaff_RDI + MEMORY_OFFSET_0X28), puVar11[-2], puVar11[-1],
                                     *(int *)(unaff_RDI + MEMORY_OFFSET_0X18), *(uint *)(unaff_RDI + MEMORY_OFFSET_0X24));
                 }
                 
@@ -713,29 +713,29 @@ LAB_180290cc2:
  * @param param_2 数据偏移参数
  * @return int 返回转换状态
  */
-int PixelCoordinateTransformer(int param_1, longlong param_2)
+int PixelCoordinateTransformer(int param_1, int64_t param_2)
 {
     byte bVar1;
     byte bVar2;
-    longlong lVar3;
-    ulonglong uVar4;
-    ulonglong uVar5;
+    int64_t lVar3;
+    uint64_t uVar4;
+    uint64_t uVar5;
     int iVar6;
     int iVar7;
     uint uVar8;
     int iVar9;
-    longlong lVar10;
-    longlong unaff_RBX;
+    int64_t lVar10;
+    int64_t unaff_RBX;
     ushort *puVar11;
-    longlong lVar12;
-    longlong unaff_RDI;
+    int64_t lVar12;
+    int64_t unaff_RDI;
     short sVar13;
     uint uVar14;
-    longlong lVar15;
+    int64_t lVar15;
     ushort uVar16;
     uint uVar17;
-    longlong unaff_R13;
-    longlong unaff_R14;
+    int64_t unaff_R13;
+    int64_t unaff_R14;
     ushort uVar18;
     int8_t auVar19 [16];
     int8_t auVar20 [16];
@@ -748,7 +748,7 @@ int PixelCoordinateTransformer(int param_1, longlong param_2)
     int in_stack_00000058;
     uint64_t in_stack_00000060;
     int32_t in_stack_00000068;
-    longlong lStack0000000000000080;
+    int64_t lStack0000000000000080;
     uint64_t in_stack_00000088;
     uint64_t in_stack_00000090;
     uint64_t in_stack_00000098;
@@ -757,7 +757,7 @@ int PixelCoordinateTransformer(int param_1, longlong param_2)
     uint64_t in_stack_000000b0;
     int32_t in_stack_000000b8;
     ushort uStack0000000000000170;
-    longlong in_stack_00000178;
+    int64_t in_stack_00000178;
     ushort uStack0000000000000188;
     
     // 初始化像素坐标转换参数
@@ -773,12 +773,12 @@ int PixelCoordinateTransformer(int param_1, longlong param_2)
         }
         else {
             // 计算像素坐标索引
-            lVar3 = *(longlong *)(unaff_R14 + MEMORY_OFFSET_0X18);
-            if (*(longlong *)(unaff_R14 + 8) == 0) {
+            lVar3 = *(int64_t *)(unaff_R14 + MEMORY_OFFSET_0X18);
+            if (*(int64_t *)(unaff_R14 + 8) == 0) {
                 param_1 = *(int *)(unaff_R14 + 4) + param_1;
             }
             else {
-                param_1 = *(int *)(lStack0000000000000080 + *(longlong *)(unaff_R14 + 8));
+                param_1 = *(int *)(lStack0000000000000080 + *(int64_t *)(unaff_R14 + 8));
             }
             iVar6 = TextureIndexCalculator(unaff_R13, param_1);
             
@@ -794,31 +794,31 @@ int PixelCoordinateTransformer(int param_1, longlong param_2)
             puVar11[1] = uStack0000000000000188;
             
             // 获取像素纹理数据
-            lVar15 = *(longlong *)(unaff_R13 + 8);
-            bVar1 = *(byte *)((longlong)*(int *)(unaff_R13 + MEMORY_OFFSET_0X24) + 0x22 + lVar15);
-            bVar2 = *(byte *)((longlong)*(int *)(unaff_R13 + MEMORY_OFFSET_0X24) + 0x23 + lVar15);
+            lVar15 = *(int64_t *)(unaff_R13 + 8);
+            bVar1 = *(byte *)((int64_t)*(int *)(unaff_R13 + MEMORY_OFFSET_0X24) + 0x22 + lVar15);
+            bVar2 = *(byte *)((int64_t)*(int *)(unaff_R13 + MEMORY_OFFSET_0X24) + 0x23 + lVar15);
             
             // 计算像素坐标
             if (iVar6 < (int)((uint)bVar1 * BIT_SHIFT_8 + (uint)bVar2)) {
-                lVar10 = (longlong)(iVar6 * ARRAY_ELEMENT_SIZE_4) + (longlong)*(int *)(unaff_R13 + MEMORY_OFFSET_0X28);
+                lVar10 = (int64_t)(iVar6 * ARRAY_ELEMENT_SIZE_4) + (int64_t)*(int *)(unaff_R13 + MEMORY_OFFSET_0X28);
                 sVar13 = (ushort)*(byte *)(lVar10 + lVar15) * BIT_SHIFT_8 + (ushort)*(byte *)(lVar10 + 1 + lVar15);
             }
             else {
-                lVar10 = (longlong)*(int *)(unaff_R13 + MEMORY_OFFSET_0X28) + (ulonglong)CONCAT11(bVar1, bVar2) * ARRAY_ELEMENT_SIZE_4;
+                lVar10 = (int64_t)*(int *)(unaff_R13 + MEMORY_OFFSET_0X28) + (uint64_t)CONCAT11(bVar1, bVar2) * ARRAY_ELEMENT_SIZE_4;
                 sVar13 = (ushort)*(byte *)(lVar10 + -3 + lVar15) + (ushort)*(byte *)(lVar10 + -4 + lVar15) * BIT_SHIFT_8;
             }
             
             // 获取像素渲染参数
             uVar17 = *(uint *)(unaff_RDI + MEMORY_OFFSET_0X24);
             uVar14 = *(uint *)(unaff_RDI + MEMORY_OFFSET_0X20);
-            uVar4 = (ulonglong)uVar17;
-            uVar5 = (ulonglong)uVar14;
+            uVar4 = (uint64_t)uVar17;
+            uVar5 = (uint64_t)uVar14;
             
             // 处理像素纹理数据
             if (*(int *)(in_stack_00000178 + MEMORY_OFFSET_0X4C) == 0) {
                 iVar6 = TextureDataProcessor(in_stack_00000178, iVar6);
                 if (-1 < iVar6) {
-                    lVar10 = (longlong)iVar6;
+                    lVar10 = (int64_t)iVar6;
                     bVar1 = *(byte *)(lVar10 + 9 + lVar15);
                     uVar8 = (uint)bVar1;
                     iVar6 = (int)(short)((ushort)*(byte *)(lVar10 + 8 + lVar15) * BIT_SHIFT_8 + (ushort)bVar1);
@@ -881,21 +881,21 @@ LAB_180290cc2:
             
             // 处理像素渲染缓冲区
             RenderBufferProcessor(in_stack_00000178,
-                                  (longlong)(int)((uint)uStack0000000000000188 * *(int *)(unaff_RDI + MEMORY_OFFSET_0X18)) +
-                                  (ulonglong)uStack0000000000000170 + *(longlong *)(unaff_RDI + MEMORY_OFFSET_0X28),
+                                  (int64_t)(int)((uint)uStack0000000000000188 * *(int *)(unaff_RDI + MEMORY_OFFSET_0X18)) +
+                                  (uint64_t)uStack0000000000000170 + *(int64_t *)(unaff_RDI + MEMORY_OFFSET_0X28),
                                   (uVar16 - uVar14) + 1, (uVar18 - uVar17) + 1, *(int *)(unaff_RDI + MEMORY_OFFSET_0X18));
             
             // 处理X方向像素纹理
             if (1 < *(uint *)(unaff_RDI + MEMORY_OFFSET_0X20)) {
-                RenderTextureProcessor((longlong)(int)((uint)puVar11[1] * *(int *)(unaff_RDI + MEMORY_OFFSET_0X18)) +
-                                      (ulonglong)*puVar11 + *(longlong *)(unaff_RDI + MEMORY_OFFSET_0X28), puVar11[-2], puVar11[-1],
+                RenderTextureProcessor((int64_t)(int)((uint)puVar11[1] * *(int *)(unaff_RDI + MEMORY_OFFSET_0X18)) +
+                                      (uint64_t)*puVar11 + *(int64_t *)(unaff_RDI + MEMORY_OFFSET_0X28), puVar11[-2], puVar11[-1],
                                       *(int *)(unaff_RDI + MEMORY_OFFSET_0X18), *(uint *)(unaff_RDI + MEMORY_OFFSET_0X20));
             }
             
             // 处理Y方向像素纹理
             if (1 < *(uint *)(unaff_RDI + MEMORY_OFFSET_0X24)) {
-                RenderUVProcessor((longlong)(int)((uint)puVar11[1] * *(int *)(unaff_RDI + MEMORY_OFFSET_0X18)) +
-                                (ulonglong)*puVar11 + *(longlong *)(unaff_RDI + MEMORY_OFFSET_0X28), puVar11[-2], puVar11[-1],
+                RenderUVProcessor((int64_t)(int)((uint)puVar11[1] * *(int *)(unaff_RDI + MEMORY_OFFSET_0X18)) +
+                                (uint64_t)*puVar11 + *(int64_t *)(unaff_RDI + MEMORY_OFFSET_0X28), puVar11[-2], puVar11[-1],
                                 *(int *)(unaff_RDI + MEMORY_OFFSET_0X18), *(uint *)(unaff_RDI + MEMORY_OFFSET_0X24));
             }
             
@@ -945,7 +945,7 @@ LAB_180290cc2:
  */
 int RenderStateManager(void)
 {
-    longlong unaff_RDI;
+    int64_t unaff_RDI;
     int32_t in_R9D;
     uint64_t in_stack_00000060;
     int32_t in_stack_00000068;

@@ -284,7 +284,7 @@ void UISystemMathCalculator(uint *param_1)
     int current_estimate;              // 当前估算值
     int temp_value1;                  // 临时值1
     int temp_value2;                  // 临时值2
-    ulonglong loop_counter;           // 循环计数器
+    uint64_t loop_counter;           // 循环计数器
     uint64_t xmm_temp;              // XMM临时寄存器
     int8_t vector_temp1 [16];      // 向量临时变量1
     int8_t vector_temp2 [16];     // 向量临时变量2
@@ -301,7 +301,7 @@ void UISystemMathCalculator(uint *param_1)
     
     // 处理浮点精度问题
     if ((current_estimate != -0x80000000) && ((float)current_estimate != vector_temp1._0_4_)) {
-        mask_result = (int32_t)((ulonglong)xmm_temp >> 0x20);
+        mask_result = (int32_t)((uint64_t)xmm_temp >> 0x20);
         vector_temp2._8_4_ = mask_result;
         vector_temp2._0_8_ = xmm_temp;
         vector_temp2._12_4_ = mask_result;
@@ -320,7 +320,7 @@ void UISystemMathCalculator(uint *param_1)
         
         // 计算当前估算值的幂
         if (0 < (int)base_value) {
-            loop_counter = (ulonglong)base_value;
+            loop_counter = (uint64_t)base_value;
             do {
                 temp_value1 = temp_value1 * current_estimate;
                 temp_value2 = temp_value2 * (current_estimate + 1);
@@ -360,22 +360,22 @@ void UISystemMathCalculator(uint *param_1)
  * @note 该函数支持两种主要的数据处理模式
  * @note 数据处理过程中会进行严格的验证和错误检查
  */
-longlong UISystemDataProcessor(uint64_t param_1, uint *param_2, int param_3, int *param_4)
+int64_t UISystemDataProcessor(uint64_t param_1, uint *param_2, int param_3, int *param_4)
 {
     uint data_size;                   // 数据大小
     int temp_int1;                    // 临时整数1
     int32_t temp_float1;           // 临时浮点数1
     uint temp_uint1;                  // 无符号整数1
     int temp_int2;                    // 临时整数2
-    longlong result_ptr;              // 结果指针
+    int64_t result_ptr;              // 结果指针
     uint temp_uint2;                  // 无符号整数2
-    ulonglong loop_counter1;           // 循环计数器1
-    ulonglong loop_counter2;           // 循环计数器2
+    uint64_t loop_counter1;           // 循环计数器1
+    uint64_t loop_counter2;           // 循环计数器2
     int temp_int3;                     // 临时整数3
     int temp_int4;                     // 临时整数4
     int temp_int5;                     // 临时整数5
     int *validation_ptr;              // 验证指针
-    longlong temp_long1;              // 长整数1
+    int64_t temp_long1;              // 长整数1
     float temp_float2;                 // 临时浮点数2
     double temp_double1;               // 双精度1
     double temp_double2;               // 双精度2
@@ -402,7 +402,7 @@ longlong UISystemDataProcessor(uint64_t param_1, uint *param_2, int param_3, int
         // 模式1处理
         if (param_2[4] == 1) {
             temp_uint2 = *param_2;
-            loop_counter2 = (ulonglong)temp_uint2;
+            loop_counter2 = (uint64_t)temp_uint2;
             data_size = param_2[1];
             
             // 执行幂运算
@@ -412,7 +412,7 @@ longlong UISystemDataProcessor(uint64_t param_1, uint *param_2, int param_3, int
             
             // 处理浮点精度
             if ((temp_int5 != -0x80000000) && ((float)temp_int5 != vector_temp1._0_4_)) {
-                mask_result = (int32_t)((ulonglong)xmm_temp >> 0x20);
+                mask_result = (int32_t)((uint64_t)xmm_temp >> 0x20);
                 vector_temp2._8_4_ = mask_result;
                 vector_temp2._0_8_ = xmm_temp;
                 vector_temp2._12_4_ = mask_result;
@@ -453,7 +453,7 @@ longlong UISystemDataProcessor(uint64_t param_1, uint *param_2, int param_3, int
                 temp_long1 = 0;
                 validation_ptr = param_4;
                 do {
-                    if ((param_4 == (int *)0x0) || (*(int *)(temp_long1 + *(longlong *)(param_2 + 2)) != 0)) {
+                    if ((param_4 == (int *)0x0) || (*(int *)(temp_long1 + *(int64_t *)(param_2 + 2)) != 0)) {
                         temp_int2 = 0;
                         vector_temp1._0_4_ = 0.0;
                         temp_int1 = 1;
@@ -461,9 +461,9 @@ longlong UISystemDataProcessor(uint64_t param_1, uint *param_2, int param_3, int
                         if (0 < (int)loop_counter2) {
                             do {
                                 // 计算数据值
-                                temp_float2 = ABS((float)*(int *)(*(longlong *)(param_2 + 10) +
-                                    (longlong)(int)((longlong)((ulonglong)(uint)((int)((longlong)temp_int4 / (longlong)temp_int1) >> 0x1f) << 0x20 |
-                                    (longlong)temp_int4 / (longlong)temp_int1 & 0xffffffffU) % (longlong)temp_int5) * 4)) * (float)temp_double2 +
+                                temp_float2 = ABS((float)*(int *)(*(int64_t *)(param_2 + 10) +
+                                    (int64_t)(int)((int64_t)((uint64_t)(uint)((int)((int64_t)temp_int4 / (int64_t)temp_int1) >> 0x1f) << 0x20 |
+                                    (int64_t)temp_int4 / (int64_t)temp_int1 & 0xffffffffU) % (int64_t)temp_int5) * 4)) * (float)temp_double2 +
                                     (float)temp_double1 + vector_temp1._0_4_;
                                 
                                 if (param_2[8] != 0) {
@@ -478,8 +478,8 @@ longlong UISystemDataProcessor(uint64_t param_1, uint *param_2, int param_3, int
                                 temp_int2 = temp_int2 + (int)loop_counter2 * temp_int2;
                                 temp_int1 = temp_int1 * temp_int5;
                                 temp_int2 = temp_int2 + 1;
-                                *(float *)(result_ptr + (longlong)temp_int2 * 4) = temp_float2;
-                                loop_counter2 = (ulonglong)*param_2;
+                                *(float *)(result_ptr + (int64_t)temp_int2 * 4) = temp_float2;
+                                loop_counter2 = (uint64_t)*param_2;
                             } while (temp_int2 < (int)*param_2);
                         }
                         
@@ -497,15 +497,15 @@ longlong UISystemDataProcessor(uint64_t param_1, uint *param_2, int param_3, int
             temp_long1 = 0;
             validation_ptr = param_4;
             do {
-                if ((param_4 == (int *)0x0) || (*(int *)(temp_long1 + *(longlong *)(param_2 + 2)) != 0)) {
+                if ((param_4 == (int *)0x0) || (*(int *)(temp_long1 + *(int64_t *)(param_2 + 2)) != 0)) {
                     temp_uint2 = *param_2;
                     temp_int4 = 0;
                     vector_temp1._0_4_ = 0.0;
                     
                     if (0 < (int)temp_uint2) {
                         do {
-                            temp_float2 = ABS((float)*(int *)(*(longlong *)(param_2 + 10) +
-                                (longlong)(int)(temp_uint2 * temp_int5 + temp_int4) * 4)) *
+                            temp_float2 = ABS((float)*(int *)(*(int64_t *)(param_2 + 10) +
+                                (int64_t)(int)(temp_uint2 * temp_int5 + temp_int4) * 4)) *
                                 (float)temp_double2 + (float)temp_double1 + vector_temp1._0_4_;
                             
                             if (param_2[8] != 0) {
@@ -519,7 +519,7 @@ longlong UISystemDataProcessor(uint64_t param_1, uint *param_2, int param_3, int
                             
                             temp_int2 = temp_int2 * temp_uint2 + temp_int4;
                             temp_int4 = temp_int4 + 1;
-                            *(float *)(result_ptr + (longlong)temp_int2 * 4) = temp_float2;
+                            *(float *)(result_ptr + (int64_t)temp_int2 * 4) = temp_float2;
                             temp_uint2 = *param_2;
                         } while (temp_int4 < (int)temp_uint2);
                     }
@@ -555,12 +555,12 @@ void UISystemMemoryManager(void)
     int product1;                      // 乘积1
     int product2;                      // 乘积2
     int temp_int1;                     // 临时整数1
-    ulonglong loop_counter;            // 循环计数器
-    ulonglong data_count;              // 数据计数
+    uint64_t loop_counter;            // 循环计数器
+    uint64_t data_count;              // 数据计数
     int temp_int2;                     // 临时整数2
     int *validation_ptr;               // 验证指针
     int *temp_ptr1;                    // 临时指针1
-    longlong offset_ptr;               // 偏移指针
+    int64_t offset_ptr;               // 偏移指针
     float temp_float;                  // 临时浮点数
     uint64_t xmm_temp;               // XMM临时寄存器
     int8_t vector_temp1 [16];      // 向量临时变量1
@@ -571,7 +571,7 @@ void UISystemMemoryManager(void)
     
     // 获取数据大小
     data_size1 = *(uint*)(0x0);  // 假设的RDI寄存器值
-    data_count = *(ulonglong*)(0x0);  // 假设的RBX寄存器值
+    data_count = *(uint64_t*)(0x0);  // 假设的RBX寄存器值
     
     // 执行幂运算
     pow_result = powf();
@@ -580,7 +580,7 @@ void UISystemMemoryManager(void)
     
     // 处理浮点精度
     if ((estimate_value != -0x80000000) && ((float)estimate_value != vector_temp1._0_4_)) {
-        mask_result = (int32_t)((ulonglong)xmm_temp >> 0x20);
+        mask_result = (int32_t)((uint64_t)xmm_temp >> 0x20);
         vector_temp2._8_4_ = mask_result;
         vector_temp2._0_8_ = xmm_temp;
         vector_temp2._12_4_ = mask_result;
@@ -621,7 +621,7 @@ void UISystemMemoryManager(void)
         offset_ptr = 0;
         validation_ptr = *(int**)(0x0);  // 假设的R14寄存器值
         do {
-            if ((*(int**)(0x0) == (int *)0x0) || (*(int *)(offset_ptr + *(longlong *)(*(uint**)(0x0) + 2)) != 0)) {
+            if ((*(int**)(0x0) == (int *)0x0) || (*(int *)(offset_ptr + *(int64_t *)(*(uint**)(0x0) + 2)) != 0)) {
                 product2 = 0;
                 vector_temp1._0_4_ = 0.0;
                 temp_int2 = 1;
@@ -629,9 +629,9 @@ void UISystemMemoryManager(void)
                 if (0 < (int)data_count) {
                     do {
                         // 计算内存访问值
-                        temp_float = ABS((float)*(int *)(*(longlong *)(*(uint**)(0x0) + 10) +
-                            (longlong)(int)((longlong)((ulonglong)(uint)((int)((longlong)product1 / (longlong)temp_int2) >> 0x1f) << 0x20 |
-                            (longlong)product1 / (longlong)temp_int2 & 0xffffffffU) % (longlong)estimate_value) * 4)) * scale_factor1 + scale_factor2 +
+                        temp_float = ABS((float)*(int *)(*(int64_t *)(*(uint**)(0x0) + 10) +
+                            (int64_t)(int)((int64_t)((uint64_t)(uint)((int)((int64_t)product1 / (int64_t)temp_int2) >> 0x1f) << 0x20 |
+                            (int64_t)product1 / (int64_t)temp_int2 & 0xffffffffU) % (int64_t)estimate_value) * 4)) * scale_factor1 + scale_factor2 +
                             vector_temp1._0_4_;
                         
                         if (*(uint**)(0x0)[8] != 0) {
@@ -646,8 +646,8 @@ void UISystemMemoryManager(void)
                         temp_int1 = product2 + (int)data_count * temp_int1;
                         temp_int2 = temp_int2 * estimate_value;
                         product2 = product2 + 1;
-                        *(float *)(*(longlong*)(0x0) + (longlong)temp_int1 * 4) = temp_float;  // 假设的RSI寄存器值
-                        data_count = (ulonglong)**(uint***)(0x0);
+                        *(float *)(*(int64_t*)(0x0) + (int64_t)temp_int1 * 4) = temp_float;  // 假设的RSI寄存器值
+                        data_count = (uint64_t)**(uint***)(0x0);
                     } while (product2 < (int)**(uint***)(0x0));
                 }
                 
@@ -690,13 +690,13 @@ void UISystemEmptyFunction(void)
  */
 void UISystemConfigProcessor(uint64_t param_1, uint64_t param_2, int param_3, int param_4)
 {
-    longlong temp_long1;              // 临时长整数1
+    int64_t temp_long1;              // 临时长整数1
     int8_t stack_data1 [32];      // 栈数据1
     int8_t stack_data2 [144];     // 栈数据2
-    ulonglong xor_value;              // 异或值
+    uint64_t xor_value;              // 异或值
     
     // 执行异或操作以获取配置值
-    xor_value = *(ulonglong*)(0x180bf00a8) ^ (ulonglong)stack_data1;
+    xor_value = *(uint64_t*)(0x180bf00a8) ^ (uint64_t)stack_data1;
     
     // 处理配置选项
     if (param_4 != 0) {
@@ -711,7 +711,7 @@ void UISystemConfigProcessor(uint64_t param_1, uint64_t param_2, int param_3, in
     }
     
     // 应用配置
-    FUN_1808fc050(xor_value ^ (ulonglong)stack_data1);
+    FUN_1808fc050(xor_value ^ (uint64_t)stack_data1);
 }
 
 /**
@@ -745,10 +745,10 @@ void UISystemDataCleaner(uint64_t param_1, uint64_t param_2)
  */
 void UISystemErrorHandler(void)
 {
-    ulonglong stack_param;            // 栈参数
+    uint64_t stack_param;            // 栈参数
     
     // 执行错误恢复操作
-    FUN_1808fc050(stack_param ^ (ulonglong)&stack0x00000000);
+    FUN_1808fc050(stack_param ^ (uint64_t)&stack0x00000000);
 }
 
 /**
@@ -778,7 +778,7 @@ void UISystemEmergencyErrorHandler(void)
  * @note 数据获取过程中会进行严格的边界检查
  * @warning 如果访问越界，会返回错误值
  */
-int32_t UISystemDataGetter(longlong param_1)
+int32_t UISystemDataGetter(int64_t param_1)
 {
     int index_value;                   // 索引值
     
@@ -786,7 +786,7 @@ int32_t UISystemDataGetter(longlong param_1)
     if (0 < *(int *)(param_1 + 8)) {
         index_value = FUN_18082f650();
         if (-1 < index_value) {
-            return *(int32_t *)(*(longlong *)(param_1 + 0x28) + (longlong)index_value * 4);
+            return *(int32_t *)(*(int64_t *)(param_1 + 0x28) + (int64_t)index_value * 4);
         }
     }
     return 0xffffffff;
@@ -808,26 +808,26 @@ int32_t UISystemDataGetter(longlong param_1)
  * @note 批量处理过程中会进行严格的验证和错误检查
  * @note 该函数支持多种数据处理模式和优化技术
  */
-uint64_t UISystemBatchDataProcessor(int *param_1, longlong param_2, uint64_t param_3, uint param_4)
+uint64_t UISystemBatchDataProcessor(int *param_1, int64_t param_2, uint64_t param_3, uint param_4)
 {
     int data_dimension;                // 数据维度
     float scale_factor;                // 缩放因子
-    longlong data_ptr;                 // 数据指针
+    int64_t data_ptr;                 // 数据指针
     int temp_int1;                     // 临时整数1
     uint temp_uint1;                   // 临时无符号整数1
     int temp_int2;                     // 临时整数2
-    ulonglong loop_counter1;           // 循环计数器1
-    ulonglong loop_counter2;           // 循环计数器2
+    uint64_t loop_counter1;           // 循环计数器1
+    uint64_t loop_counter2;           // 循环计数器2
     int temp_int3;                     // 临时整数3
     int temp_int4;                     // 临时整数4
     int temp_int5;                     // 临时整数5
     float *float_ptr;                  // 浮点指针
-    ulonglong temp_ulong1;             // 临时无符号长整数1
-    ulonglong temp_ulong2;             // 临时无符号长整数2
-    longlong temp_long1;               // 临时长整数1
+    uint64_t temp_ulong1;             // 临时无符号长整数1
+    uint64_t temp_ulong2;             // 临时无符号长整数2
+    int64_t temp_long1;               // 临时长整数1
     int temp_int6;                     // 临时整数6
     
-    loop_counter2 = (ulonglong)(int)param_4;
+    loop_counter2 = (uint64_t)(int)param_4;
     
     // 检查数据维度是否有效
     if (0 < param_1[2]) {
@@ -874,12 +874,12 @@ uint64_t UISystemBatchDataProcessor(int *param_1, longlong param_2, uint64_t par
                                     temp_int5 = temp_int5 >> 1;
                                     data_dimension = temp_int5 + temp_uint1;
                                     temp_int6 = temp_int5;
-                                    if (temp_uint1 < *(uint *)(*(longlong *)(param_1 + 8) + (longlong)data_dimension * 4)) {
+                                    if (temp_uint1 < *(uint *)(*(int64_t *)(param_1 + 8) + (int64_t)data_dimension * 4)) {
                                         temp_int6 = temp_int4;
                                     }
                                     temp_uint1 = temp_uint1 + temp_int6;
                                     temp_int6 = temp_int4;
-                                    if (temp_uint1 < *(uint *)(*(longlong *)(param_1 + 8) + (longlong)data_dimension * 4)) {
+                                    if (temp_uint1 < *(uint *)(*(int64_t *)(param_1 + 8) + (int64_t)data_dimension * 4)) {
                                         temp_int6 = temp_int5;
                                     }
                                     temp_int2 = temp_int2 - temp_int6;
@@ -887,18 +887,18 @@ uint64_t UISystemBatchDataProcessor(int *param_1, longlong param_2, uint64_t par
                                 } while (1 < temp_int5);
                             }
                             
-                            temp_int2 = (int)*(char *)(*(longlong *)(param_1 + 0xc) + (longlong)(int)temp_uint1);
+                            temp_int2 = (int)*(char *)(*(int64_t *)(param_1 + 0xc) + (int64_t)(int)temp_uint1);
                             if (temp_int3 < temp_int2) {
                                 // 错误处理
                                 func_0x00018082d690(param_3, temp_int3);
                                 return 0xffffffff;
                             }
                             
-                            loop_counter2 = (ulonglong)param_4;
+                            loop_counter2 = (uint64_t)param_4;
                         } while (false);
                     }
                     else {
-                        temp_uint1 = *(uint *)(*(longlong *)(param_1 + 0xe) + (longlong)temp_int2 * 4);
+                        temp_uint1 = *(uint *)(*(int64_t *)(param_1 + 0xe) + (int64_t)temp_int2 * 4);
                         if ((int)temp_uint1 < 0) {
                             temp_int2 = param_1[2] - (temp_uint1 & 0x7fff);
                             temp_uint1 = (int)temp_uint1 >> 0xf & 0x7fff;
@@ -906,7 +906,7 @@ uint64_t UISystemBatchDataProcessor(int *param_1, longlong param_2, uint64_t par
                         }
                         else {
                             temp_uint1 = temp_uint1 - 1;
-                            temp_int2 = (int)*(char *)(*(longlong *)(param_1 + 0xc) + (longlong)(int)temp_uint1);
+                            temp_int2 = (int)*(char *)(*(int64_t *)(param_1 + 0xc) + (int64_t)(int)temp_uint1);
                         }
                     }
                     
@@ -916,8 +916,8 @@ uint64_t UISystemBatchDataProcessor(int *param_1, longlong param_2, uint64_t par
                         return 0xffffffff;
                     }
                     
-                    data_ptr = *(longlong *)(param_1 + 6);
-                    temp_long1 = (longlong)(int)(*param_1 * temp_uint1);
+                    data_ptr = *(int64_t *)(param_1 + 6);
+                    temp_long1 = (int64_t)(int)(*param_1 * temp_uint1);
                     temp_ulong2 = loop_counter1;
                     temp_ulong1 = loop_counter1;
                     
@@ -925,48 +925,48 @@ uint64_t UISystemBatchDataProcessor(int *param_1, longlong param_2, uint64_t par
                     switch(*param_1) {
                     case 8:
                         temp_int4 = 1;
-                        temp_long1 = (longlong)temp_int6;
+                        temp_long1 = (int64_t)temp_int6;
                         temp_ulong2 = 1;
                         temp_int6 = temp_int6 + 1;
                         *(float *)(param_2 + temp_long1 * 4) = *(float *)(data_ptr + temp_long1 * 4) + *(float *)(param_2 + temp_long1 * 4);
                     case 7:
-                        temp_long1 = (longlong)temp_int6;
+                        temp_long1 = (int64_t)temp_int6;
                         temp_int4 = temp_int4 + 1;
                         temp_ulong1 = temp_ulong2 + 1;
                         temp_int6 = temp_int6 + 1;
                         *(float *)(param_2 + temp_long1 * 4) = *(float *)(data_ptr + (temp_ulong2 + temp_long1) * 4) + *(float *)(param_2 + temp_long1 * 4);
                     case 6:
-                        temp_long1 = (longlong)temp_int6;
+                        temp_long1 = (int64_t)temp_int6;
                         temp_int4 = temp_int4 + 1;
                         temp_ulong2 = temp_ulong1 + 1;
                         temp_int6 = temp_int6 + 1;
                         *(float *)(param_2 + temp_long1 * 4) = *(float *)(data_ptr + (temp_ulong1 + temp_long1) * 4) + *(float *)(param_2 + temp_long1 * 4);
                     case 5:
-                        temp_long1 = (longlong)temp_int6;
+                        temp_long1 = (int64_t)temp_int6;
                         temp_int4 = temp_int4 + 1;
                         temp_ulong1 = temp_ulong2 + 1;
                         temp_int6 = temp_int6 + 1;
                         *(float *)(param_2 + temp_long1 * 4) = *(float *)(data_ptr + (temp_ulong2 + temp_long1) * 4) + *(float *)(param_2 + temp_long1 * 4);
                     case 4:
-                        temp_long1 = (longlong)temp_int6;
+                        temp_long1 = (int64_t)temp_int6;
                         temp_int4 = temp_int4 + 1;
                         temp_ulong2 = temp_ulong1 + 1;
                         temp_int6 = temp_int6 + 1;
                         *(float *)(param_2 + temp_long1 * 4) = *(float *)(data_ptr + (temp_ulong1 + temp_long1) * 4) + *(float *)(param_2 + temp_long1 * 4);
                     case 3:
-                        temp_long1 = (longlong)temp_int6;
+                        temp_long1 = (int64_t)temp_int6;
                         temp_int4 = temp_int4 + 1;
                         temp_int6 = temp_int6 + 1;
                         *(float *)(param_2 + temp_long1 * 4) = *(float *)(data_ptr + (temp_ulong2 + temp_long1) * 4) + *(float *)(param_2 + temp_long1 * 4);
                     case 2:
-                        temp_long1 = (longlong)temp_int6;
-                        data_ptr = (longlong)temp_int4;
+                        temp_long1 = (int64_t)temp_int6;
+                        data_ptr = (int64_t)temp_int4;
                         temp_int4 = temp_int4 + 1;
                         temp_int6 = temp_int6 + 1;
                         *(float *)(param_2 + temp_long1 * 4) = *(float *)(data_ptr + (data_ptr + temp_long1) * 4) + *(float *)(param_2 + temp_long1 * 4);
                     case 1:
-                        temp_ulong1 = (ulonglong)(temp_int6 + 1);
-                        *(float *)(param_2 + (longlong)temp_int6 * 4) = *(float *)(data_ptr + (temp_int4 + temp_long1) * 4) + *(float *)(param_2 + (longlong)temp_int6 * 4);
+                        temp_ulong1 = (uint64_t)(temp_int6 + 1);
+                        *(float *)(param_2 + (int64_t)temp_int6 * 4) = *(float *)(data_ptr + (temp_int4 + temp_long1) * 4) + *(float *)(param_2 + (int64_t)temp_int6 * 4);
                     }
                 } while ((int)temp_ulong1 < (int)loop_counter2);
             }
@@ -1008,12 +1008,12 @@ uint64_t UISystemBatchDataProcessor(int *param_1, longlong param_2, uint64_t par
                                 temp_int4 = temp_int4 >> 1;
                                 temp_int6 = temp_int4 + temp_uint1;
                                 temp_int5 = temp_int4;
-                                if (temp_uint1 < *(uint *)(*(longlong *)(param_1 + 8) + (longlong)temp_int6 * 4)) {
+                                if (temp_uint1 < *(uint *)(*(int64_t *)(param_1 + 8) + (int64_t)temp_int6 * 4)) {
                                     temp_int5 = 0;
                                 }
                                 temp_uint1 = temp_uint1 + temp_int5;
                                 temp_int5 = 0;
-                                if (temp_uint1 < *(uint *)(*(longlong *)(param_1 + 8) + (longlong)temp_int6 * 4)) {
+                                if (temp_uint1 < *(uint *)(*(int64_t *)(param_1 + 8) + (int64_t)temp_int6 * 4)) {
                                     temp_int5 = temp_int4;
                                 }
                                 temp_int2 = temp_int2 - temp_int5;
@@ -1021,7 +1021,7 @@ uint64_t UISystemBatchDataProcessor(int *param_1, longlong param_2, uint64_t par
                             } while (1 < temp_int4);
                         }
                         
-                        temp_int2 = (int)*(char *)(*(longlong *)(param_1 + 0xc) + (longlong)(int)temp_uint1);
+                        temp_int2 = (int)*(char *)(*(int64_t *)(param_1 + 0xc) + (int64_t)(int)temp_uint1);
                         if (temp_int3 < temp_int2) {
                             // 错误处理
                             func_0x00018082d690(param_3, temp_int3);
@@ -1031,7 +1031,7 @@ uint64_t UISystemBatchDataProcessor(int *param_1, longlong param_2, uint64_t par
                     while (false);
                 }
                 else {
-                    temp_uint1 = *(uint *)(*(longlong *)(param_1 + 0xe) + (longlong)temp_int2 * 4);
+                    temp_uint1 = *(uint *)(*(int64_t *)(param_1 + 0xe) + (int64_t)temp_int2 * 4);
                     if ((int)temp_uint1 < 0) {
                         temp_int2 = param_1[2] - (temp_uint1 & 0x7fff);
                         temp_uint1 = (int)temp_uint1 >> 0xf & 0x7fff;
@@ -1039,7 +1039,7 @@ uint64_t UISystemBatchDataProcessor(int *param_1, longlong param_2, uint64_t par
                     }
                     else {
                         temp_uint1 = temp_uint1 - 1;
-                        temp_int2 = (int)*(char *)(*(longlong *)(param_1 + 0xc) + (longlong)(int)temp_uint1);
+                        temp_int2 = (int)*(char *)(*(int64_t *)(param_1 + 0xc) + (int64_t)(int)temp_uint1);
                     }
                 }
                 
@@ -1049,7 +1049,7 @@ uint64_t UISystemBatchDataProcessor(int *param_1, longlong param_2, uint64_t par
                     return 0xffffffff;
                 }
                 
-                float_ptr = (float *)(*(longlong *)(param_1 + 6) + (longlong)(int)(*param_1 * temp_uint1) * 4);
+                float_ptr = (float *)(*(int64_t *)(param_1 + 6) + (int64_t)(int)(*param_1 * temp_uint1) * 4);
                 loop_counter1 = 0;
                 if (0 < *param_1) {
                     do {
@@ -1058,10 +1058,10 @@ uint64_t UISystemBatchDataProcessor(int *param_1, longlong param_2, uint64_t par
                         float_ptr = float_ptr + 1;
                         *(float *)(param_2 + temp_ulong1 * 4) = *(float *)(param_2 + temp_ulong1 * 4) + scale_factor;
                         temp_ulong1 = temp_ulong1 + 1;
-                        loop_counter1 = (ulonglong)temp_uint1;
+                        loop_counter1 = (uint64_t)temp_uint1;
                     } while ((int)temp_uint1 < *param_1);
                 }
-            } while ((longlong)temp_ulong1 < (longlong)loop_counter2);
+            } while ((int64_t)temp_ulong1 < (int64_t)loop_counter2);
         }
     }
     

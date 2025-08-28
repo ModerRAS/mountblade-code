@@ -119,7 +119,7 @@ void UISystem_NoOperation(void);
  * @param event_handle 事件句柄
  * @param callback_handle 回调句柄
  */
-void UISystem_ProcessUIEvent(longlong context_handle, uint64_t event_handle, uint64_t callback_handle);
+void UISystem_ProcessUIEvent(int64_t context_handle, uint64_t event_handle, uint64_t callback_handle);
 
 /**
  * @brief 事件处理失败
@@ -141,7 +141,7 @@ uint64_t UISystem_EventProcessingFailed(void);
  * @param event_handle 事件句柄
  * @param callback_handle 回调句柄
  */
-void UISystem_ProcessUIEvent_Simplified(longlong context_handle, uint64_t event_handle, uint64_t callback_handle)
+void UISystem_ProcessUIEvent_Simplified(int64_t context_handle, uint64_t event_handle, uint64_t callback_handle)
 {
     // 简化实现：基本的事件处理逻辑
     // 原始实现：涉及复杂的系统控制块操作和回调管理
@@ -176,21 +176,21 @@ void UI_System_Init_Placeholder(void)
 // UI系统事件处理器注册函数
 void UI_System_EventHandler_Register(void)
 {
-  longlong lVar1;
+  int64_t lVar1;
   uint64_t uVar2;
-  longlong lVar3;
-  longlong unaff_RSI;
-  longlong *plVar4;
+  int64_t lVar3;
+  int64_t unaff_RSI;
+  int64_t *plVar4;
   
-  lVar1 = *(longlong *)(*(longlong *)(unaff_RSI + 0x108) + 0x10);
+  lVar1 = *(int64_t *)(*(int64_t *)(unaff_RSI + 0x108) + 0x10);
   uVar2 = *(uint64_t *)(lVar1 + 0x168);
   UI_Event_Process_Event(uVar2);
-  *(longlong *)(*(longlong *)(unaff_RSI + 0x108) + 0x28) = unaff_RSI;
-  lVar3 = *(longlong *)(unaff_RSI + 0x108);
-  plVar4 = (longlong *)(lVar3 + 0x18);
+  *(int64_t *)(*(int64_t *)(unaff_RSI + 0x108) + 0x28) = unaff_RSI;
+  lVar3 = *(int64_t *)(unaff_RSI + 0x108);
+  plVar4 = (int64_t *)(lVar3 + 0x18);
   *(uint64_t *)(lVar3 + 0x20) = *(uint64_t *)(lVar1 + 0x158);
   *plVar4 = lVar1 + 0x150;
-  *(longlong **)(lVar1 + 0x158) = plVar4;
+  *(int64_t **)(lVar1 + 0x158) = plVar4;
   **(uint64_t **)(lVar3 + 0x20) = plVar4;
                     // WARNING: Subroutine does not return
   UI_Event_Dispatch_Event(uVar2);
@@ -209,9 +209,9 @@ uint64_t UI_System_Get_Error_Code(void)
 
 
 
-// 函数: void FUN_180745e80(longlong param_1,uint64_t param_2,int32_t param_3,uint64_t param_4)
+// 函数: void FUN_180745e80(int64_t param_1,uint64_t param_2,int32_t param_3,uint64_t param_4)
 // UI系统事件分发函数
-void UI_System_Event_Dispatch(longlong param_1,uint64_t param_2,int32_t param_3,uint64_t param_4)
+void UI_System_Event_Dispatch(int64_t param_1,uint64_t param_2,int32_t param_3,uint64_t param_4)
 {
   UI_Event_Queue_Add(*(uint64_t *)(param_1 + 0x170),param_2,1,param_3,param_4);
   return;
@@ -221,11 +221,11 @@ void UI_System_Event_Dispatch(longlong param_1,uint64_t param_2,int32_t param_3,
 
 
 
-// 函数: void FUN_180745ed0(longlong param_1,int *param_2)
+// 函数: void FUN_180745ed0(int64_t param_1,int *param_2)
 // UI系统回调执行函数
-void UI_System_Callback_Execute(longlong param_1,int *param_2)
+void UI_System_Callback_Execute(int64_t param_1,int *param_2)
 {
-  (**(code **)(**(longlong **)(param_1 + 0x170) + 0x10))();
+  (**(code **)(**(int64_t **)(param_1 + 0x170) + 0x10))();
   if (param_2 != (int *)0x0) {
     *param_2 = *param_2 - *(int *)(param_1 + 0x110);
   }
@@ -236,9 +236,9 @@ void UI_System_Callback_Execute(longlong param_1,int *param_2)
 
 
 
-// 函数: void FUN_180745f10(longlong param_1,int *param_2)
+// 函数: void FUN_180745f10(int64_t param_1,int *param_2)
 // UI系统资源清理函数
-void UI_System_Resource_Cleanup(longlong param_1,int *param_2)
+void UI_System_Resource_Cleanup(int64_t param_1,int *param_2)
 {
   UI_Callback_Execute_Resource(*(uint64_t *)(param_1 + 0x170));
   if (param_2 != (int *)0x0) {
@@ -249,9 +249,9 @@ void UI_System_Resource_Cleanup(longlong param_1,int *param_2)
 
 
 
-// 函数: uint64_t FUN_180745f70(uint64_t param_1,longlong param_2)
+// 函数: uint64_t FUN_180745f70(uint64_t param_1,int64_t param_2)
 // UI系统事件状态检查函数
-uint64_t UI_System_Event_State_Check(uint64_t param_1,longlong param_2)
+uint64_t UI_System_Event_State_Check(uint64_t param_1,int64_t param_2)
 {
   uint64_t uVar1;
   
@@ -271,16 +271,16 @@ uint64_t UI_System_Event_State_Check(uint64_t param_1,longlong param_2)
 
 
 
-// 函数: uint64_t FUN_1807460d0(longlong param_1,int *param_2)
+// 函数: uint64_t FUN_1807460d0(int64_t param_1,int *param_2)
 // UI系统数据复制函数
-uint64_t UI_System_Data_Copy(longlong param_1,int *param_2)
+uint64_t UI_System_Data_Copy(int64_t param_1,int *param_2)
 {
   int iVar1;
   
   if ((((param_2 != (int *)0x0) && (iVar1 = *param_2, iVar1 - 0x31U < 0x38)) &&
-      (((longlong)iVar1 & 3U) == 0)) && ((uint)param_2[8] < 0x21)) {
+      (((int64_t)iVar1 & 3U) == 0)) && ((uint)param_2[8] < 0x21)) {
                     // WARNING: Subroutine does not return
-    memcpy(param_2,param_1 + 0x11608,(longlong)iVar1);
+    memcpy(param_2,param_1 + 0x11608,(int64_t)iVar1);
   }
   return 0x1f;
 }
@@ -303,15 +303,15 @@ void UI_System_Memory_Operation(void)
 // UI系统数据批量复制函数
 uint64_t UI_System_Data_Batch_Copy(void)
 {
-  longlong lVar1;
-  longlong unaff_RBP;
-  longlong unaff_RDI;
-  longlong unaff_R14;
+  int64_t lVar1;
+  int64_t unaff_RBP;
+  int64_t unaff_RDI;
+  int64_t unaff_R14;
   
   if (0 < (int)unaff_RBP) {
     lVar1 = 0;
     do {
-      *(int32_t *)(*(longlong *)(unaff_RDI + 0x30) + lVar1 * 4) =
+      *(int32_t *)(*(int64_t *)(unaff_RDI + 0x30) + lVar1 * 4) =
            *(int32_t *)(unaff_R14 + 0x123b0 + lVar1 * 4);
       lVar1 = lVar1 + 1;
     } while (lVar1 < unaff_RBP);
@@ -483,14 +483,14 @@ uint64_t UI_System_Data_Batch_Copy(void)
 //==============================================================================
 
 // UI系统上下文变量
-extern longlong g_ui_context_handle;                  // UI系统上下文句柄
-extern longlong g_ui_system_block;                     // UI系统控制块
-extern longlong g_ui_event_queue;                      // UI事件队列
-extern longlong g_ui_callback_registry;                // UI回调注册表
-extern longlong g_ui_state_manager;                    // UI状态管理器
-extern longlong g_ui_data_count;                       // UI数据计数器
-extern longlong g_ui_target_buffer;                    // UI目标缓冲区
-extern longlong g_ui_source_buffer;                    // UI源缓冲区
+extern int64_t g_ui_context_handle;                  // UI系统上下文句柄
+extern int64_t g_ui_system_block;                     // UI系统控制块
+extern int64_t g_ui_event_queue;                      // UI事件队列
+extern int64_t g_ui_callback_registry;                // UI回调注册表
+extern int64_t g_ui_state_manager;                    // UI状态管理器
+extern int64_t g_ui_data_count;                       // UI数据计数器
+extern int64_t g_ui_target_buffer;                    // UI目标缓冲区
+extern int64_t g_ui_source_buffer;                    // UI源缓冲区
 
 //==============================================================================
 // 函数别名定义

@@ -121,14 +121,14 @@ void rendering_system_main_effect_processor(void *param_1, void *param_2)
 {
     int effect_count;
     void *effect_instance;
-    longlong context_data;
+    int64_t context_data;
     void *effect_context;
     void *render_context;
     void *effect_parameters;
-    longlong *resource_manager;
-    longlong effect_data;
+    int64_t *resource_manager;
+    int64_t effect_data;
     void **callback_pointer;
-    longlong render_state;
+    int64_t render_state;
     unsigned int effect_flags;
     char effect_buffer[RENDERING_EFFECT_BUFFER_SIZE];
     void *effect_string;
@@ -136,7 +136,7 @@ void rendering_system_main_effect_processor(void *param_1, void *param_2)
     
     // 初始化特效处理环境
     effect_instance = (void *)0xfffffffffffffffe;
-    context_data = *(longlong *)((longlong)g_rendering_memory_manager ^ (longlong)effect_buffer);
+    context_data = *(int64_t *)((int64_t)g_rendering_memory_manager ^ (int64_t)effect_buffer);
     callback_pointer = (void **)0x0;
     
     // 设置特效字符串
@@ -149,7 +149,7 @@ void rendering_system_main_effect_processor(void *param_1, void *param_2)
     
     // 创建特效实例
     effect_context = rendering_system_create_effect_instance(effect_count, &render_context, 
-                                                          *(unsigned int *)(*(longlong *)((longlong)param_1 + 0x88) + 0xa0),
+                                                          *(unsigned int *)(*(int64_t *)((int64_t)param_1 + 0x88) + 0xa0),
                                                           &effect_string);
     
     // 验证特效状态
@@ -195,22 +195,22 @@ void rendering_system_main_effect_processor(void *param_1, void *param_2)
     }
     
     // 更新特效计数器
-    effect_count = *(int *)((longlong)param_2 + 0x4c);
-    *(int *)((longlong)param_2 + 0x4c) = effect_count + 1;
+    effect_count = *(int *)((int64_t)param_2 + 0x4c);
+    *(int *)((int64_t)param_2 + 0x4c) = effect_count + 1;
     if (effect_count + 1 == RENDERING_EFFECT_MAX_COUNT) {
-        *(unsigned int *)((longlong)param_2 + 0x5c) = RENDERING_STATE_INVALID;
+        *(unsigned int *)((int64_t)param_2 + 0x5c) = RENDERING_STATE_INVALID;
     }
     
     // 清理渲染上下文
     if (render_context != (void *)0x0) {
-        (**(code **)(*(longlong *)render_context + 0x38))();
+        (**(code **)(*(int64_t *)render_context + 0x38))();
     }
     
     // 释放特效资源
     rendering_system_release_effect_resources();
     
     // 调用内存管理器清理
-    rendering_system_effect_memory_manager(context_data ^ (longlong)effect_buffer);
+    rendering_system_effect_memory_manager(context_data ^ (int64_t)effect_buffer);
 }
 
 /**
@@ -229,12 +229,12 @@ void rendering_system_main_effect_processor(void *param_1, void *param_2)
  * 5. 执行特效渲染
  * 6. 更新特效状态
  */
-void rendering_system_advanced_effect_renderer(longlong *param_1)
+void rendering_system_advanced_effect_renderer(int64_t *param_1)
 {
     float *matrix_data;
     float transform_value;
-    longlong context_data;
-    longlong *render_manager;
+    int64_t context_data;
+    int64_t *render_manager;
     void *render_context;
     unsigned int effect_flags;
     unsigned int render_flags;
@@ -242,23 +242,23 @@ void rendering_system_advanced_effect_renderer(longlong *param_1)
     float calculation_result;
     float matrix_values[4];
     float transform_values[RENDERING_EFFECT_PARAM_COUNT];
-    longlong effect_data;
+    int64_t effect_data;
     unsigned int buffer_index;
-    longlong stack_protector;
+    int64_t stack_protector;
     
     // 初始化堆栈保护
-    stack_protector = *(longlong *)((longlong)g_rendering_memory_manager ^ (longlong)&buffer_index);
+    stack_protector = *(int64_t *)((int64_t)g_rendering_memory_manager ^ (int64_t)&buffer_index);
     
     // 初始化特效渲染环境
     rendering_system_initialize_effect_rendering_environment(param_1);
     
     effect_data = *param_1;
     buffer_index = 0;
-    context_data = *(longlong *)((longlong)g_rendering_system_state + 0x1cd8);
+    context_data = *(int64_t *)((int64_t)g_rendering_system_state + 0x1cd8);
     
     // 设置渲染状态
-    *(unsigned int *)(effect_data + 0x16c) = *(unsigned int *)((longlong)g_rendering_config_data + 0x224);
-    render_manager = *(longlong **)(context_data + 0x8400);
+    *(unsigned int *)(effect_data + 0x16c) = *(unsigned int *)((int64_t)g_rendering_config_data + 0x224);
+    render_manager = *(int64_t **)(context_data + 0x8400);
     
     // 执行渲染操作
     effect_flags = (**(code **)(*render_manager + 0x70))(render_manager, *(void **)(effect_data + 0x10), 0, 1);
@@ -274,18 +274,18 @@ void rendering_system_advanced_effect_renderer(longlong *param_1)
     rendering_system_execute_matrix_transformations(param_1, effect_data, context_data);
     
     // 执行浮点数计算
-    transform_value = *(float *)((longlong)param_1 + 0x24);
+    transform_value = *(float *)((int64_t)param_1 + 0x24);
     matrix_values[0] = 0.2820948f;
     matrix_values[1] = *(float *)(param_1 + 5) * -0.48860252f;
-    matrix_values[2] = *(float *)((longlong)param_1 + 0x2c) * 0.48860252f;
+    matrix_values[2] = *(float *)((int64_t)param_1 + 0x2c) * 0.48860252f;
     matrix_values[3] = transform_value * -0.48860252f;
     
     // 计算变换值
     transform_values[0] = *(float *)(param_1 + 5) * 1.0925485f * transform_value;
-    transform_values[1] = *(float *)(param_1 + 5) * -1.0925485f * *(float *)((longlong)param_1 + 0x2c);
-    transform_values[2] = transform_value * -1.0925485f * *(float *)((longlong)param_1 + 0x2c);
+    transform_values[1] = *(float *)(param_1 + 5) * -1.0925485f * *(float *)((int64_t)param_1 + 0x2c);
+    transform_values[2] = transform_value * -1.0925485f * *(float *)((int64_t)param_1 + 0x2c);
     calculation_result = 0.94391274f;
-    transform_values[3] = (*(float *)((longlong)param_1 + 0x2c) * 3.0f * *(float *)((longlong)param_1 + 0x2c) - 1.0f) * 0.31539157f;
+    transform_values[3] = (*(float *)((int64_t)param_1 + 0x2c) * 3.0f * *(float *)((int64_t)param_1 + 0x2c) - 1.0f) * 0.31539157f;
     
     // 应用特效参数
     if (rendering_system_apply_effect_parameters(effect_data, matrix_values, transform_values, calculation_result)) {
@@ -297,7 +297,7 @@ void rendering_system_advanced_effect_renderer(longlong *param_1)
     rendering_system_effect_completion_handler(param_1, calculation_result);
     
     // 清理堆栈保护
-    rendering_system_effect_memory_manager(stack_protector ^ (longlong)&buffer_index);
+    rendering_system_effect_memory_manager(stack_protector ^ (int64_t)&buffer_index);
 }
 
 /**
@@ -317,29 +317,29 @@ void rendering_system_effect_system_initializer(void)
 {
     float *matrix_data;
     float transform_value;
-    longlong context_data;
-    longlong *render_manager;
+    int64_t context_data;
+    int64_t *render_manager;
     void *render_context;
     unsigned int effect_flags;
     void *effect_parameters;
-    longlong effect_data;
+    int64_t effect_data;
     unsigned int buffer_index;
     float matrix_values[4];
     float transform_values[RENDERING_EFFECT_PARAM_COUNT];
-    longlong stack_protector;
+    int64_t stack_protector;
     
     // 初始化堆栈保护
-    stack_protector = *(longlong *)((longlong)g_rendering_memory_manager ^ (longlong)&buffer_index);
+    stack_protector = *(int64_t *)((int64_t)g_rendering_memory_manager ^ (int64_t)&buffer_index);
     
     // 初始化特效渲染环境
     rendering_system_initialize_effect_rendering_environment();
     
     buffer_index = 0;
-    context_data = *(longlong *)((longlong)g_rendering_system_state + 0x1cd8);
+    context_data = *(int64_t *)((int64_t)g_rendering_system_state + 0x1cd8);
     
     // 设置渲染状态
-    *(unsigned int *)(effect_data + 0x16c) = *(unsigned int *)((longlong)g_rendering_config_data + 0x224);
-    render_manager = *(longlong **)(context_data + 0x8400);
+    *(unsigned int *)(effect_data + 0x16c) = *(unsigned int *)((int64_t)g_rendering_config_data + 0x224);
+    render_manager = *(int64_t **)(context_data + 0x8400);
     
     // 执行渲染操作
     effect_flags = (**(code **)(*render_manager + 0x70))(render_manager, *(void **)(effect_data + 0x10), 0, 1, 0);
@@ -384,11 +384,11 @@ void rendering_system_effect_system_initializer(void)
  * 3. 应用矩阵变换
  * 4. 更新特效状态
  */
-void rendering_system_effect_data_updater(longlong param_1, longlong param_2)
+void rendering_system_effect_data_updater(int64_t param_1, int64_t param_2)
 {
     float *matrix_data;
     float transform_value;
-    longlong effect_data;
+    int64_t effect_data;
     float calculation_result;
     int update_count;
     
@@ -410,10 +410,10 @@ void rendering_system_effect_data_updater(longlong param_1, longlong param_2)
         rendering_system_update_effect_data(param_1, param_2, transform_value, calculation_result);
         
         param_1 = param_1 + 0x10;
-    } while (update_count < *(int *)(*(longlong *)(param_2 + 0x10) + 0x78));
+    } while (update_count < *(int *)(*(int64_t *)(param_2 + 0x10) + 0x78));
     
     // 更新特效状态
-    effect_data = *(longlong *)(param_2 + 0x18);
+    effect_data = *(int64_t *)(param_2 + 0x18);
     *(int *)(effect_data + 0x4c) = *(int *)(effect_data + 0x4c) + 1;
     if (*(int *)(effect_data + 0x4c) == RENDERING_EFFECT_MAX_COUNT) {
         *(unsigned int *)(effect_data + 0x5c) = RENDERING_STATE_INVALID;
@@ -423,7 +423,7 @@ void rendering_system_effect_data_updater(longlong param_1, longlong param_2)
     rendering_system_effect_completion_handler_internal();
     
     // 清理资源
-    rendering_system_effect_memory_manager(*(longlong *)(param_1 + 0x27) ^ (longlong)&param_2);
+    rendering_system_effect_memory_manager(*(int64_t *)(param_1 + 0x27) ^ (int64_t)&param_2);
 }
 
 /**
@@ -434,10 +434,10 @@ void rendering_system_effect_data_updater(longlong param_1, longlong param_2)
  */
 void rendering_system_effect_state_resetter(void)
 {
-    longlong effect_data;
+    int64_t effect_data;
     
     // 重置特效状态
-    effect_data = *(longlong *)(*(longlong *)0x180c86938 + 0x18);
+    effect_data = *(int64_t *)(*(int64_t *)0x180c86938 + 0x18);
     *(int *)(effect_data + 0x4c) = *(int *)(effect_data + 0x4c) + 1;
     if (*(int *)(effect_data + 0x4c) == RENDERING_EFFECT_MAX_COUNT) {
         *(unsigned int *)(effect_data + 0x5c) = RENDERING_STATE_INVALID;
@@ -447,7 +447,7 @@ void rendering_system_effect_state_resetter(void)
     rendering_system_effect_completion_handler_internal();
     
     // 清理资源
-    rendering_system_effect_memory_manager(*(longlong *)(*(longlong *)0x180c86938 + 0x27) ^ (longlong)&effect_data);
+    rendering_system_effect_memory_manager(*(int64_t *)(*(int64_t *)0x180c86938 + 0x27) ^ (int64_t)&effect_data);
 }
 
 /**
@@ -461,13 +461,13 @@ void rendering_system_effect_state_resetter(void)
 void rendering_system_effect_resource_cleaner(void *param_1)
 {
     // 设置无效状态
-    *(unsigned int *)((longlong)param_1 + 0x5c) = RENDERING_STATE_INVALID;
+    *(unsigned int *)((int64_t)param_1 + 0x5c) = RENDERING_STATE_INVALID;
     
     // 调用特效处理函数
     rendering_system_effect_completion_handler_internal();
     
     // 清理资源
-    rendering_system_effect_memory_manager(*(longlong *)((longlong)param_1 + 0x27) ^ (longlong)param_1);
+    rendering_system_effect_memory_manager(*(int64_t *)((int64_t)param_1 + 0x27) ^ (int64_t)param_1);
 }
 
 // =============================================================================
@@ -554,22 +554,22 @@ extern void rendering_system_internal_state_validation(void *state);
 extern void *rendering_system_create_effect_instance(int count, void **context, unsigned int flags, void **string);
 
 /** 获取特效数据函数 */
-extern longlong rendering_system_get_effect_data(void *param);
+extern int64_t rendering_system_get_effect_data(void *param);
 
 /** 设置特效参数函数 */
-extern void rendering_system_setup_effect_parameters(longlong data, void **parameters);
+extern void rendering_system_setup_effect_parameters(int64_t data, void **parameters);
 
 /** 创建特效资源管理器函数 */
-extern longlong *rendering_system_create_effect_resource_manager(void *state, void ***callback, void **params, int flags);
+extern int64_t *rendering_system_create_effect_resource_manager(void *state, void ***callback, void **params, int flags);
 
 /** 执行特效渲染函数 */
-extern void rendering_system_execute_effect_rendering(void *instance, longlong data, void *buffer);
+extern void rendering_system_execute_effect_rendering(void *instance, int64_t data, void *buffer);
 
 /** 更新特效状态函数 */
-extern void rendering_system_update_effect_state(void *instance, longlong data);
+extern void rendering_system_update_effect_state(void *instance, int64_t data);
 
 /** 清理特效资源函数 */
-extern void rendering_system_cleanup_effect_resources(void *instance, longlong data);
+extern void rendering_system_cleanup_effect_resources(void *instance, int64_t data);
 
 /** 更新全局渲染状态函数 */
 extern void rendering_system_update_global_render_state(void);
@@ -581,46 +581,46 @@ extern void rendering_system_process_effect_completion_callback(void *instance, 
 extern void rendering_system_release_effect_resources(void);
 
 /** 初始化特效渲染环境函数 */
-extern void rendering_system_initialize_effect_rendering_environment(longlong *param);
+extern void rendering_system_initialize_effect_rendering_environment(int64_t *param);
 
 /** 处理特效数据函数 */
-extern void rendering_system_process_effect_data(longlong *param, longlong data);
+extern void rendering_system_process_effect_data(int64_t *param, int64_t data);
 
 /** 执行矩阵变换函数 */
-extern void rendering_system_execute_matrix_transformations(longlong *param, longlong data, longlong context);
+extern void rendering_system_execute_matrix_transformations(int64_t *param, int64_t data, int64_t context);
 
 /** 应用特效参数函数 */
-extern int rendering_system_apply_effect_parameters(longlong data, float *matrix, float *transform, float result);
+extern int rendering_system_apply_effect_parameters(int64_t data, float *matrix, float *transform, float result);
 
 /** 更新特效完成状态函数 */
-extern void rendering_system_update_effect_completion_state(longlong *param);
+extern void rendering_system_update_effect_completion_state(int64_t *param);
 
 /** 特效完成处理函数 */
-extern void rendering_system_effect_completion_handler(longlong *param, float result);
+extern void rendering_system_effect_completion_handler(int64_t *param, float result);
 
 /** 处理特效数据内部函数 */
-extern void rendering_system_process_effect_data_internal(longlong data);
+extern void rendering_system_process_effect_data_internal(int64_t data);
 
 /** 执行矩阵变换内部函数 */
-extern void rendering_system_execute_matrix_transformations_internal(longlong data, longlong context);
+extern void rendering_system_execute_matrix_transformations_internal(int64_t data, int64_t context);
 
 /** 计算变换值函数 */
 extern void rendering_system_calculate_transform_values(float *matrix, float *transform);
 
 /** 应用特效参数内部函数 */
-extern int rendering_system_apply_effect_parameters_internal(longlong data, float *matrix, float *transform);
+extern int rendering_system_apply_effect_parameters_internal(int64_t data, float *matrix, float *transform);
 
 /** 更新特效完成状态内部函数 */
-extern void rendering_system_update_effect_completion_state_internal(longlong data);
+extern void rendering_system_update_effect_completion_state_internal(int64_t data);
 
 /** 特效完成处理内部函数 */
 extern void rendering_system_effect_completion_handler_internal(void);
 
 /** 应用矩阵变换函数 */
-extern void rendering_system_apply_matrix_transformations(longlong param1, longlong param2, float value1, float value2);
+extern void rendering_system_apply_matrix_transformations(int64_t param1, int64_t param2, float value1, float value2);
 
 /** 更新特效数据函数 */
-extern void rendering_system_update_effect_data(longlong param1, longlong param2, float value1, float value2);
+extern void rendering_system_update_effect_data(int64_t param1, int64_t param2, float value1, float value2);
 
 /**
  * @endcond

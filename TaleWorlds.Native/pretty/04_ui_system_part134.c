@@ -185,7 +185,7 @@ void UISystem_UpdateComponentParameter_ParameterUpdater(uint64_t component_handl
  * @param output_handle 输出句柄
  * @return 操作状态码
  */
-ulonglong UISystem_FindComponent_SearchAlgorithm(uint64_t search_context, longlong search_criteria, uint64_t result_handle, int8_t search_mode, uint64_t *output_handle);
+uint64_t UISystem_FindComponent_SearchAlgorithm(uint64_t search_context, int64_t search_criteria, uint64_t result_handle, int8_t search_mode, uint64_t *output_handle);
 
 /**
  * @brief 高级组件搜索（高级搜索算法）
@@ -196,32 +196,32 @@ ulonglong UISystem_FindComponent_SearchAlgorithm(uint64_t search_context, longlo
  * @param result_ptr 结果指针
  * @return 操作状态码
  */
-ulonglong UISystem_AdvancedComponentSearch_AdvancedSearch(longlong search_handle, longlong criteria_handle, uint64_t options, int8_t mode, longlong *result_ptr);
+uint64_t UISystem_AdvancedComponentSearch_AdvancedSearch(int64_t search_handle, int64_t criteria_handle, uint64_t options, int8_t mode, int64_t *result_ptr);
 
 /**
  * @brief 基于距离的组件搜索（距离筛选函数）
  * @param distance 距离值
  * @return 操作状态码
  */
-ulonglong UISystem_DistanceBasedSearch_DistanceFilter(float distance);
+uint64_t UISystem_DistanceBasedSearch_DistanceFilter(float distance);
 
 /**
  * @brief 组件搜索thunk函数（搜索跳转函数）
  * @return 操作状态码
  */
-ulonglong UISystem_ComponentSearchThunk_SearchJump(void);
+uint64_t UISystem_ComponentSearchThunk_SearchJump(void);
 
 /**
  * @brief 简化组件搜索（简化搜索算法）
  * @return 操作状态码
  */
-ulonglong UISystem_SimpleComponentSearch_SimpleSearch(void);
+uint64_t UISystem_SimpleComponentSearch_SimpleSearch(void);
 
 /**
  * @brief 通用组件搜索（通用搜索算法）
  * @return 操作状态码
  */
-ulonglong UISystem_GeneralComponentSearch_GeneralSearch(void);
+uint64_t UISystem_GeneralComponentSearch_GeneralSearch(void);
 
 /**
  * @brief 设置UI组件布局（布局管理函数）
@@ -239,7 +239,7 @@ void UISystem_SetComponentLayout_LayoutManager(int32_t layout_id, int32_t compon
  * @param result_ptr 结果指针
  * @return 操作状态码
  */
-uint64_t UISystem_AllocateComponentData_MemoryAllocator(longlong context_handle, longlong *data_ptr, uint64_t *result_ptr);
+uint64_t UISystem_AllocateComponentData_MemoryAllocator(int64_t context_handle, int64_t *data_ptr, uint64_t *result_ptr);
 
 /**
  * @brief 调整数组容量
@@ -247,7 +247,7 @@ uint64_t UISystem_AllocateComponentData_MemoryAllocator(longlong context_handle,
  * @param new_capacity 新容量
  * @return 操作状态码
  */
-uint64_t UISystem_AdjustArrayCapacity(longlong *array_ptr, int new_capacity);
+uint64_t UISystem_AdjustArrayCapacity(int64_t *array_ptr, int new_capacity);
 
 /**
  * @brief 调整数组容量（简化版）
@@ -269,7 +269,7 @@ uint64_t UISystem_ArrayCapacityAdjustFailed(void);
  * @param new_capacity 新容量
  * @return 操作状态码
  */
-uint64_t UISystem_AdjustArrayCapacity64(longlong *array_ptr, int new_capacity);
+uint64_t UISystem_AdjustArrayCapacity64(int64_t *array_ptr, int new_capacity);
 
 /**
  * @brief 调整数组容量（64位简化版）
@@ -291,7 +291,7 @@ uint64_t UISystem_ArrayCapacityAdjust64Failed(void);
  * @param new_capacity 新容量
  * @return 操作状态码
  */
-uint64_t UISystem_AdjustArrayCapacity128(longlong *array_ptr, int new_capacity);
+uint64_t UISystem_AdjustArrayCapacity128(int64_t *array_ptr, int new_capacity);
 
 /**
  * @brief 调整数组容量（128位简化版）
@@ -315,7 +315,7 @@ uint64_t UISystem_ArrayCapacityAdjust128Failed(void);
  * @param priority 优先级
  * @return 操作状态码
  */
-uint64_t UISystem_AddComponent(longlong context_handle, int component_id, longlong component_data, int8_t priority);
+uint64_t UISystem_AddComponent(int64_t context_handle, int component_id, int64_t component_data, int8_t priority);
 
 /**
  * @brief 添加UI组件（简化版）
@@ -348,7 +348,7 @@ uint64_t UISystem_AddComponentFailed(void);
  * @param component_id 组件ID
  * @return 操作状态码
  */
-uint64_t UISystem_ValidateComponentAdd(longlong context_handle, int component_id);
+uint64_t UISystem_ValidateComponentAdd(int64_t context_handle, int component_id);
 
 /**
  * @brief 验证组件添加（简化版）
@@ -366,7 +366,7 @@ void UISystem_NoOperation2(void);
  * @param context_handle 上下文句柄
  * @param component_id 组件ID
  */
-void UISystem_RemoveComponent(longlong context_handle, int component_id);
+void UISystem_RemoveComponent(int64_t context_handle, int component_id);
 
 /**
  * @brief 移除UI组件失败
@@ -381,7 +381,7 @@ uint64_t UISystem_RemoveComponentFailed(void);
  * @param result_ptr 结果指针
  * @return 操作状态码
  */
-uint64_t UISystem_MatchComponentType(longlong context_handle, longlong target_handle, int32_t *result_ptr);
+uint64_t UISystem_MatchComponentType(int64_t context_handle, int64_t target_handle, int32_t *result_ptr);
 
 /**
  * @brief 匹配组件类型（简化版）
@@ -494,7 +494,7 @@ void UISystem_UpdateComponentParameter_Simplified(uint64_t component_handle, int
  * @param output_handle 输出句柄
  * @return 操作状态码
  */
-ulonglong UISystem_FindComponent_Simplified(uint64_t search_context, longlong search_criteria, uint64_t result_handle, int8_t search_mode, uint64_t *output_handle)
+uint64_t UISystem_FindComponent_Simplified(uint64_t search_context, int64_t search_criteria, uint64_t result_handle, int8_t search_mode, uint64_t *output_handle)
 {
     // 简化实现：基本的参数验证和错误处理
     // 原始实现：涉及FUN_18078cde0、FUN_180743ab0、FUN_1807568a0等多个函数的复杂调用
@@ -559,15 +559,15 @@ void UISystem_UpdateComponentParameter_ParameterUpdater(uint64_t param_1,int32_t
 
 
 
-// 函数: ulonglong FUN_1807479e0(uint64_t param_1,longlong param_2,uint64_t param_3,int8_t param_4,
+// 函数: uint64_t FUN_1807479e0(uint64_t param_1,int64_t param_2,uint64_t param_3,int8_t param_4,
 //                      uint64_t *param_5) - UI组件搜索算法函数
-ulonglong UISystem_FindComponent_SearchAlgorithm(uint64_t param_1,longlong param_2,uint64_t param_3,int8_t param_4,
+uint64_t UISystem_FindComponent_SearchAlgorithm(uint64_t param_1,int64_t param_2,uint64_t param_3,int8_t param_4,
                        uint64_t *param_5)
 
 {
   uint uVar1;
-  ulonglong uVar2;
-  longlong lStackX_10;
+  uint64_t uVar2;
+  int64_t lStackX_10;
   
   lStackX_10 = 0;
   if (param_2 == 0) {
@@ -581,7 +581,7 @@ ulonglong UISystem_FindComponent_SearchAlgorithm(uint64_t param_1,longlong param
     uVar2 = UISystem_ComponentMatcher(param_1,param_2);
     if ((int)uVar2 == 0) {
       uVar1 = UISystem_ComponentProcessor(lStackX_10,param_2,param_3,param_4,1,(char)uVar2);
-      uVar2 = (ulonglong)uVar1;
+      uVar2 = (uint64_t)uVar1;
       if (uVar1 == 0) {
         uVar2 = UISystem_ComponentValidator(lStackX_10);
         if ((int)uVar2 == 0) {
@@ -604,19 +604,19 @@ ulonglong UISystem_FindComponent_SearchAlgorithm(uint64_t param_1,longlong param
 
 
 
-// 函数: ulonglong FUN_180747ad0(longlong param_1,longlong param_2,uint64_t param_3,int8_t param_4,
-//                      longlong *param_5) - UI组件高级搜索函数
-ulonglong UISystem_AdvancedComponentSearch_AdvancedSearch(longlong param_1,longlong param_2,uint64_t param_3,int8_t param_4,
-                       longlong *param_5)
+// 函数: uint64_t FUN_180747ad0(int64_t param_1,int64_t param_2,uint64_t param_3,int8_t param_4,
+//                      int64_t *param_5) - UI组件高级搜索函数
+uint64_t UISystem_AdvancedComponentSearch_AdvancedSearch(int64_t param_1,int64_t param_2,uint64_t param_3,int8_t param_4,
+                       int64_t *param_5)
 
 {
   int iVar1;
-  longlong lVar2;
-  longlong *plVar3;
+  int64_t lVar2;
+  int64_t *plVar3;
   uint uVar4;
-  ulonglong uVar5;
+  uint64_t uVar5;
   uint64_t *puVar6;
-  longlong *plVar7;
+  int64_t *plVar7;
   int8_t uVar8;
   uint64_t *puVar9;
   int32_t uVar10;
@@ -624,13 +624,13 @@ ulonglong UISystem_AdvancedComponentSearch_AdvancedSearch(longlong param_1,longl
   float afStackX_10 [2];
   uint64_t uStackX_18;
   int8_t uStackX_20;
-  longlong *aplStack_58 [4];
+  int64_t *aplStack_58 [4];
   
   plVar3 = param_5;
   uVar8 = 0;
-  aplStack_58[0] = (longlong *)0x0;
+  aplStack_58[0] = (int64_t *)0x0;
   uVar10 = 0xffffffff;
-  if (param_5 != (longlong *)0x0) {
+  if (param_5 != (int64_t *)0x0) {
     *param_5 = 0;
   }
   if (param_2 == 0) {
@@ -641,7 +641,7 @@ ulonglong UISystem_AdvancedComponentSearch_AdvancedSearch(longlong param_1,longl
       uVar5 = 0x13;
     }
     else {
-      lVar2 = *(longlong *)(param_2 + 0x118);
+      lVar2 = *(int64_t *)(param_2 + 0x118);
       uStackX_18 = param_3;
       uStackX_20 = param_4;
       if ((lVar2 != 0) && (-1 < *(int *)(lVar2 + 0x68))) {
@@ -649,8 +649,8 @@ ulonglong UISystem_AdvancedComponentSearch_AdvancedSearch(longlong param_1,longl
         if ((int)uVar5 != 0) {
           return uVar5;
         }
-        if (*(int *)(*(longlong *)(param_2 + 0x118) + 0x68) <= (int)param_5) {
-          iVar1 = *(int *)(*(longlong *)(param_2 + 0x118) + 0x6c);
+        if (*(int *)(*(int64_t *)(param_2 + 0x118) + 0x68) <= (int)param_5) {
+          iVar1 = *(int *)(*(int64_t *)(param_2 + 0x118) + 0x6c);
           if (iVar1 == 0) {
             return 0x25;
           }
@@ -667,10 +667,10 @@ ulonglong UISystem_AdvancedComponentSearch_AdvancedSearch(longlong param_1,longl
             while (param_3 = uStackX_18, param_4 = uStackX_20, puVar6 != puVar9) {
               plVar7 = puVar6 + -0x2f;
               if (puVar6 == (uint64_t *)0x0) {
-                plVar7 = (longlong *)0x0;
+                plVar7 = (int64_t *)0x0;
               }
-              if ((((plVar7[0x3b] == 0) || (lVar2 = *(longlong *)(plVar7[0x3b] + 0x28), lVar2 == 0))
-                  || (*(longlong *)(lVar2 + 0x118) != *(longlong *)(param_2 + 0x118))) ||
+              if ((((plVar7[0x3b] == 0) || (lVar2 = *(int64_t *)(plVar7[0x3b] + 0x28), lVar2 == 0))
+                  || (*(int64_t *)(lVar2 + 0x118) != *(int64_t *)(param_2 + 0x118))) ||
                  ((**(code **)(*plVar7 + 0x40))(plVar7,afStackX_10), fVar11 <= afStackX_10[0])) {
                 puVar6 = (uint64_t *)*puVar6;
               }
@@ -688,21 +688,21 @@ ulonglong UISystem_AdvancedComponentSearch_AdvancedSearch(longlong param_1,longl
       if ((int)uVar5 == 0) {
         uVar4 = UISystem_ComponentFilter(aplStack_58[0],param_2,param_3,param_4,1,uVar8);
         if (uVar4 != 0) {
-          if (plVar3 != (longlong *)0x0) {
+          if (plVar3 != (int64_t *)0x0) {
             *plVar3 = 0;
           }
           UISystem_ComponentStateSetter(aplStack_58[0],0x52);
-          return (ulonglong)uVar4;
+          return (uint64_t)uVar4;
         }
         uVar5 = UISystem_ComponentValidator(aplStack_58[0]);
         if (((int)uVar5 == 0) && (uVar5 = UISystem_ComponentVerifier(aplStack_58[0],1), (int)uVar5 == 0)) {
-          if (plVar3 != (longlong *)0x0) {
+          if (plVar3 != (int64_t *)0x0) {
             *plVar3 = aplStack_58[0][10];
           }
           return 0;
         }
       }
-      if (plVar3 != (longlong *)0x0) {
+      if (plVar3 != (int64_t *)0x0) {
         *plVar3 = 0;
       }
     }
@@ -715,23 +715,23 @@ ulonglong UISystem_AdvancedComponentSearch_AdvancedSearch(longlong param_1,longl
 
 
 
-// 函数: ulonglong FUN_180747bb5(float param_1) - UI组件距离筛选函数
-ulonglong UISystem_DistanceBasedSearch_DistanceFilter(float param_1)
+// 函数: uint64_t FUN_180747bb5(float param_1) - UI组件距离筛选函数
+uint64_t UISystem_DistanceBasedSearch_DistanceFilter(float param_1)
 
 {
-  longlong lVar1;
+  int64_t lVar1;
   uint uVar2;
-  longlong in_RAX;
-  ulonglong uVar3;
-  longlong *unaff_RBX;
-  longlong unaff_RBP;
+  int64_t in_RAX;
+  uint64_t uVar3;
+  int64_t *unaff_RBX;
+  int64_t unaff_RBP;
   uint64_t *puVar4;
-  longlong *plVar5;
-  longlong unaff_R13;
+  int64_t *plVar5;
+  int64_t unaff_R13;
   uint64_t *puVar6;
   int32_t unaff_R15D;
   float fVar7;
-  longlong *in_stack_00000030;
+  int64_t *in_stack_00000030;
   float in_stack_00000098;
   uint64_t in_stack_000000a0;
   int8_t in_stack_000000a8;
@@ -745,10 +745,10 @@ ulonglong UISystem_DistanceBasedSearch_DistanceFilter(float param_1)
   while (puVar4 != puVar6) {
     plVar5 = puVar4 + -0x2f;
     if (puVar4 == (uint64_t *)0x0) {
-      plVar5 = (longlong *)0x0;
+      plVar5 = (int64_t *)0x0;
     }
-    if ((((plVar5[0x3b] == 0) || (lVar1 = *(longlong *)(plVar5[0x3b] + 0x28), lVar1 == 0)) ||
-        (*(longlong *)(lVar1 + 0x118) != *(longlong *)(unaff_RBP + 0x118))) ||
+    if ((((plVar5[0x3b] == 0) || (lVar1 = *(int64_t *)(plVar5[0x3b] + 0x28), lVar1 == 0)) ||
+        (*(int64_t *)(lVar1 + 0x118) != *(int64_t *)(unaff_RBP + 0x118))) ||
        ((**(code **)(*plVar5 + 0x40))(plVar5,&stack0x00000098), param_1 = in_stack_00000098,
        fVar7 <= in_stack_00000098)) {
       puVar4 = (uint64_t *)*puVar4;
@@ -764,21 +764,21 @@ ulonglong UISystem_DistanceBasedSearch_DistanceFilter(float param_1)
   if ((int)uVar3 == 0) {
     uVar2 = UISystem_ComponentFilter(in_stack_00000030);
     if (uVar2 != 0) {
-      if (unaff_RBX != (longlong *)0x0) {
+      if (unaff_RBX != (int64_t *)0x0) {
         *unaff_RBX = 0;
       }
       UISystem_ComponentStateSetter(in_stack_00000030,0x52);
-      return (ulonglong)uVar2;
+      return (uint64_t)uVar2;
     }
     uVar3 = UISystem_ComponentValidator(in_stack_00000030);
     if (((int)uVar3 == 0) && (uVar3 = UISystem_ComponentVerifier(in_stack_00000030,1), (int)uVar3 == 0)) {
-      if (unaff_RBX != (longlong *)0x0) {
+      if (unaff_RBX != (int64_t *)0x0) {
         *unaff_RBX = in_stack_00000030[10];
       }
       return 0;
     }
   }
-  if (unaff_RBX != (longlong *)0x0) {
+  if (unaff_RBX != (int64_t *)0x0) {
     *unaff_RBX = 0;
   }
   return uVar3;
@@ -786,15 +786,15 @@ ulonglong UISystem_DistanceBasedSearch_DistanceFilter(float param_1)
 
 
 
-// 函数: ulonglong thunk_FUN_180747c73(void) - UI组件搜索跳转函数
-ulonglong UISystem_ComponentSearchThunk_SearchJump(void)
+// 函数: uint64_t thunk_FUN_180747c73(void) - UI组件搜索跳转函数
+uint64_t UISystem_ComponentSearchThunk_SearchJump(void)
 
 {
   uint uVar1;
-  ulonglong uVar2;
+  uint64_t uVar2;
   uint64_t *unaff_RBX;
   uint64_t unaff_R14;
-  longlong in_stack_00000030;
+  int64_t in_stack_00000030;
   
   uVar2 = UISystem_SearchPreprocessor();
   if ((int)uVar2 == 0) {
@@ -804,7 +804,7 @@ ulonglong UISystem_ComponentSearchThunk_SearchJump(void)
         *unaff_RBX = unaff_R14;
       }
       UISystem_ComponentStateSetter(in_stack_00000030,0x52);
-      return (ulonglong)uVar1;
+      return (uint64_t)uVar1;
     }
     uVar2 = UISystem_ComponentValidator(in_stack_00000030);
     if (((int)uVar2 == 0) && (uVar2 = UISystem_ComponentVerifier(in_stack_00000030,1), (int)uVar2 == 0)) {
@@ -822,14 +822,14 @@ ulonglong UISystem_ComponentSearchThunk_SearchJump(void)
 
 
 
-// 函数: ulonglong FUN_180747c5b(void) - UI组件简化搜索函数
-ulonglong UISystem_SimpleComponentSearch_SimpleSearch(void)
+// 函数: uint64_t FUN_180747c5b(void) - UI组件简化搜索函数
+uint64_t UISystem_SimpleComponentSearch_SimpleSearch(void)
 
 {
   uint uVar1;
-  ulonglong uVar2;
+  uint64_t uVar2;
   uint64_t *unaff_RBX;
-  longlong in_stack_00000030;
+  int64_t in_stack_00000030;
   
   uVar2 = UISystem_SearchPreprocessor();
   if ((int)uVar2 == 0) {
@@ -839,7 +839,7 @@ ulonglong UISystem_SimpleComponentSearch_SimpleSearch(void)
         *unaff_RBX = 0;
       }
       UISystem_ComponentStateSetter(in_stack_00000030,0x52);
-      return (ulonglong)uVar1;
+      return (uint64_t)uVar1;
     }
     uVar2 = UISystem_ComponentValidator(in_stack_00000030);
     if (((int)uVar2 == 0) && (uVar2 = UISystem_ComponentVerifier(in_stack_00000030,1), (int)uVar2 == 0)) {
@@ -857,15 +857,15 @@ ulonglong UISystem_SimpleComponentSearch_SimpleSearch(void)
 
 
 
-// 函数: ulonglong FUN_180747c73(void) - UI组件通用搜索函数
-ulonglong UISystem_GeneralComponentSearch_GeneralSearch(void)
+// 函数: uint64_t FUN_180747c73(void) - UI组件通用搜索函数
+uint64_t UISystem_GeneralComponentSearch_GeneralSearch(void)
 
 {
   uint uVar1;
-  ulonglong uVar2;
+  uint64_t uVar2;
   uint64_t *unaff_RBX;
   uint64_t unaff_R14;
-  longlong in_stack_00000030;
+  int64_t in_stack_00000030;
   
   uVar2 = UISystem_SearchPreprocessor();
   if ((int)uVar2 == 0) {
@@ -875,7 +875,7 @@ ulonglong UISystem_GeneralComponentSearch_GeneralSearch(void)
         *unaff_RBX = unaff_R14;
       }
       UISystem_ComponentStateSetter(in_stack_00000030,0x52);
-      return (ulonglong)uVar1;
+      return (uint64_t)uVar1;
     }
     uVar2 = UISystem_ComponentValidator(in_stack_00000030);
     if (((int)uVar2 == 0) && (uVar2 = UISystem_ComponentVerifier(in_stack_00000030,1), (int)uVar2 == 0)) {
@@ -907,19 +907,19 @@ void UISystem_SetComponentLayout_LayoutManager(int32_t param_1,int32_t param_2,u
 
 
 
-// 函数: uint64_t FUN_180747d80(longlong param_1,longlong *param_2,uint64_t *param_3) - UI组件内存分配函数
-uint64_t UISystem_AllocateComponentData_MemoryAllocator(longlong param_1,longlong *param_2,uint64_t *param_3)
+// 函数: uint64_t FUN_180747d80(int64_t param_1,int64_t *param_2,uint64_t *param_3) - UI组件内存分配函数
+uint64_t UISystem_AllocateComponentData_MemoryAllocator(int64_t param_1,int64_t *param_2,uint64_t *param_3)
 
 {
   uint64_t uVar1;
   int8_t *puVar2;
-  longlong lVar3;
+  int64_t lVar3;
   uint uVar4;
   
   uVar4 = *(uint *)(param_1 + 0x6dc) / *(uint *)(param_1 + 0x6d8);
-  lVar3 = ((longlong)(int)((*(ushort *)(param_1 + 0x127f0) - 1) + uVar4) % (longlong)(int)uVar4 &
+  lVar3 = ((int64_t)(int)((*(ushort *)(param_1 + 0x127f0) - 1) + uVar4) % (int64_t)(int)uVar4 &
           0xffffU) * 0x58 + *param_2;
-  puVar2 = (int8_t *)((ulonglong)*(ushort *)(param_1 + 0x127f0) * 0x58 + *param_2);
+  puVar2 = (int8_t *)((uint64_t)*(ushort *)(param_1 + 0x127f0) * 0x58 + *param_2);
   *puVar2 = 1;
   *(int32_t *)(puVar2 + 4) = *(int32_t *)(lVar3 + 4);
   *(int32_t *)(puVar2 + 8) = *(int32_t *)(lVar3 + 8);
@@ -943,11 +943,11 @@ uint64_t UISystem_AllocateComponentData_MemoryAllocator(longlong param_1,longlon
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-// 函数: uint64_t FUN_180747e10(longlong *param_1,int param_2) - UI数组容量调整函数
-uint64_t UISystem_AdjustArrayCapacity(longlong *param_1,int param_2)
+// 函数: uint64_t FUN_180747e10(int64_t *param_1,int param_2) - UI数组容量调整函数
+uint64_t UISystem_AdjustArrayCapacity(int64_t *param_1,int param_2)
 
 {
-  longlong lVar1;
+  int64_t lVar1;
   
   if (param_2 < (int)param_1[1]) {
     return 0x1c;
@@ -960,7 +960,7 @@ uint64_t UISystem_AdjustArrayCapacity(longlong *param_1,int param_2)
       if (lVar1 != 0) {
         if ((int)param_1[1] != 0) {
                     // WARNING: Subroutine does not return
-          memcpy(lVar1,*param_1,(longlong)(int)param_1[1] << 2);
+          memcpy(lVar1,*param_1,(int64_t)(int)param_1[1] << 2);
         }
         goto LAB_180747ea4;
       }
@@ -968,12 +968,12 @@ uint64_t UISystem_AdjustArrayCapacity(longlong *param_1,int param_2)
     return 0x26;
   }
 LAB_180747ea4:
-  if ((0 < *(int *)((longlong)param_1 + 0xc)) && (*param_1 != 0)) {
+  if ((0 < *(int *)((int64_t)param_1 + 0xc)) && (*param_1 != 0)) {
                     // WARNING: Subroutine does not return
     FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*param_1,&unknown_var_8432_ptr,0x100,1);
   }
   *param_1 = lVar1;
-  *(int *)((longlong)param_1 + 0xc) = param_2;
+  *(int *)((int64_t)param_1 + 0xc) = param_2;
   return 0;
 }
 
@@ -985,19 +985,19 @@ LAB_180747ea4:
 uint64_t UISystem_AdjustArrayCapacitySimple(uint64_t param_1,int param_2)
 
 {
-  longlong lVar1;
-  longlong *unaff_RBX;
+  int64_t lVar1;
+  int64_t *unaff_RBX;
   int unaff_EDI;
   
   lVar1 = 0;
   if (unaff_EDI == 0) {
 LAB_180747ea4:
-    if ((0 < *(int *)((longlong)unaff_RBX + 0xc)) && (*unaff_RBX != 0)) {
+    if ((0 < *(int *)((int64_t)unaff_RBX + 0xc)) && (*unaff_RBX != 0)) {
                     // WARNING: Subroutine does not return
       FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*unaff_RBX,&unknown_var_8432_ptr,0x100,1);
     }
     *unaff_RBX = lVar1;
-    *(int *)((longlong)unaff_RBX + 0xc) = unaff_EDI;
+    *(int *)((int64_t)unaff_RBX + 0xc) = unaff_EDI;
     return 0;
   }
   if (param_2 * 4 - 1U < 0x3fffffff) {
@@ -1006,7 +1006,7 @@ LAB_180747ea4:
     if (lVar1 != 0) {
       if ((int)unaff_RBX[1] != 0) {
                     // WARNING: Subroutine does not return
-        memcpy(lVar1,*unaff_RBX,(longlong)(int)unaff_RBX[1] << 2);
+        memcpy(lVar1,*unaff_RBX,(int64_t)(int)unaff_RBX[1] << 2);
       }
       goto LAB_180747ea4;
     }
@@ -1027,11 +1027,11 @@ uint64_t UISystem_ArrayCapacityAdjustFailed(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-// 函数: uint64_t FUN_180747f10(longlong *param_1,int param_2) - UI数组容量调整64位函数
-uint64_t UISystem_AdjustArrayCapacity64(longlong *param_1,int param_2)
+// 函数: uint64_t FUN_180747f10(int64_t *param_1,int param_2) - UI数组容量调整64位函数
+uint64_t UISystem_AdjustArrayCapacity64(int64_t *param_1,int param_2)
 
 {
-  longlong lVar1;
+  int64_t lVar1;
   
   if (param_2 < (int)param_1[1]) {
     return 0x1c;
@@ -1044,7 +1044,7 @@ uint64_t UISystem_AdjustArrayCapacity64(longlong *param_1,int param_2)
       if (lVar1 != 0) {
         if ((int)param_1[1] != 0) {
                     // WARNING: Subroutine does not return
-          memcpy(lVar1,*param_1,(longlong)(int)param_1[1] << 3);
+          memcpy(lVar1,*param_1,(int64_t)(int)param_1[1] << 3);
         }
         goto LAB_180747fa4;
       }
@@ -1052,12 +1052,12 @@ uint64_t UISystem_AdjustArrayCapacity64(longlong *param_1,int param_2)
     return 0x26;
   }
 LAB_180747fa4:
-  if ((0 < *(int *)((longlong)param_1 + 0xc)) && (*param_1 != 0)) {
+  if ((0 < *(int *)((int64_t)param_1 + 0xc)) && (*param_1 != 0)) {
                     // WARNING: Subroutine does not return
     FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*param_1,&unknown_var_8432_ptr,0x100,1);
   }
   *param_1 = lVar1;
-  *(int *)((longlong)param_1 + 0xc) = param_2;
+  *(int *)((int64_t)param_1 + 0xc) = param_2;
   return 0;
 }
 
@@ -1069,19 +1069,19 @@ LAB_180747fa4:
 uint64_t UISystem_AdjustArrayCapacity64Simple(uint64_t param_1,int param_2)
 
 {
-  longlong lVar1;
-  longlong *unaff_RBX;
+  int64_t lVar1;
+  int64_t *unaff_RBX;
   int unaff_EDI;
   
   lVar1 = 0;
   if (unaff_EDI == 0) {
 LAB_180747fa4:
-    if ((0 < *(int *)((longlong)unaff_RBX + 0xc)) && (*unaff_RBX != 0)) {
+    if ((0 < *(int *)((int64_t)unaff_RBX + 0xc)) && (*unaff_RBX != 0)) {
                     // WARNING: Subroutine does not return
       FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*unaff_RBX,&unknown_var_8432_ptr,0x100,1);
     }
     *unaff_RBX = lVar1;
-    *(int *)((longlong)unaff_RBX + 0xc) = unaff_EDI;
+    *(int *)((int64_t)unaff_RBX + 0xc) = unaff_EDI;
     return 0;
   }
   if (param_2 * 8 - 1U < 0x3fffffff) {
@@ -1090,7 +1090,7 @@ LAB_180747fa4:
     if (lVar1 != 0) {
       if ((int)unaff_RBX[1] != 0) {
                     // WARNING: Subroutine does not return
-        memcpy(lVar1,*unaff_RBX,(longlong)(int)unaff_RBX[1] << 3);
+        memcpy(lVar1,*unaff_RBX,(int64_t)(int)unaff_RBX[1] << 3);
       }
       goto LAB_180747fa4;
     }
@@ -1111,11 +1111,11 @@ uint64_t UISystem_ArrayCapacityAdjust64Failed(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-// 函数: uint64_t FUN_180748010(longlong *param_1,int param_2) - UI数组容量调整128位函数
-uint64_t UISystem_AdjustArrayCapacity128(longlong *param_1,int param_2)
+// 函数: uint64_t FUN_180748010(int64_t *param_1,int param_2) - UI数组容量调整128位函数
+uint64_t UISystem_AdjustArrayCapacity128(int64_t *param_1,int param_2)
 
 {
-  longlong lVar1;
+  int64_t lVar1;
   
   if (param_2 < (int)param_1[1]) {
     return 0x1c;
@@ -1128,7 +1128,7 @@ uint64_t UISystem_AdjustArrayCapacity128(longlong *param_1,int param_2)
       if (lVar1 != 0) {
         if ((int)param_1[1] != 0) {
                     // WARNING: Subroutine does not return
-          memcpy(lVar1,*param_1,(longlong)(int)param_1[1] << 4);
+          memcpy(lVar1,*param_1,(int64_t)(int)param_1[1] << 4);
         }
         goto LAB_1807480a0;
       }
@@ -1136,12 +1136,12 @@ uint64_t UISystem_AdjustArrayCapacity128(longlong *param_1,int param_2)
     return 0x26;
   }
 LAB_1807480a0:
-  if ((0 < *(int *)((longlong)param_1 + 0xc)) && (*param_1 != 0)) {
+  if ((0 < *(int *)((int64_t)param_1 + 0xc)) && (*param_1 != 0)) {
                     // WARNING: Subroutine does not return
     FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*param_1,&unknown_var_8432_ptr,0x100,1);
   }
   *param_1 = lVar1;
-  *(int *)((longlong)param_1 + 0xc) = param_2;
+  *(int *)((int64_t)param_1 + 0xc) = param_2;
   return 0;
 }
 
@@ -1153,19 +1153,19 @@ LAB_1807480a0:
 uint64_t UISystem_AdjustArrayCapacity128Simple(uint64_t param_1,int param_2)
 
 {
-  longlong lVar1;
-  longlong *unaff_RBX;
+  int64_t lVar1;
+  int64_t *unaff_RBX;
   int unaff_EDI;
   
   lVar1 = 0;
   if (unaff_EDI == 0) {
 LAB_1807480a0:
-    if ((0 < *(int *)((longlong)unaff_RBX + 0xc)) && (*unaff_RBX != 0)) {
+    if ((0 < *(int *)((int64_t)unaff_RBX + 0xc)) && (*unaff_RBX != 0)) {
                     // WARNING: Subroutine does not return
       FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*unaff_RBX,&unknown_var_8432_ptr,0x100,1);
     }
     *unaff_RBX = lVar1;
-    *(int *)((longlong)unaff_RBX + 0xc) = unaff_EDI;
+    *(int *)((int64_t)unaff_RBX + 0xc) = unaff_EDI;
     return 0;
   }
   if (param_2 * 0x10 - 1U < 0x3fffffff) {
@@ -1174,7 +1174,7 @@ LAB_1807480a0:
     if (lVar1 != 0) {
       if ((int)unaff_RBX[1] != 0) {
                     // WARNING: Subroutine does not return
-        memcpy(lVar1,*unaff_RBX,(longlong)(int)unaff_RBX[1] << 4);
+        memcpy(lVar1,*unaff_RBX,(int64_t)(int)unaff_RBX[1] << 4);
       }
       goto LAB_1807480a0;
     }
@@ -1195,8 +1195,8 @@ uint64_t UISystem_ArrayCapacityAdjust128Failed(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-// 函数: uint64_t FUN_180748100(longlong param_1,int param_2,longlong param_3,int8_t param_4) - UI组件添加函数
-uint64_t UISystem_AddComponent(longlong param_1,int param_2,longlong param_3,int8_t param_4)
+// 函数: uint64_t FUN_180748100(int64_t param_1,int param_2,int64_t param_3,int8_t param_4) - UI组件添加函数
+uint64_t UISystem_AddComponent(int64_t param_1,int param_2,int64_t param_3,int8_t param_4)
 
 {
   int32_t *puVar1;
@@ -1206,7 +1206,7 @@ uint64_t UISystem_AddComponent(longlong param_1,int param_2,longlong param_3,int
   int iVar5;
   uint64_t uVar6;
   int32_t *puVar7;
-  longlong lVar8;
+  int64_t lVar8;
   
   uVar6 = UISystem_SystemChecker();
   if ((int)uVar6 == 0) {
@@ -1215,8 +1215,8 @@ uint64_t UISystem_AddComponent(longlong param_1,int param_2,longlong param_3,int
       uVar6 = 0x1f;
     }
     else {
-      lVar8 = (longlong)param_2 * 0x38;
-      if ((*(byte *)(*(longlong *)(param_1 + 0x6a0) + 0x18 + lVar8) & 1) == 0) {
+      lVar8 = (int64_t)param_2 * 0x38;
+      if ((*(byte *)(*(int64_t *)(param_1 + 0x6a0) + 0x18 + lVar8) & 1) == 0) {
         uVar6 = 0x50;
       }
       else {
@@ -1229,14 +1229,14 @@ uint64_t UISystem_AddComponent(longlong param_1,int param_2,longlong param_3,int
             uVar6 = 0x26;
           }
           else {
-            *puVar7 = *(int32_t *)(*(longlong *)(param_1 + 0x6a0) + 8 + lVar8);
+            *puVar7 = *(int32_t *)(*(int64_t *)(param_1 + 0x6a0) + 8 + lVar8);
             *(int8_t *)(puVar7 + 0xc) = param_4;
-            *(longlong *)(puVar7 + 0x10) = param_3;
+            *(int64_t *)(puVar7 + 0x10) = param_3;
             puVar7[7] = (int)*(float *)(param_3 + 0x6c);
             puVar7[8] = *(int32_t *)(param_3 + 0x68);
             puVar7[6] = *(int32_t *)(param_3 + 0x28);
             puVar7[9] = *(int32_t *)(param_3 + 0x44);
-            puVar1 = (int32_t *)(*(longlong *)(param_1 + 0x6a0) + 0x1c + lVar8);
+            puVar1 = (int32_t *)(*(int64_t *)(param_1 + 0x6a0) + 0x1c + lVar8);
             uVar2 = puVar1[1];
             uVar3 = puVar1[2];
             uVar4 = puVar1[3];
@@ -1250,7 +1250,7 @@ uint64_t UISystem_AddComponent(longlong param_1,int param_2,longlong param_3,int
                     // WARNING: Subroutine does not return
               UISystem_MemoryReleaser(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),puVar7,&unknown_var_8576_ptr,0x1446,1);
             }
-            *(int32_t **)(*(longlong *)(param_1 + 0x6a0) + 0x30 + lVar8) = puVar7;
+            *(int32_t **)(*(int64_t *)(param_1 + 0x6a0) + 0x30 + lVar8) = puVar7;
             uVar6 = 0;
           }
         }
@@ -1273,13 +1273,13 @@ uint64_t UISystem_AddComponentSimple(int32_t param_1)
   int32_t uVar3;
   int32_t uVar4;
   int iVar5;
-  longlong in_RAX;
+  int64_t in_RAX;
   uint64_t uVar6;
   int32_t *puVar7;
-  longlong unaff_RBX;
-  longlong lVar8;
-  longlong unaff_RSI;
-  ulonglong unaff_RDI;
+  int64_t unaff_RBX;
+  int64_t lVar8;
+  int64_t unaff_RSI;
+  uint64_t unaff_RDI;
   int8_t unaff_R14B;
   
   lVar8 = unaff_RDI * 0x38;
@@ -1295,14 +1295,14 @@ uint64_t UISystem_AddComponentSimple(int32_t param_1)
         uVar6 = 0x26;
       }
       else {
-        *puVar7 = *(int32_t *)(*(longlong *)(unaff_RBX + 0x6a0) + 8 + lVar8);
+        *puVar7 = *(int32_t *)(*(int64_t *)(unaff_RBX + 0x6a0) + 8 + lVar8);
         *(int8_t *)(puVar7 + 0xc) = unaff_R14B;
-        *(longlong *)(puVar7 + 0x10) = unaff_RSI;
+        *(int64_t *)(puVar7 + 0x10) = unaff_RSI;
         puVar7[7] = (int)*(float *)(unaff_RSI + 0x6c);
         puVar7[8] = *(int32_t *)(unaff_RSI + 0x68);
         puVar7[6] = *(int32_t *)(unaff_RSI + 0x28);
         puVar7[9] = *(int32_t *)(unaff_RSI + 0x44);
-        puVar1 = (int32_t *)(*(longlong *)(unaff_RBX + 0x6a0) + 0x1c + lVar8);
+        puVar1 = (int32_t *)(*(int64_t *)(unaff_RBX + 0x6a0) + 0x1c + lVar8);
         uVar2 = puVar1[1];
         uVar3 = puVar1[2];
         uVar4 = puVar1[3];
@@ -1316,7 +1316,7 @@ uint64_t UISystem_AddComponentSimple(int32_t param_1)
                     // WARNING: Subroutine does not return
           UISystem_MemoryReleaser(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),puVar7,&unknown_var_8576_ptr,0x1446,1);
         }
-        *(int32_t **)(*(longlong *)(unaff_RBX + 0x6a0) + 0x30 + lVar8) = puVar7;
+        *(int32_t **)(*(int64_t *)(unaff_RBX + 0x6a0) + 0x30 + lVar8) = puVar7;
         uVar6 = 0;
       }
     }
@@ -1350,9 +1350,9 @@ uint64_t UISystem_AddComponentWithContext(int32_t param_1)
   int iVar5;
   uint64_t uVar6;
   int32_t *puVar7;
-  longlong unaff_RBX;
-  longlong unaff_RBP;
-  longlong unaff_RSI;
+  int64_t unaff_RBX;
+  int64_t unaff_RBP;
+  int64_t unaff_RSI;
   int32_t unaff_EDI;
   int8_t unaff_R14B;
   
@@ -1364,14 +1364,14 @@ uint64_t UISystem_AddComponentWithContext(int32_t param_1)
       uVar6 = 0x26;
     }
     else {
-      *puVar7 = *(int32_t *)(*(longlong *)(unaff_RBX + 0x6a0) + 8 + unaff_RBP);
+      *puVar7 = *(int32_t *)(*(int64_t *)(unaff_RBX + 0x6a0) + 8 + unaff_RBP);
       *(int8_t *)(puVar7 + 0xc) = unaff_R14B;
-      *(longlong *)(puVar7 + 0x10) = unaff_RSI;
+      *(int64_t *)(puVar7 + 0x10) = unaff_RSI;
       puVar7[7] = (int)*(float *)(unaff_RSI + 0x6c);
       puVar7[8] = *(int32_t *)(unaff_RSI + 0x68);
       puVar7[6] = *(int32_t *)(unaff_RSI + 0x28);
       puVar7[9] = *(int32_t *)(unaff_RSI + 0x44);
-      puVar1 = (int32_t *)(*(longlong *)(unaff_RBX + 0x6a0) + 0x1c + unaff_RBP);
+      puVar1 = (int32_t *)(*(int64_t *)(unaff_RBX + 0x6a0) + 0x1c + unaff_RBP);
       uVar2 = puVar1[1];
       uVar3 = puVar1[2];
       uVar4 = puVar1[3];
@@ -1385,7 +1385,7 @@ uint64_t UISystem_AddComponentWithContext(int32_t param_1)
                     // WARNING: Subroutine does not return
         UISystem_MemoryReleaser(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),puVar7,&unknown_var_8576_ptr,0x1446,1);
       }
-      *(int32_t **)(*(longlong *)(unaff_RBX + 0x6a0) + 0x30 + unaff_RBP) = puVar7;
+      *(int32_t **)(*(int64_t *)(unaff_RBX + 0x6a0) + 0x30 + unaff_RBP) = puVar7;
       uVar6 = 0;
     }
   }
@@ -1405,13 +1405,13 @@ uint64_t UISystem_AddComponentFailed(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-// 函数: uint64_t FUN_180748290(longlong param_1,int param_2) - UI组件验证添加函数
-uint64_t UISystem_ValidateComponentAdd(longlong param_1,int param_2)
+// 函数: uint64_t FUN_180748290(int64_t param_1,int param_2) - UI组件验证添加函数
+uint64_t UISystem_ValidateComponentAdd(int64_t param_1,int param_2)
 
 {
   int iVar1;
   uint64_t uVar2;
-  longlong lVar3;
+  int64_t lVar3;
   
   uVar2 = FUN_1807499f0();
   if ((int)uVar2 != 0) {
@@ -1420,20 +1420,20 @@ uint64_t UISystem_ValidateComponentAdd(longlong param_1,int param_2)
   if ((param_2 < 0) || (*(int *)(param_1 + 0x694) <= param_2)) {
     return 0x1f;
   }
-  lVar3 = (longlong)param_2 * 0x38;
-  if (*(longlong *)(lVar3 + 0x30 + *(longlong *)(param_1 + 0x6a0)) == 0) {
+  lVar3 = (int64_t)param_2 * 0x38;
+  if (*(int64_t *)(lVar3 + 0x30 + *(int64_t *)(param_1 + 0x6a0)) == 0) {
     return 0;
   }
   UISystem_ComponentStateChecker(param_1,0x10);
   iVar1 = FUN_180788d20(*(uint64_t *)(param_1 + 0x670),
-                        *(uint64_t *)(lVar3 + 0x30 + *(longlong *)(param_1 + 0x6a0)));
+                        *(uint64_t *)(lVar3 + 0x30 + *(int64_t *)(param_1 + 0x6a0)));
   if (iVar1 != 0) {
                     // WARNING: Subroutine does not return
     UISystem_ComponentCleaner(param_1,0x10);
   }
                     // WARNING: Subroutine does not return
   FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),
-                *(uint64_t *)(lVar3 + 0x30 + *(longlong *)(param_1 + 0x6a0)),&unknown_var_8576_ptr,0x1470
+                *(uint64_t *)(lVar3 + 0x30 + *(int64_t *)(param_1 + 0x6a0)),&unknown_var_8576_ptr,0x1470
                 ,1);
 }
 
@@ -1446,23 +1446,23 @@ uint64_t UISystem_ValidateComponentAddSimple(void)
 
 {
   int iVar1;
-  longlong in_RAX;
-  longlong unaff_RBX;
-  longlong unaff_RDI;
+  int64_t in_RAX;
+  int64_t unaff_RBX;
+  int64_t unaff_RDI;
   
-  if (*(longlong *)(unaff_RDI + 0x30 + in_RAX) == 0) {
+  if (*(int64_t *)(unaff_RDI + 0x30 + in_RAX) == 0) {
     return 0;
   }
   UISystem_ComponentStateChecker();
   iVar1 = FUN_180788d20(*(uint64_t *)(unaff_RBX + 0x670),
-                        *(uint64_t *)(unaff_RDI + 0x30 + *(longlong *)(unaff_RBX + 0x6a0)));
+                        *(uint64_t *)(unaff_RDI + 0x30 + *(int64_t *)(unaff_RBX + 0x6a0)));
   if (iVar1 != 0) {
                     // WARNING: Subroutine does not return
     UISystem_ComponentCleaner();
   }
                     // WARNING: Subroutine does not return
   UISystem_MemoryReleaser(*(uint64_t )(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),
-                *(uint64_t *)(unaff_RDI + 0x30 + *(longlong *)(unaff_RBX + 0x6a0)),&unknown_var_8576_ptr,
+                *(uint64_t *)(unaff_RDI + 0x30 + *(int64_t *)(unaff_RBX + 0x6a0)),&unknown_var_8576_ptr,
                 0x1470,1);
 }
 
@@ -1487,12 +1487,12 @@ void UISystem_NoOperation2(void)
 void UISystem_RemoveComponent(void)
 
 {
-  longlong unaff_RBX;
-  longlong unaff_RDI;
+  int64_t unaff_RBX;
+  int64_t unaff_RDI;
   
                     // WARNING: Subroutine does not return
   UISystem_MemoryReleaser(*(uint64_t )(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),
-                *(uint64_t *)(unaff_RDI + 0x30 + *(longlong *)(unaff_RBX + 0x6a0)),&unknown_var_8576_ptr,
+                *(uint64_t *)(unaff_RDI + 0x30 + *(int64_t *)(unaff_RBX + 0x6a0)),&unknown_var_8576_ptr,
                 0x1470,1);
 }
 
@@ -1507,8 +1507,8 @@ uint64_t UISystem_RemoveComponentFailed(void)
 
 
 
-// 函数: uint64_t FUN_1807483a0(longlong param_1,longlong param_2,int32_t *param_3) - UI组件类型匹配函数
-uint64_t UISystem_MatchComponentType(longlong param_1,longlong param_2,int32_t *param_3)
+// 函数: uint64_t FUN_1807483a0(int64_t param_1,int64_t param_2,int32_t *param_3) - UI组件类型匹配函数
+uint64_t UISystem_MatchComponentType(int64_t param_1,int64_t param_2,int32_t *param_3)
 
 {
   int iVar1;
@@ -1517,7 +1517,7 @@ uint64_t UISystem_MatchComponentType(longlong param_1,longlong param_2,int32_t *
   int aiStackX_10 [4];
   int32_t auStackX_20 [2];
   int32_t auStack_68 [2];
-  longlong *plStack_60;
+  int64_t *plStack_60;
   uint64_t uStack_58;
   uint64_t uStack_50;
   uint64_t uStack_48;
@@ -1584,11 +1584,11 @@ uint64_t UISystem_MatchComponentTypeSimple(void)
   int iVar1;
   uint64_t uVar2;
   int iVar3;
-  longlong unaff_RBP;
+  int64_t unaff_RBP;
   int32_t *unaff_RSI;
-  longlong unaff_RDI;
+  int64_t unaff_RDI;
   int32_t in_stack_00000030;
-  longlong *in_stack_00000038;
+  int64_t *in_stack_00000038;
   uint64_t in_stack_00000040;
   uint64_t in_stack_00000048;
   uint64_t in_stack_00000050;
@@ -1778,7 +1778,7 @@ uint64_t UISystem_ComponentTypeMatchFailed(void)
  * 
  * // 搜索组件
  * uint64_t result = 0;
- * ulonglong status = UISystem_FindComponent(context, criteria, 
+ * uint64_t status = UISystem_FindComponent(context, criteria, 
  *                                          result_handle, 
  *                                          SEARCH_MODE_EXACT, 
  *                                          &result);

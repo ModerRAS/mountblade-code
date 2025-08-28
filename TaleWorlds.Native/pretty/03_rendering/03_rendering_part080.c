@@ -62,19 +62,19 @@ void rendering_system_advanced_render_controller(void)
   ushort texture_coord_v;
   ushort existing_coord_u;
   ushort existing_coord_v;
-  longlong render_data_ptr;
+  int64_t render_data_ptr;
   int render_parameter;
   int status_flag;
-  ulonglong render_context;
+  uint64_t render_context;
   byte texture_index;
   int distance_value;
   int32_t render_flag;
-  longlong render_base_ptr;
-  longlong scene_context;
+  int64_t render_base_ptr;
+  int64_t scene_context;
   char render_state;
   int render_quality;
   int32_t render_option;
-  longlong matrix_data;
+  int64_t matrix_data;
   float scale_factor;
   uint64_t render_value;
   int8_t texture_buffer_1 [16];
@@ -405,8 +405,8 @@ void rendering_system_advanced_render_controller(void)
   render_context = 0;
   render_value = 0;
   if (*(char *)(scene_context + 0x80) != render_state) {
-    render_context = (ulonglong)*(uint *)(scene_context + 0x88);
-    render_value = (ulonglong)*(uint *)(scene_context + 0x84);
+    render_context = (uint64_t)*(uint *)(scene_context + 0x88);
+    render_value = (uint64_t)*(uint *)(scene_context + 0x84);
   }
   normal_buffer._8_8_ = 0;
   normal_buffer._0_8_ = render_value;
@@ -419,10 +419,10 @@ void rendering_system_advanced_render_controller(void)
     *(char *)(scene_context + 0x7f) = render_state;
     texture_index = 0;
     if (*(byte *)(scene_context + 400) < *(byte *)(scene_context + 0x8c)) {
-      render_context = (ulonglong)*(byte *)(scene_context + 400);
+      render_context = (uint64_t)*(byte *)(scene_context + 400);
       position_buffer_1 = ZEXT416(*(uint *)(scene_context + 0x90 + render_context * 4));
       *(float *)(scene_context + 0x110 + render_context * 4) = *(float *)(scene_context + 0x110 + render_context * 4) - scale_factor;
-      if (*(float *)(scene_context + 0x110 + (ulonglong)*(byte *)(scene_context + 400) * 4) <=
+      if (*(float *)(scene_context + 0x110 + (uint64_t)*(byte *)(scene_context + 400) * 4) <=
           specular_light) {
         *(byte *)(scene_context + 400) = *(byte *)(scene_context + 400) + 1;
       }
@@ -430,10 +430,10 @@ void rendering_system_advanced_render_controller(void)
       texture_index = *(byte *)(render_base_ptr + 0x7d);
     }
     if (*(byte *)(scene_context + 0x191) < *(byte *)(scene_context + 0x8d)) {
-      render_context = (ulonglong)*(byte *)(scene_context + 0x191);
+      render_context = (uint64_t)*(byte *)(scene_context + 0x191);
       normal_buffer = ZEXT416(*(uint *)(scene_context + 0xd0 + render_context * 4));
       *(float *)(scene_context + 0x150 + render_context * 4) = *(float *)(scene_context + 0x150 + render_context * 4) - scale_factor;
-      if (*(float *)(scene_context + 0x150 + (ulonglong)*(byte *)(scene_context + 0x191) * 4) <=
+      if (*(float *)(scene_context + 0x150 + (uint64_t)*(byte *)(scene_context + 0x191) * 4) <=
           specular_light) {
         *(byte *)(scene_context + 0x191) = *(byte *)(scene_context + 0x191) + 1;
       }
@@ -465,16 +465,16 @@ void rendering_system_advanced_render_controller(void)
       *(int32_t *)(scene_context + 100) = render_flag;
     }
     *(int8_t *)(scene_context + 0x7e) = 1;
-    FUN_1808fc050(*(ulonglong *)(render_base_ptr + 0xc0) ^ (ulonglong)&matrix_data);
+    FUN_1808fc050(*(uint64_t *)(render_base_ptr + 0xc0) ^ (uint64_t)&matrix_data);
   }
   
   // 处理渲染缓冲区和资源清理
   texture_index = *(byte *)(scene_context + 0x318);
   *(char *)(scene_context + 0x192) = render_state;
   if (texture_index < *(byte *)(scene_context + 0x194)) {
-    *(float *)(scene_context + 0x298 + (ulonglong)texture_index * 4) =
-         *(float *)(scene_context + 0x298 + (ulonglong)texture_index * 4) - scale_factor;
-    if (*(float *)(scene_context + 0x298 + (ulonglong)*(byte *)(scene_context + 0x318) * 4) <=
+    *(float *)(scene_context + 0x298 + (uint64_t)texture_index * 4) =
+         *(float *)(scene_context + 0x298 + (uint64_t)texture_index * 4) - scale_factor;
+    if (*(float *)(scene_context + 0x298 + (uint64_t)*(byte *)(scene_context + 0x318) * 4) <=
         specular_light) {
       *(byte *)(scene_context + 0x318) = *(byte *)(scene_context + 0x318) + 1;
     }
@@ -483,9 +483,9 @@ void rendering_system_advanced_render_controller(void)
   
   texture_index = *(byte *)(scene_context + 0x319);
   if (texture_index < *(byte *)(scene_context + 0x195)) {
-    *(float *)(scene_context + 0x2d8 + (ulonglong)texture_index * 4) =
-         *(float *)(scene_context + 0x2d8 + (ulonglong)texture_index * 4) - scale_factor;
-    if (*(float *)(scene_context + 0x2d8 + (ulonglong)*(byte *)(scene_context + 0x319) * 4) <=
+    *(float *)(scene_context + 0x2d8 + (uint64_t)texture_index * 4) =
+         *(float *)(scene_context + 0x2d8 + (uint64_t)texture_index * 4) - scale_factor;
+    if (*(float *)(scene_context + 0x2d8 + (uint64_t)*(byte *)(scene_context + 0x319) * 4) <=
         specular_light) {
       *(byte *)(scene_context + 0x319) = *(byte *)(scene_context + 0x319) + 1;
     }
@@ -504,8 +504,8 @@ void rendering_system_render_state_processor(void)
 
 {
   int32_t render_mode;
-  longlong render_context;
-  longlong scene_data;
+  int64_t render_context;
+  int64_t scene_data;
   int32_t render_option;
   int status_flag;
   
@@ -516,7 +516,7 @@ void rendering_system_render_state_processor(void)
     *(int32_t *)(scene_data + 100) = render_mode;
   }
   *(int8_t *)(scene_data + 0x7e) = 1;
-  FUN_1808fc050(*(ulonglong *)(render_context + 0xc0) ^ (ulonglong)&status_flag);
+  FUN_1808fc050(*(uint64_t *)(render_context + 0xc0) ^ (uint64_t)&status_flag);
 }
 
 

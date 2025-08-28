@@ -71,7 +71,7 @@ typedef uint TextureIndex;
 typedef uint VertexCount;
 
 /** 内存地址类型 */
-typedef ulonglong MemoryAddress;
+typedef uint64_t MemoryAddress;
 
 /** 数据指针类型 */
 typedef void* DataPointer;
@@ -226,9 +226,9 @@ void UISystem_TextureBilinearInterpolator(void)
     short sVar2;
     uint uVar3;
     uint *unaff_RBX;
-    longlong *unaff_RSI;
+    int64_t *unaff_RSI;
     int unaff_EDI;
-    longlong in_R10;
+    int64_t in_R10;
     float *in_R11;
     float fVar4;
     float unaff_XMM11_Da;
@@ -238,19 +238,19 @@ void UISystem_TextureBilinearInterpolator(void)
     // 双线性插值主循环
     do {
         uVar3 = unaff_RBX[1] * 2;
-        sVar1 = *(short *)(in_R10 + (ulonglong)uVar3 * 2);
+        sVar1 = *(short *)(in_R10 + (uint64_t)uVar3 * 2);
         fVar4 = (float)*unaff_RBX * unaff_XMM12_Da;
-        sVar2 = *(short *)(in_R10 + (ulonglong)(uVar3 + 2) * 2);
+        sVar2 = *(short *)(in_R10 + (uint64_t)(uVar3 + 2) * 2);
         
         // 计算插值结果：f = f1*(1-w) + f2*w
-        in_R11[1] = (float)(int)*(short *)(in_R10 + (ulonglong)(uVar3 + 1) * 2) * unaff_XMM11_Da *
+        in_R11[1] = (float)(int)*(short *)(in_R10 + (uint64_t)(uVar3 + 1) * 2) * unaff_XMM11_Da *
                     (unaff_XMM13_Da - fVar4) +
-                    (float)(int)*(short *)(in_R10 + (ulonglong)(uVar3 + 3) * 2) * unaff_XMM11_Da * fVar4;
+                    (float)(int)*(short *)(in_R10 + (uint64_t)(uVar3 + 3) * 2) * unaff_XMM11_Da * fVar4;
         *in_R11 = (float)(int)sVar2 * unaff_XMM11_Da * fVar4 +
                   (float)(int)sVar1 * unaff_XMM11_Da * (unaff_XMM13_Da - fVar4);
         
         in_R11 = in_R11 + 2;
-        *(longlong *)unaff_RBX = *(longlong *)unaff_RBX + *unaff_RSI;
+        *(int64_t *)unaff_RBX = *(int64_t *)unaff_RBX + *unaff_RSI;
         unaff_EDI = unaff_EDI + -1;
     } while (unaff_EDI != 0);
     
@@ -275,8 +275,8 @@ void UISystem_TextureBilinearInterpolator(void)
  * - 采用向量化计算优化
  * - 内存访问模式优化
  */
-void UISystem_ColorQuatricInterpolator(float *param_1, uint param_2, longlong param_3, 
-                                      ulonglong *param_4, longlong *param_5)
+void UISystem_ColorQuatricInterpolator(float *param_1, uint param_2, int64_t param_3, 
+                                      uint64_t *param_4, int64_t *param_5)
 {
     char cVar1;
     char cVar2;
@@ -286,9 +286,9 @@ void UISystem_ColorQuatricInterpolator(float *param_1, uint param_2, longlong pa
     char cVar6;
     char cVar7;
     char cVar8;
-    ulonglong uVar9;
+    uint64_t uVar9;
     int iVar10;
-    ulonglong uVar11;
+    uint64_t uVar11;
     float fVar12;
     float fVar13;
     float fVar14;
@@ -297,26 +297,26 @@ void UISystem_ColorQuatricInterpolator(float *param_1, uint param_2, longlong pa
     // 批量处理主循环（每次处理4个像素）
     for (iVar10 = (int)param_2 >> 2; iVar10 != 0; iVar10 = iVar10 + -1) {
         uVar9 = *param_4 + *param_5;
-        cVar1 = *(char *)((ulonglong)*(uint *)((longlong)param_4 + 4) + param_3);
-        cVar2 = *(char *)((ulonglong)(*(uint *)((longlong)param_4 + 4) + 1) + param_3);
+        cVar1 = *(char *)((uint64_t)*(uint *)((int64_t)param_4 + 4) + param_3);
+        cVar2 = *(char *)((uint64_t)(*(uint *)((int64_t)param_4 + 4) + 1) + param_3);
         fVar12 = (float)(uint)*param_4 * TEXTURE_COORD_SCALE;
         *param_4 = uVar9;
         
         uVar11 = *param_5 + uVar9;
         cVar3 = *(char *)((uVar9 >> 0x20) + param_3);
-        cVar4 = *(char *)((ulonglong)((int)(uVar9 >> 0x20) + 1) + param_3);
+        cVar4 = *(char *)((uint64_t)((int)(uVar9 >> 0x20) + 1) + param_3);
         fVar13 = (float)(uVar9 & 0xffffffff) * TEXTURE_COORD_SCALE;
         *param_4 = uVar11;
         
         uVar9 = *param_5 + uVar11;
         cVar5 = *(char *)((uVar11 >> 0x20) + param_3);
-        cVar6 = *(char *)((ulonglong)((int)(uVar11 >> 0x20) + 1) + param_3);
+        cVar6 = *(char *)((uint64_t)((int)(uVar11 >> 0x20) + 1) + param_3);
         fVar14 = (float)(uVar11 & 0xffffffff) * TEXTURE_COORD_SCALE;
         *param_4 = uVar9;
         
         cVar7 = *(char *)((uVar9 >> 0x20) + param_3);
         fVar15 = (float)(uVar9 & 0xffffffff) * TEXTURE_COORD_SCALE;
-        cVar8 = *(char *)((ulonglong)((int)(uVar9 >> 0x20) + 1) + param_3);
+        cVar8 = *(char *)((uint64_t)((int)(uVar9 >> 0x20) + 1) + param_3);
         *param_4 = *param_5 + uVar9;
         
         // 四线性插值计算
@@ -334,9 +334,9 @@ void UISystem_ColorQuatricInterpolator(float *param_1, uint param_2, longlong pa
     // 处理剩余像素
     for (param_2 = param_2 & 3; param_2 != 0; param_2 = param_2 - 1) {
         fVar12 = (float)(uint)*param_4 * TEXTURE_COORD_SCALE;
-        *param_1 = (float)(int)*(char *)((ulonglong)*(uint *)((longlong)param_4 + 4) + param_3) *
+        *param_1 = (float)(int)*(char *)((uint64_t)*(uint *)((int64_t)param_4 + 4) + param_3) *
                    COLOR_NORMALIZATION_FACTOR * (1.0 - fVar12) +
-                   (float)(int)*(char *)((ulonglong)(*(uint *)((longlong)param_4 + 4) + 1) + param_3) *
+                   (float)(int)*(char *)((uint64_t)(*(uint *)((int64_t)param_4 + 4) + 1) + param_3) *
                    COLOR_NORMALIZATION_FACTOR * fVar12;
         param_1 = param_1 + 1;
         *param_4 = *param_4 + *param_5;
@@ -363,8 +363,8 @@ void UISystem_ColorQuatricInterpolator(float *param_1, uint param_2, longlong pa
  * - 内存预取优化
  * - 分支预测优化
  */
-void UISystem_AdvancedTextureSampler(float *param_1, uint param_2, longlong param_3, 
-                                     ulonglong *param_4, longlong *param_5)
+void UISystem_AdvancedTextureSampler(float *param_1, uint param_2, int64_t param_3, 
+                                     uint64_t *param_4, int64_t *param_5)
 {
     char cVar1;
     char cVar2;
@@ -385,8 +385,8 @@ void UISystem_AdvancedTextureSampler(float *param_1, uint param_2, longlong para
     int iVar17;
     uint uVar18;
     int iVar19;
-    ulonglong uVar20;
-    ulonglong uVar21;
+    uint64_t uVar20;
+    uint64_t uVar21;
     float fVar22;
     float fVar23;
     float fVar24;
@@ -395,40 +395,40 @@ void UISystem_AdvancedTextureSampler(float *param_1, uint param_2, longlong para
     // 批量处理主循环（每次处理4个采样点，每个点2个像素）
     for (iVar19 = (int)param_2 >> 2; iVar19 != 0; iVar19 = iVar19 + -1) {
         uVar20 = *param_4 + *param_5;
-        uVar18 = *(uint *)((longlong)param_4 + 4) * 2;
-        cVar1 = *(char *)((ulonglong)uVar18 + param_3);
-        cVar2 = *(char *)((ulonglong)(uVar18 + 2) + param_3);
+        uVar18 = *(uint *)((int64_t)param_4 + 4) * 2;
+        cVar1 = *(char *)((uint64_t)uVar18 + param_3);
+        cVar2 = *(char *)((uint64_t)(uVar18 + 2) + param_3);
         fVar23 = (float)(uint)*param_4 * TEXTURE_COORD_SCALE;
-        cVar3 = *(char *)((ulonglong)(uVar18 + 1) + param_3);
-        cVar4 = *(char *)((ulonglong)(uVar18 + 3) + param_3);
+        cVar3 = *(char *)((uint64_t)(uVar18 + 1) + param_3);
+        cVar4 = *(char *)((uint64_t)(uVar18 + 3) + param_3);
         *param_4 = uVar20;
         
         uVar21 = *param_5 + uVar20;
         uVar18 = (int)(uVar20 >> 0x20) * 2;
-        cVar5 = *(char *)((ulonglong)uVar18 + param_3);
-        cVar6 = *(char *)((ulonglong)(uVar18 + 2) + param_3);
+        cVar5 = *(char *)((uint64_t)uVar18 + param_3);
+        cVar6 = *(char *)((uint64_t)(uVar18 + 2) + param_3);
         fVar22 = (float)(uVar20 & 0xffffffff) * TEXTURE_COORD_SCALE;
-        cVar7 = *(char *)((ulonglong)(uVar18 + 3) + param_3);
-        cVar8 = *(char *)((ulonglong)(uVar18 + 1) + param_3);
+        cVar7 = *(char *)((uint64_t)(uVar18 + 3) + param_3);
+        cVar8 = *(char *)((uint64_t)(uVar18 + 1) + param_3);
         *param_4 = uVar21;
         
         iVar17 = (int)(uVar21 >> 0x20);
         uVar18 = iVar17 * 2;
         fVar24 = (float)(uVar21 & 0xffffffff) * TEXTURE_COORD_SCALE;
-        cVar9 = *(char *)((ulonglong)uVar18 + param_3);
-        cVar10 = *(char *)((ulonglong)(uVar18 + 2) + param_3);
+        cVar9 = *(char *)((uint64_t)uVar18 + param_3);
+        cVar10 = *(char *)((uint64_t)(uVar18 + 2) + param_3);
         uVar21 = *param_5 + uVar21;
         iVar17 = iVar17 * 2;
-        cVar11 = *(char *)((ulonglong)(iVar17 + 1) + param_3);
-        cVar12 = *(char *)((ulonglong)(iVar17 + 3) + param_3);
+        cVar11 = *(char *)((uint64_t)(iVar17 + 1) + param_3);
+        cVar12 = *(char *)((uint64_t)(iVar17 + 3) + param_3);
         *param_4 = uVar21;
         
         uVar18 = (int)(uVar21 >> 0x20) * 2;
-        cVar13 = *(char *)((ulonglong)uVar18 + param_3);
-        cVar14 = *(char *)((ulonglong)(uVar18 + 2) + param_3);
+        cVar13 = *(char *)((uint64_t)uVar18 + param_3);
+        cVar14 = *(char *)((uint64_t)(uVar18 + 2) + param_3);
         fVar25 = (float)(uVar21 & 0xffffffff) * TEXTURE_COORD_SCALE;
-        cVar15 = *(char *)((ulonglong)(uVar18 + 1) + param_3);
-        cVar16 = *(char *)((ulonglong)(uVar18 + 3) + param_3);
+        cVar15 = *(char *)((uint64_t)(uVar18 + 1) + param_3);
+        cVar16 = *(char *)((uint64_t)(uVar18 + 3) + param_3);
         *param_4 = *param_5 + uVar21;
         
         // 高级纹理采样计算（8个像素输出）
@@ -453,12 +453,12 @@ void UISystem_AdvancedTextureSampler(float *param_1, uint param_2, longlong para
     
     // 处理剩余采样点
     for (param_2 = param_2 & 3; param_2 != 0; param_2 = param_2 - 1) {
-        uVar18 = *(uint *)((longlong)param_4 + 4) * 2;
-        cVar1 = *(char *)((ulonglong)(uVar18 + 1) + param_3);
+        uVar18 = *(uint *)((int64_t)param_4 + 4) * 2;
+        cVar1 = *(char *)((uint64_t)(uVar18 + 1) + param_3);
         fVar22 = (float)(uint)*param_4 * TEXTURE_COORD_SCALE;
-        cVar2 = *(char *)((ulonglong)(uVar18 + 3) + param_3);
-        *param_1 = (float)(int)*(char *)((ulonglong)(uVar18 + 2) + param_3) * COLOR_NORMALIZATION_FACTOR * fVar22 +
-                   (float)(int)*(char *)((ulonglong)uVar18 + param_3) * COLOR_NORMALIZATION_FACTOR * (1.0 - fVar22);
+        cVar2 = *(char *)((uint64_t)(uVar18 + 3) + param_3);
+        *param_1 = (float)(int)*(char *)((uint64_t)(uVar18 + 2) + param_3) * COLOR_NORMALIZATION_FACTOR * fVar22 +
+                   (float)(int)*(char *)((uint64_t)uVar18 + param_3) * COLOR_NORMALIZATION_FACTOR * (1.0 - fVar22);
         param_1[1] = (float)(int)cVar1 * COLOR_NORMALIZATION_FACTOR * (1.0 - fVar22) +
                      (float)(int)cVar2 * COLOR_NORMALIZATION_FACTOR * fVar22;
         param_1 = param_1 + 2;
@@ -503,16 +503,16 @@ void UISystem_VertexBatchTransformer(uint64_t param_1, int param_2)
     char cVar16;
     int iVar17;
     uint uVar18;
-    longlong in_RAX;
-    ulonglong *unaff_RBX;
+    int64_t in_RAX;
+    uint64_t *unaff_RBX;
     uint64_t unaff_RBP;
-    longlong *unaff_RSI;
+    int64_t *unaff_RSI;
     uint unaff_EDI;
     uint uVar19;
-    ulonglong uVar20;
-    ulonglong uVar21;
+    uint64_t uVar20;
+    uint64_t uVar21;
     float *in_R10;
-    longlong in_R11;
+    int64_t in_R11;
     float fVar22;
     float fVar23;
     float fVar24;
@@ -551,40 +551,40 @@ void UISystem_VertexBatchTransformer(uint64_t param_1, int param_2)
         // 批量变换主循环
         do {
             uVar20 = *unaff_RBX + *unaff_RSI;
-            uVar19 = *(uint *)((longlong)unaff_RBX + 4) * 2;
-            cVar1 = *(char *)((ulonglong)uVar19 + in_R11);
-            cVar2 = *(char *)((ulonglong)(uVar19 + 2) + in_R11);
+            uVar19 = *(uint *)((int64_t)unaff_RBX + 4) * 2;
+            cVar1 = *(char *)((uint64_t)uVar19 + in_R11);
+            cVar2 = *(char *)((uint64_t)(uVar19 + 2) + in_R11);
             fVar23 = (float)(uint)*unaff_RBX * unaff_XMM12_Da;
-            cVar3 = *(char *)((ulonglong)(uVar19 + 1) + in_R11);
-            cVar4 = *(char *)((ulonglong)(uVar19 + 3) + in_R11);
+            cVar3 = *(char *)((uint64_t)(uVar19 + 1) + in_R11);
+            cVar4 = *(char *)((uint64_t)(uVar19 + 3) + in_R11);
             *unaff_RBX = uVar20;
             
             uVar21 = *unaff_RSI + uVar20;
             uVar19 = (int)(uVar20 >> 0x20) * 2;
-            cVar5 = *(char *)((ulonglong)uVar19 + in_R11);
-            cVar6 = *(char *)((ulonglong)(uVar19 + 2) + in_R11);
+            cVar5 = *(char *)((uint64_t)uVar19 + in_R11);
+            cVar6 = *(char *)((uint64_t)(uVar19 + 2) + in_R11);
             fVar22 = (float)(uVar20 & 0xffffffff) * unaff_XMM12_Da;
-            cVar7 = *(char *)((ulonglong)(uVar19 + 3) + in_R11);
-            cVar8 = *(char *)((ulonglong)(uVar19 + 1) + in_R11);
+            cVar7 = *(char *)((uint64_t)(uVar19 + 3) + in_R11);
+            cVar8 = *(char *)((uint64_t)(uVar19 + 1) + in_R11);
             *unaff_RBX = uVar21;
             
             iVar17 = (int)(uVar21 >> 0x20);
             uVar19 = iVar17 * 2;
             fVar24 = (float)(uVar21 & 0xffffffff) * unaff_XMM12_Da;
-            cVar9 = *(char *)((ulonglong)uVar19 + in_R11);
-            cVar10 = *(char *)((ulonglong)(uVar19 + 2) + in_R11);
+            cVar9 = *(char *)((uint64_t)uVar19 + in_R11);
+            cVar10 = *(char *)((uint64_t)(uVar19 + 2) + in_R11);
             uVar21 = *unaff_RSI + uVar21;
             iVar17 = iVar17 * 2;
-            cVar11 = *(char *)((ulonglong)(iVar17 + 1) + in_R11);
-            cVar12 = *(char *)((ulonglong)(iVar17 + 3) + in_R11);
+            cVar11 = *(char *)((uint64_t)(iVar17 + 1) + in_R11);
+            cVar12 = *(char *)((uint64_t)(iVar17 + 3) + in_R11);
             *unaff_RBX = uVar21;
             
             uVar19 = (int)(uVar21 >> 0x20) * 2;
-            cVar13 = *(char *)((ulonglong)uVar19 + in_R11);
-            cVar14 = *(char *)((ulonglong)(uVar19 + 2) + in_R11);
+            cVar13 = *(char *)((uint64_t)uVar19 + in_R11);
+            cVar14 = *(char *)((uint64_t)(uVar19 + 2) + in_R11);
             fVar25 = (float)(uVar21 & 0xffffffff) * unaff_XMM12_Da;
-            cVar15 = *(char *)((ulonglong)(uVar19 + 1) + in_R11);
-            cVar16 = *(char *)((ulonglong)(uVar19 + 3) + in_R11);
+            cVar15 = *(char *)((uint64_t)(uVar19 + 1) + in_R11);
+            cVar16 = *(char *)((uint64_t)(uVar19 + 3) + in_R11);
             *unaff_RBX = *unaff_RSI + uVar21;
             
             // 顶点变换计算（8个顶点输出）
@@ -611,12 +611,12 @@ void UISystem_VertexBatchTransformer(uint64_t param_1, int param_2)
     
     // 处理剩余顶点
     for (uVar19 = unaff_EDI & 3; uVar19 != 0; uVar19 = uVar19 - 1) {
-        uVar18 = *(uint *)((longlong)unaff_RBX + 4) * 2;
-        cVar1 = *(char *)((ulonglong)(uVar18 + 1) + in_R11);
+        uVar18 = *(uint *)((int64_t)unaff_RBX + 4) * 2;
+        cVar1 = *(char *)((uint64_t)(uVar18 + 1) + in_R11);
         fVar22 = (float)(uint)*unaff_RBX * unaff_XMM12_Da;
-        cVar2 = *(char *)((ulonglong)(uVar18 + 3) + in_R11);
-        *in_R10 = (float)(int)*(char *)((ulonglong)(uVar18 + 2) + in_R11) * unaff_XMM11_Da * fVar22 +
-                  (float)(int)*(char *)((ulonglong)uVar18 + in_R11) * unaff_XMM11_Da *
+        cVar2 = *(char *)((uint64_t)(uVar18 + 3) + in_R11);
+        *in_R10 = (float)(int)*(char *)((uint64_t)(uVar18 + 2) + in_R11) * unaff_XMM11_Da * fVar22 +
+                  (float)(int)*(char *)((uint64_t)uVar18 + in_R11) * unaff_XMM11_Da *
                   (unaff_XMM13_Da - fVar22);
         in_R10[1] = (float)(int)cVar1 * unaff_XMM11_Da * (unaff_XMM13_Da - fVar22) +
                     (float)(int)cVar2 * unaff_XMM11_Da * fVar22;
@@ -661,16 +661,16 @@ void UISystem_OptimizedVertexProcessor(void)
     char cVar16;
     int iVar17;
     uint uVar18;
-    longlong in_RAX;
-    ulonglong *unaff_RBX;
+    int64_t in_RAX;
+    uint64_t *unaff_RBX;
     int unaff_EBP;
-    longlong *unaff_RSI;
+    int64_t *unaff_RSI;
     uint unaff_EDI;
     uint uVar19;
-    ulonglong uVar20;
-    ulonglong uVar21;
+    uint64_t uVar20;
+    uint64_t uVar21;
     float *in_R10;
-    longlong in_R11;
+    int64_t in_R11;
     float fVar22;
     float fVar23;
     float fVar24;
@@ -704,40 +704,40 @@ void UISystem_OptimizedVertexProcessor(void)
     // 优化处理主循环
     do {
         uVar20 = *unaff_RBX + *unaff_RSI;
-        uVar19 = *(uint *)((longlong)unaff_RBX + 4) * 2;
-        cVar1 = *(char *)((ulonglong)uVar19 + in_R11);
-        cVar2 = *(char *)((ulonglong)(uVar19 + 2) + in_R11);
+        uVar19 = *(uint *)((int64_t)unaff_RBX + 4) * 2;
+        cVar1 = *(char *)((uint64_t)uVar19 + in_R11);
+        cVar2 = *(char *)((uint64_t)(uVar19 + 2) + in_R11);
         fVar23 = (float)(uint)*unaff_RBX * unaff_XMM12_Da;
-        cVar3 = *(char *)((ulonglong)(uVar19 + 1) + in_R11);
-        cVar4 = *(char *)((ulonglong)(uVar19 + 3) + in_R11);
+        cVar3 = *(char *)((uint64_t)(uVar19 + 1) + in_R11);
+        cVar4 = *(char *)((uint64_t)(uVar19 + 3) + in_R11);
         *unaff_RBX = uVar20;
         
         uVar21 = *unaff_RSI + uVar20;
         uVar19 = (int)(uVar20 >> 0x20) * 2;
-        cVar5 = *(char *)((ulonglong)uVar19 + in_R11);
-        cVar6 = *(char *)((ulonglong)(uVar19 + 2) + in_R11);
+        cVar5 = *(char *)((uint64_t)uVar19 + in_R11);
+        cVar6 = *(char *)((uint64_t)(uVar19 + 2) + in_R11);
         fVar22 = (float)(uVar20 & 0xffffffff) * unaff_XMM12_Da;
-        cVar7 = *(char *)((ulonglong)(uVar19 + 3) + in_R11);
-        cVar8 = *(char *)((ulonglong)(uVar19 + 1) + in_R11);
+        cVar7 = *(char *)((uint64_t)(uVar19 + 3) + in_R11);
+        cVar8 = *(char *)((uint64_t)(uVar19 + 1) + in_R11);
         *unaff_RBX = uVar21;
         
         iVar17 = (int)(uVar21 >> 0x20);
         uVar19 = iVar17 * 2;
         fVar24 = (float)(uVar21 & 0xffffffff) * unaff_XMM12_Da;
-        cVar9 = *(char *)((ulonglong)uVar19 + in_R11);
-        cVar10 = *(char *)((ulonglong)(uVar19 + 2) + in_R11);
+        cVar9 = *(char *)((uint64_t)uVar19 + in_R11);
+        cVar10 = *(char *)((uint64_t)(uVar19 + 2) + in_R11);
         uVar21 = *unaff_RSI + uVar21;
         iVar17 = iVar17 * 2;
-        cVar11 = *(char *)((ulonglong)(iVar17 + 1) + in_R11);
-        cVar12 = *(char *)((ulonglong)(iVar17 + 3) + in_R11);
+        cVar11 = *(char *)((uint64_t)(iVar17 + 1) + in_R11);
+        cVar12 = *(char *)((uint64_t)(iVar17 + 3) + in_R11);
         *unaff_RBX = uVar21;
         
         uVar19 = (int)(uVar21 >> 0x20) * 2;
-        cVar13 = *(char *)((ulonglong)uVar19 + in_R11);
-        cVar14 = *(char *)((ulonglong)(uVar19 + 2) + in_R11);
+        cVar13 = *(char *)((uint64_t)uVar19 + in_R11);
+        cVar14 = *(char *)((uint64_t)(uVar19 + 2) + in_R11);
         fVar25 = (float)(uVar21 & 0xffffffff) * unaff_XMM12_Da;
-        cVar15 = *(char *)((ulonglong)(uVar19 + 1) + in_R11);
-        cVar16 = *(char *)((ulonglong)(uVar19 + 3) + in_R11);
+        cVar15 = *(char *)((uint64_t)(uVar19 + 1) + in_R11);
+        cVar16 = *(char *)((uint64_t)(uVar19 + 3) + in_R11);
         *unaff_RBX = *unaff_RSI + uVar21;
         
         // 优化顶点处理计算
@@ -763,12 +763,12 @@ void UISystem_OptimizedVertexProcessor(void)
     
     // 处理剩余顶点
     for (uVar19 = unaff_EDI & 3; uVar19 != 0; uVar19 = uVar19 - 1) {
-        uVar18 = *(uint *)((longlong)unaff_RBX + 4) * 2;
-        cVar1 = *(char *)((ulonglong)(uVar18 + 1) + in_R11);
+        uVar18 = *(uint *)((int64_t)unaff_RBX + 4) * 2;
+        cVar1 = *(char *)((uint64_t)(uVar18 + 1) + in_R11);
         fVar22 = (float)(uint)*unaff_RBX * unaff_XMM12_Da;
-        cVar2 = *(char *)((ulonglong)(uVar18 + 3) + in_R11);
-        *in_R10 = (float)(int)*(char *)((ulonglong)(uVar18 + 2) + in_R11) * unaff_XMM11_Da * fVar22 +
-                  (float)(int)*(char *)((ulonglong)uVar18 + in_R11) * unaff_XMM11_Da *
+        cVar2 = *(char *)((uint64_t)(uVar18 + 3) + in_R11);
+        *in_R10 = (float)(int)*(char *)((uint64_t)(uVar18 + 2) + in_R11) * unaff_XMM11_Da * fVar22 +
+                  (float)(int)*(char *)((uint64_t)uVar18 + in_R11) * unaff_XMM11_Da *
                   (unaff_XMM13_Da - fVar22);
         in_R10[1] = (float)(int)cVar1 * unaff_XMM11_Da * (unaff_XMM13_Da - fVar22) +
                     (float)(int)cVar2 * unaff_XMM11_Da * fVar22;
@@ -799,11 +799,11 @@ void UISystem_FastTextureInterpolator(void)
     char cVar2;
     uint uVar3;
     uint *unaff_RBX;
-    longlong *unaff_RSI;
+    int64_t *unaff_RSI;
     uint unaff_EDI;
     uint uVar4;
     float *in_R10;
-    longlong in_R11;
+    int64_t in_R11;
     float fVar5;
     float unaff_XMM11_Da;
     float unaff_XMM12_Da;
@@ -812,16 +812,16 @@ void UISystem_FastTextureInterpolator(void)
     // 快速插值处理循环（处理剩余的1-3个元素）
     for (uVar4 = unaff_EDI & 3; uVar4 != 0; uVar4 = uVar4 - 1) {
         uVar3 = unaff_RBX[1] * 2;
-        cVar1 = *(char *)((ulonglong)(uVar3 + 1) + in_R11);
+        cVar1 = *(char *)((uint64_t)(uVar3 + 1) + in_R11);
         fVar5 = (float)*unaff_RBX * unaff_XMM12_Da;
-        cVar2 = *(char *)((ulonglong)(uVar3 + 3) + in_R11);
-        *in_R10 = (float)(int)*(char *)((ulonglong)(uVar3 + 2) + in_R11) * unaff_XMM11_Da * fVar5 +
-                  (float)(int)*(char *)((ulonglong)uVar3 + in_R11) * unaff_XMM11_Da *
+        cVar2 = *(char *)((uint64_t)(uVar3 + 3) + in_R11);
+        *in_R10 = (float)(int)*(char *)((uint64_t)(uVar3 + 2) + in_R11) * unaff_XMM11_Da * fVar5 +
+                  (float)(int)*(char *)((uint64_t)uVar3 + in_R11) * unaff_XMM11_Da *
                   (unaff_XMM13_Da - fVar5);
         in_R10[1] = (float)(int)cVar1 * unaff_XMM11_Da * (unaff_XMM13_Da - fVar5) +
                     (float)(int)cVar2 * unaff_XMM11_Da * fVar5;
         in_R10 = in_R10 + 2;
-        *(longlong *)unaff_RBX = *(longlong *)unaff_RBX + *unaff_RSI;
+        *(int64_t *)unaff_RBX = *(int64_t *)unaff_RBX + *unaff_RSI;
     }
     
     return;
@@ -847,10 +847,10 @@ void UISystem_ContinuousVertexTransformer(void)
     char cVar2;
     uint uVar3;
     uint *unaff_RBX;
-    longlong *unaff_RSI;
+    int64_t *unaff_RSI;
     int unaff_EDI;
     float *in_R10;
-    longlong in_R11;
+    int64_t in_R11;
     float fVar4;
     float unaff_XMM11_Da;
     float unaff_XMM12_Da;
@@ -859,16 +859,16 @@ void UISystem_ContinuousVertexTransformer(void)
     // 连续变换主循环
     do {
         uVar3 = unaff_RBX[1] * 2;
-        cVar1 = *(char *)((ulonglong)(uVar3 + 1) + in_R11);
+        cVar1 = *(char *)((uint64_t)(uVar3 + 1) + in_R11);
         fVar4 = (float)*unaff_RBX * unaff_XMM12_Da;
-        cVar2 = *(char *)((ulonglong)(uVar3 + 3) + in_R11);
-        *in_R10 = (float)(int)*(char *)((ulonglong)(uVar3 + 2) + in_R11) * unaff_XMM11_Da * fVar4 +
-                  (float)(int)*(char *)((ulonglong)uVar3 + in_R11) * unaff_XMM11_Da *
+        cVar2 = *(char *)((uint64_t)(uVar3 + 3) + in_R11);
+        *in_R10 = (float)(int)*(char *)((uint64_t)(uVar3 + 2) + in_R11) * unaff_XMM11_Da * fVar4 +
+                  (float)(int)*(char *)((uint64_t)uVar3 + in_R11) * unaff_XMM11_Da *
                   (unaff_XMM13_Da - fVar4);
         in_R10[1] = (float)(int)cVar1 * unaff_XMM11_Da * (unaff_XMM13_Da - fVar4) +
                     (float)(int)cVar2 * unaff_XMM11_Da * fVar4;
         in_R10 = in_R10 + 2;
-        *(longlong *)unaff_RBX = *(longlong *)unaff_RBX + *unaff_RSI;
+        *(int64_t *)unaff_RBX = *(int64_t *)unaff_RBX + *unaff_RSI;
         unaff_EDI = unaff_EDI + -1;
     } while (unaff_EDI != 0);
     
@@ -894,11 +894,11 @@ void UISystem_ContinuousVertexTransformer(void)
  * - 复杂特效支持
  * - 高精度计算
  */
-void UISystem_AdvancedGraphicsRenderer(float *param_1, uint param_2, longlong param_3, 
-                                       uint *param_4, longlong *param_5)
+void UISystem_AdvancedGraphicsRenderer(float *param_1, uint param_2, int64_t param_3, 
+                                       uint *param_4, int64_t *param_5)
 {
     float *pfVar1;
-    longlong lVar2;
+    int64_t lVar2;
     float *pfVar3;
     float *pfVar4;
     float fVar5;
@@ -913,7 +913,7 @@ void UISystem_AdvancedGraphicsRenderer(float *param_1, uint param_2, longlong pa
     float fVar14;
     float fVar15;
     float fVar16;
-    longlong lVar17;
+    int64_t lVar17;
     float fVar18;
     float fVar19;
     float fVar20;
@@ -924,9 +924,9 @@ void UISystem_AdvancedGraphicsRenderer(float *param_1, uint param_2, longlong pa
     float fVar25;
     float fVar26;
     int iVar27;
-    ulonglong uVar28;
+    uint64_t uVar28;
     uint uVar29;
-    ulonglong *puVar30;
+    uint64_t *puVar30;
     int iVar31;
     float fVar32;
     float fVar33;
@@ -938,7 +938,7 @@ void UISystem_AdvancedGraphicsRenderer(float *param_1, uint param_2, longlong pa
     int iVar40;
     int8_t auVar39 [16];
     int iVar42;
-    longlong lVar41;
+    int64_t lVar41;
     int iVar44;
     int8_t auVar43 [16];
     int iVar45;
@@ -946,45 +946,45 @@ void UISystem_AdvancedGraphicsRenderer(float *param_1, uint param_2, longlong pa
     int8_t auStack_e8 [8];
     uint64_t uStack_e0;
     uint64_t uStack_d8;
-    ulonglong auStack_b8 [22];
+    uint64_t auStack_b8 [22];
     
     puVar30 = auStack_b8;
-    auStack_b8[0] = system_stack_cookie ^ (ulonglong)auStack_b8;
-    uVar28 = (ulonglong)param_1 & MEMORY_ALIGNMENT_MASK;
+    auStack_b8[0] = system_stack_cookie ^ (uint64_t)auStack_b8;
+    uVar28 = (uint64_t)param_1 & MEMORY_ALIGNMENT_MASK;
     
     // 处理未对齐的数据
     for (; (uVar28 != 0 && (param_2 != 0)); param_2 = param_2 - 1) {
         uVar29 = param_4[1] * VERTEX_PROCESSING_STRIDE;
         fVar46 = (float)(*param_4 >> 1) * INTERPOLATION_PRECISION;
-        fVar5 = *(float *)(param_3 + (ulonglong)(uVar29 + 1) * 4);
-        fVar6 = *(float *)(param_3 + (ulonglong)(uVar29 + 2) * 4);
-        fVar7 = *(float *)(param_3 + (ulonglong)(uVar29 + 3) * 4);
-        fVar8 = *(float *)(param_3 + (ulonglong)(uVar29 + 4) * 4);
-        fVar9 = *(float *)(param_3 + (ulonglong)(uVar29 + 5) * 4);
-        fVar10 = *(float *)(param_3 + (ulonglong)(uVar29 + 8) * 4);
-        fVar11 = *(float *)(param_3 + (ulonglong)(uVar29 + 9) * 4);
-        fVar12 = *(float *)(param_3 + (ulonglong)(uVar29 + 10) * 4);
-        fVar13 = *(float *)(param_3 + (ulonglong)(uVar29 + 0xb) * 4);
-        fVar14 = *(float *)(param_3 + (ulonglong)(uVar29 + 6) * 4);
-        fVar15 = *(float *)(param_3 + (ulonglong)uVar29 * 4);
-        fVar16 = *(float *)(param_3 + (ulonglong)uVar29 * 4);
+        fVar5 = *(float *)(param_3 + (uint64_t)(uVar29 + 1) * 4);
+        fVar6 = *(float *)(param_3 + (uint64_t)(uVar29 + 2) * 4);
+        fVar7 = *(float *)(param_3 + (uint64_t)(uVar29 + 3) * 4);
+        fVar8 = *(float *)(param_3 + (uint64_t)(uVar29 + 4) * 4);
+        fVar9 = *(float *)(param_3 + (uint64_t)(uVar29 + 5) * 4);
+        fVar10 = *(float *)(param_3 + (uint64_t)(uVar29 + 8) * 4);
+        fVar11 = *(float *)(param_3 + (uint64_t)(uVar29 + 9) * 4);
+        fVar12 = *(float *)(param_3 + (uint64_t)(uVar29 + 10) * 4);
+        fVar13 = *(float *)(param_3 + (uint64_t)(uVar29 + 0xb) * 4);
+        fVar14 = *(float *)(param_3 + (uint64_t)(uVar29 + 6) * 4);
+        fVar15 = *(float *)(param_3 + (uint64_t)uVar29 * 4);
+        fVar16 = *(float *)(param_3 + (uint64_t)uVar29 * 4);
         
         // 高级渲染计算
-        param_1[1] = (*(float *)(param_3 + (ulonglong)(uVar29 + 7) * 4) - fVar5) * fVar46 + fVar5;
+        param_1[1] = (*(float *)(param_3 + (uint64_t)(uVar29 + 7) * 4) - fVar5) * fVar46 + fVar5;
         param_1[2] = (fVar10 - fVar6) * fVar46 + fVar6;
         param_1[3] = (fVar11 - fVar7) * fVar46 + fVar7;
         param_1[4] = (fVar12 - fVar8) * fVar46 + fVar8;
         *param_1 = (fVar14 - fVar15) * fVar46 + fVar16;
         param_1[5] = (fVar13 - fVar9) * fVar46 + fVar9;
         param_1 = param_1 + 6;
-        *(longlong *)param_4 = *(longlong *)param_4 + *param_5;
-        uVar28 = (ulonglong)param_1 & MEMORY_ALIGNMENT_MASK;
+        *(int64_t *)param_4 = *(int64_t *)param_4 + *param_5;
+        uVar28 = (uint64_t)param_1 & MEMORY_ALIGNMENT_MASK;
     }
     
     iVar31 = (int)param_2 >> 2;
     if (iVar31 != 0) {
         lVar41 = *param_5;
-        lVar17 = *(longlong *)param_4;
+        lVar17 = *(int64_t *)param_4;
         lVar2 = lVar41 * 4;
         iVar40 = (int)lVar41;
         iVar27 = iVar40 * 4;
@@ -993,7 +993,7 @@ void UISystem_AdvancedGraphicsRenderer(float *param_1, uint param_2, longlong pa
         auVar39._0_8_ = lVar17;
         auVar43._0_8_ = lVar41 * 2 + lVar17;
         auVar43._8_8_ = lVar41 * 3 + lVar17;
-        puVar30 = (ulonglong *)auStack_e8;
+        puVar30 = (uint64_t *)auStack_e8;
         uVar36 = iVar40 + uVar29;
         uVar37 = iVar40 * 2 + uVar29;
         uVar38 = iVar40 * 3 + uVar29;
@@ -1014,7 +1014,7 @@ void UISystem_AdvancedGraphicsRenderer(float *param_1, uint param_2, longlong pa
             auVar39._0_8_ = auVar39._0_8_ + lVar2;
             auVar39._8_8_ = lVar41 + lVar2;
             
-            uVar28 = (ulonglong)(uint)(iVar40 * VERTEX_PROCESSING_STRIDE);
+            uVar28 = (uint64_t)(uint)(iVar40 * VERTEX_PROCESSING_STRIDE);
             fVar32 = (float)(uVar29 >> 1) * INTERPOLATION_PRECISION;
             fVar33 = (float)(uVar36 >> 1) * INTERPOLATION_PRECISION;
             fVar34 = (float)(uVar37 >> 1) * INTERPOLATION_PRECISION;
@@ -1034,7 +1034,7 @@ void UISystem_AdvancedGraphicsRenderer(float *param_1, uint param_2, longlong pa
             fVar13 = pfVar4[2];
             fVar14 = pfVar4[3];
             
-            uVar28 = (ulonglong)(uint)(iVar42 * VERTEX_PROCESSING_STRIDE);
+            uVar28 = (uint64_t)(uint)(iVar42 * VERTEX_PROCESSING_STRIDE);
             pfVar4 = (float *)(param_3 + TEXTURE_DATA_OFFSET + uVar28 * 4);
             fVar15 = *pfVar4;
             fVar16 = pfVar4[1];
@@ -1065,7 +1065,7 @@ void UISystem_AdvancedGraphicsRenderer(float *param_1, uint param_2, longlong pa
             param_1[10] = fVar15 + (fVar25 - fVar15) * fVar33;
             param_1[0xb] = fVar16 + (fVar26 - fVar16) * fVar33;
             
-            uVar28 = (ulonglong)(uint)(iVar44 * VERTEX_PROCESSING_STRIDE);
+            uVar28 = (uint64_t)(uint)(iVar44 * VERTEX_PROCESSING_STRIDE);
             pfVar1 = (float *)(param_3 + uVar28 * 4);
             fVar5 = pfVar1[1];
             fVar6 = pfVar1[2];
@@ -1080,7 +1080,7 @@ void UISystem_AdvancedGraphicsRenderer(float *param_1, uint param_2, longlong pa
             fVar13 = pfVar4[2];
             fVar14 = pfVar4[3];
             
-            uVar28 = (ulonglong)(uint)(iVar45 * VERTEX_PROCESSING_STRIDE);
+            uVar28 = (uint64_t)(uint)(iVar45 * VERTEX_PROCESSING_STRIDE);
             pfVar4 = (float *)(param_3 + uVar28 * 4);
             fVar15 = *pfVar4;
             fVar16 = pfVar4[1];
@@ -1118,7 +1118,7 @@ void UISystem_AdvancedGraphicsRenderer(float *param_1, uint param_2, longlong pa
             uVar38 = uVar38 + iVar27;
         } while (iVar31 != 0);
         
-        *(longlong *)param_4 = auVar39._0_8_;
+        *(int64_t *)param_4 = auVar39._0_8_;
     }
     
     // 处理剩余元素
@@ -1128,34 +1128,34 @@ void UISystem_AdvancedGraphicsRenderer(float *param_1, uint param_2, longlong pa
         do {
             uVar29 = param_4[1] * VERTEX_PROCESSING_STRIDE;
             fVar46 = (float)(*param_4 >> 1) * INTERPOLATION_PRECISION;
-            fVar5 = *(float *)(param_3 + (ulonglong)(uVar29 + 1) * 4);
-            fVar6 = *(float *)(param_3 + (ulonglong)(uVar29 + 2) * 4);
-            fVar7 = *(float *)(param_3 + (ulonglong)(uVar29 + 3) * 4);
-            fVar8 = *(float *)(param_3 + (ulonglong)(uVar29 + 4) * 4);
-            fVar9 = *(float *)(param_3 + (ulonglong)(uVar29 + 5) * 4);
-            fVar10 = *(float *)(param_3 + (ulonglong)(uVar29 + 8) * 4);
-            fVar11 = *(float *)(param_3 + (ulonglong)(uVar29 + 9) * 4);
-            fVar12 = *(float *)(param_3 + (ulonglong)(uVar29 + 10) * 4);
-            fVar13 = *(float *)(param_3 + (ulonglong)(uVar29 + 0xb) * 4);
-            fVar14 = *(float *)(param_3 + (ulonglong)(uVar29 + 6) * 4);
-            fVar15 = *(float *)(param_3 + (ulonglong)uVar29 * 4);
-            fVar16 = *(float *)(param_3 + (ulonglong)uVar29 * 4);
+            fVar5 = *(float *)(param_3 + (uint64_t)(uVar29 + 1) * 4);
+            fVar6 = *(float *)(param_3 + (uint64_t)(uVar29 + 2) * 4);
+            fVar7 = *(float *)(param_3 + (uint64_t)(uVar29 + 3) * 4);
+            fVar8 = *(float *)(param_3 + (uint64_t)(uVar29 + 4) * 4);
+            fVar9 = *(float *)(param_3 + (uint64_t)(uVar29 + 5) * 4);
+            fVar10 = *(float *)(param_3 + (uint64_t)(uVar29 + 8) * 4);
+            fVar11 = *(float *)(param_3 + (uint64_t)(uVar29 + 9) * 4);
+            fVar12 = *(float *)(param_3 + (uint64_t)(uVar29 + 10) * 4);
+            fVar13 = *(float *)(param_3 + (uint64_t)(uVar29 + 0xb) * 4);
+            fVar14 = *(float *)(param_3 + (uint64_t)(uVar29 + 6) * 4);
+            fVar15 = *(float *)(param_3 + (uint64_t)uVar29 * 4);
+            fVar16 = *(float *)(param_3 + (uint64_t)uVar29 * 4);
             
-            param_1[-1] = (*(float *)(param_3 + (ulonglong)(uVar29 + 7) * 4) - fVar5) * fVar46 + fVar5;
+            param_1[-1] = (*(float *)(param_3 + (uint64_t)(uVar29 + 7) * 4) - fVar5) * fVar46 + fVar5;
             *param_1 = (fVar10 - fVar6) * fVar46 + fVar6;
             param_1[1] = (fVar11 - fVar7) * fVar46 + fVar7;
             param_1[2] = (fVar12 - fVar8) * fVar46 + fVar8;
             param_1[-2] = (fVar14 - fVar15) * fVar46 + fVar16;
             param_1[3] = (fVar13 - fVar9) * fVar46 + fVar9;
             param_1 = param_1 + 6;
-            *(longlong *)param_4 = *(longlong *)param_4 + *param_5;
+            *(int64_t *)param_4 = *(int64_t *)param_4 + *param_5;
             param_2 = param_2 - 1;
         } while (param_2 != 0);
     }
     
     // 清理和返回
-    *(uint64_t *)((longlong)puVar30 + -8) = 0x180833afc;
-    FUN_1808fc050(auStack_b8[0] ^ (ulonglong)auStack_b8);
+    *(uint64_t *)((int64_t)puVar30 + -8) = 0x180833afc;
+    FUN_1808fc050(auStack_b8[0] ^ (uint64_t)auStack_b8);
 }
 
 // =============================================================================

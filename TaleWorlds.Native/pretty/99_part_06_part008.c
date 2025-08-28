@@ -2,8 +2,8 @@
 
 // 99_part_06_part008.c - 3 个函数
 
-// 函数: void FUN_1803aa060(longlong param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
-void FUN_1803aa060(longlong param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
+// 函数: void FUN_1803aa060(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
+void FUN_1803aa060(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
   FUN_1803aeb70(param_1,*(uint64_t *)(param_1 + 0x10),param_3,param_4,0xfffffffffffffffe);
@@ -19,37 +19,37 @@ void FUN_1803aa060(longlong param_1,uint64_t param_2,uint64_t param_3,uint64_t p
 void FUN_1803aa090(uint64_t *param_1)
 
 {
-  longlong *plVar1;
+  int64_t *plVar1;
   
   *param_1 = &unknown_var_376_ptr;
   FUN_180419360(param_1[0x1c4]);
   FUN_18033b330(param_1[0x1c4]);
   param_1[0x1c4] = 0;
-  plVar1 = (longlong *)param_1[0x1c5];
+  plVar1 = (int64_t *)param_1[0x1c5];
   param_1[0x1c5] = 0;
-  if (plVar1 != (longlong *)0x0) {
+  if (plVar1 != (int64_t *)0x0) {
     (**(code **)(*plVar1 + 0x38))();
   }
-  plVar1 = (longlong *)param_1[0x1c6];
+  plVar1 = (int64_t *)param_1[0x1c6];
   param_1[0x1c6] = 0;
-  if (plVar1 != (longlong *)0x0) {
+  if (plVar1 != (int64_t *)0x0) {
     (**(code **)(*plVar1 + 0x38))();
   }
-  plVar1 = (longlong *)param_1[0x1c7];
+  plVar1 = (int64_t *)param_1[0x1c7];
   param_1[0x1c7] = 0;
-  if (plVar1 != (longlong *)0x0) {
+  if (plVar1 != (int64_t *)0x0) {
     (**(code **)(*plVar1 + 0x38))();
   }
   FUN_18004b730();
   FUN_18004b730();
-  if ((longlong *)param_1[0x1c7] != (longlong *)0x0) {
-    (**(code **)(*(longlong *)param_1[0x1c7] + 0x38))();
+  if ((int64_t *)param_1[0x1c7] != (int64_t *)0x0) {
+    (**(code **)(*(int64_t *)param_1[0x1c7] + 0x38))();
   }
-  if ((longlong *)param_1[0x1c6] != (longlong *)0x0) {
-    (**(code **)(*(longlong *)param_1[0x1c6] + 0x38))();
+  if ((int64_t *)param_1[0x1c6] != (int64_t *)0x0) {
+    (**(code **)(*(int64_t *)param_1[0x1c6] + 0x38))();
   }
-  if ((longlong *)param_1[0x1c5] != (longlong *)0x0) {
-    (**(code **)(*(longlong *)param_1[0x1c5] + 0x38))();
+  if ((int64_t *)param_1[0x1c5] != (int64_t *)0x0) {
+    (**(code **)(*(int64_t *)param_1[0x1c5] + 0x38))();
   }
   FUN_1803aeb70(param_1 + 0x1bd,param_1[0x1bf]);
   FUN_1803aeb70(param_1 + 0x1b7,param_1[0x1b9]);

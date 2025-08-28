@@ -2,8 +2,8 @@
 
 // 99_part_10_part050.c - 4 个函数
 
-// 函数: void FUN_1806c7280(longlong param_1,longlong param_2,int32_t param_3)
-void FUN_1806c7280(longlong param_1,longlong param_2,int32_t param_3)
+// 函数: void FUN_1806c7280(int64_t param_1,int64_t param_2,int32_t param_3)
+void FUN_1806c7280(int64_t param_1,int64_t param_2,int32_t param_3)
 
 {
   int *piVar1;
@@ -27,8 +27,8 @@ void FUN_1806c7280(longlong param_1,longlong param_2,int32_t param_3)
 
 
 
-// 函数: void FUN_1806c7299(longlong param_1,longlong param_2,int32_t param_3)
-void FUN_1806c7299(longlong param_1,longlong param_2,int32_t param_3)
+// 函数: void FUN_1806c7299(int64_t param_1,int64_t param_2,int32_t param_3)
+void FUN_1806c7299(int64_t param_1,int64_t param_2,int32_t param_3)
 
 {
   uint64_t uVar1;
@@ -36,9 +36,9 @@ void FUN_1806c7299(longlong param_1,longlong param_2,int32_t param_3)
   int32_t uVar3;
   int32_t uVar4;
   int32_t uVar5;
-  longlong in_RAX;
+  int64_t in_RAX;
   uint64_t unaff_RBX;
-  longlong unaff_RBP;
+  int64_t unaff_RBP;
   uint64_t unaff_RSI;
   uint64_t unaff_R13;
   
@@ -68,8 +68,8 @@ void FUN_1806c7299(longlong param_1,longlong param_2,int32_t param_3)
 
 
 
-// 函数: void FUN_1806c72a4(longlong param_1,longlong param_2,int32_t param_3,uint64_t param_4)
-void FUN_1806c72a4(longlong param_1,longlong param_2,int32_t param_3,uint64_t param_4)
+// 函数: void FUN_1806c72a4(int64_t param_1,int64_t param_2,int32_t param_3,uint64_t param_4)
+void FUN_1806c72a4(int64_t param_1,int64_t param_2,int32_t param_3,uint64_t param_4)
 
 {
   uint64_t uVar1;
@@ -77,8 +77,8 @@ void FUN_1806c72a4(longlong param_1,longlong param_2,int32_t param_3,uint64_t pa
   int32_t uVar3;
   int32_t uVar4;
   int32_t uVar5;
-  longlong in_RAX;
-  longlong unaff_RBP;
+  int64_t in_RAX;
+  int64_t unaff_RBP;
   uint64_t unaff_RSI;
   uint64_t unaff_R13;
   
@@ -146,9 +146,9 @@ void FUN_1806c7795(void)
   in_stack_00000078 = puVar9[2];
   uStack000000000000007c = puVar9[3];
   *(int32_t *)(unaff_RBP + -0x10) = puVar9[4];
-  *(int32_t *)((longlong)unaff_RBP + -0x7c) = puVar9[5];
+  *(int32_t *)((int64_t)unaff_RBP + -0x7c) = puVar9[5];
   *(int32_t *)(unaff_RBP + -0xf) = puVar9[6];
-  *(int32_t *)((longlong)unaff_RBP + -0x74) = puVar9[7];
+  *(int32_t *)((int64_t)unaff_RBP + -0x74) = puVar9[7];
   *(int32_t *)(unaff_RBP + -0xe) = puVar9[8];
   unaff_RBP[-1] = &stack0x00000070;
   *(int8_t *)(unaff_RBP + 0x46) = 0;

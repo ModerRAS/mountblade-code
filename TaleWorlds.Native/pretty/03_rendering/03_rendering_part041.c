@@ -105,8 +105,8 @@ void update_render_bounds(int *bounds_data, char update_mode, int x1, int y1, in
     
     // 处理新数据项
     current_max_x = bounds_data[RENDER_BOUNDS_COUNT_OFFSET];
-    unsigned short *data_block = (unsigned short *)((longlong)current_max_x * RENDER_DATA_BLOCK_SIZE + 
-                                                   *(longlong *)(bounds_data + RENDER_BOUNDS_DATA_OFFSET));
+    unsigned short *data_block = (unsigned short *)((int64_t)current_max_x * RENDER_DATA_BLOCK_SIZE + 
+                                                   *(int64_t *)(bounds_data + RENDER_BOUNDS_DATA_OFFSET));
     
     // 存储坐标数据
     data_block[2] = (unsigned short)x2;  // 第二个点X
@@ -129,7 +129,7 @@ void update_render_bounds(int *bounds_data, char update_mode, int x1, int y1, in
 //   - x1, y1: 第一个点坐标
 //   - x2, y2: 第二个点坐标
 //   - x3, y3: 第三个点坐标
-void update_render_bounds_extended(longlong bounds_ptr, uint64_t param_2, int x1, int y1, 
+void update_render_bounds_extended(int64_t bounds_ptr, uint64_t param_2, int x1, int y1, 
                                  uint64_t param_5, int x2, int y2, int x3, int y3)
 {
     int current_max_x, current_max_y;
@@ -213,7 +213,7 @@ void update_render_bounds_extended(longlong bounds_ptr, uint64_t param_2, int x1
 //   - param_5: 保留参数
 //   - x2, y2: 第二个点坐标
 //   - x3, y3: 第三个点坐标
-void add_render_bounds_data(longlong bounds_ptr, uint64_t param_2, uint64_t param_3, 
+void add_render_bounds_data(int64_t bounds_ptr, uint64_t param_2, uint64_t param_3, 
                            unsigned short x1, uint64_t param_5, unsigned short y1, 
                            unsigned short x2, unsigned short y2, unsigned short x3)
 {
@@ -223,8 +223,8 @@ void add_render_bounds_data(longlong bounds_ptr, uint64_t param_2, uint64_t para
     unsigned short first_x;
     
     data_count = *(int *)(bounds_ptr + 0x30);
-    data_block = (unsigned short *)((longlong)data_count * RENDER_DATA_BLOCK_SIZE + 
-                                   *(longlong *)(bounds_ptr + 0x28));
+    data_block = (unsigned short *)((int64_t)data_count * RENDER_DATA_BLOCK_SIZE + 
+                                   *(int64_t *)(bounds_ptr + 0x28));
     
     // 存储边界数据
     data_block[2] = y1;        // 第一个点Y
@@ -248,8 +248,8 @@ void add_render_bounds_data(longlong bounds_ptr, uint64_t param_2, uint64_t para
 void update_render_position(int *render_data, float delta_x, float delta_y)
 {
     int current_x, current_y;
-    longlong data_ptr;
-    longlong data_offset;
+    int64_t data_ptr;
+    int64_t data_offset;
     int new_y, new_x;
     
     // 调用渲染初始化函数
@@ -289,9 +289,9 @@ void update_render_position(int *render_data, float delta_x, float delta_y)
     }
     
     // 处理新位置数据
-    data_ptr = *(longlong *)(render_data + RENDER_BOUNDS_DATA_OFFSET);
+    data_ptr = *(int64_t *)(render_data + RENDER_BOUNDS_DATA_OFFSET);
     current_x = render_data[RENDER_BOUNDS_COUNT_OFFSET];
-    data_offset = (longlong)current_x * RENDER_DATA_BLOCK_SIZE;
+    data_offset = (int64_t)current_x * RENDER_DATA_BLOCK_SIZE;
     
     // 存储位置数据
     *(unsigned short *)(data_offset + 2 + data_ptr) = (unsigned short)new_y;
@@ -310,7 +310,7 @@ void update_render_position(int *render_data, float delta_x, float delta_y)
 //   - offset_x, offset_y: 偏移量
 //   - size_x, size_y: 尺寸
 //   - extend_x, extend_y: 扩展量
-void extend_render_bounds_float(longlong render_ptr, float offset_x, float offset_y, 
+void extend_render_bounds_float(int64_t render_ptr, float offset_x, float offset_y, 
                                float size_x, float size_y, float extend_x, float extend_y)
 {
     int new_x;
@@ -339,7 +339,7 @@ void extend_render_bounds_float(longlong render_ptr, float offset_x, float offse
 //   - data_ptr: 数据指针
 //   - search_index: 搜索索引
 // 返回值: 找到的数据指针
-uint64_t *search_render_data_by_index(uint64_t *result_ptr, longlong data_ptr, int search_index)
+uint64_t *search_render_data_by_index(uint64_t *result_ptr, int64_t data_ptr, int search_index)
 {
     char *data_buffer;
     uint64_t temp_data;
@@ -349,7 +349,7 @@ uint64_t *search_render_data_by_index(uint64_t *result_ptr, longlong data_ptr, i
     char fourth_char;
     byte data_byte;
     char fifth_char;
-    longlong buffer_offset;
+    int64_t buffer_offset;
     uint64_t *found_ptr;
     int current_index;
     uint search_value;
@@ -366,10 +366,10 @@ uint64_t *search_render_data_by_index(uint64_t *result_ptr, longlong data_ptr, i
     current_index = 0;
     
     // 获取数据长度
-    stack_data_2._4_4_ = (int)((ulonglong)*(longlong *)(data_ptr + 0x98) >> 0x20);
+    stack_data_2._4_4_ = (int)((uint64_t)*(int64_t *)(data_ptr + 0x98) >> 0x20);
     data_length = stack_data_2._4_4_;
     
-    if ((*(longlong *)(data_ptr + 0x98) < 0) || (data_length = 0, stack_data_2._4_4_ < 1)) {
+    if ((*(int64_t *)(data_ptr + 0x98) < 0) || (data_length = 0, stack_data_2._4_4_ < 1)) {
         first_char = '\0';
     } else {
         first_char = *data_buffer;
@@ -389,28 +389,28 @@ uint64_t *search_render_data_by_index(uint64_t *result_ptr, longlong data_ptr, i
         if (first_char == '\x03') {
             // 读取数据块头信息
             if (data_length < stack_data_2._4_4_) {
-                buffer_offset = (longlong)data_length;
+                buffer_offset = (int64_t)data_length;
                 data_length = data_length + 1;
                 first_char = data_buffer[buffer_offset];
             } else {
                 first_char = '\0';
             }
             if (data_length < stack_data_2._4_4_) {
-                buffer_offset = (longlong)data_length;
+                buffer_offset = (int64_t)data_length;
                 data_length = data_length + 1;
                 second_char = data_buffer[buffer_offset];
             } else {
                 second_char = '\0';
             }
             if (data_length < stack_data_2._4_4_) {
-                buffer_offset = (longlong)data_length;
+                buffer_offset = (int64_t)data_length;
                 data_length = data_length + 1;
                 fifth_char = data_buffer[buffer_offset];
             } else {
                 fifth_char = '\0';
             }
             if (data_length < stack_data_2._4_4_) {
-                buffer_offset = (longlong)data_length;
+                buffer_offset = (int64_t)data_length;
                 data_length = data_length + 1;
                 third_char = data_buffer[buffer_offset];
             } else {
@@ -424,21 +424,21 @@ uint64_t *search_render_data_by_index(uint64_t *result_ptr, longlong data_ptr, i
             if (CONCAT11(first_char, second_char) != 0) {
                 do {
                     if (data_length < stack_data_2._4_4_) {
-                        buffer_offset = (longlong)data_length;
+                        buffer_offset = (int64_t)data_length;
                         data_length = data_length + 1;
                         data_byte = data_buffer[buffer_offset];
                     } else {
                         data_byte = 0;
                     }
                     if (data_length < stack_data_2._4_4_) {
-                        buffer_offset = (longlong)data_length;
+                        buffer_offset = (int64_t)data_length;
                         data_length = data_length + 1;
                         fifth_char = data_buffer[buffer_offset];
                     } else {
                         fifth_char = '\0';
                     }
                     if (data_length < stack_data_2._4_4_) {
-                        buffer_offset = (longlong)data_length;
+                        buffer_offset = (int64_t)data_length;
                         data_length = data_length + 1;
                         third_char = data_buffer[buffer_offset];
                     } else {
@@ -479,7 +479,7 @@ uint64_t *search_render_data_by_index(uint64_t *result_ptr, longlong data_ptr, i
 //   - result_ptr: 结果指针
 //   - param_6, param_7: 保留参数
 void process_render_data_sequence(int start_index, uint64_t param_2, int end_index, 
-                                  longlong data_ptr, uint64_t result_ptr, 
+                                  int64_t data_ptr, uint64_t result_ptr, 
                                   int32_t param_6, int32_t param_7)
 {
     uint64_t result_data;
@@ -488,12 +488,12 @@ void process_render_data_sequence(int start_index, uint64_t param_2, int end_ind
     int8_t third_byte;
     byte data_byte;
     int8_t fourth_byte;
-    longlong offset;
+    int64_t offset;
     uint64_t *processed_ptr;
     uint search_value;
     int data_length;
     uint chunk_value;
-    longlong context_ptr;
+    int64_t context_ptr;
     uint64_t *output_ptr;
     uint temp_value;
     int current_index;
@@ -502,7 +502,7 @@ void process_render_data_sequence(int start_index, uint64_t param_2, int end_ind
     int32_t stack_param_2;
     
     if (start_index < end_index) {
-        offset = (longlong)start_index;
+        offset = (int64_t)start_index;
         start_index = start_index + 1;
         first_byte = *(int8_t *)(offset + data_ptr);
     } else {
@@ -510,7 +510,7 @@ void process_render_data_sequence(int start_index, uint64_t param_2, int end_ind
     }
     
     if (start_index < end_index) {
-        offset = (longlong)start_index;
+        offset = (int64_t)start_index;
         start_index = start_index + 1;
         second_byte = *(int8_t *)(offset + data_ptr);
     } else {
@@ -518,7 +518,7 @@ void process_render_data_sequence(int start_index, uint64_t param_2, int end_ind
     }
     
     if (start_index < end_index) {
-        offset = (longlong)start_index;
+        offset = (int64_t)start_index;
         start_index = start_index + 1;
         fourth_byte = *(int8_t *)(offset + data_ptr);
     } else {
@@ -526,7 +526,7 @@ void process_render_data_sequence(int start_index, uint64_t param_2, int end_ind
     }
     
     if (start_index < end_index) {
-        offset = (longlong)start_index;
+        offset = (int64_t)start_index;
         start_index = start_index + 1;
         third_byte = *(int8_t *)(offset + data_ptr);
     } else {
@@ -540,21 +540,21 @@ void process_render_data_sequence(int start_index, uint64_t param_2, int end_ind
     if (CONCAT11(first_byte, second_byte) != 0) {
         do {
             if (start_index < end_index) {
-                offset = (longlong)start_index;
+                offset = (int64_t)start_index;
                 start_index = start_index + 1;
                 data_byte = *(byte *)(offset + data_ptr);
             } else {
                 data_byte = 0;
             }
             if (start_index < end_index) {
-                offset = (longlong)start_index;
+                offset = (int64_t)start_index;
                 start_index = start_index + 1;
                 fourth_byte = *(int8_t *)(offset + data_ptr);
             } else {
                 fourth_byte = 0;
             }
             if (start_index < end_index) {
-                offset = (longlong)start_index;
+                offset = (int64_t)start_index;
                 start_index = start_index + 1;
                 third_byte = *(int8_t *)(offset + data_ptr);
             } else {
@@ -598,19 +598,19 @@ void process_render_data_sequence(int start_index, uint64_t param_2, int end_ind
 //   - result_ptr: 结果指针
 //   - param_6, param_7: 保留参数
 void process_render_data_stream(int start_index, uint64_t param_2, int end_index, 
-                                longlong data_ptr, uint64_t result_ptr, 
+                                int64_t data_ptr, uint64_t result_ptr, 
                                 int32_t param_6, int32_t param_7)
 {
     uint64_t result_data;
     byte data_byte;
     int8_t second_byte;
     int8_t third_byte;
-    longlong offset;
+    int64_t offset;
     uint64_t *processed_ptr;
     uint search_value;
     int data_length;
     uint chunk_value;
-    longlong context_ptr;
+    int64_t context_ptr;
     uint64_t *output_ptr;
     int current_index;
     uint stream_data;
@@ -620,21 +620,21 @@ void process_render_data_stream(int start_index, uint64_t param_2, int end_index
     // 处理数据流
     do {
         if (start_index < end_index) {
-            offset = (longlong)start_index;
+            offset = (int64_t)start_index;
             start_index = start_index + 1;
             data_byte = *(byte *)(offset + data_ptr);
         } else {
             data_byte = 0;
         }
         if (start_index < end_index) {
-            offset = (longlong)start_index;
+            offset = (int64_t)start_index;
             start_index = start_index + 1;
             second_byte = *(int8_t *)(offset + data_ptr);
         } else {
             second_byte = 0;
         }
         if (start_index < end_index) {
-            offset = (longlong)start_index;
+            offset = (int64_t)start_index;
             start_index = start_index + 1;
             third_byte = *(int8_t *)(offset + data_ptr);
         } else {
@@ -676,7 +676,7 @@ void finalize_render_data_processing(void)
     uint64_t *processed_ptr;
     int32_t process_flag;
     uint64_t context_data;
-    longlong context_ptr;
+    int64_t context_ptr;
     uint64_t *output_ptr;
     int32_t stack_param_1;
     int32_t stack_param_2;
@@ -716,7 +716,7 @@ void complete_render_data_processing(void)
     uint64_t *processed_ptr;
     int32_t process_flag;
     uint64_t context_data;
-    longlong context_ptr;
+    int64_t context_ptr;
     uint64_t *output_ptr;
     int32_t stack_param_1;
     int32_t stack_param_2;

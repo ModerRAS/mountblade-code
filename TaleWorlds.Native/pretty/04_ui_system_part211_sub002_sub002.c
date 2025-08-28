@@ -186,31 +186,31 @@ int UI_SetComponentProperties(void* context, uint32_t flags, void* properties, v
 void UI_CreateComponent(void* context, void* parent, void** component, char enabled)
 {
     // 安全检查：初始化安全缓冲区防止栈溢出攻击
-    ulonglong security_key;
+    uint64_t security_key;
     int result;
-    longlong resource_handle;
-    longlong *component_manager;
-    longlong *state_manager;
-    longlong *resource_allocator;
+    int64_t resource_handle;
+    int64_t *component_manager;
+    int64_t *state_manager;
+    int64_t *resource_allocator;
     int8_t security_buffer[32];  // 安全缓冲区用于栈保护
     int32_t operation_flags;
-    longlong state_data[2];
-    longlong *system_table;
+    int64_t state_data[2];
+    int64_t *system_table;
     void *system_pointer;
     uint64_t system_config;
-    longlong component_id;
+    int64_t component_id;
     int32_t resource_flags[8];  // 资源标志数组
-    longlong state_cache[16];      // 状态缓存
-    longlong callback_data[8];     // 回调数据
-    ulonglong callback_flags;      // 回调标志
-    longlong optimization_data[8];  // 优化数据
+    int64_t state_cache[16];      // 状态缓存
+    int64_t callback_data[8];     // 回调数据
+    uint64_t callback_flags;      // 回调标志
+    int64_t optimization_data[8];  // 优化数据
     int32_t optimization_flags[8];  // 优化标志
-    longlong performance_data[4];  // 性能数据
-    longlong debug_data[4];        // 调试数据
+    int64_t performance_data[4];  // 性能数据
+    int64_t debug_data[4];        // 调试数据
     
     // 初始化安全密钥
-    security_key = UI_GLOBAL_SECURITY_KEY ^ (ulonglong)security_buffer;
-    resource_allocator = (longlong *)0x0;
+    security_key = UI_GLOBAL_SECURITY_KEY ^ (uint64_t)security_buffer;
+    resource_allocator = (int64_t *)0x0;
     state_manager = resource_allocator;
     
     // 验证输入参数
@@ -227,46 +227,46 @@ void UI_CreateComponent(void* context, void* parent, void** component, char enab
         
         // 检查资源是否有效并分配组件管理器
         if ((resource_handle != 0) && 
-            (component_manager = (longlong *)UI_RegisterCallback(resource_handle), 
-             state_manager = (longlong *)0x0,
-             component_manager != (longlong *)0x0)) {
+            (component_manager = (int64_t *)UI_RegisterCallback(resource_handle), 
+             state_manager = (int64_t *)0x0,
+             component_manager != (int64_t *)0x0)) {
             
             // 设置组件管理器状态
             state_manager = component_manager + 0x2f;
-            resource_handle = *(longlong *)(context + 0x116f0);
+            resource_handle = *(int64_t *)(context + 0x116f0);
             *state_manager = resource_handle;
             component_manager[0x30] = context + 0x116f0;
-            *(longlong **)(resource_handle + 8) = state_manager;
-            *(longlong **)component_manager[0x30] = state_manager;
+            *(int64_t **)(resource_handle + 8) = state_manager;
+            *(int64_t **)component_manager[0x30] = state_manager;
             
             // 配置组件管理器
             state_manager = component_manager + 0x41;
-            component_manager[0x31] = (longlong)component_manager;
+            component_manager[0x31] = (int64_t)component_manager;
             component_manager[1] = context;
-            component_manager[10] = (longlong)component_manager;
+            component_manager[10] = (int64_t)component_manager;
             *(int32_t *)(component_manager + 0x44) = 0;
-            component_manager[0x42] = (longlong)state_manager;
-            *state_manager = (longlong)state_manager;
+            component_manager[0x42] = (int64_t)state_manager;
+            *state_manager = (int64_t)state_manager;
             component_manager[0x43] = 0;
             
             // 获取系统状态和配置
-            state_manager = (longlong *)UI_GetSystemState();
-            system_table = (longlong *)*state_manager;
+            state_manager = (int64_t *)UI_GetSystemState();
+            system_table = (int64_t *)*state_manager;
             system_config = state_manager[2];
             component_id = state_manager[3];
             resource_flags[0] = (int32_t)state_manager[4];
-            resource_flags[1] = *(int32_t *)((longlong)state_manager + 0x24);
+            resource_flags[1] = *(int32_t *)((int64_t)state_manager + 0x24);
             resource_flags[2] = (int32_t)state_manager[5];
-            resource_flags[3] = *(int32_t *)((longlong)state_manager + 0x2c);
+            resource_flags[3] = *(int32_t *)((int64_t)state_manager + 0x2c);
             resource_flags[4] = (int32_t)state_manager[6];
-            resource_flags[5] = *(int32_t *)((longlong)state_manager + 0x34);
+            resource_flags[5] = *(int32_t *)((int64_t)state_manager + 0x34);
             resource_flags[6] = (int32_t)state_manager[7];
-            resource_flags[7] = *(int32_t *)((longlong)state_manager + 0x3c);
+            resource_flags[7] = *(int32_t *)((int64_t)state_manager + 0x3c);
             
             // 特殊处理：如果是系统组件
             if (component == (void**)(context + 0x116e0)) {
                 // 处理系统组件的特殊配置
-                security_key = (ulonglong)system_config >> 0x20;
+                security_key = (uint64_t)system_config >> 0x20;
                 system_config = CONCAT44((int)security_key, 0x2b8);
                 resource_allocator = &state_cache[0];
                 
@@ -293,13 +293,13 @@ void UI_CreateComponent(void* context, void* parent, void** component, char enab
                 callback_data[4] = system_table[0x14];
                 callback_data[5] = system_table[0x15];
                 optimization_flags[0] = (int32_t)system_table[0x16];
-                optimization_flags[1] = *(int32_t *)((longlong)system_table + 0xb4);
+                optimization_flags[1] = *(int32_t *)((int64_t)system_table + 0xb4);
                 optimization_flags[2] = (int32_t)system_table[0x17];
-                optimization_flags[3] = *(int32_t *)((longlong)system_table + 0xbc);
+                optimization_flags[3] = *(int32_t *)((int64_t)system_table + 0xbc);
                 optimization_flags[4] = (int32_t)system_table[0x18];
-                optimization_flags[5] = *(int32_t *)((longlong)system_table + 0xc4);
+                optimization_flags[5] = *(int32_t *)((int64_t)system_table + 0xc4);
                 optimization_flags[6] = (int32_t)system_table[0x19];
-                optimization_flags[7] = *(int32_t *)((longlong)system_table + 0xcc);
+                optimization_flags[7] = *(int32_t *)((int64_t)system_table + 0xcc);
                 performance_data[0] = system_table[0x1a];
                 callback_flags = system_table[5] & 0xffffffff;
             }
@@ -326,7 +326,7 @@ void UI_CreateComponent(void* context, void* parent, void** component, char enab
                 UNLOCK();
                 
                 // 设置组件引用
-                *(longlong **)(state_data[0] + 0x1f8) = component_manager;
+                *(int64_t **)(state_data[0] + 0x1f8) = component_manager;
                 UI_ExecuteCallback(state_data[0], 1);
                 
                 // 检查是否需要启用组件
@@ -340,7 +340,7 @@ void UI_CreateComponent(void* context, void* parent, void** component, char enab
                 }
                 
                 // 检查特殊组件类型
-                state_manager = (longlong *)0x0;
+                state_manager = (int64_t *)0x0;
                 if (parent != 0) {
                     result = UI_CompareStrings(parent, UI_DEFAULT_STRING, 9);
                     if (result == 0) {
@@ -351,8 +351,8 @@ void UI_CreateComponent(void* context, void* parent, void** component, char enab
                 }
                 
                 // 验证系统状态
-                resource_allocator = *(longlong **)(context + 0x116e0);
-                if (((resource_allocator == (longlong *)0x0) || (resource_allocator == component_manager)) ||
+                resource_allocator = *(int64_t **)(context + 0x116e0);
+                if (((resource_allocator == (int64_t *)0x0) || (resource_allocator == component_manager)) ||
                    (result = UI_ProcessEvents(resource_allocator, component_manager, 1, 0), result == 0)) {
                     *component = component_manager;
                     goto LAB_18078cd39;
@@ -363,13 +363,13 @@ void UI_CreateComponent(void* context, void* parent, void** component, char enab
     
 LAB_18078cd2a:
     // 清理资源
-    if (state_manager != (longlong *)0x0) {
+    if (state_manager != (int64_t *)0x0) {
         UI_RegisterCallback(state_manager);
     }
     
 LAB_18078cd39:
     // 安全检查：返回
-    UI_SecurityCheck(security_key ^ (ulonglong)security_buffer);
+    UI_SecurityCheck(security_key ^ (uint64_t)security_buffer);
 }
 
 /**
@@ -390,12 +390,12 @@ LAB_18078cd39:
  */
 uint32_t UI_InitializeComponent(void* context, int component_type, uint64_t template_data, uint64_t *component)
 {
-    longlong *resource_table;
+    int64_t *resource_table;
     int result;
     uint64_t status;
-    longlong resource_data;
-    longlong *resource_manager;
-    longlong stack_data;
+    int64_t resource_data;
+    int64_t *resource_manager;
+    int64_t stack_data;
     
     stack_data = 0;
     if (component == (uint64_t *)0x0) {
@@ -406,28 +406,28 @@ LAB_18078cf29:
         
         // 处理特殊组件类型
         if (component_type < 0) {
-            resource_manager = (longlong *)(context + UI_OFFSET_EVENT_QUEUE);
-            resource_table = (longlong *)*resource_manager;
+            resource_manager = (int64_t *)(context + UI_OFFSET_EVENT_QUEUE);
+            resource_table = (int64_t *)*resource_manager;
             
             // 检查事件队列状态
             if ((resource_table == resource_manager) && 
-                (*(longlong **)(context + UI_OFFSET_EVENT_QUEUE + 8) == resource_manager)) {
+                (*(int64_t **)(context + UI_OFFSET_EVENT_QUEUE + 8) == resource_manager)) {
                 
                 // 检查状态栈状态
-                resource_manager = (longlong *)(context + UI_OFFSET_STATE_STACK);
-                if (((longlong *)*resource_manager == resource_manager) && 
-                    (*(longlong **)(context + UI_OFFSET_STATE_STACK + 8) == resource_manager)) {
+                resource_manager = (int64_t *)(context + UI_OFFSET_STATE_STACK);
+                if (((int64_t *)*resource_manager == resource_manager) && 
+                    (*(int64_t **)(context + UI_OFFSET_STATE_STACK + 8) == resource_manager)) {
                     return 2;  // 系统未就绪
                 }
                 
                 // 处理事件队列资源
-                resource_manager = *(longlong **)(*(longlong *)(context + UI_OFFSET_STATE_STACK + 8) + 0x10);
+                resource_manager = *(int64_t **)(*(int64_t *)(context + UI_OFFSET_STATE_STACK + 8) + 0x10);
                 UI_ProcessEvents(resource_manager, 0x1b);
             } else {
                 // 处理常规资源
                 resource_manager = resource_table + -0x2f;
-                if (resource_table == (longlong *)0x0) {
-                    resource_manager = (longlong *)0x0;
+                if (resource_table == (int64_t *)0x0) {
+                    resource_manager = (int64_t *)0x0;
                 }
             }
         } else {
@@ -435,26 +435,26 @@ LAB_18078cf29:
             if (*(int *)(context + 0x1e0) <= component_type) goto LAB_18078cf29;
             
             // 分配资源
-            resource_manager = (longlong *)((longlong)component_type * 0x230 + *(longlong *)(context + UI_OFFSET_RESOURCE_TABLE));
+            resource_manager = (int64_t *)((int64_t)component_type * 0x230 + *(int64_t *)(context + UI_OFFSET_RESOURCE_TABLE));
             (**(code **)(*resource_manager + 8))(resource_manager);
         }
         
         // 设置资源管理器
         resource_table = resource_manager + 0x2f;
-        *(longlong *)resource_manager[0x30] = *resource_table;
-        *(longlong *)(*resource_table + 8) = resource_manager[0x30];
-        resource_manager[0x30] = (longlong)resource_table;
-        *resource_table = (longlong)resource_table;
+        *(int64_t *)resource_manager[0x30] = *resource_table;
+        *(int64_t *)(*resource_table + 8) = resource_manager[0x30];
+        resource_manager[0x30] = (int64_t)resource_table;
+        *resource_table = (int64_t)resource_table;
         
         // 设置资源数据
         resource_data = context + 0x368;
         if (context == -0x1f0) {
             resource_data = 0;
         }
-        resource_manager[0x30] = *(longlong *)(resource_data + 8);
+        resource_manager[0x30] = *(int64_t *)(resource_data + 8);
         *resource_table = resource_data;
-        *(longlong **)(resource_data + 8) = resource_table;
-        *(longlong **)resource_manager[0x30] = resource_table;
+        *(int64_t **)(resource_data + 8) = resource_table;
+        *(int64_t **)resource_manager[0x30] = resource_table;
         
         // 更新资源计数
         *(int *)(context + 0x1e4) = *(int *)(context + 0x1e4) + 1;
@@ -494,14 +494,14 @@ LAB_18078cf29:
  */
 uint32_t UI_CreateComponentFromTemplate(void* context, int component_type, void* template_data, void** component)
 {
-    longlong *component_manager;
+    int64_t *component_manager;
     int result;
     uint32_t status;
-    longlong resource_data;
-    longlong *resource_manager;
-    longlong stack_data;
+    int64_t resource_data;
+    int64_t *resource_manager;
+    int64_t stack_data;
     uint32_t template_flags[2];  // 模板标志
-    longlong callback_data;     // 回调数据
+    int64_t callback_data;     // 回调数据
     void* template_resource;    // 模板资源
     
     stack_data = 0;
@@ -532,28 +532,28 @@ uint32_t UI_CreateComponentFromTemplate(void* context, int component_type, void*
     
     // 处理系统组件（负类型索引）
     if (component_type < 0) {
-        resource_manager = (longlong *)(context + UI_OFFSET_EVENT_QUEUE_ALT);
-        component_manager = (longlong *)*resource_manager;
+        resource_manager = (int64_t *)(context + UI_OFFSET_EVENT_QUEUE_ALT);
+        component_manager = (int64_t *)*resource_manager;
         
         // 检查事件队列状态
         if ((component_manager == resource_manager) && 
-            (*(longlong **)(context + UI_OFFSET_EVENT_QUEUE_ALT + 8) == resource_manager)) {
+            (*(int64_t **)(context + UI_OFFSET_EVENT_QUEUE_ALT + 8) == resource_manager)) {
             
             // 检查状态栈状态
-            resource_manager = (longlong *)(context + UI_OFFSET_STATE_STACK_ALT);
-            if (((longlong *)*resource_manager == resource_manager) && 
-                (*(longlong **)(context + UI_OFFSET_STATE_STACK_ALT + 8) == resource_manager)) {
+            resource_manager = (int64_t *)(context + UI_OFFSET_STATE_STACK_ALT);
+            if (((int64_t *)*resource_manager == resource_manager) && 
+                (*(int64_t **)(context + UI_OFFSET_STATE_STACK_ALT + 8) == resource_manager)) {
                 return 2;  // 系统未就绪
             }
             
             // 处理事件队列资源
-            resource_manager = *(longlong **)(*(longlong *)(context + UI_OFFSET_STATE_STACK_ALT + 8) + 0x10);
+            resource_manager = *(int64_t **)(*(int64_t *)(context + UI_OFFSET_STATE_STACK_ALT + 8) + 0x10);
             UI_ProcessSystemEvents(resource_manager, 0x1b);
         } else {
             // 处理常规资源
             resource_manager = component_manager + -0x2f;
-            if (component_manager == (longlong *)0x0) {
-                resource_manager = (longlong *)0x0;
+            if (component_manager == (int64_t *)0x0) {
+                resource_manager = (int64_t *)0x0;
             }
         }
     } else {
@@ -563,16 +563,16 @@ uint32_t UI_CreateComponentFromTemplate(void* context, int component_type, void*
         }
         
         // 分配资源
-        resource_manager = (longlong *)((longlong)component_type * 0x230 + *(longlong *)(context + UI_OFFSET_RESOURCE_TABLE_ALT));
+        resource_manager = (int64_t *)((int64_t)component_type * 0x230 + *(int64_t *)(context + UI_OFFSET_RESOURCE_TABLE_ALT));
         (*(void (**)(void*))(*resource_manager + 8))(resource_manager);
     }
     
     // 设置资源管理器链表
     component_manager = resource_manager + 0x2f;
-    *(longlong *)resource_manager[0x30] = *component_manager;
-    *(longlong *)(*component_manager + 8) = resource_manager[0x30];
-    resource_manager[0x30] = (longlong)component_manager;
-    *component_manager = (longlong)component_manager;
+    *(int64_t *)resource_manager[0x30] = *component_manager;
+    *(int64_t *)(*component_manager + 8) = resource_manager[0x30];
+    resource_manager[0x30] = (int64_t)component_manager;
+    *component_manager = (int64_t)component_manager;
     
     // 设置资源数据
     resource_data = context + 0x368;
@@ -580,10 +580,10 @@ uint32_t UI_CreateComponentFromTemplate(void* context, int component_type, void*
         resource_data = 0;
     }
     
-    resource_manager[0x30] = *(longlong *)(resource_data + 8);
+    resource_manager[0x30] = *(int64_t *)(resource_data + 8);
     *component_manager = resource_data;
-    *(longlong **)(resource_data + 8) = component_manager;
-    *(longlong **)resource_manager[0x30] = component_manager;
+    *(int64_t **)(resource_data + 8) = component_manager;
+    *(int64_t **)resource_manager[0x30] = component_manager;
     
     // 更新资源计数
     *(int *)(context + 0x1e4) = *(int *)(context + 0x1e4) + 1;
@@ -621,7 +621,7 @@ LAB_18078d107:
         // 常规组件
         resource_manager[0x3b] = stack_data;
         *component = resource_manager;
-    } else if (*(longlong *)(stack_data + 0x20) == *(longlong *)(context + 0x6b0)) {
+    } else if (*(int64_t *)(stack_data + 0x20) == *(int64_t *)(context + 0x6b0)) {
         // 资源匹配
         resource_manager[0x3b] = stack_data;
         *component = resource_manager;
@@ -629,7 +629,7 @@ LAB_18078d107:
         // 自定义资源处理
         resource_data = template_data[0x2f];
         resource_manager[0x3b] = resource_data;
-        *(longlong *)(resource_data + 0xc0) = stack_data;
+        *(int64_t *)(resource_data + 0xc0) = stack_data;
         *component = resource_manager;
     }
     
@@ -691,7 +691,7 @@ void* UI_AllocateComponent(void* component)
  * 
  * @see UI_AllocateComponent, UI_ReleaseComponent
  */
-void* UI_FreeComponent(void* component, ulonglong flags)
+void* UI_FreeComponent(void* component, uint64_t flags)
 {
     // 重置组件虚函数表为释放状态
     *component = UI_COMPONENT_RELEASED_VTABLE;
@@ -722,7 +722,7 @@ void* UI_FreeComponent(void* component, ulonglong flags)
  * 
  * @see UI_AllocateComponent, UI_FreeComponent
  */
-void* UI_ReleaseComponent(void* component, ulonglong flags)
+void* UI_ReleaseComponent(void* component, uint64_t flags)
 {
     // 重置组件虚函数表为释放状态
     *component = UI_COMPONENT_RELEASED_VTABLE;
@@ -757,57 +757,57 @@ void* UI_ReleaseComponent(void* component, ulonglong flags)
  * 
  * @see UI_CreateComponent, UI_CreateComponentFromTemplate, UI_InitializeComponent
  */
-ulonglong UI_ProcessComponentTemplate(longlong context, uint64_t template_data, uint flags, 
-                                    int32_t param4, longlong *component_out, longlong param6, 
-                                    longlong *param7, int *param8, int *param9)
+uint64_t UI_ProcessComponentTemplate(int64_t context, uint64_t template_data, uint flags, 
+                                    int32_t param4, int64_t *component_out, int64_t param6, 
+                                    int64_t *param7, int *param8, int *param9)
 {
     uint64_t *resource_manager;
     int result;
     uint template_flags;
     uint component_flags;
-    ulonglong status;
+    uint64_t status;
     uint64_t resource_data;
-    longlong component_info;
-    longlong *resource_table;
+    int64_t component_info;
+    int64_t *resource_table;
     uint64_t component_config;
-    ulonglong config_data;
-    longlong stack_data[2];
+    uint64_t config_data;
+    int64_t stack_data[2];
     int32_t resource_info[2];
-    ulonglong resource_flags;
+    uint64_t resource_flags;
     int template_result;
-    longlong template_resource;
+    int64_t template_resource;
     bool is_special_template;
     uint component_type;
-    longlong component_size;
+    int64_t component_size;
     uint64_t component_properties[8];
     uint64_t render_data[8];
     uint64_t callback_data[8];
     int property_count;
     uint64_t property_flags;
-    longlong render_context;
-    longlong texture_data;
-    longlong shader_data;
-    longlong material_data;
-    longlong animation_data;
+    int64_t render_context;
+    int64_t texture_data;
+    int64_t shader_data;
+    int64_t material_data;
+    int64_t animation_data;
     uint64_t *render_manager;
-    longlong *component_manager;
-    longlong *template_manager;
-    longlong *memory_manager;
-    longlong *resource_cache;
+    int64_t *component_manager;
+    int64_t *template_manager;
+    int64_t *memory_manager;
+    int64_t *resource_cache;
     uint64_t *component_data;
     uint64_t *template_cache;
     uint64_t *render_cache;
-    longlong component_handle;
-    longlong template_handle;
-    longlong render_handle;
+    int64_t component_handle;
+    int64_t template_handle;
+    int64_t render_handle;
     uint64_t handle_data;
     uint64_t cache_data;
-    longlong allocation_size;
-    longlong resource_size;
-    longlong texture_size;
-    longlong shader_size;
-    longlong material_size;
-    longlong animation_size;
+    int64_t allocation_size;
+    int64_t resource_size;
+    int64_t texture_size;
+    int64_t shader_size;
+    int64_t material_size;
+    int64_t animation_size;
     uint64_t *allocation_ptr;
     uint64_t *resource_ptr;
     uint64_t *texture_ptr;
@@ -817,50 +817,50 @@ ulonglong UI_ProcessComponentTemplate(longlong context, uint64_t template_data, 
     uint64_t *component_ptr;
     uint64_t *template_ptr;
     uint64_t *render_ptr;
-    longlong component_offset;
-    longlong template_offset;
-    longlong render_offset;
+    int64_t component_offset;
+    int64_t template_offset;
+    int64_t render_offset;
     uint64_t *component_array;
     uint64_t *template_array;
     uint64_t *render_array;
     uint64_t *component_list;
     uint64_t *template_list;
     uint64_t *render_list;
-    longlong component_index;
-    longlong template_index;
-    longlong render_index;
+    int64_t component_index;
+    int64_t template_index;
+    int64_t render_index;
     uint64_t *component_ref;
     uint64_t *template_ref;
     uint64_t *render_ref;
-    longlong component_ref_count;
-    longlong template_ref_count;
-    longlong render_ref_count;
+    int64_t component_ref_count;
+    int64_t template_ref_count;
+    int64_t render_ref_count;
     uint64_t *component_cache_ptr;
     uint64_t *template_cache_ptr;
     uint64_t *render_cache_ptr;
-    longlong cache_size;
-    longlong cache_offset;
+    int64_t cache_size;
+    int64_t cache_offset;
     uint64_t *cache_array;
     uint64_t *cache_list;
-    longlong cache_index;
+    int64_t cache_index;
     uint64_t *cache_ref;
-    longlong cache_ref_count;
+    int64_t cache_ref_count;
     uint64_t *cache_data_ptr;
-    longlong cache_data_size;
-    longlong cache_data_offset;
+    int64_t cache_data_size;
+    int64_t cache_data_offset;
     uint64_t *cache_data_array;
     uint64_t *cache_data_list;
-    longlong cache_data_index;
+    int64_t cache_data_index;
     uint64_t *cache_data_ref;
-    longlong cache_data_ref_count;
+    int64_t cache_data_ref_count;
     uint64_t *component_texture_ptr;
     uint64_t *component_shader_ptr;
     uint64_t *component_material_ptr;
     uint64_t *component_animation_ptr;
-    longlong component_texture_size;
-    longlong component_shader_size;
-    longlong component_material_size;
-    longlong component_animation_size;
+    int64_t component_texture_size;
+    int64_t component_shader_size;
+    int64_t component_material_size;
+    int64_t component_animation_size;
     uint64_t *component_texture_array;
     uint64_t *component_shader_array;
     uint64_t *component_material_array;
@@ -869,26 +869,26 @@ ulonglong UI_ProcessComponentTemplate(longlong context, uint64_t template_data, 
     uint64_t *component_shader_list;
     uint64_t *component_material_list;
     uint64_t *component_animation_list;
-    longlong component_texture_index;
-    longlong component_shader_index;
-    longlong component_material_index;
-    longlong component_animation_index;
+    int64_t component_texture_index;
+    int64_t component_shader_index;
+    int64_t component_material_index;
+    int64_t component_animation_index;
     uint64_t *component_texture_ref;
     uint64_t *component_shader_ref;
     uint64_t *component_material_ref;
     uint64_t *component_animation_ref;
-    longlong component_texture_ref_count;
-    longlong component_shader_ref_count;
-    longlong component_material_ref_count;
-    longlong component_animation_ref_count;
+    int64_t component_texture_ref_count;
+    int64_t component_shader_ref_count;
+    int64_t component_material_ref_count;
+    int64_t component_animation_ref_count;
     uint64_t *component_texture_cache_ptr;
     uint64_t *component_shader_cache_ptr;
     uint64_t *component_material_cache_ptr;
     uint64_t *component_animation_cache_ptr;
-    longlong component_texture_cache_size;
-    longlong component_shader_cache_size;
-    longlong component_material_cache_size;
-    longlong component_animation_cache_size;
+    int64_t component_texture_cache_size;
+    int64_t component_shader_cache_size;
+    int64_t component_material_cache_size;
+    int64_t component_animation_cache_size;
     uint64_t *component_texture_cache_array;
     uint64_t *component_shader_cache_array;
     uint64_t *component_material_cache_array;
@@ -897,26 +897,26 @@ ulonglong UI_ProcessComponentTemplate(longlong context, uint64_t template_data, 
     uint64_t *component_shader_cache_list;
     uint64_t *component_material_cache_list;
     uint64_t *component_animation_cache_list;
-    longlong component_texture_cache_index;
-    longlong component_shader_cache_index;
-    longlong component_material_cache_index;
-    longlong component_animation_cache_index;
+    int64_t component_texture_cache_index;
+    int64_t component_shader_cache_index;
+    int64_t component_material_cache_index;
+    int64_t component_animation_cache_index;
     uint64_t *component_texture_cache_ref;
     uint64_t *component_shader_cache_ref;
     uint64_t *component_material_cache_ref;
     uint64_t *component_animation_cache_ref;
-    longlong component_texture_cache_ref_count;
-    longlong component_shader_cache_ref_count;
-    longlong component_material_cache_ref_count;
-    longlong component_animation_cache_ref_count;
+    int64_t component_texture_cache_ref_count;
+    int64_t component_shader_cache_ref_count;
+    int64_t component_material_cache_ref_count;
+    int64_t component_animation_cache_ref_count;
     uint64_t *component_texture_data_ptr;
     uint64_t *component_shader_data_ptr;
     uint64_t *component_material_data_ptr;
     uint64_t *component_animation_data_ptr;
-    longlong component_texture_data_size;
-    longlong component_shader_data_size;
-    longlong component_material_data_size;
-    longlong component_animation_data_size;
+    int64_t component_texture_data_size;
+    int64_t component_shader_data_size;
+    int64_t component_material_data_size;
+    int64_t component_animation_data_size;
     uint64_t *component_texture_data_array;
     uint64_t *component_shader_data_array;
     uint64_t *component_material_data_array;
@@ -925,46 +925,46 @@ ulonglong UI_ProcessComponentTemplate(longlong context, uint64_t template_data, 
     uint64_t *component_shader_data_list;
     uint64_t *component_material_data_list;
     uint64_t *component_animation_data_list;
-    longlong component_texture_data_index;
-    longlong component_shader_data_index;
-    longlong component_material_data_index;
-    longlong component_animation_data_index;
+    int64_t component_texture_data_index;
+    int64_t component_shader_data_index;
+    int64_t component_material_data_index;
+    int64_t component_animation_data_index;
     uint64_t *component_texture_data_ref;
     uint64_t *component_shader_data_ref;
     uint64_t *component_material_data_ref;
     uint64_t *component_animation_data_ref;
-    longlong component_texture_data_ref_count;
-    longlong component_shader_data_ref_count;
-    longlong component_material_data_ref_count;
-    longlong component_animation_data_ref_count;
+    int64_t component_texture_data_ref_count;
+    int64_t component_shader_data_ref_count;
+    int64_t component_material_data_ref_count;
+    int64_t component_animation_data_ref_count;
     uint64_t *component_render_data_ptr;
     uint64_t *component_render_data_array;
     uint64_t *component_render_data_list;
-    longlong component_render_data_index;
+    int64_t component_render_data_index;
     uint64_t *component_render_data_ref;
-    longlong component_render_data_ref_count;
+    int64_t component_render_data_ref_count;
     uint64_t *component_render_data_cache_ptr;
-    longlong component_render_data_cache_size;
+    int64_t component_render_data_cache_size;
     uint64_t *component_render_data_cache_array;
     uint64_t *component_render_data_cache_list;
-    longlong component_render_data_cache_index;
+    int64_t component_render_data_cache_index;
     uint64_t *component_render_data_cache_ref;
-    longlong component_render_data_cache_ref_count;
+    int64_t component_render_data_cache_ref_count;
     uint64_t *component_render_data_data_ptr;
-    longlong component_render_data_data_size;
+    int64_t component_render_data_data_size;
     uint64_t *component_render_data_data_array;
     uint64_t *component_render_data_data_list;
-    longlong component_render_data_data_index;
+    int64_t component_render_data_data_index;
     uint64_t *component_render_data_data_ref;
-    longlong component_render_data_data_ref_count;
+    int64_t component_render_data_data_ref_count;
     uint64_t *component_texture_render_data_ptr;
     uint64_t *component_shader_render_data_ptr;
     uint64_t *component_material_render_data_ptr;
     uint64_t *component_animation_render_data_ptr;
-    longlong component_texture_render_data_size;
-    longlong component_shader_render_data_size;
-    longlong component_material_render_data_size;
-    longlong component_animation_render_data_size;
+    int64_t component_texture_render_data_size;
+    int64_t component_shader_render_data_size;
+    int64_t component_material_render_data_size;
+    int64_t component_animation_render_data_size;
     uint64_t *component_texture_render_data_array;
     uint64_t *component_shader_render_data_array;
     uint64_t *component_material_render_data_array;
@@ -973,26 +973,26 @@ ulonglong UI_ProcessComponentTemplate(longlong context, uint64_t template_data, 
     uint64_t *component_shader_render_data_list;
     uint64_t *component_material_render_data_list;
     uint64_t *component_animation_render_data_list;
-    longlong component_texture_render_data_index;
-    longlong component_shader_render_data_index;
-    longlong component_material_render_data_index;
-    longlong component_animation_render_data_index;
+    int64_t component_texture_render_data_index;
+    int64_t component_shader_render_data_index;
+    int64_t component_material_render_data_index;
+    int64_t component_animation_render_data_index;
     uint64_t *component_texture_render_data_ref;
     uint64_t *component_shader_render_data_ref;
     uint64_t *component_material_render_data_ref;
     uint64_t *component_animation_render_data_ref;
-    longlong component_texture_render_data_ref_count;
-    longlong component_shader_render_data_ref_count;
-    longlong component_material_render_data_ref_count;
-    longlong component_animation_render_data_ref_count;
+    int64_t component_texture_render_data_ref_count;
+    int64_t component_shader_render_data_ref_count;
+    int64_t component_material_render_data_ref_count;
+    int64_t component_animation_render_data_ref_count;
     uint64_t *component_texture_render_data_cache_ptr;
     uint64_t *component_shader_render_data_cache_ptr;
     uint64_t *component_material_render_data_cache_ptr;
     uint64_t *component_animation_render_data_cache_ptr;
-    longlong component_texture_render_data_cache_size;
-    longlong component_shader_render_data_cache_size;
-    longlong component_material_render_data_cache_size;
-    longlong component_animation_render_data_cache_size;
+    int64_t component_texture_render_data_cache_size;
+    int64_t component_shader_render_data_cache_size;
+    int64_t component_material_render_data_cache_size;
+    int64_t component_animation_render_data_cache_size;
     uint64_t *component_texture_render_data_cache_array;
     uint64_t *component_shader_render_data_cache_array;
     uint64_t *component_material_render_data_cache_array;
@@ -1001,26 +1001,26 @@ ulonglong UI_ProcessComponentTemplate(longlong context, uint64_t template_data, 
     uint64_t *component_shader_render_data_cache_list;
     uint64_t *component_material_render_data_cache_list;
     uint64_t *component_animation_render_data_cache_list;
-    longlong component_texture_render_data_cache_index;
-    longlong component_shader_render_data_cache_index;
-    longlong component_material_render_data_cache_index;
-    longlong component_animation_render_data_cache_index;
+    int64_t component_texture_render_data_cache_index;
+    int64_t component_shader_render_data_cache_index;
+    int64_t component_material_render_data_cache_index;
+    int64_t component_animation_render_data_cache_index;
     uint64_t *component_texture_render_data_cache_ref;
     uint64_t *component_shader_render_data_cache_ref;
     uint64_t *component_material_render_data_cache_ref;
     uint64_t *component_animation_render_data_cache_ref;
-    longlong component_texture_render_data_cache_ref_count;
-    longlong component_shader_render_data_cache_ref_count;
-    longlong component_material_render_data_cache_ref_count;
-    longlong component_animation_render_data_cache_ref_count;
+    int64_t component_texture_render_data_cache_ref_count;
+    int64_t component_shader_render_data_cache_ref_count;
+    int64_t component_material_render_data_cache_ref_count;
+    int64_t component_animation_render_data_cache_ref_count;
     uint64_t *component_texture_render_data_data_ptr;
     uint64_t *component_shader_render_data_data_ptr;
     uint64_t *component_material_render_data_data_ptr;
     uint64_t *component_animation_render_data_data_ptr;
-    longlong component_texture_render_data_data_size;
-    longlong component_shader_render_data_data_size;
-    longlong component_material_render_data_data_size;
-    longlong component_animation_render_data_data_size;
+    int64_t component_texture_render_data_data_size;
+    int64_t component_shader_render_data_data_size;
+    int64_t component_material_render_data_data_size;
+    int64_t component_animation_render_data_data_size;
     uint64_t *component_texture_render_data_data_array;
     uint64_t *component_shader_render_data_data_array;
     uint64_t *component_material_render_data_data_array;
@@ -1029,18 +1029,18 @@ ulonglong UI_ProcessComponentTemplate(longlong context, uint64_t template_data, 
     uint64_t *component_shader_render_data_data_list;
     uint64_t *component_material_render_data_data_list;
     uint64_t *component_animation_render_data_data_list;
-    longlong component_texture_render_data_data_index;
-    longlong component_shader_render_data_data_index;
-    longlong component_material_render_data_data_index;
-    longlong component_animation_render_data_data_index;
+    int64_t component_texture_render_data_data_index;
+    int64_t component_shader_render_data_data_index;
+    int64_t component_material_render_data_data_index;
+    int64_t component_animation_render_data_data_index;
     uint64_t *component_texture_render_data_data_ref;
     uint64_t *component_shader_render_data_data_ref;
     uint64_t *component_material_render_data_data_ref;
     uint64_t *component_animation_render_data_data_ref;
-    longlong component_texture_render_data_data_ref_count;
-    longlong component_shader_render_data_data_ref_count;
-    longlong component_material_render_data_data_ref_count;
-    longlong component_animation_render_data_data_ref_count;
+    int64_t component_texture_render_data_data_ref_count;
+    int64_t component_shader_render_data_data_ref_count;
+    int64_t component_material_render_data_data_ref_count;
+    int64_t component_animation_render_data_data_ref_count;
     
     // 初始化输出参数
     *param7 = 0;
@@ -1086,10 +1086,10 @@ LAB_18078d2d6:
     }
     
     // 设置组件管理器
-    *(longlong **)(component_info + 0x170) = component_out;
+    *(int64_t **)(component_info + 0x170) = component_out;
     *(uint *)(component_info + 0x160) = flags;
     *(int32_t *)(component_info + 0x164) = param4;
-    *(longlong *)(component_info + 0x20) = context;
+    *(int64_t *)(component_info + 0x20) = context;
     *(uint *)(component_info + 0x2c) = *(uint *)(component_info + 0x2c) | 1;
     
     // 初始化组件资源
@@ -1146,7 +1146,7 @@ LAB_18078d2d6:
         component_type = *(uint *)(param6 + 0xc);
         template_result = *(int *)(param6 + 0x14);
         property_count = *(int *)(param6 + 0x10);
-        config_data = (ulonglong)*(uint *)(param6 + 4);
+        config_data = (uint64_t)*(uint *)(param6 + 4);
         component_properties[1] = CONCAT44(component_type, template_result);
         component_properties[2] = CONCAT44(component_properties[2]._4_4_, property_count);
         component_properties[3] = 0;
@@ -1161,7 +1161,7 @@ LAB_18078d2d6:
             config_data = 0x18;
         } else {
             if ((template_result != 4) && (template_result != 5)) {
-                component_properties[3] = (ulonglong)*(uint *)(param6 + 4);
+                component_properties[3] = (uint64_t)*(uint *)(param6 + 4);
                 goto LAB_18078d4e4;
             }
             config_data = 0x20;
@@ -1172,36 +1172,36 @@ LAB_18078d2d6:
     property_count = (int)component_properties[2];
     if ((status >> 0xc & 1) != 0) {
         (*(void (**)(void*, void**))(*(void **)component_out + 0x10))(component_out, resource_info);
-        *(int32_t *)(*(longlong *)(component_info + 8) + 8) = *(int32_t *)(param6 + 0x14);
-        property_flags = *(int32_t *)(*(longlong *)(component_info + 8) + 8);
-        *(int32_t *)(*(longlong *)(component_info + 8) + 0xc) = *(int32_t *)(param6 + 0xc);
-        component_properties[1] = CONCAT44(*(int32_t *)(*(longlong *)(component_info + 8) + 0xc), property_flags);
-        *(int32_t *)(*(longlong *)(component_info + 8) + 0x10) = *(int32_t *)(param6 + 0x10);
+        *(int32_t *)(*(int64_t *)(component_info + 8) + 8) = *(int32_t *)(param6 + 0x14);
+        property_flags = *(int32_t *)(*(int64_t *)(component_info + 8) + 8);
+        *(int32_t *)(*(int64_t *)(component_info + 8) + 0xc) = *(int32_t *)(param6 + 0xc);
+        component_properties[1] = CONCAT44(*(int32_t *)(*(int64_t *)(component_info + 8) + 0xc), property_flags);
+        *(int32_t *)(*(int64_t *)(component_info + 8) + 0x10) = *(int32_t *)(param6 + 0x10);
         component_type = *(uint *)(param6 + 0xc);
-        property_count = *(int *)(*(longlong *)(component_info + 8) + 0x10);
+        property_count = *(int *)(*(int64_t *)(component_info + 8) + 0x10);
         component_properties[2] = CONCAT44(component_properties[2]._4_4_, property_count);
         if (component_type == 0) {
             return 0x1f;  // 组件类型无效
         }
         template_result = *(int *)(param6 + 0x14);
         if (template_result == 1) {
-            config_data = (ulonglong)resource_info[0];
+            config_data = (uint64_t)resource_info[0];
             config_data = 8;
 LAB_18078d4d3:
-            component_flags = (uint)(((config_data << 3) / config_data & 0xffffffff) / (ulonglong)component_type);
+            component_flags = (uint)(((config_data << 3) / config_data & 0xffffffff) / (uint64_t)component_type);
         } else {
             if (template_result == 2) {
-                config_data = (ulonglong)resource_info[0];
+                config_data = (uint64_t)resource_info[0];
                 config_data = 0x10;
                 goto LAB_18078d4d3;
             }
             if (template_result == 3) {
-                config_data = (ulonglong)resource_info[0];
+                config_data = (uint64_t)resource_info[0];
                 config_data = 0x18;
                 goto LAB_18078d4d3;
             }
             if ((template_result == 4) || (component_flags = resource_info[0], template_result == 5)) {
-                config_data = (ulonglong)resource_info[0];
+                config_data = (uint64_t)resource_info[0];
                 config_data = config_data;
                 goto LAB_18078d4d3;
             }
@@ -1252,13 +1252,13 @@ LAB_18078d4e4:
                 }
                 resource_data = resource_data & 0xffffffff00000000;
                 component_config = UI_CreateTextureObject(*(uint64_t *)(UI_GLOBAL_DATA_TABLE + 0x1a0), 0x38, UI_TEXTURE_OBJECT_CONFIG, 0x177, resource_data);
-                *(uint64_t *)(*(longlong *)(component_info + 0x120) + 0x138) = component_config;
-                component_info = *(longlong *)(*(longlong *)(component_info + 0x120) + 0x138);
+                *(uint64_t *)(*(int64_t *)(component_info + 0x120) + 0x138) = component_config;
+                component_info = *(int64_t *)(*(int64_t *)(component_info + 0x120) + 0x138);
                 if (component_info == 0) {
                     return 0x26;  // 纹理对象创建失败
                 }
-                *(longlong *)(*(longlong *)(component_info + 0x120) + 8) = component_info;
-                *(longlong *)(*(longlong *)(component_info + 0x120) + 0x20) = context;
+                *(int64_t *)(*(int64_t *)(component_info + 0x120) + 8) = component_info;
+                *(int64_t *)(*(int64_t *)(component_info + 0x120) + 0x20) = context;
             }
         } else {
             resource_data = CONCAT44((int)(resource_data >> 0x20), 2);
@@ -1297,8 +1297,8 @@ LAB_18078d4e4:
     }
     
     component_info = component_info;
-    if (*(longlong *)(component_info + 0x120) != 0) {
-        component_info = *(longlong *)(component_info + 0x120);
+    if (*(int64_t *)(component_info + 0x120) != 0) {
+        component_info = *(int64_t *)(component_info + 0x120);
     }
     
     *(uint64_t *)(component_info + 0x170) = *(uint64_t *)(component_info + 0x170);
@@ -1312,13 +1312,13 @@ LAB_18078d4e4:
         resource_manager[2] = component_properties[2];
         resource_manager[3] = component_properties[3];
         *(int32_t *)(resource_manager + 4) = (int32_t)component_properties[4];
-        *(int32_t *)((longlong)resource_manager + 0x24) = component_properties[4]._4_4_;
+        *(int32_t *)((int64_t)resource_manager + 0x24) = component_properties[4]._4_4_;
         *(int32_t *)(resource_manager + 5) = (int32_t)component_properties[5];
-        *(int32_t *)((longlong)resource_manager + 0x2c) = component_properties[5]._4_4_;
+        *(int32_t *)((int64_t)resource_manager + 0x2c) = component_properties[5]._4_4_;
         resource_manager[6] = component_properties[6];
     }
     
-    if ((*(void (**)(void**))(*(void **)component_info + 0xf8) != (void*)0x0) && (*(longlong *)(component_info + 0x100) != 0)) {
+    if ((*(void (**)(void**))(*(void **)component_info + 0xf8) != (void*)0x0) && (*(int64_t *)(component_info + 0x100) != 0)) {
         resource_info[0] = 0;
         resource_info[1] = 0;
         resource_data = 0;
@@ -1329,18 +1329,18 @@ LAB_18078d4e4:
         if (resource_info[0] != 0) {
             resource_data = CONCAT44((int)(resource_data >> 0x20), resource_info[1]);
             component_info = UI_CreateRenderObject(*(uint64_t *)(UI_GLOBAL_DATA_TABLE + 0x1a0), resource_info[0] + 0x10, UI_TEXTURE_OBJECT_CONFIG, 0x1b6, resource_data);
-            *(longlong *)(component_info + 0x130) = component_info;
+            *(int64_t *)(component_info + 0x130) = component_info;
             if (component_info == 0) {
                 return 0x26;  // 渲染对象创建失败
             }
-            *(ulonglong *)(component_info + 0x128) = component_info + 0xfU & 0xfffffffffffffff0;
+            *(uint64_t *)(component_info + 0x128) = component_info + 0xfU & 0xfffffffffffffff0;
         }
     }
     
-    if ((component_properties[3]._4_4_ < 2) || (*(longlong *)(component_info + 0x148) != 0)) goto LAB_18078d9a9;
+    if ((component_properties[3]._4_4_ < 2) || (*(int64_t *)(component_info + 0x148) != 0)) goto LAB_18078d9a9;
     
     *(uint *)(component_info + 0x150) = component_properties[3]._4_4_;
-    property_count = *(int *)(*(longlong *)(component_info + 8) + 8);
+    property_count = *(int *)(*(int64_t *)(component_info + 8) + 8);
     if (property_count == 1) {
         config_data = 8;
 LAB_18078d946:
@@ -1359,11 +1359,11 @@ LAB_18078d946:
     
     *(uint *)(component_info + 0x154) = status * template_result;
     component_info = UI_CreateBufferObject(*(uint64_t *)(UI_GLOBAL_DATA_TABLE + 0x1a0), status * template_result + 0x10, UI_TEXTURE_OBJECT_CONFIG, 0x1c6, resource_data & 0xffffffff00000000);
-    *(longlong *)(component_info + 0x148) = component_info;
+    *(int64_t *)(component_info + 0x148) = component_info;
     if (component_info == 0) {
         return 0x26;  // 缓冲对象创建失败
     }
-    *(ulonglong *)(component_info + 0x140) = component_info + 0xfU & 0xfffffffffffffff0;
+    *(uint64_t *)(component_info + 0x140) = component_info + 0xfU & 0xfffffffffffffff0;
     
 LAB_18078d9a9:
     *param7 = component_info;
@@ -1393,15 +1393,15 @@ LAB_18078d9a9:
  * 
  * @see UI_CreateComponent, UI_CreateComponentFromTemplate, UI_CreateRenderComponent
  */
-uint64_t UI_CreateSpecializedComponent(longlong context, uint64_t type, longlong parent, uint64_t *component, int8_t *is_special)
+uint64_t UI_CreateSpecializedComponent(int64_t context, uint64_t type, int64_t parent, uint64_t *component, int8_t *is_special)
 {
     uint component_type;
-    longlong component_info;
-    longlong parent_info;
-    longlong component_data;
-    longlong component_config;
-    longlong *component_manager;
-    longlong *parent_manager;
+    int64_t component_info;
+    int64_t parent_info;
+    int64_t component_data;
+    int64_t component_config;
+    int64_t *component_manager;
+    int64_t *parent_manager;
     uint64_t *component_ptr;
     uint64_t *parent_ptr;
     uint64_t *type_ptr;
@@ -1414,30 +1414,30 @@ uint64_t UI_CreateSpecializedComponent(longlong context, uint64_t type, longlong
     uint64_t *shader_ptr;
     uint64_t *material_ptr;
     uint64_t *animation_ptr;
-    longlong component_size;
-    longlong parent_size;
-    longlong type_size;
-    longlong template_size;
-    longlong resource_size;
-    longlong memory_size;
-    longlong cache_size;
-    longlong render_size;
-    longlong texture_size;
-    longlong shader_size;
-    longlong material_size;
-    longlong animation_size;
-    longlong component_offset;
-    longlong parent_offset;
-    longlong type_offset;
-    longlong template_offset;
-    longlong resource_offset;
-    longlong memory_offset;
-    longlong cache_offset;
-    longlong render_offset;
-    longlong texture_offset;
-    longlong shader_offset;
-    longlong material_offset;
-    longlong animation_offset;
+    int64_t component_size;
+    int64_t parent_size;
+    int64_t type_size;
+    int64_t template_size;
+    int64_t resource_size;
+    int64_t memory_size;
+    int64_t cache_size;
+    int64_t render_size;
+    int64_t texture_size;
+    int64_t shader_size;
+    int64_t material_size;
+    int64_t animation_size;
+    int64_t component_offset;
+    int64_t parent_offset;
+    int64_t type_offset;
+    int64_t template_offset;
+    int64_t resource_offset;
+    int64_t memory_offset;
+    int64_t cache_offset;
+    int64_t render_offset;
+    int64_t texture_offset;
+    int64_t shader_offset;
+    int64_t material_offset;
+    int64_t animation_offset;
     uint64_t *component_array;
     uint64_t *parent_array;
     uint64_t *type_array;
@@ -1462,18 +1462,18 @@ uint64_t UI_CreateSpecializedComponent(longlong context, uint64_t type, longlong
     uint64_t *shader_list;
     uint64_t *material_list;
     uint64_t *animation_list;
-    longlong component_index;
-    longlong parent_index;
-    longlong type_index;
-    longlong template_index;
-    longlong resource_index;
-    longlong memory_index;
-    longlong cache_index;
-    longlong render_index;
-    longlong texture_index;
-    longlong shader_index;
-    longlong material_index;
-    longlong animation_index;
+    int64_t component_index;
+    int64_t parent_index;
+    int64_t type_index;
+    int64_t template_index;
+    int64_t resource_index;
+    int64_t memory_index;
+    int64_t cache_index;
+    int64_t render_index;
+    int64_t texture_index;
+    int64_t shader_index;
+    int64_t material_index;
+    int64_t animation_index;
     uint64_t *component_ref;
     uint64_t *parent_ref;
     uint64_t *type_ref;
@@ -1486,18 +1486,18 @@ uint64_t UI_CreateSpecializedComponent(longlong context, uint64_t type, longlong
     uint64_t *shader_ref;
     uint64_t *material_ref;
     uint64_t *animation_ref;
-    longlong component_ref_count;
-    longlong parent_ref_count;
-    longlong type_ref_count;
-    longlong template_ref_count;
-    longlong resource_ref_count;
-    longlong memory_ref_count;
-    longlong cache_ref_count;
-    longlong render_ref_count;
-    longlong texture_ref_count;
-    longlong shader_ref_count;
-    longlong material_ref_count;
-    longlong animation_ref_count;
+    int64_t component_ref_count;
+    int64_t parent_ref_count;
+    int64_t type_ref_count;
+    int64_t template_ref_count;
+    int64_t resource_ref_count;
+    int64_t memory_ref_count;
+    int64_t cache_ref_count;
+    int64_t render_ref_count;
+    int64_t texture_ref_count;
+    int64_t shader_ref_count;
+    int64_t material_ref_count;
+    int64_t animation_ref_count;
     uint64_t *component_cache_ptr;
     uint64_t *parent_cache_ptr;
     uint64_t *type_cache_ptr;
@@ -1510,18 +1510,18 @@ uint64_t UI_CreateSpecializedComponent(longlong context, uint64_t type, longlong
     uint64_t *shader_cache_ptr;
     uint64_t *material_cache_ptr;
     uint64_t *animation_cache_ptr;
-    longlong component_cache_size;
-    longlong parent_cache_size;
-    longlong type_cache_size;
-    longlong template_cache_size;
-    longlong resource_cache_size;
-    longlong memory_cache_size;
-    longlong cache_cache_size;
-    longlong render_cache_size;
-    longlong texture_cache_size;
-    longlong shader_cache_size;
-    longlong material_cache_size;
-    longlong animation_cache_size;
+    int64_t component_cache_size;
+    int64_t parent_cache_size;
+    int64_t type_cache_size;
+    int64_t template_cache_size;
+    int64_t resource_cache_size;
+    int64_t memory_cache_size;
+    int64_t cache_cache_size;
+    int64_t render_cache_size;
+    int64_t texture_cache_size;
+    int64_t shader_cache_size;
+    int64_t material_cache_size;
+    int64_t animation_cache_size;
     uint64_t *component_cache_array;
     uint64_t *parent_cache_array;
     uint64_t *type_cache_array;
@@ -1546,18 +1546,18 @@ uint64_t UI_CreateSpecializedComponent(longlong context, uint64_t type, longlong
     uint64_t *shader_cache_list;
     uint64_t *material_cache_list;
     uint64_t *animation_cache_list;
-    longlong component_cache_index;
-    longlong parent_cache_index;
-    longlong type_cache_index;
-    longlong template_cache_index;
-    longlong resource_cache_index;
-    longlong memory_cache_index;
-    longlong cache_cache_index;
-    longlong render_cache_index;
-    longlong texture_cache_index;
-    longlong shader_cache_index;
-    longlong material_cache_index;
-    longlong animation_cache_index;
+    int64_t component_cache_index;
+    int64_t parent_cache_index;
+    int64_t type_cache_index;
+    int64_t template_cache_index;
+    int64_t resource_cache_index;
+    int64_t memory_cache_index;
+    int64_t cache_cache_index;
+    int64_t render_cache_index;
+    int64_t texture_cache_index;
+    int64_t shader_cache_index;
+    int64_t material_cache_index;
+    int64_t animation_cache_index;
     uint64_t *component_cache_ref;
     uint64_t *parent_cache_ref;
     uint64_t *type_cache_ref;
@@ -1570,18 +1570,18 @@ uint64_t UI_CreateSpecializedComponent(longlong context, uint64_t type, longlong
     uint64_t *shader_cache_ref;
     uint64_t *material_cache_ref;
     uint64_t *animation_cache_ref;
-    longlong component_cache_ref_count;
-    longlong parent_cache_ref_count;
-    longlong type_cache_ref_count;
-    longlong template_cache_ref_count;
-    longlong resource_cache_ref_count;
-    longlong memory_cache_ref_count;
-    longlong cache_cache_ref_count;
-    longlong render_cache_ref_count;
-    longlong texture_cache_ref_count;
-    longlong shader_cache_ref_count;
-    longlong material_cache_ref_count;
-    longlong animation_cache_ref_count;
+    int64_t component_cache_ref_count;
+    int64_t parent_cache_ref_count;
+    int64_t type_cache_ref_count;
+    int64_t template_cache_ref_count;
+    int64_t resource_cache_ref_count;
+    int64_t memory_cache_ref_count;
+    int64_t cache_cache_ref_count;
+    int64_t render_cache_ref_count;
+    int64_t texture_cache_ref_count;
+    int64_t shader_cache_ref_count;
+    int64_t material_cache_ref_count;
+    int64_t animation_cache_ref_count;
     uint64_t *component_data_ptr;
     uint64_t *parent_data_ptr;
     uint64_t *type_data_ptr;
@@ -1594,18 +1594,18 @@ uint64_t UI_CreateSpecializedComponent(longlong context, uint64_t type, longlong
     uint64_t *shader_data_ptr;
     uint64_t *material_data_ptr;
     uint64_t *animation_data_ptr;
-    longlong component_data_size;
-    longlong parent_data_size;
-    longlong type_data_size;
-    longlong template_data_size;
-    longlong resource_data_size;
-    longlong memory_data_size;
-    longlong cache_data_size;
-    longlong render_data_size;
-    longlong texture_data_size;
-    longlong shader_data_size;
-    longlong material_data_size;
-    longlong animation_data_size;
+    int64_t component_data_size;
+    int64_t parent_data_size;
+    int64_t type_data_size;
+    int64_t template_data_size;
+    int64_t resource_data_size;
+    int64_t memory_data_size;
+    int64_t cache_data_size;
+    int64_t render_data_size;
+    int64_t texture_data_size;
+    int64_t shader_data_size;
+    int64_t material_data_size;
+    int64_t animation_data_size;
     uint64_t *component_data_array;
     uint64_t *parent_data_array;
     uint64_t *type_data_array;
@@ -1630,18 +1630,18 @@ uint64_t UI_CreateSpecializedComponent(longlong context, uint64_t type, longlong
     uint64_t *shader_data_list;
     uint64_t *material_data_list;
     uint64_t *animation_data_list;
-    longlong component_data_index;
-    longlong parent_data_index;
-    longlong type_data_index;
-    longlong template_data_index;
-    longlong resource_data_index;
-    longlong memory_data_index;
-    longlong cache_data_index;
-    longlong render_data_index;
-    longlong texture_data_index;
-    longlong shader_data_index;
-    longlong material_data_index;
-    longlong animation_data_index;
+    int64_t component_data_index;
+    int64_t parent_data_index;
+    int64_t type_data_index;
+    int64_t template_data_index;
+    int64_t resource_data_index;
+    int64_t memory_data_index;
+    int64_t cache_data_index;
+    int64_t render_data_index;
+    int64_t texture_data_index;
+    int64_t shader_data_index;
+    int64_t material_data_index;
+    int64_t animation_data_index;
     uint64_t *component_data_ref;
     uint64_t *parent_data_ref;
     uint64_t *type_data_ref;
@@ -1654,33 +1654,33 @@ uint64_t UI_CreateSpecializedComponent(longlong context, uint64_t type, longlong
     uint64_t *shader_data_ref;
     uint64_t *material_data_ref;
     uint64_t *animation_data_ref;
-    longlong component_data_ref_count;
-    longlong parent_data_ref_count;
-    longlong type_data_ref_count;
-    longlong template_data_ref_count;
-    longlong resource_data_ref_count;
-    longlong memory_data_ref_count;
-    longlong cache_data_ref_count;
-    longlong render_data_ref_count;
-    longlong texture_data_ref_count;
-    longlong shader_data_ref_count;
-    longlong material_data_ref_count;
-    longlong animation_data_ref_count;
+    int64_t component_data_ref_count;
+    int64_t parent_data_ref_count;
+    int64_t type_data_ref_count;
+    int64_t template_data_ref_count;
+    int64_t resource_data_ref_count;
+    int64_t memory_data_ref_count;
+    int64_t cache_data_ref_count;
+    int64_t render_data_ref_count;
+    int64_t texture_data_ref_count;
+    int64_t shader_data_ref_count;
+    int64_t material_data_ref_count;
+    int64_t animation_data_ref_count;
     int result;
     uint64_t *special_component;
     uint64_t component_config;
-    ulonglong stack_data;
+    uint64_t stack_data;
     
     special_component = (uint64_t *)0x0;
     
     // 检查是否为系统组件
     if ((parent == 0) || (component_type = *(uint *)(parent + 0xb0), component_type == 0)) {
         // 使用默认组件类型
-        special_component = (uint64_t *)(ulonglong)*(uint *)(context + 0x1175c);
+        special_component = (uint64_t *)(uint64_t)*(uint *)(context + 0x1175c);
     } else {
         special_component = (uint64_t *)0x0;
         if (component_type != 0xffffffff) {
-            special_component = (uint64_t *)(ulonglong)component_type;
+            special_component = (uint64_t *)(uint64_t)component_type;
         }
     }
     
@@ -1704,11 +1704,11 @@ uint64_t UI_CreateSpecializedComponent(longlong context, uint64_t type, longlong
     }
     
     // 处理复合组件
-    else if (((((parent == 0) || (*(longlong *)(parent + 0x78) == 0)) ||
-            (*(longlong *)(parent + 0x80) == 0)) ||
-           (((*(longlong *)(parent + 0x88) == 0 || (*(longlong *)(parent + 0x90) == 0)) &&
-            ((*(longlong *)(parent + 0x80) == 0 ||
-             ((*(longlong *)(parent + 0x98) == 0 || (*(longlong *)(parent + 0xa0) == 0)))))))) ||
+    else if (((((parent == 0) || (*(int64_t *)(parent + 0x78) == 0)) ||
+            (*(int64_t *)(parent + 0x80) == 0)) ||
+           (((*(int64_t *)(parent + 0x88) == 0 || (*(int64_t *)(parent + 0x90) == 0)) &&
+            ((*(int64_t *)(parent + 0x80) == 0 ||
+             ((*(int64_t *)(parent + 0x98) == 0 || (*(int64_t *)(parent + 0xa0) == 0)))))))) ||
           (*(int *)(parent + 200) != 0)) {
         
         // 处理自定义组件
@@ -1775,20 +1775,20 @@ uint64_t UI_CreateSpecializedComponent(longlong context, uint64_t type, longlong
         
         if (special_component != (uint64_t *)0x0) {
             // 获取扩展组件数据
-            component_info = *(longlong *)(parent + 0xa0);
-            parent_info = *(longlong *)(parent + 0x98);
-            component_data = *(longlong *)(parent + 0x90);
-            component_config = *(longlong *)(parent + 0x88);
-            component_type = *(longlong)(parent + 0x80);
+            component_info = *(int64_t *)(parent + 0xa0);
+            parent_info = *(int64_t *)(parent + 0x98);
+            component_data = *(int64_t *)(parent + 0x90);
+            component_config = *(int64_t *)(parent + 0x88);
+            component_type = *(int64_t)(parent + 0x80);
             
-            if (((*(longlong *)(parent + 0x78) == 0) || (component_type == 0)) ||
+            if (((*(int64_t *)(parent + 0x78) == 0) || (component_type == 0)) ||
                (((component_config == 0 || (component_data == 0)) && ((parent_info == 0 || (component_info == 0)))))) {
                 component_config = 0x1c;
                 goto LAB_18078ddf7;
             }
             
             // 设置扩展组件属性
-            special_component[0x3f] = *(longlong *)(parent + 0x78);
+            special_component[0x3f] = *(int64_t *)(parent + 0x78);
             special_component[0x40] = component_type;
             special_component[0x41] = component_config;
             special_component[0x42] = component_data;
@@ -1840,7 +1840,7 @@ uint64_t UI_CreateRenderComponent(uint64_t context, uint64_t *render_data)
 {
     uint64_t *render_component;
     uint64_t status;
-    ulonglong stack_data;
+    uint64_t stack_data;
     
     // 分配渲染组件
     render_component = (uint64_t *)
@@ -1888,373 +1888,373 @@ uint64_t UI_CreateRenderComponent(uint64_t context, uint64_t *render_data)
  * 
  * @see UI_CreateComponent, UI_CreateRenderComponent, UI_CreateSpecializedComponent
  */
-int UI_SetComponentProperties(longlong context, uint flags, longlong *properties, longlong *component)
+int UI_SetComponentProperties(int64_t context, uint flags, int64_t *properties, int64_t *component)
 {
     uint property_flags;
     int32_t property_mask;
-    longlong *property_manager;
+    int64_t *property_manager;
     int result;
     uint component_flags;
-    longlong *component_properties;
-    longlong stack_data[2];
+    int64_t *component_properties;
+    int64_t stack_data[2];
     int32_t stack_flags[2];
-    longlong component_info[6];
-    longlong *component_manager;
-    longlong component_position;
+    int64_t component_info[6];
+    int64_t *component_manager;
+    int64_t component_position;
     int32_t component_size;
-    longlong component_layout;
-    longlong component_style;
-    longlong component_state;
-    longlong component_behavior;
-    longlong component_render;
-    longlong component_texture;
-    longlong component_shader;
-    longlong component_material;
-    longlong component_animation;
-    longlong component_event;
-    longlong component_callback;
-    longlong component_data;
-    longlong component_resource;
-    longlong component_memory;
-    longlong component_cache;
-    longlong component_buffer;
-    longlong component_shader_buffer;
-    longlong component_texture_buffer;
-    longlong component_material_buffer;
-    longlong component_animation_buffer;
-    longlong component_event_buffer;
-    longlong component_callback_buffer;
-    longlong component_data_buffer;
-    longlong component_resource_buffer;
-    longlong component_memory_buffer;
-    longlong component_cache_buffer;
-    longlong component_buffer_size;
-    longlong component_shader_buffer_size;
-    longlong component_texture_buffer_size;
-    longlong component_material_buffer_size;
-    longlong component_animation_buffer_size;
-    longlong component_event_buffer_size;
-    longlong component_callback_buffer_size;
-    longlong component_data_buffer_size;
-    longlong component_resource_buffer_size;
-    longlong component_memory_buffer_size;
-    longlong component_cache_buffer_size;
-    longlong component_buffer_offset;
-    longlong component_shader_buffer_offset;
-    longlong component_texture_buffer_offset;
-    longlong component_material_buffer_offset;
-    longlong component_animation_buffer_offset;
-    longlong component_event_buffer_offset;
-    longlong component_callback_buffer_offset;
-    longlong component_data_buffer_offset;
-    longlong component_resource_buffer_offset;
-    longlong component_memory_buffer_offset;
-    longlong component_cache_buffer_offset;
-    longlong *component_buffer_ptr;
-    longlong *component_shader_buffer_ptr;
-    longlong *component_texture_buffer_ptr;
-    longlong *component_material_buffer_ptr;
-    longlong *component_animation_buffer_ptr;
-    longlong *component_event_buffer_ptr;
-    longlong *component_callback_buffer_ptr;
-    longlong *component_data_buffer_ptr;
-    longlong *component_resource_buffer_ptr;
-    longlong *component_memory_buffer_ptr;
-    longlong *component_cache_buffer_ptr;
-    longlong component_buffer_index;
-    longlong component_shader_buffer_index;
-    longlong component_texture_buffer_index;
-    longlong component_material_buffer_index;
-    longlong component_animation_buffer_index;
-    longlong component_event_buffer_index;
-    longlong component_callback_buffer_index;
-    longlong component_data_buffer_index;
-    longlong component_resource_buffer_index;
-    longlong component_memory_buffer_index;
-    longlong component_cache_buffer_index;
-    longlong *component_buffer_ref;
-    longlong *component_shader_buffer_ref;
-    longlong *component_texture_buffer_ref;
-    longlong *component_material_buffer_ref;
-    longlong *component_animation_buffer_ref;
-    longlong *component_event_buffer_ref;
-    longlong *component_callback_buffer_ref;
-    longlong *component_data_buffer_ref;
-    longlong *component_resource_buffer_ref;
-    longlong *component_memory_buffer_ref;
-    longlong *component_cache_buffer_ref;
-    longlong component_buffer_ref_count;
-    longlong component_shader_buffer_ref_count;
-    longlong component_texture_buffer_ref_count;
-    longlong component_material_buffer_ref_count;
-    longlong component_animation_buffer_ref_count;
-    longlong component_event_buffer_ref_count;
-    longlong component_callback_buffer_ref_count;
-    longlong component_data_buffer_ref_count;
-    longlong component_resource_buffer_ref_count;
-    longlong component_memory_buffer_ref_count;
-    longlong component_cache_buffer_ref_count;
-    longlong *component_buffer_cache_ptr;
-    longlong *component_shader_buffer_cache_ptr;
-    longlong *component_texture_buffer_cache_ptr;
-    longlong *component_material_buffer_cache_ptr;
-    longlong *component_animation_buffer_cache_ptr;
-    longlong *component_event_buffer_cache_ptr;
-    longlong *component_callback_buffer_cache_ptr;
-    longlong *component_data_buffer_cache_ptr;
-    longlong *component_resource_buffer_cache_ptr;
-    longlong *component_memory_buffer_cache_ptr;
-    longlong *component_cache_buffer_cache_ptr;
-    longlong component_buffer_cache_size;
-    longlong component_shader_buffer_cache_size;
-    longlong component_texture_buffer_cache_size;
-    longlong component_material_buffer_cache_size;
-    longlong component_animation_buffer_cache_size;
-    longlong component_event_buffer_cache_size;
-    longlong component_callback_buffer_cache_size;
-    longlong component_data_buffer_cache_size;
-    longlong component_resource_buffer_cache_size;
-    longlong component_memory_buffer_cache_size;
-    longlong component_cache_buffer_cache_size;
-    longlong *component_buffer_cache_array;
-    longlong *component_shader_buffer_cache_array;
-    longlong *component_texture_buffer_cache_array;
-    longlong *component_material_buffer_cache_array;
-    longlong *component_animation_buffer_cache_array;
-    longlong *component_event_buffer_cache_array;
-    longlong *component_callback_buffer_cache_array;
-    longlong *component_data_buffer_cache_array;
-    longlong *component_resource_buffer_cache_array;
-    longlong *component_memory_buffer_cache_array;
-    longlong *component_cache_buffer_cache_array;
-    longlong *component_buffer_cache_list;
-    longlong *component_shader_buffer_cache_list;
-    longlong *component_texture_buffer_cache_list;
-    longlong *component_material_buffer_cache_list;
-    longlong *component_animation_buffer_cache_list;
-    longlong *component_event_buffer_cache_list;
-    longlong *component_callback_buffer_cache_list;
-    longlong *component_data_buffer_cache_list;
-    longlong *component_resource_buffer_cache_list;
-    longlong *component_memory_buffer_cache_list;
-    longlong *component_cache_buffer_cache_list;
-    longlong component_buffer_cache_index;
-    longlong component_shader_buffer_cache_index;
-    longlong component_texture_buffer_cache_index;
-    longlong component_material_buffer_cache_index;
-    longlong component_animation_buffer_cache_index;
-    longlong component_event_buffer_cache_index;
-    longlong component_callback_buffer_cache_index;
-    longlong component_data_buffer_cache_index;
-    longlong component_resource_buffer_cache_index;
-    longlong component_memory_buffer_cache_index;
-    longlong component_cache_buffer_cache_index;
-    longlong *component_buffer_cache_ref;
-    longlong *component_shader_buffer_cache_ref;
-    longlong *component_texture_buffer_cache_ref;
-    longlong *component_material_buffer_cache_ref;
-    longlong *component_animation_buffer_cache_ref;
-    longlong *component_event_buffer_cache_ref;
-    longlong *component_callback_buffer_cache_ref;
-    longlong *component_data_buffer_cache_ref;
-    longlong *component_resource_buffer_cache_ref;
-    longlong *component_memory_buffer_cache_ref;
-    longlong *component_cache_buffer_cache_ref;
-    longlong component_buffer_cache_ref_count;
-    longlong component_shader_buffer_cache_ref_count;
-    longlong component_texture_buffer_cache_ref_count;
-    longlong component_material_buffer_cache_ref_count;
-    longlong component_animation_buffer_cache_ref_count;
-    longlong component_event_buffer_cache_ref_count;
-    longlong component_callback_buffer_cache_ref_count;
-    longlong component_data_buffer_cache_ref_count;
-    longlong component_resource_buffer_cache_ref_count;
-    longlong component_memory_buffer_cache_ref_count;
-    longlong component_cache_buffer_cache_ref_count;
-    longlong *component_buffer_data_ptr;
-    longlong *component_shader_buffer_data_ptr;
-    longlong *component_texture_buffer_data_ptr;
-    longlong *component_material_buffer_data_ptr;
-    longlong *component_animation_buffer_data_ptr;
-    longlong *component_event_buffer_data_ptr;
-    longlong *component_callback_buffer_data_ptr;
-    longlong *component_data_buffer_data_ptr;
-    longlong *component_resource_buffer_data_ptr;
-    longlong *component_memory_buffer_data_ptr;
-    longlong *component_cache_buffer_data_ptr;
-    longlong component_buffer_data_size;
-    longlong component_shader_buffer_data_size;
-    longlong component_texture_buffer_data_size;
-    longlong component_material_buffer_data_size;
-    longlong component_animation_buffer_data_size;
-    longlong component_event_buffer_data_size;
-    longlong component_callback_buffer_data_size;
-    longlong component_data_buffer_data_size;
-    longlong component_resource_buffer_data_size;
-    longlong component_memory_buffer_data_size;
-    longlong component_cache_buffer_data_size;
-    longlong *component_buffer_data_array;
-    longlong *component_shader_buffer_data_array;
-    longlong *component_texture_buffer_data_array;
-    longlong *component_material_buffer_data_array;
-    longlong *component_animation_buffer_data_array;
-    longlong *component_event_buffer_data_array;
-    longlong *component_callback_buffer_data_array;
-    longlong *component_data_buffer_data_array;
-    longlong *component_resource_buffer_data_array;
-    longlong *component_memory_buffer_data_array;
-    longlong *component_cache_buffer_data_array;
-    longlong *component_buffer_data_list;
-    longlong *component_shader_buffer_data_list;
-    longlong *component_texture_buffer_data_list;
-    longlong *component_material_buffer_data_list;
-    longlong *component_animation_buffer_data_list;
-    longlong *component_event_buffer_data_list;
-    longlong *component_callback_buffer_data_list;
-    longlong *component_data_buffer_data_list;
-    longlong *component_resource_buffer_data_list;
-    longlong *component_memory_buffer_data_list;
-    longlong *component_cache_buffer_data_list;
-    longlong component_buffer_data_index;
-    longlong component_shader_buffer_data_index;
-    longlong component_texture_buffer_data_index;
-    longlong component_material_buffer_data_index;
-    longlong component_animation_buffer_data_index;
-    longlong component_event_buffer_data_index;
-    longlong component_callback_buffer_data_index;
-    longlong component_data_buffer_data_index;
-    longlong component_resource_buffer_data_index;
-    longlong component_memory_buffer_data_index;
-    longlong component_cache_buffer_data_index;
-    longlong *component_buffer_data_ref;
-    longlong *component_shader_buffer_data_ref;
-    longlong *component_texture_buffer_data_ref;
-    longlong *component_material_buffer_data_ref;
-    longlong *component_animation_buffer_data_ref;
-    longlong *component_event_buffer_data_ref;
-    longlong *component_callback_buffer_data_ref;
-    longlong *component_data_buffer_data_ref;
-    longlong *component_resource_buffer_data_ref;
-    longlong *component_memory_buffer_data_ref;
-    longlong *component_cache_buffer_data_ref;
-    longlong component_buffer_data_ref_count;
-    longlong component_shader_buffer_data_ref_count;
-    longlong component_texture_buffer_data_ref_count;
-    longlong component_material_buffer_data_ref_count;
-    longlong component_animation_buffer_data_ref_count;
-    longlong component_event_buffer_data_ref_count;
-    longlong component_callback_buffer_data_ref_count;
-    longlong component_data_buffer_data_ref_count;
-    longlong component_resource_buffer_data_ref_count;
-    longlong component_memory_buffer_data_ref_count;
-    longlong component_cache_buffer_data_ref_count;
-    longlong *component_render_data_ptr;
-    longlong *component_render_data_array;
-    longlong *component_render_data_list;
-    longlong component_render_data_index;
-    longlong *component_render_data_ref;
-    longlong component_render_data_ref_count;
-    longlong *component_render_data_cache_ptr;
-    longlong component_render_data_cache_size;
-    longlong *component_render_data_cache_array;
-    longlong *component_render_data_cache_list;
-    longlong component_render_data_cache_index;
-    longlong *component_render_data_cache_ref;
-    longlong component_render_data_cache_ref_count;
-    longlong *component_render_data_data_ptr;
-    longlong component_render_data_data_size;
-    longlong *component_render_data_data_array;
-    longlong *component_render_data_data_list;
-    longlong component_render_data_data_index;
-    longlong *component_render_data_data_ref;
-    longlong component_render_data_data_ref_count;
-    longlong *component_texture_render_data_ptr;
-    longlong *component_shader_render_data_ptr;
-    longlong *component_material_render_data_ptr;
-    longlong *component_animation_render_data_ptr;
-    longlong component_texture_render_data_size;
-    longlong component_shader_render_data_size;
-    longlong component_material_render_data_size;
-    longlong component_animation_render_data_size;
-    longlong *component_texture_render_data_array;
-    longlong *component_shader_render_data_array;
-    longlong *component_material_render_data_array;
-    longlong *component_animation_render_data_array;
-    longlong *component_texture_render_data_list;
-    longlong *component_shader_render_data_list;
-    longlong *component_material_render_data_list;
-    longlong *component_animation_render_data_list;
-    longlong component_texture_render_data_index;
-    longlong component_shader_render_data_index;
-    longlong component_material_render_data_index;
-    longlong component_animation_render_data_index;
-    longlong *component_texture_render_data_ref;
-    longlong *component_shader_render_data_ref;
-    longlong *component_material_render_data_ref;
-    longlong *component_animation_render_data_ref;
-    longlong component_texture_render_data_ref_count;
-    longlong component_shader_render_data_ref_count;
-    longlong component_material_render_data_ref_count;
-    longlong component_animation_render_data_ref_count;
-    longlong *component_texture_render_data_cache_ptr;
-    longlong *component_shader_render_data_cache_ptr;
-    longlong *component_material_render_data_cache_ptr;
-    longlong *component_animation_render_data_cache_ptr;
-    longlong component_texture_render_data_cache_size;
-    longlong component_shader_render_data_cache_size;
-    longlong component_material_render_data_cache_size;
-    longlong component_animation_render_data_cache_size;
-    longlong *component_texture_render_data_cache_array;
-    longlong *component_shader_render_data_cache_array;
-    longlong *component_material_render_data_cache_array;
-    longlong *component_animation_render_data_cache_array;
-    longlong *component_texture_render_data_cache_list;
-    longlong *component_shader_render_data_cache_list;
-    longlong *component_material_render_data_cache_list;
-    longlong *component_animation_render_data_cache_list;
-    longlong component_texture_render_data_cache_index;
-    longlong component_shader_render_data_cache_index;
-    longlong component_material_render_data_cache_index;
-    longlong component_animation_render_data_cache_index;
-    longlong *component_texture_render_data_cache_ref;
-    longlong *component_shader_render_data_cache_ref;
-    longlong *component_material_render_data_cache_ref;
-    longlong *component_animation_render_data_cache_ref;
-    longlong component_texture_render_data_cache_ref_count;
-    longlong component_shader_render_data_cache_ref_count;
-    longlong component_material_render_data_cache_ref_count;
-    longlong component_animation_render_data_cache_ref_count;
-    longlong *component_texture_render_data_data_ptr;
-    longlong *component_shader_render_data_data_ptr;
-    longlong *component_material_render_data_data_ptr;
-    longlong *component_animation_render_data_data_ptr;
-    longlong component_texture_render_data_data_size;
-    longlong component_shader_render_data_data_size;
-    longlong component_material_render_data_data_size;
-    longlong component_animation_render_data_data_size;
-    longlong *component_texture_render_data_data_array;
-    longlong *component_shader_render_data_data_array;
-    longlong *component_material_render_data_data_array;
-    longlong *component_animation_render_data_data_array;
-    longlong *component_texture_render_data_data_list;
-    longlong *component_shader_render_data_data_list;
-    longlong *component_material_render_data_data_list;
-    longlong *component_animation_render_data_data_list;
-    longlong component_texture_render_data_data_index;
-    longlong component_shader_render_data_data_index;
-    longlong component_material_render_data_data_index;
-    longlong component_animation_render_data_data_index;
-    longlong *component_texture_render_data_data_ref;
-    longlong *component_shader_render_data_data_ref;
-    longlong *component_material_render_data_data_ref;
-    longlong *component_animation_render_data_data_ref;
-    longlong component_texture_render_data_data_ref_count;
-    longlong component_shader_render_data_data_ref_count;
-    longlong component_material_render_data_data_ref_count;
-    longlong component_animation_render_data_data_ref_count;
+    int64_t component_layout;
+    int64_t component_style;
+    int64_t component_state;
+    int64_t component_behavior;
+    int64_t component_render;
+    int64_t component_texture;
+    int64_t component_shader;
+    int64_t component_material;
+    int64_t component_animation;
+    int64_t component_event;
+    int64_t component_callback;
+    int64_t component_data;
+    int64_t component_resource;
+    int64_t component_memory;
+    int64_t component_cache;
+    int64_t component_buffer;
+    int64_t component_shader_buffer;
+    int64_t component_texture_buffer;
+    int64_t component_material_buffer;
+    int64_t component_animation_buffer;
+    int64_t component_event_buffer;
+    int64_t component_callback_buffer;
+    int64_t component_data_buffer;
+    int64_t component_resource_buffer;
+    int64_t component_memory_buffer;
+    int64_t component_cache_buffer;
+    int64_t component_buffer_size;
+    int64_t component_shader_buffer_size;
+    int64_t component_texture_buffer_size;
+    int64_t component_material_buffer_size;
+    int64_t component_animation_buffer_size;
+    int64_t component_event_buffer_size;
+    int64_t component_callback_buffer_size;
+    int64_t component_data_buffer_size;
+    int64_t component_resource_buffer_size;
+    int64_t component_memory_buffer_size;
+    int64_t component_cache_buffer_size;
+    int64_t component_buffer_offset;
+    int64_t component_shader_buffer_offset;
+    int64_t component_texture_buffer_offset;
+    int64_t component_material_buffer_offset;
+    int64_t component_animation_buffer_offset;
+    int64_t component_event_buffer_offset;
+    int64_t component_callback_buffer_offset;
+    int64_t component_data_buffer_offset;
+    int64_t component_resource_buffer_offset;
+    int64_t component_memory_buffer_offset;
+    int64_t component_cache_buffer_offset;
+    int64_t *component_buffer_ptr;
+    int64_t *component_shader_buffer_ptr;
+    int64_t *component_texture_buffer_ptr;
+    int64_t *component_material_buffer_ptr;
+    int64_t *component_animation_buffer_ptr;
+    int64_t *component_event_buffer_ptr;
+    int64_t *component_callback_buffer_ptr;
+    int64_t *component_data_buffer_ptr;
+    int64_t *component_resource_buffer_ptr;
+    int64_t *component_memory_buffer_ptr;
+    int64_t *component_cache_buffer_ptr;
+    int64_t component_buffer_index;
+    int64_t component_shader_buffer_index;
+    int64_t component_texture_buffer_index;
+    int64_t component_material_buffer_index;
+    int64_t component_animation_buffer_index;
+    int64_t component_event_buffer_index;
+    int64_t component_callback_buffer_index;
+    int64_t component_data_buffer_index;
+    int64_t component_resource_buffer_index;
+    int64_t component_memory_buffer_index;
+    int64_t component_cache_buffer_index;
+    int64_t *component_buffer_ref;
+    int64_t *component_shader_buffer_ref;
+    int64_t *component_texture_buffer_ref;
+    int64_t *component_material_buffer_ref;
+    int64_t *component_animation_buffer_ref;
+    int64_t *component_event_buffer_ref;
+    int64_t *component_callback_buffer_ref;
+    int64_t *component_data_buffer_ref;
+    int64_t *component_resource_buffer_ref;
+    int64_t *component_memory_buffer_ref;
+    int64_t *component_cache_buffer_ref;
+    int64_t component_buffer_ref_count;
+    int64_t component_shader_buffer_ref_count;
+    int64_t component_texture_buffer_ref_count;
+    int64_t component_material_buffer_ref_count;
+    int64_t component_animation_buffer_ref_count;
+    int64_t component_event_buffer_ref_count;
+    int64_t component_callback_buffer_ref_count;
+    int64_t component_data_buffer_ref_count;
+    int64_t component_resource_buffer_ref_count;
+    int64_t component_memory_buffer_ref_count;
+    int64_t component_cache_buffer_ref_count;
+    int64_t *component_buffer_cache_ptr;
+    int64_t *component_shader_buffer_cache_ptr;
+    int64_t *component_texture_buffer_cache_ptr;
+    int64_t *component_material_buffer_cache_ptr;
+    int64_t *component_animation_buffer_cache_ptr;
+    int64_t *component_event_buffer_cache_ptr;
+    int64_t *component_callback_buffer_cache_ptr;
+    int64_t *component_data_buffer_cache_ptr;
+    int64_t *component_resource_buffer_cache_ptr;
+    int64_t *component_memory_buffer_cache_ptr;
+    int64_t *component_cache_buffer_cache_ptr;
+    int64_t component_buffer_cache_size;
+    int64_t component_shader_buffer_cache_size;
+    int64_t component_texture_buffer_cache_size;
+    int64_t component_material_buffer_cache_size;
+    int64_t component_animation_buffer_cache_size;
+    int64_t component_event_buffer_cache_size;
+    int64_t component_callback_buffer_cache_size;
+    int64_t component_data_buffer_cache_size;
+    int64_t component_resource_buffer_cache_size;
+    int64_t component_memory_buffer_cache_size;
+    int64_t component_cache_buffer_cache_size;
+    int64_t *component_buffer_cache_array;
+    int64_t *component_shader_buffer_cache_array;
+    int64_t *component_texture_buffer_cache_array;
+    int64_t *component_material_buffer_cache_array;
+    int64_t *component_animation_buffer_cache_array;
+    int64_t *component_event_buffer_cache_array;
+    int64_t *component_callback_buffer_cache_array;
+    int64_t *component_data_buffer_cache_array;
+    int64_t *component_resource_buffer_cache_array;
+    int64_t *component_memory_buffer_cache_array;
+    int64_t *component_cache_buffer_cache_array;
+    int64_t *component_buffer_cache_list;
+    int64_t *component_shader_buffer_cache_list;
+    int64_t *component_texture_buffer_cache_list;
+    int64_t *component_material_buffer_cache_list;
+    int64_t *component_animation_buffer_cache_list;
+    int64_t *component_event_buffer_cache_list;
+    int64_t *component_callback_buffer_cache_list;
+    int64_t *component_data_buffer_cache_list;
+    int64_t *component_resource_buffer_cache_list;
+    int64_t *component_memory_buffer_cache_list;
+    int64_t *component_cache_buffer_cache_list;
+    int64_t component_buffer_cache_index;
+    int64_t component_shader_buffer_cache_index;
+    int64_t component_texture_buffer_cache_index;
+    int64_t component_material_buffer_cache_index;
+    int64_t component_animation_buffer_cache_index;
+    int64_t component_event_buffer_cache_index;
+    int64_t component_callback_buffer_cache_index;
+    int64_t component_data_buffer_cache_index;
+    int64_t component_resource_buffer_cache_index;
+    int64_t component_memory_buffer_cache_index;
+    int64_t component_cache_buffer_cache_index;
+    int64_t *component_buffer_cache_ref;
+    int64_t *component_shader_buffer_cache_ref;
+    int64_t *component_texture_buffer_cache_ref;
+    int64_t *component_material_buffer_cache_ref;
+    int64_t *component_animation_buffer_cache_ref;
+    int64_t *component_event_buffer_cache_ref;
+    int64_t *component_callback_buffer_cache_ref;
+    int64_t *component_data_buffer_cache_ref;
+    int64_t *component_resource_buffer_cache_ref;
+    int64_t *component_memory_buffer_cache_ref;
+    int64_t *component_cache_buffer_cache_ref;
+    int64_t component_buffer_cache_ref_count;
+    int64_t component_shader_buffer_cache_ref_count;
+    int64_t component_texture_buffer_cache_ref_count;
+    int64_t component_material_buffer_cache_ref_count;
+    int64_t component_animation_buffer_cache_ref_count;
+    int64_t component_event_buffer_cache_ref_count;
+    int64_t component_callback_buffer_cache_ref_count;
+    int64_t component_data_buffer_cache_ref_count;
+    int64_t component_resource_buffer_cache_ref_count;
+    int64_t component_memory_buffer_cache_ref_count;
+    int64_t component_cache_buffer_cache_ref_count;
+    int64_t *component_buffer_data_ptr;
+    int64_t *component_shader_buffer_data_ptr;
+    int64_t *component_texture_buffer_data_ptr;
+    int64_t *component_material_buffer_data_ptr;
+    int64_t *component_animation_buffer_data_ptr;
+    int64_t *component_event_buffer_data_ptr;
+    int64_t *component_callback_buffer_data_ptr;
+    int64_t *component_data_buffer_data_ptr;
+    int64_t *component_resource_buffer_data_ptr;
+    int64_t *component_memory_buffer_data_ptr;
+    int64_t *component_cache_buffer_data_ptr;
+    int64_t component_buffer_data_size;
+    int64_t component_shader_buffer_data_size;
+    int64_t component_texture_buffer_data_size;
+    int64_t component_material_buffer_data_size;
+    int64_t component_animation_buffer_data_size;
+    int64_t component_event_buffer_data_size;
+    int64_t component_callback_buffer_data_size;
+    int64_t component_data_buffer_data_size;
+    int64_t component_resource_buffer_data_size;
+    int64_t component_memory_buffer_data_size;
+    int64_t component_cache_buffer_data_size;
+    int64_t *component_buffer_data_array;
+    int64_t *component_shader_buffer_data_array;
+    int64_t *component_texture_buffer_data_array;
+    int64_t *component_material_buffer_data_array;
+    int64_t *component_animation_buffer_data_array;
+    int64_t *component_event_buffer_data_array;
+    int64_t *component_callback_buffer_data_array;
+    int64_t *component_data_buffer_data_array;
+    int64_t *component_resource_buffer_data_array;
+    int64_t *component_memory_buffer_data_array;
+    int64_t *component_cache_buffer_data_array;
+    int64_t *component_buffer_data_list;
+    int64_t *component_shader_buffer_data_list;
+    int64_t *component_texture_buffer_data_list;
+    int64_t *component_material_buffer_data_list;
+    int64_t *component_animation_buffer_data_list;
+    int64_t *component_event_buffer_data_list;
+    int64_t *component_callback_buffer_data_list;
+    int64_t *component_data_buffer_data_list;
+    int64_t *component_resource_buffer_data_list;
+    int64_t *component_memory_buffer_data_list;
+    int64_t *component_cache_buffer_data_list;
+    int64_t component_buffer_data_index;
+    int64_t component_shader_buffer_data_index;
+    int64_t component_texture_buffer_data_index;
+    int64_t component_material_buffer_data_index;
+    int64_t component_animation_buffer_data_index;
+    int64_t component_event_buffer_data_index;
+    int64_t component_callback_buffer_data_index;
+    int64_t component_data_buffer_data_index;
+    int64_t component_resource_buffer_data_index;
+    int64_t component_memory_buffer_data_index;
+    int64_t component_cache_buffer_data_index;
+    int64_t *component_buffer_data_ref;
+    int64_t *component_shader_buffer_data_ref;
+    int64_t *component_texture_buffer_data_ref;
+    int64_t *component_material_buffer_data_ref;
+    int64_t *component_animation_buffer_data_ref;
+    int64_t *component_event_buffer_data_ref;
+    int64_t *component_callback_buffer_data_ref;
+    int64_t *component_data_buffer_data_ref;
+    int64_t *component_resource_buffer_data_ref;
+    int64_t *component_memory_buffer_data_ref;
+    int64_t *component_cache_buffer_data_ref;
+    int64_t component_buffer_data_ref_count;
+    int64_t component_shader_buffer_data_ref_count;
+    int64_t component_texture_buffer_data_ref_count;
+    int64_t component_material_buffer_data_ref_count;
+    int64_t component_animation_buffer_data_ref_count;
+    int64_t component_event_buffer_data_ref_count;
+    int64_t component_callback_buffer_data_ref_count;
+    int64_t component_data_buffer_data_ref_count;
+    int64_t component_resource_buffer_data_ref_count;
+    int64_t component_memory_buffer_data_ref_count;
+    int64_t component_cache_buffer_data_ref_count;
+    int64_t *component_render_data_ptr;
+    int64_t *component_render_data_array;
+    int64_t *component_render_data_list;
+    int64_t component_render_data_index;
+    int64_t *component_render_data_ref;
+    int64_t component_render_data_ref_count;
+    int64_t *component_render_data_cache_ptr;
+    int64_t component_render_data_cache_size;
+    int64_t *component_render_data_cache_array;
+    int64_t *component_render_data_cache_list;
+    int64_t component_render_data_cache_index;
+    int64_t *component_render_data_cache_ref;
+    int64_t component_render_data_cache_ref_count;
+    int64_t *component_render_data_data_ptr;
+    int64_t component_render_data_data_size;
+    int64_t *component_render_data_data_array;
+    int64_t *component_render_data_data_list;
+    int64_t component_render_data_data_index;
+    int64_t *component_render_data_data_ref;
+    int64_t component_render_data_data_ref_count;
+    int64_t *component_texture_render_data_ptr;
+    int64_t *component_shader_render_data_ptr;
+    int64_t *component_material_render_data_ptr;
+    int64_t *component_animation_render_data_ptr;
+    int64_t component_texture_render_data_size;
+    int64_t component_shader_render_data_size;
+    int64_t component_material_render_data_size;
+    int64_t component_animation_render_data_size;
+    int64_t *component_texture_render_data_array;
+    int64_t *component_shader_render_data_array;
+    int64_t *component_material_render_data_array;
+    int64_t *component_animation_render_data_array;
+    int64_t *component_texture_render_data_list;
+    int64_t *component_shader_render_data_list;
+    int64_t *component_material_render_data_list;
+    int64_t *component_animation_render_data_list;
+    int64_t component_texture_render_data_index;
+    int64_t component_shader_render_data_index;
+    int64_t component_material_render_data_index;
+    int64_t component_animation_render_data_index;
+    int64_t *component_texture_render_data_ref;
+    int64_t *component_shader_render_data_ref;
+    int64_t *component_material_render_data_ref;
+    int64_t *component_animation_render_data_ref;
+    int64_t component_texture_render_data_ref_count;
+    int64_t component_shader_render_data_ref_count;
+    int64_t component_material_render_data_ref_count;
+    int64_t component_animation_render_data_ref_count;
+    int64_t *component_texture_render_data_cache_ptr;
+    int64_t *component_shader_render_data_cache_ptr;
+    int64_t *component_material_render_data_cache_ptr;
+    int64_t *component_animation_render_data_cache_ptr;
+    int64_t component_texture_render_data_cache_size;
+    int64_t component_shader_render_data_cache_size;
+    int64_t component_material_render_data_cache_size;
+    int64_t component_animation_render_data_cache_size;
+    int64_t *component_texture_render_data_cache_array;
+    int64_t *component_shader_render_data_cache_array;
+    int64_t *component_material_render_data_cache_array;
+    int64_t *component_animation_render_data_cache_array;
+    int64_t *component_texture_render_data_cache_list;
+    int64_t *component_shader_render_data_cache_list;
+    int64_t *component_material_render_data_cache_list;
+    int64_t *component_animation_render_data_cache_list;
+    int64_t component_texture_render_data_cache_index;
+    int64_t component_shader_render_data_cache_index;
+    int64_t component_material_render_data_cache_index;
+    int64_t component_animation_render_data_cache_index;
+    int64_t *component_texture_render_data_cache_ref;
+    int64_t *component_shader_render_data_cache_ref;
+    int64_t *component_material_render_data_cache_ref;
+    int64_t *component_animation_render_data_cache_ref;
+    int64_t component_texture_render_data_cache_ref_count;
+    int64_t component_shader_render_data_cache_ref_count;
+    int64_t component_material_render_data_cache_ref_count;
+    int64_t component_animation_render_data_cache_ref_count;
+    int64_t *component_texture_render_data_data_ptr;
+    int64_t *component_shader_render_data_data_ptr;
+    int64_t *component_material_render_data_data_ptr;
+    int64_t *component_animation_render_data_data_ptr;
+    int64_t component_texture_render_data_data_size;
+    int64_t component_shader_render_data_data_size;
+    int64_t component_material_render_data_data_size;
+    int64_t component_animation_render_data_data_size;
+    int64_t *component_texture_render_data_data_array;
+    int64_t *component_shader_render_data_data_array;
+    int64_t *component_material_render_data_data_array;
+    int64_t *component_animation_render_data_data_array;
+    int64_t *component_texture_render_data_data_list;
+    int64_t *component_shader_render_data_data_list;
+    int64_t *component_material_render_data_data_list;
+    int64_t *component_animation_render_data_data_list;
+    int64_t component_texture_render_data_data_index;
+    int64_t component_shader_render_data_data_index;
+    int64_t component_material_render_data_data_index;
+    int64_t component_animation_render_data_data_index;
+    int64_t *component_texture_render_data_data_ref;
+    int64_t *component_shader_render_data_data_ref;
+    int64_t *component_material_render_data_data_ref;
+    int64_t *component_animation_render_data_data_ref;
+    int64_t component_texture_render_data_data_ref_count;
+    int64_t component_shader_render_data_data_ref_count;
+    int64_t component_material_render_data_data_ref_count;
+    int64_t component_animation_render_data_data_ref_count;
     
     // 参数验证
-    if (component == (longlong *)0x0) {
+    if (component == (int64_t *)0x0) {
         result = 0x1f;  // 无效参数
     }
     else if ((int)properties[3] == -1) {
@@ -2296,10 +2296,10 @@ int UI_SetComponentProperties(longlong context, uint flags, longlong *properties
         
         // 设置基本属性
         stack_data[0] = *properties;
-        property_mask = *(int32_t *)((longlong)properties + 0xc);
+        property_mask = *(int32_t *)((int64_t)properties + 0xc);
         stack_data[1] = properties[2];
         component_info[0] = properties[3];
-        component_properties = (longlong *)*component;
+        component_properties = (int64_t *)*component;
         stack_data[2] = properties[4];
         stack_data[3] = properties[5];
         stack_flags[0] = CONCAT44(property_mask, (int)properties[1]);
@@ -2312,33 +2312,33 @@ int UI_SetComponentProperties(longlong context, uint flags, longlong *properties
         if (result == 0) {
             // 设置组件数据
             component_properties[6] = *properties;
-            *(float *)((longlong)component_properties + 0x6c) = (float)(int)properties[2];
-            *(int *)((longlong)component_properties + 0x74) = (int)properties[6];
-            *(int32_t *)((longlong)component_properties + 0x13c) = *(int32_t *)((longlong)properties + 0x34);
-            *(uint *)((longlong)component_properties + 0x2c) = component_flags;
-            *(int32_t *)((longlong)component_properties + 0x4c) = 0;
-            *(int32_t *)(component_properties + 10) = *(int32_t *)((longlong)component_properties + 0x44);
+            *(float *)((int64_t)component_properties + 0x6c) = (float)(int)properties[2];
+            *(int *)((int64_t)component_properties + 0x74) = (int)properties[6];
+            *(int32_t *)((int64_t)component_properties + 0x13c) = *(int32_t *)((int64_t)properties + 0x34);
+            *(uint *)((int64_t)component_properties + 0x2c) = component_flags;
+            *(int32_t *)((int64_t)component_properties + 0x4c) = 0;
+            *(int32_t *)(component_properties + 10) = *(int32_t *)((int64_t)component_properties + 0x44);
             *(int *)(component_properties + 5) = (int)properties[1];
             *(int32_t *)(component_properties + 0xd) = property_mask;
             component_properties[0xc] = 0;
-            *(int32_t *)((longlong)component_properties + 0x24) = 0xe;
+            *(int32_t *)((int64_t)component_properties + 0x24) = 0xe;
             component_properties[0x1b] = context;
             *(int32_t *)(component_properties + 0xf) = *(int32_t *)(context + 0x11404);
-            *(float *)((longlong)component_properties + 0x7c) = *(float *)(context + 0x11404) * 10000.0;
+            *(float *)((int64_t)component_properties + 0x7c) = *(float *)(context + 0x11404) * 10000.0;
             
             // 获取组件配置
-            result = *(int *)((longlong)properties + 0x24);
+            result = *(int *)((int64_t)properties + 0x24);
             if (result == 0) {
-                result = *(int *)((longlong)component_properties + 0x44) + -1;
+                result = *(int *)((int64_t)component_properties + 0x44) + -1;
             }
             
             // 应用组件配置
             (*(void (**)(void*, int, int, int, int))(*component_properties + 0x138))(component_properties, (int)properties[4], 2, result, 2);
             
             result = 0;
-            *component = (longlong)component_properties;
+            *component = (int64_t)component_properties;
         }
-        else if ((component_properties != (longlong *)0x0) && (component_properties != (longlong *)*component)) {
+        else if ((component_properties != (int64_t *)0x0) && (component_properties != (int64_t *)*component)) {
             // 清理组件资源
             (*(void (**)(void*, int))(*component_properties + 0x18))(component_properties, 1);
         }

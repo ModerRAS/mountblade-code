@@ -3,9 +3,9 @@
 
 // 01_initialization_part017.c - 初始化系统 - 32 个函数
 
-// 函数: void Cleanup_Resource_Chain(longlong context, uint64_t param_2, uint64_t param_3, uint64_t param_4)
+// 函数: void Cleanup_Resource_Chain(int64_t context, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 // 清理资源链表
-void Cleanup_Resource_Chain(longlong context, uint64_t param_2, uint64_t param_3, uint64_t param_4)
+void Cleanup_Resource_Chain(int64_t context, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
   uint64_t *resource_ptr;
   
@@ -62,9 +62,9 @@ void Empty_Function(void)
 
 
 
-// 函数: uint64_t * Initialize_VTable_Pointer_A(uint64_t *vtable, ulonglong flags)
+// 函数: uint64_t * Initialize_VTable_Pointer_A(uint64_t *vtable, uint64_t flags)
 // 初始化虚表指针A
-uint64_t * Initialize_VTable_Pointer_A(uint64_t *vtable, ulonglong flags)
+uint64_t * Initialize_VTable_Pointer_A(uint64_t *vtable, uint64_t flags)
 {
   *vtable = &unknown_var_3528_ptr;
   if ((flags & 1) != 0) {
@@ -75,9 +75,9 @@ uint64_t * Initialize_VTable_Pointer_A(uint64_t *vtable, ulonglong flags)
 
 
 
-// 函数: uint64_t * Initialize_VTable_Pointer_B(uint64_t *vtable, ulonglong flags)
+// 函数: uint64_t * Initialize_VTable_Pointer_B(uint64_t *vtable, uint64_t flags)
 // 初始化虚表指针B
-uint64_t * Initialize_VTable_Pointer_B(uint64_t *vtable, ulonglong flags)
+uint64_t * Initialize_VTable_Pointer_B(uint64_t *vtable, uint64_t flags)
 {
   *vtable = &system_handler1_ptr;
   if ((flags & 1) != 0) {
@@ -92,26 +92,26 @@ uint64_t * Initialize_VTable_Pointer_B(uint64_t *vtable, ulonglong flags)
 
 
 
-// 函数: void Format_String_To_Buffer(longlong buffer_context, uint64_t format_str, uint64_t param_3, uint64_t param_4)
+// 函数: void Format_String_To_Buffer(int64_t buffer_context, uint64_t format_str, uint64_t param_3, uint64_t param_4)
 // 格式化字符串到缓冲区
-void Format_String_To_Buffer(longlong buffer_context, uint64_t format_str, uint64_t param_3, uint64_t param_4)
+void Format_String_To_Buffer(int64_t buffer_context, uint64_t format_str, uint64_t param_3, uint64_t param_4)
 {
-  longlong str_length;
+  int64_t str_length;
   int buffer_available;
-  ulonglong *printf_func;
-  longlong char_index;
+  uint64_t *printf_func;
+  int64_t char_index;
   uint64_t formatted_param_3;
   uint64_t formatted_param_4;
   int8_t auStack_78 [32];
   uint64_t buffer_size;
   uint64_t *buffer_ptr;
   char formatted_string [32];
-  ulonglong stack_cookie;
+  uint64_t stack_cookie;
   
-  stack_cookie = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_78;
+  stack_cookie = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_78;
   formatted_param_3 = param_3;
   formatted_param_4 = param_4;
-  printf_func = (ulonglong *)func_0x00018004b9a0();
+  printf_func = (uint64_t *)func_0x00018004b9a0();
   buffer_size = 0;
   buffer_ptr = &formatted_param_3;
   __stdio_common_vsprintf(*printf_func | 1, formatted_string, 0x20, format_str);
@@ -123,18 +123,18 @@ void Format_String_To_Buffer(longlong buffer_context, uint64_t format_str, uint6
   buffer_available = (int)(char_index + 1);
   if ((0 < buffer_available) && (*(uint *)(buffer_context + 0x10) + buffer_available < 0x1f)) {
                     // WARNING: Subroutine does not return
-    memcpy((ulonglong)*(uint *)(buffer_context + 0x10) + *(longlong *)(buffer_context + 8), formatted_string,
-           (longlong)((int)char_index + 2));
+    memcpy((uint64_t)*(uint *)(buffer_context + 0x10) + *(int64_t *)(buffer_context + 8), formatted_string,
+           (int64_t)((int)char_index + 2));
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(stack_cookie ^ (ulonglong)auStack_78);
+  FUN_1808fc050(stack_cookie ^ (uint64_t)auStack_78);
 }
 
 
 
-// 函数: uint64_t * Initialize_VTable_Pointer_C(uint64_t *vtable, ulonglong flags)
+// 函数: uint64_t * Initialize_VTable_Pointer_C(uint64_t *vtable, uint64_t flags)
 // 初始化虚表指针C
-uint64_t * Initialize_VTable_Pointer_C(uint64_t *vtable, ulonglong flags)
+uint64_t * Initialize_VTable_Pointer_C(uint64_t *vtable, uint64_t flags)
 {
   *vtable = &unknown_var_3616_ptr;
   if ((flags & 1) != 0) {
@@ -145,9 +145,9 @@ uint64_t * Initialize_VTable_Pointer_C(uint64_t *vtable, ulonglong flags)
 
 
 
-// 函数: uint64_t * Initialize_VTable_Pointer_D(uint64_t *vtable, ulonglong flags)
+// 函数: uint64_t * Initialize_VTable_Pointer_D(uint64_t *vtable, uint64_t flags)
 // 初始化虚表指针D
-uint64_t * Initialize_VTable_Pointer_D(uint64_t *vtable, ulonglong flags)
+uint64_t * Initialize_VTable_Pointer_D(uint64_t *vtable, uint64_t flags)
 {
   *vtable = &unknown_var_3672_ptr;
   if ((flags & 1) != 0) {
@@ -163,9 +163,9 @@ uint64_t * Initialize_VTable_Pointer_D(uint64_t *vtable, ulonglong flags)
 int Safe_VSprintf(uint64_t buffer, uint64_t format, uint64_t param_3, uint64_t param_4)
 {
   int result;
-  ulonglong *printf_func;
+  uint64_t *printf_func;
   
-  printf_func = (ulonglong *)func_0x00018004b9a0();
+  printf_func = (uint64_t *)func_0x00018004b9a0();
   result = __stdio_common_vsprintf(*printf_func | 1, buffer, format, param_3, 0, param_4);
   if (result < 0) {
     result = -1;
@@ -177,9 +177,9 @@ int Safe_VSprintf(uint64_t buffer, uint64_t format, uint64_t param_3, uint64_t p
 
 
 
-// 函数: void Process_Resource_Type_A(longlong resource_context, uint64_t param_2, uint64_t param_3, uint64_t param_4)
+// 函数: void Process_Resource_Type_A(int64_t resource_context, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 // 处理资源类型A
-void Process_Resource_Type_A(longlong resource_context, uint64_t param_2, uint64_t param_3, uint64_t param_4)
+void Process_Resource_Type_A(int64_t resource_context, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
   FUN_1800582b0(resource_context, *(uint64_t *)(resource_context + 0x10), param_3, param_4, 0xfffffffffffffffe);
   return;
@@ -189,9 +189,9 @@ void Process_Resource_Type_A(longlong resource_context, uint64_t param_2, uint64
 
 
 
-// 函数: void Process_Resource_Type_B(longlong resource_context, uint64_t param_2, uint64_t param_3, uint64_t param_4)
+// 函数: void Process_Resource_Type_B(int64_t resource_context, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 // 处理资源类型B
-void Process_Resource_Type_B(longlong resource_context, uint64_t param_2, uint64_t param_3, uint64_t param_4)
+void Process_Resource_Type_B(int64_t resource_context, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
   FUN_1800582b0(resource_context, *(uint64_t *)(resource_context + 0x10), param_3, param_4, 0xfffffffffffffffe);
   return;
@@ -221,9 +221,9 @@ void Unlock_Global_Mutex(uint64_t *resource_ptr)
 
 
 
-// 函数: void Process_Resource_Type_C(longlong resource_context, uint64_t param_2, uint64_t param_3, uint64_t param_4)
+// 函数: void Process_Resource_Type_C(int64_t resource_context, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 // 处理资源类型C
-void Process_Resource_Type_C(longlong resource_context, uint64_t param_2, uint64_t param_3, uint64_t param_4)
+void Process_Resource_Type_C(int64_t resource_context, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
   FUN_180058370(resource_context, *(uint64_t *)(resource_context + 0x10), param_3, param_4, 0xfffffffffffffffe);
   return;
@@ -233,9 +233,9 @@ void Process_Resource_Type_C(longlong resource_context, uint64_t param_2, uint64
 
 
 
-// 函数: void Process_Resource_Type_D(longlong resource_context, uint64_t param_2, uint64_t param_3, uint64_t param_4)
+// 函数: void Process_Resource_Type_D(int64_t resource_context, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 // 处理资源类型D
-void Process_Resource_Type_D(longlong resource_context, uint64_t param_2, uint64_t param_3, uint64_t param_4)
+void Process_Resource_Type_D(int64_t resource_context, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
   FUN_180058370(resource_context, *(uint64_t *)(resource_context + 0x10), param_3, param_4, 0xfffffffffffffffe);
   return;
@@ -245,9 +245,9 @@ void Process_Resource_Type_D(longlong resource_context, uint64_t param_2, uint64
 
 
 
-// 函数: void Initialize_Subsystem_A(longlong system_context)
+// 函数: void Initialize_Subsystem_A(int64_t system_context)
 // 初始化子系统A
-void Initialize_Subsystem_A(longlong system_context)
+void Initialize_Subsystem_A(int64_t system_context)
 {
   FUN_180057010(system_context + 0x60);
   return;
@@ -257,9 +257,9 @@ void Initialize_Subsystem_A(longlong system_context)
 
 
 
-// 函数: void Initialize_Subsystem_B(longlong system_context)
+// 函数: void Initialize_Subsystem_B(int64_t system_context)
 // 初始化子系统B
-void Initialize_Subsystem_B(longlong system_context)
+void Initialize_Subsystem_B(int64_t system_context)
 {
   FUN_180057010(system_context + 0x60);
   return;
@@ -276,16 +276,16 @@ void Initialize_Subsystem_B(longlong system_context)
 void Cleanup_Resource_Array(uint64_t context, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
   uint64_t *resource_item;
-  longlong array_context;
+  int64_t array_context;
   int item_count;
-  longlong item_index;
+  int64_t item_index;
   
   array_context = init_system_data_config;
-  item_count = (int)(*(longlong *)(init_system_data_config + 0x38) - *(longlong *)(init_system_data_config + 0x30) >> 3);
+  item_count = (int)(*(int64_t *)(init_system_data_config + 0x38) - *(int64_t *)(init_system_data_config + 0x30) >> 3);
   item_index = 0;
   if (0 < item_count) {
     do {
-      resource_item = *(uint64_t **)(*(longlong *)(array_context + 0x30) + item_index * 8);
+      resource_item = *(uint64_t **)(*(int64_t *)(array_context + 0x30) + item_index * 8);
       if (resource_item != (uint64_t *)0x0) {
         resource_item[4] = &system_data_buffer_ptr;
         if (resource_item[5] != 0) {
@@ -306,15 +306,15 @@ void Cleanup_Resource_Array(uint64_t context, uint64_t param_2, uint64_t param_3
                     // WARNING: Subroutine does not return
         FUN_18064e900();
       }
-      *(uint64_t *)(*(longlong *)(array_context + 0x30) + item_index * 8) = 0;
+      *(uint64_t *)(*(int64_t *)(array_context + 0x30) + item_index * 8) = 0;
       item_index = item_index + 1;
     } while (item_index < item_count);
   }
   *(uint64_t *)(array_context + 0x38) = *(uint64_t *)(array_context + 0x30);
   item_index = array_context + 0x50;
   FUN_180058370(item_index, *(uint64_t *)(array_context + 0x60), param_3, param_4, 0xfffffffffffffffe);
-  *(longlong *)item_index = item_index;
-  *(longlong *)(array_context + 0x58) = item_index;
+  *(int64_t *)item_index = item_index;
+  *(int64_t *)(array_context + 0x58) = item_index;
   *(uint64_t *)(array_context + 0x60) = 0;
   *(int8_t *)(array_context + 0x68) = 0;
   *(uint64_t *)(array_context + 0x70) = 0;
@@ -325,9 +325,9 @@ void Cleanup_Resource_Array(uint64_t context, uint64_t param_2, uint64_t param_3
 
 
 
-// 函数: void Process_Resource_Type_E(longlong resource_context, uint64_t param_2, uint64_t param_3, uint64_t param_4)
+// 函数: void Process_Resource_Type_E(int64_t resource_context, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 // 处理资源类型E
-void Process_Resource_Type_E(longlong resource_context, uint64_t param_2, uint64_t param_3, uint64_t param_4)
+void Process_Resource_Type_E(int64_t resource_context, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
   FUN_180058420(resource_context, *(uint64_t *)(resource_context + 0x10), param_3, param_4, 0xfffffffffffffffe);
   return;
@@ -337,9 +337,9 @@ void Process_Resource_Type_E(longlong resource_context, uint64_t param_2, uint64
 
 
 
-// 函数: void Process_Resource_Type_F(longlong resource_context, uint64_t param_2, uint64_t param_3, uint64_t param_4)
+// 函数: void Process_Resource_Type_F(int64_t resource_context, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 // 处理资源类型F
-void Process_Resource_Type_F(longlong resource_context, uint64_t param_2, uint64_t param_3, uint64_t param_4)
+void Process_Resource_Type_F(int64_t resource_context, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
   FUN_180058420(resource_context, *(uint64_t *)(resource_context + 0x10), param_3, param_4, 0xfffffffffffffffe);
   return;
@@ -394,9 +394,9 @@ uint64_t * Initialize_Memory_Manager(uint64_t *manager)
 
 
 
-// 函数: void Iterate_Resource_Container_A(longlong *container, uint64_t param_2, uint64_t param_3, uint64_t param_4)
+// 函数: void Iterate_Resource_Container_A(int64_t *container, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 // 遍历资源容器A
-void Iterate_Resource_Container_A(longlong *container, uint64_t param_2, uint64_t param_3, uint64_t param_4)
+void Iterate_Resource_Container_A(int64_t *container, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
   uint64_t *end_ptr;
   uint64_t *current_ptr;
@@ -418,9 +418,9 @@ void Iterate_Resource_Container_A(longlong *container, uint64_t param_2, uint64_
 
 
 
-// 函数: void Iterate_Resource_Container_B(longlong *container, uint64_t param_2, uint64_t param_3, uint64_t param_4)
+// 函数: void Iterate_Resource_Container_B(int64_t *container, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 // 遍历资源容器B
-void Iterate_Resource_Container_B(longlong *container, uint64_t param_2, uint64_t param_3, uint64_t param_4)
+void Iterate_Resource_Container_B(int64_t *container, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
   uint64_t *end_ptr;
   uint64_t *current_ptr;
@@ -442,38 +442,38 @@ void Iterate_Resource_Container_B(longlong *container, uint64_t param_2, uint64_
 
 
 
-// 函数: void Cleanup_Thread_Local_Storage(longlong tls_context)
+// 函数: void Cleanup_Thread_Local_Storage(int64_t tls_context)
 // 清理线程本地存储
-void Cleanup_Thread_Local_Storage(longlong tls_context)
+void Cleanup_Thread_Local_Storage(int64_t tls_context)
 {
   int lock_result;
-  longlong data_start;
+  int64_t data_start;
   uint item_index;
-  ulonglong current_offset;
-  ulonglong max_offset;
+  uint64_t current_offset;
+  uint64_t max_offset;
   
   lock_result = _Mtx_lock(tls_context + 0x28);
   if (lock_result != 0) {
     __Throw_C_error_std__YAXH_Z(lock_result);
   }
   max_offset = 0;
-  data_start = *(longlong *)(tls_context + 8);
+  data_start = *(int64_t *)(tls_context + 8);
   current_offset = max_offset;
-  if (*(longlong *)(tls_context + 0x10) - data_start >> 3 != 0) {
+  if (*(int64_t *)(tls_context + 0x10) - data_start >> 3 != 0) {
     do {
-      if (*(longlong *)(current_offset + data_start) != 0) {
+      if (*(int64_t *)(current_offset + data_start) != 0) {
                     // WARNING: Subroutine does not return
         FUN_18064e900();
       }
-      *(uint64_t *)(current_offset + *(longlong *)(tls_context + 8)) = 0;
+      *(uint64_t *)(current_offset + *(int64_t *)(tls_context + 8)) = 0;
       item_index = (int)max_offset + 1;
-      max_offset = (ulonglong)item_index;
-      data_start = *(longlong *)(tls_context + 8);
+      max_offset = (uint64_t)item_index;
+      data_start = *(int64_t *)(tls_context + 8);
       current_offset = current_offset + 8;
-    } while ((ulonglong)(longlong)(int)item_index <
-             (ulonglong)(*(longlong *)(tls_context + 0x10) - data_start >> 3));
+    } while ((uint64_t)(int64_t)(int)item_index <
+             (uint64_t)(*(int64_t *)(tls_context + 0x10) - data_start >> 3));
   }
-  *(longlong *)(tls_context + 0x10) = data_start;
+  *(int64_t *)(tls_context + 0x10) = data_start;
   lock_result = _Mtx_unlock(tls_context + 0x28);
   if (lock_result != 0) {
     __Throw_C_error_std__YAXH_Z(lock_result);
@@ -485,24 +485,24 @@ void Cleanup_Thread_Local_Storage(longlong tls_context)
 
 
 
-// 函数: void Cleanup_Object_Manager(longlong *object_manager)
+// 函数: void Cleanup_Object_Manager(int64_t *object_manager)
 // 清理对象管理器
-void Cleanup_Object_Manager(longlong *object_manager)
+void Cleanup_Object_Manager(int64_t *object_manager)
 {
-  longlong manager_data;
+  int64_t manager_data;
   
   manager_data = *object_manager;
   if (manager_data == 0) {
     *object_manager = 0;
-    if ((longlong *)object_manager[2] != (longlong *)0x0) {
-      (**(code **)(*(longlong *)object_manager[2] + 0x38))();
+    if ((int64_t *)object_manager[2] != (int64_t *)0x0) {
+      (**(code **)(*(int64_t *)object_manager[2] + 0x38))();
     }
-    if ((longlong *)object_manager[1] != (longlong *)0x0) {
-      (**(code **)(*(longlong *)object_manager[1] + 0x38))();
+    if ((int64_t *)object_manager[1] != (int64_t *)0x0) {
+      (**(code **)(*(int64_t *)object_manager[1] + 0x38))();
     }
     return;
   }
-  if (*(longlong *)(manager_data + 8) != 0) {
+  if (*(int64_t *)(manager_data + 8) != 0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }
@@ -515,23 +515,23 @@ void Cleanup_Object_Manager(longlong *object_manager)
 
 
 
-// 函数: void Cleanup_Memory_Pool(longlong memory_pool)
+// 函数: void Cleanup_Memory_Pool(int64_t memory_pool)
 // 清理内存池
-void Cleanup_Memory_Pool(longlong memory_pool)
+void Cleanup_Memory_Pool(int64_t memory_pool)
 {
   int *ref_count;
-  longlong pool_item;
+  int64_t pool_item;
   uint64_t *pool_ptr;
-  longlong heap_base;
-  ulonglong item_index;
-  ulonglong pool_size;
+  int64_t heap_base;
+  uint64_t item_index;
+  uint64_t pool_size;
   
-  pool_size = *(ulonglong *)(memory_pool + 0x10);
-  heap_base = *(longlong *)(memory_pool + 8);
+  pool_size = *(uint64_t *)(memory_pool + 0x10);
+  heap_base = *(int64_t *)(memory_pool + 8);
   item_index = 0;
   if (pool_size != 0) {
     do {
-      pool_item = *(longlong *)(heap_base + item_index * 8);
+      pool_item = *(int64_t *)(heap_base + item_index * 8);
       if (pool_item != 0) {
                     // WARNING: Subroutine does not return
         FUN_18064e900(pool_item);
@@ -539,14 +539,14 @@ void Cleanup_Memory_Pool(longlong memory_pool)
       *(uint64_t *)(heap_base + item_index * 8) = 0;
       item_index = item_index + 1;
     } while (item_index < pool_size);
-    pool_size = *(ulonglong *)(memory_pool + 0x10);
+    pool_size = *(uint64_t *)(memory_pool + 0x10);
   }
   *(uint64_t *)(memory_pool + 0x18) = 0;
   if ((1 < pool_size) && (pool_ptr = *(uint64_t **)(memory_pool + 8), pool_ptr != (uint64_t *)0x0)) {
-    pool_size = (ulonglong)pool_ptr & 0xffffffffffc00000;
+    pool_size = (uint64_t)pool_ptr & 0xffffffffffc00000;
     if (pool_size != 0) {
-      heap_base = pool_size + 0x80 + ((longlong)pool_ptr - pool_size >> 0x10) * 0x50;
-      heap_base = heap_base - (ulonglong)*(uint *)(heap_base + 4);
+      heap_base = pool_size + 0x80 + ((int64_t)pool_ptr - pool_size >> 0x10) * 0x50;
+      heap_base = heap_base - (uint64_t)*(uint *)(heap_base + 4);
       if ((*(void ***)(pool_size + 0x70) == &ExceptionList) && (*(char *)(heap_base + 0xe) == '\0')) {
         *pool_ptr = *(uint64_t *)(heap_base + 0x20);
         *(uint64_t **)(heap_base + 0x20) = pool_ptr;
@@ -571,12 +571,12 @@ void Cleanup_Memory_Pool(longlong memory_pool)
 
 
 
-// 函数: void Cleanup_Object_Manager_List(longlong *manager_list)
+// 函数: void Cleanup_Object_Manager_List(int64_t *manager_list)
 // 清理对象管理器列表
-void Cleanup_Object_Manager_List(longlong *manager_list)
+void Cleanup_Object_Manager_List(int64_t *manager_list)
 {
-  longlong list_end;
-  longlong current_item;
+  int64_t list_end;
+  int64_t current_item;
   
   list_end = manager_list[1];
   for (current_item = *manager_list; current_item != list_end; current_item = current_item + 0x18) {
@@ -593,17 +593,17 @@ void Cleanup_Object_Manager_List(longlong *manager_list)
 
 
 
-// 函数: void Cleanup_Callback_List(longlong *callback_list)
+// 函数: void Cleanup_Callback_List(int64_t *callback_list)
 // 清理回调列表
-void Cleanup_Callback_List(longlong *callback_list)
+void Cleanup_Callback_List(int64_t *callback_list)
 {
-  longlong *list_end;
-  longlong *current_callback;
+  int64_t *list_end;
+  int64_t *current_callback;
   
-  list_end = (longlong *)callback_list[1];
-  for (current_callback = (longlong *)*callback_list; current_callback != list_end; current_callback = current_callback + 1) {
-    if ((longlong *)*current_callback != (longlong *)0x0) {
-      (**(code **)(*(longlong *)*current_callback + 0x38))();
+  list_end = (int64_t *)callback_list[1];
+  for (current_callback = (int64_t *)*callback_list; current_callback != list_end; current_callback = current_callback + 1) {
+    if ((int64_t *)*current_callback != (int64_t *)0x0) {
+      (**(code **)(*(int64_t *)*current_callback + 0x38))();
     }
   }
   if (*callback_list == 0) {
@@ -630,12 +630,12 @@ uint64_t * Initialize_Empty_Container(uint64_t *container)
 
 
 
-// 函数: void Cleanup_Manager_Container(longlong *manager_container)
+// 函数: void Cleanup_Manager_Container(int64_t *manager_container)
 // 清理管理器容器
-void Cleanup_Manager_Container(longlong *manager_container)
+void Cleanup_Manager_Container(int64_t *manager_container)
 {
-  longlong container_end;
-  longlong current_manager;
+  int64_t container_end;
+  int64_t current_manager;
   
   container_end = manager_container[1];
   for (current_manager = *manager_container; current_manager != container_end; current_manager = current_manager + 0x18) {
@@ -652,23 +652,23 @@ void Cleanup_Manager_Container(longlong *manager_container)
 
 
 
-// 函数: void Cleanup_Allocator_Pool(longlong allocator_pool)
+// 函数: void Cleanup_Allocator_Pool(int64_t allocator_pool)
 // 清理分配器池
-void Cleanup_Allocator_Pool(longlong allocator_pool)
+void Cleanup_Allocator_Pool(int64_t allocator_pool)
 {
   int *ref_count;
-  longlong pool_item;
+  int64_t pool_item;
   uint64_t *pool_ptr;
-  longlong heap_base;
-  ulonglong item_index;
-  ulonglong pool_size;
+  int64_t heap_base;
+  uint64_t item_index;
+  uint64_t pool_size;
   
-  pool_size = *(ulonglong *)(allocator_pool + 0x10);
-  heap_base = *(longlong *)(allocator_pool + 8);
+  pool_size = *(uint64_t *)(allocator_pool + 0x10);
+  heap_base = *(int64_t *)(allocator_pool + 8);
   item_index = 0;
   if (pool_size != 0) {
     do {
-      pool_item = *(longlong *)(heap_base + item_index * 8);
+      pool_item = *(int64_t *)(heap_base + item_index * 8);
       if (pool_item != 0) {
                     // WARNING: Subroutine does not return
         FUN_18064e900(pool_item);
@@ -676,14 +676,14 @@ void Cleanup_Allocator_Pool(longlong allocator_pool)
       *(uint64_t *)(heap_base + item_index * 8) = 0;
       item_index = item_index + 1;
     } while (item_index < pool_size);
-    pool_size = *(ulonglong *)(allocator_pool + 0x10);
+    pool_size = *(uint64_t *)(allocator_pool + 0x10);
   }
   *(uint64_t *)(allocator_pool + 0x18) = 0;
   if ((1 < pool_size) && (pool_ptr = *(uint64_t **)(allocator_pool + 8), pool_ptr != (uint64_t *)0x0)) {
-    pool_size = (ulonglong)pool_ptr & 0xffffffffffc00000;
+    pool_size = (uint64_t)pool_ptr & 0xffffffffffc00000;
     if (pool_size != 0) {
-      heap_base = pool_size + 0x80 + ((longlong)pool_ptr - pool_size >> 0x10) * 0x50;
-      heap_base = heap_base - (ulonglong)*(uint *)(heap_base + 4);
+      heap_base = pool_size + 0x80 + ((int64_t)pool_ptr - pool_size >> 0x10) * 0x50;
+      heap_base = heap_base - (uint64_t)*(uint *)(heap_base + 4);
       if ((*(void ***)(pool_size + 0x70) == &ExceptionList) && (*(char *)(heap_base + 0xe) == '\0')) {
         *pool_ptr = *(uint64_t *)(heap_base + 0x20);
         *(uint64_t **)(heap_base + 0x20) = pool_ptr;
@@ -708,9 +708,9 @@ void Cleanup_Allocator_Pool(longlong allocator_pool)
 
 
 
-// 函数: void Initialize_System_Context(longlong system_context)
+// 函数: void Initialize_System_Context(int64_t system_context)
 // 初始化系统上下文
-void Initialize_System_Context(longlong system_context)
+void Initialize_System_Context(int64_t system_context)
 
 {
   void *temp_ptr;
@@ -726,7 +726,7 @@ void Initialize_System_Context(longlong system_context)
   uint64_t stack_var7;
   int32_t stack_var8;
   void *stack_var9;
-  longlong stack_var10;
+  int64_t stack_var10;
   int32_t stack_var11;
   uint64_t cleanup_flag;
   
@@ -734,24 +734,24 @@ void Initialize_System_Context(longlong system_context)
   if (system_context == 0) {
 
 
-// 函数: void Release_Memory_Block(ulonglong *memory_block)
+// 函数: void Release_Memory_Block(uint64_t *memory_block)
 // 释放内存块
-void Release_Memory_Block(ulonglong *memory_block)
+void Release_Memory_Block(uint64_t *memory_block)
 
 {
   int *ref_count;
   uint64_t *block_ptr;
-  longlong heap_info;
-  ulonglong heap_base;
+  int64_t heap_info;
+  uint64_t heap_base;
   
   block_ptr = (uint64_t *)*memory_block;
   if (block_ptr == (uint64_t *)0x0) {
     return;
   }
-  heap_base = (ulonglong)block_ptr & 0xffffffffffc00000;
+  heap_base = (uint64_t)block_ptr & 0xffffffffffc00000;
   if (heap_base != 0) {
-    heap_info = heap_base + 0x80 + ((longlong)block_ptr - heap_base >> 0x10) * 0x50;
-    heap_info = heap_info - (ulonglong)*(uint *)(heap_info + 4);
+    heap_info = heap_base + 0x80 + ((int64_t)block_ptr - heap_base >> 0x10) * 0x50;
+    heap_info = heap_info - (uint64_t)*(uint *)(heap_info + 4);
     if ((*(void ***)(heap_base + 0x70) == &ExceptionList) && (*(char *)(heap_info + 0xe) == '\0')) {
       *block_ptr = *(uint64_t *)(heap_info + 0x20);
       *(uint64_t **)(heap_info + 0x20) = block_ptr;
@@ -774,9 +774,9 @@ void Release_Memory_Block(ulonglong *memory_block)
 
 
 
-// 函数: void Iterate_Callback_Container(longlong *callback_container, uint64_t param_2, uint64_t param_3, uint64_t param_4)
+// 函数: void Iterate_Callback_Container(int64_t *callback_container, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 // 遍历回调容器
-void Iterate_Callback_Container(longlong *callback_container, uint64_t param_2, uint64_t param_3, uint64_t param_4)
+void Iterate_Callback_Container(int64_t *callback_container, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 
 {
   uint64_t *end_ptr;
@@ -799,24 +799,24 @@ void Iterate_Callback_Container(longlong *callback_container, uint64_t param_2, 
 
 
 
-// 函数: void Validate_System_Pointer(longlong system_ptr)
+// 函数: void Validate_System_Pointer(int64_t system_ptr)
 // 验证系统指针
-void Validate_System_Pointer(longlong system_ptr)
+void Validate_System_Pointer(int64_t system_ptr)
 
 {
   uint temp_value;
-  longlong check_result;
+  int64_t check_result;
   
   if (system_ptr == 0) {
 
 
-// 函数: void Copy_String_To_Global_Buffer(longlong string_ptr)
+// 函数: void Copy_String_To_Global_Buffer(int64_t string_ptr)
 // 复制字符串到全局缓冲区
-void Copy_String_To_Global_Buffer(longlong string_ptr)
+void Copy_String_To_Global_Buffer(int64_t string_ptr)
 
 {
   uint string_length;
-  longlong char_index;
+  int64_t char_index;
   
   char_index = -1;
   do {
@@ -827,7 +827,7 @@ void Copy_String_To_Global_Buffer(longlong string_ptr)
     string_length = 0x1fff;
   }
                     // WARNING: Subroutine does not return
-  memcpy(&system_memory_4870, string_ptr, (longlong)(int)string_length);
+  memcpy(&system_memory_4870, string_ptr, (int64_t)(int)string_length);
 }
 
 
@@ -855,15 +855,15 @@ int8_t *
 Initialize_Complex_Object(int8_t *object, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 
 {
-  longlong *component_a;
-  longlong *component_b;
-  longlong *component_c;
+  int64_t *component_a;
+  int64_t *component_b;
+  int64_t *component_c;
   
-  component_c = (longlong *)(object + 8);
-  *component_c = (longlong)&system_state_ptr;
+  component_c = (int64_t *)(object + 8);
+  *component_c = (int64_t)&system_state_ptr;
   *(uint64_t *)(object + 0x10) = 0;
   *(int32_t *)(object + 0x18) = 0;
-  *component_c = (longlong)&system_data_buffer_ptr;
+  *component_c = (int64_t)&system_data_buffer_ptr;
   *(uint64_t *)(object + 0x20) = 0;
   *(uint64_t *)(object + 0x10) = 0;
   *(int32_t *)(object + 0x18) = 0;
@@ -881,19 +881,19 @@ Initialize_Complex_Object(int8_t *object, uint64_t param_2, uint64_t param_3, ui
   *(uint64_t *)(object + 0x70) = 0;
   *(uint64_t *)(object + 0x60) = 0;
   *(int32_t *)(object + 0x68) = 0;
-  component_a = (longlong *)(object + 0x80);
-  *component_a = (longlong)&system_state_ptr;
+  component_a = (int64_t *)(object + 0x80);
+  *component_a = (int64_t)&system_state_ptr;
   *(uint64_t *)(object + 0x88) = 0;
   *(int32_t *)(object + 0x90) = 0;
-  *component_a = (longlong)&system_data_buffer_ptr;
+  *component_a = (int64_t)&system_data_buffer_ptr;
   *(uint64_t *)(object + 0x98) = 0;
   *(uint64_t *)(object + 0x88) = 0;
   *(int32_t *)(object + 0x90) = 0;
-  component_b = (longlong *)(object + 0xa0);
-  *component_b = (longlong)&system_state_ptr;
+  component_b = (int64_t *)(object + 0xa0);
+  *component_b = (int64_t)&system_state_ptr;
   *(uint64_t *)(object + 0xa8) = 0;
   *(int32_t *)(object + 0xb0) = 0;
-  *component_b = (longlong)&system_data_buffer_ptr;
+  *component_b = (int64_t)&system_data_buffer_ptr;
   *(uint64_t *)(object + 0xb8) = 0;
   *(uint64_t *)(object + 0xa8) = 0;
   *(int32_t *)(object + 0xb0) = 0;
@@ -922,19 +922,19 @@ Initialize_Complex_Object(int8_t *object, uint64_t param_2, uint64_t param_3, ui
 uint64_t * Initialize_Advanced_System_Object(uint64_t *system_object)
 
 {
-  longlong *plVar1;
-  longlong *plVar2;
-  longlong *plVar3;
-  longlong lVar4;
+  int64_t *plVar1;
+  int64_t *plVar2;
+  int64_t *plVar3;
+  int64_t lVar4;
   int32_t *puVar5;
   uint64_t *puVar6;
-  longlong *plVar7;
+  int64_t *plVar7;
   int32_t *puVar8;
   int32_t *puVar9;
-  longlong lVar10;
+  int64_t lVar10;
   uint64_t *apuStackX_10 [3];
   
-  *(int8_t *)((longlong)param_1 + 0x1c) = 0;
+  *(int8_t *)((int64_t)param_1 + 0x1c) = 0;
   param_1[2] = 0;
   *(int32_t *)(param_1 + 3) = 0;
   param_1[8] = 0;
@@ -967,31 +967,31 @@ uint64_t * Initialize_Advanced_System_Object(uint64_t *system_object)
   param_1[0x2a] = 0;
   *(int32_t *)(param_1 + 0x2b) = 0;
   plVar2 = param_1 + 0x2e;
-  *plVar2 = (longlong)&system_state_ptr;
+  *plVar2 = (int64_t)&system_state_ptr;
   param_1[0x2f] = 0;
   *(int32_t *)(param_1 + 0x30) = 0;
-  *plVar2 = (longlong)&system_data_buffer_ptr;
+  *plVar2 = (int64_t)&system_data_buffer_ptr;
   param_1[0x31] = 0;
   param_1[0x2f] = 0;
   *(int32_t *)(param_1 + 0x30) = 0;
   plVar3 = param_1 + 0x32;
-  *plVar3 = (longlong)&system_state_ptr;
+  *plVar3 = (int64_t)&system_state_ptr;
   param_1[0x33] = 0;
   *(int32_t *)(param_1 + 0x34) = 0;
-  *plVar3 = (longlong)&unknown_var_672_ptr;
+  *plVar3 = (int64_t)&unknown_var_672_ptr;
   param_1[0x33] = param_1 + 0x35;
   *(int32_t *)(param_1 + 0x34) = 0;
   *(int8_t *)(param_1 + 0x35) = 0;
   plVar7 = param_1 + 0x39;
-  *plVar7 = (longlong)&system_state_ptr;
+  *plVar7 = (int64_t)&system_state_ptr;
   param_1[0x3a] = 0;
   *(int32_t *)(param_1 + 0x3b) = 0;
-  *plVar7 = (longlong)&system_data_buffer_ptr;
+  *plVar7 = (int64_t)&system_data_buffer_ptr;
   param_1[0x3c] = 0;
   param_1[0x3a] = 0;
   *(int32_t *)(param_1 + 0x3b) = 0;
-  *(uint64_t *)((longlong)param_1 + 0x254) = 0;
-  *(uint64_t *)((longlong)param_1 + 0x25c) = 0;
+  *(uint64_t *)((int64_t)param_1 + 0x254) = 0;
+  *(uint64_t *)((int64_t)param_1 + 0x25c) = 0;
   param_1[0x4e] = &system_state_ptr;
   param_1[0x4f] = 0;
   *(int32_t *)(param_1 + 0x50) = 0;
@@ -1046,14 +1046,14 @@ uint64_t * Initialize_Advanced_System_Object(uint64_t *system_object)
   (**(code **)(*plVar7 + 0x10))
             (plVar7,&unknown_var_4720_ptr,&system_data_buffer_ptr,&system_state_ptr,0xfffffffffffffffe);
   *(int32_t *)(param_1 + 0x3d) = 0;
-  *(int32_t *)((longlong)param_1 + 0x1ed) = 0x1000001;
+  *(int32_t *)((int64_t)param_1 + 0x1ed) = 0x1000001;
   param_1[0x62] = 0;
   *(int8_t *)(param_1 + 0xc) = 0;
   *(int32_t *)(param_1 + 0x20) = 0xffffffff;
   *(int8_t *)(param_1 + 0x14) = 0;
   param_1[0x15] = 0;
   param_1[0x16] = 0;
-  *(int8_t *)((longlong)param_1 + 0x1ec) = 0;
+  *(int8_t *)((int64_t)param_1 + 0x1ec) = 0;
   LOCK();
   *(int8_t *)(param_1 + 0x79) = 0;
   UNLOCK();
@@ -1062,8 +1062,8 @@ uint64_t * Initialize_Advanced_System_Object(uint64_t *system_object)
   *(int8_t *)(param_1 + 0x2d) = 0;
   param_1[0x13] = 0;
   *(int32_t *)(param_1 + 0x1f) = 0x1010101;
-  *(int16_t *)((longlong)param_1 + 0xfc) = 0x101;
-  *(int32_t *)((longlong)param_1 + 0x104) = 0xffffffff;
+  *(int16_t *)((int64_t)param_1 + 0xfc) = 0x101;
+  *(int32_t *)((int64_t)param_1 + 0x104) = 0xffffffff;
   lVar10 = 8;
   do {
     puVar9 = (int32_t *)param_1[0x22];
@@ -1073,7 +1073,7 @@ uint64_t * Initialize_Advanced_System_Object(uint64_t *system_object)
     }
     else {
       puVar8 = (int32_t *)*plVar1;
-      lVar4 = (longlong)puVar9 - (longlong)puVar8 >> 2;
+      lVar4 = (int64_t)puVar9 - (int64_t)puVar8 >> 2;
       if (lVar4 == 0) {
         lVar4 = 1;
 LAB_18004c7ef:
@@ -1089,28 +1089,28 @@ LAB_18004c7ef:
       }
       if (puVar8 != puVar9) {
                     // WARNING: Subroutine does not return
-        memmove(puVar5,puVar8,(longlong)puVar9 - (longlong)puVar8);
+        memmove(puVar5,puVar8,(int64_t)puVar9 - (int64_t)puVar8);
       }
       *puVar5 = 0;
       if (*plVar1 != 0) {
                     // WARNING: Subroutine does not return
         FUN_18064e900();
       }
-      *plVar1 = (longlong)puVar5;
+      *plVar1 = (int64_t)puVar5;
       param_1[0x22] = puVar5 + 1;
       param_1[0x23] = puVar5 + lVar4;
     }
     lVar10 = lVar10 + -1;
     if (lVar10 == 0) {
-      *(int32_t *)((longlong)param_1 + 0x24) = 0;
-      *(int32_t *)((longlong)param_1 + 0x29) = 0x1010101;
+      *(int32_t *)((int64_t)param_1 + 0x24) = 0;
+      *(int32_t *)((int64_t)param_1 + 0x29) = 0x1010101;
       *(int8_t *)(param_1 + 5) = 1;
       *(int32_t *)(param_1 + 0x71) = 0x3f800000;
       *(int8_t *)(param_1 + 0x76) = 1;
       *(int32_t *)(param_1 + 0x25) = 0;
       param_1[0x56] = 0;
-      *(uint64_t *)((longlong)param_1 + 0x224) = 0;
-      *(int8_t *)((longlong)param_1 + 0x22c) = 0;
+      *(uint64_t *)((int64_t)param_1 + 0x224) = 0;
+      *(int8_t *)((int64_t)param_1 + 0x22c) = 0;
       *(int32_t *)(param_1 + 0x40) = 0;
       param_1[0x41] = 0;
       puVar6 = init_system_data_config;
@@ -1118,13 +1118,13 @@ LAB_18004c7ef:
         QueryPerformanceCounter(apuStackX_10);
         puVar6 = apuStackX_10[0];
       }
-      param_1[0x42] = (double)((longlong)puVar6 - init_system_data_config) * init_system_data_config;
+      param_1[0x42] = (double)((int64_t)puVar6 - init_system_data_config) * init_system_data_config;
       *(int32_t *)(param_1 + 0x44) = 0;
-      *(int8_t *)((longlong)param_1 + 0x264) = 0;
+      *(int8_t *)((int64_t)param_1 + 0x264) = 0;
       *(int32_t *)(param_1 + 0x4d) = 0;
-      *(uint64_t *)((longlong)param_1 + 500) = 0;
+      *(uint64_t *)((int64_t)param_1 + 500) = 0;
       *(int8_t *)(param_1 + 0x28) = 0;
-      *(int8_t *)((longlong)param_1 + 0x1fc) = 0;
+      *(int8_t *)((int64_t)param_1 + 0x1fc) = 0;
       param_1[0x7b] = 0;
       param_1[0x57] = 0;
       lVar10 = FUN_18062b1e0(system_memory_pool_ptr,0xc,4,3);
@@ -1132,7 +1132,7 @@ LAB_18004c7ef:
       param_1[6] = lVar10;
       param_1[0x27] = 0;
       *(int8_t *)(param_1 + 7) = 0;
-      *(int32_t *)((longlong)param_1 + 0x3c) = 0xffffffff;
+      *(int32_t *)((int64_t)param_1 + 0x3c) = 0xffffffff;
       param_1[0x43] = 0;
       *(int32_t *)(param_1 + 0x26) = 0xffffffff;
       puVar6 = (uint64_t *)FUN_18062b1e0(system_memory_pool_ptr,0x30,8,3);
@@ -1159,23 +1159,23 @@ LAB_18004c7ef:
 
 
 
-// 函数: void Execute_Callback_Function(longlong *callback_ptr)
+// 函数: void Execute_Callback_Function(int64_t *callback_ptr)
 // 执行回调函数
-void Execute_Callback_Function(longlong *callback_ptr)
+void Execute_Callback_Function(int64_t *callback_ptr)
 
 {
-  if ((longlong *)*callback_ptr != (longlong *)0x0) {
-    (**(code **)(*(longlong *)*callback_ptr + 0x38))();
+  if ((int64_t *)*callback_ptr != (int64_t *)0x0) {
+    (**(code **)(*(int64_t *)*callback_ptr + 0x38))();
   }
   return;
 }
 
 
 
-// 函数: uint64_t * Initialize_Special_Object(uint64_t *object, ulonglong flags, uint64_t param_3, uint64_t param_4)
+// 函数: uint64_t * Initialize_Special_Object(uint64_t *object, uint64_t flags, uint64_t param_3, uint64_t param_4)
 // 初始化特殊对象
 uint64_t *
-Initialize_Special_Object(uint64_t *object, ulonglong flags, uint64_t param_3, uint64_t param_4)
+Initialize_Special_Object(uint64_t *object, uint64_t flags, uint64_t param_3, uint64_t param_4)
 
 {
   if (object[2] != 0) {

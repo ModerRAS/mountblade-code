@@ -93,9 +93,9 @@ typedef struct {
  * 6. 释放互斥量锁
  * 7. 返回处理结果
  */
-RenderingSystemStatusCode rendering_system_thread_safe_data_processor(void* context, longlong* data_array) {
+RenderingSystemStatusCode rendering_system_thread_safe_data_processor(void* context, int64_t* data_array) {
     int lock_result;
-    longlong capacity;
+    int64_t capacity;
     char temp_buffer[184];
     char security_buffer[32];
     uint64_t security_key;
@@ -159,16 +159,16 @@ RenderingSystemStatusCode rendering_system_thread_safe_data_processor(void* cont
 char* rendering_system_string_constructor(char** output_buffer, const char* input_string, uint64_t param3, uint64_t param4) {
     char* char_ptr;
     void* data_ptr;
-    longlong length;
+    int64_t length;
     uint64_t data_count;
-    longlong array_index;
+    int64_t array_index;
     void* string_data;
     void* stack_ptr;
-    longlong buffer_length;
+    int64_t buffer_length;
     uint32_t buffer_flags;
     uint32_t buffer_size;
     uint32_t buffer_type;
-    longlong context_var;
+    int64_t context_var;
     
     data_count = 0;
     rendering_system_string_builder_initialize(&stack_ptr, &RENDERING_SYSTEM_DEFAULT_STRING, param3, param4, 0, 0xfffffffffffffffe);
@@ -216,7 +216,7 @@ char* rendering_system_string_constructor(char** output_buffer, const char* inpu
     *output_buffer = &RENDERING_SYSTEM_STRING_TERMINATOR;
     *(uint32_t*)(output_buffer + 2) = buffer_flags;
     output_buffer[1] = buffer_length;
-    *(uint32_t*)((longlong)output_buffer + 0x1c) = buffer_type;
+    *(uint32_t*)((int64_t)output_buffer + 0x1c) = buffer_type;
     *(uint32_t*)(output_buffer + 3) = buffer_size;
     
     return output_buffer;
@@ -240,7 +240,7 @@ char* rendering_system_string_constructor(char** output_buffer, const char* inpu
  */
 RenderingSystemStatusCode rendering_system_string_copier(const char* source_string) {
     uint32_t string_length;
-    longlong length;
+    int64_t length;
     
     length = -1;
     do {
@@ -252,7 +252,7 @@ RenderingSystemStatusCode rendering_system_string_copier(const char* source_stri
     }
     
     // 执行安全的字符串复制
-    memcpy(&RENDERING_SYSTEM_STRING_BUFFER, source_string, (longlong)(int)string_length);
+    memcpy(&RENDERING_SYSTEM_STRING_BUFFER, source_string, (int64_t)(int)string_length);
     
     return RENDERING_SYSTEM_SUCCESS;
 }
@@ -324,7 +324,7 @@ char* rendering_system_mono_string_processor(char** output_buffer, void* mono_st
         *output_buffer = &RENDERING_SYSTEM_STRING_TERMINATOR;
         *(uint32_t*)(output_buffer + 2) = buffer_size;
         output_buffer[1] = stack_param;
-        *(uint32_t*)((longlong)output_buffer + 0x1c) = buffer_length;
+        *(uint32_t*)((int64_t)output_buffer + 0x1c) = buffer_length;
         *(uint32_t*)(output_buffer + 3) = buffer_type;
         return output_buffer;
     }
@@ -419,15 +419,15 @@ RenderingSystemStatusCode rendering_system_mono_runtime_initializer(void) {
     env_string[2] = 0x657a6973; // "siz"
     env_string[3] = 0x3931383d; // "e-91"
     *(uint16_t*)(env_string + 4) = 0x6b32; // "2k"
-    *(uint8_t*)((longlong)env_string + 0x12) = 0;
+    *(uint8_t*)((int64_t)env_string + 0x12) = 0;
     
     allocator_vtable = (void**)rendering_system_allocate_memory(RENDERING_SYSTEM_MEMORY_POOL, 0x10, 0x13);
     *(uint8_t*)allocator_vtable = 0;
     rendering_system_string_hash(allocator_vtable);
     *allocator_vtable = (void*)0x5f43475f4f4e4f4d; // "_MONO_CG_"
     *(uint32_t*)(allocator_vtable + 1) = 0x41524150; // "PARA"
-    *(uint16_t*)((longlong)allocator_vtable + 0xc) = 0x534d; // "MS"
-    *(uint8_t*)((longlong)allocator_vtable + 0xe) = 0;
+    *(uint16_t*)((int64_t)allocator_vtable + 0xc) = 0x534d; // "MS"
+    *(uint8_t*)((int64_t)allocator_vtable + 0xe) = 0;
     
     SetEnvironmentVariableA(allocator_vtable, env_string);
     rendering_system_memory_cleanup(allocator_vtable);
@@ -452,10 +452,10 @@ RenderingSystemStatusCode rendering_system_mono_runtime_initializer(void) {
  * 6. 返回加载状态
  */
 RenderingSystemStatusCode rendering_system_assembly_loader(void) {
-    longlong* domain_ptr;
+    int64_t* domain_ptr;
     uint32_t* assembly_name;
     uint32_t name_flags;
-    longlong assembly_handle;
+    int64_t assembly_handle;
     void** string_buffer;
     uint32_t* class_name;
     uint32_t class_flags;
@@ -481,13 +481,13 @@ RenderingSystemStatusCode rendering_system_assembly_loader(void) {
     rendering_system_string_builder_initialize(&string_buffer, 0x15);
     class_name = assembly_name;
     buffer_capacity = (uint64_t)class_flags;
-    class_name = (uint32_t*)((longlong)assembly_name + buffer_capacity);
+    class_name = (uint32_t*)((int64_t)assembly_name + buffer_capacity);
     *class_name = 0x656c6154; // "Tale"
     class_name[1] = 0x6c726f57; // "Worl"
     class_name[2] = 0x442e7364; // "ds.N"
     class_name[3] = 0x654e746f; // "toNe"
-    *(uint32_t*)((longlong)assembly_name + buffer_capacity + 0x10) = 0x6c642e74; // "t.ld"
-    *(uint16_t*)((longlong)assembly_name + buffer_capacity + 0x14) = 0x6c; // "l"
+    *(uint32_t*)((int64_t)assembly_name + buffer_capacity + 0x10) = 0x6c642e74; // "t.ld"
+    *(uint16_t*)((int64_t)assembly_name + buffer_capacity + 0x14) = 0x6c; // "l"
     class_flags = 0x15;
     class_name = (uint32_t*)&RENDERING_SYSTEM_DEFAULT_STRING;
     if (assembly_name != (uint32_t*)0x0) {
@@ -530,7 +530,7 @@ RenderingSystemStatusCode rendering_system_assembly_loader(void) {
     security_hash = CONCAT44(security_hash._4_4_, name_flags);
     *class_name = 0x6c6c6f72646e6f43; // "Control"
     *(uint16_t*)(class_name + 1) = 0x7265; // "er"
-    *(uint8_t*)((longlong)class_name + 10) = 0;
+    *(uint8_t*)((int64_t)class_name + 10) = 0;
     buffer_size = 10;
     
     // 初始化类名
@@ -608,27 +608,27 @@ char* rendering_system_path_constructor(char** output_buffer, const char* path_c
  * 5. 插入新数据
  * 6. 更新数组状态
  */
-RenderingSystemStatusCode rendering_system_array_data_processor(longlong* array_context, const void* data, int data_size) {
-    longlong current_capacity;
-    longlong current_size;
+RenderingSystemStatusCode rendering_system_array_data_processor(int64_t* array_context, const void* data, int data_size) {
+    int64_t current_capacity;
+    int64_t current_size;
     uint64_t available_space;
-    longlong data_end;
+    int64_t data_end;
     uint64_t required_space;
     uint64_t new_capacity;
-    longlong new_buffer;
+    int64_t new_buffer;
     uint64_t space_needed;
     int capacity_diff;
     
     capacity_diff = *(int*)(array_context + 0x18) - *(int*)(array_context + 0x10);
-    current_capacity = *(longlong*)(array_context + 0x18);
-    current_size = *(longlong*)(array_context + 0x10);
+    current_capacity = *(int64_t*)(array_context + 0x18);
+    current_size = *(int64_t*)(array_context + 0x10);
     available_space = current_capacity - current_size;
     required_space = (uint64_t)(capacity_diff + data_size);
     
     if (available_space < required_space) {
         // 计算新的容量需求
         required_space = (current_size - current_capacity) + required_space;
-        if ((uint64_t)(*(longlong*)(array_context + 0x20) - current_capacity) < required_space) {
+        if ((uint64_t)(*(int64_t*)(array_context + 0x20) - current_capacity) < required_space) {
             new_capacity = available_space * 2;
             if (available_space == 0) {
                 new_capacity = 1;
@@ -642,8 +642,8 @@ RenderingSystemStatusCode rendering_system_array_data_processor(longlong* array_
             }
             else {
                 current_capacity = rendering_system_allocate_memory(RENDERING_SYSTEM_MEMORY_POOL, new_capacity, *(uint8_t*)(array_context + 0x28));
-                current_size = *(longlong*)(array_context + 0x10);
-                new_buffer = *(longlong*)(array_context + 0x18);
+                current_size = *(int64_t*)(array_context + 0x10);
+                new_buffer = *(int64_t*)(array_context + 0x18);
             }
             if (current_size != new_buffer) {
                 memmove(current_capacity, current_size, new_buffer - current_size);
@@ -651,10 +651,10 @@ RenderingSystemStatusCode rendering_system_array_data_processor(longlong* array_
             if (required_space != 0) {
                 memset(current_capacity, 0, required_space);
             }
-            if (*(longlong*)(array_context + 0x10) != 0) {
+            if (*(int64_t*)(array_context + 0x10) != 0) {
                 rendering_system_memory_cleanup();
             }
-            *(longlong*)(array_context + 0x10) = current_capacity;
+            *(int64_t*)(array_context + 0x10) = current_capacity;
             *(uint64_t*)(array_context + 0x20) = current_capacity + new_capacity;
         }
         else if (required_space != 0) {
@@ -664,10 +664,10 @@ RenderingSystemStatusCode rendering_system_array_data_processor(longlong* array_
     else {
         current_capacity = current_size + required_space;
     }
-    *(longlong*)(array_context + 0x18) = current_capacity;
+    *(int64_t*)(array_context + 0x18) = current_capacity;
     
     // 插入新数据
-    memcpy((longlong)capacity_diff + *(longlong*)(array_context + 0x10), data, (longlong)data_size);
+    memcpy((int64_t)capacity_diff + *(int64_t*)(array_context + 0x10), data, (int64_t)data_size);
     
     return RENDERING_SYSTEM_SUCCESS;
 }
@@ -692,13 +692,13 @@ RenderingSystemStatusCode rendering_system_array_data_processor(longlong* array_
  * 5. 初始化新空间
  * 6. 更新数组状态
  */
-RenderingSystemStatusCode rendering_system_array_data_extender(longlong* array_context, longlong data_start, void* data, longlong data_size) {
-    longlong current_end;
-    longlong current_start;
-    longlong data_end;
+RenderingSystemStatusCode rendering_system_array_data_extender(int64_t* array_context, int64_t data_start, void* data, int64_t data_size) {
+    int64_t current_end;
+    int64_t current_start;
+    int64_t data_end;
     uint64_t space_needed;
     uint64_t new_capacity;
-    longlong new_buffer;
+    int64_t new_buffer;
     uint64_t available_space;
     int data_count;
     
@@ -717,8 +717,8 @@ RenderingSystemStatusCode rendering_system_array_data_extender(longlong* array_c
         }
         else {
             data_start = rendering_system_allocate_memory(RENDERING_SYSTEM_MEMORY_POOL, new_capacity, *(uint8_t*)(current_start + 0x28));
-            current_end = *(longlong*)(current_start + 0x10);
-            new_buffer = *(longlong*)(array_context + 0x18);
+            current_end = *(int64_t*)(current_start + 0x10);
+            new_buffer = *(int64_t*)(array_context + 0x18);
         }
         if (current_end != new_buffer) {
             memmove(data_start, current_end, new_buffer - current_end);
@@ -726,10 +726,10 @@ RenderingSystemStatusCode rendering_system_array_data_extender(longlong* array_c
         if (space_needed != 0) {
             memset(data_start, 0, space_needed);
         }
-        if (*(longlong*)(current_start + 0x10) != 0) {
+        if (*(int64_t*)(current_start + 0x10) != 0) {
             rendering_system_memory_cleanup();
         }
-        *(longlong*)(current_start + 0x10) = data_start;
+        *(int64_t*)(current_start + 0x10) = data_start;
         *(uint64_t*)(current_start + 0x20) = data_start + new_capacity;
     }
     else {
@@ -740,7 +740,7 @@ RenderingSystemStatusCode rendering_system_array_data_extender(longlong* array_c
     *array_context = data_start;
     
     // 插入新数据
-    memcpy((longlong)data_count + *(longlong*)(current_start + 0x10), data);
+    memcpy((int64_t)data_count + *(int64_t*)(current_start + 0x10), data);
     
     return RENDERING_SYSTEM_SUCCESS;
 }
@@ -760,9 +760,9 @@ RenderingSystemStatusCode rendering_system_array_data_extender(longlong* array_c
  * 3. 更新数组状态
  * 4. 返回清空结果
  */
-RenderingSystemStatusCode rendering_system_array_data_clearer(longlong* array_context) {
-    longlong data_start;
-    longlong current_end;
+RenderingSystemStatusCode rendering_system_array_data_clearer(int64_t* array_context) {
+    int64_t data_start;
+    int64_t current_end;
     int data_offset;
     
     if (current_end != 0) {
@@ -771,7 +771,7 @@ RenderingSystemStatusCode rendering_system_array_data_clearer(longlong* array_co
     *array_context = data_start;
     
     // 清空数组数据
-    memcpy((longlong)data_offset + *(longlong*)(current_start + 0x10));
+    memcpy((int64_t)data_offset + *(int64_t*)(current_start + 0x10));
     
     return RENDERING_SYSTEM_SUCCESS;
 }
@@ -793,13 +793,13 @@ RenderingSystemStatusCode rendering_system_array_data_clearer(longlong* array_co
  * 2. 执行数据追加
  * 3. 返回追加结果
  */
-RenderingSystemStatusCode rendering_system_array_data_appender(longlong array_context, void* data, uint64_t param3, longlong data_size) {
-    longlong current_start;
+RenderingSystemStatusCode rendering_system_array_data_appender(int64_t array_context, void* data, uint64_t param3, int64_t data_size) {
+    int64_t current_start;
     
-    *(longlong*)(current_start + 0x18) = array_context + data_size;
+    *(int64_t*)(current_start + 0x18) = array_context + data_size;
     
     // 追加数据
-    memcpy((longlong)param3 + *(longlong*)(current_start + 0x10));
+    memcpy((int64_t)param3 + *(int64_t*)(current_start + 0x10));
     
     return RENDERING_SYSTEM_SUCCESS;
 }

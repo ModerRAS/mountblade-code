@@ -4,11 +4,11 @@
 // 01_initialization_part026.c - 初始化模块第26部分
 // 包含25个函数，主要涉及内存管理、字符串操作和系统初始化功能
 
-// 函数: void initialize_string_buffer(longlong buffer_ptr, longlong source_ptr)
+// 函数: void initialize_string_buffer(int64_t buffer_ptr, int64_t source_ptr)
 // 功能: 初始化字符串缓冲区，处理字符串复制和长度设置
-void initialize_string_buffer(longlong buffer_ptr, longlong source_ptr)
+void initialize_string_buffer(int64_t buffer_ptr, int64_t source_ptr)
 {
-  longlong string_length;
+  int64_t string_length;
   
   // 如果源指针为空，清空缓冲区
   if (source_ptr == 0) {
@@ -42,14 +42,14 @@ void initialize_string_buffer(longlong buffer_ptr, longlong source_ptr)
 
 
 
-// 函数: void copy_memory_safe(longlong dest_ptr, void* src_ptr, int length)
+// 函数: void copy_memory_safe(int64_t dest_ptr, void* src_ptr, int length)
 // 功能: 安全地复制内存数据，包含边界检查
-void copy_memory_safe(longlong dest_ptr, void* src_ptr, int length)
+void copy_memory_safe(int64_t dest_ptr, void* src_ptr, int length)
 {
   // 检查长度是否在安全范围内（小于16字节）
   if (length + 1 < 0x10) {
     // 安全复制内存数据
-    memcpy(*(char **)(dest_ptr + 8), src_ptr, (longlong)length);
+    memcpy(*(char **)(dest_ptr + 8), src_ptr, (int64_t)length);
   }
   // 确保字符串以null结尾
   **(char **)(dest_ptr + 8) = 0;
@@ -79,7 +79,7 @@ void memory_copy_operation(void)
 // 功能: 重置内存标志和相关计数器
 void reset_memory_flag(char* flag_ptr)
 {
-  longlong context_ptr;
+  int64_t context_ptr;
   
   *flag_ptr = 0;  // 重置标志
   *(int *)(context_ptr + 0x10) = 0;  // 重置相关计数器
@@ -92,24 +92,24 @@ void reset_memory_flag(char* flag_ptr)
 
 
 
-// 函数: void process_string_operation(longlong str1_ptr, longlong str2_ptr, longlong str3_ptr)
+// 函数: void process_string_operation(int64_t str1_ptr, int64_t str2_ptr, int64_t str3_ptr)
 // 功能: 处理字符串操作，包括搜索、长度计算和内存复制
-void process_string_operation(longlong str1_ptr, longlong str2_ptr, longlong str3_ptr)
+void process_string_operation(int64_t str1_ptr, int64_t str2_ptr, int64_t str3_ptr)
 {
-  longlong search_result;
-  longlong str2_length;
-  longlong str3_length;
+  int64_t search_result;
+  int64_t str2_length;
+  int64_t str3_length;
   char temp_buffer1[32];
-  longlong stack_param1;
+  int64_t stack_param1;
   void* temp_ptr1;
   char* temp_buffer2;
   int temp_param1;
   char temp_buffer3[16];
-  ulonglong stack_param2;
+  uint64_t stack_param2;
   
   // 设置栈参数
   stack_param1 = 0xfffffffffffffffe;
-  stack_param2 = MEMORY_CHECKSUM ^ (ulonglong)temp_buffer1;
+  stack_param2 = MEMORY_CHECKSUM ^ (uint64_t)temp_buffer1;
   temp_ptr1 = &STRING_CONSTANT1;
   temp_buffer2 = temp_buffer3;
   temp_param1 = 0;
@@ -131,12 +131,12 @@ void process_string_operation(longlong str1_ptr, longlong str2_ptr, longlong str
     } while (*(char *)(str2_length + str3_ptr) != '\0');
     
     // 复制内存数据
-    memcpy(temp_buffer2, *(longlong *)(str1_ptr + 8), search_result - *(longlong *)(str1_ptr + 8));
+    memcpy(temp_buffer2, *(int64_t *)(str1_ptr + 8), search_result - *(int64_t *)(str1_ptr + 8));
   }
   
   temp_ptr1 = &STRING_CONSTANT2;
   // 调用处理函数
-  process_string_data(stack_param2 ^ (ulonglong)temp_buffer1);
+  process_string_data(stack_param2 ^ (uint64_t)temp_buffer1);
 }
 
 
@@ -148,8 +148,8 @@ void process_string_operation(longlong str1_ptr, longlong str2_ptr, longlong str
 void release_memory_block(void** block_ptr)
 {
   int* ref_count;
-  longlong block_info;
-  ulonglong memory_region;
+  int64_t block_info;
+  uint64_t memory_region;
   
   // 检查指针是否有效
   if (block_ptr == (void**)0x0) {
@@ -157,11 +157,11 @@ void release_memory_block(void** block_ptr)
   }
   
   // 获取内存区域信息
-  memory_region = (ulonglong)block_ptr & 0xffffffffffc00000;
+  memory_region = (uint64_t)block_ptr & 0xffffffffffc00000;
   if (memory_region != 0) {
     // 计算块信息偏移
-    block_info = memory_region + 0x80 + ((longlong)block_ptr - memory_region >> 0x10) * 0x50;
-    block_info = block_info - (ulonglong)*(uint *)(block_info + 4);
+    block_info = memory_region + 0x80 + ((int64_t)block_ptr - memory_region >> 0x10) * 0x50;
+    block_info = block_info - (uint64_t)*(uint *)(block_info + 4);
     
     // 检查是否在异常列表中
     if ((*(void ***)(memory_region + 0x70) == &ExceptionList) && (*(char *)(block_info + 0xe) == '\0')) {
@@ -197,7 +197,7 @@ void release_memory_block(void** block_ptr)
 // 注意：这个函数初始化了一个包含11个块的大型结构体
 void initialize_system_structures(void)
 {
-  longlong structure_ptr;
+  int64_t structure_ptr;
   
   // 分配系统结构体内存（1ae8字节）
   structure_ptr = FUN_18062b420(system_memory_pool_ptr, 0x1ae8, 10);
@@ -235,7 +235,7 @@ void initialize_system_structures(void)
 }
 
 // 辅助函数：初始化结构块
-void init_structure_block(longlong block_ptr, longlong offset)
+void init_structure_block(int64_t block_ptr, int64_t offset)
 {
   *(uint64_t *)(block_ptr + 0x00) = 0;    // 指针1
   *(uint64_t *)(block_ptr + 0x08) = 0;    // 指针2
@@ -248,16 +248,16 @@ void init_structure_block(longlong block_ptr, longlong offset)
 
 
 
-// 函数: void cleanup_resource_manager(longlong *resource_ptr)
+// 函数: void cleanup_resource_manager(int64_t *resource_ptr)
 // 功能: 清理资源管理器，释放相关内存块
-void cleanup_resource_manager(longlong *resource_ptr)
+void cleanup_resource_manager(int64_t *resource_ptr)
 {
   uint64_t *resource_obj;
   int *ref_count;
-  longlong block_info;
-  ulonglong memory_region;
+  int64_t block_info;
+  uint64_t memory_region;
   char *status_flag;
-  longlong next_block;
+  int64_t next_block;
   
   // 清理主要资源对象
   resource_obj = (uint64_t *)*resource_ptr;
@@ -272,7 +272,7 @@ void cleanup_resource_manager(longlong *resource_ptr)
   }
   
   // 清理相关联的资源
-  if ((resource_ptr[6] != 0) && (*(longlong *)(resource_ptr[6] + 0x10) != 0)) {
+  if ((resource_ptr[6] != 0) && (*(int64_t *)(resource_ptr[6] + 0x10) != 0)) {
     FUN_18064e900();
   }
   
@@ -280,7 +280,7 @@ void cleanup_resource_manager(longlong *resource_ptr)
   next_block = resource_ptr[5];
   while (next_block != 0) {
     status_flag = (char *)(next_block + 0x141);
-    next_block = *(longlong *)(next_block + 0x138);
+    next_block = *(int64_t *)(next_block + 0x138);
     if (*status_flag != '\0') {
       FUN_18064e900();
     }
@@ -293,10 +293,10 @@ void cleanup_resource_manager(longlong *resource_ptr)
   }
   
   // 处理内存区域和引用计数
-  memory_region = (ulonglong)resource_obj & 0xffffffffffc00000;
+  memory_region = (uint64_t)resource_obj & 0xffffffffffc00000;
   if (memory_region != 0) {
-    block_info = memory_region + 0x80 + ((longlong)resource_obj - memory_region >> 0x10) * 0x50;
-    block_info = block_info - (ulonglong)*(uint *)(block_info + 4);
+    block_info = memory_region + 0x80 + ((int64_t)resource_obj - memory_region >> 0x10) * 0x50;
+    block_info = block_info - (uint64_t)*(uint *)(block_info + 4);
     
     // 检查是否在异常列表中
     if ((*(void ***)(memory_region + 0x70) == &ExceptionList) && (*(char *)(block_info + 0xe) == '\0')) {
@@ -325,10 +325,10 @@ void cleanup_resource_manager(longlong *resource_ptr)
 
 
 
-// 函数: void cleanup_resource_manager_alt(longlong *resource_ptr)
+// 函数: void cleanup_resource_manager_alt(int64_t *resource_ptr)
 // 功能: 清理资源管理器的替代版本（简化实现）
 // 注意：此函数与cleanup_resource_manager功能相似，可能是优化版本
-void cleanup_resource_manager_alt(longlong *resource_ptr)
+void cleanup_resource_manager_alt(int64_t *resource_ptr)
 {
   // 实现与cleanup_resource_manager相同，但可能是针对不同场景的优化
   // 详细代码与上一个函数基本相同
@@ -370,25 +370,25 @@ void cleanup_context_objects(void)
   int *ref_count;
   char *status_flag;
   uint64_t *context_obj;
-  longlong block_info;
-  longlong context_ptr;  // 原始代码使用 unaff_RSI
-  ulonglong memory_region;
-  longlong next_block;
+  int64_t block_info;
+  int64_t context_ptr;  // 原始代码使用 unaff_RSI
+  uint64_t memory_region;
+  int64_t next_block;
   
   // WARNING: 原始代码使用了未定义的寄存器变量 unaff_RSI
   // 这里假设 context_ptr 是正确的上下文指针
   
   // 检查上下文中的相关对象
-  if ((*(longlong *)(context_ptr + 0x30) != 0) &&
-     (*(longlong *)(*(longlong *)(context_ptr + 0x30) + 0x10) != 0)) {
+  if ((*(int64_t *)(context_ptr + 0x30) != 0) &&
+     (*(int64_t *)(*(int64_t *)(context_ptr + 0x30) + 0x10) != 0)) {
     FUN_18064e900();
   }
   
   // 遍历并清理子块
-  next_block = *(longlong *)(context_ptr + 0x28);
+  next_block = *(int64_t *)(context_ptr + 0x28);
   while (next_block != 0) {
     status_flag = (char *)(next_block + 0x141);
-    next_block = *(longlong *)(next_block + 0x138);
+    next_block = *(int64_t *)(next_block + 0x138);
     if (*status_flag != '\0') {
       FUN_18064e900();
     }
@@ -397,10 +397,10 @@ void cleanup_context_objects(void)
   // 清理主对象
   context_obj = *(uint64_t **)(context_ptr + 0x18);
   if (context_obj != (uint64_t *)0x0) {
-    memory_region = (ulonglong)context_obj & 0xffffffffffc00000;
+    memory_region = (uint64_t)context_obj & 0xffffffffffc00000;
     if (memory_region != 0) {
-      block_info = memory_region + 0x80 + ((longlong)context_obj - memory_region >> 0x10) * 0x50;
-      block_info = block_info - (ulonglong)*(uint *)(block_info + 4);
+      block_info = memory_region + 0x80 + ((int64_t)context_obj - memory_region >> 0x10) * 0x50;
+      block_info = block_info - (uint64_t)*(uint *)(block_info + 4);
       
       // 检查异常列表
       if ((*(void ***)(memory_region + 0x70) == &ExceptionList) && (*(char *)(block_info + 0xe) == '\0')) {
@@ -436,15 +436,15 @@ void cleanup_context_objects(void)
 void release_single_object(uint64_t *object_ptr)
 {
   int *ref_count;
-  longlong block_info;
-  ulonglong memory_region;
+  int64_t block_info;
+  uint64_t memory_region;
   
   // 计算内存区域
-  memory_region = (ulonglong)object_ptr & 0xffffffffffc00000;
+  memory_region = (uint64_t)object_ptr & 0xffffffffffc00000;
   if (memory_region != 0) {
     // 计算块信息偏移
-    block_info = memory_region + 0x80 + ((longlong)object_ptr - memory_region >> 0x10) * 0x50;
-    block_info = block_info - (ulonglong)*(uint *)(block_info + 4);
+    block_info = memory_region + 0x80 + ((int64_t)object_ptr - memory_region >> 0x10) * 0x50;
+    block_info = block_info - (uint64_t)*(uint *)(block_info + 4);
     
     // 检查是否在异常列表中
     if ((*(void ***)(memory_region + 0x70) == &ExceptionList) && (*(char *)(block_info + 0xe) == '\0')) {
@@ -473,16 +473,16 @@ void release_single_object(uint64_t *object_ptr)
 
 
 
-// 函数: void cleanup_thread_resources(longlong *thread_ptr)
+// 函数: void cleanup_thread_resources(int64_t *thread_ptr)
 // 功能: 清理线程相关资源，包括互斥锁和条件变量
-void cleanup_thread_resources(longlong *thread_ptr)
+void cleanup_thread_resources(int64_t *thread_ptr)
 {
   int *ref_count;
   char *status_flag;
   uint64_t *resource_obj;
-  longlong block_info;
-  ulonglong memory_region;
-  longlong next_block;
+  int64_t block_info;
+  uint64_t memory_region;
+  int64_t next_block;
   
   // 销毁线程同步对象
   _Mtx_destroy_in_situ();  // 销毁互斥锁
@@ -501,7 +501,7 @@ void cleanup_thread_resources(longlong *thread_ptr)
   }
   
   // 清理相关联的资源
-  if ((thread_ptr[6] != 0) && (*(longlong *)(thread_ptr[6] + 0x10) != 0)) {
+  if ((thread_ptr[6] != 0) && (*(int64_t *)(thread_ptr[6] + 0x10) != 0)) {
     FUN_18064e900();
   }
   
@@ -509,7 +509,7 @@ void cleanup_thread_resources(longlong *thread_ptr)
   next_block = thread_ptr[5];
   while (next_block != 0) {
     status_flag = (char *)(next_block + 0x141);
-    next_block = *(longlong *)(next_block + 0x138);
+    next_block = *(int64_t *)(next_block + 0x138);
     if (*status_flag != '\0') {
       FUN_18064e900();
     }
@@ -522,10 +522,10 @@ void cleanup_thread_resources(longlong *thread_ptr)
   }
   
   // 处理内存区域和引用计数
-  memory_region = (ulonglong)resource_obj & 0xffffffffffc00000;
+  memory_region = (uint64_t)resource_obj & 0xffffffffffc00000;
   if (memory_region != 0) {
-    block_info = memory_region + 0x80 + ((longlong)resource_obj - memory_region >> 0x10) * 0x50;
-    block_info = block_info - (ulonglong)*(uint *)(block_info + 4);
+    block_info = memory_region + 0x80 + ((int64_t)resource_obj - memory_region >> 0x10) * 0x50;
+    block_info = block_info - (uint64_t)*(uint *)(block_info + 4);
     
     // 检查是否在异常列表中
     if ((*(void ***)(memory_region + 0x70) == &ExceptionList) && (*(char *)(block_info + 0xe) == '\0')) {
@@ -554,14 +554,14 @@ void cleanup_thread_resources(longlong *thread_ptr)
 
 
 
-// 函数: void release_context_object(longlong context_ptr)
+// 函数: void release_context_object(int64_t context_ptr)
 // 功能: 释放上下文中的对象引用
-void release_context_object(longlong context_ptr)
+void release_context_object(int64_t context_ptr)
 {
   int *ref_count;
   uint64_t *context_obj;
-  longlong block_info;
-  ulonglong memory_region;
+  int64_t block_info;
+  uint64_t memory_region;
   
   // 获取上下文对象
   context_obj = *(uint64_t **)(context_ptr + 0x18);
@@ -570,11 +570,11 @@ void release_context_object(longlong context_ptr)
   }
   
   // 计算内存区域
-  memory_region = (ulonglong)context_obj & 0xffffffffffc00000;
+  memory_region = (uint64_t)context_obj & 0xffffffffffc00000;
   if (memory_region != 0) {
     // 计算块信息偏移
-    block_info = memory_region + 0x80 + ((longlong)context_obj - memory_region >> 0x10) * 0x50;
-    block_info = block_info - (ulonglong)*(uint *)(block_info + 4);
+    block_info = memory_region + 0x80 + ((int64_t)context_obj - memory_region >> 0x10) * 0x50;
+    block_info = block_info - (uint64_t)*(uint *)(block_info + 4);
     
     // 检查是否在异常列表中
     if ((*(void ***)(memory_region + 0x70) == &ExceptionList) && (*(char *)(block_info + 0xe) == '\0')) {
@@ -603,18 +603,18 @@ void release_context_object(longlong context_ptr)
 
 
 
-// 函数: void cleanup_object_array(longlong array_ptr)
+// 函数: void cleanup_object_array(int64_t array_ptr)
 // 功能: 清理对象数组，释放数组中的所有对象
-void cleanup_object_array(longlong array_ptr)
+void cleanup_object_array(int64_t array_ptr)
 {
-  ulonglong array_size;
-  longlong array_base;
-  longlong current_obj;
-  ulonglong index;
+  uint64_t array_size;
+  int64_t array_base;
+  int64_t current_obj;
+  uint64_t index;
   
   // 获取数组大小和基地址
-  array_size = *(ulonglong *)(array_ptr + 0x10);
-  array_base = *(longlong *)(array_ptr + 8);
+  array_size = *(uint64_t *)(array_ptr + 0x10);
+  array_base = *(int64_t *)(array_ptr + 8);
   index = 0;
   
   if (array_size == 0) {
@@ -623,10 +623,10 @@ void cleanup_object_array(longlong array_ptr)
   else {
     // 遍历数组中的所有对象
     do {
-      current_obj = *(longlong *)(array_base + index * 8);
+      current_obj = *(int64_t *)(array_base + index * 8);
       if (current_obj != 0) {
         // 检查对象是否有关联的资源
-        if (*(longlong *)(current_obj + 0x18) != 0) {
+        if (*(int64_t *)(current_obj + 0x18) != 0) {
           FUN_18064e900();
         }
         // 释放对象
@@ -645,28 +645,28 @@ void cleanup_object_array(longlong array_ptr)
 
 
 
-// 函数: void cleanup_extended_array(longlong array_ptr)
+// 函数: void cleanup_extended_array(int64_t array_ptr)
 // 功能: 清理扩展数组，包含额外的引用计数处理
-void cleanup_extended_array(longlong array_ptr)
+void cleanup_extended_array(int64_t array_ptr)
 {
   int *ref_count;
   uint64_t *array_obj;
-  longlong block_info;
-  ulonglong memory_region;
+  int64_t block_info;
+  uint64_t memory_region;
   
   // 首先清理对象数组
   cleanup_object_array(array_ptr);
   
   // 如果数组大小大于1且存在数组对象，进行额外的清理
-  if ((1 < *(ulonglong *)(array_ptr + 0x10)) &&
+  if ((1 < *(uint64_t *)(array_ptr + 0x10)) &&
      (array_obj = *(uint64_t **)(array_ptr + 8), array_obj != (uint64_t *)0x0)) {
     
     // 计算内存区域
-    memory_region = (ulonglong)array_obj & 0xffffffffffc00000;
+    memory_region = (uint64_t)array_obj & 0xffffffffffc00000;
     if (memory_region != 0) {
       // 计算块信息偏移
-      block_info = memory_region + 0x80 + ((longlong)array_obj - memory_region >> 0x10) * 0x50;
-      block_info = block_info - (ulonglong)*(uint *)(block_info + 4);
+      block_info = memory_region + 0x80 + ((int64_t)array_obj - memory_region >> 0x10) * 0x50;
+      block_info = block_info - (uint64_t)*(uint *)(block_info + 4);
       
       // 检查是否在异常列表中
       if ((*(void ***)(memory_region + 0x70) == &ExceptionList) && (*(char *)(block_info + 0xe) == '\0')) {
@@ -697,10 +697,10 @@ void cleanup_extended_array(longlong array_ptr)
 
 
 
-// 函数: void cleanup_extended_array_v2(longlong array_ptr)
+// 函数: void cleanup_extended_array_v2(int64_t array_ptr)
 // 功能: 清理扩展数组的第二个版本（简化实现）
 // 注意：此函数与cleanup_extended_array功能相同，可能是针对不同场景的版本
-void cleanup_extended_array_v2(longlong array_ptr)
+void cleanup_extended_array_v2(int64_t array_ptr)
 {
   // 实现与cleanup_extended_array相同
   cleanup_extended_array(array_ptr);
@@ -710,10 +710,10 @@ void cleanup_extended_array_v2(longlong array_ptr)
 
 
 
-// 函数: void cleanup_extended_array_v3(longlong array_ptr)
+// 函数: void cleanup_extended_array_v3(int64_t array_ptr)
 // 功能: 清理扩展数组的第三个版本（简化实现）
 // 注意：此函数与前两个函数功能相同，可能是针对不同场景的版本
-void cleanup_extended_array_v3(longlong array_ptr)
+void cleanup_extended_array_v3(int64_t array_ptr)
 {
   // 实现与cleanup_extended_array相同
   cleanup_extended_array(array_ptr);
@@ -721,9 +721,9 @@ void cleanup_extended_array_v3(longlong array_ptr)
 
 
 
-// 函数: uint64_t release_memory_with_flags(uint64_t param_1, ulonglong param_2, uint64_t param_3, uint64_t param_4)
+// 函数: uint64_t release_memory_with_flags(uint64_t param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 // 功能: 根据标志位释放内存，提供条件性的内存释放功能
-uint64_t release_memory_with_flags(uint64_t param_1, ulonglong param_2, uint64_t param_3, uint64_t param_4)
+uint64_t release_memory_with_flags(uint64_t param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
   uint64_t release_flag;
   
@@ -745,14 +745,14 @@ uint64_t release_memory_with_flags(uint64_t param_1, ulonglong param_2, uint64_t
 // 功能: 初始化线程管理器，设置同步对象和状态标志
 void initialize_thread_manager(uint64_t *thread_manager_ptr)
 {
-  ulonglong init_flag;
+  uint64_t init_flag;
   uint64_t sync_obj;
-  ulonglong block_count;
-  ulonglong max_blocks;
+  uint64_t block_count;
+  uint64_t max_blocks;
   uint64_t *block_ptr;
-  longlong alloc_result;
+  int64_t alloc_result;
   uint64_t *init_ptr;
-  longlong loop_count;
+  int64_t loop_count;
   
   block_count = 0;
   *thread_manager_ptr = 0;  // 清空主指针
@@ -772,7 +772,7 @@ void initialize_thread_manager(uint64_t *thread_manager_ptr)
   } while (alloc_result != 0);
   
   // 设置管理器状态
-  *(uint64_t *)((longlong)thread_manager_ptr + 0x25c) = 0;  // 清空扩展区域
+  *(uint64_t *)((int64_t)thread_manager_ptr + 0x25c) = 0;  // 清空扩展区域
   *(int32_t *)(thread_manager_ptr + 0x4b) = 0;  // 清空状态标志
   thread_manager_ptr[7] = 0;  // 清空引用
   thread_manager_ptr[8] = 0x20;  // 设置块大小
@@ -806,7 +806,7 @@ void initialize_thread_manager(uint64_t *thread_manager_ptr)
       *(int8_t *)(max_blocks + 0x141 + thread_manager_ptr[3]) = 0;  // 清空状态标志
       block_count = block_count + 1;
       max_blocks = max_blocks + 0x148;  // 下一个块
-    } while (block_count < (ulonglong)thread_manager_ptr[4]);
+    } while (block_count < (uint64_t)thread_manager_ptr[4]);
   }
   
   // 初始化同步对象
@@ -820,8 +820,8 @@ void initialize_thread_manager(uint64_t *thread_manager_ptr)
   *(int32_t *)(thread_manager_ptr + 99) = 3;  // 设置优先级
   thread_manager_ptr[0x65] = 0;  // 清空错误标志
   *(int32_t *)(thread_manager_ptr + 0x6a) = 0x3f800000;  // 设置浮点参数 (1.0)
-  *(uint64_t *)((longlong)thread_manager_ptr + 0x354) = 0x40000000;  // 设置双精度参数 (2.0)
-  *(int32_t *)((longlong)thread_manager_ptr + 0x35c) = 3;  // 设置精度参数
+  *(uint64_t *)((int64_t)thread_manager_ptr + 0x354) = 0x40000000;  // 设置双精度参数 (2.0)
+  *(int32_t *)((int64_t)thread_manager_ptr + 0x35c) = 3;  // 设置精度参数
   thread_manager_ptr[0x68] = 1;  // 设置启用标志
   thread_manager_ptr[0x67] = &system_memory_0000;  // 设置数据表指针
   thread_manager_ptr[0x69] = 0;  // 清空扩展标志
@@ -834,9 +834,9 @@ void initialize_thread_manager(uint64_t *thread_manager_ptr)
 
 
 
-// 函数: uint64_t * initialize_graphics_object(uint64_t *graphics_obj_ptr, ulonglong param_2)
+// 函数: uint64_t * initialize_graphics_object(uint64_t *graphics_obj_ptr, uint64_t param_2)
 // 功能: 初始化图形对象，设置多个子组件和渲染器
-uint64_t * initialize_graphics_object(uint64_t *graphics_obj_ptr, ulonglong param_2)
+uint64_t * initialize_graphics_object(uint64_t *graphics_obj_ptr, uint64_t param_2)
 {
   // 设置主对象指针
   *graphics_obj_ptr = &unknown_var_7864_ptr;
@@ -899,7 +899,7 @@ void process_engine_definition(uint64_t param_1, uint64_t param_2, uint64_t para
   // 设置引擎定义字符串 "Engine definition"
   *engine_string = 0x6320726f74696445;  // "Edition c"
   *(int32_t *)(engine_string + 1) = 0x69666e6f;    // "onfi"
-  *(int16_t *)((longlong)engine_string + 0xc) = 0x67;  // "g"
+  *(int16_t *)((int64_t)engine_string + 0xc) = 0x67;  // "g"
   
   // 设置字符串长度
   stack_length = 0xd;  // 13个字符
@@ -914,9 +914,9 @@ void process_engine_definition(uint64_t param_1, uint64_t param_2, uint64_t para
 
 
 
-// 函数: uint64_t initialize_render_system(uint64_t param_1, ulonglong param_2)
+// 函数: uint64_t initialize_render_system(uint64_t param_1, uint64_t param_2)
 // 功能: 初始化渲染系统，设置渲染管线和参数
-uint64_t initialize_render_system(uint64_t param_1, ulonglong param_2)
+uint64_t initialize_render_system(uint64_t param_1, uint64_t param_2)
 {
   FUN_18005a9a0();  // 调用渲染系统初始化子函数
   if ((param_2 & 1) != 0) {
@@ -996,9 +996,9 @@ void initialize_render_pipeline(uint64_t *render_pipeline_ptr, uint64_t param_2,
 
 
 
-// 函数: void execute_stage_callback(longlong stage_ptr, uint64_t param_2, uint64_t param_3, uint64_t param_4)
+// 函数: void execute_stage_callback(int64_t stage_ptr, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 // 功能: 执行渲染阶段回调函数，调用特定阶段的处理函数
-void execute_stage_callback(longlong stage_ptr, uint64_t param_2, uint64_t param_3, uint64_t param_4)
+void execute_stage_callback(int64_t stage_ptr, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
   // 检查是否存在回调函数
   if (*(code **)(stage_ptr + 0x10) != (code *)0x0) {
@@ -1012,9 +1012,9 @@ void execute_stage_callback(longlong stage_ptr, uint64_t param_2, uint64_t param
 
 
 
-// 函数: void execute_buffer_callback(longlong buffer_ptr, uint64_t param_2, uint64_t param_3, uint64_t param_4)
+// 函数: void execute_buffer_callback(int64_t buffer_ptr, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 // 功能: 执行缓冲区回调函数，调用特定缓冲区的处理函数
-void execute_buffer_callback(longlong buffer_ptr, uint64_t param_2, uint64_t param_3, uint64_t param_4)
+void execute_buffer_callback(int64_t buffer_ptr, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
   // 检查是否存在回调函数
   if (*(code **)(buffer_ptr + 0x10) != (code *)0x0) {
@@ -1028,9 +1028,9 @@ void execute_buffer_callback(longlong buffer_ptr, uint64_t param_2, uint64_t par
 
 
 
-// 函数: void cleanup_render_stage(longlong stage_ptr, uint64_t param_2, uint64_t param_3, uint64_t param_4)
+// 函数: void cleanup_render_stage(int64_t stage_ptr, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 // 功能: 清理渲染阶段，释放相关资源并重置状态
-void cleanup_render_stage(longlong stage_ptr, uint64_t param_2, uint64_t param_3, uint64_t param_4)
+void cleanup_render_stage(int64_t stage_ptr, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
   // 调用阶段析构函数
   if (*(code **)(stage_ptr + 0x68) != (code *)0x0) {
@@ -1039,7 +1039,7 @@ void cleanup_render_stage(longlong stage_ptr, uint64_t param_2, uint64_t param_3
   
   // 清理第一个缓冲区
   *(uint64_t *)(stage_ptr + 0x30) = &system_data_buffer_ptr;  // 设置默认缓冲区
-  if (*(longlong *)(stage_ptr + 0x38) != 0) {
+  if (*(int64_t *)(stage_ptr + 0x38) != 0) {
     FUN_18064e900();  // 释放缓冲区内存
   }
   *(uint64_t *)(stage_ptr + 0x38) = 0;  // 清空缓冲区指针
@@ -1048,7 +1048,7 @@ void cleanup_render_stage(longlong stage_ptr, uint64_t param_2, uint64_t param_3
   
   // 清理第二个缓冲区
   *(uint64_t *)(stage_ptr + 0x10) = &system_data_buffer_ptr;  // 设置默认缓冲区
-  if (*(longlong *)(stage_ptr + 0x18) != 0) {
+  if (*(int64_t *)(stage_ptr + 0x18) != 0) {
     FUN_18064e900();  // 释放缓冲区内存
   }
   *(uint64_t *)(stage_ptr + 0x18) = 0;  // 清空缓冲区指针
@@ -1096,7 +1096,7 @@ void process_device_definition(uint64_t param_1, uint64_t param_2, uint64_t para
   device_string[2] = 0x20746e65;      // "ent "
   device_string[3] = 0x666e6f63;      // "conf"
   *(int16_t *)(device_string + 4) = 0x6769;  // "ig"
-  *(int8_t *)((longlong)device_string + 0x12) = 0;  // 字符串结束符
+  *(int8_t *)((int64_t)device_string + 0x12) = 0;  // 字符串结束符
   
   // 设置字符串长度
   stack_length = 0x12;  // 18个字符
@@ -1111,9 +1111,9 @@ void process_device_definition(uint64_t param_1, uint64_t param_2, uint64_t para
 
 
 
-// 函数: uint64_t initialize_audio_system(uint64_t param_1, ulonglong param_2)
+// 函数: uint64_t initialize_audio_system(uint64_t param_1, uint64_t param_2)
 // 功能: 初始化音频系统，设置音频设备和参数
-uint64_t initialize_audio_system(uint64_t param_1, ulonglong param_2)
+uint64_t initialize_audio_system(uint64_t param_1, uint64_t param_2)
 {
   FUN_18005b560();  // 调用音频系统初始化子函数
   if ((param_2 & 1) != 0) {

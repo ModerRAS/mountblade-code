@@ -65,17 +65,17 @@
  * @param param_3 数据源指针
  * @param param_4 处理的数据项数量
  */
-void ui_system_advanced_data_processor(longlong system_context, uint64_t processing_params, longlong data_source, longlong data_count)
+void ui_system_advanced_data_processor(int64_t system_context, uint64_t processing_params, int64_t data_source, int64_t data_count)
 {
     int32_t quality_flag;
     uint64_t temp_data_1;
     uint64_t temp_data_2;
     uint64_t temp_data_3;
     uint64_t *data_pointer;
-    longlong index_counter;
+    int64_t index_counter;
     int thread_index;
-    longlong source_offset_1;
-    longlong source_offset_2;
+    int64_t source_offset_1;
+    int64_t source_offset_2;
     
     thread_index = 1;
     data_pointer = (uint64_t *)(data_source + 4000);
@@ -90,11 +90,11 @@ void ui_system_advanced_data_processor(longlong system_context, uint64_t process
         
         // 计算内存对齐的偏移地址
         data_pointer[-0x14] = 
-             (longlong)(*(int *)(source_offset_1 + 0x1e7c) * thread_index) * 0x4c + *(longlong *)(source_offset_1 + 0x1eb0);
+             (int64_t)(*(int *)(source_offset_1 + 0x1e7c) * thread_index) * 0x4c + *(int64_t *)(source_offset_1 + 0x1eb0);
         
         // 复制控制数据和状态信息
         *(int32_t *)(data_pointer + -0x13) = *(int32_t *)(source_offset_1 + 0x1e7c);
-        *(int32_t *)((longlong)data_pointer + -0x94) = *(int32_t *)(source_offset_1 + 0x1e64);
+        *(int32_t *)((int64_t)data_pointer + -0x94) = *(int32_t *)(source_offset_1 + 0x1e64);
         
         // 处理扩展数据块（16个数据块）
         temp_data_1 = *(uint64_t *)(source_offset_2 + 0xde8);
@@ -171,11 +171,11 @@ void ui_system_advanced_data_processor(longlong system_context, uint64_t process
         
         // 处理状态标志和控制信息
         *(int8_t *)(data_pointer + -8) = *(int8_t *)(source_offset_2 + 0xf60);
-        *(int8_t *)((longlong)data_pointer + -0x3d) = *(int8_t *)(source_offset_2 + 0xf63);
-        *(uint64_t *)((longlong)data_pointer + -0x39) = *(uint64_t *)(source_offset_2 + 0xf67);
-        *(int32_t *)((longlong)data_pointer + -0x2b) = *(int32_t *)(source_offset_2 + 0xf75);
-        *(int32_t *)((longlong)data_pointer + -0x23) = *(int32_t *)(source_offset_2 + 0xf7d);
-        *(int8_t *)((longlong)data_pointer + -0x31) = *(int8_t *)(source_offset_2 + 0xf6f);
+        *(int8_t *)((int64_t)data_pointer + -0x3d) = *(int8_t *)(source_offset_2 + 0xf63);
+        *(uint64_t *)((int64_t)data_pointer + -0x39) = *(uint64_t *)(source_offset_2 + 0xf67);
+        *(int32_t *)((int64_t)data_pointer + -0x2b) = *(int32_t *)(source_offset_2 + 0xf75);
+        *(int32_t *)((int64_t)data_pointer + -0x23) = *(int32_t *)(source_offset_2 + 0xf7d);
+        *(int8_t *)((int64_t)data_pointer + -0x31) = *(int8_t *)(source_offset_2 + 0xf6f);
         *(int8_t *)(data_pointer + -6) = *(int8_t *)(source_offset_2 + 0xf70);
         
         // 设置输出缓冲区指针
@@ -236,7 +236,7 @@ void ui_system_advanced_data_processor(longlong system_context, uint64_t process
         index_counter = 0;
         do {
             thread_index = thread_index + 1;
-            *(int32_t *)(index_counter + *(longlong *)(source_offset_1 + 0x43a8)) = 0xffffffff;
+            *(int32_t *)(index_counter + *(int64_t *)(source_offset_1 + 0x43a8)) = 0xffffffff;
             index_counter = index_counter + 4;
         } while (thread_index < *(int *)(source_offset_1 + 0x1e74));
     }
@@ -257,15 +257,15 @@ void ui_system_advanced_data_processor(longlong system_context, uint64_t process
 void ui_system_reset_thread_pool(void)
 {
     int reset_counter;
-    longlong data_offset;
-    longlong system_context;
+    int64_t data_offset;
+    int64_t system_context;
     
     reset_counter = 0;
     if (0 < *(int *)(system_context + 0x1e74)) {
         data_offset = 0;
         do {
             reset_counter = reset_counter + 1;
-            *(int32_t *)(data_offset + *(longlong *)(system_context + 0x43a8)) = 0xffffffff;
+            *(int32_t *)(data_offset + *(int64_t *)(system_context + 0x43a8)) = 0xffffffff;
             data_offset = data_offset + 4;
         } while (reset_counter < *(int *)(system_context + 0x1e74));
     }
@@ -286,26 +286,26 @@ void ui_system_reset_thread_pool(void)
 void ui_system_thread_worker(int *thread_params)
 {
     int wait_result;
-    longlong thread_pool_context;
-    longlong thread_id;
-    longlong data_context;
+    int64_t thread_pool_context;
+    int64_t thread_id;
+    int64_t data_context;
     int active_flag;
     int8_t stack_protector_1 [32];
     int8_t stack_protector_2 [16];
-    ulonglong stack_cookie;
+    uint64_t stack_cookie;
     
     // 栈保护cookie初始化
-    stack_cookie = GET_SECURITY_COOKIE() ^ (ulonglong)stack_protector_1;
+    stack_cookie = GET_SECURITY_COOKIE() ^ (uint64_t)stack_protector_1;
     
-    thread_pool_context = *(longlong *)(thread_params + 2);
+    thread_pool_context = *(int64_t *)(thread_params + 2);
     thread_id = *thread_params;
-    data_context = *(longlong *)(thread_params + 4);
+    data_context = *(int64_t *)(thread_params + 4);
     
     // 主线程工作循环
     if (*(int *)(thread_pool_context + 0x4380) != 0) {
         do {
             wait_result = WaitForSingleObject(*(uint64_t *)
-                                 (*(longlong *)(thread_pool_context + 0x43f8) + (longlong)thread_id * 8), 0xffffffff);
+                                 (*(int64_t *)(thread_pool_context + 0x43f8) + (int64_t)thread_id * 8), 0xffffffff);
             if (wait_result == 0) {
                 if (*(int *)(thread_pool_context + 0x4380) == 0) break;
                 
@@ -317,7 +317,7 @@ void ui_system_thread_worker(int *thread_params)
     }
     
     // 栈保护验证和函数退出
-    FUN_1808fc050(stack_cookie ^ (ulonglong)stack_protector_1);
+    FUN_1808fc050(stack_cookie ^ (uint64_t)stack_protector_1);
 }
 
 /**
@@ -332,15 +332,15 @@ void ui_system_thread_worker(int *thread_params)
 void ui_system_thread_controller(void)
 {
     int wait_result;
-    longlong thread_pool_context;
-    longlong thread_index;
-    longlong data_context;
+    int64_t thread_pool_context;
+    int64_t thread_index;
+    int64_t data_context;
     int8_t stack_data [8];
-    ulonglong stack_cookie;
+    uint64_t stack_cookie;
     
     // 主控制循环
     do {
-        wait_result = WaitForSingleObject(*(uint64_t *)(*(longlong *)(thread_pool_context + 0x43f8) + thread_index * 8),
+        wait_result = WaitForSingleObject(*(uint64_t *)(*(int64_t *)(thread_pool_context + 0x43f8) + thread_index * 8),
                                     0xffffffff);
         if (wait_result == 0) {
             if (*(int *)(thread_pool_context + 0x4380) == 0) break;
@@ -352,7 +352,7 @@ void ui_system_thread_controller(void)
     } while (*(int *)(thread_pool_context + 0x4380) != 0);
     
     // 栈保护验证和函数退出
-    FUN_1808fc050(stack_cookie ^ (ulonglong)&stack0x00000000);
+    FUN_1808fc050(stack_cookie ^ (uint64_t)&stack0x00000000);
 }
 
 /**
@@ -361,10 +361,10 @@ void ui_system_thread_controller(void)
  */
 void ui_system_empty_handler_1(void)
 {
-    ulonglong stack_cookie;
+    uint64_t stack_cookie;
     
     // 栈保护验证和函数退出
-    FUN_1808fc050(stack_cookie ^ (ulonglong)&stack0x00000000);
+    FUN_1808fc050(stack_cookie ^ (uint64_t)&stack0x00000000);
 }
 
 /**
@@ -379,9 +379,9 @@ void ui_system_empty_handler_1(void)
  * 
  * @param system_context 系统上下文指针
  */
-void ui_system_initialize_thread_pool(longlong system_context)
+void ui_system_initialize_thread_pool(int64_t system_context)
 {
-    longlong allocated_memory;
+    int64_t allocated_memory;
     int thread_count;
     
     // 初始化线程池状态标志
@@ -404,27 +404,27 @@ void ui_system_initialize_thread_pool(longlong system_context)
         
         // 分配线程句柄池
         allocated_memory = FUN_18066e8f0(8, thread_count + -1);
-        *(longlong *)(system_context + 0x43f0) = allocated_memory;
+        *(int64_t *)(system_context + 0x43f0) = allocated_memory;
         if (allocated_memory == 0) {
             FUN_18066d370(system_context + 0x12c0, 2, &unknown_var_7776_ptr);
         }
         
         // 分配信号量句柄池
         allocated_memory = FUN_18066e8f0(8, *(int32_t *)(system_context + 0x438c));
-        *(longlong *)(system_context + 0x43f8) = allocated_memory;
+        *(int64_t *)(system_context + 0x43f8) = allocated_memory;
         if (allocated_memory == 0) {
             FUN_18066d370(system_context + 0x12c0, 2, &unknown_var_7824_ptr);
         }
         
         // 分配数据缓冲区
-        allocated_memory = FUN_18066e960(0x20, (ulonglong)*(uint *)(system_context + 0x438c) * 0x12a0);
-        *(longlong *)(system_context + 0x43e0) = allocated_memory;
+        allocated_memory = FUN_18066e960(0x20, (uint64_t)*(uint *)(system_context + 0x438c) * 0x12a0);
+        *(int64_t *)(system_context + 0x43e0) = allocated_memory;
         if (allocated_memory == 0) {
             FUN_18066d370(system_context + 0x12c0, 2, &unknown_var_7880_ptr);
         }
         
         // 初始化数据缓冲区
-        memset(*(uint64_t *)(system_context + 0x43e0), 0, (ulonglong)*(uint *)(system_context + 0x438c) * 0x12a0);
+        memset(*(uint64_t *)(system_context + 0x43e0), 0, (uint64_t)*(uint *)(system_context + 0x438c) * 0x12a0);
     }
     return;
 }
@@ -444,8 +444,8 @@ void ui_system_initialize_thread_pool(longlong system_context)
 void ui_system_setup_thread_resources(void)
 {
     int32_t thread_count;
-    longlong allocated_memory;
-    longlong system_context;
+    int64_t allocated_memory;
+    int64_t system_context;
     int element_size;
     
     // 设置线程池状态
@@ -454,27 +454,27 @@ void ui_system_setup_thread_resources(void)
     
     // 分配线程句柄池
     allocated_memory = FUN_18066e8f0(element_size, thread_count);
-    *(longlong *)(system_context + 0x43f0) = allocated_memory;
+    *(int64_t *)(system_context + 0x43f0) = allocated_memory;
     if (allocated_memory == 0) {
         FUN_18066d370(system_context + 0x12c0, element_size + -6, &unknown_var_7776_ptr);
     }
     
     // 分配信号量句柄池
     allocated_memory = FUN_18066e8f0(8);
-    *(longlong *)(system_context + 0x43f8) = allocated_memory;
+    *(int64_t *)(system_context + 0x43f8) = allocated_memory;
     if (allocated_memory == 0) {
         FUN_18066d370(system_context + 0x12c0, 2, &unknown_var_7824_ptr);
     }
     
     // 分配数据缓冲区
-    allocated_memory = FUN_18066e960(0x20, (ulonglong)*(uint *)(system_context + 0x438c) * 0x12a0);
-    *(longlong *)(system_context + 0x43e0) = allocated_memory;
+    allocated_memory = FUN_18066e960(0x20, (uint64_t)*(uint *)(system_context + 0x438c) * 0x12a0);
+    *(int64_t *)(system_context + 0x43e0) = allocated_memory;
     if (allocated_memory == 0) {
         FUN_18066d370(system_context + 0x12c0, 2, &unknown_var_7880_ptr);
     }
     
     // 初始化数据缓冲区
-    memset(*(uint64_t *)(system_context + 0x43e0), 0, (ulonglong)*(uint *)(system_context + 0x438c) * 0x12a0);
+    memset(*(uint64_t *)(system_context + 0x43e0), 0, (uint64_t)*(uint *)(system_context + 0x438c) * 0x12a0);
 }
 
 /**
@@ -489,34 +489,34 @@ void ui_system_setup_thread_resources(void)
  */
 void ui_system_create_worker_threads(void)
 {
-    longlong thread_handle;
+    int64_t thread_handle;
     uint64_t semaphore_handle;
-    longlong system_context;
+    int64_t system_context;
     uint thread_index;
-    ulonglong loop_index;
+    uint64_t loop_index;
     
     // 创建工作线程循环
     do {
         semaphore_handle = CreateSemaphoreW(0, 0, 0x8000, 0);
-        loop_index = (ulonglong)thread_index;
+        loop_index = (uint64_t)thread_index;
         
         // 设置信号量句柄
-        *(uint64_t *)(*(longlong *)(system_context + 0x43f8) + loop_index * 8) = semaphore_handle;
+        *(uint64_t *)(*(int64_t *)(system_context + 0x43f8) + loop_index * 8) = semaphore_handle;
         
         // 初始化线程数据块
-        func_0x00018066e400(*(longlong *)(system_context + 0x43e0) + loop_index * 0x12a0);
+        func_0x00018066e400(*(int64_t *)(system_context + 0x43e0) + loop_index * 0x12a0);
         
         // 设置线程控制信息
         thread_handle = loop_index * 0x18;
-        *(uint *)(thread_handle + *(longlong *)(system_context + 0x43e8)) = thread_index;
-        *(longlong *)(thread_handle + 8 + *(longlong *)(system_context + 0x43e8)) = system_context;
-        *(ulonglong *)(thread_handle + 0x10 + *(longlong *)(system_context + 0x43e8)) =
-             *(longlong *)(system_context + 0x43e0) + loop_index * 0x12a0;
+        *(uint *)(thread_handle + *(int64_t *)(system_context + 0x43e8)) = thread_index;
+        *(int64_t *)(thread_handle + 8 + *(int64_t *)(system_context + 0x43e8)) = system_context;
+        *(uint64_t *)(thread_handle + 0x10 + *(int64_t *)(system_context + 0x43e8)) =
+             *(int64_t *)(system_context + 0x43e0) + loop_index * 0x12a0;
         
         // 创建工作线程
         semaphore_handle = _beginthreadex(0, 0, FUN_180670800);
         thread_index = thread_index + 1;
-        *(uint64_t *)(*(longlong *)(system_context + 0x43f0) + loop_index * 8) = semaphore_handle;
+        *(uint64_t *)(*(int64_t *)(system_context + 0x43f0) + loop_index * 8) = semaphore_handle;
     } while (thread_index < *(uint *)(system_context + 0x438c));
     
     // 创建控制信号量
@@ -538,7 +538,7 @@ void ui_system_create_worker_threads(void)
 void ui_system_create_control_semaphore(void)
 {
     uint64_t semaphore_handle;
-    longlong system_context;
+    int64_t system_context;
     
     // 创建控制信号量
     semaphore_handle = CreateSemaphoreW(0, 0, 0x8000, 0);
@@ -568,13 +568,13 @@ void ui_system_empty_handler_2(void)
  * 
  * @param system_context 系统上下文指针
  */
-void ui_system_cleanup_thread_pool(longlong system_context)
+void ui_system_cleanup_thread_pool(int64_t system_context)
 {
     int wait_result;
     uint cleanup_index;
-    ulonglong resource_index;
-    ulonglong semaphore_index;
-    ulonglong thread_index;
+    uint64_t resource_index;
+    uint64_t semaphore_index;
+    uint64_t thread_index;
     
     if (*(int *)(system_context + 0x4380) != 0) {
         resource_index = 0;
@@ -586,14 +586,14 @@ void ui_system_cleanup_thread_pool(longlong system_context)
         if (0 < *(int *)(system_context + 0x4390)) {
             do {
                 // 释放信号量并等待线程结束
-                ReleaseSemaphore(*(uint64_t *)(*(longlong *)(system_context + 0x43f8) + thread_index), 1);
-                wait_result = WaitForSingleObject(*(uint64_t *)(*(longlong *)(system_context + 0x43f0) + thread_index),
+                ReleaseSemaphore(*(uint64_t *)(*(int64_t *)(system_context + 0x43f8) + thread_index), 1);
+                wait_result = WaitForSingleObject(*(uint64_t *)(*(int64_t *)(system_context + 0x43f0) + thread_index),
                                             0xffffffff);
                 if (wait_result == 0) {
-                    CloseHandle(*(uint64_t *)(*(longlong *)(system_context + 0x43f0) + thread_index));
+                    CloseHandle(*(uint64_t *)(*(int64_t *)(system_context + 0x43f0) + thread_index));
                 }
                 cleanup_index = (int)semaphore_index + 1;
-                semaphore_index = (ulonglong)cleanup_index;
+                semaphore_index = (uint64_t)cleanup_index;
                 thread_index = thread_index + 8;
             } while ((int)cleanup_index < *(int *)(system_context + 0x4390));
         }
@@ -602,17 +602,17 @@ void ui_system_cleanup_thread_pool(longlong system_context)
         semaphore_index = resource_index;
         if (0 < *(int *)(system_context + 0x4390)) {
             do {
-                if (*(longlong *)(resource_index + *(longlong *)(system_context + 0x43f8)) != 0) {
+                if (*(int64_t *)(resource_index + *(int64_t *)(system_context + 0x43f8)) != 0) {
                     CloseHandle();
                 }
                 cleanup_index = (int)semaphore_index + 1;
                 resource_index = resource_index + 8;
-                semaphore_index = (ulonglong)cleanup_index;
+                semaphore_index = (uint64_t)cleanup_index;
             } while ((int)cleanup_index < *(int *)(system_context + 0x4390));
         }
         
         // 清理控制信号量
-        if (*(longlong *)(system_context + 0x4400) != 0) {
+        if (*(int64_t *)(system_context + 0x4400) != 0) {
             CloseHandle();
         }
         
@@ -640,14 +640,14 @@ void ui_system_cleanup_thread_pool(longlong system_context)
  * 
  * @param system_context 系统上下文指针（隐含）
  */
-void ui_system_force_cleanup_threads(longlong system_context)
+void ui_system_force_cleanup_threads(int64_t system_context)
 {
     int wait_result;
-    longlong pool_context;
+    int64_t pool_context;
     uint cleanup_index;
-    ulonglong resource_index;
-    ulonglong semaphore_index;
-    ulonglong thread_index;
+    uint64_t resource_index;
+    uint64_t semaphore_index;
+    uint64_t thread_index;
     
     resource_index = 0;
     *(int32_t *)(system_context + 0x4380) = 0;
@@ -657,14 +657,14 @@ void ui_system_force_cleanup_threads(longlong system_context)
     // 强制清理工作线程
     if (0 < *(int *)(system_context + 0x4390)) {
         do {
-            ReleaseSemaphore(*(uint64_t *)(*(longlong *)(pool_context + 0x43f8) + thread_index), 1);
-            wait_result = WaitForSingleObject(*(uint64_t *)(*(longlong *)(pool_context + 0x43f0) + thread_index),
+            ReleaseSemaphore(*(uint64_t *)(*(int64_t *)(pool_context + 0x43f8) + thread_index), 1);
+            wait_result = WaitForSingleObject(*(uint64_t *)(*(int64_t *)(pool_context + 0x43f0) + thread_index),
                                         0xffffffff);
             if (wait_result == 0) {
-                CloseHandle(*(uint64_t *)(*(longlong *)(pool_context + 0x43f0) + thread_index));
+                CloseHandle(*(uint64_t *)(*(int64_t *)(pool_context + 0x43f0) + thread_index));
             }
             cleanup_index = (int)semaphore_index + 1;
-            semaphore_index = (ulonglong)cleanup_index;
+            semaphore_index = (uint64_t)cleanup_index;
             thread_index = thread_index + 8;
         } while ((int)cleanup_index < *(int *)(pool_context + 0x4390));
     }
@@ -673,17 +673,17 @@ void ui_system_force_cleanup_threads(longlong system_context)
     semaphore_index = resource_index;
     if (0 < *(int *)(pool_context + 0x4390)) {
         do {
-            if (*(longlong *)(resource_index + *(longlong *)(pool_context + 0x43f8)) != 0) {
+            if (*(int64_t *)(resource_index + *(int64_t *)(pool_context + 0x43f8)) != 0) {
                 CloseHandle();
             }
             cleanup_index = (int)semaphore_index + 1;
             resource_index = resource_index + 8;
-            semaphore_index = (ulonglong)cleanup_index;
+            semaphore_index = (uint64_t)cleanup_index;
         } while ((int)cleanup_index < *(int *)(pool_context + 0x4390));
     }
     
     // 清理控制信号量
-    if (*(longlong *)(pool_context + 0x4400) != 0) {
+    if (*(int64_t *)(pool_context + 0x4400) != 0) {
         CloseHandle();
     }
     
@@ -711,16 +711,16 @@ void ui_system_force_cleanup_threads(longlong system_context)
  * @param system_context 系统上下文指针
  * @param thread_count 要清理的线程数量（隐含）
  */
-void ui_system_partial_cleanup_threads(longlong system_context)
+void ui_system_partial_cleanup_threads(int64_t system_context)
 {
     int wait_result;
-    longlong pool_context;
+    int64_t pool_context;
     int active_threads;
-    ulonglong cleanup_index;
+    uint64_t cleanup_index;
     uint thread_index;
-    ulonglong resource_index;
-    ulonglong semaphore_index;
-    ulonglong thread_offset;
+    uint64_t resource_index;
+    uint64_t semaphore_index;
+    uint64_t thread_offset;
     
     active_threads = (int)cleanup_index;
     resource_index = cleanup_index & 0xffffffff;
@@ -729,14 +729,14 @@ void ui_system_partial_cleanup_threads(longlong system_context)
     if (active_threads < *(int *)(system_context + 0x4390)) {
         thread_offset = cleanup_index & 0xffffffff;
         do {
-            ReleaseSemaphore(*(uint64_t *)(*(longlong *)(pool_context + 0x43f8) + thread_offset), 1);
-            wait_result = WaitForSingleObject(*(uint64_t *)(*(longlong *)(pool_context + 0x43f0) + thread_offset),
+            ReleaseSemaphore(*(uint64_t *)(*(int64_t *)(pool_context + 0x43f8) + thread_offset), 1);
+            wait_result = WaitForSingleObject(*(uint64_t *)(*(int64_t *)(pool_context + 0x43f0) + thread_offset),
                                         0xffffffff);
             if (wait_result == 0) {
-                CloseHandle(*(uint64_t *)(*(longlong *)(pool_context + 0x43f0) + thread_offset));
+                CloseHandle(*(uint64_t *)(*(int64_t *)(pool_context + 0x43f0) + thread_offset));
             }
             thread_index = (int)resource_index + 1;
-            resource_index = (ulonglong)thread_index;
+            resource_index = (uint64_t)thread_index;
             thread_offset = thread_offset + 8;
         } while ((int)thread_index < *(int *)(pool_context + 0x4390));
     }
@@ -745,29 +745,29 @@ void ui_system_partial_cleanup_threads(longlong system_context)
     resource_index = cleanup_index;
     if (active_threads < *(int *)(pool_context + 0x4390)) {
         do {
-            if (*(longlong *)(resource_index + *(longlong *)(pool_context + 0x43f8)) != 0) {
+            if (*(int64_t *)(resource_index + *(int64_t *)(pool_context + 0x43f8)) != 0) {
                 CloseHandle();
             }
             thread_index = (int)thread_offset + 1;
-            thread_offset = (ulonglong)thread_index;
+            thread_offset = (uint64_t)thread_index;
             resource_index = resource_index + 8;
         } while ((int)thread_index < *(int *)(pool_context + 0x4390));
     }
     
     // 清理控制信号量
-    if (*(longlong *)(pool_context + 0x4400) != 0) {
+    if (*(int64_t *)(pool_context + 0x4400) != 0) {
         CloseHandle();
     }
     
     // 释放内存资源
     func_0x00018066e940(*(uint64_t *)(pool_context + 0x43f0));
-    *(ulonglong *)(pool_context + 0x43f0) = cleanup_index;
+    *(uint64_t *)(pool_context + 0x43f0) = cleanup_index;
     func_0x00018066e940(*(uint64_t *)(pool_context + 0x43f8));
-    *(ulonglong *)(pool_context + 0x43f8) = cleanup_index;
+    *(uint64_t *)(pool_context + 0x43f8) = cleanup_index;
     func_0x00018066e940(*(uint64_t *)(pool_context + 0x43e0));
-    *(ulonglong *)(pool_context + 0x43e0) = cleanup_index;
+    *(uint64_t *)(pool_context + 0x43e0) = cleanup_index;
     func_0x00018066e940(*(uint64_t *)(pool_context + 0x43e8));
-    *(ulonglong *)(pool_context + 0x43e8) = cleanup_index;
+    *(uint64_t *)(pool_context + 0x43e8) = cleanup_index;
     return;
 }
 
@@ -782,7 +782,7 @@ void ui_system_partial_cleanup_threads(longlong system_context)
  */
 void ui_system_cleanup_all_resources(void)
 {
-    longlong system_context;
+    int64_t system_context;
     uint64_t null_value;
     
     // 关闭控制句柄
@@ -824,16 +824,16 @@ void ui_system_empty_handler_3(void)
  * @param buffer_size 缓冲区大小
  * @param quality_flags 质量标志
  */
-void ui_system_initialize_data_buffers(longlong system_context, uint buffer_size, int32_t quality_flags)
+void ui_system_initialize_data_buffers(int64_t system_context, uint buffer_size, int32_t quality_flags)
 {
-    longlong allocated_memory;
+    int64_t allocated_memory;
     int32_t quality_level;
-    longlong context_base;
+    int64_t context_base;
     uint64_t temp_pointer;
-    ulonglong buffer_index;
-    ulonglong data_index;
+    uint64_t buffer_index;
+    uint64_t data_index;
     uint item_count;
-    ulonglong loop_counter;
+    uint64_t loop_counter;
     
     context_base = system_context + 0x12c0;
     
@@ -862,15 +862,15 @@ void ui_system_initialize_data_buffers(longlong system_context, uint buffer_size
         }
         
         // 分配主数据缓冲区
-        allocated_memory = FUN_18066e8f0(4, (longlong)*(int *)(system_context + 0x1e74));
-        *(longlong *)(system_context + 0x43a8) = allocated_memory;
+        allocated_memory = FUN_18066e8f0(4, (int64_t)*(int *)(system_context + 0x1e74));
+        *(int64_t *)(system_context + 0x43a8) = allocated_memory;
         if (allocated_memory == 0) {
             FUN_18066d370(context_base, 2, &unknown_var_7968_ptr);
         }
         
         // 分配次级数据缓冲区
-        allocated_memory = FUN_18066e8f0(8, (longlong)*(int *)(system_context + 0x1e74));
-        *(longlong *)(system_context + 0x43b0) = allocated_memory;
+        allocated_memory = FUN_18066e8f0(8, (int64_t)*(int *)(system_context + 0x1e74));
+        *(int64_t *)(system_context + 0x43b0) = allocated_memory;
         if (allocated_memory == 0) {
             FUN_18066d370(context_base, 2, &unknown_var_8016_ptr);
         }
@@ -881,20 +881,20 @@ void ui_system_initialize_data_buffers(longlong system_context, uint buffer_size
             data_index = buffer_index;
             loop_counter = buffer_index;
             do {
-                temp_pointer = FUN_18066e960(0x10, (longlong)(int)(buffer_size + 0x40));
-                *(uint64_t *)(data_index + *(longlong *)(system_context + 0x43b0)) = temp_pointer;
-                if (*(longlong *)(data_index + *(longlong *)(system_context + 0x43b0)) == 0) {
+                temp_pointer = FUN_18066e960(0x10, (int64_t)(int)(buffer_size + 0x40));
+                *(uint64_t *)(data_index + *(int64_t *)(system_context + 0x43b0)) = temp_pointer;
+                if (*(int64_t *)(data_index + *(int64_t *)(system_context + 0x43b0)) == 0) {
                     FUN_18066d370(context_base, 2, &unknown_var_8056_ptr);
                 }
                 item_count = (int)loop_counter + 1;
-                loop_counter = (ulonglong)item_count;
+                loop_counter = (uint64_t)item_count;
                 data_index = data_index + 8;
             } while ((int)item_count < *(int *)(system_context + 0x1e74));
         }
         
         // 分配扩展数据缓冲区（次级缓冲区）
-        allocated_memory = FUN_18066e8f0(8, (longlong)*(int *)(system_context + 0x1e74));
-        *(longlong *)(system_context + 0x43b8) = allocated_memory;
+        allocated_memory = FUN_18066e8f0(8, (int64_t)*(int *)(system_context + 0x1e74));
+        *(int64_t *)(system_context + 0x43b8) = allocated_memory;
         if (allocated_memory == 0) {
             FUN_18066d370(context_base, 2, &unknown_var_8104_ptr);
         }
@@ -904,20 +904,20 @@ void ui_system_initialize_data_buffers(longlong system_context, uint buffer_size
             data_index = buffer_index;
             loop_counter = buffer_index;
             do {
-                temp_pointer = FUN_18066e960(0x10, (longlong)(((int)buffer_size >> 1) + 0x20));
-                *(uint64_t *)(loop_counter + *(longlong *)(system_context + 0x43b8)) = temp_pointer;
-                if (*(longlong *)(loop_counter + *(longlong *)(system_context + 0x43b8)) == 0) {
+                temp_pointer = FUN_18066e960(0x10, (int64_t)(((int)buffer_size >> 1) + 0x20));
+                *(uint64_t *)(loop_counter + *(int64_t *)(system_context + 0x43b8)) = temp_pointer;
+                if (*(int64_t *)(loop_counter + *(int64_t *)(system_context + 0x43b8)) == 0) {
                     FUN_18066d370(context_base, 2, &unknown_var_8144_ptr);
                 }
                 item_count = (int)data_index + 1;
-                data_index = (ulonglong)item_count;
+                data_index = (uint64_t)item_count;
                 loop_counter = loop_counter + 8;
             } while ((int)item_count < *(int *)(system_context + 0x1e74));
         }
         
         // 分配扩展数据缓冲区（四级缓冲区）
-        allocated_memory = FUN_18066e8f0(8, (longlong)*(int *)(system_context + 0x1e74));
-        *(longlong *)(system_context + 0x43c0) = allocated_memory;
+        allocated_memory = FUN_18066e8f0(8, (int64_t)*(int *)(system_context + 0x1e74));
+        *(int64_t *)(system_context + 0x43c0) = allocated_memory;
         if (allocated_memory == 0) {
             FUN_18066d370(context_base, 2, &unknown_var_8192_ptr);
         }
@@ -927,20 +927,20 @@ void ui_system_initialize_data_buffers(longlong system_context, uint buffer_size
             data_index = buffer_index;
             loop_counter = buffer_index;
             do {
-                temp_pointer = FUN_18066e960(0x10, (longlong)(((int)buffer_size >> 1) + 0x20));
-                *(uint64_t *)(data_index + *(longlong *)(system_context + 0x43c0)) = temp_pointer;
-                if (*(longlong *)(data_index + *(longlong *)(system_context + 0x43c0)) == 0) {
+                temp_pointer = FUN_18066e960(0x10, (int64_t)(((int)buffer_size >> 1) + 0x20));
+                *(uint64_t *)(data_index + *(int64_t *)(system_context + 0x43c0)) = temp_pointer;
+                if (*(int64_t *)(data_index + *(int64_t *)(system_context + 0x43c0)) == 0) {
                     FUN_18066d370(context_base, 2, &unknown_var_8232_ptr);
                 }
                 item_count = (int)loop_counter + 1;
-                loop_counter = (ulonglong)item_count;
+                loop_counter = (uint64_t)item_count;
                 data_index = data_index + 8;
             } while ((int)item_count < *(int *)(system_context + 0x1e74));
         }
         
         // 分配控制数据缓冲区
-        allocated_memory = FUN_18066e8f0(8, (longlong)*(int *)(system_context + 0x1e74));
-        *(longlong *)(system_context + 0x43c8) = allocated_memory;
+        allocated_memory = FUN_18066e8f0(8, (int64_t)*(int *)(system_context + 0x1e74));
+        *(int64_t *)(system_context + 0x43c8) = allocated_memory;
         if (allocated_memory == 0) {
             FUN_18066d370(context_base, 2, &unknown_var_8280_ptr);
         }
@@ -951,19 +951,19 @@ void ui_system_initialize_data_buffers(longlong system_context, uint buffer_size
         if (0 < *(int *)(system_context + 0x1e74)) {
             do {
                 temp_pointer = FUN_18066e8f0(0x10, 1);
-                *(uint64_t *)(data_index + *(longlong *)(system_context + 0x43c8)) = temp_pointer;
-                if (*(longlong *)(data_index + *(longlong *)(system_context + 0x43c8)) == 0) {
+                *(uint64_t *)(data_index + *(int64_t *)(system_context + 0x43c8)) = temp_pointer;
+                if (*(int64_t *)(data_index + *(int64_t *)(system_context + 0x43c8)) == 0) {
                     FUN_18066d370(context_base, 2, &unknown_var_8320_ptr);
                 }
                 item_count = (int)loop_counter + 1;
                 data_index = data_index + 8;
-                loop_counter = (ulonglong)item_count;
+                loop_counter = (uint64_t)item_count;
             } while ((int)item_count < *(int *)(system_context + 0x1e74));
         }
         
         // 分配状态数据缓冲区
-        allocated_memory = FUN_18066e8f0(8, (longlong)*(int *)(system_context + 0x1e74));
-        *(longlong *)(system_context + 0x43d0) = allocated_memory;
+        allocated_memory = FUN_18066e8f0(8, (int64_t)*(int *)(system_context + 0x1e74));
+        *(int64_t *)(system_context + 0x43d0) = allocated_memory;
         if (allocated_memory == 0) {
             FUN_18066d370(context_base, 2, &unknown_var_8360_ptr);
         }
@@ -974,19 +974,19 @@ void ui_system_initialize_data_buffers(longlong system_context, uint buffer_size
         if (0 < *(int *)(system_context + 0x1e74)) {
             do {
                 temp_pointer = FUN_18066e8f0(8);
-                *(uint64_t *)(data_index + *(longlong *)(system_context + 0x43d0)) = temp_pointer;
-                if (*(longlong *)(data_index + *(longlong *)(system_context + 0x43d0)) == 0) {
+                *(uint64_t *)(data_index + *(int64_t *)(system_context + 0x43d0)) = temp_pointer;
+                if (*(int64_t *)(data_index + *(int64_t *)(system_context + 0x43d0)) == 0) {
                     FUN_18066d370(context_base, 2, &unknown_var_8400_ptr);
                 }
                 item_count = (int)loop_counter + 1;
                 data_index = data_index + 8;
-                loop_counter = (ulonglong)item_count;
+                loop_counter = (uint64_t)item_count;
             } while ((int)item_count < *(int *)(system_context + 0x1e74));
         }
         
         // 分配状态数据缓冲区（次级缓冲区）
-        allocated_memory = FUN_18066e8f0(8, (longlong)*(int *)(system_context + 0x1e74));
-        *(longlong *)(system_context + 0x43d8) = allocated_memory;
+        allocated_memory = FUN_18066e8f0(8, (int64_t)*(int *)(system_context + 0x1e74));
+        *(int64_t *)(system_context + 0x43d8) = allocated_memory;
         if (allocated_memory == 0) {
             FUN_18066d370(context_base, 2, &unknown_var_8440_ptr);
         }
@@ -996,12 +996,12 @@ void ui_system_initialize_data_buffers(longlong system_context, uint buffer_size
         if (0 < *(int *)(system_context + 0x1e74)) {
             do {
                 temp_pointer = FUN_18066e8f0(8);
-                *(uint64_t *)(data_index + *(longlong *)(system_context + 0x43d8)) = temp_pointer;
-                if (*(longlong *)(data_index + *(longlong *)(system_context + 0x43d8)) == 0) {
+                *(uint64_t *)(data_index + *(int64_t *)(system_context + 0x43d8)) = temp_pointer;
+                if (*(int64_t *)(data_index + *(int64_t *)(system_context + 0x43d8)) == 0) {
                     FUN_18066d370(context_base, 2, &unknown_var_8480_ptr);
                 }
                 item_count = (int)buffer_index + 1;
-                buffer_index = (ulonglong)item_count;
+                buffer_index = (uint64_t)item_count;
                 data_index = data_index + 8;
             } while ((int)item_count < *(int *)(system_context + 0x1e74));
         }
@@ -1027,13 +1027,13 @@ void ui_system_initialize_data_buffers(longlong system_context, uint buffer_size
 void ui_system_setup_data_processing(uint64_t system_context, uint64_t data_size, int32_t processing_flags)
 {
     int32_t quality_level;
-    longlong allocated_memory;
+    int64_t allocated_memory;
     uint64_t temp_pointer;
-    longlong context_base;
-    ulonglong buffer_index;
+    int64_t context_base;
+    uint64_t buffer_index;
     uint item_count;
-    ulonglong data_index;
-    ulonglong loop_counter;
+    uint64_t data_index;
+    uint64_t loop_counter;
     
     // 初始化数据处理
     FUN_180671080(system_context, processing_flags);
@@ -1059,15 +1059,15 @@ void ui_system_setup_data_processing(uint64_t system_context, uint64_t data_size
     }
     
     // 分配主数据缓冲区
-    allocated_memory = FUN_18066e8f0(4, (longlong)*(int *)(context_base + 0xbb4));
-    *(longlong *)(context_base + 0x43a8) = allocated_memory;
+    allocated_memory = FUN_18066e8f0(4, (int64_t)*(int *)(context_base + 0xbb4));
+    *(int64_t *)(context_base + 0x43a8) = allocated_memory;
     if (allocated_memory == 0) {
         FUN_18066d370();
     }
     
     // 分配次级数据缓冲区
-    allocated_memory = FUN_18066e8f0(8, (longlong)*(int *)(context_base + 0xbb4));
-    *(longlong *)(context_base + 0x43b0) = allocated_memory;
+    allocated_memory = FUN_18066e8f0(8, (int64_t)*(int *)(context_base + 0xbb4));
+    *(int64_t *)(context_base + 0x43b0) = allocated_memory;
     if (allocated_memory == 0) {
         FUN_18066d370();
     }
@@ -1078,20 +1078,20 @@ void ui_system_setup_data_processing(uint64_t system_context, uint64_t data_size
         data_index = buffer_index;
         loop_counter = buffer_index;
         do {
-            temp_pointer = FUN_18066e960(0x10, (longlong)(int)(item_count + 0x40));
-            *(uint64_t *)(data_index + *(longlong *)(context_base + 0x43b0)) = temp_pointer;
-            if (*(longlong *)(data_index + *(longlong *)(context_base + 0x43b0)) == 0) {
+            temp_pointer = FUN_18066e960(0x10, (int64_t)(int)(item_count + 0x40));
+            *(uint64_t *)(data_index + *(int64_t *)(context_base + 0x43b0)) = temp_pointer;
+            if (*(int64_t *)(data_index + *(int64_t *)(context_base + 0x43b0)) == 0) {
                 FUN_18066d370();
             }
             item_count = (int)loop_counter + 1;
-            loop_counter = (ulonglong)item_count;
+            loop_counter = (uint64_t)item_count;
             data_index = data_index + 8;
         } while ((int)item_count < *(int *)(context_base + 0xbb4));
     }
     
     // 分配扩展数据缓冲区（次级缓冲区）
-    allocated_memory = FUN_18066e8f0(8, (longlong)*(int *)(context_base + 0xbb4));
-    *(longlong *)(context_base + 0x43b8) = allocated_memory;
+    allocated_memory = FUN_18066e8f0(8, (int64_t)*(int *)(context_base + 0xbb4));
+    *(int64_t *)(context_base + 0x43b8) = allocated_memory;
     if (allocated_memory == 0) {
         FUN_18066d370();
     }
@@ -1101,20 +1101,20 @@ void ui_system_setup_data_processing(uint64_t system_context, uint64_t data_size
         data_index = buffer_index;
         loop_counter = buffer_index;
         do {
-            temp_pointer = FUN_18066e960(0x10, (longlong)(((int)item_count >> 1) + 0x20));
-            *(uint64_t *)(loop_counter + *(longlong *)(context_base + 0x43b8)) = temp_pointer;
-            if (*(longlong *)(loop_counter + *(longlong *)(context_base + 0x43b8)) == 0) {
+            temp_pointer = FUN_18066e960(0x10, (int64_t)(((int)item_count >> 1) + 0x20));
+            *(uint64_t *)(loop_counter + *(int64_t *)(context_base + 0x43b8)) = temp_pointer;
+            if (*(int64_t *)(loop_counter + *(int64_t *)(context_base + 0x43b8)) == 0) {
                 FUN_18066d370();
             }
             item_count = (int)data_index + 1;
-            data_index = (ulonglong)item_count;
+            data_index = (uint64_t)item_count;
             loop_counter = loop_counter + 8;
         } while ((int)item_count < *(int *)(context_base + 0xbb4));
     }
     
     // 分配扩展数据缓冲区（四级缓冲区）
-    allocated_memory = FUN_18066e8f0(8, (longlong)*(int *)(context_base + 0xbb4));
-    *(longlong *)(context_base + 0x43c0) = allocated_memory;
+    allocated_memory = FUN_18066e8f0(8, (int64_t)*(int *)(context_base + 0xbb4));
+    *(int64_t *)(context_base + 0x43c0) = allocated_memory;
     if (allocated_memory == 0) {
         FUN_18066d370();
     }
@@ -1124,20 +1124,20 @@ void ui_system_setup_data_processing(uint64_t system_context, uint64_t data_size
         data_index = buffer_index;
         loop_counter = buffer_index;
         do {
-            temp_pointer = FUN_18066e960(0x10, (longlong)(((int)item_count >> 1) + 0x20));
-            *(uint64_t *)(data_index + *(longlong *)(context_base + 0x43c0)) = temp_pointer;
-            if (*(longlong *)(data_index + *(longlong *)(context_base + 0x43c0)) == 0) {
+            temp_pointer = FUN_18066e960(0x10, (int64_t)(((int)item_count >> 1) + 0x20));
+            *(uint64_t *)(data_index + *(int64_t *)(context_base + 0x43c0)) = temp_pointer;
+            if (*(int64_t *)(data_index + *(int64_t *)(context_base + 0x43c0)) == 0) {
                 FUN_18066d370();
             }
             item_count = (int)loop_counter + 1;
-            loop_counter = (ulonglong)item_count;
+            loop_counter = (uint64_t)item_count;
             data_index = data_index + 8;
         } while ((int)item_count < *(int *)(context_base + 0xbb4));
     }
     
     // 分配控制数据缓冲区
-    allocated_memory = FUN_18066e8f0(8, (longlong)*(int *)(context_base + 0xbb4));
-    *(longlong *)(context_base + 0x43c8) = allocated_memory;
+    allocated_memory = FUN_18066e8f0(8, (int64_t)*(int *)(context_base + 0xbb4));
+    *(int64_t *)(context_base + 0x43c8) = allocated_memory;
     if (allocated_memory == 0) {
         FUN_18066d370();
     }
@@ -1148,19 +1148,19 @@ void ui_system_setup_data_processing(uint64_t system_context, uint64_t data_size
     if (0 < *(int *)(context_base + 0xbb4)) {
         do {
             temp_pointer = FUN_18066e8f0(0x10, 1);
-            *(uint64_t *)(data_index + *(longlong *)(context_base + 0x43c8)) = temp_pointer;
-            if (*(longlong *)(data_index + *(longlong *)(context_base + 0x43c8)) == 0) {
+            *(uint64_t *)(data_index + *(int64_t *)(context_base + 0x43c8)) = temp_pointer;
+            if (*(int64_t *)(data_index + *(int64_t *)(context_base + 0x43c8)) == 0) {
                 FUN_18066d370();
             }
             item_count = (int)loop_counter + 1;
             data_index = data_index + 8;
-            loop_counter = (ulonglong)item_count;
+            loop_counter = (uint64_t)item_count;
         } while ((int)item_count < *(int *)(context_base + 0xbb4));
     }
     
     // 分配状态数据缓冲区
-    allocated_memory = FUN_18066e8f0(8, (longlong)*(int *)(context_base + 0xbb4));
-    *(longlong *)(context_base + 0x43d0) = allocated_memory;
+    allocated_memory = FUN_18066e8f0(8, (int64_t)*(int *)(context_base + 0xbb4));
+    *(int64_t *)(context_base + 0x43d0) = allocated_memory;
     if (allocated_memory == 0) {
         FUN_18066d370();
     }
@@ -1171,19 +1171,19 @@ void ui_system_setup_data_processing(uint64_t system_context, uint64_t data_size
     if (0 < *(int *)(context_base + 0xbb4)) {
         do {
             temp_pointer = FUN_18066e8f0(8);
-            *(uint64_t *)(data_index + *(longlong *)(context_base + 0x43d0)) = temp_pointer;
-            if (*(longlong *)(data_index + *(longlong *)(context_base + 0x43d0)) == 0) {
+            *(uint64_t *)(data_index + *(int64_t *)(context_base + 0x43d0)) = temp_pointer;
+            if (*(int64_t *)(data_index + *(int64_t *)(context_base + 0x43d0)) == 0) {
                 FUN_18066d370();
             }
             item_count = (int)loop_counter + 1;
             data_index = data_index + 8;
-            loop_counter = (ulonglong)item_count;
+            loop_counter = (uint64_t)item_count;
         } while ((int)item_count < *(int *)(context_base + 0xbb4));
     }
     
     // 分配状态数据缓冲区（次级缓冲区）
-    allocated_memory = FUN_18066e8f0(8, (longlong)*(int *)(context_base + 0xbb4));
-    *(longlong *)(context_base + 0x43d8) = allocated_memory;
+    allocated_memory = FUN_18066e8f0(8, (int64_t)*(int *)(context_base + 0xbb4));
+    *(int64_t *)(context_base + 0x43d8) = allocated_memory;
     if (allocated_memory == 0) {
         FUN_18066d370();
     }
@@ -1193,12 +1193,12 @@ void ui_system_setup_data_processing(uint64_t system_context, uint64_t data_size
     if (0 < *(int *)(context_base + 0xbb4)) {
         do {
             temp_pointer = FUN_18066e8f0(8);
-            *(uint64_t *)(data_index + *(longlong *)(context_base + 0x43d8)) = temp_pointer;
-            if (*(longlong *)(data_index + *(longlong *)(context_base + 0x43d8)) == 0) {
+            *(uint64_t *)(data_index + *(int64_t *)(context_base + 0x43d8)) = temp_pointer;
+            if (*(int64_t *)(data_index + *(int64_t *)(context_base + 0x43d8)) == 0) {
                 FUN_18066d370();
             }
             item_count = (int)buffer_index + 1;
-            buffer_index = (ulonglong)item_count;
+            buffer_index = (uint64_t)item_count;
             data_index = data_index + 8;
         } while ((int)item_count < *(int *)(context_base + 0xbb4));
     }

@@ -10,55 +10,55 @@
  * @param material_context 材质上下文指针，包含材质的各个属性
  * @param data_buffer 数据缓冲区指针，用于存储序列化后的数据
  */
-void serialize_rendering_material_data(longlong material_context, longlong *data_buffer)
+void serialize_rendering_material_data(int64_t material_context, int64_t *data_buffer)
 
 {
   int8_t material_flag;
   int32_t texture_id;
-  longlong range_size;
-  longlong texture_count;
+  int64_t range_size;
+  int64_t texture_count;
   int8_t *buffer_ptr;
   int32_t *data_ptr;
   int *count_ptr;
   uint texture_index;
-  ulonglong loop_counter;
-  ulonglong start_offset;
-  ulonglong current_offset;
+  uint64_t loop_counter;
+  uint64_t start_offset;
+  uint64_t current_offset;
   
   data_ptr = (int32_t *)data_buffer[1];
-  if ((ulonglong)((*data_buffer - (longlong)data_ptr) + data_buffer[2]) < 5) {
-    ensure_buffer_capacity(data_buffer,(longlong)data_ptr + (4 - *data_buffer));
+  if ((uint64_t)((*data_buffer - (int64_t)data_ptr) + data_buffer[2]) < 5) {
+    ensure_buffer_capacity(data_buffer,(int64_t)data_ptr + (4 - *data_buffer));
     data_ptr = (int32_t *)data_buffer[1];
   }
   current_offset = 0;
   *data_ptr = 0;
   data_buffer[1] = data_buffer[1] + 4;
-  range_size = *(longlong *)(material_context + 0x28) - *(longlong *)(material_context + 0x20);
+  range_size = *(int64_t *)(material_context + 0x28) - *(int64_t *)(material_context + 0x20);
   count_ptr = (int *)data_buffer[1];
   range_size = range_size / 0x26 + (range_size >> 0x3f);
-  if ((ulonglong)((*data_buffer - (longlong)count_ptr) + data_buffer[2]) < 5) {
-    ensure_buffer_capacity(data_buffer,(longlong)count_ptr + (4 - *data_buffer));
+  if ((uint64_t)((*data_buffer - (int64_t)count_ptr) + data_buffer[2]) < 5) {
+    ensure_buffer_capacity(data_buffer,(int64_t)count_ptr + (4 - *data_buffer));
     count_ptr = (int *)data_buffer[1];
   }
   *count_ptr = (int)(range_size >> 2) - (int)(range_size >> 0x3f);
   data_buffer[1] = data_buffer[1] + 4;
-  texture_count = *(longlong *)(material_context + 0x28) - *(longlong *)(material_context + 0x20);
+  texture_count = *(int64_t *)(material_context + 0x28) - *(int64_t *)(material_context + 0x20);
   range_size = texture_count >> 0x3f;
   loop_counter = current_offset;
   start_offset = current_offset;
   if (texture_count / 0x98 + range_size != range_size) {
     do {
-      serialize_texture_data(data_buffer,start_offset * 0x98 + *(longlong *)(material_context + 0x20));
+      serialize_texture_data(data_buffer,start_offset * 0x98 + *(int64_t *)(material_context + 0x20));
       texture_index = (int)loop_counter + 1;
-      loop_counter = (ulonglong)texture_index;
-      start_offset = (longlong)(int)texture_index;
-    } while ((ulonglong)(longlong)(int)texture_index <
-             (ulonglong)((*(longlong *)(material_context + 0x28) - *(longlong *)(material_context + 0x20)) / 0x98));
+      loop_counter = (uint64_t)texture_index;
+      start_offset = (int64_t)(int)texture_index;
+    } while ((uint64_t)(int64_t)(int)texture_index <
+             (uint64_t)((*(int64_t *)(material_context + 0x28) - *(int64_t *)(material_context + 0x20)) / 0x98));
   }
   serialize_texture_data(data_buffer,material_context + 0x40);
   buffer_ptr = (int8_t *)data_buffer[1];
   material_flag = *(int8_t *)(material_context + 0xd8);
-  if ((ulonglong)((*data_buffer - (longlong)buffer_ptr) + data_buffer[2]) < 2) {
+  if ((uint64_t)((*data_buffer - (int64_t)buffer_ptr) + data_buffer[2]) < 2) {
     ensure_buffer_capacity(data_buffer,buffer_ptr + (1 - *data_buffer));
     buffer_ptr = (int8_t *)data_buffer[1];
   }
@@ -66,34 +66,34 @@ void serialize_rendering_material_data(longlong material_context, longlong *data
   data_buffer[1] = data_buffer[1] + 1;
   data_ptr = (int32_t *)data_buffer[1];
   texture_id = *(int32_t *)(material_context + 0xdc);
-  if ((ulonglong)((*data_buffer - (longlong)data_ptr) + data_buffer[2]) < 5) {
-    ensure_buffer_capacity(data_buffer,(longlong)data_ptr + (4 - *data_buffer));
+  if ((uint64_t)((*data_buffer - (int64_t)data_ptr) + data_buffer[2]) < 5) {
+    ensure_buffer_capacity(data_buffer,(int64_t)data_ptr + (4 - *data_buffer));
     data_ptr = (int32_t *)data_buffer[1];
   }
   *data_ptr = texture_id;
   data_buffer[1] = data_buffer[1] + 4;
   serialize_texture_data(data_buffer,material_context + 0xe0);
-  range_size = *(longlong *)(material_context + 0x180) - *(longlong *)(material_context + 0x178);
+  range_size = *(int64_t *)(material_context + 0x180) - *(int64_t *)(material_context + 0x178);
   range_size = range_size / 0x26 + (range_size >> 0x3f);
   count_ptr = (int *)data_buffer[1];
-  if ((ulonglong)((*data_buffer - (longlong)count_ptr) + data_buffer[2]) < 5) {
-    ensure_buffer_capacity(data_buffer,(longlong)count_ptr + (4 - *data_buffer));
+  if ((uint64_t)((*data_buffer - (int64_t)count_ptr) + data_buffer[2]) < 5) {
+    ensure_buffer_capacity(data_buffer,(int64_t)count_ptr + (4 - *data_buffer));
     count_ptr = (int *)data_buffer[1];
   }
   *count_ptr = (int)(range_size >> 2) - (int)(range_size >> 0x3f);
   data_buffer[1] = data_buffer[1] + 4;
-  texture_count = *(longlong *)(material_context + 0x180) - *(longlong *)(material_context + 0x178);
+  texture_count = *(int64_t *)(material_context + 0x180) - *(int64_t *)(material_context + 0x178);
   range_size = texture_count >> 0x3f;
   loop_counter = current_offset;
   start_offset = current_offset;
   if (texture_count / 0x98 + range_size != range_size) {
     do {
-      serialize_texture_data(data_buffer,start_offset * 0x98 + *(longlong *)(material_context + 0x178));
+      serialize_texture_data(data_buffer,start_offset * 0x98 + *(int64_t *)(material_context + 0x178));
       texture_index = (int)loop_counter + 1;
-      loop_counter = (ulonglong)texture_index;
-      start_offset = (longlong)(int)texture_index;
-    } while ((ulonglong)(longlong)(int)texture_index <
-             (ulonglong)((*(longlong *)(material_context + 0x180) - *(longlong *)(material_context + 0x178)) / 0x98));
+      loop_counter = (uint64_t)texture_index;
+      start_offset = (int64_t)(int)texture_index;
+    } while ((uint64_t)(int64_t)(int)texture_index <
+             (uint64_t)((*(int64_t *)(material_context + 0x180) - *(int64_t *)(material_context + 0x178)) / 0x98));
   }
   range_size = material_context + 0x198;
   texture_count = 5;
@@ -102,27 +102,27 @@ void serialize_rendering_material_data(longlong material_context, longlong *data
     range_size = range_size + 0x98;
     texture_count = texture_count + -1;
   } while (texture_count != 0);
-  range_size = *(longlong *)(material_context + 0x498) - *(longlong *)(material_context + 0x490);
+  range_size = *(int64_t *)(material_context + 0x498) - *(int64_t *)(material_context + 0x490);
   range_size = range_size / 0x26 + (range_size >> 0x3f);
   count_ptr = (int *)data_buffer[1];
-  if ((ulonglong)((*data_buffer - (longlong)count_ptr) + data_buffer[2]) < 5) {
-    ensure_buffer_capacity(data_buffer,(longlong)count_ptr + (4 - *data_buffer));
+  if ((uint64_t)((*data_buffer - (int64_t)count_ptr) + data_buffer[2]) < 5) {
+    ensure_buffer_capacity(data_buffer,(int64_t)count_ptr + (4 - *data_buffer));
     count_ptr = (int *)data_buffer[1];
   }
   *count_ptr = (int)(range_size >> 2) - (int)(range_size >> 0x3f);
   data_buffer[1] = data_buffer[1] + 4;
-  texture_count = *(longlong *)(material_context + 0x498) - *(longlong *)(material_context + 0x490);
+  texture_count = *(int64_t *)(material_context + 0x498) - *(int64_t *)(material_context + 0x490);
   range_size = texture_count >> 0x3f;
   loop_counter = current_offset;
   start_offset = current_offset;
   if (texture_count / 0x98 + range_size != range_size) {
     do {
-      serialize_texture_data(data_buffer,start_offset * 0x98 + *(longlong *)(material_context + 0x490));
+      serialize_texture_data(data_buffer,start_offset * 0x98 + *(int64_t *)(material_context + 0x490));
       texture_index = (int)loop_counter + 1;
-      loop_counter = (ulonglong)texture_index;
-      start_offset = (longlong)(int)texture_index;
-    } while ((ulonglong)(longlong)(int)texture_index <
-             (ulonglong)((*(longlong *)(material_context + 0x498) - *(longlong *)(material_context + 0x490)) / 0x98));
+      loop_counter = (uint64_t)texture_index;
+      start_offset = (int64_t)(int)texture_index;
+    } while ((uint64_t)(int64_t)(int)texture_index <
+             (uint64_t)((*(int64_t *)(material_context + 0x498) - *(int64_t *)(material_context + 0x490)) / 0x98));
   }
   range_size = material_context + 0xa30;
   texture_count = 9;
@@ -133,33 +133,33 @@ void serialize_rendering_material_data(longlong material_context, longlong *data
   } while (texture_count != 0);
   serialize_texture_data(data_buffer,material_context + 0xf88);
   serialize_texture_data(data_buffer,material_context + 0x1020);
-  range_size = *(longlong *)(material_context + 0x10c0) - *(longlong *)(material_context + 0x10b8);
+  range_size = *(int64_t *)(material_context + 0x10c0) - *(int64_t *)(material_context + 0x10b8);
   range_size = range_size / 0x26 + (range_size >> 0x3f);
   count_ptr = (int *)data_buffer[1];
-  if ((ulonglong)((*data_buffer - (longlong)count_ptr) + data_buffer[2]) < 5) {
-    ensure_buffer_capacity(data_buffer,(longlong)count_ptr + (4 - *data_buffer));
+  if ((uint64_t)((*data_buffer - (int64_t)count_ptr) + data_buffer[2]) < 5) {
+    ensure_buffer_capacity(data_buffer,(int64_t)count_ptr + (4 - *data_buffer));
     count_ptr = (int *)data_buffer[1];
   }
   *count_ptr = (int)(range_size >> 2) - (int)(range_size >> 0x3f);
   data_buffer[1] = data_buffer[1] + 4;
-  texture_count = *(longlong *)(material_context + 0x10c0) - *(longlong *)(material_context + 0x10b8);
+  texture_count = *(int64_t *)(material_context + 0x10c0) - *(int64_t *)(material_context + 0x10b8);
   range_size = texture_count >> 0x3f;
   loop_counter = current_offset;
   start_offset = current_offset;
   if (texture_count / 0x98 + range_size != range_size) {
     do {
-      serialize_texture_data(data_buffer,start_offset * 0x98 + *(longlong *)(material_context + 0x10b8));
+      serialize_texture_data(data_buffer,start_offset * 0x98 + *(int64_t *)(material_context + 0x10b8));
       texture_index = (int)loop_counter + 1;
-      loop_counter = (ulonglong)texture_index;
-      start_offset = (longlong)(int)texture_index;
-    } while ((ulonglong)(longlong)(int)texture_index <
-             (ulonglong)((*(longlong *)(material_context + 0x10c0) - *(longlong *)(material_context + 0x10b8)) / 0x98)
+      loop_counter = (uint64_t)texture_index;
+      start_offset = (int64_t)(int)texture_index;
+    } while ((uint64_t)(int64_t)(int)texture_index <
+             (uint64_t)((*(int64_t *)(material_context + 0x10c0) - *(int64_t *)(material_context + 0x10b8)) / 0x98)
             );
   }
   serialize_texture_data(data_buffer,material_context + 0x10d8);
   buffer_ptr = (int8_t *)data_buffer[1];
   material_flag = *(int8_t *)(material_context + 0x10f9);
-  if ((ulonglong)((*data_buffer - (longlong)buffer_ptr) + data_buffer[2]) < 2) {
+  if ((uint64_t)((*data_buffer - (int64_t)buffer_ptr) + data_buffer[2]) < 2) {
     ensure_buffer_capacity(data_buffer,buffer_ptr + (1 - *data_buffer));
     buffer_ptr = (int8_t *)data_buffer[1];
   }
@@ -175,8 +175,8 @@ void serialize_rendering_material_data(longlong material_context, longlong *data
     serialize_texture_data(data_buffer,material_context + 0x13f8);
     data_ptr = (int32_t *)data_buffer[1];
   }
-  if ((ulonglong)((*data_buffer - (longlong)data_ptr) + data_buffer[2]) < 5) {
-    ensure_buffer_capacity(data_buffer,(longlong)data_ptr + (4 - *data_buffer));
+  if ((uint64_t)((*data_buffer - (int64_t)data_ptr) + data_buffer[2]) < 5) {
+    ensure_buffer_capacity(data_buffer,(int64_t)data_ptr + (4 - *data_buffer));
     data_ptr = (int32_t *)data_buffer[1];
   }
   *data_ptr = 0x10;
@@ -184,15 +184,15 @@ void serialize_rendering_material_data(longlong material_context, longlong *data
   material_context = material_context + 0x4b0;
   do {
     count_ptr = (int *)data_buffer[1];
-    if ((ulonglong)((*data_buffer - (longlong)count_ptr) + data_buffer[2]) < 5) {
-      ensure_buffer_capacity(data_buffer,(longlong)count_ptr + (4 - *data_buffer));
+    if ((uint64_t)((*data_buffer - (int64_t)count_ptr) + data_buffer[2]) < 5) {
+      ensure_buffer_capacity(data_buffer,(int64_t)count_ptr + (4 - *data_buffer));
       count_ptr = (int *)data_buffer[1];
     }
     *count_ptr = (int)current_offset;
     data_buffer[1] = data_buffer[1] + 4;
     serialize_texture_data(data_buffer,material_context);
     texture_index = (int)current_offset + 1;
-    current_offset = (ulonglong)texture_index;
+    current_offset = (uint64_t)texture_index;
     material_context = material_context + 0x58;
   } while ((int)texture_index < 0x10);
   return;
@@ -343,36 +343,36 @@ int32_t * initialize_rendering_resource_pool(int32_t *resource_pool)
  * @param flags 序列化标志，控制序列化行为
  * @param config 配置参数，影响序列化过程
  */
-void serialize_rendering_scene_data(longlong scene_data,longlong *data_buffer,uint64_t flags,uint64_t config)
+void serialize_rendering_scene_data(int64_t scene_data,int64_t *data_buffer,uint64_t flags,uint64_t config)
 
 {
   int8_t scene_flag;
   int32_t object_id;
-  longlong data_size;
+  int64_t data_size;
   int8_t *buffer_ptr;
   int32_t *data_ptr;
   int *count_ptr;
   int object_count;
   uint object_index;
-  ulonglong loop_counter;
+  uint64_t loop_counter;
   int array_size;
-  longlong array_start;
-  ulonglong uVar12;
+  int64_t array_start;
+  uint64_t uVar12;
   uint64_t unaff_RDI;
-  ulonglong uVar13;
+  uint64_t uVar13;
   uint64_t unaff_R14;
   uint64_t unaff_R15;
   
   data_ptr = (int32_t *)data_buffer[1];
-  if ((ulonglong)((data_buffer[2] - (longlong)data_ptr) + *data_buffer) < 5) {
-    ensure_buffer_capacity(data_buffer,(longlong)data_ptr + (4 - *data_buffer));
+  if ((uint64_t)((data_buffer[2] - (int64_t)data_ptr) + *data_buffer) < 5) {
+    ensure_buffer_capacity(data_buffer,(int64_t)data_ptr + (4 - *data_buffer));
     data_ptr = (int32_t *)data_buffer[1];
   }
   *data_ptr = 0;
   data_buffer[1] = data_buffer[1] + 4;
   data_ptr = (int32_t *)data_buffer[1];
-  if ((ulonglong)((*data_buffer - (longlong)data_ptr) + data_buffer[2]) < 5) {
-    ensure_buffer_capacity(data_buffer,(longlong)data_ptr + (4 - *data_buffer));
+  if ((uint64_t)((*data_buffer - (int64_t)data_ptr) + data_buffer[2]) < 5) {
+    ensure_buffer_capacity(data_buffer,(int64_t)data_ptr + (4 - *data_buffer));
     data_ptr = (int32_t *)data_buffer[1];
   }
   *data_ptr = 1;
@@ -387,34 +387,34 @@ void serialize_rendering_scene_data(longlong scene_data,longlong *data_buffer,ui
   serialize_texture_data(data_buffer,scene_data + 0xd0);
   serialize_texture_data(data_buffer,scene_data + 0xf0);
   serialize_texture_data(data_buffer,scene_data + 0x110);
-  data_size = *(longlong *)(scene_data + 0x138) - *(longlong *)(scene_data + 0x130);
+  data_size = *(int64_t *)(scene_data + 0x138) - *(int64_t *)(scene_data + 0x130);
   data_size = data_size / 6 + (data_size >> 0x3f);
   count_ptr = (int *)data_buffer[1];
   array_size = (int)(data_size >> 4) - (int)(data_size >> 0x3f);
-  if ((ulonglong)((*data_buffer - (longlong)count_ptr) + data_buffer[2]) < 5) {
-    ensure_buffer_capacity(data_buffer,(longlong)count_ptr + (4 - *data_buffer));
+  if ((uint64_t)((*data_buffer - (int64_t)count_ptr) + data_buffer[2]) < 5) {
+    ensure_buffer_capacity(data_buffer,(int64_t)count_ptr + (4 - *data_buffer));
     count_ptr = (int *)data_buffer[1];
   }
   *count_ptr = array_size;
   object_count = 0;
   data_buffer[1] = data_buffer[1] + 4;
-  data_size = (longlong)array_size;
+  data_size = (int64_t)array_size;
   if (0 < array_size) {
     array_start = 0;
     do {
-      serialize_texture_data(data_buffer,(longlong)object_count * 0x60 + *(longlong *)(scene_data + 0x130));
+      serialize_texture_data(data_buffer,(int64_t)object_count * 0x60 + *(int64_t *)(scene_data + 0x130));
       data_ptr = (int32_t *)data_buffer[1];
-      object_id = *(int32_t *)(array_start + 0x58 + *(longlong *)(scene_data + 0x130));
-      if ((ulonglong)((*data_buffer - (longlong)data_ptr) + data_buffer[2]) < 5) {
-        ensure_buffer_capacity(data_buffer,(longlong)data_ptr + (4 - *data_buffer));
+      object_id = *(int32_t *)(array_start + 0x58 + *(int64_t *)(scene_data + 0x130));
+      if ((uint64_t)((*data_buffer - (int64_t)data_ptr) + data_buffer[2]) < 5) {
+        ensure_buffer_capacity(data_buffer,(int64_t)data_ptr + (4 - *data_buffer));
         data_ptr = (int32_t *)data_buffer[1];
       }
       *data_ptr = object_id;
       data_buffer[1] = data_buffer[1] + 4;
       data_ptr = (int32_t *)data_buffer[1];
-      object_id = *(int32_t *)(array_start + 0x5c + *(longlong *)(scene_data + 0x130));
-      if ((ulonglong)((*data_buffer - (longlong)data_ptr) + data_buffer[2]) < 5) {
-        ensure_buffer_capacity(data_buffer,(longlong)data_ptr + (4 - *data_buffer));
+      object_id = *(int32_t *)(array_start + 0x5c + *(int64_t *)(scene_data + 0x130));
+      if ((uint64_t)((*data_buffer - (int64_t)data_ptr) + data_buffer[2]) < 5) {
+        ensure_buffer_capacity(data_buffer,(int64_t)data_ptr + (4 - *data_buffer));
         data_ptr = (int32_t *)data_buffer[1];
       }
       *data_ptr = object_id;
@@ -442,7 +442,7 @@ void serialize_rendering_scene_data(longlong scene_data,longlong *data_buffer,ui
   serialize_rendering_light_data(&RENDERING_LIGHT_TABLE,*(int32_t *)(scene_data + 2000),data_buffer);
   buffer_ptr = (int8_t *)data_buffer[1];
   scene_flag = *(int8_t *)(scene_data + 0x7d4);
-  if ((ulonglong)((*data_buffer - (longlong)buffer_ptr) + data_buffer[2]) < 2) {
+  if ((uint64_t)((*data_buffer - (int64_t)buffer_ptr) + data_buffer[2]) < 2) {
     ensure_buffer_capacity(data_buffer,buffer_ptr + (1 - *data_buffer));
     buffer_ptr = (int8_t *)data_buffer[1];
   }
@@ -452,40 +452,40 @@ void serialize_rendering_scene_data(longlong scene_data,longlong *data_buffer,ui
     return;
   }
   data_ptr = (int32_t *)data_buffer[1];
-  if ((ulonglong)((*data_buffer - (longlong)data_ptr) + data_buffer[2]) < 5) {
-    ensure_buffer_capacity(data_buffer,(longlong)data_ptr + (4 - *data_buffer));
+  if ((uint64_t)((*data_buffer - (int64_t)data_ptr) + data_buffer[2]) < 5) {
+    ensure_buffer_capacity(data_buffer,(int64_t)data_ptr + (4 - *data_buffer));
     data_ptr = (int32_t *)data_buffer[1];
   }
   uVar12 = 0;
   *data_ptr = 0;
   data_buffer[1] = data_buffer[1] + 4;
-  data_size = *(longlong *)(scene_data + 0x800) - *(longlong *)(scene_data + 0x7f8);
+  data_size = *(int64_t *)(scene_data + 0x800) - *(int64_t *)(scene_data + 0x7f8);
   count_ptr = (int *)data_buffer[1];
   data_size = data_size / 0x26 + (data_size >> 0x3f);
-  if ((ulonglong)((*data_buffer - (longlong)count_ptr) + data_buffer[2]) < 5) {
-    array_start = (longlong)count_ptr - *data_buffer;
+  if ((uint64_t)((*data_buffer - (int64_t)count_ptr) + data_buffer[2]) < 5) {
+    array_start = (int64_t)count_ptr - *data_buffer;
     ensure_buffer_capacity(data_buffer,array_start + 4,array_start,config,unaff_R15,unaff_R14,unaff_RDI);
     count_ptr = (int *)data_buffer[1];
   }
   *count_ptr = (int)(data_size >> 2) - (int)(data_size >> 0x3f);
   data_buffer[1] = data_buffer[1] + 4;
-  array_start = *(longlong *)(scene_data + 0x800) - *(longlong *)(scene_data + 0x7f8);
+  array_start = *(int64_t *)(scene_data + 0x800) - *(int64_t *)(scene_data + 0x7f8);
   data_size = array_start >> 0x3f;
   loop_counter = uVar12;
   uVar13 = uVar12;
   if (array_start / 0x98 + data_size != data_size) {
     do {
-      serialize_texture_data(data_buffer,uVar13 * 0x98 + *(longlong *)(scene_data + 0x7f8));
+      serialize_texture_data(data_buffer,uVar13 * 0x98 + *(int64_t *)(scene_data + 0x7f8));
       object_index = (int)loop_counter + 1;
-      loop_counter = (ulonglong)object_index;
-      uVar13 = (longlong)(int)object_index;
-    } while ((ulonglong)(longlong)(int)object_index <
-             (ulonglong)((*(longlong *)(scene_data + 0x800) - *(longlong *)(scene_data + 0x7f8)) / 0x98));
+      loop_counter = (uint64_t)object_index;
+      uVar13 = (int64_t)(int)object_index;
+    } while ((uint64_t)(int64_t)(int)object_index <
+             (uint64_t)((*(int64_t *)(scene_data + 0x800) - *(int64_t *)(scene_data + 0x7f8)) / 0x98));
   }
   serialize_texture_data(data_buffer,scene_data + 0x818);
   buffer_ptr = (int8_t *)data_buffer[1];
   scene_flag = *(int8_t *)(scene_data + 0x8b0);
-  if ((ulonglong)((*data_buffer - (longlong)buffer_ptr) + data_buffer[2]) < 2) {
+  if ((uint64_t)((*data_buffer - (int64_t)buffer_ptr) + data_buffer[2]) < 2) {
     ensure_buffer_capacity(data_buffer,buffer_ptr + (1 - *data_buffer));
     buffer_ptr = (int8_t *)data_buffer[1];
   }
@@ -493,34 +493,34 @@ void serialize_rendering_scene_data(longlong scene_data,longlong *data_buffer,ui
   data_buffer[1] = data_buffer[1] + 1;
   data_ptr = (int32_t *)data_buffer[1];
   object_id = *(int32_t *)(scene_data + 0x8b4);
-  if ((ulonglong)((*data_buffer - (longlong)data_ptr) + data_buffer[2]) < 5) {
-    ensure_buffer_capacity(data_buffer,(longlong)data_ptr + (4 - *data_buffer));
+  if ((uint64_t)((*data_buffer - (int64_t)data_ptr) + data_buffer[2]) < 5) {
+    ensure_buffer_capacity(data_buffer,(int64_t)data_ptr + (4 - *data_buffer));
     data_ptr = (int32_t *)data_buffer[1];
   }
   *data_ptr = object_id;
   data_buffer[1] = data_buffer[1] + 4;
   serialize_texture_data(data_buffer,scene_data + 0x8b8);
-  data_size = *(longlong *)(scene_data + 0x958) - *(longlong *)(scene_data + 0x950);
+  data_size = *(int64_t *)(scene_data + 0x958) - *(int64_t *)(scene_data + 0x950);
   data_size = data_size / 0x26 + (data_size >> 0x3f);
   count_ptr = (int *)data_buffer[1];
-  if ((ulonglong)((*data_buffer - (longlong)count_ptr) + data_buffer[2]) < 5) {
-    ensure_buffer_capacity(data_buffer,(longlong)count_ptr + (4 - *data_buffer));
+  if ((uint64_t)((*data_buffer - (int64_t)count_ptr) + data_buffer[2]) < 5) {
+    ensure_buffer_capacity(data_buffer,(int64_t)count_ptr + (4 - *data_buffer));
     count_ptr = (int *)data_buffer[1];
   }
   *count_ptr = (int)(data_size >> 2) - (int)(data_size >> 0x3f);
   data_buffer[1] = data_buffer[1] + 4;
-  array_start = *(longlong *)(scene_data + 0x958) - *(longlong *)(scene_data + 0x950);
+  array_start = *(int64_t *)(scene_data + 0x958) - *(int64_t *)(scene_data + 0x950);
   data_size = array_start >> 0x3f;
   loop_counter = uVar12;
   uVar13 = uVar12;
   if (array_start / 0x98 + data_size != data_size) {
     do {
-      serialize_texture_data(data_buffer,uVar13 * 0x98 + *(longlong *)(scene_data + 0x950));
+      serialize_texture_data(data_buffer,uVar13 * 0x98 + *(int64_t *)(scene_data + 0x950));
       object_index = (int)loop_counter + 1;
-      loop_counter = (ulonglong)object_index;
-      uVar13 = (longlong)(int)object_index;
-    } while ((ulonglong)(longlong)(int)object_index <
-             (ulonglong)((*(longlong *)(scene_data + 0x958) - *(longlong *)(scene_data + 0x950)) / 0x98));
+      loop_counter = (uint64_t)object_index;
+      uVar13 = (int64_t)(int)object_index;
+    } while ((uint64_t)(int64_t)(int)object_index <
+             (uint64_t)((*(int64_t *)(scene_data + 0x958) - *(int64_t *)(scene_data + 0x950)) / 0x98));
   }
   data_size = scene_data + 0x970;
   array_start = 5;
@@ -529,27 +529,27 @@ void serialize_rendering_scene_data(longlong scene_data,longlong *data_buffer,ui
     data_size = data_size + 0x98;
     array_start = array_start + -1;
   } while (array_start != 0);
-  data_size = *(longlong *)(scene_data + 0xc70) - *(longlong *)(scene_data + 0xc68);
+  data_size = *(int64_t *)(scene_data + 0xc70) - *(int64_t *)(scene_data + 0xc68);
   data_size = data_size / 0x26 + (data_size >> 0x3f);
   count_ptr = (int *)data_buffer[1];
-  if ((ulonglong)((*data_buffer - (longlong)count_ptr) + data_buffer[2]) < 5) {
-    ensure_buffer_capacity(data_buffer,(longlong)count_ptr + (4 - *data_buffer));
+  if ((uint64_t)((*data_buffer - (int64_t)count_ptr) + data_buffer[2]) < 5) {
+    ensure_buffer_capacity(data_buffer,(int64_t)count_ptr + (4 - *data_buffer));
     count_ptr = (int *)data_buffer[1];
   }
   *count_ptr = (int)(data_size >> 2) - (int)(data_size >> 0x3f);
   data_buffer[1] = data_buffer[1] + 4;
-  array_start = *(longlong *)(scene_data + 0xc70) - *(longlong *)(scene_data + 0xc68);
+  array_start = *(int64_t *)(scene_data + 0xc70) - *(int64_t *)(scene_data + 0xc68);
   data_size = array_start >> 0x3f;
   loop_counter = uVar12;
   uVar13 = uVar12;
   if (array_start / 0x98 + data_size != data_size) {
     do {
-      serialize_texture_data(data_buffer,uVar13 * 0x98 + *(longlong *)(scene_data + 0xc68));
+      serialize_texture_data(data_buffer,uVar13 * 0x98 + *(int64_t *)(scene_data + 0xc68));
       object_index = (int)loop_counter + 1;
-      loop_counter = (ulonglong)object_index;
-      uVar13 = (longlong)(int)object_index;
-    } while ((ulonglong)(longlong)(int)object_index <
-             (ulonglong)((*(longlong *)(scene_data + 0xc70) - *(longlong *)(scene_data + 0xc68)) / 0x98));
+      loop_counter = (uint64_t)object_index;
+      uVar13 = (int64_t)(int)object_index;
+    } while ((uint64_t)(int64_t)(int)object_index <
+             (uint64_t)((*(int64_t *)(scene_data + 0xc70) - *(int64_t *)(scene_data + 0xc68)) / 0x98));
   }
   data_size = scene_data + 0x1208;
   array_start = 9;
@@ -560,33 +560,33 @@ void serialize_rendering_scene_data(longlong scene_data,longlong *data_buffer,ui
   } while (array_start != 0);
   serialize_texture_data(data_buffer,scene_data + 0x1760);
   serialize_texture_data(data_buffer,scene_data + 0x17f8);
-  data_size = *(longlong *)(scene_data + 0x1898) - *(longlong *)(scene_data + 0x1890);
+  data_size = *(int64_t *)(scene_data + 0x1898) - *(int64_t *)(scene_data + 0x1890);
   data_size = data_size / 0x26 + (data_size >> 0x3f);
   count_ptr = (int *)data_buffer[1];
-  if ((ulonglong)((*data_buffer - (longlong)count_ptr) + data_buffer[2]) < 5) {
-    ensure_buffer_capacity(data_buffer,(longlong)count_ptr + (4 - *data_buffer));
+  if ((uint64_t)((*data_buffer - (int64_t)count_ptr) + data_buffer[2]) < 5) {
+    ensure_buffer_capacity(data_buffer,(int64_t)count_ptr + (4 - *data_buffer));
     count_ptr = (int *)data_buffer[1];
   }
   *count_ptr = (int)(data_size >> 2) - (int)(data_size >> 0x3f);
   data_buffer[1] = data_buffer[1] + 4;
-  array_start = *(longlong *)(scene_data + 0x1898) - *(longlong *)(scene_data + 0x1890);
+  array_start = *(int64_t *)(scene_data + 0x1898) - *(int64_t *)(scene_data + 0x1890);
   data_size = array_start >> 0x3f;
   loop_counter = uVar12;
   uVar13 = uVar12;
   if (array_start / 0x98 + data_size != data_size) {
     do {
-      serialize_texture_data(data_buffer,uVar13 * 0x98 + *(longlong *)(scene_data + 0x1890));
+      serialize_texture_data(data_buffer,uVar13 * 0x98 + *(int64_t *)(scene_data + 0x1890));
       object_index = (int)loop_counter + 1;
-      loop_counter = (ulonglong)object_index;
-      uVar13 = (longlong)(int)object_index;
-    } while ((ulonglong)(longlong)(int)object_index <
-             (ulonglong)((*(longlong *)(scene_data + 0x1898) - *(longlong *)(scene_data + 0x1890)) / 0x98)
+      loop_counter = (uint64_t)object_index;
+      uVar13 = (int64_t)(int)object_index;
+    } while ((uint64_t)(int64_t)(int)object_index <
+             (uint64_t)((*(int64_t *)(scene_data + 0x1898) - *(int64_t *)(scene_data + 0x1890)) / 0x98)
             );
   }
   serialize_texture_data(data_buffer,scene_data + 0x18b0);
   buffer_ptr = (int8_t *)data_buffer[1];
   scene_flag = *(int8_t *)(scene_data + 0x18d1);
-  if ((ulonglong)((*data_buffer - (longlong)buffer_ptr) + data_buffer[2]) < 2) {
+  if ((uint64_t)((*data_buffer - (int64_t)buffer_ptr) + data_buffer[2]) < 2) {
     ensure_buffer_capacity(data_buffer,buffer_ptr + (1 - *data_buffer));
     buffer_ptr = (int8_t *)data_buffer[1];
   }
@@ -602,8 +602,8 @@ void serialize_rendering_scene_data(longlong scene_data,longlong *data_buffer,ui
     serialize_texture_data(data_buffer,scene_data + 0x1bd0);
     data_ptr = (int32_t *)data_buffer[1];
   }
-  if ((ulonglong)((*data_buffer - (longlong)data_ptr) + data_buffer[2]) < 5) {
-    ensure_buffer_capacity(data_buffer,(longlong)data_ptr + (4 - *data_buffer));
+  if ((uint64_t)((*data_buffer - (int64_t)data_ptr) + data_buffer[2]) < 5) {
+    ensure_buffer_capacity(data_buffer,(int64_t)data_ptr + (4 - *data_buffer));
     data_ptr = (int32_t *)data_buffer[1];
   }
   *data_ptr = 0x10;
@@ -611,15 +611,15 @@ void serialize_rendering_scene_data(longlong scene_data,longlong *data_buffer,ui
   scene_data = scene_data + 0xc88;
   do {
     count_ptr = (int *)data_buffer[1];
-    if ((ulonglong)((*data_buffer - (longlong)count_ptr) + data_buffer[2]) < 5) {
-      ensure_buffer_capacity(data_buffer,(longlong)count_ptr + (4 - *data_buffer));
+    if ((uint64_t)((*data_buffer - (int64_t)count_ptr) + data_buffer[2]) < 5) {
+      ensure_buffer_capacity(data_buffer,(int64_t)count_ptr + (4 - *data_buffer));
       count_ptr = (int *)data_buffer[1];
     }
     *count_ptr = (int)uVar12;
     data_buffer[1] = data_buffer[1] + 4;
     serialize_texture_data(data_buffer,scene_data);
     object_index = (int)uVar12 + 1;
-    uVar12 = (ulonglong)object_index;
+    uVar12 = (uint64_t)object_index;
     scene_data = scene_data + 0x58;
   } while ((int)object_index < 0x10);
   return;
@@ -637,32 +637,32 @@ void serialize_rendering_scene_data(longlong scene_data,longlong *data_buffer,ui
  * @param stream_offset 数据流中的偏移量
  * @param identifier_flags 输出参数，返回解析到的标识符标志
  */
-void parse_rendering_object_identifier(longlong *object_table,longlong stream_offset,uint *identifier_flags)
+void parse_rendering_object_identifier(int64_t *object_table,int64_t stream_offset,uint *identifier_flags)
 
 {
   uint *data_pointer;
   byte *string_buffer;
   uint string_length;
-  longlong object_offset;
+  int64_t object_offset;
   byte *object_name;
   int name_length;
-  ulonglong object_count;
-  longlong object_size;
-  longlong *current_object;
+  uint64_t object_count;
+  int64_t object_size;
+  int64_t *current_object;
   int8_t local_stack_buffer [32];
   uint64_t stack_guard_1;
   void *stack_guard_2;
   byte *temp_buffer;
   int temp_int;
   byte comparison_buffer [1032];
-  ulonglong stack_guard_3;
+  uint64_t stack_guard_3;
   
   stack_guard_1 = 0xfffffffffffffffe;
-  stack_guard_3 = MEMORY_PROTECTION_KEY ^ (ulonglong)local_stack_buffer;
-  *(longlong *)(stream_offset + 8) = *(longlong *)(stream_offset + 8) + 4;
+  stack_guard_3 = MEMORY_PROTECTION_KEY ^ (uint64_t)local_stack_buffer;
+  *(int64_t *)(stream_offset + 8) = *(int64_t *)(stream_offset + 8) + 4;
   *identifier_flags = 0;
   string_length = **(uint **)(stream_offset + 8);
-  object_count = (ulonglong)string_length;
+  object_count = (uint64_t)string_length;
   *(uint **)(stream_offset + 8) = *(uint **)(stream_offset + 8) + 1;
   if (string_length != 0) {
     do {
@@ -677,7 +677,7 @@ void parse_rendering_object_identifier(longlong *object_table,longlong stream_of
       current_object = object_table;
       if (string_length != 0) {
         initialize_string_buffer(&stack_guard_2,data_pointer,string_length);
-        *(longlong *)(stream_offset + 8) = *(longlong *)(stream_offset + 8) + (ulonglong)string_length;
+        *(int64_t *)(stream_offset + 8) = *(int64_t *)(stream_offset + 8) + (uint64_t)string_length;
       }
       do {
         object_offset = -1;
@@ -689,7 +689,7 @@ void parse_rendering_object_identifier(longlong *object_table,longlong stream_of
           if (temp_int != 0) {
             object_name = temp_buffer;
             do {
-              string_buffer = object_name + (*current_object - (longlong)temp_buffer);
+              string_buffer = object_name + (*current_object - (int64_t)temp_buffer);
               name_length = (uint)*object_name - (uint)*string_buffer;
               if (name_length != 0) break;
               object_name = object_name + 1;
@@ -710,7 +710,7 @@ LAB_180272cfe:
     } while (object_count != 0);
   }
                     // WARNING: Subroutine does not return
-  cleanup_stack_protection(stack_guard_3 ^ (ulonglong)local_stack_buffer);
+  cleanup_stack_protection(stack_guard_3 ^ (uint64_t)local_stack_buffer);
 }
 
 
@@ -722,18 +722,18 @@ LAB_180272cfe:
  * @param shader_flags 着色器标志，用于筛选需要序列化的着色器
  * @param data_buffer 数据缓冲区，用于存储序列化结果
  */
-void serialize_rendering_shader_data(uint64_t *shader_table,uint shader_flags,longlong *data_buffer)
+void serialize_rendering_shader_data(uint64_t *shader_table,uint shader_flags,int64_t *data_buffer)
 
 {
   int32_t *buffer_ptr;
-  longlong buffer_offset;
-  longlong buffer_position;
+  int64_t buffer_offset;
+  int64_t buffer_position;
   int shader_count;
-  longlong array_start;
+  int64_t array_start;
   
   buffer_ptr = (int32_t *)data_buffer[1];
-  if ((ulonglong)((*data_buffer - (longlong)buffer_ptr) + data_buffer[2]) < 5) {
-    ensure_buffer_capacity(data_buffer,(longlong)buffer_ptr + (4 - *data_buffer));
+  if ((uint64_t)((*data_buffer - (int64_t)buffer_ptr) + data_buffer[2]) < 5) {
+    ensure_buffer_capacity(data_buffer,(int64_t)buffer_ptr + (4 - *data_buffer));
     buffer_ptr = (int32_t *)data_buffer[1];
   }
   shader_count = 0;
@@ -745,7 +745,7 @@ void serialize_rendering_shader_data(uint64_t *shader_table,uint shader_flags,lo
   if (buffer_position != 0) {
     array_start = buffer_offset - buffer_position;
   }
-  if ((ulonglong)((buffer_position - buffer_offset) + data_buffer[2]) < 5) {
+  if ((uint64_t)((buffer_position - buffer_offset) + data_buffer[2]) < 5) {
     ensure_buffer_capacity(data_buffer,(buffer_offset - buffer_position) + 4);
     buffer_offset = data_buffer[1];
   }
@@ -774,21 +774,21 @@ void serialize_rendering_shader_data(uint64_t *shader_table,uint shader_flags,lo
  * @param object_array 对象数组指针，包含数组信息和对象数据
  * @param new_size 新的数组大小
  */
-void resize_rendering_object_array(longlong *object_array,ulonglong new_size)
+void resize_rendering_object_array(int64_t *object_array,uint64_t new_size)
 
 {
   void *destructor_ptr;
   uint64_t *array_start;
-  ulonglong current_size;
+  uint64_t current_size;
   uint64_t *array_end;
   uint64_t *current_object;
   uint64_t *new_object;
   void *object_data;
-  longlong array_capacity;
+  int64_t array_capacity;
   
   array_start = (uint64_t *)object_array[1];
   array_capacity = *object_array;
-  current_size = ((longlong)array_start - array_capacity) / 0x98;
+  current_size = ((int64_t)array_start - array_capacity) / 0x98;
   if (new_size <= current_size) {
     new_object = (uint64_t *)(new_size * 0x98 + array_capacity);
     if (new_object != array_start) {
@@ -803,9 +803,9 @@ void resize_rendering_object_array(longlong *object_array,ulonglong new_size)
   }
   new_size = new_size - current_size;
   array_start = (uint64_t *)object_array[1];
-  if ((ulonglong)((object_array[2] - (longlong)array_start) / 0x98) < new_size) {
+  if ((uint64_t)((object_array[2] - (int64_t)array_start) / 0x98) < new_size) {
     new_object = (uint64_t *)*object_array;
-    array_capacity = ((longlong)array_start - (longlong)new_object) / 0x98;
+    array_capacity = ((int64_t)array_start - (int64_t)new_object) / 0x98;
     current_size = array_capacity * 2;
     if (array_capacity == 0) {
       current_size = 1;
@@ -823,7 +823,7 @@ void resize_rendering_object_array(longlong *object_array,ulonglong new_size)
     }
     current_object = array_end;
     if (new_object != array_start) {
-      array_capacity = (longlong)new_object - (longlong)array_end;
+      array_capacity = (int64_t)new_object - (int64_t)array_end;
       do {
         *current_object = &RENDERING_RESOURCE_BASE_ADDRESS;
         current_object[1] = 0;
@@ -832,15 +832,15 @@ void resize_rendering_object_array(longlong *object_array,ulonglong new_size)
         current_object[1] = current_object + 3;
         *(int32_t *)(current_object + 2) = 0;
         *(int8_t *)(current_object + 3) = 0;
-        *(int32_t *)(current_object + 2) = *(int32_t *)((longlong)current_object + array_capacity + 0x10);
-        destructor_ptr = *(void **)((longlong)current_object + array_capacity + 8);
+        *(int32_t *)(current_object + 2) = *(int32_t *)((int64_t)current_object + array_capacity + 0x10);
+        destructor_ptr = *(void **)((int64_t)current_object + array_capacity + 8);
         object_data = &DEFAULT_OBJECT_NAME;
         if (destructor_ptr != (void *)0x0) {
           object_data = destructor_ptr;
         }
         strcpy_s(current_object[1],0x80,object_data);
         current_object = current_object + 0x13;
-      } while ((uint64_t *)((longlong)current_object + array_capacity) != array_start);
+      } while ((uint64_t *)((int64_t)current_object + array_capacity) != array_start);
     }
     if (new_size != 0) {
       array_start = current_object + 1;
@@ -870,9 +870,9 @@ void resize_rendering_object_array(longlong *object_array,ulonglong new_size)
                     // WARNING: Subroutine does not return
       free_rendering_memory(new_object);
     }
-    *object_array = (longlong)array_end;
-    object_array[1] = (longlong)(current_object + new_size * 0x13);
-    object_array[2] = (longlong)(array_end + current_size * 0x13);
+    *object_array = (int64_t)array_end;
+    object_array[1] = (int64_t)(current_object + new_size * 0x13);
+    object_array[2] = (int64_t)(array_end + current_size * 0x13);
   }
   else {
     current_size = new_size;
@@ -890,7 +890,7 @@ void resize_rendering_object_array(longlong *object_array,ulonglong new_size)
       } while (current_size != 0);
       array_start = (uint64_t *)object_array[1];
     }
-    object_array[1] = (longlong)(array_start + new_size * 0x13);
+    object_array[1] = (int64_t)(array_start + new_size * 0x13);
   }
   return;
 }

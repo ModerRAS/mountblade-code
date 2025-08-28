@@ -51,7 +51,7 @@ static uint64_t exception_chain_header;
 static int8_t exception_handler_flag;
 static uint8_t exception_handler_padding;
 static uint64_t exception_context_pointer;
-static ulonglong exception_system_timestamp;
+static uint64_t exception_system_timestamp;
 static uint8_t exception_control_block;
 
 /**
@@ -63,7 +63,7 @@ static uint8_t memory_allocator_padding;
 static int8_t memory_manager_state;
 static uint8_t memory_manager_padding;
 static uint64_t memory_pool_pointer;
-static ulonglong memory_pool_size;
+static uint64_t memory_pool_size;
 static uint8_t memory_cache_block;
 static int8_t memory_cache_state;
 static uint8_t memory_cache_header;
@@ -72,9 +72,9 @@ static uint8_t memory_cache_padding;
 /**
  * 线程同步系统全局变量
  */
-static longlong thread_sync_counter;
+static int64_t thread_sync_counter;
 static uint64_t thread_sync_mutex;
-static longlong thread_sync_event;
+static int64_t thread_sync_event;
 static char thread_pool_status;
 static char thread_queue_status;
 static char thread_scheduler_status;
@@ -94,31 +94,31 @@ static char thread_cache_debug;
 /**
  * 异常处理函数
  */
-static void exception_cleanup_handler(uint64_t context, longlong exception_data);
-static void exception_chain_processor(uint64_t context, longlong exception_data);
-static void exception_state_manager(uint64_t context, longlong exception_data);
-static void exception_context_cleaner(uint64_t context, longlong exception_data, uint64_t param1, uint64_t param2);
-static void exception_resource_manager(uint64_t context, longlong exception_data);
-static void exception_memory_cleaner(uint64_t context, longlong exception_data);
-static void exception_handler_finalizer(uint64_t context, longlong exception_data);
-static void exception_state_synchronizer(uint64_t context, longlong exception_data);
+static void exception_cleanup_handler(uint64_t context, int64_t exception_data);
+static void exception_chain_processor(uint64_t context, int64_t exception_data);
+static void exception_state_manager(uint64_t context, int64_t exception_data);
+static void exception_context_cleaner(uint64_t context, int64_t exception_data, uint64_t param1, uint64_t param2);
+static void exception_resource_manager(uint64_t context, int64_t exception_data);
+static void exception_memory_cleaner(uint64_t context, int64_t exception_data);
+static void exception_handler_finalizer(uint64_t context, int64_t exception_data);
+static void exception_state_synchronizer(uint64_t context, int64_t exception_data);
 
 /**
  * 内存管理函数
  */
-static void memory_pool_manager(uint64_t context, longlong memory_data);
-static void memory_allocator_controller(uint64_t context, longlong memory_data);
-static void memory_cache_cleaner(uint64_t context, longlong memory_data);
-static void memory_state_manager(uint64_t context, longlong memory_data);
-static void memory_resource_cleaner(uint64_t context, longlong memory_data);
+static void memory_pool_manager(uint64_t context, int64_t memory_data);
+static void memory_allocator_controller(uint64_t context, int64_t memory_data);
+static void memory_cache_cleaner(uint64_t context, int64_t memory_data);
+static void memory_state_manager(uint64_t context, int64_t memory_data);
+static void memory_resource_cleaner(uint64_t context, int64_t memory_data);
 
 /**
  * 线程同步函数
  */
-static void thread_sync_manager(uint64_t context, longlong thread_data);
-static void thread_pool_controller(uint64_t context, longlong thread_data);
-static void thread_scheduler(uint64_t context, longlong thread_data);
-static void thread_cache_manager(uint64_t context, longlong thread_data);
+static void thread_sync_manager(uint64_t context, int64_t thread_data);
+static void thread_pool_controller(uint64_t context, int64_t thread_data);
+static void thread_scheduler(uint64_t context, int64_t thread_data);
+static void thread_cache_manager(uint64_t context, int64_t thread_data);
 
 /*==========================================
  =            函数定义            =
@@ -131,7 +131,7 @@ static void thread_cache_manager(uint64_t context, longlong thread_data);
  * @param context 异常上下文
  * @param exception_data 异常数据
  */
-static void exception_cleanup_handler(uint64_t context, longlong exception_data)
+static void exception_cleanup_handler(uint64_t context, int64_t exception_data)
 {
   // 检查异常处理标志位
   if ((*(uint *)(exception_data + 0x20) & EXCEPTION_HANDLER_ACTIVE) != 0) {
@@ -150,12 +150,12 @@ static void exception_cleanup_handler(uint64_t context, longlong exception_data)
  * @param context 异常上下文
  * @param exception_data 异常数据
  */
-static void exception_chain_processor(uint64_t context, longlong exception_data)
+static void exception_chain_processor(uint64_t context, int64_t exception_data)
 {
   int *reference_count;
   uint64_t *exception_chain;
-  longlong chain_offset;
-  ulonglong chain_base;
+  int64_t chain_offset;
+  uint64_t chain_base;
   
   // 获取异常链指针
   exception_chain = *(uint64_t **)(exception_data + 0x240);
@@ -164,12 +164,12 @@ static void exception_chain_processor(uint64_t context, longlong exception_data)
   }
   
   // 计算异常链基地址
-  chain_base = (ulonglong)exception_chain & 0xffffffffffc00000;
+  chain_base = (uint64_t)exception_chain & 0xffffffffffc00000;
   if (chain_base != 0) {
     // 计算链表项偏移
     chain_offset = chain_base + MEMORY_ALIGNMENT + 
-                   ((longlong)exception_chain - chain_base >> 0x10) * MEMORY_BLOCK_SIZE;
-    chain_offset = chain_offset - (ulonglong)*(uint *)(chain_offset + 4);
+                   ((int64_t)exception_chain - chain_base >> 0x10) * MEMORY_BLOCK_SIZE;
+    chain_offset = chain_offset - (uint64_t)*(uint *)(chain_offset + 4);
     
     // 检查异常链有效性
     if ((*(void ***)(chain_base + 0x70) == &ExceptionList) && 
@@ -204,7 +204,7 @@ static void exception_chain_processor(uint64_t context, longlong exception_data)
  * @param context 异常上下文
  * @param exception_data 异常数据
  */
-static void exception_state_manager(uint64_t context, longlong exception_data)
+static void exception_state_manager(uint64_t context, int64_t exception_data)
 {
   FUN_180057010(exception_data + 0x430);
   return;
@@ -219,7 +219,7 @@ static void exception_state_manager(uint64_t context, longlong exception_data)
  * @param param1 清理参数1
  * @param param2 清理参数2
  */
-static void exception_context_cleaner(uint64_t context, longlong exception_data, uint64_t param1, uint64_t param2)
+static void exception_context_cleaner(uint64_t context, int64_t exception_data, uint64_t param1, uint64_t param2)
 {
   uint64_t *cleanup_handler_start;
   uint64_t *cleanup_handler_end;
@@ -237,7 +237,7 @@ static void exception_context_cleaner(uint64_t context, longlong exception_data,
   }
   
   // 检查清理完成状态
-  if (*(longlong *)(exception_data + 0x220) == 0) {
+  if (*(int64_t *)(exception_data + 0x220) == 0) {
     return;
   }
   
@@ -252,13 +252,13 @@ static void exception_context_cleaner(uint64_t context, longlong exception_data,
  * @param context 异常上下文
  * @param exception_data 异常数据
  */
-static void exception_resource_manager(uint64_t context, longlong exception_data)
+static void exception_resource_manager(uint64_t context, int64_t exception_data)
 {
   // 设置异常资源状态
   *(uint64_t *)(exception_data + 0x178) = &system_data_buffer_ptr;
   
   // 检查资源状态
-  if (*(longlong *)(exception_data + 0x180) != 0) {
+  if (*(int64_t *)(exception_data + 0x180) != 0) {
     // 资源异常，调用错误处理
     FUN_18064e900();
   }
@@ -277,7 +277,7 @@ static void exception_resource_manager(uint64_t context, longlong exception_data
  * @param context 异常上下文
  * @param exception_data 异常数据
  */
-static void exception_memory_cleaner(uint64_t context, longlong exception_data)
+static void exception_memory_cleaner(uint64_t context, int64_t exception_data)
 {
   // 清理内存资源
   **(uint64_t **)(exception_data + 0x270) = &system_state_ptr;
@@ -291,7 +291,7 @@ static void exception_memory_cleaner(uint64_t context, longlong exception_data)
  * @param context 异常上下文
  * @param exception_data 异常数据
  */
-static void exception_handler_finalizer(uint64_t context, longlong exception_data)
+static void exception_handler_finalizer(uint64_t context, int64_t exception_data)
 {
   // 检查异常处理标志
   if ((*(uint *)(exception_data + 0x30) & STATE_ACTIVE) != 0) {
@@ -309,7 +309,7 @@ static void exception_handler_finalizer(uint64_t context, longlong exception_dat
  * @param context 异常上下文
  * @param exception_data 异常数据
  */
-static void exception_state_synchronizer(uint64_t context, longlong exception_data)
+static void exception_state_synchronizer(uint64_t context, int64_t exception_data)
 {
   // 检查清理状态标志
   if ((*(uint *)(exception_data + 0x30) & STATE_PENDING_CLEANUP) != 0) {
@@ -327,7 +327,7 @@ static void exception_state_synchronizer(uint64_t context, longlong exception_da
  * @param context 内存上下文
  * @param memory_data 内存数据
  */
-static void memory_pool_manager(uint64_t context, longlong memory_data)
+static void memory_pool_manager(uint64_t context, int64_t memory_data)
 {
   // 清理内存池
   *(void **)(memory_data + 0x2b0) = &system_state_ptr;
@@ -341,13 +341,13 @@ static void memory_pool_manager(uint64_t context, longlong memory_data)
  * @param context 内存上下文
  * @param memory_data 内存数据
  */
-static void memory_allocator_controller(uint64_t context, longlong memory_data)
+static void memory_allocator_controller(uint64_t context, int64_t memory_data)
 {
   // 设置内存分配器状态
   *(uint64_t *)(memory_data + 0x158) = &system_data_buffer_ptr;
   
   // 检查内存分配器状态
-  if (*(longlong *)(memory_data + 0x160) != 0) {
+  if (*(int64_t *)(memory_data + 0x160) != 0) {
     // 分配器异常，调用错误处理
     FUN_18064e900();
   }
@@ -366,7 +366,7 @@ static void memory_allocator_controller(uint64_t context, longlong memory_data)
  * @param context 内存上下文
  * @param memory_data 内存数据
  */
-static void memory_cache_cleaner(uint64_t context, longlong memory_data)
+static void memory_cache_cleaner(uint64_t context, int64_t memory_data)
 {
   // 检查初始化状态
   if ((*(uint *)(memory_data + 0x30) & STATE_INITIALIZED) != 0) {
@@ -384,13 +384,13 @@ static void memory_cache_cleaner(uint64_t context, longlong memory_data)
  * @param context 内存上下文
  * @param memory_data 内存数据
  */
-static void memory_state_manager(uint64_t context, longlong memory_data)
+static void memory_state_manager(uint64_t context, int64_t memory_data)
 {
   // 设置内存状态
   *(uint64_t *)(memory_data + 0x178) = &system_data_buffer_ptr;
   
   // 检查内存状态
-  if (*(longlong *)(memory_data + 0x180) != 0) {
+  if (*(int64_t *)(memory_data + 0x180) != 0) {
     // 状态异常，调用错误处理
     FUN_18064e900();
   }
@@ -409,7 +409,7 @@ static void memory_state_manager(uint64_t context, longlong memory_data)
  * @param context 内存上下文
  * @param memory_data 内存数据
  */
-static void memory_resource_cleaner(uint64_t context, longlong memory_data)
+static void memory_resource_cleaner(uint64_t context, int64_t memory_data)
 {
   // 清理内存资源
   **(uint64_t **)(memory_data + 0x270) = &system_state_ptr;
@@ -423,13 +423,13 @@ static void memory_resource_cleaner(uint64_t context, longlong memory_data)
  * @param context 线程上下文
  * @param thread_data 线程数据
  */
-static void thread_sync_manager(uint64_t context, longlong thread_data)
+static void thread_sync_manager(uint64_t context, int64_t thread_data)
 {
   // 设置线程同步状态
   *(uint64_t *)(thread_data + 0x158) = &system_data_buffer_ptr;
   
   // 检查线程同步状态
-  if (*(longlong *)(thread_data + 0x160) != 0) {
+  if (*(int64_t *)(thread_data + 0x160) != 0) {
     // 同步异常，调用错误处理
     FUN_18064e900();
   }
@@ -448,7 +448,7 @@ static void thread_sync_manager(uint64_t context, longlong thread_data)
  * @param context 线程上下文
  * @param thread_data 线程数据
  */
-static void thread_pool_controller(uint64_t context, longlong thread_data)
+static void thread_pool_controller(uint64_t context, int64_t thread_data)
 {
   // 检查线程池状态
   if ((*(uint *)(thread_data + 0x30) & STATE_ACTIVE) != 0) {
@@ -466,7 +466,7 @@ static void thread_pool_controller(uint64_t context, longlong thread_data)
  * @param context 线程上下文
  * @param thread_data 线程数据
  */
-static void thread_scheduler(uint64_t context, longlong thread_data)
+static void thread_scheduler(uint64_t context, int64_t thread_data)
 {
   // 检查调度状态
   if ((*(uint *)(thread_data + 0x30) & STATE_PENDING_CLEANUP) != 0) {
@@ -484,7 +484,7 @@ static void thread_scheduler(uint64_t context, longlong thread_data)
  * @param context 线程上下文
  * @param thread_data 线程数据
  */
-static void thread_cache_manager(uint64_t context, longlong thread_data)
+static void thread_cache_manager(uint64_t context, int64_t thread_data)
 {
   // 清理线程缓存
   *(void **)(thread_data + 0x2b0) = &system_state_ptr;
@@ -572,7 +572,7 @@ void module_cleanup(void)
  * 导出函数：异常清理处理器
  * 对应原始函数：Unwind_180912990
  */
-void Unwind_180912990(uint64_t param_1, longlong param_2)
+void Unwind_180912990(uint64_t param_1, int64_t param_2)
 {
   ExceptionCleanupHandler(param_1, param_2);
 }
@@ -581,7 +581,7 @@ void Unwind_180912990(uint64_t param_1, longlong param_2)
  * 导出函数：异常链处理器
  * 对应原始函数：Unwind_1809129c0
  */
-void Unwind_1809129c0(uint64_t param_1, longlong param_2)
+void Unwind_1809129c0(uint64_t param_1, int64_t param_2)
 {
   ExceptionChainProcessor(param_1, param_2);
 }
@@ -590,7 +590,7 @@ void Unwind_1809129c0(uint64_t param_1, longlong param_2)
  * 导出函数：异常状态管理器
  * 对应原始函数：Unwind_1809129d0
  */
-void Unwind_1809129d0(uint64_t param_1, longlong param_2)
+void Unwind_1809129d0(uint64_t param_1, int64_t param_2)
 {
   ExceptionStateManager(param_1, param_2);
 }
@@ -599,7 +599,7 @@ void Unwind_1809129d0(uint64_t param_1, longlong param_2)
  * 导出函数：异常上下文清理器
  * 对应原始函数：Unwind_1809129e0
  */
-void Unwind_1809129e0(uint64_t param_1, longlong param_2, uint64_t param_3, uint64_t param_4)
+void Unwind_1809129e0(uint64_t param_1, int64_t param_2, uint64_t param_3, uint64_t param_4)
 {
   ExceptionContextCleaner(param_1, param_2, param_3, param_4);
 }
@@ -608,7 +608,7 @@ void Unwind_1809129e0(uint64_t param_1, longlong param_2, uint64_t param_3, uint
  * 导出函数：异常资源管理器
  * 对应原始函数：Unwind_1809129f0
  */
-void Unwind_1809129f0(uint64_t param_1, longlong param_2)
+void Unwind_1809129f0(uint64_t param_1, int64_t param_2)
 {
   ExceptionResourceManager(param_1, param_2);
 }
@@ -617,7 +617,7 @@ void Unwind_1809129f0(uint64_t param_1, longlong param_2)
  * 导出函数：异常内存清理器
  * 对应原始函数：Unwind_180912a00
  */
-void Unwind_180912a00(uint64_t param_1, longlong param_2)
+void Unwind_180912a00(uint64_t param_1, int64_t param_2)
 {
   ExceptionMemoryCleaner(param_1, param_2);
 }
@@ -626,7 +626,7 @@ void Unwind_180912a00(uint64_t param_1, longlong param_2)
  * 导出函数：异常处理终结器
  * 对应原始函数：Unwind_180912a10
  */
-void Unwind_180912a10(uint64_t param_1, longlong param_2)
+void Unwind_180912a10(uint64_t param_1, int64_t param_2)
 {
   ExceptionHandlerFinalizer(param_1, param_2);
 }
@@ -635,7 +635,7 @@ void Unwind_180912a10(uint64_t param_1, longlong param_2)
  * 导出函数：异常状态同步器
  * 对应原始函数：Unwind_180912a40
  */
-void Unwind_180912a40(uint64_t param_1, longlong param_2)
+void Unwind_180912a40(uint64_t param_1, int64_t param_2)
 {
   ExceptionStateSynchronizer(param_1, param_2);
 }
@@ -644,7 +644,7 @@ void Unwind_180912a40(uint64_t param_1, longlong param_2)
  * 导出函数：内存池管理器
  * 对应原始函数：Unwind_180912a70
  */
-void Unwind_180912a70(uint64_t param_1, longlong param_2)
+void Unwind_180912a70(uint64_t param_1, int64_t param_2)
 {
   MemoryPoolManager(param_1, param_2);
 }
@@ -653,7 +653,7 @@ void Unwind_180912a70(uint64_t param_1, longlong param_2)
  * 导出函数：内存分配器控制器
  * 对应原始函数：Unwind_180912a80
  */
-void Unwind_180912a80(uint64_t param_1, longlong param_2)
+void Unwind_180912a80(uint64_t param_1, int64_t param_2)
 {
   MemoryAllocatorController(param_1, param_2);
 }

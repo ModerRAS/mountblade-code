@@ -146,7 +146,7 @@
 // - 使用栈保护机制确保处理安全
 // - 支持异步处理和状态同步
 //
-void ui_system_advanced_data_processor(longlong *ui_context_ptr,longlong process_param,ulonglong data_flags,longlong result_ptr,int process_options)
+void ui_system_advanced_data_processor(int64_t *ui_context_ptr,int64_t process_param,uint64_t data_flags,int64_t result_ptr,int process_options)
 
 {
   // 数据处理变量
@@ -154,40 +154,40 @@ void ui_system_advanced_data_processor(longlong *ui_context_ptr,longlong process
   int32_t *ui_data_buffer2;        // UI数据缓冲区2
   uint64_t *ui_data_buffer3;        // UI数据缓冲区3
   int32_t *ui_data_buffer4;        // UI数据缓冲区4
-  longlong ui_temp_var1;              // UI临时变量1
+  int64_t ui_temp_var1;              // UI临时变量1
   int32_t ui_temp_var2;            // UI临时变量2
   int32_t ui_temp_var3;            // UI临时变量3
   int32_t ui_temp_var4;            // UI临时变量4
   uint64_t ui_temp_var5;            // UI临时变量5
-  longlong ui_temp_var6;              // UI临时变量6
+  int64_t ui_temp_var6;              // UI临时变量6
   int ui_status_code;                 // UI状态码
-  longlong ui_temp_var7;              // UI临时变量7
-  longlong ui_temp_var8;              // UI临时变量8
-  longlong ui_temp_var9;              // UI临时变量9
-  ulonglong ui_process_mask;          // UI处理掩码
+  int64_t ui_temp_var7;              // UI临时变量7
+  int64_t ui_temp_var8;              // UI临时变量8
+  int64_t ui_temp_var9;              // UI临时变量9
+  uint64_t ui_process_mask;          // UI处理掩码
   
   // 栈保护变量
   int8_t ui_stack_guard [32];     // UI栈保护区域
-  longlong ui_context_backup;         // UI上下文备份
+  int64_t ui_context_backup;         // UI上下文备份
   int ui_process_status;              // UI处理状态
   int ui_config_status;              // UI配置状态
   int ui_state_value1;                // UI状态值1
   int ui_state_value2;                // UI状态值2
   uint ui_flag_value;                 // UI标志值
-  longlong ui_data_buffer5;           // UI数据缓冲区5
-  longlong ui_data_buffer6;           // UI数据缓冲区6
-  longlong ui_data_buffer7;           // UI数据缓冲区7
-  longlong *ui_context_ptr;           // UI上下文指针
-  longlong ui_param_backup;           // UI参数备份
+  int64_t ui_data_buffer5;           // UI数据缓冲区5
+  int64_t ui_data_buffer6;           // UI数据缓冲区6
+  int64_t ui_data_buffer7;           // UI数据缓冲区7
+  int64_t *ui_context_ptr;           // UI上下文指针
+  int64_t ui_param_backup;           // UI参数备份
   int32_t ui_config_data;          // UI配置数据
   int ui_error_code;                  // UI错误代码
   uint64_t ui_result_data;          // UI结果数据
   int32_t ui_format_data;          // UI格式数据
   uint ui_data_size;                  // UI数据大小
-  ulonglong ui_security_cookie;       // UI安全cookie
+  uint64_t ui_security_cookie;       // UI安全cookie
   
   // 初始化安全cookie和处理参数
-  ui_security_cookie = GET_SECURITY_COOKIE() ^ (ulonglong)ui_stack_guard;
+  ui_security_cookie = GET_SECURITY_COOKIE() ^ (uint64_t)ui_stack_guard;
   ui_flag_value = (uint)data_flags;
   ui_process_mask = data_flags & 0xffffffff;
   ui_process_status = 0;
@@ -201,30 +201,30 @@ void ui_system_advanced_data_processor(longlong *ui_context_ptr,longlong process
       // 获取UI系统上下文信息
     ui_context_backup = ui_context_ptr[0x22];
     ui_temp_var7 = ui_context_ptr[0x1d];
-    ui_status_code = *(int *)((longlong)ui_context_ptr + 0xec);
+    ui_status_code = *(int *)((int64_t)ui_context_ptr + 0xec);
     ui_state_value1 = (int)ui_temp_var7;
     ui_state_value2 = ui_status_code;
     
     // 处理UI系统配置
-    ui_process_status = ui_system_config_processor(ui_context_ptr[0x58],(int)ui_context_ptr[0x61],(longlong)ui_context_ptr + 0xe4,
+    ui_process_status = ui_system_config_processor(ui_context_ptr[0x58],(int)ui_context_ptr[0x61],(int64_t)ui_context_ptr + 0xe4,
                               ui_context_ptr[0x21]);
     
     // 检查和处理特殊状态
     if ((ui_process_status == 5) && ((int)ui_context_ptr[0x1e] == 0)) {
       ui_process_status = 0;
     }
-    if ((*(int *)((longlong)ui_context_ptr + 0xf4) == 0) && ((int)ui_context_ptr[0x1e] == 0)) {
+    if ((*(int *)((int64_t)ui_context_ptr + 0xf4) == 0) && ((int)ui_context_ptr[0x1e] == 0)) {
       ui_process_status = 5;
     }
     
     // 检查状态变化
-    if ((*(int *)((longlong)ui_context_ptr + 0xec) != ui_status_code) ||
+    if ((*(int *)((int64_t)ui_context_ptr + 0xec) != ui_status_code) ||
        (ui_status_code = ui_config_status, (int)ui_context_ptr[0x1d] != (int)ui_temp_var7)) {
       ui_status_code = 1;
     }
     
     // 处理UI系统数据格式化
-    if ((ui_process_status == 0) && (*(int *)((longlong)ui_context_ptr + 0xf4) == 0)) {
+    if ((ui_process_status == 0) && (*(int *)((int64_t)ui_context_ptr + 0xf4) == 0)) {
       ui_config_data = (int32_t)ui_context_ptr[0x1d];
       ui_result_data = 9;
       ui_format_data = (int32_t)ui_context_ptr[0x1b];
@@ -232,17 +232,17 @@ void ui_system_advanced_data_processor(longlong *ui_context_ptr,longlong process
       
       // 处理特殊配置标志
       if (((int)ui_context_ptr[0x1f] == 0) && ((*(uint *)(ui_context_ptr + 1) & 0x10000) != 0)) {
-        *(int32_t *)((longlong)ui_context_ptr + 0xfc) = 0x403;
+        *(int32_t *)((int64_t)ui_context_ptr + 0xfc) = 0x403;
         ui_context_ptr[0x20] = 4;
       }
       
-      ui_error_code = *(int *)((longlong)ui_context_ptr + 0xec);
+      ui_error_code = *(int *)((int64_t)ui_context_ptr + 0xec);
       ui_process_status = FUN_18066eea0(ui_context_ptr + 0x35,&ui_config_data);
-      *(int32_t *)((longlong)ui_context_ptr + 0xf4) = 1;
+      *(int32_t *)((int64_t)ui_context_ptr + 0xf4) = 1;
     }
-    if (*(int *)((longlong)ui_context_ptr + 0xf4) != 0) {
-      *(longlong *)(ui_context_ptr[0x36] + 0x4430) = ui_context_ptr[0x21];
-      *(longlong *)(ui_context_ptr[0x36] + 0x4438) = ui_context_ptr[0x22];
+    if (*(int *)((int64_t)ui_context_ptr + 0xf4) != 0) {
+      *(int64_t *)(ui_context_ptr[0x36] + 0x4430) = ui_context_ptr[0x21];
+      *(int64_t *)(ui_context_ptr[0x36] + 0x4438) = ui_context_ptr[0x22];
     }
     
     // UI系统数据处理主循环
@@ -252,19 +252,19 @@ void ui_system_advanced_data_processor(longlong *ui_context_ptr,longlong process
     
     // 设置UI系统处理结果
     ui_context_ptr[0x56] = result_ptr;
-    ui_status_code = FUN_18066f080(ui_context_ptr,ui_process_mask,ui_param_backup,(longlong)process_options);
+    ui_status_code = FUN_18066f080(ui_context_ptr,ui_process_mask,ui_param_backup,(int64_t)process_options);
     if ((ui_status_code != 0) && (*(int *)(ui_context_ptr + 0x12c0) != 0)) {
       if (*(int *)(ui_context_ptr + 0x12c4) != 0) {
         ui_context_ptr[0x56] = ui_context_ptr + 0x12c8;
       }
       *ui_context_ptr = ui_context_ptr[0x56];
     }
-    *(int32_t *)((longlong)ui_context_ptr + 700) = 0;
+    *(int32_t *)((int64_t)ui_context_ptr + 700) = 0;
   }
   
   // 返回处理结果
   // 注意：此处调用系统函数返回结果
-  // 原始实现：FUN_1808fc050(ui_security_cookie ^ (ulonglong)ui_stack_guard);
+  // 原始实现：FUN_1808fc050(ui_security_cookie ^ (uint64_t)ui_stack_guard);
   return;
 }
 
@@ -295,7 +295,7 @@ void ui_system_advanced_data_processor(longlong *ui_context_ptr,longlong process
 // - 支持多种内存分配模式和标志
 // - 提供完整的内存属性配置
 //
-void ui_system_memory_manager(longlong ui_memory_context,longlong *ui_memory_ptr)
+void ui_system_memory_manager(int64_t ui_memory_context,int64_t *ui_memory_ptr)
 
 {
   // 内存管理变量
@@ -316,13 +316,13 @@ void ui_system_memory_manager(longlong ui_memory_context,longlong *ui_memory_ptr
   uint64_t ui_mem_offset1;            // 内存偏移1
   uint64_t ui_mem_offset2;            // 内存偏移2
   uint64_t ui_mem_offset3;            // 内存偏移3
-  ulonglong ui_security_cookie;         // 安全cookie
+  uint64_t ui_security_cookie;         // 安全cookie
   
   // 初始化安全cookie
-  ui_security_cookie = GET_SECURITY_COOKIE() ^ (ulonglong)ui_stack_guard;
+  ui_security_cookie = GET_SECURITY_COOKIE() ^ (uint64_t)ui_stack_guard;
   
   // 检查内存指针状态和上下文有效性
-  if ((*ui_memory_ptr == 0) && (*(longlong *)(ui_memory_context + 0x1b0) != 0)) {
+  if ((*ui_memory_ptr == 0) && (*(int64_t *)(ui_memory_context + 0x1b0) != 0)) {
     ui_mem_size2 = 0;
     ui_mem_size1 = 0;
     ui_mem_special_flag = 0;
@@ -337,7 +337,7 @@ void ui_system_memory_manager(longlong ui_memory_context,longlong *ui_memory_ptr
     }
     
     ui_mem_config_ptr = &ui_mem_special_flag;
-    ui_mem_status = FUN_18066ef60(*(longlong *)(ui_memory_context + 0x1b0),&ui_mem_config,&ui_mem_size2,&ui_mem_size1);
+    ui_mem_status = FUN_18066ef60(*(int64_t *)(ui_memory_context + 0x1b0),&ui_mem_config,&ui_mem_size2,&ui_mem_size1);
     
     // 成功分配内存后的配置
     if (ui_mem_status == 0) {
@@ -378,7 +378,7 @@ void ui_system_memory_manager(longlong ui_memory_context,longlong *ui_memory_ptr
   
   // 返回处理结果
   // 注意：此处调用系统函数返回结果
-  // 原始实现：FUN_1808fc050(ui_security_cookie ^ (ulonglong)ui_stack_guard);
+  // 原始实现：FUN_1808fc050(ui_security_cookie ^ (uint64_t)ui_stack_guard);
   return;
 }
 
@@ -409,7 +409,7 @@ void ui_system_memory_manager(longlong ui_memory_context,longlong *ui_memory_ptr
 // - 使用优化的转换算法提高性能
 // - 支持动态格式配置和参数调整
 //
-uint64_t ui_system_data_format_converter(longlong ui_format_context,uint64_t *ui_format_ptr)
+uint64_t ui_system_data_format_converter(int64_t ui_format_context,uint64_t *ui_format_ptr)
 
 {
   // 格式转换变量
@@ -487,7 +487,7 @@ uint64_t ui_system_data_format_converter(longlong ui_format_context,uint64_t *ui
 // - 使用高效的验证算法
 // - 支持动态验证配置和规则调整
 //
-uint64_t ui_system_data_validator(longlong ui_validate_context,uint64_t *ui_validate_ptr)
+uint64_t ui_system_data_validator(int64_t ui_validate_context,uint64_t *ui_validate_ptr)
 
 {
   // 数据验证变量
@@ -567,7 +567,7 @@ uint64_t ui_system_data_validator(longlong ui_validate_context,uint64_t *ui_vali
 // - 使用安全的状态管理机制
 // - 支持动态状态配置和调整
 //
-uint64_t ui_system_state_initializer(longlong ui_state_context,longlong ui_state_param,int ui_state_flags,int32_t *ui_state_result)
+uint64_t ui_system_state_initializer(int64_t ui_state_context,int64_t ui_state_param,int ui_state_flags,int32_t *ui_state_result)
 
 {
   int ui_init_status;                  // 初始化状态
@@ -588,8 +588,8 @@ uint64_t ui_system_state_initializer(longlong ui_state_context,longlong ui_state
   if (ui_init_status != 0) {
     if ((ui_state_param != 0) || (ui_state_flags != 0)) {
       // 执行状态初始化和配置
-      *(longlong *)(ui_state_context + 0x2c0 + (ulonglong)*(uint *)(ui_state_context + 700) * 8) = ui_state_param;
-      *(int *)(ui_state_context + 0x308 + (ulonglong)*(uint *)(ui_state_context + 700) * 4) = ui_state_flags;
+      *(int64_t *)(ui_state_context + 0x2c0 + (uint64_t)*(uint *)(ui_state_context + 700) * 8) = ui_state_param;
+      *(int *)(ui_state_context + 0x308 + (uint64_t)*(uint *)(ui_state_context + 700) * 4) = ui_state_flags;
       *(int *)(ui_state_context + 700) = *(int *)(ui_state_context + 700) + 1;
       
       // 检查初始化计数限制
@@ -616,7 +616,7 @@ uint64_t ui_system_state_initializer(longlong ui_state_context,longlong ui_state
   
   // 首次初始化
   if (ui_init_status == 0) {
-    *(longlong *)(ui_state_context + 0x2c0) = ui_state_param;
+    *(int64_t *)(ui_state_context + 0x2c0) = ui_state_param;
     *(int *)(ui_state_context + 0x308) = ui_state_flags;
     *(int32_t *)(ui_state_context + 700) = 1;
   }
@@ -655,16 +655,16 @@ uint64_t ui_system_state_initializer(longlong ui_state_context,longlong ui_state
 // - 使用回调函数进行灵活处理
 // - 支持动态配置调整
 //
-void ui_system_config_processor(byte *ui_config_data,uint ui_config_size,longlong ui_config_context,code *ui_config_callback,uint64_t ui_config_param)
+void ui_system_config_processor(byte *ui_config_data,uint ui_config_size,int64_t ui_config_context,code *ui_config_callback,uint64_t ui_config_param)
 
 {
   uint ui_config_length;               // 配置长度
   int8_t ui_stack_guard [32];      // 栈保护区域
   byte ui_config_buffer [16];          // 配置缓冲区
-  ulonglong ui_security_cookie;       // 安全cookie
+  uint64_t ui_security_cookie;       // 安全cookie
   
   // 初始化安全cookie
-  ui_security_cookie = GET_SECURITY_COOKIE() ^ (ulonglong)ui_stack_guard;
+  ui_security_cookie = GET_SECURITY_COOKIE() ^ (uint64_t)ui_stack_guard;
   
   // 验证配置数据范围和有效性
   if (ui_config_data < ui_config_data + ui_config_size) {
@@ -693,7 +693,7 @@ void ui_system_config_processor(byte *ui_config_data,uint ui_config_size,longlon
   
   // 返回处理结果
   // 注意：此处调用系统函数返回结果
-  // 原始实现：FUN_1808fc050(ui_security_cookie ^ (ulonglong)ui_stack_guard);
+  // 原始实现：FUN_1808fc050(ui_security_cookie ^ (uint64_t)ui_stack_guard);
   return;
 }
 
@@ -773,10 +773,10 @@ uint64_t ui_system_resource_cleaner(uint64_t *ui_resource_ptr)
 // - 使用安全的异常跳转机制
 // - 支持动态异常处理
 //
-void ui_system_exception_handler(int32_t *ui_exception_context,int32_t ui_exception_code,longlong ui_exception_msg,uint64_t ui_exception_param)
+void ui_system_exception_handler(int32_t *ui_exception_context,int32_t ui_exception_code,int64_t ui_exception_msg,uint64_t ui_exception_param)
 
 {
-  ulonglong *ui_stdio_ptr;              // 标准IO指针
+  uint64_t *ui_stdio_ptr;              // 标准IO指针
   uint64_t ui_stack_param;           // 栈参数
   
   // 设置异常代码和状态
@@ -787,9 +787,9 @@ void ui_system_exception_handler(int32_t *ui_exception_context,int32_t ui_except
   // 格式化异常消息
   if (ui_exception_msg != 0) {
     ui_exception_context[1] = 1;
-    ui_stdio_ptr = (ulonglong *)func_0x00018004b9a0();
+    ui_stdio_ptr = (uint64_t *)func_0x00018004b9a0();
     __stdio_common_vsprintf(*ui_stdio_ptr | 2,ui_exception_context + 2,0x4f,ui_exception_msg,0,&ui_stack_param);
-    *(int8_t *)((longlong)ui_exception_context + 0x57) = 0;
+    *(int8_t *)((int64_t)ui_exception_context + 0x57) = 0;
   }
   
   // 检查异常跳转状态
@@ -828,10 +828,10 @@ void ui_system_exception_handler(int32_t *ui_exception_context,int32_t ui_except
 // - 使用安全的错误跳转机制
 // - 支持动态错误处理
 //
-void ui_system_error_manager(int32_t *ui_error_context,int32_t ui_error_code,longlong ui_error_msg)
+void ui_system_error_manager(int32_t *ui_error_context,int32_t ui_error_code,int64_t ui_error_msg)
 
 {
-  ulonglong *ui_stdio_ptr;              // 标准IO指针
+  uint64_t *ui_stdio_ptr;              // 标准IO指针
   
   // 设置错误代码和状态
   *ui_error_context = ui_error_code;
@@ -840,9 +840,9 @@ void ui_system_error_manager(int32_t *ui_error_context,int32_t ui_error_code,lon
   // 格式化错误消息
   if (ui_error_msg != 0) {
     ui_error_context[1] = 1;
-    ui_stdio_ptr = (ulonglong *)func_0x00018004b9a0();
+    ui_stdio_ptr = (uint64_t *)func_0x00018004b9a0();
     __stdio_common_vsprintf(*ui_stdio_ptr | 2,ui_error_context + 2,0x4f,ui_error_msg,0);
-    *(int8_t *)((longlong)ui_error_context + 0x57) = 0;
+    *(int8_t *)((int64_t)ui_error_context + 0x57) = 0;
   }
   
   // 检查错误跳转状态
@@ -879,17 +879,17 @@ void ui_system_error_manager(int32_t *ui_error_context,int32_t ui_error_code,lon
 // - 使用安全的日志跳转机制
 // - 支持动态日志处理
 //
-void ui_system_logger(longlong ui_log_context)
+void ui_system_logger(int64_t ui_log_context)
 
 {
-  ulonglong *ui_stdio_ptr;              // 标准IO指针
+  uint64_t *ui_stdio_ptr;              // 标准IO指针
   int32_t *ui_log_data;             // 日志数据指针
   
   // 设置日志状态和标志
   *(int32_t *)(ui_log_context + 4) = 1;
-  ui_stdio_ptr = (ulonglong *)func_0x00018004b9a0();
+  ui_stdio_ptr = (uint64_t *)func_0x00018004b9a0();
   __stdio_common_vsprintf(*ui_stdio_ptr | 2,ui_log_data + 2,0x4f);
-  *(int8_t *)((longlong)ui_log_data + 0x57) = 0;
+  *(int8_t *)((int64_t)ui_log_data + 0x57) = 0;
   
   // 检查日志跳转状态
   if (ui_log_data[0x16] == 0) {
@@ -988,8 +988,8 @@ void ui_system_thread_synchronizer(code *ui_sync_callback)
 
 {
   int ui_sync_count;                  // 同步计数器
-  longlong ui_critical_section;        // 临界区
-  longlong ui_temp_section;            // 临时临界区
+  int64_t ui_critical_section;        // 临界区
+  int64_t ui_temp_section;            // 临时临界区
   bool ui_section_exists;              // 临界区存在标志
   
   // 检查同步状态和计数器
@@ -1071,8 +1071,8 @@ void ui_system_system_initializer(void)
 
 {
   int ui_init_count;                  // 初始化计数器
-  longlong ui_critical_section;        // 临界区
-  longlong ui_temp_section;            // 临时临界区
+  int64_t ui_critical_section;        // 临界区
+  int64_t ui_temp_section;            // 临时临界区
   code *ui_init_callback;              // 初始化回调函数
   bool ui_section_exists;              // 临界区存在标志
   
@@ -1207,7 +1207,7 @@ void ui_system_cpu_feature_detector(void)
 
 {
   uint *ui_cpu_info;                  // CPU信息指针
-  longlong ui_version_info;            // 版本信息
+  int64_t ui_version_info;            // 版本信息
   uint ui_feature_flags;               // 特性标志
   bool ui_has_sse2;                   // SSE2支持标志
   bool ui_has_avx;                    // AVX支持标志
@@ -1333,8 +1333,8 @@ void ui_system_secure_synchronizer(code *ui_secure_callback)
 
 {
   int ui_secure_count;                // 安全计数器
-  longlong ui_secure_section;          // 安全临界区
-  longlong ui_temp_section;            // 临时安全临界区
+  int64_t ui_secure_section;          // 安全临界区
+  int64_t ui_temp_section;            // 临时安全临界区
   bool ui_section_exists;              // 安全临界区存在标志
   
   // 检查安全同步状态
@@ -1416,8 +1416,8 @@ void ui_system_secure_initializer(void)
 
 {
   int ui_secure_init_count;           // 安全初始化计数器
-  longlong ui_secure_section;          // 安全临界区
-  longlong ui_temp_section;            // 临时安全临界区
+  int64_t ui_secure_section;          // 安全临界区
+  int64_t ui_temp_section;            // 临时安全临界区
   code *ui_secure_callback;            // 安全初始化回调函数
   bool ui_section_exists;              // 安全临界区存在标志
   

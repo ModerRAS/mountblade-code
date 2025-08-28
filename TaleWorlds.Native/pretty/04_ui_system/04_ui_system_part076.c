@@ -49,18 +49,18 @@ void ui_system_advanced_data_processing(void* ui_context, uint data_size, int st
     uint8_t (*vector_ptr)[16];
     uint processed_count;
     int remaining_count;
-    longlong data_offset;
+    int64_t data_offset;
     float* float_ptr;
-    longlong memory_ptr;
+    int64_t memory_ptr;
     float* next_float_ptr;
     int element_index;
-    longlong structure_offset;
-    longlong temp_offset;
+    int64_t structure_offset;
+    int64_t temp_offset;
     int array_index;
-    ulonglong batch_count;
+    uint64_t batch_count;
     int loop_counter;
     float* input_vector;
-    longlong input_offset;
+    int64_t input_offset;
     int dimension_count;
     float constraint_value;
     float boundary_value;
@@ -116,8 +116,8 @@ void ui_system_advanced_data_processing(void* ui_context, uint data_size, int st
         if (start_offset < (int)data_size) {
             if (PROCESSING_BATCH_4 < (int)(data_size - start_offset)) {
                 processed_count = ((data_size - start_offset) - PROCESSING_BATCH_4 >> 2) + 1;
-                float_ptr = (float*)(input_offset + ((longlong)start_offset + 2) * 4);
-                batch_count = (ulonglong)processed_count;
+                float_ptr = (float*)(input_offset + ((int64_t)start_offset + 2) * 4);
+                batch_count = (uint64_t)processed_count;
                 start_offset = start_offset + processed_count * PROCESSING_BATCH_4;
                 
                 do {
@@ -164,8 +164,8 @@ void ui_system_advanced_data_processing(void* ui_context, uint data_size, int st
             
             // 最终剩余元素处理
             if (start_offset < (int)data_size) {
-                float_ptr = (float*)(input_offset + (longlong)start_offset * 4);
-                data_offset = (longlong)(int)(data_size - start_offset);
+                float_ptr = (float*)(input_offset + (int64_t)start_offset * 4);
+                data_offset = (int64_t)(int)(data_size - start_offset);
                 
                 do {
                     result_value = *float_ptr;
@@ -186,12 +186,12 @@ void ui_system_advanced_data_processing(void* ui_context, uint data_size, int st
     // 高级数据归一化处理
     dimension_count = (int)input_offset;
     if (0 < dimension_count) {
-        memory_ptr = input_offset - (longlong)input_vector;
+        memory_ptr = input_offset - (int64_t)input_vector;
         data_offset = input_offset;
         
         do {
             result_value = *input_vector;
-            float_ptr = (float*)(memory_ptr + (longlong)input_vector);
+            float_ptr = (float*)(memory_ptr + (int64_t)input_vector);
             element_index = 0;
             
             // 批量符号检查（4个元素为单位）
@@ -346,13 +346,13 @@ void ui_system_advanced_data_processing(void* ui_context, uint data_size, int st
                 // 应用归一化处理
                 if (remaining_count < loop_counter) {
                     if (PROCESSING_BATCH_4 < loop_counter - remaining_count) {
-                        memory_ptr = (longlong)((remaining_count + 2) * dimension_count);
+                        memory_ptr = (int64_t)((remaining_count + 2) * dimension_count);
                         next_float_ptr = float_ptr + memory_ptr;
                         temp_offset = (remaining_count + 1) * dimension_count - memory_ptr;
                         structure_offset = (remaining_count + 3) * dimension_count - memory_ptr;
                         memory_ptr = remaining_count * dimension_count - memory_ptr;
                         processed_count = ((loop_counter - remaining_count) - 4U >> 2) + 1;
-                        batch_count = (ulonglong)processed_count;
+                        batch_count = (uint64_t)processed_count;
                         remaining_count = remaining_count + processed_count * 4;
                         
                         do {
@@ -367,7 +367,7 @@ void ui_system_advanced_data_processing(void* ui_context, uint data_size, int st
                     
                     if (remaining_count < loop_counter) {
                         next_float_ptr = float_ptr + remaining_count * dimension_count;
-                        memory_ptr = (longlong)(loop_counter - remaining_count);
+                        memory_ptr = (int64_t)(loop_counter - remaining_count);
                         
                         do {
                             *next_float_ptr = (*next_float_ptr * constraint_value + 1.0f) * *next_float_ptr;
@@ -384,13 +384,13 @@ void ui_system_advanced_data_processing(void* ui_context, uint data_size, int st
                     
                     if (element_index < array_index) {
                         if (PROCESSING_BATCH_4 < array_index - element_index) {
-                            memory_ptr = (longlong)((element_index + 2) * dimension_count);
+                            memory_ptr = (int64_t)((element_index + 2) * dimension_count);
                             next_float_ptr = float_ptr + memory_ptr;
                             temp_offset = (element_index + 1) * dimension_count - memory_ptr;
                             structure_offset = (element_index + 3) * dimension_count - memory_ptr;
                             memory_ptr = element_index * dimension_count - memory_ptr;
                             processed_count = ((array_index - element_index) - 4U >> 2) + 1;
-                            batch_count = (ulonglong)processed_count;
+                            batch_count = (uint64_t)processed_count;
                             element_index = element_index + processed_count * 4;
                             
                             do {
@@ -440,7 +440,7 @@ void ui_system_advanced_data_processing(void* ui_context, uint data_size, int st
                         
                         if (element_index < array_index) {
                             next_float_ptr = float_ptr + element_index * dimension_count;
-                            memory_ptr = (longlong)(array_index - element_index);
+                            memory_ptr = (int64_t)(array_index - element_index);
                             
                             do {
                                 normalized_value = normalized_value - processed_value;
@@ -490,11 +490,11 @@ void ui_system_advanced_vector_processing(void* processing_context, void* vector
     int iteration_count;
     uint processed_count;
     int loop_counter;
-    longlong data_offset;
-    ulonglong batch_count;
+    int64_t data_offset;
+    uint64_t batch_count;
     float* array_ptr;
     int element_index;
-    longlong memory_ptr;
+    int64_t memory_ptr;
     int dimension_count;
     float current_value;
     float absolute_value;
@@ -502,14 +502,14 @@ void ui_system_advanced_vector_processing(void* processing_context, void* vector
     float processing_value;
     float constraint_factor;
     float normalization_factor;
-    longlong context_offset;
+    int64_t context_offset;
     float* stack_buffer;
     
     context_offset = input_offset;
     
     do {
         base_value = *input_vector;
-        vector_ptr = (float*)(input_offset + (longlong)input_vector);
+        vector_ptr = (float*)(input_offset + (int64_t)input_vector);
         iteration_count = 0;
         dimension_count = (int)input_offset;
         
@@ -665,13 +665,13 @@ void ui_system_advanced_vector_processing(void* processing_context, void* vector
             // 应用归一化处理
             if (memory_ptr < loop_counter) {
                 if (PROCESSING_BATCH_4 < loop_counter - memory_ptr) {
-                    data_offset = (longlong)((memory_ptr + 2) * dimension_count);
+                    data_offset = (int64_t)((memory_ptr + 2) * dimension_count);
                     array_ptr = vector_ptr + data_offset;
                     temp_offset = (memory_ptr + 1) * dimension_count - data_offset;
                     structure_offset = (memory_ptr + 3) * dimension_count - data_offset;
                     data_offset = memory_ptr * dimension_count - data_offset;
                     processed_count = ((loop_counter - memory_ptr) - 4U >> 2) + 1;
-                    batch_count = (ulonglong)processed_count;
+                    batch_count = (uint64_t)processed_count;
                     memory_ptr = memory_ptr + processed_count * 4;
                     
                     do {
@@ -687,7 +687,7 @@ void ui_system_advanced_vector_processing(void* processing_context, void* vector
                 
                 if (memory_ptr < loop_counter) {
                     array_ptr = vector_ptr + memory_ptr * dimension_count;
-                    data_offset = (longlong)(loop_counter - memory_ptr);
+                    data_offset = (int64_t)(loop_counter - memory_ptr);
                     
                     do {
                         *array_ptr = (*array_ptr * current_value + boundary_values[0]) * *array_ptr;
@@ -704,13 +704,13 @@ void ui_system_advanced_vector_processing(void* processing_context, void* vector
                 
                 if (iteration_count < array_index) {
                     if (PROCESSING_BATCH_4 < array_index - iteration_count) {
-                        data_offset = (longlong)((iteration_count + 2) * dimension_count);
+                        data_offset = (int64_t)((iteration_count + 2) * dimension_count);
                         array_ptr = vector_ptr + data_offset;
                         temp_offset = (iteration_count + 1) * dimension_count - data_offset;
                         structure_offset = (iteration_count + 3) * dimension_count - data_offset;
                         data_offset = iteration_count * dimension_count - data_offset;
                         processed_count = ((array_index - iteration_count) - 4U >> 2) + 1;
-                        batch_count = (ulonglong)processed_count;
+                        batch_count = (uint64_t)processed_count;
                         iteration_count = iteration_count + processed_count * 4;
                         
                         do {
@@ -760,7 +760,7 @@ void ui_system_advanced_vector_processing(void* processing_context, void* vector
                     
                     if (iteration_count < array_index) {
                         array_ptr = vector_ptr + iteration_count * dimension_count;
-                        data_offset = (longlong)(array_index - iteration_count);
+                        data_offset = (int64_t)(array_index - iteration_count);
                         
                         do {
                             normalization_factor = normalization_factor - constraint_factor;
@@ -823,7 +823,7 @@ void ui_system_empty_function_placeholder2(void)
  * @param buffer_manager 缓冲区管理器指针
  * @param audio_processor 音频处理器指针
  */
-void ui_system_advanced_audio_processor(longlong audio_context, int* audio_params, int sample_rate, 
+void ui_system_advanced_audio_processor(int64_t audio_context, int* audio_params, int sample_rate, 
                                       int audio_format, void* stream_config, void* buffer_manager, 
                                       void* audio_processor)
 {
@@ -844,8 +844,8 @@ void ui_system_advanced_audio_processor(longlong audio_context, int* audio_param
     uint8_t byte_flag;
     int array_index;
     uint64_t* next_ptr;
-    longlong memory_offset;
-    ulonglong processing_count;
+    int64_t memory_offset;
+    uint64_t processing_count;
     int* audio_param_ptr;
     int* next_audio_param;
     char* char_ptr;
@@ -857,7 +857,7 @@ void ui_system_advanced_audio_processor(longlong audio_context, int* audio_param
     int stack_index_334;
     int stack_index_32c;
     int* stack_param_ptr;
-    longlong stack_memory_320;
+    int64_t stack_memory_320;
     uint64_t stack_config_318;
     uint64_t stack_config_310;
     int stack_index_308;
@@ -866,10 +866,10 @@ void ui_system_advanced_audio_processor(longlong audio_context, int* audio_param
     int stack_index_2e8;
     uint64_t stack_config_2e0;
     uint8_t audio_buffer[AUDIO_BUFFER_SIZE];
-    ulonglong stack_security;
+    uint64_t stack_security;
     
     // 初始化安全检查
-    stack_security = *(uint64_t*)0x180bf00a8 ^ (ulonglong)&stack_index_338;
+    stack_security = *(uint64_t*)0x180bf00a8 ^ (uint64_t)&stack_index_338;
     channel_count = 0;
     stack_config_310 = buffer_manager;
     stack_config_2e0 = audio_processor;
@@ -940,7 +940,7 @@ void ui_system_advanced_audio_processor(longlong audio_context, int* audio_param
             array_index = (audio_params[3] >> BIT_SHIFT_10) + 1;
             if ((((audio_params[3] >> BIT_SHIFT_10) - 7U & 0xfffffff3) != 0) || (array_index == 0x14)) goto audio_validation_failed;
             
-            array_index = ui_system_allocate_audio_resources((longlong)current_param * MEMORY_BLOCK_SIZE_0x10C0 + audio_context, array_index, audio_params[2]);
+            array_index = ui_system_allocate_audio_resources((int64_t)current_param * MEMORY_BLOCK_SIZE_0x10C0 + audio_context, array_index, audio_params[2]);
             stack_index_338 = stack_index_338 + array_index;
             current_param = current_param + 1;
             array_index = audio_params[1];
@@ -1007,15 +1007,15 @@ void ui_system_advanced_audio_processor(longlong audio_context, int* audio_param
         data_ptr[0x10] = next_ptr[0x10];
         data_ptr[0x11] = config_data_1;
         param_value_1 = *(uint32_t*)(next_ptr + 0x14);
-        param_value_2 = *(uint32_t*)((longlong)next_ptr + 0xa4);
+        param_value_2 = *(uint32_t*)((int64_t)next_ptr + 0xa4);
         param_value_3 = *(uint32_t*)(next_ptr + 0x15);
-        param_value_4 = *(uint32_t*)((longlong)next_ptr + 0xac);
+        param_value_4 = *(uint32_t*)((int64_t)next_ptr + 0xac);
         data_ptr[0x12] = config_data_2;
         data_ptr[0x13] = config_data_3;
         *(uint32_t*)(data_ptr + 0x14) = param_value_1;
-        *(uint32_t*)((longlong)data_ptr + 0xa4) = param_value_2;
+        *(uint32_t*)((int64_t)data_ptr + 0xa4) = param_value_2;
         *(uint32_t*)(data_ptr + 0x15) = param_value_3;
-        *(uint32_t*)((longlong)data_ptr + 0xac) = param_value_4;
+        *(uint32_t*)((int64_t)data_ptr + 0xac) = param_value_4;
         current_param = *audio_params;
     }
     
@@ -1027,7 +1027,7 @@ void ui_system_advanced_audio_processor(longlong audio_context, int* audio_param
     if (MAX_SAMPLE_RATE < audio_params[2] - MIN_SAMPLE_RATE U) {
     audio_validation_failed:
         // 错误处理：参数验证失败
-        ui_system_error_handler(stack_security ^ (ulonglong)&stack_index_338);
+        ui_system_error_handler(stack_security ^ (uint64_t)&stack_index_338);
     }
     
     // 音频缓冲区处理
@@ -1067,14 +1067,14 @@ void ui_system_advanced_audio_processor(longlong audio_context, int* audio_param
             current_param = channel_count;
             
             do {
-                *(uint64_t*)((longlong)current_param * MEMORY_BLOCK_SIZE_0x10C0 + 0x980 + audio_context) = 0;
-                *(uint32_t*)((longlong)current_param * MEMORY_BLOCK_SIZE_0x10C0 + 0x988 + audio_context) = 0;
+                *(uint64_t*)((int64_t)current_param * MEMORY_BLOCK_SIZE_0x10C0 + 0x980 + audio_context) = 0;
+                *(uint32_t*)((int64_t)current_param * MEMORY_BLOCK_SIZE_0x10C0 + 0x988 + audio_context) = 0;
                 
                 if (audio_param_ptr[6] != 0) {
                     if (*audio_param_ptr == 1) {
                         audio_param_ptr[7] = 1;
                     } else {
-                        array_index = ui_system_setup_audio_stream(stream_config, *(uint64_t*)(&audio_sample_rates + (longlong)*audio_param_ptr * 8), 8);
+                        array_index = ui_system_setup_audio_stream(stream_config, *(uint64_t*)(&audio_sample_rates + (int64_t)*audio_param_ptr * 8), 8);
                         
                         if (0 < *audio_param_ptr) {
                             sample_ptr = (uint*)(audio_param_ptr + 7);
@@ -1121,7 +1121,7 @@ void ui_system_advanced_audio_processor(longlong audio_context, int* audio_param
                                 array_index = loop_counter;
                             }
                             
-                            ui_system_process_audio_stream((longlong)iteration_count * MEMORY_BLOCK_SIZE_0x10C0 + audio_context, stack_config_318, current_param, 1, array_index);
+                            ui_system_process_audio_stream((int64_t)iteration_count * MEMORY_BLOCK_SIZE_0x10C0 + audio_context, stack_config_318, current_param, 1, array_index);
                             ui_system_encode_audio_data(stack_config_318, audio_buffer, (int)char_ptr[-1], (int)*char_ptr, *(uint32_t*)(char_ptr + -0x1ce));
                             array_index = stack_param_ptr[1];
                         }
@@ -1146,21 +1146,21 @@ void ui_system_advanced_audio_processor(longlong audio_context, int* audio_param
     // 特殊音频格式处理
     if (audio_params[1] != 2) goto final_processing;
     if ((sample_rate != 0) &&
-        ((sample_rate != 2 || (*(int*)(audio_context + 0x980 + (longlong)*audio_param_ptr * 4) != 1)))) {
+        ((sample_rate != 2 || (*(int*)(audio_context + 0x980 + (int64_t)*audio_param_ptr * 4) != 1)))) {
         stack_config_300 = CONCAT44((int)*(short*)(audio_context + 0x2182), (int)*(short*)(audio_context + 0x2180));
         goto final_processing;
     }
     
     ui_system_validate_audio_config(stream_config, &stack_config_300);
     if (sample_rate == 0) {
-        channel_count = *(int*)(audio_context + 0x1a30 + (longlong)*audio_param_ptr * 4);
+        channel_count = *(int*)(audio_context + 0x1a30 + (int64_t)*audio_param_ptr * 4);
     joined_processing:
         if (channel_count == 0) {
             ui_system_initialize_audio_stream(stream_config, &stack_index_32c);
             goto final_processing;
         }
     } else if (sample_rate == 2) {
-        channel_count = *(int*)(audio_context + 0x1a40 + (longlong)*audio_param_ptr * 4);
+        channel_count = *(int*)(audio_context + 0x1a40 + (int64_t)*audio_param_ptr * 4);
         goto joined_processing;
     }
     
@@ -1181,8 +1181,8 @@ final_processing:
         loop_counter = (*(int*)(audio_context + 0x918) + 2) * channel_count;
     }
     
-    processing_count = (longlong)loop_counter * 2 + 0xf;
-    if (processing_count <= (ulonglong)((longlong)loop_counter * 2)) {
+    processing_count = (int64_t)loop_counter * 2 + 0xf;
+    if (processing_count <= (uint64_t)((int64_t)loop_counter * 2)) {
         processing_count = 0xffffffffffffff0;
     }
     
@@ -1196,9 +1196,9 @@ final_processing:
  * 
  * @param audio_context 音频上下文指针
  */
-void ui_system_audio_cleanup(longlong audio_context)
+void ui_system_audio_cleanup(int64_t audio_context)
 {
-    longlong cleanup_counter;
+    int64_t cleanup_counter;
     
     cleanup_counter = 2;
     do {

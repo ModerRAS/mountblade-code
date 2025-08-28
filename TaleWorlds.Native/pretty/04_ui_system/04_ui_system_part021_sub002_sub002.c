@@ -34,12 +34,12 @@
  * @param update_flag 更新标志
  */
 void ProcessUIAdvancedAnimationTransform(
-    longlong ui_context, 
-    longlong animation_data, 
+    int64_t ui_context, 
+    int64_t animation_data, 
     uint64_t transform_matrix, 
-    longlong bone_data,
-    longlong time_data, 
-    longlong state_data, 
+    int64_t bone_data,
+    int64_t time_data, 
+    int64_t state_data, 
     uint animation_id, 
     float blend_factor, 
     float time_scale,
@@ -63,31 +63,31 @@ void ProcessUIAdvancedAnimationTransform(
     uint64_t *vector_ptr;
     int8_t (*matrix_array_ptr)[16];
     uint64_t transform_value;
-    longlong *long_ptr;
+    int64_t *long_ptr;
     float *position_ptr;
     int32_t *component_ptr;
     int8_t temp_buffer_1[8];
     uint64_t stack_value_1;
     uint64_t stack_value_2;
-    longlong *index_ptr;
+    int64_t *index_ptr;
     uint animation_counter;
-    longlong data_offset;
+    int64_t data_offset;
     int8_t *buffer_ptr;
     char state_flag;
     int loop_counter;
     uint frame_counter;
-    longlong temp_long_1;
-    ulonglong ulong_temp_1;
+    int64_t temp_long_1;
+    uint64_t ulong_temp_1;
     uint64_t *temp_ptr_1;
-    longlong temp_long_2;
+    int64_t temp_long_2;
     uint temp_uint_1;
     char temp_char_1;
-    ulonglong ulong_temp_2;
+    uint64_t ulong_temp_2;
     char temp_char_2;
     int temp_int_1;
-    ulonglong ulong_temp_3;
-    ulonglong ulong_temp_4;
-    longlong temp_long_3;
+    uint64_t ulong_temp_3;
+    uint64_t ulong_temp_4;
+    int64_t temp_long_3;
     bool bool_flag;
     float float_value_1;
     float float_value_2;
@@ -128,17 +128,17 @@ void ProcessUIAdvancedAnimationTransform(
     uint stack_uint_1;
     char stack_char_1;
     uint64_t stack_value_3;
-    longlong stack_long_1;
+    int64_t stack_long_1;
     uint stack_uint_2;
-    longlong stack_long_2;
+    int64_t stack_long_2;
     int8_t stack_buffer_2[8];
     uint64_t stack_value_4;
     int stack_int_1;
     int stack_int_2;
     uint stack_uint_3;
     float stack_float_2;
-    longlong stack_long_3;
-    longlong *stack_long_ptr_1;
+    int64_t stack_long_3;
+    int64_t *stack_long_ptr_1;
     int8_t stack_buffer_3[16];
     float stack_float_3;
     float stack_float_4;
@@ -184,7 +184,7 @@ void ProcessUIAdvancedAnimationTransform(
     uint64_t stack_value_22;
     uint64_t stack_value_23;
     uint64_t stack_value_24;
-    longlong stack_long_4;
+    int64_t stack_long_4;
     uint64_t stack_value_25;
     uint64_t stack_value_26;
     int32_t stack_component_7;
@@ -193,8 +193,8 @@ void ProcessUIAdvancedAnimationTransform(
     int32_t stack_component_10;
     int stack_int_3;
     float stack_float_14;
-    longlong *stack_long_ptr_2;
-    longlong stack_long_5;
+    int64_t *stack_long_ptr_2;
+    int64_t stack_long_5;
     int8_t stack_buffer_6[16];
     int8_t stack_buffer_7[16];
     uint64_t stack_value_27;
@@ -248,13 +248,13 @@ void ProcessUIAdvancedAnimationTransform(
     uint64_t stack_value_44;
     int8_t stack_buffer_26[192];
     uint64_t stack_array_3[4];
-    longlong stack_long_array_1[32];
+    int64_t stack_long_array_1[32];
     float stack_float_array_2[2];
     uint64_t stack_value_45;
-    ulonglong stack_ulong_1;
+    uint64_t stack_ulong_1;
     
     // 初始化堆栈保护变量
-    stack_ulong_1 = GET_SECURITY_COOKIE() ^ (ulonglong)stack_buffer_1;
+    stack_ulong_1 = GET_SECURITY_COOKIE() ^ (uint64_t)stack_buffer_1;
     
     // 初始化变量
     animation_counter = 0;
@@ -280,9 +280,9 @@ void ProcessUIAdvancedAnimationTransform(
     stack_array_1[1] = matrix_ptr[1];
     _stack_buffer_25 = *(int8_t (*) [16])(matrix_ptr + 2);
     stack_component_17 = *(int32_t *)(matrix_ptr + 4);
-    stack_component_16 = *(int32_t *)((longlong)matrix_ptr + 0x24);
+    stack_component_16 = *(int32_t *)((int64_t)matrix_ptr + 0x24);
     stack_component_18 = *(int32_t *)(matrix_ptr + 5);
-    stack_component_19 = *(int32_t *)((longlong)matrix_ptr + 0x2c);
+    stack_component_19 = *(int32_t *)((int64_t)matrix_ptr + 0x2c);
     
     // 处理变换矩阵
     FUN_18063b470(&stack_value_5, stack_array_1);
@@ -337,14 +337,14 @@ void ProcessUIAdvancedAnimationTransform(
                         stack_value_34 = 0x3f8000003f800000;
                         
                         animation_counter = movmskps((int)float_ptr, temp_buffer_14);
-                        ulong_temp_1 = (ulonglong)(animation_counter & 1);
+                        ulong_temp_1 = (uint64_t)(animation_counter & 1);
                         float_value_5 = *(float *)(&stack_value_33 + ulong_temp_1 * 2);
                         float_value_7 = *(float *)(&stack_value_34 + ulong_temp_1 * 2);
                         
                         float_value_8 = *position_ptr;
                         float_value_13 = position_ptr[2];
-                        float_value_12 = *(float *)((longlong)&stack_value_33 + ulong_temp_1 * 0x10 + 4) * position_ptr[1];
-                        float_value_14 = *(float *)((longlong)&stack_value_34 + ulong_temp_1 * 0x10 + 4) * position_ptr[3];
+                        float_value_12 = *(float *)((int64_t)&stack_value_33 + ulong_temp_1 * 0x10 + 4) * position_ptr[1];
+                        float_value_14 = *(float *)((int64_t)&stack_value_34 + ulong_temp_1 * 0x10 + 4) * position_ptr[3];
                         
                         // 处理边界情况
                         if (0.9995 < ABS(temp_buffer_14._0_4_)) {
@@ -386,21 +386,21 @@ void ProcessUIAdvancedAnimationTransform(
                 // 更新计数器和指针
                 stack_uint_1 = stack_uint_1 + 1;
                 animation_counter = (int)stack_value_7 + 1;
-                stack_value_7 = (uint64_t *)(ulonglong)animation_counter;
-                float_ptr = (float *)(((longlong)stack_float_array_1 - ui_context) + (longlong)position_ptr);
+                stack_value_7 = (uint64_t *)(uint64_t)animation_counter;
+                float_ptr = (float *)(((int64_t)stack_float_array_1 - ui_context) + (int64_t)position_ptr);
                 *float_ptr = float_value_1;
                 float_ptr[1] = float_value_11;
                 float_ptr[2] = float_value_9;
                 float_ptr[3] = float_value_10;
                 position_ptr = position_ptr + 4;
-                animation_state = *(char *)((longlong)animation_state + 0x100 + state_data);
+                animation_state = *(char *)((int64_t)animation_state + 0x100 + state_data);
                 time_scale = stack_float_6;
             } while ((int)animation_counter < (int)*(char *)(ui_context + 0xa6));
         }
         
         // 处理动画数据更新
         temp_int_1 = stack_uint_1 - 1;
-        ulong_temp_1 = (ulonglong)temp_int_1;
+        ulong_temp_1 = (uint64_t)temp_int_1;
         if (-1 < temp_int_1) {
             matrix_ptr = stack_array_1 + ulong_temp_1 * 2;
             do {
@@ -409,12 +409,12 @@ void ProcessUIAdvancedAnimationTransform(
                 if (0 < loop_counter) {
                     ulong_temp_1 = ulong_temp_1 & 0xffffffff;
                     do {
-                        animation_state = *(char *)((longlong)animation_state + 0x100 + state_data);
+                        animation_state = *(char *)((int64_t)animation_state + 0x100 + state_data);
                         ulong_temp_1 = ulong_temp_1 - 1;
                     } while (ulong_temp_1 != 0);
                 }
                 
-                ulong_temp_4 = (ulonglong)animation_state;
+                ulong_temp_4 = (uint64_t)animation_state;
                 temp_ptr_1 = (uint64_t *)((ulong_temp_4 + 0x82) * 0x10 + animation_data);
                 
                 if (loop_counter == temp_int_1) {
@@ -422,7 +422,7 @@ void ProcessUIAdvancedAnimationTransform(
                         data_ptr = (int8_t *)
                                   FUN_18022a890(stack_long_2, *(int8_t *)(ulong_temp_4 + 0x100 + state_data), state_data);
                         buffer_ptr = stack_buffer_3;
-                        vector_ptr = stack_array_1 + (longlong)loop_counter * 2;
+                        vector_ptr = stack_array_1 + (int64_t)loop_counter * 2;
                         goto LAB_180663714;
                     }
                     transform_value = *matrix_ptr;
@@ -430,8 +430,8 @@ void ProcessUIAdvancedAnimationTransform(
                 }
                 else {
                     buffer_ptr = stack_buffer_5;
-                    vector_ptr = stack_array_1 + (longlong)loop_counter * 2;
-                    data_ptr = stack_buffer_25 + (longlong)loop_counter * 0x10;
+                    vector_ptr = stack_array_1 + (int64_t)loop_counter * 2;
+                    data_ptr = stack_buffer_25 + (int64_t)loop_counter * 0x10;
 LAB_180663714:
                     vector_ptr = (uint64_t *)func_0x00018022b3c0(data_ptr, buffer_ptr, vector_ptr);
                     transform_value = *vector_ptr;
@@ -443,12 +443,12 @@ LAB_180663714:
                 matrix_ptr = matrix_ptr + -2;
                 
                 // 更新状态标志
-                *(ulonglong *)(stack_long_2 + 0x800) =
-                     *(ulonglong *)(stack_long_2 + 0x800) |
-                     *(ulonglong *)(ulong_temp_4 * 0x1b0 + 0xe8 + *(longlong *)(state_data + 0x140));
-                ulong_temp_1 = (ulonglong)(loop_counter - 1U);
-                *(ulonglong *)(stack_long_2 + 0x808) =
-                     *(ulonglong *)(stack_long_2 + 0x808) | 1L << (ulong_temp_4 & 0x3f);
+                *(uint64_t *)(stack_long_2 + 0x800) =
+                     *(uint64_t *)(stack_long_2 + 0x800) |
+                     *(uint64_t *)(ulong_temp_4 * 0x1b0 + 0xe8 + *(int64_t *)(state_data + 0x140));
+                ulong_temp_1 = (uint64_t)(loop_counter - 1U);
+                *(uint64_t *)(stack_long_2 + 0x808) =
+                     *(uint64_t *)(stack_long_2 + 0x808) | 1L << (ulong_temp_4 & 0x3f);
                 animation_data = stack_long_2;
             } while (-1 < (int)(loop_counter - 1U));
         }
@@ -465,11 +465,11 @@ LAB_180663714:
     
     if (animation_state != state_flag) {
         do {
-            temp_long_1 = (longlong)animation_state;
+            temp_long_1 = (int64_t)animation_state;
             matrix_ptr = (uint64_t *)(animation_data + (temp_long_1 + 0x82) * 0x10);
             stack_value_33 = *matrix_ptr;
             stack_value_34 = matrix_ptr[1];
-            matrix_ptr = (uint64_t *)(temp_long_1 * 0x1b0 + 0x80 + *(longlong *)(state_data + 0x140));
+            matrix_ptr = (uint64_t *)(temp_long_1 * 0x1b0 + 0x80 + *(int64_t *)(state_data + 0x140));
             stack_value_35 = *matrix_ptr;
             stack_value_36 = matrix_ptr[1];
             
@@ -489,7 +489,7 @@ LAB_180663714:
     temp_int_1 = *(int *)(ui_context + 0xa0);
     if (temp_int_1 == 3) {
         transform_value = FUN_1801c13c0(time_data, stack_buffer_3, ui_context + 0x10);
-        long_ptr = (longlong *)FUN_1801c10f0(&stack_value_21, stack_buffer_5, transform_value);
+        long_ptr = (int64_t *)FUN_1801c10f0(&stack_value_21, stack_buffer_5, transform_value);
         stack_value_3 = (uint64_t *)*long_ptr;
         stack_long_1 = long_ptr[1];
         
@@ -516,7 +516,7 @@ LAB_180663a5e:
         matrix_ptr = (uint64_t *)FUN_18022a890(animation_data, state_flag, state_data);
         stack_array_1[0] = *matrix_ptr;
         stack_array_1[1] = matrix_ptr[1];
-        _stack_buffer_25 = *(int8_t (*) [16])(animation_data + ((longlong)state_flag + 0x40) * 0x10);
+        _stack_buffer_25 = *(int8_t (*) [16])(animation_data + ((int64_t)state_flag + 0x40) * 0x10);
         animation_state = func_0x0001806673d0(ui_context + 0x20);
         if (animation_state == '\0') {
             stack_array_1[0] = *(uint64_t *)(ui_context + 0x20);
@@ -529,7 +529,7 @@ LAB_180663a5e:
         stack_value_19 = matrix_ptr[1];
         stack_float_4 = (float)stack_buffer_25._4_4_ + *(float *)(ui_context + 0x14);
         stack_float_5 = stack_float_15 + *(float *)(ui_context + 0x18);
-        long_ptr = (longlong *)FUN_1801c10f0(&stack_value_21, stack_buffer_3, &stack_float_3);
+        long_ptr = (int64_t *)FUN_1801c10f0(&stack_value_21, stack_buffer_3, &stack_float_3);
         stack_value_3 = (uint64_t *)*long_ptr;
         stack_long_1 = long_ptr[1];
     }
@@ -538,7 +538,7 @@ LAB_180663a5e:
         matrix_ptr = (uint64_t *)FUN_18022a890(animation_data, animation_state, state_data);
         stack_array_1[0] = *matrix_ptr;
         stack_array_1[1] = matrix_ptr[1];
-        _stack_buffer_25 = *(int8_t (*) [16])(animation_data + ((longlong)animation_state + 0x40) * 0x10);
+        _stack_buffer_25 = *(int8_t (*) [16])(animation_data + ((int64_t)animation_state + 0x40) * 0x10);
         position_ptr = (float *)FUN_1801c0fb0(stack_array_1, stack_buffer_3, ui_context + 0x10);
         temp_buffer_15 = _stack_buffer_25;
         stack_buffer_25._4_4_ = (float)stack_buffer_25._4_4_ + position_ptr[1];
@@ -567,15 +567,15 @@ LAB_180663a5e:
     else {
         if (temp_int_1 == 6) {
             transform_value = FUN_1801c13c0(time_data, stack_buffer_3, ui_context + 0x10);
-            long_ptr = (longlong *)FUN_1801c10f0(&stack_value_21, stack_buffer_5, transform_value);
+            long_ptr = (int64_t *)FUN_1801c10f0(&stack_value_21, stack_buffer_5, transform_value);
             stack_value_3 = (uint64_t *)*long_ptr;
             stack_long_1 = long_ptr[1];
             goto LAB_180663ade;
         }
         if (temp_int_1 == 7) {
-            if ((*(ulonglong *)(bone_data + 0x810) >> ((ulonglong)*(byte *)(ui_context + 0xa5) & 0x3f) & 1) == 0) {
+            if ((*(uint64_t *)(bone_data + 0x810) >> ((uint64_t)*(byte *)(ui_context + 0xa5) & 0x3f) & 1) == 0) {
                 temp_ptr_1 = (uint64_t *)FUN_18022a890(animation_data, state_flag, state_data);
-                matrix_ptr = (uint64_t *)(animation_data + ((longlong)state_flag + 0x40) * 0x10);
+                matrix_ptr = (uint64_t *)(animation_data + ((int64_t)state_flag + 0x40) * 0x10);
                 stack_value_35 = *matrix_ptr;
                 stack_value_36 = matrix_ptr[1];
                 stack_value_33 = *temp_ptr_1;
@@ -585,13 +585,13 @@ LAB_180663a5e:
                 stack_value_18 = *matrix_ptr;
                 stack_value_19 = matrix_ptr[1];
                 FUN_18022a890(animation_data, animation_state, state_data);
-                matrix_ptr = (uint64_t *)(animation_data + ((longlong)animation_state + 0x40) * 0x10);
+                matrix_ptr = (uint64_t *)(animation_data + ((int64_t)animation_state + 0x40) * 0x10);
                 stack_buffer_2 = (int8_t [8])*matrix_ptr;
                 transform_value = matrix_ptr[1];
             }
             else {
                 temp_ptr_1 = (uint64_t *)FUN_18022a890(bone_data, state_flag, state_data);
-                matrix_ptr = (uint64_t *)(bone_data + ((longlong)state_flag + 0x40) * 0x10);
+                matrix_ptr = (uint64_t *)(bone_data + ((int64_t)state_flag + 0x40) * 0x10);
                 stack_value_35 = *matrix_ptr;
                 stack_value_36 = matrix_ptr[1];
                 stack_value_33 = *temp_ptr_1;
@@ -601,12 +601,12 @@ LAB_180663a5e:
                 stack_value_18 = *matrix_ptr;
                 stack_value_19 = matrix_ptr[1];
                 FUN_18022a890(bone_data, animation_state, state_data);
-                matrix_ptr = (uint64_t *)(bone_data + ((longlong)animation_state + 0x40) * 0x10);
+                matrix_ptr = (uint64_t *)(bone_data + ((int64_t)animation_state + 0x40) * 0x10);
                 stack_buffer_2 = (int8_t [8])*matrix_ptr;
                 transform_value = matrix_ptr[1];
             }
             stack_value_4._0_4_ = (float)transform_value;
-            stack_value_4._4_4_ = (float)((ulonglong)transform_value >> 0x20);
+            stack_value_4._4_4_ = (float)((uint64_t)transform_value >> 0x20);
             stack_value_4._0_4_ = (float)stack_value_4 + *(float *)(ui_context + 0x90);
             matrix_ptr = (uint64_t *)FUN_1801c1690(ui_context + 0x10, stack_buffer_3, stack_buffer_2);
             stack_buffer_2 = (int8_t [8])*matrix_ptr;
@@ -614,7 +614,7 @@ LAB_180663a5e:
             matrix_array_ptr = (int8_t (*) [16])func_0x0001800f8f10(ui_context + 0x50, stack_buffer_3, stack_buffer_2);
             _stack_buffer_2 = *matrix_array_ptr;
             transform_value = FUN_1801c13c0(stack_long_4, stack_buffer_3, stack_buffer_2);
-            long_ptr = (longlong *)FUN_1801c10f0(&stack_value_21, stack_buffer_5, transform_value);
+            long_ptr = (int64_t *)FUN_1801c10f0(&stack_value_21, stack_buffer_5, transform_value);
             stack_value_3 = (uint64_t *)*long_ptr;
             stack_long_1 = long_ptr[1];
             if ((((float)stack_value_10 != 0.0) || (stack_value_10._4_4_ != 0.0)) || ((float)stack_value_11 != 0.0)) {
@@ -662,14 +662,14 @@ LAB_180663a5e:
             if ((int)*(char *)(ui_context + 0xa6) <= (int)animation_counter) break;
             
             component_ptr = (int32_t *)FUN_18022a890(temp_long_1, frame_counter & 0xff, state_data);
-            temp_long_3 = (longlong)(char)frame_counter;
+            temp_long_3 = (int64_t)(char)frame_counter;
             transform_component = component_ptr[1];
             component_1 = component_ptr[2];
             component_2 = component_ptr[3];
             *(int32_t *)matrix_ptr = *component_ptr;
-            *(int32_t *)((longlong)matrix_ptr + 4) = transform_component;
+            *(int32_t *)((int64_t)matrix_ptr + 4) = transform_component;
             *(int32_t *)(matrix_ptr + 1) = component_1;
-            *(int32_t *)((longlong)matrix_ptr + 0xc) = component_2;
+            *(int32_t *)((int64_t)matrix_ptr + 0xc) = component_2;
             
             temp_ptr_1 = (uint64_t *)(temp_long_1 + (temp_long_3 + 0x40) * 0x10);
             transform_value = temp_ptr_1[1];
@@ -693,7 +693,7 @@ LAB_180663a5e:
                 float_ptr = (float *)FUN_180285c90(&stack_value_21, stack_buffer_3, &stack_value_3);
                 animation_state = *(char *)(temp_long_1 + 0xa4);
                 FUN_18022a890(stack_long_2, animation_state, state_data);
-                position_ptr = (float *)(stack_long_2 + ((longlong)animation_state + 0x40) * 0x10);
+                position_ptr = (float *)(stack_long_2 + ((int64_t)animation_state + 0x40) * 0x10);
                 stack_float_13 = float_ptr[2] - position_ptr[2];
                 stack_component_6 = 0x7f7fffff;
                 stack_buffer_4._4_4_ = (float_ptr[1] - position_ptr[1]) * float_value_11;
@@ -729,7 +729,7 @@ LAB_180663a5e:
                 matrix_ptr = (uint64_t *)FUN_18022a890(temp_long_1, frame_counter & 0xff, state_data);
                 stack_value_27 = *matrix_ptr;
                 stack_value_28 = matrix_ptr[1];
-                matrix_ptr = (uint64_t *)(temp_long_1 + ((longlong)(char)stack_byte_1 + 0x40) * 0x10);
+                matrix_ptr = (uint64_t *)(temp_long_1 + ((int64_t)(char)stack_byte_1 + 0x40) * 0x10);
                 stack_value_29 = *matrix_ptr;
                 stack_value_30 = matrix_ptr[1];
                 temp_uint_1 = stack_uint_1;
@@ -737,10 +737,10 @@ LAB_180663a5e:
             
             stack_uint_3 = temp_uint_1 - 1;
             stack_float_2 = 0.0;
-            transform_value = stack_array_2[(longlong)(int)temp_uint_1 * 4 + 2];
-            temp_value_1 = stack_array_2[(longlong)(int)temp_uint_1 * 4 + 3];
-            stack_buffer_2 = (int8_t [8])(longlong)(int)temp_uint_1;
-            long_ptr = (longlong *)((longlong)stack_buffer_2 + -1);
+            transform_value = stack_array_2[(int64_t)(int)temp_uint_1 * 4 + 2];
+            temp_value_1 = stack_array_2[(int64_t)(int)temp_uint_1 * 4 + 3];
+            stack_buffer_2 = (int8_t [8])(int64_t)(int)temp_uint_1;
+            long_ptr = (int64_t *)((int64_t)stack_buffer_2 + -1);
             temp_buffer_19 = stack_buffer_2;
             stack_long_ptr_2 = long_ptr;
             
@@ -752,7 +752,7 @@ LAB_180663a5e:
                 stack_ptr_4 = (uint64_t *)0xffffffffffffffff;
                 stack_long_ptr_1 = long_ptr;
                 
-                if (0 < (longlong)temp_buffer_19) {
+                if (0 < (int64_t)temp_buffer_19) {
                     stack_ptr_3 = (uint64_t *)0x0;
                     stack_uint_4 = 0xffffffff;
                     stack_ptr_2 = (uint64_t *)0xffffffffffffffe0;
@@ -760,28 +760,28 @@ LAB_180663a5e:
                         temp_ptr_1 = stack_ptr_5;
                         matrix_ptr = stack_ptr_3;
                         animation_counter = stack_uint_4;
-                        temp_long_1 = (longlong)animation_state;
-                        stack_long_ptr_1 = (longlong *)temp_long_1;
+                        temp_long_1 = (int64_t)animation_state;
+                        stack_long_ptr_1 = (int64_t *)temp_long_1;
                         
-                        if (*(int *)(temp_long_1 * 0x1b0 + 0x110 + *(longlong *)(state_data + 0x140)) != -1) {
+                        if (*(int *)(temp_long_1 * 0x1b0 + 0x110 + *(int64_t *)(state_data + 0x140)) != -1) {
                             if (state_flag == -1) {
                                 component_ptr = (int32_t *)FUN_180285c90(&stack_value_21, stack_buffer_18, &stack_value_3);
                                 transform_component = component_ptr[1];
                                 component_1 = component_ptr[2];
                                 component_2 = component_ptr[3];
-                                *(int32_t *)((longlong)&stack_value_43 + (longlong)matrix_ptr) = *component_ptr;
-                                *(int32_t *)((longlong)&stack_value_43 + 4 + (longlong)matrix_ptr) = transform_component;
-                                *(int32_t *)((longlong)&stack_value_44 + (longlong)matrix_ptr) = component_1;
-                                *(int32_t *)((longlong)&stack_value_44 + 4 + (longlong)matrix_ptr) = component_2;
-                                stack_long_ptr_1 = (longlong *)temp_long_1;
+                                *(int32_t *)((int64_t)&stack_value_43 + (int64_t)matrix_ptr) = *component_ptr;
+                                *(int32_t *)((int64_t)&stack_value_43 + 4 + (int64_t)matrix_ptr) = transform_component;
+                                *(int32_t *)((int64_t)&stack_value_44 + (int64_t)matrix_ptr) = component_1;
+                                *(int32_t *)((int64_t)&stack_value_44 + 4 + (int64_t)matrix_ptr) = component_2;
+                                stack_long_ptr_1 = (int64_t *)temp_long_1;
                                 stack_ptr_5 = temp_ptr_1;
                                 stack_uint_4 = animation_counter;
                             }
                             else {
                                 stack_value_25 = (uint64_t *)0x0;
                                 stack_value_26 = 0;
-                                for (; state_flag != animation_state; state_flag = *(char *)((longlong)state_flag + 0x100 + state_data)) {
-                                    temp_long_1 = (longlong)state_flag * 0x1b0 + *(longlong *)(state_data + 0x140);
+                                for (; state_flag != animation_state; state_flag = *(char *)((int64_t)state_flag + 0x100 + state_data)) {
+                                    temp_long_1 = (int64_t)state_flag * 0x1b0 + *(int64_t *)(state_data + 0x140);
                                     stack_value_5 = *(uint64_t *)(temp_long_1 + 0x90);
                                     stack_value_6 = *(uint64_t *)(temp_long_1 + 0x98);
                                     stack_component_2 = *(int32_t *)(temp_long_1 + 0x80);
@@ -794,29 +794,29 @@ LAB_180663a5e:
                                     temp_uint_1 = stack_uint_1;
                                 }
                                 
-                                buffer_ptr = stack_buffer_8 + (longlong)(int)animation_counter * 0x20;
+                                buffer_ptr = stack_buffer_8 + (int64_t)(int)animation_counter * 0x20;
                                 if ((int)(animation_counter + 2) < (int)temp_uint_1) {
-                                    matrix_ptr = &stack_value_41 + (longlong)(int)(animation_counter + 2) * 4;
+                                    matrix_ptr = &stack_value_41 + (int64_t)(int)(animation_counter + 2) * 4;
                                 }
                                 else {
                                     matrix_ptr = &stack_value_27;
                                 }
                                 stack_value_7 = matrix_ptr;
                                 FUN_180300b10(matrix_ptr, &stack_value_33, buffer_ptr);
-                                FUN_180285c90(buffer_ptr, stack_buffer_9, &stack_value_43 + (longlong)stack_int_1 * 4);
+                                FUN_180285c90(buffer_ptr, stack_buffer_9, &stack_value_43 + (int64_t)stack_int_1 * 4);
                                 transform_value = FUN_1801503e0(stack_buffer_9, stack_buffer_10);
                                 temp_value_1 = FUN_1801503e0(&stack_value_25, stack_buffer_11);
                                 func_0x000180085850(temp_value_1, &stack_float_7, transform_value);
                                 
-                                temp_long_1 = (longlong)temp_ptr_1 + -1;
+                                temp_long_1 = (int64_t)temp_ptr_1 + -1;
                                 temp_uint_1 = animation_counter;
-                                if ((longlong)stack_ptr_4 < temp_long_1) {
-                                    temp_long_3 = temp_long_1 - (longlong)stack_ptr_4;
+                                if ((int64_t)stack_ptr_4 < temp_long_1) {
+                                    temp_long_3 = temp_long_1 - (int64_t)stack_ptr_4;
                                     index_ptr = stack_long_array_1 + temp_long_1 * 4;
                                     do {
-                                        long_ptr = (longlong *)
+                                        long_ptr = (int64_t *)
                                                   func_0x00018022b3c0(buffer_ptr, stack_buffer_12,
-                                                                      &stack_value_41 + (longlong)(int)animation_counter * 4);
+                                                                      &stack_value_41 + (int64_t)(int)animation_counter * 4);
                                         animation_counter = animation_counter - 1;
                                         temp_long_2 = long_ptr[1];
                                         *index_ptr = *long_ptr;
@@ -847,17 +847,17 @@ LAB_180663a5e:
                                 temp_ptr_1 = (uint64_t *)func_0x00018022b490(matrix_ptr, stack_buffer_14, &stack_value_33);
                                 matrix_ptr = stack_ptr_3;
                                 transform_value = temp_ptr_1[1];
-                                *(uint64_t *)((longlong)&stack_value_41 + (longlong)stack_ptr_3) = *temp_ptr_1;
-                                *(uint64_t *)((longlong)&stack_value_44 + (longlong)stack_ptr_3) = transform_value;
+                                *(uint64_t *)((int64_t)&stack_value_41 + (int64_t)stack_ptr_3) = *temp_ptr_1;
+                                *(uint64_t *)((int64_t)&stack_value_44 + (int64_t)stack_ptr_3) = transform_value;
                                 animation_counter = temp_uint_1;
                                 
-                                if ((longlong)stack_ptr_4 < temp_long_1) {
-                                    temp_long_3 = temp_long_1 - (longlong)stack_ptr_4;
+                                if ((int64_t)stack_ptr_4 < temp_long_1) {
+                                    temp_long_3 = temp_long_1 - (int64_t)stack_ptr_4;
                                     temp_ptr_1 = &stack_value_41 + temp_long_1 * 4;
                                     do {
                                         vector_ptr = (uint64_t *)
                                                   func_0x00018022b490(buffer_ptr, stack_buffer_15,
-                                                                      stack_long_array_1 + (longlong)(int)temp_uint_1 * 4);
+                                                                      stack_long_array_1 + (int64_t)(int)temp_uint_1 * 4);
                                         temp_uint_1 = temp_uint_1 - 1;
                                         transform_value = vector_ptr[1];
                                         *temp_ptr_1 = *vector_ptr;
@@ -869,15 +869,15 @@ LAB_180663a5e:
                                 }
                                 
                                 position_ptr = (float *)FUN_1801c0fb0(buffer_ptr, stack_buffer_16, &stack_value_25);
-                                float_value_11 = *(float *)((longlong)&stack_value_43 + (longlong)stack_ptr_2) - *position_ptr;
-                                float_value_9 = *(float *)((longlong)&stack_value_43 + 4 + (longlong)stack_ptr_2) - position_ptr[1];
-                                float_value_10 = *(float *)((longlong)&stack_value_44 + (longlong)stack_ptr_2) - position_ptr[2];
+                                float_value_11 = *(float *)((int64_t)&stack_value_43 + (int64_t)stack_ptr_2) - *position_ptr;
+                                float_value_9 = *(float *)((int64_t)&stack_value_43 + 4 + (int64_t)stack_ptr_2) - position_ptr[1];
+                                float_value_10 = *(float *)((int64_t)&stack_value_44 + (int64_t)stack_ptr_2) - position_ptr[2];
                                 stack_value_12 = (uint64_t *)CONCAT44(float_value_9, float_value_11);
                                 stack_value_13 = CONCAT44(0x7f7fffff, float_value_10);
-                                *(float *)((longlong)&stack_value_43 + (longlong)matrix_ptr) = float_value_11;
-                                *(float *)((longlong)&stack_value_43 + 4 + (longlong)matrix_ptr) = float_value_9;
-                                *(float *)((longlong)&stack_value_44 + (longlong)matrix_ptr) = float_value_10;
-                                *(int32_t *)((longlong)&stack_value_44 + 4 + (longlong)matrix_ptr) = 0x7f7fffff;
+                                *(float *)((int64_t)&stack_value_43 + (int64_t)matrix_ptr) = float_value_11;
+                                *(float *)((int64_t)&stack_value_43 + 4 + (int64_t)matrix_ptr) = float_value_9;
+                                *(float *)((int64_t)&stack_value_44 + (int64_t)matrix_ptr) = float_value_10;
+                                *(int32_t *)((int64_t)&stack_value_44 + 4 + (int64_t)matrix_ptr) = 0x7f7fffff;
                                 stack_uint_4 = animation_counter;
                             }
                             stack_int_1 = stack_uint_4 + 1;
@@ -887,25 +887,25 @@ LAB_180663a5e:
                             stack_ptr_2 = matrix_ptr;
                         }
                         
-                        animation_state = *(char *)((longlong)stack_long_ptr_1 + 0x100 + state_data);
-                        stack_ptr_5 = (uint64_t *)((longlong)stack_ptr_5 + 1);
+                        animation_state = *(char *)((int64_t)stack_long_ptr_1 + 0x100 + state_data);
+                        stack_ptr_5 = (uint64_t *)((int64_t)stack_ptr_5 + 1);
                         stack_uint_4 = stack_uint_4 + 1;
                         stack_ptr_3 = matrix_ptr + 4;
                         stack_long_ptr_1 = stack_long_ptr_2;
                         ui_context = stack_long_3;
-                    } while ((longlong)stack_ptr_5 < (longlong)(int)temp_uint_1);
+                    } while ((int64_t)stack_ptr_5 < (int64_t)(int)temp_uint_1);
                 }
                 
                 animation_counter = temp_uint_1 - 1;
                 stack_uint_4 = animation_counter;
                 if (0 < (int)temp_uint_1) {
-                    stack_ptr_4 = (uint64_t *)((longlong)stack_long_ptr_1 + -1);
-                    ulong_temp_1 = (ulonglong)stack_int_1;
+                    stack_ptr_4 = (uint64_t *)((int64_t)stack_long_ptr_1 + -1);
+                    ulong_temp_1 = (uint64_t)stack_int_1;
                     stack_int_2 = temp_uint_1 - 2;
-                    stack_value_7 = &stack_value_41 + (longlong)stack_long_ptr_1 * 4;
-                    stack_ptr_2 = &stack_value_43 + (longlong)stack_long_ptr_1 * 4;
-                    stack_ptr_5 = stack_array_3 + (longlong)stack_long_ptr_1 * 4;
-                    stack_ptr_3 = stack_array_2 + (longlong)stack_long_ptr_1 * 4;
+                    stack_value_7 = &stack_value_41 + (int64_t)stack_long_ptr_1 * 4;
+                    stack_ptr_2 = &stack_value_43 + (int64_t)stack_long_ptr_1 * 4;
+                    stack_ptr_5 = stack_array_3 + (int64_t)stack_long_ptr_1 * 4;
+                    stack_ptr_3 = stack_array_2 + (int64_t)stack_long_ptr_1 * 4;
                     temp_int_1 = stack_int_1;
                     stack_uint_4 = temp_uint_1;
                     
@@ -913,14 +913,14 @@ LAB_180663a5e:
                         ulong_temp_4 = 0;
                         animation_state = *(char *)(ui_context + 0xa4);
                         state_flag = -1;
-                        if (0 < (longlong)stack_long_ptr_1) {
+                        if (0 < (int64_t)stack_long_ptr_1) {
                             ulong_temp_2 = ulong_temp_4;
                             ulong_temp_3 = ulong_temp_1;
                             temp_char_2 = animation_state;
                             temp_char_1 = state_flag;
                             do {
-                                animation_state = *(char *)((longlong)temp_char_2 + 0x100 + state_data);
-                                bool_flag = *(int *)((longlong)temp_char_2 * 0x1b0 + 0x110 + *(longlong *)(state_data + 0x140)) < 0;
+                                animation_state = *(char *)((int64_t)temp_char_2 + 0x100 + state_data);
+                                bool_flag = *(int *)((int64_t)temp_char_2 * 0x1b0 + 0x110 + *(int64_t *)(state_data + 0x140)) < 0;
                                 ulong_temp_1 = ulong_temp_4;
                                 if (bool_flag) {
                                     ulong_temp_1 = ulong_temp_3;
@@ -932,16 +932,16 @@ LAB_180663a5e:
                                     loop_counter = temp_int_1;
                                 }
                                 temp_int_1 = loop_counter;
-                                ulong_temp_2 = (ulonglong)((int)ulong_temp_2 + 1);
+                                ulong_temp_2 = (uint64_t)((int)ulong_temp_2 + 1);
                                 ulong_temp_4 = ulong_temp_4 + 1;
                                 ulong_temp_3 = ulong_temp_1;
                                 temp_char_2 = animation_state;
                                 stack_int_1 = temp_int_1;
                                 temp_char_1 = state_flag;
-                            } while ((longlong)ulong_temp_4 < (longlong)stack_long_ptr_1);
+                            } while ((int64_t)ulong_temp_4 < (int64_t)stack_long_ptr_1);
                         }
                         
-                        stack_int_3 = *(int *)((longlong)animation_state * 0x1b0 + 0x110 + *(longlong *)(state_data + 0x140));
+                        stack_int_3 = *(int *)((int64_t)animation_state * 0x1b0 + 0x110 + *(int64_t *)(state_data + 0x140));
                         stack_uint_4 = animation_counter;
                         if (stack_int_3 != -1) {
                             if (animation_counter == stack_uint_3) {
@@ -951,8 +951,8 @@ LAB_180663a5e:
                             if (0 < (int)animation_counter) {
                                 stack_value_5 = 0;
                                 stack_value_6 = 0;
-                                for (; state_flag != animation_state; state_flag = *(char *)((longlong)state_flag + 0x100 + state_data)) {
-                                    temp_long_1 = (longlong)state_flag * 0x1b0 + *(longlong *)(state_data + 0x140);
+                                for (; state_flag != animation_state; state_flag = *(char *)((int64_t)state_flag + 0x100 + state_data)) {
+                                    temp_long_1 = (int64_t)state_flag * 0x1b0 + *(int64_t *)(state_data + 0x140);
                                     stack_value_25 = *(uint64_t **)(temp_long_1 + 0x90);
                                     stack_value_26 = *(uint64_t *)(temp_long_1 + 0x98);
                                     stack_component_7 = *(int32_t *)(temp_long_1 + 0x80);
@@ -964,28 +964,28 @@ LAB_180663a5e:
                                     stack_value_6 = matrix_ptr[1];
                                 }
                                 
-                                matrix_ptr = &stack_value_41 + (longlong)(int)animation_counter * 4;
+                                matrix_ptr = &stack_value_41 + (int64_t)(int)animation_counter * 4;
                                 if ((int)stack_uint_4 < (int)stack_uint_1) {
-                                    temp_ptr_1 = &stack_value_41 + (longlong)(int)stack_uint_4 * 4;
+                                    temp_ptr_1 = &stack_value_41 + (int64_t)(int)stack_uint_4 * 4;
                                 }
                                 else {
                                     temp_ptr_1 = &stack_value_27;
                                 }
                                 stack_value_25 = temp_ptr_1;
                                 FUN_180300b10(temp_ptr_1, &stack_value_33, matrix_ptr);
-                                FUN_180285c90(matrix_ptr, stack_buffer_5, &stack_value_43 + (longlong)stack_int_1 * 4);
+                                FUN_180285c90(matrix_ptr, stack_buffer_5, &stack_value_43 + (int64_t)stack_int_1 * 4);
                                 transform_value = FUN_1801503e0(stack_buffer_5, stack_buffer_6);
                                 temp_value_1 = FUN_1801503e0(&stack_value_5, stack_buffer_11);
                                 func_0x000180085850(temp_value_1, &stack_float_3, transform_value);
                                 
-                                if ((longlong)ulong_temp_1 < (longlong)stack_ptr_4) {
-                                    temp_long_1 = (longlong)stack_ptr_4 - ulong_temp_1;
+                                if ((int64_t)ulong_temp_1 < (int64_t)stack_ptr_4) {
+                                    temp_long_1 = (int64_t)stack_ptr_4 - ulong_temp_1;
                                     vector_ptr = stack_ptr_5;
                                     temp_int_1 = stack_int_2;
                                     do {
                                         temp_ptr_1 = (uint64_t *)
                                                   func_0x00018022b3c0(matrix_ptr, stack_buffer_21,
-                                                                      &stack_value_41 + (longlong)temp_int_1 * 4);
+                                                                      &stack_value_41 + (int64_t)temp_int_1 * 4);
                                         temp_int_1 = temp_int_1 + -1;
                                         transform_value = temp_ptr_1[1];
                                         *vector_ptr = *temp_ptr_1;
@@ -1026,13 +1026,13 @@ LAB_180663a5e:
                                 *stack_value_7 = *temp_ptr_1;
                                 stack_value_7[1] = transform_value;
                                 
-                                if ((longlong)ulong_temp_1 < (longlong)stack_ptr_4) {
-                                    temp_long_1 = (longlong)stack_ptr_4 - ulong_temp_1;
+                                if ((int64_t)ulong_temp_1 < (int64_t)stack_ptr_4) {
+                                    temp_long_1 = (int64_t)stack_ptr_4 - ulong_temp_1;
                                     temp_ptr_1 = stack_ptr_3;
                                     do {
                                         vector_ptr = (uint64_t *)
                                                   func_0x00018022b490(matrix_ptr, stack_buffer_10,
-                                                                      stack_long_array_1 + (longlong)temp_int_1 * 4);
+                                                                      stack_long_array_1 + (int64_t)temp_int_1 * 4);
                                         temp_int_1 = temp_int_1 + -1;
                                         transform_value = vector_ptr[1];
                                         *temp_ptr_1 = *vector_ptr;
@@ -1048,7 +1048,7 @@ LAB_180663a5e:
                                 component_2 = component_ptr[3];
                                 temp_long_1 = ulong_temp_1 * 0x20;
                                 *(int32_t *)(&stack_value_43 + ulong_temp_1 * 4) = *component_ptr;
-                                *(int32_t *)((longlong)&stack_value_43 + temp_long_1 + 4) = transform_component;
+                                *(int32_t *)((int64_t)&stack_value_43 + temp_long_1 + 4) = transform_component;
                                 *(int32_t *)(stack_buffer_8 + temp_long_1 + -8) = component_1;
                                 *(int32_t *)(stack_buffer_8 + temp_long_1 + -4) = component_2;
                                 temp_int_1 = stack_int_1;
@@ -1062,8 +1062,8 @@ LAB_180663a5e:
                         stack_value_7 = stack_value_7 + -4;
                         stack_uint_4 = stack_uint_4 - 1;
                         stack_int_2 = stack_int_2 + -1;
-                        stack_ptr_4 = (uint64_t *)((longlong)stack_ptr_4 + -1);
-                        stack_long_ptr_1 = (longlong *)((longlong)stack_long_ptr_1 + -1);
+                        stack_ptr_4 = (uint64_t *)((int64_t)stack_ptr_4 + -1);
+                        stack_long_ptr_1 = (int64_t *)((int64_t)stack_long_ptr_1 + -1);
                         ui_context = stack_long_3;
                         stack_uint_4 = animation_counter;
                     } while (-1 < (int)animation_counter);
@@ -1084,7 +1084,7 @@ LAB_180663a5e:
                 float_value_5 = float_value_8 * float_value_8 + float_value_7 * float_value_7 + float_value_5 * float_value_5;
                 if (float_value_5 <= 1e-05) break;
                 
-                long_ptr = (longlong *)((longlong)stack_buffer_2 + -1);
+                long_ptr = (int64_t *)((int64_t)stack_buffer_2 + -1);
                 temp_buffer_19 = stack_buffer_2;
                 ui_context = stack_long_3;
                 temp_uint_1 = stack_uint_1;
@@ -1119,41 +1119,41 @@ LAB_180663a5e:
         state_flag = -1;
         animation_state = *(char *)(stack_long_3 + 0xa4);
         stack_char_1 = animation_state;
-        long_ptr = (longlong *)(ulonglong)stack_uint_1;
+        long_ptr = (int64_t *)(uint64_t)stack_uint_1;
         if (0 < (int)stack_uint_1) {
             do {
                 stack_long_ptr_1 = long_ptr;
                 temp_long_1 = stack_long_2;
-                temp_long_3 = (longlong)animation_state * 0x1b0;
-                stack_buffer_2 = (int8_t [8])(longlong)animation_state;
-                bone_index = *(byte *)(temp_long_1 + 0xf1 + *(longlong *)(state_data + 0x140));
+                temp_long_3 = (int64_t)animation_state * 0x1b0;
+                stack_buffer_2 = (int8_t [8])(int64_t)animation_state;
+                bone_index = *(byte *)(temp_long_1 + 0xf1 + *(int64_t *)(state_data + 0x140));
                 stack_char_1 = animation_state;
                 if ('\0' < (char)bone_index) {
                     temp_long_2 = 0;
-                    ulong_temp_1 = (ulonglong)bone_index;
+                    ulong_temp_1 = (uint64_t)bone_index;
                     do {
-                        animation_state = *(char *)(temp_long_2 + *(longlong *)
-                                            (temp_long_3 + 0xf8 + *(longlong *)(state_data + 0x140)));
+                        animation_state = *(char *)(temp_long_2 + *(int64_t *)
+                                            (temp_long_3 + 0xf8 + *(int64_t *)(state_data + 0x140)));
                         if (animation_state != state_flag) {
                             position_ptr = (float *)FUN_18022a890(temp_long_1, animation_state, state_data);
-                            temp_long_4 = (longlong)animation_state;
+                            temp_long_4 = (int64_t)animation_state;
                             float_value_1 = position_ptr[1];
                             float_value_11 = position_ptr[2];
                             float_value_9 = position_ptr[3];
                             stack_float_array_2[temp_long_4 * 4] = *position_ptr;
                             stack_float_array_2[temp_long_4 * 4 + 1] = float_value_1;
                             *(float *)(&stack_value_45 + temp_long_4 * 2) = float_value_11;
-                            *(float *)((longlong)&stack_value_45 + temp_long_4 * 0x10 + 4) = float_value_9;
+                            *(float *)((int64_t)&stack_value_45 + temp_long_4 * 0x10 + 4) = float_value_9;
                         }
                         temp_long_2 = temp_long_2 + 1;
                         ulong_temp_1 = ulong_temp_1 - 1;
                     } while (ulong_temp_1 != 0);
                 }
-                animation_state = *(char *)((longlong)stack_buffer_2 + 0x100 + state_data);
+                animation_state = *(char *)((int64_t)stack_buffer_2 + 0x100 + state_data);
                 state_flag = stack_char_1;
-                long_ptr = (longlong *)((longlong)stack_long_ptr_1 - 1U);
-            } while ((longlong)stack_long_ptr_1 - 1U != 0);
-            stack_long_ptr_1 = (longlong *)0x0;
+                long_ptr = (int64_t *)((int64_t)stack_long_ptr_1 - 1U);
+            } while ((int64_t)stack_long_ptr_1 - 1U != 0);
+            stack_long_ptr_1 = (int64_t *)0x0;
             stack_char_1 = animation_state;
         }
         
@@ -1172,14 +1172,14 @@ LAB_180663a5e:
             stack_value_14 = *matrix_ptr;
             stack_value_15 = matrix_ptr[1];
             transform_component = *(int32_t *)(matrix_ptr + 2);
-            component_1 = *(int32_t *)((longlong)matrix_ptr + 0x14);
+            component_1 = *(int32_t *)((int64_t)matrix_ptr + 0x14);
             stack_value_16 = matrix_ptr[2];
             component_2 = *(int32_t *)(matrix_ptr + 3);
-            component_3 = *(int32_t *)((longlong)matrix_ptr + 0x1c);
+            component_3 = *(int32_t *)((int64_t)matrix_ptr + 0x1c);
             stack_value_17 = matrix_ptr[3];
         }
         
-        ulong_temp_1 = (ulonglong)(int)stack_uint_3;
+        ulong_temp_1 = (uint64_t)(int)stack_uint_3;
         if (-1 < (int)stack_uint_3) {
             long_ptr = stack_long_array_1 + ulong_temp_1 * 4;
             position_ptr = (float *)((ulong_temp_1 + 0xb) * 0x10 + temp_long_1);
@@ -1190,34 +1190,34 @@ LAB_180663a5e:
                     ulong_temp_1 = ulong_temp_1 & 0xffffffff;
                     do {
                         state_flag = animation_state;
-                        animation_state = *(char *)((longlong)state_flag + 0x100 + state_data);
+                        animation_state = *(char *)((int64_t)state_flag + 0x100 + state_data);
                         ulong_temp_1 = ulong_temp_1 - 1;
                     } while (ulong_temp_1 != 0);
                 }
                 
                 stack_value_35 = CONCAT44(component_1, transform_component);
                 stack_value_36 = CONCAT44(component_3, component_2);
-                stack_buffer_2 = (int8_t [8])((longlong)temp_int_1 * 0x20);
+                stack_buffer_2 = (int8_t [8])((int64_t)temp_int_1 * 0x20);
                 stack_long_ptr_1 = long_ptr;
                 stack_value_33 = stack_value_14;
                 stack_value_34 = stack_value_15;
                 matrix_ptr = (uint64_t *)
-                          FUN_180300bf0(&stack_value_21, &stack_value_37, &stack_value_41 + (longlong)temp_int_1 * 4);
+                          FUN_180300bf0(&stack_value_21, &stack_value_37, &stack_value_41 + (int64_t)temp_int_1 * 4);
                 stack_value_14 = *matrix_ptr;
                 stack_value_15 = matrix_ptr[1];
                 stack_value_16 = matrix_ptr[2];
                 stack_value_17 = matrix_ptr[3];
-                index_ptr = (longlong *)FUN_180300b10(&stack_value_33, &stack_value_37, &stack_value_14);
+                index_ptr = (int64_t *)FUN_180300b10(&stack_value_33, &stack_value_37, &stack_value_14);
                 temp_long_3 = index_ptr[1];
                 *long_ptr = *index_ptr;
                 long_ptr[1] = temp_long_3;
-                transform_component = *(int32_t *)((longlong)index_ptr + 0x14);
+                transform_component = *(int32_t *)((int64_t)index_ptr + 0x14);
                 temp_long_3 = index_ptr[3];
-                component_1 = *(int32_t *)((longlong)index_ptr + 0x1c);
+                component_1 = *(int32_t *)((int64_t)index_ptr + 0x1c);
                 *(int *)(long_ptr + 2) = (int)index_ptr[2];
-                *(int32_t *)((longlong)long_ptr + 0x14) = transform_component;
+                *(int32_t *)((int64_t)long_ptr + 0x14) = transform_component;
                 *(int *)(long_ptr + 3) = (int)temp_long_3;
-                *(int32_t *)((longlong)long_ptr + 0x1c) = component_1;
+                *(int32_t *)((int64_t)long_ptr + 0x1c) = component_1;
                 
                 if (animation_state == *(char *)(temp_long_1 + 0xa4)) {
                     temp_int_1 = *(int *)(temp_long_1 + 0xa0);
@@ -1270,28 +1270,28 @@ LAB_180664ddf:
                             }
                         }
                     }
-                    index_ptr = (longlong *)FUN_180300b10(&stack_value_33, &stack_value_37, &stack_value_14);
+                    index_ptr = (int64_t *)FUN_180300b10(&stack_value_33, &stack_value_37, &stack_value_14);
                     temp_long_1 = index_ptr[1];
                     *long_ptr = *index_ptr;
                     long_ptr[1] = temp_long_1;
-                    transform_component = *(int32_t *)((longlong)index_ptr + 0x14);
+                    transform_component = *(int32_t *)((int64_t)index_ptr + 0x14);
                     temp_long_1 = index_ptr[3];
-                    component_1 = *(int32_t *)((longlong)index_ptr + 0x1c);
+                    component_1 = *(int32_t *)((int64_t)index_ptr + 0x1c);
                     *(int *)(long_ptr + 2) = (int)index_ptr[2];
-                    *(int32_t *)((longlong)long_ptr + 0x14) = transform_component;
+                    *(int32_t *)((int64_t)long_ptr + 0x14) = transform_component;
                     *(int *)(long_ptr + 3) = (int)temp_long_1;
-                    *(int32_t *)((longlong)long_ptr + 0x1c) = component_1;
+                    *(int32_t *)((int64_t)long_ptr + 0x1c) = component_1;
                 }
                 
-                stack_long_ptr_2 = (longlong *)*long_ptr;
+                stack_long_ptr_2 = (int64_t *)*long_ptr;
                 stack_long_5 = long_ptr[1];
                 func_0x00018022b430(&stack_long_ptr_2);
-                temp_long_1 = (longlong)animation_state;
+                temp_long_1 = (int64_t)animation_state;
                 func_0x00018022b3c0(stack_long_2 + 0x820 + temp_long_1 * 0x10, &stack_float_7, &stack_long_ptr_2);
                 
                 if ((*(float *)(stack_long_3 + 0x1dc) <= 30.0 && *(float *)(stack_long_3 + 0x1dc) != 30.0) &&
                    (animation_state != *(char *)(stack_long_3 + 0xa4))) {
-                    func_0x00018022b3c0(((longlong)(int)stack_uint_3 + 0xb) * 0x10 + stack_long_3, stack_buffer_9,
+                    func_0x00018022b3c0(((int64_t)(int)stack_uint_3 + 0xb) * 0x10 + stack_long_3, stack_buffer_9,
                                         &stack_float_7);
                     FUN_18063b720(stack_buffer_8, &stack_float_2, stack_buffer_9);
                     if (3.1415927 < stack_float_2) {
@@ -1321,11 +1321,11 @@ LAB_180664ddf:
                                 stack_value_37 = 0x3f8000003f800000;
                                 stack_value_38 = 0x3f8000003f800000;
                                 animation_counter = movmskps((int)stack_long_3, temp_buffer_17);
-                                ulong_temp_1 = (ulonglong)(animation_counter & 1);
+                                ulong_temp_1 = (uint64_t)(animation_counter & 1);
                                 float_value_7 = *(float *)(&stack_value_37 + ulong_temp_1 * 2) * stack_float_7;
-                                float_value_8 = *(float *)((longlong)&stack_value_37 + ulong_temp_1 * 0x10 + 4) * stack_float_8;
+                                float_value_8 = *(float *)((int64_t)&stack_value_37 + ulong_temp_1 * 0x10 + 4) * stack_float_8;
                                 float_value_13 = *(float *)(&stack_value_38 + ulong_temp_1 * 2) * stack_float_9;
-                                float_value_12 = *(float *)((longlong)&stack_value_38 + ulong_temp_1 * 0x10 + 4) * stack_float_10;
+                                float_value_12 = *(float *)((int64_t)&stack_value_38 + ulong_temp_1 * 0x10 + 4) * stack_float_10;
                                 if (0.9995 < ABS(temp_buffer_17._0_4_)) {
                                     float_value_14 = 1.0 - float_value_1;
                                     stack_value_25 = (uint64_t *)
@@ -1359,16 +1359,16 @@ LAB_180664ddf:
                             stack_float_9 = position_ptr[2];
                             stack_float_10 = position_ptr[3];
                         }
-                        index_ptr = (longlong *)
+                        index_ptr = (int64_t *)
                                   func_0x00018022b490((temp_long_1 + 0x82) * 0x10 + stack_long_2, stack_buffer_8,
                                                       &stack_float_7);
-                        stack_long_ptr_2 = (longlong *)*index_ptr;
+                        stack_long_ptr_2 = (int64_t *)*index_ptr;
                         stack_long_5 = index_ptr[1];
-                        *long_ptr = (longlong)stack_long_ptr_2;
+                        *long_ptr = (int64_t)stack_long_ptr_2;
                         long_ptr[1] = stack_long_5;
                         matrix_ptr = (uint64_t *)
                                   FUN_180300bf0(&stack_value_33, &stack_value_37,
-                                                (longlong)stack_long_array_1 + (longlong)stack_buffer_2);
+                                                (int64_t)stack_long_array_1 + (int64_t)stack_buffer_2);
                         stack_value_14 = *matrix_ptr;
                         stack_value_15 = matrix_ptr[1];
                         stack_value_16 = matrix_ptr[2];
@@ -1376,8 +1376,8 @@ LAB_180664ddf:
                     }
                 }
                 
-                *(ulonglong *)position_ptr = CONCAT44(stack_float_8, stack_float_7);
-                *(ulonglong *)(position_ptr + 2) = CONCAT44(stack_float_10, stack_float_9);
+                *(uint64_t *)position_ptr = CONCAT44(stack_float_8, stack_float_7);
+                *(uint64_t *)(position_ptr + 2) = CONCAT44(stack_float_10, stack_float_9);
                 transform_value = func_0x00018022b3c0(&stack_value_21, &stack_value_7, &stack_value_14);
                 float_value_1 = stack_float_6;
                 temp_long_3 = stack_long_2;
@@ -1391,9 +1391,9 @@ LAB_180664ddf:
                     if (animation_state == '\0') {
                         transform_value = *(uint64_t *)(temp_long_3 + 0x1028);
                         float_value_1 = (float)*(uint64_t *)(temp_long_3 + 0x1020) + (float)stack_buffer_4._0_4_;
-                        stack_buffer_2._4_4_ = (int32_t)((ulonglong)*(uint64_t *)(temp_long_3 + 0x1020) >> 0x20);
+                        stack_buffer_2._4_4_ = (int32_t)((uint64_t)*(uint64_t *)(temp_long_3 + 0x1020) >> 0x20);
                         stack_value_4._0_4_ = (float)transform_value;
-                        stack_value_4._4_4_ = (float)((ulonglong)transform_value >> 0x20);
+                        stack_value_4._4_4_ = (float)((uint64_t)transform_value >> 0x20);
                         temp_buffer_19._4_8_ = transform_value;
                         temp_buffer_19._0_4_ = stack_buffer_2._4_4_;
                         temp_buffer_13._0_8_ = temp_buffer_19._0_8_ << 0x20;
@@ -1420,7 +1420,7 @@ LAB_180664ddf:
                             float_value_11 = stack_float_array_2[temp_long_1 * 4];
                             float_value_9 = stack_float_array_2[temp_long_1 * 4 + 1];
                             float_value_10 = *(float *)(&stack_value_45 + temp_long_1 * 2);
-                            float_value_5 = *(float *)((longlong)&stack_value_45 + temp_long_1 * 0x10 + 4);
+                            float_value_5 = *(float *)((int64_t)&stack_value_45 + temp_long_1 * 0x10 + 4);
                             float_value_7 = float_value_10 * stack_float_11;
                             float_value_8 = float_value_5 * stack_float_12;
                             stack_component_11 = 0xbf800000;
@@ -1436,11 +1436,11 @@ LAB_180664ddf:
                             stack_value_37 = 0x3f8000003f800000;
                             stack_value_38 = 0x3f8000003f800000;
                             animation_counter = movmskps(transform_value, temp_buffer_19);
-                            ulong_temp_1 = (ulonglong)(animation_counter & 1);
+                            ulong_temp_1 = (uint64_t)(animation_counter & 1);
                             float_value_7 = *(float *)(&stack_value_37 + ulong_temp_1 * 2) * (float)stack_value_7;
-                            float_value_8 = *(float *)((longlong)&stack_value_37 + ulong_temp_1 * 0x10 + 4) * stack_value_7._4_4_;
+                            float_value_8 = *(float *)((int64_t)&stack_value_37 + ulong_temp_1 * 0x10 + 4) * stack_value_7._4_4_;
                             float_value_13 = *(float *)(&stack_value_38 + ulong_temp_1 * 2) * stack_float_11;
-                            float_value_12 = *(float *)((longlong)&stack_value_38 + ulong_temp_1 * 0x10 + 4) * stack_float_12;
+                            float_value_12 = *(float *)((int64_t)&stack_value_38 + ulong_temp_1 * 0x10 + 4) * stack_float_12;
                             if (0.9995 < ABS(temp_buffer_19._0_4_)) {
                                 float_value_14 = 1.0 - stack_float_6;
                                 stack_buffer_2._4_4_ = float_value_14 * float_value_9 + stack_float_6 * float_value_8;
@@ -1503,8 +1503,8 @@ LAB_180664ddf:
                         temp_buffer_10._4_12_ = temp_buffer_15._4_12_;
                         temp_buffer_10._0_4_ = float_value_11 + float_value_1 * stack_float_13;
 LAB_1806654b3:
-                        *(ulonglong *)(temp_long_3 + 0x800) =
-                             *(ulonglong *)(temp_long_3 + 0x800) | *(ulonglong *)(temp_long_3 + 0x810);
+                        *(uint64_t *)(temp_long_3 + 0x800) =
+                             *(uint64_t *)(temp_long_3 + 0x800) | *(uint64_t *)(temp_long_3 + 0x810);
                         stack_value_4._4_4_ = temp_buffer_10._12_4_;
                         stack_buffer_2 = temp_buffer_10._4_8_;
                         stack_value_4._0_4_ = (float)temp_buffer_10._0_4_;
@@ -1513,15 +1513,15 @@ LAB_1806654b3:
                 }
                 
                 temp_long_3 = stack_long_2;
-                bone_index = *(byte *)(temp_long_1 * 0x1b0 + 0xf1 + *(longlong *)(state_data + 0x140));
+                bone_index = *(byte *)(temp_long_1 * 0x1b0 + 0xf1 + *(int64_t *)(state_data + 0x140));
                 if ('\x01' < (char)bone_index) {
                     temp_long_2 = 0;
-                    ulong_temp_1 = (ulonglong)bone_index;
+                    ulong_temp_1 = (uint64_t)bone_index;
                     do {
-                        animation_state = *(char *)(temp_long_2 + *(longlong *)
-                                            (temp_long_1 * 0x1b0 + 0xf8 + *(longlong *)(state_data + 0x140)));
+                        animation_state = *(char *)(temp_long_2 + *(int64_t *)
+                                            (temp_long_1 * 0x1b0 + 0xf8 + *(int64_t *)(state_data + 0x140)));
                         if (animation_state != state_flag) {
-                            FUN_18022b240(temp_long_3, animation_state, stack_float_array_2 + (longlong)animation_state * 4, state_data);
+                            FUN_18022b240(temp_long_3, animation_state, stack_float_array_2 + (int64_t)animation_state * 4, state_data);
                         }
                         temp_long_2 = temp_long_2 + 1;
                         ulong_temp_1 = ulong_temp_1 - 1;
@@ -1531,7 +1531,7 @@ LAB_1806654b3:
                 
                 long_ptr = long_ptr + -4;
                 stack_uint_3 = stack_uint_3 - 1;
-                ulong_temp_1 = (ulonglong)stack_uint_3;
+                ulong_temp_1 = (uint64_t)stack_uint_3;
                 position_ptr = position_ptr + -4;
                 stack_long_ptr_1 = long_ptr;
                 if ((int)stack_uint_3 < 0) break;
@@ -1547,7 +1547,7 @@ LAB_1806654b3:
 LAB_18066375a:
     // 函数结束，调用清理函数
     // WARNING: Subroutine does not return
-    FUN_1808fc050(stack_ulong_1 ^ (ulonglong)stack_buffer_1);
+    FUN_1808fc050(stack_ulong_1 ^ (uint64_t)stack_buffer_1);
 }
 
 // 函数别名定义

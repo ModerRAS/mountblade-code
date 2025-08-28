@@ -50,7 +50,7 @@ void initialize_audio_module(void)
  */
 int initialize_module_registry(void)
 {
-    longlong result;
+    int64_t result;
     uint64_t in_R9;
     
     // 初始化注册表指针
@@ -69,8 +69,8 @@ void register_rendering_module(void)
     char is_found;
     uint64_t *root_node;
     int compare_result;
-    longlong *registry;
-    longlong allocation_size;
+    int64_t *registry;
+    int64_t allocation_size;
     uint64_t *current_node;
     uint64_t *parent_node;
     uint64_t *next_node;
@@ -78,9 +78,9 @@ void register_rendering_module(void)
     code *module_handler;
     
     // 获取模块注册表
-    registry = (longlong *)get_module_registry();
+    registry = (int64_t *)get_module_registry();
     root_node = (uint64_t *)*registry;
-    is_found = *(char *)((longlong)root_node[1] + 0x19);
+    is_found = *(char *)((int64_t)root_node[1] + 0x19);
     module_handler = get_rendering_handler;
     parent_node = root_node;
     current_node = (uint64_t *)root_node[1];
@@ -97,7 +97,7 @@ void register_rendering_module(void)
         }
         parent_node = current_node;
         current_node = next_node;
-        is_found = *(char *)((longlong)next_node + 0x19);
+        is_found = *(char *)((int64_t)next_node + 0x19);
     }
     
     // 如果需要，创建新节点
@@ -126,8 +126,8 @@ void register_physics_module(void)
     char is_found;
     uint64_t *root_node;
     int compare_result;
-    longlong *registry;
-    longlong allocation_size;
+    int64_t *registry;
+    int64_t allocation_size;
     uint64_t *current_node;
     uint64_t *parent_node;
     uint64_t *next_node;
@@ -135,9 +135,9 @@ void register_physics_module(void)
     uint64_t module_handler;
     
     // 获取模块注册表
-    registry = (longlong *)get_module_registry();
+    registry = (int64_t *)get_module_registry();
     root_node = (uint64_t *)*registry;
-    is_found = *(char *)((longlong)root_node[1] + 0x19);
+    is_found = *(char *)((int64_t)root_node[1] + 0x19);
     module_handler = 0;
     parent_node = root_node;
     current_node = (uint64_t *)root_node[1];
@@ -154,7 +154,7 @@ void register_physics_module(void)
         }
         parent_node = current_node;
         current_node = next_node;
-        is_found = *(char *)((longlong)next_node + 0x19);
+        is_found = *(char *)((int64_t)next_node + 0x19);
     }
     
     // 如果需要，创建新节点
@@ -183,8 +183,8 @@ void register_input_module(void)
     char is_found;
     uint64_t *root_node;
     int compare_result;
-    longlong *registry;
-    longlong allocation_size;
+    int64_t *registry;
+    int64_t allocation_size;
     uint64_t *current_node;
     uint64_t *parent_node;
     uint64_t *next_node;
@@ -192,9 +192,9 @@ void register_input_module(void)
     uint64_t module_handler;
     
     // 获取模块注册表
-    registry = (longlong *)get_module_registry();
+    registry = (int64_t *)get_module_registry();
     root_node = (uint64_t *)*registry;
-    is_found = *(char *)((longlong)root_node[1] + 0x19);
+    is_found = *(char *)((int64_t)root_node[1] + 0x19);
     module_handler = 0;
     parent_node = root_node;
     current_node = (uint64_t *)root_node[1];
@@ -211,7 +211,7 @@ void register_input_module(void)
         }
         parent_node = current_node;
         current_node = next_node;
-        is_found = *(char *)((longlong)next_node + 0x19);
+        is_found = *(char *)((int64_t)next_node + 0x19);
     }
     
     // 如果需要，创建新节点
@@ -240,8 +240,8 @@ void register_network_module(void)
     char is_found;
     uint64_t *root_node;
     int compare_result;
-    longlong *registry;
-    longlong allocation_size;
+    int64_t *registry;
+    int64_t allocation_size;
     uint64_t *current_node;
     uint64_t *parent_node;
     uint64_t *next_node;
@@ -249,9 +249,9 @@ void register_network_module(void)
     uint64_t module_handler;
     
     // 获取模块注册表
-    registry = (longlong *)get_module_registry();
+    registry = (int64_t *)get_module_registry();
     root_node = (uint64_t *)*registry;
-    is_found = *(char *)((longlong)root_node[1] + 0x19);
+    is_found = *(char *)((int64_t)root_node[1] + 0x19);
     module_handler = 0;
     parent_node = root_node;
     current_node = (uint64_t *)root_node[1];
@@ -268,7 +268,7 @@ void register_network_module(void)
         }
         parent_node = current_node;
         current_node = next_node;
-        is_found = *(char *)((longlong)next_node + 0x19);
+        is_found = *(char *)((int64_t)next_node + 0x19);
     }
     
     // 如果需要，创建新节点
@@ -297,8 +297,8 @@ void register_ui_module(void)
     char is_found;
     uint64_t *root_node;
     int compare_result;
-    longlong *registry;
-    longlong allocation_size;
+    int64_t *registry;
+    int64_t allocation_size;
     uint64_t *current_node;
     uint64_t *parent_node;
     uint64_t *next_node;
@@ -306,9 +306,9 @@ void register_ui_module(void)
     uint64_t module_handler;
     
     // 获取模块注册表
-    registry = (longlong *)get_module_registry();
+    registry = (int64_t *)get_module_registry();
     root_node = (uint64_t *)*registry;
-    is_found = *(char *)((longlong)root_node[1] + 0x19);
+    is_found = *(char *)((int64_t)root_node[1] + 0x19);
     module_handler = 0;
     parent_node = root_node;
     current_node = (uint64_t *)root_node[1];
@@ -325,7 +325,7 @@ void register_ui_module(void)
         }
         parent_node = current_node;
         current_node = next_node;
-        is_found = *(char *)((longlong)next_node + 0x19);
+        is_found = *(char *)((int64_t)next_node + 0x19);
     }
     
     // 如果需要，创建新节点
@@ -354,8 +354,8 @@ void register_resource_module(void)
     char is_found;
     uint64_t *root_node;
     int compare_result;
-    longlong *registry;
-    longlong allocation_size;
+    int64_t *registry;
+    int64_t allocation_size;
     uint64_t *current_node;
     uint64_t *parent_node;
     uint64_t *next_node;
@@ -363,9 +363,9 @@ void register_resource_module(void)
     uint64_t module_handler;
     
     // 获取模块注册表
-    registry = (longlong *)get_module_registry();
+    registry = (int64_t *)get_module_registry();
     root_node = (uint64_t *)*registry;
-    is_found = *(char *)((longlong)root_node[1] + 0x19);
+    is_found = *(char *)((int64_t)root_node[1] + 0x19);
     module_handler = 0;
     parent_node = root_node;
     current_node = (uint64_t *)root_node[1];
@@ -382,7 +382,7 @@ void register_resource_module(void)
         }
         parent_node = current_node;
         current_node = next_node;
-        is_found = *(char *)((longlong)next_node + 0x19);
+        is_found = *(char *)((int64_t)next_node + 0x19);
     }
     
     // 如果需要，创建新节点
@@ -411,8 +411,8 @@ void register_scripting_module(void)
     char is_found;
     uint64_t *root_node;
     int compare_result;
-    longlong *registry;
-    longlong allocation_size;
+    int64_t *registry;
+    int64_t allocation_size;
     uint64_t *current_node;
     uint64_t *parent_node;
     uint64_t *next_node;
@@ -420,9 +420,9 @@ void register_scripting_module(void)
     uint64_t module_handler;
     
     // 获取模块注册表
-    registry = (longlong *)get_module_registry();
+    registry = (int64_t *)get_module_registry();
     root_node = (uint64_t *)*registry;
-    is_found = *(char *)((longlong)root_node[1] + 0x19);
+    is_found = *(char *)((int64_t)root_node[1] + 0x19);
     module_handler = 0;
     parent_node = root_node;
     current_node = (uint64_t *)root_node[1];
@@ -439,7 +439,7 @@ void register_scripting_module(void)
         }
         parent_node = current_node;
         current_node = next_node;
-        is_found = *(char *)((longlong)next_node + 0x19);
+        is_found = *(char *)((int64_t)next_node + 0x19);
     }
     
     // 如果需要，创建新节点
@@ -468,8 +468,8 @@ void register_scene_module(void)
     char is_found;
     uint64_t *root_node;
     int compare_result;
-    longlong *registry;
-    longlong allocation_size;
+    int64_t *registry;
+    int64_t allocation_size;
     uint64_t *current_node;
     uint64_t *parent_node;
     uint64_t *next_node;
@@ -477,9 +477,9 @@ void register_scene_module(void)
     code *module_handler;
     
     // 获取模块注册表
-    registry = (longlong *)get_module_registry();
+    registry = (int64_t *)get_module_registry();
     root_node = (uint64_t *)*registry;
-    is_found = *(char *)((longlong)root_node[1] + 0x19);
+    is_found = *(char *)((int64_t)root_node[1] + 0x19);
     module_handler = get_scene_handler;
     parent_node = root_node;
     current_node = (uint64_t *)root_node[1];
@@ -496,7 +496,7 @@ void register_scene_module(void)
         }
         parent_node = current_node;
         current_node = next_node;
-        is_found = *(char *)((longlong)next_node + 0x19);
+        is_found = *(char *)((int64_t)next_node + 0x19);
     }
     
     // 如果需要，创建新节点
@@ -525,8 +525,8 @@ void register_entity_module(void)
     char is_found;
     uint64_t *root_node;
     int compare_result;
-    longlong *registry;
-    longlong allocation_size;
+    int64_t *registry;
+    int64_t allocation_size;
     uint64_t *current_node;
     uint64_t *parent_node;
     uint64_t *next_node;
@@ -534,9 +534,9 @@ void register_entity_module(void)
     uint64_t module_handler;
     
     // 获取模块注册表
-    registry = (longlong *)get_module_registry();
+    registry = (int64_t *)get_module_registry();
     root_node = (uint64_t *)*registry;
-    is_found = *(char *)((longlong)root_node[1] + 0x19);
+    is_found = *(char *)((int64_t)root_node[1] + 0x19);
     module_handler = 0;
     parent_node = root_node;
     current_node = (uint64_t *)root_node[1];
@@ -553,7 +553,7 @@ void register_entity_module(void)
         }
         parent_node = current_node;
         current_node = next_node;
-        is_found = *(char *)((longlong)next_node + 0x19);
+        is_found = *(char *)((int64_t)next_node + 0x19);
     }
     
     // 如果需要，创建新节点
@@ -630,8 +630,8 @@ void register_game_logic_module(void)
     char is_found;
     uint64_t *root_node;
     int compare_result;
-    longlong *registry;
-    longlong allocation_size;
+    int64_t *registry;
+    int64_t allocation_size;
     uint64_t *current_node;
     uint64_t *parent_node;
     uint64_t *next_node;
@@ -639,9 +639,9 @@ void register_game_logic_module(void)
     code *module_handler;
     
     // 获取模块注册表
-    registry = (longlong *)get_module_registry();
+    registry = (int64_t *)get_module_registry();
     root_node = (uint64_t *)*registry;
-    is_found = *(char *)((longlong)root_node[1] + 0x19);
+    is_found = *(char *)((int64_t)root_node[1] + 0x19);
     module_handler = get_game_logic_handler;
     parent_node = root_node;
     current_node = (uint64_t *)root_node[1];
@@ -658,7 +658,7 @@ void register_game_logic_module(void)
         }
         parent_node = current_node;
         current_node = next_node;
-        is_found = *(char *)((longlong)next_node + 0x19);
+        is_found = *(char *)((int64_t)next_node + 0x19);
     }
     
     // 如果需要，创建新节点
@@ -687,8 +687,8 @@ void register_sound_effects_module(void)
     char is_found;
     uint64_t *root_node;
     int compare_result;
-    longlong *registry;
-    longlong allocation_size;
+    int64_t *registry;
+    int64_t allocation_size;
     uint64_t *current_node;
     uint64_t *parent_node;
     uint64_t *next_node;
@@ -696,9 +696,9 @@ void register_sound_effects_module(void)
     code *module_handler;
     
     // 获取模块注册表
-    registry = (longlong *)get_module_registry();
+    registry = (int64_t *)get_module_registry();
     root_node = (uint64_t *)*registry;
-    is_found = *(char *)((longlong)root_node[1] + 0x19);
+    is_found = *(char *)((int64_t)root_node[1] + 0x19);
     module_handler = get_sound_effects_handler;
     parent_node = root_node;
     current_node = (uint64_t *)root_node[1];
@@ -715,7 +715,7 @@ void register_sound_effects_module(void)
         }
         parent_node = current_node;
         current_node = next_node;
-        is_found = *(char *)((longlong)next_node + 0x19);
+        is_found = *(char *)((int64_t)next_node + 0x19);
     }
     
     // 如果需要，创建新节点
@@ -744,8 +744,8 @@ void register_music_module(void)
     char is_found;
     uint64_t *root_node;
     int compare_result;
-    longlong *registry;
-    longlong allocation_size;
+    int64_t *registry;
+    int64_t allocation_size;
     uint64_t *current_node;
     uint64_t *parent_node;
     uint64_t *next_node;
@@ -753,9 +753,9 @@ void register_music_module(void)
     uint64_t module_handler;
     
     // 获取模块注册表
-    registry = (longlong *)get_module_registry();
+    registry = (int64_t *)get_module_registry();
     root_node = (uint64_t *)*registry;
-    is_found = *(char *)((longlong)root_node[1] + 0x19);
+    is_found = *(char *)((int64_t)root_node[1] + 0x19);
     module_handler = 0;
     parent_node = root_node;
     current_node = (uint64_t *)root_node[1];
@@ -772,7 +772,7 @@ void register_music_module(void)
         }
         parent_node = current_node;
         current_node = next_node;
-        is_found = *(char *)((longlong)next_node + 0x19);
+        is_found = *(char *)((int64_t)next_node + 0x19);
     }
     
     // 如果需要，创建新节点
@@ -801,8 +801,8 @@ void register_voice_module(void)
     char is_found;
     uint64_t *root_node;
     int compare_result;
-    longlong *registry;
-    longlong allocation_size;
+    int64_t *registry;
+    int64_t allocation_size;
     uint64_t *current_node;
     uint64_t *parent_node;
     uint64_t *next_node;
@@ -810,9 +810,9 @@ void register_voice_module(void)
     code *module_handler;
     
     // 获取模块注册表
-    registry = (longlong *)get_module_registry();
+    registry = (int64_t *)get_module_registry();
     root_node = (uint64_t *)*registry;
-    is_found = *(char *)((longlong)root_node[1] + 0x19);
+    is_found = *(char *)((int64_t)root_node[1] + 0x19);
     module_handler = get_voice_handler;
     parent_node = root_node;
     current_node = (uint64_t *)root_node[1];
@@ -829,7 +829,7 @@ void register_voice_module(void)
         }
         parent_node = current_node;
         current_node = next_node;
-        is_found = *(char *)((longlong)next_node + 0x19);
+        is_found = *(char *)((int64_t)next_node + 0x19);
     }
     
     // 如果需要，创建新节点
@@ -858,8 +858,8 @@ void register_environment_audio_module(void)
     char is_found;
     uint64_t *root_node;
     int compare_result;
-    longlong *registry;
-    longlong allocation_size;
+    int64_t *registry;
+    int64_t allocation_size;
     uint64_t *current_node;
     uint64_t *parent_node;
     uint64_t *next_node;
@@ -867,9 +867,9 @@ void register_environment_audio_module(void)
     void *module_handler;
     
     // 获取模块注册表
-    registry = (longlong *)get_module_registry();
+    registry = (int64_t *)get_module_registry();
     root_node = (uint64_t *)*registry;
-    is_found = *(char *)((longlong)root_node[1] + 0x19);
+    is_found = *(char *)((int64_t)root_node[1] + 0x19);
     module_handler = &unknown_var_2048_ptr;
     parent_node = root_node;
     current_node = (uint64_t *)root_node[1];
@@ -886,7 +886,7 @@ void register_environment_audio_module(void)
         }
         parent_node = current_node;
         current_node = next_node;
-        is_found = *(char *)((longlong)next_node + 0x19);
+        is_found = *(char *)((int64_t)next_node + 0x19);
     }
     
     // 如果需要，创建新节点
@@ -915,8 +915,8 @@ void register_audio_mixer_module(void)
     char is_found;
     uint64_t *root_node;
     int compare_result;
-    longlong *registry;
-    longlong allocation_size;
+    int64_t *registry;
+    int64_t allocation_size;
     uint64_t *current_node;
     uint64_t *parent_node;
     uint64_t *next_node;
@@ -924,9 +924,9 @@ void register_audio_mixer_module(void)
     uint64_t module_handler;
     
     // 获取模块注册表
-    registry = (longlong *)get_module_registry();
+    registry = (int64_t *)get_module_registry();
     root_node = (uint64_t *)*registry;
-    is_found = *(char *)((longlong)root_node[1] + 0x19);
+    is_found = *(char *)((int64_t)root_node[1] + 0x19);
     module_handler = 0;
     parent_node = root_node;
     current_node = (uint64_t *)root_node[1];
@@ -943,7 +943,7 @@ void register_audio_mixer_module(void)
         }
         parent_node = current_node;
         current_node = next_node;
-        is_found = *(char *)((longlong)next_node + 0x19);
+        is_found = *(char *)((int64_t)next_node + 0x19);
     }
     
     // 如果需要，创建新节点
@@ -969,7 +969,7 @@ void register_audio_mixer_module(void)
  */
 int initialize_debug_module(void)
 {
-    longlong result;
+    int64_t result;
     uint64_t in_R9;
     
     // 初始化调试模块指针
@@ -988,8 +988,8 @@ void register_performance_monitor_module(void)
     char is_found;
     uint64_t *root_node;
     int compare_result;
-    longlong *registry;
-    longlong allocation_size;
+    int64_t *registry;
+    int64_t allocation_size;
     uint64_t *current_node;
     uint64_t *parent_node;
     uint64_t *next_node;
@@ -997,9 +997,9 @@ void register_performance_monitor_module(void)
     code *module_handler;
     
     // 获取模块注册表
-    registry = (longlong *)get_module_registry();
+    registry = (int64_t *)get_module_registry();
     root_node = (uint64_t *)*registry;
-    is_found = *(char *)((longlong)root_node[1] + 0x19);
+    is_found = *(char *)((int64_t)root_node[1] + 0x19);
     module_handler = get_performance_handler;
     parent_node = root_node;
     current_node = (uint64_t *)root_node[1];
@@ -1016,7 +1016,7 @@ void register_performance_monitor_module(void)
         }
         parent_node = current_node;
         current_node = next_node;
-        is_found = *(char *)((longlong)next_node + 0x19);
+        is_found = *(char *)((int64_t)next_node + 0x19);
     }
     
     // 如果需要，创建新节点
@@ -1047,8 +1047,8 @@ void register_game_logic_module_alt(void)
     char is_found;
     uint64_t *root_node;
     int compare_result;
-    longlong *registry;
-    longlong allocation_size;
+    int64_t *registry;
+    int64_t allocation_size;
     uint64_t *current_node;
     uint64_t *parent_node;
     uint64_t *next_node;
@@ -1056,9 +1056,9 @@ void register_game_logic_module_alt(void)
     code *module_handler;
     
     // 获取模块注册表
-    registry = (longlong *)get_module_registry();
+    registry = (int64_t *)get_module_registry();
     root_node = (uint64_t *)*registry;
-    is_found = *(char *)((longlong)root_node[1] + 0x19);
+    is_found = *(char *)((int64_t)root_node[1] + 0x19);
     module_handler = get_game_logic_handler;
     parent_node = root_node;
     current_node = (uint64_t *)root_node[1];
@@ -1075,7 +1075,7 @@ void register_game_logic_module_alt(void)
         }
         parent_node = current_node;
         current_node = next_node;
-        is_found = *(char *)((longlong)next_node + 0x19);
+        is_found = *(char *)((int64_t)next_node + 0x19);
     }
     
     // 如果需要，创建新节点
@@ -1104,8 +1104,8 @@ void register_sound_effects_module_alt(void)
     char is_found;
     uint64_t *root_node;
     int compare_result;
-    longlong *registry;
-    longlong allocation_size;
+    int64_t *registry;
+    int64_t allocation_size;
     uint64_t *current_node;
     uint64_t *parent_node;
     uint64_t *next_node;
@@ -1113,9 +1113,9 @@ void register_sound_effects_module_alt(void)
     code *module_handler;
     
     // 获取模块注册表
-    registry = (longlong *)get_module_registry();
+    registry = (int64_t *)get_module_registry();
     root_node = (uint64_t *)*registry;
-    is_found = *(char *)((longlong)root_node[1] + 0x19);
+    is_found = *(char *)((int64_t)root_node[1] + 0x19);
     module_handler = get_sound_effects_handler;
     parent_node = root_node;
     current_node = (uint64_t *)root_node[1];
@@ -1132,7 +1132,7 @@ void register_sound_effects_module_alt(void)
         }
         parent_node = current_node;
         current_node = next_node;
-        is_found = *(char *)((longlong)next_node + 0x19);
+        is_found = *(char *)((int64_t)next_node + 0x19);
     }
     
     // 如果需要，创建新节点
@@ -1161,8 +1161,8 @@ void register_music_module_alt(void)
     char is_found;
     uint64_t *root_node;
     int compare_result;
-    longlong *registry;
-    longlong allocation_size;
+    int64_t *registry;
+    int64_t allocation_size;
     uint64_t *current_node;
     uint64_t *parent_node;
     uint64_t *next_node;
@@ -1170,9 +1170,9 @@ void register_music_module_alt(void)
     uint64_t module_handler;
     
     // 获取模块注册表
-    registry = (longlong *)get_module_registry();
+    registry = (int64_t *)get_module_registry();
     root_node = (uint64_t *)*registry;
-    is_found = *(char *)((longlong)root_node[1] + 0x19);
+    is_found = *(char *)((int64_t)root_node[1] + 0x19);
     module_handler = 0;
     parent_node = root_node;
     current_node = (uint64_t *)root_node[1];
@@ -1189,7 +1189,7 @@ void register_music_module_alt(void)
         }
         parent_node = current_node;
         current_node = next_node;
-        is_found = *(char *)((longlong)next_node + 0x19);
+        is_found = *(char *)((int64_t)next_node + 0x19);
     }
     
     // 如果需要，创建新节点
@@ -1218,8 +1218,8 @@ void register_voice_module_alt(void)
     char is_found;
     uint64_t *root_node;
     int compare_result;
-    longlong *registry;
-    longlong allocation_size;
+    int64_t *registry;
+    int64_t allocation_size;
     uint64_t *current_node;
     uint64_t *parent_node;
     uint64_t *next_node;
@@ -1227,9 +1227,9 @@ void register_voice_module_alt(void)
     code *module_handler;
     
     // 获取模块注册表
-    registry = (longlong *)get_module_registry();
+    registry = (int64_t *)get_module_registry();
     root_node = (uint64_t *)*registry;
-    is_found = *(char *)((longlong)root_node[1] + 0x19);
+    is_found = *(char *)((int64_t)root_node[1] + 0x19);
     module_handler = get_voice_handler;
     parent_node = root_node;
     current_node = (uint64_t *)root_node[1];
@@ -1246,7 +1246,7 @@ void register_voice_module_alt(void)
         }
         parent_node = current_node;
         current_node = next_node;
-        is_found = *(char *)((longlong)next_node + 0x19);
+        is_found = *(char *)((int64_t)next_node + 0x19);
     }
     
     // 如果需要，创建新节点
@@ -1275,8 +1275,8 @@ void register_environment_audio_module_alt(void)
     char is_found;
     uint64_t *root_node;
     int compare_result;
-    longlong *registry;
-    longlong allocation_size;
+    int64_t *registry;
+    int64_t allocation_size;
     uint64_t *current_node;
     uint64_t *parent_node;
     uint64_t *next_node;
@@ -1284,9 +1284,9 @@ void register_environment_audio_module_alt(void)
     void *module_handler;
     
     // 获取模块注册表
-    registry = (longlong *)get_module_registry();
+    registry = (int64_t *)get_module_registry();
     root_node = (uint64_t *)*registry;
-    is_found = *(char *)((longlong)root_node[1] + 0x19);
+    is_found = *(char *)((int64_t)root_node[1] + 0x19);
     module_handler = &unknown_var_2048_ptr;
     parent_node = root_node;
     current_node = (uint64_t *)root_node[1];
@@ -1303,7 +1303,7 @@ void register_environment_audio_module_alt(void)
         }
         parent_node = current_node;
         current_node = next_node;
-        is_found = *(char *)((longlong)next_node + 0x19);
+        is_found = *(char *)((int64_t)next_node + 0x19);
     }
     
     // 如果需要，创建新节点

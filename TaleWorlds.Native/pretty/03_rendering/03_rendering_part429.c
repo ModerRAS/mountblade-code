@@ -82,11 +82,11 @@ void RenderingSystemAdvancedResourceCleaner(void)
 
 {
   uint64_t *puVar1;
-  longlong lVar2;
-  longlong lVar3;
-  ulonglong uVar4;
+  int64_t lVar2;
+  int64_t lVar3;
+  uint64_t uVar4;
   uint uVar5;
-  ulonglong uVar6;
+  uint64_t uVar6;
   
   FUN_1804e5f80(&system_memory_5ed0);
   uVar4 = 0;
@@ -106,8 +106,8 @@ void RenderingSystemAdvancedResourceCleaner(void)
       *(uint64_t *)(lVar2 + 0x18 + uVar4) = 0;
       uVar5 = (int)uVar6 + 1;
       uVar4 = uVar4 + 0x68;
-      uVar6 = (ulonglong)uVar5;
-    } while ((ulonglong)(longlong)(int)uVar5 < (ulonglong)((render_system_memory - render_system_memory) / 0x68)
+      uVar6 = (uint64_t)uVar5;
+    } while ((uint64_t)(int64_t)(int)uVar5 < (uint64_t)((render_system_memory - render_system_memory) / 0x68)
             );
   }
   uVar6 = render_system_memory;
@@ -115,9 +115,9 @@ void RenderingSystemAdvancedResourceCleaner(void)
   uVar4 = 0;
   if (render_system_memory != 0) {
     do {
-      lVar3 = *(longlong *)(lVar2 + uVar4 * 8);
+      lVar3 = *(int64_t *)(lVar2 + uVar4 * 8);
       if (lVar3 != 0) {
-        if (*(longlong *)(lVar3 + 0x18) == 0) {
+        if (*(int64_t *)(lVar3 + 0x18) == 0) {
                     // WARNING: Subroutine does not return
           FUN_18064e900(lVar3);
         }
@@ -126,7 +126,7 @@ void RenderingSystemAdvancedResourceCleaner(void)
       }
       *(uint64_t *)(lVar2 + uVar4 * 8) = 0;
       uVar5 = (int)uVar4 + 1;
-      uVar4 = (ulonglong)uVar5;
+      uVar4 = (uint64_t)uVar5;
     } while (uVar5 < uVar6);
   }
   uRam0000000180c91d38 = 0;
@@ -151,14 +151,14 @@ void RenderingSystemMemoryManager(void)
 
 {
   uint64_t *puVar1;
-  ulonglong uVar2;
-  longlong lVar3;
-  longlong lVar4;
-  ulonglong uVar5;
-  longlong unaff_RSI;
-  longlong unaff_R12;
+  uint64_t uVar2;
+  int64_t lVar3;
+  int64_t lVar4;
+  uint64_t uVar5;
+  int64_t unaff_RSI;
+  int64_t unaff_R12;
   int unaff_R14D;
-  ulonglong unaff_R15;
+  uint64_t unaff_R15;
   
   uVar5 = unaff_R15 & 0xffffffff;
   do {
@@ -171,20 +171,20 @@ void RenderingSystemMemoryManager(void)
         FUN_18064e900(lVar3);
       }
     }
-    *(ulonglong *)(unaff_RSI + 0x18 + uVar5) = unaff_R15;
+    *(uint64_t *)(unaff_RSI + 0x18 + uVar5) = unaff_R15;
     uVar2 = render_system_memory;
     lVar3 = render_system_memory;
     unaff_R14D = unaff_R14D + 1;
     uVar5 = uVar5 + 0x68;
     lVar4 = SUB168(SEXT816(unaff_R12) * SEXT816(render_system_memory - render_system_memory),8);
     unaff_RSI = render_system_memory;
-  } while ((ulonglong)(longlong)unaff_R14D < (ulonglong)((lVar4 >> 5) - (lVar4 >> 0x3f)));
+  } while ((uint64_t)(int64_t)unaff_R14D < (uint64_t)((lVar4 >> 5) - (lVar4 >> 0x3f)));
   uVar5 = 0;
   if (render_system_memory != 0) {
     do {
-      lVar4 = *(longlong *)(lVar3 + uVar5 * 8);
+      lVar4 = *(int64_t *)(lVar3 + uVar5 * 8);
       if (lVar4 != 0) {
-        if (*(longlong *)(lVar4 + 0x18) == 0) {
+        if (*(int64_t *)(lVar4 + 0x18) == 0) {
                     // WARNING: Subroutine does not return
           FUN_18064e900(lVar4);
         }
@@ -216,20 +216,20 @@ void RenderingSystemMemoryManager(void)
 void RenderingSystemObjectLifecycleManager(void)
 
 {
-  longlong lVar1;
-  longlong lVar2;
-  ulonglong uVar3;
-  ulonglong uVar4;
-  longlong *plStack0000000000000040;
+  int64_t lVar1;
+  int64_t lVar2;
+  uint64_t uVar3;
+  uint64_t uVar4;
+  int64_t *plStack0000000000000040;
   
   uVar3 = render_system_memory;
   lVar2 = render_system_memory;
   uVar4 = 0;
   if (render_system_memory != 0) {
     do {
-      lVar1 = *(longlong *)(lVar2 + uVar4 * 8);
+      lVar1 = *(int64_t *)(lVar2 + uVar4 * 8);
       if (lVar1 != 0) {
-        plStack0000000000000040 = (longlong *)(lVar1 + 0x18);
+        plStack0000000000000040 = (int64_t *)(lVar1 + 0x18);
         if (*plStack0000000000000040 == 0) {
                     // WARNING: Subroutine does not return
           FUN_18064e900(lVar1);

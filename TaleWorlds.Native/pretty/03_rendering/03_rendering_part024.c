@@ -69,19 +69,19 @@ typedef enum {
 
 // 渲染哈希表结构体
 typedef struct {
-    ulonglong** buckets;                      // 哈希桶数组
-    ulonglong bucket_count;                   // 哈希桶数量
-    ulonglong entry_count;                    // 条目数量
-    ulonglong load_factor;                    // 负载因子
-    ulonglong resize_threshold;               // 调整大小阈值
+    uint64_t** buckets;                      // 哈希桶数组
+    uint64_t bucket_count;                   // 哈希桶数量
+    uint64_t entry_count;                    // 条目数量
+    uint64_t load_factor;                    // 负载因子
+    uint64_t resize_threshold;               // 调整大小阈值
     uint state_flags;                         // 状态标志
 } RenderHashTable;
 
 // 渲染数据结构体
 typedef struct {
-    ulonglong data_ptr;                       // 数据指针
-    ulonglong data_size;                       // 数据大小
-    ulonglong hash_value;                      // 哈希值
+    uint64_t data_ptr;                       // 数据指针
+    uint64_t data_size;                       // 数据大小
+    uint64_t hash_value;                      // 哈希值
     uint data_type;                           // 数据类型
     uint ref_count;                           // 引用计数
     uint state;                               // 数据状态
@@ -90,8 +90,8 @@ typedef struct {
 
 // 渲染材质结构体
 typedef struct {
-    ulonglong texture_ids[4];                // 纹理ID数组
-    ulonglong shader_id;                      // 着色器ID
+    uint64_t texture_ids[4];                // 纹理ID数组
+    uint64_t shader_id;                      // 着色器ID
     uint material_flags;                      // 材质标志
     uint render_queue;                        // 渲染队列
     float properties[8];                      // 材质属性
@@ -102,8 +102,8 @@ typedef struct {
 // 渲染缓存结构体
 typedef struct {
     byte* cache_data;                         // 缓存数据
-    ulonglong cache_size;                     // 缓存大小
-    ulonglong cache_capacity;                 // 缓存容量
+    uint64_t cache_size;                     // 缓存大小
+    uint64_t cache_capacity;                 // 缓存容量
     uint cache_flags;                         // 缓存标志
     uint access_count;                        // 访问计数
     uint last_access;                         // 最后访问时间
@@ -113,9 +113,9 @@ typedef struct {
 // 渲染内存池结构体
 typedef struct {
     byte* pool_base;                          // 内存池基地址
-    ulonglong pool_size;                      // 内存池大小
-    ulonglong used_size;                       // 已使用大小
-    ulonglong free_size;                       // 空闲大小
+    uint64_t pool_size;                      // 内存池大小
+    uint64_t used_size;                       // 已使用大小
+    uint64_t free_size;                       // 空闲大小
     uint pool_flags;                          // 内存池标志
     uint alloc_count;                         // 分配计数
     uint free_count;                          // 释放计数
@@ -128,10 +128,10 @@ typedef struct {
     uint frame_count;                         // 帧计数
     float delta_time;                         // 时间增量
     float total_time;                         // 总时间
-    ulonglong stats_memory_used;              // 统计：已用内存
-    ulonglong stats_memory_peak;              // 统计：内存峰值
-    ulonglong stats_draw_calls;               // 统计：绘制调用
-    ulonglong stats_triangles;               // 统计：三角形数量
+    uint64_t stats_memory_used;              // 统计：已用内存
+    uint64_t stats_memory_peak;              // 统计：内存峰值
+    uint64_t stats_draw_calls;               // 统计：绘制调用
+    uint64_t stats_triangles;               // 统计：三角形数量
 } RenderState;
 
 // 渲染上下文结构体
@@ -148,7 +148,7 @@ typedef struct {
 
 // 渲染对象结构体
 typedef struct {
-    ulonglong object_id;                      // 对象ID
+    uint64_t object_id;                      // 对象ID
     RenderObjectType object_type;             // 对象类型
     RenderDataEntry* data_entries;            // 数据条目数组
     uint entry_count;                         // 条目数量
@@ -167,4 +167,4 @@ typedef struct {
 //   - 计算和管理哈希值
 //   - 优化数据结构布局
 //   - 处理内存分配和垃圾回收
-void Render_SyncAndMergeObjectHashTables(ulonglong******* source_context, ulonglong******* target_context)
+void Render_SyncAndMergeObjectHashTables(uint64_t******* source_context, uint64_t******* target_context)

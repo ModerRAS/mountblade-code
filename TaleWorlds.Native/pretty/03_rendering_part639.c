@@ -131,11 +131,11 @@ typedef struct {
  */
 void RenderingSystem_DebugStringFormatter1(uint64_t param_1, uint64_t param_2, uint64_t param_3)
 {
-    longlong lVar1;
+    int64_t lVar1;
     void *puVar2;
     int8_t auStack_d8 [32];
     void *puStack_b8;
-    longlong lStack_b0;
+    int64_t lStack_b0;
     int32_t uStack_a0;
     uint64_t uStack_98;
     int8_t auStack_88 [32];
@@ -144,11 +144,11 @@ void RenderingSystem_DebugStringFormatter1(uint64_t param_1, uint64_t param_2, u
     int32_t uStack_58;
     uint64_t uStack_50;
     int8_t auStack_48 [32];
-    ulonglong uStack_28;
+    uint64_t uStack_28;
     
     /* 初始化安全参数 */
     uStack_98 = 0xfffffffffffffffe;
-    uStack_28 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_d8;
+    uStack_28 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_d8;
     
     /* 初始化字符串缓冲区 */
     FUN_1806279c0(auStack_88);
@@ -186,7 +186,7 @@ void RenderingSystem_DebugStringFormatter1(uint64_t param_1, uint64_t param_2, u
     FUN_1808fc8a8(auStack_88, 0x20, 3, FUN_180627b90);
     
     /* 执行安全退出 */
-    FUN_1808fc050(uStack_28 ^ (ulonglong)auStack_d8);
+    FUN_1808fc050(uStack_28 ^ (uint64_t)auStack_d8);
 }
 
 
@@ -230,11 +230,11 @@ void RenderingSystem_DebugStringFormatter2(uint64_t param_1, uint64_t param_2, u
     int8_t auStack_88 [32];
     int8_t auStack_68 [32];
     int8_t auStack_48 [32];
-    ulonglong uStack_28;
+    uint64_t uStack_28;
     
     /* 初始化安全参数和缓冲区 */
     uStack_b8 = 0xfffffffffffffffe;
-    uStack_28 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_f8;
+    uStack_28 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_f8;
     
     /* 初始化多个参数缓冲区 */
     FUN_1806279c0(auStack_a8);
@@ -270,7 +270,7 @@ void RenderingSystem_DebugStringFormatter2(uint64_t param_1, uint64_t param_2, u
     FUN_1808fc8a8(auStack_a8, 0x20, 4, FUN_180627b90);
     
     /* 执行安全退出 */
-    FUN_1808fc050(uStack_28 ^ (ulonglong)auStack_f8);
+    FUN_1808fc050(uStack_28 ^ (uint64_t)auStack_f8);
 }
 
 
@@ -341,8 +341,8 @@ void RenderingSystem_DebugStringGenerator1(void)
     
 LAB_18062605e:
     /* 添加后缀 "pk" */
-    *(int16_t *)((longlong)puVar2 + 5) = 0x706b;
-    *(int8_t *)((longlong)puVar2 + 7) = 0;
+    *(int16_t *)((int64_t)puVar2 + 5) = 0x706b;
+    *(int8_t *)((int64_t)puVar2 + 7) = 0;
     
     /* 获取输出字符串指针 */
     puVar3 = (int32_t *)&system_buffer_ptr;
@@ -399,7 +399,7 @@ void RenderingSystem_DebugStringGenerator2(void)
     uint uStack_40;            /* 缓冲区长度 */
     int32_t uStack_38;         /* 状态变量 */
     void *puStack_30;          /* 缓冲区初始化器 */
-    longlong lStack_28;        /* 额外内容指针 */
+    int64_t lStack_28;        /* 额外内容指针 */
     int iStack_20;             /* 额外内容长度 */
     
     /* 初始化字符串缓冲区 */
@@ -421,14 +421,14 @@ void RenderingSystem_DebugStringGenerator2(void)
     /* 分配更多空间并添加后缀 "dd" */
     FUN_1806277c0(&puStack_50, uVar3);
     *(int16_t *)(puStack_48 + uStack_40) = 0x6464;  /* 0x6464 = "dd" */
-    *(int8_t *)((longlong)(puStack_48 + uStack_40) + 2) = 0;  /* 字符串结束符 */
+    *(int8_t *)((int64_t)(puStack_48 + uStack_40) + 2) = 0;  /* 字符串结束符 */
     uStack_40 = uVar3;
     
     /* 如果有额外内容，添加到字符串末尾 */
     if (0 < iStack_20) {
         FUN_1806277c0(&puStack_50, uVar3 + iStack_20);
         /* 复制额外内容到缓冲区 */
-        memcpy(puStack_48 + uStack_40, lStack_28, (longlong)(iStack_20 + 1));
+        memcpy(puStack_48 + uStack_40, lStack_28, (int64_t)(iStack_20 + 1));
     }
     
     /* 获取输出字符串指针 */
@@ -534,8 +534,8 @@ void RenderingSystem_DebugStringGenerator3(void)
     
 LAB_18062636e:
     /* 添加后缀 "td" */
-    *(int16_t *)((longlong)puVar2 + 5) = 0x7464;  /* 0x7464 = "td" */
-    *(int8_t *)((longlong)puVar2 + 7) = 0;  /* 字符串结束符 */
+    *(int16_t *)((int64_t)puVar2 + 5) = 0x7464;  /* 0x7464 = "td" */
+    *(int8_t *)((int64_t)puVar2 + 7) = 0;  /* 字符串结束符 */
     
     /* 获取输出字符串指针 */
     puVar3 = (int32_t *)&system_buffer_ptr;
@@ -596,7 +596,7 @@ void RenderingSystem_PathParameterProcessor1(uint64_t param_1, char param_2)
     int32_t *puVar4;           /* 输出字符串指针 */
     void *puVar5;              /* 参数处理函数指针 */
     void *puStack_40;          /* 参数处理上下文 */
-    longlong lStack_38;        /* 路径参数内容 */
+    int64_t lStack_38;        /* 路径参数内容 */
     int iStack_30;             /* 路径参数长度 */
     
     /* 根据参数类型选择处理函数 */
@@ -643,8 +643,8 @@ LAB_18062653a:
     }
     
     /* 添加后缀 "fm" */
-    *(int16_t *)((longlong)puVar3 + 5) = 0x666d;  /* 0x666d = "fm" */
-    *(int8_t *)((longlong)puVar3 + 7) = 0;  /* 字符串结束符 */
+    *(int16_t *)((int64_t)puVar3 + 5) = 0x666d;  /* 0x666d = "fm" */
+    *(int8_t *)((int64_t)puVar3 + 7) = 0;  /* 字符串结束符 */
     
     /* 如果没有额外参数，直接输出 */
     if (iStack_30 < 1) {
@@ -678,7 +678,7 @@ LAB_18062653a:
             if (iVar2 < 0x10) {
                 iVar2 = 0x10;  /* 最小缓冲区大小 */
             }
-            puVar3 = (int32_t *)FUN_18062b420(system_memory_pool_ptr, (longlong)iVar2, 0x13);
+            puVar3 = (int32_t *)FUN_18062b420(system_memory_pool_ptr, (int64_t)iVar2, 0x13);
             *(int8_t *)puVar3 = 0;
         }
         else {
@@ -691,7 +691,7 @@ LAB_18062653a:
     
 LAB_1806265d4:
     /* 复制额外参数内容到缓冲区 */
-    memcpy((int8_t *)((longlong)puVar3 + 7), lStack_38, (longlong)(iStack_30 + 1));
+    memcpy((int8_t *)((int64_t)puVar3 + 7), lStack_38, (int64_t)(iStack_30 + 1));
 }
 
 
@@ -735,7 +735,7 @@ void RenderingSystem_PathParameterProcessor2(uint64_t param_1, char param_2)
     int32_t *puVar4;           /* 输出字符串指针 */
     void *puVar5;              /* 参数处理函数指针 */
     void *puStack_40;          /* 参数处理上下文 */
-    longlong lStack_38;        /* 路径参数内容 */
+    int64_t lStack_38;        /* 路径参数内容 */
     int iStack_30;             /* 路径参数长度 */
     
     /* 根据参数类型选择处理函数 */
@@ -782,8 +782,8 @@ LAB_1806267aa:
     }
     
     /* 添加后缀 "ra" */
-    *(int16_t *)((longlong)puVar3 + 5) = 0x7261;  /* 0x7261 = "ra" */
-    *(int8_t *)((longlong)puVar3 + 7) = 0;  /* 字符串结束符 */
+    *(int16_t *)((int64_t)puVar3 + 5) = 0x7261;  /* 0x7261 = "ra" */
+    *(int8_t *)((int64_t)puVar3 + 7) = 0;  /* 字符串结束符 */
     
     /* 如果没有额外参数，直接输出 */
     if (iStack_30 < 1) {
@@ -817,7 +817,7 @@ LAB_1806267aa:
             if (iVar2 < 0x10) {
                 iVar2 = 0x10;  /* 最小缓冲区大小 */
             }
-            puVar3 = (int32_t *)FUN_18062b420(system_memory_pool_ptr, (longlong)iVar2, 0x13);
+            puVar3 = (int32_t *)FUN_18062b420(system_memory_pool_ptr, (int64_t)iVar2, 0x13);
             *(int8_t *)puVar3 = 0;
         }
         else {
@@ -830,7 +830,7 @@ LAB_1806267aa:
     
 LAB_180626844:
     /* 复制额外参数内容到缓冲区 */
-    memcpy((int8_t *)((longlong)puVar3 + 7), lStack_38, (longlong)(iStack_30 + 1));
+    memcpy((int8_t *)((int64_t)puVar3 + 7), lStack_38, (int64_t)(iStack_30 + 1));
 }
 
 
@@ -870,7 +870,7 @@ void RenderingSystem_DebugStringGenerator4(void)
     uint uStack_40;            /* 缓冲区长度 */
     int32_t uStack_38;         /* 状态变量 */
     void *puStack_30;          /* 缓冲区初始化器 */
-    longlong lStack_28;        /* 额外内容指针 */
+    int64_t lStack_28;        /* 额外内容指针 */
     int iStack_20;             /* 额外内容长度 */
     
     /* 初始化字符串缓冲区 */
@@ -892,14 +892,14 @@ void RenderingSystem_DebugStringGenerator4(void)
     /* 分配更多空间并添加后缀 "pc" */
     FUN_1806277c0(&puStack_50, uVar3);
     *(int16_t *)(puStack_48 + uStack_40) = 0x7063;  /* 0x7063 = "pc" */
-    *(int8_t *)((longlong)(puStack_48 + uStack_40) + 2) = 0;  /* 字符串结束符 */
+    *(int8_t *)((int64_t)(puStack_48 + uStack_40) + 2) = 0;  /* 字符串结束符 */
     uStack_40 = uVar3;
     
     /* 如果有额外内容，添加到字符串末尾 */
     if (0 < iStack_20) {
         FUN_1806277c0(&puStack_50, uVar3 + iStack_20);
         /* 复制额外内容到缓冲区 */
-        memcpy(puStack_48 + uStack_40, lStack_28, (longlong)(iStack_20 + 1));
+        memcpy(puStack_48 + uStack_40, lStack_28, (int64_t)(iStack_20 + 1));
     }
     
     /* 获取输出字符串指针 */
@@ -1057,11 +1057,11 @@ void RenderingSystem_DebugStringGenerator5(void)
     
     /* 文件操作变量 */
     uint64_t uStack_100;       /* 文件句柄1 */
-    longlong lStack_f8;        /* 文件指针1 */
+    int64_t lStack_f8;        /* 文件指针1 */
     uint64_t uStack_e8;        /* 文件句柄2 */
-    longlong lStack_e0;        /* 文件指针2 */
+    int64_t lStack_e0;        /* 文件指针2 */
     uint64_t uStack_d0;        /* 文件句柄3 */
-    longlong lStack_c8;        /* 文件指针3 */
+    int64_t lStack_c8;        /* 文件指针3 */
     
     /* 字符串构建变量 */
     uint64_t uStack_b8;        /* 安全参数 */
@@ -1083,11 +1083,11 @@ void RenderingSystem_DebugStringGenerator5(void)
     int8_t auStack_48 [16];    /* 第二备用路径前缀缓冲区 */
     
     /* 安全参数 */
-    ulonglong uStack_38;       /* 异常处理参数 */
+    uint64_t uStack_38;       /* 异常处理参数 */
     
     /* 初始化安全参数 */
     uStack_b8 = 0xfffffffffffffffe;
-    uStack_38 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_188;
+    uStack_38 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_188;
     
     /* 初始化状态变量 */
     uStack_168 = 0;
@@ -1122,7 +1122,7 @@ void RenderingSystem_DebugStringGenerator5(void)
     puVar3 = (uint64_t *)(puStack_158 + uStack_150);
     *puVar3 = 0x61742e6d61657473;  /* "s.vegeta" */
     *(int32_t *)(puVar3 + 1) = 0x74656772;  /* "reg" */
-    *(int8_t *)((longlong)puVar3 + 0xc) = 0;  /* 字符串结束符 */
+    *(int8_t *)((int64_t)puVar3 + 0xc) = 0;  /* 字符串结束符 */
     
     /* 尝试打开文件 */
     uStack_100 = 0;
@@ -1181,7 +1181,7 @@ void RenderingSystem_DebugStringGenerator5(void)
             /* 继续构建备用路径 */
             FUN_1806277c0(&puStack_140, uVar1 + 0x1a);
             *(uint64_t *)(puStack_138 + uStack_130) = 0x7261742e63697065;  /* "epipe.t" */
-            *(int32_t *)((longlong)(puStack_138 + uStack_130) + 8) = 0x746567;  /* "teg" */
+            *(int32_t *)((int64_t)(puStack_138 + uStack_130) + 8) = 0x746567;  /* "teg" */
             
             /* 尝试打开备用文件 */
             uStack_e8 = 0;
@@ -1244,7 +1244,7 @@ void RenderingSystem_DebugStringGenerator5(void)
                 puVar3 = (uint64_t *)(puStack_118 + uStack_110);
                 *puVar3 = 0x677261742e676f67;  /* "gor.tag" */
                 *(int16_t *)(puVar3 + 1) = 0x7465;  /* "te" */
-                *(int8_t *)((longlong)puVar3 + 10) = 0;  /* 字符串结束符 */
+                *(int8_t *)((int64_t)puVar3 + 10) = 0;  /* 字符串结束符 */
                 
                 /* 尝试打开第三备用文件 */
                 uStack_d0 = 0;
@@ -1278,7 +1278,7 @@ void RenderingSystem_DebugStringGenerator5(void)
         }
         
         /* 执行安全退出 */
-        FUN_1808fc050(uStack_38 ^ (ulonglong)auStack_188);
+        FUN_1808fc050(uStack_38 ^ (uint64_t)auStack_188);
     }
     
     /* 执行资源清理 */
@@ -1317,7 +1317,7 @@ void RenderingSystem_DebugStringGenerator5(void)
  * - 边界检查失败时进行安全处理
  * - 内存访问越界时进行保护
  */
-void RenderingSystem_StringLengthCalculator(longlong param_1, longlong param_2)
+void RenderingSystem_StringLengthCalculator(int64_t param_1, int64_t param_2)
 {
     int iVar1;                 /* 字符串长度计算结果 */
     
@@ -1371,7 +1371,7 @@ void RenderingSystem_StringLengthCalculator(longlong param_1, longlong param_2)
  */
 void RenderingSystem_DebugStringFormatter3(uint64_t param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
-    ulonglong *puVar1;        /* 格式化函数指针 */
+    uint64_t *puVar1;        /* 格式化函数指针 */
     uint64_t uStackX_10;       /* 可变参数1 */
     uint64_t uStackX_18;       /* 可变参数2 */
     uint64_t uStackX_20;       /* 可变参数3 */
@@ -1383,10 +1383,10 @@ void RenderingSystem_DebugStringFormatter3(uint64_t param_1, uint64_t param_2, u
     int8_t auStack_228 [512];  /* 格式化输出缓冲区 */
     
     /* 异常处理参数 */
-    ulonglong uStack_28;       /* 异常处理参数 */
+    uint64_t uStack_28;       /* 异常处理参数 */
     
     /* 初始化异常处理参数 */
-    uStack_28 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_258;
+    uStack_28 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_258;
     
     /* 设置可变参数 */
     uStackX_10 = param_2;
@@ -1394,7 +1394,7 @@ void RenderingSystem_DebugStringFormatter3(uint64_t param_1, uint64_t param_2, u
     uStackX_20 = param_4;
     
     /* 获取格式化函数指针 */
-    puVar1 = (ulonglong *)func_0x00018004b9a0();
+    puVar1 = (uint64_t *)func_0x00018004b9a0();
     
     /* 初始化格式化状态 */
     uStack_238 = 0;
@@ -1407,7 +1407,7 @@ void RenderingSystem_DebugStringFormatter3(uint64_t param_1, uint64_t param_2, u
     (*(code *)**(uint64_t **)*render_system_data_memory)((uint64_t *)*render_system_data_memory, auStack_228, 0);
     
     /* 执行安全退出 */
-    FUN_1808fc050(uStack_28 ^ (ulonglong)auStack_258);
+    FUN_1808fc050(uStack_28 ^ (uint64_t)auStack_258);
 }
 
 
@@ -1483,7 +1483,7 @@ void RenderingSystem_DebugFunctionExecutor1(void)
  */
 void RenderingSystem_DebugStringFormatter4(uint64_t param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
-    ulonglong *puVar1;        /* 格式化函数指针 */
+    uint64_t *puVar1;        /* 格式化函数指针 */
     uint64_t uStackX_10;       /* 可变参数1 */
     uint64_t uStackX_18;       /* 可变参数2 */
     uint64_t uStackX_20;       /* 可变参数3 */
@@ -1495,10 +1495,10 @@ void RenderingSystem_DebugStringFormatter4(uint64_t param_1, uint64_t param_2, u
     int8_t auStack_228 [512];  /* 格式化输出缓冲区 */
     
     /* 异常处理参数 */
-    ulonglong uStack_28;       /* 异常处理参数 */
+    uint64_t uStack_28;       /* 异常处理参数 */
     
     /* 初始化异常处理参数 */
-    uStack_28 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_258;
+    uStack_28 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_258;
     
     /* 设置可变参数 */
     uStackX_10 = param_2;
@@ -1506,7 +1506,7 @@ void RenderingSystem_DebugStringFormatter4(uint64_t param_1, uint64_t param_2, u
     uStackX_20 = param_4;
     
     /* 获取格式化函数指针 */
-    puVar1 = (ulonglong *)func_0x00018004b9a0();
+    puVar1 = (uint64_t *)func_0x00018004b9a0();
     
     /* 初始化格式化状态 */
     uStack_238 = 0;
@@ -1516,10 +1516,10 @@ void RenderingSystem_DebugStringFormatter4(uint64_t param_1, uint64_t param_2, u
     __stdio_common_vsprintf(*puVar1 | 1, auStack_228, 0x200, param_1);
     
     /* 调用不同的调试输出函数 */
-    (**(code **)(*(longlong *)*render_system_data_memory + 0x10))((longlong *)*render_system_data_memory, auStack_228, 0);
+    (**(code **)(*(int64_t *)*render_system_data_memory + 0x10))((int64_t *)*render_system_data_memory, auStack_228, 0);
     
     /* 执行安全退出 */
-    FUN_1808fc050(uStack_28 ^ (ulonglong)auStack_258);
+    FUN_1808fc050(uStack_28 ^ (uint64_t)auStack_258);
 }
 
 
@@ -1561,7 +1561,7 @@ void RenderingSystem_DebugStringFormatter4(uint64_t param_1, uint64_t param_2, u
  */
 void RenderingSystem_DebugStringFormatter5(uint64_t param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
-    ulonglong *puVar1;        /* 格式化函数指针 */
+    uint64_t *puVar1;        /* 格式化函数指针 */
     uint64_t uStackX_10;       /* 可变参数1 */
     uint64_t uStackX_18;       /* 可变参数2 */
     uint64_t uStackX_20;       /* 可变参数3 */
@@ -1573,10 +1573,10 @@ void RenderingSystem_DebugStringFormatter5(uint64_t param_1, uint64_t param_2, u
     int8_t auStack_228 [512];  /* 格式化输出缓冲区 */
     
     /* 异常处理参数 */
-    ulonglong uStack_28;       /* 异常处理参数 */
+    uint64_t uStack_28;       /* 异常处理参数 */
     
     /* 初始化异常处理参数 */
-    uStack_28 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_258;
+    uStack_28 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_258;
     
     /* 设置可变参数 */
     uStackX_10 = param_2;
@@ -1584,7 +1584,7 @@ void RenderingSystem_DebugStringFormatter5(uint64_t param_1, uint64_t param_2, u
     uStackX_20 = param_4;
     
     /* 获取格式化函数指针 */
-    puVar1 = (ulonglong *)func_0x00018004b9a0();
+    puVar1 = (uint64_t *)func_0x00018004b9a0();
     
     /* 初始化格式化状态 */
     uStack_238 = 0;
@@ -1594,10 +1594,10 @@ void RenderingSystem_DebugStringFormatter5(uint64_t param_1, uint64_t param_2, u
     __stdio_common_vsprintf(*puVar1 | 1, auStack_228, 0x200, param_1);
     
     /* 调用不同的调试输出函数 */
-    (**(code **)(*(longlong *)*render_system_data_memory + 0x18))((longlong *)*render_system_data_memory, auStack_228);
+    (**(code **)(*(int64_t *)*render_system_data_memory + 0x18))((int64_t *)*render_system_data_memory, auStack_228);
     
     /* 执行安全退出 */
-    FUN_1808fc050(uStack_28 ^ (ulonglong)auStack_258);
+    FUN_1808fc050(uStack_28 ^ (uint64_t)auStack_258);
 }
 
 
@@ -1673,7 +1673,7 @@ void RenderingSystem_DebugFunctionExecutor2(void)
  */
 void RenderingSystem_DebugStringFormatter6(uint64_t param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
-    ulonglong *puVar1;        /* 格式化函数指针 */
+    uint64_t *puVar1;        /* 格式化函数指针 */
     uint64_t uStackX_10;       /* 可变参数1 */
     uint64_t uStackX_18;       /* 可变参数2 */
     uint64_t uStackX_20;       /* 可变参数3 */
@@ -1685,10 +1685,10 @@ void RenderingSystem_DebugStringFormatter6(uint64_t param_1, uint64_t param_2, u
     int8_t auStack_228 [512];  /* 格式化输出缓冲区 */
     
     /* 异常处理参数 */
-    ulonglong uStack_28;       /* 异常处理参数 */
+    uint64_t uStack_28;       /* 异常处理参数 */
     
     /* 初始化异常处理参数 */
-    uStack_28 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_258;
+    uStack_28 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_258;
     
     /* 设置可变参数 */
     uStackX_10 = param_2;
@@ -1696,7 +1696,7 @@ void RenderingSystem_DebugStringFormatter6(uint64_t param_1, uint64_t param_2, u
     uStackX_20 = param_4;
     
     /* 获取格式化函数指针 */
-    puVar1 = (ulonglong *)func_0x00018004b9a0();
+    puVar1 = (uint64_t *)func_0x00018004b9a0();
     
     /* 初始化格式化状态 */
     uStack_238 = 0;
@@ -1710,7 +1710,7 @@ void RenderingSystem_DebugStringFormatter6(uint64_t param_1, uint64_t param_2, u
             (*(uint64_t **)(render_system_data_memory + 8), auStack_228);
     
     /* 执行安全退出 */
-    FUN_1808fc050(uStack_28 ^ (ulonglong)auStack_258);
+    FUN_1808fc050(uStack_28 ^ (uint64_t)auStack_258);
 }
 
 
@@ -1780,9 +1780,9 @@ void RenderingSystem_DebugFunctionExecutor3(void)
  * - 内存分配失败时进行错误处理
  * - 参数验证失败时进行错误处理
  */
-uint64_t *RenderingSystem_PathExtractor1(uint64_t *param_1, longlong param_2, uint64_t param_3, uint64_t param_4)
+uint64_t *RenderingSystem_PathExtractor1(uint64_t *param_1, int64_t param_2, uint64_t param_3, uint64_t param_4)
 {
-    longlong lVar1;            /* 扩展名位置指针 */
+    int64_t lVar1;            /* 扩展名位置指针 */
     void *puVar2;              /* 路径字符串指针 */
     
     /* 获取路径字符串指针 */
@@ -1850,11 +1850,11 @@ uint64_t *RenderingSystem_PathExtractor1(uint64_t *param_1, longlong param_2, ui
  * - 内存分配失败时进行错误处理
  * - 参数验证失败时进行错误处理
  */
-uint64_t *RenderingSystem_PathExtractor2(uint64_t *param_1, longlong param_2, uint64_t param_3, uint64_t param_4)
+uint64_t *RenderingSystem_PathExtractor2(uint64_t *param_1, int64_t param_2, uint64_t param_3, uint64_t param_4)
 {
-    longlong lVar1;            /* 扩展名位置指针 */
+    int64_t lVar1;            /* 扩展名位置指针 */
     void *puVar2;              /* 路径字符串指针 */
-    ulonglong uVar3;           /* 扩展名长度计数器 */
+    uint64_t uVar3;           /* 扩展名长度计数器 */
     
     /* 获取路径字符串指针 */
     puVar2 = &system_buffer_ptr;
@@ -1925,9 +1925,9 @@ uint64_t *RenderingSystem_PathExtractor2(uint64_t *param_1, longlong param_2, ui
  * - 内存访问越界时进行保护
  * - 参数验证失败时进行错误处理
  */
-longlong RenderingSystem_PathTruncator1(longlong param_1, longlong param_2)
+int64_t RenderingSystem_PathTruncator1(int64_t param_1, int64_t param_2)
 {
-    longlong lVar1;            /* 字符串位置指针 */
+    int64_t lVar1;            /* 字符串位置指针 */
     uint uVar2;                /* 字符串长度变量 */
     
     /* 初始化路径处理 */
@@ -1938,10 +1938,10 @@ longlong RenderingSystem_PathTruncator1(longlong param_1, longlong param_2)
     
     /* 如果字符串有效，开始查找点号 */
     if (-1 < (int)uVar2) {
-        lVar1 = (longlong)(int)uVar2;
+        lVar1 = (int64_t)(int)uVar2;
         
         /* 从末尾向前查找点号 */
-        while (*(char *)(*(longlong *)(param_2 + 8) + lVar1) != '.') {
+        while (*(char *)(*(int64_t *)(param_2 + 8) + lVar1) != '.') {
             uVar2 = uVar2 - 1;
             lVar1 = lVar1 + -1;
             
@@ -1954,13 +1954,13 @@ longlong RenderingSystem_PathTruncator1(longlong param_1, longlong param_2)
         /* 如果找到点号，截断字符串 */
         if (uVar2 != 0xffffffff) {
             /* 将点号替换为字符串结束符 */
-            *(int8_t *)((ulonglong)uVar2 + *(longlong *)(param_1 + 8)) = 0;
+            *(int8_t *)((uint64_t)uVar2 + *(int64_t *)(param_1 + 8)) = 0;
             
             /* 重新计算字符串长度 */
             lVar1 = -1;
             do {
                 lVar1 = lVar1 + 1;
-            } while (*(char *)(*(longlong *)(param_1 + 8) + lVar1) != '\0');
+            } while (*(char *)(*(int64_t *)(param_1 + 8) + lVar1) != '\0');
             
             /* 更新字符串长度 */
             *(int *)(param_1 + 0x10) = (int)lVar1;
@@ -2003,10 +2003,10 @@ longlong RenderingSystem_PathTruncator1(longlong param_1, longlong param_2)
  * - 内存分配失败时进行错误处理
  * - 参数验证失败时进行错误处理
  */
-longlong *RenderingSystem_PathExtractor3(longlong *param_1, longlong param_2, uint64_t param_3, uint64_t param_4)
+int64_t *RenderingSystem_PathExtractor3(int64_t *param_1, int64_t param_2, uint64_t param_3, uint64_t param_4)
 {
     code *pcVar1;              /* 函数指针 */
-    longlong lVar2;            /* 文件名位置指针 */
+    int64_t lVar2;            /* 文件名位置指针 */
     void *puVar3;              /* 路径字符串指针 */
     
     /* 获取路径字符串指针 */
@@ -2019,13 +2019,13 @@ longlong *RenderingSystem_PathExtractor3(longlong *param_1, longlong param_2, ui
     lVar2 = strrchr(puVar3, 0x2f, param_3, param_4, 0, 0xfffffffffffffffe);
     
     /* 初始化结果缓冲区 */
-    *param_1 = (longlong)&system_state_ptr;
+    *param_1 = (int64_t)&system_state_ptr;
     param_1[1] = 0;
     *(int32_t *)(param_1 + 2) = 0;
     
     /* 设置字符串构建器 */
-    *param_1 = (longlong)&unknown_var_2008_ptr;
-    param_1[1] = (longlong)(param_1 + 3);
+    *param_1 = (int64_t)&unknown_var_2008_ptr;
+    param_1[1] = (int64_t)(param_1 + 3);
     *(int32_t *)(param_1 + 2) = 0;
     *(int8_t *)(param_1 + 3) = 0;
     
@@ -2079,9 +2079,9 @@ longlong *RenderingSystem_PathExtractor3(longlong *param_1, longlong param_2, ui
  * - 内存访问越界时进行保护
  * - 参数验证失败时进行错误处理
  */
-longlong RenderingSystem_PathTruncator2(longlong param_1, longlong param_2)
+int64_t RenderingSystem_PathTruncator2(int64_t param_1, int64_t param_2)
 {
-    longlong lVar1;            /* 字符串位置指针 */
+    int64_t lVar1;            /* 字符串位置指针 */
     uint uVar2;                /* 字符串长度变量 */
     uint uVar3;                /* 原始字符串长度 */
     
@@ -2093,22 +2093,22 @@ longlong RenderingSystem_PathTruncator2(longlong param_1, longlong param_2)
     
     /* 如果字符串有效，开始查找斜杠 */
     if (-1 < (int)uVar3) {
-        lVar1 = (longlong)(int)uVar3;
+        lVar1 = (int64_t)(int)uVar3;
         uVar2 = uVar3;
         
         /* 从末尾向前查找斜杠 */
         do {
-            if (*(char *)(*(longlong *)(param_2 + 8) + lVar1) == '/') {
+            if (*(char *)(*(int64_t *)(param_2 + 8) + lVar1) == '/') {
                 /* 如果找到斜杠，截断字符串 */
                 if (uVar2 != 0xffffffff) {
                     /* 将斜杠替换为字符串结束符 */
-                    *(int8_t *)((ulonglong)uVar2 + *(longlong *)(param_1 + 8)) = 0;
+                    *(int8_t *)((uint64_t)uVar2 + *(int64_t *)(param_1 + 8)) = 0;
                     
                     /* 重新计算字符串长度 */
                     lVar1 = -1;
                     do {
                         lVar1 = lVar1 + 1;
-                    } while (*(char *)(*(longlong *)(param_1 + 8) + lVar1) != '\0');
+                    } while (*(char *)(*(int64_t *)(param_1 + 8) + lVar1) != '\0');
                     
                     /* 更新字符串长度 */
                     *(int *)(param_1 + 0x10) = (int)lVar1;
@@ -2123,10 +2123,10 @@ longlong RenderingSystem_PathTruncator2(longlong param_1, longlong param_2)
     
     /* 如果没有找到斜杠，查找反斜杠 */
     if (-1 < (int)uVar3) {
-        lVar1 = (longlong)(int)uVar3;
+        lVar1 = (int64_t)(int)uVar3;
         
         /* 从末尾向前查找反斜杠 */
-        while (*(char *)(*(longlong *)(param_2 + 8) + lVar1) != '\\') {
+        while (*(char *)(*(int64_t *)(param_2 + 8) + lVar1) != '\\') {
             uVar3 = uVar3 - 1;
             lVar1 = lVar1 + -1;
             
@@ -2139,13 +2139,13 @@ longlong RenderingSystem_PathTruncator2(longlong param_1, longlong param_2)
         /* 如果找到反斜杠，截断字符串 */
         if (uVar3 != 0xffffffff) {
             /* 将反斜杠替换为字符串结束符 */
-            *(int8_t *)((ulonglong)uVar3 + *(longlong *)(param_1 + 8)) = 0;
+            *(int8_t *)((uint64_t)uVar3 + *(int64_t *)(param_1 + 8)) = 0;
             
             /* 重新计算字符串长度 */
             lVar1 = -1;
             do {
                 lVar1 = lVar1 + 1;
-            } while (*(char *)(*(longlong *)(param_1 + 8) + lVar1) != '\0');
+            } while (*(char *)(*(int64_t *)(param_1 + 8) + lVar1) != '\0');
             
             /* 更新字符串长度 */
             *(int *)(param_1 + 0x10) = (int)lVar1;

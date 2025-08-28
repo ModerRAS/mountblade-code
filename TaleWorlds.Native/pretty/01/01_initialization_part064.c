@@ -29,16 +29,16 @@ int8_t *network_status_flags;
 int32_t data_transfer_buffer;
 
 // 全局变量: 网络连接计数器
-longlong network_connection_counter;
+int64_t network_connection_counter;
 
 // 全局变量: 数据包处理时间
-longlong packet_processing_time;
+int64_t packet_processing_time;
 
 // 全局变量: 网络延迟统计
-longlong network_latency_stats;
+int64_t network_latency_stats;
 
 // 全局变量: 带宽使用情况
-longlong bandwidth_usage;
+int64_t bandwidth_usage;
 
 // 全局变量: 连接质量指标
 int32_t connection_quality_metrics;
@@ -62,10 +62,10 @@ uint8_t protocol_version_info;
 uint8_t network_config_params;
 
 // 全局变量: 数据包序列号
-longlong packet_sequence_number;
+int64_t packet_sequence_number;
 
 // 全局变量: 会话管理器
-longlong session_manager;
+int64_t session_manager;
 
 // 全局变量: 网络接口指针
-longlong *network_interface_ptr;
+int64_t *network_interface_ptr;

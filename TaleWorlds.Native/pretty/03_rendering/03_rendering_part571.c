@@ -206,11 +206,11 @@ void rendering_system_resource_initializer(
             param_count = FUN_18053a410(
                 &system_memory_5f30, *(uint32_t*)((uint8_t*)context + 0xac), allocation_result
             );
-            param_count = *(int*)(render_system_ui + (longlong)param_count * 4);
+            param_count = *(int*)(render_system_ui + (int64_t)param_count * 4);
             temp_resource = (void*)resource_data;
             
             if (param_count != -1) {
-                temp_resource = *(void**)(render_system_ui + (longlong)param_count * 8);
+                temp_resource = *(void**)(render_system_ui + (int64_t)param_count * 8);
             }
             
             // 设置资源指针
@@ -219,11 +219,11 @@ void rendering_system_resource_initializer(
             
             allocation_result = FUN_180557990(hash_table_ptr, 1, param_index, 0xffffffff, allocation_success);
             param_count = FUN_18053a410(&system_memory_5f30, *(uint32_t*)((uint8_t*)context + 0xac), allocation_result);
-            param_count = *(int*)(render_system_ui + (longlong)param_count * 4);
+            param_count = *(int*)(render_system_ui + (int64_t)param_count * 4);
             temp_resource = (void*)resource_data;
             
             if (param_count != -1) {
-                temp_resource = *(void**)(render_system_ui + (longlong)param_count * 8);
+                temp_resource = *(void**)(render_system_ui + (int64_t)param_count * 8);
             }
             
             hash_table_ptr = *(uint64_t*)((uint8_t*)context + 0xb0);
@@ -231,11 +231,11 @@ void rendering_system_resource_initializer(
             
             allocation_result = FUN_180557990(hash_table_ptr, 0, param_index, 0xffffffff, allocation_success);
             param_count = FUN_18053a410(&system_memory_5f30, *(uint32_t*)((uint8_t*)context + 0xac), allocation_result);
-            param_count = *(int*)(render_system_ui + (longlong)param_count * 4);
+            param_count = *(int*)(render_system_ui + (int64_t)param_count * 4);
             temp_resource = (void*)resource_data;
             
             if (param_count != -1) {
-                temp_resource = *(void**)(render_system_ui + (longlong)param_count * 8);
+                temp_resource = *(void**)(render_system_ui + (int64_t)param_count * 8);
             }
             
             hash_table_ptr = *(uint64_t*)((uint8_t*)context + 0xb0);
@@ -243,11 +243,11 @@ void rendering_system_resource_initializer(
             
             allocation_result = FUN_180557990(hash_table_ptr, 5, param_index, 0xffffffff, allocation_success);
             param_index = FUN_18053a410(&system_memory_5f30, *(uint32_t*)((uint8_t*)context + 0xac), allocation_result);
-            param_index = *(int*)(render_system_ui + (longlong)param_index * 4);
+            param_index = *(int*)(render_system_ui + (int64_t)param_index * 4);
             temp_resource = (void*)resource_data;
             
             if (param_index != -1) {
-                temp_resource = *(void**)(render_system_ui + (longlong)param_index * 8);
+                temp_resource = *(void**)(render_system_ui + (int64_t)param_index * 8);
             }
             
             max_params = *(uint64_t*)((uint8_t*)context + 0xb0);
@@ -274,11 +274,11 @@ void rendering_system_resource_initializer(
             param_index = FUN_18053a410(
                 &system_memory_5f30, *(uint32_t*)((uint8_t*)context + 0xac), *(uint32_t*)(*hash_table_ptr + 4)
             );
-            param_index = *(int*)(render_system_ui + (longlong)param_index * 4);
+            param_index = *(int*)(render_system_ui + (int64_t)param_index * 4);
             temp_resource = (void*)resource_data;
             
             if (param_index != -1) {
-                temp_resource = *(void**)(render_system_ui + (longlong)param_index * 8);
+                temp_resource = *(void**)(render_system_ui + (int64_t)param_index * 8);
             }
             
             max_params = *(uint64_t*)((uint8_t*)context + 0xb0);
@@ -308,7 +308,7 @@ void rendering_system_resource_initializer(
             param_index = FUN_18053a410(
                 &system_memory_5f30, *(uint32_t*)((uint8_t*)context + 0xac), *(uint32_t*)(*hash_table_ptr + 4)
             );
-            param_index = *(int*)(render_system_ui + (longlong)param_index * 4);
+            param_index = *(int*)(render_system_ui + (int64_t)param_index * 4);
             
             if (param_index == -1) {
                 max_params = *(uint64_t*)((uint8_t*)context + 0x2590);
@@ -316,7 +316,7 @@ void rendering_system_resource_initializer(
                 params = (RenderingParameterBlock*)((uint8_t*)max_params);
             } else {
                 max_params = *(uint64_t*)((uint8_t*)context + 0x2590);
-                ((void**)params)[3] = *(void**)(render_system_ui + (longlong)param_index * 8);
+                ((void**)params)[3] = *(void**)(render_system_ui + (int64_t)param_index * 8);
                 params = (RenderingParameterBlock*)((uint8_t*)max_params);
             }
         } else {

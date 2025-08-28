@@ -2,8 +2,8 @@
 
 // 99_part_10_part052.c - 1 个函数
 
-// 函数: void FUN_1806c9800(longlong param_1,longlong param_2)
-void FUN_1806c9800(longlong param_1,longlong param_2)
+// 函数: void FUN_1806c9800(int64_t param_1,int64_t param_2)
+void FUN_1806c9800(int64_t param_1,int64_t param_2)
 
 {
   int *piVar1;

@@ -3,60 +3,60 @@
 // 03_rendering_part009.c - 渲染系统数据处理和内存管理模块
 // 本文件包含5个函数，主要负责渲染数据的序列化、内存管理和批量处理
 
-// 函数: void serialize_rendering_data(longlong render_context, longlong *data_buffer)
+// 函数: void serialize_rendering_data(int64_t render_context, int64_t *data_buffer)
 // 功能: 序列化渲染上下文数据到缓冲区
 // 参数: 
 //   render_context - 渲染上下文指针
 //   data_buffer - 数据缓冲区指针
-void serialize_rendering_data(longlong render_context, longlong *data_buffer)
+void serialize_rendering_data(int64_t render_context, int64_t *data_buffer)
 
 {
   int8_t byte_value;
   int32_t uint_value;
-  longlong range_size;
-  longlong temp_size;
+  int64_t range_size;
+  int64_t temp_size;
   int8_t *byte_ptr;
   int32_t *uint_ptr;
   int *int_ptr;
   uint counter;
-  ulonglong index;
-  ulonglong start_index;
-  ulonglong current_index;
+  uint64_t index;
+  uint64_t start_index;
+  uint64_t current_index;
   
   uint_ptr = (int32_t *)data_buffer[1];
-  if ((ulonglong)((*data_buffer - (longlong)uint_ptr) + data_buffer[2]) < 5) {
-    expand_buffer_if_needed(data_buffer,(longlong)uint_ptr + (4 - *data_buffer));
+  if ((uint64_t)((*data_buffer - (int64_t)uint_ptr) + data_buffer[2]) < 5) {
+    expand_buffer_if_needed(data_buffer,(int64_t)uint_ptr + (4 - *data_buffer));
     uint_ptr = (int32_t *)data_buffer[1];
   }
   start_index = 0;
   *uint_ptr = 0;
   data_buffer[1] = data_buffer[1] + 4;
-  range_size = *(longlong *)(render_context + 0x28) - *(longlong *)(render_context + 0x20);
+  range_size = *(int64_t *)(render_context + 0x28) - *(int64_t *)(render_context + 0x20);
   int_ptr = (int *)data_buffer[1];
   range_size = range_size / 0x26 + (range_size >> 0x3f);
-  if ((ulonglong)((*data_buffer - (longlong)int_ptr) + data_buffer[2]) < 5) {
-    expand_buffer_if_needed(data_buffer,(longlong)int_ptr + (4 - *data_buffer));
+  if ((uint64_t)((*data_buffer - (int64_t)int_ptr) + data_buffer[2]) < 5) {
+    expand_buffer_if_needed(data_buffer,(int64_t)int_ptr + (4 - *data_buffer));
     int_ptr = (int *)data_buffer[1];
   }
   *int_ptr = (int)(range_size >> 2) - (int)(range_size >> 0x3f);
   data_buffer[1] = data_buffer[1] + 4;
-  temp_size = *(longlong *)(render_context + 0x28) - *(longlong *)(render_context + 0x20);
+  temp_size = *(int64_t *)(render_context + 0x28) - *(int64_t *)(render_context + 0x20);
   range_size = temp_size >> 0x3f;
   index = start_index;
   current_index = start_index;
   if (temp_size / 0x98 + range_size != range_size) {
     do {
-      write_buffer_data(data_buffer,current_index * 0x98 + *(longlong *)(render_context + 0x20));
+      write_buffer_data(data_buffer,current_index * 0x98 + *(int64_t *)(render_context + 0x20));
       counter = (int)index + 1;
-      index = (ulonglong)counter;
-      current_index = (longlong)(int)counter;
-    } while ((ulonglong)(longlong)(int)counter <
-             (ulonglong)((*(longlong *)(render_context + 0x28) - *(longlong *)(render_context + 0x20)) / 0x98));
+      index = (uint64_t)counter;
+      current_index = (int64_t)(int)counter;
+    } while ((uint64_t)(int64_t)(int)counter <
+             (uint64_t)((*(int64_t *)(render_context + 0x28) - *(int64_t *)(render_context + 0x20)) / 0x98));
   }
   write_buffer_data(data_buffer,render_context + 0x40);
   byte_ptr = (int8_t *)data_buffer[1];
   byte_value = *(int8_t *)(render_context + 0xd8);
-  if ((ulonglong)((*data_buffer - (longlong)byte_ptr) + data_buffer[2]) < 2) {
+  if ((uint64_t)((*data_buffer - (int64_t)byte_ptr) + data_buffer[2]) < 2) {
     expand_buffer_if_needed(data_buffer,byte_ptr + (1 - *data_buffer));
     byte_ptr = (int8_t *)data_buffer[1];
   }
@@ -64,34 +64,34 @@ void serialize_rendering_data(longlong render_context, longlong *data_buffer)
   data_buffer[1] = data_buffer[1] + 1;
   uint_ptr = (int32_t *)data_buffer[1];
   uint_value = *(int32_t *)(render_context + 0xdc);
-  if ((ulonglong)((*data_buffer - (longlong)uint_ptr) + data_buffer[2]) < 5) {
-    expand_buffer_if_needed(data_buffer,(longlong)uint_ptr + (4 - *data_buffer));
+  if ((uint64_t)((*data_buffer - (int64_t)uint_ptr) + data_buffer[2]) < 5) {
+    expand_buffer_if_needed(data_buffer,(int64_t)uint_ptr + (4 - *data_buffer));
     uint_ptr = (int32_t *)data_buffer[1];
   }
   *uint_ptr = uint_value;
   data_buffer[1] = data_buffer[1] + 4;
   write_buffer_data(data_buffer,render_context + 0xe0);
-  range_size = *(longlong *)(render_context + 0x180) - *(longlong *)(render_context + 0x178);
+  range_size = *(int64_t *)(render_context + 0x180) - *(int64_t *)(render_context + 0x178);
   range_size = range_size / 0x26 + (range_size >> 0x3f);
   int_ptr = (int *)data_buffer[1];
-  if ((ulonglong)((*data_buffer - (longlong)int_ptr) + data_buffer[2]) < 5) {
-    expand_buffer_if_needed(data_buffer,(longlong)int_ptr + (4 - *data_buffer));
+  if ((uint64_t)((*data_buffer - (int64_t)int_ptr) + data_buffer[2]) < 5) {
+    expand_buffer_if_needed(data_buffer,(int64_t)int_ptr + (4 - *data_buffer));
     int_ptr = (int *)data_buffer[1];
   }
   *int_ptr = (int)(range_size >> 2) - (int)(range_size >> 0x3f);
   data_buffer[1] = data_buffer[1] + 4;
-  temp_size = *(longlong *)(render_context + 0x180) - *(longlong *)(render_context + 0x178);
+  temp_size = *(int64_t *)(render_context + 0x180) - *(int64_t *)(render_context + 0x178);
   range_size = temp_size >> 0x3f;
   index = start_index;
   current_index = start_index;
   if (temp_size / 0x98 + range_size != range_size) {
     do {
-      write_buffer_data(data_buffer,current_index * 0x98 + *(longlong *)(render_context + 0x178));
+      write_buffer_data(data_buffer,current_index * 0x98 + *(int64_t *)(render_context + 0x178));
       counter = (int)index + 1;
-      index = (ulonglong)counter;
-      current_index = (longlong)(int)counter;
-    } while ((ulonglong)(longlong)(int)counter <
-             (ulonglong)((*(longlong *)(render_context + 0x180) - *(longlong *)(render_context + 0x178)) / 0x98));
+      index = (uint64_t)counter;
+      current_index = (int64_t)(int)counter;
+    } while ((uint64_t)(int64_t)(int)counter <
+             (uint64_t)((*(int64_t *)(render_context + 0x180) - *(int64_t *)(render_context + 0x178)) / 0x98));
   }
   range_size = render_context + 0x198;
   temp_size = 5;
@@ -100,27 +100,27 @@ void serialize_rendering_data(longlong render_context, longlong *data_buffer)
     range_size = range_size + 0x98;
     temp_size = temp_size + -1;
   } while (temp_size != 0);
-  range_size = *(longlong *)(render_context + 0x498) - *(longlong *)(render_context + 0x490);
+  range_size = *(int64_t *)(render_context + 0x498) - *(int64_t *)(render_context + 0x490);
   range_size = range_size / 0x26 + (range_size >> 0x3f);
   int_ptr = (int *)data_buffer[1];
-  if ((ulonglong)((*data_buffer - (longlong)int_ptr) + data_buffer[2]) < 5) {
-    expand_buffer_if_needed(data_buffer,(longlong)int_ptr + (4 - *data_buffer));
+  if ((uint64_t)((*data_buffer - (int64_t)int_ptr) + data_buffer[2]) < 5) {
+    expand_buffer_if_needed(data_buffer,(int64_t)int_ptr + (4 - *data_buffer));
     int_ptr = (int *)data_buffer[1];
   }
   *int_ptr = (int)(range_size >> 2) - (int)(range_size >> 0x3f);
   data_buffer[1] = data_buffer[1] + 4;
-  temp_size = *(longlong *)(render_context + 0x498) - *(longlong *)(render_context + 0x490);
+  temp_size = *(int64_t *)(render_context + 0x498) - *(int64_t *)(render_context + 0x490);
   range_size = temp_size >> 0x3f;
   index = start_index;
   current_index = start_index;
   if (temp_size / 0x98 + range_size != range_size) {
     do {
-      write_buffer_data(data_buffer,current_index * 0x98 + *(longlong *)(render_context + 0x490));
+      write_buffer_data(data_buffer,current_index * 0x98 + *(int64_t *)(render_context + 0x490));
       counter = (int)index + 1;
-      index = (ulonglong)counter;
-      current_index = (longlong)(int)counter;
-    } while ((ulonglong)(longlong)(int)counter <
-             (ulonglong)((*(longlong *)(render_context + 0x498) - *(longlong *)(render_context + 0x490)) / 0x98));
+      index = (uint64_t)counter;
+      current_index = (int64_t)(int)counter;
+    } while ((uint64_t)(int64_t)(int)counter <
+             (uint64_t)((*(int64_t *)(render_context + 0x498) - *(int64_t *)(render_context + 0x490)) / 0x98));
   }
   range_size = render_context + 0xa30;
   temp_size = 9;
@@ -131,33 +131,33 @@ void serialize_rendering_data(longlong render_context, longlong *data_buffer)
   } while (temp_size != 0);
   write_buffer_data(data_buffer,render_context + 0xf88);
   write_buffer_data(data_buffer,render_context + 0x1020);
-  range_size = *(longlong *)(render_context + 0x10c0) - *(longlong *)(render_context + 0x10b8);
+  range_size = *(int64_t *)(render_context + 0x10c0) - *(int64_t *)(render_context + 0x10b8);
   range_size = range_size / 0x26 + (range_size >> 0x3f);
   int_ptr = (int *)data_buffer[1];
-  if ((ulonglong)((*data_buffer - (longlong)int_ptr) + data_buffer[2]) < 5) {
-    expand_buffer_if_needed(data_buffer,(longlong)int_ptr + (4 - *data_buffer));
+  if ((uint64_t)((*data_buffer - (int64_t)int_ptr) + data_buffer[2]) < 5) {
+    expand_buffer_if_needed(data_buffer,(int64_t)int_ptr + (4 - *data_buffer));
     int_ptr = (int *)data_buffer[1];
   }
   *int_ptr = (int)(range_size >> 2) - (int)(range_size >> 0x3f);
   data_buffer[1] = data_buffer[1] + 4;
-  temp_size = *(longlong *)(render_context + 0x10c0) - *(longlong *)(render_context + 0x10b8);
+  temp_size = *(int64_t *)(render_context + 0x10c0) - *(int64_t *)(render_context + 0x10b8);
   range_size = temp_size >> 0x3f;
   index = start_index;
   current_index = start_index;
   if (temp_size / 0x98 + range_size != range_size) {
     do {
-      write_buffer_data(data_buffer,current_index * 0x98 + *(longlong *)(render_context + 0x10b8));
+      write_buffer_data(data_buffer,current_index * 0x98 + *(int64_t *)(render_context + 0x10b8));
       counter = (int)index + 1;
-      index = (ulonglong)counter;
-      current_index = (longlong)(int)counter;
-    } while ((ulonglong)(longlong)(int)counter <
-             (ulonglong)((*(longlong *)(render_context + 0x10c0) - *(longlong *)(render_context + 0x10b8)) / 0x98)
+      index = (uint64_t)counter;
+      current_index = (int64_t)(int)counter;
+    } while ((uint64_t)(int64_t)(int)counter <
+             (uint64_t)((*(int64_t *)(render_context + 0x10c0) - *(int64_t *)(render_context + 0x10b8)) / 0x98)
             );
   }
   write_buffer_data(data_buffer,render_context + 0x10d8);
   byte_ptr = (int8_t *)data_buffer[1];
   byte_value = *(int8_t *)(render_context + 0x10f9);
-  if ((ulonglong)((*data_buffer - (longlong)byte_ptr) + data_buffer[2]) < 2) {
+  if ((uint64_t)((*data_buffer - (int64_t)byte_ptr) + data_buffer[2]) < 2) {
     expand_buffer_if_needed(data_buffer,byte_ptr + (1 - *data_buffer));
     byte_ptr = (int8_t *)data_buffer[1];
   }
@@ -173,8 +173,8 @@ void serialize_rendering_data(longlong render_context, longlong *data_buffer)
     write_buffer_data(data_buffer,render_context + 0x13f8);
     uint_ptr = (int32_t *)data_buffer[1];
   }
-  if ((ulonglong)((*data_buffer - (longlong)uint_ptr) + data_buffer[2]) < 5) {
-    expand_buffer_if_needed(data_buffer,(longlong)uint_ptr + (4 - *data_buffer));
+  if ((uint64_t)((*data_buffer - (int64_t)uint_ptr) + data_buffer[2]) < 5) {
+    expand_buffer_if_needed(data_buffer,(int64_t)uint_ptr + (4 - *data_buffer));
     uint_ptr = (int32_t *)data_buffer[1];
   }
   *uint_ptr = 0x10;
@@ -182,15 +182,15 @@ void serialize_rendering_data(longlong render_context, longlong *data_buffer)
   render_context = render_context + 0x4b0;
   do {
     int_ptr = (int *)data_buffer[1];
-    if ((ulonglong)((*data_buffer - (longlong)int_ptr) + data_buffer[2]) < 5) {
-      expand_buffer_if_needed(data_buffer,(longlong)int_ptr + (4 - *data_buffer));
+    if ((uint64_t)((*data_buffer - (int64_t)int_ptr) + data_buffer[2]) < 5) {
+      expand_buffer_if_needed(data_buffer,(int64_t)int_ptr + (4 - *data_buffer));
       int_ptr = (int *)data_buffer[1];
     }
     *int_ptr = (int)start_index;
     data_buffer[1] = data_buffer[1] + 4;
     write_buffer_data(data_buffer,render_context);
     counter = (int)start_index + 1;
-    start_index = (ulonglong)counter;
+    start_index = (uint64_t)counter;
     render_context = render_context + 0x58;
   } while ((int)counter < 0x10);
   return;
@@ -339,43 +339,43 @@ int32_t * initialize_rendering_pool(int32_t *pool_manager)
 
 
 
-// 函数: void process_rendering_batch(longlong render_context, longlong *data_buffer, uint64_t batch_param1, uint64_t batch_param2)
+// 函数: void process_rendering_batch(int64_t render_context, int64_t *data_buffer, uint64_t batch_param1, uint64_t batch_param2)
 // 功能: 处理渲染批次数据
 // 参数: 
 //   render_context - 渲染上下文指针
 //   data_buffer - 数据缓冲区指针
 //   batch_param1 - 批次参数1
 //   batch_param2 - 批次参数2
-void process_rendering_batch(longlong render_context, longlong *data_buffer, uint64_t batch_param1, uint64_t batch_param2)
+void process_rendering_batch(int64_t render_context, int64_t *data_buffer, uint64_t batch_param1, uint64_t batch_param2)
 
 {
   int8_t byte_value;
   int32_t uint_value;
-  longlong range_size;
+  int64_t range_size;
   int8_t *byte_ptr;
   int32_t *uint_ptr;
   int *int_ptr;
   int item_count;
   uint counter;
-  ulonglong index;
+  uint64_t index;
   int temp_int;
-  longlong item_offset;
-  ulonglong current_index;
+  int64_t item_offset;
+  uint64_t current_index;
   uint64_t unused_param1;
-  ulonglong start_index;
+  uint64_t start_index;
   uint64_t unused_param2;
   uint64_t unused_param3;
   
   uint_ptr = (int32_t *)data_buffer[1];
-  if ((ulonglong)((data_buffer[2] - (longlong)uint_ptr) + *data_buffer) < 5) {
-    expand_buffer_if_needed(data_buffer,(longlong)uint_ptr + (4 - *data_buffer));
+  if ((uint64_t)((data_buffer[2] - (int64_t)uint_ptr) + *data_buffer) < 5) {
+    expand_buffer_if_needed(data_buffer,(int64_t)uint_ptr + (4 - *data_buffer));
     uint_ptr = (int32_t *)data_buffer[1];
   }
   *uint_ptr = 0;
   data_buffer[1] = data_buffer[1] + 4;
   uint_ptr = (int32_t *)data_buffer[1];
-  if ((ulonglong)((*data_buffer - (longlong)uint_ptr) + data_buffer[2]) < 5) {
-    expand_buffer_if_needed(data_buffer,(longlong)uint_ptr + (4 - *data_buffer));
+  if ((uint64_t)((*data_buffer - (int64_t)uint_ptr) + data_buffer[2]) < 5) {
+    expand_buffer_if_needed(data_buffer,(int64_t)uint_ptr + (4 - *data_buffer));
     uint_ptr = (int32_t *)data_buffer[1];
   }
   *uint_ptr = 1;
@@ -390,34 +390,34 @@ void process_rendering_batch(longlong render_context, longlong *data_buffer, uin
   write_buffer_data(data_buffer,render_context + 0xd0);
   write_buffer_data(data_buffer,render_context + 0xf0);
   write_buffer_data(data_buffer,render_context + 0x110);
-  range_size = *(longlong *)(render_context + 0x138) - *(longlong *)(render_context + 0x130);
+  range_size = *(int64_t *)(render_context + 0x138) - *(int64_t *)(render_context + 0x130);
   range_size = range_size / 6 + (range_size >> 0x3f);
   int_ptr = (int *)data_buffer[1];
   item_count = (int)(range_size >> 4) - (int)(range_size >> 0x3f);
-  if ((ulonglong)((*data_buffer - (longlong)int_ptr) + data_buffer[2]) < 5) {
-    expand_buffer_if_needed(data_buffer,(longlong)int_ptr + (4 - *data_buffer));
+  if ((uint64_t)((*data_buffer - (int64_t)int_ptr) + data_buffer[2]) < 5) {
+    expand_buffer_if_needed(data_buffer,(int64_t)int_ptr + (4 - *data_buffer));
     int_ptr = (int *)data_buffer[1];
   }
   *int_ptr = item_count;
   temp_int = 0;
   data_buffer[1] = data_buffer[1] + 4;
-  range_size = (longlong)item_count;
+  range_size = (int64_t)item_count;
   if (0 < item_count) {
     item_offset = 0;
     do {
-      write_buffer_data(data_buffer,(longlong)temp_int * 0x60 + *(longlong *)(render_context + 0x130));
+      write_buffer_data(data_buffer,(int64_t)temp_int * 0x60 + *(int64_t *)(render_context + 0x130));
       uint_ptr = (int32_t *)data_buffer[1];
-      uint_value = *(int32_t *)(item_offset + 0x58 + *(longlong *)(render_context + 0x130));
-      if ((ulonglong)((*data_buffer - (longlong)uint_ptr) + data_buffer[2]) < 5) {
-        expand_buffer_if_needed(data_buffer,(longlong)uint_ptr + (4 - *data_buffer));
+      uint_value = *(int32_t *)(item_offset + 0x58 + *(int64_t *)(render_context + 0x130));
+      if ((uint64_t)((*data_buffer - (int64_t)uint_ptr) + data_buffer[2]) < 5) {
+        expand_buffer_if_needed(data_buffer,(int64_t)uint_ptr + (4 - *data_buffer));
         uint_ptr = (int32_t *)data_buffer[1];
       }
       *uint_ptr = uint_value;
       data_buffer[1] = data_buffer[1] + 4;
       uint_ptr = (int32_t *)data_buffer[1];
-      uint_value = *(int32_t *)(item_offset + 0x5c + *(longlong *)(render_context + 0x130));
-      if ((ulonglong)((*data_buffer - (longlong)uint_ptr) + data_buffer[2]) < 5) {
-        expand_buffer_if_needed(data_buffer,(longlong)uint_ptr + (4 - *data_buffer));
+      uint_value = *(int32_t *)(item_offset + 0x5c + *(int64_t *)(render_context + 0x130));
+      if ((uint64_t)((*data_buffer - (int64_t)uint_ptr) + data_buffer[2]) < 5) {
+        expand_buffer_if_needed(data_buffer,(int64_t)uint_ptr + (4 - *data_buffer));
         uint_ptr = (int32_t *)data_buffer[1];
       }
       *uint_ptr = uint_value;
@@ -445,7 +445,7 @@ void process_rendering_batch(longlong render_context, longlong *data_buffer, uin
   process_rendering_instance(&RENDERING_INSTANCE_TABLE,*(int32_t *)(render_context + 2000),data_buffer);
   byte_ptr = (int8_t *)data_buffer[1];
   byte_value = *(int8_t *)(render_context + 0x7d4);
-  if ((ulonglong)((*data_buffer - (longlong)byte_ptr) + data_buffer[2]) < 2) {
+  if ((uint64_t)((*data_buffer - (int64_t)byte_ptr) + data_buffer[2]) < 2) {
     expand_buffer_if_needed(data_buffer,byte_ptr + (1 - *data_buffer));
     byte_ptr = (int8_t *)data_buffer[1];
   }
@@ -455,40 +455,40 @@ void process_rendering_batch(longlong render_context, longlong *data_buffer, uin
     return;
   }
   uint_ptr = (int32_t *)data_buffer[1];
-  if ((ulonglong)((*data_buffer - (longlong)uint_ptr) + data_buffer[2]) < 5) {
-    expand_buffer_if_needed(data_buffer,(longlong)uint_ptr + (4 - *data_buffer));
+  if ((uint64_t)((*data_buffer - (int64_t)uint_ptr) + data_buffer[2]) < 5) {
+    expand_buffer_if_needed(data_buffer,(int64_t)uint_ptr + (4 - *data_buffer));
     uint_ptr = (int32_t *)data_buffer[1];
   }
   start_index = 0;
   *uint_ptr = 0;
   data_buffer[1] = data_buffer[1] + 4;
-  range_size = *(longlong *)(render_context + 0x800) - *(longlong *)(render_context + 0x7f8);
+  range_size = *(int64_t *)(render_context + 0x800) - *(int64_t *)(render_context + 0x7f8);
   int_ptr = (int *)data_buffer[1];
   range_size = range_size / 0x26 + (range_size >> 0x3f);
-  if ((ulonglong)((*data_buffer - (longlong)int_ptr) + data_buffer[2]) < 5) {
-    item_offset = (longlong)int_ptr - *data_buffer;
+  if ((uint64_t)((*data_buffer - (int64_t)int_ptr) + data_buffer[2]) < 5) {
+    item_offset = (int64_t)int_ptr - *data_buffer;
     expand_buffer_if_needed(data_buffer,item_offset + 4,item_offset,batch_param2,unused_param3,unused_param2,unused_param1);
     int_ptr = (int *)data_buffer[1];
   }
   *int_ptr = (int)(range_size >> 2) - (int)(range_size >> 0x3f);
   data_buffer[1] = data_buffer[1] + 4;
-  item_offset = *(longlong *)(render_context + 0x800) - *(longlong *)(render_context + 0x7f8);
+  item_offset = *(int64_t *)(render_context + 0x800) - *(int64_t *)(render_context + 0x7f8);
   range_size = item_offset >> 0x3f;
   index = start_index;
   current_index = start_index;
   if (item_offset / 0x98 + range_size != range_size) {
     do {
-      write_buffer_data(data_buffer,current_index * 0x98 + *(longlong *)(render_context + 0x7f8));
+      write_buffer_data(data_buffer,current_index * 0x98 + *(int64_t *)(render_context + 0x7f8));
       counter = (int)index + 1;
-      index = (ulonglong)counter;
-      current_index = (longlong)(int)counter;
-    } while ((ulonglong)(longlong)(int)counter <
-             (ulonglong)((*(longlong *)(render_context + 0x800) - *(longlong *)(render_context + 0x7f8)) / 0x98));
+      index = (uint64_t)counter;
+      current_index = (int64_t)(int)counter;
+    } while ((uint64_t)(int64_t)(int)counter <
+             (uint64_t)((*(int64_t *)(render_context + 0x800) - *(int64_t *)(render_context + 0x7f8)) / 0x98));
   }
   write_buffer_data(data_buffer,render_context + 0x818);
   byte_ptr = (int8_t *)data_buffer[1];
   byte_value = *(int8_t *)(render_context + 0x8b0);
-  if ((ulonglong)((*data_buffer - (longlong)byte_ptr) + data_buffer[2]) < 2) {
+  if ((uint64_t)((*data_buffer - (int64_t)byte_ptr) + data_buffer[2]) < 2) {
     expand_buffer_if_needed(data_buffer,byte_ptr + (1 - *data_buffer));
     byte_ptr = (int8_t *)data_buffer[1];
   }
@@ -496,34 +496,34 @@ void process_rendering_batch(longlong render_context, longlong *data_buffer, uin
   data_buffer[1] = data_buffer[1] + 1;
   uint_ptr = (int32_t *)data_buffer[1];
   uint_value = *(int32_t *)(render_context + 0x8b4);
-  if ((ulonglong)((*data_buffer - (longlong)uint_ptr) + data_buffer[2]) < 5) {
-    expand_buffer_if_needed(data_buffer,(longlong)uint_ptr + (4 - *data_buffer));
+  if ((uint64_t)((*data_buffer - (int64_t)uint_ptr) + data_buffer[2]) < 5) {
+    expand_buffer_if_needed(data_buffer,(int64_t)uint_ptr + (4 - *data_buffer));
     uint_ptr = (int32_t *)data_buffer[1];
   }
   *uint_ptr = uint_value;
   data_buffer[1] = data_buffer[1] + 4;
   write_buffer_data(data_buffer,render_context + 0x8b8);
-  range_size = *(longlong *)(render_context + 0x958) - *(longlong *)(render_context + 0x950);
+  range_size = *(int64_t *)(render_context + 0x958) - *(int64_t *)(render_context + 0x950);
   range_size = range_size / 0x26 + (range_size >> 0x3f);
   int_ptr = (int *)data_buffer[1];
-  if ((ulonglong)((*data_buffer - (longlong)int_ptr) + data_buffer[2]) < 5) {
-    expand_buffer_if_needed(data_buffer,(longlong)int_ptr + (4 - *data_buffer));
+  if ((uint64_t)((*data_buffer - (int64_t)int_ptr) + data_buffer[2]) < 5) {
+    expand_buffer_if_needed(data_buffer,(int64_t)int_ptr + (4 - *data_buffer));
     int_ptr = (int *)data_buffer[1];
   }
   *int_ptr = (int)(range_size >> 2) - (int)(range_size >> 0x3f);
   data_buffer[1] = data_buffer[1] + 4;
-  item_offset = *(longlong *)(render_context + 0x958) - *(longlong *)(render_context + 0x950);
+  item_offset = *(int64_t *)(render_context + 0x958) - *(int64_t *)(render_context + 0x950);
   range_size = item_offset >> 0x3f;
   index = start_index;
   current_index = start_index;
   if (item_offset / 0x98 + range_size != range_size) {
     do {
-      write_buffer_data(data_buffer,current_index * 0x98 + *(longlong *)(render_context + 0x950));
+      write_buffer_data(data_buffer,current_index * 0x98 + *(int64_t *)(render_context + 0x950));
       counter = (int)index + 1;
-      index = (ulonglong)counter;
-      current_index = (longlong)(int)counter;
-    } while ((ulonglong)(longlong)(int)counter <
-             (ulonglong)((*(longlong *)(render_context + 0x958) - *(longlong *)(render_context + 0x950)) / 0x98));
+      index = (uint64_t)counter;
+      current_index = (int64_t)(int)counter;
+    } while ((uint64_t)(int64_t)(int)counter <
+             (uint64_t)((*(int64_t *)(render_context + 0x958) - *(int64_t *)(render_context + 0x950)) / 0x98));
   }
   range_size = render_context + 0x970;
   item_offset = 5;
@@ -532,27 +532,27 @@ void process_rendering_batch(longlong render_context, longlong *data_buffer, uin
     range_size = range_size + 0x98;
     item_offset = item_offset + -1;
   } while (item_offset != 0);
-  range_size = *(longlong *)(render_context + 0xc70) - *(longlong *)(render_context + 0xc68);
+  range_size = *(int64_t *)(render_context + 0xc70) - *(int64_t *)(render_context + 0xc68);
   range_size = range_size / 0x26 + (range_size >> 0x3f);
   int_ptr = (int *)data_buffer[1];
-  if ((ulonglong)((*data_buffer - (longlong)int_ptr) + data_buffer[2]) < 5) {
-    expand_buffer_if_needed(data_buffer,(longlong)int_ptr + (4 - *data_buffer));
+  if ((uint64_t)((*data_buffer - (int64_t)int_ptr) + data_buffer[2]) < 5) {
+    expand_buffer_if_needed(data_buffer,(int64_t)int_ptr + (4 - *data_buffer));
     int_ptr = (int *)data_buffer[1];
   }
   *int_ptr = (int)(range_size >> 2) - (int)(range_size >> 0x3f);
   data_buffer[1] = data_buffer[1] + 4;
-  item_offset = *(longlong *)(render_context + 0xc70) - *(longlong *)(render_context + 0xc68);
+  item_offset = *(int64_t *)(render_context + 0xc70) - *(int64_t *)(render_context + 0xc68);
   range_size = item_offset >> 0x3f;
   index = start_index;
   current_index = start_index;
   if (item_offset / 0x98 + range_size != range_size) {
     do {
-      write_buffer_data(data_buffer,current_index * 0x98 + *(longlong *)(render_context + 0xc68));
+      write_buffer_data(data_buffer,current_index * 0x98 + *(int64_t *)(render_context + 0xc68));
       counter = (int)index + 1;
-      index = (ulonglong)counter;
-      current_index = (longlong)(int)counter;
-    } while ((ulonglong)(longlong)(int)counter <
-             (ulonglong)((*(longlong *)(render_context + 0xc70) - *(longlong *)(render_context + 0xc68)) / 0x98));
+      index = (uint64_t)counter;
+      current_index = (int64_t)(int)counter;
+    } while ((uint64_t)(int64_t)(int)counter <
+             (uint64_t)((*(int64_t *)(render_context + 0xc70) - *(int64_t *)(render_context + 0xc68)) / 0x98));
   }
   range_size = render_context + 0x1208;
   item_offset = 9;
@@ -563,33 +563,33 @@ void process_rendering_batch(longlong render_context, longlong *data_buffer, uin
   } while (item_offset != 0);
   write_buffer_data(data_buffer,render_context + 0x1760);
   write_buffer_data(data_buffer,render_context + 0x17f8);
-  range_size = *(longlong *)(render_context + 0x1898) - *(longlong *)(render_context + 0x1890);
+  range_size = *(int64_t *)(render_context + 0x1898) - *(int64_t *)(render_context + 0x1890);
   range_size = range_size / 0x26 + (range_size >> 0x3f);
   int_ptr = (int *)data_buffer[1];
-  if ((ulonglong)((*data_buffer - (longlong)int_ptr) + data_buffer[2]) < 5) {
-    expand_buffer_if_needed(data_buffer,(longlong)int_ptr + (4 - *data_buffer));
+  if ((uint64_t)((*data_buffer - (int64_t)int_ptr) + data_buffer[2]) < 5) {
+    expand_buffer_if_needed(data_buffer,(int64_t)int_ptr + (4 - *data_buffer));
     int_ptr = (int *)data_buffer[1];
   }
   *int_ptr = (int)(range_size >> 2) - (int)(range_size >> 0x3f);
   data_buffer[1] = data_buffer[1] + 4;
-  item_offset = *(longlong *)(render_context + 0x1898) - *(longlong *)(render_context + 0x1890);
+  item_offset = *(int64_t *)(render_context + 0x1898) - *(int64_t *)(render_context + 0x1890);
   range_size = item_offset >> 0x3f;
   index = start_index;
   current_index = start_index;
   if (item_offset / 0x98 + range_size != range_size) {
     do {
-      write_buffer_data(data_buffer,current_index * 0x98 + *(longlong *)(render_context + 0x1890));
+      write_buffer_data(data_buffer,current_index * 0x98 + *(int64_t *)(render_context + 0x1890));
       counter = (int)index + 1;
-      index = (ulonglong)counter;
-      current_index = (longlong)(int)counter;
-    } while ((ulonglong)(longlong)(int)counter <
-             (ulonglong)((*(longlong *)(render_context + 0x1898) - *(longlong *)(render_context + 0x1890)) / 0x98)
+      index = (uint64_t)counter;
+      current_index = (int64_t)(int)counter;
+    } while ((uint64_t)(int64_t)(int)counter <
+             (uint64_t)((*(int64_t *)(render_context + 0x1898) - *(int64_t *)(render_context + 0x1890)) / 0x98)
             );
   }
   write_buffer_data(data_buffer,render_context + 0x18b0);
   byte_ptr = (int8_t *)data_buffer[1];
   byte_value = *(int8_t *)(render_context + 0x18d1);
-  if ((ulonglong)((*data_buffer - (longlong)byte_ptr) + data_buffer[2]) < 2) {
+  if ((uint64_t)((*data_buffer - (int64_t)byte_ptr) + data_buffer[2]) < 2) {
     expand_buffer_if_needed(data_buffer,byte_ptr + (1 - *data_buffer));
     byte_ptr = (int8_t *)data_buffer[1];
   }
@@ -605,8 +605,8 @@ void process_rendering_batch(longlong render_context, longlong *data_buffer, uin
     write_buffer_data(data_buffer,render_context + 0x1bd0);
     uint_ptr = (int32_t *)data_buffer[1];
   }
-  if ((ulonglong)((*data_buffer - (longlong)uint_ptr) + data_buffer[2]) < 5) {
-    expand_buffer_if_needed(data_buffer,(longlong)uint_ptr + (4 - *data_buffer));
+  if ((uint64_t)((*data_buffer - (int64_t)uint_ptr) + data_buffer[2]) < 5) {
+    expand_buffer_if_needed(data_buffer,(int64_t)uint_ptr + (4 - *data_buffer));
     uint_ptr = (int32_t *)data_buffer[1];
   }
   *uint_ptr = 0x10;
@@ -614,15 +614,15 @@ void process_rendering_batch(longlong render_context, longlong *data_buffer, uin
   render_context = render_context + 0xc88;
   do {
     int_ptr = (int *)data_buffer[1];
-    if ((ulonglong)((*data_buffer - (longlong)int_ptr) + data_buffer[2]) < 5) {
-      expand_buffer_if_needed(data_buffer,(longlong)int_ptr + (4 - *data_buffer));
+    if ((uint64_t)((*data_buffer - (int64_t)int_ptr) + data_buffer[2]) < 5) {
+      expand_buffer_if_needed(data_buffer,(int64_t)int_ptr + (4 - *data_buffer));
       int_ptr = (int *)data_buffer[1];
     }
     *int_ptr = (int)start_index;
     data_buffer[1] = data_buffer[1] + 4;
     write_buffer_data(data_buffer,render_context);
     counter = (int)start_index + 1;
-    start_index = (ulonglong)counter;
+    start_index = (uint64_t)counter;
     render_context = render_context + 0x58;
   } while ((int)counter < 0x10);
   return;
@@ -630,41 +630,41 @@ void process_rendering_batch(longlong render_context, longlong *data_buffer, uin
 
 
 
-// 函数: void process_rendering_flags(longlong *flag_table, longlong context_offset, uint *result_flags)
+// 函数: void process_rendering_flags(int64_t *flag_table, int64_t context_offset, uint *result_flags)
 // 功能: 处理渲染标志位
 // 参数: 
 //   flag_table - 标志表指针
 //   context_offset - 上下文偏移量
 //   result_flags - 结果标志指针
 // 注意: 此函数使用了栈保护机制
-void process_rendering_flags(longlong *flag_table, longlong context_offset, uint *result_flags)
+void process_rendering_flags(int64_t *flag_table, int64_t context_offset, uint *result_flags)
 
 {
   uint *flag_ptr;
   byte *string_ptr;
   uint flag_value;
-  longlong item_size;
+  int64_t item_size;
   byte *compare_ptr;
   int string_length;
-  ulonglong total_flags;
-  longlong temp_offset;
+  uint64_t total_flags;
+  int64_t temp_offset;
   byte *temp_string;
   int temp_length;
-  longlong *current_table;
+  int64_t *current_table;
   int8_t stack_guard[32];
   uint64_t guard_value1;
   void *guard_ptr1;
   byte *guard_ptr2;
   int guard_int;
   byte stack_buffer[1032];
-  ulonglong guard_value2;
+  uint64_t guard_value2;
   
   guard_value1 = 0xfffffffffffffffe;
-  guard_value2 = STACK_COOKIE ^ (ulonglong)stack_guard;
-  *(longlong *)(context_offset + 8) = *(longlong *)(context_offset + 8) + 4;
+  guard_value2 = STACK_COOKIE ^ (uint64_t)stack_guard;
+  *(int64_t *)(context_offset + 8) = *(int64_t *)(context_offset + 8) + 4;
   *result_flags = 0;
   flag_value = **(uint **)(context_offset + 8);
-  total_flags = (ulonglong)flag_value;
+  total_flags = (uint64_t)flag_value;
   *(uint **)(context_offset + 8) = *(uint **)(context_offset + 8) + 1;
   if (flag_value != 0) {
     do {
@@ -679,7 +679,7 @@ void process_rendering_flags(longlong *flag_table, longlong context_offset, uint
       current_table = flag_table;
       if (flag_value != 0) {
         copy_string_data(&guard_ptr1,flag_ptr,flag_value);
-        *(longlong *)(context_offset + 8) = *(longlong *)(context_offset + 8) + (ulonglong)flag_value;
+        *(int64_t *)(context_offset + 8) = *(int64_t *)(context_offset + 8) + (uint64_t)flag_value;
       }
       do {
         item_size = -1;
@@ -691,7 +691,7 @@ void process_rendering_flags(longlong *flag_table, longlong context_offset, uint
           if (guard_int != 0) {
             compare_ptr = guard_ptr2;
             do {
-              string_ptr = compare_ptr + (*current_table - (longlong)guard_ptr2);
+              string_ptr = compare_ptr + (*current_table - (int64_t)guard_ptr2);
               string_length = (uint)*compare_ptr - (uint)*string_ptr;
               if (string_length != 0) break;
               compare_ptr = compare_ptr + 1;
@@ -712,29 +712,29 @@ FLAG_MATCH_FOUND:
     } while (total_flags != 0);
   }
                     // WARNING: Subroutine does not return
-  cleanup_stack_protection(guard_value2 ^ (ulonglong)stack_guard);
+  cleanup_stack_protection(guard_value2 ^ (uint64_t)stack_guard);
 }
 
 
 
-// 函数: void process_rendering_flag_table(uint64_t *flag_table, uint flag_mask, longlong *data_buffer)
+// 函数: void process_rendering_flag_table(uint64_t *flag_table, uint flag_mask, int64_t *data_buffer)
 // 功能: 处理渲染标志表
 // 参数: 
 //   flag_table - 标志表指针
 //   flag_mask - 标志掩码
 //   data_buffer - 数据缓冲区指针
-void process_rendering_flag_table(uint64_t *flag_table, uint flag_mask, longlong *data_buffer)
+void process_rendering_flag_table(uint64_t *flag_table, uint flag_mask, int64_t *data_buffer)
 
 {
   int32_t *uint_ptr;
-  longlong buffer_offset;
-  longlong buffer_pos;
+  int64_t buffer_offset;
+  int64_t buffer_pos;
   int match_count;
-  longlong buffer_size;
+  int64_t buffer_size;
   
   uint_ptr = (int32_t *)data_buffer[1];
-  if ((ulonglong)((*data_buffer - (longlong)uint_ptr) + data_buffer[2]) < 5) {
-    expand_buffer_if_needed(data_buffer,(longlong)uint_ptr + (4 - *data_buffer));
+  if ((uint64_t)((*data_buffer - (int64_t)uint_ptr) + data_buffer[2]) < 5) {
+    expand_buffer_if_needed(data_buffer,(int64_t)uint_ptr + (4 - *data_buffer));
     uint_ptr = (int32_t *)data_buffer[1];
   }
   match_count = 0;
@@ -746,7 +746,7 @@ void process_rendering_flag_table(uint64_t *flag_table, uint flag_mask, longlong
   if (buffer_pos != 0) {
     buffer_size = buffer_offset - buffer_pos;
   }
-  if ((ulonglong)((buffer_pos - buffer_offset) + data_buffer[2]) < 5) {
+  if ((uint64_t)((buffer_pos - buffer_offset) + data_buffer[2]) < 5) {
     expand_buffer_if_needed(data_buffer,(buffer_offset - buffer_pos) + 4);
     buffer_offset = data_buffer[1];
   }
@@ -766,27 +766,27 @@ void process_rendering_flag_table(uint64_t *flag_table, uint flag_mask, longlong
 
 
 
-// 函数: void resize_rendering_buffer(longlong *buffer_manager, ulonglong new_size)
+// 函数: void resize_rendering_buffer(int64_t *buffer_manager, uint64_t new_size)
 // 功能: 调整渲染缓冲区大小
 // 参数: 
 //   buffer_manager - 缓冲区管理器指针
 //   new_size - 新的缓冲区大小
-void resize_rendering_buffer(longlong *buffer_manager, ulonglong new_size)
+void resize_rendering_buffer(int64_t *buffer_manager, uint64_t new_size)
 
 {
   void *vtable_ptr;
   uint64_t *buffer_ptr;
-  ulonglong current_size;
+  uint64_t current_size;
   uint64_t *end_ptr;
-  ulonglong temp_size;
+  uint64_t temp_size;
   uint64_t *new_buffer;
   uint64_t *copy_src;
   void *vtable_copy;
-  longlong offset_diff;
+  int64_t offset_diff;
   
   end_ptr = (uint64_t *)buffer_manager[1];
   buffer_pos = *buffer_manager;
-  current_size = ((longlong)end_ptr - buffer_pos) / 0x98;
+  current_size = ((int64_t)end_ptr - buffer_pos) / 0x98;
   if (new_size <= current_size) {
     new_buffer = (uint64_t *)(new_size * 0x98 + buffer_pos);
     if (new_buffer != end_ptr) {
@@ -801,9 +801,9 @@ void resize_rendering_buffer(longlong *buffer_manager, ulonglong new_size)
   }
   new_size = new_size - current_size;
   end_ptr = (uint64_t *)buffer_manager[1];
-  if ((ulonglong)((buffer_manager[2] - (longlong)end_ptr) / 0x98) < new_size) {
+  if ((uint64_t)((buffer_manager[2] - (int64_t)end_ptr) / 0x98) < new_size) {
     new_buffer = (uint64_t *)*buffer_manager;
-    buffer_pos = ((longlong)end_ptr - (longlong)new_buffer) / 0x98;
+    buffer_pos = ((int64_t)end_ptr - (int64_t)new_buffer) / 0x98;
     current_size = buffer_pos * 2;
     if (buffer_pos == 0) {
       current_size = 1;
@@ -821,7 +821,7 @@ void resize_rendering_buffer(longlong *buffer_manager, ulonglong new_size)
     }
     copy_src = buffer_ptr;
     if (new_buffer != end_ptr) {
-      buffer_pos = (longlong)new_buffer - (longlong)buffer_ptr;
+      buffer_pos = (int64_t)new_buffer - (int64_t)buffer_ptr;
       do {
         *copy_src = &RENDERING_VTABLE_START;
         copy_src[1] = 0;
@@ -830,15 +830,15 @@ void resize_rendering_buffer(longlong *buffer_manager, ulonglong new_size)
         copy_src[1] = copy_src + 3;
         *(int32_t *)(copy_src + 2) = 0;
         *(int8_t *)(copy_src + 3) = 0;
-        *(int32_t *)(copy_src + 2) = *(int32_t *)((longlong)copy_src + buffer_pos + 0x10);
-        vtable_ptr = *(void **)((longlong)copy_src + buffer_pos + 8);
+        *(int32_t *)(copy_src + 2) = *(int32_t *)((int64_t)copy_src + buffer_pos + 0x10);
+        vtable_ptr = *(void **)((int64_t)copy_src + buffer_pos + 8);
         vtable_copy = &DEFAULT_STRING_DATA;
         if (vtable_ptr != (void *)0x0) {
           vtable_copy = vtable_ptr;
         }
         strcpy_s(copy_src[1],0x80,vtable_copy);
         copy_src = copy_src + 0x13;
-      } while ((uint64_t *)((longlong)copy_src + buffer_pos) != end_ptr);
+      } while ((uint64_t *)((int64_t)copy_src + buffer_pos) != end_ptr);
     }
     if (new_size != 0) {
       end_ptr = copy_src + 1;
@@ -868,9 +868,9 @@ void resize_rendering_buffer(longlong *buffer_manager, ulonglong new_size)
                     // WARNING: Subroutine does not return
       free_rendering_memory(new_buffer);
     }
-    *buffer_manager = (longlong)buffer_ptr;
-    buffer_manager[1] = (longlong)(copy_src + new_size * 0x13);
-    buffer_manager[2] = (longlong)(buffer_ptr + current_size * 0x13);
+    *buffer_manager = (int64_t)buffer_ptr;
+    buffer_manager[1] = (int64_t)(copy_src + new_size * 0x13);
+    buffer_manager[2] = (int64_t)(buffer_ptr + current_size * 0x13);
   }
   else {
     current_size = new_size;
@@ -888,7 +888,7 @@ void resize_rendering_buffer(longlong *buffer_manager, ulonglong new_size)
       } while (current_size != 0);
       end_ptr = (uint64_t *)buffer_manager[1];
     }
-    buffer_manager[1] = (longlong)(end_ptr + new_size * 0x13);
+    buffer_manager[1] = (int64_t)(end_ptr + new_size * 0x13);
   }
   return;
 }

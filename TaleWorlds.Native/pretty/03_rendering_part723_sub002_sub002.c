@@ -733,23 +733,23 @@ void FUN_1806922f0(int8_t (*param_1) [16],int param_2,int8_t (*param_3) [16],
   ushort uStack_13c;
   ushort uStack_13a;
   
-  pauVar201 = (int8_t (*) [16])((longlong)param_1 - (longlong)(param_2 * 8));
+  pauVar201 = (int8_t (*) [16])((int64_t)param_1 - (int64_t)(param_2 * 8));
   uVar98 = *(uint64_t *)*pauVar201;
   uVar99 = *(uint64_t *)(*pauVar201 + 8);
   auVar351 = *pauVar201;
-  pauVar205 = (int8_t (*) [16])((longlong)param_1 - (longlong)(param_2 * 7));
-  pauVar212 = (int8_t (*) [16])((longlong)param_1 - (longlong)(param_2 * 6));
-  pauVar213 = (int8_t (*) [16])((longlong)param_1 - (longlong)(param_2 * 5));
+  pauVar205 = (int8_t (*) [16])((int64_t)param_1 - (int64_t)(param_2 * 7));
+  pauVar212 = (int8_t (*) [16])((int64_t)param_1 - (int64_t)(param_2 * 6));
+  pauVar213 = (int8_t (*) [16])((int64_t)param_1 - (int64_t)(param_2 * 5));
   auVar222 = *pauVar205;
   auVar236 = *pauVar212;
   auVar237 = *pauVar213;
-  pauVar211 = (int8_t (*) [16])((longlong)param_1 - (longlong)(param_2 * 3));
-  pauVar210 = (int8_t (*) [16])((longlong)param_1 - (longlong)(param_2 * 4));
-  pauVar202 = (int8_t (*) [16])((longlong)param_1 - (longlong)(param_2 * 2));
+  pauVar211 = (int8_t (*) [16])((int64_t)param_1 - (int64_t)(param_2 * 3));
+  pauVar210 = (int8_t (*) [16])((int64_t)param_1 - (int64_t)(param_2 * 4));
+  pauVar202 = (int8_t (*) [16])((int64_t)param_1 - (int64_t)(param_2 * 2));
   auVar238 = *pauVar211;
   auVar221 = *pauVar202;
   auVar239 = *pauVar210;
-  pauVar209 = (int8_t (*) [16])((longlong)param_1 - (longlong)param_2);
+  pauVar209 = (int8_t (*) [16])((int64_t)param_1 - (int64_t)param_2);
   auVar235 = *pauVar209;
   auVar272 = *param_1;
   auVar300 = *(int8_t (*) [16])(*param_1 + param_2);
@@ -757,87 +757,87 @@ void FUN_1806922f0(int8_t (*param_1) [16],int param_2,int8_t (*param_3) [16],
   pauVar203 = (int8_t (*) [16])(*param_1 + param_2 * 2);
   pVar206 = (unkuint9 *)(*param_1 + param_2 * 4);
   uVar101 = (uint64_t)*pVar204;
-  uVar100 = *(uint64_t *)((longlong)pVar204 + 8);
+  uVar100 = *(uint64_t *)((int64_t)pVar204 + 8);
   Var122 = *pVar204;
   auVar1 = *pauVar203;
   bStack_318 = (byte)uVar101;
-  bStack_317 = (byte)((ulonglong)uVar101 >> 8);
-  bStack_316 = (byte)((ulonglong)uVar101 >> 0x10);
-  bStack_315 = (byte)((ulonglong)uVar101 >> 0x18);
-  bStack_314 = (byte)((ulonglong)uVar101 >> 0x20);
-  bStack_313 = (byte)((ulonglong)uVar101 >> 0x28);
-  bStack_312 = (byte)((ulonglong)uVar101 >> 0x30);
-  bStack_311 = (byte)((ulonglong)uVar101 >> 0x38);
+  bStack_317 = (byte)((uint64_t)uVar101 >> 8);
+  bStack_316 = (byte)((uint64_t)uVar101 >> 0x10);
+  bStack_315 = (byte)((uint64_t)uVar101 >> 0x18);
+  bStack_314 = (byte)((uint64_t)uVar101 >> 0x20);
+  bStack_313 = (byte)((uint64_t)uVar101 >> 0x28);
+  bStack_312 = (byte)((uint64_t)uVar101 >> 0x30);
+  bStack_311 = (byte)((uint64_t)uVar101 >> 0x38);
   bStack_310 = (byte)uVar100;
-  bStack_30f = (byte)((ulonglong)uVar100 >> 8);
-  bStack_30e = (byte)((ulonglong)uVar100 >> 0x10);
-  bStack_30d = (byte)((ulonglong)uVar100 >> 0x18);
-  bStack_30c = (byte)((ulonglong)uVar100 >> 0x20);
-  bStack_30b = (byte)((ulonglong)uVar100 >> 0x28);
-  bStack_30a = (byte)((ulonglong)uVar100 >> 0x30);
-  bStack_309 = (byte)((ulonglong)uVar100 >> 0x38);
+  bStack_30f = (byte)((uint64_t)uVar100 >> 8);
+  bStack_30e = (byte)((uint64_t)uVar100 >> 0x10);
+  bStack_30d = (byte)((uint64_t)uVar100 >> 0x18);
+  bStack_30c = (byte)((uint64_t)uVar100 >> 0x20);
+  bStack_30b = (byte)((uint64_t)uVar100 >> 0x28);
+  bStack_30a = (byte)((uint64_t)uVar100 >> 0x30);
+  bStack_309 = (byte)((uint64_t)uVar100 >> 0x38);
   uVar101 = (uint64_t)*pVar206;
-  uVar100 = *(uint64_t *)((longlong)pVar206 + 8);
+  uVar100 = *(uint64_t *)((int64_t)pVar206 + 8);
   Var142 = *pVar206;
   bStack_2c8 = (byte)uVar101;
-  bStack_2c7 = (byte)((ulonglong)uVar101 >> 8);
-  bStack_2c6 = (byte)((ulonglong)uVar101 >> 0x10);
-  bStack_2c5 = (byte)((ulonglong)uVar101 >> 0x18);
-  bStack_2c4 = (byte)((ulonglong)uVar101 >> 0x20);
-  bStack_2c3 = (byte)((ulonglong)uVar101 >> 0x28);
-  bStack_2c2 = (byte)((ulonglong)uVar101 >> 0x30);
-  bStack_2c1 = (byte)((ulonglong)uVar101 >> 0x38);
+  bStack_2c7 = (byte)((uint64_t)uVar101 >> 8);
+  bStack_2c6 = (byte)((uint64_t)uVar101 >> 0x10);
+  bStack_2c5 = (byte)((uint64_t)uVar101 >> 0x18);
+  bStack_2c4 = (byte)((uint64_t)uVar101 >> 0x20);
+  bStack_2c3 = (byte)((uint64_t)uVar101 >> 0x28);
+  bStack_2c2 = (byte)((uint64_t)uVar101 >> 0x30);
+  bStack_2c1 = (byte)((uint64_t)uVar101 >> 0x38);
   bStack_2c0 = (byte)uVar100;
-  bStack_2bf = (byte)((ulonglong)uVar100 >> 8);
-  bStack_2be = (byte)((ulonglong)uVar100 >> 0x10);
-  bStack_2bd = (byte)((ulonglong)uVar100 >> 0x18);
-  bStack_2bc = (byte)((ulonglong)uVar100 >> 0x20);
-  bStack_2bb = (byte)((ulonglong)uVar100 >> 0x28);
-  bStack_2ba = (byte)((ulonglong)uVar100 >> 0x30);
-  bStack_2b9 = (byte)((ulonglong)uVar100 >> 0x38);
+  bStack_2bf = (byte)((uint64_t)uVar100 >> 8);
+  bStack_2be = (byte)((uint64_t)uVar100 >> 0x10);
+  bStack_2bd = (byte)((uint64_t)uVar100 >> 0x18);
+  bStack_2bc = (byte)((uint64_t)uVar100 >> 0x20);
+  bStack_2bb = (byte)((uint64_t)uVar100 >> 0x28);
+  bStack_2ba = (byte)((uint64_t)uVar100 >> 0x30);
+  bStack_2b9 = (byte)((uint64_t)uVar100 >> 0x38);
   pVar207 = (unkuint9 *)(*param_1 + param_2 * 5);
   auVar324 = psubusb(auVar300,auVar1);
   auVar462 = psubusb(auVar221,auVar235);
   pVar208 = (unkuint9 *)(*param_1 + param_2 * 6);
   auVar298 = psubusb(auVar235,auVar272);
   uVar101 = (uint64_t)*pVar207;
-  uVar100 = *(uint64_t *)((longlong)pVar207 + 8);
+  uVar100 = *(uint64_t *)((int64_t)pVar207 + 8);
   Var146 = *pVar207;
   bStack_2b8 = (byte)uVar101;
-  bStack_2b7 = (byte)((ulonglong)uVar101 >> 8);
-  bStack_2b6 = (byte)((ulonglong)uVar101 >> 0x10);
-  bStack_2b5 = (byte)((ulonglong)uVar101 >> 0x18);
-  bStack_2b4 = (byte)((ulonglong)uVar101 >> 0x20);
-  bStack_2b3 = (byte)((ulonglong)uVar101 >> 0x28);
-  bStack_2b2 = (byte)((ulonglong)uVar101 >> 0x30);
-  bStack_2b1 = (byte)((ulonglong)uVar101 >> 0x38);
+  bStack_2b7 = (byte)((uint64_t)uVar101 >> 8);
+  bStack_2b6 = (byte)((uint64_t)uVar101 >> 0x10);
+  bStack_2b5 = (byte)((uint64_t)uVar101 >> 0x18);
+  bStack_2b4 = (byte)((uint64_t)uVar101 >> 0x20);
+  bStack_2b3 = (byte)((uint64_t)uVar101 >> 0x28);
+  bStack_2b2 = (byte)((uint64_t)uVar101 >> 0x30);
+  bStack_2b1 = (byte)((uint64_t)uVar101 >> 0x38);
   bStack_2b0 = (byte)uVar100;
-  bStack_2af = (byte)((ulonglong)uVar100 >> 8);
-  bStack_2ae = (byte)((ulonglong)uVar100 >> 0x10);
-  bStack_2ad = (byte)((ulonglong)uVar100 >> 0x18);
-  bStack_2ac = (byte)((ulonglong)uVar100 >> 0x20);
-  bStack_2ab = (byte)((ulonglong)uVar100 >> 0x28);
-  bStack_2aa = (byte)((ulonglong)uVar100 >> 0x30);
-  bStack_2a9 = (byte)((ulonglong)uVar100 >> 0x38);
+  bStack_2af = (byte)((uint64_t)uVar100 >> 8);
+  bStack_2ae = (byte)((uint64_t)uVar100 >> 0x10);
+  bStack_2ad = (byte)((uint64_t)uVar100 >> 0x18);
+  bStack_2ac = (byte)((uint64_t)uVar100 >> 0x20);
+  bStack_2ab = (byte)((uint64_t)uVar100 >> 0x28);
+  bStack_2aa = (byte)((uint64_t)uVar100 >> 0x30);
+  bStack_2a9 = (byte)((uint64_t)uVar100 >> 0x38);
   uVar101 = (uint64_t)*pVar208;
-  uVar100 = *(uint64_t *)((longlong)pVar208 + 8);
+  uVar100 = *(uint64_t *)((int64_t)pVar208 + 8);
   Var150 = *pVar208;
   bStack_2a8 = (byte)uVar101;
-  bStack_2a7 = (byte)((ulonglong)uVar101 >> 8);
-  bStack_2a6 = (byte)((ulonglong)uVar101 >> 0x10);
-  bStack_2a5 = (byte)((ulonglong)uVar101 >> 0x18);
-  bStack_2a4 = (byte)((ulonglong)uVar101 >> 0x20);
-  bStack_2a3 = (byte)((ulonglong)uVar101 >> 0x28);
-  bStack_2a2 = (byte)((ulonglong)uVar101 >> 0x30);
-  bStack_2a1 = (byte)((ulonglong)uVar101 >> 0x38);
+  bStack_2a7 = (byte)((uint64_t)uVar101 >> 8);
+  bStack_2a6 = (byte)((uint64_t)uVar101 >> 0x10);
+  bStack_2a5 = (byte)((uint64_t)uVar101 >> 0x18);
+  bStack_2a4 = (byte)((uint64_t)uVar101 >> 0x20);
+  bStack_2a3 = (byte)((uint64_t)uVar101 >> 0x28);
+  bStack_2a2 = (byte)((uint64_t)uVar101 >> 0x30);
+  bStack_2a1 = (byte)((uint64_t)uVar101 >> 0x38);
   bStack_2a0 = (byte)uVar100;
-  bStack_29f = (byte)((ulonglong)uVar100 >> 8);
-  bStack_29e = (byte)((ulonglong)uVar100 >> 0x10);
-  bStack_29d = (byte)((ulonglong)uVar100 >> 0x18);
-  bStack_29c = (byte)((ulonglong)uVar100 >> 0x20);
-  bStack_29b = (byte)((ulonglong)uVar100 >> 0x28);
-  bStack_29a = (byte)((ulonglong)uVar100 >> 0x30);
-  bStack_299 = (byte)((ulonglong)uVar100 >> 0x38);
+  bStack_29f = (byte)((uint64_t)uVar100 >> 8);
+  bStack_29e = (byte)((uint64_t)uVar100 >> 0x10);
+  bStack_29d = (byte)((uint64_t)uVar100 >> 0x18);
+  bStack_29c = (byte)((uint64_t)uVar100 >> 0x20);
+  bStack_29b = (byte)((uint64_t)uVar100 >> 0x28);
+  bStack_29a = (byte)((uint64_t)uVar100 >> 0x30);
+  bStack_299 = (byte)((uint64_t)uVar100 >> 0x38);
   pauVar201 = (int8_t (*) [16])(*param_1 + param_2 * 7);
   uVar101 = *(uint64_t *)*pauVar201;
   uVar100 = *(uint64_t *)(*pauVar201 + 8);
@@ -1796,7 +1796,7 @@ void FUN_1806922f0(int8_t (*param_1) [16],int param_2,int8_t (*param_3) [16],
   auVar68._0_9_ = Var122;
   auVar68._10_5_ = auVar52._10_5_;
   auVar84[8] = (char)(Var122 >> 0x20);
-  auVar84._0_8_ = (longlong)Var122;
+  auVar84._0_8_ = (int64_t)Var122;
   auVar84._9_6_ = auVar68._9_6_;
   auVar123._7_8_ = 0;
   auVar123._0_7_ = auVar84._8_7_;
@@ -2307,7 +2307,7 @@ void FUN_1806922f0(int8_t (*param_1) [16],int param_2,int8_t (*param_3) [16],
   auVar89._0_9_ = Var142;
   auVar89._10_5_ = auVar73._10_5_;
   auVar97[8] = (char)(Var142 >> 0x20);
-  auVar97._0_8_ = (longlong)Var142;
+  auVar97._0_8_ = (int64_t)Var142;
   auVar97._9_6_ = auVar89._9_6_;
   auVar143._7_8_ = 0;
   auVar143._0_7_ = auVar97._8_7_;
@@ -2342,7 +2342,7 @@ void FUN_1806922f0(int8_t (*param_1) [16],int param_2,int8_t (*param_3) [16],
   auVar74._0_9_ = Var146;
   auVar74._10_5_ = auVar58._10_5_;
   auVar90[8] = (char)(Var146 >> 0x20);
-  auVar90._0_8_ = (longlong)Var146;
+  auVar90._0_8_ = (int64_t)Var146;
   auVar90._9_6_ = auVar74._9_6_;
   auVar147._7_8_ = 0;
   auVar147._0_7_ = auVar90._8_7_;
@@ -2377,7 +2377,7 @@ void FUN_1806922f0(int8_t (*param_1) [16],int param_2,int8_t (*param_3) [16],
   auVar75._0_9_ = Var150;
   auVar75._10_5_ = auVar59._10_5_;
   auVar91[8] = (char)(Var150 >> 0x20);
-  auVar91._0_8_ = (longlong)Var150;
+  auVar91._0_8_ = (int64_t)Var150;
   auVar91._9_6_ = auVar75._9_6_;
   auVar151._7_8_ = 0;
   auVar151._0_7_ = auVar91._8_7_;
@@ -2392,94 +2392,94 @@ void FUN_1806922f0(int8_t (*param_1) [16],int param_2,int8_t (*param_3) [16],
   auVar153[0] = (char)(Var150 >> 8);
   auVar12[0xd] = 0;
   auVar12._0_13_ = auVar350._0_13_;
-  auVar12[0xe] = (char)((ulonglong)uVar101 >> 0x38);
-  auVar28[0xc] = (char)((ulonglong)uVar101 >> 0x30);
+  auVar12[0xe] = (char)((uint64_t)uVar101 >> 0x38);
+  auVar28[0xc] = (char)((uint64_t)uVar101 >> 0x30);
   auVar28._0_12_ = auVar350._0_12_;
   auVar28._13_2_ = auVar12._13_2_;
   auVar44[0xb] = 0;
   auVar44._0_11_ = auVar350._0_11_;
   auVar44._12_3_ = auVar28._12_3_;
-  auVar60[10] = (char)((ulonglong)uVar101 >> 0x28);
+  auVar60[10] = (char)((uint64_t)uVar101 >> 0x28);
   auVar60._0_10_ = auVar350._0_10_;
   auVar60._11_4_ = auVar44._11_4_;
   auVar76[9] = 0;
   auVar76._0_9_ = auVar350._0_9_;
   auVar76._10_5_ = auVar60._10_5_;
-  auVar92[8] = (char)((ulonglong)uVar101 >> 0x20);
+  auVar92[8] = (char)((uint64_t)uVar101 >> 0x20);
   auVar92._0_8_ = uVar101;
   auVar92._9_6_ = auVar76._9_6_;
   auVar154._7_8_ = 0;
   auVar154._0_7_ = auVar92._8_7_;
-  Var122 = CONCAT81(SUB158(auVar154 << 0x40,7),(char)((ulonglong)uVar101 >> 0x18));
+  Var122 = CONCAT81(SUB158(auVar154 << 0x40,7),(char)((uint64_t)uVar101 >> 0x18));
   auVar191._9_6_ = 0;
   auVar191._0_9_ = Var122;
   auVar155._1_10_ = SUB1510(auVar191 << 0x30,5);
-  auVar155[0] = (char)((ulonglong)uVar101 >> 0x10);
+  auVar155[0] = (char)((uint64_t)uVar101 >> 0x10);
   auVar192._11_4_ = 0;
   auVar192._0_11_ = auVar155;
   auVar156._1_12_ = SUB1512(auVar192 << 0x20,3);
-  auVar156[0] = (char)((ulonglong)uVar101 >> 8);
+  auVar156[0] = (char)((uint64_t)uVar101 >> 8);
   uVar271 = (ushort)(byte)uVar101;
   uVar275 = (ushort)bStack_2b0;
   uStack_360._0_1_ = (byte)uVar100;
-  uStack_360._1_1_ = (byte)((ulonglong)uVar100 >> 8);
-  uStack_35e._0_1_ = (byte)((ulonglong)uVar100 >> 0x10);
-  uStack_35e._1_1_ = (byte)((ulonglong)uVar100 >> 0x18);
-  uStack_35c._0_1_ = (byte)((ulonglong)uVar100 >> 0x20);
-  uStack_35c._1_1_ = (byte)((ulonglong)uVar100 >> 0x28);
-  uStack_35a._0_1_ = (byte)((ulonglong)uVar100 >> 0x30);
+  uStack_360._1_1_ = (byte)((uint64_t)uVar100 >> 8);
+  uStack_35e._0_1_ = (byte)((uint64_t)uVar100 >> 0x10);
+  uStack_35e._1_1_ = (byte)((uint64_t)uVar100 >> 0x18);
+  uStack_35c._0_1_ = (byte)((uint64_t)uVar100 >> 0x20);
+  uStack_35c._1_1_ = (byte)((uint64_t)uVar100 >> 0x28);
+  uStack_35a._0_1_ = (byte)((uint64_t)uVar100 >> 0x30);
   uVar278 = (ushort)(byte)uStack_360;
   auVar350._0_2_ = CONCAT11(0,(byte)uVar99);
-  bVar260 = (byte)((ulonglong)uVar99 >> 8);
+  bVar260 = (byte)((uint64_t)uVar99 >> 8);
   auVar350[2] = bVar260;
   auVar350[3] = 0;
-  bVar270 = (byte)((ulonglong)uVar99 >> 0x10);
+  bVar270 = (byte)((uint64_t)uVar99 >> 0x10);
   auVar350[4] = bVar270;
   auVar350[5] = 0;
-  bVar274 = (byte)((ulonglong)uVar99 >> 0x18);
+  bVar274 = (byte)((uint64_t)uVar99 >> 0x18);
   auVar350[6] = bVar274;
   auVar350[7] = 0;
-  bVar277 = (byte)((ulonglong)uVar99 >> 0x20);
+  bVar277 = (byte)((uint64_t)uVar99 >> 0x20);
   auVar350[8] = bVar277;
   auVar350[9] = 0;
-  bVar280 = (byte)((ulonglong)uVar99 >> 0x28);
+  bVar280 = (byte)((uint64_t)uVar99 >> 0x28);
   auVar350[10] = bVar280;
   auVar350[0xb] = 0;
-  bVar283 = (byte)((ulonglong)uVar99 >> 0x30);
+  bVar283 = (byte)((uint64_t)uVar99 >> 0x30);
   auVar350[0xc] = bVar283;
   auVar350[0xd] = 0;
-  bVar286 = (byte)((ulonglong)uVar99 >> 0x38);
+  bVar286 = (byte)((uint64_t)uVar99 >> 0x38);
   auVar350[0xe] = bVar286;
   auVar350[0xf] = 0;
   auVar13[0xd] = 0;
   auVar13._0_13_ = auVar351._0_13_;
-  auVar13[0xe] = (char)((ulonglong)uVar98 >> 0x38);
-  auVar29[0xc] = (char)((ulonglong)uVar98 >> 0x30);
+  auVar13[0xe] = (char)((uint64_t)uVar98 >> 0x38);
+  auVar29[0xc] = (char)((uint64_t)uVar98 >> 0x30);
   auVar29._0_12_ = auVar351._0_12_;
   auVar29._13_2_ = auVar13._13_2_;
   auVar45[0xb] = 0;
   auVar45._0_11_ = auVar351._0_11_;
   auVar45._12_3_ = auVar29._12_3_;
-  auVar61[10] = (char)((ulonglong)uVar98 >> 0x28);
+  auVar61[10] = (char)((uint64_t)uVar98 >> 0x28);
   auVar61._0_10_ = auVar351._0_10_;
   auVar61._11_4_ = auVar45._11_4_;
   auVar77[9] = 0;
   auVar77._0_9_ = auVar351._0_9_;
   auVar77._10_5_ = auVar61._10_5_;
-  auVar93[8] = (char)((ulonglong)uVar98 >> 0x20);
+  auVar93[8] = (char)((uint64_t)uVar98 >> 0x20);
   auVar93._0_8_ = uVar98;
   auVar93._9_6_ = auVar77._9_6_;
   auVar157._7_8_ = 0;
   auVar157._0_7_ = auVar93._8_7_;
-  Var124 = CONCAT81(SUB158(auVar157 << 0x40,7),(char)((ulonglong)uVar98 >> 0x18));
+  Var124 = CONCAT81(SUB158(auVar157 << 0x40,7),(char)((uint64_t)uVar98 >> 0x18));
   auVar193._9_6_ = 0;
   auVar193._0_9_ = Var124;
   auVar158._1_10_ = SUB1510(auVar193 << 0x30,5);
-  auVar158[0] = (char)((ulonglong)uVar98 >> 0x10);
+  auVar158[0] = (char)((uint64_t)uVar98 >> 0x10);
   auVar194._11_4_ = 0;
   auVar194._0_11_ = auVar158;
   auVar159._1_12_ = SUB1512(auVar194 << 0x20,3);
-  auVar159[0] = (char)((ulonglong)uVar98 >> 8);
+  auVar159[0] = (char)((uint64_t)uVar98 >> 8);
   auVar300._0_2_ = CONCAT11(0,(byte)uVar98);
   auVar300._2_13_ = auVar159;
   auVar300[0xf] = 0;
@@ -3303,7 +3303,7 @@ void FUN_1806922f0(int8_t (*param_1) [16],int param_2,int8_t (*param_3) [16],
   uStack_360 = (ushort)(byte)uStack_35c;
   uStack_35e = (ushort)uStack_35c._1_1_;
   uStack_35c = (ushort)(byte)uStack_35a;
-  uStack_35a = (ushort)(byte)((ulonglong)uVar100 >> 0x38);
+  uStack_35a = (ushort)(byte)((uint64_t)uVar100 >> 0x38);
   sStack_246 = auVar156._0_2_;
   sStack_244 = auVar155._0_2_;
   sStack_242 = (short)Var122;
@@ -3626,49 +3626,49 @@ void FUN_1806922f0(int8_t (*param_1) [16],int param_2,int8_t (*param_3) [16],
   *(byte *)pVar204 =
        (uVar361 != 0) * (uVar361 < 0x100) * (char)uVar361 - (0xff < uVar361) & bStack_3c8 |
        ~bStack_3c8 & bStack_318;
-  *(byte *)((longlong)pVar204 + 1) =
+  *(byte *)((int64_t)pVar204 + 1) =
        (uVar375 != 0) * (uVar375 < 0x100) * (char)uVar375 - (0xff < uVar375) & bStack_3c7 |
        ~bStack_3c7 & bStack_317;
-  *(byte *)((longlong)pVar204 + 2) =
+  *(byte *)((int64_t)pVar204 + 2) =
        (uVar372 != 0) * (uVar372 < 0x100) * (char)uVar372 - (0xff < uVar372) & bStack_3c6 |
        ~bStack_3c6 & bStack_316;
-  *(byte *)((longlong)pVar204 + 3) =
+  *(byte *)((int64_t)pVar204 + 3) =
        (uVar379 != 0) * (uVar379 < 0x100) * (char)uVar379 - (0xff < uVar379) & bStack_3c5 |
        ~bStack_3c5 & bStack_315;
-  *(byte *)((longlong)pVar204 + 4) =
+  *(byte *)((int64_t)pVar204 + 4) =
        (uVar384 != 0) * (uVar384 < 0x100) * (char)uVar384 - (0xff < uVar384) & bStack_3c4 |
        ~bStack_3c4 & bStack_314;
-  *(byte *)((longlong)pVar204 + 5) =
+  *(byte *)((int64_t)pVar204 + 5) =
        (uVar383 != 0) * (uVar383 < 0x100) * (char)uVar383 - (0xff < uVar383) & bStack_3c3 |
        ~bStack_3c3 & bStack_313;
-  *(byte *)((longlong)pVar204 + 6) =
+  *(byte *)((int64_t)pVar204 + 6) =
        (uVar403 != 0) * (uVar403 < 0x100) * (char)uVar403 - (0xff < uVar403) & bStack_3c2 |
        ~bStack_3c2 & bStack_312;
-  *(byte *)((longlong)pVar204 + 7) =
+  *(byte *)((int64_t)pVar204 + 7) =
        (uVar387 != 0) * (uVar387 < 0x100) * (char)uVar387 - (0xff < uVar387) & bStack_3c1 |
        ~bStack_3c1 & bStack_311;
-  *(byte *)((longlong)pVar204 + 8) =
+  *(byte *)((int64_t)pVar204 + 8) =
        (uVar357 != 0) * (uVar357 < 0x100) * (char)uVar357 - (0xff < uVar357) & bStack_3c0 |
        ~bStack_3c0 & bStack_310;
-  *(byte *)((longlong)pVar204 + 9) =
+  *(byte *)((int64_t)pVar204 + 9) =
        (uVar224 != 0) * (uVar224 < 0x100) * (char)uVar224 - (0xff < uVar224) & bStack_3bf |
        ~bStack_3bf & bStack_30f;
-  *(byte *)((longlong)pVar204 + 10) =
+  *(byte *)((int64_t)pVar204 + 10) =
        (uVar228 != 0) * (uVar228 < 0x100) * (char)uVar228 - (0xff < uVar228) & bStack_3be |
        ~bStack_3be & bStack_30e;
-  *(byte *)((longlong)pVar204 + 0xb) =
+  *(byte *)((int64_t)pVar204 + 0xb) =
        (uVar407 != 0) * (uVar407 < 0x100) * (char)uVar407 - (0xff < uVar407) & bStack_3bd |
        ~bStack_3bd & bStack_30d;
-  *(byte *)((longlong)pVar204 + 0xc) =
+  *(byte *)((int64_t)pVar204 + 0xc) =
        (uVar230 != 0) * (uVar230 < 0x100) * (char)uVar230 - (0xff < uVar230) & bStack_3bc |
        ~bStack_3bc & bStack_30c;
-  *(byte *)((longlong)pVar204 + 0xd) =
+  *(byte *)((int64_t)pVar204 + 0xd) =
        (uVar367 != 0) * (uVar367 < 0x100) * (char)uVar367 - (0xff < uVar367) & bStack_3bb |
        ~bStack_3bb & bStack_30b;
-  *(byte *)((longlong)pVar204 + 0xe) =
+  *(byte *)((int64_t)pVar204 + 0xe) =
        (uVar287 != 0) * (uVar287 < 0x100) * (char)uVar287 - (0xff < uVar287) & bStack_3ba |
        ~bStack_3ba & bStack_30a;
-  *(byte *)((longlong)pVar204 + 0xf) =
+  *(byte *)((int64_t)pVar204 + 0xf) =
        (uVar371 != 0) * (uVar371 < 0x100) * (char)uVar371 - (0xff < uVar371) & bStack_3b9 |
        ~bStack_3b9 & bStack_309;
   uVar407 = uVar290 >> 4;
@@ -3706,49 +3706,49 @@ void FUN_1806922f0(int8_t (*param_1) [16],int param_2,int8_t (*param_3) [16],
   *(byte *)pVar206 =
        (uVar407 != 0) * (uVar407 < 0x100) * (char)uVar407 - (0xff < uVar407) & bStack_3c8 |
        ~bStack_3c8 & bStack_2c8;
-  *(byte *)((longlong)pVar206 + 1) =
+  *(byte *)((int64_t)pVar206 + 1) =
        (uVar411 != 0) * (uVar411 < 0x100) * (char)uVar411 - (0xff < uVar411) & bStack_3c7 |
        ~bStack_3c7 & bStack_2c7;
-  *(byte *)((longlong)pVar206 + 2) =
+  *(byte *)((int64_t)pVar206 + 2) =
        (uVar246 != 0) * (uVar246 < 0x100) * (char)uVar246 - (0xff < uVar246) & bStack_3c6 |
        ~bStack_3c6 & bStack_2c6;
-  *(byte *)((longlong)pVar206 + 3) =
+  *(byte *)((int64_t)pVar206 + 3) =
        (uVar229 != 0) * (uVar229 < 0x100) * (char)uVar229 - (0xff < uVar229) & bStack_3c5 |
        ~bStack_3c5 & bStack_2c5;
-  *(byte *)((longlong)pVar206 + 4) =
+  *(byte *)((int64_t)pVar206 + 4) =
        (uVar230 != 0) * (uVar230 < 0x100) * (char)uVar230 - (0xff < uVar230) & bStack_3c4 |
        ~bStack_3c4 & bStack_2c4;
-  *(byte *)((longlong)pVar206 + 5) =
+  *(byte *)((int64_t)pVar206 + 5) =
        (uVar281 != 0) * (uVar281 < 0x100) * (char)uVar281 - (0xff < uVar281) & bStack_3c3 |
        ~bStack_3c3 & bStack_2c3;
-  *(byte *)((longlong)pVar206 + 6) =
+  *(byte *)((int64_t)pVar206 + 6) =
        (uVar367 != 0) * (uVar367 < 0x100) * (char)uVar367 - (0xff < uVar367) & bStack_3c2 |
        ~bStack_3c2 & bStack_2c2;
-  *(byte *)((longlong)pVar206 + 7) =
+  *(byte *)((int64_t)pVar206 + 7) =
        (uVar284 != 0) * (uVar284 < 0x100) * (char)uVar284 - (0xff < uVar284) & bStack_3c1 |
        ~bStack_3c1 & bStack_2c1;
-  *(byte *)((longlong)pVar206 + 8) =
+  *(byte *)((int64_t)pVar206 + 8) =
        (uVar214 != 0) * (uVar214 < 0x100) * (char)uVar214 - (0xff < uVar214) & bStack_3c0 |
        ~bStack_3c0 & bStack_2c0;
-  *(byte *)((longlong)pVar206 + 9) =
+  *(byte *)((int64_t)pVar206 + 9) =
        (uVar225 != 0) * (uVar225 < 0x100) * (char)uVar225 - (0xff < uVar225) & bStack_3bf |
        ~bStack_3bf & bStack_2bf;
-  *(byte *)((longlong)pVar206 + 10) =
+  *(byte *)((int64_t)pVar206 + 10) =
        (uVar357 != 0) * (uVar357 < 0x100) * (char)uVar357 - (0xff < uVar357) & bStack_3be |
        ~bStack_3be & bStack_2be;
-  *(byte *)((longlong)pVar206 + 0xb) =
+  *(byte *)((int64_t)pVar206 + 0xb) =
        (uVar223 != 0) * (uVar223 < 0x100) * (char)uVar223 - (0xff < uVar223) & bStack_3bd |
        ~bStack_3bd & bStack_2bd;
-  *(byte *)((longlong)pVar206 + 0xc) =
+  *(byte *)((int64_t)pVar206 + 0xc) =
        (uVar224 != 0) * (uVar224 < 0x100) * (char)uVar224 - (0xff < uVar224) & bStack_3bc |
        ~bStack_3bc & bStack_2bc;
-  *(byte *)((longlong)pVar206 + 0xd) =
+  *(byte *)((int64_t)pVar206 + 0xd) =
        (uVar227 != 0) * (uVar227 < 0x100) * (char)uVar227 - (0xff < uVar227) & bStack_3bb |
        ~bStack_3bb & bStack_2bb;
-  *(byte *)((longlong)pVar206 + 0xe) =
+  *(byte *)((int64_t)pVar206 + 0xe) =
        (uVar228 != 0) * (uVar228 < 0x100) * (char)uVar228 - (0xff < uVar228) & bStack_3ba |
        ~bStack_3ba & bStack_2ba;
-  *(byte *)((longlong)pVar206 + 0xf) =
+  *(byte *)((int64_t)pVar206 + 0xf) =
        (uVar401 != 0) * (uVar401 < 0x100) * (char)uVar401 - (0xff < uVar401) & bStack_3b9 |
        ~bStack_3b9 & bStack_2b9;
   uVar401 = uVar287 >> 4;
@@ -3786,97 +3786,97 @@ void FUN_1806922f0(int8_t (*param_1) [16],int param_2,int8_t (*param_3) [16],
   *(byte *)pVar207 =
        (uVar401 != 0) * (uVar401 < 0x100) * (char)uVar401 - (0xff < uVar401) & bStack_3c8 |
        ~bStack_3c8 & bStack_2b8;
-  *(byte *)((longlong)pVar207 + 1) =
+  *(byte *)((int64_t)pVar207 + 1) =
        (uVar407 != 0) * (uVar407 < 0x100) * (char)uVar407 - (0xff < uVar407) & bStack_3c7 |
        ~bStack_3c7 & bStack_2b7;
-  *(byte *)((longlong)pVar207 + 2) =
+  *(byte *)((int64_t)pVar207 + 2) =
        (uVar411 != 0) * (uVar411 < 0x100) * (char)uVar411 - (0xff < uVar411) & bStack_3c6 |
        ~bStack_3c6 & bStack_2b6;
-  *(byte *)((longlong)pVar207 + 3) =
+  *(byte *)((int64_t)pVar207 + 3) =
        (uVar415 != 0) * (uVar415 < 0x100) * (char)uVar415 - (0xff < uVar415) & bStack_3c5 |
        ~bStack_3c5 & bStack_2b5;
-  *(byte *)((longlong)pVar207 + 4) =
+  *(byte *)((int64_t)pVar207 + 4) =
        (uVar246 != 0) * (uVar246 < 0x100) * (char)uVar246 - (0xff < uVar246) & bStack_3c4 |
        ~bStack_3c4 & bStack_2b4;
-  *(byte *)((longlong)pVar207 + 5) =
+  *(byte *)((int64_t)pVar207 + 5) =
        (uVar229 != 0) * (uVar229 < 0x100) * (char)uVar229 - (0xff < uVar229) & bStack_3c3 |
        ~bStack_3c3 & bStack_2b3;
-  *(byte *)((longlong)pVar207 + 6) =
+  *(byte *)((int64_t)pVar207 + 6) =
        (uVar230 != 0) * (uVar230 < 0x100) * (char)uVar230 - (0xff < uVar230) & bStack_3c2 |
        ~bStack_3c2 & bStack_2b2;
-  *(byte *)((longlong)pVar207 + 7) =
+  *(byte *)((int64_t)pVar207 + 7) =
        (uVar427 != 0) * (uVar427 < 0x100) * (char)uVar427 - (0xff < uVar427) & bStack_3c1 |
        ~bStack_3c1 & bStack_2b1;
-  *(byte *)((longlong)pVar207 + 8) =
+  *(byte *)((int64_t)pVar207 + 8) =
        (uVar214 != 0) * (uVar214 < 0x100) * (char)uVar214 - (0xff < uVar214) & bStack_3c0 |
        ~bStack_3c0 & bStack_2b0;
-  *(byte *)((longlong)pVar207 + 9) =
+  *(byte *)((int64_t)pVar207 + 9) =
        (uVar226 != 0) * (uVar226 < 0x100) * (char)uVar226 - (0xff < uVar226) & bStack_3bf |
        ~bStack_3bf & bStack_2af;
-  *(byte *)((longlong)pVar207 + 10) =
+  *(byte *)((int64_t)pVar207 + 10) =
        (uVar225 != 0) * (uVar225 < 0x100) * (char)uVar225 - (0xff < uVar225) & bStack_3be |
        ~bStack_3be & bStack_2ae;
-  *(byte *)((longlong)pVar207 + 0xb) =
+  *(byte *)((int64_t)pVar207 + 0xb) =
        (uVar357 != 0) * (uVar357 < 0x100) * (char)uVar357 - (0xff < uVar357) & bStack_3bd |
        ~bStack_3bd & bStack_2ad;
-  *(byte *)((longlong)pVar207 + 0xc) =
+  *(byte *)((int64_t)pVar207 + 0xc) =
        (uVar223 != 0) * (uVar223 < 0x100) * (char)uVar223 - (0xff < uVar223) & bStack_3bc |
        ~bStack_3bc & bStack_2ac;
-  *(byte *)((longlong)pVar207 + 0xd) =
+  *(byte *)((int64_t)pVar207 + 0xd) =
        (uVar224 != 0) * (uVar224 < 0x100) * (char)uVar224 - (0xff < uVar224) & bStack_3bb |
        ~bStack_3bb & bStack_2ab;
-  *(byte *)((longlong)pVar207 + 0xe) =
+  *(byte *)((int64_t)pVar207 + 0xe) =
        (uVar227 != 0) * (uVar227 < 0x100) * (char)uVar227 - (0xff < uVar227) & bStack_3ba |
        ~bStack_3ba & bStack_2aa;
-  *(byte *)((longlong)pVar207 + 0xf) =
+  *(byte *)((int64_t)pVar207 + 0xf) =
        (uVar228 != 0) * (uVar228 < 0x100) * (char)uVar228 - (0xff < uVar228) & bStack_3b9 |
        ~bStack_3b9 & bStack_2a9;
   *(byte *)pVar208 =
        (uVar354 != 0) * (uVar354 < 0x100) * (char)uVar354 - (0xff < uVar354) & bStack_3c8 |
        ~bStack_3c8 & bStack_2a8;
-  *(byte *)((longlong)pVar208 + 1) =
+  *(byte *)((int64_t)pVar208 + 1) =
        (uVar430 != 0) * (uVar430 < 0x100) * (char)uVar430 - (0xff < uVar430) & bStack_3c7 |
        ~bStack_3c7 & bStack_2a7;
-  *(byte *)((longlong)pVar208 + 2) =
+  *(byte *)((int64_t)pVar208 + 2) =
        (uVar271 != 0) * (uVar271 < 0x100) * (char)uVar271 - (0xff < uVar271) & bStack_3c6 |
        ~bStack_3c6 & bStack_2a6;
-  *(byte *)((longlong)pVar208 + 3) =
+  *(byte *)((int64_t)pVar208 + 3) =
        (uVar281 != 0) * (uVar281 < 0x100) * (char)uVar281 - (0xff < uVar281) & bStack_3c5 |
        ~bStack_3c5 & bStack_2a5;
-  *(byte *)((longlong)pVar208 + 4) =
+  *(byte *)((int64_t)pVar208 + 4) =
        (uVar367 != 0) * (uVar367 < 0x100) * (char)uVar367 - (0xff < uVar367) & bStack_3c4 |
        ~bStack_3c4 & bStack_2a4;
-  *(byte *)((longlong)pVar208 + 5) =
+  *(byte *)((int64_t)pVar208 + 5) =
        (uVar284 != 0) * (uVar284 < 0x100) * (char)uVar284 - (0xff < uVar284) & bStack_3c3 |
        ~bStack_3c3 & bStack_2a3;
-  *(byte *)((longlong)pVar208 + 6) =
+  *(byte *)((int64_t)pVar208 + 6) =
        (uVar287 != 0) * (uVar287 < 0x100) * (char)uVar287 - (0xff < uVar287) & bStack_3c2 |
        ~bStack_3c2 & bStack_2a2;
-  *(byte *)((longlong)pVar208 + 7) =
+  *(byte *)((int64_t)pVar208 + 7) =
        (uVar358 != 0) * (uVar358 < 0x100) * (char)uVar358 - (0xff < uVar358) & bStack_3c1 |
        ~bStack_3c1 & bStack_2a1;
-  *(byte *)((longlong)pVar208 + 8) =
+  *(byte *)((int64_t)pVar208 + 8) =
        (uVar419 != 0) * (uVar419 < 0x100) * (char)uVar419 - (0xff < uVar419) & bStack_3c0 |
        ~bStack_3c0 & bStack_2a0;
-  *(byte *)((longlong)pVar208 + 9) =
+  *(byte *)((int64_t)pVar208 + 9) =
        (uVar360 != 0) * (uVar360 < 0x100) * (char)uVar360 - (0xff < uVar360) & bStack_3bf |
        ~bStack_3bf & bStack_29f;
-  *(byte *)((longlong)pVar208 + 10) =
+  *(byte *)((int64_t)pVar208 + 10) =
        (uVar423 != 0) * (uVar423 < 0x100) * (char)uVar423 - (0xff < uVar423) & bStack_3be |
        ~bStack_3be & bStack_29e;
-  *(byte *)((longlong)pVar208 + 0xb) =
+  *(byte *)((int64_t)pVar208 + 0xb) =
        (uVar476 != 0) * (uVar476 < 0x100) * (char)uVar476 - (0xff < uVar476) & bStack_3bd |
        ~bStack_3bd & bStack_29d;
-  *(byte *)((longlong)pVar208 + 0xc) =
+  *(byte *)((int64_t)pVar208 + 0xc) =
        (uVar275 != 0) * (uVar275 < 0x100) * (char)uVar275 - (0xff < uVar275) & bStack_3bc |
        ~bStack_3bc & bStack_29c;
-  *(byte *)((longlong)pVar208 + 0xd) =
+  *(byte *)((int64_t)pVar208 + 0xd) =
        (uVar278 != 0) * (uVar278 < 0x100) * (char)uVar278 - (0xff < uVar278) & bStack_3bb |
        ~bStack_3bb & bStack_29b;
-  *(byte *)((longlong)pVar208 + 0xe) =
+  *(byte *)((int64_t)pVar208 + 0xe) =
        (uVar290 != 0) * (uVar290 < 0x100) * (char)uVar290 - (0xff < uVar290) & bStack_3ba |
        ~bStack_3ba & bStack_29a;
-  *(byte *)((longlong)pVar208 + 0xf) =
+  *(byte *)((int64_t)pVar208 + 0xf) =
        (uVar371 != 0) * (uVar371 < 0x100) * (char)uVar371 - (0xff < uVar371) & bStack_3b9 |
        ~bStack_3b9 & bStack_299;
   return;

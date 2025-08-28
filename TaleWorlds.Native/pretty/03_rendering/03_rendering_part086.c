@@ -43,9 +43,9 @@ extern const void* render_system_temp_config;     // 字符串数据 (原 system
  * @param param_6 参数6
  * @param render_mode 渲染模式 (0-5)
  */
-void rendering_system_advanced_render_control(longlong render_context, longlong param_context, 
-                                           longlong* data_ptr, longlong param_4, 
-                                           longlong* param_5, longlong param_6, int render_mode)
+void rendering_system_advanced_render_control(int64_t render_context, int64_t param_context, 
+                                           int64_t* data_ptr, int64_t param_4, 
+                                           int64_t* param_5, int64_t param_6, int render_mode)
 {
     // 简化实现：高级渲染控制
     // 原实现包含复杂的渲染控制逻辑，这里只保留核心结构
@@ -94,24 +94,24 @@ void rendering_system_advanced_render_control(longlong render_context, longlong 
     
     // 设置渲染参数
     *(int*)render_resource = RENDERING_FLAG_BASE;  // 渲染状态标志
-    *(longlong*)((longlong)render_resource + 0x4706) = 0;  // 清空渲染队列
+    *(int64_t*)((int64_t)render_resource + 0x4706) = 0;  // 清空渲染队列
     
     // 设置纹理坐标
-    *(float*)((longlong)render_resource + 0x4708) = (float)*(ushort*)((longlong)param_5 + 0x32c);
-    *(float*)((longlong)render_resource + 0x470a) = (float)*(ushort*)((longlong)param_5 + 0x32e);
+    *(float*)((int64_t)render_resource + 0x4708) = (float)*(ushort*)((int64_t)param_5 + 0x32c);
+    *(float*)((int64_t)render_resource + 0x470a) = (float)*(ushort*)((int64_t)param_5 + 0x32e);
     
     // 设置渲染状态
-    *(int*)((longlong)render_resource + 0xd62) = *(ushort*)((longlong)param_5 + 0x32c);
-    *(int*)((longlong)render_resource + 0xd64) = *(ushort*)((longlong)param_5 + 0x32e);
+    *(int*)((int64_t)render_resource + 0xd62) = *(ushort*)((int64_t)param_5 + 0x32c);
+    *(int*)((int64_t)render_resource + 0xd64) = *(ushort*)((int64_t)param_5 + 0x32e);
     
     // 设置高级渲染参数
-    *(int*)((longlong)render_resource + 1) = RENDERING_FLAG_ENHANCED;  // 渲染模式标志
-    *(int*)((longlong)render_resource + 0x473c) = 0;   // 清空高级参数
+    *(int*)((int64_t)render_resource + 1) = RENDERING_FLAG_ENHANCED;  // 渲染模式标志
+    *(int*)((int64_t)render_resource + 0x473c) = 0;   // 清空高级参数
     
     // 设置渲染状态标志
-    *(char*)((longlong)render_resource + 0x11c37) = 1;
-    *(char*)((longlong)render_resource + 0x1bd9) |= 2;
-    *(char*)((longlong)render_resource + 0x6f6) |= 0x40;
+    *(char*)((int64_t)render_resource + 0x11c37) = 1;
+    *(char*)((int64_t)render_resource + 0x1bd9) |= 2;
+    *(char*)((int64_t)render_resource + 0x6f6) |= 0x40;
     
     // 注意：原实现包含更多的渲染控制逻辑
     // 这里只保留了基本的结构框架
@@ -124,35 +124,35 @@ void rendering_system_advanced_render_control(longlong render_context, longlong 
  * @param param_1 参数1
  * @return 资源指针
  */
-longlong* rendering_system_manage_resources(longlong param_1)
+int64_t* rendering_system_manage_resources(int64_t param_1)
 {
     // 简化实现：资源管理
     // 原实现包含复杂的资源分配和管理逻辑
     
     // 分配资源内存
-    longlong resource = (longlong)0x18062b1e0(system_memory_pool_ptr, 0x150, 8, 3, 0xfffffffffffffffe);
-    longlong* resource_ptr = (longlong*)0x18031ba60(resource, param_1);
+    int64_t resource = (int64_t)0x18062b1e0(system_memory_pool_ptr, 0x150, 8, 3, 0xfffffffffffffffe);
+    int64_t* resource_ptr = (int64_t*)0x18031ba60(resource, param_1);
     
     // 设置资源标志
     *(char*)(resource_ptr + 0x29) = 1;
     
     // 调用资源初始化函数
-    void (*init_func)(void*) = (void (*)(void*))(*(longlong*)resource_ptr + 0x28);
+    void (*init_func)(void*) = (void (*)(void*))(*(int64_t*)resource_ptr + 0x28);
     if (init_func) {
         init_func(resource_ptr);
     }
     
     // 管理资源数组
-    longlong* array_ptr = *(longlong**)(param_1 + 0x18);
-    longlong* array_start = *(longlong**)(param_1 + 0x10);
+    int64_t* array_ptr = *(int64_t**)(param_1 + 0x18);
+    int64_t* array_start = *(int64_t**)(param_1 + 0x10);
     
-    if (array_ptr < *(longlong**)(param_1 + 0x20)) {
+    if (array_ptr < *(int64_t**)(param_1 + 0x20)) {
         // 将资源添加到数组
-        *(longlong**)(param_1 + 0x18) = array_ptr + 1;
+        *(int64_t**)(param_1 + 0x18) = array_ptr + 1;
         *array_ptr = resource_ptr;
     } else {
         // 扩展数组容量
-        longlong array_size = (longlong)array_ptr - (longlong)array_start >> 3;
+        int64_t array_size = (int64_t)array_ptr - (int64_t)array_start >> 3;
         if (array_size == 0) {
             array_size = 1;
         } else {
@@ -160,7 +160,7 @@ longlong* rendering_system_manage_resources(longlong param_1)
         }
         
         // 分配新数组
-        longlong* new_array = (longlong*)0x18062b420(system_memory_pool_ptr, array_size * 8, *(char*)(param_1 + 0x28));
+        int64_t* new_array = (int64_t*)0x18062b420(system_memory_pool_ptr, array_size * 8, *(char*)(param_1 + 0x28));
         
         // 复制数据
         for (; array_start != array_ptr; array_start++) {
@@ -172,16 +172,16 @@ longlong* rendering_system_manage_resources(longlong param_1)
         *new_array = resource_ptr;
         
         // 清理旧数组
-        longlong* old_array = *(longlong**)(param_1 + 0x10);
-        if (old_array != (longlong*)0x0) {
+        int64_t* old_array = *(int64_t**)(param_1 + 0x10);
+        if (old_array != (int64_t*)0x0) {
             void (*cleanup_func)(void*) = (void (*)(void*))0x18064e900;
             cleanup_func(old_array);
         }
         
         // 更新数组指针
-        *(longlong**)(param_1 + 0x10) = new_array - array_size;
-        *(longlong**)(param_1 + 0x18) = new_array + 1;
-        *(longlong**)(param_1 + 0x20) = new_array;
+        *(int64_t**)(param_1 + 0x10) = new_array - array_size;
+        *(int64_t**)(param_1 + 0x18) = new_array + 1;
+        *(int64_t**)(param_1 + 0x20) = new_array;
     }
     
     // 设置资源状态
@@ -200,14 +200,14 @@ longlong* rendering_system_manage_resources(longlong param_1)
  * @param param_4 参数4
  * @return 材质指针
  */
-longlong* rendering_system_create_material(longlong param_1, longlong* param_2, int* param_3, longlong param_4)
+int64_t* rendering_system_create_material(int64_t param_1, int64_t* param_2, int* param_3, int64_t param_4)
 {
     // 简化实现：材质创建
     // 原实现包含复杂的材质创建和初始化逻辑
     
     // 创建材质对象
-    void (*create_func)(void*, void*, int, longlong, longlong, longlong) = 
-        (void (*)(void*, void*, int, longlong, longlong, longlong))0x180198890;
+    void (*create_func)(void*, void*, int, int64_t, int64_t, int64_t) = 
+        (void (*)(void*, void*, int, int64_t, int64_t, int64_t))0x180198890;
     create_func(*(void**)(param_1 + 0x38), param_2, 4, param_4, 0, 0xfffffffffffffffe);
     
     // 设置材质参数
@@ -231,12 +231,12 @@ longlong* rendering_system_create_material(longlong param_1, longlong* param_2, 
     set_func(*param_2, (void*)0x180a1ab38);
     
     // 更新材质状态
-    longlong material = *param_2;
+    int64_t material = *param_2;
     if ((*(uint*)(material + 0x2c4) & 2) == 0) {
         *(uint*)(material + 0x2c4) = *(uint*)(material + 0x2c4) | 2;
-        if ((*(longlong*)(material + 0x20) != 0) &&
-            (*(char*)(*(longlong*)(material + 0x20) + 0x60cb0) == '\0')) {
-            void (*update_func)(void*, longlong) = (void (*)(void*, longlong))0x1802ee720;
+        if ((*(int64_t*)(material + 0x20) != 0) &&
+            (*(char*)(*(int64_t*)(material + 0x20) + 0x60cb0) == '\0')) {
+            void (*update_func)(void*, int64_t) = (void (*)(void*, int64_t))0x1802ee720;
             update_func(material, 0);
         }
     }
@@ -247,12 +247,12 @@ longlong* rendering_system_create_material(longlong param_1, longlong* param_2, 
     name_func(&material_name, 0x12);
     
     // 应用材质设置
-    longlong result = (longlong)0x1803543b0(*param_2, &material_name, 1, 0, material_flag);
+    int64_t result = (int64_t)0x1803543b0(*param_2, &material_name, 1, 0, material_flag);
     
     // 设置材质标志
     if (*(char*)(result + 0x90) != '\0') {
         *(char*)(result + 0x90) = 1;
-        *(char*)(*(longlong*)(result + 0x70) + 0x148) = 1;
+        *(char*)(*(int64_t*)(result + 0x70) + 0x148) = 1;
     }
     
     return param_2;
@@ -268,19 +268,19 @@ longlong* rendering_system_create_material(longlong param_1, longlong* param_2, 
  * @param param_4 参数4
  * @return 特效指针
  */
-longlong* rendering_system_create_effect(longlong param_1, longlong* param_2, longlong param_3, longlong param_4)
+int64_t* rendering_system_create_effect(int64_t param_1, int64_t* param_2, int64_t param_3, int64_t param_4)
 {
     // 简化实现：特效创建
     // 原实现包含复杂的特效创建和参数设置逻辑
     
     // 创建特效对象
-    void (*create_func)(void*, void*, int, longlong, longlong) = 
-        (void (*)(void*, void*, int, longlong, longlong))0x180198890;
+    void (*create_func)(void*, void*, int, int64_t, int64_t) = 
+        (void (*)(void*, void*, int, int64_t, int64_t))0x180198890;
     create_func(*(void**)(param_1 + 0x38), param_2, 5, param_4, 0);
     
     // 设置特效参数
     int effect_flag = 1;
-    longlong effect = *param_2;
+    int64_t effect = *param_2;
     uint effect_param = *(uint*)(effect + 0x2ac);
     
     // 更新特效标志
@@ -293,15 +293,15 @@ longlong* rendering_system_create_effect(longlong param_1, longlong* param_2, lo
     apply_func2(effect, effect_param);
     
     // 计算特效位置
-    longlong render_context = *(longlong*)(param_1 + 0x38);
-    longlong effect_data = *(longlong*)(render_context + 0x60b80);
+    int64_t render_context = *(int64_t*)(param_1 + 0x38);
+    int64_t effect_data = *(int64_t*)(render_context + 0x60b80);
     
     float pos_x, pos_y;
     if (effect_data == 0) {
         // 使用默认位置
-        pos_x = (float)*(longlong*)(render_context + 0x464) + (float)*(longlong*)(render_context + 0x454);
-        pos_y = (float)((ulonglong)*(longlong*)(render_context + 0x464) >> 0x20) + 
-                (float)((ulonglong)*(longlong*)(render_context + 0x454) >> 0x20);
+        pos_x = (float)*(int64_t*)(render_context + 0x464) + (float)*(int64_t*)(render_context + 0x454);
+        pos_y = (float)((uint64_t)*(int64_t*)(render_context + 0x464) >> 0x20) + 
+                (float)((uint64_t)*(int64_t*)(render_context + 0x454) >> 0x20);
     } else {
         // 使用特效数据位置
         pos_x = *(float*)(effect_data + 0x20);
@@ -320,9 +320,9 @@ longlong* rendering_system_create_effect(longlong param_1, longlong* param_2, lo
     effect = *param_2;
     if ((*(uint*)(effect + 0x2c4) & 2) == 0) {
         *(uint*)(effect + 0x2c4) = *(uint*)(effect + 0x2c4) | 2;
-        if ((*(longlong*)(effect + 0x20) != 0) &&
-            (*(char*)(*(longlong*)(effect + 0x20) + 0x60cb0) == '\0')) {
-            void (*update_func)(void*, longlong) = (void (*)(void*, longlong))0x1802ee720;
+        if ((*(int64_t*)(effect + 0x20) != 0) &&
+            (*(char*)(*(int64_t*)(effect + 0x20) + 0x60cb0) == '\0')) {
+            void (*update_func)(void*, int64_t) = (void (*)(void*, int64_t))0x1802ee720;
             update_func(effect, 0);
         }
     }
@@ -333,12 +333,12 @@ longlong* rendering_system_create_effect(longlong param_1, longlong* param_2, lo
     name_func(&effect_name, 0x12);
     
     // 应用特效设置
-    longlong result = (longlong)0x1803543b0(*param_2, &effect_name, 1, 0, effect_flag, pos_x, distance);
+    int64_t result = (int64_t)0x1803543b0(*param_2, &effect_name, 1, 0, effect_flag, pos_x, distance);
     
     // 设置特效标志
-    if (*(longlong*)(render_context + 0x60b80) != 0) {
+    if (*(int64_t*)(render_context + 0x60b80) != 0) {
         *(char*)(result + 0x92) = 1;
-        *(char*)(*(longlong*)(result + 0x70) + 0x149) = 1;
+        *(char*)(*(int64_t*)(result + 0x70) + 0x149) = 1;
     }
     
     // 应用特效参数
@@ -349,15 +349,15 @@ longlong* rendering_system_create_effect(longlong param_1, longlong* param_2, lo
     // 设置特效状态
     if (*(char*)(result + 0x90) != '\0') {
         *(char*)(result + 0x90) = 0;
-        *(char*)(*(longlong*)(result + 0x70) + 0x148) = 0;
+        *(char*)(*(int64_t*)(result + 0x70) + 0x148) = 0;
     }
     
     *(char*)(result + 0x91) = 1;
-    *(char*)(*(longlong*)(result + 0x70) + 0x14a) = 1;
+    *(char*)(*(int64_t*)(result + 0x70) + 0x14a) = 1;
     
     // 检查特效状态
-    longlong* effect_array = *(longlong**)(param_1 + 0x10);
-    int array_size = (int)(*(longlong*)(param_1 + 0x18) - (longlong)effect_array >> 3);
+    int64_t* effect_array = *(int64_t**)(param_1 + 0x10);
+    int array_size = (int)(*(int64_t*)(param_1 + 0x18) - (int64_t)effect_array >> 3);
     
     if (array_size > 0) {
         for (int i = 0; i < array_size; i++) {
@@ -380,41 +380,41 @@ longlong* rendering_system_create_effect(longlong param_1, longlong* param_2, lo
  * @param param_1 参数1
  * @return 资源指针
  */
-longlong* rendering_system_get_resource(longlong param_1)
+int64_t* rendering_system_get_resource(int64_t param_1)
 {
     // 简化实现：资源获取
     // 原实现包含复杂的资源查找和管理逻辑
     
-    longlong* resource_ptr;
+    int64_t* resource_ptr;
     
     // 检查资源状态
-    if (*(char*)(*(longlong*)(param_1 + 0x38) + 0x331d) == '\0') {
+    if (*(char*)(*(int64_t*)(param_1 + 0x38) + 0x331d) == '\0') {
         if (*(int*)(param_1 + 0x30) == -1) {
             // 处理空资源情况
-            if (*(longlong**)(param_1 + 0x10) == *(longlong**)(param_1 + 0x18)) {
-                return *(longlong**)(*(longlong*)(param_1 + 0x38) + 0x31c0);
+            if (*(int64_t**)(param_1 + 0x10) == *(int64_t**)(param_1 + 0x18)) {
+                return *(int64_t**)(*(int64_t*)(param_1 + 0x38) + 0x31c0);
             }
             
             // 获取资源管理器
-            resource_ptr = *(longlong**)(**(longlong**)(param_1 + 0x10) + 0x100);
-            if (resource_ptr != (longlong*)0x0) {
-                void (*manager_func)(void*) = (void (*)(void*))(*(longlong*)resource_ptr + 0x28);
+            resource_ptr = *(int64_t**)(**(int64_t**)(param_1 + 0x10) + 0x100);
+            if (resource_ptr != (int64_t*)0x0) {
+                void (*manager_func)(void*) = (void (*)(void*))(*(int64_t*)resource_ptr + 0x28);
                 manager_func(resource_ptr);
             }
         } else {
             // 获取指定索引的资源
-            resource_ptr = *(longlong**)
-                (*(longlong*)
-                  (*(longlong*)(param_1 + 0x10) + (longlong)*(int*)(param_1 + 0x30) * 8) + 0x100);
-            if (resource_ptr != (longlong*)0x0) {
-                void (*resource_func)(void*) = (void (*)(void*))(*(longlong*)resource_ptr + 0x28);
+            resource_ptr = *(int64_t**)
+                (*(int64_t*)
+                  (*(int64_t*)(param_1 + 0x10) + (int64_t)*(int*)(param_1 + 0x30) * 8) + 0x100);
+            if (resource_ptr != (int64_t*)0x0) {
+                void (*resource_func)(void*) = (void (*)(void*))(*(int64_t*)resource_ptr + 0x28);
                 resource_func(resource_ptr);
             }
         }
         
         // 清理资源
-        if (resource_ptr != (longlong*)0x0) {
-            void (*cleanup_func)(void*) = (void (*)(void*))(*(longlong*)resource_ptr + 0x38);
+        if (resource_ptr != (int64_t*)0x0) {
+            void (*cleanup_func)(void*) = (void (*)(void*))(*(int64_t*)resource_ptr + 0x38);
             cleanup_func(resource_ptr);
         }
         
@@ -422,7 +422,7 @@ longlong* rendering_system_get_resource(longlong param_1)
     }
     
     // 返回默认资源
-    return *(longlong**)(*(longlong*)(param_1 + 0x38) + 0x31c0);
+    return *(int64_t**)(*(int64_t*)(param_1 + 0x38) + 0x31c0);
 }
 
 /**
@@ -431,49 +431,49 @@ longlong* rendering_system_get_resource(longlong param_1)
  * 
  * @param param_1 参数1
  */
-void rendering_system_cleanup_resources(longlong param_1)
+void rendering_system_cleanup_resources(int64_t param_1)
 {
     // 简化实现：资源清理
     // 原实现包含复杂的资源清理和内存管理逻辑
     
-    longlong* resource_array = (longlong*)(param_1 + 0x10);
-    longlong* array_end = *(longlong**)(param_1 + 0x18);
-    longlong* current_resource = (longlong*)*resource_array;
+    int64_t* resource_array = (int64_t*)(param_1 + 0x10);
+    int64_t* array_end = *(int64_t**)(param_1 + 0x18);
+    int64_t* current_resource = (int64_t*)*resource_array;
     
     // 清理资源数组
     if (current_resource != array_end) {
         do {
-            if ((longlong*)*current_resource != (longlong*)0x0) {
-                void (*cleanup_func)(void*) = (void (*)(void*))(*(longlong*)*current_resource + 0x38);
+            if ((int64_t*)*current_resource != (int64_t*)0x0) {
+                void (*cleanup_func)(void*) = (void (*)(void*))(*(int64_t*)*current_resource + 0x38);
                 cleanup_func((void*)*current_resource);
             }
             current_resource++;
         } while (current_resource != array_end);
-        current_resource = (longlong*)*resource_array;
+        current_resource = (int64_t*)*resource_array;
     }
     
     // 更新数组指针
-    *(longlong**)(param_1 + 0x18) = current_resource;
+    *(int64_t**)(param_1 + 0x18) = current_resource;
     
     // 清理其他资源
-    longlong** cleanup_pointers[] = {
-        (longlong**)(param_1 + 0x58),
-        (longlong**)(param_1 + 0x48),
-        (longlong**)(param_1 + 0x40)
+    int64_t** cleanup_pointers[] = {
+        (int64_t**)(param_1 + 0x58),
+        (int64_t**)(param_1 + 0x48),
+        (int64_t**)(param_1 + 0x40)
     };
     
     for (int i = 0; i < 3; i++) {
-        if (*cleanup_pointers[i] != (longlong*)0x0) {
+        if (*cleanup_pointers[i] != (int64_t*)0x0) {
             void (*cleanup_func)(void*) = (void (*)(void**)(**cleanup_pointers[i] + 0x38));
             cleanup_func(*cleanup_pointers[i]);
         }
     }
     
     // 最终清理
-    array_end = *(longlong**)(param_1 + 0x18);
-    for (current_resource = (longlong*)*resource_array; current_resource != array_end; current_resource++) {
-        if ((longlong*)*current_resource != (longlong*)0x0) {
-            void (*cleanup_func)(void*) = (void (*)(void*))(*(longlong*)*current_resource + 0x38);
+    array_end = *(int64_t**)(param_1 + 0x18);
+    for (current_resource = (int64_t*)*resource_array; current_resource != array_end; current_resource++) {
+        if ((int64_t*)*current_resource != (int64_t*)0x0) {
+            void (*cleanup_func)(void*) = (void (*)(void*))(*(int64_t*)*current_resource + 0x38);
             cleanup_func((void*)*current_resource);
         }
     }
@@ -489,21 +489,21 @@ void rendering_system_cleanup_resources(longlong param_1)
 }
 
 // 函数别名定义 - 保持与原函数名的兼容性
-void FUN_180318670(longlong param_1, longlong param_2, longlong* param_3, longlong* param_4, 
-                 longlong* param_5, longlong param_6, int param_7) 
+void FUN_180318670(int64_t param_1, int64_t param_2, int64_t* param_3, int64_t* param_4, 
+                 int64_t* param_5, int64_t param_6, int param_7) 
 __attribute__((alias("rendering_system_advanced_render_control")));
 
-longlong* FUN_1803191b0(longlong param_1) 
+int64_t* FUN_1803191b0(int64_t param_1) 
 __attribute__((alias("rendering_system_manage_resources")));
 
-longlong* FUN_180319320(longlong param_1, longlong* param_2, int* param_3, longlong param_4) 
+int64_t* FUN_180319320(int64_t param_1, int64_t* param_2, int* param_3, int64_t param_4) 
 __attribute__((alias("rendering_system_create_material")));
 
-longlong* FUN_180319490(longlong param_1, longlong* param_2, longlong param_3, longlong param_4) 
+int64_t* FUN_180319490(int64_t param_1, int64_t* param_2, int64_t param_3, int64_t param_4) 
 __attribute__((alias("rendering_system_create_effect")));
 
-longlong* FUN_180319780(longlong param_1) 
+int64_t* FUN_180319780(int64_t param_1) 
 __attribute__((alias("rendering_system_get_resource")));
 
-void FUN_180319840(longlong param_1) 
+void FUN_180319840(int64_t param_1) 
 __attribute__((alias("rendering_system_cleanup_resources")));

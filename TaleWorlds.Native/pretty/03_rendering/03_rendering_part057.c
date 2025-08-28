@@ -97,7 +97,7 @@ void rendering_system_advanced_texture_mapper(
     uint64_t param_1,           // 渲染上下文指针
     uint64_t param_2,           // 纹理映射参数
     uint param_3,                  // 纹理坐标数量
-    longlong param_4,              // 纹理数据偏移量
+    int64_t param_4,              // 纹理数据偏移量
     uint64_t *param_5,          // 输出数据缓冲区指针
     code *param_6,                 // 数据处理回调函数
     uint64_t *param_7,          // 输入数据缓冲区指针
@@ -108,22 +108,22 @@ void rendering_system_advanced_texture_mapper(
 ) {
     // 局部变量声明
     float *pfVar1;                 // 浮点指针变量
-    longlong lVar2;                // 长整型变量
+    int64_t lVar2;                // 长整型变量
     uint uVar3;                   // 无符号整型变量
     char cVar4;                   // 字符型变量
     int32_t uVar5;             // 未定义4字节变量
     uint uVar6;                   // 无符号整型变量
     char *pcVar7;                 // 字符指针变量
     int iVar8;                    // 整型变量
-    longlong lVar9;                // 长整型变量
+    int64_t lVar9;                // 长整型变量
     uint64_t *puVar10;          // 未定义8字节指针变量
-    longlong lVar11;               // 长整型变量
-    ulonglong uVar12;             // 无符号长整型变量
+    int64_t lVar11;               // 长整型变量
+    uint64_t uVar12;             // 无符号长整型变量
     uint uVar13;                  // 无符号整型变量
     uint64_t *puVar14;          // 未定义8字节指针变量
-    longlong lVar15;               // 长整型变量
-    ulonglong uVar16;             // 无符号长整型变量
-    longlong lVar17;               // 长整型变量
+    int64_t lVar15;               // 长整型变量
+    uint64_t uVar16;             // 无符号长整型变量
+    int64_t lVar17;               // 长整型变量
     float fVar18;                 // 浮点变量
     float fVar19;                 // 浮点变量
     float fVar20;                 // 浮点变量
@@ -138,7 +138,7 @@ void rendering_system_advanced_texture_mapper(
     // 栈变量声明
     uint64_t uStackX_10;         // 栈变量
     uint uStackX_18;              // 栈变量
-    longlong lStackX_20;          // 栈变量
+    int64_t lStackX_20;          // 栈变量
     uint64_t in_stack_fffffffffffffe98; // 栈变量
     int32_t uVar29;            // 栈变量
     uint64_t uVar28;            // 栈变量
@@ -151,7 +151,7 @@ void rendering_system_advanced_texture_mapper(
     uint uStack_12c;              // 栈变量
     float fStack_128;             // 栈变量
     float fStack_124;             // 栈变量
-    longlong lStack_120;          // 栈变量
+    int64_t lStack_120;          // 栈变量
     float fStack_118;             // 栈变量
     float fStack_114;             // 栈变量
     float fStack_110;             // 栈变量
@@ -162,16 +162,16 @@ void rendering_system_advanced_texture_mapper(
     float fStack_fc;              // 栈变量
     float fStack_f8;              // 栈变量
     float fStack_f4;              // 栈变量
-    longlong lStack_f0;           // 栈变量
+    int64_t lStack_f0;           // 栈变量
     
     // 初始化渲染系统上下文
     lVar9 = SYSTEM_DATA_MANAGER_A;
-    lVar17 = (longlong)(int)param_3;
+    lVar17 = (int64_t)(int)param_3;
     lStack_120 = SYSTEM_DATA_MANAGER_A;
     
     // 设置渲染状态标志
-    *(int8_t *)(*(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1af8) + 0xb1) = 1;
-    lStack_f0 = *(longlong *)(lVar9 + 0x1af8);
+    *(int8_t *)(*(int64_t *)(SYSTEM_DATA_MANAGER_A + 0x1af8) + 0xb1) = 1;
+    lStack_f0 = *(int64_t *)(lVar9 + 0x1af8);
     
     // 检查渲染状态
     if (*(char *)(lStack_f0 + 0xb4) != '\0') {
@@ -197,7 +197,7 @@ void rendering_system_advanced_texture_mapper(
         fVar20 = 0.0;
     } else {
         in_stack_fffffffffffffe98 =
-             CONCAT44((int)((ulonglong)in_stack_fffffffffffffe98 >> 0x20), 0xbf800000);
+             CONCAT44((int)((uint64_t)in_stack_fffffffffffffe98 >> 0x20), 0xbf800000);
         FUN_180297340(pfVar1, &uStackX_10, fVar22, 0x7f7fffff, in_stack_fffffffffffffe98, &system_buffer_ptr,
                       pcVar7, 0);
         fVar20 = (float)uStackX_10;
@@ -249,7 +249,7 @@ void rendering_system_advanced_texture_mapper(
     
     // 执行渲染操作
     func_0x000180124080(&fStack_128, *(int32_t *)(lVar15 + 0x1660));
-    lVar11 = *(longlong *)(lVar9 + 0x1af8);
+    lVar11 = *(int64_t *)(lVar9 + 0x1af8);
     *(uint64_t *)(lVar11 + 0x144) = 0;
     *(float *)(lVar11 + 0x14c) = fVar18;
     *(float *)(lVar11 + 0x150) = fVar22;
@@ -257,7 +257,7 @@ void rendering_system_advanced_texture_mapper(
     *(float *)(lVar11 + 0x158) = param_11._4_4_;
     
     // 渲染状态验证
-    lVar2 = *(longlong *)(lVar9 + 0x1af8);
+    lVar2 = *(int64_t *)(lVar9 + 0x1af8);
     uStack_148 = CONCAT44(fVar22, fVar18);
     if ((((param_11._4_4_ < *(float *)(lVar2 + 0x22c) || param_11._4_4_ == *(float *)(lVar2 + 0x22c))
          || (*(float *)(lVar2 + 0x234) <= fVar22)) ||
@@ -270,7 +270,7 @@ void rendering_system_advanced_texture_mapper(
     fStack_140 = fVar20;
     fStack_13c = param_11._4_4_;
     cVar4 = FUN_180128040(&uStack_148, &fStack_140, 1);
-    uVar29 = (int32_t)((ulonglong)in_stack_fffffffffffffe98 >> 0x20);
+    uVar29 = (int32_t)((uint64_t)in_stack_fffffffffffffe98 >> 0x20);
     if (cVar4 != '\0') {
         *(uint *)(lVar11 + 0x148) = *(uint *)(lVar11 + 0x148) | 1;
     }
@@ -296,7 +296,7 @@ void rendering_system_advanced_texture_mapper(
                         iVar8 = iVar8 + 1;
                     } while (iVar8 < param_8);
                 }
-                uVar29 = (int32_t)((ulonglong)in_stack_fffffffffffffe98 >> 0x20);
+                uVar29 = (int32_t)((uint64_t)in_stack_fffffffffffffe98 >> 0x20);
                 lVar11 = lVar11 + -1;
                 lVar9 = SYSTEM_DATA_MANAGER_A;
                 puVar14 = puVar14 + 1;
@@ -321,7 +321,7 @@ void rendering_system_advanced_texture_mapper(
     
     // 处理渲染数据
     iStack_138 = -1;
-    lVar9 = *(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1af8);
+    lVar9 = *(int64_t *)(SYSTEM_DATA_MANAGER_A + 0x1af8);
     iVar8 = param_8;
     if ((int)(float)param_11 < param_8) {
         iVar8 = (int)(float)param_11;
@@ -332,19 +332,19 @@ void rendering_system_advanced_texture_mapper(
     // 渲染状态检查
     if ((*(char *)(SYSTEM_DATA_MANAGER_A + 0x1d07) == '\0') || (*(char *)(SYSTEM_DATA_MANAGER_A + 0x1d06) != '\0')) {
         if ((((((*(byte *)(lVar9 + 0x148) & 1) == 0) ||
-              (lVar11 = *(longlong *)(lVar9 + 0x3a0), *(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1b08) != lVar11))
+              (lVar11 = *(int64_t *)(lVar9 + 0x3a0), *(int64_t *)(SYSTEM_DATA_MANAGER_A + 0x1b08) != lVar11))
              || ((((iVar8 = *(int *)(SYSTEM_DATA_MANAGER_A + 0x1b2c), iVar8 != 0 &&
                    (iVar8 != *(int *)(lVar9 + 0x144))) && (*(char *)(SYSTEM_DATA_MANAGER_A + 0x1b3d) == '\0'))
                   && (iVar8 != *(int *)(lVar9 + 0x84))))) ||
-            ((((*(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1c98) != 0 &&
-               (lVar15 = *(longlong *)(*(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1c98) + 0x3a0), lVar15 != 0)) &&
+            ((((*(int64_t *)(SYSTEM_DATA_MANAGER_A + 0x1c98) != 0 &&
+               (lVar15 = *(int64_t *)(*(int64_t *)(SYSTEM_DATA_MANAGER_A + 0x1c98) + 0x3a0), lVar15 != 0)) &&
               (*(char *)(lVar15 + 0xb0) != '\0')) &&
              ((lVar15 != lVar11 &&
               (((*(uint *)(lVar15 + 0xc) >> 0x1b & 1) != 0 ||
                ((*(uint *)(lVar15 + 0xc) >> 0x1a & 1) != 0)))))))) ||
-           (((*(longlong *)(lVar9 + 0x28) != *(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1c80) &&
-             ((*(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1b78) == 0 ||
-              (lVar11 != *(longlong *)(*(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1b78) + 0x3a0))))) ||
+           (((*(int64_t *)(lVar9 + 0x28) != *(int64_t *)(SYSTEM_DATA_MANAGER_A + 0x1c80) &&
+             ((*(int64_t *)(SYSTEM_DATA_MANAGER_A + 0x1b78) == 0 ||
+              (lVar11 != *(int64_t *)(*(int64_t *)(SYSTEM_DATA_MANAGER_A + 0x1b78) + 0x3a0))))) ||
             ((*(byte *)(lVar9 + 0x1a8) & 4) != 0)))) goto LAB_180299abc;
         
         if ((*(int *)(lVar9 + 0x144) == *(int *)(lVar9 + 8)) ||
@@ -380,17 +380,17 @@ void rendering_system_advanced_texture_mapper(
     
     // 处理渲染数据
     if (0 < lVar17) {
-        lVar9 = lStackX_20 - (longlong)param_7;
+        lVar9 = lStackX_20 - (int64_t)param_7;
         puVar10 = param_7;
         puVar14 = param_5;
         lStackX_20 = lVar9;
         do {
-            fVar22 = (float)(*param_6)(*puVar10, (longlong)iVar8 % (longlong)param_8 & 0xffffffff);
-            fVar20 = (float)(*param_6)(*puVar10, (longlong)(iVar8 + 1) % (longlong)param_8 & 0xffffffff);
+            fVar22 = (float)(*param_6)(*puVar10, (int64_t)iVar8 % (int64_t)param_8 & 0xffffffff);
+            fVar20 = (float)(*param_6)(*puVar10, (int64_t)(iVar8 + 1) % (int64_t)param_8 & 0xffffffff);
             uStack_148 = *puVar14;
             fStack_140 = *(float *)(puVar14 + 1);
-            fStack_13c = *(float *)((longlong)puVar14 + 0xc);
-            uVar28 = *(uint64_t *)(lVar9 + (longlong)puVar10);
+            fStack_13c = *(float *)((int64_t)puVar14 + 0xc);
+            uVar28 = *(uint64_t *)(lVar9 + (int64_t)puVar10);
             FUN_18010f0d0(&uStack_148, &unknown_var_744_ptr, (double)fVar22, (double)fVar20, uVar28);
             puVar14 = puVar14 + 2;
             puVar10 = puVar10 + 1;
@@ -406,7 +406,7 @@ void rendering_system_advanced_texture_mapper(
 LAB_180299abc:
     // 最终渲染处理
     if (0 < (int)param_3) {
-        uVar16 = (ulonglong)param_3;
+        uVar16 = (uint64_t)param_3;
         fVar22 = 1.0 / (param_10 - param_9);
         fStack_128 = 1.0 / (float)(int)uVar13;
         fStack_130 = fVar22;
@@ -467,13 +467,13 @@ LAB_180299abc:
             if (0 < (int)uVar13) {
                 fVar23 = fStack_108 - (float)uStackX_10;
                 fVar25 = fStack_104 - fVar19;
-                uVar12 = (ulonglong)uVar13;
+                uVar12 = (uint64_t)uVar13;
                 do {
-                    uVar29 = (int32_t)((ulonglong)uVar28 >> 0x20);
+                    uVar29 = (int32_t)((uint64_t)uVar28 >> 0x20);
                     fVar22 = (float)(param_8 + -1) * fVar18;
                     fVar18 = fVar18 + fStack_128;
                     iVar8 = (int)(fVar22 + 0.5);
-                    fVar22 = (float)(*param_6)(*param_7, (longlong)(iVar8 + 1) % (longlong)param_8 & 0xffffffff);
+                    fVar22 = (float)(*param_6)(*param_7, (int64_t)(iVar8 + 1) % (int64_t)param_8 & 0xffffffff);
                     fVar22 = (fVar22 - param_9) * fStack_130;
                     if (0.0 <= fVar22) {
                         if (1.0 <= fVar22) {
@@ -535,9 +535,9 @@ LAB_180299abc:
 void rendering_system_advanced_coordinate_transformer(void) {
     // 局部变量声明
     float *pfVar1;                 // 浮点指针变量
-    longlong lVar2;                // 长整型变量
+    int64_t lVar2;                // 长整型变量
     code *pcVar3;                  // 代码指针变量
-    longlong lVar4;                // 长整型变量
+    int64_t lVar4;                // 长整型变量
     uint64_t uVar5;             // 未定义8字节变量
     char cVar6;                   // 字符型变量
     int32_t uVar7;             // 未定义4字节变量
@@ -545,17 +545,17 @@ void rendering_system_advanced_coordinate_transformer(void) {
     uint uVar9;                   // 无符号整型变量
     char *pcVar10;                // 字符指针变量
     int iVar11;                   // 整型变量
-    longlong unaff_RBX;           // 未使用的寄存器变量
+    int64_t unaff_RBX;           // 未使用的寄存器变量
     uint64_t *puVar12;          // 未定义8字节指针变量
-    longlong unaff_RBP;           // 未使用的寄存器变量
-    ulonglong uVar13;             // 无符号长整型变量
+    int64_t unaff_RBP;           // 未使用的寄存器变量
+    uint64_t uVar13;             // 无符号长整型变量
     uint uVar14;                  // 无符号整型变量
     int iVar15;                   // 整型变量
     uint64_t *puVar16;          // 未定义8字节指针变量
-    longlong in_R9;               // 输入寄存器变量
-    longlong lVar17;               // 长整型变量
-    longlong in_R11;              // 输入寄存器变量
-    ulonglong unaff_R14;          // 未使用的寄存器变量
+    int64_t in_R9;               // 输入寄存器变量
+    int64_t lVar17;               // 长整型变量
+    int64_t in_R11;              // 输入寄存器变量
+    uint64_t unaff_R14;          // 未使用的寄存器变量
     int iVar18;                   // 整型变量
     float fVar19;                 // 浮点变量
     float fVar20;                 // 浮点变量
@@ -570,7 +570,7 @@ void rendering_system_advanced_coordinate_transformer(void) {
     // 栈变量声明
     uint64_t in_stack_00000020; // 栈变量
     uint64_t uVar28;            // 栈变量
-    ulonglong in_stack_00000040;  // 栈变量
+    uint64_t in_stack_00000040;  // 栈变量
     float in_stack_00000048;      // 栈变量
     float fStack000000000000004c; // 栈变量
     int iStack0000000000000050;   // 栈变量
@@ -579,7 +579,7 @@ void rendering_system_advanced_coordinate_transformer(void) {
     uint uStack000000000000005c; // 栈变量
     float in_stack_00000060;      // 栈变量
     float fStack0000000000000064; // 栈变量
-    longlong in_stack_00000068;  // 栈变量
+    int64_t in_stack_00000068;  // 栈变量
     float in_stack_00000070;      // 栈变量
     float fStack0000000000000074; // 栈变量
     float in_stack_00000078;      // 栈变量
@@ -600,14 +600,14 @@ void rendering_system_advanced_coordinate_transformer(void) {
     if (pcVar10 == "") {
         fVar22 = 0.0;
     } else {
-        in_stack_00000020 = CONCAT44((int)((ulonglong)in_stack_00000020 >> 0x20), 0xbf800000);
+        in_stack_00000020 = CONCAT44((int)((uint64_t)in_stack_00000020 >> 0x20), 0xbf800000);
         FUN_180297340(pfVar1, unaff_RBP + 0x98, fVar24, 0x7f7fffff, in_stack_00000020);
         fVar22 = *(float *)(unaff_RBP + 0x98);
         if (0.0 < fVar22) {
             fVar22 = fVar22 - fVar24 / *pfVar1;
         }
         fVar24 = *(float *)(unaff_RBP + 0x9c);
-        in_R9 = *(longlong *)(unaff_RBP + -0x68);
+        in_R9 = *(int64_t *)(unaff_RBP + -0x68);
         fVar22 = (float)(int)(fVar22 + 0.95);
         in_R11 = unaff_RBX;
     }
@@ -653,7 +653,7 @@ void rendering_system_advanced_coordinate_transformer(void) {
     
     // 执行坐标变换
     func_0x000180124080(&stack0x00000060, *(int32_t *)(in_R11 + 0x1660));
-    lVar17 = *(longlong *)(unaff_RBX + 0x1af8);
+    lVar17 = *(int64_t *)(unaff_RBX + 0x1af8);
     *(uint64_t *)(lVar17 + 0x144) = 0;
     *(float *)(lVar17 + 0x14c) = fVar23;
     *(float *)(lVar17 + 0x150) = fVar24;
@@ -661,7 +661,7 @@ void rendering_system_advanced_coordinate_transformer(void) {
     *(float *)(lVar17 + 0x158) = fVar21;
     
     // 变换参数验证
-    lVar2 = *(longlong *)(unaff_RBX + 0x1af8);
+    lVar2 = *(int64_t *)(unaff_RBX + 0x1af8);
     in_stack_00000040 = CONCAT44(fVar24, fVar23);
     if ((((fVar21 < *(float *)(lVar2 + 0x22c) || fVar21 == *(float *)(lVar2 + 0x22c)) ||
          (*(float *)(lVar2 + 0x234) <= fVar24)) ||
@@ -674,7 +674,7 @@ void rendering_system_advanced_coordinate_transformer(void) {
     in_stack_00000048 = fVar22;
     fStack000000000000004c = fVar21;
     cVar6 = FUN_180128040(&stack0x00000040, &stack0x00000048, 1);
-    uVar8 = (int32_t)((ulonglong)in_stack_00000020 >> 0x20);
+    uVar8 = (int32_t)((uint64_t)in_stack_00000020 >> 0x20);
     if (cVar6 != '\0') {
         *(uint *)(lVar17 + 0x148) = *(uint *)(lVar17 + 0x148) | 1;
     }
@@ -704,7 +704,7 @@ void rendering_system_advanced_coordinate_transformer(void) {
                         iVar11 = iVar11 + 1;
                     } while (iVar11 < iVar18);
                 }
-                uVar8 = (int32_t)((ulonglong)in_stack_00000020 >> 0x20);
+                uVar8 = (int32_t)((uint64_t)in_stack_00000020 >> 0x20);
                 puVar16 = puVar16 + 1;
                 uVar13 = uVar13 - 1;
                 unaff_RBX = SYSTEM_DATA_MANAGER_A;
@@ -732,7 +732,7 @@ void rendering_system_advanced_coordinate_transformer(void) {
     // 处理变换数据
     iVar11 = iVar18 + -1;
     iStack0000000000000050 = -1;
-    lVar17 = *(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1af8);
+    lVar17 = *(int64_t *)(SYSTEM_DATA_MANAGER_A + 0x1af8);
     iVar15 = iVar18;
     if ((int)fVar19 < iVar18) {
         iVar15 = (int)fVar19;
@@ -743,19 +743,19 @@ void rendering_system_advanced_coordinate_transformer(void) {
     // 变换状态检查
     if ((*(char *)(SYSTEM_DATA_MANAGER_A + 0x1d07) == '\0') || (*(char *)(SYSTEM_DATA_MANAGER_A + 0x1d06) != '\0')) {
         if ((((((*(byte *)(lVar17 + 0x148) & 1) == 0) ||
-              (lVar2 = *(longlong *)(lVar17 + 0x3a0), *(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1b08) != lVar2))
+              (lVar2 = *(int64_t *)(lVar17 + 0x3a0), *(int64_t *)(SYSTEM_DATA_MANAGER_A + 0x1b08) != lVar2))
              || ((((iVar15 = *(int *)(SYSTEM_DATA_MANAGER_A + 0x1b2c), iVar15 != 0 &&
                    (iVar15 != *(int *)(lVar17 + 0x144))) && (*(char *)(SYSTEM_DATA_MANAGER_A + 0x1b3d) == '\0')
                   ) && (iVar15 != *(int *)(lVar17 + 0x84))))) ||
-            ((((*(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1c98) != 0 &&
-               (lVar4 = *(longlong *)(*(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1c98) + 0x3a0), lVar4 != 0)) &&
+            ((((*(int64_t *)(SYSTEM_DATA_MANAGER_A + 0x1c98) != 0 &&
+               (lVar4 = *(int64_t *)(*(int64_t *)(SYSTEM_DATA_MANAGER_A + 0x1c98) + 0x3a0), lVar4 != 0)) &&
               (*(char *)(lVar4 + 0xb0) != '\0')) &&
              ((lVar4 != lVar2 &&
               (((*(uint *)(lVar4 + 0xc) >> 0x1b & 1) != 0 || ((*(uint *)(lVar4 + 0xc) >> 0x1a & 1) != 0)
                ))))))) ||
-           (((*(longlong *)(lVar17 + 0x28) != *(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1c80) &&
-             ((*(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1b78) == 0 ||
-              (lVar2 != *(longlong *)(*(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1b78) + 0x3a0))))) ||
+           (((*(int64_t *)(lVar17 + 0x28) != *(int64_t *)(SYSTEM_DATA_MANAGER_A + 0x1c80) &&
+             ((*(int64_t *)(SYSTEM_DATA_MANAGER_A + 0x1b78) == 0 ||
+              (lVar2 != *(int64_t *)(*(int64_t *)(SYSTEM_DATA_MANAGER_A + 0x1b78) + 0x3a0))))) ||
             ((*(byte *)(lVar17 + 0x1a8) & 4) != 0)))) goto LAB_180299abc;
         
         if ((*(int *)(lVar17 + 0x144) == *(int)(lVar17 + 8)) ||
@@ -790,18 +790,18 @@ void rendering_system_advanced_coordinate_transformer(void) {
     FUN_18010f010(&unknown_var_728_ptr, iVar11);
     
     // 处理变换数据
-    if (0 < (longlong)unaff_R14) {
+    if (0 < (int64_t)unaff_R14) {
         puVar12 = *(uint64_t **)(unaff_RBP + 0xc0);
-        *(longlong *)(unaff_RBP + 0xa8) = *(longlong *)(unaff_RBP + 0xa8) - (longlong)puVar12;
-        lVar17 = *(longlong *)(unaff_RBP + 0xa8);
+        *(int64_t *)(unaff_RBP + 0xa8) = *(int64_t *)(unaff_RBP + 0xa8) - (int64_t)puVar12;
+        lVar17 = *(int64_t *)(unaff_RBP + 0xa8);
         puVar16 = *(uint64_t **)(unaff_RBP + 0xb0);
         do {
-            fVar19 = (float)(*pcVar3)(*puVar12, (longlong)iVar11 % (longlong)iVar18 & 0xffffffff);
-            fVar21 = (float)(*pcVar3)(*puVar12, (longlong)(iVar11 + 1) % (longlong)iVar18 & 0xffffffff);
+            fVar19 = (float)(*pcVar3)(*puVar12, (int64_t)iVar11 % (int64_t)iVar18 & 0xffffffff);
+            fVar21 = (float)(*pcVar3)(*puVar12, (int64_t)(iVar11 + 1) % (int64_t)iVar18 & 0xffffffff);
             in_stack_00000040 = *puVar16;
             in_stack_00000048 = *(float *)(puVar16 + 1);
-            fStack000000000000004c = *(float *)((longlong)puVar16 + 0xc);
-            uVar28 = *(uint64_t *)(lVar17 + (longlong)puVar12);
+            fStack000000000000004c = *(float *)((int64_t)puVar16 + 0xc);
+            uVar28 = *(uint64_t *)(lVar17 + (int64_t)puVar12);
             FUN_18010f0d0(&stack0x00000040, &unknown_var_744_ptr, (double)fVar19, (double)fVar21, uVar28);
             puVar16 = puVar16 + 2;
             puVar12 = puVar12 + 1;
@@ -813,7 +813,7 @@ void rendering_system_advanced_coordinate_transformer(void) {
     
     // 清理变换状态
     FUN_18012cfe0();
-    unaff_R14 = (ulonglong)*(uint *)(unaff_RBP + 0xa0);
+    unaff_R14 = (uint64_t)*(uint *)(unaff_RBP + 0xa0);
     iVar11 = iVar18 + -1;
     
 LAB_180299abc:
@@ -836,7 +836,7 @@ LAB_180299abc:
             } else {
                 fVar19 = 0.0;
             }
-            lVar17 = *(longlong *)(unaff_RBP + 0xb0);
+            lVar17 = *(int64_t *)(unaff_RBP + 0xb0);
             fStack0000000000000054 = 0.0;
             fVar19 = 1.0 - fVar19;
             uVar8 = func_0x000180121e20(lVar17);
@@ -882,13 +882,13 @@ LAB_180299abc:
                 fVar24 = *(float *)(unaff_RBP + -0x80) - *(float *)(unaff_RBP + 0x98);
                 fVar22 = *(float *)(unaff_RBP + -0x7c) - *(float *)(unaff_RBP + 0x90);
                 uVar9 = *(uint *)(unaff_RBP + -0x78);
-                uVar13 = (ulonglong)uVar14;
+                uVar13 = (uint64_t)uVar14;
                 do {
-                    uVar8 = (int32_t)((ulonglong)uVar28 >> 0x20);
+                    uVar8 = (int32_t)((uint64_t)uVar28 >> 0x20);
                     fVar27 = (float)iVar11 * fVar21;
                     fVar21 = fVar21 + in_stack_00000060;
                     iVar15 = (int)(fVar27 + 0.5);
-                    fVar27 = (float)(*pcVar3)(*puVar16, (longlong)(iVar15 + 1) % (longlong)iVar18 & 0xffffffff);
+                    fVar27 = (float)(*pcVar3)(*puVar16, (int64_t)(iVar15 + 1) % (int64_t)iVar18 & 0xffffffff);
                     fVar27 = (fVar27 - *(float *)(unaff_RBP + 0xd0)) * in_stack_00000058;
                     if (0.0 <= fVar27) {
                         if (1.0 <= fVar27) {
@@ -907,7 +907,7 @@ LAB_180299abc:
                                  (int)(fVar20 * 255.0 + 0.5) << 0x10;
                     }
                     fStack0000000000000074 = fStack0000000000000074 + *(float *)(unaff_RBP + 0x90);
-                    uVar5 = *(uint64_t *)(*(longlong *)(unaff_RBP + -0x68) + 0x2e8);
+                    uVar5 = *(uint64_t *)(*(int64_t *)(unaff_RBP + -0x68) + 0x2e8);
                     in_stack_00000070 = fStack0000000000000054 * fVar24 + *(float *)(unaff_RBP + 0x98);
                     *(float *)(unaff_RBP + -0x6c) = fVar19 * fVar22 + *(float *)(unaff_RBP + 0x90);
                     *(float *)(unaff_RBP + -0x70) = fVar21 * fVar24 + *(float *)(unaff_RBP + 0x98);
@@ -916,14 +916,14 @@ LAB_180299abc:
                     fStack0000000000000054 = fVar21;
                 } while (uVar13 != 0);
                 fVar24 = *(float *)(unaff_RBP + 0xd0);
-                lVar17 = *(longlong *)(unaff_RBP + 0xb0);
+                lVar17 = *(int64_t *)(unaff_RBP + 0xb0);
                 uVar13 = in_stack_00000040;
                 fVar22 = in_stack_00000058;
                 uVar14 = uStack000000000000005c;
             }
             iVar11 = iVar18 + -1;
             puVar16 = puVar16 + 1;
-            *(longlong *)(unaff_RBP + 0xb0) = lVar17 + 0x10;
+            *(int64_t *)(unaff_RBP + 0xb0) = lVar17 + 0x10;
             uVar13 = uVar13 - 1;
         } while (uVar13 != 0);
         fVar26 = *(float *)(unaff_RBP + -0x74);

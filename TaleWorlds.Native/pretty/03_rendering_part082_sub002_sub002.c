@@ -2,8 +2,8 @@
 
 // 03_rendering_part082_sub002_sub002.c - 1 个函数
 
-// 函数: void FUN_180310b50(longlong param_1)
-void FUN_180310b50(longlong param_1)
+// 函数: void FUN_180310b50(int64_t param_1)
+void FUN_180310b50(int64_t param_1)
 
 {
   (**(code **)(param_1 + 0x60))(0,FUN_1804354c0);

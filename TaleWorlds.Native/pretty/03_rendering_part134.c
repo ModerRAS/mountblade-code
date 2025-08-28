@@ -75,12 +75,12 @@ typedef struct {
 // 参数：param_1 - 场景对象指针
 // 返回值：无
 // =============================================================================
-void FUN_180348d90(longlong param_1)
+void FUN_180348d90(int64_t param_1)
 
 {
-  longlong lVar1;
+  int64_t lVar1;
   void *puVar2;
-  longlong lStackX_8;
+  int64_t lStackX_8;
   int32_t uStack_68;
   int32_t uStack_64;
   int32_t uStack_60;
@@ -98,7 +98,7 @@ void FUN_180348d90(longlong param_1)
   int32_t uStack_18;
   
   // 获取场景对象的渲染上下文
-  lVar1 = *(longlong *)(param_1 + 0x18);
+  lVar1 = *(int64_t *)(param_1 + 0x18);
   lStackX_8 = 0;
   uStack_18 = 0;
   uStack_48 = 0;
@@ -147,26 +147,26 @@ void FUN_180348d90(longlong param_1)
 // 参数：param_1 - 标志位，param_2 - 渲染对象，param_3 - 结果指针，param_4 - 边界数据
 // 返回值：无
 // =============================================================================
-void FUN_180348e60(uint64_t param_1,longlong param_2,longlong *param_3,uint64_t *param_4)
+void FUN_180348e60(uint64_t param_1,int64_t param_2,int64_t *param_3,uint64_t *param_4)
 
 {
-  longlong lVar1;
+  int64_t lVar1;
   uint64_t uVar2;
-  longlong *plVar3;
+  int64_t *plVar3;
   char cVar4;
   uint64_t *puVar5;
-  longlong *plVar6;
+  int64_t *plVar6;
   uint uVar7;
-  ulonglong uVar8;
-  ulonglong uVar9;
+  uint64_t uVar8;
+  uint64_t uVar9;
   float fVar10;
   float fVar11;
   float fVar12;
   float fVar13;
   float fVar14;
   float fVar15;
-  longlong *plStack_d0;
-  longlong *plStack_c8;
+  int64_t *plStack_d0;
+  int64_t *plStack_c8;
   uint64_t uStack_c0;
   int32_t uStack_b8;
   float fStack_b0;
@@ -184,10 +184,10 @@ void FUN_180348e60(uint64_t param_1,longlong param_2,longlong *param_3,uint64_t 
   int32_t uStack_80;
   
   // 检查是否需要批量处理多个对象
-  if (*(longlong *)(param_2 + 0x110) == 0) {
+  if (*(int64_t *)(param_2 + 0x110) == 0) {
     // 初始化批处理缓冲区
-    plStack_d0 = (longlong *)0x0;
-    plStack_c8 = (longlong *)0x0;
+    plStack_d0 = (int64_t *)0x0;
+    plStack_c8 = (int64_t *)0x0;
     uVar8 = 0;
     uStack_c0 = 0;
     uStack_b8 = 3;
@@ -204,14 +204,14 @@ void FUN_180348e60(uint64_t param_1,longlong param_2,longlong *param_3,uint64_t 
     fVar12 = 1.1754944e-38;  // 最小正浮点数
     
     // 遍历所有对象计算边界框
-    if ((longlong)plStack_c8 - (longlong)plStack_d0 >> 3 != 0) {
+    if ((int64_t)plStack_c8 - (int64_t)plStack_d0 >> 3 != 0) {
       fVar12 = 1.1754944e-38;
       fVar11 = 1.1754944e-38;
       fVar10 = 1.1754944e-38;
       plVar6 = plStack_d0;
       uVar9 = uVar8;
       do {
-        lVar1 = *(longlong *)(uVar9 + (longlong)plVar6);
+        lVar1 = *(int64_t *)(uVar9 + (int64_t)plVar6);
         cVar4 = FUN_1802eee20(lVar1,&unknown_var_5272_ptr);
         if (cVar4 == '\0') {
           *param_3 = lVar1;
@@ -241,10 +241,10 @@ void FUN_180348e60(uint64_t param_1,longlong param_2,longlong *param_3,uint64_t 
           }
         }
         uVar7 = (int)uVar8 + 1;
-        uVar8 = (ulonglong)uVar7;
+        uVar8 = (uint64_t)uVar7;
         uVar9 = uVar9 + 8;
-      } while ((ulonglong)(longlong)(int)uVar7 <
-               (ulonglong)((longlong)plStack_c8 - (longlong)plVar6 >> 3));
+      } while ((uint64_t)(int64_t)(int)uVar7 <
+               (uint64_t)((int64_t)plStack_c8 - (int64_t)plVar6 >> 3));
     }
     
     // 设置最终的边界框数据
@@ -263,18 +263,18 @@ void FUN_180348e60(uint64_t param_1,longlong param_2,longlong *param_3,uint64_t 
     param_4[2] = CONCAT44(fStack_9c,fStack_a0);
     param_4[3] = CONCAT44(uStack_94,fStack_98);
     *(int32_t *)(param_4 + 4) = uStack_90;
-    *(int32_t *)((longlong)param_4 + 0x24) = uStack_8c;
+    *(int32_t *)((int64_t)param_4 + 0x24) = uStack_8c;
     *(int32_t *)(param_4 + 5) = uStack_88;
-    *(int32_t *)((longlong)param_4 + 0x2c) = uStack_84;
+    *(int32_t *)((int64_t)param_4 + 0x2c) = uStack_84;
     *(int32_t *)(param_4 + 6) = uStack_80;
     
     // 清理临时对象
     for (plVar6 = plStack_d0; plVar6 != plVar3; plVar6 = plVar6 + 1) {
-      if ((longlong *)*plVar6 != (longlong *)0x0) {
-        (**(code **)(*(longlong *)*plVar6 + 0x38))();
+      if ((int64_t *)*plVar6 != (int64_t *)0x0) {
+        (**(code **)(*(int64_t *)*plVar6 + 0x38))();
       }
     }
-    if (plStack_d0 != (longlong *)0x0) {
+    if (plStack_d0 != (int64_t *)0x0) {
       // 释放批处理内存
       FUN_18064e900();
     }
@@ -310,38 +310,38 @@ void FUN_180348e60(uint64_t param_1,longlong param_2,longlong *param_3,uint64_t 
 // 参数：param_1 - 渲染系统上下文，param_2 - 场景对象，param_3/4 - 标志位
 // 返回值：无
 // =============================================================================
-void FUN_1803490e0(longlong param_1,longlong param_2,uint64_t param_3,uint64_t param_4)
+void FUN_1803490e0(int64_t param_1,int64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
-  longlong *plVar1;
-  longlong *plVar2;
+  int64_t *plVar1;
+  int64_t *plVar2;
   int32_t uVar3;
   int32_t *puVar4;
-  longlong lVar5;
-  ulonglong uVar6;
+  int64_t lVar5;
+  uint64_t uVar6;
   uint64_t *puVar7;
   uint uVar8;
   void *puVar10;
-  longlong *plStackX_10;
-  longlong *plStackX_18;
-  longlong *plStackX_20;
+  int64_t *plStackX_10;
+  int64_t *plStackX_18;
+  int64_t *plStackX_20;
   uint64_t uVar11;
   void *puStack_80;
   int32_t *puStack_78;
   int32_t uStack_70;
   uint64_t uStack_68;
-  longlong lStack_60;
-  longlong lStack_58;
+  int64_t lStack_60;
+  int64_t lStack_58;
   uint64_t uStack_50;
   int32_t uStack_48;
-  ulonglong uVar9;
+  uint64_t uVar9;
   
   uVar11 = 0xfffffffffffffffe;
   
   // 获取场景对象的引用
-  plVar1 = *(longlong **)(param_2 + 0x1b8);
+  plVar1 = *(int64_t **)(param_2 + 0x1b8);
   plStackX_10 = plVar1;
-  if (plVar1 != (longlong *)0x0) {
+  if (plVar1 != (int64_t *)0x0) {
     // 调用对象的释放方法
     (**(code **)(*plVar1 + 0x28))(plVar1);
   }
@@ -372,16 +372,16 @@ void FUN_1803490e0(longlong param_1,longlong param_2,uint64_t param_3,uint64_t p
     if ((plVar1[0x28] & uVar6) == 0) {
       // 获取对象的管理器引用
       puVar7 = (uint64_t *)FUN_18022cb40(plVar1,&plStackX_20);
-      plVar2 = (longlong *)*puVar7;
+      plVar2 = (int64_t *)*puVar7;
       *puVar7 = 0;
       plStackX_10 = plVar2;
       plStackX_18 = plVar1;
       
       // 释放对象和管理器
-      if (plVar1 != (longlong *)0x0) {
+      if (plVar1 != (int64_t *)0x0) {
         (**(code **)(*plVar1 + 0x38))();
       }
-      if (plStackX_20 != (longlong *)0x0) {
+      if (plStackX_20 != (int64_t *)0x0) {
         (**(code **)(*plStackX_20 + 0x38))();
       }
       
@@ -418,9 +418,9 @@ void FUN_1803490e0(longlong param_1,longlong param_2,uint64_t param_3,uint64_t p
         do {
           FUN_1802ec150(*(uint64_t *)(uVar6 + lStack_60),1);
           uVar8 = (int)uVar9 + 1;
-          uVar9 = (ulonglong)uVar8;
+          uVar9 = (uint64_t)uVar8;
           uVar6 = uVar6 + 8;
-        } while ((ulonglong)(longlong)(int)uVar8 < (ulonglong)(lStack_58 - lStack_60 >> 3));
+        } while ((uint64_t)(int64_t)(int)uVar8 < (uint64_t)(lStack_58 - lStack_60 >> 3));
       }
       
       // 清理临时内存
@@ -448,34 +448,34 @@ void FUN_1803490e0(longlong param_1,longlong param_2,uint64_t param_3,uint64_t p
 // 参数：param_1 - 渲染系统上下文
 // 返回值：无
 // =============================================================================
-void FUN_180349330(longlong param_1)
+void FUN_180349330(int64_t param_1)
 
 {
   int32_t uVar1;
-  longlong lVar2;
-  longlong lVar3;
+  int64_t lVar2;
+  int64_t lVar3;
   uint64_t *puVar4;
-  ulonglong uVar5;
-  longlong *plVar6;
-  ulonglong uVar7;
-  longlong *plVar8;
+  uint64_t uVar5;
+  int64_t *plVar6;
+  uint64_t uVar7;
+  int64_t *plVar8;
   uint uVar9;
-  ulonglong uVar10;
-  ulonglong uVar11;
-  longlong *plVar12;
+  uint64_t uVar10;
+  uint64_t uVar11;
+  int64_t *plVar12;
   int32_t uVar13;
   int32_t extraout_XMM0_Da;
   int8_t auStack_188 [32];
-  longlong lStack_168;
-  longlong *plStack_160;
-  longlong *plStack_158;
-  longlong *plStack_150;
-  longlong lStack_148;
-  longlong lStack_140;
+  int64_t lStack_168;
+  int64_t *plStack_160;
+  int64_t *plStack_158;
+  int64_t *plStack_150;
+  int64_t lStack_148;
+  int64_t lStack_140;
   uint64_t uStack_138;
   int32_t uStack_130;
-  longlong *plStack_120;
-  longlong *plStack_118;
+  int64_t *plStack_120;
+  int64_t *plStack_118;
   uint64_t uStack_110;
   int32_t uStack_108;
   uint64_t uStack_100;
@@ -487,20 +487,20 @@ void FUN_180349330(longlong param_1)
   int8_t *puStack_90;
   int32_t uStack_88;
   int8_t auStack_80 [72];
-  ulonglong uStack_38;
+  uint64_t uStack_38;
   
   uStack_100 = 0xfffffffffffffffe;
-  uStack_38 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_188;
+  uStack_38 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_188;
   uVar7 = 0;
-  plStack_120 = (longlong *)0x0;
-  plStack_118 = (longlong *)0x0;
+  plStack_120 = (int64_t *)0x0;
+  plStack_118 = (int64_t *)0x0;
   uStack_110 = 0;
   uStack_108 = 3;
   lStack_168 = param_1;
   
   // 获取需要清理的对象列表
   FUN_1802e92b0(*(uint64_t *)(param_1 + 0x18),&plStack_120,1,0xffffffff);
-  uVar11 = (longlong)plStack_118 - (longlong)plStack_120 >> 3;
+  uVar11 = (int64_t)plStack_118 - (int64_t)plStack_120 >> 3;
   uVar10 = uVar7;
   plVar12 = plStack_120;
   
@@ -509,9 +509,9 @@ void FUN_180349330(longlong param_1)
     do {
       lVar2 = *plVar12;
       if (lVar2 != 0) {
-        plVar6 = *(longlong **)(lVar2 + 0x1b8);
+        plVar6 = *(int64_t **)(lVar2 + 0x1b8);
         plStack_150 = plVar6;
-        if (plVar6 != (longlong *)0x0) {
+        if (plVar6 != (int64_t *)0x0) {
           (**(code **)(*plVar6 + 0x28))(plVar6);
         }
         lVar3 = plVar6[0x3c];
@@ -526,14 +526,14 @@ void FUN_180349330(longlong param_1)
         if (lVar3 != 0) {
           // 分离对象管理器
           puVar4 = (uint64_t *)FUN_18022cb40(plVar6,&plStack_158);
-          plVar8 = (longlong *)*puVar4;
+          plVar8 = (int64_t *)*puVar4;
           *puVar4 = 0;
           plStack_160 = plVar6;
           plStack_150 = plVar8;
-          if (plVar6 != (longlong *)0x0) {
+          if (plVar6 != (int64_t *)0x0) {
             (**(code **)(*plVar6 + 0x38))();
           }
-          if (plStack_158 != (longlong *)0x0) {
+          if (plStack_158 != (int64_t *)0x0) {
             (**(code **)(*plStack_158 + 0x38))();
           }
           
@@ -549,15 +549,15 @@ void FUN_180349330(longlong param_1)
           puStack_98 = &system_state_ptr;
           FUN_180076910(lVar2,&plStack_150);
         }
-        if (plVar8 != (longlong *)0x0) {
+        if (plVar8 != (int64_t *)0x0) {
           (**(code **)(*plVar8 + 0x38))(plVar8);
         }
       }
       uVar9 = (int)uVar10 + 1;
       param_1 = lStack_168;
-      uVar10 = (ulonglong)uVar9;
+      uVar10 = (uint64_t)uVar9;
       plVar12 = plVar12 + 1;
-    } while ((ulonglong)(longlong)(int)uVar9 < uVar11);
+    } while ((uint64_t)(int64_t)(int)uVar9 < uVar11);
   }
   
   // 第二阶段：清理渲染对象
@@ -567,51 +567,51 @@ void FUN_180349330(longlong param_1)
   uStack_138 = 0;
   uStack_130 = 3;
   FUN_1802e8c60(*(uint64_t *)(param_1 + 0x18),&lStack_148);
-  lStack_168 = *(longlong *)(param_1 + 0x18);
+  lStack_168 = *(int64_t *)(param_1 + 0x18);
   uVar13 = FUN_18005ea90(&lStack_148,&lStack_168);
   uVar10 = uVar7;
   
   if (lStack_140 - lStack_148 >> 3 != 0) {
     do {
-      lVar2 = *(longlong *)(uVar10 + lStack_148);
+      lVar2 = *(int64_t *)(uVar10 + lStack_148);
       *(int8_t *)(lVar2 + 0x2d8) = 0;
       
       // 清理主渲染对象
-      if (*(longlong *)(lVar2 + 0x110) != 0) {
-        plVar6 = (longlong *)FUN_1800b3430(uVar13,&lStack_168,*(longlong *)(lVar2 + 0x110) + 0x10,1);
+      if (*(int64_t *)(lVar2 + 0x110) != 0) {
+        plVar6 = (int64_t *)FUN_1800b3430(uVar13,&lStack_168,*(int64_t *)(lVar2 + 0x110) + 0x10,1);
         uVar13 = extraout_XMM0_Da;
         plStack_160 = plVar6;
-        if (*plVar6 != *(longlong *)(lVar2 + 0x110)) {
+        if (*plVar6 != *(int64_t *)(lVar2 + 0x110)) {
           uVar13 = FUN_1802ecfb0(lVar2,*plVar6,*(int32_t *)(lVar2 + 0x148));
         }
-        if ((longlong *)*plVar6 != (longlong *)0x0) {
-          uVar13 = (**(code **)(*(longlong *)*plVar6 + 0x38))();
+        if ((int64_t *)*plVar6 != (int64_t *)0x0) {
+          uVar13 = (**(code **)(*(int64_t *)*plVar6 + 0x38))();
         }
-        lVar3 = *(longlong *)(lVar2 + 0x20);
+        lVar3 = *(int64_t *)(lVar2 + 0x20);
         if (lVar3 != 0) {
-          if (*(longlong *)(lVar2 + 0x270) != 0) {
+          if (*(int64_t *)(lVar2 + 0x270) != 0) {
             FUN_1802e8910(lVar2);
             *(int8_t *)(lVar2 + 0x278) = 0;
-            lVar3 = *(longlong *)(lVar2 + 0x20);
+            lVar3 = *(int64_t *)(lVar2 + 0x20);
           }
           uVar13 = FUN_1802f28f0(lVar2,lVar3);
         }
       }
       
       // 清理辅助渲染对象
-      if (*(longlong *)(lVar2 + 0x10) != 0) {
+      if (*(int64_t *)(lVar2 + 0x10) != 0) {
         uVar1 = *(int32_t *)(lVar2 + 0x18);
         puVar4 = (uint64_t *)
-                 FUN_1800b3430(uVar13,&plStack_158,*(longlong *)(lVar2 + 0x10) + 0x10,1);
+                 FUN_1800b3430(uVar13,&plStack_158,*(int64_t *)(lVar2 + 0x10) + 0x10,1);
         uVar13 = FUN_1802ed050(lVar2,*puVar4,uVar1);
-        if (plStack_158 != (longlong *)0x0) {
+        if (plStack_158 != (int64_t *)0x0) {
           uVar13 = (**(code **)(*plStack_158 + 0x38))();
         }
       }
       uVar9 = (int)uVar7 + 1;
-      uVar7 = (ulonglong)uVar9;
+      uVar7 = (uint64_t)uVar9;
       uVar10 = uVar10 + 8;
-    } while ((ulonglong)(longlong)(int)uVar9 < (ulonglong)(lStack_140 - lStack_148 >> 3));
+    } while ((uint64_t)(int64_t)(int)uVar9 < (uint64_t)(lStack_140 - lStack_148 >> 3));
   }
   
   // 第三阶段：清理临时资源
@@ -621,14 +621,14 @@ void FUN_180349330(longlong param_1)
   }
   lStack_148 = 0;
   for (plVar8 = plStack_120; plVar8 != plVar12; plVar8 = plVar8 + 1) {
-    if ((longlong *)*plVar8 != (longlong *)0x0) {
-      (**(code **)(*(longlong *)*plVar8 + 0x38))();
+    if ((int64_t *)*plVar8 != (int64_t *)0x0) {
+      (**(code **)(*(int64_t *)*plVar8 + 0x38))();
     }
   }
-  if (plVar6 != (longlong *)0x0) {
+  if (plVar6 != (int64_t *)0x0) {
     FUN_18064e900(plVar6);
   }
-  FUN_1808fc050(uStack_38 ^ (ulonglong)auStack_188);
+  FUN_1808fc050(uStack_38 ^ (uint64_t)auStack_188);
 }
 
 
@@ -641,7 +641,7 @@ void FUN_180349330(longlong param_1)
 // 返回值：分配的内存指针
 // =============================================================================
 uint64_t *
-FUN_180349730(uint64_t *param_1,ulonglong param_2,uint64_t param_3,uint64_t param_4)
+FUN_180349730(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
   uint64_t uVar1;
@@ -717,29 +717,29 @@ void FUN_180349780(uint64_t *param_1)
 // 参数：param_1 - 场景对象
 // 返回值：无
 // =============================================================================
-void FUN_1803499b0(longlong param_1)
+void FUN_1803499b0(int64_t param_1)
 
 {
-  longlong lVar1;
-  ulonglong uVar2;
+  int64_t lVar1;
+  uint64_t uVar2;
   uint uVar3;
-  ulonglong uVar4;
+  uint64_t uVar4;
   
   // 检查是否有活动对象需要更新
-  if (*(longlong *)(param_1 + 0x70) != 0) {
-    lVar1 = *(longlong *)(param_1 + 0x18);
+  if (*(int64_t *)(param_1 + 0x70) != 0) {
+    lVar1 = *(int64_t *)(param_1 + 0x18);
     uVar2 = 0;
     uVar4 = uVar2;
     
     // 遍历所有活动对象并调用更新方法
-    if (*(longlong *)(lVar1 + 0xf8) - *(longlong *)(lVar1 + 0xf0) >> 3 != 0) {
+    if (*(int64_t *)(lVar1 + 0xf8) - *(int64_t *)(lVar1 + 0xf0) >> 3 != 0) {
       do {
-        (**(code **)(**(longlong **)(uVar2 + *(longlong *)(lVar1 + 0xf0)) + 0x98))();
+        (**(code **)(**(int64_t **)(uVar2 + *(int64_t *)(lVar1 + 0xf0)) + 0x98))();
         uVar2 = uVar2 + 8;
         uVar3 = (int)uVar4 + 1;
-        uVar4 = (ulonglong)uVar3;
-      } while ((ulonglong)(longlong)(int)uVar3 <
-               (ulonglong)(*(longlong *)(lVar1 + 0xf8) - *(longlong *)(lVar1 + 0xf0) >> 3));
+        uVar4 = (uint64_t)uVar3;
+      } while ((uint64_t)(int64_t)(int)uVar3 <
+               (uint64_t)(*(int64_t *)(lVar1 + 0xf8) - *(int64_t *)(lVar1 + 0xf0) >> 3));
     }
   }
   return;
@@ -756,27 +756,27 @@ void FUN_1803499b0(longlong param_1)
 // 参数：param_1 - 场景对象
 // 返回值：无
 // =============================================================================
-void FUN_1803499bb(longlong param_1)
+void FUN_1803499bb(int64_t param_1)
 
 {
-  longlong lVar1;
-  ulonglong uVar2;
+  int64_t lVar1;
+  uint64_t uVar2;
   uint uVar3;
-  ulonglong uVar4;
+  uint64_t uVar4;
   
-  lVar1 = *(longlong *)(param_1 + 0x18);
+  lVar1 = *(int64_t *)(param_1 + 0x18);
   uVar2 = 0;
   uVar4 = uVar2;
   
   // 强制遍历所有对象并调用更新方法
-  if (*(longlong *)(lVar1 + 0xf8) - *(longlong *)(lVar1 + 0xf0) >> 3 != 0) {
+  if (*(int64_t *)(lVar1 + 0xf8) - *(int64_t *)(lVar1 + 0xf0) >> 3 != 0) {
     do {
-      (**(code **)(**(longlong **)(uVar2 + *(longlong *)(lVar1 + 0xf0)) + 0x98))();
+      (**(code **)(**(int64_t **)(uVar2 + *(int64_t *)(lVar1 + 0xf0)) + 0x98))();
       uVar2 = uVar2 + 8;
       uVar3 = (int)uVar4 + 1;
-      uVar4 = (ulonglong)uVar3;
-    } while ((ulonglong)(longlong)(int)uVar3 <
-             (ulonglong)(*(longlong *)(lVar1 + 0xf8) - *(longlong *)(lVar1 + 0xf0) >> 3));
+      uVar4 = (uint64_t)uVar3;
+    } while ((uint64_t)(int64_t)(int)uVar3 <
+             (uint64_t)(*(int64_t *)(lVar1 + 0xf8) - *(int64_t *)(lVar1 + 0xf0) >> 3));
   }
   return;
 }
@@ -795,19 +795,19 @@ void FUN_1803499bb(longlong param_1)
 void FUN_1803499e2(void)
 
 {
-  longlong unaff_RBX;
-  ulonglong uVar1;
+  int64_t unaff_RBX;
+  uint64_t uVar1;
   uint unaff_EDI;
   
-  uVar1 = (ulonglong)unaff_EDI;
+  uVar1 = (uint64_t)unaff_EDI;
   
   // 使用寄存器变量优化的全局场景更新循环
   do {
-    (**(code **)(**(longlong **)(uVar1 + *(longlong *)(unaff_RBX + 0xf0)) + 0x98))();
+    (**(code **)(**(int64_t **)(uVar1 + *(int64_t *)(unaff_RBX + 0xf0)) + 0x98))();
     uVar1 = uVar1 + 8;
     unaff_EDI = unaff_EDI + 1;
-  } while ((ulonglong)(longlong)(int)unaff_EDI <
-           (ulonglong)(*(longlong *)(unaff_RBX + 0xf8) - *(longlong *)(unaff_RBX + 0xf0) >> 3));
+  } while ((uint64_t)(int64_t)(int)unaff_EDI <
+           (uint64_t)(*(int64_t *)(unaff_RBX + 0xf8) - *(int64_t *)(unaff_RBX + 0xf0) >> 3));
   return;
 }
 
@@ -879,10 +879,10 @@ void FUN_180349a50(uint64_t param_1)
   int8_t *puStack_80;
   int32_t uStack_78;
   int8_t auStack_70 [72];
-  ulonglong uStack_28;
+  uint64_t uStack_28;
   
   uStack_1b0 = 0xfffffffffffffffe;
-  uStack_28 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_1e8;
+  uStack_28 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_1e8;
   uStack_1c8 = 0;
   
   // 设置第一个着色器参数
@@ -929,7 +929,7 @@ void FUN_180349a50(uint64_t param_1)
   appuStack_1c0[0] = apuStack_1a8;
   apuStack_1a8[0] = &system_state_ptr;
   puStack_88 = &system_state_ptr;
-  FUN_1808fc050(uStack_28 ^ (ulonglong)auStack_1e8);
+  FUN_1808fc050(uStack_28 ^ (uint64_t)auStack_1e8);
 }
 
 
@@ -943,7 +943,7 @@ void FUN_180349a50(uint64_t param_1)
 // 参数：param_1 - 渲染系统上下文，param_2 - 消息数据
 // 返回值：无
 // =============================================================================
-void FUN_180349c70(uint64_t param_1,longlong param_2)
+void FUN_180349c70(uint64_t param_1,int64_t param_2)
 
 {
   int iVar1;
@@ -983,7 +983,7 @@ void FUN_180349c70(uint64_t param_1,longlong param_2)
 // 参数：param_1 - 纹理对象指针，param_2 - 纹理参数
 // 返回值：无
 // =============================================================================
-void FUN_180349ce0(uint64_t *param_1,longlong param_2)
+void FUN_180349ce0(uint64_t *param_1,int64_t param_2)
 
 {
   uint64_t *puVar1;
@@ -1010,10 +1010,10 @@ void FUN_180349ce0(uint64_t *param_1,longlong param_2)
   int8_t *puStack_60;
   int32_t uStack_58;
   int8_t auStack_50 [32];
-  ulonglong uStack_30;
+  uint64_t uStack_30;
   
   uStack_148 = 0xfffffffffffffffe;
-  uStack_30 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_168;
+  uStack_30 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_168;
   puVar1 = param_1;
   puStack_140 = param_1;
   FUN_1803456e0();
@@ -1021,11 +1021,11 @@ void FUN_180349ce0(uint64_t *param_1,longlong param_2)
   // 初始化纹理对象基本信息
   *puVar1 = &unknown_var_6496_ptr;
   *(int16_t *)(puVar1 + 0x12) = 0;
-  *(int8_t *)((longlong)puVar1 + 0x92) = 0;
-  *(bool *)((longlong)puVar1 + 0x93) = *(char *)(param_2 + 0x2e5) == '\0';
+  *(int8_t *)((int64_t)puVar1 + 0x92) = 0;
+  *(bool *)((int64_t)puVar1 + 0x93) = *(char *)(param_2 + 0x2e5) == '\0';
   *(int32_t *)(puVar1 + 0x13) = 0;
-  *(int8_t *)((longlong)puVar1 + 0x94) = 0;
-  *(int32_t *)((longlong)puVar1 + 0x8c) = RENDERING_DEFAULT_SHADER_ID;
+  *(int8_t *)((int64_t)puVar1 + 0x94) = 0;
+  *(int32_t *)((int64_t)puVar1 + 0x8c) = RENDERING_DEFAULT_SHADER_ID;
   puVar1[0xf] = 0;
   puVar1[0x10] = 0;
   *(int32_t *)(puVar1 + 0x11) = RENDERING_MAX_TEXTURE_COORD;
@@ -1045,7 +1045,7 @@ void FUN_180349ce0(uint64_t *param_1,longlong param_2)
   auStack_f8[0] = 0;
   uStack_100 = 0x13;
   strcpy_s(auStack_f8,0x20,&unknown_var_6464_ptr);
-  FUN_1803460a0(param_1,&puStack_110,(longlong)param_1 + 0x92,3);
+  FUN_1803460a0(param_1,&puStack_110,(int64_t)param_1 + 0x92,3);
   puStack_110 = &system_state_ptr;
   
   // 设置着色器参数
@@ -1054,7 +1054,7 @@ void FUN_180349ce0(uint64_t *param_1,longlong param_2)
   auStack_c0[0] = 0;
   uStack_c8 = 0x11;
   strcpy_s(auStack_c0,0x20,&unknown_var_6440_ptr);
-  FUN_1803460a0(param_1,&puStack_d8,(longlong)param_1 + 0x8c,2);
+  FUN_1803460a0(param_1,&puStack_d8,(int64_t)param_1 + 0x8c,2);
   puStack_d8 = &system_state_ptr;
   
   // 设置纹理坐标
@@ -1074,7 +1074,7 @@ void FUN_180349ce0(uint64_t *param_1,longlong param_2)
   strcpy_s(auStack_50,0x20,&unknown_var_6408_ptr);
   FUN_1803460a0(param_1,&puStack_68,param_1 + 0xf,5);
   puStack_68 = &system_state_ptr;
-  FUN_1808fc050(uStack_30 ^ (ulonglong)auStack_168);
+  FUN_1808fc050(uStack_30 ^ (uint64_t)auStack_168);
 }
 
 
@@ -1086,7 +1086,7 @@ void FUN_180349ce0(uint64_t *param_1,longlong param_2)
 // 参数：param_1 - 内存指针，param_2 - 释放标志，param_3/4 - 清理参数
 // 返回值：释放的内存指针
 // =============================================================================
-uint64_t FUN_180349fb0(uint64_t param_1,ulonglong param_2,uint64_t param_3,uint64_t param_4)
+uint64_t FUN_180349fb0(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
   uint64_t uVar1;
@@ -1110,10 +1110,10 @@ uint64_t FUN_180349fb0(uint64_t param_1,ulonglong param_2,uint64_t param_3,uint6
 // 参数：param_1 - 纹理对象
 // 返回值：无
 // =============================================================================
-void FUN_18034a000(longlong param_1)
+void FUN_18034a000(int64_t param_1)
 
 {
-  longlong lVar1;
+  int64_t lVar1;
   int32_t uVar2;
   int32_t uVar3;
   int32_t uVar4;
@@ -1122,29 +1122,29 @@ void FUN_18034a000(longlong param_1)
   // 检查是否需要同步纹理参数
   if (*(char *)(param_1 + 0x93) == '\0') {
     // 获取纹理管理器
-    uVar5 = FUN_1803191b0(*(longlong *)(*(longlong *)(param_1 + 0x18) + 0x20) + 0x60c10);
+    uVar5 = FUN_1803191b0(*(int64_t *)(*(int64_t *)(param_1 + 0x18) + 0x20) + 0x60c10);
     *(uint64_t *)(param_1 + 0x70) = uVar5;
-    FUN_18031b950(uVar5,*(longlong *)(param_1 + 0x18) + 0x70,1);
+    FUN_18031b950(uVar5,*(int64_t *)(param_1 + 0x18) + 0x70,1);
     
     // 同步纹理属性
-    lVar1 = *(longlong *)(param_1 + 0x70);
+    lVar1 = *(int64_t *)(param_1 + 0x70);
     *(int32_t *)(lVar1 + 0x144) = *(int32_t *)(param_1 + 0x8c);
     uVar4 = RENDERING_MESH_TYPE_MASK;
     if (*(int *)(lVar1 + 0x4c) != 0x18) {
       uVar4 = 0;
     }
     *(int32_t *)(lVar1 + 0x4c) = uVar4;
-    lVar1 = *(longlong *)(param_1 + 0x70);
+    lVar1 = *(int64_t *)(param_1 + 0x70);
     *(int32_t *)(lVar1 + 0x60) = *(int32_t *)(param_1 + 0x88);
     *(int8_t *)(lVar1 + 0x50) = 1;
     
     // 同步纹理状态标志
-    *(int8_t *)(*(longlong *)(param_1 + 0x70) + 0x148) = *(int8_t *)(param_1 + 0x90);
-    *(int8_t *)(*(longlong *)(param_1 + 0x70) + 0x149) = *(int8_t *)(param_1 + 0x92);
-    *(int8_t *)(*(longlong *)(param_1 + 0x70) + 0x14a) = *(int8_t *)(param_1 + 0x91);
+    *(int8_t *)(*(int64_t *)(param_1 + 0x70) + 0x148) = *(int8_t *)(param_1 + 0x90);
+    *(int8_t *)(*(int64_t *)(param_1 + 0x70) + 0x149) = *(int8_t *)(param_1 + 0x92);
+    *(int8_t *)(*(int64_t *)(param_1 + 0x70) + 0x14a) = *(int8_t *)(param_1 + 0x91);
     
     // 同步材质参数
-    lVar1 = *(longlong *)(param_1 + 0x70);
+    lVar1 = *(int64_t *)(param_1 + 0x70);
     uVar4 = *(int32_t *)(param_1 + 0x7c);
     uVar2 = *(int32_t *)(param_1 + 0x80);
     uVar3 = *(int32_t *)(param_1 + 0x84);
@@ -1155,7 +1155,7 @@ void FUN_18034a000(longlong param_1)
     FUN_18031bc40();
     
     // 同步渲染矩阵和变换参数
-    lVar1 = *(longlong *)(param_1 + 0x18);
+    lVar1 = *(int64_t *)(param_1 + 0x18);
     uVar5 = *(uint64_t *)(lVar1 + 0x78);
     *(uint64_t *)(param_1 + 0x9c) = *(uint64_t *)(lVar1 + 0x70);
     *(uint64_t *)(param_1 + 0xa4) = uVar5;
@@ -1186,7 +1186,7 @@ void FUN_18034a000(longlong param_1)
 void FUN_18034a100(uint64_t *param_1)
 
 {
-  longlong lVar1;
+  int64_t lVar1;
   int32_t uVar2;
   int32_t uVar3;
   int32_t uVar4;
@@ -1194,15 +1194,15 @@ void FUN_18034a100(uint64_t *param_1)
   
   // 检查对象类型并调用相应的更新方法
   if ((void *)*param_1 == &unknown_var_6496_ptr) {
-    if (*(char *)((longlong)param_1 + 0x93) == '\0') {
+    if (*(char *)((int64_t)param_1 + 0x93) == '\0') {
       // 获取纹理管理器
-      uVar5 = FUN_1803191b0(*(longlong *)(param_1[3] + 0x20) + 0x60c10);
+      uVar5 = FUN_1803191b0(*(int64_t *)(param_1[3] + 0x20) + 0x60c10);
       param_1[0xe] = uVar5;
       FUN_18031b950(uVar5,param_1[3] + 0x70,1);
       
       // 更新纹理属性
       lVar1 = param_1[0xe];
-      *(int32_t *)(lVar1 + 0x144) = *(int32_t *)((longlong)param_1 + 0x8c);
+      *(int32_t *)(lVar1 + 0x144) = *(int32_t *)((int64_t)param_1 + 0x8c);
       uVar4 = RENDERING_MESH_TYPE_MASK;
       if (*(int *)(lVar1 + 0x4c) != 0x18) {
         uVar4 = 0;
@@ -1214,14 +1214,14 @@ void FUN_18034a100(uint64_t *param_1)
       
       // 更新纹理状态标志
       *(int8_t *)(param_1[0xe] + 0x148) = *(int8_t *)(param_1 + 0x12);
-      *(int8_t *)(param_1[0xe] + 0x149) = *(int8_t *)((longlong)param_1 + 0x92);
-      *(int8_t *)(param_1[0xe] + 0x14a) = *(int8_t *)((longlong)param_1 + 0x91);
+      *(int8_t *)(param_1[0xe] + 0x149) = *(int8_t *)((int64_t)param_1 + 0x92);
+      *(int8_t *)(param_1[0xe] + 0x14a) = *(int8_t *)((int64_t)param_1 + 0x91);
       
       // 更新材质参数
       lVar1 = param_1[0xe];
-      uVar4 = *(int32_t *)((longlong)param_1 + 0x7c);
+      uVar4 = *(int32_t *)((int64_t)param_1 + 0x7c);
       uVar2 = *(int32_t *)(param_1 + 0x10);
-      uVar3 = *(int32_t *)((longlong)param_1 + 0x84);
+      uVar3 = *(int32_t *)((int64_t)param_1 + 0x84);
       *(int32_t *)(lVar1 + 0xe4) = *(int32_t *)(param_1 + 0xf);
       *(int32_t *)(lVar1 + 0xe8) = uVar4;
       *(int32_t *)(lVar1 + 0xec) = uVar2;
@@ -1231,17 +1231,17 @@ void FUN_18034a100(uint64_t *param_1)
       // 更新渲染矩阵和变换参数
       lVar1 = param_1[3];
       uVar5 = *(uint64_t *)(lVar1 + 0x78);
-      *(uint64_t *)((longlong)param_1 + 0x9c) = *(uint64_t *)(lVar1 + 0x70);
-      *(uint64_t *)((longlong)param_1 + 0xa4) = uVar5;
+      *(uint64_t *)((int64_t)param_1 + 0x9c) = *(uint64_t *)(lVar1 + 0x70);
+      *(uint64_t *)((int64_t)param_1 + 0xa4) = uVar5;
       uVar5 = *(uint64_t *)(lVar1 + 0x88);
-      *(uint64_t *)((longlong)param_1 + 0xac) = *(uint64_t *)(lVar1 + 0x80);
-      *(uint64_t *)((longlong)param_1 + 0xb4) = uVar5;
+      *(uint64_t *)((int64_t)param_1 + 0xac) = *(uint64_t *)(lVar1 + 0x80);
+      *(uint64_t *)((int64_t)param_1 + 0xb4) = uVar5;
       uVar5 = *(uint64_t *)(lVar1 + 0x98);
-      *(uint64_t *)((longlong)param_1 + 0xbc) = *(uint64_t *)(lVar1 + 0x90);
-      *(uint64_t *)((longlong)param_1 + 0xc4) = uVar5;
+      *(uint64_t *)((int64_t)param_1 + 0xbc) = *(uint64_t *)(lVar1 + 0x90);
+      *(uint64_t *)((int64_t)param_1 + 0xc4) = uVar5;
       uVar5 = *(uint64_t *)(lVar1 + 0xa8);
-      *(uint64_t *)((longlong)param_1 + 0xcc) = *(uint64_t *)(lVar1 + 0xa0);
-      *(uint64_t *)((longlong)param_1 + 0xd4) = uVar5;
+      *(uint64_t *)((int64_t)param_1 + 0xcc) = *(uint64_t *)(lVar1 + 0xa0);
+      *(uint64_t *)((int64_t)param_1 + 0xd4) = uVar5;
     }
   }
   else {
@@ -1252,17 +1252,17 @@ void FUN_18034a100(uint64_t *param_1)
   // 同步渲染状态
   lVar1 = param_1[3];
   uVar5 = *(uint64_t *)(lVar1 + 0x78);
-  *(uint64_t *)((longlong)param_1 + 0x9c) = *(uint64_t *)(lVar1 + 0x70);
-  *(uint64_t *)((longlong)param_1 + 0xa4) = uVar5;
+  *(uint64_t *)((int64_t)param_1 + 0x9c) = *(uint64_t *)(lVar1 + 0x70);
+  *(uint64_t *)((int64_t)param_1 + 0xa4) = uVar5;
   uVar5 = *(uint64_t *)(lVar1 + 0x88);
-  *(uint64_t *)((longlong)param_1 + 0xac) = *(uint64_t *)(lVar1 + 0x80);
-  *(uint64_t *)((longlong)param_1 + 0xb4) = uVar5;
+  *(uint64_t *)((int64_t)param_1 + 0xac) = *(uint64_t *)(lVar1 + 0x80);
+  *(uint64_t *)((int64_t)param_1 + 0xb4) = uVar5;
   uVar5 = *(uint64_t *)(lVar1 + 0x98);
-  *(uint64_t *)((longlong)param_1 + 0xbc) = *(uint64_t *)(lVar1 + 0x90);
-  *(uint64_t *)((longlong)param_1 + 0xc4) = uVar5;
+  *(uint64_t *)((int64_t)param_1 + 0xbc) = *(uint64_t *)(lVar1 + 0x90);
+  *(uint64_t *)((int64_t)param_1 + 0xc4) = uVar5;
   uVar5 = *(uint64_t *)(lVar1 + 0xa8);
-  *(uint64_t *)((longlong)param_1 + 0xcc) = *(uint64_t *)(lVar1 + 0xa0);
-  *(uint64_t *)((longlong)param_1 + 0xd4) = uVar5;
+  *(uint64_t *)((int64_t)param_1 + 0xcc) = *(uint64_t *)(lVar1 + 0xa0);
+  *(uint64_t *)((int64_t)param_1 + 0xd4) = uVar5;
   return;
 }
 
@@ -1277,25 +1277,25 @@ void FUN_18034a100(uint64_t *param_1)
 // 参数：param_1 - 纹理对象，param_2 - 时间增量
 // 返回值：无
 // =============================================================================
-void FUN_18034a260(longlong param_1,float param_2)
+void FUN_18034a260(int64_t param_1,float param_2)
 
 {
-  longlong lVar1;
+  int64_t lVar1;
   uint64_t uVar2;
   char cVar3;
   
   // 检查是否需要更新时间参数
   if (*(char *)(param_1 + 0x93) == '\0') {
-    lVar1 = *(longlong *)(param_1 + 0x18);
+    lVar1 = *(int64_t *)(param_1 + 0x18);
     cVar3 = func_0x000180285f10(param_1 + 0x9c,lVar1 + 0x70,0x3c23d70a);
     
     if (cVar3 == '\0') {
       // 初始化时间参数
       *(int32_t *)(param_1 + 0x98) = 0x40000000;
-      if (*(int *)(*(longlong *)(param_1 + 0x70) + 0x4c) != 0) {
+      if (*(int *)(*(int64_t *)(param_1 + 0x70) + 0x4c) != 0) {
         *(int8_t *)(param_1 + 0x94) = 1;
       }
-      FUN_18031b950(*(longlong *)(param_1 + 0x70),lVar1 + 0x70,0);
+      FUN_18031b950(*(int64_t *)(param_1 + 0x70),lVar1 + 0x70,0);
     }
     else {
       // 更新时间参数
@@ -1320,8 +1320,8 @@ void FUN_18034a260(longlong param_1,float param_2)
     if ((*(char *)(param_1 + 0x94) != '\0') &&
        (*(float *)(param_1 + 0x98) <= 0.0 && *(float *)(param_1 + 0x98) != 0.0)) {
       *(int8_t *)(param_1 + 0x94) = 0;
-      *(int32_t *)(*(longlong *)(param_1 + 0x70) + 0x4c) = 0;
-      *(int8_t *)(*(longlong *)(param_1 + 0x70) + 0x50) = 1;
+      *(int32_t *)(*(int64_t *)(param_1 + 0x70) + 0x4c) = 0;
+      *(int8_t *)(*(int64_t *)(param_1 + 0x70) + 0x50) = 1;
     }
   }
   return;

@@ -35,23 +35,23 @@ static const uint64_t RENDERING_FILE_POINTER_ADDRESS = 0x180a1b248;
  * @param data_ptr 数据缓冲区指针
  * @param data_size 数据大小
  */
-void RenderingSystem_WriteResourceData(longlong resource_context, longlong file_context, longlong data_ptr, uint64_t data_size)
+void RenderingSystem_WriteResourceData(int64_t resource_context, int64_t file_context, int64_t data_ptr, uint64_t data_size)
 {
   int resource_id;
   uint64_t resource_header;
-  longlong resource_start;
-  longlong resource_end;
+  int64_t resource_start;
+  int64_t resource_end;
   void *resource_data;
-  longlong current_resource;
+  int64_t current_resource;
   void *data_buffer;
-  longlong buffer_ptr;
+  int64_t buffer_ptr;
   uint data_length;
   uint *buffer_writer;
-  longlong total_size;
-  longlong list_head;
-  longlong list_end;
+  int64_t total_size;
+  int64_t list_head;
+  int64_t list_end;
   uint *write_ptr;
-  longlong buffer_capacity;
+  int64_t buffer_capacity;
   int16_t write_flag;
   int8_t buffer_mode;
   
@@ -69,9 +69,9 @@ void RenderingSystem_WriteResourceData(longlong resource_context, longlong file_
   System_BufferManager(&total_size, 8, data_ptr, data_size, RENDERING_FILE_BUFFER_SIZE);
   
   *(uint64_t *)write_ptr = resource_header;
-  buffer_writer = (uint *)((longlong)write_ptr + 8);
+  buffer_writer = (uint *)((int64_t)write_ptr + 8);
   list_end = resource_context + 0x878;
-  current_resource = *(longlong *)(resource_context + 0x880);
+  current_resource = *(int64_t *)(resource_context + 0x880);
   buffer_ptr = total_size;
   write_ptr = buffer_writer;
   
@@ -79,23 +79,23 @@ void RenderingSystem_WriteResourceData(longlong resource_context, longlong file_
   if (current_resource != list_end) {
     do {
       resource_id = *(int *)(current_resource + 0x20);
-      resource_start = *(longlong *)(current_resource + 0x30);
-      resource_end = *(longlong *)(current_resource + 0x28);
+      resource_start = *(int64_t *)(current_resource + 0x30);
+      resource_end = *(int64_t *)(current_resource + 0x28);
       
       // 检查缓冲区容量
-      if ((ulonglong)((buffer_ptr - (longlong)buffer_writer) + buffer_capacity) < 9) {
-        System_BufferManager(&total_size, (longlong)buffer_writer + (8 - buffer_ptr));
+      if ((uint64_t)((buffer_ptr - (int64_t)buffer_writer) + buffer_capacity) < 9) {
+        System_BufferManager(&total_size, (int64_t)buffer_writer + (8 - buffer_ptr));
         buffer_ptr = total_size;
         buffer_writer = write_ptr;
       }
       
       // 写入资源ID
-      *(longlong *)buffer_writer = (longlong)resource_id;
+      *(int64_t *)buffer_writer = (int64_t)resource_id;
       write_ptr = buffer_writer + 2;
       
       // 检查缓冲区容量
-      if ((ulonglong)((buffer_ptr - (longlong)write_ptr) + buffer_capacity) < 5) {
-        System_BufferManager(&total_size, (longlong)write_ptr + (4 - buffer_ptr));
+      if ((uint64_t)((buffer_ptr - (int64_t)write_ptr) + buffer_capacity) < 5) {
+        System_BufferManager(&total_size, (int64_t)write_ptr + (4 - buffer_ptr));
         buffer_ptr = total_size;
       }
       
@@ -107,12 +107,12 @@ void RenderingSystem_WriteResourceData(longlong resource_context, longlong file_
       
       // 处理资源数据
       if (0 < (int)data_length) {
-        current_resource = **(longlong **)(current_resource + 0x28);
+        current_resource = **(int64_t **)(current_resource + 0x28);
         data_length = *(uint *)(current_resource + 0x98);
         
         // 检查缓冲区容量
-        if ((ulonglong)((buffer_ptr - (longlong)buffer_writer) + buffer_capacity) <= (ulonglong)data_length + 4) {
-          System_BufferManager(&total_size, (((ulonglong)data_length + 4) - buffer_ptr) + (longlong)buffer_writer);
+        if ((uint64_t)((buffer_ptr - (int64_t)buffer_writer) + buffer_capacity) <= (uint64_t)data_length + 4) {
+          System_BufferManager(&total_size, (((uint64_t)data_length + 4) - buffer_ptr) + (int64_t)buffer_writer);
         }
         
         *write_ptr = data_length;
@@ -154,28 +154,28 @@ void RenderingSystem_WriteResourceData(longlong resource_context, longlong file_
  * @param file_context 文件操作上下文指针
  * @param resource_type 资源类型标识
  */
-void RenderingSystem_ReadResourceData(longlong resource_context, longlong file_context, uint64_t resource_type)
+void RenderingSystem_ReadResourceData(int64_t resource_context, int64_t file_context, uint64_t resource_type)
 {
   uint64_t *resource_node;
-  longlong *resource_ptr;
-  ulonglong resource_count;
+  int64_t *resource_ptr;
+  uint64_t resource_count;
   uint *data_ptr;
   int32_t *resource_block;
   uint64_t *resource_data;
-  longlong current_pos;
+  int64_t current_pos;
   uint64_t *next_resource;
-  longlong list_size;
+  int64_t list_size;
   uint64_t *list_end;
   uint64_t *list_start;
-  longlong resource_index;
+  int64_t resource_index;
   uint64_t *resource_list;
   int resource_id;
-  longlong file_offset;
+  int64_t file_offset;
   uint64_t file_size;
-  ulonglong data_size;
+  uint64_t data_size;
   int8_t temp_buffer [8];
-  longlong buffer_size;
-  longlong *buffer_ptr;
+  int64_t buffer_size;
+  int64_t *buffer_ptr;
   uint64_t buffer_header;
   int16_t buffer_flag;
   int8_t buffer_mode;
@@ -188,7 +188,7 @@ void RenderingSystem_ReadResourceData(longlong resource_context, longlong file_c
   
   // 初始化缓冲区
   buffer_size = 0;
-  buffer_ptr = (longlong *)0x0;
+  buffer_ptr = (int64_t *)0x0;
   buffer_header = 0;
   buffer_flag = 0;
   buffer_mode = 3;
@@ -213,27 +213,27 @@ void RenderingSystem_ReadResourceData(longlong resource_context, longlong file_c
     
     current_pos = *buffer_ptr;
     data_ptr = (uint *)(buffer_ptr + 1);
-    buffer_ptr = (longlong *)((longlong)buffer_ptr + 0xc);
+    buffer_ptr = (int64_t *)((int64_t)buffer_ptr + 0xc);
     
     if (0 < (int)*data_ptr) {
       resource_node = (uint64_t *)(resource_context + 0x878);
       resource_id = (int)current_pos;
-      data_size = (ulonglong)file_size >> 0x20;
+      data_size = (uint64_t)file_size >> 0x20;
       file_size = CONCAT44((int)data_size, resource_id);
-      resource_count = (ulonglong)*data_ptr;
+      resource_count = (uint64_t)*data_ptr;
       
       do {
         // 创建资源节点
         next_resource = (uint64_t *)0x0;
         resource_block = (int32_t *)FUN_18062b1e0(RENDERING_ALLOCATOR_ADDRESS, RENDERING_RESOURCE_MAGIC_NUMBER, 8, 3);
-        resource_ptr = (longlong *)(resource_block + 0x22);
+        resource_ptr = (int64_t *)(resource_block + 0x22);
         
         // 初始化资源结构
-        *resource_ptr = (longlong)&RENDERING_RESOURCE_TABLE_ADDRESS;
+        *resource_ptr = (int64_t)&RENDERING_RESOURCE_TABLE_ADDRESS;
         *(uint64_t *)(resource_block + 0x24) = 0;
         resource_block[0x26] = 0;
         
-        *resource_ptr = (longlong)&RENDERING_DATA_ARRAY_ADDRESS;
+        *resource_ptr = (int64_t)&RENDERING_DATA_ARRAY_ADDRESS;
         *(uint64_t *)(resource_block + 0x28) = 0;
         *(uint64_t *)(resource_block + 0x24) = 0;
         resource_block[0x26] = 0;
@@ -294,7 +294,7 @@ void RenderingSystem_ReadResourceData(longlong resource_context, longlong file_c
         }
         else {
           list_end = (uint64_t *)resource_data[5];
-          current_pos = (longlong)list_start - (longlong)list_end >> 3;
+          current_pos = (int64_t)list_start - (int64_t)list_end >> 3;
           if (current_pos == 0) {
             current_pos = 1;
             // 重新分配内存
@@ -316,7 +316,7 @@ void RenderingSystem_ReadResourceData(longlong resource_context, longlong file_c
           
           // 移动数据
           if (list_end != list_start) {
-            memmove(next_resource, list_end, (longlong)list_start - (longlong)list_end);
+            memmove(next_resource, list_end, (int64_t)list_start - (int64_t)list_end);
           }
           
           *next_resource = resource_block;
@@ -349,23 +349,23 @@ void RenderingSystem_ReadResourceData(longlong resource_context, longlong file_c
  * @param data_ptr 数据缓冲区指针
  * @param data_size 数据大小
  */
-void RenderingSystem_ProcessResourceChunk(longlong resource_context, longlong file_context, longlong data_ptr, uint64_t data_size)
+void RenderingSystem_ProcessResourceChunk(int64_t resource_context, int64_t file_context, int64_t data_ptr, uint64_t data_size)
 {
   int resource_id;
   uint64_t resource_header;
-  longlong resource_start;
-  longlong resource_end;
+  int64_t resource_start;
+  int64_t resource_end;
   void *resource_data;
-  longlong current_resource;
+  int64_t current_resource;
   void *data_buffer;
   uint *data_writer;
-  longlong buffer_ptr;
+  int64_t buffer_ptr;
   uint data_length;
-  longlong total_size;
-  longlong list_head;
-  longlong list_end;
+  int64_t total_size;
+  int64_t list_head;
+  int64_t list_end;
   uint *write_ptr;
-  longlong buffer_capacity;
+  int64_t buffer_capacity;
   int16_t write_flag;
   int8_t buffer_mode;
   
@@ -383,9 +383,9 @@ void RenderingSystem_ProcessResourceChunk(longlong resource_context, longlong fi
   System_BufferManager(&total_size, 8, data_ptr, data_size, RENDERING_FILE_BUFFER_SIZE);
   
   *(uint64_t *)write_ptr = resource_header;
-  data_writer = (uint *)((longlong)write_ptr + 8);
+  data_writer = (uint *)((int64_t)write_ptr + 8);
   list_end = resource_context + 0x8a8;
-  current_resource = *(longlong *)(resource_context + 0x8b0);
+  current_resource = *(int64_t *)(resource_context + 0x8b0);
   buffer_ptr = total_size;
   write_ptr = data_writer;
   
@@ -393,23 +393,23 @@ void RenderingSystem_ProcessResourceChunk(longlong resource_context, longlong fi
   if (current_resource != list_end) {
     do {
       resource_id = *(int *)(current_resource + 0x20);
-      resource_start = *(longlong *)(current_resource + 0x30);
-      resource_end = *(longlong *)(current_resource + 0x28);
+      resource_start = *(int64_t *)(current_resource + 0x30);
+      resource_end = *(int64_t *)(current_resource + 0x28);
       
       // 检查缓冲区容量
-      if ((ulonglong)((buffer_capacity - (longlong)data_writer) + buffer_ptr) < 9) {
-        System_BufferManager(&total_size, (longlong)data_writer + (8 - buffer_ptr));
+      if ((uint64_t)((buffer_capacity - (int64_t)data_writer) + buffer_ptr) < 9) {
+        System_BufferManager(&total_size, (int64_t)data_writer + (8 - buffer_ptr));
         data_writer = write_ptr;
         buffer_ptr = total_size;
       }
       
       // 写入资源ID
-      *(longlong *)data_writer = (longlong)resource_id;
+      *(int64_t *)data_writer = (int64_t)resource_id;
       write_ptr = data_writer + 2;
       
       // 检查缓冲区容量
-      if ((ulonglong)((buffer_capacity - (longlong)write_ptr) + buffer_ptr) < 5) {
-        System_BufferManager(&total_size, (longlong)write_ptr + (4 - buffer_ptr));
+      if ((uint64_t)((buffer_capacity - (int64_t)write_ptr) + buffer_ptr) < 5) {
+        System_BufferManager(&total_size, (int64_t)write_ptr + (4 - buffer_ptr));
         buffer_ptr = total_size;
       }
       
@@ -421,12 +421,12 @@ void RenderingSystem_ProcessResourceChunk(longlong resource_context, longlong fi
       
       // 处理资源数据
       if (0 < (int)data_length) {
-        current_resource = **(longlong **)(current_resource + 0x28);
+        current_resource = **(int64_t **)(current_resource + 0x28);
         data_length = *(uint *)(current_resource + 0x38);
         
         // 检查缓冲区容量
-        if ((ulonglong)((buffer_capacity - (longlong)data_writer) + buffer_ptr) <= (ulonglong)data_length + 4) {
-          System_BufferManager(&total_size, (((ulonglong)data_length + 4) - buffer_ptr) + (longlong)data_writer);
+        if ((uint64_t)((buffer_capacity - (int64_t)data_writer) + buffer_ptr) <= (uint64_t)data_length + 4) {
+          System_BufferManager(&total_size, (((uint64_t)data_length + 4) - buffer_ptr) + (int64_t)data_writer);
         }
         
         *write_ptr = data_length;
@@ -468,32 +468,32 @@ void RenderingSystem_ProcessResourceChunk(longlong resource_context, longlong fi
  * @param file_context 文件操作上下文指针
  * @param resource_type 资源类型标识
  */
-void RenderingSystem_HandleResourceFile(longlong resource_context, longlong file_context, uint64_t resource_type)
+void RenderingSystem_HandleResourceFile(int64_t resource_context, int64_t file_context, uint64_t resource_type)
 {
-  longlong *resource_node;
+  int64_t *resource_node;
   uint64_t *resource_ptr;
   uint resource_flags;
   uint64_t resource_header;
-  ulonglong resource_count;
+  uint64_t resource_count;
   int32_t *resource_block;
   uint64_t *resource_data;
-  longlong current_pos;
+  int64_t current_pos;
   uint64_t *next_resource;
-  longlong list_size;
+  int64_t list_size;
   uint64_t *list_end;
   uint64_t *list_start;
-  longlong resource_index;
+  int64_t resource_index;
   uint64_t *resource_list;
   uint *data_ptr;
   uint64_t *resource_info;
   int resource_id;
   uint *data_writer;
   int32_t data_value;
-  longlong file_offset;
+  int64_t file_offset;
   uint64_t file_size;
-  ulonglong data_size;
+  uint64_t data_size;
   int8_t temp_buffer [8];
-  longlong buffer_size;
+  int64_t buffer_size;
   uint *buffer_ptr;
   uint64_t buffer_header;
   int16_t buffer_flag;
@@ -519,8 +519,8 @@ void RenderingSystem_HandleResourceFile(longlong resource_context, longlong file
   current_pos = buffer_size;
   fread(buffer_size, file_offset, 1, *(uint64_t *)(file_context + 8));
   
-  list_size = *(longlong *)buffer_ptr;
-  data_ptr = (uint *)((longlong)buffer_ptr + 8);
+  list_size = *(int64_t *)buffer_ptr;
+  data_ptr = (uint *)((int64_t)buffer_ptr + 8);
   buffer_ptr = data_ptr;
   
   do {
@@ -539,21 +539,21 @@ void RenderingSystem_HandleResourceFile(longlong resource_context, longlong file
     if (0 < (int)*data_writer) {
       resource_ptr = (uint64_t *)(resource_context + 0x8a8);
       resource_id = (int)resource_header;
-      data_size = (ulonglong)file_size >> 0x20;
+      data_size = (uint64_t)file_size >> 0x20;
       file_size = CONCAT44((int)data_size, resource_id);
-      resource_count = (ulonglong)*data_writer;
+      resource_count = (uint64_t)*data_writer;
       
       do {
         // 创建资源块
         resource_block = (int32_t *)FUN_18062b1e0(RENDERING_ALLOCATOR_ADDRESS, RENDERING_DATA_BLOCK_SIZE, 8, 3);
-        resource_node = (longlong *)(resource_block + 10);
+        resource_node = (int64_t *)(resource_block + 10);
         
         // 初始化资源结构
-        *resource_node = (longlong)&RENDERING_RESOURCE_TABLE_ADDRESS;
+        *resource_node = (int64_t)&RENDERING_RESOURCE_TABLE_ADDRESS;
         *(uint64_t *)(resource_block + 0xc) = 0;
         resource_block[0xe] = 0;
         
-        *resource_node = (longlong)&RENDERING_DATA_ARRAY_ADDRESS;
+        *resource_node = (int64_t)&RENDERING_DATA_ARRAY_ADDRESS;
         *(uint64_t *)(resource_block + 0x10) = 0;
         *(uint64_t *)(resource_block + 0xc) = 0;
         resource_block[0xe] = 0;
@@ -576,7 +576,7 @@ void RenderingSystem_HandleResourceFile(longlong resource_context, longlong file
         if (resource_flags != 0) {
           buffer_ptr = data_ptr;
           data_value = (**(code **)(*resource_node + 0x18))(resource_node, data_ptr, resource_flags);
-          data_ptr = (uint *)((longlong)data_ptr + (ulonglong)resource_flags);
+          data_ptr = (uint *)((int64_t)data_ptr + (uint64_t)resource_flags);
         }
         
         // 复制数据块
@@ -622,7 +622,7 @@ void RenderingSystem_HandleResourceFile(longlong resource_context, longlong file
         }
         else {
           list_end = (uint64_t *)resource_data[5];
-          current_pos = (longlong)list_start - (longlong)list_end >> 3;
+          current_pos = (int64_t)list_start - (int64_t)list_end >> 3;
           if (current_pos == 0) {
             current_pos = 1;
             // 重新分配内存
@@ -644,7 +644,7 @@ void RenderingSystem_HandleResourceFile(longlong resource_context, longlong file
           
           // 移动数据
           if (list_end != list_start) {
-            memmove(next_resource, list_end, (longlong)list_start - (longlong)list_end);
+            memmove(next_resource, list_end, (int64_t)list_start - (int64_t)list_end);
           }
           
           *next_resource = resource_block;
@@ -675,30 +675,30 @@ void RenderingSystem_HandleResourceFile(longlong resource_context, longlong file
  * @param resource_context 资源上下文指针
  * @param resource_index 资源索引
  */
-void RenderingSystem_CleanupResourceTable(longlong resource_context, uint resource_index)
+void RenderingSystem_CleanupResourceTable(int64_t resource_context, uint resource_index)
 {
-  ulonglong *hash_table;
+  uint64_t *hash_table;
   uint resource_id;
-  longlong *resource_ptr;
+  int64_t *resource_ptr;
   uint64_t *resource_node;
   int lock_status;
-  longlong *table_entry;
+  int64_t *table_entry;
   uint *hash_ptr;
   uint *hash_entry;
-  ulonglong hash_value;
-  longlong table_size;
+  uint64_t hash_value;
+  int64_t table_size;
   uint64_t *table_data;
-  longlong list_ptr;
+  int64_t list_ptr;
   uint64_t *list_end;
   uint64_t *list_start;
   uint64_t file_position;
-  ulonglong table_capacity;
+  uint64_t table_capacity;
   uint *data_ptr;
   uint *data_entry;
   uint64_t *resource_info;
   uint64_t *next_resource;
   uint64_t resource_data;
-  ulonglong hash_mask;
+  uint64_t hash_mask;
   uint *temp_ptr;
   uint *temp_entry;
   uint64_t *temp_buffer;
@@ -711,12 +711,12 @@ void RenderingSystem_CleanupResourceTable(longlong resource_context, uint resour
   uint64_t hash_header;
   int32_t hash_flag;
   uint64_t buffer_size;
-  longlong *buffer_ptr64;
+  int64_t *buffer_ptr64;
   uint64_t *buffer_ptr8;
   uint64_t stack_top;
   
   stack_top = 0x1803368e3;
-  file_position = _ftelli64(*(uint64_t *)(*(longlong *)(resource_context + 0x200) + 8));
+  file_position = _ftelli64(*(uint64_t *)(*(int64_t *)(resource_context + 0x200) + 8));
   stack_top = 0x1803368f8;
   file_position = FUN_18032c9f0(resource_context, *(uint64_t *)(resource_context + 0x200), file_position, resource_index);
   stack_top = 0x180336910;
@@ -729,8 +729,8 @@ void RenderingSystem_CleanupResourceTable(longlong resource_context, uint resour
   }
   
   stack_top = 0x18033692f;
-  FUN_180057340(resource_context + 0x260, (longlong)(int)(resource_index + 1));
-  *(uint64_t *)(*(longlong *)(resource_context + 0x260) + (longlong)(int)resource_index * 8) = file_position;
+  FUN_180057340(resource_context + 0x260, (int64_t)(int)(resource_index + 1));
+  *(uint64_t *)(*(int64_t *)(resource_context + 0x260) + (int64_t)(int)resource_index * 8) = file_position;
   *(int *)(resource_context + 0x228) = *(int *)(resource_context + 0x228) + 1;
   stack_top = 0x180336949;
   
@@ -741,15 +741,15 @@ void RenderingSystem_CleanupResourceTable(longlong resource_context, uint resour
     __Throw_C_error_std__YAXH_Z(lock_status);
   }
   
-  table_capacity = (ulonglong)resource_index;
+  table_capacity = (uint64_t)resource_index;
   buffer_size = 0xfffffffffffffffe;
   
   // 创建资源表
-  resource_ptr = (longlong *)FUN_18062b1e0(RENDERING_ALLOCATOR_ADDRESS, RENDERING_HASH_TABLE_SIZE, 8, 3);
+  resource_ptr = (int64_t *)FUN_18062b1e0(RENDERING_ALLOCATOR_ADDRESS, RENDERING_HASH_TABLE_SIZE, 8, 3);
   FUN_180049830(resource_ptr);
   
-  *resource_ptr = (longlong)&RENDERING_FILE_POINTER_ADDRESS;
-  hash_table = (ulonglong *)(resource_ptr + 0x18);
+  *resource_ptr = (int64_t)&RENDERING_FILE_POINTER_ADDRESS;
+  hash_table = (uint64_t *)(resource_ptr + 0x18);
   *hash_table = 0;
   resource_ptr[0x19] = 0;
   resource_ptr[0x1a] = 0;
@@ -775,10 +775,10 @@ void RenderingSystem_CleanupResourceTable(longlong resource_context, uint resour
     hash_ptr = hash_buffer;
     do {
       resource_id = *hash_ptr;
-      hash_value = (ulonglong)resource_id % (ulonglong)*(uint *)(resource_context + 0xa00);
+      hash_value = (uint64_t)resource_id % (uint64_t)*(uint *)(resource_context + 0xa00);
       
       // 查找哈希表中的资源
-      for (hash_entry = *(uint **)(*(longlong *)(resource_context + 0x9f8) + hash_value * 8); 
+      for (hash_entry = *(uint **)(*(int64_t *)(resource_context + 0x9f8) + hash_value * 8); 
            hash_entry != (uint *)0x0; hash_entry = *(uint **)(hash_entry + 4)) {
         if (resource_id == *hash_entry) {
           if (hash_entry != (uint *)0x0) {
@@ -790,7 +790,7 @@ void RenderingSystem_CleanupResourceTable(longlong resource_context, uint resour
       
       // 创建新的哈希条目
       FUN_18066c220(resource_context + 0xa10, &stack0x00000018, 
-                    (ulonglong)*(uint *)(resource_context + 0xa00),
+                    (uint64_t)*(uint *)(resource_context + 0xa00),
                     *(int32_t *)(resource_context + 0xa08), 1);
       
       hash_entry = (uint *)FUN_18062b420(RENDERING_ALLOCATOR_ADDRESS, 0x18, *(int8_t *)(resource_context + 0xa1c));
@@ -801,28 +801,28 @@ void RenderingSystem_CleanupResourceTable(longlong resource_context, uint resour
       hash_entry[5] = 0;
       
       if ((char)hash_table != '\0') {
-        hash_value = (ulonglong)resource_id % ((ulonglong)hash_table >> 0x20);
+        hash_value = (uint64_t)resource_id % ((uint64_t)hash_table >> 0x20);
         FUN_18033bf30(resource_context + 0x9f0);
       }
       
-      *(uint64_t *)(hash_entry + 4) = *(uint64_t *)(*(longlong *)(resource_context + 0x9f8) + hash_value * 8);
-      *(uint **)(*(longlong *)(resource_context + 0x9f8) + hash_value * 8) = hash_entry;
-      *(longlong *)(resource_context + 0xa08) = *(longlong *)(resource_context + 0xa08) + 1;
+      *(uint64_t *)(hash_entry + 4) = *(uint64_t *)(*(int64_t *)(resource_context + 0x9f8) + hash_value * 8);
+      *(uint **)(*(int64_t *)(resource_context + 0x9f8) + hash_value * 8) = hash_entry;
+      *(int64_t *)(resource_context + 0xa08) = *(int64_t *)(resource_context + 0xa08) + 1;
       
       // 处理资源数据
-      table_size = *(longlong *)(hash_entry + 2);
+      table_size = *(int64_t *)(hash_entry + 2);
       resource_data = 0;
-      list_ptr = *(longlong *)(table_size + 8);
+      list_ptr = *(int64_t *)(table_size + 8);
       
-      for (hash_entry = *(uint **)(list_ptr + (table_capacity % (ulonglong)*(uint *)(table_size + 0x10)) * 8);
+      for (hash_entry = *(uint **)(list_ptr + (table_capacity % (uint64_t)*(uint *)(table_size + 0x10)) * 8);
            hash_entry != (uint *)0x0; hash_entry = *(uint **)(hash_entry + 4)) {
         if (resource_index == *hash_entry) {
-          hash_mask = *(ulonglong *)(table_size + 0x10);
+          hash_mask = *(uint64_t *)(table_size + 0x10);
           break;
         }
       }
       
-      hash_mask = *(ulonglong *)(table_size + 0x10);
+      hash_mask = *(uint64_t *)(table_size + 0x10);
       hash_entry = *(uint **)(list_ptr + hash_mask * 8);
       
       if (hash_entry != *(uint **)(list_ptr + hash_mask * 8)) {
@@ -845,7 +845,7 @@ void RenderingSystem_CleanupResourceTable(longlong resource_context, uint resour
             
             *(uint64_t *)hash_entry = *(uint64_t *)(data_ptr + 4);
             *(uint **)(data_ptr + 4) = temp_ptr;
-            *(longlong *)(table_size + 0x18) = *(longlong *)(table_size + 0x18) + -1;
+            *(int64_t *)(table_size + 0x18) = *(int64_t *)(table_size + 0x18) + -1;
             temp_entry = *(uint **)hash_entry;
             temp_ptr = data_ptr;
           } while (*(uint **)hash_entry != (uint *)0x0);
@@ -859,12 +859,12 @@ void RenderingSystem_CleanupResourceTable(longlong resource_context, uint resour
       // 更新资源表
       resource_info = (uint64_t *)resource_ptr[0x19];
       if (resource_info < (uint64_t *)resource_ptr[0x1a]) {
-        resource_ptr[0x19] = (longlong)(resource_info + 1);
+        resource_ptr[0x19] = (int64_t)(resource_info + 1);
         *resource_info = resource_data;
       }
       else {
         next_resource = (uint64_t *)*hash_table;
-        table_size = (longlong)resource_info - (longlong)next_resource >> 3;
+        table_size = (int64_t)resource_info - (int64_t)next_resource >> 3;
         if (table_size == 0) {
           table_size = 1;
           // 重新分配内存
@@ -884,7 +884,7 @@ void RenderingSystem_CleanupResourceTable(longlong resource_context, uint resour
         
         // 移动数据
         if (next_resource != resource_info) {
-          memmove(table_data, next_resource, (longlong)resource_info - (longlong)next_resource);
+          memmove(table_data, next_resource, (int64_t)resource_info - (int64_t)next_resource);
         }
         
         *table_data = resource_data;
@@ -892,9 +892,9 @@ void RenderingSystem_CleanupResourceTable(longlong resource_context, uint resour
           FUN_18064e900();
         }
         
-        *hash_table = (ulonglong)table_data;
-        resource_ptr[0x19] = (longlong)(table_data + 1);
-        resource_ptr[0x1a] = (longlong)(table_data + table_size);
+        *hash_table = (uint64_t)table_data;
+        resource_ptr[0x19] = (int64_t)(table_data + 1);
+        resource_ptr[0x1a] = (int64_t)(table_data + table_size);
       }
       
       hash_ptr = hash_ptr + 1;
@@ -928,10 +928,10 @@ void RenderingSystem_CleanupResourceTable(longlong resource_context, uint resour
     hash_ptr = temp_ptr;
     do {
       resource_id = *hash_ptr;
-      hash_value = (ulonglong)resource_id % (ulonglong)*(uint *)(resource_context + 0x6c8);
+      hash_value = (uint64_t)resource_id % (uint64_t)*(uint *)(resource_context + 0x6c8);
       
       // 查找辅助哈希表中的资源
-      for (hash_entry = *(uint **)(*(longlong *)(resource_context + 0x6c0) + hash_value * 8); 
+      for (hash_entry = *(uint **)(*(int64_t *)(resource_context + 0x6c0) + hash_value * 8); 
            hash_entry != (uint *)0x0; hash_entry = *(uint **)(hash_entry + 4)) {
         if (resource_id == *hash_entry) {
           if (hash_entry != (uint *)0x0) {
@@ -943,7 +943,7 @@ void RenderingSystem_CleanupResourceTable(longlong resource_context, uint resour
       
       // 创建新的辅助哈希条目
       FUN_18066c220(resource_context + 0x6d8, &stack0x00000018, 
-                    (ulonglong)*(uint *)(resource_context + 0x6c8),
+                    (uint64_t)*(uint *)(resource_context + 0x6c8),
                     *(int32_t *)(resource_context + 0x6d0), 1);
       
       hash_entry = (uint *)FUN_18062b420(RENDERING_ALLOCATOR_ADDRESS, 0x18, *(int8_t *)(resource_context + 0x6e4));
@@ -954,39 +954,39 @@ void RenderingSystem_CleanupResourceTable(longlong resource_context, uint resour
       hash_entry[5] = 0;
       
       if ((char)resource_ptr != '\0') {
-        hash_value = (ulonglong)resource_id % ((ulonglong)resource_ptr >> 0x20);
+        hash_value = (uint64_t)resource_id % ((uint64_t)resource_ptr >> 0x20);
         FUN_18033bf30(resource_context + 0x6b8);
       }
       
-      *(uint64_t *)(hash_entry + 4) = *(uint64_t *)(*(longlong *)(resource_context + 0x6c0) + hash_value * 8);
-      *(uint **)(*(longlong *)(resource_context + 0x6c0) + hash_value * 8) = hash_entry;
-      *(longlong *)(resource_context + 0x6d0) = *(longlong *)(resource_context + 0x6d0) + 1;
+      *(uint64_t *)(hash_entry + 4) = *(uint64_t *)(*(int64_t *)(resource_context + 0x6c0) + hash_value * 8);
+      *(uint **)(*(int64_t *)(resource_context + 0x6c0) + hash_value * 8) = hash_entry;
+      *(int64_t *)(resource_context + 0x6d0) = *(int64_t *)(resource_context + 0x6d0) + 1;
       
       // 处理辅助资源数据
-      table_size = *(longlong *)(hash_entry + 2);
-      list_ptr = *(longlong *)(table_size + 8);
+      table_size = *(int64_t *)(hash_entry + 2);
+      list_ptr = *(int64_t *)(table_size + 8);
       
-      for (hash_entry = *(uint **)(list_ptr + (table_capacity % (ulonglong)*(uint *)(table_size + 0x10)) * 8);
+      for (hash_entry = *(uint **)(list_ptr + (table_capacity % (uint64_t)*(uint *)(table_size + 0x10)) * 8);
            hash_entry != (uint *)0x0; hash_entry = *(uint **)(hash_entry + 4)) {
         if (resource_index == *hash_entry) {
-          list_ptr = *(longlong *)(table_size + 0x10);
+          list_ptr = *(int64_t *)(table_size + 0x10);
           break;
         }
       }
       
-      list_ptr = *(longlong *)(table_size + 0x10);
+      list_ptr = *(int64_t *)(table_size + 0x10);
       hash_entry = *(uint **)(list_ptr + list_ptr * 8);
       
       if (hash_entry != *(uint **)(list_ptr + list_ptr * 8)) {
-        if (*(longlong *)(hash_entry + 2) != 0) {
-          *(void **)(*(longlong *)(hash_entry + 2) + 0x50) = &RENDERING_RESOURCE_TABLE_ADDRESS;
+        if (*(int64_t *)(hash_entry + 2) != 0) {
+          *(void **)(*(int64_t *)(hash_entry + 2) + 0x50) = &RENDERING_RESOURCE_TABLE_ADDRESS;
           FUN_18064e900();
         }
         
         hash_entry[2] = 0;
         hash_entry[3] = 0;
-        hash_entry = (uint *)(*(longlong *)(table_size + 8) +
-                         (table_capacity % (ulonglong)*(uint *)(table_size + 0x10)) * 8);
+        hash_entry = (uint *)(*(int64_t *)(table_size + 8) +
+                         (table_capacity % (uint64_t)*(uint *)(table_size + 0x10)) * 8);
         temp_entry = *(uint **)hash_entry;
         
         while ((temp_entry != (uint *)0x0 && (resource_index != *temp_entry))) {
@@ -1004,7 +1004,7 @@ void RenderingSystem_CleanupResourceTable(longlong resource_context, uint resour
             
             *(uint64_t *)hash_entry = *(uint64_t *)(data_ptr + 4);
             *(uint **)(data_ptr + 4) = temp_ptr;
-            *(longlong *)(table_size + 0x18) = *(longlong)(table_size + 0x18) + -1;
+            *(int64_t *)(table_size + 0x18) = *(int64_t)(table_size + 0x18) + -1;
             temp_entry = *(uint **)hash_entry;
             temp_ptr = data_ptr;
           } while (*(uint **)hash_entry != (uint *)0x0);
@@ -1020,21 +1020,21 @@ void RenderingSystem_CleanupResourceTable(longlong resource_context, uint resour
   }
   
   // 清理主资源表
-  table_size = *(longlong *)(resource_context + 0x570);
-  for (hash_ptr = *(uint **)(table_size + (table_capacity % (ulonglong)*(uint *)(resource_context + 0x578)) * 8);
+  table_size = *(int64_t *)(resource_context + 0x570);
+  for (hash_ptr = *(uint **)(table_size + (table_capacity % (uint64_t)*(uint *)(resource_context + 0x578)) * 8);
        hash_ptr != (uint *)0x0; hash_ptr = *(uint **)(hash_ptr + 4)) {
     if (resource_index == *hash_ptr) {
-      list_ptr = *(longlong *)(resource_context + 0x578);
+      list_ptr = *(int64_t *)(resource_context + 0x578);
       break;
     }
   }
   
-  list_ptr = *(longlong)(resource_context + 0x578);
+  list_ptr = *(int64_t)(resource_context + 0x578);
   hash_ptr = *(uint **)(table_size + list_ptr * 8);
   
   if (hash_ptr != *(uint **)(table_size + list_ptr * 8)) {
-    table_entry = *(longlong **)(hash_ptr + 2);
-    if (table_entry != (longlong *)0x0) {
+    table_entry = *(int64_t **)(hash_ptr + 2);
+    if (table_entry != (int64_t *)0x0) {
       if (*table_entry == 0) {
         FUN_18064e900(table_entry);
       }
@@ -1043,8 +1043,8 @@ void RenderingSystem_CleanupResourceTable(longlong resource_context, uint resour
     
     hash_ptr[2] = 0;
     hash_ptr[3] = 0;
-    hash_ptr = (uint *)(*(longlong)(resource_context + 0x570) +
-                     (table_capacity % (ulonglong)*(uint *)(resource_context + 0x578)) * 8);
+    hash_ptr = (uint *)(*(int64_t)(resource_context + 0x570) +
+                     (table_capacity % (uint64_t)*(uint *)(resource_context + 0x578)) * 8);
     hash_entry = *(uint **)hash_ptr;
     
     while ((hash_entry != (uint *)0x0 && (resource_index != *hash_entry))) {
@@ -1062,7 +1062,7 @@ void RenderingSystem_CleanupResourceTable(longlong resource_context, uint resour
         
         *(uint64_t *)hash_ptr = *(uint64_t *)(temp_ptr + 4);
         *(uint **)(temp_ptr + 4) = temp_entry;
-        *(longlong *)(resource_context + 0x580) = *(longlong)(resource_context + 0x580) + -1;
+        *(int64_t *)(resource_context + 0x580) = *(int64_t)(resource_context + 0x580) + -1;
         hash_entry = *(uint **)hash_ptr;
         temp_entry = temp_ptr;
       } while (*(uint **)hash_ptr != (uint *)0x0);
@@ -1106,7 +1106,7 @@ void RenderingSystem_CleanupResourceTable(longlong resource_context, uint resour
       buffer_ptr8 = (uint64_t *)(table_size + 0x18);
       *buffer_ptr8 = &RENDERING_DATA_ARRAY_ADDRESS;
       
-      if (*(longlong)(table_size + 0x20) == 0) {
+      if (*(int64_t)(table_size + 0x20) == 0) {
         *(uint64_t *)(table_size + 0x20) = 0;
         *(int32_t *)(table_size + 0x30) = 0;
         *buffer_ptr8 = &RENDERING_RESOURCE_TABLE_ADDRESS;
@@ -1166,7 +1166,7 @@ void RenderingSystem_CleanupResourceTable(longlong resource_context, uint resour
   }
   else {
     while (next_resource = temp_ptr, next_resource != table_data) {
-      *(longlong *)(resource_context + 0x838) = *(longlong)(resource_context + 0x838) + -1;
+      *(int64_t *)(resource_context + 0x838) = *(int64_t)(resource_context + 0x838) + -1;
       temp_ptr = (uint64_t *)func_0x00018066bd70(next_resource);
       FUN_18066ba00(next_resource, table_data);
       

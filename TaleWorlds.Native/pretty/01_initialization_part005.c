@@ -124,7 +124,7 @@ typedef uint64_t DataPointerHandle;             // 数据指针句柄
 // 函数指针相关类型别名
 typedef void (*SystemCallbackFunction)(void);     // 系统回调函数类型
 typedef void (*SystemInitFunction)(void);          // 系统初始化函数类型
-typedef longlong (*SystemToolFunction)(void);      // 系统工具函数类型
+typedef int64_t (*SystemToolFunction)(void);      // 系统工具函数类型
 
 //------------------------------------------------------------------------------
 // 函数别名定义
@@ -193,14 +193,14 @@ void SystemInitialization_RegisterComponent1(void)
   SystemContextHandle* next_component_ptr;        // 下一个组件指针
   SystemContextHandle* parent_component_ptr;       // 父组件指针
   SystemContextHandle* allocated_component_ptr;   // 已分配组件指针
-  longlong allocation_size;                       // 分配大小
+  int64_t allocation_size;                       // 分配大小
   int compare_result;                             // 比较结果
   uint64_t callback_function;                   // 回调函数
   
   // 获取系统上下文和根组件
   root_component_ptr = (SystemContextHandle*)SystemCoreInitializer();
   current_component_ptr = (SystemContextHandle*)*root_component_ptr;
-  component_status = *(char*)((longlong)current_component_ptr[1] + MEMORY_DATA_OFFSET);
+  component_status = *(char*)((int64_t)current_component_ptr[1] + MEMORY_DATA_OFFSET);
   callback_function = 0;
   parent_component_ptr = root_component_ptr;
   next_component_ptr = (SystemContextHandle*)current_component_ptr[1];
@@ -219,7 +219,7 @@ void SystemInitialization_RegisterComponent1(void)
     }
     parent_component_ptr = next_component_ptr;
     next_component_ptr = current_component_ptr;
-    component_status = *(char*)((longlong)next_component_ptr + MEMORY_DATA_OFFSET);
+    component_status = *(char*)((int64_t)next_component_ptr + MEMORY_DATA_OFFSET);
   }
   
   // 检查是否需要分配新组件
@@ -283,14 +283,14 @@ void SystemInitialization_RegisterComponent2(void)
   SystemContextHandle* next_component_ptr;        // 下一个组件指针
   SystemContextHandle* parent_component_ptr;       // 父组件指针
   SystemContextHandle* allocated_component_ptr;   // 已分配组件指针
-  longlong allocation_size;                       // 分配大小
+  int64_t allocation_size;                       // 分配大小
   int compare_result;                             // 比较结果
   SystemCallbackFunction callback_function;       // 回调函数
   
   // 获取系统上下文和根组件
   root_component_ptr = (SystemContextHandle*)SystemCoreInitializer();
   current_component_ptr = (SystemContextHandle*)*root_component_ptr;
-  component_status = *(char*)((longlong)current_component_ptr[1] + MEMORY_DATA_OFFSET);
+  component_status = *(char*)((int64_t)current_component_ptr[1] + MEMORY_DATA_OFFSET);
   callback_function = SystemCallback_Handler1;
   parent_component_ptr = root_component_ptr;
   next_component_ptr = (SystemContextHandle*)current_component_ptr[1];
@@ -309,7 +309,7 @@ void SystemInitialization_RegisterComponent2(void)
     }
     parent_component_ptr = next_component_ptr;
     next_component_ptr = current_component_ptr;
-    component_status = *(char*)((longlong)next_component_ptr + MEMORY_DATA_OFFSET);
+    component_status = *(char*)((int64_t)next_component_ptr + MEMORY_DATA_OFFSET);
   }
   
   // 检查是否需要分配新组件
@@ -373,14 +373,14 @@ void SystemInitialization_RegisterComponent3(void)
   SystemContextHandle* next_component_ptr;        // 下一个组件指针
   SystemContextHandle* parent_component_ptr;       // 父组件指针
   SystemContextHandle* allocated_component_ptr;   // 已分配组件指针
-  longlong allocation_size;                       // 分配大小
+  int64_t allocation_size;                       // 分配大小
   int compare_result;                             // 比较结果
   SystemCallbackFunction callback_function;       // 回调函数
   
   // 获取系统上下文和根组件
   root_component_ptr = (SystemContextHandle*)SystemCoreInitializer();
   current_component_ptr = (SystemContextHandle*)*root_component_ptr;
-  component_status = *(char*)((longlong)current_component_ptr[1] + MEMORY_DATA_OFFSET);
+  component_status = *(char*)((int64_t)current_component_ptr[1] + MEMORY_DATA_OFFSET);
   callback_function = SystemCallback_Handler2;
   parent_component_ptr = root_component_ptr;
   next_component_ptr = (SystemContextHandle*)current_component_ptr[1];
@@ -399,7 +399,7 @@ void SystemInitialization_RegisterComponent3(void)
     }
     parent_component_ptr = next_component_ptr;
     next_component_ptr = current_component_ptr;
-    component_status = *(char*)((longlong)next_component_ptr + MEMORY_DATA_OFFSET);
+    component_status = *(char*)((int64_t)next_component_ptr + MEMORY_DATA_OFFSET);
   }
   
   // 检查是否需要分配新组件
@@ -463,14 +463,14 @@ void SystemInitialization_RegisterComponent4(void)
   SystemContextHandle* next_component_ptr;        // 下一个组件指针
   SystemContextHandle* parent_component_ptr;       // 父组件指针
   SystemContextHandle* allocated_component_ptr;   // 已分配组件指针
-  longlong allocation_size;                       // 分配大小
+  int64_t allocation_size;                       // 分配大小
   int compare_result;                             // 比较结果
   uint64_t callback_function;                   // 回调函数
   
   // 获取系统上下文和根组件
   root_component_ptr = (SystemContextHandle*)SystemCoreInitializer();
   current_component_ptr = (SystemContextHandle*)*root_component_ptr;
-  component_status = *(char*)((longlong)current_component_ptr[1] + MEMORY_DATA_OFFSET);
+  component_status = *(char*)((int64_t)current_component_ptr[1] + MEMORY_DATA_OFFSET);
   callback_function = 0;
   parent_component_ptr = root_component_ptr;
   next_component_ptr = (SystemContextHandle*)current_component_ptr[1];
@@ -489,7 +489,7 @@ void SystemInitialization_RegisterComponent4(void)
     }
     parent_component_ptr = next_component_ptr;
     next_component_ptr = current_component_ptr;
-    component_status = *(char*)((longlong)next_component_ptr + MEMORY_DATA_OFFSET);
+    component_status = *(char*)((int64_t)next_component_ptr + MEMORY_DATA_OFFSET);
   }
   
   // 检查是否需要分配新组件
@@ -553,14 +553,14 @@ void SystemInitialization_RegisterComponent5(void)
   SystemContextHandle* next_component_ptr;        // 下一个组件指针
   SystemContextHandle* parent_component_ptr;       // 父组件指针
   SystemContextHandle* allocated_component_ptr;   // 已分配组件指针
-  longlong allocation_size;                       // 分配大小
+  int64_t allocation_size;                       // 分配大小
   int compare_result;                             // 比较结果
   SystemCallbackFunction callback_function;       // 回调函数
   
   // 获取系统上下文和根组件
   root_component_ptr = (SystemContextHandle*)SystemCoreInitializer();
   current_component_ptr = (SystemContextHandle*)*root_component_ptr;
-  component_status = *(char*)((longlong)current_component_ptr[1] + MEMORY_DATA_OFFSET);
+  component_status = *(char*)((int64_t)current_component_ptr[1] + MEMORY_DATA_OFFSET);
   callback_function = SystemCallback_Handler3;
   parent_component_ptr = root_component_ptr;
   next_component_ptr = (SystemContextHandle*)current_component_ptr[1];
@@ -579,7 +579,7 @@ void SystemInitialization_RegisterComponent5(void)
     }
     parent_component_ptr = next_component_ptr;
     next_component_ptr = current_component_ptr;
-    component_status = *(char*)((longlong)next_component_ptr + MEMORY_DATA_OFFSET);
+    component_status = *(char*)((int64_t)next_component_ptr + MEMORY_DATA_OFFSET);
   }
   
   // 检查是否需要分配新组件
@@ -643,14 +643,14 @@ void SystemInitialization_RegisterComponent6(void)
   SystemContextHandle* next_component_ptr;        // 下一个组件指针
   SystemContextHandle* parent_component_ptr;       // 父组件指针
   SystemContextHandle* allocated_component_ptr;   // 已分配组件指针
-  longlong allocation_size;                       // 分配大小
+  int64_t allocation_size;                       // 分配大小
   int compare_result;                             // 比较结果
   uint64_t callback_function;                   // 回调函数
   
   // 获取系统上下文和根组件
   root_component_ptr = (SystemContextHandle*)SystemCoreInitializer();
   current_component_ptr = (SystemContextHandle*)*root_component_ptr;
-  component_status = *(char*)((longlong)current_component_ptr[1] + MEMORY_DATA_OFFSET);
+  component_status = *(char*)((int64_t)current_component_ptr[1] + MEMORY_DATA_OFFSET);
   callback_function = 0;
   parent_component_ptr = root_component_ptr;
   next_component_ptr = (SystemContextHandle*)current_component_ptr[1];
@@ -669,7 +669,7 @@ void SystemInitialization_RegisterComponent6(void)
     }
     parent_component_ptr = next_component_ptr;
     next_component_ptr = current_component_ptr;
-    component_status = *(char*)((longlong)next_component_ptr + MEMORY_DATA_OFFSET);
+    component_status = *(char*)((int64_t)next_component_ptr + MEMORY_DATA_OFFSET);
   }
   
   // 检查是否需要分配新组件
@@ -733,14 +733,14 @@ void SystemInitialization_RegisterComponent7(void)
   SystemContextHandle* next_component_ptr;        // 下一个组件指针
   SystemContextHandle* parent_component_ptr;       // 父组件指针
   SystemContextHandle* allocated_component_ptr;   // 已分配组件指针
-  longlong allocation_size;                       // 分配大小
+  int64_t allocation_size;                       // 分配大小
   int compare_result;                             // 比较结果
   void* tool_function;                       // 工具函数指针
   
   // 获取系统上下文和根组件
   root_component_ptr = (SystemContextHandle*)SystemCoreInitializer();
   current_component_ptr = (SystemContextHandle*)*root_component_ptr;
-  component_status = *(char*)((longlong)current_component_ptr[1] + MEMORY_DATA_OFFSET);
+  component_status = *(char*)((int64_t)current_component_ptr[1] + MEMORY_DATA_OFFSET);
   tool_function = &unknown_var_2048_ptr;
   parent_component_ptr = root_component_ptr;
   next_component_ptr = (SystemContextHandle*)current_component_ptr[1];
@@ -759,7 +759,7 @@ void SystemInitialization_RegisterComponent7(void)
     }
     parent_component_ptr = next_component_ptr;
     next_component_ptr = current_component_ptr;
-    component_status = *(char*)((longlong)next_component_ptr + MEMORY_DATA_OFFSET);
+    component_status = *(char*)((int64_t)next_component_ptr + MEMORY_DATA_OFFSET);
   }
   
   // 检查是否需要分配新组件
@@ -823,14 +823,14 @@ void SystemInitialization_RegisterComponent8(void)
   SystemContextHandle* next_component_ptr;        // 下一个组件指针
   SystemContextHandle* parent_component_ptr;       // 父组件指针
   SystemContextHandle* allocated_component_ptr;   // 已分配组件指针
-  longlong allocation_size;                       // 分配大小
+  int64_t allocation_size;                       // 分配大小
   int compare_result;                             // 比较结果
   uint64_t callback_function;                   // 回调函数
   
   // 获取系统上下文和根组件
   root_component_ptr = (SystemContextHandle*)SystemCoreInitializer();
   current_component_ptr = (SystemContextHandle*)*root_component_ptr;
-  component_status = *(char*)((longlong)current_component_ptr[1] + MEMORY_DATA_OFFSET);
+  component_status = *(char*)((int64_t)current_component_ptr[1] + MEMORY_DATA_OFFSET);
   callback_function = 0;
   parent_component_ptr = root_component_ptr;
   next_component_ptr = (SystemContextHandle*)current_component_ptr[1];
@@ -849,7 +849,7 @@ void SystemInitialization_RegisterComponent8(void)
     }
     parent_component_ptr = next_component_ptr;
     next_component_ptr = current_component_ptr;
-    component_status = *(char*)((longlong)next_component_ptr + MEMORY_DATA_OFFSET);
+    component_status = *(char*)((int64_t)next_component_ptr + MEMORY_DATA_OFFSET);
   }
   
   // 检查是否需要分配新组件
@@ -903,13 +903,13 @@ void SystemInitialization_InitializeDataBuffers(void)
 
 {
   // 语义化变量定义
-  ulonglong buffer_index;                         // 缓冲区索引
+  uint64_t buffer_index;                         // 缓冲区索引
   float* data_buffer_ptr;                         // 数据缓冲区指针
   float* temp_buffer_ptr;                         // 临时缓冲区指针
   int loop_counter;                               // 循环计数器
-  ulonglong processed_elements;                    // 已处理元素数量
+  uint64_t processed_elements;                    // 已处理元素数量
   uint element_count;                              // 元素数量
-  ulonglong remaining_elements;                    // 剩余元素数量
+  uint64_t remaining_elements;                    // 剩余元素数量
   int calculation_index;                           // 计算索引
   float* calculation_buffer_ptr;                   // 计算缓冲区指针
   float calculated_value;                           // 计算值
@@ -923,14 +923,14 @@ void SystemInitialization_InitializeDataBuffers(void)
   
   // 主循环：处理数据缓冲区
   do {
-    if (0 < (longlong)remaining_elements) {
+    if (0 < (int64_t)remaining_elements) {
       loop_counter = -3;
       processed_elements = 0;
       temp_buffer_ptr = data_buffer_ptr;
       do {
         calculated_value = 0.0;
-        if (-1 < (longlong)processed_elements) {
-          if ((longlong)processed_elements < 3) {
+        if (-1 < (int64_t)processed_elements) {
+          if ((int64_t)processed_elements < 3) {
             calculated_value = 0.75;
           }
           else {
@@ -942,12 +942,12 @@ void SystemInitialization_InitializeDataBuffers(void)
         loop_counter = loop_counter + 1;
         temp_buffer_ptr = temp_buffer_ptr + 1;
         processed_elements = processed_elements + 1;
-      } while ((longlong)processed_elements < (longlong)remaining_elements);
+      } while ((int64_t)processed_elements < (int64_t)remaining_elements);
     }
     calculation_index = calculation_index + 1;
     remaining_elements = remaining_elements + 1;
     data_buffer_ptr = data_buffer_ptr + 0x40;
-  } while ((longlong)data_buffer_ptr < 0x180c8ea71);
+  } while ((int64_t)data_buffer_ptr < 0x180c8ea71);
   
   // 第二阶段：初始化辅助缓冲区
   data_buffer_ptr = (float*)0x180c8eb70;
@@ -955,7 +955,7 @@ void SystemInitialization_InitializeDataBuffers(void)
     element_count = (int)processed_elements + 1;
     *data_buffer_ptr = 1.0 / SQRT((float)processed_elements) + 1.0 / SQRT((float)processed_elements);
     data_buffer_ptr = data_buffer_ptr + 1;
-    processed_elements = (ulonglong)element_count;
+    processed_elements = (uint64_t)element_count;
   } while (element_count < 0x40);
   return;
 }
@@ -1003,14 +1003,14 @@ void SystemInitialization_RegisterComponent9(void)
   SystemContextHandle* next_component_ptr;        // 下一个组件指针
   SystemContextHandle* parent_component_ptr;       // 父组件指针
   SystemContextHandle* allocated_component_ptr;   // 已分配组件指针
-  longlong allocation_size;                       // 分配大小
+  int64_t allocation_size;                       // 分配大小
   int compare_result;                             // 比较结果
   SystemCallbackFunction callback_function;       // 回调函数
   
   // 获取系统上下文和根组件
   root_component_ptr = (SystemContextHandle*)SystemCoreInitializer();
   current_component_ptr = (SystemContextHandle*)*root_component_ptr;
-  component_status = *(char*)((longlong)current_component_ptr[1] + MEMORY_DATA_OFFSET);
+  component_status = *(char*)((int64_t)current_component_ptr[1] + MEMORY_DATA_OFFSET);
   callback_function = SystemCallback_Handler4;
   parent_component_ptr = root_component_ptr;
   next_component_ptr = (SystemContextHandle*)current_component_ptr[1];
@@ -1029,7 +1029,7 @@ void SystemInitialization_RegisterComponent9(void)
     }
     parent_component_ptr = next_component_ptr;
     next_component_ptr = current_component_ptr;
-    component_status = *(char*)((longlong)next_component_ptr + MEMORY_DATA_OFFSET);
+    component_status = *(char*)((int64_t)next_component_ptr + MEMORY_DATA_OFFSET);
   }
   
   // 检查是否需要分配新组件
@@ -1093,14 +1093,14 @@ void SystemInitialization_RegisterComponent10(void)
   SystemContextHandle* next_component_ptr;        // 下一个组件指针
   SystemContextHandle* parent_component_ptr;       // 父组件指针
   SystemContextHandle* allocated_component_ptr;   // 已分配组件指针
-  longlong allocation_size;                       // 分配大小
+  int64_t allocation_size;                       // 分配大小
   int compare_result;                             // 比较结果
   SystemCallbackFunction callback_function;       // 回调函数
   
   // 获取系统上下文和根组件
   root_component_ptr = (SystemContextHandle*)SystemCoreInitializer();
   current_component_ptr = (SystemContextHandle*)*root_component_ptr;
-  component_status = *(char*)((longlong)current_component_ptr[1] + MEMORY_DATA_OFFSET);
+  component_status = *(char*)((int64_t)current_component_ptr[1] + MEMORY_DATA_OFFSET);
   callback_function = SystemCallback_Handler5;
   parent_component_ptr = root_component_ptr;
   next_component_ptr = (SystemContextHandle*)current_component_ptr[1];
@@ -1119,7 +1119,7 @@ void SystemInitialization_RegisterComponent10(void)
     }
     parent_component_ptr = next_component_ptr;
     next_component_ptr = current_component_ptr;
-    component_status = *(char*)((longlong)next_component_ptr + MEMORY_DATA_OFFSET);
+    component_status = *(char*)((int64_t)next_component_ptr + MEMORY_DATA_OFFSET);
   }
   
   // 检查是否需要分配新组件
@@ -1183,14 +1183,14 @@ void SystemInitialization_RegisterComponent11(void)
   SystemContextHandle* next_component_ptr;        // 下一个组件指针
   SystemContextHandle* parent_component_ptr;       // 父组件指针
   SystemContextHandle* allocated_component_ptr;   // 已分配组件指针
-  longlong allocation_size;                       // 分配大小
+  int64_t allocation_size;                       // 分配大小
   int compare_result;                             // 比较结果
   SystemCallbackFunction callback_function;       // 回调函数
   
   // 获取系统上下文和根组件
   root_component_ptr = (SystemContextHandle*)SystemCoreInitializer();
   current_component_ptr = (SystemContextHandle*)*root_component_ptr;
-  component_status = *(char*)((longlong)current_component_ptr[1] + MEMORY_DATA_OFFSET);
+  component_status = *(char*)((int64_t)current_component_ptr[1] + MEMORY_DATA_OFFSET);
   callback_function = SystemCallback_Handler6;
   parent_component_ptr = root_component_ptr;
   next_component_ptr = (SystemContextHandle*)current_component_ptr[1];
@@ -1209,7 +1209,7 @@ void SystemInitialization_RegisterComponent11(void)
     }
     parent_component_ptr = next_component_ptr;
     next_component_ptr = current_component_ptr;
-    component_status = *(char*)((longlong)next_component_ptr + MEMORY_DATA_OFFSET);
+    component_status = *(char*)((int64_t)next_component_ptr + MEMORY_DATA_OFFSET);
   }
   
   // 检查是否需要分配新组件
@@ -1273,14 +1273,14 @@ void SystemInitialization_RegisterComponent12(void)
   SystemContextHandle* next_component_ptr;        // 下一个组件指针
   SystemContextHandle* parent_component_ptr;       // 父组件指针
   SystemContextHandle* allocated_component_ptr;   // 已分配组件指针
-  longlong allocation_size;                       // 分配大小
+  int64_t allocation_size;                       // 分配大小
   int compare_result;                             // 比较结果
   SystemCallbackFunction callback_function;       // 回调函数
   
   // 获取系统上下文和根组件
   root_component_ptr = (SystemContextHandle*)SystemCoreInitializer();
   current_component_ptr = (SystemContextHandle*)*root_component_ptr;
-  component_status = *(char*)((longlong)current_component_ptr[1] + MEMORY_DATA_OFFSET);
+  component_status = *(char*)((int64_t)current_component_ptr[1] + MEMORY_DATA_OFFSET);
   callback_function = SystemCallback_Handler7;
   parent_component_ptr = root_component_ptr;
   next_component_ptr = (SystemContextHandle*)current_component_ptr[1];
@@ -1299,7 +1299,7 @@ void SystemInitialization_RegisterComponent12(void)
     }
     parent_component_ptr = next_component_ptr;
     next_component_ptr = current_component_ptr;
-    component_status = *(char*)((longlong)next_component_ptr + MEMORY_DATA_OFFSET);
+    component_status = *(char*)((int64_t)next_component_ptr + MEMORY_DATA_OFFSET);
   }
   
   // 检查是否需要分配新组件
@@ -1363,14 +1363,14 @@ void SystemInitialization_RegisterComponent13(void)
   SystemContextHandle* next_component_ptr;        // 下一个组件指针
   SystemContextHandle* parent_component_ptr;       // 父组件指针
   SystemContextHandle* allocated_component_ptr;   // 已分配组件指针
-  longlong allocation_size;                       // 分配大小
+  int64_t allocation_size;                       // 分配大小
   int compare_result;                             // 比较结果
   SystemCallbackFunction callback_function;       // 回调函数
   
   // 获取系统上下文和根组件
   root_component_ptr = (SystemContextHandle*)SystemCoreInitializer();
   current_component_ptr = (SystemContextHandle*)*root_component_ptr;
-  component_status = *(char*)((longlong)current_component_ptr[1] + MEMORY_DATA_OFFSET);
+  component_status = *(char*)((int64_t)current_component_ptr[1] + MEMORY_DATA_OFFSET);
   callback_function = SystemCallback_Handler1;
   parent_component_ptr = root_component_ptr;
   next_component_ptr = (SystemContextHandle*)current_component_ptr[1];
@@ -1389,7 +1389,7 @@ void SystemInitialization_RegisterComponent13(void)
     }
     parent_component_ptr = next_component_ptr;
     next_component_ptr = current_component_ptr;
-    component_status = *(char*)((longlong)next_component_ptr + MEMORY_DATA_OFFSET);
+    component_status = *(char*)((int64_t)next_component_ptr + MEMORY_DATA_OFFSET);
   }
   
   // 检查是否需要分配新组件
@@ -1453,14 +1453,14 @@ void SystemInitialization_RegisterComponent14(void)
   SystemContextHandle* next_component_ptr;        // 下一个组件指针
   SystemContextHandle* parent_component_ptr;       // 父组件指针
   SystemContextHandle* allocated_component_ptr;   // 已分配组件指针
-  longlong allocation_size;                       // 分配大小
+  int64_t allocation_size;                       // 分配大小
   int compare_result;                             // 比较结果
   SystemCallbackFunction callback_function;       // 回调函数
   
   // 获取系统上下文和根组件
   root_component_ptr = (SystemContextHandle*)SystemCoreInitializer();
   current_component_ptr = (SystemContextHandle*)*root_component_ptr;
-  component_status = *(char*)((longlong)current_component_ptr[1] + MEMORY_DATA_OFFSET);
+  component_status = *(char*)((int64_t)current_component_ptr[1] + MEMORY_DATA_OFFSET);
   callback_function = SystemCallback_Handler2;
   parent_component_ptr = root_component_ptr;
   next_component_ptr = (SystemContextHandle*)current_component_ptr[1];
@@ -1479,7 +1479,7 @@ void SystemInitialization_RegisterComponent14(void)
     }
     parent_component_ptr = next_component_ptr;
     next_component_ptr = current_component_ptr;
-    component_status = *(char*)((longlong)next_component_ptr + MEMORY_DATA_OFFSET);
+    component_status = *(char*)((int64_t)next_component_ptr + MEMORY_DATA_OFFSET);
   }
   
   // 检查是否需要分配新组件
@@ -1543,14 +1543,14 @@ void SystemInitialization_RegisterComponent15(void)
   SystemContextHandle* next_component_ptr;        // 下一个组件指针
   SystemContextHandle* parent_component_ptr;       // 父组件指针
   SystemContextHandle* allocated_component_ptr;   // 已分配组件指针
-  longlong allocation_size;                       // 分配大小
+  int64_t allocation_size;                       // 分配大小
   int compare_result;                             // 比较结果
   uint64_t callback_function;                   // 回调函数
   
   // 获取系统上下文和根组件
   root_component_ptr = (SystemContextHandle*)SystemCoreInitializer();
   current_component_ptr = (SystemContextHandle*)*root_component_ptr;
-  component_status = *(char*)((longlong)current_component_ptr[1] + MEMORY_DATA_OFFSET);
+  component_status = *(char*)((int64_t)current_component_ptr[1] + MEMORY_DATA_OFFSET);
   callback_function = 0;
   parent_component_ptr = root_component_ptr;
   next_component_ptr = (SystemContextHandle*)current_component_ptr[1];
@@ -1569,7 +1569,7 @@ void SystemInitialization_RegisterComponent15(void)
     }
     parent_component_ptr = next_component_ptr;
     next_component_ptr = current_component_ptr;
-    component_status = *(char*)((longlong)next_component_ptr + MEMORY_DATA_OFFSET);
+    component_status = *(char*)((int64_t)next_component_ptr + MEMORY_DATA_OFFSET);
   }
   
   // 检查是否需要分配新组件
@@ -1633,14 +1633,14 @@ void SystemInitialization_RegisterComponent16(void)
   SystemContextHandle* next_component_ptr;        // 下一个组件指针
   SystemContextHandle* parent_component_ptr;       // 父组件指针
   SystemContextHandle* allocated_component_ptr;   // 已分配组件指针
-  longlong allocation_size;                       // 分配大小
+  int64_t allocation_size;                       // 分配大小
   int compare_result;                             // 比较结果
   SystemCallbackFunction callback_function;       // 回调函数
   
   // 获取系统上下文和根组件
   root_component_ptr = (SystemContextHandle*)SystemCoreInitializer();
   current_component_ptr = (SystemContextHandle*)*root_component_ptr;
-  component_status = *(char*)((longlong)current_component_ptr[1] + MEMORY_DATA_OFFSET);
+  component_status = *(char*)((int64_t)current_component_ptr[1] + MEMORY_DATA_OFFSET);
   callback_function = SystemCallback_Handler3;
   parent_component_ptr = root_component_ptr;
   next_component_ptr = (SystemContextHandle*)current_component_ptr[1];
@@ -1659,7 +1659,7 @@ void SystemInitialization_RegisterComponent16(void)
     }
     parent_component_ptr = next_component_ptr;
     next_component_ptr = current_component_ptr;
-    component_status = *(char*)((longlong)next_component_ptr + MEMORY_DATA_OFFSET);
+    component_status = *(char*)((int64_t)next_component_ptr + MEMORY_DATA_OFFSET);
   }
   
   // 检查是否需要分配新组件
@@ -1723,14 +1723,14 @@ void SystemInitialization_RegisterComponent17(void)
   SystemContextHandle* next_component_ptr;        // 下一个组件指针
   SystemContextHandle* parent_component_ptr;       // 父组件指针
   SystemContextHandle* allocated_component_ptr;   // 已分配组件指针
-  longlong allocation_size;                       // 分配大小
+  int64_t allocation_size;                       // 分配大小
   int compare_result;                             // 比较结果
   uint64_t callback_function;                   // 回调函数
   
   // 获取系统上下文和根组件
   root_component_ptr = (SystemContextHandle*)SystemCoreInitializer();
   current_component_ptr = (SystemContextHandle*)*root_component_ptr;
-  component_status = *(char*)((longlong)current_component_ptr[1] + MEMORY_DATA_OFFSET);
+  component_status = *(char*)((int64_t)current_component_ptr[1] + MEMORY_DATA_OFFSET);
   callback_function = 0;
   parent_component_ptr = root_component_ptr;
   next_component_ptr = (SystemContextHandle*)current_component_ptr[1];
@@ -1749,7 +1749,7 @@ void SystemInitialization_RegisterComponent17(void)
     }
     parent_component_ptr = next_component_ptr;
     next_component_ptr = current_component_ptr;
-    component_status = *(char*)((longlong)next_component_ptr + MEMORY_DATA_OFFSET);
+    component_status = *(char*)((int64_t)next_component_ptr + MEMORY_DATA_OFFSET);
   }
   
   // 检查是否需要分配新组件
@@ -1813,14 +1813,14 @@ void SystemInitialization_RegisterComponent18(void)
   SystemContextHandle* next_component_ptr;        // 下一个组件指针
   SystemContextHandle* parent_component_ptr;       // 父组件指针
   SystemContextHandle* allocated_component_ptr;   // 已分配组件指针
-  longlong allocation_size;                       // 分配大小
+  int64_t allocation_size;                       // 分配大小
   int compare_result;                             // 比较结果
   void* tool_function;                       // 工具函数指针
   
   // 获取系统上下文和根组件
   root_component_ptr = (SystemContextHandle*)SystemCoreInitializer();
   current_component_ptr = (SystemContextHandle*)*root_component_ptr;
-  component_status = *(char*)((longlong)current_component_ptr[1] + MEMORY_DATA_OFFSET);
+  component_status = *(char*)((int64_t)current_component_ptr[1] + MEMORY_DATA_OFFSET);
   tool_function = &unknown_var_2048_ptr;
   parent_component_ptr = root_component_ptr;
   next_component_ptr = (SystemContextHandle*)current_component_ptr[1];
@@ -1839,7 +1839,7 @@ void SystemInitialization_RegisterComponent18(void)
     }
     parent_component_ptr = next_component_ptr;
     next_component_ptr = current_component_ptr;
-    component_status = *(char*)((longlong)next_component_ptr + MEMORY_DATA_OFFSET);
+    component_status = *(char*)((int64_t)next_component_ptr + MEMORY_DATA_OFFSET);
   }
   
   // 检查是否需要分配新组件
@@ -1903,14 +1903,14 @@ void SystemInitialization_RegisterComponent19(void)
   SystemContextHandle* next_component_ptr;        // 下一个组件指针
   SystemContextHandle* parent_component_ptr;       // 父组件指针
   SystemContextHandle* allocated_component_ptr;   // 已分配组件指针
-  longlong allocation_size;                       // 分配大小
+  int64_t allocation_size;                       // 分配大小
   int compare_result;                             // 比较结果
   uint64_t callback_function;                   // 回调函数
   
   // 获取系统上下文和根组件
   root_component_ptr = (SystemContextHandle*)SystemCoreInitializer();
   current_component_ptr = (SystemContextHandle*)*root_component_ptr;
-  component_status = *(char*)((longlong)current_component_ptr[1] + MEMORY_DATA_OFFSET);
+  component_status = *(char*)((int64_t)current_component_ptr[1] + MEMORY_DATA_OFFSET);
   callback_function = 0;
   parent_component_ptr = root_component_ptr;
   next_component_ptr = (SystemContextHandle*)current_component_ptr[1];
@@ -1929,7 +1929,7 @@ void SystemInitialization_RegisterComponent19(void)
     }
     parent_component_ptr = next_component_ptr;
     next_component_ptr = current_component_ptr;
-    component_status = *(char*)((longlong)next_component_ptr + MEMORY_DATA_OFFSET);
+    component_status = *(char*)((int64_t)next_component_ptr + MEMORY_DATA_OFFSET);
   }
   
   // 检查是否需要分配新组件
@@ -1993,14 +1993,14 @@ void SystemInitialization_RegisterComponent20(void)
   SystemContextHandle* next_component_ptr;        // 下一个组件指针
   SystemContextHandle* parent_component_ptr;       // 父组件指针
   SystemContextHandle* allocated_component_ptr;   // 已分配组件指针
-  longlong allocation_size;                       // 分配大小
+  int64_t allocation_size;                       // 分配大小
   int compare_result;                             // 比较结果
   SystemCallbackFunction callback_function;       // 回调函数
   
   // 获取系统上下文和根组件
   root_component_ptr = (SystemContextHandle*)SystemCoreInitializer();
   current_component_ptr = (SystemContextHandle*)*root_component_ptr;
-  component_status = *(char*)((longlong)current_component_ptr[1] + MEMORY_DATA_OFFSET);
+  component_status = *(char*)((int64_t)current_component_ptr[1] + MEMORY_DATA_OFFSET);
   callback_function = SystemCallback_Handler8;
   parent_component_ptr = root_component_ptr;
   next_component_ptr = (SystemContextHandle*)current_component_ptr[1];
@@ -2019,7 +2019,7 @@ void SystemInitialization_RegisterComponent20(void)
     }
     parent_component_ptr = next_component_ptr;
     next_component_ptr = current_component_ptr;
-    component_status = *(char*)((longlong)next_component_ptr + MEMORY_DATA_OFFSET);
+    component_status = *(char*)((int64_t)next_component_ptr + MEMORY_DATA_OFFSET);
   }
   
   // 检查是否需要分配新组件
@@ -2083,14 +2083,14 @@ void SystemInitialization_RegisterComponent21(void)
   SystemContextHandle* next_component_ptr;        // 下一个组件指针
   SystemContextHandle* parent_component_ptr;       // 父组件指针
   SystemContextHandle* allocated_component_ptr;   // 已分配组件指针
-  longlong allocation_size;                       // 分配大小
+  int64_t allocation_size;                       // 分配大小
   int compare_result;                             // 比较结果
   SystemCallbackFunction callback_function;       // 回调函数
   
   // 获取系统上下文和根组件
   root_component_ptr = (SystemContextHandle*)SystemCoreInitializer();
   current_component_ptr = (SystemContextHandle*)*root_component_ptr;
-  component_status = *(char*)((longlong)current_component_ptr[1] + MEMORY_DATA_OFFSET);
+  component_status = *(char*)((int64_t)current_component_ptr[1] + MEMORY_DATA_OFFSET);
   callback_function = SystemCallback_Handler9;
   parent_component_ptr = root_component_ptr;
   next_component_ptr = (SystemContextHandle*)current_component_ptr[1];
@@ -2109,7 +2109,7 @@ void SystemInitialization_RegisterComponent21(void)
     }
     parent_component_ptr = next_component_ptr;
     next_component_ptr = current_component_ptr;
-    component_status = *(char*)((longlong)next_component_ptr + MEMORY_DATA_OFFSET);
+    component_status = *(char*)((int64_t)next_component_ptr + MEMORY_DATA_OFFSET);
   }
   
   // 检查是否需要分配新组件
@@ -2173,14 +2173,14 @@ void SystemInitialization_RegisterComponent22(void)
   SystemContextHandle* next_component_ptr;        // 下一个组件指针
   SystemContextHandle* parent_component_ptr;       // 父组件指针
   SystemContextHandle* allocated_component_ptr;   // 已分配组件指针
-  longlong allocation_size;                       // 分配大小
+  int64_t allocation_size;                       // 分配大小
   int compare_result;                             // 比较结果
   SystemCallbackFunction callback_function;       // 回调函数
   
   // 获取系统上下文和根组件
   root_component_ptr = (SystemContextHandle*)SystemCoreInitializer();
   current_component_ptr = (SystemContextHandle*)*root_component_ptr;
-  component_status = *(char*)((longlong)current_component_ptr[1] + MEMORY_DATA_OFFSET);
+  component_status = *(char*)((int64_t)current_component_ptr[1] + MEMORY_DATA_OFFSET);
   callback_function = SystemCallback_Handler1;
   parent_component_ptr = root_component_ptr;
   next_component_ptr = (SystemContextHandle*)current_component_ptr[1];
@@ -2199,7 +2199,7 @@ void SystemInitialization_RegisterComponent22(void)
     }
     parent_component_ptr = next_component_ptr;
     next_component_ptr = current_component_ptr;
-    component_status = *(char*)((longlong)next_component_ptr + MEMORY_DATA_OFFSET);
+    component_status = *(char*)((int64_t)next_component_ptr + MEMORY_DATA_OFFSET);
   }
   
   // 检查是否需要分配新组件
@@ -2263,14 +2263,14 @@ void SystemInitialization_RegisterComponent23(void)
   SystemContextHandle* next_component_ptr;        // 下一个组件指针
   SystemContextHandle* parent_component_ptr;       // 父组件指针
   SystemContextHandle* allocated_component_ptr;   // 已分配组件指针
-  longlong allocation_size;                       // 分配大小
+  int64_t allocation_size;                       // 分配大小
   int compare_result;                             // 比较结果
   SystemCallbackFunction callback_function;       // 回调函数
   
   // 获取系统上下文和根组件
   root_component_ptr = (SystemContextHandle*)SystemCoreInitializer();
   current_component_ptr = (SystemContextHandle*)*root_component_ptr;
-  component_status = *(char*)((longlong)current_component_ptr[1] + MEMORY_DATA_OFFSET);
+  component_status = *(char*)((int64_t)current_component_ptr[1] + MEMORY_DATA_OFFSET);
   callback_function = SystemCallback_Handler2;
   parent_component_ptr = root_component_ptr;
   next_component_ptr = (SystemContextHandle*)current_component_ptr[1];
@@ -2289,7 +2289,7 @@ void SystemInitialization_RegisterComponent23(void)
     }
     parent_component_ptr = next_component_ptr;
     next_component_ptr = current_component_ptr;
-    component_status = *(char*)((longlong)next_component_ptr + MEMORY_DATA_OFFSET);
+    component_status = *(char*)((int64_t)next_component_ptr + MEMORY_DATA_OFFSET);
   }
   
   // 检查是否需要分配新组件
@@ -2353,14 +2353,14 @@ void SystemInitialization_RegisterComponent24(void)
   SystemContextHandle* next_component_ptr;        // 下一个组件指针
   SystemContextHandle* parent_component_ptr;       // 父组件指针
   SystemContextHandle* allocated_component_ptr;   // 已分配组件指针
-  longlong allocation_size;                       // 分配大小
+  int64_t allocation_size;                       // 分配大小
   int compare_result;                             // 比较结果
   uint64_t callback_function;                   // 回调函数
   
   // 获取系统上下文和根组件
   root_component_ptr = (SystemContextHandle*)SystemCoreInitializer();
   current_component_ptr = (SystemContextHandle*)*root_component_ptr;
-  component_status = *(char*)((longlong)current_component_ptr[1] + MEMORY_DATA_OFFSET);
+  component_status = *(char*)((int64_t)current_component_ptr[1] + MEMORY_DATA_OFFSET);
   callback_function = 0;
   parent_component_ptr = root_component_ptr;
   next_component_ptr = (SystemContextHandle*)current_component_ptr[1];
@@ -2379,7 +2379,7 @@ void SystemInitialization_RegisterComponent24(void)
     }
     parent_component_ptr = next_component_ptr;
     next_component_ptr = current_component_ptr;
-    component_status = *(char*)((longlong)next_component_ptr + MEMORY_DATA_OFFSET);
+    component_status = *(char*)((int64_t)next_component_ptr + MEMORY_DATA_OFFSET);
   }
   
   // 检查是否需要分配新组件
@@ -2443,14 +2443,14 @@ void SystemInitialization_RegisterComponent25(void)
   SystemContextHandle* next_component_ptr;        // 下一个组件指针
   SystemContextHandle* parent_component_ptr;       // 父组件指针
   SystemContextHandle* allocated_component_ptr;   // 已分配组件指针
-  longlong allocation_size;                       // 分配大小
+  int64_t allocation_size;                       // 分配大小
   int compare_result;                             // 比较结果
   SystemCallbackFunction callback_function;       // 回调函数
   
   // 获取系统上下文和根组件
   root_component_ptr = (SystemContextHandle*)SystemCoreInitializer();
   current_component_ptr = (SystemContextHandle*)*root_component_ptr;
-  component_status = *(char*)((longlong)current_component_ptr[1] + MEMORY_DATA_OFFSET);
+  component_status = *(char*)((int64_t)current_component_ptr[1] + MEMORY_DATA_OFFSET);
   callback_function = SystemCallback_Handler3;
   parent_component_ptr = root_component_ptr;
   next_component_ptr = (SystemContextHandle*)current_component_ptr[1];
@@ -2469,7 +2469,7 @@ void SystemInitialization_RegisterComponent25(void)
     }
     parent_component_ptr = next_component_ptr;
     next_component_ptr = current_component_ptr;
-    component_status = *(char*)((longlong)next_component_ptr + MEMORY_DATA_OFFSET);
+    component_status = *(char*)((int64_t)next_component_ptr + MEMORY_DATA_OFFSET);
   }
   
   // 检查是否需要分配新组件
@@ -2533,14 +2533,14 @@ void SystemInitialization_RegisterComponent26(void)
   SystemContextHandle* next_component_ptr;        // 下一个组件指针
   SystemContextHandle* parent_component_ptr;       // 父组件指针
   SystemContextHandle* allocated_component_ptr;   // 已分配组件指针
-  longlong allocation_size;                       // 分配大小
+  int64_t allocation_size;                       // 分配大小
   int compare_result;                             // 比较结果
   uint64_t callback_function;                   // 回调函数
   
   // 获取系统上下文和根组件
   root_component_ptr = (SystemContextHandle*)SystemCoreInitializer();
   current_component_ptr = (SystemContextHandle*)*root_component_ptr;
-  component_status = *(char*)((longlong)current_component_ptr[1] + MEMORY_DATA_OFFSET);
+  component_status = *(char*)((int64_t)current_component_ptr[1] + MEMORY_DATA_OFFSET);
   callback_function = 0;
   parent_component_ptr = root_component_ptr;
   next_component_ptr = (SystemContextHandle*)current_component_ptr[1];
@@ -2559,7 +2559,7 @@ void SystemInitialization_RegisterComponent26(void)
     }
     parent_component_ptr = next_component_ptr;
     next_component_ptr = current_component_ptr;
-    component_status = *(char*)((longlong)next_component_ptr + MEMORY_DATA_OFFSET);
+    component_status = *(char*)((int64_t)next_component_ptr + MEMORY_DATA_OFFSET);
   }
   
   // 检查是否需要分配新组件

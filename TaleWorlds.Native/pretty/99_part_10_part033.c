@@ -2,8 +2,8 @@
 
 // 99_part_10_part033.c - 12 个函数
 
-// 函数: void FUN_1806b9030(longlong *param_1,float *param_2,float *param_3,float *param_4,float *param_5)
-void FUN_1806b9030(longlong *param_1,float *param_2,float *param_3,float *param_4,float *param_5)
+// 函数: void FUN_1806b9030(int64_t *param_1,float *param_2,float *param_3,float *param_4,float *param_5)
+void FUN_1806b9030(int64_t *param_1,float *param_2,float *param_3,float *param_4,float *param_5)
 
 {
   float fVar1;
@@ -85,8 +85,8 @@ void FUN_1806b9030(longlong *param_1,float *param_2,float *param_3,float *param_
 
 
 
-// 函数: void FUN_1806b9440(longlong *param_1,float *param_2,float *param_3,float *param_4,float param_5,
-void FUN_1806b9440(longlong *param_1,float *param_2,float *param_3,float *param_4,float param_5,
+// 函数: void FUN_1806b9440(int64_t *param_1,float *param_2,float *param_3,float *param_4,float param_5,
+void FUN_1806b9440(int64_t *param_1,float *param_2,float *param_3,float *param_4,float param_5,
                   float param_6,float *param_7,float *param_8)
 
 {
@@ -94,7 +94,7 @@ void FUN_1806b9440(longlong *param_1,float *param_2,float *param_3,float *param_
   float fVar2;
   float fVar3;
   float fVar4;
-  longlong lVar5;
+  int64_t lVar5;
   float *pfVar6;
   float fVar7;
   float fVar8;
@@ -202,8 +202,8 @@ void FUN_1806b9440(longlong *param_1,float *param_2,float *param_3,float *param_
 
 
 
-// 函数: void FUN_1806b9970(longlong *param_1,float *param_2,float *param_3,float *param_4,float param_5,
-void FUN_1806b9970(longlong *param_1,float *param_2,float *param_3,float *param_4,float param_5,
+// 函数: void FUN_1806b9970(int64_t *param_1,float *param_2,float *param_3,float *param_4,float param_5,
+void FUN_1806b9970(int64_t *param_1,float *param_2,float *param_3,float *param_4,float param_5,
                   float param_6,float *param_7,float *param_8)
 
 {
@@ -213,7 +213,7 @@ void FUN_1806b9970(longlong *param_1,float *param_2,float *param_3,float *param_
   float fVar4;
   float fVar5;
   float fVar6;
-  longlong lVar7;
+  int64_t lVar7;
   float fVar8;
   float fVar9;
   float fVar10;
@@ -445,8 +445,8 @@ void FUN_1806b9e82(float param_1,float param_2,float param_3,float param_4)
 
 
 
-// 函数: void FUN_1806ba05e(longlong param_1,float *param_2)
-void FUN_1806ba05e(longlong param_1,float *param_2)
+// 函数: void FUN_1806ba05e(int64_t param_1,float *param_2)
+void FUN_1806ba05e(int64_t param_1,float *param_2)
 
 {
   *(float *)(param_1 + 0x24) = *(float *)(param_1 + 0x24) + *param_2;
@@ -617,8 +617,8 @@ float * FUN_1806ba780(float *param_1,int32_t *param_2)
     param_1[0xb] = 0.0;
     break;
   case 4:
-    (**(code **)(**(longlong **)(param_2 + 8) + 0x60))
-              (*(longlong **)(param_2 + 8),afStackX_8,&fStack_100,&fStack_138);
+    (**(code **)(**(int64_t **)(param_2 + 8) + 0x60))
+              (*(int64_t **)(param_2 + 8),afStackX_8,&fStack_100,&fStack_138);
     fStack_128 = fStack_100 - (fStack_134 * fStack_134 + fStack_130 * fStack_130) * afStackX_8[0];
     fStack_118 = fStack_f0 - (fStack_138 * fStack_138 + fStack_130 * fStack_130) * afStackX_8[0];
     fStack_108 = fStack_e0 - (fStack_138 * fStack_138 + fStack_134 * fStack_134) * afStackX_8[0];
@@ -689,8 +689,8 @@ float * FUN_1806ba780(float *param_1,int32_t *param_2)
 
 
 
-// 函数: void FUN_1806ba990(longlong *param_1)
-void FUN_1806ba990(longlong *param_1)
+// 函数: void FUN_1806ba990(int64_t *param_1)
+void FUN_1806ba990(int64_t *param_1)
 
 {
   float fVar1;
@@ -699,8 +699,8 @@ void FUN_1806ba990(longlong *param_1)
   float fVar4;
   int32_t *puVar5;
   int32_t *unaff_RBX;
-  longlong unaff_RBP;
-  longlong unaff_RDI;
+  int64_t unaff_RBP;
+  int64_t unaff_RDI;
   float fVar6;
   float fVar7;
   float fVar8;
@@ -805,11 +805,11 @@ void FUN_1806bad5a(void)
 
 
 
-// 函数: void FUN_1806badd0(longlong *param_1,float *param_2,float *param_3,int param_4,int8_t param_5)
-void FUN_1806badd0(longlong *param_1,float *param_2,float *param_3,int param_4,int8_t param_5)
+// 函数: void FUN_1806badd0(int64_t *param_1,float *param_2,float *param_3,int param_4,int8_t param_5)
+void FUN_1806badd0(int64_t *param_1,float *param_2,float *param_3,int param_4,int8_t param_5)
 
 {
-  longlong lVar1;
+  int64_t lVar1;
   uint64_t uVar2;
   float fVar3;
   float fVar4;

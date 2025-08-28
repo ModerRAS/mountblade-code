@@ -51,10 +51,10 @@
 
 // 外部函数声明
 extern void FUN_18066d370(void);
-extern void FUN_18066e8f0(int size, longlong count);
-extern void FUN_18066e960(int size, longlong count);
-extern void FUN_18066f810(longlong context, uint64_t param, int flag);
-extern void FUN_180670510(longlong context, uint64_t param, uint64_t texture_data, int32_t quality);
+extern void FUN_18066e8f0(int size, int64_t count);
+extern void FUN_18066e960(int size, int64_t count);
+extern void FUN_18066f810(int64_t context, uint64_t param, int flag);
+extern void FUN_180670510(int64_t context, uint64_t param, uint64_t texture_data, int32_t quality);
 extern void FUN_18069def0(int **texture_manager);
 extern void func_0x00018066e940(uint64_t resource);
 extern void func_0x00018066e940(void);
@@ -81,15 +81,15 @@ extern void WaitForSingleObject(uint64_t handle, int timeout);
 void ui_system_memory_allocator_initialization(void)
 {
     int32_t quality_level;
-    longlong resource_ptr;
+    int64_t resource_ptr;
     uint64_t memory_block;
-    longlong system_context;
-    ulonglong array_index;
+    int64_t system_context;
+    uint64_t array_index;
     uint buffer_size;
-    ulonglong loop_counter;
-    longlong ui_context;
+    uint64_t loop_counter;
+    int64_t ui_context;
     uint iteration_count;
-    ulonglong element_index;
+    uint64_t element_index;
     
     // 调用系统初始化函数
     FUN_180671080();
@@ -115,15 +115,15 @@ void ui_system_memory_allocator_initialization(void)
     }
     
     // 分配主要资源数组
-    resource_ptr = FUN_18066e8f0(UI_ARRAY_ELEMENT_SIZE_4, (longlong)*(int *)(system_context + UI_CONTEXT_OFFSET_COUNT));
-    *(longlong *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_1) = resource_ptr;
+    resource_ptr = FUN_18066e8f0(UI_ARRAY_ELEMENT_SIZE_4, (int64_t)*(int *)(system_context + UI_CONTEXT_OFFSET_COUNT));
+    *(int64_t *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_1) = resource_ptr;
     if (resource_ptr == 0) {
         FUN_18066d370();
     }
     
     // 分配二级资源数组
-    resource_ptr = FUN_18066e8f0(UI_ARRAY_ELEMENT_SIZE_8, (longlong)*(int *)(system_context + UI_CONTEXT_OFFSET_COUNT));
-    *(longlong *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_2) = resource_ptr;
+    resource_ptr = FUN_18066e8f0(UI_ARRAY_ELEMENT_SIZE_8, (int64_t)*(int *)(system_context + UI_CONTEXT_OFFSET_COUNT));
+    *(int64_t *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_2) = resource_ptr;
     if (resource_ptr == 0) {
         FUN_18066d370();
     }
@@ -134,20 +134,20 @@ void ui_system_memory_allocator_initialization(void)
         loop_counter = array_index;
         element_index = array_index;
         do {
-            memory_block = FUN_18066e960(UI_ARRAY_ELEMENT_SIZE_16, (longlong)(int)(buffer_size + UI_BUFFER_SIZE_OFFSET));
-            *(uint64_t *)(loop_counter + *(longlong *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_2)) = memory_block;
-            if (*(longlong *)(loop_counter + *(longlong *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_2)) == 0) {
+            memory_block = FUN_18066e960(UI_ARRAY_ELEMENT_SIZE_16, (int64_t)(int)(buffer_size + UI_BUFFER_SIZE_OFFSET));
+            *(uint64_t *)(loop_counter + *(int64_t *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_2)) = memory_block;
+            if (*(int64_t *)(loop_counter + *(int64_t *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_2)) == 0) {
                 FUN_18066d370();
             }
             iteration_count = (int)element_index + 1;
-            element_index = (ulonglong)iteration_count;
+            element_index = (uint64_t)iteration_count;
             loop_counter = loop_counter + UI_ARRAY_ELEMENT_SIZE_8;
         } while ((int)iteration_count < *(int *)(system_context + UI_CONTEXT_OFFSET_COUNT));
     }
     
     // 分配三级资源数组
-    resource_ptr = FUN_18066e8f0(UI_ARRAY_ELEMENT_SIZE_8, (longlong)*(int *)(system_context + UI_CONTEXT_OFFSET_COUNT));
-    *(longlong *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_3) = resource_ptr;
+    resource_ptr = FUN_18066e8f0(UI_ARRAY_ELEMENT_SIZE_8, (int64_t)*(int *)(system_context + UI_CONTEXT_OFFSET_COUNT));
+    *(int64_t *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_3) = resource_ptr;
     if (resource_ptr == 0) {
         FUN_18066d370();
     }
@@ -157,20 +157,20 @@ void ui_system_memory_allocator_initialization(void)
         loop_counter = array_index;
         element_index = array_index;
         do {
-            memory_block = FUN_18066e960(UI_ARRAY_ELEMENT_SIZE_16, (longlong)(((int)buffer_size >> UI_HALF_BUFFER_SHIFT) + UI_HALF_BUFFER_OFFSET));
-            *(uint64_t *)(element_index + *(longlong *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_3)) = memory_block;
-            if (*(longlong *)(element_index + *(longlong *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_3)) == 0) {
+            memory_block = FUN_18066e960(UI_ARRAY_ELEMENT_SIZE_16, (int64_t)(((int)buffer_size >> UI_HALF_BUFFER_SHIFT) + UI_HALF_BUFFER_OFFSET));
+            *(uint64_t *)(element_index + *(int64_t *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_3)) = memory_block;
+            if (*(int64_t *)(element_index + *(int64_t *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_3)) == 0) {
                 FUN_18066d370();
             }
             iteration_count = (int)loop_counter + 1;
-            loop_counter = (ulonglong)iteration_count;
+            loop_counter = (uint64_t)iteration_count;
             element_index = element_index + UI_ARRAY_ELEMENT_SIZE_8;
         } while ((int)iteration_count < *(int *)(system_context + UI_CONTEXT_OFFSET_COUNT));
     }
     
     // 分配四级资源数组
-    resource_ptr = FUN_18066e8f0(UI_ARRAY_ELEMENT_SIZE_8, (longlong)*(int *)(system_context + UI_CONTEXT_OFFSET_COUNT));
-    *(longlong *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_4) = resource_ptr;
+    resource_ptr = FUN_18066e8f0(UI_ARRAY_ELEMENT_SIZE_8, (int64_t)*(int *)(system_context + UI_CONTEXT_OFFSET_COUNT));
+    *(int64_t *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_4) = resource_ptr;
     if (resource_ptr == 0) {
         FUN_18066d370();
     }
@@ -180,20 +180,20 @@ void ui_system_memory_allocator_initialization(void)
         loop_counter = array_index;
         element_index = array_index;
         do {
-            memory_block = FUN_18066e960(UI_ARRAY_ELEMENT_SIZE_16, (longlong)(((int)buffer_size >> UI_HALF_BUFFER_SHIFT) + UI_HALF_BUFFER_OFFSET));
-            *(uint64_t *)(loop_counter + *(longlong *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_4)) = memory_block;
-            if (*(longlong *)(loop_counter + *(longlong *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_4)) == 0) {
+            memory_block = FUN_18066e960(UI_ARRAY_ELEMENT_SIZE_16, (int64_t)(((int)buffer_size >> UI_HALF_BUFFER_SHIFT) + UI_HALF_BUFFER_OFFSET));
+            *(uint64_t *)(loop_counter + *(int64_t *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_4)) = memory_block;
+            if (*(int64_t *)(loop_counter + *(int64_t *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_4)) == 0) {
                 FUN_18066d370();
             }
             iteration_count = (int)element_index + 1;
-            element_index = (ulonglong)iteration_count;
+            element_index = (uint64_t)iteration_count;
             loop_counter = loop_counter + UI_ARRAY_ELEMENT_SIZE_8;
         } while ((int)iteration_count < *(int *)(system_context + UI_CONTEXT_OFFSET_COUNT));
     }
     
     // 分配五级资源数组
-    resource_ptr = FUN_18066e8f0(UI_ARRAY_ELEMENT_SIZE_8, (longlong)*(int *)(system_context + UI_CONTEXT_OFFSET_COUNT));
-    *(longlong *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_5) = resource_ptr;
+    resource_ptr = FUN_18066e8f0(UI_ARRAY_ELEMENT_SIZE_8, (int64_t)*(int *)(system_context + UI_CONTEXT_OFFSET_COUNT));
+    *(int64_t *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_5) = resource_ptr;
     if (resource_ptr == 0) {
         FUN_18066d370();
     }
@@ -204,19 +204,19 @@ void ui_system_memory_allocator_initialization(void)
     if (0 < *(int *)(system_context + UI_CONTEXT_OFFSET_COUNT)) {
         do {
             memory_block = FUN_18066e8f0(UI_ARRAY_ELEMENT_SIZE_16, 1);
-            *(uint64_t *)(loop_counter + *(longlong *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_5)) = memory_block;
-            if (*(longlong *)(loop_counter + *(longlong *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_5)) == 0) {
+            *(uint64_t *)(loop_counter + *(int64_t *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_5)) = memory_block;
+            if (*(int64_t *)(loop_counter + *(int64_t *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_5)) == 0) {
                 FUN_18066d370();
             }
             iteration_count = (int)element_index + 1;
             loop_counter = loop_counter + UI_ARRAY_ELEMENT_SIZE_8;
-            element_index = (ulonglong)iteration_count;
+            element_index = (uint64_t)iteration_count;
         } while ((int)iteration_count < *(int *)(system_context + UI_CONTEXT_OFFSET_COUNT));
     }
     
     // 分配六级资源数组
-    resource_ptr = FUN_18066e8f0(UI_ARRAY_ELEMENT_SIZE_8, (longlong)*(int *)(system_context + UI_CONTEXT_OFFSET_COUNT));
-    *(longlong *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_6) = resource_ptr;
+    resource_ptr = FUN_18066e8f0(UI_ARRAY_ELEMENT_SIZE_8, (int64_t)*(int *)(system_context + UI_CONTEXT_OFFSET_COUNT));
+    *(int64_t *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_6) = resource_ptr;
     if (resource_ptr == 0) {
         FUN_18066d370();
     }
@@ -227,19 +227,19 @@ void ui_system_memory_allocator_initialization(void)
     if (0 < *(int *)(system_context + UI_CONTEXT_OFFSET_COUNT)) {
         do {
             memory_block = FUN_18066e8f0(UI_ARRAY_ELEMENT_SIZE_8);
-            *(uint64_t *)(loop_counter + *(longlong *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_6)) = memory_block;
-            if (*(longlong *)(loop_counter + *(longlong *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_6)) == 0) {
+            *(uint64_t *)(loop_counter + *(int64_t *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_6)) = memory_block;
+            if (*(int64_t *)(loop_counter + *(int64_t *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_6)) == 0) {
                 FUN_18066d370();
             }
             iteration_count = (int)element_index + 1;
             loop_counter = loop_counter + UI_ARRAY_ELEMENT_SIZE_8;
-            element_index = (ulonglong)iteration_count;
+            element_index = (uint64_t)iteration_count;
         } while ((int)iteration_count < *(int *)(system_context + UI_CONTEXT_OFFSET_COUNT));
     }
     
     // 分配七级资源数组
-    resource_ptr = FUN_18066e8f0(UI_ARRAY_ELEMENT_SIZE_8, (longlong)*(int *)(system_context + UI_CONTEXT_OFFSET_COUNT));
-    *(longlong *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_7) = resource_ptr;
+    resource_ptr = FUN_18066e8f0(UI_ARRAY_ELEMENT_SIZE_8, (int64_t)*(int *)(system_context + UI_CONTEXT_OFFSET_COUNT));
+    *(int64_t *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_7) = resource_ptr;
     if (resource_ptr == 0) {
         FUN_18066d370();
     }
@@ -249,12 +249,12 @@ void ui_system_memory_allocator_initialization(void)
     if (0 < *(int *)(system_context + UI_CONTEXT_OFFSET_COUNT)) {
         do {
             memory_block = FUN_18066e8f0(UI_ARRAY_ELEMENT_SIZE_8);
-            *(uint64_t *)(loop_counter + *(longlong *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_7)) = memory_block;
-            if (*(longlong *)(loop_counter + *(longlong *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_7)) == 0) {
+            *(uint64_t *)(loop_counter + *(int64_t *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_7)) = memory_block;
+            if (*(int64_t *)(loop_counter + *(int64_t *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_7)) == 0) {
                 FUN_18066d370();
             }
             iteration_count = (int)array_index + 1;
-            array_index = (ulonglong)iteration_count;
+            array_index = (uint64_t)iteration_count;
             loop_counter = loop_counter + UI_ARRAY_ELEMENT_SIZE_8;
         } while ((int)iteration_count < *(int *)(system_context + UI_CONTEXT_OFFSET_COUNT));
     }
@@ -281,15 +281,15 @@ void ui_system_memory_allocator_initialization(void)
 void ui_system_resource_manager_initializer(void)
 {
     int32_t quality_level;
-    longlong resource_ptr;
+    int64_t resource_ptr;
     uint64_t memory_block;
-    longlong system_context;
-    ulonglong array_index;
+    int64_t system_context;
+    uint64_t array_index;
     uint buffer_size;
-    ulonglong loop_counter;
-    longlong ui_context;
+    uint64_t loop_counter;
+    int64_t ui_context;
     uint iteration_count;
-    ulonglong element_index;
+    uint64_t element_index;
     
     // 调用系统初始化函数
     FUN_180671080();
@@ -315,15 +315,15 @@ void ui_system_resource_manager_initializer(void)
     }
     
     // 分配主要资源数组
-    resource_ptr = FUN_18066e8f0(UI_ARRAY_ELEMENT_SIZE_4, (longlong)*(int *)(system_context + UI_CONTEXT_OFFSET_COUNT));
-    *(longlong *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_1) = resource_ptr;
+    resource_ptr = FUN_18066e8f0(UI_ARRAY_ELEMENT_SIZE_4, (int64_t)*(int *)(system_context + UI_CONTEXT_OFFSET_COUNT));
+    *(int64_t *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_1) = resource_ptr;
     if (resource_ptr == 0) {
         FUN_18066d370();
     }
     
     // 分配二级资源数组
-    resource_ptr = FUN_18066e8f0(UI_ARRAY_ELEMENT_SIZE_8, (longlong)*(int *)(system_context + UI_CONTEXT_OFFSET_COUNT));
-    *(longlong *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_2) = resource_ptr;
+    resource_ptr = FUN_18066e8f0(UI_ARRAY_ELEMENT_SIZE_8, (int64_t)*(int *)(system_context + UI_CONTEXT_OFFSET_COUNT));
+    *(int64_t *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_2) = resource_ptr;
     if (resource_ptr == 0) {
         FUN_18066d370();
     }
@@ -334,20 +334,20 @@ void ui_system_resource_manager_initializer(void)
         loop_counter = array_index;
         element_index = array_index;
         do {
-            memory_block = FUN_18066e960(UI_ARRAY_ELEMENT_SIZE_16, (longlong)(int)(buffer_size + UI_BUFFER_SIZE_OFFSET));
-            *(uint64_t *)(loop_counter + *(longlong *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_2)) = memory_block;
-            if (*(longlong *)(loop_counter + *(longlong *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_2)) == 0) {
+            memory_block = FUN_18066e960(UI_ARRAY_ELEMENT_SIZE_16, (int64_t)(int)(buffer_size + UI_BUFFER_SIZE_OFFSET));
+            *(uint64_t *)(loop_counter + *(int64_t *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_2)) = memory_block;
+            if (*(int64_t *)(loop_counter + *(int64_t *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_2)) == 0) {
                 FUN_18066d370();
             }
             iteration_count = (int)element_index + 1;
-            element_index = (ulonglong)iteration_count;
+            element_index = (uint64_t)iteration_count;
             loop_counter = loop_counter + UI_ARRAY_ELEMENT_SIZE_8;
         } while ((int)iteration_count < *(int *)(system_context + UI_CONTEXT_OFFSET_COUNT));
     }
     
     // 分配三级资源数组
-    resource_ptr = FUN_18066e8f0(UI_ARRAY_ELEMENT_SIZE_8, (longlong)*(int *)(system_context + UI_CONTEXT_OFFSET_COUNT));
-    *(longlong *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_3) = resource_ptr;
+    resource_ptr = FUN_18066e8f0(UI_ARRAY_ELEMENT_SIZE_8, (int64_t)*(int *)(system_context + UI_CONTEXT_OFFSET_COUNT));
+    *(int64_t *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_3) = resource_ptr;
     if (resource_ptr == 0) {
         FUN_18066d370();
     }
@@ -357,20 +357,20 @@ void ui_system_resource_manager_initializer(void)
         loop_counter = array_index;
         element_index = array_index;
         do {
-            memory_block = FUN_18066e960(UI_ARRAY_ELEMENT_SIZE_16, (longlong)(((int)buffer_size >> UI_HALF_BUFFER_SHIFT) + UI_HALF_BUFFER_OFFSET));
-            *(uint64_t *)(element_index + *(longlong *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_3)) = memory_block;
-            if (*(longlong *)(element_index + *(longlong *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_3)) == 0) {
+            memory_block = FUN_18066e960(UI_ARRAY_ELEMENT_SIZE_16, (int64_t)(((int)buffer_size >> UI_HALF_BUFFER_SHIFT) + UI_HALF_BUFFER_OFFSET));
+            *(uint64_t *)(element_index + *(int64_t *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_3)) = memory_block;
+            if (*(int64_t *)(element_index + *(int64_t *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_3)) == 0) {
                 FUN_18066d370();
             }
             iteration_count = (int)loop_counter + 1;
-            loop_counter = (ulonglong)iteration_count;
+            loop_counter = (uint64_t)iteration_count;
             element_index = element_index + UI_ARRAY_ELEMENT_SIZE_8;
         } while ((int)iteration_count < *(int *)(system_context + UI_CONTEXT_OFFSET_COUNT));
     }
     
     // 分配四级资源数组
-    resource_ptr = FUN_18066e8f0(UI_ARRAY_ELEMENT_SIZE_8, (longlong)*(int *)(system_context + UI_CONTEXT_OFFSET_COUNT));
-    *(longlong *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_4) = resource_ptr;
+    resource_ptr = FUN_18066e8f0(UI_ARRAY_ELEMENT_SIZE_8, (int64_t)*(int *)(system_context + UI_CONTEXT_OFFSET_COUNT));
+    *(int64_t *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_4) = resource_ptr;
     if (resource_ptr == 0) {
         FUN_18066d370();
     }
@@ -380,20 +380,20 @@ void ui_system_resource_manager_initializer(void)
         loop_counter = array_index;
         element_index = array_index;
         do {
-            memory_block = FUN_18066e960(UI_ARRAY_ELEMENT_SIZE_16, (longlong)(((int)buffer_size >> UI_HALF_BUFFER_SHIFT) + UI_HALF_BUFFER_OFFSET));
-            *(uint64_t *)(loop_counter + *(longlong *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_4)) = memory_block;
-            if (*(longlong *)(loop_counter + *(longlong *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_4)) == 0) {
+            memory_block = FUN_18066e960(UI_ARRAY_ELEMENT_SIZE_16, (int64_t)(((int)buffer_size >> UI_HALF_BUFFER_SHIFT) + UI_HALF_BUFFER_OFFSET));
+            *(uint64_t *)(loop_counter + *(int64_t *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_4)) = memory_block;
+            if (*(int64_t *)(loop_counter + *(int64_t *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_4)) == 0) {
                 FUN_18066d370();
             }
             iteration_count = (int)element_index + 1;
-            element_index = (ulonglong)iteration_count;
+            element_index = (uint64_t)iteration_count;
             loop_counter = loop_counter + UI_ARRAY_ELEMENT_SIZE_8;
         } while ((int)iteration_count < *(int *)(system_context + UI_CONTEXT_OFFSET_COUNT));
     }
     
     // 分配五级资源数组
-    resource_ptr = FUN_18066e8f0(UI_ARRAY_ELEMENT_SIZE_8, (longlong)*(int *)(system_context + UI_CONTEXT_OFFSET_COUNT));
-    *(longlong *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_5) = resource_ptr;
+    resource_ptr = FUN_18066e8f0(UI_ARRAY_ELEMENT_SIZE_8, (int64_t)*(int *)(system_context + UI_CONTEXT_OFFSET_COUNT));
+    *(int64_t *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_5) = resource_ptr;
     if (resource_ptr == 0) {
         FUN_18066d370();
     }
@@ -404,19 +404,19 @@ void ui_system_resource_manager_initializer(void)
     if (0 < *(int *)(system_context + UI_CONTEXT_OFFSET_COUNT)) {
         do {
             memory_block = FUN_18066e8f0(UI_ARRAY_ELEMENT_SIZE_16, 1);
-            *(uint64_t *)(loop_counter + *(longlong *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_5)) = memory_block;
-            if (*(longlong *)(loop_counter + *(longlong *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_5)) == 0) {
+            *(uint64_t *)(loop_counter + *(int64_t *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_5)) = memory_block;
+            if (*(int64_t *)(loop_counter + *(int64_t *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_5)) == 0) {
                 FUN_18066d370();
             }
             iteration_count = (int)element_index + 1;
             loop_counter = loop_counter + UI_ARRAY_ELEMENT_SIZE_8;
-            element_index = (ulonglong)iteration_count;
+            element_index = (uint64_t)iteration_count;
         } while ((int)iteration_count < *(int *)(system_context + UI_CONTEXT_OFFSET_COUNT));
     }
     
     // 分配六级资源数组
-    resource_ptr = FUN_18066e8f0(UI_ARRAY_ELEMENT_SIZE_8, (longlong)*(int *)(system_context + UI_CONTEXT_OFFSET_COUNT));
-    *(longlong *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_6) = resource_ptr;
+    resource_ptr = FUN_18066e8f0(UI_ARRAY_ELEMENT_SIZE_8, (int64_t)*(int *)(system_context + UI_CONTEXT_OFFSET_COUNT));
+    *(int64_t *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_6) = resource_ptr;
     if (resource_ptr == 0) {
         FUN_18066d370();
     }
@@ -427,19 +427,19 @@ void ui_system_resource_manager_initializer(void)
     if (0 < *(int *)(system_context + UI_CONTEXT_OFFSET_COUNT)) {
         do {
             memory_block = FUN_18066e8f0(UI_ARRAY_ELEMENT_SIZE_8);
-            *(uint64_t *)(loop_counter + *(longlong *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_6)) = memory_block;
-            if (*(longlong *)(loop_counter + *(longlong *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_6)) == 0) {
+            *(uint64_t *)(loop_counter + *(int64_t *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_6)) = memory_block;
+            if (*(int64_t *)(loop_counter + *(int64_t *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_6)) == 0) {
                 FUN_18066d370();
             }
             iteration_count = (int)element_index + 1;
             loop_counter = loop_counter + UI_ARRAY_ELEMENT_SIZE_8;
-            element_index = (ulonglong)iteration_count;
+            element_index = (uint64_t)iteration_count;
         } while ((int)iteration_count < *(int *)(system_context + UI_CONTEXT_OFFSET_COUNT));
     }
     
     // 分配七级资源数组
-    resource_ptr = FUN_18066e8f0(UI_ARRAY_ELEMENT_SIZE_8, (longlong)*(int *)(system_context + UI_CONTEXT_OFFSET_COUNT));
-    *(longlong *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_7) = resource_ptr;
+    resource_ptr = FUN_18066e8f0(UI_ARRAY_ELEMENT_SIZE_8, (int64_t)*(int *)(system_context + UI_CONTEXT_OFFSET_COUNT));
+    *(int64_t *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_7) = resource_ptr;
     if (resource_ptr == 0) {
         FUN_18066d370();
     }
@@ -449,12 +449,12 @@ void ui_system_resource_manager_initializer(void)
     if (0 < *(int *)(system_context + UI_CONTEXT_OFFSET_COUNT)) {
         do {
             memory_block = FUN_18066e8f0(UI_ARRAY_ELEMENT_SIZE_8);
-            *(uint64_t *)(loop_counter + *(longlong *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_7)) = memory_block;
-            if (*(longlong *)(loop_counter + *(longlong *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_7)) == 0) {
+            *(uint64_t *)(loop_counter + *(int64_t *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_7)) = memory_block;
+            if (*(int64_t *)(loop_counter + *(int64_t *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_7)) == 0) {
                 FUN_18066d370();
             }
             iteration_count = (int)array_index + 1;
-            array_index = (ulonglong)iteration_count;
+            array_index = (uint64_t)iteration_count;
             loop_counter = loop_counter + UI_ARRAY_ELEMENT_SIZE_8;
         } while ((int)iteration_count < *(int *)(system_context + UI_CONTEXT_OFFSET_COUNT));
     }
@@ -482,14 +482,14 @@ void ui_system_resource_manager_initializer(void)
 void ui_system_memory_pool_allocator(void)
 {
     uint64_t memory_block;
-    longlong resource_ptr;
-    longlong system_context;
+    int64_t resource_ptr;
+    int64_t system_context;
     int pool_index;
-    ulonglong pool_range;
-    ulonglong array_index;
-    longlong ui_context;
+    uint64_t pool_range;
+    uint64_t array_index;
+    int64_t ui_context;
     uint iteration_count;
-    ulonglong element_index;
+    uint64_t element_index;
     
     // 初始化内存池
     FUN_18066d370();
@@ -502,19 +502,19 @@ void ui_system_memory_pool_allocator(void)
     if (pool_index < *(int *)(system_context + UI_CONTEXT_OFFSET_COUNT)) {
         do {
             memory_block = FUN_18066e8f0();
-            *(uint64_t *)(array_index + *(longlong *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_5)) = memory_block;
-            if (*(ulonglong *)(array_index + *(longlong *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_5)) == pool_range) {
+            *(uint64_t *)(array_index + *(int64_t *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_5)) = memory_block;
+            if (*(uint64_t *)(array_index + *(int64_t *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_5)) == pool_range) {
                 FUN_18066d370();
             }
             iteration_count = (int)element_index + 1;
-            element_index = (ulonglong)iteration_count;
+            element_index = (uint64_t)iteration_count;
             array_index = array_index + UI_ARRAY_ELEMENT_SIZE_8;
         } while ((int)iteration_count < *(int *)(system_context + UI_CONTEXT_OFFSET_COUNT));
     }
     
     // 分配六级资源数组
-    resource_ptr = FUN_18066e8f0(UI_ARRAY_ELEMENT_SIZE_8, (longlong)*(int *)(system_context + UI_CONTEXT_OFFSET_COUNT));
-    *(longlong *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_6) = resource_ptr;
+    resource_ptr = FUN_18066e8f0(UI_ARRAY_ELEMENT_SIZE_8, (int64_t)*(int *)(system_context + UI_CONTEXT_OFFSET_COUNT));
+    *(int64_t *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_6) = resource_ptr;
     if (resource_ptr == 0) {
         FUN_18066d370();
     }
@@ -525,19 +525,19 @@ void ui_system_memory_pool_allocator(void)
     if (pool_index < *(int *)(system_context + UI_CONTEXT_OFFSET_COUNT)) {
         do {
             memory_block = FUN_18066e8f0(UI_ARRAY_ELEMENT_SIZE_8);
-            *(uint64_t *)(array_index + *(longlong *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_6)) = memory_block;
-            if (*(ulonglong *)(array_index + *(longlong *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_6)) == pool_range) {
+            *(uint64_t *)(array_index + *(int64_t *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_6)) = memory_block;
+            if (*(uint64_t *)(array_index + *(int64_t *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_6)) == pool_range) {
                 FUN_18066d370();
             }
             iteration_count = (int)element_index + 1;
-            element_index = (ulonglong)iteration_count;
+            element_index = (uint64_t)iteration_count;
             array_index = array_index + UI_ARRAY_ELEMENT_SIZE_8;
         } while ((int)iteration_count < *(int *)(system_context + UI_CONTEXT_OFFSET_COUNT));
     }
     
     // 分配七级资源数组
-    resource_ptr = FUN_18066e8f0(UI_ARRAY_ELEMENT_SIZE_8, (longlong)*(int *)(system_context + UI_CONTEXT_OFFSET_COUNT));
-    *(longlong *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_7) = resource_ptr;
+    resource_ptr = FUN_18066e8f0(UI_ARRAY_ELEMENT_SIZE_8, (int64_t)*(int *)(system_context + UI_CONTEXT_OFFSET_COUNT));
+    *(int64_t *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_7) = resource_ptr;
     if (resource_ptr == 0) {
         FUN_18066d370();
     }
@@ -547,12 +547,12 @@ void ui_system_memory_pool_allocator(void)
     if (pool_index < *(int *)(system_context + UI_CONTEXT_OFFSET_COUNT)) {
         do {
             memory_block = FUN_18066e8f0(UI_ARRAY_ELEMENT_SIZE_8);
-            *(uint64_t *)(array_index + *(longlong *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_7)) = memory_block;
-            if (*(longlong *)(array_index + *(longlong *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_7)) == 0) {
+            *(uint64_t *)(array_index + *(int64_t *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_7)) = memory_block;
+            if (*(int64_t *)(array_index + *(int64_t *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_7)) == 0) {
                 FUN_18066d370();
             }
             iteration_count = (int)pool_range + 1;
-            pool_range = (ulonglong)iteration_count;
+            pool_range = (uint64_t)iteration_count;
             array_index = array_index + UI_ARRAY_ELEMENT_SIZE_8;
         } while ((int)iteration_count < *(int *)(system_context + UI_CONTEXT_OFFSET_COUNT));
     }
@@ -580,13 +580,13 @@ void ui_system_memory_pool_allocator(void)
 void ui_system_resource_array_manager(void)
 {
     uint64_t memory_block;
-    longlong resource_ptr;
-    longlong system_context;
-    ulonglong pool_range;
-    ulonglong array_index;
-    longlong ui_context;
+    int64_t resource_ptr;
+    int64_t system_context;
+    uint64_t pool_range;
+    uint64_t array_index;
+    int64_t ui_context;
     uint iteration_count;
-    ulonglong element_index;
+    uint64_t element_index;
     
     // 初始化资源管理器
     FUN_18066d370();
@@ -598,19 +598,19 @@ void ui_system_resource_array_manager(void)
     if ((int)pool_range < *(int *)(system_context + UI_CONTEXT_OFFSET_COUNT)) {
         do {
             memory_block = FUN_18066e8f0(UI_ARRAY_ELEMENT_SIZE_8);
-            *(uint64_t *)(array_index + *(longlong *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_6)) = memory_block;
-            if (*(ulonglong *)(array_index + *(longlong *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_6)) == pool_range) {
+            *(uint64_t *)(array_index + *(int64_t *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_6)) = memory_block;
+            if (*(uint64_t *)(array_index + *(int64_t *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_6)) == pool_range) {
                 FUN_18066d370();
             }
             iteration_count = (int)element_index + 1;
-            element_index = (ulonglong)iteration_count;
+            element_index = (uint64_t)iteration_count;
             array_index = array_index + UI_ARRAY_ELEMENT_SIZE_8;
         } while ((int)iteration_count < *(int *)(system_context + UI_CONTEXT_OFFSET_COUNT));
     }
     
     // 分配七级资源数组
-    resource_ptr = FUN_18066e8f0(UI_ARRAY_ELEMENT_SIZE_8, (longlong)*(int *)(system_context + UI_CONTEXT_OFFSET_COUNT));
-    *(longlong *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_7) = resource_ptr;
+    resource_ptr = FUN_18066e8f0(UI_ARRAY_ELEMENT_SIZE_8, (int64_t)*(int *)(system_context + UI_CONTEXT_OFFSET_COUNT));
+    *(int64_t *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_7) = resource_ptr;
     if (resource_ptr == 0) {
         FUN_18066d370();
     }
@@ -620,12 +620,12 @@ void ui_system_resource_array_manager(void)
     if ((int)pool_range < *(int *)(system_context + UI_CONTEXT_OFFSET_COUNT)) {
         do {
             memory_block = FUN_18066e8f0(UI_ARRAY_ELEMENT_SIZE_8);
-            *(uint64_t *)(array_index + *(longlong *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_7)) = memory_block;
-            if (*(longlong *)(array_index + *(longlong *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_7)) == 0) {
+            *(uint64_t *)(array_index + *(int64_t *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_7)) = memory_block;
+            if (*(int64_t *)(array_index + *(int64_t *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_7)) == 0) {
                 FUN_18066d370();
             }
             iteration_count = (int)pool_range + 1;
-            pool_range = (ulonglong)iteration_count;
+            pool_range = (uint64_t)iteration_count;
             array_index = array_index + UI_ARRAY_ELEMENT_SIZE_8;
         } while ((int)iteration_count < *(int *)(system_context + UI_CONTEXT_OFFSET_COUNT));
     }
@@ -653,11 +653,11 @@ void ui_system_resource_array_manager(void)
 void ui_system_memory_cleanup_handler(void)
 {
     uint64_t memory_block;
-    longlong system_context;
+    int64_t system_context;
     uint iteration_count;
-    ulonglong pool_range;
-    ulonglong array_index;
-    longlong ui_context;
+    uint64_t pool_range;
+    uint64_t array_index;
+    int64_t ui_context;
     
     // 初始化内存清理器
     FUN_18066d370();
@@ -666,12 +666,12 @@ void ui_system_memory_cleanup_handler(void)
     if ((int)pool_range < *(int *)(system_context + UI_CONTEXT_OFFSET_COUNT)) {
         do {
             memory_block = FUN_18066e8f0(UI_ARRAY_ELEMENT_SIZE_8);
-            *(uint64_t *)(array_index + *(longlong *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_7)) = memory_block;
-            if (*(longlong *)(array_index + *(longlong *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_7)) == 0) {
+            *(uint64_t *)(array_index + *(int64_t *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_7)) = memory_block;
+            if (*(int64_t *)(array_index + *(int64_t *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_7)) == 0) {
                 FUN_18066d370();
             }
             iteration_count = (int)pool_range + 1;
-            pool_range = (ulonglong)iteration_count;
+            pool_range = (uint64_t)iteration_count;
             array_index = array_index + UI_ARRAY_ELEMENT_SIZE_8;
         } while ((int)iteration_count < *(int *)(system_context + UI_CONTEXT_OFFSET_COUNT));
     }
@@ -716,13 +716,13 @@ void ui_system_empty_function_placeholder_1(void)
  * - 优化资源释放策略
  * - 支持多种资源类型
  */
-void ui_system_resource_deallocator(longlong ui_context, int resource_count)
+void ui_system_resource_deallocator(int64_t ui_context, int resource_count)
 {
-    longlong array_index;
-    longlong resource_array_ptr;
-    longlong loop_counter;
+    int64_t array_index;
+    int64_t resource_array_ptr;
+    int64_t loop_counter;
     
-    loop_counter = (longlong)resource_count;
+    loop_counter = (int64_t)resource_count;
     
     // 检查是否已初始化
     if (*(int *)(ui_context + UI_CONTEXT_OFFSET_INITIALIZED) != 0) {
@@ -732,12 +732,12 @@ void ui_system_resource_deallocator(longlong ui_context, int resource_count)
         *(uint64_t *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_1) = 0;
         
         // 释放二级资源数组元素
-        if (*(longlong *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_2) != 0) {
+        if (*(int64_t *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_2) != 0) {
             array_index = resource_array_ptr;
             if (0 < loop_counter) {
                 do {
-                    func_0x00018066e940(*(uint64_t *)(*(longlong *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_2) + array_index * UI_ARRAY_ELEMENT_SIZE_8));
-                    *(uint64_t *)(*(longlong *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_2) + array_index * UI_ARRAY_ELEMENT_SIZE_8) = 0;
+                    func_0x00018066e940(*(uint64_t *)(*(int64_t *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_2) + array_index * UI_ARRAY_ELEMENT_SIZE_8));
+                    *(uint64_t *)(*(int64_t *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_2) + array_index * UI_ARRAY_ELEMENT_SIZE_8) = 0;
                     array_index = array_index + 1;
                 } while (array_index < loop_counter);
             }
@@ -746,12 +746,12 @@ void ui_system_resource_deallocator(longlong ui_context, int resource_count)
         }
         
         // 释放三级资源数组元素
-        if (*(longlong *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_3) != 0) {
+        if (*(int64_t *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_3) != 0) {
             array_index = resource_array_ptr;
             if (0 < loop_counter) {
                 do {
-                    func_0x00018066e940(*(uint64_t *)(*(longlong *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_3) + array_index * UI_ARRAY_ELEMENT_SIZE_8));
-                    *(uint64_t *)(*(longlong *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_3) + array_index * UI_ARRAY_ELEMENT_SIZE_8) = 0;
+                    func_0x00018066e940(*(uint64_t *)(*(int64_t *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_3) + array_index * UI_ARRAY_ELEMENT_SIZE_8));
+                    *(uint64_t *)(*(int64_t *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_3) + array_index * UI_ARRAY_ELEMENT_SIZE_8) = 0;
                     array_index = array_index + 1;
                 } while (array_index < loop_counter);
             }
@@ -760,12 +760,12 @@ void ui_system_resource_deallocator(longlong ui_context, int resource_count)
         }
         
         // 释放四级资源数组元素
-        if (*(longlong *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_4) != 0) {
+        if (*(int64_t *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_4) != 0) {
             array_index = resource_array_ptr;
             if (0 < loop_counter) {
                 do {
-                    func_0x00018066e940(*(uint64_t *)(*(longlong *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_4) + array_index * UI_ARRAY_ELEMENT_SIZE_8));
-                    *(uint64_t *)(*(longlong *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_4) + array_index * UI_ARRAY_ELEMENT_SIZE_8) = 0;
+                    func_0x00018066e940(*(uint64_t *)(*(int64_t *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_4) + array_index * UI_ARRAY_ELEMENT_SIZE_8));
+                    *(uint64_t *)(*(int64_t *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_4) + array_index * UI_ARRAY_ELEMENT_SIZE_8) = 0;
                     array_index = array_index + 1;
                 } while (array_index < loop_counter);
             }
@@ -774,12 +774,12 @@ void ui_system_resource_deallocator(longlong ui_context, int resource_count)
         }
         
         // 释放五级资源数组元素
-        if (*(longlong *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_5) != 0) {
+        if (*(int64_t *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_5) != 0) {
             array_index = resource_array_ptr;
             if (0 < loop_counter) {
                 do {
-                    func_0x00018066e940(*(uint64_t *)(*(longlong *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_5) + array_index * UI_ARRAY_ELEMENT_SIZE_8));
-                    *(uint64_t *)(*(longlong *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_5) + array_index * UI_ARRAY_ELEMENT_SIZE_8) = 0;
+                    func_0x00018066e940(*(uint64_t *)(*(int64_t *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_5) + array_index * UI_ARRAY_ELEMENT_SIZE_8));
+                    *(uint64_t *)(*(int64_t *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_5) + array_index * UI_ARRAY_ELEMENT_SIZE_8) = 0;
                     array_index = array_index + 1;
                 } while (array_index < loop_counter);
             }
@@ -788,12 +788,12 @@ void ui_system_resource_deallocator(longlong ui_context, int resource_count)
         }
         
         // 释放六级资源数组元素
-        if (*(longlong *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_6) != 0) {
+        if (*(int64_t *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_6) != 0) {
             array_index = resource_array_ptr;
             if (0 < loop_counter) {
                 do {
-                    func_0x00018066e940(*(uint64_t *)(*(longlong *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_6) + array_index * UI_ARRAY_ELEMENT_SIZE_8));
-                    *(uint64_t *)(*(longlong *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_6) + array_index * UI_ARRAY_ELEMENT_SIZE_8) = 0;
+                    func_0x00018066e940(*(uint64_t *)(*(int64_t *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_6) + array_index * UI_ARRAY_ELEMENT_SIZE_8));
+                    *(uint64_t *)(*(int64_t *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_6) + array_index * UI_ARRAY_ELEMENT_SIZE_8) = 0;
                     array_index = array_index + 1;
                 } while (array_index < loop_counter);
             }
@@ -802,11 +802,11 @@ void ui_system_resource_deallocator(longlong ui_context, int resource_count)
         }
         
         // 释放七级资源数组元素
-        if (*(longlong *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_7) != 0) {
+        if (*(int64_t *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_7) != 0) {
             if (0 < loop_counter) {
                 do {
-                    func_0x00018066e940(*(uint64_t *)(*(longlong *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_7) + resource_array_ptr * UI_ARRAY_ELEMENT_SIZE_8));
-                    *(uint64_t *)(*(longlong *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_7) + resource_array_ptr * UI_ARRAY_ELEMENT_SIZE_8) = 0;
+                    func_0x00018066e940(*(uint64_t *)(*(int64_t *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_7) + resource_array_ptr * UI_ARRAY_ELEMENT_SIZE_8));
+                    *(uint64_t *)(*(int64_t *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_7) + resource_array_ptr * UI_ARRAY_ELEMENT_SIZE_8) = 0;
                     resource_array_ptr = resource_array_ptr + 1;
                 } while (resource_array_ptr < loop_counter);
             }
@@ -837,10 +837,10 @@ void ui_system_resource_deallocator(longlong ui_context, int resource_count)
  */
 void ui_system_memory_pool_cleanup(void)
 {
-    longlong system_context;
-    longlong array_index;
-    longlong loop_counter;
-    longlong ui_context;
+    int64_t system_context;
+    int64_t array_index;
+    int64_t loop_counter;
+    int64_t ui_context;
     
     // 初始化内存池清理器
     func_0x00018066e940();
@@ -849,12 +849,12 @@ void ui_system_memory_pool_cleanup(void)
     *(uint64_t *)(system_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_1) = 0;
     
     // 清理二级资源数组
-    if (*(longlong *)(system_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_2) != 0) {
+    if (*(int64_t *)(system_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_2) != 0) {
         array_index = loop_counter;
         if (0 < ui_context) {
             do {
-                func_0x00018066e940(*(uint64_t *)(*(longlong *)(system_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_2) + array_index * UI_ARRAY_ELEMENT_SIZE_8));
-                *(uint64_t *)(*(longlong *)(system_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_2) + array_index * UI_ARRAY_ELEMENT_SIZE_8) = 0;
+                func_0x00018066e940(*(uint64_t *)(*(int64_t *)(system_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_2) + array_index * UI_ARRAY_ELEMENT_SIZE_8));
+                *(uint64_t *)(*(int64_t *)(system_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_2) + array_index * UI_ARRAY_ELEMENT_SIZE_8) = 0;
                 array_index = array_index + 1;
             } while (array_index < ui_context);
         }
@@ -863,12 +863,12 @@ void ui_system_memory_pool_cleanup(void)
     }
     
     // 清理三级资源数组
-    if (*(longlong *)(system_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_3) != 0) {
+    if (*(int64_t *)(system_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_3) != 0) {
         array_index = loop_counter;
         if (0 < ui_context) {
             do {
-                func_0x00018066e940(*(uint64_t *)(*(longlong *)(system_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_3) + array_index * UI_ARRAY_ELEMENT_SIZE_8));
-                *(uint64_t *)(*(longlong *)(system_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_3) + array_index * UI_ARRAY_ELEMENT_SIZE_8) = 0;
+                func_0x00018066e940(*(uint64_t *)(*(int64_t *)(system_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_3) + array_index * UI_ARRAY_ELEMENT_SIZE_8));
+                *(uint64_t *)(*(int64_t *)(system_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_3) + array_index * UI_ARRAY_ELEMENT_SIZE_8) = 0;
                 array_index = array_index + 1;
             } while (array_index < ui_context);
         }
@@ -877,12 +877,12 @@ void ui_system_memory_pool_cleanup(void)
     }
     
     // 清理四级资源数组
-    if (*(longlong *)(system_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_4) != 0) {
+    if (*(int64_t *)(system_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_4) != 0) {
         array_index = loop_counter;
         if (0 < ui_context) {
             do {
-                func_0x00018066e940(*(uint64_t *)(*(longlong *)(system_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_4) + array_index * UI_ARRAY_ELEMENT_SIZE_8));
-                *(uint64_t *)(*(longlong *)(system_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_4) + array_index * UI_ARRAY_ELEMENT_SIZE_8) = 0;
+                func_0x00018066e940(*(uint64_t *)(*(int64_t *)(system_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_4) + array_index * UI_ARRAY_ELEMENT_SIZE_8));
+                *(uint64_t *)(*(int64_t *)(system_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_4) + array_index * UI_ARRAY_ELEMENT_SIZE_8) = 0;
                 array_index = array_index + 1;
             } while (array_index < ui_context);
         }
@@ -891,12 +891,12 @@ void ui_system_memory_pool_cleanup(void)
     }
     
     // 清理五级资源数组
-    if (*(longlong *)(system_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_5) != 0) {
+    if (*(int64_t *)(system_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_5) != 0) {
         array_index = loop_counter;
         if (0 < ui_context) {
             do {
-                func_0x00018066e940(*(uint64_t *)(*(longlong *)(system_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_5) + array_index * UI_ARRAY_ELEMENT_SIZE_8));
-                *(uint64_t *)(*(longlong *)(system_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_5) + array_index * UI_ARRAY_ELEMENT_SIZE_8) = 0;
+                func_0x00018066e940(*(uint64_t *)(*(int64_t *)(system_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_5) + array_index * UI_ARRAY_ELEMENT_SIZE_8));
+                *(uint64_t *)(*(int64_t *)(system_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_5) + array_index * UI_ARRAY_ELEMENT_SIZE_8) = 0;
                 array_index = array_index + 1;
             } while (array_index < ui_context);
         }
@@ -905,12 +905,12 @@ void ui_system_memory_pool_cleanup(void)
     }
     
     // 清理六级资源数组
-    if (*(longlong *)(system_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_6) != 0) {
+    if (*(int64_t *)(system_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_6) != 0) {
         array_index = loop_counter;
         if (0 < ui_context) {
             do {
-                func_0x00018066e940(*(uint64_t *)(*(longlong *)(system_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_6) + array_index * UI_ARRAY_ELEMENT_SIZE_8));
-                *(uint64_t *)(*(longlong *)(system_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_6) + array_index * UI_ARRAY_ELEMENT_SIZE_8) = 0;
+                func_0x00018066e940(*(uint64_t *)(*(int64_t *)(system_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_6) + array_index * UI_ARRAY_ELEMENT_SIZE_8));
+                *(uint64_t *)(*(int64_t *)(system_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_6) + array_index * UI_ARRAY_ELEMENT_SIZE_8) = 0;
                 array_index = array_index + 1;
             } while (array_index < ui_context);
         }
@@ -919,11 +919,11 @@ void ui_system_memory_pool_cleanup(void)
     }
     
     // 清理七级资源数组
-    if (*(longlong *)(system_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_7) != 0) {
+    if (*(int64_t *)(system_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_7) != 0) {
         if (0 < ui_context) {
             do {
-                func_0x00018066e940(*(uint64_t *)(*(longlong *)(system_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_7) + loop_counter * UI_ARRAY_ELEMENT_SIZE_8));
-                *(uint64_t *)(*(longlong *)(system_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_7) + loop_counter * UI_ARRAY_ELEMENT_SIZE_8) = 0;
+                func_0x00018066e940(*(uint64_t *)(*(int64_t *)(system_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_7) + loop_counter * UI_ARRAY_ELEMENT_SIZE_8));
+                *(uint64_t *)(*(int64_t *)(system_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_7) + loop_counter * UI_ARRAY_ELEMENT_SIZE_8) = 0;
                 loop_counter = loop_counter + 1;
             } while (loop_counter < ui_context);
         }
@@ -975,7 +975,7 @@ void ui_system_empty_function_placeholder_2(void)
  * - 包含复杂的条件分支逻辑
  * - 可能涉及系统级内存操作
  */
-void ui_system_semaphore_synchronizer(longlong ui_context, uint64_t sync_param)
+void ui_system_semaphore_synchronizer(int64_t ui_context, uint64_t sync_param)
 {
     uint semaphore_index;
     
@@ -993,7 +993,7 @@ void ui_system_semaphore_synchronizer(longlong ui_context, uint64_t sync_param)
         // 释放信号量
         if (*(int *)(ui_context + UI_CONTEXT_OFFSET_SEMAPHORE_COUNT) != 0) {
             do {
-                ReleaseSemaphore(*(uint64_t *)(*(longlong *)(ui_context + UI_CONTEXT_OFFSET_SEMAPHORE_ARRAY) + (ulonglong)semaphore_index * UI_ARRAY_ELEMENT_SIZE_8), 1);
+                ReleaseSemaphore(*(uint64_t *)(*(int64_t *)(ui_context + UI_CONTEXT_OFFSET_SEMAPHORE_ARRAY) + (uint64_t)semaphore_index * UI_ARRAY_ELEMENT_SIZE_8), 1);
                 semaphore_index = semaphore_index + 1;
             } while (semaphore_index < *(uint *)(ui_context + UI_CONTEXT_OFFSET_SEMAPHORE_COUNT));
         }
@@ -1005,7 +1005,7 @@ void ui_system_semaphore_synchronizer(longlong ui_context, uint64_t sync_param)
     }
     
     // 处理错误情况（不返回）
-    memset(**(longlong **)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_2) + 0x1f, 0x7f, (longlong)(**(int **)(ui_context + 0x12a0) + 5));
+    memset(**(int64_t **)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_2) + 0x1f, 0x7f, (int64_t)(**(int **)(ui_context + 0x12a0) + 5));
 }
 
 /**
@@ -1042,9 +1042,9 @@ void ui_system_semaphore_synchronizer(longlong ui_context, uint64_t sync_param)
  * 返回值：
  * - 处理结果的质量分数
  */
-int ui_system_advanced_texture_processor(longlong ui_context, longlong texture_params, longlong texture_data, 
+int ui_system_advanced_texture_processor(int64_t ui_context, int64_t texture_params, int64_t texture_data, 
                                       short *coord_input, short *coord_output, int process_param, int quality_param, 
-                                      int *result_count, uint64_t *process_func, longlong *texture_lookup, 
+                                      int *result_count, uint64_t *process_func, int64_t *texture_lookup, 
                                       short *boundary_params)
 {
     short temp_coord_1;
@@ -1055,47 +1055,47 @@ int ui_system_advanced_texture_processor(longlong ui_context, longlong texture_p
     int iteration_index;
     uint quality_score;
     short temp_coord_2;
-    ulonglong search_index;
+    uint64_t search_index;
     int lookup_result;
-    longlong base_address;
-    ulonglong array_index;
+    int64_t base_address;
+    uint64_t array_index;
     int *lookup_ptr;
     short boundary_coord_1;
-    longlong texture_offset;
-    ulonglong search_range;
+    int64_t texture_offset;
+    uint64_t search_range;
     int current_quality;
-    longlong search_base;
-    longlong texture_base;
-    longlong coord_base_x;
-    longlong coord_base_y;
-    longlong loop_counter;
-    longlong texture_size;
-    longlong result_address;
-    longlong quality_offset;
+    int64_t search_base;
+    int64_t texture_base;
+    int64_t coord_base_x;
+    int64_t coord_base_y;
+    int64_t loop_counter;
+    int64_t texture_size;
+    int64_t result_address;
+    int64_t quality_offset;
     uint temp_quality_array[2];
-    ulonglong best_match_index;
-    longlong best_match_address;
-    longlong temp_storage_1;
-    longlong temp_storage_2;
-    longlong temp_storage_3;
-    longlong temp_storage_4;
-    longlong temp_storage_5;
-    longlong temp_storage_6;
-    longlong temp_storage_7;
-    longlong temp_storage_8;
+    uint64_t best_match_index;
+    int64_t best_match_address;
+    int64_t temp_storage_1;
+    int64_t temp_storage_2;
+    int64_t temp_storage_3;
+    int64_t temp_storage_4;
+    int64_t temp_storage_5;
+    int64_t temp_storage_6;
+    int64_t temp_storage_7;
+    int64_t temp_storage_8;
     
     output_ptr = coord_output;
-    texture_offset = *(longlong *)(ui_context + 0x1e98);
+    texture_offset = *(int64_t *)(ui_context + 0x1e98);
     lookup_result = *(int *)(ui_context + 0x23dc);
     current_quality = *(int *)(ui_context + 0x23d8);
     iteration_index = 0;
     
     // 计算纹理基地址
-    texture_base = (longlong)*(int *)(texture_params + 0x50) + **(longlong **)(texture_params + 0x48);
+    texture_base = (int64_t)*(int *)(texture_params + 0x50) + **(int64_t **)(texture_params + 0x48);
     texture_format = *(int32_t *)(texture_params + 0x54);
     coord_range_x = *(int *)(ui_context + 0x1e70);
-    coord_base_x = *(longlong *)(ui_context + 0x2398);
-    coord_base_y = *(longlong *)(ui_context + 0x23a0);
+    coord_base_x = *(int64_t *)(ui_context + 0x2398);
+    coord_base_y = *(int64_t *)(ui_context + 0x23a0);
     loop_counter = 0;
     
     // 获取边界参数
@@ -1127,15 +1127,15 @@ int ui_system_advanced_texture_processor(longlong ui_context, longlong texture_p
     }
     
     // 计算搜索参数
-    result_address = (longlong)(temp_coord_2 >> 3);
+    result_address = (int64_t)(temp_coord_2 >> 3);
     temp_coord_2 = (short)current_quality;
     *coord_input = temp_coord_2;
     *result_count = 0;
     *coord_output = temp_coord_2;
     coord_output[1] = boundary_coord_1;
     
-    quality_offset = (longlong)(temp_coord_1 >> 3);
-    base_address = *(int *)(texture_data + 0x20) + texture_offset + (longlong)(temp_coord_2 * coord_range_x) + (longlong)boundary_coord_1;
+    quality_offset = (int64_t)(temp_coord_1 >> 3);
+    base_address = *(int *)(texture_data + 0x20) + texture_offset + (int64_t)(temp_coord_2 * coord_range_x) + (int64_t)boundary_coord_1;
     
     // 获取质量参数
     lookup_result = *(int *)(coord_base_x + (temp_coord_2 - quality_offset) * 4);
@@ -1152,14 +1152,14 @@ int ui_system_advanced_texture_processor(longlong ui_context, longlong texture_p
     coord_output._0_4_ = coord_range_y + ((lookup_result + current_quality) * quality_param + 0x80 >> 8);
     
     // 计算搜索表地址
-    texture_offset = *(longlong *)(ui_context + 0x2348) + (longlong)(*(int *)(ui_context + 0x2354) * process_param) * 8;
+    texture_offset = *(int64_t *)(ui_context + 0x2348) + (int64_t)(*(int *)(ui_context + 0x2354) * process_param) * 8;
     search_range = *(int *)(ui_context + 0x2350) / *(int *)(ui_context + 0x2354) - process_param;
     texture_size = texture_offset;
     
     // 主要搜索循环
     if (0 < (int)search_range) {
         search_index = 0;
-        search_range = (ulonglong)search_range;
+        search_range = (uint64_t)search_range;
         best_match_index = 0;
         iteration_index = 0;
         array_index = search_range;
@@ -1170,7 +1170,7 @@ int ui_system_advanced_texture_processor(longlong ui_context, longlong texture_p
                 lookup_ptr = (int *)(search_range * 8 + 4 + texture_offset);
                 do {
                     iteration_index = (int)(short)lookup_ptr[-1] + (int)*output_ptr;
-                    coord_range_y = (int)*(short *)((longlong)lookup_ptr + -2) + (int)output_ptr[1];
+                    coord_range_y = (int)*(short *)((int64_t)lookup_ptr + -2) + (int)output_ptr[1];
                     
                     // 边界检查
                     if ((((*(int *)(ui_context + 0x23d0) < coord_range_y) && (coord_range_y < *(int *)(ui_context + 0x23d4))) &&
@@ -1189,7 +1189,7 @@ int ui_system_advanced_texture_processor(longlong ui_context, longlong texture_p
                         best_match_index = search_range;
                     }
                     
-                    array_index = (ulonglong)((int)array_index + 1);
+                    array_index = (uint64_t)((int)array_index + 1);
                     search_range = search_range + 1;
                     lookup_ptr = lookup_ptr + 2;
                     current_quality = current_quality + 1;
@@ -1222,10 +1222,10 @@ int ui_system_advanced_texture_processor(longlong ui_context, longlong texture_p
     iteration_index = 0;
     
     // 查找表处理
-    if (texture_lookup != (longlong *)0x0) {
+    if (texture_lookup != (int64_t *)0x0) {
         iteration_index = (*(int *)(texture_lookup[1] +
-                      ((longlong)((int)(short)(output_ptr[1] << 3) - (int)boundary_params[1]) >> 1) * 4) +
-             *(int *)(*texture_lookup + ((longlong)((int)(short)(*output_ptr << 3) - (int)*boundary_params) >> 1) * 4
+                      ((int64_t)((int)(short)(output_ptr[1] << 3) - (int)boundary_params[1]) >> 1) * 4) +
+             *(int *)(*texture_lookup + ((int64_t)((int)(short)(*output_ptr << 3) - (int)*boundary_params) >> 1) * 4
                      )) * *(int *)(ui_context + 0x2358) + 0x80 >> 8;
     }
     

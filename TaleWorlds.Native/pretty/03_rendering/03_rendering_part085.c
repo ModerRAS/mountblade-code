@@ -17,11 +17,11 @@
 #define RENDERING_MAX_FLOAT_VALUE 3.4028235e+38
 
 // 全局变量
-extern longlong system_message_buffer;
-extern longlong GET_SECURITY_COOKIE();
-extern longlong render_system_control_buffer;
-extern longlong system_parameter_buffer;
-extern longlong system_memory_pool_ptr;
+extern int64_t system_message_buffer;
+extern int64_t GET_SECURITY_COOKIE();
+extern int64_t render_system_control_buffer;
+extern int64_t system_parameter_buffer;
+extern int64_t system_memory_pool_ptr;
 extern uint64_t global_state_5488_ptr;
 extern uint64_t global_state_5720_ptr;
 extern uint64_t global_state_5680_ptr;
@@ -46,18 +46,18 @@ extern uint64_t global_state_3456_ptr;
  * 
  * @param object_handle - 渲染对象的句柄指针
  */
-void rendering_system_cleanup_object_resources(longlong *object_handle)
+void rendering_system_cleanup_object_resources(int64_t *object_handle)
 {
     // 检查第二个对象指针是否有效
-    if ((longlong *)object_handle[1] != (longlong *)0x0) {
+    if ((int64_t *)object_handle[1] != (int64_t *)0x0) {
         // 调用第二个对象的清理函数
-        (**(code **)(*(longlong *)object_handle[1] + RENDERING_OBJECT_NULL_OFFSET))();
+        (**(code **)(*(int64_t *)object_handle[1] + RENDERING_OBJECT_NULL_OFFSET))();
     }
     
     // 检查第一个对象指针是否有效
-    if ((longlong *)*object_handle != (longlong *)0x0) {
+    if ((int64_t *)*object_handle != (int64_t *)0x0) {
         // 调用第一个对象的清理函数
-        (**(code **)(*(longlong *)*object_handle + RENDERING_OBJECT_NULL_OFFSET))();
+        (**(code **)(*(int64_t *)*object_handle + RENDERING_OBJECT_NULL_OFFSET))();
     }
     
     return;
@@ -75,29 +75,29 @@ void rendering_system_cleanup_object_resources(longlong *object_handle)
  * @param transform_context - 变换上下文指针
  * @param enable_flag - 启用标志（0=禁用，非0=启用）
  */
-void rendering_system_process_advanced_transforms(longlong transform_context, char enable_flag)
+void rendering_system_process_advanced_transforms(int64_t transform_context, char enable_flag)
 {
     float *position_data;
     uint64_t *transform_matrix;
     float scale_x, scale_y, scale_z, scale_w;
     float position_x, position_y, position_z, position_w;
     float transform_x, transform_y, transform_z, transform_w;
-    longlong source_offset;
-    longlong target_offset_1, target_offset_2;
-    longlong object_count;
+    int64_t source_offset;
+    int64_t target_offset_1, target_offset_2;
+    int64_t object_count;
     int current_index;
-    ulonglong object_total;
+    uint64_t object_total;
     int enabled_index, disabled_index;
-    longlong loop_index;
+    int64_t loop_index;
     int flag_result;
     bool is_enabled;
     uint64_t temp_storage;
-    longlong *target_array_1;
-    longlong *target_array_2;
+    int64_t *target_array_1;
+    int64_t *target_array_2;
     
     // 计算对象总数
-    object_total = *(longlong *)(transform_context + RENDERING_TRANSFORM_OFFSET_2) - 
-                  *(longlong *)(transform_context + RENDERING_TRANSFORM_OFFSET_1) >> 3;
+    object_total = *(int64_t *)(transform_context + RENDERING_TRANSFORM_OFFSET_2) - 
+                  *(int64_t *)(transform_context + RENDERING_TRANSFORM_OFFSET_1) >> 3;
     object_count = (int)object_total;
     
     // 检查是否需要处理对象
@@ -129,7 +129,7 @@ void rendering_system_process_advanced_transforms(longlong transform_context, ch
                 }
                 
                 // 获取对象指针
-                source_offset = *(longlong *)(*(longlong *)(transform_context + RENDERING_TRANSFORM_OFFSET_1) + loop_index * 8);
+                source_offset = *(int64_t *)(*(int64_t *)(transform_context + RENDERING_TRANSFORM_OFFSET_1) + loop_index * 8);
                 
                 // 读取缩放值
                 scale_y = *(float *)(source_offset + RENDERING_SCALE_OFFSET_1);
@@ -138,7 +138,7 @@ void rendering_system_process_advanced_transforms(longlong transform_context, ch
                 position_y = *(float *)(source_offset + 0xec);
                 
                 // 计算位置变换
-                loop_index = (longlong)(flag_result * 4);
+                loop_index = (int64_t)(flag_result * 4);
                 *(float *)(target_offset_1 + loop_index * 4) = 
                     *(float *)(source_offset + 0x94) + *(float *)(source_offset + RENDERING_POSITION_OFFSET_2);
                 *(float *)(target_offset_1 + 4 + loop_index * 4) = scale_y + position_x;
@@ -154,7 +154,7 @@ void rendering_system_process_advanced_transforms(longlong transform_context, ch
                 position_y = *(float *)(source_offset + 0xec);
                 
                 // 计算变换矩阵偏移
-                loop_index = (longlong)flag_result * 0x60;
+                loop_index = (int64_t)flag_result * 0x60;
                 position_data = (float *)(loop_index + 0x40 + target_offset_2);
                 
                 // 应用位置变换
@@ -165,10 +165,10 @@ void rendering_system_process_advanced_transforms(longlong transform_context, ch
                 
                 // 计算透明度值
                 *(float *)(loop_index + 0x4c + target_offset_2) = 
-                    (float)*(byte *)(*(longlong *)(*(longlong *)(transform_context + RENDERING_TRANSFORM_OFFSET_1) + loop_index * 8) + 0x149);
+                    (float)*(byte *)(*(int64_t *)(*(int64_t *)(transform_context + RENDERING_TRANSFORM_OFFSET_1) + loop_index * 8) + 0x149);
                 
                 // 获取对象指针（重新加载）
-                source_offset = *(longlong *)(*(longlong *)(transform_context + RENDERING_TRANSFORM_OFFSET_1) + loop_index * 8);
+                source_offset = *(int64_t *)(*(int64_t *)(transform_context + RENDERING_TRANSFORM_OFFSET_1) + loop_index * 8);
                 
                 // 读取变换参数
                 position_x = *(float *)(source_offset + 0x88);
@@ -190,7 +190,7 @@ void rendering_system_process_advanced_transforms(longlong transform_context, ch
                 position_data[3] = RENDERING_MAX_FLOAT_VALUE;
                 
                 // 获取对象指针（再次重新加载）
-                source_offset = *(longlong *)(*(longlong *)(transform_context + RENDERING_TRANSFORM_OFFSET_1) + loop_index * 8);
+                source_offset = *(int64_t *)(*(int64_t *)(transform_context + RENDERING_TRANSFORM_OFFSET_1) + loop_index * 8);
                 
                 // 复制变换矩阵数据
                 temp_storage = *(uint64_t *)(source_offset + 0xac);
@@ -217,13 +217,13 @@ void rendering_system_process_advanced_transforms(longlong transform_context, ch
                 
                 // 设置着色器参数
                 *(int32_t *)(loop_index + 0xc + target_offset_2) = 
-                    *(int32_t *)(*(longlong *)(*(longlong *)(transform_context + RENDERING_TRANSFORM_OFFSET_1) + loop_index * 8) + 0x60);
+                    *(int32_t *)(*(int64_t *)(*(int64_t *)(transform_context + RENDERING_TRANSFORM_OFFSET_1) + loop_index * 8) + 0x60);
                 *(int32_t *)(loop_index + 0x1c + target_offset_2) = 
-                    *(int32_t *)(*(longlong *)(*(longlong *)(transform_context + RENDERING_TRANSFORM_OFFSET_1) + loop_index * 8) + 0x144);
+                    *(int32_t *)(*(int64_t *)(*(int64_t *)(transform_context + RENDERING_TRANSFORM_OFFSET_1) + loop_index * 8) + 0x144);
                 
                 // 清理对象状态
-                *(int8_t *)(*(longlong *)(*(longlong *)(transform_context + RENDERING_TRANSFORM_OFFSET_1) + loop_index * 8) + 0x50) = 0;
-                *(int32_t *)(*(longlong *)(*(longlong *)(transform_context + RENDERING_TRANSFORM_OFFSET_1) + loop_index * 8) + RENDERING_SHADER_PARAM_OFFSET) = 
+                *(int8_t *)(*(int64_t *)(*(int64_t *)(transform_context + RENDERING_TRANSFORM_OFFSET_1) + loop_index * 8) + 0x50) = 0;
+                *(int32_t *)(*(int64_t *)(*(int64_t *)(transform_context + RENDERING_TRANSFORM_OFFSET_1) + loop_index * 8) + RENDERING_SHADER_PARAM_OFFSET) = 
                     *(int32_t *)(transform_context + 4);
                 
                 // 更新循环变量
@@ -239,10 +239,10 @@ void rendering_system_process_advanced_transforms(longlong transform_context, ch
                       *(uint64_t *)(transform_context + 0x48), target_array_1);
         
         // 清理临时资源
-        if (target_array_1 != (longlong *)0x0) {
+        if (target_array_1 != (int64_t *)0x0) {
             (**(code **)(*target_array_1 + RENDERING_OBJECT_NULL_OFFSET))();
         }
-        if (target_array_2 != (longlong *)0x0) {
+        if (target_array_2 != (int64_t *)0x0) {
             (**(code **)(*target_array_2 + RENDERING_OBJECT_NULL_OFFSET))();
         }
     }
@@ -260,23 +260,23 @@ void rendering_system_process_advanced_transforms(longlong transform_context, ch
  * 
  * @param render_context - 渲染上下文指针
  */
-void rendering_system_initialize_state(longlong render_context)
+void rendering_system_initialize_state(int64_t render_context)
 {
-    longlong config_offset;
+    int64_t config_offset;
     int8_t stack_data[32];
     uint64_t stack_value_1;
     void *stack_pointer_1;
     int8_t *stack_pointer_2;
     int32_t stack_value_2;
     int8_t stack_data_2[32];
-    ulonglong xor_value;
+    uint64_t xor_value;
     
     // 设置堆栈保护值
     stack_value_1 = 0xfffffffffffffffe;
-    xor_value = GET_SECURITY_COOKIE() ^ (ulonglong)stack_data;
+    xor_value = GET_SECURITY_COOKIE() ^ (uint64_t)stack_data;
     
     // 获取配置偏移
-    config_offset = *(longlong *)(render_context + 0x9650);
+    config_offset = *(int64_t *)(render_context + 0x9650);
     
     // 设置系统标志
     render_system_control_buffer = 0x80;
@@ -302,9 +302,9 @@ void rendering_system_initialize_state(longlong render_context)
  * @param render_flags - 渲染标志
  * @param render_mode - 渲染模式（0-5支持特定模式，其他为默认）
  */
-void rendering_system_advanced_render_control(longlong render_engine, longlong render_params, 
-                                          longlong *target_buffer, uint64_t texture_data,
-                                          longlong *shader_data, uint64_t render_flags, 
+void rendering_system_advanced_render_control(int64_t render_engine, int64_t render_params, 
+                                          int64_t *target_buffer, uint64_t texture_data,
+                                          int64_t *shader_data, uint64_t render_flags, 
                                           int32_t render_mode)
 {
     int *render_counter;
@@ -314,17 +314,17 @@ void rendering_system_advanced_render_control(longlong render_engine, longlong r
     int8_t mode_flag;
     int32_t render_quality;
     int32_t *render_buffer;
-    longlong *render_context;
+    int64_t *render_context;
     uint64_t *texture_manager;
     uint64_t *shader_manager;
     uint64_t *render_manager;
-    longlong memory_pool;
+    int64_t memory_pool;
     byte render_state;
     uint64_t stack_data;
     int8_t stack_protect[32];
     uint64_t *stack_manager;
     int8_t stack_flag;
-    longlong *stack_context;
+    int64_t *stack_context;
     void *stack_pointer;
     uint64_t *stack_data_ptr;
     int32_t stack_param_1;
@@ -336,13 +336,13 @@ void rendering_system_advanced_render_control(longlong render_engine, longlong r
     int32_t stack_param_5;
     int32_t stack_param_6;
     int32_t stack_param_7;
-    longlong *stack_buffer_1;
-    longlong *stack_buffer_2;
-    longlong *stack_buffer_3;
-    longlong *stack_buffer_4;
-    longlong *stack_buffer_5;
-    longlong *stack_buffer_6;
-    longlong *stack_buffer_7;
+    int64_t *stack_buffer_1;
+    int64_t *stack_buffer_2;
+    int64_t *stack_buffer_3;
+    int64_t *stack_buffer_4;
+    int64_t *stack_buffer_5;
+    int64_t *stack_buffer_6;
+    int64_t *stack_buffer_7;
     uint64_t stack_value_3;
     int32_t stack_param_8;
     int16_t stack_param_9;
@@ -360,18 +360,18 @@ void rendering_system_advanced_render_control(longlong render_engine, longlong r
     int8_t stack_param_16;
     uint64_t stack_value_9;
     uint64_t stack_value_10;
-    longlong stack_offset_1;
-    longlong stack_offset_2;
+    int64_t stack_offset_1;
+    int64_t stack_offset_2;
     void *stack_pointer_2;
     int8_t *stack_pointer_3;
     int32_t stack_param_16_copy;
     int8_t stack_data_3[136];
     uint64_t stack_data_4[40];
-    ulonglong stack_xor;
+    uint64_t stack_xor;
     
     // 设置堆栈保护
     stack_value_10 = 0xfffffffffffffffe;
-    stack_xor = GET_SECURITY_COOKIE() ^ (ulonglong)stack_protect;
+    stack_xor = GET_SECURITY_COOKIE() ^ (uint64_t)stack_protect;
     
     // 设置目标缓冲区
     stack_context = target_buffer;
@@ -404,40 +404,40 @@ void rendering_system_advanced_render_control(longlong render_engine, longlong r
     }
     
     // 获取渲染上下文
-    render_context = (longlong *)FUN_1800bde30();
-    if (render_context != (longlong *)0x0) {
+    render_context = (int64_t *)FUN_1800bde30();
+    if (render_context != (int64_t *)0x0) {
         stack_buffer_2 = render_context;
         (**(code **)(*render_context + 0x28))(render_context);
     }
     
     // 管理渲染上下文
-    stack_buffer_2 = *(longlong **)(render_buffer + 0x2662);
-    *(longlong **)(render_buffer + 0x2662) = render_context;
-    if (stack_buffer_2 != (longlong *)0x0) {
+    stack_buffer_2 = *(int64_t **)(render_buffer + 0x2662);
+    *(int64_t **)(render_buffer + 0x2662) = render_context;
+    if (stack_buffer_2 != (int64_t *)0x0) {
         (**(code **)(*stack_buffer_2 + RENDERING_OBJECT_NULL_OFFSET))();
     }
     
     // 设置渲染缓冲区参数
     *render_buffer = 0x41;
     *(uint64_t *)(render_buffer + 0x4706) = 0;
-    render_buffer[0x4708] = (float)*(ushort *)((longlong)shader_data + 0x32c);
-    render_buffer[0x4709] = (float)*(ushort *)((longlong)shader_data + 0x32e);
+    render_buffer[0x4708] = (float)*(ushort *)((int64_t)shader_data + 0x32c);
+    render_buffer[0x4709] = (float)*(ushort *)((int64_t)shader_data + 0x32e);
     render_buffer[0x470a] = 0;
     render_buffer[0x470b] = 0x3f800000;
-    render_buffer[0xd62] = (uint)*(ushort *)((longlong)shader_data + 0x32c);
-    render_buffer[0xd63] = (uint)*(ushort *)((longlong)shader_data + 0x32e);
-    render_buffer[0xd64] = (uint)*(ushort *)((longlong)shader_data + 0x32c);
-    render_buffer[0xd65] = (uint)*(ushort *)((longlong)shader_data + 0x32e);
+    render_buffer[0xd62] = (uint)*(ushort *)((int64_t)shader_data + 0x32c);
+    render_buffer[0xd63] = (uint)*(ushort *)((int64_t)shader_data + 0x32e);
+    render_buffer[0xd64] = (uint)*(ushort *)((int64_t)shader_data + 0x32c);
+    render_buffer[0xd65] = (uint)*(ushort *)((int64_t)shader_data + 0x32e);
     render_buffer[1] = 0x10141;
     render_buffer[0x473c] = 0;
-    *(int8_t *)((longlong)render_buffer + 0x11c37) = 1;
-    *(byte *)((longlong)render_buffer + 0x1bd9) = *(byte *)((longlong)render_buffer + 0x1bd9) | 2;
+    *(int8_t *)((int64_t)render_buffer + 0x11c37) = 1;
+    *(byte *)((int64_t)render_buffer + 0x1bd9) = *(byte *)((int64_t)render_buffer + 0x1bd9) | 2;
     *(byte *)(render_buffer + 0x6f6) = *(byte *)(render_buffer + 0x6f6) | 0x40;
-    *(int16_t *)((longlong)render_buffer + 0x9a31) = 0;
+    *(int16_t *)((int64_t)render_buffer + 0x9a31) = 0;
     *(int8_t *)(render_buffer + 0x4931) = 1;
     
     // 检查渲染状态
-    if (*(longlong *)(render_buffer + 0x2674) != 0) {
+    if (*(int64_t *)(render_buffer + 0x2674) != 0) {
         // 设置渲染参数
         stack_param_4 = 1;
         stack_param_6 = 0x1018a;
@@ -461,23 +461,23 @@ void rendering_system_advanced_render_control(longlong render_engine, longlong r
         
         // 处理渲染上下文
         stack_buffer_3 = stack_buffer_1;
-        if (stack_buffer_1 != (longlong *)0x0) {
+        if (stack_buffer_1 != (int64_t *)0x0) {
             (**(code **)(*stack_buffer_1 + 0x28))(stack_buffer_1);
         }
         
         // 继续上下文管理
-        stack_buffer_3 = *(longlong **)(render_buffer + 0x25aa);
-        *(longlong **)(render_buffer + 0x25aa) = render_context;
-        if (stack_buffer_3 != (longlong *)0x0) {
+        stack_buffer_3 = *(int64_t **)(render_buffer + 0x25aa);
+        *(int64_t **)(render_buffer + 0x25aa) = render_context;
+        if (stack_buffer_3 != (int64_t *)0x0) {
             (**(code **)(*stack_buffer_3 + RENDERING_OBJECT_NULL_OFFSET))();
         }
         
         // 处理着色器数据
         stack_buffer_4 = shader_data;
         (**(code **)(*shader_data + 0x28))(shader_data);
-        stack_buffer_4 = *(longlong **)(render_buffer + 0x25a4);
-        *(longlong **)(render_buffer + 0x25a4) = shader_data;
-        if (stack_buffer_4 != (longlong *)0x0) {
+        stack_buffer_4 = *(int64_t **)(render_buffer + 0x25a4);
+        *(int64_t **)(render_buffer + 0x25a4) = shader_data;
+        if (stack_buffer_4 != (int64_t *)0x0) {
             (**(code **)(*stack_buffer_4 + RENDERING_OBJECT_NULL_OFFSET))();
         }
         
@@ -487,28 +487,28 @@ void rendering_system_advanced_render_control(longlong render_engine, longlong r
         render_buffer[0xd5e] = render_mode;
         
         // 清理渲染资源
-        stack_buffer_5 = *(longlong **)(render_buffer + 0x265c);
+        stack_buffer_5 = *(int64_t **)(render_buffer + 0x265c);
         *(uint64_t *)(render_buffer + 0x265c) = 0;
-        if (stack_buffer_5 != (longlong *)0x0) {
+        if (stack_buffer_5 != (int64_t *)0x0) {
             (**(code **)(*stack_buffer_5 + RENDERING_OBJECT_NULL_OFFSET))();
         }
         
         // 获取内存池
-        render_context = (longlong *)FUN_1800be440();
-        if (render_context != (longlong *)0x0) {
+        render_context = (int64_t *)FUN_1800be440();
+        if (render_context != (int64_t *)0x0) {
             stack_buffer_6 = render_context;
             (**(code **)(*render_context + 0x28))(render_context);
         }
         
         // 管理内存池
-        stack_buffer_6 = *(longlong **)(render_buffer + 0x2660);
-        *(longlong **)(render_buffer + 0x2660) = render_context;
-        if (stack_buffer_6 != (longlong *)0x0) {
+        stack_buffer_6 = *(int64_t **)(render_buffer + 0x2660);
+        *(int64_t **)(render_buffer + 0x2660) = render_context;
+        if (stack_buffer_6 != (int64_t *)0x0) {
             (**(code **)(*stack_buffer_6 + RENDERING_OBJECT_NULL_OFFSET))();
         }
         
         // 获取渲染配置
-        memory_pool = *(longlong *)(*(longlong *)(render_engine + 0x38) + 0x60b80);
+        memory_pool = *(int64_t *)(*(int64_t *)(render_engine + 0x38) + 0x60b80);
         if (memory_pool == 0) {
             // 设置默认浮点值
             stack_param_12 = 0x3f800000;
@@ -577,19 +577,19 @@ void rendering_system_advanced_render_control(longlong render_engine, longlong r
         render_manager[0x15] = stack_data;
         
         // 复制渲染参数
-        render_quality = *(int32_t *)((longlong)shader_manager + 0xb4);
+        render_quality = *(int32_t *)((int64_t)shader_manager + 0xb4);
         mode_param_1 = *(int32_t *)(shader_manager + 0x17);
-        mode_param_2 = *(int32_t *)((longlong)shader_manager + 0xbc);
+        mode_param_2 = *(int32_t *)((int64_t)shader_manager + 0xbc);
         *(int32_t *)(render_manager + 0x16) = *(int32_t *)(shader_manager + 0x16);
-        *(int32_t *)((longlong)render_manager + 0xb4) = render_quality;
+        *(int32_t *)((int64_t)render_manager + 0xb4) = render_quality;
         *(int32_t *)(render_manager + 0x17) = mode_param_1;
-        *(int32_t *)((longlong)render_manager + 0xbc) = mode_param_2;
+        *(int32_t *)((int64_t)render_manager + 0xbc) = mode_param_2;
         
         // 执行渲染处理
         FUN_18024b8d0(render_buffer);
         
         // 检查渲染引擎状态
-        if (*(longlong *)(render_engine + 0x38) == -14000) {
+        if (*(int64_t *)(render_engine + 0x38) == -14000) {
             *(int8_t *)(render_buffer + 0x473d) = 0;
         }
         else {
@@ -602,35 +602,35 @@ void rendering_system_advanced_render_control(longlong render_engine, longlong r
         *(byte *)(render_buffer + 0x6f6) = *(byte *)(render_buffer + 0x6f6) | 0x20;
         
         // 处理渲染队列
-        render_context = *(longlong **)(render_params + 0x3580);
-        if (render_context != (longlong *)0x0) {
+        render_context = *(int64_t **)(render_params + 0x3580);
+        if (render_context != (int64_t *)0x0) {
             stack_buffer_7 = render_context;
             (**(code **)(*render_context + 0x28))(render_context);
         }
         
         // 管理渲染队列
-        stack_buffer_7 = *(longlong **)(render_buffer + 0xd60);
-        *(longlong **)(render_buffer + 0xd60) = render_context;
-        if (stack_buffer_7 != (longlong *)0x0) {
+        stack_buffer_7 = *(int64_t **)(render_buffer + 0xd60);
+        *(int64_t **)(render_buffer + 0xd60) = render_context;
+        if (stack_buffer_7 != (int64_t *)0x0) {
             (**(code **)(*stack_buffer_7 + RENDERING_OBJECT_NULL_OFFSET))();
         }
         
         // 设置渲染质量参数
-        render_buffer[0x4a7d] = *(int32_t *)(*(longlong *)(render_engine + 0x38) + 0x3ec4);
+        render_buffer[0x4a7d] = *(int32_t *)(*(int64_t *)(render_engine + 0x38) + 0x3ec4);
         render_buffer[0x4a7e] = 
-            *(float *)(*(longlong *)(render_engine + 0x38) + 0x3ec8) * 0.05 *
-            *(float *)(*(longlong *)(*(longlong *)(render_engine + 0x38) + 0x81f0) + 0xc);
+            *(float *)(*(int64_t *)(render_engine + 0x38) + 0x3ec8) * 0.05 *
+            *(float *)(*(int64_t *)(*(int64_t *)(render_engine + 0x38) + 0x81f0) + 0xc);
         
         // 启用渲染特性
         *(int8_t *)(render_buffer + 0x718) = 1;
         mode_flag = func_0x0001800e2bf0(system_parameter_buffer, render_buffer);
-        *(int8_t *)((longlong)render_buffer + 0x1c61) = mode_flag;
+        *(int8_t *)((int64_t)render_buffer + 0x1c61) = mode_flag;
         
         // 检查渲染状态
         if (render_buffer[2] != -1) {
             render_state = (byte)render_buffer[6];
         }
-        *(byte *)((longlong)render_buffer + 0x1c62) = render_state & 1;
+        *(byte *)((int64_t)render_buffer + 0x1c62) = render_state & 1;
         render_quality = func_0x00018024c420(render_buffer);
         render_buffer[0x719] = render_quality;
         
@@ -653,29 +653,29 @@ void rendering_system_advanced_render_control(longlong render_engine, longlong r
         stack_param_8 = 0;
         
         // 检查特殊渲染模式
-        if (*(char *)(*(longlong *)(render_engine + 0x38) + 0x27b8) != '\0') {
-            render_context = (longlong *)
-                     **(uint64_t **)(*(longlong *)(*(longlong *)(render_engine + 0x38) + 0x81f8) + 0xf0);
+        if (*(char *)(*(int64_t *)(render_engine + 0x38) + 0x27b8) != '\0') {
+            render_context = (int64_t *)
+                     **(uint64_t **)(*(int64_t *)(*(int64_t *)(render_engine + 0x38) + 0x81f8) + 0xf0);
             (**(code **)(*render_context + 0xa8))(render_context, &stack_context);
             
             // 处理渲染上下文
-            if (stack_context != (longlong *)0x0) {
+            if (stack_context != (int64_t *)0x0) {
                 memory_pool = (**(code **)(*stack_context + 0x178))();
                 *(int32_t *)(memory_pool + 0x2c4) = 0x3f800000;
                 stack_manager = &stack_value_3;
                 (**(code **)(*stack_context + 0x1c8))
-                          (stack_context, render_buffer, *(longlong *)(render_engine + 0x38),
-                           *(longlong *)(*(longlong *)(render_engine + 0x38) + 0x81f8) + 0x70);
+                          (stack_context, render_buffer, *(int64_t *)(render_engine + 0x38),
+                           *(int64_t *)(*(int64_t *)(render_engine + 0x38) + 0x81f8) + 0x70);
             }
             
             // 继续渲染处理
             stack_manager = &stack_value_3;
             (**(code **)(*stack_context + 0x1c8))
-                      (stack_context, render_buffer, *(longlong *)(render_engine + 0x38),
-                       *(longlong *)(*(longlong *)(render_engine + 0x38) + 0x81f8) + 0x70);
+                      (stack_context, render_buffer, *(int64_t *)(render_engine + 0x38),
+                       *(int64_t *)(*(int64_t *)(render_engine + 0x38) + 0x81f8) + 0x70);
             
             // 清理渲染上下文
-            if (stack_context != (longlong *)0x0) {
+            if (stack_context != (int64_t *)0x0) {
                 (**(code **)(*stack_context + RENDERING_OBJECT_NULL_OFFSET))();
             }
         }
@@ -688,18 +688,18 @@ void rendering_system_advanced_render_control(longlong render_engine, longlong r
         UNLOCK();
         
         // 更新渲染缓冲区
-        *(int32_t **)(render_params + 0x9a48 + (longlong)current_count * 8) = render_buffer;
+        *(int32_t **)(render_params + 0x9a48 + (int64_t)current_count * 8) = render_buffer;
         stack_data = *(uint64_t *)(render_params + 0x9a3c);
         *(uint64_t *)(render_buffer + 0x268d) = *(uint64_t *)(render_params + 0x9a34);
         *(uint64_t *)(render_buffer + 0x268f) = stack_data;
         
         // 清理临时缓冲区
-        if (stack_buffer_1 != (longlong *)0x0) {
+        if (stack_buffer_1 != (int64_t *)0x0) {
             (**(code **)(*stack_buffer_1 + RENDERING_OBJECT_NULL_OFFSET))();
         }
         
         // 函数在此处结束（不返回）
-        FUN_1808fc050(stack_xor ^ (ulonglong)stack_protect);
+        FUN_1808fc050(stack_xor ^ (uint64_t)stack_protect);
     }
     
     // 处理其他渲染路径
@@ -717,16 +717,16 @@ void rendering_system_advanced_render_control(longlong render_engine, longlong r
     stack_param_1 = 0xf;
     
     // 获取渲染管理器
-    render_context = (longlong *)FUN_1801f20c0();
-    if (render_context != (longlong *)0x0) {
+    render_context = (int64_t *)FUN_1801f20c0();
+    if (render_context != (int64_t *)0x0) {
         stack_buffer_3 = render_context;
         (**(code **)(*render_context + 0x28))(render_context);
     }
     
     // 管理渲染器
-    stack_buffer_3 = *(longlong **)(render_buffer + 0x2674);
-    *(longlong **)(render_buffer + 0x2674) = render_context;
-    if (stack_buffer_3 != (longlong *)0x0) {
+    stack_buffer_3 = *(int64_t **)(render_buffer + 0x2674);
+    *(int64_t **)(render_buffer + 0x2674) = render_context;
+    if (stack_buffer_3 != (int64_t *)0x0) {
         (**(code **)(*stack_buffer_3 + RENDERING_OBJECT_NULL_OFFSET))();
     }
     

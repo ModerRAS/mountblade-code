@@ -97,8 +97,8 @@ typedef struct {
 // 内部函数声明
 ==========================================*/
 
-static void process_color_keyframes(float* param_1, longlong param_2);
-static void process_alpha_keyframes(float* param_1, longlong param_2);
+static void process_color_keyframes(float* param_1, int64_t param_2);
+static void process_alpha_keyframes(float* param_1, int64_t param_2);
 static void interpolate_color_values(float* target_array, float* source_array, float time_value);
 static void interpolate_alpha_values(float* target_array, float* source_array, float time_value);
 static void* allocate_animation_memory(size_t size);
@@ -121,7 +121,7 @@ static void free_animation_memory(void* ptr);
  * @param param_1 动画数据结构指针
  * @param param_2 输入数据指针
  */
-void FUN_1804160b0(float *param_1, longlong param_2)
+void FUN_1804160b0(float *param_1, int64_t param_2)
 {
     float *pfVar1;
     float fVar2;
@@ -131,21 +131,21 @@ void FUN_1804160b0(float *param_1, longlong param_2)
     float fVar6;
     float fVar7;
     float fVar8;
-    longlong lVar9;
+    int64_t lVar9;
     char *pcVar10;
     int32_t *puVar11;
     uint64_t *puVar12;
     float *pfVar13;
     float *pfVar14;
     float *pfVar15;
-    longlong lVar16;
+    int64_t lVar16;
     uint64_t *puVar17;
     uint64_t *puVar18;
     uint64_t *puVar19;
     int32_t *puVar20;
     int iVar21;
-    longlong lVar22;
-    ulonglong uVar23;
+    int64_t lVar22;
+    uint64_t uVar23;
     char *pcVar24;
     int32_t *puVar25;
     char *pcVar26;
@@ -178,7 +178,7 @@ void FUN_1804160b0(float *param_1, longlong param_2)
     pfVar1 = param_1 + 200;
     pfVar28 = *(float **)pfVar1;
     if (pfVar28 != pfVar13) {
-        lVar16 = ((longlong)pfVar13 - (longlong)pfVar28) / FLOAT_ARRAY_ELEMENT_SIZE;
+        lVar16 = ((int64_t)pfVar13 - (int64_t)pfVar28) / FLOAT_ARRAY_ELEMENT_SIZE;
         for (lVar9 = lVar16; lVar9 != 0; lVar9 = lVar9 >> 1) {
         }
         FUN_18026f230(pfVar28, pfVar13);
@@ -221,7 +221,7 @@ void FUN_1804160b0(float *param_1, longlong param_2)
     pfVar28 = *(float **)(param_1 + 0xd2);
     pfVar13 = *(float **)(param_1 + 0xd0);
     if (pfVar13 != pfVar28) {
-        lVar9 = (longlong)pfVar28 - (longlong)pfVar13 >> 3;
+        lVar9 = (int64_t)pfVar28 - (int64_t)pfVar13 >> 3;
         for (lVar16 = lVar9; lVar16 != 0; lVar16 = lVar16 >> 1) {
         }
         FUN_18026f6b0(pfVar13, pfVar28);
@@ -260,7 +260,7 @@ void FUN_1804160b0(float *param_1, longlong param_2)
             fStack_84 = DEFAULT_ALPHA_VALUE;
             fVar29 = DEFAULT_ALPHA_VALUE;
         } else {
-            lVar9 = (longlong)*(float **)(param_1 + 0xca) - (longlong)pfVar13;
+            lVar9 = (int64_t)*(float **)(param_1 + 0xca) - (int64_t)pfVar13;
             iVar21 = 0;
             lVar22 = 0;
             lVar16 = lVar9 >> 0x3f;
@@ -290,9 +290,9 @@ void FUN_1804160b0(float *param_1, longlong param_2)
                     lVar22 = lVar22 + 1;
                     pfVar13 = pfVar13 + FLOAT_ARRAY_ELEMENT_SIZE;
                     pfVar15 = *(float **)pfVar1;
-                } while ((ulonglong)(longlong)iVar21 < (ulonglong)(lVar9 - lVar16));
+                } while ((uint64_t)(int64_t)iVar21 < (uint64_t)(lVar9 - lVar16));
             }
-            lVar16 = *(longlong *)(param_1 + 0xca);
+            lVar16 = *(int64_t *)(param_1 + 0xca);
             fStack_88 = *(float *)(lVar16 + -0x10);
             fStack_84 = *(float *)(lVar16 + -0xc);
             fVar29 = *(float *)(lVar16 + -8);
@@ -303,7 +303,7 @@ LAB_18026fabc:
             fVar30 = DEFAULT_ALPHA_VALUE;
         } else {
             iVar21 = 0;
-            uVar23 = (longlong)*(float **)(param_1 + 0xd2) - (longlong)pfVar13 >> 3;
+            uVar23 = (int64_t)*(float **)(param_1 + 0xd2) - (int64_t)pfVar13 >> 3;
             lVar16 = 0;
             pfVar15 = pfVar13;
             if (uVar23 != 0) {
@@ -325,9 +325,9 @@ LAB_18026fabc:
                     iVar21 = iVar21 + 1;
                     lVar16 = lVar16 + 1;
                     pfVar15 = pfVar15 + ALPHA_ARRAY_ELEMENT_SIZE;
-                } while ((ulonglong)(longlong)iVar21 < uVar23);
+                } while ((uint64_t)(int64_t)iVar21 < uVar23);
             }
-            fVar30 = *(float *)(*(longlong *)(param_1 + 0xd2) + -4);
+            fVar30 = *(float *)(*(int64_t *)(param_1 + 0xd2) + -4);
         }
 LAB_18026fba0:
         iVar27 = iVar27 + 1;
@@ -353,19 +353,19 @@ LAB_18026fba0:
  * @param param_1 动画数据结构指针
  * @param param_2 输入数据块指针
  */
-void FUN_180416880(longlong *param_1, longlong *param_2)
+void FUN_180416880(int64_t *param_1, int64_t *param_2)
 {
-    longlong lVar1;
+    int64_t lVar1;
     int iVar2;
-    longlong lVar3;
-    longlong lVar4;
+    int64_t lVar3;
+    int64_t lVar4;
     
     /* 复制数据指针 */
     param_1[2] = param_1[1];
     
     /* 计算数据块数量 */
     iVar2 = (int)(param_2[1] - *param_2 >> 4);
-    lVar4 = (longlong)iVar2;
+    lVar4 = (int64_t)iVar2;
     
     /* 批量处理数据块 */
     if (0 < iVar2) {
@@ -393,8 +393,8 @@ void FUN_180416880(longlong *param_1, longlong *param_2)
  */
 void FUN_1804168b0(void)
 {
-    longlong unaff_RSI;
-    longlong *unaff_RDI;
+    int64_t unaff_RSI;
+    int64_t *unaff_RDI;
     
     /* 执行循环处理 */
     do {
@@ -428,7 +428,7 @@ void FUN_1804168ee(void)
  * @param param_3 内存管理器指针
  * @param param_4 输出数据结构指针
  */
-void FUN_180416900(longlong param_1, uint64_t param_2, longlong param_3, longlong param_4)
+void FUN_180416900(int64_t param_1, uint64_t param_2, int64_t param_3, int64_t param_4)
 {
     int iVar1;
     float fVar2;
@@ -445,7 +445,7 @@ void FUN_180416900(longlong param_1, uint64_t param_2, longlong param_3, longlon
     int iStackX_c;
     
     /* 检查数据有效性 */
-    if (*(longlong *)(param_1 + 8) != *(longlong *)(param_1 + 0x10)) {
+    if (*(int64_t *)(param_1 + 8) != *(int64_t *)(param_1 + 0x10)) {
         /* 创建曲线对象 */
         puVar7 = (uint64_t *)FUN_1804c1300(param_3 + 0x60, 0x60);
         *puVar7 = 0;
@@ -471,12 +471,12 @@ void FUN_180416900(longlong param_1, uint64_t param_2, longlong param_3, longlon
         FUN_18062f990(param_3, puVar7, &unknown_var_5184_ptr);
         
         /* 链接到输出结构 */
-        if (*(longlong *)(param_4 + 0x30) == 0) {
+        if (*(int64_t *)(param_4 + 0x30) == 0) {
             puVar7[10] = 0;
             *(uint64_t **)(param_4 + 0x30) = puVar7;
         } else {
             puVar7[10] = *(uint64_t *)(param_4 + 0x38);
-            *(uint64_t **)(*(longlong *)(param_4 + 0x38) + 0x58) = puVar7;
+            *(uint64_t **)(*(int64_t *)(param_4 + 0x38) + 0x58) = puVar7;
         }
         *(uint64_t **)(param_4 + 0x38) = puVar7;
         puVar7[4] = param_4;
@@ -616,7 +616,7 @@ void FUN_180416900(longlong param_1, uint64_t param_2, longlong param_3, longlon
  * @param param_1 动画数据结构指针
  * @param param_2 输入数据指针
  */
-static void process_color_keyframes(float* param_1, longlong param_2)
+static void process_color_keyframes(float* param_1, int64_t param_2)
 {
     /* 实现颜色关键帧的处理逻辑 */
     /* 这里包含原始函数中的颜色关键帧解析和处理代码 */
@@ -628,7 +628,7 @@ static void process_color_keyframes(float* param_1, longlong param_2)
  * @param param_1 动画数据结构指针
  * @param param_2 输入数据指针
  */
-static void process_alpha_keyframes(float* param_1, longlong param_2)
+static void process_alpha_keyframes(float* param_1, int64_t param_2)
 {
     /* 实现透明度关键帧的处理逻辑 */
     /* 这里包含原始函数中的透明度关键帧解析和处理代码 */

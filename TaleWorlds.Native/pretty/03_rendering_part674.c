@@ -83,7 +83,7 @@ void FUN_180650a70(uint64_t param_1, uint64_t param_2, uint64_t param_3, uint64_
  * @param param_2 源数据指针
  * @return 目标数据指针（用于链式操作）
  */
-longlong FUN_180650aa0(longlong param_1, longlong param_2)
+int64_t FUN_180650aa0(int64_t param_1, int64_t param_2)
 
 {
   uint64_t uVar1;
@@ -135,17 +135,17 @@ longlong FUN_180650aa0(longlong param_1, longlong param_2)
  * @param param_3 数据处理参数3
  * @return 转换后的数据结果
  */
-ulonglong FUN_180650b30(longlong param_1, longlong param_2, longlong param_3)
+uint64_t FUN_180650b30(int64_t param_1, int64_t param_2, int64_t param_3)
 
 {
   uint uVar1;
   uint uVar2;
   uint uVar3;
-  ulonglong uVar4;
-  longlong lVar5;
+  uint64_t uVar4;
+  int64_t lVar5;
   int *piVar6;
   uint uVar7;
-  ulonglong uVar8;
+  uint64_t uVar8;
   uint uVar9;
   uint *puVar10;
   
@@ -155,7 +155,7 @@ ulonglong FUN_180650b30(longlong param_1, longlong param_2, longlong param_3)
   uVar3 = (uint)param_3;
   
   // 执行位操作和数据转换
-  uVar4 = (ulonglong)uVar1 >> 0x1f;
+  uVar4 = (uint64_t)uVar1 >> 0x1f;
   uVar5 = (int)((uVar1 ^ uVar4) - uVar4);
   
   // 处理数据验证和边界检查
@@ -214,14 +214,14 @@ ulonglong FUN_180650b30(longlong param_1, longlong param_2, longlong param_3)
  * @param param_2 内存管理标志
  * @return 内存管理状态码
  */
-uint64_t FUN_180650c00(longlong param_1, uint64_t param_2)
+uint64_t FUN_180650c00(int64_t param_1, uint64_t param_2)
 
 {
-  longlong lVar1;
+  int64_t lVar1;
   uint64_t uVar2;
   
   // 检查内存管理状态
-  lVar1 = *(longlong *)(param_1 + 0x18);
+  lVar1 = *(int64_t *)(param_1 + 0x18);
   if (lVar1 == 0) {
     return 0x1f;  // 内存管理器未初始化
   }
@@ -257,7 +257,7 @@ uint64_t FUN_180650c00(longlong param_1, uint64_t param_2)
  * @param param_2 验证标志
  * @return 验证状态码
  */
-uint64_t FUN_180650d00(longlong param_1, uint64_t param_2)
+uint64_t FUN_180650d00(int64_t param_1, uint64_t param_2)
 
 {
   uint uVar1;
@@ -305,7 +305,7 @@ uint64_t FUN_180650d00(longlong param_1, uint64_t param_2)
  * @param param_2 状态转换标志
  * @return 状态管理结果
  */
-uint64_t FUN_180650e00(longlong param_1, uint64_t param_2)
+uint64_t FUN_180650e00(int64_t param_1, uint64_t param_2)
 
 {
   int iVar1;
@@ -350,10 +350,10 @@ uint64_t FUN_180650e00(longlong param_1, uint64_t param_2)
  * @param param_2 清理标志
  * @return 清理状态码
  */
-uint64_t FUN_180650f00(longlong param_1, uint64_t param_2)
+uint64_t FUN_180650f00(int64_t param_1, uint64_t param_2)
 
 {
-  longlong lVar1;
+  int64_t lVar1;
   uint64_t uVar2;
   
   // 检查清理参数的有效性
@@ -362,7 +362,7 @@ uint64_t FUN_180650f00(longlong param_1, uint64_t param_2)
   }
   
   // 获取资源管理器
-  lVar1 = *(longlong *)(param_1 + 0x30);
+  lVar1 = *(int64_t *)(param_1 + 0x30);
   if (lVar1 == 0) {
     return 0x1c;  // 资源管理器未初始化
   }
@@ -398,7 +398,7 @@ uint64_t FUN_180650f00(longlong param_1, uint64_t param_2)
  * @param param_2 优化级别
  * @return 优化状态码
  */
-uint64_t FUN_180651000(longlong param_1, uint64_t param_2)
+uint64_t FUN_180651000(int64_t param_1, uint64_t param_2)
 
 {
   uint uVar1;
@@ -441,14 +441,14 @@ uint64_t FUN_180651000(longlong param_1, uint64_t param_2)
  * @param param_2 配置参数
  * @return 配置状态码
  */
-uint64_t FUN_180651100(longlong param_1, uint64_t param_2)
+uint64_t FUN_180651100(int64_t param_1, uint64_t param_2)
 
 {
-  longlong lVar1;
+  int64_t lVar1;
   uint64_t uVar2;
   
   // 检查配置管理器
-  lVar1 = *(longlong *)(param_1 + 0x40);
+  lVar1 = *(int64_t *)(param_1 + 0x40);
   if (lVar1 == 0) {
     return 0x1f;  // 配置管理器未初始化
   }
@@ -484,7 +484,7 @@ uint64_t FUN_180651100(longlong param_1, uint64_t param_2)
  * @param param_2 错误代码
  * @return 错误处理结果
  */
-uint64_t FUN_180651200(longlong param_1, uint64_t param_2)
+uint64_t FUN_180651200(int64_t param_1, uint64_t param_2)
 
 {
   int iVar1;
@@ -527,14 +527,14 @@ uint64_t FUN_180651200(longlong param_1, uint64_t param_2)
  * @param param_2 同步标志
  * @return 同步状态码
  */
-uint64_t FUN_180651300(longlong param_1, uint64_t param_2)
+uint64_t FUN_180651300(int64_t param_1, uint64_t param_2)
 
 {
-  longlong lVar1;
+  int64_t lVar1;
   uint64_t uVar2;
   
   // 检查同步参数
-  lVar1 = *(longlong *)(param_1 + 0x50);
+  lVar1 = *(int64_t *)(param_1 + 0x50);
   if (lVar1 == 0) {
     return 0x1f;  // 同步管理器未初始化
   }
@@ -570,7 +570,7 @@ uint64_t FUN_180651300(longlong param_1, uint64_t param_2)
  * @param param_2 调试级别
  * @return 调试状态码
  */
-uint64_t FUN_180651400(longlong param_1, uint64_t param_2)
+uint64_t FUN_180651400(int64_t param_1, uint64_t param_2)
 
 {
   uint uVar1;
@@ -613,14 +613,14 @@ uint64_t FUN_180651400(longlong param_1, uint64_t param_2)
  * @param param_2 特性标志
  * @return 特性处理结果
  */
-uint64_t FUN_180651500(longlong param_1, uint64_t param_2)
+uint64_t FUN_180651500(int64_t param_1, uint64_t param_2)
 
 {
-  longlong lVar1;
+  int64_t lVar1;
   uint64_t uVar2;
   
   // 检查特性参数
-  lVar1 = *(longlong *)(param_1 + 0x60);
+  lVar1 = *(int64_t *)(param_1 + 0x60);
   if (lVar1 == 0) {
     return 0x1f;  // 特性参数无效
   }
@@ -656,7 +656,7 @@ uint64_t FUN_180651500(longlong param_1, uint64_t param_2)
  * @param param_2 批处理大小
  * @return 批处理状态码
  */
-uint64_t FUN_180651560(longlong param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4, uint64_t param_5)
+uint64_t FUN_180651560(int64_t param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4, uint64_t param_5)
 
 {
   uint uVar1;
@@ -699,14 +699,14 @@ uint64_t FUN_180651560(longlong param_1, uint64_t param_2, uint64_t param_3, uin
  * @param param_2 分配大小
  * @return 分配状态码
  */
-uint64_t FUN_180651600(longlong param_1, uint64_t param_2)
+uint64_t FUN_180651600(int64_t param_1, uint64_t param_2)
 
 {
-  longlong lVar1;
+  int64_t lVar1;
   uint64_t uVar2;
   
   // 检查分配参数
-  lVar1 = *(longlong *)(param_1 + 0x70);
+  lVar1 = *(int64_t *)(param_1 + 0x70);
   if (lVar1 == 0) {
     return 0x1f;  // 分配参数无效
   }
@@ -742,7 +742,7 @@ uint64_t FUN_180651600(longlong param_1, uint64_t param_2)
  * @param param_2 缓存操作
  * @return 缓存状态码
  */
-uint64_t FUN_180651700(longlong param_1, uint64_t param_2)
+uint64_t FUN_180651700(int64_t param_1, uint64_t param_2)
 
 {
   uint uVar1;
@@ -785,14 +785,14 @@ uint64_t FUN_180651700(longlong param_1, uint64_t param_2)
  * @param param_2 渲染模式
  * @return 渲染状态码
  */
-uint64_t FUN_180651800(longlong param_1, uint64_t param_2)
+uint64_t FUN_180651800(int64_t param_1, uint64_t param_2)
 
 {
-  longlong lVar1;
+  int64_t lVar1;
   uint64_t uVar2;
   
   // 检查渲染参数
-  lVar1 = *(longlong *)(param_1 + 0x80);
+  lVar1 = *(int64_t *)(param_1 + 0x80);
   if (lVar1 == 0) {
     return 0x1f;  // 渲染参数无效
   }
@@ -828,7 +828,7 @@ uint64_t FUN_180651800(longlong param_1, uint64_t param_2)
  * @param param_2 流操作类型
  * @return 数据流状态码
  */
-uint64_t FUN_180651900(longlong param_1, uint64_t param_2)
+uint64_t FUN_180651900(int64_t param_1, uint64_t param_2)
 
 {
   uint uVar1;

@@ -41,10 +41,10 @@ void ui_system_parametric_animation_processor(uint64_t param_1,float param_2,uin
   float *animation_data_ptr;
   int loop_counter_1;
   int loop_counter_2;
-  longlong context_ptr;
+  int64_t context_ptr;
   char control_flag;
   int32_t render_flag;
-  longlong resource_ptr;
+  int64_t resource_ptr;
   float weight_value;
   float temp_value_1;
   float temp_value_2;
@@ -85,7 +85,7 @@ void ui_system_parametric_animation_processor(uint64_t param_1,float param_2,uin
   // 参数化动画处理主循环
   do {
     // 第一组动画数据处理
-    temp_value_1 = *(float *)(((longlong)animation_buffer - resource_ptr) + (longlong)animation_data_ptr);
+    temp_value_1 = *(float *)(((int64_t)animation_buffer - resource_ptr) + (int64_t)animation_data_ptr);
     temp_value_2 = temp_value_1 - animation_data_ptr[-10];
     temp_value_3 = (float)((uint)temp_value_2 & abs_mask);
     if (UI_ZERO_ZERO_ONE_FLOAT <= temp_value_3) {
@@ -135,7 +135,7 @@ LAB_18065a5b3:
     
 LAB_18065a5d3:
     // 第二组动画数据处理
-    temp_value_2 = *(float *)(((longlong)animation_buffer + (4 - resource_ptr) + (longlong)animation_data_ptr);
+    temp_value_2 = *(float *)(((int64_t)animation_buffer + (4 - resource_ptr) + (int64_t)animation_data_ptr);
     temp_value_3 = temp_value_2 - animation_data_ptr[-9];
     temp_value_4 = (float)((uint)temp_value_3 & abs_mask);
     if (UI_ZERO_ZERO_ONE_FLOAT <= temp_value_4) {
@@ -185,7 +185,7 @@ LAB_18065a67b:
     
 LAB_18065a69c:
     // 第三组动画数据处理
-    temp_value_3 = *(float *)(((longlong)animation_buffer + (8 - resource_ptr) + (longlong)animation_data_ptr);
+    temp_value_3 = *(float *)(((int64_t)animation_buffer + (8 - resource_ptr) + (int64_t)animation_data_ptr);
     temp_value_4 = temp_value_3 - animation_data_ptr[-8];
     temp_value_5 = (float)((uint)temp_value_4 & abs_mask);
     if (UI_ZERO_ZERO_ONE_FLOAT <= temp_value_5) {
@@ -292,7 +292,7 @@ LAB_18065a765:
         temp_storage =
              temp_value_1 * temp_value_2 * param_6._4_4_ +
              (base_parameter_3 - param_6._4_4_) * *(float *)(resource_ptr + 0x617c);
-        *(ulonglong *)(resource_ptr + 0x6178) =
+        *(uint64_t *)(resource_ptr + 0x6178) =
              CONCAT44(temp_storage,
                       temp_value_1 * temp_value_3 * param_6._4_4_ +
                       (base_parameter_3 - param_6._4_4_) * *(float *)(resource_ptr + 0x6178));
@@ -306,12 +306,12 @@ LAB_18065a765:
         *(float *)(resource_ptr + 0x6178) = temp_value_3 * temp_value_2;
       }
       else {
-        *(ulonglong *)(resource_ptr + 0x6178) = CONCAT44(temp_storage,temp_value_1);
+        *(uint64_t *)(resource_ptr + 0x6178) = CONCAT44(temp_storage,temp_value_1);
       }
       
       // 调用渲染处理函数
       return_address = 0x18065aa9f;
-      FUN_1808fc050(*(ulonglong *)(context_ptr + -0x70) ^ (ulonglong)&stack0x00000000);
+      FUN_1808fc050(*(uint64_t *)(context_ptr + -0x70) ^ (uint64_t)&stack0x00000000);
     }
   } while( true );
 }
@@ -322,9 +322,9 @@ LAB_18065a765:
 void ui_system_vector_normalization_processor(void)
 {
   uint32_t conversion_flag;
-  longlong context_ptr;
+  int64_t context_ptr;
   int32_t render_flag;
-  longlong resource_ptr;
+  int64_t resource_ptr;
   float vector_component_1;
   float vector_component_2;
   int8_t conversion_buffer [16];
@@ -396,7 +396,7 @@ void ui_system_vector_normalization_processor(void)
     temp_storage_3 =
          vector_component_1 * vector_component_2 * input_param_1._4_4_ +
          (base_parameter_2 - input_param_1._4_4_) * *(float *)(resource_ptr + 0x617c);
-    *(ulonglong *)(resource_ptr + 0x6178) =
+    *(uint64_t *)(resource_ptr + 0x6178) =
          CONCAT44(temp_storage_3,
                   vector_component_1 * temp_value_1 * input_param_1._4_4_ +
                   (base_parameter_2 - input_param_1._4_4_) * *(float *)(resource_ptr + 0x6178));
@@ -410,11 +410,11 @@ void ui_system_vector_normalization_processor(void)
     *(float *)(resource_ptr + 0x6178) = vector_component_2 * temp_value_1;
   }
   else {
-    *(ulonglong *)(resource_ptr + 0x6178) = CONCAT44(temp_storage_3,vector_component_1);
+    *(uint64_t *)(resource_ptr + 0x6178) = CONCAT44(temp_storage_3,vector_component_1);
   }
   
   // 调用渲染处理函数
-  FUN_1808fc050(*(ulonglong *)(context_ptr + -0x70) ^ (ulonglong)&stack0x00000000);
+  FUN_1808fc050(*(uint64_t *)(context_ptr + -0x70) ^ (uint64_t)&stack0x00000000);
 }
 
 // UI系统简单数据设置器 - 处理UI系统中的简单数据设置操作
@@ -422,8 +422,8 @@ void ui_system_vector_normalization_processor(void)
 // 原始实现：FUN_18065a91c - 基础数据设置处理器
 void ui_system_simple_data_setter(void)
 {
-  longlong context_ptr;
-  longlong resource_ptr;
+  int64_t context_ptr;
+  int64_t resource_ptr;
   uint64_t input_data;
   
   // 简单数据设置操作 - 将输入数据存储到指定内存位置
@@ -432,7 +432,7 @@ void ui_system_simple_data_setter(void)
   
   // 调用渲染处理函数 - 跳转到渲染系统继续处理
   // FUN_1808fc050 是渲染系统的核心处理函数
-  FUN_1808fc050(*(ulonglong *)(context_ptr + -0x70) ^ (ulonglong)&stack0x00000000);
+  FUN_1808fc050(*(uint64_t *)(context_ptr + -0x70) ^ (uint64_t)&stack0x00000000);
 }
 
 // 文件结束标记 - 04_ui_system_part014.c

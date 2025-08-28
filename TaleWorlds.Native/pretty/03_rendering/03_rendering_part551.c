@@ -57,19 +57,19 @@ typedef void (*RenderingResourceCleaner)(void* resource);
 void RenderingSystemAdvancedResourceInitializer(void)
 {
     void** resource_ptr;
-    longlong block_count;
+    int64_t block_count;
     uint* data_ptr;
-    longlong base_offset;
-    longlong range_size;
-    ulonglong allocation_size;
-    ulonglong object_count;
-    longlong* context_ptr;
-    longlong start_index;
-    longlong end_index;
+    int64_t base_offset;
+    int64_t range_size;
+    uint64_t allocation_size;
+    uint64_t object_count;
+    int64_t* context_ptr;
+    int64_t start_index;
+    int64_t end_index;
     void** temp_ptr;
     void** current_ptr;
-    longlong index_offset;
-    longlong stride_value;
+    int64_t index_offset;
+    int64_t stride_value;
     int max_objects;
     float time_scale;
     
@@ -104,61 +104,61 @@ void RenderingSystemAdvancedResourceInitializer(void)
     
     current_ptr = resource_ptr;
     if (0 < block_count) {
-        base_offset = start_index - (longlong)resource_ptr;
+        base_offset = start_index - (int64_t)resource_ptr;
         temp_ptr = resource_ptr;
         
         // 批量复制渲染对象数据
         do {
-            void* src_data = ((void*)(base_offset + (longlong)temp_ptr))[1];
+            void* src_data = ((void*)(base_offset + (int64_t)temp_ptr))[1];
             block_count = block_count + -1;
-            *temp_ptr = *(void**)(base_offset + (longlong)temp_ptr);
+            *temp_ptr = *(void**)(base_offset + (int64_t)temp_ptr);
             temp_ptr[1] = src_data;
-            src_data = *(void**)((longlong)temp_ptr + base_offset + 0x18);
-            temp_ptr[2] = *(void**)((longlong)temp_ptr + base_offset + 0x10);
+            src_data = *(void**)((int64_t)temp_ptr + base_offset + 0x18);
+            temp_ptr[2] = *(void**)((int64_t)temp_ptr + base_offset + 0x10);
             temp_ptr[3] = src_data;
-            src_data = *(void**)((longlong)temp_ptr + base_offset + 0x28);
-            temp_ptr[4] = *(void**)((longlong)temp_ptr + base_offset + 0x20);
+            src_data = *(void**)((int64_t)temp_ptr + base_offset + 0x28);
+            temp_ptr[4] = *(void**)((int64_t)temp_ptr + base_offset + 0x20);
             temp_ptr[5] = src_data;
-            src_data = *(void**)((longlong)temp_ptr + base_offset + 0x38);
-            temp_ptr[6] = *(void**)((longlong)temp_ptr + base_offset + 0x30);
+            src_data = *(void**)((int64_t)temp_ptr + base_offset + 0x38);
+            temp_ptr[6] = *(void**)((int64_t)temp_ptr + base_offset + 0x30);
             temp_ptr[7] = src_data;
-            src_data = *(void**)((longlong)temp_ptr + base_offset + 0x48);
-            temp_ptr[8] = *(void**)((longlong)temp_ptr + base_offset + 0x40);
+            src_data = *(void**)((int64_t)temp_ptr + base_offset + 0x48);
+            temp_ptr[8] = *(void**)((int64_t)temp_ptr + base_offset + 0x40);
             temp_ptr[9] = src_data;
-            src_data = *(void**)((longlong)temp_ptr + base_offset + 0x58);
-            temp_ptr[10] = *(void**)((longlong)temp_ptr + base_offset + 0x50);
+            src_data = *(void**)((int64_t)temp_ptr + base_offset + 0x58);
+            temp_ptr[10] = *(void**)((int64_t)temp_ptr + base_offset + 0x50);
             temp_ptr[11] = src_data;
-            src_data = *(void**)((longlong)temp_ptr + base_offset + 0x68);
-            temp_ptr[12] = *(void**)((longlong)temp_ptr + base_offset + 0x60);
+            src_data = *(void**)((int64_t)temp_ptr + base_offset + 0x68);
+            temp_ptr[12] = *(void**)((int64_t)temp_ptr + base_offset + 0x60);
             temp_ptr[13] = src_data;
             current_ptr = temp_ptr + RENDERING_OBJECT_SIZE;
-            src_data = *(void**)((longlong)temp_ptr + base_offset + 0x78);
-            temp_ptr[14] = *(void**)((longlong)temp_ptr + base_offset + 0x70);
+            src_data = *(void**)((int64_t)temp_ptr + base_offset + 0x78);
+            temp_ptr[14] = *(void**)((int64_t)temp_ptr + base_offset + 0x70);
             temp_ptr[15] = src_data;
-            src_data = *(void**)((longlong)temp_ptr + base_offset + 0x88);
-            temp_ptr[16] = *(void**)((longlong)temp_ptr + base_offset + 0x80);
+            src_data = *(void**)((int64_t)temp_ptr + base_offset + 0x88);
+            temp_ptr[16] = *(void**)((int64_t)temp_ptr + base_offset + 0x80);
             temp_ptr[17] = src_data;
-            src_data = *(void**)((longlong)temp_ptr + base_offset + 0x98);
-            temp_ptr[18] = *(void**)((longlong)temp_ptr + base_offset + 0x90);
+            src_data = *(void**)((int64_t)temp_ptr + base_offset + 0x98);
+            temp_ptr[18] = *(void**)((int64_t)temp_ptr + base_offset + 0x90);
             temp_ptr[19] = src_data;
-            src_data = *(void**)((longlong)temp_ptr + base_offset + 0xa8);
-            temp_ptr[20] = *(void**)((longlong)temp_ptr + base_offset + 0xa0);
+            src_data = *(void**)((int64_t)temp_ptr + base_offset + 0xa8);
+            temp_ptr[20] = *(void**)((int64_t)temp_ptr + base_offset + 0xa0);
             temp_ptr[21] = src_data;
-            src_data = *(void**)((longlong)temp_ptr + base_offset + 0xb8);
-            temp_ptr[22] = *(void**)((longlong)temp_ptr + base_offset + 0xb0);
+            src_data = *(void**)((int64_t)temp_ptr + base_offset + 0xb8);
+            temp_ptr[22] = *(void**)((int64_t)temp_ptr + base_offset + 0xb0);
             temp_ptr[23] = src_data;
             
             // 复制渲染属性数据
-            uint* attr_data = *(uint**)((longlong)temp_ptr + base_offset + 0xc4);
-            uint* attr_data2 = *(uint**)((longlong)temp_ptr + base_offset + 200);
-            uint* attr_data3 = *(uint**)((longlong)temp_ptr + base_offset + 0xcc);
-            *(uint*)(temp_ptr + 0x18) = *(uint**)((longlong)temp_ptr + base_offset + 0xc0);
-            *(uint*)((longlong)temp_ptr + 0xc4) = attr_data;
+            uint* attr_data = *(uint**)((int64_t)temp_ptr + base_offset + 0xc4);
+            uint* attr_data2 = *(uint**)((int64_t)temp_ptr + base_offset + 200);
+            uint* attr_data3 = *(uint**)((int64_t)temp_ptr + base_offset + 0xcc);
+            *(uint*)(temp_ptr + 0x18) = *(uint**)((int64_t)temp_ptr + base_offset + 0xc0);
+            *(uint*)((int64_t)temp_ptr + 0xc4) = attr_data;
             *(uint*)(temp_ptr + 0x19) = attr_data2;
-            *(uint*)((longlong)temp_ptr + 0xcc) = attr_data3;
+            *(uint*)((int64_t)temp_ptr + 0xcc) = attr_data3;
             
-            src_data = *(void**)((longlong)temp_ptr + base_offset + 0xd8);
-            temp_ptr[26] = *(void**)((longlong)temp_ptr + base_offset + 0xd0);
+            src_data = *(void**)((int64_t)temp_ptr + base_offset + 0xd8);
+            temp_ptr[26] = *(void**)((int64_t)temp_ptr + base_offset + 0xd0);
             temp_ptr[27] = src_data;
             temp_ptr = current_ptr;
         } while (0 < block_count);
@@ -172,27 +172,27 @@ void RenderingSystemAdvancedResourceInitializer(void)
         RenderingSystemHandleError(RENDERING_ERROR_INVALID_STATE);
     }
     
-    *context_ptr = (longlong)resource_ptr;
-    context_ptr[2] = (longlong)(resource_ptr + allocation_size * RENDERING_OBJECT_SIZE);
-    context_ptr[1] = (longlong)(current_ptr + range_size * RENDERING_OBJECT_SIZE);
+    *context_ptr = (int64_t)resource_ptr;
+    context_ptr[2] = (int64_t)(resource_ptr + allocation_size * RENDERING_OBJECT_SIZE);
+    context_ptr[1] = (int64_t)(current_ptr + range_size * RENDERING_OBJECT_SIZE);
     
     // 设置时间缩放因子
     time_scale = (float)RenderingSystemGetTimeScale() * 1e-05;
     
     // 初始化渲染对象数组
     if ((int)object_count < max_objects) {
-        allocation_size = (ulonglong)(int)object_count;
+        allocation_size = (uint64_t)(int)object_count;
         index_offset = 0x180000000;
         block_count = allocation_size * RENDERING_MEMORY_BLOCK_SIZE;
         
         do {
-            longlong base_addr = *context_ptr;
-            longlong range_calc = RenderingSystemCalculateRange(
+            int64_t base_addr = *context_ptr;
+            int64_t range_calc = RenderingSystemCalculateRange(
                 stride_value * (context_ptr[1] - base_addr), 
                 8
             );
             
-            if (allocation_size < (ulonglong)((range_calc >> 6) - (range_calc >> 0x3f))) {
+            if (allocation_size < (uint64_t)((range_calc >> 6) - (range_calc >> 0x3f))) {
                 *(void**)(block_count + 0xd0 + base_addr) = RenderingSystemGetDefaultResource();
                 *(float*)(block_count + 0xd8 + base_addr) = time_scale;
                 *(char*)(block_count + 0xdc + base_addr) = 0;
@@ -234,7 +234,7 @@ void RenderingSystemAdvancedResourceInitializer(void)
             }
             
             *data_ptr = (uint)object_count + 1;
-            object_count = (ulonglong)*data_ptr;
+            object_count = (uint64_t)*data_ptr;
             allocation_size = allocation_size + 1;
             block_count = block_count + RENDERING_MEMORY_BLOCK_SIZE;
         } while ((int)*data_ptr < max_objects);
@@ -247,14 +247,14 @@ void RenderingSystemAdvancedResourceInitializer(void)
 void RenderingSystemResourceExpander(void)
 {
     uint* data_ptr;
-    longlong base_addr;
-    longlong range_calc;
+    int64_t base_addr;
+    int64_t range_calc;
     uint object_index;
-    longlong* context_ptr;
-    longlong block_offset;
-    ulonglong allocation_size;
-    longlong base_address;
-    longlong stride_value;
+    int64_t* context_ptr;
+    int64_t block_offset;
+    uint64_t allocation_size;
+    int64_t base_address;
+    int64_t stride_value;
     int max_objects;
     float time_scale;
     
@@ -266,7 +266,7 @@ void RenderingSystemResourceExpander(void)
     time_scale = (float)RenderingSystemGetTimeScale() * 1e-05;
     
     if ((int)object_index < max_objects) {
-        allocation_size = (ulonglong)(int)object_index;
+        allocation_size = (uint64_t)(int)object_index;
         base_address = 0x180000000;
         block_offset = allocation_size * RENDERING_MEMORY_BLOCK_SIZE;
         
@@ -277,7 +277,7 @@ void RenderingSystemResourceExpander(void)
                 8
             );
             
-            if (allocation_size < (ulonglong)((range_calc >> 6) - (range_calc >> 0x3f))) {
+            if (allocation_size < (uint64_t)((range_calc >> 6) - (range_calc >> 0x3f))) {
                 *(void**)(block_offset + 0xd0 + base_addr) = RenderingSystemGetDefaultResource();
                 *(float*)(block_offset + 0xd8 + base_addr) = time_scale;
                 *(char*)(block_offset + 0xdc + base_addr) = 0;
@@ -331,17 +331,17 @@ void RenderingSystemResourceExpander(void)
 void RenderingSystemParameterizedResourceInitializer(void* resource_param, uint param_value)
 {
     uint* data_ptr;
-    longlong base_addr;
-    longlong range_calc;
+    int64_t base_addr;
+    int64_t range_calc;
     uint object_index;
-    longlong* context_ptr;
-    longlong block_offset;
-    ulonglong allocation_size;
-    longlong base_address;
-    longlong stride_value;
+    int64_t* context_ptr;
+    int64_t block_offset;
+    uint64_t allocation_size;
+    int64_t base_address;
+    int64_t stride_value;
     int max_objects;
     
-    allocation_size = (ulonglong)(int)object_index;
+    allocation_size = (uint64_t)(int)object_index;
     base_address = 0x180000000;
     block_offset = allocation_size * RENDERING_MEMORY_BLOCK_SIZE;
     
@@ -352,7 +352,7 @@ void RenderingSystemParameterizedResourceInitializer(void* resource_param, uint 
             8
         );
         
-        if (allocation_size < (ulonglong)((range_calc >> 6) - (range_calc >> 0x3f))) {
+        if (allocation_size < (uint64_t)((range_calc >> 6) - (range_calc >> 0x3f))) {
             *(void**)(block_offset + 0xd0 + base_addr) = RenderingSystemGetDefaultResource();
             *(uint*)(block_offset + 0xd8 + base_addr) = param_value;
             *(char*)(block_offset + 0xdc + base_addr) = 0;
@@ -402,7 +402,7 @@ void RenderingSystemParameterizedResourceInitializer(void* resource_param, uint 
 //============================================================================
 // 4. 渲染系统线程安全资源清理器
 //============================================================================
-void RenderingSystemThreadSafeResourceCleaner(longlong resource_handle)
+void RenderingSystemThreadSafeResourceCleaner(int64_t resource_handle)
 {
     int lock_result;
     
@@ -417,13 +417,13 @@ void RenderingSystemThreadSafeResourceCleaner(longlong resource_handle)
     
     // 清理资源内存
     memset(*(void**)(resource_handle + 0x5b8), 0, 
-           (longlong)(*(int*)(resource_handle + 0x5b0) >> 3));
+           (int64_t)(*(int*)(resource_handle + 0x5b0) >> 3));
 }
 
 //============================================================================
 // 5. 渲染系统高级内存管理器
 //============================================================================
-void* RenderingSystemAdvancedMemoryManager(void* memory_ptr, ulonglong flags, 
+void* RenderingSystemAdvancedMemoryManager(void* memory_ptr, uint64_t flags, 
                                          void* param1, void* param2)
 {
     void* error_ptr;
@@ -469,7 +469,7 @@ void RenderingSystemMemoryPoolInitializer(void* pool_ptr, void* param1,
                                           void* param2, void* param3)
 {
     *pool_ptr = RenderingSystemGetPoolAllocator();
-    *(uint*)((longlong)pool_ptr + 0x24) = 0;
+    *(uint*)((int64_t)pool_ptr + 0x24) = 0;
     *(ushort*)(pool_ptr + 4) = 0;
     pool_ptr[2] = 2;
     pool_ptr[5] = RenderingSystemGetPoolAllocator();
@@ -493,7 +493,7 @@ void RenderingSystemMemoryPoolInitializer(void* pool_ptr, void* param1,
 //============================================================================
 // 7. 渲染系统快速内存释放器
 //============================================================================
-void* RenderingSystemFastMemoryReleaser(void* memory_ptr, ulonglong flags)
+void* RenderingSystemFastMemoryReleaser(void* memory_ptr, uint64_t flags)
 {
     // 释放内存资源
     RenderingSystemReleaseMemory(memory_ptr);
@@ -509,7 +509,7 @@ void* RenderingSystemFastMemoryReleaser(void* memory_ptr, ulonglong flags)
 //============================================================================
 // 8. 渲染系统资源状态重置器
 //============================================================================
-void RenderingSystemResourceStateResetter(longlong resource_handle)
+void RenderingSystemResourceStateResetter(int64_t resource_handle)
 {
     uint stack_data[8];
     
@@ -518,10 +518,10 @@ void RenderingSystemResourceStateResetter(longlong resource_handle)
     *(uint*)(resource_handle + 0x14) = 0;
     *(uint*)(resource_handle + 0x18) = stack_data[0];
     *(uint*)(resource_handle + 0x1c) = stack_data[1];
-    *(ulonglong*)(resource_handle + 0x20) = (ulonglong)stack_data[2] << 0x10;
+    *(uint64_t*)(resource_handle + 0x20) = (uint64_t)stack_data[2] << 0x10;
     
     // 执行资源重置回调
-    ((void(**)(void))(*(longlong*)(resource_handle + 0x28) + 0x18))(resource_handle + 0x28);
+    ((void(**)(void))(*(int64_t*)(resource_handle + 0x28) + 0x18))(resource_handle + 0x28);
     ((void(*)(void*))(void**)resource_handle[0x28])(resource_handle + 0x28);
     
     // 清理资源状态
@@ -529,18 +529,18 @@ void RenderingSystemResourceStateResetter(longlong resource_handle)
     
     // 重置资源内存
     memset(*(void**)(resource_handle + 0x5e0), 0, 
-           (longlong)(*(int*)(resource_handle + 0x5d8) >> 3));
+           (int64_t)(*(int*)(resource_handle + 0x5d8) >> 3));
 }
 
 //============================================================================
 // 9. 渲染系统资源生命周期管理器
 //============================================================================
-void RenderingSystemResourceLifecycleManager(longlong* resource_ptr)
+void RenderingSystemResourceLifecycleManager(int64_t* resource_ptr)
 {
     char status;
     
     // 设置资源分配器
-    *resource_ptr = (longlong)RenderingSystemGetPoolAllocator();
+    *resource_ptr = (int64_t)RenderingSystemGetPoolAllocator();
     
     // 检查资源状态
     status = ((char(**)(void))(resource_ptr[5] + 0x30))(resource_ptr + 5);
@@ -559,49 +559,49 @@ void RenderingSystemResourceLifecycleManager(longlong* resource_ptr)
     
     // 重置资源状态
     resource_ptr[0xba] = 0;
-    resource_ptr[5] = (longlong)RenderingSystemGetPoolAllocator();
+    resource_ptr[5] = (int64_t)RenderingSystemGetPoolAllocator();
 }
 
 //============================================================================
 // 10. 渲染系统高级数据处理器
 //============================================================================
-void RenderingSystemAdvancedDataProcessor(longlong resource_handle)
+void RenderingSystemAdvancedDataProcessor(int64_t resource_handle)
 {
     void** allocator_ptr;
     void* callback_ptr;
     char status;
-    longlong* temp_ptr;
+    int64_t* temp_ptr;
     void* temp_data;
     void* stack_data[32];
-    longlong* stack_ptr[8];
+    int64_t* stack_ptr[8];
     void* stack_ptr2[6];
     uint stack_param;
     char stack_buffer[16];
-    ulonglong stack_hash;
+    uint64_t stack_hash;
     
     stack_hash = 0xfffffffffffffffe;
-    stack_hash = RenderingSystemGetHashValue() ^ (ulonglong)stack_data;
+    stack_hash = RenderingSystemGetHashValue() ^ (uint64_t)stack_data;
     
     // 获取资源状态
-    status = ((char(**)(void))(*(longlong*)(resource_handle + 0x28) + 8))(resource_handle + 0x28);
+    status = ((char(**)(void))(*(int64_t*)(resource_handle + 0x28) + 8))(resource_handle + 0x28);
     if (status != '\0') {
-        status = ((char(**)(void))(*(longlong*)(resource_handle + 0x28) + 0x10))(resource_handle + 0x28, 1);
+        status = ((char(**)(void))(*(int64_t*)(resource_handle + 0x28) + 0x10))(resource_handle + 0x28, 1);
         if ((((status == '\0') ||
-             (status = ((char(**)(void))(*(longlong*)(resource_handle + 0x28) + 0x10))(resource_handle + 0x28, 2, 1),
+             (status = ((char(**)(void))(*(int64_t*)(resource_handle + 0x28) + 0x10))(resource_handle + 0x28, 2, 1),
               status == '\0')) ||
-            (status = ((char(**)(void))(*(longlong*)(resource_handle + 0x28) + 0x10))(resource_handle + 0x28, 3, 0x100000),
+            (status = ((char(**)(void))(*(int64_t*)(resource_handle + 0x28) + 0x10))(resource_handle + 0x28, 3, 0x100000),
              status == '\0')) ||
-           (status = ((char(**)(void))(*(longlong*)(resource_handle + 0x28) + 0x10))(resource_handle + 0x28, 4, 0x40000),
+           (status = ((char(**)(void))(*(int64_t*)(resource_handle + 0x28) + 0x10))(resource_handle + 0x28, 4, 0x40000),
             status == '\0')) {
             // 执行默认处理
-            ((void(**)(void))(*(longlong*)(resource_handle + 0x28) + 0x18))(resource_handle + 0x28);
+            ((void(**)(void))(*(int64_t*)(resource_handle + 0x28) + 0x18))(resource_handle + 0x28);
         }
         else {
             // 分配临时内存
-            temp_ptr = (longlong*)RenderingSystemMemoryAllocate(RENDERING_SMALL_POOL_SIZE, 8, 3);
+            temp_ptr = (int64_t*)RenderingSystemMemoryAllocate(RENDERING_SMALL_POOL_SIZE, 8, 3);
             stack_ptr[0] = temp_ptr;
             RenderingSystemInitializeMemory(temp_ptr);
-            *temp_ptr = (longlong)RenderingSystemGetDataAllocator();
+            *temp_ptr = (int64_t)RenderingSystemGetDataAllocator();
             temp_ptr[0x18] = resource_handle;
             stack_ptr[1] = temp_ptr;
             
@@ -627,23 +627,23 @@ void RenderingSystemAdvancedDataProcessor(longlong resource_handle)
     }
     
     // 执行最终处理
-    RenderingSystemExecuteFinalOperation(stack_hash ^ (ulonglong)stack_data);
+    RenderingSystemExecuteFinalOperation(stack_hash ^ (uint64_t)stack_data);
 }
 
 //============================================================================
 // 11. 渲染系统资源队列管理器
 //============================================================================
-void RenderingSystemResourceQueueManager(longlong* resource_ptr)
+void RenderingSystemResourceQueueManager(int64_t* resource_ptr)
 {
-    longlong* queue_ptr;
+    int64_t* queue_ptr;
     char status;
-    longlong resource_data;
-    longlong queue_data;
-    ulonglong* queue_item;
-    ulonglong queue_index;
-    ulonglong queue_mask;
-    longlong temp_data;
-    longlong stack_data[8];
+    int64_t resource_data;
+    int64_t queue_data;
+    uint64_t* queue_item;
+    uint64_t queue_index;
+    uint64_t queue_mask;
+    int64_t temp_data;
+    int64_t stack_data[8];
     void* error_ptr;
     
     error_ptr = (void*)0xfffffffffffffffe;
@@ -658,7 +658,7 @@ void RenderingSystemResourceQueueManager(longlong* resource_ptr)
         if ((int)queue_index - 1U < RENDERING_MAX_ITERATIONS) {
             *(int*)(resource_data + 0x5c8) = (int)queue_index * 8;
             *(uint*)(resource_data + 0x5c4) = 0;
-            *(void**)((longlong)(int)queue_index + *(longlong*)(resource_data + 0x598)) = 0;
+            *(void**)((int64_t)(int)queue_index + *(int64_t*)(resource_data + 0x598)) = 0;
             
             status = ((char(**)(void))((void**)resource_ptr[0])(resource_ptr, resource_data, resource_data + 0x5d0));
             if (status != '\0') {
@@ -671,31 +671,31 @@ void RenderingSystemResourceQueueManager(longlong* resource_ptr)
                 *(double*)(resource_data + 0x5a8) = (double)(queue_data - RenderingSystemGetStartTime()) * RenderingSystemGetTimeScale();
                 RenderingSystemProcessQueueData(resource_ptr + 0xc3, &stack_data[0]);
                 
-                queue_item = (ulonglong*)resource_ptr[0xcd];
+                queue_item = (uint64_t*)resource_ptr[0xcd];
                 queue_index = *queue_item;
                 if ((queue_index == queue_item[1]) && (queue_item[1] = queue_item[8], queue_index == queue_item[8])) {
-                    if (queue_item == (ulonglong*)resource_ptr[0xd5]) {
+                    if (queue_item == (uint64_t*)resource_ptr[0xd5]) {
                         stack_data[0] = RenderingSystemMemoryAllocate(RENDERING_LARGE_POOL_SIZE, 8, 3);
                         memset(stack_data[0], 0, RENDERING_LARGE_POOL_SIZE);
                     }
-                    queue_item = (ulonglong*)resource_ptr[0xcd];
+                    queue_item = (uint64_t*)resource_ptr[0xcd];
                     queue_item[1] = queue_item[8];
                     queue_index = *queue_item;
                     if (queue_index != queue_item[8]) {
-                        queue_data = *(longlong*)(queue_item[0x11] + queue_index * 8);
+                        queue_data = *(int64_t*)(queue_item[0x11] + queue_index * 8);
                         queue_mask = queue_item[0x12];
                     }
                     else {
-                        queue_item = (ulonglong*)queue_item[0x10];
+                        queue_item = (uint64_t*)queue_item[0x10];
                         queue_index = *queue_item;
                         queue_item[1] = queue_item[8];
-                        resource_ptr[0xcd] = (longlong)queue_item;
-                        queue_data = *(longlong*)(queue_item[0x11] + queue_index * 8);
+                        resource_ptr[0xcd] = (int64_t)queue_item;
+                        queue_data = *(int64_t*)(queue_item[0x11] + queue_index * 8);
                         queue_mask = queue_item[0x12];
                     }
                 }
                 else {
-                    queue_data = *(longlong*)(queue_item[0x11] + queue_index * 8);
+                    queue_data = *(int64_t*)(queue_item[0x11] + queue_index * 8);
                     queue_mask = queue_item[0x12];
                 }
                 *queue_item = queue_mask & queue_index + 1;
@@ -707,41 +707,41 @@ void RenderingSystemResourceQueueManager(longlong* resource_ptr)
     temp_data = resource_data;
     RenderingSystemProcessQueueData(resource_ptr + 0xcd, &temp_data);
     queue_ptr = resource_ptr + 0xc3;
-    queue_item = (ulonglong*)*queue_ptr;
+    queue_item = (uint64_t*)*queue_ptr;
     queue_index = *queue_item;
     
     if ((queue_index == queue_item[1]) && (queue_item[1] = queue_item[8], queue_index == queue_item[8])) {
-        if (queue_item == (ulonglong*)resource_ptr[0xcb]) {
+        if (queue_item == (uint64_t*)resource_ptr[0xcb]) {
             do {
-                queue_item = (ulonglong*)resource_ptr[0xcd];
+                queue_item = (uint64_t*)resource_ptr[0xcd];
                 queue_index = *queue_item;
                 if ((queue_index == queue_item[1]) && (queue_item[1] = queue_item[8], queue_index == queue_item[8])) {
-                    if (queue_item == (ulonglong*)resource_ptr[0xd5]) {
+                    if (queue_item == (uint64_t*)resource_ptr[0xd5]) {
                         return;
                     }
-                    queue_item = (ulonglong*)resource_ptr[0xcd];
+                    queue_item = (uint64_t*)resource_ptr[0xcd];
                     queue_item[1] = queue_item[8];
                     queue_index = *queue_item;
                     if (queue_index != queue_item[8]) {
-                        queue_data = *(longlong*)(queue_item[0x11] + queue_index * 8);
+                        queue_data = *(int64_t*)(queue_item[0x11] + queue_index * 8);
                         queue_mask = queue_item[0x12];
                     }
                     else {
-                        queue_item = (ulonglong*)queue_item[0x10];
+                        queue_item = (uint64_t*)queue_item[0x10];
                         queue_index = *queue_item;
                         queue_item[1] = queue_item[8];
-                        resource_ptr[0xcd] = (longlong)queue_item;
-                        queue_index = *(ulonglong*)(queue_item[0x11] + queue_index * 8);
+                        resource_ptr[0xcd] = (int64_t)queue_item;
+                        queue_index = *(uint64_t*)(queue_item[0x11] + queue_index * 8);
                         queue_mask = queue_item[0x12];
                     }
                 }
                 else {
-                    queue_data = *(longlong*)(queue_item[0x11] + queue_index * 8);
+                    queue_data = *(int64_t*)(queue_item[0x11] + queue_index * 8);
                     queue_mask = queue_item[0x12];
                 }
                 *queue_item = queue_mask & queue_index + 1;
                 if (queue_index != 0) {
-                    if (*(longlong*)(queue_index + 0x588) != 0) {
+                    if (*(int64_t*)(queue_index + 0x588) != 0) {
                         RenderingSystemHandleResourceError();
                     }
                     *(void**)(queue_index + 0x588) = 0;
@@ -749,23 +749,23 @@ void RenderingSystemResourceQueueManager(longlong* resource_ptr)
                 }
             } while( true );
         }
-        queue_item = (ulonglong*)*queue_ptr;
+        queue_item = (uint64_t*)*queue_ptr;
         queue_item[1] = queue_item[8];
         queue_index = *queue_item;
         if (queue_index == queue_item[8]) {
-            queue_item = (ulonglong*)queue_item[0x10];
+            queue_item = (uint64_t*)queue_item[0x10];
             queue_index = *queue_item;
             queue_item[1] = queue_item[8];
-            *queue_ptr = (longlong)queue_item;
-            queue_index = *(ulonglong*)(queue_item[0x11] + queue_index * 8);
+            *queue_ptr = (int64_t)queue_item;
+            queue_index = *(uint64_t*)(queue_item[0x11] + queue_index * 8);
             *queue_item = queue_item[0x12] & queue_index + 1;
         }
     }
-    queue_index = *(ulonglong*)(queue_item[0x11] + queue_index * 8);
+    queue_index = *(uint64_t*)(queue_item[0x11] + queue_index * 8);
     *queue_item = queue_item[0x12] & queue_index + 1;
     
     *(uint*)(queue_index + 0x5c4) = 0;
-    if (*(longlong*)(queue_index + 0x588) != 0) {
+    if (*(int64_t*)(queue_index + 0x588) != 0) {
         RenderingSystemHandleResourceError();
     }
     *(void**)(queue_index + 0x588) = 0;
@@ -777,7 +777,7 @@ void RenderingSystemResourceQueueManager(longlong* resource_ptr)
 //============================================================================
 
 // 计算块数量
-longlong RenderingSystemCalculateBlockCount(longlong value, int shift) {
+int64_t RenderingSystemCalculateBlockCount(int64_t value, int shift) {
     return (value >> shift) - (value >> 0x3f);
 }
 
@@ -793,13 +793,13 @@ void* RenderingSystemGetDefaultResource(void) {
 
 // 获取对象类型
 int RenderingSystemGetObjectType(uint type_mask) {
-    return *(int*)(0x180000000 + 0x56f2c0 + (longlong)(type_mask & 0xf) * 4) + 0x180000000;
+    return *(int*)(0x180000000 + 0x56f2c0 + (int64_t)(type_mask & 0xf) * 4) + 0x180000000;
 }
 
 // 初始化着色器
-void RenderingSystemInitializeShader(longlong address) {
+void RenderingSystemInitializeShader(int64_t address) {
     // 着色器初始化实现
-    ((void(*)(longlong))0x1805b2c90)(address);
+    ((void(*)(int64_t))0x1805b2c90)(address);
 }
 
 // 处理内存错误
@@ -853,18 +853,18 @@ void* RenderingSystemGetStringConstant(void) {
 }
 
 // 获取哈希值
-ulonglong RenderingSystemGetHashValue(void) {
-    return *(ulonglong*)0x180bf00a8;
+uint64_t RenderingSystemGetHashValue(void) {
+    return *(uint64_t*)0x180bf00a8;
 }
 
 // 获取开始时间
-longlong RenderingSystemGetStartTime(void) {
-    return *(longlong*)0x180c8ed48;
+int64_t RenderingSystemGetStartTime(void) {
+    return *(int64_t*)0x180c8ed48;
 }
 
 // 获取时间数据
-longlong RenderingSystemGetTimeData(void) {
-    return *(longlong*)0x180c8ed58;
+int64_t RenderingSystemGetTimeData(void) {
+    return *(int64_t*)0x180c8ed58;
 }
 
 // 内存分配
@@ -898,8 +898,8 @@ void RenderingSystemCleanupResourceOperations(void* ptr) {
 }
 
 // 执行最终操作
-void RenderingSystemExecuteFinalOperation(ulonglong hash) {
-    ((void(*)(ulonglong))0x1808fc050)(hash);
+void RenderingSystemExecuteFinalOperation(uint64_t hash) {
+    ((void(*)(uint64_t))0x1808fc050)(hash);
 }
 
 // 处理队列数据
@@ -913,8 +913,8 @@ void RenderingSystemInitializeState(void) {
 }
 
 // 初始化着色器
-void RenderingSystemInitializeShader(longlong address) {
-    ((void(*)(longlong))0x1805b2c90)(address);
+void RenderingSystemInitializeShader(int64_t address) {
+    ((void(*)(int64_t))0x1805b2c90)(address);
 }
 
 // 处理错误
@@ -938,8 +938,8 @@ void RenderingSystemProcessQueueData(void* ptr, void* data) {
 }
 
 // 获取队列数据
-longlong RenderingSystemGetQueueData(void* ptr) {
-    return ((longlong(*)(void*))0x18056fbb0)(ptr);
+int64_t RenderingSystemGetQueueData(void* ptr) {
+    return ((int64_t(*)(void*))0x18056fbb0)(ptr);
 }
 
 // 清理队列
@@ -959,7 +959,7 @@ void RenderingSystemHandleException(void* exception_ptr, void* exception_info) {
 }
 
 // 释放小型内存
-void* RenderingSystemReleaseSmallMemory(void* ptr, ulonglong flags) {
+void* RenderingSystemReleaseSmallMemory(void* ptr, uint64_t flags) {
     if ((flags & 1) != 0) {
         free(ptr, 0x20);
     }

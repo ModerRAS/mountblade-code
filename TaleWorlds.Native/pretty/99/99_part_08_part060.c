@@ -65,20 +65,20 @@ extern int global_config_6496_ptr;           // 偏移量表
 
 // 函数声明
 void FUN_1805b3190(void);
-void FUN_1805b31e0(longlong *param_1,uint param_2,uint param_3,char param_4);
+void FUN_1805b31e0(int64_t *param_1,uint param_2,uint param_3,char param_4);
 void FUN_18064e900(void);
 void FUN_1805fab40(void);
-void FUN_1805b62d0(longlong param_1);
-void FUN_18005ea90(longlong param_1,void *param_2);
-void FUN_1806193b0(longlong param_1,int param_2);
+void FUN_1805b62d0(int64_t param_1);
+void FUN_18005ea90(int64_t param_1,void *param_2);
+void FUN_1806193b0(int64_t param_1,int param_2);
 void FUN_1805f7890(uint64_t param_1);
-void FUN_180646200(longlong param_1);
-void FUN_180645c10(longlong param_1,void *param_2,void *param_3);
+void FUN_180646200(int64_t param_1);
+void FUN_180645c10(int64_t param_1,void *param_2,void *param_3);
 void FUN_1808fd200(void);
-void FUN_18062b420(uint64_t param_1,longlong param_2,char param_3);
-void FUN_18062b1e0(uint64_t param_1,longlong param_2,longlong param_3,char param_4);
+void FUN_18062b420(uint64_t param_1,int64_t param_2,char param_3);
+void FUN_18062b1e0(uint64_t param_1,int64_t param_2,int64_t param_3,char param_4);
 
-// 函数: void ProcessResourceCleanup(longlong *resource_manager)
+// 函数: void ProcessResourceCleanup(int64_t *resource_manager)
 // 资源清理处理器 - 负责系统资源的清理和释放
 // 
 // 参数:
@@ -88,10 +88,10 @@ void FUN_18062b1e0(uint64_t param_1,longlong param_2,longlong param_3,char param
 //   2. 执行系统循环清理操作
 //   3. 释放关联的内存资源
 //   4. 确保系统安全关闭
-void ProcessResourceCleanup(longlong *resource_manager)
+void ProcessResourceCleanup(int64_t *resource_manager)
 
 {
-  longlong resource_handle;
+  int64_t resource_handle;
   int loop_counter;
   int max_iterations;
   int current_iteration;
@@ -132,7 +132,7 @@ void ExecuteSystemLoop(void)
   int loop_counter;
   int max_iterations;
   int current_iteration;
-  longlong system_resource;
+  int64_t system_resource;
   
   current_iteration = 0;
   loop_counter = current_iteration;
@@ -166,7 +166,7 @@ void ProcessSystemLoop(void)
   int start_index;
   int current_index;
   int max_iterations;
-  longlong system_resource;
+  int64_t system_resource;
   
   current_index = start_index;
   do {
@@ -193,7 +193,7 @@ void ProcessSystemLoop(void)
 void CheckResourceStatus(void)
 
 {
-  longlong system_resource;
+  int64_t system_resource;
   
   if (system_resource != 0) {
     // 释放系统资源
@@ -250,15 +250,15 @@ void InitializeMemoryPool(uint64_t *memory_pool, int pool_size)
     allocated_memory = 0;
   }
   else {
-    allocated_memory = FUN_18062b420(system_memory_pool_ptr, (longlong)memory_blocks, 3);
+    allocated_memory = FUN_18062b420(system_memory_pool_ptr, (int64_t)memory_blocks, 3);
   }
   *memory_pool = allocated_memory;
   // 清理内存池内容
-  memset(allocated_memory, 0, (longlong)memory_blocks);
+  memset(allocated_memory, 0, (int64_t)memory_blocks);
   return;
 }
 
-// 函数: void ProcessBitOperations(longlong *bit_array, uint index1, uint index2, char operation_type)
+// 函数: void ProcessBitOperations(int64_t *bit_array, uint index1, uint index2, char operation_type)
 // 位操作处理器 - 处理位级别的操作
 // 
 // 参数:
@@ -270,28 +270,28 @@ void InitializeMemoryPool(uint64_t *memory_pool, int pool_size)
 //   1. 根据操作类型执行位操作
 //   2. 支持位清除和位置位
 //   3. 处理交叉位操作
-void ProcessBitOperations(longlong *bit_array, uint index1, uint index2, char operation_type)
+void ProcessBitOperations(int64_t *bit_array, uint index1, uint index2, char operation_type)
 
 {
   byte *bit_pointer;
   
-  bit_pointer = (byte *)((longlong)((int)((int)bit_array[1] >> 3) * index1 + ((int)index2 >> 3)) + *bit_array);
+  bit_pointer = (byte *)((int64_t)((int)((int)bit_array[1] >> 3) * index1 + ((int)index2 >> 3)) + *bit_array);
   if (operation_type == '\0') {
     // 执行位清除操作
     *bit_pointer = (&global_config_5168_ptr)[index2 & 7] & *bit_pointer;
-    bit_pointer = (byte *)((longlong)((int)((int)bit_array[1] >> 3) * index2 + ((int)index1 >> 3)) + *bit_array);
+    bit_pointer = (byte *)((int64_t)((int)((int)bit_array[1] >> 3) * index2 + ((int)index1 >> 3)) + *bit_array);
     *bit_pointer = *bit_pointer & (&global_config_5168_ptr)[index1 & 7];
   }
   else {
     // 执行位置位操作
     *bit_pointer = (&global_config_8808_ptr)[index2 & 7] | *bit_pointer;
-    bit_pointer = (byte *)((longlong)((int)((int)bit_array[1] >> 3) * index2 + ((int)index1 >> 3)) + *bit_array);
+    bit_pointer = (byte *)((int64_t)((int)((int)bit_array[1] >> 3) * index2 + ((int)index1 >> 3)) + *bit_array);
     *bit_pointer = *bit_pointer | (&global_config_8808_ptr)[index1 & 7];
   }
   return;
 }
 
-// 函数: void ConfigureSystemParameters(longlong system_config, uint param_index)
+// 函数: void ConfigureSystemParameters(int64_t system_config, uint param_index)
 // 系统参数配置器 - 配置系统参数
 // 
 // 参数:
@@ -302,13 +302,13 @@ void ProcessBitOperations(longlong *bit_array, uint index1, uint index2, char op
 //   2. 初始化系统参数
 //   3. 设置系统默认值
 //   4. 配置系统行为
-void ConfigureSystemParameters(longlong system_config, uint param_index)
+void ConfigureSystemParameters(int64_t system_config, uint param_index)
 
 {
   uint64_t *config_block;
   
-  if ((ulonglong)(longlong)(int)param_index < (ulonglong)((*(longlong *)(system_config + 0x760) - *(longlong *)(system_config + 0x758)) / 0xd08)) {
-    config_block = (uint64_t *)((longlong)(int)param_index * 0xd08 + *(longlong *)(system_config + 0x758));
+  if ((uint64_t)(int64_t)(int)param_index < (uint64_t)((*(int64_t *)(system_config + 0x760) - *(int64_t *)(system_config + 0x758)) / 0xd08)) {
+    config_block = (uint64_t *)((int64_t)(int)param_index * 0xd08 + *(int64_t *)(system_config + 0x758));
     config_block[0x1a0] = system_system_memory;
     param_index = param_index & 0x8000000f;
     if ((int)param_index < 0) {
@@ -325,22 +325,22 @@ void ConfigureSystemParameters(longlong system_config, uint param_index)
       config_block[6] = 0;
       *(int32_t *)(config_block + 7) = 0;
       config_block[8] = 0;
-      *(int32_t *)((longlong)config_block + 0x3c) = FLOAT_ONE;
+      *(int32_t *)((int64_t)config_block + 0x3c) = FLOAT_ONE;
       *(int32_t *)(config_block + 8) = FLOAT_NEGATIVE;
-      *(int32_t *)((longlong)config_block + 0x44) = FLOAT_NEGATIVE;
+      *(int32_t *)((int64_t)config_block + 0x44) = FLOAT_NEGATIVE;
       config_block[9] = FLOAT_POSITIVE_SMALL;
       *(int16_t *)(config_block + 10) = DEFAULT_ID_VALUE;
       *(int8_t *)(config_block + 0xb) = ENABLE_FLAG;
-      *(uint64_t *)((longlong)config_block + 0x5c) = MAXIMUM_ULONG;
+      *(uint64_t *)((int64_t)config_block + 0x5c) = MAXIMUM_ULONG;
       config_block[0x11] = MAXIMUM_ULONG;
       *(int8_t *)(config_block + 0x12) = BIT_MASK_8BIT;
-      *(uint64_t *)((longlong)config_block + 0x94) = 0;
-      *(int32_t *)((longlong)config_block + 0x84) = 0xffffffff;
-      *(uint64_t *)((longlong)config_block + 100) = 0;
-      *(uint64_t *)((longlong)config_block + 0x6c) = 0;
-      *(uint64_t *)((longlong)config_block + 0x74) = 0;
-      *(uint64_t *)((longlong)config_block + 0x7c) = 0;
-      *(int32_t *)((longlong)config_block + 0x9c) = FLOAT_ONE;
+      *(uint64_t *)((int64_t)config_block + 0x94) = 0;
+      *(int32_t *)((int64_t)config_block + 0x84) = 0xffffffff;
+      *(uint64_t *)((int64_t)config_block + 100) = 0;
+      *(uint64_t *)((int64_t)config_block + 0x6c) = 0;
+      *(uint64_t *)((int64_t)config_block + 0x74) = 0;
+      *(uint64_t *)((int64_t)config_block + 0x7c) = 0;
+      *(int32_t *)((int64_t)config_block + 0x9c) = FLOAT_ONE;
       return;
     case 1:
       // 配置扩展参数集
@@ -350,7 +350,7 @@ void ConfigureSystemParameters(longlong system_config, uint param_index)
       config_block[0x28] = 0;
       config_block[0x29] = 0;
       config_block[0x2a] = 0;
-      *(int32_t *)((longlong)config_block + 0x15c) = 0;
+      *(int32_t *)((int64_t)config_block + 0x15c) = 0;
       return;
     case 2:
       // 配置浮点参数集
@@ -396,7 +396,7 @@ void TriggerSystemError(void)
   FUN_1808fd200();
 }
 
-// 函数: void ProcessSystemData(int *data_array, int array_size, longlong data_source, longlong data_target, uint64_t config_param)
+// 函数: void ProcessSystemData(int *data_array, int array_size, int64_t data_source, int64_t data_target, uint64_t config_param)
 // 系统数据处理器 - 处理系统数据
 // 
 // 参数:
@@ -410,36 +410,36 @@ void TriggerSystemError(void)
 //   2. 执行数据转换
 //   3. 管理数据状态
 //   4. 更新数据统计
-void ProcessSystemData(int *data_array, int array_size, longlong data_source, longlong data_target, uint64_t config_param,
-                  longlong *resource_manager, uint64_t param_7, uint64_t param_8, int max_items)
+void ProcessSystemData(int *data_array, int array_size, int64_t data_source, int64_t data_target, uint64_t config_param,
+                  int64_t *resource_manager, uint64_t param_7, uint64_t param_8, int max_items)
 
 {
   int data_item;
   uint64_t timestamp;
   double elapsed_time;
-  longlong data_offset;
+  int64_t data_offset;
   int *data_pointer;
   int data_value;
   double *timestamp_pointer;
   uint item_id;
-  longlong resource_offset;
+  int64_t resource_offset;
   int current_item;
-  longlong loop_counter;
-  longlong performance_counter;
+  int64_t loop_counter;
+  int64_t performance_counter;
   
   performance_counter = system_system_data_memory;
   if (system_system_data_memory == 0) {
     QueryPerformanceCounter(&loop_counter);
     performance_counter = loop_counter;
   }
-  data_offset = (longlong)data_array[0x17e80];
+  data_offset = (int64_t)data_array[0x17e80];
   loop_counter = 0xffffffff;
   elapsed_time = (double)(performance_counter - system_system_data_memory) * system_system_data_memory;
   if (0 < data_offset) {
     do {
       if (array_size <= data_array[2]) {
         data_item = *data_array;
-        resource_offset = (longlong)data_item;
+        resource_offset = (int64_t)data_item;
         current_item = data_item - (int)loop_counter;
         performance_counter = 0;
         do {
@@ -456,11 +456,11 @@ LAB_1805b3980:
           timestamp = *(uint64_t *)(data_source + 0x5a0);
           timestamp_pointer = (double *)(resource_offset * 0x20 + *resource_manager);
           *timestamp_pointer = elapsed_time;
-          *(uint64_t *)((longlong)timestamp_pointer + 0xc) = timestamp;
+          *(uint64_t *)((int64_t)timestamp_pointer + 0xc) = timestamp;
           *(int8_t *)(timestamp_pointer + 1) = 1;
           func_0x0001805b3aa0(resource_manager);
           FUN_1806193b0(data_source, current_item);
-          *(short *)(data_target + 0x18 + (longlong)*(int *)(data_target + 0x14) * 2) = (short)data_item;
+          *(short *)(data_target + 0x18 + (int64_t)*(int *)(data_target + 0x14) * 2) = (short)data_item;
           *(int *)(data_target + 0x14) = *(int *)(data_target + 0x14) + 1;
           item_id = data_item >> 0x1f & 0xf;
           loop_counter = resource_offset;
@@ -480,7 +480,7 @@ LAB_1805b3980:
   do {
     if (0 < *data_pointer) break;
     data_pointer = data_pointer + 1;
-  } while ((longlong)data_pointer < 0x1809fb110);
+  } while ((int64_t)data_pointer < 0x1809fb110);
   FUN_180645c10(data_source, 0, &stack0xffffffffffffffe8);
   return;
 }
@@ -497,26 +497,26 @@ void ExecuteSystemProcessor(void)
 
 {
   uint64_t config_data;
-  longlong data_offset;
+  int64_t data_offset;
   int *data_pointer;
   int data_value;
   uint64_t *resource_pointer;
   uint resource_id;
-  longlong resource_handle;
-  longlong loop_counter;
-  longlong system_config;
+  int64_t resource_handle;
+  int64_t loop_counter;
+  int64_t system_config;
   int *data_array;
   byte status_flag;
   int current_item;
-  longlong resource_count;
+  int64_t resource_count;
   int32_t time_high;
   int32_t time_low;
-  longlong performance_counter;
+  int64_t performance_counter;
   
   do {
     if (system_config <= data_array[2]) {
       current_item = *data_array;
-      resource_handle = (longlong)current_item;
+      resource_handle = (int64_t)current_item;
       data_offset = 0;
       do {
         if (current_item - (int)resource_count < *(int *)(&global_config_6480_ptr + data_offset * 4)) {
@@ -532,11 +532,11 @@ LAB_1805b3980:
         config_data = *(uint64_t *)(system_config + 0x5a0);
         resource_pointer = (uint64_t *)(resource_handle * 0x20 + *resource_manager);
         *resource_pointer = CONCAT44(time_low, time_high);
-        *(uint64_t *)((longlong)resource_pointer + 0xc) = config_data;
+        *(uint64_t *)((int64_t)resource_pointer + 0xc) = config_data;
         *(int8_t *)(resource_pointer + 1) = 1;
         func_0x0001805b3aa0(resource_manager);
         FUN_1806193b0();
-        *(short *)(performance_counter + 0x18 + (longlong)*(int *)(performance_counter + 0x14) * 2) = (short)current_item;
+        *(short *)(performance_counter + 0x18 + (int64_t)*(int *)(performance_counter + 0x14) * 2) = (short)current_item;
         *(int *)(performance_counter + 0x14) = *(int *)(performance_counter + 0x14) + 1;
         resource_id = current_item >> 0x1f & 0xf;
         resource_count = resource_handle;
@@ -555,12 +555,12 @@ LAB_1805b3980:
   current_item = 0;
   do {
     if (0 < *data_pointer) {
-      status_flag = (byte)*(int32_t *)(&global_config_6496_ptr + (longlong)current_item * 4);
+      status_flag = (byte)*(int32_t *)(&global_config_6496_ptr + (int64_t)current_item * 4);
       goto LAB_1806193ee;
     }
     current_item = current_item + 1;
     data_pointer = data_pointer + 1;
-  } while ((longlong)data_pointer < 0x1809fb110);
+  } while ((int64_t)data_pointer < 0x1809fb110);
   status_flag = 0x19;
 LAB_1806193ee:
   current_item = (1 << (status_flag & 0x1f)) + -1;
@@ -589,12 +589,12 @@ void ProcessSystemCleanup(void)
   data_value = 0;
   do {
     if (0 < *data_pointer) {
-      config_param = *(int32_t *)(&global_config_6496_ptr + (longlong)data_value * 4);
+      config_param = *(int32_t *)(&global_config_6496_ptr + (int64_t)data_value * 4);
       goto LAB_1806193ee;
     }
     data_value = data_value + 1;
     data_pointer = data_pointer + 1;
-  } while ((longlong)data_pointer < 0x1809fb110);
+  } while ((int64_t)data_pointer < 0x1809fb110);
   config_param = 0x19;
 LAB_1806193ee:
   status_value = 0;
@@ -604,7 +604,7 @@ LAB_1806193ee:
   return;
 }
 
-// 函数: void InitializeSystemContext(int32_t *system_context, longlong *resource_manager, int32_t context_param, uint64_t config_data)
+// 函数: void InitializeSystemContext(int32_t *system_context, int64_t *resource_manager, int32_t context_param, uint64_t config_data)
 // 系统上下文初始化器 - 初始化系统上下文
 // 
 // 参数:
@@ -617,22 +617,22 @@ LAB_1806193ee:
 //   2. 设置系统参数
 //   3. 分配系统资源
 //   4. 配置系统行为
-void InitializeSystemContext(int32_t *system_context, longlong *resource_manager, int32_t context_param, uint64_t config_data)
+void InitializeSystemContext(int32_t *system_context, int64_t *resource_manager, int32_t context_param, uint64_t config_data)
 
 {
-  longlong memory_handle;
+  int64_t memory_handle;
   uint resource_id;
-  longlong memory_offset;
-  longlong *memory_pointer;
-  ulonglong memory_size;
+  int64_t memory_offset;
+  int64_t *memory_pointer;
+  uint64_t memory_size;
   uint cleanup_id;
-  longlong performance_counter;
+  int64_t performance_counter;
   uint context_id;
-  ulonglong allocated_size;
+  uint64_t allocated_size;
   
   *(int8_t *)(system_context + 0xc) = 0;
-  *(longlong **)(system_context + 0x163e) = resource_manager;
-  if (*(char *)((longlong)system_context + 0x31) == '\0') {
+  *(int64_t **)(system_context + 0x163e) = resource_manager;
+  if (*(char *)((int64_t)system_context + 0x31) == '\0') {
     allocated_size = 0;
     system_context[6] = 0;
     *(int16_t *)(system_context + 5) = 0;
@@ -648,7 +648,7 @@ void InitializeSystemContext(int32_t *system_context, longlong *resource_manager
       QueryPerformanceCounter(&context_id);
       memory_handle = CONCAT44(cleanup_id, context_id);
     }
-    memory_pointer = (longlong *)(system_context + 0x20);
+    memory_pointer = (int64_t *)(system_context + 0x20);
     memory_offset = 0x960;
     *(double *)(system_context + 8) = (double)(memory_handle - system_system_data_memory) * system_system_data_memory;
     *(uint64_t *)(system_context + 0x164a) = 0;
@@ -666,35 +666,35 @@ void InitializeSystemContext(int32_t *system_context, longlong *resource_manager
       memory_pointer = memory_pointer + 1;
       memory_offset = memory_offset + -1;
     } while (memory_offset != 0);
-    memory_handle = *(longlong *)(system_context + 0x14);
+    memory_handle = *(int64_t *)(system_context + 0x14);
     memory_size = allocated_size;
-    if (*(longlong *)(system_context + 0x16) - memory_handle >> 3 != 0) {
+    if (*(int64_t *)(system_context + 0x16) - memory_handle >> 3 != 0) {
       do {
-        if (*(longlong *)(memory_size + memory_handle) != 0) {
+        if (*(int64_t *)(memory_size + memory_handle) != 0) {
           // 释放内存资源
           FUN_18064e900();
         }
         resource_id = (int)allocated_size + 1;
-        allocated_size = (ulonglong)resource_id;
+        allocated_size = (uint64_t)resource_id;
         memory_size = memory_size + 8;
-      } while ((ulonglong)(longlong)(int)resource_id < (ulonglong)(*(longlong *)(system_context + 0x16) - memory_handle >> 3));
+      } while ((uint64_t)(int64_t)(int)resource_id < (uint64_t)(*(int64_t *)(system_context + 0x16) - memory_handle >> 3));
     }
-    *(longlong *)(system_context + 0x16) = memory_handle;
+    *(int64_t *)(system_context + 0x16) = memory_handle;
     *(uint64_t *)(system_context + 0x12e0) = 0;
     *(uint64_t *)(system_context + 0x12e2) = 0;
     *(uint64_t *)(system_context + 0x12e4) = 0;
     *(uint64_t *)(system_context + 0x12e6) = TIMER_PRECISION_MULTIPLIER;
-    if (*(longlong *)(system_context + 0x1c) != 0) {
+    if (*(int64_t *)(system_context + 0x1c) != 0) {
       // 释放内存资源
       FUN_18064e900();
     }
     memory_handle = FUN_1805fab40();
     context_id = system_context[0x12e0];
-    *(longlong *)(system_context + 0x1c) = memory_handle;
+    *(int64_t *)(system_context + 0x1c) = memory_handle;
     cleanup_id = 0;
-    *(ulonglong *)(memory_handle + 0x5a0) = (ulonglong)context_id;
+    *(uint64_t *)(memory_handle + 0x5a0) = (uint64_t)context_id;
     system_context[0x1e] = 0;
-    *(int32_t *)(*(longlong *)(system_context + 0x1c) + 0x5c0) = 0;
+    *(int32_t *)(*(int64_t *)(system_context + 0x1c) + 0x5c0) = 0;
     *(uint64_t *)(system_context + 0x163a) = 0;
     *(uint64_t *)(system_context + 0x1638) = 0;
     system_context[0x163d] = 1;
@@ -705,8 +705,8 @@ void InitializeSystemContext(int32_t *system_context, longlong *resource_manager
     *(uint64_t *)(system_context + 0x1652) = *(uint64_t *)(system_context + 0x1650);
     *(uint64_t *)(system_context + 0x165a) = *(uint64_t *)(system_context + 0x1658);
     system_context[0x1660] = 0xffffffff;
-    *resource_manager = (longlong)system_context;
-    *(int8_t *)((longlong)system_context + 0x31) = *(int8_t *)((longlong)resource_manager + 0x24);
+    *resource_manager = (int64_t)system_context;
+    *(int8_t *)((int64_t)system_context + 0x31) = *(int8_t *)((int64_t)resource_manager + 0x24);
     *(uint64_t *)(system_context + 0x1622) = config_data;
   }
   return;
@@ -726,15 +726,15 @@ void InitializeSystemContext(int32_t *system_context, longlong *resource_manager
 void ConfigureSystemParametersEx(int32_t *system_context, uint64_t config_param, int32_t context_param)
 
 {
-  longlong memory_handle;
+  int64_t memory_handle;
   uint64_t system_config;
   uint resource_id;
-  longlong memory_offset;
-  longlong *memory_pointer;
-  ulonglong memory_size;
-  longlong *resource_manager;
+  int64_t memory_offset;
+  int64_t *memory_pointer;
+  uint64_t memory_size;
+  int64_t *resource_manager;
   uint context_id;
-  ulonglong allocated_size;
+  uint64_t allocated_size;
   
   memory_size = 0;
   system_context[6] = 0;
@@ -751,7 +751,7 @@ void ConfigureSystemParametersEx(int32_t *system_context, uint64_t config_param,
     QueryPerformanceCounter(&stack0x00000040);
     memory_handle = CONCAT44(allocated_size, context_id);
   }
-  memory_pointer = (longlong *)(system_config + 0x80);
+  memory_pointer = (int64_t *)(system_config + 0x80);
   memory_offset = 0x960;
   *(double *)(system_config + 0x20) = (double)(memory_handle - system_system_data_memory) * system_system_data_memory;
   *(uint64_t *)(system_config + 0x5928) = 0;
@@ -769,32 +769,32 @@ void ConfigureSystemParametersEx(int32_t *system_context, uint64_t config_param,
     memory_pointer = memory_pointer + 1;
     memory_offset = memory_offset + -1;
   } while (memory_offset != 0);
-  memory_handle = *(longlong *)(system_config + 0x50);
+  memory_handle = *(int64_t *)(system_config + 0x50);
   memory_size = allocated_size;
-  if (*(longlong *)(system_config + 0x58) - memory_handle >> 3 != 0) {
+  if (*(int64_t *)(system_config + 0x58) - memory_handle >> 3 != 0) {
     do {
-      if (*(longlong *)(memory_size + memory_handle) != 0) {
+      if (*(int64_t *)(memory_size + memory_handle) != 0) {
         // 释放内存资源
         FUN_18064e900();
       }
       resource_id = (int)memory_size + 1;
-      memory_size = (ulonglong)resource_id;
+      memory_size = (uint64_t)resource_id;
       memory_size = memory_size + 8;
-    } while ((ulonglong)(longlong)(int)resource_id < (ulonglong)(*(longlong *)(system_config + 0x58) - memory_handle >> 3));
+    } while ((uint64_t)(int64_t)(int)resource_id < (uint64_t)(*(int64_t *)(system_config + 0x58) - memory_handle >> 3));
   }
-  *(longlong *)(system_config + 0x58) = memory_handle;
+  *(int64_t *)(system_config + 0x58) = memory_handle;
   *(uint64_t *)(system_config + 0x4b80) = 0;
   *(uint64_t *)(system_config + 0x4b88) = 0;
   *(uint64_t *)(system_config + 0x4b90) = 0;
   *(uint64_t *)(system_config + 0x4b98) = TIMER_PRECISION_MULTIPLIER;
-  if (*(longlong *)(system_config + 0x70) == 0) {
+  if (*(int64_t *)(system_config + 0x70) == 0) {
     memory_handle = FUN_1805fab40();
     context_id = *(uint *)(system_config + 0x4b80);
-    *(longlong *)(system_config + 0x70) = memory_handle;
+    *(int64_t *)(system_config + 0x70) = memory_handle;
     allocated_size = 0;
-    *(ulonglong *)(memory_handle + 0x5a0) = (ulonglong)context_id;
+    *(uint64_t *)(memory_handle + 0x5a0) = (uint64_t)context_id;
     *(int32_t *)(system_config + 0x78) = 0;
-    *(int32_t *)(*(longlong *)(system_config + 0x70) + 0x5c0) = 0;
+    *(int32_t *)(*(int64_t *)(system_config + 0x70) + 0x5c0) = 0;
     *(uint64_t *)(system_config + 0x58e8) = 0;
     *(uint64_t *)(system_config + 0x58e0) = 0;
     *(int32_t *)(system_config + 0x58f4) = 1;
@@ -806,7 +806,7 @@ void ConfigureSystemParametersEx(int32_t *system_context, uint64_t config_param,
     *(uint64_t *)(system_config + 0x5968) = *(uint64_t *)(system_config + 0x5960);
     *(int32_t *)(system_config + 0x5980) = 0xffffffff;
     *resource_manager = system_config;
-    *(int8_t *)(system_config + 0x31) = *(int8_t *)((longlong)resource_manager + 0x24);
+    *(int8_t *)(system_config + 0x31) = *(int8_t *)((int64_t)resource_manager + 0x24);
     *(uint64_t *)(system_config + 0x5888) = config_param;
     return;
   }
@@ -839,7 +839,7 @@ void EmptySystemFunction(void)
   return;
 }
 
-// 函数: void ProcessMemoryManagement(longlong memory_manager)
+// 函数: void ProcessMemoryManagement(int64_t memory_manager)
 // 内存管理处理器 - 处理内存管理操作
 // 
 // 参数:
@@ -849,39 +849,39 @@ void EmptySystemFunction(void)
 //   2. 处理内存释放
 //   3. 维护内存状态
 //   4. 执行内存清理
-void ProcessMemoryManagement(longlong memory_manager)
+void ProcessMemoryManagement(int64_t memory_manager)
 
 {
   double current_time;
   int data_item;
   int *data_pointer;
-  longlong memory_offset;
+  int64_t memory_offset;
   double timestamp;
-  longlong list_head;
-  ulonglong item_index;
+  int64_t list_head;
+  uint64_t item_index;
   uint64_t *memory_block;
-  longlong block_size;
+  int64_t block_size;
   double *timestamp_pointer;
   uint list_count;
-  longlong current_position;
-  ulonglong memory_index;
+  int64_t current_position;
+  uint64_t memory_index;
   int item_id;
-  ulonglong available_memory;
+  uint64_t available_memory;
   uint64_t *stack_pointer;
-  longlong performance_counter;
-  ulonglong memory_capacity;
+  int64_t performance_counter;
+  uint64_t memory_capacity;
   
   performance_counter = system_system_data_memory;
   if (system_system_data_memory == 0) {
     QueryPerformanceCounter(&performance_counter);
     performance_counter = performance_counter;
   }
-  list_head = *(longlong *)(memory_manager + 0x5828);
+  list_head = *(int64_t *)(memory_manager + 0x5828);
   item_index = 0;
   current_time = *(double *)(memory_manager + 0x58b8);
   timestamp = (double)(performance_counter - system_system_data_memory) * system_system_data_memory;
   memory_capacity = item_index;
-  if ((int)(*(longlong *)(memory_manager + 0x5830) - list_head >> 3) != 0) {
+  if ((int)(*(int64_t *)(memory_manager + 0x5830) - list_head >> 3) != 0) {
     do {
       item_id = (int)memory_capacity;
       data_pointer = *(int **)(list_head + memory_capacity * 8);
@@ -889,51 +889,51 @@ void ProcessMemoryManagement(longlong memory_manager)
         data_item = *data_pointer;
         if ((data_item != system_system_control_memory) || (data_pointer[1] != system_system_control_memory)) {
           data_pointer = *(int **)(memory_manager + 0x5890);
-          available_memory = *(longlong *)(memory_manager + 0x5898) - (longlong)data_pointer >> 5;
+          available_memory = *(int64_t *)(memory_manager + 0x5898) - (int64_t)data_pointer >> 5;
           memory_capacity = item_index;
           if (available_memory == 0) goto LAB_1805b3eb4;
           goto LAB_1805b3e92;
         }
-        memory_offset = *(longlong *)(memory_manager + 0x5828) + memory_capacity * 8;
-        stack_pointer = *(uint64_t **)(*(longlong *)(memory_manager + 0x5828) + memory_capacity * 8);
+        memory_offset = *(int64_t *)(memory_manager + 0x5828) + memory_capacity * 8;
+        stack_pointer = *(uint64_t **)(*(int64_t *)(memory_manager + 0x5828) + memory_capacity * 8);
         list_head = memory_offset + 8;
         if (memory_offset != list_head) {
-          memory_offset = *(longlong *)(memory_manager + 0x5830);
+          memory_offset = *(int64_t *)(memory_manager + 0x5830);
           if (list_head != memory_offset) {
             // 移动内存块
             memmove(memory_offset, list_head, memory_offset - list_head);
           }
-          *(longlong *)(memory_manager + 0x5830) = memory_offset + -8;
+          *(int64_t *)(memory_manager + 0x5830) = memory_offset + -8;
         }
         FUN_18005ea90(memory_manager + 0x5808, &stack_pointer);
         item_id = item_id + -1;
       }
-      list_head = *(longlong *)(memory_manager + 0x5828);
-      memory_capacity = (ulonglong)(item_id + 1U);
-    } while (item_id + 1U < (uint)(*(longlong *)(memory_manager + 0x5830) - list_head >> 3));
+      list_head = *(int64_t *)(memory_manager + 0x5828);
+      memory_capacity = (uint64_t)(item_id + 1U);
+    } while (item_id + 1U < (uint)(*(int64_t *)(memory_manager + 0x5830) - list_head >> 3));
   }
-  memory_offset = *(longlong *)(memory_manager + 0x5868);
-  if ((int)(*(longlong *)(memory_manager + 0x5870) - memory_offset >> 3) != 0) {
+  memory_offset = *(int64_t *)(memory_manager + 0x5868);
+  if ((int)(*(int64_t *)(memory_manager + 0x5870) - memory_offset >> 3) != 0) {
     do {
       item_id = (int)item_index;
-      if (*(double *)(*(longlong *)(memory_offset + item_index * 8) + 8) + 3.0 < timestamp) {
-        list_head = *(longlong *)(memory_manager + 0x5868) + item_index * 8;
-        stack_pointer = *(uint64_t **)(*(longlong *)(memory_manager + 0x5868) + item_index * 8);
+      if (*(double *)(*(int64_t *)(memory_offset + item_index * 8) + 8) + 3.0 < timestamp) {
+        list_head = *(int64_t *)(memory_manager + 0x5868) + item_index * 8;
+        stack_pointer = *(uint64_t **)(*(int64_t *)(memory_manager + 0x5868) + item_index * 8);
         memory_offset = list_head + 8;
         if (list_head != memory_offset) {
-          block_size = *(longlong *)(memory_manager + 0x5870);
+          block_size = *(int64_t *)(memory_manager + 0x5870);
           if (memory_offset != block_size) {
             // 移动内存块
             memmove(list_head, memory_offset, block_size - memory_offset);
           }
-          *(longlong *)(memory_manager + 0x5870) = block_size + -8;
+          *(int64_t *)(memory_manager + 0x5870) = block_size + -8;
         }
         FUN_18005ea90(memory_manager + 0x5848, &stack_pointer);
         item_id = item_id + -1;
       }
-      memory_offset = *(longlong *)(memory_manager + 0x5868);
-      item_index = (ulonglong)(item_id + 1U);
-    } while (item_id + 1U < (uint)(*(longlong *)(memory_manager + 0x5870) - memory_offset >> 3));
+      memory_offset = *(int64_t *)(memory_manager + 0x5868);
+      item_index = (uint64_t)(item_id + 1U);
+    } while (item_id + 1U < (uint)(*(int64_t *)(memory_manager + 0x5870) - memory_offset >> 3));
   }
   return;
 LAB_1805b3e92:
@@ -942,12 +942,12 @@ LAB_1805b3e92:
     goto LAB_1805b3eb4;
   }
   list_count = (int)memory_capacity + 1;
-  memory_capacity = (ulonglong)list_count;
+  memory_capacity = (uint64_t)list_count;
   data_pointer = data_pointer + 8;
-  if (available_memory <= (ulonglong)(longlong)(int)list_count) {
+  if (available_memory <= (uint64_t)(int64_t)(int)list_count) {
 LAB_1805b3eb4:
-    memory_offset = *(longlong *)(memory_manager + 0x5848);
-    list_head = *(longlong *)(memory_manager + 0x5850);
+    memory_offset = *(int64_t *)(memory_manager + 0x5848);
+    list_head = *(int64_t *)(memory_manager + 0x5850);
     if (memory_offset == list_head) {
       memory_block = (uint64_t *)FUN_18062b1e0(system_memory_pool_ptr, 0xc98, 8, CONCAT71((uint7)(uint3)((uint)data_item >> 8), 3));
       *memory_block = 0;
@@ -961,7 +961,7 @@ LAB_1805b3eb4:
       memory_capacity = available_memory - 1;
       if (available_memory < memory_capacity) {
         stack_pointer = memory_block;
-        if (*(longlong *)(memory_manager + 0x5858) - list_head >> 3 == -1) {
+        if (*(int64_t *)(memory_manager + 0x5858) - list_head >> 3 == -1) {
           // 清理内存块
           memset(list_head, 0, 0xfffffffffffffff8);
         }
@@ -974,8 +974,8 @@ LAB_1805b3eb4:
         }
         if (item_index != 0) {
           item_index = FUN_18062b420(system_memory_pool_ptr, item_index * 8, *(int8_t *)(memory_manager + 0x5860));
-          memory_offset = *(longlong *)(memory_manager + 0x5848);
-          list_head = *(longlong *)(memory_manager + 0x5850);
+          memory_offset = *(int64_t *)(memory_manager + 0x5848);
+          list_head = *(int64_t *)(memory_manager + 0x5850);
         }
         if (memory_offset != list_head) {
           // 移动内存块
@@ -984,7 +984,7 @@ LAB_1805b3eb4:
         // 清理内存块
         memset(item_index, 0, 0xfffffffffffffff8);
       }
-      *(ulonglong *)(memory_manager + 0x5850) = memory_offset + memory_capacity * 8;
+      *(uint64_t *)(memory_manager + 0x5850) = memory_offset + memory_capacity * 8;
     }
     stack_pointer = memory_block;
     FUN_18005ea90(memory_manager + 0x5868, &stack_pointer);
@@ -994,7 +994,7 @@ LAB_1805b3eb4:
   goto LAB_1805b3e92;
 }
 
-// 函数: void ProcessMemoryManagementEx(longlong memory_manager)
+// 函数: void ProcessMemoryManagementEx(int64_t memory_manager)
 // 内存管理处理器扩展 - 扩展的内存管理操作
 // 
 // 参数:
@@ -1003,38 +1003,38 @@ LAB_1805b3eb4:
 //   1. 管理内存分配和释放
 //   2. 处理内存块操作
 //   3. 维护内存状态
-void ProcessMemoryManagementEx(longlong memory_manager)
+void ProcessMemoryManagementEx(int64_t memory_manager)
 
 {
   double current_time;
   int data_item;
   int *data_pointer;
-  longlong memory_offset;
-  longlong performance_counter;
-  ulonglong item_index;
+  int64_t memory_offset;
+  int64_t performance_counter;
+  uint64_t item_index;
   uint64_t *memory_block;
   int *list_pointer;
-  longlong list_head;
+  int64_t list_head;
   uint list_count;
-  longlong block_size;
-  ulonglong available_memory;
+  int64_t block_size;
+  uint64_t available_memory;
   uint64_t *stack_pointer;
-  longlong system_config;
-  ulonglong memory_capacity;
+  int64_t system_config;
+  uint64_t memory_capacity;
   double timestamp;
   uint64_t *context_pointer;
-  ulonglong allocation_size;
+  uint64_t allocation_size;
   
   if (performance_counter == 0) {
     QueryPerformanceCounter(&stack0x00000088);
     performance_counter = stack0x00000088;
   }
-  list_head = *(longlong *)(system_config + 0x5828);
+  list_head = *(int64_t *)(system_config + 0x5828);
   item_index = 0;
   current_time = *(double *)(system_config + 0x58b8);
   timestamp = (double)(performance_counter - system_system_data_memory) * system_system_data_memory;
   memory_capacity = item_index;
-  if ((int)(*(longlong *)(system_config + 0x5830) - list_head >> 3) != 0) {
+  if ((int)(*(int64_t *)(system_config + 0x5830) - list_head >> 3) != 0) {
     do {
       item_id = (int)memory_capacity;
       data_pointer = *(int **)(list_head + memory_capacity * 8);
@@ -1042,51 +1042,51 @@ void ProcessMemoryManagementEx(longlong memory_manager)
         data_item = *data_pointer;
         if ((data_item != system_system_control_memory) || (data_pointer[1] != system_system_control_memory)) {
           list_pointer = *(int **)(system_config + 0x5890);
-          available_memory = *(longlong *)(system_config + 0x5898) - (longlong)list_pointer >> 5;
+          available_memory = *(int64_t *)(system_config + 0x5898) - (int64_t)list_pointer >> 5;
           memory_capacity = item_index;
           if (available_memory == 0) goto LAB_1805b3eb4;
           goto LAB_1805b3e92;
         }
-        memory_offset = *(longlong *)(system_config + 0x5828) + memory_capacity * 8;
-        context_pointer = *(uint64_t **)(*(longlong *)(system_config + 0x5828) + memory_capacity * 8);
+        memory_offset = *(int64_t *)(system_config + 0x5828) + memory_capacity * 8;
+        context_pointer = *(uint64_t **)(*(int64_t *)(system_config + 0x5828) + memory_capacity * 8);
         list_head = memory_offset + 8;
         if (memory_offset != list_head) {
-          memory_offset = *(longlong *)(system_config + 0x5830);
+          memory_offset = *(int64_t *)(system_config + 0x5830);
           if (list_head != memory_offset) {
             // 移动内存块
             memmove(memory_offset, list_head, memory_offset - list_head);
           }
-          *(longlong *)(system_config + 0x5830) = memory_offset + -8;
+          *(int64_t *)(system_config + 0x5830) = memory_offset + -8;
         }
         FUN_18005ea90(system_config + 0x5808, &stack0x00000080);
         item_id = item_id + -1;
       }
-      list_head = *(longlong *)(system_config + 0x5828);
-      memory_capacity = (ulonglong)(item_id + 1U);
-    } while (item_id + 1U < (uint)(*(longlong *)(system_config + 0x5830) - list_head >> 3));
+      list_head = *(int64_t *)(system_config + 0x5828);
+      memory_capacity = (uint64_t)(item_id + 1U);
+    } while (item_id + 1U < (uint)(*(int64_t *)(system_config + 0x5830) - list_head >> 3));
   }
-  memory_offset = *(longlong *)(system_config + 0x5868);
-  if ((int)(*(longlong *)(system_config + 0x5870) - memory_offset >> 3) != 0) {
+  memory_offset = *(int64_t *)(system_config + 0x5868);
+  if ((int)(*(int64_t *)(system_config + 0x5870) - memory_offset >> 3) != 0) {
     do {
       item_id = (int)item_index;
-      if (*(double *)(*(longlong *)(memory_offset + item_index * 8) + 8) + 3.0 < timestamp) {
-        list_head = *(longlong *)(system_config + 0x5868) + item_index * 8;
-        context_pointer = *(uint64_t **)(*(longlong *)(system_config + 0x5868) + item_index * 8);
+      if (*(double *)(*(int64_t *)(memory_offset + item_index * 8) + 8) + 3.0 < timestamp) {
+        list_head = *(int64_t *)(system_config + 0x5868) + item_index * 8;
+        context_pointer = *(uint64_t **)(*(int64_t *)(system_config + 0x5868) + item_index * 8);
         memory_offset = list_head + 8;
         if (list_head != memory_offset) {
-          memory_offset = *(longlong *)(system_config + 0x5870);
+          memory_offset = *(int64_t *)(system_config + 0x5870);
           if (memory_offset != memory_offset) {
             // 移动内存块
             memmove(list_head, memory_offset, memory_offset - list_head);
           }
-          *(longlong *)(system_config + 0x5870) = memory_offset + -8;
+          *(int64_t *)(system_config + 0x5870) = memory_offset + -8;
         }
         FUN_18005ea90(system_config + 0x5848, &stack0x00000080);
         item_id = item_id + -1;
       }
-      memory_offset = *(longlong *)(system_config + 0x5868);
-      item_index = (ulonglong)(item_id + 1U);
-    } while (item_id + 1U < (uint)(*(longlong *)(system_config + 0x5870) - memory_offset >> 3));
+      memory_offset = *(int64_t *)(system_config + 0x5868);
+      item_index = (uint64_t)(item_id + 1U);
+    } while (item_id + 1U < (uint)(*(int64_t *)(system_config + 0x5870) - memory_offset >> 3));
   }
   return;
 LAB_1805b3e92:
@@ -1095,12 +1095,12 @@ LAB_1805b3e92:
     goto LAB_1805b3eb4;
   }
   list_count = (int)memory_capacity + 1;
-  memory_capacity = (ulonglong)list_count;
+  memory_capacity = (uint64_t)list_count;
   list_pointer = list_pointer + 8;
-  if (available_memory <= (ulonglong)(longlong)(int)list_count) {
+  if (available_memory <= (uint64_t)(int64_t)(int)list_count) {
 LAB_1805b3eb4:
-    memory_offset = *(longlong *)(system_config + 0x5848);
-    list_head = *(longlong *)(system_config + 0x5850);
+    memory_offset = *(int64_t *)(system_config + 0x5848);
+    list_head = *(int64_t *)(system_config + 0x5850);
     if (memory_offset == list_head) {
       memory_block = (uint64_t *)FUN_18062b1e0(system_memory_pool_ptr, 0xc98, 8, CONCAT71((uint7)(uint3)((uint)data_item >> 8), 3));
       *memory_block = 0;
@@ -1114,7 +1114,7 @@ LAB_1805b3eb4:
       memory_capacity = available_memory - 1;
       if (available_memory < memory_capacity) {
         context_pointer = memory_block;
-        if (*(longlong *)(system_config + 0x5858) - list_head >> 3 == -1) {
+        if (*(int64_t *)(system_config + 0x5858) - list_head >> 3 == -1) {
           // 清理内存块
           memset(list_head, 0, 0xfffffffffffffff8);
         }
@@ -1127,8 +1127,8 @@ LAB_1805b3eb4:
         }
         if (allocation_size != 0) {
           item_index = FUN_18062b420(system_memory_pool_ptr, allocation_size * 8, *(int8_t *)(system_config + 0x5860));
-          memory_offset = *(longlong *)(system_config + 0x5848);
-          list_head = *(longlong *)(system_config + 0x5850);
+          memory_offset = *(int64_t *)(system_config + 0x5848);
+          list_head = *(int64_t *)(system_config + 0x5850);
         }
         if (memory_offset != list_head) {
           // 移动内存块
@@ -1137,7 +1137,7 @@ LAB_1805b3eb4:
         // 清理内存块
         memset(item_index, 0, 0xfffffffffffffff8);
       }
-      *(ulonglong *)(system_config + 0x5850) = memory_offset + memory_capacity * 8;
+      *(uint64_t *)(system_config + 0x5850) = memory_offset + memory_capacity * 8;
     }
     context_pointer = memory_block;
     FUN_18005ea90(system_config + 0x5868, &stack0x00000080);

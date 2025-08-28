@@ -103,11 +103,11 @@ void render_system_advanced_data_processor(void) {
             
             // 处理数据转换
             void* converted_data = convert_render_data(
-                *(longlong*)(*resource_table + 8 + offset_index * 8) + 
+                *(int64_t*)(*resource_table + 8 + offset_index * 8) + 
                 (uint32_t)(base_offset + process_index * -0x800) * 8,
-                *(longlong*)(*resource_table + 8 + (uint32_t)process_index * 8) + 
+                *(int64_t*)(*resource_table + 8 + (uint32_t)process_index * 8) + 
                 (uint32_t)(target_index + process_index * -0x800) * 8,
-                *(longlong*)(*source_data + 8 + (uint32_t)source_index * 8) + 
+                *(int64_t*)(*source_data + 8 + (uint32_t)source_index * 8) + 
                 (uint32_t)((uint32_t)source_data[1] + source_index * -0x800) * 8
             );
             
@@ -173,7 +173,7 @@ void render_system_forced_data_processor(void) {
  * 该函数同步渲染系统数据，确保数据一致性
  * 处理数据转换、状态更新、资源分配等操作
  */
-void render_system_data_synchronizer(longlong *param_1, longlong *param_2, longlong param_3, longlong *param_4) {
+void render_system_data_synchronizer(int64_t *param_1, int64_t *param_2, int64_t param_3, int64_t *param_4) {
     if (!param_1 || !param_2) {
         return;
     }
@@ -182,7 +182,7 @@ void render_system_data_synchronizer(longlong *param_1, longlong *param_2, longl
     uint64_t security_key = 0xfffffffffffffffe;
     
     // 获取资源表
-    longlong** resource_table = (longlong**)*param_1;
+    int64_t** resource_table = (int64_t**)*param_1;
     uint32_t source_count = (uint32_t)param_1[1];
     uint32_t target_count = (uint32_t)param_2[1];
     
@@ -196,7 +196,7 @@ void render_system_data_synchronizer(longlong *param_1, longlong *param_2, longl
             sync_count--;
             uint32_t sync_index = (uint32_t)sync_count + source_count;
             uint32_t process_index = sync_index >> 0xb;
-            longlong sync_data = resource_table[(uint32_t)process_index + 1][sync_index + process_index * -0x800];
+            int64_t sync_data = resource_table[(uint32_t)process_index + 1][sync_index + process_index * -0x800];
             
             // 同步数据状态
             synchronize_render_data_state(param_1, sync_count, data_diff, sync_count, &sync_data);
@@ -221,26 +221,26 @@ void render_system_data_synchronizer(longlong *param_1, longlong *param_2, longl
  * 该函数比较渲染系统数据，返回优先级较高的数据
  * 执行数据比较、优先级判断、资源管理等操作
  */
-longlong* render_system_data_comparator(longlong *param_1, longlong *param_2, longlong *param_3) {
+int64_t* render_system_data_comparator(int64_t *param_1, int64_t *param_2, int64_t *param_3) {
     if (!param_1 || !param_2 || !param_3) {
         return param_1;
     }
     
     // 执行源数据回调
-    longlong* source_data = (longlong*)*param_2;
+    int64_t* source_data = (int64_t*)*param_2;
     if (source_data != NULL) {
         execute_data_callback(source_data);
     }
     
     // 执行目标数据回调
-    longlong* target_data = (longlong*)*param_1;
+    int64_t* target_data = (int64_t*)*param_1;
     if (target_data != NULL) {
         execute_data_callback(target_data);
     }
     
     // 比较数据优先级
     char compare_result = compare_data_priority(&target_data, &source_data);
-    target_data = (longlong*)*param_3;
+    target_data = (int64_t*)*param_3;
     
     if (compare_result == '\0') {
         // 执行目标数据回调
@@ -249,7 +249,7 @@ longlong* render_system_data_comparator(longlong *param_1, longlong *param_2, lo
         }
         
         // 再次比较数据优先级
-        source_data = (longlong*)*param_1;
+        source_data = (int64_t*)*param_1;
         if (source_data != NULL) {
             execute_data_callback(source_data);
         }
@@ -266,7 +266,7 @@ longlong* render_system_data_comparator(longlong *param_1, longlong *param_2, lo
         }
         
         // 比较源数据优先级
-        source_data = (longlong*)*param_2;
+        source_data = (int64_t*)*param_2;
         if (source_data != NULL) {
             execute_data_callback(source_data);
         }
@@ -280,7 +280,7 @@ longlong* render_system_data_comparator(longlong *param_1, longlong *param_2, lo
         if (target_data != NULL) {
             execute_data_callback(target_data);
         }
-        source_data = (longlong*)*param_1;
+        source_data = (int64_t*)*param_1;
         if (source_data != NULL) {
             execute_data_callback(source_data);
         }
@@ -304,14 +304,14 @@ longlong* render_system_data_comparator(longlong *param_1, longlong *param_2, lo
  * 该函数交换渲染系统数据
  * 执行数据交换、状态更新、资源管理等操作
  */
-longlong* render_system_data_exchanger(longlong *param_1, longlong *param_2, longlong *param_3, longlong *param_4) {
+int64_t* render_system_data_exchanger(int64_t *param_1, int64_t *param_2, int64_t *param_3, int64_t *param_4) {
     if (!param_1 || !param_2 || !param_3 || !param_4) {
         return param_1;
     }
     
     // 获取源和目标数据
-    longlong source_data = *param_3;
-    longlong target_data = *param_2;
+    int64_t source_data = *param_3;
+    int64_t target_data = *param_2;
     uint32_t target_index = *(uint*)(param_2 + 1);
     
     // 执行数据交换循环
@@ -322,8 +322,8 @@ longlong* render_system_data_exchanger(longlong *param_1, longlong *param_2, lon
             execute_flag_callback(param_4);
             
             // 获取源数据项
-            longlong* source_item = *(longlong**)
-                (*(longlong*)(target_data + 8 + (uint32_t)(target_index >> 0xb) * 8) + 
+            int64_t* source_item = *(int64_t**)
+                (*(int64_t*)(target_data + 8 + (uint32_t)(target_index >> 0xb) * 8) + 
                  (uint32_t)(target_index + (target_index >> 0xb) * -0x800) * 8);
             
             if (source_item != NULL) {
@@ -346,8 +346,8 @@ longlong* render_system_data_exchanger(longlong *param_1, longlong *param_2, lon
         // 处理目标数据
         while (true) {
             // 获取目标数据项
-            longlong* target_item = *(longlong**)
-                (*(longlong*)(source_data + 8 + (uint32_t)(source_index >> 0xb) * 8) + 
+            int64_t* target_item = *(int64_t**)
+                (*(int64_t*)(source_data + 8 + (uint32_t)(source_index >> 0xb) * 8) + 
                  (uint32_t)(source_index + (source_index >> 0xb) * -0x800) * 8);
             
             if (target_item != NULL) {
@@ -369,12 +369,12 @@ longlong* render_system_data_exchanger(longlong *param_1, longlong *param_2, lon
         // 交换数据项
         uint32_t exchange_index1 = (uint32_t)param_3[1] >> 0xb;
         void* exchange_data1 = *(void**)
-            (*(longlong*)(*param_3 + 8 + (uint32_t)exchange_index1 * 8) + 
+            (*(int64_t*)(*param_3 + 8 + (uint32_t)exchange_index1 * 8) + 
              (uint32_t)((uint32_t)param_3[1] + exchange_index1 * -0x800) * 8);
         
         uint32_t exchange_index2 = (uint32_t)target_data >> 0xb;
         void* exchange_data2 = *(void**)
-            (*(longlong*)(*param_2 + 8 + (uint32_t)exchange_index2 * 8) + 
+            (*(int64_t*)(*param_2 + 8 + (uint32_t)exchange_index2 * 8) + 
              (uint32_t)((uint32_t)target_data + exchange_index2 * -0x800) * 8);
         
         // 执行数据交换
@@ -406,17 +406,17 @@ longlong* render_system_data_exchanger(longlong *param_1, longlong *param_2, lon
  * 该函数在渲染系统数据中插入新数据
  * 执行数据插入、状态更新、资源管理等操作
  */
-void render_system_data_inserter(longlong *param_1, longlong param_2, longlong param_3, longlong param_4, longlong *param_5) {
+void render_system_data_inserter(int64_t *param_1, int64_t param_2, int64_t param_3, int64_t param_4, int64_t *param_5) {
     if (!param_1 || !param_5) {
         return;
     }
     
     // 计算插入位置
-    longlong insert_position = param_4 * 2 + 2;
+    int64_t insert_position = param_4 * 2 + 2;
     if (insert_position < param_3) {
         int32_t source_count = (int32_t)param_1[1];
-        longlong source_data = *param_1;
-        longlong current_position = param_4;
+        int64_t source_data = *param_1;
+        int64_t current_position = param_4;
         
         do {
             // 计算插入索引
@@ -424,8 +424,8 @@ void render_system_data_inserter(longlong *param_1, longlong param_2, longlong p
             uint32_t process_index = insert_index >> 0xb;
             
             // 获取源数据项
-            longlong* source_item = *(longlong**)
-                (*(longlong*)(source_data + 8 + (uint32_t)process_index * 8) + 
+            int64_t* source_item = *(int64_t**)
+                (*(int64_t*)(source_data + 8 + (uint32_t)process_index * 8) + 
                  (uint32_t)(insert_index + process_index * -0x800) * 8);
             
             if (source_item != NULL) {
@@ -435,8 +435,8 @@ void render_system_data_inserter(longlong *param_1, longlong param_2, longlong p
             // 获取目标数据项
             insert_index = (uint32_t)insert_position + source_count;
             process_index = insert_index >> 0xb;
-            longlong* target_item = *(longlong**)
-                (*(longlong*)(source_data + 8 + (uint32_t)process_index * 8) + 
+            int64_t* target_item = *(int64_t**)
+                (*(int64_t*)(source_data + 8 + (uint32_t)process_index * 8) + 
                  (uint32_t)(insert_index + process_index * -0x800) * 8);
             
             if (target_item != NULL) {
@@ -458,10 +458,10 @@ void render_system_data_inserter(longlong *param_1, longlong param_2, longlong p
             uint32_t process_index3 = process_index2 >> 0xb;
             
             *(void**)
-                (*(longlong*)(source_data + 8 + (uint32_t)process_index3 * 8) + 
+                (*(int64_t*)(source_data + 8 + (uint32_t)process_index3 * 8) + 
                  (uint32_t)(process_index2 + process_index3 * -0x800) * 8) =
                 *(void**)
-                    (*(longlong*)(source_data + 8 + (uint32_t)process_index1 * 8) + 
+                    (*(int64_t*)(source_data + 8 + (uint32_t)process_index1 * 8) + 
                      (uint32_t)(final_index + process_index1 * -0x800) * 8);
             
             // 更新位置
@@ -479,17 +479,17 @@ void render_system_data_inserter(longlong *param_1, longlong param_2, longlong p
         uint32_t process_index3 = process_index2 >> 0xb;
         
         *(void**)
-            (*(longlong*)(*param_1 + 8 + (uint32_t)process_index3 * 8) + 
+            (*(int64_t*)(*param_1 + 8 + (uint32_t)process_index3 * 8) + 
              (uint32_t)(process_index2 + process_index3 * -0x800) * 8) =
             *(void**)
-                (*(longlong)(*param_1 + 8 + (uint32_t)process_index * 8) + 
+                (*(int64_t)(*param_1 + 8 + (uint32_t)process_index * 8) + 
                  (uint32_t)(final_index + process_index * -0x800) * 8);
         
         param_4 = insert_position - 1;
     }
     
     // 执行二分查找插入
-    longlong data_start = *param_1;
+    int64_t data_start = *param_1;
     int32_t data_count = (int32_t)param_1[1];
     int32_t insert_index;
     
@@ -497,7 +497,7 @@ void render_system_data_inserter(longlong *param_1, longlong param_2, longlong p
         param_4 = param_4 - 1 >> 1;
         
         // 执行插入数据回调
-        longlong* insert_data = (longlong*)*param_5;
+        int64_t* insert_data = (int64_t*)*param_5;
         if (insert_data != NULL) {
             execute_data_callback(insert_data);
         }
@@ -507,8 +507,8 @@ void render_system_data_inserter(longlong *param_1, longlong param_2, longlong p
         uint32_t process_index = current_index >> 0xb;
         uint32_t offset_index = current_index & 0x7ff;
         
-        longlong* current_item = *(longlong**)
-            (*(longlong*)(data_start + 8 + (uint32_t)process_index * 8) + 
+        int64_t* current_item = *(int64_t**)
+            (*(int64_t*)(data_start + 8 + (uint32_t)process_index * 8) + 
              (uint32_t)offset_index * 8);
         
         if (current_item != NULL) {
@@ -524,9 +524,9 @@ void render_system_data_inserter(longlong *param_1, longlong param_2, longlong p
         uint32_t process_index1 = final_index >> 0xb;
         
         *(void**)
-            (*(longlong*)(data_start + 8 + (uint32_t)process_index1 * 8) + 
+            (*(int64_t*)(data_start + 8 + (uint32_t)process_index1 * 8) + 
              (uint32_t)(final_index + process_index1 * -0x800) * 8) =
-            *(void**)(*(longlong*)(data_start + 8 + (uint32_t)process_index * 8) + 
+            *(void**)(*(int64_t*)(data_start + 8 + (uint32_t)process_index * 8) + 
                       (uint32_t)offset_index * 8);
     }
     
@@ -534,8 +534,8 @@ void render_system_data_inserter(longlong *param_1, longlong param_2, longlong p
     uint32_t final_index = insert_index + data_count;
     uint32_t process_index = final_index >> 0xb;
     
-    *(longlong*)
-        (*(longlong*)(data_start + 8 + (uint32_t)process_index * 8) + 
+    *(int64_t*)
+        (*(int64_t*)(data_start + 8 + (uint32_t)process_index * 8) + 
          (uint32_t)(final_index + process_index * -0x800) * 8) =
         *param_5;
 }
@@ -547,7 +547,7 @@ void render_system_data_inserter(longlong *param_1, longlong param_2, longlong p
  * 该函数清理渲染系统数据
  * 释放内存、重置状态、清理资源
  */
-void render_system_data_cleaner(longlong *param_1) {
+void render_system_data_cleaner(int64_t *param_1) {
     if (!param_1) {
         return;
     }
@@ -585,7 +585,7 @@ void render_system_data_cleaner(longlong *param_1) {
  * 该函数释放渲染系统的资源
  * 根据标志决定是否释放内存资源
  */
-uint64_t* render_system_resource_releaser(uint64_t *param_1, ulonglong param_2, uint64_t param_3, uint64_t param_4) {
+uint64_t* render_system_resource_releaser(uint64_t *param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4) {
     if (!param_1) {
         return NULL;
     }
@@ -630,8 +630,8 @@ void render_system_memory_manager(uint64_t *param_1) {
     uint64_t memory_address = (uint64_t)memory_ptr & 0xffffffffffc00000;
     if (memory_address != 0) {
         // 处理内存块
-        longlong block_offset = memory_address + 0x80 + 
-            ((longlong)memory_ptr - memory_address >> 0x10) * 0x50;
+        int64_t block_offset = memory_address + 0x80 + 
+            ((int64_t)memory_ptr - memory_address >> 0x10) * 0x50;
         block_offset = block_offset - (uint64_t)*(uint*)(block_offset + 4);
         
         // 检查内存块状态
@@ -667,12 +667,12 @@ static void synchronize_data_states(void);
 static void execute_final_data_processing(void);
 static void execute_conditional_data_processing(void);
 static void execute_forced_data_processing(void);
-static void synchronize_render_data_state(longlong* source, longlong count, longlong diff, longlong param, longlong* data);
-static void process_target_render_data(longlong* param1, longlong* param2, longlong param3, longlong* param4);
-static void process_resource_exchange(longlong* param1, longlong* param2, uint32_t source_count, uint32_t target_count);
-static void execute_data_callback(longlong* data);
-static char compare_data_priority(longlong* data1, longlong* data2);
-static void execute_flag_callback(longlong* flag);
+static void synchronize_render_data_state(int64_t* source, int64_t count, int64_t diff, int64_t param, int64_t* data);
+static void process_target_render_data(int64_t* param1, int64_t* param2, int64_t param3, int64_t* param4);
+static void process_resource_exchange(int64_t* param1, int64_t* param2, uint32_t source_count, uint32_t target_count);
+static void execute_data_callback(int64_t* data);
+static char compare_data_priority(int64_t* data1, int64_t* data2);
+static void execute_flag_callback(int64_t* flag);
 static void release_data_memory(void);
 static void free_resource_memory(void* ptr, size_t size, void* param1, void* param2, uint64_t flags);
 static void release_memory_block(void);

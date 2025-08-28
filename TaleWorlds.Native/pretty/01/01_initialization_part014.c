@@ -5,22 +5,22 @@
 
 // 函数: 字符串处理函数 - 类型1
 // 功能: 处理字符串拼接和内存操作，使用加密保护
-void process_string_with_encryption(longlong string_param1, longlong string_param2, longlong string_param3)
+void process_string_with_encryption(int64_t string_param1, int64_t string_param2, int64_t string_param3)
 
 {
-  longlong string_length1;
-  longlong string_length2;
-  longlong string_length3;
+  int64_t string_length1;
+  int64_t string_length2;
+  int64_t string_length3;
   int8_t encryption_buffer[32];
   uint64_t encryption_key;
   void *string_table_ptr;
   int8_t *output_buffer;
   int32_t buffer_size;
   int8_t work_buffer[1032];
-  ulonglong checksum;
+  uint64_t checksum;
   
   encryption_key = 0xfffffffffffffffe;
-  checksum = GLOBAL_CHECKSUM_00a8 ^ (ulonglong)encryption_buffer;
+  checksum = GLOBAL_CHECKSUM_00a8 ^ (uint64_t)encryption_buffer;
   string_table_ptr = &STRING_TABLE_bb30;
   output_buffer = work_buffer;
   buffer_size = 0;
@@ -36,11 +36,11 @@ void process_string_with_encryption(longlong string_param1, longlong string_para
       string_length2 = string_length2 + 1;
     } while (*(char *)(string_length2 + string_param3) != '\0');
     // 复制字符串前缀到输出缓冲区
-    copy_string_prefix(output_buffer, *(longlong *)(string_param1 + 8), string_length1 - *(longlong *)(string_param1 + 8));
+    copy_string_prefix(output_buffer, *(int64_t *)(string_param1 + 8), string_length1 - *(int64_t *)(string_param1 + 8));
   }
   string_table_ptr = &STRING_TABLE_bcb0;
   // 执行加密保护的操作
-  execute_encrypted_operation(checksum ^ (ulonglong)encryption_buffer);
+  execute_encrypted_operation(checksum ^ (uint64_t)encryption_buffer);
 }
 
 
@@ -80,12 +80,12 @@ void safe_mutex_unlock(uint64_t *mutex_handle)
 
 // 函数: 条件变量等待函数
 // 功能: 等待条件变量满足，处理超时和错误
-uint64_t wait_for_condition_variable(longlong condition_var, uint64_t timeout_param1, uint64_t timeout_param2, uint64_t timeout_param3)
+uint64_t wait_for_condition_variable(int64_t condition_var, uint64_t timeout_param1, uint64_t timeout_param2, uint64_t timeout_param3)
 
 {
   char condition_status;
   int wait_result;
-  longlong mutex_ptr;
+  int64_t mutex_ptr;
   uint64_t return_value;
   int8_t wait_flag;
   
@@ -118,14 +118,14 @@ uint64_t wait_for_condition_variable(longlong condition_var, uint64_t timeout_pa
 
 // 函数: 队列处理函数
 // 功能: 处理队列元素的插入和移除操作
-longlong process_queue_element(int32_t *queue_head, int32_t *queue_element)
+int64_t process_queue_element(int32_t *queue_head, int32_t *queue_element)
 
 {
   int32_t element_value;
   char processing_result;
   void *error_handler;
   
-  if (*(longlong *)(queue_head + 0x18) != 0) {
+  if (*(int64_t *)(queue_head + 0x18) != 0) {
     processing_result = (**(code **)(queue_head + 0x1a))(queue_element, queue_head + 0x14);
     if (processing_result == '\0') {
       if (GLOBAL_ERROR_FLAG_82860 == '\0') {
@@ -136,7 +136,7 @@ longlong process_queue_element(int32_t *queue_head, int32_t *queue_element)
         log_runtime_error(&ERROR_MESSAGE_bc00, error_handler);
       }
       *queue_head = queue_head[0x12];
-      return (ulonglong)(uint3)((uint)queue_head[0x12] >> 8) << 8;
+      return (uint64_t)(uint3)((uint)queue_head[0x12] >> 8) << 8;
     }
   }
   element_value = *queue_element;
@@ -151,13 +151,13 @@ longlong process_queue_element(int32_t *queue_head, int32_t *queue_element)
 void update_queue_element(uint64_t queue_handle, int32_t element_value)
 
 {
-  longlong queue_ptr;
+  int64_t queue_ptr;
   char validation_result;
   void *error_handler;
   int32_t validation_buffer[6];
   
   queue_ptr = GLOBAL_QUEUE_POINTER_86920;
-  if ((*(longlong *)(GLOBAL_QUEUE_POINTER_86920 + 0x22f0) != 0) &&
+  if ((*(int64_t *)(GLOBAL_QUEUE_POINTER_86920 + 0x22f0) != 0) &&
      (validation_buffer[0] = element_value, validation_result = (**(code **)(GLOBAL_QUEUE_POINTER_86920 + 0x22f8))(validation_buffer),
      element_value = validation_buffer[0], validation_result == '\0')) {
     if (GLOBAL_ERROR_FLAG_82860 == '\0') {
@@ -179,7 +179,7 @@ void update_queue_element(uint64_t queue_handle, int32_t element_value)
 // 函数: 内存释放包装器
 // 功能: 安全释放内存，支持条件释放
 uint64_t *
-safe_memory_free(uint64_t *memory_ptr, ulonglong free_flags, uint64_t param3, uint64_t param4)
+safe_memory_free(uint64_t *memory_ptr, uint64_t free_flags, uint64_t param3, uint64_t param4)
 
 {
   *memory_ptr = &DEALLOCATED_MEMORY_bcb0;
@@ -193,10 +193,10 @@ safe_memory_free(uint64_t *memory_ptr, ulonglong free_flags, uint64_t param3, ui
 
 // 函数: 字符串设置函数
 // 功能: 安全设置字符串内容，处理长度限制
-void set_string_content(longlong string_obj, longlong string_source)
+void set_string_content(int64_t string_obj, int64_t string_source)
 
 {
-  longlong source_length;
+  int64_t source_length;
   
   if (string_source == 0) {
     *(int32_t *)(string_obj + 0x10) = 0;
@@ -223,12 +223,12 @@ void set_string_content(longlong string_obj, longlong string_source)
 
 // 函数: 字符串复制函数
 // 功能: 安全复制字符串内容，处理缓冲区大小
-void copy_string_content(longlong string_obj, uint64_t source_ptr, int copy_length)
+void copy_string_content(int64_t string_obj, uint64_t source_ptr, int copy_length)
 
 {
   if (copy_length + 1 < 0x20) {
     // 复制字符串到对象内部缓冲区
-    memcpy(*(int8_t **)(string_obj + 8), source_ptr, (longlong)copy_length);
+    memcpy(*(int8_t **)(string_obj + 8), source_ptr, (int64_t)copy_length);
   }
   **(int8_t **)(string_obj + 8) = 0;
   *(int32_t *)(string_obj + 0x10) = 0;
@@ -252,7 +252,7 @@ void simple_memcpy_wrapper(void)
 void reset_object_state(int8_t *object_ptr)
 
 {
-  longlong object_base;
+  int64_t object_base;
   
   *object_ptr = 0;
   *(int32_t *)(object_base + 0x10) = 0;
@@ -280,22 +280,22 @@ uint64_t * initialize_memory_structure(uint64_t *memory_ptr)
 
 // 函数: 字符串处理函数 - 类型2
 // 功能: 处理字符串拼接和内存操作，使用加密保护
-void process_string_with_encryption_type2(longlong string_param1, longlong string_param2, longlong string_param3)
+void process_string_with_encryption_type2(int64_t string_param1, int64_t string_param2, int64_t string_param3)
 
 {
-  longlong string_length1;
-  longlong string_length2;
-  longlong string_length3;
+  int64_t string_length1;
+  int64_t string_length2;
+  int64_t string_length3;
   int8_t encryption_buffer[32];
   uint64_t encryption_key;
   void *string_table_ptr;
   int8_t *output_buffer;
   int32_t buffer_size;
   int8_t work_buffer[32];
-  ulonglong checksum;
+  uint64_t checksum;
   
   encryption_key = 0xfffffffffffffffe;
-  checksum = GLOBAL_CHECKSUM_00a8 ^ (ulonglong)encryption_buffer;
+  checksum = GLOBAL_CHECKSUM_00a8 ^ (uint64_t)encryption_buffer;
   string_table_ptr = &STRING_TABLE_bc80;
   output_buffer = work_buffer;
   buffer_size = 0;
@@ -311,18 +311,18 @@ void process_string_with_encryption_type2(longlong string_param1, longlong strin
       string_length2 = string_length2 + 1;
     } while (*(char *)(string_length2 + string_param3) != '\0');
     // 复制字符串前缀到输出缓冲区
-    copy_string_prefix(output_buffer, *(longlong *)(string_param1 + 8), string_length1 - *(longlong *)(string_param1 + 8));
+    copy_string_prefix(output_buffer, *(int64_t *)(string_param1 + 8), string_length1 - *(int64_t *)(string_param1 + 8));
   }
   string_table_ptr = &STRING_TABLE_bcb0;
   // 执行加密保护的操作
-  execute_encrypted_operation(checksum ^ (ulonglong)encryption_buffer);
+  execute_encrypted_operation(checksum ^ (uint64_t)encryption_buffer);
 }
 
 
 
 // 函数: 小内存块释放函数
 // 功能: 释放小块内存，支持条件释放
-uint64_t * free_small_memory_block(uint64_t *memory_ptr, ulonglong free_flags)
+uint64_t * free_small_memory_block(uint64_t *memory_ptr, uint64_t free_flags)
 
 {
   *memory_ptr = &DEALLOCATED_MEMORY_bcb0;
@@ -352,7 +352,7 @@ void simple_mutex_unlock(uint64_t *mutex_handle)
 
 // 函数: 条件变量通知函数
 // 功能: 通知条件变量，广播等待的线程
-void notify_condition_variable(longlong condition_var)
+void notify_condition_variable(int64_t condition_var)
 
 {
   int notify_result;
@@ -391,7 +391,7 @@ void initialize_global_pointers(uint64_t *ptr_array)
 // 函数: 指针初始化和释放函数
 // 功能: 初始化指针并支持条件释放
 uint64_t *
-initialize_and_free_pointers(uint64_t *ptr_array, ulonglong free_flags, uint64_t param3, uint64_t param4)
+initialize_and_free_pointers(uint64_t *ptr_array, uint64_t free_flags, uint64_t param3, uint64_t param4)
 
 {
   *ptr_array = &GLOBAL_POINTER_bdc8;
@@ -407,12 +407,12 @@ initialize_and_free_pointers(uint64_t *ptr_array, ulonglong free_flags, uint64_t
 
 // 函数: 内存块清理函数
 // 功能: 清理内存块，逐个处理元素
-void cleanup_memory_blocks(longlong *memory_range)
+void cleanup_memory_blocks(int64_t *memory_range)
 
 {
-  longlong block_start;
-  longlong block_end;
-  longlong current_block;
+  int64_t block_start;
+  int64_t block_end;
+  int64_t current_block;
   
   block_start = memory_range[1];
   for (current_block = *memory_range; current_block != block_start; current_block = current_block + 0x100) {
@@ -429,7 +429,7 @@ void cleanup_memory_blocks(longlong *memory_range)
 
 // 函数: 数组清理函数
 // 功能: 清理数组元素，重置状态
-void cleanup_array_elements(longlong *array_range)
+void cleanup_array_elements(int64_t *array_range)
 
 {
   uint64_t *array_start;
@@ -458,22 +458,22 @@ void cleanup_array_elements(longlong *array_range)
 
 // 函数: 指针释放函数
 // 功能: 安全释放指针，处理引用计数
-void release_pointer_safely(ulonglong *pointer_ref)
+void release_pointer_safely(uint64_t *pointer_ref)
 
 {
   int *ref_count_ptr;
   uint64_t *pointer_to_free;
-  longlong memory_block;
-  ulonglong block_base;
+  int64_t memory_block;
+  uint64_t block_base;
   
   pointer_to_free = (uint64_t *)*pointer_ref;
   if (pointer_to_free == (uint64_t *)0x0) {
     return;
   }
-  block_base = (ulonglong)pointer_to_free & 0xffffffffffc00000;
+  block_base = (uint64_t)pointer_to_free & 0xffffffffffc00000;
   if (block_base != 0) {
-    memory_block = block_base + 0x80 + ((longlong)pointer_to_free - block_base >> 0x10) * 0x50;
-    memory_block = memory_block - (ulonglong)*(uint *)(memory_block + 4);
+    memory_block = block_base + 0x80 + ((int64_t)pointer_to_free - block_base >> 0x10) * 0x50;
+    memory_block = memory_block - (uint64_t)*(uint *)(memory_block + 4);
     if ((*(void ***)(block_base + 0x70) == &ExceptionList) && (*(char *)(memory_block + 0xe) == '\0')) {
       *pointer_to_free = *(uint64_t *)(memory_block + 0x20);
       *(uint64_t **)(memory_block + 0x20) = pointer_to_free;
@@ -497,22 +497,22 @@ void release_pointer_safely(ulonglong *pointer_ref)
 
 // 函数: 容器插入函数
 // 功能: 向容器中插入元素，处理扩容和错误
-int insert_into_container(longlong container_ptr, longlong element_ptr)
+int insert_into_container(int64_t container_ptr, int64_t element_ptr)
 
 {
   uint64_t ***container_manager;
-  longlong container_capacity;
+  int64_t container_capacity;
   void *error_handler;
-  longlong container_data;
+  int64_t container_data;
   int insert_index;
-  longlong element_count;
-  longlong old_data;
-  longlong new_data;
-  ulonglong current_size;
+  int64_t element_count;
+  int64_t old_data;
+  int64_t new_data;
+  uint64_t current_size;
   uint64_t ****container_ptr_array;
   uint64_t ***temp_container;
   uint64_t *element_ref;
-  longlong stack_data_130;
+  int64_t stack_data_130;
   int32_t stack_data_128;
   uint64_t stack_data_120;
   uint64_t stack_data_118;
@@ -585,21 +585,21 @@ int insert_into_container(longlong container_ptr, longlong element_ptr)
   stack_data_80 = 0;
   stack_data_78 = 0;
   stack_data_70 = 0;
-  current_size = *(ulonglong *)(container_ptr + 0x10);
-  if (current_size < *(ulonglong *)(container_ptr + 0x18)) {
-    *(ulonglong *)(container_ptr + 0x10) = current_size + 0x100;
+  current_size = *(uint64_t *)(container_ptr + 0x10);
+  if (current_size < *(uint64_t *)(container_ptr + 0x18)) {
+    *(uint64_t *)(container_ptr + 0x10) = current_size + 0x100;
     process_container_element(current_size, &element_ref);
     container_ptr_array = *(uint64_t *****)(container_ptr + 0x10);
     goto INSERT_COMPLETE;
   }
-  old_data = *(longlong *)(container_ptr + 8);
-  element_count = (longlong)(current_size - old_data) >> 8;
+  old_data = *(int64_t *)(container_ptr + 8);
+  element_count = (int64_t)(current_size - old_data) >> 8;
   if (element_count == 0) {
     element_count = 1;
 CALCULATE_NEW_SIZE:
     container_capacity = allocate_container_memory(GLOBAL_MEMORY_POOL_ed18, element_count << 8, *(int8_t *)(container_ptr + 0x20));
-    current_size = *(ulonglong *)(container_ptr + 0x10);
-    old_data = *(longlong *)(container_ptr + 8);
+    current_size = *(uint64_t *)(container_ptr + 0x10);
+    old_data = *(int64_t *)(container_ptr + 8);
   }
   else {
     element_count = element_count * 2;
@@ -609,24 +609,24 @@ CALCULATE_NEW_SIZE:
   container_manager = temp_container;
   process_container_element(temp_container, &element_ref);
   container_ptr_array = (uint64_t ****)(container_manager + 0x20);
-  old_data = *(longlong *)(container_ptr + 0x10);
-  new_data = *(longlong *)(container_ptr + 8);
+  old_data = *(int64_t *)(container_ptr + 0x10);
+  new_data = *(int64_t *)(container_ptr + 8);
   if (new_data != old_data) {
     do {
       cleanup_single_block(new_data);
       new_data = new_data + 0x100;
     } while (new_data != old_data);
-    new_data = *(longlong *)(container_ptr + 8);
+    new_data = *(int64_t *)(container_ptr + 8);
   }
   if (new_data != 0) {
     // 清理旧内存
     cleanup_remaining_memory(new_data);
   }
-  *(longlong *)(container_ptr + 8) = container_capacity;
+  *(int64_t *)(container_ptr + 8) = container_capacity;
   *(uint64_t *****)(container_ptr + 0x10) = container_ptr_array;
-  *(longlong *)(container_ptr + 0x18) = element_count * 0x100 + container_capacity;
+  *(int64_t *)(container_ptr + 0x18) = element_count * 0x100 + container_capacity;
 INSERT_COMPLETE:
-  insert_index = (int)((ulonglong)((longlong)container_ptr_array - *(longlong *)(container_ptr + 8)) >> 8) + -1;
+  insert_index = (int)((uint64_t)((int64_t)container_ptr_array - *(int64_t *)(container_ptr + 8)) >> 8) + -1;
   *(int *)(container_ptr + 0x68) = insert_index;
   temp_container = &temp_container_68;
   cleanup_container_data(&temp_container_68, stack_data_58);
@@ -662,31 +662,31 @@ void cleanup_single_element(uint64_t *element_ptr, uint64_t param2, uint64_t par
 
 // 函数: 元素查找函数
 // 功能: 在容器中查找元素，返回索引
-ulonglong find_element_in_container(longlong container_ptr, longlong search_key)
+uint64_t find_element_in_container(int64_t container_ptr, int64_t search_key)
 
 {
   byte *element_name;
   int element_length;
-  longlong container_data;
+  int64_t container_data;
   byte *search_name;
   int search_length;
   int name_compare;
-  ulonglong current_index;
-  longlong name_offset;
+  uint64_t current_index;
+  int64_t name_offset;
   uint char_diff;
-  ulonglong total_elements;
-  ulonglong search_index;
-  ulonglong compare_result;
+  uint64_t total_elements;
+  uint64_t search_index;
+  uint64_t compare_result;
   
-  current_index = (ulonglong)*(int *)(container_ptr + 0x68);
-  container_data = *(longlong *)(container_ptr + 8);
-  if (current_index < (ulonglong)(*(longlong *)(container_ptr + 0x10) - container_data >> 8)) {
+  current_index = (uint64_t)*(int *)(container_ptr + 0x68);
+  container_data = *(int64_t *)(container_ptr + 8);
+  if (current_index < (uint64_t)(*(int64_t *)(container_ptr + 0x10) - container_data >> 8)) {
     search_length = *(int *)(search_key + 0x10);
     element_length = *(int *)(current_index * 0x100 + 0x10 + container_data);
     if (element_length == search_length) {
       if (element_length != 0) {
         element_name = *(byte **)(current_index * 0x100 + 8 + container_data);
-        name_offset = *(longlong *)(search_key + 8) - (longlong)element_name;
+        name_offset = *(int64_t *)(search_key + 8) - (int64_t)element_name;
         do {
           search_name = element_name + name_offset;
           char_diff = (uint)*element_name - (uint)*search_name;
@@ -703,7 +703,7 @@ FOUND_ELEMENT:
   }
 SEARCH_ALL_ELEMENTS:
   current_index = 0;
-  total_elements = *(longlong *)(container_ptr + 0x10) - container_data >> 8;
+  total_elements = *(int64_t *)(container_ptr + 0x10) - container_data >> 8;
   if (total_elements != 0) {
     search_length = *(int *)(search_key + 0x10);
     search_index = current_index;
@@ -713,7 +713,7 @@ SEARCH_ALL_ELEMENTS:
       if (element_length == search_length) {
         if (element_length != 0) {
           element_name = *(byte **)(search_index + 8 + container_data);
-          name_offset = *(longlong *)(search_key + 8) - (longlong)element_name;
+          name_offset = *(int64_t *)(search_key + 8) - (int64_t)element_name;
           do {
             search_name = element_name + name_offset;
             name_compare = (uint)*element_name - (uint)*search_name;
@@ -729,9 +729,9 @@ COMPARE_COMPLETE:
       }
       else if (element_length == 0) goto COMPARE_COMPLETE;
       char_diff = (int)current_index + 1;
-      current_index = (ulonglong)char_diff;
+      current_index = (uint64_t)char_diff;
       search_index = search_index + 0x100;
-    } while ((ulonglong)(longlong)(int)char_diff < total_elements);
+    } while ((uint64_t)(int64_t)(int)char_diff < total_elements);
   }
   return 0xffffffff;
 }
@@ -740,14 +740,14 @@ COMPARE_COMPLETE:
 
 // 函数: 容器初始化函数
 // 功能: 初始化容器，设置管理器和回调
-void initialize_container(longlong *container_ptr, uint64_t *config_ptr)
+void initialize_container(int64_t *container_ptr, uint64_t *config_ptr)
 
 {
-  longlong *allocated_memory;
-  longlong *temp_stack_8;
+  int64_t *allocated_memory;
+  int64_t *temp_stack_8;
   uint64_t *temp_stack_10;
-  longlong *temp_stack_18;
-  longlong **temp_stack_20;
+  int64_t *temp_stack_18;
+  int64_t **temp_stack_20;
   int32_t allocation_flags;
   uint64_t allocation_params;
   
@@ -756,11 +756,11 @@ void initialize_container(longlong *container_ptr, uint64_t *config_ptr)
   temp_stack_8 = container_ptr;
   temp_stack_10 = config_ptr;
   initialize_container_manager();
-  allocated_memory = (longlong *)allocate_container_memory(GLOBAL_MEMORY_POOL_ed18, 200, 8, 3, allocation_flags, allocation_params);
+  allocated_memory = (int64_t *)allocate_container_memory(GLOBAL_MEMORY_POOL_ed18, 200, 8, 3, allocation_flags, allocation_params);
   temp_stack_8 = allocated_memory;
   setup_container_manager(allocated_memory);
-  *allocated_memory = (longlong)&GLOBAL_CONTAINER_cb00;
-  allocated_memory[0x18] = (longlong)&CONTAINER_CALLBACK_6dd0;
+  *allocated_memory = (int64_t)&GLOBAL_CONTAINER_cb00;
+  allocated_memory[0x18] = (int64_t)&CONTAINER_CALLBACK_6dd0;
   temp_stack_18 = allocated_memory;
   (*(code **)(*allocated_memory + 0x28))(allocated_memory);
   allocation_params = GLOBAL_CONFIG_82868;
@@ -769,7 +769,7 @@ void initialize_container(longlong *container_ptr, uint64_t *config_ptr)
   (*(code **)(*allocated_memory + 0x28))(allocated_memory);
   configure_container(allocation_params, &temp_stack_8);
   (*(code **)(*allocated_memory + 0x38))(allocated_memory);
-  GLOBAL_COUNTER_52b0 = (longlong)*(int *)(GLOBAL_CONFIG_86920 + 0x224);
+  GLOBAL_COUNTER_52b0 = (int64_t)*(int *)(GLOBAL_CONFIG_86920 + 0x224);
   configure_container_data(&GLOBAL_CONFIG_52c0, config_ptr);
   *config_ptr = &GLOBAL_ELEMENT_3c3e0;
   if (config_ptr[1] != 0) {
@@ -792,9 +792,9 @@ void initialize_game_system(void)
   uint64_t system_config;
   char config_status;
   int config_result;
-  longlong ***system_manager;
-  ulonglong config_key;
-  longlong system_data;
+  int64_t ***system_manager;
+  uint64_t config_key;
+  int64_t system_data;
   uint64_t *config_ptr;
   int32_t *config_data;
   int8_t *config_buffer;
@@ -802,33 +802,33 @@ void initialize_game_system(void)
   float float_param1;
   float float_param2;
   int8_t encryption_buffer[32];
-  longlong stack_data_678;
-  longlong stack_data_670;
+  int64_t stack_data_678;
+  int64_t stack_data_670;
   int stack_data_668;
   void *stack_data_618;
   int8_t *stack_data_610;
   uint stack_data_608;
-  ulonglong stack_data_600;
+  uint64_t stack_data_600;
   int32_t stack_data_5b8;
-  longlong ***system_manager_590;
-  longlong **system_manager_588;
-  longlong ****system_manager_580;
+  int64_t ***system_manager_590;
+  int64_t **system_manager_588;
+  int64_t ****system_manager_580;
   void *stack_data_578;
   uint64_t stack_data_570;
   int32_t stack_data_568;
   uint64_t stack_data_560;
   void *stack_data_558;
-  longlong stack_data_550;
+  int64_t stack_data_550;
   int stack_data_548;
   int32_t stack_data_540;
   void *stack_data_538;
-  longlong stack_data_530;
+  int64_t stack_data_530;
   int32_t stack_data_520;
-  longlong ***temp_manager_518 [2];
+  int64_t ***temp_manager_518 [2];
   void *stack_data_508;
   code *callback_func;
   uint64_t stack_data_4f8;
-  longlong **stack_data_4f0;
+  int64_t **stack_data_4f0;
   void *stack_data_4e8;
   int8_t *stack_data_4e0;
   int32_t stack_data_4d8;
@@ -853,27 +853,27 @@ void initialize_game_system(void)
   int8_t *stack_data_300;
   int32_t stack_data_2f8;
   int8_t work_buffer_2f0[648];
-  ulonglong checksum;
+  uint64_t checksum;
   
   stack_data_4f8 = 0xfffffffffffffffe;
-  checksum = GLOBAL_CHECKSUM_00a8 ^ (ulonglong)encryption_buffer;
+  checksum = GLOBAL_CHECKSUM_00a8 ^ (uint64_t)encryption_buffer;
   stack_data_5b8 = 0;
   if (*(int *)(GLOBAL_CONFIG_86920 + 0x224) - GLOBAL_COUNTER_52b0 < 0xfb) {
     // 系统初始化失败
-    execute_encrypted_operation(checksum ^ (ulonglong)encryption_buffer);
+    execute_encrypted_operation(checksum ^ (uint64_t)encryption_buffer);
   }
   *(int8_t *)(GLOBAL_CONFIG_86960 + 0x39) = 1;
-  system_manager = (longlong ***)allocate_container_memory(GLOBAL_MEMORY_POOL_ed18, 200, 8, 3);
+  system_manager = (int64_t ***)allocate_container_memory(GLOBAL_MEMORY_POOL_ed18, 200, 8, 3);
   system_manager_590 = system_manager;
   setup_container_manager(system_manager);
-  *system_manager = (longlong **)&GLOBAL_CONTAINER_cb00;
-  system_manager[0x18] = (longlong **)&SYSTEM_CALLBACK_7d20;
-  system_manager_588 = (longlong **)system_manager;
+  *system_manager = (int64_t **)&GLOBAL_CONTAINER_cb00;
+  system_manager[0x18] = (int64_t **)&SYSTEM_CALLBACK_7d20;
+  system_manager_588 = (int64_t **)system_manager;
   (*(code *)(*system_manager)[5])(system_manager);
   system_config = GLOBAL_CONFIG_82868;
   stack_data_5b8 = 1;
   system_manager_590 = &system_manager_588;
-  system_manager_588 = (longlong **)system_manager;
+  system_manager_588 = (int64_t **)system_manager;
   (*(code *)(*system_manager)[5])(system_manager);
   configure_container(system_config, &system_manager_588);
   stack_data_5b8 = 0;
@@ -938,7 +938,7 @@ void initialize_game_system(void)
   if (0 < GLOBAL_CONFIG_52d0) {
     extract_config_data(&GLOBAL_CONFIG_52c0, &stack_data_558, 0, GLOBAL_CONFIG_52d0 + -1);
     stack_data_548 = stack_data_548 + -1;
-    system_data = (longlong)stack_data_548;
+    system_data = (int64_t)stack_data_548;
     config_result = -1;
     if (-1 < stack_data_548) {
       do {
@@ -954,17 +954,17 @@ void initialize_game_system(void)
     if (config_result == -1) {
       config_result = insert_into_container(&GLOBAL_CONFIG_5240, &stack_data_538);
     }
-    system_data = (longlong)config_result * 0x100;
-    system_manager_590 = (longlong ***)(GLOBAL_CONFIG_5248 + 0x30 + system_data);
+    system_data = (int64_t)config_result * 0x100;
+    system_manager_590 = (int64_t ***)(GLOBAL_CONFIG_5248 + 0x30 + system_data);
     system_manager_580 = temp_manager_518;
     stack_data_508 = &GLOBAL_CALLBACK_0adc10;
     callback_func = SYSTEM_CALLBACK_0adba0;
-    temp_manager_518[0] = (longlong ***)&system_manager_590;
+    temp_manager_518[0] = (int64_t ***)&system_manager_590;
     register_system_callback(temp_manager_518);
     *(double *)(system_data + 0xa0 + GLOBAL_CONFIG_5248) = (double)(1.0 / float_param2);
     *(double *)(system_data + 0xb8 + GLOBAL_CONFIG_5248) = (double)(1.0 / float_param1);
-    *(int *)(system_data + 0xb0 + GLOBAL_CONFIG_5248) = (int)(longlong)GLOBAL_CONFIG_52b8;
-    *(int *)(system_data + 200 + GLOBAL_CONFIG_5248) = (int)(longlong)GLOBAL_CONFIG_52bc;
+    *(int *)(system_data + 0xb0 + GLOBAL_CONFIG_5248) = (int)(int64_t)GLOBAL_CONFIG_52b8;
+    *(int *)(system_data + 200 + GLOBAL_CONFIG_5248) = (int)(int64_t)GLOBAL_CONFIG_52bc;
     *(double *)(system_data + 0x20 + GLOBAL_CONFIG_5248) = (double)(config_key >> 0x14);
     stack_data_538 = &GLOBAL_ELEMENT_3c3e0;
     if (stack_data_530 != 0) {
@@ -1052,15 +1052,15 @@ deep_copy_object(uint64_t *dest_ptr, uint64_t *src_ptr, uint64_t param3, uint64_
   *(int32_t *)(dest_ptr + 1) = *(int32_t *)(src_ptr + 1);
   copy_object_properties(dest_ptr + 2, src_ptr + 2, param3, param4, 0xfffffffffffffffe);
   *(int32_t *)(dest_ptr + 0x15) = *(int32_t *)(src_ptr + 0x15);
-  *(int32_t *)((longlong)dest_ptr + 0xac) = *(int32_t *)((longlong)src_ptr + 0xac);
+  *(int32_t *)((int64_t)dest_ptr + 0xac) = *(int32_t *)((int64_t)src_ptr + 0xac);
   dest_ptr[0x16] = src_ptr[0x16];
   dest_ptr[0x17] = src_ptr[0x17];
   dest_ptr[0x18] = src_ptr[0x18];
   *(int8_t *)(dest_ptr + 0x19) = *(int8_t *)(src_ptr + 0x19);
-  *(int8_t *)((longlong)dest_ptr + 0xc9) = *(int8_t *)((longlong)src_ptr + 0xc9);
-  *(int8_t *)((longlong)dest_ptr + 0xca) = *(int8_t *)((longlong)src_ptr + 0xca);
-  *(int8_t *)((longlong)dest_ptr + 0xcb) = *(int8_t *)((longlong)src_ptr + 0xcb);
-  *(int8_t *)((longlong)dest_ptr + 0xcc) = *(int8_t *)((longlong)src_ptr + 0xcc);
+  *(int8_t *)((int64_t)dest_ptr + 0xc9) = *(int8_t *)((int64_t)src_ptr + 0xc9);
+  *(int8_t *)((int64_t)dest_ptr + 0xca) = *(int8_t *)((int64_t)src_ptr + 0xca);
+  *(int8_t *)((int64_t)dest_ptr + 0xcb) = *(int8_t *)((int64_t)src_ptr + 0xcb);
+  *(int8_t *)((int64_t)dest_ptr + 0xcc) = *(int8_t *)((int64_t)src_ptr + 0xcc);
   return dest_ptr;
 }
 
@@ -1068,7 +1068,7 @@ deep_copy_object(uint64_t *dest_ptr, uint64_t *src_ptr, uint64_t param3, uint64_
 
 // 函数: 对象重置函数 - 简化版
 // 功能: 重置对象的特定字段
-void reset_object_field(longlong object_ptr)
+void reset_object_field(int64_t object_ptr)
 
 {
   *(void **)(object_ptr + 0x10) = &DEALLOCATED_MEMORY_bcb0;
@@ -1090,7 +1090,7 @@ void reset_pointer_to_default(uint64_t *ptr_obj)
 
 // 函数: 元素插入函数
 // 功能: 向数据结构中插入元素，处理排序和查找
-void insert_element_into_structure(uint64_t param1, uint64_t param2, longlong element_data, uint64_t param4)
+void insert_element_into_structure(uint64_t param1, uint64_t param2, int64_t element_data, uint64_t param4)
 
 {
   byte element_byte;
@@ -1101,7 +1101,7 @@ void insert_element_into_structure(uint64_t param1, uint64_t param2, longlong el
   byte *element_name;
   uint64_t *next_node;
   uint64_t *insertion_point;
-  longlong name_offset;
+  int64_t name_offset;
   uint64_t param_copy;
   
   param_copy = param1;
@@ -1109,7 +1109,7 @@ void insert_element_into_structure(uint64_t param1, uint64_t param2, longlong el
   if (search_result == -1) {
     search_result = insert_into_container(&GLOBAL_CONFIG_5240, param2);
   }
-  current_node = (uint64_t *)(GLOBAL_CONFIG_5248 + 0xd0 + (longlong)search_result * 0x100);
+  current_node = (uint64_t *)(GLOBAL_CONFIG_5248 + 0xd0 + (int64_t)search_result * 0x100);
   insertion_point = current_node;
   if ((uint64_t *)current_node[2] != (uint64_t *)0x0) {
     next_node = (uint64_t *)current_node[2];
@@ -1124,7 +1124,7 @@ void insert_element_into_structure(uint64_t param1, uint64_t param2, longlong el
         }
         else {
           element_name = *(byte **)(element_data + 8);
-          name_offset = next_node[5] - (longlong)element_name;
+          name_offset = next_node[5] - (int64_t)element_name;
           do {
             element_value = (uint)element_name[name_offset];
             search_result = *element_name - element_value;
@@ -1151,7 +1151,7 @@ INSERTION_POINT_FOUND:
     if (*(int *)(insertion_point + 6) == 0) goto PERFORM_INSERTION;
     if (*(int *)(element_data + 0x10) != 0) {
       element_name = (byte *)insertion_point[5];
-      name_offset = *(longlong *)(element_data + 8) - (longlong)element_name;
+      name_offset = *(int64_t *)(element_data + 8) - (int64_t)element_name;
       do {
         element_byte = *element_name;
         element_value = (uint)element_name[name_offset];

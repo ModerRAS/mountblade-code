@@ -100,18 +100,18 @@ uint64_t FUN_180012346(uint64_t param_1, uint64_t param_2)
 {
     // 局部变量定义
     uint64_t uVar1;                            // 转换结果
-    longlong lVar2;                              // 上下文指针
+    int64_t lVar2;                              // 上下文指针
     int iVar3;                                  // 状态标志
     uint64_t auStack_28 [4];                   // 栈缓冲区 (32字节)
-    ulonglong uStack_8;                         // 安全检查值
+    uint64_t uStack_8;                         // 安全检查值
     
     // 安全检查：栈保护机制
-    uStack_8 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_28;
+    uStack_8 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_28;
     
     // 参数有效性检查
     if (param_1 != 0 && param_2 != 0) {
         // 获取数据转换上下文
-        lVar2 = (longlong)param_1;
+        lVar2 = (int64_t)param_1;
         
         // 检查代码分析器状态
         iVar3 = *(int *)(lVar2 + 0x18);
@@ -138,7 +138,7 @@ uint64_t FUN_180012346(uint64_t param_1, uint64_t param_2)
     }
     
     // 安全退出：栈保护检查
-    FUN_1808fc050(uStack_8 ^ (ulonglong)auStack_28);
+    FUN_1808fc050(uStack_8 ^ (uint64_t)auStack_28);
     
     return uVar1;                                // 返回转换结果
 }

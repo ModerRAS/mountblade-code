@@ -2,11 +2,11 @@
 
 // 04_ui_system_part056.c - 1 个函数
 
-// 函数: void FUN_180695bf0(longlong param_1,longlong param_2,int param_3,short *param_4,
-void FUN_180695bf0(longlong param_1,longlong param_2,int param_3,short *param_4,
+// 函数: void FUN_180695bf0(int64_t param_1,int64_t param_2,int param_3,short *param_4,
+void FUN_180695bf0(int64_t param_1,int64_t param_2,int param_3,short *param_4,
                   int8_t (*param_5) [16],int8_t (*param_6) [16],int8_t (*param_7) [16],
-                  longlong param_8,longlong param_9,short *param_10,ushort *param_11,
-                  uint64_t param_12,longlong param_13)
+                  int64_t param_8,int64_t param_9,short *param_10,ushort *param_11,
+                  uint64_t param_12,int64_t param_13)
 
 {
   ushort *puVar1;
@@ -15,8 +15,8 @@ void FUN_180695bf0(longlong param_1,longlong param_2,int param_3,short *param_4,
   short sVar4;
   ushort *puVar5;
   int8_t (*pauVar6) [16];
-  longlong lVar7;
-  longlong lVar8;
+  int64_t lVar7;
+  int64_t lVar8;
   ushort uVar10;
   ushort uVar11;
   ushort uVar12;
@@ -270,10 +270,10 @@ void FUN_180695bf0(longlong param_1,longlong param_2,int param_3,short *param_4,
       auVar32 = auVar31;
       do {
         puVar1 = puVar5 + 0x10;
-        auVar42 = psraw(*(int8_t (*) [16])(param_1 + -0x10 + (longlong)puVar5),0xf);
-        auVar46 = psraw(*(int8_t (*) [16])(param_1 + (longlong)puVar5),0xf);
-        auVar31 = auVar42 ^ *(int8_t (*) [16])(param_1 + -0x30 + (longlong)puVar1);
-        auVar40 = auVar46 ^ *(int8_t (*) [16])(param_1 + -0x20 + (longlong)puVar1);
+        auVar42 = psraw(*(int8_t (*) [16])(param_1 + -0x10 + (int64_t)puVar5),0xf);
+        auVar46 = psraw(*(int8_t (*) [16])(param_1 + (int64_t)puVar5),0xf);
+        auVar31 = auVar42 ^ *(int8_t (*) [16])(param_1 + -0x30 + (int64_t)puVar1);
+        auVar40 = auVar46 ^ *(int8_t (*) [16])(param_1 + -0x20 + (int64_t)puVar1);
         auVar45._0_2_ = auVar31._0_2_ - auVar42._0_2_;
         auVar45._2_2_ = auVar31._2_2_ - auVar42._2_2_;
         auVar45._4_2_ = auVar31._4_2_ - auVar42._4_2_;
@@ -354,7 +354,7 @@ void FUN_180695bf0(longlong param_1,longlong param_2,int param_3,short *param_4,
         puVar5[5] = uVar25;
         puVar5[6] = uVar27;
         puVar5[7] = uVar29;
-        psVar2 = (short *)((param_9 - param_8) + -0x30 + (longlong)puVar1);
+        psVar2 = (short *)((param_9 - param_8) + -0x30 + (int64_t)puVar1);
         *psVar2 = sVar36;
         psVar2[1] = sVar37;
         psVar2[2] = sVar38;
@@ -379,7 +379,7 @@ void FUN_180695bf0(longlong param_1,longlong param_2,int param_3,short *param_4,
         uVar24 = (ushort)(sVar52 != 0);
         uVar26 = (ushort)(sVar53 != 0);
         uVar28 = (ushort)(sVar54 != 0);
-        psVar2 = (short *)((param_9 - param_8) + -0x20 + (longlong)puVar1);
+        psVar2 = (short *)((param_9 - param_8) + -0x20 + (int64_t)puVar1);
         *psVar2 = sVar44;
         psVar2[1] = sVar48;
         psVar2[2] = sVar49;
@@ -388,7 +388,7 @@ void FUN_180695bf0(longlong param_1,longlong param_2,int param_3,short *param_4,
         psVar2[5] = sVar33;
         psVar2[6] = sVar34;
         psVar2[7] = sVar35;
-        psVar2 = (short *)((param_13 - param_8) + -0x30 + (longlong)puVar1);
+        psVar2 = (short *)((param_13 - param_8) + -0x30 + (int64_t)puVar1);
         uVar17 = (ushort)(sVar44 != 0);
         uVar21 = (ushort)(sVar48 != 0);
         uVar25 = (ushort)(sVar49 != 0);
@@ -397,7 +397,7 @@ void FUN_180695bf0(longlong param_1,longlong param_2,int param_3,short *param_4,
         uVar11 = (ushort)(sVar33 != 0);
         uVar12 = (ushort)(sVar34 != 0);
         uVar13 = (ushort)(sVar35 != 0);
-        psVar3 = (short *)((param_13 - param_8) + -0x20 + (longlong)puVar1);
+        psVar3 = (short *)((param_13 - param_8) + -0x20 + (int64_t)puVar1);
         uVar14 = *psVar2 + uVar15 & -uVar15;
         uVar16 = psVar2[1] + uVar19 & -uVar19;
         uVar18 = psVar2[2] + uVar23 & -uVar23;
@@ -520,8 +520,8 @@ void FUN_180695bf0(longlong param_1,longlong param_2,int param_3,short *param_4,
     pauVar6 = (int8_t (*) [16])(param_8 + (lVar8 + 8) * 2);
     do {
       lVar8 = lVar8 + 0x10;
-      *(int8_t (*) [16])((longlong)pauVar6 + (param_9 - param_8) + -0x10) = ZEXT416(0);
-      *(int8_t (*) [16])((longlong)pauVar6 + (param_9 - param_8)) = ZEXT416(0);
+      *(int8_t (*) [16])((int64_t)pauVar6 + (param_9 - param_8) + -0x10) = ZEXT416(0);
+      *(int8_t (*) [16])((int64_t)pauVar6 + (param_9 - param_8)) = ZEXT416(0);
       pauVar6[-1] = ZEXT416(0);
       *pauVar6 = ZEXT416(0);
       pauVar6 = pauVar6 + 2;

@@ -210,25 +210,25 @@ void FUN_1807c5c8d(void)
 {
     // 局部变量定义
     int parseResult;                               // 解析结果状态
-    longlong contextPtr;                           // 上下文指针
-    longlong tokenCount;                           // 标记计数器
+    int64_t contextPtr;                           // 上下文指针
+    int64_t tokenCount;                           // 标记计数器
     char currentChar;                              // 当前字符
     char nextChar;                                 // 下一个字符
     char lookAheadChar;                            // 前瞻字符
     char tempBuffer[PARSER_BUFFER_SIZE];           // 解析器缓冲区
-    ulonglong stackGuard;                          // 栈保护值
+    uint64_t stackGuard;                          // 栈保护值
     
     // 安全检查：栈保护机制初始化
-    stackGuard = GET_SECURITY_COOKIE() ^ (ulonglong)tempBuffer;
+    stackGuard = GET_SECURITY_COOKIE() ^ (uint64_t)tempBuffer;
     
     // 主解析循环
     do {
         // 读取下一个字符到缓冲区
         parseResult = StreamReadChar(*(uint64_t *)(contextPtr + 0x170), 
-                                      (longlong)&tempBuffer + 1);
+                                      (int64_t)&tempBuffer + 1);
         if (parseResult != PARSER_SUCCESS) {
             // 处理致命错误，安全退出
-            HandleFatalError(stackGuard ^ (ulonglong)&tempBuffer);
+            HandleFatalError(stackGuard ^ (uint64_t)&tempBuffer);
         }
         
         // 检查是否为非空白字符
@@ -242,7 +242,7 @@ void FUN_1807c5c8d(void)
                 (parseResult = StreamReadChar(*(uint64_t *)(contextPtr + 0x170), 
                                               &tempBuffer), parseResult != PARSER_SUCCESS)) {
                 // 处理解析错误
-                HandleFatalError(stackGuard ^ (ulonglong)&tempBuffer);
+                HandleFatalError(stackGuard ^ (uint64_t)&tempBuffer);
             }
             
             // 检查特殊标记（注释或节开始）
@@ -253,7 +253,7 @@ void FUN_1807c5c8d(void)
                         parseResult = StreamReadChar(*(uint64_t *)(contextPtr + 0x170), 
                                                       &tempBuffer);
                         if (parseResult != PARSER_SUCCESS) {
-                            HandleFatalError(stackGuard ^ (ulonglong)&tempBuffer);
+                            HandleFatalError(stackGuard ^ (uint64_t)&tempBuffer);
                         }
                         if (currentChar == XML_NEWLINE) {
                             // 继续主循环
@@ -263,7 +263,7 @@ void FUN_1807c5c8d(void)
                     
                     // 处理回车换行
                     StreamReadChar(*(uint64_t *)(contextPtr + 0x170), 
-                                   (longlong)&tempBuffer + 2);
+                                   (int64_t)&tempBuffer + 2);
                     TokenizeInput(*(uint64_t *)(contextPtr + 0x170), 
                                   0xffffffff, 1);
                 } while (lookAheadChar == XML_NEWLINE);
@@ -273,16 +273,16 @@ void FUN_1807c5c8d(void)
                 parseResult = TokenizeInput(*(uint64_t *)(contextPtr + 0x170), 
                                             0xffffffff, 1);
                 if (parseResult != PARSER_SUCCESS) {
-                    HandleFatalError(stackGuard ^ (ulonglong)&tempBuffer);
+                    HandleFatalError(stackGuard ^ (uint64_t)&tempBuffer);
                 }
                 
                 tokenCount = 0;
                 do {
                     // 跳过空白字符
                     parseResult = StreamReadChar(*(uint64_t *)(contextPtr + 0x170), 
-                                                  (longlong)&tempBuffer + 3);
+                                                  (int64_t)&tempBuffer + 3);
                     if (parseResult != PARSER_SUCCESS) {
-                        HandleFatalError(stackGuard ^ (ulonglong)&tempBuffer);
+                        HandleFatalError(stackGuard ^ (uint64_t)&tempBuffer);
                     }
                 } while (((lookAheadChar == XML_WHITESPACE) || 
                          (lookAheadChar == XML_TAB)) ||
@@ -292,15 +292,15 @@ void FUN_1807c5c8d(void)
                 parseResult = TokenizeInput(*(uint64_t *)(contextPtr + 0x170), 
                                             0xffffffff, 1);
                 if (parseResult != PARSER_SUCCESS) {
-                    HandleFatalError(stackGuard ^ (ulonglong)&tempBuffer);
+                    HandleFatalError(stackGuard ^ (uint64_t)&tempBuffer);
                 }
                 
                 // 解析标记内容
                 do {
                     parseResult = StreamReadChar(*(uint64_t *)(contextPtr + 0x170), 
-                                                  (longlong)&tempBuffer + 4);
+                                                  (int64_t)&tempBuffer + 4);
                     if (parseResult != PARSER_SUCCESS) {
-                        HandleFatalError(stackGuard ^ (ulonglong)&tempBuffer);
+                        HandleFatalError(stackGuard ^ (uint64_t)&tempBuffer);
                     }
                     if (lookAheadChar == XML_NEWLINE) break;
                     if (lookAheadChar != XML_CARRIAGE_RETURN) {
@@ -316,7 +316,7 @@ void FUN_1807c5c8d(void)
                     
                     // 处理回车换行序列
                     StreamReadChar(*(uint64_t *)(contextPtr + 0x170), 
-                                   (longlong)&tempBuffer + 5);
+                                   (int64_t)&tempBuffer + 5);
                     TokenizeInput(*(uint64_t *)(contextPtr + 0x170), 
                                   0xffffffff, 1);
                 } while (tempBuffer[PARSER_BUFFER_SIZE + 5] == XML_NEWLINE);
@@ -327,7 +327,7 @@ void FUN_1807c5c8d(void)
                 // 处理解析后的标记
                 parseResult = ProcessParsedToken(&tempBuffer);
                 if (parseResult == 0) {
-                    HandleFatalError(stackGuard ^ (ulonglong)&tempBuffer);
+                    HandleFatalError(stackGuard ^ (uint64_t)&tempBuffer);
                 }
                 
                 // 执行后处理操作
@@ -337,7 +337,7 @@ void FUN_1807c5c8d(void)
     } while (true);
     
     // 安全退出：栈保护检查
-    FUN_1808fc050(stackGuard ^ (ulonglong)&tempBuffer);
+    FUN_1808fc050(stackGuard ^ (uint64_t)&tempBuffer);
 }
 
 //------------------------------------------------------------------------------
@@ -361,10 +361,10 @@ void FUN_1807c5c8d(void)
 //------------------------------------------------------------------------------
 void FUN_1807c5ea9(void)
 {
-    ulonglong stackGuard;                          // 栈保护值
+    uint64_t stackGuard;                          // 栈保护值
     
     // 安全退出：调用栈保护检查
-    FUN_1808fc050(stackGuard ^ (ulonglong)&tempBuffer);
+    FUN_1808fc050(stackGuard ^ (uint64_t)&tempBuffer);
 }
 
 //------------------------------------------------------------------------------
@@ -381,17 +381,17 @@ void FUN_1807c5ea9(void)
 // 返回值：
 //   void - 无返回值
 //------------------------------------------------------------------------------
-void FUN_1807c5ed0(longlong param_1)
+void FUN_1807c5ed0(int64_t param_1)
 {
     code *exceptionHandler;                         // 异常处理器指针
     int parseStatus;                                // 解析状态
-    ulonglong tagLength;                            // 标记长度
+    uint64_t tagLength;                            // 标记长度
     uint64_t attributeValue;                     // 属性值
     char currentChar;                              // 当前字符
     char *tagBuffer;                               // 标记缓冲区指针
-    ulonglong contentLength;                       // 内容长度
-    ulonglong maxLength;                           // 最大长度
-    ulonglong readPosition;                        // 读取位置
+    uint64_t contentLength;                       // 内容长度
+    uint64_t maxLength;                           // 最大长度
+    uint64_t readPosition;                        // 读取位置
     int attributeCount;                            // 属性计数器
     uint64_t securityBuffer[4];                   // 安全缓冲区
     uint64_t streamControl;                      // 流控制变量
@@ -399,10 +399,10 @@ void FUN_1807c5ed0(longlong param_1)
     int8_t parseFlags;                         // 解析标志
     char tagName[PARSER_BUFFER_SIZE];               // 标记名称缓冲区
     char contentBuffer[512];                        // 内容缓冲区
-    ulonglong stackGuard;                          // 栈保护值
+    uint64_t stackGuard;                          // 栈保护值
     
     // 安全检查：栈保护机制初始化
-    stackGuard = GET_SECURITY_COOKIE() ^ (ulonglong)securityBuffer;
+    stackGuard = GET_SECURITY_COOKIE() ^ (uint64_t)securityBuffer;
     
     // 初始化解析器参数
     bufferSize = PARSER_BUFFER_SIZE;
@@ -456,7 +456,7 @@ void FUN_1807c5ed0(longlong param_1)
                                                   &currentChar);
                     if (parseStatus != PARSER_SUCCESS) goto ParseErrorHandler;
                     if ((int)maxLength < PARSER_BUFFER_SIZE) {
-                        maxLength = (ulonglong)((int)maxLength + 1);
+                        maxLength = (uint64_t)((int)maxLength + 1);
                         *tagBuffer = currentChar;
                         tagBuffer = tagBuffer + 1;
                     }
@@ -473,8 +473,8 @@ void FUN_1807c5ed0(longlong param_1)
                     parseStatus = StreamReadChar(*(uint64_t *)(param_1 + 0x170), 
                                                   &currentChar);
                     if (parseStatus != PARSER_SUCCESS) goto ParseErrorHandler;
-                    if ((longlong)contentLength < PARSER_BUFFER_SIZE) {
-                        maxLength = (ulonglong)((int)maxLength + 1);
+                    if ((int64_t)contentLength < PARSER_BUFFER_SIZE) {
+                        maxLength = (uint64_t)((int)maxLength + 1);
                         contentBuffer[contentLength] = currentChar;
                         contentLength = contentLength + 1;
                     }
@@ -500,10 +500,10 @@ void FUN_1807c5ed0(longlong param_1)
                 }
                 
                 // 终止标记字符串
-                maxLength = (ulonglong)((int)maxLength + -1);
+                maxLength = (uint64_t)((int)maxLength + -1);
                 if (PARSER_MAX_TOKEN_LENGTH < maxLength) break;
                 tagName[maxLength] = '\0';
-                if (PARSER_MAX_TOKEN_LENGTH < (ulonglong)(longlong)attributeCount) break;
+                if (PARSER_MAX_TOKEN_LENGTH < (uint64_t)(int64_t)attributeCount) break;
                 contentBuffer[attributeCount] = '\0';
                 
                 // 处理属性和内容
@@ -512,7 +512,7 @@ void FUN_1807c5ed0(longlong param_1)
                     currentChar = '\0';
                     maxLength = tagLength;
                     do {
-                        if ((longlong)maxLength < PARSER_BUFFER_SIZE) {
+                        if ((int64_t)maxLength < PARSER_BUFFER_SIZE) {
                             currentChar = tagName[maxLength];
                             maxLength = maxLength + 1;
                         }
@@ -529,8 +529,8 @@ void FUN_1807c5ed0(longlong param_1)
                         tagName[contentLength + PARSER_BUFFER_SIZE] = *tagBuffer;
                         readPosition = readPosition + 1;
                         contentLength = contentLength + 1;
-                        maxLength = (ulonglong)readPosition;
-                    } while ((longlong)maxLength < PARSER_MAX_TOKEN_LENGTH);
+                        maxLength = (uint64_t)readPosition;
+                    } while ((int64_t)maxLength < PARSER_MAX_TOKEN_LENGTH);
                     
                     tagName[contentLength + PARSER_BUFFER_SIZE] = '\0';
                     parseStatus = ValidateSectionHeader(&unknown_var_7984_ptr, tagName, 8);
@@ -563,7 +563,7 @@ void FUN_1807c5ed0(longlong param_1)
     
 ParseErrorHandler:
     // 错误处理：安全退出
-    FUN_1808fc050(stackGuard ^ (ulonglong)securityBuffer);
+    FUN_1808fc050(stackGuard ^ (uint64_t)securityBuffer);
 }
 
 //------------------------------------------------------------------------------
@@ -584,19 +584,19 @@ void FUN_1807c5f17(void)
 {
     code *exceptionHandler;                         // 异常处理器指针
     int parseStatus;                                // 解析状态
-    ulonglong streamPosition;                       // 流位置
+    uint64_t streamPosition;                       // 流位置
     char currentChar;                              // 当前字符
     char *bufferPointer;                            // 缓冲区指针
-    ulonglong contentLength;                       // 内容长度
-    ulonglong maxLength;                           // 最大长度
-    longlong framePointer;                          // 帧指针
-    longlong sourceIndex;                           // 源索引
-    ulonglong readPosition;                        // 读取位置
+    uint64_t contentLength;                       // 内容长度
+    uint64_t maxLength;                           // 最大长度
+    int64_t framePointer;                          // 帧指针
+    int64_t sourceIndex;                           // 源索引
+    uint64_t readPosition;                        // 读取位置
     int attributeCount;                            // 属性计数器
     char currentStreamChar;                         // 当前流字符
     char nextStreamChar;                            // 下一个流字符
     int32_t bufferSize;                          // 缓冲区大小
-    ulonglong stackGuard;                          // 栈保护值
+    uint64_t stackGuard;                          // 栈保护值
     
     // 初始化流位置
     streamPosition = 0;
@@ -607,7 +607,7 @@ void FUN_1807c5f17(void)
         
     StreamErrorHandler:
         // 错误处理：安全退出
-        FUN_1808fc050(*(ulonglong *)(framePointer + 0x550) ^ (ulonglong)&tempBuffer);
+        FUN_1808fc050(*(uint64_t *)(framePointer + 0x550) ^ (uint64_t)&tempBuffer);
     }
     
     // 查找配置节
@@ -623,7 +623,7 @@ void FUN_1807c5f17(void)
         currentStreamChar = '\0';
         do {
             parseStatus = StreamReadChar(*(uint64_t *)(sourceIndex + 0x170), 
-                                         (longlong)&tempBuffer + 1);
+                                         (int64_t)&tempBuffer + 1);
             if (parseStatus != PARSER_SUCCESS) goto StreamErrorHandler;
         } while ((((nextStreamChar == XML_WHITESPACE) || 
                  (nextStreamChar == XML_TAB)) || 
@@ -648,7 +648,7 @@ void FUN_1807c5f17(void)
                                          &tempBuffer);
             if (parseStatus != PARSER_SUCCESS) goto StreamErrorHandler;
             if ((int)maxLength < PARSER_BUFFER_SIZE) {
-                maxLength = (ulonglong)((int)maxLength + 1);
+                maxLength = (uint64_t)((int)maxLength + 1);
                 *bufferPointer = currentStreamChar;
                 bufferPointer = bufferPointer + 1;
             }
@@ -664,8 +664,8 @@ void FUN_1807c5f17(void)
             parseStatus = StreamReadChar(*(uint64_t *)(sourceIndex + 0x170), 
                                          &tempBuffer);
             if (parseStatus != PARSER_SUCCESS) goto StreamErrorHandler;
-            if ((longlong)readPosition < PARSER_BUFFER_SIZE) {
-                maxLength = (ulonglong)((int)maxLength + 1);
+            if ((int64_t)readPosition < PARSER_BUFFER_SIZE) {
+                maxLength = (uint64_t)((int)maxLength + 1);
                 *(char *)(framePointer + 0x350 + readPosition) = currentStreamChar;
                 readPosition = readPosition + 1;
             }
@@ -691,18 +691,18 @@ void FUN_1807c5f17(void)
         }
         
         // 终止字符串
-        maxLength = (ulonglong)((int)maxLength + -1);
+        maxLength = (uint64_t)((int)maxLength + -1);
         if (PARSER_MAX_TOKEN_LENGTH < maxLength) break;
         (&tempBuffer)[maxLength] = 0;
-        if (PARSER_MAX_TOKEN_LENGTH < (ulonglong)(longlong)attributeCount) break;
-        *(int8_t *)(framePointer + 0x350 + (longlong)attributeCount) = 0;
+        if (PARSER_MAX_TOKEN_LENGTH < (uint64_t)(int64_t)attributeCount) break;
+        *(int8_t *)(framePointer + 0x350 + (int64_t)attributeCount) = 0;
         
         // 处理属性
         if (attributeCount == 0) {
             currentChar = '\0';
             maxLength = streamPosition;
             do {
-                if ((longlong)maxLength < PARSER_BUFFER_SIZE) {
+                if ((int64_t)maxLength < PARSER_BUFFER_SIZE) {
                     currentChar = (&tempBuffer)[maxLength];
                     maxLength = maxLength + 1;
                 }
@@ -716,7 +716,7 @@ void FUN_1807c5f17(void)
                 if (*bufferPointer == '\"') break;
                 *(char *)(framePointer + 0x150 + readPosition) = *bufferPointer;
                 readPosition = readPosition + 1;
-            } while ((longlong)maxLength < PARSER_MAX_TOKEN_LENGTH);
+            } while ((int64_t)maxLength < PARSER_MAX_TOKEN_LENGTH);
             
             *(int8_t *)(framePointer + 0x150 + readPosition) = 0;
             parseStatus = ValidateSectionHeader(&unknown_var_7984_ptr, &tempBuffer, 8);
@@ -755,17 +755,17 @@ void FUN_1807c5fb3(void)
 {
     code *exceptionHandler;                         // 异常处理器指针
     int parseStatus;                                // 解析状态
-    ulonglong tagLength;                            // 标记长度
+    uint64_t tagLength;                            // 标记长度
     char currentChar;                              // 当前字符
     char *bufferPointer;                            // 缓冲区指针
-    ulonglong contentLength;                       // 内容长度
-    ulonglong maxLength;                           // 最大长度
-    longlong framePointer;                          // 帧指针
-    longlong sourceIndex;                           // 源索引
-    ulonglong readPosition;                        // 读取位置
+    uint64_t contentLength;                       // 内容长度
+    uint64_t maxLength;                           // 最大长度
+    int64_t framePointer;                          // 帧指针
+    int64_t sourceIndex;                           // 源索引
+    uint64_t readPosition;                        // 读取位置
     int attributeCount;                            // 属性计数器
     int8_t fillChar;                           // 填充字符
-    ulonglong registerValue;                        // 寄存器值
+    uint64_t registerValue;                        // 寄存器值
     char currentStreamChar;                         // 当前流字符
     char nextStreamChar;                            // 下一个流字符
     
@@ -775,7 +775,7 @@ void FUN_1807c5fb3(void)
         currentStreamChar = (char)maxLength;
         do {
             parseStatus = StreamReadChar(*(uint64_t *)(sourceIndex + 0x170), 
-                                         (longlong)&tempBuffer + 1);
+                                         (int64_t)&tempBuffer + 1);
             if (parseStatus != PARSER_SUCCESS) goto EnhancedErrorHandler;
         } while ((((nextStreamChar == XML_WHITESPACE) || 
                  (nextStreamChar == XML_TAB)) || 
@@ -787,7 +787,7 @@ void FUN_1807c5fb3(void)
         if (parseStatus != PARSER_SUCCESS) {
         EnhancedErrorHandler:
             // 错误处理：安全退出
-            FUN_1808fc050(*(ulonglong *)(framePointer + 0x550) ^ (ulonglong)&tempBuffer);
+            FUN_1808fc050(*(uint64_t *)(framePointer + 0x550) ^ (uint64_t)&tempBuffer);
         }
         
         // 解析XML标记
@@ -803,7 +803,7 @@ void FUN_1807c5fb3(void)
                                          &tempBuffer);
             if (parseStatus != PARSER_SUCCESS) goto EnhancedErrorHandler;
             if ((int)maxLength < PARSER_BUFFER_SIZE) {
-                maxLength = (ulonglong)((int)maxLength + 1);
+                maxLength = (uint64_t)((int)maxLength + 1);
                 *bufferPointer = currentStreamChar;
                 bufferPointer = bufferPointer + 1;
             }
@@ -819,8 +819,8 @@ void FUN_1807c5fb3(void)
             parseStatus = StreamReadChar(*(uint64_t *)(sourceIndex + 0x170), 
                                          &tempBuffer);
             if (parseStatus != PARSER_SUCCESS) goto EnhancedErrorHandler;
-            if ((longlong)readPosition < PARSER_BUFFER_SIZE) {
-                contentLength = (ulonglong)((int)contentLength + 1);
+            if ((int64_t)readPosition < PARSER_BUFFER_SIZE) {
+                contentLength = (uint64_t)((int)contentLength + 1);
                 *(char *)(framePointer + 0x350 + readPosition) = currentStreamChar;
                 readPosition = readPosition + 1;
             }
@@ -845,7 +845,7 @@ void FUN_1807c5fb3(void)
             if (parseStatus != PARSER_SUCCESS) goto EnhancedErrorHandler;
         }
         
-        maxLength = (ulonglong)((int)maxLength + -1);
+        maxLength = (uint64_t)((int)maxLength + -1);
         if (PARSER_MAX_TOKEN_LENGTH < maxLength) {
         EnhancedCleanup:
             // 清理和退出
@@ -857,15 +857,15 @@ void FUN_1807c5fb3(void)
         
         fillChar = (int8_t)registerValue;
         (&tempBuffer)[maxLength] = fillChar;
-        if (PARSER_MAX_TOKEN_LENGTH < (ulonglong)(longlong)attributeCount) goto EnhancedCleanup;
-        *(int8_t *)(framePointer + 0x350 + (longlong)attributeCount) = fillChar;
+        if (PARSER_MAX_TOKEN_LENGTH < (uint64_t)(int64_t)attributeCount) goto EnhancedCleanup;
+        *(int8_t *)(framePointer + 0x350 + (int64_t)attributeCount) = fillChar;
         
         // 处理属性内容
         if (attributeCount == 0) {
             currentChar = '\0';
             maxLength = registerValue;
             do {
-                if ((longlong)maxLength < PARSER_BUFFER_SIZE) {
+                if ((int64_t)maxLength < PARSER_BUFFER_SIZE) {
                     currentChar = (&tempBuffer)[maxLength];
                     maxLength = maxLength + 1;
                 }
@@ -879,7 +879,7 @@ void FUN_1807c5fb3(void)
                 if (*bufferPointer == '\"') break;
                 *(char *)(framePointer + 0x150 + readPosition) = *bufferPointer;
                 readPosition = readPosition + 1;
-            } while ((longlong)maxLength < PARSER_MAX_TOKEN_LENGTH);
+            } while ((int64_t)maxLength < PARSER_MAX_TOKEN_LENGTH);
             
             *(int8_t *)(framePointer + 0x150 + readPosition) = fillChar;
             parseStatus = ValidateSectionHeader(&unknown_var_7984_ptr, &tempBuffer, 8);
@@ -900,18 +900,18 @@ void FUN_1807c5fb3(void)
 //------------------------------------------------------------------------------
 void FUN_1807c6289(void)
 {
-    longlong framePointer;                          // 帧指针
+    int64_t framePointer;                          // 帧指针
     
     // 错误处理：安全退出
-    FUN_1808fc050(*(ulonglong *)(framePointer + 0x550) ^ (ulonglong)&tempBuffer);
+    FUN_1808fc050(*(uint64_t *)(framePointer + 0x550) ^ (uint64_t)&tempBuffer);
 }
 
 void FUN_1807c6291(void)
 {
-    longlong framePointer;                          // 帧指针
+    int64_t framePointer;                          // 帧指针
     
     // 错误处理：安全退出
-    FUN_1808fc050(*(ulonglong *)(framePointer + 0x550) ^ (ulonglong)&tempBuffer);
+    FUN_1808fc050(*(uint64_t *)(framePointer + 0x550) ^ (uint64_t)&tempBuffer);
 }
 
 void FUN_1807c62aa(void)
@@ -936,7 +936,7 @@ void FUN_1807c62aa(void)
 // 返回值：
 //   uint64_t - 操作结果状态
 //------------------------------------------------------------------------------
-uint64_t FUN_1807c62b0(longlong param_1, int *param_2)
+uint64_t FUN_1807c62b0(int64_t param_1, int *param_2)
 {
     uint64_t result;                              // 操作结果
     int charCount;                                  // 字符计数器
@@ -978,18 +978,18 @@ uint64_t FUN_1807c62b0(longlong param_1, int *param_2)
 // 返回值：
 //   uint64_t - 初始化结果状态
 //------------------------------------------------------------------------------
-uint64_t FUN_1807c6400(longlong param_1, uint64_t param_2, longlong param_3)
+uint64_t FUN_1807c6400(int64_t param_1, uint64_t param_2, int64_t param_3)
 {
     int initStatus;                                 // 初始化状态
-    longlong dataPointer;                           // 数据指针
+    int64_t dataPointer;                           // 数据指针
     int8_t alignmentData [16];                  // 对齐数据
     uint64_t streamResult;                        // 流操作结果
-    ulonglong elementSize;                          // 元素大小
+    uint64_t elementSize;                          // 元素大小
     
     // 设置解析器状态
     *(int32_t *)(param_1 + 0x28) = 0xc;
     *(uint64_t *)(param_1 + 0x120) = 0;
-    *(longlong *)(param_1 + 8) = param_1 + 0x178;
+    *(int64_t *)(param_1 + 8) = param_1 + 0x178;
     *(uint64_t *)(param_1 + 0x128) = 0;
     *(uint64_t *)(param_1 + 0x130) = 0;
     *(uint64_t *)(param_1 + 0x148) = 0;
@@ -998,17 +998,17 @@ uint64_t FUN_1807c6400(longlong param_1, uint64_t param_2, longlong param_3)
     *(int32_t *)(param_1 + 0x18) = 0;
     
     // 初始化流处理器
-    streamResult = (**(code **)(**(longlong **)(param_1 + 0x170) + 0x10))
-                   (*(longlong **)(param_1 + 0x170), param_1 + 0x18c);
+    streamResult = (**(code **)(**(int64_t **)(param_1 + 0x170) + 0x10))
+                   (*(int64_t **)(param_1 + 0x170), param_1 + 0x18c);
     
     if ((int)streamResult == 0) {
         *(int32_t *)(param_1 + 0x110) = 0;
         if (*(int *)(param_3 + 0x14) - 1U < 5) {
             // 配置数据类型处理
-            *(int *)(*(longlong *)(param_1 + 8) + 8) = *(int *)(param_3 + 0x14);
-            *(int32_t *)(*(longlong *)(param_1 + 8) + 0xc) = *(int32_t *)(param_3 + 0xc);
-            *(int32_t *)(*(longlong *)(param_1 + 8) + 0x10) = *(int32_t *)(param_3 + 0x10);
-            dataPointer = *(longlong *)(param_1 + 8);
+            *(int *)(*(int64_t *)(param_1 + 8) + 8) = *(int *)(param_3 + 0x14);
+            *(int32_t *)(*(int64_t *)(param_1 + 8) + 0xc) = *(int32_t *)(param_3 + 0xc);
+            *(int32_t *)(*(int64_t *)(param_1 + 8) + 0x10) = *(int32_t *)(param_3 + 0x10);
+            dataPointer = *(int64_t *)(param_1 + 8);
             
             if (*(uint *)(param_3 + 0xc) != 0) {
                 initStatus = *(int *)(param_3 + 0x14);
@@ -1035,7 +1035,7 @@ uint64_t FUN_1807c6400(longlong param_1, uint64_t param_2, longlong param_3)
                 alignmentData._0_8_ = elementSize;
                 *(int *)(dataPointer + 0x18) =
                      (int)((SUB168((ZEXT416(*(uint *)(dataPointer + 0x14)) << 3) / alignmentData, 0) & 0xffffffff) /
-                          (ulonglong)*(uint *)(param_3 + 0xc));
+                          (uint64_t)*(uint *)(param_3 + 0xc));
             }
             *(int32_t *)(param_1 + 0x18) = 0;
             return 0;
@@ -1058,19 +1058,19 @@ uint64_t FUN_1807c6400(longlong param_1, uint64_t param_2, longlong param_3)
 // 返回值：
 //   int32_t - 处理结果状态
 //------------------------------------------------------------------------------
-int32_t FUN_1807c6550(longlong param_1, byte *param_2, uint param_3, uint *param_4)
+int32_t FUN_1807c6550(int64_t param_1, byte *param_2, uint param_3, uint *param_4)
 {
     int processStatus;                              // 处理状态
-    longlong dataPointer;                           // 数据指针
+    int64_t dataPointer;                           // 数据指针
     int32_t result;                              // 结果值
-    longlong sizePointer;                           // 大小指针
-    ulonglong processedBytes;                      // 已处理字节数
+    int64_t sizePointer;                           // 大小指针
+    uint64_t processedBytes;                      // 已处理字节数
     uint elementSize;                               // 元素大小
-    ulonglong totalSize;                            // 总大小
-    ulonglong elementCount;                         // 元素计数
+    uint64_t totalSize;                            // 总大小
+    uint64_t elementCount;                         // 元素计数
     uint sizeResult[2];                             // 大小结果
     
-    dataPointer = *(longlong *)(param_1 + 8);
+    dataPointer = *(int64_t *)(param_1 + 8);
     processStatus = *(int *)(dataPointer + 8);
     if ((processStatus - 1U < 2) && ((*(uint *)(param_1 + 0x2c) & 0x100) == 0)) {
         if (processStatus != 1) {
@@ -1082,14 +1082,14 @@ int32_t FUN_1807c6550(longlong param_1, byte *param_2, uint param_3, uint *param
             }
             result = ProcessDataStream(*(uint64_t *)(param_1 + 0x170), param_2, 2,
                                        *(int *)(dataPointer + 0xc) * param_3, param_4);
-            sizeResult[0] = *param_4 / *(uint *)(*(longlong *)(param_1 + 8) + 0xc);
+            sizeResult[0] = *param_4 / *(uint *)(*(int64_t *)(param_1 + 8) + 0xc);
             goto DataProcessComplete;
         }
         
         // 处理数据类型1
         result = ProcessDataStream(*(uint64_t *)(param_1 + 0x170), param_2, 1, 
                                     *(int *)(dataPointer + 0xc) * param_3, sizeResult);
-        processedBytes = (ulonglong)sizeResult[0];
+        processedBytes = (uint64_t)sizeResult[0];
         
         // 数据转换处理
         for (elementSize = sizeResult[0] >> 2; elementSize != 0; elementSize = elementSize - 1) {
@@ -1105,12 +1105,12 @@ int32_t FUN_1807c6550(longlong param_1, byte *param_2, uint param_3, uint *param
             param_2 = param_2 + 1;
         }
         
-        elementSize = *(uint *)(*(longlong *)(param_1 + 8) + 0xc);
+        elementSize = *(uint *)(*(int64_t *)(param_1 + 8) + 0xc);
         if (elementSize == 0) {
             return result;
         }
         
-        processStatus = *(int *)(*(longlong *)(param_1 + 8) + 8);
+        processStatus = *(int *)(*(int64_t *)(param_1 + 8) + 8);
         if (processStatus == 1) {
             totalSize = 8;
         }
@@ -1133,7 +1133,7 @@ int32_t FUN_1807c6550(longlong param_1, byte *param_2, uint param_3, uint *param
         if (processStatus == 1) {
             sizePointer = 8;
         DataSizeCalculation:
-            param_3 = (uint)((ulonglong)param_3 * sizePointer >> 3);
+            param_3 = (uint)((uint64_t)param_3 * sizePointer >> 3);
         }
         else {
             if (processStatus == 2) {
@@ -1152,12 +1152,12 @@ int32_t FUN_1807c6550(longlong param_1, byte *param_2, uint param_3, uint *param
         
         result = ProcessDataStream(*(uint64_t *)(param_1 + 0x170), param_2, 1, 
                                     *(int *)(dataPointer + 0xc) * param_3, sizeResult);
-        elementSize = *(uint *)(*(longlong *)(param_1 + 8) + 0xc);
+        elementSize = *(uint *)(*(int64_t *)(param_1 + 8) + 0xc);
         if (elementSize == 0) {
             return result;
         }
         
-        processStatus = *(int *)(*(longlong *)(param_1 + 8) + 8);
+        processStatus = *(int *)(*(int64_t *)(param_1 + 8) + 8);
         if (processStatus == 1) {
             totalSize = 8;
         }
@@ -1168,11 +1168,11 @@ int32_t FUN_1807c6550(longlong param_1, byte *param_2, uint param_3, uint *param
             totalSize = 0x18;
         }
         else if ((processStatus != 4) && (processStatus != 5)) goto DataProcessComplete;
-        processedBytes = (ulonglong)sizeResult[0];
+        processedBytes = (uint64_t)sizeResult[0];
     }
     
     // 计算处理结果
-    sizeResult[0] = (uint)(((processedBytes << 3) / totalSize & 0xffffffff) / (ulonglong)elementSize);
+    sizeResult[0] = (uint)(((processedBytes << 3) / totalSize & 0xffffffff) / (uint64_t)elementSize);
 DataProcessComplete:
     *param_4 = sizeResult[0];
     return result;

@@ -27,21 +27,21 @@
  * - 简化版本专注于核心参数处理功能
  * - 保留了主要的数据处理流程
  */
-void RenderingSystem_ParameterProcessor(uint64_t render_context, longlong param_buffer, longlong data_buffer)
+void RenderingSystem_ParameterProcessor(uint64_t render_context, int64_t param_buffer, int64_t data_buffer)
 
 {
   // 资源管理和初始化
   uint resource_index;
-  ulonglong data_offset;
-  longlong base_address = system_parameter_buffer;
-  ulonglong frame_sync = GET_SECURITY_COOKIE();
+  uint64_t data_offset;
+  int64_t base_address = system_parameter_buffer;
+  uint64_t frame_sync = GET_SECURITY_COOKIE();
   
   // 参数处理循环
   do {
     // 资源分配和管理
     if (resource_index == 0) {
       // 分配新资源
-      longlong new_resource = FUN_18062b420(system_memory_pool_ptr, 0x48000, 0x25);
+      int64_t new_resource = FUN_18062b420(system_memory_pool_ptr, 0x48000, 0x25);
       if (new_resource != 0) {
         // 资源初始化和设置
         FUN_1803e0670(new_resource, 0, data_buffer);
@@ -97,13 +97,13 @@ void RenderingSystem_ParameterProcessor(uint64_t render_context, longlong param_
  * - 简化版本专注于核心材质处理功能
  * - 保留了主要的材质参数计算流程
  */
-void RenderingSystem_AdvancedMaterialProcessor(uint64_t render_context, longlong param_buffer, longlong data_buffer)
+void RenderingSystem_AdvancedMaterialProcessor(uint64_t render_context, int64_t param_buffer, int64_t data_buffer)
 
 {
   // 材质参数初始化
   float material_params[4];
   uint texture_flags[3];
-  longlong material_context = system_parameter_buffer;
+  int64_t material_context = system_parameter_buffer;
   
   // 材质参数计算
   material_params[0] = 1.0f;
@@ -163,7 +163,7 @@ void RenderingSystem_MaterialOptimizer(uint64_t material_context, uint64_t textu
   // 材质优化参数
   float optimization_params[4];
   int texture_dimensions[4];
-  longlong render_context;
+  int64_t render_context;
   float *material_params;
   int *texture_flags;
   

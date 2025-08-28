@@ -18,7 +18,7 @@
 void update_rendering_component_state(uint64_t *component_ptr, uint64_t *state_data)
 
 {
-  longlong ref_count_ptr;
+  int64_t ref_count_ptr;
   uint64_t state_value;
   char is_active;
   int8_t flag_value;
@@ -30,7 +30,7 @@ void update_rendering_component_state(uint64_t *component_ptr, uint64_t *state_d
     flag_value = func_0x00018023a100(data_ptr);
     *(int8_t *)(component_ptr + 100) = flag_value;
     if ((void *)*component_ptr == &unknown_var_9304_ptr) {
-      FUN_180276f30(component_ptr, (longlong)component_ptr + 0x214, 0);
+      FUN_180276f30(component_ptr, (int64_t)component_ptr + 0x214, 0);
     }
     else {
       (**(code **)((void *)*component_ptr + 0x160))(component_ptr);
@@ -38,7 +38,7 @@ void update_rendering_component_state(uint64_t *component_ptr, uint64_t *state_d
     ref_count_ptr = component_ptr[5];
     if (ref_count_ptr != 0) {
       *(short *)(ref_count_ptr + 0x2b0) = *(short *)(ref_count_ptr + 0x2b0) + 1;
-      if (*(longlong *)(ref_count_ptr + 0x168) != 0) {
+      if (*(int64_t *)(ref_count_ptr + 0x168) != 0) {
         func_0x0001802eeba0();
       }
     }
@@ -67,19 +67,19 @@ void update_rendering_component_state(uint64_t *component_ptr, uint64_t *state_d
  * 
  * 此函数遍历容器中的所有对象，计算有效对象的总数
  */
-int calculate_rendering_object_count(longlong object_container)
+int calculate_rendering_object_count(int64_t object_container)
 
 {
   int total_count;
-  longlong object_ptr;
-  longlong *object_array;
-  longlong array_size;
+  int64_t object_ptr;
+  int64_t *object_array;
+  int64_t array_size;
   int object_count;
   
-  object_array = *(longlong **)(object_container + 0x38);
+  object_array = *(int64_t **)(object_container + 0x38);
   object_count = 0;
-  total_count = (int)(*(longlong *)(object_container + 0x40) - (longlong)object_array >> 4);
-  array_size = (longlong)total_count;
+  total_count = (int)(*(int64_t *)(object_container + 0x40) - (int64_t)object_array >> 4);
+  array_size = (int64_t)total_count;
   if (0 < total_count) {
     do {
       object_ptr = *object_array;
@@ -104,19 +104,19 @@ int calculate_rendering_object_count(longlong object_container)
  * 
  * 此函数根据指定的标志位筛选对象并计算数量
  */
-int calculate_flagged_object_count(longlong object_container, byte flag_bit)
+int calculate_flagged_object_count(int64_t object_container, byte flag_bit)
 
 {
-  longlong object_ptr;
-  longlong *object_array;
-  ulonglong array_size;
+  int64_t object_ptr;
+  int64_t *object_array;
+  uint64_t array_size;
   int flagged_count;
   int index;
   
   flagged_count = 0;
   index = 0;
-  object_array = *(longlong **)(object_container + 0x38);
-  array_size = *(longlong *)(object_container + 0x40) - (longlong)object_array >> 4;
+  object_array = *(int64_t **)(object_container + 0x38);
+  array_size = *(int64_t *)(object_container + 0x40) - (int64_t)object_array >> 4;
   if (array_size != 0) {
     do {
       if ((*(uint *)(object_array + 1) & 1 << (flag_bit & 0x1f)) != 0) {
@@ -128,7 +128,7 @@ int calculate_flagged_object_count(longlong object_container, byte flag_bit)
       }
       index = index + 1;
       object_array = object_array + 2;
-    } while ((ulonglong)(longlong)index < array_size);
+    } while ((uint64_t)(int64_t)index < array_size);
   }
   return flagged_count;
 }
@@ -149,16 +149,16 @@ uint64_t *create_rendering_manager(uint64_t manager_type, uint64_t *output_ptr)
 
 {
   uint64_t manager_handle;
-  longlong *manager_ptr;
+  int64_t *manager_ptr;
   
   manager_handle = FUN_18062b1e0(system_memory_pool_ptr, 0x3d0, 8, 0x16, 0, 0xfffffffffffffffe);
-  manager_ptr = (longlong *)FUN_180275090(manager_handle);
-  if (manager_ptr != (longlong *)0x0) {
+  manager_ptr = (int64_t *)FUN_180275090(manager_handle);
+  if (manager_ptr != (int64_t *)0x0) {
     (**(code **)(*manager_ptr + 0x28))(manager_ptr);
   }
   FUN_180275a60(manager_type, manager_ptr, 1);
   *output_ptr = manager_ptr;
-  if (manager_ptr != (longlong *)0x0) {
+  if (manager_ptr != (int64_t *)0x0) {
     (**(code **)(*manager_ptr + 0x28))(manager_ptr);
     (**(code **)(*manager_ptr + 0x38))(manager_ptr);
   }
@@ -182,12 +182,12 @@ uint64_t *create_rendering_manager(uint64_t manager_type, uint64_t *output_ptr)
  * 3. 处理引用计数
  * 4. 合并纹理和着色器资源链表
  */
-void merge_rendering_object_data(longlong target_object, longlong source_object, uint64_t merge_flag1, uint64_t merge_flag2)
+void merge_rendering_object_data(int64_t target_object, int64_t source_object, uint64_t merge_flag1, uint64_t merge_flag2)
 
 {
-  longlong resource_ptr;
-  longlong *source_resource;
-  longlong *target_resource;
+  int64_t resource_ptr;
+  int64_t *source_resource;
+  int64_t *target_resource;
   uint64_t merge_flag;
   
   merge_flag = 0xfffffffffffffffe;
@@ -206,38 +206,38 @@ void merge_rendering_object_data(longlong target_object, longlong source_object,
   perform_data_merge_operation(target_object, source_object, merge_flag1, merge_flag2, merge_flag);
   
   // 更新目标对象的引用计数
-  resource_ptr = *(longlong *)(target_object + 0x28);
+  resource_ptr = *(int64_t *)(target_object + 0x28);
   if (resource_ptr != 0) {
     *(short *)(resource_ptr + 0x2b0) = *(short *)(resource_ptr + 0x2b0) + 1;
-    if (*(longlong *)(resource_ptr + 0x168) != 0) {
+    if (*(int64_t *)(resource_ptr + 0x168) != 0) {
       update_reference_tracking_system();
     }
   }
   
   // 合并纹理资源链表
-  resource_ptr = *(longlong *)(target_object + 0x3c8);
-  if (*(longlong *)(resource_ptr + 0x20) == 0) {
-    source_resource = *(longlong **)(*(longlong *)(source_object + 0x3c8) + 0x20);
-    if (source_resource != (longlong *)0x0) {
+  resource_ptr = *(int64_t *)(target_object + 0x3c8);
+  if (*(int64_t *)(resource_ptr + 0x20) == 0) {
+    source_resource = *(int64_t **)(*(int64_t *)(source_object + 0x3c8) + 0x20);
+    if (source_resource != (int64_t *)0x0) {
       (**(code **)(*source_resource + 0x28))(source_resource);
     }
-    target_resource = *(longlong **)(resource_ptr + 0x20);
-    *(longlong **)(resource_ptr + 0x20) = source_resource;
-    if (target_resource != (longlong *)0x0) {
+    target_resource = *(int64_t **)(resource_ptr + 0x20);
+    *(int64_t **)(resource_ptr + 0x20) = source_resource;
+    if (target_resource != (int64_t *)0x0) {
       (**(code **)(*target_resource + 0x38))();
     }
   }
   
   // 合并着色器资源链表
-  resource_ptr = *(longlong *)(target_object + 0x3c8);
-  if (*(longlong *)(resource_ptr + 0x18) == 0) {
-    source_resource = *(longlong **)(*(longlong *)(source_object + 0x3c8) + 0x18);
-    if (source_resource != (longlong *)0x0) {
+  resource_ptr = *(int64_t *)(target_object + 0x3c8);
+  if (*(int64_t *)(resource_ptr + 0x18) == 0) {
+    source_resource = *(int64_t **)(*(int64_t *)(source_object + 0x3c8) + 0x18);
+    if (source_resource != (int64_t *)0x0) {
       (**(code **)(*source_resource + 0x28))(source_resource);
     }
-    target_resource = *(longlong **)(resource_ptr + 0x18);
-    *(longlong **)(resource_ptr + 0x18) = source_resource;
-    if (target_resource != (longlong *)0x0) {
+    target_resource = *(int64_t **)(resource_ptr + 0x18);
+    *(int64_t **)(resource_ptr + 0x18) = source_resource;
+    if (target_resource != (int64_t *)0x0) {
       (**(code **)(*target_resource + 0x38))();
     }
   }

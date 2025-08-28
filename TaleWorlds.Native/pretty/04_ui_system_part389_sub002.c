@@ -2,8 +2,8 @@
 
 // 04_ui_system_part389_sub002.c - 1 个函数
 
-// 函数: void FUN_180879c80(longlong *param_1)
-void FUN_180879c80(longlong *param_1)
+// 函数: void FUN_180879c80(int64_t *param_1)
+void FUN_180879c80(int64_t *param_1)
 
 {
   uint64_t uVar1;

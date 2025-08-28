@@ -41,14 +41,14 @@
 // 处理Steam UI请求，验证数据并调用相应的Steam API功能
 // 参数: param_1 - 请求类型标识, param_2 - 上下文数据, param_3 - 数据缓冲区, param_4 - 标志位, param_5 - 数据长度
 void process_steam_ui_request(uint64_t param_1,uint64_t param_2,void *param_3,uint64_t param_4,
-                              longlong param_5)
+                              int64_t param_5)
 
 {
   byte bVar1;
   byte *pbVar2;
   uint uVar3;
   int32_t uVar4;
-  longlong lVar5;
+  int64_t lVar5;
   
   // 验证请求参数和数据状态
   if (((char)param_4 == '\0') && (param_3 != &SYSTEM_CONFIG_AREA)) {
@@ -60,7 +60,7 @@ LAB_1806579e7:
     // 检查数据长度并验证缓冲区内容
     if (*(int *)(param_5 + 0x10) != 0) {
       pbVar2 = *(byte **)(param_3 + 0x28);
-      lVar5 = *(longlong *)(param_5 + 8) - (longlong)pbVar2;
+      lVar5 = *(int64_t *)(param_5 + 8) - (int64_t)pbVar2;
       // 逐字节比较数据内容
       do {
         bVar1 = *pbVar2;
@@ -83,10 +83,10 @@ LAB_1806579f0:
 
 
 
-// 函数: uint64_t * allocate_steam_interface(uint64_t *param_1,ulonglong param_2)
+// 函数: uint64_t * allocate_steam_interface(uint64_t *param_1,uint64_t param_2)
 // 分配Steam接口内存，根据标志决定是否释放内存
 // 参数: param_1 - 接口指针, param_2 - 内存管理标志
-uint64_t * allocate_steam_interface(uint64_t *param_1,ulonglong param_2)
+uint64_t * allocate_steam_interface(uint64_t *param_1,uint64_t param_2)
 
 {
   *param_1 = &STEAM_INTERFACE_PTR_4;
@@ -139,11 +139,11 @@ void initialize_steam_friends(uint64_t *param_1)
 
 
 
-// 函数: uint64_t * create_steam_context(uint64_t *param_1,ulonglong param_2,uint64_t param_3,uint64_t param_4)
+// 函数: uint64_t * create_steam_context(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 // 创建Steam上下文，初始化Steam相关接口和内存管理
 // 参数: param_1 - 上下文指针, param_2 - 管理标志, param_3 - 附加参数1, param_4 - 附加参数2
 uint64_t *
-create_steam_context(uint64_t *param_1,ulonglong param_2,uint64_t param_3,uint64_t param_4)
+create_steam_context(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
   uint64_t uVar1;
@@ -176,30 +176,30 @@ void execute_ui_system_call(void)
 
 
 
-// 函数: void process_ui_data_batch(longlong param_1,longlong param_2,uint64_t param_3,uint64_t param_4)
+// 函数: void process_ui_data_batch(int64_t param_1,int64_t param_2,uint64_t param_3,uint64_t param_4)
 // 批量处理UI数据，处理复杂的数据结构和内存操作
 // 参数: param_1 - 输入数据缓冲区, param_2 - 输出数据缓冲区, param_3 - 处理标志, param_4 - 内存管理参数
-void process_ui_data_batch(longlong param_1,longlong param_2,uint64_t param_3,uint64_t param_4)
+void process_ui_data_batch(int64_t param_1,int64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
   int iVar1;
   uint64_t *puVar2;
-  longlong lVar3;
-  ulonglong uVar4;
+  int64_t lVar3;
+  uint64_t uVar4;
   uint uVar5;
-  ulonglong uVar6;
+  uint64_t uVar6;
   uint64_t uVar7;
   void *puStack_50;
   int8_t *puStack_48;
   int iStack_40;
-  ulonglong uStack_38;
+  uint64_t uStack_38;
   
   uVar7 = 0xfffffffffffffffe;
   uVar4 = 0;
-  lVar3 = *(longlong *)(param_1 + 8);
+  lVar3 = *(int64_t *)(param_1 + 8);
   uVar6 = uVar4;
   // 循环处理数据块
-  if (*(longlong *)(param_1 + 0x10) - lVar3 >> 5 != 0) {
+  if (*(int64_t *)(param_1 + 0x10) - lVar3 >> 5 != 0) {
     do {
       puStack_50 = &SYSTEM_DATA_PTR;
       uStack_38 = 0;
@@ -212,7 +212,7 @@ void process_ui_data_batch(longlong param_1,longlong param_2,uint64_t param_3,ui
         memcpy(puStack_48,*(uint64_t *)(uVar4 + 8 + lVar3),iVar1 + 1,param_4,uVar7);
       }
       // 检查数据指针并处理
-      if (*(longlong *)(uVar4 + 8 + lVar3) != 0) {
+      if (*(int64_t *)(uVar4 + 8 + lVar3) != 0) {
         iStack_40 = 0;
         if (puStack_48 != (int8_t *)0x0) {
           *puStack_48 = 0;
@@ -241,7 +241,7 @@ void process_ui_data_batch(longlong param_1,longlong param_2,uint64_t param_3,ui
           if ((int8_t *)puVar2[1] != (int8_t *)0x0) {
             *(int8_t *)puVar2[1] = 0;
           }
-          *(int32_t *)((longlong)puVar2 + 0x1c) = 0;
+          *(int32_t *)((int64_t)puVar2 + 0x1c) = 0;
         }
       }
       else {
@@ -255,10 +255,10 @@ void process_ui_data_batch(longlong param_1,longlong param_2,uint64_t param_3,ui
       }
       uVar5 = (int)uVar6 + 1;
       uVar4 = uVar4 + 0x20;
-      lVar3 = *(longlong *)(param_1 + 8);
-      uVar6 = (ulonglong)uVar5;
-    } while ((ulonglong)(longlong)(int)uVar5 <
-             (ulonglong)(*(longlong *)(param_1 + 0x10) - lVar3 >> 5));
+      lVar3 = *(int64_t *)(param_1 + 8);
+      uVar6 = (uint64_t)uVar5;
+    } while ((uint64_t)(int64_t)(int)uVar5 <
+             (uint64_t)(*(int64_t *)(param_1 + 0x10) - lVar3 >> 5));
   }
   return;
 }

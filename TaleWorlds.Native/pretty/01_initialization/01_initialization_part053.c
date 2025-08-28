@@ -3,14 +3,14 @@
 
 // 01_initialization_part053.c - 2 个函数
 
-// 函数: void FUN_180079270(longlong param_1,longlong param_2)
+// 函数: void FUN_180079270(int64_t param_1,int64_t param_2)
 // 功能: 处理游戏对象的初始化和矩阵变换
 // 参数: param_1 - 游戏对象指针, param_2 - 参数数据指针
-void FUN_180079270(longlong param_1,longlong param_2)
+void FUN_180079270(int64_t param_1,int64_t param_2)
 {
-    longlong *game_object_ptr;
+    int64_t *game_object_ptr;
     int *counter_ptr;
-    longlong *temp_ptr1;
+    int64_t *temp_ptr1;
     byte *byte_ptr;
     uint64_t *data_ptr;
     float matrix_row1_x, matrix_row1_y, matrix_row1_z;
@@ -19,21 +19,21 @@ void FUN_180079270(longlong param_1,longlong param_2)
     float result_matrix[12];
     int8_t flag_byte;
     char index_char;
-    longlong temp_long;
+    int64_t temp_long;
     float *transform_matrix;
     float temp_float1, temp_float2, temp_float3, temp_float4;
     float temp_float5, temp_float6, temp_float7, temp_float8;
     float temp_float9, temp_float10, temp_float11, temp_float12;
     uint64_t temp_uint64_t;
     int32_t temp_int32_t;
-    longlong offset_value;
-    longlong *array_ptr;
-    longlong loop_counter;
+    int64_t offset_value;
+    int64_t *array_ptr;
+    int64_t loop_counter;
     uint chunk_index;
     int temp_int1;
     uint temp_uint1;
     int temp_int2;
-    ulonglong temp_ulong1;
+    uint64_t temp_ulong1;
     char *char_ptr;
     uint *uint_ptr;
     int item_count;
@@ -41,8 +41,8 @@ void FUN_180079270(longlong param_1,longlong param_2)
     int loop_index;
     int32_t *data_array;
     uint *chunk_ptr;
-    ulonglong chunk_start;
-    ulonglong chunk_end;
+    uint64_t chunk_start;
+    uint64_t chunk_end;
     bool is_allocated;
     
     // 获取全局数据地址
@@ -62,7 +62,7 @@ void FUN_180079270(longlong param_1,longlong param_2)
     UNLOCK();
     
     // 获取游戏对象数据
-    temp_long = *(longlong *)(param_1 + 600);
+    temp_long = *(int64_t *)(param_1 + 600);
     flag_byte = *(int8_t *)(param_2 + 0x24);
     temp_int32_t = *(int32_t *)(param_2 + 0x20);
     index_char = *(char *)(param_2 + 0xd);
@@ -77,14 +77,14 @@ void FUN_180079270(longlong param_1,longlong param_2)
     // 处理矩阵变换
     if (index_char != -1) {
         temp_uint1 = (int)*(char *)(param_2 + 0xd) + *(int *)(param_2 + 0x18);
-        transform_matrix = (float *)**(longlong **)(param_1 + 600);
+        transform_matrix = (float *)**(int64_t **)(param_1 + 600);
         chunk_index = temp_uint1 >> 0xd;
         
         // 计算矩阵数据地址
-        temp_long = *(longlong *)
-                   ((longlong)*(int *)(system_parameter_buffer + 0xe78) * 0x128 + system_parameter_buffer + 0xc30 +
-                   (ulonglong)chunk_index * 8);
-        offset_value = (ulonglong)(temp_uint1 + chunk_index * -0x2000) * 0x40;
+        temp_long = *(int64_t *)
+                   ((int64_t)*(int *)(system_parameter_buffer + 0xe78) * 0x128 + system_parameter_buffer + 0xc30 +
+                   (uint64_t)chunk_index * 8);
+        offset_value = (uint64_t)(temp_uint1 + chunk_index * -0x2000) * 0x40;
         
         // 加载矩阵数据
         temp_uint64_t = ((uint64_t *)(temp_long + offset_value))[1];
@@ -110,7 +110,7 @@ void FUN_180079270(longlong param_1,longlong param_2)
         *(uint64_t *)(transform_matrix + 0xe) = temp_uint64_t;
         
         // 获取变换矩阵数据
-        temp_long = *(longlong *)(param_2 + 0x10);
+        temp_long = *(int64_t *)(param_2 + 0x10);
         temp_float1 = transform_matrix[8];
         temp_float2 = transform_matrix[9];
         temp_float3 = transform_matrix[10];
@@ -151,20 +151,20 @@ void FUN_180079270(longlong param_1,longlong param_2)
     }
     
     // 检查是否需要更新
-    temp_long = *(longlong *)(param_1 + 600);
+    temp_long = *(int64_t *)(param_1 + 600);
     if (*(int *)(temp_long + 0x28) != *(int *)(system_main_module_state + 0x224)) {
         item_count = *(int *)(temp_long + 0x1c) + *(int *)(temp_long + 0x18);
         *(int *)(temp_long + 0x28) = *(int *)(system_main_module_state + 0x224);
         
         if (0 < item_count) {
             // 分配内存
-            offset_value = (longlong)*(int *)(system_parameter_buffer + 0xe78) * 0x128 + system_parameter_buffer + 0xc28;
+            offset_value = (int64_t)*(int *)(system_parameter_buffer + 0xe78) * 0x128 + system_parameter_buffer + 0xc28;
             temp_int32_t = FUN_180080380(offset_value, item_count);
             *(int32_t *)(temp_long + 0x30) = temp_int32_t;
             FUN_1800802e0(offset_value, temp_int32_t);
             
             // 检查数据指针
-            if (*(longlong *)(temp_long + 0x10) == 0) {
+            if (*(int64_t *)(temp_long + 0x10) == 0) {
                 if (*(int *)(temp_long + 0x18) != 0) {
                     *(int32_t *)(temp_long + 0x2c) = *(int32_t *)(temp_long + 0x30);
                     return;
@@ -173,12 +173,12 @@ void FUN_180079270(longlong param_1,longlong param_2)
             else {
                 // 处理数组分配
                 index_char = *(char *)(temp_long + 0x44);
-                temp_ulong1 = (ulonglong)index_char;
-                game_object_ptr = (longlong *)(temp_long + 0x38);
+                temp_ulong1 = (uint64_t)index_char;
+                game_object_ptr = (int64_t *)(temp_long + 0x38);
                 item_count = (int)index_char;
                 
                 if (*(int *)(temp_long + 0x40) == (int)index_char) {
-                    array_ptr = (longlong *)*game_object_ptr;
+                    array_ptr = (int64_t *)*game_object_ptr;
                 }
                 else {
                     *(int *)(temp_long + 0x40) = item_count;
@@ -189,27 +189,27 @@ void FUN_180079270(longlong param_1,longlong param_2)
                     *game_object_ptr = 0;
                     
                     if (index_char == '\0') {
-                        array_ptr = (longlong *)0x0;
+                        array_ptr = (int64_t *)0x0;
                         *game_object_ptr = 0;
                     }
                     else {
                         // 分配新内存
-                        array_ptr = (longlong *)FUN_18062b1e0(system_memory_pool_ptr, (longlong)index_char * 4);
-                        *game_object_ptr = (longlong)array_ptr;
+                        array_ptr = (int64_t *)FUN_18062b1e0(system_memory_pool_ptr, (int64_t)index_char * 4);
+                        *game_object_ptr = (int64_t)array_ptr;
                     }
                 }
                 
                 // 初始化数组数据
-                if (array_ptr != (longlong *)0x0) {
+                if (array_ptr != (int64_t *)0x0) {
                     array_size = 0;
                     chunk_index = (uint)index_char;
                     loop_index = array_size;
                     
                     if ((0 < item_count) && (0xf < chunk_index)) {
                         temp_int2 = *(int *)(temp_long + 0x2c);
-                        temp_ptr1 = (longlong *)((longlong)array_ptr + (longlong)(index_char + -1) * 4);
+                        temp_ptr1 = (int64_t *)((int64_t)array_ptr + (int64_t)(index_char + -1) * 4);
                         
-                        if ((((longlong *)(temp_long + 0x2c) < array_ptr) || (temp_ptr1 < (longlong *)(temp_long + 0x2c))) &&
+                        if ((((int64_t *)(temp_long + 0x2c) < array_ptr) || (temp_ptr1 < (int64_t *)(temp_long + 0x2c))) &&
                            ((game_object_ptr < array_ptr || (loop_index = 0, temp_ptr1 < game_object_ptr)))) {
                             
                             temp_uint1 = chunk_index & 0x8000000f;
@@ -223,22 +223,22 @@ void FUN_180079270(longlong param_1,longlong param_2)
                             // 批量初始化数组
                             do {
                                 *(int *)(array_ptr + -4) = array_size + temp_int2;
-                                *(int *)((longlong)array_ptr + -0x1c) = array_size + 1 + temp_int2;
+                                *(int *)((int64_t)array_ptr + -0x1c) = array_size + 1 + temp_int2;
                                 *(int *)(array_ptr + -3) = array_size + 2 + temp_int2;
-                                *(int *)((longlong)array_ptr + -0x14) = array_size + 3 + temp_int2;
+                                *(int *)((int64_t)array_ptr + -0x14) = array_size + 3 + temp_int2;
                                 array_size = array_size + 0x10;
                                 *(int *)(array_ptr + -2) = temp_int1 + -4 + temp_int2;
-                                *(int *)((longlong)array_ptr + -0xc) = temp_int1 + -3 + temp_int2;
+                                *(int *)((int64_t)array_ptr + -0xc) = temp_int1 + -3 + temp_int2;
                                 *(int *)(array_ptr + -1) = temp_int1 + -2 + temp_int2;
-                                *(int *)((longlong)array_ptr + -4) = temp_int1 + -1 + temp_int2;
+                                *(int *)((int64_t)array_ptr + -4) = temp_int1 + -1 + temp_int2;
                                 *(int *)array_ptr = temp_int1 + temp_int2;
-                                *(int *)((longlong)array_ptr + 4) = temp_int1 + 1 + temp_int2;
+                                *(int *)((int64_t)array_ptr + 4) = temp_int1 + 1 + temp_int2;
                                 *(int *)(array_ptr + 1) = temp_int1 + 2 + temp_int2;
-                                *(int *)((longlong)array_ptr + 0xc) = temp_int1 + 3 + temp_int2;
+                                *(int *)((int64_t)array_ptr + 0xc) = temp_int1 + 3 + temp_int2;
                                 *(int *)(array_ptr + 2) = temp_int1 + 4 + temp_int2;
-                                *(int *)((longlong)array_ptr + 0x14) = temp_int1 + 5 + temp_int2;
+                                *(int *)((int64_t)array_ptr + 0x14) = temp_int1 + 5 + temp_int2;
                                 *(int *)(array_ptr + 3) = temp_int1 + 6 + temp_int2;
-                                *(int *)((longlong)array_ptr + 0x1c) = temp_int1 + 7 + temp_int2;
+                                *(int *)((int64_t)array_ptr + 0x1c) = temp_int1 + 7 + temp_int2;
                                 array_ptr = array_ptr + 8;
                                 temp_int1 = temp_int1 + 0x10;
                                 loop_index = array_size;
@@ -247,7 +247,7 @@ void FUN_180079270(longlong param_1,longlong param_2)
                     }
                     
                     // 填充剩余数组元素
-                    for (offset_value = (longlong)loop_index; offset_value < (longlong)temp_ulong1; offset_value = offset_value + 1) {
+                    for (offset_value = (int64_t)loop_index; offset_value < (int64_t)temp_ulong1; offset_value = offset_value + 1) {
                         array_size = *(int *)(temp_long + 0x2c) + loop_index;
                         loop_index = loop_index + 1;
                         *(int *)(*game_object_ptr + offset_value * 4) = array_size;
@@ -256,20 +256,20 @@ void FUN_180079270(longlong param_1,longlong param_2)
                     // 处理数据映射
                     loop_index = *(int *)(temp_long + 0x18);
                     array_size = 0;
-                    if (0 < (longlong)loop_index) {
+                    if (0 < (int64_t)loop_index) {
                         offset_value = 0;
                         do {
                             temp_int2 = *(int *)(temp_long + 0x30) + array_size;
                             array_size = array_size + 1;
-                            byte_ptr = (byte *)(*(longlong *)(temp_long + 0x10) + offset_value);
+                            byte_ptr = (byte *)(*(int64_t *)(temp_long + 0x10) + offset_value);
                             offset_value = offset_value + 1;
-                            *(int *)(*game_object_ptr + (ulonglong)*byte_ptr * 4) = temp_int2;
+                            *(int *)(*game_object_ptr + (uint64_t)*byte_ptr * 4) = temp_int2;
                         } while (offset_value < loop_index);
                     }
                 }
                 
                 // 处理内存块分配
-                uint_ptr = (uint *)((longlong)*(int *)(system_parameter_buffer + 0xc20) * 0x128 + system_parameter_buffer + 0x9d0);
+                uint_ptr = (uint *)((int64_t)*(int *)(system_parameter_buffer + 0xc20) * 0x128 + system_parameter_buffer + 0x9d0);
                 
                 if (item_count == 0) {
                     temp_uint1 = (int)index_char - 1;
@@ -280,28 +280,28 @@ void FUN_180079270(longlong param_1,longlong param_2)
                     *uint_ptr = *uint_ptr + (int)index_char;
                     UNLOCK();
                     
-                    chunk_start = (ulonglong)(temp_uint1 >> 0xb);
-                    chunk_end = (ulonglong)(index_char + -1 + temp_uint1 >> 0xb);
+                    chunk_start = (uint64_t)(temp_uint1 >> 0xb);
+                    chunk_end = (uint64_t)(index_char + -1 + temp_uint1 >> 0xb);
                     
                     if (chunk_start <= chunk_end) {
-                        char_ptr = (char *)((longlong)uint_ptr + chunk_start + 0x108);
+                        char_ptr = (char *)((int64_t)uint_ptr + chunk_start + 0x108);
                         offset_value = (chunk_end - chunk_start) + 1;
                         chunk_ptr = uint_ptr + chunk_start * 2 + 2;
                         
                         do {
                             loop_index = (int)chunk_start;
-                            if (*(longlong *)chunk_ptr == 0) {
+                            if (*(int64_t *)chunk_ptr == 0) {
                                 loop_counter = FUN_18062b420(system_memory_pool_ptr, 0x2000, 0x25);
                                 LOCK();
-                                is_allocated = *(longlong *)(uint_ptr + (longlong)loop_index * 2 + 2) == 0;
+                                is_allocated = *(int64_t *)(uint_ptr + (int64_t)loop_index * 2 + 2) == 0;
                                 if (is_allocated) {
-                                    *(longlong *)(uint_ptr + (longlong)loop_index * 2 + 2) = loop_counter;
+                                    *(int64_t *)(uint_ptr + (int64_t)loop_index * 2 + 2) = loop_counter;
                                 }
                                 UNLOCK();
                                 
                                 if (is_allocated) {
                                     LOCK();
-                                    *(int8_t *)((longlong)loop_index + 0x108 + (longlong)uint_ptr) = 0;
+                                    *(int8_t *)((int64_t)loop_index + 0x108 + (int64_t)uint_ptr) = 0;
                                     UNLOCK();
                                 }
                                 else {
@@ -316,7 +316,7 @@ void FUN_180079270(longlong param_1,longlong param_2)
                                 do {
                                 } while (*char_ptr != '\0');
                             }
-                            chunk_start = (ulonglong)(loop_index + 1);
+                            chunk_start = (uint64_t)(loop_index + 1);
                             chunk_ptr = chunk_ptr + 2;
                             char_ptr = char_ptr + 1;
                             offset_value = offset_value + -1;
@@ -330,8 +330,8 @@ void FUN_180079270(longlong param_1,longlong param_2)
                 *(uint *)(temp_long + 0x2c) = temp_uint1;
                 
                 if (temp_uint1 == (int)index_char + temp_uint1 >> 0xb) {
-                    memcpy(*(longlong *)(uint_ptr + (ulonglong)temp_uint1 * 2 + 2) +
-                           (ulonglong)(temp_uint1 + temp_uint1 * -0x800) * 4, data_array, (temp_ulong1 & 0xffffffff) << 2);
+                    memcpy(*(int64_t *)(uint_ptr + (uint64_t)temp_uint1 * 2 + 2) +
+                           (uint64_t)(temp_uint1 + temp_uint1 * -0x800) * 4, data_array, (temp_ulong1 & 0xffffffff) << 2);
                 }
                 
                 if (item_count != 0) {
@@ -340,8 +340,8 @@ void FUN_180079270(longlong param_1,longlong param_2)
                         temp_int32_t = *data_array;
                         data_array = data_array + 1;
                         *(int32_t *)
-                         (*(longlong *)(uint_ptr + (ulonglong)(temp_uint1 >> 0xb) * 2 + 2) +
-                         (ulonglong)(temp_uint1 + (temp_uint1 >> 0xb) * -0x800) * 4) = temp_int32_t;
+                         (*(int64_t *)(uint_ptr + (uint64_t)(temp_uint1 >> 0xb) * 2 + 2) +
+                         (uint64_t)(temp_uint1 + (temp_uint1 >> 0xb) * -0x800) * 4) = temp_int32_t;
                         temp_ulong1 = temp_ulong1 - 1;
                         temp_uint1 = temp_uint1 + 1;
                     } while (temp_ulong1 != 0);
@@ -358,14 +358,14 @@ void FUN_180079270(longlong param_1,longlong param_2)
 
 
 
-// 函数: void FUN_180079284(longlong param_1)
+// 函数: void FUN_180079284(int64_t param_1)
 // 功能: 处理游戏对象的初始化和矩阵变换（第二个版本）
 // 参数: param_1 - 游戏对象指针
-void FUN_180079284(longlong param_1)
+void FUN_180079284(int64_t param_1)
 {
-    longlong *game_object_ptr;
+    int64_t *game_object_ptr;
     int *counter_ptr;
-    longlong *temp_ptr1;
+    int64_t *temp_ptr1;
     byte *byte_ptr;
     uint64_t *data_ptr;
     float matrix_row1_x, matrix_row1_y, matrix_row1_z;
@@ -374,31 +374,31 @@ void FUN_180079284(longlong param_1)
     float result_matrix[12];
     int8_t flag_byte;
     char index_char;
-    longlong temp_long;
+    int64_t temp_long;
     float *transform_matrix;
     float temp_float1, temp_float2, temp_float3, temp_float4;
     float temp_float5, temp_float6, temp_float7, temp_float8;
     float temp_float9, temp_float10, temp_float11, temp_float12;
     uint64_t temp_uint64_t;
     int32_t temp_int32_t;
-    longlong offset_value;
-    longlong *array_ptr;
-    longlong loop_counter;
+    int64_t offset_value;
+    int64_t *array_ptr;
+    int64_t loop_counter;
     uint chunk_index;
     int temp_int1;
     uint temp_uint1;
     int temp_int2;
-    ulonglong temp_ulong1;
+    uint64_t temp_ulong1;
     char *char_ptr;
     uint *uint_ptr;
     int item_count;
-    longlong unaff_RDI;
+    int64_t unaff_RDI;
     int array_size;
     int loop_index;
     int32_t *data_array;
     uint *chunk_ptr;
-    ulonglong chunk_start;
-    ulonglong chunk_end;
+    uint64_t chunk_start;
+    uint64_t chunk_end;
     bool in_ZF;
     bool is_allocated;
     
@@ -419,7 +419,7 @@ void FUN_180079284(longlong param_1)
     UNLOCK();
     
     // 获取游戏对象数据
-    temp_long = *(longlong *)(param_1 + 600);
+    temp_long = *(int64_t *)(param_1 + 600);
     flag_byte = *(int8_t *)(unaff_RDI + 0x24);
     temp_int32_t = *(int32_t *)(unaff_RDI + 0x20);
     index_char = *(char *)(unaff_RDI + 0xd);
@@ -434,14 +434,14 @@ void FUN_180079284(longlong param_1)
     // 处理矩阵变换
     if (index_char != -1) {
         temp_uint1 = (int)*(char *)(unaff_RDI + 0xd) + *(int *)(unaff_RDI + 0x18);
-        transform_matrix = (float *)**(longlong **)(param_1 + 600);
+        transform_matrix = (float *)**(int64_t **)(param_1 + 600);
         chunk_index = temp_uint1 >> 0xd;
         
         // 计算矩阵数据地址
-        temp_long = *(longlong *)
-                   ((longlong)*(int *)(system_parameter_buffer + 0xe78) * 0x128 + system_parameter_buffer + 0xc30 +
-                   (ulonglong)chunk_index * 8);
-        offset_value = (ulonglong)(temp_uint1 + chunk_index * -0x2000) * 0x40;
+        temp_long = *(int64_t *)
+                   ((int64_t)*(int *)(system_parameter_buffer + 0xe78) * 0x128 + system_parameter_buffer + 0xc30 +
+                   (uint64_t)chunk_index * 8);
+        offset_value = (uint64_t)(temp_uint1 + chunk_index * -0x2000) * 0x40;
         
         // 加载矩阵数据
         temp_uint64_t = ((uint64_t *)(temp_long + offset_value))[1];
@@ -467,7 +467,7 @@ void FUN_180079284(longlong param_1)
         *(uint64_t *)(transform_matrix + 0xe) = temp_uint64_t;
         
         // 获取变换矩阵数据
-        temp_long = *(longlong *)(unaff_RDI + 0x10);
+        temp_long = *(int64_t *)(unaff_RDI + 0x10);
         temp_float1 = transform_matrix[8];
         temp_float2 = transform_matrix[9];
         temp_float3 = transform_matrix[10];
@@ -508,20 +508,20 @@ void FUN_180079284(longlong param_1)
     }
     
     // 检查是否需要更新
-    temp_long = *(longlong *)(param_1 + 600);
+    temp_long = *(int64_t *)(param_1 + 600);
     if (*(int *)(temp_long + 0x28) != *(int *)(system_main_module_state + 0x224)) {
         item_count = *(int *)(temp_long + 0x1c) + *(int *)(temp_long + 0x18);
         *(int *)(temp_long + 0x28) = *(int *)(system_main_module_state + 0x224);
         
         if (0 < item_count) {
             // 分配内存
-            offset_value = (longlong)*(int *)(system_parameter_buffer + 0xe78) * 0x128 + system_parameter_buffer + 0xc28;
+            offset_value = (int64_t)*(int *)(system_parameter_buffer + 0xe78) * 0x128 + system_parameter_buffer + 0xc28;
             temp_int32_t = FUN_180080380(offset_value, item_count);
             *(int32_t *)(temp_long + 0x30) = temp_int32_t;
             FUN_1800802e0(offset_value, temp_int32_t);
             
             // 检查数据指针
-            if (*(longlong *)(temp_long + 0x10) == 0) {
+            if (*(int64_t *)(temp_long + 0x10) == 0) {
                 if (*(int *)(temp_long + 0x18) != 0) {
                     *(int32_t *)(temp_long + 0x2c) = *(int32_t *)(temp_long + 0x30);
                     return;
@@ -530,12 +530,12 @@ void FUN_180079284(longlong param_1)
             else {
                 // 处理数组分配
                 index_char = *(char *)(temp_long + 0x44);
-                temp_ulong1 = (ulonglong)index_char;
-                game_object_ptr = (longlong *)(temp_long + 0x38);
+                temp_ulong1 = (uint64_t)index_char;
+                game_object_ptr = (int64_t *)(temp_long + 0x38);
                 item_count = (int)index_char;
                 
                 if (*(int *)(temp_long + 0x40) == (int)index_char) {
-                    array_ptr = (longlong *)*game_object_ptr;
+                    array_ptr = (int64_t *)*game_object_ptr;
                 }
                 else {
                     *(int *)(temp_long + 0x40) = item_count;
@@ -546,27 +546,27 @@ void FUN_180079284(longlong param_1)
                     *game_object_ptr = 0;
                     
                     if (index_char == '\0') {
-                        array_ptr = (longlong *)0x0;
+                        array_ptr = (int64_t *)0x0;
                         *game_object_ptr = 0;
                     }
                     else {
                         // 分配新内存
-                        array_ptr = (longlong *)FUN_18062b1e0(system_memory_pool_ptr, (longlong)index_char * 4);
-                        *game_object_ptr = (longlong)array_ptr;
+                        array_ptr = (int64_t *)FUN_18062b1e0(system_memory_pool_ptr, (int64_t)index_char * 4);
+                        *game_object_ptr = (int64_t)array_ptr;
                     }
                 }
                 
                 // 初始化数组数据
-                if (array_ptr != (longlong *)0x0) {
+                if (array_ptr != (int64_t *)0x0) {
                     array_size = 0;
                     chunk_index = (uint)index_char;
                     loop_index = array_size;
                     
                     if ((0 < item_count) && (0xf < chunk_index)) {
                         temp_int2 = *(int *)(temp_long + 0x2c);
-                        temp_ptr1 = (longlong *)((longlong)array_ptr + (longlong)(index_char + -1) * 4);
+                        temp_ptr1 = (int64_t *)((int64_t)array_ptr + (int64_t)(index_char + -1) * 4);
                         
-                        if ((((longlong *)(temp_long + 0x2c) < array_ptr) || (temp_ptr1 < (longlong *)(temp_long + 0x2c))) &&
+                        if ((((int64_t *)(temp_long + 0x2c) < array_ptr) || (temp_ptr1 < (int64_t *)(temp_long + 0x2c))) &&
                            ((game_object_ptr < array_ptr || (loop_index = 0, temp_ptr1 < game_object_ptr)))) {
                             
                             temp_uint1 = chunk_index & 0x8000000f;
@@ -580,22 +580,22 @@ void FUN_180079284(longlong param_1)
                             // 批量初始化数组
                             do {
                                 *(int *)(array_ptr + -4) = array_size + temp_int2;
-                                *(int *)((longlong)array_ptr + -0x1c) = array_size + 1 + temp_int2;
+                                *(int *)((int64_t)array_ptr + -0x1c) = array_size + 1 + temp_int2;
                                 *(int *)(array_ptr + -3) = array_size + 2 + temp_int2;
-                                *(int *)((longlong)array_ptr + -0x14) = array_size + 3 + temp_int2;
+                                *(int *)((int64_t)array_ptr + -0x14) = array_size + 3 + temp_int2;
                                 array_size = array_size + 0x10;
                                 *(int *)(array_ptr + -2) = temp_int1 + -4 + temp_int2;
-                                *(int *)((longlong)array_ptr + -0xc) = temp_int1 + -3 + temp_int2;
+                                *(int *)((int64_t)array_ptr + -0xc) = temp_int1 + -3 + temp_int2;
                                 *(int *)(array_ptr + -1) = temp_int1 + -2 + temp_int2;
-                                *(int *)((longlong)array_ptr + -4) = temp_int1 + -1 + temp_int2;
+                                *(int *)((int64_t)array_ptr + -4) = temp_int1 + -1 + temp_int2;
                                 *(int *)array_ptr = temp_int1 + temp_int2;
-                                *(int *)((longlong)array_ptr + 4) = temp_int1 + 1 + temp_int2;
+                                *(int *)((int64_t)array_ptr + 4) = temp_int1 + 1 + temp_int2;
                                 *(int *)(array_ptr + 1) = temp_int1 + 2 + temp_int2;
-                                *(int *)((longlong)array_ptr + 0xc) = temp_int1 + 3 + temp_int2;
+                                *(int *)((int64_t)array_ptr + 0xc) = temp_int1 + 3 + temp_int2;
                                 *(int *)(array_ptr + 2) = temp_int1 + 4 + temp_int2;
-                                *(int *)((longlong)array_ptr + 0x14) = temp_int1 + 5 + temp_int2;
+                                *(int *)((int64_t)array_ptr + 0x14) = temp_int1 + 5 + temp_int2;
                                 *(int *)(array_ptr + 3) = temp_int1 + 6 + temp_int2;
-                                *(int *)((longlong)array_ptr + 0x1c) = temp_int1 + 7 + temp_int2;
+                                *(int *)((int64_t)array_ptr + 0x1c) = temp_int1 + 7 + temp_int2;
                                 array_ptr = array_ptr + 8;
                                 temp_int1 = temp_int1 + 0x10;
                                 loop_index = array_size;
@@ -604,7 +604,7 @@ void FUN_180079284(longlong param_1)
                     }
                     
                     // 填充剩余数组元素
-                    for (offset_value = (longlong)loop_index; offset_value < (longlong)temp_ulong1; offset_value = offset_value + 1) {
+                    for (offset_value = (int64_t)loop_index; offset_value < (int64_t)temp_ulong1; offset_value = offset_value + 1) {
                         array_size = *(int *)(temp_long + 0x2c) + loop_index;
                         loop_index = loop_index + 1;
                         *(int *)(*game_object_ptr + offset_value * 4) = array_size;
@@ -613,20 +613,20 @@ void FUN_180079284(longlong param_1)
                     // 处理数据映射
                     loop_index = *(int *)(temp_long + 0x18);
                     array_size = 0;
-                    if (0 < (longlong)loop_index) {
+                    if (0 < (int64_t)loop_index) {
                         offset_value = 0;
                         do {
                             temp_int2 = *(int *)(temp_long + 0x30) + array_size;
                             array_size = array_size + 1;
-                            byte_ptr = (byte *)(*(longlong *)(temp_long + 0x10) + offset_value);
+                            byte_ptr = (byte *)(*(int64_t *)(temp_long + 0x10) + offset_value);
                             offset_value = offset_value + 1;
-                            *(int *)(*game_object_ptr + (ulonglong)*byte_ptr * 4) = temp_int2;
+                            *(int *)(*game_object_ptr + (uint64_t)*byte_ptr * 4) = temp_int2;
                         } while (offset_value < loop_index);
                     }
                 }
                 
                 // 处理内存块分配
-                uint_ptr = (uint *)((longlong)*(int *)(system_parameter_buffer + 0xc20) * 0x128 + system_parameter_buffer + 0x9d0);
+                uint_ptr = (uint *)((int64_t)*(int *)(system_parameter_buffer + 0xc20) * 0x128 + system_parameter_buffer + 0x9d0);
                 
                 if (item_count == 0) {
                     temp_uint1 = (int)index_char - 1;
@@ -637,28 +637,28 @@ void FUN_180079284(longlong param_1)
                     *uint_ptr = *uint_ptr + (int)index_char;
                     UNLOCK();
                     
-                    chunk_start = (ulonglong)(temp_uint1 >> 0xb);
-                    chunk_end = (ulonglong)(index_char + -1 + temp_uint1 >> 0xb);
+                    chunk_start = (uint64_t)(temp_uint1 >> 0xb);
+                    chunk_end = (uint64_t)(index_char + -1 + temp_uint1 >> 0xb);
                     
                     if (chunk_start <= chunk_end) {
-                        char_ptr = (char *)((longlong)uint_ptr + chunk_start + 0x108);
+                        char_ptr = (char *)((int64_t)uint_ptr + chunk_start + 0x108);
                         offset_value = (chunk_end - chunk_start) + 1;
                         chunk_ptr = uint_ptr + chunk_start * 2 + 2;
                         
                         do {
                             loop_index = (int)chunk_start;
-                            if (*(longlong *)chunk_ptr == 0) {
+                            if (*(int64_t *)chunk_ptr == 0) {
                                 loop_counter = FUN_18062b420(system_memory_pool_ptr, 0x2000, 0x25);
                                 LOCK();
-                                is_allocated = *(longlong *)(uint_ptr + (longlong)loop_index * 2 + 2) == 0;
+                                is_allocated = *(int64_t *)(uint_ptr + (int64_t)loop_index * 2 + 2) == 0;
                                 if (is_allocated) {
-                                    *(longlong *)(uint_ptr + (longlong)loop_index * 2 + 2) = loop_counter;
+                                    *(int64_t *)(uint_ptr + (int64_t)loop_index * 2 + 2) = loop_counter;
                                 }
                                 UNLOCK();
                                 
                                 if (is_allocated) {
                                     LOCK();
-                                    *(int8_t *)((longlong)loop_index + 0x108 + (longlong)uint_ptr) = 0;
+                                    *(int8_t *)((int64_t)loop_index + 0x108 + (int64_t)uint_ptr) = 0;
                                     UNLOCK();
                                 }
                                 else {
@@ -673,7 +673,7 @@ void FUN_180079284(longlong param_1)
                                 do {
                                 } while (*char_ptr != '\0');
                             }
-                            chunk_start = (ulonglong)(loop_index + 1);
+                            chunk_start = (uint64_t)(loop_index + 1);
                             chunk_ptr = chunk_ptr + 2;
                             char_ptr = char_ptr + 1;
                             offset_value = offset_value + -1;
@@ -687,8 +687,8 @@ void FUN_180079284(longlong param_1)
                 *(uint *)(temp_long + 0x2c) = temp_uint1;
                 
                 if (temp_uint1 == (int)index_char + temp_uint1 >> 0xb) {
-                    memcpy(*(longlong *)(uint_ptr + (ulonglong)temp_uint1 * 2 + 2) +
-                           (ulonglong)(temp_uint1 + temp_uint1 * -0x800) * 4, data_array, (temp_ulong1 & 0xffffffff) << 2);
+                    memcpy(*(int64_t *)(uint_ptr + (uint64_t)temp_uint1 * 2 + 2) +
+                           (uint64_t)(temp_uint1 + temp_uint1 * -0x800) * 4, data_array, (temp_ulong1 & 0xffffffff) << 2);
                 }
                 
                 if (item_count != 0) {
@@ -697,8 +697,8 @@ void FUN_180079284(longlong param_1)
                         temp_int32_t = *data_array;
                         data_array = data_array + 1;
                         *(int32_t *)
-                         (*(longlong *)(uint_ptr + (ulonglong)(temp_uint1 >> 0xb) * 2 + 2) +
-                         (ulonglong)(temp_uint1 + (temp_uint1 >> 0xb) * -0x800) * 4) = temp_int32_t;
+                         (*(int64_t *)(uint_ptr + (uint64_t)(temp_uint1 >> 0xb) * 2 + 2) +
+                         (uint64_t)(temp_uint1 + (temp_uint1 >> 0xb) * -0x800) * 4) = temp_int32_t;
                         temp_ulong1 = temp_ulong1 - 1;
                         temp_uint1 = temp_uint1 + 1;
                     } while (temp_ulong1 != 0);

@@ -25,27 +25,27 @@
  * @param param10 第十个参数，用于浮点计算的最大值
  * @param param11 第十一个参数，用于渲染状态控制
  */
-void RenderingSystem_AdvancedDataProcessing(void *render_context, void *param2, uint param3, longlong param4,
+void RenderingSystem_AdvancedDataProcessing(void *render_context, void *param2, uint param3, int64_t param4,
                                           void **param5, float (*data_callback)(void *, int), void **param7, 
                                           int param8, float param9, float param10, void *param11)
 {
     float *render_data_ptr;
-    longlong render_context_base;
+    int64_t render_context_base;
     uint loop_counter;
     char flag_check;
     uint temp_uint;
     uint temp_uint2;
     char *string_ptr;
     int inner_loop_counter;
-    longlong temp_long;
+    int64_t temp_long;
     void **temp_ptr;
-    longlong temp_long2;
-    ulonglong temp_ulong;
+    int64_t temp_long2;
+    uint64_t temp_ulong;
     uint temp_uint3;
     void **temp_ptr2;
-    longlong temp_long3;
-    ulonglong temp_ulong2;
-    longlong temp_long4;
+    int64_t temp_long3;
+    uint64_t temp_ulong2;
+    int64_t temp_long4;
     float temp_float;
     float temp_float2;
     float temp_float3;
@@ -58,12 +58,12 @@ void RenderingSystem_AdvancedDataProcessing(void *render_context, void *param2, 
     float temp_float10;
     void *temp_param;
     uint temp_uint4;
-    longlong temp_long5;
+    int64_t temp_long5;
     void *temp_param2;
     uint temp_uint5;
     float temp_float11;
     float temp_float12;
-    longlong temp_long6;
+    int64_t temp_long6;
     float temp_float13;
     float temp_float14;
     float temp_float15;
@@ -75,16 +75,16 @@ void RenderingSystem_AdvancedDataProcessing(void *render_context, void *param2, 
     float temp_float20;
     float temp_float21;
     float temp_float22;
-    longlong temp_long7;
+    int64_t temp_long7;
     
     // 获取渲染系统基础地址
-    render_context_base = *(longlong *)0x180c8a9b0;
-    temp_long4 = (longlong)(int)param3;
-    temp_long5 = *(longlong *)0x180c8a9b0;
+    render_context_base = *(int64_t *)0x180c8a9b0;
+    temp_long4 = (int64_t)(int)param3;
+    temp_long5 = *(int64_t *)0x180c8a9b0;
     
     // 设置渲染状态标志
-    *(char *)(*(longlong *)(*(longlong *)0x180c8a9b0 + 0x1af8) + 0xb1) = 1;
-    temp_long7 = *(longlong *)(render_context_base + 0x1af8);
+    *(char *)(*(int64_t *)(*(int64_t *)0x180c8a9b0 + 0x1af8) + 0xb1) = 1;
+    temp_long7 = *(int64_t *)(render_context_base + 0x1af8);
     
     // 检查渲染状态是否可用
     if (*(char *)(temp_long7 + 0xb4) != '\0') {
@@ -163,7 +163,7 @@ void RenderingSystem_AdvancedDataProcessing(void *render_context, void *param2, 
     func_0x000180124080(&temp_float11, *(uint *)(temp_long2 + 0x1660));
     
     // 更新渲染上下文数据
-    temp_long3 = *(longlong *)(render_context_base + 0x1af8);
+    temp_long3 = *(int64_t *)(render_context_base + 0x1af8);
     *(void **)(temp_long3 + 0x144) = 0;
     *(float *)(temp_long3 + 0x14c) = temp_float6;
     *(float *)(temp_long3 + 0x150) = temp_float10;
@@ -171,7 +171,7 @@ void RenderingSystem_AdvancedDataProcessing(void *render_context, void *param2, 
     *(float *)(temp_long3 + 0x158) = *(float *)&param11;
     
     // 边界条件检查
-    temp_long = *(longlong *)(render_context_base + 0x1af8);
+    temp_long = *(int64_t *)(render_context_base + 0x1af8);
     temp_param2 = (void *)temp_float10;
     temp_param2 = (void *)temp_float6;
     if ((((*(float *)&param11 < *(float *)(temp_long + 0x22c) || *(float *)&param11 == *(float *)(temp_long + 0x22c)) ||
@@ -214,7 +214,7 @@ void RenderingSystem_AdvancedDataProcessing(void *render_context, void *param2, 
                 }
                 temp_uint = (uint)temp_param2;
                 temp_long3 = temp_long3 + -1;
-                render_context_base = *(longlong *)0x180c8a9b0;
+                render_context_base = *(int64_t *)0x180c8a9b0;
                 temp_ptr2 = temp_ptr2 + 1;
                 temp_long2 = temp_long5;
             } while (temp_long3 != 0);
@@ -239,7 +239,7 @@ void RenderingSystem_AdvancedDataProcessing(void *render_context, void *param2, 
     
     // 初始化循环变量
     inner_loop_counter = -1;
-    render_context_base = *(longlong *)(*(longlong *)0x180c8a9b0 + 0x1af8);
+    render_context_base = *(int64_t *)(*(int64_t *)0x180c8a9b0 + 0x1af8);
     temp_uint = param8;
     if ((int)(float)param11 < param8) {
         temp_uint = (int)(float)param11;
@@ -248,21 +248,21 @@ void RenderingSystem_AdvancedDataProcessing(void *render_context, void *param2, 
     temp_uint6 = temp_uint3;
     
     // 检查渲染状态条件
-    if ((*(char *)(*(longlong *)0x180c8a9b0 + 0x1d07) == '\0') || (*(char *)(*(longlong *)0x180c8a9b0 + 0x1d06) != '\0')) {
+    if ((*(char *)(*(int64_t *)0x180c8a9b0 + 0x1d07) == '\0') || (*(char *)(*(int64_t *)0x180c8a9b0 + 0x1d06) != '\0')) {
         if ((((((*(byte *)(render_context_base + 0x148) & 1) == 0) ||
-              (temp_long3 = *(longlong *)(render_context_base + 0x3a0), *(longlong *)(*(longlong *)0x180c8a9b0 + 0x1b08) != temp_long3)) ||
-             (((temp_uint = *(int *)(*(longlong *)0x180c8a9b0 + 0x1b2c), temp_uint != 0 &&
-               (temp_uint != *(int *)(render_context_base + 0x144))) && (*(char *)(*(longlong *)0x180c8a9b0 + 0x1b3d) == '\0')) &&
+              (temp_long3 = *(int64_t *)(render_context_base + 0x3a0), *(int64_t *)(*(int64_t *)0x180c8a9b0 + 0x1b08) != temp_long3)) ||
+             (((temp_uint = *(int *)(*(int64_t *)0x180c8a9b0 + 0x1b2c), temp_uint != 0 &&
+               (temp_uint != *(int *)(render_context_base + 0x144))) && (*(char *)(*(int64_t *)0x180c8a9b0 + 0x1b3d) == '\0')) &&
               (temp_uint != *(int *)(render_context_base + 0x84))))) ||
-            ((((*(longlong *)(*(longlong *)0x180c8a9b0 + 0x1c98) != 0 &&
-               (temp_long2 = *(longlong *)(*(longlong *)(*(longlong *)0x180c8a9b0 + 0x1c98) + 0x3a0), temp_long2 != 0)) &&
+            ((((*(int64_t *)(*(int64_t *)0x180c8a9b0 + 0x1c98) != 0 &&
+               (temp_long2 = *(int64_t *)(*(int64_t *)(*(int64_t *)0x180c8a9b0 + 0x1c98) + 0x3a0), temp_long2 != 0)) &&
               (*(char *)(temp_long2 + 0xb0) != '\0')) &&
              ((temp_long2 != temp_long3 &&
               (((*(uint *)(temp_long2 + 0xc) >> 0x1b & 1) != 0 ||
                ((*(uint *)(temp_long2 + 0xc) >> 0x1a & 1) != 0)))))))) ||
-           (((*(longlong *)(render_context_base + 0x28) != *(longlong *)(*(longlong *)0x180c8a9b0 + 0x1c80) &&
-             ((*(longlong *)(*(longlong *)0x180c8a9b0 + 0x1b78) == 0 ||
-              (temp_long3 != *(longlong *)(*(longlong *)(*(longlong *)0x180c8a9b0 + 0x1b78) + 0x3a0))))) ||
+           (((*(int64_t *)(render_context_base + 0x28) != *(int64_t *)(*(int64_t *)0x180c8a9b0 + 0x1c80) &&
+             ((*(int64_t *)(*(int64_t *)0x180c8a9b0 + 0x1b78) == 0 ||
+              (temp_long3 != *(int64_t *)(*(int64_t *)(*(int64_t *)0x180c8a9b0 + 0x1b78) + 0x3a0))))) ||
             ((*(byte *)(render_context_base + 0x1a8) & 4) != 0)))) goto ADVANCED_RENDERING_PROCESS;
         
         if ((*(int *)(render_context_base + 0x144) == *(int *)(render_context_base + 8)) ||
@@ -272,8 +272,8 @@ void RenderingSystem_AdvancedDataProcessing(void *render_context, void *param2, 
         }
     }
     else {
-        if ((*(int *)(*(longlong *)0x180c8a9b0 + 0x1ca0) == 0) ||
-           (*(int *)(*(longlong *)0x180c8a9b0 + 0x1ca0) != *(int *)(render_context_base + 0x144))) goto ADVANCED_RENDERING_PROCESS;
+        if ((*(int *)(*(int64_t *)0x180c8a9b0 + 0x1ca0) == 0) ||
+           (*(int *)(*(int64_t *)0x180c8a9b0 + 0x1ca0) != *(int *)(render_context_base + 0x144))) goto ADVANCED_RENDERING_PROCESS;
         if (*(int *)(render_context_base + 0x144) == *(int *)(render_context_base + 8)) {
             flag_check = *(char *)(render_context_base + 0xb1);
         BOUNDARY_CHECK_JUMP:
@@ -302,17 +302,17 @@ void RenderingSystem_AdvancedDataProcessing(void *render_context, void *param2, 
     
     // 处理渲染数据
     if (0 < temp_long4) {
-        temp_long2 = temp_long5 - (longlong)param7;
+        temp_long2 = temp_long5 - (int64_t)param7;
         temp_ptr = param7;
         temp_ptr2 = param5;
         temp_long5 = temp_long2;
         do {
-            temp_float10 = (float)(*data_callback)(*temp_ptr, (longlong)inner_loop_counter % (longlong)param8 & 0xffffffff);
-            temp_float8 = (float)(*data_callback)(*temp_ptr, (longlong)(inner_loop_counter + 1) % (longlong)param8 & 0xffffffff);
+            temp_float10 = (float)(*data_callback)(*temp_ptr, (int64_t)inner_loop_counter % (int64_t)param8 & 0xffffffff);
+            temp_float8 = (float)(*data_callback)(*temp_ptr, (int64_t)(inner_loop_counter + 1) % (int64_t)param8 & 0xffffffff);
             temp_param2 = *temp_ptr2;
             temp_float20 = *(float *)(temp_ptr2 + 1);
-            temp_float19 = *(float *)((longlong)temp_ptr2 + 0xc);
-            temp_param = *(void **)(temp_long2 + (longlong)temp_ptr);
+            temp_float19 = *(float *)((int64_t)temp_ptr2 + 0xc);
+            temp_param = *(void **)(temp_long2 + (int64_t)temp_ptr);
             RenderingSystem_ProcessRenderData(&temp_param2, (void *)0x180a16f58, (double)temp_float10, (double)temp_float8, temp_param);
             temp_ptr2 = temp_ptr2 + 2;
             temp_ptr = temp_ptr + 1;
@@ -328,7 +328,7 @@ void RenderingSystem_AdvancedDataProcessing(void *render_context, void *param2, 
 ADVANCED_RENDERING_PROCESS:
     // 高级渲染数据处理
     if (0 < (int)param3) {
-        temp_ulong2 = (ulonglong)param3;
+        temp_ulong2 = (uint64_t)param3;
         temp_float10 = 1.0 / (param10 - param9);
         temp_float11 = 1.0 / (float)(int)temp_uint3;
         temp_float12 = temp_float10;
@@ -355,7 +355,7 @@ ADVANCED_RENDERING_PROCESS:
             
             // 计算颜色分量
             temp_float10 = 1.0 - (float)(temp_uint2 >> 8 & 0xff) * 0.003921569;
-            temp_float9 = (float)(temp_uint2 >> 0x18) * *(float *)(*(longlong *)0x180c8a9b0 + 0x1628) * 0.003921569;
+            temp_float9 = (float)(temp_uint2 >> 0x18) * *(float *)(*(int64_t *)0x180c8a9b0 + 0x1628) * 0.003921569;
             temp_float7 = 1.0 - (float)(temp_uint2 >> 0x10 & 0xff) * 0.003921569;
             temp_float4 = 1.0 - (float)(temp_uint2 & 0xff) * 0.003921569;
             
@@ -397,13 +397,13 @@ ADVANCED_RENDERING_PROCESS:
             if (0 < (int)temp_uint3) {
                 temp_float5 = temp_float17 - (float)temp_param;
                 temp_float22 = temp_float18 - temp_float5;
-                temp_ulong = (ulonglong)temp_uint3;
+                temp_ulong = (uint64_t)temp_uint3;
                 do {
                     temp_uint = (uint)temp_param;
                     temp_float10 = (float)(param8 + -1) * temp_float6;
                     temp_float6 = temp_float6 + temp_float11;
                     inner_loop_counter = (int)(temp_float10 + 0.5);
-                    temp_float10 = (float)(*data_callback)(*param7, (longlong)(inner_loop_counter + 1) % (longlong)param8 & 0xffffffff);
+                    temp_float10 = (float)(*data_callback)(*param7, (int64_t)(inner_loop_counter + 1) % (int64_t)param8 & 0xffffffff);
                     temp_float10 = (temp_float10 - param9) * temp_float12;
                     if (0.0 <= temp_float10) {
                         if (1.0 <= temp_float10) {
@@ -480,24 +480,24 @@ void RenderingSystem_SimplifiedDataProcessing(void *render_context, void *param_
                                             float max_value, void *render_params)
 {
     float *render_data_ptr;
-    longlong render_context_base;
+    int64_t render_context_base;
     float (*data_callback)(void *, int);
-    longlong temp_long;
+    int64_t temp_long;
     void *temp_param;
     char flag_check;
     uint temp_uint;
     char *string_ptr;
     int temp_int;
-    longlong temp_long2;
+    int64_t temp_long2;
     void **temp_ptr;
-    longlong temp_long3;
-    ulonglong temp_ulong;
+    int64_t temp_long3;
+    uint64_t temp_ulong;
     uint temp_uint2;
     int temp_int2;
     void **temp_ptr2;
-    longlong param_offset;
-    longlong temp_long4;
-    ulonglong temp_ulong2;
+    int64_t param_offset;
+    int64_t temp_long4;
+    uint64_t temp_ulong2;
     int temp_int3;
     float temp_float;
     float temp_float2;
@@ -513,7 +513,7 @@ void RenderingSystem_SimplifiedDataProcessing(void *render_context, void *param_
     uint temp_uint3;
     float temp_float11;
     float temp_float12;
-    longlong temp_long5;
+    int64_t temp_long5;
     float temp_float13;
     float temp_float14;
     float temp_float15;
@@ -531,12 +531,12 @@ void RenderingSystem_SimplifiedDataProcessing(void *render_context, void *param_
     uint temp_uint4;
     float temp_float27;
     float temp_float28;
-    longlong temp_long6;
+    int64_t temp_long6;
     float temp_float29;
     float temp_float30;
     float temp_float31;
     float temp_float32;
-    longlong temp_long7;
+    int64_t temp_long7;
     float temp_float33;
     float temp_float34;
     float temp_float35;
@@ -565,7 +565,7 @@ void RenderingSystem_SimplifiedDataProcessing(void *render_context, void *param_
             temp_float8 = temp_float8 - temp_float10 / *render_data_ptr;
         }
         temp_float10 = *(float *)(param_array + 0x9c);
-        temp_long5 = *(longlong *)(param_array + -0x68);
+        temp_long5 = *(int64_t *)(param_array + -0x68);
         temp_float8 = (float)(int)(temp_float8 + 0.95);
         temp_long4 = render_context;
     }
@@ -616,7 +616,7 @@ void RenderingSystem_SimplifiedDataProcessing(void *render_context, void *param_
     func_0x000180124080(&temp_float15, *(uint *)(temp_long4 + 0x1660));
     
     // 更新渲染上下文数据
-    temp_long5 = *(longlong *)(render_context + 0x1af8);
+    temp_long5 = *(int64_t *)(render_context + 0x1af8);
     *(void **)(temp_long5 + 0x144) = 0;
     *(float *)(temp_long5 + 0x14c) = temp_float7;
     *(float *)(temp_long5 + 0x150) = temp_float10;
@@ -624,7 +624,7 @@ void RenderingSystem_SimplifiedDataProcessing(void *render_context, void *param_
     *(float *)(temp_long5 + 0x158) = temp_float9;
     
     // 边界条件检查
-    temp_long = *(longlong *)(render_context + 0x1af8);
+    temp_long = *(int64_t *)(render_context + 0x1af8);
     temp_param2 = (void *)temp_float10;
     temp_param2 = (void *)temp_float7;
     if (((temp_float9 < *(float *)(temp_long + 0x22c) || temp_float9 == *(float *)(temp_long + 0x22c)) ||
@@ -673,7 +673,7 @@ void RenderingSystem_SimplifiedDataProcessing(void *render_context, void *param_
                 temp_uint = (uint)temp_param2;
                 temp_ptr2 = temp_ptr2 + 1;
                 temp_ulong = temp_ulong - 1;
-                render_context = *(longlong *)0x180c8a9b0;
+                render_context = *(int64_t *)0x180c8a9b0;
                 temp_long4 = temp_long6;
             } while (temp_ulong != 0);
         }
@@ -699,7 +699,7 @@ void RenderingSystem_SimplifiedDataProcessing(void *render_context, void *param_
     // 初始化循环变量
     temp_int = temp_int3 + -1;
     temp_int2 = -1;
-    temp_long5 = *(longlong *)(*(longlong *)0x180c8a9b0 + 0x1af8);
+    temp_long5 = *(int64_t *)(*(int64_t *)0x180c8a9b0 + 0x1af8);
     temp_int2 = temp_int3;
     if ((int)temp_float6 < temp_int3) {
         temp_int2 = (int)temp_float6;
@@ -708,21 +708,21 @@ void RenderingSystem_SimplifiedDataProcessing(void *render_context, void *param_
     temp_uint4 = temp_uint2;
     
     // 检查渲染状态条件
-    if ((*(char *)(*(longlong *)0x180c8a9b0 + 0x1d07) == '\0') || (*(char *)(*(longlong *)0x180c8a9b0 + 0x1d06) != '\0')) {
+    if ((*(char *)(*(int64_t *)0x180c8a9b0 + 0x1d07) == '\0') || (*(char *)(*(int64_t *)0x180c8a9b0 + 0x1d06) != '\0')) {
         if ((((((*(byte *)(temp_long5 + 0x148) & 1) == 0) ||
-              (temp_long = *(longlong *)(temp_long5 + 0x3a0), *(longlong *)(*(longlong *)0x180c8a9b0 + 0x1b08) != temp_long)) ||
-             (((temp_int2 = *(int *)(*(longlong *)0x180c8a9b0 + 0x1b2c), temp_int2 != 0 &&
-               (temp_int2 != *(int *)(temp_long5 + 0x144))) && (*(char *)(*(longlong *)0x180c8a9b0 + 0x1b3d) == '\0')) &&
+              (temp_long = *(int64_t *)(temp_long5 + 0x3a0), *(int64_t *)(*(int64_t *)0x180c8a9b0 + 0x1b08) != temp_long)) ||
+             (((temp_int2 = *(int *)(*(int64_t *)0x180c8a9b0 + 0x1b2c), temp_int2 != 0 &&
+               (temp_int2 != *(int *)(temp_long5 + 0x144))) && (*(char *)(*(int64_t *)0x180c8a9b0 + 0x1b3d) == '\0')) &&
               (temp_int2 != *(int *)(temp_long5 + 0x84))))) ||
-            ((((*(longlong *)(*(longlong *)0x180c8a9b0 + 0x1c98) != 0 &&
-               (temp_long2 = *(longlong *)(*(longlong *)(*(longlong *)0x180c8a9b0 + 0x1c98) + 0x3a0), temp_long2 != 0)) &&
+            ((((*(int64_t *)(*(int64_t *)0x180c8a9b0 + 0x1c98) != 0 &&
+               (temp_long2 = *(int64_t *)(*(int64_t *)(*(int64_t *)0x180c8a9b0 + 0x1c98) + 0x3a0), temp_long2 != 0)) &&
               (*(char *)(temp_long2 + 0xb0) != '\0')) &&
              ((temp_long2 != temp_long &&
               (((*(uint *)(temp_long2 + 0xc) >> 0x1b & 1) != 0 ||
                ((*(uint *)(temp_long2 + 0xc) >> 0x1a & 1) != 0)))))))) ||
-           (((*(longlong *)(temp_long5 + 0x28) != *(longlong *)(*(longlong *)0x180c8a9b0 + 0x1c80) &&
-             ((*(longlong *)(*(longlong *)0x180c8a9b0 + 0x1b78) == 0 ||
-              (temp_long != *(longlong *)(*(longlong *)(*(longlong *)0x180c8a9b0 + 0x1b78) + 0x3a0))))) ||
+           (((*(int64_t *)(temp_long5 + 0x28) != *(int64_t *)(*(int64_t *)0x180c8a9b0 + 0x1c80) &&
+             ((*(int64_t *)(*(int64_t *)0x180c8a9b0 + 0x1b78) == 0 ||
+              (temp_long != *(int64_t *)(*(int64_t *)(*(int64_t *)0x180c8a9b0 + 0x1b78) + 0x3a0))))) ||
             ((*(byte *)(temp_long5 + 0x1a8) & 4) != 0)))) goto SIMPLIFIED_RENDERING_PROCESS;
         
         if ((*(int *)(temp_long5 + 0x144) == *(int *)(temp_long5 + 8)) ||
@@ -732,8 +732,8 @@ void RenderingSystem_SimplifiedDataProcessing(void *render_context, void *param_
         }
     }
     else {
-        if ((*(int *)(*(longlong *)0x180c8a9b0 + 0x1ca0) == 0) ||
-           (*(int *)(*(longlong *)0x180c8a9b0 + 0x1ca0) != *(int *)(temp_long5 + 0x144))) goto SIMPLIFIED_RENDERING_PROCESS;
+        if ((*(int *)(*(int64_t *)0x180c8a9b0 + 0x1ca0) == 0) ||
+           (*(int *)(*(int64_t *)0x180c8a9b0 + 0x1ca0) != *(int *)(temp_long5 + 0x144))) goto SIMPLIFIED_RENDERING_PROCESS;
         if (*(int *)(temp_long5 + 0x144) == *(int *)(temp_long5 + 8)) {
             flag_check = *(char *)(temp_long5 + 0xb1);
         SIMPLIFIED_BOUNDARY_CHECK:
@@ -761,18 +761,18 @@ void RenderingSystem_SimplifiedDataProcessing(void *render_context, void *param_
     RenderingSystem_SetRenderParameters((void *)0x180a16f48, temp_int);
     
     // 处理渲染数据
-    if (0 < (longlong)temp_ulong2) {
+    if (0 < (int64_t)temp_ulong2) {
         temp_ptr = *(void ***)(param_array + 0xc0);
-        *(longlong *)(param_array + 0xa8) = *(longlong *)(param_array + 0xa8) - (longlong)temp_ptr;
-        temp_long5 = *(longlong *)(param_array + 0xa8);
+        *(int64_t *)(param_array + 0xa8) = *(int64_t *)(param_array + 0xa8) - (int64_t)temp_ptr;
+        temp_long5 = *(int64_t *)(param_array + 0xa8);
         temp_ptr2 = *(void ***)(param_array + 0xb0);
         do {
-            temp_float6 = (float)(*data_callback)(*temp_ptr, (longlong)temp_int % (longlong)temp_int3 & 0xffffffff);
-            temp_float9 = (float)(*data_callback)(*temp_ptr, (longlong)(temp_int + 1) % (longlong)temp_int3 & 0xffffffff);
+            temp_float6 = (float)(*data_callback)(*temp_ptr, (int64_t)temp_int % (int64_t)temp_int3 & 0xffffffff);
+            temp_float9 = (float)(*data_callback)(*temp_ptr, (int64_t)(temp_int + 1) % (int64_t)temp_int3 & 0xffffffff);
             temp_param2 = *temp_ptr2;
             temp_float20 = *(float *)(temp_ptr2 + 1);
-            temp_float19 = *(float *)((longlong)temp_ptr2 + 0xc);
-            temp_param = *(void **)(temp_long5 + (longlong)temp_ptr);
+            temp_float19 = *(float *)((int64_t)temp_ptr2 + 0xc);
+            temp_param = *(void **)(temp_long5 + (int64_t)temp_ptr);
             RenderingSystem_ProcessRenderData(&temp_param2, (void *)0x180a16f58, (double)temp_float6, (double)temp_float9, temp_param);
             temp_ptr2 = temp_ptr2 + 2;
             temp_ptr = temp_ptr + 1;
@@ -784,7 +784,7 @@ void RenderingSystem_SimplifiedDataProcessing(void *render_context, void *param_
     
     // 完成渲染处理
     RenderingSystem_FinalizeRenderState();
-    temp_ulong2 = (ulonglong)*(uint *)(param_array + 0xa0);
+    temp_ulong2 = (uint64_t)*(uint *)(param_array + 0xa0);
     temp_int = temp_int3 + -1;
     
 SIMPLIFIED_RENDERING_PROCESS:
@@ -809,7 +809,7 @@ SIMPLIFIED_RENDERING_PROCESS:
                 temp_float6 = 0.0;
             }
             
-            temp_long5 = *(longlong *)(param_array + 0xb0);
+            temp_long5 = *(int64_t *)(param_array + 0xb0);
             temp_float13 = 0.0;
             temp_float6 = 1.0 - temp_float6;
             temp_uint = func_0x000180121e20(temp_long5);
@@ -818,7 +818,7 @@ SIMPLIFIED_RENDERING_PROCESS:
             
             // 计算颜色分量
             temp_float11 = 1.0 - (float)(temp_uint3 >> 8 & 0xff) * 0.003921569;
-            temp_float7 = (float)(temp_uint3 >> 0x18) * *(float *)(*(longlong *)0x180c8a9b0 + 0x1628) * 0.003921569;
+            temp_float7 = (float)(temp_uint3 >> 0x18) * *(float *)(*(int64_t *)0x180c8a9b0 + 0x1628) * 0.003921569;
             temp_float2 = 1.0 - (float)(temp_uint3 >> 0x10 & 0xff) * 0.003921569;
             temp_float12 = 1.0 - (float)(temp_uint3 & 0xff) * 0.003921569;
             
@@ -861,13 +861,13 @@ SIMPLIFIED_RENDERING_PROCESS:
                 temp_float10 = *(float *)(param_array + -0x80) - *(float *)(param_array + 0x98);
                 temp_float8 = *(float *)(param_array + -0x7c) - *(float *)(param_array + 0x90);
                 temp_uint3 = *(uint *)(param_array + -0x78);
-                temp_ulong = (ulonglong)temp_uint2;
+                temp_ulong = (uint64_t)temp_uint2;
                 do {
                     temp_uint = (uint)temp_param;
                     temp_float13 = (float)temp_int * temp_float9;
                     temp_float9 = temp_float9 + temp_float15;
                     temp_int2 = (int)(temp_float13 + 0.5);
-                    temp_float13 = (float)(*data_callback)(*temp_ptr2, (longlong)(temp_int2 + 1) % (longlong)temp_int3 & 0xffffffff);
+                    temp_float13 = (float)(*data_callback)(*temp_ptr2, (int64_t)(temp_int2 + 1) % (int64_t)temp_int3 & 0xffffffff);
                     temp_float13 = (temp_float13 - *(float *)(param_array + 0xd0)) * temp_float14;
                     if (0.0 <= temp_float13) {
                         if (1.0 <= temp_float13) {
@@ -890,7 +890,7 @@ SIMPLIFIED_RENDERING_PROCESS:
                     }
                     
                     temp_float17 = temp_float17 + *(float *)(param_array + 0x90);
-                    temp_param = *(void **)(*(longlong *)(param_array + -0x68) + 0x2e8);
+                    temp_param = *(void **)(*(int64_t *)(param_array + -0x68) + 0x2e8);
                     temp_float16 = temp_float13 * temp_float10 + *(float *)(param_array + 0x98);
                     *(float *)(param_array + -0x6c) = temp_float6 * temp_float8 + *(float *)(param_array + 0x90);
                     *(float *)(param_array + -0x70) = temp_float9 * temp_float10 + *(float *)(param_array + 0x98);
@@ -902,7 +902,7 @@ SIMPLIFIED_RENDERING_PROCESS:
                     temp_float13 = temp_float9;
                 } while (temp_ulong != 0);
                 temp_float10 = *(float *)(param_array + 0xd0);
-                temp_long5 = *(longlong *)(param_array + 0xb0);
+                temp_long5 = *(int64_t *)(param_array + 0xb0);
                 temp_ulong = temp_param2;
                 temp_float8 = temp_float14;
                 temp_uint2 = temp_uint4;
@@ -910,7 +910,7 @@ SIMPLIFIED_RENDERING_PROCESS:
             
             temp_int = temp_int3 + -1;
             temp_ptr2 = temp_ptr2 + 1;
-            *(longlong *)(param_array + 0xb0) = temp_long5 + 0x10;
+            *(int64_t *)(param_array + 0xb0) = temp_long5 + 0x10;
             temp_ulong = temp_ulong - 1;
         } while (temp_ulong != 0);
         temp_float12 = *(float *)(param_array + -0x74);

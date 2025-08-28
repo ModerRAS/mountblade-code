@@ -246,11 +246,11 @@ void NetworkPacketManager_InitializePacket(void* packet) {
     *packet_ptr = &global_state_936_ptr;
     
     // 处理连接管理
-    longlong* connection_ptr = packet_ptr + 4;
-    longlong* connection_data = (longlong*)*connection_ptr;
+    int64_t* connection_ptr = packet_ptr + 4;
+    int64_t* connection_data = (int64_t*)*connection_ptr;
     
     if ((connection_data == connection_ptr) && 
-        ((longlong*)packet_ptr[5] == connection_ptr)) {
+        ((int64_t*)packet_ptr[5] == connection_ptr)) {
         func_0x00018085dda0(connection_ptr);
         *packet_ptr = &global_state_1544_ptr;
         *(int32_t*)(packet_ptr + 1) = MAGIC_DEADFOOD;
@@ -258,22 +258,22 @@ void NetworkPacketManager_InitializePacket(void* packet) {
     }
     
     // 处理数据包连接链表
-    longlong* link_data = (connection_data != connection_ptr) ? connection_data : (longlong*)0x0;
-    *(int32_t*)((longlong)link_data + 0x44) = 0xffffffff;
+    int64_t* link_data = (connection_data != connection_ptr) ? connection_data : (int64_t*)0x0;
+    *(int32_t*)((int64_t)link_data + 0x44) = 0xffffffff;
     
     // 初始化链表操作
     FUN_18084c220(link_data + 4);
     FUN_18084c220(link_data + 2);
     
     // 设置链表指针
-    *(longlong*)link_data[1] = *link_data;
-    *(longlong*)(*link_data + 8) = link_data[1];
-    link_data[1] = (longlong)link_data;
-    *link_data = (longlong)link_data;
-    *(longlong**)link_data[1] = link_data;
-    *(longlong*)(*link_data + 8) = link_data[1];
-    link_data[1] = (longlong)link_data;
-    *link_data = (longlong)link_data;
+    *(int64_t*)link_data[1] = *link_data;
+    *(int64_t*)(*link_data + 8) = link_data[1];
+    link_data[1] = (int64_t)link_data;
+    *link_data = (int64_t)link_data;
+    *(int64_t**)link_data[1] = link_data;
+    *(int64_t*)(*link_data + 8) = link_data[1];
+    link_data[1] = (int64_t)link_data;
+    *link_data = (int64_t)link_data;
     
     // 分配内存并初始化
     FUN_180742250(*(uint64_t*)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), link_data, &global_state_976_ptr, NETWORK_TIMEOUT, 1);
@@ -295,7 +295,7 @@ void NetworkPacketManager_InitializePacket(void* packet) {
  * 
  * @note 这是简化实现，原始实现包含复杂的资源清理逻辑
  */
-uint64_t NetworkPacketManager_DestroyPacket(uint64_t packet, ulonglong flags) {
+uint64_t NetworkPacketManager_DestroyPacket(uint64_t packet, uint64_t flags) {
     // 调用初始化函数进行清理
     NetworkPacketManager_InitializePacket();
     
@@ -318,11 +318,11 @@ uint64_t NetworkPacketManager_DestroyPacket(uint64_t packet, ulonglong flags) {
  * @param connection 连接指针
  * @param flags 处理标志位
  * 
- * @return longlong 处理结果
+ * @return int64_t 处理结果
  * 
  * @note 这是简化实现，原始实现包含复杂的连接管理逻辑
  */
-longlong NetworkConnectionManager_HandleConnection(longlong connection, ulonglong flags) {
+int64_t NetworkConnectionManager_HandleConnection(int64_t connection, uint64_t flags) {
     // 清理连接缓冲区
     FUN_18084c220(connection + 0x38);
     
@@ -353,11 +353,11 @@ longlong NetworkConnectionManager_HandleConnection(longlong connection, ulonglon
  * 
  * @note 这是简化实现，原始实现包含复杂的内存管理逻辑
  */
-uint64_t NetworkBufferManager_AllocateBuffer(longlong* manager, int size) {
+uint64_t NetworkBufferManager_AllocateBuffer(int64_t* manager, int size) {
     int current_size;
-    longlong source_data;
+    int64_t source_data;
     int32_t* new_buffer;
-    longlong copy_size;
+    int64_t copy_size;
     int32_t* source_ptr;
     int32_t* dest_ptr;
     
@@ -384,11 +384,11 @@ uint64_t NetworkBufferManager_AllocateBuffer(longlong* manager, int size) {
             if (new_buffer != (int32_t*)0x0) {
                 // 复制现有数据
                 current_size = (int)manager[1];
-                copy_size = (longlong)current_size;
+                copy_size = (int64_t)current_size;
                 if ((current_size != 0) && (source_data = *manager, 0 < current_size)) {
                     dest_ptr = new_buffer;
                     do {
-                        *dest_ptr = *(int32_t*)((source_data - (longlong)new_buffer) + (longlong)dest_ptr);
+                        *dest_ptr = *(int32_t*)((source_data - (int64_t)new_buffer) + (int64_t)dest_ptr);
                         dest_ptr = dest_ptr + 1;
                         copy_size = copy_size - 1;
                     } while (copy_size != 0);
@@ -399,13 +399,13 @@ uint64_t NetworkBufferManager_AllocateBuffer(longlong* manager, int size) {
     }
     
     // 清理现有缓冲区
-    if ((0 < *(int*)((longlong)manager + 0xc)) && (*manager != 0)) {
+    if ((0 < *(int*)((int64_t)manager + 0xc)) && (*manager != 0)) {
         FUN_180742250(*(uint64_t*)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), *manager, &global_state_8432_ptr, 0x100, 1);
     }
     
     // 设置新缓冲区
-    *manager = (longlong)new_buffer;
-    *(int*)((longlong)manager + 0xc) = size;
+    *manager = (int64_t)new_buffer;
+    *(int*)((int64_t)manager + 0xc) = size;
     
     return ERROR_SUCCESS;
 }
@@ -424,22 +424,22 @@ uint64_t NetworkBufferManager_AllocateBuffer(longlong* manager, int size) {
  */
 uint64_t NetworkBufferManager_ReallocateBuffer(uint64_t param1, int param2) {
     int current_size;
-    longlong source_data;
+    int64_t source_data;
     int32_t* new_buffer;
-    longlong copy_size;
+    int64_t copy_size;
     int32_t* source_ptr;
     int32_t* dest_ptr;
-    longlong* unaff_RBX;
+    int64_t* unaff_RBX;
     int unaff_EDI;
     
     new_buffer = (int32_t*)0x0;
     if (unaff_EDI == 0) {
         // 清理现有缓冲区
-        if ((0 < *(int*)((longlong)unaff_RBX + 0xc)) && (*unaff_RBX != 0)) {
+        if ((0 < *(int*)((int64_t)unaff_RBX + 0xc)) && (*unaff_RBX != 0)) {
             FUN_180742250(*(uint64_t*)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), *unaff_RBX, &global_state_8432_ptr, 0x100, 1);
         }
-        *unaff_RBX = (longlong)new_buffer;
-        *(int*)((longlong)unaff_RBX + 0xc) = unaff_EDI;
+        *unaff_RBX = (int64_t)new_buffer;
+        *(int*)((int64_t)unaff_RBX + 0xc) = unaff_EDI;
         return ERROR_SUCCESS;
     }
     
@@ -457,22 +457,22 @@ uint64_t NetworkBufferManager_ReallocateBuffer(uint64_t param1, int param2) {
         if (new_buffer != (int32_t*)0x0) {
             // 复制现有数据
             current_size = (int)unaff_RBX[1];
-            copy_size = (longlong)current_size;
+            copy_size = (int64_t)current_size;
             if ((current_size != 0) && (source_data = *unaff_RBX, 0 < current_size)) {
                 dest_ptr = new_buffer;
                 do {
-                    *dest_ptr = *(int32_t*)((source_data - (longlong)new_buffer) + (longlong)dest_ptr);
+                    *dest_ptr = *(int32_t*)((source_data - (int64_t)new_buffer) + (int64_t)dest_ptr);
                     dest_ptr = dest_ptr + 1;
                     copy_size = copy_size - 1;
                 } while (copy_size != 0);
             }
             
             // 清理现有缓冲区
-            if ((0 < *(int*)((longlong)unaff_RBX + 0xc)) && (*unaff_RBX != 0)) {
+            if ((0 < *(int*)((int64_t)unaff_RBX + 0xc)) && (*unaff_RBX != 0)) {
                 FUN_180742250(*(uint64_t*)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), *unaff_RBX, &global_state_8432_ptr, 0x100, 1);
             }
-            *unaff_RBX = (longlong)new_buffer;
-            *(int*)((longlong)unaff_RBX + 0xc) = param2;
+            *unaff_RBX = (int64_t)new_buffer;
+            *(int*)((int64_t)unaff_RBX + 0xc) = param2;
             return ERROR_SUCCESS;
         }
     }
@@ -505,15 +505,15 @@ uint64_t NetworkErrorHandler_ReturnError(void) {
  * 
  * @note 这是简化实现，原始实现包含复杂的连接状态管理逻辑
  */
-void NetworkConnectionManager_CleanupConnection(longlong* connection) {
+void NetworkConnectionManager_CleanupConnection(int64_t* connection) {
     int item_count;
     uint buffer_size;
     int32_t* data_ptr;
-    longlong remaining_items;
+    int64_t remaining_items;
     int32_t* item_data;
     int32_t item1, item2, item3, item4;
     
-    buffer_size = *(uint*)((longlong)connection + 0xc);
+    buffer_size = *(uint*)((int64_t)connection + 0xc);
     
     // 检查缓冲区状态
     if ((int)((buffer_size ^ (int)buffer_size >> 0x1f) - ((int)buffer_size >> 0x1f)) < 0) {
@@ -527,15 +527,15 @@ void NetworkConnectionManager_CleanupConnection(longlong* connection) {
         }
         
         *connection = 0;
-        *(int32_t*)((longlong)connection + 0xc) = 0;
+        *(int32_t*)((int64_t)connection + 0xc) = 0;
         buffer_size = 0;
     }
     
     item_count = (int)connection[1];
     if (item_count < 0) {
-        remaining_items = (longlong)-item_count;
+        remaining_items = (int64_t)-item_count;
         if (item_count < 0) {
-            data_ptr = (int32_t*)(*connection + 0x14 + (longlong)item_count * 0x18);
+            data_ptr = (int32_t*)(*connection + 0x14 + (int64_t)item_count * 0x18);
             do {
                 item_data = (int32_t*)FUN_180847820();
                 item1 = item_data[1];
@@ -549,7 +549,7 @@ void NetworkConnectionManager_CleanupConnection(longlong* connection) {
                 remaining_items = remaining_items - 1;
                 data_ptr = data_ptr + 0x18;
             } while (remaining_items != 0);
-            buffer_size = *(uint*)((longlong)connection + 0xc);
+            buffer_size = *(uint*)((int64_t)connection + 0xc);
         }
     }
     
@@ -578,14 +578,14 @@ void NetworkConnectionManager_CleanupConnection(longlong* connection) {
  */
 void NetworkPacketManager_ProcessPacketList(int32_t param1, int param2, uint param3) {
     int32_t item1, item2, item3;
-    longlong data_ptr;
+    int64_t data_ptr;
     int32_t* item_data;
-    longlong remaining_items;
+    int64_t remaining_items;
     uint64_t unaff_RBP;
-    longlong list_ptr;
-    longlong unaff_RDI;
+    int64_t list_ptr;
+    int64_t unaff_RDI;
     
-    remaining_items = (longlong)param2;
+    remaining_items = (int64_t)param2;
     if (0 < param2) {
         list_ptr = data_ptr + 0x14 + remaining_items * 8;
         do {
@@ -624,15 +624,15 @@ void NetworkPacketManager_ProcessPacketList(int32_t param1, int param2, uint par
  * 
  * @note 这是简化实现，原始实现包含复杂的批量处理逻辑
  */
-void NetworkPacketManager_ProcessPackets(longlong param1) {
+void NetworkPacketManager_ProcessPackets(int64_t param1) {
     int32_t item1, item2, item3, item4;
     uint64_t data_ptr;
     int32_t* item_data;
     uint buffer_size;
-    longlong remaining_items;
+    int64_t remaining_items;
     uint64_t unaff_RBP;
-    longlong unaff_RSI;
-    longlong unaff_RDI;
+    int64_t unaff_RSI;
+    int64_t unaff_RDI;
     
     remaining_items = data_ptr + 0x14 + param1 * 8;
     do {
@@ -673,7 +673,7 @@ void NetworkPacketManager_ProcessPackets(longlong param1) {
  */
 void NetworkConnectionManager_UpdateConnection(uint64_t param1, uint64_t param2, uint param3) {
     int32_t unaff_EBP;
-    longlong unaff_RDI;
+    int64_t unaff_RDI;
     
     // 更新连接状态
     *(int32_t*)(unaff_RDI + 8) = unaff_EBP;
@@ -697,7 +697,7 @@ void NetworkConnectionManager_UpdateConnection(uint64_t param1, uint64_t param2,
  */
 void NetworkConnectionManager_ResetConnection(uint64_t param1, uint64_t param2, uint param3) {
     int32_t unaff_EBP;
-    longlong unaff_RDI;
+    int64_t unaff_RDI;
     
     // 重置连接状态
     *(int32_t*)(unaff_RDI + 8) = unaff_EBP;
@@ -717,33 +717,33 @@ void NetworkConnectionManager_ResetConnection(uint64_t param1, uint64_t param2, 
  * 
  * @note 这是简化实现，原始实现包含复杂的链表管理逻辑
  */
-void NetworkLinkedList_CleanupNode(longlong* node) {
-    longlong* node_ptr;
+void NetworkLinkedList_CleanupNode(int64_t* node) {
+    int64_t* node_ptr;
     
-    node_ptr = (longlong*)*node;
+    node_ptr = (int64_t*)*node;
     if (node_ptr != node) {
         if (node_ptr != node) {
             // 清理链表指针
-            *(longlong*)node_ptr[1] = *node_ptr;
-            *(longlong*)(*node_ptr + 8) = node_ptr[1];
-            node_ptr[1] = (longlong)node_ptr;
-            *node_ptr = (longlong)node_ptr;
-            *(longlong**)node_ptr[1] = node_ptr;
-            *(longlong*)(*node_ptr + 8) = node_ptr[1];
-            node_ptr[1] = (longlong)node_ptr;
-            *node_ptr = (longlong)node_ptr;
+            *(int64_t*)node_ptr[1] = *node_ptr;
+            *(int64_t*)(*node_ptr + 8) = node_ptr[1];
+            node_ptr[1] = (int64_t)node_ptr;
+            *node_ptr = (int64_t)node_ptr;
+            *(int64_t**)node_ptr[1] = node_ptr;
+            *(int64_t*)(*node_ptr + 8) = node_ptr[1];
+            node_ptr[1] = (int64_t)node_ptr;
+            *node_ptr = (int64_t)node_ptr;
             
             // 释放节点内存
             FUN_180742250(*(uint64_t*)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), node_ptr, &global_state_1696_ptr, 0xe1, 1);
         }
-        node_ptr = (longlong*)*node;
+        node_ptr = (int64_t*)*node;
     }
     
     // 更新链表指针
-    *(longlong**)node[1] = node_ptr;
-    *(longlong*)(*node + 8) = node[1];
-    node[1] = (longlong)node;
-    *node = (longlong)node;
+    *(int64_t**)node[1] = node_ptr;
+    *(int64_t*)(*node + 8) = node[1];
+    node[1] = (int64_t)node;
+    *node = (int64_t)node;
 }
 
 /**
@@ -763,27 +763,27 @@ void NetworkLinkedList_CleanupNode(longlong* node) {
  */
 void NetworkPacketManager_DestroyPacketFull(uint64_t* packet) {
     int item_count;
-    longlong* link_ptr;
-    longlong* link_data;
+    int64_t* link_ptr;
+    int64_t* link_data;
     int32_t item1, item2, item3;
     uint64_t data_ptr;
     int32_t* item_data;
     int32_t* data_buffer;
-    longlong* list_ptr;
+    int64_t* list_ptr;
     uint buffer_size;
-    longlong remaining_items;
-    ulonglong item_count64;
-    longlong* cleanup_ptr;
+    int64_t remaining_items;
+    uint64_t item_count64;
+    int64_t* cleanup_ptr;
     
     list_ptr = packet + 0xd;
     *packet = &global_state_1552_ptr;
     packet[4] = &global_state_1560_ptr;
     
-    cleanup_ptr = (longlong*)0x0;
-    link_ptr = (longlong*)*list_ptr;
+    cleanup_ptr = (int64_t*)0x0;
+    link_ptr = (int64_t*)*list_ptr;
     
     // 清理链表节点
-    if ((link_ptr != list_ptr) || ((longlong*)packet[0xe] != list_ptr)) {
+    if ((link_ptr != list_ptr) || ((int64_t*)packet[0xe] != list_ptr)) {
         if (link_ptr != list_ptr) {
             cleanup_ptr = link_ptr;
         }
@@ -798,14 +798,14 @@ void NetworkPacketManager_DestroyPacketFull(uint64_t* packet) {
         FUN_1808b0fb0(cleanup_ptr + 8, 0);
         
         // 清理链表指针
-        *(longlong*)cleanup_ptr[1] = *cleanup_ptr;
-        *(longlong*)(*cleanup_ptr + 8) = cleanup_ptr[1];
-        cleanup_ptr[1] = (longlong)cleanup_ptr;
-        *cleanup_ptr = (longlong)cleanup_ptr;
-        *(longlong**)cleanup_ptr[1] = cleanup_ptr;
-        *(longlong*)(*cleanup_ptr + 8) = cleanup_ptr[1];
-        cleanup_ptr[1] = (longlong)cleanup_ptr;
-        *cleanup_ptr = (longlong)cleanup_ptr;
+        *(int64_t*)cleanup_ptr[1] = *cleanup_ptr;
+        *(int64_t*)(*cleanup_ptr + 8) = cleanup_ptr[1];
+        cleanup_ptr[1] = (int64_t)cleanup_ptr;
+        *cleanup_ptr = (int64_t)cleanup_ptr;
+        *(int64_t**)cleanup_ptr[1] = cleanup_ptr;
+        *(int64_t*)(*cleanup_ptr + 8) = cleanup_ptr[1];
+        cleanup_ptr[1] = (int64_t)cleanup_ptr;
+        *cleanup_ptr = (int64_t)cleanup_ptr;
         
         // 释放链表内存
         FUN_180742250(*(uint64_t*)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), cleanup_ptr, &global_state_1568_ptr, 0xe, 1);
@@ -813,27 +813,27 @@ void NetworkPacketManager_DestroyPacketFull(uint64_t* packet) {
     
     // 继续清理其他链表
     link_ptr = packet + 0xb;
-    link_data = (longlong*)*link_ptr;
-    if ((link_data != link_ptr) || ((longlong*)packet[0xc] != link_ptr)) {
+    link_data = (int64_t*)*link_ptr;
+    if ((link_data != link_ptr) || ((int64_t*)packet[0xc] != link_ptr)) {
         if (link_data != link_ptr) {
             cleanup_ptr = link_data;
         }
         FUN_1808b0fb0(cleanup_ptr + 3, 0);
-        *(longlong*)cleanup_ptr[1] = *cleanup_ptr;
-        *(longlong*)(*cleanup_ptr + 8) = cleanup_ptr[1];
-        cleanup_ptr[1] = (longlong)cleanup_ptr;
-        *cleanup_ptr = (longlong)cleanup_ptr;
-        *(longlong**)cleanup_ptr[1] = cleanup_ptr;
-        *(longlong*)(*cleanup_ptr + 8) = cleanup_ptr[1];
-        cleanup_ptr[1] = (longlong)cleanup_ptr;
-        *cleanup_ptr = (longlong)cleanup_ptr;
+        *(int64_t*)cleanup_ptr[1] = *cleanup_ptr;
+        *(int64_t*)(*cleanup_ptr + 8) = cleanup_ptr[1];
+        cleanup_ptr[1] = (int64_t)cleanup_ptr;
+        *cleanup_ptr = (int64_t)cleanup_ptr;
+        *(int64_t**)cleanup_ptr[1] = cleanup_ptr;
+        *(int64_t*)(*cleanup_ptr + 8) = cleanup_ptr[1];
+        cleanup_ptr[1] = (int64_t)cleanup_ptr;
+        *cleanup_ptr = (int64_t)cleanup_ptr;
         FUN_180742250(*(uint64_t*)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), cleanup_ptr, &global_state_1568_ptr, 0x12, 1);
     }
     
     // 清理数据缓冲区
     link_data = packet + 0x11;
-    buffer_size = *(uint*)((longlong)packet + 0x94);
-    list_ptr = (longlong*)(ulonglong)buffer_size;
+    buffer_size = *(uint*)((int64_t)packet + 0x94);
+    list_ptr = (int64_t*)(uint64_t)buffer_size;
     
     if ((int)((buffer_size ^ (int)buffer_size >> 0x1f) - ((int)buffer_size >> 0x1f)) < 0) {
         if (*(int*)(packet + 0x12) < 1) {
@@ -841,7 +841,7 @@ void NetworkPacketManager_DestroyPacketFull(uint64_t* packet) {
                 FUN_180742250(*(uint64_t*)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), *link_data, &global_state_8432_ptr, 0x100, 1);
             }
             *link_data = 0;
-            *(int32_t*)((longlong)packet + 0x94) = 0;
+            *(int32_t*)((int64_t)packet + 0x94) = 0;
             list_ptr = cleanup_ptr;
         }
     }
@@ -850,9 +850,9 @@ void NetworkPacketManager_DestroyPacketFull(uint64_t* packet) {
     buffer_size = (uint)list_ptr;
     item_count = *(int*)(packet + 0x12);
     if (item_count < 0) {
-        remaining_items = (longlong)-item_count;
+        remaining_items = (int64_t)-item_count;
         if (item_count < 0) {
-            data_buffer = (int32_t*)((longlong)item_count * 0x20 + 0x10 + *link_data);
+            data_buffer = (int32_t*)((int64_t)item_count * 0x20 + 0x10 + *link_data);
             do {
                 item_data = (int32_t*)FUN_180847820();
                 item1 = item_data[1];
@@ -870,7 +870,7 @@ void NetworkPacketManager_DestroyPacketFull(uint64_t* packet) {
                 remaining_items = remaining_items - 1;
                 data_buffer = data_buffer + 8;
             } while (remaining_items != 0);
-            buffer_size = *(uint*)((longlong)packet + 0x94);
+            buffer_size = *(uint*)((int64_t)packet + 0x94);
         }
     }
     
@@ -881,7 +881,7 @@ void NetworkPacketManager_DestroyPacketFull(uint64_t* packet) {
     }
     
     // 清理网络缓冲区
-    buffer_size = *(uint*)((longlong)packet + 0x84);
+    buffer_size = *(uint*)((int64_t)packet + 0x84);
     if ((int)((buffer_size ^ (int)buffer_size >> 0x1f) - ((int)buffer_size >> 0x1f)) < 0) {
         if (0 < *(int*)(packet + 0x10)) {
             // 继续清理
@@ -890,16 +890,16 @@ void NetworkPacketManager_DestroyPacketFull(uint64_t* packet) {
             FUN_180742250(*(uint64_t*)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), packet[0xf], &global_state_8432_ptr, 0x100, 1);
         }
         packet[0xf] = 0;
-        *(int32_t*)((longlong)packet + 0x84) = 0;
+        *(int32_t*)((int64_t)packet + 0x84) = 0;
     }
     
     // 处理网络连接
     buffer_size = *(uint*)(packet + 0x10);
-    item_count64 = (ulonglong)buffer_size;
+    item_count64 = (uint64_t)buffer_size;
     if ((int)buffer_size < 0) {
-        remaining_items = (longlong)(int)-buffer_size;
+        remaining_items = (int64_t)(int)-buffer_size;
         if ((int)buffer_size < 0) {
-            data_ptr = packet[0xf] + 0x1c + (longlong)(int)buffer_size * 0x28;
+            data_ptr = packet[0xf] + 0x1c + (int64_t)(int)buffer_size * 0x28;
             do {
                 data_buffer = (int32_t*)FUN_180847820();
                 item1 = data_buffer[1];
@@ -926,53 +926,53 @@ void NetworkPacketManager_DestroyPacketFull(uint64_t* packet) {
     }
     
     // 最终清理
-    buffer_size = (int)*(uint*)((longlong)packet + 0x84) >> 0x1f;
+    buffer_size = (int)*(uint*)((int64_t)packet + 0x84) >> 0x1f;
     *(int32_t*)(packet + 0x10) = 0;
-    if (0 < (int)((*(uint*)((longlong)packet + 0x84) ^ buffer_size) - buffer_size)) {
+    if (0 < (int)((*(uint*)((int64_t)packet + 0x84) ^ buffer_size) - buffer_size)) {
         FUN_18084d520(packet + 0xf, 0);
     }
     
     // 清理链表
-    cleanup_ptr = (longlong*)*list_ptr;
+    cleanup_ptr = (int64_t*)*list_ptr;
     if (cleanup_ptr != list_ptr) {
         do {
             if (cleanup_ptr == list_ptr) break;
-            link_data = (longlong*)*cleanup_ptr;
-            *(longlong**)cleanup_ptr[1] = link_data;
-            *(longlong*)(*cleanup_ptr + 8) = cleanup_ptr[1];
-            cleanup_ptr[1] = (longlong)cleanup_ptr;
-            *cleanup_ptr = (longlong)cleanup_ptr;
+            link_data = (int64_t*)*cleanup_ptr;
+            *(int64_t**)cleanup_ptr[1] = link_data;
+            *(int64_t*)(*cleanup_ptr + 8) = cleanup_ptr[1];
+            cleanup_ptr[1] = (int64_t)cleanup_ptr;
+            *cleanup_ptr = (int64_t)cleanup_ptr;
             cleanup_ptr = link_data;
         } while (link_data != list_ptr);
-        cleanup_ptr = (longlong*)*list_ptr;
+        cleanup_ptr = (int64_t*)*list_ptr;
     }
     
     // 更新链表指针
-    *(longlong**)packet[0xe] = cleanup_ptr;
+    *(int64_t**)packet[0xe] = cleanup_ptr;
     *(uint64_t*)(*list_ptr + 8) = packet[0xe];
     packet[0xe] = list_ptr;
-    *list_ptr = (longlong)list_ptr;
+    *list_ptr = (int64_t)list_ptr;
     
     // 清理下一个链表
-    list_ptr = (longlong*)*link_ptr;
+    list_ptr = (int64_t*)*link_ptr;
     if (list_ptr != link_ptr) {
         do {
             if (list_ptr == link_ptr) break;
-            cleanup_ptr = (longlong*)*list_ptr;
-            *(longlong**)list_ptr[1] = cleanup_ptr;
-            *(longlong*)(*list_ptr + 8) = list_ptr[1];
-            list_ptr[1] = (longlong)list_ptr;
-            *list_ptr = (longlong)list_ptr;
+            cleanup_ptr = (int64_t*)*list_ptr;
+            *(int64_t**)list_ptr[1] = cleanup_ptr;
+            *(int64_t*)(*list_ptr + 8) = list_ptr[1];
+            list_ptr[1] = (int64_t)list_ptr;
+            *list_ptr = (int64_t)list_ptr;
             list_ptr = cleanup_ptr;
         } while (cleanup_ptr != link_ptr);
-        list_ptr = (longlong*)*link_ptr;
+        list_ptr = (int64_t*)*link_ptr;
     }
     
     // 最终更新
-    *(longlong**)packet[0xc] = list_ptr;
+    *(int64_t**)packet[0xc] = list_ptr;
     *(uint64_t*)(*link_ptr + 8) = packet[0xc];
     packet[0xc] = link_ptr;
-    *link_ptr = (longlong)link_ptr;
+    *link_ptr = (int64_t)link_ptr;
     
     // 清理连接和缓冲区
     NetworkConnectionManager_CleanupConnection(packet + 9);
@@ -1012,7 +1012,7 @@ void FUN_18084c2d0(uint64_t* param_1) {
  * 
  * @return uint64_t 操作结果
  */
-uint64_t FUN_18084c350(uint64_t param_1, ulonglong param_2) {
+uint64_t FUN_18084c350(uint64_t param_1, uint64_t param_2) {
     // 调用新的网络数据包销毁系统
     return NetworkPacketManager_DestroyPacket(param_1, param_2);
 }
@@ -1025,9 +1025,9 @@ uint64_t FUN_18084c350(uint64_t param_1, ulonglong param_2) {
  * @param param_1 连接指针
  * @param param_2 处理标志
  * 
- * @return longlong 处理结果
+ * @return int64_t 处理结果
  */
-longlong FUN_18084c390(longlong param_1, ulonglong param_2) {
+int64_t FUN_18084c390(int64_t param_1, uint64_t param_2) {
     // 调用新的网络连接处理系统
     return NetworkConnectionManager_HandleConnection(param_1, param_2);
 }
@@ -1042,7 +1042,7 @@ longlong FUN_18084c390(longlong param_1, ulonglong param_2) {
  * 
  * @return uint64_t 操作结果
  */
-uint64_t FUN_18084c470(longlong* param_1, int param_2) {
+uint64_t FUN_18084c470(int64_t* param_1, int param_2) {
     // 调用新的网络缓冲区分配系统
     return NetworkBufferManager_AllocateBuffer(param_1, param_2);
 }
@@ -1083,7 +1083,7 @@ uint64_t FUN_18084c55b(void) {
  * 
  * @return void
  */
-void FUN_18084c5a0(longlong* param_1) {
+void FUN_18084c5a0(int64_t* param_1) {
     // 调用新的网络连接清理系统
     NetworkConnectionManager_CleanupConnection(param_1);
 }
@@ -1113,7 +1113,7 @@ void FUN_18084c612(int32_t param_1, int param_2, uint param_3) {
  * 
  * @return void
  */
-void FUN_18084c61e(longlong param_1) {
+void FUN_18084c61e(int64_t param_1) {
     // 调用新的网络数据包批量处理系统
     NetworkPacketManager_ProcessPackets(param_1);
 }
@@ -1159,7 +1159,7 @@ void FUN_18084c658(uint64_t param_1, uint64_t param_2, uint param_3) {
  * 
  * @return void
  */
-void FUN_18084c680(longlong* param_1) {
+void FUN_18084c680(int64_t* param_1) {
     // 调用新的网络链表节点清理系统
     NetworkLinkedList_CleanupNode(param_1);
 }

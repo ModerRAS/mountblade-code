@@ -30,27 +30,27 @@ const int POINTER_SIZE = 8;                // 指针大小：8字节
 // ============================================================================
 
 // 内存操作函数
-void clear_memory_block(longlong memory_base, uint block_index);
+void clear_memory_block(int64_t memory_base, uint block_index);
 void clear_memory_block_by_index(void);
-void initialize_data_structure(longlong data_base, uint start_index);
-void clear_memory_range(longlong memory_base, uint start_index, uint end_index);
+void initialize_data_structure(int64_t data_base, uint start_index);
+void clear_memory_range(int64_t memory_base, uint start_index, uint end_index);
 
 // 数据处理函数
-void process_data_chunks(longlong data_base, uint chunk_count);
-void sort_data_array(longlong *array_base, uint64_t *array_info);
+void process_data_chunks(int64_t data_base, uint chunk_count);
+void sort_data_array(int64_t *array_base, uint64_t *array_info);
 void sort_data_array_alt(int32_t *array_base, uint64_t *array_info);
 void insert_data_element(uint64_t data, uint64_t *array_info);
 
 // 内存管理函数
-uint64_t *allocate_memory_block(uint64_t *memory_ptr, ulonglong flags, uint64_t param3, uint64_t param4);
-uint64_t *free_memory_block(uint64_t *memory_ptr, ulonglong flags, uint64_t param3, uint64_t param4);
+uint64_t *allocate_memory_block(uint64_t *memory_ptr, uint64_t flags, uint64_t param3, uint64_t param4);
+uint64_t *free_memory_block(uint64_t *memory_ptr, uint64_t flags, uint64_t param3, uint64_t param4);
 void cleanup_memory_blocks(uint64_t *memory_ptr);
-void cleanup_memory_range(longlong memory_base);
+void cleanup_memory_range(int64_t memory_base);
 
 // 工具函数
 void empty_function(void);
-ulonglong *create_hash_table(ulonglong table_size);
-void destroy_memory_allocator(longlong allocator_ptr);
+uint64_t *create_hash_table(uint64_t table_size);
+void destroy_memory_allocator(int64_t allocator_ptr);
 
 // ============================================================================
 // 函数定义
@@ -70,13 +70,13 @@ void destroy_memory_allocator(longlong allocator_ptr);
  * 
  * 返回值：无
  */
-void clear_memory_block(longlong memory_base, uint block_index)
+void clear_memory_block(int64_t memory_base, uint block_index)
 {
   // 检查索引范围有效性
   if ((int)block_index < (int)(block_index + MEMORY_PAGE_SIZE)) {
     // 计算内存块地址并清零
-    memset(*(longlong *)(memory_base + ARRAY_HEADER_SIZE + (ulonglong)(block_index >> BIT_SHIFT_0x9) * POINTER_SIZE) +
-           (longlong)(int)(block_index + (block_index >> BIT_SHIFT_0x9) * -MEMORY_PAGE_SIZE) * MEMORY_BLOCK_SIZE, 0, MEMORY_BLOCK_SIZE);
+    memset(*(int64_t *)(memory_base + ARRAY_HEADER_SIZE + (uint64_t)(block_index >> BIT_SHIFT_0x9) * POINTER_SIZE) +
+           (int64_t)(int)(block_index + (block_index >> BIT_SHIFT_0x9) * -MEMORY_PAGE_SIZE) * MEMORY_BLOCK_SIZE, 0, MEMORY_BLOCK_SIZE);
   }
   return;
 }
@@ -95,11 +95,11 @@ void clear_memory_block(longlong memory_base, uint block_index)
 void clear_memory_block_by_index(void)
 {
   uint block_index;
-  longlong memory_base;
+  int64_t memory_base;
   
   // 使用寄存器变量直接清理内存块
-  memset(*(longlong *)(memory_base + ARRAY_HEADER_SIZE + (ulonglong)(block_index >> BIT_SHIFT_0x9) * POINTER_SIZE) +
-         (longlong)(int)(block_index + (block_index >> BIT_SHIFT_0x9) * -MEMORY_PAGE_SIZE) * MEMORY_BLOCK_SIZE, 0, MEMORY_BLOCK_SIZE);
+  memset(*(int64_t *)(memory_base + ARRAY_HEADER_SIZE + (uint64_t)(block_index >> BIT_SHIFT_0x9) * POINTER_SIZE) +
+         (int64_t)(int)(block_index + (block_index >> BIT_SHIFT_0x9) * -MEMORY_PAGE_SIZE) * MEMORY_BLOCK_SIZE, 0, MEMORY_BLOCK_SIZE);
 }
 
 /**
@@ -131,33 +131,33 @@ void empty_function(void)
  * 
  * 返回值：无
  */
-void initialize_data_structure(longlong data_base, uint start_index)
+void initialize_data_structure(int64_t data_base, uint start_index)
 {
-  longlong offset;
+  int64_t offset;
   uint64_t *data_ptr;
   uint64_t *temp_ptr;
   uint current_index;
-  ulonglong block_offset;
+  uint64_t block_offset;
   
-  block_offset = (ulonglong)start_index;
+  block_offset = (uint64_t)start_index;
   // 批量初始化数据块
   if ((int)start_index < (int)(start_index + MEMORY_PAGE_SIZE)) {
     do {
       // 计算数据块地址
       temp_ptr = (uint64_t *)
-               (*(longlong *)(data_base + ARRAY_HEADER_SIZE + (block_offset >> BIT_SHIFT_0x9) * POINTER_SIZE) +
-               (longlong)((int)block_offset + (int)(block_offset >> BIT_SHIFT_0x9) * -MEMORY_PAGE_SIZE) * MEMORY_SEGMENT_SIZE);
+               (*(int64_t *)(data_base + ARRAY_HEADER_SIZE + (block_offset >> BIT_SHIFT_0x9) * POINTER_SIZE) +
+               (int64_t)((int)block_offset + (int)(block_offset >> BIT_SHIFT_0x9) * -MEMORY_PAGE_SIZE) * MEMORY_SEGMENT_SIZE);
       
       // 初始化数据结构字段
       temp_ptr[0x11] = 0;                              // 清空标志位
       *(int32_t *)(temp_ptr + 0x12) = 0x1060101;   // 设置魔数
-      *(int32_t *)((longlong)temp_ptr + 0x94) = 0xff000000; // 设置颜色掩码
+      *(int32_t *)((int64_t)temp_ptr + 0x94) = 0xff000000; // 设置颜色掩码
       *(int32_t *)(temp_ptr + 0x13) = 0x40300ff;   // 设置渲染标志
-      *(uint64_t *)((longlong)temp_ptr + 0x9c) = 0x30503; // 设置纹理ID
-      *(uint64_t *)((longlong)temp_ptr + 0xa4) = 0;    // 清空扩展数据
-      *(uint64_t *)((longlong)temp_ptr + 0xac) = 0;    // 清空用户数据
-      *(uint64_t *)((longlong)temp_ptr + 0xb4) = 0;    // 清空保留字段
-      *(int32_t *)((longlong)temp_ptr + 0xbc) = 0;    // 清空计数器
+      *(uint64_t *)((int64_t)temp_ptr + 0x9c) = 0x30503; // 设置纹理ID
+      *(uint64_t *)((int64_t)temp_ptr + 0xa4) = 0;    // 清空扩展数据
+      *(uint64_t *)((int64_t)temp_ptr + 0xac) = 0;    // 清空用户数据
+      *(uint64_t *)((int64_t)temp_ptr + 0xb4) = 0;    // 清空保留字段
+      *(int32_t *)((int64_t)temp_ptr + 0xbc) = 0;    // 清空计数器
       
       // 初始化基本属性
       temp_ptr[0x18] = 0x900;                          // 设置属性标志
@@ -188,7 +188,7 @@ void initialize_data_structure(longlong data_base, uint start_index)
       }
       
       // 初始化浮点属性
-      *(int8_t *)((longlong)temp_ptr + 0x321) = 0; // 清空alpha值
+      *(int8_t *)((int64_t)temp_ptr + 0x321) = 0; // 清空alpha值
       *(int32_t *)(temp_ptr + 0x62) = 0;            // 清空浮点参数1
       *(int32_t *)(temp_ptr + 0x5a) = 0;            // 清空浮点参数2
       temp_ptr[0x19] = 0x3f800000;                     // 设置默认浮点值1.0
@@ -217,19 +217,19 @@ void initialize_data_structure(longlong data_base, uint start_index)
       temp_ptr[0x53] = 0;                              // 清空碰撞材质
       
       // 初始化游戏逻辑属性
-      *(int32_t *)((longlong)temp_ptr + 0x314) = 0;  // 清空游戏ID
+      *(int32_t *)((int64_t)temp_ptr + 0x314) = 0;  // 清空游戏ID
       temp_ptr[0x41] = 0;                              // 清空游戏类型
       temp_ptr[0x54] = 0;                              // 清空游戏状态
       temp_ptr[0x57] = 0;                              // 清空游戏标志
-      *(int32_t *)((longlong)temp_ptr + 0x30c) = 0xffffffff; // 设置活动标志
+      *(int32_t *)((int64_t)temp_ptr + 0x30c) = 0xffffffff; // 设置活动标志
       temp_ptr[0x58] = 0;                              // 清空游戏模式
       temp_ptr[0x59] = 0;                              // 清空游戏难度
       *(int8_t *)(temp_ptr + 100) = 0;              // 清空玩家ID
-      *(int8_t *)((longlong)temp_ptr + 0x322) = 0;  // 清空队伍ID
+      *(int8_t *)((int64_t)temp_ptr + 0x322) = 0;  // 清空队伍ID
       
       // 更新索引
       current_index = (int)block_offset + 1;
-      block_offset = (ulonglong)current_index;
+      block_offset = (uint64_t)current_index;
     } while ((int)current_index < (int)(start_index + MEMORY_PAGE_SIZE));
   }
   return;
@@ -249,20 +249,20 @@ void initialize_data_structure(longlong data_base, uint start_index)
  * 
  * 返回值：无
  */
-void process_data_chunks(longlong data_base, uint chunk_count)
+void process_data_chunks(int64_t data_base, uint chunk_count)
 {
   uint current_chunk;
-  ulonglong chunk_offset;
+  uint64_t chunk_offset;
   
-  chunk_offset = (ulonglong)chunk_count;
+  chunk_offset = (uint64_t)chunk_count;
   // 批量处理数据块
   if ((int)chunk_count < (int)(chunk_count + DATA_CHUNK_SIZE)) {
     do {
       // 计算数据块地址并调用处理函数
-      FUN_180245b90((longlong)((int)chunk_offset + (int)(chunk_offset >> 4) * -DATA_CHUNK_SIZE) * 0x12c30 +
-                    *(longlong *)(data_base + ARRAY_HEADER_SIZE + (chunk_offset >> 4) * POINTER_SIZE));
+      FUN_180245b90((int64_t)((int)chunk_offset + (int)(chunk_offset >> 4) * -DATA_CHUNK_SIZE) * 0x12c30 +
+                    *(int64_t *)(data_base + ARRAY_HEADER_SIZE + (chunk_offset >> 4) * POINTER_SIZE));
       current_chunk = (int)chunk_offset + 1;
-      chunk_offset = (ulonglong)current_chunk;
+      chunk_offset = (uint64_t)current_chunk;
     } while ((int)current_chunk < (int)(chunk_count + DATA_CHUNK_SIZE));
   }
   return;
@@ -284,7 +284,7 @@ void process_data_chunks(longlong data_base, uint chunk_count)
  * 
  * 返回值：uint64_t* - 分配的内存块指针
  */
-uint64_t *allocate_memory_block(uint64_t *memory_ptr, ulonglong flags, uint64_t param3, uint64_t param4)
+uint64_t *allocate_memory_block(uint64_t *memory_ptr, uint64_t flags, uint64_t param3, uint64_t param4)
 {
   *memory_ptr = &global_memory_pool_1;
   *memory_ptr = &global_memory_pool_2;
@@ -310,14 +310,14 @@ uint64_t *allocate_memory_block(uint64_t *memory_ptr, ulonglong flags, uint64_t 
  * 
  * 返回值：uint64_t* - 释放后的内存指针
  */
-uint64_t *free_memory_block(uint64_t *memory_ptr, ulonglong flags, uint64_t param3, uint64_t param4)
+uint64_t *free_memory_block(uint64_t *memory_ptr, uint64_t flags, uint64_t param3, uint64_t param4)
 {
   uint64_t destructor_ptr;
   
   destructor_ptr = 0xfffffffffffffffe;
-  if ((longlong *)memory_ptr[8] != (longlong *)0x0) {
+  if ((int64_t *)memory_ptr[8] != (int64_t *)0x0) {
     // 调用析构函数
-    (**(code **)(*(longlong *)memory_ptr[8] + 0x38))();
+    (**(code **)(*(int64_t *)memory_ptr[8] + 0x38))();
   }
   if ((code *)memory_ptr[6] != (code *)0x0) {
     // 调用清理函数
@@ -347,7 +347,7 @@ uint64_t *free_memory_block(uint64_t *memory_ptr, ulonglong flags, uint64_t para
  * 
  * 返回值：无
  */
-void clear_memory_range(longlong memory_base, uint start_index, uint end_index)
+void clear_memory_range(int64_t memory_base, uint start_index, uint end_index)
 {
   uint64_t *data_ptr;
   uint64_t *temp_ptr;
@@ -358,14 +358,14 @@ void clear_memory_range(longlong memory_base, uint start_index, uint end_index)
   uint index_diff;
   int32_t flag_value1;
   int32_t flag_value2;
-  ulonglong block_offset;
-  ulonglong temp_offset;
+  uint64_t block_offset;
+  uint64_t temp_offset;
   uint64_t temp_value;
-  longlong block_addr;
-  ulonglong *hash_ptr;
-  ulonglong hash_value;
-  ulonglong new_hash_value;
-  longlong temp_block_addr;
+  int64_t block_addr;
+  uint64_t *hash_ptr;
+  uint64_t hash_value;
+  uint64_t new_hash_value;
+  int64_t temp_block_addr;
   uint temp_index;
   int bit_count;
   uint loop_index;
@@ -378,27 +378,27 @@ void clear_memory_range(longlong memory_base, uint start_index, uint end_index)
   range_size = (int)end_index;
   if (range_size != *(int *)(start_index + 1)) {
     bit_count = 0;
-    block_addr = (longlong)*(int *)(start_index + 1) - (longlong)range_size;
+    block_addr = (int64_t)*(int *)(start_index + 1) - (int64_t)range_size;
     for (temp_block_addr = block_addr; temp_block_addr != 0; temp_block_addr = temp_block_addr >> 1) {
       bit_count = bit_count + 1;
     }
     
     // 准备范围数据
     temp_value = *start_index;
-    temp_offset = (ulonglong)start_index + 1;
-    FUN_1800ea950(&range_size, &temp_value, (longlong)(bit_count + -1) * 2);
+    temp_offset = (uint64_t)start_index + 1;
+    FUN_1800ea950(&range_size, &temp_value, (int64_t)(bit_count + -1) * 2);
     
     // 处理小范围
     if (block_addr < SORT_THRESHOLD) {
       temp_value = *start_index;
-      temp_offset = (ulonglong)start_index + 1;
+      temp_offset = (uint64_t)start_index + 1;
       FUN_1800eac80(&range_size, &temp_value);
     }
     else {
       // 处理大范围
       temp_block_addr = *memory_base;
       loop_index = range_size + SORT_THRESHOLD;
-      block_offset = (ulonglong)loop_index;
+      block_offset = (uint64_t)loop_index;
       temp_value = temp_block_addr;
       FUN_1800eac80(&range_size, &temp_block_addr);
       
@@ -406,9 +406,9 @@ void clear_memory_range(longlong memory_base, uint start_index, uint end_index)
       index_diff = *(uint *)(start_index + 1);
       for (; loop_index != index_diff; loop_index = loop_index + 1) {
         // 计算哈希值
-        hash_value = (ulonglong)(loop_index + (loop_index >> BIT_SHIFT_0xB) * -BIT_MASK_0x7FF);
-        block_addr = *(longlong *)(temp_block_addr + ARRAY_HEADER_SIZE + (ulonglong)(loop_index >> BIT_SHIFT_0xB) * POINTER_SIZE);
-        hash_ptr = (ulonglong *)(block_addr + hash_value * HASH_TABLE_SIZE);
+        hash_value = (uint64_t)(loop_index + (loop_index >> BIT_SHIFT_0xB) * -BIT_MASK_0x7FF);
+        block_addr = *(int64_t *)(temp_block_addr + ARRAY_HEADER_SIZE + (uint64_t)(loop_index >> BIT_SHIFT_0xB) * POINTER_SIZE);
+        hash_ptr = (uint64_t *)(block_addr + hash_value * HASH_TABLE_SIZE);
         data_value = *hash_ptr;
         temp_offset = hash_ptr[1];
         temp_value = *(uint64_t *)(block_addr + 0x10 + hash_value * HASH_TABLE_SIZE);
@@ -418,9 +418,9 @@ void clear_memory_range(longlong memory_base, uint start_index, uint end_index)
         // 查找插入位置
         while (true) {
           temp_index = temp_index - 1;
-          new_hash_value = (ulonglong)(temp_index & BIT_MASK_0x7FF);
-          hash_ptr = (ulonglong *)
-                    (*(longlong *)(temp_block_addr + ARRAY_HEADER_SIZE + (ulonglong)(temp_index >> BIT_SHIFT_0xB) * POINTER_SIZE) + new_hash_value * HASH_TABLE_SIZE);
+          new_hash_value = (uint64_t)(temp_index & BIT_MASK_0x7FF);
+          hash_ptr = (uint64_t *)
+                    (*(int64_t *)(temp_block_addr + ARRAY_HEADER_SIZE + (uint64_t)(temp_index >> BIT_SHIFT_0xB) * POINTER_SIZE) + new_hash_value * HASH_TABLE_SIZE);
           hash_value = *hash_ptr;
           comparison_result = data_value < hash_value;
           if (data_value == hash_value) {
@@ -429,15 +429,15 @@ void clear_memory_range(longlong memory_base, uint start_index, uint end_index)
           if (!comparison_result) break;
           
           // 移动数据块
-          block_addr = *(longlong *)(temp_block_addr + ARRAY_HEADER_SIZE + (ulonglong)(temp_index >> BIT_SHIFT_0xB) * POINTER_SIZE);
+          block_addr = *(int64_t *)(temp_block_addr + ARRAY_HEADER_SIZE + (uint64_t)(temp_index >> BIT_SHIFT_0xB) * POINTER_SIZE);
           data_ptr = (uint64_t *)(block_addr + new_hash_value * HASH_TABLE_SIZE);
           temp_offset = data_ptr[1];
           flags_ptr = (int32_t *)(block_addr + 0x10 + new_hash_value * HASH_TABLE_SIZE);
           stored_flag1 = *flags_ptr;
           stored_flag2 = flags_ptr[1];
           
-          block_addr = *(longlong *)(temp_block_addr + ARRAY_HEADER_SIZE + (ulonglong)(current_index >> BIT_SHIFT_0xB) * POINTER_SIZE);
-          hash_value = (ulonglong)(current_index + (current_index >> BIT_SHIFT_0xB) * -BIT_MASK_0x7FF);
+          block_addr = *(int64_t *)(temp_block_addr + ARRAY_HEADER_SIZE + (uint64_t)(current_index >> BIT_SHIFT_0xB) * POINTER_SIZE);
+          hash_value = (uint64_t)(current_index + (current_index >> BIT_SHIFT_0xB) * -BIT_MASK_0x7FF);
           temp_ptr = (uint64_t *)(block_addr + hash_value * HASH_TABLE_SIZE);
           *temp_ptr = *data_ptr;
           temp_ptr[1] = temp_offset;
@@ -448,9 +448,9 @@ void clear_memory_range(longlong memory_base, uint start_index, uint end_index)
         }
         
         // 插入数据块
-        hash_value = (ulonglong)(current_index + (current_index >> BIT_SHIFT_0xB) * -BIT_MASK_0x7FF);
-        block_addr = *(longlong *)(temp_block_addr + ARRAY_HEADER_SIZE + (ulonglong)(current_index >> BIT_SHIFT_0xB) * POINTER_SIZE);
-        hash_ptr = (ulonglong *)(block_addr + hash_value * HASH_TABLE_SIZE);
+        hash_value = (uint64_t)(current_index + (current_index >> BIT_SHIFT_0xB) * -BIT_MASK_0x7FF);
+        block_addr = *(int64_t *)(temp_block_addr + ARRAY_HEADER_SIZE + (uint64_t)(current_index >> BIT_SHIFT_0xB) * POINTER_SIZE);
+        hash_ptr = (uint64_t *)(block_addr + hash_value * HASH_TABLE_SIZE);
         *hash_ptr = data_value;
         hash_ptr[1] = temp_offset;
         *(uint64_t *)(block_addr + 0x10 + hash_value * HASH_TABLE_SIZE) = temp_value;
@@ -480,18 +480,18 @@ void insert_data_element(int32_t *array_base, uint64_t *array_info)
   uint64_t *temp_ptr;
   int32_t *flags_ptr;
   uint64_t data_value;
-  longlong base_addr;
-  longlong temp_addr;
-  ulonglong block_offset;
+  int64_t base_addr;
+  int64_t temp_addr;
+  uint64_t block_offset;
   uint current_index;
   uint end_index;
   uint64_t temp_value;
   uint64_t temp_value2;
-  longlong array_start;
-  ulonglong *hash_ptr;
-  ulonglong hash_value;
-  ulonglong new_hash_value;
-  longlong temp_block_addr;
+  int64_t array_start;
+  uint64_t *hash_ptr;
+  uint64_t hash_value;
+  uint64_t new_hash_value;
+  int64_t temp_block_addr;
   uint temp_index;
   int bit_count;
   uint loop_index;
@@ -513,12 +513,12 @@ void insert_data_element(int32_t *array_base, uint64_t *array_info)
   stored_flag4 = array_base[3];
   
   // 执行插入排序
-  FUN_1800ea950(array_base, array_info, (longlong)(bit_count + -1) * 2);
+  FUN_1800ea950(array_base, array_info, (int64_t)(bit_count + -1) * 2);
   
   stored_flag1 = *(int32_t *)array_ptr;
-  stored_flag2 = *(int32_t *)((longlong)array_ptr + 4);
+  stored_flag2 = *(int32_t *)((int64_t)array_ptr + 4);
   stored_flag3 = *(int32_t *)(array_ptr + 1);
-  stored_flag4 = *(int32_t *)((longlong)array_ptr + 0xc);
+  stored_flag4 = *(int32_t *)((int64_t)array_ptr + 0xc);
   
   if (array_start - array_end < SORT_THRESHOLD) {
     temp_value = array_info[1];
@@ -542,14 +542,14 @@ void insert_data_element(int32_t *array_base, uint64_t *array_info)
     
     end_index = *(uint *)(array_info + 1);
     if (loop_index != end_index) {
-      temp_addr = *(longlong *)(temp_base + -0x59);
+      temp_addr = *(int64_t *)(temp_base + -0x59);
       loop_index = *(uint *)(temp_base + -0x51);
       
       while (true) {
         // 查找插入位置
-        data_value = *(uint64_t *)(temp_addr + ARRAY_HEADER_SIZE + (ulonglong)(loop_index >> BIT_SHIFT_0xB) * POINTER_SIZE);
-        hash_value = (ulonglong)(loop_index + (loop_index >> BIT_SHIFT_0xB) * -BIT_MASK_0x7FF);
-        temp_block_addr = *(longlong *)(temp_addr + ARRAY_HEADER_SIZE + (ulonglong)(loop_index >> BIT_SHIFT_0xB) * POINTER_SIZE);
+        data_value = *(uint64_t *)(temp_addr + ARRAY_HEADER_SIZE + (uint64_t)(loop_index >> BIT_SHIFT_0xB) * POINTER_SIZE);
+        hash_value = (uint64_t)(loop_index + (loop_index >> BIT_SHIFT_0xB) * -BIT_MASK_0x7FF);
+        temp_block_addr = *(int64_t *)(temp_addr + ARRAY_HEADER_SIZE + (uint64_t)(loop_index >> BIT_SHIFT_0xB) * POINTER_SIZE);
         data_ptr = (uint64_t *)(temp_block_addr + hash_value * HASH_TABLE_SIZE);
         temp_value = *data_ptr;
         temp_value2 = data_ptr[1];
@@ -559,9 +559,9 @@ void insert_data_element(int32_t *array_base, uint64_t *array_info)
         
         while (true) {
           temp_index = temp_index - 1;
-          new_hash_value = (ulonglong)(temp_index & BIT_MASK_0x7FF);
-          hash_ptr = (ulonglong *)
-                    (*(longlong *)(temp_addr + ARRAY_HEADER_SIZE + (ulonglong)(temp_index >> BIT_SHIFT_0xB) * POINTER_SIZE) + new_hash_value * HASH_TABLE_SIZE);
+          new_hash_value = (uint64_t)(temp_index & BIT_MASK_0x7FF);
+          hash_ptr = (uint64_t *)
+                    (*(int64_t *)(temp_addr + ARRAY_HEADER_SIZE + (uint64_t)(temp_index >> BIT_SHIFT_0xB) * POINTER_SIZE) + new_hash_value * HASH_TABLE_SIZE);
           hash_value = *hash_ptr;
           comparison_result = temp_value < hash_value;
           if (temp_value == hash_value) {
@@ -570,15 +570,15 @@ void insert_data_element(int32_t *array_base, uint64_t *array_info)
           if (!comparison_result) break;
           
           // 移动元素
-          temp_block_addr = *(longlong *)(temp_addr + ARRAY_HEADER_SIZE + (ulonglong)(temp_index >> BIT_SHIFT_0xB) * POINTER_SIZE);
+          temp_block_addr = *(int64_t *)(temp_addr + ARRAY_HEADER_SIZE + (uint64_t)(temp_index >> BIT_SHIFT_0xB) * POINTER_SIZE);
           data_ptr = (uint64_t *)(temp_block_addr + new_hash_value * HASH_TABLE_SIZE);
           temp_value = data_ptr[1];
           flags_ptr = (int32_t *)(temp_block_addr + 0x10 + new_hash_value * HASH_TABLE_SIZE);
           stored_flag1 = *flags_ptr;
           stored_flag2 = flags_ptr[1];
           
-          temp_block_addr = *(longlong *)(base_addr + ARRAY_HEADER_SIZE + (ulonglong)(current_index >> BIT_SHIFT_0xB) * POINTER_SIZE);
-          hash_value = (ulonglong)(current_index + (current_index >> BIT_SHIFT_0xB) * -BIT_MASK_0x7FF);
+          temp_block_addr = *(int64_t *)(base_addr + ARRAY_HEADER_SIZE + (uint64_t)(current_index >> BIT_SHIFT_0xB) * POINTER_SIZE);
+          hash_value = (uint64_t)(current_index + (current_index >> BIT_SHIFT_0xB) * -BIT_MASK_0x7FF);
           temp_ptr = (uint64_t *)(temp_block_addr + hash_value * HASH_TABLE_SIZE);
           *temp_ptr = *data_ptr;
           temp_ptr[1] = temp_value;
@@ -589,9 +589,9 @@ void insert_data_element(int32_t *array_base, uint64_t *array_info)
         }
         
         // 插入元素
-        hash_value = (ulonglong)(current_index + (current_index >> BIT_SHIFT_0xB) * -BIT_MASK_0x7FF);
-        temp_block_addr = *(longlong *)(base_addr + ARRAY_HEADER_SIZE + (ulonglong)(current_index >> BIT_SHIFT_0xB) * POINTER_SIZE);
-        hash_ptr = (ulonglong *)(temp_block_addr + hash_value * HASH_TABLE_SIZE);
+        hash_value = (uint64_t)(current_index + (current_index >> BIT_SHIFT_0xB) * -BIT_MASK_0x7FF);
+        temp_block_addr = *(int64_t *)(base_addr + ARRAY_HEADER_SIZE + (uint64_t)(current_index >> BIT_SHIFT_0xB) * POINTER_SIZE);
+        hash_ptr = (uint64_t *)(temp_block_addr + hash_value * HASH_TABLE_SIZE);
         *hash_ptr = temp_value;
         hash_ptr[1] = temp_value2;
         *(uint64_t *)(temp_block_addr + 0x10 + hash_value * HASH_TABLE_SIZE) = temp_value;
@@ -629,18 +629,18 @@ void sort_data_array(uint64_t data_value, uint64_t array_info)
   uint64_t *temp_ptr;
   int32_t *flags_ptr;
   uint64_t temp_data;
-  longlong base_addr;
-  longlong temp_addr;
-  ulonglong block_offset;
+  int64_t base_addr;
+  int64_t temp_addr;
+  uint64_t block_offset;
   uint current_index;
   uint end_index;
   uint64_t temp_value;
   uint64_t temp_value2;
-  longlong array_start;
-  ulonglong *hash_ptr;
-  ulonglong hash_value;
-  ulonglong new_hash_value;
-  longlong temp_block_addr;
+  int64_t array_start;
+  uint64_t *hash_ptr;
+  uint64_t hash_value;
+  uint64_t new_hash_value;
+  int64_t temp_block_addr;
   uint temp_index;
   uint loop_index;
   bool comparison_result;
@@ -651,7 +651,7 @@ void sort_data_array(uint64_t data_value, uint64_t array_info)
   
   // 初始化排序参数
   *(int *)(temp_base + -9) = (int)array_info;
-  *(int *)(temp_base + -5) = (int)((ulonglong)array_info >> 0x20);
+  *(int *)(temp_base + -5) = (int)((uint64_t)array_info >> 0x20);
   *(int32_t *)(temp_base + -1) = in_XMM1_Dc;
   *(int32_t *)(temp_base + 3) = in_XMM1_Dd;
   FUN_1800eac80();
@@ -666,14 +666,14 @@ void sort_data_array(uint64_t data_value, uint64_t array_info)
   stored_flag4 = *(int32_t *)(temp_base + -0x4d);
   
   if (array_size != end_index) {
-    base_addr = *(longlong *)(temp_base + -0x59);
+    base_addr = *(int64_t *)(temp_base + -0x59);
     loop_index = *(uint *)(temp_base + -0x51);
     
     while (true) {
       // 执行排序操作
-      temp_addr = *(longlong *)(temp_base + -0x49);
-      block_offset = (ulonglong)(loop_index + (loop_index >> BIT_SHIFT_0xB) * -BIT_MASK_0x7FF);
-      temp_block_addr = *(longlong *)(base_addr + ARRAY_HEADER_SIZE + (ulonglong)(loop_index >> BIT_SHIFT_0xB) * POINTER_SIZE);
+      temp_addr = *(int64_t *)(temp_base + -0x49);
+      block_offset = (uint64_t)(loop_index + (loop_index >> BIT_SHIFT_0xB) * -BIT_MASK_0x7FF);
+      temp_block_addr = *(int64_t *)(base_addr + ARRAY_HEADER_SIZE + (uint64_t)(loop_index >> BIT_SHIFT_0xB) * POINTER_SIZE);
       data_ptr = (uint64_t *)(temp_block_addr + block_offset * HASH_TABLE_SIZE);
       temp_value = *data_ptr;
       temp_value2 = data_ptr[1];
@@ -685,9 +685,9 @@ void sort_data_array(uint64_t data_value, uint64_t array_info)
       
       while (true) {
         temp_index = temp_index - 1;
-        new_hash_value = (ulonglong)(temp_index & BIT_MASK_0x7FF);
-        hash_ptr = (ulonglong *)
-                  (*(longlong *)(base_addr + ARRAY_HEADER_SIZE + (ulonglong)(temp_index >> BIT_SHIFT_0xB) * POINTER_SIZE) + new_hash_value * HASH_TABLE_SIZE);
+        new_hash_value = (uint64_t)(temp_index & BIT_MASK_0x7FF);
+        hash_ptr = (uint64_t *)
+                  (*(int64_t *)(base_addr + ARRAY_HEADER_SIZE + (uint64_t)(temp_index >> BIT_SHIFT_0xB) * POINTER_SIZE) + new_hash_value * HASH_TABLE_SIZE);
         hash_value = *hash_ptr;
         comparison_result = temp_value < hash_value;
         if (temp_value == hash_value) {
@@ -696,15 +696,15 @@ void sort_data_array(uint64_t data_value, uint64_t array_info)
         if (!comparison_result) break;
         
         // 移动元素
-        temp_block_addr = *(longlong *)(base_addr + ARRAY_HEADER_SIZE + (ulonglong)(temp_index >> BIT_SHIFT_0xB) * POINTER_SIZE);
+        temp_block_addr = *(int64_t *)(base_addr + ARRAY_HEADER_SIZE + (uint64_t)(temp_index >> BIT_SHIFT_0xB) * POINTER_SIZE);
         data_ptr = (uint64_t *)(temp_block_addr + new_hash_value * HASH_TABLE_SIZE);
         temp_value = data_ptr[1];
         flags_ptr = (int32_t *)(temp_block_addr + 0x10 + new_hash_value * HASH_TABLE_SIZE);
         stored_flag1 = *flags_ptr;
         stored_flag2 = flags_ptr[1];
         
-        temp_block_addr = *(longlong *)(temp_addr + ARRAY_HEADER_SIZE + (ulonglong)(current_index >> BIT_SHIFT_0xB) * POINTER_SIZE);
-        hash_value = (ulonglong)(current_index + (current_index >> BIT_SHIFT_0xB) * -BIT_MASK_0x7FF);
+        temp_block_addr = *(int64_t *)(temp_addr + ARRAY_HEADER_SIZE + (uint64_t)(current_index >> BIT_SHIFT_0xB) * POINTER_SIZE);
+        hash_value = (uint64_t)(current_index + (current_index >> BIT_SHIFT_0xB) * -BIT_MASK_0x7FF);
         temp_ptr = (uint64_t *)(temp_block_addr + hash_value * HASH_TABLE_SIZE);
         *temp_ptr = *data_ptr;
         temp_ptr[1] = temp_value;
@@ -715,9 +715,9 @@ void sort_data_array(uint64_t data_value, uint64_t array_info)
       }
       
       // 插入元素
-      hash_value = (ulonglong)(current_index + (current_index >> BIT_SHIFT_0xB) * -BIT_MASK_0x7FF);
-      temp_block_addr = *(longlong *)(temp_addr + ARRAY_HEADER_SIZE + (ulonglong)(current_index >> BIT_SHIFT_0xB) * POINTER_SIZE);
-      hash_ptr = (ulonglong *)(temp_block_addr + hash_value * HASH_TABLE_SIZE);
+      hash_value = (uint64_t)(current_index + (current_index >> BIT_SHIFT_0xB) * -BIT_MASK_0x7FF);
+      temp_block_addr = *(int64_t *)(temp_addr + ARRAY_HEADER_SIZE + (uint64_t)(current_index >> BIT_SHIFT_0xB) * POINTER_SIZE);
+      hash_ptr = (uint64_t *)(temp_block_addr + hash_value * HASH_TABLE_SIZE);
       *hash_ptr = temp_value;
       hash_ptr[1] = temp_value2;
       *(uint64_t *)(temp_block_addr + 0x10 + hash_value * HASH_TABLE_SIZE) = temp_data;
@@ -753,7 +753,7 @@ void set_array_element(uint64_t array_ptr, uint64_t array_info)
   int32_t element1;
   int32_t element2;
   int32_t element3;
-  longlong temp_base;
+  int64_t temp_base;
   int32_t *array_data;
   uint64_t xmm1_value;
   
@@ -827,20 +827,20 @@ void empty_function_3(void)
  * 参数：
  * - table_size: 哈希表大小
  * 
- * 返回值：ulonglong* - 哈希表指针
+ * 返回值：uint64_t* - 哈希表指针
  */
-ulonglong *create_hash_table(ulonglong table_size)
+uint64_t *create_hash_table(uint64_t table_size)
 {
-  ulonglong *hash_table;
-  ulonglong *table_ptr;
+  uint64_t *hash_table;
+  uint64_t *table_ptr;
   int index;
   
   if (table_size == 0) {
-    return (ulonglong *)0x0;
+    return (uint64_t *)0x0;
   }
   
   // 分配哈希表内存
-  hash_table = (ulonglong *)FUN_18062b420(global_memory_allocator, table_size * HASH_TABLE_SIZE + ARRAY_HEADER_SIZE, 3);
+  hash_table = (uint64_t *)FUN_18062b420(global_memory_allocator, table_size * HASH_TABLE_SIZE + ARRAY_HEADER_SIZE, 3);
   *hash_table = table_size << 0x20 | HASH_TABLE_SIZE;
   
   // 初始化哈希表
@@ -850,7 +850,7 @@ ulonglong *create_hash_table(ulonglong table_size)
     index = index + 1;
     *table_ptr = 0;
     table_ptr = table_ptr + 1;
-  } while ((ulonglong)(longlong)index < table_size);
+  } while ((uint64_t)(int64_t)index < table_size);
   
   return hash_table + 2;
 }
@@ -868,11 +868,11 @@ ulonglong *create_hash_table(ulonglong table_size)
  * 
  * 返回值：无
  */
-void destroy_memory_allocator(longlong allocator_ptr)
+void destroy_memory_allocator(int64_t allocator_ptr)
 {
-  ulonglong table_size;
-  ulonglong element_size;
-  ulonglong current_element;
+  uint64_t table_size;
+  uint64_t element_size;
+  uint64_t current_element;
   
   if (allocator_ptr == 0) {
     return;
@@ -880,17 +880,17 @@ void destroy_memory_allocator(longlong allocator_ptr)
   
   // 获取分配器信息
   current_element = 0;
-  table_size = *(ulonglong *)(allocator_ptr + -ARRAY_HEADER_SIZE);
+  table_size = *(uint64_t *)(allocator_ptr + -ARRAY_HEADER_SIZE);
   element_size = table_size >> 0x20;
   
   // 遍历并清理所有元素
   if ((int)(table_size >> 0x20) != 0) {
     do {
-      if (*(longlong **)(current_element + allocator_ptr) != (longlong *)0x0) {
+      if (*(int64_t **)(current_element + allocator_ptr) != (int64_t *)0x0) {
         // 调用析构函数
-        (**(code **)(**(longlong **)(current_element + allocator_ptr) + 0x38))();
+        (**(code **)(**(int64_t **)(current_element + allocator_ptr) + 0x38))();
       }
-      current_element = (ulonglong)(uint)((int)current_element + (int)table_size);
+      current_element = (uint64_t)(uint)((int)current_element + (int)table_size);
       element_size = element_size - 1;
     } while (element_size != 0);
   }
@@ -912,24 +912,24 @@ void destroy_memory_allocator(longlong allocator_ptr)
  * 
  * 返回值：无
  */
-void destroy_memory_allocator_alt(longlong allocator_ptr)
+void destroy_memory_allocator_alt(int64_t allocator_ptr)
 {
-  ulonglong table_size;
-  ulonglong element_size;
-  ulonglong current_element;
+  uint64_t table_size;
+  uint64_t element_size;
+  uint64_t current_element;
   
   current_element = 0;
-  table_size = *(ulonglong *)(allocator_ptr + -ARRAY_HEADER_SIZE);
+  table_size = *(uint64_t *)(allocator_ptr + -ARRAY_HEADER_SIZE);
   element_size = table_size >> 0x20;
   
   // 遍历并清理所有元素
   if ((int)(table_size >> 0x20) != 0) {
     do {
-      if (*(longlong **)(current_element + allocator_ptr) != (longlong *)0x0) {
+      if (*(int64_t **)(current_element + allocator_ptr) != (int64_t *)0x0) {
         // 调用析构函数
-        (**(code **)(**(longlong **)(current_element + allocator_ptr) + 0x38))();
+        (**(code **)(**(int64_t **)(current_element + allocator_ptr) + 0x38))();
       }
-      current_element = (ulonglong)(uint)((int)current_element + (int)table_size);
+      current_element = (uint64_t)(uint)((int)current_element + (int)table_size);
       element_size = element_size - 1;
     } while (element_size != 0);
   }
@@ -951,9 +951,9 @@ void destroy_memory_allocator_alt(longlong allocator_ptr)
  */
 void cleanup_memory_block_array(void)
 {
-  longlong array_size;
-  ulonglong current_element;
-  longlong array_base;
+  int64_t array_size;
+  uint64_t current_element;
+  int64_t array_base;
   int element_size;
   
   array_base = array_ptr;
@@ -962,11 +962,11 @@ void cleanup_memory_block_array(void)
   
   // 遍历并清理所有内存块
   do {
-    if (*(longlong **)(current_element + array_base) != (longlong *)0x0) {
+    if (*(int64_t **)(current_element + array_base) != (int64_t *)0x0) {
       // 调用析构函数
-      (**(code **)(**(longlong **)(current_element + array_base) + 0x38))();
+      (**(code **)(**(int64_t **)(current_element + array_base) + 0x38))();
     }
-    current_element = (ulonglong)(uint)((int)current_element + element_size);
+    current_element = (uint64_t)(uint)((int)current_element + element_size);
     array_size = array_size + -1;
   } while (array_size != 0);
   
@@ -985,16 +985,16 @@ uint64_t *global_memory_manager;
 uint64_t *global_memory_allocator;
 
 // 数组指针
-longlong *array_ptr;
-longlong array_base;
-longlong array_end;
-longlong array_size;
-longlong array_start;
+int64_t *array_ptr;
+int64_t array_base;
+int64_t array_end;
+int64_t array_size;
+int64_t array_start;
 
 // 临时变量
-longlong temp_base;
-longlong temp_block_addr;
-longlong temp_addr;
+int64_t temp_base;
+int64_t temp_block_addr;
+int64_t temp_addr;
 int32_t in_XMM1_Dc;
 int32_t in_XMM1_Dd;
 uint64_t xmm1_value;

@@ -60,60 +60,60 @@
  * - 处理错误情况
  */
 void process_network_connection_state(uint64_t *network_context, uint64_t connection_id, 
-                                      longlong connection_params, uint64_t *result_output)
+                                      int64_t connection_params, uint64_t *result_output)
 {
   uint64_t connection_handle;
-  longlong *session_manager;
+  int64_t *session_manager;
   int8_t connection_type;
   short connection_status;
   int transfer_result;
   int packet_count;
   int message_count;
-  longlong buffer_address;
-  longlong stream_handle;
-  ulonglong data_length;
+  int64_t buffer_address;
+  int64_t stream_handle;
+  uint64_t data_length;
   uint transfer_flags;
   uint send_flags;
   uint receive_flags;
   uint control_flags;
-  longlong timeout_value;
+  int64_t timeout_value;
   void *protocol_handler;
-  longlong security_context;
+  int64_t security_context;
   int32_t connection_flags;
-  longlong connection_start;
-  longlong connection_end;
-  longlong authentication_context;
-  longlong encryption_context;
-  longlong compression_context;
-  longlong *connection_pool;
+  int64_t connection_start;
+  int64_t connection_end;
+  int64_t authentication_context;
+  int64_t encryption_context;
+  int64_t compression_context;
+  int64_t *connection_pool;
   int8_t encryption_buffer[32];
-  longlong connection_timeout;
-  longlong *active_connections;
-  longlong *pending_connections;
-  longlong bandwidth_limit;
-  longlong latency_measurement;
+  int64_t connection_timeout;
+  int64_t *active_connections;
+  int64_t *pending_connections;
+  int64_t bandwidth_limit;
+  int64_t latency_measurement;
   int error_count;
   uint successful_transfers;
   uint failed_transfers;
   uint retry_attempts;
   uint max_retries;
-  longlong throughput_monitor;
-  longlong quality_metrics;
-  longlong packet_loss_rate;
+  int64_t throughput_monitor;
+  int64_t quality_metrics;
+  int64_t packet_loss_rate;
   int connection_quality;
-  longlong connection_metrics;
-  longlong *session_data;
+  int64_t connection_metrics;
+  int64_t *session_data;
   uint64_t *network_adapter;
-  longlong adapter_config;
+  int64_t adapter_config;
   uint64_t adapter_status;
   uint64_t adapter_info;
-  longlong *driver_interface;
+  int64_t *driver_interface;
   uint64_t *protocol_stack;
   int8_t protocol_buffer[40];
-  ulonglong security_checksum;
+  uint64_t security_checksum;
   
   // 初始化安全校验和
-  security_checksum = GET_SECURITY_COOKIE() ^ (ulonglong)encryption_buffer;
+  security_checksum = GET_SECURITY_COOKIE() ^ (uint64_t)encryption_buffer;
   connection_timeout = connection_params;
   network_adapter = network_context;
   protocol_stack = result_output;
@@ -123,7 +123,7 @@ void process_network_connection_state(uint64_t *network_context, uint64_t connec
   *result_output = 0;
   
   // 获取连接句柄
-  connection_handle = (**(code **)(*(longlong *)*network_context + 0x150))((longlong *)*network_context, connection_id, 1);
+  connection_handle = (**(code **)(*(int64_t *)*network_context + 0x150))((int64_t *)*network_context, connection_id, 1);
   timeout_value = connection_handle;
   
   // 验证连接句柄有效性
@@ -148,7 +148,7 @@ void process_network_connection_state(uint64_t *network_context, uint64_t connec
   if (stream_handle != 0) goto handle_connection_error;
   
   // 创建会话管理器
-  session_manager = (longlong *)0x0;
+  session_manager = (int64_t *)0x0;
   bandwidth_limit = connection_params;
   transfer_result = FUN_1808bc2e0(network_context[2], &session_manager, connection_handle, connection_flags);
   if (transfer_result != 0) goto handle_connection_error;
@@ -193,7 +193,7 @@ void process_network_connection_state(uint64_t *network_context, uint64_t connec
       goto process_connection_type;
     }
   handle_basic_connection:
-    if (connection_pool != (longlong *)0x0) {
+    if (connection_pool != (int64_t *)0x0) {
       func_0x0001808bde90(encryption_context, connection_pool);
     }
   }
@@ -252,9 +252,9 @@ void process_network_connection_state(uint64_t *network_context, uint64_t connec
     if (transfer_result != 0) goto handle_basic_connection;
     
     // 处理连接队列
-    connection_handle = *(longlong *)(connection_handle + 0x68);
+    connection_handle = *(int64_t *)(connection_handle + 0x68);
     if (connection_handle != 0) {
-      if (*(longlong *)(connection_handle + 8) != 0) goto handle_basic_connection;
+      if (*(int64_t *)(connection_handle + 8) != 0) goto handle_basic_connection;
       FUN_18088c9b0(connection_handle, session_manager);
       session_manager[9] = connection_handle;
     }
@@ -264,7 +264,7 @@ void process_network_connection_state(uint64_t *network_context, uint64_t connec
       connection_handle = network_context[2] + 0x290;
     }
     else {
-      connection_handle = (**(code **)(*(longlong *)(connection_params + 8) + 0x30))(connection_params + 8);
+      connection_handle = (**(code **)(*(int64_t *)(connection_params + 8) + 0x30))(connection_params + 8);
     }
     
     // 注册连接
@@ -279,12 +279,12 @@ void process_network_connection_state(uint64_t *network_context, uint64_t connec
     
     // 处理数据传输
     connection_handle = (**(code **)*session_manager)(session_manager);
-    data_length = *(ulonglong *)(connection_handle + 0x38);
+    data_length = *(uint64_t *)(connection_handle + 0x38);
     
     // 数据传输循环
     while (true) {
-      if ((data_length < *(ulonglong *)(connection_handle + 0x38)) ||
-         ((longlong)*(int *)(connection_handle + 0x40) * 0x10 + *(ulonglong *)(connection_handle + 0x38) <= data_length))
+      if ((data_length < *(uint64_t *)(connection_handle + 0x38)) ||
+         ((int64_t)*(int *)(connection_handle + 0x40) * 0x10 + *(uint64_t *)(connection_handle + 0x38) <= data_length))
         goto process_transfer_complete;
       
       bandwidth_limit = 0;
@@ -354,8 +354,8 @@ void process_network_connection_state(uint64_t *network_context, uint64_t connec
            buffer_address = packet_loss_rate, connection_start = compression_context, 
            authentication_context = stream_handle, encryption_context = quality_metrics, 
            connection_pool = session_manager, packet_count == 0)) &&
-         ((transfer_flags = (int)*(uint *)((longlong)session_manager + 0x8c) >> 0x1f,
-           transfer_result <= (int)((*(uint *)((longlong)session_manager + 0x8c) ^ transfer_flags) - transfer_flags) ||
+         ((transfer_flags = (int)*(uint *)((int64_t)session_manager + 0x8c) >> 0x1f,
+           transfer_result <= (int)((*(uint *)((int64_t)session_manager + 0x8c) ^ transfer_flags) - transfer_flags) ||
            (packet_count = FUN_180747f10(session_manager + 0x10, transfer_result), 
             buffer_address = packet_loss_rate, connection_start = compression_context, 
             authentication_context = stream_handle, encryption_context = quality_metrics, 
@@ -363,12 +363,12 @@ void process_network_connection_state(uint64_t *network_context, uint64_t connec
         
         // 处理传入消息
         data_length = 0;
-        ulonglong message_index = data_length;
+        uint64_t message_index = data_length;
         if (0 < transfer_result) {
           do {
             bandwidth_limit = 0;
-            connection_handle = *(longlong *)(connection_handle + 0xa0);
-            stream_handle = *(longlong *)(timeout_value + 0x80);
+            connection_handle = *(int64_t *)(connection_handle + 0xa0);
+            stream_handle = *(int64_t *)(timeout_value + 0x80);
             authentication_context = network_adapter[2];
             connection_type = (**(code **)(*session_manager + 0x20))(session_manager);
             pending_connections = &bandwidth_limit;
@@ -376,7 +376,7 @@ void process_network_connection_state(uint64_t *network_context, uint64_t connec
             bandwidth_limit = CONCAT44(bandwidth_limit._4_4_, *(int32_t *)(connection_handle + message_index * 4));
             
             message_count = FUN_1808b4570(authentication_context + 0x388, 
-                                          (longlong)(int)data_length * 0x10 + stream_handle, 
+                                          (int64_t)(int)data_length * 0x10 + stream_handle, 
                                           connection_timeout, connection_type);
             
             buffer_address = packet_loss_rate;
@@ -397,16 +397,16 @@ void process_network_connection_state(uint64_t *network_context, uint64_t connec
             connection_pool = session_manager;
             if (message_count != 0) goto handle_basic_connection;
             
-            data_length = (ulonglong)((int)data_length + 1);
+            data_length = (uint64_t)((int)data_length + 1);
             message_index = message_index + 1;
             connection_handle = timeout_value;
             message_count = connection_quality;
-          } while ((longlong)message_index < (longlong)transfer_result);
+          } while ((int64_t)message_index < (int64_t)transfer_result);
         }
         
         // 处理传出消息
-        transfer_flags = (int)*(uint *)((longlong)session_manager + 0x9c) >> 0x1f;
-        if ((message_count <= (int)((*(uint *)((longlong)session_manager + 0x9c) ^ transfer_flags) - transfer_flags)) ||
+        transfer_flags = (int)*(uint *)((int64_t)session_manager + 0x9c) >> 0x1f;
+        if ((message_count <= (int)((*(uint *)((int64_t)session_manager + 0x9c) ^ transfer_flags) - transfer_flags)) ||
            (transfer_result = FUN_180747f10(session_manager + 0x12, message_count), 
             buffer_address = packet_loss_rate, connection_start = compression_context, 
             authentication_context = stream_handle, encryption_context = quality_metrics, 
@@ -418,9 +418,9 @@ void process_network_connection_state(uint64_t *network_context, uint64_t connec
           message_index = data_length;
           if (0 < message_count) {
             do {
-              connection_handle = *(longlong *)(connection_handle + 0xb0);
+              connection_handle = *(int64_t *)(connection_handle + 0xb0);
               bandwidth_limit = 0;
-              stream_handle = *(longlong *)(timeout_value + 0x90);
+              stream_handle = *(int64_t *)(timeout_value + 0x90);
               authentication_context = network_adapter[2];
               connection_type = (**(code **)(*session_manager + 0x20))(session_manager);
               pending_connections = &bandwidth_limit;
@@ -428,7 +428,7 @@ void process_network_connection_state(uint64_t *network_context, uint64_t connec
               bandwidth_limit = CONCAT44(bandwidth_limit._4_4_, *(int32_t *)(connection_handle + message_index * 4));
               
               transfer_result = FUN_1808b4570(authentication_context + 0x388, 
-                                            (longlong)(int)data_length * 0x10 + stream_handle, 
+                                            (int64_t)(int)data_length * 0x10 + stream_handle, 
                                             connection_timeout, connection_type);
               
               buffer_address = packet_loss_rate;
@@ -449,12 +449,12 @@ void process_network_connection_state(uint64_t *network_context, uint64_t connec
               connection_pool = session_manager;
               if (transfer_result != 0) goto handle_basic_connection;
               
-              data_length = (ulonglong)((int)data_length + 1);
+              data_length = (uint64_t)((int)data_length + 1);
               message_index = message_index + 1;
               connection_handle = timeout_value;
               authentication_context = adapter_config;
               stream_handle = authentication_context;
-            } while ((longlong)message_index < (longlong)message_count);
+            } while ((int64_t)message_index < (int64_t)message_count);
           }
           goto finalize_connection;
         }
@@ -519,7 +519,7 @@ void process_network_connection_state(uint64_t *network_context, uint64_t connec
     connection_start = compression_context;
     encryption_context = quality_metrics;
     authentication_context = stream_handle;
-    connection_pool = (longlong *)0x0;
+    connection_pool = (int64_t *)0x0;
     
     if (message_count == 0) {
       if (*(int *)(packet_loss_rate + 0x60) < 1) {
@@ -615,11 +615,11 @@ void process_network_connection_state(uint64_t *network_context, uint64_t connec
   
 handle_connection_error:
   // 处理连接错误
-  FUN_1808fc050(security_checksum ^ (ulonglong)encryption_buffer);
+  FUN_1808fc050(security_checksum ^ (uint64_t)encryption_buffer);
 }
 
 // 函数别名：保持向后兼容性
-void FUN_180850b70(uint64_t *param_1, uint64_t param_2, longlong param_3, uint64_t *param_4)
+void FUN_180850b70(uint64_t *param_1, uint64_t param_2, int64_t param_3, uint64_t *param_4)
 {
   process_network_connection_state(param_1, param_2, param_3, param_4);
 }
@@ -644,7 +644,7 @@ void FUN_180850b70(uint64_t *param_1, uint64_t param_2, longlong param_3, uint64
  * - 优化带宽使用
  * - 管理传输队列
  */
-void optimize_network_data_transfer(longlong transfer_context)
+void optimize_network_data_transfer(int64_t transfer_context)
 {
   uint64_t adapter_handle;
   int32_t bandwidth_info;
@@ -655,42 +655,42 @@ void optimize_network_data_transfer(longlong transfer_context)
   int optimization_result;
   int queue_size;
   int active_connections;
-  longlong performance_metrics;
-  ulonglong data_throughput;
+  int64_t performance_metrics;
+  uint64_t data_throughput;
   uint compression_ratio;
   uint error_rate;
   uint transfer_efficiency;
   void *optimization_strategy;
-  longlong context_base;
-  longlong transfer_start;
-  longlong transfer_end;
-  longlong compression_context;
-  longlong *connection_pool;
+  int64_t context_base;
+  int64_t transfer_start;
+  int64_t transfer_end;
+  int64_t compression_context;
+  int64_t *connection_pool;
   int8_t optimization_buffer[32];
-  longlong bandwidth_limit;
-  longlong *active_transfers;
-  longlong *pending_transfers;
-  longlong latency_target;
-  longlong current_latency;
+  int64_t bandwidth_limit;
+  int64_t *active_transfers;
+  int64_t *pending_transfers;
+  int64_t latency_target;
+  int64_t current_latency;
   int packet_loss_count;
   uint successful_transmissions;
   uint failed_transmissions;
   uint retry_count;
   uint max_retries;
-  longlong throughput_target;
-  longlong quality_metrics;
-  longlong packet_loss_rate;
+  int64_t throughput_target;
+  int64_t quality_metrics;
+  int64_t packet_loss_rate;
   int connection_stability;
-  longlong optimization_params;
-  longlong *transfer_queue;
+  int64_t optimization_params;
+  int64_t *transfer_queue;
   uint64_t *transfer_manager;
-  longlong manager_config;
+  int64_t manager_config;
   uint64_t manager_status;
   uint64_t manager_info;
-  longlong *driver_interface;
+  int64_t *driver_interface;
   uint64_t *protocol_stack;
   int8_t strategy_buffer[40];
-  ulonglong performance_checksum;
+  uint64_t performance_checksum;
   
   // 初始化性能校验和
   performance_checksum = 0;
@@ -776,19 +776,19 @@ void optimize_network_data_transfer(longlong transfer_context)
     if (optimization_result != 0) goto handle_basic_optimization;
     
     // 处理传输队列
-    performance_metrics = *(longlong *)(transfer_context + 0x68);
+    performance_metrics = *(int64_t *)(transfer_context + 0x68);
     if (performance_metrics != 0) {
-      if (*(longlong *)(performance_metrics + 8) != 0) goto handle_basic_optimization;
+      if (*(int64_t *)(performance_metrics + 8) != 0) goto handle_basic_optimization;
       FUN_18088c9b0(performance_metrics, transfer_queue);
       transfer_queue[9] = performance_metrics;
     }
     
     // 优化传输配置
     if (transfer_context == 0) {
-      performance_metrics = *(longlong *)(transfer_context + 0x10) + 0x290;
+      performance_metrics = *(int64_t *)(transfer_context + 0x10) + 0x290;
     }
     else {
-      performance_metrics = (**(code **)(*(longlong *)(transfer_context + 8) + 0x30))(transfer_context + 8);
+      performance_metrics = (**(code **)(*(int64_t *)(transfer_context + 8) + 0x30))(transfer_context + 8);
     }
     
     optimization_result = FUN_1808b89f0(performance_metrics, transfer_queue);
@@ -796,13 +796,13 @@ void optimize_network_data_transfer(longlong transfer_context)
     
     // 监控传输性能
     performance_metrics = (**(code **)*transfer_queue)(transfer_queue);
-    data_throughput = *(ulonglong *)(performance_metrics + 0x38);
+    data_throughput = *(uint64_t *)(performance_metrics + 0x38);
     
     // 性能监控循环
     while (true) {
-      if ((data_throughput < *(ulonglong *)(performance_metrics + 0x38)) ||
-         ((longlong)*(int *)(performance_metrics + 0x40) * 0x10 + 
-          *(ulonglong *)(performance_metrics + 0x38) <= data_throughput))
+      if ((data_throughput < *(uint64_t *)(performance_metrics + 0x38)) ||
+         ((int64_t)*(int *)(performance_metrics + 0x40) * 0x10 + 
+          *(uint64_t *)(performance_metrics + 0x38) <= data_throughput))
         goto optimization_complete;
       
       bandwidth_limit = 0;
@@ -849,27 +849,27 @@ void optimize_network_data_transfer(longlong transfer_context)
       if (((queue_size == 0) &&
           (queue_size = FUN_18073c5f0(transfer_queue[0xf], manager_status, &packet_loss_count), 
            queue_size == 0)) &&
-         ((compression_ratio = (int)*(uint *)((longlong)transfer_queue + 0x8c) >> 0x1f,
-           optimization_result <= (int)((*(uint *)((longlong)transfer_queue + 0x8c) ^ 
+         ((compression_ratio = (int)*(uint *)((int64_t)transfer_queue + 0x8c) >> 0x1f,
+           optimization_result <= (int)((*(uint *)((int64_t)transfer_queue + 0x8c) ^ 
                                           compression_ratio) - compression_ratio) ||
            (queue_size = FUN_180747f10(transfer_queue + 0x10, optimization_result), 
             queue_size == 0)))) {
         
         // 优化数据传输
         data_throughput = 0;
-        ulonglong transfer_index = data_throughput;
+        uint64_t transfer_index = data_throughput;
         if (0 < optimization_result) {
           do {
             bandwidth_limit = 0;
-            performance_metrics = *(longlong *)(performance_metrics + 0xa0);
-            current_latency = *(longlong *)(transfer_context + 0x80);
-            performance_metrics = *(longlong *)(*(longlong *)(transfer_context + 0x60) + 0x10);
+            performance_metrics = *(int64_t *)(performance_metrics + 0xa0);
+            current_latency = *(int64_t *)(transfer_context + 0x80);
+            performance_metrics = *(int64_t *)(*(int64_t *)(transfer_context + 0x60) + 0x10);
             compression_flag = (**(code **)(*transfer_queue + 0x20))(transfer_queue);
             
             active_transfers = &bandwidth_limit;
             
             queue_size = FUN_1808b4570(performance_metrics + 0x388, 
-                                      (longlong)(int)data_throughput * 0x10 + current_latency, 
+                                      (int64_t)(int)data_throughput * 0x10 + current_latency, 
                                       *(uint64_t *)(transfer_context + 0x70), compression_flag,
                                       *(int32_t *)(performance_metrics + transfer_index * 4));
             
@@ -881,16 +881,16 @@ void optimize_network_data_transfer(longlong transfer_context)
             
             if (queue_size != 0) goto handle_basic_optimization;
             
-            data_throughput = (ulonglong)((int)data_throughput + 1);
+            data_throughput = (uint64_t)((int)data_throughput + 1);
             transfer_index = transfer_index + 1;
             performance_metrics = transfer_context;
             active_connections = *(int *)(transfer_context + 0x98);
-          } while ((longlong)transfer_index < (longlong)optimization_result);
+          } while ((int64_t)transfer_index < (int64_t)optimization_result);
         }
         
         // 处理优化结果
-        compression_ratio = (int)*(uint *)((longlong)transfer_queue + 0x9c) >> 0x1f;
-        if ((active_connections <= (int)((*(uint *)((longlong)transfer_queue + 0x9c) ^ 
+        compression_ratio = (int)*(uint *)((int64_t)transfer_queue + 0x9c) >> 0x1f;
+        if ((active_connections <= (int)((*(uint *)((int64_t)transfer_queue + 0x9c) ^ 
                                          compression_ratio) - compression_ratio)) ||
            (optimization_result = FUN_180747f10(transfer_queue + 0x12, active_connections), 
             optimization_result == 0)) {
@@ -899,15 +899,15 @@ void optimize_network_data_transfer(longlong transfer_context)
           transfer_index = data_throughput;
           if (0 < active_connections) {
             do {
-              performance_metrics = *(longlong *)(performance_metrics + 0xb0);
+              performance_metrics = *(int64_t *)(performance_metrics + 0xb0);
               bandwidth_limit = 0;
-              current_latency = *(longlong *)(transfer_context + 0x90);
-              performance_metrics = *(longlong *)(*(longlong *)(transfer_context + 0x60) + 0x10);
+              current_latency = *(int64_t *)(transfer_context + 0x90);
+              performance_metrics = *(int64_t *)(*(int64_t *)(transfer_context + 0x60) + 0x10);
               compression_flag = (**(code **)(*transfer_queue + 0x20))(transfer_queue);
               active_transfers = &bandwidth_limit;
               
               queue_size = FUN_1808b4570(performance_metrics + 0x388, 
-                                        (longlong)(int)data_throughput * 0x10 + current_latency, 
+                                        (int64_t)(int)data_throughput * 0x10 + current_latency, 
                                         *(uint64_t *)(transfer_context + 0x70), compression_flag,
                                         *(int32_t *)(performance_metrics + transfer_index * 4));
               
@@ -919,14 +919,14 @@ void optimize_network_data_transfer(longlong transfer_context)
               
               if (queue_size != 0) goto handle_basic_optimization;
               
-              data_throughput = (ulonglong)((int)data_throughput + 1);
+              data_throughput = (uint64_t)((int)data_throughput + 1);
               transfer_index = transfer_index + 1;
               performance_metrics = transfer_context;
-            } while ((longlong)transfer_index < (longlong)active_connections);
+            } while ((int64_t)transfer_index < (int64_t)active_connections);
           }
           
-          current_latency = *(longlong *)(transfer_context + 0x58);
-          performance_metrics = *(longlong *)(transfer_context + 0x70);
+          current_latency = *(int64_t *)(transfer_context + 0x58);
+          performance_metrics = *(int64_t *)(transfer_context + 0x70);
           goto finalize_optimization;
         }
       }
@@ -1079,7 +1079,7 @@ void optimize_network_data_transfer(longlong transfer_context)
 }
 
 // 函数别名：保持向后兼容性
-void FUN_180850c67(longlong param_1)
+void FUN_180850c67(int64_t param_1)
 {
   optimize_network_data_transfer(param_1);
 }
@@ -1103,9 +1103,9 @@ void FUN_180850c67(longlong param_1)
  */
 void cleanup_network_connection_resources(void)
 {
-  longlong context_base;
-  longlong connection_context;
-  longlong transfer_context;
+  int64_t context_base;
+  int64_t connection_context;
+  int64_t transfer_context;
   int32_t connection_flags;
   uint64_t connection_handle;
   uint64_t transfer_handle;
@@ -1138,7 +1138,7 @@ void cleanup_network_connection_resources(void)
   }
   
   // 执行最终清理
-  FUN_1808fc050(*(ulonglong *)(context_base + -8) ^ (ulonglong)&resource_flag1);
+  FUN_1808fc050(*(uint64_t *)(context_base + -8) ^ (uint64_t)&resource_flag1);
 }
 
 // 函数别名：保持向后兼容性

@@ -9,13 +9,13 @@
  * 参数: object_array - 对象数组指针
  * 注意: 如果发现任何非空对象，会调用错误处理函数并终止程序
  */
-void ValidateObjectArray(longlong *object_array)
+void ValidateObjectArray(int64_t *object_array)
 
 {
-  longlong *current_object;
+  int64_t *current_object;
   
   // 遍历对象数组中的每个对象
-  for (current_object = (longlong *)*object_array; current_object != (longlong *)object_array[1]; current_object = current_object + 4) {
+  for (current_object = (int64_t *)*object_array; current_object != (int64_t *)object_array[1]; current_object = current_object + 4) {
     if (*current_object != 0) {
       // 发现无效对象，触发错误处理
       HandleMemoryAllocationError();
@@ -35,13 +35,13 @@ void ValidateObjectArray(longlong *object_array)
  * 参数: object_array - 对象数组指针
  * 注意: 这是ValidateObjectArray的重复实现，可能是为了代码冗余或不同调用场景
  */
-void ValidateObjectArrayIntegrity(longlong *object_array)
+void ValidateObjectArrayIntegrity(int64_t *object_array)
 
 {
-  longlong *current_object;
+  int64_t *current_object;
   
   // 遍历对象数组中的每个对象进行验证
-  for (current_object = (longlong *)*object_array; current_object != (longlong *)object_array[1]; current_object = current_object + 4) {
+  for (current_object = (int64_t *)*object_array; current_object != (int64_t *)object_array[1]; current_object = current_object + 4) {
     if (*current_object != 0) {
       // 发现无效对象，触发错误处理
       HandleMemoryAllocationError();
@@ -61,14 +61,14 @@ void ValidateObjectArrayIntegrity(longlong *object_array)
  * 参数: object_context - 对象上下文指针
  * 返回值: 状态转换结果，0表示成功，1表示失败
  */
-int8_t ProcessObjectStateTransition(longlong object_context)
+int8_t ProcessObjectStateTransition(int64_t object_context)
 
 {
   char state_flag;
-  longlong state_manager;
+  int64_t state_manager;
   
   // 获取状态管理器引用
-  state_manager = *(longlong *)(object_context + 0x1b8);
+  state_manager = *(int64_t *)(object_context + 0x1b8);
   state_flag = *(char *)(state_manager + 0x38c);
   // 检查是否需要状态重置
   if (state_flag == '\t') {
@@ -100,7 +100,7 @@ int8_t ProcessObjectStateTransition(longlong object_context)
  *       transition_flag - 转换标志
  * 返回值: 转换结果的64位无符号整数
  */
-ulonglong ExecuteStateTransition(longlong object_context, longlong *state_manager, byte state_param, char transition_flag)
+uint64_t ExecuteStateTransition(int64_t object_context, int64_t *state_manager, byte state_param, char transition_flag)
 
 {
   byte *status_flag;
@@ -108,35 +108,35 @@ ulonglong ExecuteStateTransition(longlong object_context, longlong *state_manage
   int array_size;
   int buffer_size;
   byte allocation_flag;
-  longlong current_context;
+  int64_t current_context;
   uint64_t *memory_block;
-  ulonglong result;
+  uint64_t result;
   uint64_t temp_var;
-  longlong *object_ptr;
-  longlong *temp_ptr;
-  longlong *current_ptr;
+  int64_t *object_ptr;
+  int64_t *temp_ptr;
+  int64_t *current_ptr;
   int32_t size_param;
-  longlong *stack_ptr;
-  longlong *stack_var1;
-  longlong *stack_var2;
-  longlong *stack_var3;
-  longlong *stack_var4;
-  longlong *stack_var5;
-  longlong *stack_var6;
-  longlong *stack_var7;
+  int64_t *stack_ptr;
+  int64_t *stack_var1;
+  int64_t *stack_var2;
+  int64_t *stack_var3;
+  int64_t *stack_var4;
+  int64_t *stack_var5;
+  int64_t *stack_var6;
+  int64_t *stack_var7;
   int8_t stack_buffer1 [8];
-  longlong stack_var8;
+  int64_t stack_var8;
   int32_t stack_var9;
-  longlong *stack_var10;
-  longlong stack_var11;
+  int64_t *stack_var10;
+  int64_t stack_var11;
   int32_t stack_var12;
-  longlong *stack_array [2];
+  int64_t *stack_array [2];
   code *callback_func;
   void *stack_ptr1;
   uint64_t stack_var13;
-  longlong *stack_var14;
-  longlong *stack_var15;
-  longlong *stack_var16;
+  int64_t *stack_var14;
+  int64_t *stack_var15;
+  int64_t *stack_var16;
   
   stack_var13 = 0xfffffffffffffffe;
   // 遍历对象链表，查找有效的处理对象
@@ -154,14 +154,14 @@ ulonglong ExecuteStateTransition(longlong object_context, longlong *state_manage
   }
   // 初始化对象管理器
   InitializeObjectManager(object_context);
-  object_ptr = (longlong *)(*(longlong *)(current_context + 0x1e0) + (ulonglong)state_param * 0x18);
+  object_ptr = (int64_t *)(*(int64_t *)(current_context + 0x1e0) + (uint64_t)state_param * 0x18);
   // 检查状态管理器是否需要更新
-  if ((longlong *)*state_manager != object_ptr) {
-    if ((longlong *)*state_manager != (longlong *)0x0) {
+  if ((int64_t *)*state_manager != object_ptr) {
+    if ((int64_t *)*state_manager != (int64_t *)0x0) {
       ReleaseStateManagerResources();
     }
-    *state_manager = (longlong)object_ptr;
-    if (object_ptr != (longlong *)0x0) {
+    *state_manager = (int64_t)object_ptr;
+    if (object_ptr != (int64_t *)0x0) {
       AcquireThreadLock();
       *(int *)(object_ptr + 2) = (int)object_ptr[2] + 1;
       ReleaseThreadLock();
@@ -174,9 +174,9 @@ ulonglong ExecuteStateTransition(longlong object_context, longlong *state_manage
   }
   // 检查并设置对象处理状态
   AcquireThreadLock();
-  allocation_flag = *(char *)((longlong)object_ptr + 0x15) == '\0';
+  allocation_flag = *(char *)((int64_t)object_ptr + 0x15) == '\0';
   if (allocation_flag) {
-    *(char *)((longlong)object_ptr + 0x15) = '\x01';
+    *(char *)((int64_t)object_ptr + 0x15) = '\x01';
   }
   ReleaseThreadLock();
   if (!allocation_flag) goto LAB_18007b8fd;
@@ -187,8 +187,8 @@ ulonglong ExecuteStateTransition(longlong object_context, longlong *state_manage
   // 检查数组大小是否有效
   if (*(int *)(current_context + 0x200) < 1) {
     AcquireThreadLock();
-    if (*(char *)((longlong)object_ptr + 0x15) == '\x01') {
-      *(char *)((longlong)object_ptr + 0x15) = '\x03';
+    if (*(char *)((int64_t)object_ptr + 0x15) == '\x01') {
+      *(char *)((int64_t)object_ptr + 0x15) = '\x03';
     }
     ReleaseThreadLock();
     goto LAB_18007b8fd;
@@ -204,7 +204,7 @@ ulonglong ExecuteStateTransition(longlong object_context, longlong *state_manage
     *(int8_t *)(memory_block + 2) = 0;
     ReleaseThreadLock();
     AcquireThreadLock();
-    *(int32_t *)((longlong)memory_block + 0x14) = 0;
+    *(int32_t *)((int64_t)memory_block + 0x14) = 0;
     ReleaseThreadLock();
     memory_block[3] = 0;
     memory_block[4] = object_context;
@@ -227,13 +227,13 @@ ulonglong ExecuteStateTransition(longlong object_context, longlong *state_manage
   stack_var12 = 1;
   stack_var11 = object_context;
   PrepareObjectProcessing(&stack_var11);
-  current_context = *(longlong *)(object_context + 0x210);
+  current_context = *(int64_t *)(object_context + 0x210);
   if (current_context == 0) {
 LAB_18007b44a:
-    if (*(longlong *)(object_context + 0xa8) == 0) {
+    if (*(int64_t *)(object_context + 0xa8) == 0) {
 LAB_18007b454:
       AcquireThreadLock();
-      *(int8_t *)((longlong)object_ptr + 0x15) = 4;
+      *(int8_t *)((int64_t)object_ptr + 0x15) = 4;
       ReleaseThreadLock();
       result = FinalizeObjectProcessing(&stack_var11);
       return result & 0xffffffffffffff00;
@@ -245,9 +245,9 @@ LAB_18007b454:
   }
   // 分配并初始化处理缓冲区
   temp_var = AllocateMemory(GLOBAL_MEMORY_POOL, 0xa0, 8, 0x20);
-  temp_ptr = (longlong *)CreateProcessingBuffer(temp_var);
+  temp_ptr = (int64_t *)CreateProcessingBuffer(temp_var);
   stack_var16 = temp_ptr;
-  if (temp_ptr != (longlong *)0x0) {
+  if (temp_ptr != (int64_t *)0x0) {
     (**(code **)(*temp_ptr + 0x28))(temp_ptr);
   }
   current_context = object_context;
@@ -257,18 +257,18 @@ LAB_18007b454:
   *(int32_t *)(temp_ptr + 2) = *(int32_t *)(current_context + 0x200);
   *(byte *)(temp_ptr + 0x13) =
        *(byte *)(temp_ptr + 0x13) ^ (*(byte *)(object_context + 0xfe) >> 1 ^ *(byte *)(temp_ptr + 0x13)) & 1;
-  *(byte *)((longlong)temp_ptr + 0x14) = state_param;
+  *(byte *)((int64_t)temp_ptr + 0x14) = state_param;
   processing_flag = *(char *)(object_context + 0xfa);
-  *(char *)((longlong)temp_ptr + 0x15) = processing_flag;
+  *(char *)((int64_t)temp_ptr + 0x15) = processing_flag;
   if (processing_flag == '\x01') {
     transition_flag = '\x01';
   }
   // 创建并初始化辅助处理对象
-  current_ptr = (longlong *)AllocateMemory(GLOBAL_MEMORY_POOL, 0x30, 8, 0x20);
-  *current_ptr = (longlong)&VIRTUAL_TABLE_OBJECT;
-  *current_ptr = (longlong)&VIRTUAL_TABLE_OBJECT_HANDLER;
+  current_ptr = (int64_t *)AllocateMemory(GLOBAL_MEMORY_POOL, 0x30, 8, 0x20);
+  *current_ptr = (int64_t)&VIRTUAL_TABLE_OBJECT;
+  *current_ptr = (int64_t)&VIRTUAL_TABLE_OBJECT_HANDLER;
   *(int32_t *)(current_ptr + 1) = 0;
-  *current_ptr = (longlong)&VIRTUAL_TABLE_PROCESSOR;
+  *current_ptr = (int64_t)&VIRTUAL_TABLE_PROCESSOR;
   current_ptr[4] = 0;
   current_ptr[2] = 0;
   *(byte *)(current_ptr + 5) = *(byte *)(current_ptr + 5) | 1;
@@ -291,34 +291,34 @@ LAB_18007b454:
   }
   *(byte *)(current_ptr + 5) =
        *(byte *)(current_ptr + 5) ^ (*(byte *)(object_context + 0xfe) >> 1 ^ *(byte *)(current_ptr + 5)) & 1;
-  *(int32_t *)((longlong)current_ptr + 0x14) = size_param;
+  *(int32_t *)((int64_t)current_ptr + 0x14) = size_param;
   *(int *)(current_ptr + 2) = buffer_size * 3;
   *(int8_t *)(current_ptr + 3) = *(int8_t *)(object_context + 0xfa);
   // 根据条件选择不同的处理路径
-  if ((*(longlong *)(object_context + 0xa8) == 0) || (*(longlong *)(object_context + 0x210) != 0)) {
+  if ((*(int64_t *)(object_context + 0xa8) == 0) || (*(int64_t *)(object_context + 0x210) != 0)) {
     if (transition_flag == '\0') {
       temp_var = AllocateMemory(GLOBAL_MEMORY_POOL, 0xe0, 8, 3);
       (**(code **)(*temp_ptr + 0x28))(temp_ptr);
       (**(code **)(*current_ptr + 0x28))(current_ptr);
       callback_func = GetProcessingCallback;
       stack_ptr1 = &CALLBACK_DISPATCHER;
-      stack_var7 = (longlong *)AllocateMemory(GLOBAL_MEMORY_POOL, 0x20, 8, system_allocation_flags);
+      stack_var7 = (int64_t *)AllocateMemory(GLOBAL_MEMORY_POOL, 0x20, 8, system_allocation_flags);
       *stack_var7 = object_context;
       *(byte *)(stack_var7 + 1) = state_param;
-      stack_var7[2] = (longlong)temp_ptr;
-      stack_var7[3] = (longlong)current_ptr;
+      stack_var7[2] = (int64_t)temp_ptr;
+      stack_var7[3] = (int64_t)current_ptr;
       stack_array[0] = stack_var7;
-      temp_ptr = (longlong *)CreateProcessingChain(temp_var, stack_array);
+      temp_ptr = (int64_t *)CreateProcessingChain(temp_var, stack_array);
       stack_var6 = temp_ptr;
       stack_var16 = temp_ptr;
       temp_var = GLOBAL_DISPATCHER;
-      if (temp_ptr != (longlong *)0x0) {
+      if (temp_ptr != (int64_t *)0x0) {
         (**(code **)(*temp_ptr + 0x28))(temp_ptr);
         temp_var = GLOBAL_DISPATCHER;
         (**(code **)(*temp_ptr + 0x28))(temp_ptr);
       }
       InitializeProcessingChain(temp_var, &stack_var6);
-      if (temp_ptr != (longlong *)0x0) {
+      if (temp_ptr != (int64_t *)0x0) {
         current_context = *temp_ptr;
 LAB_18007b8dc:
         (**(code **)(current_context + 0x38))(temp_ptr);
@@ -337,19 +337,19 @@ LAB_18007b8dc:
       ProcessObjectExtended(object_context, state_param, &stack_var5, &stack_var4);
       FinalizeObjectProcessing(&stack_var11);
       if (*(char *)(object_context + 0xf4) == '\x01') {
-        stack_var7 = (longlong *)0x0;
-        stack_var10 = (longlong *)0x0;
+        stack_var7 = (int64_t *)0x0;
+        stack_var10 = (int64_t *)0x0;
         stack_buffer1[0] = 0;
         stack_var12 = 3;
         stack_var8 = object_context;
         ExecuteObjectProcessing(stack_buffer1);
         temp_ptr = stack_var10;
-        stack_var10 = (longlong *)0x0;
-        if (temp_ptr != (longlong *)0x0) {
+        stack_var10 = (int64_t *)0x0;
+        if (temp_ptr != (int64_t *)0x0) {
           (**(code **)(*temp_ptr + 0x38))();
         }
         CleanupObjectProcessing(stack_buffer1);
-        if (stack_var10 != (longlong *)0x0) {
+        if (stack_var10 != (int64_t *)0x0) {
           current_context = *stack_var10;
           temp_ptr = stack_var10;
           goto LAB_18007b8dc;
@@ -368,7 +368,7 @@ LAB_18007b8dc:
   (**(code **)(*temp_ptr + 0x38))(temp_ptr);
   FinalizeObjectProcessing(&stack_var11);
 LAB_18007b8fd:
-  return (ulonglong)((byte)(*(char *)((longlong)object_ptr + 0x15) - 2U) < 2);
+  return (uint64_t)((byte)(*(char *)((int64_t)object_ptr + 0x15) - 2U) < 2);
 }
 
 /**
@@ -376,60 +376,60 @@ LAB_18007b8fd:
  * 功能: 对象的多重状态处理，包括初始化、执行和清理
  * 参数: object_data - 对象数据指针
  */
-void ProcessObjectMultipleStates(longlong *object_data)
+void ProcessObjectMultipleStates(int64_t *object_data)
 
 {
-  longlong object_ref;
-  longlong *state_handler1;
-  longlong *state_handler2;
-  longlong **handler_ptr1;
-  longlong **handler_ptr2;
+  int64_t object_ref;
+  int64_t *state_handler1;
+  int64_t *state_handler2;
+  int64_t **handler_ptr1;
+  int64_t **handler_ptr2;
   uint64_t processing_flag;
   int8_t stack_buffer [8];
-  longlong stack_var1;
+  int64_t stack_var1;
   int32_t stack_var2;
-  longlong *stack_var3;
+  int64_t *stack_var3;
   
   processing_flag = 0xfffffffffffffffe;
   object_ref = *object_data;
   handler_ptr1 = &state_handler1;
-  state_handler1 = (longlong *)object_data[3];
-  if (state_handler1 != (longlong *)0x0) {
+  state_handler1 = (int64_t *)object_data[3];
+  if (state_handler1 != (int64_t *)0x0) {
     (**(code **)(*state_handler1 + 0x28))();
   }
   handler_ptr2 = &state_handler2;
-  state_handler2 = (longlong *)object_data[2];
-  if (state_handler2 != (longlong *)0x0) {
+  state_handler2 = (int64_t *)object_data[2];
+  if (state_handler2 != (int64_t *)0x0) {
     (**(code **)(*state_handler2 + 0x28))();
   }
   ProcessObjectWithFlags(object_ref, (char)object_data[1], &state_handler2, &state_handler1, processing_flag);
   object_ref = *object_data;
   handler_ptr1 = &state_handler1;
-  state_handler1 = (longlong *)object_data[3];
-  if (state_handler1 != (longlong *)0x0) {
+  state_handler1 = (int64_t *)object_data[3];
+  if (state_handler1 != (int64_t *)0x0) {
     (**(code **)(*state_handler1 + 0x28))();
   }
   handler_ptr2 = &state_handler2;
-  state_handler2 = (longlong *)object_data[2];
-  if (state_handler2 != (longlong *)0x0) {
+  state_handler2 = (int64_t *)object_data[2];
+  if (state_handler2 != (int64_t *)0x0) {
     (**(code **)(*state_handler2 + 0x28))();
   }
   ProcessObjectExtended(object_ref, (char)object_data[1], &state_handler2, &state_handler1);
   stack_var1 = *object_data;
   if (*(char *)(stack_var1 + 0xf4) == '\x01') {
-    state_handler1 = (longlong *)0x0;
-    stack_var3 = (longlong *)0x0;
+    state_handler1 = (int64_t *)0x0;
+    stack_var3 = (int64_t *)0x0;
     stack_buffer[0] = 0;
     stack_var2 = 3;
     ExecuteObjectProcessing(stack_buffer);
     state_handler2 = stack_var3;
     state_handler1 = stack_var3;
-    stack_var3 = (longlong *)0x0;
-    if (state_handler2 != (longlong *)0x0) {
+    stack_var3 = (int64_t *)0x0;
+    if (state_handler2 != (int64_t *)0x0) {
       (**(code **)(*state_handler2 + 0x38))();
     }
     CleanupObjectProcessing(stack_buffer);
-    if (stack_var3 != (longlong *)0x0) {
+    if (stack_var3 != (int64_t *)0x0) {
       (**(code **)(*stack_var3 + 0x38))();
     }
   }
@@ -441,16 +441,16 @@ void ProcessObjectMultipleStates(longlong *object_data)
  * 功能: 释放对象占用的资源，包括清理相关数据结构
  * 参数: object_ptr - 对象指针
  */
-void ReleaseObjectResources(longlong object_ptr)
+void ReleaseObjectResources(int64_t object_ptr)
 
 {
   // 释放主要资源
-  if (*(longlong **)(object_ptr + 0x18) != (longlong *)0x0) {
-    (**(code **)(**(longlong **)(object_ptr + 0x18) + 0x38))();
+  if (*(int64_t **)(object_ptr + 0x18) != (int64_t *)0x0) {
+    (**(code **)(**(int64_t **)(object_ptr + 0x18) + 0x38))();
   }
   // 释放辅助资源
-  if (*(longlong **)(object_ptr + 0x10) != (longlong *)0x0) {
-    (**(code **)(**(longlong **)(object_ptr + 0x10) + 0x38))();
+  if (*(int64_t **)(object_ptr + 0x10) != (int64_t *)0x0) {
+    (**(code **)(**(int64_t **)(object_ptr + 0x10) + 0x38))();
   }
   return;
 }
@@ -462,13 +462,13 @@ void ReleaseObjectResources(longlong object_ptr)
  * 功能: 为对象管理器分配必要的内存空间并进行初始化
  * 参数: object_context - 对象上下文
  */
-void InitializeObjectManager(longlong object_context)
+void InitializeObjectManager(int64_t object_context)
 
 {
   uint64_t manager_memory;
   
   // 检查管理器是否已经初始化
-  if (*(longlong *)(object_context + 0x1e0) == 0) {
+  if (*(int64_t *)(object_context + 0x1e0) == 0) {
     manager_memory = AllocateMemory(GLOBAL_MEMORY_POOL, 0x180, 8, 0x1c);
     // 初始化内存空间
     memset(manager_memory, 0, 0x180);
@@ -481,16 +481,16 @@ void InitializeObjectManager(longlong object_context)
  * 功能: 清理对象管理器占用的资源，包括释放相关数据结构
  * 参数: object_manager - 对象管理器指针
  */
-void CleanupObjectManagerResources(longlong *object_manager)
+void CleanupObjectManagerResources(int64_t *object_manager)
 
 {
   // 清理辅助对象
-  if ((longlong *)object_manager[1] != (longlong *)0x0) {
-    (**(code **)(*(longlong *)object_manager[1] + 0x38))();
+  if ((int64_t *)object_manager[1] != (int64_t *)0x0) {
+    (**(code **)(*(int64_t *)object_manager[1] + 0x38))();
   }
   // 清理主要对象
-  if ((longlong *)*object_manager != (longlong *)0x0) {
-    (**(code **)(*(longlong *)*object_manager + 0x38))();
+  if ((int64_t *)*object_manager != (int64_t *)0x0) {
+    (**(code **)(*(int64_t *)*object_manager + 0x38))();
   }
   return;
 }
@@ -506,7 +506,7 @@ void CleanupObjectManagerResources(longlong *object_manager)
  *       source_object - 源对象（可为空）
  *       template_object - 模板对象
  */
-void ExecuteObjectCopyOperation(longlong target_object, longlong source_object, longlong template_object)
+void ExecuteObjectCopyOperation(int64_t target_object, int64_t source_object, int64_t template_object)
 
 {
   int bit_index;
@@ -514,9 +514,9 @@ void ExecuteObjectCopyOperation(longlong target_object, longlong source_object, 
   int32_t flag2;
   int32_t flag3;
   uint64_t temp_var;
-  longlong *ptr1;
-  longlong context1;
-  longlong *ptr2;
+  int64_t *ptr1;
+  int64_t context1;
+  int64_t *ptr2;
   uint64_t *memory_block;
   uint *flag_ptr;
   uint source_flags;
@@ -524,19 +524,19 @@ void ExecuteObjectCopyOperation(longlong target_object, longlong source_object, 
   void *data_ptr;
   uint mask_result;
   uint bit_mask;
-  ulonglong operation_result;
+  uint64_t operation_result;
   uint temp_flag1;
   uint temp_flag2;
   int8_t stack_buffer [32];
   uint64_t stack_var1;
-  longlong *stack_var2;
+  int64_t *stack_var2;
   uint64_t stack_var3;
-  longlong *stack_var4;
-  longlong stack_var5;
-  ulonglong stack_var6;
+  int64_t *stack_var4;
+  int64_t stack_var5;
+  uint64_t stack_var6;
   
   stack_var1 = 0xfffffffffffffffe;
-  stack_var6 = GLOBAL_CHECKSUM ^ (ulonglong)stack_buffer;
+  stack_var6 = GLOBAL_CHECKSUM ^ (uint64_t)stack_buffer;
   // 复制向量数据（如果源对象不存在或与目标对象数据相同）
   if ((source_object == 0) ||
      (((*(float *)(target_object + 0x238) == *(float *)(source_object + 0x44) &&
@@ -794,26 +794,26 @@ void ExecuteObjectCopyOperation(longlong target_object, longlong source_object, 
   *(int32_t *)(target_object + 0x29c) = flag2;
   *(int32_t *)(target_object + 0x2a0) = flag3;
   *(int32_t *)(target_object + 0x2a4) = *(int32_t *)(template_object + 200);
-  stack_var4 = (longlong *)0x0;
+  stack_var4 = (int64_t *)0x0;
   stack_var5 = 0;
   if (source_object != 0) {
-    ptr1 = (longlong *)(source_object + 0x158);
-    if ((*ptr1 == 0) && (*(longlong *)(source_object + 0x160) == 0)) {
-      ptr1 = (longlong *)(source_object + 0x34);
+    ptr1 = (int64_t *)(source_object + 0x158);
+    if ((*ptr1 == 0) && (*(int64_t *)(source_object + 0x160) == 0)) {
+      ptr1 = (int64_t *)(source_object + 0x34);
     }
-    stack_var4 = (longlong *)*ptr1;
+    stack_var4 = (int64_t *)*ptr1;
     stack_var5 = ptr1[1];
   }
   stack_var3 = 0;
-  ptr2 = (longlong *)(target_object + 0x1b8);
-  stack_var2 = (longlong *)*ptr2;
+  ptr2 = (int64_t *)(target_object + 0x1b8);
+  stack_var2 = (int64_t *)*ptr2;
   *ptr2 = 0;
-  if (stack_var2 != (longlong *)0x0) {
+  if (stack_var2 != (int64_t *)0x0) {
     (**(code **)(*stack_var2 + 0x38))();
   }
-  ptr1 = (longlong *)(template_object + 0x158);
-  if ((*ptr1 == 0) && (*(longlong *)(template_object + 0x160) == 0)) {
-    ptr1 = (longlong *)(template_object + 0x34);
+  ptr1 = (int64_t *)(template_object + 0x158);
+  if ((*ptr1 == 0) && (*(int64_t *)(template_object + 0x160) == 0)) {
+    ptr1 = (int64_t *)(template_object + 0x34);
   }
   context1 = CreateObjectReference(*(uint64_t *)(target_object + 0xa8), &GLOBAL_OBJECT_FACTORY, ptr1);
   if (context1 != 0) {
@@ -825,24 +825,24 @@ void ExecuteObjectCopyOperation(longlong target_object, longlong source_object, 
       data_ptr = *(void **)(target_object + 0x18);
     }
     RegisterErrorHandler(&GLOBAL_ERROR_DISPATCHER, data_ptr);
-    ptr1 = (longlong *)CreateObjectLink(GLOBAL_LINK_MANAGER, &stack_var4, 0);
+    ptr1 = (int64_t *)CreateObjectLink(GLOBAL_LINK_MANAGER, &stack_var4, 0);
     context1 = *ptr1;
     *ptr1 = 0;
-    stack_var2 = (longlong *)*ptr2;
+    stack_var2 = (int64_t *)*ptr2;
     *ptr2 = context1;
-    if (stack_var2 != (longlong *)0x0) {
+    if (stack_var2 != (int64_t *)0x0) {
       (**(code **)(*stack_var2 + 0x38))();
     }
-    if (stack_var4 != (longlong *)0x0) {
+    if (stack_var4 != (int64_t *)0x0) {
       (**(code **)(*stack_var4 + 0x38))();
     }
   }
   FinalizeObjectInitialization(target_object);
   // 处理特殊对象属性
-  if ((*(longlong *)(target_object + 600) == 0) &&
-     ((*(uint *)(*(longlong *)(target_object + 0x1b8) + 0x388) >> 0x19 & 1) != 0)) {
+  if ((*(int64_t *)(target_object + 600) == 0) &&
+     ((*(uint *)(*(int64_t *)(target_object + 0x1b8) + 0x388) >> 0x19 & 1) != 0)) {
     memory_block = (uint64_t *)AllocateMemory(GLOBAL_MEMORY_POOL, 0x58, 8, 0x1c);
-    *(uint64_t *)((longlong)memory_block + 0x2c) = 0xffffffffffffffff;
+    *(uint64_t *)((int64_t)memory_block + 0x2c) = 0xffffffffffffffff;
     *(int32_t *)(memory_block + 9) = 0xffffffff;
     *memory_block = 0;
     memory_block[2] = 0;
@@ -852,8 +852,8 @@ void ExecuteObjectCopyOperation(longlong target_object, longlong source_object, 
     memory_block[3] = 0;
     *(int32_t *)(memory_block + 8) = 0;
     *(int32_t *)(memory_block + 1) = 0;
-    *(int8_t *)((longlong)memory_block + 0x44) = 0;
-    *(int8_t *)((longlong)memory_block + 0x24) = 0;
+    *(int8_t *)((int64_t)memory_block + 0x44) = 0;
+    *(int8_t *)((int64_t)memory_block + 0x24) = 0;
     *(uint64_t **)(target_object + 600) = memory_block;
   }
   *(int8_t *)(target_object + 0xf6) = *(int8_t *)(template_object + 0xcc);
@@ -863,26 +863,26 @@ void ExecuteObjectCopyOperation(longlong target_object, longlong source_object, 
                       *(uint64_t *)(template_object + 0xd8));
   }
   // 复制渲染相关属性
-  *(int32_t *)(*(longlong *)(target_object + 0x268) + 0x10) = *(int32_t *)(template_object + 0xf0);
-  *(int32_t *)(*(longlong *)(target_object + 0x268) + 0x14) = *(int32_t *)(template_object + 0x144);
-  *(int8_t *)(*(longlong *)(target_object + 0x268) + 0x18) = *(int8_t *)(template_object + 0x148);
-  *(int8_t *)(*(longlong *)(target_object + 0x268) + 0x19) = *(int8_t *)(template_object + 0x149);
-  *(int8_t *)(*(longlong *)(target_object + 0x268) + 0x1a) = *(int8_t *)(template_object + 0x14a);
-  *(int32_t *)(*(longlong *)(target_object + 0x268) + 0x44) = *(int32_t *)(template_object + 0x118);
-  *(int32_t *)(*(longlong *)(target_object + 0x268) + 0x48) = *(int32_t *)(template_object + 0x11c);
-  *(int32_t *)(*(longlong *)(target_object + 0x268) + 0x4c) = *(int32_t *)(template_object + 0x120);
-  *(int32_t *)(*(longlong *)(target_object + 0x268) + 0x50) = *(int32_t *)(template_object + 0x124);
-  *(int32_t *)(*(longlong *)(target_object + 0x268) + 0x54) = *(int32_t *)(template_object + 0x128);
-  *(int32_t *)(*(longlong *)(target_object + 0x268) + 0x58) = *(int32_t *)(template_object + 300);
-  *(int32_t *)(*(longlong *)(target_object + 0x268) + 0x5c) = *(int32_t *)(template_object + 0x130);
-  *(int32_t *)(*(longlong *)(target_object + 0x268) + 0x60) = *(int32_t *)(template_object + 0x134);
-  *(int32_t *)(*(longlong *)(target_object + 0x268) + 100) = *(int32_t *)(template_object + 0x138);
-  *(int32_t *)(*(longlong *)(target_object + 0x268) + 0x68) = *(int32_t *)(template_object + 0x13c);
-  *(int32_t *)(*(longlong *)(target_object + 0x268) + 0x6c) = *(int32_t *)(template_object + 0x140);
-  context1 = *(longlong *)(target_object + 0x268);
+  *(int32_t *)(*(int64_t *)(target_object + 0x268) + 0x10) = *(int32_t *)(template_object + 0xf0);
+  *(int32_t *)(*(int64_t *)(target_object + 0x268) + 0x14) = *(int32_t *)(template_object + 0x144);
+  *(int8_t *)(*(int64_t *)(target_object + 0x268) + 0x18) = *(int8_t *)(template_object + 0x148);
+  *(int8_t *)(*(int64_t *)(target_object + 0x268) + 0x19) = *(int8_t *)(template_object + 0x149);
+  *(int8_t *)(*(int64_t *)(target_object + 0x268) + 0x1a) = *(int8_t *)(template_object + 0x14a);
+  *(int32_t *)(*(int64_t *)(target_object + 0x268) + 0x44) = *(int32_t *)(template_object + 0x118);
+  *(int32_t *)(*(int64_t *)(target_object + 0x268) + 0x48) = *(int32_t *)(template_object + 0x11c);
+  *(int32_t *)(*(int64_t *)(target_object + 0x268) + 0x4c) = *(int32_t *)(template_object + 0x120);
+  *(int32_t *)(*(int64_t *)(target_object + 0x268) + 0x50) = *(int32_t *)(template_object + 0x124);
+  *(int32_t *)(*(int64_t *)(target_object + 0x268) + 0x54) = *(int32_t *)(template_object + 0x128);
+  *(int32_t *)(*(int64_t *)(target_object + 0x268) + 0x58) = *(int32_t *)(template_object + 300);
+  *(int32_t *)(*(int64_t *)(target_object + 0x268) + 0x5c) = *(int32_t *)(template_object + 0x130);
+  *(int32_t *)(*(int64_t *)(target_object + 0x268) + 0x60) = *(int32_t *)(template_object + 0x134);
+  *(int32_t *)(*(int64_t *)(target_object + 0x268) + 100) = *(int32_t *)(template_object + 0x138);
+  *(int32_t *)(*(int64_t *)(target_object + 0x268) + 0x68) = *(int32_t *)(template_object + 0x13c);
+  *(int32_t *)(*(int64_t *)(target_object + 0x268) + 0x6c) = *(int32_t *)(template_object + 0x140);
+  context1 = *(int64_t *)(target_object + 0x268);
   temp_flag1 = *(uint *)(template_object + 0x108);
-  operation_result = (ulonglong)temp_flag1;
-  if (*(longlong *)(template_object + 0x100) != 0) {
+  operation_result = (uint64_t)temp_flag1;
+  if (*(int64_t *)(template_object + 0x100) != 0) {
     InitializeDataBuffer(context1 + 0x20, operation_result);
   }
   if (temp_flag1 != 0) {
@@ -890,11 +890,11 @@ void ExecuteObjectCopyOperation(longlong target_object, longlong source_object, 
     memcpy(*(uint64_t *)(context1 + 0x28), *(uint64_t *)(template_object + 0x100), temp_flag1);
   }
   *(int32_t *)(context1 + 0x30) = 0;
-  if (*(longlong *)(context1 + 0x28) != 0) {
-    *(int8_t *)(operation_result + *(longlong *)(context1 + 0x28)) = 0;
+  if (*(int64_t *)(context1 + 0x28) != 0) {
+    *(int8_t *)(operation_result + *(int64_t *)(context1 + 0x28)) = 0;
   }
   *(int32_t *)(context1 + 0x3c) = *(int32_t *)(template_object + 0x114);
   // 执行完整性检查
-  ExecuteIntegrityCheck(stack_var6 ^ (ulonglong)stack_buffer);
+  ExecuteIntegrityCheck(stack_var6 ^ (uint64_t)stack_buffer);
 }
 

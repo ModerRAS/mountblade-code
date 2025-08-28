@@ -99,78 +99,78 @@ typedef struct {
 
 // 主要参数处理函数
 void rendering_system_parameter_processor(
-    longlong *render_context,           // 渲染上下文指针
-    longlong *param_context,            // 参数上下文指针
+    int64_t *render_context,           // 渲染上下文指针
+    int64_t *param_context,            // 参数上下文指针
     char is_initialization              // 初始化标志
 );
 
 // 辅助处理函数
 void rendering_system_process_basic_parameters(
-    longlong *render_context,
-    longlong *param_context,
+    int64_t *render_context,
+    int64_t *param_context,
     char is_initialization,
     uint32_t *param_values
 );
 
 void rendering_system_process_function_pointers(
-    longlong *render_context,
-    longlong *param_context,
+    int64_t *render_context,
+    int64_t *param_context,
     char is_initialization,
     uint32_t *param_values
 );
 
 void rendering_system_process_resource_management(
-    longlong *render_context,
-    longlong *param_context,
+    int64_t *render_context,
+    int64_t *param_context,
     char is_initialization,
     uint32_t *param_values
 );
 
 void rendering_system_process_shader_configuration(
-    longlong *render_context,
-    longlong *param_context,
+    int64_t *render_context,
+    int64_t *param_context,
     char is_initialization,
     uint32_t *param_values
 );
 
 void rendering_system_process_texture_configuration(
-    longlong *render_context,
-    longlong *param_context,
+    int64_t *render_context,
+    int64_t *param_context,
     char is_initialization,
     uint32_t *param_values
 );
 
 void rendering_system_process_string_comparison(
-    longlong *render_context,
-    longlong *param_context,
+    int64_t *render_context,
+    int64_t *param_context,
     char is_initialization,
     uint32_t *param_values
 );
 
 void rendering_system_process_color_processing(
-    longlong *render_context,
-    longlong *param_context,
+    int64_t *render_context,
+    int64_t *param_context,
     char is_initialization,
     uint32_t *param_values
 );
 
 void rendering_system_process_color_specification(
-    longlong *render_context,
-    longlong *param_context,
+    int64_t *render_context,
+    int64_t *param_context,
     char is_initialization,
     uint32_t *param_values
 );
 
 void rendering_system_process_vector_processing(
-    longlong *render_context,
-    longlong *param_context,
+    int64_t *render_context,
+    int64_t *param_context,
     char is_initialization,
     uint32_t *param_values
 );
 
 void rendering_system_process_vector_configuration(
-    longlong *render_context,
-    longlong *param_context,
+    int64_t *render_context,
+    int64_t *param_context,
     char is_initialization,
     uint32_t *param_values
 );
@@ -202,38 +202,38 @@ void rendering_system_process_vector_configuration(
 // - 使用位操作处理颜色值
 // - 实现批量数据处理
 void rendering_system_parameter_processor(
-    longlong *render_context,
-    longlong *param_context,
+    int64_t *render_context,
+    int64_t *param_context,
     char is_initialization
 ) {
     // 局部变量声明
     byte *buffer_ptr;
     code *function_ptr;
     int32_t param_values[6];
-    longlong temp_value1;
-    longlong temp_value2;
-    longlong temp_value3;
+    int64_t temp_value1;
+    int64_t temp_value2;
+    int64_t temp_value3;
     byte *string_ptr;
-    longlong *resource_ptr;
+    int64_t *resource_ptr;
     int compare_result;
     int32_t *param_array_ptr;
-    longlong array_value;
-    longlong *next_resource_ptr;
+    int64_t array_value;
+    int64_t *next_resource_ptr;
     void *resource_data;
     void *stack_data;
-    ulonglong checksum_value;
-    ulonglong loop_counter;
+    uint64_t checksum_value;
+    uint64_t loop_counter;
     uint param_value;
-    ulonglong array_index;
+    uint64_t array_index;
     
     // 栈缓冲区声明（用于临时数据存储）
     int8_t stack_buffer_488[32];
-    longlong *stack_context_468;
-    longlong *stack_context_460;
+    int64_t *stack_context_468;
+    int64_t *stack_context_460;
     char stack_flag_458;
-    longlong *stack_resource_440;
-    longlong *stack_resource_438;
-    longlong *stack_resource_430;
+    int64_t *stack_resource_440;
+    int64_t *stack_resource_438;
+    int64_t *stack_resource_430;
     uint64_t stack_guard_428;
     void *stack_data_418;
     byte *stack_string_410;
@@ -275,11 +275,11 @@ void rendering_system_parameter_processor(
     byte *stack_string_b0;
     int stack_length_a8;
     byte stack_buffer_a0[72];
-    ulonglong stack_checksum_58;
+    uint64_t stack_checksum_58;
     
     // 初始化栈保护变量
     stack_guard_428 = RENDERING_STATE_INITIALIZED;
-    stack_checksum_58 = GET_SECURITY_COOKIE() ^ (ulonglong)stack_buffer_488;
+    stack_checksum_58 = GET_SECURITY_COOKIE() ^ (uint64_t)stack_buffer_488;
     
     // 设置栈上下文
     stack_context_468 = param_context;
@@ -287,7 +287,7 @@ void rendering_system_parameter_processor(
     stack_flag_458 = is_initialization;
     
     // 获取参数链表头
-    next_resource_ptr = (longlong *)param_context[1];
+    next_resource_ptr = (int64_t *)param_context[1];
     
     // 遍历参数链表
     if (next_resource_ptr != param_context + 1) {
@@ -300,12 +300,12 @@ void rendering_system_parameter_processor(
                 case RENDERING_PARAM_TYPE_BASIC:
                     // 基础参数处理
                     if (is_initialization == '\0') {
-                        *(int32_t *)((longlong)render_context + 0x324) = param_array_ptr[2];
-                        *(int8_t *)((longlong)render_context + 0x32c) = 0;
+                        *(int32_t *)((int64_t)render_context + 0x324) = param_array_ptr[2];
+                        *(int8_t *)((int64_t)render_context + 0x32c) = 0;
                     }
                     else {
-                        *(int32_t *)((longlong)render_context + 0x324) = *(int32_t *)(*param_context + 0x324);
-                        *(int8_t *)((longlong)render_context + 0x32c) = *(int8_t *)(*param_context + 0x32c);
+                        *(int32_t *)((int64_t)render_context + 0x324) = *(int32_t *)(*param_context + 0x324);
+                        *(int8_t *)((int64_t)render_context + 0x32c) = *(int8_t *)(*param_context + 0x32c);
                     }
                     break;
                     
@@ -313,22 +313,22 @@ void rendering_system_parameter_processor(
                     // 函数指针参数处理
                     if (is_initialization == '\0') {
                         function_ptr = *(code **)(*render_context + 0x118);
-                        stack_resource_440 = *(longlong **)(param_array_ptr + 2);
-                        if (stack_resource_440 != (longlong *)0x0) {
+                        stack_resource_440 = *(int64_t **)(param_array_ptr + 2);
+                        if (stack_resource_440 != (int64_t *)0x0) {
                             (**(code **)(*stack_resource_440 + 0x28))();
                         }
                         (*function_ptr)(render_context, &stack_resource_440);
                         param_context = stack_context_468;
-                        if (stack_resource_440 != (longlong *)0x0) {
+                        if (stack_resource_440 != (int64_t *)0x0) {
                             (**(code **)(*stack_resource_440 + 0x38))();
                             param_context = stack_context_468;
                         }
                     }
                     else {
                         temp_value1 = *param_context;
-                        resource_ptr = *(longlong **)(temp_value1 + 0x38);
+                        resource_ptr = *(int64_t **)(temp_value1 + 0x38);
                         param_context = stack_context_468;
-                        if (*(longlong *)(temp_value1 + 0x40) - (longlong)resource_ptr >> 4 != 0) {
+                        if (*(int64_t *)(temp_value1 + 0x40) - (int64_t)resource_ptr >> 4 != 0) {
                             (**(code **)(*render_context + 0x118))(render_context, *resource_ptr + 0x1b8);
                             param_context = stack_context_468;
                         }
@@ -338,15 +338,15 @@ void rendering_system_parameter_processor(
                 case RENDERING_PARAM_TYPE_RESOURCE_MGR:
                     // 资源管理参数处理
                     if (is_initialization == '\0') {
-                        resource_ptr = *(longlong **)(param_array_ptr + 2);
-                        if (resource_ptr != (longlong *)0x0) {
+                        resource_ptr = *(int64_t **)(param_array_ptr + 2);
+                        if (resource_ptr != (int64_t *)0x0) {
                             stack_resource_438 = resource_ptr;
                             (**(code **)(*resource_ptr + 0x28))(resource_ptr);
                             param_context = stack_context_468;
                         }
-                        stack_resource_438 = (longlong *)render_context[0x77];
-                        render_context[0x77] = (longlong)resource_ptr;
-                        if (stack_resource_438 != (longlong *)0x0) {
+                        stack_resource_438 = (int64_t *)render_context[0x77];
+                        render_context[0x77] = (int64_t)resource_ptr;
+                        if (stack_resource_438 != (int64_t *)0x0) {
                             (**(code **)(*stack_resource_438 + 0x38))();
                             param_context = stack_context_468;
                         }
@@ -366,15 +366,15 @@ void rendering_system_parameter_processor(
                         param_array_ptr = (int32_t *)(*param_context + 0x330);
                     }
                     (**(code **)(*render_context + 0x148))(render_context, param_array_ptr);
-                    FUN_180276f30(render_context, (longlong)render_context + 0x214, 1);
+                    FUN_180276f30(render_context, (int64_t)render_context + 0x214, 1);
                     param_context = stack_context_468;
                     break;
                     
                 case RENDERING_PARAM_TYPE_TEXTURE_CFG:
                     // 纹理配置参数处理
                     if (is_initialization == '\0') {
-                        resource_ptr = (longlong *)render_context[7];
-                        if (resource_ptr < (longlong *)render_context[8]) {
+                        resource_ptr = (int64_t *)render_context[7];
+                        if (resource_ptr < (int64_t *)render_context[8]) {
                             do {
                                 temp_value1 = *resource_ptr;
                                 param_values[0] = param_array_ptr[3];
@@ -385,17 +385,17 @@ void rendering_system_parameter_processor(
                                 *(int32_t *)(temp_value1 + 0x2c0) = param_values[1];
                                 *(int32_t *)(temp_value1 + 0x2c4) = param_values[2];
                                 resource_ptr = resource_ptr + 2;
-                            } while (resource_ptr < (longlong *)render_context[8]);
+                            } while (resource_ptr < (int64_t *)render_context[8]);
                         }
                     }
                     else {
                         temp_value1 = *param_context;
-                        resource_ptr = *(longlong **)(temp_value1 + 0x38);
+                        resource_ptr = *(int64_t **)(temp_value1 + 0x38);
                         param_context = stack_context_468;
-                        if (*(longlong *)(temp_value1 + 0x40) - (longlong)resource_ptr >> 4 != 0) {
+                        if (*(int64_t *)(temp_value1 + 0x40) - (int64_t)resource_ptr >> 4 != 0) {
                             temp_value1 = *resource_ptr;
-                            resource_ptr = (longlong *)render_context[7];
-                            if (resource_ptr < (longlong *)render_context[8]) {
+                            resource_ptr = (int64_t *)render_context[7];
+                            if (resource_ptr < (int64_t *)render_context[8]) {
                                 do {
                                     temp_value2 = *resource_ptr;
                                     param_values[0] = *(int32_t *)(temp_value1 + 700);
@@ -406,7 +406,7 @@ void rendering_system_parameter_processor(
                                     *(int32_t *)(temp_value2 + 0x2c0) = param_values[1];
                                     *(int32_t *)(temp_value2 + 0x2c4) = param_values[2];
                                     resource_ptr = resource_ptr + 2;
-                                } while (resource_ptr < (longlong *)render_context[8]);
+                                } while (resource_ptr < (int64_t *)render_context[8]);
                             }
                         }
                     }
@@ -423,8 +423,8 @@ void rendering_system_parameter_processor(
                             do {
                                 // 字符串比较处理逻辑
                                 stack_data = &unknown_var_3480_ptr;
-                                temp_value1 = *(longlong *)(loop_counter + temp_value1);
-                                if (*(longlong *)(temp_value1 + 0x1b0) == 0) {
+                                temp_value1 = *(int64_t *)(loop_counter + temp_value1);
+                                if (*(int64_t *)(temp_value1 + 0x1b0) == 0) {
                                     temp_value2 = temp_value1 + 0x10;
                                 }
                                 else {
@@ -444,26 +444,26 @@ void rendering_system_parameter_processor(
                                     temp_value3 = temp_value2 + 1;
                                     temp_value1 = temp_value2 + 9;
                                     temp_value2 = temp_value3;
-                                } while (*(char *)((longlong)param_array_ptr + temp_value1) != '\0');
+                                } while (*(char *)((int64_t)param_array_ptr + temp_value1) != '\0');
                                 compare_result = (int)temp_value3;
                                 if (stack_length_3a8 == compare_result) {
                                     if (stack_length_3a8 != 0) {
                                         string_ptr = stack_string_3b0;
                                         do {
-                                            buffer_ptr = string_ptr + (longlong)param_array_ptr + (8 - (longlong)stack_string_3b0);
+                                            buffer_ptr = string_ptr + (int64_t)param_array_ptr + (8 - (int64_t)stack_string_3b0);
                                             compare_result = (uint)*string_ptr - (uint)*buffer_ptr;
                                             if (compare_result != 0) break;
                                             string_ptr = string_ptr + 1;
                                         } while (*buffer_ptr != 0);
                                     }
                                     if (compare_result == 0) {
-                                        resource_ptr = *(longlong **)(param_array_ptr + 0x42);
+                                        resource_ptr = *(int64_t **)(param_array_ptr + 0x42);
                                         stack_resource_430 = resource_ptr;
-                                        if (resource_ptr != (longlong *)0x0) {
+                                        if (resource_ptr != (int64_t *)0x0) {
                                             (**(code **)(*resource_ptr + 0x28))(resource_ptr);
                                         }
                                         FUN_180076910(temp_value1, &stack_resource_430);
-                                        if (resource_ptr != (longlong *)0x0) {
+                                        if (resource_ptr != (int64_t *)0x0) {
                                             (**(code **)(*resource_ptr + 0x38))(resource_ptr);
                                         }
                                         stack_data_3b8 = &system_state_ptr;
@@ -474,13 +474,13 @@ void rendering_system_parameter_processor(
                                 }
                                 else if (stack_length_3a8 == 0) {
                                     if (compare_result == 0) {
-                                        resource_ptr = *(longlong **)(param_array_ptr + 0x42);
+                                        resource_ptr = *(int64_t **)(param_array_ptr + 0x42);
                                         stack_resource_430 = resource_ptr;
-                                        if (resource_ptr != (longlong *)0x0) {
+                                        if (resource_ptr != (int64_t *)0x0) {
                                             (**(code **)(*resource_ptr + 0x28))(resource_ptr);
                                         }
                                         FUN_180076910(temp_value1, &stack_resource_430);
-                                        if (resource_ptr != (longlong *)0x0) {
+                                        if (resource_ptr != (int64_t *)0x0) {
                                             (**(code **)(*resource_ptr + 0x38))(resource_ptr);
                                         }
                                         stack_data_3b8 = &system_state_ptr;
@@ -491,12 +491,12 @@ void rendering_system_parameter_processor(
                                 }
                                 stack_data_3b8 = &system_state_ptr;
                                 param_value = (int)checksum_value + 1;
-                                checksum_value = (ulonglong)param_value;
+                                checksum_value = (uint64_t)param_value;
                                 loop_counter = loop_counter + 0x10;
                                 temp_value1 = stack_context_460[7];
                                 param_context = stack_context_468;
                                 render_context = stack_context_460;
-                            } while ((ulonglong)(longlong)(int)param_value < (ulonglong)(stack_context_460[8] - temp_value1 >> 4));
+                            } while ((uint64_t)(int64_t)(int)param_value < (uint64_t)(stack_context_460[8] - temp_value1 >> 4));
                         }
                     }
                     else {
@@ -507,8 +507,8 @@ void rendering_system_parameter_processor(
                         if (temp_value2 != 0) {
                             do {
                                 stack_data = &unknown_var_3480_ptr;
-                                temp_value1 = *(longlong *)(checksum_value + temp_value1);
-                                if (*(longlong *)(temp_value1 + 0x1b0) == 0) {
+                                temp_value1 = *(int64_t *)(checksum_value + temp_value1);
+                                if (*(int64_t *)(temp_value1 + 0x1b0) == 0) {
                                     temp_value2 = temp_value1 + 0x10;
                                 }
                                 else {
@@ -528,21 +528,21 @@ void rendering_system_parameter_processor(
                                     temp_value3 = temp_value2 + 1;
                                     temp_value1 = temp_value2 + 9;
                                     temp_value2 = temp_value3;
-                                } while (*(char *)((longlong)param_array_ptr + temp_value1) != '\0');
+                                } while (*(char *)((int64_t)param_array_ptr + temp_value1) != '\0');
                                 compare_result = (int)temp_value3;
                                 if (stack_length_408 == compare_result) {
                                     if (stack_length_408 != 0) {
                                         string_ptr = stack_string_410;
                                         do {
-                                            buffer_ptr = string_ptr + (longlong)param_array_ptr + (8 - (longlong)stack_string_410);
+                                            buffer_ptr = string_ptr + (int64_t)param_array_ptr + (8 - (int64_t)stack_string_410);
                                             compare_result = (uint)*string_ptr - (uint)*buffer_ptr;
                                             if (compare_result != 0) break;
                                             string_ptr = string_ptr + 1;
                                         } while (*buffer_ptr != 0);
                                     }
                                     if (compare_result == 0) {
-                                        FUN_180076910(temp_value1, *(longlong *)
-                                            (*(longlong *)(*stack_context_468 + 0x38) + loop_counter * 0x10) + 0x1b8
+                                        FUN_180076910(temp_value1, *(int64_t *)
+                                            (*(int64_t *)(*stack_context_468 + 0x38) + loop_counter * 0x10) + 0x1b8
                                         );
                                         stack_data_418 = &system_state_ptr;
                                         param_context = stack_context_468;
@@ -552,8 +552,8 @@ void rendering_system_parameter_processor(
                                 }
                                 else if (stack_length_408 == 0) {
                                     if (compare_result == 0) {
-                                        FUN_180076910(temp_value1, *(longlong *)
-                                            (*(longlong *)(*stack_context_468 + 0x38) + loop_counter * 0x10) + 0x1b8
+                                        FUN_180076910(temp_value1, *(int64_t *)
+                                            (*(int64_t *)(*stack_context_468 + 0x38) + loop_counter * 0x10) + 0x1b8
                                         );
                                         stack_data_418 = &system_state_ptr;
                                         param_context = stack_context_468;
@@ -568,8 +568,8 @@ void rendering_system_parameter_processor(
                                 param_context = stack_context_468;
                                 render_context = stack_context_460;
                                 checksum_value = checksum_value + 0x10;
-                                array_index = (ulonglong)param_value;
-                            } while ((ulonglong)(longlong)(int)param_value < (ulonglong)(stack_context_460[8] - temp_value1 >> 4));
+                                array_index = (uint64_t)param_value;
+                            } while ((uint64_t)(int64_t)(int)param_value < (uint64_t)(stack_context_460[8] - temp_value1 >> 4));
                         }
                     }
                     break;
@@ -584,8 +584,8 @@ void rendering_system_parameter_processor(
                         if (temp_value2 != 0) {
                             do {
                                 stack_data = &unknown_var_3480_ptr;
-                                temp_value1 = *(longlong *)(loop_counter + temp_value1);
-                                if (*(longlong *)(temp_value1 + 0x1b0) == 0) {
+                                temp_value1 = *(int64_t *)(loop_counter + temp_value1);
+                                if (*(int64_t *)(temp_value1 + 0x1b0) == 0) {
                                     temp_value2 = temp_value1 + 0x10;
                                 }
                                 else {
@@ -605,7 +605,7 @@ void rendering_system_parameter_processor(
                                     temp_value3 = temp_value2 + 1;
                                     temp_value1 = temp_value2 + 9;
                                     temp_value2 = temp_value3;
-                                } while (*(char *)((longlong)param_array_ptr + temp_value1) != '\0');
+                                } while (*(char *)((int64_t)param_array_ptr + temp_value1) != '\0');
                                 compare_result = (int)temp_value3;
                                 param_context = stack_context_468;
                                 render_context = stack_context_460;
@@ -613,7 +613,7 @@ void rendering_system_parameter_processor(
                                     if (stack_length_2e8 != 0) {
                                         string_ptr = stack_string_2f0;
                                         do {
-                                            buffer_ptr = string_ptr + (longlong)param_array_ptr + (8 - (longlong)stack_string_2f0);
+                                            buffer_ptr = string_ptr + (int64_t)param_array_ptr + (8 - (int64_t)stack_string_2f0);
                                             compare_result = (uint)*string_ptr - (uint)*buffer_ptr;
                                             if (compare_result != 0) break;
                                             string_ptr = string_ptr + 1;
@@ -643,10 +643,10 @@ void rendering_system_parameter_processor(
                                 }
                                 stack_data_2f8 = &system_state_ptr;
                                 param_value = (int)checksum_value + 1;
-                                checksum_value = (ulonglong)param_value;
+                                checksum_value = (uint64_t)param_value;
                                 loop_counter = loop_counter + 0x10;
                                 temp_value1 = stack_context_460[7];
-                            } while ((ulonglong)(longlong)(int)param_value < (ulonglong)(stack_context_460[8] - temp_value1 >> 4));
+                            } while ((uint64_t)(int64_t)(int)param_value < (uint64_t)(stack_context_460[8] - temp_value1 >> 4));
                         }
                     }
                     else {
@@ -657,8 +657,8 @@ void rendering_system_parameter_processor(
                         if (temp_value2 != 0) {
                             do {
                                 stack_data = &unknown_var_3480_ptr;
-                                temp_value1 = *(longlong *)(checksum_value + temp_value1);
-                                if (*(longlong *)(temp_value1 + 0x1b0) == 0) {
+                                temp_value1 = *(int64_t *)(checksum_value + temp_value1);
+                                if (*(int64_t *)(temp_value1 + 0x1b0) == 0) {
                                     temp_value2 = temp_value1 + 0x10;
                                 }
                                 else {
@@ -678,7 +678,7 @@ void rendering_system_parameter_processor(
                                     temp_value3 = temp_value2 + 1;
                                     temp_value1 = temp_value2 + 9;
                                     temp_value2 = temp_value3;
-                                } while (*(char *)((longlong)param_array_ptr + temp_value1) != '\0');
+                                } while (*(char *)((int64_t)param_array_ptr + temp_value1) != '\0');
                                 compare_result = (int)temp_value3;
                                 param_context = stack_context_468;
                                 render_context = stack_context_460;
@@ -686,14 +686,14 @@ void rendering_system_parameter_processor(
                                     if (stack_length_348 != 0) {
                                         string_ptr = stack_string_350;
                                         do {
-                                            buffer_ptr = string_ptr + (longlong)param_array_ptr + (8 - (longlong)stack_string_350);
+                                            buffer_ptr = string_ptr + (int64_t)param_array_ptr + (8 - (int64_t)stack_string_350);
                                             compare_result = (uint)*string_ptr - (uint)*buffer_ptr;
                                             if (compare_result != 0) break;
                                             string_ptr = string_ptr + 1;
                                         } while (*buffer_ptr != 0);
                                     }
                                     if (compare_result == 0) {
-                                        temp_value2 = *(longlong *)(*(longlong *)(*stack_context_468 + 0x38) + loop_counter * 0x10);
+                                        temp_value2 = *(int64_t *)(*(int64_t *)(*stack_context_468 + 0x38) + loop_counter * 0x10);
                                         param_values[0] = *(int32_t *)(temp_value2 + 0x23c);
                                         param_values[1] = *(int32_t *)(temp_value2 + 0x240);
                                         param_values[2] = *(int32_t *)(temp_value2 + 0x244);
@@ -707,7 +707,7 @@ void rendering_system_parameter_processor(
                                 }
                                 else if (stack_length_348 == 0) {
                                     if (compare_result == 0) {
-                                        temp_value2 = *(longlong *)(*(longlong *)(*stack_context_468 + 0x38) + loop_counter * 0x10);
+                                        temp_value2 = *(int64_t *)(*(int64_t *)(*stack_context_468 + 0x38) + loop_counter * 0x10);
                                         param_values[0] = *(int32_t *)(temp_value2 + 0x23c);
                                         param_values[1] = *(int32_t *)(temp_value2 + 0x240);
                                         param_values[2] = *(int32_t *)(temp_value2 + 0x244);
@@ -724,8 +724,8 @@ void rendering_system_parameter_processor(
                                 loop_counter = loop_counter + 1;
                                 temp_value1 = stack_context_460[7];
                                 checksum_value = checksum_value + 0x10;
-                                array_index = (ulonglong)param_value;
-                            } while ((ulonglong)(longlong)(int)param_value < (ulonglong)(stack_context_460[8] - temp_value1 >> 4));
+                                array_index = (uint64_t)param_value;
+                            } while ((uint64_t)(int64_t)(int)param_value < (uint64_t)(stack_context_460[8] - temp_value1 >> 4));
                         }
                     }
                     break;
@@ -740,8 +740,8 @@ void rendering_system_parameter_processor(
                         if (temp_value2 != 0) {
                             do {
                                 stack_data = &unknown_var_3480_ptr;
-                                temp_value1 = *(longlong *)(loop_counter + temp_value1);
-                                if (*(longlong *)(temp_value1 + 0x1b0) == 0) {
+                                temp_value1 = *(int64_t *)(loop_counter + temp_value1);
+                                if (*(int64_t *)(temp_value1 + 0x1b0) == 0) {
                                     temp_value2 = temp_value1 + 0x10;
                                 }
                                 else {
@@ -761,7 +761,7 @@ void rendering_system_parameter_processor(
                                     temp_value3 = temp_value2 + 1;
                                     temp_value1 = temp_value2 + 9;
                                     temp_value2 = temp_value3;
-                                } while (*(char *)((longlong)param_array_ptr + temp_value1) != '\0');
+                                } while (*(char *)((int64_t)param_array_ptr + temp_value1) != '\0');
                                 compare_result = (int)temp_value3;
                                 param_context = stack_context_468;
                                 render_context = stack_context_460;
@@ -769,7 +769,7 @@ void rendering_system_parameter_processor(
                                     if (stack_length_228 != 0) {
                                         string_ptr = stack_string_230;
                                         do {
-                                            buffer_ptr = string_ptr + (longlong)param_array_ptr + (8 - (longlong)stack_string_230);
+                                            buffer_ptr = string_ptr + (int64_t)param_array_ptr + (8 - (int64_t)stack_string_230);
                                             compare_result = (uint)*string_ptr - (uint)*buffer_ptr;
                                             if (compare_result != 0) break;
                                             string_ptr = string_ptr + 1;
@@ -799,10 +799,10 @@ void rendering_system_parameter_processor(
                                 }
                                 stack_data_238 = &system_state_ptr;
                                 param_value = (int)checksum_value + 1;
-                                checksum_value = (ulonglong)param_value;
+                                checksum_value = (uint64_t)param_value;
                                 loop_counter = loop_counter + 0x10;
                                 temp_value1 = stack_context_460[7];
-                            } while ((ulonglong)(longlong)(int)param_value < (ulonglong)(stack_context_460[8] - temp_value1 >> 4));
+                            } while ((uint64_t)(int64_t)(int)param_value < (uint64_t)(stack_context_460[8] - temp_value1 >> 4));
                         }
                     }
                     else {
@@ -813,8 +813,8 @@ void rendering_system_parameter_processor(
                         if (temp_value2 != 0) {
                             do {
                                 stack_data = &unknown_var_3480_ptr;
-                                temp_value1 = *(longlong *)(checksum_value + temp_value1);
-                                if (*(longlong *)(temp_value1 + 0x1b0) == 0) {
+                                temp_value1 = *(int64_t *)(checksum_value + temp_value1);
+                                if (*(int64_t *)(temp_value1 + 0x1b0) == 0) {
                                     temp_value2 = temp_value1 + 0x10;
                                 }
                                 else {
@@ -834,7 +834,7 @@ void rendering_system_parameter_processor(
                                     temp_value3 = temp_value2 + 1;
                                     temp_value1 = temp_value2 + 9;
                                     temp_value2 = temp_value3;
-                                } while (*(char *)((longlong)param_array_ptr + temp_value1) != '\0');
+                                } while (*(char *)((int64_t)param_array_ptr + temp_value1) != '\0');
                                 compare_result = (int)temp_value3;
                                 param_context = stack_context_468;
                                 render_context = stack_context_460;
@@ -842,14 +842,14 @@ void rendering_system_parameter_processor(
                                     if (stack_length_288 != 0) {
                                         string_ptr = stack_string_290;
                                         do {
-                                            buffer_ptr = string_ptr + (longlong)param_array_ptr + (8 - (longlong)stack_string_290);
+                                            buffer_ptr = string_ptr + (int64_t)param_array_ptr + (8 - (int64_t)stack_string_290);
                                             compare_result = (uint)*string_ptr - (uint)*buffer_ptr;
                                             if (compare_result != 0) break;
                                             string_ptr = string_ptr + 1;
                                         } while (*buffer_ptr != 0);
                                     }
                                     if (compare_result == 0) {
-                                        temp_value2 = *(longlong *)(*(longlong *)(*stack_context_468 + 0x38) + loop_counter * 0x10);
+                                        temp_value2 = *(int64_t *)(*(int64_t *)(*stack_context_468 + 0x38) + loop_counter * 0x10);
                                         param_values[0] = *(int32_t *)(temp_value2 + 0x24c);
                                         param_values[1] = *(int32_t *)(temp_value2 + 0x250);
                                         param_values[2] = *(int32_t *)(temp_value2 + 0x254);
@@ -863,7 +863,7 @@ void rendering_system_parameter_processor(
                                 }
                                 else if (stack_length_288 == 0) {
                                     if (compare_result == 0) {
-                                        temp_value2 = *(longlong *)(*(longlong *)(*stack_context_468 + 0x38) + loop_counter * 0x10);
+                                        temp_value2 = *(int64_t *)(*(int64_t *)(*stack_context_468 + 0x38) + loop_counter * 0x10);
                                         param_values[0] = *(int32_t *)(temp_value2 + 0x24c);
                                         param_values[1] = *(int32_t *)(temp_value2 + 0x250);
                                         param_values[2] = *(int32_t *)(temp_value2 + 0x254);
@@ -880,8 +880,8 @@ void rendering_system_parameter_processor(
                                 loop_counter = loop_counter + 1;
                                 temp_value1 = stack_context_460[7];
                                 checksum_value = checksum_value + 0x10;
-                                array_index = (ulonglong)param_value;
-                            } while ((ulonglong)(longlong)(int)param_value < (ulonglong)(stack_context_460[8] - temp_value1 >> 4));
+                                array_index = (uint64_t)param_value;
+                            } while ((uint64_t)(int64_t)(int)param_value < (uint64_t)(stack_context_460[8] - temp_value1 >> 4));
                         }
                     }
                     break;
@@ -896,8 +896,8 @@ void rendering_system_parameter_processor(
                         if (temp_value2 != 0) {
                             do {
                                 stack_data = &unknown_var_3480_ptr;
-                                temp_value1 = *(longlong *)(loop_counter + temp_value1);
-                                if (*(longlong *)(temp_value1 + 0x1b0) == 0) {
+                                temp_value1 = *(int64_t *)(loop_counter + temp_value1);
+                                if (*(int64_t *)(temp_value1 + 0x1b0) == 0) {
                                     temp_value2 = temp_value1 + 0x10;
                                 }
                                 else {
@@ -917,7 +917,7 @@ void rendering_system_parameter_processor(
                                     temp_value3 = temp_value2 + 1;
                                     temp_value1 = temp_value2 + 9;
                                     temp_value2 = temp_value3;
-                                } while (*(char *)((longlong)param_array_ptr + temp_value1) != '\0');
+                                } while (*(char *)((int64_t)param_array_ptr + temp_value1) != '\0');
                                 compare_result = (int)temp_value3;
                                 param_context = stack_context_468;
                                 render_context = stack_context_460;
@@ -925,7 +925,7 @@ void rendering_system_parameter_processor(
                                     if (stack_length_168 != 0) {
                                         string_ptr = stack_string_170;
                                         do {
-                                            buffer_ptr = string_ptr + (longlong)param_array_ptr + (8 - (longlong)stack_string_170);
+                                            buffer_ptr = string_ptr + (int64_t)param_array_ptr + (8 - (int64_t)stack_string_170);
                                             compare_result = (uint)*string_ptr - (uint)*buffer_ptr;
                                             if (compare_result != 0) break;
                                             string_ptr = string_ptr + 1;
@@ -958,10 +958,10 @@ void rendering_system_parameter_processor(
                                 }
                                 stack_data_178 = &system_state_ptr;
                                 param_value = (int)checksum_value + 1;
-                                checksum_value = (ulonglong)param_value;
+                                checksum_value = (uint64_t)param_value;
                                 loop_counter = loop_counter + 0x10;
                                 temp_value1 = stack_context_460[7];
-                            } while ((ulonglong)(longlong)(int)param_value < (ulonglong)(stack_context_460[8] - temp_value1 >> 4));
+                            } while ((uint64_t)(int64_t)(int)param_value < (uint64_t)(stack_context_460[8] - temp_value1 >> 4));
                         }
                     }
                     else {
@@ -972,8 +972,8 @@ void rendering_system_parameter_processor(
                         if (temp_value2 != 0) {
                             do {
                                 stack_data = &unknown_var_3480_ptr;
-                                temp_value1 = *(longlong *)(checksum_value + temp_value1);
-                                if (*(longlong *)(temp_value1 + 0x1b0) == 0) {
+                                temp_value1 = *(int64_t *)(checksum_value + temp_value1);
+                                if (*(int64_t *)(temp_value1 + 0x1b0) == 0) {
                                     temp_value2 = temp_value1 + 0x10;
                                 }
                                 else {
@@ -993,7 +993,7 @@ void rendering_system_parameter_processor(
                                     temp_value3 = temp_value2 + 1;
                                     temp_value1 = temp_value2 + 9;
                                     temp_value2 = temp_value3;
-                                } while (*(char *)((longlong)param_array_ptr + temp_value1) != '\0');
+                                } while (*(char *)((int64_t)param_array_ptr + temp_value1) != '\0');
                                 compare_result = (int)temp_value3;
                                 param_context = stack_context_468;
                                 render_context = stack_context_460;
@@ -1001,14 +1001,14 @@ void rendering_system_parameter_processor(
                                     if (stack_length_1c8 != 0) {
                                         string_ptr = stack_string_1d0;
                                         do {
-                                            buffer_ptr = string_ptr + (longlong)param_array_ptr + (8 - (longlong)stack_string_1d0);
+                                            buffer_ptr = string_ptr + (int64_t)param_array_ptr + (8 - (int64_t)stack_string_1d0);
                                             compare_result = (uint)*string_ptr - (uint)*buffer_ptr;
                                             if (compare_result != 0) break;
                                             string_ptr = string_ptr + 1;
                                         } while (*buffer_ptr != 0);
                                     }
                                     if (compare_result == 0) {
-                                        temp_value2 = *(longlong *)(*(longlong *)(*stack_context_468 + 0x38) + loop_counter * 0x10);
+                                        temp_value2 = *(int64_t *)(*(int64_t *)(*stack_context_468 + 0x38) + loop_counter * 0x10);
                                         param_values[0] = *(int32_t *)(temp_value2 + 0x2ac);
                                         param_values[1] = *(int32_t *)(temp_value2 + 0x2b0);
                                         param_values[2] = *(int32_t *)(temp_value2 + 0x2b4);
@@ -1022,7 +1022,7 @@ void rendering_system_parameter_processor(
                                 }
                                 else if (stack_length_1c8 == 0) {
                                     if (compare_result == 0) {
-                                        temp_value2 = *(longlong *)(*(longlong *)(*stack_context_468 + 0x38) + loop_counter * 0x10);
+                                        temp_value2 = *(int64_t *)(*(int64_t *)(*stack_context_468 + 0x38) + loop_counter * 0x10);
                                         param_values[0] = *(int32_t *)(temp_value2 + 0x2ac);
                                         param_values[1] = *(int32_t *)(temp_value2 + 0x2b0);
                                         param_values[2] = *(int32_t *)(temp_value2 + 0x2b4);
@@ -1039,8 +1039,8 @@ void rendering_system_parameter_processor(
                                 loop_counter = loop_counter + 1;
                                 temp_value1 = stack_context_460[7];
                                 checksum_value = checksum_value + 0x10;
-                                array_index = (ulonglong)param_value;
-                            } while ((ulonglong)(longlong)(int)param_value < (ulonglong)(stack_context_460[8] - temp_value1 >> 4));
+                                array_index = (uint64_t)param_value;
+                            } while ((uint64_t)(int64_t)(int)param_value < (uint64_t)(stack_context_460[8] - temp_value1 >> 4));
                         }
                     }
                     break;
@@ -1055,8 +1055,8 @@ void rendering_system_parameter_processor(
                         if (temp_value2 != 0) {
                             do {
                                 stack_data = &unknown_var_3480_ptr;
-                                temp_value1 = *(longlong *)(loop_counter + temp_value1);
-                                if (*(longlong *)(temp_value1 + 0x1b0) == 0) {
+                                temp_value1 = *(int64_t *)(loop_counter + temp_value1);
+                                if (*(int64_t *)(temp_value1 + 0x1b0) == 0) {
                                     temp_value2 = temp_value1 + 0x10;
                                 }
                                 else {
@@ -1076,7 +1076,7 @@ void rendering_system_parameter_processor(
                                     temp_value3 = temp_value2 + 1;
                                     temp_value1 = temp_value2 + 9;
                                     temp_value2 = temp_value3;
-                                } while (*(char *)((longlong)param_array_ptr + temp_value1) != '\0');
+                                } while (*(char *)((int64_t)param_array_ptr + temp_value1) != '\0');
                                 compare_result = (int)temp_value3;
                                 param_context = stack_context_468;
                                 render_context = stack_context_460;
@@ -1084,7 +1084,7 @@ void rendering_system_parameter_processor(
                                     if (stack_length_a8 != 0) {
                                         string_ptr = stack_string_b0;
                                         do {
-                                            buffer_ptr = string_ptr + (longlong)param_array_ptr + (8 - (longlong)stack_string_b0);
+                                            buffer_ptr = string_ptr + (int64_t)param_array_ptr + (8 - (int64_t)stack_string_b0);
                                             compare_result = (uint)*string_ptr - (uint)*buffer_ptr;
                                             if (compare_result != 0) break;
                                             string_ptr = string_ptr + 1;
@@ -1117,10 +1117,10 @@ void rendering_system_parameter_processor(
                                 }
                                 stack_data_b8 = &system_state_ptr;
                                 param_value = (int)checksum_value + 1;
-                                checksum_value = (ulonglong)param_value;
+                                checksum_value = (uint64_t)param_value;
                                 loop_counter = loop_counter + 0x10;
                                 temp_value1 = stack_context_460[7];
-                            } while ((ulonglong)(longlong)(int)param_value < (ulonglong)(stack_context_460[8] - temp_value1 >> 4));
+                            } while ((uint64_t)(int64_t)(int)param_value < (uint64_t)(stack_context_460[8] - temp_value1 >> 4));
                         }
                     }
                     else {
@@ -1131,8 +1131,8 @@ void rendering_system_parameter_processor(
                         if (temp_value2 != 0) {
                             do {
                                 stack_data = &unknown_var_3480_ptr;
-                                temp_value1 = *(longlong *)(checksum_value + temp_value1);
-                                if (*(longlong *)(temp_value1 + 0x1b0) == 0) {
+                                temp_value1 = *(int64_t *)(checksum_value + temp_value1);
+                                if (*(int64_t *)(temp_value1 + 0x1b0) == 0) {
                                     temp_value2 = temp_value1 + 0x10;
                                 }
                                 else {
@@ -1152,7 +1152,7 @@ void rendering_system_parameter_processor(
                                     temp_value3 = temp_value2 + 1;
                                     temp_value1 = temp_value2 + 9;
                                     temp_value2 = temp_value3;
-                                } while (*(char *)((longlong)param_array_ptr + temp_value1) != '\0');
+                                } while (*(char *)((int64_t)param_array_ptr + temp_value1) != '\0');
                                 compare_result = (int)temp_value3;
                                 param_context = stack_context_468;
                                 render_context = stack_context_460;
@@ -1160,14 +1160,14 @@ void rendering_system_parameter_processor(
                                     if (stack_length_108 != 0) {
                                         string_ptr = stack_string_110;
                                         do {
-                                            buffer_ptr = string_ptr + (longlong)param_array_ptr + (8 - (longlong)stack_string_110);
+                                            buffer_ptr = string_ptr + (int64_t)param_array_ptr + (8 - (int64_t)stack_string_110);
                                             compare_result = (uint)*string_ptr - (uint)*buffer_ptr;
                                             if (compare_result != 0) break;
                                             string_ptr = string_ptr + 1;
                                         } while (*buffer_ptr != 0);
                                     }
                                     if (compare_result == 0) {
-                                        temp_value2 = *(longlong *)(*(longlong *)(*stack_context_468 + 0x38) + loop_counter * 0x10);
+                                        temp_value2 = *(int64_t *)(*(int64_t *)(*stack_context_468 + 0x38) + loop_counter * 0x10);
                                         param_values[0] = *(int32_t *)(temp_value2 + 700);
                                         param_values[1] = *(int32_t *)(temp_value2 + 0x2c0);
                                         param_values[2] = *(int32_t *)(temp_value2 + 0x2c4);
@@ -1181,7 +1181,7 @@ void rendering_system_parameter_processor(
                                 }
                                 else if (stack_length_108 == 0) {
                                     if (compare_result == 0) {
-                                        temp_value2 = *(longlong *)(*(longlong *)(*stack_context_468 + 0x38) + loop_counter * 0x10);
+                                        temp_value2 = *(int64_t *)(*(int64_t *)(*stack_context_468 + 0x38) + loop_counter * 0x10);
                                         param_values[0] = *(int32_t *)(temp_value2 + 700);
                                         param_values[1] = *(int32_t *)(temp_value2 + 0x2c0);
                                         param_values[2] = *(int32_t *)(temp_value2 + 0x2c4);
@@ -1198,20 +1198,20 @@ void rendering_system_parameter_processor(
                                 loop_counter = loop_counter + 1;
                                 temp_value1 = stack_context_460[7];
                                 checksum_value = checksum_value + 0x10;
-                                array_index = (ulonglong)param_value;
-                            } while ((ulonglong)(longlong)(int)param_value < (ulonglong)(stack_context_460[8] - temp_value1 >> 4));
+                                array_index = (uint64_t)param_value;
+                            } while ((uint64_t)(int64_t)(int)param_value < (uint64_t)(stack_context_460[8] - temp_value1 >> 4));
                         }
                     }
                     break;
             }
             
             // 移动到下一个参数块
-            next_resource_ptr = (longlong *)*next_resource_ptr;
+            next_resource_ptr = (int64_t *)*next_resource_ptr;
         } while (next_resource_ptr != param_context + 1);
     }
     
     // 调用清理函数
-    FUN_1808fc050(stack_checksum_58 ^ (ulonglong)stack_buffer_488);
+    FUN_1808fc050(stack_checksum_58 ^ (uint64_t)stack_buffer_488);
 }
 
 // ============================================================================
@@ -1220,46 +1220,46 @@ void rendering_system_parameter_processor(
 
 // 渲染系统基础参数处理函数
 void rendering_system_process_basic_parameters(
-    longlong *render_context,
-    longlong *param_context,
+    int64_t *render_context,
+    int64_t *param_context,
     char is_initialization,
     uint32_t *param_values
 ) {
     if (is_initialization == '\0') {
-        *(int32_t *)((longlong)render_context + 0x324) = param_values[0];
-        *(int8_t *)((longlong)render_context + 0x32c) = 0;
+        *(int32_t *)((int64_t)render_context + 0x324) = param_values[0];
+        *(int8_t *)((int64_t)render_context + 0x32c) = 0;
     }
     else {
-        *(int32_t *)((longlong)render_context + 0x324) = *(int32_t *)(*param_context + 0x324);
-        *(int8_t *)((longlong)render_context + 0x32c) = *(int8_t *)(*param_context + 0x32c);
+        *(int32_t *)((int64_t)render_context + 0x324) = *(int32_t *)(*param_context + 0x324);
+        *(int8_t *)((int64_t)render_context + 0x32c) = *(int8_t *)(*param_context + 0x32c);
     }
 }
 
 // 渲染系统函数指针参数处理函数
 void rendering_system_process_function_pointers(
-    longlong *render_context,
-    longlong *param_context,
+    int64_t *render_context,
+    int64_t *param_context,
     char is_initialization,
     uint32_t *param_values
 ) {
     code *function_ptr;
-    longlong *resource_ptr;
+    int64_t *resource_ptr;
     
     if (is_initialization == '\0') {
         function_ptr = *(code **)(*render_context + 0x118);
-        resource_ptr = *(longlong **)(param_values + 2);
-        if (resource_ptr != (longlong *)0x0) {
+        resource_ptr = *(int64_t **)(param_values + 2);
+        if (resource_ptr != (int64_t *)0x0) {
             (**(code **)(*resource_ptr + 0x28))();
         }
         (*function_ptr)(render_context, &resource_ptr);
-        if (resource_ptr != (longlong *)0x0) {
+        if (resource_ptr != (int64_t *)0x0) {
             (**(code **)(*resource_ptr + 0x38))();
         }
     }
     else {
-        longlong temp_value = *param_context;
-        resource_ptr = *(longlong **)(temp_value + 0x38);
-        if (*(longlong *)(temp_value + 0x40) - (longlong)resource_ptr >> 4 != 0) {
+        int64_t temp_value = *param_context;
+        resource_ptr = *(int64_t **)(temp_value + 0x38);
+        if (*(int64_t *)(temp_value + 0x40) - (int64_t)resource_ptr >> 4 != 0) {
             (**(code **)(*render_context + 0x118))(render_context, *resource_ptr + 0x1b8);
         }
     }
@@ -1267,23 +1267,23 @@ void rendering_system_process_function_pointers(
 
 // 渲染系统资源管理参数处理函数
 void rendering_system_process_resource_management(
-    longlong *render_context,
-    longlong *param_context,
+    int64_t *render_context,
+    int64_t *param_context,
     char is_initialization,
     uint32_t *param_values
 ) {
-    longlong *resource_ptr;
-    longlong *old_resource;
+    int64_t *resource_ptr;
+    int64_t *old_resource;
     
     if (is_initialization == '\0') {
-        resource_ptr = *(longlong **)(param_values + 2);
-        if (resource_ptr != (longlong *)0x0) {
+        resource_ptr = *(int64_t **)(param_values + 2);
+        if (resource_ptr != (int64_t *)0x0) {
             old_resource = resource_ptr;
             (**(code **)(*resource_ptr + 0x28))(resource_ptr);
         }
-        old_resource = (longlong *)render_context[0x77];
-        render_context[0x77] = (longlong)resource_ptr;
-        if (old_resource != (longlong *)0x0) {
+        old_resource = (int64_t *)render_context[0x77];
+        render_context[0x77] = (int64_t)resource_ptr;
+        if (old_resource != (int64_t *)0x0) {
             (**(code **)(*old_resource + 0x38))();
         }
     }
@@ -1294,8 +1294,8 @@ void rendering_system_process_resource_management(
 
 // 渲染系统着色器配置参数处理函数
 void rendering_system_process_shader_configuration(
-    longlong *render_context,
-    longlong *param_context,
+    int64_t *render_context,
+    int64_t *param_context,
     char is_initialization,
     uint32_t *param_values
 ) {
@@ -1306,24 +1306,24 @@ void rendering_system_process_shader_configuration(
         param_values = (int32_t *)(*param_context + 0x330);
     }
     (**(code **)(*render_context + 0x148))(render_context, param_values);
-    FUN_180276f30(render_context, (longlong)render_context + 0x214, 1);
+    FUN_180276f30(render_context, (int64_t)render_context + 0x214, 1);
 }
 
 // 渲染系统纹理配置参数处理函数
 void rendering_system_process_texture_configuration(
-    longlong *render_context,
-    longlong *param_context,
+    int64_t *render_context,
+    int64_t *param_context,
     char is_initialization,
     uint32_t *param_values
 ) {
-    longlong *resource_ptr;
-    longlong temp_value1;
-    longlong temp_value2;
+    int64_t *resource_ptr;
+    int64_t temp_value1;
+    int64_t temp_value2;
     uint32_t values[3];
     
     if (is_initialization == '\0') {
-        resource_ptr = (longlong *)render_context[7];
-        if (resource_ptr < (longlong *)render_context[8]) {
+        resource_ptr = (int64_t *)render_context[7];
+        if (resource_ptr < (int64_t *)render_context[8]) {
             do {
                 temp_value1 = *resource_ptr;
                 values[0] = param_values[3];
@@ -1334,16 +1334,16 @@ void rendering_system_process_texture_configuration(
                 *(int32_t *)(temp_value1 + 0x2c0) = values[1];
                 *(int32_t *)(temp_value1 + 0x2c4) = values[2];
                 resource_ptr = resource_ptr + 2;
-            } while (resource_ptr < (longlong *)render_context[8]);
+            } while (resource_ptr < (int64_t *)render_context[8]);
         }
     }
     else {
         temp_value1 = *param_context;
-        resource_ptr = *(longlong **)(temp_value1 + 0x38);
-        if (*(longlong *)(temp_value1 + 0x40) - (longlong)resource_ptr >> 4 != 0) {
+        resource_ptr = *(int64_t **)(temp_value1 + 0x38);
+        if (*(int64_t *)(temp_value1 + 0x40) - (int64_t)resource_ptr >> 4 != 0) {
             temp_value1 = *resource_ptr;
-            resource_ptr = (longlong *)render_context[7];
-            if (resource_ptr < (longlong *)render_context[8]) {
+            resource_ptr = (int64_t *)render_context[7];
+            if (resource_ptr < (int64_t *)render_context[8]) {
                 do {
                     temp_value2 = *resource_ptr;
                     values[0] = *(int32_t *)(temp_value1 + 700);
@@ -1354,7 +1354,7 @@ void rendering_system_process_texture_configuration(
                     *(int32_t *)(temp_value2 + 0x2c0) = values[1];
                     *(int32_t *)(temp_value2 + 0x2c4) = values[2];
                     resource_ptr = resource_ptr + 2;
-                } while (resource_ptr < (longlong *)render_context[8]);
+                } while (resource_ptr < (int64_t *)render_context[8]);
             }
         }
     }
@@ -1362,8 +1362,8 @@ void rendering_system_process_texture_configuration(
 
 // 渲染系统字符串比较参数处理函数
 void rendering_system_process_string_comparison(
-    longlong *render_context,
-    longlong *param_context,
+    int64_t *render_context,
+    int64_t *param_context,
     char is_initialization,
     uint32_t *param_values
 ) {
@@ -1373,8 +1373,8 @@ void rendering_system_process_string_comparison(
 
 // 渲染系统颜色处理参数处理函数
 void rendering_system_process_color_processing(
-    longlong *render_context,
-    longlong *param_context,
+    int64_t *render_context,
+    int64_t *param_context,
     char is_initialization,
     uint32_t *param_values
 ) {
@@ -1384,8 +1384,8 @@ void rendering_system_process_color_processing(
 
 // 渲染系统颜色规格参数处理函数
 void rendering_system_process_color_specification(
-    longlong *render_context,
-    longlong *param_context,
+    int64_t *render_context,
+    int64_t *param_context,
     char is_initialization,
     uint32_t *param_values
 ) {
@@ -1395,8 +1395,8 @@ void rendering_system_process_color_specification(
 
 // 渲染系统向量处理参数处理函数
 void rendering_system_process_vector_processing(
-    longlong *render_context,
-    longlong *param_context,
+    int64_t *render_context,
+    int64_t *param_context,
     char is_initialization,
     uint32_t *param_values
 ) {
@@ -1406,8 +1406,8 @@ void rendering_system_process_vector_processing(
 
 // 渲染系统向量配置参数处理函数
 void rendering_system_process_vector_configuration(
-    longlong *render_context,
-    longlong *param_context,
+    int64_t *render_context,
+    int64_t *param_context,
     char is_initialization,
     uint32_t *param_values
 ) {

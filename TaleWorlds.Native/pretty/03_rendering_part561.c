@@ -88,7 +88,7 @@ typedef struct {
  * 本函数为简化实现，保留了核心的参数控制逻辑。
  * 原始代码包含更复杂的参数管理、状态处理、优化逻辑和错误处理机制。
  */
-void rendering_system_advanced_parameter_controller(longlong render_context, longlong param_data) {
+void rendering_system_advanced_parameter_controller(int64_t render_context, int64_t param_data) {
     // 变量重命名以提高可读性：
     // puVar1 -> flag_ptr: 标志指针
     // uVar2 -> mode_value: 模式值
@@ -132,9 +132,9 @@ void rendering_system_advanced_parameter_controller(longlong render_context, lon
     }
     else if ((render_mode & RENDERING_SYSTEM_FLAG_20000000000) == 0) {
         // 处理标准渲染模式
-        uint32_t mode_value = *(uint32_t*)(*(longlong*)
-                           ((longlong)*(int*)(param_data + 0x564) * 0xa60 + 0x3778 +
-                           *(longlong*)(param_data + 0x8d8)) + 0x8c0);
+        uint32_t mode_value = *(uint32_t*)(*(int64_t*)
+                           ((int64_t)*(int*)(param_data + 0x564) * 0xa60 + 0x3778 +
+                           *(int64_t*)(param_data + 0x8d8)) + 0x8c0);
         
         if ((*(float*)(render_context + 0xa9e4) != 1.0f) || (*(int*)(render_context + 0xa8b0) != 2)) {
             // 设置标准渲染参数
@@ -148,7 +148,7 @@ void rendering_system_advanced_parameter_controller(longlong render_context, lon
     }
     
     // 处理渲染状态标志和位操作
-    longlong data_pointer = *(longlong*)(param_data + 0x728);
+    int64_t data_pointer = *(int64_t*)(param_data + 0x728);
     uint16_t flag_mask = *(uint16_t*)(data_pointer + 0x5aa) & 0x40;
     
     // 检查渲染条件
@@ -160,7 +160,7 @@ void rendering_system_advanced_parameter_controller(longlong render_context, lon
         
         // 更新渲染标志
         rendering_system_update_render_flags(data_pointer, flag_mask);
-        data_pointer = *(longlong*)(param_data + 0x728);
+        data_pointer = *(int64_t*)(param_data + 0x728);
     }
     
     // 处理渲染优化和状态管理
@@ -196,7 +196,7 @@ void rendering_system_advanced_parameter_controller(longlong render_context, lon
  * 本函数为简化实现，保留了核心的初始化逻辑。
  * 原始代码可能包含更复杂的初始化序列和错误处理机制。
  */
-void rendering_system_initialize_render_parameters(longlong render_context, longlong param_data) {
+void rendering_system_initialize_render_parameters(int64_t render_context, int64_t param_data) {
     // 设置默认缩放参数
     *(uint32_t*)(render_context + 0xa9e4) = RENDERING_SYSTEM_FLOAT_ONE;
     *(uint32_t*)(render_context + 0xa9e8) = RENDERING_SYSTEM_FLOAT_TWO;
@@ -246,7 +246,7 @@ void rendering_system_initialize_render_parameters(longlong render_context, long
  * 本函数为简化实现，保留了核心的特殊情况处理逻辑。
  * 原始代码可能包含更复杂的特殊情况处理和错误恢复机制。
  */
-void rendering_system_process_special_case(longlong render_context, longlong param_data) {
+void rendering_system_process_special_case(int64_t render_context, int64_t param_data) {
     // 调用渲染初始化函数
     // FUN_180662190(&stack0x00000050, ...);
     
@@ -288,7 +288,7 @@ void rendering_system_process_special_case(longlong render_context, longlong par
  * 本函数为简化实现，保留了核心的标准参数设置逻辑。
  * 原始代码可能包含更复杂的参数设置和优化机制。
  */
-void rendering_system_set_standard_parameters(longlong render_context, longlong param_data, uint32_t mode_value) {
+void rendering_system_set_standard_parameters(int64_t render_context, int64_t param_data, uint32_t mode_value) {
     // 调用渲染初始化函数
     // FUN_180662190(&stack0x00000050, ...);
     
@@ -336,7 +336,7 @@ void rendering_system_set_standard_parameters(longlong render_context, longlong 
  * 本函数为简化实现，保留了核心的特殊渲染情况处理逻辑。
  * 原始代码可能包含更复杂的特殊渲染处理和优化机制。
  */
-void rendering_system_handle_special_render_case(longlong render_context, longlong param_data) {
+void rendering_system_handle_special_render_case(int64_t render_context, int64_t param_data) {
     // 检查并设置渲染参数
     float current_scale = *(float*)(render_context + 0xa9e4);
     if (current_scale != 0.0f) {
@@ -378,7 +378,7 @@ void rendering_system_handle_special_render_case(longlong render_context, longlo
  * 本函数为简化实现，保留了核心的标志更新逻辑。
  * 原始代码可能包含更复杂的标志管理和状态同步机制。
  */
-void rendering_system_update_render_flags(longlong data_pointer, uint16_t flag_mask) {
+void rendering_system_update_render_flags(int64_t data_pointer, uint16_t flag_mask) {
     // 更新状态标志
     *(uint16_t*)(data_pointer + 0x5ac) = *(uint16_t*)(data_pointer + 0x5ac) | flag_mask;
     
@@ -418,9 +418,9 @@ void rendering_system_update_render_flags(longlong data_pointer, uint16_t flag_m
  * 本函数为简化实现，保留了核心的优化处理逻辑。
  * 原始代码可能包含更复杂的优化算法和性能监控机制。
  */
-void rendering_system_process_render_optimization(longlong render_context, longlong param_data, uint64_t render_mode, uint64_t render_state) {
+void rendering_system_process_render_optimization(int64_t render_context, int64_t param_data, uint64_t render_mode, uint64_t render_state) {
     // 处理标志位检查
-    uint16_t flag_mask = *(uint16_t*)(*(longlong*)(param_data + 0x728) + 0x5aa) & 0x3c;
+    uint16_t flag_mask = *(uint16_t*)(*(int64_t*)(param_data + 0x728) + 0x5aa) & 0x3c;
     
     // 检查优化条件
     if (((flag_mask != 0) &&
@@ -430,7 +430,7 @@ void rendering_system_process_render_optimization(longlong render_context, longl
         (((render_state >> 0x1b & 1) == 0 || (render_state != 0)))) {
         
         // 更新优化标志
-        longlong data_pointer = *(longlong*)(param_data + 0x728);
+        int64_t data_pointer = *(int64_t*)(param_data + 0x728);
         *(uint16_t*)(data_pointer + 0x5ac) = *(uint16_t*)(data_pointer + 0x5ac) | flag_mask;
         
         uint16_t* flag_ptr = (uint16_t*)(data_pointer + 0x5aa);
@@ -472,13 +472,13 @@ void rendering_system_process_render_optimization(longlong render_context, longl
  * 本函数为简化实现，保留了核心的高级优化处理逻辑。
  * 原始代码可能包含更复杂的高级优化算法和性能监控机制。
  */
-void rendering_system_process_advanced_optimization(longlong render_context, longlong param_data) {
+void rendering_system_process_advanced_optimization(int64_t render_context, int64_t param_data) {
     // 设置优化参数
     *(uint32_t*)(render_context + 0xa608) = *(uint32_t*)(render_context + 0xa608);
     *(int*)(render_context + 0xa604) = *(int*)(param_data + 0x1380);
     
     // 检查渲染条件
-    if ((*(uint16_t*)(*(longlong*)(param_data + 0x728) + 0x5aa) & 0x1000) == 0) {
+    if ((*(uint16_t*)(*(int64_t*)(param_data + 0x728) + 0x5aa) & 0x1000) == 0) {
         *(uint32_t*)(render_context + 43000) = *(uint32_t*)(render_context + 43000);
         *(int*)(render_context + 0xa7f4) = *(int*)(param_data + 0x1380);
     }
@@ -523,14 +523,14 @@ void rendering_system_process_advanced_optimization(longlong render_context, lon
  * 本函数为简化实现，保留了核心的标准优化处理逻辑。
  * 原始代码可能包含更复杂的标准优化算法和质量控制机制。
  */
-void rendering_system_process_standard_optimization(longlong render_context, longlong param_data) {
+void rendering_system_process_standard_optimization(int64_t render_context, int64_t param_data) {
     // 获取渲染标志
-    uint16_t render_flags = *(uint16_t*)(*(longlong*)(param_data + 0x728) + 0x5aa);
+    uint16_t render_flags = *(uint16_t*)(*(int64_t*)(param_data + 0x728) + 0x5aa);
     
     // 处理不同的优化模式
     if ((render_flags & 0x2c0) == 0) {
         if ((render_flags & 0x100) == 0) {
-            if ((*(uint16_t*)(*(longlong*)(param_data + 0x728) + 0x5ac) & 0x3c0) != 0) {
+            if ((*(uint16_t*)(*(int64_t*)(param_data + 0x728) + 0x5ac) & 0x3c0) != 0) {
                 // 调用标准优化函数
                 // FUN_1805162e0(param_data);
             }
@@ -546,7 +546,7 @@ void rendering_system_process_standard_optimization(longlong render_context, lon
     }
     
     // 处理渲染上下文更新
-    longlong data_pointer = *(longlong*)(param_data + 0x728);
+    int64_t data_pointer = *(int64_t*)(param_data + 0x728);
     if ((*(uint16_t*)(data_pointer + 0x5aa) & 0x800) != 0) {
         rendering_system_update_render_context_ex(render_context, param_data);
     }
@@ -581,7 +581,7 @@ void rendering_system_process_standard_optimization(longlong render_context, lon
  * 本函数为简化实现，保留了核心的最终控制逻辑。
  * 原始代码可能包含更复杂的最终控制算法和状态同步机制。
  */
-void rendering_system_execute_final_control(longlong render_context, longlong param_data) {
+void rendering_system_execute_final_control(int64_t render_context, int64_t param_data) {
     // 执行最终状态检查和控制
     // FUN_180516e40(param_data, 0x382a);
     
@@ -590,13 +590,13 @@ void rendering_system_execute_final_control(longlong render_context, longlong pa
 }
 
 // 辅助函数声明（这些函数在原始代码中被调用）
-void rendering_system_setup_render_context(longlong render_context, longlong param_data);
-void rendering_system_configure_optimization_parameters(longlong render_context, longlong param_data);
-void rendering_system_setup_render_context_ex(longlong render_context, longlong param_data, uint32_t mode_value);
-void rendering_system_configure_optimization_parameters_ex(longlong render_context, longlong param_data, uint32_t mode_value);
-void rendering_system_execute_quality_control(longlong render_context, longlong param_data);
-void rendering_system_update_render_context_ex(longlong render_context, longlong param_data);
-void rendering_system_execute_final_optimization_check(longlong render_context, longlong param_data);
+void rendering_system_setup_render_context(int64_t render_context, int64_t param_data);
+void rendering_system_configure_optimization_parameters(int64_t render_context, int64_t param_data);
+void rendering_system_setup_render_context_ex(int64_t render_context, int64_t param_data, uint32_t mode_value);
+void rendering_system_configure_optimization_parameters_ex(int64_t render_context, int64_t param_data, uint32_t mode_value);
+void rendering_system_execute_quality_control(int64_t render_context, int64_t param_data);
+void rendering_system_update_render_context_ex(int64_t render_context, int64_t param_data);
+void rendering_system_execute_final_optimization_check(int64_t render_context, int64_t param_data);
 
 // 函数别名定义（为了保持与原始代码的兼容性）
 #define rendering_system_advanced_parameter_controller FUN_180579140

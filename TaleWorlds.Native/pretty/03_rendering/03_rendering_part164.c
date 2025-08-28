@@ -313,7 +313,7 @@ void RenderingSystemStringProcessor(void* param1, void* param2, void* param3, vo
  * @param param2 输入参数2 (通常为数据缓冲区)
  * @param param3 输入参数3 (通常为输出目标)
  * @param param4 输入参数4 (通常为输出选项)
- * @return longlong* 输出数据指针
+ * @return int64_t* 输出数据指针
  * 
  * @note 原始函数名: FUN_18036d170
  * @warning 需要确保输入参数的有效性

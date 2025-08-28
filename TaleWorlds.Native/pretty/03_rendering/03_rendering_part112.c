@@ -51,46 +51,46 @@
  * @param param_4 变换参数
  * @return void 无返回值
  */
-void RenderingSystem_DataTransformer(longlong param_1, longlong param_2, longlong param_3, uint64_t param_4)
+void RenderingSystem_DataTransformer(int64_t param_1, int64_t param_2, int64_t param_3, uint64_t param_4)
 {
     // 简化实现：数据变换处理
-    longlong lStack_70 = 0;
+    int64_t lStack_70 = 0;
     uint *puStack_68 = (uint *)0x0;
-    longlong lStack_60 = 0;
+    int64_t lStack_60 = 0;
     int16_t uStack_58 = 0;
     int8_t uStack_56 = 3;
     
     // 初始化数据变换器
     uint64_t uVar2 = *(uint64_t *)(param_1 + 0x898);
-    longlong lStackX_18 = param_3;
+    int64_t lStackX_18 = param_3;
     
     // 执行数据变换操作
     System_BufferManager(&lStack_70, 8, param_3, param_4, 0xfffffffffffffffe);
     *(uint64_t *)puStack_68 = uVar2;
-    uint *puVar10 = (uint *)((longlong)puStack_68 + 8);
-    longlong lStackX_20 = param_1 + 0x878;
+    uint *puVar10 = (uint *)((int64_t)puStack_68 + 8);
+    int64_t lStackX_20 = param_1 + 0x878;
     
     // 处理数据变换
-    longlong lVar6 = *(longlong *)(param_1 + 0x880);
-    longlong lVar8 = lStack_70;
+    int64_t lVar6 = *(int64_t *)(param_1 + 0x880);
+    int64_t lVar8 = lStack_70;
     puStack_68 = puVar10;
     
     if (lVar6 != lStackX_20) {
         do {
             // 数据变换处理逻辑
             int iVar1 = *(int *)(lVar6 + 0x20);
-            longlong lVar3 = *(longlong *)(lVar6 + 0x30);
-            longlong lVar4 = *(longlong *)(lVar6 + 0x28);
+            int64_t lVar3 = *(int64_t *)(lVar6 + 0x30);
+            int64_t lVar4 = *(int64_t *)(lVar6 + 0x28);
             
             // 缓冲区管理
-            if ((ulonglong)((lVar8 - (longlong)puVar10) + lStack_60) < 9) {
-                System_BufferManager(&lStack_70, (longlong)puVar10 + (8 - lVar8));
+            if ((uint64_t)((lVar8 - (int64_t)puVar10) + lStack_60) < 9) {
+                System_BufferManager(&lStack_70, (int64_t)puVar10 + (8 - lVar8));
                 lVar8 = lStack_70;
                 puVar10 = puStack_68;
             }
             
             // 数据写入
-            *(longlong *)puVar10 = (longlong)iVar1;
+            *(int64_t *)puVar10 = (int64_t)iVar1;
             puStack_68 = puVar10 + 2;
             
             // 继续处理下一个数据块
@@ -121,16 +121,16 @@ void RenderingSystem_DataTransformer(longlong param_1, longlong param_2, longlon
  * @param param_3 矩阵处理参数
  * @return void 无返回值
  */
-void RenderingSystem_MatrixProcessor(longlong param_1, longlong param_2, uint64_t param_3)
+void RenderingSystem_MatrixProcessor(int64_t param_1, int64_t param_2, uint64_t param_3)
 {
     // 简化实现：矩阵处理
-    longlong lStackX_10 = 0;
+    int64_t lStackX_10 = 0;
     uint64_t uStackX_18 = param_3;
     
     // 读取矩阵数据
     fread(&lStackX_10, 8, 1, *(uint64_t *)(param_2 + 8));
-    longlong lStack_70 = 0;
-    longlong *plStack_68 = (longlong *)0x0;
+    int64_t lStack_70 = 0;
+    int64_t *plStack_68 = (int64_t *)0x0;
     uint64_t uStack_60 = 0;
     int16_t uStack_58 = 0;
     int8_t uStack_56 = 3;
@@ -140,9 +140,9 @@ void RenderingSystem_MatrixProcessor(longlong param_1, longlong param_2, uint64_
         System_BufferManager(&lStack_70);
     }
     
-    longlong lVar7 = lStack_70;
+    int64_t lVar7 = lStack_70;
     fread(lStack_70, lStackX_10, 1, *(uint64_t *)(param_2 + 8));
-    longlong lVar10 = *plStack_68;
+    int64_t lVar10 = *plStack_68;
     plStack_68 = plStack_68 + 1;
     
     // 处理矩阵数据
@@ -157,21 +157,21 @@ void RenderingSystem_MatrixProcessor(longlong param_1, longlong param_2, uint64_
         // 矩阵处理逻辑
         lVar7 = *plStack_68;
         uint *puVar4 = (uint *)(plStack_68 + 1);
-        plStack_68 = (longlong *)((longlong)plStack_68 + 0xc);
+        plStack_68 = (int64_t *)((int64_t)plStack_68 + 0xc);
         
         if (0 < (int)*puVar4) {
             // 创建矩阵对象
             uint64_t *puVar1 = (uint64_t *)(param_1 + 0x878);
             int iVar12 = (int)lVar7;
-            ulonglong uVar3 = (ulonglong)uStackX_18 >> 0x20;
+            uint64_t uVar3 = (uint64_t)uStackX_18 >> 0x20;
             uStackX_18 = CONCAT44((int)uVar3, iVar12);
-            ulonglong uStackX_20 = (ulonglong)*puVar4;
+            uint64_t uStackX_20 = (uint64_t)*puVar4;
             
             do {
                 // 矩阵初始化和处理
                 int32_t *puVar5 = (int32_t *)FUN_18062b1e0(system_memory_pool_ptr, 0xa8, 8, 3);
-                longlong *plVar2 = (longlong *)(puVar5 + 0x22);
-                *plVar2 = (longlong)&system_state_ptr;
+                int64_t *plVar2 = (int64_t *)(puVar5 + 0x22);
+                *plVar2 = (int64_t)&system_state_ptr;
                 
                 // 设置矩阵参数
                 *puVar5 = 0xffffffff;
@@ -223,46 +223,46 @@ void RenderingSystem_MatrixProcessor(longlong param_1, longlong param_2, uint64_
  * @param param_4 资源选项
  * @return void 无返回值
  */
-void RenderingSystem_ResourceManager(longlong param_1, longlong param_2, longlong param_3, uint64_t param_4)
+void RenderingSystem_ResourceManager(int64_t param_1, int64_t param_2, int64_t param_3, uint64_t param_4)
 {
     // 简化实现：资源管理
-    longlong lStack_70 = 0;
+    int64_t lStack_70 = 0;
     uint *puStack_68 = (uint *)0x0;
-    longlong lStack_60 = 0;
+    int64_t lStack_60 = 0;
     int16_t uStack_58 = 0;
     int8_t uStack_56 = 3;
     
     // 初始化资源管理器
     uint64_t uVar2 = *(uint64_t *)(param_1 + 0x8c8);
-    longlong lStackX_18 = param_3;
+    int64_t lStackX_18 = param_3;
     
     // 执行资源管理操作
     System_BufferManager(&lStack_70, 8, param_3, param_4, 0xfffffffffffffffe);
     *(uint64_t *)puStack_68 = uVar2;
-    uint *puVar8 = (uint *)((longlong)puStack_68 + 8);
-    longlong lStackX_20 = param_1 + 0x8a8;
+    uint *puVar8 = (uint *)((int64_t)puStack_68 + 8);
+    int64_t lStackX_20 = param_1 + 0x8a8;
     
     // 处理资源数据
-    longlong lVar6 = *(longlong *)(param_1 + 0x8b0);
-    longlong lVar9 = lStack_70;
+    int64_t lVar6 = *(int64_t *)(param_1 + 0x8b0);
+    int64_t lVar9 = lStack_70;
     puStack_68 = puVar8;
     
     if (lVar6 != lStackX_20) {
         do {
             // 资源处理逻辑
             int iVar1 = *(int *)(lVar6 + 0x20);
-            longlong lVar3 = *(longlong *)(lVar6 + 0x30);
-            longlong lVar4 = *(longlong *)(lVar6 + 0x28);
+            int64_t lVar3 = *(int64_t *)(lVar6 + 0x30);
+            int64_t lVar4 = *(int64_t *)(lVar6 + 0x28);
             
             // 缓冲区管理
-            if ((ulonglong)((lStack_60 - (longlong)puVar8) + lVar9) < 9) {
-                System_BufferManager(&lStack_70, (longlong)puVar8 + (8 - lVar9));
+            if ((uint64_t)((lStack_60 - (int64_t)puVar8) + lVar9) < 9) {
+                System_BufferManager(&lStack_70, (int64_t)puVar8 + (8 - lVar9));
                 puVar8 = puStack_68;
                 lVar9 = lStack_70;
             }
             
             // 数据写入
-            *(longlong *)puVar8 = (longlong)iVar1;
+            *(int64_t *)puVar8 = (int64_t)iVar1;
             puStack_68 = puVar8 + 2;
             
             // 继续处理下一个资源
@@ -293,15 +293,15 @@ void RenderingSystem_ResourceManager(longlong param_1, longlong param_2, longlon
  * @param param_3 内存处理参数
  * @return void 无返回值
  */
-void RenderingSystem_MemoryProcessor(longlong param_1, longlong param_2, uint64_t param_3)
+void RenderingSystem_MemoryProcessor(int64_t param_1, int64_t param_2, uint64_t param_3)
 {
     // 简化实现：内存处理
-    longlong lStackX_10 = 0;
+    int64_t lStackX_10 = 0;
     uint64_t uStackX_18 = param_3;
     
     // 读取内存数据
     fread(&lStackX_10, 8, 1, *(uint64_t *)(param_2 + 8));
-    longlong lStack_68 = 0;
+    int64_t lStack_68 = 0;
     uint *puStack_60 = (uint *)0x0;
     uint64_t uStack_58 = 0;
     int16_t uStack_50 = 0;
@@ -312,10 +312,10 @@ void RenderingSystem_MemoryProcessor(longlong param_1, longlong param_2, uint64_
         System_BufferManager(&lStack_68);
     }
     
-    longlong lVar8 = lStack_68;
+    int64_t lVar8 = lStack_68;
     fread(lStack_68, lStackX_10, 1, *(uint64_t *)(param_2 + 8));
-    longlong lVar10 = *(longlong *)puStack_60;
-    uint *puVar12 = (uint *)((longlong)puStack_60 + 8);
+    int64_t lVar10 = *(int64_t *)puStack_60;
+    uint *puVar12 = (uint *)((int64_t)puStack_60 + 8);
     puStack_60 = puVar12;
     
     // 处理内存数据
@@ -337,15 +337,15 @@ void RenderingSystem_MemoryProcessor(longlong param_1, longlong param_2, uint64_
             // 创建内存对象
             uint64_t *puVar2 = (uint64_t *)(param_1 + 0x8a8);
             int iVar14 = (int)uVar4;
-            ulonglong uVar5 = (ulonglong)uStackX_18 >> 0x20;
+            uint64_t uVar5 = (uint64_t)uStackX_18 >> 0x20;
             uStackX_18 = CONCAT44((int)uVar5, iVar14);
-            ulonglong uStackX_20 = (ulonglong)*puVar15;
+            uint64_t uStackX_20 = (uint64_t)*puVar15;
             
             do {
                 // 内存初始化和处理
                 int32_t *puVar6 = (int32_t *)FUN_18062b1e0(system_memory_pool_ptr, 0x48, 8, 3);
-                longlong *plVar1 = (longlong *)(puVar6 + 10);
-                *plVar1 = (longlong)&system_state_ptr;
+                int64_t *plVar1 = (int64_t *)(puVar6 + 10);
+                *plVar1 = (int64_t)&system_state_ptr;
                 
                 // 设置内存参数
                 *puVar6 = 0xffffffff;
@@ -363,7 +363,7 @@ void RenderingSystem_MemoryProcessor(longlong param_1, longlong param_2, uint64_
                 if (uVar3 != 0) {
                     puStack_60 = puVar12;
                     uVar16 = (**(code **)(*plVar1 + 0x18))(plVar1, puVar12, uVar3);
-                    puVar12 = (uint *)((longlong)puVar12 + (ulonglong)uVar3);
+                    puVar12 = (uint *)((int64_t)puVar12 + (uint64_t)uVar3);
                 }
                 
                 // 内存优化
@@ -412,17 +412,17 @@ void RenderingSystem_MemoryProcessor(longlong param_1, longlong param_2, uint64_
  * @param param_3 序列化参数
  * @return void 无返回值
  */
-void RenderingSystem_DataSerializer(longlong param_1, uint param_2)
+void RenderingSystem_DataSerializer(int64_t param_1, uint param_2)
 {
     // 简化实现：数据序列化
-    ulonglong uVar18 = (ulonglong)param_2;
+    uint64_t uVar18 = (uint64_t)param_2;
     uint64_t uStack_68 = 0xfffffffffffffffe;
-    longlong *plVar6 = (longlong *)FUN_18062b1e0(system_memory_pool_ptr, 0xe0, 8, 3);
+    int64_t *plVar6 = (int64_t *)FUN_18062b1e0(system_memory_pool_ptr, 0xe0, 8, 3);
     
     // 初始化序列化器
     FUN_180049830(plVar6);
-    *plVar6 = (longlong)&unknown_var_7880_ptr;
-    ulonglong *puVar1 = (ulonglong *)(plVar6 + 0x18);
+    *plVar6 = (int64_t)&unknown_var_7880_ptr;
+    uint64_t *puVar1 = (uint64_t *)(plVar6 + 0x18);
     *puVar1 = 0;
     plVar6[0x19] = 0;
     plVar6[0x1a] = 0;
@@ -450,10 +450,10 @@ void RenderingSystem_DataSerializer(longlong param_1, uint param_2)
         do {
             // 序列化数据
             uint uVar2 = *puVar7;
-            ulonglong uVar9 = (ulonglong)uVar2 % (ulonglong)*(uint *)(param_1 + 0xa00);
+            uint64_t uVar9 = (uint64_t)uVar2 % (uint64_t)*(uint *)(param_1 + 0xa00);
             
             // 数据查找和处理
-            for (uint *puVar8 = *(uint **)(*(longlong *)(param_1 + 0x9f8) + uVar9 * 8); 
+            for (uint *puVar8 = *(uint **)(*(int64_t *)(param_1 + 0x9f8) + uVar9 * 8); 
                  puVar8 != (uint *)0x0; puVar8 = *(uint **)(puVar8 + 4)) {
                 if (uVar2 == *puVar8) {
                     if (puVar8 != (uint *)0x0) break;

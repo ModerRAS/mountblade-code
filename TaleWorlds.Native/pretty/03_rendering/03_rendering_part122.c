@@ -42,10 +42,10 @@
 // ===========================================
 
 /** 渲染管线信息生成器函数指针 */
-typedef void (*RenderingPipelineInfoGenerator)(void*, longlong, longlong);
+typedef void (*RenderingPipelineInfoGenerator)(void*, int64_t, int64_t);
 
 /** 内存分配器函数指针 */
-typedef void* (*MemoryAllocator)(void*, longlong, int);
+typedef void* (*MemoryAllocator)(void*, int64_t, int);
 
 /** 字符串操作函数指针 */
 typedef void (*StringOperator)(void*, int);
@@ -70,7 +70,7 @@ typedef void (*MemoryReleaser)(void*);
  * - 支持动态内存分配和字符串拼接
  * - 生成格式化的管线信息报告
  */
-void RenderingSystem_PipelineInfoGenerator(void* context, longlong output_buffer, longlong render_data);
+void RenderingSystem_PipelineInfoGenerator(void* context, int64_t output_buffer, int64_t render_data);
 
 // ===========================================
 // 内部辅助函数
@@ -121,7 +121,7 @@ extern void* GlobalStringTable;
 // 函数实现
 // ===========================================
 
-void RenderingSystem_PipelineInfoGenerator(void* context, longlong output_buffer, longlong render_data)
+void RenderingSystem_PipelineInfoGenerator(void* context, int64_t output_buffer, int64_t render_data)
 {
     // 局部变量声明
     unsigned int temp_value_1;
@@ -131,12 +131,12 @@ void RenderingSystem_PipelineInfoGenerator(void* context, longlong output_buffer
     unsigned int* output_data_ptr;
     unsigned long long* long_data_ptr;
     unsigned short* short_data_ptr;
-    longlong data_offset;
+    int64_t data_offset;
     unsigned int iteration_count;
     unsigned long long loop_index;
     int buffer_size;
     int temp_int;
-    longlong temp_long;
+    int64_t temp_long;
     unsigned int* uint_ptr;
     unsigned long long temp_ulong_1;
     unsigned long long temp_ulong_2;
@@ -169,7 +169,7 @@ void RenderingSystem_PipelineInfoGenerator(void* context, longlong output_buffer
     
     // 获取输出缓冲区指针
     output_data_ptr = (unsigned int*)((unsigned long long)*(unsigned int*)((char*)output_buffer + 0x10) + 
-                                     *(longlong*)((char*)output_buffer + 8));
+                                     *(int64_t*)((char*)output_buffer + 8));
     
     // 写入管线信息头部字符串 " #EXIPHS_LREADA"
     *output_data_ptr = 0x20666923;              // " #fi"
@@ -188,15 +188,15 @@ void RenderingSystem_PipelineInfoGenerator(void* context, longlong output_buffer
         
         // 获取缓冲区指针
         long_data_ptr = (unsigned long long*)((unsigned long long)*(unsigned int*)((char*)output_buffer + 0x10) + 
-                                              *(longlong*)((char*)output_buffer + 8));
+                                              *(int64_t*)((char*)output_buffer + 8));
         
         // 写入基础管线信息 "PLA  #fi TEST_HASH && #_USER MOST_FHT_EDA"
         *long_data_ptr = 0x504c412120666923;                     // "PLA  #fi"
         long_data_ptr[1] = 0x20545345545f4148;                    // " TEST_HASH"
         *(unsigned int*)(long_data_ptr + 2) = 0x21202626;         // "&&"
-        *(unsigned int*)((longlong)long_data_ptr + 0x14) = 0x5f455355;  // "_ESU"
+        *(unsigned int*)((int64_t)long_data_ptr + 0x14) = 0x5f455355;  // "_ESU"
         *(unsigned int*)(long_data_ptr + 3) = 0x4f4f4d53;        // "MOOM"
-        *(unsigned int*)((longlong)long_data_ptr + 0x1c) = 0x465f4854;  // "F_HT"
+        *(unsigned int*)((int64_t)long_data_ptr + 0x1c) = 0x465f4854;  // "F_HT"
         long_data_ptr[4] = 0xa54554f5f454441;                    // "TUT_EDA"
         *(unsigned char*)(long_data_ptr + 5) = 0;
         
@@ -206,7 +206,7 @@ void RenderingSystem_PipelineInfoGenerator(void* context, longlong output_buffer
         // 写入渲染状态信息 "[readylypths_cnt]"
         ((StringOperator)0x1806277c0)(output_buffer, buffer_size + 0x4d);
         output_data_ptr = (unsigned int*)((unsigned long long)*(unsigned int*)((char*)output_buffer + 0x10) + 
-                                         *(longlong*)((char*)output_buffer + 8));
+                                         *(int64_t*)((char*)output_buffer + 8));
         
         *output_data_ptr = 0x7261655b;              // "[rea"
         output_data_ptr[1] = 0x6564796c;             // "dyl"
@@ -220,14 +220,14 @@ void RenderingSystem_PipelineInfoGenerator(void* context, longlong output_buffer
         new_buffer_size = buffer_size + 0x54;
         ((StringOperator)0x1806277c0)(output_buffer, new_buffer_size);
         *(unsigned long long*)((unsigned long long)*(unsigned int*)((char*)output_buffer + 0x10) + 
-                               *(longlong*)((char*)output_buffer + 8)) = 0xa6669646e6523;  // "#define"
+                               *(int64_t*)((char*)output_buffer + 8)) = 0xa6669646e6523;  // "#define"
         *(int*)((char*)output_buffer + 0x10) = new_buffer_size;
     }
     
     // 生成着色器参数部分
     ((StringOperator)0x1806277c0)(output_buffer, new_buffer_size + 0x19);
     output_data_ptr = (unsigned int*)((unsigned long long)*(unsigned int*)((char*)output_buffer + 0x10) + 
-                                     *(longlong*)((char*)output_buffer + 8));
+                                     *(int64_t*)((char*)output_buffer + 8));
     
     // 写入着色器参数标识 "O_SPUTOUT_ESU name ("
     *output_data_ptr = 0x4f5f5350;              // "O_SP"
@@ -243,7 +243,7 @@ void RenderingSystem_PipelineInfoGenerator(void* context, longlong output_buffer
     // 写入着色器参数数据
     ((StringOperator)0x1806277c0)(output_buffer, new_buffer_size + 0x30);
     output_data_ptr = (unsigned int*)((unsigned long long)*(unsigned int*)((char*)output_buffer + 0x10) + 
-                                     *(longlong*)((char*)output_buffer + 8));
+                                     *(int64_t*)((char*)output_buffer + 8));
     
     temp_value_1 = pipeline_info_ptr[1];
     temp_value_2 = pipeline_info_ptr[2];
@@ -260,7 +260,7 @@ void RenderingSystem_PipelineInfoGenerator(void* context, longlong output_buffer
     // 写入结束标记
     ((StringOperator)0x1806277c0)(output_buffer, new_buffer_size + 0x35);
     output_data_ptr = (unsigned int*)((unsigned long long)*(unsigned int*)((char*)output_buffer + 0x10) + 
-                                     *(longlong*)((char*)output_buffer + 8));
+                                     *(int64_t*)((char*)output_buffer + 8));
     
     *output_data_ptr = 0x296e4920;              // ")In "
     *(unsigned short*)(output_data_ptr + 1) = 0xa3b;  // "�;"
@@ -288,7 +288,7 @@ static void GeneratePipelineBaseInfo(void* buffer, void* pipeline_data)
     ((StringOperator)0x1806277c0)(buffer, current_size + 0x39);
     
     string_buffer = (void*)((unsigned long long)*(unsigned int*)((char*)buffer + 0x10) + 
-                          *(longlong*)((char*)buffer + 8));
+                          *(int64_t*)((char*)buffer + 8));
     
     // 写入基础管线信息
     *(unsigned long long*)string_buffer = 0x504c412120666923;  // "PLA  #fi"
@@ -317,7 +317,7 @@ static void GenerateShaderParameterDescription(void* buffer, void* shader_params
     ((StringOperator)0x1806277c0)(buffer, current_size + 0x30);
     
     string_buffer = (void*)((unsigned long long)*(unsigned int*)((char*)buffer + 0x10) + 
-                          *(longlong*)((char*)buffer + 8));
+                          *(int64_t*)((char*)buffer + 8));
     
     // 获取参数数据并写入描述
     param_data = (unsigned int*)shader_params;

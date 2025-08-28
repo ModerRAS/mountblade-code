@@ -218,20 +218,20 @@ static uint8_t SystemNoOperationType2(void);
  * 系统资源查询函数
  * 功能：查询系统资源信息
  * 参数：int32_t resource_id - 资源标识符
- * 参数：longlong *result_buffer - 结果缓冲区
+ * 参数：int64_t *result_buffer - 结果缓冲区
  * 返回值：int - 查询结果状态码
  */
-static int SystemResourceQuery(int32_t resource_id, longlong *result_buffer);
+static int SystemResourceQuery(int32_t resource_id, int64_t *result_buffer);
 
 /**
  * 系统资源枚举函数
  * 功能：枚举系统资源
  * 参数：uint64_t enum_handle - 枚举句柄
- * 参数：longlong resource_ptr - 资源指针
+ * 参数：int64_t resource_ptr - 资源指针
  * 参数：int8_t **buffer_ptr - 缓冲区指针
  * 返回值：int - 枚举结果状态码
  */
-static int SystemResourceEnumerator(uint64_t enum_handle, longlong resource_ptr, int8_t **buffer_ptr);
+static int SystemResourceEnumerator(uint64_t enum_handle, int64_t resource_ptr, int8_t **buffer_ptr);
 
 /**
  * 系统资源验证函数
@@ -449,11 +449,11 @@ static uint8_t utilities_advanced_data_processor_type20(void);
 /**
  * 工具系统资源清理和内存释放函数
  * 功能：清理系统资源，释放内存，重置系统状态
- * 参数：longlong param_1 - 资源标识符
- * 参数：longlong param_2 - 清理选项
+ * 参数：int64_t param_1 - 资源标识符
+ * 参数：int64_t param_2 - 清理选项
  * 返回值：void - 无返回值
  */
-static void utilities_resource_cleanup_manager(longlong param_1, longlong param_2);
+static void utilities_resource_cleanup_manager(int64_t param_1, int64_t param_2);
 
 // ============================================================================
 // 函数实现
@@ -616,30 +616,30 @@ static uint8_t utilities_advanced_data_processor_type20(void)
     return SystemDataProcessorType20();
 }
 
-static void utilities_resource_cleanup_manager(longlong param_1, longlong param_2)
+static void utilities_resource_cleanup_manager(int64_t param_1, int64_t param_2)
 {
     // 实现资源清理和内存释放功能
     // 原始实现：FUN_1808900e0
     uint64_t uVar1;
     int iVar2;
-    longlong lVar3;
+    int64_t lVar3;
     int iVar4;
     int8_t auStack_278 [32];
-    longlong alStack_258 [2];
+    int64_t alStack_258 [2];
     int8_t *puStack_248;
     int iStack_240;
     int32_t uStack_23c;
     int8_t auStack_238 [512];
-    ulonglong uStack_38;
+    uint64_t uStack_38;
     
-    uStack_38 = _DAT ^ (ulonglong)auStack_278;
+    uStack_38 = _DAT ^ (uint64_t)auStack_278;
     iVar2 = SystemResourceQuery(*(int32_t *)(param_1 + 0x10), alStack_258);
-    if ((iVar2 == 0) && (*(longlong *)(alStack_258[0] + 8) != 0)) {
+    if ((iVar2 == 0) && (*(int64_t *)(alStack_258[0] + 8) != 0)) {
         puStack_248 = auStack_238;
         iVar4 = 0;
         iStack_240 = 0;
         uStack_23c = 0xffffffc0;
-        iVar2 = SystemResourceEnumerator(*(uint64_t *)(param_2 + 0x90), *(longlong *)(alStack_258[0] + 8),
+        iVar2 = SystemResourceEnumerator(*(uint64_t *)(param_2 + 0x90), *(int64_t *)(alStack_258[0] + 8),
                               &puStack_248);
         if (iVar2 == 0) {
             if (0 < iStack_240) {
@@ -662,7 +662,7 @@ static void utilities_resource_cleanup_manager(longlong param_1, longlong param_
         }
     }
     // WARNING: Subroutine does not return
-    SystemCleanupHandler(uStack_38 ^ (ulonglong)auStack_278);
+    SystemCleanupHandler(uStack_38 ^ (uint64_t)auStack_278);
 }
 
 // ============================================================================
@@ -952,7 +952,7 @@ static uint8_t SystemNoOperationType2(void)
  * 系统资源查询函数实现
  * 功能：查询系统资源信息
  */
-static int SystemResourceQuery(int32_t resource_id, longlong *result_buffer)
+static int SystemResourceQuery(int32_t resource_id, int64_t *result_buffer)
 {
     // 简化实现：系统资源查询功能
     // 实际实现包含复杂的资源查询逻辑
@@ -963,7 +963,7 @@ static int SystemResourceQuery(int32_t resource_id, longlong *result_buffer)
  * 系统资源枚举函数实现
  * 功能：枚举系统资源
  */
-static int SystemResourceEnumerator(uint64_t enum_handle, longlong resource_ptr, int8_t **buffer_ptr)
+static int SystemResourceEnumerator(uint64_t enum_handle, int64_t resource_ptr, int8_t **buffer_ptr)
 {
     // 简化实现：系统资源枚举功能
     // 实际实现包含资源枚举和缓冲区管理

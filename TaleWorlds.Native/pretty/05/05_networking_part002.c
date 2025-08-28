@@ -55,7 +55,7 @@ typedef struct {
 } network_config_t;
 
 // 函数别名定义
-typedef int (*network_data_processor_t)(longlong data_ptr, longlong buffer, int length);
+typedef int (*network_data_processor_t)(int64_t data_ptr, int64_t buffer, int length);
 typedef void (*network_message_formatter_t)(void* target, uint32_t message_id, uint32_t param);
 typedef int (*network_connection_validator_t)(void* connection, int mode);
 
@@ -72,13 +72,13 @@ void process_network_connection_init(uint64_t connection_handle)
     int result;
     byte stack_buffer[32];                     // 栈缓冲区
     byte* buffer_ptr;                          // 缓冲区指针
-    longlong connection_info[2];               // 连接信息数组
+    int64_t connection_info[2];               // 连接信息数组
     void* format_pointers[2];                  // 格式指针数组
     byte large_buffer[NETWORK_BUFFER_SIZE];    // 大缓冲区
-    ulonglong stack_guard;                     // 栈保护变量
+    uint64_t stack_guard;                     // 栈保护变量
     
     // 初始化栈保护
-    stack_guard = *(ulonglong*)0x180bf00a8 ^ (ulonglong)stack_buffer;
+    stack_guard = *(uint64_t*)0x180bf00a8 ^ (uint64_t)stack_buffer;
     
     // 获取连接信息
     result = func_0x00018088c590(connection_handle, connection_info);
@@ -94,7 +94,7 @@ void process_network_connection_init(uint64_t connection_handle)
         result = FUN_18088e0f0(*(uint64_t*)(connection_info[0] + 0x98), 1);
         if (result == 0) {
             // 检查是否有活动数据
-            if (*(int*)(*(longlong*)(connection_info[0] + 0x98) + 0x200) != 0) {
+            if (*(int*)(*(int64_t*)(connection_info[0] + 0x98) + 0x200) != 0) {
                 connection_info[1] = 0;
                 result = FUN_18088c740(connection_info + 1);
                 
@@ -117,7 +117,7 @@ void process_network_connection_init(uint64_t connection_handle)
     }
     
     // 检查是否需要详细错误报告
-    if ((*(byte*)(*(ulonglong*)0x180be12f0 + 0x10) & 0x80) != 0) {
+    if ((*(byte*)(*(uint64_t*)0x180be12f0 + 0x10) & 0x80) != 0) {
         buffer_ptr = large_buffer;
         large_buffer[0] = 0;
         // 注意：此子函数不返回
@@ -126,13 +126,13 @@ void process_network_connection_init(uint64_t connection_handle)
 
 success_handler:
     // 注意：此子函数不返回
-    FUN_1808fc050(stack_guard ^ (ulonglong)stack_buffer);
+    FUN_1808fc050(stack_guard ^ (uint64_t)stack_buffer);
     return;
 
 error_handler:
     if (result == 0) goto success_handler;
     // 错误处理逻辑
-    FUN_1808fc050(stack_guard ^ (ulonglong)stack_buffer);
+    FUN_1808fc050(stack_guard ^ (uint64_t)stack_buffer);
 }
 
 /**
@@ -145,7 +145,7 @@ error_handler:
  * @param length 数据长度
  * @return 处理后的数据总长度
  */
-int process_basic_network_data(longlong data_ptr, longlong buffer, int length)
+int process_basic_network_data(int64_t data_ptr, int64_t buffer, int length)
 {
     uint32_t header_field1;
     int processed_length;
@@ -183,7 +183,7 @@ void format_network_message_basic(void* target, uint32_t message_id, uint32_t pa
  * @param length 数据长度
  * @return 处理后的数据总长度
  */
-int process_extended_network_data(longlong data_ptr, longlong buffer, int length)
+int process_extended_network_data(int64_t data_ptr, int64_t buffer, int length)
 {
     uint32_t field1, field2, field3, field4;
     uint32_t header_field, tail_field;
@@ -228,13 +228,13 @@ int process_extended_network_data(longlong data_ptr, longlong buffer, int length
  * @param length 数据长度
  * @return 处理后的数据总长度
  */
-int process_64bit_network_data(longlong data_ptr, longlong buffer, int length)
+int process_64bit_network_data(int64_t data_ptr, int64_t buffer, int length)
 {
-    ulonglong extended_field;
+    uint64_t extended_field;
     int processed_length;
     int remaining_length;
     
-    extended_field = *(ulonglong*)(data_ptr + 0x18);
+    extended_field = *(uint64_t*)(data_ptr + 0x18);
     processed_length = func_0x00018074b800(buffer, length, *(uint*)(data_ptr + 0x10));
     remaining_length = FUN_18074b880(buffer + processed_length, length - processed_length, NETWORK_SEPARATOR);
     processed_length += remaining_length;
@@ -252,7 +252,7 @@ int process_64bit_network_data(longlong data_ptr, longlong buffer, int length)
  * @param length 数据长度
  * @return 处理后的数据总长度
  */
-int process_byte_network_data(longlong data_ptr, longlong buffer, int length)
+int process_byte_network_data(int64_t data_ptr, int64_t buffer, int length)
 {
     byte byte_field;
     int processed_length;
@@ -276,7 +276,7 @@ int process_byte_network_data(longlong data_ptr, longlong buffer, int length)
  * @param length 数据长度
  * @return 处理后的数据总长度
  */
-int process_standard_network_data(longlong data_ptr, longlong buffer, int length)
+int process_standard_network_data(int64_t data_ptr, int64_t buffer, int length)
 {
     uint32_t standard_field;
     int processed_length;
@@ -300,7 +300,7 @@ int process_standard_network_data(longlong data_ptr, longlong buffer, int length
  * @param length 数据长度
  * @return 处理后的数据总长度
  */
-int process_dual_field_network_data(longlong data_ptr, longlong buffer, int length)
+int process_dual_field_network_data(int64_t data_ptr, int64_t buffer, int length)
 {
     uint32_t field1, field2;
     int processed_length;
@@ -329,7 +329,7 @@ int process_dual_field_network_data(longlong data_ptr, longlong buffer, int leng
  * @param length 数据长度
  * @return 处理后的数据总长度
  */
-int process_mixed_field_network_data(longlong data_ptr, longlong buffer, int length)
+int process_mixed_field_network_data(int64_t data_ptr, int64_t buffer, int length)
 {
     uint32_t field1, field2;
     int processed_length;
@@ -358,15 +358,15 @@ int process_mixed_field_network_data(longlong data_ptr, longlong buffer, int len
  * @param length 数据长度
  * @return 处理后的数据总长度
  */
-int process_complex_network_data(longlong data_ptr, longlong buffer, int length)
+int process_complex_network_data(int64_t data_ptr, int64_t buffer, int length)
 {
     int result1, result2;
-    ulonglong extended_data[2];
+    uint64_t extended_data[2];
     uint32_t extended_fields[10];
     
     // 提取复杂数据结构
-    extended_data[0] = *(ulonglong*)(data_ptr + 0x18);
-    extended_data[1] = *(ulonglong*)(data_ptr + 0x20);
+    extended_data[0] = *(uint64_t*)(data_ptr + 0x18);
+    extended_data[1] = *(uint64_t*)(data_ptr + 0x20);
     extended_fields[0] = *(uint*)(data_ptr + 0x28);
     extended_fields[1] = *(uint*)(data_ptr + 0x2c);
     extended_fields[2] = *(uint*)(data_ptr + 0x30);
@@ -396,7 +396,7 @@ int process_complex_network_data(longlong data_ptr, longlong buffer, int length)
  * @param length 数据长度
  * @return 处理后的数据总长度
  */
-int process_simple_network_data(longlong data_ptr, longlong buffer, int length)
+int process_simple_network_data(int64_t data_ptr, int64_t buffer, int length)
 {
     uint32_t data_field;
     int processed_length;
@@ -420,15 +420,15 @@ int process_simple_network_data(longlong data_ptr, longlong buffer, int length)
  * @param length 数据长度
  * @return 处理后的数据总长度
  */
-int process_mixed_type_network_data(longlong data_ptr, longlong buffer, int length)
+int process_mixed_type_network_data(int64_t data_ptr, int64_t buffer, int length)
 {
     uint32_t field1, field2;
     byte flag_byte;
     int processed_length;
     int remaining_length;
-    ulonglong extended_field;
+    uint64_t extended_field;
     
-    extended_field = *(ulonglong*)(data_ptr + 0x18);
+    extended_field = *(uint64_t*)(data_ptr + 0x18);
     flag_byte = *(byte*)(data_ptr + 0x24);
     field1 = *(uint*)(data_ptr + 0x20);
     
@@ -458,14 +458,14 @@ int process_mixed_type_network_data(longlong data_ptr, longlong buffer, int leng
  * @param length 数据长度
  * @return 处理后的数据总长度
  */
-int process_dynamic_field_network_data(longlong data_ptr, longlong buffer, int length)
+int process_dynamic_field_network_data(int64_t data_ptr, int64_t buffer, int length)
 {
     byte flag_byte;
     int processed_length;
     int remaining_length;
-    ulonglong extended_field;
+    uint64_t extended_field;
     
-    extended_field = *(ulonglong*)(data_ptr + 0x18);
+    extended_field = *(uint64_t*)(data_ptr + 0x18);
     flag_byte = *(byte*)(data_ptr + 0x24);
     
     processed_length = func_0x00018074b800(buffer, length, *(uint*)(data_ptr + 0x10));
@@ -494,7 +494,7 @@ int process_dynamic_field_network_data(longlong data_ptr, longlong buffer, int l
  * @param length 数据长度
  * @return 处理后的数据总长度
  */
-int process_multi_segment_network_data(longlong data_ptr, longlong buffer, int length)
+int process_multi_segment_network_data(int64_t data_ptr, int64_t buffer, int length)
 {
     uint32_t field1;
     byte flag_byte;
@@ -530,7 +530,7 @@ int process_multi_segment_network_data(longlong data_ptr, longlong buffer, int l
  * @param length 数据长度
  * @return 处理后的数据总长度
  */
-int process_extended_multi_segment_network_data(longlong data_ptr, longlong buffer, int length)
+int process_extended_multi_segment_network_data(int64_t data_ptr, int64_t buffer, int length)
 {
     byte flag_byte;
     int processed_length;
@@ -564,7 +564,7 @@ int process_extended_multi_segment_network_data(longlong data_ptr, longlong buff
  * @param length 数据长度
  * @return 处理后的数据总长度
  */
-int process_combined_field_network_data(longlong data_ptr, longlong buffer, int length)
+int process_combined_field_network_data(int64_t data_ptr, int64_t buffer, int length)
 {
     uint32_t field1, field2;
     int processed_length;
@@ -595,7 +595,7 @@ int process_combined_field_network_data(longlong data_ptr, longlong buffer, int 
  * @param length 数据长度
  * @return 处理后的数据总长度
  */
-int process_quad_field_network_data(longlong data_ptr, longlong buffer, int length)
+int process_quad_field_network_data(int64_t data_ptr, int64_t buffer, int length)
 {
     uint32_t field1, tail_field;
     int processed_length;
@@ -626,7 +626,7 @@ int process_quad_field_network_data(longlong data_ptr, longlong buffer, int leng
  * @param length 数据长度
  * @return 处理后的数据总长度
  */
-int process_dual_validation_network_data(longlong data_ptr, longlong buffer, int length)
+int process_dual_validation_network_data(int64_t data_ptr, int64_t buffer, int length)
 {
     uint32_t validation_field;
     int processed_length;
@@ -652,7 +652,7 @@ int process_dual_validation_network_data(longlong data_ptr, longlong buffer, int
  * @param length 数据长度
  * @return 处理后的数据总长度
  */
-int process_mixed_validation_network_data(longlong data_ptr, longlong buffer, int length)
+int process_mixed_validation_network_data(int64_t data_ptr, int64_t buffer, int length)
 {
     uint32_t validation_field;
     int processed_length;
@@ -678,19 +678,19 @@ int process_mixed_validation_network_data(longlong data_ptr, longlong buffer, in
  * @param length 数据长度
  * @return 处理后的数据总长度
  */
-int process_complex_structure_network_data(longlong data_ptr, longlong buffer, int length)
+int process_complex_structure_network_data(int64_t data_ptr, int64_t buffer, int length)
 {
     uint32_t field1, field2;
     int processed_length;
     int remaining_length;
-    ulonglong extended_data[4];
+    uint64_t extended_data[4];
     uint32_t extended_fields[4];
     
-    extended_data[0] = *(ulonglong*)(data_ptr + 0x10);
-    extended_data[1] = *(ulonglong*)(data_ptr + 0x18);
+    extended_data[0] = *(uint64_t*)(data_ptr + 0x10);
+    extended_data[1] = *(uint64_t*)(data_ptr + 0x18);
     field1 = *(uint*)(data_ptr + 0x4c);
-    extended_data[2] = *(ulonglong*)(data_ptr + 0x20);
-    extended_data[3] = *(ulonglong*)(data_ptr + 0x28);
+    extended_data[2] = *(uint64_t*)(data_ptr + 0x20);
+    extended_data[3] = *(uint64_t*)(data_ptr + 0x28);
     field2 = *(uint*)(data_ptr + 0x48);
     extended_fields[0] = *(uint*)(data_ptr + 0x30);
     extended_fields[1] = *(uint*)(data_ptr + 0x34);
@@ -719,7 +719,7 @@ int process_complex_structure_network_data(longlong data_ptr, longlong buffer, i
  * @param length 数据长度
  * @return 处理后的数据总长度
  */
-int process_custom_format_network_data(longlong data_ptr, longlong buffer, int length)
+int process_custom_format_network_data(int64_t data_ptr, int64_t buffer, int length)
 {
     uint32_t format_field1, format_field2;
     int processed_length;
@@ -750,7 +750,7 @@ int process_custom_format_network_data(longlong data_ptr, longlong buffer, int l
  * @param length 数据长度
  * @return 处理后的数据总长度
  */
-int process_multi_layer_network_data(longlong data_ptr, longlong buffer, int length)
+int process_multi_layer_network_data(int64_t data_ptr, int64_t buffer, int length)
 {
     uint32_t field1, field2, field3, field4;
     int processed_length;
@@ -761,7 +761,7 @@ int process_multi_layer_network_data(longlong data_ptr, longlong buffer, int len
     field3 = *(uint*)(data_ptr + 0x1c);
     field4 = *(uint*)(data_ptr + 0x18);
     
-    processed_length = func_0x00018074bda0(buffer, length, *(ulonglong*)(data_ptr + 0x10));
+    processed_length = func_0x00018074bda0(buffer, length, *(uint64_t*)(data_ptr + 0x10));
     remaining_length = FUN_18074b880(buffer + processed_length, length - processed_length, NETWORK_SEPARATOR);
     processed_length += remaining_length;
     remaining_length = func_0x00018074b7d0(processed_length + buffer, length - processed_length, field4);
@@ -791,22 +791,22 @@ int process_multi_layer_network_data(longlong data_ptr, longlong buffer, int len
  * @param length 数据长度
  * @return 处理后的数据总长度
  */
-int process_advanced_network_data(longlong data_ptr, longlong buffer, int length)
+int process_advanced_network_data(int64_t data_ptr, int64_t buffer, int length)
 {
     byte compression_flag;
     int processed_length;
     int remaining_length;
-    ulonglong compression_data[2];
+    uint64_t compression_data[2];
     uint32_t compression_fields[8];
     
-    compression_data[0] = *(ulonglong*)(data_ptr + 0x44);
+    compression_data[0] = *(uint64_t*)(data_ptr + 0x44);
     compression_fields[0] = *(uint*)(data_ptr + 0x24);
     compression_fields[1] = *(uint*)(data_ptr + 0x28);
     compression_fields[2] = *(uint*)(data_ptr + 0x2c);
     compression_fields[3] = *(uint*)(data_ptr + 0x30);
     compression_fields[4] = *(uint*)(data_ptr + 0x4c);
     compression_flag = *(byte*)(data_ptr + 0x50);
-    compression_data[1] = *(ulonglong*)(data_ptr + 0x14);
+    compression_data[1] = *(uint64_t*)(data_ptr + 0x14);
     compression_fields[5] = *(uint*)(data_ptr + 0x34);
     compression_fields[6] = *(uint*)(data_ptr + 0x38);
     compression_fields[7] = *(uint*)(data_ptr + 0x3c);
@@ -837,7 +837,7 @@ int process_advanced_network_data(longlong data_ptr, longlong buffer, int length
  * @param length 数据长度
  * @return 处理后的数据总长度
  */
-int process_standardized_network_data(longlong data_ptr, longlong buffer, int length)
+int process_standardized_network_data(int64_t data_ptr, int64_t buffer, int length)
 {
     uint32_t standard_field;
     int processed_length;
@@ -863,15 +863,15 @@ int process_standardized_network_data(longlong data_ptr, longlong buffer, int le
  * @param length 数据长度
  * @return 处理后的数据总长度
  */
-int process_extended_validation_network_data(longlong data_ptr, longlong buffer, int length)
+int process_extended_validation_network_data(int64_t data_ptr, int64_t buffer, int length)
 {
     uint32_t field1;
     byte flag_byte;
     int processed_length;
     int remaining_length;
-    ulonglong extended_field;
+    uint64_t extended_field;
     
-    extended_field = *(ulonglong*)(data_ptr + 0x10);
+    extended_field = *(uint64_t*)(data_ptr + 0x10);
     flag_byte = *(byte*)(data_ptr + 0x1c);
     field1 = *(uint*)(data_ptr + 0x18);
     
@@ -897,14 +897,14 @@ int process_extended_validation_network_data(longlong data_ptr, longlong buffer,
  * @param length 数据长度
  * @return 处理后的数据总长度
  */
-int process_dynamic_validation_network_data(longlong data_ptr, longlong buffer, int length)
+int process_dynamic_validation_network_data(int64_t data_ptr, int64_t buffer, int length)
 {
     byte flag_byte;
     int processed_length;
     int remaining_length;
-    ulonglong extended_field;
+    uint64_t extended_field;
     
-    extended_field = *(ulonglong*)(data_ptr + 0x10);
+    extended_field = *(uint64_t*)(data_ptr + 0x10);
     flag_byte = *(byte*)(data_ptr + 0x1c);
     
     processed_length = FUN_18088ece0(buffer, length, &extended_field);
@@ -929,7 +929,7 @@ int process_dynamic_validation_network_data(longlong data_ptr, longlong buffer, 
  * @param length 数据长度
  * @return 处理后的数据总长度
  */
-int process_smart_routing_network_data(longlong data_ptr, longlong buffer, int length)
+int process_smart_routing_network_data(int64_t data_ptr, int64_t buffer, int length)
 {
     uint32_t field1;
     byte flag_byte;
@@ -961,7 +961,7 @@ int process_smart_routing_network_data(longlong data_ptr, longlong buffer, int l
  * @param length 数据长度
  * @return 处理后的数据总长度
  */
-int process_adaptive_routing_network_data(longlong data_ptr, longlong buffer, int length)
+int process_adaptive_routing_network_data(int64_t data_ptr, int64_t buffer, int length)
 {
     byte flag_byte;
     int processed_length;
@@ -1020,7 +1020,7 @@ void format_network_message_custom_2(void* target, uint32_t message_id, uint32_t
  * @param length 数据长度
  * @return 处理后的数据总长度
  */
-int process_custom_format_v1_network_data(longlong data_ptr, longlong buffer, int length)
+int process_custom_format_v1_network_data(int64_t data_ptr, int64_t buffer, int length)
 {
     uint32_t field1, field2, field3;
     int processed_length;
@@ -1094,7 +1094,7 @@ void format_network_message_alt_2(void* target, uint32_t message_id, uint32_t pa
  * @param length 数据长度
  * @return 处理后的数据总长度
  */
-int process_custom_format_v2_network_data(longlong data_ptr, longlong buffer, int length)
+int process_custom_format_v2_network_data(int64_t data_ptr, int64_t buffer, int length)
 {
     uint32_t field1, field2, field3;
     int processed_length;
@@ -1173,40 +1173,40 @@ void format_network_message_alt_5(void* target, uint32_t message_id, uint32_t pa
 
 // 函数别名定义 - 保持向后兼容性
 void FUN_180840c00(uint64_t param_1) { process_network_connection_init(param_1); }
-int FUN_180840d60(longlong param_1, longlong param_2, int param_3) { return process_basic_network_data(param_1, param_2, param_3); }
-void FUN_180840dd0(longlong param_1, uint64_t param_2, int32_t param_3) { format_network_message_basic(param_1, param_2, param_3); }
-int FUN_180840e00(longlong param_1, longlong param_2, int param_3) { return process_extended_network_data(param_1, param_2, param_3); }
-int FUN_180840f10(longlong param_1, longlong param_2, int param_3) { return process_64bit_network_data(param_1, param_2, param_3); }
-int FUN_180840f80(longlong param_1, longlong param_2, int param_3) { return process_byte_network_data(param_1, param_2, param_3); }
-int FUN_180840ff0(longlong param_1, longlong param_2, int param_3) { return process_standard_network_data(param_1, param_2, param_3); }
-int FUN_180841060(longlong param_1, longlong param_2, int param_3) { return process_dual_field_network_data(param_1, param_2, param_3); }
-int FUN_1808410d0(longlong param_1, longlong param_2, int param_3) { return process_mixed_field_network_data(param_1, param_2, param_3); }
-int FUN_180841180(longlong param_1, longlong param_2, int param_3) { return process_complex_network_data(param_1, param_2, param_3); }
-int FUN_180841230(longlong param_1, longlong param_2, int param_3) { return process_simple_network_data(param_1, param_2, param_3); }
-int FUN_1808412b0(longlong param_1, longlong param_2, int param_3) { return process_mixed_type_network_data(param_1, param_2, param_3); }
-int FUN_180841320(longlong param_1, longlong param_2, int param_3) { return process_dynamic_field_network_data(param_1, param_2, param_3); }
-int FUN_180841410(longlong param_1, longlong param_2, int param_3) { return process_multi_segment_network_data(param_1, param_2, param_3); }
-int FUN_1808414f0(longlong param_1, longlong param_2, int param_3) { return process_extended_multi_segment_network_data(param_1, param_2, param_3); }
-int FUN_1808415e0(longlong param_1, longlong param_2, int param_3) { return process_combined_field_network_data(param_1, param_2, param_3); }
-int FUN_1808416d0(longlong param_1, longlong param_2, int param_3) { return process_quad_field_network_data(param_1, param_2, param_3); }
-int FUN_180841790(longlong param_1, longlong param_2, int param_3) { return process_dual_validation_network_data(param_1, param_2, param_3); }
-int FUN_180841830(longlong param_1, longlong param_2, int param_3) { return process_mixed_validation_network_data(param_1, param_2, param_3); }
-int FUN_1808418a0(longlong param_1, longlong param_2, int param_3) { return process_complex_structure_network_data(param_1, param_2, param_3); }
-int FUN_180841910(longlong param_1, longlong param_2, int param_3) { return process_custom_format_network_data(param_1, param_2, param_3); }
-int FUN_1808419e0(longlong param_1, longlong param_2, int param_3) { return process_multi_layer_network_data(param_1, param_2, param_3); }
-int FUN_180841a90(longlong param_1, longlong param_2, int param_3) { return process_advanced_network_data(param_1, param_2, param_3); }
-int FUN_180841bc0(longlong param_1, longlong param_2, int param_3) { return process_standardized_network_data(param_1, param_2, param_3); }
-int FUN_180841cc0(longlong param_1, longlong param_2, int param_3) { return process_extended_validation_network_data(param_1, param_2, param_3); }
-int FUN_180841d30(longlong param_1, longlong param_2, int param_3) { return process_dynamic_validation_network_data(param_1, param_2, param_3); }
-int FUN_180841df0(longlong param_1, longlong param_2, int param_3) { return process_smart_routing_network_data(param_1, param_2, param_3); }
-int FUN_180841ea0(longlong param_1, longlong param_2, int param_3) { return process_adaptive_routing_network_data(param_1, param_2, param_3); }
-int FUN_180841f50(longlong param_1, longlong param_2, int param_3) { return process_adaptive_routing_network_data(param_1, param_2, param_3); }
-void FUN_180842030(longlong param_1, uint64_t param_2, int32_t param_3) { format_network_message_custom_1(param_1, param_2, param_3); }
-void FUN_180842060(longlong param_1, uint64_t param_2, int32_t param_3) { format_network_message_custom_2(param_1, param_2, param_3); }
-int FUN_1808420a0(longlong param_1, longlong param_2, int param_3) { return process_custom_format_v1_network_data(param_1, param_2, param_3); }
-void FUN_1808421c0(longlong param_1, uint64_t param_2, int32_t param_3) { format_network_message_alt_1(param_1, param_2, param_3); }
-void FUN_1808421f0(longlong param_1, uint64_t param_2, int32_t param_3) { format_network_message_alt_2(param_1, param_2, param_3); }
-int FUN_180842230(longlong param_1, longlong param_2, int param_3) { return process_custom_format_v2_network_data(param_1, param_2, param_3); }
-void FUN_180842350(longlong param_1, uint64_t param_2, int32_t param_3) { format_network_message_alt_3(param_1, param_2, param_3); }
-void FUN_180842380(longlong param_1, uint64_t param_2, int32_t param_3) { format_network_message_alt_4(param_1, param_2, param_3); }
-void FUN_1808423b0(longlong param_1, uint64_t param_2, int32_t param_3) { format_network_message_alt_5(param_1, param_2, param_3); }
+int FUN_180840d60(int64_t param_1, int64_t param_2, int param_3) { return process_basic_network_data(param_1, param_2, param_3); }
+void FUN_180840dd0(int64_t param_1, uint64_t param_2, int32_t param_3) { format_network_message_basic(param_1, param_2, param_3); }
+int FUN_180840e00(int64_t param_1, int64_t param_2, int param_3) { return process_extended_network_data(param_1, param_2, param_3); }
+int FUN_180840f10(int64_t param_1, int64_t param_2, int param_3) { return process_64bit_network_data(param_1, param_2, param_3); }
+int FUN_180840f80(int64_t param_1, int64_t param_2, int param_3) { return process_byte_network_data(param_1, param_2, param_3); }
+int FUN_180840ff0(int64_t param_1, int64_t param_2, int param_3) { return process_standard_network_data(param_1, param_2, param_3); }
+int FUN_180841060(int64_t param_1, int64_t param_2, int param_3) { return process_dual_field_network_data(param_1, param_2, param_3); }
+int FUN_1808410d0(int64_t param_1, int64_t param_2, int param_3) { return process_mixed_field_network_data(param_1, param_2, param_3); }
+int FUN_180841180(int64_t param_1, int64_t param_2, int param_3) { return process_complex_network_data(param_1, param_2, param_3); }
+int FUN_180841230(int64_t param_1, int64_t param_2, int param_3) { return process_simple_network_data(param_1, param_2, param_3); }
+int FUN_1808412b0(int64_t param_1, int64_t param_2, int param_3) { return process_mixed_type_network_data(param_1, param_2, param_3); }
+int FUN_180841320(int64_t param_1, int64_t param_2, int param_3) { return process_dynamic_field_network_data(param_1, param_2, param_3); }
+int FUN_180841410(int64_t param_1, int64_t param_2, int param_3) { return process_multi_segment_network_data(param_1, param_2, param_3); }
+int FUN_1808414f0(int64_t param_1, int64_t param_2, int param_3) { return process_extended_multi_segment_network_data(param_1, param_2, param_3); }
+int FUN_1808415e0(int64_t param_1, int64_t param_2, int param_3) { return process_combined_field_network_data(param_1, param_2, param_3); }
+int FUN_1808416d0(int64_t param_1, int64_t param_2, int param_3) { return process_quad_field_network_data(param_1, param_2, param_3); }
+int FUN_180841790(int64_t param_1, int64_t param_2, int param_3) { return process_dual_validation_network_data(param_1, param_2, param_3); }
+int FUN_180841830(int64_t param_1, int64_t param_2, int param_3) { return process_mixed_validation_network_data(param_1, param_2, param_3); }
+int FUN_1808418a0(int64_t param_1, int64_t param_2, int param_3) { return process_complex_structure_network_data(param_1, param_2, param_3); }
+int FUN_180841910(int64_t param_1, int64_t param_2, int param_3) { return process_custom_format_network_data(param_1, param_2, param_3); }
+int FUN_1808419e0(int64_t param_1, int64_t param_2, int param_3) { return process_multi_layer_network_data(param_1, param_2, param_3); }
+int FUN_180841a90(int64_t param_1, int64_t param_2, int param_3) { return process_advanced_network_data(param_1, param_2, param_3); }
+int FUN_180841bc0(int64_t param_1, int64_t param_2, int param_3) { return process_standardized_network_data(param_1, param_2, param_3); }
+int FUN_180841cc0(int64_t param_1, int64_t param_2, int param_3) { return process_extended_validation_network_data(param_1, param_2, param_3); }
+int FUN_180841d30(int64_t param_1, int64_t param_2, int param_3) { return process_dynamic_validation_network_data(param_1, param_2, param_3); }
+int FUN_180841df0(int64_t param_1, int64_t param_2, int param_3) { return process_smart_routing_network_data(param_1, param_2, param_3); }
+int FUN_180841ea0(int64_t param_1, int64_t param_2, int param_3) { return process_adaptive_routing_network_data(param_1, param_2, param_3); }
+int FUN_180841f50(int64_t param_1, int64_t param_2, int param_3) { return process_adaptive_routing_network_data(param_1, param_2, param_3); }
+void FUN_180842030(int64_t param_1, uint64_t param_2, int32_t param_3) { format_network_message_custom_1(param_1, param_2, param_3); }
+void FUN_180842060(int64_t param_1, uint64_t param_2, int32_t param_3) { format_network_message_custom_2(param_1, param_2, param_3); }
+int FUN_1808420a0(int64_t param_1, int64_t param_2, int param_3) { return process_custom_format_v1_network_data(param_1, param_2, param_3); }
+void FUN_1808421c0(int64_t param_1, uint64_t param_2, int32_t param_3) { format_network_message_alt_1(param_1, param_2, param_3); }
+void FUN_1808421f0(int64_t param_1, uint64_t param_2, int32_t param_3) { format_network_message_alt_2(param_1, param_2, param_3); }
+int FUN_180842230(int64_t param_1, int64_t param_2, int param_3) { return process_custom_format_v2_network_data(param_1, param_2, param_3); }
+void FUN_180842350(int64_t param_1, uint64_t param_2, int32_t param_3) { format_network_message_alt_3(param_1, param_2, param_3); }
+void FUN_180842380(int64_t param_1, uint64_t param_2, int32_t param_3) { format_network_message_alt_4(param_1, param_2, param_3); }
+void FUN_1808423b0(int64_t param_1, uint64_t param_2, int32_t param_3) { format_network_message_alt_5(param_1, param_2, param_3); }

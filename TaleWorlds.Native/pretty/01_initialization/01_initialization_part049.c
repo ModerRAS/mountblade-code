@@ -9,13 +9,13 @@
  * 
  * @param context 上下文指针，包含要清理的节点信息
  */
-void CleanupExceptionListNode(longlong context)
+void CleanupExceptionListNode(int64_t context)
 
 {
   int *refCount;
   void **nodePtr;
-  longlong nodeBase;
-  ulonglong pageBase;
+  int64_t nodeBase;
+  uint64_t pageBase;
   
   // 获取要清理的节点指针
   nodePtr = *(void ***)(context + 0x28);
@@ -24,10 +24,10 @@ void CleanupExceptionListNode(longlong context)
   }
   
   // 计算页面基址和节点位置
-  pageBase = (ulonglong)nodePtr & 0xffffffffffc00000;
+  pageBase = (uint64_t)nodePtr & 0xffffffffffc00000;
   if (pageBase != 0) {
-    nodeBase = pageBase + 0x80 + ((longlong)nodePtr - pageBase >> 0x10) * 0x50;
-    nodeBase = nodeBase - (ulonglong)*(uint *)(nodeBase + 4);
+    nodeBase = pageBase + 0x80 + ((int64_t)nodePtr - pageBase >> 0x10) * 0x50;
+    nodeBase = nodeBase - (uint64_t)*(uint *)(nodeBase + 4);
     
     // 检查是否是有效的异常列表节点
     if ((*(void ***)(pageBase + 0x70) == &ExceptionList) && (*(char *)(nodeBase + 0xe) == '\0')) {
@@ -68,8 +68,8 @@ void CleanupExceptionListNode(longlong context)
  * @param renderState 渲染状态指针，包含当前渲染的状态信息
  * @return 渲染结果状态码
  */
-ulonglong ProcessObjectRendering(longlong rendererContext, uint *materialParams, float *transformMatrix, longlong objectData,
-                       longlong renderState)
+uint64_t ProcessObjectRendering(int64_t rendererContext, uint *materialParams, float *transformMatrix, int64_t objectData,
+                       int64_t renderState)
 
 {
   // 矩阵运算相关变量
@@ -97,16 +97,16 @@ ulonglong ProcessObjectRendering(longlong rendererContext, uint *materialParams,
   
   // 主要变量
   uint64_t tempPointer;
-  ulonglong result;
+  uint64_t result;
   uint64_t *renderBuffer;
-  longlong objectContext;
-  longlong sceneContext;
+  int64_t objectContext;
+  int64_t sceneContext;
   int32_t *texturePtr;
   uint *counterPtr;
   byte visibilityFlags;
   char *dataBuffer;
   int frameIndex;
-  ulonglong bufferOffset;
+  uint64_t bufferOffset;
   uint *bufferPtr;
   bool isAllocated;
   
@@ -114,11 +114,11 @@ ulonglong ProcessObjectRendering(longlong rendererContext, uint *materialParams,
   int32_t tempStack[2];
   uint *materialParamsPtr;
   float *transformMatrixPtr;
-  longlong objectDataPtr;
+  int64_t objectDataPtr;
   int32_t defaultParams[2];
-  ulonglong bufferSize;
+  uint64_t bufferSize;
   uint64_t *renderData[2];
-  longlong renderContext;
+  int64_t renderContext;
   uint64_t transformResult1;
   uint64_t transformResult2;
   uint64_t transformResult3;
@@ -165,7 +165,7 @@ ulonglong ProcessObjectRendering(longlong rendererContext, uint *materialParams,
   
   // 处理场景对象的渲染参数
   if ((char)*(byte *)(rendererContext + 0xfd) < '\0') {
-    objectContext = *(longlong *)(rendererContext + 0x1b8);
+    objectContext = *(int64_t *)(rendererContext + 0x1b8);
     tempPointer = *(uint64_t *)(objectContext + 0x290);
     *(uint64_t *)(rendererContext + 0x2a8) = *(uint64_t *)(objectContext + 0x288);
     *(uint64_t *)(rendererContext + 0x2b0) = tempPointer;
@@ -179,7 +179,7 @@ ulonglong ProcessObjectRendering(longlong rendererContext, uint *materialParams,
   }
   
   // 检查材质标志是否匹配
-  result = (ulonglong)*(uint *)(rendererContext + 0x270);
+  result = (uint64_t)*(uint *)(rendererContext + 0x270);
   if ((*materialParams & *(uint *)(rendererContext + 0x270)) == 0) goto skip_rendering;
   
   visibilityFlags = *(byte *)(rendererContext + 0xfd) & 0x20;
@@ -192,7 +192,7 @@ ulonglong ProcessObjectRendering(longlong rendererContext, uint *materialParams,
   if (*(int *)(objectContext + 0x200) == 0) {
 check_visibility:
     if ((*(byte *)(rendererContext + 0x100) & 4) != 0) goto prepare_rendering;
-    objectContext = *(longlong *)(rendererContext + 0x1b8);
+    objectContext = *(int64_t *)(rendererContext + 0x1b8);
     result = 0;
     if (*(char *)(objectContext + 0x38c) == '\t') {
       result = func_0x00018022d300();
@@ -217,22 +217,22 @@ prepare_rendering:
         tempPointer = FUN_180077420(rendererContext, materialParams);
         visibilityFlags = (char)tempPointer << 2;
         stateFlags = visibilityFlags | *(byte *)(rendererContext + 0xfe) & 0xfb;
-        result = CONCAT71((int7)((ulonglong)tempPointer >> 8), stateFlags);
+        result = CONCAT71((int7)((uint64_t)tempPointer >> 8), stateFlags);
         *(byte *)(rendererContext + 0xfe) = stateFlags;
         if ((visibilityFlags & 4) == 0) goto skip_rendering;
       }
       
       // 处理渲染队列
-      materialFlags = *(uint *)(*(longlong *)(rendererContext + 0x1b8) + 0x388);
+      materialFlags = *(uint *)(*(int64_t *)(rendererContext + 0x1b8) + 0x388);
       if (((materialFlags >> 0x19 & 1) != 0) ||
-         ((*(longlong *)(rendererContext + 600) != 0 && (0 < *(int *)(*(longlong *)(rendererContext + 600) + 0x1c)))
+         ((*(int64_t *)(rendererContext + 600) != 0 && (0 < *(int *)(*(int64_t *)(rendererContext + 600) + 0x1c)))
          )) {
         frameIndex = *(int *)(system_main_module_state + 0x224);
         renderBuffer = *(uint64_t **)(rendererContext + 600);
         if (renderBuffer == (uint64_t *)0x0) {
           // 初始化渲染缓冲区
           renderBuffer = (uint64_t *)FUN_18062b1e0(system_memory_pool_ptr, 0x58, 8, 3);
-          *(uint64_t *)((longlong)renderBuffer + 0x2c) = 0xffffffffffffffff;
+          *(uint64_t *)((int64_t)renderBuffer + 0x2c) = 0xffffffffffffffff;
           *(int32_t *)(renderBuffer + 9) = 0xffffffff;
           *renderBuffer = 0;
           renderBuffer[2] = 0;
@@ -242,8 +242,8 @@ prepare_rendering:
           renderBuffer[3] = 0;
           *(int32_t *)(renderBuffer + 8) = 0;
           *(int32_t *)(renderBuffer + 1) = 0;
-          *(int8_t *)((longlong)renderBuffer + 0x44) = 0;
-          *(int8_t *)((longlong)renderBuffer + 0x24) = 0;
+          *(int8_t *)((int64_t)renderBuffer + 0x44) = 0;
+          *(int8_t *)((int64_t)renderBuffer + 0x24) = 0;
           *(uint64_t **)(rendererContext + 600) = renderBuffer;
         }
         
@@ -259,32 +259,32 @@ prepare_rendering:
             
             // 处理渲染批处理
             renderContext = system_parameter_buffer + 0x5868;
-            counterPtr = (uint *)((longlong)*(int *)(system_parameter_buffer + 0x6a78) * 0x908 + renderContext);
+            counterPtr = (uint *)((int64_t)*(int *)(system_parameter_buffer + 0x6a78) * 0x908 + renderContext);
             LOCK();
             materialFlags = *counterPtr;
             *counterPtr = *counterPtr + 1;
             UNLOCK();
-            result = (ulonglong)(materialFlags >> 9);
-            bufferOffset = (ulonglong)(materialFlags >> 9);
-            dataBuffer = (char *)((longlong)counterPtr + bufferOffset + 0x808);
+            result = (uint64_t)(materialFlags >> 9);
+            bufferOffset = (uint64_t)(materialFlags >> 9);
+            dataBuffer = (char *)((int64_t)counterPtr + bufferOffset + 0x808);
             bufferPtr = counterPtr + (result + 1) * 2;
             bufferSize = result;
             
             // 分配渲染缓冲区
             do {
               frameIndex = (int)bufferOffset;
-              if (*(longlong *)bufferPtr == 0) {
+              if (*(int64_t *)bufferPtr == 0) {
                 objectContext = FUN_18062b420(system_memory_pool_ptr, 0xc000, 0x25);
                 LOCK();
-                isAllocated = *(longlong *)(counterPtr + (longlong)frameIndex * 2 + 2) == 0;
+                isAllocated = *(int64_t *)(counterPtr + (int64_t)frameIndex * 2 + 2) == 0;
                 if (isAllocated) {
-                  *(longlong *)(counterPtr + (longlong)frameIndex * 2 + 2) = objectContext;
+                  *(int64_t *)(counterPtr + (int64_t)frameIndex * 2 + 2) = objectContext;
                 }
                 UNLOCK();
                 if (isAllocated) {
                   FUN_1800e94a0(counterPtr, frameIndex << 9);
                   LOCK();
-                  *(int8_t *)((longlong)counterPtr + (longlong)frameIndex + 0x808) = 0;
+                  *(int8_t *)((int64_t)counterPtr + (int64_t)frameIndex + 0x808) = 0;
                   UNLOCK();
                   result = bufferSize;
                 }
@@ -303,15 +303,15 @@ prepare_rendering:
                 } while (*dataBuffer != '\0');
               }
               dataBuffer = dataBuffer + 1;
-              bufferOffset = (ulonglong)(frameIndex + 1);
+              bufferOffset = (uint64_t)(frameIndex + 1);
               bufferPtr = bufferPtr + 2;
-            } while ((longlong)(dataBuffer + (-0x808 - (longlong)counterPtr)) <= (longlong)result);
+            } while ((int64_t)(dataBuffer + (-0x808 - (int64_t)counterPtr)) <= (int64_t)result);
             
             // 获取渲染数据
             renderBuffer = (uint64_t *)
-                      (*(longlong *)
-                        ((longlong)*(int *)(renderContext + 0x1210) * 0x908 + renderContext + 8 +
-                        result * 8) + (ulonglong)(materialFlags - (materialFlags & 0xfffffe00)) * 0x60);
+                      (*(int64_t *)
+                        ((int64_t)*(int *)(renderContext + 0x1210) * 0x908 + renderContext + 8 +
+                        result * 8) + (uint64_t)(materialFlags - (materialFlags & 0xfffffe00)) * 0x60);
             objectContext = rendererContext;
             renderData[0] = renderBuffer;
             
@@ -319,7 +319,7 @@ prepare_rendering:
               objectContext = func_0x000180085de0(*(uint64_t *)(rendererContext + 0x1b0));
             }
             
-            sceneContext = *(longlong *)(rendererContext + 0x1b8);
+            sceneContext = *(int64_t *)(rendererContext + 0x1b8);
             visibilityFlags = *(byte *)(sceneContext + 0x38c);
             if (visibilityFlags == 9) {
               visibilityFlags = func_0x00018022d300();
@@ -327,20 +327,20 @@ prepare_rendering:
             }
             
             materialParams = materialParams;
-            objectContext = *(longlong *)(objectContext + 0x1e0);
-            *renderBuffer = *(uint64_t *)(objectContext + (ulonglong)visibilityFlags * 0x18);
-            renderBuffer[1] = *(uint64_t *)(objectContext + 8 + (ulonglong)visibilityFlags * 0x18);
+            objectContext = *(int64_t *)(objectContext + 0x1e0);
+            *renderBuffer = *(uint64_t *)(objectContext + (uint64_t)visibilityFlags * 0x18);
+            renderBuffer[1] = *(uint64_t *)(objectContext + 8 + (uint64_t)visibilityFlags * 0x18);
             
             // 设置渲染参数
             *(int32_t *)(renderData[0] + 2) =
-                 *(int32_t *)(*(longlong *)(rendererContext + 600) + 0x2c);
-            *(int32_t *)((longlong)renderData[0] + 0x14) =
-                 *(int32_t *)(*(longlong *)(rendererContext + 600) + 0x4c);
-            *(int *)(renderData[0] + 9) = (int)*(char *)(*(longlong *)(rendererContext + 600) + 0x44);
+                 *(int32_t *)(*(int64_t *)(rendererContext + 600) + 0x2c);
+            *(int32_t *)((int64_t)renderData[0] + 0x14) =
+                 *(int32_t *)(*(int64_t *)(rendererContext + 600) + 0x4c);
+            *(int *)(renderData[0] + 9) = (int)*(char *)(*(int64_t *)(rendererContext + 600) + 0x44);
             
             // 处理纹理参数
-            if ((*(longlong *)(rendererContext + 0x2d0) == 0) ||
-               (*(int *)(*(longlong *)(rendererContext + 0x2d0) + 0x14) == 0)) {
+            if ((*(int64_t *)(rendererContext + 0x2d0) == 0) ||
+               (*(int *)(*(int64_t *)(rendererContext + 0x2d0) + 0x14) == 0)) {
               tempValue = 0xffffffff;
             }
             else {
@@ -348,17 +348,17 @@ prepare_rendering:
             }
             *(int32_t *)(renderData[0] + 3) = tempValue;
             
-            if ((*(longlong *)(rendererContext + 0x2d0) == 0) ||
-               (*(int *)(*(longlong *)(rendererContext + 0x2d0) + 0x14) == 0)) {
+            if ((*(int64_t *)(rendererContext + 0x2d0) == 0) ||
+               (*(int *)(*(int64_t *)(rendererContext + 0x2d0) + 0x14) == 0)) {
               tempValue = 0xffffffff;
             }
             else {
               tempValue = *(int32_t *)(rendererContext + 0x10c);
             }
-            *(int32_t *)((longlong)renderData[0] + 0x1c) = tempValue;
+            *(int32_t *)((int64_t)renderData[0] + 0x1c) = tempValue;
             
-            if ((*(longlong *)(rendererContext + 0x2d0) == 0) ||
-               (*(int *)(*(longlong *)(rendererContext + 0x2d0) + 0x14) == 0)) {
+            if ((*(int64_t *)(rendererContext + 0x2d0) == 0) ||
+               (*(int *)(*(int64_t *)(rendererContext + 0x2d0) + 0x14) == 0)) {
               tempValue = 0xffffffff;
             }
             else {
@@ -367,7 +367,7 @@ prepare_rendering:
             *(int32_t *)(renderData[0] + 4) = tempValue;
             
             // 设置渲染标志
-            *(byte *)((longlong)renderData[0] + 0x4e) = *(byte *)(rendererContext + 0xfe) >> 3 & 1;
+            *(byte *)((int64_t)renderData[0] + 0x4e) = *(byte *)(rendererContext + 0xfe) >> 3 & 1;
             
             if (*(int *)(rendererContext + 0x108) != -1) {
               texturePtr = *(int32_t **)(rendererContext + 0x2d0);
@@ -375,35 +375,35 @@ prepare_rendering:
               renderState1 = texturePtr[2];
               renderState2 = texturePtr[3];
               *(int32_t *)(renderData[0] + 5) = *texturePtr;
-              *(int32_t *)((longlong)renderData[0] + 0x2c) = tempValue;
+              *(int32_t *)((int64_t)renderData[0] + 0x2c) = tempValue;
               *(int32_t *)(renderData[0] + 6) = renderState1;
-              *(int32_t *)((longlong)renderData[0] + 0x34) = renderState2;
+              *(int32_t *)((int64_t)renderData[0] + 0x34) = renderState2;
               tempPointer = *(uint64_t *)(texturePtr + 6);
               renderData[0][7] = *(uint64_t *)(texturePtr + 4);
               renderData[0][8] = tempPointer;
             }
             
-            *(int8_t *)((longlong)renderData[0] + 0x4f) =
-                 *(int8_t *)(*(longlong *)(rendererContext + 600) + 0x24);
-            objectContext = *(longlong *)(rendererContext + 600);
+            *(int8_t *)((int64_t)renderData[0] + 0x4f) =
+                 *(int8_t *)(*(int64_t *)(rendererContext + 600) + 0x24);
+            objectContext = *(int64_t *)(rendererContext + 600);
             
             if (*(char *)(objectContext + 0x24) != '\0') {
               tempValue = *(int32_t *)(rendererContext + 0x2ac);
               renderState1 = *(int32_t *)(rendererContext + 0x2b0);
               renderState2 = *(int32_t *)(rendererContext + 0x2b4);
               *(int32_t *)(renderData[0] + 10) = *(int32_t *)(rendererContext + 0x2a8);
-              *(int32_t *)((longlong)renderData[0] + 0x54) = tempValue;
+              *(int32_t *)((int64_t)renderData[0] + 0x54) = tempValue;
               *(int32_t *)(renderData[0] + 0xb) = renderState1;
-              *(int32_t *)((longlong)renderData[0] + 0x5c) = renderState2;
-              objectContext = *(longlong *)(rendererContext + 600);
+              *(int32_t *)((int64_t)renderData[0] + 0x5c) = renderState2;
+              objectContext = *(int64_t *)(rendererContext + 600);
             }
             
-            *(bool *)((longlong)renderData[0] + 0x4c) = *(longlong *)(objectContext + 0x10) != 0;
-            *(int8_t *)((longlong)renderData[0] + 0x4d) = 1;
+            *(bool *)((int64_t)renderData[0] + 0x4c) = *(int64_t *)(objectContext + 0x10) != 0;
+            *(int8_t *)((int64_t)renderData[0] + 0x4d) = 1;
             
             if ((*(char *)(renderState + 0xc) != '\0') ||
-               (0 < *(int *)(*(longlong *)(rendererContext + 600) + 0x1c))) {
-              *(int8_t *)((longlong)renderData[0] + 0x4d) = 0;
+               (0 < *(int *)(*(int64_t *)(rendererContext + 600) + 0x1c))) {
+              *(int8_t *)((int64_t)renderData[0] + 0x4d) = 0;
             }
             
             // 处理材质参数
@@ -592,24 +592,24 @@ void ProcessSceneBatchRendering(void)
   uint tempValue;
   
   // 主要变量
-  ulonglong bufferSize;
-  longlong objectContext;
-  longlong sceneContext;
+  uint64_t bufferSize;
+  int64_t objectContext;
+  int64_t sceneContext;
   int32_t *texturePtr;
   uint *counterPtr;
   char *dataBuffer;
   uint64_t *renderBuffer;
   float *transformMatrix;
   int frameIndex;
-  ulonglong bufferOffset;
+  uint64_t bufferOffset;
   uint *bufferPtr;
   bool isAllocated;
   
   // 栈变量
   int32_t tempStack;
-  ulonglong stackSize;
+  uint64_t stackSize;
   uint64_t *renderData;
-  longlong renderContext;
+  int64_t renderContext;
   uint64_t transformResult[8];
   
   // 变换矩阵栈变量
@@ -648,13 +648,13 @@ void ProcessSceneBatchRendering(void)
   int32_t stackParam15;
   int32_t stackParam16;
   int32_t stackParam17;
-  longlong sceneData;
+  int64_t sceneData;
   float *matrixPtr;
   uint64_t matrixParam;
-  longlong renderState;
+  int64_t renderState;
   
   // 渲染器上下文（从寄存器获取）
-  longlong rendererContext;
+  int64_t rendererContext;
   int renderCount;
   
   // 初始化变量
@@ -671,7 +671,7 @@ void ProcessSceneBatchRendering(void)
   
   // 设置渲染上下文
   renderContext = system_parameter_buffer + 0x5868;
-  counterPtr = (uint *)((longlong)*(int *)(system_parameter_buffer + 0x6a78) * 0x908 + renderContext);
+  counterPtr = (uint *)((int64_t)*(int *)(system_parameter_buffer + 0x6a78) * 0x908 + renderContext);
   
   // 更新渲染计数器
   LOCK();
@@ -679,27 +679,27 @@ void ProcessSceneBatchRendering(void)
   *counterPtr = *counterPtr + renderCount;
   UNLOCK();
   
-  bufferSize = (ulonglong)(renderFlags >> 9);
-  bufferOffset = (ulonglong)(renderFlags >> 9);
-  dataBuffer = (char *)((longlong)counterPtr + bufferOffset + 0x808);
+  bufferSize = (uint64_t)(renderFlags >> 9);
+  bufferOffset = (uint64_t)(renderFlags >> 9);
+  dataBuffer = (char *)((int64_t)counterPtr + bufferOffset + 0x808);
   bufferPtr = counterPtr + (bufferSize + 1) * 2;
   stackSize = bufferSize;
   
   // 分配渲染缓冲区
   do {
     frameIndex = (int)bufferOffset;
-    if (*(longlong *)bufferPtr == 0) {
+    if (*(int64_t *)bufferPtr == 0) {
       objectContext = FUN_18062b420(system_memory_pool_ptr, 0xc000, 0x25);
       LOCK();
-      isAllocated = *(longlong *)(counterPtr + (longlong)frameIndex * 2 + 2) == 0;
+      isAllocated = *(int64_t *)(counterPtr + (int64_t)frameIndex * 2 + 2) == 0;
       if (isAllocated) {
-        *(longlong *)(counterPtr + (longlong)frameIndex * 2 + 2) = objectContext;
+        *(int64_t *)(counterPtr + (int64_t)frameIndex * 2 + 2) = objectContext;
       }
       UNLOCK();
       if (isAllocated) {
         FUN_1800e94a0(counterPtr, frameIndex << 9);
         LOCK();
-        *(int8_t *)((longlong)counterPtr + (longlong)frameIndex + 0x808) = 0;
+        *(int8_t *)((int64_t)counterPtr + (int64_t)frameIndex + 0x808) = 0;
         UNLOCK();
         bufferSize = stackSize;
       }
@@ -718,15 +718,15 @@ void ProcessSceneBatchRendering(void)
       } while (*dataBuffer != '\0');
     }
     dataBuffer = dataBuffer + 1;
-    bufferOffset = (ulonglong)(frameIndex + 1);
+    bufferOffset = (uint64_t)(frameIndex + 1);
     bufferPtr = bufferPtr + 2;
-  } while ((longlong)(dataBuffer + (-0x808 - (longlong)counterPtr)) <= (longlong)bufferSize);
+  } while ((int64_t)(dataBuffer + (-0x808 - (int64_t)counterPtr)) <= (int64_t)bufferSize);
   
   // 获取渲染数据
   renderBuffer = (uint64_t *)
-            (*(longlong *)
-              ((longlong)*(int *)(renderContext + 0x1210) * 0x908 + renderContext + 8 +
-              bufferSize * 8) + (ulonglong)(renderFlags - (renderFlags & 0xfffffe00)) * 0x60);
+            (*(int64_t *)
+              ((int64_t)*(int *)(renderContext + 0x1210) * 0x908 + renderContext + 8 +
+              bufferSize * 8) + (uint64_t)(renderFlags - (renderFlags & 0xfffffe00)) * 0x60);
   objectContext = rendererContext;
   renderData = renderBuffer;
   
@@ -735,7 +735,7 @@ void ProcessSceneBatchRendering(void)
     objectContext = func_0x000180085de0(*(uint64_t *)(rendererContext + 0x1b0));
   }
   
-  sceneContext = *(longlong *)(rendererContext + 0x1b8);
+  sceneContext = *(int64_t *)(rendererContext + 0x1b8);
   visibilityFlags1 = *(byte *)(sceneContext + 0x38c);
   if (visibilityFlags1 == 9) {
     visibilityFlags1 = func_0x00018022d300();
@@ -744,18 +744,18 @@ void ProcessSceneBatchRendering(void)
   
   // 设置场景数据
   sceneContext = sceneData;
-  objectContext = *(longlong *)(objectContext + 0x1e0);
-  *renderBuffer = *(uint64_t *)(objectContext + (ulonglong)visibilityFlags1 * 0x18);
-  renderBuffer[1] = *(uint64_t *)(objectContext + 8 + (ulonglong)visibilityFlags1 * 0x18);
+  objectContext = *(int64_t *)(objectContext + 0x1e0);
+  *renderBuffer = *(uint64_t *)(objectContext + (uint64_t)visibilityFlags1 * 0x18);
+  renderBuffer[1] = *(uint64_t *)(objectContext + 8 + (uint64_t)visibilityFlags1 * 0x18);
   
   // 设置渲染参数
-  *(int32_t *)(renderData + 2) = *(int32_t *)(*(longlong *)(rendererContext + 600) + 0x2c);
-  *(int32_t *)((longlong)renderData + 0x14) = *(int32_t *)(*(longlong *)(rendererContext + 600) + 0x4c);
-  *(int *)(renderData + 9) = (int)*(char *)(*(longlong *)(rendererContext + 600) + 0x44);
+  *(int32_t *)(renderData + 2) = *(int32_t *)(*(int64_t *)(rendererContext + 600) + 0x2c);
+  *(int32_t *)((int64_t)renderData + 0x14) = *(int32_t *)(*(int64_t *)(rendererContext + 600) + 0x4c);
+  *(int *)(renderData + 9) = (int)*(char *)(*(int64_t *)(rendererContext + 600) + 0x44);
   
   // 处理纹理参数
-  if ((*(longlong *)(rendererContext + 0x2d0) == 0) ||
-     (*(int *)(*(longlong *)(rendererContext + 0x2d0) + 0x14) == 0)) {
+  if ((*(int64_t *)(rendererContext + 0x2d0) == 0) ||
+     (*(int *)(*(int64_t *)(rendererContext + 0x2d0) + 0x14) == 0)) {
     tempValue = 0xffffffff;
   }
   else {
@@ -763,17 +763,17 @@ void ProcessSceneBatchRendering(void)
   }
   *(int32_t *)(renderData + 3) = tempValue;
   
-  if ((*(longlong *)(rendererContext + 0x2d0) == 0) ||
-     (*(int *)(*(longlong *)(rendererContext + 0x2d0) + 0x14) == 0)) {
+  if ((*(int64_t *)(rendererContext + 0x2d0) == 0) ||
+     (*(int *)(*(int64_t *)(rendererContext + 0x2d0) + 0x14) == 0)) {
     tempValue = 0xffffffff;
   }
   else {
     tempValue = *(int32_t *)(rendererContext + 0x10c);
   }
-  *(int32_t *)((longlong)renderData + 0x1c) = tempValue;
+  *(int32_t *)((int64_t)renderData + 0x1c) = tempValue;
   
-  if ((*(longlong *)(rendererContext + 0x2d0) == 0) ||
-     (*(int *)(*(longlong *)(rendererContext + 0x2d0) + 0x14) == 0)) {
+  if ((*(int64_t *)(rendererContext + 0x2d0) == 0) ||
+     (*(int *)(*(int64_t *)(rendererContext + 0x2d0) + 0x14) == 0)) {
     tempValue = 0xffffffff;
   }
   else {
@@ -782,7 +782,7 @@ void ProcessSceneBatchRendering(void)
   *(int32_t *)(renderData + 4) = tempValue;
   
   // 设置渲染标志
-  *(byte *)((longlong)renderData + 0x4e) = *(byte *)(rendererContext + 0xfe) >> 3 & 1;
+  *(byte *)((int64_t)renderData + 0x4e) = *(byte *)(rendererContext + 0xfe) >> 3 & 1;
   
   if (*(int *)(rendererContext + 0x108) != -1) {
     texturePtr = *(int32_t **)(rendererContext + 0x2d0);
@@ -790,38 +790,38 @@ void ProcessSceneBatchRendering(void)
     renderState1 = texturePtr[2];
     renderState2 = texturePtr[3];
     *(int32_t *)(renderData + 5) = *texturePtr;
-    *(int32_t *)((longlong)renderData + 0x2c) = tempValue;
+    *(int32_t *)((int64_t)renderData + 0x2c) = tempValue;
     *(int32_t *)(renderData + 6) = renderState1;
-    *(int32_t *)((longlong)renderData + 0x34) = renderState2;
+    *(int32_t *)((int64_t)renderData + 0x34) = renderState2;
     transformResult1 = *(uint64_t *)(texturePtr + 6);
     renderData[7] = *(uint64_t *)(texturePtr + 4);
     renderData[8] = transformResult1;
   }
   
-  *(int8_t *)((longlong)renderData + 0x4f) = *(int8_t *)(*(longlong *)(rendererContext + 600) + 0x24);
-  objectContext = *(longlong *)(rendererContext + 600);
+  *(int8_t *)((int64_t)renderData + 0x4f) = *(int8_t *)(*(int64_t *)(rendererContext + 600) + 0x24);
+  objectContext = *(int64_t *)(rendererContext + 600);
   
   if (*(char *)(objectContext + 0x24) != '\0') {
     tempValue = *(int32_t *)(rendererContext + 0x2ac);
     renderState1 = *(int32_t *)(rendererContext + 0x2b0);
     renderState2 = *(int32_t *)(rendererContext + 0x2b4);
     *(int32_t *)(renderData + 10) = *(int32_t *)(rendererContext + 0x2a8);
-    *(int32_t *)((longlong)renderData + 0x54) = tempValue;
+    *(int32_t *)((int64_t)renderData + 0x54) = tempValue;
     *(int32_t *)(renderData + 0xb) = renderState1;
-    *(int32_t *)((longlong)renderData + 0x5c) = renderState2;
-    objectContext = *(longlong *)(rendererContext + 600);
+    *(int32_t *)((int64_t)renderData + 0x5c) = renderState2;
+    objectContext = *(int64_t *)(rendererContext + 600);
   }
   
-  *(bool *)((longlong)renderData + 0x4c) = *(longlong *)(objectContext + 0x10) != 0;
-  *(int8_t *)((longlong)renderData + 0x4d) = 1;
+  *(bool *)((int64_t)renderData + 0x4c) = *(int64_t *)(objectContext + 0x10) != 0;
+  *(int8_t *)((int64_t)renderData + 0x4d) = 1;
   
   if ((*(char *)(renderState + 0xc) != '\0') ||
-     (0 < *(int *)(*(longlong *)(rendererContext + 600) + 0x1c))) {
-    *(int8_t *)((longlong)renderData + 0x4d) = 0;
+     (0 < *(int *)(*(int64_t *)(rendererContext + 600) + 0x1c))) {
+    *(int8_t *)((int64_t)renderData + 0x4d) = 0;
   }
   
   // 处理材质参数
-  if (*(longlong *)(sceneData + 0x28) == 0) {
+  if (*(int64_t *)(sceneData + 0x28) == 0) {
     tempStack = 0xffffffff;
     texturePtr = &tempStack;
     objectContext = sceneData;
@@ -829,7 +829,7 @@ void ProcessSceneBatchRendering(void)
   else {
     stackParam17 = 0xffffffff;
     texturePtr = &stackParam17;
-    objectContext = *(longlong *)(sceneData + 0x28);
+    objectContext = *(int64_t *)(sceneData + 0x28);
   }
   
   // 执行渲染操作

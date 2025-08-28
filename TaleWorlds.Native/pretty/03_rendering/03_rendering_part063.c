@@ -6,12 +6,12 @@
 // 03_rendering_part063.c - 17个函数
 // 渲染系统高级处理和控制模块，包含位标志处理、树结构搜索、资源管理、线程同步等核心渲染功能
 
-// 函数: void rendering_system_bit_flag_processor(longlong param_1, int32_t param_2, longlong param_3, uint param_4, uint64_t param_5, int32_t param_6)
+// 函数: void rendering_system_bit_flag_processor(int64_t param_1, int32_t param_2, int64_t param_3, uint param_4, uint64_t param_5, int32_t param_6)
 // 渲染系统位标志处理器 - 根据不同的位标志调用相应的渲染处理函数
-void rendering_system_bit_flag_processor(longlong rendering_context_ptr, int32_t render_param, longlong result_buffer_ptr, uint bit_flags, uint64_t process_data, int32_t config_param)
+void rendering_system_bit_flag_processor(int64_t rendering_context_ptr, int32_t render_param, int64_t result_buffer_ptr, uint bit_flags, uint64_t process_data, int32_t config_param)
 
 {
-  longlong *render_device_ptr;        // 渲染设备指针
+  int64_t *render_device_ptr;        // 渲染设备指针
   code *render_function_ptr;          // 渲染函数指针
   
   // 调用参数初始化函数
@@ -19,31 +19,31 @@ void rendering_system_bit_flag_processor(longlong rendering_context_ptr, int32_t
   
   // 根据位标志执行相应的渲染操作
   if ((bit_flags & 1) != 0) {
-    render_device_ptr = *(longlong **)(rendering_context_ptr + 0x8400);
+    render_device_ptr = *(int64_t **)(rendering_context_ptr + 0x8400);
     render_function_ptr = *(code **)(*render_device_ptr + 0x38);
     *(int32_t *)(result_buffer_ptr + 0x16c) = *(int32_t *)(system_main_module_state + 0x224);
     (*render_function_ptr)(render_device_ptr, render_param, 1, result_buffer_ptr + 0x10);
   }
   if ((bit_flags & 4) != 0) {
-    render_device_ptr = *(longlong **)(rendering_context_ptr + 0x8400);
+    render_device_ptr = *(int64_t **)(rendering_context_ptr + 0x8400);
     render_function_ptr = *(code **)(*render_device_ptr + 0x1f0);
     *(int32_t *)(result_buffer_ptr + 0x16c) = *(int32_t *)(system_main_module_state + 0x224);
     (*render_function_ptr)(render_device_ptr, render_param, 1, result_buffer_ptr + 0x10);
   }
   if ((bit_flags & 2) != 0) {
-    render_device_ptr = *(longlong **)(rendering_context_ptr + 0x8400);
+    render_device_ptr = *(int64_t **)(rendering_context_ptr + 0x8400);
     render_function_ptr = *(code **)(*render_device_ptr + 0x210);
     *(int32_t *)(result_buffer_ptr + 0x16c) = *(int32_t *)(system_main_module_state + 0x224);
     (*render_function_ptr)(render_device_ptr, render_param, 1, result_buffer_ptr + 0x10);
   }
   if ((bit_flags & 0x10) != 0) {
-    render_device_ptr = *(longlong **)(rendering_context_ptr + 0x8400);
+    render_device_ptr = *(int64_t **)(rendering_context_ptr + 0x8400);
     render_function_ptr = *(code **)(*render_device_ptr + 0x80);
     *(int32_t *)(result_buffer_ptr + 0x16c) = *(int32_t *)(system_main_module_state + 0x224);
     (*render_function_ptr)(render_device_ptr, render_param, 1, result_buffer_ptr + 0x10);
   }
   if ((bit_flags & 0x20) != 0) {
-    render_device_ptr = *(longlong **)(rendering_context_ptr + 0x8400);
+    render_device_ptr = *(int64_t **)(rendering_context_ptr + 0x8400);
     render_function_ptr = *(code **)(*render_device_ptr + 0x238);
     *(int32_t *)(result_buffer_ptr + 0x16c) = *(int32_t *)(system_main_module_state + 0x224);
     (*render_function_ptr)(render_device_ptr, render_param, 1, result_buffer_ptr + 0x10);
@@ -51,12 +51,12 @@ void rendering_system_bit_flag_processor(longlong rendering_context_ptr, int32_t
   return;
 }
 
-// 函数: void rendering_system_flag_based_executor(longlong param_1, ulonglong param_2, uint64_t param_3, uint param_4)
+// 函数: void rendering_system_flag_based_executor(int64_t param_1, uint64_t param_2, uint64_t param_3, uint param_4)
 // 渲染系统基于标志的执行器 - 根据标志位执行不同的渲染操作
-void rendering_system_flag_based_executor(longlong rendering_context_ptr, ulonglong execution_flags, uint64_t process_data, uint operation_mask)
+void rendering_system_flag_based_executor(int64_t rendering_context_ptr, uint64_t execution_flags, uint64_t process_data, uint operation_mask)
 
 {
-  ulonglong processed_flag;            // 处理后的标志
+  uint64_t processed_flag;            // 处理后的标志
   uint64_t data_buffer[2];          // 数据缓冲区
   
   processed_flag = execution_flags & 0xffffffff;
@@ -64,35 +64,35 @@ void rendering_system_flag_based_executor(longlong rendering_context_ptr, ulongl
   
   // 根据操作掩码执行相应的渲染操作
   if ((operation_mask & 1) != 0) {
-    (**(code **)(**(longlong **)(rendering_context_ptr + 0x8400) + 200))
-              (*(longlong **)(rendering_context_ptr + 0x8400), execution_flags, 1, data_buffer);
+    (**(code **)(**(int64_t **)(rendering_context_ptr + 0x8400) + 200))
+              (*(int64_t **)(rendering_context_ptr + 0x8400), execution_flags, 1, data_buffer);
   }
   if ((operation_mask & 2) != 0) {
-    (**(code **)(**(longlong **)(rendering_context_ptr + 0x8400) + 0x1f8))
-              (*(longlong **)(rendering_context_ptr + 0x8400), processed_flag, 1, data_buffer);
+    (**(code **)(**(int64_t **)(rendering_context_ptr + 0x8400) + 0x1f8))
+              (*(int64_t **)(rendering_context_ptr + 0x8400), processed_flag, 1, data_buffer);
   }
   if ((operation_mask & 4) != 0) {
-    (**(code **)(**(longlong **)(rendering_context_ptr + 0x8400) + 0x1d8))
-              (*(longlong **)(rendering_context_ptr + 0x8400), processed_flag, 1, data_buffer);
+    (**(code **)(**(int64_t **)(rendering_context_ptr + 0x8400) + 0x1d8))
+              (*(int64_t **)(rendering_context_ptr + 0x8400), processed_flag, 1, data_buffer);
   }
   if ((operation_mask & 8) != 0) {
-    (**(code **)(**(longlong **)(rendering_context_ptr + 0x8400) + 0xf8))
-              (*(longlong **)(rendering_context_ptr + 0x8400), processed_flag, 1, data_buffer);
+    (**(code **)(**(int64_t **)(rendering_context_ptr + 0x8400) + 0xf8))
+              (*(int64_t **)(rendering_context_ptr + 0x8400), processed_flag, 1, data_buffer);
   }
   if ((operation_mask & 0x10) != 0) {
-    (**(code **)(**(longlong **)(rendering_context_ptr + 0x8400) + 0x40))
-              (*(longlong **)(rendering_context_ptr + 0x8400), processed_flag, 1, data_buffer);
+    (**(code **)(**(int64_t **)(rendering_context_ptr + 0x8400) + 0x40))
+              (*(int64_t **)(rendering_context_ptr + 0x8400), processed_flag, 1, data_buffer);
   }
   if ((operation_mask & 0x20) != 0) {
-    (**(code **)(**(longlong **)(rendering_context_ptr + 0x8400) + 0x218))
-              (*(longlong **)(rendering_context_ptr + 0x8400), processed_flag, 1, data_buffer);
+    (**(code **)(**(int64_t **)(rendering_context_ptr + 0x8400) + 0x218))
+              (*(int64_t **)(rendering_context_ptr + 0x8400), processed_flag, 1, data_buffer);
   }
   return;
 }
 
-// 函数: void rendering_system_parameter_initializer(longlong param_1, longlong param_2, uint64_t param_3, int32_t param_4)
+// 函数: void rendering_system_parameter_initializer(int64_t param_1, int64_t param_2, uint64_t param_3, int32_t param_4)
 // 渲染系统参数初始化器 - 初始化渲染参数并处理异常
-void rendering_system_parameter_initializer(longlong rendering_context_ptr, longlong result_buffer_ptr, uint64_t source_data, int32_t data_size)
+void rendering_system_parameter_initializer(int64_t rendering_context_ptr, int64_t result_buffer_ptr, uint64_t source_data, int32_t data_size)
 
 {
   int init_result;                     // 初始化结果
@@ -102,8 +102,8 @@ void rendering_system_parameter_initializer(longlong rendering_context_ptr, long
   *(int32_t *)(result_buffer_ptr + 0x16c) = *(int32_t *)(system_main_module_state + 0x224);
   
   // 调用渲染设备的初始化函数
-  init_result = (**(code **)(**(longlong **)(rendering_context_ptr + 0x8400) + 0x70))
-                    (*(longlong **)(rendering_context_ptr + 0x8400), *(uint64_t *)(result_buffer_ptr + 0x10), 0, 4, 0, temp_buffer);
+  init_result = (**(code **)(**(int64_t **)(rendering_context_ptr + 0x8400) + 0x70))
+                    (*(int64_t **)(rendering_context_ptr + 0x8400), *(uint64_t *)(result_buffer_ptr + 0x10), 0, 4, 0, temp_buffer);
   
   // 处理初始化错误
   if (init_result < 0) {
@@ -114,21 +114,21 @@ void rendering_system_parameter_initializer(longlong rendering_context_ptr, long
   memcpy(temp_buffer[0], source_data, data_size);
 }
 
-// 函数: uint64_t * rendering_system_tree_searcher(uint64_t *param_1, longlong param_2)
+// 函数: uint64_t * rendering_system_tree_searcher(uint64_t *param_1, int64_t param_2)
 // 渲染系统树结构搜索器 - 在树结构中搜索特定节点
-uint64_t * rendering_system_tree_searcher(uint64_t *tree_root_ptr, longlong search_criteria_ptr)
+uint64_t * rendering_system_tree_searcher(uint64_t *tree_root_ptr, int64_t search_criteria_ptr)
 
 {
   byte comparison_result;               // 比较结果
   bool traversal_direction;            // 遍历方向
   byte *key_data_ptr;                   // 键数据指针
-  longlong *current_node_ptr;           // 当前节点指针
+  int64_t *current_node_ptr;           // 当前节点指针
   uint char_comparison_result;         // 字符比较结果
   int string_comparison_result;        // 字符串比较结果
   uint64_t *left_child_ptr;           // 左子节点指针
   uint64_t *right_child_ptr;          // 右子节点指针
   uint64_t *parent_node_ptr;          // 父节点指针
-  longlong key_offset;                  // 键偏移量
+  int64_t key_offset;                  // 键偏移量
   int8_t temp_buffer[8];            // 临时缓冲区
   
   right_child_ptr = (uint64_t *)tree_root_ptr[2];
@@ -149,7 +149,7 @@ uint64_t * rendering_system_tree_searcher(uint64_t *tree_root_ptr, longlong sear
         }
         else {
           key_data_ptr = *(byte **)(search_criteria_ptr + 8);
-          key_offset = right_child_ptr[5] - (longlong)key_data_ptr;
+          key_offset = right_child_ptr[5] - (int64_t)key_data_ptr;
           
           // 比较键值
           do {
@@ -187,11 +187,11 @@ LAB_18029fdb7:
     // 验证键值匹配
     if (*(int *)(search_criteria_ptr + 0x10) != 0) {
       key_data_ptr = (byte *)parent_node_ptr[5];
-      right_child_ptr = (uint64_t *)(*(longlong *)(search_criteria_ptr + 8) - (longlong)key_data_ptr);
+      right_child_ptr = (uint64_t *)(*(int64_t *)(search_criteria_ptr + 8) - (int64_t)key_data_ptr);
       
       do {
         comparison_result = *key_data_ptr;
-        char_comparison_result = (uint)key_data_ptr[(longlong)right_child_ptr];
+        char_comparison_result = (uint)key_data_ptr[(int64_t)right_child_ptr];
         if (comparison_result != char_comparison_result) break;
         key_data_ptr = key_data_ptr + 1;
       } while (char_comparison_result != 0);
@@ -201,23 +201,23 @@ LAB_18029fdb7:
   }
   
   // 调用资源管理器处理结果
-  current_node_ptr = (longlong *)rendering_system_resource_manager(tree_root_ptr, temp_buffer, right_child_ptr, parent_node_ptr, search_criteria_ptr);
+  current_node_ptr = (int64_t *)rendering_system_resource_manager(tree_root_ptr, temp_buffer, right_child_ptr, parent_node_ptr, search_criteria_ptr);
   return (uint64_t *)(*current_node_ptr + 0x138);
 }
 
-// 函数: uint64_t * rendering_system_node_traverser(uint64_t param_1, longlong param_2, uint64_t *param_3, uint64_t *param_4)
+// 函数: uint64_t * rendering_system_node_traverser(uint64_t param_1, int64_t param_2, uint64_t *param_3, uint64_t *param_4)
 // 渲染系统节点遍历器 - 遍历树节点并处理数据
 uint64_t *
-rendering_system_node_traverser(uint64_t traversal_context, longlong traversal_data, uint64_t *current_node, uint64_t *parent_node)
+rendering_system_node_traverser(uint64_t traversal_context, int64_t traversal_data, uint64_t *current_node, uint64_t *parent_node)
 
 {
   byte comparison_result;               // 比较结果
   bool traversal_direction;            // 遍历方向
   byte *key_data_ptr;                   // 键数据指针
-  longlong *result_node_ptr;           // 结果节点指针
+  int64_t *result_node_ptr;           // 结果节点指针
   uint char_comparison_result;         // 字符比较结果
   int string_comparison_result;        // 字符串比较结果
-  longlong traversal_offset;            // 遍历偏移量
+  int64_t traversal_offset;            // 遍历偏移量
   uint64_t *next_node_ptr;           // 下一个节点指针
   
   // 遍历节点
@@ -232,7 +232,7 @@ rendering_system_node_traverser(uint64_t traversal_context, longlong traversal_d
       }
       else {
         key_data_ptr = *(byte **)(traversal_offset + 8);
-        traversal_offset = current_node[5] - (longlong)key_data_ptr;
+        traversal_offset = current_node[5] - (int64_t)key_data_ptr;
         
         do {
           char_comparison_result = (uint)key_data_ptr[traversal_offset];
@@ -267,7 +267,7 @@ LAB_18029fdb7:
     // 验证键值匹配
     if (*(int *)(traversal_offset + 0x10) != 0) {
       key_data_ptr = (byte *)parent_node[5];
-      traversal_offset = *(longlong *)(traversal_offset + 8) - (longlong)key_data_ptr;
+      traversal_offset = *(int64_t *)(traversal_offset + 8) - (int64_t)key_data_ptr;
       
       do {
         comparison_result = *key_data_ptr;
@@ -281,21 +281,21 @@ LAB_18029fdb7:
   }
   
   // 调用资源管理器处理结果
-  result_node_ptr = (longlong *)rendering_system_resource_manager();
+  result_node_ptr = (int64_t *)rendering_system_resource_manager();
   return (uint64_t *)(*result_node_ptr + 0x138);
 }
 
-// 函数: longlong rendering_system_address_calculator(void)
+// 函数: int64_t rendering_system_address_calculator(void)
 // 渲染系统地址计算器 - 计算并返回处理后的地址
-longlong rendering_system_address_calculator(void)
+int64_t rendering_system_address_calculator(void)
 
 {
   byte comparison_result;               // 比较结果
   byte *key_data_ptr;                   // 键数据指针
-  longlong *result_ptr;                // 结果指针
+  int64_t *result_ptr;                // 结果指针
   uint char_comparison_result;         // 字符比较结果
-  longlong traversal_offset;            // 遍历偏移量
-  longlong address_offset;              // 地址偏移量
+  int64_t traversal_offset;            // 遍历偏移量
+  int64_t address_offset;              // 地址偏移量
   
   // 检查目标地址
   if (address_offset != traversal_offset) {
@@ -307,7 +307,7 @@ LAB_18029fdb7:
     // 验证键值匹配
     if (*(int *)(traversal_offset + 0x10) != 0) {
       key_data_ptr = *(byte **)(address_offset + 0x28);
-      address_offset = *(longlong *)(traversal_offset + 8) - (longlong)key_data_ptr;
+      address_offset = *(int64_t *)(traversal_offset + 8) - (int64_t)key_data_ptr;
       
       do {
         comparison_result = *key_data_ptr;
@@ -321,28 +321,28 @@ LAB_18029fdb7:
   }
   
   // 调用资源管理器处理结果
-  result_ptr = (longlong *)rendering_system_resource_manager();
+  result_ptr = (int64_t *)rendering_system_resource_manager();
   return *result_ptr + 0x138;
 }
 
-// 函数: uint64_t * rendering_system_resource_manager(longlong *param_1, uint64_t *param_2, uint64_t param_3, longlong *param_4, longlong param_5)
+// 函数: uint64_t * rendering_system_resource_manager(int64_t *param_1, uint64_t *param_2, uint64_t param_3, int64_t *param_4, int64_t param_5)
 // 渲染系统资源管理器 - 管理渲染资源的分配和释放
 uint64_t *
-rendering_system_resource_manager(longlong *resource_manager_ptr, uint64_t *result_buffer_ptr, uint64_t resource_handle, longlong *target_node_ptr, longlong resource_data_ptr)
+rendering_system_resource_manager(int64_t *resource_manager_ptr, uint64_t *result_buffer_ptr, uint64_t resource_handle, int64_t *target_node_ptr, int64_t resource_data_ptr)
 
 {
   byte comparison_result;               // 比较结果
   bool allocation_flag;                 // 分配标志
-  longlong *current_node_ptr;           // 当前节点指针
+  int64_t *current_node_ptr;           // 当前节点指针
   byte *key_data_ptr;                   // 键数据指针
-  longlong *source_node_ptr;            // 源节点指针
+  int64_t *source_node_ptr;            // 源节点指针
   uint char_comparison_result;         // 字符比较结果
-  longlong key_offset;                  // 键偏移量
-  longlong *comparison_node_ptr;        // 比较节点指针
-  ulonglong resource_flags;             // 资源标志
+  int64_t key_offset;                  // 键偏移量
+  int64_t *comparison_node_ptr;        // 比较节点指针
+  uint64_t resource_flags;             // 资源标志
   uint64_t allocation_result;         // 分配结果
   
-  source_node_ptr = (longlong *)*resource_manager_ptr;
+  source_node_ptr = (int64_t *)*resource_manager_ptr;
   
   // 检查目标节点
   if ((target_node_ptr == source_node_ptr) || (target_node_ptr == resource_manager_ptr)) {
@@ -352,11 +352,11 @@ rendering_system_resource_manager(longlong *resource_manager_ptr, uint64_t *resu
       // 比较键值
       if (*(int *)(source_node_ptr + 6) != 0) {
         key_data_ptr = *(byte **)(resource_data_ptr + 8);
-        comparison_node_ptr = (longlong *)(source_node_ptr[5] - (longlong)key_data_ptr);
+        comparison_node_ptr = (int64_t *)(source_node_ptr[5] - (int64_t)key_data_ptr);
         
         do {
           comparison_result = *key_data_ptr;
-          char_comparison_result = (uint)key_data_ptr[(longlong)comparison_node_ptr];
+          char_comparison_result = (uint)key_data_ptr[(int64_t)comparison_node_ptr];
           if (comparison_result != char_comparison_result) break;
           key_data_ptr = key_data_ptr + 1;
         } while (char_comparison_result != 0);
@@ -364,9 +364,9 @@ rendering_system_resource_manager(longlong *resource_manager_ptr, uint64_t *resu
         if ((int)(comparison_result - char_comparison_result) < 1) goto LAB_18029ff14;
       }
 LAB_18029fef7:
-      resource_flags = (ulonglong)comparison_node_ptr & 0xffffffffffffff00;
+      resource_flags = (uint64_t)comparison_node_ptr & 0xffffffffffffff00;
 LAB_18029fefa:
-      if (source_node_ptr != (longlong *)0x0) {
+      if (source_node_ptr != (int64_t *)0x0) {
         FUN_1802a00a0(resource_manager_ptr, result_buffer_ptr, source_node_ptr, resource_flags, resource_data_ptr);
         return result_buffer_ptr;
       }
@@ -374,11 +374,11 @@ LAB_18029fefa:
   }
   else {
     // 处理不同节点的情况
-    current_node_ptr = (longlong *)func_0x00018066bd70(target_node_ptr);
+    current_node_ptr = (int64_t *)func_0x00018066bd70(target_node_ptr);
     if (*(int *)(resource_data_ptr + 0x10) != 0) {
       if ((int)target_node_ptr[6] != 0) {
         key_data_ptr = *(byte **)(resource_data_ptr + 8);
-        key_offset = target_node_ptr[5] - (longlong)key_data_ptr;
+        key_offset = target_node_ptr[5] - (int64_t)key_data_ptr;
         
         do {
           comparison_result = *key_data_ptr;
@@ -392,11 +392,11 @@ LAB_18029fefa:
       
       if ((int)current_node_ptr[6] != 0) {
         key_data_ptr = (byte *)current_node_ptr[5];
-        comparison_node_ptr = (longlong *)(*(longlong *)(resource_data_ptr + 8) - (longlong)key_data_ptr);
+        comparison_node_ptr = (int64_t *)(*(int64_t *)(resource_data_ptr + 8) - (int64_t)key_data_ptr);
         
         do {
           comparison_result = *key_data_ptr;
-          char_comparison_result = (uint)key_data_ptr[(longlong)comparison_node_ptr];
+          char_comparison_result = (uint)key_data_ptr[(int64_t)comparison_node_ptr];
           if (comparison_result != char_comparison_result) break;
           key_data_ptr = key_data_ptr + 1;
         } while (char_comparison_result != 0);
@@ -404,7 +404,7 @@ LAB_18029fefa:
         if (0 < (int)(comparison_result - char_comparison_result)) {
           source_node_ptr = target_node_ptr;
           if (*target_node_ptr == 0) goto LAB_18029fef7;
-          resource_flags = CONCAT71((int7)((ulonglong)comparison_node_ptr >> 8), 1);
+          resource_flags = CONCAT71((int7)((uint64_t)comparison_node_ptr >> 8), 1);
           source_node_ptr = current_node_ptr;
           goto LAB_18029fefa;
         }
@@ -414,16 +414,16 @@ LAB_18029fefa:
   
 LAB_18029ff14:
   allocation_flag = true;
-  source_node_ptr = (longlong *)resource_manager_ptr[2];
+  source_node_ptr = (int64_t *)resource_manager_ptr[2];
   comparison_node_ptr = resource_manager_ptr;
   
   // 查找合适的节点
-  while (source_node_ptr != (longlong *)0x0) {
+  while (source_node_ptr != (int64_t *)0x0) {
     comparison_node_ptr = source_node_ptr;
     if ((int)source_node_ptr[6] == 0) {
       allocation_flag = false;
 LAB_18029ff32:
-      source_node_ptr = (longlong *)*source_node_ptr;
+      source_node_ptr = (int64_t *)*source_node_ptr;
     }
     else {
       if (*(int *)(resource_data_ptr + 0x10) == 0) {
@@ -431,7 +431,7 @@ LAB_18029ff32:
       }
       else {
         key_data_ptr = (byte *)source_node_ptr[5];
-        key_offset = *(longlong *)(resource_data_ptr + 8) - (longlong)key_data_ptr;
+        key_offset = *(int64_t *)(resource_data_ptr + 8) - (int64_t)key_data_ptr;
         
         do {
           comparison_result = *key_data_ptr;
@@ -443,14 +443,14 @@ LAB_18029ff32:
         allocation_flag = 0 < (int)(comparison_result - char_comparison_result);
       }
       if (!allocation_flag) goto LAB_18029ff32;
-      source_node_ptr = (longlong *)source_node_ptr[1];
+      source_node_ptr = (int64_t *)source_node_ptr[1];
     }
   }
   
   source_node_ptr = comparison_node_ptr;
   if (allocation_flag) {
-    if (comparison_node_ptr != (longlong *)resource_manager_ptr[1]) {
-      source_node_ptr = (longlong *)func_0x00018066b9a0(comparison_node_ptr);
+    if (comparison_node_ptr != (int64_t *)resource_manager_ptr[1]) {
+      source_node_ptr = (int64_t *)func_0x00018066b9a0(comparison_node_ptr);
       goto LAB_18029ff52;
     }
   }
@@ -464,7 +464,7 @@ LAB_1802a0071:
     
     if ((int)source_node_ptr[6] != 0) {
       key_data_ptr = *(byte **)(resource_data_ptr + 8);
-      key_offset = source_node_ptr[5] - (longlong)key_data_ptr;
+      key_offset = source_node_ptr[5] - (int64_t)key_data_ptr;
       
       do {
         comparison_result = *key_data_ptr;
@@ -487,7 +487,7 @@ LAB_18029ffc7:
     
     if (*(int *)(resource_data_ptr + 0x10) != 0) {
       key_data_ptr = (byte *)comparison_node_ptr[5];
-      key_offset = *(longlong *)(resource_data_ptr + 8) - (longlong)key_data_ptr;
+      key_offset = *(int64_t *)(resource_data_ptr + 8) - (int64_t)key_data_ptr;
       
       do {
         comparison_result = *key_data_ptr;
@@ -513,17 +513,17 @@ LAB_1802a0010:
   FUN_18066bdc0(key_offset, comparison_node_ptr, resource_manager_ptr, allocation_result);
 }
 
-// 函数: void rendering_system_memory_cleaner(longlong param_1)
+// 函数: void rendering_system_memory_cleaner(int64_t param_1)
 // 渲染系统内存清理器 - 清理渲染系统内存资源
-void rendering_system_memory_cleaner(longlong memory_manager_ptr)
+void rendering_system_memory_cleaner(int64_t memory_manager_ptr)
 
 {
-  longlong memory_block_ptr;           // 内存块指针
+  int64_t memory_block_ptr;           // 内存块指针
   uint block_index;                     // 块索引
-  ulonglong current_offset;             // 当前偏移量
-  ulonglong total_blocks;               // 总块数
+  uint64_t current_offset;             // 当前偏移量
+  uint64_t total_blocks;               // 总块数
   
-  memory_block_ptr = *(longlong *)(memory_manager_ptr + 0x18);
+  memory_block_ptr = *(int64_t *)(memory_manager_ptr + 0x18);
   
   // 清理内存块
   if (memory_block_ptr != 0) {
@@ -532,11 +532,11 @@ void rendering_system_memory_cleaner(longlong memory_manager_ptr)
     
     if ('\0' < *(char *)(memory_manager_ptr + 0x20)) {
       do {
-        memory_block_ptr = *(longlong *)(memory_manager_ptr + 0x18) + current_offset;
+        memory_block_ptr = *(int64_t *)(memory_manager_ptr + 0x18) + current_offset;
         
         // 检查块状态
         if (*(char *)(memory_block_ptr + 0xa1) != '\0') {
-          if (*(longlong *)(memory_block_ptr + 0xa8) != 0) {
+          if (*(int64_t *)(memory_block_ptr + 0xa8) != 0) {
             FUN_18064e900();
           }
           *(uint64_t *)(memory_block_ptr + 0xa8) = 0;
@@ -547,11 +547,11 @@ void rendering_system_memory_cleaner(longlong memory_manager_ptr)
         FUN_180057830();
         
         block_index = (int)total_blocks + 1;
-        total_blocks = (ulonglong)block_index;
+        total_blocks = (uint64_t)block_index;
         current_offset = current_offset + 0x100;
       } while ((int)block_index < (int)*(char *)(memory_manager_ptr + 0x20));
       
-      memory_block_ptr = *(longlong *)(memory_manager_ptr + 0x18);
+      memory_block_ptr = *(int64_t *)(memory_manager_ptr + 0x18);
     }
     
     // 释放主内存块
@@ -573,24 +573,24 @@ void rendering_system_memory_cleaner(longlong memory_manager_ptr)
   return;
 }
 
-// 函数: void rendering_system_batch_processor(longlong param_1, uint64_t param_2, uint64_t param_3, int32_t param_4)
+// 函数: void rendering_system_batch_processor(int64_t param_1, uint64_t param_2, uint64_t param_3, int32_t param_4)
 // 渲染系统批处理器 - 批量处理渲染操作
-void rendering_system_batch_processor(longlong batch_context_ptr, uint64_t process_data, uint64_t render_target, int32_t batch_config)
+void rendering_system_batch_processor(int64_t batch_context_ptr, uint64_t process_data, uint64_t render_target, int32_t batch_config)
 
 {
   uint *thread_lock_ptr;                // 线程锁指针
   int32_t *data_source_ptr;          // 数据源指针
   uint64_t *extended_data_ptr;        // 扩展数据指针
   uint lock_status;                     // 锁状态
-  longlong *batch_item_ptr;             // 批处理项指针
+  int64_t *batch_item_ptr;             // 批处理项指针
   uint64_t data_value1;               // 数据值1
   uint64_t data_value2;               // 数据值2
   uint64_t data_value3;               // 数据值3
-  longlong item_offset;                  // 项偏移量
-  longlong base_address;                 // 基地址
+  int64_t item_offset;                  // 项偏移量
+  int64_t base_address;                 // 基地址
   int processed_count;                  // 已处理计数
-  longlong list_start_ptr;               // 列表起始指针
-  longlong list_end_ptr;                 // 列表结束指针
+  int64_t list_start_ptr;               // 列表起始指针
+  int64_t list_end_ptr;                 // 列表结束指针
   int item_index;                       // 项索引
   int8_t stack_canary[32];           // 栈保护变量
   int stack_guard;                      // 栈保护
@@ -667,10 +667,10 @@ void rendering_system_batch_processor(longlong batch_context_ptr, uint64_t proce
   int32_t stack_data71;              // 栈数据71
   uint64_t stack_data72;              // 栈数据72
   uint64_t stack_data73;              // 栈数据73
-  ulonglong stack_canary_value;         // 栈保护值
+  uint64_t stack_canary_value;         // 栈保护值
   
   // 初始化栈保护
-  stack_canary_value = GET_SECURITY_COOKIE() ^ (ulonglong)stack_canary;
+  stack_canary_value = GET_SECURITY_COOKIE() ^ (uint64_t)stack_canary;
   processed_count = 0;
   
   // 初始化渲染参数
@@ -700,15 +700,15 @@ void rendering_system_batch_processor(longlong batch_context_ptr, uint64_t proce
   stack_data15 = render_target;
   
   // 处理批处理项
-  if (*(longlong *)(batch_context_ptr + 0x1b0) - *(longlong *)(batch_context_ptr + 0x1a8) >> 3 != 0) {
+  if (*(int64_t *)(batch_context_ptr + 0x1b0) - *(int64_t *)(batch_context_ptr + 0x1a8) >> 3 != 0) {
     item_offset = 0;
     do {
-      batch_item_ptr = *(longlong **)(item_offset + *(longlong *)(batch_context_ptr + 0x1a8));
+      batch_item_ptr = *(int64_t **)(item_offset + *(int64_t *)(batch_context_ptr + 0x1a8));
       (**(code **)(*batch_item_ptr + 0x168))(batch_item_ptr, process_data, render_target, &stack_data18);
       item_offset = item_offset + 8;
       processed_count = processed_count + 1;
-    } while ((ulonglong)(longlong)processed_count <
-             (ulonglong)(*(longlong *)(batch_context_ptr + 0x1b0) - *(longlong *)(batch_context_ptr + 0x1a8) >> 3));
+    } while ((uint64_t)(int64_t)processed_count <
+             (uint64_t)(*(int64_t *)(batch_context_ptr + 0x1b0) - *(int64_t *)(batch_context_ptr + 0x1a8) >> 3));
   }
   
   // 初始化第二组渲染参数
@@ -735,11 +735,11 @@ void rendering_system_batch_processor(longlong batch_context_ptr, uint64_t proce
     item_offset = 0;
     do {
       data_value3 = stack_data15;
-      base_address = *(longlong *)(batch_context_ptr + 0x18);
+      base_address = *(int64_t *)(batch_context_ptr + 0x18);
       processed_count = 0;
       
-      if (*(longlong *)(item_offset + 0xb8 + base_address) - *(longlong *)(item_offset + 0xb0 + base_address) >> 3 != 0) {
-        list_start_ptr = (longlong)stack_guard * 0x100;
+      if (*(int64_t *)(item_offset + 0xb8 + base_address) - *(int64_t *)(item_offset + 0xb0 + base_address) >> 3 != 0) {
+        list_start_ptr = (int64_t)stack_guard * 0x100;
         list_end_ptr = 0;
         
         do {
@@ -792,18 +792,18 @@ void rendering_system_batch_processor(longlong batch_context_ptr, uint64_t proce
           stack_data14 = stack_data62;
           
           // 获取批处理项并处理
-          batch_item_ptr = *(longlong **)
-                    (list_end_ptr + *(longlong *)(item_offset + 0xb0 + *(longlong *)(batch_context_ptr + 0x18)));
+          batch_item_ptr = *(int64_t **)
+                    (list_end_ptr + *(int64_t *)(item_offset + 0xb0 + *(int64_t *)(batch_context_ptr + 0x18)));
           stack_data14 = data_value1;
           stack_data73 = data_value2;
           
           (**(code **)(*batch_item_ptr + 0x168))(batch_item_ptr, process_data, data_value3, &stack_data2);
-          base_address = *(longlong *)(batch_context_ptr + 0x18);
+          base_address = *(int64_t *)(batch_context_ptr + 0x18);
           processed_count = processed_count + 1;
           list_end_ptr = list_end_ptr + 8;
-        } while ((ulonglong)(longlong)processed_count <
-                 (ulonglong)
-                 (*(longlong *)(item_offset + 0xb8 + base_address) - *(longlong *)(item_offset + 0xb0 + base_address) >> 3));
+        } while ((uint64_t)(int64_t)processed_count <
+                 (uint64_t)
+                 (*(int64_t *)(item_offset + 0xb8 + base_address) - *(int64_t *)(item_offset + 0xb0 + base_address) >> 3));
       }
       
       stack_guard = stack_guard + 1;
@@ -812,7 +812,7 @@ void rendering_system_batch_processor(longlong batch_context_ptr, uint64_t proce
   }
   
   // 清理栈并返回
-  FUN_1808fc050(stack_canary_value ^ (ulonglong)stack_canary);
+  FUN_1808fc050(stack_canary_value ^ (uint64_t)stack_canary);
 }
 
 // 函数: void rendering_system_thread_synchronizer(void)
@@ -824,20 +824,20 @@ void rendering_system_thread_synchronizer(void)
   int32_t *data_source_ptr;          // 数据源指针
   uint64_t *extended_data_ptr;        // 扩展数据指针
   uint lock_status;                     // 锁状态
-  longlong *batch_item_ptr;             // 批处理项指针
+  int64_t *batch_item_ptr;             // 批处理项指针
   int32_t data_value1;               // 数据值1
   int32_t data_value2;               // 数据值2
   int32_t data_value3;               // 数据值3
   int32_t data_value4;               // 数据值4
   uint64_t data_value5;               // 数据值5
   uint64_t data_value6;               // 数据值6
-  longlong item_offset;                  // 项偏移量
-  longlong base_address;                 // 基地址
-  longlong list_start_ptr;               // 列表起始指针
-  longlong list_end_ptr;                 // 列表结束指针
+  int64_t item_offset;                  // 项偏移量
+  int64_t base_address;                 // 基地址
+  int64_t list_start_ptr;               // 列表起始指针
+  int64_t list_end_ptr;                 // 列表结束指针
   int processed_count;                  // 已处理计数
   int32_t *stack_buffer_ptr;         // 栈缓冲区指针
-  longlong memory_offset;               // 内存偏移量
+  int64_t memory_offset;               // 内存偏移量
   int item_index;                       // 项索引
   int32_t stack_param1;              // 栈参数1
   int32_t stack_param2;              // 栈参数2
@@ -858,11 +858,11 @@ void rendering_system_thread_synchronizer(void)
   
   // 遍历并同步线程
   do {
-    base_address = *(longlong *)(memory_offset + 0x18);
+    base_address = *(int64_t *)(memory_offset + 0x18);
     processed_count = 0;
     
-    if (*(longlong *)(list_end_ptr + 0xb8 + base_address) - *(longlong *)(list_end_ptr + 0xb0 + base_address) >> 3 != 0) {
-      list_start_ptr = (longlong)item_index * 0x100;
+    if (*(int64_t *)(list_end_ptr + 0xb8 + base_address) - *(int64_t *)(list_end_ptr + 0xb0 + base_address) >> 3 != 0) {
+      list_start_ptr = (int64_t)item_index * 0x100;
       memory_offset = 0;
       
       do {
@@ -918,20 +918,20 @@ void rendering_system_thread_synchronizer(void)
         stack_param12 = stack_buffer_ptr[7];
         
         // 获取批处理项并处理
-        batch_item_ptr = *(longlong **)
-                  (memory_offset + *(longlong *)(list_end_ptr + 0xb0 + *(longlong *)(memory_offset + 0x18)));
+        batch_item_ptr = *(int64_t **)
+                  (memory_offset + *(int64_t *)(list_end_ptr + 0xb0 + *(int64_t *)(memory_offset + 0x18)));
         stack_param13 = data_value5;
         stack_param14 = data_value6;
         
         (**(code **)(*batch_item_ptr + 0x168))
                   (batch_item_ptr, stack_param5, stack_param1, &stack_param1);
-        base_address = *(longlong *)(memory_offset + 0x18);
+        base_address = *(int64_t *)(memory_offset + 0x18);
         processed_count = processed_count + 1;
         memory_offset = memory_offset + 8;
         item_index = item_index;
-      } while ((ulonglong)(longlong)processed_count <
-               (ulonglong)
-               (*(longlong *)(list_end_ptr + 0xb8 + base_address) - *(longlong *)(list_end_ptr + 0xb0 + base_address) >> 3));
+      } while ((uint64_t)(int64_t)processed_count <
+               (uint64_t)
+               (*(int64_t *)(list_end_ptr + 0xb8 + base_address) - *(int64_t *)(list_end_ptr + 0xb0 + base_address) >> 3));
     }
     
     item_index = item_index + 1;
@@ -939,7 +939,7 @@ void rendering_system_thread_synchronizer(void)
   } while (item_index < *(char *)(memory_offset + 0x20));
   
   // 清理栈并返回
-  FUN_1808fc050(*(ulonglong *)(stack_buffer_ptr + 0x10) ^ (ulonglong)&stack_param1);
+  FUN_1808fc050(*(uint64_t *)(stack_buffer_ptr + 0x10) ^ (uint64_t)&stack_param1);
 }
 
 // 函数: void rendering_system_stack_cleaner(void)
@@ -947,32 +947,32 @@ void rendering_system_thread_synchronizer(void)
 void rendering_system_stack_cleaner(void)
 
 {
-  longlong stack_context_ptr;           // 栈上下文指针
+  int64_t stack_context_ptr;           // 栈上下文指针
   
   // 清理栈数据
-  FUN_1808fc050(*(ulonglong *)(stack_context_ptr + 0x40) ^ (ulonglong)&stack_param1);
+  FUN_1808fc050(*(uint64_t *)(stack_context_ptr + 0x40) ^ (uint64_t)&stack_param1);
 }
 
-// 函数: void rendering_system_resource_remover(longlong param_1, char param_2, longlong *param_3)
+// 函数: void rendering_system_resource_remover(int64_t param_1, char param_2, int64_t *param_3)
 // 渲染系统资源移除器 - 从渲染系统中移除指定资源
-void rendering_system_resource_remover(longlong resource_manager_ptr, char resource_index, longlong *target_resource_ptr)
+void rendering_system_resource_remover(int64_t resource_manager_ptr, char resource_index, int64_t *target_resource_ptr)
 
 {
-  longlong *resource_list_ptr;          // 资源列表指针
+  int64_t *resource_list_ptr;          // 资源列表指针
   char removal_status;                  // 移除状态
   uint64_t *resource_array_ptr;       // 资源数组指针
-  longlong *current_resource_ptr;      // 当前资源指针
-  longlong resource_offset;             // 资源偏移量
+  int64_t *current_resource_ptr;      // 当前资源指针
+  int64_t resource_offset;             // 资源偏移量
   
   // 计算资源偏移量
-  resource_offset = (longlong)resource_index * 0x100 + *(longlong *)(resource_manager_ptr + 0x18);
-  resource_list_ptr = *(longlong **)(resource_offset + 0xb8);
-  current_resource_ptr = *(longlong **)(resource_offset + 0xb0);
+  resource_offset = (int64_t)resource_index * 0x100 + *(int64_t *)(resource_manager_ptr + 0x18);
+  resource_list_ptr = *(int64_t **)(resource_offset + 0xb8);
+  current_resource_ptr = *(int64_t **)(resource_offset + 0xb0);
   
   // 查找目标资源
   if (current_resource_ptr != resource_list_ptr) {
     do {
-      if ((longlong *)*current_resource_ptr == target_resource_ptr) break;
+      if ((int64_t *)*current_resource_ptr == target_resource_ptr) break;
       current_resource_ptr = current_resource_ptr + 1;
     } while (current_resource_ptr != resource_list_ptr);
     
@@ -985,7 +985,7 @@ void rendering_system_resource_remover(longlong resource_manager_ptr, char resou
         // 从资源数组中移除
         for (resource_array_ptr = *(uint64_t **)(resource_offset + 0xd0);
             (resource_array_ptr != *(uint64_t **)(resource_offset + 0xd8) && 
-             ((longlong *)*resource_array_ptr != target_resource_ptr));
+             ((int64_t *)*resource_array_ptr != target_resource_ptr));
             resource_array_ptr = resource_array_ptr + 1) {
         }
         FUN_1800ba050();
@@ -998,17 +998,17 @@ void rendering_system_resource_remover(longlong resource_manager_ptr, char resou
   return;
 }
 
-// 函数: void rendering_system_priority_handler(longlong param_1)
+// 函数: void rendering_system_priority_handler(int64_t param_1)
 // 渲染系统优先级处理器 - 处理渲染资源的优先级
-void rendering_system_priority_handler(longlong priority_context_ptr)
+void rendering_system_priority_handler(int64_t priority_context_ptr)
 
 {
-  longlong next_resource_ptr;           // 下一个资源指针
+  int64_t next_resource_ptr;           // 下一个资源指针
   
   // 检查优先级条件
   if ((*(float *)(priority_context_ptr + 0x3c) < 0.0) ||
      (*(float *)(priority_context_ptr + 0x34) <= *(float *)(priority_context_ptr + 0x3c))) {
-    priority_context_ptr = *(longlong *)(priority_context_ptr + 0x28);
+    priority_context_ptr = *(int64_t *)(priority_context_ptr + 0x28);
     if (priority_context_ptr == 0) {
       return;
     }
@@ -1021,49 +1021,49 @@ void rendering_system_priority_handler(longlong priority_context_ptr)
     if ((*(byte *)(priority_context_ptr + 0xa8) & 1) != 0) {
       return;
     }
-    next_resource_ptr = *(longlong *)(priority_context_ptr + 0x10);
+    next_resource_ptr = *(int64_t *)(priority_context_ptr + 0x10);
   }
   else {
-    next_resource_ptr = *(longlong *)(priority_context_ptr + 0x28);
+    next_resource_ptr = *(int64_t *)(priority_context_ptr + 0x28);
     if ((next_resource_ptr != 0) && ((*(byte *)(next_resource_ptr + 0xa8) & 1) == 0)) {
-      FUN_1802fac00(next_resource_ptr, *(longlong *)(next_resource_ptr + 0x10) + 0x70, 0xbf800000);
+      FUN_1802fac00(next_resource_ptr, *(int64_t *)(next_resource_ptr + 0x10) + 0x70, 0xbf800000);
     }
     if ((*(byte *)(priority_context_ptr + 0xa8) & 1) != 0) {
       return;
     }
-    next_resource_ptr = *(longlong *)(priority_context_ptr + 0x10);
+    next_resource_ptr = *(int64_t *)(priority_context_ptr + 0x10);
   }
   
   // 处理优先级更新
   FUN_1808fd200(priority_context_ptr, next_resource_ptr + 0x70, 0xbf800000);
 }
 
-// 函数: void rendering_system_mutex_manager(longlong param_1, longlong param_2)
+// 函数: void rendering_system_mutex_manager(int64_t param_1, int64_t param_2)
 // 渲染系统互斥量管理器 - 管理渲染系统的互斥量
-void rendering_system_mutex_manager(longlong mutex_context_ptr, longlong target_mutex_ptr)
+void rendering_system_mutex_manager(int64_t mutex_context_ptr, int64_t target_mutex_ptr)
 
 {
-  longlong tls_data_ptr;                 // 线程本地存储数据指针
+  int64_t tls_data_ptr;                 // 线程本地存储数据指针
   int mutex_status;                     // 互斥量状态
-  ulonglong tls_index;                   // 线程本地存储索引
-  longlong mutex_list_ptr;               // 互斥量列表指针
-  longlong *mutex_array_ptr;             // 互斥量数组指针
-  ulonglong array_size;                  // 数组大小
-  longlong *new_array_ptr;               // 新数组指针
-  longlong *old_array_ptr;               // 旧数组指针
-  ulonglong current_index;               // 当前索引
+  uint64_t tls_index;                   // 线程本地存储索引
+  int64_t mutex_list_ptr;               // 互斥量列表指针
+  int64_t *mutex_array_ptr;             // 互斥量数组指针
+  uint64_t array_size;                  // 数组大小
+  int64_t *new_array_ptr;               // 新数组指针
+  int64_t *old_array_ptr;               // 旧数组指针
+  uint64_t current_index;               // 当前索引
   
   // 检查目标互斥量
-  if (*(longlong *)(mutex_context_ptr + 0x28) == target_mutex_ptr) {
+  if (*(int64_t *)(mutex_context_ptr + 0x28) == target_mutex_ptr) {
     return;
   }
   
   // 获取线程本地存储数据
-  tls_data_ptr = *(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8);
+  tls_data_ptr = *(int64_t *)((int64_t)ThreadLocalStoragePointer + (uint64_t)__tls_index * 8);
   
   // 初始化互斥量
   if ((*(int *)(tls_data_ptr + 0x48) < render_system_config_pointer) &&
-     (SystemInitializer(&system_memory_9678, target_mutex_ptr, (ulonglong)__tls_index, tls_data_ptr, 0xfffffffffffffffe),
+     (SystemInitializer(&system_memory_9678, target_mutex_ptr, (uint64_t)__tls_index, tls_data_ptr, 0xfffffffffffffffe),
      render_system_config_pointer == -1)) {
     _Mtx_init_in_situ(0x180d49680, 2);
     FUN_1808fc820(FUN_180941da0);
@@ -1071,81 +1071,81 @@ void rendering_system_mutex_manager(longlong mutex_context_ptr, longlong target_
   }
   
   // 处理互斥量添加
-  if (*(longlong *)(mutex_context_ptr + 0x28) == 0) {
+  if (*(int64_t *)(mutex_context_ptr + 0x28) == 0) {
     if (target_mutex_ptr == 0) goto LAB_18030083c;
     
-    tls_data_ptr = *(longlong *)(*(longlong *)(target_mutex_ptr + 0x10) + 0x20);
+    tls_data_ptr = *(int64_t *)(*(int64_t *)(target_mutex_ptr + 0x10) + 0x20);
     mutex_status = _Mtx_lock(0x180d49680);
     
     if (mutex_status != 0) {
       __Throw_C_error_std__YAXH_Z(mutex_status);
     }
     
-    mutex_array_ptr = *(longlong **)(tls_data_ptr + 0x29f8);
-    if (mutex_array_ptr < *(longlong **)(tls_data_ptr + 0x2a00)) {
-      *(longlong **)(tls_data_ptr + 0x29f8) = mutex_array_ptr + 1;
+    mutex_array_ptr = *(int64_t **)(tls_data_ptr + 0x29f8);
+    if (mutex_array_ptr < *(int64_t **)(tls_data_ptr + 0x2a00)) {
+      *(int64_t **)(tls_data_ptr + 0x29f8) = mutex_array_ptr + 1;
       *mutex_array_ptr = mutex_context_ptr;
       goto LAB_180300827;
     }
     
     // 扩展数组
-    old_array_ptr = *(longlong **)(tls_data_ptr + 0x29f0);
-    array_size = (longlong)mutex_array_ptr - (longlong)old_array_ptr >> 3;
+    old_array_ptr = *(int64_t **)(tls_data_ptr + 0x29f0);
+    array_size = (int64_t)mutex_array_ptr - (int64_t)old_array_ptr >> 3;
     
     if (array_size == 0) {
       array_size = 1;
 LAB_1803007a9:
-      new_array_ptr = (longlong *)FUN_18062b420(system_memory_pool_ptr, array_size * 8, *(int8_t *)(tls_data_ptr + 0x2a08));
-      mutex_array_ptr = *(longlong **)(tls_data_ptr + 0x29f8);
-      old_array_ptr = *(longlong **)(tls_data_ptr + 0x29f0);
+      new_array_ptr = (int64_t *)FUN_18062b420(system_memory_pool_ptr, array_size * 8, *(int8_t *)(tls_data_ptr + 0x2a08));
+      mutex_array_ptr = *(int64_t **)(tls_data_ptr + 0x29f8);
+      old_array_ptr = *(int64_t **)(tls_data_ptr + 0x29f0);
     }
     else {
       array_size = array_size * 2;
       if (array_size != 0) goto LAB_1803007a9;
-      new_array_ptr = (longlong *)0x0;
+      new_array_ptr = (int64_t *)0x0;
     }
     
     // 移动数据到新数组
     if (old_array_ptr != mutex_array_ptr) {
-      memmove(new_array_ptr, old_array_ptr, (longlong)mutex_array_ptr - (longlong)old_array_ptr);
+      memmove(new_array_ptr, old_array_ptr, (int64_t)mutex_array_ptr - (int64_t)old_array_ptr);
     }
     
     *new_array_ptr = mutex_context_ptr;
-    if (*(longlong *)(tls_data_ptr + 0x29f0) != 0) {
+    if (*(int64_t *)(tls_data_ptr + 0x29f0) != 0) {
       FUN_18064e900();
     }
     
-    *(longlong **)(tls_data_ptr + 0x29f0) = new_array_ptr;
-    *(longlong **)(tls_data_ptr + 0x29f8) = new_array_ptr + 1;
-    *(longlong **)(tls_data_ptr + 0x2a00) = new_array_ptr + array_size;
+    *(int64_t **)(tls_data_ptr + 0x29f0) = new_array_ptr;
+    *(int64_t **)(tls_data_ptr + 0x29f8) = new_array_ptr + 1;
+    *(int64_t **)(tls_data_ptr + 0x2a00) = new_array_ptr + array_size;
   }
   else {
     // 处理互斥量移除
     if (target_mutex_ptr != 0) goto LAB_18030083c;
     
-    tls_data_ptr = *(longlong *)(*(longlong *)(mutex_context_ptr + 0x10) + 0x20);
+    tls_data_ptr = *(int64_t *)(*(int64_t *)(mutex_context_ptr + 0x10) + 0x20);
     mutex_status = _Mtx_lock(0x180d49680);
     
     if (mutex_status != 0) {
       __Throw_C_error_std__YAXH_Z(mutex_status);
     }
     
-    array_size = *(longlong *)(tls_data_ptr + 0x29f0);
+    array_size = *(int64_t *)(tls_data_ptr + 0x29f0);
     current_index = 0;
-    mutex_status = (int)(*(longlong *)(tls_data_ptr + 0x29f8) - array_size >> 3);
+    mutex_status = (int)(*(int64_t *)(tls_data_ptr + 0x29f8) - array_size >> 3);
     
     if (0 < mutex_status) {
       tls_index = current_index;
       do {
-        if (*(longlong *)(array_size + current_index * 8) == mutex_context_ptr) {
-          *(uint64_t *)(array_size + (longlong)(int)tls_index * 8) =
-               *(uint64_t *)(array_size + -8 + (longlong)mutex_status * 8);
-          *(longlong *)(tls_data_ptr + 0x29f8) = *(longlong *)(tls_data_ptr + 0x29f8) + -8;
+        if (*(int64_t *)(array_size + current_index * 8) == mutex_context_ptr) {
+          *(uint64_t *)(array_size + (int64_t)(int)tls_index * 8) =
+               *(uint64_t *)(array_size + -8 + (int64_t)mutex_status * 8);
+          *(int64_t *)(tls_data_ptr + 0x29f8) = *(int64_t *)(tls_data_ptr + 0x29f8) + -8;
           break;
         }
-        tls_index = (ulonglong)((int)tls_index + 1);
+        tls_index = (uint64_t)((int)tls_index + 1);
         current_index = current_index + 1;
-      } while ((longlong)current_index < (longlong)mutex_status);
+      } while ((int64_t)current_index < (int64_t)mutex_status);
     }
   }
   
@@ -1157,7 +1157,7 @@ LAB_180300827:
   
 LAB_18030083c:
   // 更新互斥量上下文
-  *(longlong *)(mutex_context_ptr + 0x28) = target_mutex_ptr;
+  *(int64_t *)(mutex_context_ptr + 0x28) = target_mutex_ptr;
   
   if (target_mutex_ptr != 0) {
     if (*(float *)(target_mutex_ptr + 0x3c) < 0.0) {
@@ -1166,7 +1166,7 @@ LAB_18030083c:
     else {
       *(float *)(target_mutex_ptr + 0x34) = *(float *)(target_mutex_ptr + 0x3c) + 1.1920929e-07;
     }
-    *(int8_t *)(*(longlong *)(mutex_context_ptr + 0x28) + 0xaa) = 1;
+    *(int8_t *)(*(int64_t *)(mutex_context_ptr + 0x28) + 0xaa) = 1;
   }
   
   // 更新上下文浮点参数
@@ -1179,28 +1179,28 @@ LAB_18030083c:
   return;
 }
 
-// 函数: ulonglong rendering_system_counter(longlong param_1, int param_2)
+// 函数: uint64_t rendering_system_counter(int64_t param_1, int param_2)
 // 渲染系统计数器 - 统计符合条件的渲染项数量
-ulonglong rendering_system_counter(longlong counter_context_ptr, int target_value)
+uint64_t rendering_system_counter(int64_t counter_context_ptr, int target_value)
 
 {
   int current_value;                    // 当前值
   int item_count;                       // 项计数
-  ulonglong match_count;                // 匹配计数
-  ulonglong current_index;              // 当前索引
+  uint64_t match_count;                // 匹配计数
+  uint64_t current_index;              // 当前索引
   
   match_count = 0;
-  item_count = (int)(*(longlong *)(counter_context_ptr + 0x1b0) - *(longlong *)(counter_context_ptr + 0x1a8) >> 3);
+  item_count = (int)(*(int64_t *)(counter_context_ptr + 0x1b0) - *(int64_t *)(counter_context_ptr + 0x1a8) >> 3);
   current_index = match_count;
   
   if (0 < item_count) {
     do {
-      current_value = (**(code **)(**(longlong **)(*(longlong *)(counter_context_ptr + 0x1a8) + current_index * 8) + 0x98))();
+      current_value = (**(code **)(**(int64_t **)(*(int64_t *)(counter_context_ptr + 0x1a8) + current_index * 8) + 0x98))();
       if (current_value == target_value) {
-        match_count = (ulonglong)((int)match_count + 1);
+        match_count = (uint64_t)((int)match_count + 1);
       }
       current_index = current_index + 1;
-    } while ((longlong)current_index < (longlong)item_count);
+    } while ((int64_t)current_index < (int64_t)item_count);
   }
   
   return match_count;
@@ -1212,22 +1212,22 @@ uint rendering_system_matcher(void)
 
 {
   int current_value;                    // 当前值
-  ulonglong current_index;              // 当前索引
-  longlong context_ptr;                 // 上下文指针
-  longlong total_items;                 // 总项数
+  uint64_t current_index;              // 当前索引
+  int64_t context_ptr;                 // 上下文指针
+  int64_t total_items;                 // 总项数
   uint match_count;                     // 匹配计数
   int target_value;                     // 目标值
   
-  current_index = (ulonglong)match_count;
+  current_index = (uint64_t)match_count;
   
   // 遍历并匹配项
   do {
-    current_value = (**(code **)(**(longlong **)(*(longlong *)(context_ptr + 0x1a8) + current_index * 8) + 0x98))();
+    current_value = (**(code **)(**(int64_t **)(*(int64_t *)(context_ptr + 0x1a8) + current_index * 8) + 0x98))();
     if (current_value == target_value) {
       match_count = match_count + 1;
     }
     current_index = current_index + 1;
-  } while ((longlong)current_index < total_items);
+  } while ((int64_t)current_index < total_items);
   
   return match_count;
 }

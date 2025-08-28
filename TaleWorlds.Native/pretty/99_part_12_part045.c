@@ -92,7 +92,7 @@ void AudioSecurityMixer_Process(void)
     short channel_samples[8];
     short* input_ptr;
     short* output_ptr;
-    ulonglong samples_remaining;
+    uint64_t samples_remaining;
     float* source_buffer;
     float* destination_buffer;
     float channel_values[8];
@@ -150,9 +150,9 @@ void AudioSecurityMixer_Process(void)
                 
                 if (0 < (int)total_samples) {
                     // 计算偏移量
-                    longlong offset = (ulonglong)input_position - (ulonglong)(*output_position_ptr * AUDIO_CHANNELS_6CH);
+                    int64_t offset = (uint64_t)input_position - (uint64_t)(*output_position_ptr * AUDIO_CHANNELS_6CH);
                     output_ptr = input_ptr + (offset + 2);
-                    samples_remaining = (ulonglong)total_samples;
+                    samples_remaining = (uint64_t)total_samples;
                     
                     do {
                         // 读取输入样本
@@ -245,9 +245,9 @@ void AudioSecurityMixer_Process(void)
                 }
                 
                 if (0 < (int)total_samples) {
-                    output_ptr = input_ptr + ((ulonglong)(*output_position_ptr * AUDIO_CHANNELS_8CH) - (ulonglong)input_position) + 2;
-                    longlong offset = (ulonglong)input_position - (ulonglong)(*output_position_ptr * AUDIO_CHANNELS_8CH);
-                    samples_remaining = (ulonglong)total_samples;
+                    output_ptr = input_ptr + ((uint64_t)(*output_position_ptr * AUDIO_CHANNELS_8CH) - (uint64_t)input_position) + 2;
+                    int64_t offset = (uint64_t)input_position - (uint64_t)(*output_position_ptr * AUDIO_CHANNELS_8CH);
+                    samples_remaining = (uint64_t)total_samples;
                     
                     do {
                         // 读取输入样本
@@ -347,27 +347,27 @@ void AudioSecurityMixer_Process(void)
                 }
                 
                 // 计算缓冲区指针
-                longlong output_buffer_ptr = (long)source_buffer + (ulonglong)(*output_position_ptr * (int)current_channels) * 2;
+                int64_t output_buffer_ptr = (long)source_buffer + (uint64_t)(*output_position_ptr * (int)current_channels) * 2;
                 
                 if (0 < (int)total_samples) {
-                    samples_remaining = (ulonglong)total_samples;
-                    longlong input_offset = ((long)source_buffer + (ulonglong)(*input_position_ptr * (int)current_channels) * 2) - output_buffer_ptr;
+                    samples_remaining = (uint64_t)total_samples;
+                    int64_t input_offset = ((long)source_buffer + (uint64_t)(*input_position_ptr * (int)current_channels) * 2) - output_buffer_ptr;
                     
                     do {
-                        longlong processed_channels = 0;
+                        int64_t processed_channels = 0;
                         
                         // 优化的多声道处理循环
-                        if (3 < (longlong)current_channels) {
-                            longlong buffer_offset = (longlong)source_buffer - (longlong)destination_buffer;
-                            longlong loop_count = (current_channels - 4 >> 2) + 1;
+                        if (3 < (int64_t)current_channels) {
+                            int64_t buffer_offset = (int64_t)source_buffer - (int64_t)destination_buffer;
+                            int64_t loop_count = (current_channels - 4 >> 2) + 1;
                             short* temp_output_ptr = (short*)(output_buffer_ptr + 2);
                             float* temp_dest_ptr = destination_buffer + 1;
                             processed_channels = loop_count * 4;
                             
                             // 4声道并行处理优化
                             do {
-                                float source_value = *(float*)((longlong)temp_dest_ptr + buffer_offset - 4);
-                                float normalized_input = (float)(int)*(short*)((longlong)temp_output_ptr + input_offset - 2) * AUDIO_SAMPLE_SCALE;
+                                float source_value = *(float*)((int64_t)temp_dest_ptr + buffer_offset - 4);
+                                float normalized_input = (float)(int)*(short*)((int64_t)temp_output_ptr + input_offset - 2) * AUDIO_SAMPLE_SCALE;
                                 float mixed_value = normalized_input * feedback_gain + source_value;
                                 
                                 // 输出混合结果
@@ -387,8 +387,8 @@ void AudioSecurityMixer_Process(void)
                                 }
                                 
                                 // 处理其他声道
-                                source_value = *(float*)(buffer_offset + (longlong)temp_dest_ptr);
-                                normalized_input = (float)(int)*(short*)((longlong)temp_output_ptr + input_offset) * AUDIO_SAMPLE_SCALE;
+                                source_value = *(float*)(buffer_offset + (int64_t)temp_dest_ptr);
+                                normalized_input = (float)(int)*(short*)((int64_t)temp_output_ptr + input_offset) * AUDIO_SAMPLE_SCALE;
                                 mixed_value = normalized_input * feedback_gain + source_value;
                                 
                                 *temp_dest_ptr = normalized_input * input_gain + source_value * mix_gain;
@@ -406,8 +406,8 @@ void AudioSecurityMixer_Process(void)
                                 }
                                 
                                 // 继续处理剩余声道
-                                source_value = *(float*)(buffer_offset + 4 + (longlong)temp_dest_ptr);
-                                normalized_input = (float)(int)*(short*)((longlong)temp_output_ptr + input_offset + 2) * AUDIO_SAMPLE_SCALE;
+                                source_value = *(float*)(buffer_offset + 4 + (int64_t)temp_dest_ptr);
+                                normalized_input = (float)(int)*(short*)((int64_t)temp_output_ptr + input_offset + 2) * AUDIO_SAMPLE_SCALE;
                                 mixed_value = normalized_input * feedback_gain + source_value;
                                 
                                 temp_dest_ptr[1] = normalized_input * input_gain + source_value * mix_gain;
@@ -424,8 +424,8 @@ void AudioSecurityMixer_Process(void)
                                     temp_output_ptr[1] = AUDIO_MAX_SAMPLE;
                                 }
                                 
-                                source_value = *(float*)(buffer_offset + 8 + (longlong)temp_dest_ptr);
-                                normalized_input = (float)(int)*(short*)((longlong)temp_output_ptr + input_offset + 4) * AUDIO_SAMPLE_SCALE;
+                                source_value = *(float*)(buffer_offset + 8 + (int64_t)temp_dest_ptr);
+                                normalized_input = (float)(int)*(short*)((int64_t)temp_output_ptr + input_offset + 4) * AUDIO_SAMPLE_SCALE;
                                 mixed_value = normalized_input * feedback_gain + source_value;
                                 
                                 temp_dest_ptr[2] = normalized_input * input_gain + source_value * mix_gain;
@@ -449,14 +449,14 @@ void AudioSecurityMixer_Process(void)
                         }
                         
                         // 处理剩余声道
-                        if (processed_channels < (longlong)current_channels) {
+                        if (processed_channels < (int64_t)current_channels) {
                             short* remaining_output_ptr = (short*)(output_buffer_ptr + processed_channels * 2);
                             float* remaining_dest_ptr = destination_buffer + processed_channels;
-                            longlong remaining_channels = current_channels - processed_channels;
+                            int64_t remaining_channels = current_channels - processed_channels;
                             
                             do {
-                                float source_value = *(float*)((longlong)remaining_dest_ptr + ((longlong)source_buffer - (longlong)destination_buffer));
-                                float normalized_input = (float)(int)*(short*)(input_offset + (longlong)remaining_output_ptr) * AUDIO_SAMPLE_SCALE;
+                                float source_value = *(float*)((int64_t)remaining_dest_ptr + ((int64_t)source_buffer - (int64_t)destination_buffer));
+                                float normalized_input = (float)(int)*(short*)(input_offset + (int64_t)remaining_output_ptr) * AUDIO_SAMPLE_SCALE;
                                 float mixed_value = normalized_input * feedback_gain + source_value;
                                 
                                 *remaining_dest_ptr = normalized_input * input_gain + source_value * mix_gain;
@@ -526,7 +526,7 @@ void AudioEnhancedMixer_Process(void)
     short channel_samples[8];
     short* input_ptr;
     short* output_ptr;
-    ulonglong samples_remaining;
+    uint64_t samples_remaining;
     float* source_buffer;
     float* destination_buffer;
     float channel_values[8];
@@ -575,27 +575,27 @@ void AudioEnhancedMixer_Process(void)
             }
             
             // 计算缓冲区指针
-            longlong output_buffer_ptr = (long)source_buffer + (ulonglong)(*output_position_ptr * (int)current_channels) * 2;
+            int64_t output_buffer_ptr = (long)source_buffer + (uint64_t)(*output_position_ptr * (int)current_channels) * 2;
             
             if (0 < (int)total_samples) {
-                samples_remaining = (ulonglong)total_samples;
-                longlong input_offset = ((long)source_buffer + (ulonglong)(*input_position_ptr * (int)current_channels) * 2) - output_buffer_ptr;
+                samples_remaining = (uint64_t)total_samples;
+                int64_t input_offset = ((long)source_buffer + (uint64_t)(*input_position_ptr * (int)current_channels) * 2) - output_buffer_ptr;
                 
                 do {
-                    longlong processed_channels = 0;
+                    int64_t processed_channels = 0;
                     
                     // 增强的多声道处理循环
-                    if (3 < (longlong)current_channels) {
-                        longlong buffer_offset = (longlong)source_buffer - (longlong)destination_buffer;
-                        longlong loop_count = (current_channels - 4 >> 2) + 1;
+                    if (3 < (int64_t)current_channels) {
+                        int64_t buffer_offset = (int64_t)source_buffer - (int64_t)destination_buffer;
+                        int64_t loop_count = (current_channels - 4 >> 2) + 1;
                         short* temp_output_ptr = (short*)(output_buffer_ptr + 2);
                         float* temp_dest_ptr = destination_buffer + 1;
                         processed_channels = loop_count * 4;
                         
                         // 增强的4声道并行处理
                         do {
-                            float source_value = *(float*)((longlong)temp_dest_ptr + buffer_offset - 4);
-                            float normalized_input = (float)(int)*(short*)((longlong)temp_output_ptr + input_offset - 2) * AUDIO_SAMPLE_SCALE;
+                            float source_value = *(float*)((int64_t)temp_dest_ptr + buffer_offset - 4);
+                            float normalized_input = (float)(int)*(short*)((int64_t)temp_output_ptr + input_offset - 2) * AUDIO_SAMPLE_SCALE;
                             float mixed_value = normalized_input * feedback_gain + source_value;
                             
                             // 增强的混合算法
@@ -615,8 +615,8 @@ void AudioEnhancedMixer_Process(void)
                             }
                             
                             // 继续处理其他声道
-                            source_value = *(float*)(buffer_offset + (longlong)temp_dest_ptr);
-                            normalized_input = (float)(int)*(short*)((longlong)temp_output_ptr + input_offset) * AUDIO_SAMPLE_SCALE;
+                            source_value = *(float*)(buffer_offset + (int64_t)temp_dest_ptr);
+                            normalized_input = (float)(int)*(short*)((int64_t)temp_output_ptr + input_offset) * AUDIO_SAMPLE_SCALE;
                             mixed_value = normalized_input * feedback_gain + source_value;
                             
                             *temp_dest_ptr = Audio_EnhancedMix(normalized_input, source_value, input_gain, mix_gain);
@@ -633,8 +633,8 @@ void AudioEnhancedMixer_Process(void)
                                 *temp_output_ptr = AUDIO_MAX_SAMPLE;
                             }
                             
-                            source_value = *(float*)(buffer_offset + 4 + (longlong)temp_dest_ptr);
-                            normalized_input = (float)(int)*(short*)((longlong)temp_output_ptr + input_offset + 2) * AUDIO_SAMPLE_SCALE;
+                            source_value = *(float*)(buffer_offset + 4 + (int64_t)temp_dest_ptr);
+                            normalized_input = (float)(int)*(short*)((int64_t)temp_output_ptr + input_offset + 2) * AUDIO_SAMPLE_SCALE;
                             mixed_value = normalized_input * feedback_gain + source_value;
                             
                             temp_dest_ptr[1] = Audio_EnhancedMix(normalized_input, source_value, input_gain, mix_gain);
@@ -651,8 +651,8 @@ void AudioEnhancedMixer_Process(void)
                                 temp_output_ptr[1] = AUDIO_MAX_SAMPLE;
                             }
                             
-                            source_value = *(float*)(buffer_offset + 8 + (longlong)temp_dest_ptr);
-                            normalized_input = (float)(int)*(short*)((longlong)temp_output_ptr + input_offset + 4) * AUDIO_SAMPLE_SCALE;
+                            source_value = *(float*)(buffer_offset + 8 + (int64_t)temp_dest_ptr);
+                            normalized_input = (float)(int)*(short*)((int64_t)temp_output_ptr + input_offset + 4) * AUDIO_SAMPLE_SCALE;
                             mixed_value = normalized_input * feedback_gain + source_value;
                             
                             temp_dest_ptr[2] = Audio_EnhancedMix(normalized_input, source_value, input_gain, mix_gain);
@@ -676,14 +676,14 @@ void AudioEnhancedMixer_Process(void)
                     }
                     
                     // 处理剩余声道
-                    if (processed_channels < (longlong)current_channels) {
+                    if (processed_channels < (int64_t)current_channels) {
                         short* remaining_output_ptr = (short*)(output_buffer_ptr + processed_channels * 2);
                         float* remaining_dest_ptr = destination_buffer + processed_channels;
-                        longlong remaining_channels = current_channels - processed_channels;
+                        int64_t remaining_channels = current_channels - processed_channels;
                         
                         do {
-                            float source_value = *(float*)((longlong)remaining_dest_ptr + ((longlong)source_buffer - (longlong)destination_buffer));
-                            float normalized_input = (float)(int)*(short*)(input_offset + (longlong)remaining_output_ptr) * AUDIO_SAMPLE_SCALE;
+                            float source_value = *(float*)((int64_t)remaining_dest_ptr + ((int64_t)source_buffer - (int64_t)destination_buffer));
+                            float normalized_input = (float)(int)*(short*)(input_offset + (int64_t)remaining_output_ptr) * AUDIO_SAMPLE_SCALE;
                             float mixed_value = normalized_input * feedback_gain + source_value;
                             
                             *remaining_dest_ptr = Audio_EnhancedMix(normalized_input, source_value, input_gain, mix_gain);

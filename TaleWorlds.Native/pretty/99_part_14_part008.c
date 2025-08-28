@@ -10,14 +10,14 @@ void FUN_1808edd90(byte *param_1,byte *param_2)
   byte bVar1;
   int iVar2;
   uint uVar3;
-  longlong lVar4;
+  int64_t lVar4;
   byte *pbVar5;
   int16_t uVar6;
   uint uVar7;
   byte abStack_28 [16];
-  ulonglong uStack_18;
+  uint64_t uStack_18;
   
-  uStack_18 = GET_SECURITY_COOKIE() ^ (ulonglong)abStack_28;
+  uStack_18 = GET_SECURITY_COOKIE() ^ (uint64_t)abStack_28;
   if ((*param_1 & 1) != 0) {
     iVar2 = *(int *)(param_1 + 8);
     if (iVar2 == 1) {
@@ -50,15 +50,15 @@ void FUN_1808edd90(byte *param_1,byte *param_2)
       }
       param_2[2] = (byte)uVar6;
       param_2[3] = (byte)((ushort)uVar6 >> 8);
-      lVar4 = (((((((((ulonglong)(abStack_28[9] & 7) << 3 | (ulonglong)(abStack_28[8] & 7)) << 3 |
-                    (ulonglong)(abStack_28[7] & 7)) << 3 | (ulonglong)(abStack_28[6] & 7)) << 3 |
-                  (ulonglong)(abStack_28[5] & 7)) << 3 | (ulonglong)(abStack_28[4] & 7)) << 3 |
-                (ulonglong)(abStack_28[3] & 7)) << 3 | (ulonglong)(abStack_28[2] & 7)) << 3 |
-              (ulonglong)(abStack_28[1] & 7)) << 3;
+      lVar4 = (((((((((uint64_t)(abStack_28[9] & 7) << 3 | (uint64_t)(abStack_28[8] & 7)) << 3 |
+                    (uint64_t)(abStack_28[7] & 7)) << 3 | (uint64_t)(abStack_28[6] & 7)) << 3 |
+                  (uint64_t)(abStack_28[5] & 7)) << 3 | (uint64_t)(abStack_28[4] & 7)) << 3 |
+                (uint64_t)(abStack_28[3] & 7)) << 3 | (uint64_t)(abStack_28[2] & 7)) << 3 |
+              (uint64_t)(abStack_28[1] & 7)) << 3;
       param_2[4] = (byte)lVar4 | abStack_28[0] & 7;
-      param_2[5] = (byte)((ulonglong)lVar4 >> 8);
-      param_2[6] = (byte)((ulonglong)lVar4 >> 0x10);
-      param_2[7] = (byte)((ulonglong)lVar4 >> 0x18);
+      param_2[5] = (byte)((uint64_t)lVar4 >> 8);
+      param_2[6] = (byte)((uint64_t)lVar4 >> 0x10);
+      param_2[7] = (byte)((uint64_t)lVar4 >> 0x18);
       param_2[9] = 0;
       param_2[8] = 0;
     }
@@ -104,15 +104,15 @@ LAB_1808ee082:
         }
         param_2[2] = (byte)uVar6;
         param_2[3] = (byte)((ushort)uVar6 >> 8);
-        lVar4 = (((((((((ulonglong)(abStack_28[9] & 7) << 3 | (ulonglong)(abStack_28[8] & 7)) << 3 |
-                      (ulonglong)(abStack_28[7] & 7)) << 3 | (ulonglong)(abStack_28[6] & 7)) << 3 |
-                    (ulonglong)(abStack_28[5] & 7)) << 3 | (ulonglong)(abStack_28[4] & 7)) << 3 |
-                  (ulonglong)(abStack_28[3] & 7)) << 3 | (ulonglong)(abStack_28[2] & 7)) << 3 |
-                (ulonglong)(abStack_28[1] & 7)) << 3;
+        lVar4 = (((((((((uint64_t)(abStack_28[9] & 7) << 3 | (uint64_t)(abStack_28[8] & 7)) << 3 |
+                      (uint64_t)(abStack_28[7] & 7)) << 3 | (uint64_t)(abStack_28[6] & 7)) << 3 |
+                    (uint64_t)(abStack_28[5] & 7)) << 3 | (uint64_t)(abStack_28[4] & 7)) << 3 |
+                  (uint64_t)(abStack_28[3] & 7)) << 3 | (uint64_t)(abStack_28[2] & 7)) << 3 |
+                (uint64_t)(abStack_28[1] & 7)) << 3;
         param_2[4] = (byte)lVar4 | abStack_28[0] & 7;
-        param_2[5] = (byte)((ulonglong)lVar4 >> 8);
-        param_2[6] = (byte)((ulonglong)lVar4 >> 0x10);
-        param_2[7] = (byte)((ulonglong)lVar4 >> 0x18);
+        param_2[5] = (byte)((uint64_t)lVar4 >> 8);
+        param_2[6] = (byte)((uint64_t)lVar4 >> 0x10);
+        param_2[7] = (byte)((uint64_t)lVar4 >> 0x18);
         param_2[9] = 0;
         param_2[8] = 0;
         param_2[10] = param_1[0x12];
@@ -152,15 +152,15 @@ LAB_1808ee082:
         }
         param_2[0xd] = (byte)uVar6;
         param_2[0xe] = (byte)((ushort)uVar6 >> 8);
-        lVar4 = (((((((((ulonglong)(abStack_28[9] & 7) << 3 | (ulonglong)(abStack_28[8] & 7)) << 3 |
-                      (ulonglong)(abStack_28[7] & 7)) << 3 | (ulonglong)(abStack_28[6] & 7)) << 3 |
-                    (ulonglong)(abStack_28[5] & 7)) << 3 | (ulonglong)(abStack_28[4] & 7)) << 3 |
-                  (ulonglong)(abStack_28[3] & 7)) << 3 | (ulonglong)(abStack_28[2] & 7)) << 3 |
-                (ulonglong)(abStack_28[1] & 7)) << 3;
+        lVar4 = (((((((((uint64_t)(abStack_28[9] & 7) << 3 | (uint64_t)(abStack_28[8] & 7)) << 3 |
+                      (uint64_t)(abStack_28[7] & 7)) << 3 | (uint64_t)(abStack_28[6] & 7)) << 3 |
+                    (uint64_t)(abStack_28[5] & 7)) << 3 | (uint64_t)(abStack_28[4] & 7)) << 3 |
+                  (uint64_t)(abStack_28[3] & 7)) << 3 | (uint64_t)(abStack_28[2] & 7)) << 3 |
+                (uint64_t)(abStack_28[1] & 7)) << 3;
         param_2[0xf] = (byte)lVar4 | abStack_28[0] & 7;
-        param_2[0x10] = (byte)((ulonglong)lVar4 >> 8);
-        param_2[0x11] = (byte)((ulonglong)lVar4 >> 0x10);
-        param_2[0x12] = (byte)((ulonglong)lVar4 >> 0x18);
+        param_2[0x10] = (byte)((uint64_t)lVar4 >> 8);
+        param_2[0x11] = (byte)((uint64_t)lVar4 >> 0x10);
+        param_2[0x12] = (byte)((uint64_t)lVar4 >> 0x18);
         param_2[0x14] = 0;
         param_2[0x13] = 0;
         goto LAB_1808ee377;
@@ -206,15 +206,15 @@ LAB_1808ee082:
         }
         param_2[0xd] = (byte)uVar6;
         param_2[0xe] = (byte)((ushort)uVar6 >> 8);
-        lVar4 = (((((((((ulonglong)(abStack_28[9] & 7) << 3 | (ulonglong)(abStack_28[8] & 7)) << 3 |
-                      (ulonglong)(abStack_28[7] & 7)) << 3 | (ulonglong)(abStack_28[6] & 7)) << 3 |
-                    (ulonglong)(abStack_28[5] & 7)) << 3 | (ulonglong)(abStack_28[4] & 7)) << 3 |
-                  (ulonglong)(abStack_28[3] & 7)) << 3 | (ulonglong)(abStack_28[2] & 7)) << 3 |
-                (ulonglong)(abStack_28[1] & 7)) << 3;
+        lVar4 = (((((((((uint64_t)(abStack_28[9] & 7) << 3 | (uint64_t)(abStack_28[8] & 7)) << 3 |
+                      (uint64_t)(abStack_28[7] & 7)) << 3 | (uint64_t)(abStack_28[6] & 7)) << 3 |
+                    (uint64_t)(abStack_28[5] & 7)) << 3 | (uint64_t)(abStack_28[4] & 7)) << 3 |
+                  (uint64_t)(abStack_28[3] & 7)) << 3 | (uint64_t)(abStack_28[2] & 7)) << 3 |
+                (uint64_t)(abStack_28[1] & 7)) << 3;
         param_2[0xf] = (byte)lVar4 | abStack_28[0] & 7;
-        param_2[0x10] = (byte)((ulonglong)lVar4 >> 8);
-        param_2[0x11] = (byte)((ulonglong)lVar4 >> 0x10);
-        param_2[0x12] = (byte)((ulonglong)lVar4 >> 0x18);
+        param_2[0x10] = (byte)((uint64_t)lVar4 >> 8);
+        param_2[0x11] = (byte)((uint64_t)lVar4 >> 0x10);
+        param_2[0x12] = (byte)((uint64_t)lVar4 >> 0x18);
         param_2[0x14] = 0;
         param_2[0x13] = 0;
         param_2[0x15] = param_1[0x4a];
@@ -227,7 +227,7 @@ LAB_1808ee082:
 LAB_1808ee377:
   *param_2 = *param_1;
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_18 ^ (ulonglong)abStack_28);
+  FUN_1808fc050(uStack_18 ^ (uint64_t)abStack_28);
 }
 
 
@@ -235,8 +235,8 @@ LAB_1808ee377:
 
 
 
-// 函数: void FUN_1808eddbc(longlong param_1,longlong param_2,byte *param_3,byte *param_4)
-void FUN_1808eddbc(longlong param_1,longlong param_2,byte *param_3,byte *param_4)
+// 函数: void FUN_1808eddbc(int64_t param_1,int64_t param_2,byte *param_3,byte *param_4)
+void FUN_1808eddbc(int64_t param_1,int64_t param_2,byte *param_3,byte *param_4)
 
 {
   byte bVar1;
@@ -245,10 +245,10 @@ void FUN_1808eddbc(longlong param_1,longlong param_2,byte *param_3,byte *param_4
   int iVar4;
   int in_EAX;
   uint uVar5;
-  longlong lVar6;
+  int64_t lVar6;
   char *pcVar7;
   char *pcVar8;
-  longlong unaff_RBP;
+  int64_t unaff_RBP;
   byte bVar9;
   uint in_R10D;
   int16_t uVar10;
@@ -260,14 +260,14 @@ void FUN_1808eddbc(longlong param_1,longlong param_2,byte *param_3,byte *param_4
     *(int8_t *)(param_2 + 1) = 0x21;
     bVar1 = *(byte *)(param_1 + 0x10);
     *(uint64_t *)(unaff_RBP + -0x20) = 0;
-    pcVar8 = (char *)(unaff_RBP + -0x20 + (ulonglong)bVar1);
+    pcVar8 = (char *)(unaff_RBP + -0x20 + (uint64_t)bVar1);
     *(int16_t *)(unaff_RBP + -0x18) = 0;
     uVar11 = in_R10D | 1 << (bVar1 & 0x1f);
     uVar10 = (int16_t)uVar11;
     uVar5 = bVar1 + 1;
     *pcVar8 = param_3[0x11] - 1;
     if (uVar5 < 10) {
-      pcVar7 = (char *)(unaff_RBP + -0x20 + (ulonglong)uVar5);
+      pcVar7 = (char *)(unaff_RBP + -0x20 + (uint64_t)uVar5);
       do {
         *pcVar7 = *pcVar8;
         pcVar7 = pcVar7 + 1;
@@ -281,17 +281,17 @@ void FUN_1808eddbc(longlong param_1,longlong param_2,byte *param_3,byte *param_4
     param_4[2] = (byte)uVar10;
     bVar3 = *(byte *)(unaff_RBP + -0x19);
     param_4[3] = (byte)((ushort)uVar10 >> 8);
-    lVar6 = (((((((((ulonglong)(bVar2 & 7) << 3 | (ulonglong)(bVar1 & 7)) << 3 |
-                  (ulonglong)(bVar3 & 7)) << 3 | (ulonglong)(*(byte *)(unaff_RBP + -0x1a) & 7)) << 3
-                | (ulonglong)(*(byte *)(unaff_RBP + -0x1b) & 7)) << 3 |
-               (ulonglong)(*(byte *)(unaff_RBP + -0x1c) & 7)) << 3 |
-              (ulonglong)(*(byte *)(unaff_RBP + -0x1d) & 7)) << 3 |
-             (ulonglong)(*(byte *)(unaff_RBP + -0x1e) & 7)) << 3 |
-            (ulonglong)(*(byte *)(unaff_RBP + -0x1f) & 7)) << 3;
+    lVar6 = (((((((((uint64_t)(bVar2 & 7) << 3 | (uint64_t)(bVar1 & 7)) << 3 |
+                  (uint64_t)(bVar3 & 7)) << 3 | (uint64_t)(*(byte *)(unaff_RBP + -0x1a) & 7)) << 3
+                | (uint64_t)(*(byte *)(unaff_RBP + -0x1b) & 7)) << 3 |
+               (uint64_t)(*(byte *)(unaff_RBP + -0x1c) & 7)) << 3 |
+              (uint64_t)(*(byte *)(unaff_RBP + -0x1d) & 7)) << 3 |
+             (uint64_t)(*(byte *)(unaff_RBP + -0x1e) & 7)) << 3 |
+            (uint64_t)(*(byte *)(unaff_RBP + -0x1f) & 7)) << 3;
     param_4[4] = (byte)lVar6 | *(byte *)(unaff_RBP + -0x20) & 7;
-    param_4[5] = (byte)((ulonglong)lVar6 >> 8);
-    param_4[6] = (byte)((ulonglong)lVar6 >> 0x10);
-    param_4[7] = (byte)((ulonglong)lVar6 >> 0x18);
+    param_4[5] = (byte)((uint64_t)lVar6 >> 8);
+    param_4[6] = (byte)((uint64_t)lVar6 >> 0x10);
+    param_4[7] = (byte)((uint64_t)lVar6 >> 0x18);
     param_4[9] = 0;
     param_4[8] = 0;
   }
@@ -313,14 +313,14 @@ LAB_1808ee082:
       *(int8_t *)(param_2 + 1) = 0x26;
       bVar1 = *(byte *)(param_1 + 0x10);
       *(uint64_t *)(unaff_RBP + -0x20) = 0;
-      pcVar8 = (char *)(unaff_RBP + -0x20 + (ulonglong)bVar1);
+      pcVar8 = (char *)(unaff_RBP + -0x20 + (uint64_t)bVar1);
       *(int16_t *)(unaff_RBP + -0x18) = 0;
       uVar11 = in_R10D | 1 << (bVar1 & 0x1f);
       uVar10 = (int16_t)uVar11;
       uVar5 = bVar1 + 1;
       *pcVar8 = param_3[0x11] - 1;
       if (uVar5 < 10) {
-        pcVar7 = (char *)(unaff_RBP + -0x20 + (ulonglong)uVar5);
+        pcVar7 = (char *)(unaff_RBP + -0x20 + (uint64_t)uVar5);
         do {
           *pcVar7 = *pcVar8;
           pcVar7 = pcVar7 + 1;
@@ -334,17 +334,17 @@ LAB_1808ee082:
       param_4[2] = (byte)uVar10;
       bVar3 = *(byte *)(unaff_RBP + -0x19);
       param_4[3] = (byte)((ushort)uVar10 >> 8);
-      lVar6 = (((((((((ulonglong)(bVar2 & 7) << 3 | (ulonglong)(bVar1 & 7)) << 3 |
-                    (ulonglong)(bVar3 & 7)) << 3 | (ulonglong)(*(byte *)(unaff_RBP + -0x1a) & 7)) <<
-                   3 | (ulonglong)(*(byte *)(unaff_RBP + -0x1b) & 7)) << 3 |
-                 (ulonglong)(*(byte *)(unaff_RBP + -0x1c) & 7)) << 3 |
-                (ulonglong)(*(byte *)(unaff_RBP + -0x1d) & 7)) << 3 |
-               (ulonglong)(*(byte *)(unaff_RBP + -0x1e) & 7)) << 3 |
-              (ulonglong)(*(byte *)(unaff_RBP + -0x1f) & 7)) << 3;
+      lVar6 = (((((((((uint64_t)(bVar2 & 7) << 3 | (uint64_t)(bVar1 & 7)) << 3 |
+                    (uint64_t)(bVar3 & 7)) << 3 | (uint64_t)(*(byte *)(unaff_RBP + -0x1a) & 7)) <<
+                   3 | (uint64_t)(*(byte *)(unaff_RBP + -0x1b) & 7)) << 3 |
+                 (uint64_t)(*(byte *)(unaff_RBP + -0x1c) & 7)) << 3 |
+                (uint64_t)(*(byte *)(unaff_RBP + -0x1d) & 7)) << 3 |
+               (uint64_t)(*(byte *)(unaff_RBP + -0x1e) & 7)) << 3 |
+              (uint64_t)(*(byte *)(unaff_RBP + -0x1f) & 7)) << 3;
       param_4[4] = (byte)lVar6 | *(byte *)(unaff_RBP + -0x20) & 7;
-      param_4[5] = (byte)((ulonglong)lVar6 >> 8);
-      param_4[6] = (byte)((ulonglong)lVar6 >> 0x10);
-      param_4[7] = (byte)((ulonglong)lVar6 >> 0x18);
+      param_4[5] = (byte)((uint64_t)lVar6 >> 8);
+      param_4[6] = (byte)((uint64_t)lVar6 >> 0x10);
+      param_4[7] = (byte)((uint64_t)lVar6 >> 0x18);
       param_4[9] = 0;
       param_4[8] = 0;
       param_4[10] = param_3[0x12];
@@ -361,11 +361,11 @@ LAB_1808ee082:
         uVar11 = in_R10D | 1 << (bVar9 & 0x1f);
         uVar10 = (int16_t)uVar11;
         *(int16_t *)(unaff_RBP + -0x18) = 0;
-        pcVar8 = (char *)(unaff_RBP + -0x20 + (ulonglong)bVar9);
+        pcVar8 = (char *)(unaff_RBP + -0x20 + (uint64_t)bVar9);
         uVar5 = bVar9 + 1;
         *pcVar8 = param_3[0x49] - 1;
         if (uVar5 < 10) {
-          pcVar7 = (char *)(unaff_RBP + -0x20 + (ulonglong)uVar5);
+          pcVar7 = (char *)(unaff_RBP + -0x20 + (uint64_t)uVar5);
           do {
             *pcVar7 = *pcVar8;
             pcVar7 = pcVar7 + 1;
@@ -379,17 +379,17 @@ LAB_1808ee082:
         param_4[0xd] = (byte)uVar10;
         bVar2 = *(byte *)(unaff_RBP + -0x19);
         param_4[0xe] = (byte)((ushort)uVar10 >> 8);
-        lVar6 = (((((((((ulonglong)(bVar1 & 7) << 3 | (ulonglong)(bVar9 & 7)) << 3 |
-                      (ulonglong)(bVar2 & 7)) << 3 | (ulonglong)(*(byte *)(unaff_RBP + -0x1a) & 7))
-                     << 3 | (ulonglong)(*(byte *)(unaff_RBP + -0x1b) & 7)) << 3 |
-                   (ulonglong)(*(byte *)(unaff_RBP + -0x1c) & 7)) << 3 |
-                  (ulonglong)(*(byte *)(unaff_RBP + -0x1d) & 7)) << 3 |
-                 (ulonglong)(*(byte *)(unaff_RBP + -0x1e) & 7)) << 3 |
-                (ulonglong)(*(byte *)(unaff_RBP + -0x1f) & 7)) << 3;
+        lVar6 = (((((((((uint64_t)(bVar1 & 7) << 3 | (uint64_t)(bVar9 & 7)) << 3 |
+                      (uint64_t)(bVar2 & 7)) << 3 | (uint64_t)(*(byte *)(unaff_RBP + -0x1a) & 7))
+                     << 3 | (uint64_t)(*(byte *)(unaff_RBP + -0x1b) & 7)) << 3 |
+                   (uint64_t)(*(byte *)(unaff_RBP + -0x1c) & 7)) << 3 |
+                  (uint64_t)(*(byte *)(unaff_RBP + -0x1d) & 7)) << 3 |
+                 (uint64_t)(*(byte *)(unaff_RBP + -0x1e) & 7)) << 3 |
+                (uint64_t)(*(byte *)(unaff_RBP + -0x1f) & 7)) << 3;
         param_4[0xf] = (byte)lVar6 | *(byte *)(unaff_RBP + -0x20) & 7;
-        param_4[0x10] = (byte)((ulonglong)lVar6 >> 8);
-        param_4[0x11] = (byte)((ulonglong)lVar6 >> 0x10);
-        param_4[0x12] = (byte)((ulonglong)lVar6 >> 0x18);
+        param_4[0x10] = (byte)((uint64_t)lVar6 >> 8);
+        param_4[0x11] = (byte)((uint64_t)lVar6 >> 0x10);
+        param_4[0x12] = (byte)((uint64_t)lVar6 >> 0x18);
         param_4[0x14] = 0;
         param_4[0x13] = 0;
         goto LAB_1808ee377;
@@ -413,11 +413,11 @@ LAB_1808ee082:
         uVar11 = in_R10D | 1 << (bVar9 & 0x1f);
         uVar10 = (int16_t)uVar11;
         *(int16_t *)(unaff_RBP + -0x18) = 0;
-        pcVar8 = (char *)(unaff_RBP + -0x20 + (ulonglong)bVar9);
+        pcVar8 = (char *)(unaff_RBP + -0x20 + (uint64_t)bVar9);
         uVar5 = bVar9 + 1;
         *pcVar8 = param_3[0x49] - 1;
         if (uVar5 < 10) {
-          pcVar7 = (char *)(unaff_RBP + -0x20 + (ulonglong)uVar5);
+          pcVar7 = (char *)(unaff_RBP + -0x20 + (uint64_t)uVar5);
           do {
             *pcVar7 = *pcVar8;
             pcVar7 = pcVar7 + 1;
@@ -431,17 +431,17 @@ LAB_1808ee082:
         param_4[0xd] = (byte)uVar10;
         bVar2 = *(byte *)(unaff_RBP + -0x19);
         param_4[0xe] = (byte)((ushort)uVar10 >> 8);
-        lVar6 = (((((((((ulonglong)(bVar1 & 7) << 3 | (ulonglong)(bVar9 & 7)) << 3 |
-                      (ulonglong)(bVar2 & 7)) << 3 | (ulonglong)(*(byte *)(unaff_RBP + -0x1a) & 7))
-                     << 3 | (ulonglong)(*(byte *)(unaff_RBP + -0x1b) & 7)) << 3 |
-                   (ulonglong)(*(byte *)(unaff_RBP + -0x1c) & 7)) << 3 |
-                  (ulonglong)(*(byte *)(unaff_RBP + -0x1d) & 7)) << 3 |
-                 (ulonglong)(*(byte *)(unaff_RBP + -0x1e) & 7)) << 3 |
-                (ulonglong)(*(byte *)(unaff_RBP + -0x1f) & 7)) << 3;
+        lVar6 = (((((((((uint64_t)(bVar1 & 7) << 3 | (uint64_t)(bVar9 & 7)) << 3 |
+                      (uint64_t)(bVar2 & 7)) << 3 | (uint64_t)(*(byte *)(unaff_RBP + -0x1a) & 7))
+                     << 3 | (uint64_t)(*(byte *)(unaff_RBP + -0x1b) & 7)) << 3 |
+                   (uint64_t)(*(byte *)(unaff_RBP + -0x1c) & 7)) << 3 |
+                  (uint64_t)(*(byte *)(unaff_RBP + -0x1d) & 7)) << 3 |
+                 (uint64_t)(*(byte *)(unaff_RBP + -0x1e) & 7)) << 3 |
+                (uint64_t)(*(byte *)(unaff_RBP + -0x1f) & 7)) << 3;
         param_4[0xf] = (byte)lVar6 | *(byte *)(unaff_RBP + -0x20) & 7;
-        param_4[0x10] = (byte)((ulonglong)lVar6 >> 8);
-        param_4[0x11] = (byte)((ulonglong)lVar6 >> 0x10);
-        param_4[0x12] = (byte)((ulonglong)lVar6 >> 0x18);
+        param_4[0x10] = (byte)((uint64_t)lVar6 >> 8);
+        param_4[0x11] = (byte)((uint64_t)lVar6 >> 0x10);
+        param_4[0x12] = (byte)((uint64_t)lVar6 >> 0x18);
         param_4[0x14] = 0;
         param_4[0x13] = 0;
         param_4[0x15] = param_3[0x4a];
@@ -454,7 +454,7 @@ LAB_1808ee082:
 LAB_1808ee377:
   *param_4 = *param_3;
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(*(ulonglong *)(unaff_RBP + -0x10) ^ (ulonglong)&stack0x00000000);
+  FUN_1808fc050(*(uint64_t *)(unaff_RBP + -0x10) ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -470,9 +470,9 @@ void FUN_1808ee08b(uint64_t param_1,uint64_t param_2,byte *param_3,byte *param_4
   byte bVar2;
   int iVar3;
   uint uVar4;
-  longlong lVar5;
+  int64_t lVar5;
   char *pcVar6;
-  longlong unaff_RBP;
+  int64_t unaff_RBP;
   byte bVar7;
   int16_t uVar8;
   uint in_R10D;
@@ -490,11 +490,11 @@ void FUN_1808ee08b(uint64_t param_1,uint64_t param_2,byte *param_3,byte *param_4
         uVar9 = in_R10D | 1 << (bVar7 & 0x1f);
         uVar8 = (int16_t)uVar9;
         *(int16_t *)(unaff_RBP + -0x18) = 0;
-        pcVar10 = (char *)(unaff_RBP + -0x20 + (ulonglong)bVar7);
+        pcVar10 = (char *)(unaff_RBP + -0x20 + (uint64_t)bVar7);
         uVar4 = bVar7 + 1;
         *pcVar10 = param_3[0x49] - 1;
         if (uVar4 < 10) {
-          pcVar6 = (char *)(unaff_RBP + -0x20 + (ulonglong)uVar4);
+          pcVar6 = (char *)(unaff_RBP + -0x20 + (uint64_t)uVar4);
           do {
             *pcVar6 = *pcVar10;
             pcVar6 = pcVar6 + 1;
@@ -508,17 +508,17 @@ void FUN_1808ee08b(uint64_t param_1,uint64_t param_2,byte *param_3,byte *param_4
         param_4[0xd] = (byte)uVar8;
         bVar2 = *(byte *)(unaff_RBP + -0x19);
         param_4[0xe] = (byte)((ushort)uVar8 >> 8);
-        lVar5 = (((((((((ulonglong)(bVar1 & 7) << 3 | (ulonglong)(bVar7 & 7)) << 3 |
-                      (ulonglong)(bVar2 & 7)) << 3 | (ulonglong)(*(byte *)(unaff_RBP + -0x1a) & 7))
-                     << 3 | (ulonglong)(*(byte *)(unaff_RBP + -0x1b) & 7)) << 3 |
-                   (ulonglong)(*(byte *)(unaff_RBP + -0x1c) & 7)) << 3 |
-                  (ulonglong)(*(byte *)(unaff_RBP + -0x1d) & 7)) << 3 |
-                 (ulonglong)(*(byte *)(unaff_RBP + -0x1e) & 7)) << 3 |
-                (ulonglong)(*(byte *)(unaff_RBP + -0x1f) & 7)) << 3;
+        lVar5 = (((((((((uint64_t)(bVar1 & 7) << 3 | (uint64_t)(bVar7 & 7)) << 3 |
+                      (uint64_t)(bVar2 & 7)) << 3 | (uint64_t)(*(byte *)(unaff_RBP + -0x1a) & 7))
+                     << 3 | (uint64_t)(*(byte *)(unaff_RBP + -0x1b) & 7)) << 3 |
+                   (uint64_t)(*(byte *)(unaff_RBP + -0x1c) & 7)) << 3 |
+                  (uint64_t)(*(byte *)(unaff_RBP + -0x1d) & 7)) << 3 |
+                 (uint64_t)(*(byte *)(unaff_RBP + -0x1e) & 7)) << 3 |
+                (uint64_t)(*(byte *)(unaff_RBP + -0x1f) & 7)) << 3;
         param_4[0xf] = (byte)lVar5 | *(byte *)(unaff_RBP + -0x20) & 7;
-        param_4[0x10] = (byte)((ulonglong)lVar5 >> 8);
-        param_4[0x11] = (byte)((ulonglong)lVar5 >> 0x10);
-        param_4[0x12] = (byte)((ulonglong)lVar5 >> 0x18);
+        param_4[0x10] = (byte)((uint64_t)lVar5 >> 8);
+        param_4[0x11] = (byte)((uint64_t)lVar5 >> 0x10);
+        param_4[0x12] = (byte)((uint64_t)lVar5 >> 0x18);
         param_4[0x14] = 0;
         param_4[0x13] = 0;
         goto LAB_1808ee377;
@@ -542,11 +542,11 @@ void FUN_1808ee08b(uint64_t param_1,uint64_t param_2,byte *param_3,byte *param_4
         uVar9 = in_R10D | 1 << (bVar7 & 0x1f);
         uVar8 = (int16_t)uVar9;
         *(int16_t *)(unaff_RBP + -0x18) = 0;
-        pcVar10 = (char *)(unaff_RBP + -0x20 + (ulonglong)bVar7);
+        pcVar10 = (char *)(unaff_RBP + -0x20 + (uint64_t)bVar7);
         uVar4 = bVar7 + 1;
         *pcVar10 = param_3[0x49] - 1;
         if (uVar4 < 10) {
-          pcVar6 = (char *)(unaff_RBP + -0x20 + (ulonglong)uVar4);
+          pcVar6 = (char *)(unaff_RBP + -0x20 + (uint64_t)uVar4);
           do {
             *pcVar6 = *pcVar10;
             pcVar6 = pcVar6 + 1;
@@ -560,17 +560,17 @@ void FUN_1808ee08b(uint64_t param_1,uint64_t param_2,byte *param_3,byte *param_4
         param_4[0xd] = (byte)uVar8;
         bVar2 = *(byte *)(unaff_RBP + -0x19);
         param_4[0xe] = (byte)((ushort)uVar8 >> 8);
-        lVar5 = (((((((((ulonglong)(bVar1 & 7) << 3 | (ulonglong)(bVar7 & 7)) << 3 |
-                      (ulonglong)(bVar2 & 7)) << 3 | (ulonglong)(*(byte *)(unaff_RBP + -0x1a) & 7))
-                     << 3 | (ulonglong)(*(byte *)(unaff_RBP + -0x1b) & 7)) << 3 |
-                   (ulonglong)(*(byte *)(unaff_RBP + -0x1c) & 7)) << 3 |
-                  (ulonglong)(*(byte *)(unaff_RBP + -0x1d) & 7)) << 3 |
-                 (ulonglong)(*(byte *)(unaff_RBP + -0x1e) & 7)) << 3 |
-                (ulonglong)(*(byte *)(unaff_RBP + -0x1f) & 7)) << 3;
+        lVar5 = (((((((((uint64_t)(bVar1 & 7) << 3 | (uint64_t)(bVar7 & 7)) << 3 |
+                      (uint64_t)(bVar2 & 7)) << 3 | (uint64_t)(*(byte *)(unaff_RBP + -0x1a) & 7))
+                     << 3 | (uint64_t)(*(byte *)(unaff_RBP + -0x1b) & 7)) << 3 |
+                   (uint64_t)(*(byte *)(unaff_RBP + -0x1c) & 7)) << 3 |
+                  (uint64_t)(*(byte *)(unaff_RBP + -0x1d) & 7)) << 3 |
+                 (uint64_t)(*(byte *)(unaff_RBP + -0x1e) & 7)) << 3 |
+                (uint64_t)(*(byte *)(unaff_RBP + -0x1f) & 7)) << 3;
         param_4[0xf] = (byte)lVar5 | *(byte *)(unaff_RBP + -0x20) & 7;
-        param_4[0x10] = (byte)((ulonglong)lVar5 >> 8);
-        param_4[0x11] = (byte)((ulonglong)lVar5 >> 0x10);
-        param_4[0x12] = (byte)((ulonglong)lVar5 >> 0x18);
+        param_4[0x10] = (byte)((uint64_t)lVar5 >> 8);
+        param_4[0x11] = (byte)((uint64_t)lVar5 >> 0x10);
+        param_4[0x12] = (byte)((uint64_t)lVar5 >> 0x18);
         param_4[0x14] = 0;
         param_4[0x13] = 0;
         param_4[0x15] = param_3[0x4a];
@@ -583,7 +583,7 @@ void FUN_1808ee08b(uint64_t param_1,uint64_t param_2,byte *param_3,byte *param_4
 LAB_1808ee377:
   *param_4 = *param_3;
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(*(ulonglong *)(unaff_RBP + -0x10) ^ (ulonglong)&stack0x00000000);
+  FUN_1808fc050(*(uint64_t *)(unaff_RBP + -0x10) ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -635,19 +635,19 @@ uint64_t FUN_1808ee3e0(int32_t param_1,float *param_2)
   param_2[4] = 0.0;
   param_2[5] = 0.0;
   param_2[6] = 0.0;
-  if ((*apcStackX_18[0] != '\0') && (*(longlong *)(apcStackX_18[0] + 0x160) != 0)) {
+  if ((*apcStackX_18[0] != '\0') && (*(int64_t *)(apcStackX_18[0] + 0x160) != 0)) {
     *param_2 = (float)*(uint *)(apcStackX_18[0] + 0x148) / 100.0;
     *(int16_t *)(param_2 + 1) = *(int16_t *)(apcStackX_18[0] + 0x14c);
-    *(int16_t *)((longlong)param_2 + 6) = *(int16_t *)(apcStackX_18[0] + 0x14e);
+    *(int16_t *)((int64_t)param_2 + 6) = *(int16_t *)(apcStackX_18[0] + 0x14e);
     *(char *)(param_2 + 2) = apcStackX_18[0][0x150];
-    *(char *)((longlong)param_2 + 9) = apcStackX_18[0][0x151];
+    *(char *)((int64_t)param_2 + 9) = apcStackX_18[0][0x151];
     cVar1 = apcStackX_18[0][1];
     *(int8_t *)(param_2 + 3) = 1;
-    *(char *)((longlong)param_2 + 0xb) = cVar1;
+    *(char *)((int64_t)param_2 + 0xb) = cVar1;
     func_0x0001808f6ce0();
     return 0;
   }
-  *(char *)((longlong)param_2 + 0xb) = apcStackX_18[0][1];
+  *(char *)((int64_t)param_2 + 0xb) = apcStackX_18[0][1];
   func_0x0001808f6ce0();
   return 0;
 }
@@ -699,7 +699,7 @@ int FUN_1808ee620(int param_1,int param_2,int param_3)
 
 {
   int iVar1;
-  longlong lVar2;
+  int64_t lVar2;
   
   if (system_data_f818 == '\0') {
     return -0x7f6dfffb;

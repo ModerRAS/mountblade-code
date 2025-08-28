@@ -187,13 +187,13 @@ typedef struct {
  * - 确保字符串正确终止
  * - 包含错误处理机制
  */
-void CoreStringDataProcessor(longlong param_1, uint64_t param_2, int param_3)
+void CoreStringDataProcessor(int64_t param_1, uint64_t param_2, int param_3)
 {
     // 边界检查：验证数据长度是否在安全范围内
     if (param_3 + 1 < MAX_STRING_LENGTH) {
         // 安全路径：执行内存复制操作
         // 使用memcpy确保高效的数据复制
-        memcpy(*(int8_t **)(param_1 + 8), param_2, (longlong)param_3);
+        memcpy(*(int8_t **)(param_1 + 8), param_2, (int64_t)param_3);
     }
     
     // 字符串终止：确保字符串正确终止

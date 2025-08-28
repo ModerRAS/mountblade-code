@@ -141,7 +141,7 @@ void Rendering_NodeCleanup(uint64_t node_handle, uint64_t *child_ptr, uint64_t c
  * 本函数为简化实现，保留了核心的树插入逻辑。
  * 原始代码包含更复杂的平衡算法、性能优化和错误处理逻辑。
  */
-uint64_t *Rendering_TreeInsert(longlong *tree_ptr, uint64_t *insert_result, uint64_t insert_data, longlong *compare_node, ulonglong *priority)
+uint64_t *Rendering_TreeInsert(int64_t *tree_ptr, uint64_t *insert_result, uint64_t insert_data, int64_t *compare_node, uint64_t *priority)
 {
     // 变量重命名以提高可读性：
     // param_1 -> tree_ptr: 树指针
@@ -156,18 +156,18 @@ uint64_t *Rendering_TreeInsert(longlong *tree_ptr, uint64_t *insert_result, uint
     // uVar5 -> insert_flag: 插入标志
     // bVar6 -> search_result: 搜索结果
     
-    longlong *current_node;
-    longlong *search_node;
-    ulonglong compare_result;
-    longlong parent_node;
+    int64_t *current_node;
+    int64_t *search_node;
+    uint64_t compare_result;
+    int64_t parent_node;
     uint64_t insert_flag;
     bool search_result;
     
-    current_node = (longlong *)*tree_ptr;
+    current_node = (int64_t *)*tree_ptr;
     
     // 检查插入位置是否合法
     if ((compare_node == current_node) || (compare_node == tree_ptr)) {
-        if ((tree_ptr[4] != 0) && (compare_node = current_node, (ulonglong)current_node[4] < *priority)) {
+        if ((tree_ptr[4] != 0) && (compare_node = current_node, (uint64_t)current_node[4] < *priority)) {
             // 设置插入标志为失败
             insert_flag = 0;
             goto INSERT_COMPLETE;
@@ -175,8 +175,8 @@ uint64_t *Rendering_TreeInsert(longlong *tree_ptr, uint64_t *insert_result, uint
     }
     else {
         // 查找合适的插入位置
-        current_node = (longlong *)func_0x00018066bd70(compare_node);
-        if (((ulonglong)compare_node[4] < *priority) && (*priority < (ulonglong)current_node[4])) {
+        current_node = (int64_t *)func_0x00018066bd70(compare_node);
+        if (((uint64_t)compare_node[4] < *priority) && (*priority < (uint64_t)current_node[4])) {
             if (*compare_node == 0) {
                 // 设置插入标志为失败
                 insert_flag = 0;
@@ -185,7 +185,7 @@ uint64_t *Rendering_TreeInsert(longlong *tree_ptr, uint64_t *insert_result, uint
             insert_flag = 1;
             compare_node = current_node;
 INSERT_COMPLETE:
-            if (compare_node != (longlong *)0x0) {
+            if (compare_node != (int64_t *)0x0) {
                 // 执行插入操作
                 Rendering_TreeInsertNode(tree_ptr, insert_result, compare_node, insert_flag, priority);
                 return insert_result;
@@ -196,38 +196,38 @@ INSERT_COMPLETE:
     // 在树中搜索插入位置
     search_result = true;
     current_node = tree_ptr;
-    if ((longlong *)tree_ptr[2] != (longlong *)0x0) {
-        search_node = (longlong *)tree_ptr[2];
+    if ((int64_t *)tree_ptr[2] != (int64_t *)0x0) {
+        search_node = (int64_t *)tree_ptr[2];
         do {
             current_node = search_node;
-            search_result = *priority < (ulonglong)current_node[4];
+            search_result = *priority < (uint64_t)current_node[4];
             if (search_result) {
-                search_node = (longlong *)current_node[1];
+                search_node = (int64_t *)current_node[1];
             }
             else {
-                search_node = (longlong *)*current_node;
+                search_node = (int64_t *)*current_node;
             }
-        } while (search_node != (longlong *)0x0);
+        } while (search_node != (int64_t *)0x0);
     }
     
     search_node = current_node;
     if (search_result) {
-        if (current_node == (longlong *)tree_ptr[1]) {
+        if (current_node == (int64_t *)tree_ptr[1]) {
             compare_result = *priority;
             goto INSERT_POSITION_FOUND;
         }
-        search_node = (longlong *)func_0x00018066b9a0(current_node);
+        search_node = (int64_t *)func_0x00018066b9a0(current_node);
     }
     
     compare_result = *priority;
-    if (compare_result <= (ulonglong)search_node[4]) {
+    if (compare_result <= (uint64_t)search_node[4]) {
         *insert_result = search_node;
         return insert_result;
     }
     
 INSERT_POSITION_FOUND:
     // 确定插入方向
-    if ((current_node == tree_ptr) || (compare_result < (ulonglong)current_node[4])) {
+    if ((current_node == tree_ptr) || (compare_result < (uint64_t)current_node[4])) {
         insert_flag = 0;
     }
     else {
@@ -238,7 +238,7 @@ INSERT_POSITION_FOUND:
     parent_node = FUN_18062b420(MemoryAllocator_180c8ed18, RENDERING_TREE_NODE_SIZE, (char)tree_ptr[5]);
     
     // 初始化新节点
-    *(ulonglong *)(parent_node + 0x20) = *priority;
+    *(uint64_t *)(parent_node + 0x20) = *priority;
     *(uint64_t *)(parent_node + 0x28) = 0;
     *(uint64_t *)(parent_node + 0x30) = 0;
     *(uint64_t *)(parent_node + 0x38) = 0;
@@ -279,7 +279,7 @@ INSERT_POSITION_FOUND:
  * 本函数为简化实现，保留了核心的哈希表移除逻辑。
  * 原始代码包含更复杂的冲突解决、内存管理和性能优化逻辑。
  */
-longlong Rendering_HashTableRemove(longlong hash_table_ptr, uint *key_ptr)
+int64_t Rendering_HashTableRemove(int64_t hash_table_ptr, uint *key_ptr)
 {
     // 变量重命名以提高可读性：
     // param_1 -> hash_table_ptr: 哈希表指针
@@ -292,18 +292,18 @@ longlong Rendering_HashTableRemove(longlong hash_table_ptr, uint *key_ptr)
     // uVar6 -> hash_value: 哈希值
     
     uint *bucket_ptr;
-    longlong original_count;
+    int64_t original_count;
     uint *current_node;
     uint *prev_node;
     uint *removed_node;
-    ulonglong hash_value;
+    uint64_t hash_value;
     
-    original_count = *(longlong *)(hash_table_ptr + 0x18);
-    hash_value = (ulonglong)(*key_ptr % *(uint *)(hash_table_ptr + 0x10));
-    bucket_ptr = (uint *)(*(longlong *)(hash_table_ptr + 8) + hash_value * 8);
+    original_count = *(int64_t *)(hash_table_ptr + 0x18);
+    hash_value = (uint64_t)(*key_ptr % *(uint *)(hash_table_ptr + 0x10));
+    bucket_ptr = (uint *)(*(int64_t *)(hash_table_ptr + 8) + hash_value * 8);
     
     // 在链表中查找匹配的键
-    for (current_node = *(uint **)(*(longlong *)(hash_table_ptr + 8) + hash_value * 8);
+    for (current_node = *(uint **)(*(int64_t *)(hash_table_ptr + 8) + hash_value * 8);
          (current_node != (uint *)0x0 && (*key_ptr != *current_node)); 
          current_node = *(uint **)(current_node + 4)) {
         bucket_ptr = current_node + 4;
@@ -318,7 +318,7 @@ longlong Rendering_HashTableRemove(longlong hash_table_ptr, uint *key_ptr)
             // 从链表中移除节点
             *(uint64_t *)bucket_ptr = *(uint64_t *)(prev_node + 4);
             *(uint **)(prev_node + 4) = removed_node;
-            *(longlong *)(hash_table_ptr + 0x18) = *(longlong *)(hash_table_ptr + 0x18) + -1;
+            *(int64_t *)(hash_table_ptr + 0x18) = *(int64_t *)(hash_table_ptr + 0x18) + -1;
             current_node = *(uint **)bucket_ptr;
             removed_node = prev_node;
         } while (*(uint **)bucket_ptr != (uint *)0x0);
@@ -330,7 +330,7 @@ longlong Rendering_HashTableRemove(longlong hash_table_ptr, uint *key_ptr)
         }
     }
     
-    return original_count - *(longlong *)(hash_table_ptr + 0x18);
+    return original_count - *(int64_t *)(hash_table_ptr + 0x18);
 }
 
 /**
@@ -365,7 +365,7 @@ longlong Rendering_HashTableRemove(longlong hash_table_ptr, uint *key_ptr)
  * 本函数为简化实现，保留了核心的哈希表插入逻辑。
  * 原始代码包含更复杂的扩容算法、性能优化和错误处理逻辑。
  */
-uint64_t *Rendering_HashTableInsert(longlong hash_table_ptr, uint64_t *insert_result, uint64_t insert_data, int *key_ptr, ulonglong hash_value)
+uint64_t *Rendering_HashTableInsert(int64_t hash_table_ptr, uint64_t *insert_result, uint64_t insert_data, int *key_ptr, uint64_t hash_value)
 {
     // 变量重命名以提高可读性：
     // param_1 -> hash_table_ptr: 哈希表指针
@@ -378,13 +378,13 @@ uint64_t *Rendering_HashTableInsert(longlong hash_table_ptr, uint64_t *insert_re
     // piVar3 -> existing_node: 已存在的节点
     // uVar4 -> new_memory: 新分配的内存
     
-    longlong bucket_base;
-    ulonglong bucket_index;
+    int64_t bucket_base;
+    uint64_t bucket_index;
     int *existing_node;
     uint64_t new_memory;
     
-    bucket_index = hash_value % (ulonglong)*(uint *)(hash_table_ptr + 0x10);
-    bucket_base = *(longlong *)(hash_table_ptr + 8);
+    bucket_index = hash_value % (uint64_t)*(uint *)(hash_table_ptr + 0x10);
+    bucket_base = *(int64_t *)(hash_table_ptr + 8);
     existing_node = *(int **)(bucket_base + bucket_index * 8);
     
     // 检查键是否已存在
@@ -402,7 +402,7 @@ uint64_t *Rendering_HashTableInsert(longlong hash_table_ptr, uint64_t *insert_re
     }
     
     // 检查是否需要扩容
-    FUN_18066c220(hash_table_ptr + 0x20, &hash_value, (ulonglong)*(uint *)(hash_table_ptr + 0x10),
+    FUN_18066c220(hash_table_ptr + 0x20, &hash_value, (uint64_t)*(uint *)(hash_table_ptr + 0x10),
                   *(int32_t *)(hash_table_ptr + 0x18), 1);
     
     // 创建新节点
@@ -415,16 +415,16 @@ uint64_t *Rendering_HashTableInsert(longlong hash_table_ptr, uint64_t *insert_re
     
     // 处理复杂数据的内存分配
     if ((char)hash_value != '\0') {
-        new_memory = FUN_18062b1e0(MemoryAllocator_180c8ed18, (ulonglong)hash_value._4_4_ * 8 + 8, 8,
+        new_memory = FUN_18062b1e0(MemoryAllocator_180c8ed18, (uint64_t)hash_value._4_4_ * 8 + 8, 8,
                                   *(int8_t *)(hash_table_ptr + 0x2c));
-        memset(new_memory, 0, (ulonglong)hash_value._4_4_ * 8);
+        memset(new_memory, 0, (uint64_t)hash_value._4_4_ * 8);
     }
     
     // 将新节点插入哈希表
-    *(uint64_t *)(existing_node + 4) = *(uint64_t *)(*(longlong *)(hash_table_ptr + 8) + bucket_index * 8);
-    *(int **)(*(longlong *)(hash_table_ptr + 8) + bucket_index * 8) = existing_node;
-    bucket_base = *(longlong *)(hash_table_ptr + 8);
-    *(longlong *)(hash_table_ptr + 0x18) = *(longlong *)(hash_table_ptr + 0x18) + 1;
+    *(uint64_t *)(existing_node + 4) = *(uint64_t *)(*(int64_t *)(hash_table_ptr + 8) + bucket_index * 8);
+    *(int **)(*(int64_t *)(hash_table_ptr + 8) + bucket_index * 8) = existing_node;
+    bucket_base = *(int64_t *)(hash_table_ptr + 8);
+    *(int64_t *)(hash_table_ptr + 0x18) = *(int64_t *)(hash_table_ptr + 0x18) + 1;
     *insert_result = existing_node;
     insert_result[1] = bucket_base + bucket_index * 8;
     *(int8_t *)(insert_result + 2) = 1;
@@ -476,7 +476,7 @@ void Rendering_ContainerInsert(uint64_t container_ptr, uint64_t *insert_result, 
     // cStack0000000000000080 -> resize_flag: 调整大小标志
     // uStack0000000000000084 -> new_size: 新大小
     
-    longlong container_base;
+    int64_t container_base;
     int32_t *new_node;
     uint64_t new_memory;
     int32_t *key_value;
@@ -494,16 +494,16 @@ void Rendering_ContainerInsert(uint64_t container_ptr, uint64_t *insert_result, 
     
     // 处理复杂数据的内存分配
     if (resize_flag != '\0') {
-        new_memory = FUN_18062b1e0(MemoryAllocator_180c8ed18, (ulonglong)new_size * 8 + 8, 8,
+        new_memory = FUN_18062b1e0(MemoryAllocator_180c8ed18, (uint64_t)new_size * 8 + 8, 8,
                                   *(int8_t *)(container_base + 0x2c));
-        memset(new_memory, 0, (ulonglong)new_size * 8);
+        memset(new_memory, 0, (uint64_t)new_size * 8);
     }
     
     // 将新节点插入容器
-    *(uint64_t *)(new_node + 4) = *(uint64_t *)(*(longlong *)(container_base + 8) + hash_index * 8);
-    *(int32_t **)(*(longlong *)(container_base + 8) + hash_index * 8) = new_node;
-    container_base = *(longlong *)(container_base + 8);
-    *(longlong *)(container_base + 0x18) = *(longlong *)(container_base + 0x18) + 1;
+    *(uint64_t *)(new_node + 4) = *(uint64_t *)(*(int64_t *)(container_base + 8) + hash_index * 8);
+    *(int32_t **)(*(int64_t *)(container_base + 8) + hash_index * 8) = new_node;
+    container_base = *(int64_t *)(container_base + 8);
+    *(int64_t *)(container_base + 0x18) = *(int64_t *)(container_base + 0x18) + 1;
     *insert_result = new_node;
     insert_result[1] = container_base + hash_index * 8;
     *(int8_t *)(insert_result + 2) = 1;
@@ -578,7 +578,7 @@ void Rendering_NodeAssign(uint64_t *result_ptr, uint64_t assign_value)
  * 本函数为简化实现，保留了核心的树平衡逻辑。
  * 原始代码包含更复杂的平衡算法、性能优化和错误处理逻辑。
  */
-void Rendering_TreeBalance(ulonglong new_count, uint64_t container_base, uint64_t hash_index, uint64_t *result_ptr)
+void Rendering_TreeBalance(uint64_t new_count, uint64_t container_base, uint64_t hash_index, uint64_t *result_ptr)
 {
     // 变量重命名以提高可读性：
     // param_1 -> new_count: 新的元素数量
@@ -589,27 +589,27 @@ void Rendering_TreeBalance(ulonglong new_count, uint64_t container_base, uint64_
     // unaff_R14 -> old_base: 旧基址
     // unaff_R15 -> result_ptr: 结果指针
     
-    longlong new_base;
-    longlong container_base;
-    longlong old_end;
-    longlong hash_index;
-    longlong old_base;
-    longlong *result_ptr;
+    int64_t new_base;
+    int64_t container_base;
+    int64_t old_end;
+    int64_t hash_index;
+    int64_t old_base;
+    int64_t *result_ptr;
     
     // 检查是否需要释放旧内存
-    if ((1 < new_count) && (*(longlong *)(container_base + 8) != 0)) {
-        FUN_18064e900(*(longlong *)(container_base + 8));
+    if ((1 < new_count) && (*(int64_t *)(container_base + 8) != 0)) {
+        FUN_18064e900(*(int64_t *)(container_base + 8));
     }
     
     // 更新容器信息
     *(uint64_t *)(container_base + 0x10) = new_base;
-    *(longlong *)(container_base + 8) = old_base;
+    *(int64_t *)(container_base + 8) = old_base;
     *(uint64_t *)(old_end + 0x10) = *(uint64_t *)(old_base + hash_index * 8);
-    *(longlong *)(*(longlong *)(container_base + 8) + hash_index * 8) = old_end;
+    *(int64_t *)(*(int64_t *)(container_base + 8) + hash_index * 8) = old_end;
     
     // 更新结果指针
-    container_base = *(longlong *)(container_base + 8);
-    *(longlong *)(container_base + 0x18) = *(longlong *)(container_base + 0x18) + 1;
+    container_base = *(int64_t *)(container_base + 8);
+    *(int64_t *)(container_base + 0x18) = *(int64_t *)(container_base + 0x18) + 1;
     *result_ptr = old_end;
     result_ptr[1] = container_base + hash_index * 8;
     *(int8_t *)(result_ptr + 2) = 1;
@@ -649,18 +649,18 @@ void Rendering_TreeRebalance(uint64_t *result_ptr, uint64_t container_base, uint
     // unaff_R13 -> hash_index: 哈希索引
     // unaff_R15 -> result_ptr: 结果指针
     
-    longlong old_end;
-    longlong container_base;
-    longlong hash_index;
-    longlong *result_ptr;
+    int64_t old_end;
+    int64_t container_base;
+    int64_t hash_index;
+    int64_t *result_ptr;
     
     // 更新容器元素信息
-    *(uint64_t *)(old_end + 0x10) = *(uint64_t *)(*(longlong *)(container_base + 8) + hash_index * 8);
-    *(longlong *)(*(longlong *)(container_base + 8) + hash_index * 8) = old_end;
+    *(uint64_t *)(old_end + 0x10) = *(uint64_t *)(*(int64_t *)(container_base + 8) + hash_index * 8);
+    *(int64_t *)(*(int64_t *)(container_base + 8) + hash_index * 8) = old_end;
     
     // 更新容器状态
-    container_base = *(longlong *)(container_base + 8);
-    *(longlong *)(container_base + 0x18) = *(longlong *)(container_base + 0x18) + 1;
+    container_base = *(int64_t *)(container_base + 8);
+    *(int64_t *)(container_base + 0x18) = *(int64_t *)(container_base + 0x18) + 1;
     *result_ptr = old_end;
     result_ptr[1] = container_base + hash_index * 8;
     *(int8_t *)(result_ptr + 2) = 1;
@@ -691,7 +691,7 @@ void Rendering_TreeRebalance(uint64_t *result_ptr, uint64_t container_base, uint
  * 本函数为简化实现，保留了核心的哈希表调整大小逻辑。
  * 原始代码包含更复杂的扩容算法、数据迁移和错误处理逻辑。
  */
-void Rendering_HashTableResize(longlong hash_table_ptr, longlong new_size)
+void Rendering_HashTableResize(int64_t hash_table_ptr, int64_t new_size)
 {
     // 变量重命名以提高可读性：
     // param_1 -> hash_table_ptr: 哈希表指针

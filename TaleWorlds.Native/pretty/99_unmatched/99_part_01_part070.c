@@ -86,14 +86,14 @@
  * @note 此函数使用位运算优化内存地址计算
  * @warning 当内存块索引有效时，函数不会返回（memset操作）
  */
-void clear_memory_block(longlong memory_ptr, uint block_index)
+void clear_memory_block(int64_t memory_ptr, uint block_index)
 {
     // 检查块索引是否在有效范围内
     if ((int)block_index < (int)(block_index + MEMORY_CHUNK_SIZE)) {
         // 计算内存块地址并清零
         memset(
-            *(longlong *)(memory_ptr + 8 + (ulonglong)(block_index >> 9) * 8) +
-            (longlong)(int)(block_index + (block_index >> 9) * -MEMORY_CHUNK_SIZE) * MEMORY_BLOCK_SIZE,
+            *(int64_t *)(memory_ptr + 8 + (uint64_t)(block_index >> 9) * 8) +
+            (int64_t)(int)(block_index + (block_index >> 9) * -MEMORY_CHUNK_SIZE) * MEMORY_BLOCK_SIZE,
             0,
             MEMORY_BLOCK_SIZE
         );
@@ -120,12 +120,12 @@ void clear_memory_block(longlong memory_ptr, uint block_index)
 void clear_memory_block_fast(void)
 {
     uint unaff_EBX;
-    longlong unaff_RBP;
+    int64_t unaff_RBP;
     
     // 使用寄存器变量直接计算内存地址并清零
     memset(
-        *(longlong *)(unaff_RBP + 8 + (ulonglong)(unaff_EBX >> 9) * 8) +
-        (longlong)(int)(unaff_EBX + (unaff_EBX >> 9) * -MEMORY_CHUNK_SIZE) * MEMORY_BLOCK_SIZE,
+        *(int64_t *)(unaff_RBP + 8 + (uint64_t)(unaff_EBX >> 9) * 8) +
+        (int64_t)(int)(unaff_EBX + (unaff_EBX >> 9) * -MEMORY_CHUNK_SIZE) * MEMORY_BLOCK_SIZE,
         0,
         MEMORY_BLOCK_SIZE
     );
@@ -166,34 +166,34 @@ void empty_function(void)
  * @warning 初始化过程涉及大量内存操作，需要确保内存指针有效
  * @see clear_memory_block
  */
-void initialize_memory_structure(longlong memory_ptr, uint block_index)
+void initialize_memory_structure(int64_t memory_ptr, uint block_index)
 {
-    longlong lVar1;
+    int64_t lVar1;
     uint64_t *puVar2;
     uint64_t *puVar3;
     uint uVar4;
-    ulonglong uVar5;
+    uint64_t uVar5;
     
-    uVar5 = (ulonglong)block_index;
+    uVar5 = (uint64_t)block_index;
     if ((int)block_index < (int)(block_index + MEMORY_CHUNK_SIZE)) {
         do {
             // 计算内存块地址
             puVar3 = (uint64_t *)
-                     (*(longlong *)(memory_ptr + 8 + (uVar5 >> 9) * 8) +
-                     (longlong)((int)uVar5 + (int)(uVar5 >> 9) * -MEMORY_CHUNK_SIZE) * MEMORY_LARGE_BLOCK_SIZE);
+                     (*(int64_t *)(memory_ptr + 8 + (uVar5 >> 9) * 8) +
+                     (int64_t)((int)uVar5 + (int)(uVar5 >> 9) * -MEMORY_CHUNK_SIZE) * MEMORY_LARGE_BLOCK_SIZE);
             
             // 初始化基本状态字段
             puVar3[0x11] = 0;
             *(int32_t *)(puVar3 + 0x12) = 0x1060101;
-            *(int32_t *)((longlong)puVar3 + 0x94) = 0xff000000;
+            *(int32_t *)((int64_t)puVar3 + 0x94) = 0xff000000;
             *(int32_t *)(puVar3 + 0x13) = 0x40300ff;
             
             // 初始化配置参数
-            *(uint64_t *)((longlong)puVar3 + 0x9c) = 0x30503;
-            *(uint64_t *)((longlong)puVar3 + 0xa4) = 0;
-            *(uint64_t *)((longlong)puVar3 + 0xac) = 0;
-            *(uint64_t *)((longlong)puVar3 + 0xb4) = 0;
-            *(int32_t *)((longlong)puVar3 + 0xbc) = 0;
+            *(uint64_t *)((int64_t)puVar3 + 0x9c) = 0x30503;
+            *(uint64_t *)((int64_t)puVar3 + 0xa4) = 0;
+            *(uint64_t *)((int64_t)puVar3 + 0xac) = 0;
+            *(uint64_t *)((int64_t)puVar3 + 0xb4) = 0;
+            *(int32_t *)((int64_t)puVar3 + 0xbc) = 0;
             
             // 初始化数组大小字段
             puVar3[0x18] = 0x900;
@@ -226,7 +226,7 @@ void initialize_memory_structure(longlong memory_ptr, uint block_index)
             }
             
             // 初始化浮点参数和特殊标志
-            *(int8_t *)((longlong)puVar3 + 0x321) = 0;
+            *(int8_t *)((int64_t)puVar3 + 0x321) = 0;
             *(int32_t *)(puVar3 + 0x62) = 0;
             *(int32_t *)(puVar3 + 0x5a) = 0;
             
@@ -255,21 +255,21 @@ void initialize_memory_structure(longlong memory_ptr, uint block_index)
             puVar3[0x51] = 0;
             puVar3[0x52] = 0;
             puVar3[0x53] = 0;
-            *(int32_t *)((longlong)puVar3 + 0x314) = 0;
+            *(int32_t *)((int64_t)puVar3 + 0x314) = 0;
             puVar3[0x41] = 0;
             puVar3[0x54] = 0;
             puVar3[0x57] = 0;
             
             // 设置特殊标志位
-            *(int32_t *)((longlong)puVar3 + 0x30c) = 0xffffffff;
+            *(int32_t *)((int64_t)puVar3 + 0x30c) = 0xffffffff;
             puVar3[0x58] = 0;
             puVar3[0x59] = 0;
             *(int8_t *)(puVar3 + 100) = 0;
-            *(int8_t *)((longlong)puVar3 + 0x322) = 0;
+            *(int8_t *)((int64_t)puVar3 + 0x322) = 0;
             
             // 更新循环计数器
             uVar4 = (int)uVar5 + 1;
-            uVar5 = (ulonglong)uVar4;
+            uVar5 = (uint64_t)uVar4;
         } while ((int)uVar4 < (int)(block_index + MEMORY_CHUNK_SIZE));
     }
     return;
@@ -279,23 +279,23 @@ void initialize_memory_structure(longlong memory_ptr, uint block_index)
 
 
 
-// 函数: void process_memory_batch(longlong memory_ptr, uint block_index)
+// 函数: void process_memory_batch(int64_t memory_ptr, uint block_index)
 // 批量内存处理函数
 // 参数: memory_ptr - 内存指针, block_index - 块索引
 // 功能: 批量处理内存块，调用处理函数进行内存操作
-void process_memory_batch(longlong memory_ptr, uint block_index)
+void process_memory_batch(int64_t memory_ptr, uint block_index)
 
 {
   uint uVar1;
-  ulonglong uVar2;
+  uint64_t uVar2;
   
-  uVar2 = (ulonglong)block_index;
+  uVar2 = (uint64_t)block_index;
   if ((int)block_index < (int)(block_index + MEMORY_SMALL_CHUNK_SIZE)) {
     do {
-      process_memory_data((longlong)((int)uVar2 + (int)(uVar2 >> 4) * -MEMORY_SMALL_CHUNK_SIZE) * MEMORY_LARGE_ENTRY_SIZE +
-                    *(longlong *)(memory_ptr + 8 + (uVar2 >> 4) * 8));
+      process_memory_data((int64_t)((int)uVar2 + (int)(uVar2 >> 4) * -MEMORY_SMALL_CHUNK_SIZE) * MEMORY_LARGE_ENTRY_SIZE +
+                    *(int64_t *)(memory_ptr + 8 + (uVar2 >> 4) * 8));
       uVar1 = (int)uVar2 + 1;
-      uVar2 = (ulonglong)uVar1;
+      uVar2 = (uint64_t)uVar1;
     } while ((int)uVar1 < (int)(block_index + MEMORY_SMALL_CHUNK_SIZE));
   }
   return;
@@ -304,7 +304,7 @@ void process_memory_batch(longlong memory_ptr, uint block_index)
 
 
 uint64_t *
-allocate_memory_structure(uint64_t *param_1,ulonglong param_2,uint64_t param_3,uint64_t param_4)
+allocate_memory_structure(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
   *param_1 = &system_handler2_ptr;
@@ -318,14 +318,14 @@ allocate_memory_structure(uint64_t *param_1,ulonglong param_2,uint64_t param_3,u
 
 
 uint64_t *
-free_memory_structure(uint64_t *param_1,ulonglong param_2,uint64_t param_3,uint64_t param_4)
+free_memory_structure(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
   uint64_t uVar1;
   
   uVar1 = 0xfffffffffffffffe;
-  if ((longlong *)param_1[8] != (longlong *)0x0) {
-    (**(code **)(*(longlong *)param_1[8] + 0x38))();
+  if ((int64_t *)param_1[8] != (int64_t *)0x0) {
+    (**(code **)(*(int64_t *)param_1[8] + 0x38))();
   }
   if ((code *)param_1[6] != (code *)0x0) {
     (*(code *)param_1[6])(param_1 + 4,0,0,param_4,uVar1);
@@ -343,11 +343,11 @@ free_memory_structure(uint64_t *param_1,ulonglong param_2,uint64_t param_3,uint6
 
 
 
-// 函数: void sort_data_structure(longlong *data_ptr, uint64_t *key_ptr)
+// 函数: void sort_data_structure(int64_t *data_ptr, uint64_t *key_ptr)
 // 数据结构排序函数
 // 参数: data_ptr - 数据指针, key_ptr - 键指针
 // 功能: 对数据结构进行排序操作，实现插入排序算法
-void sort_data_structure(longlong *data_ptr, uint64_t *key_ptr)
+void sort_data_structure(int64_t *data_ptr, uint64_t *key_ptr)
 
 {
   uint64_t *puVar1;
@@ -359,14 +359,14 @@ void sort_data_structure(longlong *data_ptr, uint64_t *key_ptr)
   uint uVar7;
   int32_t uVar8;
   int32_t uVar9;
-  ulonglong uVar10;
-  ulonglong uVar11;
+  uint64_t uVar10;
+  uint64_t uVar11;
   uint64_t uVar12;
-  longlong lVar13;
-  ulonglong *puVar14;
-  ulonglong uVar15;
-  ulonglong uVar16;
-  longlong lVar17;
+  int64_t lVar13;
+  uint64_t *puVar14;
+  uint64_t uVar15;
+  uint64_t uVar16;
+  int64_t lVar17;
   uint uVar18;
   int iVar19;
   uint uVar20;
@@ -378,7 +378,7 @@ void sort_data_structure(longlong *data_ptr, uint64_t *key_ptr)
   int32_t uStack_84;
   int32_t uStack_80;
   int32_t uStack_7c;
-  longlong lStack_78;
+  int64_t lStack_78;
   uint64_t uStack_70;
   int32_t uStack_68;
   int32_t uStack_64;
@@ -394,21 +394,21 @@ void sort_data_structure(longlong *data_ptr, uint64_t *key_ptr)
   iVar5 = (int)data_ptr[1];
   if (iVar5 != *(int *)(key_ptr + 1)) {
     iVar19 = 0;
-    lVar17 = (longlong)*(int *)(key_ptr + 1) - (longlong)iVar5;
+    lVar17 = (int64_t)*(int *)(key_ptr + 1) - (int64_t)iVar5;
     for (lVar13 = lVar17; lVar13 != 0; lVar13 = lVar13 >> 1) {
       iVar19 = iVar19 + 1;
     }
     uStack_98 = *key_ptr;
     uStack_90 = key_ptr[1];
     uStack_88 = (int32_t)*data_ptr;
-    uStack_84 = *(int32_t *)((longlong)data_ptr + 4);
+    uStack_84 = *(int32_t *)((int64_t)data_ptr + 4);
     uStack_80 = (int32_t)data_ptr[1];
-    uStack_7c = *(int32_t *)((longlong)data_ptr + 0xc);
-    copy_memory_data(&uStack_88,&uStack_98,(longlong)(iVar19 + -1) * 2);
+    uStack_7c = *(int32_t *)((int64_t)data_ptr + 0xc);
+    copy_memory_data(&uStack_88,&uStack_98,(int64_t)(iVar19 + -1) * 2);
     uStack_68 = (int32_t)*data_ptr;
-    uStack_64 = *(int32_t *)((longlong)data_ptr + 4);
+    uStack_64 = *(int32_t *)((int64_t)data_ptr + 4);
     uStack_60 = (int32_t)data_ptr[1];
-    uStack_5c = *(int32_t *)((longlong)data_ptr + 0xc);
+    uStack_5c = *(int32_t *)((int64_t)data_ptr + 0xc);
     if (lVar17 < 0x1d) {
       uStack_58 = *key_ptr;
       uStack_50 = key_ptr[1];
@@ -426,9 +426,9 @@ void sort_data_structure(longlong *data_ptr, uint64_t *key_ptr)
       move_memory_data(&uStack_68,&lStack_78);
       uVar7 = *(uint *)(key_ptr + 1);
       for (; uVar18 != uVar7; uVar18 = uVar18 + 1) {
-        uVar15 = (ulonglong)(uVar18 + (uVar18 >> 0xb) * -MEMORY_PAGE_SIZE);
-        lVar17 = *(longlong *)(lVar13 + 8 + (ulonglong)(uVar18 >> 0xb) * 8);
-        puVar14 = (ulonglong *)(lVar17 + uVar15 * MEMORY_ENTRY_SIZE);
+        uVar15 = (uint64_t)(uVar18 + (uVar18 >> 0xb) * -MEMORY_PAGE_SIZE);
+        lVar17 = *(int64_t *)(lVar13 + 8 + (uint64_t)(uVar18 >> 0xb) * 8);
+        puVar14 = (uint64_t *)(lVar17 + uVar15 * MEMORY_ENTRY_SIZE);
         uVar10 = *puVar14;
         uVar11 = puVar14[1];
         uVar4 = *(uint64_t *)(lVar17 + 0x10 + uVar15 * MEMORY_ENTRY_SIZE);
@@ -436,23 +436,23 @@ void sort_data_structure(longlong *data_ptr, uint64_t *key_ptr)
         uVar6 = uVar18;
         while( true ) {
           uVar6 = uVar6 - 1;
-          uVar16 = (ulonglong)(uVar6 & 0x7ff);
-          puVar14 = (ulonglong *)
-                    (*(longlong *)(lVar13 + 8 + (ulonglong)(uVar6 >> 0xb) * 8) + uVar16 * MEMORY_ENTRY_SIZE);
+          uVar16 = (uint64_t)(uVar6 & 0x7ff);
+          puVar14 = (uint64_t *)
+                    (*(int64_t *)(lVar13 + 8 + (uint64_t)(uVar6 >> 0xb) * 8) + uVar16 * MEMORY_ENTRY_SIZE);
           uVar15 = *puVar14;
           bVar21 = uVar10 < uVar15;
           if (uVar10 == uVar15) {
             bVar21 = uVar11 < puVar14[1];
           }
           if (!bVar21) break;
-          lVar17 = *(longlong *)(lVar13 + 8 + (ulonglong)(uVar6 >> 0xb) * 8);
+          lVar17 = *(int64_t *)(lVar13 + 8 + (uint64_t)(uVar6 >> 0xb) * 8);
           puVar1 = (uint64_t *)(lVar17 + uVar16 * MEMORY_ENTRY_SIZE);
           uVar12 = puVar1[1];
           puVar3 = (int32_t *)(lVar17 + 0x10 + uVar16 * MEMORY_ENTRY_SIZE);
           uVar8 = *puVar3;
           uVar9 = puVar3[1];
-          lVar17 = *(longlong *)(lVar13 + 8 + (ulonglong)(uVar20 >> 0xb) * 8);
-          uVar15 = (ulonglong)(uVar20 + (uVar20 >> 0xb) * -MEMORY_PAGE_SIZE);
+          lVar17 = *(int64_t *)(lVar13 + 8 + (uint64_t)(uVar20 >> 0xb) * 8);
+          uVar15 = (uint64_t)(uVar20 + (uVar20 >> 0xb) * -MEMORY_PAGE_SIZE);
           puVar2 = (uint64_t *)(lVar17 + uVar15 * MEMORY_ENTRY_SIZE);
           *puVar2 = *puVar1;
           puVar2[1] = uVar12;
@@ -461,9 +461,9 @@ void sort_data_structure(longlong *data_ptr, uint64_t *key_ptr)
           puVar3[1] = uVar9;
           uVar20 = uVar20 - 1;
         }
-        uVar15 = (ulonglong)(uVar20 + (uVar20 >> 0xb) * -MEMORY_PAGE_SIZE);
-        lVar17 = *(longlong *)(lVar13 + 8 + (ulonglong)(uVar20 >> 0xb) * 8);
-        puVar14 = (ulonglong *)(lVar17 + uVar15 * MEMORY_ENTRY_SIZE);
+        uVar15 = (uint64_t)(uVar20 + (uVar20 >> 0xb) * -MEMORY_PAGE_SIZE);
+        lVar17 = *(int64_t *)(lVar13 + 8 + (uint64_t)(uVar20 >> 0xb) * 8);
+        puVar14 = (uint64_t *)(lVar17 + uVar15 * MEMORY_ENTRY_SIZE);
         *puVar14 = uVar10;
         puVar14[1] = uVar11;
         *(uint64_t *)(lVar17 + 0x10 + uVar15 * MEMORY_ENTRY_SIZE) = uVar4;
@@ -488,24 +488,24 @@ void merge_data_structures(int32_t *data_ptr, uint64_t *key_ptr)
   uint64_t *puVar2;
   int32_t *puVar3;
   uint64_t uVar4;
-  longlong lVar5;
-  longlong lVar6;
-  ulonglong uVar7;
+  int64_t lVar5;
+  int64_t lVar6;
+  uint64_t uVar7;
   uint uVar8;
   uint uVar9;
   uint64_t uVar10;
   uint64_t uVar11;
   uint64_t uVar12;
-  longlong in_RAX;
-  longlong lVar13;
-  ulonglong *puVar14;
-  ulonglong uVar15;
-  ulonglong uVar16;
-  ulonglong uVar17;
-  longlong unaff_RBP;
+  int64_t in_RAX;
+  int64_t lVar13;
+  uint64_t *puVar14;
+  uint64_t uVar15;
+  uint64_t uVar16;
+  uint64_t uVar17;
+  int64_t unaff_RBP;
   uint64_t *unaff_RSI;
   uint uVar18;
-  longlong unaff_RDI;
+  int64_t unaff_RDI;
   int iVar19;
   uint uVar20;
   uint64_t *unaff_R14;
@@ -530,11 +530,11 @@ void merge_data_structures(int32_t *data_ptr, uint64_t *key_ptr)
   *(int32_t *)(unaff_RBP + -0x25) = uVar23;
   *(int32_t *)(unaff_RBP + -0x21) = uVar24;
   *(int32_t *)(unaff_RBP + -0x1d) = uVar25;
-  copy_memory_data(unaff_RBP + -0x29,unaff_RBP + -0x39,(longlong)(iVar19 + -1) * 2);
+  copy_memory_data(unaff_RBP + -0x29,unaff_RBP + -0x39,(int64_t)(iVar19 + -1) * 2);
   uVar22 = *(int32_t *)unaff_RSI;
-  uVar23 = *(int32_t *)((longlong)unaff_RSI + 4);
+  uVar23 = *(int32_t *)((int64_t)unaff_RSI + 4);
   uVar24 = *(int32_t *)(unaff_RSI + 1);
-  uVar25 = *(int32_t *)((longlong)unaff_RSI + 0xc);
+  uVar25 = *(int32_t *)((int64_t)unaff_RSI + 0xc);
   if (in_RAX - unaff_RDI < 0x1d) {
     uVar4 = unaff_R14[1];
     *(uint64_t *)(unaff_RBP + 7) = *unaff_R14;
@@ -569,45 +569,45 @@ void merge_data_structures(int32_t *data_ptr, uint64_t *key_ptr)
     *(int32_t *)(unaff_RBP + -0x51) = uVar24;
     *(int32_t *)(unaff_RBP + -0x4d) = uVar25;
     if (uVar18 != uVar9) {
-      lVar13 = *(longlong *)(unaff_RBP + -0x59);
+      lVar13 = *(int64_t *)(unaff_RBP + -0x59);
       uVar18 = *(uint *)(unaff_RBP + -0x51);
       while( true ) {
         *(int32_t *)(unaff_RBP + -0x49) = uVar22;
         *(int32_t *)(unaff_RBP + -0x45) = uVar23;
         *(int32_t *)(unaff_RBP + -0x41) = uVar24;
         *(int32_t *)(unaff_RBP + -0x3d) = uVar25;
-        lVar5 = *(longlong *)(unaff_RBP + -0x49);
-        uVar15 = (ulonglong)(uVar18 + (uVar18 >> 0xb) * -MEMORY_PAGE_SIZE);
-        lVar6 = *(longlong *)(lVar13 + 8 + (ulonglong)(uVar18 >> 0xb) * 8);
+        lVar5 = *(int64_t *)(unaff_RBP + -0x49);
+        uVar15 = (uint64_t)(uVar18 + (uVar18 >> 0xb) * -MEMORY_PAGE_SIZE);
+        lVar6 = *(int64_t *)(lVar13 + 8 + (uint64_t)(uVar18 >> 0xb) * 8);
         puVar1 = (uint64_t *)(lVar6 + uVar15 * MEMORY_ENTRY_SIZE);
         uVar10 = *puVar1;
         uVar11 = puVar1[1];
         uVar4 = *(uint64_t *)(lVar6 + 0x10 + uVar15 * MEMORY_ENTRY_SIZE);
         *(uint64_t *)(unaff_RBP + 0x27) = uVar10;
         *(uint64_t *)(unaff_RBP + 0x2f) = uVar11;
-        uVar15 = *(ulonglong *)(unaff_RBP + 0x2f);
-        uVar7 = *(ulonglong *)(unaff_RBP + 0x27);
+        uVar15 = *(uint64_t *)(unaff_RBP + 0x2f);
+        uVar7 = *(uint64_t *)(unaff_RBP + 0x27);
         uVar20 = *(uint *)(unaff_RBP + -0x41);
         uVar8 = uVar18;
         while( true ) {
           uVar8 = uVar8 - 1;
-          uVar17 = (ulonglong)(uVar8 & 0x7ff);
-          puVar14 = (ulonglong *)
-                    (*(longlong *)(lVar13 + 8 + (ulonglong)(uVar8 >> 0xb) * 8) + uVar17 * MEMORY_ENTRY_SIZE);
+          uVar17 = (uint64_t)(uVar8 & 0x7ff);
+          puVar14 = (uint64_t *)
+                    (*(int64_t *)(lVar13 + 8 + (uint64_t)(uVar8 >> 0xb) * 8) + uVar17 * MEMORY_ENTRY_SIZE);
           uVar16 = *puVar14;
           bVar21 = uVar7 < uVar16;
           if (uVar7 == uVar16) {
             bVar21 = uVar15 < puVar14[1];
           }
           if (!bVar21) break;
-          lVar6 = *(longlong *)(lVar13 + 8 + (ulonglong)(uVar8 >> 0xb) * 8);
+          lVar6 = *(int64_t *)(lVar13 + 8 + (uint64_t)(uVar8 >> 0xb) * 8);
           puVar1 = (uint64_t *)(lVar6 + uVar17 * MEMORY_ENTRY_SIZE);
           uVar12 = puVar1[1];
           puVar3 = (int32_t *)(lVar6 + 0x10 + uVar17 * MEMORY_ENTRY_SIZE);
           uVar22 = *puVar3;
           uVar23 = puVar3[1];
-          lVar6 = *(longlong *)(lVar5 + 8 + (ulonglong)(uVar20 >> 0xb) * 8);
-          uVar16 = (ulonglong)(uVar20 + (uVar20 >> 0xb) * -MEMORY_PAGE_SIZE);
+          lVar6 = *(int64_t *)(lVar5 + 8 + (uint64_t)(uVar20 >> 0xb) * 8);
+          uVar16 = (uint64_t)(uVar20 + (uVar20 >> 0xb) * -MEMORY_PAGE_SIZE);
           puVar2 = (uint64_t *)(lVar6 + uVar16 * MEMORY_ENTRY_SIZE);
           *puVar2 = *puVar1;
           puVar2[1] = uVar12;
@@ -618,8 +618,8 @@ void merge_data_structures(int32_t *data_ptr, uint64_t *key_ptr)
         }
         uVar18 = uVar18 + 1;
         *(uint *)(unaff_RBP + -0x51) = uVar18;
-        uVar15 = (ulonglong)(uVar20 + (uVar20 >> 0xb) * -MEMORY_PAGE_SIZE);
-        lVar5 = *(longlong *)(lVar5 + 8 + (ulonglong)(uVar20 >> 0xb) * 8);
+        uVar15 = (uint64_t)(uVar20 + (uVar20 >> 0xb) * -MEMORY_PAGE_SIZE);
+        lVar5 = *(int64_t *)(lVar5 + 8 + (uint64_t)(uVar20 >> 0xb) * 8);
         puVar1 = (uint64_t *)(lVar5 + uVar15 * MEMORY_ENTRY_SIZE);
         *puVar1 = uVar10;
         puVar1[1] = uVar11;
@@ -650,25 +650,25 @@ void insert_data_sorted(uint64_t data_param, uint64_t key_param)
   uint64_t *puVar2;
   int32_t *puVar3;
   uint64_t uVar4;
-  longlong lVar5;
-  longlong lVar6;
-  longlong lVar7;
-  ulonglong uVar8;
+  int64_t lVar5;
+  int64_t lVar6;
+  int64_t lVar7;
+  uint64_t uVar8;
   uint uVar9;
   uint uVar10;
   uint64_t uVar11;
   uint64_t uVar12;
   uint64_t uVar13;
-  ulonglong *puVar14;
-  ulonglong uVar15;
-  ulonglong uVar16;
-  ulonglong uVar17;
+  uint64_t *puVar14;
+  uint64_t uVar15;
+  uint64_t uVar16;
+  uint64_t uVar17;
   uint64_t unaff_RBX;
-  longlong unaff_RBP;
+  int64_t unaff_RBP;
   uint uVar18;
   uint unaff_EDI;
   uint uVar19;
-  longlong unaff_R14;
+  int64_t unaff_R14;
   bool bVar20;
   int32_t uVar21;
   int32_t uVar22;
@@ -678,7 +678,7 @@ void insert_data_sorted(uint64_t data_param, uint64_t key_param)
   int32_t uVar24;
   
   *(int *)(unaff_RBP + -9) = (int)key_param;
-  *(int *)(unaff_RBP + -5) = (int)((ulonglong)key_param >> 0x20);
+  *(int *)(unaff_RBP + -5) = (int)((uint64_t)key_param >> 0x20);
   *(int32_t *)(unaff_RBP + -1) = in_XMM1_Dc;
   *(int32_t *)(unaff_RBP + 3) = in_XMM1_Dd;
   move_memory_data();
@@ -694,45 +694,45 @@ void insert_data_sorted(uint64_t data_param, uint64_t key_param)
   *(int32_t *)(unaff_RBP + -0x51) = uVar23;
   *(int32_t *)(unaff_RBP + -0x4d) = uVar24;
   if (unaff_EDI != uVar10) {
-    lVar5 = *(longlong *)(unaff_RBP + -0x59);
+    lVar5 = *(int64_t *)(unaff_RBP + -0x59);
     uVar18 = *(uint *)(unaff_RBP + -0x51);
     while( true ) {
       *(int32_t *)(unaff_RBP + -0x49) = uVar21;
       *(int32_t *)(unaff_RBP + -0x45) = uVar22;
       *(int32_t *)(unaff_RBP + -0x41) = uVar23;
       *(int32_t *)(unaff_RBP + -0x3d) = uVar24;
-      lVar6 = *(longlong *)(unaff_RBP + -0x49);
-      uVar15 = (ulonglong)(uVar18 + (uVar18 >> 0xb) * -MEMORY_PAGE_SIZE);
-      lVar7 = *(longlong *)(lVar5 + 8 + (ulonglong)(uVar18 >> 0xb) * 8);
+      lVar6 = *(int64_t *)(unaff_RBP + -0x49);
+      uVar15 = (uint64_t)(uVar18 + (uVar18 >> 0xb) * -MEMORY_PAGE_SIZE);
+      lVar7 = *(int64_t *)(lVar5 + 8 + (uint64_t)(uVar18 >> 0xb) * 8);
       puVar1 = (uint64_t *)(lVar7 + uVar15 * MEMORY_ENTRY_SIZE);
       uVar11 = *puVar1;
       uVar12 = puVar1[1];
       uVar4 = *(uint64_t *)(lVar7 + 0x10 + uVar15 * MEMORY_ENTRY_SIZE);
       *(uint64_t *)(unaff_RBP + 0x27) = uVar11;
       *(uint64_t *)(unaff_RBP + 0x2f) = uVar12;
-      uVar15 = *(ulonglong *)(unaff_RBP + 0x2f);
-      uVar8 = *(ulonglong *)(unaff_RBP + 0x27);
+      uVar15 = *(uint64_t *)(unaff_RBP + 0x2f);
+      uVar8 = *(uint64_t *)(unaff_RBP + 0x27);
       uVar19 = *(uint *)(unaff_RBP + -0x41);
       uVar9 = uVar18;
       while( true ) {
         uVar9 = uVar9 - 1;
-        uVar17 = (ulonglong)(uVar9 & 0x7ff);
-        puVar14 = (ulonglong *)
-                  (*(longlong *)(lVar5 + 8 + (ulonglong)(uVar9 >> 0xb) * 8) + uVar17 * MEMORY_ENTRY_SIZE);
+        uVar17 = (uint64_t)(uVar9 & 0x7ff);
+        puVar14 = (uint64_t *)
+                  (*(int64_t *)(lVar5 + 8 + (uint64_t)(uVar9 >> 0xb) * 8) + uVar17 * MEMORY_ENTRY_SIZE);
         uVar16 = *puVar14;
         bVar20 = uVar8 < uVar16;
         if (uVar8 == uVar16) {
           bVar20 = uVar15 < puVar14[1];
         }
         if (!bVar20) break;
-        lVar7 = *(longlong *)(lVar5 + 8 + (ulonglong)(uVar9 >> 0xb) * 8);
+        lVar7 = *(int64_t *)(lVar5 + 8 + (uint64_t)(uVar9 >> 0xb) * 8);
         puVar1 = (uint64_t *)(lVar7 + uVar17 * MEMORY_ENTRY_SIZE);
         uVar13 = puVar1[1];
         puVar3 = (int32_t *)(lVar7 + 0x10 + uVar17 * MEMORY_ENTRY_SIZE);
         uVar21 = *puVar3;
         uVar22 = puVar3[1];
-        lVar7 = *(longlong *)(lVar6 + 8 + (ulonglong)(uVar19 >> 0xb) * 8);
-        uVar16 = (ulonglong)(uVar19 + (uVar19 >> 0xb) * -MEMORY_PAGE_SIZE);
+        lVar7 = *(int64_t *)(lVar6 + 8 + (uint64_t)(uVar19 >> 0xb) * 8);
+        uVar16 = (uint64_t)(uVar19 + (uVar19 >> 0xb) * -MEMORY_PAGE_SIZE);
         puVar2 = (uint64_t *)(lVar7 + uVar16 * MEMORY_ENTRY_SIZE);
         *puVar2 = *puVar1;
         puVar2[1] = uVar13;
@@ -743,8 +743,8 @@ void insert_data_sorted(uint64_t data_param, uint64_t key_param)
       }
       uVar18 = uVar18 + 1;
       *(uint *)(unaff_RBP + -0x51) = uVar18;
-      uVar15 = (ulonglong)(uVar19 + (uVar19 >> 0xb) * -MEMORY_PAGE_SIZE);
-      lVar6 = *(longlong *)(lVar6 + 8 + (ulonglong)(uVar19 >> 0xb) * 8);
+      uVar15 = (uint64_t)(uVar19 + (uVar19 >> 0xb) * -MEMORY_PAGE_SIZE);
+      lVar6 = *(int64_t *)(lVar6 + 8 + (uint64_t)(uVar19 >> 0xb) * 8);
       puVar1 = (uint64_t *)(lVar6 + uVar15 * MEMORY_ENTRY_SIZE);
       *puVar1 = uVar11;
       puVar1[1] = uVar12;
@@ -773,7 +773,7 @@ void add_data_entry(uint64_t entry_param, uint64_t data_param)
   int32_t uVar1;
   int32_t uVar2;
   int32_t uVar3;
-  longlong unaff_RBP;
+  int64_t unaff_RBP;
   int32_t *unaff_R14;
   uint64_t in_XMM1_Qb;
   
@@ -835,21 +835,21 @@ void empty_function_4(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-// 函数: ulonglong * create_array_structure(ulonglong size)
+// 函数: uint64_t * create_array_structure(uint64_t size)
 // 数组结构创建函数
 // 参数: size - 数组大小
 // 功能: 创建指定大小的数组结构，初始化内存并返回指针
-ulonglong * create_array_structure(ulonglong size)
+uint64_t * create_array_structure(uint64_t size)
 
 {
-  ulonglong *puVar1;
-  ulonglong *puVar2;
+  uint64_t *puVar1;
+  uint64_t *puVar2;
   int iVar3;
   
   if (size == 0) {
-    return (ulonglong *)0x0;
+    return (uint64_t *)0x0;
   }
-  puVar1 = (ulonglong *)allocate_system_memory(system_memory_pool_ptr,size * 8 + MEMORY_ALLOC_BASE_SIZE,3);
+  puVar1 = (uint64_t *)allocate_system_memory(system_memory_pool_ptr,size * 8 + MEMORY_ALLOC_BASE_SIZE,3);
   *puVar1 = size << 0x20 | 8;
   iVar3 = 0;
   puVar2 = puVar1 + 2;
@@ -857,7 +857,7 @@ ulonglong * create_array_structure(ulonglong size)
     iVar3 = iVar3 + 1;
     *puVar2 = 0;
     puVar2 = puVar2 + 1;
-  } while ((ulonglong)(longlong)iVar3 < size);
+  } while ((uint64_t)(int64_t)iVar3 < size);
   return puVar1 + 2;
 }
 
@@ -865,29 +865,29 @@ ulonglong * create_array_structure(ulonglong size)
 
 
 
-// 函数: void cleanup_memory_handlers(longlong memory_ptr)
+// 函数: void cleanup_memory_handlers(int64_t memory_ptr)
 // 内存处理器清理函数
 // 参数: memory_ptr - 内存指针
 // 功能: 清理内存处理器，调用析构函数并释放内存
-void cleanup_memory_handlers(longlong memory_ptr)
+void cleanup_memory_handlers(int64_t memory_ptr)
 
 {
-  ulonglong uVar1;
-  ulonglong uVar2;
-  ulonglong uVar3;
+  uint64_t uVar1;
+  uint64_t uVar2;
+  uint64_t uVar3;
   
   if (memory_ptr == 0) {
     return;
   }
   uVar3 = 0;
-  uVar1 = *(ulonglong *)(memory_ptr + -MEMORY_ALLOC_BASE_SIZE);
+  uVar1 = *(uint64_t *)(memory_ptr + -MEMORY_ALLOC_BASE_SIZE);
   uVar2 = uVar1 >> 0x20;
   if ((int)(uVar1 >> 0x20) != 0) {
     do {
-      if (*(longlong **)(uVar3 + memory_ptr) != (longlong *)0x0) {
-        (**(code **)(**(longlong **)(uVar3 + memory_ptr) + 0x38))();
+      if (*(int64_t **)(uVar3 + memory_ptr) != (int64_t *)0x0) {
+        (**(code **)(**(int64_t **)(uVar3 + memory_ptr) + 0x38))();
       }
-      uVar3 = (ulonglong)(uint)((int)uVar3 + (int)uVar1);
+      uVar3 = (uint64_t)(uint)((int)uVar3 + (int)uVar1);
       uVar2 = uVar2 - 1;
     } while (uVar2 != 0);
   }
@@ -899,26 +899,26 @@ void cleanup_memory_handlers(longlong memory_ptr)
 
 
 
-// 函数: void cleanup_memory_handlers_fast(longlong memory_ptr)
+// 函数: void cleanup_memory_handlers_fast(int64_t memory_ptr)
 // 快速内存处理器清理函数
 // 参数: memory_ptr - 内存指针
 // 功能: 快速清理内存处理器，优化版本的清理函数
-void cleanup_memory_handlers_fast(longlong memory_ptr)
+void cleanup_memory_handlers_fast(int64_t memory_ptr)
 
 {
-  ulonglong uVar1;
-  ulonglong uVar2;
-  ulonglong uVar3;
+  uint64_t uVar1;
+  uint64_t uVar2;
+  uint64_t uVar3;
   
   uVar3 = 0;
-  uVar1 = *(ulonglong *)(memory_ptr + -MEMORY_ALLOC_BASE_SIZE);
+  uVar1 = *(uint64_t *)(memory_ptr + -MEMORY_ALLOC_BASE_SIZE);
   uVar2 = uVar1 >> 0x20;
   if ((int)(uVar1 >> 0x20) != 0) {
     do {
-      if (*(longlong **)(uVar3 + memory_ptr) != (longlong *)0x0) {
-        (**(code **)(**(longlong **)(uVar3 + memory_ptr) + 0x38))();
+      if (*(int64_t **)(uVar3 + memory_ptr) != (int64_t *)0x0) {
+        (**(code **)(**(int64_t **)(uVar3 + memory_ptr) + 0x38))();
       }
-      uVar3 = (ulonglong)(uint)((int)uVar3 + (int)uVar1);
+      uVar3 = (uint64_t)(uint)((int)uVar3 + (int)uVar1);
       uVar2 = uVar2 - 1;
     } while (uVar2 != 0);
   }
@@ -937,16 +937,16 @@ void cleanup_memory_handlers_fast(longlong memory_ptr)
 void cleanup_memory_pool(void)
 
 {
-  longlong in_RAX;
-  ulonglong unaff_RBX;
+  int64_t in_RAX;
+  uint64_t unaff_RBX;
   int unaff_EBP;
-  longlong unaff_RSI;
+  int64_t unaff_RSI;
   
   do {
-    if (*(longlong **)(unaff_RBX + unaff_RSI) != (longlong *)0x0) {
-      (**(code **)(**(longlong **)(unaff_RBX + unaff_RSI) + 0x38))();
+    if (*(int64_t **)(unaff_RBX + unaff_RSI) != (int64_t *)0x0) {
+      (**(code **)(**(int64_t **)(unaff_RBX + unaff_RSI) + 0x38))();
     }
-    unaff_RBX = (ulonglong)(uint)((int)unaff_RBX + unaff_EBP);
+    unaff_RBX = (uint64_t)(uint)((int)unaff_RBX + unaff_EBP);
     in_RAX = in_RAX + -1;
   } while (in_RAX != 0);
                     // WARNING: Subroutine does not return

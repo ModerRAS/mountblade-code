@@ -58,8 +58,8 @@
 
 // 类型别名定义
 typedef uint system_param_count_t;                  // 系统参数计数类型
-typedef ulonglong system_handle_t;                  // 系统句柄类型
-typedef longlong system_pointer_t;                  // 系统指针类型
+typedef uint64_t system_handle_t;                  // 系统句柄类型
+typedef int64_t system_pointer_t;                  // 系统指针类型
 typedef uint64_t system_result_t;                // 系统结果类型
 typedef int system_status_t;                       // 系统状态类型
 typedef uint system_flag_t;                         // 系统标志类型
@@ -68,7 +68,7 @@ typedef int32_t system_data_t;                  // 系统数据类型
 // 数据结构别名
 typedef int data_array_t[];                        // 数据数组类型
 typedef int8_t data_buffer_t[];                // 数据缓冲区类型
-typedef longlong* pointer_array_t;                 // 指针数组类型
+typedef int64_t* pointer_array_t;                 // 指针数组类型
 typedef int32_t* data_pointer_t;                // 数据指针类型
 
 // 函数指针别名
@@ -211,7 +211,7 @@ void FUN_1808a0f37(void)
   system_pointer_t object_pointer;             // 对象指针
   uint loop_counter;                           // 循环计数器
   system_result_t call_result;                 // 调用结果
-  ulonglong data_offset;                       // 数据偏移量
+  uint64_t data_offset;                       // 数据偏移量
   system_data_t stack_param1;                  // 堆栈参数1
   system_data_t stack_param2;                  // 堆栈参数2
   int iteration_index;                         // 迭代索引
@@ -240,15 +240,15 @@ void FUN_1808a0f37(void)
     }
     
     // 步骤4：数据偏移量计算和循环处理
-    data_offset = *(ulonglong *)(unaff_RSI + 0x60);
+    data_offset = *(uint64_t *)(unaff_RSI + 0x60);
     
     // 步骤4.1：主循环处理
     while( true ) {
       in_stack_000000b8 = unaff_R14D;
       
       // 边界条件检查
-      if ((data_offset < *(ulonglong *)(unaff_RSI + 0x60)) ||
-         ((longlong)*(int *)(unaff_RSI + 0x68) * DATA_CHUNK_SIZE + *(ulonglong *)(unaff_RSI + 0x60) <= data_offset))
+      if ((data_offset < *(uint64_t *)(unaff_RSI + 0x60)) ||
+         ((int64_t)*(int *)(unaff_RSI + 0x68) * DATA_CHUNK_SIZE + *(uint64_t *)(unaff_RSI + 0x60) <= data_offset))
         goto LAB_1808a1016;
       
       // 步骤4.2：系统状态验证
@@ -375,7 +375,7 @@ void FUN_1808a105b(void)
 //   - 系统调用和状态管理
 //   - 循环优化和错误处理
 //------------------------------------------------------------------------------
-ulonglong FUN_1808a1090(longlong param_1, longlong *param_2)
+uint64_t FUN_1808a1090(int64_t param_1, int64_t *param_2)
 
 {
   // 语义化变量定义
@@ -433,7 +433,7 @@ ulonglong FUN_1808a1090(longlong param_1, longlong *param_2)
         // WARNING: Subroutine does not return
         FUN_1808de000(param_2, data_buffer);
       }
-      data_handle = (ulonglong)data_size;
+      data_handle = (uint64_t)data_size;
     }
   }
   return data_handle;
@@ -463,7 +463,7 @@ ulonglong FUN_1808a1090(longlong param_1, longlong *param_2)
 //   - 系统调用和状态管理
 //   - 循环优化和错误处理
 //------------------------------------------------------------------------------
-ulonglong FUN_1808a10c8(void)
+uint64_t FUN_1808a10c8(void)
 
 {
   // 语义化变量定义
@@ -519,7 +519,7 @@ ulonglong FUN_1808a10c8(void)
       // WARNING: Subroutine does not return
       FUN_1808de000();
     }
-    operation_result = (ulonglong)param_size;
+    operation_result = (uint64_t)param_size;
   }
   return operation_result;
 }
@@ -547,7 +547,7 @@ ulonglong FUN_1808a10c8(void)
 //   - 系统调用和错误处理
 //   - 循环优化和条件判断
 //------------------------------------------------------------------------------
-ulonglong FUN_1808a110e(void)
+uint64_t FUN_1808a110e(void)
 
 {
   // 语义化变量定义
@@ -585,7 +585,7 @@ ulonglong FUN_1808a110e(void)
   
   // 步骤4：最终处理和系统调用
   if (param_flag != 0) {
-    return (ulonglong)param_flag;
+    return (uint64_t)param_flag;
   }
   
   // WARNING: Subroutine does not return
@@ -659,7 +659,7 @@ void FUN_1808a11b5(void)
 //   - 系统调用和状态管理
 //   - 循环优化和错误处理
 //------------------------------------------------------------------------------
-uint64_t FUN_1808a11c0(ulonglong *param_1, longlong *param_2)
+uint64_t FUN_1808a11c0(uint64_t *param_1, int64_t *param_2)
 
 {
   // 语义化变量定义
@@ -695,7 +695,7 @@ uint64_t FUN_1808a11c0(ulonglong *param_1, longlong *param_2)
       }
       
       // 步骤5：对象数据获取和验证
-      param_array[0] = *(uint *)((longlong)param_1 + 0x14);
+      param_array[0] = *(uint *)((int64_t)param_1 + 0x14);
       operation_result = (**(code **)**(uint64_t **)(*param_2 + 8))
                         (*(uint64_t **)(*param_2 + 8), param_array, 4);
       
@@ -728,7 +728,7 @@ uint64_t FUN_1808a11c0(ulonglong *param_1, longlong *param_2)
           while( true ) {
             // 边界条件检查
             if ((object_handle < *param_1) || 
-                (*param_1 + (longlong)(int)param_1[1] * DATA_HEADER_SIZE <= object_handle)) {
+                (*param_1 + (int64_t)(int)param_1[1] * DATA_HEADER_SIZE <= object_handle)) {
               // WARNING: Subroutine does not return
               FUN_1808de000(param_2, data_buffer);
             }
@@ -819,7 +819,7 @@ void FUN_1808a12c6(int32_t param_1)
     while( true ) {
       // 边界条件检查
       if ((object_handle < *unaff_R14) || 
-          (*unaff_R14 + (longlong)(int)unaff_R14[1] * DATA_HEADER_SIZE <= object_handle)) {
+          (*unaff_R14 + (int64_t)(int)unaff_R14[1] * DATA_HEADER_SIZE <= object_handle)) {
         // WARNING: Subroutine does not return
         FUN_1808de000(param_1, &stack0x00000038);
       }
@@ -838,7 +838,7 @@ void FUN_1808a12c6(int32_t param_1)
       // 步骤5：系统调用和数据处理
       object_pointer = *(uint64_t **)(system_pointer + 8);
       stack_param3._4_4_ = *(int32_t *)(object_handle + 0x10);
-      operation_status = (**(code **)*object_pointer)(object_pointer, (longlong)&stack0x00000030 + 4, 4);
+      operation_status = (**(code **)*object_pointer)(object_pointer, (int64_t)&stack0x00000030 + 4, 4);
       if (operation_status != SYSTEM_SUCCESS_CODE) {
         return;
       }
@@ -899,7 +899,7 @@ void FUN_1808a139f(void)
 //   - 系统调用和状态管理
 //   - 错误处理和异常管理
 //------------------------------------------------------------------------------
-void FUN_1808a13b0(longlong param_1, uint64_t param_2)
+void FUN_1808a13b0(int64_t param_1, uint64_t param_2)
 
 {
   // 语义化变量定义
@@ -938,7 +938,7 @@ void FUN_1808a13b0(longlong param_1, uint64_t param_2)
 //   - 系统调用和状态管理
 //   - 错误处理和异常管理
 //------------------------------------------------------------------------------
-uint64_t FUN_1808a13f0(longlong param_1, uint64_t *param_2)
+uint64_t FUN_1808a13f0(int64_t param_1, uint64_t *param_2)
 
 {
   // 语义化变量定义
@@ -1023,7 +1023,7 @@ uint64_t FUN_1808a13f0(longlong param_1, uint64_t *param_2)
 //   - 系统调用和状态管理
 //   - 错误处理和异常管理
 //------------------------------------------------------------------------------
-uint64_t FUN_1808a1530(longlong param_1, uint64_t *param_2)
+uint64_t FUN_1808a1530(int64_t param_1, uint64_t *param_2)
 
 {
   // 语义化变量定义
@@ -1085,7 +1085,7 @@ uint64_t FUN_1808a1530(longlong param_1, uint64_t *param_2)
 //   - 系统调用和状态管理
 //   - 链表遍历和错误处理
 //------------------------------------------------------------------------------
-uint64_t FUN_1808a1610(longlong param_1, longlong *param_2)
+uint64_t FUN_1808a1610(int64_t param_1, int64_t *param_2)
 
 {
   // 语义化变量定义
@@ -1118,7 +1118,7 @@ uint64_t FUN_1808a1610(longlong param_1, longlong *param_2)
     do {
       // 步骤3.1：对象属性检查
       if (((*(int *)(object_pointer + 5) != 0) || (*(int *)(object_pointer + 3) != 0)) ||
-         (*(int *)((longlong)object_pointer + 0x44) != 0)) {
+         (*(int *)((int64_t)object_pointer + 0x44) != 0)) {
         valid_objects = valid_objects + 1;
         status_array[0] = valid_objects;
       }
@@ -1143,7 +1143,7 @@ uint64_t FUN_1808a1610(longlong param_1, longlong *param_2)
         
         // 步骤5.1：对象属性验证
         if (((*(int *)(object_pointer + 5) == 0) && (*(int *)(object_pointer + 3) == 0)) &&
-           (*(int *)((longlong)object_pointer + 0x44) == 0)) {
+           (*(int *)((int64_t)object_pointer + 0x44) == 0)) {
           object_has_properties = false;
         }
         else {
@@ -1182,7 +1182,7 @@ uint64_t FUN_1808a1610(longlong param_1, longlong *param_2)
             // 步骤5.6：继续参数处理
             if (*(int *)(param_2[1] + 0x18) == 0) {
               param_array[0] = CONCAT22(param_array[0]._2_2_, 
-                                         *(int16_t *)((longlong)object_pointer + 0x4a));
+                                         *(int16_t *)((int64_t)object_pointer + 0x4a));
               operation_result = (**(code **)**(uint64_t **)(*param_2 + 8))
                                 (*(uint64_t **)(*param_2 + 8), param_array, 2);
               if ((int)operation_result != SYSTEM_SUCCESS_CODE) {
@@ -1280,7 +1280,7 @@ uint64_t FUN_1808a164e(uint64_t param_1, uint64_t *param_2)
     do {
       // 步骤2.1：对象属性检查
       if (((*(int *)(param_2 + 5) != 0) || (*(int *)(param_2 + 3) != 0)) ||
-         (*(int *)((longlong)param_2 + 0x44) != 0)) {
+         (*(int *)((int64_t)param_2 + 0x44) != 0)) {
         valid_objects = valid_objects + 1;
         status_param = valid_objects;
       }
@@ -1305,7 +1305,7 @@ uint64_t FUN_1808a164e(uint64_t param_1, uint64_t *param_2)
         
         // 步骤4.1：对象属性验证
         if (((*(int *)(list_pointer + 5) == 0) && (*(int *)(list_pointer + 3) == 0)) &&
-           (*(int *)((longlong)list_pointer + 0x44) == 0)) {
+           (*(int *)((int64_t)list_pointer + 0x44) == 0)) {
           object_has_properties = false;
         }
         else {
@@ -1344,7 +1344,7 @@ uint64_t FUN_1808a164e(uint64_t param_1, uint64_t *param_2)
             // 步骤4.6：继续参数处理
             if (*(int *)(unaff_RBX[1] + 0x18) == 0) {
               stack_param = CONCAT22(stack_param._2_2_, 
-                                     *(int16_t *)((longlong)list_pointer + 0x4a));
+                                     *(int16_t *)((int64_t)list_pointer + 0x4a));
               operation_result = (**(code **)**(uint64_t **)(*unaff_RBX + 8))
                                 (*(uint64_t **)(*unaff_RBX + 8), &stack0x000000a0, 2);
               if ((int)operation_result != SYSTEM_SUCCESS_CODE) {
@@ -1491,7 +1491,7 @@ void FUN_1808a1850(uint64_t param_1, uint64_t param_2)
 //   - 系统调用和状态管理
 //   - 错误处理和异常管理
 //------------------------------------------------------------------------------
-uint64_t FUN_1808a1870(longlong param_1, longlong *param_2)
+uint64_t FUN_1808a1870(int64_t param_1, int64_t *param_2)
 
 {
   // 语义化变量定义
@@ -1553,7 +1553,7 @@ uint64_t FUN_1808a1870(longlong param_1, longlong *param_2)
 //   - 系统调用和状态管理
 //   - 错误处理和异常管理
 //------------------------------------------------------------------------------
-uint64_t FUN_1808a1910(longlong param_1, longlong *param_2)
+uint64_t FUN_1808a1910(int64_t param_1, int64_t *param_2)
 
 {
   // 语义化变量定义

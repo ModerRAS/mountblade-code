@@ -12,9 +12,9 @@ void ui_system_empty_function(void)
 
 
 
-// 函数: uint FUN_18070f540(longlong *param_1,uint param_2)
+// 函数: uint FUN_18070f540(int64_t *param_1,uint param_2)
 // 简化实现：UI系统数据处理器，处理UI数据流和参数计算
-uint ui_system_data_processor(longlong *ui_data_context,uint data_param)
+uint ui_system_data_processor(int64_t *ui_data_context,uint data_param)
 
 {
   int bit_count;
@@ -29,16 +29,16 @@ uint ui_system_data_processor(longlong *ui_data_context,uint data_param)
   
   result_value = *(uint *)(ui_data_context + 4);
   temp_value = data_param - 1;
-  processed_value = *(uint *)((longlong)ui_data_context + 0x24);
+  processed_value = *(uint *)((int64_t)ui_data_context + 0x24);
   bit_count = 0x1f;
   if (temp_value != 0) {
     for (; temp_value >> bit_count == 0; bit_count = bit_count + -1) {
     }
   }
   if (bit_count + 1 < 9) {
-    division_result = (int)((ulonglong)result_value / (ulonglong)data_param);
+    division_result = (int)((uint64_t)result_value / (uint64_t)data_param);
     *(int *)(ui_data_context + 5) = division_result;
-    processing_index = (int)((ulonglong)processed_value / ((ulonglong)result_value / (ulonglong)data_param));
+    processing_index = (int)((uint64_t)processed_value / ((uint64_t)result_value / (uint64_t)data_param));
     bit_count = 0;
     if (data_param < processing_index + 1U) {
       bit_count = (data_param - processing_index) + -1;
@@ -46,7 +46,7 @@ uint ui_system_data_processor(longlong *ui_data_context,uint data_param)
     processing_index = (data_param - bit_count) - processing_index;
     bit_count = (data_param - processing_index) * division_result;
     temp_value = processing_index - 1;
-    *(uint *)((longlong)ui_data_context + 0x24) = processed_value - bit_count;
+    *(uint *)((int64_t)ui_data_context + 0x24) = processed_value - bit_count;
     if (temp_value == 0) {
       division_result = result_value - bit_count;
     }
@@ -57,9 +57,9 @@ uint ui_system_data_processor(longlong *ui_data_context,uint data_param)
     temp_value = bit_count - 7;
     shift_bits = (byte)temp_value;
     final_result = (temp_value >> (shift_bits & 0x1f)) + 1;
-    division_result = (int)((ulonglong)result_value / (ulonglong)final_result);
+    division_result = (int)((uint64_t)result_value / (uint64_t)final_result);
     *(int *)(ui_data_context + 5) = division_result;
-    processing_index = (int)((ulonglong)processed_value / ((ulonglong)result_value / (ulonglong)final_result));
+    processing_index = (int)((uint64_t)processed_value / ((uint64_t)result_value / (uint64_t)final_result));
     bit_count = 0;
     if (final_result < processing_index + 1U) {
       bit_count = (final_result - processing_index) + -1;
@@ -67,22 +67,22 @@ uint ui_system_data_processor(longlong *ui_data_context,uint data_param)
     processing_index = (final_result - bit_count) - processing_index;
     bit_count = (final_result - processing_index) * division_result;
     processing_index = processing_index + -1;
-    *(uint *)((longlong)ui_data_context + 0x24) = processed_value - bit_count;
+    *(uint *)((int64_t)ui_data_context + 0x24) = processed_value - bit_count;
     if (processing_index == 0) {
       division_result = result_value - bit_count;
     }
     *(int *)(ui_data_context + 4) = division_result;
     ui_system_internal_update_function(ui_data_context);
-    result_value = *(uint *)((longlong)ui_data_context + 0x14);
+    result_value = *(uint *)((int64_t)ui_data_context + 0x14);
     processed_value = *(uint *)(ui_data_context + 2);
     if (result_value < temp_value) {
-      final_result = *(uint *)((longlong)ui_data_context + 0xc);
+      final_result = *(uint *)((int64_t)ui_data_context + 0xc);
       loop_counter = result_value;
       do {
         if (final_result < *(uint *)(ui_data_context + 1)) {
           final_result = final_result + 1;
-          *(uint *)((longlong)ui_data_context + 0xc) = final_result;
-          temp_value = (uint)*(byte *)((ulonglong)(*(uint *)(ui_data_context + 1) - final_result) + *ui_data_context);
+          *(uint *)((int64_t)ui_data_context + 0xc) = final_result;
+          temp_value = (uint)*(byte *)((uint64_t)(*(uint *)(ui_data_context + 1) - final_result) + *ui_data_context);
         }
         else {
           temp_value = 0;
@@ -93,7 +93,7 @@ uint ui_system_data_processor(longlong *ui_data_context,uint data_param)
       } while ((int)result_value < 0x19);
     }
     *(uint *)(ui_data_context + 3) = (int)ui_data_context[3] + temp_value;
-    *(uint *)((longlong)ui_data_context + 0x14) = result_value - temp_value;
+    *(uint *)((int64_t)ui_data_context + 0x14) = result_value - temp_value;
     *(uint *)(ui_data_context + 2) = processed_value >> (shift_bits & 0x1f);
     temp_value = (1 << (shift_bits & 0x1f)) - 1U & processed_value | processing_index << (shift_bits & 0x1f);
     if (temp_value < temp_value) {
@@ -111,11 +111,11 @@ uint ui_system_data_processor(longlong *ui_data_context,uint data_param)
 uint ui_system_advanced_data_processor(uint64_t processing_context,uint input_data)
 
 {
-  ulonglong division_result;
+  uint64_t division_result;
   byte bit_shift;
   int calculated_value;
   uint temp_result;
-  ulonglong rax_value;
+  uint64_t rax_value;
   int processing_index;
   uint loop_counter;
   uint data_chunk;
@@ -126,10 +126,10 @@ uint ui_system_advanced_data_processor(uint64_t processing_context,uint input_da
   
   bit_shift = (byte)input_data;
   data_chunk = (processing_context >> (bit_shift & 0x1f)) + 1;
-  division_result = ((ulonglong)input_data << 0x20 | rax_value & 0xffffffff) / (ulonglong)data_chunk;
+  division_result = ((uint64_t)input_data << 0x20 | rax_value & 0xffffffff) / (uint64_t)data_chunk;
   calculated_value = (int)division_result;
   *(int *)(context_pointer + 5) = calculated_value;
-  processing_index = (int)((ulonglong)r11d_value / (division_result & 0xffffffff));
+  processing_index = (int)((uint64_t)r11d_value / (division_result & 0xffffffff));
   loop_counter = data_value;
   if (data_chunk < processing_index + 1U) {
     loop_counter = (data_chunk - processing_index) - 1;
@@ -137,23 +137,23 @@ uint ui_system_advanced_data_processor(uint64_t processing_context,uint input_da
   processing_index = (data_chunk - loop_counter) - processing_index;
   iteration_count = (data_chunk - processing_index) * calculated_value;
   processing_index = processing_index + -1;
-  *(uint *)((longlong)context_pointer + 0x24) = r11d_value - iteration_count;
+  *(uint *)((int64_t)context_pointer + 0x24) = r11d_value - iteration_count;
   if (processing_index == 0) {
     calculated_value = r14d_value - iteration_count;
   }
   *(int *)(context_pointer + 4) = calculated_value;
   ui_system_internal_update_function();
-  loop_counter = *(uint *)((longlong)context_pointer + 0x14);
+  loop_counter = *(uint *)((int64_t)context_pointer + 0x14);
   data_chunk = *(uint *)(context_pointer + 2);
   if (loop_counter < input_data) {
-    temp_result = *(uint *)((longlong)context_pointer + 0xc);
+    temp_result = *(uint *)((int64_t)context_pointer + 0xc);
     processed_data = loop_counter;
     do {
       temp_result = data_value;
       if (temp_result < *(uint *)(context_pointer + 1)) {
         temp_result = temp_result + 1;
-        *(uint *)((longlong)context_pointer + 0xc) = temp_result;
-        temp_result = (uint)*(byte *)((ulonglong)(*(uint *)(context_pointer + 1) - temp_result) + *context_pointer);
+        *(uint *)((int64_t)context_pointer + 0xc) = temp_result;
+        temp_result = (uint)*(byte *)((uint64_t)(*(uint *)(context_pointer + 1) - temp_result) + *context_pointer);
       }
       loop_counter = processed_data + 8;
       data_chunk = data_chunk | temp_result << ((byte)processed_data & 0x1f);
@@ -161,7 +161,7 @@ uint ui_system_advanced_data_processor(uint64_t processing_context,uint input_da
     } while ((int)loop_counter < 0x19);
   }
   *(uint *)(context_pointer + 3) = (int)context_pointer[3] + input_data;
-  *(uint *)((longlong)context_pointer + 0x14) = loop_counter - input_data;
+  *(uint *)((int64_t)context_pointer + 0x14) = loop_counter - input_data;
   *(uint *)(context_pointer + 2) = data_chunk >> (bit_shift & 0x1f);
   loop_counter = (1 << (bit_shift & 0x1f)) - 1U & data_chunk | processing_index << (bit_shift & 0x1f);
   if (processing_context < loop_counter) {
@@ -179,7 +179,7 @@ int32_t ui_system_set_component_state(void)
 
 {
   int32_t return_value;
-  longlong component_context;
+  int64_t component_context;
   
   *(int32_t *)(component_context + 0x30) = 1;
   return return_value;
@@ -187,10 +187,10 @@ int32_t ui_system_set_component_state(void)
 
 
 
-// 函数: ulonglong FUN_18070f860(byte *param_1,int param_2,int param_3,byte *param_4,longlong param_5,
+// 函数: uint64_t FUN_18070f860(byte *param_1,int param_2,int param_3,byte *param_4,int64_t param_5,
 //                       short *param_6,int *param_7,int *param_8)
 // 简化实现：UI系统音频数据处理器，处理音频数据流和格式转换
-ulonglong ui_system_audio_data_processor(byte *audio_data,int data_size,int processing_mode,byte *format_output,longlong context_ptr,
+uint64_t ui_system_audio_data_processor(byte *audio_data,int data_size,int processing_mode,byte *format_output,int64_t context_ptr,
                                          short *sample_buffer,int *bytes_processed,int *total_bytes)
 
 {
@@ -198,12 +198,12 @@ ulonglong ui_system_audio_data_processor(byte *audio_data,int data_size,int proc
   byte format_info;
   short sample_size;
   byte format_type;
-  ulonglong channel_count;
+  uint64_t channel_count;
   int sample_rate;
   int processing_result;
-  ulonglong output_channels;
+  uint64_t output_channels;
   uint total_samples;
-  ulonglong bytes_per_sample;
+  uint64_t bytes_per_sample;
   uint remaining_bytes;
   byte *data_pointer;
   byte stereo_flag;
@@ -286,7 +286,7 @@ SAMPLE_RATE_CALCULATION:
     stereo_flag = *current_data;
     current_data = audio_data + 2;
     total_samples = stereo_flag & 0x3f;
-    bytes_per_sample = (ulonglong)total_samples;
+    bytes_per_sample = (uint64_t)total_samples;
     if ((stereo_flag & 0x3f) == 0) {
       return 0xfffffffc;
     }
@@ -308,7 +308,7 @@ SAMPLE_RATE_CALCULATION:
         }
         stack_temp = (int)channel_count + sample_chunk;
         total_samples = total_samples + (-1 - sample_chunk);
-        channel_count = (ulonglong)stack_temp;
+        channel_count = (uint64_t)stack_temp;
       } while (format_info == 0xff);
     }
     if ((int)total_samples < 0) {
@@ -333,7 +333,7 @@ SAMPLE_RATE_CALCULATION:
           sample_chunk = (int)channel_count + 1;
           current_data = current_data + sample_rate;
           samples_to_process = samples_to_process - (sample_rate + sample_size);
-          channel_count = (ulonglong)sample_chunk;
+          channel_count = (uint64_t)sample_chunk;
           buffer_pointer = buffer_pointer + 1;
         } while ((int)sample_chunk < (int)(total_samples - 1));
       }
@@ -371,11 +371,11 @@ SAMPLE_RATE_CALCULATION:
       }
       else if (processing_result * (int)bytes_per_sample <= (int)(samples_to_process - sample_rate)) {
         channel_count = output_channels;
-        if (0 < (longlong)(bytes_per_sample - 1)) {
+        if (0 < (int64_t)(bytes_per_sample - 1)) {
           do {
             sample_buffer[channel_count] = sample_buffer[bytes_per_sample - 1];
             channel_count = channel_count + 1;
-          } while ((longlong)channel_count < (longlong)(bytes_per_sample - 1));
+          } while ((int64_t)channel_count < (int64_t)(bytes_per_sample - 1));
         }
 PROCESSING_COMPLETE:
         if (bytes_processed != (int *)0x0) {
@@ -389,7 +389,7 @@ PROCESSING_COMPLETE:
             buffer_pointer = sample_buffer + output_channels;
             output_channels = output_channels + 1;
             current_data = current_data + *buffer_pointer;
-          } while ((longlong)output_channels < (longlong)bytes_per_sample);
+          } while ((int64_t)output_channels < (int64_t)bytes_per_sample);
         }
         if (total_bytes != (int *)0x0) {
           *total_bytes = ((int)current_data - (int)audio_data) + stack_temp;
@@ -407,21 +407,21 @@ PROCESSING_COMPLETE:
 
 
 
-// 函数: ulonglong FUN_18070f8a4(byte *param_1,uint64_t param_2,int param_3)
+// 函数: uint64_t FUN_18070f8a4(byte *param_1,uint64_t param_2,int param_3)
 // 简化实现：UI系统高级音频数据处理器，处理复杂音频数据流
-ulonglong ui_system_advanced_audio_processor(byte *audio_stream,uint64_t stream_context,int processing_mode)
+uint64_t ui_system_advanced_audio_processor(byte *audio_stream,uint64_t stream_context,int processing_mode)
 
 {
   byte audio_format;
   byte format_info;
   short sample_length;
   byte format_type;
-  ulonglong channel_data;
+  uint64_t channel_data;
   int sample_frequency;
   int decode_result;
-  ulonglong output_channels;
+  uint64_t output_channels;
   uint stream_size;
-  ulonglong bytes_per_channel;
+  uint64_t bytes_per_channel;
   short *sample_buffer;
   uint channel_data_chunk;
   short *buffer_pointer;
@@ -496,7 +496,7 @@ SAMPLE_RATE_CALCULATION:
     format_type = *data_pointer;
     data_pointer = (byte *)(data_offset + 2);
     channel_data_chunk = format_type & 0x3f;
-    output_channels = (ulonglong)channel_data_chunk;
+    output_channels = (uint64_t)channel_data_chunk;
     if ((format_type & 0x3f) == 0) {
       return 0xfffffffc;
     }
@@ -540,7 +540,7 @@ SAMPLE_RATE_CALCULATION:
             return 0xfffffffc;
           }
           channel_data_chunk = (int)channel_data + 1;
-          channel_data = (ulonglong)channel_data_chunk;
+          channel_data = (uint64_t)channel_data_chunk;
           data_pointer = data_pointer + sample_frequency;
           processed_samples = processed_samples - (sample_frequency + sample_length);
           buffer_pointer = buffer_pointer + 1;
@@ -582,11 +582,11 @@ SAMPLE_RATE_CALCULATION:
       }
       else if (decode_result * (int)output_channels <= (int)(processed_samples - sample_frequency)) {
         channel_data = channel_counter;
-        if (0 < (longlong)(output_channels - 1)) {
+        if (0 < (int64_t)(output_channels - 1)) {
           do {
             sample_buffer_ptr[channel_data] = sample_buffer_ptr[output_channels - 1];
             channel_data = channel_data + 1;
-          } while ((longlong)channel_data < (longlong)(output_channels - 1));
+          } while ((int64_t)channel_data < (int64_t)(output_channels - 1));
         }
 PROCESSING_COMPLETE:
         if (bytes_processed_ptr != (int *)0x0) {
@@ -600,7 +600,7 @@ PROCESSING_COMPLETE:
             buffer_pointer = sample_buffer_ptr + channel_counter;
             channel_counter = channel_counter + 1;
             data_pointer = data_pointer + *buffer_pointer;
-          } while ((longlong)channel_counter < (longlong)output_channels);
+          } while ((int64_t)channel_counter < (int64_t)output_channels);
         }
         if (total_bytes_ptr != (int *)0x0) {
           *total_bytes_ptr = ((int)data_pointer - base_offset) + iteration_count;
@@ -623,19 +623,19 @@ PROCESSING_COMPLETE:
 int ui_system_audio_buffer_processor(void)
 
 {
-  longlong buffer_offset;
-  longlong channel_counter;
+  int64_t buffer_offset;
+  int64_t channel_counter;
   int processing_flag;
-  longlong buffer_base;
-  longlong data_pointer;
+  int64_t buffer_base;
+  int64_t data_pointer;
   int sample_count;
-  longlong data_offset;
+  int64_t data_offset;
   int channel_count;
   int8_t audio_format;
   int iteration_count;
   int32_t stack_temp;
   int8_t *format_output;
-  longlong context_ptr;
+  int64_t context_ptr;
   int *bytes_processed;
   int *total_bytes;
   
@@ -647,7 +647,7 @@ int ui_system_audio_buffer_processor(void)
     if (processing_flag != 0) {
       do {
         if (context_ptr != 0) {
-          *(longlong *)(context_ptr + channel_counter * 8) = data_offset;
+          *(int64_t *)(context_ptr + channel_counter * 8) = data_offset;
         }
         buffer_offset = channel_counter * 2;
         channel_counter = channel_counter + 1;
@@ -683,9 +683,9 @@ uint64_t ui_system_error_handler(void)
 
 
 
-// 函数: void FUN_18070fc20(longlong param_1,int param_2,int param_3,float *param_4)
+// 函数: void FUN_18070fc20(int64_t param_1,int param_2,int param_3,float *param_4)
 // 简化实现：UI系统音频信号处理器，处理音频信号和滤波
-void ui_system_audio_signal_processor(longlong signal_data,int width,int height,float *filter_coeffs)
+void ui_system_audio_signal_processor(int64_t signal_data,int width,int height,float *filter_coeffs)
 
 {
   bool processing_flag;
@@ -695,18 +695,18 @@ void ui_system_audio_signal_processor(longlong signal_data,int width,int height,
   int8_t (*data_pointer) [16];
   uint total_elements;
   int processing_index;
-  longlong element_offset;
+  int64_t element_offset;
   float *sample_ptr;
   float *next_sample;
   uint elements_remaining;
   int chunk_size;
-  longlong row_offset;
-  longlong col_offset;
+  int64_t row_offset;
+  int64_t col_offset;
   int row_index;
   int col_index;
-  ulonglong vector_elements;
+  uint64_t vector_elements;
   int vector_count;
-  longlong vector_ptr;
+  int64_t vector_ptr;
   float sample_value;
   float next_value;
   float current_sample;
@@ -714,11 +714,11 @@ void ui_system_audio_signal_processor(longlong signal_data,int width,int height,
   float temp_sample;
   int8_t temp_vector [16];
   float *coeff_pointer;
-  longlong height_counter;
+  int64_t height_counter;
   
   max_vector = AUDIO_MAX_VECTOR;
   min_vector = AUDIO_MIN_VECTOR;
-  height_counter = (longlong)height;
+  height_counter = (int64_t)height;
   if ((((0 < height) && (0 < width)) && (signal_data != 0)) && (filter_coeffs != (float *)0x0)) {
     total_elements = width * height;
     row_index = 0;
@@ -751,8 +751,8 @@ void ui_system_audio_signal_processor(longlong signal_data,int width,int height,
       if (row_index < (int)total_elements) {
         if (3 < (int)(total_elements - row_index)) {
           elements_remaining = ((total_elements - row_index) - 4 >> 2) + 1;
-          sample_ptr = (float *)(signal_data + ((longlong)row_index + 2) * 4);
-          vector_elements = (ulonglong)elements_remaining;
+          sample_ptr = (float *)(signal_data + ((int64_t)row_index + 2) * 4);
+          vector_elements = (uint64_t)elements_remaining;
           row_index = row_index + elements_remaining * 4;
           do {
             current_sample = sample_ptr[-2];
@@ -792,8 +792,8 @@ void ui_system_audio_signal_processor(longlong signal_data,int width,int height,
           } while (vector_elements != 0);
         }
         if (row_index < (int)total_elements) {
-          sample_ptr = (float *)(signal_data + (longlong)row_index * 4);
-          element_offset = (longlong)(int)(total_elements - row_index);
+          sample_ptr = (float *)(signal_data + (int64_t)row_index * 4);
+          element_offset = (int64_t)(int)(total_elements - row_index);
           do {
             current_sample = *sample_ptr;
             if (2.0 <= current_sample) {
@@ -814,7 +814,7 @@ void ui_system_audio_signal_processor(longlong signal_data,int width,int height,
       height_counter = height_counter;
       do {
         current_sample = *coeff_pointer;
-        sample_ptr = (float *)((signal_data - (longlong)filter_coeffs) + (longlong)coeff_pointer);
+        sample_ptr = (float *)((signal_data - (int64_t)filter_coeffs) + (int64_t)coeff_pointer);
         row_index = 0;
         if (3 < width) {
           chunk_size = height * 2;
@@ -931,13 +931,13 @@ SIGNAL_BOUNDARY_CHECK:
           }
           if (col_index < vector_count) {
             if (3 < vector_count - col_index) {
-              element_offset = (longlong)((col_index + 2) * height);
+              element_offset = (int64_t)((col_index + 2) * height);
               next_sample = sample_ptr + element_offset;
               row_offset = (col_index + 1) * height - element_offset;
               col_offset = (col_index + 3) * height - element_offset;
               element_offset = col_index * height - element_offset;
               elements_remaining = ((vector_count - col_index) - 4U >> 2) + 1;
-              vector_elements = (ulonglong)elements_remaining;
+              vector_elements = (uint64_t)elements_remaining;
               col_index = col_index + elements_remaining * 4;
               do {
                 next_sample[element_offset] = (next_sample[element_offset] * sample_value + 1.0) * next_sample[element_offset];
@@ -950,7 +950,7 @@ SIGNAL_BOUNDARY_CHECK:
             }
             if (col_index < vector_count) {
               next_sample = sample_ptr + col_index * height;
-              element_offset = (longlong)(vector_count - col_index);
+              element_offset = (int64_t)(vector_count - col_index);
               do {
                 *next_sample = (*next_sample * sample_value + 1.0) * *next_sample;
                 next_sample = next_sample + height_counter;
@@ -963,13 +963,13 @@ SIGNAL_BOUNDARY_CHECK:
             sample_value = peak_value / (float)processing_index;
             if (row_index < processing_index) {
               if (3 < processing_index - row_index) {
-                element_offset = (longlong)((row_index + 2) * height);
+                element_offset = (int64_t)((row_index + 2) * height);
                 next_sample = sample_ptr + element_offset;
                 row_offset = (row_index + 1) * height - element_offset;
                 col_offset = (row_index + 3) * height - element_offset;
                 element_offset = row_index * height - element_offset;
                 elements_remaining = ((processing_index - row_index) - 4U >> 2) + 1;
-                vector_elements = (ulonglong)elements_remaining;
+                vector_elements = (uint64_t)elements_remaining;
                 row_index = row_index + elements_remaining * 4;
                 do {
                   next_value = (peak_value - sample_value) + next_sample[element_offset];
@@ -1013,7 +1013,7 @@ SIGNAL_BOUNDARY_CHECK:
               }
               if (row_index < processing_index) {
                 next_sample = sample_ptr + row_index * height;
-                element_offset = (longlong)(processing_index - row_index);
+                element_offset = (int64_t)(processing_index - row_index);
                 do {
                   peak_value = peak_value - sample_value;
                   next_value = peak_value + *next_sample;
@@ -1067,5 +1067,5 @@ SIGNAL_BOUNDARY_CHECK:
 #define ui_system_audio_decode_function func_0x0001807104d0
 
 // 内部函数声明
-void ui_system_internal_update_function(longlong *context);
+void ui_system_internal_update_function(int64_t *context);
 int ui_system_audio_decode_function(byte *data, int size, short *output);

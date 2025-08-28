@@ -108,7 +108,7 @@
  * @note 该函数包含复杂的链表遍历逻辑和条件检查
  * @warning 函数包含不返回的子程序调用
  */
-void ui_system_control_state_manager(longlong param_1, longlong param_2)
+void ui_system_control_state_manager(int64_t param_1, int64_t param_2)
 {
     // 局部变量声明
     uint control_state_1;
@@ -116,9 +116,9 @@ void ui_system_control_state_manager(longlong param_1, longlong param_2)
     uint control_state_3;
     uint *state_ptr;
     int operation_result;
-    longlong context_ptr;
-    longlong *control_list_ptr;
-    longlong *current_control_ptr;
+    int64_t context_ptr;
+    int64_t *control_list_ptr;
+    int64_t *current_control_ptr;
     uint64_t operation_flag;
     int32_t control_id;
     float progress_value;
@@ -136,15 +136,15 @@ void ui_system_control_state_manager(longlong param_1, longlong param_2)
     uint local_state_10;
     uint local_state_11;
     uint local_state_12;
-    longlong stack_context;
+    int64_t stack_context;
     int8_t temp_buffer[40];
-    ulonglong security_cookie;
+    uint64_t security_cookie;
     
     // 安全检查和初始化
-    security_cookie = GET_SECURITY_COOKIE() ^ (ulonglong)local_buffer;
-    context_ptr = **(longlong **)(param_1 + 0x38);
-    control_list_ptr = (longlong *)(context_ptr + 0x60);
-    current_control_ptr = (longlong *)*control_list_ptr;
+    security_cookie = GET_SECURITY_COOKIE() ^ (uint64_t)local_buffer;
+    context_ptr = **(int64_t **)(param_1 + 0x38);
+    control_list_ptr = (int64_t *)(context_ptr + 0x60);
+    current_control_ptr = (int64_t *)*control_list_ptr;
     control_state_1 = *(uint *)(context_ptr + 0xa0);
     local_state_12 = control_state_1;
     stack_context = param_1;
@@ -153,26 +153,26 @@ void ui_system_control_state_manager(longlong param_1, longlong param_2)
     if (current_control_ptr != control_list_ptr) {
         do {
             // 检查控件条件
-            if ((*(longlong *)(*(longlong *)(param_2 + 0x28) + 0x10) == current_control_ptr[2]) &&
-                (*(longlong *)(*(longlong *)(param_2 + 0x28) + 0x18) == current_control_ptr[3])) {
+            if ((*(int64_t *)(*(int64_t *)(param_2 + 0x28) + 0x10) == current_control_ptr[2]) &&
+                (*(int64_t *)(*(int64_t *)(param_2 + 0x28) + 0x18) == current_control_ptr[3])) {
                 
                 // 执行控件操作
-                context_ptr = (**(code **)(**(longlong **)(param_1 + 0x170) + 0x268))
-                              (*(longlong **)(param_1 + 0x170), current_control_ptr + 4,
-                               CONCAT71((int7)((ulonglong)control_list_ptr >> 8), 1));
+                context_ptr = (**(code **)(**(int64_t **)(param_1 + 0x170) + 0x268))
+                              (*(int64_t **)(param_1 + 0x170), current_control_ptr + 4,
+                               CONCAT71((int7)((uint64_t)control_list_ptr >> 8), 1));
                 
                 if (context_ptr == 0) {
                     // 提取控件状态信息
-                    local_state_11 = (uint)*(byte *)((longlong)current_control_ptr + 0x2f);
-                    local_state_10 = (uint)*(byte *)((longlong)current_control_ptr + 0x2e);
-                    local_state_9 = (uint)*(byte *)((longlong)current_control_ptr + 0x2d);
-                    local_state_8 = (uint)*(byte *)((longlong)current_control_ptr + 0x2c);
-                    local_state_7 = (uint)*(byte *)((longlong)current_control_ptr + 0x2b);
-                    local_state_6 = (uint)*(byte *)((longlong)current_control_ptr + 0x2a);
-                    local_state_5 = (uint)*(byte *)((longlong)current_control_ptr + 0x29);
+                    local_state_11 = (uint)*(byte *)((int64_t)current_control_ptr + 0x2f);
+                    local_state_10 = (uint)*(byte *)((int64_t)current_control_ptr + 0x2e);
+                    local_state_9 = (uint)*(byte *)((int64_t)current_control_ptr + 0x2d);
+                    local_state_8 = (uint)*(byte *)((int64_t)current_control_ptr + 0x2c);
+                    local_state_7 = (uint)*(byte *)((int64_t)current_control_ptr + 0x2b);
+                    local_state_6 = (uint)*(byte *)((int64_t)current_control_ptr + 0x2a);
+                    local_state_5 = (uint)*(byte *)((int64_t)current_control_ptr + 0x29);
                     local_state_4 = (uint)*(byte *)(current_control_ptr + 5);
-                    local_state_3 = (uint)*(ushort *)((longlong)current_control_ptr + 0x26);
-                    local_state_2 = (uint)*(ushort *)((longlong)current_control_ptr + 0x24);
+                    local_state_3 = (uint)*(ushort *)((int64_t)current_control_ptr + 0x26);
+                    local_state_2 = (uint)*(ushort *)((int64_t)current_control_ptr + 0x24);
                     
                     // 警告：子程序不返回
                     ui_system_control_initializer(temp_buffer, 0x27, &unknown_var_8960_ptr, (int)current_control_ptr[4]);
@@ -183,7 +183,7 @@ void ui_system_control_state_manager(longlong param_1, longlong param_2)
                 control_state_2 = *(uint *)(param_1 + 0x24);
                 if (control_state_2 < *state_ptr) {
                     progress_value = (float)control_state_2 / (float)*state_ptr;
-                    if (*(int *)(*(longlong *)(param_2 + 0x28) + 0x40) == 4) {
+                    if (*(int *)(*(int64_t *)(param_2 + 0x28) + 0x40) == 4) {
                         if (1.1920929e-07 <= ABS((float)state_ptr[1])) {
                             progress_value = 0.0;
                         }
@@ -194,7 +194,7 @@ void ui_system_control_state_manager(longlong param_1, longlong param_2)
                     operation_flag = 1;
                 }
                 else {
-                    control_state_3 = state_ptr[(longlong)*(int *)(context_ptr + 0x38) * 6 + -6];
+                    control_state_3 = state_ptr[(int64_t)*(int *)(context_ptr + 0x38) * 6 + -6];
                     if (control_state_2 <= control_state_3) {
                         operation_flag = 1;
                         goto progress_calculation_done;
@@ -213,35 +213,35 @@ void ui_system_control_state_manager(longlong param_1, longlong param_2)
                 if (operation_result != 0) goto event_dispatch_complete;
                 goto event_cleanup;
             }
-        } while ((current_control_ptr != control_list_ptr) && (current_control_ptr = (longlong *)*current_control_ptr, current_control_ptr != control_list_ptr));
+        } while ((current_control_ptr != control_list_ptr) && (current_control_ptr = (int64_t *)*current_control_ptr, current_control_ptr != control_list_ptr));
     }
     
     // 第二阶段：处理备选控件链表
-    control_list_ptr = (longlong *)(context_ptr + 0x70);
-    if (*(longlong **)(context_ptr + 0x70) != control_list_ptr) {
-        current_control_ptr = *(longlong **)(context_ptr + 0x70);
+    control_list_ptr = (int64_t *)(context_ptr + 0x70);
+    if (*(int64_t **)(context_ptr + 0x70) != control_list_ptr) {
+        current_control_ptr = *(int64_t **)(context_ptr + 0x70);
         do {
             // 检查备选控件条件
-            if ((*(longlong *)(*(longlong *)(param_2 + 0x28) + 0x10) == current_control_ptr[2]) &&
-                (*(longlong *)(*(longlong *)(param_2 + 0x28) + 0x18) == current_control_ptr[3])) {
+            if ((*(int64_t *)(*(int64_t *)(param_2 + 0x28) + 0x10) == current_control_ptr[2]) &&
+                (*(int64_t *)(*(int64_t *)(param_2 + 0x28) + 0x18) == current_control_ptr[3])) {
                 
                 // 执行备选控件操作
-                context_ptr = (**(code **)(**(longlong **)(param_1 + 0x170) + 0x268))
-                              (*(longlong **)(param_1 + 0x170), current_control_ptr + 4,
-                               CONCAT71((int7)((ulonglong)control_list_ptr >> 8), 1));
+                context_ptr = (**(code **)(**(int64_t **)(param_1 + 0x170) + 0x268))
+                              (*(int64_t **)(param_1 + 0x170), current_control_ptr + 4,
+                               CONCAT71((int7)((uint64_t)control_list_ptr >> 8), 1));
                 
                 if (context_ptr == 0) {
                     // 提取备选控件状态信息
-                    local_state_11 = (uint)*(byte *)((longlong)current_control_ptr + 0x2f);
-                    local_state_10 = (uint)*(byte *)((longlong)current_control_ptr + 0x2e);
-                    local_state_9 = (uint)*(byte *)((longlong)current_control_ptr + 0x2d);
-                    local_state_8 = (uint)*(byte *)((longlong)current_control_ptr + 0x2c);
-                    local_state_7 = (uint)*(byte *)((longlong)current_control_ptr + 0x2b);
-                    local_state_6 = (uint)*(byte *)((longlong)current_control_ptr + 0x2a);
-                    local_state_5 = (uint)*(byte *)((longlong)current_control_ptr + 0x29);
+                    local_state_11 = (uint)*(byte *)((int64_t)current_control_ptr + 0x2f);
+                    local_state_10 = (uint)*(byte *)((int64_t)current_control_ptr + 0x2e);
+                    local_state_9 = (uint)*(byte *)((int64_t)current_control_ptr + 0x2d);
+                    local_state_8 = (uint)*(byte *)((int64_t)current_control_ptr + 0x2c);
+                    local_state_7 = (uint)*(byte *)((int64_t)current_control_ptr + 0x2b);
+                    local_state_6 = (uint)*(byte *)((int64_t)current_control_ptr + 0x2a);
+                    local_state_5 = (uint)*(byte *)((int64_t)current_control_ptr + 0x29);
                     local_state_4 = (uint)*(byte *)(current_control_ptr + 5);
-                    local_state_3 = (uint)*(ushort *)((longlong)current_control_ptr + 0x26);
-                    local_state_2 = (uint)*(ushort *)((longlong)current_control_ptr + 0x24);
+                    local_state_3 = (uint)*(ushort *)((int64_t)current_control_ptr + 0x26);
+                    local_state_2 = (uint)*(ushort *)((int64_t)current_control_ptr + 0x24);
                     
                     // 警告：子程序不返回
                     ui_system_control_initializer(temp_buffer, 0x27, &unknown_var_8960_ptr, (int)current_control_ptr[4]);
@@ -258,7 +258,7 @@ event_cleanup:
                 }
                 goto event_dispatch_complete;
             }
-        } while ((current_control_ptr != control_list_ptr) && (current_control_ptr = (longlong *)*current_control_ptr, current_control_ptr != control_list_ptr));
+        } while ((current_control_ptr != control_list_ptr) && (current_control_ptr = (int64_t *)*current_control_ptr, current_control_ptr != control_list_ptr));
     }
     
     // 最终状态检查
@@ -268,7 +268,7 @@ event_cleanup:
     
 event_dispatch_complete:
     // 安全清理
-    ui_system_resource_cleaner(security_cookie ^ (ulonglong)local_buffer);
+    ui_system_resource_cleaner(security_cookie ^ (uint64_t)local_buffer);
 }
 
 /**
@@ -290,38 +290,38 @@ event_dispatch_complete:
  * @note 该函数包含复杂的状态检查和链表操作
  * @warning 在某些条件下可能返回特殊的状态码
  */
-uint64_t ui_system_event_handler(longlong param_1)
+uint64_t ui_system_event_handler(int64_t param_1)
 {
     // 局部变量声明
     int32_t validation_result;
-    longlong *control_ptr;
+    int64_t *control_ptr;
     uint64_t operation_status;
-    longlong *list_iterator;
-    longlong *current_item;
-    longlong *next_item;
+    int64_t *list_iterator;
+    int64_t *current_item;
+    int64_t *next_item;
     
     // 第一阶段：状态检查和验证
     if (*(int *)(param_1 + 0x34) - 4U < 2) {
-        if (*(longlong **)(param_1 + 0x38) == (longlong *)0x0) {
+        if (*(int64_t **)(param_1 + 0x38) == (int64_t *)0x0) {
             return 0x1c;  // 返回特殊状态码
         }
-        if (**(longlong **)(param_1 + 0x38) != 0) {
+        if (**(int64_t **)(param_1 + 0x38) != 0) {
             // 初始化链表遍历器
-            next_item = (longlong *)0x0;
-            list_iterator = (longlong *)(param_1 + 0x118);
-            current_item = (longlong *)(*list_iterator + -0x18);
+            next_item = (int64_t *)0x0;
+            list_iterator = (int64_t *)(param_1 + 0x118);
+            current_item = (int64_t *)(*list_iterator + -0x18);
             if (*list_iterator == 0) {
                 current_item = next_item;
             }
             control_ptr = next_item;
-            if (current_item != (longlong *)0x0) {
+            if (current_item != (int64_t *)0x0) {
                 control_ptr = current_item + 3;
             }
             
             // 遍历链表处理事件
             while (control_ptr != list_iterator) {
                 current_item = control_ptr + -3;
-                if (control_ptr == (longlong *)0x0) {
+                if (control_ptr == (int64_t *)0x0) {
                     current_item = next_item;
                 }
                 
@@ -336,12 +336,12 @@ uint64_t ui_system_event_handler(longlong param_1)
                 }
                 
                 // 移动到下一个项目
-                current_item = (longlong *)(*control_ptr + -0x18);
+                current_item = (int64_t *)(*control_ptr + -0x18);
                 if (*control_ptr == 0) {
                     current_item = next_item;
                 }
                 control_ptr = next_item;
-                if (current_item != (longlong *)0x0) {
+                if (current_item != (int64_t *)0x0) {
                     control_ptr = current_item + 3;
                 }
             }
@@ -350,21 +350,21 @@ uint64_t ui_system_event_handler(longlong param_1)
     else {
         // 第二阶段：替代处理路径
         validation_result = *(int32_t *)(param_1 + 0x20);
-        next_item = (longlong *)(param_1 + 0x118);
-        current_item = (longlong *)0x0;
-        list_iterator = (longlong *)(*next_item + -0x18);
+        next_item = (int64_t *)(param_1 + 0x118);
+        current_item = (int64_t *)0x0;
+        list_iterator = (int64_t *)(*next_item + -0x18);
         if (*next_item == 0) {
             list_iterator = current_item;
         }
         control_ptr = current_item;
-        if (list_iterator != (longlong *)0x0) {
+        if (list_iterator != (int64_t *)0x0) {
             control_ptr = list_iterator + 3;
         }
         
         // 遍历链表进行数据验证
         while (control_ptr != next_item) {
             list_iterator = control_ptr + -3;
-            if (control_ptr == (longlong *)0x0) {
+            if (control_ptr == (int64_t *)0x0) {
                 list_iterator = current_item;
             }
             
@@ -379,12 +379,12 @@ uint64_t ui_system_event_handler(longlong param_1)
             }
             
             // 移动到下一个项目
-            list_iterator = (longlong *)(*control_ptr + -0x18);
+            list_iterator = (int64_t *)(*control_ptr + -0x18);
             if (*control_ptr == 0) {
                 list_iterator = current_item;
             }
             control_ptr = current_item;
-            if (list_iterator != (longlong *)0x0) {
+            if (list_iterator != (int64_t *)0x0) {
                 control_ptr = list_iterator + 3;
             }
         }

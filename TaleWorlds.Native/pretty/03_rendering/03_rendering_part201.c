@@ -82,7 +82,7 @@ void rendering_state_setter(void);
 void rendering_system_initializer(void);
 
 /** 渲染数据处理器 */
-void rendering_data_processor(longlong param_1, uint64_t param_2, longlong param_3);
+void rendering_data_processor(int64_t param_1, uint64_t param_2, int64_t param_3);
 
 /** 渲染矩阵计算器 */
 #define rendering_matrix_calculator       FUN_180387860
@@ -153,24 +153,24 @@ void rendering_parameter_calculator_type1(void)
     int int_param5;                         // 整数参数5
     int int_param6;                         // 整数参数6
     uint64_t temp_var;                      // 临时64位无符号整数变量
-    longlong *long_ptr;                     // 长整型指针
+    int64_t *long_ptr;                     // 长整型指针
     uint64_t *render_data_ptr1;             // 渲染数据指针1
     uint64_t *render_data_ptr2;             // 渲染数据指针2
     uint64_t *render_data_ptr3;             // 渲染数据指针3
     uint64_t *base_ptr;                     // 基础指针
-    longlong base_long;                     // 基础长整型变量
-    longlong loop_counter1;                 // 循环计数器1
-    longlong context_ptr;                   // 上下文指针
-    ulonglong *ulong_ptr;                   // 无符号长整型指针
-    longlong temp_long1;                    // 临时长整型变量1
+    int64_t base_long;                     // 基础长整型变量
+    int64_t loop_counter1;                 // 循环计数器1
+    int64_t context_ptr;                   // 上下文指针
+    uint64_t *ulong_ptr;                   // 无符号长整型指针
+    int64_t temp_long1;                    // 临时长整型变量1
     float *float_ptr;                       // 浮点数指针
-    longlong loop_counter2;                 // 循环计数器2
-    longlong temp_long2;                    // 临时长整型变量2
+    int64_t loop_counter2;                 // 循环计数器2
+    int64_t temp_long2;                    // 临时长整型变量2
     uint64_t xmm0_temp;                     // XMM0寄存器临时变量
-    ulonglong stack_param;                 // 栈参数
+    uint64_t stack_param;                 // 栈参数
     
     // 获取渲染系统上下文
-    ulong_ptr = (ulonglong *)(context_ptr + RENDERING_OFFSET_0X3580);
+    ulong_ptr = (uint64_t *)(context_ptr + RENDERING_OFFSET_0X3580);
     
     // 检查渲染状态标志
     if ((*(byte *)(base_long + RENDERING_OFFSET_0XC0) & RENDERING_FLAG_0X80) == 0) {
@@ -185,7 +185,7 @@ void rendering_parameter_calculator_type1(void)
             // 链表遍历算法
             if (render_data_ptr1 != (uint64_t *)0x0) {
                 do {
-                    if ((ulonglong)render_data_ptr1[RENDERING_INDEX_4] < *ulong_ptr) {
+                    if ((uint64_t)render_data_ptr1[RENDERING_INDEX_4] < *ulong_ptr) {
                         render_data_ptr1 = (uint64_t *)*render_data_ptr1;
                     }
                     else {
@@ -196,13 +196,13 @@ void rendering_parameter_calculator_type1(void)
             }
             
             // 处理链表节点
-            if ((render_data_ptr2 == base_ptr) || (*ulong_ptr < (ulonglong)render_data_ptr2[RENDERING_INDEX_4])) {
+            if ((render_data_ptr2 == base_ptr) || (*ulong_ptr < (uint64_t)render_data_ptr2[RENDERING_INDEX_4])) {
                 render_data_ptr2 = (uint64_t *)rendering_matrix_calculator();
                 render_data_ptr2 = (uint64_t *)*render_data_ptr2;
             }
             
             // 检查循环条件
-            if (*(longlong *)(loop_counter1 + (longlong)render_data_ptr2) == temp_long1) {
+            if (*(int64_t *)(loop_counter1 + (int64_t)render_data_ptr2) == temp_long1) {
                 goto rendering_state_set;
             }
             
@@ -222,7 +222,7 @@ void rendering_parameter_calculator_type1(void)
             // 链表遍历
             if (matrix_data_ptr2 != (uint64_t *)0x0) {
                 do {
-                    if ((ulonglong)matrix_data_ptr2[RENDERING_INDEX_4] < *ulong_ptr) {
+                    if ((uint64_t)matrix_data_ptr2[RENDERING_INDEX_4] < *ulong_ptr) {
                         render_data_ptr2 = (uint64_t *)*render_data_ptr2;
                     }
                     else {
@@ -233,14 +233,14 @@ void rendering_parameter_calculator_type1(void)
             }
             
             // 处理矩阵节点
-            if ((matrix_data_ptr3 == base_ptr) || (*ulong_ptr < (ulonglong)matrix_data_ptr3[RENDERING_INDEX_4])) {
+            if ((matrix_data_ptr3 == base_ptr) || (*ulong_ptr < (uint64_t)matrix_data_ptr3[RENDERING_INDEX_4])) {
                 matrix_data_ptr3 = (uint64_t *)rendering_matrix_calculator();
                 matrix_data_ptr3 = (uint64_t *)*matrix_data_ptr3;
             }
             
             // 提取矩阵参数
-            int_param1 = *(int *)(*(longlong *)(loop_counter2 + (longlong)matrix_data_ptr3) + RENDERING_INDEX_0XC);
-            int_param2 = *(int *)(*(longlong *)(loop_counter2 + (longlong)matrix_data_ptr3) + RENDERING_INDEX_0X10);
+            int_param1 = *(int *)(*(int64_t *)(loop_counter2 + (int64_t)matrix_data_ptr3) + RENDERING_INDEX_0XC);
+            int_param2 = *(int *)(*(int64_t *)(loop_counter2 + (int64_t)matrix_data_ptr3) + RENDERING_INDEX_0X10);
             
             // 第二次链表遍历
             matrix_data_ptr2 = (uint64_t *)base_ptr[RENDERING_INDEX_2];
@@ -248,7 +248,7 @@ void rendering_parameter_calculator_type1(void)
             
             if (matrix_data_ptr2 != (uint64_t *)0x0) {
                 do {
-                    if ((ulonglong)matrix_data_ptr2[RENDERING_INDEX_4] < *ulong_ptr) {
+                    if ((uint64_t)matrix_data_ptr2[RENDERING_INDEX_4] < *ulong_ptr) {
                         render_data_ptr2 = (uint64_t *)*render_data_ptr2;
                     }
                     else {
@@ -259,14 +259,14 @@ void rendering_parameter_calculator_type1(void)
             }
             
             // 处理第二个矩阵节点
-            if ((matrix_data_ptr3 == base_ptr) || (*ulong_ptr < (ulonglong)matrix_data_ptr3[RENDERING_INDEX_4])) {
+            if ((matrix_data_ptr3 == base_ptr) || (*ulong_ptr < (uint64_t)matrix_data_ptr3[RENDERING_INDEX_4])) {
                 matrix_data_ptr3 = (uint64_t *)rendering_matrix_calculator();
                 matrix_data_ptr3 = (uint64_t *)*matrix_data_ptr3;
             }
             
             // 提取第二组参数
-            int_param3 = *(int *)(*(longlong *)(loop_counter2 + (longlong)matrix_data_ptr3) + RENDERING_INDEX_0XC);
-            int_param4 = *(int *)(*(longlong *)(loop_counter2 + (longlong)matrix_data_ptr3) + RENDERING_INDEX_0X10);
+            int_param3 = *(int *)(*(int64_t *)(loop_counter2 + (int64_t)matrix_data_ptr3) + RENDERING_INDEX_0XC);
+            int_param4 = *(int *)(*(int64_t *)(loop_counter2 + (int64_t)matrix_data_ptr3) + RENDERING_INDEX_0X10);
             
             // 第三次链表遍历
             matrix_data_ptr2 = (uint64_t *)base_ptr[RENDERING_INDEX_2];
@@ -274,7 +274,7 @@ void rendering_parameter_calculator_type1(void)
             
             if (matrix_data_ptr2 != (uint64_t *)0x0) {
                 do {
-                    if ((ulonglong)matrix_data_ptr2[RENDERING_INDEX_4] < *ulong_ptr) {
+                    if ((uint64_t)matrix_data_ptr2[RENDERING_INDEX_4] < *ulong_ptr) {
                         render_data_ptr2 = (uint64_t *)*render_data_ptr2;
                     }
                     else {
@@ -285,14 +285,14 @@ void rendering_parameter_calculator_type1(void)
             }
             
             // 处理第三个矩阵节点
-            if ((matrix_data_ptr3 == base_ptr) || (*ulong_ptr < (ulonglong)matrix_data_ptr3[RENDERING_INDEX_4])) {
+            if ((matrix_data_ptr3 == base_ptr) || (*ulong_ptr < (uint64_t)matrix_data_ptr3[RENDERING_INDEX_4])) {
                 matrix_data_ptr3 = (uint64_t *)rendering_matrix_calculator();
                 matrix_data_ptr3 = (uint64_t *)*matrix_data_ptr3;
             }
             
             // 提取第三组参数
-            int_param6 = *(int *)(*(longlong *)(loop_counter2 + (longlong)matrix_data_ptr3) + RENDERING_INDEX_0X10);
-            temp_float = *(float *)(*(longlong *)(loop_counter2 + (longlong)matrix_data_ptr3) + RENDERING_INDEX_8);
+            int_param6 = *(int *)(*(int64_t *)(loop_counter2 + (int64_t)matrix_data_ptr3) + RENDERING_INDEX_0X10);
+            temp_float = *(float *)(*(int64_t *)(loop_counter2 + (int64_t)matrix_data_ptr3) + RENDERING_INDEX_8);
             
             // 第四次链表遍历
             matrix_data_ptr3 = (uint64_t *)base_ptr[RENDERING_INDEX_2];
@@ -300,7 +300,7 @@ void rendering_parameter_calculator_type1(void)
             
             if (matrix_data_ptr3 != (uint64_t *)0x0) {
                 do {
-                    if ((ulonglong)matrix_data_ptr3[RENDERING_INDEX_4] < *ulong_ptr) {
+                    if ((uint64_t)matrix_data_ptr3[RENDERING_INDEX_4] < *ulong_ptr) {
                         matrix_data_ptr3 = (uint64_t *)*matrix_data_ptr3;
                     }
                     else {
@@ -311,13 +311,13 @@ void rendering_parameter_calculator_type1(void)
             }
             
             // 处理第四个矩阵节点
-            if ((render_data_ptr2 == base_ptr) || (*ulong_ptr < (ulonglong)render_data_ptr2[RENDERING_INDEX_4])) {
+            if ((render_data_ptr2 == base_ptr) || (*ulong_ptr < (uint64_t)render_data_ptr2[RENDERING_INDEX_4])) {
                 render_data_ptr2 = (uint64_t *)rendering_matrix_calculator();
                 render_data_ptr2 = (uint64_t *)*render_data_ptr2;
             }
             
             // 计算最终参数
-            matrix_data_ptr2 = (uint64_t *)(loop_counter2 + (longlong)matrix_data_ptr2);
+            matrix_data_ptr2 = (uint64_t *)(loop_counter2 + (int64_t)matrix_data_ptr2);
             loop_counter2 = loop_counter2 + RENDERING_INDEX_8;
             
             // 执行浮点数计算
@@ -329,22 +329,22 @@ void rendering_parameter_calculator_type1(void)
             float_ptr = float_ptr + RENDERING_INDEX_8;
             
             // 执行矩阵变换
-            matrix_data_ptr2 = (uint64_t *)((longlong)matrix_data_ptr1 + loop_counter1 + RENDERING_SIZE_0X120);
+            matrix_data_ptr2 = (uint64_t *)((int64_t)matrix_data_ptr1 + loop_counter1 + RENDERING_SIZE_0X120);
             temp_var = matrix_data_ptr2[1];
             *matrix_data_ptr1 = *matrix_data_ptr2;
             matrix_data_ptr1[1] = temp_var;
             
-            matrix_data_ptr2 = (uint64_t *)((longlong)matrix_data_ptr1 + loop_counter1 + RENDERING_SIZE_0X130);
+            matrix_data_ptr2 = (uint64_t *)((int64_t)matrix_data_ptr1 + loop_counter1 + RENDERING_SIZE_0X130);
             temp_var = matrix_data_ptr2[1];
             matrix_data_ptr1[RENDERING_INDEX_2] = *matrix_data_ptr2;
             matrix_data_ptr1[RENDERING_INDEX_3] = temp_var;
             
-            matrix_data_ptr2 = (uint64_t *)((longlong)matrix_data_ptr1 + loop_counter1 + RENDERING_SIZE_0X140);
+            matrix_data_ptr2 = (uint64_t *)((int64_t)matrix_data_ptr1 + loop_counter1 + RENDERING_SIZE_0X140);
             temp_var = matrix_data_ptr2[1];
             render_data_ptr1[RENDERING_INDEX_4] = *matrix_data_ptr2;
             matrix_data_ptr1[RENDERING_INDEX_5] = temp_var;
             
-            matrix_data_ptr2 = (uint64_t *)((longlong)matrix_data_ptr1 + loop_counter1 + RENDERING_SIZE_0X150);
+            matrix_data_ptr2 = (uint64_t *)((int64_t)matrix_data_ptr1 + loop_counter1 + RENDERING_SIZE_0X150);
             temp_var = matrix_data_ptr2[1];
             matrix_data_ptr1[RENDERING_INDEX_6] = *matrix_data_ptr2;
             matrix_data_ptr1[RENDERING_INDEX_7] = temp_var;
@@ -354,7 +354,7 @@ void rendering_parameter_calculator_type1(void)
     }
     else {
         // 替代路径处理
-        long_ptr = (longlong *)rendering_data_getter();
+        long_ptr = (int64_t *)rendering_data_getter();
         
         if (*long_ptr == temp_long1) {
 rendering_state_set:
@@ -362,15 +362,15 @@ rendering_state_set:
         }
         else {
             // 参数计算和矩阵处理
-            long_ptr = (longlong *)rendering_data_getter(xmm0_temp, ulong_ptr);
+            long_ptr = (int64_t *)rendering_data_getter(xmm0_temp, ulong_ptr);
             int_param1 = *(int *)(*long_ptr + RENDERING_INDEX_0XC);
             int_param2 = *(int *)(*long_ptr + RENDERING_INDEX_0X10);
             
-            long_ptr = (longlong *)rendering_data_getter();
+            long_ptr = (int64_t *)rendering_data_getter();
             int_param3 = *(int *)(*long_ptr + RENDERING_INDEX_0XC);
             int_param4 = *(int *)(*long_ptr + RENDERING_INDEX_0X10);
             
-            long_ptr = (longlong *)rendering_data_getter();
+            long_ptr = (int64_t *)rendering_data_getter();
             int_param6 = *(int *)(*long_ptr + RENDERING_INDEX_0X10);
             temp_float = *(float *)(*long_ptr + RENDERING_INDEX_8);
             
@@ -402,7 +402,7 @@ rendering_state_set:
     }
     
     // 调用渲染系统管理器
-    rendering_system_manager(stack_param ^ (ulonglong)&stack0x00000000);
+    rendering_system_manager(stack_param ^ (uint64_t)&stack0x00000000);
 }
 
 /**
@@ -433,15 +433,15 @@ void rendering_parameter_calculator_type2(void)
     uint64_t *base_ptr;                      // 基础指针
     uint64_t *matrix_data_ptr1;              // 矩阵数据指针1
     uint64_t *matrix_data_ptr2;              // 矩阵数据指针2
-    longlong base_long;                      // 基础长整型变量
-    longlong loop_counter;                   // 循环计数器
+    int64_t base_long;                      // 基础长整型变量
+    int64_t loop_counter;                   // 循环计数器
     uint64_t *context_ptr;                   // 上下文指针
-    ulonglong *ulong_ptr;                    // 无符号长整型指针
+    uint64_t *ulong_ptr;                    // 无符号长整型指针
     float *float_ptr;                        // 浮点数指针
-    longlong temp_long1;                     // 临时长整型变量1
-    longlong temp_long2;                     // 临时长整型变量2
+    int64_t temp_long1;                     // 临时长整型变量1
+    int64_t temp_long2;                     // 临时长整型变量2
     float xmm9_float;                        // XMM9寄存器浮点数
-    ulonglong stack_param;                   // 栈参数
+    uint64_t stack_param;                   // 栈参数
     
     // 初始化浮点指针
     float_ptr = (float *)(temp_long2 + RENDERING_SIZE_0X50);
@@ -455,7 +455,7 @@ void rendering_parameter_calculator_type2(void)
         // 链表遍历算法
         if (matrix_data_ptr2 != (uint64_t *)0x0) {
             do {
-                if ((ulonglong)matrix_data_ptr2[RENDERING_INDEX_4] < *ulong_ptr) {
+                if ((uint64_t)matrix_data_ptr2[RENDERING_INDEX_4] < *ulong_ptr) {
                     render_data_ptr2 = (uint64_t *)*render_data_ptr2;
                 }
                 else {
@@ -466,14 +466,14 @@ void rendering_parameter_calculator_type2(void)
         }
         
         // 处理链表节点
-        if ((matrix_data_ptr1 == base_ptr) || (*ulong_ptr < (ulonglong)render_data_ptr1[RENDERING_INDEX_4])) {
+        if ((matrix_data_ptr1 == base_ptr) || (*ulong_ptr < (uint64_t)render_data_ptr1[RENDERING_INDEX_4])) {
             matrix_data_ptr1 = (uint64_t *)rendering_matrix_calculator();
             render_data_ptr1 = (uint64_t *)*render_data_ptr1;
         }
         
         // 提取第一组参数
-        int_param1 = *(int *)(*(longlong *)(temp_long1 + (longlong)matrix_data_ptr1) + RENDERING_INDEX_0XC);
-        int_param2 = *(int *)(*(longlong *)(temp_long1 + (longlong)matrix_data_ptr1) + RENDERING_INDEX_0X10);
+        int_param1 = *(int *)(*(int64_t *)(temp_long1 + (int64_t)matrix_data_ptr1) + RENDERING_INDEX_0XC);
+        int_param2 = *(int *)(*(int64_t *)(temp_long1 + (int64_t)matrix_data_ptr1) + RENDERING_INDEX_0X10);
         
         // 第二次链表遍历
         matrix_data_ptr2 = (uint64_t *)base_ptr[RENDERING_INDEX_2];
@@ -481,7 +481,7 @@ void rendering_parameter_calculator_type2(void)
         
         if (matrix_data_ptr2 != (uint64_t *)0x0) {
             do {
-                if ((ulonglong)matrix_data_ptr2[RENDERING_INDEX_4] < *ulong_ptr) {
+                if ((uint64_t)matrix_data_ptr2[RENDERING_INDEX_4] < *ulong_ptr) {
                     render_data_ptr2 = (uint64_t *)*render_data_ptr2;
                 }
                 else {
@@ -492,14 +492,14 @@ void rendering_parameter_calculator_type2(void)
         }
         
         // 处理第二个节点
-        if ((matrix_data_ptr1 == base_ptr) || (*ulong_ptr < (ulonglong)render_data_ptr1[RENDERING_INDEX_4])) {
+        if ((matrix_data_ptr1 == base_ptr) || (*ulong_ptr < (uint64_t)render_data_ptr1[RENDERING_INDEX_4])) {
             matrix_data_ptr1 = (uint64_t *)rendering_matrix_calculator();
             render_data_ptr1 = (uint64_t *)*render_data_ptr1;
         }
         
         // 提取第二组参数
-        int_param3 = *(int *)(*(longlong *)(temp_long1 + (longlong)matrix_data_ptr1) + RENDERING_INDEX_0XC);
-        int_param4 = *(int *)(*(longlong *)(temp_long1 + (longlong)matrix_data_ptr1) + RENDERING_INDEX_0X10);
+        int_param3 = *(int *)(*(int64_t *)(temp_long1 + (int64_t)matrix_data_ptr1) + RENDERING_INDEX_0XC);
+        int_param4 = *(int *)(*(int64_t *)(temp_long1 + (int64_t)matrix_data_ptr1) + RENDERING_INDEX_0X10);
         
         // 第三次链表遍历
         matrix_data_ptr2 = (uint64_t *)base_ptr[RENDERING_INDEX_2];
@@ -507,7 +507,7 @@ void rendering_parameter_calculator_type2(void)
         
         if (matrix_data_ptr2 != (uint64_t *)0x0) {
             do {
-                if ((ulonglong)matrix_data_ptr2[RENDERING_INDEX_4] < *ulong_ptr) {
+                if ((uint64_t)matrix_data_ptr2[RENDERING_INDEX_4] < *ulong_ptr) {
                     render_data_ptr2 = (uint64_t *)*render_data_ptr2;
                 }
                 else {
@@ -518,14 +518,14 @@ void rendering_parameter_calculator_type2(void)
         }
         
         // 处理第三个节点
-        if ((matrix_data_ptr1 == base_ptr) || (*ulong_ptr < (ulonglong)render_data_ptr1[RENDERING_INDEX_4])) {
+        if ((matrix_data_ptr1 == base_ptr) || (*ulong_ptr < (uint64_t)render_data_ptr1[RENDERING_INDEX_4])) {
             matrix_data_ptr1 = (uint64_t *)rendering_matrix_calculator();
             render_data_ptr1 = (uint64_t *)*render_data_ptr1;
         }
         
         // 提取第三组参数
-        int_param5 = *(int *)(*(longlong *)(temp_long1 + (longlong)matrix_data_ptr1) + RENDERING_INDEX_0X10);
-        temp_float = *(float *)(*(longlong *)(temp_long1 + (longlong)matrix_data_ptr1) + RENDERING_INDEX_8);
+        int_param5 = *(int *)(*(int64_t *)(temp_long1 + (int64_t)matrix_data_ptr1) + RENDERING_INDEX_0X10);
+        temp_float = *(float *)(*(int64_t *)(temp_long1 + (int64_t)matrix_data_ptr1) + RENDERING_INDEX_8);
         
         // 第四次链表遍历
         render_data_ptr1 = (uint64_t *)base_ptr[RENDERING_INDEX_2];
@@ -533,7 +533,7 @@ void rendering_parameter_calculator_type2(void)
         
         if (render_data_ptr1 != (uint64_t *)0x0) {
             do {
-                if ((ulonglong)render_data_ptr1[RENDERING_INDEX_4] < *ulong_ptr) {
+                if ((uint64_t)render_data_ptr1[RENDERING_INDEX_4] < *ulong_ptr) {
                     render_data_ptr1 = (uint64_t *)*render_data_ptr1;
                 }
                 else {
@@ -544,13 +544,13 @@ void rendering_parameter_calculator_type2(void)
         }
         
         // 处理第四个节点
-        if ((render_data_ptr2 == base_ptr) || (*ulong_ptr < (ulonglong)render_data_ptr2[RENDERING_INDEX_4])) {
+        if ((render_data_ptr2 == base_ptr) || (*ulong_ptr < (uint64_t)render_data_ptr2[RENDERING_INDEX_4])) {
             render_data_ptr2 = (uint64_t *)rendering_matrix_calculator();
             render_data_ptr2 = (uint64_t *)*render_data_ptr2;
         }
         
         // 计算最终参数
-        matrix_data_ptr2 = (uint64_t *)(temp_long1 + (longlong)matrix_data_ptr2);
+        matrix_data_ptr2 = (uint64_t *)(temp_long1 + (int64_t)matrix_data_ptr2);
         temp_long1 = temp_long1 + RENDERING_INDEX_8;
         
         // 执行浮点数计算
@@ -562,36 +562,36 @@ void rendering_parameter_calculator_type2(void)
         float_ptr = float_ptr + RENDERING_INDEX_8;
         
         // 执行矩阵变换
-        matrix_data_ptr2 = (uint64_t *)((longlong)context_ptr + loop_counter + RENDERING_SIZE_0X120);
+        matrix_data_ptr2 = (uint64_t *)((int64_t)context_ptr + loop_counter + RENDERING_SIZE_0X120);
         temp_var = matrix_data_ptr2[1];
         *context_ptr = *matrix_data_ptr2;
         context_ptr[1] = temp_var;
         
-        matrix_data_ptr2 = (uint64_t *)((longlong)context_ptr + loop_counter + RENDERING_SIZE_0X130);
+        matrix_data_ptr2 = (uint64_t *)((int64_t)context_ptr + loop_counter + RENDERING_SIZE_0X130);
         temp_var = matrix_data_ptr2[1];
         context_ptr[RENDERING_INDEX_2] = *matrix_data_ptr2;
         context_ptr[RENDERING_INDEX_3] = temp_var;
         
-        matrix_data_ptr2 = (uint64_t *)((longlong)context_ptr + loop_counter + RENDERING_SIZE_0X140);
+        matrix_data_ptr2 = (uint64_t *)((int64_t)context_ptr + loop_counter + RENDERING_SIZE_0X140);
         temp_var = matrix_data_ptr2[1];
         context_ptr[RENDERING_INDEX_4] = *matrix_data_ptr2;
         context_ptr[RENDERING_INDEX_5] = temp_var;
         
-        uint_ptr = (int32_t *)((longlong)context_ptr + loop_counter + RENDERING_SIZE_0X150);
+        uint_ptr = (int32_t *)((int64_t)context_ptr + loop_counter + RENDERING_SIZE_0X150);
         temp_uint1 = uint_ptr[1];
         temp_uint2 = uint_ptr[RENDERING_INDEX_2];
         temp_uint3 = uint_ptr[RENDERING_INDEX_3];
         
         *(int32_t *)(context_ptr + RENDERING_INDEX_6) = *uint_ptr;
-        *(int32_t *)((longlong)context_ptr + 0x34) = temp_uint1;
+        *(int32_t *)((int64_t)context_ptr + 0x34) = temp_uint1;
         *(int32_t *)(context_ptr + RENDERING_INDEX_7) = temp_uint2;
-        *(int32_t *)((longlong)context_ptr + 0x3c) = temp_uint3;
+        *(int32_t *)((int64_t)context_ptr + 0x3c) = temp_uint3;
         
         context_ptr = context_ptr + RENDERING_INDEX_8;
     } while (temp_long1 < RENDERING_SIZE_0X58);
     
     // 调用渲染系统管理器
-    rendering_system_manager(stack_param ^ (ulonglong)&stack0x00000000);
+    rendering_system_manager(stack_param ^ (uint64_t)&stack0x00000000);
 }
 
 /**
@@ -606,14 +606,14 @@ void rendering_parameter_calculator_type2(void)
 void rendering_state_setter(void)
 {
     int32_t state_param;
-    longlong context_ptr;
-    ulonglong stack_param;
+    int64_t context_ptr;
+    uint64_t stack_param;
     
     // 设置渲染状态
     *(int32_t *)(context_ptr + 0x1c) = state_param;
     
     // 调用渲染系统管理器
-    rendering_system_manager(stack_param ^ (ulonglong)&stack0x00000000);
+    rendering_system_manager(stack_param ^ (uint64_t)&stack0x00000000);
 }
 
 /**
@@ -627,10 +627,10 @@ void rendering_state_setter(void)
  */
 void rendering_system_initializer(void)
 {
-    ulonglong stack_param;
+    uint64_t stack_param;
     
     // 调用渲染系统管理器进行初始化
-    rendering_system_manager(stack_param ^ (ulonglong)&stack0x00000000);
+    rendering_system_manager(stack_param ^ (uint64_t)&stack0x00000000);
 }
 
 /**
@@ -646,7 +646,7 @@ void rendering_system_initializer(void)
  * @param param_2 渲染配置参数
  * @param param_3 渲染状态参数
  */
-void rendering_data_processor(longlong param_1, uint64_t param_2, longlong param_3)
+void rendering_data_processor(int64_t param_1, uint64_t param_2, int64_t param_3)
 // 参数说明：
 // param_1 - 渲染上下文参数
 // param_2 - 渲染配置参数
@@ -654,15 +654,15 @@ void rendering_data_processor(longlong param_1, uint64_t param_2, longlong param
 {
     int int_param1;                         // 整数参数1
     int int_param2;                         // 整数参数2
-    longlong long_param1;                   // 长整型参数1
+    int64_t long_param1;                   // 长整型参数1
     uint64_t *render_data_ptr1;             // 渲染数据指针1
-    longlong long_param2;                   // 长整型参数2
-    longlong long_param3;                   // 长整型参数3
+    int64_t long_param2;                   // 长整型参数2
+    int64_t long_param3;                   // 长整型参数3
     uint64_t *render_data_ptr2;             // 渲染数据指针2
     uint64_t *matrix_data_ptr1;             // 矩阵数据指针1
     uint64_t *matrix_data_ptr2;             // 矩阵数据指针2
     char stack_char [8];                    // 栈字符数组
-    longlong stack_long;                    // 栈长整型变量
+    int64_t stack_long;                    // 栈长整型变量
     uint64_t memory_stack_param;            // 内存栈参数
     uint64_t *heap_ptr1;                    // 堆指针1
     uint64_t *heap_ptr2;                    // 堆指针2
@@ -672,11 +672,11 @@ void rendering_data_processor(longlong param_1, uint64_t param_2, longlong param
     char *char_ptr;                         // 字符指针
     uint64_t stack_int8_t;                  // 栈8位整数
     uint64_t stack_int16_t;                 // 栈16位整数
-    longlong stack_long1;                   // 栈长整型变量1
-    longlong *stack_long_ptr [2];           // 栈长整型指针数组
+    int64_t stack_long1;                   // 栈长整型变量1
+    int64_t *stack_long_ptr [2];           // 栈长整型指针数组
     code *code_ptr1;                        // 代码指针1
     code *code_ptr2;                        // 代码指针2
-    longlong **long_ptr_ptr;                // 长整型指针的指针
+    int64_t **long_ptr_ptr;                // 长整型指针的指针
     uint64_t memory_stack_param3;           // 内存栈参数3
     int32_t stack_uint1;                    // 栈32位无符号整数1
     int16_t stack_ushort;                   // 栈无符号短整型
@@ -691,7 +691,7 @@ void rendering_data_processor(longlong param_1, uint64_t param_2, longlong param
     uint64_t memory_stack_param7;           // 内存栈参数7
     int32_t stack_uint4;                    // 栈32位无符号整数4
     int8_t stack_byte1;                     // 栈字节1
-    longlong stack_long2;                   // 栈长整型变量2
+    int64_t stack_long2;                   // 栈长整型变量2
     uint64_t stack_uint64_t;                // 栈64位无符号整数
     
     // 初始化栈数据
@@ -714,7 +714,7 @@ void rendering_data_processor(longlong param_1, uint64_t param_2, longlong param
     stack_byte1 = 0;
     
     // 获取渲染系统基础地址
-    long_param3 = *(longlong *)(param_1 + 0x90);
+    long_param3 = *(int64_t *)(param_1 + 0x90);
     stack_long2 = long_param3 + 0x27f0;
     
     // 检查状态标志
@@ -723,12 +723,12 @@ void rendering_data_processor(longlong param_1, uint64_t param_2, longlong param
     }
     
     // 调用渲染系统初始化函数
-    (**(code **)(**(longlong **)(long_param3 + 0x27e8) + 0x1c8))
-            (*(longlong **)(long_param3 + 0x27e8), param_3, long_param3, &DAT, &memory_stack_param3);
+    (**(code **)(**(int64_t **)(long_param3 + 0x27e8) + 0x1c8))
+            (*(int64_t **)(long_param3 + 0x27e8), param_3, long_param3, &DAT, &memory_stack_param3);
     
     // 设置数据范围
     long_param1 = param_1 + 0x100;
-    long_param2 = *(longlong *)(param_1 + 0x108);
+    long_param2 = *(int64_t *)(param_1 + 0x108);
     
     // 初始化堆指针
     heap_ptr1 = (uint64_t *)0x0;
@@ -743,17 +743,17 @@ void rendering_data_processor(longlong param_1, uint64_t param_2, longlong param
     if (long_param2 != long_param1) {
         do {
             long_param3 = rendering_iterator(long_param3);
-            matrix_data_ptr2 = (uint64_t *)((longlong)matrix_data_ptr2 + 1);
+            matrix_data_ptr2 = (uint64_t *)((int64_t)matrix_data_ptr2 + 1);
         } while (long_param3 != long_param1);
         
         if (matrix_data_ptr2 != (uint64_t *)0x0) {
             matrix_data_ptr1 = (uint64_t *)
-                     rendering_memory_allocator(_DAT, (longlong)matrix_data_ptr2 * 8, (int8_t)stack_uint);
+                     rendering_memory_allocator(_DAT, (int64_t)matrix_data_ptr2 * 8, (int8_t)stack_uint);
         }
     }
     
     // 设置堆数据指针
-    heap_ptr2 = matrix_data_ptr1 + (longlong)matrix_data_ptr2;
+    heap_ptr2 = matrix_data_ptr1 + (int64_t)matrix_data_ptr2;
     heap_ptr3 = heap_ptr2;
     heap_ptr1 = matrix_data_ptr1;
     
@@ -777,15 +777,15 @@ void rendering_data_processor(longlong param_1, uint64_t param_2, longlong param
         stack_long1 = param_1;
         
         // 分配内存并设置回调
-        stack_long_ptr[0] = (longlong *)rendering_memory_manager(_DAT, 0x28, 8, DAT);
-        *stack_long_ptr[0] = (longlong)heap_ptr_ptr;
-        stack_long_ptr[0][1] = (longlong)char_ptr;
+        stack_long_ptr[0] = (int64_t *)rendering_memory_manager(_DAT, 0x28, 8, DAT);
+        *stack_long_ptr[0] = (int64_t)heap_ptr_ptr;
+        stack_long_ptr[0][1] = (int64_t)char_ptr;
         *(int32_t *)(stack_long_ptr[0] + RENDERING_INDEX_8) = (int32_t)stack_int8_t;
-        *(int32_t *)((longlong)stack_long_ptr[0] + 0x14) = stack_int8_t._4_4_;
+        *(int32_t *)((int64_t)stack_long_ptr[0] + 0x14) = stack_int8_t._4_4_;
         *(int32_t *)(stack_long_ptr[0] + RENDERING_INDEX_3) = (int32_t)stack_int16_t;
-        *(int32_t *)((longlong)stack_long_ptr[0] + 0x1c) = stack_int16_t._4_4_;
+        *(int32_t *)((int64_t)stack_long_ptr[0] + 0x1c) = stack_int16_t._4_4_;
         stack_long_ptr[0][RENDERING_INDEX_4] = stack_long1;
-        long_param3 = (longlong)heap_ptr2 - (longlong)heap_ptr1;
+        long_param3 = (int64_t)heap_ptr2 - (int64_t)heap_ptr1;
     }
     else {
         if (*(int *)(_DAT + 0x1c0) != 1) goto alternative_path;
@@ -802,15 +802,15 @@ void rendering_data_processor(longlong param_1, uint64_t param_2, longlong param
         stack_long1 = param_1;
         
         // 分配内存并设置回调（替代路径）
-        stack_long_ptr[0] = (longlong *)rendering_memory_manager(_DAT, 0x28, 8, DAT);
-        *stack_long_ptr[0] = (longlong)heap_ptr_ptr;
-        stack_long_ptr[0][1] = (longlong)char_ptr;
+        stack_long_ptr[0] = (int64_t *)rendering_memory_manager(_DAT, 0x28, 8, DAT);
+        *stack_long_ptr[0] = (int64_t)heap_ptr_ptr;
+        stack_long_ptr[0][1] = (int64_t)char_ptr;
         *(int32_t *)(stack_long_ptr[0] + RENDERING_INDEX_8) = (int32_t)stack_int8_t;
-        *(int32_t *)((longlong)stack_long_ptr[0] + 0x14) = stack_int8_t._4_4_;
+        *(int32_t *)((int64_t)stack_long_ptr[0] + 0x14) = stack_int8_t._4_4_;
         *(int32_t *)(stack_long_ptr[0] + RENDERING_INDEX_3) = (int32_t)stack_int16_t;
-        *(int32_t *)((longlong)stack_long_ptr[0] + 0x1c) = stack_int16_t._4_4_;
+        *(int32_t *)((int64_t)stack_long_ptr[0] + 0x1c) = stack_int16_t._4_4_;
         stack_long_ptr[0][RENDERING_INDEX_4] = stack_long1;
-        long_param3 = (longlong)heap_ptr2 - (longlong)heap_ptr1;
+        long_param3 = (int64_t)heap_ptr2 - (int64_t)heap_ptr1;
     }
     
     // 执行并行处理
@@ -818,11 +818,11 @@ void rendering_data_processor(longlong param_1, uint64_t param_2, longlong param
     
 alternative_path:
     // 获取渲染系统地址
-    long_param3 = *(longlong *)(param_1 + 0x90);
+    long_param3 = *(int64_t *)(param_1 + 0x90);
     
     // 检查渲染状态和条件
     if (((*(char *)(long_param3 + 0x563) != '\0') &&
-        (long_param3 = *(longlong *)(long_param3 + 0x5b0) - *(longlong *)(long_param3 + 0x5a8),
+        (long_param3 = *(int64_t *)(long_param3 + 0x5b0) - *(int64_t *)(long_param3 + 0x5a8),
         int_param2 = (int)(long_param3 >> 0x3f), int_param1 = (int)(long_param3 / 0xc) + int_param2,
         int_param1 != int_param2 && -1 < int_param1 - int_param2)) && (*(char *)(param_3 + 0x20) != '\0')) {
         // 调用渲染事件处理器
@@ -843,7 +843,7 @@ alternative_path:
 // ===========================================
 
 /** 渲染系统数据表 */
-extern ulonglong DAT;
+extern uint64_t DAT;
 extern uint64_t _DAT;
 extern uint64_t DAT;
 extern uint64_t _DAT;

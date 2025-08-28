@@ -9,7 +9,7 @@ void FUN_1806f0db4(void)
   uint64_t *unaff_RBX;
   uint unaff_EBP;
   uint uVar1;
-  longlong *unaff_R12;
+  int64_t *unaff_R12;
   code *in_stack_00000070;
   
   uVar1 = 0;

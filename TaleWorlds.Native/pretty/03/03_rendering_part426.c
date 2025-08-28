@@ -23,7 +23,7 @@
 #define RENDERING_BATCH_SIZE_4 4
 
 // 函数声明
-void rendering_advanced_texture_mapper_process_pixel_batches(longlong rendering_context);
+void rendering_advanced_texture_mapper_process_pixel_batches(int64_t rendering_context);
 
 /**
  * 渲染系统高级纹理映射和像素批处理器
@@ -37,7 +37,7 @@ void rendering_advanced_texture_mapper_process_pixel_batches(longlong rendering_
  * 
  * @param rendering_context 渲染上下文指针，包含渲染状态和缓冲区信息
  */
-void rendering_advanced_texture_mapper_process_pixel_batches(longlong rendering_context)
+void rendering_advanced_texture_mapper_process_pixel_batches(int64_t rendering_context)
 {
   // 纹理坐标和顶点数据指针
   float *texture_coord_ptr1;
@@ -45,9 +45,9 @@ void rendering_advanced_texture_mapper_process_pixel_batches(longlong rendering_
   float *texture_coord_ptr3;
   
   // 渲染上下文和缓冲区指针
-  longlong vertex_buffer_ptr;
-  longlong texture_data_ptr;
-  longlong index_buffer_ptr;
+  int64_t vertex_buffer_ptr;
+  int64_t texture_data_ptr;
+  int64_t index_buffer_ptr;
   
   // SIMD操作寄存器
   int32_t simd_reg1;
@@ -104,12 +104,12 @@ void rendering_advanced_texture_mapper_process_pixel_batches(longlong rendering_
   uint64_t stack_var9;
   float stack_float5;
   float stack_float6;
-  longlong stack_long1;
+  int64_t stack_long1;
   uint64_t stack_var10;
   float stack_float7;
   float stack_float8;
   int8_t stack_array1[RENDERING_MAX_TEXTURE_COORDINATES];
-  longlong stack_long2;
+  int64_t stack_long2;
   int stack_int_array1[RENDERING_PIXEL_PROCESSING_BATCH_SIZE];
   uint stack_uint_array1[RENDERING_PIXEL_PROCESSING_BATCH_SIZE];
   int stack_int_array2[RENDERING_PIXEL_PROCESSING_BATCH_SIZE];
@@ -123,13 +123,13 @@ void rendering_advanced_texture_mapper_process_pixel_batches(longlong rendering_
   
   // 函数参数栈变量
   uint param_texture_count;
-  longlong param_vertex_buffer;
-  longlong param_index_buffer;
+  int64_t param_vertex_buffer;
+  int64_t param_index_buffer;
   char param_rendering_mode;
   uint param_batch_size;
   
   // 安全栈变量
-  ulonglong security_cookie;
+  uint64_t security_cookie;
   uint iteration_count;
   uint max_iterations;
   uint current_batch;
@@ -143,7 +143,7 @@ void rendering_advanced_texture_mapper_process_pixel_batches(longlong rendering_
   int8_t temp_array4[RENDERING_MAX_TEXTURE_COORDINATES];
   
   // 初始化安全栈保护
-  security_cookie = GET_SECURITY_COOKIE() ^ (ulonglong)&iteration_count;
+  security_cookie = GET_SECURITY_COOKIE() ^ (uint64_t)&iteration_count;
   max_iterations = RENDERING_PIXEL_PROCESSING_BATCH_SIZE;
   texture_index = 0xf;
   current_batch = param_texture_count + 1;
@@ -160,7 +160,7 @@ void rendering_advanced_texture_mapper_process_pixel_batches(longlong rendering_
     }
     
     // 获取顶点缓冲区和纹理数据
-    vertex_buffer_ptr = *(longlong *)(rendering_context + RENDERING_VERTEX_BUFFER_OFFSET + (ulonglong)param_batch_size * 8);
+    vertex_buffer_ptr = *(int64_t *)(rendering_context + RENDERING_VERTEX_BUFFER_OFFSET + (uint64_t)param_batch_size * 8);
     texture_index = current_batch;
     if (stack_var5 <= param_texture_count) {
       texture_index = max_iterations;
@@ -168,7 +168,7 @@ void rendering_advanced_texture_mapper_process_pixel_batches(longlong rendering_
     max_iterations = texture_index;
     
     // 获取索引缓冲区
-    index_buffer_ptr = *(longlong *)(*(longlong *)(rendering_context + RENDERING_INDEX_BUFFER_OFFSET) + RENDERING_TEXTURE_DATA_OFFSET);
+    index_buffer_ptr = *(int64_t *)(*(int64_t *)(rendering_context + RENDERING_INDEX_BUFFER_OFFSET) + RENDERING_TEXTURE_DATA_OFFSET);
     
     // 处理纹理坐标数据
     if (param_rendering_mode == '\0') {
@@ -198,7 +198,7 @@ void rendering_advanced_texture_mapper_process_pixel_batches(longlong rendering_
   stack_long2 = rendering_context;
   
   // 调用渲染后处理函数（不返回）
-  rendering_execute_post_processing_pipeline(security_cookie ^ (ulonglong)&iteration_count);
+  rendering_execute_post_processing_pipeline(security_cookie ^ (uint64_t)&iteration_count);
 }
 
 /**
@@ -213,8 +213,8 @@ void rendering_advanced_texture_mapper_process_pixel_batches(longlong rendering_
  * @return 计算得到的纹理坐标
  */
 static float rendering_calculate_standard_texture_coordinates(
-  longlong vertex_buffer, 
-  longlong index_buffer, 
+  int64_t vertex_buffer, 
+  int64_t index_buffer, 
   uint batch_index, 
   uint texture_count
 ) {
@@ -223,14 +223,14 @@ static float rendering_calculate_standard_texture_coordinates(
   float offset_coords[4];
   
   // 计算基础纹理坐标
-  base_coords[0] = *(float *)(vertex_buffer + (ulonglong)*(uint *)(index_buffer + (ulonglong)(batch_index * RENDERING_BATCH_SIZE_3) * 4) * RENDERING_VERTEX_STRIDE);
-  base_coords[1] = *(float *)(vertex_buffer + (ulonglong)*(uint *)(index_buffer + (ulonglong)(batch_index * RENDERING_BATCH_SIZE_3) * 4) * RENDERING_VERTEX_STRIDE + 4);
-  base_coords[2] = *(float *)(vertex_buffer + (ulonglong)*(uint *)(index_buffer + (ulonglong)(batch_index * RENDERING_BATCH_SIZE_3) * 4) * RENDERING_VERTEX_STRIDE + 8);
+  base_coords[0] = *(float *)(vertex_buffer + (uint64_t)*(uint *)(index_buffer + (uint64_t)(batch_index * RENDERING_BATCH_SIZE_3) * 4) * RENDERING_VERTEX_STRIDE);
+  base_coords[1] = *(float *)(vertex_buffer + (uint64_t)*(uint *)(index_buffer + (uint64_t)(batch_index * RENDERING_BATCH_SIZE_3) * 4) * RENDERING_VERTEX_STRIDE + 4);
+  base_coords[2] = *(float *)(vertex_buffer + (uint64_t)*(uint *)(index_buffer + (uint64_t)(batch_index * RENDERING_BATCH_SIZE_3) * 4) * RENDERING_VERTEX_STRIDE + 8);
   
   // 计算偏移纹理坐标
-  offset_coords[0] = *(float *)(vertex_buffer + (ulonglong)*(uint *)(index_buffer + 0xc + (ulonglong)(batch_index * RENDERING_BATCH_SIZE_3) * 4) * RENDERING_VERTEX_STRIDE);
-  offset_coords[1] = *(float *)(vertex_buffer + (ulonglong)*(uint *)(index_buffer + 0xc + (ulonglong)(batch_index * RENDERING_BATCH_SIZE_3) * 4) * RENDERING_VERTEX_STRIDE + 4);
-  offset_coords[2] = *(float *)(vertex_buffer + (ulonglong)*(uint *)(index_buffer + 0xc + (ulonglong)(batch_index * RENDERING_BATCH_SIZE_3) * 4) * RENDERING_VERTEX_STRIDE + 8);
+  offset_coords[0] = *(float *)(vertex_buffer + (uint64_t)*(uint *)(index_buffer + 0xc + (uint64_t)(batch_index * RENDERING_BATCH_SIZE_3) * 4) * RENDERING_VERTEX_STRIDE);
+  offset_coords[1] = *(float *)(vertex_buffer + (uint64_t)*(uint *)(index_buffer + 0xc + (uint64_t)(batch_index * RENDERING_BATCH_SIZE_3) * 4) * RENDERING_VERTEX_STRIDE + 4);
+  offset_coords[2] = *(float *)(vertex_buffer + (uint64_t)*(uint *)(index_buffer + 0xc + (uint64_t)(batch_index * RENDERING_BATCH_SIZE_3) * 4) * RENDERING_VERTEX_STRIDE + 8);
   
   // 返回插值结果
   return base_coords[0] + offset_coords[0] * 0.5f;
@@ -249,8 +249,8 @@ static float rendering_calculate_standard_texture_coordinates(
  * @return 计算得到的高级纹理坐标
  */
 static float rendering_calculate_advanced_texture_coordinates(
-  longlong vertex_buffer, 
-  longlong index_buffer, 
+  int64_t vertex_buffer, 
+  int64_t index_buffer, 
   uint batch_index, 
   uint texture_count
 ) {
@@ -265,10 +265,10 @@ static float rendering_calculate_advanced_texture_coordinates(
   weights[3] = weights[1] * 0.5f;
   
   // 计算高级纹理坐标
-  advanced_coords[0] = *(float *)(vertex_buffer + (ulonglong)*(uint *)(index_buffer + (ulonglong)(batch_index * RENDERING_BATCH_SIZE_3) * 4) * RENDERING_VERTEX_STRIDE);
-  advanced_coords[1] = *(float *)(vertex_buffer + (ulonglong)*(uint *)(index_buffer + 0xc + (ulonglong)(batch_index * RENDERING_BATCH_SIZE_3) * 4) * RENDERING_VERTEX_STRIDE);
-  advanced_coords[2] = *(float *)(vertex_buffer + (ulonglong)*(uint *)(index_buffer + 0x18 + (ulonglong)(batch_index * RENDERING_BATCH_SIZE_3) * 4) * RENDERING_VERTEX_STRIDE);
-  advanced_coords[3] = *(float *)(vertex_buffer + (ulonglong)*(uint *)(index_buffer + 0x24 + (ulonglong)(batch_index * RENDERING_BATCH_SIZE_3) * 4) * RENDERING_VERTEX_STRIDE);
+  advanced_coords[0] = *(float *)(vertex_buffer + (uint64_t)*(uint *)(index_buffer + (uint64_t)(batch_index * RENDERING_BATCH_SIZE_3) * 4) * RENDERING_VERTEX_STRIDE);
+  advanced_coords[1] = *(float *)(vertex_buffer + (uint64_t)*(uint *)(index_buffer + 0xc + (uint64_t)(batch_index * RENDERING_BATCH_SIZE_3) * 4) * RENDERING_VERTEX_STRIDE);
+  advanced_coords[2] = *(float *)(vertex_buffer + (uint64_t)*(uint *)(index_buffer + 0x18 + (uint64_t)(batch_index * RENDERING_BATCH_SIZE_3) * 4) * RENDERING_VERTEX_STRIDE);
+  advanced_coords[3] = *(float *)(vertex_buffer + (uint64_t)*(uint *)(index_buffer + 0x24 + (uint64_t)(batch_index * RENDERING_BATCH_SIZE_3) * 4) * RENDERING_VERTEX_STRIDE);
   
   // 返回加权平均结果
   return advanced_coords[0] * weights[0] + advanced_coords[1] * weights[1] + 
@@ -446,7 +446,7 @@ static void rendering_write_pixel_data(float *pixel_color, uint batch_index) {
  * 
  * @param security_cookie 安全cookie值
  */
-static void rendering_execute_post_processing_pipeline(ulonglong security_cookie) {
+static void rendering_execute_post_processing_pipeline(uint64_t security_cookie) {
   // 渲染后处理逻辑
   // 包括清理资源、更新状态等操作
   FUN_1808fc050(security_cookie);

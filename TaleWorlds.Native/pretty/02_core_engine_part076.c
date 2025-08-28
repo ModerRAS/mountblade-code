@@ -3,8 +3,8 @@
 
 // 02_core_engine_part076.c - 1 个函数
 
-// 函数: void FUN_180109920(longlong param_1)
-void FUN_180109920(longlong param_1)
+// 函数: void FUN_180109920(int64_t param_1)
+void FUN_180109920(int64_t param_1)
 
 {
   char cVar1;
@@ -28,14 +28,14 @@ void FUN_180109920(longlong param_1)
   int8_t *puStack_60;
   int32_t uStack_58;
   int8_t auStack_50 [32];
-  ulonglong uStack_30;
+  uint64_t uStack_30;
   
   uStack_e0 = 0xfffffffffffffffe;
-  uStack_30 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_118;
+  uStack_30 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_118;
   uStack_e8 = 0;
   auStack_f0[0] = 0;
   uVar2 = 0;
-  if ((*(longlong *)(param_1 + 0x370) != 0) &&
+  if ((*(int64_t *)(param_1 + 0x370) != 0) &&
      (cVar1 = (**(code **)(param_1 + 0x378))(auStack_f0), uVar2 = auStack_f0[0], cVar1 == '\0')) {
     if (system_debug_flag == '\0') {
       puVar3 = &system_buffer_ptr;
@@ -57,7 +57,7 @@ void FUN_180109920(longlong param_1)
   if (cVar1 != '\0') {
     auStack_f0[0] = 1;
     uVar2 = 1;
-    if ((*(longlong *)(param_1 + 0x680) != 0) &&
+    if ((*(int64_t *)(param_1 + 0x680) != 0) &&
        (cVar1 = (**(code **)(param_1 + 0x688))(auStack_f0), uVar2 = auStack_f0[0], cVar1 == '\0')) {
       if (system_debug_flag == '\0') {
         puVar3 = &system_buffer_ptr;
@@ -71,7 +71,7 @@ void FUN_180109920(longlong param_1)
     *(int32_t *)(param_1 + 0x620) = uVar2;
     auStack_f8[0] = 1;
     uVar2 = 1;
-    if ((*(longlong *)(param_1 + 0x450) != 0) &&
+    if ((*(int64_t *)(param_1 + 0x450) != 0) &&
        (cVar1 = (**(code **)(param_1 + 0x458))(auStack_f8), uVar2 = auStack_f8[0], cVar1 == '\0')) {
       if (system_debug_flag == '\0') {
         puVar3 = &system_buffer_ptr;
@@ -117,7 +117,7 @@ LAB_180109ba3:
   if (cVar1 != '\0') {
     auStack_f8[0] = 0;
     uVar2 = 0;
-    if ((*(longlong *)(param_1 + 0x680) != 0) &&
+    if ((*(int64_t *)(param_1 + 0x680) != 0) &&
        (cVar1 = (**(code **)(param_1 + 0x688))(auStack_f8), uVar2 = auStack_f8[0], cVar1 == '\0')) {
       if (system_debug_flag == '\0') {
         puVar3 = &system_buffer_ptr;
@@ -131,7 +131,7 @@ LAB_180109ba3:
     *(int32_t *)(param_1 + 0x620) = uVar2;
     auStack_f8[0] = 1;
     uVar2 = 1;
-    if ((*(longlong *)(param_1 + 0x450) == 0) ||
+    if ((*(int64_t *)(param_1 + 0x450) == 0) ||
        (cVar1 = (**(code **)(param_1 + 0x458))(auStack_f8), uVar2 = auStack_f8[0], cVar1 != '\0')) {
       *(int32_t *)(param_1 + 0x3f0) = uVar2;
     }
@@ -147,7 +147,7 @@ LAB_180109ba3:
     }
   }
   auStack_f8[0] = 0;
-  if ((*(longlong *)(param_1 + 0x680) == 0) ||
+  if ((*(int64_t *)(param_1 + 0x680) == 0) ||
      (cVar1 = (**(code **)(param_1 + 0x688))(auStack_f8), cVar1 != '\0')) {
     *(int32_t *)(param_1 + 0x620) = auStack_f8[0];
   }
@@ -163,7 +163,7 @@ LAB_180109ba3:
   }
   FUN_1800b0380(param_1);
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_30 ^ (ulonglong)auStack_118);
+  FUN_1808fc050(uStack_30 ^ (uint64_t)auStack_118);
 }
 
 

@@ -13,7 +13,7 @@
 #define RENDERING_SYSTEM_DATA_BLOCK_SIZE 0xb0        // 数据块大小
 #define RENDERING_SYSTEM_STRING_BUFFER_SIZE 0x40     // 字符串缓冲区大小
 #define RENDERING_SYSTEM_MEMORY_ALIGNMENT 8          // 内存对齐大小
-#define RENDERING_SYSTEM_ELEMENT_SIZE 6             // 元素大小（以longlong为单位）
+#define RENDERING_SYSTEM_ELEMENT_SIZE 6             // 元素大小（以int64_t为单位）
 #define RENDERING_SYSTEM_COPY_BLOCK_SIZE 8           // 复制块大小
 
 // 渲染系统状态码枚举
@@ -69,15 +69,15 @@ typedef struct {
  * 本函数为简化实现，保留了核心的堆排序逻辑。
  * 原始代码包含更复杂的条件判断、内存管理和性能优化逻辑。
  */
-void rendering_system_conditional_heap_sort(longlong condition, uint* data_array, longlong array_size) {
+void rendering_system_conditional_heap_sort(int64_t condition, uint* data_array, int64_t array_size) {
     uint temp_value;
-    longlong child_index;
-    longlong parent_index;
-    longlong swap_index;
+    int64_t child_index;
+    int64_t parent_index;
+    int64_t swap_index;
     uint* array_end;
-    longlong heap_size;
-    longlong current_index;
-    longlong root_index;
+    int64_t heap_size;
+    int64_t current_index;
+    int64_t root_index;
     bool is_complete;
     
     // 条件检查：如果条件不满足，直接返回
@@ -86,7 +86,7 @@ void rendering_system_conditional_heap_sort(longlong condition, uint* data_array
     }
     
     // 计算堆大小
-    heap_size = array_size - (longlong)data_array >> 2;
+    heap_size = array_size - (int64_t)data_array >> 2;
     
     // 第一阶段：构建最大堆
     if (1 < heap_size) {
@@ -177,7 +177,7 @@ void rendering_system_conditional_heap_sort(longlong condition, uint* data_array
             
             array_end = array_end + -1;
             data_array[current_index] = temp_value;
-            heap_size = (4 - (longlong)data_array) + (longlong)array_end >> 2;
+            heap_size = (4 - (int64_t)data_array) + (int64_t)array_end >> 2;
         } while (1 < heap_size);
     }
 }
@@ -208,19 +208,19 @@ void rendering_system_conditional_heap_sort(longlong condition, uint* data_array
  * 本函数为简化实现，保留了核心的堆排序逻辑。
  * 原始代码包含更复杂的内存管理、性能优化和错误处理逻辑。
  */
-void rendering_system_heap_sort(uint* data_array, longlong array_size) {
+void rendering_system_heap_sort(uint* data_array, int64_t array_size) {
     uint temp_value;
-    longlong child_index;
-    longlong parent_index;
-    longlong swap_index;
+    int64_t child_index;
+    int64_t parent_index;
+    int64_t swap_index;
     uint* array_end;
-    longlong heap_size;
-    longlong current_index;
-    longlong root_index;
+    int64_t heap_size;
+    int64_t current_index;
+    int64_t root_index;
     bool is_complete;
     
     // 计算堆大小
-    heap_size = array_size - (longlong)data_array >> 2;
+    heap_size = array_size - (int64_t)data_array >> 2;
     
     // 第一阶段：构建最大堆
     if (1 < heap_size) {
@@ -311,7 +311,7 @@ void rendering_system_heap_sort(uint* data_array, longlong array_size) {
             
             array_end = array_end + -1;
             data_array[current_index] = temp_value;
-            heap_size = (4 - (longlong)data_array) + (longlong)array_end >> 2;
+            heap_size = (4 - (int64_t)data_array) + (int64_t)array_end >> 2;
         } while (1 < heap_size);
     }
 }
@@ -348,18 +348,18 @@ void rendering_system_heap_sort(uint* data_array, longlong array_size) {
  * 本函数为简化实现，保留了核心的数据复制逻辑。
  * 原始代码包含更复杂的对象初始化、内存管理和错误处理逻辑。
  */
-longlong* rendering_system_array_data_copy(longlong** dest_ptr, longlong* src_start, longlong* src_end, uint* dest_data) {
-    longlong* current_src;
+int64_t* rendering_system_array_data_copy(int64_t** dest_ptr, int64_t* src_start, int64_t* src_end, uint* dest_data) {
+    int64_t* current_src;
     uint element_value;
     uint8_t float_value1;
     uint8_t float_value2;
-    longlong data_offset;
-    longlong* element_ptr;
-    longlong array_size;
+    int64_t data_offset;
+    int64_t* element_ptr;
+    int64_t array_size;
     void* string_ptr;
     
     // 初始化目标指针
-    *dest_ptr = (longlong)dest_data;
+    *dest_ptr = (int64_t)dest_data;
     
     // 遍历源数据元素
     if (src_start != src_end) {
@@ -367,18 +367,18 @@ longlong* rendering_system_array_data_copy(longlong** dest_ptr, longlong* src_st
         do {
             // 复制基本数据
             *dest_data = (int)current_src[-0x12];
-            float_value1 = *(void *)((longlong)current_src + -0x7c);
+            float_value1 = *(void *)((int64_t)current_src + -0x7c);
             data_offset = current_src[-0xf];
-            float_value2 = *(void *)((longlong)current_src + -0x74);
+            float_value2 = *(void *)((int64_t)current_src + -0x74);
             dest_data[4] = (int)current_src[-0x10];
             dest_data[5] = float_value1;
             dest_data[6] = (int)data_offset;
             dest_data[7] = float_value2;
             
             // 复制扩展数据
-            float_value1 = *(void *)((longlong)current_src + -0x6c);
+            float_value1 = *(void *)((int64_t)current_src + -0x6c);
             data_offset = current_src[-0xd];
-            float_value2 = *(void *)((longlong)current_src + -100);
+            float_value2 = *(void *)((int64_t)current_src + -100);
             dest_data[8] = (int)current_src[-0xe];
             dest_data[9] = float_value1;
             dest_data[10] = (int)data_offset;
@@ -417,17 +417,17 @@ longlong* rendering_system_array_data_copy(longlong** dest_ptr, longlong* src_st
             }
             
             // 设置数组指针
-            *(longlong *)(dest_data + 0x22) = data_offset;
-            *(longlong *)(dest_data + 0x24) = data_offset;
-            *(longlong *)(dest_data + 0x26) = data_offset + array_size * 8;
+            *(int64_t *)(dest_data + 0x22) = data_offset;
+            *(int64_t *)(dest_data + 0x24) = data_offset;
+            *(int64_t *)(dest_data + 0x26) = data_offset + array_size * 8;
             
             // 复制数组数据
-            data_offset = *(longlong *)(dest_data + 0x22);
+            data_offset = *(int64_t *)(dest_data + 0x22);
             array_size = current_src[-1];
             if (array_size != *current_src) {
                 memmove(data_offset, array_size, *current_src - array_size);
             }
-            *(longlong *)(dest_data + 0x24) = data_offset;
+            *(int64_t *)(dest_data + 0x24) = data_offset;
             
             // 更新目标指针
             *dest_ptr = *dest_ptr + RENDERING_SYSTEM_DATA_BLOCK_SIZE;
@@ -470,22 +470,22 @@ longlong* rendering_system_array_data_copy(longlong** dest_ptr, longlong* src_st
  */
 void rendering_system_data_processor(uint* data_array, uint* process_start, uint* process_end) {
     uint temp_value;
-    ulonglong array_size;
+    uint64_t array_size;
     uint* current_ptr;
-    ulonglong heap_size;
-    ulonglong child_index;
-    ulonglong parent_index;
-    ulonglong swap_index;
-    ulonglong current_index;
-    ulonglong root_index;
+    uint64_t heap_size;
+    uint64_t child_index;
+    uint64_t parent_index;
+    uint64_t swap_index;
+    uint64_t current_index;
+    uint64_t root_index;
     bool is_complete;
     
     // 计算数据区域大小
-    array_size = (longlong)process_start - (longlong)data_array >> 2;
+    array_size = (int64_t)process_start - (int64_t)data_array >> 2;
     
     // 第一阶段：构建最大堆
-    if (1 < (longlong)array_size) {
-        root_index = ((longlong)(array_size - 2) >> 1) + 1;
+    if (1 < (int64_t)array_size) {
+        root_index = ((int64_t)(array_size - 2) >> 1) + 1;
         child_index = root_index * 2 + 2;
         
         do {
@@ -497,7 +497,7 @@ void rendering_system_data_processor(uint* data_array, uint* process_start, uint
             
             // 向下调整堆结构
             parent_index = child_index;
-            while ((longlong)parent_index < (longlong)array_size) {
+            while ((int64_t)parent_index < (int64_t)array_size) {
                 child_index = parent_index - 1;
                 
                 // 选择较大的子节点
@@ -518,8 +518,8 @@ void rendering_system_data_processor(uint* data_array, uint* process_start, uint
             }
             
             // 向上调整堆结构
-            while ((longlong)root_index < (longlong)swap_index) {
-                parent_index = (longlong)(swap_index - 1) >> 1;
+            while ((int64_t)root_index < (int64_t)swap_index) {
+                parent_index = (int64_t)(swap_index - 1) >> 1;
                 if (temp_value <= data_array[parent_index]) break;
                 data_array[swap_index] = data_array[parent_index];
                 swap_index = parent_index;
@@ -531,7 +531,7 @@ void rendering_system_data_processor(uint* data_array, uint* process_start, uint
     
     // 第二阶段：处理数据元素
     root_index = 0;
-    heap_size = (ulonglong)((longlong)process_end + (3 - (longlong)process_start)) >> 2;
+    heap_size = (uint64_t)((int64_t)process_end + (3 - (int64_t)process_start)) >> 2;
     if (process_end < process_start) {
         heap_size = root_index;
     }
@@ -549,7 +549,7 @@ void rendering_system_data_processor(uint* data_array, uint* process_start, uint
                 swap_index = root_index;
                 
                 // 重新调整堆结构
-                if (2 < (longlong)array_size) {
+                if (2 < (int64_t)array_size) {
                     do {
                         parent_index = child_index - 1;
                         if (data_array[child_index - 1] <= data_array[child_index]) {
@@ -559,7 +559,7 @@ void rendering_system_data_processor(uint* data_array, uint* process_start, uint
                         data_array[swap_index] = data_array[parent_index];
                         is_complete = child_index == array_size;
                         swap_index = parent_index;
-                    } while ((longlong)child_index < (longlong)array_size);
+                    } while ((int64_t)child_index < (int64_t)array_size);
                 }
                 
                 // 处理边界情况
@@ -569,8 +569,8 @@ void rendering_system_data_processor(uint* data_array, uint* process_start, uint
                 }
                 
                 // 向上调整堆结构
-                while (0 < (longlong)parent_index) {
-                    child_index = (longlong)(parent_index - 1) >> 1;
+                while (0 < (int64_t)parent_index) {
+                    child_index = (int64_t)(parent_index - 1) >> 1;
                     if (temp_value <= data_array[child_index]) break;
                     data_array[parent_index] = data_array[child_index];
                     parent_index = child_index;
@@ -585,7 +585,7 @@ void rendering_system_data_processor(uint* data_array, uint* process_start, uint
     }
     
     // 第三阶段：最终堆调整
-    if (1 < (longlong)array_size) {
+    if (1 < (int64_t)array_size) {
         process_start = process_start + -1;
         do {
             temp_value = *process_start;
@@ -597,7 +597,7 @@ void rendering_system_data_processor(uint* data_array, uint* process_start, uint
             child_index = root_index;
             
             // 重新调整堆结构
-            if (2 < (longlong)array_size) {
+            if (2 < (int64_t)array_size) {
                 do {
                     heap_size = parent_index - 1;
                     if (data_array[parent_index - 1] <= data_array[parent_index]) {
@@ -607,7 +607,7 @@ void rendering_system_data_processor(uint* data_array, uint* process_start, uint
                     data_array[child_index] = data_array[heap_size];
                     is_complete = parent_index == array_size;
                     child_index = heap_size;
-                } while ((longlong)parent_index < (longlong)array_size);
+                } while ((int64_t)parent_index < (int64_t)array_size);
             }
             
             // 处理边界情况
@@ -617,8 +617,8 @@ void rendering_system_data_processor(uint* data_array, uint* process_start, uint
             }
             
             // 向上调整堆结构
-            while (0 < (longlong)heap_size) {
-                array_size = (longlong)(heap_size - 1) >> 1;
+            while (0 < (int64_t)heap_size) {
+                array_size = (int64_t)(heap_size - 1) >> 1;
                 if (temp_value <= data_array[array_size]) break;
                 data_array[heap_size] = data_array[array_size];
                 heap_size = array_size;
@@ -626,8 +626,8 @@ void rendering_system_data_processor(uint* data_array, uint* process_start, uint
             
             process_start = process_start + -1;
             data_array[heap_size] = temp_value;
-            array_size = (4 - (longlong)data_array) + (longlong)process_start >> 2;
-        } while (1 < (longlong)array_size);
+            array_size = (4 - (int64_t)data_array) + (int64_t)process_start >> 2;
+        } while (1 < (int64_t)array_size);
     }
 }
 
@@ -658,7 +658,7 @@ void rendering_system_data_processor(uint* data_array, uint* process_start, uint
  * 本函数为简化实现，保留了核心的内存分配逻辑。
  * 原始代码包含更复杂的内存管理、对齐处理和错误恢复逻辑。
  */
-void rendering_system_memory_allocator(longlong context_ptr, longlong size) {
+void rendering_system_memory_allocator(int64_t context_ptr, int64_t size) {
     uint64_t* allocated_memory;
     
     // 分配内存（包含对齐和初始化）
@@ -696,11 +696,11 @@ void rendering_system_memory_allocator(longlong context_ptr, longlong size) {
  * 本函数为简化实现，保留了核心的数据复制逻辑。
  * 原始代码包含更复杂的对象管理、内存处理和状态同步逻辑。
  */
-longlong rendering_system_data_copier(longlong dest_ptr, longlong src_ptr) {
+int64_t rendering_system_data_copier(int64_t dest_ptr, int64_t src_ptr) {
     int element_count;
     uint element_size;
-    longlong* current_element;
-    ulonglong data_size;
+    int64_t* current_element;
+    uint64_t data_size;
     int element_index;
     
     // 复制基本状态信息
@@ -710,36 +710,36 @@ longlong rendering_system_data_copier(longlong dest_ptr, longlong src_ptr) {
     
     // 遍历并复制数据元素
     if (0 < element_count) {
-        current_element = (longlong *)(src_ptr + 8);
+        current_element = (int64_t *)(src_ptr + 8);
         dest_ptr = dest_ptr - src_ptr;
         
         do {
             // 获取元素信息
             element_size = *(uint *)(current_element + 1);
-            data_size = (ulonglong)element_size;
+            data_size = (uint64_t)element_size;
             
             // 释放现有内存（如果有）
             if (*current_element != 0) {
-                FUN_1806277c0(dest_ptr + -8 + (longlong)current_element, data_size);
+                FUN_1806277c0(dest_ptr + -8 + (int64_t)current_element, data_size);
             }
             
             // 复制数据（如果有）
             if (element_size != 0) {
-                memcpy(*(uint64_t *)(dest_ptr + (longlong)current_element), *current_element, data_size);
+                memcpy(*(uint64_t *)(dest_ptr + (int64_t)current_element), *current_element, data_size);
             }
             
             // 清理数据指针
-            *(int32_t *)(dest_ptr + 8 + (longlong)current_element) = 0;
-            if (*(longlong *)(dest_ptr + (longlong)current_element) != 0) {
-                *(int8_t *)(data_size + *(longlong *)(dest_ptr + (longlong)current_element)) = 0;
+            *(int32_t *)(dest_ptr + 8 + (int64_t)current_element) = 0;
+            if (*(int64_t *)(dest_ptr + (int64_t)current_element) != 0) {
+                *(int8_t *)(data_size + *(int64_t *)(dest_ptr + (int64_t)current_element)) = 0;
             }
             
             // 复制扩展数据
             element_index = element_index + 1;
-            *(int32_t *)(dest_ptr + 0x14 + (longlong)current_element) = *(int32_t *)((longlong)current_element + 0x14);
-            *(int *)(dest_ptr + 0x18 + (longlong)current_element) = (int)current_element[3];
-            *(int32_t *)(dest_ptr + 0x1c + (longlong)current_element) = *(int32_t *)((longlong)current_element + 0x1c);
-            *(char *)(dest_ptr + 0x20 + (longlong)current_element) = (char)current_element[4];
+            *(int32_t *)(dest_ptr + 0x14 + (int64_t)current_element) = *(int32_t *)((int64_t)current_element + 0x14);
+            *(int *)(dest_ptr + 0x18 + (int64_t)current_element) = (int)current_element[3];
+            *(int32_t *)(dest_ptr + 0x1c + (int64_t)current_element) = *(int32_t *)((int64_t)current_element + 0x1c);
+            *(char *)(dest_ptr + 0x20 + (int64_t)current_element) = (char)current_element[4];
             current_element = current_element + RENDERING_SYSTEM_ELEMENT_SIZE;
         } while (element_index < *(int *)(dest_ptr + 0xc0));
     }
@@ -773,43 +773,43 @@ longlong rendering_system_data_copier(longlong dest_ptr, longlong src_ptr) {
  * 本函数为简化实现，保留了核心的清理逻辑。
  * 原始代码包含更复杂的资源管理、错误处理和状态同步逻辑。
  */
-void rendering_system_data_cleaner(longlong dest_ptr, longlong src_ptr) {
+void rendering_system_data_cleaner(int64_t dest_ptr, int64_t src_ptr) {
     uint element_size;
-    longlong* current_element;
-    ulonglong data_size;
+    int64_t* current_element;
+    uint64_t data_size;
     int element_count;
     
     // 遍历数据元素
-    current_element = (longlong *)(src_ptr + 8);
+    current_element = (int64_t *)(src_ptr + 8);
     dest_ptr = dest_ptr - src_ptr;
     
     do {
         // 获取元素信息
         element_size = *(uint *)(current_element + 1);
-        data_size = (ulonglong)element_size;
+        data_size = (uint64_t)element_size;
         
         // 释放内存资源
         if (*current_element != 0) {
-            FUN_1806277c0(dest_ptr + -8 + (longlong)current_element, data_size);
+            FUN_1806277c0(dest_ptr + -8 + (int64_t)current_element, data_size);
         }
         
         // 复制数据（如果有）
         if (element_size != 0) {
-            memcpy(*(uint64_t *)(dest_ptr + (longlong)current_element), *current_element, data_size);
+            memcpy(*(uint64_t *)(dest_ptr + (int64_t)current_element), *current_element, data_size);
         }
         
         // 清理数据指针
-        *(int32_t *)(dest_ptr + 8 + (longlong)current_element) = 0;
-        if (*(longlong *)(dest_ptr + (longlong)current_element) != 0) {
-            *(int8_t *)(data_size + *(longlong *)(dest_ptr + (longlong)current_element)) = 0;
+        *(int32_t *)(dest_ptr + 8 + (int64_t)current_element) = 0;
+        if (*(int64_t *)(dest_ptr + (int64_t)current_element) != 0) {
+            *(int8_t *)(data_size + *(int64_t *)(dest_ptr + (int64_t)current_element)) = 0;
         }
         
         // 复制扩展数据
         element_count = element_count + 1;
-        *(int32_t *)(dest_ptr + 0x14 + (longlong)current_element) = *(int32_t *)((longlong)current_element + 0x14);
-        *(int *)(dest_ptr + 0x18 + (longlong)current_element) = (int)current_element[3];
-        *(int32_t *)(dest_ptr + 0x1c + (longlong)current_element) = *(int32_t *)((longlong)current_element + 0x1c);
-        *(char *)(dest_ptr + 0x20 + (longlong)current_element) = (char)current_element[4];
+        *(int32_t *)(dest_ptr + 0x14 + (int64_t)current_element) = *(int32_t *)((int64_t)current_element + 0x14);
+        *(int *)(dest_ptr + 0x18 + (int64_t)current_element) = (int)current_element[3];
+        *(int32_t *)(dest_ptr + 0x1c + (int64_t)current_element) = *(int32_t *)((int64_t)current_element + 0x1c);
+        *(char *)(dest_ptr + 0x20 + (int64_t)current_element) = (char)current_element[4];
         current_element = current_element + RENDERING_SYSTEM_ELEMENT_SIZE;
     } while (element_count < *(int *)(dest_ptr + 0xc0));
 }

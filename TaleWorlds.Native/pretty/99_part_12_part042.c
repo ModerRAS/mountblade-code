@@ -50,7 +50,7 @@
 // ==================== 类型定义 ====================
 
 /** 系统句柄类型 */
-typedef longlong SystemHandle;
+typedef int64_t SystemHandle;
 
 /** 数据指针类型 */
 typedef void* DataPointer;
@@ -65,10 +65,10 @@ typedef int* IntPointer;
 typedef uint UnsignedInt;
 
 /** 长整型类型 */
-typedef longlong LongInt;
+typedef int64_t LongInt;
 
 /** 无符号长整型 */
-typedef ulonglong UnsignedLongInt;
+typedef uint64_t UnsignedLongInt;
 
 /** 布尔类型 */
 typedef char Boolean;
@@ -199,7 +199,7 @@ typedef struct {
  * @param param6 参数6
  * @return void
  */
-void DataStreamProcessor(SystemHandle handle, int param2, longlong param3, longlong param4, 
+void DataStreamProcessor(SystemHandle handle, int param2, int64_t param3, int64_t param4, 
                         uint64_t param5, int param6)
 {
     int32_t *sourcePtr;
@@ -247,10 +247,10 @@ void DataStreamProcessor(SystemHandle handle, int param2, longlong param3, longl
     if (param6 == 1) {
         // 简单复制模式
         if (param3 != 0) {
-            **(int32_t **)(param3 + 8) = *(int32_t *)(*(longlong *)(handle + 0x220) + 0x30);
+            **(int32_t **)(param3 + 8) = *(int32_t *)(*(int64_t *)(handle + 0x220) + 0x30);
         }
         if (param4 != 0) {
-            **(int32_t **)(param4 + 8) = *(int32_t *)(*(longlong *)(handle + 0x220) + 0x34);
+            **(int32_t **)(param4 + 8) = *(int32_t *)(*(int64_t *)(handle + 0x220) + 0x34);
         }
     }
     else {
@@ -265,10 +265,10 @@ void DataStreamProcessor(SystemHandle handle, int param2, longlong param3, longl
         
         if (bufferPtr != (int32_t *)0x0) {
             // 检查处理条件
-            if ((((int)sourceSize < 2) || (*(int *)(*(longlong *)(handle + 0x220) + 0x30) != 1)) &&
+            if ((((int)sourceSize < 2) || (*(int *)(*(int64_t *)(handle + 0x220) + 0x30) != 1)) &&
                 ((int)sourceSize < 3)) {
-                if ((sourceSize != *(uint *)(*(longlong *)(handle + 0x220) + 0x30)) ||
-                    (targetSize != *(int *)(*(longlong *)(handle + 0x220) + 0x34))) {
+                if ((sourceSize != *(uint *)(*(int64_t *)(handle + 0x220) + 0x30)) ||
+                    (targetSize != *(int *)(*(int64_t *)(handle + 0x220) + 0x34))) {
                     // 数据复制操作
                     memcpy(targetPtr, bufferPtr, (UnsignedLongInt)(uint)(param2 * targetSize) << 2);
                 }
@@ -301,17 +301,17 @@ void DataStreamProcessor(SystemHandle handle, int param2, longlong param3, longl
                                 if (3 < sourceOffset) {
                                     // 向量化处理
                                     do {
-                                        *(int32_t *)(*(longlong *)(&system_memory_0f40 + offset * 8) + bufferOffset * 4) =
+                                        *(int32_t *)(*(int64_t *)(&system_memory_0f40 + offset * 8) + bufferOffset * 4) =
                                              *bufferPtr;
-                                        *(int32_t *)(*(longlong *)(&system_memory_0f48 + offset * 8) + bufferOffset * 4) =
+                                        *(int32_t *)(*(int64_t *)(&system_memory_0f48 + offset * 8) + bufferOffset * 4) =
                                              bufferPtr[1];
-                                        *(int32_t *)(*(longlong *)(offset * 8 + 0x180c30f50) + bufferOffset * 4) =
+                                        *(int32_t *)(*(int64_t *)(offset * 8 + 0x180c30f50) + bufferOffset * 4) =
                                              bufferPtr[2];
                                         tempOffset = offset * 8;
                                         offset = offset + 4;
                                         sourcePtr = bufferPtr + 3;
                                         bufferPtr = bufferPtr + 4;
-                                        *(int32_t *)(*(longlong *)(tempOffset + 0x180c30f58) + bufferOffset * 4) = *sourcePtr;
+                                        *(int32_t *)(*(int64_t *)(tempOffset + 0x180c30f58) + bufferOffset * 4) = *sourcePtr;
                                     } while (offset < sourceOffset + -3);
                                 }
                                 
@@ -319,7 +319,7 @@ void DataStreamProcessor(SystemHandle handle, int param2, longlong param3, longl
                                 for (; offset < sourceOffset; offset = offset + 1) {
                                     tempVar = *bufferPtr;
                                     bufferPtr = bufferPtr + 1;
-                                    *(int32_t *)(*(longlong *)(&system_memory_0f40 + offset * 8) + bufferOffset * 4) = tempVar;
+                                    *(int32_t *)(*(int64_t *)(&system_memory_0f40 + offset * 8) + bufferOffset * 4) = tempVar;
                                 }
                                 bufferOffset = bufferOffset + 1;
                             } while (bufferOffset < tempLong);
@@ -390,15 +390,15 @@ void DataStreamProcessor(SystemHandle handle, int param2, longlong param3, longl
                     }
                     
                     // 系统调用处理
-                    bufferOffset = *(longlong *)(handleCopy + 0x220);
+                    bufferOffset = *(int64_t *)(handleCopy + 0x220);
                     if (bufferOffset != 0) {
                         stackVar2 = 0;
                         stackVar1 = 0;
                         (**(code **)(bufferOffset + 8))(bufferOffset, SYSTEM_CALL_PARAM_1);
-                        bufferOffset = *(longlong *)(handleCopy + 0x220);
+                        bufferOffset = *(int64_t *)(handleCopy + 0x220);
                         if (*(code **)(bufferOffset + 0x78) != (code *)0x0) {
                             (**(code **)(bufferOffset + 0x78))(bufferOffset, &system_memory_0f40);
-                            bufferOffset = *(longlong *)(handleCopy + 0x220);
+                            bufferOffset = *(int64_t *)(handleCopy + 0x220);
                         }
                         stackVar2 = 0;
                         stackVar1 = 0;
@@ -415,19 +415,19 @@ void DataStreamProcessor(SystemHandle handle, int param2, longlong param3, longl
                                     // 向量化输出
                                     do {
                                         *targetPtr = *(int32_t *)
-                                                    (*(longlong *)(&system_memory_1040 + offset * 8) + bufferOffset * 4);
+                                                    (*(int64_t *)(&system_memory_1040 + offset * 8) + bufferOffset * 4);
                                         targetPtr[1] = *(int32_t *)
-                                                      (*(longlong *)(offset * 8 + 0x180c31048) + bufferOffset * 4);
+                                                      (*(int64_t *)(offset * 8 + 0x180c31048) + bufferOffset * 4);
                                         targetPtr[2] = *(int32_t *)
-                                                      (*(longlong *)(offset * 8 + 0x180c31050) + bufferOffset * 4);
+                                                      (*(int64_t *)(offset * 8 + 0x180c31050) + bufferOffset * 4);
                                         tempOffset = offset * 8;
                                         offset = offset + 4;
-                                        targetPtr[3] = *(int32_t *)(*(longlong *)(tempOffset + 0x180c31058) + bufferOffset * 4);
+                                        targetPtr[3] = *(int32_t *)(*(int64_t *)(tempOffset + 0x180c31058) + bufferOffset * 4);
                                         targetPtr = targetPtr + 4;
                                     } while (offset < sourceLength + -3);
                                 }
                                 for (; offset < sourceLength; offset = offset + 1) {
-                                    *targetPtr = *(int32_t *)(*(longlong *)(&system_memory_1040 + offset * 8) + bufferOffset * 4);
+                                    *targetPtr = *(int32_t *)(*(int64_t *)(&system_memory_1040 + offset * 8) + bufferOffset * 4);
                                     targetPtr = targetPtr + 1;
                                 }
                                 bufferOffset = bufferOffset + 1;
@@ -558,15 +558,15 @@ void TransformOperationProcessor(void)
                         if (3 < CONCAT44(tempVar, sourceSize)) {
                             // 向量化处理
                             do {
-                                *(int32_t *)(*(longlong *)(&system_memory_0f40 + offset * 8) + bufferOffset * 4) = *bufferPtr;
-                                *(int32_t *)(*(longlong *)(&system_memory_0f48 + offset * 8) + bufferOffset * 4) =
+                                *(int32_t *)(*(int64_t *)(&system_memory_0f40 + offset * 8) + bufferOffset * 4) = *bufferPtr;
+                                *(int32_t *)(*(int64_t *)(&system_memory_0f48 + offset * 8) + bufferOffset * 4) =
                                      bufferPtr[1];
-                                *(int32_t *)(*(longlong *)(offset * 8 + 0x180c30f50) + bufferOffset * 4) = bufferPtr[2];
+                                *(int32_t *)(*(int64_t *)(offset * 8 + 0x180c30f50) + bufferOffset * 4) = bufferPtr[2];
                                 tempOffset = offset * 8;
                                 offset = offset + 4;
                                 dataPtr = bufferPtr + 3;
                                 bufferPtr = bufferPtr + 4;
-                                *(int32_t *)(*(longlong *)(tempOffset + 0x180c30f58) + bufferOffset * 4) = *dataPtr;
+                                *(int32_t *)(*(int64_t *)(tempOffset + 0x180c30f58) + bufferOffset * 4) = *dataPtr;
                             } while (offset < CONCAT44(tempVar, sourceSize) + -3);
                         }
                         if (offset < CONCAT44(tempVar, sourceSize)) {
@@ -575,7 +575,7 @@ void TransformOperationProcessor(void)
                                 offset = offset + 1;
                                 var1 = *bufferPtr;
                                 bufferPtr = bufferPtr + 1;
-                                *(int32_t *)(*(longlong *)(&system_memory_0f40 + tempOffset) + bufferOffset * 4) = var1;
+                                *(int32_t *)(*(int64_t *)(&system_memory_0f40 + tempOffset) + bufferOffset * 4) = var1;
                             } while (offset < CONCAT44(tempVar, sourceSize));
                         }
                         bufferOffset = bufferOffset + 1;
@@ -650,13 +650,13 @@ void TransformOperationProcessor(void)
             }
             
             // 系统调用处理
-            bufferOffset = *(longlong *)(systemHandle + 0x220);
+            bufferOffset = *(int64_t *)(systemHandle + 0x220);
             if (bufferOffset != 0) {
                 (**(code **)(bufferOffset + 8))(bufferOffset, SYSTEM_CALL_PARAM_1, 0, 0, 0);
-                bufferOffset = *(longlong *)(systemHandle + 0x220);
+                bufferOffset = *(int64_t *)(systemHandle + 0x220);
                 if (*(code **)(bufferOffset + 0x78) != (code *)0x0) {
                     (**(code **)(bufferOffset + 0x78))(bufferOffset, &system_memory_0f40);
-                    bufferOffset = *(longlong *)(systemHandle + 0x220);
+                    bufferOffset = *(int64_t *)(systemHandle + 0x220);
                 }
                 (**(code **)(bufferOffset + 8))(bufferOffset, SYSTEM_CALL_PARAM_2, 0, 0, 0);
             }
@@ -670,12 +670,12 @@ void TransformOperationProcessor(void)
                         if (3 < CONCAT44(tempVar, sourceDim)) {
                             // 向量化输出
                             do {
-                                *targetPtr = *(int32_t *)(*(longlong *)(&system_memory_1040 + offset * 8) + bufferOffset * 4);
-                                targetPtr[1] = *(int32_t *)(*(longlong *)(offset * 8 + 0x180c31048) + bufferOffset * 4);
-                                targetPtr[2] = *(int32_t *)(*(longlong *)(offset * 8 + 0x180c31050) + bufferOffset * 4);
+                                *targetPtr = *(int32_t *)(*(int64_t *)(&system_memory_1040 + offset * 8) + bufferOffset * 4);
+                                targetPtr[1] = *(int32_t *)(*(int64_t *)(offset * 8 + 0x180c31048) + bufferOffset * 4);
+                                targetPtr[2] = *(int32_t *)(*(int64_t *)(offset * 8 + 0x180c31050) + bufferOffset * 4);
                                 tempOffset = offset * 8;
                                 offset = offset + 4;
-                                targetPtr[3] = *(int32_t *)(*(longlong *)(tempOffset + 0x180c31058) + bufferOffset * 4);
+                                targetPtr[3] = *(int32_t *)(*(int64_t *)(tempOffset + 0x180c31058) + bufferOffset * 4);
                                 targetPtr = targetPtr + 4;
                             } while (offset < CONCAT44(tempVar, sourceDim) + -3);
                         }
@@ -683,7 +683,7 @@ void TransformOperationProcessor(void)
                             do {
                                 tempOffset = offset * 8;
                                 offset = offset + 1;
-                                *targetPtr = *(int32_t *)(*(longlong *)(&system_memory_1040 + tempOffset) + bufferOffset * 4);
+                                *targetPtr = *(int32_t *)(*(int64_t *)(&system_memory_1040 + tempOffset) + bufferOffset * 4);
                                 targetPtr = targetPtr + 1;
                             } while (offset < CONCAT44(tempVar, sourceDim));
                         }
@@ -790,14 +790,14 @@ void AdvancedDataProcessor(void)
                     if (3 < CONCAT44(dimVar, sourceSize)) {
                         // 向量化处理
                         do {
-                            *(int32_t *)(*(longlong *)(&system_memory_0f40 + offset * 8) + bufferOffset * 4) = *srcPtr;
-                            *(int32_t *)(*(longlong *)(&system_memory_0f48 + offset * 8) + bufferOffset * 4) = srcPtr[1];
-                            *(int32_t *)(*(longlong *)(offset * 8 + 0x180c30f50) + bufferOffset * 4) = srcPtr[2];
+                            *(int32_t *)(*(int64_t *)(&system_memory_0f40 + offset * 8) + bufferOffset * 4) = *srcPtr;
+                            *(int32_t *)(*(int64_t *)(&system_memory_0f48 + offset * 8) + bufferOffset * 4) = srcPtr[1];
+                            *(int32_t *)(*(int64_t *)(offset * 8 + 0x180c30f50) + bufferOffset * 4) = srcPtr[2];
                             tempOffset = offset * 8;
                             offset = offset + 4;
                             dataPtr = srcPtr + 3;
                             srcPtr = srcPtr + 4;
-                            *(int32_t *)(*(longlong *)(tempOffset + 0x180c30f58) + bufferOffset * 4) = *dataPtr;
+                            *(int32_t *)(*(int64_t *)(tempOffset + 0x180c30f58) + bufferOffset * 4) = *dataPtr;
                         } while (offset < CONCAT44(dimVar, sourceSize) + -3);
                     }
                     if (offset < CONCAT44(dimVar, sourceSize)) {
@@ -806,7 +806,7 @@ void AdvancedDataProcessor(void)
                             offset = offset + 1;
                             tempVar = *srcPtr;
                             srcPtr = srcPtr + 1;
-                            *(int32_t *)(*(longlong *)(&system_memory_0f40 + tempOffset) + bufferOffset * 4) = tempVar;
+                            *(int32_t *)(*(int64_t *)(&system_memory_0f40 + tempOffset) + bufferOffset * 4) = tempVar;
                         } while (offset < CONCAT44(dimVar, sourceSize));
                     }
                     bufferOffset = bufferOffset + 1;
@@ -881,13 +881,13 @@ void AdvancedDataProcessor(void)
         }
         
         // 系统调用处理
-        bufferOffset = *(longlong *)(systemHandle + 0x220);
+        bufferOffset = *(int64_t *)(systemHandle + 0x220);
         if (bufferOffset != 0) {
             (**(code **)(bufferOffset + 8))(bufferOffset, SYSTEM_CALL_PARAM_1, 0, 0, 0);
-            bufferOffset = *(longlong *)(systemHandle + 0x220);
+            bufferOffset = *(int64_t *)(systemHandle + 0x220);
             if (*(code **)(bufferOffset + 0x78) != (code *)0x0) {
                 (**(code **)(bufferOffset + 0x78))(bufferOffset, &system_memory_0f40);
-                bufferOffset = *(longlong *)(systemHandle + 0x220);
+                bufferOffset = *(int64_t *)(systemHandle + 0x220);
             }
             (**(code **)(bufferOffset + 8))(bufferOffset, SYSTEM_CALL_PARAM_2, 0, 0, 0);
         }
@@ -901,12 +901,12 @@ void AdvancedDataProcessor(void)
                     if (3 < CONCAT44(dimVar, sourceDim)) {
                         // 向量化输出
                         do {
-                            *targetPtr = *(int32_t *)(*(longlong *)(&system_memory_1040 + offset * 8) + bufferOffset * 4);
-                            targetPtr[1] = *(int32_t *)(*(longlong *)(offset * 8 + 0x180c31048) + bufferOffset * 4);
-                            targetPtr[2] = *(int32_t *)(*(longlong *)(offset * 8 + 0x180c31050) + bufferOffset * 4);
+                            *targetPtr = *(int32_t *)(*(int64_t *)(&system_memory_1040 + offset * 8) + bufferOffset * 4);
+                            targetPtr[1] = *(int32_t *)(*(int64_t *)(offset * 8 + 0x180c31048) + bufferOffset * 4);
+                            targetPtr[2] = *(int32_t *)(*(int64_t *)(offset * 8 + 0x180c31050) + bufferOffset * 4);
                             tempOffset = offset * 8;
                             offset = offset + 4;
-                            targetPtr[3] = *(int32_t *)(*(longlong *)(tempOffset + 0x180c31058) + bufferOffset * 4);
+                            targetPtr[3] = *(int32_t *)(*(int64_t *)(tempOffset + 0x180c31058) + bufferOffset * 4);
                             targetPtr = targetPtr + 4;
                         } while (offset < CONCAT44(dimVar, sourceDim) + -3);
                     }
@@ -914,7 +914,7 @@ void AdvancedDataProcessor(void)
                         do {
                             tempOffset = offset * 8;
                             offset = offset + 1;
-                            *targetPtr = *(int32_t *)(*(longlong *)(&system_memory_1040 + tempOffset) + bufferOffset * 4);
+                            *targetPtr = *(int32_t *)(*(int64_t *)(&system_memory_1040 + tempOffset) + bufferOffset * 4);
                             targetPtr = targetPtr + 1;
                         } while (offset < CONCAT44(dimVar, sourceDim));
                     }

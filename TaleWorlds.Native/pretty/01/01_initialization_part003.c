@@ -10,8 +10,8 @@ void register_system_module_type1(void)
   char node_flag;
   void **module_root;
   int compare_result;
-  longlong **system_table;
-  longlong allocation_size;
+  int64_t **system_table;
+  int64_t allocation_size;
   void **current_node;
   void **parent_node;
   void **child_node;
@@ -19,9 +19,9 @@ void register_system_module_type1(void)
   void *module_handler;
   
   // 获取系统表指针
-  system_table = (longlong **)get_system_table();
+  system_table = (int64_t **)get_system_table();
   module_root = (void **)*system_table;
-  node_flag = *(char *)((longlong)module_root[1] + 0x19);
+  node_flag = *(char *)((int64_t)module_root[1] + 0x19);
   module_handler = handle_module_type1;
   parent_node = module_root;
   current_node = (void **)module_root[1];
@@ -38,7 +38,7 @@ void register_system_module_type1(void)
     }
     parent_node = current_node;
     current_node = child_node;
-    node_flag = *(char *)((longlong)child_node + 0x19);
+    node_flag = *(char *)((int64_t)child_node + 0x19);
   }
   
   // 如果需要创建新节点
@@ -64,8 +64,8 @@ void register_system_module_type2(void)
   char node_flag;
   void **module_root;
   int compare_result;
-  longlong **system_table;
-  longlong allocation_size;
+  int64_t **system_table;
+  int64_t allocation_size;
   void **current_node;
   void **parent_node;
   void **child_node;
@@ -73,9 +73,9 @@ void register_system_module_type2(void)
   void *module_handler;
   
   // 获取系统表指针
-  system_table = (longlong **)get_system_table();
+  system_table = (int64_t **)get_system_table();
   module_root = (void **)*system_table;
-  node_flag = *(char *)((longlong)module_root[1] + 0x19);
+  node_flag = *(char *)((int64_t)module_root[1] + 0x19);
   module_handler = NULL;  // 无处理函数
   parent_node = module_root;
   current_node = (void **)module_root[1];
@@ -92,7 +92,7 @@ void register_system_module_type2(void)
     }
     parent_node = current_node;
     current_node = child_node;
-    node_flag = *(char *)((longlong)child_node + 0x19);
+    node_flag = *(char *)((int64_t)child_node + 0x19);
   }
   
   // 如果需要创建新节点
@@ -118,8 +118,8 @@ void register_system_module_type3(void)
   char node_flag;
   void **module_root;
   int compare_result;
-  longlong **system_table;
-  longlong allocation_size;
+  int64_t **system_table;
+  int64_t allocation_size;
   void **current_node;
   void **parent_node;
   void **child_node;
@@ -127,9 +127,9 @@ void register_system_module_type3(void)
   void *module_handler;
   
   // 获取系统表指针
-  system_table = (longlong **)get_system_table();
+  system_table = (int64_t **)get_system_table();
   module_root = (void **)*system_table;
-  node_flag = *(char *)((longlong)module_root[1] + 0x19);
+  node_flag = *(char *)((int64_t)module_root[1] + 0x19);
   module_handler = handle_module_type3;
   parent_node = module_root;
   current_node = (void **)module_root[1];
@@ -146,7 +146,7 @@ void register_system_module_type3(void)
     }
     parent_node = current_node;
     current_node = child_node;
-    node_flag = *(char *)((longlong)child_node + 0x19);
+    node_flag = *(char *)((int64_t)child_node + 0x19);
   }
   
   // 如果需要创建新节点
@@ -172,8 +172,8 @@ void register_system_module_type4(void)
   char node_flag;
   void **module_root;
   int compare_result;
-  longlong **system_table;
-  longlong allocation_size;
+  int64_t **system_table;
+  int64_t allocation_size;
   void **current_node;
   void **parent_node;
   void **child_node;
@@ -181,9 +181,9 @@ void register_system_module_type4(void)
   void *module_handler;
   
   // 获取系统表指针
-  system_table = (longlong **)get_system_table();
+  system_table = (int64_t **)get_system_table();
   module_root = (void **)*system_table;
-  node_flag = *(char *)((longlong)module_root[1] + 0x19);
+  node_flag = *(char *)((int64_t)module_root[1] + 0x19);
   module_handler = NULL;  // 无处理函数
   parent_node = module_root;
   current_node = (void **)module_root[1];
@@ -200,7 +200,7 @@ void register_system_module_type4(void)
     }
     parent_node = current_node;
     current_node = child_node;
-    node_flag = *(char *)((longlong)child_node + 0x19);
+    node_flag = *(char *)((int64_t)child_node + 0x19);
   }
   
   // 如果需要创建新节点
@@ -226,8 +226,8 @@ void register_system_module_type5(void)
   char node_flag;
   void **module_root;
   int compare_result;
-  longlong **system_table;
-  longlong allocation_size;
+  int64_t **system_table;
+  int64_t allocation_size;
   void **current_node;
   void **parent_node;
   void **child_node;
@@ -235,9 +235,9 @@ void register_system_module_type5(void)
   void *module_handler;
   
   // 获取系统表指针
-  system_table = (longlong **)get_system_table();
+  system_table = (int64_t **)get_system_table();
   module_root = (void **)*system_table;
-  node_flag = *(char *)((longlong)module_root[1] + 0x19);
+  node_flag = *(char *)((int64_t)module_root[1] + 0x19);
   module_handler = &MODULE_TYPE5_HANDLER;
   parent_node = module_root;
   current_node = (void **)module_root[1];
@@ -254,7 +254,7 @@ void register_system_module_type5(void)
     }
     parent_node = current_node;
     current_node = child_node;
-    node_flag = *(char *)((longlong)child_node + 0x19);
+    node_flag = *(char *)((int64_t)child_node + 0x19);
   }
   
   // 如果需要创建新节点
@@ -280,8 +280,8 @@ void register_system_module_type6(void)
   char node_flag;
   void **module_root;
   int compare_result;
-  longlong **system_table;
-  longlong allocation_size;
+  int64_t **system_table;
+  int64_t allocation_size;
   void **current_node;
   void **parent_node;
   void **child_node;
@@ -289,9 +289,9 @@ void register_system_module_type6(void)
   void *module_handler;
   
   // 获取系统表指针
-  system_table = (longlong **)get_system_table();
+  system_table = (int64_t **)get_system_table();
   module_root = (void **)*system_table;
-  node_flag = *(char *)((longlong)module_root[1] + 0x19);
+  node_flag = *(char *)((int64_t)module_root[1] + 0x19);
   module_handler = NULL;  // 无处理函数
   parent_node = module_root;
   current_node = (void **)module_root[1];
@@ -308,7 +308,7 @@ void register_system_module_type6(void)
     }
     parent_node = current_node;
     current_node = child_node;
-    node_flag = *(char *)((longlong)child_node + 0x19);
+    node_flag = *(char *)((int64_t)child_node + 0x19);
   }
   
   // 如果需要创建新节点
@@ -334,8 +334,8 @@ void register_system_module_type7(void)
   char node_flag;
   void **module_root;
   int compare_result;
-  longlong **system_table;
-  longlong allocation_size;
+  int64_t **system_table;
+  int64_t allocation_size;
   void **current_node;
   void **parent_node;
   void **child_node;
@@ -343,9 +343,9 @@ void register_system_module_type7(void)
   void *module_handler;
   
   // 获取系统表指针
-  system_table = (longlong **)get_system_table();
+  system_table = (int64_t **)get_system_table();
   module_root = (void **)*system_table;
-  node_flag = *(char *)((longlong)module_root[1] + 0x19);
+  node_flag = *(char *)((int64_t)module_root[1] + 0x19);
   module_handler = handle_module_type7;
   parent_node = module_root;
   current_node = (void **)module_root[1];
@@ -362,7 +362,7 @@ void register_system_module_type7(void)
     }
     parent_node = current_node;
     current_node = child_node;
-    node_flag = *(char *)((longlong)child_node + 0x19);
+    node_flag = *(char *)((int64_t)child_node + 0x19);
   }
   
   // 如果需要创建新节点
@@ -388,8 +388,8 @@ void register_system_module_type1_duplicate(void)
   char node_flag;
   void **module_root;
   int compare_result;
-  longlong **system_table;
-  longlong allocation_size;
+  int64_t **system_table;
+  int64_t allocation_size;
   void **current_node;
   void **parent_node;
   void **child_node;
@@ -397,9 +397,9 @@ void register_system_module_type1_duplicate(void)
   void *module_handler;
   
   // 获取系统表指针
-  system_table = (longlong **)get_system_table();
+  system_table = (int64_t **)get_system_table();
   module_root = (void **)*system_table;
-  node_flag = *(char *)((longlong)module_root[1] + 0x19);
+  node_flag = *(char *)((int64_t)module_root[1] + 0x19);
   module_handler = handle_module_type1;
   parent_node = module_root;
   current_node = (void **)module_root[1];
@@ -416,7 +416,7 @@ void register_system_module_type1_duplicate(void)
     }
     parent_node = current_node;
     current_node = child_node;
-    node_flag = *(char *)((longlong)child_node + 0x19);
+    node_flag = *(char *)((int64_t)child_node + 0x19);
   }
   
   // 如果需要创建新节点
@@ -442,8 +442,8 @@ void register_system_module_type2_duplicate(void)
   char node_flag;
   void **module_root;
   int compare_result;
-  longlong **system_table;
-  longlong allocation_size;
+  int64_t **system_table;
+  int64_t allocation_size;
   void **current_node;
   void **parent_node;
   void **child_node;
@@ -451,9 +451,9 @@ void register_system_module_type2_duplicate(void)
   void *module_handler;
   
   // 获取系统表指针
-  system_table = (longlong **)get_system_table();
+  system_table = (int64_t **)get_system_table();
   module_root = (void **)*system_table;
-  node_flag = *(char *)((longlong)module_root[1] + 0x19);
+  node_flag = *(char *)((int64_t)module_root[1] + 0x19);
   module_handler = NULL;  // 无处理函数
   parent_node = module_root;
   current_node = (void **)module_root[1];
@@ -470,7 +470,7 @@ void register_system_module_type2_duplicate(void)
     }
     parent_node = current_node;
     current_node = child_node;
-    node_flag = *(char *)((longlong)child_node + 0x19);
+    node_flag = *(char *)((int64_t)child_node + 0x19);
   }
   
   // 如果需要创建新节点
@@ -496,8 +496,8 @@ void register_system_module_type3_duplicate(void)
   char node_flag;
   void **module_root;
   int compare_result;
-  longlong **system_table;
-  longlong allocation_size;
+  int64_t **system_table;
+  int64_t allocation_size;
   void **current_node;
   void **parent_node;
   void **child_node;
@@ -505,9 +505,9 @@ void register_system_module_type3_duplicate(void)
   void *module_handler;
   
   // 获取系统表指针
-  system_table = (longlong **)get_system_table();
+  system_table = (int64_t **)get_system_table();
   module_root = (void **)*system_table;
-  node_flag = *(char *)((longlong)module_root[1] + 0x19);
+  node_flag = *(char *)((int64_t)module_root[1] + 0x19);
   module_handler = handle_module_type3;
   parent_node = module_root;
   current_node = (void **)module_root[1];
@@ -524,7 +524,7 @@ void register_system_module_type3_duplicate(void)
     }
     parent_node = current_node;
     current_node = child_node;
-    node_flag = *(char *)((longlong)child_node + 0x19);
+    node_flag = *(char *)((int64_t)child_node + 0x19);
   }
   
   // 如果需要创建新节点
@@ -550,8 +550,8 @@ void register_system_module_type4_duplicate(void)
   char node_flag;
   void **module_root;
   int compare_result;
-  longlong **system_table;
-  longlong allocation_size;
+  int64_t **system_table;
+  int64_t allocation_size;
   void **current_node;
   void **parent_node;
   void **child_node;
@@ -559,9 +559,9 @@ void register_system_module_type4_duplicate(void)
   void *module_handler;
   
   // 获取系统表指针
-  system_table = (longlong **)get_system_table();
+  system_table = (int64_t **)get_system_table();
   module_root = (void **)*system_table;
-  node_flag = *(char *)((longlong)module_root[1] + 0x19);
+  node_flag = *(char *)((int64_t)module_root[1] + 0x19);
   module_handler = NULL;  // 无处理函数
   parent_node = module_root;
   current_node = (void **)module_root[1];
@@ -578,7 +578,7 @@ void register_system_module_type4_duplicate(void)
     }
     parent_node = current_node;
     current_node = child_node;
-    node_flag = *(char *)((longlong)child_node + 0x19);
+    node_flag = *(char *)((int64_t)child_node + 0x19);
   }
   
   // 如果需要创建新节点
@@ -604,8 +604,8 @@ void register_system_module_type5_duplicate(void)
   char node_flag;
   void **module_root;
   int compare_result;
-  longlong **system_table;
-  longlong allocation_size;
+  int64_t **system_table;
+  int64_t allocation_size;
   void **current_node;
   void **parent_node;
   void **child_node;
@@ -613,9 +613,9 @@ void register_system_module_type5_duplicate(void)
   void *module_handler;
   
   // 获取系统表指针
-  system_table = (longlong **)get_system_table();
+  system_table = (int64_t **)get_system_table();
   module_root = (void **)*system_table;
-  node_flag = *(char *)((longlong)module_root[1] + 0x19);
+  node_flag = *(char *)((int64_t)module_root[1] + 0x19);
   module_handler = &MODULE_TYPE5_HANDLER;
   parent_node = module_root;
   current_node = (void **)module_root[1];
@@ -632,7 +632,7 @@ void register_system_module_type5_duplicate(void)
     }
     parent_node = current_node;
     current_node = child_node;
-    node_flag = *(char *)((longlong)child_node + 0x19);
+    node_flag = *(char *)((int64_t)child_node + 0x19);
   }
   
   // 如果需要创建新节点
@@ -658,8 +658,8 @@ void register_system_module_type6_duplicate(void)
   char node_flag;
   void **module_root;
   int compare_result;
-  longlong **system_table;
-  longlong allocation_size;
+  int64_t **system_table;
+  int64_t allocation_size;
   void **current_node;
   void **parent_node;
   void **child_node;
@@ -667,9 +667,9 @@ void register_system_module_type6_duplicate(void)
   void *module_handler;
   
   // 获取系统表指针
-  system_table = (longlong **)get_system_table();
+  system_table = (int64_t **)get_system_table();
   module_root = (void **)*system_table;
-  node_flag = *(char *)((longlong)module_root[1] + 0x19);
+  node_flag = *(char *)((int64_t)module_root[1] + 0x19);
   module_handler = NULL;  // 无处理函数
   parent_node = module_root;
   current_node = (void **)module_root[1];
@@ -686,7 +686,7 @@ void register_system_module_type6_duplicate(void)
     }
     parent_node = current_node;
     current_node = child_node;
-    node_flag = *(char *)((longlong)child_node + 0x19);
+    node_flag = *(char *)((int64_t)child_node + 0x19);
   }
   
   // 如果需要创建新节点
@@ -712,8 +712,8 @@ void register_system_module_type8(void)
   char node_flag;
   void **module_root;
   int compare_result;
-  longlong **system_table;
-  longlong allocation_size;
+  int64_t **system_table;
+  int64_t allocation_size;
   void **current_node;
   void **parent_node;
   void **child_node;
@@ -721,9 +721,9 @@ void register_system_module_type8(void)
   void *module_handler;
   
   // 获取系统表指针
-  system_table = (longlong **)get_system_table();
+  system_table = (int64_t **)get_system_table();
   module_root = (void **)*system_table;
-  node_flag = *(char *)((longlong)module_root[1] + 0x19);
+  node_flag = *(char *)((int64_t)module_root[1] + 0x19);
   module_handler = NULL;  // 无处理函数
   parent_node = module_root;
   current_node = (void **)module_root[1];
@@ -740,7 +740,7 @@ void register_system_module_type8(void)
     }
     parent_node = current_node;
     current_node = child_node;
-    node_flag = *(char *)((longlong)child_node + 0x19);
+    node_flag = *(char *)((int64_t)child_node + 0x19);
   }
   
   // 如果需要创建新节点
@@ -766,8 +766,8 @@ void register_system_module_type9(void)
   char node_flag;
   void **module_root;
   int compare_result;
-  longlong **system_table;
-  longlong allocation_size;
+  int64_t **system_table;
+  int64_t allocation_size;
   void **current_node;
   void **parent_node;
   void **child_node;
@@ -775,9 +775,9 @@ void register_system_module_type9(void)
   void *module_handler;
   
   // 获取系统表指针
-  system_table = (longlong **)get_system_table();
+  system_table = (int64_t **)get_system_table();
   module_root = (void **)*system_table;
-  node_flag = *(char *)((longlong)module_root[1] + 0x19);
+  node_flag = *(char *)((int64_t)module_root[1] + 0x19);
   module_handler = handle_module_type9;
   parent_node = module_root;
   current_node = (void **)module_root[1];
@@ -794,7 +794,7 @@ void register_system_module_type9(void)
     }
     parent_node = current_node;
     current_node = child_node;
-    node_flag = *(char *)((longlong)child_node + 0x19);
+    node_flag = *(char *)((int64_t)child_node + 0x19);
   }
   
   // 如果需要创建新节点
@@ -820,8 +820,8 @@ void register_system_module_type7_duplicate(void)
   char node_flag;
   void **module_root;
   int compare_result;
-  longlong **system_table;
-  longlong allocation_size;
+  int64_t **system_table;
+  int64_t allocation_size;
   void **current_node;
   void **parent_node;
   void **child_node;
@@ -829,9 +829,9 @@ void register_system_module_type7_duplicate(void)
   void *module_handler;
   
   // 获取系统表指针
-  system_table = (longlong **)get_system_table();
+  system_table = (int64_t **)get_system_table();
   module_root = (void **)*system_table;
-  node_flag = *(char *)((longlong)module_root[1] + 0x19);
+  node_flag = *(char *)((int64_t)module_root[1] + 0x19);
   module_handler = handle_module_type7;
   parent_node = module_root;
   current_node = (void **)module_root[1];
@@ -848,7 +848,7 @@ void register_system_module_type7_duplicate(void)
     }
     parent_node = current_node;
     current_node = child_node;
-    node_flag = *(char *)((longlong)child_node + 0x19);
+    node_flag = *(char *)((int64_t)child_node + 0x19);
   }
   
   // 如果需要创建新节点
@@ -874,8 +874,8 @@ void register_system_module_type1_duplicate2(void)
   char node_flag;
   void **module_root;
   int compare_result;
-  longlong **system_table;
-  longlong allocation_size;
+  int64_t **system_table;
+  int64_t allocation_size;
   void **current_node;
   void **parent_node;
   void **child_node;
@@ -883,9 +883,9 @@ void register_system_module_type1_duplicate2(void)
   void *module_handler;
   
   // 获取系统表指针
-  system_table = (longlong **)get_system_table();
+  system_table = (int64_t **)get_system_table();
   module_root = (void **)*system_table;
-  node_flag = *(char *)((longlong)module_root[1] + 0x19);
+  node_flag = *(char *)((int64_t)module_root[1] + 0x19);
   module_handler = handle_module_type1;
   parent_node = module_root;
   current_node = (void **)module_root[1];
@@ -902,7 +902,7 @@ void register_system_module_type1_duplicate2(void)
     }
     parent_node = current_node;
     current_node = child_node;
-    node_flag = *(char *)((longlong)child_node + 0x19);
+    node_flag = *(char *)((int64_t)child_node + 0x19);
   }
   
   // 如果需要创建新节点
@@ -928,8 +928,8 @@ void register_system_module_type2_duplicate2(void)
   char node_flag;
   void **module_root;
   int compare_result;
-  longlong **system_table;
-  longlong allocation_size;
+  int64_t **system_table;
+  int64_t allocation_size;
   void **current_node;
   void **parent_node;
   void **child_node;
@@ -937,9 +937,9 @@ void register_system_module_type2_duplicate2(void)
   void *module_handler;
   
   // 获取系统表指针
-  system_table = (longlong **)get_system_table();
+  system_table = (int64_t **)get_system_table();
   module_root = (void **)*system_table;
-  node_flag = *(char *)((longlong)module_root[1] + 0x19);
+  node_flag = *(char *)((int64_t)module_root[1] + 0x19);
   module_handler = NULL;  // 无处理函数
   parent_node = module_root;
   current_node = (void **)module_root[1];
@@ -956,7 +956,7 @@ void register_system_module_type2_duplicate2(void)
     }
     parent_node = current_node;
     current_node = child_node;
-    node_flag = *(char *)((longlong)child_node + 0x19);
+    node_flag = *(char *)((int64_t)child_node + 0x19);
   }
   
   // 如果需要创建新节点
@@ -982,8 +982,8 @@ void register_system_module_type3_duplicate2(void)
   char node_flag;
   void **module_root;
   int compare_result;
-  longlong **system_table;
-  longlong allocation_size;
+  int64_t **system_table;
+  int64_t allocation_size;
   void **current_node;
   void **parent_node;
   void **child_node;
@@ -991,9 +991,9 @@ void register_system_module_type3_duplicate2(void)
   void *module_handler;
   
   // 获取系统表指针
-  system_table = (longlong **)get_system_table();
+  system_table = (int64_t **)get_system_table();
   module_root = (void **)*system_table;
-  node_flag = *(char *)((longlong)module_root[1] + 0x19);
+  node_flag = *(char *)((int64_t)module_root[1] + 0x19);
   module_handler = handle_module_type3;
   parent_node = module_root;
   current_node = (void **)module_root[1];
@@ -1010,7 +1010,7 @@ void register_system_module_type3_duplicate2(void)
     }
     parent_node = current_node;
     current_node = child_node;
-    node_flag = *(char *)((longlong)child_node + 0x19);
+    node_flag = *(char *)((int64_t)child_node + 0x19);
   }
   
   // 如果需要创建新节点
@@ -1036,8 +1036,8 @@ void register_system_module_type4_duplicate2(void)
   char node_flag;
   void **module_root;
   int compare_result;
-  longlong **system_table;
-  longlong allocation_size;
+  int64_t **system_table;
+  int64_t allocation_size;
   void **current_node;
   void **parent_node;
   void **child_node;
@@ -1045,9 +1045,9 @@ void register_system_module_type4_duplicate2(void)
   void *module_handler;
   
   // 获取系统表指针
-  system_table = (longlong **)get_system_table();
+  system_table = (int64_t **)get_system_table();
   module_root = (void **)*system_table;
-  node_flag = *(char *)((longlong)module_root[1] + 0x19);
+  node_flag = *(char *)((int64_t)module_root[1] + 0x19);
   module_handler = NULL;  // 无处理函数
   parent_node = module_root;
   current_node = (void **)module_root[1];
@@ -1064,7 +1064,7 @@ void register_system_module_type4_duplicate2(void)
     }
     parent_node = current_node;
     current_node = child_node;
-    node_flag = *(char *)((longlong)child_node + 0x19);
+    node_flag = *(char *)((int64_t)child_node + 0x19);
   }
   
   // 如果需要创建新节点
@@ -1090,8 +1090,8 @@ void register_system_module_type5_duplicate2(void)
   char node_flag;
   void **module_root;
   int compare_result;
-  longlong **system_table;
-  longlong allocation_size;
+  int64_t **system_table;
+  int64_t allocation_size;
   void **current_node;
   void **parent_node;
   void **child_node;
@@ -1099,9 +1099,9 @@ void register_system_module_type5_duplicate2(void)
   void *module_handler;
   
   // 获取系统表指针
-  system_table = (longlong **)get_system_table();
+  system_table = (int64_t **)get_system_table();
   module_root = (void **)*system_table;
-  node_flag = *(char *)((longlong)module_root[1] + 0x19);
+  node_flag = *(char *)((int64_t)module_root[1] + 0x19);
   module_handler = &MODULE_TYPE5_HANDLER;
   parent_node = module_root;
   current_node = (void **)module_root[1];
@@ -1118,7 +1118,7 @@ void register_system_module_type5_duplicate2(void)
     }
     parent_node = current_node;
     current_node = child_node;
-    node_flag = *(char *)((longlong)child_node + 0x19);
+    node_flag = *(char *)((int64_t)child_node + 0x19);
   }
   
   // 如果需要创建新节点
@@ -1144,8 +1144,8 @@ void register_system_module_type6_duplicate2(void)
   char node_flag;
   void **module_root;
   int compare_result;
-  longlong **system_table;
-  longlong allocation_size;
+  int64_t **system_table;
+  int64_t allocation_size;
   void **current_node;
   void **parent_node;
   void **child_node;
@@ -1153,9 +1153,9 @@ void register_system_module_type6_duplicate2(void)
   void *module_handler;
   
   // 获取系统表指针
-  system_table = (longlong **)get_system_table();
+  system_table = (int64_t **)get_system_table();
   module_root = (void **)*system_table;
-  node_flag = *(char *)((longlong)module_root[1] + 0x19);
+  node_flag = *(char *)((int64_t)module_root[1] + 0x19);
   module_handler = NULL;  // 无处理函数
   parent_node = module_root;
   current_node = (void **)module_root[1];
@@ -1172,7 +1172,7 @@ void register_system_module_type6_duplicate2(void)
     }
     parent_node = current_node;
     current_node = child_node;
-    node_flag = *(char *)((longlong)child_node + 0x19);
+    node_flag = *(char *)((int64_t)child_node + 0x19);
   }
   
   // 如果需要创建新节点
@@ -1218,7 +1218,7 @@ void initialize_system_config(void)
 // 原始函数名: FUN_180030900
 int initialize_system_globals(void)
 {
-  longlong init_result;
+  int64_t init_result;
   uint64_t init_param;
   
   system_global_ptr = &SYSTEM_GLOBAL_DATA;
@@ -1231,8 +1231,8 @@ void register_system_module_type10(void)
   char node_flag;
   void **module_root;
   int compare_result;
-  longlong **system_table;
-  longlong allocation_size;
+  int64_t **system_table;
+  int64_t allocation_size;
   void **current_node;
   void **parent_node;
   void **child_node;
@@ -1240,9 +1240,9 @@ void register_system_module_type10(void)
   void *module_handler;
   
   // 获取系统表指针
-  system_table = (longlong **)get_system_table();
+  system_table = (int64_t **)get_system_table();
   module_root = (void **)*system_table;
-  node_flag = *(char *)((longlong)module_root[1] + 0x19);
+  node_flag = *(char *)((int64_t)module_root[1] + 0x19);
   module_handler = handle_module_type10;
   parent_node = module_root;
   current_node = (void **)module_root[1];
@@ -1259,7 +1259,7 @@ void register_system_module_type10(void)
     }
     parent_node = current_node;
     current_node = child_node;
-    node_flag = *(char *)((longlong)child_node + 0x19);
+    node_flag = *(char *)((int64_t)child_node + 0x19);
   }
   
   // 如果需要创建新节点
@@ -1285,8 +1285,8 @@ void register_system_module_type11(void)
   char node_flag;
   void **module_root;
   int compare_result;
-  longlong **system_table;
-  longlong allocation_size;
+  int64_t **system_table;
+  int64_t allocation_size;
   void **current_node;
   void **parent_node;
   void **child_node;
@@ -1294,9 +1294,9 @@ void register_system_module_type11(void)
   void *module_handler;
   
   // 获取系统表指针
-  system_table = (longlong **)get_system_table();
+  system_table = (int64_t **)get_system_table();
   module_root = (void **)*system_table;
-  node_flag = *(char *)((longlong)module_root[1] + 0x19);
+  node_flag = *(char *)((int64_t)module_root[1] + 0x19);
   module_handler = handle_module_type11;
   parent_node = module_root;
   current_node = (void **)module_root[1];
@@ -1313,7 +1313,7 @@ void register_system_module_type11(void)
     }
     parent_node = current_node;
     current_node = child_node;
-    node_flag = *(char *)((longlong)child_node + 0x19);
+    node_flag = *(char *)((int64_t)child_node + 0x19);
   }
   
   // 如果需要创建新节点
@@ -1339,8 +1339,8 @@ void register_system_module_type10_duplicate(void)
   char node_flag;
   void **module_root;
   int compare_result;
-  longlong **system_table;
-  longlong allocation_size;
+  int64_t **system_table;
+  int64_t allocation_size;
   void **current_node;
   void **parent_node;
   void **child_node;
@@ -1348,9 +1348,9 @@ void register_system_module_type10_duplicate(void)
   void *module_handler;
   
   // 获取系统表指针
-  system_table = (longlong **)get_system_table();
+  system_table = (int64_t **)get_system_table();
   module_root = (void **)*system_table;
-  node_flag = *(char *)((longlong)module_root[1] + 0x19);
+  node_flag = *(char *)((int64_t)module_root[1] + 0x19);
   module_handler = handle_module_type10;
   parent_node = module_root;
   current_node = (void **)module_root[1];
@@ -1367,7 +1367,7 @@ void register_system_module_type10_duplicate(void)
     }
     parent_node = current_node;
     current_node = child_node;
-    node_flag = *(char *)((longlong)child_node + 0x19);
+    node_flag = *(char *)((int64_t)child_node + 0x19);
   }
   
   // 如果需要创建新节点

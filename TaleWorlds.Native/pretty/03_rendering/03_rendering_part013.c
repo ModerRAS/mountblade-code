@@ -10,12 +10,12 @@
  * @param param_3 序列化标志
  * @param param_4 附加参数
  */
-void Material_Serialize(longlong *source_material, longlong *target_material, uint64_t serialize_flag, uint64_t extra_param)
+void Material_Serialize(int64_t *source_material, int64_t *target_material, uint64_t serialize_flag, uint64_t extra_param)
 
 {
-  longlong *texture_ptr1;
-  longlong *texture_ptr2;
-  longlong material_data;
+  int64_t *texture_ptr1;
+  int64_t *texture_ptr2;
+  int64_t material_data;
   uint64_t texture_data;
   int32_t color_r;
   int32_t color_g;
@@ -23,52 +23,52 @@ void Material_Serialize(longlong *source_material, longlong *target_material, ui
   uint64_t *shader_param;
   int material_count;
   void *material_name;
-  longlong texture_offset;
-  longlong texture_size;
-  longlong *temp_stack_ptr;
+  int64_t texture_offset;
+  int64_t texture_size;
+  int64_t *temp_stack_ptr;
   
   // 复制材质参数
   FUN_180627be0(target_material + 0x3e, source_material + 0x1f0, serialize_flag, extra_param, 0xfffffffffffffffe);
-  target_material[6] = *(longlong *)(source_material + 0x30);
+  target_material[6] = *(int64_t *)(source_material + 0x30);
   *(int32_t *)(target_material + 0xb) = *(int32_t *)(source_material + 0x58);
   
   // 复制纹理数据
   texture_data = *(uint64_t *)(source_material + 0x21c);
-  *(uint64_t *)((longlong)target_material + 0x214) = *(uint64_t *)(source_material + 0x214);
-  *(uint64_t *)((longlong)target_material + 0x21c) = texture_data;
+  *(uint64_t *)((int64_t)target_material + 0x214) = *(uint64_t *)(source_material + 0x214);
+  *(uint64_t *)((int64_t)target_material + 0x21c) = texture_data;
   
   // 复制颜色数据
   color_r = *(int32_t *)(source_material + 0x228);
   color_g = *(int32_t *)(source_material + 0x22c);
   color_b = *(int32_t *)(source_material + 0x230);
-  *(int32_t *)((longlong)target_material + 0x224) = *(int32_t *)(source_material + 0x224);
+  *(int32_t *)((int64_t)target_material + 0x224) = *(int32_t *)(source_material + 0x224);
   *(int32_t *)(target_material + 0x45) = color_r;
-  *(int32_t *)((longlong)target_material + 0x22c) = color_g;
+  *(int32_t *)((int64_t)target_material + 0x22c) = color_g;
   *(int32_t *)(target_material + 0x46) = color_b;
   
   // 复制额外颜色数据
   color_r = *(int32_t *)(source_material + 0x238);
   color_g = *(int32_t *)(source_material + 0x23c);
   color_b = *(int32_t *)(source_material + 0x240);
-  *(int32_t *)((longlong)target_material + 0x234) = *(int32_t *)(source_material + 0x234);
+  *(int32_t *)((int64_t)target_material + 0x234) = *(int32_t *)(source_material + 0x234);
   *(int32_t *)(target_material + 0x47) = color_r;
-  *(int32_t *)((longlong)target_material + 0x23c) = color_g;
+  *(int32_t *)((int64_t)target_material + 0x23c) = color_g;
   *(int32_t *)(target_material + 0x48) = color_b;
   
   // 复制其他材质属性
-  *(int32_t *)((longlong)target_material + 0x244) = *(int32_t *)(source_material + 0x244);
+  *(int32_t *)((int64_t)target_material + 0x244) = *(int32_t *)(source_material + 0x244);
   *(int8_t *)(target_material + 0x78) = *(int8_t *)(source_material + 0x3c0);
-  *(int32_t *)((longlong)target_material + 0x3c4) = *(int32_t *)(source_material + 0x3c4);
+  *(int32_t *)((int64_t)target_material + 0x3c4) = *(int32_t *)(source_material + 0x3c4);
   *(int32_t *)(target_material + 0x42) = *(int32_t *)(source_material + 0x210);
   
   // 处理纹理引用
-  texture_ptr1 = *(longlong **)(source_material + 0x3b8);
-  if (texture_ptr1 != (longlong *)0x0) {
+  texture_ptr1 = *(int64_t **)(source_material + 0x3b8);
+  if (texture_ptr1 != (int64_t *)0x0) {
     (**(code **)(*texture_ptr1 + 0x28))(texture_ptr1);
   }
-  texture_ptr2 = (longlong *)target_material[0x77];
-  target_material[0x77] = (longlong)texture_ptr1;
-  if (texture_ptr2 != (longlong *)0x0) {
+  texture_ptr2 = (int64_t *)target_material[0x77];
+  target_material[0x77] = (int64_t)texture_ptr1;
+  if (texture_ptr2 != (int64_t *)0x0) {
     (**(code **)(*texture_ptr2 + 0x38))();
   }
   
@@ -77,13 +77,13 @@ void Material_Serialize(longlong *source_material, longlong *target_material, ui
   color_r = *(int32_t *)(source_material + 0x70);
   color_g = *(int32_t *)(source_material + 0x74);
   color_b = *(int32_t *)(source_material + 0x78);
-  *(int32_t *)((longlong)target_material + 0x6c) = *(int32_t *)(source_material + 0x6c);
+  *(int32_t *)((int64_t)target_material + 0x6c) = *(int32_t *)(source_material + 0x6c);
   *(int32_t *)(target_material + 0xe) = color_r;
-  *(int32_t *)((longlong)target_material + 0x74) = color_g;
+  *(int32_t *)((int64_t)target_material + 0x74) = color_g;
   *(int32_t *)(target_material + 0xf) = color_b;
   
   // 复制更多材质属性
-  *(int32_t *)((longlong)target_material + 0x7c) = *(int32_t *)(source_material + 0x7c);
+  *(int32_t *)((int64_t)target_material + 0x7c) = *(int32_t *)(source_material + 0x7c);
   *(int32_t *)(target_material + 0x12) = *(int32_t *)(source_material + 0x90);
   
   // 复制材质名称
@@ -106,45 +106,45 @@ void Material_Serialize(longlong *source_material, longlong *target_material, ui
   FUN_180627be0(target_material + 0x3a, source_material + 0x1d0);
   
   // 处理着色器引用
-  texture_ptr1 = *(longlong **)(source_material + 0x3c8);
-  if (texture_ptr1 != (longlong *)0x0) {
+  texture_ptr1 = *(int64_t **)(source_material + 0x3c8);
+  if (texture_ptr1 != (int64_t *)0x0) {
     (**(code **)(*texture_ptr1 + 0x28))(texture_ptr1);
   }
-  texture_ptr2 = (longlong *)target_material[0x79];
-  target_material[0x79] = (longlong)texture_ptr1;
-  if (texture_ptr2 != (longlong *)0x0) {
+  texture_ptr2 = (int64_t *)target_material[0x79];
+  target_material[0x79] = (int64_t)texture_ptr1;
+  if (texture_ptr2 != (int64_t *)0x0) {
     (**(code **)(*texture_ptr2 + 0x38))();
   }
   
   // 复制渲染状态
-  *(int32_t *)((longlong)target_material + 0x5c) = *(int32_t *)(source_material + 0x5c);
+  *(int32_t *)((int64_t)target_material + 0x5c) = *(int32_t *)(source_material + 0x5c);
   
   // 处理材质数组
   if ((char)serialize_flag != '\0') {
-    texture_offset = *(longlong *)(source_material + 0x40) - *(longlong *)(source_material + 0x38) >> 4;
+    texture_offset = *(int64_t *)(source_material + 0x40) - *(int64_t *)(source_material + 0x38) >> 4;
     FUN_180284240(target_material + 7, texture_offset);
     material_count = (int)texture_offset;
-    texture_offset = (longlong)material_count;
+    texture_offset = (int64_t)material_count;
     if (0 < material_count) {
       texture_size = 0;
       do {
         shader_param = (uint64_t *)
-                 FUN_1800763c0(*(uint64_t *)(texture_size + *(longlong *)(source_material + 0x38)), &temp_stack_ptr)
+                 FUN_1800763c0(*(uint64_t *)(texture_size + *(int64_t *)(source_material + 0x38)), &temp_stack_ptr)
         ;
         material_data = target_material[7];
         texture_data = *shader_param;
         *shader_param = 0;
-        texture_ptr1 = *(longlong **)(texture_size + material_data);
+        texture_ptr1 = *(int64_t **)(texture_size + material_data);
         *(uint64_t *)(texture_size + material_data) = texture_data;
-        if (texture_ptr1 != (longlong *)0x0) {
+        if (texture_ptr1 != (int64_t *)0x0) {
           (**(code **)(*texture_ptr1 + 0x38))();
         }
-        if (temp_stack_ptr != (longlong *)0x0) {
+        if (temp_stack_ptr != (int64_t *)0x0) {
           (**(code **)(*temp_stack_ptr + 0x38))();
         }
-        *(longlong **)(*(longlong *)(texture_size + target_material[7]) + 0x1c8) = target_material;
+        *(int64_t **)(*(int64_t *)(texture_size + target_material[7]) + 0x1c8) = target_material;
         *(int32_t *)(texture_size + 8 + target_material[7]) =
-             *(int32_t *)(texture_size + 8 + *(longlong *)(source_material + 0x38));
+             *(int32_t *)(texture_size + 8 + *(int64_t *)(source_material + 0x38));
         texture_size = texture_size + 0x10;
         texture_offset = texture_offset + -1;
       } while (texture_offset != 0);
@@ -170,17 +170,17 @@ void Material_Serialize(longlong *source_material, longlong *target_material, ui
  * @param element_data 元素数据指针
  * @param should_update 是否更新渲染状态
  */
-void Add_Rendering_Element(longlong *render_context, int element_index, longlong *element_data, char should_update)
+void Add_Rendering_Element(int64_t *render_context, int element_index, int64_t *element_data, char should_update)
 
 {
-  longlong *element_ptr;
-  longlong context_data;
-  longlong *temp_stack_ptr;
+  int64_t *element_ptr;
+  int64_t context_data;
+  int64_t *temp_stack_ptr;
   int element_bitmask;
   
-  temp_stack_ptr = (longlong *)0x0;
-  element_ptr = (longlong *)*element_data;
-  if (element_ptr != (longlong *)0x0) {
+  temp_stack_ptr = (int64_t *)0x0;
+  element_ptr = (int64_t *)*element_data;
+  if (element_ptr != (int64_t *)0x0) {
     // 增加元素的引用计数
     (**(code **)(*element_ptr + 0x28))(element_ptr);
   }
@@ -191,7 +191,7 @@ void Add_Rendering_Element(longlong *render_context, int element_index, longlong
   
   // 将元素添加到渲染上下文
   FUN_1802842e0(render_context + 7, &temp_stack_ptr);
-  *(longlong **)(*element_data + 0x1c8) = render_context;
+  *(int64_t **)(*element_data + 0x1c8) = render_context;
   
   // 更新渲染上下文的最大索引
   if ((int)render_context[0xb] < element_index + 1) {
@@ -201,7 +201,7 @@ void Add_Rendering_Element(longlong *render_context, int element_index, longlong
   // 如果需要更新渲染状态
   if (should_update != '\0') {
     if (*(code **)(*render_context + 0x160) == (code *)&STANDARD_RENDER_UPDATE_FUNCTION) {
-      FUN_180276f30(render_context, (longlong)render_context + 0x214, 0);
+      FUN_180276f30(render_context, (int64_t)render_context + 0x214, 0);
     }
     else {
       (**(code **)(*render_context + 0x160))(render_context);
@@ -211,18 +211,18 @@ void Add_Rendering_Element(longlong *render_context, int element_index, longlong
     context_data = render_context[5];
     if (context_data != 0) {
       *(short *)(context_data + 0x2b0) = *(short *)(context_data + 0x2b0) + 1;
-      if (*(longlong *)(context_data + 0x168) != 0) {
+      if (*(int64_t *)(context_data + 0x168) != 0) {
         update_render_statistics();
       }
     }
   }
   
   // 清理临时指针
-  if (temp_stack_ptr != (longlong *)0x0) {
+  if (temp_stack_ptr != (int64_t *)0x0) {
     (**(code **)(*temp_stack_ptr + 0x38))();
   }
-  if ((longlong *)*element_data != (longlong *)0x0) {
-    (**(code **)(*(longlong *)*element_data + 0x38))();
+  if ((int64_t *)*element_data != (int64_t *)0x0) {
+    (**(code **)(*(int64_t *)*element_data + 0x38))();
   }
   return;
 }
@@ -239,20 +239,20 @@ void Add_Rendering_Element(longlong *render_context, int element_index, longlong
  * @param element_data 元素数据指针
  * @param should_update 是否更新渲染状态
  */
-void Add_Rendering_Element_By_Bitmask(longlong *render_context, uint bitmask, longlong *element_data, char should_update)
+void Add_Rendering_Element_By_Bitmask(int64_t *render_context, uint bitmask, int64_t *element_data, char should_update)
 
 {
-  longlong *element_ptr;
-  longlong context_data;
+  int64_t *element_ptr;
+  int64_t context_data;
   int bit_position;
-  longlong *temp_stack_ptr;
+  int64_t *temp_stack_ptr;
   uint original_bitmask;
   
-  temp_stack_ptr = (longlong *)0x0;
-  element_ptr = (longlong *)*element_data;
+  temp_stack_ptr = (int64_t *)0x0;
+  element_ptr = (int64_t *)*element_data;
   original_bitmask = bitmask;
   
-  if (element_ptr != (longlong *)0x0) {
+  if (element_ptr != (int64_t *)0x0) {
     // 增加元素的引用计数
     (**(code **)(*element_ptr + 0x28))(element_ptr);
   }
@@ -261,7 +261,7 @@ void Add_Rendering_Element_By_Bitmask(longlong *render_context, uint bitmask, lo
   
   // 将元素添加到渲染上下文
   FUN_1802842e0(render_context + 7, &temp_stack_ptr);
-  *(longlong **)(*element_data + 0x1c8) = render_context;
+  *(int64_t **)(*element_data + 0x1c8) = render_context;
   
   // 计算位掩码中最高位的位置
   bit_position = -1;
@@ -280,7 +280,7 @@ void Add_Rendering_Element_By_Bitmask(longlong *render_context, uint bitmask, lo
   // 如果需要更新渲染状态
   if (should_update != '\0') {
     if (*(code **)(*render_context + 0x160) == (code *)&STANDARD_RENDER_UPDATE_FUNCTION) {
-      FUN_180276f30(render_context, (longlong)render_context + 0x214, 0);
+      FUN_180276f30(render_context, (int64_t)render_context + 0x214, 0);
     }
     else {
       (**(code **)(*render_context + 0x160))(render_context);
@@ -289,18 +289,18 @@ void Add_Rendering_Element_By_Bitmask(longlong *render_context, uint bitmask, lo
     // 更新渲染统计信息
     context_data = render_context[5];
     if ((context_data != 0) &&
-       (*(short *)(context_data + 0x2b0) = *(short *)(context_data + 0x2b0) + 1, *(longlong *)(context_data + 0x168) != 0
+       (*(short *)(context_data + 0x2b0) = *(short *)(context_data + 0x2b0) + 1, *(int64_t *)(context_data + 0x168) != 0
        )) {
       update_render_statistics();
     }
   }
   
   // 清理临时指针
-  if (temp_stack_ptr != (longlong *)0x0) {
+  if (temp_stack_ptr != (int64_t *)0x0) {
     (**(code **)(*temp_stack_ptr + 0x38))();
   }
-  if ((longlong *)*element_data != (longlong *)0x0) {
-    (**(code **)(*(longlong *)*element_data + 0x38))();
+  if ((int64_t *)*element_data != (int64_t *)0x0) {
+    (**(code **)(*(int64_t *)*element_data + 0x38))();
   }
   return;
 }
@@ -319,12 +319,12 @@ void Add_Rendering_Element_By_Bitmask(longlong *render_context, uint bitmask, lo
  * @param render_params 渲染参数数组
  * @return 处理结果标志
  */
-ulonglong Process_Rendering_Data(uint64_t *render_context, uint *render_flags, uint64_t render_mode, float *position_data,
+uint64_t Process_Rendering_Data(uint64_t *render_context, uint *render_flags, uint64_t render_mode, float *position_data,
                        uint64_t *render_params)
 
 {
   float distance_x;
-  longlong element_ptr;
+  int64_t element_ptr;
   float pos_y;
   float pos_z;
   float pos_w;
@@ -342,12 +342,12 @@ ulonglong Process_Rendering_Data(uint64_t *render_context, uint *render_flags, u
   float matrix_24;
   uint64_t param_data;
   byte render_result;
-  ulonglong result_flag;
+  uint64_t result_flag;
   int element_index;
-  longlong loop_counter;
+  int64_t loop_counter;
   uint element_bitmask;
   byte success_flag;
-  longlong context_ptr;
+  int64_t context_ptr;
   float render_distance;
   float camera_x;
   float camera_y;
@@ -392,7 +392,7 @@ ulonglong Process_Rendering_Data(uint64_t *render_context, uint *render_flags, u
   float transformed_4z;
   float transformed_4w;
   
-  result_flag = (ulonglong)*(uint *)(render_context + 0x42);
+  result_flag = (uint64_t)*(uint *)(render_context + 0x42);
   if (((*render_flags & *(uint *)(render_context + 0x42)) == 0) || (*(int *)(render_context + 0xb) == 0)) {
 PROCESSING_FAILED:
     result_flag = result_flag & 0xffffffffffffff00;
@@ -403,24 +403,24 @@ PROCESSING_FAILED:
     param_data = render_params[1];
     stack_param_5 = render_params[3];
     stack_param_6 = *(int32_t *)(render_params + 4);
-    stack_param_7 = *(int32_t *)((longlong)render_params + 0x24);
+    stack_param_7 = *(int32_t *)((int64_t)render_params + 0x24);
     stack_param_8 = *(int32_t *)(render_params + 5);
-    stack_param_9 = *(int *)((longlong)render_params + 0x2c);
+    stack_param_9 = *(int *)((int64_t)render_params + 0x2c);
     stack_param_10 = render_params[6];
     stack_param_11 = render_params[7];
     stack_param_12 = render_params[8];
     stack_param_13 = render_params[9];
     stack_param_14 = *(int32_t *)(render_params + 10);
-    stack_param_15 = *(int32_t *)((longlong)render_params + 0x54);
+    stack_param_15 = *(int32_t *)((int64_t)render_params + 0x54);
     stack_param_16 = *(int32_t *)(render_params + 0xb);
-    stack_param_17 = *(int32_t *)((longlong)render_params + 0x5c);
+    stack_param_17 = *(int32_t *)((int64_t)render_params + 0x5c);
     stack_param_18 = *(int32_t *)(render_params + 0xc);
-    stack_param_19 = *(int32_t *)((longlong)render_params + 100);
+    stack_param_19 = *(int32_t *)((int64_t)render_params + 100);
     stack_param_20 = *(int32_t *)(render_params + 0xd);
-    stack_param_21 = *(int32_t *)((longlong)render_params + 0x6c);
+    stack_param_21 = *(int32_t *)((int64_t)render_params + 0x6c);
     stack_param_2._0_4_ = (int)param_data;
-    element_index = (int)stack_param_2 + *(int *)((longlong)render_context + 0x5c);
-    stack_param_4 = (int16_t)((ulonglong)param_data >> 0x30);
+    element_index = (int)stack_param_2 + *(int *)((int64_t)render_context + 0x5c);
+    stack_param_4 = (int16_t)((uint64_t)param_data >> 0x30);
     _stack_param_2 = CONCAT15(*(int8_t *)(render_context + 0x76),(int5)param_data);
     _stack_param_2 = CONCAT44(stack0xffffffffffffff24,element_index);
     if (stack_param_9 == 0) {
@@ -446,11 +446,11 @@ PROCESSING_FAILED:
       pos_z = position_data[1];
       transform_x = position_data[2];
       transform_y = position_data[3];
-      result_flag = *(ulonglong *)(render_flags + 10);
-      max_distance = *(float *)((longlong)render_context + 0x334);
+      result_flag = *(uint64_t *)(render_flags + 10);
+      max_distance = *(float *)((int64_t)render_context + 0x334);
       camera_x = *(float *)(render_context + 0x66);
       camera_y = *(float *)(render_context + 0x67);
-      camera_z = *(float *)((longlong)render_context + 0x344);
+      camera_z = *(float *)((int64_t)render_context + 0x344);
       matrix_11 = position_data[8];
       matrix_12 = position_data[9];
       matrix_13 = position_data[10];
@@ -469,7 +469,7 @@ PROCESSING_FAILED:
       
       max_distance = *(float *)(render_context + 0x69);
       camera_x = *(float *)(render_context + 0x6a);
-      camera_y = *(float *)((longlong)render_context + 0x354);
+      camera_y = *(float *)((int64_t)render_context + 0x354);
       
       // 第二行变换计算
       transformed_2x = camera_z * matrix_21 + transform_z * pos_y + max_distance * matrix_11;
@@ -478,7 +478,7 @@ PROCESSING_FAILED:
       transformed_2w = camera_z * matrix_24 + transform_z * transform_y + max_distance * matrix_14;
       
       max_distance = *(float *)(render_context + 0x6b);
-      camera_z = *(float *)((longlong)render_context + 0x364);
+      camera_z = *(float *)((int64_t)render_context + 0x364);
       transform_z = *(float *)(render_context + 0x6c);
       
       // 第三行变换计算
@@ -498,12 +498,12 @@ PROCESSING_FAILED:
       // 距离检查
       if ((result_flag != 0) && (max_distance = *(float *)(render_context + 0xd), max_distance != 3.4028235e+38)) {
         if ((void *)*render_context == &STANDARD_RENDER_CONTEXT) {
-          context_ptr = (longlong)render_context + 0x214;
+          context_ptr = (int64_t)render_context + 0x214;
         }
         else {
           context_ptr = (**(code **)((void *)*render_context + 0x198))(render_context);
           max_distance = *(float *)(render_context + 0xd);
-          result_flag = *(ulonglong *)(render_flags + 10);
+          result_flag = *(uint64_t *)(render_flags + 10);
         }
         camera_z = *(float *)(result_flag + 0x124) - transformed_4y;
         camera_y = *(float *)(result_flag + 0x120) - transformed_4x;
@@ -514,11 +514,11 @@ PROCESSING_FAILED:
       }
       
       // 处理渲染元素
-      element_index = (int)((longlong)(render_context[8] - render_context[7]) >> 4);
-      context_ptr = (longlong)element_index;
+      element_index = (int)((int64_t)(render_context[8] - render_context[7]) >> 4);
+      context_ptr = (int64_t)element_index;
       if (0 < element_index) {
         do {
-          element_ptr = *(longlong *)(loop_counter + render_context[7]);
+          element_ptr = *(int64_t *)(loop_counter + render_context[7]);
           if ((element_ptr != 0) && ((*(uint *)(loop_counter + 8 + render_context[7]) & element_bitmask) != 0)) {
             if (((render_flags[0x6f6] & 0x20) != 0) && ((*(uint *)(element_ptr + 0x100) & 0x400000) != 0)) {
               *(int32_t *)(render_context + 0x65) = *(int32_t *)(GLOBAL_RENDER_DATA + 0x224);
@@ -529,20 +529,20 @@ PROCESSING_FAILED:
           loop_counter = loop_counter + 0x10;
           context_ptr = context_ptr + -1;
         } while (context_ptr != 0);
-        return (ulonglong)success_flag;
+        return (uint64_t)success_flag;
       }
     }
     else {
       // 简化距离检查
-      result_flag = *(ulonglong *)(render_flags + 10);
+      result_flag = *(uint64_t *)(render_flags + 10);
       if ((result_flag != 0) && (max_distance = *(float *)(render_context + 0xd), max_distance != 3.4028235e+38)) {
         if ((void *)*render_context == &STANDARD_RENDER_CONTEXT) {
-          context_ptr = (longlong)render_context + 0x214;
+          context_ptr = (int64_t)render_context + 0x214;
         }
         else {
           context_ptr = (**(code **)((void *)*render_context + 0x198))(render_context);
           max_distance = *(float *)(render_context + 0xd);
-          result_flag = *(ulonglong *)(render_flags + 10);
+          result_flag = *(uint64_t *)(render_flags + 10);
         }
         camera_z = *(float *)(result_flag + 0x124) - position_data[0xd];
         camera_y = *(float *)(result_flag + 0x120) - position_data[0xc];
@@ -553,11 +553,11 @@ PROCESSING_FAILED:
       }
       
       // 处理渲染元素（简化版本）
-      element_index = (int)((longlong)(render_context[8] - render_context[7]) >> 4);
-      context_ptr = (longlong)element_index;
+      element_index = (int)((int64_t)(render_context[8] - render_context[7]) >> 4);
+      context_ptr = (int64_t)element_index;
       if (0 < element_index) {
         do {
-          element_ptr = *(longlong *)(loop_counter + render_context[7]);
+          element_ptr = *(int64_t *)(loop_counter + render_context[7]);
           if ((element_ptr != 0) && ((*(uint *)(loop_counter + 8 + render_context[7]) & element_bitmask) != 0)) {
             if (((render_flags[0x6f6] & 0x20) != 0) && ((*(uint *)(element_ptr + 0x100) & 0x400000) != 0)) {
               *(int32_t *)(render_context + 0x65) = *(int32_t *)(GLOBAL_RENDER_DATA + 0x224);
@@ -575,7 +575,7 @@ PROCESSING_FAILED:
         } while (context_ptr != 0);
       }
     }
-    result_flag = (ulonglong)success_flag;
+    result_flag = (uint64_t)success_flag;
   }
   return result_flag;
 }
@@ -593,12 +593,12 @@ PROCESSING_FAILED:
  * @param transform_param_4 变换参数4
  * @return 处理结果标志
  */
-ulonglong Calculate_Render_Parameters(uint64_t transform_param_1, uint64_t transform_param_2, uint64_t transform_param_3, uint64_t transform_param_4)
+uint64_t Calculate_Render_Parameters(uint64_t transform_param_1, uint64_t transform_param_2, uint64_t transform_param_3, uint64_t transform_param_4)
 
 {
   float matrix_scale;
   float distance_calc;
-  longlong element_ptr;
+  int64_t element_ptr;
   float transform_x;
   float transform_y;
   float transform_z;
@@ -613,16 +613,16 @@ ulonglong Calculate_Render_Parameters(uint64_t transform_param_1, uint64_t trans
   float scale_w;
   byte render_result;
   int element_count;
-  ulonglong context_data;
-  ulonglong result_flag;
+  uint64_t context_data;
+  uint64_t result_flag;
   uint64_t *render_context;
-  longlong stack_base;
-  longlong render_state;
-  longlong element_array;
-  longlong matrix_params;
+  int64_t stack_base;
+  int64_t render_state;
+  int64_t element_array;
+  int64_t matrix_params;
   uint element_bitmask;
   byte success_flag;
-  longlong distance_context;
+  int64_t distance_context;
   float camera_distance;
   float render_x;
   float float_param_1;
@@ -656,22 +656,22 @@ ulonglong Calculate_Render_Parameters(uint64_t transform_param_1, uint64_t trans
   // 计算第一行变换
   *(float *)(stack_base + -0x21) = (float)transform_param_3 * matrix_x + (float)transform_param_1 + (float)transform_param_2 * transform_x;
   *(float *)(stack_base + -0x1d) =
-       (float)((ulonglong)transform_param_3 >> 0x20) * matrix_y + (float)((ulonglong)transform_param_1 >> 0x20) +
-       (float)((ulonglong)transform_param_2 >> 0x20) * transform_y;
+       (float)((uint64_t)transform_param_3 >> 0x20) * matrix_y + (float)((uint64_t)transform_param_1 >> 0x20) +
+       (float)((uint64_t)transform_param_2 >> 0x20) * transform_y;
   *(float *)(stack_base + -0x19) = float_param_3 * matrix_z + float_param_1 + float_param_2 * transform_z;
   *(float *)(stack_base + -0x15) = float_param_4 * matrix_w + float_param_2 + float_param_2 * transform_w;
   
-  render_z = *(float *)((longlong)render_context + 0x354);
+  render_z = *(float *)((int64_t)render_context + 0x354);
   matrix_scale = *(float *)(render_context + 0x6b);
   
   // 计算第二行变换
   *(float *)(stack_base + -0x11) = (float)transform_param_4 * matrix_x + matrix_value_1 * matrix_value_5 + matrix_value_2 * transform_x;
   *(float *)(stack_base + -0xd) =
-       (float)((ulonglong)transform_param_4 >> 0x20) * matrix_y + matrix_value_1 * matrix_value_6 + matrix_value_2 * transform_y;
+       (float)((uint64_t)transform_param_4 >> 0x20) * matrix_y + matrix_value_1 * matrix_value_6 + matrix_value_2 * transform_y;
   *(float *)(stack_base + -9) = matrix_value_7 * matrix_z + matrix_value_1 * matrix_value_7 + matrix_value_2 * transform_z;
   *(float *)(stack_base + -5) = matrix_value_8 * matrix_w + matrix_value_1 * matrix_value_8 + matrix_value_2 * transform_w;
   
-  matrix_value_1 = *(float *)((longlong)render_context + 0x364);
+  matrix_value_1 = *(float *)((int64_t)render_context + 0x364);
   matrix_value_2 = *(float *)(render_context + 0x6c);
   distance_calc = *(float *)(render_context + 0x6d);
   
@@ -695,12 +695,12 @@ ulonglong Calculate_Render_Parameters(uint64_t transform_param_1, uint64_t trans
   // 距离检查
   if ((context_data != 0) && (matrix_value_1 = *(float *)(render_context + 0xd), matrix_value_1 != 3.4028235e+38)) {
     if ((void *)*render_context == &STANDARD_RENDER_CONTEXT) {
-      distance_context = (longlong)render_context + 0x214;
+      distance_context = (int64_t)render_context + 0x214;
     }
     else {
       distance_context = (**(code **)((void *)*render_context + 0x198))();
       matrix_value_1 = *(float *)(render_context + 0xd);
-      context_data = *(ulonglong *)(render_state + 0x28);
+      context_data = *(uint64_t *)(render_state + 0x28);
     }
     render_z = *(float *)(context_data + 0x124) - *(float *)(stack_base + 0x13);
     matrix_value_3 = *(float *)(context_data + 0x120) - *(float *)(stack_base + 0xf);
@@ -713,14 +713,14 @@ ulonglong Calculate_Render_Parameters(uint64_t transform_param_1, uint64_t trans
   }
   
   // 处理渲染元素
-  element_count = (int)((longlong)(render_context[8] - render_context[7]) >> 4);
-  distance_context = (longlong)element_count;
+  element_count = (int)((int64_t)(render_context[8] - render_context[7]) >> 4);
+  distance_context = (int64_t)element_count;
   if (element_count < 1) {
-    result_flag = (ulonglong)success_flag;
+    result_flag = (uint64_t)success_flag;
   }
   else {
     do {
-      element_ptr = *(longlong *)(element_array + render_context[7]);
+      element_ptr = *(int64_t *)(element_array + render_context[7]);
       if ((element_ptr != 0) && ((*(uint *)(element_array + 8 + render_context[7]) & element_bitmask) != 0)) {
         if (((*(byte *)(render_state + 0x1bd8) & 0x20) != 0) &&
            ((*(uint *)(element_ptr + 0x100) & 0x400000) != 0)) {
@@ -732,7 +732,7 @@ ulonglong Calculate_Render_Parameters(uint64_t transform_param_1, uint64_t trans
       element_array = element_array + 0x10;
       distance_context = distance_context + -1;
     } while (distance_context != 0);
-    result_flag = (ulonglong)success_flag;
+    result_flag = (uint64_t)success_flag;
   }
   return result_flag;
 }
@@ -751,15 +751,15 @@ ulonglong Calculate_Render_Parameters(uint64_t transform_param_1, uint64_t trans
  * @param success_flag 成功标志（通过寄存器传递）
  * @return 处理结果标志
  */
-ulonglong Check_Render_Distance(uint64_t *render_context, longlong render_state, longlong element_array, uint element_bitmask, byte success_flag)
+uint64_t Check_Render_Distance(uint64_t *render_context, int64_t render_state, int64_t element_array, uint element_bitmask, byte success_flag)
 
 {
-  longlong element_ptr;
+  int64_t element_ptr;
   byte render_result;
   int element_count;
-  ulonglong context_data;
-  ulonglong result_flag;
-  longlong distance_context;
+  uint64_t context_data;
+  uint64_t result_flag;
+  int64_t distance_context;
   float max_distance;
   float camera_y;
   float camera_x;
@@ -773,12 +773,12 @@ ulonglong Check_Render_Distance(uint64_t *render_context, longlong render_state,
   if (max_distance != 3.4028235e+38) {
     // 获取距离检查上下文
     if ((void *)*render_context == &STANDARD_RENDER_CONTEXT) {
-      distance_context = (longlong)render_context + 0x214;
+      distance_context = (int64_t)render_context + 0x214;
     }
     else {
       distance_context = (**(code **)((void *)*render_context + 0x198))();
       max_distance = *(float *)(render_context + 0xd);
-      context_data = *(ulonglong *)(render_state + 0x28);
+      context_data = *(uint64_t *)(render_state + 0x28);
     }
     // 计算相机到变换点的距离
     camera_z = *(float *)(context_data + 0x124) - *(float *)(render_state + 0x13);
@@ -792,14 +792,14 @@ ulonglong Check_Render_Distance(uint64_t *render_context, longlong render_state,
     }
   }
   // 处理渲染元素
-  element_count = (int)((longlong)(render_context[8] - render_context[7]) >> 4);
-  distance_context = (longlong)element_count;
+  element_count = (int)((int64_t)(render_context[8] - render_context[7]) >> 4);
+  distance_context = (int64_t)element_count;
   if (element_count < 1) {
-    result_flag = (ulonglong)success_flag;
+    result_flag = (uint64_t)success_flag;
   }
   else {
     do {
-      element_ptr = *(longlong *)(element_array + render_context[7]);
+      element_ptr = *(int64_t *)(element_array + render_context[7]);
       if ((element_ptr != 0) && ((*(uint *)(element_array + 8 + render_context[7]) & element_bitmask) != 0)) {
         // 检查渲染状态标志
         if (((*(byte *)(render_state + 0x1bd8) & 0x20) != 0) &&
@@ -813,7 +813,7 @@ ulonglong Check_Render_Distance(uint64_t *render_context, longlong render_state,
       element_array = element_array + 0x10;
       distance_context = distance_context + -1;
     } while (distance_context != 0);
-    result_flag = (ulonglong)success_flag;
+    result_flag = (uint64_t)success_flag;
   }
   return result_flag;
 }
@@ -833,19 +833,19 @@ ulonglong Check_Render_Distance(uint64_t *render_context, longlong render_state,
  * @param success_flag 成功标志（通过寄存器传递）
  * @return 处理结果标志
  */
-byte Process_Render_Elements(int element_count, uint64_t *render_context, longlong render_state, longlong element_ptr, uint element_bitmask, byte success_flag)
+byte Process_Render_Elements(int element_count, uint64_t *render_context, int64_t render_state, int64_t element_ptr, uint element_bitmask, byte success_flag)
 
 {
-  longlong render_element;
+  int64_t render_element;
   byte render_result;
-  longlong loop_counter;
+  int64_t loop_counter;
   
-  loop_counter = (longlong)element_count;
+  loop_counter = (int64_t)element_count;
   if (0 < element_count) {
     do {
-      render_element = *(longlong *)(element_ptr + *(longlong *)(render_context + 0x38));
+      render_element = *(int64_t *)(element_ptr + *(int64_t *)(render_context + 0x38));
       if ((render_element != 0) &&
-         ((*(uint *)(element_ptr + 8 + *(longlong *)(render_context + 0x38)) & element_bitmask) != 0)) {
+         ((*(uint *)(element_ptr + 8 + *(int64_t *)(render_context + 0x38)) & element_bitmask) != 0)) {
         // 检查渲染状态标志
         if (((*(byte *)(render_state + 0x1bd8) & 0x20) != 0) &&
            ((*(uint *)(render_element + 0x100) & 0x400000) != 0)) {
@@ -894,15 +894,15 @@ int8_t Return_Parameter_Value(int8_t return_value)
  * @param transform_params 变换参数数组
  * @return 处理结果标志
  */
-ulonglong Update_Render_Context(longlong render_context, longlong render_data, int element_index, uint64_t *transform_params)
+uint64_t Update_Render_Context(int64_t render_context, int64_t render_data, int element_index, uint64_t *transform_params)
 
 {
   float max_distance;
   float current_distance;
-  ulonglong result_flag;
-  longlong element_data;
+  uint64_t result_flag;
+  int64_t element_data;
   int loop_counter;
-  longlong array_offset;
+  int64_t array_offset;
   float new_distance;
   uint64_t stack_params[8];
   
@@ -926,7 +926,7 @@ ulonglong Update_Render_Context(longlong render_context, longlong render_data, i
     
     // 获取最大渲染距离
     max_distance = *(float *)(render_context + 0x68);
-    element_data = (longlong)element_index * 0xbc + *(longlong *)(render_data + 0x98);
+    element_data = (int64_t)element_index * 0xbc + *(int64_t *)(render_data + 0x98);
     new_distance = 3.4028235e+38;
     
     // 计算新的距离值
@@ -941,21 +941,21 @@ ulonglong Update_Render_Context(longlong render_context, longlong render_data, i
     
     // 处理渲染元素
     loop_counter = 0;
-    element_data = *(longlong *)(render_context + 0x38);
-    result_flag = *(longlong *)(render_context + 0x40) - element_data >> 4;
+    element_data = *(int64_t *)(render_context + 0x38);
+    result_flag = *(int64_t *)(render_context + 0x40) - element_data >> 4;
     if (result_flag != 0) {
       array_offset = 0;
       do {
-        if (*(longlong *)(array_offset + element_data) != 0) {
+        if (*(int64_t *)(array_offset + element_data) != 0) {
           // 处理单个渲染元素
-          process_single_element(*(longlong *)(array_offset + element_data), render_data, element_index, &stack_params[0],
+          process_single_element(*(int64_t *)(array_offset + element_data), render_data, element_index, &stack_params[0],
                         *(int32_t *)(array_offset + 8 + element_data), *(int32_t *)(render_context + 0x58));
         }
-        element_data = *(longlong *)(render_context + 0x38);
+        element_data = *(int64_t *)(render_context + 0x38);
         loop_counter = loop_counter + 1;
         array_offset = array_offset + 0x10;
-        result_flag = (ulonglong)loop_counter;
-      } while (result_flag < (ulonglong)(*(longlong *)(render_context + 0x40) - element_data >> 4));
+        result_flag = (uint64_t)loop_counter;
+      } while (result_flag < (uint64_t)(*(int64_t *)(render_context + 0x40) - element_data >> 4));
     }
     return CONCAT71((int7)(result_flag >> 8), 1);
   }
@@ -972,26 +972,26 @@ ulonglong Update_Render_Context(longlong render_context, longlong render_data, i
  * @param element_index 元素索引（通过寄存器传递）
  * @return 处理结果标志
  */
-uint64_t Process_Render_Loop(uint64_t render_context, longlong element_offset, uint element_index)
+uint64_t Process_Render_Loop(uint64_t render_context, int64_t element_offset, uint element_index)
 
 {
   uint64_t *context_ptr;
-  ulonglong array_index;
+  uint64_t array_index;
   int32_t render_flag;
   
   context_ptr = (uint64_t *)render_context;
-  array_index = (ulonglong)element_index;
+  array_index = (uint64_t)element_index;
   
   do {
-    if (*(longlong *)(array_index + element_offset) != 0) {
+    if (*(int64_t *)(array_index + element_offset) != 0) {
       render_flag = *(int32_t *)(context_ptr + 0x58);
       process_single_element();
     }
-    element_offset = *(longlong *)(context_ptr + 0x38);
+    element_offset = *(int64_t *)(context_ptr + 0x38);
     element_index = element_index + 1;
     array_index = array_index + 0x10;
-  } while ((ulonglong)(longlong)(int)element_index <
-           (ulonglong)(*(longlong *)(context_ptr + 0x40) - element_offset >> 4));
+  } while ((uint64_t)(int64_t)(int)element_index <
+           (uint64_t)(*(int64_t *)(context_ptr + 0x40) - element_offset >> 4));
   
   return CONCAT71((int7)(int3)(element_index >> 8), 1);
 }
@@ -1023,39 +1023,39 @@ int8_t Return_Success_Flag(void)
  * @param render_state 渲染状态指针
  * @param state_value 状态值
  */
-void Update_Render_State(longlong render_state, int32_t state_value)
+void Update_Render_State(int64_t render_state, int32_t state_value)
 
 {
-  longlong *element_ptr;
-  longlong *resource_ptr;
-  ulonglong array_index;
+  int64_t *element_ptr;
+  int64_t *resource_ptr;
+  uint64_t array_index;
   uint element_count;
-  ulonglong state_index;
-  longlong *temp_ptr;
-  longlong *cleanup_ptr;
+  uint64_t state_index;
+  int64_t *temp_ptr;
+  int64_t *cleanup_ptr;
   int8_t resource_data[8];
-  longlong *resource_handle;
+  int64_t *resource_handle;
   int32_t resource_flag;
-  longlong *element_data;
+  int64_t *element_data;
   int16_t cleanup_flag;
   char process_flag;
   
   // 遍历渲染状态数组
-  element_ptr = *(longlong **)(render_state + 0x38);
-  if (element_ptr < *(longlong **)(render_state + 0x40)) {
+  element_ptr = *(int64_t **)(render_state + 0x38);
+  if (element_ptr < *(int64_t **)(render_state + 0x40)) {
     do {
-      element_ptr = (longlong *)*element_ptr;
-      if (element_ptr != (longlong *)0x0) {
+      element_ptr = (int64_t *)*element_ptr;
+      if (element_ptr != (int64_t *)0x0) {
         // 调用元素的初始化函数
         (**(code **)(*element_ptr + 0x28))(element_ptr);
       }
       
       // 初始化资源处理
-      element_data = (longlong *)0x0;
-      resource_handle = (longlong *)0x0;
+      element_data = (int64_t *)0x0;
+      resource_handle = (int64_t *)0x0;
       resource_data[0] = 0;
       
-      if (element_ptr != (longlong *)0x0) {
+      if (element_ptr != (int64_t *)0x0) {
         (**(code **)(*element_ptr + 0x28))(element_ptr);
       }
       
@@ -1066,7 +1066,7 @@ void Update_Render_State(longlong render_state, int32_t state_value)
       process_resource_data(resource_data);
       
       resource_ptr = element_data;
-      if (element_data != (longlong *)0x0) {
+      if (element_data != (int64_t *)0x0) {
         (**(code **)(*element_data + 0x28))(element_data);
       }
       
@@ -1074,7 +1074,7 @@ void Update_Render_State(longlong render_state, int32_t state_value)
       cleanup_flag = 0;
       process_flag = '\0';
       
-      if (element_ptr != (longlong *)0x0) {
+      if (element_ptr != (int64_t *)0x0) {
         (**(code **)(*element_ptr + 0x38))(element_ptr);
       }
       
@@ -1087,14 +1087,14 @@ void Update_Render_State(longlong render_state, int32_t state_value)
           *(int32_t *)(resource_ptr[0xd] + 0x54 + array_index) = state_value;
           element_count = (int)state_index + 1;
           array_index = array_index + 0x5c;
-          state_index = (ulonglong)element_count;
+          state_index = (uint64_t)element_count;
         } while ((int)element_count < (int)resource_ptr[0xc]);
       }
       
       cleanup_flag = CONCAT11(cleanup_flag._1_1_, 1);
       
       // 处理元素和资源
-      if ((element_ptr != (longlong *)0x0) && (resource_ptr != (longlong *)0x0)) {
+      if ((element_ptr != (int64_t *)0x0) && (resource_ptr != (int64_t *)0x0)) {
         if (process_flag != '\0') {
           execute_special_processing();
         }
@@ -1109,8 +1109,8 @@ void Update_Render_State(longlong render_state, int32_t state_value)
           process_element_data(element_ptr);
         }
         
-        cleanup_ptr = (longlong *)0x0;
-        if (resource_ptr != (longlong *)0x0) {
+        cleanup_ptr = (int64_t *)0x0;
+        if (resource_ptr != (int64_t *)0x0) {
           (**(code **)(*resource_ptr + 0x38))();
         }
       }
@@ -1118,20 +1118,20 @@ void Update_Render_State(longlong render_state, int32_t state_value)
       // 清理资源
       cleanup_resource_data(resource_data);
       
-      if (element_data != (longlong *)0x0) {
+      if (element_data != (int64_t *)0x0) {
         (**(code **)(*element_data + 0x38))();
       }
       
-      if (cleanup_ptr != (longlong *)0x0) {
+      if (cleanup_ptr != (int64_t *)0x0) {
         (**(code **)(*cleanup_ptr + 0x38))();
       }
       
-      if (element_ptr != (longlong *)0x0) {
+      if (element_ptr != (int64_t *)0x0) {
         (**(code **)(*element_ptr + 0x38))();
       }
       
       element_ptr = element_ptr + 2;
-    } while (element_ptr < *(longlong **)(render_state + 0x40));
+    } while (element_ptr < *(int64_t **)(render_state + 0x40));
   }
   return;
 }

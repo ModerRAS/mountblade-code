@@ -206,8 +206,8 @@ typedef struct {
  * ============================================================================ */
 
 // 核心引擎数据处理器 - 处理数据结构和系统状态
-void CoreEngine_DataProcessor(DataHandle data_handle, MemoryHandle *memory_result, longlong config_param, longlong state_param,
-                            int8_t processing_flag, int32_t memory_size, uint buffer_handle, ulonglong security_param)
+void CoreEngine_DataProcessor(DataHandle data_handle, MemoryHandle *memory_result, int64_t config_param, int64_t state_param,
+                            int8_t processing_flag, int32_t memory_size, uint buffer_handle, uint64_t security_param)
 
 {
   ProcessingStatus temp_status_1;

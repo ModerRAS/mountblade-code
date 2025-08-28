@@ -8,8 +8,8 @@
 // 02_core_engine_part166.c - 9 个函数
 
 
-// 函数: void FUN_18014f220(uint64_t param_1,uint64_t param_2,uint64_t param_3,longlong *param_4)
-void FUN_18014f220(uint64_t param_1,uint64_t param_2,uint64_t param_3,longlong *param_4)
+// 函数: void FUN_18014f220(uint64_t param_1,uint64_t param_2,uint64_t param_3,int64_t *param_4)
+void FUN_18014f220(uint64_t param_1,uint64_t param_2,uint64_t param_3,int64_t *param_4)
 
 {
   uint64_t *puVar1;
@@ -25,7 +25,7 @@ void FUN_18014f220(uint64_t param_1,uint64_t param_2,uint64_t param_3,longlong *
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-longlong FUN_18014f250(longlong *param_1,longlong *param_2,int param_3)
+int64_t FUN_18014f250(int64_t *param_1,int64_t *param_2,int param_3)
 
 {
   uint64_t *puVar1;
@@ -52,7 +52,7 @@ longlong FUN_18014f250(longlong *param_1,longlong *param_2,int param_3)
       *puVar3 = *puVar1;
       puVar3[1] = uVar2;
       puVar3[2] = puVar1[2];
-      *param_1 = (longlong)puVar3;
+      *param_1 = (int64_t)puVar3;
       return 0;
     }
     if (param_3 == 2) {
@@ -68,10 +68,10 @@ longlong FUN_18014f250(longlong *param_1,longlong *param_2,int param_3)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-longlong FUN_18014f3f0(longlong *param_1,longlong *param_2,int param_3,uint64_t param_4)
+int64_t FUN_18014f3f0(int64_t *param_1,int64_t *param_2,int param_3,uint64_t param_4)
 
 {
-  longlong lVar1;
+  int64_t lVar1;
   
   if (param_3 == 3) {
     return 0x180bfffe0;
@@ -109,10 +109,10 @@ longlong FUN_18014f3f0(longlong *param_1,longlong *param_2,int param_3,uint64_t 
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-longlong FUN_18014f520(longlong *param_1,longlong *param_2,int param_3,uint64_t param_4)
+int64_t FUN_18014f520(int64_t *param_1,int64_t *param_2,int param_3,uint64_t param_4)
 
 {
-  longlong lVar1;
+  int64_t lVar1;
   
   if (param_3 == 3) {
     return 0x180c00020;
@@ -151,15 +151,15 @@ longlong FUN_18014f520(longlong *param_1,longlong *param_2,int param_3,uint64_t 
 
 
 
-// 函数: void FUN_18014f660(uint64_t param_1,uint64_t param_2,uint64_t param_3,longlong *param_4)
-void FUN_18014f660(uint64_t param_1,uint64_t param_2,uint64_t param_3,longlong *param_4)
+// 函数: void FUN_18014f660(uint64_t param_1,uint64_t param_2,uint64_t param_3,int64_t *param_4)
+void FUN_18014f660(uint64_t param_1,uint64_t param_2,uint64_t param_3,int64_t *param_4)
 
 {
-  longlong lVar1;
+  int64_t lVar1;
   
   lVar1 = *param_4;
   FUN_18014d7f0(*(uint64_t *)
-                 (*(longlong *)(lVar1 + 0x28) + 200 + (longlong)*(int *)(lVar1 + 0x20) * 8),
+                 (*(int64_t *)(lVar1 + 0x28) + 200 + (int64_t)*(int *)(lVar1 + 0x20) * 8),
                 *(uint64_t *)(lVar1 + 0x30),param_1);
                     // WARNING: Could not recover jumptable at 0x00018014f691. Too many branches
                     // WARNING: Treating indirect jump as call
@@ -171,11 +171,11 @@ void FUN_18014f660(uint64_t param_1,uint64_t param_2,uint64_t param_3,longlong *
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-longlong FUN_18014f6a0(longlong *param_1,longlong *param_2,int param_3,uint64_t param_4)
+int64_t FUN_18014f6a0(int64_t *param_1,int64_t *param_2,int param_3,uint64_t param_4)
 
 {
-  longlong lVar1;
-  longlong lVar2;
+  int64_t lVar1;
+  int64_t lVar2;
   code *pcVar3;
   
   if (param_3 == 3) {
@@ -232,14 +232,14 @@ longlong FUN_18014f6a0(longlong *param_1,longlong *param_2,int param_3,uint64_t 
 
 
 
-// 函数: void FUN_18014f810(uint64_t param_1,uint64_t param_2,uint64_t param_3,longlong *param_4)
-void FUN_18014f810(uint64_t param_1,uint64_t param_2,uint64_t param_3,longlong *param_4)
+// 函数: void FUN_18014f810(uint64_t param_1,uint64_t param_2,uint64_t param_3,int64_t *param_4)
+void FUN_18014f810(uint64_t param_1,uint64_t param_2,uint64_t param_3,int64_t *param_4)
 
 {
-  longlong lVar1;
+  int64_t lVar1;
   
   lVar1 = *param_4;
-  FUN_18014ce90(*(uint64_t *)(*(longlong *)(lVar1 + 0x20) + 0xc0),param_1);
+  FUN_18014ce90(*(uint64_t *)(*(int64_t *)(lVar1 + 0x20) + 0xc0),param_1);
                     // WARNING: Could not recover jumptable at 0x00018014f838. Too many branches
                     // WARNING: Treating indirect jump as call
   (**(code **)(lVar1 + 0x18))(lVar1);
@@ -250,11 +250,11 @@ void FUN_18014f810(uint64_t param_1,uint64_t param_2,uint64_t param_3,longlong *
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-longlong FUN_18014f840(longlong *param_1,longlong *param_2,int param_3,uint64_t param_4)
+int64_t FUN_18014f840(int64_t *param_1,int64_t *param_2,int param_3,uint64_t param_4)
 
 {
-  longlong lVar1;
-  longlong lVar2;
+  int64_t lVar1;
+  int64_t lVar2;
   code *pcVar3;
   
   if (param_3 == 3) {
@@ -306,13 +306,13 @@ longlong FUN_18014f840(longlong *param_1,longlong *param_2,int param_3,uint64_t 
 
 
 
-uint64_t * FUN_18014f980(uint64_t *param_1,int8_t *param_2,ulonglong *param_3)
+uint64_t * FUN_18014f980(uint64_t *param_1,int8_t *param_2,uint64_t *param_3)
 
 {
   float fVar1;
   float fVar2;
-  ulonglong uVar3;
-  ulonglong uVar4;
+  uint64_t uVar3;
+  uint64_t uVar4;
   uint64_t *puVar5;
   uint64_t *puVar6;
   bool bVar7;
@@ -336,8 +336,8 @@ LAB_18014fa54:
           fVar1 = *(float *)(param_3 + 1);
           fVar2 = *(float *)(puVar6 + 5);
           if (fVar1 == fVar2) {
-            fVar1 = *(float *)((longlong)param_3 + 0xc);
-            fVar2 = *(float *)((longlong)puVar6 + 0x2c);
+            fVar1 = *(float *)((int64_t)param_3 + 0xc);
+            fVar2 = *(float *)((int64_t)puVar6 + 0x2c);
             if (fVar1 != fVar2) {
               bVar8 = fVar2 == fVar1;
               bVar7 = fVar2 < fVar1;
@@ -357,8 +357,8 @@ LAB_18014f9f9:
           fVar1 = *(float *)(puVar6 + 5);
           fVar2 = *(float *)(param_3 + 1);
           if (fVar1 == fVar2) {
-            fVar1 = *(float *)((longlong)puVar6 + 0x2c);
-            fVar2 = *(float *)((longlong)param_3 + 0xc);
+            fVar1 = *(float *)((int64_t)puVar6 + 0x2c);
+            fVar2 = *(float *)((int64_t)param_3 + 0xc);
             if (fVar1 != fVar2) {
               bVar8 = fVar2 == fVar1;
               bVar7 = fVar2 < fVar1;
@@ -394,8 +394,8 @@ LAB_18014fa3c:
     fVar1 = *(float *)(puVar5 + 5);
     fVar2 = *(float *)(param_3 + 1);
     if (fVar1 == fVar2) {
-      fVar1 = *(float *)((longlong)puVar5 + 0x2c);
-      fVar2 = *(float *)((longlong)param_3 + 0xc);
+      fVar1 = *(float *)((int64_t)puVar5 + 0x2c);
+      fVar2 = *(float *)((int64_t)param_3 + 0xc);
       if (fVar1 != fVar2) {
         bVar8 = fVar2 == fVar1;
         bVar7 = fVar2 < fVar1;
@@ -415,8 +415,8 @@ LAB_18014fada:
   fVar1 = *(float *)(param_3 + 1);
   fVar2 = *(float *)(puVar5 + 5);
   if (fVar1 == fVar2) {
-    fVar1 = *(float *)((longlong)param_3 + 0xc);
-    fVar2 = *(float *)((longlong)puVar5 + 0x2c);
+    fVar1 = *(float *)((int64_t)param_3 + 0xc);
+    fVar2 = *(float *)((int64_t)puVar5 + 0x2c);
     if (fVar1 != fVar2) {
       bVar8 = fVar2 == fVar1;
       bVar7 = fVar2 < fVar1;
@@ -445,8 +445,8 @@ LAB_18014fb2e:
 
 
 
-// 函数: void FUN_18014fb60(longlong param_1,longlong param_2,uint64_t param_3)
-void FUN_18014fb60(longlong param_1,longlong param_2,uint64_t param_3)
+// 函数: void FUN_18014fb60(int64_t param_1,int64_t param_2,uint64_t param_3)
+void FUN_18014fb60(int64_t param_1,int64_t param_2,uint64_t param_3)
 
 {
   if (param_1 != param_2) {
@@ -460,16 +460,16 @@ void FUN_18014fb60(longlong param_1,longlong param_2,uint64_t param_3)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-longlong * FUN_18014fbc0(longlong *param_1,longlong *param_2,longlong *param_3,longlong *param_4)
+int64_t * FUN_18014fbc0(int64_t *param_1,int64_t *param_2,int64_t *param_3,int64_t *param_4)
 
 {
-  longlong *plVar1;
+  int64_t *plVar1;
   uint uVar2;
-  longlong lVar3;
-  longlong lVar4;
-  longlong *plVar5;
+  int64_t lVar3;
+  int64_t lVar4;
+  int64_t *plVar5;
   
-  *param_1 = (longlong)param_4;
+  *param_1 = (int64_t)param_4;
   if (param_2 != param_3) {
     plVar5 = param_2 + 6;
     do {
@@ -551,7 +551,7 @@ longlong * FUN_18014fbc0(longlong *param_1,longlong *param_2,longlong *param_3,l
       }
       param_4[0xe] = lVar4;
       *param_1 = *param_1 + 0x88;
-      param_4 = (longlong *)*param_1;
+      param_4 = (int64_t *)*param_1;
       plVar1 = plVar5 + 0xb;
       plVar5 = plVar5 + 0x11;
     } while (plVar1 != param_3);
@@ -563,26 +563,26 @@ longlong * FUN_18014fbc0(longlong *param_1,longlong *param_2,longlong *param_3,l
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-longlong * FUN_18014fe60(longlong param_1,longlong param_2,longlong *param_3)
+int64_t * FUN_18014fe60(int64_t param_1,int64_t param_2,int64_t *param_3)
 
 {
-  longlong *plVar1;
-  longlong lVar2;
-  longlong lVar3;
-  longlong lVar4;
-  ulonglong uVar5;
-  longlong lVar6;
-  longlong *plVar7;
-  ulonglong uVar8;
-  longlong lVar9;
-  longlong *plVar10;
-  longlong lStackX_8;
-  longlong *plStackX_18;
+  int64_t *plVar1;
+  int64_t lVar2;
+  int64_t lVar3;
+  int64_t lVar4;
+  uint64_t uVar5;
+  int64_t lVar6;
+  int64_t *plVar7;
+  uint64_t uVar8;
+  int64_t lVar9;
+  int64_t *plVar10;
+  int64_t lStackX_8;
+  int64_t *plStackX_18;
   
   lStackX_8 = (param_2 - param_1) / 0x88;
   if (0 < lStackX_8) {
     plVar7 = param_3 + 10;
-    plVar10 = (longlong *)(param_1 + 0x70);
+    plVar10 = (int64_t *)(param_1 + 0x70);
     plStackX_18 = param_3;
     do {
       if (plStackX_18 != plVar10 + -0xe) {
@@ -591,7 +591,7 @@ longlong * FUN_18014fe60(longlong param_1,longlong param_2,longlong *param_3)
         lVar4 = *plStackX_18;
         lVar9 = lVar6 - lVar2;
         uVar8 = lVar9 >> 3;
-        if ((ulonglong)(plVar7[-8] - lVar4 >> 3) < uVar8) {
+        if ((uint64_t)(plVar7[-8] - lVar4 >> 3) < uVar8) {
           if (uVar8 == 0) {
             lVar4 = 0;
           }
@@ -644,7 +644,7 @@ longlong * FUN_18014fe60(longlong param_1,longlong param_2,longlong *param_3)
         lVar4 = *plVar1;
         lVar9 = lVar6 - lVar2;
         uVar8 = lVar9 >> 2;
-        if ((ulonglong)(plVar7[1] - lVar4 >> 2) < uVar8) {
+        if ((uint64_t)(plVar7[1] - lVar4 >> 2) < uVar8) {
           if (uVar8 == 0) {
             lVar4 = 0;
           }
@@ -694,7 +694,7 @@ longlong * FUN_18014fe60(longlong param_1,longlong param_2,longlong *param_3)
         lVar2 = plVar10[-1];
         lVar4 = (lVar6 - lVar2) / 6 + (lVar6 - lVar2 >> 0x3f);
         uVar8 = (lVar4 >> 2) - (lVar4 >> 0x3f);
-        if ((ulonglong)((plVar7[5] - *plVar1) / 0x18) < uVar8) {
+        if ((uint64_t)((plVar7[5] - *plVar1) / 0x18) < uVar8) {
           if (uVar8 == 0) {
             lVar4 = 0;
           }
@@ -738,37 +738,37 @@ longlong * FUN_18014fe60(longlong param_1,longlong param_2,longlong *param_3)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-longlong * FUN_18014fe9c(longlong param_1,uint64_t param_2,longlong param_3)
+int64_t * FUN_18014fe9c(int64_t param_1,uint64_t param_2,int64_t param_3)
 
 {
-  longlong *plVar1;
-  longlong lVar2;
-  longlong lVar3;
-  longlong lVar4;
-  ulonglong uVar5;
-  longlong lVar6;
+  int64_t *plVar1;
+  int64_t lVar2;
+  int64_t lVar3;
+  int64_t lVar4;
+  uint64_t uVar5;
+  int64_t lVar6;
   uint64_t unaff_RBX;
-  longlong *plVar7;
+  int64_t *plVar7;
   uint64_t unaff_RBP;
-  ulonglong uVar8;
+  uint64_t uVar8;
   uint64_t unaff_RSI;
   uint64_t unaff_RDI;
-  longlong in_R11;
+  int64_t in_R11;
   uint64_t unaff_R12;
-  longlong lVar9;
-  longlong *unaff_R13;
+  int64_t lVar9;
+  int64_t *unaff_R13;
   uint64_t unaff_R14;
-  longlong *plVar10;
+  int64_t *plVar10;
   uint64_t unaff_R15;
-  longlong in_stack_00000060;
-  longlong *in_stack_00000070;
+  int64_t in_stack_00000060;
+  int64_t *in_stack_00000070;
   
   *(uint64_t *)(in_R11 + 0x10) = unaff_RBX;
-  plVar7 = (longlong *)(param_3 + 0x50);
+  plVar7 = (int64_t *)(param_3 + 0x50);
   *(uint64_t *)(in_R11 + -0x18) = unaff_RSI;
   *(uint64_t *)(in_R11 + -0x28) = unaff_R12;
   *(uint64_t *)(in_R11 + -0x30) = unaff_R14;
-  plVar10 = (longlong *)(param_1 + 0x70);
+  plVar10 = (int64_t *)(param_1 + 0x70);
   *(uint64_t *)(in_R11 + -0x38) = unaff_R15;
   *(uint64_t *)(in_R11 + -0x10) = unaff_RBP;
   *(uint64_t *)(in_R11 + -0x20) = unaff_RDI;
@@ -779,7 +779,7 @@ longlong * FUN_18014fe9c(longlong param_1,uint64_t param_2,longlong param_3)
       lVar4 = *unaff_R13;
       lVar9 = lVar6 - lVar2;
       uVar8 = lVar9 >> 3;
-      if ((ulonglong)(plVar7[-8] - lVar4 >> 3) < uVar8) {
+      if ((uint64_t)(plVar7[-8] - lVar4 >> 3) < uVar8) {
         if (uVar8 == 0) {
           lVar4 = 0;
         }
@@ -833,7 +833,7 @@ longlong * FUN_18014fe9c(longlong param_1,uint64_t param_2,longlong param_3)
       lVar9 = lVar6 - lVar2;
       uVar8 = lVar9 >> 2;
       unaff_R13 = in_stack_00000070;
-      if ((ulonglong)(plVar7[1] - lVar4 >> 2) < uVar8) {
+      if ((uint64_t)(plVar7[1] - lVar4 >> 2) < uVar8) {
         if (uVar8 == 0) {
           lVar4 = 0;
         }
@@ -883,7 +883,7 @@ longlong * FUN_18014fe9c(longlong param_1,uint64_t param_2,longlong param_3)
       lVar2 = plVar10[-1];
       lVar4 = (lVar6 - lVar2) / 6 + (lVar6 - lVar2 >> 0x3f);
       uVar8 = (lVar4 >> 2) - (lVar4 >> 0x3f);
-      if ((ulonglong)((plVar7[5] - *plVar1) / 0x18) < uVar8) {
+      if ((uint64_t)((plVar7[5] - *plVar1) / 0x18) < uVar8) {
         if (uVar8 == 0) {
           lVar4 = 0;
         }
@@ -940,16 +940,16 @@ void FUN_180150227(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-longlong * FUN_180150240(longlong *param_1,longlong *param_2)
+int64_t * FUN_180150240(int64_t *param_1,int64_t *param_2)
 
 {
-  longlong lVar1;
-  longlong lVar2;
-  longlong lVar3;
-  longlong lVar4;
-  ulonglong uVar5;
-  ulonglong uVar6;
-  longlong lVar7;
+  int64_t lVar1;
+  int64_t lVar2;
+  int64_t lVar3;
+  int64_t lVar4;
+  uint64_t uVar5;
+  uint64_t uVar6;
+  int64_t lVar7;
   
   if (param_1 != param_2) {
     lVar1 = *param_1;
@@ -957,7 +957,7 @@ longlong * FUN_180150240(longlong *param_1,longlong *param_2)
     lVar3 = param_2[1];
     lVar7 = lVar3 - lVar2;
     uVar5 = lVar7 >> 4;
-    if ((ulonglong)(param_1[2] - lVar1 >> 4) < uVar5) {
+    if ((uint64_t)(param_1[2] - lVar1 >> 4) < uVar5) {
       if (uVar5 == 0) {
         lVar4 = 0;
       }
@@ -1009,24 +1009,24 @@ longlong * FUN_180150240(longlong *param_1,longlong *param_2)
 
 
 
-// 函数: void FUN_180150259(longlong param_1,longlong *param_2)
-void FUN_180150259(longlong param_1,longlong *param_2)
+// 函数: void FUN_180150259(int64_t param_1,int64_t *param_2)
+void FUN_180150259(int64_t param_1,int64_t *param_2)
 
 {
-  longlong lVar1;
-  longlong lVar2;
-  longlong in_RAX;
-  longlong lVar3;
-  longlong *unaff_RBX;
-  ulonglong uVar4;
-  ulonglong uVar5;
-  longlong lVar6;
+  int64_t lVar1;
+  int64_t lVar2;
+  int64_t in_RAX;
+  int64_t lVar3;
+  int64_t *unaff_RBX;
+  uint64_t uVar4;
+  uint64_t uVar5;
+  int64_t lVar6;
   
   lVar1 = *param_2;
   lVar2 = param_2[1];
   lVar6 = lVar2 - lVar1;
   uVar4 = lVar6 >> 4;
-  if ((ulonglong)(in_RAX - param_1 >> 4) < uVar4) {
+  if ((uint64_t)(in_RAX - param_1 >> 4) < uVar4) {
     if (uVar4 == 0) {
       lVar3 = 0;
     }
@@ -1081,11 +1081,11 @@ void FUN_180150259(longlong param_1,longlong *param_2)
 void FUN_18015028d(void)
 
 {
-  longlong lVar1;
-  longlong *unaff_RBX;
-  longlong unaff_RBP;
-  longlong unaff_RSI;
-  longlong unaff_RDI;
+  int64_t lVar1;
+  int64_t *unaff_RBX;
+  int64_t unaff_RBP;
+  int64_t unaff_RSI;
+  int64_t unaff_RDI;
   
   if (unaff_RDI == 0) {
     lVar1 = 0;
@@ -1113,19 +1113,19 @@ void FUN_18015028d(void)
 
 
 
-// 函数: void FUN_1801502ec(longlong param_1)
-void FUN_1801502ec(longlong param_1)
+// 函数: void FUN_1801502ec(int64_t param_1)
+void FUN_1801502ec(int64_t param_1)
 
 {
-  longlong lVar1;
-  longlong lVar2;
-  longlong unaff_RBX;
-  longlong unaff_RBP;
-  longlong unaff_RSI;
-  ulonglong unaff_RDI;
-  ulonglong uVar3;
+  int64_t lVar1;
+  int64_t lVar2;
+  int64_t unaff_RBX;
+  int64_t unaff_RBP;
+  int64_t unaff_RSI;
+  uint64_t unaff_RDI;
+  uint64_t uVar3;
   
-  lVar2 = *(longlong *)(unaff_RBX + 8);
+  lVar2 = *(int64_t *)(unaff_RBX + 8);
   uVar3 = lVar2 - param_1 >> 4;
   if (uVar3 < unaff_RDI) {
     lVar1 = uVar3 * 0x10 + unaff_RBP;
@@ -1137,14 +1137,14 @@ void FUN_1801502ec(longlong param_1)
                     // WARNING: Subroutine does not return
       memmove(lVar2,lVar1,unaff_RSI - lVar1);
     }
-    *(longlong *)(unaff_RBX + 8) = lVar2;
+    *(int64_t *)(unaff_RBX + 8) = lVar2;
   }
   else {
     if (unaff_RBP != unaff_RSI) {
                     // WARNING: Subroutine does not return
       memmove();
     }
-    *(longlong *)(unaff_RBX + 8) = param_1;
+    *(int64_t *)(unaff_RBX + 8) = param_1;
   }
   return;
 }

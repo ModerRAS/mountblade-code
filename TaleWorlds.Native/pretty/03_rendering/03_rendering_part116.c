@@ -101,7 +101,7 @@ typedef struct {
  * 本函数为简化实现，原始代码包含复杂的内存管理和数据处理逻辑。
  * 原始代码中实现了完整的数据读取、数组处理、对象引用管理等功能。
  */
-void rendering_system_data_deserializer(longlong *param_1, longlong *param_2) {
+void rendering_system_data_deserializer(int64_t *param_1, int64_t *param_2) {
     // 参数有效性检查
     if (param_1 == NULL || param_2 == NULL) {
         return;
@@ -121,7 +121,7 @@ void rendering_system_data_deserializer(longlong *param_1, longlong *param_2) {
         // 调用数据处理函数
         // (**(code **)(*param_1 + 0x18))(param_1, data_ptr);
         // 更新数据流位置
-        *(longlong *)(param_2 + 8) = *(longlong *)(param_2 + 8) + (ulonglong)data_size;
+        *(int64_t *)(param_2 + 8) = *(int64_t *)(param_2 + 8) + (uint64_t)data_size;
     }
     
     // 继续处理其他数据字段...
@@ -157,7 +157,7 @@ void rendering_system_data_deserializer(longlong *param_1, longlong *param_2) {
  * 本函数为简化实现，原始代码包含复杂的序列化逻辑。
  * 原始代码中实现了完整的缓冲区管理、数据验证、对象引用处理等功能。
  */
-void rendering_system_object_serializer(longlong param_1, longlong *param_2) {
+void rendering_system_object_serializer(int64_t param_1, int64_t *param_2) {
     // 参数有效性检查
     if (param_1 == NULL || param_2 == NULL) {
         return;
@@ -171,9 +171,9 @@ void rendering_system_object_serializer(longlong param_1, longlong *param_2) {
     uint32_t data_value = *(uint32_t*)(param_1 + 8);
     
     // 检查缓冲区容量
-    if ((ulonglong)((param_2[2] - (longlong)data_ptr) + *param_2) < 5) {
+    if ((uint64_t)((param_2[2] - (int64_t)data_ptr) + *param_2) < 5) {
         // 缓冲区扩容
-        // System_BufferManager(param_2, (longlong)data_ptr + (4 - *param_2));
+        // System_BufferManager(param_2, (int64_t)data_ptr + (4 - *param_2));
         data_ptr = (uint32_t*)param_2[1];
     }
     
@@ -214,7 +214,7 @@ void rendering_system_object_serializer(longlong param_1, longlong *param_2) {
  * 本函数为简化实现，原始代码包含复杂的加载逻辑。
  * 原始代码中实现了完整的对象加载、数据验证、引用重建等功能。
  */
-void rendering_system_object_loader(longlong param_1, longlong param_2) {
+void rendering_system_object_loader(int64_t param_1, int64_t param_2) {
     // 参数有效性检查
     if (param_1 == NULL || param_2 == NULL) {
         return;
@@ -225,7 +225,7 @@ void rendering_system_object_loader(longlong param_1, longlong param_2) {
     
     // 读取对象头信息
     *(uint32_t*)(param_1 + 8) = **(uint32_t**)(param_2 + 8);
-    *(longlong *)(param_2 + 8) = *(longlong *)(param_2 + 8) + 4;
+    *(int64_t *)(param_2 + 8) = *(int64_t *)(param_2 + 8) + 4;
     
     // 处理数据块
     uint32_t data_size = **(uint **)(param_2 + 8);
@@ -234,9 +234,9 @@ void rendering_system_object_loader(longlong param_1, longlong param_2) {
     
     if (data_size != 0) {
         // 调用数据处理函数
-        // (**(code **)(*(longlong *)(param_1 + 0xb0) + 0x18))((longlong *)(param_1 + 0xb0), data_ptr, data_size);
+        // (**(code **)(*(int64_t *)(param_1 + 0xb0) + 0x18))((int64_t *)(param_1 + 0xb0), data_ptr, data_size);
         // 更新数据流位置
-        *(longlong *)(param_2 + 8) = *(longlong *)(param_2 + 8) + (ulonglong)data_size;
+        *(int64_t *)(param_2 + 8) = *(int64_t *)(param_2 + 8) + (uint64_t)data_size;
     }
     
     // 继续加载其他数据字段...
@@ -268,7 +268,7 @@ void rendering_system_object_loader(longlong param_1, longlong param_2) {
  * 本函数为简化实现，原始代码包含复杂的初始化逻辑。
  * 原始代码中实现了完整的对象初始化、内存分配、子对象管理等功能。
  */
-void rendering_system_object_initializer(longlong param_1) {
+void rendering_system_object_initializer(int64_t param_1) {
     // 参数有效性检查
     if (param_1 == NULL) {
         return;
@@ -375,7 +375,7 @@ uint64_t *rendering_system_object_creator(uint64_t *param_1) {
  * 本函数为简化实现，原始代码包含复杂的比较逻辑。
  * 原始代码中实现了完整的对象比较、数据处理、标志设置等功能。
  */
-bool rendering_system_object_comparator(longlong param_1, longlong param_2) {
+bool rendering_system_object_comparator(int64_t param_1, int64_t param_2) {
     // 参数有效性检查
     if (param_1 == NULL || param_2 == NULL) {
         return false;
@@ -446,7 +446,7 @@ bool rendering_system_object_comparator(longlong param_1, longlong param_2) {
  * 本函数为简化实现，原始代码包含复杂的数据处理逻辑。
  * 原始代码中实现了完整的数据处理、验证、优化等功能。
  */
-int8_t rendering_system_data_processor(uint64_t param_1, uint64_t param_2, longlong param_3, longlong param_4) {
+int8_t rendering_system_data_processor(uint64_t param_1, uint64_t param_2, int64_t param_3, int64_t param_4) {
     // 参数有效性检查
     if (param_3 == 0) {
         return 0;
@@ -513,7 +513,7 @@ int8_t rendering_system_empty_processor(void) {
  * 本函数为简化实现，原始代码包含复杂的序列化逻辑。
  * 原始代码中实现了完整的高级序列化、缓冲区管理、数据验证等功能。
  */
-void rendering_system_advanced_serializer(longlong param_1, longlong *param_2, uint64_t param_3, uint64_t param_4) {
+void rendering_system_advanced_serializer(int64_t param_1, int64_t *param_2, uint64_t param_3, uint64_t param_4) {
     // 参数有效性检查
     if (param_1 == NULL || param_2 == NULL) {
         return;
@@ -527,9 +527,9 @@ void rendering_system_advanced_serializer(longlong param_1, longlong *param_2, u
     uint32_t data_value = *(uint32_t*)(param_1 + 0xb0);
     
     // 检查缓冲区容量
-    if ((ulonglong)((param_2[2] - (longlong)data_ptr) + *param_2) < 5) {
+    if ((uint64_t)((param_2[2] - (int64_t)data_ptr) + *param_2) < 5) {
         // 缓冲区扩容
-        // System_BufferManager(param_2, (longlong)data_ptr + (4 - *param_2));
+        // System_BufferManager(param_2, (int64_t)data_ptr + (4 - *param_2));
         data_ptr = (uint32_t*)param_2[1];
     }
     
@@ -569,7 +569,7 @@ void rendering_system_advanced_serializer(longlong param_1, longlong *param_2, u
  * 本函数为简化实现，原始代码包含复杂的反序列化逻辑。
  * 原始代码中实现了完整的高级反序列化、对象重建、数据验证等功能。
  */
-void rendering_system_advanced_deserializer(longlong param_1, longlong param_2) {
+void rendering_system_advanced_deserializer(int64_t param_1, int64_t param_2) {
     // 参数有效性检查
     if (param_1 == NULL || param_2 == NULL) {
         return;
@@ -580,7 +580,7 @@ void rendering_system_advanced_deserializer(longlong param_1, longlong param_2) 
     
     // 读取对象头信息
     *(uint32_t*)(param_1 + 0xb0) = **(uint32_t**)(param_2 + 8);
-    *(longlong *)(param_2 + 8) = *(longlong *)(param_2 + 8) + 4;
+    *(int64_t *)(param_2 + 8) = *(int64_t *)(param_2 + 8) + 4;
     
     // 继续读取其他字段...
     // 原始代码包含大量的字段读取逻辑

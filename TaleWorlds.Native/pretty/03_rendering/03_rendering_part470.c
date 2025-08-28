@@ -34,7 +34,7 @@
 /* 类型别名 */
 typedef uint16_t* TextureDataPointer;                           // 纹理数据指针类型
 typedef uint32_t TextureFlags;                                // 纹理标志类型
-typedef longlong* MaterialDataPointer;                         // 材质数据指针类型
+typedef int64_t* MaterialDataPointer;                         // 材质数据指针类型
 typedef float MaterialParameter;                               // 材质参数类型
 typedef int MaterialIndex;                                    // 材质索引类型
 typedef uint32_t ResourceHandle;                              // 资源句柄类型
@@ -121,13 +121,13 @@ typedef enum {
  * 5. 支持多线程安全的材质处理
  * 6. 提供性能监控和统计功能
  */
-void RenderingSystem_AdvancedMaterialTextureProcessor(longlong render_context, longlong material_data, uint64_t *texture_data, int8_t process_mode)
+void RenderingSystem_AdvancedMaterialTextureProcessor(int64_t render_context, int64_t material_data, uint64_t *texture_data, int8_t process_mode)
 {
     /* 局部变量声明 */
     TextureDataPointer texture_ptr;                            // 纹理数据指针
     uint16_t texture_flag;                                    // 纹理标志
     MaterialDataPointer material_ptr;                          // 材质数据指针
-    longlong context_data;                                     // 上下文数据
+    int64_t context_data;                                     // 上下文数据
     uint64_t *resource_ptr;                                 // 资源指针
     char mode_flag;                                           // 模式标志
     int material_index;                                       // 材质索引
@@ -136,13 +136,13 @@ void RenderingSystem_AdvancedMaterialTextureProcessor(longlong render_context, l
     uint64_t *cache_ptr;                                     // 缓存指针
     int32_t *param_ptr;                                     // 参数指针
     int16_t param_flag;                                     // 参数标志
-    ulonglong texture_address;                                 // 纹理地址
-    longlong resource_handle;                                  // 资源句柄
-    longlong material_handle;                                  // 材质句柄
-    longlong texture_handle;                                   // 纹理句柄
+    uint64_t texture_address;                                 // 纹理地址
+    int64_t resource_handle;                                  // 资源句柄
+    int64_t material_handle;                                  // 材质句柄
+    int64_t texture_handle;                                   // 纹理句柄
     int *state_ptr;                                           // 状态指针
-    ulonglong performance_counter;                             // 性能计数器
-    ulonglong memory_usage;                                    // 内存使用量
+    uint64_t performance_counter;                             // 性能计数器
+    uint64_t memory_usage;                                    // 内存使用量
     byte quality_flag;                                         // 质量标志
     uint32_t texture_id;                                       // 纹理ID
     uint64_t context_info;                                    // 上下文信息
@@ -183,11 +183,11 @@ void RenderingSystem_AdvancedMaterialTextureProcessor(longlong render_context, l
     uint64_t texture_matrix;                                 // 纹理矩阵
     int32_t viewport_params[6];                             // 视口参数数组
     uint64_t stack_resource[8];                              // 栈资源数组
-    longlong stack_handle[2];                                  // 栈句柄数组
+    int64_t stack_handle[2];                                  // 栈句柄数组
     uint64_t stack_data[8];                                 // 栈数据数组
     int32_t stack_data_f[4];                                // 栈数据浮点数组
     uint64_t stack_cache[8];                                 // 栈缓存数组
-    longlong stack_resource_handle;                             // 栈资源句柄
+    int64_t stack_resource_handle;                             // 栈资源句柄
     uint64_t stack_performance[8];                            // 栈性能数组
     int32_t stack_stat[4];                                  // 栈统计数组
     uint64_t stack_memory[8];                                // 栈内存数组
@@ -200,13 +200,13 @@ void RenderingSystem_AdvancedMaterialTextureProcessor(longlong render_context, l
     
     /* 检查渲染模式 */
     if ((*(uint*)(render_context + 0x56c) & 0x800) != 0) {
-        material_handle = *(longlong*)(render_context + 0x728);
+        material_handle = *(int64_t*)(render_context + 0x728);
         texture_flag = *(ushort*)(material_handle + 0x5aa);
         if (texture_flag != 0) {
             *(ushort*)(material_handle + 0x5ac) = *(ushort*)(material_handle + 0x5ac) | texture_flag;
-            texture_ptr = (ushort*)(*(longlong*)(render_context + 0x728) + 0x5aa);
+            texture_ptr = (ushort*)(*(int64_t*)(render_context + 0x728) + 0x5aa);
             *texture_ptr = *texture_ptr & ~texture_flag;
-            material_handle = *(longlong*)(render_context + 0x728);
+            material_handle = *(int64_t*)(render_context + 0x728);
         }
         *(int32_t*)(material_handle + 0x5a4) = 0xffffffff;
     }
@@ -215,12 +215,12 @@ void RenderingSystem_AdvancedMaterialTextureProcessor(longlong render_context, l
     if (process_mode == 0) {
         material_index = *(int*)(material_data + 0xb0);
     } else {
-        material_index = *(int*)((longlong)texture_data + 0x2c);
+        material_index = *(int*)((int64_t)texture_data + 0x2c);
     }
     
     /* 验证材质索引有效性 */
     if ((-1 < material_index) && 
-        (texture_index = *(int*)((longlong)material_index * 0xa60 + 0x3600 + *(longlong*)(render_context + 0x8d8)),
+        (texture_index = *(int*)((int64_t)material_index * 0xa60 + 0x3600 + *(int64_t*)(render_context + 0x8d8)),
          -1 < texture_index)) {
         material_index = texture_index;
     }
@@ -235,7 +235,7 @@ void RenderingSystem_AdvancedMaterialTextureProcessor(longlong render_context, l
         if (((*(uint*)(render_context + 0x56c) - 2U & 0xfffffffc) == 0) && 
             (*(uint*)(render_context + 0x56c) != 4)) {
             /* 多线程材质处理 */
-            material_ptr = *(longlong**)(render_context + 0x8e0);
+            material_ptr = *(int64_t**)(render_context + 0x8e0);
             material_index = _Mtx_lock(0x180c95528);
             if (material_index != 0) {
                 __Throw_C_error_std__YAXH_Z(material_index);
@@ -246,17 +246,17 @@ void RenderingSystem_AdvancedMaterialTextureProcessor(longlong render_context, l
                 (mode_flag = FUN_180645c10(0x180c95578, 4, &unknown_var_3472_ptr), mode_flag != '\0')) {
                 FUN_180645c10(0x180c95578, render_state, &unknown_var_3424_ptr);
             }
-            context_data = *(longlong*)(*material_ptr + 0x8e8);
-            *(ulonglong*)&render_system_material = *(ulonglong*)&render_system_material & 0xffffffff00000000;
+            context_data = *(int64_t*)(*material_ptr + 0x8e8);
+            *(uint64_t*)&render_system_material = *(uint64_t*)&render_system_material & 0xffffffff00000000;
             material_index = (int)((render_system_material - render_system_material) >> 3);
             if (0 < material_index) {
                 resource_handle = 0;
                 texture_handle = render_system_material;
                 do {
-                    context_data = *(longlong*)(texture_handle + resource_handle * 8);
+                    context_data = *(int64_t*)(texture_handle + resource_handle * 8);
                     if (((context_data != 0) && 
-                         (*(char*)(*(longlong*)(context_data + 0x58f8) + 0x1c) != '\0')) &&
-                        (*(longlong*)(context_data + 0x58f8) != context_data)) {
+                         (*(char*)(*(int64_t*)(context_data + 0x58f8) + 0x1c) != '\0')) &&
+                        (*(int64_t*)(context_data + 0x58f8) != context_data)) {
                         FUN_1805b59d0(context_data, 0x180c95578);
                         texture_handle = render_system_material;
                     }
@@ -266,13 +266,13 @@ void RenderingSystem_AdvancedMaterialTextureProcessor(longlong render_context, l
             if (render_system_material != 0) {
                 FUN_180567f30(render_system_material, 0x180c95578);
             }
-            *(ulonglong*)&render_system_material = 0;
-            memset(render_system_material, 0, (longlong)(render_system_material >> 3));
+            *(uint64_t*)&render_system_material = 0;
+            memset(render_system_material, 0, (int64_t)(render_system_material >> 3));
         }
     }
     
     /* 处理材质参数 */
-    context_data = *(longlong*)(render_context + 0x6e0);
+    context_data = *(int64_t*)(render_context + 0x6e0);
     if ((((byte)*(int32_t*)(context_data + 0x209c) & 3) == 3) && 
         (*(int*)(context_data + 0x2108) != -1)) {
         FUN_1804f8b80(*(uint64_t*)(render_context + 0x8d8), *(uint64_t*)(context_data + 0x20f0));
@@ -280,8 +280,8 @@ void RenderingSystem_AdvancedMaterialTextureProcessor(longlong render_context, l
     
 LABEL_TEXTURE_PROCESS:
     if (*(int*)(render_context + 0x570) == 2) {
-        *(uint64_t*)(*(longlong*)(render_context + 0x8d8) + 0x8fd220) = 0;
-        *(uint64_t*)(*(longlong*)(render_context + 0x8d8) + 0x98d228) = 0;
+        *(uint64_t*)(*(int64_t*)(render_context + 0x8d8) + 0x8fd220) = 0;
+        *(uint64_t*)(*(int64_t*)(render_context + 0x8d8) + 0x98d228) = 0;
     }
     
     /* 处理纹理缓存 */
@@ -291,8 +291,8 @@ LABEL_TEXTURE_PROCESS:
         texture_size = 2;
         texture_handle = 0;
     } else {
-        texture_cache = (uint32_t*)FUN_180507810((longlong)material_index * 0xa60 + 
-                                                   *(longlong*)(render_context + 0x8d8) + 0x30a0,
+        texture_cache = (uint32_t*)FUN_180507810((int64_t)material_index * 0xa60 + 
+                                                   *(int64_t*)(render_context + 0x8d8) + 0x30a0,
                                                    &stack_context);
         material_quality = 1;
         texture_size = 1;
@@ -323,7 +323,7 @@ LABEL_TEXTURE_PROCESS:
     }
     
     /* 处理材质纹理映射 */
-    resource_ptr = *(uint64_t**)(*(longlong*)(render_context + 0x598) + 0x120);
+    resource_ptr = *(uint64_t**)(*(int64_t*)(render_context + 0x598) + 0x120);
     state_ptr = (int*)*resource_ptr;
     cache_ptr = resource_ptr;
     
@@ -337,16 +337,16 @@ LABEL_TEXTURE_PROCESS:
     }
     
     /* 查找匹配的材质纹理 */
-    if (state_ptr != (int*)resource_ptr[*(longlong*)(*(longlong*)(render_context + 0x598) + 0x128)]) {
+    if (state_ptr != (int*)resource_ptr[*(int64_t*)(*(int64_t*)(render_context + 0x598) + 0x128)]) {
         do {
             material_quality = state_ptr[1];
             if ((texture_size == material_quality) ||
-                ((((longlong)(int)texture_size != -1 && (material_quality != 0xffffffff)) &&
-                 ((context_data = *(longlong*)
-                             ((longlong)*(int*)(*(longlong*)(render_context + 0x590) + 0xac) * 0xe0 +
+                ((((int64_t)(int)texture_size != -1 && (material_quality != 0xffffffff)) &&
+                 ((context_data = *(int64_t*)
+                             ((int64_t)*(int*)(*(int64_t*)(render_context + 0x590) + 0xac) * 0xe0 +
                               render_system_material + 0x78),
-                  material_index = *(int*)(context_data + 4 + (longlong)(int)texture_size * 8),
-                  material_index == *(int*)(context_data + 4 + (longlong)(int)material_quality * 8) && 
+                  material_index = *(int*)(context_data + 4 + (int64_t)(int)texture_size * 8),
+                  material_index == *(int*)(context_data + 4 + (int64_t)(int)material_quality * 8) && 
                   (material_index != -1)))))) {
                 stack_thread_id = (*state_ptr >> 10 & 7U) - 1;
                 break;
@@ -356,7 +356,7 @@ LABEL_TEXTURE_PROCESS:
                 cache_ptr = cache_ptr + 1;
                 state_ptr = (int*)*cache_ptr;
             }
-        } while (state_ptr != (int*)resource_ptr[*(longlong*)(*(longlong*)(render_context + 0x598) + 0x128)]);
+        } while (state_ptr != (int*)resource_ptr[*(int64_t*)(*(int64_t*)(render_context + 0x598) + 0x128)]);
     }
     
     /* 处理特殊材质模式 */
@@ -369,14 +369,14 @@ LABEL_TEXTURE_PROCESS:
     }
     
     /* 计算材质权重参数 */
-    render_state = *(int32_t*)(*(longlong*)(render_context + 0x590) + 0xac);
+    render_state = *(int32_t*)(*(int64_t*)(render_context + 0x590) + 0xac);
     material_index = FUN_18053a410(&system_memory_5f30, render_state, texture_size);
-    material_index = *(int*)(render_system_material + (longlong)material_index * 4);
+    material_index = *(int*)(render_system_material + (int64_t)material_index * 4);
     
     if (material_index == -1) {
         context_data = 0;
     } else {
-        context_data = *(longlong*)(render_system_material + (longlong)material_index * 8);
+        context_data = *(int64_t*)(render_system_material + (int64_t)material_index * 8);
     }
     
     /* 计算材质权重 */
@@ -390,12 +390,12 @@ LABEL_TEXTURE_PROCESS:
         specular_weight = specular_weight + shininess;
         material_index = FUN_18053a410(&system_memory_5f30, render_state, 
                                        *(int32_t*)(context_data + 0x1f0));
-        material_index = *(int*)(render_system_material + (longlong)material_index * 4);
+        material_index = *(int*)(render_system_material + (int64_t)material_index * 4);
         
         if (material_index == -1) {
             texture_handle = 0;
         } else {
-            texture_handle = *(longlong*)(render_system_material + (longlong)material_index * 8);
+            texture_handle = *(int64_t*)(render_system_material + (int64_t)material_index * 8);
         }
         
         diffuse_weight = *(float*)(texture_handle + 0x1d8);
@@ -415,12 +415,12 @@ LABEL_TEXTURE_PROCESS:
             ambient_weight = ambient_weight + shininess;
             material_index = FUN_18053a410(&system_memory_5f30, render_state, 
                                            *(int32_t*)(context_data + 0x1f0));
-            material_index = *(int*)(render_system_material + (longlong)material_index * 4);
+            material_index = *(int*)(render_system_material + (int64_t)material_index * 4);
             
             if (material_index == -1) {
                 texture_handle = 0;
             } else {
-                texture_handle = *(longlong*)(render_system_material + (longlong)material_index * 8);
+                texture_handle = *(int64_t*)(render_system_material + (int64_t)material_index * 8);
             }
             
             diffuse_weight = *(float*)(texture_handle + 0x1e0);
@@ -439,7 +439,7 @@ LABEL_TEXTURE_PROCESS:
         ambient_weight = specular_weight;
     }
     
-    stack_context = (ulonglong)process_mode << 0x1f;
+    stack_context = (uint64_t)process_mode << 0x1f;
     *(float*)(render_context + 0xa08) = specular_weight;
     *(float*)(render_context + 0xa0c) = ambient_weight;
     
@@ -448,8 +448,8 @@ LABEL_TEXTURE_PROCESS:
         FUN_18051fa40(render_context, 4);
         
         /* 检查线程安全性 */
-        if ((*(int*)(*(longlong*)((longlong)ThreadLocalStoragePointer + 
-                               (ulonglong)__tls_index * 8) + 0x48) < render_system_config_material) && 
+        if ((*(int*)(*(int64_t*)((int64_t)ThreadLocalStoragePointer + 
+                               (uint64_t)__tls_index * 8) + 0x48) < render_system_config_material) && 
             (SystemInitializer(&system_memory_9ed8), render_system_config_material == -1)) {
             stack_ptr = &system_data_buffer_ptr;
             stack_param_4 = 0;
@@ -478,20 +478,20 @@ LABEL_TEXTURE_PROCESS:
         stack_param_6 = 0xbe4ccccd;
         stack_param_7 = 0x3ecccccd;
         stack_flag = 0;
-        stack_ptr = (void*)((ulonglong)texture_size << 0x20);
+        stack_ptr = (void*)((uint64_t)texture_size << 0x20);
         stack_param_ptr = (int32_t*)stack_context;
         FUN_18051ec50(render_context, &stack_ptr);
         
-        material_quality = *(uint*)(*(longlong*)(render_context + 0x590) + 0x2450);
+        material_quality = *(uint*)(*(int64_t*)(render_context + 0x590) + 0x2450);
         texture_size = material_quality;
         
         material_index = FUN_18053a410(&system_memory_5f30, 
-                                       *(int32_t*)(*(longlong*)(render_context + 0x590) + 0xac),
+                                       *(int32_t*)(*(int64_t*)(render_context + 0x590) + 0xac),
                                        material_quality);
-        material_index = *(int*)(render_system_material + (longlong)material_index * 4);
+        material_index = *(int*)(render_system_material + (int64_t)material_index * 4);
         
         if (material_index != -1) {
-            context_data = *(longlong*)(render_system_material + (longlong)material_index * 8);
+            context_data = *(int64_t*)(render_system_material + (int64_t)material_index * 8);
         }
         
         /* 处理特殊材质效果 */
@@ -514,22 +514,22 @@ LABEL_TEXTURE_PROCESS:
             stack_param_6 = 0xbe4ccccd;
             stack_param_7 = 0x3ecccccd;
             stack_flag = 0;
-            stack_ptr = (void*)((ulonglong)material_quality << 0x20);
+            stack_ptr = (void*)((uint64_t)material_quality << 0x20);
             stack_param_ptr = (int32_t*)0x80000000;
             
-            texture_handle = *(longlong*)(render_context + 0x8d8) + 0x30a0 + 
-                              (longlong)*(int*)(render_context + 0x560) * 0xa60;
+            texture_handle = *(int64_t*)(render_context + 0x8d8) + 0x30a0 + 
+                              (int64_t)*(int*)(render_context + 0x560) * 0xa60;
             FUN_18051ec50(texture_handle, &stack_ptr);
             
             material_index = FUN_18053a410(&system_memory_5f30, 
-                                           *(int32_t*)(*(longlong*)(texture_handle + 0x590) + 0xac),
+                                           *(int32_t*)(*(int64_t*)(texture_handle + 0x590) + 0xac),
                                            material_quality);
-            material_index = *(int*)(render_system_material + (longlong)material_index * 4);
+            material_index = *(int*)(render_system_material + (int64_t)material_index * 4);
             
             if (material_index == -1) {
                 resource_handle = 0;
             } else {
-                resource_handle = *(longlong*)(render_system_material + (longlong)material_index * 8);
+                resource_handle = *(int64_t*)(render_system_material + (int64_t)material_index * 8);
             }
             
             if (stack_thread_id == 1) {
@@ -543,8 +543,8 @@ LABEL_TEXTURE_PROCESS:
             }
             
             /* 设置材质生命周期 */
-            *(longlong*)(texture_handle + 0x6b8) =
-                 *(longlong*)(&system_error_code + (longlong)*(int*)(texture_handle + 0x6c0) * 8) + 200000;
+            *(int64_t*)(texture_handle + 0x6b8) =
+                 *(int64_t*)(&system_error_code + (int64_t)*(int*)(texture_handle + 0x6c0) * 8) + 200000;
             texture_handle = FUN_180532320(resource_handle);
             FUN_18052e450(texture_handle, 0xffffffff, 1, 
                           *(float*)(resource_handle + 0x188) * *(float*)(texture_handle + 8));
@@ -559,34 +559,34 @@ LABEL_TEXTURE_PROCESS:
         }
         
         /* 设置渲染时间参数 */
-        *(longlong*)(render_context + 0xa10) =
-             *(longlong*)(&system_error_code + (longlong)*(int*)(render_context + 0xa18) * 8) + 10000;
+        *(int64_t*)(render_context + 0xa10) =
+             *(int64_t*)(&system_error_code + (int64_t)*(int*)(render_context + 0xa18) * 8) + 10000;
         *(uint64_t*)(render_context + 0x9f8) =
-             *(uint64_t*)(&system_error_code + (longlong)*(int*)(render_context + 0xa00) * 8);
+             *(uint64_t*)(&system_error_code + (int64_t)*(int*)(render_context + 0xa00) * 8);
     } else {
         /* 处理高级渲染模式 */
-        context_data = *(longlong*)(render_context + 0x590);
-        performance_counter = *(ulonglong*)(context_data + 0x2460);
+        context_data = *(int64_t*)(render_context + 0x590);
+        performance_counter = *(uint64_t*)(context_data + 0x2460);
         if (performance_counter != 0) {
-            performance_counter = *(ulonglong*)(performance_counter + 0x1d0);
+            performance_counter = *(uint64_t*)(performance_counter + 0x1d0);
         }
         memory_usage = performance_counter & 0xffffffffffffff00;
-        if ((char)*(ulonglong*)(context_data + 0x2470) == '\0') {
+        if ((char)*(uint64_t*)(context_data + 0x2470) == '\0') {
             memory_usage = performance_counter;
         }
         
-        performance_counter = *(ulonglong*)(context_data + 0x24a8);
+        performance_counter = *(uint64_t*)(context_data + 0x24a8);
         if (performance_counter != 0) {
-            performance_counter = *(ulonglong*)(performance_counter + 0x1d0);
+            performance_counter = *(uint64_t*)(performance_counter + 0x1d0);
         }
         texture_address = performance_counter & 0xffffffffffffff00;
-        if ((char)*(ulonglong*)(context_data + 0x24b8) == '\0') {
+        if ((char)*(uint64_t*)(context_data + 0x24b8) == '\0') {
             texture_address = performance_counter;
         }
         
         stack_param_ptr = (int32_t*)((texture_address | memory_usage | 
-                                         *(ulonglong*)(context_data + 0x2470) |
-                                         *(ulonglong*)(context_data + 0x24b8)) & 0x200 | stack_context);
+                                         *(uint64_t*)(context_data + 0x2470) |
+                                         *(uint64_t*)(context_data + 0x24b8)) & 0x200 | stack_context);
         stack_param_2 = 0;
         stack_param_1 = 0x1000000;
         stack_param_3 = 0;
@@ -595,14 +595,14 @@ LABEL_TEXTURE_PROCESS:
         stack_param_6 = 0xbe4ccccd;
         stack_param_7 = 0x3ecccccd;
         stack_flag = 0;
-        stack_ptr = (void*)((ulonglong)texture_size << 0x20);
+        stack_ptr = (void*)((uint64_t)texture_size << 0x20);
         FUN_18051ec50(render_context, &stack_ptr);
         
-        context_data = *(longlong*)(render_context + 0x590);
+        context_data = *(int64_t*)(render_context + 0x590);
         texture_size = *(uint*)(context_data + 0x2450);
         
         /* 处理材质优化 */
-        if ((context_data != 0) && (context_data = *(longlong*)(context_data + 0xabf0), 
+        if ((context_data != 0) && (context_data = *(int64_t*)(context_data + 0xabf0), 
                                     context_data != 0)) {
             *(int32_t*)(context_data + 0x28) = 0xbe99999a;
             *(int32_t*)(context_data + 0x2c) = 0x3f000000;
@@ -615,7 +615,7 @@ LABEL_TEXTURE_PROCESS:
             render_state = *(int32_t*)(material_data + 0xb8);
             context_info = *(uint64_t*)(material_data + 0x38);
         } else {
-            render_state = *(int32_t*)((longlong)texture_data + 0x24);
+            render_state = *(int32_t*)((int64_t)texture_data + 0x24);
             context_info = texture_data[10];
         }
         
@@ -629,7 +629,7 @@ LABEL_TEXTURE_PROCESS:
         
         texture_size = material_quality | 8;
         texture_index = (**(code**)(stack_thread_context + 0x1e8))
-                      (*(int32_t*)(*(longlong*)(render_context + 0x8d8) + 0x98d928), 
+                      (*(int32_t*)(*(int64_t*)(render_context + 0x8d8) + 0x98d928), 
                        texture_handle, thread_id, render_state, context_info);
         texture_size = material_quality;
         
@@ -639,8 +639,8 @@ LABEL_TEXTURE_PROCESS:
         
         FUN_18051fa40(render_context, texture_index);
         
-        thread_id = *(int*)(*(longlong*)((longlong)ThreadLocalStoragePointer + 
-                                      (ulonglong)__tls_index * 8) + 0x48);
+        thread_id = *(int*)(*(int64_t*)((int64_t)ThreadLocalStoragePointer + 
+                                      (uint64_t)__tls_index * 8) + 0x48);
         
         /* 处理渲染结果 */
         if (texture_index == 4) {
@@ -696,13 +696,13 @@ LABEL_TEXTURE_PROCESS:
         
         material_quality = texture_size;
         material_index = FUN_18053a410(&system_memory_5f30, 
-                                       *(int32_t*)(*(longlong*)(render_context + 0x590) + 0xac),
+                                       *(int32_t*)(*(int64_t*)(render_context + 0x590) + 0xac),
                                        texture_size);
-        material_index = *(int*)(render_system_material + (longlong)material_index * 4);
+        material_index = *(int*)(render_system_material + (int64_t)material_index * 4);
         context_data = 0;
         
         if (material_index != -1) {
-            context_data = *(longlong*)(render_system_material + (longlong)material_index * 8);
+            context_data = *(int64_t*)(render_system_material + (int64_t)material_index * 8);
         }
         
         /* 处理纹理坐标变换 */
@@ -718,7 +718,7 @@ LABEL_TEXTURE_PROCESS:
                 *(uint64_t*)(render_context + 0xa38) = 0;
             } else {
                 cache_ptr = (uint64_t*)
-                           FUN_180534930(*(longlong*)(*(longlong*)(render_context + 0x6d8) + 0x8a8) + 0x70,
+                           FUN_180534930(*(int64_t*)(*(int64_t*)(render_context + 0x6d8) + 0x8a8) + 0x70,
                                          &stack_ptr, material_data + 0x58);
                 context_info = cache_ptr[1];
                 *(uint64_t*)(render_context + 0xa20) = *cache_ptr;
@@ -737,7 +737,7 @@ LABEL_TEXTURE_PROCESS:
                     *(float*)(render_context + 0xa38) = camera_distance;
                     *(int32_t*)(render_context + 0xa3c) = 0x7f7fffff;
                 } else {
-                    resource_handle = *(longlong*)(render_context + 0x20);
+                    resource_handle = *(int64_t*)(render_context + 0x20);
                     opacity = *(float*)(resource_handle + 0x14) - *(float*)(material_data + 0x18);
                     shininess = *(float*)(resource_handle + 0x10) - *(float*)(material_data + 0x14);
                     specular_weight = *(float*)(resource_handle + 0xc) - *(float*)(material_data + 0x10);
@@ -786,7 +786,7 @@ LABEL_TEXTURE_PROCESS:
             }
         } else {
             if (((*(float*)(texture_data + 2) != 0.0) || 
-                 (*(float*)((longlong)texture_data + 0x14) != 0.0)) ||
+                 (*(float*)((int64_t)texture_data + 0x14) != 0.0)) ||
                 (*(float*)(texture_data + 3) != 0.0)) {
                 *(uint64_t*)(render_context + 0xa08) = 0;
             }
@@ -799,37 +799,37 @@ LABEL_TEXTURE_PROCESS:
         }
         
         /* 设置渲染时间参数 */
-        *(longlong*)(render_context + 0xa10) =
-             *(longlong*)(&system_error_code + (longlong)*(int*)(render_context + 0xa18) * 8) + 10000;
+        *(int64_t*)(render_context + 0xa10) =
+             *(int64_t*)(&system_error_code + (int64_t)*(int*)(render_context + 0xa18) * 8) + 10000;
         *(uint64_t*)(render_context + 0x9f8) =
-             *(uint64_t*)(&system_error_code + (longlong)*(int*)(render_context + 0xa00) * 8);
+             *(uint64_t*)(&system_error_code + (int64_t)*(int*)(render_context + 0xa00) * 8);
         
         /* 处理阴影材质 */
         if (-1 < *(int*)(render_context + 0x564)) {
-            resource_handle = *(longlong*)(render_context + 0x8d8) + 0x30a0 + 
-                            (longlong)*(int*)(render_context + 0x564) * 0xa60;
+            resource_handle = *(int64_t*)(render_context + 0x8d8) + 0x30a0 + 
+                            (int64_t)*(int*)(render_context + 0x564) * 0xa60;
             *(int32_t*)(resource_handle + 0x4c8) = 0;
             *(uint64_t*)(resource_handle + 0x4cc) = 0;
-            texture_ptr = (ushort*)(*(longlong*)(resource_handle + 0x6e0) + 0x130);
+            texture_ptr = (ushort*)(*(int64_t*)(resource_handle + 0x6e0) + 0x130);
             *texture_ptr = *texture_ptr | 0x200;
             diffuse_weight = *(float*)(context_data + 0x1dc);
             if (diffuse_weight <= 0.0) {
                 diffuse_weight = *(float*)(context_data + 0x188);
             }
-            *(longlong*)(resource_handle + 0x6c8) =
-                 *(longlong*)(&system_error_code + (longlong)*(int*)(resource_handle + 0x6d0) * 8) -
-                 (longlong)(diffuse_weight * -100000.0);
+            *(int64_t*)(resource_handle + 0x6c8) =
+                 *(int64_t*)(&system_error_code + (int64_t)*(int*)(resource_handle + 0x6d0) * 8) -
+                 (int64_t)(diffuse_weight * -100000.0);
             
             if (*(int*)(resource_handle + 0x560) == *(int*)(render_context + 0x10)) {
                 FUN_18052e130(resource_handle, 0xffffffff, 1);
             }
             
             FUN_1805b8920(*(uint64_t*)(resource_handle + 0x6e0));
-            *(int32_t*)(*(longlong*)(resource_handle + 0x738) + 0xa4) =
-                 *(int32_t*)(*(longlong*)(resource_handle + 0x6e0) + 0x14a8);
+            *(int32_t*)(*(int64_t*)(resource_handle + 0x738) + 0xa4) =
+                 *(int32_t*)(*(int64_t*)(resource_handle + 0x6e0) + 0x14a8);
             
-            stack_handle[1] = *(longlong*)(resource_handle + 0x9d8);
-            context_data = *(longlong*)(resource_handle + 0x20);
+            stack_handle[1] = *(int64_t*)(resource_handle + 0x9d8);
+            context_data = *(int64_t*)(resource_handle + 0x20);
             
             if ((stack_handle[1] == 0) ||
                 (mode_flag = FUN_18038d0a0(stack_handle[1], context_data + 0xc), 
@@ -837,7 +837,7 @@ LABEL_TEXTURE_PROCESS:
                 stack_handle[0] = 0;
             }
             
-            stack_resource[1] = *(uint64_t*)(*(longlong*)(resource_handle + 0x8d8) + 0x18);
+            stack_resource[1] = *(uint64_t*)(*(int64_t*)(resource_handle + 0x8d8) + 0x18);
             stack_data[1] = *(uint64_t*)(context_data + 0xc);
             stack_data[0] = *(uint64_t*)(context_data + 0x14);
             stack_data_f[2] = *(int32_t*)(context_data + 0xb0);
@@ -866,25 +866,25 @@ LABEL_TEXTURE_PROCESS:
         stack_resource[3] = texture_data[8];
         stack_resource[2] = texture_data[9];
         stack_resource[1] = *(int32_t*)(texture_data + 10);
-        stack_resource[0] = *(int32_t*)((longlong)texture_data + 0x54);
+        stack_resource[0] = *(int32_t*)((int64_t)texture_data + 0x54);
         material_quality = *(int32_t*)(texture_data + 0xb);
-        stack_buffer[3] = *(int32_t*)((longlong)texture_data + 0x5c);
+        stack_buffer[3] = *(int32_t*)((int64_t)texture_data + 0x5c);
         stack_buffer[2] = texture_data[0xc];
     } else {
         if (*(char*)(material_data + 0x50) == '\0') {
             material_index = *(int*)(material_data + 0xb0);
             if ((-1 < material_index) && (-1 < *(int*)(material_data + 0x48))) {
                 material_quality = *(int32_t*)
-                              ((longlong)*(int*)(material_data + 0x48) * 0x1f8 + 0x38 +
-                               *(longlong*)((longlong)material_index * 0xa60 + 0x3998 + 
-                                           *(longlong*)(render_context + 0x8d8)));
+                              ((int64_t)*(int*)(material_data + 0x48) * 0x1f8 + 0x38 +
+                               *(int64_t*)((int64_t)material_index * 0xa60 + 0x3998 + 
+                                           *(int64_t*)(render_context + 0x8d8)));
             }
         } else {
             material_index = *(int*)(material_data + 0xb0);
             material_quality = *(int32_t*)
-                          (*(longlong*)(*(longlong*)(*(longlong*)(render_context + 0x8d8) + 0x87b340) +
-                                          (ulonglong)(*(uint*)(material_data + 0x48) >> 4) * 8) + 0xf0 +
-                           (ulonglong)(*(uint*)(material_data + 0x48) & 0xf) * 0xbe0) + 0x30);
+                          (*(int64_t*)(*(int64_t*)(*(int64_t*)(render_context + 0x8d8) + 0x87b340) +
+                                          (uint64_t)(*(uint*)(material_data + 0x48) >> 4) * 8) + 0xf0 +
+                           (uint64_t)(*(uint*)(material_data + 0x48) & 0xf) * 0xbe0) + 0x30);
         }
         
         stack_resource[3] = *(uint64_t*)(render_context + 0xa20);
@@ -898,9 +898,9 @@ LABEL_TEXTURE_PROCESS:
         stack_world_matrix = CONCAT44(*(int32_t*)(material_data + 0x40), (int32_t)stack_world_matrix);
         stack_projection_matrix = CONCAT31(stack_projection_matrix._1_3_, process_mode);
         stack_texture_matrix = (int32_t)*(uint64_t*)(material_data + 0x58);
-        stack_viewport_params[5] = (int32_t)((ulonglong)*(uint64_t*)(material_data + 0x58) >> 0x20);
+        stack_viewport_params[5] = (int32_t)((uint64_t)*(uint64_t*)(material_data + 0x58) >> 0x20);
         stack_viewport_params[4] = (int32_t)*(uint64_t*)(material_data + 0x60);
-        stack_viewport_params[3] = (int32_t)((ulonglong)*(uint64_t*)(material_data + 0x60) >> 0x20);
+        stack_viewport_params[3] = (int32_t)((uint64_t)*(uint64_t*)(material_data + 0x60) >> 0x20);
         stack_viewport_params[2] = (int32_t)*(uint64_t*)(material_data + 0x38);
         context_info = *(uint64_t*)(material_data + 0x38);
         stack_buffer[3] = *(int32_t*)(material_data + 0x88);
@@ -926,23 +926,23 @@ LABEL_TEXTURE_PROCESS:
     /* 处理多线程材质更新 */
     if (((process_mode == 0) && ((*(uint*)(render_context + 0x56c) - 2U & 0xfffffffc) == 0)) && 
         (*(uint*)(render_context + 0x56c) != 4)) {
-        material_ptr = *(longlong**)(render_context + 0x8e0);
+        material_ptr = *(int64_t**)(render_context + 0x8e0);
         material_index = _Mtx_lock(0x180c95528);
         if (material_index != 0) {
             __Throw_C_error_std__YAXH_Z(material_index);
         }
         FUN_1805ae650(0x180c95578, *(int32_t*)(*material_ptr + 0x10), &stack_resource[3]);
         texture_handle = 0;
-        *(ulonglong*)&render_system_material = *(ulonglong*)&render_system_material & 0xffffffff00000000;
+        *(uint64_t*)&render_system_material = *(uint64_t*)&render_system_material & 0xffffffff00000000;
         material_index = (int)((render_system_material - render_system_material) >> 3);
         context_data = render_system_material;
         
         if (0 < material_index) {
             resource_handle = 0;
             do {
-                memory_usage = *(longlong*)(context_data + resource_handle * 8);
+                memory_usage = *(int64_t*)(context_data + resource_handle * 8);
                 if ((memory_usage != 0) && 
-                    (*(char*)(*(longlong*)(memory_usage + 0x58f8) + 0x1c) != '\0')) {
+                    (*(char*)(*(int64_t*)(memory_usage + 0x58f8) + 0x1c) != '\0')) {
                     FUN_1805b59d0(memory_usage, 0x180c95578);
                     context_data = render_system_material;
                 }
@@ -953,8 +953,8 @@ LABEL_TEXTURE_PROCESS:
         if (render_system_material != 0) {
             FUN_180567f30(render_system_material, 0x180c95578);
         }
-        *(ulonglong*)&render_system_material = 0;
-        memset(render_system_material, 0, (longlong)(render_system_material >> 3));
+        *(uint64_t*)&render_system_material = 0;
+        memset(render_system_material, 0, (int64_t)(render_system_material >> 3));
     }
     
     /* 应用最终变换 */
@@ -967,8 +967,8 @@ LABEL_TEXTURE_PROCESS:
         material_index = 0;
         material_quality = texture_size;
     } else {
-        material_index = *(int*)((longlong)stack_thread_id * 0xa60 + 0x30b8 + 
-                                 *(longlong*)(render_context + 0x8d8));
+        material_index = *(int*)((int64_t)stack_thread_id * 0xa60 + 0x30b8 + 
+                                 *(int64_t*)(render_context + 0x8d8));
         material_quality = material_quality;
         
         if ((material_index != 0) && (system_cache_buffer != 0)) {
@@ -996,9 +996,9 @@ LABEL_TEXTURE_PROCESS:
     stack_viewport_params[5] = stack_resource[7];
     stack_viewport_params[4] = stack_resource[4];
     stack_viewport_params[3] = (int32_t)stack_resource[5];
-    stack_viewport_params[2] = (int32_t)((ulonglong)stack_resource[5] >> 0x20);
+    stack_viewport_params[2] = (int32_t)((uint64_t)stack_resource[5] >> 0x20);
     stack_viewport_params[1] = stack_resource[2];
-    stack_viewport_params[0] = (int32_t)((ulonglong)stack_resource[2] >> 0x20);
+    stack_viewport_params[0] = (int32_t)((uint64_t)stack_resource[2] >> 0x20);
     stack_config[7] = CONCAT44(stack_buffer[1], stack_buffer[0]);
     stack_config[6] = stack_resource[1];
     stack_config[5] = stack_resource[3];
@@ -1009,7 +1009,7 @@ LABEL_TEXTURE_PROCESS:
     stack_config[0] = material_quality;
     
     (**(code**)(context_data + 0x238))
-           (*(int32_t*)(*(longlong*)(render_context + 0x8d8) + 0x98d928), thread_id, material_index, 
+           (*(int32_t*)(*(int64_t*)(render_context + 0x8d8) + 0x98d928), thread_id, material_index, 
             render_state, &stack_transform_matrix);
     
     texture_size = material_quality;

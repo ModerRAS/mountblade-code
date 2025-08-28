@@ -35,40 +35,40 @@
 // 参数: render_context - 渲染上下文指针
 //       render_queue - 渲染队列指针  
 //       render_parameters - 渲染参数指针
-void rendering_system_initialize_render_context(longlong render_context, longlong render_queue, longlong render_parameters)
+void rendering_system_initialize_render_context(int64_t render_context, int64_t render_queue, int64_t render_parameters)
 {
-  longlong system_state;
+  int64_t system_state;
   int lock_result;
-  ulonglong security_hash;
-  ulonglong temp_hash;
-  longlong *resource_manager;
+  uint64_t security_hash;
+  uint64_t temp_hash;
+  int64_t *resource_manager;
   float quality_factor;
-  longlong queue_parameters[3];
+  int64_t queue_parameters[3];
   int8_t security_buffer[32];
   uint64_t stack_guard;
-  longlong **callback_table;
+  int64_t **callback_table;
   int8_t padding_buffer[8];
-  longlong resource_handle;
-  longlong queue_size;
+  int64_t resource_handle;
+  int64_t queue_size;
   float priority_scale;
   float quality_scale;
-  longlong *render_target;
+  int64_t *render_target;
   int8_t *visibility_flag;
   float *quality_parameter;
   float *performance_metric;
-  longlong *batch_processor;
-  longlong queue_capacity;
-  longlong *resource_allocator;
-  longlong resource_table[2];
+  int64_t *batch_processor;
+  int64_t queue_capacity;
+  int64_t *resource_allocator;
+  int64_t resource_table[2];
   code *entry_point;
   void *exit_handler;
   uint64_t frame_counter;
-  longlong **system_manager;
+  int64_t **system_manager;
   int priority_levels[6];
-  ulonglong system_checksum;
+  uint64_t system_checksum;
   
   stack_guard = 0xfffffffffffffffe;
-  system_checksum = GET_SECURITY_COOKIE() ^ (ulonglong)security_buffer;
+  system_checksum = GET_SECURITY_COOKIE() ^ (uint64_t)security_buffer;
   LOCK();
   *(int32_t *)(render_context + 0x78) = 0;
   UNLOCK();
@@ -83,16 +83,16 @@ void rendering_system_initialize_render_context(longlong render_context, longlon
   if (((*(byte *)(render_parameters + 0x1bd8) & 0x20) != 0) && (4 < *(int *)(render_queue + 0x27c0))) {
     lock_result = _Mtx_trylock(render_context + 0x1bb0);
     if (lock_result == 0) {
-      if (*(longlong *)(queue_parameters[0] + 0x60b80) != 0) {
+      if (*(int64_t *)(queue_parameters[0] + 0x60b80) != 0) {
         *(uint64_t *)(queue_size + 0x124c8) =
-             *(uint64_t *)(*(longlong *)(queue_parameters[0] + 0x60b80) + 0x20);
+             *(uint64_t *)(*(int64_t *)(queue_parameters[0] + 0x60b80) + 0x20);
       }
-      resource_manager = *(longlong **)(render_context + 0x1b90);
-      if (resource_manager != *(longlong **)(render_context + 0x1b98)) {
+      resource_manager = *(int64_t **)(render_context + 0x1b90);
+      if (resource_manager != *(int64_t **)(render_context + 0x1b98)) {
         do {
           system_state = *resource_manager;
-          if (*(longlong *)(system_state + 0x90) - *(longlong *)(system_state + 0x88) >> 3 != 0) {
-            system_state = *(longlong *)(system_main_module_state + 0x3d8);
+          if (*(int64_t *)(system_state + 0x90) - *(int64_t *)(system_state + 0x88) >> 3 != 0) {
+            system_state = *(int64_t *)(system_main_module_state + 0x3d8);
             if ((system_state == 0) ||
                ((*(int *)(system_state + 0x110) != 2 && ((system_state == 0 || (*(int *)(system_state + 0x110) != 3))))))
             {
@@ -104,7 +104,7 @@ void rendering_system_initialize_render_context(longlong render_context, longlon
             LOCK();
             *(int32_t *)(system_state + 0xa8) = 0;
             UNLOCK();
-            system_state = *(longlong *)(system_main_module_state + 0x3d8);
+            system_state = *(int64_t *)(system_main_module_state + 0x3d8);
             if ((system_state == 0) || (*(int *)(system_state + 0x110) != 1)) {
               priority_levels[0] = 1;
               priority_levels[1] = 10;
@@ -125,13 +125,13 @@ void rendering_system_initialize_render_context(longlong render_context, longlon
             }
             if ((*(char *)(system_state + 0x7c) != '\0') &&
                ((system_state == 0 || (*(int *)(system_state + 0x110) != 1)))) {
-              temp_hash = *(longlong *)(system_state + 0x90) - *(longlong *)(system_state + 0x88) >> 3;
+              temp_hash = *(int64_t *)(system_state + 0x90) - *(int64_t *)(system_state + 0x88) >> 3;
               security_hash = 1;
               if (1 < temp_hash) {
                 security_hash = temp_hash;
               }
-              quality_factor = (float)(longlong)security_hash;
-              if ((longlong)security_hash < 0) {
+              quality_factor = (float)(int64_t)security_hash;
+              if ((int64_t)security_hash < 0) {
                 quality_factor = quality_factor + 1.8446744e+19;
               }
               quality_factor = RENDERING_SYSTEM_SCALE_FACTOR / quality_factor;
@@ -160,21 +160,21 @@ void rendering_system_initialize_render_context(longlong render_context, longlon
             entry_point = FUN_1803089a0;
             exit_handler = &unknown_var_1888_ptr;
             queue_capacity = render_context;
-            resource_table[0] = (longlong *)FUN_18062b1e0(system_memory_pool_ptr, 0x38, 8, system_allocation_flags);
-            *resource_table[0] = (longlong)render_target;
-            resource_table[0][1] = (longlong)visibility_flag;
-            resource_table[0][2] = (longlong)quality_parameter;
-            resource_table[0][3] = (longlong)performance_metric;
-            resource_table[0][4] = (longlong)batch_processor;
+            resource_table[0] = (int64_t *)FUN_18062b1e0(system_memory_pool_ptr, 0x38, 8, system_allocation_flags);
+            *resource_table[0] = (int64_t)render_target;
+            resource_table[0][1] = (int64_t)visibility_flag;
+            resource_table[0][2] = (int64_t)quality_parameter;
+            resource_table[0][3] = (int64_t)performance_metric;
+            resource_table[0][4] = (int64_t)batch_processor;
             resource_table[0][5] = queue_capacity;
-            resource_table[0][6] = (longlong)resource_allocator;
+            resource_table[0][6] = (int64_t)resource_allocator;
             callback_table = resource_table;
             stack_guard = 0xfffffffffffffffe;
             FUN_18015b810();
             FUN_1803a64f0(system_state);
           }
           resource_manager = resource_manager + 1;
-        } while (resource_manager != *(longlong **)(render_context + 0x1b98));
+        } while (resource_manager != *(int64_t **)(render_context + 0x1b98));
       }
       lock_result = _Mtx_unlock(render_context + 0x1bb0);
       if (lock_result != 0) {
@@ -194,7 +194,7 @@ void rendering_system_initialize_render_context(longlong render_context, longlon
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(system_checksum ^ (ulonglong)security_buffer);
+  FUN_1808fc050(system_checksum ^ (uint64_t)security_buffer);
 }
 
 
@@ -207,44 +207,44 @@ void rendering_system_initialize_render_context(longlong render_context, longlon
 // 参数: render_batch_data - 渲染批次数据指针
 //       start_index - 起始索引
 //       end_index - 结束索引
-void rendering_system_process_render_batch(longlong *render_batch_data, int start_index, int end_index)
+void rendering_system_process_render_batch(int64_t *render_batch_data, int start_index, int end_index)
 {
   uint *frame_counter;
-  longlong *render_buffer;
+  int64_t *render_buffer;
   float quality_threshold;
   float quality_factor;
   uint render_flags;
-  longlong render_context;
-  longlong *render_object;
+  int64_t render_context;
+  int64_t *render_object;
   char visibility_flag;
   uint priority_bits;
-  ulonglong resource_handle;
-  longlong allocated_memory;
+  uint64_t resource_handle;
+  int64_t allocated_memory;
   bool allocation_success;
   int current_index;
   
   current_index = start_index;
   if (start_index < end_index) {
     do {
-      render_context = *(longlong *)*render_batch_data;
-      render_object = *(longlong **)(*(longlong *)(render_context + 0x88) + (longlong)current_index * 8);
+      render_context = *(int64_t *)*render_batch_data;
+      render_object = *(int64_t **)(*(int64_t *)(render_context + 0x88) + (int64_t)current_index * 8);
       if ((((char)render_object[7] == '\0') && (*(char *)render_batch_data[1] == '\0')) &&
-         ((*(char *)((longlong)render_object + 0x39) != '\0' ||
+         ((*(char *)((int64_t)render_object + 0x39) != '\0' ||
           ((*(float *)render_batch_data[2] < *(float *)(render_object + 6) ||
-           (*(float *)render_batch_data[3] < *(float *)((longlong)render_object + 0x34))))))) {
+           (*(float *)render_batch_data[3] < *(float *)((int64_t)render_object + 0x34))))))) {
         if (*(char *)(render_context + 0x7d) != '\0') {
           quality_factor = *(float *)(render_object + 0x52);
           quality_threshold = *(float *)(&system_memory_3ff8 +
-                            (longlong)*(int *)(*(longlong *)render_batch_data[4] + 0x5b98) * 4);
+                            (int64_t)*(int *)(*(int64_t *)render_batch_data[4] + 0x5b98) * 4);
           (**(code **)(*render_object + 0x108))(render_object);
           if (RENDERING_SYSTEM_QUALITY_THRESHOLD <= quality_factor + quality_threshold * -0.1) goto LAB_1803066f9;
-          render_context = *(longlong *)*render_batch_data;
+          render_context = *(int64_t *)*render_batch_data;
         }
         FUN_180308500(render_context + 0xa8);
-        *(int8_t *)((longlong)render_object + 0x39) = 1;
+        *(int8_t *)((int64_t)render_object + 0x39) = 1;
       }
 LAB_1803066f9:
-      if ((*(char *)((longlong)render_object + 0x39) == '\0') && (visibility_flag = rendering_system_check_render_visibility(), visibility_flag != '\0'))
+      if ((*(char *)((int64_t)render_object + 0x39) == '\0') && (visibility_flag = rendering_system_check_render_visibility(), visibility_flag != '\0'))
       {
         visibility_flag = '\x01';
       }
@@ -252,21 +252,21 @@ LAB_1803066f9:
         visibility_flag = '\0';
       }
       *(char *)(render_object + 9) = visibility_flag;
-      quality_threshold = *(float *)(&system_memory_3ff8 + (longlong)*(int *)(*(longlong *)render_batch_data[4] + 0x5b98) * 4);
+      quality_threshold = *(float *)(&system_memory_3ff8 + (int64_t)*(int *)(*(int64_t *)render_batch_data[4] + 0x5b98) * 4);
       quality_factor = *(float *)(render_object + 6);
       *(float *)(render_object + 6) = quality_threshold + quality_factor;
       if (visibility_flag == '\0') {
-        *(float *)((longlong)render_object + 0x34) =
-             *(float *)(&system_memory_3ff8 + (longlong)*(int *)(*(longlong *)render_batch_data[4] + 0x5b98) * 4) +
-             *(float *)((longlong)render_object + 0x34);
+        *(float *)((int64_t)render_object + 0x34) =
+             *(float *)(&system_memory_3ff8 + (int64_t)*(int *)(*(int64_t *)render_batch_data[4] + 0x5b98) * 4) +
+             *(float *)((int64_t)render_object + 0x34);
       }
       else {
         resource_handle = render_object[0x2b];
-        *(int32_t *)((longlong)render_object + 0x34) = 0;
+        *(int32_t *)((int64_t)render_object + 0x34) = 0;
         if (resource_handle != 0) {
-          resource_handle = (ulonglong)(byte)(*(char *)(resource_handle + 0x2c8) + 8);
+          resource_handle = (uint64_t)(byte)(*(char *)(resource_handle + 0x2c8) + 8);
         }
-        *(uint *)((longlong)render_object + 0x4c) =
+        *(uint *)((int64_t)render_object + 0x4c) =
              ((int)(quality_threshold + quality_factor) & 0xfff0U | ((uint)resource_handle & 0xff) << RENDERING_SYSTEM_INDEX_SHIFT) << 8 |
              (int)render_object >> 4 & RENDERING_SYSTEM_PRIORITY_MASK;
         render_context = render_batch_data[5];
@@ -276,9 +276,9 @@ LAB_1803066f9:
         *frame_counter = *frame_counter + 1;
         UNLOCK();
         priority_bits = render_flags >> 0xb;
-        if (*(longlong *)(render_context + 0x80 + (ulonglong)priority_bits * 8) == 0) {
+        if (*(int64_t *)(render_context + 0x80 + (uint64_t)priority_bits * 8) == 0) {
           allocated_memory = FUN_18062b420(system_memory_pool_ptr,0x4000,0x25);
-          render_buffer = (longlong *)(render_context + 0x80 + (ulonglong)priority_bits * 8);
+          render_buffer = (int64_t *)(render_context + 0x80 + (uint64_t)priority_bits * 8);
           LOCK();
           allocation_success = *render_buffer == 0;
           if (allocation_success) {
@@ -290,9 +290,9 @@ LAB_1803066f9:
             FUN_18064e900();
           }
         }
-        *(longlong **)
-         (*(longlong *)(render_context + 0x80 + (ulonglong)priority_bits * 8) +
-         (ulonglong)(render_flags + priority_bits * -0x800) * 8) = render_object;
+        *(int64_t **)
+         (*(int64_t *)(render_context + 0x80 + (uint64_t)priority_bits * 8) +
+         (uint64_t)(render_flags + priority_bits * -0x800) * 8) = render_object;
       }
       current_index = current_index + 1;
     } while (current_index < end_index);
@@ -310,20 +310,20 @@ LAB_1803066f9:
 // 参数: render_pipeline_data - 渲染管线数据指针
 //       start_index - 起始索引
 //       end_index - 结束索引
-void rendering_system_execute_render_pipeline(longlong *render_pipeline_data, int start_index, int end_index)
+void rendering_system_execute_render_pipeline(int64_t *render_pipeline_data, int start_index, int end_index)
 {
   uint *frame_counter;
-  longlong *render_buffer;
+  int64_t *render_buffer;
   float quality_threshold;
   float quality_factor;
   uint render_flags;
-  longlong render_context;
-  longlong *render_object;
+  int64_t render_context;
+  int64_t *render_object;
   char visibility_flag;
   uint priority_bits;
-  longlong pipeline_context;
-  ulonglong resource_handle;
-  longlong allocated_memory;
+  int64_t pipeline_context;
+  uint64_t resource_handle;
+  int64_t allocated_memory;
   uint64_t register_rbx;
   uint64_t register_rbp;
   uint64_t register_r12;
@@ -355,47 +355,47 @@ void rendering_system_execute_render_pipeline(longlong *render_pipeline_data, in
   *(uint64_t *)(pipeline_context + -0x28) = register_r14;
   *(int *)(pipeline_context + 0x10) = start_index;
   do {
-    render_context = *(longlong *)*render_pipeline_data;
-    render_object = *(longlong **)(*(longlong *)(render_context + 0x88) + (longlong)start_index * 8);
+    render_context = *(int64_t *)*render_pipeline_data;
+    render_object = *(int64_t **)(*(int64_t *)(render_context + 0x88) + (int64_t)start_index * 8);
     if ((((char)render_object[7] == '\0') && (*(char *)render_pipeline_data[1] == '\0')) &&
-       ((*(char *)((longlong)render_object + 0x39) != '\0' ||
+       ((*(char *)((int64_t)render_object + 0x39) != '\0' ||
         ((*(float *)render_pipeline_data[2] < *(float *)(render_object + 6) ||
-         (*(float *)render_pipeline_data[3] < *(float *)((longlong)render_object + 0x34))))))) {
+         (*(float *)render_pipeline_data[3] < *(float *)((int64_t)render_object + 0x34))))))) {
       if (*(char *)(render_context + 0x7d) != '\0') {
         quality_factor = *(float *)(render_object + 0x52);
-        quality_threshold = *(float *)(&system_memory_3ff8 + (longlong)*(int *)(*(longlong *)render_pipeline_data[4] + 0x5b98) * 4
+        quality_threshold = *(float *)(&system_memory_3ff8 + (int64_t)*(int *)(*(int64_t *)render_pipeline_data[4] + 0x5b98) * 4
                           );
         (**(code **)(*render_object + 0x108))(render_object);
         if (RENDERING_SYSTEM_QUALITY_THRESHOLD <= quality_factor + quality_threshold * -0.1) goto LAB_1803066f9;
-        render_context = *(longlong *)*render_pipeline_data;
+        render_context = *(int64_t *)*render_pipeline_data;
       }
       FUN_180308500(render_context + 0xa8);
-      *(int8_t *)((longlong)render_object + 0x39) = 1;
+      *(int8_t *)((int64_t)render_object + 0x39) = 1;
       start_index = stack_param;
     }
 LAB_1803066f9:
-    if ((*(char *)((longlong)render_object + 0x39) == '\0') && (visibility_flag = rendering_system_check_render_visibility(), visibility_flag != '\0')) {
+    if ((*(char *)((int64_t)render_object + 0x39) == '\0') && (visibility_flag = rendering_system_check_render_visibility(), visibility_flag != '\0')) {
       visibility_flag = '\x01';
     }
     else {
       visibility_flag = '\0';
     }
     *(char *)(render_object + 9) = visibility_flag;
-    quality_threshold = *(float *)(&system_memory_3ff8 + (longlong)*(int *)(*(longlong *)render_pipeline_data[4] + 0x5b98) * 4);
+    quality_threshold = *(float *)(&system_memory_3ff8 + (int64_t)*(int *)(*(int64_t *)render_pipeline_data[4] + 0x5b98) * 4);
     quality_factor = *(float *)(render_object + 6);
     *(float *)(render_object + 6) = quality_threshold + quality_factor;
     if (visibility_flag == '\0') {
-      *(float *)((longlong)render_object + 0x34) =
-           *(float *)(&system_memory_3ff8 + (longlong)*(int *)(*(longlong *)render_pipeline_data[4] + 0x5b98) * 4) +
-           *(float *)((longlong)render_object + 0x34);
+      *(float *)((int64_t)render_object + 0x34) =
+           *(float *)(&system_memory_3ff8 + (int64_t)*(int *)(*(int64_t *)render_pipeline_data[4] + 0x5b98) * 4) +
+           *(float *)((int64_t)render_object + 0x34);
     }
     else {
       resource_handle = render_object[0x2b];
-      *(int32_t *)((longlong)render_object + 0x34) = 0;
+      *(int32_t *)((int64_t)render_object + 0x34) = 0;
       if (resource_handle != 0) {
-        resource_handle = (ulonglong)(byte)(*(char *)(resource_handle + 0x2c8) + 8);
+        resource_handle = (uint64_t)(byte)(*(char *)(resource_handle + 0x2c8) + 8);
       }
-      *(uint *)((longlong)render_object + 0x4c) =
+      *(uint *)((int64_t)render_object + 0x4c) =
            ((int)(quality_threshold + quality_factor) & 0xfff0U | ((uint)resource_handle & 0xff) << RENDERING_SYSTEM_INDEX_SHIFT) << 8 |
            (int)render_object >> 4 & RENDERING_SYSTEM_PRIORITY_MASK;
       render_context = render_pipeline_data[5];
@@ -405,9 +405,9 @@ LAB_1803066f9:
       *frame_counter = *frame_counter + 1;
       UNLOCK();
       priority_bits = render_flags >> 0xb;
-      if (*(longlong *)(render_context + 0x80 + (ulonglong)priority_bits * 8) == 0) {
+      if (*(int64_t *)(render_context + 0x80 + (uint64_t)priority_bits * 8) == 0) {
         allocated_memory = FUN_18062b420(system_memory_pool_ptr,0x4000,0x25);
-        render_buffer = (longlong *)(render_context + 0x80 + (ulonglong)priority_bits * 8);
+        render_buffer = (int64_t *)(render_context + 0x80 + (uint64_t)priority_bits * 8);
         LOCK();
         allocation_success = *render_buffer == 0;
         if (allocation_success) {
@@ -419,8 +419,8 @@ LAB_1803066f9:
           FUN_18064e900();
         }
       }
-      *(longlong **)
-       (*(longlong *)(render_context + 0x80 + (ulonglong)priority_bits * 8) + (ulonglong)(render_flags + priority_bits * -0x800) * 8
+      *(int64_t **)
+       (*(int64_t *)(render_context + 0x80 + (uint64_t)priority_bits * 8) + (uint64_t)(render_flags + priority_bits * -0x800) * 8
        ) = render_object;
       start_index = stack_param;
     }
@@ -453,13 +453,13 @@ void rendering_system_empty_function_placeholder(void)
 //       render_flags - 渲染标志
 //       visibility_threshold - 可见性阈值
 // 返回: bool - 是否可见
-bool rendering_system_check_render_visibility(longlong render_context, longlong *camera_matrix, longlong render_target, longlong viewport_size,
-                                             longlong render_flags, float visibility_threshold)
+bool rendering_system_check_render_visibility(int64_t render_context, int64_t *camera_matrix, int64_t render_target, int64_t viewport_size,
+                                             int64_t render_flags, float visibility_threshold)
 {
   float distance_factor;
   float quality_factor;
   char visibility_state;
-  longlong render_object;
+  int64_t render_object;
   uint render_priority;
   float fVar6;
   float matrix_a;
@@ -482,7 +482,7 @@ bool rendering_system_check_render_visibility(longlong render_context, longlong 
   (**(code **)(*camera_matrix + 0x218))(camera_matrix);
   (**(code **)(*camera_matrix + 0x218))(camera_matrix);
   if ((void *)*camera_matrix == &unknown_var_1008_ptr) {
-    render_priority = *(uint *)((longlong)camera_matrix + 0x174);
+    render_priority = *(uint *)((int64_t)camera_matrix + 0x174);
   }
   else {
     render_priority = (**(code **)((void *)*camera_matrix + 0x130))(camera_matrix);
@@ -541,12 +541,12 @@ bool rendering_system_validate_render_state(void)
   float distance_factor;
   float quality_factor;
   char visibility_state;
-  ulonglong render_flags;
-  longlong render_object;
+  uint64_t render_flags;
+  int64_t render_object;
   uint render_priority;
-  longlong *camera_matrix;
-  longlong render_target;
-  longlong viewport_size;
+  int64_t *camera_matrix;
+  int64_t render_target;
+  int64_t viewport_size;
   float coordinate_x;
   float coordinate_y;
   float coordinate_z;
@@ -629,13 +629,13 @@ bool rendering_system_verify_render_capability(void)
   float fVar1;
   float fVar2;
   char cVar3;
-  longlong lVar4;
-  longlong in_RAX;
-  ulonglong uVar5;
+  int64_t lVar4;
+  int64_t in_RAX;
+  uint64_t uVar5;
   uint uVar6;
-  longlong *unaff_RBX;
-  longlong unaff_RSI;
-  longlong unaff_RDI;
+  int64_t *unaff_RBX;
+  int64_t unaff_RSI;
+  int64_t unaff_RDI;
   float fVar7;
   float fStack0000000000000030;
   float fStack0000000000000034;
@@ -721,18 +721,18 @@ bool rendering_system_verify_render_capability(void)
 
 // 渲染系统释放渲染资源
 // 参数: render_context - 渲染上下文指针
-void rendering_system_release_render_resources(longlong render_context)
+void rendering_system_release_render_resources(int64_t render_context)
 
 {
   uint *puVar1;
-  longlong *plVar2;
+  int64_t *plVar2;
   
-  if (*(longlong *)(param_1 + 0x1c48) != 0) {
-    puVar1 = (uint *)(*(longlong *)(param_1 + 0x1c48) + 0x328);
+  if (*(int64_t *)(param_1 + 0x1c48) != 0) {
+    puVar1 = (uint *)(*(int64_t *)(param_1 + 0x1c48) + 0x328);
     *puVar1 = *puVar1 & 0xdfffffff;
-    plVar2 = *(longlong **)(param_1 + 0x1c48);
+    plVar2 = *(int64_t **)(param_1 + 0x1c48);
     *(uint64_t *)(param_1 + 0x1c48) = 0;
-    if (plVar2 != (longlong *)0x0) {
+    if (plVar2 != (int64_t *)0x0) {
                     // WARNING: Could not recover jumptable at 0x000180306b8c. Too many branches
                     // WARNING: Treating indirect jump as call
       (**(code **)(*plVar2 + 0x38))();
@@ -744,20 +744,20 @@ void rendering_system_release_render_resources(longlong render_context)
 
 
 
-longlong FUN_180306ba0(longlong param_1,longlong param_2)
+int64_t FUN_180306ba0(int64_t param_1,int64_t param_2)
 
 {
   byte *pbVar1;
   int iVar2;
   int iVar3;
-  longlong lVar4;
+  int64_t lVar4;
   byte *pbVar5;
   int iVar6;
-  longlong lVar7;
-  longlong *plVar8;
+  int64_t lVar7;
+  int64_t *plVar8;
   
-  plVar8 = *(longlong **)(param_1 + 0x1b90);
-  if (plVar8 != *(longlong **)(param_1 + 0x1b98)) {
+  plVar8 = *(int64_t **)(param_1 + 0x1b90);
+  if (plVar8 != *(int64_t **)(param_1 + 0x1b98)) {
     iVar2 = *(int *)(param_2 + 0x10);
     do {
       lVar4 = *plVar8;
@@ -766,7 +766,7 @@ longlong FUN_180306ba0(longlong param_1,longlong param_2)
       if (iVar3 == iVar2) {
         if (iVar3 != 0) {
           pbVar5 = *(byte **)(lVar4 + 0x58);
-          lVar7 = *(longlong *)(param_2 + 8) - (longlong)pbVar5;
+          lVar7 = *(int64_t *)(param_2 + 8) - (int64_t)pbVar5;
           do {
             pbVar1 = pbVar5 + lVar7;
             iVar6 = (uint)*pbVar5 - (uint)*pbVar1;
@@ -781,7 +781,7 @@ LAB_180306bfe:
       }
       else if (iVar3 == 0) goto LAB_180306bfe;
       plVar8 = plVar8 + 1;
-    } while (plVar8 != *(longlong **)(param_1 + 0x1b98));
+    } while (plVar8 != *(int64_t **)(param_1 + 0x1b98));
   }
   return 0;
 }
@@ -792,45 +792,45 @@ LAB_180306bfe:
 
 // 渲染系统清理渲染队列
 // 参数: render_context - 渲染上下文指针
-void rendering_system_cleanup_render_queue(longlong render_context)
+void rendering_system_cleanup_render_queue(int64_t render_context)
 
 {
-  longlong lVar1;
-  longlong *plVar2;
+  int64_t lVar1;
+  int64_t *plVar2;
   int iVar3;
-  longlong *plVar4;
-  longlong *plVar5;
+  int64_t *plVar4;
+  int64_t *plVar5;
   
   iVar3 = _Mtx_lock(param_1 + 0x1bb0);
   if (iVar3 != 0) {
     __Throw_C_error_std__YAXH_Z(iVar3);
   }
-  plVar5 = *(longlong **)(param_1 + 0x1b90);
-  if (plVar5 != *(longlong **)(param_1 + 0x1b98)) {
+  plVar5 = *(int64_t **)(param_1 + 0x1b90);
+  if (plVar5 != *(int64_t **)(param_1 + 0x1b98)) {
     do {
       lVar1 = *plVar5;
       iVar3 = _Mtx_lock(lVar1);
       if (iVar3 != 0) {
         __Throw_C_error_std__YAXH_Z(iVar3);
       }
-      plVar2 = *(longlong **)(lVar1 + 0x90);
-      plVar4 = *(longlong **)(lVar1 + 0x88);
+      plVar2 = *(int64_t **)(lVar1 + 0x90);
+      plVar4 = *(int64_t **)(lVar1 + 0x88);
       if (plVar4 != plVar2) {
         do {
-          if ((longlong *)*plVar4 != (longlong *)0x0) {
-            (**(code **)(*(longlong *)*plVar4 + 0x38))();
+          if ((int64_t *)*plVar4 != (int64_t *)0x0) {
+            (**(code **)(*(int64_t *)*plVar4 + 0x38))();
           }
           plVar4 = plVar4 + 1;
         } while (plVar4 != plVar2);
-        plVar4 = *(longlong **)(lVar1 + 0x88);
+        plVar4 = *(int64_t **)(lVar1 + 0x88);
       }
-      *(longlong **)(lVar1 + 0x90) = plVar4;
+      *(int64_t **)(lVar1 + 0x90) = plVar4;
       iVar3 = _Mtx_unlock(lVar1);
       if (iVar3 != 0) {
         __Throw_C_error_std__YAXH_Z(iVar3);
       }
       plVar5 = plVar5 + 1;
-    } while (plVar5 != *(longlong **)(param_1 + 0x1b98));
+    } while (plVar5 != *(int64_t **)(param_1 + 0x1b98));
   }
   iVar3 = _Mtx_unlock(param_1 + 0x1bb0);
   if (iVar3 != 0) {
@@ -845,7 +845,7 @@ void rendering_system_cleanup_render_queue(longlong render_context)
 // 参数: object_a - 渲染对象A指针
 //       object_b - 渲染对象B指针
 // 返回: bool - 优先级比较结果
-bool rendering_system_compare_render_priority(longlong *object_a, longlong *object_b)
+bool rendering_system_compare_render_priority(int64_t *object_a, int64_t *object_b)
 
 {
   uint uVar1;
@@ -853,11 +853,11 @@ bool rendering_system_compare_render_priority(longlong *object_a, longlong *obje
   
   uVar1 = *(uint *)(*param_2 + 0x4c);
   uVar2 = *(uint *)(*param_1 + 0x4c);
-  if ((longlong *)*param_1 != (longlong *)0x0) {
-    (**(code **)(*(longlong *)*param_1 + 0x38))();
+  if ((int64_t *)*param_1 != (int64_t *)0x0) {
+    (**(code **)(*(int64_t *)*param_1 + 0x38))();
   }
-  if ((longlong *)*param_2 != (longlong *)0x0) {
-    (**(code **)(*(longlong *)*param_2 + 0x38))();
+  if ((int64_t *)*param_2 != (int64_t *)0x0) {
+    (**(code **)(*(int64_t *)*param_2 + 0x38))();
   }
   return uVar1 < uVar2;
 }

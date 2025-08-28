@@ -87,36 +87,36 @@ extern uint64_t global_var_3456;
 // 外部函数声明
 // ============================================================================
 
-extern void FUN_1802feba0(longlong param_1, longlong param_2);
-extern void FUN_1808fc050(ulonglong param_1);
+extern void FUN_1802feba0(int64_t param_1, int64_t param_2);
+extern void FUN_1808fc050(uint64_t param_1);
 extern void FUN_180179aa0(uint64_t param_1, uint64_t param_2, int param_3, uint64_t param_4, int param_5);
-extern void FUN_1801b9a40(longlong param_1, int param_2);
-extern void System_BufferManager(longlong param_1, longlong param_2, longlong param_3, uint64_t param_4, ulonglong param_5);
+extern void FUN_1801b9a40(int64_t param_1, int param_2);
+extern void System_BufferManager(int64_t param_1, int64_t param_2, int64_t param_3, uint64_t param_4, uint64_t param_5);
 extern void FUN_18062b1e0(uint64_t param_1, int param_2, int param_3, int param_4);
-extern void FUN_1800c17c0(int32_t param_1, longlong param_2);
+extern void FUN_1800c17c0(int32_t param_1, int64_t param_2);
 extern void FUN_18020d730(uint64_t param_1, uint64_t param_2);
-extern void FUN_18062b420(uint64_t param_1, longlong param_2, int8_t param_3);
+extern void FUN_18062b420(uint64_t param_1, int64_t param_2, int8_t param_3);
 extern void FUN_18064e900(uint64_t param_1);
-extern longlong func_0x00018066bd70(longlong param_1);
+extern int64_t func_0x00018066bd70(int64_t param_1);
 
 // ============================================================================
 // 函数声明
 // ============================================================================
 
-void RenderingSystem_ProcessDataInterpolation(longlong render_context, longlong data_manager, 
-                                           longlong resource_context, longlong output_context, 
+void RenderingSystem_ProcessDataInterpolation(int64_t render_context, int64_t data_manager, 
+                                           int64_t resource_context, int64_t output_context, 
                                            uint process_flag, uint filter_mask);
 void RenderingSystem_ExecuteAdvancedProcessing(uint64_t process_context, uint64_t data_context, 
-                                              longlong render_context, uint operation_flag);
+                                              int64_t render_context, uint operation_flag);
 void RenderingSystem_CleanupProcessingData(void);
-uint64_t *RenderingSystem_ManageResourceData(longlong resource_manager);
+uint64_t *RenderingSystem_ManageResourceData(int64_t resource_manager);
 int32_t RenderingSystem_ProcessResourceData(uint64_t *resource_data, int process_type);
 void RenderingSystem_ReleaseResourceData(void);
 void RenderingSystem_InitializeResourceProcessing(void);
 void RenderingSystem_FinalizeResourceProcessing(void);
-void RenderingSystem_SerializeResourceData(longlong resource_context, longlong file_context, 
-                                          longlong data_context, uint64_t serialize_flag);
-void RenderingSystem_DeserializeResourceData(longlong resource_context, longlong file_context, 
+void RenderingSystem_SerializeResourceData(int64_t resource_context, int64_t file_context, 
+                                          int64_t data_context, uint64_t serialize_flag);
+void RenderingSystem_DeserializeResourceData(int64_t resource_context, int64_t file_context, 
                                             uint64_t deserialize_flag);
 
 // ============================================================================
@@ -171,7 +171,7 @@ void RenderingSystem_DeserializeResourceData(longlong resource_context, longlong
  * - 包含完整的矩阵运算
  * - 支持动态内存管理
  */
-void rendering_system_data_transformer(longlong param_1, longlong param_2, longlong param_3, longlong param_4, uint param_5, uint param_6)
+void rendering_system_data_transformer(int64_t param_1, int64_t param_2, int64_t param_3, int64_t param_4, uint param_5, uint param_6)
 {
     // 数据变换实现
     // 由于原代码较复杂，这里提供简化的实现框架
@@ -203,7 +203,7 @@ void rendering_system_data_transformer(longlong param_1, longlong param_2, longl
  * - 包含完整的资源管理
  * - 支持状态监控和优化
  */
-void rendering_system_matrix_processor(uint64_t param_1, uint64_t param_2, longlong param_3, uint param_4)
+void rendering_system_matrix_processor(uint64_t param_1, uint64_t param_2, int64_t param_3, uint param_4)
 {
     // 矩阵处理实现
     // 由于原代码较复杂，这里提供简化的实现框架
@@ -248,7 +248,7 @@ void rendering_system_empty_function_1(void)
  * - 包含完整的清理机制
  * - 支持性能监控
  */
-uint64_t * rendering_system_resource_manager(longlong param_1)
+uint64_t * rendering_system_resource_manager(int64_t param_1)
 {
     // 资源管理实现
     // 由于原代码较复杂，这里提供简化的实现框架
@@ -370,7 +370,7 @@ void rendering_system_empty_function_3(void)
  * - 包含完整的错误处理
  * - 支持状态管理
  */
-void rendering_system_file_processor(longlong param_1, longlong param_2, longlong param_3, uint64_t param_4)
+void rendering_system_file_processor(int64_t param_1, int64_t param_2, int64_t param_3, uint64_t param_4)
 {
     // 文件处理实现
     // 由于原代码较复杂，这里提供简化的实现框架
@@ -402,7 +402,7 @@ void rendering_system_file_processor(longlong param_1, longlong param_2, longlon
  * - 包含完整的错误处理
  * - 支持状态监控
  */
-void rendering_system_batch_processor(longlong param_1, longlong param_2, uint64_t param_3)
+void rendering_system_batch_processor(int64_t param_1, int64_t param_2, uint64_t param_3)
 {
     // 批量处理实现
     // 由于原代码较复杂，这里提供简化的实现框架

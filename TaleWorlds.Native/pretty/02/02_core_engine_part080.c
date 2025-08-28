@@ -11,7 +11,7 @@
  *   param_1 - 渲染上下文指针
  *   param_2 - 文本内容指针
  */
-void calculate_text_layout(ulonglong render_context, ulonglong text_content)
+void calculate_text_layout(uint64_t render_context, uint64_t text_content)
 {
   uint64_t *layout_data;
   float *font_metrics;
@@ -19,12 +19,12 @@ void calculate_text_layout(ulonglong render_context, ulonglong text_content)
   int line_count;
   char layout_flag;
   uint text_flags;
-  ulonglong text_end;
-  longlong context_base;
-  longlong render_data;
-  longlong font_data;
-  longlong text_length;
-  longlong char_position;
+  uint64_t text_end;
+  int64_t context_base;
+  int64_t render_data;
+  int64_t font_data;
+  int64_t text_length;
+  int64_t char_position;
   int current_line;
   int total_lines;
   int max_lines;
@@ -46,8 +46,8 @@ void calculate_text_layout(ulonglong render_context, ulonglong text_content)
   uint64_t padding_data;
   
   context_base = SYSTEM_DATA_MANAGER_A;  // 获取全局渲染上下文
-  *(int8_t *)(*(longlong *)(context_base + 0x1af8) + 0xb1) = 1;  // 设置布局标志
-  render_data = *(longlong *)(context_base + 0x1af8);  // 获取渲染数据指针
+  *(int8_t *)(*(int64_t *)(context_base + 0x1af8) + 0xb1) = 1;  // 设置布局标志
+  render_data = *(int64_t *)(context_base + 0x1af8);  // 获取渲染数据指针
   if (*(char *)(render_data + 0xb4) != '\0') {  // 检查是否已完成布局
     return;
   }
@@ -61,7 +61,7 @@ void calculate_text_layout(ulonglong render_context, ulonglong text_content)
   line_height = *(float *)(render_data + 0x1b0);  // 获取行高
   font_size = *(float *)(render_data + 0x100);  // 获取字体大小
   text_height = *(float *)(render_data + 0x128) + *(float *)(render_data + 0x104);  // 计算文本高度
-  if ((longlong)(text_end - text_content) < 0x7d1) {  // 检查文本长度
+  if ((int64_t)(text_end - text_content) < 0x7d1) {  // 检查文本长度
     if (0.0 <= line_height) goto LAYOUT_PROCESS;  // 如果行高有效，跳转到布局处理
   }
   else {
@@ -104,7 +104,7 @@ void calculate_text_layout(ulonglong render_context, ulonglong text_content)
           vertical_offset = baseline;  // 垂直偏移
           do {
             horizontal_offset = horizontal_offset + line_height;  // 增加水平偏移
-            render_data = *(longlong *)(context_base + 0x1af8);  // 重新获取渲染数据
+            render_data = *(int64_t *)(context_base + 0x1af8);  // 重新获取渲染数据
             if (((((horizontal_offset < *(float *)(render_data + 0x22c) || horizontal_offset == *(float *)(render_data + 0x22c)) ||
                   (text_height <= baseline)) ||
                  (font_size + 3.4028235e+38 < *(float *)(render_data + 0x228) ||
@@ -154,13 +154,13 @@ void calculate_text_layout(ulonglong render_context, ulonglong text_content)
       text_height = text_height + temp_height;  // 更新文本高度
       max_width = font_size + max_width;  // 更新最大宽度
       update_text_metrics(&temp_width, 0);  // 更新文本度量
-      render_data = *(longlong *)(context_base + 0x1af8);  // 重新获取渲染数据
+      render_data = *(int64_t *)(context_base + 0x1af8);  // 重新获取渲染数据
       *(uint64_t *)(render_data + 0x144) = 0;  // 清除渲染标志
       *(float *)(render_data + 0x14c) = font_size;  // 设置字体大小
       *(float *)(render_data + 0x150) = text_height;  // 设置文本高度
       *(float *)(render_data + 0x154) = max_width;  // 设置最大宽度
       *(float *)(render_data + 0x158) = text_height;  // 设置最终高度
-      char_position = *(longlong *)(context_base + 0x1af8);  // 获取字符位置
+      char_position = *(int64_t *)(context_base + 0x1af8);  // 获取字符位置
       margin_data = CONCAT44(text_height, font_size);  // 构建边距数据
       padding_data = CONCAT44(text_height, max_width);  // 构建内边距数据
       if ((((text_height < *(float *)(char_position + 0x22c) || text_height == *(float *)(char_position + 0x22c)) ||
@@ -179,7 +179,7 @@ void calculate_text_layout(ulonglong render_context, ulonglong text_content)
 LAYOUT_PROCESS:
     if (0.0 <= line_height) {  // 处理正行高情况
       if (line_height == 0.0) {  // 行高为0的特殊处理
-        text_length = *(longlong *)(render_data + 0x210);  // 获取文本长度
+        text_length = *(int64_t *)(render_data + 0x210);  // 获取文本长度
         line_height = *(float *)(render_data + 0x278) - *(float *)(render_data + 0x40);  // 计算行高
         if (text_length != 0) {  // 如果有文本长度数据
           total_lines = *(int *)(text_length + 0xc) + 1;  // 计算总行数
@@ -188,7 +188,7 @@ LAYOUT_PROCESS:
             max_lines = total_lines;  // 调整最大行数
           }
           line_height = ((*(float *)(text_length + 0x18) - *(float *)(text_length + 0x14)) *
-                        *(float *)((longlong)max_lines * 0x1c + *(longlong *)(text_length + 0x38)) +
+                        *(float *)((int64_t)max_lines * 0x1c + *(int64_t *)(text_length + 0x38)) +
                        *(float *)(text_length + 0x14)) - *(float *)(render_data + 0x70);  // 重新计算行高
         }
         line_height = (line_height + *(float *)(render_data + 0x40)) - font_size;  // 调整行高
@@ -227,13 +227,13 @@ LAYOUT_FINALIZE:
   max_width = temp_height + text_height;  // 更新最大宽度
   baseline = baseline + font_size;  // 更新基线位置
   update_text_metrics(&bounding_box_data, 0);  // 更新文本度量
-  render_data = *(longlong *)(context_base + 0x1af8);  // 重新获取渲染数据
+  render_data = *(int64_t *)(context_base + 0x1af8);  // 重新获取渲染数据
   *(uint64_t *)(render_data + 0x144) = 0;  // 清除渲染标志
   *(float *)(render_data + 0x14c) = font_size;  // 设置字体大小
   *(float *)(render_data + 0x150) = text_height;  // 设置文本高度
   *(float *)(render_data + 0x154) = baseline;  // 设置基线位置
   *(float *)(render_data + 0x158) = max_width;  // 设置最大宽度
-  text_length = *(longlong *)(context_base + 0x1af8);  // 获取文本长度
+  text_length = *(int64_t *)(context_base + 0x1af8);  // 获取文本长度
   margin_data = CONCAT44(text_height, font_size);  // 构建边距数据
   padding_data = CONCAT44(max_width, baseline);  // 构建内边距数据
   if ((((*(float *)(text_length + 0x22c) <= max_width && max_width != *(float *)(text_length + 0x22c)) &&
@@ -255,12 +255,12 @@ LAYOUT_FINALIZE:
     }
     if (text_content != text_end) {  // 如果有文本内容
       margin_data = *(uint64_t *)(context_base + 0x16c8);  // 获取边距数据
-      render_data = *(longlong *)(*(longlong *)(context_base + 0x1af8) + 0x2e8);  // 获取渲染数据
+      render_data = *(int64_t *)(*(int64_t *)(context_base + 0x1af8) + 0x2e8);  // 获取渲染数据
       padding_data = CONCAT44(*(float *)(context_base + 0x16d4) * *(float *)(context_base + 0x1628),
                            *(int32_t *)(context_base + 0x16d0));  // 构建内边距数据
       text_flags = create_text_texture(&margin_data);  // 创建文本纹理
       font_size = *(float *)(context_base + 0x19f8);  // 获取字体大小
-      text_length = *(longlong *)(context_base + 0x19f0);  // 获取文本长度
+      text_length = *(int64_t *)(context_base + 0x19f0);  // 获取文本长度
       if ((text_flags & 0xff000000) != 0) {  // 检查纹理标志
         text_end = text_end;  // 保存文本结束位置
         if (text_end == 0) {  // 如果文本结束为空，计算长度
@@ -272,13 +272,13 @@ LAYOUT_FINALIZE:
         }
         if (text_content != text_end) {  // 如果有文本内容
           if (text_length == 0) {
-            text_length = *(longlong *)(*(longlong *)(render_data + 0x38) + 8);  // 获取文本长度
+            text_length = *(int64_t *)(*(int64_t *)(render_data + 0x38) + 8);  // 获取文本长度
           }
           if (font_size == 0.0) {
-            font_size = *(float *)(*(longlong *)(render_data + 0x38) + 0x10);  // 获取字体大小
+            font_size = *(float *)(*(int64_t *)(render_data + 0x38) + 0x10);  // 获取字体大小
           }
           layout_data = (uint64_t *)
-                   (*(longlong *)(render_data + 0x68) + -0x10 + (longlong)*(int *)(render_data + 0x60) * 0x10);  // 获取布局数据
+                   (*(int64_t *)(render_data + 0x68) + -0x10 + (int64_t)*(int *)(render_data + 0x60) * 0x10);  // 获取布局数据
           margin_data = *layout_data;  // 获取边距数据
           padding_data = layout_data[1];  // 获取内边距数据
           render_text_with_texture(text_length, render_data, font_size, temp_data, text_flags, &margin_data, text_content, text_end, line_height, 0);  // 渲染文本
@@ -305,7 +305,7 @@ LAYOUT_FINALIZE:
  *   param_1 - 渲染参数结构体指针
  *   param_2 - 文本内容指针
  */
-void render_text_with_params(longlong render_params, longlong text_content)
+void render_text_with_params(int64_t render_params, int64_t text_content)
 
 {
   uint64_t *texture_data;
@@ -315,16 +315,16 @@ void render_text_with_params(longlong render_params, longlong text_content)
   int line_count;
   char render_status;
   uint texture_flags;
-  ulonglong text_end;
-  longlong context_data;
-  longlong render_context;
-  longlong font_data;
-  longlong text_length;
-  ulonglong text_ptr;
-  longlong stack_base;
-  longlong context_base;
-  longlong text_base;
-  ulonglong text_position;
+  uint64_t text_end;
+  int64_t context_data;
+  int64_t render_context;
+  int64_t font_data;
+  int64_t text_length;
+  uint64_t text_ptr;
+  int64_t stack_base;
+  int64_t context_base;
+  int64_t text_base;
+  uint64_t text_position;
   int current_line;
   int total_lines;
   int max_lines;
@@ -390,7 +390,7 @@ void render_text_with_params(longlong render_params, longlong text_content)
   line_spacing = *(float *)(render_params + 0x1b0);  // 获取行间距
   font_scale = *(float *)(render_params + 0x100);  // 获取字体缩放
   text_height = *(float *)(render_params + 0x128) + *(float *)(render_params + 0x104);  // 计算文本高度
-  if ((longlong)(text_ptr - text_base) < 0x7d1) {  // 检查文本长度
+  if ((int64_t)(text_ptr - text_base) < 0x7d1) {  // 检查文本长度
     if (line_spacing >= 0.0) goto TEXT_RENDER_PROCESS;  // 如果行间距有效，跳转到渲染处理
   }
   else {
@@ -443,7 +443,7 @@ void render_text_with_params(longlong render_params, longlong text_content)
           in_stack_000000c8 = unaff_XMM9_Dc;
           do {
             fVar20 = fVar20 + fVar19;
-            lVar10 = *(longlong *)(unaff_RSI + 0x1af8);
+            lVar10 = *(int64_t *)(unaff_RSI + 0x1af8);
             if (((((fVar20 < *(float *)(lVar10 + 0x22c) || fVar20 == *(float *)(lVar10 + 0x22c)) ||
                   (*(float *)(lVar10 + 0x234) <= fVar17)) ||
                  (fVar2 + 3.4028235e+38 < *(float *)(lVar10 + 0x228) ||
@@ -495,13 +495,13 @@ void render_text_with_params(longlong render_params, longlong text_content)
       fVar17 = fVar22 + fVar17;
       fVar21 = fVar2 + fVar21;
       func_0x000180124080(unaff_RBP + 0x48,0);
-      lVar10 = *(longlong *)(unaff_RSI + 0x1af8);
+      lVar10 = *(int64_t *)(unaff_RSI + 0x1af8);
       *(uint64_t *)(lVar10 + 0x144) = 0;
       *(float *)(lVar10 + 0x14c) = fVar2;
       *(float *)(lVar10 + 0x150) = fVar22;
       *(float *)(lVar10 + 0x154) = fVar21;
       *(float *)(lVar10 + 0x158) = fVar17;
-      lVar11 = *(longlong *)(unaff_RSI + 0x1af8);
+      lVar11 = *(int64_t *)(unaff_RSI + 0x1af8);
       _fStack0000000000000050 = CONCAT44(fVar22,fVar2);
       in_stack_00000058 = CONCAT44(fVar17,fVar21);
       if ((((fVar17 < *(float *)(lVar11 + 0x22c) || fVar17 == *(float *)(lVar11 + 0x22c)) ||
@@ -520,7 +520,7 @@ void render_text_with_params(longlong render_params, longlong text_content)
 LAB_18010ecde:
     if (0.0 <= fVar19) {
       if (fVar19 == 0.0) {
-        lVar10 = *(longlong *)(param_1 + 0x210);
+        lVar10 = *(int64_t *)(param_1 + 0x210);
         fVar19 = *(float *)(param_1 + 0x278) - *(float *)(param_1 + 0x40);
         if (lVar10 != 0) {
           iVar13 = *(int *)(lVar10 + 0xc) + 1;
@@ -529,7 +529,7 @@ LAB_18010ecde:
             iVar14 = iVar13;
           }
           fVar19 = ((*(float *)(lVar10 + 0x18) - *(float *)(lVar10 + 0x14)) *
-                    *(float *)((longlong)iVar14 * 0x1c + *(longlong *)(lVar10 + 0x38)) +
+                    *(float *)((int64_t)iVar14 * 0x1c + *(int64_t *)(lVar10 + 0x38)) +
                    *(float *)(lVar10 + 0x14)) - *(float *)(param_1 + 0x70);
         }
         fVar19 = (fVar19 + *(float *)(param_1 + 0x40)) - fVar2;
@@ -570,13 +570,13 @@ LAB_18010ed80:
   fVar20 = fVar20 + fVar22;
   fVar19 = fVar19 + fVar2;
   func_0x000180124080(unaff_RBP + 0x40,0);
-  lVar10 = *(longlong *)(unaff_RSI + 0x1af8);
+  lVar10 = *(int64_t *)(unaff_RSI + 0x1af8);
   *(uint64_t *)(lVar10 + 0x144) = 0;
   *(float *)(lVar10 + 0x14c) = fVar2;
   *(float *)(lVar10 + 0x150) = fVar22;
   *(float *)(lVar10 + 0x154) = fVar19;
   *(float *)(lVar10 + 0x158) = fVar20;
-  lVar11 = *(longlong *)(unaff_RSI + 0x1af8);
+  lVar11 = *(int64_t *)(unaff_RSI + 0x1af8);
   _fStack0000000000000050 = CONCAT44(fVar22,fVar2);
   in_stack_00000058 = CONCAT44(fVar20,fVar19);
   if ((((*(float *)(lVar11 + 0x22c) <= fVar20 && fVar20 != *(float *)(lVar11 + 0x22c)) &&
@@ -588,7 +588,7 @@ LAB_18010ed80:
     if (cVar6 != '\0') {
       *(uint *)(lVar10 + 0x148) = *(uint *)(lVar10 + 0x148) | 1;
     }
-    lVar10 = *(longlong *)(unaff_RSI + 0x1af8);
+    lVar10 = *(int64_t *)(unaff_RSI + 0x1af8);
     *(uint64_t *)(unaff_RBP + 0x40) = _fStack0000000000000050;
     if (unaff_RBX == 0) {
       lVar11 = -1;
@@ -599,13 +599,13 @@ LAB_18010ed80:
     }
     if (unaff_RDI != unaff_RBX) {
       _fStack0000000000000050 = *(uint64_t *)(unaff_RSI + 0x16c8);
-      lVar10 = *(longlong *)(lVar10 + 0x2e8);
+      lVar10 = *(int64_t *)(lVar10 + 0x2e8);
       in_stack_00000058 =
            CONCAT44(*(float *)(unaff_RSI + 0x16d4) * *(float *)(unaff_RSI + 0x1628),
                     *(int32_t *)(unaff_RSI + 0x16d0));
       uVar7 = func_0x000180121e20(&stack0x00000050);
       fVar19 = *(float *)(unaff_RSI + 0x19f8);
-      lVar11 = *(longlong *)(unaff_RSI + 0x19f0);
+      lVar11 = *(int64_t *)(unaff_RSI + 0x19f0);
       if ((uVar7 & 0xff000000) != 0) {
         if (unaff_RBX == 0) {
           lVar9 = -1;
@@ -616,13 +616,13 @@ LAB_18010ed80:
         }
         if (unaff_RDI != unaff_RBX) {
           if (lVar11 == 0) {
-            lVar11 = *(longlong *)(*(longlong *)(lVar10 + 0x38) + 8);
+            lVar11 = *(int64_t *)(*(int64_t *)(lVar10 + 0x38) + 8);
           }
           if (fVar19 == 0.0) {
-            fVar19 = *(float *)(*(longlong *)(lVar10 + 0x38) + 0x10);
+            fVar19 = *(float *)(*(int64_t *)(lVar10 + 0x38) + 0x10);
           }
           puVar1 = (uint64_t *)
-                   (*(longlong *)(lVar10 + 0x68) + -0x10 + (longlong)*(int *)(lVar10 + 0x60) * 0x10)
+                   (*(int64_t *)(lVar10 + 0x68) + -0x10 + (int64_t)*(int *)(lVar10 + 0x60) * 0x10)
           ;
           _fStack0000000000000050 = *puVar1;
           in_stack_00000058 = puVar1[1];
@@ -655,16 +655,16 @@ void update_text_area(uint64_t area_params)
   float scale_factor;
   float font_size;
   float *font_metrics;
-  longlong render_context;
+  int64_t render_context;
   char update_flag;
-  ulonglong text_start;
-  ulonglong text_end;
-  ulonglong text_length;
-  longlong context_base;
-  longlong render_data;
-  longlong font_data;
-  longlong layout_data;
-  ulonglong area_width;
+  uint64_t text_start;
+  uint64_t text_end;
+  uint64_t text_length;
+  int64_t context_base;
+  int64_t render_data;
+  int64_t font_data;
+  int64_t layout_data;
+  uint64_t area_width;
   uint line_count;
   uint char_count;
   int max_lines;
@@ -703,7 +703,7 @@ void update_text_area(uint64_t area_params)
     baseline = area_y;
     if (*(char *)(context_base + 0x2e38) == update_flag) {
       *(float *)(stack_base + 0x44) = area_y;
-      max_lines = (int)(((float)((ulonglong)area_params >> 0x20) - area_y) / font_size);
+      max_lines = (int)(((float)((uint64_t)area_params >> 0x20) - area_y) / font_size);
       if (0 < max_lines) {
         text_length = text_length & 0xffffffff;
         line_count = char_count;
@@ -716,7 +716,7 @@ void update_text_area(uint64_t area_params)
               text_start = text_end;
             }
             line_count = line_count + 1;
-            text_length = (ulonglong)line_count;
+            text_length = (uint64_t)line_count;
             text_start = text_start + 1;
           } while (text_start < text_end);
         }
@@ -736,7 +736,7 @@ void update_text_area(uint64_t area_params)
       
       do {
         text_width = text_width + font_size;
-        render_data = *(longlong *)(context_base + 0x1af8);
+        render_data = *(int64_t *)(context_base + 0x1af8);
         // 检查边界条件
         if (((((text_width < *(float *)(render_data + 0x22c) || text_width == *(float *)(render_data + 0x22c)) ||
               (text_height <= baseline)) ||
@@ -778,7 +778,7 @@ void update_text_area(uint64_t area_params)
           uVar6 = unaff_RBX;
         }
         uVar10 = (int)uVar7 + 1;
-        uVar7 = (ulonglong)uVar10;
+        uVar7 = (uint64_t)uVar10;
         unaff_RDI = uVar6 + 1;
       }
       fVar13 = fVar14 + (float)(int)uVar10 * fVar1;
@@ -789,13 +789,13 @@ void update_text_area(uint64_t area_params)
   fVar13 = unaff_XMM13_Da + fVar13;
   fVar16 = unaff_XMM14_Da + fVar16;
   func_0x000180124080(unaff_RBP + 0x48);
-  lVar8 = *(longlong *)(unaff_RSI + 0x1af8);
-  *(ulonglong *)(lVar8 + 0x144) = unaff_R12;
+  lVar8 = *(int64_t *)(unaff_RSI + 0x1af8);
+  *(uint64_t *)(lVar8 + 0x144) = unaff_R12;
   *(float *)(lVar8 + 0x14c) = unaff_XMM14_Da;
   *(float *)(lVar8 + 0x150) = unaff_XMM13_Da;
   *(float *)(lVar8 + 0x154) = fVar16;
   *(float *)(lVar8 + 0x158) = fVar13;
-  lVar4 = *(longlong *)(unaff_RSI + 0x1af8);
+  lVar4 = *(int64_t *)(unaff_RSI + 0x1af8);
   if (((((*(float *)(lVar4 + 0x22c) <= fVar13 && fVar13 != *(float *)(lVar4 + 0x22c)) &&
         (unaff_XMM13_Da < *(float *)(lVar4 + 0x234))) &&
        ((*(float *)(lVar4 + 0x228) <= fVar16 && fVar16 != *(float *)(lVar4 + 0x228) &&

@@ -154,14 +154,14 @@
 
 void FUN_18028e702(void);
 void FUN_18028ecb8(void);
-void FUN_18028ecc0(int *param_1,longlong param_2,int param_3,uint64_t param_4,uint64_t param_5,
+void FUN_18028ecc0(int *param_1,int64_t param_2,int param_3,uint64_t param_4,uint64_t param_5,
                   int param_6);
-void FUN_18028ecde(int *param_1,longlong param_2,int param_3);
-void FUN_18028ece4(int *param_1,longlong param_2,int param_3);
+void FUN_18028ecde(int *param_1,int64_t param_2,int param_3);
+void FUN_18028ece4(int *param_1,int64_t param_2,int param_3);
 void FUN_18028eda3(void);
 void FUN_18028f0ac(void);
 void FUN_18028f0f0(void);
-void FUN_18028f13b(longlong param_1);
+void FUN_18028f13b(int64_t param_1);
 void FUN_18028f180(uint64_t *param_1,int param_2);
 void FUN_18028f18f(uint64_t *param_1,int param_2);
 void FUN_18028f34c(void);
@@ -186,7 +186,7 @@ void FUN_18028e702(void)
 }
 
 // 渲染缓冲区初始化实现
-void FUN_18028ecc0(int *param_1,longlong param_2,int param_3,uint64_t param_4,uint64_t param_5,
+void FUN_18028ecc0(int *param_1,int64_t param_2,int param_3,uint64_t param_4,uint64_t param_5,
                   int param_6)
 {
     // 渲染缓冲区初始化逻辑

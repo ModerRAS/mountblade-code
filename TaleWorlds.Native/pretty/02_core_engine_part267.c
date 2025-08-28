@@ -171,12 +171,12 @@ static ContainerInfo* g_active_containers = NULL; // 活动容器列表
  * @param end_pos 结束位置
  * @return void
  */
-void FUN_18022ec40(longlong *container, longlong start_pos, longlong end_pos)
+void FUN_18022ec40(int64_t *container, int64_t start_pos, int64_t end_pos)
 {
     uint64_t *current_end;
     uint64_t *current_start;
     uint64_t required_size;
-    longlong new_memory;
+    int64_t new_memory;
     uint64_t *iterator;
     uint64_t *temp_ptr;
     
@@ -232,7 +232,7 @@ void FUN_18022ec40(longlong *container, longlong start_pos, longlong end_pos)
             for (iterator = temp_ptr; iterator != current_end; iterator = iterator + (ELEMENT_SIZE / sizeof(uint64_t))) {
                 ((void (*)(void*, int))(*iterator))(iterator, 0);
             }
-            container[1] = (longlong)temp_ptr;
+            container[1] = (int64_t)temp_ptr;
         }
     }
 }
@@ -248,12 +248,12 @@ void FUN_18022ec40(longlong *container, longlong start_pos, longlong end_pos)
 void FUN_18022eca5(void)
 {
     uint64_t *current_end;
-    longlong new_memory;
+    int64_t new_memory;
     uint64_t *current_start;
     uint64_t *container_ptr;
     
     // 获取容器参数
-    container_ptr = (uint64_t *)*((longlong *)&container_ptr + 1);
+    container_ptr = (uint64_t *)*((int64_t *)&container_ptr + 1);
     uint64_t element_count = *((uint64_t *)&container_ptr + 2);
     
     // 分配初始内存
@@ -299,12 +299,12 @@ void FUN_18022eca5(void)
  * @param new_size 新大小
  * @return void
  */
-void FUN_18022ed22(uint64_t container, uint64_t old_size, longlong new_size)
+void FUN_18022ed22(uint64_t container, uint64_t old_size, int64_t new_size)
 {
     uint64_t *new_ptr;
     uint64_t *old_ptr;
     uint64_t size_diff;
-    longlong result;
+    int64_t result;
     
     // 计算大小差异
     size_diff = (new_size - old_size) / ELEMENT_SIZE;
@@ -350,7 +350,7 @@ void FUN_18022edb0(uint64_t *container, uint64_t element, uint64_t position, int
     int32_t element_value4;
     uint64_t *current_ptr;
     int comparison_result;
-    longlong new_memory;
+    int64_t new_memory;
     uint64_t *parent_ptr;
     uint64_t found_value;
     bool is_less_than;
@@ -394,13 +394,13 @@ void FUN_18022edb0(uint64_t *container, uint64_t element, uint64_t position, int
         if (current_ptr == (uint64_t *)container[1]) {
             goto insert_position;
         }
-        current_ptr = (uint64_t *)*((longlong *)current_ptr + 1);
+        current_ptr = (uint64_t *)*((int64_t *)current_ptr + 1);
     }
     
     comparison_result = memcmp(current_ptr + 4, new_element, 0x10);
     if (comparison_result >= 0) {
-        if (*(longlong **)(new_memory + 0x30) != (longlong *)0x0) {
-            ((void (*)(void))(*(*(longlong **)(new_memory + 0x30) + 0x38)))();
+        if (*(int64_t **)(new_memory + 0x30) != (int64_t *)0x0) {
+            ((void (*)(void))(*(*(int64_t **)(new_memory + 0x30) + 0x38)))();
         }
         FreeMemory(new_memory);
     }
@@ -423,13 +423,13 @@ insert_position:
  * @param source 源位置
  * @param destination 目标位置
  * @param count 复制数量
- * @return longlong 新的位置指针
+ * @return int64_t 新的位置指针
  */
-longlong FUN_18022ef00(longlong source, longlong destination, longlong count)
+int64_t FUN_18022ef00(int64_t source, int64_t destination, int64_t count)
 {
     uint64_t *source_ptr;
-    longlong element_count;
-    longlong new_position;
+    int64_t element_count;
+    int64_t new_position;
     void *string_ptr;
     
     // 计算元素数量
@@ -440,12 +440,12 @@ longlong FUN_18022ef00(longlong source, longlong destination, longlong count)
         
         // 复制元素
         do {
-            *(int32_t *)((count - source) + 8 + (longlong)source_ptr) = *(int32_t *)(source_ptr + 1);
+            *(int32_t *)((count - source) + 8 + (int64_t)source_ptr) = *(int32_t *)(source_ptr + 1);
             string_ptr = (void *)0x18098bc73;
             if ((void *)*source_ptr != (void *)0x0) {
                 string_ptr = (void *)*source_ptr;
             }
-            strcpy_s(*(uint64_t *)((count - source) + (longlong)source_ptr), 0x40, string_ptr);
+            strcpy_s(*(uint64_t *)((count - source) + (int64_t)source_ptr), 0x40, string_ptr);
             element_count--;
             source_ptr = source_ptr + (ELEMENT_SIZE / sizeof(uint64_t));
         } while (element_count > 0);
@@ -463,13 +463,13 @@ longlong FUN_18022ef00(longlong source, longlong destination, longlong count)
  * @param source 源位置
  * @param destination 目标位置
  * @param count 移动数量
- * @return longlong 新的位置指针
+ * @return int64_t 新的位置指针
  */
-longlong FUN_18022ef2c(longlong source, uint64_t destination, longlong count)
+int64_t FUN_18022ef2c(int64_t source, uint64_t destination, int64_t count)
 {
     uint64_t *source_ptr;
-    longlong total_size;
-    longlong element_count;
+    int64_t total_size;
+    int64_t element_count;
     void *string_ptr;
     
     source_ptr = (uint64_t *)(source + 8);
@@ -478,12 +478,12 @@ longlong FUN_18022ef2c(longlong source, uint64_t destination, longlong count)
     
     // 移动元素
     do {
-        *(int32_t *)((count - source) + 8 + (longlong)source_ptr) = *(int32_t *)(source_ptr + 1);
+        *(int32_t *)((count - source) + 8 + (int64_t)source_ptr) = *(int32_t *)(source_ptr + 1);
         string_ptr = (void *)0x18098bc73;
         if ((void *)*source_ptr != (void *)0x0) {
             string_ptr = (void *)*source_ptr;
         }
-        strcpy_s(*(uint64_t *)((count - source) + (longlong)source_ptr), 0x40, string_ptr);
+        strcpy_s(*(uint64_t *)((count - source) + (int64_t)source_ptr), 0x40, string_ptr);
         element_count--;
         source_ptr = source_ptr + (ELEMENT_SIZE / sizeof(uint64_t));
     } while (element_count > 0);
@@ -517,7 +517,7 @@ uint64_t FUN_18022ef9b(uint64_t param1, uint64_t param2, uint64_t param3)
  * @param flags 操作标志
  * @return uint64_t* 新的目标指针
  */
-uint64_t * FUN_18022efb0(longlong source, longlong destination, uint64_t *target, uint64_t flags)
+uint64_t * FUN_18022efb0(int64_t source, int64_t destination, uint64_t *target, uint64_t flags)
 {
     void *string_ptr;
     void *default_string;
@@ -525,7 +525,7 @@ uint64_t * FUN_18022efb0(longlong source, longlong destination, uint64_t *target
     
     operation_flags = 0xfffffffffffffffe;
     if (source != destination) {
-        source = source - (longlong)target;
+        source = source - (int64_t)target;
         do {
             *target = (void *)0x18098bcb0;
             target[1] = 0;
@@ -534,15 +534,15 @@ uint64_t * FUN_18022efb0(longlong source, longlong destination, uint64_t *target
             target[1] = target + 3;
             *(int32_t *)(target + 2) = 0;
             *(int8_t *)(target + 3) = 0;
-            *(int32_t *)(target + 2) = *(int32_t *)(source + 0x10 + (longlong)target);
-            string_ptr = *(void **)(source + 8 + (longlong)target);
+            *(int32_t *)(target + 2) = *(int32_t *)(source + 0x10 + (int64_t)target);
+            string_ptr = *(void **)(source + 8 + (int64_t)target);
             default_string = (void *)0x18098bc73;
             if (string_ptr != (void *)0x0) {
                 default_string = string_ptr;
             }
             strcpy_s(target[1], 0x40, default_string, flags, operation_flags);
             target = target + (ELEMENT_SIZE / sizeof(uint64_t));
-        } while (source + (longlong)target != destination);
+        } while (source + (int64_t)target != destination);
     }
     return target;
 }
@@ -556,51 +556,51 @@ uint64_t * FUN_18022efb0(longlong source, longlong destination, uint64_t *target
  * @param position 位置参数
  * @return void
  */
-void FUN_18022f080(longlong container)
+void FUN_18022f080(int64_t container)
 {
     bool has_temp_string;
     bool has_allocated_string;
     int32_t string_length;
-    ulonglong *temp_ptr;
-    longlong string_handle;
-    ulonglong temp_value;
+    uint64_t *temp_ptr;
+    int64_t string_handle;
+    uint64_t temp_value;
     int8_t temp_buffer[32];
     int32_t temp_int;
     uint64_t temp_uint64;
     void *temp_string;
-    ulonglong *temp_pointer;
+    uint64_t *temp_pointer;
     int32_t temp_int2;
-    ulonglong temp_array[4];
-    ulonglong temp_ulonglong;
+    uint64_t temp_array[4];
+    uint64_t temp_uint64_t;
     
     temp_uint64 = 0xfffffffffffffffe;
-    temp_ulonglong = 0x180bf00a8 ^ (ulonglong)temp_buffer;
+    temp_uint64_t = 0x180bf00a8 ^ (uint64_t)temp_buffer;
     has_temp_string = false;
     temp_int = 0;
     *(int8_t *)(container + 0x1d8) = 1;
-    string_handle = *(longlong *)(container + 0x1e0);
+    string_handle = *(int64_t *)(container + 0x1e0);
     temp_pointer = temp_ptr;
     
     if (string_handle != 0) {
         temp_string = (void *)0x180a3c3e0;
         temp_array[0] = 0;
-        temp_ptr = (ulonglong *)0x0;
+        temp_ptr = (uint64_t *)0x0;
         temp_int2 = 0;
-        temp_pointer = (ulonglong *)AllocateMemory(0x16, 0x13);
+        temp_pointer = (uint64_t *)AllocateMemory(0x16, 0x13);
         *(int8_t *)temp_pointer = 0;
         temp_ptr = temp_pointer;
         string_length = ((int (*)(void *))0x18064e990)(temp_pointer);
         temp_array[0] = (temp_array[0] & 0xffffffff00000000) | (uint32_t)string_length;
         *(int32_t *)temp_pointer = 0x5f657375;
-        *(int32_t *)((longlong)temp_pointer + 4) = 0x74726976;
+        *(int32_t *)((int64_t)temp_pointer + 4) = 0x74726976;
         *(int32_t *)(temp_pointer + 1) = 0x5f6c6175;
-        *(int32_t *)((longlong)temp_pointer + 0xc) = 0x74786574;
+        *(int32_t *)((int64_t)temp_pointer + 0xc) = 0x74786574;
         *(int32_t *)(temp_pointer + 2) = 0x6e697275;
-        *(int16_t *)((longlong)temp_pointer + 0x14) = 0x67;
+        *(int16_t *)((int64_t)temp_pointer + 0x14) = 0x67;
         temp_int2 = 0x15;
         has_temp_string = true;
         temp_int = 1;
-        string_handle = ((longlong (*)(longlong, void **, int))0x180240430)(string_handle, &temp_string, 0);
+        string_handle = ((int64_t (*)(int64_t, void **, int))0x180240430)(string_handle, &temp_string, 0);
         if (string_handle != 0) {
             has_allocated_string = true;
             goto cleanup_section;
@@ -612,10 +612,10 @@ cleanup_section:
     if (has_temp_string) {
         temp_int = 0;
         temp_string = (void *)0x180a3c3e0;
-        if (temp_pointer != (ulonglong *)0x0) {
+        if (temp_pointer != (uint64_t *)0x0) {
             FreeMemory(temp_pointer);
         }
-        temp_ptr = (ulonglong *)0x0;
+        temp_ptr = (uint64_t *)0x0;
         temp_array[0] = temp_array[0] & 0xffffffff00000000;
         temp_string = (void *)0x18098bcb0;
     }
@@ -625,12 +625,12 @@ cleanup_section:
         temp_array[0] = temp_array[0] & 0xffffffffffffff00;
         temp_int2 = 0x15;
         strcpy_s(temp_array, 0x20, (void *)0x180a0e020);
-        temp_value = ((ulonglong (*)(uint64_t, void **, int))0x180240430)(*(uint64_t *)(container + 0x1e0), &temp_string, 1);
-        *(ulonglong *)(container + 0x140) = *(ulonglong *)(container + 0x140) & ~temp_value;
-        ((void (*)(longlong))0x18022dd60)(container);
+        temp_value = ((uint64_t (*)(uint64_t, void **, int))0x180240430)(*(uint64_t *)(container + 0x1e0), &temp_string, 1);
+        *(uint64_t *)(container + 0x140) = *(uint64_t *)(container + 0x140) & ~temp_value;
+        ((void (*)(int64_t))0x18022dd60)(container);
         temp_string = (void *)0x18098bcb0;
     }
-    ((void (*)(ulonglong))0x1808fc050)(temp_ulonglong ^ (ulonglong)temp_buffer);
+    ((void (*)(uint64_t))0x1808fc050)(temp_uint64_t ^ (uint64_t)temp_buffer);
 }
 
 /**
@@ -640,11 +640,11 @@ cleanup_section:
  * 
  * @param container 容器指针
  * @param key 查找键值
- * @return longlong* 找到的元素指针
+ * @return int64_t* 找到的元素指针
  */
-longlong * FUN_18022f240(uint64_t *container, ulonglong key)
+int64_t * FUN_18022f240(uint64_t *container, uint64_t key)
 {
-    longlong *result;
+    int64_t *result;
     uint64_t *current_ptr;
     uint64_t *parent_ptr;
     
@@ -652,21 +652,21 @@ longlong * FUN_18022f240(uint64_t *container, ulonglong key)
     parent_ptr = container;
     if (current_ptr != (uint64_t *)0x0) {
         do {
-            if ((ulonglong)current_ptr[4] < key) {
+            if ((uint64_t)current_ptr[4] < key) {
                 current_ptr = (uint64_t *)*current_ptr;
             } else {
                 parent_ptr = current_ptr;
                 current_ptr = (uint64_t *)current_ptr[1];
             }
         } while (current_ptr != (uint64_t *)0x0);
-        if ((parent_ptr != container) && ((ulonglong)parent_ptr[4] <= key)) {
-            return (longlong *)parent_ptr[5];
+        if ((parent_ptr != container) && ((uint64_t)parent_ptr[4] <= key)) {
+            return (int64_t *)parent_ptr[5];
         }
     }
-    result = *(longlong **)(key + 0x210);
-    if (result != (longlong *)0x0) {
-        ((void (*)(longlong *))(*result + 0x28))(result);
-        ((void (*)(longlong *))(*result + 0x38))(result);
+    result = *(int64_t **)(key + 0x210);
+    if (result != (int64_t *)0x0) {
+        ((void (*)(int64_t *))(*result + 0x28))(result);
+        ((void (*)(int64_t *))(*result + 0x38))(result);
     }
     return result;
 }
@@ -682,33 +682,33 @@ longlong * FUN_18022f240(uint64_t *container, ulonglong key)
  * @param flags 操作标志
  * @return void
  */
-void FUN_18022f2e0(longlong *container, longlong *old_element, int32_t flags)
+void FUN_18022f2e0(int64_t *container, int64_t *old_element, int32_t flags)
 {
-    longlong *temp_ptr;
-    longlong *temp_ptr2;
+    int64_t *temp_ptr;
+    int64_t *temp_ptr2;
     
-    if (old_element != (longlong *)0x0) {
-        ((void (*)(longlong *))(*old_element + 0x28))(old_element);
+    if (old_element != (int64_t *)0x0) {
+        ((void (*)(int64_t *))(*old_element + 0x28))(old_element);
     }
-    temp_ptr = (longlong *)*container;
-    *container = (longlong)new_element;
-    if (temp_ptr != (longlong *)0x0) {
+    temp_ptr = (int64_t *)*container;
+    *container = (int64_t)new_element;
+    if (temp_ptr != (int64_t *)0x0) {
         ((void (*)(void))(*temp_ptr + 0x38))();
     }
-    container[3] = (longlong)new_element;
+    container[3] = (int64_t)new_element;
     *(int32_t *)(container + 4) = flags;
     ((void (*)(void))0x18007f4c0)();
-    temp_ptr = (longlong *)container[5];
-    if (temp_ptr != (longlong *)0x0) {
-        ((void (*)(longlong *))(*temp_ptr + 0x28))(temp_ptr);
+    temp_ptr = (int64_t *)container[5];
+    if (temp_ptr != (int64_t *)0x0) {
+        ((void (*)(int64_t *))(*temp_ptr + 0x28))(temp_ptr);
     }
-    temp_ptr2 = (longlong *)container[1];
-    container[1] = (longlong)temp_ptr;
-    if (temp_ptr2 != (longlong *)0x0) {
+    temp_ptr2 = (int64_t *)container[1];
+    container[1] = (int64_t)temp_ptr;
+    if (temp_ptr2 != (int64_t *)0x0) {
         ((void (*)(void))(*temp_ptr2 + 0x38))();
     }
     *(int16_t *)(container + 6) = 0;
-    *(int8_t *)((longlong)container + 0x32) = 0;
+    *(int8_t *)((int64_t)container + 0x32) = 0;
 }
 
 /**
@@ -721,22 +721,22 @@ void FUN_18022f2e0(longlong *container, longlong *old_element, int32_t flags)
  */
 void FUN_18022f390(uint64_t *container)
 {
-    longlong *element_ptr;
+    int64_t *element_ptr;
     
     if (container[1] != 0) {
-        if (*(char *)((longlong)container + 0x32) != '\0') {
-            ((void (*)(longlong))0x180075b70)(*container);
+        if (*(char *)((int64_t)container + 0x32) != '\0') {
+            ((void (*)(int64_t))0x180075b70)(*container);
         }
-        ((void (*)(longlong *))0x18007f6a0)(container + 2);
+        ((void (*)(int64_t *))0x18007f6a0)(container + 2);
         if (*(char *)(container + 6) != '\0') {
-            ((void (*)(longlong))0x180079520)(*container);
+            ((void (*)(int64_t))0x180079520)(*container);
         }
-        if (*(char *)((longlong)container + 0x31) != '\0') {
-            ((void (*)(longlong))0x180079520)(*container);
+        if (*(char *)((int64_t)container + 0x31) != '\0') {
+            ((void (*)(int64_t))0x180079520)(*container);
         }
-        element_ptr = (longlong *)container[1];
+        element_ptr = (int64_t *)container[1];
         container[1] = 0;
-        if (element_ptr != (longlong *)0x0) {
+        if (element_ptr != (int64_t *)0x0) {
             ((void (*)(void))(*element_ptr + 0x38))();
             return;
         }
@@ -751,20 +751,20 @@ void FUN_18022f390(uint64_t *container)
  * @param container 容器指针
  * @return void
  */
-void FUN_18022f410(longlong *container)
+void FUN_18022f410(int64_t *container)
 {
     if (*container != 0) {
         FUN_18022f390();
     }
-    ((void (*)(longlong *))0x18007f6a0)(container + 2);
-    if ((longlong *)container[5] != (longlong *)0x0) {
-        ((void (*)(void))(*(longlong *)container[5] + 0x38))();
+    ((void (*)(int64_t *))0x18007f6a0)(container + 2);
+    if ((int64_t *)container[5] != (int64_t *)0x0) {
+        ((void (*)(void))(*(int64_t *)container[5] + 0x38))();
     }
-    if ((longlong *)container[1] != (longlong *)0x0) {
-        ((void (*)(void))(*(longlong *)container[1] + 0x38))();
+    if ((int64_t *)container[1] != (int64_t *)0x0) {
+        ((void (*)(void))(*(int64_t *)container[1] + 0x38))();
     }
-    if ((longlong *)*container != (longlong *)0x0) {
-        ((void (*)(void))(*(longlong *)*container + 0x38))();
+    if ((int64_t *)*container != (int64_t *)0x0) {
+        ((void (*)(void))(*(int64_t *)*container + 0x38))();
     }
 }
 
@@ -777,7 +777,7 @@ void FUN_18022f410(longlong *container)
  * @param params 参数指针
  * @return void
  */
-void FUN_18022f490(uint64_t container, longlong params)
+void FUN_18022f490(uint64_t container, int64_t params)
 {
     float *vector_ptr;
     char is_negative;
@@ -895,7 +895,7 @@ void FUN_18022f490(uint64_t container, longlong params)
  * @param blend_factor 混合因子
  * @return void
  */
-void FUN_18022f9b0(longlong *container1, longlong *container2, int param1, int param2, float blend_factor)
+void FUN_18022f9b0(int64_t *container1, int64_t *container2, int param1, int param2, float blend_factor)
 {
     uint64_t *temp_ptr1;
     uint64_t *temp_ptr2;
@@ -905,33 +905,33 @@ void FUN_18022f9b0(longlong *container1, longlong *container2, int param1, int p
     float temp_float3;
     uint element_count1;
     uint element_count2;
-    longlong data_ptr1;
-    longlong data_ptr2;
+    int64_t data_ptr1;
+    int64_t data_ptr2;
     uint index1;
     uint index2;
-    longlong temp_long1;
-    longlong temp_long2;
+    int64_t temp_long1;
+    int64_t temp_long2;
     uint temp_uint1;
     float temp_float4;
     int8_t temp_array[16];
     float temp_float5;
-    longlong *temp_array_ptr1[2];
+    int64_t *temp_array_ptr1[2];
     int temp_int_array1[2];
     int temp_int_array2[2];
     uint64_t temp_uint64;
-    longlong **temp_ptr_ptr1;
-    longlong **temp_ptr_ptr2;
-    longlong *temp_ptr3;
-    longlong **temp_ptr_ptr3;
+    int64_t **temp_ptr_ptr1;
+    int64_t **temp_ptr_ptr2;
+    int64_t *temp_ptr3;
+    int64_t **temp_ptr_ptr3;
     uint64_t temp_uint64_1;
     uint64_t temp_uint64_2;
     int *temp_int_ptr1;
-    longlong *temp_ptr4;
-    longlong **temp_ptr_ptr4;
+    int64_t *temp_ptr4;
+    int64_t **temp_ptr_ptr4;
     uint64_t temp_uint64_3;
     uint64_t temp_uint64_4;
     int *temp_int_ptr2;
-    longlong *temp_array_ptr2[2];
+    int64_t *temp_array_ptr2[2];
     void *temp_func_ptr1;
     void *temp_func_ptr2;
     uint64_t temp_uint64_5;
@@ -949,15 +949,15 @@ void FUN_18022f9b0(longlong *container1, longlong *container2, int param1, int p
                 index1 = temp_uint1;
                 if (element_count1 != 0) {
                     do {
-                        temp_long1 = (longlong)(int)index1;
-                        data_ptr1 = *(longlong *)(*container2 + 8 + (longlong)temp_int_array2[0] * 0x50);
+                        temp_long1 = (int64_t)(int)index1;
+                        data_ptr1 = *(int64_t *)(*container2 + 8 + (int64_t)temp_int_array2[0] * 0x50);
                         temp_float5 = 1.0 - blend_factor;
-                        data_ptr2 = *(longlong *)(*container2 + 8 + (longlong)temp_int_array1[0] * 0x50);
+                        data_ptr2 = *(int64_t *)(*container2 + 8 + (int64_t)temp_int_array1[0] * 0x50);
                         temp_float1 = *(float *)(data_ptr1 + 4 + temp_long1 * 0x10);
                         temp_float2 = *(float *)(data_ptr2 + 4 + temp_long1 * 0x10);
                         temp_float3 = *(float *)(data_ptr1 + 8 + temp_long1 * 0x10);
                         temp_float4 = *(float *)(data_ptr2 + 8 + temp_long1 * 0x10);
-                        float_ptr = (float *)(*(longlong *)(container1[1] + 0x40) + temp_long1 * 0x10);
+                        float_ptr = (float *)(*(int64_t *)(container1[1] + 0x40) + temp_long1 * 0x10);
                         *float_ptr = blend_factor * *(float *)(data_ptr2 + temp_long1 * 0x10) +
                                    temp_float5 * *(float *)(data_ptr1 + temp_long1 * 0x10);
                         float_ptr[1] = temp_float5 * temp_float1 + blend_factor * temp_float2;
@@ -968,22 +968,22 @@ void FUN_18022f9b0(longlong *container1, longlong *container2, int param1, int p
                 }
                 if (element_count2 != 0) {
                     do {
-                        temp_long2 = (longlong)(int)temp_uint1;
-                        data_ptr1 = *(longlong *)(*container2 + 0x30 + (longlong)temp_int_array2[0] * 0x50);
+                        temp_long2 = (int64_t)(int)temp_uint1;
+                        data_ptr1 = *(int64_t *)(*container2 + 0x30 + (int64_t)temp_int_array2[0] * 0x50);
                         temp_float5 = 1.0 - blend_factor;
-                        data_ptr2 = *(longlong *)(*container2 + 0x30 + (longlong)temp_int_array1[0] * 0x50);
+                        data_ptr2 = *(int64_t *)(*container2 + 0x30 + (int64_t)temp_int_array1[0] * 0x50);
                         temp_float1 = *(float *)(data_ptr1 + 4 + temp_long2 * 0x10);
                         temp_float2 = *(float *)(data_ptr2 + 4 + temp_long2 * 0x10);
                         temp_float3 = *(float *)(data_ptr1 + 8 + temp_long2 * 0x10);
                         temp_float4 = *(float *)(data_ptr2 + 8 + temp_long2 * 0x10);
                         temp_long1 = temp_long2 * 0x5c;
-                        float_ptr = (float *)(*(longlong *)(container1[1] + 0x68) + 0x34 + temp_long1);
+                        float_ptr = (float *)(*(int64_t *)(container1[1] + 0x68) + 0x34 + temp_long1);
                         *float_ptr = blend_factor * *(float *)(data_ptr2 + temp_long2 * 0x10) +
                                    temp_float5 * *(float *)(data_ptr1 + temp_long2 * 0x10);
                         float_ptr[1] = temp_float5 * temp_float1 + blend_factor * temp_float2;
                         float_ptr[2] = temp_float5 * temp_float3 + blend_factor * temp_float4;
                         float_ptr[3] = 3.4028235e+38;
-                        data_ptr1 = *(longlong *)(container1[1] + 0x68);
+                        data_ptr1 = *(int64_t *)(container1[1] + 0x68);
                         temp_float1 = *(float *)(data_ptr1 + 0x38 + temp_long1);
                         temp_float2 = *(float *)(data_ptr1 + 0x34 + temp_long1);
                         temp_float3 = *(float *)(data_ptr1 + 0x3c + temp_long1);
@@ -994,7 +994,7 @@ void FUN_18022f9b0(longlong *container1, longlong *container2, int param1, int p
                         *(float *)(data_ptr1 + 0x34 + temp_long1) = temp_float2 * temp_float4;
                         *(float *)(data_ptr1 + 0x38 + temp_long1) = temp_float1 * temp_float4;
                         *(float *)(data_ptr1 + 0x3c + temp_long1) = temp_float3 * temp_float4;
-                        FUN_18022f490(data_ptr1, temp_long1 + *(longlong *)(container1[1] + 0x68));
+                        FUN_18022f490(data_ptr1, temp_long1 + *(int64_t *)(container1[1] + 0x68));
                         temp_uint1 = temp_uint1 + 1;
                     } while (temp_uint1 < element_count2);
                 }
@@ -1003,10 +1003,10 @@ void FUN_18022f9b0(longlong *container1, longlong *container2, int param1, int p
                 index1 = temp_uint1;
                 if (element_count1 != 0) {
                     do {
-                        temp_ptr1 = (uint64_t *)(*(longlong *)(*container2 + 8 + (longlong)temp_int_array1[0] * 0x50) +
-                                                 (longlong)(int)index1 * 0x10);
+                        temp_ptr1 = (uint64_t *)(*(int64_t *)(*container2 + 8 + (int64_t)temp_int_array1[0] * 0x50) +
+                                                 (int64_t)(int)index1 * 0x10);
                         temp_uint64 = temp_ptr1[1];
-                        temp_ptr2 = (uint64_t *)(*(longlong *)(container1[1] + 0x40) + (longlong)(int)index1 * 0x10);
+                        temp_ptr2 = (uint64_t *)(*(int64_t *)(container1[1] + 0x40) + (int64_t)(int)index1 * 0x10);
                         *temp_ptr2 = *temp_ptr1;
                         temp_ptr2[1] = temp_uint64;
                         index1 = index1 + 1;
@@ -1014,14 +1014,14 @@ void FUN_18022f9b0(longlong *container1, longlong *container2, int param1, int p
                 }
                 if (element_count2 != 0) {
                     do {
-                        temp_ptr1 = (uint64_t *)(*(longlong *)(*container2 + 0x30 + (longlong)temp_int_array1[0] * 0x50) +
-                                                 (longlong)(int)temp_uint1 * 0x10);
+                        temp_ptr1 = (uint64_t *)(*(int64_t *)(*container2 + 0x30 + (int64_t)temp_int_array1[0] * 0x50) +
+                                                 (int64_t)(int)temp_uint1 * 0x10);
                         temp_uint64 = temp_ptr1[1];
-                        temp_long2 = (longlong)(int)temp_uint1 * 0x5c;
-                        temp_ptr2 = (uint64_t *)(*(longlong *)(container1[1] + 0x68) + 0x34 + temp_long2);
+                        temp_long2 = (int64_t)(int)temp_uint1 * 0x5c;
+                        temp_ptr2 = (uint64_t *)(*(int64_t *)(container1[1] + 0x68) + 0x34 + temp_long2);
                         *temp_ptr2 = *temp_ptr1;
                         temp_ptr2[1] = temp_uint64;
-                        data_ptr1 = *(longlong *)(container1[1] + 0x68);
+                        data_ptr1 = *(int64_t *)(container1[1] + 0x68);
                         temp_float1 = *(float *)(data_ptr1 + 0x38 + temp_long2);
                         temp_float2 = *(float *)(data_ptr1 + 0x34 + temp_long2);
                         temp_float3 = *(float *)(data_ptr1 + 0x3c + temp_long2);
@@ -1032,7 +1032,7 @@ void FUN_18022f9b0(longlong *container1, longlong *container2, int param1, int p
                         *(float *)(data_ptr1 + 0x34 + temp_long2) = temp_float4 * temp_float2;
                         *(float *)(data_ptr1 + 0x38 + temp_long2) = temp_float4 * temp_float1;
                         *(float *)(data_ptr1 + 0x3c + temp_long2) = temp_float4 * temp_float3;
-                        FUN_18022f490(data_ptr1, temp_long2 + *(longlong *)(container1[1] + 0x68));
+                        FUN_18022f490(data_ptr1, temp_long2 + *(int64_t *)(container1[1] + 0x68));
                         temp_uint1 = temp_uint1 + 1;
                     } while (temp_uint1 < element_count2);
                 }
@@ -1042,10 +1042,10 @@ void FUN_18022f9b0(longlong *container1, longlong *container2, int param1, int p
             index1 = temp_uint1;
             if (element_count1 != 0) {
                 do {
-                    temp_ptr1 = (uint64_t *)(*(longlong *)(*container2 + 8 + (longlong)temp_int_array2[0] * 0x50) +
-                                             (longlong)(int)index1 * 0x10);
+                    temp_ptr1 = (uint64_t *)(*(int64_t *)(*container2 + 8 + (int64_t)temp_int_array2[0] * 0x50) +
+                                             (int64_t)(int)index1 * 0x10);
                     temp_uint64 = temp_ptr1[1];
-                    temp_ptr2 = (uint64_t *)(*(longlong *)(container1[1] + 0x40) + (longlong)(int)index1 * 0x10);
+                    temp_ptr2 = (uint64_t *)(*(int64_t *)(container1[1] + 0x40) + (int64_t)(int)index1 * 0x10);
                     *temp_ptr2 = *temp_ptr1;
                     temp_ptr2[1] = temp_uint64;
                     index1 = index1 + 1;
@@ -1053,14 +1053,14 @@ void FUN_18022f9b0(longlong *container1, longlong *container2, int param1, int p
             }
             if (element_count2 != 0) {
                 do {
-                    temp_ptr1 = (uint64_t *)(*(longlong *)(*container2 + 0x30 + (longlong)temp_int_array2[0] * 0x50) +
-                                             (longlong)(int)temp_uint1 * 0x10);
+                    temp_ptr1 = (uint64_t *)(*(int64_t *)(*container2 + 0x30 + (int64_t)temp_int_array2[0] * 0x50) +
+                                             (int64_t)(int)temp_uint1 * 0x10);
                     temp_uint64 = temp_ptr1[1];
-                    temp_long2 = (longlong)(int)temp_uint1 * 0x5c;
-                    temp_ptr2 = (uint64_t *)(*(longlong *)(container1[1] + 0x68) + 0x34 + temp_long2);
+                    temp_long2 = (int64_t)(int)temp_uint1 * 0x5c;
+                    temp_ptr2 = (uint64_t *)(*(int64_t *)(container1[1] + 0x68) + 0x34 + temp_long2);
                     *temp_ptr2 = *temp_ptr1;
                     temp_ptr2[1] = temp_uint64;
-                    data_ptr1 = *(longlong *)(container1[1] + 0x68);
+                    data_ptr1 = *(int64_t *)(container1[1] + 0x68);
                     temp_float1 = *(float *)(data_ptr1 + 0x38 + temp_long2);
                     temp_float2 = *(float *)(data_ptr1 + 0x34 + temp_long2);
                     temp_float3 = *(float *)(data_ptr1 + 0x3c + temp_long2);
@@ -1071,7 +1071,7 @@ void FUN_18022f9b0(longlong *container1, longlong *container2, int param1, int p
                     *(float *)(data_ptr1 + 0x34 + temp_long2) = temp_float4 * temp_float2;
                     *(float *)(data_ptr1 + 0x38 + temp_long2) = temp_float4 * temp_float1;
                     *(float *)(data_ptr1 + 0x3c + temp_long2) = temp_float4 * temp_float3;
-                    FUN_18022f490(data_ptr1, temp_long2 + *(longlong *)(container1[1] + 0x68));
+                    FUN_18022f490(data_ptr1, temp_long2 + *(int64_t *)(container1[1] + 0x68));
                     temp_uint1 = temp_uint1 + 1;
                 } while (temp_uint1 < element_count2);
             }
@@ -1087,17 +1087,17 @@ void FUN_18022f9b0(longlong *container1, longlong *container2, int param1, int p
         temp_func_ptr2 = (void *)0x180239610;
         temp_array_ptr1[0] = container2;
         temp_ptr3 = container1;
-        temp_array_ptr2[0] = (longlong *)((longlong (*)(void *, uint64_t, uint64_t, void *))0x18062b1e0)(0x180c8ed18, 0x28, 8, (void *)0x180bf65bc);
-        *temp_array_ptr2[0] = (longlong)temp_ptr3;
-        temp_array_ptr2[0][1] = (longlong)temp_ptr_ptr3;
+        temp_array_ptr2[0] = (int64_t *)((int64_t (*)(void *, uint64_t, uint64_t, void *))0x18062b1e0)(0x180c8ed18, 0x28, 8, (void *)0x180bf65bc);
+        *temp_array_ptr2[0] = (int64_t)temp_ptr3;
+        temp_array_ptr2[0][1] = (int64_t)temp_ptr_ptr3;
         *(int32_t *)(temp_array_ptr2[0] + 2) = (int32_t)temp_uint64_1;
-        *(int32_t *)((longlong)temp_array_ptr2[0] + 0x14) = temp_uint64_1._4_4_;
+        *(int32_t *)((int64_t)temp_array_ptr2[0] + 0x14) = temp_uint64_1._4_4_;
         *(int32_t *)(temp_array_ptr2[0] + 3) = (int32_t)temp_uint64_2;
-        *(int32_t *)((longlong)temp_array_ptr2[0] + 0x1c) = temp_uint64_2._4_4_;
-        temp_array_ptr2[0][4] = (longlong)temp_int_ptr1;
+        *(int32_t *)((int64_t)temp_array_ptr2[0] + 0x1c) = temp_uint64_2._4_4_;
+        temp_array_ptr2[0][4] = (int64_t)temp_int_ptr1;
         temp_ptr_ptr1 = temp_array_ptr2;
         temp_uint64 = 0xffffffffffffffff;
-        ((void (*)(int, int, uint64_t, uint64_t, uint64_t, longlong **, longlong **))0x18015b810)((int)temp_int_ptr1, 0, element_count1, 0x10, 0xffffffffffffffff, temp_ptr_ptr1, temp_ptr_ptr2);
+        ((void (*)(int, int, uint64_t, uint64_t, uint64_t, int64_t **, int64_t **))0x18015b810)((int)temp_int_ptr1, 0, element_count1, 0x10, 0xffffffffffffffff, temp_ptr_ptr1, temp_ptr_ptr2);
         temp_ptr_ptr4 = temp_array_ptr1;
         temp_uint64_3 = temp_int_array2;
         temp_uint64_4 = &blend_factor;
@@ -1105,15 +1105,15 @@ void FUN_18022f9b0(longlong *container1, longlong *container2, int param1, int p
         temp_uint64_1 = (void (*)(void))0x180239530;
         temp_uint64_2 = (int32_t *)0x180239520;
         temp_ptr4 = container1;
-        temp_ptr3 = (longlong *)((longlong (*)(void *, uint64_t, uint64_t, void *, uint64_t, longlong **, longlong **))0x18062b1e0)(0x180c8ed18, 0x28, 8, (void *)0x180bf65bc, temp_uint64, temp_ptr_ptr1, &temp_ptr3);
-        *temp_ptr3 = (longlong)temp_ptr4;
-        temp_ptr3[1] = (longlong)temp_ptr_ptr4;
+        temp_ptr3 = (int64_t *)((int64_t (*)(void *, uint64_t, uint64_t, void *, uint64_t, int64_t **, int64_t **))0x18062b1e0)(0x180c8ed18, 0x28, 8, (void *)0x180bf65bc, temp_uint64, temp_ptr_ptr1, &temp_ptr3);
+        *temp_ptr3 = (int64_t)temp_ptr4;
+        temp_ptr3[1] = (int64_t)temp_ptr_ptr4;
         *(int32_t *)(temp_ptr3 + 2) = (int32_t)temp_uint64_3;
-        *(int32_t *)((longlong)temp_ptr3 + 0x14) = temp_uint64_3._4_4_;
+        *(int32_t *)((int64_t)temp_ptr3 + 0x14) = temp_uint64_3._4_4_;
         *(int32_t *)(temp_ptr3 + 3) = (int32_t)temp_uint64_4;
-        *(int32_t *)((longlong)temp_ptr3 + 0x1c) = temp_uint64_4._4_4_;
-        temp_ptr3[4] = (longlong)temp_int_ptr2;
-        ((void (*)(int, int, uint64_t, uint64_t, uint64_t, longlong **))0x18015b810)((int)temp_int_ptr2, 0, element_count2, 0x10, 0xffffffffffffffff, &temp_ptr3);
+        *(int32_t *)((int64_t)temp_ptr3 + 0x1c) = temp_uint64_4._4_4_;
+        temp_ptr3[4] = (int64_t)temp_int_ptr2;
+        ((void (*)(int, int, uint64_t, uint64_t, uint64_t, int64_t **))0x18015b810)((int)temp_int_ptr2, 0, element_count2, 0x10, 0xffffffffffffffff, &temp_ptr3);
     }
     *(int8_t *)(container1 + 6) = 1;
 }
@@ -1327,7 +1327,7 @@ ErrorCode OptimizeContainerPerformance(void* container, int optimization_level)
             break;
         case 3:
             // 高级优化：完全重建
-            FUN_18022f410((longlong*)container);
+            FUN_18022f410((int64_t*)container);
             break;
         default:
             return ERROR_INVALID_PARAMETER;

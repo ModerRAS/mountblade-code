@@ -18,7 +18,7 @@
  * @param target_component 目标组件指针
  * @param processing_flags 处理标志，控制处理行为
  */
-void meta_mesh_component_processor(void *component_data, longlong scene_manager, longlong render_context, void *target_component, int processing_flags)
+void meta_mesh_component_processor(void *component_data, int64_t scene_manager, int64_t render_context, void *target_component, int processing_flags)
 {
   byte *mesh_data_ptr1;
   char name_compare_char1;
@@ -31,16 +31,16 @@ void meta_mesh_component_processor(void *component_data, longlong scene_manager,
   void *component_ptr;
   char *component_name1;
   char *component_name2;
-  longlong mesh_data_offset1;
-  longlong mesh_data_offset2;
+  int64_t mesh_data_offset1;
+  int64_t mesh_data_offset2;
   void *material_system_ptr;
   char *texture_name_ptr;
   byte *mesh_data_ptr2;
-  longlong component_reference;
+  int64_t component_reference;
   uint mesh_property_count1;
   uint mesh_property_count2;
   void *heap_allocation1;
-  longlong data_offset;
+  int64_t data_offset;
   int mesh_entry_count;
   bool mesh_properties_equal;
   char *material_identifier;
@@ -55,20 +55,20 @@ void meta_mesh_component_processor(void *component_data, longlong scene_manager,
   char *texture_file_path;
   uint32_t texture_path_length;
   uint64_t texture_memory_size;
-  longlong *texture_object_ptr;
-  longlong *texture_object_ptr2;
-  longlong material_data_offset;
-  longlong *cache_entry_ptr;
+  int64_t *texture_object_ptr;
+  int64_t *texture_object_ptr2;
+  int64_t material_data_offset;
+  int64_t *cache_entry_ptr;
   uint32_t buffer_parameter;
-  longlong *stack_allocator_ptr;
+  int64_t *stack_allocator_ptr;
   uint16_t texture_processing_flag;
   char texture_name_separator;
   int file_entry_data[2];
-  longlong *material_entry_list;
-  longlong *material_entry_list2;
+  int64_t *material_entry_list;
+  int64_t *material_entry_list2;
   char texture_identifier[8];
   uint64_t stack_parameter;
-  longlong *temporary_ptr1;
+  int64_t *temporary_ptr1;
   char stack_char1;
   char stack_char2;
   char stack_char3;
@@ -77,39 +77,39 @@ void meta_mesh_component_processor(void *component_data, longlong scene_manager,
   uint32_t parameter_count;
   uint32_t parameter_value;
   int temp_processing_indices[2];
-  longlong *temporary_ptr2;
-  longlong *temporary_ptr3;
+  int64_t *temporary_ptr2;
+  int64_t *temporary_ptr3;
   uint8_t temp_buffer1[4];
   uint8_t temp_buffer2[4];
-  longlong *temporary_ptr4;
-  longlong *temporary_ptr5;
-  longlong *temporary_ptr6;
-  longlong *temporary_ptr7;
-  longlong *temporary_ptr8;
+  int64_t *temporary_ptr4;
+  int64_t *temporary_ptr5;
+  int64_t *temporary_ptr6;
+  int64_t *temporary_ptr7;
+  int64_t *temporary_ptr8;
   void *temporary_ptr9;
-  longlong stack_memory_offset;
+  int64_t stack_memory_offset;
   uint32_t stack_parameter2;
   uint64_t stack_parameter3;
-  longlong *stack_ptr1;
+  int64_t *stack_ptr1;
   
   stack_parameter3 = 0xfffffffffffffffe;
   component_ptr = (void *)mesh_component_allocator(scene_manager + 0x60, 0x60);
   *component_ptr = 0;
-  *(void **)((longlong)component_ptr + 8) = 0;
-  *(void **)((longlong)component_ptr + 32) = 0;
-  *(uint32_t *)((longlong)component_ptr + 20) = 1;
-  *(void **)((longlong)component_ptr + 48) = 0;
-  *(void **)((longlong)component_ptr + 64) = 0;
+  *(void **)((int64_t)component_ptr + 8) = 0;
+  *(void **)((int64_t)component_ptr + 32) = 0;
+  *(uint32_t *)((int64_t)component_ptr + 20) = 1;
+  *(void **)((int64_t)component_ptr + 48) = 0;
+  *(void **)((int64_t)component_ptr + 64) = 0;
   component_name1 = "meta_mesh_component";
   do {
     component_name2 = component_name1;
     component_name1 = component_name2 + 1;
   } while (*component_name1 != '\0');
   *(void **)component_ptr = &META_MESH_COMPONENT_TYPE;
-  *(longlong *)((longlong)component_ptr + 16) = component_name2 + -0x180a09d7f;
+  *(int64_t *)((int64_t)component_ptr + 16) = component_name2 + -0x180a09d7f;
   if (target_component == (void *)0x0) {
     mesh_data_offset1 = get_current_scene_context();
-    comparison_index = *(int *)((longlong)component_data + 0x40);
+    comparison_index = *(int *)((int64_t)component_data + 0x40);
     if (comparison_index == *(int *)(mesh_data_offset1 + 0x10)) {
       if (comparison_index == 0) {
 LAB_MESH_NAMES_EMPTY:
@@ -120,7 +120,7 @@ LAB_MESH_NAMES_EMPTY:
         component_name2 = component_name1;
         do {
           component_char = *component_name2;
-          name_compare_char2 = component_name2[*(longlong *)(mesh_data_offset1 + 8) - (longlong)component_name1];
+          name_compare_char2 = component_name2[*(int64_t *)(mesh_data_offset1 + 8) - (int64_t)component_name1];
           if (component_char != name_compare_char2) break;
           component_name2 = component_name2 + 1;
         } while (name_compare_char2 != '\0');
@@ -144,19 +144,19 @@ LAB_MESH_NAMES_DIFFERENT:
     goto LAB_COMPONENT_PROCESSING;
   }
   // 处理网格名称比较和验证
-  comparison_index = *(int *)((longlong)component_data + 0x40);
+  comparison_index = *(int *)((int64_t)component_data + 0x40);
   temp_component_ptr = target_component;
-  if (comparison_index == *(int *)((longlong)target_component + 0x40)) {
+  if (comparison_index == *(int *)((int64_t)target_component + 0x40)) {
     if (comparison_index == 0) {
 LAB_COMPONENT_NAMES_EQUAL:
-      if (*(int *)((longlong)target_component + 0x40) == 0) goto LAB_COMPONENT_PROCESSING;
+      if (*(int *)((int64_t)target_component + 0x40) == 0) goto LAB_COMPONENT_PROCESSING;
       goto LAB_COMPONENT_NAMES_DIFFERENT;
     }
     component_name1 = (char *)component_data[0x3f];
     component_name2 = component_name1;
     do {
       component_char = *component_name2;
-      name_compare_char2 = component_name2[target_component[0x3f] - (longlong)component_name1];
+      name_compare_char2 = component_name2[target_component[0x3f] - (int64_t)component_name1];
       if (component_char != name_compare_char2) break;
       component_name2 = component_name2 + 1;
     } while (name_compare_char2 != '\0');
@@ -174,7 +174,7 @@ LAB_COMPONENT_NAMES_DIFFERENT:
   add_material_to_scene(scene_manager, component_ptr, &MATERIAL_PROPERTY_TABLE, component_name2);
   // 比较网格属性并进行材质处理
 LAB_COMPONENT_PROCESSING:
-  if (*(int *)((longlong)component_data + 0x324) != *(int *)((longlong)temp_component_ptr + 0x324)) {
+  if (*(int *)((int64_t)component_data + 0x324) != *(int *)((int64_t)temp_component_ptr + 0x324)) {
     add_rendering_parameter(scene_manager, component_ptr, &RENDERING_QUALITY_SETTING);
   }
   if ((void *)*temp_component_ptr == &DEFAULT_MESH_COMPONENT) {
@@ -192,10 +192,10 @@ LAB_COMPONENT_PROCESSING:
   component_char = compare_mesh_properties(material_system_ptr, texture_object_ptr2, 0x3c23d70a);
   if (component_char == '\0') {
     // 处理网格变换和缩放
-    float source_scale_x = *(float *)((longlong)component_data + 0x6c);
-    float source_scale_y = *(float *)((longlong)component_data + 0x364);
-    float source_scale_z = *(float *)((longlong)component_data + 0x6d);
-    uint32_t source_scale_w = *(uint32_t *)((longlong)component_data + 0x36c);
+    float source_scale_x = *(float *)((int64_t)component_data + 0x6c);
+    float source_scale_y = *(float *)((int64_t)component_data + 0x364);
+    float source_scale_z = *(float *)((int64_t)component_data + 0x6d);
+    uint32_t source_scale_w = *(uint32_t *)((int64_t)component_data + 0x36c);
     extract_mesh_transform(component_data + 0x66, &mesh_transform_scale);
     extract_mesh_rotation(component_data + 0x66, mesh_rotation_data);
     add_material_to_scene(scene_manager, component_ptr, &MESH_SCALE_PROPERTY, &source_scale_x);
@@ -218,8 +218,8 @@ LAB_COMPONENT_PROCESSING:
     do {
       mesh_data_offset2 = mesh_rotation_data[0];
       heap_allocation1 = &DEFAULT_MEMORY_VALUE;
-      mesh_data_offset1 = *(longlong *)(mesh_data_offset1 + mesh_rotation_data[0] * 0x10);
-      if (*(longlong *)(mesh_data_offset1 + 0x1b0) == 0) {
+      mesh_data_offset1 = *(int64_t *)(mesh_data_offset1 + mesh_rotation_data[0] * 0x10);
+      if (*(int64_t *)(mesh_data_offset1 + 0x1b0) == 0) {
         mesh_data_offset2 = mesh_data_offset1 + 0x10;
       }
       else {
@@ -235,9 +235,9 @@ LAB_COMPONENT_PROCESSING:
         if (*(void **)(mesh_data_offset2 + 8) != (void *)0x0) {
           heap_allocation1 = *(void **)(mesh_data_offset2 + 8);
         }
-        memcpy(mesh_data_ptr2, heap_allocation1, (longlong)(*(int *)(mesh_data_offset2 + 0x10) + 1));
+        memcpy(mesh_data_ptr2, heap_allocation1, (int64_t)(*(int *)(mesh_data_offset2 + 0x10) + 1));
       }
-      if ((*(longlong *)(mesh_data_offset2 + 8) != 0) && (texture_path_length = 0, mesh_data_ptr2 != (byte *)0x0)) {
+      if ((*(int64_t *)(mesh_data_offset2 + 8) != 0) && (texture_path_length = 0, mesh_data_ptr2 != (byte *)0x0)) {
         *mesh_data_ptr2 = 0;
       }
       while ((0 < (int)texture_path_length && (mesh_data_offset2 = strstr(mesh_data_ptr2, &INVALID_CHARACTER_SEQUENCE), mesh_data_offset2 != 0))) {
@@ -248,7 +248,7 @@ LAB_COMPONENT_PROCESSING:
         }
         texture_value = parameter_count + comparison_index;
         if (texture_value < texture_path_length) {
-          mesh_data_offset2 = (longlong)(int)texture_value;
+          mesh_data_offset2 = (int64_t)(int)texture_value;
           do {
             mesh_data_ptr2[mesh_data_offset2 - comparison_index] = mesh_data_ptr2[mesh_data_offset2];
             texture_value = texture_value + 1;
@@ -260,25 +260,25 @@ LAB_COMPONENT_PROCESSING:
       }
       material_system_ptr = (void *)mesh_component_allocator(scene_manager + 0x60, 0x60);
       *material_system_ptr = 0;
-      *(void **)((longlong)material_system_ptr + 8) = 0;
-      *(void **)((longlong)material_system_ptr + 32) = 0;
-      *(uint32_t *)((longlong)material_system_ptr + 20) = 1;
-      *(void **)((longlong)material_system_ptr + 48) = 0;
-      *(void **)((longlong)material_system_ptr + 64) = 0;
+      *(void **)((int64_t)material_system_ptr + 8) = 0;
+      *(void **)((int64_t)material_system_ptr + 32) = 0;
+      *(uint32_t *)((int64_t)material_system_ptr + 20) = 1;
+      *(void **)((int64_t)material_system_ptr + 48) = 0;
+      *(void **)((int64_t)material_system_ptr + 64) = 0;
       component_name1 = "mesh";
       do {
         component_name2 = component_name1;
         component_name1 = component_name2 + 1;
       } while (*component_name1 != '\0');
       *(void **)material_system_ptr = &MESH_COMPONENT_TYPE;
-      *(longlong *)((longlong)material_system_ptr + 16) = component_name2 + -0x180a0f3e7;
+      *(int64_t *)((int64_t)material_system_ptr + 16) = component_name2 + -0x180a0f3e7;
       stack_char1 = 0;
       stack_memory_offset = 0;
-      if ((longlong)(component_data[8] - component_data[7]) >> 4 != 0) {
+      if ((int64_t)(component_data[8] - component_data[7]) >> 4 != 0) {
         do {
           texture_identifier = (byte *)0x0;
-          mesh_data_offset2 = *(longlong *)(temp_component_ptr[7] + stack_memory_offset * 0x10);
-          if (*(longlong *)(mesh_data_offset2 + 0x1b0) == 0) {
+          mesh_data_offset2 = *(int64_t *)(temp_component_ptr[7] + stack_memory_offset * 0x10);
+          if (*(int64_t *)(mesh_data_offset2 + 0x1b0) == 0) {
             mesh_data_offset2 = mesh_data_offset2 + 0x10;
           }
           else {
@@ -294,7 +294,7 @@ LAB_COMPONENT_PROCESSING:
               parameter_count = 0x10;
             }
             heap_ptr1 = texture_identifier;
-            texture_identifier = (byte *)string_buffer_allocator(MEMORY_ALLOCATOR_HANDLE, (longlong)parameter_count, 0x13);
+            texture_identifier = (byte *)string_buffer_allocator(MEMORY_ALLOCATOR_HANDLE, (int64_t)parameter_count, 0x13);
             *texture_identifier = 0;
             texture_memory_size = calculate_string_hash(texture_identifier);
             if (0 < *(int *)(mesh_data_offset2 + 0x10)) {
@@ -302,11 +302,11 @@ LAB_COMPONENT_PROCESSING:
               if (*(void **)(mesh_data_offset2 + 8) != (void *)0x0) {
                 heap_allocation1 = *(void **)(mesh_data_offset2 + 8);
               }
-              memcpy(texture_identifier, heap_allocation1, (longlong)(*(int *)(mesh_data_offset2 + 0x10) + 1));
+              memcpy(texture_identifier, heap_allocation1, (int64_t)(*(int *)(mesh_data_offset2 + 0x10) + 1));
             }
           }
           heap_ptr1 = texture_identifier;
-          if ((*(longlong *)(mesh_data_offset2 + 8) != 0) && (texture_processing_flag = 0, texture_identifier != (byte *)0x0)) {
+          if ((*(int64_t *)(mesh_data_offset2 + 8) != 0) && (texture_processing_flag = 0, texture_identifier != (byte *)0x0)) {
             *texture_identifier = 0;
           }
           while ((0 < (int)texture_processing_flag && (mesh_data_offset2 = strstr(heap_ptr1, &INVALID_CHARACTER_SEQUENCE), mesh_data_offset2 != 0))) {
@@ -317,7 +317,7 @@ LAB_COMPONENT_PROCESSING:
             }
             texture_value = parameter_count + comparison_index;
             if (texture_value < texture_processing_flag) {
-              mesh_data_offset2 = (longlong)(int)texture_value;
+              mesh_data_offset2 = (int64_t)(int)texture_value;
               do {
                 heap_ptr1[mesh_data_offset2 - comparison_index] = heap_ptr1[mesh_data_offset2];
                 texture_value = texture_value + 1;
@@ -333,7 +333,7 @@ LAB_COMPONENT_PROCESSING:
             if (texture_path_length != 0) {
               mesh_data_ptr2 = mesh_data_ptr2;
               do {
-                mesh_data_ptr1 = mesh_data_ptr2 + ((longlong)heap_ptr1 - (longlong)mesh_data_ptr2);
+                mesh_data_ptr1 = mesh_data_ptr2 + ((int64_t)heap_ptr1 - (int64_t)mesh_data_ptr2);
                 texture_value = (uint32_t)*mesh_data_ptr2 - (uint32_t)*mesh_data_ptr1;
                 if (texture_value != 0) break;
                 mesh_data_ptr2 = mesh_data_ptr2 + 1;
@@ -341,7 +341,7 @@ LAB_COMPONENT_PROCESSING:
             }
 LAB_MESH_PROPERTIES_MATCH:
             if (texture_value == 0) {
-              if ((*(longlong *)(mesh_data_offset1 + 0x1b8) != 0) && (*(longlong *)(*(longlong *)(mesh_data_offset1 + 0x1b8) + 0xa8) != 0)) {
+              if ((*(int64_t *)(mesh_data_offset1 + 0x1b8) != 0) && (*(int64_t *)(*(int64_t *)(mesh_data_offset1 + 0x1b8) + 0xa8) != 0)) {
                 mesh_data_offset2 = get_mesh_property_data(mesh_data_offset1);
                 mesh_data_offset1 = get_mesh_property_data(mesh_data_offset2);
                 parameter_count = *(int *)(mesh_data_offset2 + 0x10);
@@ -353,7 +353,7 @@ LAB_MESH_PROPERTIES_IDENTICAL:
                   }
                   else {
                     component_name1 = *(char **)(mesh_data_offset2 + 8);
-                    mesh_data_offset2 = *(longlong *)(mesh_data_offset1 + 8) - (longlong)component_name1;
+                    mesh_data_offset2 = *(int64_t *)(mesh_data_offset1 + 8) - (int64_t)component_name1;
                     do {
                       component_char = *component_name1;
                       name_compare_char2 = component_name1[mesh_data_offset2];
@@ -386,7 +386,7 @@ LAB_MESH_PROPERTIES_DIFFERENT:
                     if (comparison_index < 0x10) {
                       comparison_index = 0x10;
                     }
-                    heap_ptr2 = (byte *)string_buffer_allocator(MEMORY_ALLOCATOR_HANDLE, (longlong)comparison_index, 0x13);
+                    heap_ptr2 = (byte *)string_buffer_allocator(MEMORY_ALLOCATOR_HANDLE, (int64_t)comparison_index, 0x13);
                     *heap_ptr2 = 0;
                     material_param = calculate_string_hash(heap_ptr2);
                     texture_memory_size = CONCAT44(texture_memory_size._4_4_, material_param);
@@ -395,10 +395,10 @@ LAB_MESH_PROPERTIES_DIFFERENT:
                       if (*(void **)(mesh_data_offset2 + 8) != (void *)0x0) {
                         heap_allocation1 = *(void **)(mesh_data_offset2 + 8);
                       }
-                      memcpy(heap_ptr2, heap_allocation1, (longlong)(*(int *)(mesh_data_offset2 + 0x10) + 1));
+                      memcpy(heap_ptr2, heap_allocation1, (int64_t)(*(int *)(mesh_data_offset2 + 0x10) + 1));
                     }
                   }
-                  if ((*(longlong *)(mesh_data_offset2 + 8) != 0) && (texture_path_length = 0, heap_ptr2 != (byte *)0x0)) {
+                  if ((*(int64_t *)(mesh_data_offset2 + 8) != 0) && (texture_path_length = 0, heap_ptr2 != (byte *)0x0)) {
                     *heap_ptr2 = 0;
                   }
                   while ((0 < (int)texture_path_length && (mesh_data_offset2 = strstr(heap_ptr2, &INVALID_CHARACTER_SEQUENCE), mesh_data_offset2 != 0))) {
@@ -409,7 +409,7 @@ LAB_MESH_PROPERTIES_DIFFERENT:
                     }
                     texture_value = parameter_count + comparison_index;
                     if (texture_value < texture_path_length) {
-                      mesh_data_offset2 = (longlong)(int)texture_value;
+                      mesh_data_offset2 = (int64_t)(int)texture_value;
                       do {
                         heap_ptr2[mesh_data_offset2 - comparison_index] = heap_ptr2[mesh_data_offset2];
                         texture_value = texture_value + 1;
@@ -450,22 +450,22 @@ LAB_MESH_PROPERTIES_DIFFERENT:
                   add_material_to_scene(scene_manager, material_system_ptr, &MATERIAL_PROPERTY_TABLE, mesh_data_ptr2);
                   mesh_properties_equal = false;
                 }
-                texture_value = (uint32_t)(longlong)(*(float *)(mesh_data_offset1 + 0x244) * 256.0);
+                texture_value = (uint32_t)(int64_t)(*(float *)(mesh_data_offset1 + 0x244) * 256.0);
                 parameter_count = 0xff;
                 if (texture_value < 0xff) {
                   parameter_count = texture_value;
                 }
-                mesh_property_count1 = (uint32_t)(longlong)(*(float *)(mesh_data_offset1 + 0x238) * 256.0);
+                mesh_property_count1 = (uint32_t)(int64_t)(*(float *)(mesh_data_offset1 + 0x238) * 256.0);
                 texture_value = 0xff;
                 if (mesh_property_count1 < 0xff) {
                   texture_value = mesh_property_count1;
                 }
-                mesh_property_count2 = (uint32_t)(longlong)(*(float *)(mesh_data_offset1 + 0x23c) * 256.0);
+                mesh_property_count2 = (uint32_t)(int64_t)(*(float *)(mesh_data_offset1 + 0x23c) * 256.0);
                 mesh_property_count1 = 0xff;
                 if (mesh_property_count2 < 0xff) {
                   mesh_property_count1 = mesh_property_count2;
                 }
-                texture_path_length = (uint32_t)(longlong)(*(float *)(mesh_data_offset1 + 0x240) * 256.0);
+                texture_path_length = (uint32_t)(int64_t)(*(float *)(mesh_data_offset1 + 0x240) * 256.0);
                 mesh_property_count2 = 0xff;
                 if (texture_path_length < 0xff) {
                   mesh_property_count2 = texture_path_length;
@@ -489,22 +489,22 @@ LAB_MESH_PROPERTIES_DIFFERENT:
                   add_material_to_scene(scene_manager, material_system_ptr, &MATERIAL_PROPERTY_TABLE, mesh_data_ptr2);
                   mesh_properties_equal = false;
                 }
-                texture_value = (uint32_t)(longlong)(*(float *)(mesh_data_offset1 + 0x254) * 256.0);
+                texture_value = (uint32_t)(int64_t)(*(float *)(mesh_data_offset1 + 0x254) * 256.0);
                 parameter_count = 0xff;
                 if (texture_value < 0xff) {
                   parameter_count = texture_value;
                 }
-                mesh_property_count1 = (uint32_t)(longlong)(*(float *)(mesh_data_offset1 + 0x248) * 256.0);
+                mesh_property_count1 = (uint32_t)(int64_t)(*(float *)(mesh_data_offset1 + 0x248) * 256.0);
                 texture_value = 0xff;
                 if (mesh_property_count1 < 0xff) {
                   texture_value = mesh_property_count1;
                 }
-                mesh_property_count2 = (uint32_t)(longlong)(*(float *)(mesh_data_offset1 + 0x24c) * 256.0);
+                mesh_property_count2 = (uint32_t)(int64_t)(*(float *)(mesh_data_offset1 + 0x24c) * 256.0);
                 mesh_property_count1 = 0xff;
                 if (mesh_property_count2 < 0xff) {
                   mesh_property_count1 = mesh_property_count2;
                 }
-                texture_path_length = (uint32_t)(longlong)(*(float *)(mesh_data_offset1 + 0x250) * 256.0);
+                texture_path_length = (uint32_t)(int64_t)(*(float *)(mesh_data_offset1 + 0x250) * 256.0);
                 mesh_property_count2 = 0xff;
                 if (texture_path_length < 0xff) {
                   mesh_property_count2 = texture_path_length;
@@ -559,7 +559,7 @@ LAB_MESH_PROPERTIES_DIFFERENT:
           stack_char1 = stack_char1 + 1;
           stack_memory_offset = stack_memory_offset + 1;
           mesh_data_offset2 = mesh_rotation_data[0];
-        } while ((ulonglong)(longlong)stack_char1 < (ulonglong)((longlong)(component_data[8] - component_data[7]) >> 4));
+        } while ((uint64_t)(int64_t)stack_char1 < (uint64_t)((int64_t)(component_data[8] - component_data[7]) >> 4));
       }
       heap_allocation1 = &DEFAULT_MEMORY_VALUE;
       if (mesh_data_ptr2 != (byte *)0x0) {
@@ -571,19 +571,19 @@ LAB_MESH_PROPERTIES_DIFFERENT:
       processing_indices[0] = processing_indices[0] + 1;
       mesh_rotation_data[0] = mesh_data_offset2 + 1;
       mesh_data_offset1 = component_data[7];
-    } while ((ulonglong)(longlong)processing_indices[0] < (ulonglong)(component_data[8] - mesh_data_offset1 >> 4));
+    } while ((uint64_t)(int64_t)processing_indices[0] < (uint64_t)(component_data[8] - mesh_data_offset1 >> 4));
   }
   if ((component_ptr[6] != 0) || (component_ptr[8] != 0)) {
     if (processing_flags != 0) {
       add_rendering_parameter(scene_manager, component_ptr, &MESH_EXPORT_FLAG);
     }
-    if (*(longlong *)(render_context + 0x30) == 0) {
+    if (*(int64_t *)(render_context + 0x30) == 0) {
       component_ptr[10] = 0;
       *(void **)(render_context + 0x30) = component_ptr;
     }
     else {
       component_ptr[10] = *(void *)(render_context + 0x38);
-      *(void **)(*(longlong *)(render_context + 0x38) + 0x58) = component_ptr;
+      *(void **)(*(int64_t *)(render_context + 0x38) + 0x58) = component_ptr;
     }
     *(void **)(render_context + 0x38) = component_ptr;
     component_ptr[4] = render_context;
@@ -598,19 +598,19 @@ LAB_MESH_PROPERTIES_DIFFERENT:
  * 
  * @param scene_context 场景上下文指针，包含材质和网格数据
  */
-void material_data_exporter(longlong scene_context)
+void material_data_exporter(int64_t scene_context)
 {
   int *material_reference_count;
   char path_separator_char;
-  longlong mesh_data_offset;
+  int64_t mesh_data_offset;
   void *material_system_ptr;
   uint32_t *material_parameter_array;
   void *heap_allocation1;
   uint32_t material_string_length;
-  ulonglong material_export_count;
+  uint64_t material_export_count;
   int material_index;
-  longlong material_data_offset;
-  ulonglong material_total_count;
+  int64_t material_data_offset;
+  uint64_t material_total_count;
   bool export_complete;
   int export_indices[2];
   int material_count_indices[2];
@@ -628,18 +628,18 @@ void material_data_exporter(longlong scene_context)
   uint32_t material_data_size;
   uint64_t export_file_handle;
   int material_entry_count;
-  longlong material_file_offset;
+  int64_t material_file_offset;
   uint32_t export_header_value;
-  longlong *material_entry_ptr;
+  int64_t *material_entry_ptr;
   void *heap_ptr2;
-  longlong material_entry_offset;
+  int64_t material_entry_offset;
   uint32_t material_property_count;
-  longlong material_property_offset;
-  longlong *stack_ptr;
+  int64_t material_property_offset;
+  int64_t *stack_ptr;
   void *heap_ptr3;
-  longlong buffer_offset;
+  int64_t buffer_offset;
   uint32_t temp_parameter;
-  longlong temp_offset;
+  int64_t temp_offset;
   uint64_t stack_parameter;
   
   stack_parameter = 0xfffffffffffffffe;
@@ -648,10 +648,10 @@ void material_data_exporter(longlong scene_context)
   }
   initialize_path_buffer(material_path_buffer);
   material_index = buffer_length + -1;
-  mesh_data_offset = (longlong)material_index;
+  mesh_data_offset = (int64_t)material_index;
   if (-1 < material_index) {
     do {
-      if (*(char *)(mesh_data_offset + (longlong)material_string_buffer) == '/') goto LAB_PATH_SEPARATOR_FOUND;
+      if (*(char *)(mesh_data_offset + (int64_t)material_string_buffer) == '/') goto LAB_PATH_SEPARATOR_FOUND;
       material_index = material_index + -1;
       mesh_data_offset = mesh_data_offset + -1;
     } while (-1 < mesh_data_offset);
@@ -679,13 +679,13 @@ LAB_PATH_SEPARATOR_FOUND:
   material_data_size = buffer_length + 4;
   extend_path_buffer(material_path_buffer, material_data_size);
   *(uint32_t *)(material_string_buffer + buffer_length) = 0x646d6d2f;
-  *(char *)((longlong)(material_string_buffer + buffer_length) + 4) = 0;
+  *(char *)((int64_t)(material_string_buffer + buffer_length) + 4) = 0;
   buffer_length = material_data_size;
   append_scene_id_to_path(material_path_buffer, *(uint32_t *)(scene_context + 0x324));
   material_index = buffer_length + 4;
   extend_path_buffer(material_path_buffer, material_index);
   *(uint32_t *)(material_string_buffer + buffer_length) = 0x646d6d2e;
-  *(char *)((longlong)(material_string_buffer + buffer_length) + 4) = 0;
+  *(char *)((int64_t)(material_string_buffer + buffer_length) + 4) = 0;
   buffer_length = material_index;
   material_system_ptr = (void *)file_handle_allocator(FILE_HANDLE_REGISTRY, 0x18, 8, 3);
   heap_allocation1 = &DEFAULT_STRING_VALUE;
@@ -693,7 +693,7 @@ LAB_PATH_SEPARATOR_FOUND:
     heap_allocation1 = material_string_buffer;
   }
   *material_system_ptr = 0;
-  *(char *)((longlong)material_system_ptr + 2) = 0;
+  *(char *)((int64_t)material_system_ptr + 2) = 0;
   temp_offset = material_system_ptr;
   open_file_handle(material_system_ptr, heap_allocation1, &MMD_FILE_SIGNATURE);
   if (material_system_ptr[1] == 0) {
@@ -701,19 +701,19 @@ LAB_PATH_SEPARATOR_FOUND:
   }
   export_header_value = 0x31444d4d;
   write_file_data(&export_header_value, 4, 1, material_system_ptr[1]);
-  mesh_entry_indices[0] = (int)(*(longlong *)(scene_context + 0x40) - *(longlong *)(scene_context + 0x38) >> 4);
+  mesh_entry_indices[0] = (int)(*(int64_t *)(scene_context + 0x40) - *(int64_t *)(scene_context + 0x38) >> 4);
   write_file_data(mesh_entry_indices, 4, 1, material_system_ptr[1]);
   material_total_count = material_export_count;
   if (0 < mesh_entry_indices[0]) {
     do {
-      mesh_data_offset = *(longlong *)(material_total_count + *(longlong *)(scene_context + 0x38));
+      mesh_data_offset = *(int64_t *)(material_total_count + *(int64_t *)(scene_context + 0x38));
       material_count_indices[0] = *(int *)(mesh_data_offset + 0x20);
       write_file_data(material_count_indices, 4, 1, material_system_ptr[1]);
       heap_allocation1 = &DEFAULT_STRING_VALUE;
       if (*(void **)(mesh_data_offset + 0x18) != (void *)0x0) {
         heap_allocation1 = *(void **)(mesh_data_offset + 0x18);
       }
-      write_file_data(heap_allocation1, 1, (longlong)material_count_indices[0], material_system_ptr[1]);
+      write_file_data(heap_allocation1, 1, (int64_t)material_count_indices[0], material_system_ptr[1]);
       material_entry_count = (int)material_total_count;
       write_file_data(&material_entry_count, 4, 1, material_system_ptr[1]);
       temp_parameter = 0;
@@ -722,19 +722,19 @@ LAB_PATH_SEPARATOR_FOUND:
       mesh_data_offset = material_entry_offset;
       export_indices[0] = *(int *)(material_entry_offset + 0x60);
       write_file_data(export_indices, 4, 1, material_system_ptr[1]);
-      material_parameter_array = (uint32_t *)memory_block_allocator(MEMORY_ALLOCATOR_HANDLE, (longlong)export_indices[0] << 2, 0x10);
+      material_parameter_array = (uint32_t *)memory_block_allocator(MEMORY_ALLOCATOR_HANDLE, (int64_t)export_indices[0] << 2, 0x10);
       material_index = 0;
       if (0 < export_indices[0]) {
         material_data_offset = 0;
         heap_ptr2 = material_parameter_array;
         do {
-          *heap_ptr2 = *(uint32_t *)(material_data_offset + 0x54 + *(longlong *)(mesh_data_offset + 0x68));
+          *heap_ptr2 = *(uint32_t *)(material_data_offset + 0x54 + *(int64_t *)(mesh_data_offset + 0x68));
           material_index = material_index + 1;
           material_data_offset = material_data_offset + 0x5c;
           heap_ptr2 = heap_ptr2 + 1;
         } while (material_index < export_indices[0]);
       }
-      write_file_data(material_parameter_array, 4, (longlong)export_indices[0], material_system_ptr[1]);
+      write_file_data(material_parameter_array, 4, (int64_t)export_indices[0], material_system_ptr[1]);
       mesh_data_offset = material_file_offset;
       if (material_parameter_array != (uint32_t *)0x0) {
         memory_deallocator(material_parameter_array);
@@ -763,14 +763,14 @@ LAB_MATERIAL_ENTRY_CLEANUP:
         *material_reference_count = *material_reference_count + -1;
         release_thread_lock();
         if (path_separator_char == '\0') {
-          if ((((material_index == 1) && (*(longlong *)(material_file_offset + 0x210) != 0)) &&
+          if ((((material_index == 1) && (*(int64_t *)(material_file_offset + 0x210) != 0)) &&
               (material_data_offset = material_file_offset, validate_material_entry(material_file_offset), *(char *)(material_data_offset + 0xfc) == '\0')) &&
              ((*(char *)(material_data_offset + 0xf4) == '\0' &&
               (((*(byte *)(material_data_offset + 0xfd) & 0x20) == 0 || ((*(byte *)(material_data_offset + 0xfe) & 1) == 0))))))
           {
-            material_entry_ptr = *(longlong **)(material_data_offset + 0x210);
+            material_entry_ptr = *(int64_t **)(material_data_offset + 0x210);
             *(void *)(material_data_offset + 0x210) = 0;
-            if (material_entry_ptr != (longlong *)0x0) {
+            if (material_entry_ptr != (int64_t *)0x0) {
               (**(code **)(*material_entry_ptr + 0x38))();
             }
           }
@@ -781,7 +781,7 @@ LAB_MATERIAL_ENTRY_CLEANUP:
         material_file_offset = 0;
       }
       material_data_size = (int)material_total_count + 1;
-      material_total_count = (ulonglong)material_data_size;
+      material_total_count = (uint64_t)material_data_size;
       material_total_count = material_total_count + 0x10;
     } while ((int)material_data_size < mesh_entry_indices[0]);
   }

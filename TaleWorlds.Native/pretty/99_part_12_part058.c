@@ -62,7 +62,7 @@ static filter_context_t g_filter_context;
  * 简化实现：使用结构化变量和清晰的算法步骤
  * 增加了边界检查和错误处理
  */
-void 执行8点快速傅里叶变换(float* data_array, longlong twiddle_table, int transform_size)
+void 执行8点快速傅里叶变换(float* data_array, int64_t twiddle_table, int transform_size)
 {
     if (!data_array || transform_size <= 0) {
         return; // 参数验证
@@ -114,8 +114,8 @@ void 执行8点快速傅里叶变换(float* data_array, longlong twiddle_table, 
         int half_size = (transform_size + 3) >> 2; // 除以4的整数运算
         执行8点快速傅里叶变换(data_array, twiddle_table + half_size * 8, transform_size / 2);
         
-        longlong offset1 = twiddle_table + ((transform_size + 7) >> 3 + half_size) * 8;
-        longlong offset2 = (transform_size / 2) * 2;
+        int64_t offset1 = twiddle_table + ((transform_size + 7) >> 3 + half_size) * 8;
+        int64_t offset2 = (transform_size / 2) * 2;
         float* data_ptr2 = data_array + offset2;
         
         执行8点快速傅里叶变换(data_ptr2, offset1, half_size);
@@ -123,11 +123,11 @@ void 执行8点快速傅里叶变换(float* data_array, longlong twiddle_table, 
         
         // 蝶形运算组合
         if (half_size > 0) {
-            longlong butterfly_offset1 = half_size * 2 - offset2;
-            longlong butterfly_offset2 = half_size * 6 - offset2;
-            unsigned longlong iterations = (half_size - 1) >> 1;
+            int64_t butterfly_offset1 = half_size * 2 - offset2;
+            int64_t butterfly_offset2 = half_size * 6 - offset2;
+            unsigned int64_t iterations = (half_size - 1) >> 1;
             
-            for (unsigned longlong i = 0; i < iterations; i++) {
+            for (unsigned int64_t i = 0; i < iterations; i++) {
                 // 复杂的蝶形运算实现
                 // ... (保持原有算法逻辑)
             }
@@ -153,7 +153,7 @@ void 执行优化蝶形运算(void)
     // 上下文初始化
     uint iteration_count = g_fft_context.size >> 1;
     
-    for (unsigned longlong i = 0; i < iteration_count; i++) {
+    for (unsigned int64_t i = 0; i < iteration_count; i++) {
         // 复数蝶形运算
         float* data_ptr = g_fft_context.real_part + i;
         float* twiddle_ptr = g_fft_context.twiddle_factors + i;
@@ -200,7 +200,7 @@ void 执行空操作(void)
  * 
  * 简化实现：使用相同的算法结构，调整旋转因子符号
  */
-void 执行快速傅里叶逆变换(float* data_array, longlong twiddle_table, int transform_size)
+void 执行快速傅里叶逆变换(float* data_array, int64_t twiddle_table, int transform_size)
 {
     // 标记为逆变换
     g_fft_context.is_inverse = 1;
@@ -225,7 +225,7 @@ void 执行优化蝶形运算版本二(void)
     // 使用不同的参数配置
     uint iteration_count = g_fft_context.size >> 1;
     
-    for (unsigned longlong i = 0; i < iteration_count; i++) {
+    for (unsigned int64_t i = 0; i < iteration_count; i++) {
         // 类似的蝶形运算，但访问模式不同
         float* data_ptr = g_fft_context.real_part + (i << 2);
         float* twiddle_ptr = g_fft_context.twiddle_factors + (i << 1);

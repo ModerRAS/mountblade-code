@@ -121,7 +121,7 @@ void rendering_system_initializer(void);
  * @param param_3 参数输入数组
  * @return 查询结果状态码
  */
-uint64_t rendering_system_parameter_query_handler(longlong param_1, uint64_t *param_2, uint *param_3);
+uint64_t rendering_system_parameter_query_handler(int64_t param_1, uint64_t *param_2, uint *param_3);
 
 /**
  * 渲染系统状态管理器
@@ -130,7 +130,7 @@ uint64_t rendering_system_parameter_query_handler(longlong param_1, uint64_t *pa
  * @param param_1 状态管理上下文
  * @return 状态管理结果
  */
-uint64_t rendering_system_state_manager(longlong param_1);
+uint64_t rendering_system_state_manager(int64_t param_1);
 
 /**
  * 渲染系统缓冲区管理器
@@ -139,7 +139,7 @@ uint64_t rendering_system_state_manager(longlong param_1);
  * @param param_1 缓冲区管理上下文
  * @param param_2 缓冲区参数
  */
-void rendering_system_buffer_manager(uint64_t param_1, longlong param_2);
+void rendering_system_buffer_manager(uint64_t param_1, int64_t param_2);
 
 /**
  * 渲染系统数据复制器
@@ -173,11 +173,11 @@ void rendering_system_data_transfer_processor(uint64_t param_1)
 
 {
   int32_t *unaff_RBX;
-  longlong unaff_RSI;
-  longlong unaff_R13;
+  int64_t unaff_RSI;
+  int64_t unaff_R13;
   byte unaff_R15B;
   uint64_t in_stack_00000090;
-  longlong in_stack_000000a0;
+  int64_t in_stack_000000a0;
   int in_stack_000000a8;
   
   // 主循环：处理数据传输操作
@@ -196,24 +196,24 @@ void rendering_system_data_transfer_processor(uint64_t param_1)
     unaff_RSI = unaff_RSI + RENDERING_SYSTEM_OFFSET_0X4C;
     
     // 执行数据传输操作
-    func_0x0001800285b0((longlong)(unaff_RBX[4] * in_stack_000000a8 * RENDERING_SYSTEM_BUFFER_SIZE_16) +
-                        *(longlong *)(unaff_RBX + RENDERING_SYSTEM_OFFSET_0X0E),
-                        (longlong)(*(int *)(in_stack_000000a0 + RENDERING_SYSTEM_OFFSET_0X10) * in_stack_000000a8 * RENDERING_SYSTEM_BUFFER_SIZE_16) +
-                        *(longlong *)(in_stack_000000a0 + RENDERING_SYSTEM_OFFSET_0X38), unaff_RBX[4],
+    func_0x0001800285b0((int64_t)(unaff_RBX[4] * in_stack_000000a8 * RENDERING_SYSTEM_BUFFER_SIZE_16) +
+                        *(int64_t *)(unaff_RBX + RENDERING_SYSTEM_OFFSET_0X0E),
+                        (int64_t)(*(int *)(in_stack_000000a0 + RENDERING_SYSTEM_OFFSET_0X10) * in_stack_000000a8 * RENDERING_SYSTEM_BUFFER_SIZE_16) +
+                        *(int64_t *)(in_stack_000000a0 + RENDERING_SYSTEM_OFFSET_0X38), unaff_RBX[4],
                         *(int *)(in_stack_000000a0 + RENDERING_SYSTEM_OFFSET_0X10), *unaff_RBX);
     
     // 执行第二次数据传输操作
-    func_0x0001800285b0((longlong)(unaff_RBX[9] * in_stack_000000a8 * RENDERING_SYSTEM_BUFFER_SIZE_8) +
-                        *(longlong *)(unaff_RBX + RENDERING_SYSTEM_OFFSET_0X10),
-                        (longlong)(*(int *)(in_stack_000000a0 + RENDERING_SYSTEM_OFFSET_0X24) * in_stack_000000a8 * RENDERING_SYSTEM_BUFFER_SIZE_8) +
-                        *(longlong *)(in_stack_000000a0 + RENDERING_SYSTEM_OFFSET_0X40), unaff_RBX[9],
+    func_0x0001800285b0((int64_t)(unaff_RBX[9] * in_stack_000000a8 * RENDERING_SYSTEM_BUFFER_SIZE_8) +
+                        *(int64_t *)(unaff_RBX + RENDERING_SYSTEM_OFFSET_0X10),
+                        (int64_t)(*(int *)(in_stack_000000a0 + RENDERING_SYSTEM_OFFSET_0X24) * in_stack_000000a8 * RENDERING_SYSTEM_BUFFER_SIZE_8) +
+                        *(int64_t *)(in_stack_000000a0 + RENDERING_SYSTEM_OFFSET_0X40), unaff_RBX[9],
                         *(int *)(in_stack_000000a0 + RENDERING_SYSTEM_OFFSET_0X24), unaff_RBX[5]);
     
     // 执行第三次数据传输操作
-    func_0x0001800285b0((longlong)(unaff_RBX[9] * in_stack_000000a8 * RENDERING_SYSTEM_BUFFER_SIZE_8) +
-                        *(longlong *)(unaff_RBX + RENDERING_SYSTEM_OFFSET_0X12),
-                        (longlong)(*(int *)(in_stack_000000a0 + RENDERING_SYSTEM_OFFSET_0X24) * in_stack_000000a8 * RENDERING_SYSTEM_BUFFER_SIZE_8) +
-                        *(longlong *)(in_stack_000000a0 + RENDERING_SYSTEM_OFFSET_0X48), unaff_RBX[9],
+    func_0x0001800285b0((int64_t)(unaff_RBX[9] * in_stack_000000a8 * RENDERING_SYSTEM_BUFFER_SIZE_8) +
+                        *(int64_t *)(unaff_RBX + RENDERING_SYSTEM_OFFSET_0X12),
+                        (int64_t)(*(int *)(in_stack_000000a0 + RENDERING_SYSTEM_OFFSET_0X24) * in_stack_000000a8 * RENDERING_SYSTEM_BUFFER_SIZE_8) +
+                        *(int64_t *)(in_stack_000000a0 + RENDERING_SYSTEM_OFFSET_0X48), unaff_RBX[9],
                         *(int *)(in_stack_000000a0 + RENDERING_SYSTEM_OFFSET_0X24), unaff_RBX[5]);
     
     // 更新循环计数器
@@ -254,7 +254,7 @@ void rendering_system_initializer(void)
  * @param param_3 参数输入数组
  * @return 查询结果状态码
  */
-uint64_t rendering_system_parameter_query_handler(longlong param_1, uint64_t *param_2, uint *param_3)
+uint64_t rendering_system_parameter_query_handler(int64_t param_1, uint64_t *param_2, uint *param_3)
 
 {
   uint uVar1;
@@ -267,7 +267,7 @@ uint64_t rendering_system_parameter_query_handler(longlong param_1, uint64_t *pa
   uint64_t in_stack_ffffffffffffffa8;
   int32_t uVar8;
   
-  uVar8 = (int32_t)((ulonglong)in_stack_ffffffffffffffa8 >> 0x20);
+  uVar8 = (int32_t)((uint64_t)in_stack_ffffffffffffffa8 >> 0x20);
   uVar1 = *param_3;
   uVar2 = param_3[1];
   uVar3 = param_3[2];
@@ -318,7 +318,7 @@ uint64_t rendering_system_parameter_query_handler(longlong param_1, uint64_t *pa
     // 设置输出参数
     *(int32_t *)param_2 = *(int32_t *)(param_1 + 0x760);
     iVar6 = *(int *)(param_1 + 0x764);
-    *(int *)((longlong)param_2 + 4) = iVar6;
+    *(int *)((int64_t)param_2 + 4) = iVar6;
     *(int *)(param_2 + 3) = iVar6 / RENDERING_SYSTEM_DIVISION_2;
     *(int32_t *)(param_1 + 0x2e38) = *(int32_t *)(param_1 + 0xbd0);
     *(int32_t *)(param_1 + 0x2e3c) = 1;
@@ -333,7 +333,7 @@ uint64_t rendering_system_parameter_query_handler(longlong param_1, uint64_t *pa
       }
       *(int32_t *)(param_1 + 0xb90) = 1;
                     // WARNING: Subroutine does not return
-      memset(*(uint64_t *)(param_1 + 0xb58), RENDERING_SYSTEM_MEMORY_VALUE_128, (longlong)*(int *)(param_1 + 0xad8));
+      memset(*(uint64_t *)(param_1 + 0xb58), RENDERING_SYSTEM_MEMORY_VALUE_128, (int64_t)*(int *)(param_1 + 0xad8));
     }
     
     func_0x000180001000();
@@ -421,7 +421,7 @@ uint64_t rendering_system_parameter_query_handler(longlong param_1, uint64_t *pa
     param_2[0x11] = uVar5;
     *(int32_t *)param_2 = *(int32_t *)(param_1 + 0x760);
     iVar6 = *(int *)(param_1 + 0x764);
-    *(int *)((longlong)param_2 + 4) = iVar6;
+    *(int *)((int64_t)param_2 + 4) = iVar6;
     *(int *)(param_2 + 3) = iVar6 / RENDERING_SYSTEM_DIVISION_2;
   }
   return 0;
@@ -440,13 +440,13 @@ uint64_t rendering_system_parameter_query_handler(longlong param_1, uint64_t *pa
  * @param param_1 状态管理上下文
  * @return 状态管理结果
  */
-uint64_t rendering_system_state_manager(longlong param_1)
+uint64_t rendering_system_state_manager(int64_t param_1)
 
 {
   uint64_t uVar1;
   int iVar2;
   uint unaff_EBP;
-  longlong unaff_RSI;
+  int64_t unaff_RSI;
   int unaff_EDI;
   int unaff_R12D;
   int unaff_R13D;
@@ -457,7 +457,7 @@ uint64_t rendering_system_state_manager(longlong param_1)
   uint64_t in_stack_00000020;
   int32_t uVar4;
   
-  uVar4 = (int32_t)((ulonglong)in_stack_00000020 >> 0x20);
+  uVar4 = (int32_t)((uint64_t)in_stack_00000020 >> 0x20);
   
   // 处理状态初始化
   if ((((unaff_EBP & RENDERING_SYSTEM_STATUS_BIT_1024) != 0) && (*(int *)(param_1 + 0xb90) == 0)) && ((unaff_EBP & RENDERING_SYSTEM_STATUS_BIT_3) != 0)) {
@@ -468,7 +468,7 @@ uint64_t rendering_system_state_manager(longlong param_1)
     }
     *(int32_t *)(unaff_RSI + 0xb90) = 1;
                     // WARNING: Subroutine does not return
-    memset(*(uint64_t *)(unaff_RSI + 0xb58), RENDERING_SYSTEM_MEMORY_VALUE_128, (longlong)*(int *)(unaff_RSI + 0xad8));
+    memset(*(uint64_t *)(unaff_RSI + 0xb58), RENDERING_SYSTEM_MEMORY_VALUE_128, (int64_t)*(int *)(unaff_RSI + 0xad8));
   }
   
   uVar3 = func_0x000180001000();
@@ -557,7 +557,7 @@ uint64_t rendering_system_state_manager(longlong param_1)
   unaff_R14[0x11] = uVar1;
   *(int32_t *)unaff_R14 = *(int32_t *)(unaff_RSI + 0x760);
   iVar2 = *(int *)(unaff_RSI + 0x764);
-  *(int *)((longlong)unaff_R14 + 4) = iVar2;
+  *(int *)((int64_t)unaff_R14 + 4) = iVar2;
   *(int *)(unaff_R14 + 3) = iVar2 / RENDERING_SYSTEM_DIVISION_2;
   return 0;
 }
@@ -578,7 +578,7 @@ uint64_t rendering_system_buffer_manager(void)
 {
   int iVar1;
   uint64_t uVar2;
-  longlong unaff_RSI;
+  int64_t unaff_RSI;
   int unaff_R12D;
   int unaff_R13D;
   uint64_t *unaff_R14;
@@ -623,7 +623,7 @@ uint64_t rendering_system_buffer_manager(void)
   unaff_R14[0x11] = uVar2;
   *(int32_t *)unaff_R14 = *(int32_t *)(unaff_RSI + 0x760);
   iVar1 = *(int *)(unaff_RSI + 0x764);
-  *(int *)((longlong)unaff_R14 + 4) = iVar1;
+  *(int *)((int64_t)unaff_R14 + 4) = iVar1;
   *(int *)(unaff_R14 + 3) = iVar1 / RENDERING_SYSTEM_DIVISION_2;
   return 0;
 }
@@ -641,29 +641,29 @@ uint64_t rendering_system_buffer_manager(void)
  * @param param_1 数据复制上下文
  * @param param_2 数据参数
  */
-void rendering_system_data_copier(uint64_t param_1, longlong param_2)
+void rendering_system_data_copier(uint64_t param_1, int64_t param_2)
 
 {
   char cVar1;
   int iVar2;
-  longlong lVar3;
-  longlong lVar4;
+  int64_t lVar3;
+  int64_t lVar4;
   uint64_t *puVar5;
-  longlong lVar6;
-  longlong lVar7;
+  int64_t lVar6;
+  int64_t lVar7;
   char *pcVar8;
-  longlong lVar9;
+  int64_t lVar9;
   uint64_t in_stack_ffffffffffffffa8;
   uint64_t uVar10;
   int32_t uVar11;
   
-  uVar11 = (int32_t)((ulonglong)in_stack_ffffffffffffffa8 >> 0x20);
+  uVar11 = (int32_t)((uint64_t)in_stack_ffffffffffffffa8 >> 0x20);
   
   // 处理数据状态检查
-  if (*(char *)(*(longlong *)(param_2 + 0xf00) + 9) == '\0') {
-    if (0x3fffffbe < *(int *)(*(longlong *)(param_2 + 0xfb8) + 0x18) - 0x41U) {
+  if (*(char *)(*(int64_t *)(param_2 + 0xf00) + 9) == '\0') {
+    if (0x3fffffbe < *(int *)(*(int64_t *)(param_2 + 0xfb8) + 0x18) - 0x41U) {
       iVar2 = FUN_18069cf80(param_1);
-      *(bool *)(*(longlong *)(param_2 + 0xf00) + 9) = iVar2 == 0;
+      *(bool *)(*(int64_t *)(param_2 + 0xf00) + 9) = iVar2 == 0;
     }
   }
   else {
@@ -678,7 +678,7 @@ void rendering_system_data_copier(uint64_t param_1, longlong param_2)
   }
   
   // 处理数据状态
-  if (*(char *)(*(longlong *)(param_2 + 0xf00) + 2) == '\0') {
+  if (*(char *)(*(int64_t *)(param_2 + 0xf00) + 2) == '\0') {
     FUN_18069c080(param_2, *(uint64_t *)(param_2 + 0xf20), *(uint64_t *)(param_2 + 0xf28),
                   *(uint64_t *)(param_2 + 0xf38), *(uint64_t *)(param_2 + 0xf40),
                   *(int32_t *)(param_2 + 0xf4c), *(uint64_t *)(param_2 + 0xeb0),
@@ -687,7 +687,7 @@ void rendering_system_data_copier(uint64_t param_1, longlong param_2)
     // 处理特殊数据状态
     if (cVar1 == '\x04') {
       iVar2 = *(int *)(param_2 + 0xe80);
-      if (*(char *)(*(longlong *)(param_2 + 0xf00) + 9) != '\0') {
+      if (*(char *)(*(int64_t *)(param_2 + 0xf00) + 9) != '\0') {
         *(uint64_t *)(param_2 + 0x7c0) = 0;
         *(uint64_t *)(param_2 + 0x7c8) = 0;
         *(uint64_t *)(param_2 + 2000) = 0;
@@ -695,12 +695,12 @@ void rendering_system_data_copier(uint64_t param_1, longlong param_2)
       }
       
       // 执行数据复制操作
-      lVar4 = *(longlong *)(param_2 + 0xf18);
+      lVar4 = *(int64_t *)(param_2 + 0xf18);
       pcVar8 = (char *)(param_2 + 0x7c0);
-      lVar3 = (longlong)*(int *)(param_2 + 0xe80);
+      lVar3 = (int64_t)*(int *)(param_2 + 0xe80);
       puVar5 = (uint64_t *)(param_2 + 0x860);
       lVar9 = RENDERING_SYSTEM_BUFFER_SIZE_12;
-      lVar6 = *(longlong *)(param_2 + 0xea8) - lVar3;
+      lVar6 = *(int64_t *)(param_2 + 0xea8) - lVar3;
       lVar7 = RENDERING_SYSTEM_BUFFER_SIZE_16;
       *(int32_t *)(lVar6 + RENDERING_SYSTEM_OFFSET_0X10 + lVar3 * RENDERING_SYSTEM_BUFFER_SIZE_4) = *(int32_t *)(lVar4 + RENDERING_SYSTEM_OFFSET_0X10);
       *(int32_t *)(lVar6 + RENDERING_SYSTEM_OFFSET_0X10 + lVar3 * RENDERING_SYSTEM_BUFFER_SIZE_8) = *(int32_t *)(lVar4 + RENDERING_SYSTEM_OFFSET_0X10);
@@ -708,12 +708,12 @@ void rendering_system_data_copier(uint64_t param_1, longlong param_2)
       
       // 数据复制循环
       do {
-        lVar3 = (longlong)*(int *)(puVar5 + RENDERING_SYSTEM_BUFFER_SIZE_4) + *(longlong *)(param_2 + 0xea8);
+        lVar3 = (int64_t)*(int *)(puVar5 + RENDERING_SYSTEM_BUFFER_SIZE_4) + *(int64_t *)(param_2 + 0xea8);
         lVar4 = lVar3;
         FUN_18069d280(lVar3 - iVar2, lVar3 + -1, iVar2,
-                      *(int32_t *)(lVar9 + *(longlong *)(param_2 + 0xf00)), lVar3, iVar2,
+                      *(int32_t *)(lVar9 + *(int64_t *)(param_2 + 0xf00)), lVar3, iVar2,
                       *(int8_t *)((lVar3 - iVar2) + -1));
-        uVar11 = (int32_t)((ulonglong)lVar4 >> 0x20);
+        uVar11 = (int32_t)((uint64_t)lVar4 >> 0x20);
         
         // 处理数据复制状态
         if (*pcVar8 != '\0') {
@@ -721,7 +721,7 @@ void rendering_system_data_copier(uint64_t param_1, longlong param_2)
             uVar10 = CONCAT44(uVar11, iVar2);
             func_0x00018001a59e((int)*(short *)*puVar5 * (int)*(short *)(param_2 + 0x7e0), lVar3,
                                 iVar2, lVar3, uVar10);
-            uVar11 = (int32_t)((ulonglong)uVar10 >> 0x20);
+            uVar11 = (int32_t)((uint64_t)uVar10 >> 0x20);
             *(int32_t *)*puVar5 = 0;
           }
           else {
@@ -739,7 +739,7 @@ void rendering_system_data_copier(uint64_t param_1, longlong param_2)
       uVar10 = *(uint64_t *)(param_2 + 0xea8);
       FUN_18069c200(param_2, *(uint64_t *)(param_2 + 0xf18), *(uint64_t *)(param_2 + 0xf30),
                     *(int32_t *)(param_2 + 0xf48), uVar10, *(int32_t *)(param_2 + 0xe80));
-      uVar11 = (int32_t)((ulonglong)uVar10 >> 0x20);
+      uVar11 = (int32_t)((uint64_t)uVar10 >> 0x20);
     }
   }
   else {
@@ -747,7 +747,7 @@ void rendering_system_data_copier(uint64_t param_1, longlong param_2)
   }
   
   // 处理最终数据状态
-  if (*(char *)(*(longlong *)(param_2 + 0xf00) + 9) == '\0') {
+  if (*(char *)(*(int64_t *)(param_2 + 0xf00) + 9) == '\0') {
     if (cVar1 != '\x04') {
       lVar4 = param_2 + 0x7e0;
       if (cVar1 != '\t') {
@@ -771,7 +771,7 @@ void rendering_system_data_copier(uint64_t param_1, longlong param_2)
       lVar3 = param_2 + 0x7c0;
       FUN_18069c820(param_2 + 0x180, lVar4, *(uint64_t *)(param_2 + 0xea8),
                     *(int32_t *)(param_2 + 0xe80), lVar3);
-      uVar11 = (int32_t)((ulonglong)lVar3 >> 0x20);
+      uVar11 = (int32_t)((uint64_t)lVar3 >> 0x20);
     }
     FUN_18069c710(param_2 + 0x380, param_2 + 0x840, *(uint64_t *)(param_2 + 0xeb0),
                   *(uint64_t *)(param_2 + 0xeb8), CONCAT44(uVar11, *(int32_t *)(param_2 + 0xe94))
@@ -792,18 +792,18 @@ void rendering_system_data_copier(uint64_t param_1, longlong param_2)
  * @param in_RAX 资源清理参数
  * @param in_stack_00000088 堆栈参数
  */
-void rendering_system_resource_cleaner(uint64_t param_1, longlong param_2, longlong in_RAX, int in_stack_00000088)
+void rendering_system_resource_cleaner(uint64_t param_1, int64_t param_2, int64_t in_RAX, int in_stack_00000088)
 
 {
   int iVar1;
-  longlong lVar2;
-  longlong lVar3;
-  longlong unaff_RBX;
+  int64_t lVar2;
+  int64_t lVar3;
+  int64_t unaff_RBX;
   uint64_t *puVar4;
-  longlong lVar5;
-  longlong lVar6;
+  int64_t lVar5;
+  int64_t lVar6;
   char *pcVar7;
-  longlong lVar8;
+  int64_t lVar8;
   uint64_t uVar9;
   int32_t uVar10;
   int8_t uStack0000000000000030;
@@ -819,12 +819,12 @@ void rendering_system_resource_cleaner(uint64_t param_1, longlong param_2, longl
   }
   
   // 执行资源清理操作
-  lVar3 = *(longlong *)(unaff_RBX + 0xf18);
+  lVar3 = *(int64_t *)(unaff_RBX + 0xf18);
   pcVar7 = (char *)(unaff_RBX + 0x7c0);
-  lVar2 = (longlong)*(int *)(unaff_RBX + 0xe80);
+  lVar2 = (int64_t)*(int *)(unaff_RBX + 0xe80);
   puVar4 = (uint64_t *)(unaff_RBX + 0x860);
   lVar8 = RENDERING_SYSTEM_BUFFER_SIZE_12;
-  lVar5 = *(longlong *)(unaff_RBX + 0xea8) - lVar2;
+  lVar5 = *(int64_t *)(unaff_RBX + 0xea8) - lVar2;
   lVar6 = RENDERING_SYSTEM_BUFFER_SIZE_16;
   *(int32_t *)(lVar5 + RENDERING_SYSTEM_OFFSET_0X10 + lVar2 * RENDERING_SYSTEM_BUFFER_SIZE_4) = *(int32_t *)(lVar3 + RENDERING_SYSTEM_OFFSET_0X10);
   *(int32_t *)(lVar5 + RENDERING_SYSTEM_OFFSET_0X10 + lVar2 * RENDERING_SYSTEM_BUFFER_SIZE_8) = *(int32_t *)(lVar3 + RENDERING_SYSTEM_OFFSET_0X10);
@@ -832,12 +832,12 @@ void rendering_system_resource_cleaner(uint64_t param_1, longlong param_2, longl
   
   // 资源清理循环
   do {
-    lVar2 = (longlong)*(int *)(puVar4 + RENDERING_SYSTEM_BUFFER_SIZE_4) + *(longlong *)(unaff_RBX + 0xea8);
+    lVar2 = (int64_t)*(int *)(puVar4 + RENDERING_SYSTEM_BUFFER_SIZE_4) + *(int64_t *)(unaff_RBX + 0xea8);
     uStack0000000000000030 = *(int8_t *)((lVar2 - iVar1) + -1);
     lVar3 = lVar2;
     FUN_18069d280(lVar2 - iVar1, lVar2 + -1, iVar1,
-                  *(int32_t *)(lVar8 + *(longlong *)(unaff_RBX + 0xf00)), lVar2);
-    uVar10 = (int32_t)((ulonglong)lVar3 >> 0x20);
+                  *(int32_t *)(lVar8 + *(int64_t *)(unaff_RBX + 0xf00)), lVar2);
+    uVar10 = (int32_t)((uint64_t)lVar3 >> 0x20);
     
     // 处理资源清理状态
     if (*pcVar7 != '\0') {
@@ -845,7 +845,7 @@ void rendering_system_resource_cleaner(uint64_t param_1, longlong param_2, longl
         uVar9 = CONCAT44(uVar10, iVar1);
         func_0x00018001a59e((int)*(short *)*puVar4 * (int)*(short *)(unaff_RBX + 0x7e0), lVar2, iVar1,
                             lVar2, uVar9);
-        uVar10 = (int32_t)((ulonglong)uVar9 >> 0x20);
+        uVar10 = (int32_t)((uint64_t)uVar9 >> 0x20);
         *(int32_t *)*puVar4 = 0;
       }
       else {
@@ -860,7 +860,7 @@ void rendering_system_resource_cleaner(uint64_t param_1, longlong param_2, longl
   } while (lVar6 != 0);
   
   // 处理最终资源状态
-  if (*(char *)(*(longlong *)(unaff_RBX + 0xf00) + 9) == '\0') {
+  if (*(char *)(*(int64_t *)(unaff_RBX + 0xf00) + 9) == '\0') {
     if (in_stack_00000088 != 4) {
       lVar3 = unaff_RBX + 0x7e0;
       if (in_stack_00000088 != 9) {
@@ -884,7 +884,7 @@ void rendering_system_resource_cleaner(uint64_t param_1, longlong param_2, longl
       lVar2 = unaff_RBX + 0x7c0;
       FUN_18069c820(unaff_RBX + 0x180, lVar3, *(uint64_t *)(unaff_RBX + 0xea8),
                     *(int32_t *)(unaff_RBX + 0xe80), lVar2);
-      uVar10 = (int32_t)((ulonglong)lVar2 >> 0x20);
+      uVar10 = (int32_t)((uint64_t)lVar2 >> 0x20);
     }
     FUN_18069c710(unaff_RBX + 0x380, unaff_RBX + 0x840, *(uint64_t *)(unaff_RBX + 0xeb0),
                   *(uint64_t *)(unaff_RBX + 0xeb8),
@@ -906,21 +906,21 @@ void rendering_system_resource_cleaner(uint64_t param_1, longlong param_2, longl
  * @param unaff_ESI 状态参数
  * @param unaff_RBX 清理上下文
  */
-void rendering_system_final_cleaner(uint64_t param_1, longlong param_2, uint64_t in_stack_00000020, int unaff_ESI, longlong unaff_RBX)
+void rendering_system_final_cleaner(uint64_t param_1, int64_t param_2, uint64_t in_stack_00000020, int unaff_ESI, int64_t unaff_RBX)
 
 {
   uint64_t *puVar1;
-  longlong lVar2;
-  longlong lVar3;
+  int64_t lVar2;
+  int64_t lVar3;
   int32_t uVar4;
   
-  uVar4 = (int32_t)((ulonglong)in_stack_00000020 >> 0x20);
+  uVar4 = (int32_t)((uint64_t)in_stack_00000020 >> 0x20);
   
   // 执行最终清理操作
   FUN_18069de90();
   
   // 处理最终状态检查
-  if (*(char *)(*(longlong *)(unaff_RBX + 0xf00) + 9) == '\0') {
+  if (*(char *)(*(int64_t *)(unaff_RBX + 0xf00) + 9) == '\0') {
     if (unaff_ESI != 4) {
       lVar2 = unaff_RBX + 0x7e0;
       if (unaff_ESI != 9) {
@@ -944,7 +944,7 @@ void rendering_system_final_cleaner(uint64_t param_1, longlong param_2, uint64_t
       lVar3 = unaff_RBX + 0x7c0;
       FUN_18069c820(unaff_RBX + 0x180, lVar2, *(uint64_t *)(unaff_RBX + 0xea8),
                     *(int32_t *)(unaff_RBX + 0xe80), lVar3);
-      uVar4 = (int32_t)((ulonglong)lVar3 >> 0x20);
+      uVar4 = (int32_t)((uint64_t)lVar3 >> 0x20);
     }
     FUN_18069c710(unaff_RBX + 0x380, unaff_RBX + 0x840, *(uint64_t *)(unaff_RBX + 0xeb0),
                   *(uint64_t *)(unaff_RBX + 0xeb8),

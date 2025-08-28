@@ -72,59 +72,59 @@ typedef struct {
 void process_render_object_transformations(uint64_t render_context, 
                                          code* object_list, 
                                          uint64_t transform_data,
-                                         longlong* queue_data,
+                                         int64_t* queue_data,
                                          uint64_t material_data,
                                          uint64_t texture_data,
                                          uint64_t shader_data,
-                                         longlong* render_params,
-                                         longlong* object_params,
-                                         longlong transform_count,
-                                         longlong object_count,
-                                         ulonglong* hash_table,
-                                         longlong camera_param,
+                                         int64_t* render_params,
+                                         int64_t* object_params,
+                                         int64_t transform_count,
+                                         int64_t object_count,
+                                         uint64_t* hash_table,
+                                         int64_t camera_param,
                                          uint64_t lighting_data,
-                                         ulonglong* render_flags,
-                                         ulonglong flag_mask,
-                                         ulonglong priority_mask)
+                                         uint64_t* render_flags,
+                                         uint64_t flag_mask,
+                                         uint64_t priority_mask)
 {
     uint* object_flags;
-    longlong object_index;
-    longlong transform_index;
-    longlong* queue_ptr;
+    int64_t object_index;
+    int64_t transform_index;
+    int64_t* queue_ptr;
     uint64_t* material_ptr;
-    ulonglong hash_value;
-    longlong object_distance;
-    longlong queue_size;
-    longlong priority_value;
-    longlong render_distance;
-    longlong visibility_flags;
+    uint64_t hash_value;
+    int64_t object_distance;
+    int64_t queue_size;
+    int64_t priority_value;
+    int64_t render_distance;
+    int64_t visibility_flags;
     uint64_t lighting_params;
     uint64_t* texture_ptr;
     uint* material_flags;
-    ulonglong texture_hash;
-    ulonglong material_hash;
+    uint64_t texture_hash;
+    uint64_t material_hash;
     uint* render_state;
     int visibility_check;
-    longlong camera_distance;
+    int64_t camera_distance;
     uint* object_ptr;
-    longlong transform_offset;
-    ulonglong distance_calc;
-    longlong unaff_frame_buffer;
+    int64_t transform_offset;
+    uint64_t distance_calc;
+    int64_t unaff_frame_buffer;
     uint64_t* unaff_render_target;
     uint unaff_render_state;
-    ulonglong* hash_entry;
+    uint64_t* hash_entry;
     int queue_index;
     uint* queue_start;
     uint* queue_end;
     uint* queue_current;
     int batch_size;
-    longlong batch_offset;
+    int64_t batch_offset;
     uint batch_counter;
-    ulonglong frame_time;
+    uint64_t frame_time;
     
 process_transformations:
     // 获取对象队列数据
-    queue_data = (longlong*)(*object_list)(queue_data);
+    queue_data = (int64_t*)(*object_list)(queue_data);
     queue_data = object_params;
     
     do {
@@ -137,31 +137,31 @@ process_transformations:
                 // 检查对象可见性标志
                 if ((unaff_render_state & batch_counter) != 0) {
                     camera_distance = unaff_render_target[1];
-                    object_index = *(longlong*)(*(longlong*)(unaff_frame_buffer + 0x1b8) + 0xa8);
-                    transform_index = *(longlong*)(camera_distance + 8);
-                    material_hash = *(ulonglong*)(object_index + 0xc);
-                    texture_hash = *(ulonglong*)(object_index + 0x14);
+                    object_index = *(int64_t*)(*(int64_t*)(unaff_frame_buffer + 0x1b8) + 0xa8);
+                    transform_index = *(int64_t*)(camera_distance + 8);
+                    material_hash = *(uint64_t*)(object_index + 0xc);
+                    texture_hash = *(uint64_t*)(object_index + 0x14);
                     hash_value = material_hash ^ texture_hash;
                     
                     // 在哈希表中查找对象
-                    for (hash_entry = *(ulonglong**)(transform_index + (hash_value % (ulonglong)*(uint*)(camera_distance + 0x10)) * 8);
-                         hash_entry != (ulonglong*)0x0; 
-                         hash_entry = (ulonglong*)hash_entry[3]) {
+                    for (hash_entry = *(uint64_t**)(transform_index + (hash_value % (uint64_t)*(uint*)(camera_distance + 0x10)) * 8);
+                         hash_entry != (uint64_t*)0x0; 
+                         hash_entry = (uint64_t*)hash_entry[3]) {
                         if ((material_hash == *hash_entry) && (texture_hash == hash_entry[1])) {
-                            if (hash_entry != (ulonglong*)0x0) {
-                                camera_distance = *(longlong*)(camera_distance + 0x10);
+                            if (hash_entry != (uint64_t*)0x0) {
+                                camera_distance = *(int64_t*)(camera_distance + 0x10);
                                 goto found_object_entry;
                             }
                             break;
                         }
                     }
-                    camera_distance = *(longlong*)(camera_distance + 0x10);
-                    hash_entry = *(ulonglong**)(transform_index + camera_distance * 8);
+                    camera_distance = *(int64_t*)(camera_distance + 0x10);
+                    hash_entry = *(uint64_t**)(transform_index + camera_distance * 8);
 found_object_entry:
-                    if (hash_entry == *(ulonglong**)(transform_index + camera_distance * 8)) {
-                        queue_ptr = (longlong*)unaff_render_target[2];
+                    if (hash_entry == *(uint64_t**)(transform_index + camera_distance * 8)) {
+                        queue_ptr = (int64_t*)unaff_render_target[2];
                         queue_size = 0;
-                        priority_mask = (longlong)((int)queue_ptr[2] + 0xf) & 0xfffffffffffffff0;
+                        priority_mask = (int64_t)((int)queue_ptr[2] + 0xf) & 0xfffffffffffffff0;
                         *(int*)(queue_ptr + 2) = visibility_check * 0x20 + (int)priority_mask;
                         priority_mask = *queue_ptr + priority_mask;
                         
@@ -179,28 +179,28 @@ found_object_entry:
                         }
                         
                         camera_distance = unaff_render_target[1];
-                        distance_calc = hash_value % (ulonglong)*(uint*)(camera_distance + 0x10);
+                        distance_calc = hash_value % (uint64_t)*(uint*)(camera_distance + 0x10);
                         
                         // 在材质哈希表中查找条目
-                        for (hash_entry = *(ulonglong**)(*(longlong*)(camera_distance + 8) + distance_calc * 8);
-                             hash_entry != (ulonglong*)0x0; 
-                             hash_entry = (ulonglong*)hash_entry[3]) {
+                        for (hash_entry = *(uint64_t**)(*(int64_t*)(camera_distance + 8) + distance_calc * 8);
+                             hash_entry != (uint64_t*)0x0; 
+                             hash_entry = (uint64_t*)hash_entry[3]) {
                             if ((material_hash == *hash_entry) && (texture_hash == hash_entry[1])) {
-                                object_index = *(longlong*)(camera_distance + 8) + distance_calc * 8;
-                                if (hash_entry != (ulonglong*)0x0) goto found_material_entry;
+                                object_index = *(int64_t*)(camera_distance + 8) + distance_calc * 8;
+                                if (hash_entry != (uint64_t*)0x0) goto found_material_entry;
                                 break;
                             }
                         }
                         
-                        queue_ptr = *(longlong**)(camera_distance + 0x30);
-                        texture_hash = (longlong)(int)queue_ptr[2] + 0xfU & 0xfffffffffffffff0;
-                        hash_entry = (ulonglong*)(*queue_ptr + texture_hash);
+                        queue_ptr = *(int64_t**)(camera_distance + 0x30);
+                        texture_hash = (int64_t)(int)queue_ptr[2] + 0xfU & 0xfffffffffffffff0;
+                        hash_entry = (uint64_t*)(*queue_ptr + texture_hash);
                         *(int*)(queue_ptr + 2) = (int)texture_hash + 0x20;
                         *hash_entry = material_hash;
                         hash_entry[1] = texture_hash;
                         hash_entry[2] = priority_mask;
                         hash_entry[3] = 0;
-                        render_flags = (ulonglong*)material_hash;
+                        render_flags = (uint64_t*)material_hash;
                         flag_mask = texture_hash;
                         
                         // 调用材质处理函数
@@ -209,15 +209,15 @@ found_object_entry:
                                       *(int32_t*)(camera_distance + 0x18), 1);
                         
                         if ((char)shader_data != '\0') {
-                            distance_calc = hash_value % (ulonglong)shader_data._4_4_;
+                            distance_calc = hash_value % (uint64_t)shader_data._4_4_;
                             FUN_180285760(camera_distance, shader_data._4_4_);
                         }
                         
-                        hash_entry[3] = *(ulonglong*)(*(longlong*)(camera_distance + 8) + distance_calc * 8);
-                        *(ulonglong**)(*(longlong*)(camera_distance + 8) + distance_calc * 8) = hash_entry;
-                        *(longlong*)(camera_distance + 0x18) = *(longlong*)(camera_distance + 0x18) + 1;
+                        hash_entry[3] = *(uint64_t*)(*(int64_t*)(camera_distance + 8) + distance_calc * 8);
+                        *(uint64_t**)(*(int64_t*)(camera_distance + 8) + distance_calc * 8) = hash_entry;
+                        *(int64_t*)(camera_distance + 0x18) = *(int64_t*)(camera_distance + 0x18) + 1;
                         unaff_render_state = texture_data._4_4_;
-                        object_index = *(longlong*)(camera_distance + 8) + distance_calc * 8;
+                        object_index = *(int64_t*)(camera_distance + 8) + distance_calc * 8;
 found_material_entry:
                         lighting_data = object_index;
                         lighting_params = hash_entry;
@@ -228,7 +228,7 @@ found_material_entry:
                     }
                     
                     // 处理渲染队列插入
-                    hash_entry = (ulonglong*)(hash_entry[2] + batch_offset);
+                    hash_entry = (uint64_t*)(hash_entry[2] + batch_offset);
                     camera_distance = *queue_data;
                     object_index = queue_data[1];
                     queue_start = (uint*)hash_entry[1];
@@ -240,27 +240,27 @@ found_material_entry:
                     visibility_flags = queue_data[7];
                     
                     if (queue_start < (uint*)hash_entry[2]) {
-                        hash_entry[1] = (ulonglong)(queue_start + 0x14);
+                        hash_entry[1] = (uint64_t)(queue_start + 0x14);
                         *queue_start = unaff_render_state;
-                        *(longlong*)(queue_start + 1) = camera_distance;
-                        *(longlong*)(queue_start + 3) = object_index;
-                        *(longlong*)(queue_start + 5) = transform_index;
-                        *(longlong*)(queue_start + 7) = object_distance;
-                        *(longlong*)(queue_start + 9) = queue_size;
-                        *(longlong*)(queue_start + 0xb) = priority_value;
-                        *(longlong*)(queue_start + 0xd) = render_distance;
-                        *(longlong*)(queue_start + 0xf) = visibility_flags;
-                        *(longlong*)(queue_start + 0x12) = unaff_frame_buffer;
+                        *(int64_t*)(queue_start + 1) = camera_distance;
+                        *(int64_t*)(queue_start + 3) = object_index;
+                        *(int64_t*)(queue_start + 5) = transform_index;
+                        *(int64_t*)(queue_start + 7) = object_distance;
+                        *(int64_t*)(queue_start + 9) = queue_size;
+                        *(int64_t*)(queue_start + 0xb) = priority_value;
+                        *(int64_t*)(queue_start + 0xd) = render_distance;
+                        *(int64_t*)(queue_start + 0xf) = visibility_flags;
+                        *(int64_t*)(queue_start + 0x12) = unaff_frame_buffer;
                     }
                     else {
                         // 队列扩容处理
                         queue_end = (uint*)*hash_entry;
-                        transform_offset = ((longlong)queue_start - (longlong)queue_end) / 0x50;
+                        transform_offset = ((int64_t)queue_start - (int64_t)queue_end) / 0x50;
                         if (transform_offset == 0) {
                             transform_offset = 1;
 expand_queue:
-                            queue_ptr = (longlong*)hash_entry[3];
-                            material_hash = (longlong)((int)queue_ptr[2] + 0xf) & 0xfffffffffffffff0;
+                            queue_ptr = (int64_t*)hash_entry[3];
+                            material_hash = (int64_t)((int)queue_ptr[2] + 0xf) & 0xfffffffffffffff0;
                             *(int*)(queue_ptr + 2) = (int)transform_offset * 0x50 + (int)material_hash;
                             queue_current = (uint*)(*queue_ptr + material_hash);
                             queue_start = (uint*)hash_entry[1];
@@ -277,43 +277,43 @@ expand_queue:
                             object_ptr = queue_current + 1;
                             do {
                                 object_flags = object_ptr + 0x14;
-                                *queue_ptr = *(uint*)((longlong)queue_end + (-4 - (longlong)queue_current) + (longlong)object_ptr);
+                                *queue_ptr = *(uint*)((int64_t)queue_end + (-4 - (int64_t)queue_current) + (int64_t)object_ptr);
                                 queue_ptr = queue_ptr + 0x14;
-                                material_ptr = (uint64_t*)((longlong)queue_end + (-0x50 - (longlong)queue_current) + (longlong)object_flags);
+                                material_ptr = (uint64_t*)((int64_t)queue_end + (-0x50 - (int64_t)queue_current) + (int64_t)object_flags);
                                 lighting_params = material_ptr[1];
                                 *(uint64_t*)object_ptr = *material_ptr;
                                 *(uint64_t*)(object_ptr + 2) = lighting_params;
-                                material_ptr = (uint64_t*)((longlong)queue_end + (-0x40 - (longlong)queue_current) + (longlong)object_flags);
+                                material_ptr = (uint64_t*)((int64_t)queue_end + (-0x40 - (int64_t)queue_current) + (int64_t)object_flags);
                                 lighting_params = material_ptr[1];
                                 *(uint64_t*)(object_ptr + 4) = *material_ptr;
                                 *(uint64_t*)(object_ptr + 6) = lighting_params;
-                                material_ptr = (uint64_t*)((longlong)queue_end + (-0x30 - (longlong)queue_current) + (longlong)object_flags);
+                                material_ptr = (uint64_t*)((int64_t)queue_end + (-0x30 - (int64_t)queue_current) + (int64_t)object_flags);
                                 lighting_params = material_ptr[1];
                                 *(uint64_t*)(object_ptr + 8) = *material_ptr;
                                 *(uint64_t*)(object_ptr + 10) = lighting_params;
-                                material_ptr = (uint64_t*)((longlong)queue_end + (-0x20 - (longlong)queue_current) + (longlong)object_flags);
+                                material_ptr = (uint64_t*)((int64_t)queue_end + (-0x20 - (int64_t)queue_current) + (int64_t)object_flags);
                                 lighting_params = material_ptr[1];
                                 *(uint64_t*)(object_ptr + 0xc) = *material_ptr;
                                 *(uint64_t*)(object_ptr + 0xe) = lighting_params;
-                                *(uint64_t*)(object_ptr + 0x11) = *(uint64_t*)((longlong)queue_end + (-0xc - (longlong)queue_current) + (longlong)object_flags);
-                                render_state = (uint*)((longlong)object_ptr + (longlong)queue_end + (0x4c - (longlong)queue_current));
+                                *(uint64_t*)(object_ptr + 0x11) = *(uint64_t*)((int64_t)queue_end + (-0xc - (int64_t)queue_current) + (int64_t)object_flags);
+                                render_state = (uint*)((int64_t)object_ptr + (int64_t)queue_end + (0x4c - (int64_t)queue_current));
                                 object_ptr = object_flags;
                             } while (render_state != queue_start);
                         }
                         
                         *queue_ptr = unaff_render_state;
-                        *(longlong*)(queue_ptr + 1) = camera_distance;
-                        *(longlong*)(queue_ptr + 3) = object_index;
-                        *(longlong*)(queue_ptr + 5) = transform_index;
-                        *(longlong*)(queue_ptr + 7) = object_distance;
-                        *(longlong*)(queue_ptr + 9) = queue_size;
-                        *(longlong*)(queue_ptr + 0xb) = priority_value;
-                        *(longlong*)(queue_ptr + 0xd) = render_distance;
-                        *(longlong*)(queue_ptr + 0xf) = visibility_flags;
-                        *(longlong*)(queue_ptr + 0x12) = unaff_frame_buffer;
-                        hash_entry[1] = (ulonglong)(queue_ptr + 0x14);
-                        *hash_entry = (ulonglong)queue_current;
-                        hash_entry[2] = (ulonglong)(queue_current + transform_offset * 0x14);
+                        *(int64_t*)(queue_ptr + 1) = camera_distance;
+                        *(int64_t*)(queue_ptr + 3) = object_index;
+                        *(int64_t*)(queue_ptr + 5) = transform_index;
+                        *(int64_t*)(queue_ptr + 7) = object_distance;
+                        *(int64_t*)(queue_ptr + 9) = queue_size;
+                        *(int64_t*)(queue_ptr + 0xb) = priority_value;
+                        *(int64_t*)(queue_ptr + 0xd) = render_distance;
+                        *(int64_t*)(queue_ptr + 0xf) = visibility_flags;
+                        *(int64_t*)(queue_ptr + 0x12) = unaff_frame_buffer;
+                        hash_entry[1] = (uint64_t)(queue_ptr + 0x14);
+                        *hash_entry = (uint64_t)queue_current;
+                        hash_entry[2] = (uint64_t)(queue_current + transform_offset * 0x14);
                     }
                 }
                 queue_index = queue_index + 1;
@@ -327,13 +327,13 @@ expand_queue:
         texture_data._0_4_ = (int)texture_data + 1;
         batch_offset = queue_data[7];
         transform_count = transform_count + 0x10;
-        if ((ulonglong)(queue_data[8] - batch_offset >> 4) <= (ulonglong)(longlong)(int)texture_data) {
+        if ((uint64_t)(queue_data[8] - batch_offset >> 4) <= (uint64_t)(int64_t)(int)texture_data) {
             // 错误处理：堆栈溢出保护
-            FUN_1808fc050(camera_param ^ (ulonglong)&stack0x00000000);
+            FUN_1808fc050(camera_param ^ (uint64_t)&stack0x00000000);
         }
         
         unaff_render_state = *(uint*)(batch_offset + 8 + transform_count);
-        unaff_frame_buffer = *(longlong*)(batch_offset + transform_count);
+        unaff_frame_buffer = *(int64_t*)(batch_offset + transform_count);
         object_list = *(code**)(*queue_data + 0x158);
         texture_data._4_4_ = unaff_render_state;
         object_count = unaff_frame_buffer;
@@ -354,28 +354,28 @@ expand_queue:
  * @param target_context 目标渲染上下文
  * @param source_context 源渲染上下文
  */
-void apply_render_matrix_transformations(longlong* target_context, longlong* source_context)
+void apply_render_matrix_transformations(int64_t* target_context, int64_t* source_context)
 {
     int32_t transform_flags;
-    longlong* matrix_ptr;
+    int64_t* matrix_ptr;
     float source_matrix[16];
     float target_matrix[16];
     float result_matrix[16];
     float position_offset[3];
     float rotation_offset[3];
     float scale_offset[3];
-    longlong* object_list;
-    longlong* render_target;
+    int64_t* object_list;
+    int64_t* render_target;
     float* transform_data;
-    longlong* camera_matrix;
-    longlong* projection_matrix;
-    longlong* view_matrix;
+    int64_t* camera_matrix;
+    int64_t* projection_matrix;
+    int64_t* view_matrix;
     float* world_matrix;
-    longlong* object_data;
-    longlong transform_offset;
+    int64_t* object_data;
+    int64_t transform_offset;
     float final_matrix[16];
     int batch_index;
-    longlong batch_offset;
+    int64_t batch_offset;
     float stack_matrix[16];
     float temp_matrix[16];
     
@@ -406,21 +406,21 @@ void apply_render_matrix_transformations(longlong* target_context, longlong* sou
     if (source_context[8] - transform_offset >> 4 != 0) {
         batch_offset = 0;
         do {
-            object_list = *(longlong**)(batch_offset + transform_offset);
-            if (object_list != (longlong*)0x0) {
+            object_list = *(int64_t**)(batch_offset + transform_offset);
+            if (object_list != (int64_t*)0x0) {
                 // 调用对象初始化函数
                 (**(code**)(*object_list + 0x28))(object_list);
             }
             
             transform_flags = *(int32_t*)(batch_offset + 8 + transform_offset);
             position_offset[0] = *(float*)(object_list + 0x24);
-            position_offset[1] = *(float*)((longlong)object_list + 0x124);
+            position_offset[1] = *(float*)((int64_t)object_list + 0x124);
             position_offset[2] = *(float*)(object_list + 0x25);
             rotation_offset[0] = *(float*)(object_list + 0x26);
-            rotation_offset[1] = *(float*)((longlong)object_list + 0x134);
+            rotation_offset[1] = *(float*)((int64_t)object_list + 0x134);
             rotation_offset[2] = *(float*)(object_list + 0x27);
             scale_offset[0] = *(float*)(object_list + 0x28);
-            scale_offset[1] = *(float*)((longlong)object_list + 0x144);
+            scale_offset[1] = *(float*)((int64_t)object_list + 0x144);
             scale_offset[2] = *(float*)(object_list + 0x29);
             
             // 计算位置变换
@@ -486,32 +486,32 @@ void apply_render_matrix_transformations(longlong* target_context, longlong* sou
             
             // 应用变换矩阵到对象
             FUN_180075630(object_list, &stack_matrix);
-            object_list[0x39] = (longlong)target_context;
+            object_list[0x39] = (int64_t)target_context;
             
             // 将对象添加到渲染队列
-            camera_matrix = (longlong*)target_context[8];
-            if (camera_matrix < (longlong*)target_context[9]) {
-                target_context[8] = (longlong)(camera_matrix + 2);
-                *camera_matrix = (longlong)object_list;
+            camera_matrix = (int64_t*)target_context[8];
+            if (camera_matrix < (int64_t*)target_context[9]) {
+                target_context[8] = (int64_t)(camera_matrix + 2);
+                *camera_matrix = (int64_t)object_list;
                 (**(code**)(*object_list + 0x28))(object_list);
                 *(int32_t*)(camera_matrix + 1) = transform_flags;
             }
             else {
                 // 队列扩容处理
-                matrix_ptr = (longlong*)target_context[7];
-                transform_offset = (longlong)camera_matrix - (longlong)matrix_ptr >> 4;
+                matrix_ptr = (int64_t*)target_context[7];
+                transform_offset = (int64_t)camera_matrix - (int64_t)matrix_ptr >> 4;
                 if (transform_offset == 0) {
                     transform_offset = 1;
 expand_render_queue:
-                    world_matrix = (longlong*)FUN_18062b420(system_memory_pool_ptr, transform_offset << 4, (char)target_context[10]);
-                    camera_matrix = (longlong*)target_context[8];
-                    matrix_ptr = (longlong*)target_context[7];
+                    world_matrix = (int64_t*)FUN_18062b420(system_memory_pool_ptr, transform_offset << 4, (char)target_context[10]);
+                    camera_matrix = (int64_t*)target_context[8];
+                    matrix_ptr = (int64_t*)target_context[7];
                     object_data = world_matrix;
                 }
                 else {
                     transform_offset = transform_offset * 2;
                     if (transform_offset != 0) goto expand_render_queue;
-                    world_matrix = (longlong*)0x0;
+                    world_matrix = (int64_t*)0x0;
                     object_data = world_matrix;
                 }
                 
@@ -519,42 +519,42 @@ expand_render_queue:
                 for (; matrix_ptr != camera_matrix; matrix_ptr = matrix_ptr + 2) {
                     *world_matrix = *matrix_ptr;
                     *matrix_ptr = 0;
-                    *(int*)((longlong)matrix_ptr + (longlong)object_data + (8 - (longlong)matrix_ptr)) = (int)matrix_ptr[1];
+                    *(int*)((int64_t)matrix_ptr + (int64_t)object_data + (8 - (int64_t)matrix_ptr)) = (int)matrix_ptr[1];
                     world_matrix = world_matrix + 2;
                 }
                 
-                *world_matrix = (longlong)object_list;
+                *world_matrix = (int64_t)object_list;
                 (**(code**)(*object_list + 0x28))(object_list);
                 *(int32_t*)(world_matrix + 1) = transform_flags;
-                camera_matrix = (longlong*)target_context[8];
-                matrix_ptr = (longlong*)target_context[7];
+                camera_matrix = (int64_t*)target_context[8];
+                matrix_ptr = (int64_t*)target_context[7];
                 
                 // 清理旧队列数据
                 if (matrix_ptr != camera_matrix) {
                     do {
-                        if ((longlong*)*matrix_ptr != (longlong*)0x0) {
-                            (**(code**)(*(longlong*)*matrix_ptr + 0x38))();
+                        if ((int64_t*)*matrix_ptr != (int64_t*)0x0) {
+                            (**(code**)(*(int64_t*)*matrix_ptr + 0x38))();
                         }
                         matrix_ptr = matrix_ptr + 2;
                     } while (matrix_ptr != camera_matrix);
-                    matrix_ptr = (longlong*)target_context[7];
+                    matrix_ptr = (int64_t*)target_context[7];
                 }
                 
-                if (matrix_ptr != (longlong*)0x0) {
+                if (matrix_ptr != (int64_t*)0x0) {
                     // 释放旧队列内存
                     FUN_18064e900(matrix_ptr);
                 }
                 
-                target_context[7] = (longlong)object_data;
-                target_context[8] = (longlong)(world_matrix + 2);
-                target_context[9] = (longlong)(object_data + transform_offset * 2);
+                target_context[7] = (int64_t)object_data;
+                target_context[8] = (int64_t)(world_matrix + 2);
+                target_context[9] = (int64_t)(object_data + transform_offset * 2);
             }
             
             (**(code**)(*object_list + 0x38))(object_list);
             batch_index = batch_index + 1;
             batch_offset = batch_offset + 0x10;
             transform_offset = source_context[7];
-        } while ((ulonglong)(longlong)batch_index < (ulonglong)(source_context[8] - transform_offset >> 4));
+        } while ((uint64_t)(int64_t)batch_index < (uint64_t)(source_context[8] - transform_offset >> 4));
     }
     
     // 更新渲染上下文状态
@@ -564,7 +564,7 @@ expand_render_queue:
     
     // 执行渲染上下文更新
     if (*(code**)(*target_context + 0x160) == (code*)&unknown_var_6368_ptr) {
-        FUN_180276f30(target_context, (longlong)target_context + 0x214, 0);
+        FUN_180276f30(target_context, (int64_t)target_context + 0x214, 0);
     }
     else {
         (**(code**)(*target_context + 0x160))(target_context);
@@ -573,7 +573,7 @@ expand_render_queue:
     transform_offset = target_context[5];
     if ((transform_offset != 0) &&
         (*(short*)(transform_offset + 0x2b0) = *(short*)(transform_offset + 0x2b0) + 1,
-         *(longlong*)(transform_offset + 0x168) != 0)) {
+         *(int64_t*)(transform_offset + 0x168) != 0)) {
         func_0x0001802eeba0();
     }
     
@@ -587,13 +587,13 @@ expand_render_queue:
  * @param queue_source 队列源指针
  * @return 初始化后的队列头指针
  */
-longlong* initialize_render_queue_header(longlong* queue_header, longlong* queue_source)
+int64_t* initialize_render_queue_header(int64_t* queue_header, int64_t* queue_source)
 {
-    longlong* source_ptr;
+    int64_t* source_ptr;
     
-    source_ptr = (longlong*)*queue_source;
-    *queue_header = (longlong)source_ptr;
-    if (source_ptr != (longlong*)0x0) {
+    source_ptr = (int64_t*)*queue_source;
+    *queue_header = (int64_t)source_ptr;
+    if (source_ptr != (int64_t*)0x0) {
         (**(code**)(*source_ptr + 0x28))();
     }
     *(int*)(queue_header + 1) = (int)queue_source[1];
@@ -607,18 +607,18 @@ longlong* initialize_render_queue_header(longlong* queue_header, longlong* queue
  * 
  * @param render_context 渲染上下文指针
  */
-void cleanup_render_object_resources(longlong render_context)
+void cleanup_render_object_resources(int64_t render_context)
 {
     int object_count;
-    longlong resource_offset;
-    longlong resource_limit;
+    int64_t resource_offset;
+    int64_t resource_limit;
     
-    object_count = (int)(*(longlong*)(render_context + 0x40) - *(longlong*)(render_context + 0x38) >> 4);
-    resource_limit = (longlong)object_count;
+    object_count = (int)(*(int64_t*)(render_context + 0x40) - *(int64_t*)(render_context + 0x38) >> 4);
+    resource_limit = (int64_t)object_count;
     if (0 < object_count) {
         resource_offset = 0;
         do {
-            FUN_180075ff0(*(uint64_t*)(resource_offset + *(longlong*)(render_context + 0x38)));
+            FUN_180075ff0(*(uint64_t*)(resource_offset + *(int64_t*)(render_context + 0x38)));
             resource_offset = resource_offset + 0x10;
             resource_limit = resource_limit + -1;
         } while (resource_limit != 0);
@@ -633,13 +633,13 @@ void cleanup_render_object_resources(longlong render_context)
  */
 void batch_cleanup_render_resources(void)
 {
-    longlong resource_index;
-    longlong resource_count;
-    longlong resource_total;
+    int64_t resource_index;
+    int64_t resource_count;
+    int64_t resource_total;
     
     resource_index = 0;
     do {
-        FUN_180075ff0(*(uint64_t*)(resource_index + *(longlong*)(resource_count + 0x38)));
+        FUN_180075ff0(*(uint64_t*)(resource_index + *(int64_t*)(resource_count + 0x38)));
         resource_index = resource_index + 0x10;
         resource_total = resource_total + -1;
     } while (resource_total != 0);
@@ -669,37 +669,37 @@ void empty_render_function(void)
  * @param material_data 材质数据
  * @param render_params 渲染参数
  */
-void advanced_render_processing(longlong render_target, uint64_t material_data, longlong render_params)
+void advanced_render_processing(int64_t render_target, uint64_t material_data, int64_t render_params)
 {
-    longlong** material_system;
+    int64_t** material_system;
     int material_flags;
-    longlong texture_handle;
+    int64_t texture_handle;
     uint64_t* texture_ptr;
     uint64_t material_key;
-    ulonglong material_hash;
-    longlong* material_cache;
-    longlong* render_cache;
+    uint64_t material_hash;
+    int64_t* material_cache;
+    int64_t* render_cache;
     int render_flags;
-    ulonglong texture_hash;
-    longlong camera_distance;
+    uint64_t texture_hash;
+    int64_t camera_distance;
     uint material_index;
-    ulonglong frame_hash;
+    uint64_t frame_hash;
     int batch_count;
     int8_t material_buffer[32];
     uint64_t frame_counter;
-    longlong* shader_cache;
-    longlong* texture_cache;
-    longlong* light_cache;
-    longlong* shadow_cache;
+    int64_t* shader_cache;
+    int64_t* texture_cache;
+    int64_t* light_cache;
+    int64_t* shadow_cache;
     uint64_t render_mode;
     void* render_state;
     int8_t* material_state;
     int32_t batch_size;
     int8_t render_buffer[72];
-    ulonglong checksum;
+    uint64_t checksum;
     
     render_mode = 0xfffffffffffffffe;
-    checksum = GET_SECURITY_COOKIE() ^ (ulonglong)material_buffer;
+    checksum = GET_SECURITY_COOKIE() ^ (uint64_t)material_buffer;
     material_hash = 0;
     
     // 材质系统处理
@@ -719,13 +719,13 @@ void advanced_render_processing(longlong render_target, uint64_t material_data, 
                 }
                 
                 render_cache = material_system[10];
-                texture_hash = ((longlong)material_system[0xb] - (longlong)render_cache) / 0x18;
+                texture_hash = ((int64_t)material_system[0xb] - (int64_t)render_cache) / 0x18;
                 if (texture_hash != 0) {
                     material_cache = render_cache + 2;
                     frame_hash = material_hash;
                     do {
                         if ((material_cache[-1] == texture_handle) && ((int)*material_cache == batch_count)) {
-                            FUN_180275a60(render_cache[(longlong)(int)frame_hash * 3], render_target,
+                            FUN_180275a60(render_cache[(int64_t)(int)frame_hash * 3], render_target,
                                           CONCAT71((int7)(frame_hash >> 8), 1));
                             material_flags = _Mtx_unlock(material_system);
                             if (material_flags != 0) {
@@ -734,9 +734,9 @@ void advanced_render_processing(longlong render_target, uint64_t material_data, 
                             goto material_processing_complete;
                         }
                         material_index = (int)frame_hash + 1;
-                        frame_hash = (ulonglong)material_index;
+                        frame_hash = (uint64_t)material_index;
                         material_cache = material_cache + 3;
-                    } while ((ulonglong)(longlong)(int)material_index < texture_hash);
+                    } while ((uint64_t)(int64_t)(int)material_index < texture_hash);
                 }
                 
                 material_flags = _Mtx_unlock(material_system);
@@ -746,7 +746,7 @@ void advanced_render_processing(longlong render_target, uint64_t material_data, 
                 
                 texture_ptr = (uint64_t*)FUN_1801940f0(material_system, &light_cache, texture_handle, batch_count);
                 FUN_180275a60(*texture_ptr, render_target, 1);
-                if (light_cache != (longlong*)0x0) {
+                if (light_cache != (int64_t*)0x0) {
                     (**(code**)(*light_cache + 0x38))();
                 }
             }
@@ -755,7 +755,7 @@ void advanced_render_processing(longlong render_target, uint64_t material_data, 
     }
     
     // 光照和阴影处理
-    camera_distance = *(longlong*)(render_params + 0x98) - *(longlong*)(render_params + 0x90);
+    camera_distance = *(int64_t*)(render_params + 0x98) - *(int64_t*)(render_params + 0x90);
     batch_count = (int)(camera_distance >> 0x3f);
     material_flags = (int)(camera_distance / 0x1a0) + batch_count;
     texture_hash = material_hash;
@@ -763,53 +763,53 @@ void advanced_render_processing(longlong render_target, uint64_t material_data, 
     
     if (material_flags != batch_count) {
         do {
-            texture_handle = *(longlong*)(render_params + 0x90);
+            texture_handle = *(int64_t*)(render_params + 0x90);
             render_flags = (int)frame_hash;
             if (*(int*)(texture_hash + 0x70 + texture_handle) == 0) {
                 frame_counter = 0;
-                FUN_1800b32c0(system_resource_state, &shadow_cache, (longlong)render_flags * 0x1a0 + texture_handle, 1);
+                FUN_1800b32c0(system_resource_state, &shadow_cache, (int64_t)render_flags * 0x1a0 + texture_handle, 1);
                 FUN_1800763c0(shadow_cache, &texture_cache);
                 material_system = &shader_cache;
                 shader_cache = texture_cache;
-                if (texture_cache != (longlong*)0x0) {
+                if (texture_cache != (int64_t*)0x0) {
                     (**(code**)(*texture_cache + 0x28))();
                 }
-                FUN_180275e10(render_target, *(int32_t*)(texture_hash + 0x58 + *(longlong*)(render_params + 0x90)),
+                FUN_180275e10(render_target, *(int32_t*)(texture_hash + 0x58 + *(int64_t*)(render_params + 0x90)),
                               &shader_cache, 1);
                 render_cache = shadow_cache;
-                if (texture_cache != (longlong*)0x0) {
+                if (texture_cache != (int64_t*)0x0) {
                     (**(code**)(*texture_cache + 0x38))();
                     render_cache = shadow_cache;
                 }
             }
             else {
-                material_key = FUN_180334930(material_data, (longlong)render_flags * 0x1a0 + texture_handle);
+                material_key = FUN_180334930(material_data, (int64_t)render_flags * 0x1a0 + texture_handle);
                 FUN_1800763c0(material_key, &texture_cache);
                 material_system = &light_cache;
                 light_cache = texture_cache;
-                if (texture_cache != (longlong*)0x0) {
+                if (texture_cache != (int64_t*)0x0) {
                     (**(code**)(*texture_cache + 0x28))();
                 }
-                FUN_180275e10(render_target, *(int32_t*)(texture_hash + 0x58 + *(longlong*)(render_params + 0x90)),
+                FUN_180275e10(render_target, *(int32_t*)(texture_hash + 0x58 + *(int64_t*)(render_params + 0x90)),
                               &light_cache, 1);
                 render_cache = texture_cache;
             }
             
-            if (render_cache != (longlong*)0x0) {
+            if (render_cache != (int64_t*)0x0) {
                 (**(code**)(*render_cache + 0x38))();
             }
             
             texture_hash = texture_hash + 0x1a0;
-            frame_hash = (ulonglong)(render_flags + 1U);
+            frame_hash = (uint64_t)(render_flags + 1U);
         } while (render_flags + 1U < (uint)(material_flags - batch_count));
     }
     
 material_processing_complete:
-    texture_handle = *(longlong*)(render_target + 0x38);
-    if (*(longlong*)(render_target + 0x40) - texture_handle >> 4 != 0) {
+    texture_handle = *(int64_t*)(render_target + 0x38);
+    if (*(int64_t*)(render_target + 0x40) - texture_handle >> 4 != 0) {
         do {
-            camera_distance = material_hash * 0x1a0 + *(longlong*)(render_params + 0x90);
-            texture_handle = *(longlong*)(texture_handle + material_hash * 0x10);
+            camera_distance = material_hash * 0x1a0 + *(int64_t*)(render_params + 0x90);
+            texture_handle = *(int64_t*)(texture_handle + material_hash * 0x10);
             if ((*(uint*)(camera_distance + 0x5c) >> 8 & 1) != 0) {
                 FUN_18022cb40(*(uint64_t*)(texture_handle + 0x1b8), &shader_cache);
                 render_cache = shader_cache;
@@ -824,16 +824,16 @@ material_processing_complete:
                 *(int16_t*)(render_cache + 0x78) = 0xffff;
                 render_state = &system_state_ptr;
                 FUN_180076910(texture_handle, &shader_cache);
-                if (shader_cache != (longlong*)0x0) {
+                if (shader_cache != (int64_t*)0x0) {
                     (**(code**)(*shader_cache + 0x38))();
                 }
             }
             
             *(byte*)(texture_handle + 0xfd) = *(byte*)(texture_handle + 0xfd) | 1;
-            *(longlong*)(camera_distance + 400) = texture_handle;
-            material_hash = (ulonglong)((int)material_hash + 1);
-            texture_handle = *(longlong*)(render_target + 0x38);
-        } while (material_hash < (ulonglong)(*(longlong*)(render_target + 0x40) - texture_handle >> 4));
+            *(int64_t*)(camera_distance + 400) = texture_handle;
+            material_hash = (uint64_t)((int)material_hash + 1);
+            texture_handle = *(int64_t*)(render_target + 0x38);
+        } while (material_hash < (uint64_t)(*(int64_t*)(render_target + 0x40) - texture_handle >> 4));
     }
     
     *(int32_t*)(render_target + 0x318) = *(int32_t*)(render_params + 0x1bc);
@@ -842,7 +842,7 @@ material_processing_complete:
     UNLOCK();
     
     // 错误处理和清理
-    FUN_1808fc050(checksum ^ (ulonglong)material_buffer);
+    FUN_1808fc050(checksum ^ (uint64_t)material_buffer);
 }
 
 //============================================================================

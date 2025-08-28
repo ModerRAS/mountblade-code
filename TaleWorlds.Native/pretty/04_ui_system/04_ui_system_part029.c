@@ -65,11 +65,11 @@
 // 安全机制: 包含栈保护cookie检查，防止栈溢出攻击
 // 系统调用: 使用ReleaseSemaphore进行线程同步
 // 内存管理: 实现复杂的内存分配和释放策略
-void UIAdvancedDataProcessor(longlong ui_context, longlong data_buffer, int processing_mode)
+void UIAdvancedDataProcessor(int64_t ui_context, int64_t data_buffer, int processing_mode)
 {
   // 数据指针和变量声明
   int32_t *data_ptr;
-  longlong temp_offset;
+  int64_t temp_offset;
   byte flag_byte;
   int32_t data_word;
   int counter;
@@ -83,19 +83,19 @@ void UIAdvancedDataProcessor(longlong ui_context, longlong data_buffer, int proc
   uint index;
   int8_t *ptr_temp;
   uint64_t context_rbx;
-  longlong context_rbp;
+  int64_t context_rbp;
   uint temp_uint;
   uint64_t context_rsi;
-  longlong context_rdi;
-  longlong memory_base1;
-  longlong memory_base2;
-  longlong memory_base3;
-  ulonglong size_param1;
-  longlong stack_offset;
-  longlong temp_long;
+  int64_t context_rdi;
+  int64_t memory_base1;
+  int64_t memory_base2;
+  int64_t memory_base3;
+  uint64_t size_param1;
+  int64_t stack_offset;
+  int64_t temp_long;
   uint64_t context_r13;
-  ulonglong size_param2;
-  ulonglong loop_counter;
+  uint64_t size_param2;
+  uint64_t loop_counter;
   uint temp_uint2;
   int *int_ptr;
   int32_t xmm0_data;
@@ -109,37 +109,37 @@ void UIAdvancedDataProcessor(longlong ui_context, longlong data_buffer, int proc
   uint stack_uint2;
   int stack_param7;
   int stack_param8;
-  longlong stack_long1;
-  longlong stack_long2;
-  ulonglong stack_ulong;
+  int64_t stack_long1;
+  int64_t stack_long2;
+  uint64_t stack_ulong;
   
   // 保存寄存器状态到栈帧
   *(uint64_t *)(stack_offset + MEMORY_OFFSET_0x20) = context_rbx;
   *(uint64_t *)(stack_offset + -0x18) = context_rsi;
   stack_param1 = *(int *)(ui_context + 0x43a4);  // 获取UI系统参数
-  memory_base1 = *(longlong *)(context_rdi + 0x12a0);  // 获取内存基地址1
+  memory_base1 = *(int64_t *)(context_rdi + 0x12a0);  // 获取内存基地址1
   stack_param6 = *(int *)(ui_context + 0x1e78) + stack_param1;  // 计算栈参数
   data_word = *(int32_t *)(context_rdi + 0x34e4);  // 获取数据标志
   *(uint64_t *)(stack_offset + -0x28) = context_r13;  // 保存R13寄存器
   stack_uint2 = *(uint *)(memory_base1 + 0x10);  // 获取内存大小参数
-  size_param1 = (ulonglong)(int)stack_uint2;  // 转换为ulonglong
+  size_param1 = (uint64_t)(int)stack_uint2;  // 转换为uint64_t
   stack_uint1 = *(uint *)(memory_base1 + 0x24);  // 获取另一个大小参数
-  size_param2 = (ulonglong)(int)stack_uint1;  // 转换为ulonglong
-  temp_long = *(longlong *)(context_rdi + 0x12a8);  // 获取临时内存地址
-  *(longlong *)(context_rbp + -0x50) = temp_long;  // 保存到栈帧
+  size_param2 = (uint64_t)(int)stack_uint1;  // 转换为uint64_t
+  temp_long = *(int64_t *)(context_rdi + 0x12a8);  // 获取临时内存地址
+  *(int64_t *)(context_rbp + -0x50) = temp_long;  // 保存到栈帧
   stack_param7 = 1 << ((byte)data_word & UI_SYSTEM_ALIGNMENT_MASK);  // 计算位掩码
   
   // 初始化内存布局
   *(uint64_t *)(context_rbp + 8) = *(uint64_t *)(temp_long + 0x38);
   *(uint64_t *)(context_rbp + 0x10) = *(uint64_t *)(temp_long + 0x40);
   *(uint64_t *)(context_rbp + 0x18) = *(uint64_t *)(temp_long + 0x48);
-  memory_base3 = *(longlong *)(context_rdi + 0x12b0);  // 获取内存基地址3
+  memory_base3 = *(int64_t *)(context_rdi + 0x12b0);  // 获取内存基地址3
   *(int32_t *)(context_rbp + -0x1c) = *(int32_t *)(temp_long + 0x88);
-  *(longlong *)(context_rbp + -0x48) = memory_base1;  // 保存内存基地址1
+  *(int64_t *)(context_rbp + -0x48) = memory_base1;  // 保存内存基地址1
   *(uint64_t *)(context_rbp + 0x20) = *(uint64_t *)(memory_base3 + 0x38);
   *(uint64_t *)(context_rbp + 0x28) = *(uint64_t *)(memory_base3 + 0x40);
   *(uint64_t *)(context_rbp + 0x30) = *(uint64_t *)(memory_base3 + 0x48);
-  temp_long = *(longlong *)(context_rdi + 0x12b8);  // 获取另一个临时地址
+  temp_long = *(int64_t *)(context_rdi + 0x12b8);  // 获取另一个临时地址
   *(int32_t *)(context_rbp + -0x18) = *(int32_t *)(memory_base3 + 0x88);
   *(int32_t *)(context_rbp + -0x20) = 0;  // 初始化为0
   *(uint64_t *)(context_rbp + 0x38) = *(uint64_t *)(temp_long + 0x38);
@@ -157,28 +157,28 @@ void UIAdvancedDataProcessor(longlong ui_context, longlong data_buffer, int proc
   // 主处理循环
   if (processing_mode < *(int *)(context_rdi + 0x1e74)) {
     stack_ulong = size_param1;
-    *(ulonglong *)(context_rbp + -0x80) = size_param2;
+    *(uint64_t *)(context_rbp + -0x80) = size_param2;
     loop_counter = size_param1;
     
     do {
       stack_param8 = stack_param2;
       // 计算数据块地址
-      *(longlong *)(data_buffer + 0xfb8) =
-           ((longlong)(stack_param2 % stack_param7) + UI_SYSTEM_BASE_OFFSET) * UI_SYSTEM_BLOCK_SIZE + context_rdi;
+      *(int64_t *)(data_buffer + 0xfb8) =
+           ((int64_t)(stack_param2 % stack_param7) + UI_SYSTEM_BASE_OFFSET) * UI_SYSTEM_BLOCK_SIZE + context_rdi;
       
       // 设置指针参数
       if (stack_param2 < 1) {
         int_ptr = &stack0x00000054;  // 使用栈地址
       }
       else {
-        int_ptr = (int *)(*(longlong *)(context_rdi + 0x43a8) +
-                         (longlong)(stack_param2 + -1) * 4);  // 使用动态地址
+        int_ptr = (int *)(*(int64_t *)(context_rdi + 0x43a8) +
+                         (int64_t)(stack_param2 + -1) * 4);  // 使用动态地址
       }
       
-      memory_base1 = *(longlong *)(context_rdi + 0x43a8);  // 重新获取内存基地址
-      temp_long = (longlong)stack_param2;
+      memory_base1 = *(int64_t *)(context_rdi + 0x43a8);  // 重新获取内存基地址
+      temp_long = (int64_t)stack_param2;
       *(int **)(context_rbp + -0x78) = int_ptr;  // 保存指针到栈帧
-      *(longlong *)(context_rbp + -0x70) = memory_base1 + temp_long * 4;  // 计算偏移地址
+      *(int64_t *)(context_rbp + -0x70) = memory_base1 + temp_long * 4;  // 计算偏移地址
       *(uint64_t *)(data_buffer + 0xf50) = *(uint64_t *)(context_rdi + 0x2c18);  // 设置数据指针
       buffer_ptr = *(uint64_t **)(data_buffer + 0xf58);  // 获取缓冲区指针
       stack_param3 = stack_param2 * (int)loop_counter * UI_SYSTEM_CHUNK_SIZE;  // 计算块大小
@@ -195,27 +195,27 @@ void UIAdvancedDataProcessor(longlong ui_context, longlong data_buffer, int proc
       // 根据系统模式选择处理路径
       if (*(int *)(context_rdi + 0x2be0) == 0) {
         // 模式0：直接内存处理
-        memory_base1 = *(longlong *)(context_rbp + -0x60);
-        *(longlong *)(data_buffer + 0xf18) =
-             (longlong)stack_param3 + *(longlong *)(context_rbp + -0x68);
-        *(longlong *)(data_buffer + 0xf20) = memory_base1 + stack_param4;
-        *(longlong *)(data_buffer + 0xf28) =
-             *(longlong *)(context_rbp + -0x58) + (longlong)stack_param4;
-        *(longlong *)(data_buffer + 0xf30) = *(longlong *)(data_buffer + 0xf18) + -1;
-        *(longlong *)(data_buffer + 0xf38) = *(longlong *)(data_buffer + 0xf20) + -1;
+        memory_base1 = *(int64_t *)(context_rbp + -0x60);
+        *(int64_t *)(data_buffer + 0xf18) =
+             (int64_t)stack_param3 + *(int64_t *)(context_rbp + -0x68);
+        *(int64_t *)(data_buffer + 0xf20) = memory_base1 + stack_param4;
+        *(int64_t *)(data_buffer + 0xf28) =
+             *(int64_t *)(context_rbp + -0x58) + (int64_t)stack_param4;
+        *(int64_t *)(data_buffer + 0xf30) = *(int64_t *)(data_buffer + 0xf18) + -1;
+        *(int64_t *)(data_buffer + 0xf38) = *(int64_t *)(data_buffer + 0xf20) + -1;
         memory_ptr1 = *(int8_t **)(data_buffer + 0xf38);
-        *(longlong *)(data_buffer + 0xf40) = *(longlong *)(data_buffer + 0xf28) + -1;
+        *(int64_t *)(data_buffer + 0xf40) = *(int64_t *)(data_buffer + 0xf28) + -1;
         memory_ptr2 = *(int8_t **)(data_buffer + 0xf40);
-        *(longlong *)(data_buffer + 0xf18) =
-             *(longlong *)(data_buffer + 0xf18) - (longlong)*(int *)(data_buffer + 0xe80);
+        *(int64_t *)(data_buffer + 0xf18) =
+             *(int64_t *)(data_buffer + 0xf18) - (int64_t)*(int *)(data_buffer + 0xe80);
         memory_base1 = MEMORY_POOL_SIZE;
-        *(longlong *)(data_buffer + 0xf20) =
-             *(longlong *)(data_buffer + 0xf20) - (longlong)*(int *)(data_buffer + 0xe94);
-        *(longlong *)(data_buffer + 0xf28) =
-             *(longlong *)(data_buffer + 0xf28) - (longlong)*(int *)(data_buffer + 0xe94);
+        *(int64_t *)(data_buffer + 0xf20) =
+             *(int64_t *)(data_buffer + 0xf20) - (int64_t)*(int *)(data_buffer + 0xe94);
+        *(int64_t *)(data_buffer + 0xf28) =
+             *(int64_t *)(data_buffer + 0xf28) - (int64_t)*(int *)(data_buffer + 0xe94);
         *(int32_t *)(data_buffer + 0xf48) = *(int32_t *)(data_buffer + 0xe80);
         *(int32_t *)(data_buffer + 0xf4c) = *(int32_t *)(data_buffer + 0xe94);
-        memory_base3 = (longlong)*(int *)(data_buffer + 0xe94);
+        memory_base3 = (int64_t)*(int *)(data_buffer + 0xe94);
         ptr_temp = *(int8_t **)(data_buffer + 0xf30);
         counter = *(int *)(data_buffer + 0xe80);
         
@@ -246,18 +246,18 @@ void UIAdvancedDataProcessor(longlong ui_context, longlong data_buffer, int proc
       }
       else {
         // 模式1：间接内存处理
-        *(longlong *)(data_buffer + 0xf18) =
-             *(longlong *)(*(longlong *)(context_rdi + 0x43b0) + temp_long * 8) + MEMORY_OFFSET_0x20;
-        *(longlong *)(data_buffer + 0xf20) =
-             *(longlong *)(*(longlong *)(context_rdi + 0x43b8) + temp_long * 8) + MEMORY_OFFSET_0x10;
-        *(longlong *)(data_buffer + 0xf28) =
-             *(longlong *)(*(longlong *)(context_rdi + 0x43c0) + temp_long * 8) + MEMORY_OFFSET_0x10;
+        *(int64_t *)(data_buffer + 0xf18) =
+             *(int64_t *)(*(int64_t *)(context_rdi + 0x43b0) + temp_long * 8) + MEMORY_OFFSET_0x20;
+        *(int64_t *)(data_buffer + 0xf20) =
+             *(int64_t *)(*(int64_t *)(context_rdi + 0x43b8) + temp_long * 8) + MEMORY_OFFSET_0x10;
+        *(int64_t *)(data_buffer + 0xf28) =
+             *(int64_t *)(*(int64_t *)(context_rdi + 0x43c0) + temp_long * 8) + MEMORY_OFFSET_0x10;
         *(uint64_t *)(data_buffer + 0xf30) =
-             *(uint64_t *)(*(longlong *)(context_rdi + 0x43c8) + temp_long * 8);
+             *(uint64_t *)(*(int64_t *)(context_rdi + 0x43c8) + temp_long * 8);
         *(uint64_t *)(data_buffer + 0xf38) =
-             *(uint64_t *)(*(longlong *)(context_rdi + 0x43d0) + temp_long * 8);
+             *(uint64_t *)(*(int64_t *)(context_rdi + 0x43d0) + temp_long * 8);
         *(uint64_t *)(data_buffer + 0xf40) =
-             *(uint64_t *)(*(longlong *)(context_rdi + 0x43d8) + temp_long * 8);
+             *(uint64_t *)(*(int64_t *)(context_rdi + 0x43d8) + temp_long * 8);
         *(int32_t *)(data_buffer + 0xf48) = 1;
         *(int32_t *)(data_buffer + 0xf4c) = 1;
       }
@@ -279,46 +279,46 @@ void UIAdvancedDataProcessor(longlong ui_context, longlong data_buffer, int proc
             do {
               xmm0_data = Sleep(0);  // 等待同步
             } while (*int_ptr - counter < (int)temp_uint);
-            size_param1 = (ulonglong)(int)loop_counter;
+            size_param1 = (uint64_t)(int)loop_counter;
           }
           
           // 数据处理和内存管理
-          memory_base1 = *(longlong *)(data_buffer + 0xf00);
-          memory_base2 = (longlong)stack_param4;
+          memory_base1 = *(int64_t *)(data_buffer + 0xf00);
+          memory_base2 = (int64_t)stack_param4;
           *(int *)(data_buffer + 0xf84) = stack_param5;
           counter = *(int *)(context_rdi + 0x1e78);
-          *(longlong *)(data_buffer + 0xea8) =
-               *(longlong *)(context_rbp + -0x68) + (longlong)stack_param3;
-          *(longlong *)(data_buffer + 0xeb0) = *(longlong *)(context_rbp + -0x60) + memory_base2;
-          memory_base3 = *(longlong *)(context_rbp + -0x58);
+          *(int64_t *)(data_buffer + 0xea8) =
+               *(int64_t *)(context_rbp + -0x68) + (int64_t)stack_param3;
+          *(int64_t *)(data_buffer + 0xeb0) = *(int64_t *)(context_rbp + -0x60) + memory_base2;
+          memory_base3 = *(int64_t *)(context_rbp + -0x58);
           *(uint *)(data_buffer + 0xf88) = ((counter - temp_uint) + -1) * UI_SYSTEM_LARGE_CHUNK_SIZE;
-          *(longlong *)(data_buffer + 0xeb8) = memory_base3 + memory_base2;
-          *(longlong *)(data_buffer + 0xe18) =
-               *(longlong *)(context_rbp + -0x10 + (ulonglong)*(byte *)(memory_base1 + 2) * 0x18) +
-               (longlong)stack_param3;
-          *(longlong *)(data_buffer + 0xe20) =
-               *(longlong *)(context_rbp + -8 + (ulonglong)*(byte *)(memory_base1 + 2) * 0x18) + memory_base2;
-          *(longlong *)(data_buffer + 0xe28) =
-               *(longlong *)(context_rbp + (ulonglong)*(byte *)(memory_base1 + 2) * 0x18) + memory_base2;
+          *(int64_t *)(data_buffer + 0xeb8) = memory_base3 + memory_base2;
+          *(int64_t *)(data_buffer + 0xe18) =
+               *(int64_t *)(context_rbp + -0x10 + (uint64_t)*(byte *)(memory_base1 + 2) * 0x18) +
+               (int64_t)stack_param3;
+          *(int64_t *)(data_buffer + 0xe20) =
+               *(int64_t *)(context_rbp + -8 + (uint64_t)*(byte *)(memory_base1 + 2) * 0x18) + memory_base2;
+          *(int64_t *)(data_buffer + 0xe28) =
+               *(int64_t *)(context_rbp + (uint64_t)*(byte *)(memory_base1 + 2) * 0x18) + memory_base2;
           *(uint *)(data_buffer + 0xfc0) =
                *(uint *)(data_buffer + 0xfc0) |
-               *(uint *)(context_rbp + -0x20 + (ulonglong)*(byte *)(memory_base1 + 2) * 4);
+               *(uint *)(context_rbp + -0x20 + (uint64_t)*(byte *)(memory_base1 + 2) * 4);
           xmm0_data = FUN_18066f3e0(xmm0_data, data_buffer, 0);
           temp_uint2 = stack_uint1;
           *(int32_t *)(data_buffer + 0xf14) = 1;
           *(uint *)(data_buffer + 0xfc0) =
                *(uint *)(data_buffer + 0xfc0) |
-               (uint)(*(int *)(*(longlong *)(data_buffer + 0xfb8) + 0x18) - 0x41U < UI_SYSTEM_DATA_FLAG);
+               (uint)(*(int *)(*(int64_t *)(data_buffer + 0xfb8) + 0x18) - 0x41U < UI_SYSTEM_DATA_FLAG);
           
           // 更新数据指针
-          *(longlong *)(data_buffer + 0xf18) = *(longlong *)(data_buffer + 0xf18) + UI_SYSTEM_CHUNK_SIZE;
-          *(longlong *)(data_buffer + 0xf20) = *(longlong *)(data_buffer + 0xf20) + 8;
-          *(longlong *)(data_buffer + 0xf28) = *(longlong *)(data_buffer + 0xf28) + 8;
+          *(int64_t *)(data_buffer + 0xf18) = *(int64_t *)(data_buffer + 0xf18) + UI_SYSTEM_CHUNK_SIZE;
+          *(int64_t *)(data_buffer + 0xf20) = *(int64_t *)(data_buffer + 0xf20) + 8;
+          *(int64_t *)(data_buffer + 0xf28) = *(int64_t *)(data_buffer + 0xf28) + 8;
           
           if (*(int *)(context_rdi + 0x2be0) == 0) {
-            *(longlong *)(data_buffer + 0xf30) = *(longlong *)(data_buffer + 0xf30) + UI_SYSTEM_CHUNK_SIZE;
-            *(longlong *)(data_buffer + 0xf38) = *(longlong *)(data_buffer + 0xf38) + 8;
-            *(longlong *)(data_buffer + 0xf40) = *(longlong *)(data_buffer + 0xf40) + 8;
+            *(int64_t *)(data_buffer + 0xf30) = *(int64_t *)(data_buffer + 0xf30) + UI_SYSTEM_CHUNK_SIZE;
+            *(int64_t *)(data_buffer + 0xf38) = *(int64_t *)(data_buffer + 0xf38) + 8;
+            *(int64_t *)(data_buffer + 0xf40) = *(int64_t *)(data_buffer + 0xf40) + 8;
             if (*(int *)(context_rdi + 0x2be0) != 0) goto LAB_mode_switch;
           }
           else {
@@ -329,20 +329,20 @@ LAB_mode_switch:
               condition_flag = false;
             }
             
-            flag_byte = *(byte *)((ulonglong)*(byte *)((ulonglong)flag_byte + 0xd00 + context_rdi + 0x1ed0) +
+            flag_byte = *(byte *)((uint64_t)*(byte *)((uint64_t)flag_byte + 0xd00 + context_rdi + 0x1ed0) +
                               context_rdi + 0x1ed0 + 0xc40 +
-                             ((ulonglong)byte_ptr[2] + (ulonglong)byte_ptr[0xb] * 4) * 4);
+                             ((uint64_t)byte_ptr[2] + (uint64_t)byte_ptr[0xb] * 4) * 4);
             stack_uint2 = (uint)flag_byte;
             
             if (stack_param2 != *(int *)(context_rdi + 0x1e74) + -1) {
-              data_ptr = (int32_t *)(size_param1 * 0xf + *(longlong *)(data_buffer + 0xea8));
+              data_ptr = (int32_t *)(size_param1 * 0xf + *(int64_t *)(data_buffer + 0xea8));
               xmm0_data = *data_ptr;
               data_word = data_ptr[1];
               temp_data1 = data_ptr[2];
               temp_data2 = data_ptr[3];
-              memory_base1 = *(longlong *)(context_rbp + -0x80) * 7;
+              memory_base1 = *(int64_t *)(context_rbp + -0x80) * 7;
               data_ptr = (int32_t *)
-                       (*(longlong *)(*(longlong *)(context_rdi + 0x43b0) + 8 + temp_long * 8) +
+                       (*(int64_t *)(*(int64_t *)(context_rdi + 0x43b0) + 8 + temp_long * 8) +
                        stack_long1);
               *data_ptr = xmm0_data;
               data_ptr[1] = data_word;
@@ -350,87 +350,87 @@ LAB_mode_switch:
               data_ptr[3] = temp_data2;
               *(uint64_t *)
                (stack_long2 +
-               *(longlong *)(*(longlong *)(context_rdi + 0x43b8) + 8 + temp_long * 8)) =
-                   *(uint64_t *)(memory_base1 + *(longlong *)(data_buffer + 0xeb0));
+               *(int64_t *)(*(int64_t *)(context_rdi + 0x43b8) + 8 + temp_long * 8)) =
+                   *(uint64_t *)(memory_base1 + *(int64_t *)(data_buffer + 0xeb0));
               *(uint64_t *)
                (stack_long2 +
-               *(longlong *)(*(longlong *)(context_rdi + 0x43c0) + 8 + temp_long * 8)) =
-                   *(uint64_t *)(memory_base1 + *(longlong *)(data_buffer + 0xeb8));
+               *(int64_t *)(*(int64_t *)(context_rdi + 0x43c0) + 8 + temp_long * 8)) =
+                   *(uint64_t *)(memory_base1 + *(int64_t *)(data_buffer + 0xeb8));
             }
             
             // 高级数据处理
             if ((temp_uint != *(int *)(context_rdi + 0x1e78) - 1U) &&
-               (*(char *)(*(longlong *)(data_buffer + 0xf00) + 0x4e) == '\0')) {
+               (*(char *)(*(int64_t *)(data_buffer + 0xf00) + 0x4e) == '\0')) {
               memory_base3 = 0;
               memory_base1 = stack_ulong * 2;
               do {
                 memory_base2 = memory_base1 + stack_ulong;
                 *(int8_t *)
-                 (memory_base3 + *(longlong *)(*(longlong *)(context_rdi + 0x43c8) + temp_long * 8)) =
+                 (memory_base3 + *(int64_t *)(*(int64_t *)(context_rdi + 0x43c8) + temp_long * 8)) =
                      *(int8_t *)
-                      (memory_base1 + stack_ulong * -2 + 0xf + *(longlong *)(data_buffer + 0xea8));
+                      (memory_base1 + stack_ulong * -2 + 0xf + *(int64_t *)(data_buffer + 0xea8));
                 *(int8_t *)
-                 (*(longlong *)(*(longlong *)(context_rdi + 0x43c8) + temp_long * 8) + 1 + memory_base3) =
+                 (*(int64_t *)(*(int64_t *)(context_rdi + 0x43c8) + temp_long * 8) + 1 + memory_base3) =
                      *(int8_t *)
-                      ((*(longlong *)(data_buffer + 0xea8) + memory_base1 + 0xf) - stack_ulong);
+                      ((*(int64_t *)(data_buffer + 0xea8) + memory_base1 + 0xf) - stack_ulong);
                 temp_offset = memory_base1 + 0xf;
                 memory_base1 = memory_base1 + stack_ulong * 4;
                 *(int8_t *)
-                 (*(longlong *)(*(longlong *)(context_rdi + 0x43c8) + temp_long * 8) + 2 + memory_base3) =
-                     *(int8_t *)(temp_offset + *(longlong *)(data_buffer + 0xea8));
+                 (*(int64_t *)(*(int64_t *)(context_rdi + 0x43c8) + temp_long * 8) + 2 + memory_base3) =
+                     *(int8_t *)(temp_offset + *(int64_t *)(data_buffer + 0xea8));
                 *(int8_t *)
-                 (*(longlong *)(*(longlong *)(context_rdi + 0x43c8) + temp_long * 8) + 3 + memory_base3) =
-                     *(int8_t *)(memory_base2 + 0xf + *(longlong *)(data_buffer + 0xea8));
+                 (*(int64_t *)(*(int64_t *)(context_rdi + 0x43c8) + temp_long * 8) + 3 + memory_base3) =
+                     *(int8_t *)(memory_base2 + 0xf + *(int64_t *)(data_buffer + 0xea8));
                 memory_base3 = memory_base3 + 4;
               } while (memory_base3 < MEMORY_POOL_SIZE);
               
-              memory_base1 = *(longlong *)(context_rbp + -0x80);
-              **(int8_t **)(*(longlong *)(context_rdi + 0x43d0) + temp_long * 8) =
-                   *(int8_t *)(*(longlong *)(data_buffer + 0xeb0) + 7);
-              **(int8_t **)(*(longlong *)(context_rdi + 0x43d8) + temp_long * 8) =
-                   *(int8_t *)(*(longlong *)(data_buffer + 0xeb8) + 7);
-              *(int8_t *)(*(longlong *)(*(longlong *)(context_rdi + 0x43d0) + temp_long * 8) + 1) =
-                   *(int8_t *)(memory_base1 + 7 + *(longlong *)(data_buffer + 0xeb0));
-              *(int8_t *)(*(longlong *)(*(longlong *)(context_rdi + 0x43d8) + temp_long * 8) + 1) =
-                   *(int8_t *)(*(longlong *)(data_buffer + 0xeb8) + 7 + memory_base1);
-              *(int8_t *)(*(longlong *)(*(longlong *)(context_rdi + 0x43d0) + temp_long * 8) + 2) =
-                   *(int8_t *)(*(longlong *)(data_buffer + 0xeb0) + 7 + memory_base1 * 2);
-              *(int8_t *)(*(longlong *)(*(longlong *)(context_rdi + 0x43d8) + temp_long * 8) + 2) =
-                   *(int8_t *)(*(longlong *)(data_buffer + 0xeb8) + 7 + memory_base1 * 2);
-              *(int8_t *)(*(longlong *)(*(longlong *)(context_rdi + 0x43d0) + temp_long * 8) + 3) =
-                   *(int8_t *)(memory_base1 * 3 + 7 + *(longlong *)(data_buffer + 0xeb0));
-              *(int8_t *)(*(longlong *)(*(longlong *)(context_rdi + 0x43d8) + temp_long * 8) + 3) =
-                   *(int8_t *)(*(longlong *)(data_buffer + 0xeb8) + 7 + memory_base1 * 3);
-              *(int8_t *)(*(longlong *)(*(longlong *)(context_rdi + 0x43d0) + temp_long * 8) + 4) =
-                   *(int8_t *)(*(longlong *)(data_buffer + 0xeb0) + 7 + memory_base1 * 4);
-              *(int8_t *)(*(longlong *)(*(longlong *)(context_rdi + 0x43d8) + temp_long * 8) + 4) =
-                   *(int8_t *)(*(longlong *)(data_buffer + 0xeb8) + 7 + memory_base1 * 4);
-              *(int8_t *)(*(longlong *)(*(longlong *)(context_rdi + 0x43d0) + temp_long * 8) + 5) =
-                   *(int8_t *)(memory_base1 * 5 + 7 + *(longlong *)(data_buffer + 0xeb0));
-              *(int8_t *)(*(longlong *)(*(longlong *)(context_rdi + 0x43d8) + temp_long * 8) + 5) =
-                   *(int8_t *)(*(longlong *)(data_buffer + 0xeb8) + 7 + memory_base1 * 5);
-              *(int8_t *)(*(longlong *)(*(longlong *)(context_rdi + 0x43d0) + temp_long * 8) + 6) =
-                   *(int8_t *)(memory_base1 * 6 + 7 + *(longlong *)(data_buffer + 0xeb0));
-              *(int8_t *)(*(longlong *)(*(longlong *)(context_rdi + 0x43d8) + temp_long * 8) + 6) =
-                   *(int8_t *)(*(longlong *)(data_buffer + 0xeb8) + 7 + memory_base1 * 6);
-              size_param1 = (ulonglong)stack_uint2;
-              *(int8_t *)(*(longlong *)(*(longlong *)(context_rdi + 0x43d0) + temp_long * 8) + 7) =
-                   *(int8_t *)(memory_base1 * 7 + 7 + *(longlong *)(data_buffer + 0xeb0));
-              *(int8_t *)(*(longlong *)(*(longlong *)(context_rdi + 0x43d8) + temp_long * 8) + 7) =
-                   *(int8_t *)(*(longlong *)(data_buffer + 0xeb8) + 7 + memory_base1 * 7);
+              memory_base1 = *(int64_t *)(context_rbp + -0x80);
+              **(int8_t **)(*(int64_t *)(context_rdi + 0x43d0) + temp_long * 8) =
+                   *(int8_t *)(*(int64_t *)(data_buffer + 0xeb0) + 7);
+              **(int8_t **)(*(int64_t *)(context_rdi + 0x43d8) + temp_long * 8) =
+                   *(int8_t *)(*(int64_t *)(data_buffer + 0xeb8) + 7);
+              *(int8_t *)(*(int64_t *)(*(int64_t *)(context_rdi + 0x43d0) + temp_long * 8) + 1) =
+                   *(int8_t *)(memory_base1 + 7 + *(int64_t *)(data_buffer + 0xeb0));
+              *(int8_t *)(*(int64_t *)(*(int64_t *)(context_rdi + 0x43d8) + temp_long * 8) + 1) =
+                   *(int8_t *)(*(int64_t *)(data_buffer + 0xeb8) + 7 + memory_base1);
+              *(int8_t *)(*(int64_t *)(*(int64_t *)(context_rdi + 0x43d0) + temp_long * 8) + 2) =
+                   *(int8_t *)(*(int64_t *)(data_buffer + 0xeb0) + 7 + memory_base1 * 2);
+              *(int8_t *)(*(int64_t *)(*(int64_t *)(context_rdi + 0x43d8) + temp_long * 8) + 2) =
+                   *(int8_t *)(*(int64_t *)(data_buffer + 0xeb8) + 7 + memory_base1 * 2);
+              *(int8_t *)(*(int64_t *)(*(int64_t *)(context_rdi + 0x43d0) + temp_long * 8) + 3) =
+                   *(int8_t *)(memory_base1 * 3 + 7 + *(int64_t *)(data_buffer + 0xeb0));
+              *(int8_t *)(*(int64_t *)(*(int64_t *)(context_rdi + 0x43d8) + temp_long * 8) + 3) =
+                   *(int8_t *)(*(int64_t *)(data_buffer + 0xeb8) + 7 + memory_base1 * 3);
+              *(int8_t *)(*(int64_t *)(*(int64_t *)(context_rdi + 0x43d0) + temp_long * 8) + 4) =
+                   *(int8_t *)(*(int64_t *)(data_buffer + 0xeb0) + 7 + memory_base1 * 4);
+              *(int8_t *)(*(int64_t *)(*(int64_t *)(context_rdi + 0x43d8) + temp_long * 8) + 4) =
+                   *(int8_t *)(*(int64_t *)(data_buffer + 0xeb8) + 7 + memory_base1 * 4);
+              *(int8_t *)(*(int64_t *)(*(int64_t *)(context_rdi + 0x43d0) + temp_long * 8) + 5) =
+                   *(int8_t *)(memory_base1 * 5 + 7 + *(int64_t *)(data_buffer + 0xeb0));
+              *(int8_t *)(*(int64_t *)(*(int64_t *)(context_rdi + 0x43d8) + temp_long * 8) + 5) =
+                   *(int8_t *)(*(int64_t *)(data_buffer + 0xeb8) + 7 + memory_base1 * 5);
+              *(int8_t *)(*(int64_t *)(*(int64_t *)(context_rdi + 0x43d0) + temp_long * 8) + 6) =
+                   *(int8_t *)(memory_base1 * 6 + 7 + *(int64_t *)(data_buffer + 0xeb0));
+              *(int8_t *)(*(int64_t *)(*(int64_t *)(context_rdi + 0x43d8) + temp_long * 8) + 6) =
+                   *(int8_t *)(*(int64_t *)(data_buffer + 0xeb8) + 7 + memory_base1 * 6);
+              size_param1 = (uint64_t)stack_uint2;
+              *(int8_t *)(*(int64_t *)(*(int64_t *)(context_rdi + 0x43d0) + temp_long * 8) + 7) =
+                   *(int8_t *)(memory_base1 * 7 + 7 + *(int64_t *)(data_buffer + 0xeb0));
+              *(int8_t *)(*(int64_t *)(*(int64_t *)(context_rdi + 0x43d8) + temp_long * 8) + 7) =
+                   *(int8_t *)(*(int64_t *)(data_buffer + 0xeb8) + 7 + memory_base1 * 7);
             }
             
             temp_uint2 = (uint)flag_byte;
             memory_base1 = context_rdi + 0x1ed0;
             if (temp_uint2 != 0) {
               if (*(int *)(context_rdi + 0x1ec0) == 0) {
-                memory_base3 = (longlong)(int)temp_uint2;
-                *(longlong *)(context_rbp + -0x40) = memory_base3 * 0x10 + memory_base1;
-                *(longlong *)(context_rbp + -0x38) = (memory_base3 + 0x40) * 0x10 + memory_base1;
-                *(longlong *)(context_rbp + -0x30) = (memory_base3 + 0x80) * 0x10 + memory_base1;
-                *(ulonglong *)(context_rbp + -0x28) =
-                     ((ulonglong)
-                      *(byte *)(((longlong)*(int *)(context_rdi + 0x1e64) + 0x32) * 0x40 + memory_base3 +
+                memory_base3 = (int64_t)(int)temp_uint2;
+                *(int64_t *)(context_rbp + -0x40) = memory_base3 * 0x10 + memory_base1;
+                *(int64_t *)(context_rbp + -0x38) = (memory_base3 + 0x40) * 0x10 + memory_base1;
+                *(int64_t *)(context_rbp + -0x30) = (memory_base3 + 0x80) * 0x10 + memory_base1;
+                *(uint64_t *)(context_rbp + -0x28) =
+                     ((uint64_t)
+                      *(byte *)(((int64_t)*(int *)(context_rdi + 0x1e64) + 0x32) * 0x40 + memory_base3 +
                                memory_base1) + 0xc0) * 0x10 + memory_base1;
                 if (0 < (int)temp_uint) {
                   xmm0_data = FUN_18069cb40(*(uint64_t *)(data_buffer + 0xea8),
@@ -461,20 +461,20 @@ LAB_mode_switch:
                 if (0 < (int)temp_uint) {
                   xmm0_data = func_0x00018001c253(*(uint64_t *)(data_buffer + 0xea8),
                                                    size_param1 & 0xffffffff,
-                                                   (longlong)(int)temp_uint2 * 0x10 + memory_base1);
+                                                   (int64_t)(int)temp_uint2 * 0x10 + memory_base1);
                 }
                 if (!condition_flag) {
                   xmm0_data = FUN_18069ca80(*(uint64_t *)(data_buffer + 0xea8), size_param1 & 0xffffffff,
-                                             ((longlong)(int)temp_uint2 + 0x40) * 0x10 + memory_base1);
+                                             ((int64_t)(int)temp_uint2 + 0x40) * 0x10 + memory_base1);
                 }
                 if (0 < temp_long) {
                   xmm0_data = func_0x00018001c10b(*(uint64_t *)(data_buffer + 0xea8),
                                                    size_param1 & 0xffffffff,
-                                                   (longlong)(int)temp_uint2 * 0x10 + memory_base1);
+                                                   (int64_t)(int)temp_uint2 * 0x10 + memory_base1);
                 }
                 if (!condition_flag) {
                   xmm0_data = FUN_18069c990(*(uint64_t *)(data_buffer + 0xea8), size_param1 & 0xffffffff,
-                                             ((longlong)(int)temp_uint2 + 0x40) * 0x10 + memory_base1);
+                                             ((int64_t)(int)temp_uint2 + 0x40) * 0x10 + memory_base1);
                 }
               }
             }
@@ -484,45 +484,45 @@ LAB_mode_switch:
           stack_param5 = stack_param5 + -UI_SYSTEM_LARGE_CHUNK_SIZE;
           stack_param3 = stack_param3 + UI_SYSTEM_CHUNK_SIZE;
           stack_param4 = stack_param4 + 8;
-          *(longlong *)(data_buffer + 0xf00) = *(longlong *)(data_buffer + 0xf00) + 0x4c;
-          *(longlong *)(data_buffer + 0xf50) = *(longlong *)(data_buffer + 0xf50) + 9;
+          *(int64_t *)(data_buffer + 0xf00) = *(int64_t *)(data_buffer + 0xf00) + 0x4c;
+          *(int64_t *)(data_buffer + 0xf50) = *(int64_t *)(data_buffer + 0xf50) + 9;
           stack_long1 = stack_long1 + UI_SYSTEM_CHUNK_SIZE;
           stack_long2 = stack_long2 + 8;
           int_ptr = *(int **)(context_rbp + -0x78);
-          size_param1 = (ulonglong)(int)loop_counter;
+          size_param1 = (uint64_t)(int)loop_counter;
         } while ((int)temp_uint < *(int *)(context_rdi + 0x1e78));
-        size_param1 = (ulonglong)(int)loop_counter;
+        size_param1 = (uint64_t)(int)loop_counter;
       }
       
       // 后处理和清理
       if (*(int *)(context_rdi + 0x2be0) == 0) {
         xmm0_data = func_0x00018069cbd0(*(uint64_t *)(context_rbp + -0x48),
-                                         *(longlong *)(data_buffer + 0xea8) + MEMORY_OFFSET_0x10,
-                                         *(longlong *)(data_buffer + 0xeb0) + 8,
-                                         *(longlong *)(data_buffer + 0xeb8) + 8);
+                                         *(int64_t *)(data_buffer + 0xea8) + MEMORY_OFFSET_0x10,
+                                         *(int64_t *)(data_buffer + 0xeb0) + 8,
+                                         *(int64_t *)(data_buffer + 0xeb8) + 8);
       }
       else if (stack_param2 != *(int *)(context_rdi + 0x1e74) + -1) {
         memory_base1 = 0;
         counter = **(int **)(context_rbp + -0x50);
-        memory_base3 = (longlong)((counter >> 1) + MEMORY_POOL_SIZE);
+        memory_base3 = (int64_t)((counter >> 1) + MEMORY_POOL_SIZE);
         do {
-          memory_base2 = *(longlong *)(*(longlong *)(context_rdi + 0x43b0) + 8 + temp_long * 8) +
-                   (longlong)(counter + MEMORY_OFFSET_0x20);
+          memory_base2 = *(int64_t *)(*(int64_t *)(context_rdi + 0x43b0) + 8 + temp_long * 8) +
+                   (int64_t)(counter + MEMORY_OFFSET_0x20);
           *(int8_t *)(memory_base2 + memory_base1) = *(int8_t *)(memory_base2 + -1);
-          memory_base2 = *(longlong *)(*(longlong *)(context_rdi + 0x43b8) + 8 + temp_long * 8) + memory_base3;
+          memory_base2 = *(int64_t *)(*(int64_t *)(context_rdi + 0x43b8) + 8 + temp_long * 8) + memory_base3;
           *(int8_t *)(memory_base2 + memory_base1) = *(int8_t *)(memory_base2 + -1);
-          memory_base2 = *(longlong *)(*(longlong *)(context_rdi + 0x43c0) + 8 + temp_long * 8) + memory_base3;
+          memory_base2 = *(int64_t *)(*(int64_t *)(context_rdi + 0x43c0) + 8 + temp_long * 8) + memory_base3;
           *(int8_t *)(memory_base2 + memory_base1) = *(int8_t *)(memory_base2 + -1);
           memory_base1 = memory_base1 + 1;
         } while (memory_base1 < 4);
       }
-      size_param2 = (ulonglong)stack_uint1;
+      size_param2 = (uint64_t)stack_uint1;
       **(int **)(context_rbp + -0x70) = temp_uint + stack_param1;
-      *(longlong *)(data_buffer + 0xf00) = *(longlong *)(data_buffer + 0xf00) + 0x4c;
+      *(int64_t *)(data_buffer + 0xf00) = *(int64_t *)(data_buffer + 0xf00) + 0x4c;
       *(int32_t *)(data_buffer + 0xf10) = 1;
-      *(longlong *)(data_buffer + 0xf00) =
-           *(longlong *)(data_buffer + 0xf00) +
-           (ulonglong)(uint)(*(int *)(data_buffer + 0xf08) * *(int *)(context_rdi + 0x438c)) * 0x4c;
+      *(int64_t *)(data_buffer + 0xf00) =
+           *(int64_t *)(data_buffer + 0xf00) +
+           (uint64_t)(uint)(*(int *)(data_buffer + 0xf08) * *(int *)(context_rdi + 0x438c)) * 0x4c;
       stack_param2 = stack_param2 + 1 + *(int *)(context_rdi + 0x438c);
       processing_mode = stack_param8;
     } while (stack_param2 < *(int *)(context_rdi + 0x1e74));
@@ -534,7 +534,7 @@ LAB_mode_switch:
   }
   
   // 安全检查：函数不会返回
-  FUN_1808fc050(*(ulonglong *)(context_rbp + 0x50) ^ (ulonglong)&stack0x00000000);
+  FUN_1808fc050(*(uint64_t *)(context_rbp + 0x50) ^ (uint64_t)&stack0x00000000);
 }
 
 // =============================================================================

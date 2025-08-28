@@ -17,20 +17,20 @@
 // 渲染上下文匹配和处理函数
 // 参数：param_1 - 渲染上下文指针，param_2 - 上下文数组指针
 // 功能：在上下文数组中查找匹配的渲染上下文，并执行相应的处理操作
-void render_context_match_and_process(longlong *render_context, longlong *context_array)
+void render_context_match_and_process(int64_t *render_context, int64_t *context_array)
 {
-  longlong *context_ptr;
+  int64_t *context_ptr;
   int index;
-  ulonglong array_size;
-  longlong context_id;
-  longlong *stack_context;
+  uint64_t array_size;
+  int64_t context_id;
+  int64_t *stack_context;
   int32_t process_result;
   
   // 获取当前上下文ID
-  context_id = *(longlong *)(render_context + 0x18);
-  context_ptr = (longlong *)context_array[0xb93];  // 获取上下文数组起始位置
+  context_id = *(int64_t *)(render_context + 0x18);
+  context_ptr = (int64_t *)context_array[0xb93];  // 获取上下文数组起始位置
   index = 0;
-  array_size = context_array[0xb94] - (longlong)context_ptr >> 3;  // 计算数组大小
+  array_size = context_array[0xb94] - (int64_t)context_ptr >> 3;  // 计算数组大小
   
   // 在数组中查找匹配的上下文
   if (array_size != 0) {
@@ -38,7 +38,7 @@ void render_context_match_and_process(longlong *render_context, longlong *contex
       if (*context_ptr == context_id) goto context_found;  // 找到匹配的上下文
       index = index + 1;
       context_ptr = context_ptr + 1;
-    } while ((ulonglong)(longlong)index < array_size);
+    } while ((uint64_t)(int64_t)index < array_size);
   }
   
   // 未找到匹配项，添加新的上下文
@@ -57,9 +57,9 @@ context_found:
 // 参数：param_1 - 标志位，param_2 - 输出数组，param_3 - 顶点数据，param_4 - 边界框输出
 //       param_5, param_6 - 最小/最大边界输出
 // 功能：计算顶点集合的边界框，处理三角形数据，优化渲染性能
-ulonglong *render_bounding_box_calculate_triangles(
+uint64_t *render_bounding_box_calculate_triangles(
   uint64_t flags, 
-  ulonglong *output_array, 
+  uint64_t *output_array, 
   float *vertex_data, 
   float *bounding_box_output,
   uint64_t *min_bound_output, 
@@ -87,18 +87,18 @@ ulonglong *render_bounding_box_calculate_triangles(
   float *float_ptr2;
   float *float_ptr3;
   float *float_ptr4;
-  longlong *long_ptr1;
+  int64_t *long_ptr1;
   float *float_ptr5;
   float *float_ptr6;
   float *float_ptr7;
   uint *uint_ptr1;
   int32_t *uint_ptr2;
   int loop_counter;
-  longlong temp_long1;
+  int64_t temp_long1;
   uint64_t temp_ulong2;
   uint64_t temp_ulong3;
   uint64_t temp_ulong4;
-  ulonglong vertex_array_size;
+  uint64_t vertex_array_size;
   uint8_t temp_var7;
   int32_t *uint_ptr3;
   int32_t *uint_ptr4;
@@ -147,7 +147,7 @@ ulonglong *render_bounding_box_calculate_triangles(
   float stack_float2;
   float stack_float3;
   float stack_float4;
-  longlong stack_long1;
+  int64_t stack_long1;
   uint64_t stack_ulong1;
   uint64_t stack_ulong2;
   uint64_t stack_ulong3;
@@ -184,7 +184,7 @@ ulonglong *render_bounding_box_calculate_triangles(
   simd_output5 = ZEXT416(vertex_count_y);
   
   // 计算顶点数组大小
-  vertex_array_size = *(longlong *)(vertex_data + 2) - (longlong)vertex_ptr >> 3;
+  vertex_array_size = *(int64_t *)(vertex_data + 2) - (int64_t)vertex_ptr >> 3;
   loop_counter = 0;
   
   // 使用SIMD指令批量处理顶点数据（优化性能）
@@ -267,7 +267,7 @@ ulonglong *render_bounding_box_calculate_triangles(
       
       loop_counter = loop_counter + 8;
       uint_ptr1 = uint_ptr1 + 0x10;
-    } while ((ulonglong)(longlong)loop_counter < vertex_array_size - ((uint)vertex_array_size & 7));
+    } while ((uint64_t)(int64_t)loop_counter < vertex_array_size - ((uint)vertex_array_size & 7));
     
     // 合并SIMD计算结果
     simd_final = maxps(simd_max_batch, simd_output2);
@@ -330,8 +330,8 @@ ulonglong *render_bounding_box_calculate_triangles(
   min_x_val = simd_final._0_4_;
   
   // 处理剩余的顶点（如果SIMD批量处理后还有剩余）
-  if ((ulonglong)(longlong)loop_counter < vertex_array_size) {
-    float_ptr1 = (float *)(vertex_ptr + (longlong)loop_counter * 2);
+  if ((uint64_t)(int64_t)loop_counter < vertex_array_size) {
+    float_ptr1 = (float *)(vertex_ptr + (int64_t)loop_counter * 2);
     do {
       max_y_val = *float_ptr1;
       min_x_val = max_y_val;
@@ -355,7 +355,7 @@ ulonglong *render_bounding_box_calculate_triangles(
       simd_output5 = ZEXT416((uint)max_x_val);
       loop_counter = loop_counter + 1;
       float_ptr1 = float_ptr1 + 2;
-    } while ((ulonglong)(longlong)loop_counter < vertex_array_size);
+    } while ((uint64_t)(int64_t)loop_counter < vertex_array_size);
   }
   
   // 计算边界框参数
@@ -410,7 +410,7 @@ ulonglong *render_bounding_box_calculate_triangles(
   
   // 处理输出数组内存分配
   if (temp_ptr2 < (uint64_t *)output_array[2]) {
-    output_array[1] = (longlong)temp_ptr2 + 0x1c;
+    output_array[1] = (int64_t)temp_ptr2 + 0x1c;
     temp_ulong1 = *(uint64_t *)(bounding_box_output + 2);
     *temp_ptr2 = *(uint64_t *)bounding_box_output;
     temp_ptr2[1] = temp_ulong1;
@@ -420,7 +420,7 @@ ulonglong *render_bounding_box_calculate_triangles(
   }
   
   // 动态扩容逻辑
-  stack_bound_x = (longlong)((longlong)temp_ptr2 - *output_array) / 0x1c;
+  stack_bound_x = (int64_t)((int64_t)temp_ptr2 - *output_array) / 0x1c;
   if (stack_bound_x == 0) {
     stack_bound_x = 1;
 memory_alloc_loop:
@@ -436,7 +436,7 @@ memory_alloc_loop:
   // 内存拷贝和数据迁移
   temp_ptr1 = (uint64_t *)*output_array;
   if (temp_ptr1 != temp_ptr2) {
-    memmove(float_ptr1, temp_ptr1, (longlong)temp_ptr2 - (longlong)temp_ptr1);
+    memmove(float_ptr1, temp_ptr1, (int64_t)temp_ptr2 - (int64_t)temp_ptr1);
   }
   
   max_y_val = bounding_box_output[1];
@@ -453,9 +453,9 @@ memory_alloc_loop:
     free_render_memory();
   }
   
-  *output_array = (ulonglong)float_ptr1;
-  output_array[1] = (ulonglong)(float_ptr1 + 7);
-  output_array[2] = (ulonglong)(float_ptr1 + stack_bound_x * 7);
+  *output_array = (uint64_t)float_ptr1;
+  output_array[1] = (uint64_t)(float_ptr1 + 7);
+  output_array[2] = (uint64_t)(float_ptr1 + stack_bound_x * 7);
   
 triangle_processing_start:
   float_ptr1 = *(float **)stack_vertex_ptr1;
@@ -521,10 +521,10 @@ triangle_processing_start:
               (temp_float1 - float_ptr1[1]) * (temp_float1 - float_ptr1[1]) <= stack_float5 + 0.001) {
             *(int8_t *)(stack_vertex_ptr2 + 1) = 1;
             stack_float1 = (float)*(uint64_t *)current_vertex;
-            stack_float2 = (float)((ulonglong)*(uint64_t *)current_vertex >> 0x20);
+            stack_float2 = (float)((uint64_t)*(uint64_t *)current_vertex >> 0x20);
             stack_float3 = (float)*(uint64_t *)(stack_vertex_ptr2 + -3);
-            stack_float4 = (float)((ulonglong)*(uint64_t *)(stack_vertex_ptr2 + -3) >> 0x20);
-            temp_uint64_t = (uint8_t)((ulonglong)current_vertex >> 8);
+            stack_float4 = (float)((uint64_t)*(uint64_t *)(stack_vertex_ptr2 + -3) >> 0x20);
+            temp_uint64_t = (uint8_t)((uint64_t)current_vertex >> 8);
             
             if (temp_vertex2 < temp_vertex1) {
               *temp_vertex2 = stack_float1;
@@ -535,7 +535,7 @@ triangle_processing_start:
               temp_vertex3 = temp_vertex3;
             }
             else {
-              stack_long1 = ((longlong)temp_vertex2 - (longlong)temp_vertex3) / 0x14;
+              stack_long1 = ((int64_t)temp_vertex2 - (int64_t)temp_vertex3) / 0x14;
               if (stack_long1 == 0) {
                 stack_long1 = 1;
 vertex_alloc_loop1:
@@ -549,7 +549,7 @@ vertex_alloc_loop1:
               
               stack_vertex_ptr1 = temp_vertex3;
               if (temp_vertex3 != temp_vertex2) {
-                memmove(temp_vertex3, temp_vertex3, (longlong)temp_vertex2 - (longlong)temp_vertex3);
+                memmove(temp_vertex3, temp_vertex3, (int64_t)temp_vertex2 - (int64_t)temp_vertex3);
               }
               
               *temp_vertex3 = stack_float1;
@@ -569,9 +569,9 @@ vertex_alloc_loop1:
             
             temp_vertex3 = temp_vertex2 + 5;
             stack_float1 = (float)*(uint64_t *)(stack_vertex_ptr2 + -3);
-            stack_float2 = (float)((ulonglong)*(uint64_t *)(stack_vertex_ptr2 + -3) >> 0x20);
+            stack_float2 = (float)((uint64_t)*(uint64_t *)(stack_vertex_ptr2 + -3) >> 0x20);
             stack_float3 = (float)*(uint64_t *)(stack_vertex_ptr2 + -1);
-            stack_float4 = (float)((ulonglong)*(uint64_t *)(stack_vertex_ptr2 + -1) >> 0x20);
+            stack_float4 = (float)((uint64_t)*(uint64_t *)(stack_vertex_ptr2 + -1) >> 0x20);
             
             if (temp_vertex3 < temp_vertex1) {
               float_ptr8 = temp_vertex2 + 10;
@@ -583,7 +583,7 @@ vertex_alloc_loop1:
               temp_vertex2 = temp_vertex3;
             }
             else {
-              stack_long1 = ((longlong)temp_vertex3 - (longlong)temp_vertex3) / 0x14;
+              stack_long1 = ((int64_t)temp_vertex3 - (int64_t)temp_vertex3) / 0x14;
               stack_ptr10 = temp_vertex3;
               if (stack_long1 == 0) {
                 stack_long1 = 1;
@@ -598,7 +598,7 @@ vertex_alloc_loop2:
               
               stack_vertex_ptr1 = temp_vertex2;
               if (temp_vertex3 != temp_vertex3) {
-                memmove(temp_vertex2, temp_vertex3, (longlong)temp_vertex3 - (longlong)temp_vertex3);
+                memmove(temp_vertex2, temp_vertex3, (int64_t)temp_vertex3 - (int64_t)temp_vertex3);
               }
               
               *temp_vertex2 = stack_float1;
@@ -617,9 +617,9 @@ vertex_alloc_loop2:
             }
             
             stack_float1 = (float)*(uint64_t *)(stack_vertex_ptr2 + -1);
-            stack_float2 = (float)((ulonglong)*(uint64_t *)(stack_vertex_ptr2 + -1) >> 0x20);
+            stack_float2 = (float)((uint64_t)*(uint64_t *)(stack_vertex_ptr2 + -1) >> 0x20);
             stack_float3 = (float)*(uint64_t *)current_vertex;
-            stack_float4 = (float)((ulonglong)*(uint64_t *)current_vertex >> 0x20);
+            stack_float4 = (float)((uint64_t)*(uint64_t *)current_vertex >> 0x20);
             
             if (float_ptr8 < temp_vertex1) {
               *float_ptr8 = stack_float1;
@@ -630,7 +630,7 @@ vertex_alloc_loop2:
               temp_vertex3 = temp_vertex2;
             }
             else {
-              stack_long1 = ((longlong)float_ptr8 - (longlong)temp_vertex2) / 0x14;
+              stack_long1 = ((int64_t)float_ptr8 - (int64_t)temp_vertex2) / 0x14;
               stack_ptr10 = float_ptr8;
               if (stack_long1 == 0) {
                 stack_long1 = 1;
@@ -645,7 +645,7 @@ vertex_alloc_loop3:
               
               stack_vertex_ptr1 = temp_vertex3;
               if (temp_vertex2 != float_ptr8) {
-                memmove(temp_vertex3, temp_vertex2, (longlong)float_ptr8 - (longlong)temp_vertex2);
+                memmove(temp_vertex3, temp_vertex2, (int64_t)float_ptr8 - (int64_t)temp_vertex2);
               }
               
               *temp_vertex3 = stack_float1;
@@ -701,9 +701,9 @@ vertex_alloc_loop3:
           if (temp_vertex1 != end_vertex) {
             temp_vertex3 = (float *)output_array[1];
             if (end_vertex != temp_vertex3) {
-              memmove(temp_vertex1, end_vertex, (longlong)temp_vertex3 - (longlong)end_vertex);
+              memmove(temp_vertex1, end_vertex, (int64_t)temp_vertex3 - (int64_t)end_vertex);
             }
-            output_array[1] = (ulonglong)(temp_vertex3 + (((longlong)end_vertex - (longlong)temp_vertex1) / 0x1c) * -7);
+            output_array[1] = (uint64_t)(temp_vertex3 + (((int64_t)end_vertex - (int64_t)temp_vertex1) / 0x1c) * -7);
           }
         }
       }
@@ -750,7 +750,7 @@ triangle_match_found:
         }
         
         if (temp_vertex1 != temp_vertex2) {
-          temp_long1 = SUB168(SEXT816(-0x6666666666666667) * SEXT816((longlong)temp_vertex2 - (longlong)temp_vertex1), 8);
+          temp_long1 = SUB168(SEXT816(-0x6666666666666667) * SEXT816((int64_t)temp_vertex2 - (int64_t)temp_vertex1), 8);
           stack_ptr10 = temp_vertex2 + ((temp_long1 >> 3) - (temp_long1 >> 0x3f)) * 5;
           temp_vertex2 = stack_ptr10;
         }
@@ -765,9 +765,9 @@ triangle_match_found:
         uint_ptr4 = (int32_t *)output_array[1];
         
         if (uint_ptr4 < (int32_t *)output_array[2]) {
-          output_array[1] = (ulonglong)(uint_ptr4 + 7);
-          stack_ulong1._4_4_ = (float)((ulonglong)stack_ulong1 >> 0x20);
-          stack_ulong2._4_4_ = (float)((ulonglong)stack_ulong2 >> 0x20);
+          output_array[1] = (uint64_t)(uint_ptr4 + 7);
+          stack_ulong1._4_4_ = (float)((uint64_t)stack_ulong1 >> 0x20);
+          stack_ulong2._4_4_ = (float)((uint64_t)stack_ulong2 >> 0x20);
           *uint_ptr4 = (float)stack_ulong1;
           uint_ptr4[1] = stack_ulong1._4_4_;
           uint_ptr4[2] = (float)stack_ulong2;
@@ -776,7 +776,7 @@ triangle_match_found:
           uint_ptr4[6] = 0;
         }
         else {
-          stack_bound_x = (longlong)((longlong)uint_ptr4 - *output_array) / 0x1c;
+          stack_bound_x = (int64_t)((int64_t)uint_ptr4 - *output_array) / 0x1c;
           if (stack_bound_x == 0) {
             stack_bound_x = 1;
 output_alloc_loop:
@@ -791,7 +791,7 @@ output_alloc_loop:
           
           uint_ptr3 = (int32_t *)*output_array;
           if (uint_ptr3 != uint_ptr4) {
-            memmove(stack_vertex_ptr1, uint_ptr3, (longlong)uint_ptr4 - (longlong)uint_ptr3);
+            memmove(stack_vertex_ptr1, uint_ptr3, (int64_t)uint_ptr4 - (int64_t)uint_ptr3);
           }
           
           *stack_vertex_ptr1 = (float)stack_ulong1;
@@ -805,9 +805,9 @@ output_alloc_loop:
             free_render_memory();
           }
           
-          *output_array = (ulonglong)stack_vertex_ptr1;
-          output_array[1] = (ulonglong)(stack_vertex_ptr1 + 7);
-          output_array[2] = (ulonglong)(stack_vertex_ptr1 + stack_bound_x * 7);
+          *output_array = (uint64_t)stack_vertex_ptr1;
+          output_array[1] = (uint64_t)(stack_vertex_ptr1 + 7);
+          output_array[2] = (uint64_t)(stack_vertex_ptr1 + stack_bound_x * 7);
         }
       }
       
@@ -830,7 +830,7 @@ output_alloc_loop:
   stack_ulong2 = temp_ulong4;
   stack_ulong3 = temp_ulong3;
   
-  long_ptr1 = (longlong *)render_optimize_function(&stack_vertex_ptr1, &stack_ulong1);
+  long_ptr1 = (int64_t *)render_optimize_function(&stack_vertex_ptr1, &stack_ulong1);
   temp_long1 = *long_ptr1;
   
   if (uint_ptr3 != uint_ptr4) {
@@ -881,9 +881,9 @@ output_alloc_loop:
     }
     
     stack_float1 = (float)*temp_ptr2;
-    stack_float2 = (float)((ulonglong)*temp_ptr2 >> 0x20);
+    stack_float2 = (float)((uint64_t)*temp_ptr2 >> 0x20);
     stack_float3 = (float)temp_ptr2[1];
-    stack_float4 = (float)((ulonglong)temp_ptr2[1] >> 0x20);
+    stack_float4 = (float)((uint64_t)temp_ptr2[1] >> 0x20);
     
     if (temp_vertex1 < float_ptr1) {
       *temp_vertex1 = stack_float1;
@@ -894,7 +894,7 @@ output_alloc_loop:
       end_vertex = current_vertex;
     }
     else {
-      temp_long1 = ((longlong)temp_vertex1 - (longlong)current_vertex) / 0x14;
+      temp_long1 = ((int64_t)temp_vertex1 - (int64_t)current_vertex) / 0x14;
       if (temp_long1 == 0) {
         temp_long1 = 1;
 final_alloc_loop1:
@@ -908,7 +908,7 @@ final_alloc_loop1:
       
       stack_vertex_ptr1 = end_vertex;
       if (current_vertex != temp_vertex1) {
-        memmove(end_vertex, current_vertex, (longlong)temp_vertex1 - (longlong)current_vertex);
+        memmove(end_vertex, current_vertex, (int64_t)temp_vertex1 - (int64_t)current_vertex);
       }
       
       *end_vertex = stack_float1;
@@ -929,9 +929,9 @@ final_alloc_loop1:
     
     current_vertex = temp_vertex1 + 5;
     stack_float1 = (float)temp_ptr2[1];
-    stack_float2 = (float)((ulonglong)temp_ptr2[1] >> 0x20);
+    stack_float2 = (float)((uint64_t)temp_ptr2[1] >> 0x20);
     stack_float3 = (float)temp_ptr2[2];
-    stack_float4 = (float)((ulonglong)temp_ptr2[2] >> 0x20);
+    stack_float4 = (float)((uint64_t)temp_ptr2[2] >> 0x20);
     
     if (current_vertex < float_ptr1) {
       temp_vertex2 = temp_vertex1 + 10;
@@ -943,7 +943,7 @@ final_alloc_loop1:
       temp_vertex1 = end_vertex;
     }
     else {
-      temp_long1 = ((longlong)current_vertex - (longlong)end_vertex) / 0x14;
+      temp_long1 = ((int64_t)current_vertex - (int64_t)end_vertex) / 0x14;
       stack_ptr10 = current_vertex;
       if (temp_long1 == 0) {
         temp_long1 = 1;
@@ -958,7 +958,7 @@ final_alloc_loop2:
       
       stack_vertex_ptr1 = temp_vertex1;
       if (end_vertex != current_vertex) {
-        memmove(temp_vertex1, end_vertex, (longlong)current_vertex - (longlong)end_vertex);
+        memmove(temp_vertex1, end_vertex, (int64_t)current_vertex - (int64_t)end_vertex);
       }
       
       *temp_vertex1 = stack_float1;
@@ -978,9 +978,9 @@ final_alloc_loop2:
     }
     
     stack_float1 = (float)temp_ptr2[2];
-    stack_float2 = (float)((ulonglong)temp_ptr2[2] >> 0x20);
+    stack_float2 = (float)((uint64_t)temp_ptr2[2] >> 0x20);
     stack_float3 = (float)*temp_ptr2;
-    stack_float4 = (float)((ulonglong)*temp_ptr2 >> 0x20);
+    stack_float4 = (float)((uint64_t)*temp_ptr2 >> 0x20);
     
     if (temp_vertex2 < float_ptr1) {
       *temp_vertex2 = stack_float1;
@@ -991,15 +991,15 @@ final_alloc_loop2:
       current_vertex = temp_vertex1;
     }
     else {
-      stack_vertex_ptr1 = (float *)((longlong)temp_vertex2 - (longlong)temp_vertex1);
+      stack_vertex_ptr1 = (float *)((int64_t)temp_vertex2 - (int64_t)temp_vertex1);
       stack_ptr10 = temp_vertex2;
-      if ((longlong)stack_vertex_ptr1 / 0x14 == 0) {
+      if ((int64_t)stack_vertex_ptr1 / 0x14 == 0) {
         temp_long1 = 1;
 final_alloc_loop3:
         current_vertex = (float *)allocate_render_memory(g_global_memory_pool, temp_long1 * 0x14, 3);
       }
       else {
-        temp_long1 = ((longlong)stack_vertex_ptr1 / 0x14) * 2;
+        temp_long1 = ((int64_t)stack_vertex_ptr1 / 0x14) * 2;
         if (temp_long1 != 0) goto final_alloc_loop3;
         current_vertex = (float *)0x0;
       }
@@ -1025,23 +1025,23 @@ final_alloc_loop3:
     }
     
     temp_vertex1 = temp_vertex2 + 5;
-    temp_ptr2 = (uint64_t *)((longlong)temp_ptr2 + 0x1c);
+    temp_ptr2 = (uint64_t *)((int64_t)temp_ptr2 + 0x1c);
   } while( true );
 }
 
 // 数组优化和清理函数
 // 参数：param_1 - 数组指针，param_2 - 起始位置，param_3 - 结束位置
 // 功能：优化数组结构，清理无用数据，压缩内存占用
-longlong render_array_optimize_and_cleanup(longlong *array_ptr, longlong start_pos, longlong end_pos)
+int64_t render_array_optimize_and_cleanup(int64_t *array_ptr, int64_t start_pos, int64_t end_pos)
 {
-  longlong array_size;
+  int64_t array_size;
   
   if (start_pos != end_pos) {
-    array_size = *(longlong *)(array_ptr + 8);
+    array_size = *(int64_t *)(array_ptr + 8);
     if (end_pos != array_size) {
       memmove(start_pos, end_pos, array_size - end_pos);
     }
-    *(longlong *)(array_ptr + 8) = array_size + ((end_pos - start_pos) / 0x1c) * -0x1c;
+    *(int64_t *)(array_ptr + 8) = array_size + ((end_pos - start_pos) / 0x1c) * -0x1c;
   }
   return start_pos;
 }
@@ -1051,8 +1051,8 @@ uint64_t g_render_dispatch_table = 0x180c8a9c0;  // 渲染分发表
 uint64_t g_global_memory_pool = 0x180c8ed18;     // 全局内存池
 
 // 辅助函数声明
-void add_render_context(longlong *array_ptr, longlong *context_id);
-float *allocate_render_memory(uint64_t memory_pool, longlong size, char flags);
+void add_render_context(int64_t *array_ptr, int64_t *context_id);
+float *allocate_render_memory(uint64_t memory_pool, int64_t size, char flags);
 void free_render_memory(void *ptr);
 char render_compare_function(int32_t *ptr1, uint64_t *ptr2);
-longlong *render_optimize_function(float **ptr1, uint64_t *ptr2);
+int64_t *render_optimize_function(float **ptr1, uint64_t *ptr2);

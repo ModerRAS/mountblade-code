@@ -124,7 +124,7 @@ uint64_t *ui_system_security_initializer(uint64_t *security_context, uint64_t in
 
 // UI系统内存分配器 - 管理UI系统中的内存分配操作
 // 该函数实现了内存分配功能，包括大块内存分配和初始化
-uint64_t *ui_system_memory_allocator(uint64_t *memory_context, ulonglong allocation_flags, uint64_t param_3, uint64_t param_4)
+uint64_t *ui_system_memory_allocator(uint64_t *memory_context, uint64_t allocation_flags, uint64_t param_3, uint64_t param_4)
 {
   // 内存上下文初始化
   *memory_context = &unknown_var_1864_ptr;
@@ -149,10 +149,10 @@ void ui_system_data_validator(uint64_t validation_context, uint64_t validation_f
   uint64_t temp_value_6;
   uint64_t temp_value_7;
   uint64_t temp_value_8;
-  ulonglong security_key;
+  uint64_t security_key;
   
   // 安全密钥初始化
-  security_key = GET_SECURITY_COOKIE() ^ (ulonglong)&temp_value_1;
+  security_key = GET_SECURITY_COOKIE() ^ (uint64_t)&temp_value_1;
   
   // 数据验证处理
   temp_value_1 = UI_MAGIC_NUMBER_0X3F800000;
@@ -163,7 +163,7 @@ void ui_system_data_validator(uint64_t validation_context, uint64_t validation_f
   FUN_18063b470(&temp_value_4, &temp_value_3);
   
   // 验证结果处理
-  FUN_1808fc050(security_key ^ (ulonglong)&temp_value_1);
+  FUN_1808fc050(security_key ^ (uint64_t)&temp_value_1);
 }
 
 // UI系统状态管理器 - 管理UI系统中的状态转换和状态机
@@ -178,10 +178,10 @@ void ui_system_state_manager(uint64_t state_context, uint64_t state_flags)
   uint64_t temp_value_6;
   uint64_t temp_value_7;
   uint64_t temp_value_8;
-  ulonglong security_key;
+  uint64_t security_key;
   
   // 安全密钥初始化
-  security_key = GET_SECURITY_COOKIE() ^ (ulonglong)&temp_value_1;
+  security_key = GET_SECURITY_COOKIE() ^ (uint64_t)&temp_value_1;
   
   // 状态管理处理
   temp_value_1 = UI_MAGIC_NUMBER_0X3F800000;
@@ -192,7 +192,7 @@ void ui_system_state_manager(uint64_t state_context, uint64_t state_flags)
   FUN_18063b470(&temp_value_4, &temp_value_3);
   
   // 状态更新处理
-  FUN_1808fc050(security_key ^ (ulonglong)&temp_value_1);
+  FUN_1808fc050(security_key ^ (uint64_t)&temp_value_1);
 }
 
 // UI系统资源清理器 - 清理UI系统中的资源和内存
@@ -207,10 +207,10 @@ void ui_system_resource_cleaner(uint64_t cleanup_context, uint64_t cleanup_flags
   uint64_t temp_value_6;
   uint64_t temp_value_7;
   uint64_t temp_value_8;
-  ulonglong security_key;
+  uint64_t security_key;
   
   // 安全密钥初始化
-  security_key = GET_SECURITY_COOKIE() ^ (ulonglong)&temp_value_1;
+  security_key = GET_SECURITY_COOKIE() ^ (uint64_t)&temp_value_1;
   
   // 资源清理处理
   temp_value_1 = UI_MAGIC_NUMBER_0X3F800000;
@@ -221,7 +221,7 @@ void ui_system_resource_cleaner(uint64_t cleanup_context, uint64_t cleanup_flags
   FUN_18063b470(&temp_value_4, &temp_value_3);
   
   // 清理完成处理
-  FUN_1808fc050(security_key ^ (ulonglong)&temp_value_1);
+  FUN_1808fc050(security_key ^ (uint64_t)&temp_value_1);
 }
 
 // UI系统参数处理器 - 处理UI系统中的参数计算和更新
@@ -281,10 +281,10 @@ void ui_system_data_transformer(uint64_t transform_context, uint64_t transform_f
   uint64_t temp_value_6;
   uint64_t temp_value_7;
   uint64_t temp_value_8;
-  ulonglong security_key;
+  uint64_t security_key;
   
   // 安全密钥初始化
-  security_key = GET_SECURITY_COOKIE() ^ (ulonglong)&temp_value_1;
+  security_key = GET_SECURITY_COOKIE() ^ (uint64_t)&temp_value_1;
   
   // 数据转换处理
   temp_value_1 = UI_MAGIC_NUMBER_0X3F800000;
@@ -295,7 +295,7 @@ void ui_system_data_transformer(uint64_t transform_context, uint64_t transform_f
   FUN_18063b470(&temp_value_4, &temp_value_3);
   
   // 转换结果处理
-  FUN_1808fc050(security_key ^ (ulonglong)&temp_value_1);
+  FUN_1808fc050(security_key ^ (uint64_t)&temp_value_1);
 }
 
 // UI系统安全检查器 - 检查UI系统中的安全性和完整性
@@ -310,10 +310,10 @@ void ui_system_security_checker(uint64_t security_context, uint64_t security_fla
   uint64_t temp_value_6;
   uint64_t temp_value_7;
   uint64_t temp_value_8;
-  ulonglong security_key;
+  uint64_t security_key;
   
   // 安全密钥初始化
-  security_key = GET_SECURITY_COOKIE() ^ (ulonglong)&temp_value_1;
+  security_key = GET_SECURITY_COOKIE() ^ (uint64_t)&temp_value_1;
   
   // 安全检查处理
   temp_value_1 = UI_MAGIC_NUMBER_0X3F800000;
@@ -324,12 +324,12 @@ void ui_system_security_checker(uint64_t security_context, uint64_t security_fla
   FUN_18063b470(&temp_value_4, &temp_value_3);
   
   // 安全检查结果处理
-  FUN_1808fc050(security_key ^ (ulonglong)&temp_value_1);
+  FUN_1808fc050(security_key ^ (uint64_t)&temp_value_1);
 }
 
 // UI系统内存释放器 - 释放UI系统中的内存和资源
 // 该函数实现了内存释放功能，包括小块内存释放、资源清理和内存回收
-uint64_t *ui_system_memory_deallocator(uint64_t *memory_context, ulonglong free_flags, uint64_t param_3, uint64_t param_4)
+uint64_t *ui_system_memory_deallocator(uint64_t *memory_context, uint64_t free_flags, uint64_t param_3, uint64_t param_4)
 {
   // 内存上下文初始化
   *memory_context = &unknown_var_1864_ptr;

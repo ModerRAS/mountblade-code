@@ -272,36 +272,36 @@ void FUN_180546020(void);
 /**
  * @brief 渲染系统内部处理函数
  */
-uint64_t FUN_180546d20(longlong *param_1);
+uint64_t FUN_180546d20(int64_t *param_1);
 uint64_t * FUN_180546f70(void);
-uint64_t * FUN_180546fa0(uint64_t *param_1, longlong *param_2, longlong *param_3, longlong *param_4, longlong *param_5, uint64_t param_6, int8_t param_7, int8_t param_8);
-uint64_t FUN_180547340(uint64_t param_1, ulonglong param_2);
+uint64_t * FUN_180546fa0(uint64_t *param_1, int64_t *param_2, int64_t *param_3, int64_t *param_4, int64_t *param_5, uint64_t param_6, int8_t param_7, int8_t param_8);
+uint64_t FUN_180547340(uint64_t param_1, uint64_t param_2);
 void FUN_180547380(uint64_t *param_1);
-int32_t FUN_180547540(longlong param_1, int32_t param_2, longlong param_3);
-int8_t FUN_1805475f0(longlong param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4);
-void FUN_180547650(longlong param_1, int8_t param_2, uint64_t param_3, uint64_t param_4);
-void FUN_1805476a0(longlong param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4);
-void FUN_180547720(longlong param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4);
-void FUN_180547770(longlong param_1, int8_t param_2, uint64_t param_3, uint64_t param_4);
-void FUN_1805477c0(longlong param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4);
-void FUN_180547810(longlong param_1, int32_t param_2, uint64_t param_3, uint64_t param_4);
-void FUN_180547860(longlong param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4);
-void FUN_1805478b0(longlong param_1, int32_t param_2, uint64_t param_3, uint64_t param_4);
-void FUN_180547900(longlong param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4);
-ulonglong FUN_180547950(longlong param_1);
-void FUN_180547990(longlong param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4);
-uint64_t * FUN_1805479e0(longlong param_1);
-void FUN_180547a20(longlong param_1, uint64_t param_2, int32_t param_3, int32_t param_4);
-void FUN_180547aa0(longlong param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4);
-void FUN_180547b30(longlong param_1, uint64_t param_2, int32_t param_3, uint64_t param_4);
-uint64_t FUN_180547b90(longlong param_1);
-int32_t FUN_180547bf0(longlong param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4);
-void FUN_180547c50(longlong param_1, int32_t param_2, int32_t param_3);
+int32_t FUN_180547540(int64_t param_1, int32_t param_2, int64_t param_3);
+int8_t FUN_1805475f0(int64_t param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4);
+void FUN_180547650(int64_t param_1, int8_t param_2, uint64_t param_3, uint64_t param_4);
+void FUN_1805476a0(int64_t param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4);
+void FUN_180547720(int64_t param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4);
+void FUN_180547770(int64_t param_1, int8_t param_2, uint64_t param_3, uint64_t param_4);
+void FUN_1805477c0(int64_t param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4);
+void FUN_180547810(int64_t param_1, int32_t param_2, uint64_t param_3, uint64_t param_4);
+void FUN_180547860(int64_t param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4);
+void FUN_1805478b0(int64_t param_1, int32_t param_2, uint64_t param_3, uint64_t param_4);
+void FUN_180547900(int64_t param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4);
+uint64_t FUN_180547950(int64_t param_1);
+void FUN_180547990(int64_t param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4);
+uint64_t * FUN_1805479e0(int64_t param_1);
+void FUN_180547a20(int64_t param_1, uint64_t param_2, int32_t param_3, int32_t param_4);
+void FUN_180547aa0(int64_t param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4);
+void FUN_180547b30(int64_t param_1, uint64_t param_2, int32_t param_3, uint64_t param_4);
+uint64_t FUN_180547b90(int64_t param_1);
+int32_t FUN_180547bf0(int64_t param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4);
+void FUN_180547c50(int64_t param_1, int32_t param_2, int32_t param_3);
 void FUN_180547c87(void);
 void FUN_180547cb7(void);
-void FUN_180547cd0(longlong param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4);
-void FUN_180547d30(longlong param_1, int8_t param_2, uint64_t param_3, uint64_t param_4);
-int FUN_180547d80(longlong param_1, longlong param_2, uint64_t param_3, uint64_t param_4);
+void FUN_180547cd0(int64_t param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4);
+void FUN_180547d30(int64_t param_1, int8_t param_2, uint64_t param_3, uint64_t param_4);
+int FUN_180547d80(int64_t param_1, int64_t param_2, uint64_t param_3, uint64_t param_4);
 
 /* ============================================================================
  * 渲染系统高级数据处理常量定义
@@ -375,7 +375,7 @@ void FUN_180546020(void) {
  * @param param_2 资源配置指针
  * @param param_3 资源参数
  */
-uint64_t FUN_180546d20(longlong *param_1) {
+uint64_t FUN_180546d20(int64_t *param_1) {
     // 资源管理实现
     // 包含资源分配、释放、生命周期管理等逻辑
     return 0;
@@ -415,7 +415,7 @@ uint64_t * FUN_180546f70(void) {
  * @param param_2 参数配置指针
  * @param param_3 参数设置
  */
-uint64_t * FUN_180546fa0(uint64_t *param_1, longlong *param_2, longlong *param_3, longlong *param_4, longlong *param_5, uint64_t param_6, int8_t param_7, int8_t param_8) {
+uint64_t * FUN_180546fa0(uint64_t *param_1, int64_t *param_2, int64_t *param_3, int64_t *param_4, int64_t *param_5, uint64_t param_6, int8_t param_7, int8_t param_8) {
     // 参数处理实现
     // 包含参数设置、验证、优化等逻辑
     return 0;
@@ -434,7 +434,7 @@ uint64_t * FUN_180546fa0(uint64_t *param_1, longlong *param_2, longlong *param_3
  * @param param_1 资源上下文指针
  * @param param_2 清理标志
  */
-uint64_t FUN_180547340(uint64_t param_1, ulonglong param_2) {
+uint64_t FUN_180547340(uint64_t param_1, uint64_t param_2) {
     // 资源清理实现
     // 包含资源释放、内存清理等逻辑
     return 0;
@@ -471,7 +471,7 @@ void FUN_180547380(uint64_t *param_1) {
  * @param param_2 验证参数
  * @param param_3 验证标志
  */
-int32_t FUN_180547540(longlong param_1, int32_t param_2, longlong param_3) {
+int32_t FUN_180547540(int64_t param_1, int32_t param_2, int64_t param_3) {
     // 状态验证实现
     // 包含状态检查、验证、报告等逻辑
     return 0;
@@ -492,7 +492,7 @@ int32_t FUN_180547540(longlong param_1, int32_t param_2, longlong param_3) {
  * @param param_3 数据标志
  * @param param_4 数据配置
  */
-int8_t FUN_1805475f0(longlong param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4) {
+int8_t FUN_1805475f0(int64_t param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4) {
     // 数据处理实现
     // 包含数据处理、验证、转换等逻辑
     return 0;
@@ -513,7 +513,7 @@ int8_t FUN_1805475f0(longlong param_1, uint64_t param_2, uint64_t param_3, uint6
  * @param param_3 配置标志
  * @param param_4 配置数据
  */
-void FUN_180547650(longlong param_1, int8_t param_2, uint64_t param_3, uint64_t param_4) {
+void FUN_180547650(int64_t param_1, int8_t param_2, uint64_t param_3, uint64_t param_4) {
     // 配置管理实现
     // 包含配置设置、验证、优化等逻辑
 }
@@ -533,7 +533,7 @@ void FUN_180547650(longlong param_1, int8_t param_2, uint64_t param_3, uint64_t 
  * @param param_3 操作标志
  * @param param_4 操作配置
  */
-void FUN_1805476a0(longlong param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4) {
+void FUN_1805476a0(int64_t param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4) {
     // 操作处理实现
     // 包含操作执行、验证、管理等逻辑
 }
@@ -553,7 +553,7 @@ void FUN_1805476a0(longlong param_1, uint64_t param_2, uint64_t param_3, uint64_
  * @param param_3 同步标志
  * @param param_4 同步配置
  */
-void FUN_180547720(longlong param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4) {
+void FUN_180547720(int64_t param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4) {
     // 同步控制实现
     // 包含同步管理、控制、优化等逻辑
 }
@@ -573,7 +573,7 @@ void FUN_180547720(longlong param_1, uint64_t param_2, uint64_t param_3, uint64_
  * @param param_3 事件标志
  * @param param_4 事件配置
  */
-void FUN_180547770(longlong param_1, int8_t param_2, uint64_t param_3, uint64_t param_4) {
+void FUN_180547770(int64_t param_1, int8_t param_2, uint64_t param_3, uint64_t param_4) {
     // 事件处理实现
     // 包含事件处理、分发、管理等逻辑
 }
@@ -593,7 +593,7 @@ void FUN_180547770(longlong param_1, int8_t param_2, uint64_t param_3, uint64_t 
  * @param param_3 资源标志
  * @param param_4 资源配置
  */
-void FUN_1805477c0(longlong param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4) {
+void FUN_1805477c0(int64_t param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4) {
     // 资源分配实现
     // 包含资源分配、验证、优化等逻辑
 }
@@ -613,7 +613,7 @@ void FUN_1805477c0(longlong param_1, uint64_t param_2, uint64_t param_3, uint64_
  * @param param_3 数据标志
  * @param param_4 数据配置
  */
-void FUN_180547810(longlong param_1, int32_t param_2, uint64_t param_3, uint64_t param_4) {
+void FUN_180547810(int64_t param_1, int32_t param_2, uint64_t param_3, uint64_t param_4) {
     // 数据验证实现
     // 包含数据验证、检查、报告等逻辑
 }
@@ -633,7 +633,7 @@ void FUN_180547810(longlong param_1, int32_t param_2, uint64_t param_3, uint64_t
  * @param param_3 缓冲区标志
  * @param param_4 缓冲区配置
  */
-void FUN_180547860(longlong param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4) {
+void FUN_180547860(int64_t param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4) {
     // 缓冲区管理实现
     // 包含缓冲区管理、分配、优化等逻辑
 }
@@ -653,7 +653,7 @@ void FUN_180547860(longlong param_1, uint64_t param_2, uint64_t param_3, uint64_
  * @param param_3 参数标志
  * @param param_4 参数配置
  */
-void FUN_1805478b0(longlong param_1, int32_t param_2, uint64_t param_3, uint64_t param_4) {
+void FUN_1805478b0(int64_t param_1, int32_t param_2, uint64_t param_3, uint64_t param_4) {
     // 参数验证实现
     // 包含参数验证、检查、报告等逻辑
 }
@@ -673,7 +673,7 @@ void FUN_1805478b0(longlong param_1, int32_t param_2, uint64_t param_3, uint64_t
  * @param param_3 性能标志
  * @param param_4 性能配置
  */
-void FUN_180547900(longlong param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4) {
+void FUN_180547900(int64_t param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4) {
     // 性能监控实现
     // 包含性能监控、分析、优化等逻辑
 }
@@ -690,7 +690,7 @@ void FUN_180547900(longlong param_1, uint64_t param_2, uint64_t param_3, uint64_
  * 
  * @param param_1 状态上下文指针
  */
-ulonglong FUN_180547950(longlong param_1) {
+uint64_t FUN_180547950(int64_t param_1) {
     // 状态查询实现
     // 包含状态查询、信息获取、报告等逻辑
     return 0;
@@ -711,7 +711,7 @@ ulonglong FUN_180547950(longlong param_1) {
  * @param param_3 配置标志
  * @param param_4 配置数据
  */
-void FUN_180547990(longlong param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4) {
+void FUN_180547990(int64_t param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4) {
     // 配置加载实现
     // 包含配置加载、验证、初始化等逻辑
 }
@@ -728,7 +728,7 @@ void FUN_180547990(longlong param_1, uint64_t param_2, uint64_t param_3, uint64_
  * 
  * @param param_1 数据上下文指针
  */
-uint64_t * FUN_1805479e0(longlong param_1) {
+uint64_t * FUN_1805479e0(int64_t param_1) {
     // 数据访问实现
     // 包含数据访问、验证、优化等逻辑
     return 0;
@@ -749,7 +749,7 @@ uint64_t * FUN_1805479e0(longlong param_1) {
  * @param param_3 几何标志
  * @param param_4 几何配置
  */
-void FUN_180547a20(longlong param_1, uint64_t param_2, int32_t param_3, int32_t param_4) {
+void FUN_180547a20(int64_t param_1, uint64_t param_2, int32_t param_3, int32_t param_4) {
     // 几何处理实现
     // 包含几何数据处理、变换、优化等逻辑
 }
@@ -769,7 +769,7 @@ void FUN_180547a20(longlong param_1, uint64_t param_2, int32_t param_3, int32_t 
  * @param param_3 数据标志
  * @param param_4 数据配置
  */
-void FUN_180547aa0(longlong param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4) {
+void FUN_180547aa0(int64_t param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4) {
     // 数据转换实现
     // 包含数据转换、验证、优化等逻辑
 }
@@ -789,7 +789,7 @@ void FUN_180547aa0(longlong param_1, uint64_t param_2, uint64_t param_3, uint64_
  * @param param_3 颜色标志
  * @param param_4 颜色配置
  */
-void FUN_180547b30(longlong param_1, uint64_t param_2, int32_t param_3, uint64_t param_4) {
+void FUN_180547b30(int64_t param_1, uint64_t param_2, int32_t param_3, uint64_t param_4) {
     // 颜色处理实现
     // 包含颜色处理、转换、优化等逻辑
 }
@@ -806,7 +806,7 @@ void FUN_180547b30(longlong param_1, uint64_t param_2, int32_t param_3, uint64_t
  * 
  * @param param_1 资源上下文指针
  */
-uint64_t FUN_180547b90(longlong param_1) {
+uint64_t FUN_180547b90(int64_t param_1) {
     // 资源检查实现
     // 包含资源检查、验证、报告等逻辑
     return 0;
@@ -827,7 +827,7 @@ uint64_t FUN_180547b90(longlong param_1) {
  * @param param_3 纹理标志
  * @param param_4 纹理配置
  */
-int32_t FUN_180547bf0(longlong param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4) {
+int32_t FUN_180547bf0(int64_t param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4) {
     // 纹理处理实现
     // 包含纹理处理、验证、优化等逻辑
     return 0;
@@ -847,7 +847,7 @@ int32_t FUN_180547bf0(longlong param_1, uint64_t param_2, uint64_t param_3, uint
  * @param param_2 批处理参数
  * @param param_3 批处理标志
  */
-void FUN_180547c50(longlong param_1, int32_t param_2, int32_t param_3) {
+void FUN_180547c50(int64_t param_1, int32_t param_2, int32_t param_3) {
     // 批处理实现
     // 包含批处理操作、验证、优化等逻辑
 }
@@ -896,7 +896,7 @@ void FUN_180547cb7(void) {
  * @param param_3 终结标志
  * @param param_4 终结配置
  */
-void FUN_180547cd0(longlong param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4) {
+void FUN_180547cd0(int64_t param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4) {
     // 终结实现
     // 包含系统终结、资源释放、清理等逻辑
 }
@@ -916,7 +916,7 @@ void FUN_180547cd0(longlong param_1, uint64_t param_2, uint64_t param_3, uint64_
  * @param param_3 错误标志
  * @param param_4 错误配置
  */
-void FUN_180547d30(longlong param_1, int8_t param_2, uint64_t param_3, uint64_t param_4) {
+void FUN_180547d30(int64_t param_1, int8_t param_2, uint64_t param_3, uint64_t param_4) {
     // 错误处理实现
     // 包含错误处理、记录、恢复等逻辑
 }
@@ -936,7 +936,7 @@ void FUN_180547d30(longlong param_1, int8_t param_2, uint64_t param_3, uint64_t 
  * @param param_3 质量标志
  * @param param_4 质量配置
  */
-int FUN_180547d80(longlong param_1, longlong param_2, uint64_t param_3, uint64_t param_4) {
+int FUN_180547d80(int64_t param_1, int64_t param_2, uint64_t param_3, uint64_t param_4) {
     // 质量检查实现
     // 包含质量检查、验证、报告等逻辑
     return 0;

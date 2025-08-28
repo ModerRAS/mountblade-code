@@ -6,23 +6,23 @@
 // 函数: 清理对象数组并释放资源
 // 原始实现: FUN_180057550
 // 功能: 遍历对象管理器中的对象数组，逐个释放对象资源，并清理内存
-void cleanup_object_array_and_free_resources(longlong object_manager, uint64_t param_2, uint64_t param_3, uint64_t param_4)
+void cleanup_object_array_and_free_resources(int64_t object_manager, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
     int *memory_pool_count_ptr;
-    longlong object_ptr;
+    int64_t object_ptr;
     uint64_t *object_array_ptr;
-    longlong memory_pool_data;
-    ulonglong object_count;
-    ulonglong index;
+    int64_t memory_pool_data;
+    uint64_t object_count;
+    uint64_t index;
     
     // 获取对象数组大小
-    object_count = *(ulonglong *)(object_manager + 0x10);
-    memory_pool_data = *(longlong *)(object_manager + 8);
+    object_count = *(uint64_t *)(object_manager + 0x10);
+    memory_pool_data = *(int64_t *)(object_manager + 8);
     index = 0;
     if (object_count != 0) {
         do {
             // 遍历对象数组
-            object_ptr = *(longlong *)(memory_pool_data + index * 8);
+            object_ptr = *(int64_t *)(memory_pool_data + index * 8);
             if (object_ptr != 0) {
                 // 释放对象资源
                 release_object_resources(object_ptr);
@@ -31,16 +31,16 @@ void cleanup_object_array_and_free_resources(longlong object_manager, uint64_t p
             *(uint64_t *)(memory_pool_data + index * 8) = 0;
             index = index + 1;
         } while (index < object_count);
-        object_count = *(ulonglong *)(object_manager + 0x10);
+        object_count = *(uint64_t *)(object_manager + 0x10);
     }
     // 重置管理器状态
     *(uint64_t *)(object_manager + 0x18) = 0;
     if ((1 < object_count) && (object_array_ptr = *(uint64_t **)(object_manager + 8), object_array_ptr != (uint64_t *)0x0)) {
         // 处理内存池释放
-        object_count = (ulonglong)object_array_ptr & 0xffffffffffc00000;
+        object_count = (uint64_t)object_array_ptr & 0xffffffffffc00000;
         if (object_count != 0) {
-            memory_pool_data = object_count + 0x80 + ((longlong)object_array_ptr - object_count >> 0x10) * 0x50;
-            memory_pool_data = memory_pool_data - (ulonglong)*(uint *)(memory_pool_data + 4);
+            memory_pool_data = object_count + 0x80 + ((int64_t)object_array_ptr - object_count >> 0x10) * 0x50;
+            memory_pool_data = memory_pool_data - (uint64_t)*(uint *)(memory_pool_data + 4);
             if ((*(void ***)(object_count + 0x70) == &ExceptionList) && (*(char *)(memory_pool_data + 0xe) == '\0')) {
                 // 释放到内存池
                 *object_array_ptr = *(uint64_t *)(memory_pool_data + 0x20);
@@ -66,23 +66,23 @@ void cleanup_object_array_and_free_resources(longlong object_manager, uint64_t p
 // 函数: 清理对象数组并释放资源（变体1）
 // 原始实现: FUN_180057556
 // 功能: 与主函数类似，但可能在不同的上下文中使用，用于对象资源清理
-void cleanup_object_array_and_free_resources_variant1(longlong object_manager, uint64_t param_2, uint64_t param_3, uint64_t param_4)
+void cleanup_object_array_and_free_resources_variant1(int64_t object_manager, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
     int *memory_pool_count_ptr;
-    longlong object_ptr;
+    int64_t object_ptr;
     uint64_t *object_array_ptr;
-    longlong memory_pool_data;
-    ulonglong object_count;
-    ulonglong index;
+    int64_t memory_pool_data;
+    uint64_t object_count;
+    uint64_t index;
     
     // 获取对象数组大小
-    object_count = *(ulonglong *)(object_manager + 0x10);
-    memory_pool_data = *(longlong *)(object_manager + 8);
+    object_count = *(uint64_t *)(object_manager + 0x10);
+    memory_pool_data = *(int64_t *)(object_manager + 8);
     index = 0;
     if (object_count != 0) {
         do {
             // 遍历对象数组
-            object_ptr = *(longlong *)(memory_pool_data + index * 8);
+            object_ptr = *(int64_t *)(memory_pool_data + index * 8);
             if (object_ptr != 0) {
                 // 释放对象资源
                 release_object_resources(object_ptr);
@@ -91,16 +91,16 @@ void cleanup_object_array_and_free_resources_variant1(longlong object_manager, u
             *(uint64_t *)(memory_pool_data + index * 8) = 0;
             index = index + 1;
         } while (index < object_count);
-        object_count = *(ulonglong *)(object_manager + 0x10);
+        object_count = *(uint64_t *)(object_manager + 0x10);
     }
     // 重置管理器状态
     *(uint64_t *)(object_manager + 0x18) = 0;
     if ((1 < object_count) && (object_array_ptr = *(uint64_t **)(object_manager + 8), object_array_ptr != (uint64_t *)0x0)) {
         // 处理内存池释放
-        object_count = (ulonglong)object_array_ptr & 0xffffffffffc00000;
+        object_count = (uint64_t)object_array_ptr & 0xffffffffffc00000;
         if (object_count != 0) {
-            memory_pool_data = object_count + 0x80 + ((longlong)object_array_ptr - object_count >> 0x10) * 0x50;
-            memory_pool_data = memory_pool_data - (ulonglong)*(uint *)(memory_pool_data + 4);
+            memory_pool_data = object_count + 0x80 + ((int64_t)object_array_ptr - object_count >> 0x10) * 0x50;
+            memory_pool_data = memory_pool_data - (uint64_t)*(uint *)(memory_pool_data + 4);
             if ((*(void ***)(object_count + 0x70) == &ExceptionList) && (*(char *)(memory_pool_data + 0xe) == '\0')) {
                 // 释放到内存池
                 *object_array_ptr = *(uint64_t *)(memory_pool_data + 0x20);
@@ -130,17 +130,17 @@ void cleanup_object_array_and_free_resources_variant2(void)
 {
     int *memory_pool_count_ptr;
     uint64_t *object_array_ptr;
-    longlong memory_pool_data;
-    longlong object_manager_ptr;
-    ulonglong memory_pool_size;
-    ulonglong object_count;
-    ulonglong index;
-    longlong array_base;
+    int64_t memory_pool_data;
+    int64_t object_manager_ptr;
+    uint64_t memory_pool_size;
+    uint64_t object_count;
+    uint64_t index;
+    int64_t array_base;
     uint64_t empty_value;
     
     do {
         // 遍历对象数组
-        memory_pool_data = *(longlong *)(array_base + object_count * 8);
+        memory_pool_data = *(int64_t *)(array_base + object_count * 8);
         if (memory_pool_data != 0) {
             // 释放对象资源
             release_object_resources(memory_pool_data);
@@ -149,12 +149,12 @@ void cleanup_object_array_and_free_resources_variant2(void)
         object_count = object_count + 1;
     } while (object_count < memory_pool_size);
     *(uint64_t *)(object_manager_ptr + 0x18) = empty_value;
-    if ((1 < *(ulonglong *)(object_manager_ptr + 0x10)) &&
+    if ((1 < *(uint64_t *)(object_manager_ptr + 0x10)) &&
        (object_array_ptr = *(uint64_t **)(object_manager_ptr + 8), object_array_ptr != (uint64_t *)0x0)) {
-        memory_pool_size = (ulonglong)object_array_ptr & 0xffffffffffc00000;
+        memory_pool_size = (uint64_t)object_array_ptr & 0xffffffffffc00000;
         if (memory_pool_size != 0) {
-            memory_pool_data = memory_pool_size + 0x80 + ((longlong)object_array_ptr - memory_pool_size >> 0x10) * 0x50;
-            memory_pool_data = memory_pool_data - (ulonglong)*(uint *)(memory_pool_data + 4);
+            memory_pool_data = memory_pool_size + 0x80 + ((int64_t)object_array_ptr - memory_pool_size >> 0x10) * 0x50;
+            memory_pool_data = memory_pool_data - (uint64_t)*(uint *)(memory_pool_data + 4);
             if ((*(void ***)(memory_pool_size + 0x70) == &ExceptionList) && (*(char *)(memory_pool_data + 0xe) == '\0')) {
                 // 释放到内存池
                 *object_array_ptr = *(uint64_t *)(memory_pool_data + 0x20);
@@ -184,18 +184,18 @@ void cleanup_object_array_and_free_resources_variant3(void)
 {
     int *memory_pool_count_ptr;
     uint64_t *object_array_ptr;
-    longlong memory_pool_data;
-    longlong object_manager_ptr;
-    ulonglong memory_pool_size;
-    ulonglong object_count;
+    int64_t memory_pool_data;
+    int64_t object_manager_ptr;
+    uint64_t memory_pool_size;
+    uint64_t object_count;
     uint64_t empty_value;
     
     *(uint64_t *)(object_manager_ptr + 0x18) = empty_value;
     if ((1 < object_count) && (object_array_ptr = *(uint64_t **)(object_manager_ptr + 8), object_array_ptr != (uint64_t *)0x0)) {
-        memory_pool_size = (ulonglong)object_array_ptr & 0xffffffffffc00000;
+        memory_pool_size = (uint64_t)object_array_ptr & 0xffffffffffc00000;
         if (memory_pool_size != 0) {
-            memory_pool_data = memory_pool_size + 0x80 + ((longlong)object_array_ptr - memory_pool_size >> 0x10) * 0x50;
-            memory_pool_data = memory_pool_data - (ulonglong)*(uint *)(memory_pool_data + 4);
+            memory_pool_data = memory_pool_size + 0x80 + ((int64_t)object_array_ptr - memory_pool_size >> 0x10) * 0x50;
+            memory_pool_data = memory_pool_data - (uint64_t)*(uint *)(memory_pool_data + 4);
             if ((*(void ***)(memory_pool_size + 0x70) == &ExceptionList) && (*(char *)(memory_pool_data + 0xe) == '\0')) {
                 // 释放到内存池
                 *object_array_ptr = *(uint64_t *)(memory_pool_data + 0x20);
@@ -225,9 +225,9 @@ void release_object_manager_resources(void)
 {
     int *memory_pool_count_ptr;
     uint64_t *object_array_ptr;
-    longlong memory_pool_data;
-    longlong object_manager_ptr;
-    ulonglong memory_pool_size;
+    int64_t memory_pool_data;
+    int64_t object_manager_ptr;
+    uint64_t memory_pool_size;
     
     // 获取对象数组指针
     object_array_ptr = *(uint64_t **)(object_manager_ptr + 8);
@@ -235,10 +235,10 @@ void release_object_manager_resources(void)
         return;
     }
     // 处理内存池释放
-    memory_pool_size = (ulonglong)object_array_ptr & 0xffffffffffc00000;
+    memory_pool_size = (uint64_t)object_array_ptr & 0xffffffffffc00000;
     if (memory_pool_size != 0) {
-        memory_pool_data = memory_pool_size + 0x80 + ((longlong)object_array_ptr - memory_pool_size >> 0x10) * 0x50;
-        memory_pool_data = memory_pool_data - (ulonglong)*(uint *)(memory_pool_data + 4);
+        memory_pool_data = memory_pool_size + 0x80 + ((int64_t)object_array_ptr - memory_pool_size >> 0x10) * 0x50;
+        memory_pool_data = memory_pool_data - (uint64_t)*(uint *)(memory_pool_data + 4);
         if ((*(void ***)(memory_pool_size + 0x70) == &ExceptionList) && (*(char *)(memory_pool_data + 0xe) == '\0')) {
             // 释放到内存池
             *object_array_ptr = *(uint64_t *)(memory_pool_data + 0x20);
@@ -262,7 +262,7 @@ void release_object_manager_resources(void)
 // 函数: 递归清理对象链表
 // 原始实现: FUN_1800575f0
 // 功能: 启动递归清理过程，清理对象链表中的所有节点
-void recursively_cleanup_object_chain(longlong object_manager, uint64_t param_2, uint64_t param_3, uint64_t param_4)
+void recursively_cleanup_object_chain(int64_t object_manager, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
     // 递归调用清理函数
     cleanup_object_chain_recursive(object_manager, *(uint64_t *)(object_manager + 0x10), param_3, param_4, 0xfffffffffffffffe);
@@ -272,7 +272,7 @@ void recursively_cleanup_object_chain(longlong object_manager, uint64_t param_2,
 // 函数: 清理对象链表（迭代方式）
 // 原始实现: FUN_180057610
 // 功能: 使用迭代而非递归方式清理对象链表，避免递归深度过大
-void cleanup_object_chain_iterative(longlong *chain_head, uint64_t param_2, uint64_t param_3, uint64_t param_4)
+void cleanup_object_chain_iterative(int64_t *chain_head, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
     uint64_t *current_node;
     uint64_t *end_node;
@@ -294,23 +294,23 @@ void cleanup_object_chain_iterative(longlong *chain_head, uint64_t param_2, uint
 // 函数: 清理对象数组并调用析构函数
 // 原始实现: FUN_180057680
 // 功能: 在清理对象数组时，先调用对象的析构函数，再释放资源
-void cleanup_object_array_and_call_destructors(longlong object_manager)
+void cleanup_object_array_and_call_destructors(int64_t object_manager)
 {
-    longlong object_ptr;
-    longlong destructor_ptr;
-    ulonglong object_count;
-    ulonglong index;
+    int64_t object_ptr;
+    int64_t destructor_ptr;
+    uint64_t object_count;
+    uint64_t index;
     
-    object_count = *(ulonglong *)(object_manager + 0x10);
-    object_ptr = *(longlong *)(object_manager + 8);
+    object_count = *(uint64_t *)(object_manager + 0x10);
+    object_ptr = *(int64_t *)(object_manager + 8);
     index = 0;
     if (object_count != 0) {
         do {
-            destructor_ptr = *(longlong *)(object_ptr + index * 8);
+            destructor_ptr = *(int64_t *)(object_ptr + index * 8);
             if (destructor_ptr != 0) {
                 // 调用对象的析构函数
-                if (*(longlong **)(destructor_ptr + 0x10) != (longlong *)0x0) {
-                    (**(code **)(**(longlong **)(destructor_ptr + 0x10) + 0x38))();
+                if (*(int64_t **)(destructor_ptr + 0x10) != (int64_t *)0x0) {
+                    (**(code **)(**(int64_t **)(destructor_ptr + 0x10) + 0x38))();
                 }
                 // 释放对象资源
                 release_object_resources(destructor_ptr);
@@ -318,10 +318,10 @@ void cleanup_object_array_and_call_destructors(longlong object_manager)
             *(uint64_t *)(object_ptr + index * 8) = 0;
             index = index + 1;
         } while (index < object_count);
-        object_count = *(ulonglong *)(object_manager + 0x10);
+        object_count = *(uint64_t *)(object_manager + 0x10);
     }
     *(uint64_t *)(object_manager + 0x18) = 0;
-    if ((1 < object_count) && (*(longlong *)(object_manager + 8) != 0)) {
+    if ((1 < object_count) && (*(int64_t *)(object_manager + 8) != 0)) {
         // 释放管理器资源
         release_memory_block();
     }
@@ -331,10 +331,10 @@ void cleanup_object_array_and_call_destructors(longlong object_manager)
 // 函数: 清理对象队列
 // 原始实现: FUN_180057730
 // 功能: 清理FIFO队列中的所有节点，释放队列资源
-void cleanup_object_queue(longlong *queue_head)
+void cleanup_object_queue(int64_t *queue_head)
 {
-    longlong queue_end;
-    longlong current_node;
+    int64_t queue_end;
+    int64_t current_node;
     
     queue_end = queue_head[1];
     for (current_node = *queue_head; current_node != queue_end; current_node = current_node + 0x18) {
@@ -350,23 +350,23 @@ void cleanup_object_queue(longlong *queue_head)
 
 // 函数: 清理对象数组并释放资源（变体4）
 // 原始实现: FUN_180057790
-void cleanup_object_array_and_free_resources_variant4(longlong object_manager)
+void cleanup_object_array_and_free_resources_variant4(int64_t object_manager)
 {
     int *resource_count_ptr;
-    longlong object_ptr;
+    int64_t object_ptr;
     uint64_t *object_array_ptr;
-    longlong manager_data;
-    ulonglong array_size;
-    ulonglong index;
+    int64_t manager_data;
+    uint64_t array_size;
+    uint64_t index;
     
     // 获取对象数组大小
-    array_size = *(ulonglong *)(object_manager + 0x10);
-    manager_data = *(longlong *)(object_manager + 8);
+    array_size = *(uint64_t *)(object_manager + 0x10);
+    manager_data = *(int64_t *)(object_manager + 8);
     index = 0;
     if (array_size != 0) {
         do {
             // 遍历对象数组
-            object_ptr = *(longlong *)(manager_data + index * 8);
+            object_ptr = *(int64_t *)(manager_data + index * 8);
             if (object_ptr != 0) {
                 // 释放对象资源
                 release_object_resources(object_ptr);
@@ -375,16 +375,16 @@ void cleanup_object_array_and_free_resources_variant4(longlong object_manager)
             *(uint64_t *)(manager_data + index * 8) = 0;
             index = index + 1;
         } while (index < array_size);
-        array_size = *(ulonglong *)(object_manager + 0x10);
+        array_size = *(uint64_t *)(object_manager + 0x10);
     }
     // 重置管理器状态
     *(uint64_t *)(object_manager + 0x18) = 0;
     if ((1 < array_size) && (object_array_ptr = *(uint64_t **)(object_manager + 8), object_array_ptr != (uint64_t *)0x0)) {
         // 处理内存池释放
-        array_size = (ulonglong)object_array_ptr & 0xffffffffffc00000;
+        array_size = (uint64_t)object_array_ptr & 0xffffffffffc00000;
         if (array_size != 0) {
-            manager_data = array_size + 0x80 + ((longlong)object_array_ptr - array_size >> 0x10) * 0x50;
-            manager_data = manager_data - (ulonglong)*(uint *)(manager_data + 4);
+            manager_data = array_size + 0x80 + ((int64_t)object_array_ptr - array_size >> 0x10) * 0x50;
+            manager_data = manager_data - (uint64_t)*(uint *)(manager_data + 4);
             if ((*(void ***)(array_size + 0x70) == &ExceptionList) && (*(char *)(manager_data + 0xe) == '\0')) {
                 // 释放到内存池
                 *object_array_ptr = *(uint64_t *)(manager_data + 0x20);
@@ -409,23 +409,23 @@ void cleanup_object_array_and_free_resources_variant4(longlong object_manager)
 
 // 函数: 清理对象数组并释放资源（变体5）
 // 原始实现: FUN_180057796
-void cleanup_object_array_and_free_resources_variant5(longlong object_manager)
+void cleanup_object_array_and_free_resources_variant5(int64_t object_manager)
 {
     int *resource_count_ptr;
-    longlong object_ptr;
+    int64_t object_ptr;
     uint64_t *object_array_ptr;
-    longlong manager_data;
-    ulonglong array_size;
-    ulonglong index;
+    int64_t manager_data;
+    uint64_t array_size;
+    uint64_t index;
     
     // 获取对象数组大小
-    array_size = *(ulonglong *)(object_manager + 0x10);
-    manager_data = *(longlong *)(object_manager + 8);
+    array_size = *(uint64_t *)(object_manager + 0x10);
+    manager_data = *(int64_t *)(object_manager + 8);
     index = 0;
     if (array_size != 0) {
         do {
             // 遍历对象数组
-            object_ptr = *(longlong *)(manager_data + index * 8);
+            object_ptr = *(int64_t *)(manager_data + index * 8);
             if (object_ptr != 0) {
                 // 释放对象资源
                 release_object_resources(object_ptr);
@@ -434,16 +434,16 @@ void cleanup_object_array_and_free_resources_variant5(longlong object_manager)
             *(uint64_t *)(manager_data + index * 8) = 0;
             index = index + 1;
         } while (index < array_size);
-        array_size = *(ulonglong *)(object_manager + 0x10);
+        array_size = *(uint64_t *)(object_manager + 0x10);
     }
     // 重置管理器状态
     *(uint64_t *)(object_manager + 0x18) = 0;
     if ((1 < array_size) && (object_array_ptr = *(uint64_t **)(object_manager + 8), object_array_ptr != (uint64_t *)0x0)) {
         // 处理内存池释放
-        array_size = (ulonglong)object_array_ptr & 0xffffffffffc00000;
+        array_size = (uint64_t)object_array_ptr & 0xffffffffffc00000;
         if (array_size != 0) {
-            manager_data = array_size + 0x80 + ((longlong)object_array_ptr - array_size >> 0x10) * 0x50;
-            manager_data = manager_data - (ulonglong)*(uint *)(manager_data + 4);
+            manager_data = array_size + 0x80 + ((int64_t)object_array_ptr - array_size >> 0x10) * 0x50;
+            manager_data = manager_data - (uint64_t)*(uint *)(manager_data + 4);
             if ((*(void ***)(array_size + 0x70) == &ExceptionList) && (*(char *)(manager_data + 0xe) == '\0')) {
                 // 释放到内存池
                 *object_array_ptr = *(uint64_t *)(manager_data + 0x20);
@@ -472,17 +472,17 @@ void cleanup_object_array_and_free_resources_variant6(void)
 {
     int *resource_count_ptr;
     uint64_t *object_array_ptr;
-    longlong manager_data;
-    longlong object_manager_ptr;
-    ulonglong array_size;
-    ulonglong object_count;
-    ulonglong index;
-    longlong array_base;
+    int64_t manager_data;
+    int64_t object_manager_ptr;
+    uint64_t array_size;
+    uint64_t object_count;
+    uint64_t index;
+    int64_t array_base;
     uint64_t empty_value;
     
     do {
         // 遍历对象数组
-        manager_data = *(longlong *)(array_base + object_count * 8);
+        manager_data = *(int64_t *)(array_base + object_count * 8);
         if (manager_data != 0) {
             // 释放对象资源
             release_object_resources(manager_data);
@@ -491,12 +491,12 @@ void cleanup_object_array_and_free_resources_variant6(void)
         object_count = object_count + 1;
     } while (object_count < array_size);
     *(uint64_t *)(object_manager_ptr + 0x18) = empty_value;
-    if ((1 < *(ulonglong *)(object_manager_ptr + 0x10)) &&
+    if ((1 < *(uint64_t *)(object_manager_ptr + 0x10)) &&
        (object_array_ptr = *(uint64_t **)(object_manager_ptr + 8), object_array_ptr != (uint64_t *)0x0)) {
-        array_size = (ulonglong)object_array_ptr & 0xffffffffffc00000;
+        array_size = (uint64_t)object_array_ptr & 0xffffffffffc00000;
         if (array_size != 0) {
-            manager_data = array_size + 0x80 + ((longlong)object_array_ptr - array_size >> 0x10) * 0x50;
-            manager_data = manager_data - (ulonglong)*(uint *)(manager_data + 4);
+            manager_data = array_size + 0x80 + ((int64_t)object_array_ptr - array_size >> 0x10) * 0x50;
+            manager_data = manager_data - (uint64_t)*(uint *)(manager_data + 4);
             if ((*(void ***)(array_size + 0x70) == &ExceptionList) && (*(char *)(manager_data + 0xe) == '\0')) {
                 // 释放到内存池
                 *object_array_ptr = *(uint64_t *)(manager_data + 0x20);
@@ -525,18 +525,18 @@ void cleanup_object_array_and_free_resources_variant7(void)
 {
     int *resource_count_ptr;
     uint64_t *object_array_ptr;
-    longlong manager_data;
-    longlong object_manager_ptr;
-    ulonglong array_size;
-    ulonglong object_count;
+    int64_t manager_data;
+    int64_t object_manager_ptr;
+    uint64_t array_size;
+    uint64_t object_count;
     uint64_t empty_value;
     
     *(uint64_t *)(object_manager_ptr + 0x18) = empty_value;
     if ((1 < object_count) && (object_array_ptr = *(uint64_t **)(object_manager_ptr + 8), object_array_ptr != (uint64_t *)0x0)) {
-        array_size = (ulonglong)object_array_ptr & 0xffffffffffc00000;
+        array_size = (uint64_t)object_array_ptr & 0xffffffffffc00000;
         if (array_size != 0) {
-            manager_data = array_size + 0x80 + ((longlong)object_array_ptr - array_size >> 0x10) * 0x50;
-            manager_data = manager_data - (ulonglong)*(uint *)(manager_data + 4);
+            manager_data = array_size + 0x80 + ((int64_t)object_array_ptr - array_size >> 0x10) * 0x50;
+            manager_data = manager_data - (uint64_t)*(uint *)(manager_data + 4);
             if ((*(void ***)(array_size + 0x70) == &ExceptionList) && (*(char *)(manager_data + 0xe) == '\0')) {
                 // 释放到内存池
                 *object_array_ptr = *(uint64_t *)(manager_data + 0x20);
@@ -565,9 +565,9 @@ void release_object_manager_resources_variant2(void)
 {
     int *resource_count_ptr;
     uint64_t *object_array_ptr;
-    longlong manager_data;
-    longlong object_manager_ptr;
-    ulonglong array_size;
+    int64_t manager_data;
+    int64_t object_manager_ptr;
+    uint64_t array_size;
     
     // 获取对象数组指针
     object_array_ptr = *(uint64_t **)(object_manager_ptr + 8);
@@ -575,10 +575,10 @@ void release_object_manager_resources_variant2(void)
         return;
     }
     // 处理内存池释放
-    array_size = (ulonglong)object_array_ptr & 0xffffffffffc00000;
+    array_size = (uint64_t)object_array_ptr & 0xffffffffffc00000;
     if (array_size != 0) {
-        manager_data = array_size + 0x80 + ((longlong)object_array_ptr - array_size >> 0x10) * 0x50;
-        manager_data = manager_data - (ulonglong)*(uint *)(manager_data + 4);
+        manager_data = array_size + 0x80 + ((int64_t)object_array_ptr - array_size >> 0x10) * 0x50;
+        manager_data = manager_data - (uint64_t)*(uint *)(manager_data + 4);
         if ((*(void ***)(array_size + 0x70) == &ExceptionList) && (*(char *)(manager_data + 0xe) == '\0')) {
             // 释放到内存池
             *object_array_ptr = *(uint64_t *)(manager_data + 0x20);
@@ -601,16 +601,16 @@ void release_object_manager_resources_variant2(void)
 
 // 函数: 清理指针数组并调用析构函数
 // 原始实现: FUN_180057830
-void cleanup_pointer_array_and_call_destructors(longlong *array_head)
+void cleanup_pointer_array_and_call_destructors(int64_t *array_head)
 {
-    longlong *current_ptr;
-    longlong *end_ptr;
+    int64_t *current_ptr;
+    int64_t *end_ptr;
     
-    end_ptr = (longlong *)array_head[1];
-    for (current_ptr = (longlong *)*array_head; current_ptr != end_ptr; current_ptr = current_ptr + 1) {
-        if ((longlong *)*current_ptr != (longlong *)0x0) {
+    end_ptr = (int64_t *)array_head[1];
+    for (current_ptr = (int64_t *)*array_head; current_ptr != end_ptr; current_ptr = current_ptr + 1) {
+        if ((int64_t *)*current_ptr != (int64_t *)0x0) {
             // 调用析构函数
-            (**(code **)(*(longlong *)*current_ptr + 0x38))();
+            (**(code **)(*(int64_t *)*current_ptr + 0x38))();
         }
     }
     if (*array_head == 0) {
@@ -630,8 +630,8 @@ void cleanup_global_object_manager(void)
 {
     int *memory_pool_count_ptr;
     uint64_t *global_manager;
-    longlong memory_pool_data;
-    ulonglong memory_pool_size;
+    int64_t memory_pool_data;
+    uint64_t memory_pool_size;
     
     // 获取全局管理器指针
     global_manager = global_object_manager;
@@ -640,20 +640,20 @@ void cleanup_global_object_manager(void)
     }
     // 清理指针数组
     cleanup_pointer_array_and_call_destructors();
-    if ((longlong *)global_manager[0x30b] != (longlong *)0x0) {
+    if ((int64_t *)global_manager[0x30b] != (int64_t *)0x0) {
         // 调用析构函数
-        (**(code **)(*(longlong *)global_manager[0x30b] + 0x38))();
+        (**(code **)(*(int64_t *)global_manager[0x30b] + 0x38))();
     }
     // 销毁互斥锁
     destroy_mutex_in_situ();
-    if ((longlong *)global_manager[0x300] != (longlong *)0x0) {
-        (**(code **)(*(longlong *)global_manager[0x300] + 0x38))();
+    if ((int64_t *)global_manager[0x300] != (int64_t *)0x0) {
+        (**(code **)(*(int64_t *)global_manager[0x300] + 0x38))();
     }
-    if ((longlong *)global_manager[0x2d3] != (longlong *)0x0) {
-        (**(code **)(*(longlong *)global_manager[0x2d3] + 0x38))();
+    if ((int64_t *)global_manager[0x2d3] != (int64_t *)0x0) {
+        (**(code **)(*(int64_t *)global_manager[0x2d3] + 0x38))();
     }
-    if ((longlong *)global_manager[0x2c0] != (longlong *)0x0) {
-        (**(code **)(*(longlong *)global_manager[0x2c0] + 0x38))();
+    if ((int64_t *)global_manager[0x2c0] != (int64_t *)0x0) {
+        (**(code **)(*(int64_t *)global_manager[0x2c0] + 0x38))();
     }
     // 清理字符串资源
     cleanup_string_resources(global_manager + 0x116);
@@ -663,10 +663,10 @@ void cleanup_global_object_manager(void)
         release_memory_block();
     }
     // 处理内存池释放
-    memory_pool_size = (ulonglong)global_manager & 0xffffffffffc00000;
+    memory_pool_size = (uint64_t)global_manager & 0xffffffffffc00000;
     if (memory_pool_size != 0) {
-        memory_pool_data = memory_pool_size + 0x80 + ((longlong)global_manager - memory_pool_size >> 0x10) * 0x50;
-        memory_pool_data = memory_pool_data - (ulonglong)*(uint *)(memory_pool_data + 4);
+        memory_pool_data = memory_pool_size + 0x80 + ((int64_t)global_manager - memory_pool_size >> 0x10) * 0x50;
+        memory_pool_data = memory_pool_data - (uint64_t)*(uint *)(memory_pool_data + 4);
         if ((*(void ***)(memory_pool_size + 0x70) == &ExceptionList) && (*(char *)(memory_pool_data + 0xe) == '\0')) {
             // 释放到内存池
             *global_manager = *(uint64_t *)(memory_pool_data + 0x20);
@@ -689,17 +689,17 @@ void cleanup_global_object_manager(void)
 
 // 函数: 分割字符串并添加到结果列表
 // 原始实现: FUN_180057980
-void split_string_and_add_to_result_list(longlong string_processor, longlong result_list, uint64_t delimiters, uint64_t param_4)
+void split_string_and_add_to_result_list(int64_t string_processor, int64_t result_list, uint64_t delimiters, uint64_t param_4)
 {
     char current_char;
-    longlong delimiter_pos;
+    int64_t delimiter_pos;
     char *string_ptr;
     char *segment_start;
     uint64_t cleanup_flag;
     void *temp_result;
-    longlong temp_size;
+    int64_t temp_size;
     int32_t temp_flags;
-    ulonglong temp_capacity;
+    uint64_t temp_capacity;
     
     cleanup_flag = 0xfffffffffffffffe;
     string_ptr = *(char **)(string_processor + 8);
@@ -717,9 +717,9 @@ void split_string_and_add_to_result_list(longlong string_processor, longlong res
                 temp_flags = 0;
                 create_string_token(&temp_result, segment_start, (int)string_ptr - (int)segment_start, param_4, cleanup_flag);
                 segment_start = string_ptr + 1;
-                if (*(ulonglong *)(result_list + 8) < *(ulonglong *)(result_list + 0x10)) {
+                if (*(uint64_t *)(result_list + 8) < *(uint64_t *)(result_list + 0x10)) {
                     // 扩展结果列表
-                    *(ulonglong *)(result_list + 8) = *(ulonglong *)(result_list + 8) + 0x20;
+                    *(uint64_t *)(result_list + 8) = *(uint64_t *)(result_list + 8) + 0x20;
                     expand_result_list();
                 }
                 else {
@@ -745,9 +745,9 @@ void split_string_and_add_to_result_list(longlong string_processor, longlong res
             temp_size = 0;
             temp_flags = 0;
             create_string_token(&temp_result, segment_start, (int)string_ptr - (int)segment_start, param_4, cleanup_flag);
-            if (*(ulonglong *)(result_list + 8) < *(ulonglong *)(result_list + 0x10)) {
+            if (*(uint64_t *)(result_list + 8) < *(uint64_t *)(result_list + 0x10)) {
                 // 扩展结果列表
-                *(ulonglong *)(result_list + 8) = *(ulonglong *)(result_list + 8) + 0x20;
+                *(uint64_t *)(result_list + 8) = *(uint64_t *)(result_list + 8) + 0x20;
                 expand_result_list();
             }
             else {
@@ -769,14 +769,14 @@ void split_string_and_add_to_result_list(longlong string_processor, longlong res
 
 // 函数: 比较并返回字符串处理结果
 // 原始实现: FUN_180057b00
-longlong * compare_and_return_string_result(longlong string_processor, longlong *result_ptr, uint64_t param_3)
+int64_t * compare_and_return_string_result(int64_t string_processor, int64_t *result_ptr, uint64_t param_3)
 {
     byte compare_result;
     uint string_char;
-    longlong temp_result;
-    longlong string_data;
+    int64_t temp_result;
+    int64_t string_data;
     byte *string_ptr;
-    longlong string_length;
+    int64_t string_length;
     uint64_t comparison_flag;
     char temp_buffer[8];
     
@@ -800,7 +800,7 @@ longlong * compare_and_return_string_result(longlong string_processor, longlong 
         if (*(int *)(temp_result + 0x30) != 0) {
             // 逐字符比较
             string_ptr = *(byte **)(string_data + 0x28);
-            string_length = *(longlong *)(temp_result + 0x28) - (longlong)string_ptr;
+            string_length = *(int64_t *)(temp_result + 0x28) - (int64_t)string_ptr;
             do {
                 compare_result = *string_ptr;
                 string_char = (uint)string_ptr[string_length];
@@ -876,7 +876,7 @@ uint64_t * create_and_initialize_string_token(uint64_t *token_object, uint token
 
 // 函数: 初始化对象管理器并设置回调
 // 原始实现: FUN_180057d70
-void initialize_object_manager_and_set_callbacks(longlong *manager_ptr, uint64_t param_2, uint64_t param_3, uint64_t param_4)
+void initialize_object_manager_and_set_callbacks(int64_t *manager_ptr, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
     uint64_t *current_callback;
     uint64_t *end_callback;
@@ -886,14 +886,14 @@ void initialize_object_manager_and_set_callbacks(longlong *manager_ptr, uint64_t
     // 执行初始化前处理
     perform_pre_initialization();
     perform_pre_initialization();
-    manager_ptr[0x123] = (longlong)&empty_string_token;
+    manager_ptr[0x123] = (int64_t)&empty_string_token;
     if (manager_ptr[0x124] != 0) {
         // 释放管理器内存
         release_memory_block();
     }
     manager_ptr[0x124] = 0;
     *(int32_t *)(manager_ptr + 0x126) = 0;
-    manager_ptr[0x123] = (longlong)&string_token_pool;
+    manager_ptr[0x123] = (int64_t)&string_token_pool;
     // 设置回调函数
     set_manager_callbacks(manager_ptr + 0x11d, manager_ptr[0x11f], param_3, param_4, cleanup_flag);
     if (manager_ptr[0x119] == 0) {
@@ -901,8 +901,8 @@ void initialize_object_manager_and_set_callbacks(longlong *manager_ptr, uint64_t
         perform_initialization_step();
         perform_initialization_step();
         initialize_manager_subsystem(manager_ptr + 0x10b, manager_ptr[0x10d]);
-        manager_ptr[0x87] = (longlong)&string_token_pool;
-        manager_ptr[4] = (longlong)&string_token_pool;
+        manager_ptr[0x87] = (int64_t)&string_token_pool;
+        manager_ptr[4] = (int64_t)&string_token_pool;
         cleanup_flag = 0xfffffffffffffffe;
         current_callback = (uint64_t *)manager_ptr[1];
         for (end_callback = (uint64_t *)*manager_ptr; current_callback != end_callback; current_callback = current_callback + 4) {
@@ -921,7 +921,7 @@ void initialize_object_manager_and_set_callbacks(longlong *manager_ptr, uint64_t
 
 // 函数: 递归清理对象链表（简化版）
 // 原始实现: FUN_180057e90
-void recursively_cleanup_object_chain_simplified(longlong object_manager, uint64_t param_2, uint64_t param_3, uint64_t param_4)
+void recursively_cleanup_object_chain_simplified(int64_t object_manager, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
     // 递归调用清理函数
     cleanup_object_chain_recursive(object_manager, *(uint64_t *)(object_manager + 0x10), param_3, param_4, 0xfffffffffffffffe);
@@ -930,7 +930,7 @@ void recursively_cleanup_object_chain_simplified(longlong object_manager, uint64
 
 // 函数: 清理对象链表头节点
 // 原始实现: FUN_180057ec0
-void cleanup_object_chain_head_node(longlong object_manager, uint64_t param_2, uint64_t param_3, uint64_t param_4)
+void cleanup_object_chain_head_node(int64_t object_manager, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
     uint64_t *head_node;
     
@@ -948,7 +948,7 @@ void cleanup_object_chain_head_node(longlong object_manager, uint64_t param_2, u
 
 // 函数: 递归清理对象链表（简化版2）
 // 原始实现: FUN_180057ee0
-void recursively_cleanup_object_chain_simplified2(longlong object_manager, uint64_t param_2, uint64_t param_3, uint64_t param_4)
+void recursively_cleanup_object_chain_simplified2(int64_t object_manager, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
     // 递归调用清理函数
     cleanup_object_chain_recursive(object_manager, *(uint64_t *)(object_manager + 0x10), param_3, param_4, 0xfffffffffffffffe);
@@ -957,7 +957,7 @@ void recursively_cleanup_object_chain_simplified2(longlong object_manager, uint6
 
 // 函数: 清理对象链表头节点（变体）
 // 原始实现: FUN_180057f10
-void cleanup_object_chain_head_node_variant(longlong object_manager, uint64_t param_2, uint64_t param_3, uint64_t param_4)
+void cleanup_object_chain_head_node_variant(int64_t object_manager, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
     uint64_t *head_node;
     
@@ -976,14 +976,14 @@ void cleanup_object_chain_head_node_variant(longlong object_manager, uint64_t pa
 // 函数: 重置对象管理器状态
 // 原始实现: FUN_180057f30
 // 功能: 重置对象管理器到初始状态，保存并恢复关键值，调用重置回调
-void reset_object_manager_state(longlong *manager_ptr)
+void reset_object_manager_state(int64_t *manager_ptr)
 {
-    longlong saved_value1;
-    longlong saved_value2;
-    longlong saved_value3;
+    int64_t saved_value1;
+    int64_t saved_value2;
+    int64_t saved_value3;
     uint64_t *current_callback;
     uint64_t *end_callback;
-    longlong saved_value4;
+    int64_t saved_value4;
     uint64_t *start_callback;
     
     // 执行重置前处理
@@ -1015,7 +1015,7 @@ void reset_object_manager_state(longlong *manager_ptr)
 
 // 函数: 递归清理对象链表（简化版3）
 // 原始实现: FUN_180058000
-void recursively_cleanup_object_chain_simplified3(longlong object_manager, uint64_t param_2, uint64_t param_3, uint64_t param_4)
+void recursively_cleanup_object_chain_simplified3(int64_t object_manager, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
     // 递归调用清理函数
     cleanup_object_chain_recursive(object_manager, *(uint64_t *)(object_manager + 0x10), param_3, param_4, 0xfffffffffffffffe);
@@ -1024,7 +1024,7 @@ void recursively_cleanup_object_chain_simplified3(longlong object_manager, uint6
 
 // 函数: 清理对象链表头节点（变体2）
 // 原始实现: FUN_180058020
-void cleanup_object_chain_head_node_variant2(longlong object_manager, uint64_t param_2, uint64_t param_3, uint64_t param_4)
+void cleanup_object_chain_head_node_variant2(int64_t object_manager, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
     uint64_t *head_node;
     
@@ -1042,14 +1042,14 @@ void cleanup_object_chain_head_node_variant2(longlong object_manager, uint64_t p
 
 // 函数: 在对象链表中查找匹配节点
 // 原始实现: FUN_180058080
-uint64_t * find_matching_node_in_object_chain(uint64_t *chain_head, uint64_t *result_ptr, longlong search_criteria)
+uint64_t * find_matching_node_in_object_chain(uint64_t *chain_head, uint64_t *result_ptr, int64_t search_criteria)
 {
     byte comparison_result;
     bool match_found;
     byte *node_name_ptr;
     uint criteria_char;
     int name_comparison;
-    longlong name_length;
+    int64_t name_length;
     uint64_t *current_node;
     uint64_t *next_node;
     uint64_t *previous_node;
@@ -1070,7 +1070,7 @@ uint64_t * find_matching_node_in_object_chain(uint64_t *chain_head, uint64_t *re
                 else {
                     // 比较节点名称
                     node_name_ptr = *(byte **)(search_criteria + 8);
-                    name_length = current_node[5] - (longlong)node_name_ptr;
+                    name_length = current_node[5] - (int64_t)node_name_ptr;
                     do {
                         criteria_char = (uint)node_name_ptr[name_length];
                         name_comparison = *node_name_ptr - criteria_char;
@@ -1102,7 +1102,7 @@ node_found:
             }
             if (*(int *)(search_criteria + 0x10) != 0) {
                 node_name_ptr = (byte *)matched_node[5];
-                name_length = *(longlong *)(search_criteria + 8) - (longlong)node_name_ptr;
+                name_length = *(int64_t *)(search_criteria + 8) - (int64_t)node_name_ptr;
                 do {
                     comparison_result = *node_name_ptr;
                     criteria_char = (uint)node_name_ptr[name_length];
@@ -1121,16 +1121,16 @@ node_found:
 // 函数: 重置对象管理器状态并释放内存
 // 原始实现: FUN_180058160
 // 功能: 重置管理器状态并释放回调列表内存，处理内存池回收
-void reset_object_manager_state_and_free_memory(ulonglong *manager_ptr)
+void reset_object_manager_state_and_free_memory(uint64_t *manager_ptr)
 {
     int *memory_pool_count_ptr;
-    ulonglong saved_value1;
-    ulonglong saved_value2;
-    ulonglong saved_value3;
+    uint64_t saved_value1;
+    uint64_t saved_value2;
+    uint64_t saved_value3;
     uint64_t *callback_list;
-    ulonglong saved_value4;
-    longlong memory_pool_data;
-    ulonglong current_value;
+    uint64_t saved_value4;
+    int64_t memory_pool_data;
+    uint64_t current_value;
     
     // 保存管理器状态
     manager_ptr[1] = *manager_ptr;
@@ -1151,10 +1151,10 @@ void reset_object_manager_state_and_free_memory(ulonglong *manager_ptr)
         return;
     }
     // 处理内存池释放
-    current_value = (ulonglong)callback_list & 0xffffffffffc00000;
+    current_value = (uint64_t)callback_list & 0xffffffffffc00000;
     if (current_value != 0) {
-        memory_pool_data = current_value + 0x80 + ((longlong)callback_list - current_value >> 0x10) * 0x50;
-        memory_pool_data = memory_pool_data - (ulonglong)*(uint *)(memory_pool_data + 4);
+        memory_pool_data = current_value + 0x80 + ((int64_t)callback_list - current_value >> 0x10) * 0x50;
+        memory_pool_data = memory_pool_data - (uint64_t)*(uint *)(memory_pool_data + 4);
         if ((*(void ***)(current_value + 0x70) == &ExceptionList) && (*(char *)(memory_pool_data + 0xe) == '\0')) {
             // 释放到内存池
             *callback_list = *(uint64_t *)(memory_pool_data + 0x20);

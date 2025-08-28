@@ -2,21 +2,21 @@
 
 // 02_core_engine_part151.c - 8 个函数
 
-// 函数: void FUN_18013a860(longlong param_1,int param_2,int param_3,uint64_t param_4)
+// 函数: void FUN_18013a860(int64_t param_1,int param_2,int param_3,uint64_t param_4)
 // 功能: 递归遍历节点树，根据条件处理节点
 // 参数: 
 //   param_1 - 当前节点指针
 //   param_2 - 比较参数1
 //   param_3 - 比较参数2 (0或1)
 //   param_4 - 回调函数参数
-void traverse_node_tree_recursive(longlong current_node, int compare_param1, int compare_param2, uint64_t callback_param)
+void traverse_node_tree_recursive(int64_t current_node, int compare_param1, int compare_param2, uint64_t callback_param)
 
 {
-  longlong next_node;
-  longlong sibling_node;
-  longlong local_stack_var;
+  int64_t next_node;
+  int64_t sibling_node;
+  int64_t local_stack_var;
   
-  next_node = *(longlong *)(current_node + 0x10);
+  next_node = *(int64_t *)(current_node + 0x10);
   while( true ) {
     local_stack_var = current_node;
     if (next_node == 0) {
@@ -27,20 +27,20 @@ void traverse_node_tree_recursive(longlong current_node, int compare_param1, int
     // 检查节点是否满足处理条件
     if (((*(byte *)(next_node + 0xa0) & 4) != 0) &&
        (((*(int *)(current_node + 0x50) != compare_param1 || (compare_param2 == 0)) ||
-        ((*(byte *)(*(longlong *)(current_node + 0x18) + 0xa0) & 4) == 0)))) {
+        ((*(byte *)(*(int64_t *)(current_node + 0x18) + 0xa0) & 4) == 0)))) {
       traverse_node_tree_recursive(next_node, compare_param1, compare_param2, callback_param);
     }
     
-    sibling_node = *(longlong *)(current_node + 0x18);
+    sibling_node = *(int64_t *)(current_node + 0x18);
     if ((*(byte *)(sibling_node + 0xa0) & 4) == 0) break;
     
     // 检查是否应该停止递归
     if (((*(int *)(current_node + 0x50) == compare_param1) && (compare_param2 != 1)) &&
-       ((*(byte *)(*(longlong *)(current_node + 0x10) + 0xa0) & 4) != 0)) {
+       ((*(byte *)(*(int64_t *)(current_node + 0x10) + 0xa0) & 4) != 0)) {
       return;
     }
     
-    next_node = *(longlong *)(sibling_node + 0x10);
+    next_node = *(int64_t *)(sibling_node + 0x10);
     current_node = sibling_node;
   }
   return;
@@ -63,20 +63,20 @@ void process_node_pair_collision(int32_t *node_pair)
   int *comparison_result;
   float distance_threshold;
   int iteration_count;
-  longlong global_context;
+  int64_t global_context;
   int32_t *first_node;
   int32_t *second_node;
   int32_t *temp_node;
   char collision_detected;
   int32_t temp_value;
   int callback_id;
-  ulonglong iteration_index;
-  longlong *node_pointer;
-  longlong node_data;
-  ulonglong coordinate_index;
-  longlong list_node;
-  ulonglong temp_ulong;
-  longlong array_element;
+  uint64_t iteration_index;
+  int64_t *node_pointer;
+  int64_t node_data;
+  uint64_t coordinate_index;
+  int64_t list_node;
+  uint64_t temp_ulong;
+  int64_t array_element;
   int32_t out_xmm0;
   float calculated_value;
   float adjustment_factor;
@@ -93,11 +93,11 @@ void process_node_pair_collision(int32_t *node_pair)
   int32_t stack_value;
   float scale_factor;
   uint counters[2];
-  longlong *pointer_array;
+  int64_t *pointer_array;
   uint temp_counters[2];
-  longlong *node_pointer_array[10];
+  int64_t *node_pointer_array[10];
   
-  global_context = *(longlong *)(node_pair + 4);
+  global_context = *(int64_t *)(node_pair + 4);
   node_data = GLOBAL_ENGINE_CONTEXT;
   while( true ) {
     if (global_context == 0) {
@@ -105,7 +105,7 @@ void process_node_pair_collision(int32_t *node_pair)
       return;
     }
     
-    packed_float = (int32_t)((ulonglong)float_array_ptr >> 0x20);
+    packed_float = (int32_t)((uint64_t)float_array_ptr >> 0x20);
     first_node = *(int32_t **)(node_pair + 4);
     second_node = *(int32_t **)(node_pair + 6);
     GLOBAL_ENGINE_CONTEXT = node_data;
@@ -114,7 +114,7 @@ void process_node_pair_collision(int32_t *node_pair)
     if ((*(byte *)(first_node + 0x28) & 4) != 0) {
       if ((*(byte *)(second_node + 0x28) & 4) != 0) {
         iteration_count = node_pair[0x14];
-        coordinate_index = (ulonglong)iteration_count;
+        coordinate_index = (uint64_t)iteration_count;
         
         // 提取节点坐标
         extended_coords[0] = (float)first_node[0xe];
@@ -125,8 +125,8 @@ void process_node_pair_collision(int32_t *node_pair)
         global_context = coordinate_index * 4;
         extended_coords[coordinate_index] = (float)first_node[coordinate_index + 0x10] + extended_coords[coordinate_index];
         temp_ulong = coordinate_index ^ 1;
-        *(float *)((longlong)&packed_coords + temp_ulong * 4) =
-             (float)second_node[temp_ulong + 0x10] + *(float *)((longlong)&packed_coords + temp_ulong * 4);
+        *(float *)((int64_t)&packed_coords + temp_ulong * 4) =
+             (float)second_node[temp_ulong + 0x10] + *(float *)((int64_t)&packed_coords + temp_ulong * 4);
         
         // 检查是否需要详细碰撞检测
         if ((*(byte *)(node_pair + 1) & 0x20) == 0) {
@@ -135,13 +135,13 @@ void process_node_pair_collision(int32_t *node_pair)
           
           // 计算碰撞阈值
           distance_threshold = *(float *)(global_context + 0x163c + node_data);
-          adjustment_factor = distance_threshold + *(float *)(global_context + 0x38 + *(longlong *)(node_pair + 4));
-          calculated_value = (*(float *)(global_context + 0x40 + *(longlong *)(node_pair + 6)) +
-                   *(float *)(global_context + 0x38 + *(longlong *)(node_pair + 6))) - distance_threshold;
+          adjustment_factor = distance_threshold + *(float *)(global_context + 0x38 + *(int64_t *)(node_pair + 4));
+          calculated_value = (*(float *)(global_context + 0x40 + *(int64_t *)(node_pair + 6)) +
+                   *(float *)(global_context + 0x38 + *(int64_t *)(node_pair + 6))) - distance_threshold;
           
           callback_id = get_collision_detection_id(&COLLISION_ID_BASE);
           if (*(int *)(node_data + 0x1b2c) == callback_id) {
-            global_context = *(longlong *)(first_node + 4);
+            global_context = *(int64_t *)(first_node + 4);
             stack_pointer = first_node;
             if (global_context == 0) {
               execute_callback_function(counters, &stack_pointer);
@@ -149,17 +149,17 @@ void process_node_pair_collision(int32_t *node_pair)
             else {
               // 递归处理第一个节点的子节点
               if (((*(byte *)(global_context + 0xa0) & 4) != 0) &&
-                 ((first_node[0x14] != iteration_count || ((*(byte *)(*(longlong *)(first_node + 6) + 0xa0) & 4) == 0)
+                 ((first_node[0x14] != iteration_count || ((*(byte *)(*(int64_t *)(first_node + 6) + 0xa0) & 4) == 0)
                   ))) {
                 traverse_node_tree_recursive(global_context, iteration_count, 1, counters);
               }
-              if ((*(byte *)(*(longlong *)(first_node + 6) + 0xa0) & 4) != 0) {
-                traverse_node_tree_recursive(*(longlong *)(first_node + 6), iteration_count, 1, counters);
+              if ((*(byte *)(*(int64_t *)(first_node + 6) + 0xa0) & 4) != 0) {
+                traverse_node_tree_recursive(*(int64_t *)(first_node + 6), iteration_count, 1, counters);
               }
             }
             
             // 处理第二个节点
-            global_context = *(longlong *)(second_node + 4);
+            global_context = *(int64_t *)(second_node + 4);
             stack_pointer = second_node;
             if (global_context == 0) {
               execute_callback_function(temp_counters, &stack_pointer);
@@ -168,16 +168,16 @@ void process_node_pair_collision(int32_t *node_pair)
               if ((*(byte *)(global_context + 0xa0) & 4) != 0) {
                 traverse_node_tree_recursive(global_context, iteration_count, 0, temp_counters);
               }
-              if (((*(byte *)(*(longlong *)(second_node + 6) + 0xa0) & 4) != 0) &&
-                 ((second_node[0x14] != iteration_count || ((*(byte *)(*(longlong *)(second_node + 4) + 0xa0) & 4) == 0)
+              if (((*(byte *)(*(int64_t *)(second_node + 6) + 0xa0) & 4) != 0) &&
+                 ((second_node[0x14] != iteration_count || ((*(byte *)(*(int64_t *)(second_node + 4) + 0xa0) & 4) == 0)
                   ))) {
-                traverse_node_tree_recursive(*(longlong *)(second_node + 6), iteration_count, 0, temp_counters);
+                traverse_node_tree_recursive(*(int64_t *)(second_node + 6), iteration_count, 0, temp_counters);
               }
             }
             
             // 处理碰撞边界
             if (0 < (int)counters[0]) {
-              temp_ulong = (ulonglong)counters[0];
+              temp_ulong = (uint64_t)counters[0];
               node_pointer = pointer_array;
               do {
                 global_context = *node_pointer;
@@ -194,7 +194,7 @@ void process_node_pair_collision(int32_t *node_pair)
             }
             
             if (0 < (int)temp_counters[0]) {
-              temp_ulong = (ulonglong)temp_counters[0];
+              temp_ulong = (uint64_t)temp_counters[0];
               node_pointer = node_pointer_array[0];
               do {
                 global_context = *node_pointer;
@@ -218,9 +218,9 @@ void process_node_pair_collision(int32_t *node_pair)
           distance_threshold = (float)first_node[coordinate_index + 0xe];
           callback_id = calculate_collision_response((coordinate_pair[0] + (float)second_node[coordinate_index + 0xe]) - calculated_value, 0,
                                  *(int32_t *)
-                                  (*(longlong *)(*(longlong *)(GLOBAL_ENGINE_CONTEXT + 0x1af8) + 0x220) +
-                                   -4 + (longlong)
-                                        *(int *)(*(longlong *)(GLOBAL_ENGINE_CONTEXT + 0x1af8) + 0x218) * 4
+                                  (*(int64_t *)(*(int64_t *)(GLOBAL_ENGINE_CONTEXT + 0x1af8) + 0x220) +
+                                   -4 + (int64_t)
+                                        *(int *)(*(int64_t *)(GLOBAL_ENGINE_CONTEXT + 0x1af8) + 0x218) * 4
                                   ));
           
           if (*(int *)(global_context + 0x1b2c) == callback_id) {
@@ -251,13 +251,13 @@ void process_node_pair_collision(int32_t *node_pair)
               if (0 < (int)counters[node_data * 4]) {
                 array_element = 0;
                 do {
-                  list_node = *(longlong *)(array_element + *(longlong *)(temp_counters + node_data * 4 + -2));
+                  list_node = *(int64_t *)(array_element + *(int64_t *)(temp_counters + node_data * 4 + -2));
                   temp_node = *(int32_t **)(list_node + 8);
                   while (temp_node != node_pair) {
-                    node_pointer = (longlong *)(list_node + 8);
+                    node_pointer = (int64_t *)(list_node + 8);
                     list_node = *node_pointer;
                     if (*(int *)(list_node + 0x50) == iteration_count) {
-                      node_flags = (byte *)(*(longlong *)(list_node + 0x10 + node_data * 8) + 0xa1);
+                      node_flags = (byte *)(*(int64_t *)(list_node + 0x10 + node_data * 8) + 0xa1);
                       *node_flags = *node_flags | 4;
                       list_node = *node_pointer;
                     }
@@ -272,13 +272,13 @@ void process_node_pair_collision(int32_t *node_pair)
               if (0 < (int)temp_counters[node_data * 4]) {
                 array_element = 0;
                 do {
-                  list_node = *(longlong *)(array_element + (longlong)node_pointer_array[node_data * 2]);
+                  list_node = *(int64_t *)(array_element + (int64_t)node_pointer_array[node_data * 2]);
                   temp_node = *(int32_t **)(list_node + 8);
                   while (temp_node != node_pair) {
-                    node_pointer = (longlong *)(list_node + 8);
+                    node_pointer = (int64_t *)(list_node + 8);
                     list_node = *node_pointer;
                     if (*(int *)(list_node + 0x50) == iteration_count) {
-                      node_flags = (byte *)(*(longlong *)(list_node + 0x18 + node_data * 8) + 0xa1);
+                      node_flags = (byte *)(*(int64_t *)(list_node + 0x18 + node_data * 8) + 0xa1);
                       *node_flags = *node_flags | 4;
                       list_node = *node_pointer;
                     }
@@ -301,7 +301,7 @@ void process_node_pair_collision(int32_t *node_pair)
           }
           
           // 清理碰撞检测系统
-          comparison_result = (int *)(*(longlong *)(global_context + 0x1af8) + 0x218);
+          comparison_result = (int *)(*(int64_t *)(global_context + 0x1af8) + 0x218);
           *comparison_result = *comparison_result + -1;
           cleanup_collision_detection(counters, 0x10, 2, COLLISION_CLEANUP_FUNCTION);
         }
@@ -313,7 +313,7 @@ void process_node_pair_collision(int32_t *node_pair)
           scale_factor = *(float *)(node_data + 0x1884) * *(float *)(node_data + 0x1628);
           temp_value = calculate_collision_parameters(extended_bounds + 2);
           float_array_ptr = (float *)CONCAT44(packed_float, *(int32_t *)(node_data + 0x1664));
-          process_simple_collision(*(uint64_t *)(*(longlong *)(node_data + 0x1af8) + 0x2e8), extended_coords,
+          process_simple_collision(*(uint64_t *)(*(int64_t *)(node_data + 0x1af8) + 0x2e8), extended_coords,
                         &packed_coords, temp_value, float_array_ptr, 0xf);
         }
       }
@@ -327,7 +327,7 @@ void process_node_pair_collision(int32_t *node_pair)
     // 检查是否需要处理第二个节点
     if ((*(byte *)(second_node + 0x28) & 4) == 0) break;
     
-    global_context = *(longlong *)(second_node + 4);
+    global_context = *(int64_t *)(second_node + 4);
     node_pair = second_node;
     node_data = GLOBAL_ENGINE_CONTEXT;
   }
@@ -336,23 +336,23 @@ void process_node_pair_collision(int32_t *node_pair)
 
 
 
-// 函数: longlong FUN_18013aed0(longlong param_1)
+// 函数: int64_t FUN_18013aed0(int64_t param_1)
 // 功能: 在节点树中查找符合条件的节点
 // 参数: 
 //   param_1 - 起始节点指针
 // 返回: 找到的节点指针，未找到返回0
-longlong find_matching_node_in_tree(longlong start_node)
+int64_t find_matching_node_in_tree(int64_t start_node)
 
 {
-  longlong next_node;
+  int64_t next_node;
   
   while( true ) {
-    if (*(longlong *)(start_node + 0x10) == 0) {
+    if (*(int64_t *)(start_node + 0x10) == 0) {
       return start_node;
     }
     next_node = find_matching_node_in_tree();
     if (next_node != 0) break;
-    start_node = *(longlong *)(start_node + 0x18);
+    start_node = *(int64_t *)(start_node + 0x18);
   }
   return next_node;
 }
@@ -361,16 +361,16 @@ longlong find_matching_node_in_tree(longlong start_node)
 
 // 全局变量警告: 以'_'开头的全局变量与同一地址的较小符号重叠
 
-// 函数: longlong FUN_18013af10(longlong param_1,uint64_t param_2)
+// 函数: int64_t FUN_18013af10(int64_t param_1,uint64_t param_2)
 // 功能: 在指定区域内查找包含给定坐标的节点
 // 参数: 
 //   param_1 - 当前节点指针
 //   param_2 - 坐标参数 (包含x和y坐标)
 // 返回: 找到的节点指针，未找到返回0
-longlong find_node_containing_coordinate(longlong current_node, uint64_t coordinate_param)
+int64_t find_node_containing_coordinate(int64_t current_node, uint64_t coordinate_param)
 
 {
-  longlong child_result;
+  int64_t child_result;
   float search_x;
   float threshold_distance;
   float x_coord;
@@ -382,18 +382,18 @@ longlong find_node_containing_coordinate(longlong current_node, uint64_t coordin
     
     // 检查坐标是否在当前节点的边界框内
     if ((((*(float *)(current_node + 0x38) - threshold_distance <= search_x) &&
-         (y_coord = (float)((ulonglong)coordinate_param >> 0x20),
+         (y_coord = (float)((uint64_t)coordinate_param >> 0x20),
          *(float *)(current_node + 0x3c) - threshold_distance <= y_coord)) &&
         (search_x < *(float *)(current_node + 0x38) + *(float *)(current_node + 0x40) + threshold_distance)) &&
        (y_coord < *(float *)(current_node + 0x3c) + *(float *)(current_node + 0x44) + threshold_distance)) {
       
       // 如果没有子节点，返回当前节点
-      if (*(longlong *)(current_node + 0x10) == 0) {
+      if (*(int64_t *)(current_node + 0x10) == 0) {
         return current_node;
       }
       
       // 递归搜索子节点
-      child_result = find_node_containing_coordinate(*(longlong *)(current_node + 0x10), coordinate_param);
+      child_result = find_node_containing_coordinate(*(int64_t *)(current_node + 0x10), coordinate_param);
       if (child_result != 0) {
         return child_result;
       }
@@ -405,11 +405,11 @@ longlong find_node_containing_coordinate(longlong current_node, uint64_t coordin
       }
       
       // 特殊情况处理：叶子节点且有备用节点
-      if (((*(byte *)(current_node + 0xa0) & 0x10) != 0) && (*(longlong *)(current_node + 8) == 0)) {
-        if ((*(longlong *)(current_node + 0x78) != 0) && (*(longlong *)(current_node + 0x10) == 0)) {
-          return *(longlong *)(current_node + 0x78);
+      if (((*(byte *)(current_node + 0xa0) & 0x10) != 0) && (*(int64_t *)(current_node + 8) == 0)) {
+        if ((*(int64_t *)(current_node + 0x78) != 0) && (*(int64_t *)(current_node + 0x10) == 0)) {
+          return *(int64_t *)(current_node + 0x78);
         }
-        if (*(longlong *)(current_node + 0x10) == 0) {
+        if (*(int64_t *)(current_node + 0x10) == 0) {
           return current_node;
         }
         child_result = find_matching_node_in_tree();
@@ -430,18 +430,18 @@ longlong find_node_containing_coordinate(longlong current_node, uint64_t coordin
 
 
 
-// 函数: void FUN_18013b040(longlong param_1,int param_2,uint param_3)
+// 函数: void FUN_18013b040(int64_t param_1,int param_2,uint param_3)
 // 功能: 更新节点的材质或属性ID
 // 参数: 
 //   param_1 - 节点指针
 //   param_2 - 新的材质ID
 //   param_3 - 属性掩码
-void update_node_material_id(longlong node_ptr, int new_material_id, uint property_mask)
+void update_node_material_id(int64_t node_ptr, int new_material_id, uint property_mask)
 
 {
-  longlong material_manager;
-  longlong material_instance;
-  longlong material_chain;
+  int64_t material_manager;
+  int64_t material_instance;
+  int64_t material_chain;
   
   // 检查是否需要更新材质
   if (((property_mask == 0) || ((*(uint *)(node_ptr + 0xec) & property_mask) != 0)) &&
@@ -450,13 +450,13 @@ void update_node_material_id(longlong node_ptr, int new_material_id, uint proper
     
     // 获取材质管理器
     material_chain = get_material_manager_instance(*(uint64_t *)(GLOBAL_ENGINE_CONTEXT + 0x2df8));
-    if ((material_chain != 0) && (*(longlong *)(material_chain + 0x10) != 0)) {
-      material_instance = *(longlong *)(material_chain + 8);
+    if ((material_chain != 0) && (*(int64_t *)(material_chain + 0x10) != 0)) {
+      material_instance = *(int64_t *)(material_chain + 8);
       
       // 遍历材质链找到合适的材质
       while (material_manager = material_instance, material_manager != 0) {
         material_chain = material_manager;
-        material_instance = *(longlong *)(material_manager + 8);
+        material_instance = *(int64_t *)(material_manager + 8);
       }
       
       // 获取材质ID
@@ -470,8 +470,8 @@ void update_node_material_id(longlong node_ptr, int new_material_id, uint proper
     
     // 如果材质ID有变化，更新节点
     if (*(int *)(node_ptr + 0x418) != new_material_id) {
-      if (*(longlong *)(node_ptr + 0x408) != 0) {
-        detach_material_from_node(*(longlong *)(node_ptr + 0x408), node_ptr, 0);
+      if (*(int64_t *)(node_ptr + 0x408) != 0) {
+        detach_material_from_node(*(int64_t *)(node_ptr + 0x408), node_ptr, 0);
       }
       *(int *)(node_ptr + 0x418) = new_material_id;
     }
@@ -495,26 +495,26 @@ void cleanup_node_system(int cleanup_mode)
   int *node_counter;
   int *current_node;
   int *node_reference;
-  longlong global_context;
+  int64_t global_context;
   bool needs_deep_cleanup;
   bool needs_flag_update;
   uint flag_mask;
   int *temp_node_ptr;
   uint64_t *node_array;
-  ulonglong array_index;
+  uint64_t array_index;
   uint64_t *temp_array;
   uint temp_count;
   int node_index;
-  ulonglong loop_counter;
+  uint64_t loop_counter;
   uint new_capacity;
   uint64_t *expanded_array;
   int temp_int;
   uint64_t *array_pointer;
-  longlong chain_node;
+  int64_t chain_node;
   uint64_t temp_value1;
   uint64_t temp_value2;
   uint64_t *temp_pointer;
-  longlong stack_var;
+  int64_t stack_var;
   uint64_t temp_var1;
   uint64_t temp_var2;
   uint64_t *allocation_ptr;
@@ -550,7 +550,7 @@ void cleanup_node_system(int cleanup_mode)
     do {
       chain_node = 1;
       array_index = 0;
-      current_node = *(int **)((longlong)temp_pointer + *(longlong *)(node_counter + 2) + 8);
+      current_node = *(int **)((int64_t)temp_pointer + *(int64_t *)(node_counter + 2) + 8);
       array_pointer = expanded_array;
       
       if (current_node != (int *)0x0) {
@@ -563,14 +563,14 @@ LAB_DEEP_CLEANUP:
           
           // 处理节点引用链
           if ((cleanup_mode != 0) &&
-             (chain_node = *(longlong *)(global_context + 0x2df8), loop_counter = array_index, 0 < *(int *)(chain_node + 0x10))) {
+             (chain_node = *(int64_t *)(global_context + 0x2df8), loop_counter = array_index, 0 < *(int *)(chain_node + 0x10))) {
             do {
-              if (*(int **)(array_index + 0x10 + *(longlong *)(chain_node + 0x18)) == current_node) {
-                *(int32_t *)(array_index + *(longlong *)(chain_node + 0x18)) = 0;
+              if (*(int **)(array_index + 0x10 + *(int64_t *)(chain_node + 0x18)) == current_node) {
+                *(int32_t *)(array_index + *(int64_t *)(chain_node + 0x18)) = 0;
               }
               temp_count = (int)loop_counter + 1;
               array_index = array_index + 0x40;
-              loop_counter = (ulonglong)temp_count;
+              loop_counter = (uint64_t)temp_count;
             } while ((int)temp_count < *(int *)(chain_node + 0x10));
           }
           
@@ -579,7 +579,7 @@ LAB_DEEP_CLEANUP:
             perform_node_cleanup(stack_var, current_node, chain_node, stack_var, temp_var1, temp_var2, allocation_ptr);
           }
           
-          temp_count = (uint)((ulonglong)temp_var2 >> 0x20);
+          temp_count = (uint)((uint64_t)temp_var2 >> 0x20);
           temp_int = (int)expanded_array;
           node_index = (int)temp_array;
           
@@ -600,12 +600,12 @@ LAB_DEEP_CLEANUP:
               if (GLOBAL_ENGINE_CONTEXT != 0) {
                 *(int *)(GLOBAL_ENGINE_CONTEXT + 0x3a8) = *(int *)(GLOBAL_ENGINE_CONTEXT + 0x3a8) + 1;
               }
-              array_pointer = (uint64_t *)allocate_array_memory((longlong)(int)flag_mask << 3, GLOBAL_MEMORY_POOL);
+              array_pointer = (uint64_t *)allocate_array_memory((int64_t)(int)flag_mask << 3, GLOBAL_MEMORY_POOL);
               if (expanded_array != (uint64_t *)0x0) {
                     // 警告: 子程序不返回
-                memcpy(array_pointer, expanded_array, (longlong)temp_int << 3);
+                memcpy(array_pointer, expanded_array, (int64_t)temp_int << 3);
               }
-              expanded_array = (uint64_t *)(ulonglong)flag_mask;
+              expanded_array = (uint64_t *)(uint64_t)flag_mask;
               allocation_ptr = array_pointer;
               temp_count = flag_mask;
             }
@@ -613,7 +613,7 @@ LAB_DEEP_CLEANUP:
           
           // 添加节点到清理数组
           array_pointer[temp_int] = current_node;
-          temp_array = (uint64_t *)(ulonglong)(temp_int + 1U);
+          temp_array = (uint64_t *)(uint64_t)(temp_int + 1U);
           temp_var2 = CONCAT44(temp_count, temp_int + 1U);
           needs_flag_update = needs_deep_cleanup;
         }
@@ -636,7 +636,7 @@ LAB_DEEP_CLEANUP:
       
       temp_count = (uint)temp_array;
       flag_mask = (int)array_pointer + 1;
-      array_pointer = (uint64_t *)(ulonglong)flag_mask;
+      array_pointer = (uint64_t *)(uint64_t)flag_mask;
       temp_pointer = temp_pointer + 2;
       expanded_array = array_pointer;
     } while ((int)flag_mask < *node_counter);
@@ -651,11 +651,11 @@ LAB_DEEP_CLEANUP:
   loop_counter = array_index;
   if (0 < *(int *)(global_context + 0x2e28)) {
     do {
-      temp_int = *(int *)(*(longlong *)(global_context + 0x2e30) + 0x28 + loop_counter);
+      temp_int = *(int *)(*(int64_t *)(global_context + 0x2e30) + 0x28 + loop_counter);
       if ((temp_int != 0) && (node_index = 0, temp_array = array_pointer, 0 < (int)temp_count)) {
         do {
           if (*(int *)*temp_array == temp_int) {
-            *(int *)(*(longlong *)(global_context + 0x2e30) + 0x28 + loop_counter) = cleanup_mode;
+            *(int *)(*(int64_t *)(global_context + 0x2e30) + 0x28 + loop_counter) = cleanup_mode;
             break;
           }
           node_index = node_index + 1;
@@ -663,19 +663,19 @@ LAB_DEEP_CLEANUP:
         } while (node_index < (int)temp_count);
       }
       flag_mask = (int)array_index + 1;
-      array_index = (ulonglong)flag_mask;
+      array_index = (uint64_t)flag_mask;
       loop_counter = loop_counter + 0x38;
     } while ((int)flag_mask < *(int *)(global_context + 0x2e28));
   }
   
   // 对清理数组进行排序
   if (1 < (int)temp_count) {
-    qsort(array_pointer, (longlong)(int)temp_count, 8, &NODE_COMPARATOR_FUNCTION);
+    qsort(array_pointer, (int64_t)(int)temp_count, 8, &NODE_COMPARATOR_FUNCTION);
   }
   
   // 执行最终清理
   if (0 < (int)temp_count) {
-    array_index = (ulonglong)temp_count;
+    array_index = (uint64_t)temp_count;
     temp_array = array_pointer;
     do {
       finalize_node_cleanup(global_context, *temp_array, 0);
@@ -686,7 +686,7 @@ LAB_DEEP_CLEANUP:
   
   // 完全清理模式下的额外处理
   if (cleanup_mode == 0) {
-    global_context = *(longlong *)(node_counter + 2);
+    global_context = *(int64_t *)(node_counter + 2);
     if (global_context != 0) {
       node_counter[0] = 0;
       node_counter[1] = 0;
@@ -697,7 +697,7 @@ LAB_DEEP_CLEANUP:
       free_memory_pool(global_context, GLOBAL_MEMORY_POOL);
     }
     
-    global_context = *(longlong *)(node_counter + 6);
+    global_context = *(int64_t *)(node_counter + 6);
     if (global_context != 0) {
       node_counter[4] = 0;
       node_counter[5] = 0;
@@ -738,14 +738,14 @@ void reset_node_system(uint64_t reset_flags, char reset_mode)
 
 {
   int *system_manager;
-  longlong *node_array;
-  longlong current_node;
-  ulonglong cleanup_index;
-  ulonglong temp_index;
+  int64_t *node_array;
+  int64_t current_node;
+  uint64_t cleanup_index;
+  uint64_t temp_index;
   uint node_count;
-  ulonglong loop_counter;
-  ulonglong cleanup_counter;
-  ulonglong iteration_index;
+  uint64_t loop_counter;
+  uint64_t cleanup_counter;
+  uint64_t iteration_index;
   
   current_node = GLOBAL_ENGINE_CONTEXT;
   cleanup_counter = 0;
@@ -754,29 +754,29 @@ void reset_node_system(uint64_t reset_flags, char reset_mode)
   if ((reset_mode != '\0') && (cleanup_index = cleanup_counter, temp_index = cleanup_counter, 0 < *(int *)(GLOBAL_ENGINE_CONTEXT + 0x2e28))) {
     do {
       node_count = (int)temp_index + 1;
-      *(int32_t *)(cleanup_index + 0x28 + *(longlong *)(current_node + 0x2e30)) = 0;
+      *(int32_t *)(cleanup_index + 0x28 + *(int64_t *)(current_node + 0x2e30)) = 0;
       cleanup_index = cleanup_index + 0x38;
-      temp_index = (ulonglong)node_count;
+      temp_index = (uint64_t)node_count;
     } while ((int)node_count < *(int *)(current_node + 0x2e28));
   }
   
   system_manager = (int *)(current_node + 0x1aa0);
   if (0 < *system_manager) {
-    node_array = (longlong *)(current_node + 0x1aa8);
+    node_array = (int64_t *)(current_node + 0x1aa8);
     cleanup_index = cleanup_counter;
     temp_index = cleanup_counter;
     
     do {
-      current_node = *(longlong *)(cleanup_index + *node_array);
-      if (*(longlong *)(current_node + 0x408) == 0) {
+      current_node = *(int64_t *)(cleanup_index + *node_array);
+      if (*(int64_t *)(current_node + 0x408) == 0) {
         *(int32_t *)(current_node + 0x418) = 0;
       }
       else {
         iteration_index = cleanup_counter;
         if (reset_mode == '\0') {
-          iteration_index = (ulonglong)*(uint *)(current_node + 0x418);
+          iteration_index = (uint64_t)*(uint *)(current_node + 0x418);
         }
-        detach_material_from_node(*(longlong *)(current_node + 0x408), current_node, iteration_index);
+        detach_material_from_node(*(int64_t *)(current_node + 0x408), current_node, iteration_index);
         current_node = GLOBAL_ENGINE_CONTEXT;
       }
       
@@ -790,7 +790,7 @@ void reset_node_system(uint64_t reset_flags, char reset_mode)
       }
       
       node_count = (int)temp_index + 1;
-      temp_index = (ulonglong)node_count;
+      temp_index = (uint64_t)node_count;
       cleanup_index = cleanup_index + 8;
     } while ((int)node_count < *system_manager);
   }
@@ -803,37 +803,37 @@ void reset_node_system(uint64_t reset_flags, char reset_mode)
 
 
 
-// 函数: void FUN_18013b4f0(longlong param_1)
+// 函数: void FUN_18013b4f0(int64_t param_1)
 // 功能: 批量更新节点材质ID
 // 参数: 
 //   param_1 - 系统上下文指针
-void batch_update_node_materials(longlong system_context)
+void batch_update_node_materials(int64_t system_context)
 
 {
-  longlong *node_pointer_array;
-  longlong current_node;
+  int64_t *node_pointer_array;
+  int64_t current_node;
   int *array_size;
-  ulonglong material_id;
+  uint64_t material_id;
   int node_count;
-  ulonglong temp_material_id;
-  ulonglong iteration_index;
-  ulonglong array_index;
+  uint64_t temp_material_id;
+  uint64_t iteration_index;
+  uint64_t array_index;
   char update_mode;
   
-  node_pointer_array = (longlong *)(system_context + 0x1aa8);
+  node_pointer_array = (int64_t *)(system_context + 0x1aa8);
   material_id = iteration_index;
   
   do {
-    current_node = *(longlong *)(material_id + *node_pointer_array);
-    if (*(longlong *)(current_node + 0x408) == 0) {
+    current_node = *(int64_t *)(material_id + *node_pointer_array);
+    if (*(int64_t *)(current_node + 0x408) == 0) {
       *(int *)(current_node + 0x418) = (int)iteration_index;
     }
     else {
       temp_material_id = iteration_index & 0xffffffff;
       if (update_mode == '\0') {
-        temp_material_id = (ulonglong)*(uint *)(current_node + 0x418);
+        temp_material_id = (uint64_t)*(uint *)(current_node + 0x418);
       }
-      detach_material_from_node(*(longlong *)(current_node + 0x408), current_node, temp_material_id);
+      detach_material_from_node(*(int64_t *)(current_node + 0x408), current_node, temp_material_id);
       system_context = GLOBAL_ENGINE_CONTEXT;
     }
     
@@ -879,33 +879,33 @@ void process_node_material_assignment(uint64_t *node_ptr, int8_t *output_flag)
 
 {
   uint node_flags;
-  longlong material_instance;
+  int64_t material_instance;
   int *material_id_ptr;
-  longlong global_context;
+  int64_t global_context;
   bool use_alternate_path;
   byte special_flag;
   int16_t temp_short;
   int32_t material_id;
-  longlong material_chain;
+  int64_t material_chain;
   int *property_array;
   uint property_index;
-  ulonglong loop_counter;
-  longlong temp_node;
+  uint64_t loop_counter;
+  int64_t temp_node;
   int array_index;
-  ulonglong iteration_index;
-  longlong node_data;
+  uint64_t iteration_index;
+  int64_t node_data;
   int node_type;
-  ulonglong temp_ulong;
-  longlong related_node;
+  uint64_t temp_ulong;
+  int64_t related_node;
   byte final_flag;
   
   global_context = GLOBAL_ENGINE_CONTEXT;
   
   // 检查是否需要使用替代处理路径
   if ((*(char *)(GLOBAL_ENGINE_CONTEXT + 0xc2) == '\0') ||
-     ((*(uint *)((longlong)node_ptr + 0xc) & 0x1200001) != 0)) {
+     ((*(uint *)((int64_t)node_ptr + 0xc) & 0x1200001) != 0)) {
     
-    special_flag = (byte)(*(uint *)((longlong)node_ptr + 0xc) >> 0x15) & 1;
+    special_flag = (byte)(*(uint *)((int64_t)node_ptr + 0xc) >> 0x15) & 1;
     use_alternate_path = false;
     
     // 检查特殊材质条件
@@ -928,8 +928,8 @@ void process_node_material_assignment(uint64_t *node_ptr, int8_t *output_flag)
       }
       
       // 重置节点状态
-      *(byte *)((longlong)node_ptr + 0x432) = *(byte *)((longlong)node_ptr + 0x432) & 0xfc;
-      *(int8_t *)((longlong)node_ptr + 0xb2) = 0;
+      *(byte *)((int64_t)node_ptr + 0x432) = *(byte *)((int64_t)node_ptr + 0x432) & 0xfc;
+      *(int8_t *)((int64_t)node_ptr + 0xb2) = 0;
       
       // 检查系统计时器
       if (0.0 < *(float *)(global_context + 0x2e04)) {
@@ -960,16 +960,16 @@ void process_node_material_assignment(uint64_t *node_ptr, int8_t *output_flag)
         *(int32_t *)(material_chain + 0x88) = *(int32_t *)(global_context + 0x1a90);
       }
     }
-    else if (*(longlong *)(material_chain + 0x10) != 0) {
+    else if (*(int64_t *)(material_chain + 0x10) != 0) {
       // 处理现有材质链的冲突
       if (node_ptr[0x81] == 0) {
         *(int32_t *)(node_ptr + 0x83) = 0;
-        *(int8_t *)((longlong)node_ptr + 0xb2) = 0;
+        *(int8_t *)((int64_t)node_ptr + 0xb2) = 0;
       }
       else {
         detach_material_from_node(node_ptr[0x81], node_ptr, 0);
         global_context = GLOBAL_ENGINE_CONTEXT;
-        *(int8_t *)((longlong)node_ptr + 0xb2) = 0;
+        *(int8_t *)((int64_t)node_ptr + 0xb2) = 0;
       }
       goto LAB_FINALIZE_PROCESSING;
     }
@@ -989,26 +989,26 @@ void process_node_material_assignment(uint64_t *node_ptr, int8_t *output_flag)
   // 检查材质链状态
   if (((*(byte *)(material_chain + 0xa0) & 0x20) == 0) || ((*(byte *)(material_chain + 4) & 8) == 0)) {
     if (*(int *)(material_chain + 0x88) < *(int *)(global_context + 0x1a90)) {
-      material_instance = *(longlong *)(material_chain + 8);
+      material_instance = *(int64_t *)(material_chain + 8);
       while (temp_node = material_instance, temp_node != 0) {
         material_chain = temp_node;
-        material_instance = *(longlong *)(temp_node + 8);
+        material_instance = *(int64_t *)(temp_node + 8);
       }
       if (*(int *)(global_context + 0x1a90) <= *(int *)(material_chain + 0x88)) {
-        *(byte *)((longlong)node_ptr + 0x432) = *(byte *)((longlong)node_ptr + 0x432) & 0xfd | 1;
+        *(byte *)((int64_t)node_ptr + 0x432) = *(byte *)((int64_t)node_ptr + 0x432) & 0xfd | 1;
         return;
       }
     }
     else {
-      material_instance = *(longlong *)(material_chain + 0x68);
+      material_instance = *(int64_t *)(material_chain + 0x68);
       if (material_instance == 0) {
 LAB_SET_INACTIVE_FLAG:
-        *(byte *)((longlong)node_ptr + 0x432) = *(byte *)((longlong)node_ptr + 0x432) & 0xfd;
+        *(byte *)((int64_t)node_ptr + 0x432) = *(byte *)((int64_t)node_ptr + 0x432) & 0xfd;
         return;
       }
       
       // 检查材质优先级
-      if (*(short *)(material_instance + 0xbc) <= *(short *)((longlong)node_ptr + 0xbc)) {
+      if (*(short *)(material_instance + 0xbc) <= *(short *)((int64_t)node_ptr + 0xbc)) {
         if (material_instance != 0) {
           *(uint64_t *)(node_data + 0x1bf4) = *(uint64_t *)(material_chain + 0x38);
           *(uint64_t *)(node_data + 0x1bfc) = 0;
@@ -1018,37 +1018,37 @@ LAB_SET_INACTIVE_FLAG:
           *(int32_t *)(node_data + 0x1bd4) = 1;
           *(int8_t *)(global_context + 0x1c14) = 0;
           
-          final_flag = *(byte *)((longlong)node_ptr + 0x432) & 0xfd;
+          final_flag = *(byte *)((int64_t)node_ptr + 0x432) & 0xfd;
           final_flag = final_flag | 1;
-          *(byte *)((longlong)node_ptr + 0x432) = final_flag;
+          *(byte *)((int64_t)node_ptr + 0x432) = final_flag;
           
           if ((*(byte *)(material_chain + 4) & 1) != 0) {
             return;
           }
           
-          material_instance = *(longlong *)(material_chain + 0x30);
+          material_instance = *(int64_t *)(material_chain + 0x30);
           if ((material_instance != 0) && (*(int *)(material_instance + 0x1c) == *(int *)(node_ptr + 1))) {
             final_flag = final_flag | 3;
-            *(byte *)((longlong)node_ptr + 0x432) = final_flag;
-            material_instance = *(longlong *)(material_chain + 0x30);
+            *(byte *)((int64_t)node_ptr + 0x432) = final_flag;
+            material_instance = *(int64_t *)(material_chain + 0x30);
           }
           
           if ((((final_flag & 2) == 0) && (material_instance != 0)) &&
              (*(int *)(material_instance + 0x18) == *(int *)(node_ptr + 1))) {
-            *(int32_t *)((longlong)node_ptr + 0xdc) = 2;
+            *(int32_t *)((int64_t)node_ptr + 0xdc) = 2;
           }
           
-          node_flags = *(uint *)((longlong)node_ptr + 0xc);
-          *(uint *)((longlong)node_ptr + 0xc) = node_flags | 0x1010002;
+          node_flags = *(uint *)((int64_t)node_ptr + 0xc);
+          *(uint *)((int64_t)node_ptr + 0xc) = node_flags | 0x1010002;
           property_index = node_flags & 0xfffffffe | 0x1010002;
           
           if ((*(byte *)(material_chain + 0xa0) & 0x40) != 0) {
             property_index = node_flags | 0x1010003;
           }
-          *(uint *)((longlong)node_ptr + 0xc) = property_index;
+          *(uint *)((int64_t)node_ptr + 0xc) = property_index;
           
           // 处理材质属性数组
-          if (*(longlong *)(material_chain + 0x30) != 0) {
+          if (*(int64_t *)(material_chain + 0x30) != 0) {
             property_array = *(int **)(node_ptr[0x81] + 0x30);
             if (((property_array != (int *)0x0) && (*(int *)(node_ptr + 1) != 0)) && (0 < *property_array)) {
               material_id_ptr = *(int **)(property_array + 2);
@@ -1056,16 +1056,16 @@ LAB_SET_INACTIVE_FLAG:
               do {
                 array_index = (int)temp_ulong;
                 if (*material_id_ptr == *(int *)(node_ptr + 1)) {
-                  if (*(int **)(property_array + 2) + (longlong)array_index * 10 != (int *)0x0) {
-                    temp_short = (int16_t)(((longlong)array_index * 0x28) / 0x28);
+                  if (*(int **)(property_array + 2) + (int64_t)array_index * 10 != (int *)0x0) {
+                    temp_short = (int16_t)(((int64_t)array_index * 0x28) / 0x28);
                     goto LAB_SET_PROPERTY_INDEX;
                   }
                   break;
                 }
-                temp_ulong = (ulonglong)(array_index + 1);
+                temp_ulong = (uint64_t)(array_index + 1);
                 iteration_index = iteration_index + 1;
                 material_id_ptr = material_id_ptr + 10;
-              } while ((longlong)iteration_index < (longlong)*property_array);
+              } while ((int64_t)iteration_index < (int64_t)*property_array);
             }
             temp_short = 0xffff;
 LAB_SET_PROPERTY_INDEX:
@@ -1097,9 +1097,9 @@ LAB_SET_PROPERTY_INDEX:
     global_context = GLOBAL_ENGINE_CONTEXT;
   }
   
-  *(int8_t *)((longlong)node_ptr + 0xb2) = 0;
+  *(int8_t *)((int64_t)node_ptr + 0xb2) = 0;
 LAB_FINALIZE_PROCESSING:
-  *(byte *)((longlong)node_ptr + 0x432) = *(byte *)((longlong)node_ptr + 0x432) & 0xfc;
+  *(byte *)((int64_t)node_ptr + 0x432) = *(byte *)((int64_t)node_ptr + 0x432) & 0xfc;
   
   // 最终系统状态检查
   if (0.0 < *(float *)(global_context + 0x2e04)) {

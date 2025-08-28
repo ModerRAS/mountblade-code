@@ -49,7 +49,7 @@ void rendering_system_advanced_lighting_processor(float light_param_1, float lig
     uint light_intensity;
     uint light_color;
     uint light_properties;
-    longlong light_context;
+    int64_t light_context;
     bool light_active;
     float ambient_light;
     float diffuse_light;
@@ -77,10 +77,10 @@ void rendering_system_advanced_lighting_processor(float light_param_1, float lig
     }
     
     // 插值计算光照值
-    base_light_value = ((*(float *)(&rendering_color_processing_data[0] + (longlong)(int)light_intensity * 4) -
-                       *(float *)(&rendering_color_processing_data[0] + (longlong)(int)light_color * 4)) * 
+    base_light_value = ((*(float *)(&rendering_color_processing_data[0] + (int64_t)(int)light_intensity * 4) -
+                       *(float *)(&rendering_color_processing_data[0] + (int64_t)(int)light_color * 4)) * 
                        (base_light_value - (float)(int)light_properties) +
-                       *(float *)(&rendering_color_processing_data[0] + (longlong)(int)light_color * 4)) * 
+                       *(float *)(&rendering_color_processing_data[0] + (int64_t)(int)light_color * 4)) * 
                        *light_table + 1.0;
     
     // 根据光照类型处理不同的光照效果
@@ -138,7 +138,7 @@ void rendering_system_advanced_lighting_processor(float light_param_1, float lig
     rendering_random_seed = rendering_random_seed >> 0x11 ^ rendering_random_seed;
     rendering_random_seed = rendering_random_seed << 5 ^ rendering_random_seed;
     
-    longlong render_context = *(longlong *)(light_context + 0x38);
+    int64_t render_context = *(int64_t *)(light_context + 0x38);
     light_falloff = SQRT(ambient_light * ambient_light + specular_light * specular_light + 
                         light_falloff * light_falloff);
     
@@ -146,18 +146,18 @@ void rendering_system_advanced_lighting_processor(float light_param_1, float lig
     
     if (render_context == 0) {
         light_active = true;
-        int object_count = (int)(*(longlong *)(*(longlong *)(light_context + 0x48) + 0x40) -
-                               *(longlong *)(*(longlong *)(light_context + 0x48) + 0x38) >> 4);
-        render_context = (longlong)object_count;
+        int object_count = (int)(*(int64_t *)(*(int64_t *)(light_context + 0x48) + 0x40) -
+                               *(int64_t *)(*(int64_t *)(light_context + 0x48) + 0x38) >> 4);
+        render_context = (int64_t)object_count;
         
         if (0 < object_count) {
             uint render_flags = *(uint *)(light_context + 0x7f);
-            longlong object_index = 0;
+            int64_t object_index = 0;
             
             do {
-                longlong render_object = *(longlong *)(object_index + 
-                                                   *(longlong *)(*(longlong *)(light_context + 0x48) + 0x38));
-                longlong object_data = *(longlong *)(render_object + 0x118);
+                int64_t render_object = *(int64_t *)(object_index + 
+                                                   *(int64_t *)(*(int64_t *)(light_context + 0x48) + 0x38));
+                int64_t object_data = *(int64_t *)(render_object + 0x118);
                 
                 if (object_data != 0) {
                     if (*(int *)(object_data + 0x118) < 1) {
@@ -165,12 +165,12 @@ void rendering_system_advanced_lighting_processor(float light_param_1, float lig
                     }
                     else {
                         light_type_flag = *(char *)(light_context + 0x5f);
-                        longlong *stack_ptr = &rendering_temp_data[0];
+                        int64_t *stack_ptr = &rendering_temp_data[0];
                         uint object_params = *(uint *)(light_context + 0x67);
                         *(int32_t *)(object_data + 0x110) = render_flags;
                         uint render_params = *(uint *)(light_context + 0xb8);
                         char render_state = *(char *)(light_context + 0x44);
-                        longlong stack_offset = light_context - 0x71;
+                        int64_t stack_offset = light_context - 0x71;
                         float light_intensity = base_light_value;
                         
                         FUN_18024c560(render_params, render_object, (int)light_type_flag, object_params,
@@ -188,28 +188,28 @@ void rendering_system_advanced_lighting_processor(float light_param_1, float lig
         }
     }
     else {
-        render_context = *(longlong *)(render_context + 0x118);
+        render_context = *(int64_t *)(render_context + 0x118);
         if (0 < *(int *)(render_context + 0x118)) {
-            longlong *stack_ptr = &rendering_temp_data[0];
+            int64_t *stack_ptr = &rendering_temp_data[0];
             light_type_flag = *(char *)(light_context + 0x5f);
             uint render_flags = *(uint *)(light_context + 0x67);
             char object_state = *(char *)(render_context + 0x13d);
             *(int32_t *)(render_context + 0x110) = *(uint *)(light_context + 0x7f);
             uint render_params = *(uint *)(light_context + 0xb8);
             char render_state = *(char *)(light_context + 0x44);
-            longlong stack_offset = light_context - 0x71;
+            int64_t stack_offset = light_context - 0x71;
             
             FUN_18024c560(render_params, *(uint64_t *)(light_context + 0x38), (int)light_type_flag, 
                           render_flags, *(uint *)(light_context + 0x6f));
             
-            longlong object_index = 0;
+            int64_t object_index = 0;
             if (((object_state == '\0') && (*(char *)(render_context + 0x13d) == '\x01')) &&
-                (object_count = (int)(*(longlong *)(*(longlong *)(light_context + 0x48) + 0x40) -
-                                    *(longlong *)(*(longlong *)(light_context + 0x48) + 0x38) >> 4),
-                 render_context = (longlong)object_count, 0 < object_count)) {
+                (object_count = (int)(*(int64_t *)(*(int64_t *)(light_context + 0x48) + 0x40) -
+                                    *(int64_t *)(*(int64_t *)(light_context + 0x48) + 0x38) >> 4),
+                 render_context = (int64_t)object_count, 0 < object_count)) {
                 do {
-                    longlong object_data = *(longlong *)
-                                          (*(longlong *)(*(longlong *)(*(longlong *)(light_context + 0x48) + 0x38) + 
+                    int64_t object_data = *(int64_t *)
+                                          (*(int64_t *)(*(int64_t *)(*(int64_t *)(light_context + 0x48) + 0x38) + 
                                           object_index) + 0x118);
                     if (object_data != 0) {
                         *(int8_t *)(object_data + 0x13d) = 1;
@@ -243,7 +243,7 @@ void rendering_system_advanced_color_processor(float color_param_1, int color_mo
     char color_space;
     uint color_flags;
     uint color_values;
-    longlong color_context;
+    int64_t color_context;
     bool color_active;
     float red_component;
     float green_component;
@@ -257,25 +257,25 @@ void rendering_system_advanced_color_processor(float color_param_1, int color_mo
     rendering_random_seed = rendering_random_seed >> 0x11 ^ rendering_random_seed;
     rendering_random_seed = rendering_random_seed << 5 ^ rendering_random_seed;
     
-    longlong render_context = *(longlong *)(color_context + 0x38);
+    int64_t render_context = *(int64_t *)(color_context + 0x38);
     color_intensity = SQRT(red_component + color_param_1 + color_param_2);
     
     rendering_temp_data[0] = blue_component + ((float)(color_values - 1) * 4.656613e-11 - 0.1) * color_intensity;
     
     if (render_context == 0) {
         color_active = true;
-        int object_count = (int)(*(longlong *)(*(longlong *)(color_context + 0x48) + 0x40) -
-                               *(longlong *)(*(longlong *)(color_context + 0x48) + 0x38) >> 4);
-        render_context = (longlong)object_count;
+        int object_count = (int)(*(int64_t *)(*(int64_t *)(color_context + 0x48) + 0x40) -
+                               *(int64_t *)(*(int64_t *)(color_context + 0x48) + 0x38) >> 4);
+        render_context = (int64_t)object_count;
         
         if (0 < object_count) {
             uint render_flags = *(uint *)(color_context + 0x7f);
-            longlong object_index = 0;
+            int64_t object_index = 0;
             
             do {
-                longlong render_object = *(longlong *)(object_index + 
-                                                   *(longlong *)(*(longlong *)(color_context + 0x48) + 0x38));
-                longlong object_data = *(longlong *)(render_object + 0x118);
+                int64_t render_object = *(int64_t *)(object_index + 
+                                                   *(int64_t *)(*(int64_t *)(color_context + 0x48) + 0x38));
+                int64_t object_data = *(int64_t *)(render_object + 0x118);
                 
                 if (object_data != 0) {
                     if (*(int *)(object_data + 0x118) < 1) {
@@ -283,12 +283,12 @@ void rendering_system_advanced_color_processor(float color_param_1, int color_mo
                     }
                     else {
                         blend_mode = *(char *)(color_context + 0x5f);
-                        longlong *stack_ptr = &rendering_temp_data[0];
+                        int64_t *stack_ptr = &rendering_temp_data[0];
                         uint object_params = *(uint *)(color_context + 0x67);
                         *(int32_t *)(object_data + 0x110) = render_flags;
                         uint render_params = *(uint *)(color_context + 0xb8);
                         char render_state = *(char *)(color_context + 0x44);
-                        longlong stack_offset = color_context - 0x71;
+                        int64_t stack_offset = color_context - 0x71;
                         
                         FUN_18024c560(render_params, render_object, (int)blend_mode, object_params,
                                       *(uint *)(color_context + 0x6f));
@@ -305,28 +305,28 @@ void rendering_system_advanced_color_processor(float color_param_1, int color_mo
         }
     }
     else {
-        render_context = *(longlong *)(render_context + 0x118);
+        render_context = *(int64_t *)(render_context + 0x118);
         if (0 < *(int *)(render_context + 0x118)) {
-            longlong *stack_ptr = &rendering_temp_data[0];
+            int64_t *stack_ptr = &rendering_temp_data[0];
             blend_mode = *(char *)(color_context + 0x5f);
             uint render_flags = *(uint *)(color_context + 0x67);
             color_space = *(char *)(render_context + 0x13d);
             *(int32_t *)(render_context + 0x110) = *(uint *)(color_context + 0x7f);
             uint render_params = *(uint *)(color_context + 0xb8);
             char render_state = *(char *)(color_context + 0x44);
-            longlong stack_offset = color_context - 0x71;
+            int64_t stack_offset = color_context - 0x71;
             
             FUN_18024c560(render_params, *(uint64_t *)(color_context + 0x38), (int)blend_mode, 
                           render_flags, *(uint *)(color_context + 0x6f));
             
-            longlong object_index = 0;
+            int64_t object_index = 0;
             if (((color_space == '\0') && (*(char *)(render_context + 0x13d) == '\x01')) &&
-                (object_count = (int)(*(longlong *)(*(longlong *)(color_context + 0x48) + 0x40) -
-                                    *(longlong *)(*(longlong *)(color_context + 0x48) + 0x38) >> 4),
-                 render_context = (longlong)object_count, 0 < object_count)) {
+                (object_count = (int)(*(int64_t *)(*(int64_t *)(color_context + 0x48) + 0x40) -
+                                    *(int64_t *)(*(int64_t *)(color_context + 0x48) + 0x38) >> 4),
+                 render_context = (int64_t)object_count, 0 < object_count)) {
                 do {
-                    longlong object_data = *(longlong *)
-                                          (*(longlong *)(*(longlong *)(*(longlong *)(color_context + 0x48) + 0x38) + 
+                    int64_t object_data = *(int64_t *)
+                                          (*(int64_t *)(*(int64_t *)(*(int64_t *)(color_context + 0x48) + 0x38) + 
                                           object_index) + 0x118);
                     if (object_data != 0) {
                         *(int8_t *)(object_data + 0x13d) = 1;
@@ -345,7 +345,7 @@ void rendering_system_advanced_color_processor(float color_param_1, int color_mo
 // 功能：更新渲染对象的状态信息
 // 输入：param_1 - 渲染对象上下文
 // 输出：更新后的对象状态
-void rendering_system_object_state_updater(longlong render_context)
+void rendering_system_object_state_updater(int64_t render_context)
 {
     // 函数实现：渲染系统对象状态更新器
     // 输入：render_context - 渲染对象上下文
@@ -359,26 +359,26 @@ void rendering_system_object_state_updater(longlong render_context)
     uint render_flags;
     char object_state;
     uint object_params;
-    longlong render_object;
-    longlong object_data;
+    int64_t render_object;
+    int64_t object_data;
     bool all_objects_complete;
     int object_count;
-    longlong object_index;
-    longlong context_data;
+    int64_t object_index;
+    int64_t context_data;
     
     all_objects_complete = true;
-    object_count = (int)(*(longlong *)(render_context + 0x40) - 
-                        *(longlong *)(render_context + 0x38) >> 4);
-    context_data = (longlong)object_count;
+    object_count = (int)(*(int64_t *)(render_context + 0x40) - 
+                        *(int64_t *)(render_context + 0x38) >> 4);
+    context_data = (int64_t)object_count;
     
     if (0 < object_count) {
         render_flags = *(uint *)(render_context + 0x7f);
         object_index = 0;
         
         do {
-            render_object = *(longlong *)(object_index + 
-                                        *(longlong *)(*(longlong *)(render_context + 0x48) + 0x38));
-            object_data = *(longlong *)(render_object + 0x118);
+            render_object = *(int64_t *)(object_index + 
+                                        *(int64_t *)(*(int64_t *)(render_context + 0x48) + 0x38));
+            object_data = *(int64_t *)(render_object + 0x118);
             
             if (object_data != 0) {
                 if (*(int *)(object_data + 0x118) < 1) {
@@ -386,12 +386,12 @@ void rendering_system_object_state_updater(longlong render_context)
                 }
                 else {
                     object_state = *(char *)(render_context + 0x5f);
-                    longlong *stack_ptr = &rendering_temp_data[0];
+                    int64_t *stack_ptr = &rendering_temp_data[0];
                     object_params = *(uint *)(render_context + 0x67);
                     *(int32_t *)(object_data + 0x110) = render_flags;
                     uint render_params = *(uint *)(render_context + 0xb8);
                     char render_state = *(char *)(render_context + 0x44);
-                    longlong stack_offset = render_context - 0x71;
+                    int64_t stack_offset = render_context - 0x71;
                     
                     FUN_18024c560(render_params, render_object, (int)object_state, object_params,
                                   *(uint *)(render_context + 0x6f));
@@ -412,7 +412,7 @@ void rendering_system_object_state_updater(longlong render_context)
 // 功能：批量处理渲染对象的状态
 // 输入：param_1 - 渲染上下文
 // 输出：批量处理后的状态
-void rendering_system_batch_state_processor(longlong render_context)
+void rendering_system_batch_state_processor(int64_t render_context)
 {
     // 函数实现：渲染系统批量状态处理器
     // 输入：render_context - 渲染上下文
@@ -426,25 +426,25 @@ void rendering_system_batch_state_processor(longlong render_context)
     uint render_flags;
     char object_state;
     uint object_params;
-    longlong render_object;
-    longlong object_data;
+    int64_t render_object;
+    int64_t object_data;
     int object_count;
-    longlong object_index;
-    longlong context_data;
+    int64_t object_index;
+    int64_t context_data;
     char batch_complete;
     
-    object_count = (int)(*(longlong *)(render_context + 0x40) - 
-                        *(longlong *)(render_context + 0x38) >> 4);
-    context_data = (longlong)object_count;
+    object_count = (int)(*(int64_t *)(render_context + 0x40) - 
+                        *(int64_t *)(render_context + 0x38) >> 4);
+    context_data = (int64_t)object_count;
     
     if (0 < object_count) {
         render_flags = *(uint *)(render_context + 0x7f);
         object_index = 0;
         
         do {
-            render_object = *(longlong *)(object_index + 
-                                        *(longlong *)(*(longlong *)(render_context + 0x48) + 0x38));
-            object_data = *(longlong *)(render_object + 0x118);
+            render_object = *(int64_t *)(object_index + 
+                                        *(int64_t *)(*(int64_t *)(render_context + 0x48) + 0x38));
+            object_data = *(int64_t *)(render_object + 0x118);
             
             if (object_data != 0) {
                 if (*(int *)(object_data + 0x118) < 1) {
@@ -452,12 +452,12 @@ void rendering_system_batch_state_processor(longlong render_context)
                 }
                 else {
                     object_state = *(char *)(render_context + 0x5f);
-                    longlong *stack_ptr = &rendering_temp_data[0];
+                    int64_t *stack_ptr = &rendering_temp_data[0];
                     object_params = *(uint *)(render_context + 0x67);
                     *(int32_t *)(object_data + 0x110) = render_flags;
                     uint render_params = *(uint *)(render_context + 0xb8);
                     char render_state = *(char *)(render_context + 0x44);
-                    longlong stack_offset = render_context - 0x71;
+                    int64_t stack_offset = render_context - 0x71;
                     
                     FUN_18024c560(render_params, render_object, (int)object_state, object_params,
                                   *(uint *)(render_context + 0x6f));
@@ -489,7 +489,7 @@ void rendering_system_state_resetter(void)
     // 3. 重置系统参数
     // 4. 准备下次渲染
     
-    longlong render_context;
+    int64_t render_context;
     char state_flag;
     
     if (state_flag != '\0') {
@@ -559,8 +559,8 @@ void rendering_system_advanced_pipeline_processor(uint64_t render_params, code *
     float light_position[3];
     int render_flags;
     uint color_values;
-    longlong render_context;
-    longlong object_data;
+    int64_t render_context;
+    int64_t object_data;
     bool pipeline_active;
     float *shader_table;
     uint light_properties;
@@ -667,15 +667,15 @@ void rendering_system_advanced_pipeline_processor(uint64_t render_params, code *
             *(int8_t *)(render_context + 0x44) = 1;
         }
         
-        longlong render_data = *(longlong *)(render_context + 0x48);
+        int64_t render_data = *(int64_t *)(render_context + 0x48);
         if (*(int *)(render_data + 0x328) == *(int *)(rendering_light_calculation_params[0] + 0x224)) {
             if (((*(char *)(render_context + 0xbc) == '\0') &&
-                ((*(byte *)(*(longlong *)(render_data + 0x3c8) + 0x28) & 1) == 0)) &&
+                ((*(byte *)(*(int64_t *)(render_data + 0x3c8) + 0x28) & 1) == 0)) &&
                (*(int *)(rendering_light_calculation_params[0] + 0x224) + -1 != render_flags)) {
                 *(int8_t *)(render_context + 0x44) = 1;
             }
             
-            if (*(int *)(render_context + 0x30) == *(int *)(*(longlong *)(render_data + 0x3c8) + 0x10)) {
+            if (*(int *)(render_context + 0x30) == *(int *)(*(int64_t *)(render_data + 0x3c8) + 0x10)) {
                 // 计算光照强度
                 light_scale = (*(float *)(render_context - 0x3d) * 2.3 + *(float *)(render_context - 0x41) * 1.7) * 8.0 +
                             (float)rendering_light_calculation_params[0] * 8e-05;
@@ -693,10 +693,10 @@ void rendering_system_advanced_pipeline_processor(uint64_t render_params, code *
                     light_values = (light_values - 1 | 0xffffff00) + 1;
                 }
                 
-                light_scale = ((*(float *)(&rendering_color_processing_data[0] + (longlong)(int)light_values * 4) -
-                             *(float *)(&rendering_color_processing_data[0] + (longlong)(int)light_color * 4)) *
+                light_scale = ((*(float *)(&rendering_color_processing_data[0] + (int64_t)(int)light_values * 4) -
+                             *(float *)(&rendering_color_processing_data[0] + (int64_t)(int)light_color * 4)) *
                              (light_scale - (float)(int)light_properties) +
-                             *(float *)(&rendering_color_processing_data[0] + (longlong)(int)light_color * 4)) * 
+                             *(float *)(&rendering_color_processing_data[0] + (int64_t)(int)light_color * 4)) * 
                              *shader_table + 1.0;
                 
                 // 根据光照类型处理
@@ -743,7 +743,7 @@ void rendering_system_advanced_pipeline_processor(uint64_t render_params, code *
                 rendering_random_seed = rendering_random_seed >> 0x11 ^ rendering_random_seed;
                 rendering_random_seed = rendering_random_seed << 5 ^ rendering_random_seed;
                 
-                render_data = *(longlong *)(render_context + 0x38);
+                render_data = *(int64_t *)(render_context + 0x38);
                 *(float *)(render_context - 0x7d) = light_scale + 
                                              ((float)(rendering_random_seed - 1) * 4.656613e-11 - 0.1) *
                                              SQRT(light_scale * light_scale + light_offset * light_offset + 
@@ -751,18 +751,18 @@ void rendering_system_advanced_pipeline_processor(uint64_t render_params, code *
                 
                 if (render_data == 0) {
                     pipeline_active = true;
-                    render_flags = (int)(*(longlong *)(*(longlong *)(render_context + 0x48) + 0x40) -
-                                         *(longlong *)(*(longlong *)(render_context + 0x48) + 0x38) >> 4);
-                    render_data = (longlong)render_flags;
+                    render_flags = (int)(*(int64_t *)(*(int64_t *)(render_context + 0x48) + 0x40) -
+                                         *(int64_t *)(*(int64_t *)(render_context + 0x48) + 0x38) >> 4);
+                    render_data = (int64_t)render_flags;
                     
                     if (0 < render_flags) {
                         uint pipeline_flags = *(uint *)(render_context + 0x7f);
-                        longlong object_index = 0;
+                        int64_t object_index = 0;
                         
                         do {
-                            object_data = *(longlong *)(object_index + 
-                                                     *(longlong *)(*(longlong *)(render_context + 0x48) + 0x38));
-                            longlong pipeline_data = *(longlong *)(object_data + 0x118);
+                            object_data = *(int64_t *)(object_index + 
+                                                     *(int64_t *)(*(int64_t *)(render_context + 0x48) + 0x38));
+                            int64_t pipeline_data = *(int64_t *)(object_data + 0x118);
                             
                             if (pipeline_data != 0) {
                                 if (*(int *)(pipeline_data + 0x118) < 1) {
@@ -788,7 +788,7 @@ void rendering_system_advanced_pipeline_processor(uint64_t render_params, code *
                     }
                 }
                 else {
-                    render_data = *(longlong *)(render_data + 0x118);
+                    render_data = *(int64_t *)(render_data + 0x118);
                     if (0 < *(int *)(render_data + 0x118)) {
                         render_mode = *(char *)(render_context + 0x5f);
                         uint pipeline_flags = *(uint *)(render_context + 0x67);
@@ -800,12 +800,12 @@ void rendering_system_advanced_pipeline_processor(uint64_t render_params, code *
                         
                         object_index = 0;
                         if (((pipeline_state == '\0') && (*(char *)(render_data + 0x13d) == '\x01')) &&
-                            (render_flags = (int)(*(longlong *)(*(longlong *)(render_context + 0x48) + 0x40) -
-                                                 *(longlong *)(*(longlong *)(render_context + 0x48) + 0x38) >> 4),
-                             render_data = (longlong)render_flags, 0 < render_flags)) {
+                            (render_flags = (int)(*(int64_t *)(*(int64_t *)(render_context + 0x48) + 0x40) -
+                                                 *(int64_t *)(*(int64_t *)(render_context + 0x48) + 0x38) >> 4),
+                             render_data = (int64_t)render_flags, 0 < render_flags)) {
                             do {
-                                pipeline_data = *(longlong *)
-                                              (*(longlong *)(*(longlong *)(*(longlong *)(render_context + 0x48) + 0x38) + 
+                                pipeline_data = *(int64_t *)
+                                              (*(int64_t *)(*(int64_t *)(*(int64_t *)(render_context + 0x48) + 0x38) + 
                                               object_index) + 0x118);
                                 if (pipeline_data != 0) {
                                     *(int8_t *)(pipeline_data + 0x13d) = 1;
@@ -827,7 +827,7 @@ void rendering_system_advanced_pipeline_processor(uint64_t render_params, code *
 // 功能：处理渲染结果，包括深度测试、模板测试、混合等
 // 输入：param_1 - 渲染上下文，param_2-4 - 渲染参数，param_5 - 渲染数据
 // 输出：处理后的渲染结果
-int8_t rendering_system_render_result_processor(longlong render_context, uint64_t render_param_1, 
+int8_t rendering_system_render_result_processor(int64_t render_context, uint64_t render_param_1, 
                                                    uint64_t render_param_2, uint64_t render_param_3,
                                                    uint64_t *render_data)
 {
@@ -840,8 +840,8 @@ int8_t rendering_system_render_result_processor(longlong render_context, uint64_
     // 3. 应用混合操作
     // 4. 返回处理结果
     
-    longlong depth_buffer;
-    longlong *stencil_buffer;
+    int64_t depth_buffer;
+    int64_t *stencil_buffer;
     int8_t render_result;
     char blend_mode;
     uint blend_flags;
@@ -865,13 +865,13 @@ int8_t rendering_system_render_result_processor(longlong render_context, uint64_
     
     // 获取混合参数
     render_state = 0;
-    if ((*(longlong *)(render_context + 0x28) != 0) &&
-        (depth_buffer = *(longlong *)(*(longlong *)(render_context + 0x28) + 0x260), depth_buffer != 0)) {
+    if ((*(int64_t *)(render_context + 0x28) != 0) &&
+        (depth_buffer = *(int64_t *)(*(int64_t *)(render_context + 0x28) + 0x260), depth_buffer != 0)) {
         render_state = *(int32_t *)(depth_buffer + 0x180);
     }
     
-    stencil_buffer = *(longlong **)(render_context + 0x48);
-    render_state = CONCAT44((int)((ulonglong)render_data[10] >> 0x20), render_state);
+    stencil_buffer = *(int64_t **)(render_context + 0x48);
+    render_state = CONCAT44((int)((uint64_t)render_data[10] >> 0x20), render_state);
     depth_buffer = stencil_buffer[0x65];
     
     // 执行渲染操作
@@ -900,12 +900,12 @@ void advanced_color_processor(float param_1, int param_2, float param_3) {
 }
 
 // 对象状态更新器别名
-void object_state_updater(longlong param_1) { 
+void object_state_updater(int64_t param_1) { 
     rendering_system_object_state_updater(param_1); 
 }
 
 // 批量状态处理器别名
-void batch_state_processor(longlong param_1) { 
+void batch_state_processor(int64_t param_1) { 
     rendering_system_batch_state_processor(param_1); 
 }
 
@@ -935,7 +935,7 @@ void advanced_pipeline_processor(uint64_t param_1, code *param_2) {
 }
 
 // 渲染结果处理器别名
-int8_t render_result_processor(longlong param_1, uint64_t param_2, uint64_t param_3, 
+int8_t render_result_processor(int64_t param_1, uint64_t param_2, uint64_t param_3, 
                                  uint64_t param_4, uint64_t *param_5) { 
     return rendering_system_render_result_processor(param_1, param_2, param_3, param_4, param_5); 
 }
@@ -988,7 +988,7 @@ int active_render_object_count;
 // 渲染管线状态
 int render_pipeline_state;
 // 渲染上下文指针
-longlong *render_context_ptr;
+int64_t *render_context_ptr;
 // 渲染缓冲区大小
 int render_buffer_size;
 // 渲染性能计数器

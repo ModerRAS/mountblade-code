@@ -7,39 +7,39 @@
 // 函数: 从容器中移除并释放对象引用
 // 参数: container_ptr - 容器对象指针, object_ptr - 要移除的对象指针
 // 功能: 从容器中查找并移除指定对象，然后释放其资源
-void remove_and_release_object_reference(longlong container_ptr, longlong *object_ptr)
+void remove_and_release_object_reference(int64_t container_ptr, int64_t *object_ptr)
 
 {
-  longlong *current_item;
-  ulonglong item_count;
-  longlong target_address;
-  longlong *array_ptr;
+  int64_t *current_item;
+  uint64_t item_count;
+  int64_t target_address;
+  int64_t *array_ptr;
   int index;
-  ulonglong container_end;
+  uint64_t container_end;
   
   index = 0;
-  current_item = *(longlong **)(container_ptr + 0x48);
-  item_count = *(longlong *)(container_ptr + 0x50) - (longlong)current_item >> 3;
+  current_item = *(int64_t **)(container_ptr + 0x48);
+  item_count = *(int64_t *)(container_ptr + 0x50) - (int64_t)current_item >> 3;
   array_ptr = current_item;
   if (item_count != 0) {
     do {
-      if ((longlong *)*array_ptr == object_ptr) {
+      if ((int64_t *)*array_ptr == object_ptr) {
         FUN_18020e7b0(current_item[index]);
-        container_end = *(ulonglong *)(container_ptr + 0x50);
-        target_address = *(longlong *)(container_ptr + 0x48) + (longlong)index * 8;
+        container_end = *(uint64_t *)(container_ptr + 0x50);
+        target_address = *(int64_t *)(container_ptr + 0x48) + (int64_t)index * 8;
         item_count = target_address + 8;
         if (item_count < container_end) {
                     // WARNING: Subroutine does not return
           memmove(target_address, item_count, container_end - item_count);
         }
-        *(ulonglong *)(container_ptr + 0x50) = container_end - 8;
+        *(uint64_t *)(container_ptr + 0x50) = container_end - 8;
         break;
       }
       index = index + 1;
       array_ptr = array_ptr + 1;
-    } while ((ulonglong)(longlong)index < item_count);
+    } while ((uint64_t)(int64_t)index < item_count);
   }
-  if (object_ptr != (longlong *)0x0) {
+  if (object_ptr != (int64_t *)0x0) {
     target_address = __RTCastToVoid(object_ptr);
     (**(code **)(*object_ptr + 0x28))(object_ptr, 0);
     if (target_address != 0) {
@@ -59,8 +59,8 @@ void remove_and_release_object_reference(longlong container_ptr, longlong *objec
 void cleanup_global_object_references(void)
 
 {
-  longlong object_handle;
-  longlong *global_object_ptr;
+  int64_t object_handle;
+  int64_t *global_object_ptr;
   
   object_handle = __RTCastToVoid();
   (**(code **)(*global_object_ptr + 0x28))();
@@ -80,13 +80,13 @@ void cleanup_global_object_references(void)
 // 函数: 释放资源并解锁互斥锁
 // 参数: object_ptr - 包含资源的对象指针
 // 功能: 释放指定对象的资源，并解锁相关互斥锁
-void release_resource_and_unlock_mutex(longlong object_ptr)
+void release_resource_and_unlock_mutex(int64_t object_ptr)
 
 {
   int lock_result;
-  longlong mutex_address;
+  int64_t mutex_address;
   
-  FUN_18020f150(*(uint64_t *)(*(longlong *)(object_ptr + 8) + 8));
+  FUN_18020f150(*(uint64_t *)(*(int64_t *)(object_ptr + 8) + 8));
   mutex_address = system_message_buffer + 0x20;
   lock_result = _Mtx_lock(mutex_address);
   if (lock_result != 0) {
@@ -110,38 +110,38 @@ void release_resource_and_unlock_mutex(longlong object_ptr)
 // 参数: context_ptr - 上下文指针, object_ptr - 对象指针, 
 //        status_flag - 状态标志, callback_param - 回调参数
 // 功能: 检查对象状态，根据状态执行相应的回调函数
-void process_object_state_and_callbacks(uint64_t context_ptr, longlong *object_ptr, int8_t status_flag, uint64_t callback_param)
+void process_object_state_and_callbacks(uint64_t context_ptr, int64_t *object_ptr, int8_t status_flag, uint64_t callback_param)
 
 {
   code *status_check_func;
-  longlong *thread_context;
+  int64_t *thread_context;
   char is_ready;
   uint64_t retry_count;
   
   retry_count = 0xfffffffffffffffe;
   while( true ) {
-    status_check_func = *(code **)(*(longlong *)*object_ptr + 0x68);
+    status_check_func = *(code **)(*(int64_t *)*object_ptr + 0x68);
     if (status_check_func == (code *)&DEFAULT_STATUS_CHECKER) {
-      is_ready = (char)((longlong *)*object_ptr)[2] != '\0';
+      is_ready = (char)((int64_t *)*object_ptr)[2] != '\0';
     }
     else {
       is_ready = (*status_check_func)();
     }
     if (is_ready != '\0') break;
-    thread_context = (longlong *)get_thread_local_context(context_ptr);
+    thread_context = (int64_t *)get_thread_local_context(context_ptr);
     is_ready = (**(code **)(*thread_context + 0x20))(thread_context, status_flag, *(code **)(*thread_context + 0x20), callback_param, retry_count);
     if (is_ready == '\0') {
-      status_check_func = *(code **)(*(longlong *)*object_ptr + 0x80);
+      status_check_func = *(code **)(*(int64_t *)*object_ptr + 0x80);
       if (status_check_func == (code *)&DEFAULT_CLEANUP_HANDLER) {
-        cleanup_object_resources((longlong *)*object_ptr + 4);
+        cleanup_object_resources((int64_t *)*object_ptr + 4);
       }
       else {
         (*status_check_func)();
       }
     }
   }
-  if ((longlong *)*object_ptr != (longlong *)0x0) {
-    (**(code **)(*(longlong *)*object_ptr + 0x38))();
+  if ((int64_t *)*object_ptr != (int64_t *)0x0) {
+    (**(code **)(*(int64_t *)*object_ptr + 0x38))();
   }
   return;
 }
@@ -154,15 +154,15 @@ void process_object_state_and_callbacks(uint64_t context_ptr, longlong *object_p
 // 参数: context_ptr - 上下文指针, object_array_ptr - 对象数组指针, 
 //        process_flag - 处理标志
 // 功能: 遍历对象数组，处理每个对象的状态变化
-void batch_process_object_states(uint64_t context_ptr, longlong *object_array_ptr, char process_flag)
+void batch_process_object_states(uint64_t context_ptr, int64_t *object_array_ptr, char process_flag)
 
 {
   code *status_check_func;
   bool has_processed;
-  longlong *current_object;
-  ulonglong object_index;
-  longlong array_start;
-  longlong array_end;
+  int64_t *current_object;
+  uint64_t object_index;
+  int64_t array_start;
+  int64_t array_end;
   char is_ready;
   
   array_end = object_array_ptr[1];
@@ -174,7 +174,7 @@ void batch_process_object_states(uint64_t context_ptr, longlong *object_array_pt
       return;
     }
     do {
-      current_object = *(longlong **)(object_index * 8 + array_start);
+      current_object = *(int64_t **)(object_index * 8 + array_start);
       status_check_func = *(code **)(*current_object + 0x68);
       if (status_check_func == (code *)&DEFAULT_STATUS_CHECKER) {
         is_ready = (char)current_object[2] != '\0';
@@ -184,7 +184,7 @@ void batch_process_object_states(uint64_t context_ptr, longlong *object_array_pt
       }
       if (is_ready == '\0') {
         has_processed = true;
-        current_object = (longlong *)get_thread_local_context(context_ptr);
+        current_object = (int64_t *)get_thread_local_context(context_ptr);
         if (process_flag == '\0') {
           is_ready = (**(code **)(*current_object + 0x20))(current_object, 0);
         }
@@ -192,7 +192,7 @@ void batch_process_object_states(uint64_t context_ptr, longlong *object_array_pt
           is_ready = get_global_status_flag();
         }
         if (is_ready == '\0') {
-          current_object = *(longlong **)(object_index * 8 + *object_array_ptr);
+          current_object = *(int64_t **)(object_index * 8 + *object_array_ptr);
           status_check_func = *(code **)(*current_object + 0x80);
           if (status_check_func == (code *)&DEFAULT_CLEANUP_HANDLER) {
             cleanup_object_resources(current_object + 4);
@@ -203,9 +203,9 @@ void batch_process_object_states(uint64_t context_ptr, longlong *object_array_pt
         }
       }
       array_end = object_array_ptr[1];
-      object_index = (ulonglong)((int)object_index + 1);
+      object_index = (uint64_t)((int)object_index + 1);
       array_start = *object_array_ptr;
-    } while (object_index < (ulonglong)(array_end - array_start >> 3));
+    } while (object_index < (uint64_t)(array_end - array_start >> 3));
   } while (has_processed);
   return;
 }
@@ -216,35 +216,35 @@ void batch_process_object_states(uint64_t context_ptr, longlong *object_array_pt
 // 参数: context_manager_ptr - 上下文管理器指针
 // 返回值: 找到的线程本地上下文指针，如果未找到则返回0
 // 功能: 在主池和辅助池中查找属于当前线程的上下文
-longlong get_thread_local_context(longlong context_manager_ptr)
+int64_t get_thread_local_context(int64_t context_manager_ptr)
 
 {
-  longlong context_ptr;
+  int64_t context_ptr;
   int current_thread_id;
-  ulonglong primary_index;
-  ulonglong secondary_index;
+  uint64_t primary_index;
+  uint64_t secondary_index;
   
   secondary_index = 0;
   primary_index = secondary_index;
-  if (*(longlong *)(context_manager_ptr + 0x10) - *(longlong *)(context_manager_ptr + 8) >> 3 != 0) {
+  if (*(int64_t *)(context_manager_ptr + 0x10) - *(int64_t *)(context_manager_ptr + 8) >> 3 != 0) {
     do {
       current_thread_id = _Thrd_id();
-      context_ptr = *(longlong *)(*(longlong *)(context_manager_ptr + 8) + primary_index * 8);
+      context_ptr = *(int64_t *)(*(int64_t *)(context_manager_ptr + 8) + primary_index * 8);
       if (*(int *)(context_ptr + 0x48) == current_thread_id) {
         return context_ptr;
       }
-      primary_index = (ulonglong)((int)primary_index + 1);
-    } while (primary_index < (ulonglong)(*(longlong *)(context_manager_ptr + 0x10) - *(longlong *)(context_manager_ptr + 8) >> 3));
+      primary_index = (uint64_t)((int)primary_index + 1);
+    } while (primary_index < (uint64_t)(*(int64_t *)(context_manager_ptr + 0x10) - *(int64_t *)(context_manager_ptr + 8) >> 3));
   }
-  if (*(longlong *)(context_manager_ptr + 0x30) - *(longlong *)(context_manager_ptr + 0x28) >> 3 != 0) {
+  if (*(int64_t *)(context_manager_ptr + 0x30) - *(int64_t *)(context_manager_ptr + 0x28) >> 3 != 0) {
     do {
       current_thread_id = _Thrd_id();
-      context_ptr = *(longlong *)(*(longlong *)(context_manager_ptr + 0x28) + secondary_index * 8);
+      context_ptr = *(int64_t *)(*(int64_t *)(context_manager_ptr + 0x28) + secondary_index * 8);
       if (*(int *)(context_ptr + 0x48) == current_thread_id) {
         return context_ptr;
       }
-      secondary_index = (ulonglong)((int)secondary_index + 1);
-    } while (secondary_index < (ulonglong)(*(longlong *)(context_manager_ptr + 0x30) - *(longlong *)(context_manager_ptr + 0x28) >> 3)
+      secondary_index = (uint64_t)((int)secondary_index + 1);
+    } while (secondary_index < (uint64_t)(*(int64_t *)(context_manager_ptr + 0x30) - *(int64_t *)(context_manager_ptr + 0x28) >> 3)
             );
   }
   return 0;
@@ -262,13 +262,13 @@ uint64_t * initialize_object_manager(uint64_t *manager_ptr)
 
 {
   uint64_t heap_base;
-  ulonglong buffer_size;
+  uint64_t buffer_size;
   uint64_t *data_array;
-  ulonglong slot_index;
-  ulonglong memory_block;
+  uint64_t slot_index;
+  uint64_t memory_block;
   uint64_t *array_ptr;
-  longlong init_count;
-  longlong array_size;
+  int64_t init_count;
+  int64_t array_size;
   
   memory_block = 0;
   data_array = manager_ptr + 0xb;
@@ -284,7 +284,7 @@ uint64_t * initialize_object_manager(uint64_t *manager_ptr)
     array_ptr = array_ptr + 2;
     init_count = init_count + -1;
   } while (init_count != 0);
-  *(uint64_t *)((longlong)manager_ptr + 0x25c) = 0;
+  *(uint64_t *)((int64_t)manager_ptr + 0x25c) = 0;
   *(int32_t *)(manager_ptr + 0x4b) = 0;
   manager_ptr[7] = 0;
   manager_ptr[8] = 0x20;
@@ -328,7 +328,7 @@ uint64_t * initialize_object_manager(uint64_t *manager_ptr)
       buffer_size = buffer_size + 1;
       *(int8_t *)(memory_block + 0x141 + manager_ptr[3]) = 0;
       memory_block = memory_block + 0x148;
-    } while (buffer_size < (ulonglong)manager_ptr[4]);
+    } while (buffer_size < (uint64_t)manager_ptr[4]);
   }
   return manager_ptr;
 }

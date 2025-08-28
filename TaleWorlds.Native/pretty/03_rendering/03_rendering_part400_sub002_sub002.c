@@ -57,12 +57,12 @@
  * 5. 应用纹理空间变换
  * 6. 优化纹理坐标精度
  */
-void RenderingSystem_AdvancedTextureCoordinateAndUVMappingProcessor(longlong param_1, int8_t (*param_2) [16], float *param_3, int param_4)
+void RenderingSystem_AdvancedTextureCoordinateAndUVMappingProcessor(int64_t param_1, int8_t (*param_2) [16], float *param_3, int param_4)
 {
     // 纹理坐标系统变量
-    longlong texture_coord_index1;        // 纹理坐标索引1
-    longlong texture_coord_index2;        // 纹理坐标索引2
-    longlong texture_coord_index3;        // 纹理坐标索引3
+    int64_t texture_coord_index1;        // 纹理坐标索引1
+    int64_t texture_coord_index2;        // 纹理坐标索引2
+    int64_t texture_coord_index3;        // 纹理坐标索引3
     
     // 纹理参数变量
     float base_texture_coord;             // 基础纹理坐标
@@ -84,16 +84,16 @@ void RenderingSystem_AdvancedTextureCoordinateAndUVMappingProcessor(longlong par
     
     // SIMD处理变量
     uint simd_processing_index;           // SIMD处理索引
-    longlong simd_base_address;           // SIMD基础地址
+    int64_t simd_base_address;           // SIMD基础地址
     float *simd_texture_params;           // SIMD纹理参数指针
     int8_t (*simd_texture_data) [16]; // SIMD纹理数据指针
-    ulonglong simd_control_word;          // SIMD控制字
+    uint64_t simd_control_word;          // SIMD控制字
     
     // 纹理采样变量
-    longlong sampler_index;               // 采样器索引
+    int64_t sampler_index;               // 采样器索引
     int sampler_state;                    // 采样器状态
     uint sampler_mode;                    // 采样器模式
-    longlong texture_address;             // 纹理地址
+    int64_t texture_address;             // 纹理地址
     
     // 临时变量
     int8_t texture_temp1[16];         // 纹理临时变量1
@@ -212,7 +212,7 @@ void RenderingSystem_AdvancedTextureCoordinateAndUVMappingProcessor(longlong par
     int8_t stack_temp21[32];          // 栈临时变量21
     int8_t stack_temp22[16];          // 栈临时变量22
     int8_t stack_temp23[16];          // 栈临时变量23
-    ulonglong stack_temp24;               // 栈临时变量24
+    uint64_t stack_temp24;               // 栈临时变量24
     
     // 纹理处理临时变量
     int8_t texture_proc_temp1[64];   // 纹理处理临时变量1
@@ -221,11 +221,11 @@ void RenderingSystem_AdvancedTextureCoordinateAndUVMappingProcessor(longlong par
     int8_t texture_proc_temp4[64];   // 纹理处理临时变量4
     
     // 初始化栈控制字
-    stack_temp24 = GET_SECURITY_COOKIE() ^ (ulonglong)stack_temp1;
+    stack_temp24 = GET_SECURITY_COOKIE() ^ (uint64_t)stack_temp1;
     
     // 开始纹理坐标处理
     base_texture_coord = *param_3;
-    texture_coord_index3 = (longlong)param_4;
+    texture_coord_index3 = (int64_t)param_4;
     
     // 初始化SIMD寄存器
     texture_temp1 = simd_zmm2._16_48_;
@@ -359,9 +359,9 @@ void RenderingSystem_AdvancedTextureCoordinateAndUVMappingProcessor(longlong par
     // 开始SIMD优化的纹理坐标处理循环
     do {
         // 计算纹理坐标索引
-        texture_coord_index1 = (ulonglong)*(uint *)(&unknown_var_3920_ptr + texture_coord_index1) * 0x10;
-        texture_coord_index2 = (ulonglong)*(uint *)(&unknown_var_3856_ptr + texture_coord_index1) * 0x10;
-        texture_coord_index3 = (ulonglong)*(uint *)(&unknown_var_3888_ptr + texture_coord_index1) * 0x10;
+        texture_coord_index1 = (uint64_t)*(uint *)(&unknown_var_3920_ptr + texture_coord_index1) * 0x10;
+        texture_coord_index2 = (uint64_t)*(uint *)(&unknown_var_3856_ptr + texture_coord_index1) * 0x10;
+        texture_coord_index3 = (uint64_t)*(uint *)(&unknown_var_3888_ptr + texture_coord_index1) * 0x10;
         
         // 计算纹理坐标变换
         texture_temp7._0_4_ = *(float *)(stack_temp8 + texture_coord_index1) + texture_coord_stack11 + 
@@ -374,7 +374,7 @@ void RenderingSystem_AdvancedTextureCoordinateAndUVMappingProcessor(longlong par
                                *(float *)(stack_temp15 + texture_coord_index2 + 0xc) + *(float *)(stack_temp16 + texture_coord_index3 + 0xc);
         
         // 计算第二组纹理坐标
-        texture_coord_index1 = (ulonglong)*(uint *)(&unknown_var_3924_ptr + texture_coord_index1) * 0x10;
+        texture_coord_index1 = (uint64_t)*(uint *)(&unknown_var_3924_ptr + texture_coord_index1) * 0x10;
         uv_mapping_temp1 = *(float *)(stack_temp8 + texture_coord_index1);
         sampler_param2 = *(float *)(stack_temp8 + texture_coord_index1 + 4);
         sampler_param4 = *(float *)(stack_temp8 + texture_coord_index1 + 8);
@@ -388,7 +388,7 @@ void RenderingSystem_AdvancedTextureCoordinateAndUVMappingProcessor(longlong par
         texture_temp9 = divps(texture_temp7, texture_temp9);
         
         // 计算UV映射参数
-        texture_coord_index1 = (ulonglong)*(uint *)(&unknown_var_3860_ptr + texture_coord_index1) * 0x10;
+        texture_coord_index1 = (uint64_t)*(uint *)(&unknown_var_3860_ptr + texture_coord_index1) * 0x10;
         sampler_param6 = *(float *)(stack_temp15 + texture_coord_index1);
         sampler_param7 = *(float *)(stack_temp15 + texture_coord_index1 + 4);
         texture_param_u = *(float *)(stack_temp15 + texture_coord_index1 + 8);
@@ -399,7 +399,7 @@ void RenderingSystem_AdvancedTextureCoordinateAndUVMappingProcessor(longlong par
         texture_temp2 = minps(texture_temp8, texture_temp9);
         
         // 计算第三组纹理坐标
-        texture_coord_index1 = (ulonglong)simd_processing_index * 0x10;
+        texture_coord_index1 = (uint64_t)simd_processing_index * 0x10;
         texture_temp5._0_4_ = uv_mapping_temp1 + texture_coord_stack11 + sampler_param6 + 
                               *(float *)(stack_temp16 + texture_coord_index1);
         texture_temp5._4_4_ = sampler_param2 + texture_coord_stack12 + sampler_param7 + 
@@ -413,7 +413,7 @@ void RenderingSystem_AdvancedTextureCoordinateAndUVMappingProcessor(longlong par
         texture_temp6 = maxps(texture_temp6, texture_temp9);
         
         // 继续纹理坐标计算
-        texture_coord_index1 = (ulonglong)*(uint *)(&unknown_var_3928_ptr + texture_coord_index1) * 0x10;
+        texture_coord_index1 = (uint64_t)*(uint *)(&unknown_var_3928_ptr + texture_coord_index1) * 0x10;
         uv_mapping_temp1 = *(float *)(stack_temp8 + texture_coord_index1);
         sampler_param2 = *(float *)(stack_temp8 + texture_coord_index1 + 4);
         sampler_param4 = *(float *)(stack_temp8 + texture_coord_index1 + 8);
@@ -427,7 +427,7 @@ void RenderingSystem_AdvancedTextureCoordinateAndUVMappingProcessor(longlong par
         texture_temp8 = divps(texture_temp5, texture_temp4);
         
         // 计算最终的UV映射参数
-        texture_coord_index1 = (ulonglong)*(uint *)(&unknown_var_3864_ptr + texture_coord_index1) * 0x10;
+        texture_coord_index1 = (uint64_t)*(uint *)(&unknown_var_3864_ptr + texture_coord_index1) * 0x10;
         sampler_param6 = *(float *)(stack_temp15 + texture_coord_index1);
         sampler_param7 = *(float *)(stack_temp15 + texture_coord_index1 + 4);
         texture_param_u = *(float *)(stack_temp15 + texture_coord_index1 + 8);
@@ -438,7 +438,7 @@ void RenderingSystem_AdvancedTextureCoordinateAndUVMappingProcessor(longlong par
         texture_temp9 = minps(texture_temp2, texture_temp8);
         
         // 计算最终纹理坐标
-        texture_coord_index1 = (ulonglong)simd_processing_index * 0x10;
+        texture_coord_index1 = (uint64_t)simd_processing_index * 0x10;
         texture_temp6._0_4_ = uv_mapping_temp1 + texture_coord_stack11 + sampler_param6 + 
                              *(float *)(stack_temp16 + texture_coord_index1);
         texture_temp6._4_4_ = sampler_param2 + texture_coord_stack12 + sampler_param7 + 
@@ -459,7 +459,7 @@ void RenderingSystem_AdvancedTextureCoordinateAndUVMappingProcessor(longlong par
         texture_temp8 = divps(texture_temp6, texture_temp3);
         
         // 处理最后的纹理坐标
-        texture_coord_index1 = (ulonglong)*(uint *)(&unknown_var_3932_ptr + texture_coord_index1) * 0x10;
+        texture_coord_index1 = (uint64_t)*(uint *)(&unknown_var_3932_ptr + texture_coord_index1) * 0x10;
         uv_mapping_temp1 = *(float *)(stack_temp8 + texture_coord_index1);
         sampler_param2 = *(float *)(stack_temp8 + texture_coord_index1 + 4);
         sampler_param4 = *(float *)(stack_temp8 + texture_coord_index1 + 8);
@@ -470,10 +470,10 @@ void RenderingSystem_AdvancedTextureCoordinateAndUVMappingProcessor(longlong par
         texture_temp4 = minps(texture_temp9, texture_temp8);
         
         // 完成纹理坐标处理
-        texture_coord_index1 = (ulonglong)simd_processing_index * 0x10;
+        texture_coord_index1 = (uint64_t)simd_processing_index * 0x10;
         simd_processing_index = *(uint *)(&unknown_var_3868_ptr + texture_coord_index1);
         texture_temp9 = maxps(texture_temp6, texture_temp8);
-        texture_coord_index2 = (ulonglong)simd_processing_index * 0x10;
+        texture_coord_index2 = (uint64_t)simd_processing_index * 0x10;
         
         // 计算最终的纹理变换
         texture_temp4._0_4_ = *(float *)(stack_temp16 + texture_coord_index2) + uv_mapping_temp1 + 
@@ -559,9 +559,9 @@ void RenderingSystem_AdvancedTextureCoordinateAndUVMappingProcessor(longlong par
                     texture_matrix_size = sampler_state;
                     if (texture_temp4._0_4_ <= texture_temp4._8_4_) {
                         // 处理纹理坐标块
-                        simd_control_word = (ulonglong)((texture_temp4._8_4_ - texture_temp4._0_4_) + 1);
-                        simd_texture_params = (float *)(*(longlong *)(param_1 + 600 + texture_coord_index3 * 8) + 
-                                                   (longlong)sampler_state * 4 + (longlong)texture_temp4._0_4_ * 4);
+                        simd_control_word = (uint64_t)((texture_temp4._8_4_ - texture_temp4._0_4_) + 1);
+                        simd_texture_params = (float *)(*(int64_t *)(param_1 + 600 + texture_coord_index3 * 8) + 
+                                                   (int64_t)sampler_state * 4 + (int64_t)texture_temp4._0_4_ * 4);
                         do {
                             // 执行纹理坐标优化
                             texture_coord_temp1._8_4_ = uv_mapping_temp1;
@@ -593,36 +593,36 @@ void RenderingSystem_AdvancedTextureCoordinateAndUVMappingProcessor(longlong par
                                 // 执行纹理坐标SIMD变换
                                 texture_temp8 = vshufps_avx(*(int8_t (*) [16])
                                                           (stack_temp18 + 
-                                                          (ulonglong)*(uint *)(&unknown_var_3712_ptr + 
-                                                          (ulonglong)uv_mapping_index1 * 4) * 0x10),
+                                                          (uint64_t)*(uint *)(&unknown_var_3712_ptr + 
+                                                          (uint64_t)uv_mapping_index1 * 4) * 0x10),
                                                           *(int8_t (*) [16])
                                                           (stack_temp18 + 
-                                                          (ulonglong)*(uint *)(&unknown_var_3712_ptr + 
-                                                          (ulonglong)(uv_mapping_index1 + 3) * 4) * 0x10), 0x44);
+                                                          (uint64_t)*(uint *)(&unknown_var_3712_ptr + 
+                                                          (uint64_t)(uv_mapping_index1 + 3) * 4) * 0x10), 0x44);
                                 texture_temp6 = vshufps_avx(*(int8_t (*) [16])
                                                           (stack_temp18 + 
-                                                          (ulonglong)*(uint *)(&unknown_var_3712_ptr + 
-                                                          (ulonglong)uv_mapping_index1 * 4) * 0x10),
+                                                          (uint64_t)*(uint *)(&unknown_var_3712_ptr + 
+                                                          (uint64_t)uv_mapping_index1 * 4) * 0x10),
                                                           *(int8_t (*) [16])
                                                           (stack_temp18 + 
-                                                          (ulonglong)*(uint *)(&unknown_var_3712_ptr + 
-                                                          (ulonglong)(uv_mapping_index1 + 3) * 4) * 0x10), 0xee);
+                                                          (uint64_t)*(uint *)(&unknown_var_3712_ptr + 
+                                                          (uint64_t)(uv_mapping_index1 + 3) * 4) * 0x10), 0xee);
                                 texture_temp9 = vshufps_avx(*(int8_t (*) [16])
                                                           (stack_temp18 + 
-                                                          (ulonglong)*(uint *)(&unknown_var_3712_ptr + 
-                                                          (ulonglong)((simd_processing_index + 2) * 3) * 4) * 0x10),
+                                                          (uint64_t)*(uint *)(&unknown_var_3712_ptr + 
+                                                          (uint64_t)((simd_processing_index + 2) * 3) * 4) * 0x10),
                                                           *(int8_t (*) [16])
                                                           (stack_temp18 + 
-                                                          (ulonglong)*(uint *)(&unknown_var_3712_ptr + 
-                                                          (ulonglong)((simd_processing_index + 3) * 3) * 4) * 0x10), 0x44);
+                                                          (uint64_t)*(uint *)(&unknown_var_3712_ptr + 
+                                                          (uint64_t)((simd_processing_index + 3) * 3) * 4) * 0x10), 0x44);
                                 texture_temp4 = vshufps_avx(*(int8_t (*) [16])
                                                           (stack_temp18 + 
-                                                          (ulonglong)*(uint *)(&unknown_var_3712_ptr + 
-                                                          (ulonglong)((simd_processing_index + 2) * 3) * 4) * 0x10),
+                                                          (uint64_t)*(uint *)(&unknown_var_3712_ptr + 
+                                                          (uint64_t)((simd_processing_index + 2) * 3) * 4) * 0x10),
                                                           *(int8_t (*) [16])
                                                           (stack_temp18 + 
-                                                          (ulonglong)*(uint *)(&unknown_var_3712_ptr + 
-                                                          (ulonglong)((simd_processing_index + 3) * 3) * 4) * 0x10), 0xee);
+                                                          (uint64_t)*(uint *)(&unknown_var_3712_ptr + 
+                                                          (uint64_t)((simd_processing_index + 3) * 3) * 4) * 0x10), 0xee);
                                 
                                 // 执行纹理坐标矩阵变换
                                 texture_temp11 = vshufps_avx(texture_temp8, texture_temp9, 0x88);
@@ -632,53 +632,53 @@ void RenderingSystem_AdvancedTextureCoordinateAndUVMappingProcessor(longlong par
                                 // 继续纹理坐标变换
                                 texture_temp8 = vshufps_avx(*(int8_t (*) [16])
                                                           (stack_temp18 + 
-                                                          (ulonglong)*(uint *)(&unknown_var_3712_ptr + 
-                                                          (ulonglong)(uv_mapping_index1 + 1) * 4) * 0x10),
+                                                          (uint64_t)*(uint *)(&unknown_var_3712_ptr + 
+                                                          (uint64_t)(uv_mapping_index1 + 1) * 4) * 0x10),
                                                           *(int8_t (*) [16])
                                                           (stack_temp18 + 
-                                                          (ulonglong)*(uint *)(&unknown_var_3712_ptr + 
-                                                          (ulonglong)(uv_mapping_index1 + 4) * 4) * 0x10), 0x44);
+                                                          (uint64_t)*(uint *)(&unknown_var_3712_ptr + 
+                                                          (uint64_t)(uv_mapping_index1 + 4) * 4) * 0x10), 0x44);
                                 texture_temp6 = vshufps_avx(*(int8_t (*) [16])
                                                           (stack_temp18 + 
-                                                          (ulonglong)*(uint *)(&unknown_var_3712_ptr + 
-                                                          (ulonglong)(uv_mapping_index1 + 1) * 4) * 0x10),
+                                                          (uint64_t)*(uint *)(&unknown_var_3712_ptr + 
+                                                          (uint64_t)(uv_mapping_index1 + 1) * 4) * 0x10),
                                                           *(int8_t (*) [16])
                                                           (stack_temp18 + 
-                                                          (ulonglong)*(uint *)(&unknown_var_3712_ptr + 
-                                                          (ulonglong)(uv_mapping_index1 + 4) * 4) * 0x10), 0xee);
+                                                          (uint64_t)*(uint *)(&unknown_var_3712_ptr + 
+                                                          (uint64_t)(uv_mapping_index1 + 4) * 4) * 0x10), 0xee);
                                 texture_temp9 = vshufps_avx(*(int8_t (*) [16])
                                                           (stack_temp18 + 
-                                                          (ulonglong)*(uint *)(&unknown_var_3712_ptr + 
-                                                          (ulonglong)(uv_mapping_index1 + 7) * 4) * 0x10),
+                                                          (uint64_t)*(uint *)(&unknown_var_3712_ptr + 
+                                                          (uint64_t)(uv_mapping_index1 + 7) * 4) * 0x10),
                                                           *(int8_t (*) [16])
                                                           (stack_temp18 + 
-                                                          (ulonglong)*(uint *)(&unknown_var_3712_ptr + 
-                                                          (ulonglong)(uv_mapping_index1 + 10) * 4) * 0x10), 0x44);
+                                                          (uint64_t)*(uint *)(&unknown_var_3712_ptr + 
+                                                          (uint64_t)(uv_mapping_index1 + 10) * 4) * 0x10), 0x44);
                                 texture_temp4 = vshufps_avx(*(int8_t (*) [16])
                                                           (stack_temp18 + 
-                                                          (ulonglong)*(uint *)(&unknown_var_3712_ptr + 
-                                                          (ulonglong)(uv_mapping_index1 + 7) * 4) * 0x10),
+                                                          (uint64_t)*(uint *)(&unknown_var_3712_ptr + 
+                                                          (uint64_t)(uv_mapping_index1 + 7) * 4) * 0x10),
                                                           *(int8_t (*) [16])
                                                           (stack_temp18 + 
-                                                          (ulonglong)*(uint *)(&unknown_var_3712_ptr + 
-                                                          (ulonglong)(uv_mapping_index1 + 10) * 4) * 0x10), 0xee);
+                                                          (uint64_t)*(uint *)(&unknown_var_3712_ptr + 
+                                                          (uint64_t)(uv_mapping_index1 + 10) * 4) * 0x10), 0xee);
                                 
                                 // 执行最终的纹理坐标变换
                                 texture_temp3 = vshufps_avx(texture_temp8, texture_temp9, 0x88);
                                 texture_temp4 = vshufps_avx(texture_temp8, texture_temp9, 0xdd);
                                 texture_temp8 = *(int8_t (*) [16])
                                             (stack_temp18 + 
-                                            (ulonglong)*(uint *)(&unknown_var_3712_ptr + 
-                                            (ulonglong)(uv_mapping_index1 + 2) * 4) * 0x10);
+                                            (uint64_t)*(uint *)(&unknown_var_3712_ptr + 
+                                            (uint64_t)(uv_mapping_index1 + 2) * 4) * 0x10);
                                 texture_temp4 = vshufps_avx(texture_temp6, texture_temp4, 0x88);
                                 texture_temp6 = *(int8_t (*) [16])
                                             (stack_temp18 + 
-                                            (ulonglong)*(uint *)(&unknown_var_3712_ptr + 
-                                            (ulonglong)(uv_mapping_index1 + 5) * 4) * 0x10);
+                                            (uint64_t)*(uint *)(&unknown_var_3712_ptr + 
+                                            (uint64_t)(uv_mapping_index1 + 5) * 4) * 0x10);
                                 texture_temp9 = *(int8_t (*) [16])
                                             (stack_temp18 + 
-                                            (ulonglong)*(uint *)(&unknown_var_3712_ptr + 
-                                            (ulonglong)(uv_mapping_index1 + 8) * 4) * 0x10);
+                                            (uint64_t)*(uint *)(&unknown_var_3712_ptr + 
+                                            (uint64_t)(uv_mapping_index1 + 8) * 4) * 0x10);
                                 uv_mapping_index1 = uv_mapping_index1 + 0xb;
                             }
                             else {
@@ -690,36 +690,36 @@ void RenderingSystem_AdvancedTextureCoordinateAndUVMappingProcessor(longlong par
                                 // 执行替代的纹理坐标变换
                                 texture_temp8 = vshufps_avx(*(int8_t (*) [16])
                                                           (stack_temp18 + 
-                                                          (ulonglong)*(uint *)(&unknown_var_3712_ptr + 
-                                                          (ulonglong)uv_mapping_index2 * 4) * 0x10),
+                                                          (uint64_t)*(uint *)(&unknown_var_3712_ptr + 
+                                                          (uint64_t)uv_mapping_index2 * 4) * 0x10),
                                                           *(int8_t (*) [16])
                                                           (stack_temp18 + 
-                                                          (ulonglong)*(uint *)(&unknown_var_3712_ptr + 
-                                                          (ulonglong)(uv_mapping_index2 + 3) * 4) * 0x10), 0x44);
+                                                          (uint64_t)*(uint *)(&unknown_var_3712_ptr + 
+                                                          (uint64_t)(uv_mapping_index2 + 3) * 4) * 0x10), 0x44);
                                 texture_temp6 = vshufps_avx(*(int8_t (*) [16])
                                                           (stack_temp18 + 
-                                                          (ulonglong)*(uint *)(&unknown_var_3712_ptr + 
-                                                          (ulonglong)uv_mapping_index2 * 4) * 0x10),
+                                                          (uint64_t)*(uint *)(&unknown_var_3712_ptr + 
+                                                          (uint64_t)uv_mapping_index2 * 4) * 0x10),
                                                           *(int8_t (*) [16])
                                                           (stack_temp18 + 
-                                                          (ulonglong)*(uint *)(&unknown_var_3712_ptr + 
-                                                          (ulonglong)(uv_mapping_index2 + 3) * 4) * 0x10), 0xee);
+                                                          (uint64_t)*(uint *)(&unknown_var_3712_ptr + 
+                                                          (uint64_t)(uv_mapping_index2 + 3) * 4) * 0x10), 0xee);
                                 texture_temp9 = vshufps_avx(*(int8_t (*) [16])
                                                           (stack_temp18 + 
-                                                          (ulonglong)*(uint *)(&unknown_var_3712_ptr + 
-                                                          (ulonglong)uv_mapping_index2 * 4) * 0x10),
+                                                          (uint64_t)*(uint *)(&unknown_var_3712_ptr + 
+                                                          (uint64_t)uv_mapping_index2 * 4) * 0x10),
                                                           *(int8_t (*) [16])
                                                           (stack_temp18 + 
-                                                          (ulonglong)*(uint *)(&unknown_var_3712_ptr + 
-                                                          (ulonglong)uv_mapping_index1 * 4) * 0x10), 0x44);
+                                                          (uint64_t)*(uint *)(&unknown_var_3712_ptr + 
+                                                          (uint64_t)uv_mapping_index1 * 4) * 0x10), 0x44);
                                 texture_temp4 = vshufps_avx(*(int8_t (*) [16])
                                                           (stack_temp18 + 
-                                                          (ulonglong)*(uint *)(&unknown_var_3712_ptr + 
-                                                          (ulonglong)uv_mapping_index2 * 4) * 0x10),
+                                                          (uint64_t)*(uint *)(&unknown_var_3712_ptr + 
+                                                          (uint64_t)uv_mapping_index2 * 4) * 0x10),
                                                           *(int8_t (*) [16])
                                                           (stack_temp18 + 
-                                                          (ulonglong)*(uint *)(&unknown_var_3712_ptr + 
-                                                          (ulonglong)uv_mapping_index1 * 4) * 0x10), 0xee);
+                                                          (uint64_t)*(uint *)(&unknown_var_3712_ptr + 
+                                                          (uint64_t)uv_mapping_index1 * 4) * 0x10), 0xee);
                                 
                                 // 执行替代的纹理坐标矩阵变换
                                 texture_temp11 = vshufps_avx(texture_temp8, texture_temp9, 0x88);
@@ -729,53 +729,53 @@ void RenderingSystem_AdvancedTextureCoordinateAndUVMappingProcessor(longlong par
                                 // 继续替代变换路径
                                 texture_temp8 = vshufps_avx(*(int8_t (*) [16])
                                                           (stack_temp18 + 
-                                                          (ulonglong)*(uint *)(&unknown_var_3712_ptr + 
-                                                          (ulonglong)(uv_mapping_index2 + 2) * 4) * 0x10),
+                                                          (uint64_t)*(uint *)(&unknown_var_3712_ptr + 
+                                                          (uint64_t)(uv_mapping_index2 + 2) * 4) * 0x10),
                                                           *(int8_t (*) [16])
                                                           (stack_temp18 + 
-                                                          (ulonglong)*(uint *)(&unknown_var_3712_ptr + 
-                                                          (ulonglong)(uv_mapping_index2 + 5) * 4) * 0x10), 0x44);
+                                                          (uint64_t)*(uint *)(&unknown_var_3712_ptr + 
+                                                          (uint64_t)(uv_mapping_index2 + 5) * 4) * 0x10), 0x44);
                                 texture_temp6 = vshufps_avx(*(int8_t (*) [16])
                                                           (stack_temp18 + 
-                                                          (ulonglong)*(uint *)(&unknown_var_3712_ptr + 
-                                                          (ulonglong)(uv_mapping_index2 + 2) * 4) * 0x10),
+                                                          (uint64_t)*(uint *)(&unknown_var_3712_ptr + 
+                                                          (uint64_t)(uv_mapping_index2 + 2) * 4) * 0x10),
                                                           *(int8_t (*) [16])
                                                           (stack_temp18 + 
-                                                          (ulonglong)*(uint *)(&unknown_var_3712_ptr + 
-                                                          (ulonglong)(uv_mapping_index2 + 5) * 4) * 0x10), 0xee);
+                                                          (uint64_t)*(uint *)(&unknown_var_3712_ptr + 
+                                                          (uint64_t)(uv_mapping_index2 + 5) * 4) * 0x10), 0xee);
                                 texture_temp9 = vshufps_avx(*(int8_t (*) [16])
                                                           (stack_temp18 + 
-                                                          (ulonglong)*(uint *)(&unknown_var_3712_ptr + 
-                                                          (ulonglong)(uv_mapping_index2 + 2) * 4) * 0x10),
+                                                          (uint64_t)*(uint *)(&unknown_var_3712_ptr + 
+                                                          (uint64_t)(uv_mapping_index2 + 2) * 4) * 0x10),
                                                           *(int8_t (*) [16])
                                                           (stack_temp18 + 
-                                                          (ulonglong)*(uint *)(&unknown_var_3712_ptr + 
-                                                          (ulonglong)(uv_mapping_index1 + 2) * 4) * 0x10), 0x44);
+                                                          (uint64_t)*(uint *)(&unknown_var_3712_ptr + 
+                                                          (uint64_t)(uv_mapping_index1 + 2) * 4) * 0x10), 0x44);
                                 texture_temp4 = vshufps_avx(*(int8_t (*) [16])
                                                           (stack_temp18 + 
-                                                          (ulonglong)*(uint *)(&unknown_var_3712_ptr + 
-                                                          (ulonglong)(uv_mapping_index2 + 2) * 4) * 0x10),
+                                                          (uint64_t)*(uint *)(&unknown_var_3712_ptr + 
+                                                          (uint64_t)(uv_mapping_index2 + 2) * 4) * 0x10),
                                                           *(int8_t (*) [16])
                                                           (stack_temp18 + 
-                                                          (ulonglong)*(uint *)(&unknown_var_3712_ptr + 
-                                                          (ulonglong)(uv_mapping_index1 + 2) * 4) * 0x10), 0xee);
+                                                          (uint64_t)*(uint *)(&unknown_var_3712_ptr + 
+                                                          (uint64_t)(uv_mapping_index1 + 2) * 4) * 0x10), 0xee);
                                 
                                 // 完成替代变换
                                 texture_temp3 = vshufps_avx(texture_temp8, texture_temp9, 0x88);
                                 texture_temp4 = vshufps_avx(texture_temp8, texture_temp9, 0xdd);
                                 texture_temp8 = *(int8_t (*) [16])
                                             (stack_temp18 + 
-                                            (ulonglong)*(uint *)(&unknown_var_3712_ptr + 
-                                            (ulonglong)(uv_mapping_index2 + 1) * 4) * 0x10);
+                                            (uint64_t)*(uint *)(&unknown_var_3712_ptr + 
+                                            (uint64_t)(uv_mapping_index2 + 1) * 4) * 0x10);
                                 texture_temp4 = vshufps_avx(texture_temp6, texture_temp4, 0x88);
                                 texture_temp6 = *(int8_t (*) [16])
                                             (stack_temp18 + 
-                                            (ulonglong)*(uint *)(&unknown_var_3712_ptr + 
-                                            (ulonglong)(uv_mapping_index2 + 4) * 4) * 0x10);
+                                            (uint64_t)*(uint *)(&unknown_var_3712_ptr + 
+                                            (uint64_t)(uv_mapping_index2 + 4) * 4) * 0x10);
                                 texture_temp9 = *(int8_t (*) [16])
                                             (stack_temp18 + 
-                                            (ulonglong)*(uint *)(&unknown_var_3712_ptr + 
-                                            (ulonglong)(uv_mapping_index2 + 1) * 4) * 0x10);
+                                            (uint64_t)*(uint *)(&unknown_var_3712_ptr + 
+                                            (uint64_t)(uv_mapping_index2 + 1) * 4) * 0x10);
                                 uv_mapping_index1 = uv_mapping_index1 + 1;
                             }
                             
@@ -786,12 +786,12 @@ void RenderingSystem_AdvancedTextureCoordinateAndUVMappingProcessor(longlong par
                             texture_temp8 = vshufps_avx(texture_temp8, texture_temp6, 0xee);
                             texture_temp6 = vshufps_avx(texture_temp9, *(int8_t (*) [16])
                                                       (stack_temp18 + 
-                                                      (ulonglong)*(uint *)(&unknown_var_3712_ptr + 
-                                                      (ulonglong)uv_mapping_index1 * 4) * 0x10), 0x44);
+                                                      (uint64_t)*(uint *)(&unknown_var_3712_ptr + 
+                                                      (uint64_t)uv_mapping_index1 * 4) * 0x10), 0x44);
                             texture_temp2 = vshufps_avx(texture_temp9, *(int8_t (*) [16])
                                                       (stack_temp18 + 
-                                                      (ulonglong)*(uint *)(&unknown_var_3712_ptr + 
-                                                      (ulonglong)uv_mapping_index1 * 4) * 0x10), 0xee);
+                                                      (uint64_t)*(uint *)(&unknown_var_3712_ptr + 
+                                                      (uint64_t)uv_mapping_index1 * 4) * 0x10), 0xee);
                             texture_temp5 = vshufps_avx(texture_temp3, texture_temp6, 0x88);
                             texture_temp7 = vshufps_avx(texture_temp3, texture_temp6, 0xdd);
                             texture_temp6 = vcvtps2dq_avx(texture_temp11);
@@ -924,7 +924,7 @@ void RenderingSystem_AdvancedTextureCoordinateAndUVMappingProcessor(longlong par
                                     simd_stack1._20_4_ = uv_mapping_temp1;
                                     simd_stack1._24_4_ = uv_mapping_temp1;
                                     simd_stack1._28_4_ = uv_mapping_temp1;
-                                    sampler_param2 = *(float *)((longlong)texture_coord_array4 + texture_coord_index1);
+                                    sampler_param2 = *(float *)((int64_t)texture_coord_array4 + texture_coord_index1);
                                     simd_stack2._4_4_ = sampler_param2;
                                     simd_stack2._0_4_ = sampler_param2;
                                     simd_stack2._8_4_ = sampler_param2;
@@ -1023,7 +1023,7 @@ void RenderingSystem_AdvancedTextureCoordinateAndUVMappingProcessor(longlong par
                                         // 检查纹理坐标范围
                                         if ((int)uv_mapping_index2 < *(int *)(stack_temp20 + texture_coord_index1)) {
                                             // 处理纹理坐标范围
-                                            simd_control_word = (ulonglong)(((*(int *)(stack_temp20 + texture_coord_index1) - uv_mapping_index2) - 1 >> 2) + 1);
+                                            simd_control_word = (uint64_t)(((*(int *)(stack_temp20 + texture_coord_index1) - uv_mapping_index2) - 1 >> 2) + 1);
                                             texture_temp7 = _stack_temp16;
                                             texture_temp6 = _stack_temp15;
                                             texture_temp2 = _stack_temp8;
@@ -1033,12 +1033,12 @@ void RenderingSystem_AdvancedTextureCoordinateAndUVMappingProcessor(longlong par
                                                 texture_temp9 = vpor_avx2(texture_temp6, texture_temp7);
                                                 texture_temp7 = vpaddd_avx2(texture_temp7, stack_temp17);
                                                 texture_temp6 = vpaddd_avx2(texture_temp6, stack_temp15);
-                                                texture_coord_index2 = (longlong)sampler_state;
+                                                texture_coord_index2 = (int64_t)sampler_state;
                                                 sampler_state = sampler_state + 8;
                                                 texture_temp2 = vpor_avx2(texture_temp9, texture_temp2);
                                                 texture_temp2 = vpaddd_avx2(texture_temp2, stack_temp10);
                                                 texture_temp9 = vcmpps_avx(texture_temp1, *(int8_t (*) [32])
-                                                                      (*(longlong *)(param_1 + 0x1f8 + texture_coord_index3 * 8) + 
+                                                                      (*(int64_t *)(param_1 + 0x1f8 + texture_coord_index3 * 8) + 
                                                                       texture_coord_index2 * 4), 0x1d);
                                                 texture_temp6._0_4_ = texture_temp1._0_4_ + stack_temp5._0_4_;
                                                 texture_temp6._4_4_ = texture_temp1._4_4_ + stack_temp5._4_4_;
@@ -1081,7 +1081,7 @@ void RenderingSystem_AdvancedTextureCoordinateAndUVMappingProcessor(longlong par
     
 LAB_18048f1aa:
     // 返回纹理处理结果
-    FUN_1808fc050(stack_temp24 ^ (ulonglong)stack_temp1);
+    FUN_1808fc050(stack_temp24 ^ (uint64_t)stack_temp1);
 }
 
 /*===============================================================================================

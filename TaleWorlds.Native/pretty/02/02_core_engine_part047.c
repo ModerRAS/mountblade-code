@@ -11,57 +11,57 @@
 void process_game_object_updates(void* game_context, unsigned char event_type)
 {
     void** object_table;
-    longlong* object_array;
+    int64_t* object_array;
     char result_flag;
     int object_count;
-    longlong* temp_ptr;
-    longlong offset_value;
-    longlong* iterator_ptr;
-    longlong base_address;
-    longlong* object_data;
-    longlong data_value;
-    longlong loop_counter;
-    longlong object_limit;
+    int64_t* temp_ptr;
+    int64_t offset_value;
+    int64_t* iterator_ptr;
+    int64_t base_address;
+    int64_t* object_data;
+    int64_t data_value;
+    int64_t loop_counter;
+    int64_t object_limit;
     unsigned char* name_buffer;
     void* temp_void_ptr;
     void* name_ptr;
     void* default_name;
-    longlong stack_value;
+    int64_t stack_value;
     unsigned char temp_stack_buffer[32];
     unsigned char stack_flag;
     int processed_count;
-    longlong* stack_object_ptr;
-    longlong stack_offset;
+    int64_t* stack_object_ptr;
+    int64_t stack_offset;
     void* stack_buffer_ptr;
     unsigned char* stack_name_ptr;
     unsigned int stack_name_length;
-    unsigned longlong stack_hash_value;
+    unsigned int64_t stack_hash_value;
     void* stack_temp_ptr;
     unsigned char* stack_string_ptr;
     unsigned int stack_string_length;
-    unsigned longlong stack_string_hash;
+    unsigned int64_t stack_string_hash;
     void* stack_buffer2_ptr;
     void* stack_buffer3_ptr;
     unsigned int stack_buffer_length;
-    unsigned longlong stack_buffer_hash;
+    unsigned int64_t stack_buffer_hash;
     unsigned int stack_temp_value;
-    longlong stack_long_value;
-    longlong stack_reserved;
+    int64_t stack_long_value;
+    int64_t stack_reserved;
     void* stack_reserved_ptr;
-    longlong stack_data_value;
+    int64_t stack_data_value;
     unsigned int stack_data_length;
-    unsigned longlong stack_data_hash;
-    unsigned longlong reserved_space[3];
-    unsigned longlong check_value;
+    unsigned int64_t stack_data_hash;
+    unsigned int64_t reserved_space[3];
+    unsigned int64_t check_value;
     
     object_array = global_object_table;
     reserved_space[0] = 0xfffffffffffffffe;
-    check_value = global_hash_seed ^ (unsigned longlong)temp_stack_buffer;
+    check_value = global_hash_seed ^ (unsigned int64_t)temp_stack_buffer;
     loop_counter = 0;
     stack_object_ptr = global_object_table;
     processed_count = 0;
     object_count = (int)((global_object_table[2] - global_object_table[1]) / 0x60);
-    object_limit = (longlong)object_count;
+    object_limit = (int64_t)object_count;
     stack_flag = event_type;
     stack_long_value = object_limit;
     
@@ -71,13 +71,13 @@ void process_game_object_updates(void* game_context, unsigned char event_type)
             offset_value = object_array[1];
             object_count = *(int *)(offset_value + 0x5c + loop_counter);
             if ((object_count < 0) ||
-                (data_value = *(longlong *)(*global_engine_base + 0x888),
-                 (unsigned longlong)(*(longlong *)(*global_engine_base + 0x890) - data_value >> 5) <=
-                 (unsigned longlong)(longlong)object_count)) {
+                (data_value = *(int64_t *)(*global_engine_base + 0x888),
+                 (unsigned int64_t)(*(int64_t *)(*global_engine_base + 0x890) - data_value >> 5) <=
+                 (unsigned int64_t)(int64_t)object_count)) {
                 data_value = allocate_memory_block();
             }
             else {
-                data_value = (longlong)object_count * 0x20 + data_value;
+                data_value = (int64_t)object_count * 0x20 + data_value;
             }
             
             // 处理对象名称
@@ -92,7 +92,7 @@ void process_game_object_updates(void* game_context, unsigned char event_type)
                 memcpy(stack_string_ptr, *(void**)(data_value + 8), *(int *)(data_value + 0x10) + 1);
             }
             
-            if (*(longlong *)(data_value + 8) != 0) {
+            if (*(int64_t *)(data_value + 8) != 0) {
                 stack_string_length = 0;
                 if (stack_string_ptr != (unsigned char*)0x0) {
                     *stack_string_ptr = 0;
@@ -157,13 +157,13 @@ void process_game_object_updates(void* game_context, unsigned char event_type)
             stack_offset = data_value;
             
             if ((object_count < 0) ||
-                (base_address = *(longlong *)(*global_engine_base + 0x888),
-                 (unsigned longlong)(*(longlong *)(*global_engine_base + 0x890) - base_address >> 5) <=
-                 (unsigned longlong)(longlong)object_count)) {
+                (base_address = *(int64_t *)(*global_engine_base + 0x888),
+                 (unsigned int64_t)(*(int64_t *)(*global_engine_base + 0x890) - base_address >> 5) <=
+                 (unsigned int64_t)(int64_t)object_count)) {
                 base_address = allocate_memory_block();
             }
             else {
-                base_address = (longlong)object_count * 0x20 + base_address;
+                base_address = (int64_t)object_count * 0x20 + base_address;
             }
             
             // 处理事件触发
@@ -178,7 +178,7 @@ void process_game_object_updates(void* game_context, unsigned char event_type)
                 memcpy(stack_name_ptr, *(void**)(base_address + 8), *(int *)(base_address + 0x10) + 1);
             }
             
-            if (*(longlong *)(base_address + 8) != 0) {
+            if (*(int64_t *)(base_address + 8) != 0) {
                 stack_name_length = 0;
                 if (stack_name_ptr != (unsigned char*)0x0) {
                     *stack_name_ptr = 0;
@@ -248,33 +248,33 @@ void process_game_object_updates(void* game_context, unsigned char event_type)
     finalize_object_processing(&global_finalization_target);
     
 event_triggered:
-    iterator_ptr = (longlong*)object_array[0x17];
+    iterator_ptr = (int64_t*)object_array[0x17];
     if (iterator_ptr != object_array + 0x16) {
         do {
             object_limit = 0;
             loop_counter = iterator_ptr[4];
-            object_count = (int)(*(longlong*)(loop_counter + 0x188) - *(longlong*)(loop_counter + 0x180) >> 3);
+            object_count = (int)(*(int64_t*)(loop_counter + 0x188) - *(int64_t*)(loop_counter + 0x180) >> 3);
             if (0 < object_count) {
                 do {
-                    object_array = *(longlong**)(*(longlong*)(loop_counter + 0x180) + object_limit * 8);
+                    object_array = *(int64_t**)(*(int64_t*)(loop_counter + 0x180) + object_limit * 8);
                     ((void(**)(void*))(*object_array + 0x60))(object_array);
-                    temp_ptr = (longlong*)((void(**)(void*))(*object_array + 8))(object_array);
+                    temp_ptr = (int64_t*)((void(**)(void*))(*object_array + 8))(object_array);
                     
                     // 检查对象类型标识符
                     if ((((((((*temp_ptr == 0x4c7adebd3eba3679 && (temp_ptr[1] == 0x335e32f621f13486)) ||
-                            ((temp_ptr = (longlong*)((void(**)(void*))(*object_array + 8))(object_array),
+                            ((temp_ptr = (int64_t*)((void(**)(void*))(*object_array + 8))(object_array),
                              *temp_ptr == 0x4f1969021db01393 && (temp_ptr[1] == 0x170783397ab3ba83)))) ||
-                           ((temp_ptr = (longlong*)((void(**)(void*))(*object_array + 8))(object_array),
+                           ((temp_ptr = (int64_t*)((void(**)(void*))(*object_array + 8))(object_array),
                             *temp_ptr == 0x4bea197ca08f8b97 && (temp_ptr[1] == 0x4e83ae6c84535bb9)))) ||
-                          ((temp_ptr = (longlong*)((void(**)(void*))(*object_array + 8))(object_array),
+                          ((temp_ptr = (int64_t*)((void(**)(void*))(*object_array + 8))(object_array),
                            *temp_ptr == 0x4432818ecab5ba7b && (temp_ptr[1] == -0x3f47266e1dfcc872)))) ||
-                         ((((temp_ptr = (longlong*)((void(**)(void*))(*object_array + 8))(object_array),
+                         ((((temp_ptr = (int64_t*)((void(**)(void*))(*object_array + 8))(object_array),
                             *temp_ptr == 0x45bedd9a6de14d67 && (temp_ptr[1] == 0x51ddd8c381026394)) ||
-                           ((temp_ptr = (longlong*)((void(**)(void*))(*object_array + 8))(object_array),
+                           ((temp_ptr = (int64_t*)((void(**)(void*))(*object_array + 8))(object_array),
                             *temp_ptr == 0x4ef0785fcc373411 && (temp_ptr[1] == 0x3645b254cfd5a295)))) ||
-                          ((temp_ptr = (longlong*)((void(**)(void*))(*object_array + 8))(object_array),
+                          ((temp_ptr = (int64_t*)((void(**)(void*))(*object_array + 8))(object_array),
                            *temp_ptr == 0x4ff90344b46528df && (temp_ptr[1] == -0x3c033b29f31c0d80)))))) ||
-                         ((temp_ptr = (longlong*)((void(**)(void*))(*object_array + 8))(object_array),
+                         ((temp_ptr = (int64_t*)((void(**)(void*))(*object_array + 8))(object_array),
                           *temp_ptr == 0x45ddeabbc635a3d5 && (temp_ptr[1] == 0x136119e457aa3e88)))) &&
                         ((temp_void_ptr = (void**)object_array[4], temp_void_ptr != (void**)0x0 && (object_array[6] != -1))))
                     {
@@ -289,7 +289,7 @@ event_triggered:
                     object_limit = object_limit + 1;
                 } while (object_limit < object_count);
             }
-            iterator_ptr = (longlong*)iterate_object_list(iterator_ptr);
+            iterator_ptr = (int64_t*)iterate_object_list(iterator_ptr);
         } while (iterator_ptr != stack_object_ptr + 0x16);
     }
     // 警告：子函数不返回
@@ -301,7 +301,7 @@ event_triggered:
  * @param object_ptr 对象指针
  * @return 比较结果，true表示匹配
  */
-bool compare_object_names(longlong* object_ptr)
+bool compare_object_names(int64_t* object_ptr)
 {
     byte char_diff;
     bool is_match;
@@ -309,7 +309,7 @@ bool compare_object_names(longlong* object_ptr)
     void** next_node;
     byte* name_ptr;
     uint char_value;
-    longlong object_base;
+    int64_t object_base;
     void** temp_node_ptr;
     int comparison_result;
     void** result_node;
@@ -335,7 +335,7 @@ bool compare_object_names(longlong* object_ptr)
                 else {
                     name_ptr = stack_name_ptr;
                     do {
-                        char_value = (uint)name_ptr[current_node[5] - (longlong)stack_name_ptr];
+                        char_value = (uint)name_ptr[current_node[5] - (int64_t)stack_name_ptr];
                         comparison_result = *name_ptr - char_value;
                         if (*name_ptr != char_value) break;
                         name_ptr = name_ptr + 1;
@@ -361,7 +361,7 @@ comparison_done:
             if (*(int*)(result_node + 6) == 0) goto match_found;
             if (stack_param != 0) {
                 name_ptr = (byte*)result_node[5];
-                object_base = (longlong)stack_name_ptr - (longlong)name_ptr;
+                object_base = (int64_t)stack_name_ptr - (int64_t)name_ptr;
                 do {
                     char_diff = *name_ptr;
                     char_value = (uint)name_ptr[object_base];
@@ -387,36 +387,36 @@ match_found:
  * @param search_key 搜索键值
  * @return 对象句柄或错误代码
  */
-unsigned longlong find_object_handle(longlong* object_ptr, void* search_key)
+unsigned int64_t find_object_handle(int64_t* object_ptr, void* search_key)
 {
     byte char_diff;
     bool is_match;
     bool handle_found;
-    longlong* current_obj;
-    longlong* result_obj;
-    unsigned longlong handle_value;
+    int64_t* current_obj;
+    int64_t* result_obj;
+    unsigned int64_t handle_value;
     byte* name_ptr;
     uint char_value;
-    longlong object_base;
-    longlong* search_result;
+    int64_t object_base;
+    int64_t* search_result;
     int comparison_result;
-    longlong* temp_obj;
-    longlong* next_obj;
+    int64_t* temp_obj;
+    int64_t* next_obj;
     char align_padding[8];
     byte* stack_name_ptr;
     int stack_param;
     void* stack_buffer;
-    longlong stack_value;
+    int64_t stack_value;
     unsigned int stack_flag;
     
     object_base = *object_ptr;
-    search_result = (longlong*)(object_base + 0x48);
+    search_result = (int64_t*)(object_base + 0x48);
     initialize_string_comparator();
     handle_found = false;
-    temp_obj = *(longlong**)(object_base + 0x58);
+    temp_obj = *(int64_t**)(object_base + 0x58);
     current_obj = search_result;
     
-    if (temp_obj == (longlong*)0x0) {
+    if (temp_obj == (int64_t*)0x0) {
 search_complete:
         result_obj = search_result;
     }
@@ -424,7 +424,7 @@ search_complete:
         do {
             if (stack_param == 0) {
                 is_match = false;
-                next_obj = (longlong*)temp_obj[1];
+                next_obj = (int64_t*)temp_obj[1];
             }
             else {
                 if ((int)temp_obj[6] == 0) {
@@ -433,18 +433,18 @@ search_complete:
                 else {
                     name_ptr = stack_name_ptr;
                     do {
-                        char_value = (uint)name_ptr[temp_obj[5] - (longlong)stack_name_ptr];
+                        char_value = (uint)name_ptr[temp_obj[5] - (int64_t)stack_name_ptr];
                         comparison_result = *name_ptr - char_value;
                         if (*name_ptr != char_value) break;
                         name_ptr = name_ptr + 1;
                     } while (char_value != 0);
                     is_match = 0 < comparison_result;
                     if (comparison_result < 1) {
-                        next_obj = (longlong*)temp_obj[1];
+                        next_obj = (int64_t*)temp_obj[1];
                         goto search_match;
                     }
                 }
-                next_obj = (longlong*)*temp_obj;
+                next_obj = (int64_t*)*temp_obj;
             }
 search_match:
             result_obj = temp_obj;
@@ -453,13 +453,13 @@ search_match:
             }
             current_obj = result_obj;
             temp_obj = next_obj;
-        } while (next_obj != (longlong*)0x0);
+        } while (next_obj != (int64_t*)0x0);
         
         if (result_obj == search_result) goto search_complete;
         if ((int)result_obj[6] != 0) {
             if (stack_param != 0) {
                 name_ptr = (byte*)result_obj[5];
-                object_base = (longlong)stack_name_ptr - (longlong)name_ptr;
+                object_base = (int64_t)stack_name_ptr - (int64_t)name_ptr;
                 do {
                     char_diff = *name_ptr;
                     char_value = (uint)name_ptr[object_base];
@@ -476,7 +476,7 @@ search_found:
         object_base = object_ptr[1];
         initialize_search_context(&stack_buffer, search_key);
         handle_found = true;
-        result_obj = (longlong*)create_object_handle(object_base, align_padding, &stack_buffer);
+        result_obj = (int64_t*)create_object_handle(object_base, align_padding, &stack_buffer);
         if (*result_obj == object_base) {
             is_match = true;
             goto handle_result;
@@ -501,8 +501,8 @@ handle_result:
     }
     
     if (is_match) {
-        temp_obj = *(longlong**)*object_ptr;
-        if (temp_obj == (longlong*)0x0) {
+        temp_obj = *(int64_t**)*object_ptr;
+        if (temp_obj == (int64_t*)0x0) {
             handle_value = ((unsigned long long)*object_ptr >> 8) | 1;
         }
         else {
@@ -522,7 +522,7 @@ handle_result:
  * @param param2 参数2
  * @param param3 参数3
  */
-void execute_object_destructors(longlong object_ptr, void* param1, void* param2, void* param3)
+void execute_object_destructors(int64_t object_ptr, void* param1, void* param2, void* param3)
 {
     // 调用不同级别的析构函数
     if (*(void**)(object_ptr + 0x70) != (void*)0x0) {
@@ -546,28 +546,28 @@ void execute_object_destructors(longlong object_ptr, void* param1, void* param2,
 void initialize_global_object_table(void)
 {
     uint name_length;
-    longlong engine_base;
-    longlong table_base;
+    int64_t engine_base;
+    int64_t table_base;
     char success_flag;
     int entry_count;
     unsigned long long hash_value;
     unsigned long long entry_offset;
-    longlong entry_address;
+    int64_t entry_address;
     unsigned long long entry_hash;
-    longlong entry_limit;
+    int64_t entry_limit;
     unsigned long long current_offset;
-    longlong* object_table;
+    int64_t* object_table;
     void** name_buffer_ptr;
     unsigned long long table_address;
     void* name_buffer;
-    longlong stack_value;
+    int64_t stack_value;
     uint stack_flags;
     unsigned long long stack_hash;
     unsigned char temp_stack_buffer[32];
     void** stack_buffer_ptr;
     unsigned long long stack_address;
     void* stack_temp_ptr;
-    longlong stack_long_value;
+    int64_t stack_long_value;
     uint stack_entry_count;
     unsigned char name_buffer2[32];
     unsigned char reserved_buffer[4];
@@ -579,8 +579,8 @@ void initialize_global_object_table(void)
     stack_data = global_hash_seed ^ (unsigned long long)temp_stack_buffer;
     engine_base = *global_engine_base;
     hash_value = 0;
-    entry_count = (int)(*(longlong*)(engine_base + 0x8b0) - *(longlong*)(engine_base + 0x8a8) >> 5);
-    entry_limit = (longlong)entry_count;
+    entry_count = (int)(*(int64_t*)(engine_base + 0x8b0) - *(int64_t*)(engine_base + 0x8a8) >> 5);
+    entry_limit = (int64_t)entry_count;
     entry_offset = hash_value;
     
     if (0 < entry_count) {
@@ -597,11 +597,11 @@ void initialize_global_object_table(void)
             reserved_buffer[0] = 0;
             stack_index = 0xffffffff;
             
-            entry_address = *(longlong*)(engine_base + 0x8a8) + entry_offset;
+            entry_address = *(int64_t*)(engine_base + 0x8a8) + entry_offset;
             name_length = *(uint*)(entry_address + 0x10);
             entry_hash = (unsigned long long)name_length;
             
-            if (*(longlong*)(entry_address + 8) != 0) {
+            if (*(int64_t*)(entry_address + 8) != 0) {
                 initialize_string_buffer(&name_buffer_ptr, entry_hash);
             }
             

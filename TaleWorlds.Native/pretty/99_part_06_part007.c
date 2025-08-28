@@ -296,7 +296,7 @@ void SystemInitialize(SystemHandle param_1, SystemHandle param_2)
         if (aligned_addr != 0) {
             // 计算对象实际地址
             object_addr = aligned_addr + MEMORY_ALIGNMENT_OFFSET + 
-                         ((longlong)object_ptr - aligned_addr >> 0x10) * MEMORY_BLOCK_SIZE;
+                         ((int64_t)object_ptr - aligned_addr >> 0x10) * MEMORY_BLOCK_SIZE;
             object_addr = object_addr - (MemoryAddress)*(uint*)(object_addr + 4);
             
             // 检查异常列表和对象状态
@@ -416,7 +416,7 @@ ObjectPointer* HashTableInsert(SystemHandle param_1, ObjectPointer* param_2,
     
     // 计算哈希桶位置
     bucket_ptr = (ObjectPointer*)
-                (*(longlong*)(param_1 + 8) + 
+                (*(int64_t*)(param_1 + 8) + 
                  (param_5 % (HashKey)*(uint*)(param_1 + 0x10)) * HASH_TABLE_BUCKET_SIZE);
     
     node_ptr = (int*)*bucket_ptr;
@@ -479,20 +479,20 @@ ObjectPointer* HashTableInsert(SystemHandle param_1, ObjectPointer* param_2,
 void SystemShutdown(SystemHandle param_1)
 {
     // 检查系统状态是否有效
-    if (*(longlong*)(param_1 + 0x38) != 0) {
+    if (*(int64_t*)(param_1 + 0x38) != 0) {
         // 系统状态无效，触发错误处理
         FUN_18064e900();
     }
     
     // 检查资源是否已释放
-    if (*(longlong*)(param_1 + 0x18) != 0) {
+    if (*(int64_t*)(param_1 + 0x18) != 0) {
         // 资源未释放，触发错误处理
         FUN_18064e900();
     }
     
     // 调用系统关闭回调
-    if (*(longlong**)(param_1 + 0x10) != (longlong*)0x0) {
-        ((**(code**)(**(longlong**)(param_1 + 0x10) + 0x38)))();
+    if (*(int64_t**)(param_1 + 0x10) != (int64_t*)0x0) {
+        ((**(code**)(**(int64_t**)(param_1 + 0x10) + 0x38)))();
     }
     return;
 }/**
@@ -516,7 +516,7 @@ void SystemShutdown(SystemHandle param_1)
  *   - 处理对象销毁时的异常
  *   - 确保内存正确释放
  */
-void SystemDestroy(longlong* param_1)
+void SystemDestroy(int64_t* param_1)
 {
     // 检查对象标志是否有效
     if (param_1[5] != 0) {
@@ -531,8 +531,8 @@ void SystemDestroy(longlong* param_1)
     }
     
     // 调用对象析构函数
-    if ((longlong*)*param_1 != (longlong*)0x0) {
-        ((**(code**)(*(longlong*)*param_1 + 0x38)))();
+    if ((int64_t*)*param_1 != (int64_t*)0x0) {
+        ((**(code**)(*(int64_t*)*param_1 + 0x38)))();
     }
     return;
 }
@@ -560,7 +560,7 @@ void SystemDestroy(longlong* param_1)
  *   - 支持优先级排序的查找
  *   - 处理查找结果的缓存
  */
-ObjectPointer HashTableFind(longlong param_1, longlong* param_2, uint param_3)
+ObjectPointer HashTableFind(int64_t param_1, int64_t* param_2, uint param_3)
 {
     ObjectPointer* tree_root;
     ObjectPointer* current_node;
@@ -571,7 +571,7 @@ ObjectPointer HashTableFind(longlong param_1, longlong* param_2, uint param_3)
     ObjectPointer* temp_ptr;
     HashKey hash_key;
     HashKey temp_key;
-    longlong* context_ptr;
+    int64_t* context_ptr;
     uint priority_array[2];
     ObjectPointer result_value;
     ObjectPointer string_buffer;
@@ -645,8 +645,8 @@ ObjectPointer HashTableFind(longlong param_1, longlong* param_2, uint param_3)
     
 BUILD_STRING:
     // 构建完整的查找字符串
-    *(ObjectPointer*)((HashKey)string_length + (longlong)result_ptr) = 0x616d656275635f5f;  // "__becuma"
-    *(uint*)((ObjectPointer*)((HashKey)string_length + (longlong)result_ptr) + 1) = 0x5f5f70;  // "p__"
+    *(ObjectPointer*)((HashKey)string_length + (int64_t)result_ptr) = 0x616d656275635f5f;  // "__becuma"
+    *(uint*)((ObjectPointer*)((HashKey)string_length + (int64_t)result_ptr) + 1) = 0x5f5f70;  // "p__"
     string_length = 0x13;
     
     // 格式化字符串参数
@@ -656,8 +656,8 @@ BUILD_STRING:
     // 处理字符串中的特殊字符
     if (string_length != 0) {
         do {
-            if ((Byte)(*(char*)((longlong)result_ptr + temp_key) + 0xbfU) < 0x1a) {
-                *(char*)((longlong)result_ptr + temp_key) = *(char*)((longlong)result_ptr + temp_key) + ' ';
+            if ((Byte)(*(char*)((int64_t)result_ptr + temp_key) + 0xbfU) < 0x1a) {
+                *(char*)((int64_t)result_ptr + temp_key) = *(char*)((int64_t)result_ptr + temp_key) + ' ';
             }
             hash_key = (HashKey)hash_key + 1;
             temp_key = temp_key + 1;
@@ -669,7 +669,7 @@ BUILD_STRING:
     result_value = *result_ptr;
     
     // 清理上下文
-    if (context_ptr != (longlong*)0x0) {
+    if (context_ptr != (int64_t*)0x0) {
         ((**(code**)(*context_ptr + 0x38)))();
     }
     
@@ -710,7 +710,7 @@ BUILD_STRING:
  *   - 处理动态构建的清理字符串
  *   - 确保内存正确释放
  */
-ObjectPointer HashTableClear(longlong param_1, longlong* param_2, uint param_3)
+ObjectPointer HashTableClear(int64_t param_1, int64_t* param_2, uint param_3)
 {
     ObjectPointer* tree_root;
     ObjectPointer* current_node;
@@ -721,7 +721,7 @@ ObjectPointer HashTableClear(longlong param_1, longlong* param_2, uint param_3)
     ObjectPointer* temp_ptr;
     HashKey hash_key;
     HashKey temp_key;
-    longlong* context_ptr;
+    int64_t* context_ptr;
     uint priority_array[2];
     ObjectPointer result_value;
     ObjectPointer string_buffer;
@@ -795,11 +795,11 @@ ObjectPointer HashTableClear(longlong param_1, longlong* param_2, uint param_3)
     
 BUILD_STRING:
     // 构建完整的清理字符串
-    target_node = (ObjectPointer*)((HashKey)string_length + (longlong)result_ptr);
+    target_node = (ObjectPointer*)((HashKey)string_length + (int64_t)result_ptr);
     *target_node = 0x6574746163735f5f;  // "__secta"
     *(uint*)(target_node + 1) = 0x70616d72;  // "rmap"
-    *(ushort*)((longlong)target_node + 0xc) = 0x5f5f;  // "__"
-    *(Byte*)((longlong)target_node + 0xe) = 0;
+    *(ushort*)((int64_t)target_node + 0xc) = 0x5f5f;  // "__"
+    *(Byte*)((int64_t)target_node + 0xe) = 0;
     string_length = 0x16;
     
     // 格式化字符串参数
@@ -809,8 +809,8 @@ BUILD_STRING:
     // 处理字符串中的特殊字符
     if (string_length != 0) {
         do {
-            if ((Byte)(*(char*)((longlong)result_ptr + temp_key) + 0xbfU) < 0x1a) {
-                *(char*)((longlong)result_ptr + temp_key) = *(char*)((longlong)result_ptr + temp_key) + ' ';
+            if ((Byte)(*(char*)((int64_t)result_ptr + temp_key) + 0xbfU) < 0x1a) {
+                *(char*)((int64_t)result_ptr + temp_key) = *(char*)((int64_t)result_ptr + temp_key) + ' ';
             }
             hash_key = (HashKey)hash_key + 1;
             temp_key = temp_key + 1;
@@ -822,7 +822,7 @@ BUILD_STRING:
     result_value = *target_node;
     
     // 清理上下文
-    if (context_ptr != (longlong*)0x0) {
+    if (context_ptr != (int64_t*)0x0) {
         ((**(code**)(*context_ptr + 0x38)))();
     }
     
@@ -878,9 +878,9 @@ BUILD_STRING:
  * 线程安全:
  * 该函数不是线程安全的，需要在单线程环境下调用或使用适当的同步机制。
  */
-void ResourceProcessor_ExecuteBatchOperations(longlong param_1)
+void ResourceProcessor_ExecuteBatchOperations(int64_t param_1)
 {
-    longlong system_context;
+    int64_t system_context;
     uint64_t resource_result_1;
     uint64_t resource_result_2;
     uint64_t resource_result_3;
@@ -888,7 +888,7 @@ void ResourceProcessor_ExecuteBatchOperations(longlong param_1)
     void *resource_buffer_1;
     int8_t *resource_ptr_1;
     int32_t resource_flag_1;
-    ulonglong resource_size_1;
+    uint64_t resource_size_1;
     uint64_t resource_buffer_2;
     uint64_t resource_buffer_3;
     uint64_t resource_buffer_4;
@@ -898,7 +898,7 @@ void ResourceProcessor_ExecuteBatchOperations(longlong param_1)
     code *operation_handler_2;
     
     // 获取系统上下文
-    system_context = *(longlong *)(param_1 + SYSTEM_CONTEXT_OFFSET);
+    system_context = *(int64_t *)(param_1 + SYSTEM_CONTEXT_OFFSET);
     
     // 初始化第一个资源缓冲区
     resource_buffer_1 = &RESOURCE_DEFAULT_BUFFER;
@@ -914,7 +914,7 @@ void ResourceProcessor_ExecuteBatchOperations(longlong param_1)
             resource_data = RESOURCE_CONFIG_PTR_1;
         }
         // 安全复制资源数据
-        memcpy(resource_ptr_1, resource_data, (longlong)(RESOURCE_CONFIG_SIZE_1 + 1));
+        memcpy(resource_ptr_1, resource_data, (int64_t)(RESOURCE_CONFIG_SIZE_1 + 1));
     }
     
     // 验证和清理资源指针
@@ -938,11 +938,11 @@ void ResourceProcessor_ExecuteBatchOperations(longlong param_1)
     resource_buffer_1 = &RESOURCE_SAFE_BUFFER;
     
     // 第二个资源操作循环
-    system_context = *(longlong *)(param_1 + SYSTEM_CONTEXT_OFFSET);
+    system_context = *(int64_t *)(param_1 + SYSTEM_CONTEXT_OFFSET);
     resource_buffer_2 = &RESOURCE_DEFAULT_BUFFER;
     resource_buffer_5 = 0;
     resource_buffer_3 = (int8_t *)0x0;
-    resource_buffer_4 = (ulonglong)resource_buffer_4._4_4_ << 0x20;
+    resource_buffer_4 = (uint64_t)resource_buffer_4._4_4_ << 0x20;
     
     // 处理第二个资源操作
     FUN_1806277c0(&resource_buffer_2, RESOURCE_CONFIG_SIZE_2);
@@ -952,7 +952,7 @@ void ResourceProcessor_ExecuteBatchOperations(longlong param_1)
             resource_data = RESOURCE_CONFIG_PTR_2;
         }
         // 安全复制资源数据
-        memcpy(resource_buffer_3, resource_data, (longlong)(RESOURCE_CONFIG_SIZE_2 + 1));
+        memcpy(resource_buffer_3, resource_data, (int64_t)(RESOURCE_CONFIG_SIZE_2 + 1));
     }
     
     // 验证和清理第二个资源
@@ -976,7 +976,7 @@ void ResourceProcessor_ExecuteBatchOperations(longlong param_1)
     resource_buffer_2 = &RESOURCE_SAFE_BUFFER;
     
     // 第三个资源操作循环
-    system_context = *(longlong *)(param_1 + SYSTEM_CONTEXT_OFFSET);
+    system_context = *(int64_t *)(param_1 + SYSTEM_CONTEXT_OFFSET);
     resource_buffer_1 = &RESOURCE_DEFAULT_BUFFER;
     resource_size_1 = 0;
     resource_ptr_1 = (int8_t *)0x0;
@@ -990,7 +990,7 @@ void ResourceProcessor_ExecuteBatchOperations(longlong param_1)
             resource_data = RESOURCE_CONFIG_PTR_3;
         }
         // 安全复制资源数据
-        memcpy(resource_ptr_1, resource_data, (longlong)(RESOURCE_CONFIG_SIZE_3 + 1));
+        memcpy(resource_ptr_1, resource_data, (int64_t)(RESOURCE_CONFIG_SIZE_3 + 1));
     }
     
     // 验证和清理第三个资源
@@ -1085,13 +1085,13 @@ void SystemManager_InitializeComplex(uint64_t *param_1)
     uint64_t *component_ptr_2;
     uint64_t *component_ptr_3;
     void *resource_data;
-    longlong *system_handler;
+    int64_t *system_handler;
     uint64_t *event_handler;
     uint64_t *global_context;
-    longlong component_id;
+    int64_t component_id;
     uint64_t *memory_block;
     int8_t security_buffer [32];
-    longlong *cleanup_handler;
+    int64_t *cleanup_handler;
     uint64_t *system_config;
     uint64_t *component_registry;
     uint64_t *system_state;
@@ -1109,11 +1109,11 @@ void SystemManager_InitializeComplex(uint64_t *param_1)
     int8_t *string_buffer;
     int32_t string_flag;
     uint8_t string_buffer_3 [72];
-    ulonglong security_checksum;
+    uint64_t security_checksum;
     
     // 初始化系统标志和安全检查
     initialization_flag = SYSTEM_INITIALIZATION_FLAG;
-    security_checksum = SYSTEM_SECURITY_KEY ^ (ulonglong)security_buffer;
+    security_checksum = SYSTEM_SECURITY_KEY ^ (uint64_t)security_buffer;
     
     // 设置系统管理器基础配置
     *param_1 = &SYSTEM_ROOT_OBJECT;
@@ -1184,27 +1184,27 @@ void SystemManager_InitializeComplex(uint64_t *param_1)
     // 设置系统激活标志
     *(int8_t *)(param_1 + SYSTEM_ACTIVATION_OFFSET) = 1;
     param_1[SYSTEM_ACTIVATION_OFFSET_2] = 0;
-    *(int32_t *)((longlong)param_1 + SYSTEM_INTEGRITY_OFFSET) = 0;
+    *(int32_t *)((int64_t)param_1 + SYSTEM_INTEGRITY_OFFSET) = 0;
     
     // 清理现有处理器
-    cleanup_handler = (longlong *)param_1[CLEANUP_HANDLER_OFFSET_1];
+    cleanup_handler = (int64_t *)param_1[CLEANUP_HANDLER_OFFSET_1];
     param_1[CLEANUP_HANDLER_OFFSET_1] = 0;
-    if (cleanup_handler != (longlong *)0x0) {
+    if (cleanup_handler != (int64_t *)0x0) {
         (**(code **)(*cleanup_handler + CLEANUP_HANDLER_VTABLE_OFFSET))();
     }
     
-    cleanup_handler = (longlong *)param_1[CLEANUP_HANDLER_OFFSET_2];
+    cleanup_handler = (int64_t *)param_1[CLEANUP_HANDLER_OFFSET_2];
     param_1[CLEANUP_HANDLER_OFFSET_2] = 0;
-    if (cleanup_handler != (longlong *)0x0) {
+    if (cleanup_handler != (int64_t *)0x0) {
         (**(code **)(*cleanup_handler + CLEANUP_HANDLER_VTABLE_OFFSET))();
     }
     
-    cleanup_handler = (longlong *)param_1[CLEANUP_HANDLER_OFFSET_3];
+    cleanup_handler = (int64_t *)param_1[CLEANUP_HANDLER_OFFSET_3];
     param_1[CLEANUP_HANDLER_OFFSET_3] = 0;
     component_ptr_2 = EVENT_REGISTRY_BASE;
     component_ptr_3 = EVENT_REGISTRY_CURRENT;
     global_context = (uint64_t *)GLOBAL_SYSTEM_CONTEXT;
-    if (cleanup_handler != (longlong *)0x0) {
+    if (cleanup_handler != (int64_t *)0x0) {
         (**(code **)(*cleanup_handler + CLEANUP_HANDLER_VTABLE_OFFSET))();
         component_ptr_2 = EVENT_REGISTRY_BASE;
         component_ptr_3 = EVENT_REGISTRY_CURRENT;
@@ -1212,7 +1212,7 @@ void SystemManager_InitializeComplex(uint64_t *param_1)
     }
     
     // 处理事件队列
-    for (; event_handler = EVENT_REGISTRY_CURRENT, GLOBAL_SYSTEM_CONTEXT = (longlong)global_context, component_ptr_2 != EVENT_REGISTRY_CURRENT;
+    for (; event_handler = EVENT_REGISTRY_CURRENT, GLOBAL_SYSTEM_CONTEXT = (int64_t)global_context, component_ptr_2 != EVENT_REGISTRY_CURRENT;
         component_ptr_2 = component_ptr_2 + EVENT_ENTRY_SIZE) {
         EVENT_REGISTRY_CURRENT = component_ptr_3;
         (**(code **)*component_ptr_2)(component_ptr_2, 0);
@@ -1222,7 +1222,7 @@ void SystemManager_InitializeComplex(uint64_t *param_1)
     }
     
     // 处理系统组件
-    system_handler = *(longlong **)((longlong)global_context + SYSTEM_COMPONENT_ARRAY_OFFSET);
+    system_handler = *(int64_t **)((int64_t)global_context + SYSTEM_COMPONENT_ARRAY_OFFSET);
     EVENT_REGISTRY_CURRENT = EVENT_REGISTRY_BASE;
     component_registry = global_context;
     component_ptr_2 = EVENT_REGISTRY_SECONDARY;
@@ -1230,7 +1230,7 @@ void SystemManager_InitializeComplex(uint64_t *param_1)
     event_handler = global_context;
     cleanup_handler = system_handler;
     
-    if (system_handler != *(longlong **)((longlong)global_context + SYSTEM_COMPONENT_END_OFFSET)) {
+    if (system_handler != *(int64_t **)((int64_t)global_context + SYSTEM_COMPONENT_END_OFFSET)) {
         do {
             component_ptr_2 = (uint64_t *)0x0;
             component_id = *system_handler;
@@ -1255,7 +1255,7 @@ void SystemManager_InitializeComplex(uint64_t *param_1)
                 }
                 else {
                     // 处理事件注册表扩展
-                    component_id = ((longlong)EVENT_REGISTRY_CURRENT - (longlong)EVENT_REGISTRY_BASE) / EVENT_REGISTRY_SIZE;
+                    component_id = ((int64_t)EVENT_REGISTRY_CURRENT - (int64_t)EVENT_REGISTRY_BASE) / EVENT_REGISTRY_SIZE;
                     if (component_id == 0) {
                         component_id = 1;
                     } else {
@@ -1315,14 +1315,14 @@ void SystemManager_InitializeComplex(uint64_t *param_1)
             component_ptr_3 = EVENT_REGISTRY_TERTIARY;
             event_handler = (uint64_t *)GLOBAL_SYSTEM_CONTEXT;
             cleanup_handler = system_handler;
-        } while (system_handler != *(longlong **)((longlong)global_context + SYSTEM_COMPONENT_END_OFFSET));
+        } while (system_handler != *(int64_t **)((int64_t)global_context + SYSTEM_COMPONENT_END_OFFSET));
     }
     
     // 处理辅助系统组件（重复上述逻辑的其他组件类型）
     // ... (省略类似的处理逻辑以保持代码简洁)
     
     // 执行系统完整性检查
-    FUN_1808fc050(security_checksum ^ (ulonglong)security_buffer);
+    FUN_1808fc050(security_checksum ^ (uint64_t)security_buffer);
 }
 
 
@@ -1362,7 +1362,7 @@ void SystemManager_InitializeComplex(uint64_t *param_1)
  * ptr = MemoryManager_ReleaseWithCondition(ptr, 1); // 条件释放
  * ```
  */
-uint64_t MemoryManager_ReleaseWithCondition(uint64_t param_1, ulonglong param_2)
+uint64_t MemoryManager_ReleaseWithCondition(uint64_t param_1, uint64_t param_2)
 {
     // 执行系统清理操作
     FUN_1803aa090();
@@ -1416,7 +1416,7 @@ uint64_t MemoryManager_ReleaseWithCondition(uint64_t param_1, ulonglong param_2)
  * SystemOperation_ExecuteWithFlags(system_context, 0, param3, param4);
  * ```
  */
-void SystemOperation_ExecuteWithFlags(longlong param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
+void SystemOperation_ExecuteWithFlags(int64_t param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
     // 提取系统上下文中的参数并调用核心处理函数
     FUN_1803aeb70(param_1, *(uint64_t *)(param_1 + SYSTEM_CONTEXT_PARAM_OFFSET), param_3, param_4, SYSTEM_OPERATION_FLAGS);
@@ -1468,7 +1468,7 @@ void SystemOperation_ExecuteWithFlags(longlong param_1, uint64_t param_2, uint64
  * 该函数与 SystemOperation_ExecuteWithFlags 功能完全相同，可能是为了提供不同的调用接口
  * 或用于不同的系统上下文中。
  */
-void SystemOperation_ExecuteAlternative(longlong param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
+void SystemOperation_ExecuteAlternative(int64_t param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
     // 提取系统上下文中的参数并调用核心处理函数
     FUN_1803aeb70(param_1, *(uint64_t *)(param_1 + SYSTEM_CONTEXT_PARAM_OFFSET), param_3, param_4, SYSTEM_OPERATION_FLAGS);

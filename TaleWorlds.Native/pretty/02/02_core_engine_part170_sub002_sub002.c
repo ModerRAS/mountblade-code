@@ -18,11 +18,11 @@
  * 原始实现包含大量重复的配置模式和原始代码
  * 简化实现保留了主要功能逻辑和结构
  */
-void initialize_engine_configuration(longlong engine_context, uint64_t param2, uint64_t param3, uint64_t param4) {
+void initialize_engine_configuration(int64_t engine_context, uint64_t param2, uint64_t param3, uint64_t param4) {
     // 局部变量声明
     void** config_ptr;
-    ulonglong temp_ulong;
-    longlong temp_long;
+    uint64_t temp_ulong;
+    int64_t temp_long;
     char result_flag;
     int32_t config_value;
     void* data_ptr;
@@ -30,7 +30,7 @@ void initialize_engine_configuration(longlong engine_context, uint64_t param2, u
     void* stack_ptr_70;
     uint64_t* stack_ptr_68;
     int32_t stack_value_60;
-    ulonglong stack_value_58;
+    uint64_t stack_value_58;
     void* stack_ptr_50;
     uint64_t* stack_ptr_48;
     code* function_ptr;
@@ -62,12 +62,12 @@ void initialize_engine_configuration(longlong engine_context, uint64_t param2, u
     }
     
     // 调用引擎子模块初始化
-    (*(code**)(*(longlong*)(engine_context + 0xe8) + 0x10))(engine_context + 0xe8, &unknown_var_6400_ptr);
+    (*(code**)(*(int64_t*)(engine_context + 0xe8) + 0x10))(engine_context + 0xe8, &unknown_var_6400_ptr);
     
     // 配置参数设置 - 第一组
     stack_data_8._0_4_ = 0;
     config_value = 0;
-    if ((*(longlong*)(engine_context + 0x140) != 0) &&
+    if ((*(int64_t*)(engine_context + 0x140) != 0) &&
         (result_flag = (*(code**)(engine_context + 0x148))(&stack_data_8), 
          config_value = (int32_t)stack_data_8, result_flag == '\0')) {
         if (system_debug_flag == '\0') {
@@ -82,9 +82,9 @@ void initialize_engine_configuration(longlong engine_context, uint64_t param2, u
     *(int32_t*)(engine_context + 0xe0) = config_value;
     
     // 配置参数设置 - 第二组
-    stack_data_8 = (int32_t*)((ulonglong)stack_data_8._4_4_ << 0x20);
+    stack_data_8 = (int32_t*)((uint64_t)stack_data_8._4_4_ << 0x20);
     config_value = 0;
-    if (*(longlong*)(engine_context + 0x140) != 0) {
+    if (*(int64_t*)(engine_context + 0x140) != 0) {
         result_flag = (*(code**)(engine_context + 0x148))(&stack_data_8, config_ptr);
         if (result_flag == '\0') {
             if (system_debug_flag == '\0') {
@@ -111,7 +111,7 @@ void initialize_engine_configuration(longlong engine_context, uint64_t param2, u
     
     // 最终阶段：设置资源路径
     temp_long = engine_context + 0xf50;
-    (*(code**)(*(longlong*)(engine_context + 0xf90) + 0x10))((longlong*)(engine_context + 0xf90), &unknown_var_7240_ptr);
+    (*(code**)(*(int64_t*)(engine_context + 0xf90) + 0x10))((int64_t*)(engine_context + 0xf90), &unknown_var_7240_ptr);
     
     // 设置资源路径字符串
     stack_ptr_70 = &system_data_buffer_ptr;
@@ -124,9 +124,9 @@ void initialize_engine_configuration(longlong engine_context, uint64_t param2, u
     *stack_ptr_68 = 0x6c69666c67725c5c;    // "\life\gr"
     stack_ptr_68[1] = 0x2e72657672657365;  // "iver\\res"
     *(int32_t*)(stack_ptr_68 + 2) = 0x656c6174;  // "ource\\l"
-    *(int32_t*)((longlong)stack_ptr_68 + 0x14) = 0x6c726f77;  // "ast\\dat"
+    *(int32_t*)((int64_t)stack_ptr_68 + 0x14) = 0x6c726f77;  // "ast\\dat"
     *(int32_t*)(stack_ptr_68 + 3) = 0x632e7364;  // "a\\sd.c"
-    *(int32_t*)((longlong)stack_ptr_68 + 0x1c) = 0x505c6d6f;  // "omp\\P"
+    *(int32_t*)((int64_t)stack_ptr_68 + 0x1c) = 0x505c6d6f;  // "omp\\P"
     stack_ptr_68[4] = 0x6144746964455452;  // "TETData\\a"
     *(int32_t*)(stack_ptr_68 + 5) = 0x5c6174;    // "t\\"
     stack_value_60 = 0x2b;
@@ -143,16 +143,16 @@ void initialize_engine_configuration(longlong engine_context, uint64_t param2, u
         stack_ptr_50 = &system_data_buffer_ptr;
         stack_ptr_38 = (void*)0x0;
         stack_ptr_48 = (uint64_t*)0x0;
-        function_ptr = (code*)((ulonglong)function_ptr & 0xffffffff00000000);
+        function_ptr = (code*)((uint64_t)function_ptr & 0xffffffff00000000);
         FUN_1806277c0(&stack_ptr_50, 0x2b);
         
         // 重复配置备用路径
         *stack_ptr_48 = 0x6c69666c67725c5c;
         stack_ptr_48[1] = 0x2e72657672657365;
         *(int32_t*)(stack_ptr_48 + 2) = 0x656c6174;
-        *(int32_t*)((longlong)stack_ptr_48 + 0x14) = 0x6c726f77;
+        *(int32_t*)((int64_t)stack_ptr_48 + 0x14) = 0x6c726f77;
         *(int32_t*)(stack_ptr_48 + 3) = 0x632e7364;
-        *(int32_t*)((longlong)stack_ptr_48 + 0x1c) = 0x505c6d6f;
+        *(int32_t*)((int64_t)stack_ptr_48 + 0x1c) = 0x505c6d6f;
         stack_ptr_48[4] = 0x6144746964455452;
         *(int32_t*)(stack_ptr_48 + 5) = 0x5c6174;
         function_ptr = (code*)CONCAT44(function_ptr._4_4_, 0x2b);
@@ -161,7 +161,7 @@ void initialize_engine_configuration(longlong engine_context, uint64_t param2, u
         stack_ptr_50 = &system_data_buffer_ptr;
         if (stack_ptr_48 == (uint64_t*)0x0) {
             stack_ptr_48 = (uint64_t*)0x0;
-            stack_ptr_38 = (void*)((ulonglong)stack_ptr_38 & 0xffffffff00000000);
+            stack_ptr_38 = (void*)((uint64_t)stack_ptr_38 & 0xffffffff00000000);
             stack_ptr_50 = &system_state_ptr;
             stack_data_8 = (int32_t*)temp_long;
             FUN_18005ea90(engine_context + 0x48, &stack_data_8);

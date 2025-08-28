@@ -56,7 +56,7 @@
 #define UI_SYSTEM_ARRAY_OFFSET 0x180947346 // 数组偏移量
 
 // 类型别名定义
-typedef longlong UIContextHandle;           // UI上下文句柄
+typedef int64_t UIContextHandle;           // UI上下文句柄
 typedef byte* UIBufferPointer;              // UI缓冲区指针
 typedef uint64_t* UIDataArray;              // UI数据数组
 typedef uint32_t UIFlagValue;               // UI标志值
@@ -65,7 +65,7 @@ typedef bool UIConditionResult;             // UI条件结果
 typedef char UICharData;                    // UI字符数据
 typedef int8_t UISmallInt;                  // UI小整数
 typedef void* UIVoidPointer;                // UI空指针
-typedef ulonglong UIUInt64;                 // UI 64位无符号整数
+typedef uint64_t UIUInt64;                 // UI 64位无符号整数
 typedef uint UIUInt;                        // UI无符号整数
 typedef int* UIIntPtr;                      // UI整数指针
 typedef uint64_t* UIUInt64Ptr;              // UI 64位无符号整数指针
@@ -174,7 +174,7 @@ UIBufferPointer puRam0000000000011838 = NULL;  // UI缓冲区指针1838
 UIUInt uRam0000000000011840 = 0;               // UI无符号整数1840
 UIVoidPointer pfRam0000000000011670 = NULL;     // UI空指针1670
 UIContextHandle puRam0000000000012780 = 0;     // UI上下文句柄2780
-longlong lRam0000000000012770 = 0;             // 长整数2770
+int64_t lRam0000000000012770 = 0;             // 长整数2770
 
 // 简化实现说明：
 // 原始实现包含复杂的位操作、数据解析和状态管理逻辑

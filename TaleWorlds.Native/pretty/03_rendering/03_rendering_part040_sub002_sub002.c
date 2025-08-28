@@ -11,10 +11,10 @@
  * @param param_3 结束参数
  * @param param_4 输出参数数组
  */
-void calculate_rendering_parameter_range(uint64_t render_context, int start_param, int end_param, longlong *output_params)
+void calculate_rendering_parameter_range(uint64_t render_context, int start_param, int end_param, int64_t *output_params)
 {
-  longlong calculated_offset;
-  longlong *context_ptr;
+  int64_t calculated_offset;
+  int64_t *context_ptr;
   int range_start;
   int range_end;
   int32_t register_value;
@@ -42,7 +42,7 @@ void calculate_rendering_parameter_range(uint64_t render_context, int start_para
   // 设置输出参数
   *context_ptr = calculated_offset;
   *(int32_t *)(context_ptr + 1) = 0;
-  *(int *)((longlong)context_ptr + 0xc) = stack_param;
+  *(int *)((int64_t)context_ptr + 0xc) = stack_param;
   return;
 }
 
@@ -53,26 +53,26 @@ void calculate_rendering_parameter_range(uint64_t render_context, int start_para
  * @param param_3 数据类型标识
  * @return 解析后的数据指针
  */
-int32_t * parse_rendering_data_block(int32_t *output_data, longlong *input_data, uint data_type)
+int32_t * parse_rendering_data_block(int32_t *output_data, int64_t *input_data, uint data_type)
 {
   int32_t parsed_value;
   int32_t temp_value;
   byte data_byte;
   uint data_length;
-  ulonglong data_offset;
-  longlong data_ptr;
+  uint64_t data_offset;
+  int64_t data_ptr;
   uint index_val;
   int current_pos;
   int max_pos;
   int temp_index;
-  ulonglong max_offset;
-  ulonglong current_offset;
+  uint64_t max_offset;
+  uint64_t current_offset;
   int32_t stack_val_1;
   int32_t stack_val_2;
   int stack_index;
   
-  data_length = *(uint *)((longlong)input_data + 0xc);
-  max_offset = (ulonglong)data_length;
+  data_length = *(uint *)((int64_t)input_data + 0xc);
+  max_offset = (uint64_t)data_length;
   data_offset = 0;
   
   // 初始化数据偏移
@@ -83,7 +83,7 @@ int32_t * parse_rendering_data_block(int32_t *output_data, longlong *input_data,
   
   // 解析数据块
   if ((int)data_offset < (int)data_length) {
-    max_offset = (ulonglong)data_length;
+    max_offset = (uint64_t)data_length;
     do {
       current_pos = (int)data_offset;
       data_byte = func_0x00018028afe0();
@@ -96,9 +96,9 @@ int32_t * parse_rendering_data_block(int32_t *output_data, longlong *input_data,
         
         // 检查数据边界
         if ((current_pos < temp_index) && 
-            (*(char *)((longlong)current_pos + *input_data) == '\x1e')) {
+            (*(char *)((int64_t)current_pos + *input_data) == '\x1e')) {
           data_length = current_pos + 1;
-          data_offset = (ulonglong)data_length;
+          data_offset = (uint64_t)data_length;
           
           // 验证数据长度
           if ((temp_index < (int)data_length) || ((int)data_length < 0)) {
@@ -112,18 +112,18 @@ int32_t * parse_rendering_data_block(int32_t *output_data, longlong *input_data,
               data_byte = 0;
               while (((current_pos = (int)data_offset, (data_byte & 0xf) != 0xf && 
                       ((data_byte & 0xf0) != 0xf0)) && (current_pos < temp_index))) {
-                data_byte = *(byte *)((longlong)current_pos + *input_data);
+                data_byte = *(byte *)((int64_t)current_pos + *input_data);
                 *(uint *)(input_data + 1) = current_pos + 1U;
-                data_offset = (ulonglong)(current_pos + 1U);
+                data_offset = (uint64_t)(current_pos + 1U);
               }
             }
           }
         }
         else {
           func_0x00018028b140(input_data);
-          max_offset = (ulonglong)*(uint *)((longlong)input_data + 0xc);
-          max_offset = (ulonglong)*(uint *)((longlong)input_data + 0xc);
-          data_offset = (ulonglong)*(uint *)(input_data + 1);
+          max_offset = (uint64_t)*(uint *)((int64_t)input_data + 0xc);
+          max_offset = (uint64_t)*(uint *)((int64_t)input_data + 0xc);
+          data_offset = (uint64_t)*(uint *)(input_data + 1);
         }
         data_byte = func_0x00018028afe0();
       }
@@ -131,8 +131,8 @@ int32_t * parse_rendering_data_block(int32_t *output_data, longlong *input_data,
       data_length = (uint)max_offset;
       current_pos = (int)data_offset;
       if (current_pos < (int)data_length) {
-        data_offset = (ulonglong)(current_pos + 1U);
-        data_byte = *(byte *)((longlong)current_pos + *input_data);
+        data_offset = (uint64_t)(current_pos + 1U);
+        data_byte = *(byte *)((int64_t)current_pos + *input_data);
         *(uint *)(input_data + 1) = current_pos + 1U;
       }
       else {
@@ -144,8 +144,8 @@ int32_t * parse_rendering_data_block(int32_t *output_data, longlong *input_data,
       if (data_byte == 0xc) {
         temp_index = (int)data_offset;
         if (temp_index < (int)data_length) {
-          data_offset = (ulonglong)(temp_index + 1U);
-          data_byte = *(byte *)((longlong)temp_index + *input_data);
+          data_offset = (uint64_t)(temp_index + 1U);
+          data_byte = *(byte *)((int64_t)temp_index + *input_data);
           *(uint *)(input_data + 1) = temp_index + 1U;
         }
         else {
@@ -171,7 +171,7 @@ int32_t * parse_rendering_data_block(int32_t *output_data, longlong *input_data,
           goto data_processing_complete;
         }
         
-        data_ptr = (longlong)max_pos + *input_data;
+        data_ptr = (int64_t)max_pos + *input_data;
         stack_index = current_pos;
         goto set_output_data;
       }
@@ -188,7 +188,7 @@ int32_t * parse_rendering_data_block(int32_t *output_data, longlong *input_data,
     stack_index = 0;
 set_output_data:
     stack_val_1 = (int32_t)data_ptr;
-    stack_val_2 = (int32_t)((ulonglong)data_ptr >> 0x20);
+    stack_val_2 = (int32_t)((uint64_t)data_ptr >> 0x20);
   }
   
 data_processing_complete:
@@ -206,30 +206,30 @@ data_processing_complete:
  * @param param_3 数据处理模式
  * @return 处理后的数据指针
  */
-longlong * process_rendering_data_sequence(longlong *output_data, longlong *input_data, int process_mode)
+int64_t * process_rendering_data_sequence(int64_t *output_data, int64_t *input_data, int process_mode)
 {
   int data_length;
   int8_t first_byte;
   int8_t second_byte;
   byte third_byte;
   int fourth_val;
-  longlong data_ptr;
-  ulonglong byte_count;
+  int64_t data_ptr;
+  uint64_t byte_count;
   int fifth_val;
   uint sixth_val;
   int seventh_val;
-  ulonglong eighth_val;
+  uint64_t eighth_val;
   uint ninth_val;
   int stack_index;
   
-  data_length = *(int *)((longlong)input_data + 0xc);
+  data_length = *(int *)((int64_t)input_data + 0xc);
   fourth_val = 0;
   
   if (data_length < 0) {
     fourth_val = data_length;
   }
   *(int *)(input_data + 1) = fourth_val;
-  data_ptr = (longlong)fourth_val;
+  data_ptr = (int64_t)fourth_val;
   
   // 读取前两个字节
   if (data_ptr < data_length) {
@@ -251,9 +251,9 @@ longlong * process_rendering_data_sequence(longlong *output_data, longlong *inpu
   
   // 读取第三个字节
   if (fourth_val < data_length) {
-    data_ptr = (longlong)fourth_val;
+    data_ptr = (int64_t)fourth_val;
     fourth_val = fourth_val + 1;
-    byte_count = (ulonglong)*(byte *)(data_ptr + *input_data);
+    byte_count = (uint64_t)*(byte *)(data_ptr + *input_data);
   }
   else {
     byte_count = 0;
@@ -275,7 +275,7 @@ longlong * process_rendering_data_sequence(longlong *output_data, longlong *inpu
   if ((char)byte_count != '\0') {
     do {
       if (fourth_val < data_length) {
-        data_ptr = (longlong)fourth_val;
+        data_ptr = (int64_t)fourth_val;
         fourth_val = fourth_val + 1;
         third_byte = *(byte *)(data_ptr + *input_data);
       }
@@ -292,7 +292,7 @@ longlong * process_rendering_data_sequence(longlong *output_data, longlong *inpu
   if (fifth_val != 0) {
     do {
       if (fourth_val < data_length) {
-        data_ptr = (longlong)fourth_val;
+        data_ptr = (int64_t)fourth_val;
         fourth_val = fourth_val + 1;
         third_byte = *(byte *)(data_ptr + *input_data);
       }
@@ -314,14 +314,14 @@ longlong * process_rendering_data_sequence(longlong *output_data, longlong *inpu
   if ((((-1 < fourth_val) && (data_ptr = 0, -1 < seventh_val)) && 
        (stack_index = 0, data_ptr = 0, fourth_val <= data_length)) &&
       (data_ptr = 0, seventh_val <= data_length - fourth_val)) {
-    data_ptr = (longlong)fourth_val + *input_data;
+    data_ptr = (int64_t)fourth_val + *input_data;
     stack_index = seventh_val;
   }
   
   // 设置输出数据
   *output_data = data_ptr;
   *(int32_t *)(output_data + 1) = 0;
-  *(int *)((longlong)output_data + 0xc) = stack_index;
+  *(int *)((int64_t)output_data + 0xc) = stack_index;
   return output_data;
 }
 
@@ -332,24 +332,24 @@ longlong * process_rendering_data_sequence(longlong *output_data, longlong *inpu
  * @param param_3 查找的标识字符串
  * @return 找到的数据偏移量
  */
-int find_rendering_data_identifier(longlong base_address, uint data_offset, char *identifier_string)
+int find_rendering_data_identifier(int64_t base_address, uint data_offset, char *identifier_string)
 {
   uint current_offset;
-  ulonglong calc_offset;
+  uint64_t calc_offset;
   int current_index;
   int max_entries;
   
   current_index = 0;
-  max_entries = (uint)*(byte *)((ulonglong)data_offset + 4 + base_address) * 0x100 +
-               (uint)*(byte *)((ulonglong)data_offset + 5 + base_address);
+  max_entries = (uint)*(byte *)((uint64_t)data_offset + 4 + base_address) * 0x100 +
+               (uint)*(byte *)((uint64_t)data_offset + 5 + base_address);
   
   if (max_entries != 0) {
     do {
       current_offset = current_index * 0x10 + data_offset + 0xc;
-      calc_offset = (ulonglong)current_offset;
+      calc_offset = (uint64_t)current_offset;
       
       // 比较标识字符串
-      if (((((uint)*(byte *)((ulonglong)current_offset + base_address) == (int)*identifier_string) &&
+      if (((((uint)*(byte *)((uint64_t)current_offset + base_address) == (int)*identifier_string) &&
            ((uint)*(byte *)(calc_offset + 1 + base_address) == (int)identifier_string[1])) &&
           ((uint)*(byte *)(calc_offset + 2 + base_address) == (int)identifier_string[2])) &&
          ((uint)*(byte *)(calc_offset + 3 + base_address) == (int)identifier_string[3])) {
@@ -371,15 +371,15 @@ int find_rendering_data_identifier(longlong base_address, uint data_offset, char
  * @param param_3 资源处理参数
  * @return 处理后的资源指针
  */
-int32_t * process_rendering_resource_block(int32_t *output_resource, longlong *input_data, uint64_t process_params)
+int32_t * process_rendering_resource_block(int32_t *output_resource, int64_t *input_data, uint64_t process_params)
 {
   int32_t temp_value;
   int index_1;
   int index_2;
   uint64_t *data_ptr;
   int32_t *resource_ptr;
-  longlong resource_offset;
-  longlong calc_offset;
+  int64_t resource_offset;
+  int64_t calc_offset;
   int temp_array[2];
   uint64_t temp_param_1;
   uint64_t temp_buffer_1;
@@ -394,14 +394,14 @@ int32_t * process_rendering_resource_block(int32_t *output_resource, longlong *i
   data_ptr = (uint64_t *)parse_rendering_data_block(&temp_buffer_1, process_params, 0x12);
   temp_buffer_1 = *data_ptr;
   temp_buffer_2._0_4_ = *(int *)(data_ptr + 1);
-  temp_buffer_2._4_4_ = *(int *)((longlong)data_ptr + 0xc);
+  temp_buffer_2._4_4_ = *(int *)((int64_t)data_ptr + 0xc);
   resource_offset = calc_offset;
   
   // 处理资源数据
   do {
     if ((int)temp_buffer_2._4_4_ <= (int)temp_buffer_2) break;
     temp_value = func_0x00018028b140(&temp_buffer_1);
-    *(int32_t *)((longlong)&temp_param_1 + resource_offset * 4) = temp_value;
+    *(int32_t *)((int64_t)&temp_param_1 + resource_offset * 4) = temp_value;
     resource_offset = resource_offset + 1;
   } while (resource_offset < 2);
   
@@ -413,18 +413,18 @@ int32_t * process_rendering_resource_block(int32_t *output_resource, longlong *i
     // 验证资源范围
     if ((-1 < temp_param_1) &&
         (((temp_buffer_1 = 0, -1 < (int)(uint)temp_param_1 &&
-          (temp_buffer_2._4_4_ = 0, temp_buffer_1 = 0, temp_param_1._4_4_ <= *(int *)((longlong)input_data + 0xc))
+          (temp_buffer_2._4_4_ = 0, temp_buffer_1 = 0, temp_param_1._4_4_ <= *(int *)((int64_t)input_data + 0xc))
           ) && (temp_buffer_1 = 0,
-               (int)(uint)temp_param_1 <= *(int *)((longlong)input_data + 0xc) - temp_param_1._4_4_)))) {
-      temp_buffer_1 = (longlong)temp_param_1._4_4_ + *input_data;
+               (int)(uint)temp_param_1 <= *(int *)((int64_t)input_data + 0xc) - temp_param_1._4_4_)))) {
+      temp_buffer_1 = (int64_t)temp_param_1._4_4_ + *input_data;
       temp_buffer_2._4_4_ = (uint)temp_param_1;
     }
     
-    temp_buffer_2 = (ulonglong)temp_buffer_2._4_4_ << 0x20;
+    temp_buffer_2 = (uint64_t)temp_buffer_2._4_4_ << 0x20;
     data_ptr = (uint64_t *)parse_rendering_data_block(temp_buffer_3, &temp_buffer_1, 0x13);
     temp_buffer_1 = *data_ptr;
     temp_buffer_2._0_4_ = *(int *)(data_ptr + 1);
-    temp_buffer_2._4_4_ = *(int *)((longlong)data_ptr + 0xc);
+    temp_buffer_2._4_4_ = *(int *)((int64_t)data_ptr + 0xc);
     
     do {
       if ((int)temp_buffer_2._4_4_ <= (int)temp_buffer_2) break;
@@ -435,8 +435,8 @@ int32_t * process_rendering_resource_block(int32_t *output_resource, longlong *i
     
     if (temp_array[0] != 0) {
       index_2 = temp_array[0] + index_2;
-      if ((*(int *)((longlong)input_data + 0xc) < index_2) || (index_2 < 0)) {
-        index_2 = *(int *)((longlong)input_data + 0xc);
+      if ((*(int *)((int64_t)input_data + 0xc) < index_2) || (index_2 < 0)) {
+        index_2 = *(int *)((int64_t)input_data + 0xc);
       }
       *(int *)(input_data + 1) = index_2;
       resource_ptr = (int32_t *)FUN_18028b000(temp_buffer_3, input_data);
@@ -469,7 +469,7 @@ set_resource_data:
  * @param param_3 资源初始化参数
  * @return 初始化状态
  */
-uint64_t initialize_rendering_resource_manager(longlong resource_manager, longlong data_address, int32_t init_params)
+uint64_t initialize_rendering_resource_manager(int64_t resource_manager, int64_t data_address, int32_t init_params)
 {
   byte format_byte_1;
   byte format_byte_2;
@@ -480,11 +480,11 @@ uint64_t initialize_rendering_resource_manager(longlong resource_manager, longlo
   int offset_2;
   int32_t temp_param;
   uint temp_value;
-  longlong *data_ptr;
+  int64_t *data_ptr;
   uint64_t *resource_ptr;
-  ulonglong calc_offset_1;
-  ulonglong calc_offset_2;
-  longlong temp_offset;
+  uint64_t calc_offset_1;
+  uint64_t calc_offset_2;
+  int64_t temp_offset;
   int temp_array_1[4];
   int32_t stack_value;
   int temp_array_2[2];
@@ -495,12 +495,12 @@ uint64_t initialize_rendering_resource_manager(longlong resource_manager, longlo
   uint64_t temp_buffer_2;
   int32_t temp_buffer_3;
   int32_t temp_buffer_4;
-  longlong temp_address;
+  int64_t temp_address;
   uint64_t temp_buffer_5;
   int8_t temp_buffer_6[24];
   
   // 初始化资源管理器基础结构
-  *(longlong *)(resource_manager + 8) = data_address;
+  *(int64_t *)(resource_manager + 8) = data_address;
   *(int32_t *)(resource_manager + 0x10) = init_params;
   calc_offset_1 = 0;
   temp_buffer_1._0_4_ = 0;
@@ -560,7 +560,7 @@ uint64_t initialize_rendering_resource_manager(longlong resource_manager, longlo
   // 设置资源管理器状态
   *(uint64_t *)(resource_manager + 0x80) = 0;
   *(uint64_t *)(resource_manager + 0x88) = 0;
-  temp_buffer_1 = (ulonglong)temp_value + data_address;
+  temp_buffer_1 = (uint64_t)temp_value + data_address;
   temp_buffer_4 = 0x20000000;
   *(uint64_t *)(resource_manager + 0x90) = 0;
   *(uint64_t *)(resource_manager + 0x98) = 0;
@@ -584,15 +584,15 @@ uint64_t initialize_rendering_resource_manager(longlong resource_manager, longlo
   
   // 处理资源数据
   FUN_18028b000(&temp_address, &temp_buffer_5);
-  data_ptr = (longlong *)FUN_18028b000(&temp_address, &temp_buffer_5);
+  data_ptr = (int64_t *)FUN_18028b000(&temp_address, &temp_buffer_5);
   temp_address = *data_ptr;
   temp_buffer_2 = data_ptr[1];
   
   resource_ptr = (uint64_t *)process_rendering_data_sequence(&temp_buffer_1, &temp_address, 0);
   temp_buffer_1._0_4_ = (int32_t)*resource_ptr;
-  temp_buffer_1._4_4_ = (int32_t)((ulonglong)*resource_ptr >> 0x20);
+  temp_buffer_1._4_4_ = (int32_t)((uint64_t)*resource_ptr >> 0x20);
   temp_buffer_3 = (int32_t)resource_ptr[1];
-  temp_buffer_4 = (int32_t)((ulonglong)resource_ptr[1] >> 0x20);
+  temp_buffer_4 = (int32_t)((uint64_t)resource_ptr[1] >> 0x20);
   
   FUN_18028b000(&temp_address, &temp_buffer_5);
   resource_ptr = (uint64_t *)FUN_18028b000(&temp_address, &temp_buffer_5);
@@ -601,7 +601,7 @@ uint64_t initialize_rendering_resource_manager(longlong resource_manager, longlo
   *(uint64_t *)(resource_manager + 0x68) = init_result;
   
   // 解析资源参数
-  data_ptr = (longlong *)parse_rendering_data_block(&temp_address, &temp_buffer_1, 0x11);
+  data_ptr = (int64_t *)parse_rendering_data_block(&temp_address, &temp_buffer_1, 0x11);
   temp_address = *data_ptr;
   temp_buffer_2 = data_ptr[1];
   calc_offset_2 = calc_offset_1;
@@ -611,10 +611,10 @@ uint64_t initialize_rendering_resource_manager(longlong resource_manager, longlo
     offset_1 = func_0x00018028b140(&temp_address);
     temp_array_1[calc_offset_2 + 2] = offset_1;
     calc_offset_2 = calc_offset_2 + 1;
-  } while ((longlong)calc_offset_2 < 1);
+  } while ((int64_t)calc_offset_2 < 1);
   
   // 继续处理资源数据
-  data_ptr = (longlong *)parse_rendering_data_block(&temp_address, &temp_buffer_1, 0x106);
+  data_ptr = (int64_t *)parse_rendering_data_block(&temp_address, &temp_buffer_1, 0x106);
   temp_address = *data_ptr;
   temp_buffer_2 = data_ptr[1];
   calc_offset_2 = calc_offset_1;
@@ -624,10 +624,10 @@ uint64_t initialize_rendering_resource_manager(longlong resource_manager, longlo
     offset_1 = func_0x00018028b140(&temp_address);
     temp_array_1[calc_offset_2] = offset_1;
     calc_offset_2 = calc_offset_2 + 1;
-  } while ((longlong)calc_offset_2 < 1);
+  } while ((int64_t)calc_offset_2 < 1);
   
   // 处理更多资源数据
-  data_ptr = (longlong *)parse_rendering_data_block(&temp_address, &temp_buffer_1, 0x124);
+  data_ptr = (int64_t *)parse_rendering_data_block(&temp_address, &temp_buffer_1, 0x124);
   temp_address = *data_ptr;
   temp_buffer_2 = data_ptr[1];
   calc_offset_2 = calc_offset_1;
@@ -637,10 +637,10 @@ uint64_t initialize_rendering_resource_manager(longlong resource_manager, longlo
     offset_1 = func_0x00018028b140(&temp_address);
     temp_array_2[calc_offset_2] = offset_1;
     calc_offset_2 = calc_offset_2 + 1;
-  } while ((longlong)calc_offset_2 < 1);
+  } while ((int64_t)calc_offset_2 < 1);
   
   // 处理最终资源数据
-  data_ptr = (longlong *)parse_rendering_data_block(&temp_address, &temp_buffer_1, 0x125);
+  data_ptr = (int64_t *)parse_rendering_data_block(&temp_address, &temp_buffer_1, 0x125);
   temp_address = *data_ptr;
   temp_buffer_2 = data_ptr[1];
   calc_offset_2 = calc_offset_1;
@@ -650,7 +650,7 @@ uint64_t initialize_rendering_resource_manager(longlong resource_manager, longlo
     offset_1 = func_0x00018028b140(&temp_address);
     temp_array_3[calc_offset_2] = offset_1;
     calc_offset_2 = calc_offset_2 + 1;
-  } while ((longlong)calc_offset_2 < 1);
+  } while ((int64_t)calc_offset_2 < 1);
   
   temp_address = CONCAT44(temp_buffer_1._4_4_, (int32_t)temp_buffer_1);
   temp_buffer_2 = CONCAT44(temp_buffer_4, temp_buffer_3);
@@ -676,7 +676,7 @@ uint64_t initialize_rendering_resource_manager(longlong resource_manager, longlo
   
   temp_value = temp_value_2;
   if (temp_array_2[0] != 0) {
-    temp_offset = (longlong)temp_array_3[0];
+    temp_offset = (int64_t)temp_array_3[0];
     if (temp_array_3[0] == 0) {
       return 0;
     }
@@ -701,12 +701,12 @@ uint64_t initialize_rendering_resource_manager(longlong resource_manager, longlo
     temp_buffer_2 = 0;
     if (((-1 < offset_2) && (-1 < (int)(temp_value_2 - offset_2))) && 
         (offset_2 <= (int)temp_value_2)) {
-      temp_buffer_2 = (ulonglong)(temp_value_2 - offset_2) << 0x20;
+      temp_buffer_2 = (uint64_t)(temp_value_2 - offset_2) << 0x20;
       temp_address = temp_offset + temp_buffer_5;
     }
     
-    *(longlong *)(resource_manager + 0x90) = temp_address;
-    *(longlong *)(resource_manager + 0x98) = temp_buffer_2;
+    *(int64_t *)(resource_manager + 0x90) = temp_address;
+    *(int64_t *)(resource_manager + 0x98) = temp_buffer_2;
     temp_value = temp_value_2;
   }
   
@@ -732,23 +732,23 @@ process_resource_data:
     offset_1 = 0xffff;
   }
   else {
-    offset_1 = (uint)*(byte *)((ulonglong)temp_value + 4 + data_address) * 0x100 +
-               (uint)*(byte *)((ulonglong)temp_value + 5 + data_address);
+    offset_1 = (uint)*(byte *)((uint64_t)temp_value + 4 + data_address) * 0x100 +
+               (uint)*(byte *)((uint64_t)temp_value + 5 + data_address);
   }
   *(int *)(resource_manager + 0x14) = offset_1;
   
   // 读取格式信息
-  format_byte_1 = *(byte *)((ulonglong)resource_id + 2 + data_address);
-  format_byte_2 = *(byte *)((ulonglong)resource_id + 3 + data_address);
+  format_byte_1 = *(byte *)((uint64_t)resource_id + 2 + data_address);
+  format_byte_2 = *(byte *)((uint64_t)resource_id + 3 + data_address);
   *(int32_t *)(resource_manager + 0x34) = 0;
   offset_1 = (uint)format_byte_1 * 0x100 + (uint)format_byte_2;
   
   if (offset_1 != 0) {
     do {
       temp_value = resource_id + 4 + (int)calc_offset_1 * 8;
-      calc_offset_2 = (ulonglong)temp_value;
-      offset_2 = (uint)*(byte *)((ulonglong)temp_value + data_address) * 0x100 +
-                 (uint)*(byte *)((ulonglong)temp_value + 1 + data_address);
+      calc_offset_2 = (uint64_t)temp_value;
+      offset_2 = (uint)*(byte *)((uint64_t)temp_value + data_address) * 0x100 +
+                 (uint)*(byte *)((uint64_t)temp_value + 1 + data_address);
       
       // 检查数据格式
       if ((offset_2 == 0) ||
@@ -764,13 +764,13 @@ process_resource_data:
               (uint)*(byte *)(calc_offset_2 + 4 + data_address) * 0x100) * 0x100) * 0x100 + resource_id;
       }
       temp_value = (int)calc_offset_1 + 1;
-      calc_offset_1 = (ulonglong)temp_value;
+      calc_offset_1 = (uint64_t)temp_value;
     } while ((int)temp_value < offset_1);
     
     if (*(int *)(resource_manager + 0x34) != 0) {
       *(uint *)(resource_manager + 0x38) =
-           (uint)*(byte *)((longlong)*(int *)(resource_manager + 0x1c) + 0x33 + data_address) +
-           (uint)*(byte *)((longlong)*(int *)(resource_manager + 0x1c) + 0x32 + data_address) * 0x100;
+           (uint)*(byte *)((int64_t)*(int *)(resource_manager + 0x1c) + 0x33 + data_address) +
+           (uint)*(byte *)((int64_t)*(int *)(resource_manager + 0x1c) + 0x32 + data_address) * 0x100;
       return 1;
     }
   }
@@ -783,26 +783,26 @@ process_resource_data:
  * @param param_2 数据偏移量
  * @return 渲染数据值
  */
-uint get_rendering_data_value(longlong resource_manager, uint data_offset)
+uint get_rendering_data_value(int64_t resource_manager, uint data_offset)
 {
   int entry_count;
-  longlong data_address;
-  longlong calc_offset;
+  int64_t data_address;
+  int64_t calc_offset;
   uint data_length;
   ushort format_type;
-  longlong temp_offset;
+  int64_t temp_offset;
   int current_pos;
   uint temp_value;
   int search_index;
   short temp_short;
   ushort temp_ushort;
-  ulonglong calc_offset_1;
-  ulonglong calc_offset_2;
-  longlong found_offset;
+  uint64_t calc_offset_1;
+  uint64_t calc_offset_2;
+  int64_t found_offset;
   ushort result_ushort;
   
-  calc_offset_2 = (ulonglong)*(uint *)(resource_manager + 0x34);
-  data_address = *(longlong *)(resource_manager + 8);
+  calc_offset_2 = (uint64_t)*(uint *)(resource_manager + 0x34);
+  data_address = *(int64_t *)(resource_manager + 8);
   temp_short = (ushort)*(byte *)(calc_offset_2 + data_address) * 0x100 + 
               (ushort)*(byte *)(calc_offset_2 + 1 + data_address);
   
@@ -810,7 +810,7 @@ uint get_rendering_data_value(longlong resource_manager, uint data_offset)
     if ((int)data_offset <
         (int)((uint)*(byte *)(calc_offset_2 + 2 + data_address) * 0x100 + 
               (*(byte *)(calc_offset_2 + 3 + data_address) - 6))) {
-      return (uint)*(byte *)(calc_offset_2 + (longlong)(int)data_offset + 6 + data_address);
+      return (uint)*(byte *)(calc_offset_2 + (int64_t)(int)data_offset + 6 + data_address);
     }
   }
   else if (temp_short == 6) {
@@ -839,8 +839,8 @@ uint get_rendering_data_value(longlong resource_manager, uint data_offset)
       
       if ((int)data_offset < 0x10000) {
         temp_value = data_length;
-        if ((int)((uint)*(byte *)((ulonglong)data_length + data_address + (ulonglong)temp_value * 2) * 0x100 +
-                 (uint)*(byte *)((ulonglong)data_length + data_address + 1 + (ulonglong)temp_value * 2)) <=
+        if ((int)((uint)*(byte *)((uint64_t)data_length + data_address + (uint64_t)temp_value * 2) * 0x100 +
+                 (uint)*(byte *)((uint64_t)data_length + data_address + 1 + (uint64_t)temp_value * 2)) <=
             (int)data_offset) {
           temp_value = data_length + (uint)temp_value * 2;
         }
@@ -848,14 +848,14 @@ uint get_rendering_data_value(longlong resource_manager, uint data_offset)
         
         for (; temp_short != 0; temp_short = temp_short + -1) {
           temp_ushort = temp_ushort >> 1;
-          if ((int)((uint)*(byte *)((ulonglong)temp_value + data_address + (ulonglong)temp_ushort * 2) * 0x100 +
-                   (uint)*(byte *)((ulonglong)temp_value + data_address + 1 + (ulonglong)temp_ushort * 2)) <
+          if ((int)((uint)*(byte *)((uint64_t)temp_value + data_address + (uint64_t)temp_ushort * 2) * 0x100 +
+                   (uint)*(byte *)((uint64_t)temp_value + data_address + 1 + (uint64_t)temp_ushort * 2)) <
               (int)data_offset) {
             temp_value = temp_value + (uint)temp_ushort * 2;
           }
         }
         
-        calc_offset_1 = (ulonglong)(((temp_value - data_length) + 2 >> 1 & 0xffff) * 2);
+        calc_offset_1 = (uint64_t)(((temp_value - data_length) + 2 >> 1 & 0xffff) * 2);
         calc_offset = ((uint)result_ushort + (uint)result_ushort * 2) * 2 + calc_offset_1 + calc_offset_2;
         current_pos = (uint)*(byte *)(calc_offset + 0x10 + data_address) * 0x100 +
                       (uint)*(byte *)(calc_offset + 0x11 + data_address);
@@ -872,8 +872,8 @@ uint get_rendering_data_value(longlong resource_manager, uint data_offset)
                                   (ushort)*(byte *)(calc_offset + 0x11 + data_address) + (short)data_offset);
           }
           
-          calc_offset = (ulonglong)temp_ushort + (longlong)(int)((data_offset - current_pos) * 2) + 
-                        (ulonglong)data_length + calc_offset_1 + calc_offset_2;
+          calc_offset = (uint64_t)temp_ushort + (int64_t)(int)((data_offset - current_pos) * 2) + 
+                        (uint64_t)data_length + calc_offset_1 + calc_offset_2;
           return (uint)*(byte *)(calc_offset + 0x11 + data_address) +
                  (uint)*(byte *)(calc_offset + 0x10 + data_address) * 0x100;
         }
@@ -892,7 +892,7 @@ uint get_rendering_data_value(longlong resource_manager, uint data_offset)
         
         do {
           entry_count = (search_index - current_pos >> 1) + current_pos;
-          temp_offset = (longlong)(entry_count * 0xc);
+          temp_offset = (int64_t)(entry_count * 0xc);
           data_length = (uint)*(byte *)(temp_offset + 0x11 + calc_offset) * 0x10000 +
                        (uint)*(byte *)(temp_offset + 0x12 + calc_offset) * 0x100 +
                        (uint)*(byte *)(temp_offset + 0x10 + calc_offset) * 0x1000000 +
@@ -940,15 +940,15 @@ uint get_rendering_data_value(longlong resource_manager, uint data_offset)
  * @param param_10 V坐标
  * @return 更新后的顶点索引
  */
-int add_rendering_vertex_data(longlong vertex_data, int vertex_index, int vertex_type, int vertex_count,
+int add_rendering_vertex_data(int64_t vertex_data, int vertex_index, int vertex_type, int vertex_count,
                               int16_t coord_x, int16_t coord_y, int coord_z, int coord_w,
                               int coord_u, int coord_v)
 {
-  longlong data_offset;
+  int64_t data_offset;
   
   if (vertex_count != 0) {
     if (vertex_type != 0) {
-      data_offset = (longlong)vertex_index * 0xe;
+      data_offset = (int64_t)vertex_index * 0xe;
       vertex_index = vertex_index + 1;
       *(short *)(data_offset + vertex_data) = (short)(coord_z + coord_v >> 1);
       *(int8_t *)(data_offset + 0xc + vertex_data) = 3;
@@ -956,7 +956,7 @@ int add_rendering_vertex_data(longlong vertex_data, int vertex_index, int vertex
       *(int16_t *)(data_offset + 6 + vertex_data) = (int16_t)coord_w;
       *(short *)(data_offset + 2 + vertex_data) = (short)(coord_u + coord_w >> 1);
     }
-    data_offset = (longlong)vertex_index * 0xe;
+    data_offset = (int64_t)vertex_index * 0xe;
     *(int16_t *)(data_offset + vertex_data) = coord_x;
     *(int16_t *)(data_offset + 2 + vertex_data) = coord_y;
     *(short *)(data_offset + 4 + vertex_data) = (short)coord_z;
@@ -965,7 +965,7 @@ int add_rendering_vertex_data(longlong vertex_data, int vertex_index, int vertex
     return vertex_index + 1;
   }
   
-  data_offset = (longlong)vertex_index * 0xe;
+  data_offset = (int64_t)vertex_index * 0xe;
   *(int16_t *)(data_offset + vertex_data) = coord_x;
   *(int16_t *)(data_offset + 2 + vertex_data) = coord_y;
   
@@ -996,17 +996,17 @@ int add_rendering_vertex_data(longlong vertex_data, int vertex_index, int vertex
  * @param param_11 V坐标
  * @return 处理后的顶点索引
  */
-int process_rendering_vertex_batch(longlong vertex_data, uint64_t batch_params, int vertex_type, int vertex_count,
+int process_rendering_vertex_batch(int64_t vertex_data, uint64_t batch_params, int vertex_type, int vertex_count,
                                    uint64_t process_params, int16_t coord_x, int16_t coord_y,
                                    int coord_z, uint64_t process_flag, int coord_u, int coord_v)
 {
-  longlong data_offset;
-  ulonglong batch_offset;
-  longlong flag_offset;
+  int64_t data_offset;
+  uint64_t batch_offset;
+  int64_t flag_offset;
   
   if (vertex_type != 0) {
     data_offset = batch_offset * 0xe;
-    batch_offset = (ulonglong)((int)batch_offset + 1);
+    batch_offset = (uint64_t)((int)batch_offset + 1);
     *(short *)(data_offset + vertex_data) = (short)(coord_z + coord_v >> 1);
     *(int8_t *)(data_offset + 0xc + vertex_data) = 3;
     *(short *)(data_offset + 4 + flag_offset) = (short)coord_v;
@@ -1014,7 +1014,7 @@ int process_rendering_vertex_batch(longlong vertex_data, uint64_t batch_params, 
     *(short *)(data_offset + 2 + flag_offset) = (short)(coord_z + coord_v >> 1);
   }
   
-  data_offset = (longlong)(int)batch_offset * 0xe;
+  data_offset = (int64_t)(int)batch_offset * 0xe;
   *(int16_t *)(data_offset + flag_offset) = coord_x;
   *(int16_t *)(data_offset + 2 + flag_offset) = coord_y;
   *(short *)(data_offset + 4 + flag_offset) = (short)coord_z;
@@ -1043,9 +1043,9 @@ int process_rendering_vertex_extension(uint64_t ext_params, uint64_t vertex_data
                                        int16_t coord_y, uint64_t ext_flag, uint64_t ext_data_2,
                                        int16_t coord_u, int16_t coord_v)
 {
-  longlong data_offset;
-  longlong ext_offset;
-  longlong flag_offset;
+  int64_t data_offset;
+  int64_t ext_offset;
+  int64_t flag_offset;
   
   data_offset = ext_offset * 0xe;
   *(int16_t *)(data_offset + flag_offset) = coord_x;
@@ -1070,7 +1070,7 @@ int process_rendering_vertex_extension(uint64_t ext_params, uint64_t vertex_data
  * @param param_3 输出参数指针
  * @return 处理后的矩阵大小
  */
-ulonglong process_rendering_transformation_matrix(longlong matrix_ptr, uint64_t matrix_params, ulonglong *output_params)
+uint64_t process_rendering_transformation_matrix(int64_t matrix_ptr, uint64_t matrix_params, uint64_t *output_params)
 {
   byte *data_ptr_1;
   byte *data_ptr_2;
@@ -1082,43 +1082,43 @@ ulonglong process_rendering_transformation_matrix(longlong matrix_ptr, uint64_t 
   int32_t temp_param;
   uint temp_value;
   int current_pos;
-  ulonglong matrix_size;
-  ulonglong temp_offset_1;
-  ulonglong temp_offset_2;
-  ulonglong temp_offset_3;
-  ulonglong temp_offset_4;
+  uint64_t matrix_size;
+  uint64_t temp_offset_1;
+  uint64_t temp_offset_2;
+  uint64_t temp_offset_3;
+  uint64_t temp_offset_4;
   byte temp_byte;
   short temp_short;
-  ulonglong temp_ulong;
+  uint64_t temp_ulong;
   byte *temp_byte_ptr;
   short *short_ptr;
   byte *byte_ptr_2;
   int32_t temp_param_2;
-  ulonglong temp_offset_5;
+  uint64_t temp_offset_5;
   byte temp_byte_2;
   int32_t temp_param_3;
-  ulonglong temp_offset_6;
+  uint64_t temp_offset_6;
   uint temp_value_2;
   uint temp_value_3;
   byte *byte_ptr_3;
-  longlong temp_long;
+  int64_t temp_long;
   int16_t temp_ushort;
   int16_t *ushort_ptr;
-  ulonglong temp_offset_7;
-  longlong temp_long_2;
+  uint64_t temp_offset_7;
+  int64_t temp_long_2;
   int32_t temp_param_4;
-  ulonglong temp_offset_8;
-  longlong temp_long_3;
+  uint64_t temp_offset_8;
+  int64_t temp_long_3;
   int32_t temp_param_5;
   uint temp_value_4;
-  ulonglong temp_offset_9;
+  uint64_t temp_offset_9;
   float float_val_1;
   float float_val_2;
   float float_val_3;
   float float_val_4;
   float float_val_5;
   float float_val_6;
-  longlong stack_param_1;
+  int64_t stack_param_1;
   uint stack_value_1;
   uint stack_value_2;
   uint stack_value_3;
@@ -1131,7 +1131,7 @@ ulonglong process_rendering_transformation_matrix(longlong matrix_ptr, uint64_t 
   float stack_float_3;
   float stack_float_4;
   
-  temp_long = *(longlong *)(matrix_ptr + 8);
+  temp_long = *(int64_t *)(matrix_ptr + 8);
   temp_offset_5 = 0;
   matrix_int = func_0x00018028c210();
   *output_params = 0;
@@ -1141,7 +1141,7 @@ set_matrix_size:
     temp_offset_3 = 0;
   }
   else {
-    temp_long_3 = (longlong)matrix_int;
+    temp_long_3 = (int64_t)matrix_int;
     temp_short = (ushort)*(byte *)(temp_long_3 + temp_long) * 0x100 + 
                  (ushort)*(byte *)(temp_long_3 + 1 + temp_long);
     temp_param_2 = 0;
@@ -1247,7 +1247,7 @@ set_matrix_size:
           }
         }
         
-        temp_long = (longlong)matrix_int;
+        temp_long = (int64_t)matrix_int;
         if (3 < temp_long) {
           temp_long_3 = (temp_long - 4U >> 2) + 1;
           temp_offset_3 = temp_long_3 * 4;
@@ -1316,7 +1316,7 @@ set_matrix_size:
           } while (temp_long_3 != 0);
         }
         
-        if ((longlong)temp_offset_3 < temp_long) {
+        if ((int64_t)temp_offset_3 < temp_long) {
           temp_long_3 = temp_offset_3 * 0xe;
           temp_long_2 = temp_long - temp_offset_3;
           
@@ -1347,7 +1347,7 @@ set_matrix_size:
           *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + 1;
         }
         
-        temp_long_3 = func_0x000180120ce0((longlong)matrix_int * 0xe, SYSTEM_DATA_MANAGER_B);
+        temp_long_3 = func_0x000180120ce0((int64_t)matrix_int * 0xe, SYSTEM_DATA_MANAGER_B);
         if (temp_long_3 != 0) {
           // WARNING: Subroutine does not return
           memcpy(temp_long_3, stack_param_1, temp_long * 0xe);
@@ -1366,21 +1366,21 @@ set_matrix_size:
     else {
       stack_byte_ptr = (byte *)(temp_long + 10 + temp_long_3);
       temp_byte_2 = 0;
-      temp_long_2 = (longlong)(temp_short * 2);
+      temp_long_2 = (int64_t)(temp_short * 2);
       temp_byte = stack_byte_ptr[temp_long_2 + -2];
       temp_byte = stack_byte_ptr[temp_long_2 + -1];
       temp_byte_ptr = (byte *)(temp_long + 0xc +
-                        (ulonglong)*(byte *)(temp_long_2 + temp_long_3 + 0xb + temp_long) +
-                        (ulonglong)*(byte *)(temp_long_2 + temp_long_3 + 10 + temp_long) * 0x100 + temp_long_2 +
+                        (uint64_t)*(byte *)(temp_long_2 + temp_long_3 + 0xb + temp_long) +
+                        (uint64_t)*(byte *)(temp_long_2 + temp_long_3 + 10 + temp_long) * 0x100 + temp_long_2 +
                         temp_long_3);
       temp_value_3 = temp_byte + 1 + (uint)temp_byte * 0x100;
-      temp_offset_3 = (ulonglong)temp_value_3;
+      temp_offset_3 = (uint64_t)temp_value_3;
       
       if (SYSTEM_DATA_MANAGER_A != 0) {
         *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + 1;
       }
       
-      temp_offset_1 = func_0x000180120ce0((longlong)(int)(temp_byte + 1 + (uint)temp_byte * 0x100 + temp_short * 2) * 0xe);
+      temp_offset_1 = func_0x000180120ce0((int64_t)(int)(temp_byte + 1 + (uint)temp_byte * 0x100 + temp_short * 2) * 0xe);
       if (temp_offset_1 == 0) goto set_matrix_size;
       
       temp_offset_2 = 0;
@@ -1398,7 +1398,7 @@ set_matrix_size:
             if ((temp_byte_2 & 8) != 0) {
               temp_byte = temp_byte_ptr[1];
             }
-            temp_byte_ptr = temp_byte_ptr + (ulonglong)((temp_byte_2 & 8) != 0) + 1;
+            temp_byte_ptr = temp_byte_ptr + (uint64_t)((temp_byte_2 & 8) != 0) + 1;
           }
           else {
             temp_byte = temp_byte - 1;
@@ -1418,7 +1418,7 @@ set_matrix_size:
         do {
           if ((*(byte *)(ushort_ptr + 6) & 2) == 0) {
             if ((*(byte *)(ushort_ptr + 6) & 0x10) == 0) {
-              temp_offset_4 = (ulonglong)
+              temp_offset_4 = (uint64_t)
                        (uint)((int)temp_offset_4 +
                              (int)(short)((ushort)*temp_byte_ptr * 0x100 + (ushort)temp_byte_ptr[1]));
               temp_byte_ptr = temp_byte_ptr + 2;
@@ -1431,7 +1431,7 @@ set_matrix_size:
             if ((*(byte *)(ushort_ptr + 6) & 0x10) == 0) {
               temp_value = -(uint)temp_byte;
             }
-            temp_offset_4 = (ulonglong)((int)temp_offset_4 + temp_value);
+            temp_offset_4 = (uint64_t)((int)temp_offset_4 + temp_value);
           }
           *ushort_ptr = (short)temp_offset_4;
           ushort_ptr = ushort_ptr + 7;
@@ -1448,7 +1448,7 @@ set_matrix_size:
         do {
           if ((*(byte *)(ushort_ptr + 5) & 4) == 0) {
             if ((*(byte *)(ushort_ptr + 5) & 0x20) == 0) {
-              temp_offset_4 = (ulonglong)
+              temp_offset_4 = (uint64_t)
                        (uint)((int)temp_offset_4 +
                              (int)(short)((ushort)*temp_byte_ptr * 0x100 + (ushort)temp_byte_ptr[1]));
               temp_byte_ptr = temp_byte_ptr + 2;
@@ -1461,7 +1461,7 @@ set_matrix_size:
             if ((*(byte *)(ushort_ptr + 5) & 0x20) == 0) {
               temp_value = -(uint)temp_byte;
             }
-            temp_offset_4 = (ulonglong)((int)temp_offset_4 + temp_value);
+            temp_offset_4 = (uint64_t)((int)temp_offset_4 + temp_value);
           }
           *ushort_ptr = (short)temp_offset_4;
           ushort_ptr = ushort_ptr + 7;
@@ -1493,7 +1493,7 @@ set_matrix_size:
           matrix_int = (int)temp_offset_4;
           temp_short = *short_ptr;
           temp_value_2 = (uint)temp_short;
-          temp_ulong = (ulonglong)temp_value_2;
+          temp_ulong = (uint64_t)temp_value_2;
           temp_byte = *(byte *)(short_ptr + 6);
           matrix_short = short_ptr[1];
           temp_value_3 = (uint)matrix_short;
@@ -1505,25 +1505,25 @@ set_matrix_size:
               matrix_int = add_rendering_vertex_data(temp_offset_1, temp_offset_4, temp_offset_5, temp_offset_7,
                                                     (int)temp_offset_6, (int)temp_offset_8, stack_value_5,
                                                     stack_value_3, (int)temp_offset_3, (int)temp_offset_9);
-              temp_offset_9 = (ulonglong)stack_value_6;
-              temp_offset_3 = (ulonglong)stack_value_2;
+              temp_offset_9 = (uint64_t)stack_value_6;
+              temp_offset_3 = (uint64_t)stack_value_2;
               temp_byte = (byte)stack_param_1;
               temp_value = stack_value_1;
             }
             
-            temp_offset_7 = (ulonglong)(~(uint)temp_byte & 1);
+            temp_offset_7 = (uint64_t)(~(uint)temp_byte & 1);
             if ((~(uint)temp_byte & 1) == 0) {
-              temp_offset_8 = (ulonglong)temp_value_3;
+              temp_offset_8 = (uint64_t)temp_value_3;
             }
             else {
-              temp_ulong = (ulonglong)(uint)(int)short_ptr[7];
-              temp_offset_8 = (ulonglong)(uint)(int)short_ptr[8];
+              temp_ulong = (uint64_t)(uint)(int)short_ptr[7];
+              temp_offset_8 = (uint64_t)(uint)(int)short_ptr[8];
               stack_value_3 = temp_value_3;
               stack_value_5 = temp_value_2;
               
               if ((*(byte *)(short_ptr + 0xd) & 1) == 0) {
-                temp_ulong = (ulonglong)(uint)((int)((int)short_ptr[7] + temp_value_2) >> 1);
-                temp_offset_8 = (ulonglong)(uint)((int)((int)short_ptr[8] + temp_value_3) >> 1);
+                temp_ulong = (uint64_t)(uint)((int)((int)short_ptr[7] + temp_value_2) >> 1);
+                temp_offset_8 = (uint64_t)(uint)((int)((int)short_ptr[8] + temp_value_3) >> 1);
               }
               else {
                 stack_value_1 = temp_value + 1;
@@ -1532,7 +1532,7 @@ set_matrix_size:
               }
             }
             
-            ushort_ptr = (int16_t *)((longlong)matrix_int * 0xe + temp_offset_1);
+            ushort_ptr = (int16_t *)((int64_t)matrix_int * 0xe + temp_offset_1);
             *(int8_t *)(ushort_ptr + 6) = 1;
             *ushort_ptr = (short)temp_ulong;
             ushort_ptr[1] = (short)temp_offset_8;
@@ -1546,7 +1546,7 @@ set_matrix_size:
             current_pos = (int)temp_offset_5;
             
             if ((temp_byte & 1) != 0) {
-              temp_long = (longlong)matrix_int * 0xe;
+              temp_long = (int64_t)matrix_int * 0xe;
               if (current_pos == 0) {
                 temp_offset_3 = 0;
                 temp_ushort = 0;
@@ -1555,14 +1555,14 @@ set_matrix_size:
               *(short *)(temp_long + temp_offset_1) = temp_short;
               *(short *)(temp_long + 2 + temp_offset_1) = matrix_short;
               *(short *)(temp_long + 4 + temp_offset_1) = (short)temp_offset_3;
-              temp_offset_3 = (ulonglong)stack_value_2;
+              temp_offset_3 = (uint64_t)stack_value_2;
               *(int16_t *)(temp_long + 6 + temp_offset_1) = temp_ushort;
               goto next_vertex;
             }
             
             if (current_pos != 0) {
-              temp_offset_4 = (ulonglong)(matrix_int + 1);
-              ushort_ptr = (int16_t *)((longlong)matrix_int * 0xe + temp_offset_1);
+              temp_offset_4 = (uint64_t)(matrix_int + 1);
+              ushort_ptr = (int16_t *)((int64_t)matrix_int * 0xe + temp_offset_1);
               *ushort_ptr = (short)((int)((int)temp_offset_3 + temp_value_2) >> 1);
               ushort_ptr[1] = (short)((int)((int)temp_offset_9 + temp_value_3) >> 1);
               *(int8_t *)(ushort_ptr + 6) = 3;
@@ -1572,7 +1572,7 @@ set_matrix_size:
             }
             
             stack_value_1 = temp_value;
-            temp_offset_9 = (ulonglong)temp_value_3;
+            temp_offset_9 = (uint64_t)temp_value_3;
             temp_offset_5 = 1;
             stack_value_2 = temp_value_2;
             stack_value_6 = temp_value_3;
@@ -1584,18 +1584,18 @@ set_matrix_size:
           temp_param = (int32_t)temp_offset_9;
           temp_param_2 = (int32_t)temp_offset_5;
           stack_value_1 = stack_value_1 + 1;
-          temp_offset_2 = (ulonglong)stack_value_1;
+          temp_offset_2 = (uint64_t)stack_value_1;
           temp_ulong = temp_ulong + 1;
           short_ptr = short_ptr + 7;
           temp_offset_3 = temp_offset_3;
-        } while ((longlong)temp_ulong < (longlong)(ulonglong)temp_value_3);
+        } while ((int64_t)temp_ulong < (int64_t)(uint64_t)temp_value_3);
       }
       
       temp_value_3 = add_rendering_vertex_data(temp_offset_1, temp_offset_4, temp_param_2, temp_offset_7,
                                               temp_param_3, temp_param_4, stack_value_5, stack_value_3,
                                               temp_param_5, temp_param);
       temp_offset_5 = temp_offset_1;
-      temp_offset_3 = (ulonglong)temp_value_3;
+      temp_offset_3 = (uint64_t)temp_value_3;
     }
     *output_params = temp_offset_5;
   }

@@ -167,7 +167,7 @@ void RenderingSystemMatrixVectorNormalizer(float *param_1)
     
     // 设置矩阵其他元素
     param_1[0x20] = (float)in_XMM0_Qa;
-    param_1[0x21] = (float)((ulonglong)in_XMM0_Qa >> 0x20);
+    param_1[0x21] = (float)((uint64_t)in_XMM0_Qa >> 0x20);
     param_1[0x22] = in_XMM0_Dc;
     param_1[0x23] = in_XMM0_Dd;
     
@@ -340,7 +340,7 @@ void RenderingSystemMatrixTransformer(float *param_1)
 {
     uint64_t uVar1;
     uint64_t uVar2;
-    longlong unaff_RBP;
+    int64_t unaff_RBP;
     float fVar3;
     float fVar4;
     float fVar5;
@@ -719,7 +719,7 @@ void RenderingSystemProjectionMatrixSetup(float *param_1, float param_2, float p
  * @note 此函数处理矩阵数据的格式转换
  * @note 支持不同的矩阵布局和精度
  */
-uint64_t *RenderingSystemMatrixExtractor(longlong param_1, uint64_t *param_2)
+uint64_t *RenderingSystemMatrixExtractor(int64_t param_1, uint64_t *param_2)
 {
     float fVar1;
     int32_t uVar2;
@@ -749,12 +749,12 @@ uint64_t *RenderingSystemMatrixExtractor(longlong param_1, uint64_t *param_2)
         uVar3 = *(int32_t *)(param_1 + 0xf8);
         uVar4 = *(int32_t *)(param_1 + 0xfc);
         *(float *)(param_2 + 6) = fVar1;
-        *(int32_t *)((longlong)param_2 + 0x34) = uVar2;
+        *(int32_t *)((int64_t)param_2 + 0x34) = uVar2;
         *(int32_t *)(param_2 + 7) = uVar3;
-        *(int32_t *)((longlong)param_2 + 0x3c) = uVar4;
+        *(int32_t *)((int64_t)param_2 + 0x3c) = uVar4;
         *(float *)(param_2 + 6) = fVar1 + *(float *)(param_1 + 0x128);
-        *(float *)((longlong)param_2 + 0x34) =
-             *(float *)(param_1 + 300) + *(float *)((longlong)param_2 + 0x34);
+        *(float *)((int64_t)param_2 + 0x34) =
+             *(float *)(param_1 + 300) + *(float *)((int64_t)param_2 + 0x34);
         *(float *)(param_2 + 7) = *(float *)(param_1 + 0x130) + *(float *)(param_2 + 7);
         puVar6 = param_2;
     }
@@ -775,10 +775,10 @@ uint64_t *RenderingSystemMatrixExtractor(longlong param_1, uint64_t *param_2)
     param_2[7] = uVar5;
     
     // 设置矩阵默认值
-    *(int32_t *)((longlong)param_2 + 0xc) = 0;
-    *(int32_t *)((longlong)param_2 + 0x1c) = 0;
-    *(int32_t *)((longlong)param_2 + 0x2c) = 0;
-    *(int32_t *)((longlong)param_2 + 0x3c) = 0x3f800000;
+    *(int32_t *)((int64_t)param_2 + 0xc) = 0;
+    *(int32_t *)((int64_t)param_2 + 0x1c) = 0;
+    *(int32_t *)((int64_t)param_2 + 0x2c) = 0;
+    *(int32_t *)((int64_t)param_2 + 0x3c) = 0x3f800000;
     
     return param_2;
 }
@@ -797,7 +797,7 @@ uint64_t *RenderingSystemMatrixExtractor(longlong param_1, uint64_t *param_2)
  * @note 使用标准的视图矩阵计算算法
  * @note 支持不同的坐标系和摄像机模式
  */
-void RenderingSystemViewMatrixCalculator(longlong param_1, float *param_2, float *param_3, float *param_4)
+void RenderingSystemViewMatrixCalculator(int64_t param_1, float *param_2, float *param_3, float *param_4)
 {
     uint64_t uVar1;
     float fVar2;
@@ -889,7 +889,7 @@ void RenderingSystemViewMatrixCalculator(longlong param_1, float *param_2, float
  * @note 此函数处理完整的3D到2D坐标转换流程
  * @note 支持不同的投影模式和坐标系
  */
-float *RenderingSystemWorldToScreenConverter(longlong param_1, float *param_2, float *param_3)
+float *RenderingSystemWorldToScreenConverter(int64_t param_1, float *param_2, float *param_3)
 {
     float fVar1;
     float fVar2;
@@ -954,7 +954,7 @@ float *RenderingSystemWorldToScreenConverter(longlong param_1, float *param_2, f
  * @note 此函数使用高效的裁剪算法
  * @note 支持边界框和球体的裁剪测试
  */
-void RenderingSystemFrustumCullTester(longlong param_1, float *param_2, float *param_3, float *param_4, float *param_5)
+void RenderingSystemFrustumCullTester(int64_t param_1, float *param_2, float *param_3, float *param_4, float *param_5)
 {
     float fVar1;
     float fVar2;

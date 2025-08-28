@@ -12,30 +12,30 @@
 
 // ==================== 函数声明 ====================
 // 基础网络函数
-void network_packet_writer(longlong context_ptr, uint64_t data_ptr, int32_t data_size);
-int network_data_serializer(longlong config_ptr, longlong buffer_ptr, int buffer_size);
-int network_complex_serializer(longlong config_ptr, longlong buffer_ptr, int buffer_size);
-int network_multi_field_serializer(longlong config_ptr, longlong buffer_ptr, int buffer_size);
-int network_extended_serializer(longlong config_ptr, longlong buffer_ptr, int buffer_size);
-int network_advanced_serializer(longlong config_ptr, longlong buffer_ptr, int buffer_size);
-int network_simple_serializer(longlong config_ptr, longlong buffer_ptr, int buffer_size);
-void network_packet_dispatcher(longlong context_ptr, uint64_t data_ptr, int32_t data_size);
-int network_variable_serializer(longlong config_ptr, longlong buffer_ptr, int buffer_size);
-int network_flag_serializer(longlong config_ptr, longlong buffer_ptr, int buffer_size);
-int network_state_serializer(longlong config_ptr, longlong buffer_ptr, int buffer_size);
-int network_stream_serializer(longlong config_ptr, longlong buffer_ptr, int buffer_size);
-int network_packet_serializer(longlong config_ptr, longlong buffer_ptr, int buffer_size);
-int network_message_serializer(longlong config_ptr, longlong buffer_ptr, int buffer_size);
-int network_command_serializer(longlong config_ptr, longlong buffer_ptr, int buffer_size);
-int network_event_serializer(longlong config_ptr, longlong buffer_ptr, int buffer_size);
-int network_request_serializer(longlong config_ptr, longlong buffer_ptr, int buffer_size);
-int network_response_serializer(longlong config_ptr, longlong buffer_ptr, int buffer_size);
-int network_error_serializer(longlong config_ptr, longlong buffer_ptr, int buffer_size);
-int network_info_serializer(longlong config_ptr, longlong buffer_ptr, int buffer_size);
-int network_basic_data_processor(longlong config_ptr, longlong buffer_ptr, int buffer_size);
-int network_binary_serializer(longlong config_ptr, longlong buffer_ptr, int buffer_size);
-void network_connection_handler(ulonglong connection_id, uint64_t *output_data);
-void network_data_sender(uint64_t target_id, longlong data_ptr);
+void network_packet_writer(int64_t context_ptr, uint64_t data_ptr, int32_t data_size);
+int network_data_serializer(int64_t config_ptr, int64_t buffer_ptr, int buffer_size);
+int network_complex_serializer(int64_t config_ptr, int64_t buffer_ptr, int buffer_size);
+int network_multi_field_serializer(int64_t config_ptr, int64_t buffer_ptr, int buffer_size);
+int network_extended_serializer(int64_t config_ptr, int64_t buffer_ptr, int buffer_size);
+int network_advanced_serializer(int64_t config_ptr, int64_t buffer_ptr, int buffer_size);
+int network_simple_serializer(int64_t config_ptr, int64_t buffer_ptr, int buffer_size);
+void network_packet_dispatcher(int64_t context_ptr, uint64_t data_ptr, int32_t data_size);
+int network_variable_serializer(int64_t config_ptr, int64_t buffer_ptr, int buffer_size);
+int network_flag_serializer(int64_t config_ptr, int64_t buffer_ptr, int buffer_size);
+int network_state_serializer(int64_t config_ptr, int64_t buffer_ptr, int buffer_size);
+int network_stream_serializer(int64_t config_ptr, int64_t buffer_ptr, int buffer_size);
+int network_packet_serializer(int64_t config_ptr, int64_t buffer_ptr, int buffer_size);
+int network_message_serializer(int64_t config_ptr, int64_t buffer_ptr, int buffer_size);
+int network_command_serializer(int64_t config_ptr, int64_t buffer_ptr, int buffer_size);
+int network_event_serializer(int64_t config_ptr, int64_t buffer_ptr, int buffer_size);
+int network_request_serializer(int64_t config_ptr, int64_t buffer_ptr, int buffer_size);
+int network_response_serializer(int64_t config_ptr, int64_t buffer_ptr, int buffer_size);
+int network_error_serializer(int64_t config_ptr, int64_t buffer_ptr, int buffer_size);
+int network_info_serializer(int64_t config_ptr, int64_t buffer_ptr, int buffer_size);
+int network_basic_data_processor(int64_t config_ptr, int64_t buffer_ptr, int buffer_size);
+int network_binary_serializer(int64_t config_ptr, int64_t buffer_ptr, int buffer_size);
+void network_connection_handler(uint64_t connection_id, uint64_t *output_data);
+void network_data_sender(uint64_t target_id, int64_t data_ptr);
 void network_broadcast_sender(uint64_t target_id, uint64_t data_ptr, uint64_t metadata);
 void network_packet_sender(void);
 void network_cleanup_handler(void);
@@ -55,7 +55,7 @@ void network_metadata_handler(uint64_t resource_id, uint64_t *output_data);
  * @param data_ptr 数据指针，指向要写入的数据
  * @param data_size 数据大小
  */
-void network_packet_writer(longlong context_ptr, uint64_t data_ptr, int32_t data_size)
+void network_packet_writer(int64_t context_ptr, uint64_t data_ptr, int32_t data_size)
 {
   // 调用底层网络写入函数，传入上下文、数据、协议标识符和大小参数
   FUN_18083f7b0(data_ptr, data_size, &unknown_var_2904_ptr, 
@@ -73,7 +73,7 @@ void network_packet_writer(longlong context_ptr, uint64_t data_ptr, int32_t data
  * @param buffer_size 缓冲区大小
  * @return 实际序列化的数据大小
  */
-int network_data_serializer(longlong config_ptr, longlong buffer_ptr, int buffer_size)
+int network_data_serializer(int64_t config_ptr, int64_t buffer_ptr, int buffer_size)
 {
   int32_t field1_value;
   int32_t field2_value;
@@ -113,7 +113,7 @@ int network_data_serializer(longlong config_ptr, longlong buffer_ptr, int buffer
  * @param buffer_size 缓冲区大小
  * @return 实际序列化的数据大小
  */
-int network_complex_serializer(longlong config_ptr, longlong buffer_ptr, int buffer_size)
+int network_complex_serializer(int64_t config_ptr, int64_t buffer_ptr, int buffer_size)
 {
   int32_t field1_value;
   int serialized_size;
@@ -159,7 +159,7 @@ int network_complex_serializer(longlong config_ptr, longlong buffer_ptr, int buf
  * @param buffer_size 缓冲区大小
  * @return 实际序列化的数据大小
  */
-int network_multi_field_serializer(longlong config_ptr, longlong buffer_ptr, int buffer_size)
+int network_multi_field_serializer(int64_t config_ptr, int64_t buffer_ptr, int buffer_size)
 {
   int32_t field1_value;
   int serialized_size;
@@ -205,7 +205,7 @@ int network_multi_field_serializer(longlong config_ptr, longlong buffer_ptr, int
  * @param buffer_size 缓冲区大小
  * @return 实际序列化的数据大小
  */
-int network_extended_serializer(longlong config_ptr, longlong buffer_ptr, int buffer_size)
+int network_extended_serializer(int64_t config_ptr, int64_t buffer_ptr, int buffer_size)
 {
   int32_t field1_value;
   int serialized_size;
@@ -251,7 +251,7 @@ int network_extended_serializer(longlong config_ptr, longlong buffer_ptr, int bu
  * @param buffer_size 缓冲区大小
  * @return 实际序列化的数据大小
  */
-int network_advanced_serializer(longlong config_ptr, longlong buffer_ptr, int buffer_size)
+int network_advanced_serializer(int64_t config_ptr, int64_t buffer_ptr, int buffer_size)
 {
   int32_t field1_value;
   int serialized_size;
@@ -297,7 +297,7 @@ int network_advanced_serializer(longlong config_ptr, longlong buffer_ptr, int bu
  * @param buffer_size 缓冲区大小
  * @return 实际序列化的数据大小
  */
-int network_simple_serializer(longlong config_ptr, longlong buffer_ptr, int buffer_size)
+int network_simple_serializer(int64_t config_ptr, int64_t buffer_ptr, int buffer_size)
 {
   int32_t field1_value;
   int serialized_size;
@@ -326,7 +326,7 @@ int network_simple_serializer(longlong config_ptr, longlong buffer_ptr, int buff
  * @param data_ptr 数据指针
  * @param data_size 数据大小
  */
-void network_packet_dispatcher(longlong context_ptr, uint64_t data_ptr, int32_t data_size)
+void network_packet_dispatcher(int64_t context_ptr, uint64_t data_ptr, int32_t data_size)
 {
   // 调用底层网络分发函数
   FUN_18083f7b0(data_ptr, data_size, &unknown_var_3176_ptr, 
@@ -344,7 +344,7 @@ void network_packet_dispatcher(longlong context_ptr, uint64_t data_ptr, int32_t 
  * @param buffer_size 缓冲区大小
  * @return 实际序列化的数据大小
  */
-int network_variable_serializer(longlong config_ptr, longlong buffer_ptr, int buffer_size)
+int network_variable_serializer(int64_t config_ptr, int64_t buffer_ptr, int buffer_size)
 {
   int32_t field1_value;
   int serialized_size;
@@ -390,7 +390,7 @@ int network_variable_serializer(longlong config_ptr, longlong buffer_ptr, int bu
  * @param buffer_size 缓冲区大小
  * @return 实际序列化的数据大小
  */
-int network_flag_serializer(longlong config_ptr, longlong buffer_ptr, int buffer_size)
+int network_flag_serializer(int64_t config_ptr, int64_t buffer_ptr, int buffer_size)
 {
   int32_t field1_value;
   int serialized_size;
@@ -436,7 +436,7 @@ int network_flag_serializer(longlong config_ptr, longlong buffer_ptr, int buffer
  * @param buffer_size 缓冲区大小
  * @return 实际序列化的数据大小
  */
-int network_state_serializer(longlong config_ptr, longlong buffer_ptr, int buffer_size)
+int network_state_serializer(int64_t config_ptr, int64_t buffer_ptr, int buffer_size)
 {
   int32_t field1_value;
   int32_t field2_value;
@@ -504,7 +504,7 @@ int network_state_serializer(longlong config_ptr, longlong buffer_ptr, int buffe
  * @param buffer_size 缓冲区大小
  * @return 实际序列化的数据大小
  */
-int network_stream_serializer(longlong config_ptr, longlong buffer_ptr, int buffer_size)
+int network_stream_serializer(int64_t config_ptr, int64_t buffer_ptr, int buffer_size)
 {
   int32_t field1_value;
   int32_t field2_value;
@@ -552,7 +552,7 @@ int network_stream_serializer(longlong config_ptr, longlong buffer_ptr, int buff
  * @param buffer_size 缓冲区大小
  * @return 实际序列化的数据大小
  */
-int network_packet_serializer(longlong config_ptr, longlong buffer_ptr, int buffer_size)
+int network_packet_serializer(int64_t config_ptr, int64_t buffer_ptr, int buffer_size)
 {
   int32_t field1_value;
   int32_t field2_value;
@@ -622,7 +622,7 @@ int network_packet_serializer(longlong config_ptr, longlong buffer_ptr, int buff
  * @param buffer_size 缓冲区大小
  * @return 实际序列化的数据大小
  */
-int network_message_serializer(longlong config_ptr, longlong buffer_ptr, int buffer_size)
+int network_message_serializer(int64_t config_ptr, int64_t buffer_ptr, int buffer_size)
 {
   int8_t flag_value;
   int32_t field1_value;
@@ -702,7 +702,7 @@ int network_message_serializer(longlong config_ptr, longlong buffer_ptr, int buf
  * @param buffer_size 缓冲区大小
  * @return 实际序列化的数据大小
  */
-int network_command_serializer(longlong config_ptr, longlong buffer_ptr, int buffer_size)
+int network_command_serializer(int64_t config_ptr, int64_t buffer_ptr, int buffer_size)
 {
   int32_t field1_value;
   int32_t field2_value;
@@ -742,7 +742,7 @@ int network_command_serializer(longlong config_ptr, longlong buffer_ptr, int buf
  * @param buffer_size 缓冲区大小
  * @return 实际序列化的数据大小
  */
-int network_event_serializer(longlong config_ptr, longlong buffer_ptr, int buffer_size)
+int network_event_serializer(int64_t config_ptr, int64_t buffer_ptr, int buffer_size)
 {
   int32_t field1_value;
   int serialized_size;
@@ -772,7 +772,7 @@ int network_event_serializer(longlong config_ptr, longlong buffer_ptr, int buffe
  * @param buffer_size 缓冲区大小
  * @return 实际序列化的数据大小
  */
-int network_request_serializer(longlong config_ptr, longlong buffer_ptr, int buffer_size)
+int network_request_serializer(int64_t config_ptr, int64_t buffer_ptr, int buffer_size)
 {
   int32_t field1_value;
   int8_t flag_value;
@@ -822,7 +822,7 @@ int network_request_serializer(longlong config_ptr, longlong buffer_ptr, int buf
  * @param buffer_size 缓冲区大小
  * @return 实际序列化的数据大小
  */
-int network_response_serializer(longlong config_ptr, longlong buffer_ptr, int buffer_size)
+int network_response_serializer(int64_t config_ptr, int64_t buffer_ptr, int buffer_size)
 {
   int8_t flag_value;
   int serialized_size;
@@ -870,7 +870,7 @@ int network_response_serializer(longlong config_ptr, longlong buffer_ptr, int bu
  * @param buffer_size 缓冲区大小
  * @return 实际序列化的数据大小
  */
-int network_error_serializer(longlong config_ptr, longlong buffer_ptr, int buffer_size)
+int network_error_serializer(int64_t config_ptr, int64_t buffer_ptr, int buffer_size)
 {
   int32_t field1_value;
   int8_t flag_value;
@@ -918,7 +918,7 @@ int network_error_serializer(longlong config_ptr, longlong buffer_ptr, int buffe
  * @param buffer_size 缓冲区大小
  * @return 实际序列化的数据大小
  */
-int network_info_serializer(longlong config_ptr, longlong buffer_ptr, int buffer_size)
+int network_info_serializer(int64_t config_ptr, int64_t buffer_ptr, int buffer_size)
 {
   int8_t flag_value;
   int serialized_size;
@@ -964,7 +964,7 @@ int network_info_serializer(longlong config_ptr, longlong buffer_ptr, int buffer
  * @param buffer_size 缓冲区大小
  * @return 实际处理的数据大小
  */
-int network_basic_data_processor(longlong config_ptr, longlong buffer_ptr, int buffer_size)
+int network_basic_data_processor(int64_t config_ptr, int64_t buffer_ptr, int buffer_size)
 {
   int processed_size;
   int temp_size;
@@ -990,7 +990,7 @@ int network_basic_data_processor(longlong config_ptr, longlong buffer_ptr, int b
  * @param buffer_size 缓冲区大小
  * @return 实际序列化的数据大小
  */
-int network_binary_serializer(longlong config_ptr, longlong buffer_ptr, int buffer_size)
+int network_binary_serializer(int64_t config_ptr, int64_t buffer_ptr, int buffer_size)
 {
   int32_t field1_value;
   int32_t field2_value;
@@ -1030,7 +1030,7 @@ int network_binary_serializer(longlong config_ptr, longlong buffer_ptr, int buff
  * @param connection_id 连接标识符
  * @param output_data 输出数据指针
  */
-void network_connection_handler(ulonglong connection_id, uint64_t *output_data)
+void network_connection_handler(uint64_t connection_id, uint64_t *output_data)
 {
   int32_t field1_value;
   int32_t field2_value;
@@ -1041,20 +1041,20 @@ void network_connection_handler(ulonglong connection_id, uint64_t *output_data)
   int8_t *stack_buffer_158;
   uint64_t stack_buffer_148;
   uint64_t stack_buffer_140;
-  longlong stack_buffer_138;
-  longlong stack_buffer_130;
+  int64_t stack_buffer_138;
+  int64_t stack_buffer_130;
   int8_t stack_buffer_128 [256];
-  ulonglong stack_buffer_28;
+  uint64_t stack_buffer_28;
   
   // 安全检查：获取栈保护值
-  stack_buffer_28 = GET_SECURITY_COOKIE() ^ (ulonglong)stack_buffer_178;
+  stack_buffer_28 = GET_SECURITY_COOKIE() ^ (uint64_t)stack_buffer_178;
   
   // 检查输出数据指针是否为空
   if (output_data == (uint64_t *)0x0) {
     // 检查调试标志
     if ((*(byte *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x10) & 0x80) == 0) {
       // 调试模式下直接退出
-      FUN_1808fc050(stack_buffer_28 ^ (ulonglong)stack_buffer_178);
+      FUN_1808fc050(stack_buffer_28 ^ (uint64_t)stack_buffer_178);
     }
     // 初始化缓冲区
     func_0x00018074bda0(stack_buffer_128, 0x100, 0);
@@ -1097,18 +1097,18 @@ void network_connection_handler(ulonglong connection_id, uint64_t *output_data)
   
   // 设置输出数据字段
   *(int32_t *)(output_data + 2) = *(int32_t *)(stack_buffer_138 + 0x48);
-  *(int32_t *)((longlong)output_data + 0x14) = field1_value;
+  *(int32_t *)((int64_t)output_data + 0x14) = field1_value;
   *(int32_t *)(output_data + 3) = field2_value;
-  *(int32_t *)((longlong)output_data + 0x1c) = field3_value;
+  *(int32_t *)((int64_t)output_data + 0x1c) = field3_value;
   
   field1_value = *(int32_t *)(stack_buffer_138 + 0x5c);
   field2_value = *(int32_t *)(stack_buffer_138 + 0x60);
   field3_value = *(int32_t *)(stack_buffer_138 + 100);
   
   *(int32_t *)(output_data + 4) = *(int32_t *)(stack_buffer_138 + 0x58);
-  *(int32_t *)((longlong)output_data + 0x24) = field1_value;
+  *(int32_t *)((int64_t)output_data + 0x24) = field1_value;
   *(int32_t *)(output_data + 5) = field2_value;
-  *(int32_t *)((longlong)output_data + 0x2c) = field3_value;
+  *(int32_t *)((int64_t)output_data + 0x2c) = field3_value;
   
   // 清理连接管理器资源
   FUN_18088c790(&stack_buffer_148);
@@ -1121,19 +1121,19 @@ void network_connection_handler(ulonglong connection_id, uint64_t *output_data)
  * @param target_id 目标标识符
  * @param data_ptr 数据指针
  */
-void network_data_sender(uint64_t target_id, longlong data_ptr)
+void network_data_sender(uint64_t target_id, int64_t data_ptr)
 {
   int status_code;
   int sub_status;
   int8_t stack_buffer_168 [32];
   int8_t *stack_buffer_148;
   uint64_t stack_buffer_138;
-  longlong stack_buffer_130;
+  int64_t stack_buffer_130;
   int8_t stack_buffer_128 [256];
-  ulonglong stack_buffer_28;
+  uint64_t stack_buffer_28;
   
   // 安全检查：获取栈保护值
-  stack_buffer_28 = GET_SECURITY_COOKIE() ^ (ulonglong)stack_buffer_168;
+  stack_buffer_28 = GET_SECURITY_COOKIE() ^ (uint64_t)stack_buffer_168;
   
   // 检查数据指针是否为空
   if (data_ptr == 0) {
@@ -1146,7 +1146,7 @@ void network_data_sender(uint64_t target_id, longlong data_ptr)
       FUN_180749ef0(0x1f, 0xb, target_id, &unknown_var_512_ptr);
     }
     // 调试模式下直接退出
-    FUN_1808fc050(stack_buffer_28 ^ (ulonglong)stack_buffer_168);
+    FUN_1808fc050(stack_buffer_28 ^ (uint64_t)stack_buffer_168);
   }
   
   // 初始化发送上下文
@@ -1195,10 +1195,10 @@ void network_broadcast_sender(uint64_t target_id, uint64_t data_ptr, uint64_t me
   int8_t stack_buffer_168 [32];
   int8_t *stack_buffer_148;
   int8_t stack_buffer_138 [256];
-  ulonglong stack_buffer_38;
+  uint64_t stack_buffer_38;
   
   // 安全检查：获取栈保护值
-  stack_buffer_38 = GET_SECURITY_COOKIE() ^ (ulonglong)stack_buffer_168;
+  stack_buffer_38 = GET_SECURITY_COOKIE() ^ (uint64_t)stack_buffer_168;
   
   // 获取网络状态
   status_code = FUN_18083fc50();
@@ -1215,7 +1215,7 @@ void network_broadcast_sender(uint64_t target_id, uint64_t data_ptr, uint64_t me
   }
   
   // 安全退出
-  FUN_1808fc050(stack_buffer_38 ^ (ulonglong)stack_buffer_168);
+  FUN_1808fc050(stack_buffer_38 ^ (uint64_t)stack_buffer_168);
 }
 
 /**
@@ -1243,10 +1243,10 @@ void network_packet_sender(void)
  */
 void network_cleanup_handler(void)
 {
-  ulonglong stack_protection;
+  uint64_t stack_protection;
   
   // 安全退出
-  FUN_1808fc050(stack_protection ^ (ulonglong)&stack0x00000000);
+  FUN_1808fc050(stack_protection ^ (uint64_t)&stack0x00000000);
 }
 
 /**
@@ -1264,12 +1264,12 @@ void network_resource_handler(uint64_t resource_id, int32_t *result_ptr, uint64_
   int temp_status;
   int8_t stack_buffer_178 [32];
   int8_t *stack_buffer_158;
-  longlong stack_buffer_148 [2];
+  int64_t stack_buffer_148 [2];
   int8_t stack_buffer_138 [256];
-  ulonglong stack_buffer_38;
+  uint64_t stack_buffer_38;
   
   // 安全检查：获取栈保护值
-  stack_buffer_38 = GET_SECURITY_COOKIE() ^ (ulonglong)stack_buffer_178;
+  stack_buffer_38 = GET_SECURITY_COOKIE() ^ (uint64_t)stack_buffer_178;
   
   // 尝试获取资源
   status_code = func_0x00018088c590(resource_id, stack_buffer_148);
@@ -1302,7 +1302,7 @@ void network_resource_handler(uint64_t resource_id, int32_t *result_ptr, uint64_
   
 success_handler:
   // 安全退出
-  FUN_1808fc050(stack_buffer_38 ^ (ulonglong)stack_buffer_178);
+  FUN_1808fc050(stack_buffer_38 ^ (uint64_t)stack_buffer_178);
 }
 
 /**
@@ -1330,10 +1330,10 @@ void network_packet_receiver(void)
  */
 void network_connection_manager(void)
 {
-  ulonglong stack_protection;
+  uint64_t stack_protection;
   
   // 安全退出
-  FUN_1808fc050(stack_protection ^ (ulonglong)&stack0x00000000);
+  FUN_1808fc050(stack_protection ^ (uint64_t)&stack0x00000000);
 }
 
 /**
@@ -1349,20 +1349,20 @@ void network_data_extractor(uint64_t resource_id, uint64_t *output_data)
   int sub_status;
   int8_t stack_buffer_178 [32];
   int8_t *stack_buffer_158;
-  longlong stack_buffer_148 [2];
+  int64_t stack_buffer_148 [2];
   uint64_t *stack_buffer_138 [2];
   int8_t stack_buffer_128 [256];
-  ulonglong stack_buffer_28;
+  uint64_t stack_buffer_28;
   
   // 安全检查：获取栈保护值
-  stack_buffer_28 = GET_SECURITY_COOKIE() ^ (ulonglong)stack_buffer_178;
+  stack_buffer_28 = GET_SECURITY_COOKIE() ^ (uint64_t)stack_buffer_178;
   
   // 检查输出数据指针
   if (output_data == (uint64_t *)0x0) {
     // 检查调试标志
     if ((*(byte *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x10) & 0x80) == 0) {
       // 调试模式下直接退出
-      FUN_1808fc050(stack_buffer_28 ^ (ulonglong)stack_buffer_178);
+      FUN_1808fc050(stack_buffer_28 ^ (uint64_t)stack_buffer_178);
     }
     // 初始化错误处理缓冲区
     func_0x00018074bda0(stack_buffer_128, 0x100, 0);
@@ -1425,12 +1425,12 @@ void network_metadata_handler(uint64_t resource_id, uint64_t *output_data)
   int status_code;
   int8_t stack_buffer_158 [32];
   int8_t *stack_buffer_138;
-  longlong stack_buffer_128 [2];
+  int64_t stack_buffer_128 [2];
   int8_t stack_buffer_118 [256];
-  ulonglong stack_buffer_18;
+  uint64_t stack_buffer_18;
   
   // 安全检查：获取栈保护值
-  stack_buffer_18 = GET_SECURITY_COOKIE() ^ (ulonglong)stack_buffer_158;
+  stack_buffer_18 = GET_SECURITY_COOKIE() ^ (uint64_t)stack_buffer_158;
   
   // 检查输出数据指针
   if (output_data == (uint64_t *)0x0) {
@@ -1461,7 +1461,7 @@ void network_metadata_handler(uint64_t resource_id, uint64_t *output_data)
   
 success_handler:
   // 安全退出
-  FUN_1808fc050(stack_buffer_18 ^ (ulonglong)stack_buffer_158);
+  FUN_1808fc050(stack_buffer_18 ^ (uint64_t)stack_buffer_158);
 }
 
 // ==================== 模块总结 ====================

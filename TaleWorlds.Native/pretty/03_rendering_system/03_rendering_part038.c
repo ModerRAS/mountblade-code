@@ -153,9 +153,9 @@ typedef enum {
  * ============================================================================ */
 
 // 全局变量声明
-extern ulonglong system_error_code;      // 全局时间计数器
-extern longlong system_message_buffer;        // 渲染设备基础地址
-extern longlong system_operation_state;        // 渲染资源管理器地址
+extern uint64_t system_error_code;      // 全局时间计数器
+extern int64_t system_message_buffer;        // 渲染设备基础地址
+extern int64_t system_operation_state;        // 渲染资源管理器地址
 extern int render_system_control_buffer;             // 渲染配置标志
 extern uint64_t global_state_720_ptr;       // 未知数据结构引用
 extern uint64_t global_state_3432_ptr;       // 未知数据结构引用
@@ -184,19 +184,19 @@ extern uint64_t system_memory_f750;       // SIMD数据常量
  * @see RenderSystem_ExecuteRenderQueue
  * @see RenderSystem_TriggerErrorHandler
  */
-void UpdateRenderTimestampAndQueue(longlong renderContext, uint64_t unknownParam2, uint64_t unknownParam3, uint64_t unknownParam4)
+void UpdateRenderTimestampAndQueue(int64_t renderContext, uint64_t unknownParam2, uint64_t unknownParam3, uint64_t unknownParam4)
 {
-  longlong renderDevice;
+  int64_t renderDevice;
   int frameIndex;
   float currentTime;
   float timeDelta;
   uint64_t queueParams[8];
-  longlong result;
+  int64_t result;
   
   // 计算时间差
   currentTime = (float)system_error_code;
   timeDelta = currentTime * 1e-05 - *(float *)(renderContext + 0x15c);
-  renderDevice = *(longlong *)(renderContext + 0x120);
+  renderDevice = *(int64_t *)(renderContext + 0x120);
   
   // 更新渲染设备时间参数
   *(float *)(renderDevice + 0x2a8) = timeDelta;
@@ -205,21 +205,21 @@ void UpdateRenderTimestampAndQueue(longlong renderContext, uint64_t unknownParam
   *(int32_t *)(renderDevice + 0x2b4) = 0x7f7fffff;  // 设置最大浮点值
   
   // 检查是否需要触发渲染队列
-  if ((*(longlong *)(renderContext + 0x140) - *(longlong *)(renderContext + 0x138) >> 5 != 0) && (5.0 < timeDelta))
+  if ((*(int64_t *)(renderContext + 0x140) - *(int64_t *)(renderContext + 0x138) >> 5 != 0) && (5.0 < timeDelta))
   {
     // 计算帧索引
     frameIndex = (*(int *)(renderContext + 0x118) + 1) %
-            (int)(*(longlong *)(renderContext + 0x100) - *(longlong *)(renderContext + 0xf8) >> 3);
+            (int)(*(int64_t *)(renderContext + 0x100) - *(int64_t *)(renderContext + 0xf8) >> 3);
     
     // 添加渲染命令到队列
-    RenderSystem_AddCommandToQueue(*(uint64_t *)(*(longlong *)(renderContext + 0x120) + 0x1b8), 0,
-                  *(uint64_t *)(*(longlong *)(renderContext + 0xf8) + (longlong)frameIndex * 8), unknownParam4,
+    RenderSystem_AddCommandToQueue(*(uint64_t *)(*(int64_t *)(renderContext + 0x120) + 0x1b8), 0,
+                  *(uint64_t *)(*(int64_t *)(renderContext + 0xf8) + (int64_t)frameIndex * 8), unknownParam4,
                   0xfffffffffffffffe);
-    RenderSystem_AddCommandToQueue(*(uint64_t *)(*(longlong *)(renderContext + 0x120) + 0x1b8), 1,
+    RenderSystem_AddCommandToQueue(*(uint64_t *)(*(int64_t *)(renderContext + 0x120) + 0x1b8), 1,
                   *(uint64_t *)
-                   (*(longlong *)(renderContext + 0xf8) +
-                   (((longlong)frameIndex + 1U) %
-                   (ulonglong)(*(longlong *)(renderContext + 0x100) - *(longlong *)(renderContext + 0xf8) >> 3))
+                   (*(int64_t *)(renderContext + 0xf8) +
+                   (((int64_t)frameIndex + 1U) %
+                   (uint64_t)(*(int64_t *)(renderContext + 0x100) - *(int64_t *)(renderContext + 0xf8) >> 3))
                    * 8));
     
     // 设置队列参数
@@ -307,7 +307,7 @@ uint64_t * InitializeRenderStringBuffer(uint64_t stringType, uint64_t *stringBuf
  * @warning 释放后不要继续使用缓冲区指针
  * @see InitializeRenderStringBuffer
  */
-uint64_t * FreeRenderStringBuffer(uint64_t *stringBuffer, ulonglong freeFlags, uint64_t destroyFlags, uint64_t securityContext)
+uint64_t * FreeRenderStringBuffer(uint64_t *stringBuffer, uint64_t freeFlags, uint64_t destroyFlags, uint64_t securityContext)
 {
   uint64_t errorResult;
   
@@ -315,8 +315,8 @@ uint64_t * FreeRenderStringBuffer(uint64_t *stringBuffer, ulonglong freeFlags, u
   
   // 调用析构函数
   *stringBuffer = &global_state_40_ptr;     // 虚函数表
-  if ((longlong *)stringBuffer[0x1e] != (longlong *)0x0) {
-    (**(code **)(*(longlong *)stringBuffer[0x1e] + 0x38))();  // 调用虚析构函数
+  if ((int64_t *)stringBuffer[0x1e] != (int64_t *)0x0) {
+    (**(code **)(*(int64_t *)stringBuffer[0x1e] + 0x38))();  // 调用虚析构函数
   }
   
   // 清理资源
@@ -373,8 +373,8 @@ uint64_t * CreateRenderTextureObject(uint64_t textureType, uint64_t *textureBuff
   *dataPointer = 0x5f617465426c6772;   // "_ateBlgr"
   dataPointer[1] = 0x6f74616369646e69;  // "otacidi"
   *(int32_t *)(dataPointer + 2) = 0x69765f72;  // "iv_r"
-  *(int16_t *)((longlong)dataPointer + 0x14) = 0x7765;  // "we"
-  *(int8_t *)((longlong)dataPointer + 0x16) = 0;        // 终止符
+  *(int16_t *)((int64_t)dataPointer + 0x14) = 0x7765;  // "we"
+  *(int8_t *)((int64_t)dataPointer + 0x16) = 0;        // 终止符
   
   *(int32_t *)(textureBuffer + 2) = 0x16;  // 更新缓冲区大小
   
@@ -391,7 +391,7 @@ uint64_t * CreateRenderTextureObject(uint64_t textureType, uint64_t *textureBuff
  * @param deviceConfig 设备配置指针，包含设备的配置信息
  * @param deviceManager 设备管理器指针，用于设备管理
  * 
- * @return longlong 创建后的渲染设备句柄
+ * @return int64_t 创建后的渲染设备句柄
  * 
  * @return 成功时返回有效的设备句柄
  * @return 失败时返回NULL或错误代码
@@ -402,22 +402,22 @@ uint64_t * CreateRenderTextureObject(uint64_t textureType, uint64_t *textureBuff
  * @see RenderSystem_RegisterDevice
  * @see RenderSystem_InitializeRenderPipeline
  */
-longlong CreateAdvancedRenderDevice(longlong deviceConfig, longlong deviceManager)
+int64_t CreateAdvancedRenderDevice(int64_t deviceConfig, int64_t deviceManager)
 {
   int *resourceCounter;
   int currentIndex;
-  longlong *oldDevice;
-  longlong *newDevice;
+  int64_t *oldDevice;
+  int64_t *newDevice;
   int32_t formatParam1;
   int32_t formatParam2;
   int32_t formatParam3;
   uint64_t deviceConfigData;
   uint64_t *sourcePointer;
   uint64_t *destPointer;
-  longlong deviceHandle;
+  int64_t deviceHandle;
   uint64_t *textureData;
   uint64_t *shaderData;
-  longlong resourceCount;
+  int64_t resourceCount;
   float widthRatio;
   float heightRatio;
   uint64_t renderParams[8];
@@ -431,22 +431,22 @@ longlong CreateAdvancedRenderDevice(longlong deviceConfig, longlong deviceManage
   RenderSystem_RegisterDevice(deviceHandle, &system_memory_6c38);  // 注册设备
   
   // 切换设备上下文
-  oldDevice = *(longlong **)(system_message_buffer + 0x121e0);
-  if (oldDevice != (longlong *)0x0) {
+  oldDevice = *(int64_t **)(system_message_buffer + 0x121e0);
+  if (oldDevice != (int64_t *)0x0) {
     (**(code **)(*oldDevice + 0x28))(oldDevice);  // 释放旧设备
   }
   
   // 设置新设备
-  newDevice = *(longlong **)(deviceHandle + 0x9690);
-  *(longlong **)(deviceHandle + 0x9690) = oldDevice;
-  if (newDevice != (longlong *)0x0) {
+  newDevice = *(int64_t **)(deviceHandle + 0x9690);
+  *(int64_t **)(deviceHandle + 0x9690) = oldDevice;
+  if (newDevice != (int64_t *)0x0) {
     (**(code **)(*newDevice + 0x38))();  // 清理新设备
   }
   
   // 清理着色器资源
-  newDevice = *(longlong **)(deviceHandle + 0x96a8);
+  newDevice = *(int64_t **)(deviceHandle + 0x96a8);
   *(uint64_t *)(deviceHandle + 0x96a8) = 0;
-  if (newDevice != (longlong *)0x0) {
+  if (newDevice != (int64_t *)0x0) {
     (**(code **)(*newDevice + 0x38))();  // 释放着色器
   }
   
@@ -510,13 +510,13 @@ longlong CreateAdvancedRenderDevice(longlong deviceConfig, longlong deviceManage
   textureData[0x15] = deviceConfigData;
   
   // 复制格式参数
-  formatParam1 = *(int32_t *)((longlong)shaderData + 0xb4);
+  formatParam1 = *(int32_t *)((int64_t)shaderData + 0xb4);
   formatParam2 = *(int32_t *)(shaderData + 0x17);
-  formatParam3 = *(int32_t *)((longlong)shaderData + 0xbc);
+  formatParam3 = *(int32_t *)((int64_t)shaderData + 0xbc);
   *(int32_t *)(textureData + 0x16) = *(int32_t *)(shaderData + 0x16);
-  *(int32_t *)((longlong)textureData + 0xb4) = formatParam1;
+  *(int32_t *)((int64_t)textureData + 0xb4) = formatParam1;
   *(int32_t *)(textureData + 0x17) = formatParam2;
-  *(int32_t *)((longlong)textureData + 0xbc) = formatParam3;
+  *(int32_t *)((int64_t)textureData + 0xbc) = formatParam3;
   
   // 初始化渲染管线
   RenderSystem_InitializeRenderPipeline(deviceHandle);
@@ -534,7 +534,7 @@ longlong CreateAdvancedRenderDevice(longlong deviceConfig, longlong deviceManage
   clearParams[0] = 0;        // 清空参数1
   clearParams[1] = 0;        // 清空参数2
   clearParams[2] = 0x3f800000; // 1.0f
-  resourceCount = *(longlong *)(*(longlong *)(*(longlong *)(deviceConfig + 0xf0) + 0x1b8) + 0xb8);
+  resourceCount = *(int64_t *)(*(int64_t *)(*(int64_t *)(deviceConfig + 0xf0) + 0x1b8) + 0xb8);
   heightRatio = (float)*(ushort *)(resourceCount + 0x32e) / *(float *)(system_operation_state + 0x17f0);
   widthRatio = (float)*(ushort *)(resourceCount + 0x32c) / *(float *)(system_operation_state + 0x17ec);
   
@@ -572,7 +572,7 @@ longlong CreateAdvancedRenderDevice(longlong deviceConfig, longlong deviceManage
   queueConfig[3] = 0;                    // 保留
   
   // 执行渲染初始化
-  RenderSystem_ExecuteRenderInit(*(longlong *)(deviceConfig + 0xf0), deviceHandle, matrixData, 0, renderParams);
+  RenderSystem_ExecuteRenderInit(*(int64_t *)(deviceConfig + 0xf0), deviceHandle, matrixData, 0, renderParams);
   
   // 更新设备管理器
   LOCK();
@@ -580,7 +580,7 @@ longlong CreateAdvancedRenderDevice(longlong deviceConfig, longlong deviceManage
   currentIndex = *resourceCounter;
   *resourceCounter = *resourceCounter + 1;
   UNLOCK();
-  *(longlong *)(deviceManager + 0x9a48 + (longlong)currentIndex * 8) = deviceHandle;
+  *(int64_t *)(deviceManager + 0x9a48 + (int64_t)currentIndex * 8) = deviceHandle;
   
   // 设置设备引用
   deviceConfigData = *(uint64_t *)(deviceManager + 0x9a3c);
@@ -606,25 +606,25 @@ longlong CreateAdvancedRenderDevice(longlong deviceConfig, longlong deviceManage
  * @see OptimizeRenderBuffersInline
  * @see RenderSystem_ReleaseBufferResource
  */
-void CleanupRenderBuffers(longlong *bufferManager)
+void CleanupRenderBuffers(int64_t *bufferManager)
 {
   byte *sourceBuffer;
   int sourceId;
   uint sourceLength;
   uint64_t *bufferHeader;
-  longlong bufferOffset;
-  ulonglong bufferIndex;
+  int64_t bufferOffset;
+  uint64_t bufferIndex;
   byte *destBuffer;
-  ulonglong destLength;
+  uint64_t destLength;
   int compareResult;
-  ulonglong maxLength;
+  uint64_t maxLength;
   uint64_t *nextBuffer;
   int bufferCount;
-  longlong currentBuffer;
-  longlong bufferSize;
+  int64_t currentBuffer;
+  int64_t bufferSize;
   int bufferIndex2;
-  longlong bufferStart;
-  longlong bufferEnd;
+  int64_t bufferStart;
+  int64_t bufferEnd;
   
   bufferSize = bufferManager[1];
   bufferStart = *bufferManager;
@@ -634,10 +634,10 @@ void CleanupRenderBuffers(longlong *bufferManager)
     bufferCount = 1;
     bufferOffset = 0;
     do {
-      bufferIndex = (ulonglong)bufferCount;
+      bufferIndex = (uint64_t)bufferCount;
       currentBuffer = bufferOffset;
       bufferIndex2 = bufferCount;
-      if (bufferIndex < (ulonglong)(bufferSize - bufferStart >> 5)) {
+      if (bufferIndex < (uint64_t)(bufferSize - bufferStart >> 5)) {
         do {
           bufferEnd = currentBuffer + 0x20;
           sourceId = *(int *)(bufferStart + 0x10 + bufferOffset);
@@ -647,7 +647,7 @@ void CleanupRenderBuffers(longlong *bufferManager)
           if (sourceId == compareResult) {
             if (sourceId != 0) {
               sourceBuffer = *(byte **)(bufferStart + 8 + bufferOffset);
-              bufferSize = *(longlong *)(currentBuffer + 0x28 + bufferStart) - (longlong)sourceBuffer;
+              bufferSize = *(int64_t *)(currentBuffer + 0x28 + bufferStart) - (int64_t)sourceBuffer;
               
               // 比较缓冲区内容
               do {
@@ -664,10 +664,10 @@ void CleanupRenderBuffers(longlong *bufferManager)
               bufferStart = (bufferManager[1] - bufferSize & 0xffffffffffffffe0U) + bufferSize;
               bufferEnd = bufferEnd + bufferSize;
               sourceLength = *(uint *)(bufferStart + -0x10);
-              maxLength = (ulonglong)sourceLength;
+              maxLength = (uint64_t)sourceLength;
               
               // 释放缓冲区资源
-              if (*(longlong *)(bufferStart + -0x18) != 0) {
+              if (*(int64_t *)(bufferStart + -0x18) != 0) {
                 RenderSystem_AllocateTextureBuffer(bufferEnd, maxLength);
               }
               
@@ -678,15 +678,15 @@ void CleanupRenderBuffers(longlong *bufferManager)
               
               // 清理缓冲区头
               *(int32_t *)(bufferEnd + 0x10) = 0;
-              if (*(longlong *)(bufferEnd + 8) != 0) {
-                *(int8_t *)(maxLength + *(longlong *)(bufferEnd + 8)) = 0;
+              if (*(int64_t *)(bufferEnd + 8) != 0) {
+                *(int8_t *)(maxLength + *(int64_t *)(bufferEnd + 8)) = 0;
               }
               *(int32_t *)(bufferEnd + 0x1c) = *(int32_t *)(bufferStart + -4);
               
               // 更新缓冲区管理器
               bufferHeader = (uint64_t *)bufferManager[1];
               bufferSize = *bufferManager;
-              destLength = (longlong)bufferHeader - bufferSize >> 5;
+              destLength = (int64_t)bufferHeader - bufferSize >> 5;
               maxLength = destLength - 1;
               
               if (destLength < maxLength) {
@@ -715,9 +715,9 @@ void CleanupRenderBuffers(longlong *bufferManager)
               bufferStart = (bufferManager[1] - bufferSize & 0xffffffffffffffe0U) + bufferSize;
               bufferEnd = bufferEnd + bufferSize;
               sourceLength = *(uint *)(bufferStart + -0x10);
-              maxLength = (ulonglong)sourceLength;
+              maxLength = (uint64_t)sourceLength;
               
-              if (*(longlong *)(bufferStart + -0x18) != 0) {
+              if (*(int64_t *)(bufferStart + -0x18) != 0) {
                 FUN_1806277c0(bufferEnd, maxLength);
               }
               
@@ -726,14 +726,14 @@ void CleanupRenderBuffers(longlong *bufferManager)
               }
               
               *(int32_t *)(bufferEnd + 0x10) = 0;
-              if (*(longlong *)(bufferEnd + 8) != 0) {
-                *(int8_t *)(maxLength + *(longlong *)(bufferEnd + 8)) = 0;
+              if (*(int64_t *)(bufferEnd + 8) != 0) {
+                *(int8_t *)(maxLength + *(int64_t *)(bufferEnd + 8)) = 0;
               }
               *(int32_t *)(bufferEnd + 0x1c) = *(int32_t *)(bufferStart + -4);
               
               bufferHeader = (uint64_t *)bufferManager[1];
               bufferSize = *bufferManager;
-              destLength = (longlong)bufferHeader - bufferSize >> 5;
+              destLength = (int64_t)bufferHeader - bufferSize >> 5;
               maxLength = destLength - 1;
               
               if (destLength < maxLength) {
@@ -759,11 +759,11 @@ void CleanupRenderBuffers(longlong *bufferManager)
           bufferIndex2 = bufferIndex2 + 1;
           bufferEnd = bufferManager[1];
           currentBuffer = bufferEnd;
-        } while ((ulonglong)(longlong)bufferIndex2 < (ulonglong)(bufferEnd - bufferSize >> 5));
+        } while ((uint64_t)(int64_t)bufferIndex2 < (uint64_t)(bufferEnd - bufferSize >> 5));
       }
       bufferCount = bufferCount + 1;
       bufferOffset = bufferOffset + 0x20;
-    } while (bufferIndex < (ulonglong)(bufferEnd - bufferSize >> 5));
+    } while (bufferIndex < (uint64_t)(bufferEnd - bufferSize >> 5));
   }
   return;
 }
@@ -784,37 +784,37 @@ void CleanupRenderBuffers(longlong *bufferManager)
  * @warning 仅在性能要求高的场景使用
  * @see CleanupRenderBuffers
  */
-void OptimizeRenderBuffersInline(longlong bufferStart, longlong bufferEnd)
+void OptimizeRenderBuffersInline(int64_t bufferStart, int64_t bufferEnd)
 {
   byte *sourceBuffer;
   int sourceId;
   uint sourceLength;
   uint64_t *bufferHeader;
-  longlong bufferOffset;
+  int64_t bufferOffset;
   byte *destBuffer;
-  ulonglong destLength;
+  uint64_t destLength;
   int compareResult;
-  ulonglong maxLength;
+  uint64_t maxLength;
   uint64_t *nextBuffer;
   int bufferCount;
   uint64_t *registerData;
-  longlong currentBuffer;
-  longlong bufferSize;
+  int64_t currentBuffer;
+  int64_t bufferSize;
   uint64_t tempRegister;
-  longlong bufferIndex;
-  ulonglong bufferIndex2;
+  int64_t bufferIndex;
+  uint64_t bufferIndex2;
   uint64_t registerData2;
   uint64_t registerData3;
   uint64_t registerData4;
   uint64_t registerData5;
-  longlong bufferData;
+  int64_t bufferData;
   int bufferIndex3;
   uint64_t registerData6;
   uint64_t registerData7;
   uint64_t registerData8;
   uint64_t registerData9;
-  longlong bufferStart2;
-  ulonglong stackBuffer;
+  int64_t bufferStart2;
+  uint64_t stackBuffer;
   
   // 保存寄存器数据
   *(uint64_t *)(bufferIndex + 0x10) = registerData2;
@@ -828,10 +828,10 @@ void OptimizeRenderBuffersInline(longlong bufferStart, longlong bufferEnd)
   *(uint64_t *)(bufferIndex + -0x28) = registerData8;
   
   do {
-    stackBuffer = (ulonglong)bufferIndex3;
+    stackBuffer = (uint64_t)bufferIndex3;
     bufferOffset = bufferData;
     bufferCount = bufferIndex3;
-    if (stackBuffer < (ulonglong)(bufferStart - bufferEnd >> 5)) {
+    if (stackBuffer < (uint64_t)(bufferStart - bufferEnd >> 5)) {
       do {
         bufferSize = bufferOffset + 0x20;
         sourceId = *(int *)(bufferEnd + 0x10 + bufferData);
@@ -841,7 +841,7 @@ void OptimizeRenderBuffersInline(longlong bufferStart, longlong bufferEnd)
         if (sourceId == compareResult) {
           if (sourceId != 0) {
             sourceBuffer = *(byte **)(bufferEnd + 8 + bufferData);
-            bufferStart = *(longlong *)(bufferOffset + 0x28 + bufferEnd) - (longlong)sourceBuffer;
+            bufferStart = *(int64_t *)(bufferOffset + 0x28 + bufferEnd) - (int64_t)sourceBuffer;
             
             // 比较缓冲区内容
             do {
@@ -858,10 +858,10 @@ void OptimizeRenderBuffersInline(longlong bufferStart, longlong bufferEnd)
             bufferIndex = (registerData9[1] - bufferStart & 0xffffffffffffffe0U) + bufferStart;
             bufferSize = bufferSize + bufferStart;
             sourceLength = *(uint *)(bufferIndex + -0x10);
-            maxLength = (ulonglong)sourceLength;
+            maxLength = (uint64_t)sourceLength;
             
             // 释放缓冲区资源
-            if (*(longlong *)(bufferIndex + -0x18) != 0) {
+            if (*(int64_t *)(bufferIndex + -0x18) != 0) {
               RenderSystem_AllocateTextureBuffer(bufferSize, maxLength);
             }
             
@@ -872,15 +872,15 @@ void OptimizeRenderBuffersInline(longlong bufferStart, longlong bufferEnd)
             
             // 清理缓冲区头
             *(int32_t *)(bufferSize + 0x10) = 0;
-            if (*(longlong *)(bufferSize + 8) != 0) {
-              *(int8_t *)(maxLength + *(longlong *)(bufferSize + 8)) = 0;
+            if (*(int64_t *)(bufferSize + 8) != 0) {
+              *(int8_t *)(maxLength + *(int64_t *)(bufferSize + 8)) = 0;
             }
             *(int32_t *)(bufferSize + 0x1c) = *(int32_t *)(bufferIndex + -4);
             
             // 更新缓冲区管理器
             bufferHeader = (uint64_t *)registerData9[1];
             bufferSize = *registerData9;
-            destLength = (longlong)bufferHeader - bufferSize >> 5;
+            destLength = (int64_t)bufferHeader - bufferSize >> 5;
             maxLength = destLength - 1;
             
             if (destLength < maxLength) {
@@ -909,9 +909,9 @@ void OptimizeRenderBuffersInline(longlong bufferStart, longlong bufferEnd)
             bufferIndex = (registerData9[1] - bufferStart & 0xffffffffffffffe0U) + bufferStart;
             bufferSize = bufferSize + bufferStart;
             sourceLength = *(uint *)(bufferIndex + -0x10);
-            maxLength = (ulonglong)sourceLength;
+            maxLength = (uint64_t)sourceLength;
             
-            if (*(longlong *)(bufferIndex + -0x18) != 0) {
+            if (*(int64_t *)(bufferIndex + -0x18) != 0) {
               FUN_1806277c0(bufferSize, maxLength);
             }
             
@@ -920,14 +920,14 @@ void OptimizeRenderBuffersInline(longlong bufferStart, longlong bufferEnd)
             }
             
             *(int32_t *)(bufferSize + 0x10) = 0;
-            if (*(longlong *)(bufferSize + 8) != 0) {
-              *(int8_t *)(maxLength + *(longlong *)(bufferSize + 8)) = 0;
+            if (*(int64_t *)(bufferSize + 8) != 0) {
+              *(int8_t *)(maxLength + *(int64_t *)(bufferSize + 8)) = 0;
             }
             *(int32_t *)(bufferSize + 0x1c) = *(int32_t *)(bufferIndex + -4);
             
             bufferHeader = (uint64_t *)registerData9[1];
             bufferSize = *registerData9;
-            destLength = (longlong)bufferHeader - bufferSize >> 5;
+            destLength = (int64_t)bufferHeader - bufferSize >> 5;
             maxLength = destLength - 1;
             
             if (destLength < maxLength) {
@@ -953,11 +953,11 @@ void OptimizeRenderBuffersInline(longlong bufferStart, longlong bufferEnd)
         bufferCount = bufferCount + 1;
         bufferStart = registerData9[1];
         bufferOffset = bufferSize;
-      } while ((ulonglong)(longlong)bufferCount < (ulonglong)(bufferStart - bufferEnd >> 5));
+      } while ((uint64_t)(int64_t)bufferCount < (uint64_t)(bufferStart - bufferEnd >> 5));
     }
     bufferIndex3 = bufferIndex3 + 1;
     bufferData = bufferData + 0x20;
-    if ((ulonglong)(bufferStart - bufferEnd >> 5) <= stackBuffer) {
+    if ((uint64_t)(bufferStart - bufferEnd >> 5) <= stackBuffer) {
       return;
     }
   } while( true );
@@ -1000,15 +1000,15 @@ void InitializeRenderSystem(void)
  * @warning 调用时确保所有参数有效性
  * @see OptimizeRenderBufferLayoutSIMD
  */
-void SetupRenderBufferLayout(int *bufferLayout, int startOffset, int endOffset, longlong bufferData, int bufferSize)
+void SetupRenderBufferLayout(int *bufferLayout, int startOffset, int endOffset, int64_t bufferData, int bufferSize)
 {
   uint alignmentMask;
   int8_t alignmentData [16];
   uint alignedSize;
   int currentIndex;
-  longlong *layoutPointer;
-  longlong bufferAddress;
-  longlong remainingSize;
+  int64_t *layoutPointer;
+  int64_t bufferAddress;
+  int64_t remainingSize;
   int layoutIndex;
   int8_t tempLayout [16];
   int8_t simdData [16];
@@ -1028,7 +1028,7 @@ void SetupRenderBufferLayout(int *bufferLayout, int startOffset, int endOffset, 
     }
     
     // 设置布局指针
-    layoutPointer = (longlong *)(bufferData + 0x28);
+    layoutPointer = (int64_t *)(bufferData + 0x28);
     layoutIndex = 0;
     
     // 使用SIMD指令批量设置布局
@@ -1060,22 +1060,22 @@ void SetupRenderBufferLayout(int *bufferLayout, int startOffset, int endOffset, 
   }
   
   // 处理剩余部分
-  bufferAddress = (longlong)currentIndex;
+  bufferAddress = (int64_t)currentIndex;
   layoutIndex = currentIndex;
   if (bufferAddress < (int)alignmentMask) {
     remainingSize = (int)alignmentMask - bufferAddress;
     layoutIndex = currentIndex + (int)remainingSize;
-    layoutPointer = (longlong *)(bufferAddress * 0x10 + 8 + bufferData);
+    layoutPointer = (int64_t *)(bufferAddress * 0x10 + 8 + bufferData);
     do {
       currentIndex = currentIndex + 1;
-      *layoutPointer = (longlong)currentIndex * 0x10 + bufferData;
+      *layoutPointer = (int64_t)currentIndex * 0x10 + bufferData;
       remainingSize = remainingSize + -1;
       layoutPointer = layoutPointer + 2;
     } while (remainingSize != 0);
   }
   
   // 设置终止符
-  *(uint64_t *)(bufferData + 8 + (longlong)layoutIndex * 0x10) = 0;
+  *(uint64_t *)(bufferData + 8 + (int64_t)layoutIndex * 0x10) = 0;
   
   // 设置缓冲区布局参数
   *bufferLayout = startOffset;
@@ -1083,14 +1083,14 @@ void SetupRenderBufferLayout(int *bufferLayout, int startOffset, int endOffset, 
   bufferLayout[5] = bufferSize;
   bufferLayout[3] = 1;
   bufferLayout[4] = 0;
-  *(longlong *)(bufferLayout + 8) = bufferData;
+  *(int64_t *)(bufferLayout + 8) = bufferData;
   *(int **)(bufferLayout + 6) = bufferLayout + 10;
   bufferLayout[2] = (bufferSize + -1 + startOffset) / bufferSize;
   *(short *)(bufferLayout + 0xe) = (short)startOffset;
   *(int **)(bufferLayout + 0xc) = bufferLayout + 0xe;
-  *(int16_t *)((longlong)bufferLayout + 0x3a) = 0xffff;
+  *(int16_t *)((int64_t)bufferLayout + 0x3a) = 0xffff;
   *(int16_t *)(bufferLayout + 10) = 0;
-  *(int16_t *)((longlong)bufferLayout + 0x2a) = 0;
+  *(int16_t *)((int64_t)bufferLayout + 0x2a) = 0;
   bufferLayout[0x10] = 0;
   bufferLayout[0x11] = 0;
   return;
@@ -1114,21 +1114,21 @@ void SetupRenderBufferLayout(int *bufferLayout, int startOffset, int endOffset, 
  * @warning 仅在支持SIMD的处理器上使用
  * @see SetupRenderBufferLayout
  */
-void OptimizeRenderBufferLayoutSIMD(int elementCount, uint64_t simdData, uint64_t optimizationFlags, longlong bufferData)
+void OptimizeRenderBufferLayoutSIMD(int elementCount, uint64_t simdData, uint64_t optimizationFlags, int64_t bufferData)
 {
   int currentIndex;
   uint alignmentMask;
-  longlong *layoutPointer;
+  int64_t *layoutPointer;
   int nextIndex;
-  longlong bufferAddress;
-  longlong remainingSize;
+  int64_t bufferAddress;
+  int64_t remainingSize;
   int baseIndex;
   int8_t tempLayout [16];
   int8_t sourceData [16];
   int8_t simdResult [16];
   int8_t simdTemp [16];
-  longlong in_XMM3_Qb;
-  ulonglong in_XMM4_Qa;
+  int64_t in_XMM3_Qb;
+  uint64_t in_XMM4_Qa;
   
   // 计算对齐掩码
   alignmentMask = in_EAX & 0x80000003;
@@ -1137,7 +1137,7 @@ void OptimizeRenderBufferLayoutSIMD(int elementCount, uint64_t simdData, uint64_
   }
   
   // 设置布局指针
-  layoutPointer = (longlong *)(in_R9 + 0x28);
+  layoutPointer = (int64_t *)(in_R9 + 0x28);
   
   // 使用SIMD指令优化布局
   do {
@@ -1168,14 +1168,14 @@ void OptimizeRenderBufferLayoutSIMD(int elementCount, uint64_t simdData, uint64_
   } while (in_R11D < (int)(elementCount - alignmentMask));
   
   // 处理剩余元素
-  bufferAddress = (longlong)in_R11D;
+  bufferAddress = (int64_t)in_R11D;
   if (bufferAddress < elementCount) {
     nextIndex = currentIndex + 5;
     remainingSize = elementCount - bufferAddress;
     in_R11D = in_R11D + (int)remainingSize;
-    layoutPointer = (longlong *)(bufferAddress * 0x10 + 8 + in_R9);
+    layoutPointer = (int64_t *)(bufferAddress * 0x10 + 8 + in_R9);
     do {
-      bufferAddress = (longlong)nextIndex;
+      bufferAddress = (int64_t)nextIndex;
       nextIndex = nextIndex + 1;
       *layoutPointer = bufferAddress * 0x10 + in_R9;
       remainingSize = remainingSize + -1;
@@ -1184,20 +1184,20 @@ void OptimizeRenderBufferLayoutSIMD(int elementCount, uint64_t simdData, uint64_
   }
   
   // 设置终止符
-  *(uint64_t *)(in_R9 + 8 + (longlong)in_R11D * 0x10) = unaff_R14;
+  *(uint64_t *)(in_R9 + 8 + (int64_t)in_R11D * 0x10) = unaff_R14;
   *in_R10 = unaff_ESI;
   in_R10[1] = unaff_EBP;
   in_R10[5] = unaff_EDI;
   in_R10[3] = 1;
   in_R10[4] = 0;
-  *(longlong *)(in_R10 + 8) = in_R9;
+  *(int64_t *)(in_R10 + 8) = in_R9;
   *(int **)(in_R10 + 6) = in_R10 + 10;
   in_R10[2] = (unaff_EDI + -1 + unaff_ESI) / unaff_EDI;
   *(short *)(in_R10 + 0xe) = (short)unaff_ESI;
   *(int **)(in_R10 + 0xc) = in_R10 + 0xe;
-  *(int16_t *)((longlong)in_R10 + 0x3a) = 0xffff;
+  *(int16_t *)((int64_t)in_R10 + 0x3a) = 0xffff;
   *(short *)(in_R10 + 10) = (short)unaff_R14;
-  *(short *)((longlong)in_R10 + 0x2a) = (short)unaff_R14;
+  *(short *)((int64_t)in_R10 + 0x2a) = (short)unaff_R14;
   *(uint64_t *)(in_R10 + 0x10) = unaff_R14;
   return;
 }
@@ -1219,22 +1219,22 @@ void OptimizeRenderBufferLayoutSIMD(int elementCount, uint64_t simdData, uint64_
  * @note 该函数是简化版本，兼容性更好
  * @see OptimizeRenderBufferLayoutSIMD
  */
-void OptimizeRenderBufferLayoutSimple(int elementCount, uint64_t optimizationFlags, uint64_t renderFlags, longlong bufferData)
+void OptimizeRenderBufferLayoutSimple(int elementCount, uint64_t optimizationFlags, uint64_t renderFlags, int64_t bufferData)
 {
-  longlong *layoutPointer;
+  int64_t *layoutPointer;
   int currentIndex;
-  longlong bufferAddress;
-  longlong remainingSize;
+  int64_t bufferAddress;
+  int64_t remainingSize;
   int nextIndex;
   
-  bufferAddress = (longlong)in_R11D;
+  bufferAddress = (int64_t)in_R11D;
   if (bufferAddress < elementCount) {
     currentIndex = in_R11D + 1;
     remainingSize = elementCount - bufferAddress;
     in_R11D = in_R11D + (int)remainingSize;
-    layoutPointer = (longlong *)(bufferAddress * 0x10 + 8 + bufferData);
+    layoutPointer = (int64_t *)(bufferAddress * 0x10 + 8 + bufferData);
     do {
-      bufferAddress = (longlong)currentIndex;
+      bufferAddress = (int64_t)currentIndex;
       currentIndex = currentIndex + 1;
       *layoutPointer = bufferAddress * 0x10 + bufferData;
       remainingSize = remainingSize + -1;
@@ -1243,20 +1243,20 @@ void OptimizeRenderBufferLayoutSimple(int elementCount, uint64_t optimizationFla
   }
   
   // 设置终止符和布局参数
-  *(uint64_t *)(bufferData + 8 + (longlong)in_R11D * 0x10) = unaff_R14;
+  *(uint64_t *)(bufferData + 8 + (int64_t)in_R11D * 0x10) = unaff_R14;
   *in_R10 = unaff_ESI;
   in_R10[1] = unaff_EBP;
   in_R10[5] = unaff_EDI;
   in_R10[3] = 1;
   in_R10[4] = 0;
-  *(longlong *)(in_R10 + 8) = bufferData;
+  *(int64_t *)(in_R10 + 8) = bufferData;
   *(int **)(in_R10 + 6) = in_R10 + 10;
   in_R10[2] = (unaff_EDI + -1 + unaff_ESI) / unaff_EDI;
   *(short *)(in_R10 + 0xe) = (short)unaff_ESI;
   *(int **)(in_R10 + 0xc) = in_R10 + 0xe;
-  *(int16_t *)((longlong)in_R10 + 0x3a) = 0xffff;
+  *(int16_t *)((int64_t)in_R10 + 0x3a) = 0xffff;
   *(short *)(in_R10 + 10) = (short)unaff_R14;
-  *(short *)((longlong)in_R10 + 0x2a) = (short)unaff_R14;
+  *(short *)((int64_t)in_R10 + 0x2a) = (short)unaff_R14;
   *(uint64_t *)(in_R10 + 0x10) = unaff_R14;
   return;
 }

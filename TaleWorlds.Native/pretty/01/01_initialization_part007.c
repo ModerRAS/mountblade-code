@@ -318,17 +318,17 @@ void register_component_node_type1(void)
   char node_flag;
   uint64_t *root_node;
   int compare_result;
-  longlong *tree_manager;
-  longlong allocation_size;
+  int64_t *tree_manager;
+  int64_t allocation_size;
   uint64_t *current_node;
   uint64_t *previous_node;
   uint64_t *next_node;
   uint64_t *new_node;
   uint64_t callback_function;
   
-  tree_manager = (longlong *)get_tree_manager();
+  tree_manager = (int64_t *)get_tree_manager();
   root_node = (uint64_t *)*tree_manager;
-  node_flag = *(char *)((longlong)root_node[1] + 0x19);
+  node_flag = *(char *)((int64_t)root_node[1] + 0x19);
   callback_function = 0;
   previous_node = root_node;
   current_node = (uint64_t *)root_node[1];
@@ -345,7 +345,7 @@ void register_component_node_type1(void)
     }
     previous_node = current_node;
     current_node = next_node;
-    node_flag = *(char *)((longlong)next_node + 0x19);
+    node_flag = *(char *)((int64_t)next_node + 0x19);
   }
   
   // 如果需要，创建新节点
@@ -376,17 +376,17 @@ void register_component_node_type2(void)
   char node_flag;
   uint64_t *root_node;
   int compare_result;
-  longlong *tree_manager;
-  longlong allocation_size;
+  int64_t *tree_manager;
+  int64_t allocation_size;
   uint64_t *current_node;
   uint64_t *previous_node;
   uint64_t *next_node;
   uint64_t *new_node;
   uint64_t callback_function;
   
-  tree_manager = (longlong *)get_tree_manager();
+  tree_manager = (int64_t *)get_tree_manager();
   root_node = (uint64_t *)*tree_manager;
-  node_flag = *(char *)((longlong)root_node[1] + 0x19);
+  node_flag = *(char *)((int64_t)root_node[1] + 0x19);
   callback_function = 0;
   previous_node = root_node;
   current_node = (uint64_t *)root_node[1];
@@ -403,7 +403,7 @@ void register_component_node_type2(void)
     }
     previous_node = current_node;
     current_node = next_node;
-    node_flag = *(char *)((longlong)next_node + 0x19);
+    node_flag = *(char *)((int64_t)next_node + 0x19);
   }
   
   // 如果需要，创建新节点
@@ -434,17 +434,17 @@ void register_component_node_type3(void)
   char node_flag;
   uint64_t *root_node;
   int compare_result;
-  longlong *tree_manager;
-  longlong allocation_size;
+  int64_t *tree_manager;
+  int64_t allocation_size;
   uint64_t *current_node;
   uint64_t *previous_node;
   uint64_t *next_node;
   uint64_t *new_node;
   uint64_t callback_function;
   
-  tree_manager = (longlong *)get_tree_manager();
+  tree_manager = (int64_t *)get_tree_manager();
   root_node = (uint64_t *)*tree_manager;
-  node_flag = *(char *)((longlong)root_node[1] + 0x19);
+  node_flag = *(char *)((int64_t)root_node[1] + 0x19);
   callback_function = 0;
   previous_node = root_node;
   current_node = (uint64_t *)root_node[1];
@@ -461,7 +461,7 @@ void register_component_node_type3(void)
     }
     previous_node = current_node;
     current_node = next_node;
-    node_flag = *(char *)((longlong)next_node + 0x19);
+    node_flag = *(char *)((int64_t)next_node + 0x19);
   }
   
   // 如果需要，创建新节点
@@ -492,17 +492,17 @@ void register_component_node_type4(void)
   char node_flag;
   uint64_t *root_node;
   int compare_result;
-  longlong *tree_manager;
-  longlong allocation_size;
+  int64_t *tree_manager;
+  int64_t allocation_size;
   uint64_t *current_node;
   uint64_t *previous_node;
   uint64_t *next_node;
   uint64_t *new_node;
   uint64_t callback_function;
   
-  tree_manager = (longlong *)get_tree_manager();
+  tree_manager = (int64_t *)get_tree_manager();
   root_node = (uint64_t *)*tree_manager;
-  node_flag = *(char *)((longlong)root_node[1] + 0x19);
+  node_flag = *(char *)((int64_t)root_node[1] + 0x19);
   callback_function = 0;
   previous_node = root_node;
   current_node = (uint64_t *)root_node[1];
@@ -519,7 +519,7 @@ void register_component_node_type4(void)
     }
     previous_node = current_node;
     current_node = next_node;
-    node_flag = *(char *)((longlong)next_node + 0x19);
+    node_flag = *(char *)((int64_t)next_node + 0x19);
   }
   
   // 如果需要，创建新节点
@@ -550,17 +550,17 @@ void register_component_node_type5(void)
   char node_flag;
   uint64_t *root_node;
   int compare_result;
-  longlong *tree_manager;
-  longlong allocation_size;
+  int64_t *tree_manager;
+  int64_t allocation_size;
   uint64_t *current_node;
   uint64_t *previous_node;
   uint64_t *next_node;
   uint64_t *new_node;
   uint64_t callback_function;
   
-  tree_manager = (longlong *)get_tree_manager();
+  tree_manager = (int64_t *)get_tree_manager();
   root_node = (uint64_t *)*tree_manager;
-  node_flag = *(char *)((longlong)root_node[1] + 0x19);
+  node_flag = *(char *)((int64_t)root_node[1] + 0x19);
   callback_function = 0;
   previous_node = root_node;
   current_node = (uint64_t *)root_node[1];
@@ -577,7 +577,7 @@ void register_component_node_type5(void)
     }
     previous_node = current_node;
     current_node = next_node;
-    node_flag = *(char *)((longlong)next_node + 0x19);
+    node_flag = *(char *)((int64_t)next_node + 0x19);
   }
   
   // 如果需要，创建新节点
@@ -608,17 +608,17 @@ void register_component_node_type6(void)
   char node_flag;
   uint64_t *root_node;
   int compare_result;
-  longlong *tree_manager;
-  longlong allocation_size;
+  int64_t *tree_manager;
+  int64_t allocation_size;
   uint64_t *current_node;
   uint64_t *previous_node;
   uint64_t *next_node;
   uint64_t *new_node;
   uint64_t callback_function;
   
-  tree_manager = (longlong *)get_tree_manager();
+  tree_manager = (int64_t *)get_tree_manager();
   root_node = (uint64_t *)*tree_manager;
-  node_flag = *(char *)((longlong)root_node[1] + 0x19);
+  node_flag = *(char *)((int64_t)root_node[1] + 0x19);
   callback_function = 0;
   previous_node = root_node;
   current_node = (uint64_t *)root_node[1];
@@ -635,7 +635,7 @@ void register_component_node_type6(void)
     }
     previous_node = current_node;
     current_node = next_node;
-    node_flag = *(char *)((longlong)next_node + 0x19);
+    node_flag = *(char *)((int64_t)next_node + 0x19);
   }
   
   // 如果需要，创建新节点
@@ -666,17 +666,17 @@ void register_component_node_type7(void)
   char node_flag;
   uint64_t *root_node;
   int compare_result;
-  longlong *tree_manager;
-  longlong allocation_size;
+  int64_t *tree_manager;
+  int64_t allocation_size;
   uint64_t *current_node;
   uint64_t *previous_node;
   uint64_t *next_node;
   uint64_t *new_node;
   uint64_t callback_function;
   
-  tree_manager = (longlong *)get_tree_manager();
+  tree_manager = (int64_t *)get_tree_manager();
   root_node = (uint64_t *)*tree_manager;
-  node_flag = *(char *)((longlong)root_node[1] + 0x19);
+  node_flag = *(char *)((int64_t)root_node[1] + 0x19);
   callback_function = 0;
   previous_node = root_node;
   current_node = (uint64_t *)root_node[1];
@@ -693,7 +693,7 @@ void register_component_node_type7(void)
     }
     previous_node = current_node;
     current_node = next_node;
-    node_flag = *(char *)((longlong)next_node + 0x19);
+    node_flag = *(char *)((int64_t)next_node + 0x19);
   }
   
   // 如果需要，创建新节点
@@ -724,17 +724,17 @@ void register_component_node_with_callback1(void)
   char node_flag;
   uint64_t *root_node;
   int compare_result;
-  longlong *tree_manager;
-  longlong allocation_size;
+  int64_t *tree_manager;
+  int64_t allocation_size;
   uint64_t *current_node;
   uint64_t *previous_node;
   uint64_t *next_node;
   uint64_t *new_node;
   code *callback_function;
   
-  tree_manager = (longlong *)get_tree_manager();
+  tree_manager = (int64_t *)get_tree_manager();
   root_node = (uint64_t *)*tree_manager;
-  node_flag = *(char *)((longlong)root_node[1] + 0x19);
+  node_flag = *(char *)((int64_t)root_node[1] + 0x19);
   callback_function = component_callback_73930;
   previous_node = root_node;
   current_node = (uint64_t *)root_node[1];
@@ -751,7 +751,7 @@ void register_component_node_with_callback1(void)
     }
     previous_node = current_node;
     current_node = next_node;
-    node_flag = *(char *)((longlong)next_node + 0x19);
+    node_flag = *(char *)((int64_t)next_node + 0x19);
   }
   
   // 如果需要，创建新节点
@@ -782,17 +782,17 @@ void register_component_node_type8(void)
   char node_flag;
   uint64_t *root_node;
   int compare_result;
-  longlong *tree_manager;
-  longlong allocation_size;
+  int64_t *tree_manager;
+  int64_t allocation_size;
   uint64_t *current_node;
   uint64_t *previous_node;
   uint64_t *next_node;
   uint64_t *new_node;
   uint64_t callback_function;
   
-  tree_manager = (longlong *)get_tree_manager();
+  tree_manager = (int64_t *)get_tree_manager();
   root_node = (uint64_t *)*tree_manager;
-  node_flag = *(char *)((longlong)root_node[1] + 0x19);
+  node_flag = *(char *)((int64_t)root_node[1] + 0x19);
   callback_function = 0;
   previous_node = root_node;
   current_node = (uint64_t *)root_node[1];
@@ -809,7 +809,7 @@ void register_component_node_type8(void)
     }
     previous_node = current_node;
     current_node = next_node;
-    node_flag = *(char *)((longlong)next_node + 0x19);
+    node_flag = *(char *)((int64_t)next_node + 0x19);
   }
   
   // 如果需要，创建新节点
@@ -840,17 +840,17 @@ void register_component_node_with_callback2(void)
   char node_flag;
   uint64_t *root_node;
   int compare_result;
-  longlong *tree_manager;
-  longlong allocation_size;
+  int64_t *tree_manager;
+  int64_t allocation_size;
   uint64_t *current_node;
   uint64_t *previous_node;
   uint64_t *next_node;
   uint64_t *new_node;
   code *callback_function;
   
-  tree_manager = (longlong *)get_tree_manager();
+  tree_manager = (int64_t *)get_tree_manager();
   root_node = (uint64_t *)*tree_manager;
-  node_flag = *(char *)((longlong)root_node[1] + 0x19);
+  node_flag = *(char *)((int64_t)root_node[1] + 0x19);
   callback_function = component_callback_25e330;
   previous_node = root_node;
   current_node = (uint64_t *)root_node[1];
@@ -867,7 +867,7 @@ void register_component_node_with_callback2(void)
     }
     previous_node = current_node;
     current_node = next_node;
-    node_flag = *(char *)((longlong)next_node + 0x19);
+    node_flag = *(char *)((int64_t)next_node + 0x19);
   }
   
   // 如果需要，创建新节点
@@ -1132,17 +1132,17 @@ void register_component_node_with_callback3(void)
   char node_flag;
   uint64_t *root_node;
   int compare_result;
-  longlong *tree_manager;
-  longlong allocation_size;
+  int64_t *tree_manager;
+  int64_t allocation_size;
   uint64_t *current_node;
   uint64_t *previous_node;
   uint64_t *next_node;
   uint64_t *new_node;
   code *callback_function;
   
-  tree_manager = (longlong *)get_tree_manager();
+  tree_manager = (int64_t *)get_tree_manager();
   root_node = (uint64_t *)*tree_manager;
-  node_flag = *(char *)((longlong)root_node[1] + 0x19);
+  node_flag = *(char *)((int64_t)root_node[1] + 0x19);
   callback_function = component_callback_25cc00;
   previous_node = root_node;
   current_node = (uint64_t *)root_node[1];
@@ -1159,7 +1159,7 @@ void register_component_node_with_callback3(void)
     }
     previous_node = current_node;
     current_node = next_node;
-    node_flag = *(char *)((longlong)next_node + 0x19);
+    node_flag = *(char *)((int64_t)next_node + 0x19);
   }
   
   // 如果需要，创建新节点
@@ -1190,17 +1190,17 @@ void register_component_node_with_callback4(void)
   char node_flag;
   uint64_t *root_node;
   int compare_result;
-  longlong *tree_manager;
-  longlong allocation_size;
+  int64_t *tree_manager;
+  int64_t allocation_size;
   uint64_t *current_node;
   uint64_t *previous_node;
   uint64_t *next_node;
   uint64_t *new_node;
   code *callback_function;
   
-  tree_manager = (longlong *)get_tree_manager();
+  tree_manager = (int64_t *)get_tree_manager();
   root_node = (uint64_t *)*tree_manager;
-  node_flag = *(char *)((longlong)root_node[1] + 0x19);
+  node_flag = *(char *)((int64_t)root_node[1] + 0x19);
   callback_function = component_callback_25c000;
   previous_node = root_node;
   current_node = (uint64_t *)root_node[1];
@@ -1217,7 +1217,7 @@ void register_component_node_with_callback4(void)
     }
     previous_node = current_node;
     current_node = next_node;
-    node_flag = *(char *)((longlong)next_node + 0x19);
+    node_flag = *(char *)((int64_t)next_node + 0x19);
   }
   
   // 如果需要，创建新节点
@@ -1248,17 +1248,17 @@ void register_component_node_type9(void)
   char node_flag;
   uint64_t *root_node;
   int compare_result;
-  longlong *tree_manager;
-  longlong allocation_size;
+  int64_t *tree_manager;
+  int64_t allocation_size;
   uint64_t *current_node;
   uint64_t *previous_node;
   uint64_t *next_node;
   uint64_t *new_node;
   uint64_t callback_function;
   
-  tree_manager = (longlong *)get_tree_manager();
+  tree_manager = (int64_t *)get_tree_manager();
   root_node = (uint64_t *)*tree_manager;
-  node_flag = *(char *)((longlong)root_node[1] + 0x19);
+  node_flag = *(char *)((int64_t)root_node[1] + 0x19);
   callback_function = 0;
   previous_node = root_node;
   current_node = (uint64_t *)root_node[1];
@@ -1275,7 +1275,7 @@ void register_component_node_type9(void)
     }
     previous_node = current_node;
     current_node = next_node;
-    node_flag = *(char *)((longlong)next_node + 0x19);
+    node_flag = *(char *)((int64_t)next_node + 0x19);
   }
   
   // 如果需要，创建新节点
@@ -1306,17 +1306,17 @@ void register_component_node_with_callback5(void)
   char node_flag;
   uint64_t *root_node;
   int compare_result;
-  longlong *tree_manager;
-  longlong allocation_size;
+  int64_t *tree_manager;
+  int64_t allocation_size;
   uint64_t *current_node;
   uint64_t *previous_node;
   uint64_t *next_node;
   uint64_t *new_node;
   code *callback_function;
   
-  tree_manager = (longlong *)get_tree_manager();
+  tree_manager = (int64_t *)get_tree_manager();
   root_node = (uint64_t *)*tree_manager;
-  node_flag = *(char *)((longlong)root_node[1] + 0x19);
+  node_flag = *(char *)((int64_t)root_node[1] + 0x19);
   callback_function = component_callback_25d270;
   previous_node = root_node;
   current_node = (uint64_t *)root_node[1];
@@ -1333,7 +1333,7 @@ void register_component_node_with_callback5(void)
     }
     previous_node = current_node;
     current_node = next_node;
-    node_flag = *(char *)((longlong)next_node + 0x19);
+    node_flag = *(char *)((int64_t)next_node + 0x19);
   }
   
   // 如果需要，创建新节点
@@ -1364,17 +1364,17 @@ void register_component_node_type10(void)
   char node_flag;
   uint64_t *root_node;
   int compare_result;
-  longlong *tree_manager;
-  longlong allocation_size;
+  int64_t *tree_manager;
+  int64_t allocation_size;
   uint64_t *current_node;
   uint64_t *previous_node;
   uint64_t *next_node;
   uint64_t *new_node;
   uint64_t callback_function;
   
-  tree_manager = (longlong *)get_tree_manager();
+  tree_manager = (int64_t *)get_tree_manager();
   root_node = (uint64_t *)*tree_manager;
-  node_flag = *(char *)((longlong)root_node[1] + 0x19);
+  node_flag = *(char *)((int64_t)root_node[1] + 0x19);
   callback_function = 0;
   previous_node = root_node;
   current_node = (uint64_t *)root_node[1];
@@ -1391,7 +1391,7 @@ void register_component_node_type10(void)
     }
     previous_node = current_node;
     current_node = next_node;
-    node_flag = *(char *)((longlong)next_node + 0x19);
+    node_flag = *(char *)((int64_t)next_node + 0x19);
   }
   
   // 如果需要，创建新节点
@@ -1422,17 +1422,17 @@ void register_component_node_with_special_callback(void)
   char node_flag;
   uint64_t *root_node;
   int compare_result;
-  longlong *tree_manager;
-  longlong allocation_size;
+  int64_t *tree_manager;
+  int64_t allocation_size;
   uint64_t *current_node;
   uint64_t *previous_node;
   uint64_t *next_node;
   uint64_t *new_node;
   void *special_callback;
   
-  tree_manager = (longlong *)get_tree_manager();
+  tree_manager = (int64_t *)get_tree_manager();
   root_node = (uint64_t *)*tree_manager;
-  node_flag = *(char *)((longlong)root_node[1] + 0x19);
+  node_flag = *(char *)((int64_t)root_node[1] + 0x19);
   special_callback = &special_callback_868c0;
   previous_node = root_node;
   current_node = (uint64_t *)root_node[1];
@@ -1449,7 +1449,7 @@ void register_component_node_with_special_callback(void)
     }
     previous_node = current_node;
     current_node = next_node;
-    node_flag = *(char *)((longlong)next_node + 0x19);
+    node_flag = *(char *)((int64_t)next_node + 0x19);
   }
   
   // 如果需要，创建新节点
@@ -1480,17 +1480,17 @@ void register_component_node_type11(void)
   char node_flag;
   uint64_t *root_node;
   int compare_result;
-  longlong *tree_manager;
-  longlong allocation_size;
+  int64_t *tree_manager;
+  int64_t allocation_size;
   uint64_t *current_node;
   uint64_t *previous_node;
   uint64_t *next_node;
   uint64_t *new_node;
   uint64_t callback_function;
   
-  tree_manager = (longlong *)get_tree_manager();
+  tree_manager = (int64_t *)get_tree_manager();
   root_node = (uint64_t *)*tree_manager;
-  node_flag = *(char *)((longlong)root_node[1] + 0x19);
+  node_flag = *(char *)((int64_t)root_node[1] + 0x19);
   callback_function = 0;
   previous_node = root_node;
   current_node = (uint64_t *)root_node[1];
@@ -1507,7 +1507,7 @@ void register_component_node_type11(void)
     }
     previous_node = current_node;
     current_node = next_node;
-    node_flag = *(char *)((longlong)next_node + 0x19);
+    node_flag = *(char *)((int64_t)next_node + 0x19);
   }
   
   // 如果需要，创建新节点
@@ -1538,17 +1538,17 @@ void register_component_node_with_callback3_duplicate(void)
   char node_flag;
   uint64_t *root_node;
   int compare_result;
-  longlong *tree_manager;
-  longlong allocation_size;
+  int64_t *tree_manager;
+  int64_t allocation_size;
   uint64_t *current_node;
   uint64_t *previous_node;
   uint64_t *next_node;
   uint64_t *new_node;
   code *callback_function;
   
-  tree_manager = (longlong *)get_tree_manager();
+  tree_manager = (int64_t *)get_tree_manager();
   root_node = (uint64_t *)*tree_manager;
-  node_flag = *(char *)((longlong)root_node[1] + 0x19);
+  node_flag = *(char *)((int64_t)root_node[1] + 0x19);
   callback_function = component_callback_25cc00;
   previous_node = root_node;
   current_node = (uint64_t *)root_node[1];
@@ -1565,7 +1565,7 @@ void register_component_node_with_callback3_duplicate(void)
     }
     previous_node = current_node;
     current_node = next_node;
-    node_flag = *(char *)((longlong)next_node + 0x19);
+    node_flag = *(char *)((int64_t)next_node + 0x19);
   }
   
   // 如果需要，创建新节点
@@ -1596,17 +1596,17 @@ void register_component_node_with_callback4_duplicate(void)
   char node_flag;
   uint64_t *root_node;
   int compare_result;
-  longlong *tree_manager;
-  longlong allocation_size;
+  int64_t *tree_manager;
+  int64_t allocation_size;
   uint64_t *current_node;
   uint64_t *previous_node;
   uint64_t *next_node;
   uint64_t *new_node;
   code *callback_function;
   
-  tree_manager = (longlong *)get_tree_manager();
+  tree_manager = (int64_t *)get_tree_manager();
   root_node = (uint64_t *)*tree_manager;
-  node_flag = *(char *)((longlong)root_node[1] + 0x19);
+  node_flag = *(char *)((int64_t)root_node[1] + 0x19);
   callback_function = component_callback_25c000;
   previous_node = root_node;
   current_node = (uint64_t *)root_node[1];
@@ -1623,7 +1623,7 @@ void register_component_node_with_callback4_duplicate(void)
     }
     previous_node = current_node;
     current_node = next_node;
-    node_flag = *(char *)((longlong)next_node + 0x19);
+    node_flag = *(char *)((int64_t)next_node + 0x19);
   }
   
   // 如果需要，创建新节点
@@ -1654,17 +1654,17 @@ void register_component_node_type9_duplicate(void)
   char node_flag;
   uint64_t *root_node;
   int compare_result;
-  longlong *tree_manager;
-  longlong allocation_size;
+  int64_t *tree_manager;
+  int64_t allocation_size;
   uint64_t *current_node;
   uint64_t *previous_node;
   uint64_t *next_node;
   uint64_t *new_node;
   uint64_t callback_function;
   
-  tree_manager = (longlong *)get_tree_manager();
+  tree_manager = (int64_t *)get_tree_manager();
   root_node = (uint64_t *)*tree_manager;
-  node_flag = *(char *)((longlong)root_node[1] + 0x19);
+  node_flag = *(char *)((int64_t)root_node[1] + 0x19);
   callback_function = 0;
   previous_node = root_node;
   current_node = (uint64_t *)root_node[1];
@@ -1681,7 +1681,7 @@ void register_component_node_type9_duplicate(void)
     }
     previous_node = current_node;
     current_node = next_node;
-    node_flag = *(char *)((longlong)next_node + 0x19);
+    node_flag = *(char *)((int64_t)next_node + 0x19);
   }
   
   // 如果需要，创建新节点
@@ -1712,17 +1712,17 @@ void register_component_node_with_callback5_duplicate(void)
   char node_flag;
   uint64_t *root_node;
   int compare_result;
-  longlong *tree_manager;
-  longlong allocation_size;
+  int64_t *tree_manager;
+  int64_t allocation_size;
   uint64_t *current_node;
   uint64_t *previous_node;
   uint64_t *next_node;
   uint64_t *new_node;
   code *callback_function;
   
-  tree_manager = (longlong *)get_tree_manager();
+  tree_manager = (int64_t *)get_tree_manager();
   root_node = (uint64_t *)*tree_manager;
-  node_flag = *(char *)((longlong)root_node[1] + 0x19);
+  node_flag = *(char *)((int64_t)root_node[1] + 0x19);
   callback_function = component_callback_25d270;
   previous_node = root_node;
   current_node = (uint64_t *)root_node[1];
@@ -1739,7 +1739,7 @@ void register_component_node_with_callback5_duplicate(void)
     }
     previous_node = current_node;
     current_node = next_node;
-    node_flag = *(char *)((longlong)next_node + 0x19);
+    node_flag = *(char *)((int64_t)next_node + 0x19);
   }
   
   // 如果需要，创建新节点
@@ -1770,17 +1770,17 @@ void register_component_node_type10_duplicate(void)
   char node_flag;
   uint64_t *root_node;
   int compare_result;
-  longlong *tree_manager;
-  longlong allocation_size;
+  int64_t *tree_manager;
+  int64_t allocation_size;
   uint64_t *current_node;
   uint64_t *previous_node;
   uint64_t *next_node;
   uint64_t *new_node;
   uint64_t callback_function;
   
-  tree_manager = (longlong *)get_tree_manager();
+  tree_manager = (int64_t *)get_tree_manager();
   root_node = (uint64_t *)*tree_manager;
-  node_flag = *(char *)((longlong)root_node[1] + 0x19);
+  node_flag = *(char *)((int64_t)root_node[1] + 0x19);
   callback_function = 0;
   previous_node = root_node;
   current_node = (uint64_t *)root_node[1];
@@ -1797,7 +1797,7 @@ void register_component_node_type10_duplicate(void)
     }
     previous_node = current_node;
     current_node = next_node;
-    node_flag = *(char *)((longlong)next_node + 0x19);
+    node_flag = *(char *)((int64_t)next_node + 0x19);
   }
   
   // 如果需要，创建新节点

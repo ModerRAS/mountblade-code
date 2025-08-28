@@ -103,18 +103,18 @@
  * 本函数为简化实现，保留了核心的数学计算逻辑。
  * 原始代码包含更复杂的数学运算、变换处理和性能优化逻辑。
  */
-void RenderingSystem_AdvancedMathCalculator(longlong render_context, uint64_t transform_data, float scale_factor)
+void RenderingSystem_AdvancedMathCalculator(int64_t render_context, uint64_t transform_data, float scale_factor)
 
 {
   uint64_t temp_var_1;
-  longlong temp_var_2;
+  int64_t temp_var_2;
   float float_var_3;
   uint64_t temp_var_4;
-  longlong input_rax;
-  longlong unaff_rbx;
+  int64_t input_rax;
+  int64_t unaff_rbx;
   int32_t *unaff_rbp;
   float *input_r8;
-  longlong *ptr_var_5;
+  int64_t *ptr_var_5;
   float float_var_6;
   float float_var_7;
   int8_t array_var_8 [16];
@@ -224,7 +224,7 @@ void RenderingSystem_AdvancedMathCalculator(longlong render_context, uint64_t tr
     FUN_18057f1f0(render_context + 0x48, &stack0x00000030, array_var_8._0_8_, unaff_rbp + 0x3a);
     temp_var_2 = CONCAT44(stack_var_34, stack_var_30);
     stack_var_30 = RENDERING_SYSTEM_SMALL_VALUE;
-    ptr_var_5 = *(longlong **)(temp_var_2 + 8);
+    ptr_var_5 = *(int64_t **)(temp_var_2 + 8);
     stack_var_34 = float_var_14;
     stack_var_38 = float_var_9;
     (**(code **)(*ptr_var_5 + 0x40))(ptr_var_5, &stack0x00000030);
@@ -246,7 +246,7 @@ void RenderingSystem_AdvancedMathCalculator(longlong render_context, uint64_t tr
     stack_var_34 = 0.0f;
     stack_var_38 = RENDERING_SYSTEM_DEFAULT_SCALE;
     stack_var_3c = 0;
-    ptr_var_5 = *(longlong **)(temp_var_2 + 8);
+    ptr_var_5 = *(int64_t **)(temp_var_2 + 8);
     FUN_180645340(&stack0x00000050, unaff_rbp + -0xc, unaff_rbp + -0x10, &stack0x00000030);
     
     // 执行矩阵变换计算
@@ -299,7 +299,7 @@ void RenderingSystem_AdvancedMathCalculator(longlong render_context, uint64_t tr
   }
   
   // 执行最终的变换处理
-  ptr_var_5 = *(longlong **)(unaff_rbx + 8);
+  ptr_var_5 = *(int64_t **)(unaff_rbx + 8);
   *(uint64_t *)(unaff_rbp + -6) = 0;
   *(uint64_t *)(unaff_rbp + -4) = RENDERING_SYSTEM_UNIT_VALUE;
   *unaff_rbp = unaff_rbp[8];
@@ -326,18 +326,18 @@ void RenderingSystem_AdvancedMathCalculator(longlong render_context, uint64_t tr
  * 简化实现说明：
  * 本函数为简化实现，保留了核心的矩阵变换逻辑。
  */
-void RenderingSystem_MatrixTransformer(longlong render_context, uint64_t transform_params, float *position_data)
+void RenderingSystem_MatrixTransformer(int64_t render_context, uint64_t transform_params, float *position_data)
 
 {
   uint64_t temp_var_1;
-  longlong temp_var_2;
+  int64_t temp_var_2;
   float float_var_3;
   uint64_t temp_var_4;
-  longlong unaff_rbx;
+  int64_t unaff_rbx;
   int32_t *unaff_rbp;
-  longlong unaff_rdi;
-  longlong input_r10;
-  longlong *ptr_var_5;
+  int64_t unaff_rdi;
+  int64_t input_r10;
+  int64_t *ptr_var_5;
   float float_var_6;
   float float_var_7;
   int8_t array_var_8 [16];
@@ -371,8 +371,8 @@ void RenderingSystem_MatrixTransformer(longlong render_context, uint64_t transfo
   float stack_var_7c;
   
   // 检查渲染上下文的有效性
-  if (unaff_rbx != *(longlong *)(input_r10 + *(longlong *)(render_context + 0x28) * 8)) {
-    temp_var_2 = *(longlong *)(unaff_rdi + 0x20);
+  if (unaff_rbx != *(int64_t *)(input_r10 + *(int64_t *)(render_context + 0x28) * 8)) {
+    temp_var_2 = *(int64_t *)(unaff_rdi + 0x20);
     stack_var_50 = *(uint64_t *)(temp_var_2 + 0x1b0);
     stack_var_58 = *(uint64_t *)(temp_var_2 + 0x1b8);
     stack_var_60 = *(uint64_t *)(temp_var_2 + 0x1c0);
@@ -444,7 +444,7 @@ void RenderingSystem_MatrixTransformer(longlong render_context, uint64_t transfo
       FUN_18057f1f0(render_context + 0x48, &stack0x00000030, array_var_8._0_8_, unaff_rbp + 0x3a);
       temp_var_2 = CONCAT44(stack_var_34, stack_var_30);
       stack_var_30 = RENDERING_SYSTEM_SMALL_VALUE;
-      ptr_var_5 = *(longlong **)(temp_var_2 + 8);
+      ptr_var_5 = *(int64_t **)(temp_var_2 + 8);
       stack_var_34 = float_var_14;
       stack_var_38 = float_var_9;
       (**(code **)(*ptr_var_5 + 0x40))(ptr_var_5, &stack0x00000030);
@@ -465,7 +465,7 @@ void RenderingSystem_MatrixTransformer(longlong render_context, uint64_t transfo
       stack_var_34 = 0.0f;
       stack_var_38 = RENDERING_SYSTEM_DEFAULT_SCALE;
       stack_var_3c = 0;
-      ptr_var_5 = *(longlong **)(temp_var_2 + 8);
+      ptr_var_5 = *(int64_t **)(temp_var_2 + 8);
       FUN_180645340(&stack0x00000050, unaff_rbp + -0xc, unaff_rbp + -0x10, &stack0x00000030);
       float_var_10 = stack_var_50 * 0.0f;
       float_var_11 = stack_var_54 * 0.0f;
@@ -510,7 +510,7 @@ void RenderingSystem_MatrixTransformer(longlong render_context, uint64_t transfo
       stack_var_34 = float_var_15;
       stack_var_38 = float_var_16;
     }
-    ptr_var_5 = *(longlong **)(unaff_rbx + 8);
+    ptr_var_5 = *(int64_t **)(unaff_rbx + 8);
     *(uint64_t *)(unaff_rbp + -6) = 0;
     *(uint64_t *)(unaff_rbp + -4) = RENDERING_SYSTEM_UNIT_VALUE;
     *unaff_rbp = unaff_rbp[8];
@@ -549,16 +549,16 @@ void RenderingSystem_MatrixTransformer(longlong render_context, uint64_t transfo
  * 简化实现说明：
  * 本函数为简化实现，保留了核心的变换处理逻辑。
  */
-void RenderingSystem_AdvancedTransformProcessor(longlong render_context, uint64_t transform_params, uint64_t matrix_data, uint64_t position_data,
+void RenderingSystem_AdvancedTransformProcessor(int64_t render_context, uint64_t transform_params, uint64_t matrix_data, uint64_t position_data,
                                              uint64_t rotation_data, uint64_t scale_data, uint64_t transform_matrix, uint64_t result_matrix,
                                              uint64_t temp_matrix, uint64_t output_data, uint64_t config_data, uint64_t render_params,
                                              uint64_t optimization_data, uint64_t performance_data)
 
 {
-  longlong temp_var_1;
-  longlong unaff_rbx;
+  int64_t temp_var_1;
+  int64_t unaff_rbx;
   int32_t *unaff_rbp;
-  longlong *ptr_var_2;
+  int64_t *ptr_var_2;
   float float_var_3;
   float float_var_4;
   float float_var_5;
@@ -582,7 +582,7 @@ void RenderingSystem_AdvancedTransformProcessor(longlong render_context, uint64_
   FUN_18057f1f0(render_context + 0x48, &transform_params, matrix_data, unaff_rbp + 0x3a);
   temp_var_1 = CONCAT44(transform_params._4_4_, (float)transform_params);
   transform_params._0_4_ = RENDERING_SYSTEM_SMALL_VALUE;
-  ptr_var_2 = *(longlong **)(temp_var_1 + 8);
+  ptr_var_2 = *(int64_t **)(temp_var_1 + 8);
   transform_params._4_4_ = unaff_xmm7_da;
   (**(code **)(*ptr_var_2 + 0x40))(ptr_var_2, &transform_params);
   *(int32_t *)(unaff_rbx + 0x10) = unaff_xmm7_da;
@@ -602,7 +602,7 @@ void RenderingSystem_AdvancedTransformProcessor(longlong render_context, uint64_
     transform_params._4_4_ = 0;
     result_matrix._0_4_ = RENDERING_SYSTEM_DEFAULT_SCALE;
     result_matrix._4_4_ = 0;
-    ptr_var_2 = *(longlong **)(temp_var_1 + 8);
+    ptr_var_2 = *(int64_t **)(temp_var_1 + 8);
     FUN_180645340(&config_data, unaff_rbp + -0xc, unaff_rbp + -0x10, &transform_params);
     float_var_7 = (float)config_data * 0.0f;
     float_var_8 = config_data._4_4_ * 0.0f;
@@ -647,7 +647,7 @@ void RenderingSystem_AdvancedTransformProcessor(longlong render_context, uint64_
   }
   
   // 执行最终的变换处理
-  ptr_var_2 = *(longlong **)(unaff_rbx + 8);
+  ptr_var_2 = *(int64_t **)(unaff_rbx + 8);
   *(uint64_t *)(unaff_rbp + -6) = 0;
   *(uint64_t *)(unaff_rbp + -4) = RENDERING_SYSTEM_UNIT_VALUE;
   *unaff_rbp = unaff_rbp[8];
@@ -691,10 +691,10 @@ void RenderingSystem_OptimizedTransformProcessor(uint64_t transform_data, uint m
                                                uint64_t optimization_data, uint64_t performance_data)
 
 {
-  longlong temp_var_1;
-  longlong unaff_rbx;
+  int64_t temp_var_1;
+  int64_t unaff_rbx;
   int32_t *unaff_rbp;
-  longlong *ptr_var_2;
+  int64_t *ptr_var_2;
   float float_var_3;
   float float_var_4;
   float float_var_5;
@@ -730,7 +730,7 @@ void RenderingSystem_OptimizedTransformProcessor(uint64_t transform_data, uint m
     transform_params._4_4_ = 0;
     result_matrix._0_4_ = RENDERING_SYSTEM_DEFAULT_SCALE;
     result_matrix._4_4_ = 0;
-    ptr_var_2 = *(longlong **)(temp_var_1 + 8);
+    ptr_var_2 = *(int64_t **)(temp_var_1 + 8);
     FUN_180645340(&config_data, unaff_rbp + -0xc, unaff_rbp + -0x10, &transform_params);
     float_var_7 = (float)config_data * 0.0f;
     float_var_8 = config_data._4_4_ * 0.0f;
@@ -776,7 +776,7 @@ void RenderingSystem_OptimizedTransformProcessor(uint64_t transform_data, uint m
   }
   
   // 执行最终的优化变换处理
-  ptr_var_2 = *(longlong **)(unaff_rbx + 8);
+  ptr_var_2 = *(int64_t **)(unaff_rbx + 8);
   *(uint64_t *)(unaff_rbp + -6) = 0;
   *(uint64_t *)(unaff_rbp + -4) = RENDERING_SYSTEM_UNIT_VALUE;
   *unaff_rbp = unaff_rbp[8];
@@ -818,43 +818,43 @@ void RenderingSystem_EmptyFunctionPlaceholder(void)
  * 简化实现说明：
  * 本函数为简化实现，保留了核心的哈希表查找逻辑。
  */
-void RenderingSystem_HashTableFinder(longlong hash_table, ulonglong search_key)
+void RenderingSystem_HashTableFinder(int64_t hash_table, uint64_t search_key)
 
 {
-  longlong temp_var_1;
-  ulonglong temp_var_2;
+  int64_t temp_var_1;
+  uint64_t temp_var_2;
   uint64_t *ptr_var_3;
-  ulonglong *ptr_var_4;
-  ulonglong *ptr_var_5;
-  ulonglong hash_index;
-  ulonglong *ptr_var_7;
+  uint64_t *ptr_var_4;
+  uint64_t *ptr_var_5;
+  uint64_t hash_index;
+  uint64_t *ptr_var_7;
   uint64_t *ptr_var_8;
   
   // 计算哈希索引
-  temp_var_1 = *(longlong *)(hash_table + 0x20);
-  hash_index = search_key % (ulonglong)*(uint *)(hash_table + 0x28);
+  temp_var_1 = *(int64_t *)(hash_table + 0x20);
+  hash_index = search_key % (uint64_t)*(uint *)(hash_table + 0x28);
   
   // 在哈希表中查找数据项
-  for (ptr_var_7 = *(ulonglong **)(temp_var_1 + hash_index * 8); ptr_var_7 != (ulonglong *)0x0;
-       ptr_var_7 = (ulonglong *)ptr_var_7[7]) {
+  for (ptr_var_7 = *(uint64_t **)(temp_var_1 + hash_index * 8); ptr_var_7 != (uint64_t *)0x0;
+       ptr_var_7 = (uint64_t *)ptr_var_7[7]) {
     if (search_key == *ptr_var_7) goto LAB_FOUND_ITEM;
   }
-  ptr_var_7 = (ulonglong *)0x0;
+  ptr_var_7 = (uint64_t *)0x0;
 LAB_FOUND_ITEM:
-  temp_var_2 = *(ulonglong *)(hash_table + 0x28);
+  temp_var_2 = *(uint64_t *)(hash_table + 0x28);
   
   // 处理查找结果
-  if (ptr_var_7 == (ulonglong *)0x0) {
-    ptr_var_7 = *(ulonglong **)(temp_var_1 + temp_var_2 * 8);
+  if (ptr_var_7 == (uint64_t *)0x0) {
+    ptr_var_7 = *(uint64_t **)(temp_var_1 + temp_var_2 * 8);
     hash_index = temp_var_2;
   }
   ptr_var_8 = (uint64_t *)(temp_var_1 + hash_index * 8);
-  if (ptr_var_7 == *(ulonglong **)(temp_var_1 + temp_var_2 * 8)) {
+  if (ptr_var_7 == *(uint64_t **)(temp_var_1 + temp_var_2 * 8)) {
     return;
   }
   ptr_var_3 = (uint64_t *)ptr_var_7[1];
-  (**(code **)(**(longlong **)(hash_table + 8) + 0x68))
-          (*(longlong **)(hash_table + 8), ptr_var_3,
+  (**(code **)(**(int64_t **)(hash_table + 8) + 0x68))
+          (*(int64_t **)(hash_table + 8), ptr_var_3,
            CONCAT71((uint7)(uint3)(*(uint *)(hash_table + 0x28) >> 8), 1));
   (**(code **)*ptr_var_3)(ptr_var_3);
   hash_index = ptr_var_7[7];
@@ -866,13 +866,13 @@ LAB_FOUND_ITEM:
     ptr_var_3 = ptr_var_3 + 1;
     hash_index = *ptr_var_4;
   }
-  ptr_var_4 = (ulonglong *)*ptr_var_8;
-  ptr_var_5 = (ulonglong *)ptr_var_4[7];
+  ptr_var_4 = (uint64_t *)*ptr_var_8;
+  ptr_var_5 = (uint64_t *)ptr_var_4[7];
   if (ptr_var_4 == ptr_var_7) {
     *ptr_var_8 = ptr_var_5;
   }
   else {
-    for (; ptr_var_5 != ptr_var_7; ptr_var_5 = (ulonglong *)ptr_var_5[7]) {
+    for (; ptr_var_5 != ptr_var_7; ptr_var_5 = (uint64_t *)ptr_var_5[7]) {
       ptr_var_4 = ptr_var_5;
     }
     ptr_var_4[7] = ptr_var_5[7];
@@ -897,22 +897,22 @@ LAB_FOUND_ITEM:
  * 简化实现说明：
  * 本函数为简化实现，保留了核心的资源清理逻辑。
  */
-void RenderingSystem_ResourceCleaner(longlong *resource_manager)
+void RenderingSystem_ResourceCleaner(int64_t *resource_manager)
 
 {
-  longlong *ptr_var_1;
-  longlong *ptr_var_2;
+  int64_t *ptr_var_1;
+  int64_t *ptr_var_2;
   uint64_t *ptr_var_3;
-  longlong temp_var_4;
-  longlong temp_var_5;
-  longlong unaff_rdi;
-  longlong *unaff_r14;
+  int64_t temp_var_4;
+  int64_t temp_var_5;
+  int64_t unaff_rdi;
+  int64_t *unaff_r14;
   
   // 执行资源清理操作
   ptr_var_3 = *(uint64_t **)(unaff_rdi + 8);
   (**(code **)(*resource_manager + 0x68))(resource_manager, ptr_var_3);
   (**(code **)*ptr_var_3)(ptr_var_3);
-  temp_var_4 = *(longlong *)(unaff_rdi + 0x38);
+  temp_var_4 = *(int64_t *)(unaff_rdi + 0x38);
   ptr_var_2 = unaff_r14;
   
   // 查找并清理资源
@@ -922,12 +922,12 @@ void RenderingSystem_ResourceCleaner(longlong *resource_manager)
     temp_var_4 = *ptr_var_1;
   }
   temp_var_4 = *unaff_r14;
-  temp_var_5 = *(longlong *)(temp_var_4 + 0x38);
+  temp_var_5 = *(int64_t *)(temp_var_4 + 0x38);
   if (temp_var_4 == unaff_rdi) {
     *unaff_r14 = temp_var_5;
   }
   else {
-    for (; temp_var_5 != unaff_rdi; temp_var_5 = *(longlong *)(temp_var_5 + 0x38)) {
+    for (; temp_var_5 != unaff_rdi; temp_var_5 = *(int64_t *)(temp_var_5 + 0x38)) {
       temp_var_4 = temp_var_5;
     }
     *(uint64_t *)(temp_var_4 + 0x38) = *(uint64_t *)(temp_var_5 + 0x38);
@@ -968,19 +968,19 @@ void RenderingSystem_EmptyFunctionPlaceholder2(void)
  * 简化实现说明：
  * 本函数为简化实现，保留了核心的内存管理逻辑。
  */
-void RenderingSystem_MemoryManager(longlong memory_context)
+void RenderingSystem_MemoryManager(int64_t memory_context)
 
 {
-  ulonglong temp_var_1;
-  longlong temp_var_2;
-  longlong *ptr_var_3;
-  longlong *ptr_var_4;
-  longlong *ptr_var_5;
-  ulonglong temp_var_6;
-  longlong temp_var_7;
+  uint64_t temp_var_1;
+  int64_t temp_var_2;
+  int64_t *ptr_var_3;
+  int64_t *ptr_var_4;
+  int64_t *ptr_var_5;
+  uint64_t temp_var_6;
+  int64_t temp_var_7;
   
   // 获取内存管理器
-  ptr_var_3 = *(longlong **)(memory_context + 0x20);
+  ptr_var_3 = *(int64_t **)(memory_context + 0x20);
   temp_var_7 = *ptr_var_3;
   ptr_var_5 = ptr_var_3;
   
@@ -995,21 +995,21 @@ void RenderingSystem_MemoryManager(longlong memory_context)
   }
   
   // 处理内存块链表
-  if (temp_var_7 != ptr_var_3[*(longlong *)(memory_context + 0x28)]) {
+  if (temp_var_7 != ptr_var_3[*(int64_t *)(memory_context + 0x28)]) {
     do {
       (**(code **)**(uint64_t **)(temp_var_7 + 8))();
-      temp_var_7 = *(longlong *)(temp_var_7 + 0x38);
+      temp_var_7 = *(int64_t *)(temp_var_7 + 0x38);
       while (temp_var_7 == 0) {
         ptr_var_3 = ptr_var_5 + 1;
         ptr_var_5 = ptr_var_5 + 1;
         temp_var_7 = *ptr_var_3;
       }
-    } while (temp_var_7 != *(longlong *)
-                       (*(longlong *)(memory_context + 0x20) + *(longlong *)(memory_context + 0x28) * 8));
+    } while (temp_var_7 != *(int64_t *)
+                       (*(int64_t *)(memory_context + 0x20) + *(int64_t *)(memory_context + 0x28) * 8));
   }
   
   // 处理第二个内存块链表
-  ptr_var_3 = *(longlong **)(memory_context + 0x50);
+  ptr_var_3 = *(int64_t **)(memory_context + 0x50);
   temp_var_7 = *ptr_var_3;
   ptr_var_5 = ptr_var_3;
   if (temp_var_7 == 0) {
@@ -1020,35 +1020,35 @@ void RenderingSystem_MemoryManager(longlong memory_context)
   }
   
   // 清理第二个内存块链表
-  if (temp_var_7 != ptr_var_3[*(longlong *)(memory_context + 0x58)]) {
+  if (temp_var_7 != ptr_var_3[*(int64_t *)(memory_context + 0x58)]) {
     do {
       (**(code **)**(uint64_t **)(temp_var_7 + 8))();
-      temp_var_7 = *(longlong *)(temp_var_7 + 0x10);
+      temp_var_7 = *(int64_t *)(temp_var_7 + 0x10);
       while (temp_var_7 == 0) {
         ptr_var_3 = ptr_var_5 + 1;
         ptr_var_5 = ptr_var_5 + 1;
         temp_var_7 = *ptr_var_3;
       }
-    } while (temp_var_7 != *(longlong *)
-                       (*(longlong *)(memory_context + 0x50) + *(longlong *)(memory_context + 0x58) * 8));
+    } while (temp_var_7 != *(int64_t *)
+                       (*(int64_t *)(memory_context + 0x50) + *(int64_t *)(memory_context + 0x58) * 8));
   }
   
   // 清理系统资源
-  if (*(longlong **)(memory_context + 8) != (longlong *)0x0) {
-    (**(code **)(**(longlong **)(memory_context + 8) + 8))();
+  if (*(int64_t **)(memory_context + 8) != (int64_t *)0x0) {
+    (**(code **)(**(int64_t **)(memory_context + 8) + 8))();
     *(uint64_t *)(memory_context + 8) = 0;
   }
   
   // 释放内存池
-  temp_var_1 = *(ulonglong *)(memory_context + 0x58);
+  temp_var_1 = *(uint64_t *)(memory_context + 0x58);
   temp_var_6 = 0;
-  temp_var_7 = *(longlong *)(memory_context + 0x50);
+  temp_var_7 = *(int64_t *)(memory_context + 0x50);
   if (temp_var_1 == 0) {
     *(uint64_t *)(memory_context + 0x60) = 0;
   }
   else {
     do {
-      temp_var_2 = *(longlong *)(temp_var_7 + temp_var_6 * 8);
+      temp_var_2 = *(int64_t *)(temp_var_7 + temp_var_6 * 8);
       if (temp_var_2 != 0) {
         FUN_18064e900(temp_var_2);
       }
@@ -1078,7 +1078,7 @@ void RenderingSystem_MemoryManager(longlong memory_context)
  * 简化实现说明：
  * 本函数为简化实现，保留了核心的内存释放逻辑。
  */
-uint64_t RenderingSystem_MemoryDeallocator(uint64_t memory_ptr, ulonglong free_flag)
+uint64_t RenderingSystem_MemoryDeallocator(uint64_t memory_ptr, uint64_t free_flag)
 
 {
   // 执行内存释放准备
@@ -1106,41 +1106,41 @@ uint64_t RenderingSystem_MemoryDeallocator(uint64_t memory_ptr, ulonglong free_f
  * 简化实现说明：
  * 本函数为简化实现，保留了核心的内存清理逻辑。
  */
-void RenderingSystem_MemoryCleaner(longlong memory_manager)
+void RenderingSystem_MemoryCleaner(int64_t memory_manager)
 
 {
   int *ptr_var_1;
-  longlong temp_var_2;
+  int64_t temp_var_2;
   uint64_t *ptr_var_3;
-  longlong temp_var_4;
-  ulonglong temp_var_5;
-  ulonglong temp_var_6;
+  int64_t temp_var_4;
+  uint64_t temp_var_5;
+  uint64_t temp_var_6;
   
   // 获取内存管理参数
-  temp_var_6 = *(ulonglong *)(memory_manager + 0x10);
-  temp_var_4 = *(longlong *)(memory_manager + 8);
+  temp_var_6 = *(uint64_t *)(memory_manager + 0x10);
+  temp_var_4 = *(int64_t *)(memory_manager + 8);
   temp_var_5 = 0;
   
   // 清理内存块
   if (temp_var_6 != 0) {
     do {
-      temp_var_2 = *(longlong *)(temp_var_4 + temp_var_5 * 8);
+      temp_var_2 = *(int64_t *)(temp_var_4 + temp_var_5 * 8);
       if (temp_var_2 != 0) {
         FUN_18064e900(temp_var_2);
       }
       *(uint64_t *)(temp_var_4 + temp_var_5 * 8) = 0;
       temp_var_5 = temp_var_5 + 1;
     } while (temp_var_5 < temp_var_6);
-    temp_var_6 = *(ulonglong *)(memory_manager + 0x10);
+    temp_var_6 = *(uint64_t *)(memory_manager + 0x10);
   }
   *(uint64_t *)(memory_manager + 0x18) = 0;
   
   // 处理异常情况
   if ((1 < temp_var_6) && (ptr_var_3 = *(uint64_t **)(memory_manager + 8), ptr_var_3 != (uint64_t *)0x0)) {
-    temp_var_6 = (ulonglong)ptr_var_3 & 0xffffffffffc00000;
+    temp_var_6 = (uint64_t)ptr_var_3 & 0xffffffffffc00000;
     if (temp_var_6 != 0) {
-      temp_var_4 = temp_var_6 + 0x80 + ((longlong)ptr_var_3 - temp_var_6 >> 0x10) * 0x50;
-      temp_var_4 = temp_var_4 - (ulonglong)*(uint *)(temp_var_4 + 4);
+      temp_var_4 = temp_var_6 + 0x80 + ((int64_t)ptr_var_3 - temp_var_6 >> 0x10) * 0x50;
+      temp_var_4 = temp_var_4 - (uint64_t)*(uint *)(temp_var_4 + 4);
       if ((*(void ***)(temp_var_6 + 0x70) == &ExceptionList) && (*(char *)(temp_var_4 + 0xe) == '\0')) {
         *ptr_var_3 = *(uint64_t *)(temp_var_4 + 0x20);
         *(uint64_t **)(temp_var_4 + 0x20) = ptr_var_3;

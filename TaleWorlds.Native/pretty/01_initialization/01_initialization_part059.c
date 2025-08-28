@@ -15,18 +15,18 @@
  * @param output_ptr 输出数据指针的指针
  * @param flags 处理标志位
  */
-void process_vertex_data_conversion(uint data_type, longlong context_ptr, longlong *output_ptr, uint64_t flags)
+void process_vertex_data_conversion(uint data_type, int64_t context_ptr, int64_t *output_ptr, uint64_t flags)
 {
     float temp_float1;
     int temp_int1;
-    longlong *long_ptr1;
-    longlong temp_long1;
+    int64_t *long_ptr1;
+    int64_t temp_long1;
     bool is_condition_met;
     ushort temp_ushort1;
     int16_t temp_ushort2;
     int temp_int2;
     uint temp_uint1;
-    longlong *long_ptr2;
+    int64_t *long_ptr2;
     int *int_ptr1;
     int *int_ptr2;
     float *float_ptr1;
@@ -37,13 +37,13 @@ void process_vertex_data_conversion(uint data_type, longlong context_ptr, longlo
     byte *byte_ptr1;
     int8_t *byte_ptr2;
     float *float_ptr3;
-    longlong temp_long2;
-    longlong temp_long3;
+    int64_t temp_long2;
+    int64_t temp_long3;
     uint temp_uint3;
-    longlong temp_long4;
-    longlong temp_long5;
-    ulonglong temp_ulong1;
-    longlong temp_long6;
+    int64_t temp_long4;
+    int64_t temp_long5;
+    uint64_t temp_ulong1;
+    int64_t temp_long6;
     float temp_float2;
     float temp_float3;
     float temp_float4;
@@ -52,7 +52,7 @@ void process_vertex_data_conversion(uint data_type, longlong context_ptr, longlo
     float temp_float7;
     float temp_float8;
     float temp_float9;
-    longlong *stack_ptr;
+    int64_t *stack_ptr;
     int32_t temp_uint4;
     float stack_float_128;
     float stack_float_124;
@@ -83,19 +83,19 @@ void process_vertex_data_conversion(uint data_type, longlong context_ptr, longlo
         temp_int2 = -1;
     }
     temp_int1 = *(int *)(context_ptr + 0x60);
-    temp_long6 = (longlong)temp_int1;
-    long_ptr2 = (longlong *)create_vertex_buffer(&init_system_data_buffer, &stack_ptr, temp_int1 * temp_int2);
-    long_ptr2 = (longlong *)*long_ptr2;
-    if (long_ptr2 != (longlong *)0x0) {
+    temp_long6 = (int64_t)temp_int1;
+    long_ptr2 = (int64_t *)create_vertex_buffer(&init_system_data_buffer, &stack_ptr, temp_int1 * temp_int2);
+    long_ptr2 = (int64_t *)*long_ptr2;
+    if (long_ptr2 != (int64_t *)0x0) {
         (**(code **)(*long_ptr2 + 0x28))(long_ptr2);
     }
-    long_ptr1 = (longlong *)*output_ptr;
-    *output_ptr = (longlong)long_ptr2;
-    if (long_ptr1 != (longlong *)0x0) {
+    long_ptr1 = (int64_t *)*output_ptr;
+    *output_ptr = (int64_t)long_ptr2;
+    if (long_ptr1 != (int64_t *)0x0) {
         (**(code **)(*long_ptr1 + 0x38))();
     }
     temp_uint4 = 0;
-    if (stack_ptr != (longlong *)0x0) {
+    if (stack_ptr != (int64_t *)0x0) {
         (**(code **)(*stack_ptr + 0x38))();
     }
     float_ptr3 = *(float **)(*output_ptr + 0x10);
@@ -103,8 +103,8 @@ void process_vertex_data_conversion(uint data_type, longlong context_ptr, longlo
     case 0:
         if (0 < temp_int1) {
             do {
-                *float_ptr3 = *(float *)(temp_long2 + 0x54 + *(longlong *)(context_ptr + 0x68));
-                float_ptr3 = (float *)((longlong)float_ptr3 + (longlong)temp_int2);
+                *float_ptr3 = *(float *)(temp_long2 + 0x54 + *(int64_t *)(context_ptr + 0x68));
+                float_ptr3 = (float *)((int64_t)float_ptr3 + (int64_t)temp_int2);
                 temp_long2 = temp_long2 + 0x5c;
                 temp_long6 = temp_long6 + -1;
             } while (temp_long6 != 0);
@@ -113,8 +113,8 @@ void process_vertex_data_conversion(uint data_type, longlong context_ptr, longlo
     case 1:
         if (0 < temp_int1) {
             do {
-                *float_ptr3 = *(float *)(temp_long2 + 0x58 + *(longlong *)(context_ptr + 0x68));
-                float_ptr3 = (float *)((longlong)float_ptr3 + (longlong)temp_int2);
+                *float_ptr3 = *(float *)(temp_long2 + 0x58 + *(int64_t *)(context_ptr + 0x68));
+                float_ptr3 = (float *)((int64_t)float_ptr3 + (int64_t)temp_int2);
                 temp_long2 = temp_long2 + 0x5c;
                 temp_long6 = temp_long6 + -1;
             } while (temp_long6 != 0);
@@ -122,36 +122,36 @@ void process_vertex_data_conversion(uint data_type, longlong context_ptr, longlo
         break;
     case 2:
         if (3 < temp_long6) {
-            temp_long5 = (longlong)temp_int2;
-            float_ptr2 = (float *)(*(longlong *)(context_ptr + 0x68) + 0x48);
-            float_ptr1 = (float *)(*(longlong *)(context_ptr + 0x68) + 0x100);
+            temp_long5 = (int64_t)temp_int2;
+            float_ptr2 = (float *)(*(int64_t *)(context_ptr + 0x68) + 0x48);
+            float_ptr1 = (float *)(*(int64_t *)(context_ptr + 0x68) + 0x100);
             temp_long3 = (temp_long6 - 4U >> 2) + 1;
             temp_long2 = temp_long3 * 4;
             do {
                 *float_ptr3 = float_ptr2[-1];
                 float_ptr3[1] = 1.0 - *float_ptr2;
-                float_ptr3 = (float *)((longlong)float_ptr3 + temp_long5);
+                float_ptr3 = (float *)((int64_t)float_ptr3 + temp_long5);
                 *float_ptr3 = float_ptr2[0x16];
                 float_ptr3[1] = 1.0 - float_ptr2[0x17];
-                float_ptr3 = (float *)((longlong)float_ptr3 + temp_long5);
+                float_ptr3 = (float *)((int64_t)float_ptr3 + temp_long5);
                 *float_ptr3 = float_ptr1[-1];
                 float_ptr3[1] = 1.0 - *float_ptr1;
-                float_ptr3 = (float *)((longlong)float_ptr3 + temp_long5);
+                float_ptr3 = (float *)((int64_t)float_ptr3 + temp_long5);
                 *float_ptr3 = float_ptr1[0x16];
                 float_ptr3[1] = 1.0 - float_ptr1[0x17];
-                float_ptr3 = (float *)((longlong)float_ptr3 + temp_long5);
+                float_ptr3 = (float *)((int64_t)float_ptr3 + temp_long5);
                 float_ptr2 = float_ptr2 + 0x5c;
                 float_ptr1 = float_ptr1 + 0x5c;
                 temp_long3 = temp_long3 + -1;
             } while (temp_long3 != 0);
         }
         if (temp_long2 < temp_long6) {
-            float_ptr2 = (float *)(*(longlong *)(context_ptr + 0x68) + 0x48 + temp_long2 * 0x5c);
+            float_ptr2 = (float *)(*(int64_t *)(context_ptr + 0x68) + 0x48 + temp_long2 * 0x5c);
             temp_long6 = temp_long6 - temp_long2;
             do {
                 *float_ptr3 = float_ptr2[-1];
                 float_ptr3[1] = 1.0 - *float_ptr2;
-                float_ptr3 = (float *)((longlong)float_ptr3 + (longlong)temp_int2);
+                float_ptr3 = (float *)((int64_t)float_ptr3 + (int64_t)temp_int2);
                 float_ptr2 = float_ptr2 + 0x17;
                 temp_long6 = temp_long6 + -1;
             } while (temp_long6 != 0);
@@ -159,36 +159,36 @@ void process_vertex_data_conversion(uint data_type, longlong context_ptr, longlo
         break;
     case 3:
         if (3 < temp_long6) {
-            temp_long5 = (longlong)temp_int2;
-            float_ptr2 = (float *)(*(longlong *)(context_ptr + 0x68) + 0x50);
-            float_ptr1 = (float *)(*(longlong *)(context_ptr + 0x68) + 0x108);
+            temp_long5 = (int64_t)temp_int2;
+            float_ptr2 = (float *)(*(int64_t *)(context_ptr + 0x68) + 0x50);
+            float_ptr1 = (float *)(*(int64_t *)(context_ptr + 0x68) + 0x108);
             temp_long3 = (temp_long6 - 4U >> 2) + 1;
             temp_long2 = temp_long3 * 4;
             do {
                 *float_ptr3 = float_ptr2[-1];
                 float_ptr3[1] = 1.0 - *float_ptr2;
-                float_ptr3 = (float *)((longlong)float_ptr3 + temp_long5);
+                float_ptr3 = (float *)((int64_t)float_ptr3 + temp_long5);
                 *float_ptr3 = float_ptr2[0x16];
                 float_ptr3[1] = 1.0 - float_ptr2[0x17];
-                float_ptr3 = (float *)((longlong)float_ptr3 + temp_long5);
+                float_ptr3 = (float *)((int64_t)float_ptr3 + temp_long5);
                 *float_ptr3 = float_ptr1[-1];
                 float_ptr3[1] = 1.0 - *float_ptr1;
-                float_ptr3 = (float *)((longlong)float_ptr3 + temp_long5);
+                float_ptr3 = (float *)((int64_t)float_ptr3 + temp_long5);
                 *float_ptr3 = float_ptr1[0x16];
                 float_ptr3[1] = 1.0 - float_ptr1[0x17];
-                float_ptr3 = (float *)((longlong)float_ptr3 + temp_long5);
+                float_ptr3 = (float *)((int64_t)float_ptr3 + temp_long5);
                 float_ptr2 = float_ptr2 + 0x5c;
                 float_ptr1 = float_ptr1 + 0x5c;
                 temp_long3 = temp_long3 + -1;
             } while (temp_long3 != 0);
         }
         if (temp_long2 < temp_long6) {
-            float_ptr2 = (float *)(*(longlong *)(context_ptr + 0x68) + 0x50 + temp_long2 * 0x5c);
+            float_ptr2 = (float *)(*(int64_t *)(context_ptr + 0x68) + 0x50 + temp_long2 * 0x5c);
             temp_long6 = temp_long6 - temp_long2;
             do {
                 *float_ptr3 = float_ptr2[-1];
                 float_ptr3[1] = 1.0 - *float_ptr2;
-                float_ptr3 = (float *)((longlong)float_ptr3 + (longlong)temp_int2);
+                float_ptr3 = (float *)((int64_t)float_ptr3 + (int64_t)temp_int2);
                 float_ptr2 = float_ptr2 + 0x17;
                 temp_long6 = temp_long6 + -1;
             } while (temp_long6 != 0);
@@ -207,42 +207,42 @@ void process_vertex_data_conversion(uint data_type, longlong context_ptr, longlo
             int_ptr2 = (int *)(context_ptr + 0x10);
         }
         if (3 < temp_long6) {
-            temp_long5 = *(longlong *)(int_ptr2 + 2);
-            temp_long4 = (longlong)temp_int2;
-            int_ptr1 = (int *)(*(longlong *)(context_ptr + 0x68) + 0xb8);
+            temp_long5 = *(int64_t *)(int_ptr2 + 2);
+            temp_long4 = (int64_t)temp_int2;
+            int_ptr1 = (int *)(*(int64_t *)(context_ptr + 0x68) + 0xb8);
             temp_long3 = (temp_long6 - 4U >> 2) + 1;
             temp_long2 = temp_long3 * 4;
             do {
-                *float_ptr3 = *(float *)(temp_long5 + (longlong)int_ptr1[-0x2e] * 0x10);
-                float_ptr3[1] = *(float *)(temp_long5 + 4 + (longlong)int_ptr1[-0x2e] * 0x10);
-                float_ptr3[2] = *(float *)(temp_long5 + 8 + (longlong)int_ptr1[-0x2e] * 0x10);
-                uint_ptr1 = (int32_t *)((longlong)float_ptr3 + temp_long4);
-                *uint_ptr1 = *(int32_t *)(temp_long5 + (longlong)int_ptr1[-0x17] * 0x10);
-                uint_ptr1[1] = *(int32_t *)(temp_long5 + 4 + (longlong)int_ptr1[-0x17] * 0x10);
-                uint_ptr1[2] = *(int32_t *)(temp_long5 + 8 + (longlong)int_ptr1[-0x17] * 0x10);
-                uint_ptr1 = (int32_t *)((longlong)uint_ptr1 + temp_long4);
-                *uint_ptr1 = *(int32_t *)(temp_long5 + (longlong)*int_ptr1 * 0x10);
-                uint_ptr1[1] = *(int32_t *)(temp_long5 + 4 + (longlong)*int_ptr1 * 0x10);
-                uint_ptr1[2] = *(int32_t *)(temp_long5 + 8 + (longlong)*int_ptr1 * 0x10);
-                uint_ptr1 = (int32_t *)((longlong)uint_ptr1 + temp_long4);
-                *uint_ptr1 = *(int32_t *)(temp_long5 + (longlong)int_ptr1[0x17] * 0x10);
-                uint_ptr1[1] = *(int32_t *)(temp_long5 + 4 + (longlong)int_ptr1[0x17] * 0x10);
-                uint_ptr1[2] = *(int32_t *)(temp_long5 + 8 + (longlong)int_ptr1[0x17] * 0x10);
-                float_ptr3 = (float *)((longlong)uint_ptr1 + temp_long4);
+                *float_ptr3 = *(float *)(temp_long5 + (int64_t)int_ptr1[-0x2e] * 0x10);
+                float_ptr3[1] = *(float *)(temp_long5 + 4 + (int64_t)int_ptr1[-0x2e] * 0x10);
+                float_ptr3[2] = *(float *)(temp_long5 + 8 + (int64_t)int_ptr1[-0x2e] * 0x10);
+                uint_ptr1 = (int32_t *)((int64_t)float_ptr3 + temp_long4);
+                *uint_ptr1 = *(int32_t *)(temp_long5 + (int64_t)int_ptr1[-0x17] * 0x10);
+                uint_ptr1[1] = *(int32_t *)(temp_long5 + 4 + (int64_t)int_ptr1[-0x17] * 0x10);
+                uint_ptr1[2] = *(int32_t *)(temp_long5 + 8 + (int64_t)int_ptr1[-0x17] * 0x10);
+                uint_ptr1 = (int32_t *)((int64_t)uint_ptr1 + temp_long4);
+                *uint_ptr1 = *(int32_t *)(temp_long5 + (int64_t)*int_ptr1 * 0x10);
+                uint_ptr1[1] = *(int32_t *)(temp_long5 + 4 + (int64_t)*int_ptr1 * 0x10);
+                uint_ptr1[2] = *(int32_t *)(temp_long5 + 8 + (int64_t)*int_ptr1 * 0x10);
+                uint_ptr1 = (int32_t *)((int64_t)uint_ptr1 + temp_long4);
+                *uint_ptr1 = *(int32_t *)(temp_long5 + (int64_t)int_ptr1[0x17] * 0x10);
+                uint_ptr1[1] = *(int32_t *)(temp_long5 + 4 + (int64_t)int_ptr1[0x17] * 0x10);
+                uint_ptr1[2] = *(int32_t *)(temp_long5 + 8 + (int64_t)int_ptr1[0x17] * 0x10);
+                float_ptr3 = (float *)((int64_t)uint_ptr1 + temp_long4);
                 int_ptr1 = int_ptr1 + 0x5c;
                 temp_long3 = temp_long3 + -1;
             } while (temp_long3 != 0);
         }
         if (temp_long2 < temp_long6) {
-            temp_long5 = *(longlong *)(int_ptr2 + 2);
+            temp_long5 = *(int64_t *)(int_ptr2 + 2);
             float_ptr3 = float_ptr3 + 2;
-            int_ptr2 = (int *)(temp_long2 * 0x5c + *(longlong *)(context_ptr + 0x68));
+            int_ptr2 = (int *)(temp_long2 * 0x5c + *(int64_t *)(context_ptr + 0x68));
             temp_long6 = temp_long6 - temp_long2;
             do {
-                float_ptr3[-2] = *(float *)(temp_long5 + (longlong)*int_ptr2 * 0x10);
-                float_ptr3[-1] = *(float *)(temp_long5 + 4 + (longlong)*int_ptr2 * 0x10);
-                *float_ptr3 = *(float *)(temp_long5 + 8 + (longlong)*int_ptr2 * 0x10);
-                float_ptr3 = (float *)((longlong)float_ptr3 + (longlong)temp_int2);
+                float_ptr3[-2] = *(float *)(temp_long5 + (int64_t)*int_ptr2 * 0x10);
+                float_ptr3[-1] = *(float *)(temp_long5 + 4 + (int64_t)*int_ptr2 * 0x10);
+                *float_ptr3 = *(float *)(temp_long5 + 8 + (int64_t)*int_ptr2 * 0x10);
+                float_ptr3 = (float *)((int64_t)float_ptr3 + (int64_t)temp_int2);
                 int_ptr2 = int_ptr2 + 0x17;
                 temp_long6 = temp_long6 + -1;
             } while (temp_long6 != 0);
@@ -250,28 +250,28 @@ void process_vertex_data_conversion(uint data_type, longlong context_ptr, longlo
         break;
     case 6:
         if (3 < temp_long6) {
-            temp_long5 = (longlong)temp_int2;
-            float_ptr2 = (float *)(*(longlong *)(context_ptr + 0x68) + 0x38);
-            uint_ptr1 = (int32_t *)(*(longlong *)(context_ptr + 0x68) + 0xf0);
+            temp_long5 = (int64_t)temp_int2;
+            float_ptr2 = (float *)(*(int64_t *)(context_ptr + 0x68) + 0x38);
+            uint_ptr1 = (int32_t *)(*(int64_t *)(context_ptr + 0x68) + 0xf0);
             temp_long3 = (temp_long6 - 4U >> 2) + 1;
             temp_long2 = temp_long3 * 4;
             do {
                 *float_ptr3 = float_ptr2[-1];
                 float_ptr3[1] = *float_ptr2;
                 float_ptr3[2] = float_ptr2[1];
-                float_ptr3 = (float *)((longlong)float_ptr3 + temp_long5);
+                float_ptr3 = (float *)((int64_t)float_ptr3 + temp_long5);
                 *float_ptr3 = float_ptr2[0x16];
                 float_ptr3[1] = float_ptr2[0x17];
                 float_ptr3[2] = float_ptr2[0x18];
-                uint_ptr2 = (int32_t *)((longlong)float_ptr3 + temp_long5);
+                uint_ptr2 = (int32_t *)((int64_t)float_ptr3 + temp_long5);
                 *uint_ptr2 = uint_ptr1[-1];
                 uint_ptr2[1] = *uint_ptr1;
                 uint_ptr2[2] = uint_ptr1[1];
-                uint_ptr2 = (int32_t *)((longlong)uint_ptr2 + temp_long5);
+                uint_ptr2 = (int32_t *)((int64_t)uint_ptr2 + temp_long5);
                 *uint_ptr2 = uint_ptr1[0x16];
                 uint_ptr2[1] = uint_ptr1[0x17];
                 uint_ptr2[2] = uint_ptr1[0x18];
-                float_ptr3 = (float *)((longlong)uint_ptr2 + temp_long5);
+                float_ptr3 = (float *)((int64_t)uint_ptr2 + temp_long5);
                 float_ptr2 = float_ptr2 + 0x5c;
                 uint_ptr1 = uint_ptr1 + 0x5c;
                 temp_long3 = temp_long3 + -1;
@@ -279,13 +279,13 @@ void process_vertex_data_conversion(uint data_type, longlong context_ptr, longlo
         }
         if (temp_long2 < temp_long6) {
             float_ptr3 = float_ptr3 + 2;
-            float_ptr2 = (float *)(*(longlong *)(context_ptr + 0x68) + 0x38 + temp_long2 * 0x5c);
+            float_ptr2 = (float *)(*(int64_t *)(context_ptr + 0x68) + 0x38 + temp_long2 * 0x5c);
             temp_long6 = temp_long6 - temp_long2;
             do {
                 float_ptr3[-2] = float_ptr2[-1];
                 float_ptr3[-1] = *float_ptr2;
                 *float_ptr3 = float_ptr2[1];
-                float_ptr3 = (float *)((longlong)float_ptr3 + (longlong)temp_int2);
+                float_ptr3 = (float *)((int64_t)float_ptr3 + (int64_t)temp_int2);
                 float_ptr2 = float_ptr2 + 0x17;
                 temp_long6 = temp_long6 + -1;
             } while (temp_long6 != 0);
@@ -293,9 +293,9 @@ void process_vertex_data_conversion(uint data_type, longlong context_ptr, longlo
         break;
     case 7:
         if (3 < temp_long6) {
-            temp_long3 = (longlong)temp_int2;
-            float_ptr2 = (float *)(*(longlong *)(context_ptr + 0x68) + 0x14);
-            float_ptr1 = (float *)(*(longlong *)(context_ptr + 0x68) + 0xc0);
+            temp_long3 = (int64_t)temp_int2;
+            float_ptr2 = (float *)(*(int64_t *)(context_ptr + 0x68) + 0x14);
+            float_ptr1 = (float *)(*(int64_t *)(context_ptr + 0x68) + 0xc0);
             temp_long5 = (temp_long6 - 4U >> 2) + 1;
             temp_long2 = temp_long5 * 4;
             do {
@@ -311,7 +311,7 @@ void process_vertex_data_conversion(uint data_type, longlong context_ptr, longlo
                     temp_float2 = 1.0;
                 }
                 float_ptr3[3] = temp_float2;
-                float_ptr3 = (float *)((longlong)float_ptr3 + temp_long3);
+                float_ptr3 = (float *)((int64_t)float_ptr3 + temp_long3);
                 *float_ptr3 = float_ptr2[0x17];
                 float_ptr3[1] = float_ptr2[0x18];
                 float_ptr3[2] = float_ptr2[0x19];
@@ -325,7 +325,7 @@ void process_vertex_data_conversion(uint data_type, longlong context_ptr, longlo
                     temp_float2 = 1.0;
                 }
                 float_ptr3[3] = temp_float2;
-                float_ptr3 = (float *)((longlong)float_ptr3 + temp_long3);
+                float_ptr3 = (float *)((int64_t)float_ptr3 + temp_long3);
                 *float_ptr3 = float_ptr1[3];
                 float_ptr3[1] = float_ptr1[4];
                 float_ptr3[2] = float_ptr1[5];
@@ -338,7 +338,7 @@ void process_vertex_data_conversion(uint data_type, longlong context_ptr, longlo
                     temp_float2 = 1.0;
                 }
                 float_ptr3[3] = temp_float2;
-                float_ptr3 = (float *)((longlong)float_ptr3 + temp_long3);
+                float_ptr3 = (float *)((int64_t)float_ptr3 + temp_long3);
                 *float_ptr3 = float_ptr1[0x1a];
                 float_ptr3[1] = float_ptr1[0x1b];
                 float_ptr3[2] = float_ptr1[0x1c];
@@ -352,7 +352,7 @@ void process_vertex_data_conversion(uint data_type, longlong context_ptr, longlo
                     temp_float2 = 1.0;
                 }
                 float_ptr3[3] = temp_float2;
-                float_ptr3 = (float *)((longlong)float_ptr3 + temp_long3);
+                float_ptr3 = (float *)((int64_t)float_ptr3 + temp_long3);
                 float_ptr2 = float_ptr2 + 0x5c;
                 float_ptr1 = float_ptr1 + 0x5c;
                 temp_long5 = temp_long5 + -1;
@@ -360,7 +360,7 @@ void process_vertex_data_conversion(uint data_type, longlong context_ptr, longlo
         }
         if (temp_long2 < temp_long6) {
             float_ptr3 = float_ptr3 + 2;
-            float_ptr2 = (float *)(*(longlong *)(context_ptr + 0x68) + 8 + temp_long2 * 0x5c);
+            float_ptr2 = (float *)(*(int64_t *)(context_ptr + 0x68) + 8 + temp_long2 * 0x5c);
             temp_long6 = temp_long6 - temp_long2;
             do {
                 float_ptr3[-2] = float_ptr2[3];
@@ -375,7 +375,7 @@ void process_vertex_data_conversion(uint data_type, longlong context_ptr, longlo
                     temp_float2 = 1.0;
                 }
                 float_ptr3[1] = temp_float2;
-                float_ptr3 = (float *)((longlong)float_ptr3 + (longlong)temp_int2);
+                float_ptr3 = (float *)((int64_t)float_ptr3 + (int64_t)temp_int2);
                 float_ptr2 = float_ptr2 + 0x17;
                 temp_long6 = temp_long6 + -1;
             } while (temp_long6 != 0);
@@ -384,25 +384,25 @@ void process_vertex_data_conversion(uint data_type, longlong context_ptr, longlo
     case 8:
         if (*(int *)(context_ptr + 200) < 1) {
 process_vertex_data_conversion_case_8_memset:
-            memset(float_ptr3, 0, (longlong)(temp_int1 * 4));
+            memset(float_ptr3, 0, (int64_t)(temp_int1 * 4));
         }
         temp_long5 = temp_long2;
         if (3 < temp_long6) {
-            temp_long4 = (longlong)temp_int2;
+            temp_long4 = (int64_t)temp_int2;
             temp_long3 = (temp_long6 - 4U >> 2) + 1;
             temp_long5 = temp_long3 * 4;
             do {
-                temp_long1 = *(longlong *)(context_ptr + 0x68);
+                temp_long1 = *(int64_t *)(context_ptr + 0x68);
                 *(char *)float_ptr3 =
-                     (char)(int)(*(float *)(*(longlong *)(context_ptr + 0xd0) +
-                                   (longlong)*(int *)(temp_long2 + temp_long1) * 0x14) * 255.0);
-                *(char *)((longlong)float_ptr3 + 1) =
-                     (char)(int)(*(float *)(*(longlong *)(context_ptr + 0xd0) + 4 +
-                                   (longlong)*(int *)(temp_long2 + temp_long1) * 0x14) * 255.0);
-                temp_uint1 = (uint)(*(float *)(*(longlong *)(context_ptr + 0xd0) + 8 +
-                                 (longlong)*(int *)(temp_long2 + temp_long1) * 0x14) * 255.0);
-                *(char *)((longlong)float_ptr3 + 2) = (char)temp_uint1;
-                temp_float2 = (float)((temp_uint1 & 0xff) + (uint)*(byte *)((longlong)float_ptr3 + 1) +
+                     (char)(int)(*(float *)(*(int64_t *)(context_ptr + 0xd0) +
+                                   (int64_t)*(int *)(temp_long2 + temp_long1) * 0x14) * 255.0);
+                *(char *)((int64_t)float_ptr3 + 1) =
+                     (char)(int)(*(float *)(*(int64_t *)(context_ptr + 0xd0) + 4 +
+                                   (int64_t)*(int *)(temp_long2 + temp_long1) * 0x14) * 255.0);
+                temp_uint1 = (uint)(*(float *)(*(int64_t *)(context_ptr + 0xd0) + 8 +
+                                 (int64_t)*(int *)(temp_long2 + temp_long1) * 0x14) * 255.0);
+                *(char *)((int64_t)float_ptr3 + 2) = (char)temp_uint1;
+                temp_float2 = (float)((temp_uint1 & 0xff) + (uint)*(byte *)((int64_t)float_ptr3 + 1) +
                         (uint)*(byte *)float_ptr3);
                 if (0.0 <= temp_float2) {
                     if (1.0 <= temp_float2) {
@@ -412,16 +412,16 @@ process_vertex_data_conversion_case_8_memset:
                 else {
                     temp_float2 = 0.0;
                 }
-                *(char *)((longlong)float_ptr3 + 3) = (char)(int)(1.0 - temp_float2);
-                byte_ptr1 = (byte *)((longlong)float_ptr3 + temp_long4);
-                temp_long1 = *(longlong *)(context_ptr + 0x68);
-                *byte_ptr1 = (byte)(int)(*(float *)(*(longlong *)(context_ptr + 0xd0) +
-                                         (longlong)*(int *)(temp_long2 + 0x5c + temp_long1) * 0x14) * 255.0);
-                byte_ptr1[1] = (byte)(int)(*(float *)(*(longlong *)(context_ptr + 0xd0) + 4 +
-                                           (longlong)*(int *)(temp_long2 + 0x5c + temp_long1) * 0x14) * 255.0
+                *(char *)((int64_t)float_ptr3 + 3) = (char)(int)(1.0 - temp_float2);
+                byte_ptr1 = (byte *)((int64_t)float_ptr3 + temp_long4);
+                temp_long1 = *(int64_t *)(context_ptr + 0x68);
+                *byte_ptr1 = (byte)(int)(*(float *)(*(int64_t *)(context_ptr + 0xd0) +
+                                         (int64_t)*(int *)(temp_long2 + 0x5c + temp_long1) * 0x14) * 255.0);
+                byte_ptr1[1] = (byte)(int)(*(float *)(*(int64_t *)(context_ptr + 0xd0) + 4 +
+                                           (int64_t)*(int *)(temp_long2 + 0x5c + temp_long1) * 0x14) * 255.0
                                 );
-                temp_uint1 = (uint)(*(float *)(*(longlong *)(context_ptr + 0xd0) + 8 +
-                                 (longlong)*(int *)(temp_long2 + 0x5c + temp_long1) * 0x14) * 255.0);
+                temp_uint1 = (uint)(*(float *)(*(int64_t *)(context_ptr + 0xd0) + 8 +
+                                 (int64_t)*(int *)(temp_long2 + 0x5c + temp_long1) * 0x14) * 255.0);
                 byte_ptr1[2] = (byte)temp_uint1;
                 temp_float2 = (float)((temp_uint1 & 0xff) + (uint)byte_ptr1[1] + (uint)*byte_ptr1);
                 if (0.0 <= temp_float2) {
@@ -434,14 +434,14 @@ process_vertex_data_conversion_case_8_memset:
                 }
                 byte_ptr1[3] = (byte)(int)(1.0 - temp_float2);
                 byte_ptr1 = byte_ptr1 + temp_long4;
-                temp_long1 = *(longlong *)(context_ptr + 0x68);
-                *byte_ptr1 = (byte)(int)(*(float *)(*(longlong *)(context_ptr + 0xd0) +
-                                         (longlong)*(int *)(temp_long2 + 0xb8 + temp_long1) * 0x14) * 255.0);
-                byte_ptr1[1] = (byte)(int)(*(float *)(*(longlong *)(context_ptr + 0xd0) + 4 +
-                                           (longlong)*(int *)(temp_long2 + 0xb8 + temp_long1) * 0x14) * 255.0
+                temp_long1 = *(int64_t *)(context_ptr + 0x68);
+                *byte_ptr1 = (byte)(int)(*(float *)(*(int64_t *)(context_ptr + 0xd0) +
+                                         (int64_t)*(int *)(temp_long2 + 0xb8 + temp_long1) * 0x14) * 255.0);
+                byte_ptr1[1] = (byte)(int)(*(float *)(*(int64_t *)(context_ptr + 0xd0) + 4 +
+                                           (int64_t)*(int *)(temp_long2 + 0xb8 + temp_long1) * 0x14) * 255.0
                                 );
-                temp_uint1 = (uint)(*(float *)(*(longlong *)(context_ptr + 0xd0) + 8 +
-                                 (longlong)*(int *)(temp_long2 + 0xb8 + temp_long1) * 0x14) * 255.0);
+                temp_uint1 = (uint)(*(float *)(*(int64_t *)(context_ptr + 0xd0) + 8 +
+                                 (int64_t)*(int *)(temp_long2 + 0xb8 + temp_long1) * 0x14) * 255.0);
                 byte_ptr1[2] = (byte)temp_uint1;
                 temp_float2 = (float)((temp_uint1 & 0xff) + (uint)byte_ptr1[1] + (uint)*byte_ptr1);
                 if (0.0 <= temp_float2) {
@@ -454,15 +454,15 @@ process_vertex_data_conversion_case_8_memset:
                 }
                 byte_ptr1[3] = (byte)(int)(1.0 - temp_float2);
                 byte_ptr1 = byte_ptr1 + temp_long4;
-                temp_long1 = *(longlong *)(context_ptr + 0x68);
-                *byte_ptr1 = (byte)(int)(*(float *)(*(longlong *)(context_ptr + 0xd0) +
-                                         (longlong)*(int *)(temp_long2 + 0x114 + temp_long1) * 0x14) * 255.0)
+                temp_long1 = *(int64_t *)(context_ptr + 0x68);
+                *byte_ptr1 = (byte)(int)(*(float *)(*(int64_t *)(context_ptr + 0xd0) +
+                                         (int64_t)*(int *)(temp_long2 + 0x114 + temp_long1) * 0x14) * 255.0)
                 ;
-                byte_ptr1[1] = (byte)(int)(*(float *)(*(longlong *)(context_ptr + 0xd0) + 4 +
-                                           (longlong)*(int *)(temp_long2 + 0x114 + temp_long1) * 0x14) *
+                byte_ptr1[1] = (byte)(int)(*(float *)(*(int64_t *)(context_ptr + 0xd0) + 4 +
+                                           (int64_t)*(int *)(temp_long2 + 0x114 + temp_long1) * 0x14) *
                                 255.0);
-                temp_uint1 = (uint)(*(float *)(*(longlong *)(context_ptr + 0xd0) + 8 +
-                                 (longlong)*(int *)(temp_long2 + 0x114 + temp_long1) * 0x14) * 255.0);
+                temp_uint1 = (uint)(*(float *)(*(int64_t *)(context_ptr + 0xd0) + 8 +
+                                 (int64_t)*(int *)(temp_long2 + 0x114 + temp_long1) * 0x14) * 255.0);
                 byte_ptr1[2] = (byte)temp_uint1;
                 temp_float2 = (float)((temp_uint1 & 0xff) + (uint)byte_ptr1[1] + (uint)*byte_ptr1);
                 if (0.0 <= temp_float2) {
@@ -481,18 +481,18 @@ process_vertex_data_conversion_case_8_memset:
         }
         if (temp_long5 < temp_long6) {
             temp_long2 = temp_long5 * 0x5c;
-            byte_ptr2 = (int8_t *)((longlong)float_ptr3 + 2);
+            byte_ptr2 = (int8_t *)((int64_t)float_ptr3 + 2);
             temp_long6 = temp_long6 - temp_long5;
             do {
-                temp_long5 = *(longlong *)(context_ptr + 0x68);
-                temp_uint3 = (uint)(*(float *)(*(longlong *)(context_ptr + 0xd0) +
-                                  (longlong)*(int *)(temp_long2 + temp_long5) * 0x14) * 255.0);
+                temp_long5 = *(int64_t *)(context_ptr + 0x68);
+                temp_uint3 = (uint)(*(float *)(*(int64_t *)(context_ptr + 0xd0) +
+                                  (int64_t)*(int *)(temp_long2 + temp_long5) * 0x14) * 255.0);
                 byte_ptr2[-2] = (char)temp_uint3;
-                temp_uint2 = (uint)(*(float *)(*(longlong *)(context_ptr + 0xd0) + 4 +
-                                  (longlong)*(int *)(temp_long2 + temp_long5) * 0x14) * 255.0);
+                temp_uint2 = (uint)(*(float *)(*(int64_t *)(context_ptr + 0xd0) + 4 +
+                                  (int64_t)*(int *)(temp_long2 + temp_long5) * 0x14) * 255.0);
                 byte_ptr2[-1] = (char)temp_uint2;
-                temp_uint1 = (uint)(*(float *)(*(longlong *)(context_ptr + 0xd0) + 8 +
-                                 (longlong)*(int *)(temp_long2 + temp_long5) * 0x14) * 255.0);
+                temp_uint1 = (uint)(*(float *)(*(int64_t *)(context_ptr + 0xd0) + 8 +
+                                 (int64_t)*(int *)(temp_long2 + temp_long5) * 0x14) * 255.0);
                 *byte_ptr2 = (char)temp_uint1;
                 temp_float2 = (float)((temp_uint1 & 0xff) + (temp_uint2 & 0xff) + (temp_uint3 & 0xff));
                 if (0.0 <= temp_float2) {
@@ -514,20 +514,20 @@ process_vertex_data_conversion_case_8_memset:
         if (*(int *)(context_ptr + 200) < 1) goto process_vertex_data_conversion_case_8_memset;
         if (0 < temp_int1) {
             do {
-                temp_long5 = *(longlong *)(context_ptr + 0x68);
+                temp_long5 = *(int64_t *)(context_ptr + 0x68);
                 *(int8_t *)float_ptr3 =
                      *(int8_t *)
-                      (*(longlong *)(context_ptr + 0xd0) + 0x10 + (longlong)*(int *)(temp_long2 + temp_long5) * 0x14);
-                *(int8_t *)((longlong)float_ptr3 + 1) =
+                      (*(int64_t *)(context_ptr + 0xd0) + 0x10 + (int64_t)*(int *)(temp_long2 + temp_long5) * 0x14);
+                *(int8_t *)((int64_t)float_ptr3 + 1) =
                      *(int8_t *)
-                      (*(longlong *)(context_ptr + 0xd0) + 0x11 + (longlong)*(int *)(temp_long2 + temp_long5) * 0x14);
-                *(int8_t *)((longlong)float_ptr3 + 2) =
+                      (*(int64_t *)(context_ptr + 0xd0) + 0x11 + (int64_t)*(int *)(temp_long2 + temp_long5) * 0x14);
+                *(int8_t *)((int64_t)float_ptr3 + 2) =
                      *(int8_t *)
-                      (*(longlong *)(context_ptr + 0xd0) + 0x12 + (longlong)*(int *)(temp_long2 + temp_long5) * 0x14);
-                *(int8_t *)((longlong)float_ptr3 + 3) =
+                      (*(int64_t *)(context_ptr + 0xd0) + 0x12 + (int64_t)*(int *)(temp_long2 + temp_long5) * 0x14);
+                *(int8_t *)((int64_t)float_ptr3 + 3) =
                      *(int8_t *)
-                      (*(longlong *)(context_ptr + 0xd0) + 0x13 + (longlong)*(int *)(temp_long2 + temp_long5) * 0x14);
-                float_ptr3 = (float *)((longlong)float_ptr3 + (longlong)temp_int2);
+                      (*(int64_t *)(context_ptr + 0xd0) + 0x13 + (int64_t)*(int *)(temp_long2 + temp_long5) * 0x14);
+                float_ptr3 = (float *)((int64_t)float_ptr3 + (int64_t)temp_int2);
                 temp_long2 = temp_long2 + 0x5c;
                 temp_long6 = temp_long6 + -1;
             } while (temp_long6 != 0);
@@ -536,7 +536,7 @@ process_vertex_data_conversion_case_8_memset:
     case 10:
         if (0 < temp_int1) {
             do {
-                temp_long5 = *(longlong *)(context_ptr + 0x68);
+                temp_long5 = *(int64_t *)(context_ptr + 0x68);
                 temp_float3 = *(float *)(temp_long2 + 0x34 + temp_long5) * 0.5;
                 temp_float9 = *(float *)(temp_long2 + 0x38 + temp_long5) * 0.5;
                 temp_float2 = *(float *)(temp_long2 + 0x3c + temp_long5) * 0.5;
@@ -567,10 +567,10 @@ process_vertex_data_conversion_case_8_memset:
                 else {
                     temp_float5 = 0.0;
                 }
-                *float_ptr3 = (float)(((uint)(longlong)(temp_float6 * 2047.0) & 0x7ff |
-                           (int)(longlong)(temp_float5 * 2047.0) << 0xb) << 10 |
-                          (uint)(longlong)(temp_float7 * 1023.0) & 0x3ff);
-                float_ptr3 = (float *)((longlong)float_ptr3 + (longlong)temp_int2);
+                *float_ptr3 = (float)(((uint)(int64_t)(temp_float6 * 2047.0) & 0x7ff |
+                           (int)(int64_t)(temp_float5 * 2047.0) << 0xb) << 10 |
+                          (uint)(int64_t)(temp_float7 * 1023.0) & 0x3ff);
+                float_ptr3 = (float *)((int64_t)float_ptr3 + (int64_t)temp_int2);
                 temp_long2 = temp_long2 + 0x5c;
                 temp_long6 = temp_long6 + -1;
             } while (temp_long6 != 0);
@@ -583,23 +583,23 @@ process_vertex_data_conversion_case_8_memset:
                 temp_long5 = 0x18;
             }
             temp_ushort1 = convert_to_half_float(0x3f800000);
-            temp_ulong1 = (ulonglong)temp_ushort1;
+            temp_ulong1 = (uint64_t)temp_ushort1;
             do {
-                temp_long3 = *(longlong *)(context_ptr + 0x68);
+                temp_long3 = *(int64_t *)(context_ptr + 0x68);
                 temp_ushort2 = convert_to_half_float(*(int32_t *)
-                                     (*(longlong *)(temp_long5 + context_ptr) +
-                                     (longlong)*(int *)(temp_long2 + temp_long3) * 0x10));
+                                     (*(int64_t *)(temp_long5 + context_ptr) +
+                                     (int64_t)*(int *)(temp_long2 + temp_long3) * 0x10));
                 *(int16_t *)float_ptr3 = temp_ushort2;
                 temp_ushort2 = convert_to_half_float(*(int32_t *)
-                                     (*(longlong *)(temp_long5 + context_ptr) + 4 +
-                                     (longlong)*(int *)(temp_long2 + temp_long3) * 0x10));
-                *(int16_t *)((longlong)float_ptr3 + 2) = temp_ushort2;
+                                     (*(int64_t *)(temp_long5 + context_ptr) + 4 +
+                                     (int64_t)*(int *)(temp_long2 + temp_long3) * 0x10));
+                *(int16_t *)((int64_t)float_ptr3 + 2) = temp_ushort2;
                 temp_ushort2 = convert_to_half_float(*(int32_t *)
-                                     (*(longlong *)(temp_long5 + context_ptr) + 8 +
-                                     (longlong)*(int *)(temp_long2 + temp_long3) * 0x10));
+                                     (*(int64_t *)(temp_long5 + context_ptr) + 8 +
+                                     (int64_t)*(int *)(temp_long2 + temp_long3) * 0x10));
                 *(int16_t *)(float_ptr3 + 1) = temp_ushort2;
-                *(short *)((longlong)float_ptr3 + 6) = (short)temp_ulong1;
-                float_ptr3 = (float *)((longlong)float_ptr3 + (longlong)temp_int2);
+                *(short *)((int64_t)float_ptr3 + 6) = (short)temp_ulong1;
+                float_ptr3 = (float *)((int64_t)float_ptr3 + (int64_t)temp_int2);
                 temp_long2 = temp_long2 + 0x5c;
                 temp_long6 = temp_long6 + -1;
             } while (temp_long6 != 0);
@@ -608,7 +608,7 @@ process_vertex_data_conversion_case_8_memset:
     case 0xc:
         if (0 < temp_int1) {
             do {
-                temp_long5 = *(longlong *)(context_ptr + 0x68);
+                temp_long5 = *(int64_t *)(context_ptr + 0x68);
                 temp_float2 = *(float *)(temp_long2 + 0x1c + temp_long5);
                 temp_float5 = *(float *)(temp_long2 + 0x18 + temp_long5);
                 temp_float6 = *(float *)(temp_long2 + 0x14 + temp_long5);
@@ -649,10 +649,10 @@ process_vertex_data_conversion_case_8_memset:
                     *(float *)(temp_long2 + 0x2c + temp_long5) < 0.0) {
                     temp_uint1 = 0x80000000;
                 }
-                *float_ptr3 = (float)((((uint)(longlong)(temp_float9 * 1023.0) & 0x3ff) << 0xb |
-                           (uint)(longlong)(temp_float3 * 2047.0) & 0x7ff) << 10 |
-                           (uint)(longlong)(temp_float4 * 1023.0) & 0x3ff | temp_uint1);
-                float_ptr3 = (float *)((longlong)float_ptr3 + (longlong)temp_int2);
+                *float_ptr3 = (float)((((uint)(int64_t)(temp_float9 * 1023.0) & 0x3ff) << 0xb |
+                           (uint)(int64_t)(temp_float3 * 2047.0) & 0x7ff) << 10 |
+                           (uint)(int64_t)(temp_float4 * 1023.0) & 0x3ff | temp_uint1);
+                float_ptr3 = (float *)((int64_t)float_ptr3 + (int64_t)temp_int2);
                 temp_long2 = temp_long2 + 0x5c;
                 temp_long6 = temp_long6 + -1;
             } while (temp_long6 != 0);
@@ -661,10 +661,10 @@ process_vertex_data_conversion_case_8_memset:
     case 0xd:
         if (0 < temp_int1) {
             temp_long3 = 0x48;
-            temp_long5 = *(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8);
+            temp_long5 = *(int64_t *)((int64_t)ThreadLocalStoragePointer + (uint64_t)__tls_index * 8);
             temp_float2 = fRam0000000180d49154;
             do {
-                temp_long4 = *(longlong *)(context_ptr + 0x68);
+                temp_long4 = *(int64_t *)(context_ptr + 0x68);
                 float_ptr2 = (float *)(temp_long2 + 0x34 + temp_long4);
                 stack_float_108 = *float_ptr2;
                 stack_float_104 = float_ptr2[1];
@@ -743,10 +743,10 @@ process_vertex_data_conversion_case_8_memset:
                     stack_float_11c = temp_float9;
                 }
                 *(short *)float_ptr3 = (short)(int)(temp_float6 * 32767.0);
-                *(short *)((longlong)float_ptr3 + 2) = (short)(int)(temp_float7 * 32767.0);
+                *(short *)((int64_t)float_ptr3 + 2) = (short)(int)(temp_float7 * 32767.0);
                 *(short *)(float_ptr3 + 1) = (short)(int)(temp_float9 * 32767.0);
-                *(short *)((longlong)float_ptr3 + 6) = (short)(int)(temp_float5 * 32767.0);
-                float_ptr3 = (float *)((longlong)float_ptr3 + (longlong)temp_int2);
+                *(short *)((int64_t)float_ptr3 + 6) = (short)(int)(temp_float5 * 32767.0);
+                float_ptr3 = (float *)((int64_t)float_ptr3 + (int64_t)temp_int2);
                 temp_long2 = temp_long2 + 0x5c;
                 temp_long6 = temp_long6 + -1;
             } while (temp_long6 != 0);
@@ -764,14 +764,14 @@ process_vertex_data_conversion_case_8_memset:
  * @param copy_mode 复制模式标志
  * @param flags 处理标志位
  */
-void process_vertex_index_data(longlong buffer_ptr, longlong *output_ptr, char copy_mode, uint64_t flags)
+void process_vertex_index_data(int64_t buffer_ptr, int64_t *output_ptr, char copy_mode, uint64_t flags)
 {
-    longlong temp_long1;
-    longlong temp_long2;
+    int64_t temp_long1;
+    int64_t temp_long2;
     uint temp_uint1;
     uint64_t temp_ulong1;
     uint temp_uint2;
-    longlong *stack_ptr;
+    int64_t *stack_ptr;
     
     if (*(int *)(buffer_ptr + 0x88) != 0) {
         if (copy_mode == '\0') {
@@ -783,25 +783,25 @@ void process_vertex_index_data(longlong buffer_ptr, longlong *output_ptr, char c
             temp_ulong1 = create_index_buffer();
             copy_index_data(output_ptr, temp_ulong1);
         }
-        if (stack_ptr != (longlong *)0x0) {
+        if (stack_ptr != (int64_t *)0x0) {
             (**(code **)(*stack_ptr + 0x38))();
         }
-        temp_long2 = *(longlong *)(*output_ptr + 0x10);
+        temp_long2 = *(int64_t *)(*output_ptr + 0x10);
         if (copy_mode != '\0') {
-            memcpy(temp_long2, *(uint64_t *)(buffer_ptr + 0x90), (longlong)*(int *)(buffer_ptr + 0x88) * 0xc);
+            memcpy(temp_long2, *(uint64_t *)(buffer_ptr + 0x90), (int64_t)*(int *)(buffer_ptr + 0x88) * 0xc);
             return;
         }
         temp_uint2 = 0;
         if (*(int *)(buffer_ptr + 0x88) != 0) {
             do {
-                temp_long1 = (longlong)(int)temp_uint2 * 0xc;
+                temp_long1 = (int64_t)(int)temp_uint2 * 0xc;
                 temp_uint1 = temp_uint2 * 3;
-                *(int16_t *)(temp_long2 + (ulonglong)temp_uint1 * 2) =
-                     *(int16_t *)(temp_long1 + *(longlong *)(buffer_ptr + 0x90));
-                *(int16_t *)(temp_long2 + (ulonglong)(temp_uint1 + 1) * 2) =
-                     *(int16_t *)(*(longlong *)(buffer_ptr + 0x90) + 4 + temp_long1);
-                *(int16_t *)(temp_long2 + (ulonglong)(temp_uint1 + 2) * 2) =
-                     *(int16_t *)(*(longlong *)(buffer_ptr + 0x90) + 8 + temp_long1);
+                *(int16_t *)(temp_long2 + (uint64_t)temp_uint1 * 2) =
+                     *(int16_t *)(temp_long1 + *(int64_t *)(buffer_ptr + 0x90));
+                *(int16_t *)(temp_long2 + (uint64_t)(temp_uint1 + 1) * 2) =
+                     *(int16_t *)(*(int64_t *)(buffer_ptr + 0x90) + 4 + temp_long1);
+                *(int16_t *)(temp_long2 + (uint64_t)(temp_uint1 + 2) * 2) =
+                     *(int16_t *)(*(int64_t *)(buffer_ptr + 0x90) + 8 + temp_long1);
                 temp_uint2 = temp_uint2 + 1;
             } while (temp_uint2 < *(uint *)(buffer_ptr + 0x88));
         }
@@ -816,7 +816,7 @@ void process_vertex_index_data(longlong buffer_ptr, longlong *output_ptr, char c
  * 初始化顶点缓冲区的简化实现
  * 原始实现：func_0x000180204ae0
  */
-int initialize_vertex_buffer(uint data_type, longlong context_ptr, longlong *output_ptr, uint64_t flags, longlong param5, longlong param6)
+int initialize_vertex_buffer(uint data_type, int64_t context_ptr, int64_t *output_ptr, uint64_t flags, int64_t param5, int64_t param6)
 {
     // 简化实现：创建并初始化顶点缓冲区
     return create_buffer_context(data_type, context_ptr, output_ptr, flags);
@@ -826,7 +826,7 @@ int initialize_vertex_buffer(uint data_type, longlong context_ptr, longlong *out
  * 创建顶点缓冲区的简化实现
  * 原始实现：FUN_180081480
  */
-longlong *create_vertex_buffer(longlong *buffer_pool, longlong **stack_ptr, int buffer_size)
+int64_t *create_vertex_buffer(int64_t *buffer_pool, int64_t **stack_ptr, int buffer_size)
 {
     // 简化实现：从缓冲池分配内存
     return allocate_buffer_from_pool(buffer_pool, buffer_size);
@@ -836,7 +836,7 @@ longlong *create_vertex_buffer(longlong *buffer_pool, longlong **stack_ptr, int 
  * 分配索引缓冲区的简化实现
  * 原始实现：FUN_180081350
  */
-uint64_t allocate_index_buffer(longlong buffer_ptr, longlong **stack_ptr, int size, uint64_t flags, longlong param5)
+uint64_t allocate_index_buffer(int64_t buffer_ptr, int64_t **stack_ptr, int size, uint64_t flags, int64_t param5)
 {
     // 简化实现：分配索引缓冲区内存
     return allocate_index_buffer_memory(buffer_ptr, size, flags);
@@ -856,7 +856,7 @@ uint64_t create_index_buffer()
  * 复制索引数据的简化实现
  * 原始实现：FUN_180080810
  */
-void copy_index_data(longlong *output_ptr, uint64_t source_buffer)
+void copy_index_data(int64_t *output_ptr, uint64_t source_buffer)
 {
     // 简化实现：复制索引数据到输出缓冲区
     memcpy_index_data(output_ptr, source_buffer);
@@ -896,7 +896,7 @@ void normalize_vector(float *vector)
  * 初始化渲染状态的简化实现
  * 原始实现：FUN_1808fcb90
  */
-void initialize_render_state(longlong state_ptr)
+void initialize_render_state(int64_t state_ptr)
 {
     // 简化实现：初始化渲染状态
     setup_render_state(state_ptr);
@@ -906,7 +906,7 @@ void initialize_render_state(longlong state_ptr)
  * 清理渲染状态的简化实现
  * 原始实现：FUN_1808fcb30
  */
-void cleanup_render_state(longlong state_ptr)
+void cleanup_render_state(int64_t state_ptr)
 {
     // 简化实现：清理渲染状态
     reset_render_state(state_ptr);

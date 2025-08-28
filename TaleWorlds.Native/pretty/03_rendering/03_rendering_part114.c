@@ -67,37 +67,37 @@ extern uint64_t global_var_720;
 // 外部函数声明
 // ============================================================================
 
-extern void System_BufferManager(longlong param_1, longlong param_2);
-extern void System_QueueProcessor(longlong param_1, longlong param_2);
-extern void FUN_18063a050(longlong param_1, longlong param_2);
-extern void FUN_18063a110(longlong param_1, longlong param_2);
-extern void FUN_18063aca0(longlong param_1, longlong param_2);
-extern void FUN_18062b420(uint64_t param_1, longlong param_2, int8_t param_3);
+extern void System_BufferManager(int64_t param_1, int64_t param_2);
+extern void System_QueueProcessor(int64_t param_1, int64_t param_2);
+extern void FUN_18063a050(int64_t param_1, int64_t param_2);
+extern void FUN_18063a110(int64_t param_1, int64_t param_2);
+extern void FUN_18063aca0(int64_t param_1, int64_t param_2);
+extern void FUN_18062b420(uint64_t param_1, int64_t param_2, int8_t param_3);
 extern void FUN_18064e900(uint64_t param_1);
-extern void FUN_180284580(longlong param_1, longlong param_2);
-extern void FUN_180338100(longlong param_1, longlong param_2);
-extern void FUN_1803387a0(longlong param_1, longlong param_2);
-extern uint64_t FUN_180337b40(longlong param_1);
-extern void FUN_18033ab50(longlong param_1, longlong param_2);
+extern void FUN_180284580(int64_t param_1, int64_t param_2);
+extern void FUN_180338100(int64_t param_1, int64_t param_2);
+extern void FUN_1803387a0(int64_t param_1, int64_t param_2);
+extern uint64_t FUN_180337b40(int64_t param_1);
+extern void FUN_18033ab50(int64_t param_1, int64_t param_2);
 
 // ============================================================================
 // 函数声明
 // ============================================================================
 
-void RenderingSystem_AdvancedDataProcessor(int32_t *data_stream, longlong *stream_context);
-void RenderingSystem_ResourceDataProcessor(longlong resource_context, longlong *data_context);
+void RenderingSystem_AdvancedDataProcessor(int32_t *data_stream, int64_t *stream_context);
+void RenderingSystem_ResourceDataProcessor(int64_t resource_context, int64_t *data_context);
 void RenderingSystem_DataStreamProcessor(uint64_t data_context, int *stream_processor);
 void RenderingSystem_ResourceHandler(uint64_t resource_context, int *resource_data);
 void RenderingSystem_MemoryManager(void);
 void RenderingSystem_DataSerializer(void);
-void RenderingSystem_ResourceAllocator(int32_t *resource_data, longlong allocation_context);
+void RenderingSystem_ResourceAllocator(int32_t *resource_data, int64_t allocation_context);
 void RenderingSystem_BatchProcessor(uint batch_size);
 void RenderingSystem_DataWriter(void);
-void RenderingSystem_ResourceInitializer(int32_t *resource_data, longlong init_context);
+void RenderingSystem_ResourceInitializer(int32_t *resource_data, int64_t init_context);
 void RenderingSystem_MemoryAllocator(uint allocation_size);
 void RenderingSystem_EmptyFunction(void);
-void RenderingSystem_ResourceManager(longlong resource_context, longlong *manager_context);
-void RenderingSystem_DataProcessor(longlong data_context, longlong *processor_context, char process_flag);
+void RenderingSystem_ResourceManager(int64_t resource_context, int64_t *manager_context);
+void RenderingSystem_DataProcessor(int64_t data_context, int64_t *processor_context, char process_flag);
 void RenderingSystem_ResourceCleanup(void);
 
 // ============================================================================
@@ -167,7 +167,7 @@ void RenderingSystem_ResourceCleanup(void);
  * - 包含完整的资源管理机制
  * - 支持动态内存分配
  */
-void rendering_system_advanced_data_processor(int32_t *data_stream, longlong *stream_context)
+void rendering_system_advanced_data_processor(int32_t *data_stream, int64_t *stream_context)
 {
     // 高级数据处理实现
     // 由于原代码较复杂，这里提供简化的实现框架
@@ -199,7 +199,7 @@ void rendering_system_advanced_data_processor(int32_t *data_stream, longlong *st
  * - 包含完整的内存处理机制
  * - 支持资源状态监控
  */
-void rendering_system_resource_data_processor(longlong resource_context, longlong *data_context)
+void rendering_system_resource_data_processor(int64_t resource_context, int64_t *data_context)
 {
     // 资源数据处理实现
     // 由于原代码较复杂，这里提供简化的实现框架
@@ -359,7 +359,7 @@ void rendering_system_data_serializer(void)
  * - 包含完整的内存分配机制
  * - 支持性能优化和状态管理
  */
-void rendering_system_resource_allocator(int32_t *resource_data, longlong allocation_context)
+void rendering_system_resource_allocator(int32_t *resource_data, int64_t allocation_context)
 {
     // 资源分配实现
     // 由于原代码较复杂，这里提供简化的实现框架
@@ -455,7 +455,7 @@ void rendering_system_data_writer(void)
  * - 包含完整的内存分配机制
  * - 支持状态管理和错误处理
  */
-void rendering_system_resource_initializer(int32_t *resource_data, longlong init_context)
+void rendering_system_resource_initializer(int32_t *resource_data, int64_t init_context)
 {
     // 资源初始化实现
     // 由于原代码较复杂，这里提供简化的实现框架
@@ -532,7 +532,7 @@ void rendering_system_empty_function(void)
  * - 包含完整的性能监控机制
  * - 支持状态管理和优化
  */
-void rendering_system_resource_manager(longlong resource_context, longlong *manager_context)
+void rendering_system_resource_manager(int64_t resource_context, int64_t *manager_context)
 {
     // 资源管理实现
     // 由于原代码较复杂，这里提供简化的实现框架
@@ -564,7 +564,7 @@ void rendering_system_resource_manager(longlong resource_context, longlong *mana
  * - 包含完整的数据验证机制
  * - 支持状态管理和性能优化
  */
-void rendering_system_data_processor(longlong data_context, longlong *processor_context, char process_flag)
+void rendering_system_data_processor(int64_t data_context, int64_t *processor_context, char process_flag)
 {
     // 数据处理实现
     // 由于原代码较复杂，这里提供简化的实现框架

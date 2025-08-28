@@ -6,7 +6,7 @@
 
 // 函数：处理字符串路径并添加到容器中
 // 参数：param_1 - 容器指针，param_2 - 源路径1，param_3 - 源路径2
-void process_and_add_path_to_container(longlong *container_ptr, longlong source_path1, longlong source_path2)
+void process_and_add_path_to_container(int64_t *container_ptr, int64_t source_path1, int64_t source_path2)
 {
     uint temp_uint1;
     int temp_int;
@@ -15,15 +15,15 @@ void process_and_add_path_to_container(longlong *container_ptr, longlong source_
     int8_t *temp_ptr3;
     void *temp_ptr4;
     uint *temp_ptr5;
-    ulonglong temp_ulong1;
-    ulonglong temp_ulong2;
-    longlong temp_long1;
-    longlong temp_long2;
-    longlong temp_long3;
-    ulonglong temp_ulong3;
+    uint64_t temp_ulong1;
+    uint64_t temp_ulong2;
+    int64_t temp_long1;
+    int64_t temp_long2;
+    int64_t temp_long3;
+    uint64_t temp_ulong3;
     uint64_t *temp_ptr6;
     int8_t stack_buffer1[32];
-    longlong stack_long1;
+    int64_t stack_long1;
     void *stack_ptr1;
     int8_t *stack_ptr2;
     int32_t stack_uint1;
@@ -35,27 +35,27 @@ void process_and_add_path_to_container(longlong *container_ptr, longlong source_
     int8_t stack_byte1;
     uint8_t stack_pad1;
     uint64_t *stack_ptr9;
-    ulonglong stack_ulong3;
+    uint64_t stack_ulong3;
     uint stack_uint3;
     int32_t stack_uint4;
     int32_t stack_uint5;
     int32_t stack_uint6;
-    ulonglong stack_ulong4;
-    ulonglong stack_ulong5;
+    uint64_t stack_ulong4;
+    uint64_t stack_ulong5;
     int8_t stack_byte2;
     uint8_t stack_pad2;
-    longlong stack_long2;
-    ulonglong stack_ulong6;
+    int64_t stack_long2;
+    uint64_t stack_ulong6;
     uint stack_uint7;
     int32_t stack_uint8;
     int32_t stack_uint9;
     int32_t stack_uint10;
-    ulonglong stack_ulong7;
-    ulonglong stack_ulong8;
-    ulonglong stack_ulong9;
+    uint64_t stack_ulong7;
+    uint64_t stack_ulong8;
+    uint64_t stack_ulong9;
     
     stack_ulong2 = 0xfffffffffffffffe;
-    stack_ulong9 = GET_SECURITY_COOKIE() ^ (ulonglong)stack_buffer1;
+    stack_ulong9 = GET_SECURITY_COOKIE() ^ (uint64_t)stack_buffer1;
     stack_uint2 = 0;
     FUN_180057110();
     temp_ptr4 = &system_buffer_ptr;
@@ -102,7 +102,7 @@ void process_and_add_path_to_container(longlong *container_ptr, longlong source_
             temp_ulong3 = temp_ulong2;
             if (0xfff < temp_ulong1) {
                 temp_ulong1 = stack_ulong5 + 0x28;
-                temp_ulong3 = *(ulonglong *)(temp_ulong2 - 8);
+                temp_ulong3 = *(uint64_t *)(temp_ulong2 - 8);
                 if (0x1f < (temp_ulong2 - temp_ulong3) - 8) {
                     // 警告：子函数不返回
                     _invalid_parameter_noinfo_noreturn();
@@ -118,7 +118,7 @@ void process_and_add_path_to_container(longlong *container_ptr, longlong source_
             temp_long3 = temp_long2;
             if (0xfff < temp_ulong2) {
                 temp_ulong2 = stack_ulong6 + 0x28;
-                temp_long3 = *(longlong *)(temp_long2 + -8);
+                temp_long3 = *(int64_t *)(temp_long2 + -8);
                 if (0x1f < (temp_long2 - temp_long3) - 8U) {
                     // 警告：子函数不返回
                     _invalid_parameter_noinfo_noreturn();
@@ -135,7 +135,7 @@ void process_and_add_path_to_container(longlong *container_ptr, longlong source_
             temp_long2 = temp_long3;
             if (0xfff < temp_ulong2) {
                 temp_ulong2 = stack_ulong3 + 0x28;
-                temp_long2 = *(longlong *)(temp_long3 + -8);
+                temp_long2 = *(int64_t *)(temp_long3 + -8);
                 if (0x1f < (temp_long3 - temp_long2) - 8U) {
                     // 警告：子函数不返回
                     _invalid_parameter_noinfo_noreturn();
@@ -147,7 +147,7 @@ void process_and_add_path_to_container(longlong *container_ptr, longlong source_
         stack_ulong3 = 0xf;
         stack_byte1 = 0;
         // 警告：子函数不返回
-        FUN_1808fc050(stack_ulong9 ^ (ulonglong)stack_buffer1);
+        FUN_1808fc050(stack_ulong9 ^ (uint64_t)stack_buffer1);
     }
     stack_ulong7 = 0;
     stack_ulong8 = 0xf;
@@ -199,7 +199,7 @@ void process_and_add_path_to_container(longlong *container_ptr, longlong source_
     }
     temp_ptr2 = (uint64_t *)container_ptr[1];
     if (temp_ptr2 < (uint64_t *)container_ptr[2]) {
-        container_ptr[1] = (longlong)(temp_ptr2 + 4);
+        container_ptr[1] = (int64_t)(temp_ptr2 + 4);
         *temp_ptr2 = &system_state_ptr;
         temp_ptr2[1] = 0;
         *(int32_t *)(temp_ptr2 + 2) = 0;
@@ -209,7 +209,7 @@ void process_and_add_path_to_container(longlong *container_ptr, longlong source_
         *(int32_t *)(temp_ptr2 + 2) = 0;
         *(int32_t *)(temp_ptr2 + 2) = 0;
         temp_ptr2[1] = stack_ptr2;
-        *(int32_t *)((longlong)temp_ptr2 + 0x1c) = stack_ulong1._4_4_;
+        *(int32_t *)((int64_t)temp_ptr2 + 0x1c) = stack_ulong1._4_4_;
         *(int32_t *)(temp_ptr2 + 3) = (int32_t)stack_ulong1;
         stack_uint1 = 0;
         stack_ptr2 = (int8_t *)0x0;
@@ -218,7 +218,7 @@ void process_and_add_path_to_container(longlong *container_ptr, longlong source_
     }
     else {
         temp_long3 = *container_ptr;
-        temp_long1 = (longlong)temp_ptr2 - temp_long3 >> 5;
+        temp_long1 = (int64_t)temp_ptr2 - temp_long3 >> 5;
         if (temp_long1 == 0) {
             temp_long1 = 1;
 EXPAND_CONTAINER:
@@ -240,7 +240,7 @@ EXPAND_CONTAINER:
         *(int32_t *)(stack_ptr8 + 2) = 0;
         *(int32_t *)(stack_ptr8 + 2) = stack_uint1;
         stack_ptr8[1] = stack_ptr2;
-        *(int32_t *)((longlong)stack_ptr8 + 0x1c) = stack_ulong1._4_4_;
+        *(int32_t *)((int64_t)stack_ptr8 + 0x1c) = stack_ulong1._4_4_;
         *(int32_t *)(stack_ptr8 + 3) = (int32_t)stack_ulong1;
         stack_uint1 = 0;
         stack_ptr2 = (int8_t *)0x0;
@@ -260,7 +260,7 @@ EXPAND_CONTAINER:
             FUN_18064e900(temp_ptr2);
         }
         *container_ptr = temp_long2;
-        container_ptr[1] = (longlong)temp_ptr6;
+        container_ptr[1] = (int64_t)temp_ptr6;
         container_ptr[2] = temp_long1 * 0x20 + temp_long2;
         temp_long3 = stack_long2;
         temp_ptr1 = stack_ptr7;
@@ -274,17 +274,17 @@ EXPAND_CONTAINER:
     stack_ulong1 = stack_ulong1 & 0xffffffff00000000;
     stack_ptr1 = &system_state_ptr;
 PATH_PROCESSING_DONE:
-    temp_ptr2 = (uint64_t *)(temp_long3 + (longlong)temp_ptr1);
-    if (stack_ptr9 < (uint64_t *)(temp_long3 + (longlong)temp_ptr1)) {
+    temp_ptr2 = (uint64_t *)(temp_long3 + (int64_t)temp_ptr1);
+    if (stack_ptr9 < (uint64_t *)(temp_long3 + (int64_t)temp_ptr1)) {
         temp_ptr2 = stack_ptr9;
     }
     temp_ptr3 = &stack_byte1;
     if (0xf < stack_ulong3) {
         temp_ptr3 = (int8_t *)CONCAT71(stack_pad1, stack_byte1);
     }
-    stack_ptr9 = (uint64_t *)((longlong)stack_ptr9 - (longlong)temp_ptr2);
+    stack_ptr9 = (uint64_t *)((int64_t)stack_ptr9 - (int64_t)temp_ptr2);
     // 警告：子函数不返回
-    memmove(temp_ptr3, temp_ptr3 + (longlong)temp_ptr2, (longlong)stack_ptr9 + 1);
+    memmove(temp_ptr3, temp_ptr3 + (int64_t)temp_ptr2, (int64_t)stack_ptr9 + 1);
 }
 
 // 警告：移除不可达的代码块 (ram,0x0001800654e7)
@@ -303,12 +303,12 @@ void generate_system_info_report(uint64_t report_param)
     uint64_t *temp_ptr3;
     char temp_char;
     int temp_int2;
-    longlong temp_long1;
-    ulonglong temp_ulong1;
+    int64_t temp_long1;
+    uint64_t temp_ulong1;
     uint64_t temp_ulong2;
-    ulonglong temp_ulong3;
+    uint64_t temp_ulong3;
     byte *byte_ptr2;
-    longlong temp_long2;
+    int64_t temp_long2;
     int temp_int3;
     void *temp_ptr4;
     uint64_t *temp_ptr5;
@@ -321,36 +321,36 @@ void generate_system_info_report(uint64_t report_param)
     int16_t stack_short1[2];
     int16_t stack_short2[2];
     void *stack_ptr2;
-    longlong stack_long1;
+    int64_t stack_long1;
     int stack_int1;
-    ulonglong stack_ulong1;
+    uint64_t stack_ulong1;
     int32_t stack_uint1;
     void *stack_ptr3;
     void *stack_ptr4;
     int32_t stack_uint2;
-    ulonglong stack_ulong2;
+    uint64_t stack_ulong2;
     void *stack_ptr5;
     void *stack_ptr6;
     int32_t stack_uint3;
-    ulonglong stack_ulong3;
-    ulonglong stack_ulong4;
+    uint64_t stack_ulong3;
+    uint64_t stack_ulong4;
     void *stack_ptr7;
     uint64_t stack_ulong5;
     int32_t stack_uint4;
-    ulonglong stack_ulong6;
+    uint64_t stack_ulong6;
     void *stack_ptr8;
     char *char_ptr;
     int stack_int2;
     int32_t stack_uint5;
     uint64_t stack_ulong7;
-    longlong stack_long2;
-    longlong stack_long3;
+    int64_t stack_long2;
+    int64_t stack_long3;
     uint64_t *stack_ptr9;
     uint64_t *stack_ptr10;
     uint64_t stack_ulong8;
     int32_t stack_uint6;
     void *stack_ptr11;
-    longlong stack_long4;
+    int64_t stack_long4;
     int32_t stack_uint7;
     uint64_t *stack_ptr12;
     uint64_t *stack_ptr13;
@@ -387,11 +387,11 @@ void generate_system_info_report(uint64_t report_param)
     int32_t stack_uint16;
     uint8_t stack_buffer4[40];
     int32_t stack_buffer5[14];
-    ulonglong stack_ulong13;
-    ulonglong stack_ulong14;
+    uint64_t stack_ulong13;
+    uint64_t stack_ulong14;
     
     stack_ulong12 = 0xfffffffffffffffe;
-    stack_ulong14 = GET_SECURITY_COOKIE() ^ (ulonglong)stack_buffer1;
+    stack_ulong14 = GET_SECURITY_COOKIE() ^ (uint64_t)stack_buffer1;
     stack_uint1 = 0;
     FUN_180627e10(report_param, &stack_ptr19, &unknown_var_816_ptr);
     stack_ulong7 = 0;
@@ -406,7 +406,7 @@ void generate_system_info_report(uint64_t report_param)
     stack_long1 = 0;
     stack_int1 = 0;
     FUN_180052020(temp_uint, &stack_ptr15);
-    if ((system_cache_buffer == (longlong *)0x0) ||
+    if ((system_cache_buffer == (int64_t *)0x0) ||
        (temp_char = (**(code **)(*system_cache_buffer + 0x28))(), temp_char == '\0')) {
         temp_ptr4 = &unknown_var_832_ptr;
     }
@@ -418,7 +418,7 @@ void generate_system_info_report(uint64_t report_param)
         }
     }
     FUN_180627910(&stack_ptr18, temp_ptr4);
-    if ((system_cache_buffer == (longlong *)0x0) ||
+    if ((system_cache_buffer == (int64_t *)0x0) ||
        (temp_char = (**(code **)(*system_cache_buffer + 0x28))(), temp_char == '\0')) {
         temp_ptr4 = &unknown_var_856_ptr;
     }
@@ -556,7 +556,7 @@ void generate_system_info_report(uint64_t report_param)
     process_and_add_path_to_container(&stack_ptr20, &stack_ptr15, &stack_ptr26);
     temp_ptr7 = stack_ptr21;
     temp_ptr8 = stack_ptr20;
-    if (1 < (ulonglong)((longlong)stack_ptr21 - (longlong)stack_ptr20 >> 5)) {
+    if (1 < (uint64_t)((int64_t)stack_ptr21 - (int64_t)stack_ptr20 >> 5)) {
         stack_ptr24 = &system_config_ptr;
         stack_ptr25 = stack_buffer2;
         stack_buffer2[0] = 0;
@@ -575,9 +575,9 @@ void generate_system_info_report(uint64_t report_param)
         // 警告：子函数不返回
         FUN_18064e900(temp_ptr8);
     }
-    temp_ulong1 = (longlong)stack_ptr13 - (longlong)temp_ptr2 >> 5;
+    temp_ulong1 = (int64_t)stack_ptr13 - (int64_t)temp_ptr2 >> 5;
     if (temp_ulong1 != 0) {
-        if ((system_cache_buffer == (longlong *)0x0) ||
+        if ((system_cache_buffer == (int64_t *)0x0) ||
            (temp_char = (**(code **)(*system_cache_buffer + 0x28))(), temp_char == '\0')) {
             temp_ptr4 = &unknown_var_1000_ptr;
         }
@@ -597,7 +597,7 @@ void generate_system_info_report(uint64_t report_param)
         if (stack_long4 != 0) {
             FUN_180057980(&stack_ptr11, &stack_ptr9, stack_short1);
         }
-        temp_ulong3 = (longlong)stack_ptr10 - (longlong)stack_ptr9 >> 5;
+        temp_ulong3 = (int64_t)stack_ptr10 - (int64_t)stack_ptr9 >> 5;
         temp_ptr8 = stack_ptr9;
         temp_ptr7 = stack_ptr9;
         temp_ptr5 = stack_ptr10;
@@ -615,7 +615,7 @@ void generate_system_info_report(uint64_t report_param)
                 temp_ptr3 = stack_ptr23;
                 temp_ptr5 = stack_ptr22;
                 temp_ptr7 = stack_ptr22;
-                if (((longlong)stack_ptr23 - (longlong)stack_ptr22 & 0xffffffffffffffe0U) == 0x40) {
+                if (((int64_t)stack_ptr23 - (int64_t)stack_ptr22 & 0xffffffffffffffe0U) == 0x40) {
                     FUN_180627ae0(&stack_ptr8, stack_ptr22);
                     if (char_ptr != (char *)0x0) {
                         stack_int2 = 0;
@@ -644,7 +644,7 @@ void generate_system_info_report(uint64_t report_param)
                             if (temp_int2 == stack_int2) {
                                 if (temp_int2 != 0) {
                                     byte_ptr2 = (byte *)*temp_ptr7;
-                                    temp_long1 = (longlong)char_ptr - (longlong)byte_ptr2;
+                                    temp_long1 = (int64_t)char_ptr - (int64_t)byte_ptr2;
                                     do {
                                         byte_ptr1 = byte_ptr2 + temp_long1;
                                         temp_int3 = (uint)*byte_ptr2 - (uint)*byte_ptr1;
@@ -669,7 +669,7 @@ STRING_MATCH_FOUND:
                             else if (temp_int2 == 0) goto STRING_MATCH_FOUND;
                             temp_int = temp_int + 1;
                             temp_ptr7 = temp_ptr7 + 4;
-                        } while ((ulonglong)(longlong)temp_int < temp_ulong1);
+                        } while ((uint64_t)(int64_t)temp_int < temp_ulong1);
                     }
                     stack_ptr8 = &system_data_buffer_ptr;
                     if (char_ptr != (char *)0x0) {
@@ -756,7 +756,7 @@ STRING_MATCH_FOUND:
         stack_ptr14 = &system_state_ptr;
     }
     temp_long1 = stack_long2;
-    fwrite(stack_long1, 1, (longlong)stack_int1, stack_long2);
+    fwrite(stack_long1, 1, (int64_t)stack_int1, stack_long2);
     temp_ptr8 = stack_ptr13;
     temp_ptr7 = temp_ptr2;
     if (temp_long1 != 0) {
@@ -809,7 +809,7 @@ STRING_MATCH_FOUND:
             stack_uint8 = 0;
             stack_ptr19 = &system_state_ptr;
             // 警告：子函数不返回
-            FUN_1808fc050(stack_ulong14 ^ (ulonglong)stack_buffer1);
+            FUN_1808fc050(stack_ulong14 ^ (uint64_t)stack_buffer1);
         }
         // 警告：子函数不返回
         FUN_18064e900();
@@ -838,9 +838,9 @@ void initialize_error_handling_path(void)
     int32_t stack_uint9;
     int8_t stack_byte1;
     int8_t stack_buffer2[512];
-    ulonglong stack_ulong3;
+    uint64_t stack_ulong3;
     
-    stack_ulong3 = GET_SECURITY_COOKIE() ^ (ulonglong)stack_buffer1;
+    stack_ulong3 = GET_SECURITY_COOKIE() ^ (uint64_t)stack_buffer1;
     stack_uint9 = 0x22657865;
     stack_ulong1 = 0x736172435c2e2e22;
     stack_ulong2 = 0x6564616f6c705568;
@@ -861,31 +861,31 @@ void initialize_error_handling_path(void)
 
 // 函数：执行引擎核心操作
 // 参数：param_1 - 操作类型，param_2 - 操作参数，param_3 - 附加数据1，param_4 - 附加数据2
-void execute_engine_core_operation(uint64_t operation_type, longlong operation_param, uint64_t extra_data1, uint64_t extra_data2)
+void execute_engine_core_operation(uint64_t operation_type, int64_t operation_param, uint64_t extra_data1, uint64_t extra_data2)
 {
     code *code_ptr;
     char temp_char;
     uint64_t temp_ulong;
-    longlong temp_long;
+    int64_t temp_long;
     int temp_int;
-    longlong *long_ptr_ptr;
+    int64_t *long_ptr_ptr;
     void *ptr1;
-    longlong stack_long1;
+    int64_t stack_long1;
     uint stack_uint;
     void *ptr2;
-    longlong stack_long2;
+    int64_t stack_long2;
     int32_t stack_uint1;
     void **ptr_ptr;
-    longlong **long_ptr_ptr_ptr;
+    int64_t **long_ptr_ptr_ptr;
     int32_t stack_uint2;
     uint64_t stack_ulong;
     
     stack_ulong = 0xfffffffffffffffe;
-    long_ptr_ptr = *(longlong **)(core_system_data_pointer + 0x18);
+    long_ptr_ptr = *(int64_t **)(core_system_data_pointer + 0x18);
     FUN_180627ae0(&ptr1, system_main_module_state + 0x170, extra_data1, extra_data2, 0);
     temp_int = stack_uint + 3;
     FUN_1806277c0(&ptr1, temp_int);
-    *(int32_t *)((ulonglong)stack_uint + stack_long1) = 0x706d74;
+    *(int32_t *)((uint64_t)stack_uint + stack_long1) = 0x706d74;
     stack_uint = temp_int;
     temp_char = FUN_180624a00(&ptr1);
     if (temp_char == '\0') {
@@ -899,11 +899,11 @@ void execute_engine_core_operation(uint64_t operation_type, longlong operation_p
     temp_ulong = FUN_180627ae0(&ptr_ptr, system_message_context + 0x28);
     (*code_ptr)(long_ptr_ptr, temp_ulong);
     ptr_ptr = (void **)&system_data_buffer_ptr;
-    if (long_ptr_ptr_ptr != (longlong **)0x0) {
+    if (long_ptr_ptr_ptr != (int64_t **)0x0) {
         // 警告：子函数不返回
         FUN_18064e900();
     }
-    long_ptr_ptr_ptr = (longlong **)0x0;
+    long_ptr_ptr_ptr = (int64_t **)0x0;
     stack_uint2 = 0;
     ptr_ptr = (void **)&system_state_ptr;
     code_ptr = *(code **)(*long_ptr_ptr + 0x40);

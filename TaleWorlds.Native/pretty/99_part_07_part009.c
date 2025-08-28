@@ -7,11 +7,11 @@
 void FUN_1804a2f6b(void)
 
 {
-  longlong unaff_RBX;
+  int64_t unaff_RBX;
   uint *puVar1;
-  longlong lVar2;
+  int64_t lVar2;
   
-  lVar2 = (longlong)*(int *)(unaff_RBX + 0x52ed94);
+  lVar2 = (int64_t)*(int *)(unaff_RBX + 0x52ed94);
   if (0 < lVar2) {
     puVar1 = (uint *)(unaff_RBX + 0x360c);
     do {
@@ -62,12 +62,12 @@ void FUN_1804a2fc0(void)
 {
   byte bVar1;
   uint uVar2;
-  longlong lVar3;
-  longlong lVar4;
+  int64_t lVar3;
+  int64_t lVar4;
   byte *pbVar5;
-  longlong lVar6;
+  int64_t lVar6;
   int32_t uVar7;
-  longlong lVar8;
+  int64_t lVar8;
   uint64_t uVar9;
   char acStackX_10 [8];
   
@@ -93,7 +93,7 @@ void FUN_1804a2fc0(void)
       if (*(int *)(lVar4 + 0x30) == 0) goto LAB_1804a3129;
       if (*(int *)(lVar3 + 0x30) != 0) {
         pbVar5 = *(byte **)(lVar4 + 0x28);
-        lVar8 = *(longlong *)(lVar3 + 0x28) - (longlong)pbVar5;
+        lVar8 = *(int64_t *)(lVar3 + 0x28) - (int64_t)pbVar5;
         do {
           bVar1 = *pbVar5;
           uVar2 = (uint)pbVar5[lVar8];
@@ -116,7 +116,7 @@ LAB_1804a3067:
     }
     if (*(int *)(lVar3 + 0x30) != 0) {
       pbVar5 = *(byte **)(lVar4 + 0x28);
-      lVar8 = *(longlong *)(lVar3 + 0x28) - (longlong)pbVar5;
+      lVar8 = *(int64_t *)(lVar3 + 0x28) - (int64_t)pbVar5;
       do {
         bVar1 = *pbVar5;
         uVar2 = (uint)pbVar5[lVar8];
@@ -136,21 +136,21 @@ LAB_1804a306f:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-ulonglong FUN_1804a3160(void)
+uint64_t FUN_1804a3160(void)
 
 {
   uint uVar1;
-  longlong lVar2;
+  int64_t lVar2;
   uint uVar3;
   int iVar4;
-  ulonglong in_RAX;
-  longlong lVar5;
+  uint64_t in_RAX;
+  int64_t lVar5;
   int *piVar6;
-  longlong lVar7;
+  int64_t lVar7;
   
   lVar2 = system_system_ui;
   if (system_system_ui != 0) {
-    in_RAX = (ulonglong)*(uint *)(SYSTEM_STATE_MANAGER + 0xc40);
+    in_RAX = (uint64_t)*(uint *)(SYSTEM_STATE_MANAGER + 0xc40);
     if (*(uint *)(SYSTEM_STATE_MANAGER + 0xc44) != *(uint *)(SYSTEM_STATE_MANAGER + 0xc40)) {
       in_RAX = 0;
       uVar1 = *(uint *)(system_system_ui + 0x52ed94);
@@ -159,23 +159,23 @@ ulonglong FUN_1804a3160(void)
         piVar6 = (int *)(system_system_ui + 0x30b0);
         do {
           if (-1 < *piVar6) goto LAB_1804a31c9;
-          in_RAX = (ulonglong)((int)in_RAX + 1);
+          in_RAX = (uint64_t)((int)in_RAX + 1);
           lVar7 = lVar7 + 1;
           piVar6 = piVar6 + 0x298;
         } while (lVar7 < (int)uVar1);
       }
-      in_RAX = (ulonglong)uVar1;
+      in_RAX = (uint64_t)uVar1;
 LAB_1804a31c9:
       uVar3 = (uint)in_RAX;
       while ((int)uVar3 < (int)uVar1) {
-        lVar5 = (longlong)(int)in_RAX * 0xa60;
-        lVar7 = *(longlong *)(lVar5 + 0x3778 + lVar2);
+        lVar5 = (int64_t)(int)in_RAX * 0xa60;
+        lVar7 = *(int64_t *)(lVar5 + 0x3778 + lVar2);
         if ((lVar7 != 0) && (*(char *)(lVar7 + 0x8be) != '\0')) {
           FUN_1805401f0(lVar7,*(int *)(lVar5 + 0x3604 + lVar2) != -1,
                         *(byte *)(lVar5 + 0x360c + lVar2) & 1);
         }
-        uVar3 = (uint)*(short *)(lVar2 + 0x52dda0 + (longlong)(int)in_RAX * 2);
-        in_RAX = (ulonglong)uVar3;
+        uVar3 = (uint)*(short *)(lVar2 + 0x52dda0 + (int64_t)(int)in_RAX * 2);
+        in_RAX = (uint64_t)uVar3;
       }
     }
     if ((system_status_flag == 1) && (system_system_ui != 0)) {
@@ -209,7 +209,7 @@ LAB_1804a31c9:
     *(uint *)(lVar2 + 8) = 0;
     UNLOCK();
     *(uint64_t *)(lVar2 + 0x38) = 0;
-    return (ulonglong)uVar1;
+    return (uint64_t)uVar1;
   }
   return in_RAX;
 }
@@ -218,21 +218,21 @@ LAB_1804a31c9:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-ulonglong FUN_1804a3164(void)
+uint64_t FUN_1804a3164(void)
 
 {
   uint uVar1;
-  longlong lVar2;
+  int64_t lVar2;
   uint uVar3;
   int iVar4;
-  ulonglong in_RAX;
-  longlong lVar5;
+  uint64_t in_RAX;
+  int64_t lVar5;
   int *piVar6;
-  longlong lVar7;
+  int64_t lVar7;
   
   lVar2 = system_system_ui;
   if (system_system_ui != 0) {
-    in_RAX = (ulonglong)*(uint *)(SYSTEM_STATE_MANAGER + 0xc40);
+    in_RAX = (uint64_t)*(uint *)(SYSTEM_STATE_MANAGER + 0xc40);
     if (*(uint *)(SYSTEM_STATE_MANAGER + 0xc44) != *(uint *)(SYSTEM_STATE_MANAGER + 0xc40)) {
       in_RAX = 0;
       uVar1 = *(uint *)(system_system_ui + 0x52ed94);
@@ -241,23 +241,23 @@ ulonglong FUN_1804a3164(void)
         piVar6 = (int *)(system_system_ui + 0x30b0);
         do {
           if (-1 < *piVar6) goto LAB_1804a31c9;
-          in_RAX = (ulonglong)((int)in_RAX + 1);
+          in_RAX = (uint64_t)((int)in_RAX + 1);
           lVar7 = lVar7 + 1;
           piVar6 = piVar6 + 0x298;
         } while (lVar7 < (int)uVar1);
       }
-      in_RAX = (ulonglong)uVar1;
+      in_RAX = (uint64_t)uVar1;
 LAB_1804a31c9:
       uVar3 = (uint)in_RAX;
       while ((int)uVar3 < (int)uVar1) {
-        lVar5 = (longlong)(int)in_RAX * 0xa60;
-        lVar7 = *(longlong *)(lVar5 + 0x3778 + lVar2);
+        lVar5 = (int64_t)(int)in_RAX * 0xa60;
+        lVar7 = *(int64_t *)(lVar5 + 0x3778 + lVar2);
         if ((lVar7 != 0) && (*(char *)(lVar7 + 0x8be) != '\0')) {
           FUN_1805401f0(lVar7,*(int *)(lVar5 + 0x3604 + lVar2) != -1,
                         *(byte *)(lVar5 + 0x360c + lVar2) & 1);
         }
-        uVar3 = (uint)*(short *)(lVar2 + 0x52dda0 + (longlong)(int)in_RAX * 2);
-        in_RAX = (ulonglong)uVar3;
+        uVar3 = (uint)*(short *)(lVar2 + 0x52dda0 + (int64_t)(int)in_RAX * 2);
+        in_RAX = (uint64_t)uVar3;
       }
     }
     if ((system_status_flag == 1) && (system_system_ui != 0)) {
@@ -291,7 +291,7 @@ LAB_1804a31c9:
     *(uint *)(lVar2 + 8) = 0;
     UNLOCK();
     *(uint64_t *)(lVar2 + 0x38) = 0;
-    return (ulonglong)uVar1;
+    return (uint64_t)uVar1;
   }
   return in_RAX;
 }
@@ -300,18 +300,18 @@ LAB_1804a31c9:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-ulonglong FUN_1804a3192(void)
+uint64_t FUN_1804a3192(void)
 
 {
   uint uVar1;
-  longlong lVar2;
+  int64_t lVar2;
   uint uVar3;
   int iVar4;
-  longlong lVar5;
-  ulonglong uVar6;
+  int64_t lVar5;
+  uint64_t uVar6;
   int *piVar7;
-  ulonglong uVar8;
-  longlong unaff_RBX;
+  uint64_t uVar8;
+  int64_t unaff_RBX;
   
   uVar6 = 0;
   uVar1 = *(uint *)(unaff_RBX + 0x52ed94);
@@ -320,23 +320,23 @@ ulonglong FUN_1804a3192(void)
     uVar8 = uVar6;
     do {
       if (-1 < *piVar7) goto LAB_1804a31c9;
-      uVar6 = (ulonglong)((int)uVar6 + 1);
+      uVar6 = (uint64_t)((int)uVar6 + 1);
       uVar8 = uVar8 + 1;
       piVar7 = piVar7 + 0x298;
-    } while ((longlong)uVar8 < (longlong)(int)uVar1);
+    } while ((int64_t)uVar8 < (int64_t)(int)uVar1);
   }
-  uVar6 = (ulonglong)uVar1;
+  uVar6 = (uint64_t)uVar1;
 LAB_1804a31c9:
   uVar3 = (uint)uVar6;
   while ((int)uVar3 < (int)uVar1) {
-    lVar5 = (longlong)(int)uVar6 * 0xa60;
-    lVar2 = *(longlong *)(lVar5 + 0x3778 + unaff_RBX);
+    lVar5 = (int64_t)(int)uVar6 * 0xa60;
+    lVar2 = *(int64_t *)(lVar5 + 0x3778 + unaff_RBX);
     if ((lVar2 != 0) && (*(char *)(lVar2 + 0x8be) != '\0')) {
       FUN_1805401f0(lVar2,*(int *)(lVar5 + 0x3604 + unaff_RBX) != -1,
                     *(byte *)(lVar5 + 0x360c + unaff_RBX) & 1);
     }
-    uVar3 = (uint)*(short *)(unaff_RBX + 0x52dda0 + (longlong)(int)uVar6 * 2);
-    uVar6 = (ulonglong)uVar3;
+    uVar3 = (uint)*(short *)(unaff_RBX + 0x52dda0 + (int64_t)(int)uVar6 * 2);
+    uVar6 = (uint64_t)uVar3;
   }
   if ((system_status_flag == 1) && (system_system_ui != 0)) {
     uVar6 = (**(code **)(system_system_data_ui + 0x150))();
@@ -368,7 +368,7 @@ LAB_1804a31c9:
     *(uint *)(lVar2 + 8) = 0;
     UNLOCK();
     *(uint64_t *)(lVar2 + 0x38) = 0;
-    return (ulonglong)uVar1;
+    return (uint64_t)uVar1;
   }
   return uVar6;
 }
@@ -377,26 +377,26 @@ LAB_1804a31c9:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-ulonglong FUN_1804a31cd(void)
+uint64_t FUN_1804a31cd(void)
 
 {
-  longlong lVar1;
+  int64_t lVar1;
   uint uVar2;
   int iVar3;
-  ulonglong in_RAX;
-  longlong lVar4;
-  longlong unaff_RBX;
+  uint64_t in_RAX;
+  int64_t lVar4;
+  int64_t unaff_RBX;
   int unaff_ESI;
   
   do {
-    lVar4 = (longlong)(int)in_RAX * 0xa60;
-    lVar1 = *(longlong *)(lVar4 + 0x3778 + unaff_RBX);
+    lVar4 = (int64_t)(int)in_RAX * 0xa60;
+    lVar1 = *(int64_t *)(lVar4 + 0x3778 + unaff_RBX);
     if ((lVar1 != 0) && (*(char *)(lVar1 + 0x8be) != '\0')) {
       FUN_1805401f0(lVar1,*(int *)(lVar4 + 0x3604 + unaff_RBX) != -1,
                     *(byte *)(lVar4 + 0x360c + unaff_RBX) & 1);
     }
-    uVar2 = (uint)*(short *)(unaff_RBX + 0x52dda0 + (longlong)(int)in_RAX * 2);
-    in_RAX = (ulonglong)uVar2;
+    uVar2 = (uint)*(short *)(unaff_RBX + 0x52dda0 + (int64_t)(int)in_RAX * 2);
+    in_RAX = (uint64_t)uVar2;
   } while ((int)uVar2 < unaff_ESI);
   if ((system_status_flag == 1) && (system_system_ui != 0)) {
     in_RAX = (**(code **)(system_system_data_ui + 0x150))();
@@ -428,7 +428,7 @@ ulonglong FUN_1804a31cd(void)
     *(uint *)(lVar1 + 8) = 0;
     UNLOCK();
     *(uint64_t *)(lVar1 + 0x38) = 0;
-    return (ulonglong)uVar2;
+    return (uint64_t)uVar2;
   }
   return in_RAX;
 }
@@ -437,13 +437,13 @@ ulonglong FUN_1804a31cd(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-ulonglong FUN_1804a3220(void)
+uint64_t FUN_1804a3220(void)
 
 {
   uint uVar1;
-  longlong lVar2;
+  int64_t lVar2;
   int iVar3;
-  ulonglong in_RAX;
+  uint64_t in_RAX;
   
   if ((system_status_flag == 1) && (system_system_ui != 0)) {
     in_RAX = (**(code **)(system_system_data_ui + 0x150))();
@@ -475,7 +475,7 @@ ulonglong FUN_1804a3220(void)
     *(uint *)(lVar2 + 8) = 0;
     UNLOCK();
     *(uint64_t *)(lVar2 + 0x38) = 0;
-    return (ulonglong)uVar1;
+    return (uint64_t)uVar1;
   }
   return in_RAX;
 }
@@ -484,13 +484,13 @@ ulonglong FUN_1804a3220(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-ulonglong FUN_1804a3225(void)
+uint64_t FUN_1804a3225(void)
 
 {
   uint uVar1;
-  longlong lVar2;
+  int64_t lVar2;
   int iVar3;
-  ulonglong in_RAX;
+  uint64_t in_RAX;
   
   if ((system_status_flag == 1) && (system_system_ui != 0)) {
     in_RAX = (**(code **)(system_system_data_ui + 0x150))();
@@ -522,7 +522,7 @@ ulonglong FUN_1804a3225(void)
     *(uint *)(lVar2 + 8) = 0;
     UNLOCK();
     *(uint64_t *)(lVar2 + 0x38) = 0;
-    return (ulonglong)uVar1;
+    return (uint64_t)uVar1;
   }
   return in_RAX;
 }
@@ -531,7 +531,7 @@ ulonglong FUN_1804a3225(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int32_t FUN_1804a3256(longlong param_1)
+int32_t FUN_1804a3256(int64_t param_1)
 
 {
   int32_t uVar1;
@@ -617,7 +617,7 @@ uint64_t
 FUN_1804a3360(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
-  longlong lVar1;
+  int64_t lVar1;
   void *puVar2;
   int32_t uVar3;
   uint64_t uVar4;

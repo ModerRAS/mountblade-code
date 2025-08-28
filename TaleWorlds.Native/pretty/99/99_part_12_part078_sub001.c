@@ -153,13 +153,13 @@ void System_EmptyOperationProcessor(void)
  * @param param_1 系统配置参数指针
  * @return uint64_t 返回操作状态码，0表示成功
  */
-uint64_t System_StateConfigurationManager(longlong *system_config)
+uint64_t System_StateConfigurationManager(int64_t *system_config)
 {
   uint64_t status_code;
   uint64_t resource_handle;
   int validation_result;
   uint64_t stack_value;
-  longlong *resource_ptr;
+  int64_t *resource_ptr;
   
   // 获取系统资源句柄
   resource_handle = *(uint64_t *)(system_config[3] + MEMORY_OFFSET_0x68);
@@ -175,9 +175,9 @@ uint64_t System_StateConfigurationManager(longlong *system_config)
     system_config[0x5c] = 0;
     
     // 处理系统状态标志
-    if ((*(uint *)((longlong)system_config + MEMORY_OFFSET_0x3C) & SYSTEM_FLAG_MASK_10000) != 0) {
+    if ((*(uint *)((int64_t)system_config + MEMORY_OFFSET_0x3C) & SYSTEM_FLAG_MASK_10000) != 0) {
       LOCK();
-      *(uint *)((longlong)system_config + MEMORY_OFFSET_0xD4) = *(uint *)((longlong)system_config + MEMORY_OFFSET_0xD4) | SYSTEM_FLAG_MASK_100;
+      *(uint *)((int64_t)system_config + MEMORY_OFFSET_0xD4) = *(uint *)((int64_t)system_config + MEMORY_OFFSET_0xD4) | SYSTEM_FLAG_MASK_100;
       UNLOCK();
     }
     
@@ -202,7 +202,7 @@ uint64_t System_StateConfigurationManager(longlong *system_config)
     }
     
     // 更新系统状态
-    *(uint *)(system_config + 0xd) = *(uint *)((longlong)system_config + 100) ^ SYSTEM_FLAG_MASK_80000000;
+    *(uint *)(system_config + 0xd) = *(uint *)((int64_t)system_config + 100) ^ SYSTEM_FLAG_MASK_80000000;
     (**(code **)(system_config[0x0e] + MEMORY_OFFSET_0x20))(system_config + MEMORY_OFFSET_0x0E, system_config[5], system_config);
     
     // 激活系统资源
@@ -221,7 +221,7 @@ uint64_t System_StateConfigurationManager(longlong *system_config)
         return status_code;
       }
     } else {
-      *(longlong *)(system_config[0x5d] + MEMORY_OFFSET_0x1F8) = system_config[3];
+      *(int64_t *)(system_config[0x5d] + MEMORY_OFFSET_0x1F8) = system_config[3];
       status_code = FUN_180759220(resource_handle, system_config[0x5d], 0, 0, 0, 0);
       if ((int)status_code != 0) {
         return status_code;
@@ -233,7 +233,7 @@ uint64_t System_StateConfigurationManager(longlong *system_config)
           return status_code;
         }
       } else {
-        *(longlong *)(system_config[0x5e] + MEMORY_OFFSET_0x1F8) = system_config[3];
+        *(int64_t *)(system_config[0x5e] + MEMORY_OFFSET_0x1F8) = system_config[3];
         status_code = FUN_180759220(resource_handle, system_config[0x5e], 0, 0, 0, 0);
         if ((int)status_code != 0) {
           return status_code;
@@ -258,7 +258,7 @@ uint64_t System_StateConfigurationManager(longlong *system_config)
     }
     
     // 处理系统参数配置
-    status_code = func_0x000180742ca0(system_config[1], *(int32_t *)(*(longlong *)(system_config[5] + MEMORY_OFFSET_0x60) + MEMORY_OFFSET_0xA4), &stack_value);
+    status_code = func_0x000180742ca0(system_config[1], *(int32_t *)(*(int64_t *)(system_config[5] + MEMORY_OFFSET_0x60) + MEMORY_OFFSET_0xA4), &stack_value);
     if ((int)status_code != 0) {
       return status_code;
     }
@@ -268,7 +268,7 @@ uint64_t System_StateConfigurationManager(longlong *system_config)
       return status_code;
     }
     
-    system_config[0x5c] = (longlong)resource_ptr;
+    system_config[0x5c] = (int64_t)resource_ptr;
     status_code = (**(code **)(*resource_ptr + MEMORY_OFFSET_0x20))(resource_ptr, system_config[5], system_config);
     if ((int)status_code != 0) {
       return status_code;
@@ -281,30 +281,30 @@ uint64_t System_StateConfigurationManager(longlong *system_config)
     
     // 配置系统资源分配
     if (system_config[0x5d] == 0) {
-      *(longlong *)(system_config[0x5c] + MEMORY_OFFSET_0x1F8) = system_config[3];
+      *(int64_t *)(system_config[0x5c] + MEMORY_OFFSET_0x1F8) = system_config[3];
       status_code = FUN_180759220(resource_handle, system_config[0x5c], 0, 0, 0, 0);
       if ((int)status_code != 0) {
         return status_code;
       }
     } else {
-      *(longlong *)(system_config[0x5d] + MEMORY_OFFSET_0x1F8) = system_config[3];
+      *(int64_t *)(system_config[0x5d] + MEMORY_OFFSET_0x1F8) = system_config[3];
       status_code = FUN_180759220(resource_handle, system_config[0x5d], 0, 0, 0, 0);
       if ((int)status_code != 0) {
         return status_code;
       }
       if (system_config[0x5e] == 0) {
-        *(longlong *)(system_config[0x5c] + MEMORY_OFFSET_0x1F8) = system_config[3];
+        *(int64_t *)(system_config[0x5c] + MEMORY_OFFSET_0x1F8) = system_config[3];
         status_code = FUN_180759220(resource_handle, system_config[0x5c], 0, 0, 0, 0);
         if ((int)status_code != 0) {
           return status_code;
         }
       } else {
-        *(longlong *)(system_config[0x5e] + MEMORY_OFFSET_0x1F8) = system_config[3];
+        *(int64_t *)(system_config[0x5e] + MEMORY_OFFSET_0x1F8) = system_config[3];
         status_code = FUN_180759220(resource_handle, system_config[0x5e], 0, 0, 0, 0);
         if ((int)status_code != 0) {
           return status_code;
         }
-        *(longlong *)(system_config[0x5c] + MEMORY_OFFSET_0x1F8) = system_config[3];
+        *(int64_t *)(system_config[0x5c] + MEMORY_OFFSET_0x1F8) = system_config[3];
         status_code = FUN_180759220(resource_handle, system_config[0x5c], 0, 0, 0, 0);
         if ((int)status_code != 0) {
           return status_code;
@@ -315,9 +315,9 @@ uint64_t System_StateConfigurationManager(longlong *system_config)
   
   // 执行系统状态验证
   validation_result = 0;
-  if ((*(uint *)((longlong)system_config + MEMORY_OFFSET_0x3C) & SYSTEM_FLAG_MASK_10000) == 0) {
-    status_code = (**(code **)(*(longlong *)system_config[3] + MEMORY_OFFSET_0x120))
-                    ((longlong *)system_config[3], SYSTEM_FLAG_MASK_0xFFFFFFFD, system_config + MEMORY_OFFSET_0x5F);
+  if ((*(uint *)((int64_t)system_config + MEMORY_OFFSET_0x3C) & SYSTEM_FLAG_MASK_10000) == 0) {
+    status_code = (**(code **)(*(int64_t *)system_config[3] + MEMORY_OFFSET_0x120))
+                    ((int64_t *)system_config[3], SYSTEM_FLAG_MASK_0xFFFFFFFD, system_config + MEMORY_OFFSET_0x5F);
     if ((int)status_code != 0) {
       return status_code;
     }
@@ -333,7 +333,7 @@ uint64_t System_StateConfigurationManager(longlong *system_config)
   
   // 完成系统配置
   *(int32_t *)(system_config + MEMORY_OFFSET_0x60) = SYSTEM_FLAG_MASK_0xFFFFFFFF;
-  *(int32_t *)((longlong)system_config + MEMORY_OFFSET_0x304) = *(int32_t *)(*(longlong *)(system_config[3] + MEMORY_OFFSET_0x20) + MEMORY_OFFSET_0x1EC);
+  *(int32_t *)((int64_t)system_config + MEMORY_OFFSET_0x304) = *(int32_t *)(*(int64_t *)(system_config[3] + MEMORY_OFFSET_0x20) + MEMORY_OFFSET_0x1EC);
   
   return 0;
 }

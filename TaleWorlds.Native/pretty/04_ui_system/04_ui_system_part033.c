@@ -47,50 +47,50 @@
  * @param param_10 扩展参数指针
  * @param param_11 偏移坐标数组指针
  */
-void ui_system_advanced_path_searcher(longlong ui_context, longlong render_params, longlong target_params,
+void ui_system_advanced_path_searcher(int64_t ui_context, int64_t render_params, int64_t target_params,
                                     short *source_coords, short *target_coords, int search_range, int weight_param,
-                                    int *result_count, uint64_t *callback_array, longlong *extended_params,
+                                    int *result_count, uint64_t *callback_array, int64_t *extended_params,
                                     short *offset_coords)
 {
     short *temp_coord_ptr;
-    longlong memory_ptr;
+    int64_t memory_ptr;
     short coord_val;
     int iteration_count;
     int search_limit;
     uint best_cost;
     uint *cost_array;
     short offset_val;
-    longlong base_address;
+    int64_t base_address;
     int current_index;
     int loop_counter;
     uint current_cost;
-    longlong search_start;
-    longlong target_address;
-    longlong iteration_limit;
+    int64_t search_start;
+    int64_t target_address;
+    int64_t iteration_limit;
     short *result_coord_ptr;
     int *result_ptr;
-    ulonglong protection_key;
-    longlong stack_backup[8];
+    uint64_t protection_key;
+    int64_t stack_backup[8];
     uint cost_buffer[4];
-    ulonglong stack_guard;
+    uint64_t stack_guard;
     
     // 栈保护机制初始化
-    stack_guard = GET_SECURITY_COOKIE() ^ (ulonglong)stack_backup;
+    stack_guard = GET_SECURITY_COOKIE() ^ (uint64_t)stack_backup;
     
     // 获取UI系统参数
     iteration_count = *(int *)(ui_context + 0x23d8);
     search_limit = *(int *)(ui_context + 0x23dc);
-    memory_ptr = *(longlong *)(ui_context + 0x1e98);
+    memory_ptr = *(int64_t *)(ui_context + 0x1e98);
     coord_val = *offset_coords;
     offset_val = offset_coords[1];
     
     // 初始化搜索参数
-    stack_backup[3] = *(longlong *)(ui_context + 0x2398);
+    stack_backup[3] = *(int64_t *)(ui_context + 0x2398);
     result_ptr = result_count;
     callback_array = callback_array;
     
     // 计算基础地址
-    base_address = (longlong)*(int *)(render_params + 0x50) + **(longlong **)(render_params + 0x48);
+    base_address = (int64_t)*(int *)(render_params + 0x50) + **(int64_t **)(render_params + 0x48);
     cost_buffer[3] = *(int32_t *)(render_params + 0x54);
     stack_backup[5] = *(int *)(ui_context + 0x1e70);
     
@@ -98,7 +98,7 @@ void ui_system_advanced_path_searcher(longlong ui_context, longlong render_param
     cost_buffer[0] = 0;
     cost_buffer[1] = 0;
     cost_buffer[2] = 0;
-    stack_backup[0] = *(longlong *)(ui_context + 0x23a0);
+    stack_backup[0] = *(int64_t *)(ui_context + 0x23a0);
     result_coord_ptr = offset_coords;
     
     // 边界检查和优化
@@ -119,7 +119,7 @@ void ui_system_advanced_path_searcher(longlong ui_context, longlong render_param
     }
     
     // 计算偏移量
-    stack_backup[2] = (longlong)(offset_val >> 3);
+    stack_backup[2] = (int64_t)(offset_val >> 3);
     iteration_count = (int)(short)search_limit;
     if (search_limit < (short)search_limit) {
         iteration_count = search_limit;
@@ -133,8 +133,8 @@ void ui_system_advanced_path_searcher(longlong ui_context, longlong render_param
     source_coords[1] = offset_val;
     
     // 计算目标地址
-    target_address = *(int *)(target_params + 0x20) + memory_ptr + (longlong)(offset_val * stack_backup[5]) + (longlong)offset_val;
-    iteration_count = *(int *)(stack_backup[3] + (offset_val - (longlong)(coord_val >> 3)) * 4);
+    target_address = *(int *)(target_params + 0x20) + memory_ptr + (int64_t)(offset_val * stack_backup[5]) + (int64_t)offset_val;
+    iteration_count = *(int *)(stack_backup[3] + (offset_val - (int64_t)(coord_val >> 3)) * 4);
     search_limit = *(int *)(stack_backup[0] + (offset_val - stack_backup[2]) * 4);
     
     // 设置搜索参数
@@ -147,15 +147,15 @@ void ui_system_advanced_path_searcher(longlong ui_context, longlong render_param
     best_cost = ((iteration_count + search_limit) * weight_param + 0x80 >> 8) + search_limit;
     
     iteration_count = 1;
-    memory_ptr = *(longlong *)(ui_context + 0x2348) + (longlong)(search_range * *(int *)(ui_context + 0x2354)) * 8;
+    memory_ptr = *(int64_t *)(ui_context + 0x2348) + (int64_t)(search_range * *(int *)(ui_context + 0x2354)) * 8;
     current_cost = *(int *)(ui_context + 0x2350) / *(int *)(ui_context + 0x2354) - search_range;
     stack_backup[1] = memory_ptr;
     
     // 主搜索循环
     if (0 < (int)current_cost) {
-        longlong loop_var = 1;
-        ulonglong remaining_count = (ulonglong)current_cost;
-        longlong table_ptr = stack_backup[3];
+        int64_t loop_var = 1;
+        uint64_t remaining_count = (uint64_t)current_cost;
+        int64_t table_ptr = stack_backup[3];
         
         do {
             temp_coord_ptr = (short *)(memory_ptr + loop_var * 8);
@@ -183,7 +183,7 @@ void ui_system_advanced_path_searcher(longlong ui_context, longlong render_param
                         for (int i = 0; i < 4; i++) {
                             if (cost_array[i] < best_cost) {
                                 current_cost = ((*(int *)(table_ptr + ((short)(*(short *)(memory_ptr + loop_var * 8) + *source_coords) -
-                                                            (longlong)(coord_val >> 3)) * 4) +
+                                                            (int64_t)(coord_val >> 3)) * 4) +
                                              *(int *)(stack_backup[0] +
                                                      ((short)(*(short *)(memory_ptr + 2 + loop_var * 8) + source_coords[1]) -
                                                      stack_backup[2]) * 4)) * weight_param + 0x80 >> 8) + cost_array[i];
@@ -206,7 +206,7 @@ void ui_system_advanced_path_searcher(longlong ui_context, longlong render_param
                 int *alt_ptr = (int *)(temp_coord_ptr + 2);
                 do {
                     search_limit = (int)(short)alt_ptr[-1] + (int)*source_coords;
-                    current_cost = (int)*(short *)((longlong)alt_ptr + -2) + (int)source_coords[1];
+                    current_cost = (int)*(short *)((int64_t)alt_ptr + -2) + (int)source_coords[1];
                     
                     if ((((*(int *)(ui_context + 0x23d0) < current_cost) && (current_cost < *(int *)(ui_context + 0x23d4))) &&
                         (*(int *)(ui_context + 0x23d8) < search_limit)) &&
@@ -215,7 +215,7 @@ void ui_system_advanced_path_searcher(longlong ui_context, longlong render_param
                                           (stack_backup[7], cost_buffer[3], *alt_ptr + stack_backup[4], stack_backup[5]),
                            cost_buffer[2] < best_cost)) &&
                           (cost_buffer[2] = cost_buffer[2] +
-                                       ((*(int *)(stack_backup[3] + ((short)search_limit - (longlong)(coord_val >> 3)) * 4) +
+                                       ((*(int *)(stack_backup[3] + ((short)search_limit - (int64_t)(coord_val >> 3)) * 4) +
                                         *(int *)(stack_backup[0] + ((short)current_cost - stack_backup[2]) * 4)) * weight_param + 0x80
                                        >> 8), cost_buffer[2] < best_cost)))) {
                         best_cost = cost_buffer[2];
@@ -238,8 +238,8 @@ void ui_system_advanced_path_searcher(longlong ui_context, longlong render_param
                 }
             }
             else {
-                longlong update_ptr = memory_ptr + (longlong)cost_buffer[1] * 8;
-                *source_coords = *source_coords + *(short *)(memory_ptr + (longlong)cost_buffer[1] * 8);
+                int64_t update_ptr = memory_ptr + (int64_t)cost_buffer[1] * 8;
+                *source_coords = *source_coords + *(short *)(memory_ptr + (int64_t)cost_buffer[1] * 8);
                 source_coords[1] = source_coords[1] + *(short *)(update_ptr + 2);
                 target_address = target_address + *(int *)(update_ptr + 4);
                 cost_buffer[2] = cost_buffer[1];
@@ -251,11 +251,11 @@ void ui_system_advanced_path_searcher(longlong ui_context, longlong render_param
     }
     
     // 最终结果处理
-    if (extended_params != (longlong *)0x0) {
+    if (extended_params != (int64_t *)0x0) {
         cost_buffer[0] = (*(int *)(extended_params[1] +
-                                 ((longlong)((int)(short)(source_coords[1] << 3) - (int)result_coord_ptr[1]) >> 1) * 4) +
+                                 ((int64_t)((int)(short)(source_coords[1] << 3) - (int)result_coord_ptr[1]) >> 1) * 4) +
                         *(int *)(*extended_params +
-                                ((longlong)((int)(short)(*source_coords << 3) - (int)*result_coord_ptr) >> 1) * 4)) *
+                                ((int64_t)((int)(short)(*source_coords << 3) - (int)*result_coord_ptr) >> 1) * 4)) *
                         *(int *)(ui_context + 0x2358) + 0x80 >> 8;
     }
     
@@ -263,7 +263,7 @@ void ui_system_advanced_path_searcher(longlong ui_context, longlong render_param
     (*(code *)callback_array[1])(base_address, cost_buffer[3], target_address, stack_backup[5]);
     
     // 栈保护清理
-    FUN_1808fc050(stack_guard ^ (ulonglong)stack_backup);
+    FUN_1808fc050(stack_guard ^ (uint64_t)stack_backup);
 }
 
 /**
@@ -294,27 +294,27 @@ void ui_system_advanced_path_searcher(longlong ui_context, longlong render_param
  * @param param_9 偏移坐标指针 [x, y]
  * @return 优化后的成本值
  */
-int ui_system_coordinate_optimizer(longlong ui_context, longlong render_params, longlong target_params,
+int ui_system_coordinate_optimizer(int64_t ui_context, int64_t render_params, int64_t target_params,
                                   short *source_coords, int weight_param, int search_radius,
-                                  uint64_t *callback_array, longlong *extended_params, short *offset_coords)
+                                  uint64_t *callback_array, int64_t *extended_params, short *offset_coords)
 {
     short source_x, source_y;
     short offset_x, offset_y;
     short target_x, target_y;
     uint best_cost;
     int32_t render_flag;
-    longlong base_address;
-    longlong offset_table;
+    int64_t base_address;
+    int64_t offset_table;
     int iteration_count;
     int search_limit;
     int cost_limit;
-    ulonglong loop_counter;
+    uint64_t loop_counter;
     int current_index;
     int optimized_index;
-    longlong target_address;
-    longlong search_address;
-    longlong iteration_limit;
-    longlong cost_address;
+    int64_t target_address;
+    int64_t search_address;
+    int64_t iteration_limit;
+    int64_t cost_address;
     uint current_cost;
     uint temp_cost[2];
     
@@ -324,11 +324,11 @@ int ui_system_coordinate_optimizer(longlong ui_context, longlong render_params, 
     source_y = source_coords[1];
     
     // 计算基础地址
-    base_address = (longlong)*(int *)(render_params + 0x50) + **(longlong **)(render_params + 0x48);
+    base_address = (int64_t)*(int *)(render_params + 0x50) + **(int64_t **)(render_params + 0x48);
     render_flag = *(int32_t *)(render_params + 0x54);
-    offset_table = *(longlong *)(ui_context + 0x23a0);
-    target_address = (longlong)*(int *)(target_params + 0x20) + *(longlong *)(ui_context + 0x1e98);
-    search_address = *(longlong *)(ui_context + 0x2398);
+    offset_table = *(int64_t *)(ui_context + 0x23a0);
+    target_address = (int64_t)*(int *)(target_params + 0x20) + *(int64_t *)(ui_context + 0x1e98);
+    search_address = *(int64_t *)(ui_context + 0x2398);
     
     offset_x = *offset_coords;
     offset_y = offset_coords[1];
@@ -338,9 +338,9 @@ int ui_system_coordinate_optimizer(longlong ui_context, longlong render_params, 
     *(short *)(target_params + 0x32) = source_y;
     
     // 计算初始目标位置
-    iteration_limit = (int)((int)source_x * best_cost) + target_address + (longlong)source_y;
-    cost_limit = *(int *)(search_address + ((longlong)source_x - (longlong)(offset_x >> 3)) * 4);
-    search_limit = *(int *)(offset_table + ((longlong)source_y - (longlong)(offset_y >> 3)) * 4);
+    iteration_limit = (int)((int)source_x * best_cost) + target_address + (int64_t)source_y;
+    cost_limit = *(int *)(search_address + ((int64_t)source_x - (int64_t)(offset_x >> 3)) * 4);
+    search_limit = *(int *)(offset_table + ((int64_t)source_y - (int64_t)(offset_y >> 3)) * 4);
     iteration_count = (*(code *)*callback_array)(base_address, render_flag, iteration_limit, best_cost);
     current_cost = ((cost_limit + search_limit) * weight_param + 0x80 >> 8) + iteration_count;
     
@@ -364,8 +364,8 @@ int ui_system_coordinate_optimizer(longlong ui_context, longlong render_params, 
     
     // 执行坐标优化搜索
     if (iteration_count < optimized_index) {
-        target_address = (longlong)cost_limit + target_address + (int)(iteration_count * best_cost);
-        loop_counter = (ulonglong)(int)best_cost;
+        target_address = (int64_t)cost_limit + target_address + (int)(iteration_count * best_cost);
+        loop_counter = (uint64_t)(int)best_cost;
         
         do {
             if (cost_limit < search_limit) {
@@ -374,8 +374,8 @@ int ui_system_coordinate_optimizer(longlong ui_context, longlong render_params, 
                 
                 do {
                     search_limit = (*(code *)*callback_array)(base_address, render_flag, search_address, loop_counter & 0xffffffff);
-                    temp_cost[0] = search_limit + ((*(int *)(offset_table + ((longlong)(short)current_index - (longlong)(offset_y >> 3)) * 4) +
-                                                    *(int *)(search_address + ((longlong)(short)iteration_count - (longlong)(offset_x >> 3)) * 4)) *
+                    temp_cost[0] = search_limit + ((*(int *)(offset_table + ((int64_t)(short)current_index - (int64_t)(offset_y >> 3)) * 4) +
+                                                    *(int *)(search_address + ((int64_t)(short)iteration_count - (int64_t)(offset_x >> 3)) * 4)) *
                                                     weight_param + 0x80 >> 8);
                     
                     if (temp_cost[0] < current_cost) {
@@ -385,7 +385,7 @@ int ui_system_coordinate_optimizer(longlong ui_context, longlong render_params, 
                         current_cost = temp_cost[0];
                     }
                     
-                    loop_counter = (ulonglong)best_cost;
+                    loop_counter = (uint64_t)best_cost;
                     search_address = search_address + 1;
                     current_index = current_index + 1;
                 } while (current_index < search_limit);
@@ -397,15 +397,15 @@ int ui_system_coordinate_optimizer(longlong ui_context, longlong render_params, 
     }
     
     // 处理扩展参数
-    if (extended_params == (longlong *)0x0) {
+    if (extended_params == (int64_t *)0x0) {
         cost_limit = 0;
     }
     else {
         cost_limit = (*(int *)(extended_params[1] +
-                              ((longlong)((int)(short)(*(short *)(target_params + 0x32) << 3) - (int)offset_coords[1])
+                              ((int64_t)((int)(short)(*(short *)(target_params + 0x32) << 3) - (int)offset_coords[1])
                               >> 1) * 4) +
                      *(int *)(*extended_params +
-                             ((longlong)((int)(short)(*(short *)(target_params + 0x30) << 3) - (int)*offset_coords) >> 1
+                             ((int64_t)((int)(short)(*(short *)(target_params + 0x30) << 3) - (int)*offset_coords) >> 1
                              ) * 4)) * *(int *)(ui_context + 0x2358) + 0x80 >> 8;
     }
     
@@ -441,15 +441,15 @@ int ui_system_coordinate_optimizer(longlong ui_context, longlong render_params, 
  * @param param_8 扩展参数
  * @param param_9 偏移坐标指针 [x, y]
  */
-void ui_system_movement_processor(longlong ui_context, longlong render_params, longlong target_params,
+void ui_system_movement_processor(int64_t ui_context, int64_t render_params, int64_t target_params,
                                  short *source_coords, int weight_param, int movement_range,
                                  uint64_t *callback_array, uint64_t extended_param, short *offset_coords)
 {
     short source_x, source_y;
     short offset_x, offset_y;
     short target_x, target_y;
-    longlong coord_table_x;
-    longlong coord_table_y;
+    int64_t coord_table_x;
+    int64_t coord_table_y;
     int movement_count;
     int min_y, max_y;
     int min_x, max_x;
@@ -457,32 +457,32 @@ void ui_system_movement_processor(longlong ui_context, longlong render_params, l
     int batch_size;
     uint best_cost;
     uint current_cost;
-    ulonglong iteration_limit;
-    longlong search_address;
-    longlong target_address;
-    longlong base_address;
+    uint64_t iteration_limit;
+    int64_t search_address;
+    int64_t target_address;
+    int64_t base_address;
     uint64_t *callback_ptr;
-    longlong stack_backup[8];
+    int64_t stack_backup[8];
     uint cost_buffer[4];
-    ulonglong stack_guard;
+    uint64_t stack_guard;
     
     // 栈保护机制初始化
-    stack_guard = GET_SECURITY_COOKIE() ^ (ulonglong)stack_backup;
+    stack_guard = GET_SECURITY_COOKIE() ^ (uint64_t)stack_backup;
     
     // 获取UI系统参数
     best_cost = *(uint *)(ui_context + 0x1e70);
     target_x = *source_coords;
     target_y = source_coords[1];
     
-    coord_table_x = *(longlong *)(ui_context + 0x2398);
-    coord_table_y = *(longlong *)(ui_context + 0x23a0);
-    target_address = (longlong)*(int *)(target_params + 0x20) + *(longlong *)(ui_context + 0x1e98);
+    coord_table_x = *(int64_t *)(ui_context + 0x2398);
+    coord_table_y = *(int64_t *)(ui_context + 0x23a0);
+    target_address = (int64_t)*(int *)(target_params + 0x20) + *(int64_t *)(ui_context + 0x1e98);
     
     offset_x = *offset_coords;
     callback_ptr = callback_array;
     
     // 计算基础地址
-    base_address = (longlong)*(int *)(render_params + 0x50) + **(longlong **)(render_params + 0x48);
+    base_address = (int64_t)*(int *)(render_params + 0x50) + **(int64_t **)(render_params + 0x48);
     cost_buffer[3] = *(int32_t *)(render_params + 0x54);
     offset_y = offset_coords[1];
     
@@ -496,11 +496,11 @@ void ui_system_movement_processor(longlong ui_context, longlong render_params, l
     max_y = target_y + movement_range;
     
     // 计算偏移表地址
-    stack_backup[6] = (longlong)(offset_y >> 3);
-    stack_backup[7] = (longlong)(offset_x >> 3);
+    stack_backup[6] = (int64_t)(offset_y >> 3);
+    stack_backup[7] = (int64_t)(offset_x >> 3);
     
     // 计算初始成本
-    search_address = (int)((int)target_x * best_cost) + target_address + (longlong)target_y;
+    search_address = (int)((int)target_x * best_cost) + target_address + (int64_t)target_y;
     batch_size = *(int *)(coord_table_y + (target_y - stack_backup[6]) * 4);
     movement_count = *(int *)(coord_table_x + (target_x - stack_backup[7]) * 4);
     
@@ -530,8 +530,8 @@ void ui_system_movement_processor(longlong ui_context, longlong render_params, l
     
     // 执行移动优化
     if (batch_size < movement_count) {
-        iteration_limit = (ulonglong)(int)best_cost;
-        target_address = (longlong)min_y + target_address + (int)(batch_size * best_cost);
+        iteration_limit = (uint64_t)(int)best_cost;
+        target_address = (int64_t)min_y + target_address + (int)(batch_size * best_cost);
         stack_backup[4] = iteration_limit;
         movement_count = max_y;
         
@@ -564,7 +564,7 @@ void ui_system_movement_processor(longlong ui_context, longlong render_params, l
                         search_address = search_address + 1;
                         min_x = movement_count + 1;
                     }
-                    iteration_limit = (ulonglong)cost_buffer[2];
+                    iteration_limit = (uint64_t)cost_buffer[2];
                     movement_count = max_y;
                 } while (min_x + 3 < movement_count);
             }
@@ -585,7 +585,7 @@ void ui_system_movement_processor(longlong ui_context, longlong render_params, l
                         }
                     }
                     search_address = search_address + 1;
-                    iteration_limit = (ulonglong)cost_buffer[2];
+                    iteration_limit = (uint64_t)cost_buffer[2];
                     min_x = min_x + 1;
                     movement_count = max_y;
                 } while (min_x < movement_count);
@@ -593,7 +593,7 @@ void ui_system_movement_processor(longlong ui_context, longlong render_params, l
             
             target_address = target_address + stack_backup[4];
             batch_size = batch_size + 1;
-            iteration_limit = (ulonglong)cost_buffer[2];
+            iteration_limit = (uint64_t)cost_buffer[2];
             best_cost = cost_buffer[2];
             target_address = target_address;
         } while (batch_size < movement_count);
@@ -604,7 +604,7 @@ void ui_system_movement_processor(longlong ui_context, longlong render_params, l
     (*(code *)callback_ptr[1])(base_address, cost_buffer[3], search_address, best_cost);
     
     // 栈保护清理
-    FUN_1808fc050(stack_guard ^ (ulonglong)stack_backup);
+    FUN_1808fc050(stack_guard ^ (uint64_t)stack_backup);
 }
 
 /**
@@ -634,15 +634,15 @@ void ui_system_movement_processor(longlong ui_context, longlong render_params, l
  * @param param_8 扩展参数
  * @param param_9 偏移坐标指针 [x, y]
  */
-void ui_system_advanced_movement_processor(longlong ui_context, longlong render_params, longlong target_params,
+void ui_system_advanced_movement_processor(int64_t ui_context, int64_t render_params, int64_t target_params,
                                           short *source_coords, int weight_param, int movement_range,
                                           uint64_t *callback_array, uint64_t extended_param, short *offset_coords)
 {
     short source_x, source_y;
     short offset_x, offset_y;
     short target_x, target_y;
-    longlong coord_table_x;
-    longlong coord_table_y;
+    int64_t coord_table_x;
+    int64_t coord_table_y;
     int movement_count;
     int min_y, max_y;
     int min_x, max_x;
@@ -650,32 +650,32 @@ void ui_system_advanced_movement_processor(longlong ui_context, longlong render_
     int batch_size;
     uint best_cost;
     uint current_cost;
-    longlong search_address;
-    longlong target_address;
-    longlong base_address;
+    int64_t search_address;
+    int64_t target_address;
+    int64_t base_address;
     uint64_t *callback_ptr;
-    longlong stack_backup[10];
+    int64_t stack_backup[10];
     uint cost_buffer_large[8];
     uint cost_buffer_small[6];
-    ulonglong stack_guard;
+    uint64_t stack_guard;
     
     // 栈保护机制初始化
-    stack_guard = GET_SECURITY_COOKIE() ^ (ulonglong)stack_backup;
+    stack_guard = GET_SECURITY_COOKIE() ^ (uint64_t)stack_backup;
     
     // 获取UI系统参数
     target_x = *source_coords;
     source_y = source_coords[1];
     movement_count = *(int *)(ui_context + 0x1e70);
     
-    coord_table_x = *(longlong *)(ui_context + 0x2398);
-    coord_table_y = *(longlong *)(ui_context + 0x23a0);
-    target_address = (longlong)*(int *)(target_params + 0x20) + *(longlong *)(ui_context + 0x1e98);
+    coord_table_x = *(int64_t *)(ui_context + 0x2398);
+    coord_table_y = *(int64_t *)(ui_context + 0x23a0);
+    target_address = (int64_t)*(int *)(target_params + 0x20) + *(int64_t *)(ui_context + 0x1e98);
     
     callback_ptr = callback_array;
     offset_x = *offset_coords;
     
     // 计算基础地址
-    base_address = (longlong)*(int *)(render_params + 0x50) + **(longlong **)(render_params + 0x48);
+    base_address = (int64_t)*(int *)(render_params + 0x50) + **(int64_t **)(render_params + 0x48);
     cost_buffer_large[7] = *(int32_t *)(render_params + 0x54);
     offset_y = offset_coords[1];
     
@@ -687,11 +687,11 @@ void ui_system_advanced_movement_processor(longlong ui_context, longlong render_
     max_y = source_y + movement_range;
     
     // 计算偏移表地址
-    stack_backup[4] = (longlong)(offset_y >> 3);
-    stack_backup[3] = (longlong)(offset_x >> 3);
+    stack_backup[4] = (int64_t)(offset_y >> 3);
+    stack_backup[3] = (int64_t)(offset_x >> 3);
     
     // 计算初始成本
-    search_address = target_x * movement_count + target_address + (longlong)source_y;
+    search_address = target_x * movement_count + target_address + (int64_t)source_y;
     batch_size = *(int *)(coord_table_y + (source_y - stack_backup[4]) * 4);
     movement_count = *(int *)(coord_table_x + (target_x - stack_backup[3]) * 4);
     stack_backup[6] = ui_context;
@@ -718,8 +718,8 @@ void ui_system_advanced_movement_processor(longlong ui_context, longlong render_
     
     // 执行高级移动优化
     if (batch_size < movement_count) {
-        search_address = (longlong)movement_count;
-        target_address = (longlong)min_y + target_address + batch_size * movement_count;
+        search_address = (int64_t)movement_count;
+        target_address = (int64_t)min_y + target_address + batch_size * movement_count;
         movement_count = max_y;
         
         do {
@@ -815,7 +815,7 @@ void ui_system_advanced_movement_processor(longlong ui_context, longlong render_
     (*(code *)callback_ptr[1])(base_address, cost_buffer_large[7], search_address, movement_count);
     
     // 栈保护清理
-    FUN_1808fc050(stack_guard ^ (ulonglong)stack_backup);
+    FUN_1808fc050(stack_guard ^ (uint64_t)stack_backup);
 }
 
 /**
@@ -845,7 +845,7 @@ void ui_system_advanced_movement_processor(longlong ui_context, longlong render_
  * @param param_8 扩展参数
  * @param param_9 偏移坐标指针 [x, y]
  */
-void ui_system_path_searcher_optimized(longlong ui_context, longlong render_params, longlong target_params,
+void ui_system_path_searcher_optimized(int64_t ui_context, int64_t render_params, int64_t target_params,
                                       short *source_coords, int weight_param, int search_iterations,
                                       uint64_t *callback_array, uint64_t extended_param, short *offset_coords)
 {
@@ -854,12 +854,12 @@ void ui_system_path_searcher_optimized(longlong ui_context, longlong render_para
     uint best_cost;
     int current_cost;
     short test_x, test_y;
-    longlong coord_table_x;
-    ulonglong direction_index;
-    longlong base_address;
-    ulonglong best_direction_index;
+    int64_t coord_table_x;
+    uint64_t direction_index;
+    int64_t base_address;
+    uint64_t best_direction_index;
     int current_direction;
-    ulonglong loop_counter;
+    uint64_t loop_counter;
     uint current_test_cost;
     int x_offset, y_offset;
     int8_t stack_backup[32];
@@ -868,24 +868,24 @@ void ui_system_path_searcher_optimized(longlong ui_context, longlong render_para
     int stack_var2;
     uint stack_var3;
     int32_t render_flag;
-    longlong target_address;
-    ulonglong stack_var4;
-    longlong search_address;
-    longlong callback_address;
-    longlong stack_var5;
+    int64_t target_address;
+    uint64_t stack_var4;
+    int64_t search_address;
+    int64_t callback_address;
+    int64_t stack_var5;
     short direction_offsets[8];
-    ulonglong stack_guard;
+    uint64_t stack_guard;
     
     // 栈保护机制初始化
-    stack_guard = GET_SECURITY_COOKIE() ^ (ulonglong)stack_backup;
+    stack_guard = GET_SECURITY_COOKIE() ^ (uint64_t)stack_backup;
     
     // 获取UI系统参数
     line_width = *(int *)(ui_context + 0x1e70);
-    coord_table_x = *(longlong *)(ui_context + 0x23a0);
+    coord_table_x = *(int64_t *)(ui_context + 0x23a0);
     render_flag = *(int32_t *)(render_params + 0x54);
     
     // 计算基础地址
-    base_address = (longlong)*(int *)(render_params + 0x50) + **(longlong **)(render_params + 0x48);
+    base_address = (int64_t)*(int *)(render_params + 0x50) + **(int64_t **)(render_params + 0x48);
     offset_coords = callback_array;
     callback_array = callback_array;
     
@@ -900,13 +900,13 @@ void ui_system_path_searcher_optimized(longlong ui_context, longlong render_para
     direction_offsets[7] = 0;   // 左下
     
     // 设置搜索参数
-    search_address = *(longlong *)(ui_context + 0x2398);
-    target_address = (longlong)(*source_coords * line_width) + (longlong)*(int *)(target_params + 0x20) +
-                   *(longlong *)(ui_context + 0x1e98) + (longlong)source_coords[1];
+    search_address = *(int64_t *)(ui_context + 0x2398);
+    target_address = (int64_t)(*source_coords * line_width) + (int64_t)*(int *)(target_params + 0x20) +
+                   *(int64_t *)(ui_context + 0x1e98) + (int64_t)source_coords[1];
     
     // 计算偏移表地址
-    stack_var5 = (longlong)(offset_coords[1] >> 3);
-    callback_address = (longlong)(*offset_coords >> 3);
+    stack_var5 = (int64_t)(offset_coords[1] >> 3);
+    callback_address = (int64_t)(*offset_coords >> 3);
     
     // 计算初始成本
     current_cost = *(int *)(search_address + (*source_coords - callback_address) * 4);
@@ -961,7 +961,7 @@ void ui_system_path_searcher_optimized(longlong ui_context, longlong render_para
                 stack_var4 = loop_counter;
                 stack_var1 = best_direction;
                 best_cost = current_test_cost;
-                loop_counter = (ulonglong)(current_cost + 1U);
+                loop_counter = (uint64_t)(current_cost + 1U);
                 direction_index = direction_index + 1;
             } while ((int)(current_cost + 1U) < 4);
             
@@ -986,7 +986,7 @@ void ui_system_path_searcher_optimized(longlong ui_context, longlong render_para
     (*(code *)callback_array[1])(base_address, render_flag, target_address, line_width);
     
     // 栈保护清理
-    FUN_1808fc050(stack_guard ^ (ulonglong)stack_backup);
+    FUN_1808fc050(stack_guard ^ (uint64_t)stack_backup);
 }
 
 // 技术说明：

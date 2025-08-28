@@ -73,19 +73,19 @@ typedef struct {
  * 此函数处理渲染数据块，执行顶点变换、排序和批处理操作。
  * 使用SIMD优化技术进行高效的顶点数据处理。
  */
-void render_data_processor(void *render_context, longlong data_ptr, int *vertex_data, 
+void render_data_processor(void *render_context, int64_t data_ptr, int *vertex_data, 
                          uint vertex_count, float scale_x, float scale_y, 
                          void *texture_params, void *shader_params, 
                          uint render_flags, uint extra_flags)
 {
     int *vertex_ptr;
-    longlong data_offset;
+    int64_t data_offset;
     uint processed_count;
     int sum_x, sum_y, sum_z, sum_w;
     int temp_flags[8];
     uint remaining_count;
-    longlong vertex_index;
-    longlong batch_size;
+    int64_t vertex_index;
+    int64_t batch_size;
     render_vertex_t *output_buffer;
     float *vertex_positions;
     int *vertex_flags;
@@ -93,10 +93,10 @@ void render_data_processor(void *render_context, longlong data_ptr, int *vertex_
     int current_vertex;
     float *current_position;
     void *current_data;
-    ulonglong stack_cookie;
+    uint64_t stack_cookie;
     
     // 栈保护cookie
-    stack_cookie = *(ulonglong *)(*(void **)0x180bf00a8) ^ (ulonglong)(temp_flags);
+    stack_cookie = *(uint64_t *)(*(void **)0x180bf00a8) ^ (uint64_t)(temp_flags);
     processed_count = vertex_count;
     sum_x = 0;
     sum_y = 0;
@@ -138,9 +138,9 @@ void render_data_processor(void *render_context, longlong data_ptr, int *vertex_
         sum_x = sum_x;
     }
     
-    data_offset = (longlong)sum_x;
+    data_offset = (int64_t)sum_x;
     sum_x = 0;
-    batch_size = (longlong)(int)vertex_count;
+    batch_size = (int64_t)(int)vertex_count;
     sum_y = 0;
     
     // 处理剩余顶点
@@ -164,10 +164,10 @@ void render_data_processor(void *render_context, longlong data_ptr, int *vertex_
     }
     
     // 分配输出缓冲区
-    output_buffer = (render_vertex_t *)func_0x000180120ce0(((longlong)sum_y + 1) * sizeof(render_vertex_t));
+    output_buffer = (render_vertex_t *)func_0x000180120ce0(((int64_t)sum_y + 1) * sizeof(render_vertex_t));
     if (output_buffer == (render_vertex_t *)0x0) {
         // 内存分配失败，触发错误处理
-        FUN_1808fc050(stack_cookie ^ (ulonglong)(temp_flags));
+        FUN_1808fc050(stack_cookie ^ (uint64_t)(temp_flags));
     }
     
     sum_x = 0;
@@ -179,13 +179,13 @@ void render_data_processor(void *render_context, longlong data_ptr, int *vertex_
         batch_size = 0;
         do {
             current_vertex = 0;
-            data_offset = data_ptr + (longlong)sum_x * 8;
+            data_offset = data_ptr + (int64_t)sum_x * 8;
             sum_x += *vertex_data;
             
             if (0 < *vertex_data) {
                 vertex_positions = (float *)(data_offset + 4);
-                vertex_flags = (int *)(batch_size * sizeof(render_vertex_t) + 0x10 + (longlong)output_buffer);
-                data_offset = (longlong)(*vertex_data - 1);
+                vertex_flags = (int *)(batch_size * sizeof(render_vertex_t) + 0x10 + (int64_t)output_buffer);
+                data_offset = (int64_t)(*vertex_data - 1);
                 
                 current_vertex = 0;
                 do {
@@ -229,33 +229,33 @@ void render_data_processor(void *render_context, longlong data_ptr, int *vertex_
     
     // 插入排序
     current_data = output_buffer;
-    if (1 < (longlong)sum_y) {
+    if (1 < (int64_t)sum_y) {
         do {
-            current_vertex = (render_vertex_t *)((longlong)current_data + sizeof(render_vertex_t));
-            temp_flags[0] = *(int *)((longlong)current_data + 0x24);
+            current_vertex = (render_vertex_t *)((int64_t)current_data + sizeof(render_vertex_t));
+            temp_flags[0] = *(int *)((int64_t)current_data + 0x24);
             temp_flags[1] = *(int *)current_vertex;
-            temp_flags[2] = *(int *)((longlong)current_data + 0x1c);
+            temp_flags[2] = *(int *)((int64_t)current_data + 0x1c);
             
             if (0 < vertex_index) {
-                temp_flags[3] = (int)((ulonglong)temp_flags[1] >> 0x20);
+                temp_flags[3] = (int)((uint64_t)temp_flags[1] >> 0x20);
                 batch_size = vertex_index;
                 
                 do {
-                    if (*(float *)((longlong)current_data + 4) <= *(float *)&temp_flags[3]) break;
+                    if (*(float *)((int64_t)current_data + 4) <= *(float *)&temp_flags[3]) break;
                     batch_size -= 1;
                     
-                    *(render_vertex_t *)((longlong)current_data + sizeof(render_vertex_t)) = *(render_vertex_t *)current_data;
-                    *(render_vertex_t *)((longlong)current_data + 0x1c) = ((render_vertex_t *)current_data)[1];
-                    *(int *)((longlong)current_data + 0x24) = *(int *)((render_vertex_t *)current_data + 2);
+                    *(render_vertex_t *)((int64_t)current_data + sizeof(render_vertex_t)) = *(render_vertex_t *)current_data;
+                    *(render_vertex_t *)((int64_t)current_data + 0x1c) = ((render_vertex_t *)current_data)[1];
+                    *(int *)((int64_t)current_data + 0x24) = *(int *)((render_vertex_t *)current_data + 2);
                     
-                    current_data = (render_vertex_t *)((longlong)current_data - sizeof(render_vertex_t));
+                    current_data = (render_vertex_t *)((int64_t)current_data - sizeof(render_vertex_t));
                 } while (0 < batch_size);
                 
                 if (vertex_index != batch_size) {
-                    current_data = (render_vertex_t *)((longlong)output_buffer + batch_size * sizeof(render_vertex_t));
+                    current_data = (render_vertex_t *)((int64_t)output_buffer + batch_size * sizeof(render_vertex_t));
                     *current_data = *(render_vertex_t *)&temp_flags[1];
                     current_data[1] = *(render_vertex_t *)&temp_flags[2];
-                    *(int *)((longlong)output_buffer + batch_size * sizeof(render_vertex_t) + 0x10) = temp_flags[0];
+                    *(int *)((int64_t)output_buffer + batch_size * sizeof(render_vertex_t) + 0x10) = temp_flags[0];
                 }
             }
             
@@ -286,14 +286,14 @@ void render_data_processor(void *render_context, longlong data_ptr, int *vertex_
  */
 void render_pipeline_optimizer(float tolerance)
 {
-    longlong data_offset;
+    int64_t data_offset;
     render_vertex_t *vertex_buffer;
     int vertex_count;
     float *position_data;
     int *vertex_flags;
     render_vertex_t *sorted_buffer;
     int i, j;
-    longlong start_pos, end_pos;
+    int64_t start_pos, end_pos;
     int current_vertex;
     int total_vertices;
     int processed_vertices;
@@ -312,14 +312,14 @@ void render_pipeline_optimizer(float tolerance)
         data_offset = 0;
         do {
             current_vertex = 0;
-            start_pos = *(longlong *)0x180c8a9a0 + (longlong)total_vertices * 8;
+            start_pos = *(int64_t *)0x180c8a9a0 + (int64_t)total_vertices * 8;
             vertex_count = *(int *)0x180c8a9a8;
             total_vertices += vertex_count;
             
             if (0 < vertex_count) {
                 position_data = (float *)(start_pos + 4);
                 vertex_flags = (int *)(data_offset * sizeof(render_vertex_t) + *(void **)0x180c8a9a4);
-                end_pos = (longlong)(vertex_count - 1);
+                end_pos = (int64_t)(vertex_count - 1);
                 
                 i = 0;
                 do {
@@ -364,7 +364,7 @@ void render_pipeline_optimizer(float tolerance)
     FUN_18028f180(tolerance, processed_vertices);
     
     // 排序优化
-    if (1 < (longlong)processed_vertices) {
+    if (1 < (int64_t)processed_vertices) {
         sorted_buffer = (render_vertex_t *)(*(void **)0x180c8a9a4 + sizeof(render_vertex_t));
         do {
             vertex_flags = (int *)(sorted_buffer + 2);
@@ -372,7 +372,7 @@ void render_pipeline_optimizer(float tolerance)
             temp_vertex = sorted_buffer[1];
             
             if (0 < *(int *)0x180c8a9a8) {
-                stack_value = (float)((ulonglong)*vertex_buffer >> 0x20);
+                stack_value = (float)((uint64_t)*vertex_buffer >> 0x20);
                 data_offset = *(int *)0x180c8a9a8;
                 vertex_ptr = sorted_buffer;
                 
@@ -380,13 +380,13 @@ void render_pipeline_optimizer(float tolerance)
                     if (*(float *)(vertex_ptr + -2) <= stack_value) break;
                     data_offset -= 1;
                     
-                    *(int *)vertex_ptr = *(int *)((longlong)vertex_ptr - sizeof(render_vertex_t));
-                    *(int *)((longlong)vertex_ptr + 4) = *(int *)(vertex_ptr + -2);
-                    *(int *)((longlong)vertex_ptr + 8) = *(int *)(vertex_ptr + -1);
-                    *(int *)((longlong)vertex_ptr + 12) = *(int *)(vertex_ptr + 0);
-                    *(int *)((longlong)vertex_ptr + 16) = *(int *)((longlong)vertex_ptr - 4);
+                    *(int *)vertex_ptr = *(int *)((int64_t)vertex_ptr - sizeof(render_vertex_t));
+                    *(int *)((int64_t)vertex_ptr + 4) = *(int *)(vertex_ptr + -2);
+                    *(int *)((int64_t)vertex_ptr + 8) = *(int *)(vertex_ptr + -1);
+                    *(int *)((int64_t)vertex_ptr + 12) = *(int *)(vertex_ptr + 0);
+                    *(int *)((int64_t)vertex_ptr + 16) = *(int *)((int64_t)vertex_ptr - 4);
                     
-                    vertex_ptr = (render_vertex_t *)((longlong)vertex_ptr - sizeof(render_vertex_t));
+                    vertex_ptr = (render_vertex_t *)((int64_t)vertex_ptr - sizeof(render_vertex_t));
                 } while (0 < data_offset);
                 
                 if (*(int *)0x180c8a9a8 != data_offset) {
@@ -398,7 +398,7 @@ void render_pipeline_optimizer(float tolerance)
             }
             
             *(int *)0x180c8a9a8 += 1;
-            sorted_buffer = (render_vertex_t *)((longlong)sorted_buffer + sizeof(render_vertex_t));
+            sorted_buffer = (render_vertex_t *)((int64_t)sorted_buffer + sizeof(render_vertex_t));
         } while (*(int *)0x180c8a9a8 < processed_vertices);
     }
     
@@ -423,14 +423,14 @@ void render_pipeline_optimizer(float tolerance)
  */
 void render_adaptive_processor(float threshold)
 {
-    longlong data_offset;
+    int64_t data_offset;
     render_vertex_t *vertex_buffer;
     int vertex_count;
     float *position_data;
     int *vertex_flags;
     render_vertex_t *sorted_buffer;
     int i, j;
-    longlong start_pos, end_pos;
+    int64_t start_pos, end_pos;
     int current_vertex;
     int total_vertices;
     int processed_vertices;
@@ -449,14 +449,14 @@ void render_adaptive_processor(float threshold)
         data_offset = 0;
         do {
             current_vertex = 0;
-            start_pos = *(longlong *)0x180c8a9a0 + (longlong)total_vertices * 8;
+            start_pos = *(int64_t *)0x180c8a9a0 + (int64_t)total_vertices * 8;
             vertex_count = *(int *)0x180c8a9a8;
             total_vertices += vertex_count;
             
             if (0 < vertex_count) {
                 position_data = (float *)(start_pos + 4);
                 vertex_flags = (int *)(data_offset * sizeof(render_vertex_t) + *(void **)0x180c8a9a4);
-                end_pos = (longlong)(vertex_count - 1);
+                end_pos = (int64_t)(vertex_count - 1);
                 
                 i = 0;
                 do {
@@ -501,7 +501,7 @@ void render_adaptive_processor(float threshold)
     FUN_18028f180(threshold, processed_vertices);
     
     // 自适应排序
-    if (1 < (longlong)processed_vertices) {
+    if (1 < (int64_t)processed_vertices) {
         sorted_buffer = (render_vertex_t *)(*(void **)0x180c8a9a4 + sizeof(render_vertex_t));
         do {
             vertex_flags = (int *)(sorted_buffer + 2);
@@ -509,7 +509,7 @@ void render_adaptive_processor(float threshold)
             temp_vertex = sorted_buffer[1];
             
             if (0 < *(int *)0x180c8a9a8) {
-                stack_value = (float)((ulonglong)*vertex_buffer >> 0x20);
+                stack_value = (float)((uint64_t)*vertex_buffer >> 0x20);
                 data_offset = *(int *)0x180c8a9a8;
                 vertex_ptr = sorted_buffer;
                 
@@ -517,13 +517,13 @@ void render_adaptive_processor(float threshold)
                     if (*(float *)(vertex_ptr + -2) <= stack_value) break;
                     data_offset -= 1;
                     
-                    *(int *)vertex_ptr = *(int *)((longlong)vertex_ptr - sizeof(render_vertex_t));
-                    *(int *)((longlong)vertex_ptr + 4) = *(int *)(vertex_ptr + -2);
-                    *(int *)((longlong)vertex_ptr + 8) = *(int *)(vertex_ptr + -1);
-                    *(int *)((longlong)vertex_ptr + 12) = *(int *)(vertex_ptr + 0);
-                    *(int *)((longlong)vertex_ptr + 16) = *(int *)((longlong)vertex_ptr - 4);
+                    *(int *)vertex_ptr = *(int *)((int64_t)vertex_ptr - sizeof(render_vertex_t));
+                    *(int *)((int64_t)vertex_ptr + 4) = *(int *)(vertex_ptr + -2);
+                    *(int *)((int64_t)vertex_ptr + 8) = *(int *)(vertex_ptr + -1);
+                    *(int *)((int64_t)vertex_ptr + 12) = *(int *)(vertex_ptr + 0);
+                    *(int *)((int64_t)vertex_ptr + 16) = *(int *)((int64_t)vertex_ptr - 4);
                     
-                    vertex_ptr = (render_vertex_t *)((longlong)vertex_ptr - sizeof(render_vertex_t));
+                    vertex_ptr = (render_vertex_t *)((int64_t)vertex_ptr - sizeof(render_vertex_t));
                 } while (0 < data_offset);
                 
                 if (*(int *)0x180c8a9a8 != data_offset) {
@@ -535,7 +535,7 @@ void render_adaptive_processor(float threshold)
             }
             
             *(int *)0x180c8a9a8 += 1;
-            sorted_buffer = (render_vertex_t *)((longlong)sorted_buffer + sizeof(render_vertex_t));
+            sorted_buffer = (render_vertex_t *)((int64_t)sorted_buffer + sizeof(render_vertex_t));
         } while (*(int *)0x180c8a9a8 < processed_vertices);
     }
     
@@ -565,9 +565,9 @@ void render_advanced_bounds_processor(float param_1, void *param_2, float param_
     render_vertex_t *vertex_buffer;
     int vertex_count;
     render_vertex_t *sorted_buffer;
-    longlong data_offset;
+    int64_t data_offset;
     int i;
-    longlong start_pos, end_pos;
+    int64_t start_pos, end_pos;
     int current_vertex;
     void *render_context;
     float *position_data;
@@ -582,14 +582,14 @@ void render_advanced_bounds_processor(float param_1, void *param_2, float param_
     
     do {
         current_vertex = 0;
-        start_pos = *(longlong *)0x180c8a9a0 + (longlong)total_vertices * 8;
+        start_pos = *(int64_t *)0x180c8a9a0 + (int64_t)total_vertices * 8;
         vertex_count = *(int *)0x180c8a9a8;
         total_vertices += vertex_count;
         
         if (0 < vertex_count) {
             position_data = (float *)(start_pos + 4);
             vertex_flags = (int *)(processed_count * sizeof(render_vertex_t) + *(void **)0x180c8a9a4);
-            end_pos = (longlong)(vertex_count - 1);
+            end_pos = (int64_t)(vertex_count - 1);
             
             i = 0;
             do {
@@ -619,7 +619,7 @@ void render_advanced_bounds_processor(float param_1, void *param_2, float param_
                 }
                 current_vertex += 1;
                 position_data += 2;
-                start_pos = *(longlong *)0x180c8a9a0;
+                start_pos = *(int64_t *)0x180c8a9a0;
                 end_pos = i;
                 i += 1;
             } while (current_vertex < *(int *)0x180c8a9a8);
@@ -641,7 +641,7 @@ void render_advanced_bounds_processor(float param_1, void *param_2, float param_
             temp_vertex = sorted_buffer[1];
             
             if (0 < *(int *)0x180c8a9a8) {
-                stack_value = (float)((ulonglong)*vertex_buffer >> 0x20);
+                stack_value = (float)((uint64_t)*vertex_buffer >> 0x20);
                 start_pos = *(int *)0x180c8a9a8;
                 vertex_buffer = sorted_buffer;
                 
@@ -649,13 +649,13 @@ void render_advanced_bounds_processor(float param_1, void *param_2, float param_
                     if (*(float *)(vertex_buffer + -2) <= stack_value) break;
                     start_pos -= 1;
                     
-                    *(int *)vertex_buffer = *(int *)((longlong)vertex_buffer - sizeof(render_vertex_t));
-                    *(int *)((longlong)vertex_buffer + 4) = *(int *)(vertex_buffer + -2);
-                    *(int *)((longlong)vertex_buffer + 8) = *(int *)(vertex_buffer + -1);
-                    *(int *)((longlong)vertex_buffer + 12) = *(int *)(vertex_buffer + 0);
-                    *(int *)((longlong)vertex_buffer + 16) = *(int *)((longlong)vertex_buffer - 4);
+                    *(int *)vertex_buffer = *(int *)((int64_t)vertex_buffer - sizeof(render_vertex_t));
+                    *(int *)((int64_t)vertex_buffer + 4) = *(int *)(vertex_buffer + -2);
+                    *(int *)((int64_t)vertex_buffer + 8) = *(int *)(vertex_buffer + -1);
+                    *(int *)((int64_t)vertex_buffer + 12) = *(int *)(vertex_buffer + 0);
+                    *(int *)((int64_t)vertex_buffer + 16) = *(int *)((int64_t)vertex_buffer - 4);
                     
-                    vertex_buffer = (render_vertex_t *)((longlong)vertex_buffer - sizeof(render_vertex_t));
+                    vertex_buffer = (render_vertex_t *)((int64_t)vertex_buffer - sizeof(render_vertex_t));
                 } while (0 < start_pos);
                 
                 if (*(int *)0x180c8a9a8 != start_pos) {
@@ -667,7 +667,7 @@ void render_advanced_bounds_processor(float param_1, void *param_2, float param_
             }
             
             *(int *)0x180c8a9a8 += 1;
-            sorted_buffer = (render_vertex_t *)((longlong)sorted_buffer + sizeof(render_vertex_t));
+            sorted_buffer = (render_vertex_t *)((int64_t)sorted_buffer + sizeof(render_vertex_t));
         } while (*(int *)0x180c8a9a8 < *(int *)0x180c8a9a8);
     }
     
@@ -695,7 +695,7 @@ void render_quick_sorter(uint flags)
     render_vertex_t *vertex_buffer;
     render_vertex_t *sorted_buffer;
     render_vertex_t temp_vertex;
-    longlong data_offset;
+    int64_t data_offset;
     float stack_value;
     
     // 调用渲染管线
@@ -710,7 +710,7 @@ void render_quick_sorter(uint flags)
             temp_vertex = sorted_buffer[1];
             
             if (0 < *(int *)0x180c8a9a8) {
-                stack_value = (float)((ulonglong)*vertex_buffer >> 0x20);
+                stack_value = (float)((uint64_t)*vertex_buffer >> 0x20);
                 data_offset = *(int *)0x180c8a9a8;
                 vertex_buffer = sorted_buffer;
                 
@@ -718,13 +718,13 @@ void render_quick_sorter(uint flags)
                     if (*(float *)(vertex_buffer + -2) <= stack_value) break;
                     data_offset -= 1;
                     
-                    *(int *)vertex_buffer = *(int *)((longlong)vertex_buffer - sizeof(render_vertex_t));
-                    *(int *)((longlong)vertex_buffer + 4) = *(int *)(vertex_buffer + -2);
-                    *(int *)((longlong)vertex_buffer + 8) = *(int *)(vertex_buffer + -1);
-                    *(int *)((longlong)vertex_buffer + 12) = *(int *)(vertex_buffer + 0);
-                    *(int *)((longlong)vertex_buffer + 16) = *(int *)((longlong)vertex_buffer - 4);
+                    *(int *)vertex_buffer = *(int *)((int64_t)vertex_buffer - sizeof(render_vertex_t));
+                    *(int *)((int64_t)vertex_buffer + 4) = *(int *)(vertex_buffer + -2);
+                    *(int *)((int64_t)vertex_buffer + 8) = *(int *)(vertex_buffer + -1);
+                    *(int *)((int64_t)vertex_buffer + 12) = *(int *)(vertex_buffer + 0);
+                    *(int *)((int64_t)vertex_buffer + 16) = *(int *)((int64_t)vertex_buffer - 4);
                     
-                    vertex_buffer = (render_vertex_t *)((longlong)vertex_buffer - sizeof(render_vertex_t));
+                    vertex_buffer = (render_vertex_t *)((int64_t)vertex_buffer - sizeof(render_vertex_t));
                 } while (0 < data_offset);
                 
                 if (*(int *)0x180c8a9a8 != data_offset) {
@@ -736,7 +736,7 @@ void render_quick_sorter(uint flags)
             }
             
             *(int *)0x180c8a9a8 += 1;
-            sorted_buffer = (render_vertex_t *)((longlong)sorted_buffer + sizeof(render_vertex_t));
+            sorted_buffer = (render_vertex_t *)((int64_t)sorted_buffer + sizeof(render_vertex_t));
         } while (*(int *)0x180c8a9a8 < *(int *)0x180c8a9a8);
     }
     
@@ -764,9 +764,9 @@ void render_optimized_sorter(uint flags, float param_2)
 {
     render_vertex_t *vertex_buffer;
     render_vertex_t temp_vertex;
-    longlong data_offset;
+    int64_t data_offset;
     render_vertex_t *current_buffer;
-    longlong buffer_size;
+    int64_t buffer_size;
     uint current_flags;
     float current_value;
     uint temp_flags;
@@ -838,7 +838,7 @@ void render_optimized_sorter(uint flags, float param_2)
  */
 void render_statistics_updater(void)
 {
-    longlong context_ptr;
+    int64_t context_ptr;
     
     // 更新统计计数器
     *(int *)(context_ptr + 0x3a8) -= 1;
@@ -864,7 +864,7 @@ void render_statistics_updater(void)
  * 此函数实现递归分割算法，用于自适应细分和细节层次控制。
  * 使用四叉树或八叉树数据结构进行空间分割。
  */
-uint render_recursive_subdivider(longlong output_ptr, int *count_ptr, float x1, float y1, 
+uint render_recursive_subdivider(int64_t output_ptr, int *count_ptr, float x1, float y1, 
                                  float x2, float y2, float x3, float y3, 
                                  float tolerance, int depth)
 {
@@ -887,8 +887,8 @@ uint render_recursive_subdivider(longlong output_ptr, int *count_ptr, float x1, 
         if (error_x * error_x + error_y * error_y <= tolerance) {
             count = *count_ptr;
             if (output_ptr != 0) {
-                *(float *)(output_ptr + (longlong)count * 8) = x3;
-                *(float *)(output_ptr + 4 + (longlong)count * 8) = y3;
+                *(float *)(output_ptr + (int64_t)count * 8) = x3;
+                *(float *)(output_ptr + 4 + (int64_t)count * 8) = y3;
             }
             *count_ptr = count + 1;
         }
@@ -917,9 +917,9 @@ uint render_recursive_subdivider(longlong output_ptr, int *count_ptr, float x1, 
 uint render_adaptive_sampler(float param_1, int *count_ptr, float param_3)
 {
     int count;
-    longlong context_ptr;
+    int64_t context_ptr;
     int current_depth;
-    longlong output_ptr;
+    int64_t output_ptr;
     float curve_param;
     float sampling_params[4];
     float stack_values[2];
@@ -936,8 +936,8 @@ uint render_adaptive_sampler(float param_1, int *count_ptr, float param_3)
     if (param_1 + param_3 <= threshold) {
         count = *count_ptr;
         if (output_ptr != 0) {
-            *(uint *)(output_ptr + (longlong)count * 8) = sampling_params[0];
-            *(uint *)(output_ptr + 4 + (longlong)count * 8) = sampling_params[1];
+            *(uint *)(output_ptr + (int64_t)count * 8) = sampling_params[0];
+            *(uint *)(output_ptr + 4 + (int64_t)count * 8) = sampling_params[1];
         }
         *count_ptr = count + 1;
     }
@@ -987,7 +987,7 @@ uint render_pipeline_initializer(void)
  * 此函数实现高级细分算法，用于曲面的自适应细分。
  * 使用Catmull-Clark细分或其他细分方法。
  */
-void render_advanced_subdivider(longlong output_ptr, int *count_ptr, float x1, float y1, 
+void render_advanced_subdivider(int64_t output_ptr, int *count_ptr, float x1, float y1, 
                                float x2, float y2, float x3, float y3, 
                                float x4, float y4, float x5, float y5, 
                                float tolerance, int depth)
@@ -1019,8 +1019,8 @@ void render_advanced_subdivider(longlong output_ptr, int *count_ptr, float x1, f
             if (diagonal_squared <= tolerance) {
                 count = *count_ptr;
                 if (output_ptr != 0) {
-                    *(float *)(output_ptr + (longlong)count * 8) = y4;
-                    *(float *)(output_ptr + 4 + (longlong)count * 8) = x5;
+                    *(float *)(output_ptr + (int64_t)count * 8) = y4;
+                    *(float *)(output_ptr + 4 + (int64_t)count * 8) = x5;
                 }
                 *count_ptr = count + 1;
                 return;
@@ -1070,8 +1070,8 @@ void render_advanced_subdivider(longlong output_ptr, int *count_ptr, float x1, f
 void render_final_optimizer(void *render_context, float param_2)
 {
     int count;
-    longlong context_ptr;
-    longlong output_ptr;
+    int64_t context_ptr;
+    int64_t output_ptr;
     int depth;
     int *count_ptr;
     float curve_params[4];
@@ -1093,8 +1093,8 @@ void render_final_optimizer(void *render_context, float param_2)
         if (param_2 <= sampling_params[1]) {
             count = *count_ptr;
             if (output_ptr != 0) {
-                *(float *)(output_ptr + (longlong)count * 8) = sampling_params[2];
-                *(float *)(output_ptr + 4 + (longlong)count * 8) = sampling_params[3];
+                *(float *)(output_ptr + (int64_t)count * 8) = sampling_params[2];
+                *(float *)(output_ptr + 4 + (int64_t)count * 8) = sampling_params[3];
             }
             *count_ptr = count + 1;
             return;

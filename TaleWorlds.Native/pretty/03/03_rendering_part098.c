@@ -136,7 +136,7 @@ void ProcessResourceAllocation(void* context, uint64_t resource_id,
     }
     
     /* 计算所需内存大小 */
-    required_size = ((longlong*)buffer_info)[1] - *(longlong*)buffer_info >> 3;
+    required_size = ((int64_t*)buffer_info)[1] - *(int64_t*)buffer_info >> 3;
     allocation_flags = *(uint32_t*)(buffer_info + 3);
     
     /* 分配内存 */
@@ -148,11 +148,11 @@ void ProcessResourceAllocation(void* context, uint64_t resource_id,
     
     /* 设置内存边界 */
     void* memory_end = allocated_memory + required_size * RESOURCE_ALIGNMENT;
-    void* memory_start = *(longlong*)buffer_info;
+    void* memory_start = *(int64_t*)buffer_info;
     
     /* 复制现有数据 */
-    if (memory_start != ((longlong*)buffer_info)[1]) {
-        memmove(allocated_memory, memory_start, ((longlong*)buffer_info)[1] - memory_start);
+    if (memory_start != ((int64_t*)buffer_info)[1]) {
+        memmove(allocated_memory, memory_start, ((int64_t*)buffer_info)[1] - memory_start);
     }
     
     /* 保存资源标志 */
@@ -209,9 +209,9 @@ void ProcessResourceAllocation(void* context, uint64_t resource_id,
     
     /* 设置资源属性 */
     *(uint32_t*)(current_resource + 9) = (uint32_t)(uint64_t)resource_data[0];
-    *(uint32_t*)((longlong)current_resource + 0x4c) = (uint32_t)(uint64_t)resource_data[1];
+    *(uint32_t*)((int64_t)current_resource + 0x4c) = (uint32_t)(uint64_t)resource_data[1];
     *(uint32_t*)(current_resource + 10) = (uint32_t)(uint64_t)resource_data[2];
-    *(uint32_t*)((longlong)current_resource + 0x54) = (uint32_t)(uint64_t)resource_data[3];
+    *(uint32_t*)((int64_t)current_resource + 0x54) = (uint32_t)(uint64_t)resource_data[3];
     
     /* 释放临时内存 */
     if (allocated_memory != NULL) {
@@ -363,7 +363,7 @@ uint32_t InitializeResourceProperties(void* device, void* resource,
             void* related_resource = *(void**)(resource + 0x28);
             if (related_resource != NULL) {
                 *(short*)(related_resource + 0x2b0) = *(short*)(related_resource + 0x2b0) + 1;
-                if (*(longlong*)(related_resource + 0x168) != 0) {
+                if (*(int64_t*)(related_resource + 0x168) != 0) {
                     func_0x0001802eeba0();
                 }
             }
@@ -482,7 +482,7 @@ uint32_t ProcessPipelineResource(void* device, void* resource,
     void* pipeline_context = NULL;
     
     /* 初始化变量 */
-    longlong context_ptr = (longlong)context_data;
+    int64_t context_ptr = (int64_t)context_data;
     uint64_t stack_value = 0xfffffffffffffffe;
     
     /* 计算资源标志 */
@@ -536,9 +536,9 @@ uint32_t ProcessPipelineResource(void* device, void* resource,
             uint32_t tex_param3 = *(uint32_t*)(resource_info + 0xdc);
             
             *(uint32_t*)(pipeline_object + 14) = *(uint32_t*)(resource_info + 0xd0);
-            *(uint32_t*)((longlong)pipeline_object + 0x74) = tex_param1;
+            *(uint32_t*)((int64_t)pipeline_object + 0x74) = tex_param1;
             *(uint32_t*)(pipeline_object + 15) = tex_param2;
-            *(uint32_t*)((longlong)pipeline_object + 0x7c) = tex_param3;
+            *(uint32_t*)((int64_t)pipeline_object + 0x7c) = tex_param3;
             
             /* 设置着色器参数 */
             uint32_t shader_param1 = *(uint32_t*)(resource_info + 0xe4);
@@ -546,9 +546,9 @@ uint32_t ProcessPipelineResource(void* device, void* resource,
             uint32_t shader_param3 = *(uint32_t*)(resource_info + 0xec);
             
             *(uint32_t*)(pipeline_object + 16) = *(uint32_t*)(resource_info + 0xe0);
-            *(uint32_t*)((longlong)pipeline_object + 0x84) = shader_param1;
+            *(uint32_t*)((int64_t)pipeline_object + 0x84) = shader_param1;
             *(uint32_t*)(pipeline_object + 17) = shader_param2;
-            *(uint32_t*)((longlong)pipeline_object + 0x8c) = shader_param3;
+            *(uint32_t*)((int64_t)pipeline_object + 0x8c) = shader_param3;
             
             /* 处理上下文关联 */
             lod_value = *(uint64_t*)(context_ptr + 0x10);
@@ -688,7 +688,7 @@ uint32_t ProcessBufferResources(void* device, void* resource,
     
     if (has_buffer_params) {
         /* 设置缓冲区属性 */
-        *(char*)((longlong)resource + 0xa9) = *(char*)(resource_info + 0xb0);
+        *(char*)((int64_t)resource + 0xa9) = *(char*)(resource_info + 0xb0);
         
         buffer_data = *(void**)(resource_info + 0x60);
         resource[14] = *(void**)(resource_info + 0x58);
@@ -699,18 +699,18 @@ uint32_t ProcessBufferResources(void* device, void* resource,
         buffer_param3 = *(uint32_t*)(resource_info + 0x74);
         
         *(uint32_t*)(resource + 16) = *(uint32_t*)(resource_info + 0x68);
-        *(uint32_t*)((longlong)resource + 0x84) = buffer_param1;
+        *(uint32_t*)((int64_t)resource + 0x84) = buffer_param1;
         *(uint32_t*)(resource + 17) = buffer_param2;
-        *(uint32_t*)((longlong)resource + 0x8c) = buffer_param3;
+        *(uint32_t*)((int64_t)resource + 0x8c) = buffer_param3;
         
         buffer_param1 = *(uint32_t*)(resource_info + 0x7c);
         buffer_param2 = *(uint32_t*)(resource_info + 0x80);
         buffer_param3 = *(uint32_t*)(resource_info + 0x84);
         
         *(uint32_t*)(resource + 18) = *(uint32_t*)(resource_info + 0x78);
-        *(uint32_t*)((longlong)resource + 0x94) = buffer_param1;
+        *(uint32_t*)((int64_t)resource + 0x94) = buffer_param1;
         *(uint32_t*)(resource + 19) = buffer_param2;
-        *(uint32_t*)((longlong)resource + 0x9c) = buffer_param3;
+        *(uint32_t*)((int64_t)resource + 0x9c) = buffer_param3;
         
         *(uint32_t*)(resource + 20) = *(uint32_t*)(resource_info + 0x88);
         
@@ -769,7 +769,7 @@ uint32_t ProcessBufferResources(void* device, void* resource,
                             element_flags = (int)parent_index + 1;
                             parent_index = (uint64_t)element_flags;
                             buffer_data = buffer_data + 8;
-                        } while ((uint64_t)(longlong)(int)element_flags < (uint64_t)(buffer_end - buffer_start >> 3));
+                        } while ((uint64_t)(int64_t)(int)element_flags < (uint64_t)(buffer_end - buffer_start >> 3));
                     }
                     
                     FUN_18039f2b0(resource, buffer_interface);
@@ -814,7 +814,7 @@ uint32_t InitializeResourceContext(void* resource_context, void* device_context,
     uint32_t resource_param3 = 0;
     char resource_type = 0;
     uint32_t init_result = 0;
-    longlong resource_offset = 0;
+    int64_t resource_offset = 0;
     void* texture_resource = NULL;
     void* shader_resource = NULL;
     void* buffer_resource = NULL;
@@ -826,7 +826,7 @@ uint32_t InitializeResourceContext(void* resource_context, void* device_context,
     uint64_t stack_value = 0;
     uint32_t stack_data[2];
     void* stack_pointer = NULL;
-    longlong stack_context = 0;
+    int64_t stack_context = 0;
     uint32_t stack_param = 0;
     char stack_buffer[32];
     
@@ -834,8 +834,8 @@ uint32_t InitializeResourceContext(void* resource_context, void* device_context,
     stack_value = 0xfffffffffffffffe;
     
     /* 设置基础资源属性 */
-    *(uint32_t*)((longlong)resource_context + 0x5c) = 0;
-    *(uint32_t*)((longlong)resource_context + 100) = *(uint32_t*)(resource_data + 0x270);
+    *(uint32_t*)((int64_t)resource_context + 0x5c) = 0;
+    *(uint32_t*)((int64_t)resource_context + 100) = *(uint32_t*)(resource_data + 0x270);
     *(uint32_t*)(resource_context + 0xc) = *(uint32_t*)(resource_data + 0x100);
     
     /* 设置变换矩阵 */
@@ -853,18 +853,18 @@ uint32_t InitializeResourceContext(void* resource_context, void* device_context,
     resource_param2 = *(uint32_t*)(resource_data + 0x14c);
     
     *(uint32_t*)(resource_context + 30) = *(uint32_t*)(resource_data + 0x140);
-    *(uint32_t*)((longlong)resource_context + 0xf4) = resource_state;
+    *(uint32_t*)((int64_t)resource_context + 0xf4) = resource_state;
     *(uint32_t*)(resource_context + 31) = resource_param1;
-    *(uint32_t*)((longlong)resource_context + 0xfc) = resource_param2;
+    *(uint32_t*)((int64_t)resource_context + 0xfc) = resource_param2;
     
     resource_state = *(uint32_t*)(resource_data + 0x154);
     resource_param1 = *(uint32_t*)(resource_data + 0x158);
     resource_param2 = *(uint32_t*)(resource_data + 0x15c);
     
     *(uint32_t*)(resource_context + 32) = *(uint32_t*)(resource_data + 0x150);
-    *(uint32_t*)((longlong)resource_context + 0x104) = resource_state;
+    *(uint32_t*)((int64_t)resource_context + 0x104) = resource_state;
     *(uint32_t*)(resource_context + 33) = resource_param1;
-    *(uint32_t*)((longlong)resource_context + 0x10c) = resource_param2;
+    *(uint32_t*)((int64_t)resource_context + 0x10c) = resource_param2;
     
     /* 设置资源名称 */
     if (*(uint64_t*)(resource_data + 0x1b0) == 0) {
@@ -900,9 +900,9 @@ uint32_t InitializeResourceContext(void* resource_context, void* device_context,
     resource_param2 = *(uint32_t*)(resource_data + 0x2c4);
     
     *(uint32_t*)(resource_context + 22) = *(uint32_t*)(resource_data + 0x2b8);
-    *(uint32_t*)((longlong)resource_context + 0xb4) = resource_state;
+    *(uint32_t*)((int64_t)resource_context + 0xb4) = resource_state;
     *(uint32_t*)(resource_context + 23) = resource_param1;
-    *(uint32_t*)((longlong)resource_context + 0xbc) = resource_param2;
+    *(uint32_t*)((int64_t)resource_context + 0xbc) = resource_param2;
     
     /* 获取资源接口 */
     resource_offset = FUN_180079430(resource_data);
@@ -921,7 +921,7 @@ uint32_t InitializeResourceContext(void* resource_context, void* device_context,
     /* 检查资源能力 */
     resource_capability = *(uint64_t*)(*(uint64_t*)(resource_data + 0x1b8) + 0x3b0);
     if ((resource_capability != 0) && ((*(uint64_t*)(*(uint64_t*)(resource_data + 0x1b8) + 0x140) & resource_capability) != 0)) {
-        *(uint32_t*)((longlong)resource_context + 0x5c) = *(uint32_t*)((longlong)resource_context + 0x5c) | 0x100;
+        *(uint32_t*)((int64_t)resource_context + 0x5c) = *(uint32_t*)((int64_t)resource_context + 0x5c) | 0x100;
     }
     
     /* 处理纹理资源 */
@@ -971,19 +971,19 @@ uint32_t InitializeResourceContext(void* resource_context, void* device_context,
                 FUN_18033b220(device_context + 0xae8, stack_buffer, stack_data);
             }
             
-            *(uint32_t*)((longlong)resource_context + 0x6c) = resource_state;
+            *(uint32_t*)((int64_t)resource_context + 0x6c) = resource_state;
         }
     }
     
     /* 设置资源管理器 */
     if (*(uint64_t*)(resource_data + 600) == 0) {
-        init_result = *(int*)((longlong)resource_context + 0x74);
+        init_result = *(int*)((int64_t)resource_context + 0x74);
     }
     else {
         init_result = *(int*)(*(uint64_t*)(resource_data + 600) + 8);
-        *(int*)((longlong)resource_context + 0x74) = init_result;
+        *(int*)((int64_t)resource_context + 0x74) = init_result;
         *(uint32_t*)(resource_context + 15) = *(uint32_t*)(*(uint64_t*)(resource_data + 600) + 0x18);
-        *(uint32_t*)((longlong)resource_context + 0x7c) = *(uint32_t*)(*(uint64_t*)(resource_data + 600) + 0x1c);
+        *(uint32_t*)((int64_t)resource_context + 0x7c) = *(uint32_t*)(*(uint64_t*)(resource_data + 600) + 0x1c);
     }
     
     /* 处理资源数组 */
@@ -1005,14 +1005,14 @@ uint32_t InitializeResourceContext(void* resource_context, void* device_context,
                 buffer_resource[3] = stack_value;
                 
                 /* 复制资源属性 */
-                resource_state = *(uint32_t*)((longlong)resource_allocator + 0x24);
+                resource_state = *(uint32_t*)((int64_t)resource_allocator + 0x24);
                 resource_param1 = *(uint32_t*)(resource_allocator + 5);
-                resource_param2 = *(uint32_t*)((longlong)resource_allocator + 0x2c);
+                resource_param2 = *(uint32_t*)((int64_t)resource_allocator + 0x2c);
                 
                 *(uint32_t*)(buffer_resource + 4) = *(uint32_t*)(resource_allocator + 4);
-                *(uint32_t*)((longlong)buffer_resource + 0x24) = resource_state;
+                *(uint32_t*)((int64_t)buffer_resource + 0x24) = resource_state;
                 *(uint32_t*)(buffer_resource + 5) = resource_param1;
-                *(uint32_t*)((longlong)buffer_resource + 0x2c) = resource_param2;
+                *(uint32_t*)((int64_t)buffer_resource + 0x2c) = resource_param2;
                 
                 stack_value = resource_allocator[7];
                 buffer_resource[6] = resource_allocator[6];
@@ -1045,23 +1045,23 @@ uint32_t InitializeResourceContext(void* resource_context, void* device_context,
                 resource_allocator[2] = resource_allocator[2];
                 resource_allocator[3] = stack_value;
                 
-                resource_state = *(uint32_t*)((longlong)resource_allocator + 0x24);
+                resource_state = *(uint32_t*)((int64_t)resource_allocator + 0x24);
                 resource_param1 = *(uint32_t*)(resource_allocator + 5);
-                resource_param2 = *(uint32_t*)((longlong)resource_allocator + 0x2c);
+                resource_param2 = *(uint32_t*)((int64_t)resource_allocator + 0x2c);
                 
                 *(uint32_t*)(resource_allocator + 4) = *(uint32_t*)(resource_allocator + 4);
-                *(uint32_t*)((longlong)resource_allocator + 0x24) = resource_state;
+                *(uint32_t*)((int64_t)resource_allocator + 0x24) = resource_state;
                 *(uint32_t*)(resource_allocator + 5) = resource_param1;
-                *(uint32_t*)((longlong)resource_allocator + 0x2c) = resource_param2;
+                *(uint32_t*)((int64_t)resource_allocator + 0x2c) = resource_param2;
                 
-                resource_state = *(uint32_t*)((longlong)resource_allocator + 0x34);
+                resource_state = *(uint32_t*)((int64_t)resource_allocator + 0x34);
                 resource_param1 = *(uint32_t*)(resource_allocator + 7);
-                resource_param2 = *(uint32_t*)((longlong)resource_allocator + 0x3c);
+                resource_param2 = *(uint32_t*)((int64_t)resource_allocator + 0x3c);
                 
                 *(uint32_t*)(resource_allocator + 6) = *(uint32_t*)(resource_allocator + 6);
-                *(uint32_t*)((longlong)resource_allocator + 0x34) = resource_state;
+                *(uint32_t*)((int64_t)resource_allocator + 0x34) = resource_state;
                 *(uint32_t*)(resource_allocator + 7) = resource_param1;
-                *(uint32_t*)((longlong)resource_allocator + 0x3c) = resource_param2;
+                *(uint32_t*)((int64_t)resource_allocator + 0x3c) = resource_param2;
                 
                 /* 释放旧数组 */
                 if (resource_context[42] != 0) {
@@ -1076,7 +1076,7 @@ uint32_t InitializeResourceContext(void* resource_context, void* device_context,
             
             resource_state = resource_state + 1;
             resource_offset = resource_offset + 0x40;
-        } while (resource_state < *(uint32_t*)((longlong)resource_context + 0x74));
+        } while (resource_state < *(uint32_t*)((int64_t)resource_context + 0x74));
     }
     
     /* 处理资源标志数组 */

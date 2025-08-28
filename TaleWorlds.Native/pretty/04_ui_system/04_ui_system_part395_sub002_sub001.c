@@ -65,8 +65,8 @@ typedef enum {
  * UI组件结构体
  */
 typedef struct {
-  longlong component_id;        // 组件唯一标识符
-  longlong parent_id;           // 父组件ID
+  int64_t component_id;        // 组件唯一标识符
+  int64_t parent_id;           // 父组件ID
   int state_flags;              // 状态标志
   int layer_priority;           // 层级优先级
   float position_x;             // X坐标位置
@@ -81,12 +81,12 @@ typedef struct {
  * UI界面管理器结构体
  */
 typedef struct {
-  longlong manager_id;          // 管理器ID
+  int64_t manager_id;          // 管理器ID
   int component_count;          // 组件数量
   int max_components;          // 最大组件数
   UIComponent* components;      // 组件数组指针
-  longlong active_component;    // 当前活跃组件
-  longlong focused_component;   // 当前焦点组件
+  int64_t active_component;    // 当前活跃组件
+  int64_t focused_component;   // 当前焦点组件
   int render_flags;             // 渲染标志
   void* system_context;         // 系统上下文指针
 } UIManager;
@@ -118,7 +118,7 @@ int UISystemAdvancedSubmoduleInitializer(void* system_context, void* config_para
  * @param parent_id 父组件ID
  * @return 创建成功返回组件ID，失败返回0
  */
-longlong UISystemComponentCreator(UIManager* manager, int component_type, longlong parent_id);
+int64_t UISystemComponentCreator(UIManager* manager, int component_type, int64_t parent_id);
 
 /**
  * UI系统状态同步器
@@ -313,10 +313,10 @@ int UISystemAdvancedSubmoduleInitializer(void* system_context, void* config_para
  * @param parent_id 父组件ID
  * @return 创建成功返回组件ID，失败返回0
  */
-longlong UISystemComponentCreator(UIManager* manager, int component_type, longlong parent_id)
+int64_t UISystemComponentCreator(UIManager* manager, int component_type, int64_t parent_id)
 {
     UIComponent* component;
-    longlong component_id;
+    int64_t component_id;
     int i;
     
     // 参数验证

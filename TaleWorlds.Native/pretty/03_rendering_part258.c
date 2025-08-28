@@ -75,7 +75,7 @@
  * - 采用寄存器变量优化性能
  * - 支持SIMD指令加速处理
  */
-void RenderingData_CompareAndOptimize(longlong param_1,longlong *param_2,longlong param_3,int param_4,
+void RenderingData_CompareAndOptimize(int64_t param_1,int64_t *param_2,int64_t param_3,int param_4,
                                       uint64_t param_5)
 
 {
@@ -93,15 +93,15 @@ void RenderingData_CompareAndOptimize(longlong param_1,longlong *param_2,longlon
   uint64_t unaff_RBX;
   uint64_t unaff_RBP;
   uint64_t unaff_RSI;
-  longlong lVar12;
+  int64_t lVar12;
   int iVar13;
   int iVar14;
   uint64_t unaff_RDI;
-  longlong in_R11;
+  int64_t in_R11;
   uint64_t unaff_R13;
-  longlong lVar15;
+  int64_t lVar15;
   uint64_t unaff_R14;
-  longlong lVar16;
+  int64_t lVar16;
   int32_t unaff_XMM6_Da;
   int32_t unaff_XMM6_Db;
   int32_t unaff_XMM6_Dc;
@@ -136,9 +136,9 @@ void RenderingData_CompareAndOptimize(longlong param_1,longlong *param_2,longlon
   int32_t unaff_XMM13_Dd;
   float fStackX_20;
   float fStackX_24;
-  longlong lStack0000000000000030;
-  longlong lStack0000000000000038;
-  longlong lStack0000000000000040;
+  int64_t lStack0000000000000030;
+  int64_t lStack0000000000000038;
+  int64_t lStack0000000000000040;
   float fStack0000000000000048;
   float fStack000000000000004c;
   float in_stack_00000050;
@@ -151,7 +151,7 @@ void RenderingData_CompareAndOptimize(longlong param_1,longlong *param_2,longlon
   float fStack0000000000000078;
   float fStack000000000000007c;
   float in_stack_00000080;
-  ulonglong in_stack_00000088;
+  uint64_t in_stack_00000088;
   
   *(uint64_t *)(in_R11 + 0x20) = unaff_RBX;
   *(uint64_t *)(in_R11 + -0x18) = unaff_RBP;
@@ -184,7 +184,7 @@ void RenderingData_CompareAndOptimize(longlong param_1,longlong *param_2,longlon
   *(int32_t *)(in_R11 + -0x94) = unaff_XMM11_Db;
   *(int32_t *)(in_R11 + -0x90) = unaff_XMM11_Dc;
   *(int32_t *)(in_R11 + -0x8c) = unaff_XMM11_Dd;
-  lStack0000000000000040 = (longlong)param_4;
+  lStack0000000000000040 = (int64_t)param_4;
   *(int32_t *)(in_R11 + -0xa8) = unaff_XMM12_Da;
   *(int32_t *)(in_R11 + -0xa4) = unaff_XMM12_Db;
   *(int32_t *)(in_R11 + -0xa0) = unaff_XMM12_Dc;
@@ -195,7 +195,7 @@ void RenderingData_CompareAndOptimize(longlong param_1,longlong *param_2,longlon
   *(int32_t *)(in_R11 + -0xac) = unaff_XMM13_Dd;
   lStack0000000000000030 = param_3;
   do {
-    lStack0000000000000038 = (longlong)*(int *)(lStack0000000000000030 + lVar16 * 4);
+    lStack0000000000000038 = (int64_t)*(int *)(lStack0000000000000030 + lVar16 * 4);
     uVar1 = *(uint *)(param_1 + lStack0000000000000038 * 4);
     uVar11 = uVar1 & 3;
     iVar13 = (int)uVar1 >> 2;
@@ -218,7 +218,7 @@ void RenderingData_CompareAndOptimize(longlong param_1,longlong *param_2,longlon
         iVar13 = (int)lVar15;
         if (!bVar2) goto LAB_180410f7e;
         iVar13 = *(int *)(lStack0000000000000030 + lVar12 * 4);
-        lVar15 = (longlong)iVar13;
+        lVar15 = (int64_t)iVar13;
         uVar1 = *(uint *)(param_1 + lVar15 * 4);
         uVar11 = uVar1 & 3;
         iVar14 = (int)uVar1 >> 2;
@@ -239,13 +239,13 @@ void RenderingData_CompareAndOptimize(longlong param_1,longlong *param_2,longlon
       if (!bVar2) {
 LAB_180410f7e:
         *(int32_t *)(param_1 + lStack0000000000000038 * 4) =
-             *(int32_t *)(param_1 + (longlong)iVar13 * 4);
+             *(int32_t *)(param_1 + (int64_t)iVar13 * 4);
       }
     }
     lVar16 = lVar16 + 1;
     if (lStack0000000000000040 <= lVar16) {
                     // WARNING: Subroutine does not return
-      FUN_1808fc050(in_stack_00000088 ^ (ulonglong)&stack0x00000000);
+      FUN_1808fc050(in_stack_00000088 ^ (uint64_t)&stack0x00000000);
     }
   } while( true );
 }
@@ -302,7 +302,7 @@ void RenderingState_Initialize(void)
  * - 采用条件判断优化处理流程
  * - 支持批量数据操作以提高性能
  */
-void RenderingData_OptimizeBatch(longlong param_1,longlong *param_2,uint param_3)
+void RenderingData_OptimizeBatch(int64_t param_1,int64_t *param_2,uint param_3)
 
 {
   bool bVar1;
@@ -316,18 +316,18 @@ void RenderingData_OptimizeBatch(longlong param_1,longlong *param_2,uint param_3
   float fVar9;
   uint uVar10;
   uint uVar11;
-  longlong lVar12;
-  longlong lVar13;
+  int64_t lVar12;
+  int64_t lVar13;
   int iVar14;
   int8_t auStack_158 [32];
   float fStack_138;
   float fStack_134;
   float fStack_130;
   float fStack_12c;
-  longlong lStack_128;
-  longlong lStack_120;
-  longlong lStack_118;
-  ulonglong uStack_110;
+  int64_t lStack_128;
+  int64_t lStack_120;
+  int64_t lStack_118;
+  uint64_t uStack_110;
   float fStack_108;
   float fStack_104;
   float fStack_100;
@@ -340,14 +340,14 @@ void RenderingData_OptimizeBatch(longlong param_1,longlong *param_2,uint param_3
   float fStack_d8;
   float fStack_d4;
   float fStack_d0;
-  ulonglong uStack_c8;
+  uint64_t uStack_c8;
   
   if ((int)param_3 < 1) {
     return;
   }
-  uStack_c8 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_158;
+  uStack_c8 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_158;
   lStack_128 = 0;
-  uStack_110 = (ulonglong)param_3;
+  uStack_110 = (uint64_t)param_3;
   lStack_118 = 0;
   do {
     lStack_120 = 3;
@@ -398,7 +398,7 @@ void RenderingData_OptimizeBatch(longlong param_1,longlong *param_2,uint param_3
     uStack_110 = uStack_110 - 1;
     if (uStack_110 == 0) {
                     // WARNING: Subroutine does not return
-      FUN_1808fc050(uStack_c8 ^ (ulonglong)auStack_158);
+      FUN_1808fc050(uStack_c8 ^ (uint64_t)auStack_158);
     }
   } while( true );
 }
@@ -428,7 +428,7 @@ void RenderingData_OptimizeBatch(longlong param_1,longlong *param_2,uint param_3
  * - 采用寄存器变量优化性能
  * - 支持扩展的渲染参数配置
  */
-void RenderingData_ProcessOptimized(longlong param_1,longlong *param_2,ulonglong param_3,uint64_t param_4,
+void RenderingData_ProcessOptimized(int64_t param_1,int64_t *param_2,uint64_t param_3,uint64_t param_4,
                                     uint64_t param_5)
 
 {
@@ -445,12 +445,12 @@ void RenderingData_ProcessOptimized(longlong param_1,longlong *param_2,ulonglong
   uint uVar11;
   uint64_t unaff_RBX;
   uint64_t unaff_RBP;
-  longlong lVar12;
+  int64_t lVar12;
   uint64_t unaff_RSI;
-  longlong lVar13;
+  int64_t lVar13;
   int iVar14;
   uint64_t unaff_RDI;
-  longlong in_R11;
+  int64_t in_R11;
   uint64_t unaff_R13;
   uint64_t unaff_R14;
   int32_t unaff_XMM6_Da;
@@ -487,10 +487,10 @@ void RenderingData_ProcessOptimized(longlong param_1,longlong *param_2,ulonglong
   int32_t unaff_XMM13_Dd;
   float fStackX_20;
   float fStackX_24;
-  longlong lStack0000000000000030;
-  longlong lStack0000000000000038;
-  longlong lStack0000000000000040;
-  ulonglong uStack0000000000000048;
+  int64_t lStack0000000000000030;
+  int64_t lStack0000000000000038;
+  int64_t lStack0000000000000040;
+  uint64_t uStack0000000000000048;
   float fStack0000000000000050;
   float fStack0000000000000054;
   float in_stack_00000058;
@@ -503,7 +503,7 @@ void RenderingData_ProcessOptimized(longlong param_1,longlong *param_2,ulonglong
   float fStack0000000000000080;
   float fStack0000000000000084;
   float in_stack_00000088;
-  ulonglong in_stack_00000090;
+  uint64_t in_stack_00000090;
   
   *(uint64_t *)(in_R11 + 0x18) = unaff_RBX;
   *(uint64_t *)(in_R11 + -0x18) = unaff_RBP;
@@ -597,7 +597,7 @@ void RenderingData_ProcessOptimized(longlong param_1,longlong *param_2,ulonglong
     uStack0000000000000048 = uStack0000000000000048 - 1;
     if (uStack0000000000000048 == 0) {
                     // WARNING: Subroutine does not return
-      FUN_1808fc050(in_stack_00000090 ^ (ulonglong)&stack0x00000000);
+      FUN_1808fc050(in_stack_00000090 ^ (uint64_t)&stack0x00000000);
     }
   } while( true );
 }
@@ -660,27 +660,27 @@ void RenderingSupport_Initialize(void)
  * - 支持大规模渲染数据的批量处理
  * - 采用内存对齐和缓存优化策略
  */
-void RenderingState_ProcessData(longlong param_1,longlong param_2,longlong *param_3,int param_4)
+void RenderingState_ProcessData(int64_t param_1,int64_t param_2,int64_t *param_3,int param_4)
 
 {
   bool bVar1;
   int iVar2;
-  longlong lVar3;
-  ulonglong uVar4;
+  int64_t lVar3;
+  uint64_t uVar4;
   int32_t *puVar5;
-  longlong lVar6;
+  int64_t lVar6;
   uint uVar7;
-  ulonglong uVar8;
+  uint64_t uVar8;
   uint uVar9;
-  longlong lVar10;
-  ulonglong uVar11;
-  ulonglong uVar12;
+  int64_t lVar10;
+  uint64_t uVar11;
+  uint64_t uVar12;
   uint uVar13;
   float fVar14;
   float fVar15;
   int8_t auStack_138 [32];
   uint uStack_118;
-  longlong *plStack_110;
+  int64_t *plStack_110;
   uint uStack_108;
   uint uStack_104;
   int iStack_100;
@@ -705,7 +705,7 @@ void RenderingState_ProcessData(longlong param_1,longlong param_2,longlong *para
   float fStack_9c;
   float fStack_98;
   float fStack_94;
-  longlong lStack_90;
+  int64_t lStack_90;
   float fStack_88;
   float fStack_84;
   float fStack_80;
@@ -718,9 +718,9 @@ void RenderingState_ProcessData(longlong param_1,longlong param_2,longlong *para
   float fStack_58;
   float fStack_54;
   float fStack_50;
-  ulonglong uStack_48;
+  uint64_t uStack_48;
   
-  uStack_48 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_138;
+  uStack_48 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_138;
   uVar4 = 0;
   uStack_118 = 0;
   iStack_100 = 0;
@@ -824,23 +824,23 @@ void RenderingState_ProcessData(longlong param_1,longlong param_2,longlong *para
         uStack_118 = uStack_118 + iStack_e4;
         iStack_100 = iStack_100 + (int)lVar3;
         lStack_90 = lStack_90 + lVar3;
-        puStack_d8 = (uint *)((longlong)puStack_d8 + lVar6);
-        puStack_d0 = (int32_t *)((longlong)puStack_d0 + lVar6);
-        puStack_c8 = (int16_t *)((longlong)puStack_c8 + lVar6);
-        puStack_c0 = (uint *)((longlong)puStack_c0 + lVar6);
-        puStack_b8 = (uint *)((longlong)puStack_b8 + lVar6);
+        puStack_d8 = (uint *)((int64_t)puStack_d8 + lVar6);
+        puStack_d0 = (int32_t *)((int64_t)puStack_d0 + lVar6);
+        puStack_c8 = (int16_t *)((int64_t)puStack_c8 + lVar6);
+        puStack_c0 = (uint *)((int64_t)puStack_c0 + lVar6);
+        puStack_b8 = (uint *)((int64_t)puStack_b8 + lVar6);
         uVar4 = uVar4 + lVar10;
-        uVar11 = (ulonglong)uStack_118;
+        uVar11 = (uint64_t)uStack_118;
         param_3 = plStack_110;
         uVar7 = uStack_104;
       }
       uVar7 = uVar7 + 1;
-      uVar8 = (ulonglong)uVar7;
+      uVar8 = (uint64_t)uVar7;
       uStack_104 = uVar7;
       iVar2 = (**(code **)*param_3)(param_3);
     } while ((int)uVar7 < iVar2);
   }
-  lVar3 = (longlong)iStack_e0;
+  lVar3 = (int64_t)iStack_e0;
   if (0 < lVar3) {
     puVar5 = (int32_t *)(param_1 + 0x4c);
     do {
@@ -850,7 +850,7 @@ void RenderingState_ProcessData(longlong param_1,longlong param_2,longlong *para
     } while (lVar3 != 0);
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_48 ^ (ulonglong)auStack_138);
+  FUN_1808fc050(uStack_48 ^ (uint64_t)auStack_138);
 }
 
 
@@ -878,27 +878,27 @@ void RenderingState_ProcessData(longlong param_1,longlong param_2,longlong *para
  * - 支持大规模渲染数据的清理操作
  * - 采用内存安全的数据处理方式
  */
-void RenderingState_Finalize(longlong param_1,longlong param_2,longlong *param_3,int param_4)
+void RenderingState_Finalize(int64_t param_1,int64_t param_2,int64_t *param_3,int param_4)
 
 {
   bool bVar1;
   int iVar2;
   uint uVar3;
   uint64_t *in_RAX;
-  longlong lVar4;
-  ulonglong uVar5;
-  longlong unaff_RBP;
+  int64_t lVar4;
+  uint64_t uVar5;
+  int64_t unaff_RBP;
   int32_t *puVar6;
   uint64_t unaff_RDI;
-  longlong lVar7;
-  longlong in_R11;
+  int64_t lVar7;
+  int64_t in_R11;
   uint uVar8;
   uint64_t unaff_R12;
-  ulonglong uVar9;
+  uint64_t uVar9;
   uint uVar10;
-  ulonglong uVar11;
-  longlong lVar12;
-  ulonglong unaff_R14;
+  uint64_t uVar11;
+  int64_t lVar12;
+  uint64_t unaff_R14;
   uint uVar13;
   uint64_t unaff_R15;
   float fVar14;
@@ -908,7 +908,7 @@ void RenderingState_Finalize(longlong param_1,longlong param_2,longlong *param_3
   float fVar18;
   float fVar19;
   uint uStackX_20;
-  longlong *plStack0000000000000028;
+  int64_t *plStack0000000000000028;
   uint uStack0000000000000034;
   uint uStack0000000000000038;
   int iStack0000000000000058;
@@ -932,9 +932,9 @@ void RenderingState_Finalize(longlong param_1,longlong param_2,longlong *param_3
     puStack0000000000000070 = (int16_t *)(param_1 + 0x54);
     uVar5 = unaff_R14 & 0xffffffff;
     puStack0000000000000068 = (int32_t *)(param_1 + 0x50);
-    *(ulonglong *)(unaff_RBP + -0x58) = unaff_R14;
+    *(uint64_t *)(unaff_RBP + -0x58) = unaff_R14;
     puStack0000000000000060 = (uint *)(param_1 + 0x48);
-    *(longlong *)(unaff_RBP + -0x80) = param_1 + 0xa8;
+    *(int64_t *)(unaff_RBP + -0x80) = param_1 + 0xa8;
     puStack0000000000000078 = (uint *)(param_1 + 0xa0);
     do {
       uVar8 = (uint)uVar9;
@@ -1027,25 +1027,25 @@ void RenderingState_Finalize(longlong param_1,longlong param_2,longlong *param_3
         unaff_R14 = unaff_R14 + lVar7;
         uStackX_20 = uStackX_20 + iVar2;
         uStack0000000000000038 = uStack0000000000000038 + (int)lVar4;
-        *(longlong *)(unaff_RBP + -0x58) = *(longlong *)(unaff_RBP + -0x58) + lVar4;
-        puStack0000000000000060 = (uint *)((longlong)puStack0000000000000060 + lVar7);
-        puStack0000000000000068 = (int32_t *)((longlong)puStack0000000000000068 + lVar7);
-        puStack0000000000000070 = (int16_t *)((longlong)puStack0000000000000070 + lVar7);
-        puStack0000000000000078 = (uint *)((longlong)puStack0000000000000078 + lVar7);
-        *(longlong *)(unaff_RBP + -0x80) = *(longlong *)(unaff_RBP + -0x80) + lVar7;
+        *(int64_t *)(unaff_RBP + -0x58) = *(int64_t *)(unaff_RBP + -0x58) + lVar4;
+        puStack0000000000000060 = (uint *)((int64_t)puStack0000000000000060 + lVar7);
+        puStack0000000000000068 = (int32_t *)((int64_t)puStack0000000000000068 + lVar7);
+        puStack0000000000000070 = (int16_t *)((int64_t)puStack0000000000000070 + lVar7);
+        puStack0000000000000078 = (uint *)((int64_t)puStack0000000000000078 + lVar7);
+        *(int64_t *)(unaff_RBP + -0x80) = *(int64_t *)(unaff_RBP + -0x80) + lVar7;
         uVar5 = uVar5 + lVar12;
-        uVar11 = (ulonglong)uStackX_20;
+        uVar11 = (uint64_t)uStackX_20;
         param_3 = plStack0000000000000028;
         uVar8 = uStack0000000000000034;
       }
       uVar8 = uVar8 + 1;
-      uVar9 = (ulonglong)uVar8;
+      uVar9 = (uint64_t)uVar8;
       uStack0000000000000034 = uVar8;
       iVar2 = (**(code **)*param_3)(param_3);
     } while ((int)uVar8 < iVar2);
     unaff_R14 = 0;
   }
-  lVar4 = (longlong)iStack0000000000000058;
+  lVar4 = (int64_t)iStack0000000000000058;
   if (0 < lVar4) {
     puVar6 = (int32_t *)(param_1 + 0x4c);
     do {
@@ -1055,7 +1055,7 @@ void RenderingState_Finalize(longlong param_1,longlong param_2,longlong *param_3
     } while (lVar4 != 0);
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(*(ulonglong *)(unaff_RBP + -0x10) ^ (ulonglong)&stack0x00000000);
+  FUN_1808fc050(*(uint64_t *)(unaff_RBP + -0x10) ^ (uint64_t)&stack0x00000000);
 }
 
 /* ============================================================================

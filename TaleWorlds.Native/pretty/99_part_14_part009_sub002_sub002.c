@@ -14,9 +14,9 @@ void FUN_1808eeb60(int32_t param_1,byte *param_2)
   uint64_t uStack_28;
   uint64_t uStack_20;
   uint64_t uStack_18;
-  ulonglong uStack_10;
+  uint64_t uStack_10;
   
-  uStack_10 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_48;
+  uStack_10 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_48;
   uStack_28 = 0;
   uStack_20 = 0;
   uStack_18 = 0;
@@ -70,7 +70,7 @@ LAB_1808eec96:
   }
 LAB_1808eebd1:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_10 ^ (ulonglong)auStack_48);
+  FUN_1808fc050(uStack_10 ^ (uint64_t)auStack_48);
 }
 
 
@@ -143,7 +143,7 @@ int32_t FUN_1808eee30(uint64_t param_1,byte param_2,byte param_3)
   int32_t uVar5;
   char *pcVar6;
   uint64_t uVar7;
-  longlong lVar8;
+  int64_t lVar8;
   char *pcVar9;
   byte bVar10;
   
@@ -471,7 +471,7 @@ int32_t FUN_1808ef100(uint64_t param_1,byte param_2,char param_3)
   char cVar2;
   int32_t uVar3;
   char *pcVar4;
-  longlong lVar5;
+  int64_t lVar5;
   char *pcVar6;
   
   pcVar4 = (char *)func_0x0001808f0dd0(param_1,1);
@@ -628,7 +628,7 @@ int32_t FUN_1808ef250(uint64_t param_1,char *param_2)
   char cVar3;
   int32_t uVar4;
   char *pcVar5;
-  longlong lVar6;
+  int64_t lVar6;
   char *pcVar7;
   uint64_t uVar8;
   char cStackX_18;
@@ -945,7 +945,7 @@ int32_t FUN_1808ef530(uint64_t param_1,byte *param_2)
   byte bVar3;
   int32_t uVar4;
   char *pcVar5;
-  longlong lVar6;
+  int64_t lVar6;
   char *pcVar7;
   byte bVar8;
   
@@ -1130,7 +1130,7 @@ int32_t FUN_1808ef530(uint64_t param_1,byte *param_2)
 
 
 
-int32_t FUN_1808ef750(uint64_t param_1,ulonglong param_2)
+int32_t FUN_1808ef750(uint64_t param_1,uint64_t param_2)
 
 {
   char cVar1;
@@ -1159,7 +1159,7 @@ int32_t FUN_1808ef7d0(char *param_1,int param_2)
   char cVar2;
   int32_t uVar3;
   char *pcVar4;
-  longlong lVar5;
+  int64_t lVar5;
   char cVar6;
   
   if (param_1 == (char *)0x0) {
@@ -1334,7 +1334,7 @@ int32_t FUN_1808ef960(uint64_t param_1,char param_2)
   char cVar2;
   int32_t uVar3;
   char *pcVar4;
-  longlong lVar5;
+  int64_t lVar5;
   char *pcVar6;
   
   uVar3 = 0;

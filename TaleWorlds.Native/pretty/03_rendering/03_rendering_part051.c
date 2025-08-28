@@ -83,15 +83,15 @@ typedef struct {
  * 3. 处理字符串编码和数据转换
  * 4. 设置纹理和材质属性
  */
-void process_rendering_flags_and_materials(longlong param_1)
+void process_rendering_flags_and_materials(int64_t param_1)
 {
     byte* byte_buffer;
     int width, height;
     byte* source_ptr;
-    longlong data_ptr;
+    int64_t data_ptr;
     uint* output_buffer;
     int buffer_size;
-    longlong context_ptr;
+    int64_t context_ptr;
     uint* dimension_ptr;
     int is_initialized;
     
@@ -136,7 +136,7 @@ void process_rendering_flags_and_materials(longlong param_1)
         }
         
         // 分配输出缓冲区
-        output_buffer = (uint*)malloc((longlong)width * height * 4);
+        output_buffer = (uint*)malloc((int64_t)width * height * 4);
         *(uint**)(context_ptr + 0x20) = output_buffer;
         
         // 转换字节数据到像素格式
@@ -176,8 +176,8 @@ void process_rendering_flags_and_materials(longlong param_1)
  */
 void extract_rendering_dimensions(void)
 {
-    longlong context_ptr;
-    longlong dimension_ptr;
+    int64_t context_ptr;
+    int64_t dimension_ptr;
     uint* width_ptr;
     uint* height_ptr;
     void* output_ptr;
@@ -215,8 +215,8 @@ void extract_rendering_dimensions(void)
  */
 void extract_rendering_width(void)
 {
-    longlong context_ptr;
-    longlong dimension_ptr;
+    int64_t context_ptr;
+    int64_t dimension_ptr;
     uint* width_ptr;
     uint* height_ptr;
     
@@ -250,8 +250,8 @@ void extract_rendering_width(void)
  */
 void extract_rendering_height(void)
 {
-    longlong context_ptr;
-    longlong dimension_ptr;
+    int64_t context_ptr;
+    int64_t dimension_ptr;
     uint* height_ptr;
     
     // 提取渲染高度信息
@@ -285,13 +285,13 @@ void extract_rendering_height(void)
  * 4. 设置材质参数
  * 5. 更新材质计数
  */
-uint add_rendering_material_entry(longlong param_1, void* param_2, uint param_3, uint param_4)
+uint add_rendering_material_entry(int64_t param_1, void* param_2, uint param_3, uint param_4)
 {
     rendering_material_params* material_ptr;
     int current_count, new_count;
-    longlong material_array_ptr;
+    int64_t material_array_ptr;
     void* new_array_ptr;
-    longlong entry_offset;
+    int64_t entry_offset;
     int min_count;
     
     // 检查材质名称是否有效
@@ -337,11 +337,11 @@ uint add_rendering_material_entry(longlong param_1, void* param_2, uint param_3,
                 rendering_material_count++;
             }
             
-            new_array_ptr = malloc((longlong)new_count * 0x88);
-            if (*(longlong*)(param_1 + 0x68) != NULL) {
+            new_array_ptr = malloc((int64_t)new_count * 0x88);
+            if (*(int64_t*)(param_1 + 0x68) != NULL) {
                 // 复制现有材质数据
-                memcpy(new_array_ptr, *(longlong*)(param_1 + 0x68), 
-                       (longlong)*(int*)(param_1 + 0x60) * 0x88);
+                memcpy(new_array_ptr, *(int64_t*)(param_1 + 0x68), 
+                       (int64_t)*(int*)(param_1 + 0x60) * 0x88);
             }
             
             *(void**)(param_1 + 0x68) = new_array_ptr;
@@ -350,8 +350,8 @@ uint add_rendering_material_entry(longlong param_1, void* param_2, uint param_3,
     }
     
     // 计算新材质条目的偏移量
-    entry_offset = (longlong)*(int*)(param_1 + 0x60) * 0x88;
-    material_array_ptr = *(longlong*)(param_1 + 0x68);
+    entry_offset = (int64_t)*(int*)(param_1 + 0x60) * 0x88;
+    material_array_ptr = *(int64_t*)(param_1 + 0x68);
     
     // 设置材质参数
     memcpy((void*)(entry_offset + material_array_ptr), param_2, 0x88);
@@ -361,27 +361,27 @@ uint add_rendering_material_entry(longlong param_1, void* param_2, uint param_3,
     *(int*)(param_1 + 0x60) = current_count + 1;
     
     // 获取新创建的材质条目
-    material_ptr = (rendering_material_params*)((longlong)current_count * 0x88 + *(longlong*)(param_1 + 0x68));
+    material_ptr = (rendering_material_params*)((int64_t)current_count * 0x88 + *(int64_t*)(param_1 + 0x68));
     
     // 设置材质的默认纹理
     if (material_ptr[0x10] == 0) {
-        material_ptr[0x10] = *(void**)(*(longlong*)(param_1 + 0x48) + -8 + 
-                                      (longlong)*(int*)(param_1 + 0x40) * 8);
+        material_ptr[0x10] = *(void**)(*(int64_t*)(param_1 + 0x48) + -8 + 
+                                      (int64_t)*(int*)(param_1 + 0x40) * 8);
     }
     
     // 处理材质名称
-    if (*(char*)((longlong)material_ptr + 0xc) == '\0') {
+    if (*(char*)((int64_t)material_ptr + 0xc) == '\0') {
         int name_length = *(int*)(material_ptr + 1);
         if (rendering_material_count > 0) {
             rendering_material_count++;
         }
         
-        void* name_buffer = malloc((longlong)name_length);
+        void* name_buffer = malloc((int64_t)name_length);
         *material_ptr = name_buffer;
-        *(char*)((longlong)material_ptr + 0xc) = 1;
+        *(char*)((int64_t)material_ptr + 0xc) = 1;
         
         // 复制材质名称
-        memcpy(name_buffer, *param_2, (longlong)*(int*)(material_ptr + 1));
+        memcpy(name_buffer, *param_2, (int64_t)*(int*)(material_ptr + 1));
     }
     
     // 更新材质系统
@@ -414,7 +414,7 @@ uint add_rendering_material_entry(longlong param_1, void* param_2, uint param_3,
  * 4. 应用材质参数到渲染系统
  */
 void setup_rendering_material_parameters(uint param_1, uint param_2, uint param_3, uint param_4,
-                                       rendering_material_params* param_5, longlong param_6)
+                                       rendering_material_params* param_5, int64_t param_6)
 {
     // 材质参数结构体（栈上）
     struct {
@@ -469,7 +469,7 @@ void setup_rendering_material_parameters(uint param_1, uint param_2, uint param_
     }
     
     // 设置材质大小参数
-    longlong material_size = param_6;
+    int64_t material_size = param_6;
     if (param_6 != 0) {
         material_size = param_6;
     }
@@ -506,7 +506,7 @@ void process_rendering_string_encoding(uint param_1, char* param_2, uint param_3
                                       rendering_material_params* param_4, uint param_5)
 {
     void* encoded_buffer;
-    longlong string_length;
+    int64_t string_length;
     int char_count;
     char* source_ptr;
     void* dest_ptr;
@@ -526,13 +526,13 @@ void process_rendering_string_encoding(uint param_1, char* param_2, uint param_3
     }
     
     // 分配编码缓冲区
-    encoded_buffer = malloc((longlong)((((int)string_length + 4) / 5) * 4));
+    encoded_buffer = malloc((int64_t)((((int)string_length + 4) / 5) * 4));
     
     // 执行字符串编码
     current_char = *param_2;
     if (current_char != '\0') {
         source_ptr = param_2 + 2;
-        dest_ptr = (void*)((longlong)encoded_buffer + 2);
+        dest_ptr = (void*)((int64_t)encoded_buffer + 2);
         
         do {
             // 编码算法：5字符一组转换为4字节整数
@@ -543,22 +543,22 @@ void process_rendering_string_encoding(uint param_1, char* param_2, uint param_3
                            (('[' < current_char) + 0x23)) + (int)current_char;
             
             // 存储编码结果
-            *(char*)((longlong)dest_ptr - 2) = (char)encoded_value;
-            *(char*)((longlong)dest_ptr - 1) = (char)((uint)encoded_value >> 8);
+            *(char*)((int64_t)dest_ptr - 2) = (char)encoded_value;
+            *(char*)((int64_t)dest_ptr - 1) = (char)((uint)encoded_value >> 8);
             *(char*)dest_ptr = (char)((uint)encoded_value >> 16);
-            *(char*)((longlong)dest_ptr + 1) = (char)((uint)encoded_value >> 24);
+            *(char*)((int64_t)dest_ptr + 1) = (char)((uint)encoded_value >> 24);
             
             current_char = source_ptr[3];
             source_ptr = source_ptr + 5;
-            dest_ptr = (void*)((longlong)dest_ptr + 4);
+            dest_ptr = (void*)((int64_t)dest_ptr + 4);
         } while (current_char != '\0');
     }
     
     // 计算缓冲区大小
-    char_count = (uint)*(byte*)((longlong)encoded_buffer + 8) * 0x1000000 + 
-                (uint)*(byte*)((longlong)encoded_buffer + 9) * 0x10000 +
-                (uint)*(byte*)((longlong)encoded_buffer + 10) * 0x100 + 
-                (uint)*(byte*)((longlong)encoded_buffer + 11);
+    char_count = (uint)*(byte*)((int64_t)encoded_buffer + 8) * 0x1000000 + 
+                (uint)*(byte*)((int64_t)encoded_buffer + 9) * 0x10000 +
+                (uint)*(byte*)((int64_t)encoded_buffer + 10) * 0x100 + 
+                (uint)*(byte*)((int64_t)encoded_buffer + 11);
     
     // 更新统计信息
     if (rendering_material_count > 0) {
@@ -612,14 +612,14 @@ void process_rendering_string_encoding(uint param_1, char* param_2, uint param_3
  * 3. 分配纹理内存缓冲区
  * 4. 设置纹理参数
  */
-void initialize_rendering_texture_data(longlong param_1)
+void initialize_rendering_texture_data(int64_t param_1)
 {
     uint texture_count;
     void* texture_buffer;
-    longlong buffer_size;
+    int64_t buffer_size;
     uint vertex_count;
     void* vertex_buffer;
-    longlong vertex_buffer_size;
+    int64_t vertex_buffer_size;
     
     // 初始化纹理参数栈空间
     struct {
@@ -691,8 +691,8 @@ void initialize_rendering_texture_data(longlong param_1)
                 rendering_material_count++;
             }
             
-            texture_buffer = malloc((longlong)min_texture_count * 0x110);
-            buffer_size = (longlong)min_texture_count * 0x110;
+            texture_buffer = malloc((int64_t)min_texture_count * 0x110);
+            buffer_size = (int64_t)min_texture_count * 0x110;
         }
     }
     
@@ -709,13 +709,13 @@ void initialize_rendering_texture_data(longlong param_1)
                 rendering_material_count++;
             }
             
-            vertex_buffer = malloc((longlong)min_vertex_count * 0x20);
-            vertex_buffer_size = (longlong)min_vertex_count * 0x20;
+            vertex_buffer = malloc((int64_t)min_vertex_count * 0x20);
+            vertex_buffer_size = (int64_t)min_vertex_count * 0x20;
         }
     }
     
     // 初始化纹理数据缓冲区
-    memset(texture_buffer, 0, (longlong)texture_count * 0x110);
+    memset(texture_buffer, 0, (int64_t)texture_count * 0x110);
     
     return;
 }
@@ -738,21 +738,21 @@ void initialize_rendering_texture_data(longlong param_1)
  * 3. 设置字符位置和大小
  * 4. 更新渲染状态
  */
-void process_rendering_character_map(longlong param_1)
+void process_rendering_character_map(int64_t param_1)
 {
     ushort char_width, char_height;
     int texture_width;
-    longlong char_data_ptr;
+    int64_t char_data_ptr;
     int row, col;
-    longlong char_offset;
-    longlong pixel_offset;
+    int64_t char_offset;
+    int64_t pixel_offset;
     byte pixel_value;
     int char_index;
     float x_pos, y_pos;
     
     // 获取字符映射参数
     texture_width = *(int*)(param_1 + 0x28);
-    char_data_ptr = (longlong)*(int*)(param_1 + 0x70) * 0x20 + *(longlong*)(param_1 + 0x58);
+    char_data_ptr = (int64_t)*(int*)(param_1 + 0x70) * 0x20 + *(int64_t*)(param_1 + 0x58);
     
     // 检查是否为线框模式
     if ((*(byte*)(param_1 + 4) & 2) == 0) {
@@ -765,7 +765,7 @@ void process_rendering_character_map(longlong param_1)
             col = 0;
             do {
                 // 计算字符在纹理中的位置
-                pixel_offset = (longlong)((uint)*(ushort*)(char_data_ptr + 8) + 
+                pixel_offset = (int64_t)((uint)*(ushort*)(char_data_ptr + 8) + 
                                          ((uint)*(ushort*)(char_data_ptr + 10) + row) * texture_width + col);
                 
                 // 处理字符像素数据
@@ -773,13 +773,13 @@ void process_rendering_character_map(longlong param_1)
                 if (rendering_string_buffer[char_offset] == '.') {
                     pixel_value = 0xff;
                 }
-                *(byte*)(pixel_offset + *(longlong*)(param_1 + 0x18)) = pixel_value;
+                *(byte*)(pixel_offset + *(int64_t*)(param_1 + 0x18)) = pixel_value;
                 
                 pixel_value = 0;
                 if (rendering_string_buffer[char_offset] == 'X') {
                     pixel_value = 0xff;
                 }
-                *(byte*)(pixel_offset + 0x6d + *(longlong*)(param_1 + 0x18)) = pixel_value;
+                *(byte*)(pixel_offset + 0x6d + *(int64_t*)(param_1 + 0x18)) = pixel_value;
                 
                 // 继续处理其他颜色通道
                 // ... (重复类似的处理逻辑)
@@ -795,10 +795,10 @@ void process_rendering_character_map(longlong param_1)
                       (uint)*(ushort*)(char_data_ptr + 8);
         
         // 设置轮廓像素
-        *(byte*)(*(longlong*)(param_1 + 0x18) + 1 + (longlong)(char_offset + texture_width)) = 0xff;
-        *(byte*)((longlong)(char_offset + texture_width) + *(longlong*)(param_1 + 0x18)) = 0xff;
-        *(byte*)(*(longlong*)(param_1 + 0x18) + 1 + (longlong)char_offset) = 0xff;
-        *(byte*)((longlong)char_offset + *(longlong*)(param_1 + 0x18)) = 0xff;
+        *(byte*)(*(int64_t*)(param_1 + 0x18) + 1 + (int64_t)(char_offset + texture_width)) = 0xff;
+        *(byte*)((int64_t)(char_offset + texture_width) + *(int64_t*)(param_1 + 0x18)) = 0xff;
+        *(byte*)(*(int64_t*)(param_1 + 0x18) + 1 + (int64_t)char_offset) = 0xff;
+        *(byte*)((int64_t)char_offset + *(int64_t*)(param_1 + 0x18)) = 0xff;
     }
     
     // 获取字符尺寸
@@ -816,12 +816,12 @@ void process_rendering_character_map(longlong param_1)
 }
 
 // 函数别名 - 保持与原始函数名的兼容性
-void FUN_180294654(longlong param_1) __attribute__((alias("process_rendering_flags_and_materials")));
+void FUN_180294654(int64_t param_1) __attribute__((alias("process_rendering_flags_and_materials")));
 void FUN_180294835(void) __attribute__((alias("extract_rendering_dimensions")));
 void FUN_180294849(void) __attribute__((alias("extract_rendering_width")));
 void FUN_18029485c(void) __attribute__((alias("extract_rendering_height")));
-uint FUN_180294880(longlong param_1, void* param_2, uint param_3, uint param_4) __attribute__((alias("add_rendering_material_entry")));
-void FUN_180294a90(uint param_1, uint param_2, uint param_3, uint param_4, void* param_5, longlong param_6) __attribute__((alias("setup_rendering_material_parameters")));
+uint FUN_180294880(int64_t param_1, void* param_2, uint param_3, uint param_4) __attribute__((alias("add_rendering_material_entry")));
+void FUN_180294a90(uint param_1, uint param_2, uint param_3, uint param_4, void* param_5, int64_t param_6) __attribute__((alias("setup_rendering_material_parameters")));
 void FUN_180294c20(uint param_1, char* param_2, uint param_3, void* param_4, uint param_5) __attribute__((alias("process_rendering_string_encoding")));
-void FUN_180294f50(longlong param_1) __attribute__((alias("initialize_rendering_texture_data")));
-void FUN_180296680(longlong param_1) __attribute__((alias("process_rendering_character_map")));
+void FUN_180294f50(int64_t param_1) __attribute__((alias("initialize_rendering_texture_data")));
+void FUN_180296680(int64_t param_1) __attribute__((alias("process_rendering_character_map")));

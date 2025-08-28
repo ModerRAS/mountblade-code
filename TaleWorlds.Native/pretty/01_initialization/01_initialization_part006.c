@@ -41,8 +41,8 @@ void register_basic_rendering_components(void)
   char is_initialized;
   void **global_table;
   int compare_result;
-  longlong *system_manager;
-  longlong allocation_size;
+  int64_t *system_manager;
+  int64_t allocation_size;
   void **current_node;
   void **next_node;
   void **temp_node;
@@ -50,9 +50,9 @@ void register_basic_rendering_components(void)
   void *null_pointer;
   
   // 获取系统管理器实例
-  system_manager = (longlong *)get_system_manager();
+  system_manager = (int64_t *)get_system_manager();
   global_table = (void **)*system_manager;
-  is_initialized = *(char *)((longlong)global_table[1] + 0x19);
+  is_initialized = *(char *)((int64_t)global_table[1] + 0x19);
   null_pointer = 0;
   next_node = global_table;
   current_node = (void **)global_table[1];
@@ -69,7 +69,7 @@ void register_basic_rendering_components(void)
     }
     next_node = current_node;
     current_node = temp_node;
-    is_initialized = *(char *)((longlong)temp_node + 0x19);
+    is_initialized = *(char *)((int64_t)temp_node + 0x19);
   }
   
   // 如果组件不存在或需要插入，则创建新节点
@@ -100,8 +100,8 @@ void register_render_pipeline_components(void)
   char is_initialized;
   void **global_table;
   int compare_result;
-  longlong *system_manager;
-  longlong allocation_size;
+  int64_t *system_manager;
+  int64_t allocation_size;
   void **current_node;
   void **next_node;
   void **temp_node;
@@ -109,9 +109,9 @@ void register_render_pipeline_components(void)
   void *render_pipeline_vtable;
   
   // 获取系统管理器实例
-  system_manager = (longlong *)get_system_manager();
+  system_manager = (int64_t *)get_system_manager();
   global_table = (void **)*system_manager;
-  is_initialized = *(char *)((longlong)global_table[1] + 0x19);
+  is_initialized = *(char *)((int64_t)global_table[1] + 0x19);
   render_pipeline_vtable = &RENDER_PIPELINE_VTABLE;
   next_node = global_table;
   current_node = (void **)global_table[1];
@@ -128,7 +128,7 @@ void register_render_pipeline_components(void)
     }
     next_node = current_node;
     current_node = temp_node;
-    is_initialized = *(char *)((longlong)temp_node + 0x19);
+    is_initialized = *(char *)((int64_t)temp_node + 0x19);
   }
   
   // 如果渲染管线组件不存在或需要插入，则创建新节点
@@ -159,8 +159,8 @@ void register_animation_system_components(void)
   char is_initialized;
   void **global_table;
   int compare_result;
-  longlong *system_manager;
-  longlong allocation_size;
+  int64_t *system_manager;
+  int64_t allocation_size;
   void **current_node;
   void **next_node;
   void **temp_node;
@@ -168,9 +168,9 @@ void register_animation_system_components(void)
   void *null_pointer;
   
   // 获取系统管理器实例
-  system_manager = (longlong *)get_system_manager();
+  system_manager = (int64_t *)get_system_manager();
   global_table = (void **)*system_manager;
-  is_initialized = *(char *)((longlong)global_table[1] + 0x19);
+  is_initialized = *(char *)((int64_t)global_table[1] + 0x19);
   null_pointer = 0;
   next_node = global_table;
   current_node = (void **)global_table[1];
@@ -187,7 +187,7 @@ void register_animation_system_components(void)
     }
     next_node = current_node;
     current_node = temp_node;
-    is_initialized = *(char *)((longlong)temp_node + 0x19);
+    is_initialized = *(char *)((int64_t)temp_node + 0x19);
   }
   
   // 如果动画组件不存在或需要插入，则创建新节点
@@ -218,8 +218,8 @@ void register_game_script_system_components(void)
   char is_initialized;
   void **global_table;
   int compare_result;
-  longlong *system_manager;
-  longlong allocation_size;
+  int64_t *system_manager;
+  int64_t allocation_size;
   void **current_node;
   void **next_node;
   void **temp_node;
@@ -227,9 +227,9 @@ void register_game_script_system_components(void)
   void *script_initializer;
   
   // 获取系统管理器实例
-  system_manager = (longlong *)get_system_manager();
+  system_manager = (int64_t *)get_system_manager();
   global_table = (void **)*system_manager;
-  is_initialized = *(char *)((longlong)global_table[1] + 0x19);
+  is_initialized = *(char *)((int64_t)global_table[1] + 0x19);
   script_initializer = initialize_game_script_system;
   next_node = global_table;
   current_node = (void **)global_table[1];
@@ -246,7 +246,7 @@ void register_game_script_system_components(void)
     }
     next_node = current_node;
     current_node = temp_node;
-    is_initialized = *(char *)((longlong)temp_node + 0x19);
+    is_initialized = *(char *)((int64_t)temp_node + 0x19);
   }
   
   // 如果脚本系统组件不存在或需要插入，则创建新节点
@@ -277,8 +277,8 @@ void register_audio_system_components(void)
   char is_initialized;
   void **global_table;
   int compare_result;
-  longlong *system_manager;
-  longlong allocation_size;
+  int64_t *system_manager;
+  int64_t allocation_size;
   void **current_node;
   void **next_node;
   void **temp_node;
@@ -286,9 +286,9 @@ void register_audio_system_components(void)
   void *audio_initializer;
   
   // 获取系统管理器实例
-  system_manager = (longlong *)get_system_manager();
+  system_manager = (int64_t *)get_system_manager();
   global_table = (void **)*system_manager;
-  is_initialized = *(char *)((longlong)global_table[1] + 0x19);
+  is_initialized = *(char *)((int64_t)global_table[1] + 0x19);
   audio_initializer = initialize_audio_system;
   next_node = global_table;
   current_node = (void **)global_table[1];
@@ -305,7 +305,7 @@ void register_audio_system_components(void)
     }
     next_node = current_node;
     current_node = temp_node;
-    is_initialized = *(char *)((longlong)temp_node + 0x19);
+    is_initialized = *(char *)((int64_t)temp_node + 0x19);
   }
   
   // 如果音频组件不存在或需要插入，则创建新节点
@@ -336,8 +336,8 @@ void register_physics_system_components(void)
   char is_initialized;
   void **global_table;
   int compare_result;
-  longlong *system_manager;
-  longlong allocation_size;
+  int64_t *system_manager;
+  int64_t allocation_size;
   void **current_node;
   void **next_node;
   void **temp_node;
@@ -345,9 +345,9 @@ void register_physics_system_components(void)
   void *physics_initializer;
   
   // 获取系统管理器实例
-  system_manager = (longlong *)get_system_manager();
+  system_manager = (int64_t *)get_system_manager();
   global_table = (void **)*system_manager;
-  is_initialized = *(char *)((longlong)global_table[1] + 0x19);
+  is_initialized = *(char *)((int64_t)global_table[1] + 0x19);
   physics_initializer = initialize_physics_system;
   next_node = global_table;
   current_node = (void **)global_table[1];
@@ -364,7 +364,7 @@ void register_physics_system_components(void)
     }
     next_node = current_node;
     current_node = temp_node;
-    is_initialized = *(char *)((longlong)temp_node + 0x19);
+    is_initialized = *(char *)((int64_t)temp_node + 0x19);
   }
   
   // 如果物理组件不存在或需要插入，则创建新节点
@@ -395,8 +395,8 @@ void register_input_system_components(void)
   char is_initialized;
   void **global_table;
   int compare_result;
-  longlong *system_manager;
-  longlong allocation_size;
+  int64_t *system_manager;
+  int64_t allocation_size;
   void **current_node;
   void **next_node;
   void **temp_node;
@@ -404,9 +404,9 @@ void register_input_system_components(void)
   void *input_initializer;
   
   // 获取系统管理器实例
-  system_manager = (longlong *)get_system_manager();
+  system_manager = (int64_t *)get_system_manager();
   global_table = (void **)*system_manager;
-  is_initialized = *(char *)((longlong)global_table[1] + 0x19);
+  is_initialized = *(char *)((int64_t)global_table[1] + 0x19);
   input_initializer = initialize_input_system;
   next_node = global_table;
   current_node = (void **)global_table[1];
@@ -423,7 +423,7 @@ void register_input_system_components(void)
     }
     next_node = current_node;
     current_node = temp_node;
-    is_initialized = *(char *)((longlong)temp_node + 0x19);
+    is_initialized = *(char *)((int64_t)temp_node + 0x19);
   }
   
   // 如果输入组件不存在或需要插入，则创建新节点
@@ -454,8 +454,8 @@ void register_network_system_components(void)
   char is_initialized;
   void **global_table;
   int compare_result;
-  longlong *system_manager;
-  longlong allocation_size;
+  int64_t *system_manager;
+  int64_t allocation_size;
   void **current_node;
   void **next_node;
   void **temp_node;
@@ -463,9 +463,9 @@ void register_network_system_components(void)
   void *null_pointer;
   
   // 获取系统管理器实例
-  system_manager = (longlong *)get_system_manager();
+  system_manager = (int64_t *)get_system_manager();
   global_table = (void **)*system_manager;
-  is_initialized = *(char *)((longlong)global_table[1] + 0x19);
+  is_initialized = *(char *)((int64_t)global_table[1] + 0x19);
   null_pointer = 0;
   next_node = global_table;
   current_node = (void **)global_table[1];
@@ -482,7 +482,7 @@ void register_network_system_components(void)
     }
     next_node = current_node;
     current_node = temp_node;
-    is_initialized = *(char *)((longlong)temp_node + 0x19);
+    is_initialized = *(char *)((int64_t)temp_node + 0x19);
   }
   
   // 如果网络组件不存在或需要插入，则创建新节点
@@ -513,8 +513,8 @@ void register_game_world_management_components(void)
   char is_initialized;
   void **global_table;
   int compare_result;
-  longlong *system_manager;
-  longlong allocation_size;
+  int64_t *system_manager;
+  int64_t allocation_size;
   void **current_node;
   void **next_node;
   void **temp_node;
@@ -522,9 +522,9 @@ void register_game_world_management_components(void)
   void *world_initializer;
   
   // 获取系统管理器实例
-  system_manager = (longlong *)get_system_manager();
+  system_manager = (int64_t *)get_system_manager();
   global_table = (void **)*system_manager;
-  is_initialized = *(char *)((longlong)global_table[1] + 0x19);
+  is_initialized = *(char *)((int64_t)global_table[1] + 0x19);
   world_initializer = initialize_game_world_system;
   next_node = global_table;
   current_node = (void **)global_table[1];
@@ -541,7 +541,7 @@ void register_game_world_management_components(void)
     }
     next_node = current_node;
     current_node = temp_node;
-    is_initialized = *(char *)((longlong)temp_node + 0x19);
+    is_initialized = *(char *)((int64_t)temp_node + 0x19);
   }
   
   // 如果世界管理组件不存在或需要插入，则创建新节点
@@ -572,8 +572,8 @@ void register_game_entity_management_components(void)
   char is_initialized;
   void **global_table;
   int compare_result;
-  longlong *system_manager;
-  longlong allocation_size;
+  int64_t *system_manager;
+  int64_t allocation_size;
   void **current_node;
   void **next_node;
   void **temp_node;
@@ -581,9 +581,9 @@ void register_game_entity_management_components(void)
   void *entity_initializer;
   
   // 获取系统管理器实例
-  system_manager = (longlong *)get_system_manager();
+  system_manager = (int64_t *)get_system_manager();
   global_table = (void **)*system_manager;
-  is_initialized = *(char *)((longlong)global_table[1] + 0x19);
+  is_initialized = *(char *)((int64_t)global_table[1] + 0x19);
   entity_initializer = initialize_game_entity_system;
   next_node = global_table;
   current_node = (void **)global_table[1];
@@ -600,7 +600,7 @@ void register_game_entity_management_components(void)
     }
     next_node = current_node;
     current_node = temp_node;
-    is_initialized = *(char *)((longlong)temp_node + 0x19);
+    is_initialized = *(char *)((int64_t)temp_node + 0x19);
   }
   
   // 如果实体管理组件不存在或需要插入，则创建新节点
@@ -631,8 +631,8 @@ void register_game_scene_management_components(void)
   char is_initialized;
   void **global_table;
   int compare_result;
-  longlong *system_manager;
-  longlong allocation_size;
+  int64_t *system_manager;
+  int64_t allocation_size;
   void **current_node;
   void **next_node;
   void **temp_node;
@@ -640,9 +640,9 @@ void register_game_scene_management_components(void)
   void *null_pointer;
   
   // 获取系统管理器实例
-  system_manager = (longlong *)get_system_manager();
+  system_manager = (int64_t *)get_system_manager();
   global_table = (void **)*system_manager;
-  is_initialized = *(char *)((longlong)global_table[1] + 0x19);
+  is_initialized = *(char *)((int64_t)global_table[1] + 0x19);
   null_pointer = 0;
   next_node = global_table;
   current_node = (void **)global_table[1];
@@ -659,7 +659,7 @@ void register_game_scene_management_components(void)
     }
     next_node = current_node;
     current_node = temp_node;
-    is_initialized = *(char *)((longlong)temp_node + 0x19);
+    is_initialized = *(char *)((int64_t)temp_node + 0x19);
   }
   
   // 如果场景管理组件不存在或需要插入，则创建新节点
@@ -690,8 +690,8 @@ void register_game_resource_management_components(void)
   char is_initialized;
   void **global_table;
   int compare_result;
-  longlong *system_manager;
-  longlong allocation_size;
+  int64_t *system_manager;
+  int64_t allocation_size;
   void **current_node;
   void **next_node;
   void **temp_node;
@@ -699,9 +699,9 @@ void register_game_resource_management_components(void)
   void *resource_initializer;
   
   // 获取系统管理器实例
-  system_manager = (longlong *)get_system_manager();
+  system_manager = (int64_t *)get_system_manager();
   global_table = (void **)*system_manager;
-  is_initialized = *(char *)((longlong)global_table[1] + 0x19);
+  is_initialized = *(char *)((int64_t)global_table[1] + 0x19);
   resource_initializer = initialize_game_resource_system;
   next_node = global_table;
   current_node = (void **)global_table[1];
@@ -718,7 +718,7 @@ void register_game_resource_management_components(void)
     }
     next_node = current_node;
     current_node = temp_node;
-    is_initialized = *(char *)((longlong)temp_node + 0x19);
+    is_initialized = *(char *)((int64_t)temp_node + 0x19);
   }
   
   // 如果资源管理组件不存在或需要插入，则创建新节点
@@ -749,8 +749,8 @@ void register_game_ui_management_components(void)
   char is_initialized;
   void **global_table;
   int compare_result;
-  longlong *system_manager;
-  longlong allocation_size;
+  int64_t *system_manager;
+  int64_t allocation_size;
   void **current_node;
   void **next_node;
   void **temp_node;
@@ -758,9 +758,9 @@ void register_game_ui_management_components(void)
   void *null_pointer;
   
   // 获取系统管理器实例
-  system_manager = (longlong *)get_system_manager();
+  system_manager = (int64_t *)get_system_manager();
   global_table = (void **)*system_manager;
-  is_initialized = *(char *)((longlong)global_table[1] + 0x19);
+  is_initialized = *(char *)((int64_t)global_table[1] + 0x19);
   null_pointer = 0;
   next_node = global_table;
   current_node = (void **)global_table[1];
@@ -777,7 +777,7 @@ void register_game_ui_management_components(void)
     }
     next_node = current_node;
     current_node = temp_node;
-    is_initialized = *(char *)((longlong)temp_node + 0x19);
+    is_initialized = *(char *)((int64_t)temp_node + 0x19);
   }
   
   // 如果UI管理组件不存在或需要插入，则创建新节点
@@ -808,8 +808,8 @@ void register_game_save_management_components(void)
   char is_initialized;
   void **global_table;
   int compare_result;
-  longlong *system_manager;
-  longlong allocation_size;
+  int64_t *system_manager;
+  int64_t allocation_size;
   void **current_node;
   void **next_node;
   void **temp_node;
@@ -817,9 +817,9 @@ void register_game_save_management_components(void)
   void *save_initializer;
   
   // 获取系统管理器实例
-  system_manager = (longlong *)get_system_manager();
+  system_manager = (int64_t *)get_system_manager();
   global_table = (void **)*system_manager;
-  is_initialized = *(char *)((longlong)global_table[1] + 0x19);
+  is_initialized = *(char *)((int64_t)global_table[1] + 0x19);
   save_initializer = initialize_game_save_system;
   next_node = global_table;
   current_node = (void **)global_table[1];
@@ -836,7 +836,7 @@ void register_game_save_management_components(void)
     }
     next_node = current_node;
     current_node = temp_node;
-    is_initialized = *(char *)((longlong)temp_node + 0x19);
+    is_initialized = *(char *)((int64_t)temp_node + 0x19);
   }
   
   // 如果存档管理组件不存在或需要插入，则创建新节点
@@ -867,8 +867,8 @@ void register_game_log_management_components(void)
   char is_initialized;
   void **global_table;
   int compare_result;
-  longlong *system_manager;
-  longlong allocation_size;
+  int64_t *system_manager;
+  int64_t allocation_size;
   void **current_node;
   void **next_node;
   void **temp_node;
@@ -876,9 +876,9 @@ void register_game_log_management_components(void)
   void *null_pointer;
   
   // 获取系统管理器实例
-  system_manager = (longlong *)get_system_manager();
+  system_manager = (int64_t *)get_system_manager();
   global_table = (void **)*system_manager;
-  is_initialized = *(char *)((longlong)global_table[1] + 0x19);
+  is_initialized = *(char *)((int64_t)global_table[1] + 0x19);
   null_pointer = 0;
   next_node = global_table;
   current_node = (void **)global_table[1];
@@ -895,7 +895,7 @@ void register_game_log_management_components(void)
     }
     next_node = current_node;
     current_node = temp_node;
-    is_initialized = *(char *)((longlong)temp_node + 0x19);
+    is_initialized = *(char *)((int64_t)temp_node + 0x19);
   }
   
   // 如果日志管理组件不存在或需要插入，则创建新节点
@@ -951,7 +951,7 @@ void register_game_module_loader_components(void)
 int initialize_game_debug_system(void)
 
 {
-  longlong debug_handle;
+  int64_t debug_handle;
   uint64_t debug_param;
   
   // 设置调试系统数据表
@@ -1023,8 +1023,8 @@ void register_game_ai_management_components(void)
   char is_initialized;
   void **global_table;
   int compare_result;
-  longlong *system_manager;
-  longlong allocation_size;
+  int64_t *system_manager;
+  int64_t allocation_size;
   void **current_node;
   void **next_node;
   void **temp_node;
@@ -1032,9 +1032,9 @@ void register_game_ai_management_components(void)
   void *ai_initializer;
   
   // 获取系统管理器实例
-  system_manager = (longlong *)get_system_manager();
+  system_manager = (int64_t *)get_system_manager();
   global_table = (void **)*system_manager;
-  is_initialized = *(char *)((longlong)global_table[1] + 0x19);
+  is_initialized = *(char *)((int64_t)global_table[1] + 0x19);
   ai_initializer = initialize_game_ai_system;
   next_node = global_table;
   current_node = (void **)global_table[1];
@@ -1051,7 +1051,7 @@ void register_game_ai_management_components(void)
     }
     next_node = current_node;
     current_node = temp_node;
-    is_initialized = *(char *)((longlong)temp_node + 0x19);
+    is_initialized = *(char *)((int64_t)temp_node + 0x19);
   }
   
   // 如果AI管理组件不存在或需要插入，则创建新节点
@@ -1082,8 +1082,8 @@ void register_game_combat_system_components(void)
   char is_initialized;
   void **global_table;
   int compare_result;
-  longlong *system_manager;
-  longlong allocation_size;
+  int64_t *system_manager;
+  int64_t allocation_size;
   void **current_node;
   void **next_node;
   void **temp_node;
@@ -1091,9 +1091,9 @@ void register_game_combat_system_components(void)
   void *combat_initializer;
   
   // 获取系统管理器实例
-  system_manager = (longlong *)get_system_manager();
+  system_manager = (int64_t *)get_system_manager();
   global_table = (void **)*system_manager;
-  is_initialized = *(char *)((longlong)global_table[1] + 0x19);
+  is_initialized = *(char *)((int64_t)global_table[1] + 0x19);
   combat_initializer = initialize_game_combat_system;
   next_node = global_table;
   current_node = (void **)global_table[1];
@@ -1110,7 +1110,7 @@ void register_game_combat_system_components(void)
     }
     next_node = current_node;
     current_node = temp_node;
-    is_initialized = *(char *)((longlong)temp_node + 0x19);
+    is_initialized = *(char *)((int64_t)temp_node + 0x19);
   }
   
   // 如果战斗系统组件不存在或需要插入，则创建新节点
@@ -1141,8 +1141,8 @@ void register_game_mission_system_components(void)
   char is_initialized;
   void **global_table;
   int compare_result;
-  longlong *system_manager;
-  longlong allocation_size;
+  int64_t *system_manager;
+  int64_t allocation_size;
   void **current_node;
   void **next_node;
   void **temp_node;
@@ -1150,9 +1150,9 @@ void register_game_mission_system_components(void)
   void *null_pointer;
   
   // 获取系统管理器实例
-  system_manager = (longlong *)get_system_manager();
+  system_manager = (int64_t *)get_system_manager();
   global_table = (void **)*system_manager;
-  is_initialized = *(char *)((longlong)global_table[1] + 0x19);
+  is_initialized = *(char *)((int64_t)global_table[1] + 0x19);
   null_pointer = 0;
   next_node = global_table;
   current_node = (void **)global_table[1];
@@ -1169,7 +1169,7 @@ void register_game_mission_system_components(void)
     }
     next_node = current_node;
     current_node = temp_node;
-    is_initialized = *(char *)((longlong)temp_node + 0x19);
+    is_initialized = *(char *)((int64_t)temp_node + 0x19);
   }
   
   // 如果任务系统组件不存在或需要插入，则创建新节点
@@ -1200,8 +1200,8 @@ void register_game_dialog_system_components(void)
   char is_initialized;
   void **global_table;
   int compare_result;
-  longlong *system_manager;
-  longlong allocation_size;
+  int64_t *system_manager;
+  int64_t allocation_size;
   void **current_node;
   void **next_node;
   void **temp_node;
@@ -1209,9 +1209,9 @@ void register_game_dialog_system_components(void)
   void *dialog_initializer;
   
   // 获取系统管理器实例
-  system_manager = (longlong *)get_system_manager();
+  system_manager = (int64_t *)get_system_manager();
   global_table = (void **)*system_manager;
-  is_initialized = *(char *)((longlong)global_table[1] + 0x19);
+  is_initialized = *(char *)((int64_t)global_table[1] + 0x19);
   dialog_initializer = initialize_game_dialog_system;
   next_node = global_table;
   current_node = (void **)global_table[1];
@@ -1228,7 +1228,7 @@ void register_game_dialog_system_components(void)
     }
     next_node = current_node;
     current_node = temp_node;
-    is_initialized = *(char *)((longlong)temp_node + 0x19);
+    is_initialized = *(char *)((int64_t)temp_node + 0x19);
   }
   
   // 如果对话系统组件不存在或需要插入，则创建新节点
@@ -1259,8 +1259,8 @@ void register_game_character_creation_system_components(void)
   char is_initialized;
   void **global_table;
   int compare_result;
-  longlong *system_manager;
-  longlong allocation_size;
+  int64_t *system_manager;
+  int64_t allocation_size;
   void **current_node;
   void **next_node;
   void **temp_node;
@@ -1268,9 +1268,9 @@ void register_game_character_creation_system_components(void)
   void *null_pointer;
   
   // 获取系统管理器实例
-  system_manager = (longlong *)get_system_manager();
+  system_manager = (int64_t *)get_system_manager();
   global_table = (void **)*system_manager;
-  is_initialized = *(char *)((longlong)global_table[1] + 0x19);
+  is_initialized = *(char *)((int64_t)global_table[1] + 0x19);
   null_pointer = 0;
   next_node = global_table;
   current_node = (void **)global_table[1];
@@ -1287,7 +1287,7 @@ void register_game_character_creation_system_components(void)
     }
     next_node = current_node;
     current_node = temp_node;
-    is_initialized = *(char *)((longlong)temp_node + 0x19);
+    is_initialized = *(char *)((int64_t)temp_node + 0x19);
   }
   
   // 如果角色创建系统组件不存在或需要插入，则创建新节点
@@ -1318,8 +1318,8 @@ void register_game_save_load_system_components(void)
   char is_initialized;
   void **global_table;
   int compare_result;
-  longlong *system_manager;
-  longlong allocation_size;
+  int64_t *system_manager;
+  int64_t allocation_size;
   void **current_node;
   void **next_node;
   void **temp_node;
@@ -1327,9 +1327,9 @@ void register_game_save_load_system_components(void)
   void *save_load_initializer;
   
   // 获取系统管理器实例
-  system_manager = (longlong *)get_system_manager();
+  system_manager = (int64_t *)get_system_manager();
   global_table = (void **)*system_manager;
-  is_initialized = *(char *)((longlong)global_table[1] + 0x19);
+  is_initialized = *(char *)((int64_t)global_table[1] + 0x19);
   save_load_initializer = initialize_game_save_load_system;
   next_node = global_table;
   current_node = (void **)global_table[1];
@@ -1346,7 +1346,7 @@ void register_game_save_load_system_components(void)
     }
     next_node = current_node;
     current_node = temp_node;
-    is_initialized = *(char *)((longlong)temp_node + 0x19);
+    is_initialized = *(char *)((int64_t)temp_node + 0x19);
   }
   
   // 如果存档加载系统组件不存在或需要插入，则创建新节点
@@ -1377,8 +1377,8 @@ void register_game_configuration_system_components(void)
   char is_initialized;
   void **global_table;
   int compare_result;
-  longlong *system_manager;
-  longlong allocation_size;
+  int64_t *system_manager;
+  int64_t allocation_size;
   void **current_node;
   void **next_node;
   void **temp_node;
@@ -1386,9 +1386,9 @@ void register_game_configuration_system_components(void)
   void *null_pointer;
   
   // 获取系统管理器实例
-  system_manager = (longlong *)get_system_manager();
+  system_manager = (int64_t *)get_system_manager();
   global_table = (void **)*system_manager;
-  is_initialized = *(char *)((longlong)global_table[1] + 0x19);
+  is_initialized = *(char *)((int64_t)global_table[1] + 0x19);
   null_pointer = 0;
   next_node = global_table;
   current_node = (void **)global_table[1];
@@ -1405,7 +1405,7 @@ void register_game_configuration_system_components(void)
     }
     next_node = current_node;
     current_node = temp_node;
-    is_initialized = *(char *)((longlong)temp_node + 0x19);
+    is_initialized = *(char *)((int64_t)temp_node + 0x19);
   }
   
   // 如果配置系统组件不存在或需要插入，则创建新节点
@@ -1436,8 +1436,8 @@ void register_game_multiplayer_system_components(void)
   char is_initialized;
   void **global_table;
   int compare_result;
-  longlong *system_manager;
-  longlong allocation_size;
+  int64_t *system_manager;
+  int64_t allocation_size;
   void **current_node;
   void **next_node;
   void **temp_node;
@@ -1445,9 +1445,9 @@ void register_game_multiplayer_system_components(void)
   void *null_pointer;
   
   // 获取系统管理器实例
-  system_manager = (longlong *)get_system_manager();
+  system_manager = (int64_t *)get_system_manager();
   global_table = (void **)*system_manager;
-  is_initialized = *(char *)((longlong)global_table[1] + 0x19);
+  is_initialized = *(char *)((int64_t)global_table[1] + 0x19);
   null_pointer = 0;
   next_node = global_table;
   current_node = (void **)global_table[1];
@@ -1464,7 +1464,7 @@ void register_game_multiplayer_system_components(void)
     }
     next_node = current_node;
     current_node = temp_node;
-    is_initialized = *(char *)((longlong)temp_node + 0x19);
+    is_initialized = *(char *)((int64_t)temp_node + 0x19);
   }
   
   // 如果多人游戏系统组件不存在或需要插入，则创建新节点
@@ -1523,8 +1523,8 @@ void register_game_tool_system_components(void)
   char is_initialized;
   void **global_table;
   int compare_result;
-  longlong *system_manager;
-  longlong allocation_size;
+  int64_t *system_manager;
+  int64_t allocation_size;
   void **current_node;
   void **next_node;
   void **temp_node;
@@ -1532,9 +1532,9 @@ void register_game_tool_system_components(void)
   void *tool_initializer;
   
   // 获取系统管理器实例
-  system_manager = (longlong *)get_system_manager();
+  system_manager = (int64_t *)get_system_manager();
   global_table = (void **)*system_manager;
-  is_initialized = *(char *)((longlong)global_table[1] + 0x19);
+  is_initialized = *(char *)((int64_t)global_table[1] + 0x19);
   tool_initializer = initialize_game_tool_system;
   next_node = global_table;
   current_node = (void **)global_table[1];
@@ -1551,7 +1551,7 @@ void register_game_tool_system_components(void)
     }
     next_node = current_node;
     current_node = temp_node;
-    is_initialized = *(char *)((longlong)temp_node + 0x19);
+    is_initialized = *(char *)((int64_t)temp_node + 0x19);
   }
   
   // 如果工具系统组件不存在或需要插入，则创建新节点

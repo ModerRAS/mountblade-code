@@ -190,13 +190,13 @@ static ui_system_float32 g_ui_system_angle_threshold = UI_SYSTEM_ANGLE_THRESHOLD
  * @param param_1 系统上下文参数
  * @return void
  */
-void ui_system_state_controller(longlong param_1)
+void ui_system_state_controller(int64_t param_1)
 {
     ui_system_int32* state_ptr;
     ui_system_uint32* data_ptr;
-    longlong context_ptr;
+    int64_t context_ptr;
     ui_system_int32 current_state;
-    longlong system_context;
+    int64_t system_context;
     ui_system_int32 stack_var1;
     ui_system_int32 stack_var2;
     ui_system_uint64 iteration_count;
@@ -207,7 +207,7 @@ void ui_system_state_controller(longlong param_1)
     state_ptr = (ui_system_int32*)(param_1 + 0x698);
     
     // 检查系统状态
-    if (*(longlong*)(system_context + 0x3e0) == 0) {
+    if (*(int64_t*)(system_context + 0x3e0) == 0) {
         // 状态检查分支
         if (stack_var1 == *state_ptr) {
             goto cleanup_complete;
@@ -220,7 +220,7 @@ void ui_system_state_controller(longlong param_1)
         
         if ((*(ui_system_int32*)(system_context + 0x6ac) == 0) ||
            (999 < (ui_system_uint32)(stack_var1 - *(ui_system_int32*)(system_context + 0x6ac)))) {
-            context_ptr = *(longlong*)(system_context + 0x670);
+            context_ptr = *(int64_t*)(system_context + 0x670);
             *(ui_system_int32*)(system_context + 0x6ac) = stack_var1;
             iteration_count = context_ptr + 8;
             
@@ -246,7 +246,7 @@ void ui_system_state_controller(longlong param_1)
         do {
             ui_system_uint32 current_index = (ui_system_uint32)iteration_count + 1;
             iteration_count = (ui_system_uint64)current_index;
-            data_ptr = (ui_system_uint32*)(iteration_count + 0x18 + *(longlong*)(system_context + 0x6a0));
+            data_ptr = (ui_system_uint32*)(iteration_count + 0x18 + *(int64_t*)(system_context + 0x6a0));
             *data_ptr = *data_ptr & 0xfffffffe;
             iteration_count = iteration_count + 0x38;
         } while ((ui_system_int32)current_index < *(ui_system_int32*)(system_context + 0x694));
@@ -277,7 +277,7 @@ cleanup_complete:
  */
 void ui_system_empty_function_1(void)
 {
-    longlong system_context;
+    int64_t system_context;
     
     // 系统清理操作
     FUN_1808fc050(*(ui_system_uint64*)(system_context + 0x70) ^ (ui_system_uint64)&system_context);
@@ -295,7 +295,7 @@ void ui_system_empty_function_1(void)
  */
 void ui_system_empty_function_2(void)
 {
-    longlong system_context;
+    int64_t system_context;
     
     // 系统清理操作
     FUN_1808fc050(*(ui_system_uint64*)(system_context + 0x70) ^ (ui_system_uint64)&system_context);
@@ -315,15 +315,15 @@ void ui_system_empty_function_2(void)
  * @param param_3 输出参数2
  * @return ui_system_error_t 错误状态码
  */
-ui_system_error_t ui_system_data_validator(longlong param_1, longlong* param_2, longlong* param_3)
+ui_system_error_t ui_system_data_validator(int64_t param_1, int64_t* param_2, int64_t* param_3)
 {
-    longlong* data_ptr;
+    int64_t* data_ptr;
     ui_system_error_t result;
-    longlong iteration_count;
+    int64_t iteration_count;
     
     iteration_count = 0;
     *param_2 = 0;
-    data_ptr = (longlong*)(g_ui_system_global_state + 0x160);
+    data_ptr = (int64_t*)(g_ui_system_global_state + 0x160);
     
     // 查找匹配的数据项
     while (param_1 != *data_ptr) {
@@ -339,7 +339,7 @@ ui_system_error_t ui_system_data_validator(longlong param_1, longlong* param_2, 
         return UI_SYSTEM_ERROR_CODE;
     }
     
-    if (param_3 != (longlong*)0x0) {
+    if (param_3 != (int64_t*)0x0) {
         if (*param_3 != 0) {
             return 0x1c;
         }
@@ -416,10 +416,10 @@ void ui_system_event_processor(ui_system_uint32 param_1, ui_system_uint32 param_
  * @param param_1 向量数据指针
  * @return ui_system_error_t 处理结果
  */
-ui_system_error_t ui_system_vector_normalizer(longlong param_1)
+ui_system_error_t ui_system_vector_normalizer(int64_t param_1)
 {
     ui_system_float32* vector_ptr;
-    longlong iteration_count;
+    int64_t iteration_count;
     ui_system_float32 x_component;
     ui_system_float32 y_component;
     ui_system_float32 z_component;
@@ -580,9 +580,9 @@ ui_system_error_t ui_system_vector_normalizer(longlong param_1)
  * @param param_1 系统上下文
  * @return ui_system_error_t 清理结果
  */
-ui_system_error_t ui_system_data_cleaner(longlong param_1)
+ui_system_error_t ui_system_data_cleaner(int64_t param_1)
 {
-    longlong iteration_count;
+    int64_t iteration_count;
     
     param_1 = param_1 + 0x11be0;
     iteration_count = 8;
@@ -608,7 +608,7 @@ ui_system_error_t ui_system_data_cleaner(longlong param_1)
  * @param param_1 系统上下文
  * @return void
  */
-void ui_system_batch_processor(longlong param_1)
+void ui_system_batch_processor(int64_t param_1)
 {
     ui_system_int32 result1;
     ui_system_int32 result2;
@@ -624,7 +624,7 @@ void ui_system_batch_processor(longlong param_1)
         batch_data2 = 0;
         
         func_0x0001807d60c0(result2, batch_params, &batch_data2, &batch_data1, 0);
-        result1 = FUN_1807d4ac0(param_1 + 0x11be0 + (longlong)(result2 + -1) * 0xc0, 
+        result1 = FUN_1807d4ac0(param_1 + 0x11be0 + (int64_t)(result2 + -1) * 0xc0, 
                                batch_params[0], batch_data2, batch_data1);
         
         if (result1 != 0) {
@@ -653,8 +653,8 @@ void ui_system_batch_processor(longlong param_1)
  * @param param_5 大小参数
  * @return ui_system_error_t 初始化结果
  */
-ui_system_error_t ui_system_memory_initializer(longlong param_1, ui_system_int32 param_2, 
-                                             ui_system_int32 param_3, longlong param_4, 
+ui_system_error_t ui_system_memory_initializer(int64_t param_1, ui_system_int32 param_2, 
+                                             ui_system_int32 param_3, int64_t param_4, 
                                              ui_system_uint32 param_5)
 {
     if ((((param_4 != 0) && (param_5 < UI_SYSTEM_MAX_ARRAY_SIZE)) && (param_2 != 1)) && (param_3 != 1)) {
@@ -673,12 +673,12 @@ ui_system_error_t ui_system_memory_initializer(longlong param_1, ui_system_int32
             
             if (param_3 - 1U < 8) {
                 if (param_5 == 0) {
-                    param_5 = *(ui_system_uint32*)((longlong)(ui_system_int32)(param_2 - 1U) * 0xc0 + param_1 + 0x11be0);
+                    param_5 = *(ui_system_uint32*)((int64_t)(ui_system_int32)(param_2 - 1U) * 0xc0 + param_1 + 0x11be0);
                 }
                 
                 // 内存初始化操作
                 memset(param_4, 0, 
-                       (longlong)(*(ui_system_int32*)((longlong)(ui_system_int32)(param_3 - 1U) * 0xc0 + param_1 + 0x11be0) * param_5) << 2);
+                       (int64_t)(*(ui_system_int32*)((int64_t)(ui_system_int32)(param_3 - 1U) * 0xc0 + param_1 + 0x11be0) * param_5) << 2);
             }
         }
     }
@@ -730,13 +730,13 @@ ui_system_error_t ui_system_status_checker(void)
  * @param param_1 向量数据指针
  * @return ui_system_error_t 处理结果
  */
-ui_system_error_t ui_system_advanced_vector_processor(longlong param_1)
+ui_system_error_t ui_system_advanced_vector_processor(int64_t param_1)
 {
-    longlong* vector_list;
-    longlong* next_vector;
-    longlong current_vector;
-    longlong compare_vector;
-    longlong temp_vector;
+    int64_t* vector_list;
+    int64_t* next_vector;
+    int64_t current_vector;
+    int64_t compare_vector;
+    int64_t temp_vector;
     ui_system_float32 time_value1;
     ui_system_float32 time_value2;
     ui_system_float32 distance_value;
@@ -747,7 +747,7 @@ ui_system_error_t ui_system_advanced_vector_processor(longlong param_1)
     ui_system_float32 stack_value;
     ui_system_float32 angle_result;
     
-    vector_list = (longlong*)(param_1 + 0x11b80);
+    vector_list = (int64_t*)(param_1 + 0x11b80);
     next_vector = vector_list;
     current_vector = *vector_list;
     
@@ -896,15 +896,15 @@ process_angles:
  * @param param_2 向量数据指针
  * @return ui_system_error_t 处理结果
  */
-ui_system_error_t ui_system_vector_angle_processor(ui_system_uint64 param_1, longlong param_2)
+ui_system_error_t ui_system_vector_angle_processor(ui_system_uint64 param_1, int64_t param_2)
 {
-    longlong system_context;
-    longlong current_vector;
-    longlong* vector_iterator;
-    longlong next_vector;
+    int64_t system_context;
+    int64_t current_vector;
+    int64_t* vector_iterator;
+    int64_t next_vector;
     ui_system_uint64 context_data;
-    longlong compare_vector;
-    longlong* vector_list;
+    int64_t compare_vector;
+    int64_t* vector_list;
     ui_system_uint64 context_data2;
     ui_system_float32 time1;
     ui_system_float32 time2;
@@ -1076,10 +1076,10 @@ process_angle_validation:
  */
 ui_system_error_t ui_system_transform_processor(void)
 {
-    longlong* vector_list;
-    longlong current_vector;
-    longlong next_vector;
-    longlong* vector_iterator;
+    int64_t* vector_list;
+    int64_t current_vector;
+    int64_t next_vector;
+    int64_t* vector_iterator;
     ui_system_float32 x_diff;
     ui_system_float32 y_diff;
     ui_system_float32 z_diff;
@@ -1214,10 +1214,10 @@ ui_system_error_t ui_system_transform_processor(void)
  */
 ui_system_error_t ui_system_angle_processor(void)
 {
-    longlong* vector_list;
-    longlong current_vector;
-    longlong next_vector;
-    longlong* vector_iterator;
+    int64_t* vector_list;
+    int64_t current_vector;
+    int64_t next_vector;
+    int64_t* vector_iterator;
     ui_system_float32 time_diff;
     ui_system_float32 angle_value;
     ui_system_uint32 precision_mask;
@@ -1278,10 +1278,10 @@ ui_system_error_t ui_system_angle_processor(void)
  */
 ui_system_error_t ui_system_final_processor(void)
 {
-    longlong* vector_list;
-    longlong current_vector;
-    longlong next_vector;
-    longlong* vector_iterator;
+    int64_t* vector_list;
+    int64_t current_vector;
+    int64_t next_vector;
+    int64_t* vector_iterator;
     ui_system_float32 time_diff;
     ui_system_float32 angle_value;
     ui_system_uint32 precision_mask;

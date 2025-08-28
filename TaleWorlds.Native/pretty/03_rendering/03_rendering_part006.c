@@ -63,12 +63,12 @@ static void initialize_render_slot(void* base_address, void* status_address, voi
     *(void**)base_address = get_active_render_state_table();
     
     // 检查并清理现有状态
-    if (*(longlong*)status_address != 0) {
+    if (*(int64_t*)status_address != 0) {
         trigger_cleanup_error();
     }
     
     // 重置状态和计数器
-    *(longlong*)status_address = 0;
+    *(int64_t*)status_address = 0;
     *(uint32_t*)counter_address = 0;
     *(void**)base_address = get_clean_render_state_table();
 }
@@ -86,7 +86,7 @@ static void initialize_render_slot(void* base_address, void* status_address, voi
  * 
  * 创建并初始化一个新的渲染资源管理器实例
  */
-void* create_render_resource_manager(void* resource_config, longlong size_hint)
+void* create_render_resource_manager(void* resource_config, int64_t size_hint)
 {
     void* resource_manager;
     
@@ -174,7 +174,7 @@ void update_rendering_state(void* state_context)
     void** current_state;
     void** previous_state;
     void** new_state;
-    longlong state_id;
+    int64_t state_id;
     void** temp_state;
     void** target_state;
     
@@ -197,7 +197,7 @@ void update_rendering_state(void* state_context)
     }
     
     // 设置新状态的上下文引用
-    *(longlong*)(*(void**)(state_context + 0xb0) + 0xa8) = state_context;
+    *(int64_t*)(*(void**)(state_context + 0xb0) + 0xa8) = state_context;
     *(uint8_t*)(*(void**)(state_context + 0xb0) + 0xb1) = 1;
     
     // 初始化状态更新
@@ -207,10 +207,10 @@ void update_rendering_state(void* state_context)
     state_id = get_global_state_queue();
     current_state = *(void**)(state_context + 0xb0);
     update_result = (**(code**)(*current_state + 0x60))(current_state);
-    *(uint8_t*)((longlong)current_state + 0xb2) = 1;
+    *(uint8_t*)((int64_t)current_state + 0xb2) = 1;
     
     // 获取状态队列位置
-    previous_state = (void**)((longlong)update_result * 0x98 + state_id + 8);
+    previous_state = (void**)((int64_t)update_result * 0x98 + state_id + 8);
     update_result = lock_state_queue(previous_state + 8);
     
     if (update_result != 0) {
@@ -227,11 +227,11 @@ void update_rendering_state(void* state_context)
     
     if (temp_state < (void**)previous_state[2]) {
         // 有可用空间，直接添加
-        previous_state[1] = (longlong)(temp_state + 1);
-        *temp_state = (longlong)current_state;
+        previous_state[1] = (int64_t)(temp_state + 1);
+        *temp_state = (int64_t)current_state;
     } else {
         // 需要扩展队列空间
-        state_id = (longlong)temp_state - (longlong)*previous_state >> 3;
+        state_id = (int64_t)temp_state - (int64_t)*previous_state >> 3;
         if (state_id == 0) {
             state_id = 1;
         } else {
@@ -250,7 +250,7 @@ void update_rendering_state(void* state_context)
         new_state = new_state + 1;
     }
     
-    *new_state = (longlong)current_state;
+    *new_state = (int64_t)current_state;
     current_state = (void**)previous_state[1];
     target_state = (void**)*previous_state;
     
@@ -258,7 +258,7 @@ void update_rendering_state(void* state_context)
     if (target_state != current_state) {
         do {
             if ((void**)*target_state != (void**)0x0) {
-                (**(code**)(*(longlong*)*target_state + 0x38))();
+                (**(code**)(*(int64_t*)*target_state + 0x38))();
             }
             target_state = target_state + 1;
         } while (target_state != current_state);
@@ -271,9 +271,9 @@ void update_rendering_state(void* state_context)
     }
     
     // 更新队列指针
-    *previous_state = (longlong)new_state;
-    previous_state[1] = (longlong)(new_state + 1);
-    previous_state[2] = (longlong)(new_state + state_id);
+    *previous_state = (int64_t)new_state;
+    previous_state[1] = (int64_t)(new_state + 1);
+    previous_state[2] = (int64_t)(new_state + state_id);
     
     // 标记队列为已更新
     *(uint8_t*)(previous_state + 0x12) = 1;
@@ -296,7 +296,7 @@ void update_rendering_state(void* state_context)
  * 
  * 将渲染数据序列化为可存储或传输的格式
  */
-void serialize_render_data(uint32_t* render_data, longlong serialization_context)
+void serialize_render_data(uint32_t* render_data, int64_t serialization_context)
 {
     uint32_t data_block;
     void** resource_ptr;
@@ -305,7 +305,7 @@ void serialize_render_data(uint32_t* render_data, longlong serialization_context
     void* string_ptr;
     int metadata_index;
     uint64_t block_count;
-    longlong context_offset;
+    int64_t context_offset;
     uint32_t stack_buffer[32];
     int stack_index;
     uint32_t* original_data;
@@ -338,8 +338,8 @@ void serialize_render_data(uint32_t* render_data, longlong serialization_context
     
     if (data_block != 0) {
         // 处理第一个数据块
-        (**(code**)(*(longlong*)(render_data + 2) + 0x18))(render_data + 2, current_ptr, data_block);
-        *(longlong*)(serialization_context + 8) = *(longlong*)(serialization_context + 8) + (uint64_t)data_block;
+        (**(code**)(*(int64_t*)(render_data + 2) + 0x18))(render_data + 2, current_ptr, data_block);
+        *(int64_t*)(serialization_context + 8) = *(int64_t*)(serialization_context + 8) + (uint64_t)data_block;
         current_ptr = *(uint32_t**)(serialization_context + 8);
     }
     
@@ -355,14 +355,14 @@ void serialize_render_data(uint32_t* render_data, longlong serialization_context
     // 处理最终的元数据
     if (metadata_index == 0) {
         render_data[0x1f2] = *current_ptr;
-        *(longlong*)(serialization_context + 8) = *(longlong*)(serialization_context + 8) + 4;
+        *(int64_t*)(serialization_context + 8) = *(int64_t*)(serialization_context + 8) + 4;
     } else {
         serialize_final_metadata(&get_final_metadata_header(), serialization_context, render_data + 0x1f2);
     }
     
     // 序列化校验和
     *(uint8_t*)(render_data + 499) = **(uint8_t**)(serialization_context + 8);
-    *(longlong*)(serialization_context + 8) = *(longlong*)(serialization_context + 8) + 1;
+    *(int64_t*)(serialization_context + 8) = *(int64_t*)(serialization_context + 8) + 1;
     
     if ((char)render_data[499] != '\0') {
         serialize_extended_data(render_data + 500, serialization_context);
@@ -382,19 +382,19 @@ void serialize_render_data(uint32_t* render_data, longlong serialization_context
  * 
  * 从序列化格式恢复渲染数据
  */
-void deserialize_render_data(uint32_t* target_data, longlong* source_data, uint64_t format_flags, uint64_t compression_flags)
+void deserialize_render_data(uint32_t* target_data, int64_t* source_data, uint64_t format_flags, uint64_t compression_flags)
 {
     uint8_t data_byte;
     uint32_t data_word;
     uint8_t* byte_ptr;
     uint32_t* word_ptr;
     int* int_ptr;
-    longlong block_size;
+    int64_t block_size;
     int element_count;
     uint32_t array_size;
     uint64_t processed_count;
     int current_index;
-    longlong element_offset;
+    int64_t element_offset;
     uint64_t remaining_count;
     uint64_t chunk_count;
     uint64_t unaff_RDI;
@@ -404,8 +404,8 @@ void deserialize_render_data(uint32_t* target_data, longlong* source_data, uint6
     
     // 检查数据缓冲区空间
     word_ptr = (uint32_t*)source_data[1];
-    if ((uint64_t)((*source_data - (longlong)word_ptr) + source_data[2]) < 5) {
-        expand_serialization_buffer(source_data, (longlong)word_ptr + (4 - *source_data));
+    if ((uint64_t)((*source_data - (int64_t)word_ptr) + source_data[2]) < 5) {
+        expand_serialization_buffer(source_data, (int64_t)word_ptr + (4 - *source_data));
         word_ptr = (uint32_t*)source_data[1];
     }
     
@@ -427,42 +427,42 @@ void deserialize_render_data(uint32_t* target_data, longlong* source_data, uint6
     deserialize_data_blocks(source_data, target_data + 0x42);
     
     // 计算资源列表大小
-    block_size = (*(longlong*)(target_data + 0x4c) - *(longlong*)(target_data + 0x4a)) / 6 +
-                (*(longlong*)(target_data + 0x4c) - *(longlong*)(target_data + 0x4a) >> 0x3f);
+    block_size = (*(int64_t*)(target_data + 0x4c) - *(int64_t*)(target_data + 0x4a)) / 6 +
+                (*(int64_t*)(target_data + 0x4c) - *(int64_t*)(target_data + 0x4a) >> 0x3f);
     
     int_ptr = (int*)source_data[1];
     element_count = (int)(block_size >> 4) - (int)(block_size >> 0x3f);
     
-    if ((uint64_t)((*source_data - (longlong)int_ptr) + source_data[2]) < 5) {
-        expand_serialization_buffer(source_data, (longlong)int_ptr + (4 - *source_data));
+    if ((uint64_t)((*source_data - (int64_t)int_ptr) + source_data[2]) < 5) {
+        expand_serialization_buffer(source_data, (int64_t)int_ptr + (4 - *source_data));
         int_ptr = (int*)source_data[1];
     }
     
     *int_ptr = element_count;
     current_index = 0;
     source_data[1] = source_data[1] + 4;
-    block_size = (longlong)element_count;
+    block_size = (int64_t)element_count;
     
     // 反序列化资源列表
     if (0 < element_count) {
         element_offset = 0;
         do {
-            deserialize_resource_entry(source_data, (longlong)current_index * 0x60 + *(longlong*)(target_data + 0x4a));
+            deserialize_resource_entry(source_data, (int64_t)current_index * 0x60 + *(int64_t*)(target_data + 0x4a));
             word_ptr = (uint32_t*)source_data[1];
-            data_word = *(uint32_t*)(element_offset + 0x58 + *(longlong*)(target_data + 0x4a));
+            data_word = *(uint32_t*)(element_offset + 0x58 + *(int64_t*)(target_data + 0x4a));
             
-            if ((uint64_t)((*source_data - (longlong)word_ptr) + source_data[2]) < 5) {
-                expand_serialization_buffer(source_data, (longlong)word_ptr + (4 - *source_data));
+            if ((uint64_t)((*source_data - (int64_t)word_ptr) + source_data[2]) < 5) {
+                expand_serialization_buffer(source_data, (int64_t)word_ptr + (4 - *source_data));
                 word_ptr = (uint32_t*)source_data[1];
             }
             
             *word_ptr = data_word;
             source_data[1] = source_data[1] + 4;
             word_ptr = (uint32_t*)source_data[1];
-            data_word = *(uint32_t*)(element_offset + 0x5c + *(longlong*)(target_data + 0x4a));
+            data_word = *(uint32_t*)(element_offset + 0x5c + *(int64_t*)(target_data + 0x4a));
             
-            if ((uint64_t)((*source_data - (longlong)word_ptr) + source_data[2]) < 5) {
-                expand_serialization_buffer(source_data, (longlong)word_ptr + (4 - *source_data));
+            if ((uint64_t)((*source_data - (int64_t)word_ptr) + source_data[2]) < 5) {
+                expand_serialization_buffer(source_data, (int64_t)word_ptr + (4 - *source_data));
                 word_ptr = (uint32_t*)source_data[1];
             }
             
@@ -481,7 +481,7 @@ void deserialize_render_data(uint32_t* target_data, longlong* source_data, uint6
     byte_ptr = (uint8_t*)source_data[1];
     data_byte = *(uint8_t*)(target_data + 499);
     
-    if ((uint64_t)((*source_data - (longlong)byte_ptr) + source_data[2]) < 2) {
+    if ((uint64_t)((*source_data - (int64_t)byte_ptr) + source_data[2]) < 2) {
         expand_serialization_buffer(source_data, byte_ptr + (1 - *source_data));
         byte_ptr = (uint8_t*)source_data[1];
     }
@@ -517,7 +517,7 @@ static void copy_extended_resource_data(void* dest, void* src);
 static void* allocate_state_update_memory(void* pool, uint64_t size, uint64_t align, uint64_t flags, uint64_t mode);
 static void* get_state_update_handler(void* memory);
 static void initialize_state_update(void* state);
-static longlong get_global_state_queue(void);
+static int64_t get_global_state_queue(void);
 static int lock_state_queue(void* queue);
 static void throw_state_update_error(int error_code);
 static void unlock_state_queue(void* queue);
@@ -535,8 +535,8 @@ static void* get_final_metadata_header(void);
 static void complete_serialization(uint64_t validation_key);
 static void initialize_deserialization(void* header, uint32_t data, void* context);
 static void deserialize_data_blocks(void* context, void* data);
-static void deserialize_resource_entry(void* context, longlong offset);
+static void deserialize_resource_entry(void* context, int64_t offset);
 static void deserialize_remaining_data(void* data, void* context);
 static void deserialize_extended_data(void* data, void* context, uint64_t format, uint64_t compression);
-static void expand_serialization_buffer(void* context, longlong size);
+static void expand_serialization_buffer(void* context, int64_t size);
 static void* get_deserialization_header(void);

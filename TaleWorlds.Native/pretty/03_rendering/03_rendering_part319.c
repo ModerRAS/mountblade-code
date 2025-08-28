@@ -148,7 +148,7 @@
  * @param projection_type 投影类型参数
  */
 void rendering_system_projection_matrix_calculator(
-    longlong render_context, 
+    int64_t render_context, 
     float field_of_view, 
     float aspect_ratio, 
     float near_plane, 
@@ -392,7 +392,7 @@ void rendering_system_projection_matrix_calculator(
  * @param render_context 渲染上下文指针
  * @return 计算得到的视锥体角度值
  */
-float rendering_system_frustum_angle_calculator(longlong render_context) {
+float rendering_system_frustum_angle_calculator(int64_t render_context) {
     float frustum_angle;
     
     // 计算视锥体角度
@@ -409,7 +409,7 @@ float rendering_system_frustum_angle_calculator(longlong render_context) {
  * 
  * @param render_context 渲染上下文指针
  */
-void rendering_system_coordinate_transform_processor(longlong render_context) {
+void rendering_system_coordinate_transform_processor(int64_t render_context) {
     float transform_buffer[16];
     float temp_buffer1[16];
     float temp_buffer2[16];
@@ -444,7 +444,7 @@ void rendering_system_coordinate_transform_processor(longlong render_context) {
  * @param data_params 数据参数指针
  */
 void rendering_system_data_transfer_processor(
-    longlong render_context, 
+    int64_t render_context, 
     uint64_t data_source, 
     uint64_t data_target, 
     uint32_t *data_params
@@ -476,7 +476,7 @@ void rendering_system_data_transfer_processor(
  */
 uint64_t *rendering_system_data_pointer_operator(
     uint64_t *data_pointer, 
-    longlong memory_context, 
+    int64_t memory_context, 
     uint32_t *param_params
 ) {
     uint64_t temp_data;
@@ -508,12 +508,12 @@ uint64_t *rendering_system_data_pointer_operator(
  * @param vector_data 向量数据指针
  */
 void rendering_system_boundary_check_processor(
-    longlong render_context, 
+    int64_t render_context, 
     uint64_t *vector_data
 ) {
     bool boundary_valid;
     float *vector_pointer;
-    longlong iteration_index;
+    int64_t iteration_index;
     float vector_components[3];
     
     // 初始化边界检查
@@ -607,13 +607,13 @@ void rendering_system_vector_transform_processor(
  * @param operation_param2 操作参数2
  */
 void rendering_system_matrix_operation_processor(
-    longlong *matrix_source, 
-    longlong *matrix_target, 
+    int64_t *matrix_source, 
+    int64_t *matrix_target, 
     uint64_t operation_param1, 
     uint64_t operation_param2
 ) {
     void (*matrix_operation)(void);
-    longlong *temp_matrix;
+    int64_t *temp_matrix;
     uint64_t operation_mask;
     
     // 设置操作掩码
@@ -622,13 +622,13 @@ void rendering_system_matrix_operation_processor(
     temp_matrix = matrix_target;
     
     // 执行矩阵操作
-    if (matrix_target != (longlong *)0x0) {
+    if (matrix_target != (int64_t *)0x0) {
         (*(void (**)(void))(*matrix_target + 0x28))(matrix_target);
     }
     
     (*matrix_operation)(matrix_source, &temp_matrix, operation_param1, operation_param2, operation_mask);
     
-    if (temp_matrix != (longlong *)0x0) {
+    if (temp_matrix != (int64_t *)0x0) {
         (*(void (**)(void))(*temp_matrix + 0x38))();
     }
     
@@ -646,14 +646,14 @@ void rendering_system_matrix_operation_processor(
 uint32_t *rendering_system_resource_manager(uint32_t *resource_params) {
     uint32_t operation_result;
     uint64_t resource_handle;
-    longlong *resource_pointer;
+    int64_t *resource_pointer;
     uint32_t stack_params[4];
     
     // 分配资源
     resource_handle = FUN_18062b1e0(0x180c8ed18, 0xf0, 8, 3, 0xfffffffffffffffe);
-    resource_pointer = (longlong *)FUN_18039dda0(resource_handle);
+    resource_pointer = (int64_t *)FUN_18039dda0(resource_handle);
     
-    if (resource_pointer == (longlong *)0x0) {
+    if (resource_pointer == (int64_t *)0x0) {
         operation_result = 0xffffffff;
     } else {
         // 执行资源操作
@@ -670,7 +670,7 @@ uint32_t *rendering_system_resource_manager(uint32_t *resource_params) {
     resource_params[2] = operation_result;
     resource_params[3] = 0;
     
-    if (resource_pointer != (longlong *)0x0) {
+    if (resource_pointer != (int64_t *)0x0) {
         (*(void (**)(void))(*resource_pointer + 0x38))();
     }
     
@@ -694,16 +694,16 @@ uint32_t *rendering_system_memory_allocator(
     uint64_t allocation_param2, 
     uint64_t allocation_param3
 ) {
-    longlong *allocated_memory;
+    int64_t *allocated_memory;
     uint32_t allocation_result;
-    longlong *temp_pointer;
+    int64_t *temp_pointer;
     uint32_t stack_params[4];
     
     // 执行内存分配
     FUN_18039e0a0(allocation_param1, &temp_pointer, allocation_param2, allocation_param3, 0xfffffffffffffffe);
     allocated_memory = temp_pointer;
     
-    if (temp_pointer == (longlong *)0x0) {
+    if (temp_pointer == (int64_t *)0x0) {
         allocation_result = 0xffffffff;
     } else {
         allocation_result = (*(uint32_t (**)(void))(*temp_pointer + 8))(temp_pointer);
@@ -718,7 +718,7 @@ uint32_t *rendering_system_memory_allocator(
     memory_target[2] = allocation_result;
     memory_target[3] = 0;
     
-    if (temp_pointer != (longlong *)0x0) {
+    if (temp_pointer != (int64_t *)0x0) {
         (*(void (**)(void))(*temp_pointer + 0x38))();
     }
     
@@ -743,7 +743,7 @@ void rendering_system_texture_processor(
 ) {
     uint64_t texture_handle;
     void *texture_pointer;
-    longlong status_flag;
+    int64_t status_flag;
     uint32_t texture_status;
     
     // 处理纹理操作
@@ -772,11 +772,11 @@ void rendering_system_texture_processor(
  * @param conversion_param 转换参数
  * @return 转换后的颜色值
  */
-uint rendering_system_color_converter_type1(longlong conversion_param) {
+uint rendering_system_color_converter_type1(int64_t conversion_param) {
     float red_component;
     float green_component;
     float blue_component;
-    longlong color_context;
+    int64_t color_context;
     uint red_value;
     uint green_value;
     uint blue_value;
@@ -801,25 +801,25 @@ uint rendering_system_color_converter_type1(longlong conversion_param) {
         gamma_blue = pow((double)green_component, 0.3333333333333333);
         
         // 转换颜色分量
-        alpha_value = (uint)(longlong)(blue_component * 256.0);
+        alpha_value = (uint)(int64_t)(blue_component * 256.0);
         final_blue = RENDERING_COLOR_MAX_VALUE;
         if (alpha_value < RENDERING_COLOR_MAX_VALUE) {
             final_blue = alpha_value;
         }
         
-        red_value = (uint)(longlong)((float)gamma_red * 256.0);
+        red_value = (uint)(int64_t)((float)gamma_red * 256.0);
         final_red = RENDERING_COLOR_MAX_VALUE;
         if (red_value < RENDERING_COLOR_MAX_VALUE) {
             final_red = red_value;
         }
         
-        green_value = (uint)(longlong)((float)gamma_green * 256.0);
+        green_value = (uint)(int64_t)((float)gamma_green * 256.0);
         final_green = RENDERING_COLOR_MAX_VALUE;
         if (green_value < RENDERING_COLOR_MAX_VALUE) {
             final_green = green_value;
         }
         
-        blue_value = (uint)(longlong)((float)gamma_blue * 256.0);
+        blue_value = (uint)(int64_t)((float)gamma_blue * 256.0);
         alpha_value = RENDERING_COLOR_MAX_VALUE;
         if (blue_value < RENDERING_COLOR_MAX_VALUE) {
             alpha_value = blue_value;
@@ -842,7 +842,7 @@ uint rendering_system_color_converter_type2(void) {
     float red_component;
     float green_component;
     float blue_component;
-    longlong color_context;
+    int64_t color_context;
     uint red_value;
     uint green_value;
     uint blue_value;
@@ -866,25 +866,25 @@ uint rendering_system_color_converter_type2(void) {
     gamma_blue = pow((double)green_component, 0.3333333333333333);
     
     // 转换颜色分量
-    alpha_value = (uint)(longlong)(blue_component * 256.0);
+    alpha_value = (uint)(int64_t)(blue_component * 256.0);
     final_blue = RENDERING_COLOR_MAX_VALUE;
     if (alpha_value < RENDERING_COLOR_MAX_VALUE) {
         final_blue = alpha_value;
     }
     
-    red_value = (uint)(longlong)((float)gamma_red * 256.0);
+    red_value = (uint)(int64_t)((float)gamma_red * 256.0);
     final_red = RENDERING_COLOR_MAX_VALUE;
     if (red_value < RENDERING_COLOR_MAX_VALUE) {
         final_red = red_value;
     }
     
-    green_value = (uint)(longlong)((float)gamma_green * 256.0);
+    green_value = (uint)(int64_t)((float)gamma_green * 256.0);
     final_green = RENDERING_COLOR_MAX_VALUE;
     if (green_value < RENDERING_COLOR_MAX_VALUE) {
         final_green = green_value;
     }
     
-    blue_value = (uint)(longlong)((float)gamma_blue * 256.0);
+    blue_value = (uint)(int64_t)((float)gamma_blue * 256.0);
     alpha_value = RENDERING_COLOR_MAX_VALUE;
     if (blue_value < RENDERING_COLOR_MAX_VALUE) {
         alpha_value = blue_value;
@@ -912,11 +912,11 @@ uint64_t rendering_system_no_operation_type1(void) {
  * @param conversion_param 转换参数
  * @return 转换后的颜色值
  */
-uint rendering_system_color_converter_type3(longlong conversion_param) {
+uint rendering_system_color_converter_type3(int64_t conversion_param) {
     float red_component;
     float green_component;
     float blue_component;
-    longlong color_context;
+    int64_t color_context;
     uint red_value;
     uint green_value;
     uint blue_value;
@@ -941,25 +941,25 @@ uint rendering_system_color_converter_type3(longlong conversion_param) {
         gamma_blue = pow((double)green_component, 0.3333333333333333);
         
         // 转换颜色分量
-        alpha_value = (uint)(longlong)(blue_component * 256.0);
+        alpha_value = (uint)(int64_t)(blue_component * 256.0);
         final_blue = RENDERING_COLOR_MAX_VALUE;
         if (alpha_value < RENDERING_COLOR_MAX_VALUE) {
             final_blue = alpha_value;
         }
         
-        red_value = (uint)(longlong)((float)gamma_red * 256.0);
+        red_value = (uint)(int64_t)((float)gamma_red * 256.0);
         final_red = RENDERING_COLOR_MAX_VALUE;
         if (red_value < RENDERING_COLOR_MAX_VALUE) {
             final_red = red_value;
         }
         
-        green_value = (uint)(longlong)((float)gamma_green * 256.0);
+        green_value = (uint)(int64_t)((float)gamma_green * 256.0);
         final_green = RENDERING_COLOR_MAX_VALUE;
         if (green_value < RENDERING_COLOR_MAX_VALUE) {
             final_green = green_value;
         }
         
-        blue_value = (uint)(longlong)((float)gamma_blue * 256.0);
+        blue_value = (uint)(int64_t)((float)gamma_blue * 256.0);
         alpha_value = RENDERING_COLOR_MAX_VALUE;
         if (blue_value < RENDERING_COLOR_MAX_VALUE) {
             alpha_value = blue_value;
@@ -982,7 +982,7 @@ uint rendering_system_color_converter_type4(void) {
     float red_component;
     float green_component;
     float blue_component;
-    longlong color_context;
+    int64_t color_context;
     uint red_value;
     uint green_value;
     uint blue_value;
@@ -1006,25 +1006,25 @@ uint rendering_system_color_converter_type4(void) {
     gamma_blue = pow((double)green_component, 0.3333333333333333);
     
     // 转换颜色分量
-    alpha_value = (uint)(longlong)(blue_component * 256.0);
+    alpha_value = (uint)(int64_t)(blue_component * 256.0);
     final_blue = RENDERING_COLOR_MAX_VALUE;
     if (alpha_value < RENDERING_COLOR_MAX_VALUE) {
         final_blue = alpha_value;
     }
     
-    red_value = (uint)(longlong)((float)gamma_red * 256.0);
+    red_value = (uint)(int64_t)((float)gamma_red * 256.0);
     final_red = RENDERING_COLOR_MAX_VALUE;
     if (red_value < RENDERING_COLOR_MAX_VALUE) {
         final_red = red_value;
     }
     
-    green_value = (uint)(longlong)((float)gamma_green * 256.0);
+    green_value = (uint)(int64_t)((float)gamma_green * 256.0);
     final_green = RENDERING_COLOR_MAX_VALUE;
     if (green_value < RENDERING_COLOR_MAX_VALUE) {
         final_green = green_value;
     }
     
-    blue_value = (uint)(longlong)((float)gamma_blue * 256.0);
+    blue_value = (uint)(int64_t)((float)gamma_blue * 256.0);
     alpha_value = RENDERING_COLOR_MAX_VALUE;
     if (blue_value < RENDERING_COLOR_MAX_VALUE) {
         alpha_value = blue_value;
@@ -1052,11 +1052,11 @@ uint64_t rendering_system_no_operation_type2(void) {
  * @param color_target 颜色目标指针
  * @param color_value 颜色值
  */
-void rendering_system_gamma_corrector(longlong *color_target, uint64_t color_value) {
+void rendering_system_gamma_corrector(int64_t *color_target, uint64_t color_value) {
     double gamma_component;
     float corrected_colors[4];
     
-    if (color_target != (longlong *)0x0) {
+    if (color_target != (int64_t *)0x0) {
         // 计算红色分量伽马校正
         gamma_component = pow((double)((color_value & 0xffffffff) >> 0x10 & 0xff) * RENDERING_COLOR_SCALE_FACTOR, 
                              RENDERING_GAMMA_CORRECTION_EXPONENT);
@@ -1089,7 +1089,7 @@ void rendering_system_gamma_corrector(longlong *color_target, uint64_t color_val
  */
 void rendering_system_color_processor_type1(void) {
     uint color_param;
-    longlong *color_context;
+    int64_t *color_context;
     uint color_flags;
     double gamma_component;
     float color_value;
@@ -1126,11 +1126,11 @@ void rendering_system_no_operation_type3(void) {
  * @param render_context 渲染上下文指针
  * @param color_data 颜色数据
  */
-void rendering_system_color_processor_type2(longlong render_context, uint64_t color_data) {
-    longlong context_offset;
+void rendering_system_color_processor_type2(int64_t render_context, uint64_t color_data) {
+    int64_t context_offset;
     int operation_result;
-    longlong *resource_pointer;
-    longlong data_offset;
+    int64_t *resource_pointer;
+    int64_t data_offset;
     uint64_t iteration_index;
     uint operation_flag;
     double gamma_red;
@@ -1148,17 +1148,17 @@ void rendering_system_color_processor_type2(longlong render_context, uint64_t co
                          RENDERING_GAMMA_CORRECTION_EXPONENT);
         
         // 获取数据偏移
-        data_offset = *(longlong *)(render_context + 0x30);
+        data_offset = *(int64_t *)(render_context + 0x30);
         iteration_index = 0;
         
-        if (*(longlong *)(render_context + 0x38) - data_offset >> 3 != 0) {
+        if (*(int64_t *)(render_context + 0x38) - data_offset >> 3 != 0) {
             color_index = iteration_index;
             do {
-                operation_result = (*(int (**)(void))(*(longlong **)(iteration_index + data_offset) + 0x98))();
+                operation_result = (*(int (**)(void))(*(int64_t **)(iteration_index + data_offset) + 0x98))();
                 if (operation_result == 0) {
-                    data_offset = *(longlong *)(iteration_index + *(longlong *)(render_context + 0x30));
-                    resource_pointer = *(longlong **)(data_offset + 0x38);
-                    if (resource_pointer < *(longlong **)(data_offset + 0x40)) {
+                    data_offset = *(int64_t *)(iteration_index + *(int64_t *)(render_context + 0x30));
+                    resource_pointer = *(int64_t **)(data_offset + 0x38);
+                    if (resource_pointer < *(int64_t **)(data_offset + 0x40)) {
                         do {
                             context_offset = *resource_pointer;
                             resource_pointer = resource_pointer + 2;
@@ -1166,15 +1166,15 @@ void rendering_system_color_processor_type2(longlong render_context, uint64_t co
                             *(uint64_t *)(context_offset + 0x250) = 
                                 ((uint64_t)((float)((double)(color_data >> 0x18 & 0xff) * RENDERING_COLOR_SCALE_FACTOR)) << 32) | 
                                 (uint32_t)((float)gamma_blue);
-                        } while (resource_pointer < *(longlong **)(data_offset + 0x40));
+                        } while (resource_pointer < *(int64_t **)(data_offset + 0x40));
                     }
                 }
-                data_offset = *(longlong *)(render_context + 0x30);
+                data_offset = *(int64_t *)(render_context + 0x30);
                 operation_flag = (int)color_index + 1;
                 color_index = (uint64_t)operation_flag;
                 iteration_index = iteration_index + 8;
-            } while ((uint64_t)(longlong)(int)operation_flag < 
-                     (uint64_t)(*(longlong *)(render_context + 0x38) - data_offset >> 3));
+            } while ((uint64_t)(int64_t)(int)operation_flag < 
+                     (uint64_t)(*(int64_t *)(render_context + 0x38) - data_offset >> 3));
         }
     }
     
@@ -1189,12 +1189,12 @@ void rendering_system_color_processor_type2(longlong render_context, uint64_t co
  * @param render_context 渲染上下文指针
  * @param color_data 颜色数据
  */
-void rendering_system_color_processor_type3(longlong render_context, uint64_t color_data) {
-    longlong context_offset;
+void rendering_system_color_processor_type3(int64_t render_context, uint64_t color_data) {
+    int64_t context_offset;
     uint64_t temp_param;
     int operation_result;
-    longlong *resource_pointer;
-    longlong data_offset;
+    int64_t *resource_pointer;
+    int64_t data_offset;
     uint64_t iteration_index;
     uint operation_flag;
     double gamma_red;
@@ -1211,33 +1211,33 @@ void rendering_system_color_processor_type3(longlong render_context, uint64_t co
                      RENDERING_GAMMA_CORRECTION_EXPONENT);
     
     // 获取数据偏移
-    data_offset = *(longlong *)(render_context + 0x30);
+    data_offset = *(int64_t *)(render_context + 0x30);
     iteration_index = 0;
     stack_param = (float)((double)(color_data >> 0x18 & 0xff) * RENDERING_COLOR_SCALE_FACTOR);
     
-    if (*(longlong *)(render_context + 0x38) - data_offset >> 3 != 0) {
+    if (*(int64_t *)(render_context + 0x38) - data_offset >> 3 != 0) {
         temp_param = ((uint64_t)stack_param << 32) | (uint32_t)((float)gamma_blue);
         color_index = iteration_index;
         do {
-            operation_result = (*(int (**)(void))(*(longlong **)(iteration_index + data_offset) + 0x98))();
+            operation_result = (*(int (**)(void))(*(int64_t **)(iteration_index + data_offset) + 0x98))();
             if (operation_result == 0) {
-                data_offset = *(longlong *)(iteration_index + *(longlong *)(render_context + 0x30));
-                resource_pointer = *(longlong **)(data_offset + 0x38);
-                if (resource_pointer < *(longlong **)(data_offset + 0x40)) {
+                data_offset = *(int64_t *)(iteration_index + *(int64_t *)(render_context + 0x30));
+                resource_pointer = *(int64_t **)(data_offset + 0x38);
+                if (resource_pointer < *(int64_t **)(data_offset + 0x40)) {
                     do {
                         context_offset = *resource_pointer;
                         resource_pointer = resource_pointer + 2;
                         *(uint64_t *)(context_offset + 0x248) = ((uint64_t)(float)gamma_green << 32) | (uint32_t)((float)gamma_red);
                         *(uint64_t *)(context_offset + 0x250) = temp_param;
-                    } while (resource_pointer < *(longlong **)(data_offset + 0x40));
+                    } while (resource_pointer < *(int64_t **)(data_offset + 0x40));
                 }
             }
-            data_offset = *(longlong *)(render_context + 0x30);
+            data_offset = *(int64_t *)(render_context + 0x30);
             operation_flag = (int)color_index + 1;
             color_index = (uint64_t)operation_flag;
             iteration_index = iteration_index + 8;
-        } while ((uint64_t)(longlong)(int)operation_flag < 
-                 (uint64_t)(*(longlong *)(render_context + 0x38) - data_offset >> 3));
+        } while ((uint64_t)(int64_t)(int)operation_flag < 
+                 (uint64_t)(*(int64_t *)(render_context + 0x38) - data_offset >> 3));
     }
     
     return;
@@ -1249,15 +1249,15 @@ void rendering_system_color_processor_type3(longlong render_context, uint64_t co
  * 批量处理渲染系统中的颜色值（无参数版本）。
  */
 void rendering_system_color_processor_type4(void) {
-    longlong context_offset;
+    int64_t context_offset;
     uint64_t temp_param;
     int operation_result;
-    longlong data_offset;
-    longlong *resource_pointer;
+    int64_t data_offset;
+    int64_t *resource_pointer;
     uint red_component;
     uint64_t iteration_index;
     uint operation_flag;
-    longlong render_context;
+    int64_t render_context;
     double gamma_red;
     double gamma_green;
     double gamma_blue;
@@ -1272,33 +1272,33 @@ void rendering_system_color_processor_type4(void) {
                      RENDERING_GAMMA_CORRECTION_EXPONENT);
     
     // 获取数据偏移
-    data_offset = *(longlong *)(render_context + 0x30);
+    data_offset = *(int64_t *)(render_context + 0x30);
     iteration_index = 0;
     stack_param = (float)((double)(red_component >> 0x18) * RENDERING_COLOR_SCALE_FACTOR);
     
-    if (*(longlong *)(render_context + 0x38) - data_offset >> 3 != 0) {
+    if (*(int64_t *)(render_context + 0x38) - data_offset >> 3 != 0) {
         temp_param = ((uint64_t)stack_param << 32) | (uint32_t)((float)gamma_blue);
         color_index = iteration_index;
         do {
-            operation_result = (*(int (**)(void))(*(longlong **)(iteration_index + data_offset) + 0x98))();
+            operation_result = (*(int (**)(void))(*(int64_t **)(iteration_index + data_offset) + 0x98))();
             if (operation_result == 0) {
-                data_offset = *(longlong *)(iteration_index + *(longlong *)(render_context + 0x30));
-                resource_pointer = *(longlong **)(data_offset + 0x38);
-                if (resource_pointer < *(longlong **)(data_offset + 0x40)) {
+                data_offset = *(int64_t *)(iteration_index + *(int64_t *)(render_context + 0x30));
+                resource_pointer = *(int64_t **)(data_offset + 0x38);
+                if (resource_pointer < *(int64_t **)(data_offset + 0x40)) {
                     do {
                         context_offset = *resource_pointer;
                         resource_pointer = resource_pointer + 2;
                         *(uint64_t *)(context_offset + 0x248) = ((uint64_t)(float)gamma_green << 32) | (uint32_t)((float)gamma_red);
                         *(uint64_t *)(context_offset + 0x250) = temp_param;
-                    } while (resource_pointer < *(longlong **)(data_offset + 0x40));
+                    } while (resource_pointer < *(int64_t **)(data_offset + 0x40));
                 }
             }
-            data_offset = *(longlong *)(render_context + 0x30);
+            data_offset = *(int64_t *)(render_context + 0x30);
             operation_flag = (int)color_index + 1;
             color_index = (uint64_t)operation_flag;
             iteration_index = iteration_index + 8;
-        } while ((uint64_t)(longlong)(int)operation_flag < 
-                 (uint64_t)(*(longlong *)(render_context + 0x38) - data_offset >> 3));
+        } while ((uint64_t)(int64_t)(int)operation_flag < 
+                 (uint64_t)(*(int64_t *)(render_context + 0x38) - data_offset >> 3));
     }
     
     return;
@@ -1317,15 +1317,15 @@ void rendering_system_color_processor_type4(void) {
  */
 void rendering_system_batch_data_processor(
     uint64_t batch_param1, 
-    longlong render_context, 
+    int64_t render_context, 
     uint64_t batch_param2, 
     uint64_t batch_param3, 
     uint64_t batch_param4
 ) {
-    longlong context_offset;
-    longlong data_offset;
+    int64_t context_offset;
+    int64_t data_offset;
     int operation_result;
-    longlong *resource_pointer;
+    int64_t *resource_pointer;
     uint64_t iteration_index;
     uint operation_flag;
     uint64_t color_index;
@@ -1334,24 +1334,24 @@ void rendering_system_batch_data_processor(
     // 初始化批量处理
     color_index = (uint64_t)operation_flag;
     do {
-        operation_result = (*(int (**)(void))(*(longlong **)(color_index + render_context) + 0x98))();
+        operation_result = (*(int (**)(void))(*(int64_t **)(color_index + render_context) + 0x98))();
         if (operation_result == 0) {
-            data_offset = *(longlong *)(color_index + *(longlong *)(render_context + 0x30));
-            resource_pointer = *(longlong **)(data_offset + 0x38);
-            if (resource_pointer < *(longlong **)(data_offset + 0x40)) {
+            data_offset = *(int64_t *)(color_index + *(int64_t *)(render_context + 0x30));
+            resource_pointer = *(int64_t **)(data_offset + 0x38);
+            if (resource_pointer < *(int64_t **)(data_offset + 0x40)) {
                 do {
                     context_offset = *resource_pointer;
                     resource_pointer = resource_pointer + 2;
                     *(uint64_t *)(context_offset + 0x248) = stack_param;
                     *(uint64_t *)(context_offset + 0x250) = batch_param4;
-                } while (resource_pointer < *(longlong **)(data_offset + 0x40));
+                } while (resource_pointer < *(int64_t **)(data_offset + 0x40));
             }
         }
-        render_context = *(longlong *)(render_context + 0x30);
+        render_context = *(int64_t *)(render_context + 0x30);
         operation_flag = operation_flag + 1;
         color_index = color_index + 8;
-    } while ((uint64_t)(longlong)(int)operation_flag < 
-             (uint64_t)(*(longlong *)(render_context + 0x38) - render_context >> 3));
+    } while ((uint64_t)(int64_t)(int)operation_flag < 
+             (uint64_t)(*(int64_t *)(render_context + 0x38) - render_context >> 3));
     
     return;
 }
@@ -1378,7 +1378,7 @@ void rendering_system_no_operation_type4(void) {
  * @param param5 参数5
  */
 void rendering_system_parameter_setter(
-    longlong *render_context, 
+    int64_t *render_context, 
     uint32_t param1, 
     uint32_t param2, 
     uint32_t param3, 
@@ -1387,7 +1387,7 @@ void rendering_system_parameter_setter(
 ) {
     uint32_t stack_params[4];
     
-    if (render_context != (longlong *)0x0) {
+    if (render_context != (int64_t *)0x0) {
         stack_params[0] = param5;
         stack_params[1] = param1;
         stack_params[2] = param2;

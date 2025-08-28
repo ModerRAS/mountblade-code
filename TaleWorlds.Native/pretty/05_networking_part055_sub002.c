@@ -6,10 +6,10 @@
 void FUN_18086c43c(void)
 
 {
-  ulonglong in_stack_00000050;
+  uint64_t in_stack_00000050;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  FUN_1808fc050(in_stack_00000050 ^ (uint64_t)&stack0x00000000);
 }
 
 

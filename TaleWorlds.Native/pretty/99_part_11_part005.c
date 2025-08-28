@@ -2,8 +2,8 @@
 
 // 99_part_11_part005.c - 2 个函数
 
-// 函数: void FUN_1806d9e70(longlong param_1,int32_t *param_2,int32_t *param_3,char param_4)
-void FUN_1806d9e70(longlong param_1,int32_t *param_2,int32_t *param_3,char param_4)
+// 函数: void FUN_1806d9e70(int64_t param_1,int32_t *param_2,int32_t *param_3,char param_4)
+void FUN_1806d9e70(int64_t param_1,int32_t *param_2,int32_t *param_3,char param_4)
 
 {
   uint uVar1;
@@ -175,8 +175,8 @@ void FUN_1806d9e70(longlong param_1,int32_t *param_2,int32_t *param_3,char param
     fVar17 = -fStack_134;
     fStack_154 = (fVar19 * fVar13 - (fVar10 * fVar18 - fVar16 * fVar12) * fVar9) + fVar8 * fVar11;
     fVar14 = -fStack_130;
-    uStack_168 = *(ulonglong *)(param_1 + 0x10) ^ 0x8000000080000000;
-    uStack_160 = *(ulonglong *)(param_1 + 0x18) ^ 0x80000000;
+    uStack_168 = *(uint64_t *)(param_1 + 0x10) ^ 0x8000000080000000;
+    uStack_160 = *(uint64_t *)(param_1 + 0x18) ^ 0x80000000;
     fStack_150 = (fVar19 * fVar12 - (fVar16 * fVar13 - fVar8 * fVar18) * fVar9) + fVar10 * fVar11;
     fStack_16c = fStack_180;
     fVar8 = (fStack_158 - fVar15) + (fStack_158 - fVar15);
@@ -299,13 +299,13 @@ void FUN_1806d9ec3(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t p
   bool bVar2;
   int32_t uVar3;
   int32_t uVar4;
-  longlong in_RAX;
+  int64_t in_RAX;
   uint64_t *puVar5;
   int32_t *puVar6;
   uint64_t unaff_RBX;
-  longlong unaff_RBP;
+  int64_t unaff_RBP;
   int32_t *unaff_RSI;
-  longlong unaff_RDI;
+  int64_t unaff_RDI;
   char unaff_R12B;
   uint64_t unaff_R14;
   int32_t *unaff_R15;
@@ -329,7 +329,7 @@ void FUN_1806d9ec3(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t p
   float fVar24;
   float fVar25;
   float fVar26;
-  longlong lStack0000000000000028;
+  int64_t lStack0000000000000028;
   int8_t uStack0000000000000030;
   float fStack0000000000000044;
   float fStack0000000000000048;
@@ -337,8 +337,8 @@ void FUN_1806d9ec3(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t p
   float fStack0000000000000054;
   float fStack0000000000000058;
   float fStack000000000000005c;
-  ulonglong in_stack_00000060;
-  ulonglong in_stack_00000068;
+  uint64_t in_stack_00000060;
+  uint64_t in_stack_00000068;
   float in_stack_00000070;
   float fStack0000000000000074;
   float in_stack_00000078;
@@ -466,8 +466,8 @@ void FUN_1806d9ec3(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t p
     fStack0000000000000074 =
          (fVar14 * fVar10 - (fVar17 * fVar12 - fVar15 * fVar11) * fVar9) + fVar16 * fVar8;
     fStack0000000000000044 = -fStack0000000000000044;
-    in_stack_00000060 = *(ulonglong *)(unaff_RDI + 0x10) ^ 0x8000000080000000;
-    in_stack_00000068 = *(ulonglong *)(unaff_RDI + 0x18) ^ 0x80000000;
+    in_stack_00000060 = *(uint64_t *)(unaff_RDI + 0x10) ^ 0x8000000080000000;
+    in_stack_00000068 = *(uint64_t *)(unaff_RDI + 0x18) ^ 0x80000000;
     in_stack_00000078 =
          (fVar14 * fVar11 - (fVar15 * fVar10 - fVar16 * fVar12) * fVar9) + fVar17 * fVar8;
     fVar9 = fStack0000000000000074 - *(float *)(unaff_RBP + -0x50);

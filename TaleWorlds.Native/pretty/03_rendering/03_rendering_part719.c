@@ -134,7 +134,7 @@ void RenderingSystemAVX2ImageProcessor(uint8_t (*image_buffer1)[16], int stride1
     __m256i diff_vector1, diff_vector2;             // 差值向量1, 2
     __m256i squared_diff1, squared_diff2;         // 平方差向量1, 2
     __m256i accumulator_vector1, accumulator_vector2; // 累加向量1, 2
-    longlong iteration_count;                       // 迭代计数器
+    int64_t iteration_count;                       // 迭代计数器
     __m256i temp_vector1;                           // 临时向量1
     __m256i stack_vector[4];                        // 栈向量数组
     

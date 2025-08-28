@@ -69,10 +69,10 @@
 // 类型别名定义
 // =============================================================================
 typedef float RenderingSystem_FloatValue;                 // 渲染系统浮点数值
-typedef ulonglong RenderingSystem_ULongValue;              // 渲染系统无符号长整数值
+typedef uint64_t RenderingSystem_ULongValue;              // 渲染系统无符号长整数值
 typedef ushort RenderingSystem_UShortValue;                // 渲染系统无符号短整数值
 typedef uint RenderingSystem_UIntValue;                     // 渲染系统无符号整数值
-typedef longlong RenderingSystem_LongValue;                // 渲染系统长整数值
+typedef int64_t RenderingSystem_LongValue;                // 渲染系统长整数值
 typedef int8_t RenderingSystem_Undefined1;              // 渲染系统未定义类型1
 typedef int32_t RenderingSystem_Undefined4;              // 渲染系统未定义类型4
 typedef uint64_t RenderingSystem_Undefined8;              // 渲染系统未定义类型8
@@ -146,7 +146,7 @@ static RenderingSystem_ProcessState g_rendering_system_state = RENDERING_SYSTEM_
  * - 包含错误处理和状态管理
  * - 支持多级嵌套的条件分支
  */
-void RenderingSystem_FloatProcessor(float param_1, ulonglong param_2)
+void RenderingSystem_FloatProcessor(float param_1, uint64_t param_2)
 {
     RenderingSystem_UShortValue *puVar1;                    // 无符号短整指针变量1
     RenderingSystem_UIntValue uVar2;                        // 无符号整型变量2
@@ -235,7 +235,7 @@ void RenderingSystem_FloatProcessor(float param_1, ulonglong param_2)
                 
                 // 处理栈数据和内存结构
                 uVar4 = *(RenderingSystem_Undefined1 *)(unaff_RBP + -0x1a);
-                *(ulonglong *)(unaff_RBX + RENDERING_SYSTEM_OFFSET_A830) = CONCAT44(uStack0000000000000064, uStack0000000000000060);
+                *(uint64_t *)(unaff_RBX + RENDERING_SYSTEM_OFFSET_A830) = CONCAT44(uStack0000000000000064, uStack0000000000000060);
                 *(RenderingSystem_Undefined8 *)(unaff_RBX + RENDERING_SYSTEM_OFFSET_A838) = in_stack_00000068;
                 uVar15 = *(RenderingSystem_Undefined8 *)(unaff_RBP + -0x80);
                 uVar16 = *(RenderingSystem_Undefined8 *)(unaff_RBP + -0x78);
@@ -568,7 +568,7 @@ LAB_180579bd9:
             }
             
             // 处理标志位和状态检查
-            if ((*(RenderingSystem_UShortValue *)(*(longlong *)(unaff_RDI + RENDERING_SYSTEM_OFFSET_728) + RENDERING_SYSTEM_OFFSET_5AA) & RENDERING_SYSTEM_FLAG_3C2A) == 0) {
+            if ((*(RenderingSystem_UShortValue *)(*(int64_t *)(unaff_RDI + RENDERING_SYSTEM_OFFSET_728) + RENDERING_SYSTEM_OFFSET_5AA) & RENDERING_SYSTEM_FLAG_3C2A) == 0) {
                 if (*(RenderingSystem_FloatValue *)(unaff_RBX + RENDERING_SYSTEM_OFFSET_A7F4) != RENDERING_SYSTEM_FLOAT_ZERO) {
                     param_1 = *(RenderingSystem_FloatValue *)(unaff_RBX + RENDERING_SYSTEM_OFFSET_43000);
                     *(RenderingSystem_FloatValue *)(unaff_RBX + RENDERING_SYSTEM_OFFSET_43000) = param_1;

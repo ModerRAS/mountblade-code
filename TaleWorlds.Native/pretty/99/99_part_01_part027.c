@@ -416,13 +416,13 @@ void FUN_1800b9995(void)
     uint64_t key_value;                 /**< 键值 */
     double double_value;               /**< 双精度值 */
     uint64_t temp_key;                  /**< 临时键值 */
-    longlong index;                     /**< 索引 */
-    longlong child_index;              /**< 子索引 */
+    int64_t index;                     /**< 索引 */
+    int64_t child_index;              /**< 子索引 */
     uint64_t* heap_base;                /**< 堆基地址 */
     uint64_t* current_ptr;              /**< 当前指针 */
-    longlong heap_size;                 /**< 堆大小 */
+    int64_t heap_size;                 /**< 堆大小 */
     uint64_t* heap_array;               /**< 堆数组 */
-    longlong parent_index;              /**< 父索引 */
+    int64_t parent_index;              /**< 父索引 */
     bool is_complete;                   /**< 完成标志 */
     
     current_ptr = heap_base;
@@ -476,7 +476,7 @@ void FUN_1800b9995(void)
         do {
             key_value = *current_ptr;
             double_value = (double)current_ptr[1];
-            longlong temp_size = heap_size + -1;
+            int64_t temp_size = heap_size + -1;
             index = 0;
             temp_key = heap_array[1];
             child_index = 2;
@@ -512,7 +512,7 @@ void FUN_1800b9995(void)
                 index = child_index;
             }
             current_ptr = current_ptr + -2;
-            heap_size = (longlong)current_ptr + (0x10 - (longlong)heap_array) >> 4;
+            heap_size = (int64_t)current_ptr + (0x10 - (int64_t)heap_array) >> 4;
             heap_array[index * 2] = key_value;
             (heap_array + index * 2)[1] = double_value;
         } while (1 < heap_size);
@@ -536,13 +536,13 @@ void FUN_1800b9a8e(void)
     uint64_t key_value;                 /**< 键值 */
     double double_value;               /**< 双精度值 */
     uint64_t temp_key;                  /**< 临时键值 */
-    longlong index;                     /**< 索引 */
-    longlong child_index;              /**< 子索引 */
-    longlong base_offset;               /**< 基础偏移 */
+    int64_t index;                     /**< 索引 */
+    int64_t child_index;              /**< 子索引 */
+    int64_t base_offset;               /**< 基础偏移 */
     uint64_t* heap_array;               /**< 堆数组 */
     uint64_t* current_ptr;              /**< 当前指针 */
-    longlong heap_size;                 /**< 堆大小 */
-    longlong temp_size;                 /**< 临时大小 */
+    int64_t heap_size;                 /**< 堆大小 */
+    int64_t temp_size;                 /**< 临时大小 */
     bool is_complete;                   /**< 完成标志 */
     
     current_ptr = (uint64_t*)(base_offset + -0x10);
@@ -585,7 +585,7 @@ void FUN_1800b9a8e(void)
             index = child_index;
         }
         current_ptr = current_ptr + -2;
-        heap_size = (longlong)current_ptr + (0x10 - (longlong)heap_array) >> 4;
+        heap_size = (int64_t)current_ptr + (0x10 - (int64_t)heap_array) >> 4;
         heap_array[index * 2] = key_value;
         (heap_array + index * 2)[1] = double_value;
     } while (1 < heap_size);
@@ -608,18 +608,18 @@ void FUN_1800b9b80(uint64_t* start_ptr, uint64_t* end_ptr, uint64_t* heap_array,
 {
     uint64_t key_value1;                /**< 键值1 */
     uint64_t key_value2;                /**< 键值2 */
-    longlong left_index;               /**< 左索引 */
-    longlong right_index;              /**< 右索引 */
-    longlong middle_index;             /**< 中间索引 */
+    int64_t left_index;               /**< 左索引 */
+    int64_t right_index;              /**< 右索引 */
+    int64_t middle_index;             /**< 中间索引 */
     uint64_t* middle_ptr;               /**< 中间指针 */
-    longlong partition_size;            /**< 分区大小 */
-    longlong heap_size;                 /**< 堆大小 */
-    longlong current_size;              /**< 当前大小 */
+    int64_t partition_size;            /**< 分区大小 */
+    int64_t heap_size;                 /**< 堆大小 */
+    int64_t current_size;              /**< 当前大小 */
     bool is_partition_complete;        /**< 分区完成标志 */
     uint64_t stack_key1;               /**< 栈键值1 */
     uint64_t stack_key2;               /**< 栈键值2 */
     
-    heap_size = (longlong)end_ptr - (longlong)start_ptr >> 4;
+    heap_size = (int64_t)end_ptr - (int64_t)start_ptr >> 4;
     if (1 < heap_size) {
         current_size = (heap_size + -2 >> 1) + 1;
         middle_ptr = start_ptr + current_size * 2;
@@ -713,7 +713,7 @@ void FUN_1800b9b80(uint64_t* start_ptr, uint64_t* end_ptr, uint64_t* heap_array,
             end_ptr = end_ptr + -2;
             start_ptr[partition_size * 2] = key_value1;
             *(float*)(start_ptr + partition_size * 2 + 1) = (float)stack_key2;
-            heap_size = (0x10 - (longlong)start_ptr) + (longlong)end_ptr >> 4;
+            heap_size = (0x10 - (int64_t)start_ptr) + (int64_t)end_ptr >> 4;
         } while (1 < heap_size);
     }
     return;
@@ -731,14 +731,14 @@ void FUN_1800b9b80(uint64_t* start_ptr, uint64_t* end_ptr, uint64_t* heap_array,
  * @param new_element 新元素
  * @return void
  */
-void FUN_1800b9e60(longlong heap_base, longlong start_index, longlong heap_size, longlong flags,
+void FUN_1800b9e60(int64_t heap_base, int64_t start_index, int64_t heap_size, int64_t flags,
                   uint64_t* new_element)
 {
     float* element_ptr;                 /**< 元素指针 */
     float element_value;                /**< 元素值 */
-    longlong left_index;                /**< 左索引 */
-    longlong right_index;               /**< 右索引 */
-    longlong parent_index;              /**< 父索引 */
+    int64_t left_index;                /**< 左索引 */
+    int64_t right_index;               /**< 右索引 */
+    int64_t parent_index;              /**< 父索引 */
     
     right_index = flags * 2;
     while (left_index = right_index + 2, left_index < heap_size) {
@@ -821,37 +821,37 @@ void FUN_1800b9f60(float* float_array)
  * 
  * @param memory_context 内存上下文
  * @param block_start 块起始地址
- * @return longlong* 清理后的块地址
+ * @return int64_t* 清理后的块地址
  */
-longlong* FUN_1800ba050(longlong memory_context, longlong* block_start)
+int64_t* FUN_1800ba050(int64_t memory_context, int64_t* block_start)
 {
-    longlong next_block;                /**< 下一块地址 */
-    longlong* current_block;            /**< 当前块 */
-    longlong* temp_block;               /**< 临时块 */
-    longlong block_count;               /**< 块计数 */
-    longlong* cleanup_block;            /**< 清理块 */
+    int64_t next_block;                /**< 下一块地址 */
+    int64_t* current_block;            /**< 当前块 */
+    int64_t* temp_block;               /**< 临时块 */
+    int64_t block_count;               /**< 块计数 */
+    int64_t* cleanup_block;            /**< 清理块 */
     
-    current_block = *(longlong**)(memory_context + 8);
+    current_block = *(int64_t**)(memory_context + 8);
     if ((block_start + 1 < current_block) &&
-       (block_count = (longlong)current_block - (longlong)(block_start + 1) >> 3, 
+       (block_count = (int64_t)current_block - (int64_t)(block_start + 1) >> 3, 
         cleanup_block = block_start, 0 < block_count)) {
         do {
             current_block = cleanup_block + 1;
             next_block = *current_block;
             *current_block = 0;
-            temp_block = (longlong*)*cleanup_block;
+            temp_block = (int64_t*)*cleanup_block;
             *cleanup_block = next_block;
-            if (temp_block != (longlong*)0x0) {
+            if (temp_block != (int64_t*)0x0) {
                 (**(code**)(*temp_block + 0x38))();
             }
             block_count = block_count + -1;
             cleanup_block = current_block;
         } while (0 < block_count);
-        current_block = *(longlong**)(memory_context + 8);
+        current_block = *(int64_t**)(memory_context + 8);
     }
-    *(longlong**)(memory_context + 8) = current_block + -1;
-    current_block = (longlong*)current_block[-1];
-    if (current_block != (longlong*)0x0) {
+    *(int64_t**)(memory_context + 8) = current_block + -1;
+    current_block = (int64_t*)current_block[-1];
+    if (current_block != (int64_t*)0x0) {
         (**(code**)(*current_block + 0x38))();
     }
     return block_start;
@@ -865,22 +865,22 @@ longlong* FUN_1800ba050(longlong memory_context, longlong* block_start)
  * @param pool_context 池上下文
  * @return void
  */
-void FUN_1800ba100(longlong pool_context)
+void FUN_1800ba100(int64_t pool_context)
 {
-    ulonglong pool_size;                /**< 池大小 */
-    longlong pool_base;                 /**< 池基地址 */
-    longlong block_index;               /**< 块索引 */
-    ulonglong cleanup_index;            /**< 清理索引 */
+    uint64_t pool_size;                /**< 池大小 */
+    int64_t pool_base;                 /**< 池基地址 */
+    int64_t block_index;               /**< 块索引 */
+    uint64_t cleanup_index;            /**< 清理索引 */
     
-    pool_size = *(ulonglong*)(pool_context + 0x10);
+    pool_size = *(uint64_t*)(pool_context + 0x10);
     cleanup_index = 0;
-    pool_base = *(longlong*)(pool_context + 8);
+    pool_base = *(int64_t*)(pool_context + 8);
     if (pool_size == 0) {
         *(uint64_t*)(pool_context + 0x18) = 0;
     }
     else {
         do {
-            block_index = *(longlong*)(pool_base + cleanup_index * 8);
+            block_index = *(int64_t*)(pool_base + cleanup_index * 8);
             if (block_index != 0) {
                 FUN_18064e900(block_index);
             }
@@ -901,15 +901,15 @@ void FUN_1800ba100(longlong pool_context)
  */
 void FUN_1800ba129(void)
 {
-    longlong resource_ptr;              /**< 资源指针 */
-    longlong base_offset;               /**< 基础偏移 */
-    ulonglong resource_count;           /**< 资源计数 */
-    ulonglong resource_index;           /**< 资源索引 */
-    longlong resource_base;             /**< 资源基地址 */
-    ulonglong cleanup_flag;             /**< 清理标志 */
+    int64_t resource_ptr;              /**< 资源指针 */
+    int64_t base_offset;               /**< 基础偏移 */
+    uint64_t resource_count;           /**< 资源计数 */
+    uint64_t resource_index;           /**< 资源索引 */
+    int64_t resource_base;             /**< 资源基地址 */
+    uint64_t cleanup_flag;             /**< 清理标志 */
     
     do {
-        resource_ptr = *(longlong*)(resource_base + resource_index * 8);
+        resource_ptr = *(int64_t*)(resource_base + resource_index * 8);
         if (resource_ptr != 0) {
             FUN_18064e900(resource_ptr);
         }
@@ -928,7 +928,7 @@ void FUN_1800ba129(void)
  * @param resource_context 资源上下文
  * @return void
  */
-void FUN_1800ba168(longlong resource_context)
+void FUN_1800ba168(int64_t resource_context)
 {
     uint64_t reset_flag;                /**< 重置标志 */
     
@@ -944,21 +944,21 @@ void FUN_1800ba168(longlong resource_context)
  * @param allocator_context 分配器上下文
  * @return void
  */
-void FUN_1800ba180(longlong allocator_context)
+void FUN_1800ba180(int64_t allocator_context)
 {
     int* ref_count_ptr;                 /**< 引用计数指针 */
     uint64_t* memory_ptr;               /**< 内存指针 */
-    longlong aligned_address;           /**< 对齐地址 */
-    ulonglong memory_size;              /**< 内存大小 */
+    int64_t aligned_address;           /**< 对齐地址 */
+    uint64_t memory_size;              /**< 内存大小 */
     
     FUN_1800ba100();
-    if ((1 < *(ulonglong*)(allocator_context + 0x10)) &&
+    if ((1 < *(uint64_t*)(allocator_context + 0x10)) &&
        (memory_ptr = *(uint64_t**)(allocator_context + 8), memory_ptr != (uint64_t*)0x0)) {
-        memory_size = (ulonglong)memory_ptr & MEMORY_ALIGNMENT_MASK;
+        memory_size = (uint64_t)memory_ptr & MEMORY_ALIGNMENT_MASK;
         if (memory_size != 0) {
             aligned_address = memory_size + MEMORY_HEADER_SIZE + 
-                             ((longlong)memory_ptr - memory_size >> 0x10) * MEMORY_POOL_SIZE;
-            aligned_address = aligned_address - (ulonglong)*(uint*)(aligned_address + 4);
+                             ((int64_t)memory_ptr - memory_size >> 0x10) * MEMORY_POOL_SIZE;
+            aligned_address = aligned_address - (uint64_t)*(uint*)(aligned_address + 4);
             if ((*(void***)(memory_size + 0x70) == &ExceptionList) && 
                 (*(char*)(aligned_address + 0xe) == '\0')) {
                 *memory_ptr = *(uint64_t*)(aligned_address + 0x20);
@@ -989,21 +989,21 @@ void FUN_1800ba180(longlong allocator_context)
  * @param async_context 异步上下文
  * @return void
  */
-void FUN_1800ba1b0(longlong async_context)
+void FUN_1800ba1b0(int64_t async_context)
 {
     int* ref_count_ptr;                 /**< 引用计数指针 */
     uint64_t* memory_ptr;               /**< 内存指针 */
-    longlong aligned_address;           /**< 对齐地址 */
-    ulonglong memory_size;              /**< 内存大小 */
+    int64_t aligned_address;           /**< 对齐地址 */
+    uint64_t memory_size;              /**< 内存大小 */
     
     FUN_1800ba100();
-    if ((1 < *(ulonglong*)(async_context + 0x10)) &&
+    if ((1 < *(uint64_t*)(async_context + 0x10)) &&
        (memory_ptr = *(uint64_t**)(async_context + 8), memory_ptr != (uint64_t*)0x0)) {
-        memory_size = (ulonglong)memory_ptr & MEMORY_ALIGNMENT_MASK;
+        memory_size = (uint64_t)memory_ptr & MEMORY_ALIGNMENT_MASK;
         if (memory_size != 0) {
             aligned_address = memory_size + MEMORY_HEADER_SIZE + 
-                             ((longlong)memory_ptr - memory_size >> 0x10) * MEMORY_POOL_SIZE;
-            aligned_address = aligned_address - (ulonglong)*(uint*)(aligned_address + 4);
+                             ((int64_t)memory_ptr - memory_size >> 0x10) * MEMORY_POOL_SIZE;
+            aligned_address = aligned_address - (uint64_t)*(uint*)(aligned_address + 4);
             if ((*(void***)(memory_size + 0x70) == &ExceptionList) && 
                 (*(char*)(aligned_address + 0xe) == '\0')) {
                 *memory_ptr = *(uint64_t*)(aligned_address + 0x20);
@@ -1034,21 +1034,21 @@ void FUN_1800ba1b0(longlong async_context)
  * @param thread_context 线程上下文
  * @return void
  */
-void FUN_1800ba1f0(longlong thread_context)
+void FUN_1800ba1f0(int64_t thread_context)
 {
     int* ref_count_ptr;                 /**< 引用计数指针 */
     uint64_t* memory_ptr;               /**< 内存指针 */
-    longlong aligned_address;           /**< 对齐地址 */
-    ulonglong memory_size;              /**< 内存大小 */
+    int64_t aligned_address;           /**< 对齐地址 */
+    uint64_t memory_size;              /**< 内存大小 */
     
     FUN_1800ba100();
-    if ((1 < *(ulonglong*)(thread_context + 0x10)) &&
+    if ((1 < *(uint64_t*)(thread_context + 0x10)) &&
        (memory_ptr = *(uint64_t**)(thread_context + 8), memory_ptr != (uint64_t*)0x0)) {
-        memory_size = (ulonglong)memory_ptr & MEMORY_ALIGNMENT_MASK;
+        memory_size = (uint64_t)memory_ptr & MEMORY_ALIGNMENT_MASK;
         if (memory_size != 0) {
             aligned_address = memory_size + MEMORY_HEADER_SIZE + 
-                             ((longlong)memory_ptr - memory_size >> 0x10) * MEMORY_POOL_SIZE;
-            aligned_address = aligned_address - (ulonglong)*(uint*)(aligned_address + 4);
+                             ((int64_t)memory_ptr - memory_size >> 0x10) * MEMORY_POOL_SIZE;
+            aligned_address = aligned_address - (uint64_t)*(uint*)(aligned_address + 4);
             if ((*(void***)(memory_size + 0x70) == &ExceptionList) && 
                 (*(char*)(aligned_address + 0xe) == '\0')) {
                 *memory_ptr = *(uint64_t*)(aligned_address + 0x20);
@@ -1077,9 +1077,9 @@ void FUN_1800ba1f0(longlong thread_context)
  * 初始化渲染器参数和状态
  * 
  * @param renderer_context 渲染器上下文
- * @return longlong 初始化后的上下文
+ * @return int64_t 初始化后的上下文
  */
-longlong FUN_1800ba230(longlong renderer_context)
+int64_t FUN_1800ba230(int64_t renderer_context)
 {
     *(uint32_t*)(renderer_context + 0x20) = 0x3f800000;
     *(uint32_t*)(renderer_context + 0x24) = 0x40000000;
@@ -1100,29 +1100,29 @@ longlong FUN_1800ba230(longlong renderer_context)
  * @param mutex_context 互斥锁上下文
  * @return void
  */
-void FUN_1800ba290(longlong* mutex_context)
+void FUN_1800ba290(int64_t* mutex_context)
 {
-    longlong* lock_queue;               /**< 锁队列 */
+    int64_t* lock_queue;               /**< 锁队列 */
     int lock_result;                    /**< 锁结果 */
-    longlong* queue_start;              /**< 队列起始 */
-    longlong* queue_end;                /**< 队列结束 */
+    int64_t* queue_start;              /**< 队列起始 */
+    int64_t* queue_end;                /**< 队列结束 */
     
     lock_result = _Mtx_lock(mutex_context + 8);
     if (lock_result != 0) {
         __Throw_C_error_std__YAXH_Z(lock_result);
     }
-    lock_queue = (longlong*)mutex_context[1];
-    queue_end = (longlong*)*mutex_context;
+    lock_queue = (int64_t*)mutex_context[1];
+    queue_end = (int64_t*)*mutex_context;
     if (queue_end != lock_queue) {
         do {
-            if ((longlong*)*queue_end != (longlong*)0x0) {
-                (**(code**)(*(longlong*)*queue_end + 0x38))();
+            if ((int64_t*)*queue_end != (int64_t*)0x0) {
+                (**(code**)(*(int64_t*)*queue_end + 0x38))();
             }
             queue_end = queue_end + 1;
         } while (queue_end != lock_queue);
-        queue_end = (longlong*)*mutex_context;
+        queue_end = (int64_t*)*mutex_context;
     }
-    mutex_context[1] = (longlong)queue_end;
+    mutex_context[1] = (int64_t)queue_end;
     mutex_context[5] = mutex_context[4];
     *(uint8_t*)(mutex_context + 0x12) = 0;
     lock_result = _Mtx_unlock(mutex_context + 8);
@@ -1141,16 +1141,16 @@ void FUN_1800ba290(longlong* mutex_context)
  * @param release_flags 释放标志
  * @param param3 参数3
  * @param param4 参数4
- * @return longlong 释放后的上下文
+ * @return int64_t 释放后的上下文
  */
-longlong FUN_1800ba340(longlong resource_context, ulonglong release_flags, 
+int64_t FUN_1800ba340(int64_t resource_context, uint64_t release_flags, 
                        uint64_t param3, uint64_t param4)
 {
     uint64_t cleanup_flag;              /**< 清理标志 */
     
     cleanup_flag = SYSTEM_STACK_ALIGNMENT;
-    if (*(longlong**)(resource_context + 0xe8) != (longlong*)0x0) {
-        (**(code**)(**(longlong**)(resource_context + 0xe8) + 0x38))();
+    if (*(int64_t**)(resource_context + 0xe8) != (int64_t*)0x0) {
+        (**(code**)(**(int64_t**)(resource_context + 0xe8) + 0x38))();
     }
     FUN_180049470(resource_context);
     if ((release_flags & 1) != 0) {
@@ -1174,10 +1174,10 @@ void FUN_1800ba4b0(uint64_t debug_param)
     uint64_t debug_value1;               /**< 调试值1 */
     uint64_t debug_value2;               /**< 调试值2 */
     uint8_t large_buffer[560];           /**< 大缓冲区 */
-    ulonglong stack_checksum;            /**< 栈校验和 */
+    uint64_t stack_checksum;            /**< 栈校验和 */
     
     debug_value2 = SYSTEM_STACK_ALIGNMENT;
-    stack_checksum = GET_SECURITY_COOKIE() ^ (ulonglong)debug_buffer;
+    stack_checksum = GET_SECURITY_COOKIE() ^ (uint64_t)debug_buffer;
     debug_flag = 0;
     debug_value1 = debug_param;
     memset(large_buffer, 0, DEBUG_BUFFER_SIZE);
@@ -1197,7 +1197,7 @@ void FUN_1800ba6f0(uint64_t module_param)
     int path_length;                    /**< 路径长度 */
     uint64_t debug_value;                /**< 调试值 */
     uint16_t* path_ptr;                 /**< 路径指针 */
-    longlong module_handle;              /**< 模块句柄 */
+    int64_t module_handle;              /**< 模块句柄 */
     short* module_name_ptr;             /**< 模块名指针 */
     short* name_ptr;                    /**< 名称指针 */
     uint8_t debug_buffer[32];           /**< 调试缓冲区 */
@@ -1218,10 +1218,10 @@ void FUN_1800ba6f0(uint64_t module_param)
     short module_name[8];               /**< 模块名称 */
     short module_path[272];             /**< 模块路径 */
     uint8_t final_buffer[288];          /**< 最终缓冲区 */
-    ulonglong stack_checksum;           /**< 栈校验和 */
+    uint64_t stack_checksum;           /**< 栈校验和 */
     
     buffer_value9 = SYSTEM_STACK_ALIGNMENT;
-    stack_checksum = GET_SECURITY_COOKIE() ^ (ulonglong)debug_buffer;
+    stack_checksum = GET_SECURITY_COOKIE() ^ (uint64_t)debug_buffer;
     buffer_value8 = 0;
     buffer_value10 = module_param;
     path_length = GetModuleFileNameW(0, module_name, PATH_MAX_LENGTH);
@@ -1230,7 +1230,7 @@ void FUN_1800ba6f0(uint64_t module_param)
         debug_value = FUN_180628ca0();
         FUN_180627ae0(module_param, debug_value);
         buffer_value8 = 1;
-        FUN_1808fc050(stack_checksum ^ (ulonglong)debug_buffer);
+        FUN_1808fc050(stack_checksum ^ (uint64_t)debug_buffer);
     }
     path_ptr = (uint16_t*)wcsrchr(module_name, PATH_SEPARATOR_WCHAR);
     if (path_ptr == (uint16_t*)0x0) {
@@ -1272,7 +1272,7 @@ LAB_1800ba7cd:
     buffer_ptr = final_buffer;
     path_length = WideCharToMultiByte(0xfde9, 0, module_name, 0xffffffff);
     FUN_1806277c0(&buffer_ptr2, path_length);
-    memcpy(buffer_value6, final_buffer, (longlong)path_length);
+    memcpy(buffer_value6, final_buffer, (int64_t)path_length);
 }
 
 /**
@@ -1379,10 +1379,10 @@ void FUN_1800baa80(uint64_t* dir_param)
     uint64_t buffer_value1;             /**< 缓冲值1 */
     uint64_t* buffer_ptr2;              /**< 缓冲指针2 */
     uint8_t large_buffer[560];          /**< 大缓冲区 */
-    ulonglong stack_checksum;           /**< 栈校验和 */
+    uint64_t stack_checksum;           /**< 栈校验和 */
     
     buffer_value1 = SYSTEM_STACK_ALIGNMENT;
-    stack_checksum = GET_SECURITY_COOKIE() ^ (ulonglong)debug_buffer;
+    stack_checksum = GET_SECURITY_COOKIE() ^ (uint64_t)debug_buffer;
     buffer_flag = 0;
     buffer_ptr = large_buffer;
     buffer_ptr2 = dir_param;
@@ -1398,10 +1398,10 @@ void FUN_1800baa80(uint64_t* dir_param)
     FUN_180628e80(dir_param, large_buffer);
     string_length = *(int*)(dir_param + 2);
     FUN_1806277c0(dir_param, string_length + 1);
-    *(uint16_t*)((ulonglong)*(uint*)(dir_param + 2) + dir_param[1]) = 0x2f;
+    *(uint16_t*)((uint64_t)*(uint*)(dir_param + 2) + dir_param[1]) = 0x2f;
     *(int*)(dir_param + 2) = string_length + 1;
     FUN_1806277c0(dir_param, string_length + 0x1e);
-    string_ptr = (uint32_t*)((ulonglong)*(uint*)(dir_param + 2) + dir_param[1]);
+    string_ptr = (uint32_t*)((uint64_t)*(uint*)(dir_param + 2) + dir_param[1]);
     *string_ptr = 0x6e756f4d;
     string_ptr[1] = 0x6e612074;
     string_ptr[2] = 0x6c422064;
@@ -1411,7 +1411,7 @@ void FUN_1800baa80(uint64_t* dir_param)
     *(uint16_t*)(string_ptr + 7) = 100;
     *(int*)(dir_param + 2) = string_length + 0x1e;
     FUN_1806277c0(dir_param, string_length + 0x27);
-    path_ptr = (uint64_t*)((ulonglong)*(uint*)(dir_param + 2) + dir_param[1]);
+    path_ptr = (uint64_t*)((uint64_t)*(uint*)(dir_param + 2) + dir_param[1]);
     *path_ptr = 0x737265646168532f;
     *(uint16_t*)(path_ptr + 1) = 0x2f;
     *(int*)(dir_param + 2) = string_length + 0x27;

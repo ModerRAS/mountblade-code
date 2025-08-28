@@ -151,7 +151,7 @@ void FUN_1807e17b0(float *param_1,float *param_2,uint param_3,float *param_4,uin
   float *pfVar142;
   uint uVar143;
   uint uVar144;
-  ulonglong uVar145;
+  uint64_t uVar145;
   float fVar146;
   float fVar147;
   float fVar148;
@@ -194,7 +194,7 @@ LAB_1807e181f:
   uVar131 = 0;
 LAB_1807e1825:
   if (0 < (int)param_3) {
-    uVar145 = (ulonglong)param_3;
+    uVar145 = (uint64_t)param_3;
     do {
       if (param_5 - 1 < 0x20) {
         iVar137 = (int)param_6 >> 2;

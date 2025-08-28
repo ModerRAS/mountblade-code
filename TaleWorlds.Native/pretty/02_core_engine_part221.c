@@ -173,7 +173,7 @@ typedef struct {
 void ObjectManagerDestructor(uint64_t *param_1)
 {
     uint64_t *puVar1;
-    longlong lVar2;
+    int64_t lVar2;
     
     /* 初始化对象管理器析构过程 */
     *param_1 = &unknown_var_7040_ptr;
@@ -196,17 +196,17 @@ void ObjectManagerDestructor(uint64_t *param_1)
     
     /* 清理事件处理系统 */
     FUN_1801b9920(param_1 + 0xc190);
-    if ((longlong *)param_1[0xc18f] != (longlong *)0x0) {
-        (**(code **)(*(longlong *)param_1[0xc18f] + 0x38))();
+    if ((int64_t *)param_1[0xc18f] != (int64_t *)0x0) {
+        (**(code **)(*(int64_t *)param_1[0xc18f] + 0x38))();
     }
-    if ((longlong *)param_1[0xc18e] != (longlong *)0x0) {
-        (**(code **)(*(longlong *)param_1[0xc18e] + 0x38))();
+    if ((int64_t *)param_1[0xc18e] != (int64_t *)0x0) {
+        (**(code **)(*(int64_t *)param_1[0xc18e] + 0x38))();
     }
     
     /* 清理对象缓存 */
     FUN_180319840(param_1 + 0xc182);
-    if ((longlong *)param_1[0xc181] != (longlong *)0x0) {
-        (**(code **)(*(longlong *)param_1[0xc181] + 0x38))();
+    if ((int64_t *)param_1[0xc181] != (int64_t *)0x0) {
+        (**(code **)(*(int64_t *)param_1[0xc181] + 0x38))();
     }
     
     /* 清理字符串管理器 */
@@ -235,20 +235,20 @@ void ObjectManagerDestructor(uint64_t *param_1)
     /* 清理事件队列 */
     FUN_1808fc8a8(param_1 + 0xc061, 0x20, 0x20, FUN_18004a130);
     FUN_180196c40(param_1 + 0x1045);
-    if ((longlong *)param_1[0x1043] != (longlong *)0x0) {
-        (**(code **)(*(longlong *)param_1[0x1043] + 0x38))();
+    if ((int64_t *)param_1[0x1043] != (int64_t *)0x0) {
+        (**(code **)(*(int64_t *)param_1[0x1043] + 0x38))();
     }
-    if ((longlong *)param_1[0x1042] != (longlong *)0x0) {
-        (**(code **)(*(longlong *)param_1[0x1042] + 0x38))();
+    if ((int64_t *)param_1[0x1042] != (int64_t *)0x0) {
+        (**(code **)(*(int64_t *)param_1[0x1042] + 0x38))();
     }
-    if ((longlong *)param_1[0x1041] != (longlong *)0x0) {
-        (**(code **)(*(longlong *)param_1[0x1041] + 0x38))();
+    if ((int64_t *)param_1[0x1041] != (int64_t *)0x0) {
+        (**(code **)(*(int64_t *)param_1[0x1041] + 0x38))();
     }
-    if ((longlong *)param_1[0x1040] != (longlong *)0x0) {
-        (**(code **)(*(longlong *)param_1[0x1040] + 0x38))();
+    if ((int64_t *)param_1[0x1040] != (int64_t *)0x0) {
+        (**(code **)(*(int64_t *)param_1[0x1040] + 0x38))();
     }
-    if ((longlong *)param_1[0x103f] != (longlong *)0x0) {
-        (**(code **)(*(longlong *)param_1[0x103f] + 0x38))();
+    if ((int64_t *)param_1[0x103f] != (int64_t *)0x0) {
+        (**(code **)(*(int64_t *)param_1[0x103f] + 0x38))();
     }
     
     /* 清理线程局部存储 */
@@ -320,8 +320,8 @@ void ObjectManagerDestructor(uint64_t *param_1)
     /* 清理渲染状态 */
     FUN_180389750(param_1 + 0x534);
     FUN_180389000(param_1 + 0x52e);
-    if (*(char *)((longlong)param_1 + 0x2901) != '\0') {
-        *(int8_t *)((longlong)param_1 + 0x2901) = 0;
+    if (*(char *)((int64_t)param_1 + 0x2901) != '\0') {
+        *(int8_t *)((int64_t)param_1 + 0x2901) = 0;
         FUN_1801c0df0(param_1 + 0x519);
     }
     FUN_1801c0df0(param_1 + 0x519);
@@ -337,7 +337,7 @@ void ObjectManagerDestructor(uint64_t *param_1)
     }
     
     /* 清理系统回调 */
-    if ((*(int *)((longlong)param_1 + 0x286c) != 0) && (system_cache_buffer != 0)) {
+    if ((*(int *)((int64_t)param_1 + 0x286c) != 0) && (system_cache_buffer != 0)) {
         (**(code **)(system_cache_buffer + 0x18))();
     }
     if ((code *)param_1[0x50a] != (code *)0x0) {
@@ -349,8 +349,8 @@ void ObjectManagerDestructor(uint64_t *param_1)
     if (param_1[0x4fe] != 0) {
         FUN_18064e900();
     }
-    if ((longlong *)param_1[0x4fd] != (longlong *)0x0) {
-        (**(code **)(*(longlong *)param_1[0x4fd] + 0x38))();
+    if ((int64_t *)param_1[0x4fd] != (int64_t *)0x0) {
+        (**(code **)(*(int64_t *)param_1[0x4fd] + 0x38))();
     }
     param_1[0x4f9] = &system_data_buffer_ptr;
     if (param_1[0x4fa] != 0) {
@@ -365,8 +365,8 @@ void ObjectManagerDestructor(uint64_t *param_1)
     _Cnd_destroy_in_situ(param_1 + 0x4e3);
     _Mtx_destroy_in_situ();
     _Cnd_destroy_in_situ(param_1 + 0x4cf);
-    if ((longlong *)param_1[0x4ce] != (longlong *)0x0) {
-        (**(code **)(*(longlong *)param_1[0x4ce] + 0x38))();
+    if ((int64_t *)param_1[0x4ce] != (int64_t *)0x0) {
+        (**(code **)(*(int64_t *)param_1[0x4ce] + 0x38))();
     }
     
     /* 清理系统资源 */
@@ -404,24 +404,24 @@ void ObjectManagerDestructor(uint64_t *param_1)
     param_1[0x91] = &system_state_ptr;
     
     /* 清理系统对象 */
-    if ((longlong *)param_1[0x77] != (longlong *)0x0) {
-        (**(code **)(*(longlong *)param_1[0x77] + 0x38))();
+    if ((int64_t *)param_1[0x77] != (int64_t *)0x0) {
+        (**(code **)(*(int64_t *)param_1[0x77] + 0x38))();
     }
-    if ((longlong *)param_1[0x74] != (longlong *)0x0) {
-        (**(code **)(*(longlong *)param_1[0x74] + 0x38))();
+    if ((int64_t *)param_1[0x74] != (int64_t *)0x0) {
+        (**(code **)(*(int64_t *)param_1[0x74] + 0x38))();
     }
-    if ((longlong *)param_1[0x73] != (longlong *)0x0) {
-        (**(code **)(*(longlong *)param_1[0x73] + 0x38))();
+    if ((int64_t *)param_1[0x73] != (int64_t *)0x0) {
+        (**(code **)(*(int64_t *)param_1[0x73] + 0x38))();
     }
-    if ((longlong *)param_1[0x72] != (longlong *)0x0) {
-        (**(code **)(*(longlong *)param_1[0x72] + 0x38))();
+    if ((int64_t *)param_1[0x72] != (int64_t *)0x0) {
+        (**(code **)(*(int64_t *)param_1[0x72] + 0x38))();
     }
-    if ((longlong *)param_1[0x71] != (longlong *)0x0) {
-        (**(code **)(*(longlong *)param_1[0x71] + 0x38))();
+    if ((int64_t *)param_1[0x71] != (int64_t *)0x0) {
+        (**(code **)(*(int64_t *)param_1[0x71] + 0x38))();
     }
     FUN_180057830();
-    if ((longlong *)param_1[100] != (longlong *)0x0) {
-        (**(code **)(*(longlong *)param_1[100] + 0x38))();
+    if ((int64_t *)param_1[100] != (int64_t *)0x0) {
+        (**(code **)(*(int64_t *)param_1[100] + 0x38))();
     }
     
     /* 清理系统事件 */
@@ -438,8 +438,8 @@ void ObjectManagerDestructor(uint64_t *param_1)
         FUN_18064e900();
     }
     FUN_1801ba340();
-    if ((longlong *)param_1[0x12] != (longlong *)0x0) {
-        (**(code **)(*(longlong *)param_1[0x12] + 0x38))();
+    if ((int64_t *)param_1[0x12] != (int64_t *)0x0) {
+        (**(code **)(*(int64_t *)param_1[0x12] + 0x38))();
     }
     if (param_1[0xe] != 0) {
         FUN_18064e900();
@@ -448,8 +448,8 @@ void ObjectManagerDestructor(uint64_t *param_1)
         FUN_18064e900();
     }
     param_1[0xb] = 0;
-    if ((longlong *)param_1[8] != (longlong *)0x0) {
-        (**(code **)(*(longlong *)param_1[8] + 0x38))();
+    if ((int64_t *)param_1[8] != (int64_t *)0x0) {
+        (**(code **)(*(int64_t *)param_1[8] + 0x38))();
     }
     
     /* 最终清理 */
@@ -476,21 +476,21 @@ void ObjectManagerDestructor(uint64_t *param_1)
  * 3. 生命周期事件机制，支持资源清理
  * 4. 循环引用检测，防止内存泄漏
  */
-void ObjectReferenceManager(longlong param_1, longlong param_2)
+void ObjectReferenceManager(int64_t param_1, int64_t param_2)
 {
-    longlong lVar1;
-    longlong *plVar2;
+    int64_t lVar1;
+    int64_t *plVar2;
     int iVar3;
-    ulonglong uVar4;
-    longlong lStackX_10;
+    uint64_t uVar4;
+    int64_t lStackX_10;
     
     lVar1 = core_system_data_config;
     iVar3 = 0;
     
     /* 检查对象是否已存在 */
     if (**(char **)(param_2 + 0x10) == '\0') {
-        plVar2 = *(longlong **)(param_1 + 0x2870);
-        uVar4 = *(longlong *)(param_1 + 0x2878) - (longlong)plVar2 >> 3;
+        plVar2 = *(int64_t **)(param_1 + 0x2870);
+        uVar4 = *(int64_t *)(param_1 + 0x2878) - (int64_t)plVar2 >> 3;
         if (uVar4 != 0) {
             do {
                 if (*plVar2 == param_2) {
@@ -501,7 +501,7 @@ void ObjectReferenceManager(longlong param_1, longlong param_2)
                 }
                 iVar3 = iVar3 + 1;
                 plVar2 = plVar2 + 1;
-            } while ((ulonglong)(longlong)iVar3 < uVar4);
+            } while ((uint64_t)(int64_t)iVar3 < uVar4);
         }
         lStackX_10 = param_2;
         FUN_18005ea90(param_1 + 0x2870, &lStackX_10, iVar3, uVar4, 0, 0xfffffffffffffffe);
@@ -543,7 +543,7 @@ void ObjectReferenceManager(longlong param_1, longlong param_2)
  * 3. 浮点数精度控制和范围检查
  * 4. 矩阵变换的数学优化
  */
-void MatrixTransformCalculator(longlong param_1, float *param_2)
+void MatrixTransformCalculator(int64_t param_1, float *param_2)
 {
     float fVar1;
     float fVar2;
@@ -640,13 +640,13 @@ void MatrixTransformCalculator(longlong param_1, float *param_2)
  * 3. 事件优先级处理机制
  * 4. 内存对齐和缓存优化
  */
-void EventQueueManager(longlong param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4,
+void EventQueueManager(int64_t param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4,
                       uint64_t param_5)
 {
     int iVar1;
     int32_t *puVar2;
     int32_t *puVar3;
-    longlong lVar4;
+    int64_t lVar4;
     int32_t *puVar5;
     int32_t uStack_2c;
     int32_t uStack_28;
@@ -665,11 +665,11 @@ void EventQueueManager(longlong param_1, uint64_t param_2, uint64_t param_3, uin
     /* 获取队列头指针 */
     puVar5 = *(int32_t **)(param_1 + 0x5b30);
     uStack_28 = (int32_t)param_4;
-    uStack_24 = (int32_t)((ulonglong)param_4 >> 0x20);
+    uStack_24 = (int32_t)((uint64_t)param_4 >> 0x20);
     uStack_20 = (int32_t)param_5;
-    uStack_1c = (int32_t)((ulonglong)param_5 >> 0x20);
+    uStack_1c = (int32_t)((uint64_t)param_5 >> 0x20);
     uStack_18 = (int32_t)param_2;
-    uStack_14 = (int32_t)((ulonglong)param_2 >> 0x20);
+    uStack_14 = (int32_t)((uint64_t)param_2 >> 0x20);
     
     /* 检查队列空间 */
     if (puVar5 < *(int32_t **)(param_1 + 0x5b38)) {
@@ -687,7 +687,7 @@ void EventQueueManager(longlong param_1, uint64_t param_2, uint64_t param_3, uin
     
     /* 处理队列扩容 */
     puVar3 = *(int32_t **)(param_1 + 0x5b28);
-    lVar4 = (longlong)puVar5 - (longlong)puVar3 >> 5;
+    lVar4 = (int64_t)puVar5 - (int64_t)puVar3 >> 5;
     if (lVar4 == 0) {
         lVar4 = 1;
 LAB_180198693:
@@ -704,7 +704,7 @@ LAB_180198693:
     
     /* 复制现有数据 */
     if (puVar3 != puVar5) {
-        memmove(puVar2, puVar3, (longlong)puVar5 - (longlong)puVar3);
+        memmove(puVar2, puVar3, (int64_t)puVar5 - (int64_t)puVar3);
     }
     
     /* 添加新事件 */
@@ -716,7 +716,7 @@ LAB_180198693:
     puVar2[5] = uStack_1c;
     puVar2[6] = uStack_18;
     puVar2[7] = uStack_14;
-    if (*(longlong *)(param_1 + 0x5b28) != 0) {
+    if (*(int64_t *)(param_1 + 0x5b28) != 0) {
         FUN_18064e900();
     }
     *(int32_t **)(param_1 + 0x5b28) = puVar2;
@@ -750,7 +750,7 @@ LAB_180198720:
  * 3. 矩阵变换的实时计算
  * 4. 渲染事件的延迟触发
  */
-void RenderStateManager(longlong param_1, longlong param_2)
+void RenderStateManager(int64_t param_1, int64_t param_2)
 {
     int iVar1;
     uint64_t *puVar2;
@@ -759,8 +759,8 @@ void RenderStateManager(longlong param_1, longlong param_2)
     int32_t uVar5;
     int32_t uVar6;
     int32_t *puVar7;
-    longlong lVar8;
-    longlong *plVar9;
+    int64_t lVar8;
+    int64_t *plVar9;
     float fVar10;
     float fVar11;
     float fVar12;
@@ -820,8 +820,8 @@ LAB_180198827:
     
     /* 清理旧的事件处理器 */
     auStack_18[0] = 0xfffffffffffffffe;
-    if (*(longlong **)(param_1 + 0x28c0) != (longlong *)0x0) {
-        (**(code **)(**(longlong **)(param_1 + 0x28c0) + 0x10))();
+    if (*(int64_t **)(param_1 + 0x28c0) != (int64_t *)0x0) {
+        (**(code **)(**(int64_t **)(param_1 + 0x28c0) + 0x10))();
         puVar2 = *(uint64_t **)(param_1 + 0x28c0);
         if (puVar2 != (uint64_t *)0x0) {
             lVar8 = __RTCastToVoid(puVar2);
@@ -835,29 +835,29 @@ LAB_180198827:
     
     /* 创建新的事件处理器 */
     if (*(float *)(param_1 + 0x3140) <= 0.1) {
-        plVar9 = (longlong *)FUN_18062b1e0(system_memory_pool_ptr, 0x10, 8, 3);
-        *plVar9 = (longlong)&unknown_var_6232_ptr;
+        plVar9 = (int64_t *)FUN_18062b1e0(system_memory_pool_ptr, 0x10, 8, 3);
+        *plVar9 = (int64_t)&unknown_var_6232_ptr;
         plVar9[1] = param_1;
     }
     else if (*(int *)(param_1 + 0x3054) == 2) {
-        plVar9 = (longlong *)FUN_18062b1e0(system_memory_pool_ptr, 0x20, 8, 3);
-        *plVar9 = (longlong)&unknown_var_6232_ptr;
+        plVar9 = (int64_t *)FUN_18062b1e0(system_memory_pool_ptr, 0x20, 8, 3);
+        *plVar9 = (int64_t)&unknown_var_6232_ptr;
         plVar9[1] = param_1;
-        *plVar9 = (longlong)&unknown_var_6136_ptr;
+        *plVar9 = (int64_t)&unknown_var_6136_ptr;
         plVar9[2] = 0;
         plVar9[3] = 0;
     }
     else {
-        plVar9 = (longlong *)FUN_18062b1e0(system_memory_pool_ptr, 0x70, 8, 3);
-        *plVar9 = (longlong)&unknown_var_6232_ptr;
+        plVar9 = (int64_t *)FUN_18062b1e0(system_memory_pool_ptr, 0x70, 8, 3);
+        *plVar9 = (int64_t)&unknown_var_6232_ptr;
         plVar9[1] = param_1;
-        *plVar9 = (longlong)&unknown_var_6184_ptr;
+        *plVar9 = (int64_t)&unknown_var_6184_ptr;
         plVar9[2] = 0;
         plVar9[3] = 0;
         plVar9[4] = 0;
         *(int32_t *)(plVar9 + 5) = 0;
     }
-    *(longlong **)(param_1 + 0x28c0) = plVar9;
+    *(int64_t **)(param_1 + 0x28c0) = plVar9;
     (**(code **)(*plVar9 + 8))();
     *(uint *)(param_1 + 0x3674) = *(uint *)(param_1 + 0x3674) | 0x10;
     return;
@@ -887,19 +887,19 @@ LAB_180198827:
  * 3. 生命周期事件的正确触发
  * 4. 错误处理和资源清理
  */
-longlong * ObjectCreator(uint64_t param_1, longlong *param_2, int8_t param_3)
+int64_t * ObjectCreator(uint64_t param_1, int64_t *param_2, int8_t param_3)
 {
     uint64_t uVar1;
-    longlong *plVar2;
-    longlong *plStackX_20;
+    int64_t *plVar2;
+    int64_t *plStackX_20;
     
     /* 分配对象内存 */
     uVar1 = FUN_18062b1e0(system_memory_pool_ptr, OBJECT_POOL_SIZE, OBJECT_ALIGNMENT, OBJECT_ALLOC_FLAGS);
-    plVar2 = (longlong *)FUN_1802e6b00(uVar1, param_3);
-    *param_2 = (longlong)plVar2;
+    plVar2 = (int64_t *)FUN_1802e6b00(uVar1, param_3);
+    *param_2 = (int64_t)plVar2;
     
     /* 初始化对象 */
-    if (plVar2 != (longlong *)0x0) {
+    if (plVar2 != (int64_t *)0x0) {
         (**(code **)(*plVar2 + 0x28))(plVar2);
     }
     
@@ -909,8 +909,8 @@ longlong * ObjectCreator(uint64_t param_1, longlong *param_2, int8_t param_3)
     }
     
     /* 设置对象属性 */
-    plStackX_20 = (longlong *)*param_2;
-    if (plStackX_20 != (longlong *)0x0) {
+    plStackX_20 = (int64_t *)*param_2;
+    if (plStackX_20 != (int64_t *)0x0) {
         (**(code **)(*plStackX_20 + 0x28))();
     }
     FUN_180198b90(param_1, &plStackX_20, 1, 1, 0, 1, 0);
@@ -938,27 +938,27 @@ longlong * ObjectCreator(uint64_t param_1, longlong *param_2, int8_t param_3)
  * 3. 事件通知的正确发送
  * 4. 内存泄漏的预防
  */
-void ObjectDestructor(longlong param_1, longlong *param_2, uint64_t param_3, uint64_t param_4,
+void ObjectDestructor(int64_t param_1, int64_t *param_2, uint64_t param_3, uint64_t param_4,
                     int32_t param_5)
 {
-    longlong lVar1;
+    int64_t lVar1;
     int iVar2;
     uint uVar3;
-    longlong *plVar4;
+    int64_t *plVar4;
     uint uVar5;
-    longlong *plStackX_8;
-    longlong *plStackX_10;
+    int64_t *plStackX_8;
+    int64_t *plStackX_10;
     uint in_stack_ffffffffffffffc0;
     
     plStackX_10 = param_2;
-    if (param_2 != (longlong *)0x0) {
+    if (param_2 != (int64_t *)0x0) {
         (**(code **)(*param_2 + 0x28))(param_2);
     }
     
     /* 检查对象所有权 */
     if (param_2[4] == param_1) {
-        if (*(longlong *)(param_1 + 600) != 0) {
-            FUN_1803a00c0(*(longlong *)(param_1 + 600), param_2);
+        if (*(int64_t *)(param_1 + 600) != 0) {
+            FUN_1803a00c0(*(int64_t *)(param_1 + 600), param_2);
         }
         lVar1 = param_2[0x2d];
         uVar5 = 0;
@@ -966,36 +966,36 @@ void ObjectDestructor(longlong param_1, longlong *param_2, uint64_t param_3, uin
         /* 处理不同类型的对象销毁 */
         if (lVar1 == 0) {
             FUN_180398550(param_1 + 0x607e0, param_2);
-            if (*(longlong **)(param_1 + 0x81f8) == param_2) {
-                plStackX_8 = *(longlong **)(param_1 + 0x81f8);
+            if (*(int64_t **)(param_1 + 0x81f8) == param_2) {
+                plStackX_8 = *(int64_t **)(param_1 + 0x81f8);
                 *(uint64_t *)(param_1 + 0x81f8) = 0;
-                if (plStackX_8 != (longlong *)0x0) {
+                if (plStackX_8 != (int64_t *)0x0) {
                     (**(code **)(*plStackX_8 + 0x38))();
                 }
             }
-            if (*(longlong **)(param_1 + 0x8200) == param_2) {
-                plStackX_8 = *(longlong **)(param_1 + 0x8200);
+            if (*(int64_t **)(param_1 + 0x8200) == param_2) {
+                plStackX_8 = *(int64_t **)(param_1 + 0x8200);
                 *(uint64_t *)(param_1 + 0x8200) = 0;
-                if (plStackX_8 != (longlong *)0x0) {
+                if (plStackX_8 != (int64_t *)0x0) {
                     (**(code **)(*plStackX_8 + 0x38))();
                 }
             }
-            if (*(longlong **)(param_1 + 0x8208) == param_2) {
-                plStackX_8 = *(longlong **)(param_1 + 0x8208);
+            if (*(int64_t **)(param_1 + 0x8208) == param_2) {
+                plStackX_8 = *(int64_t **)(param_1 + 0x8208);
                 *(uint64_t *)(param_1 + 0x8208) = 0;
-                if (plStackX_8 != (longlong *)0x0) {
+                if (plStackX_8 != (int64_t *)0x0) {
                     (**(code **)(*plStackX_8 + 0x38))();
                 }
             }
-            if (*(longlong **)(param_1 + 0x8210) == param_2) {
-                plStackX_8 = *(longlong **)(param_1 + 0x8210);
+            if (*(int64_t **)(param_1 + 0x8210) == param_2) {
+                plStackX_8 = *(int64_t **)(param_1 + 0x8210);
                 *(uint64_t *)(param_1 + 0x8210) = 0;
-                if (plStackX_8 != (longlong *)0x0) {
+                if (plStackX_8 != (int64_t *)0x0) {
                     (**(code **)(*plStackX_8 + 0x38))();
                 }
             }
-            plVar4 = *(longlong **)(param_1 + 0x28c0);
-            if (plVar4 != (longlong *)0x0) {
+            plVar4 = *(int64_t **)(param_1 + 0x28c0);
+            if (plVar4 != (int64_t *)0x0) {
                 (**(code **)(*plVar4 + 0x20))(plVar4, param_2);
             }
             FUN_1802eaec0(param_2, 0, 1, 1, 0, in_stack_ffffffffffffffc0 & 0xffffff00, 1, param_5);
@@ -1009,9 +1009,9 @@ void ObjectDestructor(longlong param_1, longlong *param_2, uint64_t param_3, uin
         iVar2 = FUN_1802ed190(param_2, 7);
         if (iVar2 != 0) {
             do {
-                plVar4 = (longlong *)FUN_1802ed2b0(param_2, &plStackX_8, 7, uVar5);
+                plVar4 = (int64_t *)FUN_1802ed2b0(param_2, &plStackX_8, 7, uVar5);
                 lVar1 = *plVar4;
-                if (plStackX_8 != (longlong *)0x0) {
+                if (plStackX_8 != (int64_t *)0x0) {
                     (**(code **)(*plStackX_8 + 0x38))();
                 }
                 *(int8_t *)(lVar1 + 0x39) = 1;
@@ -1053,16 +1053,16 @@ void ObjectDestructor(longlong param_1, longlong *param_2, uint64_t param_3, uin
  * 3. 重复注册的检测和处理
  * 4. 注册表的优化存储
  */
-ulonglong ObjectRegistrar(longlong param_1, longlong *param_2, int8_t param_3, int8_t param_4,
+uint64_t ObjectRegistrar(int64_t param_1, int64_t *param_2, int8_t param_3, int8_t param_4,
                        uint64_t param_5, int8_t param_6, char param_7)
 {
     uint64_t *puVar1;
-    longlong lVar2;
-    longlong *plVar3;
+    int64_t lVar2;
+    int64_t *plVar3;
     char cVar4;
     int iVar5;
-    longlong lVar6;
-    longlong *plVar7;
+    int64_t lVar6;
+    int64_t *plVar7;
     uint64_t *puVar8;
     void *puVar9;
     uint64_t *puVar10;
@@ -1085,10 +1085,10 @@ ulonglong ObjectRegistrar(longlong param_1, longlong *param_2, int8_t param_3, i
     
     /* 检查对象是否已注册 */
     lVar6 = *param_2;
-    lVar2 = *(longlong *)(lVar6 + 0x168);
+    lVar2 = *(int64_t *)(lVar6 + 0x168);
     if (lVar2 == 0) {
-        plVar3 = *(longlong **)(param_1 + 0x60860);
-        plVar7 = *(longlong **)(param_1 + 0x60858);
+        plVar3 = *(int64_t **)(param_1 + 0x60860);
+        plVar7 = *(int64_t **)(param_1 + 0x60858);
         if (plVar7 != plVar3) {
             do {
                 if (*plVar7 == lVar6) break;
@@ -1100,25 +1100,25 @@ ulonglong ObjectRegistrar(longlong param_1, longlong *param_2, int8_t param_3, i
                     if (*(void **)(lVar6 + 0x290) != (void *)0x0) {
                         puVar9 = *(void **)(lVar6 + 0x290);
                     }
-                    plVar7 = (longlong *)FUN_180626f80(&unknown_var_2304_ptr, puVar9);
+                    plVar7 = (int64_t *)FUN_180626f80(&unknown_var_2304_ptr, puVar9);
                 }
-                if ((longlong *)*param_2 != (longlong *)0x0) {
-                    plVar7 = (longlong *)(**(code **)(*(longlong *)*param_2 + 0x38))();
+                if ((int64_t *)*param_2 != (int64_t *)0x0) {
+                    plVar7 = (int64_t *)(**(code **)(*(int64_t *)*param_2 + 0x38))();
                 }
-                return (ulonglong)plVar7 & 0xffffffffffffff00;
+                return (uint64_t)plVar7 & 0xffffffffffffff00;
             }
         }
     }
     else {
         in_stack_ffffffffffffffb0 = 0;
-        FUN_1802eb9a0(lVar2, lVar6, 0, *(longlong *)(lVar2 + 0x20) == param_1, param_6, 0x16);
+        FUN_1802eb9a0(lVar2, lVar6, 0, *(int64_t *)(lVar2 + 0x20) == param_1, param_6, 0x16);
     }
     
     /* 执行对象注册 */
     FUN_1802eaec0(*param_2, param_1, param_3, param_4, param_5, in_stack_ffffffffffffffb0 & 0xffffff00,
                   param_6, 0xffffffff, uVar12);
     FUN_1802f2240(*param_2, *(uint64_t *)(param_1 + 600));
-    param_2 = (longlong *)*param_2;
+    param_2 = (int64_t *)*param_2;
     
     /* 获取注册锁 */
     iVar5 = _Mtx_lock(param_1 + 0x607e0);
@@ -1129,8 +1129,8 @@ ulonglong ObjectRegistrar(longlong param_1, longlong *param_2, int8_t param_3, i
     /* 创建注册节点 */
     puVar1 = (uint64_t *)(param_1 + 0x60878);
     lVar6 = FUN_18062b420(system_memory_pool_ptr, 0x28, *(int8_t *)(param_1 + 0x608a0));
-    *(longlong **)(lVar6 + 0x20) = param_2;
-    if (param_2 != (longlong *)0x0) {
+    *(int64_t **)(lVar6 + 0x20) = param_2;
+    if (param_2 != (int64_t *)0x0) {
         (**(code **)(*param_2 + 0x28))(param_2);
     }
     
@@ -1141,7 +1141,7 @@ ulonglong ObjectRegistrar(longlong param_1, longlong *param_2, int8_t param_3, i
         puVar8 = *(uint64_t **)(param_1 + 0x60888);
         do {
             puVar10 = puVar8;
-            bVar11 = *(ulonglong *)(lVar6 + 0x20) < (ulonglong)puVar10[4];
+            bVar11 = *(uint64_t *)(lVar6 + 0x20) < (uint64_t)puVar10[4];
             if (bVar11) {
                 puVar8 = (uint64_t *)puVar10[1];
             }
@@ -1155,14 +1155,14 @@ ulonglong ObjectRegistrar(longlong param_1, longlong *param_2, int8_t param_3, i
         if (puVar10 == *(uint64_t **)(param_1 + 0x60880)) goto LAB_180198da7;
         puVar8 = (uint64_t *)func_0x00018066b9a0(puVar10);
     }
-    if (*(ulonglong *)(lVar6 + 0x20) <= (ulonglong)puVar8[4]) {
-        if (*(longlong **)(lVar6 + 0x20) != (longlong *)0x0) {
-            (**(code **)(**(longlong **)(lVar6 + 0x20) + 0x38))();
+    if (*(uint64_t *)(lVar6 + 0x20) <= (uint64_t)puVar8[4]) {
+        if (*(int64_t **)(lVar6 + 0x20) != (int64_t *)0x0) {
+            (**(code **)(**(int64_t **)(lVar6 + 0x20) + 0x38))();
         }
         FUN_18064e900(lVar6);
     }
 LAB_180198da7:
-    if ((puVar10 == puVar1) || (*(ulonglong *)(lVar6 + 0x20) < (ulonglong)puVar10[4])) {
+    if ((puVar10 == puVar1) || (*(uint64_t *)(lVar6 + 0x20) < (uint64_t)puVar10[4])) {
         uVar12 = 0;
     }
     else {

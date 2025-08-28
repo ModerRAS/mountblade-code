@@ -11,8 +11,8 @@ void initialize_system_component(void)
   char component_status;
   uint64_t *component_ptr;
   int comparison_result;
-  longlong *system_handle;
-  longlong config_offset;
+  int64_t *system_handle;
+  int64_t config_offset;
   uint64_t *next_component;
   uint64_t *current_component;
   uint64_t *search_component;
@@ -20,11 +20,11 @@ void initialize_system_component(void)
   void *default_config;
   
   // 获取系统句柄
-  system_handle = (longlong *)get_system_handle();
+  system_handle = (int64_t *)get_system_handle();
   component_ptr = (uint64_t *)*system_handle;
   
   // 检查组件状态
-  component_status = *(char *)((longlong)component_ptr[1] + 0x19);
+  component_status = *(char *)((int64_t)component_ptr[1] + 0x19);
   default_config = &DEFAULT_COMPONENT_CONFIG;
   current_component = component_ptr;
   search_component = (uint64_t *)component_ptr[1];
@@ -41,7 +41,7 @@ void initialize_system_component(void)
     }
     current_component = search_component;
     search_component = next_component;
-    component_status = *(char *)((longlong)next_component + 0x19);
+    component_status = *(char *)((int64_t)next_component + 0x19);
   }
   
   // 如果需要创建新组件

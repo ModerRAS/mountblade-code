@@ -91,21 +91,21 @@ void rendering_system_pipeline_manager(code **render_context, code *render_data)
  * 
  * @param render_context 渲染上下文
  */
-void rendering_system_resource_cleaner(longlong render_context)
+void rendering_system_resource_cleaner(int64_t render_context)
 {
     // 简化的资源清理逻辑
     
     // 清理主资源句柄
-    longlong resource_handle = *(longlong *)(render_context + 0x3c8);
+    int64_t resource_handle = *(int64_t *)(render_context + 0x3c8);
     if (resource_handle != 0) {
         FUN_18045fb80(resource_handle);
         *(uint64_t *)(render_context + 0x3c8) = 0;
     }
     
     // 清理资源池（简化版本只处理主要的资源池）
-    longlong *resource_pool = *(longlong **)(render_context + 0x1c8);
+    int64_t *resource_pool = *(int64_t **)(render_context + 0x1c8);
     *(uint64_t *)(render_context + 0x1c8) = 0;
-    if (resource_pool != (longlong *)0x0) {
+    if (resource_pool != (int64_t *)0x0) {
         (**(code **)(*resource_pool + 0x38))();
     }
     
@@ -125,7 +125,7 @@ void rendering_system_resource_cleaner(longlong render_context)
  * 
  * @param render_context 渲染上下文
  */
-void rendering_system_state_manager(longlong render_context)
+void rendering_system_state_manager(int64_t render_context)
 {
     // 简化的状态管理逻辑
     int state_flag = *(int *)(render_context + 0x60);
@@ -133,15 +133,15 @@ void rendering_system_state_manager(longlong render_context)
     // 根据状态标志选择不同的处理路径
     if (state_flag == 0) {
         // 处理状态0的资源清理
-        longlong *resource_manager = *(longlong **)(render_context + 0x1c8);
+        int64_t *resource_manager = *(int64_t **)(render_context + 0x1c8);
         *(uint64_t *)(render_context + 0x1c8) = 0;
-        if (resource_manager != (longlong *)0x0) {
+        if (resource_manager != (int64_t *)0x0) {
             (**(code **)(*resource_manager + 0x38))();
         }
     } else {
         // 处理其他状态的资源管理
-        longlong *resource_manager = *(longlong **)(render_context + 0x70);
-        if (resource_manager != (longlong *)0x0) {
+        int64_t *resource_manager = *(int64_t **)(render_context + 0x70);
+        if (resource_manager != (int64_t *)0x0) {
             (**(code **)(*resource_manager + 0x28))(resource_manager);
         }
     }
@@ -205,7 +205,7 @@ void rendering_system_parameter_processor(uint64_t param_1, uint64_t param_2, fl
  * @param source_context 源上下文
  * @param target_context 目标上下文
  */
-void rendering_system_data_transformer(longlong source_context, longlong target_context)
+void rendering_system_data_transformer(int64_t source_context, int64_t target_context)
 {
     // 简化的数据变换逻辑
     
@@ -250,12 +250,12 @@ void rendering_system_data_transformer(longlong source_context, longlong target_
  * @param alloc_size 分配大小
  * @param memory_flags 内存标志
  */
-void rendering_system_memory_manager(uint64_t **render_context, longlong *memory_pool, uint64_t alloc_size, uint64_t memory_flags)
+void rendering_system_memory_manager(uint64_t **render_context, int64_t *memory_pool, uint64_t alloc_size, uint64_t memory_flags)
 {
     // 简化的内存管理逻辑
     
     // 检查内存池状态
-    if (memory_pool == (longlong *)0x0) {
+    if (memory_pool == (int64_t *)0x0) {
         return;
     }
     
@@ -288,7 +288,7 @@ void rendering_system_memory_manager(uint64_t **render_context, longlong *memory
  * @param memory_params 内存参数
  * @return 分配的内存块指针
  */
-uint64_t *rendering_system_memory_allocator(uint64_t *memory_block, ulonglong allocation_size, uint64_t alloc_flags, uint64_t memory_params)
+uint64_t *rendering_system_memory_allocator(uint64_t *memory_block, uint64_t allocation_size, uint64_t alloc_flags, uint64_t memory_params)
 {
     // 简化的内存分配逻辑
     

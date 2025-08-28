@@ -20,23 +20,23 @@ void load_mmd_model(render_context_t *render_context, const char *file_path, uin
   char path_char1;
   char path_char2;
   bool model_found;
-  longlong *mesh_ptr;
-  longlong *material_ptr;
+  int64_t *mesh_ptr;
+  int64_t *material_ptr;
   int32_t material_id;
-  longlong model_index;
+  int64_t model_index;
   uint64_t *file_handle;
-  longlong mesh_count;
+  int64_t mesh_count;
   int32_t *texture_array;
-  longlong *vertex_buffer;
+  int64_t *vertex_buffer;
   char *model_name;
-  ulonglong name_length;
+  uint64_t name_length;
   void *temp_ptr;
-  ulonglong texture_count;
+  uint64_t texture_count;
   uint texture_index;
-  ulonglong mesh_iter;
+  uint64_t mesh_iter;
   int32_t *material_data;
   int string_compare_result;
-  ulonglong file_offset;
+  uint64_t file_offset;
   int model_count;
   bool name_match;
   int8_t *stack_ptr;
@@ -50,21 +50,21 @@ void load_mmd_model(render_context_t *render_context, const char *file_path, uin
   void *texture_ptr;
   char *material_name;
   uint material_name_length;
-  ulonglong material_size;
-  longlong *vertex_ptr;
-  longlong *normal_ptr;
-  longlong mesh_offset;
-  longlong *index_buffer;
+  uint64_t material_size;
+  int64_t *vertex_ptr;
+  int64_t *normal_ptr;
+  int64_t mesh_offset;
+  int64_t *index_buffer;
   int32_t vertex_format;
-  longlong *uv_buffer;
+  int64_t *uv_buffer;
   int16_t bone_weight;
   char bone_index;
   int bone_indices[2];
-  longlong *bone_ptr;
-  longlong *weight_ptr;
+  int64_t *bone_ptr;
+  int64_t *weight_ptr;
   int8_t bone_data[8];
   uint64_t bone_info;
-  longlong *animation_ptr;
+  int64_t *animation_ptr;
   char anim_flag1;
   char anim_flag2;
   char anim_flag3;
@@ -73,20 +73,20 @@ void load_mmd_model(render_context_t *render_context, const char *file_path, uin
   uint debug_uint1;
   int32_t debug_uint2;
   int debug_array[2];
-  longlong *mesh_list_ptr;
-  longlong *material_list_ptr;
+  int64_t *mesh_list_ptr;
+  int64_t *material_list_ptr;
   int8_t temp_array1[4];
   int8_t temp_array2[4];
-  longlong *scene_object;
-  longlong *render_object;
-  longlong *transform_object;
-  longlong *camera_object;
-  longlong *light_object;
+  int64_t *scene_object;
+  int64_t *render_object;
+  int64_t *transform_object;
+  int64_t *camera_object;
+  int64_t *light_object;
   void *resource_ptr;
-  longlong transform_data;
+  int64_t transform_data;
   int32_t render_flags;
   uint64_t file_info;
-  longlong *resource_handle;
+  int64_t *resource_handle;
   
   // 初始化路径处理
   stack_array[0] = CONCAT31(stack_array[0]._1_3_, load_flags);
@@ -100,12 +100,12 @@ void load_mmd_model(render_context_t *render_context, const char *file_path, uin
   // 初始化字符串缓冲区用于路径处理
   initialize_string_buffer(path_buffer);
   model_count = path_length + -1;
-  mesh_index = (longlong)model_count;
+  mesh_index = (int64_t)model_count;
   
   // 查找路径中的最后一个斜杠，确定文件名部分
   if (-1 < model_count) {
     do {
-      if (*(char *)(mesh_index + (longlong)path_ptr) == '/') goto LAB_18027baf2;
+      if (*(char *)(mesh_index + (int64_t)path_ptr) == '/') goto LAB_18027baf2;
       model_count = model_count + -1;
       mesh_index = mesh_index + -1;
     } while (-1 < mesh_index);
@@ -146,7 +146,7 @@ LAB_18027baf2:
   texture_index = path_length + 4;
   resize_string_buffer(path_buffer, texture_index);
   *(int32_t *)(path_ptr + path_length) = 0x646d6d2f;  // "/mmd"
-  *(int8_t *)((longlong)(path_ptr + path_length) + 4) = 0;
+  *(int8_t *)((int64_t)(path_ptr + path_length) + 4) = 0;
   path_length = texture_index;
   
   // 添加版本标识符
@@ -154,7 +154,7 @@ LAB_18027baf2:
   model_count = path_length + 4;
   resize_string_buffer(path_buffer, model_count);
   *(int32_t *)(path_ptr + path_length) = 0x646d6d2e;  // ".mmd"
-  *(int8_t *)((longlong)(path_ptr + path_length) + 4) = 0;
+  *(int8_t *)((int64_t)(path_ptr + path_length) + 4) = 0;
   path_length = model_count;
   
   // 分配文件句柄结构
@@ -178,7 +178,7 @@ LAB_18027baf2:
   
   // 读取文件头标识
   fread(stack_array2, 4, 1);
-  mesh_count = (longlong)stack_array2[0];
+  mesh_count = (int64_t)stack_array2[0];
   
   // 检查MMD1格式标识
   if (stack_array2[0] == 0x31444d4d) {
@@ -191,13 +191,13 @@ LAB_18027baf2:
         fread(stack_array2, 4, 1, file_handle[1]);
         
         // 分配网格数据缓冲区
-        vertex_buffer = (longlong *)allocate_memory(GLOBAL_MEMORY_MANAGER, 
-                                                   (longlong)(stack_array2[0] + 1), 0x10, 3);
+        vertex_buffer = (int64_t *)allocate_memory(GLOBAL_MEMORY_MANAGER, 
+                                                   (int64_t)(stack_array2[0] + 1), 0x10, 3);
         mesh_list_ptr = vertex_buffer;
         
         // 读取网格数据
-        fread(vertex_buffer, 1, (longlong)stack_array2[0], file_handle[1]);
-        *(int8_t *)((longlong)stack_array2[0] + (longlong)vertex_buffer) = 0;
+        fread(vertex_buffer, 1, (int64_t)stack_array2[0], file_handle[1]);
+        *(int8_t *)((int64_t)stack_array2[0] + (int64_t)vertex_buffer) = 0;
         
         // 初始化网格名称处理
         initialize_mesh_name_processing(&debug_ptr1, vertex_buffer);
@@ -211,7 +211,7 @@ LAB_18027baf2:
           }
           texture_index = model_count + string_compare_result;
           if (texture_index < debug_uint1) {
-            mesh_index = (longlong)(int)texture_index;
+            mesh_index = (int64_t)(int)texture_index;
             mesh_count = mesh_index - string_compare_result;
             do {
               debug_ptr2[mesh_count] = debug_ptr2[mesh_index];
@@ -228,16 +228,16 @@ LAB_18027baf2:
         fread(temp_array2, 4, 1, file_handle[1]);
         fread(&stack_ptr, 4, 1, file_handle[1]);
         texture_array = (int32_t *)allocate_memory(GLOBAL_MEMORY_MANAGER, 
-                                                     (longlong)(int)stack_ptr << 2, 0x10, 3);
-        fread(texture_array, 4, (longlong)(int)stack_ptr);
+                                                     (int64_t)(int)stack_ptr << 2, 0x10, 3);
+        fread(texture_array, 4, (int64_t)(int)stack_ptr);
         
         model_found = false;
         texture_count = 0;
-        mesh_index = *(longlong *)(render_context + 0x38);
+        mesh_index = *(int64_t *)(render_context + 0x38);
         mesh_iter = texture_count;
         
         // 检查是否已经存在相同的模型
-        if (*(longlong *)(render_context + 0x40) - mesh_index >> 4 == 0) {
+        if (*(int64_t *)(render_context + 0x40) - mesh_index >> 4 == 0) {
 LAB_18027c5be:
           temp_ptr = &DEFAULT_EMPTY_STRING;
           if (debug_ptr2 != (void *)0x0) {
@@ -247,7 +247,7 @@ LAB_18027c5be:
         }
         else {
           do {
-            mesh_index = *(longlong *)(mesh_iter + mesh_index);
+            mesh_index = *(int64_t *)(mesh_iter + mesh_index);
             texture_ptr = &DEFAULT_TEXTURE_PATH;
             material_size = 0;
             material_name = (char *)0x0;
@@ -261,7 +261,7 @@ LAB_18027c5be:
                 string_compare_result = 0x10;
               }
               material_name = (char *)allocate_string_buffer(GLOBAL_MEMORY_MANAGER, 
-                                                           (longlong)string_compare_result,
+                                                           (int64_t)string_compare_result,
                                                            CONCAT71((uint7)(uint3)((uint)model_count >> 8), 0x13));
               *material_name = '\0';
               material_id = calculate_string_hash(material_name);
@@ -273,12 +273,12 @@ LAB_18027c5be:
                   temp_ptr = *(void **)(mesh_index + 0x18);
                 }
                 // WARNING: 此子函数不返回
-                memcpy(material_name, temp_ptr, (longlong)(*(int *)(mesh_index + 0x20) + 1));
+                memcpy(material_name, temp_ptr, (int64_t)(*(int *)(mesh_index + 0x20) + 1));
               }
             }
             
             // 确保字符串正确终止
-            if ((*(longlong *)(mesh_index + 0x18) != 0) && (material_name_length = 0, material_name != (char *)0x0)) {
+            if ((*(int64_t *)(mesh_index + 0x18) != 0) && (material_name_length = 0, material_name != (char *)0x0)) {
               *material_name = '\0';
             }
             
@@ -291,7 +291,7 @@ LAB_18027c5be:
               }
               texture_index = model_count + string_compare_result;
               if (texture_index < material_name_length) {
-                mesh_index = (longlong)(int)texture_index;
+                mesh_index = (int64_t)(int)texture_index;
                 mesh_count = mesh_index - string_compare_result;
                 do {
                   material_name[mesh_count] = material_name[mesh_index];
@@ -315,7 +315,7 @@ LAB_18027c2fe:
                 model_name = material_name;
                 do {
                   path_char1 = *model_name;
-                  path_char2 = model_name[(longlong)debug_ptr2 - (longlong)material_name];
+                  path_char2 = model_name[(int64_t)debug_ptr2 - (int64_t)material_name];
                   if (path_char1 != path_char2) break;
                   model_name = model_name + 1;
                 } while (path_char2 != '\0');
@@ -331,30 +331,30 @@ LAB_18027c306:
             // 如果找到匹配的模型，进行更新操作
             if (name_match) {
               model_found = true;
-              vertex_buffer = *(longlong **)(mesh_iter + *(longlong *)(render_context + 0x38));
+              vertex_buffer = *(int64_t **)(mesh_iter + *(int64_t *)(render_context + 0x38));
               initialize_scene_object(vertex_buffer, 0);
               resource_handle = vertex_buffer;
               
-              if (vertex_buffer != (longlong *)0x0) {
+              if (vertex_buffer != (int64_t *)0x0) {
                 (**(code **)(*vertex_buffer + 0x28))(vertex_buffer);
               }
               
               // 设置变换层级
-              scene_object = (longlong *)0x0;
-              render_object = (longlong *)0x0;
+              scene_object = (int64_t *)0x0;
+              render_object = (int64_t *)0x0;
               transform_object = &transform_data;
-              camera_object = (longlong *)0x0;
-              light_object = (longlong *)0x0;
+              camera_object = (int64_t *)0x0;
+              light_object = (int64_t *)0x0;
               transform_data._0_1_ = 0;
               
-              if (vertex_buffer != (longlong *)0x0) {
+              if (vertex_buffer != (int64_t *)0x0) {
                 render_object = vertex_buffer;
                 (**(code **)(*vertex_buffer + 0x28))(vertex_buffer);
               }
               
               render_object = scene_object;
               material_ptr = vertex_buffer;
-              if (scene_object != (longlong *)0x0) {
+              if (scene_object != (int64_t *)0x0) {
                 mesh_index = *scene_object;
                 scene_object = vertex_buffer;
                 (**(code **)(mesh_index + 0x38))();
@@ -367,20 +367,20 @@ LAB_18027c306:
               
               material_ptr = camera_object;
               camera_object = camera_object;
-              if (camera_object != (longlong *)0x0) {
+              if (camera_object != (int64_t *)0x0) {
                 (**(code **)(*camera_object + 0x28))(camera_object);
               }
               
               mesh_ptr = render_object;
               camera_object = render_object;
               render_object = material_ptr;
-              if (mesh_ptr != (longlong *)0x0) {
+              if (mesh_ptr != (int64_t *)0x0) {
                 (**(code **)(*mesh_ptr + 0x38))();
               }
               
               bone_weight = 0;
               bone_index = '\0';
-              if (vertex_buffer != (longlong *)0x0) {
+              if (vertex_buffer != (int64_t *)0x0) {
                 (**(code **)(*vertex_buffer + 0x38))(vertex_buffer);
               }
               
@@ -396,7 +396,7 @@ LAB_18027c306:
                     texture_index = (int)file_offset + 1;
                     file_offset = file_offset + 0x5c;
                     material_data = material_data + 1;
-                    file_offset = (ulonglong)texture_index;
+                    file_offset = (uint64_t)texture_index;
                   } while ((int)texture_index < (int)stack_ptr);
                 }
               }
@@ -409,7 +409,7 @@ LAB_18027c306:
               }
               
               // 清理资源
-              if (render_object != (longlong *)0x0) {
+              if (render_object != (int64_t *)0x0) {
                 if (bone_index != '\0') {
                   release_scene_object(scene_object);
                 }
@@ -422,13 +422,13 @@ LAB_18027c306:
                 }
                 vertex_buffer = render_object;
                 camera_object = render_object;
-                render_object = (longlong *)0x0;
-                if (vertex_buffer != (longlong *)0x0) {
+                render_object = (int64_t *)0x0;
+                if (vertex_buffer != (int64_t *)0x0) {
                   (**(code **)(*vertex_buffer + 0x38))();
                 }
               }
               
-              if ((scene_object != (longlong *)0x0) && (render_object != (longlong *)0x0)) {
+              if ((scene_object != (int64_t *)0x0) && (render_object != (int64_t *)0x0)) {
                 if (bone_index != '\0') {
                   release_scene_object();
                 }
@@ -441,21 +441,21 @@ LAB_18027c306:
                 }
                 vertex_buffer = render_object;
                 light_object = render_object;
-                render_object = (longlong *)0x0;
-                if (vertex_buffer != (longlong *)0x0) {
+                render_object = (int64_t *)0x0;
+                if (vertex_buffer != (int64_t *)0x0) {
                   (**(code **)(*vertex_buffer + 0x38))();
                 }
               }
               
               transform_object = &transform_data;
               cleanup_transform_data(&transform_data);
-              if (camera_object != (longlong *)0x0) {
+              if (camera_object != (int64_t *)0x0) {
                 (**(code **)(*camera_object + 0x38))();
               }
-              if (render_object != (longlong *)0x0) {
+              if (render_object != (int64_t *)0x0) {
                 (**(code **)(*render_object + 0x38))();
               }
-              if (scene_object != (longlong *)0x0) {
+              if (scene_object != (int64_t *)0x0) {
                 (**(code **)(*scene_object + 0x38))();
               }
             }
@@ -471,10 +471,10 @@ LAB_18027c306:
             texture_ptr = &DEFAULT_TEXTURE_PATH;
             texture_index = (int)mesh_iter + 1;
             texture_count = texture_count + 0x10;
-            mesh_index = *(longlong *)(render_context + 0x38);
-            mesh_iter = (ulonglong)texture_index;
-          } while ((ulonglong)(longlong)(int)texture_index <
-                   (ulonglong)(*(longlong *)(render_context + 0x40) - mesh_index >> 4));
+            mesh_index = *(int64_t *)(render_context + 0x38);
+            mesh_iter = (uint64_t)texture_index;
+          } while ((uint64_t)(int64_t)(int)texture_index <
+                   (uint64_t)(*(int64_t *)(render_context + 0x40) - mesh_index >> 4));
           
           if (!model_found) goto LAB_18027c5be;
         }
@@ -485,7 +485,7 @@ LAB_18027c306:
           cleanup_memory_allocation(texture_array);
         }
         
-        if (mesh_list_ptr != (longlong *)0x0) {
+        if (mesh_list_ptr != (int64_t *)0x0) {
           // WARNING: 此子函数不返回
           cleanup_memory_allocation();
         }
@@ -507,32 +507,32 @@ LAB_18027c306:
   else if (0 < stack_array2[0]) {
     do {
       fread(&string_buffer, 4, 1, file_handle[1]);
-      mesh_offset = allocate_memory(GLOBAL_MEMORY_MANAGER, (longlong)((int)string_buffer + 1), 0x10, 3);
-      fread(mesh_offset, 1, (longlong)(int)string_buffer, file_handle[1]);
+      mesh_offset = allocate_memory(GLOBAL_MEMORY_MANAGER, (int64_t)((int)string_buffer + 1), 0x10, 3);
+      fread(mesh_offset, 1, (int64_t)(int)string_buffer, file_handle[1]);
       *(int8_t *)((int)string_buffer + mesh_offset) = 0;
       fread(temp_array1, 4, 1, file_handle[1]);
       fread(stack_array, 4, 1, file_handle[1]);
-      texture_array = (int32_t *)allocate_memory(GLOBAL_MEMORY_MANAGER, (longlong)stack_array[0] << 2, 0x10, 3);
-      fread(texture_array, 4, (longlong)stack_array[0], file_handle[1]);
+      texture_array = (int32_t *)allocate_memory(GLOBAL_MEMORY_MANAGER, (int64_t)stack_array[0] << 2, 0x10, 3);
+      fread(texture_array, 4, (int64_t)stack_array[0], file_handle[1]);
       
-      vertex_buffer = *(longlong **)(mesh_index + *(longlong *)(render_context + 0x38));
+      vertex_buffer = *(int64_t **)(mesh_index + *(int64_t *)(render_context + 0x38));
       initialize_scene_object(vertex_buffer, 0);
       transform_object = vertex_buffer;
       
-      if (vertex_buffer != (longlong *)0x0) {
+      if (vertex_buffer != (int64_t *)0x0) {
         (**(code **)(*vertex_buffer + 0x28))();
       }
       
-      scene_object = (longlong *)0x0;
-      render_object = (longlong *)0x0;
+      scene_object = (int64_t *)0x0;
+      render_object = (int64_t *)0x0;
       stack_ptr = bone_data;
-      animation_ptr = (longlong *)0x0;
+      animation_ptr = (int64_t *)0x0;
       bone_info = 0;
       bone_data[0] = 0;
       
       setup_render_pipeline(&scene_object, vertex_buffer, 0);
       
-      if (vertex_buffer != (longlong *)0x0) {
+      if (vertex_buffer != (int64_t *)0x0) {
         (**(code **)(*vertex_buffer + 0x38))(vertex_buffer);
       }
       
@@ -546,11 +546,11 @@ LAB_18027c306:
           texture_index = (int)texture_count + 1;
           texture_count = texture_count + 0x5c;
           material_data = material_data + 1;
-          texture_count = (ulonglong)texture_index;
+          texture_count = (uint64_t)texture_index;
         } while ((int)texture_index < stack_array[0]);
       }
       
-      if (render_object != (longlong *)0x0) {
+      if (render_object != (int64_t *)0x0) {
         if (anim_flag2 != '\0') {
           release_scene_object(scene_object);
         }
@@ -563,13 +563,13 @@ LAB_18027c306:
         }
         vertex_buffer = render_object;
         render_object = render_object;
-        render_object = (longlong *)0x0;
-        if (vertex_buffer != (longlong *)0x0) {
+        render_object = (int64_t *)0x0;
+        if (vertex_buffer != (int64_t *)0x0) {
           (**(code **)(*vertex_buffer + 0x38))();
         }
       }
       
-      if ((scene_object != (longlong *)0x0) && (render_object != (longlong *)0x0)) {
+      if ((scene_object != (int64_t *)0x0) && (render_object != (int64_t *)0x0)) {
         if (anim_flag2 != '\0') {
           release_scene_object();
         }
@@ -582,21 +582,21 @@ LAB_18027c306:
         }
         vertex_buffer = render_object;
         mesh_list_ptr = render_object;
-        render_object = (longlong *)0x0;
-        if (vertex_buffer != (longlong *)0x0) {
+        render_object = (int64_t *)0x0;
+        if (vertex_buffer != (int64_t *)0x0) {
           (**(code **)(*vertex_buffer + 0x38))();
         }
       }
       
       stack_ptr = bone_data;
       cleanup_transform_data(bone_data);
-      if (animation_ptr != (longlong *)0x0) {
+      if (animation_ptr != (int64_t *)0x0) {
         (**(code **)(*animation_ptr + 0x38))();
       }
-      if (render_object != (longlong *)0x0) {
+      if (render_object != (int64_t *)0x0) {
         (**(code **)(*render_object + 0x38))();
       }
-      if (scene_object != (longlong *)0x0) {
+      if (scene_object != (int64_t *)0x0) {
         (**(code **)(*scene_object + 0x38))();
       }
       

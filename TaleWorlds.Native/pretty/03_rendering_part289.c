@@ -2415,12 +2415,12 @@ void FUN_1804234a9(uint64_t param_1, uint64_t param_2, uint *param_3, uint param
     int8_t auVar10 [16];
     byte *pbVar11;
     uint uVar12;
-    longlong lVar13;
-    longlong lVar14;
+    int64_t lVar13;
+    int64_t lVar14;
     int unaff_EBX;
     uint *puVar;
-    longlong in_R10;
-    longlong in_R11;
+    int64_t in_R10;
+    int64_t in_R11;
     int8_t in_XMM1 [16];
     int8_t auVar16 [16];
     int8_t in_XMM2 [16];
@@ -2446,8 +2446,8 @@ void FUN_1804234a9(uint64_t param_1, uint64_t param_2, uint *param_3, uint param
     }
     
     /* 计算内存偏移量 */
-    lVar13 = in_R10 - (longlong)param_3;
-    lVar14 = in_R11 - (longlong)param_3;
+    lVar13 = in_R10 - (int64_t)param_3;
+    lVar14 = in_R11 - (int64_t)param_3;
     auVar27 = ZEXT416(2);
     puVar = param_3;
     
@@ -2456,7 +2456,7 @@ void FUN_1804234a9(uint64_t param_1, uint64_t param_2, uint *param_3, uint param
         unaff_EBX = unaff_EBX + 0x10;
         
         /* 第一个像素块处理 */
-        auVar17 = pmovzxbd(in_XMM2, ZEXT416(*(uint *)(lVar13 + (longlong)puVar)));
+        auVar17 = pmovzxbd(in_XMM2, ZEXT416(*(uint *)(lVar13 + (int64_t)puVar)));
         auVar17 = pmulld(auVar17, auVar10);
         auVar16 = pmovzxbd(in_XMM1, ZEXT416(*puVar));
         auVar19._0_4_ = auVar17._0_4_ + auVar16._0_4_ + 2 >> auVar27;
@@ -2467,7 +2467,7 @@ void FUN_1804234a9(uint64_t param_1, uint64_t param_2, uint *param_3, uint param
         /* 像素数据重排和混合 */
         auVar17 = pshuflw(ZEXT416(*puVar), auVar19, 0xd8);
         auVar17 = pshufhw(auVar16, auVar17, 0xd8);
-        uVar1 = *(uint *)(lVar13 + 4 + (longlong)puVar);
+        uVar1 = *(uint *)(lVar13 + 4 + (int64_t)puVar);
         
         /* 像素通道重新排列 */
         auVar16._4_4_ = auVar17._8_4_;
@@ -2497,7 +2497,7 @@ void FUN_1804234a9(uint64_t param_1, uint64_t param_2, uint *param_3, uint param
         auVar18[7] = (0 < sVar9) * (sVar9 < 0x100) * auVar16[0xe] - (0xff < sVar9);
         
         /* 保存处理结果 */
-        *(int32_t *)(lVar14 + (longlong)puVar) = auVar18._0_4_;
+        *(int32_t *)(lVar14 + (int64_t)puVar) = auVar18._0_4_;
         
         /* 继续处理第二个像素块 */
         auVar16 = pmovzxbd(auVar18, ZEXT416(uVar1));
@@ -2512,18 +2512,18 @@ void FUN_1804234a9(uint64_t param_1, uint64_t param_2, uint *param_3, uint param
         /* （为了简洁，省略了部分重复代码） */
         
         puVar = puVar + 4;
-    } while ((longlong)puVar - (longlong)param_3 < (longlong)(int)(param_4 - uVar12));
+    } while ((int64_t)puVar - (int64_t)param_3 < (int64_t)(int)(param_4 - uVar12));
     
     /* 处理剩余的字节 */
-    lVar13 = (longlong)unaff_EBX;
+    lVar13 = (int64_t)unaff_EBX;
     if (lVar13 < (int)param_4) {
         lVar14 = (int)param_4 - lVar13;
-        pbVar11 = (byte *)(lVar13 + (longlong)param_3);
+        pbVar11 = (byte *)(lVar13 + (int64_t)param_3);
         do {
-            pbVar11[in_R11 - (longlong)param_3] =
+            pbVar11[in_R11 - (int64_t)param_3] =
                  (byte)(*pbVar11 + 2 +
-                        (uint)pbVar11[in_R10 - (longlong)param_3] +
-                        (uint)pbVar11[in_R10 - (longlong)param_3] * 2 >> 2);
+                        (uint)pbVar11[in_R10 - (int64_t)param_3] +
+                        (uint)pbVar11[in_R10 - (int64_t)param_3] * 2 >> 2);
             lVar14 = lVar14 + -1;
             pbVar11 = pbVar11 + 1;
         } while (lVar14 != 0);

@@ -5,13 +5,13 @@
 // 函数: 初始化渲染缓冲区
 void initialize_render_buffer(void *render_context, void **buffer_ptr)
 {
-    longlong offset;
-    longlong count;
-    longlong context_size;
-    longlong buffer_capacity;
+    int64_t offset;
+    int64_t count;
+    int64_t context_size;
+    int64_t buffer_capacity;
     
     if (context_size != 0) {
-        offset = (longlong)buffer_ptr + 0x1c;
+        offset = (int64_t)buffer_ptr + 0x1c;
         count = context_size;
         do {
             *buffer_ptr = 0;
@@ -31,35 +31,35 @@ void initialize_render_buffer(void *render_context, void **buffer_ptr)
 }
 
 // 函数: 处理渲染顶点数据
-void process_render_vertex_data(longlong vertex_buffer, void *texture_data, longlong data_stream)
+void process_render_vertex_data(int64_t vertex_buffer, void *texture_data, int64_t data_stream)
 {
-    longlong *vertex_ptr;
+    int64_t *vertex_ptr;
     float texture_coord;
-    longlong vertex_offset;
-    longlong texture_offset;
-    ulonglong vertex_count;
-    ulonglong texture_size;
-    longlong loop_counter;
-    longlong temp_var1;
-    longlong temp_var2;
-    longlong batch_size;
+    int64_t vertex_offset;
+    int64_t texture_offset;
+    uint64_t vertex_count;
+    uint64_t texture_size;
+    int64_t loop_counter;
+    int64_t temp_var1;
+    int64_t temp_var2;
+    int64_t batch_size;
     
-    vertex_offset = *(longlong *)(data_stream + 8);
-    vertex_ptr = (longlong *)(vertex_buffer + 8);
+    vertex_offset = *(int64_t *)(data_stream + 8);
+    vertex_ptr = (int64_t *)(vertex_buffer + 8);
     *(int *)(vertex_buffer + 0x2c) = *(int *)(vertex_offset + 4);
     *(int *)(vertex_buffer + 0x28) = *(int *)(vertex_offset + 8);
     *(int **)(data_stream + 8) = (int *)(vertex_offset + 0xc);
-    texture_size = (ulonglong)*(int *)(vertex_offset + 0xc);
-    *(longlong *)(data_stream + 8) = vertex_offset + 0x10;
-    vertex_count = *(longlong *)(vertex_buffer + 0x10) - *vertex_ptr >> 5;
+    texture_size = (uint64_t)*(int *)(vertex_offset + 0xc);
+    *(int64_t *)(data_stream + 8) = vertex_offset + 0x10;
+    vertex_count = *(int64_t *)(vertex_buffer + 0x10) - *vertex_ptr >> 5;
     if (vertex_count < texture_size) {
         resize_vertex_buffer(vertex_ptr, texture_size - vertex_count);
     }
     else {
-        *(ulonglong *)(vertex_buffer + 0x10) = texture_size * 0x20 + *vertex_ptr;
+        *(uint64_t *)(vertex_buffer + 0x10) = texture_size * 0x20 + *vertex_ptr;
     }
     vertex_offset = 0;
-    if (3 < (longlong)texture_size) {
+    if (3 < (int64_t)texture_size) {
         batch_size = (texture_size - 4 >> 2) + 1;
         vertex_offset = batch_size * 4;
         loop_counter = 0;
@@ -69,82 +69,82 @@ void process_render_vertex_data(longlong vertex_buffer, void *texture_data, long
             *(float **)(data_stream + 8) = *(float **)(data_stream + 8) + 1;
             *(int *)(loop_counter + temp_var1) = (int)(texture_coord * 29.0);
             *(int *)(loop_counter + 4 + temp_var1) = **(int **)(data_stream + 8);
-            temp_var2 = *(longlong *)(data_stream + 8);
+            temp_var2 = *(int64_t *)(data_stream + 8);
             *(int *)(loop_counter + 8 + temp_var1) = *(int *)(temp_var2 + 4);
             *(int *)(loop_counter + 0xc + temp_var1) = *(int *)(temp_var2 + 8);
-            *(longlong *)(data_stream + 8) = temp_var2 + 0xc;
+            *(int64_t *)(data_stream + 8) = temp_var2 + 0xc;
             *(float *)(loop_counter + 8 + temp_var1) = *(float *)(loop_counter + 8 + temp_var1) * 29.0;
             texture_coord = **(float **)(data_stream + 8);
             *(float **)(data_stream + 8) = *(float **)(data_stream + 8) + 1;
             *(int *)(loop_counter + 0x10 + temp_var1) = (int)(texture_coord * 29.0);
             *(int *)(loop_counter + 0x14 + temp_var1) = **(int **)(data_stream + 8);
-            temp_var2 = *(longlong *)(data_stream + 8);
+            temp_var2 = *(int64_t *)(data_stream + 8);
             *(int *)(loop_counter + 0x18 + temp_var1) = *(int *)(temp_var2 + 4);
             *(int *)(loop_counter + 0x1c + temp_var1) = *(int *)(temp_var2 + 8);
-            *(longlong *)(data_stream + 8) = temp_var2 + 0xc;
+            *(int64_t *)(data_stream + 8) = temp_var2 + 0xc;
             *(float *)(loop_counter + 0x18 + temp_var1) = *(float *)(loop_counter + 0x18 + temp_var1) * 29.0;
             temp_var1 = *vertex_ptr;
             texture_coord = **(float **)(data_stream + 8);
             *(float **)(data_stream + 8) = *(float **)(data_stream + 8) + 1;
             *(int *)(temp_var1 + 0x20 + loop_counter) = (int)(texture_coord * 29.0);
             *(int *)(temp_var1 + 0x24 + loop_counter) = **(int **)(data_stream + 8);
-            temp_var2 = *(longlong *)(data_stream + 8);
+            temp_var2 = *(int64_t *)(data_stream + 8);
             *(int *)(temp_var1 + 0x28 + loop_counter) = *(int *)(temp_var2 + 4);
             *(int *)(temp_var1 + 0x2c + loop_counter) = *(int *)(temp_var2 + 8);
-            *(longlong *)(data_stream + 8) = temp_var2 + 0xc;
+            *(int64_t *)(data_stream + 8) = temp_var2 + 0xc;
             *(float *)(temp_var1 + 0x28 + loop_counter) = *(float *)(temp_var1 + 0x28 + loop_counter) * 29.0;
             texture_coord = **(float **)(data_stream + 8);
             *(float **)(data_stream + 8) = *(float **)(data_stream + 8) + 1;
             *(int *)(temp_var1 + 0x30 + loop_counter) = (int)(texture_coord * 29.0);
             *(int *)(temp_var1 + 0x34 + loop_counter) = **(int **)(data_stream + 8);
-            temp_var2 = *(longlong *)(data_stream + 8);
+            temp_var2 = *(int64_t *)(data_stream + 8);
             *(int *)(temp_var1 + 0x38 + loop_counter) = *(int *)(temp_var2 + 4);
             *(int *)(temp_var1 + 0x3c + loop_counter) = *(int *)(temp_var2 + 8);
-            *(longlong *)(data_stream + 8) = temp_var2 + 0xc;
+            *(int64_t *)(data_stream + 8) = temp_var2 + 0xc;
             *(float *)(temp_var1 + 0x38 + loop_counter) = *(float *)(temp_var1 + 0x38 + loop_counter) * 29.0;
             temp_var1 = *vertex_ptr;
             texture_coord = **(float **)(data_stream + 8);
             *(float **)(data_stream + 8) = *(float **)(data_stream + 8) + 1;
             *(int *)(temp_var1 + 0x40 + loop_counter) = (int)(texture_coord * 29.0);
             *(int *)(temp_var1 + 0x44 + loop_counter) = **(int **)(data_stream + 8);
-            temp_var2 = *(longlong *)(data_stream + 8);
+            temp_var2 = *(int64_t *)(data_stream + 8);
             *(int *)(temp_var1 + 0x48 + loop_counter) = *(int *)(temp_var2 + 4);
             *(int *)(temp_var1 + 0x4c + loop_counter) = *(int *)(temp_var2 + 8);
-            *(longlong *)(data_stream + 8) = temp_var2 + 0xc;
+            *(int64_t *)(data_stream + 8) = temp_var2 + 0xc;
             *(float *)(temp_var1 + 0x48 + loop_counter) = *(float *)(temp_var1 + 0x48 + loop_counter) * 29.0;
             texture_coord = **(float **)(data_stream + 8);
             *(float **)(data_stream + 8) = *(float **)(data_stream + 8) + 1;
             *(int *)(temp_var1 + 0x50 + loop_counter) = (int)(texture_coord * 29.0);
             *(int *)(temp_var1 + 0x54 + loop_counter) = **(int **)(data_stream + 8);
-            temp_var2 = *(longlong *)(data_stream + 8);
+            temp_var2 = *(int64_t *)(data_stream + 8);
             *(int *)(temp_var1 + 0x58 + loop_counter) = *(int *)(temp_var2 + 4);
             *(int *)(temp_var1 + 0x5c + loop_counter) = *(int *)(temp_var2 + 8);
-            *(longlong *)(data_stream + 8) = temp_var2 + 0xc;
+            *(int64_t *)(data_stream + 8) = temp_var2 + 0xc;
             *(float *)(temp_var1 + 0x58 + loop_counter) = *(float *)(temp_var1 + 0x58 + loop_counter) * 29.0;
             temp_var1 = *vertex_ptr;
             texture_coord = **(float **)(data_stream + 8);
             *(float **)(data_stream + 8) = *(float **)(data_stream + 8) + 1;
             *(int *)(loop_counter + 0x60 + temp_var1) = (int)(texture_coord * 29.0);
             *(int *)(loop_counter + 100 + temp_var1) = **(int **)(data_stream + 8);
-            temp_var2 = *(longlong *)(data_stream + 8);
+            temp_var2 = *(int64_t *)(data_stream + 8);
             *(int *)(loop_counter + 0x68 + temp_var1) = *(int *)(temp_var2 + 4);
             *(int *)(loop_counter + 0x6c + temp_var1) = *(int *)(temp_var2 + 8);
-            *(longlong *)(data_stream + 8) = temp_var2 + 0xc;
+            *(int64_t *)(data_stream + 8) = temp_var2 + 0xc;
             *(float *)(loop_counter + 0x68 + temp_var1) = *(float *)(loop_counter + 0x68 + temp_var1) * 29.0;
             texture_coord = **(float **)(data_stream + 8);
             *(float **)(data_stream + 8) = *(float **)(data_stream + 8) + 1;
             *(int *)(loop_counter + 0x70 + temp_var1) = (int)(texture_coord * 29.0);
             *(int *)(loop_counter + 0x74 + temp_var1) = **(int **)(data_stream + 8);
-            temp_var2 = *(longlong *)(data_stream + 8);
+            temp_var2 = *(int64_t *)(data_stream + 8);
             *(int *)(loop_counter + 0x78 + temp_var1) = *(int *)(temp_var2 + 4);
             *(int *)(loop_counter + 0x7c + temp_var1) = *(int *)(temp_var2 + 8);
-            *(longlong *)(data_stream + 8) = temp_var2 + 0xc;
+            *(int64_t *)(data_stream + 8) = temp_var2 + 0xc;
             *(float *)(loop_counter + 0x78 + temp_var1) = *(float *)(loop_counter + 0x78 + temp_var1) * 29.0;
             batch_size = batch_size + -1;
             loop_counter = loop_counter + 0x80;
         } while (batch_size != 0);
     }
-    if (vertex_offset < (longlong)texture_size) {
+    if (vertex_offset < (int64_t)texture_size) {
         loop_counter = texture_size - vertex_offset;
         vertex_offset = vertex_offset << 5;
         do {
@@ -153,21 +153,21 @@ void process_render_vertex_data(longlong vertex_buffer, void *texture_data, long
             *(float **)(data_stream + 8) = *(float **)(data_stream + 8) + 1;
             *(int *)(vertex_offset + batch_size) = (int)(texture_coord * 29.0);
             *(int *)(vertex_offset + 4 + batch_size) = **(int **)(data_stream + 8);
-            temp_var1 = *(longlong *)(data_stream + 8);
+            temp_var1 = *(int64_t *)(data_stream + 8);
             texture_coord = *(float *)(temp_var1 + 4);
             *(float *)(vertex_offset + 8 + batch_size) = texture_coord;
             *(int *)(vertex_offset + 0xc + batch_size) = *(int *)(temp_var1 + 8);
-            *(longlong *)(data_stream + 8) = temp_var1 + 0xc;
+            *(int64_t *)(data_stream + 8) = temp_var1 + 0xc;
             *(float *)(vertex_offset + 8 + batch_size) = texture_coord * 29.0;
             texture_coord = **(float **)(data_stream + 8);
             *(float **)(data_stream + 8) = *(float **)(data_stream + 8) + 1;
             *(int *)(vertex_offset + 0x10 + batch_size) = (int)(texture_coord * 29.0);
             *(int *)(vertex_offset + 0x14 + batch_size) = **(int **)(data_stream + 8);
-            temp_var1 = *(longlong *)(data_stream + 8);
+            temp_var1 = *(int64_t *)(data_stream + 8);
             texture_coord = *(float *)(temp_var1 + 4);
             *(float *)(vertex_offset + 0x18 + batch_size) = texture_coord;
             *(int *)(vertex_offset + 0x1c + batch_size) = *(int *)(temp_var1 + 8);
-            *(longlong *)(data_stream + 8) = temp_var1 + 0xc;
+            *(int64_t *)(data_stream + 8) = temp_var1 + 0xc;
             *(float *)(vertex_offset + 0x18 + batch_size) = texture_coord * 29.0;
             loop_counter = loop_counter + -1;
             vertex_offset = vertex_offset + 0x20;
@@ -181,8 +181,8 @@ void release_render_resources(void **resource_ptr)
 {
     int *ref_count;
     void **resource_data;
-    longlong resource_info;
-    ulonglong resource_type;
+    int64_t resource_info;
+    uint64_t resource_type;
     
     *resource_ptr = &GLOBAL_RENDER_VTABLE;
     cleanup_render_state(resource_ptr + 1);
@@ -190,10 +190,10 @@ void release_render_resources(void **resource_ptr)
     if (resource_data == (void **)0x0) {
         return;
     }
-    resource_type = (ulonglong)resource_data & 0xffffffffffc00000;
+    resource_type = (uint64_t)resource_data & 0xffffffffffc00000;
     if (resource_type != 0) {
-        resource_info = resource_type + 0x80 + ((longlong)resource_data - resource_type >> 0x10) * 0x50;
-        resource_info = resource_info - (ulonglong)*(uint *)(resource_info + 4);
+        resource_info = resource_type + 0x80 + ((int64_t)resource_data - resource_type >> 0x10) * 0x50;
+        resource_info = resource_info - (uint64_t)*(uint *)(resource_info + 4);
         if ((*(void ***)(resource_type + 0x70) == &ExceptionList) && (*(char *)(resource_info + 0xe) == '\0')) {
             *resource_data = *(void **)(resource_info + 0x20);
             *(void **)(resource_info + 0x20) = resource_data;
@@ -332,7 +332,7 @@ void *initialize_render_transform_matrix(void *matrix_data)
 }
 
 // 函数: 释放渲染缓冲区内存
-void *free_render_buffer_memory(void *buffer_ptr, ulonglong flags, void *param3, void *param4)
+void *free_render_buffer_memory(void *buffer_ptr, uint64_t flags, void *param3, void *param4)
 {
     void *free_flag;
     
@@ -350,7 +350,7 @@ void *free_render_buffer_memory(void *buffer_ptr, ulonglong flags, void *param3,
 }
 
 // 函数: 释放渲染顶点缓冲区
-void *free_render_vertex_buffer(void *buffer_ptr, ulonglong flags, void *param3, void *param4)
+void *free_render_vertex_buffer(void *buffer_ptr, uint64_t flags, void *param3, void *param4)
 {
     void *free_flag;
     
@@ -368,12 +368,12 @@ void *free_render_vertex_buffer(void *buffer_ptr, ulonglong flags, void *param3,
 }
 
 // 函数: 清理渲染状态
-void cleanup_render_state(ulonglong *state_ptr)
+void cleanup_render_state(uint64_t *state_ptr)
 {
     int *ref_count;
     void **state_data;
-    longlong state_info;
-    ulonglong state_type;
+    int64_t state_info;
+    uint64_t state_type;
     
     state_data = (void **)*state_ptr;
     *state_ptr = 0;
@@ -383,10 +383,10 @@ void cleanup_render_state(ulonglong *state_ptr)
     if (state_data == (void **)0x0) {
         return;
     }
-    state_type = (ulonglong)state_data & 0xffffffffffc00000;
+    state_type = (uint64_t)state_data & 0xffffffffffc00000;
     if (state_type != 0) {
-        state_info = state_type + 0x80 + ((longlong)state_data - state_type >> 0x10) * 0x50;
-        state_info = state_info - (ulonglong)*(uint *)(state_info + 4);
+        state_info = state_type + 0x80 + ((int64_t)state_data - state_type >> 0x10) * 0x50;
+        state_info = state_info - (uint64_t)*(uint *)(state_info + 4);
         if ((*(void ***)(state_type + 0x70) == &ExceptionList) && (*(char *)(state_info + 0xe) == '\0')) {
             *state_data = *(void **)(state_info + 0x20);
             *(void **)(state_info + 0x20) = state_data;
@@ -411,8 +411,8 @@ void reset_render_pipeline(void *pipeline_ptr)
 {
     int *ref_count;
     void **pipeline_data;
-    longlong pipeline_info;
-    ulonglong pipeline_type;
+    int64_t pipeline_info;
+    uint64_t pipeline_type;
     
     *pipeline_ptr = &GLOBAL_RENDER_VTABLE;
     cleanup_render_state(pipeline_ptr + 1);
@@ -420,10 +420,10 @@ void reset_render_pipeline(void *pipeline_ptr)
     if (pipeline_data == (void **)0x0) {
         return;
     }
-    pipeline_type = (ulonglong)pipeline_data & 0xffffffffffc00000;
+    pipeline_type = (uint64_t)pipeline_data & 0xffffffffffc00000;
     if (pipeline_type != 0) {
-        pipeline_info = pipeline_type + 0x80 + ((longlong)pipeline_data - pipeline_type >> 0x10) * 0x50;
-        pipeline_info = pipeline_info - (ulonglong)*(uint *)(pipeline_info + 4);
+        pipeline_info = pipeline_type + 0x80 + ((int64_t)pipeline_data - pipeline_type >> 0x10) * 0x50;
+        pipeline_info = pipeline_info - (uint64_t)*(uint *)(pipeline_info + 4);
         if ((*(void ***)(pipeline_type + 0x70) == &ExceptionList) && (*(char *)(pipeline_info + 0xe) == '\0')) {
             *pipeline_data = *(void **)(pipeline_info + 0x20);
             *(void **)(pipeline_info + 0x20) = pipeline_data;
@@ -448,8 +448,8 @@ void update_render_shader(void *shader_ptr)
 {
     int *ref_count;
     void **shader_data;
-    longlong shader_info;
-    ulonglong shader_type;
+    int64_t shader_info;
+    uint64_t shader_type;
     
     *shader_ptr = &GLOBAL_RENDER_VTABLE;
     cleanup_render_state(shader_ptr + 1);
@@ -457,10 +457,10 @@ void update_render_shader(void *shader_ptr)
     if (shader_data == (void **)0x0) {
         return;
     }
-    shader_type = (ulonglong)shader_data & 0xffffffffffc00000;
+    shader_type = (uint64_t)shader_data & 0xffffffffffc00000;
     if (shader_type != 0) {
-        shader_info = shader_type + 0x80 + ((longlong)shader_data - shader_type >> 0x10) * 0x50;
-        shader_info = shader_info - (ulonglong)*(uint *)(shader_info + 4);
+        shader_info = shader_type + 0x80 + ((int64_t)shader_data - shader_type >> 0x10) * 0x50;
+        shader_info = shader_info - (uint64_t)*(uint *)(shader_info + 4);
         if ((*(void ***)(shader_type + 0x70) == &ExceptionList) && (*(char *)(shader_info + 0xe) == '\0')) {
             *shader_data = *(void **)(shader_info + 0x20);
             *(void **)(shader_info + 0x20) = shader_data;
@@ -481,21 +481,21 @@ void update_render_shader(void *shader_ptr)
 }
 
 // 函数: 比较渲染数据
-ulonglong compare_render_data(longlong data1, longlong data2)
+uint64_t compare_render_data(int64_t data1, int64_t data2)
 {
     float *texture_coords1;
     float *texture_coords2;
     float *vertex_data1;
     float *vertex_data2;
-    longlong offset;
+    int64_t offset;
     
     texture_coords1 = *(float **)(data1 + 0x328);
     vertex_data1 = *(float **)(data1 + 800);
-    texture_coords2 = (float *)-((longlong)texture_coords1 - (longlong)vertex_data1 >> 0x3f);
-    if (((longlong)texture_coords1 - (longlong)vertex_data1) / 0x14 ==
-        (*(longlong *)(data2 + 0x328) - *(longlong *)(data2 + 800)) / 0x14) {
+    texture_coords2 = (float *)-((int64_t)texture_coords1 - (int64_t)vertex_data1 >> 0x3f);
+    if (((int64_t)texture_coords1 - (int64_t)vertex_data1) / 0x14 ==
+        (*(int64_t *)(data2 + 0x328) - *(int64_t *)(data2 + 800)) / 0x14) {
         if (vertex_data1 != texture_coords1) {
-            texture_coords2 = (float *)(*(longlong *)(data2 + 800) + 8);
+            texture_coords2 = (float *)(*(int64_t *)(data2 + 800) + 8);
             do {
                 if ((((texture_coords2[-2] != *vertex_data1) || (texture_coords2[-1] != vertex_data1[1])) || 
                    (*texture_coords2 != vertex_data1[2])) || (texture_coords2[1] != vertex_data1[3])) {
@@ -507,14 +507,14 @@ ulonglong compare_render_data(longlong data1, longlong data2)
         }
         texture_coords1 = *(float **)(data1 + 0x348);
         vertex_data1 = *(float **)(data1 + 0x340);
-        texture_coords2 = (float *)((longlong)texture_coords1 - (longlong)vertex_data1);
-        if (((*(longlong *)(data2 + 0x348) - *(longlong *)(data2 + 0x340) ^ (ulonglong)texture_coords2) &
+        texture_coords2 = (float *)((int64_t)texture_coords1 - (int64_t)vertex_data1);
+        if (((*(int64_t *)(data2 + 0x348) - *(int64_t *)(data2 + 0x340) ^ (uint64_t)texture_coords2) &
             0xfffffffffffffff8) == 0) {
             if (vertex_data1 != texture_coords1) {
-                offset = *(longlong *)(data2 + 0x340) - (longlong)vertex_data1;
+                offset = *(int64_t *)(data2 + 0x340) - (int64_t)vertex_data1;
                 do {
-                    if ((*(float *)(offset + (longlong)vertex_data1) != *vertex_data1) ||
-                       (*(float *)(offset + 4 + (longlong)vertex_data1) != vertex_data1[1])) {
+                    if ((*(float *)(offset + (int64_t)vertex_data1) != *vertex_data1) ||
+                       (*(float *)(offset + 4 + (int64_t)vertex_data1) != vertex_data1[1])) {
                         goto COMPARE_FAILED;
                     }
                     vertex_data1 = vertex_data1 + 2;
@@ -524,7 +524,7 @@ ulonglong compare_render_data(longlong data1, longlong data2)
         }
     }
 COMPARE_FAILED:
-    return (ulonglong)texture_coords2 & 0xffffffffffffff00;
+    return (uint64_t)texture_coords2 & 0xffffffffffffff00;
 }
 
 // 函数: 比较渲染纹理

@@ -23,21 +23,21 @@ void initialize_system_resource_manager(uint64_t system_handle, uint64_t *resour
 }
 
 // 函数：初始化主系统控制器
-void initialize_main_system_controller(longlong system_base, uint64_t param_2, uint64_t param_3, uint64_t param_4)
+void initialize_main_system_controller(int64_t system_base, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
   initialize_system_resource_manager(system_base, *(uint64_t *)(system_base + 0x10), param_3, param_4, 0xfffffffffffffffe);
   return;
 }
 
 // 函数：初始化辅助系统控制器
-void initialize_auxiliary_system_controller(longlong system_base, uint64_t param_2, uint64_t param_3, uint64_t param_4)
+void initialize_auxiliary_system_controller(int64_t system_base, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
   initialize_system_resource_manager(system_base, *(uint64_t *)(system_base + 0x10), param_3, param_4, 0xfffffffffffffffe);
   return;
 }
 
 // 函数：初始化备用系统控制器
-void initialize_backup_system_controller(longlong system_base, uint64_t param_2, uint64_t param_3, uint64_t param_4)
+void initialize_backup_system_controller(int64_t system_base, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
   initialize_system_resource_manager(system_base, *(uint64_t *)(system_base + 0x10), param_3, param_4, 0xfffffffffffffffe);
   return;
@@ -62,13 +62,13 @@ void system_log_output(uint64_t format_string, uint64_t param_2, uint64_t param_
 }
 
 // 函数：查找系统资源项
-uint64_t * find_system_resource_item(longlong system_handle, char *resource_name)
+uint64_t * find_system_resource_item(int64_t system_handle, char *resource_name)
 {
   char *name_ptr;
   char current_char;
   uint64_t *resource_entry;
   char *entry_name;
-  longlong name_length;
+  int64_t name_length;
   char *temp_ptr;
   
   if (resource_name == (char *)0x0) {
@@ -93,12 +93,12 @@ uint64_t * find_system_resource_item(longlong system_handle, char *resource_name
     else {
       name_length = resource_entry[2];
     }
-    if (name_length == (longlong)temp_ptr - (longlong)resource_name) {
+    if (name_length == (int64_t)temp_ptr - (int64_t)resource_name) {
       name_ptr = entry_name + name_length;
       if (name_ptr <= entry_name) {
         return resource_entry;
       }
-      name_length = (longlong)resource_name - (longlong)entry_name;
+      name_length = (int64_t)resource_name - (int64_t)entry_name;
       while (*entry_name == entry_name[name_length]) {
         entry_name = entry_name + 1;
         if (name_ptr <= entry_name) {
@@ -115,9 +115,9 @@ uint64_t * find_next_resource_item(uint64_t param_1, uint64_t *resource_ptr)
 {
   char *name_ptr1;
   char *name_ptr2;
-  longlong length1;
-  longlong search_length1;
-  longlong search_length2;
+  int64_t length1;
+  int64_t search_length1;
+  int64_t search_length2;
   
   if (resource_ptr != (uint64_t *)0x0) {
     do {
@@ -134,7 +134,7 @@ uint64_t * find_next_resource_item(uint64_t param_1, uint64_t *resource_ptr)
         if (name_ptr1 <= name_ptr2) {
           return resource_ptr;
         }
-        length1 = search_length2 - (longlong)name_ptr2;
+        length1 = search_length2 - (int64_t)name_ptr2;
         while (*name_ptr2 == name_ptr2[length1]) {
           name_ptr2 = name_ptr2 + 1;
           if (name_ptr1 <= name_ptr2) {
@@ -154,9 +154,9 @@ uint64_t * find_specific_resource_item(uint64_t param_1, uint64_t *resource_ptr)
   char *name_ptr1;
   char *name_ptr2;
   char *base_name;
-  longlong length1;
-  longlong search_length1;
-  longlong search_length2;
+  int64_t length1;
+  int64_t search_length1;
+  int64_t search_length2;
   
   while( true ) {
     do {
@@ -175,7 +175,7 @@ uint64_t * find_specific_resource_item(uint64_t param_1, uint64_t *resource_ptr)
     } while (length1 != search_length1);
     name_ptr1 = name_ptr2 + length1;
     if (name_ptr1 <= name_ptr2) break;
-    length1 = search_length2 - (longlong)name_ptr2;
+    length1 = search_length2 - (int64_t)name_ptr2;
     while (*name_ptr2 == name_ptr2[length1]) {
       name_ptr2 = name_ptr2 + 1;
       if (name_ptr1 <= name_ptr2) {
@@ -187,19 +187,19 @@ uint64_t * find_specific_resource_item(uint64_t param_1, uint64_t *resource_ptr)
 }
 
 // 函数：获取系统资源表
-uint64_t get_system_resource_table(longlong system_handle)
+uint64_t get_system_resource_table(int64_t system_handle)
 {
   return *(uint64_t *)(system_handle + 0x58);
 }
 
 // 函数：查找缓存资源项
-uint64_t * find_cached_resource_item(longlong system_handle, char *resource_name, longlong name_length)
+uint64_t * find_cached_resource_item(int64_t system_handle, char *resource_name, int64_t name_length)
 {
   char *name_ptr;
   char current_char;
   uint64_t *cache_entry;
   char *entry_name;
-  longlong entry_length;
+  int64_t entry_length;
   
   if (resource_name == (char *)0x0) {
     return *(uint64_t **)(system_handle + 0x30);
@@ -211,7 +211,7 @@ uint64_t * find_cached_resource_item(longlong system_handle, char *resource_name
       entry_name = entry_name + 1;
       current_char = *entry_name;
     }
-    name_length = (longlong)entry_name - (longlong)resource_name;
+    name_length = (int64_t)entry_name - (int64_t)resource_name;
   }
   cache_entry = *(uint64_t **)(system_handle + 0x30);
   do {
@@ -231,7 +231,7 @@ uint64_t * find_cached_resource_item(longlong system_handle, char *resource_name
       if (name_ptr <= entry_name) {
         return cache_entry;
       }
-      entry_length = (longlong)resource_name - (longlong)entry_name;
+      entry_length = (int64_t)resource_name - (int64_t)entry_name;
       while (*entry_name == entry_name[entry_length]) {
         entry_name = entry_name + 1;
         if (name_ptr <= entry_name) {
@@ -244,12 +244,12 @@ uint64_t * find_cached_resource_item(longlong system_handle, char *resource_name
 }
 
 // 函数：查找下一个缓存项
-uint64_t * find_next_cached_item(uint64_t param_1, uint64_t *cache_ptr, longlong search_length)
+uint64_t * find_next_cached_item(uint64_t param_1, uint64_t *cache_ptr, int64_t search_length)
 {
   char *name_ptr1;
   char *name_ptr2;
-  longlong entry_length;
-  longlong target_offset;
+  int64_t entry_length;
+  int64_t target_offset;
   
   if (cache_ptr != (uint64_t *)0x0) {
     do {
@@ -266,7 +266,7 @@ uint64_t * find_next_cached_item(uint64_t param_1, uint64_t *cache_ptr, longlong
         if (name_ptr1 <= name_ptr2) {
           return cache_ptr;
         }
-        entry_length = target_offset - (longlong)name_ptr2;
+        entry_length = target_offset - (int64_t)name_ptr2;
         while (*name_ptr2 == name_ptr2[entry_length]) {
           name_ptr2 = name_ptr2 + 1;
           if (name_ptr1 <= name_ptr2) {
@@ -281,13 +281,13 @@ uint64_t * find_next_cached_item(uint64_t param_1, uint64_t *cache_ptr, longlong
 }
 
 // 函数：查找特定缓存项
-uint64_t * find_specific_cached_item(uint64_t param_1, uint64_t *cache_ptr, longlong search_length)
+uint64_t * find_specific_cached_item(uint64_t param_1, uint64_t *cache_ptr, int64_t search_length)
 {
   char *name_ptr1;
   char *name_ptr2;
   char *base_name;
-  longlong entry_length;
-  longlong target_offset;
+  int64_t entry_length;
+  int64_t target_offset;
   
   while( true ) {
     do {
@@ -306,7 +306,7 @@ uint64_t * find_specific_cached_item(uint64_t param_1, uint64_t *cache_ptr, long
     } while (entry_length != search_length);
     name_ptr1 = name_ptr2 + entry_length;
     if (name_ptr1 <= name_ptr2) break;
-    entry_length = target_offset - (longlong)name_ptr2;
+    entry_length = target_offset - (int64_t)name_ptr2;
     while (*name_ptr2 == name_ptr2[entry_length]) {
       name_ptr2 = name_ptr2 + 1;
       if (name_ptr1 <= name_ptr2) {
@@ -318,13 +318,13 @@ uint64_t * find_specific_cached_item(uint64_t param_1, uint64_t *cache_ptr, long
 }
 
 // 函数：获取缓存资源表
-uint64_t get_cached_resource_table(longlong system_handle)
+uint64_t get_cached_resource_table(int64_t system_handle)
 {
   return *(uint64_t *)(system_handle + 0x30);
 }
 
 // 函数：执行系统清理序列
-void execute_system_cleanup_sequence(longlong *cleanup_array, uint64_t param_2, uint64_t param_3, uint64_t param_4)
+void execute_system_cleanup_sequence(int64_t *cleanup_array, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
   uint64_t *array_start;
   uint64_t *array_end;
@@ -343,7 +343,7 @@ void execute_system_cleanup_sequence(longlong *cleanup_array, uint64_t param_2, 
 }
 
 // 函数：执行资源清理序列
-void execute_resource_cleanup_sequence(longlong *resource_array, uint64_t param_2, uint64_t param_3, uint64_t param_4)
+void execute_resource_cleanup_sequence(int64_t *resource_array, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
   uint64_t *array_start;
   uint64_t *array_end;
@@ -362,7 +362,7 @@ void execute_resource_cleanup_sequence(longlong *resource_array, uint64_t param_
 }
 
 // 函数：初始化内存管理器
-uint64_t * initialize_memory_manager(uint64_t *manager_ptr, ulonglong init_flags, uint64_t param_3, uint64_t param_4)
+uint64_t * initialize_memory_manager(uint64_t *manager_ptr, uint64_t init_flags, uint64_t param_3, uint64_t param_4)
 {
   uint64_t cleanup_flag;
   
@@ -413,15 +413,15 @@ void close_system_handle(uint64_t *handle_ptr)
 }
 
 // 函数：系统资源释放函数
-void release_system_resources(longlong system_handle, uint64_t param_2, uint64_t param_3, uint64_t param_4)
+void release_system_resources(int64_t system_handle, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
-  longlong *resource_array1;
-  longlong *resource_array2;
-  longlong *resource_array3;
-  longlong *resource_item;
-  longlong system_state;
+  int64_t *resource_array1;
+  int64_t *resource_array2;
+  int64_t *resource_array3;
+  int64_t *resource_item;
+  int64_t system_state;
   int counter;
-  longlong index;
+  int64_t index;
   
   system_state = SYSTEM_STATE_VAR;
   if (*(code **)(SYSTEM_STATE_VAR + 0x20) != (code *)0x0) {
@@ -430,42 +430,42 @@ void release_system_resources(longlong system_handle, uint64_t param_2, uint64_t
   *(uint64_t *)(system_state + 0x20) = 0;
   *(code **)(system_state + 0x28) = _guard_check_icall;
   counter = 0;
-  resource_array1 = (longlong *)(system_handle + 8);
-  if (*(longlong *)(system_handle + 0x10) - *resource_array1 >> 3 != 0) {
+  resource_array1 = (int64_t *)(system_handle + 8);
+  if (*(int64_t *)(system_handle + 0x10) - *resource_array1 >> 3 != 0) {
     system_state = 0;
     do {
       release_memory_block(*(uint64_t *)(*resource_array1 + system_state));
       counter = counter + 1;
       system_state = system_state + 8;
-    } while ((ulonglong)(longlong)counter < (ulonglong)(*(longlong)(system_handle + 0x10) - *resource_array1 >> 3));
+    } while ((uint64_t)(int64_t)counter < (uint64_t)(*(int64_t)(system_handle + 0x10) - *resource_array1 >> 3));
   }
   counter = 0;
-  resource_array2 = (longlong *)(system_handle + 0x28);
-  if (*(longlong *)(system_handle + 0x30) - *resource_array2 >> 3 != 0) {
+  resource_array2 = (int64_t *)(system_handle + 0x28);
+  if (*(int64_t *)(system_handle + 0x30) - *resource_array2 >> 3 != 0) {
     system_state = 0;
     do {
       release_memory_block(*(uint64_t *)(*resource_array2 + system_state));
       counter = counter + 1;
       system_state = system_state + 8;
-    } while ((ulonglong)(longlong)counter < (ulonglong)(*(longlong)(system_handle + 0x30) - *resource_array2 >> 3));
+    } while ((uint64_t)(int64_t)counter < (uint64_t)(*(int64_t)(system_handle + 0x30) - *resource_array2 >> 3));
   }
   counter = 0;
-  resource_array3 = (longlong *)(system_handle + 0x48);
-  if (*(longlong *)(system_handle + 0x50) - *resource_array3 >> 3 != 0) {
+  resource_array3 = (int64_t *)(system_handle + 0x48);
+  if (*(int64_t *)(system_handle + 0x50) - *resource_array3 >> 3 != 0) {
     system_state = 0;
     do {
       release_memory_block(*(uint64_t *)(*resource_array3 + system_state));
       counter = counter + 1;
       system_state = system_state + 8;
-    } while ((ulonglong)(longlong)counter < (ulonglong)(*(longlong)(system_handle + 0x50) - *resource_array3 >> 3));
+    } while ((uint64_t)(int64_t)counter < (uint64_t)(*(int64_t)(system_handle + 0x50) - *resource_array3 >> 3));
   }
   counter = 0;
   system_state = *resource_array1;
-  if (*(longlong *)(system_handle + 0x10) - system_state >> 3 != 0) {
+  if (*(int64_t *)(system_handle + 0x10) - system_state >> 3 != 0) {
     index = 0;
     do {
-      resource_item = *(longlong **)(index + system_state);
-      if (resource_item != (longlong *)0x0) {
+      resource_item = *(int64_t **)(index + system_state);
+      if (resource_item != (int64_t *)0x0) {
         system_state = __RTCastToVoid(resource_item);
         (**(code **)(*resource_item + 0x28))(resource_item, 0);
         if (system_state != 0) {
@@ -477,15 +477,15 @@ void release_system_resources(longlong system_handle, uint64_t param_2, uint64_t
       counter = counter + 1;
       index = index + 8;
       system_state = *resource_array1;
-    } while ((ulonglong)(longlong)counter < (ulonglong)(*(longlong)(system_handle + 0x10) - system_state >> 3));
+    } while ((uint64_t)(int64_t)counter < (uint64_t)(*(int64_t)(system_handle + 0x10) - system_state >> 3));
   }
   counter = 0;
   system_state = *resource_array2;
-  if (*(longlong)(system_handle + 0x30) - system_state >> 3 != 0) {
+  if (*(int64_t)(system_handle + 0x30) - system_state >> 3 != 0) {
     index = 0;
     do {
-      resource_item = *(longlong **)(system_state + index);
-      if (resource_item != (longlong *)0x0) {
+      resource_item = *(int64_t **)(system_state + index);
+      if (resource_item != (int64_t *)0x0) {
         system_state = __RTCastToVoid(resource_item);
         (**(code **)(*resource_item + 0x28))(resource_item, 0);
         if (system_state != 0) {
@@ -497,15 +497,15 @@ void release_system_resources(longlong system_handle, uint64_t param_2, uint64_t
       counter = counter + 1;
       index = index + 8;
       system_state = *resource_array2;
-    } while ((ulonglong)(longlong)counter < (ulonglong)(*(longlong)(system_handle + 0x30) - system_state >> 3));
+    } while ((uint64_t)(int64_t)counter < (uint64_t)(*(int64_t)(system_handle + 0x30) - system_state >> 3));
   }
   counter = 0;
   system_state = *resource_array3;
-  if (*(longlong)(system_handle + 0x50) - system_state >> 3 != 0) {
+  if (*(int64_t)(system_handle + 0x50) - system_state >> 3 != 0) {
     index = 0;
     do {
-      resource_item = *(longlong **)(system_state + index);
-      if (resource_item != (longlong *)0x0) {
+      resource_item = *(int64_t **)(system_state + index);
+      if (resource_item != (int64_t *)0x0) {
         system_state = __RTCastToVoid(resource_item);
         (**(code **)(*resource_item + 0x28))(resource_item, 0);
         if (system_state != 0) {
@@ -517,7 +517,7 @@ void release_system_resources(longlong system_handle, uint64_t param_2, uint64_t
       counter = counter + 1;
       index = index + 8;
       system_state = *resource_array3;
-    } while ((ulonglong)(longlong)counter < (ulonglong)(*(longlong)(system_handle + 0x50) - system_state >> 3));
+    } while ((uint64_t)(int64_t)counter < (uint64_t)(*(int64_t)(system_handle + 0x50) - system_state >> 3));
   }
   cleanup_thread_pool(system_handle + 0x548);
   cleanup_thread_pool(system_handle + 0x2e0);
@@ -540,19 +540,19 @@ void release_system_resources(longlong system_handle, uint64_t param_2, uint64_t
 }
 
 // 函数：暂停系统线程
-void pause_system_threads(longlong system_handle)
+void pause_system_threads(int64_t system_handle)
 {
-  longlong thread_handle;
-  longlong current_thread;
+  int64_t thread_handle;
+  int64_t current_thread;
   int thread_count;
-  longlong index;
+  int64_t index;
   
   current_thread = GetCurrentThread();
-  thread_count = (int)(*(longlong *)(system_handle + 0x10) - *(longlong *)(system_handle + 8) >> 3);
+  thread_count = (int)(*(int64_t *)(system_handle + 0x10) - *(int64_t *)(system_handle + 8) >> 3);
   if (0 < thread_count) {
     index = 0;
     do {
-      thread_handle = *(longlong *)(*(longlong *)(*(longlong *)(system_handle + 8) + index * 8) + 0x40);
+      thread_handle = *(int64_t *)(*(int64_t *)(*(int64_t *)(system_handle + 8) + index * 8) + 0x40);
       if ((thread_handle != 0) && (thread_handle != current_thread)) {
         SuspendThread();
       }
@@ -565,15 +565,15 @@ void pause_system_threads(longlong system_handle)
 // 函数：暂停所有线程
 void pause_all_threads(void)
 {
-  longlong thread_handle;
-  longlong index;
-  longlong base_system;
-  longlong thread_array;
-  longlong thread_count;
+  int64_t thread_handle;
+  int64_t index;
+  int64_t base_system;
+  int64_t thread_array;
+  int64_t thread_count;
   
   index = 0;
   do {
-    thread_handle = *(longlong *)(*(longlong *)(*(longlong)(base_system + 8) + index * 8) + 0x40);
+    thread_handle = *(int64_t *)(*(int64_t *)(*(int64_t)(base_system + 8) + index * 8) + 0x40);
     if ((thread_handle != 0) && (thread_handle != base_system)) {
       SuspendThread();
     }
@@ -589,19 +589,19 @@ void no_operation_1(void)
 }
 
 // 函数：恢复系统线程
-void resume_system_threads(longlong system_handle)
+void resume_system_threads(int64_t system_handle)
 {
-  longlong thread_handle;
-  longlong current_thread;
+  int64_t thread_handle;
+  int64_t current_thread;
   int thread_count;
-  longlong index;
+  int64_t index;
   
   current_thread = GetCurrentThread();
-  thread_count = (int)(*(longlong)(system_handle + 0x10) - *(longlong)(system_handle + 8) >> 3);
+  thread_count = (int)(*(int64_t)(system_handle + 0x10) - *(int64_t)(system_handle + 8) >> 3);
   if (0 < thread_count) {
     index = 0;
     do {
-      thread_handle = *(longlong *)(*(longlong *)(*(longlong)(system_handle + 8) + index * 8) + 0x40);
+      thread_handle = *(int64_t *)(*(int64_t *)(*(int64_t)(system_handle + 8) + index * 8) + 0x40);
       if ((thread_handle != 0) && (thread_handle != current_thread)) {
         ResumeThread();
       }
@@ -614,15 +614,15 @@ void resume_system_threads(longlong system_handle)
 // 函数：恢复所有线程
 void resume_all_threads(void)
 {
-  longlong thread_handle;
-  longlong index;
-  longlong base_system;
-  longlong thread_array;
-  longlong thread_count;
+  int64_t thread_handle;
+  int64_t index;
+  int64_t base_system;
+  int64_t thread_array;
+  int64_t thread_count;
   
   index = 0;
   do {
-    thread_handle = *(longlong *)(*(longlong *)(*(longlong)(base_system + 8) + index * 8) + 0x40);
+    thread_handle = *(int64_t *)(*(int64_t *)(*(int64_t)(base_system + 8) + index * 8) + 0x40);
     if ((thread_handle != 0) && (thread_handle != base_system)) {
       ResumeThread();
     }
@@ -640,25 +640,25 @@ void no_operation_2(void)
 // 函数：初始化系统线程池
 void initialize_system_thread_pool(void)
 {
-  longlong *thread_array;
+  int64_t *thread_array;
   int pool_size;
   uint64_t allocation_flags;
   uint64_t *thread_entry;
-  longlong system_handle;
-  longlong thread_limit;
-  ulonglong loop_counter;
-  ulonglong entry_counter;
-  longlong index;
-  longlong entry_index;
+  int64_t system_handle;
+  int64_t thread_limit;
+  uint64_t loop_counter;
+  uint64_t entry_counter;
+  int64_t index;
+  int64_t entry_index;
   int worker_count;
   uint thread_id;
-  ulonglong array_index;
+  uint64_t array_index;
   void **entry_ptr;
   int8_t thread_name_buffer[32];
-  longlong stack_var1;
-  longlong stack_var2;
-  longlong stack_var3;
-  longlong stack_offset;
+  int64_t stack_var1;
+  int64_t stack_var2;
+  int64_t stack_var3;
+  int64_t stack_offset;
   void **thread_stack_ptr;
   uint64_t stack_param1;
   void *thread_func_ptr;
@@ -673,12 +673,12 @@ void initialize_system_thread_pool(void)
   int stack_counter;
   uint64_t stack_param4;
   char thread_info_buffer[16];
-  ulonglong stack_security;
-  longlong temp_var;
+  uint64_t stack_security;
+  int64_t temp_var;
   
   system_handle = SYSTEM_HANDLE_VAR;
   stack_param1 = 0xfffffffffffffffe;
-  stack_security = SYSTEM_SECURITY_COOKIE ^ (ulonglong)thread_name_buffer;
+  stack_security = SYSTEM_SECURITY_COOKIE ^ (uint64_t)thread_name_buffer;
   stack_offset = SYSTEM_HANDLE_VAR;
   initialize_thread_context(thread_func_array);
   worker_count = stack_counter + -1;
@@ -690,7 +690,7 @@ void initialize_system_thread_pool(void)
     pool_size = worker_count;
   }
   entry_ptr = (void **)(system_handle + 8);
-  thread_limit = (longlong)pool_size;
+  thread_limit = (int64_t)pool_size;
   thread_stack_ptr = entry_ptr;
   allocate_thread_pool(entry_ptr, thread_limit);
   allocation_flags = allocate_system_memory(SYSTEM_STATE_VAR, 0x208, 8, 3);
@@ -718,7 +718,7 @@ void initialize_system_thread_pool(void)
   stack_var3 = system_handle + 0x68;
   create_thread_entry(thread_entry, &stack_func_ptr, 1);
   *thread_entry = &THREAD_FUNCTION_TABLE;
-  *(uint64_t **)((longlong)*entry_ptr + 8) = thread_entry;
+  *(uint64_t **)((int64_t)*entry_ptr + 8) = thread_entry;
   stack_func_ptr = &SYSTEM_CALLBACK_TABLE;
   worker_count = 2;
   *(int32_t *)(stack_offset + 0x7b0) = 2;
@@ -736,18 +736,18 @@ void initialize_system_thread_pool(void)
         index = temp_var + 1;
         entry_index = temp_var + 1;
         temp_var = index;
-      } while (*(char *)((longlong)&stack_param4 + entry_index) != '\0');
+      } while (*(char *)((int64_t)&stack_param4 + entry_index) != '\0');
       pool_size = (int)temp_var;
       if ((0 < pool_size) && (stack_param2 + pool_size < 0xf)) {
         // 警告：子程序不返回
-        memcpy(thread_name_ptr + stack_param2, &stack_param4, (longlong)(pool_size + 1));
+        memcpy(thread_name_ptr + stack_param2, &stack_param4, (int64_t)(pool_size + 1));
       }
       allocation_flags = allocate_system_memory(SYSTEM_STATE_VAR, 0x208, 8, 3);
       stack_var3 = stack_offset + 0x68;
       stack_var2 = stack_offset + 0x548;
       stack_var1 = stack_offset + 0x78;
       allocation_flags = create_thread_entry(allocation_flags, &thread_func_ptr, 2, worker_count);
-      *(uint64_t *)((longlong)*entry_ptr + system_handle * 8) = allocation_flags;
+      *(uint64_t *)((int64_t)*entry_ptr + system_handle * 8) = allocation_flags;
       thread_func_ptr = &SYSTEM_CALLBACK_TABLE;
       worker_count = worker_count + 1;
       system_handle = system_handle + 1;
@@ -759,8 +759,8 @@ void initialize_system_thread_pool(void)
   if ((1 < pool_size) && (worker_count = pool_size, 4 < pool_size)) {
     worker_count = 4;
   }
-  thread_array = (longlong *)(stack_offset + 0x28);
-  thread_limit = (longlong)worker_count;
+  thread_array = (int64_t *)(stack_offset + 0x28);
+  thread_limit = (int64_t)worker_count;
   allocate_thread_pool(thread_array, thread_limit);
   if (0 < thread_limit) {
     array_index = entry_counter;
@@ -780,7 +780,7 @@ void initialize_system_thread_pool(void)
       worker_count = (int)(entry_index + 1);
       if ((0 < worker_count) && (stack_param2 + worker_count < 0xf)) {
         // 警告：子程序不返回
-        memcpy(thread_name_ptr + stack_param2, thread_info_buffer, (longlong)((int)entry_index + 2));
+        memcpy(thread_name_ptr + stack_param2, thread_info_buffer, (int64_t)((int)entry_index + 2));
       }
       thread_entry = (uint64_t *)allocate_system_memory(SYSTEM_STATE_VAR, 0x208, 8, 3);
       stack_var1 = system_handle + 0x70;
@@ -789,48 +789,48 @@ void initialize_system_thread_pool(void)
       *thread_entry = &THREAD_WORKER_TABLE;
       *(uint64_t **)(*thread_array + entry_counter * 8) = thread_entry;
       thread_func_ptr = &SYSTEM_CALLBACK_TABLE;
-      array_index = (ulonglong)((int)array_index + 1);
+      array_index = (uint64_t)((int)array_index + 1);
       entry_counter = entry_counter + 1;
       entry_ptr = thread_stack_ptr;
-    } while ((longlong)entry_counter < thread_limit);
+    } while ((int64_t)entry_counter < thread_limit);
   }
   array_index = entry_counter;
   entry_counter = entry_counter;
-  if (((longlong *)entry_ptr)[1] - (longlong)*entry_ptr >> 3 != 0) {
+  if (((int64_t *)entry_ptr)[1] - (int64_t)*entry_ptr >> 3 != 0) {
     do {
-      release_memory_block(*(uint64_t *)((longlong)*entry_ptr + array_index));
+      release_memory_block(*(uint64_t *)((int64_t)*entry_ptr + array_index));
       thread_id = (int)entry_counter + 1;
       array_index = array_index + 8;
-      entry_counter = (ulonglong)thread_id;
-    } while ((ulonglong)(longlong)(int)thread_id < (ulonglong)(((longlong *)entry_ptr)[1] - (longlong)*entry_ptr >> 3));
+      entry_counter = (uint64_t)thread_id;
+    } while ((uint64_t)(int64_t)(int)thread_id < (uint64_t)(((int64_t *)entry_ptr)[1] - (int64_t)*entry_ptr >> 3));
   }
   array_index = entry_counter;
-  if (*(longlong *)(system_handle + 0x30) - *thread_array >> 3 != 0) {
+  if (*(int64_t *)(system_handle + 0x30) - *thread_array >> 3 != 0) {
     do {
       release_memory_block(*(uint64_t *)(*thread_array + entry_counter));
       thread_id = (int)array_index + 1;
       entry_counter = entry_counter + 8;
-      array_index = (ulonglong)thread_id;
-    } while ((ulonglong)(longlong)(int)thread_id < (ulonglong)(*(longlong)(system_handle + 0x30) - *thread_array >> 3));
+      array_index = (uint64_t)thread_id;
+    } while ((uint64_t)(int64_t)(int)thread_id < (uint64_t)(*(int64_t)(system_handle + 0x30) - *thread_array >> 3));
   }
   thread_stack_ptr = thread_func_array;
   thread_func_array[0] = &SYSTEM_CALLBACK_TABLE;
   // 警告：子程序不返回
-  execute_thread_initialization(stack_security ^ (ulonglong)thread_name_buffer);
+  execute_thread_initialization(stack_security ^ (uint64_t)thread_name_buffer);
 }
 
 // 函数：处理线程池任务
-void process_thread_pool_task(longlong pool_handle, longlong *task_ptr, uint64_t param_3, uint64_t param_4)
+void process_thread_pool_task(int64_t pool_handle, int64_t *task_ptr, uint64_t param_3, uint64_t param_4)
 {
   uint thread_id;
   int retry_count;
-  longlong worker_handle;
-  longlong task_queue;
+  int64_t worker_handle;
+  int64_t task_queue;
   uint64_t task_flags;
   
   task_flags = 0xfffffffffffffffe;
-  (**(code **)(*(longlong *)*task_ptr + 0x78))();
-  thread_id = *(uint *)(*(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) + 0xc);
+  (**(code **)(*(int64_t *)*task_ptr + 0x78))();
+  thread_id = *(uint *)(*(int64_t *)((int64_t)ThreadLocalStoragePointer + (uint64_t)__tls_index * 8) + 0xc);
   if (thread_id == 0xffffffff) {
     worker_handle = find_available_worker(pool_handle + 0x78);
     if (worker_handle != 0) {
@@ -838,31 +838,31 @@ void process_thread_pool_task(longlong pool_handle, longlong *task_ptr, uint64_t
     }
   }
   else {
-    worker_handle = *(longlong *)(*(longlong *)(*(longlong)(pool_handle + 8) + (ulonglong)thread_id * 8) + 0x70);
+    worker_handle = *(int64_t *)(*(int64_t *)(*(int64_t)(pool_handle + 8) + (uint64_t)thread_id * 8) + 0x70);
     task_queue = worker_handle + -8;
     if (worker_handle == 0) {
       task_queue = 0;
     }
-    execute_task_in_queue(task_queue, task_ptr, (ulonglong)__tls_index, param_4, task_flags);
+    execute_task_in_queue(task_queue, task_ptr, (uint64_t)__tls_index, param_4, task_flags);
   }
   do {
     retry_count = ReleaseSemaphore(*(uint64_t *)(pool_handle + 0x68), 1);
   } while (retry_count == 0);
-  if ((longlong *)*task_ptr != (longlong *)0x0) {
-    (**(code **)(*(longlong *)*task_ptr + 0x38))();
+  if ((int64_t *)*task_ptr != (int64_t *)0x0) {
+    (**(code **)(*(int64_t *)*task_ptr + 0x38))();
   }
   return;
 }
 
 // 函数：处理高优先级任务
-void process_high_priority_task(longlong pool_handle, longlong *task_ptr, uint64_t param_3, uint64_t param_4)
+void process_high_priority_task(int64_t pool_handle, int64_t *task_ptr, uint64_t param_3, uint64_t param_4)
 {
   int retry_count;
-  longlong worker_handle;
+  int64_t worker_handle;
   uint64_t task_flags;
   
   task_flags = 0xfffffffffffffffe;
-  (**(code **)(*(longlong *)*task_ptr + 0x78))();
+  (**(code **)(*(int64_t *)*task_ptr + 0x78))();
   worker_handle = find_available_worker(pool_handle + 0x548);
   if (worker_handle != 0) {
     assign_task_to_worker(worker_handle, task_ptr);
@@ -870,34 +870,34 @@ void process_high_priority_task(longlong pool_handle, longlong *task_ptr, uint64
   do {
     retry_count = ReleaseSemaphore(*(uint64_t *)(pool_handle + 0x68), 1, 0, param_4, task_flags);
   } while (retry_count == 0);
-  if ((longlong *)*task_ptr != (longlong *)0x0) {
-    (**(code **)(*(longlong *)*task_ptr + 0x38))();
+  if ((int64_t *)*task_ptr != (int64_t *)0x0) {
+    (**(code **)(*(int64_t *)*task_ptr + 0x38))();
   }
   return;
 }
 
 // 函数：释放信号量资源
-void release_semaphore_resources(longlong pool_handle, uint64_t task_handle, int release_count)
+void release_semaphore_resources(int64_t pool_handle, uint64_t task_handle, int release_count)
 {
   uint thread_id;
   int retry_count;
-  longlong worker_handle;
-  longlong task_queue;
+  int64_t worker_handle;
+  int64_t task_queue;
   
-  thread_id = *(uint *)(*(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) + 0xc);
+  thread_id = *(uint *)(*(int64_t *)((int64_t)ThreadLocalStoragePointer + (uint64_t)__tls_index * 8) + 0xc);
   if (thread_id == 0xffffffff) {
     worker_handle = find_available_worker(pool_handle + 0x78);
     if (worker_handle != 0) {
-      assign_task_to_worker_with_count(worker_handle, task_handle, (longlong)release_count);
+      assign_task_to_worker_with_count(worker_handle, task_handle, (int64_t)release_count);
     }
   }
   else {
-    worker_handle = *(longlong *)(*(longlong *)(*(longlong)(pool_handle + 8) + (ulonglong)thread_id * 8) + 0x70);
+    worker_handle = *(int64_t *)(*(int64_t *)(*(int64_t)(pool_handle + 8) + (uint64_t)thread_id * 8) + 0x70);
     task_queue = worker_handle + -8;
     if (worker_handle == 0) {
       task_queue = 0;
     }
-    execute_task_with_count(task_queue, task_handle, (longlong)release_count);
+    execute_task_with_count(task_queue, task_handle, (int64_t)release_count);
   }
   do {
     retry_count = ReleaseSemaphore(*(uint64_t *)(pool_handle + 0x68), release_count, 0);
@@ -906,92 +906,92 @@ void release_semaphore_resources(longlong pool_handle, uint64_t task_handle, int
 }
 
 // 函数：处理主线程任务
-void process_main_thread_task(longlong pool_handle, longlong *task_ptr, uint64_t param_3, uint64_t param_4)
+void process_main_thread_task(int64_t pool_handle, int64_t *task_ptr, uint64_t param_3, uint64_t param_4)
 {
   uint64_t *main_thread;
   code *thread_func;
-  longlong *stack_task_ptr;
-  longlong *task_ptr_copy;
-  longlong **task_ref_ptr;
+  int64_t *stack_task_ptr;
+  int64_t *task_ptr_copy;
+  int64_t **task_ref_ptr;
   uint64_t task_flags;
   
   task_flags = 0xfffffffffffffffe;
   main_thread = (uint64_t *)**(uint64_t **)(pool_handle + 8);
   thread_func = *(code **)*main_thread;
   task_ref_ptr = &stack_task_ptr;
-  stack_task_ptr = (longlong *)*task_ptr;
+  stack_task_ptr = (int64_t *)*task_ptr;
   task_ptr_copy = task_ptr;
-  if (stack_task_ptr != (longlong *)0x0) {
+  if (stack_task_ptr != (int64_t *)0x0) {
     (**(code **)(*stack_task_ptr + 0x28))();
   }
   (*thread_func)(main_thread, &stack_task_ptr, param_3, param_4, task_flags);
-  if ((longlong *)*task_ptr != (longlong *)0x0) {
-    (**(code **)(*(longlong *)*task_ptr + 0x38))();
+  if ((int64_t *)*task_ptr != (int64_t *)0x0) {
+    (**(code **)(*(int64_t *)*task_ptr + 0x38))();
   }
   return;
 }
 
 // 函数：处理辅助线程任务
-void process_auxiliary_thread_task(longlong pool_handle, longlong *task_ptr, uint64_t param_3, uint64_t param_4)
+void process_auxiliary_thread_task(int64_t pool_handle, int64_t *task_ptr, uint64_t param_3, uint64_t param_4)
 {
   uint64_t *aux_thread;
   code *thread_func;
-  longlong *stack_task_ptr;
-  longlong *task_ptr_copy;
-  longlong **task_ref_ptr;
+  int64_t *stack_task_ptr;
+  int64_t *task_ptr_copy;
+  int64_t **task_ref_ptr;
   uint64_t task_flags;
   
   task_flags = 0xfffffffffffffffe;
-  aux_thread = *(uint64_t **)(*(longlong *)(pool_handle + 8) + 8);
+  aux_thread = *(uint64_t **)(*(int64_t *)(pool_handle + 8) + 8);
   thread_func = *(code **)*aux_thread;
   task_ref_ptr = &stack_task_ptr;
-  stack_task_ptr = (longlong *)*task_ptr;
+  stack_task_ptr = (int64_t *)*task_ptr;
   task_ptr_copy = task_ptr;
-  if (stack_task_ptr != (longlong *)0x0) {
+  if (stack_task_ptr != (int64_t *)0x0) {
     (**(code **)(*stack_task_ptr + 0x28))();
   }
   (*thread_func)(aux_thread, &stack_task_ptr, param_3, param_4, task_flags);
-  if ((longlong *)*task_ptr != (longlong *)0x0) {
-    (**(code **)(*(longlong *)*task_ptr + 0x38))();
+  if ((int64_t *)*task_ptr != (int64_t *)0x0) {
+    (**(code **)(*(int64_t *)*task_ptr + 0x38))();
   }
   return;
 }
 
 // 函数：处理备用线程任务
-void process_backup_thread_task(longlong pool_handle, longlong *task_ptr, uint64_t param_3, uint64_t param_4)
+void process_backup_thread_task(int64_t pool_handle, int64_t *task_ptr, uint64_t param_3, uint64_t param_4)
 {
   uint64_t *backup_thread;
   code *thread_func;
-  longlong *stack_task_ptr;
-  longlong *task_ptr_copy;
-  longlong **task_ref_ptr;
+  int64_t *stack_task_ptr;
+  int64_t *task_ptr_copy;
+  int64_t **task_ref_ptr;
   uint64_t task_flags;
   
   task_flags = 0xfffffffffffffffe;
-  backup_thread = *(uint64_t **)(*(longlong *)(pool_handle + 8) + 0x10);
+  backup_thread = *(uint64_t **)(*(int64_t *)(pool_handle + 8) + 0x10);
   thread_func = *(code **)*backup_thread;
   task_ref_ptr = &stack_task_ptr;
-  stack_task_ptr = (longlong *)*task_ptr;
+  stack_task_ptr = (int64_t *)*task_ptr;
   task_ptr_copy = task_ptr;
-  if (stack_task_ptr != (longlong *)0x0) {
+  if (stack_task_ptr != (int64_t *)0x0) {
     (**(code **)(*stack_task_ptr + 0x28))();
   }
   (*thread_func)(backup_thread, &stack_task_ptr, param_3, param_4, task_flags);
-  if ((longlong *)*task_ptr != (longlong *)0x0) {
-    (**(code **)(*(longlong *)*task_ptr + 0x38))();
+  if ((int64_t *)*task_ptr != (int64_t *)0x0) {
+    (**(code **)(*(int64_t *)*task_ptr + 0x38))();
   }
   return;
 }
 
 // 函数：处理工作线程任务
-void process_worker_thread_task(longlong pool_handle, longlong *task_ptr, uint64_t param_3, uint64_t param_4)
+void process_worker_thread_task(int64_t pool_handle, int64_t *task_ptr, uint64_t param_3, uint64_t param_4)
 {
   int retry_count;
-  longlong worker_handle;
+  int64_t worker_handle;
   uint64_t task_flags;
   
   task_flags = 0xfffffffffffffffe;
-  (**(code **)(*(longlong *)*task_ptr + 0x78))();
+  (**(code **)(*(int64_t *)*task_ptr + 0x78))();
   worker_handle = find_available_worker(pool_handle + 0x2e0);
   if (worker_handle != 0) {
     assign_task_to_worker(worker_handle, task_ptr);
@@ -999,14 +999,14 @@ void process_worker_thread_task(longlong pool_handle, longlong *task_ptr, uint64
   do {
     retry_count = ReleaseSemaphore(*(uint64_t *)(pool_handle + 0x70), 1, 0, param_4, task_flags);
   } while (retry_count == 0);
-  if ((longlong *)*task_ptr != (longlong *)0x0) {
-    (**(code **)(*(longlong *)*task_ptr + 0x38))();
+  if ((int64_t *)*task_ptr != (int64_t *)0x0) {
+    (**(code **)(*(int64_t *)*task_ptr + 0x38))();
   }
   return;
 }
 
 // 函数：创建工作线程项
-uint64_t * create_worker_thread_item(longlong pool_handle, uint64_t task_data)
+uint64_t * create_worker_thread_item(int64_t pool_handle, uint64_t task_data)
 {
   uint64_t *thread_item;
   uint64_t *stack_item_ptr;
@@ -1022,38 +1022,38 @@ uint64_t * create_worker_thread_item(longlong pool_handle, uint64_t task_data)
 }
 
 // 函数：移除工作线程项
-void remove_worker_thread_item(longlong pool_handle, longlong *thread_ptr)
+void remove_worker_thread_item(int64_t pool_handle, int64_t *thread_ptr)
 {
-  longlong *worker_array;
-  ulonglong array_index;
-  longlong worker_index;
-  longlong *current_worker;
+  int64_t *worker_array;
+  uint64_t array_index;
+  int64_t worker_index;
+  int64_t *current_worker;
   int loop_counter;
-  ulonglong total_workers;
+  uint64_t total_workers;
   
   loop_counter = 0;
-  worker_array = *(longlong **)(pool_handle + 0x48);
-  total_workers = *(longlong *)(pool_handle + 0x50) - (longlong)worker_array >> 3;
+  worker_array = *(int64_t **)(pool_handle + 0x48);
+  total_workers = *(int64_t *)(pool_handle + 0x50) - (int64_t)worker_array >> 3;
   current_worker = worker_array;
   if (total_workers != 0) {
     do {
-      if ((longlong *)*current_worker == thread_ptr) {
+      if ((int64_t *)*current_worker == thread_ptr) {
         release_memory_block(worker_array[loop_counter]);
-        array_index = *(ulonglong *)(pool_handle + 0x50);
-        worker_index = *(longlong *)(pool_handle + 0x48) + (longlong)loop_counter * 8;
+        array_index = *(uint64_t *)(pool_handle + 0x50);
+        worker_index = *(int64_t *)(pool_handle + 0x48) + (int64_t)loop_counter * 8;
         total_workers = worker_index + 8;
         if (total_workers < array_index) {
           // 警告：子程序不返回
           memmove(worker_index, total_workers, array_index - total_workers);
         }
-        *(ulonglong *)(pool_handle + 0x50) = array_index - 8;
+        *(uint64_t *)(pool_handle + 0x50) = array_index - 8;
         break;
       }
       loop_counter = loop_counter + 1;
       current_worker = current_worker + 1;
-    } while ((ulonglong)(longlong)loop_counter < total_workers);
+    } while ((uint64_t)(int64_t)loop_counter < total_workers);
   }
-  if (thread_ptr != (longlong *)0x0) {
+  if (thread_ptr != (int64_t *)0x0) {
     worker_index = __RTCastToVoid(thread_ptr);
     (**(code **)(*thread_ptr + 0x28))(thread_ptr, 0);
     if (worker_index != 0) {
