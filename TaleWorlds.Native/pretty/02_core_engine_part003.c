@@ -1823,6 +1823,24 @@ void core_engine_data_processor_type4(void)
 #define FUN_180034c40 core_engine_data_processor_type2
 #define FUN_180034d40 core_engine_data_processor_type3
 
+/** 系统注册表管理函数别名 */
+#define FUN_18008d070 core_engine_registry_manager_get
+#define FUN_18008f0d0 core_engine_memory_allocator_calculate
+#define FUN_18008f140 core_engine_memory_allocator_allocate
+
+/** 系统回调函数别名 */
+#define FUN_1802633c0 core_engine_callback_handler_type1
+#define FUN_180262b00 core_engine_callback_handler_type2
+#define FUN_18025cc00 core_engine_callback_handler_type3
+#define FUN_18025c000 core_engine_callback_handler_type4
+#define FUN_18025d270 core_engine_callback_handler_type5
+#define FUN_18025e330 core_engine_callback_handler_type6
+#define FUN_18025d510 core_engine_callback_handler_type7
+#define FUN_1802281a0 core_engine_callback_handler_type8
+
+/** 字符串处理函数别名 */
+#define FUN_180623800 core_engine_string_processor_register
+
 // =============================================================================
 // 技术说明
 // =============================================================================
