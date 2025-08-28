@@ -34,6 +34,99 @@ extern void log_render_error(undefined *message_table, undefined *handler);
 extern void FUN_18005ea90(longlong context, undefined8 *param);
 extern void FUN_180626f80(undefined *error_ptr, undefined *handler);
 
+// 辅助函数：设置材质参数
+// 功能：统一的材质参数设置接口，减少代码重复
+static void setup_material_parameter(
+  longlong engine_context,
+  longlong param_offset,
+  code *cleanup_func,
+  undefined *param_handler,
+  undefined *shader_table,
+  undefined1 *default_texture
+) {
+  undefined1 *texture_ptr;
+  undefined8 material_config;
+  undefined4 param_value;
+  char success_flag;
+  undefined *error_handler;
+  
+  // 初始化参数值
+  *(undefined4 *)(engine_context + param_offset) = 0;
+  texture_ptr = (undefined1 *)(engine_context + param_offset + 8);
+  
+  // 清理现有的纹理资源
+  if (texture_ptr != default_texture) {
+    if (*(code **)(engine_context + param_offset + 16) != (code *)0x0) {
+      (**(code **)(engine_context + param_offset + 16))(texture_ptr, 0, 0);
+    }
+    if (cleanup_func != (code *)0x0) {
+      (*cleanup_func)(texture_ptr, default_texture, 1);
+    }
+    *(code **)(engine_context + param_offset + 16) = cleanup_func;
+    *(undefined **)(engine_context + param_offset + 24) = param_handler;
+  }
+  
+  // 执行清理操作
+  if (cleanup_func != (code *)0x0) {
+    (*cleanup_func)(default_texture, 0, 0);
+  }
+  
+  // 初始化着色器参数
+  if (shader_table != (undefined *)0x0) {
+    (*(code **)(*(longlong *)(engine_context + param_offset + 0x48) + 0x10))(
+      engine_context + param_offset + 0x48, shader_table
+    );
+  }
+  
+  // 设置参数值
+  material_config = (undefined8 *)((ulonglong)material_config & 0xffffffff00000000);
+  param_value = 0;
+  
+  if (*(longlong *)(engine_context + param_offset + 16) != 0) {
+    success_flag = (**(code **)(engine_context + param_offset + 24))(&material_config);
+    if (success_flag == '\0') {
+      if (global_debug_flag == '\0') {
+        error_handler = &default_error_handler;
+        if (*(undefined **)(engine_context + param_offset + 0x50) != (undefined *)0x0) {
+          error_handler = *(undefined **)(engine_context + param_offset + 0x50);
+        }
+        log_render_error(&error_message_table, error_handler);
+      }
+      param_value = *(undefined4 *)(engine_context + param_offset);
+    }
+    else {
+      param_value = (undefined4)material_config;
+    }
+  }
+  *(undefined4 *)(engine_context + param_offset + 0x40) = param_value;
+  
+  // 设置第二个参数值
+  material_config = (undefined8 *)((ulonglong)material_config & 0xffffffff00000000);
+  param_value = 0;
+  
+  if (*(longlong *)(engine_context + param_offset + 16) != 0) {
+    success_flag = (**(code **)(engine_context + param_offset + 24))(&material_config, texture_ptr);
+    if (success_flag == '\0') {
+      if (global_debug_flag == '\0') {
+        error_handler = &default_error_handler;
+        if (*(undefined **)(engine_context + param_offset + 0x50) != (undefined *)0x0) {
+          error_handler = *(undefined **)(engine_context + param_offset + 0x50);
+        }
+        log_render_error(&error_message_table, error_handler);
+      }
+      param_value = *(undefined4 *)(engine_context + param_offset);
+    }
+    else {
+      param_value = (undefined4)material_config;
+    }
+  }
+  *(undefined4 *)(engine_context + param_offset + 0x44) = param_value;
+  
+  // 更新材质配置
+  material_config = (undefined8 *)(engine_context + param_offset + 0x40);
+  FUN_18005ea90(engine_context + 8, &material_config);
+}
+
 // 函数: void initialize_render_parameters(longlong engine_context, undefined8 param_2, undefined8 param_3, undefined8 param_4)
 // 功能: 初始化渲染参数，配置材质和着色器参数
 void initialize_render_parameters(longlong engine_context, undefined8 param_2, undefined8 param_3, undefined8 param_4)
@@ -116,7 +209,7 @@ void initialize_render_parameters(longlong engine_context, undefined8 param_2, u
   
   // 保存渲染参数
   *(undefined4 *)(engine_context + RENDER_PARAM_1_OFFSET) = render_value;
-  // 设置第一个材质参数
+  // 设置基础渲染参数
   material_config_ptr = (undefined8 *)((ulonglong)material_config_ptr << 0x20);
   material_param_value = 0;
   if (*(longlong *)(engine_context + 0x1b0) != 0) {
@@ -139,34 +232,17 @@ void initialize_render_parameters(longlong engine_context, undefined8 param_2, u
   material_config_ptr = (undefined8 *)(engine_context + RENDER_PARAM_1_OFFSET);
   FUN_18005ea90(engine_context + 8, &material_config_ptr);
   
-  // 配置材质清理函数和参数处理器
-  material_cleanup = (code *)&material_cleanup_function_2;
-  material_param_handler = &default_parameter_handler;
+  // 使用统一的材质参数设置函数
+  setup_material_parameter(
+    engine_context,
+    MATERIAL_PARAM_1_OFFSET,
+    (code *)&material_cleanup_function_2,
+    &default_parameter_handler,
+    &shader_parameter_table_2,
+    default_texture_ptr
+  );
   
-  // 初始化材质参数1
-  *(undefined4 *)(engine_context + MATERIAL_PARAM_1_OFFSET) = 0;
-  texture_ptr = (undefined1 *)(engine_context + MATERIAL_PARAM_1_OFFSET + 8);
-  if (texture_ptr != default_texture_ptr) {
-    if (*(code **)(engine_context + MATERIAL_PARAM_1_OFFSET + 16) != (code *)0x0) {
-      (**(code **)(engine_context + MATERIAL_PARAM_1_OFFSET + 16))(texture_ptr, 0, 0);
-    }
-    if (material_cleanup != (code *)0x0) {
-      (*material_cleanup)(texture_ptr, default_texture_ptr, 1);
-    }
-    *(code **)(engine_context + MATERIAL_PARAM_1_OFFSET + 16) = material_cleanup;
-    *(undefined **)(engine_context + MATERIAL_PARAM_1_OFFSET + 24) = material_param_handler;
-  }
-  if (material_cleanup != (code *)0x0) {
-    (*material_cleanup)(default_texture_ptr, 0, 0);
-  }
-  
-  // 初始化着色器参数表
-  (*(code **)(*(longlong *)(engine_context + 0x2a8) + 0x10))(engine_context + 0x2a8, &shader_parameter_table_2);
-  
-  // 设置材质参数值
-  material_config_ptr = (undefined8 *)((ulonglong)material_config_ptr & 0xffffffff00000000);
-  material_param_value = 0;
-  if (*(longlong *)(engine_context + MATERIAL_PARAM_1_OFFSET + 16) != 0) {
+  // 继续设置其他材质参数...
     success_flag = (**(code **)(engine_context + MATERIAL_PARAM_1_OFFSET + 24))(&material_config_ptr);
     if (success_flag == '\0') {
       if (global_debug_flag == '\0') {

@@ -243,120 +243,173 @@ void initialize_engine_parameters(longlong engine_context)
   FUN_1800b0710(component_ptr, &uStackX_8);
   uStackX_8 = component_ptr;
   FUN_18005ea90(engine_context + 8, &uStackX_8);
-  func_0x00018010c040(auStack_148,0);
-  *(undefined4 *)(param_1 + 0x1b68) = 0;
-  FUN_18010bd10(param_1 + 0x1b70,auStack_148);
+  // 初始化粒子系统参数
+  func_0x00018010c040(auStack_148, 0);
+  
+  // 设置粒子系统参数 (值为0)
+  *(undefined4 *)(engine_context + 0x1b68) = 0;
+  FUN_18010bd10(engine_context + 0x1b70, auStack_148);
+  
+  // 执行回调函数（如果存在）
   if (pcStack_138 != (code *)0x0) {
-    (*pcStack_138)(auStack_148,0,0);
+    (*pcStack_138)(auStack_148, 0, 0);
   }
-  uVar1 = param_1 + 0x1b20;
-  (**(code **)(*(longlong *)(param_1 + 0x1b28) + 0x10))
-            ((longlong *)(param_1 + 0x1b28),&UNK_180a05650);
+  
+  // 获取粒子组件指针并初始化粒子参数
+  component_ptr = engine_context + 0x1b20;
+  (**(code **)(*(longlong *)(engine_context + 0x1b28) + 0x10))
+            ((longlong *)(engine_context + 0x1b28), &UNK_180a05650);
+  
+  // 设置粒子系统参数 (清除低32位)
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
-  FUN_180046240(uVar1,&uStackX_8);
+  FUN_180046240(component_ptr, &uStackX_8);
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
-  FUN_1800b0710(uVar1,&uStackX_8);
-  uStackX_8 = uVar1;
-  FUN_18005ea90(param_1 + 8,&uStackX_8);
-  uVar1 = param_1 + 0x1b90;
-  (**(code **)(*(longlong *)(param_1 + 0x1b98) + 0x10))
-            ((longlong *)(param_1 + 0x1b98),&UNK_180a05680);
+  FUN_1800b0710(component_ptr, &uStackX_8);
+  uStackX_8 = component_ptr;
+  FUN_18005ea90(engine_context + 8, &uStackX_8);
+  // 获取天气系统组件指针并初始化天气参数
+  component_ptr = engine_context + 0x1b90;
+  (**(code **)(*(longlong *)(engine_context + 0x1b98) + 0x10))
+            ((longlong *)(engine_context + 0x1b98), &UNK_180a05680);
+  
+  // 设置天气系统参数 (值为200)
   uStackX_8._0_4_ = 200;
-  FUN_180046240(uVar1,&uStackX_8);
-  uStackX_8 = CONCAT44(uStackX_8._4_4_,200);
-  FUN_1800b0710(uVar1,&uStackX_8);
-  uStackX_8 = uVar1;
-  FUN_18005ea90(param_1 + 8,&uStackX_8);
-  func_0x00018010c060(auStack_148,0);
-  *(undefined4 *)(param_1 + 0x1c48) = 0;
-  FUN_18010bd10(param_1 + 0x1c50,auStack_148);
+  FUN_180046240(component_ptr, &uStackX_8);
+  uStackX_8 = CONCAT44(uStackX_8._4_4_, 200);
+  FUN_1800b0710(component_ptr, &uStackX_8);
+  uStackX_8 = component_ptr;
+  FUN_18005ea90(engine_context + 8, &uStackX_8);
+  // 初始化水面系统参数
+  func_0x00018010c060(auStack_148, 0);
+  
+  // 设置水面系统参数 (值为0)
+  *(undefined4 *)(engine_context + 0x1c48) = 0;
+  FUN_18010bd10(engine_context + 0x1c50, auStack_148);
+  
+  // 执行回调函数（如果存在）
   if (pcStack_138 != (code *)0x0) {
-    (*pcStack_138)(auStack_148,0,0);
+    (*pcStack_138)(auStack_148, 0, 0);
   }
-  uVar1 = param_1 + 0x1c00;
-  (**(code **)(*(longlong *)(param_1 + 0x1c08) + 0x10))
-            ((longlong *)(param_1 + 0x1c08),&UNK_180a05670);
+  
+  // 获取水面组件指针并初始化水面参数
+  component_ptr = engine_context + 0x1c00;
+  (**(code **)(*(longlong *)(engine_context + 0x1c08) + 0x10))
+            ((longlong *)(engine_context + 0x1c08), &UNK_180a05670);
+  
+  // 设置水面系统参数 (清除低32位)
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
-  FUN_180046240(uVar1,&uStackX_8);
+  FUN_180046240(component_ptr, &uStackX_8);
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
-  FUN_1800b0710(uVar1,&uStackX_8);
-  uStackX_8 = uVar1;
-  FUN_18005ea90(param_1 + 8,&uStackX_8);
-  func_0x00018010c080(auStack_148,0);
-  *(undefined4 *)(param_1 + 0x1cb8) = 0;
-  FUN_18010bd10(param_1 + 0x1cc0,auStack_148);
+  FUN_1800b0710(component_ptr, &uStackX_8);
+  uStackX_8 = component_ptr;
+  FUN_18005ea90(engine_context + 8, &uStackX_8);
+  // 初始化地形系统参数
+  func_0x00018010c080(auStack_148, 0);
+  
+  // 设置地形系统参数 (值为0)
+  *(undefined4 *)(engine_context + 0x1cb8) = 0;
+  FUN_18010bd10(engine_context + 0x1cc0, auStack_148);
+  
+  // 执行回调函数（如果存在）
   if (pcStack_138 != (code *)0x0) {
-    (*pcStack_138)(auStack_148,0,0);
+    (*pcStack_138)(auStack_148, 0, 0);
   }
-  uVar1 = param_1 + 0x1c70;
-  (**(code **)(*(longlong *)(param_1 + 0x1c78) + 0x10))
-            ((longlong *)(param_1 + 0x1c78),&UNK_180a056a0);
+  
+  // 获取地形组件指针并初始化地形参数
+  component_ptr = engine_context + 0x1c70;
+  (**(code **)(*(longlong *)(engine_context + 0x1c78) + 0x10))
+            ((longlong *)(engine_context + 0x1c78), &UNK_180a056a0);
+  
+  // 设置地形系统参数 (清除低32位)
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
-  FUN_180046240(uVar1,&uStackX_8);
+  FUN_180046240(component_ptr, &uStackX_8);
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
-  FUN_1800b0710(uVar1,&uStackX_8);
-  uStackX_8 = uVar1;
-  FUN_18005ea90(param_1 + 8,&uStackX_8);
-  func_0x00018010c0a0(auStack_148,0);
-  *(undefined4 *)(param_1 + 0x4a8) = 1;
-  FUN_18010bd10(param_1 + 0x4b0,auStack_148);
+  FUN_1800b0710(component_ptr, &uStackX_8);
+  uStackX_8 = component_ptr;
+  FUN_18005ea90(engine_context + 8, &uStackX_8);
+  // 初始化植被系统参数
+  func_0x00018010c0a0(auStack_148, 0);
+  
+  // 设置植被系统参数 (值为1)
+  *(undefined4 *)(engine_context + 0x4a8) = 1;
+  FUN_18010bd10(engine_context + 0x4b0, auStack_148);
+  
+  // 执行回调函数（如果存在）
   if (pcStack_138 != (code *)0x0) {
-    (*pcStack_138)(auStack_148,0,0);
+    (*pcStack_138)(auStack_148, 0, 0);
   }
-  uVar1 = param_1 + 0x460;
-  (**(code **)(*(longlong *)(param_1 + 0x468) + 0x10))((longlong *)(param_1 + 0x468),&UNK_180a05690)
-  ;
+  
+  // 获取植被组件指针并初始化植被参数
+  component_ptr = engine_context + 0x460;
+  (**(code **)(*(longlong *)(engine_context + 0x468) + 0x10))((longlong *)(engine_context + 0x468), &UNK_180a05690);
+  
+  // 设置植被系统参数 (值为1)
   uStackX_8._0_4_ = 1;
-  FUN_180046240(uVar1,&uStackX_8);
-  uStackX_8 = CONCAT44(uStackX_8._4_4_,1);
-  FUN_1800b0710(uVar1,&uStackX_8);
-  uStackX_8 = uVar1;
-  FUN_18005ea90(param_1 + 8,&uStackX_8);
-  uVar1 = param_1 + 0x1d50;
-  (**(code **)(*(longlong *)(param_1 + 0x1d58) + 0x10))
-            ((longlong *)(param_1 + 0x1d58),&UNK_180a056c8);
+  FUN_180046240(component_ptr, &uStackX_8);
+  uStackX_8 = CONCAT44(uStackX_8._4_4_, 1);
+  FUN_1800b0710(component_ptr, &uStackX_8);
+  uStackX_8 = component_ptr;
+  FUN_18005ea90(engine_context + 8, &uStackX_8);
+  // 获取天空系统组件指针并初始化天空参数
+  component_ptr = engine_context + 0x1d50;
+  (**(code **)(*(longlong *)(engine_context + 0x1d58) + 0x10))
+            ((longlong *)(engine_context + 0x1d58), &UNK_180a056c8);
+  
+  // 设置天空系统参数 (值为0x500 = 1280)
   uStackX_8._0_4_ = 0x500;
-  FUN_180046240(uVar1,&uStackX_8);
-  uStackX_8 = CONCAT44(uStackX_8._4_4_,0x500);
-  FUN_1800b0710(uVar1,&uStackX_8);
-  uStackX_8 = uVar1;
-  FUN_18005ea90(param_1 + 8,&uStackX_8);
-  uVar1 = param_1 + 0x1dc0;
-  (**(code **)(*(longlong *)(param_1 + 0x1dc8) + 0x10))
-            ((longlong *)(param_1 + 0x1dc8),&UNK_180a056b8);
+  FUN_180046240(component_ptr, &uStackX_8);
+  uStackX_8 = CONCAT44(uStackX_8._4_4_, 0x500);
+  FUN_1800b0710(component_ptr, &uStackX_8);
+  uStackX_8 = component_ptr;
+  FUN_18005ea90(engine_context + 8, &uStackX_8);
+  // 获取云层系统组件指针并初始化云层参数
+  component_ptr = engine_context + 0x1dc0;
+  (**(code **)(*(longlong *)(engine_context + 0x1dc8) + 0x10))
+            ((longlong *)(engine_context + 0x1dc8), &UNK_180a056b8);
+  
+  // 设置云层系统参数 (值为0x2d0 = 720)
   uStackX_8._0_4_ = 0x2d0;
-  FUN_180046240(uVar1,&uStackX_8);
-  uStackX_8 = CONCAT44(uStackX_8._4_4_,0x2d0);
-  FUN_1800b0710(uVar1,&uStackX_8);
-  uStackX_8 = uVar1;
-  FUN_18005ea90(param_1 + 8,&uStackX_8);
-  uVar1 = param_1 + 0x1e30;
-  (**(code **)(*(longlong *)(param_1 + 0x1e38) + 0x10))
-            ((longlong *)(param_1 + 0x1e38),&UNK_180a056e8);
-  uStackX_8._0_4_ = 0x42700000;
-  FUN_180046240(uVar1,&uStackX_8);
-  uStackX_8 = CONCAT44(uStackX_8._4_4_,0x42700000);
-  FUN_1800b0710(uVar1,&uStackX_8);
-  uStackX_8 = uVar1;
-  FUN_18005ea90(param_1 + 0x28,&uStackX_8);
-  uVar1 = param_1 + 0x1ea0;
-  (**(code **)(*(longlong *)(param_1 + 0x1ea8) + 0x10))
-            ((longlong *)(param_1 + 0x1ea8),&UNK_180a056d8);
+  FUN_180046240(component_ptr, &uStackX_8);
+  uStackX_8 = CONCAT44(uStackX_8._4_4_, 0x2d0);
+  FUN_1800b0710(component_ptr, &uStackX_8);
+  uStackX_8 = component_ptr;
+  FUN_18005ea90(engine_context + 8, &uStackX_8);
+  // 获取雾效系统组件指针并初始化雾效参数
+  component_ptr = engine_context + 0x1e30;
+  (**(code **)(*(longlong *)(engine_context + 0x1e38) + 0x10))
+            ((longlong *)(engine_context + 0x1e38), &UNK_180a056e8);
+  
+  // 设置雾效系统参数 (浮点值 60.0)
+  uStackX_8._0_4_ = 0x42700000;  // 60.0 in IEEE 754
+  FUN_180046240(component_ptr, &uStackX_8);
+  uStackX_8 = CONCAT44(uStackX_8._4_4_, 0x42700000);
+  FUN_1800b0710(component_ptr, &uStackX_8);
+  uStackX_8 = component_ptr;
+  FUN_18005ea90(engine_context + 0x28, &uStackX_8);
+  // 获取时间系统组件指针并初始化时间参数
+  component_ptr = engine_context + 0x1ea0;
+  (**(code **)(*(longlong *)(engine_context + 0x1ea8) + 0x10))
+            ((longlong *)(engine_context + 0x1ea8), &UNK_180a056d8);
+  
+  // 设置时间系统参数 (清除低32位)
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
-  FUN_180046240(uVar1,&uStackX_8);
+  FUN_180046240(component_ptr, &uStackX_8);
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
-  FUN_1800b0710(uVar1,&uStackX_8);
-  uStackX_8 = uVar1;
-  FUN_18005ea90(param_1 + 8,&uStackX_8);
-  uVar1 = param_1 + 0x1f10;
-  (**(code **)(*(longlong *)(param_1 + 0x1f18) + 0x10))
-            ((longlong *)(param_1 + 0x1f18),&UNK_180a05710);
+  FUN_1800b0710(component_ptr, &uStackX_8);
+  uStackX_8 = component_ptr;
+  FUN_18005ea90(engine_context + 8, &uStackX_8);
+  // 获取风系统组件指针并初始化风参数
+  component_ptr = engine_context + 0x1f10;
+  (**(code **)(*(longlong *)(engine_context + 0x1f18) + 0x10))
+            ((longlong *)(engine_context + 0x1f18), &UNK_180a05710);
+  
+  // 设置风系统参数 (清除低32位)
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
-  FUN_180046240(uVar1,&uStackX_8);
+  FUN_180046240(component_ptr, &uStackX_8);
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
-  FUN_1800b0710(uVar1,&uStackX_8);
-  uStackX_8 = uVar1;
-  FUN_18005ea90(param_1 + 8,&uStackX_8);
+  FUN_1800b0710(component_ptr, &uStackX_8);
+  uStackX_8 = component_ptr;
+  FUN_18005ea90(engine_context + 8, &uStackX_8);
   func_0x00018010c0c0(auStack_148,0);
   *(undefined4 *)(param_1 + 0x1fc8) = 0;
   FUN_18010bd10(param_1 + 0x1fd0,auStack_148);
