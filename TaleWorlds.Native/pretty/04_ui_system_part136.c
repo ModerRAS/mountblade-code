@@ -247,87 +247,87 @@ void UISystem_CleanupManager(longlong context);                // UI系统清理
 // 原始函数映射
 // ============================================================================
 
-#define UISystem_ComponentStateHandler FUN_180748ea0
-#define UISystem_ResourceInitializer FUN_180749060
-#define UISystem_EventProcessor FUN_1807498f0
-#define UISystem_DataManager FUN_18078c0a0
-#define UISystem_RenderController FUN_180749940
-#define UISystem_StateValidator FUN_180749946
-#define UISystem_CallbackHandler FUN_1807499c7
-#define UISystem_CleanupManager FUN_1807499f0
+#define UISystem_ComponentStateHandler UISystem_ComponentStateHandler
+#define UISystem_ResourceInitializer UISystem_ResourceInitializer
+#define UISystem_EventProcessor UISystem_EventProcessor
+#define UISystem_DataManager UISystem_ProcessData
+#define UISystem_RenderController UISystem_RenderController
+#define UISystem_StateValidator UISystem_StateValidator
+#define UISystem_CallbackHandler UISystem_CallbackHandler
+#define UISystem_CleanupManager UISystem_CleanupManager
 
 // 系统内存分配器
-#define UISystem_MemoryAllocator FUN_180741e10
-#define UISystem_ContextInitializer FUN_180743660
-#define UISystem_BufferManager FUN_180743940
-#define UISystem_ResourceManager FUN_180743d60
-#define UISystem_StateManager FUN_180748290
-#define UISystem_ErrorHandler FUN_180749e0b
-#define UISystem_ConfigLoader FUN_180754a30
-#define UISystem_DataProcessor FUN_18075a370
-#define UISystem_EventDispatcher FUN_1807671a0
-#define UISystem_MessageHandler FUN_180767270
-#define UISystem_QueueManager FUN_180767800
-#define UISystem_LockManager FUN_180768b70
-#define UISystem_ThreadManager FUN_18076ff30
-#define UISystem_TimerManager FUN_180771090
-#define UISystem_SyncManager FUN_1807714c0
-#define UISystem_PoolManager FUN_180771ed0
-#define UISystem_HandleManager FUN_180772100
-#define UISystem_FlagManager FUN_180772160
-#define UISystem_SignalHandler FUN_180772560
-#define UISystem_NotificationHandler FUN_1807726d0
-#define UISystem_EventHandler FUN_180772810
-#define UISystem_CallbackDispatcher FUN_180772870
-#define UISystem_ListManager FUN_180772c50
-#define UISystem_ArrayManager FUN_180772cd0
-#define UISystem_MapManager FUN_180772cf0
-#define UISystem_StreamManager FUN_1807744e0
-#define UISystem_FileManager FUN_180775120
-#define UISystem_NetworkManager FUN_180776090
-#define UISystem_DatabaseManager FUN_180777010
-#define UISystem_GraphicsManager FUN_180779050
-#define UISystem_AudioManager FUN_18077a570
-#define UISystem_InputManager FUN_18077b2c0
-#define UISystem_PhysicsManager FUN_18077d3d0
-#define UISystem_AIManager FUN_18077e570
-#define UISystem_ScriptManager FUN_18077efd0
-#define UISystem_PluginManager FUN_1807806c0
-#define UISystem_ModuleManager FUN_180781cc0
-#define UISystem_ServiceManager FUN_180783810
-#define UISystem_ComponentFactory FUN_180785c10
-#define UISystem_InitializeSystem FUN_180788e60
-#define UISystem_CheckStatus FUN_180789300
-#define UISystem_UpdateState FUN_18078a600
-#define UISystem_RenderManager FUN_18078ae40
-#define UISystem_AnimationManager FUN_18078baf0
-#define UISystem_ProcessData FUN_18078c0a0
-#define UISystem_ExecuteTask FUN_18078c746
-#define UISystem_ProcessEvent FUN_18078c760
-#define UISystem_UpdateFrame FUN_18078c950
-#define UISystem_LoadResource FUN_180791b60
-#define UISystem_SaveResource FUN_180791e20
-#define UISystem_CompressData FUN_180793ff0
-#define UISystem_DecompressData FUN_180794e70
-#define UISystem_EncryptData FUN_180795c00
-#define UISystem_DecryptData FUN_180796620
-#define UISystem_HashData FUN_180797e50
-#define UISystem_ValidateData FUN_180798860
-#define UISystem_TransformData FUN_180799620
-#define UISystem_SerializeData FUN_18079d1f0
-#define UISystem_DeserializeData FUN_1807a01e0
-#define UISystem_OptimizeData FUN_1807a2720
-#define UISystem_CleanupData FUN_1807a57f0
-#define UISystem_MigrateData FUN_1807a75f0
-#define UISystem_BackupData FUN_1807a86a0
-#define UISystem_RestoreData FUN_1807aa050
-#define UISystem_SynchronizeData FUN_1807aafb0
-#define UISystem_AllocateSharedMemory FUN_1807cf540
-#define UISystem_FreeSharedMemory FUN_1807cf8d0
-#define UISystem_MapSharedMemory FUN_1807cfb70
-#define UISystem_UnmapSharedMemory FUN_1807d0140
-#define UISystem_LockSharedMemory FUN_1807d0fe0
-#define UISystem_UnlockSharedMemory FUN_1808fc050
+#define UISystem_MemoryAllocator UISystem_MemoryAllocator
+#define UISystem_ContextInitializer UISystem_ContextInitializer
+#define UISystem_BufferManager UISystem_BufferManager
+#define UISystem_ResourceManager UISystem_ResourceManager
+#define UISystem_StateManager UISystem_StateManager
+#define UISystem_ErrorHandler UISystem_ErrorHandler
+#define UISystem_ConfigLoader UISystem_ConfigLoader
+#define UISystem_DataProcessor UISystem_DataProcessor
+#define UISystem_EventDispatcher UISystem_EventDispatcher
+#define UISystem_MessageHandler UISystem_MessageHandler
+#define UISystem_QueueManager UISystem_QueueManager
+#define UISystem_LockManager UISystem_LockManager
+#define UISystem_ThreadManager UISystem_ThreadManager
+#define UISystem_TimerManager UISystem_TimerManager
+#define UISystem_SyncManager UISystem_SyncManager
+#define UISystem_PoolManager UISystem_PoolManager
+#define UISystem_HandleManager UISystem_HandleManager
+#define UISystem_FlagManager UISystem_FlagManager
+#define UISystem_SignalHandler UISystem_SignalHandler
+#define UISystem_NotificationHandler UISystem_NotificationHandler
+#define UISystem_EventHandler UISystem_EventHandler
+#define UISystem_CallbackDispatcher UISystem_CallbackDispatcher
+#define UISystem_ListManager UISystem_ListManager
+#define UISystem_ArrayManager UISystem_ArrayManager
+#define UISystem_MapManager UISystem_MapManager
+#define UISystem_StreamManager UISystem_StreamManager
+#define UISystem_FileManager UISystem_FileManager
+#define UISystem_NetworkManager UISystem_NetworkManager
+#define UISystem_DatabaseManager UISystem_DatabaseManager
+#define UISystem_GraphicsManager UISystem_GraphicsManager
+#define UISystem_AudioManager UISystem_AudioManager
+#define UISystem_InputManager UISystem_InputManager
+#define UISystem_PhysicsManager UISystem_PhysicsManager
+#define UISystem_AIManager UISystem_AIManager
+#define UISystem_ScriptManager UISystem_ScriptManager
+#define UISystem_PluginManager UISystem_PluginManager
+#define UISystem_ModuleManager UISystem_ModuleManager
+#define UISystem_ServiceManager UISystem_ServiceManager
+#define UISystem_ComponentFactory UISystem_ComponentFactory
+#define UISystem_InitializeSystem UISystem_InitializeSystem
+#define UISystem_CheckStatus UISystem_CheckStatus
+#define UISystem_UpdateState UISystem_UpdateState
+#define UISystem_RenderManager UISystem_RenderManager
+#define UISystem_AnimationManager UISystem_AnimationManager
+#define UISystem_ProcessData UISystem_ProcessData
+#define UISystem_ExecuteTask UISystem_ExecuteTask
+#define UISystem_ProcessEvent UISystem_ProcessEvent
+#define UISystem_UpdateFrame UISystem_UpdateFrame
+#define UISystem_LoadResource UISystem_LoadResource
+#define UISystem_SaveResource UISystem_SaveResource
+#define UISystem_CompressData UISystem_CompressData
+#define UISystem_DecompressData UISystem_DecompressData
+#define UISystem_EncryptData UISystem_EncryptData
+#define UISystem_DecryptData UISystem_DecryptData
+#define UISystem_HashData UISystem_HashData
+#define UISystem_ValidateData UISystem_ValidateData
+#define UISystem_TransformData UISystem_TransformData
+#define UISystem_SerializeData UISystem_SerializeData
+#define UISystem_DeserializeData UISystem_DeserializeData
+#define UISystem_OptimizeData UISystem_OptimizeData
+#define UISystem_CleanupData UISystem_CleanupData
+#define UISystem_MigrateData UISystem_MigrateData
+#define UISystem_BackupData UISystem_BackupData
+#define UISystem_RestoreData UISystem_RestoreData
+#define UISystem_SynchronizeData UISystem_SynchronizeData
+#define UISystem_AllocateSharedMemory UISystem_AllocateSharedMemory
+#define UISystem_FreeSharedMemory UISystem_FreeSharedMemory
+#define UISystem_MapSharedMemory UISystem_MapSharedMemory
+#define UISystem_UnmapSharedMemory UISystem_UnmapSharedMemory
+#define UISystem_LockSharedMemory UISystem_LockSharedMemory
+#define UISystem_UnlockSharedMemory UISystem_UnlockSharedMemory
 
 // ============================================================================
 // 核心函数实现
@@ -357,7 +357,7 @@ void UISystem_ComponentStateHandler(longlong context, int32_t stateValue)
     int validation_result;
     
     // 验证状态转换的有效性
-    validation_result = FUN_18078ae40(context, stateValue, 0);
+    validation_result = UISystem_RenderManager(context, stateValue, 0);
     if (validation_result == 0) {
         // 状态验证通过，更新组件状态
         *(int32_t *)(context + UI_OFFSET_116C4) = stateValue;
@@ -404,11 +404,11 @@ int UISystem_ResourceInitializer(longlong context)
     int32_t tempValue;
     
     // 创建主资源句柄
-    resourceHandle = FUN_180741e10(*(uint64_t *)(_DAT_180be12f0 + 0x1a0), UI_CONST_0X4D0, &UNK_180958000, UI_CONST_0X146,
+    resourceHandle = UISystem_MemoryAllocator(*(uint64_t *)(_DAT_180be12f0 + 0x1a0), UI_CONST_0X4D0, &UNK_180958000, UI_CONST_0X146,
                                   stack_param & 0xffffffff00000000, 0, 1);
     resourcePtr = (longlong *)0x0;
     if (resourceHandle != 0) {
-        resourcePtr = (longlong *)FUN_1807714c0(resourceHandle);
+        resourcePtr = (longlong *)UISystem_SyncManager(resourceHandle);
     }
     
     // 设置资源指针
@@ -424,171 +424,171 @@ int UISystem_ResourceInitializer(longlong context)
         // 初始化资源管理器
         result = func_0x000180772860(resourcePtr, context);
         if (result == 0) {
-            FUN_180772810(*statePtr, context + UI_OFFSET_11420);
-            result = FUN_1807aafb0(*statePtr);
+            UISystem_EventHandler(*statePtr, context + UI_OFFSET_11420);
+            result = UISystem_SynchronizeData(*statePtr);
             if (result == 0) {
                 // 配置基础事件处理器
-                eventHandle = FUN_1807cfb70();
-                result = FUN_180772560(*statePtr, eventHandle, 0, 0);
+                eventHandle = UISystem_MapSharedMemory();
+                result = UISystem_SignalHandler(*statePtr, eventHandle, 0, 0);
                 if (result == 0) {
-                    eventHandle = FUN_1807d0140();
-                    result = FUN_180772560(*statePtr, eventHandle, 0, 0);
+                    eventHandle = UISystem_UnmapSharedMemory();
+                    result = UISystem_SignalHandler(*statePtr, eventHandle, 0, 0);
                     if (result == 0) {
-                        eventHandle = FUN_1807cf540();
-                        result = FUN_180772560(*statePtr, eventHandle, 0, 0);
+                        eventHandle = UISystem_AllocateSharedMemory();
+                        result = UISystem_SignalHandler(*statePtr, eventHandle, 0, 0);
                         if (result == 0) {
-                            eventHandle = FUN_1807cf8d0();
-                            result = FUN_180772560(*statePtr, eventHandle, 0, 0);
+                            eventHandle = UISystem_FreeSharedMemory();
+                            result = UISystem_SignalHandler(*statePtr, eventHandle, 0, 0);
                             if (result == 0) {
                                 // 配置高级事件处理器
                                 eventHandle = func_0x0001807af8c0();
-                                result = FUN_180771ed0(*statePtr, eventHandle, 0, 0xfa, 0);
+                                result = UISystem_PoolManager(*statePtr, eventHandle, 0, 0xfa, 0);
                                 if (result == 0) {
                                     eventHandle = func_0x0001807c9f10();
-                                    result = FUN_180771ed0(*statePtr, eventHandle, context + UI_OFFSET_11524, 600, 0);
+                                    result = UISystem_PoolManager(*statePtr, eventHandle, context + UI_OFFSET_11524, 600, 0);
                                     if (result == 0) {
                                         eventHandle = func_0x0001807c3740();
-                                        result = FUN_180771ed0(*statePtr, eventHandle, 0, 800, 0);
+                                        result = UISystem_PoolManager(*statePtr, eventHandle, 0, 800, 0);
                                         if (result == 0) {
                                             eventHandle = func_0x0001807ab550();
-                                            result = FUN_180771ed0(*statePtr, eventHandle, 0, 1000, 0);
+                                            result = UISystem_PoolManager(*statePtr, eventHandle, 0, 1000, 0);
                                             if (result == 0) {
                                                 // 配置UI组件事件
                                                 eventHandle = func_0x0001807aef60();
-                                                result = FUN_180771ed0(*statePtr, eventHandle, 0, UI_CONST_0X44C, 0);
+                                                result = UISystem_PoolManager(*statePtr, eventHandle, 0, UI_CONST_0X44C, 0);
                                                 if (result == 0) {
                                                     eventHandle = func_0x0001807bf230();
-                                                    result = FUN_180771ed0(*statePtr, eventHandle, 0, UI_CONST_0X4B0, 0);
+                                                    result = UISystem_PoolManager(*statePtr, eventHandle, 0, UI_CONST_0X4B0, 0);
                                                     if (result == 0) {
                                                         eventHandle = func_0x0001807c6810();
-                                                        result = FUN_180771ed0(*statePtr, eventHandle, 0, UI_CONST_0X514, 0);
+                                                        result = UISystem_PoolManager(*statePtr, eventHandle, 0, UI_CONST_0X514, 0);
                                                         if (result == 0) {
                                                             eventHandle = func_0x0001807cb310();
-                                                            result = FUN_180771ed0(*statePtr, eventHandle, 0, UI_CONST_0X578, 0);
+                                                            result = UISystem_PoolManager(*statePtr, eventHandle, 0, UI_CONST_0X578, 0);
                                                             if (result == 0) {
                                                                 // 配置渲染事件
                                                                 eventHandle = func_0x0001807b2210();
-                                                                result = FUN_180771ed0(*statePtr, eventHandle, 0, UI_CONST_0X5DC, 0);
+                                                                result = UISystem_PoolManager(*statePtr, eventHandle, 0, UI_CONST_0X5DC, 0);
                                                                 if (result == 0) {
                                                                     eventHandle = func_0x0001807b9340();
-                                                                    result = FUN_180771ed0(*statePtr, eventHandle, 0, UI_CONST_0X640, 0);
+                                                                    result = UISystem_PoolManager(*statePtr, eventHandle, 0, UI_CONST_0X640, 0);
                                                                     if (result == 0) {
                                                                         eventHandle = func_0x0001807ad2f0();
-                                                                        result = FUN_180771ed0(*statePtr, eventHandle, 0, UI_CONST_0X6A4, 0);
+                                                                        result = UISystem_PoolManager(*statePtr, eventHandle, 0, UI_CONST_0X6A4, 0);
                                                                         if (result == 0) {
                                                                             // 配置动画事件
                                                                             eventHandle = func_0x0001807ac2a0();
-                                                                            result = FUN_180771ed0(*statePtr, eventHandle, 0, UI_CONST_0X76C, 0);
+                                                                            result = UISystem_PoolManager(*statePtr, eventHandle, 0, UI_CONST_0X76C, 0);
                                                                             if (result == 0) {
                                                                                 eventHandle = func_0x0001807c1df0();
-                                                                                result = FUN_180771ed0(*statePtr, eventHandle, context + UI_OFFSET_11528, UI_CONST_0X960, 0);
+                                                                                result = UISystem_PoolManager(*statePtr, eventHandle, context + UI_OFFSET_11528, UI_CONST_0X960, 0);
                                                                                 if (result == 0) {
                                                                                     eventHandle = func_0x0001807c42c0();
-                                                                                    result = FUN_180771ed0(*statePtr, eventHandle, 0, UI_CONST_0X992, 0);
+                                                                                    result = UISystem_PoolManager(*statePtr, eventHandle, 0, UI_CONST_0X992, 0);
                                                                                     if (result == 0) {
                                                                                         eventHandle = func_0x0001807c6360();
-                                                                                        result = FUN_180771ed0(*statePtr, eventHandle, 0, UI_CONST_0X9C4, 0);
+                                                                                        result = UISystem_PoolManager(*statePtr, eventHandle, 0, UI_CONST_0X9C4, 0);
                                                                                         if (result == 0) {
                                                                                             eventHandle = func_0x0001807cf310();
-                                                                                            result = FUN_180771ed0(*statePtr, eventHandle, 0, UI_CONST_0XA28, 0);
+                                                                                            result = UISystem_PoolManager(*statePtr, eventHandle, 0, UI_CONST_0XA28, 0);
                                                                                             if (result == 0) {
                                                                                                 // 配置系统事件处理器
-                                                                                                eventHandle = FUN_180798860();
-                                                                                                result = FUN_180772160(*statePtr, eventHandle, 0, 0, 0);
+                                                                                                eventHandle = UISystem_ValidateData();
+                                                                                                result = UISystem_FlagManager(*statePtr, eventHandle, 0, 0, 0);
                                                                                                 if (result == 0) {
-                                                                                                    eventHandle = FUN_1807a2720();
-                                                                                                    result = FUN_180772160(*statePtr, eventHandle, 0, 0, 0);
+                                                                                                    eventHandle = UISystem_OptimizeData();
+                                                                                                    result = UISystem_FlagManager(*statePtr, eventHandle, 0, 0, 0);
                                                                                                     if (result == 0) {
-                                                                                                        eventHandle = FUN_180791e20();
-                                                                                                        result = FUN_180772160(*statePtr, eventHandle, 0, 0, 0);
+                                                                                                        eventHandle = UISystem_SaveResource();
+                                                                                                        result = UISystem_FlagManager(*statePtr, eventHandle, 0, 0, 0);
                                                                                                         if (result == 0) {
-                                                                                                            eventHandle = FUN_180793ff0();
-                                                                                                            result = FUN_180772160(*statePtr, eventHandle, 0, 0, 0);
+                                                                                                            eventHandle = UISystem_CompressData();
+                                                                                                            result = UISystem_FlagManager(*statePtr, eventHandle, 0, 0, 0);
                                                                                                             if (result == 0) {
-                                                                                                                eventHandle = FUN_180794e70();
-                                                                                                                result = FUN_180772160(*statePtr, eventHandle, 0, 0, 0);
+                                                                                                                eventHandle = UISystem_DecompressData();
+                                                                                                                result = UISystem_FlagManager(*statePtr, eventHandle, 0, 0, 0);
                                                                                                                 if (result == 0) {
-                                                                                                                    eventHandle = FUN_18077b2c0();
-                                                                                                                    result = FUN_180772160(*statePtr, eventHandle, 0, 0, 0);
+                                                                                                                    eventHandle = UISystem_InputManager();
+                                                                                                                    result = UISystem_FlagManager(*statePtr, eventHandle, 0, 0, 0);
                                                                                                                     if (result == 0) {
-                                                                                                                        eventHandle = FUN_18077d3d0();
-                                                                                                                        result = FUN_180772160(*statePtr, eventHandle, 0, 0, 0);
+                                                                                                                        eventHandle = UISystem_PhysicsManager();
+                                                                                                                        result = UISystem_FlagManager(*statePtr, eventHandle, 0, 0, 0);
                                                                                                                         if (result == 0) {
-                                                                                                                            eventHandle = FUN_180776090();
-                                                                                                                            result = FUN_180772160(*statePtr, eventHandle, 0, 0, 0);
+                                                                                                                            eventHandle = UISystem_NetworkManager();
+                                                                                                                            result = UISystem_FlagManager(*statePtr, eventHandle, 0, 0, 0);
                                                                                                                             if (result == 0) {
-                                                                                                                                eventHandle = FUN_180777010();
-                                                                                                                                result = FUN_180772160(*statePtr, eventHandle, 0, 0, 0);
+                                                                                                                                eventHandle = UISystem_DatabaseManager();
+                                                                                                                                result = UISystem_FlagManager(*statePtr, eventHandle, 0, 0, 0);
                                                                                                                                 if (result == 0) {
-                                                                                                                                    eventHandle = FUN_18077a570();
-                                                                                                                                    result = FUN_180772160(*statePtr, eventHandle, 0, 0, 0);
+                                                                                                                                    eventHandle = UISystem_AudioManager();
+                                                                                                                                    result = UISystem_FlagManager(*statePtr, eventHandle, 0, 0, 0);
                                                                                                                                     if (result == 0) {
-                                                                                                                                        eventHandle = FUN_1807a57f0();
-                                                                                                                                        result = FUN_180772160(*statePtr, eventHandle, 0, 0, 0);
+                                                                                                                                        eventHandle = UISystem_CleanupData();
+                                                                                                                                        result = UISystem_FlagManager(*statePtr, eventHandle, 0, 0, 0);
                                                                                                                                         if (result == 0) {
-                                                                                                                                            eventHandle = FUN_1807a75f0();
-                                                                                                                                            result = FUN_180772160(*statePtr, eventHandle, 0, 0, 0);
+                                                                                                                                            eventHandle = UISystem_MigrateData();
+                                                                                                                                            result = UISystem_FlagManager(*statePtr, eventHandle, 0, 0, 0);
                                                                                                                                             if (result == 0) {
-                                                                                                                                                eventHandle = FUN_180775120();
-                                                                                                                                                result = FUN_180772160(*statePtr, eventHandle, 0, 0, 0);
+                                                                                                                                                eventHandle = UISystem_FileManager();
+                                                                                                                                                result = UISystem_FlagManager(*statePtr, eventHandle, 0, 0, 0);
                                                                                                                                                 if (result == 0) {
-                                                                                                                                                    eventHandle = FUN_180795c00();
-                                                                                                                                                    result = FUN_180772160(*statePtr, eventHandle, 0, 0, 0);
+                                                                                                                                                    eventHandle = UISystem_EncryptData();
+                                                                                                                                                    result = UISystem_FlagManager(*statePtr, eventHandle, 0, 0, 0);
                                                                                                                                                     if (result == 0) {
-                                                                                                                                                        eventHandle = FUN_180796620();
-                                                                                                                                                        result = FUN_180772160(*statePtr, eventHandle, 0, 0, 0);
+                                                                                                                                                        eventHandle = UISystem_DecryptData();
+                                                                                                                                                        result = UISystem_FlagManager(*statePtr, eventHandle, 0, 0, 0);
                                                                                                                                                         if (result == 0) {
-                                                                                                                                                            eventHandle = FUN_180799620();
+                                                                                                                                                            eventHandle = UISystem_TransformData();
                                                                                                                                                             tempValue = 0;
-                                                                                                                                                            result = FUN_180772160(*statePtr, eventHandle, 0, 0, 0);
+                                                                                                                                                            result = UISystem_FlagManager(*statePtr, eventHandle, 0, 0, 0);
                                                                                                                                                             if (result == 0) {
-                                                                                                                                                                eventHandle = FUN_18079d1f0();
-                                                                                                                                                                result = FUN_180772100(*statePtr, eventHandle, 0, 0, CONCAT44(tempValue, UI_CONST_0X24));
+                                                                                                                                                                eventHandle = UISystem_SerializeData();
+                                                                                                                                                                result = UISystem_HandleManager(*statePtr, eventHandle, 0, 0, CONCAT44(tempValue, UI_CONST_0X24));
                                                                                                                                                                 if (result == 0) {
-                                                                                                                                                                    eventHandle = FUN_1807a01e0();
-                                                                                                                                                                    result = FUN_180772160(*statePtr, eventHandle, 0, 0, 0);
+                                                                                                                                                                    eventHandle = UISystem_DeserializeData();
+                                                                                                                                                                    result = UISystem_FlagManager(*statePtr, eventHandle, 0, 0, 0);
                                                                                                                                                                     if (result == 0) {
-                                                                                                                                                                        eventHandle = FUN_1807744e0();
-                                                                                                                                                                        result = FUN_180772160(*statePtr, eventHandle, 0, 0, 0);
+                                                                                                                                                                        eventHandle = UISystem_StreamManager();
+                                                                                                                                                                        result = UISystem_FlagManager(*statePtr, eventHandle, 0, 0, 0);
                                                                                                                                                                         if (result == 0) {
-                                                                                                                                                                            eventHandle = FUN_18077e570();
-                                                                                                                                                                            result = FUN_180772160(*statePtr, eventHandle, 0, 0, 0);
+                                                                                                                                                                            eventHandle = UISystem_AIManager();
+                                                                                                                                                                            result = UISystem_FlagManager(*statePtr, eventHandle, 0, 0, 0);
                                                                                                                                                                             if (result == 0) {
-                                                                                                                                                                                eventHandle = FUN_18077efd0();
-                                                                                                                                                                                result = FUN_180772160(*statePtr, eventHandle, 0, 0, 0);
+                                                                                                                                                                                eventHandle = UISystem_ScriptManager();
+                                                                                                                                                                                result = UISystem_FlagManager(*statePtr, eventHandle, 0, 0, 0);
                                                                                                                                                                                 if (result == 0) {
-                                                                                                                                                                                    eventHandle = FUN_180781cc0();
-                                                                                                                                                                                    result = FUN_180772160(*statePtr, eventHandle, 0, 0, 0);
+                                                                                                                                                                                    eventHandle = UISystem_ModuleManager();
+                                                                                                                                                                                    result = UISystem_FlagManager(*statePtr, eventHandle, 0, 0, 0);
                                                                                                                                                                                     if (result == 0) {
-                                                                                                                                                                                        eventHandle = FUN_180791b60();
-                                                                                                                                                                                        result = FUN_180772160(*statePtr, eventHandle, 0, 0, 0);
+                                                                                                                                                                                        eventHandle = UISystem_LoadResource();
+                                                                                                                                                                                        result = UISystem_FlagManager(*statePtr, eventHandle, 0, 0, 0);
                                                                                                                                                                                         if (result == 0) {
-                                                                                                                                                                                            eventHandle = FUN_180771090();
-                                                                                                                                                                                            result = FUN_180772160(*statePtr, eventHandle, 0, 0, 0);
+                                                                                                                                                                                            eventHandle = UISystem_TimerManager();
+                                                                                                                                                                                            result = UISystem_FlagManager(*statePtr, eventHandle, 0, 0, 0);
                                                                                                                                                                                             if (result == 0) {
-                                                                                                                                                                                                eventHandle = FUN_18076ff30();
-                                                                                                                                                                                                result = FUN_180772160(*statePtr, eventHandle, 0, 0, 0);
+                                                                                                                                                                                                eventHandle = UISystem_ThreadManager();
+                                                                                                                                                                                                result = UISystem_FlagManager(*statePtr, eventHandle, 0, 0, 0);
                                                                                                                                                                                                 if (result == 0) {
                                                                                                                                                                                                     eventHandle = func_0x00018076e530();
-                                                                                                                                                                                                    result = FUN_180772160(*statePtr, eventHandle, 0, 0, 0);
+                                                                                                                                                                                                    result = UISystem_FlagManager(*statePtr, eventHandle, 0, 0, 0);
                                                                                                                                                                                                     if (result == 0) {
-                                                                                                                                                                                                        eventHandle = FUN_180783810();
-                                                                                                                                                                                                        result = FUN_180772160(*statePtr, eventHandle, 0, 0, 0);
+                                                                                                                                                                                                        eventHandle = UISystem_ServiceManager();
+                                                                                                                                                                                                        result = UISystem_FlagManager(*statePtr, eventHandle, 0, 0, 0);
                                                                                                                                                                                                         if (result == 0) {
-                                                                                                                                                                                                            eventHandle = FUN_180779050();
-                                                                                                                                                                                                            result = FUN_180772160(*statePtr, eventHandle, 0, 0, 0);
+                                                                                                                                                                                                            eventHandle = UISystem_GraphicsManager();
+                                                                                                                                                                                                            result = UISystem_FlagManager(*statePtr, eventHandle, 0, 0, 0);
                                                                                                                                                                                                             if (result == 0) {
-                                                                                                                                                                                                                eventHandle = FUN_1807a86a0();
-                                                                                                                                                                                                                result = FUN_180772160(*statePtr, eventHandle, 0, 0, 0);
+                                                                                                                                                                                                                eventHandle = UISystem_BackupData();
+                                                                                                                                                                                                                result = UISystem_FlagManager(*statePtr, eventHandle, 0, 0, 0);
                                                                                                                                                                                                                 if (result == 0) {
-                                                                                                                                                                                                                    eventHandle = FUN_1807aa050();
-                                                                                                                                                                                                                    result = FUN_180772160(*statePtr, eventHandle, 0, 0, 0);
+                                                                                                                                                                                                                    eventHandle = UISystem_RestoreData();
+                                                                                                                                                                                                                    result = UISystem_FlagManager(*statePtr, eventHandle, 0, 0, 0);
                                                                                                                                                                                                                     if (result == 0) {
-                                                                                                                                                                                                                        eventHandle = FUN_1807806c0();
-                                                                                                                                                                                                                        result = FUN_180772160(*statePtr, eventHandle, 0, 0, 0);
+                                                                                                                                                                                                                        eventHandle = UISystem_PluginManager();
+                                                                                                                                                                                                                        result = UISystem_FlagManager(*statePtr, eventHandle, 0, 0, 0);
                                                                                                                                                                                                                         if (result == 0) {
-                                                                                                                                                                                                                            eventHandle = FUN_180797e50();
-                                                                                                                                                                                                                            result = FUN_180772160(*statePtr, eventHandle, 0, 0, 0);
+                                                                                                                                                                                                                            eventHandle = UISystem_HashData();
+                                                                                                                                                                                                                            result = UISystem_FlagManager(*statePtr, eventHandle, 0, 0, 0);
                                                                                                                                                                                                                             if (result == 0) {
                                                                                                                                                                                                                                 // 初始化成功，设置状态标志
                                                                                                                                                                                                                                 *(int8_t *)(context + 9) = 1;
@@ -651,7 +651,7 @@ int UISystem_ResourceInitializer(longlong context)
     
     // 资源初始化失败，清理已分配的资源
     if ((statePtr != (longlong *)0x0) && (*statePtr != 0)) {
-        FUN_1807726d0(*statePtr, 0);
+        UISystem_NotificationHandler(*statePtr, 0);
         *statePtr = 0;
     }
     return result;
@@ -681,12 +681,12 @@ void UISystem_EventProcessor(longlong context, int32_t eventValue)
     int result;
     
     // 检查系统初始化状态，如果未初始化则先初始化
-    if ((*(char *)(context + 9) == '\0') && (result = FUN_180749060(), result != 0)) {
+    if ((*(char *)(context + 9) == '\0') && (result = UISystem_ResourceInitializer(), result != 0)) {
         return;
     }
     
     // 分发事件到事件处理器
-    FUN_180772870(*(uint64_t *)(context + UI_OFFSET_11418), eventValue, 0);
+    UISystem_CallbackDispatcher(*(uint64_t *)(context + UI_OFFSET_11418), eventValue, 0);
     return;
 }
 
@@ -760,11 +760,11 @@ void UISystem_DataManager(longlong context)
             floatPtr = *(float **)(context + UI_OFFSET_11670);
             (**(code **)(context + UI_OFFSET_11838))(context, UI_CONST_0X400, 0, 0);
         }
-        FUN_180772cd0(context + UI_OFFSET_11678);
+        UISystem_ArrayManager(context + UI_OFFSET_11678);
         if (*(int *)(context + UI_OFFSET_116B4) == 0) {
-            FUN_180768b70(context + UI_OFFSET_116B4);
+            UISystem_LockManager(context + UI_OFFSET_116B4);
         }
-        FUN_180768b70(&eventValue);
+        UISystem_LockManager(&eventValue);
         eventCount = eventValue;
         if (*(uint *)(context + UI_OFFSET_116B4) <= eventValue) {
             eventCount = eventValue - *(int *)(context + UI_OFFSET_116B4);
@@ -784,11 +784,11 @@ void UISystem_DataManager(longlong context)
                 resourceHandle = resourcePtr[2];
                 func_0x0001807673f0(resourceHandle, charBuffer);
                 if (charBuffer[0] != '\0') {
-                    FUN_1807671a0(resourceHandle, context + 0x11080, &float1, &float2);
+                    UISystem_EventDispatcher(resourceHandle, context + 0x11080, &float1, &float2);
                     if (0.0 < float1) {
                         func_0x0001807673c0(resourceHandle, stackBuffer2, 0, 0);
                         floatPtr = floatArray;
-                        result = FUN_180785c10(context + 0x12438, context + 0x11080, stackBuffer2, 0);
+                        result = UISystem_ComponentFactory(context + 0x12438, context + 0x11080, stackBuffer2, 0);
                         if (result != 0) goto LAB_18078c746;
                         float1 = float1 * (1.0 - floatArray[0]);
                         float2 = float2 * (1.0 - floatArray[0]);
@@ -801,7 +801,7 @@ void UISystem_DataManager(longlong context)
                         stackVar11 = 0;
                         stackVar12 = 0;
                         func_0x000180767410(resourceHandle, &stackVar7);
-                        FUN_180767800(&stackVar1, &stackVar7, float2);
+                        UISystem_QueueManager(&stackVar1, &stackVar7, float2);
                         floatVar = floatVar + float2;
                     }
                 }
@@ -815,24 +815,24 @@ void UISystem_DataManager(longlong context)
                     stackVar17 = 0;
                     stackVar18 = 0;
                     func_0x000180746970(context, *(int32_t *)(context + UI_OFFSET_11654), &stackVar13);
-                    FUN_180767800(&stackVar1, &stackVar13, 1.0 - floatVar);
+                    UISystem_QueueManager(&stackVar1, &stackVar13, 1.0 - floatVar);
                     floatVar = 1.0;
                 }
-                FUN_180767270(stackBuffer2, &stackVar1, 1.0 / floatVar);
-                FUN_180743940(context, *(int32_t *)(context + UI_OFFSET_11654), stackBuffer2, 1);
+                UISystem_MessageHandler(stackBuffer2, &stackVar1, 1.0 / floatVar);
+                UISystem_BufferManager(context, *(int32_t *)(context + UI_OFFSET_11654), stackBuffer2, 1);
             }
             componentPtr = *(uint64_t **)(context + 0x11708);
             do {
                 if (componentPtr == (uint64_t *)(context + 0x11708)) {
-                    result = FUN_18078baf0(context, eventCount);
-                    if ((result != 0) || (result = FUN_18078c760(context, eventCount), result != 0)) break;
+                    result = UISystem_AnimationManager(context, eventCount);
+                    if ((result != 0) || (result = UISystem_ProcessEvent(context, eventCount), result != 0)) break;
                     if (*(longlong *)(context + 0x670) != 0) {
-                        FUN_180772c50(context + UI_OFFSET_11678, 1);
-                        result = FUN_180789300(*(uint64_t *)(context + 0x670));
+                        UISystem_ListManager(context + UI_OFFSET_11678, 1);
+                        result = UISystem_CheckStatus(*(uint64_t *)(context + 0x670));
                         if (result != 0) break;
-                        FUN_180772c50(context + UI_OFFSET_11678, 0);
+                        UISystem_ListManager(context + UI_OFFSET_11678, 0);
                     }
-                    result = FUN_18078a600(context, 1);
+                    result = UISystem_UpdateState(context, 1);
                     if (result == 0) {
                         dataVar = 0;
                         indexVar = dataVar;
@@ -843,12 +843,12 @@ void UISystem_DataManager(longlong context)
                     break;
                 }
                 resourcePtr = (uint64_t *)*componentPtr;
-                result = FUN_180754a30(componentPtr[2], eventCount, 0);
+                result = UISystem_ConfigLoader(componentPtr[2], eventCount, 0);
                 componentPtr = resourcePtr;
             } while (result == 0);
         }
     }
-    goto FUN_18078c746;
+    goto UISystem_ExecuteTask;
     while( true ) {
         eventCount = (int)indexVar + 1;
         indexVar = (ulonglong)eventCount;
@@ -857,12 +857,12 @@ void UISystem_DataManager(longlong context)
 LAB_18078c440:
         stateHandle = *(longlong *)(*(longlong *)(context + 0x6a0) + 0x30 + stackVar21);
         if (((stateHandle != 0) && (*(char *)(stateHandle + 0x31) != '\0')) &&
-           (result = FUN_180748290(context, indexVar), result != 0)) goto FUN_18078c746;
+           (result = UISystem_StateManager(context, indexVar), result != 0)) goto UISystem_ExecuteTask;
     }
 LAB_18078c477:
     if (((*(longlong *)(context + UI_OFFSET_11838) != 0) && ((*(uint *)(context + UI_OFFSET_11840) & UI_CONST_0X1000) != 0)) &&
-       (result = FUN_1807499f0(context), result != UI_CONST_0X39)) {
-        if (result != 0) goto FUN_18078c746;
+       (result = UISystem_CleanupManager(context), result != UI_CONST_0X39)) {
+        if (result != 0) goto UISystem_ExecuteTask;
         if (*(char *)(context + 0x6a8) != '\0') {
             floatPtr = *(float **)(context + UI_OFFSET_11670);
             *(int8_t *)(context + 0x6a8) = 0;
@@ -880,7 +880,7 @@ LAB_18078c477:
     }
     *(int8_t *)(context + 0x12440) = 0;
     if ((*(byte *)(context + 0x78) & 1) != 0) {
-        FUN_18078c950(context);
+        UISystem_UpdateFrame(context);
     }
     stateHandle = *(longlong *)(context + 0x670);
     if ((stateHandle != 0) && (0 < *(int *)(context + 0x10f70))) {
@@ -893,17 +893,17 @@ LAB_18078c477:
              componentPtr = (uint64_t *)*componentPtr) {
             stateHandle = componentPtr[2];
             if (*(char *)(stateHandle + 0x212) != '\0') {
-                FUN_18075a370(stateHandle, renderValue);
+                UISystem_DataProcessor(stateHandle, renderValue);
             }
             if (*(char *)(stateHandle + 0x426) != '\0') {
-                FUN_18075a370(stateHandle + 0x214, renderValue);
+                UISystem_DataProcessor(stateHandle + 0x214, renderValue);
             }
         }
         if (context != 0) {
-            FUN_180743d60(context, UI_CONST_0X7);
+            UISystem_ResourceManager(context, UI_CONST_0X7);
         }
     }
-    result = FUN_180743660(context);
+    result = UISystem_ContextInitializer(context);
     if (result == 0) {
         if (context != 0) {
             func_0x000180743c20(context, UI_CONST_0X6);
@@ -918,26 +918,26 @@ LAB_18078c477:
             }
         }
         if (context != 0) {
-            FUN_180743d60(context, UI_CONST_0X6);
+            UISystem_ResourceManager(context, UI_CONST_0X6);
         }
         componentPtr = puRam0000000000012780;
         if ((lRam0000000000012770 == 0) ||
-           (result = FUN_1807d0fe0(), componentPtr = puRam0000000000012780, result == 0)) {
+           (result = UISystem_LockSharedMemory(), componentPtr = puRam0000000000012780, result == 0)) {
             for (; componentPtr != (uint64_t *)0x12780; componentPtr = (uint64_t *)*componentPtr) {
                 stateHandle = componentPtr[2];
                 if ((*(code **)(stateHandle + 0x120) != (code *)0x0) && ((*(byte *)(stateHandle + 0x11a) & 4) != 0)) {
                     (**(code **)(stateHandle + 0x120))(stateHandle + 0xb0, 4, 0);
                 }
             }
-            FUN_180772cf0(0x11678, UI_CONST_0X5F);
+            UISystem_MapManager(0x11678, UI_CONST_0X5F);
             if ((pcRam0000000000011838 != (code *)0x0) && ((uRam0000000000011840 & UI_CONST_0X800) != 0)) {
                 floatPtr = pfRam0000000000011670;
                 (*pcRam0000000000011838)(0, UI_CONST_0X800, 0, 0);
             }
         }
     }
-FUN_18078c746:
-    FUN_1808fc050(stackVar21 ^ (ulonglong)stackBuffer);
+UISystem_ExecuteTask:
+    UISystem_UnlockSharedMemory(stackVar21 ^ (ulonglong)stackBuffer);
 }
 
 /**
@@ -974,7 +974,7 @@ int UISystem_RenderController(longlong context)
         stateHandle = 0;
         do {
             if (*(longlong *)(stateHandle + 0x30 + *(longlong *)(context + 0x6a0)) != 0) {
-                result = FUN_180788e60(*(uint64_t *)(context + 0x670));
+                result = UISystem_InitializeSystem(*(uint64_t *)(context + 0x670));
                 if (result != 0) goto LAB_1807499b3;
             }
             index = index + 1;
@@ -984,7 +984,7 @@ int UISystem_RenderController(longlong context)
     result = UI_SYSTEM_SUCCESS;
 LAB_1807499b3:
     if (context != 0) {
-        FUN_180743d60(context, UI_CONST_0X10);
+        UISystem_ResourceManager(context, UI_CONST_0X10);
     }
     return result;
 }
@@ -1024,7 +1024,7 @@ int UISystem_StateValidator_Validate(longlong context)
         stateHandle = 0;
         do {
             if (*(longlong *)(stateHandle + 0x30 + *(longlong *)(context + 0x6a0)) != 0) {
-                result = FUN_180788e60(*(uint64_t *)(context + 0x670));
+                result = UISystem_InitializeSystem(*(uint64_t *)(context + 0x670));
                 if (result != 0) goto LAB_1807499b3;
             }
             index = index + 1;
@@ -1034,7 +1034,7 @@ int UISystem_StateValidator_Validate(longlong context)
     result = UI_SYSTEM_SUCCESS;
 LAB_1807499b3:
     if (context != 0) {
-        FUN_180743d60(context, UI_CONST_0X10);
+        UISystem_ResourceManager(context, UI_CONST_0X10);
     }
     return result;
 }
@@ -1051,7 +1051,7 @@ LAB_1807499b3:
  */
 void UISystem_CallbackHandler(void)
 {
-    FUN_180743d60();
+    UISystem_ResourceManager();
 }
 
 /**
@@ -1096,18 +1096,18 @@ void UISystem_CleanupManager(longlong context)
     ulonglong indexVar;
     
     stackVar = _DAT_180bf00a8 ^ (ulonglong)stackBuffer;
-    if (*(char *)(context + 8) == '\0') goto FUN_180749e0b;
+    if (*(char *)(context + 8) == '\0') goto UISystem_ErrorHandler;
     indexVar = 0;
     intVar = 0;
     intArray2[0] = 0;
     statePtr = (int *)(context + 0x698);
     if (*(longlong *)(*(longlong *)(context + 0x670) + 0x3e0) == 0) {
 LAB_180749ae6:
-        if (intVar == *statePtr) goto FUN_180749e0b;
+        if (intVar == *statePtr) goto UISystem_ErrorHandler;
     }
     else {
         intArray[0] = 0;
-        FUN_180768b70(intArray);
+        UISystem_LockManager(intArray);
         intVar = *statePtr;
         if ((*(int *)(context + 0x6ac) == 0) ||
            (999 < (uint)(intArray[0] - *(int *)(context + 0x6ac)))) {
@@ -1118,7 +1118,7 @@ LAB_180749ae6:
                 dataVar = indexVar;
             }
             result = (**(code **)(resourceHandle + 0x3e0))(dataVar, &intVar, intArray2);
-            if (result != 0) goto FUN_180749e0b;
+            if (result != 0) goto UISystem_ErrorHandler;
         }
         if (intArray2[0] == 0) goto LAB_180749ae6;
     }
@@ -1137,20 +1137,20 @@ LAB_180749ae6:
         memset(stackBuffer2, 0, 0x100);
     }
     *(int8_t *)(context + 0x6a8) = 1;
-FUN_180749e0b:
-    FUN_1808fc050(stackVar ^ (ulonglong)stackBuffer);
-#define UISystem_StackProcessor FUN_18078c950
-#define UISystem_BufferProcessor FUN_18078c760
-#define UISystem_ContextProcessor FUN_18078c746
-#define UISystem_DataConverter FUN_180785c10
-#define UISystem_StatusChecker FUN_180789300
-#define UISystem_StateChecker FUN_180788e60
-#define UISystem_ConfigValidator FUN_1807aafb0
-#define UISystem_ManagerCreator FUN_1807cf8d0
-#define UISystem_HandlerCreator FUN_1807cf540
-#define UISystem_EventCreator FUN_1807d0140
-#define UISystem_ResourceCreator FUN_1807cfb70
-n// 缺失的UI系统函数别名定义（补充）
+UISystem_ErrorHandler:
+    UISystem_UnlockSharedMemory(stackVar ^ (ulonglong)stackBuffer);
+#define UISystem_StackProcessor UISystem_UpdateFrame
+#define UISystem_BufferProcessor UISystem_ProcessEvent
+#define UISystem_ContextProcessor UISystem_ExecuteTask
+#define UISystem_DataConverter UISystem_ComponentFactory
+#define UISystem_StatusChecker UISystem_CheckStatus
+#define UISystem_StateChecker UISystem_InitializeSystem
+#define UISystem_ConfigValidator UISystem_SynchronizeData
+#define UISystem_ManagerCreator UISystem_FreeSharedMemory
+#define UISystem_HandlerCreator UISystem_AllocateSharedMemory
+#define UISystem_EventCreator UISystem_UnmapSharedMemory
+#define UISystem_ResourceCreator UISystem_MapSharedMemory
+// 缺失的UI系统函数别名定义（补充）
 }
 
 // ============================================================================
