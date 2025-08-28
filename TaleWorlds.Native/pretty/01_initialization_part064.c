@@ -232,27 +232,27 @@ typedef struct {
  * ============================================================================ */
 
 // 系统数据区域 - 主要系统状态信息
-extern undefined DAT_180d49830;              // 系统主数据区域
-extern uint64_t UNK_180d498a0;            // 系统控制块
-extern int32_t UNK_180d498a8;            // 系统状态标志
-extern void *UNK_180d498b0;             // 系统指针表
-extern int8_t *UNK_180d498b8;            // 系统字节表
-extern int32_t UNK_180d498c0;            // 系统计数器
-extern longlong UNK_180d49908;              // 系统时间戳1
-extern longlong UNK_180d49910;              // 系统时间戳2
-extern longlong UNK_180d49928;              // 系统性能计数器1
-extern longlong UNK_180d49930;              // 系统性能计数器2
-extern int32_t UNK_180d49948;            // 系统错误代码
-extern int32_t UNK_180d4994c;            // 系统警告代码
-extern undefined DAT_180d49950;             // 系统配置数据
-extern undefined DAT_180d49970;             // 系统资源数据
-extern undefined DAT_180bfc140;              // 系统缓存数据
-extern undefined DAT_1803f48b2;              // 系统临时数据
-extern undefined UNK_180d49d58;              // 系统保留区域1
-extern longlong UNK_180d49d68;              // 系统统计信息1
-extern uint64_t UNK_180d49d70;            // 系统统计信息2
-extern longlong UNK_180d49d78;              // 系统统计信息3
-extern longlong *UNK_180c96358;             // 系统全局指针表
+extern uint8_t DAT_180d49830[0x100];         // 系统主数据区域 - 256字节系统核心数据
+extern uint64_t UNK_180d498a0;               // 系统控制块 - 主要系统控制信息
+extern int32_t UNK_180d498a8;                // 系统状态标志 - 当前系统状态位
+extern void *UNK_180d498b0;                  // 系统指针表 - 系统函数指针数组
+extern int8_t *UNK_180d498b8;               // 系统字节表 - 系统配置字节表
+extern int32_t UNK_180d498c0;                // 系统计数器 - 系统内部计数器
+extern int64_t UNK_180d49908;               // 系统时间戳1 - 系统启动时间戳
+extern int64_t UNK_180d49910;               // 系统时间戳2 - 系统运行时间戳
+extern int64_t UNK_180d49928;               // 系统性能计数器1 - CPU性能计数器
+extern int64_t UNK_180d49930;               // 系统性能计数器2 - 内存性能计数器
+extern int32_t UNK_180d49948;                // 系统错误代码 - 最后错误代码
+extern int32_t UNK_180d4994c;                // 系统警告代码 - 最后警告代码
+extern uint8_t DAT_180d49950[0x20];          // 系统配置数据 - 32字节配置数据
+extern uint8_t DAT_180d49970[0x20];          // 系统资源数据 - 32字节资源数据
+extern uint8_t DAT_180bfc140[0x200];         // 系统缓存数据 - 512字节缓存区
+extern uint8_t DAT_1803f48b2[0x10];         // 系统临时数据 - 16字节临时数据
+extern uint8_t UNK_180d49d58[0x10];          // 系统保留区域1 - 16字节保留区域
+extern int64_t UNK_180d49d68;               // 系统统计信息1 - 内存使用统计
+extern uint64_t UNK_180d49d70;              // 系统统计信息2 - CPU使用统计
+extern int64_t UNK_180d49d78;               // 系统统计信息3 - 磁盘I/O统计
+extern void **UNK_180c96358;                 // 系统全局指针表 - 全局函数指针表
 
 /* ============================================================================
  * 函数声明
@@ -269,9 +269,9 @@ extern longlong *UNK_180c96358;             // 系统全局指针表
  * - 错误检测和恢复机制
  * - 性能监控和优化
  * 
- * @return undefined 初始化结果状态
+ * @return int32_t 初始化结果状态 (0=成功, 非0=错误代码)
  */
-undefined InitializationSystem_ComponentInitializer(void);
+int32_t InitializationSystem_ComponentInitializer(void);
 
 /**
  * @brief 系统配置处理器
@@ -284,9 +284,9 @@ undefined InitializationSystem_ComponentInitializer(void);
  * - 配置持久化和加载
  * - 配置版本管理
  * 
- * @return undefined 配置处理结果状态
+ * @return int32_t 配置处理结果状态 (0=成功, 非0=错误代码)
  */
-undefined InitializationSystem_ConfigProcessor(void);
+int32_t InitializationSystem_ConfigProcessor(void);
 
 /**
  * @brief 系统资源管理器
@@ -299,9 +299,9 @@ undefined InitializationSystem_ConfigProcessor(void);
  * - 资源冲突解决
  * - 资源统计和报告
  * 
- * @return undefined 资源管理结果状态
+ * @return int32_t 资源管理结果状态 (0=成功, 非0=错误代码)
  */
-undefined InitializationSystem_ResourceManager(void);
+int32_t InitializationSystem_ResourceManager(void);
 
 /**
  * @brief 系统状态监控器
@@ -314,9 +314,9 @@ undefined InitializationSystem_ResourceManager(void);
  * - 状态历史记录
  * - 状态预测分析
  * 
- * @return undefined 状态监控结果状态
+ * @return int32_t 状态监控结果状态 (0=成功, 非0=错误代码)
  */
-undefined InitializationSystem_StateMonitor(void);
+int32_t InitializationSystem_StateMonitor(void);
 
 /**
  * @brief 系统错误处理器
@@ -329,9 +329,9 @@ undefined InitializationSystem_StateMonitor(void);
  * - 错误统计分析
  * - 错误预防措施
  * 
- * @return undefined 错误处理结果状态
+ * @return int32_t 错误处理结果状态 (0=成功, 非0=错误代码)
  */
-undefined InitializationSystem_ErrorHandler(void);
+int32_t InitializationSystem_ErrorHandler(void);
 
 /* ============================================================================
  * 辅助功能函数声明

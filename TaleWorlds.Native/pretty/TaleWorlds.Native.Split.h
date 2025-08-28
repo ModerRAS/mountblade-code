@@ -46,9 +46,9 @@
 #define SYSTEM_ERROR_STATE      -3             // 状态错误
 
 // 类型别名定义
-typedef undefined8 SystemHandle;              // 系统句柄
-typedef undefined8 MemoryHandle;              // 内存句柄
-typedef undefined8 StateHandle;               // 状态句柄
+typedef uint64_t SystemHandle;                // 系统句柄
+typedef uint64_t MemoryHandle;                // 内存句柄
+typedef uint64_t StateHandle;                 // 状态句柄
 
 //==============================================================================
 // 核心功能实现
