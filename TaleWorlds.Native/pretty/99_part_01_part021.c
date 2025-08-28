@@ -523,7 +523,8 @@ LAB_1800b56df:
 
 
 // 函数: void FUN_1800b57a0(uint64_t param_1,longlong *param_2)
-void FUN_1800b57a0(uint64_t param_1,longlong *param_2)
+// 参数处理和资源分配函数 - 处理参数并分配资源
+void ParameterProcess_Resource_Allocate(uint64_t param_1,longlong *param_2)
 
 {
   uint64_t *puVar1;
