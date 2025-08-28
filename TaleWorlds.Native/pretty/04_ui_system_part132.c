@@ -237,8 +237,8 @@ void UI_System_Callback_Execute(longlong param_1,int *param_2)
 
 
 // 函数: void FUN_180745f10(longlong param_1,int *param_2)
-void FUN_180745f10(longlong param_1,int *param_2)
-
+// UI系统资源清理函数
+void UI_System_Resource_Cleanup(longlong param_1,int *param_2)
 {
   func_0x00018076a7d0(*(uint64_t *)(param_1 + 0x170));
   if (param_2 != (int *)0x0) {
@@ -249,8 +249,9 @@ void FUN_180745f10(longlong param_1,int *param_2)
 
 
 
-uint64_t FUN_180745f70(uint64_t param_1,longlong param_2)
-
+// 函数: uint64_t FUN_180745f70(uint64_t param_1,longlong param_2)
+// UI系统事件状态检查函数
+uint64_t UI_System_Event_State_Check(uint64_t param_1,longlong param_2)
 {
   uint64_t uVar1;
   

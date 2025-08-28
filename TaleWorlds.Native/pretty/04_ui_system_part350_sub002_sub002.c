@@ -1593,7 +1593,7 @@ longlong UISystem_EmptyOperationProcessor(void)
   uint uStack0000000000000038;
   
   uStack0000000000000038 = 0;
-  lVar1 = FUN_180739a50(*(uint64_t *)(unaff_RDI + 0x4c0),&stack0x00000038,0);
+  lVar1 = UISystem_DataGetter(*(uint64_t *)(unaff_RDI + 0x4c0),&stack0x00000038,0);
   if ((int)lVar1 == 0) {
     lVar1 = (longlong)
             ((float)(int)(2 - (uint)(unaff_SIL != '\0')) * in_stack_00000030 *
@@ -2075,7 +2075,7 @@ LAB_180858c20:
       while (uVar25 = uStack_168, (uint)puStack_148[2] <= uVar20) {
         if (((0 < *(int *)(param_1 + 300)) && (uVar6 <= (uint)puStack_148[2])) &&
            (((int)puStack_148[4] == 0 ||
-            (cVar5 = FUN_1808b0820(puStack_148 + 3,*(uint64_t *)(param_1 + 0x160)),
+            (cVar5 = UISystem_ComponentVerifier(puStack_148 + 3,*(uint64_t *)(param_1 + 0x160)),
             puVar11 = puStack_130, cVar5 != '\0')))) {
           if ((uint)puStack_148[2] == uVar20) {
             uStack_168 = uStack_168 + 1;
@@ -2796,7 +2796,7 @@ uint64_t UISystem_AdvancedDataValidator(longlong system_context, uint *time_para
             }
             lVar7 = (ulonglong)uVar6 + *param_3;
           }
-          FUN_180854610(param_1,lVar7,*(int32_t *)(lVar8 + 0x20 + (longlong)iVar10 * 0x28),0,
+          UISystem_DataCalculator(param_1,lVar7,*(int32_t *)(lVar8 + 0x20 + (longlong)iVar10 * 0x28),0,
                         iVar10,0);
         }
         iVar10 = iVar10 + 1;
@@ -2852,7 +2852,7 @@ uint64_t UISystem_AdvancedDataValidator(longlong system_context, uint *time_para
                   }
                   lVar8 = (ulonglong)uVar5 + *param_3;
                 }
-                FUN_180854610(param_1,lVar8,uVar12,1,*(int32_t *)(param_1 + 0x138),iVar10);
+                UISystem_DataCalculator(param_1,lVar8,uVar12,1,*(int32_t *)(param_1 + 0x138),iVar10);
               }
               iVar10 = iVar10 + 1;
             } while( true );
