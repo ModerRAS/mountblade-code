@@ -400,7 +400,7 @@ PROTOCOL_SETUP_COMPLETE:
   }
   else {
     if (connection_status == CONNECTION_TYPE_UDP) {
-      protocol_handler = &UNK_180984ca0;
+      protocol_handler = &network_udp_handler_ptr;
 SETUP_PROTOCOL_HANDLER:
       operation_result = NetworkingSystem_ProtocolInitializer(temp_result_1, protocol_handler, &network_context);
 PROTOCOL_HANDLER_SETUP:
@@ -811,7 +811,7 @@ CLEANUP_PROTOCOL_COMPLETE:
   }
   else {
     if (connection_status == CONNECTION_TYPE_UDP) {
-      protocol_handler = &UNK_180984ca0;
+      protocol_handler = &network_udp_handler_ptr;
 CLEANUP_PROTOCOL_HANDLER:
       operation_result = NetworkingSystem_ProtocolInitializer(temp_result_1, protocol_handler, &security_context);
 CLEANUP_PROTOCOL_SETUP:
