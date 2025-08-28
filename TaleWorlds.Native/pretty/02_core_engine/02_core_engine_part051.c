@@ -314,7 +314,7 @@ void priority_queue_insert(uint64_t *queue_head,uint64_t element,ulonglong *prio
   uint64_t direction;
   bool should_insert_left;
   
-  new_node = FUN_18062b420(system_memory_pool_ptr,0x28,*(int8_t *)(queue_head + 5));
+  new_node = CoreEngine_MemoryPoolAllocator(system_memory_pool_ptr,0x28,*(int8_t *)(queue_head + 5));
   current_priority = *priority;
   should_insert_left = true;
   *(ulonglong *)(new_node + 0x20) = current_priority;
