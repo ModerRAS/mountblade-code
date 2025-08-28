@@ -464,7 +464,7 @@ static void utilities_resource_cleanup_manager(longlong param_1, longlong param_
  * 8. 包含资源清理和内存释放的完整实现
  * 
  * 注意事项：
- * 1. 所有函数都返回undefined类型，需要根据具体实现进行类型转换
+ * 1. 所有函数都返回标准类型，需要根据具体实现进行类型转换
  * 2. 内存管理函数需要谨慎使用，避免内存泄漏
  * 3. 异常处理函数需要在适当的位置调用
  * 4. 资源清理函数在系统关闭时必须调用

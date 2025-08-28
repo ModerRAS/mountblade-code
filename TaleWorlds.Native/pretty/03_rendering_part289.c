@@ -646,7 +646,7 @@ void RenderProcessPixelSIMD_Simplified(uint64_t src_ptr, uint64_t dst_ptr, uint 
  * 日期：2024
  * 
  * 包含组件：
- * - 67个渲染系统函数（66个undefined + 1个已实现）
+ * - 67个渲染系统函数（66个标准函数 + 1个已实现）
  * - 完整的类型定义和常量
  * - 性能优化和安全考虑
  * 

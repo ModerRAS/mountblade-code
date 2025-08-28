@@ -176,38 +176,38 @@ void DataStructureInitializer(uint64_t **param_1, longlong param_2)
     }
     uVar9 = 1;
 LAB_1801c44da:
-    FUN_18005e630(_DAT_180c82868);
-    FUN_1801c9940(puVar1);
-    uVar4 = FUN_18062b1e0(_DAT_180c8ed18,0x580,8,3);
-    plVar5 = (longlong *)FUN_1803e8a40(uVar4,param_2);
+    SystemInitializer(_DAT_180c82868);
+    SystemResourceTracker(puVar1);
+    uVar4 = SystemMemoryAllocator(_DAT_180c8ed18,0x580,8,3);
+    plVar5 = (longlong *)SystemDataManager(uVar4,param_2);
     *puVar1 = plVar5;
     (**(code **)(*plVar5 + 0x28))(plVar5);
     *(int8_t *)(_DAT_180c86870 + 0x60) = 1;
-    uVar4 = FUN_18062b1e0(_DAT_180c8ed18,0xe0,8,3);
+    uVar4 = SystemMemoryAllocator(_DAT_180c8ed18,0xe0,8,3);
     ppuStackX_8 = apuStack_68;
     pppuStackX_10 = (uint64_t ***)&puStack_98;
     puStack_98 = puVar1;
     uStack_90 = uVar9;
-    FUN_180627ae0(&puStack_88,param_2);
+    SystemDataCopier(&puStack_88,param_2);
     pppuStackX_10 = (uint64_t ***)&puStack_98;
     ppuStackX_18 = &puStack_c8;
     puStack_c8 = puStack_98;
     uStack_c0 = uStack_90;
-    FUN_180627ae0(&puStack_b8,&puStack_88);
+    SystemDataCopier(&puStack_b8,&puStack_88);
     ppuStackX_18 = &puStack_c8;
-    pcStack_58 = FUN_1801eb5a0;
-    pcStack_50 = FUN_1801eb560;
-    puVar6 = (uint64_t *)FUN_18062b1e0(_DAT_180c8ed18,0x30,8,DAT_180bf65bc);
+    pcStack_58 = SystemFunctionPointer1;
+    pcStack_50 = SystemFunctionPointer2;
+    puVar6 = (uint64_t *)SystemMemoryAllocator(_DAT_180c8ed18,0x30,8,DAT_180bf65bc);
     *puVar6 = puStack_c8;
     *(int8_t *)(puVar6 + 1) = uStack_c0;
     puStackX_20 = puVar6;
-    FUN_180627ae0(puVar6 + 2,&puStack_b8);
+    SystemDataCopier(puVar6 + 2,&puStack_b8);
     ppuStackX_18 = (uint64_t **)&puStack_b8;
     puStack_b8 = &UNK_180a3c3e0;
     apuStack_68[0] = puVar6;
     if (lStack_b0 != 0) {
         // WARNING: Subroutine does not return
-        FUN_18064e900();
+        SystemErrorHandler();
     }
     lStack_b0 = 0;
     uStack_a0 = 0;
@@ -216,12 +216,12 @@ LAB_1801c44da:
     puStack_88 = &UNK_180a3c3e0;
     if (lStack_80 != 0) {
         // WARNING: Subroutine does not return
-        FUN_18064e900();
+        SystemErrorHandler();
     }
     lStack_80 = 0;
     uStack_70 = 0;
     puStack_88 = &UNK_18098bcb0;
-    ppuVar7 = (uint64_t **)FUN_18006b640(uVar4,apuStack_68);
+    ppuVar7 = (uint64_t **)SystemResourceHandler(uVar4,apuStack_68);
     if (ppuVar7 != (uint64_t **)0x0) {
         ppuStackX_8 = ppuVar7;
         (*(code *)(*ppuVar7)[5])(ppuVar7);
@@ -238,7 +238,7 @@ LAB_1801c44da:
     if (ppuStackX_8 != (uint64_t **)0x0) {
         (*(code *)(*ppuStackX_8)[5])();
     }
-    FUN_18005e110(uVar4,&ppuStackX_8);
+    SystemMemoryDeallocator(uVar4,&ppuStackX_8);
     return;
 }
 
@@ -269,7 +269,7 @@ void DataStructureCleaner(longlong param_1)
     *(uint64_t *)(param_1 + 0x10) = &UNK_180a3c3e0;
     if (*(longlong *)(param_1 + 0x18) != 0) {
         // WARNING: Subroutine does not return
-        FUN_18064e900();
+        SystemErrorHandler();
     }
     *(uint64_t *)(param_1 + 0x18) = 0;
     *(int32_t *)(param_1 + 0x28) = 0;
@@ -391,14 +391,14 @@ void FileOperationProcessor(uint64_t param_1, longlong param_2)
     uStack_50 = 0xfffffffffffffffe;
     uStack_30 = _DAT_180bf00a8 ^ (ulonglong)auStack_238;
     lStack_178 = _DAT_180c8aa08;
-    FUN_1801d8e90(_DAT_180c8aa08,param_2,0);
+    SystemFileHandler(_DAT_180c8aa08,param_2,0);
     puStack_1e0 = &UNK_180a3c3e0;
     uStack_1c8 = 0;
     puStack_1d8 = (void *)0x0;
     uStack_1d0 = 0;
-    FUN_1801c5870(&puStack_1e0,param_2);
+    StringPathProcessor(&puStack_1e0,param_2);
     iVar15 = uStack_1d0 + 0x12;
-    FUN_1806277c0(&puStack_1e0,iVar15);
+    SystemConfigurator(&puStack_1e0,iVar15);
     puVar11 = (int32_t *)(puStack_1d8 + uStack_1d0);
     *puVar11 = 0x64616873;
     puVar11[1] = 0x6d5f7265;
