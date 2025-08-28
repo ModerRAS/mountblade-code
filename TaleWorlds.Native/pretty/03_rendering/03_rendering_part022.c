@@ -143,6 +143,7 @@ LAB_MESH_NAMES_DIFFERENT:
     }
     goto LAB_COMPONENT_PROCESSING;
   }
+  // 处理网格名称比较和验证
   comparison_index = *(int *)((longlong)component_data + 0x40);
   temp_component_ptr = target_component;
   if (comparison_index == *(int *)((longlong)target_component + 0x40)) {
@@ -171,6 +172,7 @@ LAB_COMPONENT_NAMES_DIFFERENT:
     component_name2 = component_name1;
   }
   add_material_to_scene(scene_manager, component_ptr, &MATERIAL_PROPERTY_TABLE, component_name2);
+  // 比较网格属性并进行材质处理
 LAB_COMPONENT_PROCESSING:
   if (*(int *)((longlong)component_data + 0x324) != *(int *)((longlong)temp_component_ptr + 0x324)) {
     add_rendering_parameter(scene_manager, component_ptr, &RENDERING_QUALITY_SETTING);
@@ -189,6 +191,7 @@ LAB_COMPONENT_PROCESSING:
   }
   component_char = compare_mesh_properties(material_system_ptr, texture_object_ptr2, 0x3c23d70a);
   if (component_char == '\0') {
+    // 处理网格变换和缩放
     float source_scale_x = *(float *)((longlong)component_data + 0x6c);
     float source_scale_y = *(float *)((longlong)component_data + 0x364);
     float source_scale_z = *(float *)((longlong)component_data + 0x6d);
@@ -199,6 +202,7 @@ LAB_COMPONENT_PROCESSING:
     add_material_to_scene(scene_manager, component_ptr, &MESH_TRANSFORM_PROPERTY, &mesh_transform_scale);
     add_material_to_scene(scene_manager, component_ptr, &MESH_ROTATION_PROPERTY, mesh_rotation_data);
   }
+  // 处理自定义属性和网格数据
   if (component_data[0x77] != 0) {
     heap_allocation1 = *(void **)(component_data[0x77] + 0x18);
     heap_ptr2 = &DEFAULT_STRING_VALUE;

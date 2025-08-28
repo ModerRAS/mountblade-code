@@ -152,40 +152,40 @@ LAB_18027c73b:
   }
   add_render_parameter(render_context_ptr, component_data_ptr, &DEFAULT_SHADER_PARAM, string_ptr2);
 LAB_18027c801:
-  if (*(int *)((longlong)param_1 + 0x324) != *(int *)((longlong)puStackX_20 + 0x324)) {
-    FUN_180630c80(param_2,puVar8,&UNK_180a16828);
+  if (*(int *)((longlong)mesh_component_ptr + 0x324) != *(int *)((longlong)stack_mesh_ptr + 0x324)) {
+    add_render_parameter(render_context_ptr, component_data_ptr, &RENDER_FLAG_DIFFERENT, 0);
   }
-  if ((undefined *)*puStackX_20 == &UNK_180a169b8) {
-    puVar13 = puStackX_20 + 0x66;
-  }
-  else {
-    puVar13 = (undefined8 *)(**(code **)((undefined *)*puStackX_20 + 0x158))(puStackX_20);
-  }
-  if ((undefined *)*param_1 == &UNK_180a169b8) {
-    puVar17 = param_1 + 0x66;
+  if ((undefined *)*stack_mesh_ptr == &DEFAULT_MESH_TYPE) {
+    mesh_data_ptr = stack_mesh_ptr + 0x66;
   }
   else {
-    puVar17 = (undefined8 *)(**(code **)((undefined *)*param_1 + 0x158))(param_1);
+    mesh_data_ptr = (undefined8 *)(**(code **)((undefined *)*stack_mesh_ptr + 0x158))(stack_mesh_ptr);
   }
-  cVar4 = func_0x000180285f10(puVar13,puVar17,0x3c23d70a);
-  if (cVar4 == '\0') {
-    fStack_90 = *(float *)(param_1 + 0x6c);
-    fStack_8c = *(float *)((longlong)param_1 + 0x364);
-    fStack_88 = *(float *)(param_1 + 0x6d);
-    uStack_84 = *(undefined4 *)((longlong)param_1 + 0x36c);
-    FUN_1801c1720(param_1 + 0x66,&fStack_a0);
-    FUN_180085020(param_1 + 0x66,alStack_78);
-    FUN_18062fb40(param_2,puVar8,&UNK_180a16808,&fStack_90);
-    FUN_18062fb40(param_2,puVar8,&UNK_180a16818,&fStack_a0);
-    FUN_18062fb40(param_2,puVar8,&UNK_180a0f108,alStack_78);
+  if ((undefined *)*mesh_component_ptr == &DEFAULT_MESH_TYPE) {
+    texture_ptr = mesh_component_ptr + 0x66;
   }
-  if (param_1[0x77] != 0) {
-    puVar20 = *(undefined **)(param_1[0x77] + 0x18);
-    puVar25 = &DAT_18098bc73;
-    if (puVar20 != (undefined *)0x0) {
-      puVar25 = puVar20;
+  else {
+    texture_ptr = (undefined8 *)(**(code **)((undefined *)*mesh_component_ptr + 0x158))(mesh_component_ptr);
+  }
+  char_val2 = compare_mesh_data(mesh_data_ptr, texture_ptr, 0x3c23d70a);
+  if (char_val2 == '\0') {
+    float_val4 = *(float *)(mesh_component_ptr + 0x6c);
+    float_val5 = *(float *)((longlong)mesh_component_ptr + 0x364);
+    float_val6 = *(float *)(mesh_component_ptr + 0x6d);
+    float_pack2 = *(undefined4 *)((longlong)mesh_component_ptr + 0x36c);
+    get_mesh_transform(mesh_component_ptr + 0x66, &float_val);
+    get_mesh_rotation(mesh_component_ptr + 0x66, stack_array);
+    add_render_parameter(render_context_ptr, component_data_ptr, &MESH_POSITION_PARAM, &float_val4);
+    add_render_parameter(render_context_ptr, component_data_ptr, &MESH_TRANSFORM_PARAM, &float_val);
+    add_render_parameter(render_context_ptr, component_data_ptr, &MESH_ROTATION_PARAM, stack_array);
+  }
+  if (mesh_component_ptr[0x77] != 0) {
+    render_obj_ptr = *(undefined **)(mesh_component_ptr[0x77] + 0x18);
+    material_ptr = &DEFAULT_MATERIAL;
+    if (render_obj_ptr != (undefined *)0x0) {
+      material_ptr = render_obj_ptr;
     }
-    FUN_180630b20(param_2,puVar8,&UNK_180a16840,puVar25);
+    add_render_parameter(render_context_ptr, component_data_ptr, &MATERIAL_PARAM, material_ptr);
   }
   iStack_a8 = 0;
   lVar11 = param_1[7];
