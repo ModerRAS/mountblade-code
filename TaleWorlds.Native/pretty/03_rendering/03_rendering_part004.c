@@ -1,768 +1,773 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 03_rendering_part004.c - 渲染曲线和动画参数处理函数
+// 03_rendering_part004.c - 2 个函数
 
-// 函数: void process_curve_animation_parameters(longlong animation_context, undefined8 param_2, undefined8 param_3, longlong config_data)
-// 处理曲线动画参数，解析动画配置并设置关键帧
-void process_curve_animation_parameters(longlong animation_context, undefined8 param_2, undefined8 param_3, longlong config_data)
+// 函数: void FUN_180270ba0(longlong param_1,undefined8 param_2,undefined8 param_3,longlong param_4)
+void FUN_180270ba0(longlong param_1,undefined8 param_2,undefined8 param_3,longlong param_4)
 
 {
-  char curve_match;
-  char name_match;
-  char *curve_ptr;
-  ulonglong str_length;
-  longlong offset;
-  undefined *temp_ptr;
-  undefined8 *node_ptr;
-  char *str_ptr;
-  undefined8 *attr_ptr;
-  char *search_ptr;
-  int version_stack[2];
-  float time_stack[2];
-  float value_stack[2];
-  undefined8 curve_flags;
-  int key_index;
-  float key_time;
-  undefined8 time_flags;
-  int key_index2;
-  float key_time2;
-  undefined8 time_flags2;
+  char cVar1;
+  char cVar2;
+  char *pcVar3;
+  ulonglong uVar4;
+  longlong lVar5;
+  undefined *puVar6;
+  undefined8 *puVar7;
+  char *pcVar8;
+  undefined8 *puVar9;
+  char *pcVar10;
+  int aiStackX_20 [2];
+  float afStack_88 [2];
+  float afStack_80 [2];
+  undefined8 uStack_78;
+  int iStack_70;
+  float fStack_6c;
+  undefined8 uStack_68;
+  int iStack_60;
+  float fStack_5c;
+  undefined8 uStack_58;
   
-  // 初始化曲线处理
-  initialize_curve_processor(animation_context, config_data);
-  set_animation_config(animation_context + 8, &curve_config_table, config_data);
-  curve_flags = 0xfffffffffffffffe;
-  *(undefined8 *)(animation_context + 0x48) = *(undefined8 *)(animation_context + 0x40);
-  str_ptr = "curve";
+  FUN_180270bf0(param_1,param_4);
+  FUN_180416cc0(param_1 + 8,&UNK_180a15b70,param_4);
+  uStack_78 = 0xfffffffffffffffe;
+  *(undefined8 *)(param_1 + 0x48) = *(undefined8 *)(param_1 + 0x40);
+  pcVar8 = "curve";
   do {
-    search_ptr = str_ptr;
-    str_ptr = search_ptr + 1;
-  } while (*str_ptr != '\0');
-  node_ptr = *(undefined8 **)(config_data + 0x30);
+    pcVar10 = pcVar8;
+    pcVar8 = pcVar10 + 1;
+  } while (*pcVar8 != '\0');
+  puVar7 = *(undefined8 **)(param_4 + 0x30);
   do {
-    if (node_ptr == (undefined8 *)0x0) {
+    if (puVar7 == (undefined8 *)0x0) {
       return;
     }
-    str_ptr = (char *)*node_ptr;
-    if (str_ptr == (char *)0x0) {
-      curve_ptr = (char *)0x0;
-      str_ptr = (char *)0x180d48d24;
+    pcVar8 = (char *)*puVar7;
+    if (pcVar8 == (char *)0x0) {
+      pcVar3 = (char *)0x0;
+      pcVar8 = (char *)0x180d48d24;
     }
     else {
-      curve_ptr = (char *)node_ptr[2];
+      pcVar3 = (char *)puVar7[2];
     }
-    if (curve_ptr == search_ptr + -0x180a180f3) {
-      curve_ptr = curve_ptr + (longlong)str_ptr;
-      if (curve_ptr <= str_ptr) break;
-      offset = (longlong)&curve_keyword_table - (longlong)str_ptr;
-      while (*str_ptr == str_ptr[offset]) {
-        str_ptr = str_ptr + 1;
-        if (curve_ptr <= str_ptr) goto HANDLE_CURVE_FOUND;
+    if (pcVar3 == pcVar10 + -0x180a180f3) {
+      pcVar3 = pcVar3 + (longlong)pcVar8;
+      if (pcVar3 <= pcVar8) break;
+      lVar5 = (longlong)&UNK_180a180f4 - (longlong)pcVar8;
+      while (*pcVar8 == pcVar8[lVar5]) {
+        pcVar8 = pcVar8 + 1;
+        if (pcVar3 <= pcVar8) goto LAB_180416d70;
       }
     }
-    node_ptr = (undefined8 *)node_ptr[0xb];
+    puVar7 = (undefined8 *)puVar7[0xb];
   } while( true );
-HANDLE_CURVE_FOUND:
-  str_ptr = "name";
+LAB_180416d70:
+  pcVar8 = "name";
   do {
-    search_ptr = str_ptr;
-    str_ptr = search_ptr + 1;
-  } while (*str_ptr != '\0');
-  for (attr_ptr = (undefined8 *)node_ptr[8]; attr_ptr != (undefined8 *)0x0;
-      attr_ptr = (undefined8 *)attr_ptr[6]) {
-    str_ptr = (char *)*attr_ptr;
-    if (str_ptr == (char *)0x0) {
-      curve_ptr = (char *)0x0;
-      str_ptr = (char *)0x180d48d24;
+    pcVar10 = pcVar8;
+    pcVar8 = pcVar10 + 1;
+  } while (*pcVar8 != '\0');
+  for (puVar9 = (undefined8 *)puVar7[8]; puVar9 != (undefined8 *)0x0;
+      puVar9 = (undefined8 *)puVar9[6]) {
+    pcVar8 = (char *)*puVar9;
+    if (pcVar8 == (char *)0x0) {
+      pcVar3 = (char *)0x0;
+      pcVar8 = (char *)0x180d48d24;
     }
     else {
-      curve_ptr = (char *)attr_ptr[2];
+      pcVar3 = (char *)puVar9[2];
     }
-    if (curve_ptr == search_ptr + -0x180a03a83) {
-      curve_ptr = str_ptr + (longlong)curve_ptr;
-      if (curve_ptr <= str_ptr) {
-FALLBACK_TO_DEFAULT_NAME:
-        str_ptr = (char *)0x180d48d24;
-        if ((char *)attr_ptr[1] != (char *)0x0) {
-          str_ptr = (char *)attr_ptr[1];
+    if (pcVar3 == pcVar10 + -0x180a03a83) {
+      pcVar3 = pcVar8 + (longlong)pcVar3;
+      if (pcVar3 <= pcVar8) {
+LAB_180416dd0:
+        pcVar8 = (char *)0x180d48d24;
+        if ((char *)puVar9[1] != (char *)0x0) {
+          pcVar8 = (char *)puVar9[1];
         }
-        offset = (longlong)&default_name_table - (longlong)str_ptr;
-        goto COMPARE_NAME;
+        lVar5 = (longlong)&UNK_180a15ff8 - (longlong)pcVar8;
+        goto LAB_180416de4;
       }
-      offset = (longlong)&name_keyword_table - (longlong)str_ptr;
-      while (*str_ptr == str_ptr[offset]) {
-        str_ptr = str_ptr + 1;
-        if (curve_ptr <= str_ptr) goto FALLBACK_TO_DEFAULT_NAME;
+      lVar5 = (longlong)&DAT_180a03a84 - (longlong)pcVar8;
+      while (*pcVar8 == pcVar8[lVar5]) {
+        pcVar8 = pcVar8 + 1;
+        if (pcVar3 <= pcVar8) goto LAB_180416dd0;
       }
     }
   }
-  goto HANDLE_NAME_MISMATCH;
-  while (str_ptr = str_ptr + 1, name_match != '\0') {
-COMPARE_NAME:
-    curve_match = *str_ptr;
-    name_match = str_ptr[offset];
-    if (curve_match != name_match) break;
+  goto LAB_180416dfb;
+  while (pcVar8 = pcVar8 + 1, cVar2 != '\0') {
+LAB_180416de4:
+    cVar1 = *pcVar8;
+    cVar2 = pcVar8[lVar5];
+    if (cVar1 != cVar2) break;
   }
-  if (curve_match != name_match) {
-HANDLE_NAME_MISMATCH:
-    str_ptr = "curve";
+  if (cVar1 != cVar2) {
+LAB_180416dfb:
+    pcVar8 = "curve";
     do {
-      search_ptr = str_ptr;
-      str_ptr = search_ptr + 1;
-    } while (*str_ptr != '\0');
+      pcVar10 = pcVar8;
+      pcVar8 = pcVar10 + 1;
+    } while (*pcVar8 != '\0');
     while( true ) {
       do {
-        node_ptr = (undefined8 *)node_ptr[0xb];
-        if (node_ptr == (undefined8 *)0x0) {
+        puVar7 = (undefined8 *)puVar7[0xb];
+        if (puVar7 == (undefined8 *)0x0) {
           return;
         }
-        str_ptr = (char *)*node_ptr;
-        if (str_ptr == (char *)0x0) {
-          curve_ptr = (char *)0x0;
-          str_ptr = (char *)0x180d48d24;
+        pcVar8 = (char *)*puVar7;
+        if (pcVar8 == (char *)0x0) {
+          pcVar3 = (char *)0x0;
+          pcVar8 = (char *)0x180d48d24;
         }
         else {
-          curve_ptr = (char *)node_ptr[2];
+          pcVar3 = (char *)puVar7[2];
         }
-      } while (curve_ptr != search_ptr + -0x180a180f3);
-      curve_ptr = curve_ptr + (longlong)str_ptr;
-      if (curve_ptr <= str_ptr) break;
-      offset = (longlong)&curve_keyword_table - (longlong)str_ptr;
-      while (*str_ptr == str_ptr[offset]) {
-        str_ptr = str_ptr + 1;
-        if (curve_ptr <= str_ptr) goto HANDLE_CURVE_FOUND;
+      } while (pcVar3 != pcVar10 + -0x180a180f3);
+      pcVar3 = pcVar3 + (longlong)pcVar8;
+      if (pcVar3 <= pcVar8) break;
+      lVar5 = (longlong)&UNK_180a180f4 - (longlong)pcVar8;
+      while (*pcVar8 == pcVar8[lVar5]) {
+        pcVar8 = pcVar8 + 1;
+        if (pcVar3 <= pcVar8) goto LAB_180416d70;
       }
     }
-    goto HANDLE_CURVE_FOUND;
+    goto LAB_180416d70;
   }
-  version_stack[0] = 0;
-  str_ptr = "version";
+  aiStackX_20[0] = 0;
+  pcVar8 = "version";
   do {
-    search_ptr = str_ptr;
-    str_ptr = search_ptr + 1;
-  } while (*str_ptr != '\0');
-  attr_ptr = (undefined8 *)node_ptr[8];
+    pcVar10 = pcVar8;
+    pcVar8 = pcVar10 + 1;
+  } while (*pcVar8 != '\0');
+  puVar9 = (undefined8 *)puVar7[8];
   do {
-    if (attr_ptr == (undefined8 *)0x0) goto HANDLE_VERSION_DONE;
-    str_ptr = (char *)*attr_ptr;
-    if (str_ptr == (char *)0x0) {
-      curve_ptr = (char *)0x0;
-      str_ptr = (char *)0x180d48d24;
+    if (puVar9 == (undefined8 *)0x0) goto LAB_180416f25;
+    pcVar8 = (char *)*puVar9;
+    if (pcVar8 == (char *)0x0) {
+      pcVar3 = (char *)0x0;
+      pcVar8 = (char *)0x180d48d24;
     }
     else {
-      curve_ptr = (char *)attr_ptr[2];
+      pcVar3 = (char *)puVar9[2];
     }
-    if (curve_ptr == search_ptr + -0x180a015af) {
-      curve_ptr = curve_ptr + (longlong)str_ptr;
-      if (curve_ptr <= str_ptr) {
-FALLBACK_TO_DEFAULT_VERSION:
-        str_ptr = (char *)0x180d48d24;
-        if ((char *)attr_ptr[1] != (char *)0x0) {
-          str_ptr = (char *)attr_ptr[1];
+    if (pcVar3 == pcVar10 + -0x180a015af) {
+      pcVar3 = pcVar3 + (longlong)pcVar8;
+      if (pcVar3 <= pcVar8) {
+LAB_180416ed4:
+        pcVar8 = (char *)0x180d48d24;
+        if ((char *)puVar9[1] != (char *)0x0) {
+          pcVar8 = (char *)puVar9[1];
         }
-        str_length = 0xffffffffffffffff;
+        uVar4 = 0xffffffffffffffff;
         do {
-          str_length = str_length + 1;
-        } while (str_ptr[str_length] != '\0');
-        if (((str_length < 3) || (*str_ptr != '0')) ||
-           (temp_ptr = &version_validator, (str_ptr[1] + 0xa8U & 0xdf) != 0)) {
-          temp_ptr = &default_version_parser;
+          uVar4 = uVar4 + 1;
+        } while (pcVar8[uVar4] != '\0');
+        if (((uVar4 < 3) || (*pcVar8 != '0')) ||
+           (puVar6 = &UNK_180a3cb84, (pcVar8[1] + 0xa8U & 0xdf) != 0)) {
+          puVar6 = &UNK_180a063a0;
         }
-        parse_version_string(str_ptr, temp_ptr, version_stack);
-HANDLE_VERSION_DONE:
-        str_ptr = "default";
+        FUN_18010cbc0(pcVar8,puVar6,aiStackX_20);
+LAB_180416f25:
+        pcVar8 = "default";
         do {
-          search_ptr = str_ptr;
-          str_ptr = search_ptr + 1;
-        } while (*str_ptr != '\0');
-        for (attr_ptr = (undefined8 *)node_ptr[8]; attr_ptr != (undefined8 *)0x0;
-            attr_ptr = (undefined8 *)attr_ptr[6]) {
-          str_ptr = (char *)*attr_ptr;
-          if (str_ptr == (char *)0x0) {
-            curve_ptr = (char *)0x0;
-            str_ptr = (char *)0x180d48d24;
+          pcVar10 = pcVar8;
+          pcVar8 = pcVar10 + 1;
+        } while (*pcVar8 != '\0');
+        for (puVar9 = (undefined8 *)puVar7[8]; puVar9 != (undefined8 *)0x0;
+            puVar9 = (undefined8 *)puVar9[6]) {
+          pcVar8 = (char *)*puVar9;
+          if (pcVar8 == (char *)0x0) {
+            pcVar3 = (char *)0x0;
+            pcVar8 = (char *)0x180d48d24;
           }
           else {
-            curve_ptr = (char *)attr_ptr[2];
+            pcVar3 = (char *)puVar9[2];
           }
-          if (curve_ptr == search_ptr + -0x180a0b1bf) {
-            curve_ptr = str_ptr + (longlong)curve_ptr;
-            if (curve_ptr <= str_ptr) {
-FALLBACK_TO_DEFAULT_VALUE:
-              offset = 0x180d48d24;
-              if (attr_ptr[1] != 0) {
-                offset = attr_ptr[1];
+          if (pcVar3 == pcVar10 + -0x180a0b1bf) {
+            pcVar3 = pcVar8 + (longlong)pcVar3;
+            if (pcVar3 <= pcVar8) {
+LAB_180416f88:
+              lVar5 = 0x180d48d24;
+              if (puVar9[1] != 0) {
+                lVar5 = puVar9[1];
               }
-              goto HANDLE_DEFAULT_VALUE;
+              goto LAB_180416fa0;
             }
-            offset = (longlong)&default_keyword_table - (longlong)str_ptr;
-            while (*str_ptr == str_ptr[offset]) {
-              str_ptr = str_ptr + 1;
-              if (curve_ptr <= str_ptr) goto FALLBACK_TO_DEFAULT_VALUE;
+            lVar5 = (longlong)&DAT_180a0b1c0 - (longlong)pcVar8;
+            while (*pcVar8 == pcVar8[lVar5]) {
+              pcVar8 = pcVar8 + 1;
+              if (pcVar3 <= pcVar8) goto LAB_180416f88;
             }
           }
         }
-        offset = 0;
-HANDLE_DEFAULT_VALUE:
-        if ((animation_context + 100 != 0) && (offset != 0)) {
-          parse_animation_parameter(offset, &default_param_table, animation_context + 100);
+        lVar5 = 0;
+LAB_180416fa0:
+        if ((param_1 + 100 != 0) && (lVar5 != 0)) {
+          FUN_18010cbc0(lVar5,&DAT_180a06430,param_1 + 100);
         }
-        str_ptr = "curve_multiplier";
+        pcVar8 = "curve_multiplier";
         do {
-          search_ptr = str_ptr;
-          str_ptr = search_ptr + 1;
-        } while (*str_ptr != '\0');
-        for (attr_ptr = (undefined8 *)node_ptr[8]; attr_ptr != (undefined8 *)0x0;
-            attr_ptr = (undefined8 *)attr_ptr[6]) {
-          str_ptr = (char *)*attr_ptr;
-          if (str_ptr == (char *)0x0) {
-            curve_ptr = (char *)0x0;
-            str_ptr = (char *)0x180d48d24;
+          pcVar10 = pcVar8;
+          pcVar8 = pcVar10 + 1;
+        } while (*pcVar8 != '\0');
+        for (puVar9 = (undefined8 *)puVar7[8]; puVar9 != (undefined8 *)0x0;
+            puVar9 = (undefined8 *)puVar9[6]) {
+          pcVar8 = (char *)*puVar9;
+          if (pcVar8 == (char *)0x0) {
+            pcVar3 = (char *)0x0;
+            pcVar8 = (char *)0x180d48d24;
           }
           else {
-            curve_ptr = (char *)attr_ptr[2];
+            pcVar3 = (char *)puVar9[2];
           }
-          if (curve_ptr == search_ptr + -0x180a180af) {
-            curve_ptr = curve_ptr + (longlong)str_ptr;
-            if (curve_ptr <= str_ptr) {
-FALLBACK_TO_MULTIPLIER:
-              offset = 0x180d48d24;
-              if (attr_ptr[1] != 0) {
-                offset = attr_ptr[1];
+          if (pcVar3 == pcVar10 + -0x180a180af) {
+            pcVar3 = pcVar3 + (longlong)pcVar8;
+            if (pcVar3 <= pcVar8) {
+LAB_180417020:
+              lVar5 = 0x180d48d24;
+              if (puVar9[1] != 0) {
+                lVar5 = puVar9[1];
               }
-              goto HANDLE_MULTIPLIER;
+              goto LAB_180417038;
             }
-            offset = (longlong)&multiplier_keyword_table - (longlong)str_ptr;
-            while (*str_ptr == str_ptr[offset]) {
-              str_ptr = str_ptr + 1;
-              if (curve_ptr <= str_ptr) goto FALLBACK_TO_MULTIPLIER;
+            lVar5 = (longlong)&UNK_180a180b0 - (longlong)pcVar8;
+            while (*pcVar8 == pcVar8[lVar5]) {
+              pcVar8 = pcVar8 + 1;
+              if (pcVar3 <= pcVar8) goto LAB_180417020;
             }
           }
         }
-        offset = 0;
-HANDLE_MULTIPLIER:
-        if ((animation_context + 0x60 != 0) && (offset != 0)) {
-          parse_animation_parameter(offset, &default_param_table, animation_context + 0x60);
+        lVar5 = 0;
+LAB_180417038:
+        if ((param_1 + 0x60 != 0) && (lVar5 != 0)) {
+          FUN_18010cbc0(lVar5,&DAT_180a06430,param_1 + 0x60);
         }
-        str_ptr = "keys";
-        if (version_stack[0] != 1) {
+        pcVar8 = "keys";
+        if (aiStackX_20[0] != 1) {
           do {
-            search_ptr = str_ptr;
-            str_ptr = search_ptr + 1;
-          } while (*str_ptr != '\0');
-          node_ptr = (undefined8 *)node_ptr[6];
+            pcVar10 = pcVar8;
+            pcVar8 = pcVar10 + 1;
+          } while (*pcVar8 != '\0');
+          puVar7 = (undefined8 *)puVar7[6];
           do {
-            if (node_ptr == (undefined8 *)0x0) {
+            if (puVar7 == (undefined8 *)0x0) {
               return;
             }
-            str_ptr = (char *)*node_ptr;
-            if (str_ptr == (char *)0x0) {
-              curve_ptr = (char *)0x0;
-              str_ptr = (char *)0x180d48d24;
+            pcVar8 = (char *)*puVar7;
+            if (pcVar8 == (char *)0x0) {
+              pcVar3 = (char *)0x0;
+              pcVar8 = (char *)0x180d48d24;
             }
             else {
-              curve_ptr = (char *)node_ptr[2];
+              pcVar3 = (char *)puVar7[2];
             }
-            if (curve_ptr == search_ptr + -0x180a180c3) {
-              curve_ptr = str_ptr + (longlong)curve_ptr;
-              if (curve_ptr <= str_ptr) {
-HANDLE_KEYS_SECTION:
-                str_ptr = "key";
+            if (pcVar3 == pcVar10 + -0x180a180c3) {
+              pcVar3 = pcVar8 + (longlong)pcVar3;
+              if (pcVar3 <= pcVar8) {
+LAB_1804174f0:
+                pcVar8 = "key";
                 do {
-                  search_ptr = str_ptr;
-                  str_ptr = search_ptr + 1;
-                } while (*str_ptr != '\0');
-                node_ptr = (undefined8 *)node_ptr[6];
+                  pcVar10 = pcVar8;
+                  pcVar8 = pcVar10 + 1;
+                } while (*pcVar8 != '\0');
+                puVar7 = (undefined8 *)puVar7[6];
                 do {
-                  if (node_ptr == (undefined8 *)0x0) {
+                  if (puVar7 == (undefined8 *)0x0) {
                     return;
                   }
-                  str_ptr = (char *)*node_ptr;
-                  if (str_ptr == (char *)0x0) {
-                    curve_ptr = (char *)0x0;
-                    str_ptr = (char *)0x180d48d24;
+                  pcVar8 = (char *)*puVar7;
+                  if (pcVar8 == (char *)0x0) {
+                    pcVar3 = (char *)0x0;
+                    pcVar8 = (char *)0x180d48d24;
                   }
                   else {
-                    curve_ptr = (char *)node_ptr[2];
+                    pcVar3 = (char *)puVar7[2];
                   }
-                  if (curve_ptr == search_ptr + -0x180a18107) {
-                    curve_ptr = curve_ptr + (longlong)str_ptr;
-                    if (curve_ptr <= str_ptr) {
-HANDLE_KEY_ENTRY:
-                      str_ptr = "time";
+                  if (pcVar3 == pcVar10 + -0x180a18107) {
+                    pcVar3 = pcVar3 + (longlong)pcVar8;
+                    if (pcVar3 <= pcVar8) {
+LAB_180417570:
+                      pcVar8 = "time";
                       do {
-                        search_ptr = str_ptr;
-                        str_ptr = search_ptr + 1;
-                      } while (*str_ptr != '\0');
-                      for (attr_ptr = (undefined8 *)node_ptr[8]; attr_ptr != (undefined8 *)0x0;
-                          attr_ptr = (undefined8 *)attr_ptr[6]) {
-                        str_ptr = (char *)*attr_ptr;
-                        if (str_ptr == (char *)0x0) {
-                          curve_ptr = (char *)0x0;
-                          str_ptr = (char *)0x180d48d24;
+                        pcVar10 = pcVar8;
+                        pcVar8 = pcVar10 + 1;
+                      } while (*pcVar8 != '\0');
+                      for (puVar9 = (undefined8 *)puVar7[8]; puVar9 != (undefined8 *)0x0;
+                          puVar9 = (undefined8 *)puVar9[6]) {
+                        pcVar8 = (char *)*puVar9;
+                        if (pcVar8 == (char *)0x0) {
+                          pcVar3 = (char *)0x0;
+                          pcVar8 = (char *)0x180d48d24;
                         }
                         else {
-                          curve_ptr = (char *)attr_ptr[2];
+                          pcVar3 = (char *)puVar9[2];
                         }
-                        if (curve_ptr == search_ptr + -0x180a1810b) {
-                          curve_ptr = curve_ptr + (longlong)str_ptr;
-                          if (curve_ptr <= str_ptr) {
-FALLBACK_TO_TIME_VALUE:
-                            offset = 0x180d48d24;
-                            if (attr_ptr[1] != 0) {
-                              offset = attr_ptr[1];
+                        if (pcVar3 == pcVar10 + -0x180a1810b) {
+                          pcVar3 = pcVar3 + (longlong)pcVar8;
+                          if (pcVar3 <= pcVar8) {
+LAB_1804175d5:
+                            lVar5 = 0x180d48d24;
+                            if (puVar9[1] != 0) {
+                              lVar5 = puVar9[1];
                             }
-                            parse_animation_parameter(offset, &default_param_table, time_stack);
+                            FUN_18010cbc0(lVar5,&DAT_180a06430,afStack_80);
                             break;
                           }
-                          offset = (longlong)&time_keyword_table - (longlong)str_ptr;
-                          while (*str_ptr == str_ptr[offset]) {
-                            str_ptr = str_ptr + 1;
-                            if (curve_ptr <= str_ptr) goto FALLBACK_TO_TIME_VALUE;
+                          lVar5 = (longlong)&UNK_180a1810c - (longlong)pcVar8;
+                          while (*pcVar8 == pcVar8[lVar5]) {
+                            pcVar8 = pcVar8 + 1;
+                            if (pcVar3 <= pcVar8) goto LAB_1804175d5;
                           }
                         }
                       }
-                      str_ptr = "value";
+                      pcVar8 = "value";
                       do {
-                        search_ptr = str_ptr;
-                        str_ptr = search_ptr + 1;
-                      } while (*str_ptr != '\0');
-                      for (attr_ptr = (undefined8 *)node_ptr[8]; attr_ptr != (undefined8 *)0x0;
-                          attr_ptr = (undefined8 *)attr_ptr[6]) {
-                        str_ptr = (char *)*attr_ptr;
-                        if (str_ptr == (char *)0x0) {
-                          curve_ptr = (char *)0x0;
-                          str_ptr = (char *)0x180d48d24;
+                        pcVar10 = pcVar8;
+                        pcVar8 = pcVar10 + 1;
+                      } while (*pcVar8 != '\0');
+                      for (puVar9 = (undefined8 *)puVar7[8]; puVar9 != (undefined8 *)0x0;
+                          puVar9 = (undefined8 *)puVar9[6]) {
+                        pcVar8 = (char *)*puVar9;
+                        if (pcVar8 == (char *)0x0) {
+                          pcVar3 = (char *)0x0;
+                          pcVar8 = (char *)0x180d48d24;
                         }
                         else {
-                          curve_ptr = (char *)attr_ptr[2];
+                          pcVar3 = (char *)puVar9[2];
                         }
-                        if (curve_ptr == search_ptr + -0x180a0696b) {
-                          curve_ptr = curve_ptr + (longlong)str_ptr;
-                          if (curve_ptr <= str_ptr) {
-FALLBACK_TO_VALUE_PARAM:
-                            offset = 0x180d48d24;
-                            if (attr_ptr[1] != 0) {
-                              offset = attr_ptr[1];
+                        if (pcVar3 == pcVar10 + -0x180a0696b) {
+                          pcVar3 = pcVar3 + (longlong)pcVar8;
+                          if (pcVar3 <= pcVar8) {
+LAB_180417650:
+                            lVar5 = 0x180d48d24;
+                            if (puVar9[1] != 0) {
+                              lVar5 = puVar9[1];
                             }
-                            parse_animation_parameter(offset, &default_param_table, value_stack);
+                            FUN_18010cbc0(lVar5,&DAT_180a06430,afStack_88);
                             break;
                           }
-                          offset = (longlong)&value_keyword_table - (longlong)str_ptr;
-                          while (*str_ptr == str_ptr[offset]) {
-                            str_ptr = str_ptr + 1;
-                            if (curve_ptr <= str_ptr) goto FALLBACK_TO_VALUE_PARAM;
+                          lVar5 = (longlong)&UNK_180a0696c - (longlong)pcVar8;
+                          while (*pcVar8 == pcVar8[lVar5]) {
+                            pcVar8 = pcVar8 + 1;
+                            if (pcVar3 <= pcVar8) goto LAB_180417650;
                           }
                         }
                       }
-                      process_keyframe_data(node_ptr, &keyframe_processor, &animation_context);
-                      add_keyframe_to_curve(
-                                (longlong *)(animation_context + 0x38),(int)time_stack[0],value_stack[0],0,0);
-                      str_ptr = "key";
+                      FUN_180631850(puVar7,&UNK_180a18100,&stack0x00000008);
+                      (**(code **)(*(longlong *)(param_1 + 0x38) + 8))
+                                ((longlong *)(param_1 + 0x38),(int)afStack_80[0],afStack_88[0],0,0);
+                      pcVar8 = "key";
                       do {
-                        search_ptr = str_ptr;
-                        str_ptr = search_ptr + 1;
-                      } while (*str_ptr != '\0');
-                      node_ptr = (undefined8 *)node_ptr[0xb];
-                      if (node_ptr == (undefined8 *)0x0) {
+                        pcVar10 = pcVar8;
+                        pcVar8 = pcVar10 + 1;
+                      } while (*pcVar8 != '\0');
+                      puVar7 = (undefined8 *)puVar7[0xb];
+                      if (puVar7 == (undefined8 *)0x0) {
                         return;
                       }
                       do {
-                        str_ptr = (char *)*node_ptr;
-                        if (str_ptr == (char *)0x0) {
-                          curve_ptr = (char *)0x0;
-                          str_ptr = (char *)0x180d48d24;
+                        pcVar8 = (char *)*puVar7;
+                        if (pcVar8 == (char *)0x0) {
+                          pcVar3 = (char *)0x0;
+                          pcVar8 = (char *)0x180d48d24;
                         }
                         else {
-                          curve_ptr = (char *)node_ptr[2];
+                          pcVar3 = (char *)puVar7[2];
                         }
-                        if (curve_ptr == search_ptr + -0x180a18107) {
-                          curve_ptr = curve_ptr + (longlong)str_ptr;
-                          if (curve_ptr <= str_ptr) goto HANDLE_KEY_ENTRY;
-                          offset = (longlong)&key_keyword_table - (longlong)str_ptr;
-                          while (*str_ptr == str_ptr[offset]) {
-                            str_ptr = str_ptr + 1;
-                            if (curve_ptr <= str_ptr) goto HANDLE_KEY_ENTRY;
+                        if (pcVar3 == pcVar10 + -0x180a18107) {
+                          pcVar3 = pcVar3 + (longlong)pcVar8;
+                          if (pcVar3 <= pcVar8) goto LAB_180417570;
+                          lVar5 = (longlong)&UNK_180a18108 - (longlong)pcVar8;
+                          while (*pcVar8 == pcVar8[lVar5]) {
+                            pcVar8 = pcVar8 + 1;
+                            if (pcVar3 <= pcVar8) goto LAB_180417570;
                           }
                         }
-                        node_ptr = (undefined8 *)node_ptr[0xb];
-                        if (node_ptr == (undefined8 *)0x0) {
+                        puVar7 = (undefined8 *)puVar7[0xb];
+                        if (puVar7 == (undefined8 *)0x0) {
                           return;
                         }
                       } while( true );
                     }
-                    offset = (longlong)&key_keyword_table - (longlong)str_ptr;
-                    while (*str_ptr == str_ptr[offset]) {
-                      str_ptr = str_ptr + 1;
-                      if (curve_ptr <= str_ptr) goto HANDLE_KEY_ENTRY;
+                    lVar5 = (longlong)&UNK_180a18108 - (longlong)pcVar8;
+                    while (*pcVar8 == pcVar8[lVar5]) {
+                      pcVar8 = pcVar8 + 1;
+                      if (pcVar3 <= pcVar8) goto LAB_180417570;
                     }
                   }
-                  node_ptr = (undefined8 *)node_ptr[0xb];
+                  puVar7 = (undefined8 *)puVar7[0xb];
                 } while( true );
               }
-              offset = (longlong)&keys_keyword_table - (longlong)str_ptr;
-              while (*str_ptr == str_ptr[offset]) {
-                str_ptr = str_ptr + 1;
-                if (curve_ptr <= str_ptr) goto HANDLE_KEYS_SECTION;
+              lVar5 = (longlong)&UNK_180a180c4 - (longlong)pcVar8;
+              while (*pcVar8 == pcVar8[lVar5]) {
+                pcVar8 = pcVar8 + 1;
+                if (pcVar3 <= pcVar8) goto LAB_1804174f0;
               }
             }
-            node_ptr = (undefined8 *)node_ptr[0xb];
+            puVar7 = (undefined8 *)puVar7[0xb];
           } while( true );
         }
         do {
-          search_ptr = str_ptr;
-          str_ptr = search_ptr + 1;
-        } while (*str_ptr != '\0');
-        node_ptr = (undefined8 *)node_ptr[6];
+          pcVar10 = pcVar8;
+          pcVar8 = pcVar10 + 1;
+        } while (*pcVar8 != '\0');
+        puVar7 = (undefined8 *)puVar7[6];
         do {
-          if (node_ptr == (undefined8 *)0x0) {
+          if (puVar7 == (undefined8 *)0x0) {
             return;
           }
-          str_ptr = (char *)*node_ptr;
-          if (str_ptr == (char *)0x0) {
-            curve_ptr = (char *)0x0;
-            str_ptr = (char *)0x180d48d24;
+          pcVar8 = (char *)*puVar7;
+          if (pcVar8 == (char *)0x0) {
+            pcVar3 = (char *)0x0;
+            pcVar8 = (char *)0x180d48d24;
           }
           else {
-            curve_ptr = (char *)node_ptr[2];
+            pcVar3 = (char *)puVar7[2];
           }
-          if (curve_ptr == search_ptr + -0x180a180c3) {
-            curve_ptr = str_ptr + (longlong)curve_ptr;
-            if (curve_ptr <= str_ptr) {
-HANDLE_ALT_KEYS:
-              str_ptr = "key";
+          if (pcVar3 == pcVar10 + -0x180a180c3) {
+            pcVar3 = pcVar8 + (longlong)pcVar3;
+            if (pcVar3 <= pcVar8) {
+LAB_1804170b5:
+              pcVar8 = "key";
               do {
-                search_ptr = str_ptr;
-                str_ptr = search_ptr + 1;
-              } while (*str_ptr != '\0');
-              for (node_ptr = (undefined8 *)node_ptr[6]; node_ptr != (undefined8 *)0x0;
-                  node_ptr = (undefined8 *)node_ptr[0xb]) {
-                str_ptr = (char *)*node_ptr;
-                if (str_ptr == (char *)0x0) {
-                  curve_ptr = (char *)0x0;
-                  str_ptr = (char *)0x180d48d24;
+                pcVar10 = pcVar8;
+                pcVar8 = pcVar10 + 1;
+              } while (*pcVar8 != '\0');
+              for (puVar7 = (undefined8 *)puVar7[6]; puVar7 != (undefined8 *)0x0;
+                  puVar7 = (undefined8 *)puVar7[0xb]) {
+                pcVar8 = (char *)*puVar7;
+                if (pcVar8 == (char *)0x0) {
+                  pcVar3 = (char *)0x0;
+                  pcVar8 = (char *)0x180d48d24;
                 }
                 else {
-                  curve_ptr = (char *)node_ptr[2];
+                  pcVar3 = (char *)puVar7[2];
                 }
-                if (curve_ptr == search_ptr + -0x180a18107) {
-                  curve_ptr = curve_ptr + (longlong)str_ptr;
-                  if (curve_ptr <= str_ptr) goto HANDLE_ALT_KEY_ENTRY;
-                  offset = (longlong)&key_keyword_table - (longlong)str_ptr;
-                  while (*str_ptr == str_ptr[offset]) {
-                    str_ptr = str_ptr + 1;
-                    if (curve_ptr <= str_ptr) goto HANDLE_ALT_KEY_ENTRY;
+                if (pcVar3 == pcVar10 + -0x180a18107) {
+                  pcVar3 = pcVar3 + (longlong)pcVar8;
+                  if (pcVar3 <= pcVar8) goto LAB_180417140;
+                  lVar5 = (longlong)&UNK_180a18108 - (longlong)pcVar8;
+                  while (*pcVar8 == pcVar8[lVar5]) {
+                    pcVar8 = pcVar8 + 1;
+                    if (pcVar3 <= pcVar8) goto LAB_180417140;
                   }
                 }
               }
-              node_ptr = (undefined8 *)0x0;
-HANDLE_ALT_KEY_ENTRY:
+              puVar7 = (undefined8 *)0x0;
+LAB_180417140:
               do {
-                str_ptr = "time";
+                pcVar8 = "time";
                 do {
-                  search_ptr = str_ptr;
-                  str_ptr = search_ptr + 1;
-                } while (*str_ptr != '\0');
-                for (attr_ptr = (undefined8 *)node_ptr[8]; attr_ptr != (undefined8 *)0x0;
-                    attr_ptr = (undefined8 *)attr_ptr[6]) {
-                  str_ptr = (char *)*attr_ptr;
-                  if (str_ptr == (char *)0x0) {
-                    curve_ptr = (char *)0x0;
-                    str_ptr = (char *)0x180d48d24;
+                  pcVar10 = pcVar8;
+                  pcVar8 = pcVar10 + 1;
+                } while (*pcVar8 != '\0');
+                for (puVar9 = (undefined8 *)puVar7[8]; puVar9 != (undefined8 *)0x0;
+                    puVar9 = (undefined8 *)puVar9[6]) {
+                  pcVar8 = (char *)*puVar9;
+                  if (pcVar8 == (char *)0x0) {
+                    pcVar3 = (char *)0x0;
+                    pcVar8 = (char *)0x180d48d24;
                   }
                   else {
-                    curve_ptr = (char *)attr_ptr[2];
+                    pcVar3 = (char *)puVar9[2];
                   }
-                  if (curve_ptr == search_ptr + -0x180a1810b) {
-                    curve_ptr = curve_ptr + (longlong)str_ptr;
-                    if (curve_ptr <= str_ptr) {
-FALLBACK_TO_ALT_TIME:
-                      offset = 0x180d48d24;
-                      if (attr_ptr[1] != 0) {
-                        offset = attr_ptr[1];
+                  if (pcVar3 == pcVar10 + -0x180a1810b) {
+                    pcVar3 = pcVar3 + (longlong)pcVar8;
+                    if (pcVar3 <= pcVar8) {
+LAB_1804171a0:
+                      lVar5 = 0x180d48d24;
+                      if (puVar9[1] != 0) {
+                        lVar5 = puVar9[1];
                       }
-                      parse_animation_parameter(offset, &default_param_table, time_stack);
+                      FUN_18010cbc0(lVar5,&DAT_180a06430,afStack_88);
                       break;
                     }
-                    offset = (longlong)&time_keyword_table - (longlong)str_ptr;
-                    while (*str_ptr == str_ptr[offset]) {
-                      str_ptr = str_ptr + 1;
-                      if (curve_ptr <= str_ptr) goto FALLBACK_TO_ALT_TIME;
+                    lVar5 = (longlong)&UNK_180a1810c - (longlong)pcVar8;
+                    while (*pcVar8 == pcVar8[lVar5]) {
+                      pcVar8 = pcVar8 + 1;
+                      if (pcVar3 <= pcVar8) goto LAB_1804171a0;
                     }
                   }
                 }
-                str_ptr = "value";
+                pcVar8 = "value";
                 do {
-                  search_ptr = str_ptr;
-                  str_ptr = search_ptr + 1;
-                } while (*str_ptr != '\0');
-                for (attr_ptr = (undefined8 *)node_ptr[8]; attr_ptr != (undefined8 *)0x0;
-                    attr_ptr = (undefined8 *)attr_ptr[6]) {
-                  str_ptr = (char *)*attr_ptr;
-                  if (str_ptr == (char *)0x0) {
-                    curve_ptr = (char *)0x0;
-                    str_ptr = (char *)0x180d48d24;
+                  pcVar10 = pcVar8;
+                  pcVar8 = pcVar10 + 1;
+                } while (*pcVar8 != '\0');
+                for (puVar9 = (undefined8 *)puVar7[8]; puVar9 != (undefined8 *)0x0;
+                    puVar9 = (undefined8 *)puVar9[6]) {
+                  pcVar8 = (char *)*puVar9;
+                  if (pcVar8 == (char *)0x0) {
+                    pcVar3 = (char *)0x0;
+                    pcVar8 = (char *)0x180d48d24;
                   }
                   else {
-                    curve_ptr = (char *)attr_ptr[2];
+                    pcVar3 = (char *)puVar9[2];
                   }
-                  if (curve_ptr == search_ptr + -0x180a0696b) {
-                    curve_ptr = curve_ptr + (longlong)str_ptr;
-                    if (curve_ptr <= str_ptr) {
-FALLBACK_TO_ALT_VALUE:
-                      offset = 0x180d48d24;
-                      if (attr_ptr[1] != 0) {
-                        offset = attr_ptr[1];
+                  if (pcVar3 == pcVar10 + -0x180a0696b) {
+                    pcVar3 = pcVar3 + (longlong)pcVar8;
+                    if (pcVar3 <= pcVar8) {
+LAB_180417224:
+                      lVar5 = 0x180d48d24;
+                      if (puVar9[1] != 0) {
+                        lVar5 = puVar9[1];
                       }
-                      parse_animation_parameter(offset, &default_param_table, value_stack);
+                      FUN_18010cbc0(lVar5,&DAT_180a06430,afStack_80);
                       break;
                     }
-                    offset = (longlong)&value_keyword_table - (longlong)str_ptr;
-                    while (*str_ptr == str_ptr[offset]) {
-                      str_ptr = str_ptr + 1;
-                      if (curve_ptr <= str_ptr) goto FALLBACK_TO_ALT_VALUE;
+                    lVar5 = (longlong)&UNK_180a0696c - (longlong)pcVar8;
+                    while (*pcVar8 == pcVar8[lVar5]) {
+                      pcVar8 = pcVar8 + 1;
+                      if (pcVar3 <= pcVar8) goto LAB_180417224;
                     }
                   }
                 }
-                process_keyframe_data(node_ptr, &keyframe_processor, &animation_context);
-                key_index = (int)(time_stack[0] * 29.0);
-                key_time = value_stack[0];
-                time_flags = 0;
-                str_ptr = "key";
+                FUN_180631850(puVar7,&UNK_180a18100,&stack0x00000008);
+                iStack_70 = (int)(afStack_88[0] * 29.0);
+                fStack_6c = afStack_80[0];
+                uStack_68 = 0;
+                pcVar8 = "key";
                 do {
-                  search_ptr = str_ptr;
-                  str_ptr = search_ptr + 1;
-                } while (*str_ptr != '\0');
-                for (node_ptr = (undefined8 *)node_ptr[0xb]; node_ptr != (undefined8 *)0x0;
-                    node_ptr = (undefined8 *)node_ptr[0xb]) {
-                  str_ptr = (char *)*node_ptr;
-                  if (str_ptr == (char *)0x0) {
-                    curve_ptr = (char *)0x0;
-                    str_ptr = (char *)0x180d48d24;
+                  pcVar10 = pcVar8;
+                  pcVar8 = pcVar10 + 1;
+                } while (*pcVar8 != '\0');
+                for (puVar7 = (undefined8 *)puVar7[0xb]; puVar7 != (undefined8 *)0x0;
+                    puVar7 = (undefined8 *)puVar7[0xb]) {
+                  pcVar8 = (char *)*puVar7;
+                  if (pcVar8 == (char *)0x0) {
+                    pcVar3 = (char *)0x0;
+                    pcVar8 = (char *)0x180d48d24;
                   }
                   else {
-                    curve_ptr = (char *)node_ptr[2];
+                    pcVar3 = (char *)puVar7[2];
                   }
-                  if (curve_ptr == search_ptr + -0x180a18107) {
-                    curve_ptr = curve_ptr + (longlong)str_ptr;
-                    if (curve_ptr <= str_ptr) goto HANDLE_SECOND_KEY_ENTRY;
-                    offset = (longlong)&key_keyword_table - (longlong)str_ptr;
-                    while (*str_ptr == str_ptr[offset]) {
-                      str_ptr = str_ptr + 1;
-                      if (curve_ptr <= str_ptr) goto HANDLE_SECOND_KEY_ENTRY;
+                  if (pcVar3 == pcVar10 + -0x180a18107) {
+                    pcVar3 = pcVar3 + (longlong)pcVar8;
+                    if (pcVar3 <= pcVar8) goto LAB_1804172f2;
+                    lVar5 = (longlong)&UNK_180a18108 - (longlong)pcVar8;
+                    while (*pcVar8 == pcVar8[lVar5]) {
+                      pcVar8 = pcVar8 + 1;
+                      if (pcVar3 <= pcVar8) goto LAB_1804172f2;
                     }
                   }
                 }
-                node_ptr = (undefined8 *)0x0;
-HANDLE_SECOND_KEY_ENTRY:
-                str_ptr = "time";
+                puVar7 = (undefined8 *)0x0;
+LAB_1804172f2:
+                pcVar8 = "time";
                 do {
-                  search_ptr = str_ptr;
-                  str_ptr = search_ptr + 1;
-                } while (*str_ptr != '\0');
-                for (attr_ptr = (undefined8 *)node_ptr[8]; attr_ptr != (undefined8 *)0x0;
-                    attr_ptr = (undefined8 *)attr_ptr[6]) {
-                  str_ptr = (char *)*attr_ptr;
-                  if (str_ptr == (char *)0x0) {
-                    curve_ptr = (char *)0x0;
-                    str_ptr = (char *)0x180d48d24;
+                  pcVar10 = pcVar8;
+                  pcVar8 = pcVar10 + 1;
+                } while (*pcVar8 != '\0');
+                for (puVar9 = (undefined8 *)puVar7[8]; puVar9 != (undefined8 *)0x0;
+                    puVar9 = (undefined8 *)puVar9[6]) {
+                  pcVar8 = (char *)*puVar9;
+                  if (pcVar8 == (char *)0x0) {
+                    pcVar3 = (char *)0x0;
+                    pcVar8 = (char *)0x180d48d24;
                   }
                   else {
-                    curve_ptr = (char *)attr_ptr[2];
+                    pcVar3 = (char *)puVar9[2];
                   }
-                  if (curve_ptr == search_ptr + -0x180a1810b) {
-                    curve_ptr = curve_ptr + (longlong)str_ptr;
-                    if (curve_ptr <= str_ptr) {
-FALLBACK_TO_SECOND_TIME:
-                      offset = 0x180d48d24;
-                      if (attr_ptr[1] != 0) {
-                        offset = attr_ptr[1];
+                  if (pcVar3 == pcVar10 + -0x180a1810b) {
+                    pcVar3 = pcVar3 + (longlong)pcVar8;
+                    if (pcVar3 <= pcVar8) {
+LAB_180417341:
+                      lVar5 = 0x180d48d24;
+                      if (puVar9[1] != 0) {
+                        lVar5 = puVar9[1];
                       }
-                      parse_animation_parameter(offset, &default_param_table, time_stack);
+                      FUN_18010cbc0(lVar5,&DAT_180a06430,afStack_88);
                       break;
                     }
-                    offset = (longlong)&time_keyword_table - (longlong)str_ptr;
-                    while (*str_ptr == str_ptr[offset]) {
-                      str_ptr = str_ptr + 1;
-                      if (curve_ptr <= str_ptr) goto FALLBACK_TO_SECOND_TIME;
+                    lVar5 = (longlong)&UNK_180a1810c - (longlong)pcVar8;
+                    while (*pcVar8 == pcVar8[lVar5]) {
+                      pcVar8 = pcVar8 + 1;
+                      if (pcVar3 <= pcVar8) goto LAB_180417341;
                     }
                   }
                 }
-                str_ptr = "value";
+                pcVar8 = "value";
                 do {
-                  search_ptr = str_ptr;
-                  str_ptr = search_ptr + 1;
-                } while (*str_ptr != '\0');
-                for (attr_ptr = (undefined8 *)node_ptr[8]; attr_ptr != (undefined8 *)0x0;
-                    attr_ptr = (undefined8 *)attr_ptr[6]) {
-                  str_ptr = (char *)*attr_ptr;
-                  if (str_ptr == (char *)0x0) {
-                    curve_ptr = (char *)0x0;
-                    str_ptr = (char *)0x180d48d24;
+                  pcVar10 = pcVar8;
+                  pcVar8 = pcVar10 + 1;
+                } while (*pcVar8 != '\0');
+                for (puVar9 = (undefined8 *)puVar7[8]; puVar9 != (undefined8 *)0x0;
+                    puVar9 = (undefined8 *)puVar9[6]) {
+                  pcVar8 = (char *)*puVar9;
+                  if (pcVar8 == (char *)0x0) {
+                    pcVar3 = (char *)0x0;
+                    pcVar8 = (char *)0x180d48d24;
                   }
                   else {
-                    curve_ptr = (char *)attr_ptr[2];
+                    pcVar3 = (char *)puVar9[2];
                   }
-                  if (curve_ptr == search_ptr + -0x180a0696b) {
-                    curve_ptr = curve_ptr + (longlong)str_ptr;
-                    if (curve_ptr <= str_ptr) {
-FALLBACK_TO_SECOND_VALUE:
-                      offset = 0x180d48d24;
-                      if (attr_ptr[1] != 0) {
-                        offset = attr_ptr[1];
+                  if (pcVar3 == pcVar10 + -0x180a0696b) {
+                    pcVar3 = pcVar3 + (longlong)pcVar8;
+                    if (pcVar3 <= pcVar8) {
+LAB_1804173c4:
+                      lVar5 = 0x180d48d24;
+                      if (puVar9[1] != 0) {
+                        lVar5 = puVar9[1];
                       }
-                      parse_animation_parameter(offset, &default_param_table, value_stack);
+                      FUN_18010cbc0(lVar5,&DAT_180a06430,afStack_80);
                       break;
                     }
-                    offset = (longlong)&value_keyword_table - (longlong)str_ptr;
-                    while (*str_ptr == str_ptr[offset]) {
-                      str_ptr = str_ptr + 1;
-                      if (curve_ptr <= str_ptr) goto FALLBACK_TO_SECOND_VALUE;
+                    lVar5 = (longlong)&UNK_180a0696c - (longlong)pcVar8;
+                    while (*pcVar8 == pcVar8[lVar5]) {
+                      pcVar8 = pcVar8 + 1;
+                      if (pcVar3 <= pcVar8) goto LAB_1804173c4;
                     }
                   }
                 }
-                process_keyframe_data(node_ptr, &keyframe_processor, &animation_context);
-                key_index2 = (int)(time_stack[0] * 29.0);
-                key_time2 = value_stack[0];
-                time_flags2 = 0;
-                add_control_point_to_curve(animation_context + 0x40, &key_index);
-                str_ptr = "key";
+                FUN_180631850(puVar7,&UNK_180a18100,&stack0x00000008);
+                iStack_60 = (int)(afStack_88[0] * 29.0);
+                fStack_5c = afStack_80[0];
+                uStack_58 = 0;
+                FUN_1802b6e50(param_1 + 0x40,&iStack_70);
+                pcVar8 = "key";
                 do {
-                  search_ptr = str_ptr;
-                  str_ptr = search_ptr + 1;
-                } while (*str_ptr != '\0');
+                  pcVar10 = pcVar8;
+                  pcVar8 = pcVar10 + 1;
+                } while (*pcVar8 != '\0');
                 while( true ) {
                   do {
-                    node_ptr = (undefined8 *)node_ptr[0xb];
-                    if (node_ptr == (undefined8 *)0x0) {
+                    puVar7 = (undefined8 *)puVar7[0xb];
+                    if (puVar7 == (undefined8 *)0x0) {
                       return;
                     }
-                    str_ptr = (char *)*node_ptr;
-                    if (str_ptr == (char *)0x0) {
-                      curve_ptr = (char *)0x0;
-                      str_ptr = (char *)0x180d48d24;
+                    pcVar8 = (char *)*puVar7;
+                    if (pcVar8 == (char *)0x0) {
+                      pcVar3 = (char *)0x0;
+                      pcVar8 = (char *)0x180d48d24;
                     }
                     else {
-                      curve_ptr = (char *)node_ptr[2];
+                      pcVar3 = (char *)puVar7[2];
                     }
-                  } while (curve_ptr != search_ptr + -0x180a18107);
-                  curve_ptr = str_ptr + (longlong)curve_ptr;
-                  if (curve_ptr <= str_ptr) break;
-                  offset = (longlong)&key_keyword_table - (longlong)str_ptr;
-                  while (*str_ptr == str_ptr[offset]) {
-                    str_ptr = str_ptr + 1;
-                    if (curve_ptr <= str_ptr) goto HANDLE_ALT_KEY_ENTRY;
+                  } while (pcVar3 != pcVar10 + -0x180a18107);
+                  pcVar3 = pcVar8 + (longlong)pcVar3;
+                  if (pcVar3 <= pcVar8) break;
+                  lVar5 = (longlong)&UNK_180a18108 - (longlong)pcVar8;
+                  while (*pcVar8 == pcVar8[lVar5]) {
+                    pcVar8 = pcVar8 + 1;
+                    if (pcVar3 <= pcVar8) goto LAB_180417140;
                   }
                 }
               } while( true );
             }
-            offset = (longlong)&keys_keyword_table - (longlong)str_ptr;
-            while (*str_ptr == str_ptr[offset]) {
-              str_ptr = str_ptr + 1;
-              if (curve_ptr <= str_ptr) goto HANDLE_ALT_KEYS;
+            lVar5 = (longlong)&UNK_180a180c4 - (longlong)pcVar8;
+            while (*pcVar8 == pcVar8[lVar5]) {
+              pcVar8 = pcVar8 + 1;
+              if (pcVar3 <= pcVar8) goto LAB_1804170b5;
             }
           }
-          node_ptr = (undefined8 *)node_ptr[0xb];
+          puVar7 = (undefined8 *)puVar7[0xb];
         } while( true );
       }
-      offset = (longlong)&curve_config_table - (longlong)str_ptr;
-      while (*str_ptr == str_ptr[offset]) {
-        str_ptr = str_ptr + 1;
-        if (curve_ptr <= str_ptr) goto FALLBACK_TO_DEFAULT_VERSION;
+      lVar5 = (longlong)&UNK_180a015b0 - (longlong)pcVar8;
+      while (*pcVar8 == pcVar8[lVar5]) {
+        pcVar8 = pcVar8 + 1;
+        if (pcVar3 <= pcVar8) goto LAB_180416ed4;
       }
     }
-    attr_ptr = (undefined8 *)attr_ptr[6];
+    puVar9 = (undefined8 *)puVar9[6];
   } while( true );
 }
 
 
-// 函数: void initialize_curve_processor(longlong processor_context, longlong config_data)
-// 初始化曲线处理器，解析基础配置参数
-void initialize_curve_processor(longlong processor_context, longlong config_data)
+
+
+
+// 函数: void FUN_180270bf0(longlong param_1,longlong param_2)
+void FUN_180270bf0(longlong param_1,longlong param_2)
 
 {
-  undefined8 *attr_iter;
-  char *str_iter;
-  longlong param_offset;
-  char *match_ptr;
-  char *search_ptr;
+  undefined8 *puVar1;
+  char *pcVar2;
+  longlong lVar3;
+  char *pcVar4;
+  char *pcVar5;
   
-  str_iter = "base";
+  pcVar4 = "base";
   do {
-    search_ptr = str_iter;
-    str_iter = search_ptr + 1;
-  } while (*str_iter != '\0');
-  for (attr_iter = *(undefined8 **)(config_data + 0x40); attr_iter != (undefined8 *)0x0;
-      attr_iter = (undefined8 *)attr_iter[6]) {
-    str_iter = (char *)*attr_iter;
-    if (str_iter == (char *)0x0) {
-      match_ptr = (char *)0x0;
-      str_iter = (char *)0x180d48d24;
+    pcVar5 = pcVar4;
+    pcVar4 = pcVar5 + 1;
+  } while (*pcVar4 != '\0');
+  for (puVar1 = *(undefined8 **)(param_2 + 0x40); puVar1 != (undefined8 *)0x0;
+      puVar1 = (undefined8 *)puVar1[6]) {
+    pcVar4 = (char *)*puVar1;
+    if (pcVar4 == (char *)0x0) {
+      pcVar2 = (char *)0x0;
+      pcVar4 = (char *)0x180d48d24;
     }
     else {
-      match_ptr = (char *)attr_iter[2];
+      pcVar2 = (char *)puVar1[2];
     }
-    if (match_ptr == search_ptr + -0x180a04ee3) {
-      match_ptr = match_ptr + (longlong)str_iter;
-      if (match_ptr <= str_iter) {
-FALLBACK_TO_BASE_VALUE:
-        param_offset = 0x180d48d24;
-        if (attr_iter[1] != 0) {
-          param_offset = attr_iter[1];
+    if (pcVar2 == pcVar5 + -0x180a04ee3) {
+      pcVar2 = pcVar2 + (longlong)pcVar4;
+      if (pcVar2 <= pcVar4) {
+LAB_180270c78:
+        lVar3 = 0x180d48d24;
+        if (puVar1[1] != 0) {
+          lVar3 = puVar1[1];
         }
-        goto HANDLE_BASE_PARAM;
+        goto LAB_180270c93;
       }
-      param_offset = (longlong)&base_keyword_table - (longlong)str_iter;
-      while (*str_iter == str_iter[param_offset]) {
-        str_iter = str_iter + 1;
-        if (match_ptr <= str_iter) goto FALLBACK_TO_BASE_VALUE;
+      lVar3 = (longlong)&DAT_180a04ee4 - (longlong)pcVar4;
+      while (*pcVar4 == pcVar4[lVar3]) {
+        pcVar4 = pcVar4 + 1;
+        if (pcVar2 <= pcVar4) goto LAB_180270c78;
       }
     }
   }
-  param_offset = 0;
-HANDLE_BASE_PARAM:
-  if ((processor_context + 4 != 0) && (param_offset != 0)) {
-    parse_animation_parameter(param_offset, &default_param_table, processor_context + 4);
+  lVar3 = 0;
+LAB_180270c93:
+  if ((param_1 + 4 != 0) && (lVar3 != 0)) {
+    FUN_18010cbc0(lVar3,&DAT_180a06430,param_1 + 4);
   }
-  str_iter = "bias";
+  pcVar4 = "bias";
   do {
-    search_ptr = str_iter;
-    str_iter = search_ptr + 1;
-  } while (*str_iter != '\0');
-  attr_iter = *(undefined8 **)(config_data + 0x40);
+    pcVar5 = pcVar4;
+    pcVar4 = pcVar5 + 1;
+  } while (*pcVar4 != '\0');
+  puVar1 = *(undefined8 **)(param_2 + 0x40);
   do {
-    if (attr_iter == (undefined8 *)0x0) {
-      param_offset = 0;
-HANDLE_BIAS_PARAM:
-      if ((processor_context != 0) && (param_offset != 0)) {
-        parse_animation_parameter(param_offset, &default_param_table, processor_context);
+    if (puVar1 == (undefined8 *)0x0) {
+      lVar3 = 0;
+LAB_180270d29:
+      if ((param_1 != 0) && (lVar3 != 0)) {
+        FUN_18010cbc0(lVar3,&DAT_180a06430,param_1);
       }
       return;
     }
-    str_iter = (char *)*attr_iter;
-    if (str_iter == (char *)0x0) {
-      match_ptr = (char *)0x0;
-      str_iter = (char *)0x180d48d24;
+    pcVar4 = (char *)*puVar1;
+    if (pcVar4 == (char *)0x0) {
+      pcVar2 = (char *)0x0;
+      pcVar4 = (char *)0x180d48d24;
     }
     else {
-      match_ptr = (char *)attr_iter[2];
+      pcVar2 = (char *)puVar1[2];
     }
-    if (match_ptr == search_ptr + -0x180a1628f) {
-      match_ptr = match_ptr + (longlong)str_iter;
-      if (match_ptr <= str_iter) {
-FALLBACK_TO_BIAS_VALUE:
-        param_offset = 0x180d48d24;
-        if (attr_iter[1] != 0) {
-          param_offset = attr_iter[1];
+    if (pcVar2 == pcVar5 + -0x180a1628f) {
+      pcVar2 = pcVar2 + (longlong)pcVar4;
+      if (pcVar2 <= pcVar4) {
+LAB_180270d11:
+        lVar3 = 0x180d48d24;
+        if (puVar1[1] != 0) {
+          lVar3 = puVar1[1];
         }
-        goto HANDLE_BIAS_PARAM;
+        goto LAB_180270d29;
       }
-      param_offset = (longlong)&bias_keyword_table - (longlong)str_iter;
-      while (*str_iter == str_iter[param_offset]) {
-        str_iter = str_iter + 1;
-        if (match_ptr <= str_iter) goto FALLBACK_TO_BIAS_VALUE;
+      lVar3 = (longlong)&UNK_180a16290 - (longlong)pcVar4;
+      while (*pcVar4 == pcVar4[lVar3]) {
+        pcVar4 = pcVar4 + 1;
+        if (pcVar2 <= pcVar4) goto LAB_180270d11;
       }
     }
-    attr_iter = (undefined8 *)attr_iter[6];
+    puVar1 = (undefined8 *)puVar1[6];
   } while( true );
 }
+
+
+
+
+

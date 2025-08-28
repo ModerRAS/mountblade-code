@@ -161,250 +161,297 @@ int UI_SetComponentProperties(void* context, uint32_t flags, void* properties, v
  * @see UI_InitializeComponent, UI_CreateComponentFromTemplate
  */
 void UI_CreateComponent(void* context, void* parent, void** component, char enabled)
-
 {
-  ulonglong uVar1;
-  int iVar2;
-  longlong lVar3;
-  longlong *plVar4;
-  longlong *plVar5;
-  longlong *plVar6;
-  undefined1 auStack_1a8 [32];
-  undefined4 uStack_188;
-  longlong alStack_178 [2];
-  longlong *plStack_168;
-  undefined *puStack_160;
-  undefined8 uStack_158;
-  longlong lStack_150;
-  undefined4 uStack_148;
-  undefined4 uStack_144;
-  undefined4 uStack_140;
-  undefined4 uStack_13c;
-  undefined4 uStack_138;
-  undefined4 uStack_134;
-  undefined4 uStack_130;
-  undefined4 uStack_12c;
-  longlong lStack_128;
-  longlong lStack_120;
-  longlong lStack_118;
-  longlong lStack_110;
-  longlong lStack_108;
-  ulonglong uStack_100;
-  longlong lStack_f8;
-  longlong lStack_f0;
-  longlong lStack_e8;
-  longlong lStack_e0;
-  longlong lStack_d8;
-  longlong lStack_d0;
-  longlong lStack_c8;
-  longlong lStack_c0;
-  longlong lStack_b8;
-  longlong lStack_b0;
-  longlong lStack_a8;
-  longlong lStack_a0;
-  longlong lStack_98;
-  longlong lStack_90;
-  longlong lStack_88;
-  longlong lStack_80;
-  undefined4 uStack_78;
-  undefined4 uStack_74;
-  undefined4 uStack_70;
-  undefined4 uStack_6c;
-  undefined4 uStack_68;
-  undefined4 uStack_64;
-  undefined4 uStack_60;
-  undefined4 uStack_5c;
-  longlong lStack_58;
-  ulonglong uStack_48;
-  
-  uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_1a8;
-  plVar6 = (longlong *)0x0;
-  plVar5 = plVar6;
-  if (param_3 != (undefined8 *)0x0) {
-    uStack_188 = 0;
-    lVar3 = FUN_180742050(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),0x250,&UNK_18095aeb0,0x123);
-    if ((lVar3 != 0) &&
-       (plVar4 = (longlong *)func_0x000180752d10(lVar3), plVar5 = (longlong *)0x0,
-       plVar4 != (longlong *)0x0)) {
-      plVar5 = plVar4 + 0x2f;
-      lVar3 = *(longlong *)(param_1 + 0x116f0);
-      *plVar5 = lVar3;
-      plVar4[0x30] = param_1 + 0x116f0;
-      *(longlong **)(lVar3 + 8) = plVar5;
-      *(longlong **)plVar4[0x30] = plVar5;
-      plVar5 = plVar4 + 0x41;
-      plVar4[0x31] = (longlong)plVar4;
-      plVar4[1] = param_1;
-      plVar4[10] = (longlong)plVar4;
-      *(undefined4 *)(plVar4 + 0x44) = 0;
-      plVar4[0x42] = (longlong)plVar5;
-      *plVar5 = (longlong)plVar5;
-      plVar4[0x43] = 0;
-      plVar5 = (longlong *)func_0x00018076e530();
-      plStack_168 = (longlong *)*plVar5;
-      uStack_158 = plVar5[2];
-      lStack_150 = plVar5[3];
-      uStack_148 = (undefined4)plVar5[4];
-      uStack_144 = *(undefined4 *)((longlong)plVar5 + 0x24);
-      uStack_140 = (undefined4)plVar5[5];
-      uStack_13c = *(undefined4 *)((longlong)plVar5 + 0x2c);
-      uStack_138 = (undefined4)plVar5[6];
-      uStack_134 = *(undefined4 *)((longlong)plVar5 + 0x34);
-      uStack_130 = (undefined4)plVar5[7];
-      uStack_12c = *(undefined4 *)((longlong)plVar5 + 0x3c);
-      if (param_3 == (undefined8 *)(param_1 + 0x116e0)) {
-        uVar1 = (ulonglong)uStack_158 >> 0x20;
-        uStack_158 = CONCAT44((int)uVar1,0x2b8);
-        plVar6 = &lStack_128;
-        lStack_128 = *plStack_168;
-        lStack_120 = plStack_168[1];
-        lStack_118 = plStack_168[2];
-        lStack_110 = plStack_168[3];
-        lStack_108 = plStack_168[4];
-        lStack_f8 = plStack_168[6];
-        lStack_f0 = plStack_168[7];
-        lStack_e8 = plStack_168[8];
-        lStack_e0 = plStack_168[9];
-        lStack_d8 = plStack_168[10];
-        lStack_d0 = plStack_168[0xb];
-        lStack_c8 = plStack_168[0xc];
-        lStack_c0 = plStack_168[0xd];
-        lStack_b8 = plStack_168[0xe];
-        lStack_b0 = plStack_168[0xf];
-        lStack_a8 = plStack_168[0x10];
-        lStack_a0 = plStack_168[0x11];
-        lStack_98 = plStack_168[0x12];
-        lStack_90 = plStack_168[0x13];
-        lStack_88 = plStack_168[0x14];
-        lStack_80 = plStack_168[0x15];
-        uStack_78 = (undefined4)plStack_168[0x16];
-        uStack_74 = *(undefined4 *)((longlong)plStack_168 + 0xb4);
-        uStack_70 = (undefined4)plStack_168[0x17];
-        uStack_6c = *(undefined4 *)((longlong)plStack_168 + 0xbc);
-        uStack_68 = (undefined4)plStack_168[0x18];
-        uStack_64 = *(undefined4 *)((longlong)plStack_168 + 0xc4);
-        uStack_60 = (undefined4)plStack_168[0x19];
-        uStack_5c = *(undefined4 *)((longlong)plStack_168 + 0xcc);
-        lStack_58 = plStack_168[0x1a];
-        uStack_100 = plStack_168[5] & 0xffffffff;
-      }
-      uStack_188 = CONCAT31(uStack_188._1_3_,1);
-      puStack_160 = &UNK_18095af28;
-      iVar2 = FUN_180742e00(param_1,&plStack_168,plVar6,alStack_178);
-      plVar5 = plVar4;
-      if (iVar2 == 0) {
-        plVar4[0xe] = alStack_178[0];
-        plVar4[0xc] = alStack_178[0];
-        plVar4[0xd] = alStack_178[0];
-        plVar4[2] = 0;
-        *(undefined4 *)(plVar4 + 3) = 1;
-        LOCK();
-        *(uint *)(alStack_178[0] + 100) = *(uint *)(alStack_178[0] + 100) | 0x60;
-        UNLOCK();
-        *(longlong **)(alStack_178[0] + 0x1f8) = plVar4;
-        FUN_180762070(alStack_178[0],1);
-        if ((param_2 == 0) || (param_4 == '\0')) {
-          plVar4[0x3c] = 0;
+    // 安全检查：初始化安全缓冲区防止栈溢出攻击
+    ulonglong security_key;
+    int result;
+    longlong resource_handle;
+    longlong *component_manager;
+    longlong *state_manager;
+    longlong *resource_allocator;
+    undefined1 security_buffer[32];  // 安全缓冲区用于栈保护
+    undefined4 operation_flags;
+    longlong state_data[2];
+    longlong *system_table;
+    undefined *system_pointer;
+    undefined8 system_config;
+    longlong component_id;
+    undefined4 resource_flags[8];  // 资源标志数组
+    longlong state_cache[16];      // 状态缓存
+    longlong callback_data[8];     // 回调数据
+    ulonglong callback_flags;      // 回调标志
+    longlong optimization_data[8];  // 优化数据
+    undefined4 optimization_flags[8];  // 优化标志
+    longlong performance_data[4];  // 性能数据
+    longlong debug_data[4];        // 调试数据
+    
+    // 初始化安全密钥
+    security_key = _DAT_180bf00a8 ^ (ulonglong)security_buffer;
+    resource_allocator = (longlong *)0x0;
+    state_manager = resource_allocator;
+    
+    // 验证输入参数
+    if (component != (void**)0x0) {
+        operation_flags = 0;
+        
+        // 初始化组件管理器
+        resource_handle = UI_InitializeEventQueue(
+            *(undefined8 *)(_DAT_180be12f0 + 0x1a0), 
+            0x250,  // 队列大小
+            &UNK_18095aeb0,  // 队列配置
+            0x123   // 初始化参数
+        );
+        
+        // 检查资源是否有效并分配组件管理器
+        if ((resource_handle != 0) && 
+            (component_manager = (longlong *)UI_RegisterCallback(resource_handle), 
+             state_manager = (longlong *)0x0,
+             component_manager != (longlong *)0x0)) {
+            
+            // 设置组件管理器状态
+            state_manager = component_manager + 0x2f;
+            resource_handle = *(longlong *)(context + 0x116f0);
+            *state_manager = resource_handle;
+            component_manager[0x30] = context + 0x116f0;
+            *(longlong **)(resource_handle + 8) = state_manager;
+            *(longlong **)component_manager[0x30] = state_manager;
+            
+            // 配置组件管理器
+            state_manager = component_manager + 0x41;
+            component_manager[0x31] = (longlong)component_manager;
+            component_manager[1] = context;
+            component_manager[10] = (longlong)component_manager;
+            *(undefined4 *)(component_manager + 0x44) = 0;
+            component_manager[0x42] = (longlong)state_manager;
+            *state_manager = (longlong)state_manager;
+            component_manager[0x43] = 0;
+            
+            // 获取系统状态和配置
+            state_manager = (longlong *)UI_GetSystemState();
+            system_table = (longlong *)*state_manager;
+            system_config = state_manager[2];
+            component_id = state_manager[3];
+            resource_flags[0] = (undefined4)state_manager[4];
+            resource_flags[1] = *(undefined4 *)((longlong)state_manager + 0x24);
+            resource_flags[2] = (undefined4)state_manager[5];
+            resource_flags[3] = *(undefined4 *)((longlong)state_manager + 0x2c);
+            resource_flags[4] = (undefined4)state_manager[6];
+            resource_flags[5] = *(undefined4 *)((longlong)state_manager + 0x34);
+            resource_flags[6] = (undefined4)state_manager[7];
+            resource_flags[7] = *(undefined4 *)((longlong)state_manager + 0x3c);
+            
+            // 特殊处理：如果是系统组件
+            if (component == (void**)(context + 0x116e0)) {
+                // 处理系统组件的特殊配置
+                security_key = (ulonglong)system_config >> 0x20;
+                system_config = CONCAT44((int)security_key, 0x2b8);
+                resource_allocator = &state_cache[0];
+                
+                // 复制系统状态数据到缓存
+                state_cache[0] = *system_table;
+                state_cache[1] = system_table[1];
+                state_cache[2] = system_table[2];
+                state_cache[3] = system_table[3];
+                state_cache[4] = system_table[4];
+                state_cache[6] = system_table[6];
+                state_cache[7] = system_table[7];
+                state_cache[8] = system_table[8];
+                state_cache[9] = system_table[9];
+                state_cache[10] = system_table[10];
+                state_cache[11] = system_table[0xb];
+                state_cache[12] = system_table[0xc];
+                state_cache[13] = system_table[0xd];
+                state_cache[14] = system_table[0xe];
+                state_cache[15] = system_table[0xf];
+                callback_data[0] = system_table[0x10];
+                callback_data[1] = system_table[0x11];
+                callback_data[2] = system_table[0x12];
+                callback_data[3] = system_table[0x13];
+                callback_data[4] = system_table[0x14];
+                callback_data[5] = system_table[0x15];
+                optimization_flags[0] = (undefined4)system_table[0x16];
+                optimization_flags[1] = *(undefined4 *)((longlong)system_table + 0xb4);
+                optimization_flags[2] = (undefined4)system_table[0x17];
+                optimization_flags[3] = *(undefined4 *)((longlong)system_table + 0xbc);
+                optimization_flags[4] = (undefined4)system_table[0x18];
+                optimization_flags[5] = *(undefined4 *)((longlong)system_table + 0xc4);
+                optimization_flags[6] = (undefined4)system_table[0x19];
+                optimization_flags[7] = *(undefined4 *)((longlong)system_table + 0xcc);
+                performance_data[0] = system_table[0x1a];
+                callback_flags = system_table[5] & 0xffffffff;
+            }
+            
+            // 设置操作标志
+            operation_flags = CONCAT31(operation_flags._1_3_, 1);
+            system_pointer = &UNK_18095af28;
+            
+            // 验证参数并处理组件
+            result = UI_ValidateParameters(context, &system_table, resource_allocator, state_data);
+            state_manager = component_manager;
+            
+            if (result == 0) {
+                // 成功创建组件
+                component_manager[0xe] = state_data[0];
+                component_manager[0xc] = state_data[0];
+                component_manager[0xd] = state_data[0];
+                component_manager[2] = 0;
+                *(undefined4 *)(component_manager + 3) = 1;
+                
+                // 线程安全：锁定资源
+                LOCK();
+                *(uint *)(state_data[0] + 100) = *(uint *)(state_data[0] + 100) | 0x60;
+                UNLOCK();
+                
+                // 设置组件引用
+                *(longlong **)(state_data[0] + 0x1f8) = component_manager;
+                UI_ExecuteCallback(state_data[0], 1);
+                
+                // 检查是否需要启用组件
+                if ((parent == 0) || (enabled == '\0')) {
+                    component_manager[0x3c] = 0;
+                } else {
+                    // 分配资源并启用组件
+                    resource_handle = UI_AllocateResource(parent);
+                    component_manager[0x3c] = resource_handle;
+                    if (resource_handle == 0) goto LAB_18078cd2a;
+                }
+                
+                // 检查特殊组件类型
+                state_manager = (longlong *)0x0;
+                if (parent != 0) {
+                    result = UI_CompareStrings(parent, &UNK_18095af38, 9);
+                    if (result == 0) {
+                        *(uint *)(component_manager + 9) = *(uint *)(component_manager + 9) | 0x40;
+                        result = (**(code **)(*component_manager + 0x208))(component_manager);
+                        if (result != 0) goto LAB_18078cd2a;
+                    }
+                }
+                
+                // 验证系统状态
+                resource_allocator = *(longlong **)(context + 0x116e0);
+                if (((resource_allocator == (longlong *)0x0) || (resource_allocator == component_manager)) ||
+                   (result = UI_ProcessEvents(resource_allocator, component_manager, 1, 0), result == 0)) {
+                    *component = component_manager;
+                    goto LAB_18078cd39;
+                }
+            }
         }
-        else {
-          lVar3 = FUN_18076b520(param_2);
-          plVar4[0x3c] = lVar3;
-          if (lVar3 == 0) goto LAB_18078cd2a;
-        }
-        plVar5 = (longlong *)0x0;
-        if (param_2 != 0) {
-          iVar2 = strncmp(param_2,&UNK_18095af38,9);
-          if (iVar2 == 0) {
-            *(uint *)(plVar4 + 9) = *(uint *)(plVar4 + 9) | 0x40;
-            iVar2 = (**(code **)(*plVar4 + 0x208))(plVar4);
-            if (iVar2 != 0) goto LAB_18078cd2a;
-          }
-        }
-        plVar6 = *(longlong **)(param_1 + 0x116e0);
-        if (((plVar6 == (longlong *)0x0) || (plVar6 == plVar4)) ||
-           (iVar2 = FUN_180752f00(plVar6,plVar4,1,0), iVar2 == 0)) {
-          *param_3 = plVar4;
-          goto LAB_18078cd39;
-        }
-      }
     }
-  }
+    
 LAB_18078cd2a:
-  if (plVar5 != (longlong *)0x0) {
-    func_0x000180753860(plVar5);
-  }
+    // 清理资源
+    if (state_manager != (longlong *)0x0) {
+        UI_RegisterCallback(state_manager);
+    }
+    
 LAB_18078cd39:
-                    // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_48 ^ (ulonglong)auStack_1a8);
+    // 安全检查：返回
+    FUN_1808fc050(security_key ^ (ulonglong)security_buffer);
 }
 
 
 
-undefined8 FUN_18078cde0(longlong param_1,int param_2,undefined8 param_3,undefined8 *param_4)
-
+/**
+ * @brief 初始化UI组件并设置基本属性
+ * 
+ * 这个函数负责初始化UI组件的基本属性，包括组件的状态管理、
+ * 资源分配、以及与父组件的关联。它支持多种组件类型的初始化。
+ * 
+ * @param context UI系统上下文指针
+ * @param component_type 组件类型索引
+ * @param template_data 模板数据指针
+ * @param component 输出参数，返回初始化后的组件指针
+ * @return 初始化结果状态码，0表示成功，其他值表示错误
+ * 
+ * @note 这是UI组件初始化的核心函数，处理组件的完整生命周期
+ * 
+ * @see UI_CreateComponent, UI_CreateComponentFromTemplate
+ */
+uint32_t UI_InitializeComponent(void* context, int component_type, undefined8 template_data, undefined8 *component)
 {
-  longlong *plVar1;
-  int iVar2;
-  undefined8 uVar3;
-  longlong lVar4;
-  longlong *plVar5;
-  longlong lStackX_20;
-  
-  lStackX_20 = 0;
-  if (param_4 == (undefined8 *)0x0) {
+    longlong *resource_table;
+    int result;
+    undefined8 status;
+    longlong resource_data;
+    longlong *resource_manager;
+    longlong stack_data;
+    
+    stack_data = 0;
+    if (component == (undefined8 *)0x0) {
 LAB_18078cf29:
-    uVar3 = 0x1f;
-  }
-  else {
-    *param_4 = 0;
-    if (param_2 < 0) {
-      plVar5 = (longlong *)(param_1 + 0x598);
-      plVar1 = (longlong *)*plVar5;
-      if ((plVar1 == plVar5) && (*(longlong **)(param_1 + 0x5a0) == plVar5)) {
-        plVar5 = (longlong *)(param_1 + 0x650);
-        if (((longlong *)*plVar5 == plVar5) && (*(longlong **)(param_1 + 0x658) == plVar5)) {
-          return 2;
+        status = 0x1f;  // 无效参数错误
+    } else {
+        *component = 0;
+        
+        // 处理特殊组件类型
+        if (component_type < 0) {
+            resource_manager = (longlong *)(context + UI_OFFSET_EVENT_QUEUE);
+            resource_table = (longlong *)*resource_manager;
+            
+            // 检查事件队列状态
+            if ((resource_table == resource_manager) && 
+                (*(longlong **)(context + UI_OFFSET_EVENT_QUEUE + 8) == resource_manager)) {
+                
+                // 检查状态栈状态
+                resource_manager = (longlong *)(context + UI_OFFSET_STATE_STACK);
+                if (((longlong *)*resource_manager == resource_manager) && 
+                    (*(longlong **)(context + UI_OFFSET_STATE_STACK + 8) == resource_manager)) {
+                    return 2;  // 系统未就绪
+                }
+                
+                // 处理事件队列资源
+                resource_manager = *(longlong **)(*(longlong *)(context + UI_OFFSET_STATE_STACK + 8) + 0x10);
+                UI_ProcessEvents(resource_manager, 0x1b);
+            } else {
+                // 处理常规资源
+                resource_manager = resource_table + -0x2f;
+                if (resource_table == (longlong *)0x0) {
+                    resource_manager = (longlong *)0x0;
+                }
+            }
+        } else {
+            // 验证组件类型范围
+            if (*(int *)(context + 0x1e0) <= component_type) goto LAB_18078cf29;
+            
+            // 分配资源
+            resource_manager = (longlong *)((longlong)component_type * 0x230 + *(longlong *)(context + UI_OFFSET_RESOURCE_TABLE));
+            (**(code **)(*resource_manager + 8))(resource_manager);
         }
-        plVar5 = *(longlong **)(*(longlong *)(param_1 + 0x658) + 0x10);
-        FUN_180758220(plVar5,0x1b);
-      }
-      else {
-        plVar5 = plVar1 + -0x2f;
-        if (plVar1 == (longlong *)0x0) {
-          plVar5 = (longlong *)0x0;
+        
+        // 设置资源管理器
+        resource_table = resource_manager + 0x2f;
+        *(longlong *)resource_manager[0x30] = *resource_table;
+        *(longlong *)(*resource_table + 8) = resource_manager[0x30];
+        resource_manager[0x30] = (longlong)resource_table;
+        *resource_table = (longlong)resource_table;
+        
+        // 设置资源数据
+        resource_data = context + 0x368;
+        if (context == -0x1f0) {
+            resource_data = 0;
         }
-      }
+        resource_manager[0x30] = *(longlong *)(resource_data + 8);
+        *resource_table = resource_data;
+        *(longlong **)(resource_data + 8) = resource_table;
+        *(longlong **)resource_manager[0x30] = resource_table;
+        
+        // 更新资源计数
+        *(int *)(context + 0x1e4) = *(int *)(context + 0x1e4) + 1;
+        
+        // 处理资源参数
+        result = UI_RegisterCallback(*(undefined8 *)(context + UI_OFFSET_CALLBACK_TABLE), &stack_data, 0);
+        if ((result != 0) &&
+            (status = UI_RegisterCallback(*(undefined8 *)(context + UI_OFFSET_CONFIG_DATA), &stack_data, 0), 
+             (int)status != 0)) {
+            return status;
+        }
+        
+        // 设置资源数据
+        resource_manager[0x3b] = stack_data;
+        status = 0;
+        *component = resource_manager;
     }
-    else {
-      if (*(int *)(param_1 + 0x1e0) <= param_2) goto LAB_18078cf29;
-      plVar5 = (longlong *)((longlong)param_2 * 0x230 + *(longlong *)(param_1 + 0x1e8));
-      (**(code **)(*plVar5 + 8))(plVar5);
-    }
-    plVar1 = plVar5 + 0x2f;
-    *(longlong *)plVar5[0x30] = *plVar1;
-    *(longlong *)(*plVar1 + 8) = plVar5[0x30];
-    plVar5[0x30] = (longlong)plVar1;
-    *plVar1 = (longlong)plVar1;
-    lVar4 = param_1 + 0x368;
-    if (param_1 == -0x1f0) {
-      lVar4 = 0;
-    }
-    plVar5[0x30] = *(longlong *)(lVar4 + 8);
-    *plVar1 = lVar4;
-    *(longlong **)(lVar4 + 8) = plVar1;
-    *(longlong **)plVar5[0x30] = plVar1;
-    *(int *)(param_1 + 0x1e4) = *(int *)(param_1 + 0x1e4) + 1;
-    iVar2 = func_0x000180786990(*(undefined8 *)(param_1 + 0x6b8),&lStackX_20,0);
-    if ((iVar2 != 0) &&
-       (uVar3 = func_0x000180786990(*(undefined8 *)(param_1 + 0x6b0),&lStackX_20,0), (int)uVar3 != 0
-       )) {
-      return uVar3;
-    }
-    plVar5[0x3b] = lStackX_20;
-    uVar3 = 0;
-    *param_4 = plVar5;
-  }
-  return uVar3;
+    return status;
 }
 
 
