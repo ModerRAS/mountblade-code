@@ -474,42 +474,50 @@ void initialize_system_module_6(void)
 
 
 // 函数: void FUN_180043b50(void)
-void FUN_180043b50(void)
-
+/**
+ * 初始化系统模块7
+ * 功能：初始化系统模块7，根据多重条件选择不同的实现
+ */
+void initialize_system_module_7(void)
 {
-  int iVar1;
-  
-  iVar1 = FUN_1807681a0(1);
-  if (iVar1 != 0) {
-    _DAT_180c31148 = 0x180be6078;
+    int condition_result;
+    
+    condition_result = FUN_1807681a0(1);
+    if (condition_result != 0) {
+        _DAT_180c31148 = 0x180be6078;
+        return;
+    }
+    condition_result = FUN_1807681a0(0);
+    _DAT_180c31148 = 0x180be6068;
+    if (condition_result != 0) {
+        _DAT_180c31148 = 0x180be6070;
+    }
     return;
-  }
-  iVar1 = FUN_1807681a0(0);
-  _DAT_180c31148 = 0x180be6068;
-  if (iVar1 != 0) {
-    _DAT_180c31148 = 0x180be6070;
-  }
-  return;
 }
 
 
 
-int FUN_180043ba0(void)
-
+/**
+ * 初始化系统数据数组
+ * 功能：初始化系统数据数组，循环处理16个元素
+ * 返回值：初始化成功返回0，失败返回-1
+ */
+int initialize_system_data_array(void)
 {
-  undefined8 *puVar1;
-  longlong lVar2;
-  
-  puVar1 = (undefined8 *)0x180c35590;
-  lVar2 = 0x10;
-  do {
-    func_0x000180767970(puVar1);
-    *puVar1 = &UNK_18097e888;
-    puVar1 = puVar1 + 0x2b;
-    lVar2 = lVar2 + -1;
-  } while (lVar2 != 0);
-  lVar2 = FUN_1808fc7d0(&UNK_180943270);
-  return (lVar2 != 0) - 1;
+    undefined8 *data_ptr;
+    longlong counter;
+    
+    data_ptr = (undefined8 *)0x180c35590;
+    counter = 0x10;
+    do {
+        func_0x000180767970(data_ptr);
+        *data_ptr = &UNK_18097e888;
+        data_ptr = data_ptr + 0x2b;
+        counter = counter + -1;
+    } while (counter != 0);
+    
+    counter = FUN_1808fc7d0(&UNK_180943270);
+    return (counter != 0) - 1;
 }
 
 
