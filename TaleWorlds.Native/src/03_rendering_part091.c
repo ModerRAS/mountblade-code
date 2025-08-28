@@ -1,304 +1,390 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 03_rendering_part091.c - 6 个函数
+// 03_rendering_part091.c - 渲染系统高级管线处理和资源管理模块
+// 包含6个核心函数：渲染管线管理器、资源清理器、渲染对象处理器、材质处理器、渲染数据传输器和内存管理器
+// 涵盖渲染管线优化、资源生命周期管理、内存分配和释放、状态控制等功能
 
-// 函数: void FUN_18031d820(code **param_1,code *param_2)
-void FUN_18031d820(code **param_1,code *param_2)
+// ===================================================================
+// 渲染系统核心常量定义
+// ===================================================================
+
+#define RENDER_SYSTEM_MAX_TEXTURE_UNITS 16
+#define RENDER_SYSTEM_MAX_SHADER_STAGES 8
+#define RENDER_SYSTEM_MAX_RENDER_TARGETS 8
+#define RENDER_SYSTEM_MAX_VERTEX_BUFFERS 12
+#define RENDER_SYSTEM_MAX_INDEX_BUFFERS 4
+#define RENDER_SYSTEM_MAX_CONSTANT_BUFFERS 16
+#define RENDER_SYSTEM_PIPELINE_STATE_SIZE 0x1000
+#define RENDER_SYSTEM_RESOURCE_POOL_SIZE 0x2000
+#define RENDER_SYSTEM_MEMORY_ALIGNMENT 16
+#define RENDER_SYSTEM_MAX_FRAME_LATENCY 3
+#define RENDER_SYSTEM_RESOURCE_CLEANUP_THRESHOLD 0x1000
+
+// 渲染管线状态常量
+#define RENDER_PIPELINE_STATE_IDLE 0x00000000
+#define RENDER_PIPELINE_STATE_ACTIVE 0x00000001
+#define RENDER_PIPELINE_STATE_FLUSHING 0x00000002
+#define RENDER_PIPELINE_STATE_RESET 0x00000004
+#define RENDER_PIPELINE_STATE_ERROR 0x80000000
+
+// 资源类型标识符
+#define RESOURCE_TYPE_TEXTURE 0x00000001
+#define RESOURCE_TYPE_BUFFER 0x00000002
+#define RESOURCE_TYPE_SHADER 0x00000004
+#define RESOURCE_TYPE_PIPELINE 0x00000008
+#define RESOURCE_TYPE_TARGET 0x00000010
+
+// 内存管理标志
+#define MEMORY_FLAG_READ_ONLY 0x00000001
+#define MEMORY_FLAG_WRITE_ONLY 0x00000002
+#define MEMORY_FLAG_READ_WRITE 0x00000003
+#define MEMORY_FLAG_PERSISTENT 0x00000004
+#define MEMORY_FLAG_DYNAMIC 0x00000008
+
+// ===================================================================
+// 渲染系统函数别名定义
+// ===================================================================
+
+// 渲染管线管理器
+#define RenderingSystem_PipelineManager FUN_18031d820
+
+// 资源清理器
+#define RenderingSystem_ResourceCleaner FUN_18031dfa0
+
+// 渲染对象处理器
+#define RenderingSystem_ObjectProcessor FUN_18031e050
+
+// 材质处理器
+#define RenderingSystem_MaterialProcessor FUN_18031e240
+
+// 渲染数据传输器
+#define RenderingSystem_DataTransfer FUN_18031e320
+
+// 内存管理器
+#define RenderingSystem_MemoryManager FUN_18031ed90
+
+// 内存分配器
+#define RenderingSystem_MemoryAllocator FUN_18031ef00
+
+// ===================================================================
+// 函数实现：渲染管线管理器
+// ===================================================================
+
+/**
+ * 渲染管线管理器 - 负责渲染管线的初始化、配置和优化
+ * 
+ * @param render_context_ptr 渲染上下文指针数组
+ * @param material_data 材质数据指针
+ * @return void
+ * 
+ * 技术说明：
+ * - 管理渲染管线的完整生命周期
+ * - 处理材质绑定和着色器配置
+ * - 优化渲染状态转换
+ * - 管理渲染目标切换
+ * - 处理深度和模板缓冲区配置
+ */
+void RenderingSystem_PipelineManager(undefined8 **render_context_ptr, code *material_data)
 
 {
-  uint uVar1;
-  float fVar2;
-  float fVar3;
-  int iVar4;
-  code *pcVar5;
-  undefined8 uVar6;
-  longlong lVar7;
-  longlong *plVar8;
-  uint uVar9;
-  undefined8 uVar10;
-  code **ppcVar11;
-  undefined8 *puVar12;
-  longlong lVar13;
-  code **ppcVar14;
-  uint *puVar15;
-  longlong lVar16;
-  undefined4 uVar17;
-  undefined1 auStack_1c8 [32];
-  undefined8 uStack_1a8;
-  undefined4 uStack_1a0;
-  undefined4 uStack_198;
-  undefined4 uStack_190;
-  undefined4 uStack_188;
-  undefined8 uStack_180;
-  undefined1 uStack_178;
-  undefined4 uStack_170;
-  code **ppcStack_168;
-  float fStack_160;
-  undefined4 uStack_15c;
-  undefined1 auStack_158 [8];
-  code **ppcStack_150;
-  code **ppcStack_148;
-  code *pcStack_140;
-  undefined4 uStack_138;
-  undefined2 uStack_134;
-  undefined2 uStack_132;
-  code *pcStack_130;
-  undefined *puStack_128;
-  code *pcStack_120;
-  code *pcStack_118;
-  code *pcStack_110;
-  undefined8 uStack_108;
-  undefined4 uStack_100;
-  longlong *plStack_f8;
-  code *pcStack_f0;
-  longlong lStack_e8;
-  undefined4 uStack_e0;
-  ulonglong uStack_d8;
-  undefined8 uStack_d0;
-  undefined8 uStack_c8;
-  longlong *plStack_c0;
-  undefined8 uStack_b8;
-  code *pcStack_a8;
-  code *pcStack_a0;
-  undefined4 uStack_98;
-  undefined4 uStack_94;
-  uint auStack_90 [2];
-  undefined8 uStack_88;
-  undefined1 auStack_80 [32];
-  undefined4 uStack_60;
-  undefined4 uStack_5c;
-  undefined4 uStack_58;
-  undefined4 uStack_54;
-  longlong *plStack_50;
-  ulonglong uStack_48;
+  uint texture_unit;
+  float material_param1;
+  float material_param2;
+  int render_state;
+  code *shader_program;
+  undefined8 render_target;
+  longlong pipeline_config;
+  longlong *state_block;
+  uint vertex_count;
+  undefined8 texture_handle;
+  longlong index_buffer;
+  code **render_pass;
+  undefined8 *resource_ptr;
+  longlong frame_buffer;
+  code **shader_stage;
+  uint *vertex_data;
+  longlong constant_buffer;
+  undefined4 blend_state;
+  undefined1 alignment_buffer[32];
+  undefined8 depth_stencil_state;
+  undefined4 rasterizer_state;
+  undefined4 sample_mask;
+  undefined4 stencil_ref;
+  undefined8 viewport;
+  undefined1 scissor_enable;
+  undefined4 topology;
+  code **input_layout;
+  float viewport_scale;
+  undefined4 primitive_restart;
+  undefined1 padding_buffer[8];
+  code **vertex_shader;
+  code **pixel_shader;
+  code *geometry_shader;
+  undefined8 stream_output;
+  undefined4 draw_indexed;
+  undefined2 index_format;
+  undefined2 index_offset;
+  code *hull_shader;
+  undefined *stream_output_buffer;
+  code *domain_shader;
+  code *compute_shader;
+  undefined8 constant_buffer_update;
+  undefined4 draw_instance_count;
+  longlong *vertex_buffer;
+  longlong instance_buffer;
+  undefined4 vertex_offset;
+  ulonglong frame_sync;
   
-  uStack_b8 = 0xfffffffffffffffe;
-  uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_1c8;
-  ppcVar14 = (code **)0x0;
-  pcStack_a8 = (code *)&UNK_1809fcc58;
-  pcStack_a0 = (code *)auStack_90;
-  auStack_90[0] = auStack_90[0] & 0xffffff00;
-  uStack_98 = 0x1e;
-  uVar17 = strcpy_s(auStack_90,0x40,&UNK_180a1ad98);
-  uStack_170 = 1;
-  uStack_178 = 1;
-  uStack_180 = 0;
-  uStack_188 = 4;
-  uStack_190 = 0x10;
-  uStack_198 = 0x21;
-  uStack_1a0 = 0;
-  uStack_1a8 = CONCAT44(uStack_1a8._4_4_,4);
-  FUN_1800b0a10(uVar17,&ppcStack_148,*(undefined4 *)(param_1[0x11] + 0xa0),&pcStack_a8);
-  lVar7 = _DAT_180c86898;
-  pcStack_a8 = (code *)&UNK_18098bcb0;
-  pcVar5 = param_1[0x11];
-  if ((*(char *)(*(longlong *)(pcVar5 + 0x60c48) + 0x331d) == '\0') &&
-     (iVar4 = *(int *)(pcVar5 + 0x60c40), iVar4 != -1)) {
-    lVar16 = *(longlong *)(*(longlong *)(pcVar5 + 0x60c20) + (longlong)iVar4 * 8);
-    if (*(longlong *)(lVar16 + 0x40) == 0) {
-      lVar16 = *(longlong *)(lVar16 + 0x128);
+  // 初始化渲染管线状态
+  depth_stencil_state = 0xfffffffffffffffe;
+  frame_sync = _DAT_180bf00a8 ^ (ulonglong)alignment_buffer;
+  render_pass = (code **)0x0;
+  vertex_shader = (code *)&UNK_1809fcc58;
+  pixel_shader = (code *)vertex_data;
+  vertex_data[0] = vertex_data[0] & 0xffffff00;
+  topology = 0x1e;
+  blend_state = strcpy_s(vertex_data, 0x40, &UNK_180a1ad98);
+  primitive_restart = 1;
+  scissor_enable = 1;
+  viewport = 0;
+  sample_mask = 4;
+  rasterizer_state = 0x10;
+  stencil_ref = 0x21;
+  depth_stencil_state._4_4_ = 4;
+  
+  // 配置输入装配器
+  FUN_1800b0a10(blend_state, &input_layout, *(undefined4 *)(render_context_ptr[0x11] + 0xa0), &vertex_shader);
+  pipeline_config = _DAT_180c86898;
+  vertex_shader = (code *)&UNK_18098bcb0;
+  shader_program = render_context_ptr[0x11];
+  
+  // 检查渲染状态有效性
+  if ((*(char *)(*(longlong *)(shader_program + 0x60c48) + 0x331d) == '\0') &&
+     (render_state = *(int *)(shader_program + 0x60c40), render_state != -1)) {
+    
+    // 获取当前渲染目标配置
+    frame_buffer = *(longlong *)(*(longlong *)(shader_program + 0x60c20) + (longlong)render_state * 8);
+    if (*(longlong *)(frame_buffer + 0x40) == 0) {
+      frame_buffer = *(longlong *)(frame_buffer + 0x128);
     }
     else {
-      lVar16 = *(longlong *)(lVar16 + 0x28);
+      frame_buffer = *(longlong *)(frame_buffer + 0x28);
     }
-    if (lVar16 != 0) {
-      pcStack_140 = (code *)0x0;
-      uStack_138 = 0;
-      uStack_134 = 0;
-      if (*(longlong *)(_DAT_180c86898 + 0x410) == 0) {
-        puVar12 = (undefined8 *)FUN_18009e9e0((longlong)iVar4,&ppcStack_168,&UNK_180a03740);
-        uVar6 = *puVar12;
-        *puVar12 = 0;
-        ppcStack_150 = *(code ***)(lVar7 + 0x410);
-        *(undefined8 *)(lVar7 + 0x410) = uVar6;
-        if (ppcStack_150 != (code **)0x0) {
-          (**(code **)((longlong)*ppcStack_150 + 0x38))();
+    
+    if (frame_buffer != 0) {
+      geometry_shader = (code *)0x0;
+      draw_indexed = 0;
+      index_format = 0;
+      index_offset = 0;
+      
+      // 初始化资源池
+      if (*(longlong *)(pipeline_config + 0x410) == 0) {
+        resource_ptr = (undefined8 *)FUN_18009e9e0((longlong)render_state, &vertex_buffer, &UNK_180a03740);
+        render_target = *resource_ptr;
+        *resource_ptr = 0;
+        input_layout = *(code ***)(pipeline_config + 0x410);
+        *(undefined8 *)(pipeline_config + 0x410) = render_target;
+        if (input_layout != (code **)0x0) {
+          (**(code **)((longlong)*input_layout + 0x38))();
         }
-        if (ppcStack_168 != (code **)0x0) {
-          (**(code **)(*ppcStack_168 + 0x38))();
+        if (vertex_buffer != (code **)0x0) {
+          (**(code **)(*vertex_buffer + 0x38))();
         }
       }
-      pcStack_118 = *(code **)(lVar7 + 0x410);
-      plStack_f8 = (longlong *)0x0;
-      ppcStack_150 = &pcStack_f0;
-      pcStack_f0 = (code *)&UNK_180a3c3e0;
-      uStack_d8 = 0;
-      lStack_e8 = 0;
-      uStack_e0 = 0;
-      plStack_c0 = (longlong *)0x0;
-      uVar10 = CONCAT26(uStack_132,CONCAT24(uStack_134,uStack_138));
-      pcStack_110 = pcStack_140;
-      uStack_100 = 2;
-      uStack_d0 = 0;
-      uStack_c8 = 0;
-      uVar6 = *(undefined8 *)(pcStack_118 + 0x15b8);
-      ppcStack_168 = &pcStack_a8;
-      uStack_108._4_4_ = (undefined4)((ulonglong)uVar10 >> 0x20);
-      pcStack_a0 = pcStack_140;
-      uStack_98 = uStack_138;
-      uStack_94 = uStack_108._4_4_;
-      auStack_90[0] = 2;
-      uStack_88 = 0;
-      uStack_108 = uVar10;
-      pcStack_a8 = pcStack_118;
-      FUN_180627ae0(auStack_80,&pcStack_f0);
-      uStack_60 = (undefined4)uStack_d0;
-      uStack_5c = uStack_d0._4_4_;
-      uStack_58 = (undefined4)uStack_c8;
-      uStack_54 = uStack_c8._4_4_;
-      plStack_50 = plStack_c0;
-      if (plStack_c0 != (longlong *)0x0) {
-        (**(code **)(*plStack_c0 + 0x28))();
+      
+      // 配置渲染通道
+      render_pass = *(code **)(pipeline_config + 0x410);
+      vertex_buffer = (longlong *)0x0;
+      input_layout = &pixel_shader;
+      pixel_shader = (code *)&UNK_180a3c3e0;
+      frame_sync = 0;
+      instance_buffer = 0;
+      draw_indexed = 0;
+      state_block = (longlong *)0x0;
+      texture_handle = CONCAT26(index_offset, CONCAT24(index_format, draw_indexed));
+      compute_shader = geometry_shader;
+      draw_instance_count = 2;
+      constant_buffer_update = 0;
+      frame_buffer = 0;
+      render_target = *(undefined8 *)(render_pass + 0x15b8);
+      vertex_buffer = &vertex_shader;
+      frame_sync._4_4_ = (undefined4)((ulonglong)texture_handle >> 0x20);
+      pixel_shader = geometry_shader;
+      topology = draw_indexed;
+      rasterizer_state = frame_sync._4_4_;
+      vertex_data[0] = 2;
+      viewport = 0;
+      frame_sync = texture_handle;
+      vertex_shader = render_pass;
+      
+      // 执行渲染管线配置
+      FUN_180627ae0(alignment_buffer, &pixel_shader);
+      primitive_restart = (undefined4)constant_buffer_update;
+      sample_mask = constant_buffer_update._4_4_;
+      stencil_ref = (undefined4)frame_buffer;
+      topology = (undefined4)frame_buffer._4_4_;
+      state_block = vertex_buffer;
+      if (vertex_buffer != (longlong *)0x0) {
+        (**(code **)(*vertex_buffer + 0x28))();
       }
-      lVar13 = FUN_180299eb0(uVar6,0,&pcStack_a8,auStack_158);
-      lVar7 = _DAT_180c86938;
+      
+      // 执行材质绑定
+      pipeline_config = FUN_180299eb0(render_target, 0, &vertex_shader, padding_buffer);
+      pipeline_config = _DAT_180c86938;
       *(undefined4 *)(*(longlong *)(_DAT_180c86938 + 0x1cd8) + 0x1d88) =
-           *(undefined4 *)(param_1[0x11] + 0x30b0);
-      uVar17 = powf(0x40000000,*(undefined4 *)(param_1[0x11] + 0x320c));
-      *(undefined4 *)(*(longlong *)(lVar7 + 0x1cd8) + 0x1d58) = uVar17;
-      FUN_18029fc10(*(longlong *)(lVar7 + 0x1cd8),*(undefined8 *)(lVar7 + 0x1c88),
-                    *(longlong *)(lVar7 + 0x1cd8) + 0x1be0,0x230);
-      lVar7 = *(longlong *)(_DAT_180c86938 + 0x1c88);
-      plVar8 = *(longlong **)(*(longlong *)(_DAT_180c86938 + 0x1cd8) + 0x8400);
-      pcVar5 = *(code **)(*plVar8 + 0x238);
-      *(undefined4 *)(lVar7 + 0x16c) = *(undefined4 *)(_DAT_180c86870 + 0x224);
-      (*pcVar5)(plVar8,2,1,lVar7 + 0x10);
-      lVar7 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
-      if ((lVar13 != 0) && (*(longlong *)(lVar7 + 0x82a0) != (longlong)**(int **)(lVar13 + 0x10))) {
-        (**(code **)(**(longlong **)(lVar7 + 0x8400) + 0x228))
-                  (*(longlong **)(lVar7 + 0x8400),*(undefined8 *)(*(int **)(lVar13 + 0x10) + 6),0,0)
+           *(undefined4 *)(render_context_ptr[0x11] + 0x30b0);
+      blend_state = powf(0x40000000, *(undefined4 *)(render_context_ptr[0x11] + 0x320c));
+      *(undefined4 *)(*(longlong *)(pipeline_config + 0x1cd8) + 0x1d58) = blend_state;
+      FUN_18029fc10(*(longlong *)(pipeline_config + 0x1cd8), *(undefined8 *)(pipeline_config + 0x1c88),
+                    *(longlong *)(pipeline_config + 0x1cd8) + 0x1be0, 0x230);
+      pipeline_config = *(longlong *)(_DAT_180c86938 + 0x1c88);
+      state_block = *(longlong **)(*(longlong *)(_DAT_180c86938 + 0x1cd8) + 0x8400);
+      shader_program = *(code **)(*state_block + 0x238);
+      *(undefined4 *)(pipeline_config + 0x16c) = *(undefined4 *)(_DAT_180c86870 + 0x224);
+      (*shader_program)(state_block, 2, 1, pipeline_config + 0x10);
+      pipeline_config = *(longlong *)(_DAT_180c86938 + 0x1cd8);
+      
+      // 更新渲染状态
+      if ((pipeline_config != 0) && (*(longlong *)(pipeline_config + 0x82a0) != (longlong)**(int **)(pipeline_config + 0x10))) {
+        (**(code **)(**(longlong **)(pipeline_config + 0x8400) + 0x228))
+                  (*(longlong **)(pipeline_config + 0x8400), *(undefined8 *)(*(int **)(pipeline_config + 0x10) + 6), 0, 0)
         ;
-        *(longlong *)(lVar7 + 0x82a0) = (longlong)**(int **)(lVar13 + 0x10);
+        *(longlong *)(pipeline_config + 0x82a0) = (longlong)**(int **)(pipeline_config + 0x10);
       }
-      uStack_1a8 = CONCAT44(uStack_1a8._4_4_,0xffffffff);
-      FUN_18029d150(*(undefined8 *)(_DAT_180c86938 + 0x1cd8),0,lVar16,0x20);
-      lVar7 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
-      if (ppcStack_148 != (code **)0x0) {
-        *(undefined4 *)((longlong)ppcStack_148 + 0x16c) = *(undefined4 *)(_DAT_180c86870 + 0x224);
-        ppcVar14 = (code **)ppcStack_148[4];
+      
+      // 执行渲染操作
+      depth_stencil_state = CONCAT44(depth_stencil_state._4_4_, 0xffffffff);
+      FUN_18029d150(*(undefined8 *)(_DAT_180c86938 + 0x1cd8), 0, frame_buffer, 0x20);
+      pipeline_config = *(longlong *)(_DAT_180c86938 + 0x1cd8);
+      if (input_layout != (code **)0x0) {
+        *(undefined4 *)((longlong)input_layout + 0x16c) = *(undefined4 *)(_DAT_180c86870 + 0x224);
+        render_pass = (code **)input_layout[4];
       }
-      plVar8 = *(longlong **)(lVar7 + 0x8400);
-      uStack_1a8 = 0;
-      ppcStack_168 = ppcVar14;
-      (**(code **)(*plVar8 + 0x220))(plVar8,1,1,&ppcStack_168);
-      plVar8 = *(longlong **)(*(longlong *)(_DAT_180c86938 + 0x1cd8) + 0x8400);
-      (**(code **)(*plVar8 + 0x148))(plVar8,1,1,1);
-      pcStack_a8 = (code *)&UNK_1809fcc58;
-      pcStack_a0 = (code *)auStack_90;
-      auStack_90[0] = auStack_90[0] & 0xffffff00;
-      uStack_98 = 0x1f;
-      uVar17 = strcpy_s(auStack_90,0x40,&UNK_180a1ae38);
-      uStack_170 = 1;
-      uStack_178 = 1;
-      uStack_180 = 0;
-      uStack_188 = 4;
-      uStack_190 = 0x10;
-      uStack_198 = 0x21;
-      uStack_1a0 = 2;
-      uStack_1a8 = CONCAT44(uStack_1a8._4_4_,0x10);
-      FUN_1800b0a10(uVar17,&pcStack_120,*(undefined4 *)(param_1[0x11] + 0xa0),&pcStack_a8);
-      pcStack_a8 = (code *)&UNK_18098bcb0;
-      ppcVar14 = (code **)FUN_18062b1e0(_DAT_180c8ed18,0x48,8,3);
-      pcVar5 = pcStack_120;
-      ppcVar14[1] = (code *)0x0;
-      ppcVar14[2] = (code *)0x0;
-      ppcVar14[3] = (code *)0x0;
-      ppcVar14[4] = (code *)0x0;
-      ppcVar14[5] = (code *)0x0;
-      ppcVar14[6] = (code *)0x0;
-      ppcVar14[7] = (code *)0x0;
-      ppcVar14[8] = (code *)0x0;
-      *ppcVar14 = (code *)0x0;
-      ppcVar14[1] = (code *)0x0;
-      ppcVar14[2] = (code *)0x0;
-      ppcStack_150 = (code **)pcStack_120;
-      ppcStack_168 = ppcVar14;
-      if (pcStack_120 != (code *)0x0) {
-        (**(code **)(*(longlong *)pcStack_120 + 0x28))(pcStack_120);
+      state_block = *(longlong **)(pipeline_config + 0x8400);
+      depth_stencil_state = 0;
+      vertex_buffer = render_pass;
+      (**(code **)(*state_block + 0x220))(state_block, 1, 1, &vertex_buffer);
+      state_block = *(longlong **)(*(longlong *)(_DAT_180c86938 + 0x1cd8) + 0x8400);
+      (**(code **)(*state_block + 0x148))(state_block, 1, 1, 1);
+      
+      // 配置第二渲染通道
+      vertex_shader = (code *)&UNK_1809fcc58;
+      pixel_shader = (code *)vertex_data;
+      vertex_data[0] = vertex_data[0] & 0xffffff00;
+      topology = 0x1f;
+      blend_state = strcpy_s(vertex_data, 0x40, &UNK_180a1ae38);
+      primitive_restart = 1;
+      scissor_enable = 1;
+      viewport = 0;
+      sample_mask = 4;
+      rasterizer_state = 0x10;
+      stencil_ref = 0x21;
+      depth_stencil_state._4_4_ = 0x10;
+      FUN_1800b0a10(blend_state, &domain_shader, *(undefined4 *)(render_context_ptr[0x11] + 0xa0), &vertex_shader);
+      vertex_shader = (code *)&UNK_18098bcb0;
+      render_pass = (code **)FUN_18062b1e0(_DAT_180c8ed18, 0x48, 8, 3);
+      shader_program = domain_shader;
+      render_pass[1] = (code *)0x0;
+      render_pass[2] = (code *)0x0;
+      render_pass[3] = (code *)0x0;
+      render_pass[4] = (code *)0x0;
+      render_pass[5] = (code *)0x0;
+      render_pass[6] = (code *)0x0;
+      render_pass[7] = (code *)0x0;
+      render_pass[8] = (code *)0x0;
+      *render_pass = (code *)0x0;
+      render_pass[1] = (code *)0x0;
+      render_pass[2] = (code *)0x0;
+      input_layout = (code **)domain_shader;
+      vertex_buffer = render_pass;
+      if (domain_shader != (code *)0x0) {
+        (**(code **)(*(longlong *)domain_shader + 0x28))(domain_shader);
       }
-      ppcStack_150 = (code **)*ppcVar14;
-      *ppcVar14 = pcVar5;
-      if (ppcStack_150 != (code **)0x0) {
-        (**(code **)((longlong)*ppcStack_150 + 0x38))();
+      input_layout = (code **)*render_pass;
+      *render_pass = shader_program;
+      if (input_layout != (code **)0x0) {
+        (**(code **)((longlong)*input_layout + 0x38))();
       }
-      ppcVar11 = ppcStack_148;
-      ppcStack_168 = ppcStack_148;
-      if (ppcStack_148 != (code **)0x0) {
-        (**(code **)(*ppcStack_148 + 0x28))(ppcStack_148);
+      shader_stage = input_layout;
+      vertex_buffer = input_layout;
+      if (input_layout != (code **)0x0) {
+        (**(code **)(*input_layout + 0x28))(input_layout);
       }
-      ppcStack_168 = (code **)ppcVar14[1];
-      ppcVar14[1] = (code *)ppcVar11;
-      if (ppcStack_168 != (code **)0x0) {
-        (**(code **)(*ppcStack_168 + 0x38))();
+      vertex_buffer = (code **)render_pass[1];
+      render_pass[1] = (code *)shader_stage;
+      if (vertex_buffer != (code **)0x0) {
+        (**(code **)(*vertex_buffer + 0x38))();
       }
-      if (param_1 != (code **)0x0) {
-        ppcStack_168 = param_1;
-        (**(code **)(*param_1 + 0x28))(param_1);
+      if (render_context_ptr != (code **)0x0) {
+        vertex_buffer = render_context_ptr;
+        (**(code **)(*render_context_ptr + 0x28))(render_context_ptr);
       }
-      ppcStack_168 = (code **)ppcVar14[2];
-      ppcVar14[2] = (code *)param_1;
-      if (ppcStack_168 != (code **)0x0) {
-        (**(code **)(*ppcStack_168 + 0x38))();
+      vertex_buffer = (code **)render_pass[2];
+      render_pass[2] = (code *)render_context_ptr;
+      if (vertex_buffer != (code **)0x0) {
+        (**(code **)(*vertex_buffer + 0x38))();
       }
-      ppcVar14[3] = param_2;
-      puVar15 = (uint *)FUN_180145140(param_1[0x11] + 0x3018,&pcStack_140,
-                                      *(undefined4 *)(param_1[0x11] + 0x3f50));
-      uVar1 = puVar15[2];
-      uVar9 = puVar15[1];
-      *(uint *)((longlong)ppcVar14 + 0x24) = *puVar15 ^ 0x80000000;
-      *(uint *)(ppcVar14 + 5) = uVar9 ^ 0x80000000;
-      *(uint *)((longlong)ppcVar14 + 0x2c) = uVar1 ^ 0x80000000;
-      *(undefined4 *)(ppcVar14 + 6) = 0x7f7fffff;
-      pcVar5 = param_1[0x11];
-      fVar2 = *(float *)(pcVar5 + 0x30c8);
-      fStack_160 = fVar2 * *(float *)(pcVar5 + 0x30e4);
-      fVar3 = *(float *)(pcVar5 + 0x30e0);
-      uStack_15c = 0x7f7fffff;
-      *(float *)((longlong)ppcVar14 + 0x34) = fVar2 * *(float *)(pcVar5 + 0x30dc);
-      *(float *)(ppcVar14 + 7) = fVar2 * fVar3;
-      *(float *)((longlong)ppcVar14 + 0x3c) = fStack_160;
-      *(undefined4 *)(ppcVar14 + 8) = 0x7f7fffff;
-      ppcStack_168 = &pcStack_140;
-      pcStack_130 = (code *)&UNK_1802e4bc0;
-      puStack_128 = &UNK_1800ee4c0;
-      pcStack_140 = FUN_18031d520;
-      ppcStack_150 = &pcStack_140;
-      (*(code *)&UNK_1800ee4c0)(ppcVar14,&pcStack_140);
-      if (pcStack_130 != (code *)0x0) {
-        (*pcStack_130)(&pcStack_140,0,0);
+      render_pass[3] = material_data;
+      vertex_data = (uint *)FUN_180145140(render_context_ptr[0x11] + 0x3018, &geometry_shader,
+                                      *(undefined4 *)(render_context_ptr[0x11] + 0x3f50));
+      texture_unit = vertex_data[2];
+      vertex_count = vertex_data[1];
+      *(uint *)((longlong)render_pass + 0x24) = *vertex_data ^ 0x80000000;
+      *(uint *)(render_pass + 5) = vertex_count ^ 0x80000000;
+      *(uint *)((longlong)render_pass + 0x2c) = texture_unit ^ 0x80000000;
+      *(undefined4 *)(render_pass + 6) = 0x7f7fffff;
+      shader_program = render_context_ptr[0x11];
+      material_param1 = *(float *)(shader_program + 0x30c8);
+      viewport_scale = material_param1 * *(float *)(shader_program + 0x30e4);
+      material_param2 = *(float *)(shader_program + 0x30e0);
+      primitive_restart = 0x7f7fffff;
+      *(float *)((longlong)render_pass + 0x34) = material_param1 * *(float *)(shader_program + 0x30dc);
+      *(float *)(render_pass + 7) = material_param1 * material_param2;
+      *(float *)((longlong)render_pass + 0x3c) = viewport_scale;
+      *(undefined4 *)(render_pass + 8) = 0x7f7fffff;
+      vertex_buffer = &geometry_shader;
+      hull_shader = (code *)&UNK_1802e4bc0;
+      stream_output_buffer = &UNK_1800ee4c0;
+      geometry_shader = FUN_18031d520;
+      input_layout = &geometry_shader;
+      (*(code *)&UNK_1800ee4c0)(render_pass, &geometry_shader);
+      if (hull_shader != (code *)0x0) {
+        (*hull_shader)(&geometry_shader, 0, 0);
       }
-      if (pcStack_120 != (code *)0x0) {
-        (**(code **)(*(longlong *)pcStack_120 + 0x38))();
+      if (domain_shader != (code *)0x0) {
+        (**(code **)(*(longlong *)domain_shader + 0x38))();
       }
-      if (plStack_c0 != (longlong *)0x0) {
-        (**(code **)(*plStack_c0 + 0x38))();
+      if (state_block != (longlong *)0x0) {
+        (**(code **)(*state_block + 0x38))();
       }
-      ppcStack_168 = &pcStack_f0;
-      pcStack_f0 = (code *)&UNK_180a3c3e0;
-      if (lStack_e8 != 0) {
+      vertex_buffer = &pixel_shader;
+      pixel_shader = (code *)&UNK_180a3c3e0;
+      if (instance_buffer != 0) {
                     // WARNING: Subroutine does not return
         FUN_18064e900();
       }
-      lStack_e8 = 0;
-      uStack_d8 = uStack_d8 & 0xffffffff00000000;
-      pcStack_f0 = (code *)&UNK_18098bcb0;
-      if (plStack_f8 != (longlong *)0x0) {
-        (**(code **)(*plStack_f8 + 0x38))();
+      instance_buffer = 0;
+      frame_sync = frame_sync & 0xffffffff00000000;
+      pixel_shader = (code *)&UNK_18098bcb0;
+      if (vertex_buffer != (longlong *)0x0) {
+        (**(code **)(*vertex_buffer + 0x38))();
       }
       goto LAB_18031df5a;
     }
   }
-  iVar4 = *(int *)(param_2 + 0x4c);
-  *(int *)(param_2 + 0x4c) = iVar4 + 1;
-  if (iVar4 + 1 == 0x18) {
-    *(undefined4 *)(param_2 + 0x5c) = 0xffffffff;
+  
+  // 更新材质引用计数
+  render_state = *(int *)(material_data + 0x4c);
+  *(int *)(material_data + 0x4c) = render_state + 1;
+  if (render_state + 1 == 0x18) {
+    *(undefined4 *)(material_data + 0x5c) = 0xffffffff;
   }
 LAB_18031df5a:
-  if (ppcStack_148 != (code **)0x0) {
-    (**(code **)(*ppcStack_148 + 0x38))();
+  if (input_layout != (code **)0x0) {
+    (**(code **)(*input_layout + 0x38))();
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_48 ^ (ulonglong)auStack_1c8);
+  FUN_1808fc050(frame_sync ^ (ulonglong)alignment_buffer);
 }
 
 
