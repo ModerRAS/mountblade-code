@@ -997,7 +997,7 @@ void FUN_180058c60(long long param_1)
 void FUN_18004bb70(long long param_1)
 {
     // 调用事件记录相关函数
-    FUN_180058420(param_1, *(uint64_t *)(param_1 + 0x10), 0, 0, 0xfffffffffffffffe);
+    InitializationSystem_ProcessError(param_1, *(uint64_t *)(param_1 + 0x10), 0, 0, 0xfffffffffffffffe);
     
     return;
 }
@@ -1013,7 +1013,7 @@ void FUN_18004bb70(long long param_1)
 void FUN_180058c70(long long param_1)
 {
     // 调用内部初始化相关函数
-    FUN_1800582b0(param_1, *(uint64_t *)(param_1 + 0x10), 0, 0, 0xfffffffffffffffe);
+    InitializationSystem_ManageResource(param_1, *(uint64_t *)(param_1 + 0x10), 0, 0, 0xfffffffffffffffe);
     
     return;
 }
@@ -1029,7 +1029,7 @@ void FUN_180058c70(long long param_1)
 void FUN_18004bb80(long long param_1)
 {
     // 调用清理相关函数
-    FUN_180057010(param_1 + 0x60);
+    InitializationSystem_InitConfig(param_1 + 0x60);
     
     return;
 }
@@ -1045,7 +1045,7 @@ void FUN_18004bb80(long long param_1)
 void FUN_180058c80(long long param_1)
 {
     // 调用状态验证相关函数
-    FUN_180058370(param_1, *(uint64_t *)(param_1 + 0x10), 0, 0, 0xfffffffffffffffe);
+    InitializationSystem_ManageState(param_1, *(uint64_t *)(param_1 + 0x10), 0, 0, 0xfffffffffffffffe);
     
     return;
 }
@@ -1061,7 +1061,7 @@ void FUN_180058c80(long long param_1)
 void FUN_18004bb90(long long param_1)
 {
     // 调用错误处理相关函数
-    FUN_180058420(param_1, *(uint64_t *)(param_1 + 0x10), 0, 0, 0xfffffffffffffffe);
+    InitializationSystem_ProcessError(param_1, *(uint64_t *)(param_1 + 0x10), 0, 0, 0xfffffffffffffffe);
     
     return;
 }
@@ -1138,7 +1138,7 @@ void FUN_180058370(long long param_1, uint64_t param_2, uint64_t param_3, uint64
  * @param param_5 错误参数5
  * @return void 无返回值
  */
-void FUN_180058420(long long param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4, uint64_t param_5);
+void InitializationSystem_ProcessError(long long param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4, uint64_t param_5);
 
 /* ============================================================================
  * 辅助功能函数实现
