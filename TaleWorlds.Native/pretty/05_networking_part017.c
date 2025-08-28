@@ -154,6 +154,12 @@
 // 连接池管理器
 #define NetworkingSystem_ConnectionPoolManager FUN_1808bde90
 
+// 网络连接状态获取器（内部实现）
+#define NetworkingSystem_GetConnectionStatusInternal func_0x00018084c3d0
+
+// 网络连接池管理器（内部实现）
+#define NetworkingSystem_ConnectionPoolManagerInternal func_0x0001808bde90
+
 // TCP 协议处理器
 #define NetworkingSystem_TCPProtocolHandler network_tcp_handler_ptr
 
@@ -404,7 +410,7 @@ void NetworkingSystem_ConnectionProcessor(NetworkHandle *network_interface, Conn
   security_checker = session_manager;
   
   // 获取连接类型
-  connection_status = func_0x00018084c3d0(connection_context);
+  connection_status = NetworkingSystem_GetConnectionStatusInternal(connection_context);
   auth_manager = monitor_context;
   resource_manager = cleanup_context;
   state_manager = state_context;
@@ -419,7 +425,7 @@ void NetworkingSystem_ConnectionProcessor(NetworkHandle *network_interface, Conn
     }
 PROTOCOL_SETUP_COMPLETE:
     if (connection_pool != (ConnectionHandle *)0x0) {
-      func_0x0001808bde90(auth_manager, connection_pool);
+      NetworkingSystem_ConnectionPoolManagerInternal(auth_manager, connection_pool);
     }
   }
   else {
@@ -818,7 +824,7 @@ void NetworkingSystem_ResourceCleaner(ConnectionContext connection_context)
   security_flags = security_flags & 0xffffff00;
   
   // 获取连接状态
-  connection_status = func_0x00018084c3d0();
+  connection_status = NetworkingSystem_GetConnectionStatusInternal();
   
   // 根据连接状态进行清理
   if (connection_status == CONNECTION_TYPE_TCP) {
@@ -1094,7 +1100,7 @@ FINAL_CLEANUP:
   
   // 清理连接池
   if (security_context != 0) {
-    func_0x0001808bde90(session_manager, security_context);
+    NetworkingSystem_ConnectionPoolManagerInternal(session_manager, security_context);
   }
   
 CLEANUP_EXIT:
