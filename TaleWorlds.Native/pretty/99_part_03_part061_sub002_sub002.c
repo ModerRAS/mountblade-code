@@ -132,19 +132,19 @@ int SystemShutdown(SystemHandle handle)
     }
     
     // 停止系统服务
-    status = FUN_00000003(handle);
+    status = SystemServiceStopper(handle);
     if (status != SYSTEM_SUCCESS) {
         return status;
     }
     
     // 释放资源
-    status = FUN_00000004(handle);
+    status = SystemResourceReleaser(handle);
     if (status != SYSTEM_SUCCESS) {
         return status;
     }
     
     // 清理状态
-    status = FUN_00000005(handle);
+    status = SystemStateCleaner(handle);
     return status;
 }
 

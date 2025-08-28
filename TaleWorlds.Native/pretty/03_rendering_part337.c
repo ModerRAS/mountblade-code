@@ -271,7 +271,7 @@ static unsigned int g_initialized = 0;                     // 初始化标志
  * - 支持多种数据类型的操作
  * - 提供错误处理和状态管理
  */
-void FUN_1804485c0(int64_t *param_1, void *param_2, void *param_3, void *param_4,
+void RenderingSystem_DataProcessor(int64_t *param_1, void *param_2, void *param_3, void *param_4,
                   void *param_5, void *param_6, void *param_7, unsigned int param_8)
 {
     int64_t *data_manager;

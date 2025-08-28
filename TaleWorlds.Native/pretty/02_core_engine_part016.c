@@ -98,10 +98,10 @@
 
 // 系统组件管理函数别名
 #define CoreEngineComponentProcessor CoreEngineComponentProcessor      // 核心引擎组件处理器
-#define CoreEngineResourceManager FUN_1800582b0         // 核心引擎资源管理器
-#define CoreEngineStateManager FUN_180058370            // 核心引擎状态管理器
-#define CoreEngineErrorHandler FUN_180058420            // 核心引擎错误处理器
-#define CoreEngineSystemInitializer FUN_180058210       // 核心引擎系统初始化器
+#define CoreEngineResourceManager CoreEngineResourceManager         // 核心引擎资源管理器
+#define CoreEngineStateManager CoreEngineStateManager            // 核心引擎状态管理器
+#define CoreEngineErrorHandler CoreEngineErrorHandler            // 核心引擎错误处理器
+#define CoreEngineSystemInitializer CoreEngineSystemInitializer       // 核心引擎系统初始化器
 
 // 高级处理函数别名
 #define CoreEngineAdvancedProcessor FUN_180057510       // 核心引擎高级处理器
@@ -317,7 +317,7 @@ void CoreEngineDataOffsetCalculator(uint64_t param_1,int64_t param_2,uint64_t pa
 void CoreEngineDataStructureOptimizer(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
-  FUN_180058210(param_1,*(uint64_t *)(param_1 + 0x10),param_3,param_4,0xfffffffffffffffe);
+  CoreEngineSystemInitializer(param_1,*(uint64_t *)(param_1 + 0x10),param_3,param_4,0xfffffffffffffffe);
   return;
 }
 
@@ -351,7 +351,7 @@ void FUN_1800574b0(int64_t *param_1)
 void FUN_180057510(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
-  FUN_1800582b0(param_1,*(uint64_t *)(param_1 + 0x10),param_3,param_4,0xfffffffffffffffe);
+  CoreEngineResourceManager(param_1,*(uint64_t *)(param_1 + 0x10),param_3,param_4,0xfffffffffffffffe);
   return;
 }
 
@@ -363,7 +363,7 @@ void FUN_180057510(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t pa
 void FUN_180057530(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
-  FUN_180058370(param_1,*(uint64_t *)(param_1 + 0x10),param_3,param_4,0xfffffffffffffffe);
+  CoreEngineStateManager(param_1,*(uint64_t *)(param_1 + 0x10),param_3,param_4,0xfffffffffffffffe);
   return;
 }
 
@@ -623,7 +623,7 @@ void FUN_1800575d4(void)
 void FUN_1800575f0(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
-  FUN_180058420(param_1,*(uint64_t *)(param_1 + 0x10),param_3,param_4,0xfffffffffffffffe);
+  CoreEngineErrorHandler(param_1,*(uint64_t *)(param_1 + 0x10),param_3,param_4,0xfffffffffffffffe);
   return;
 }
 
@@ -1251,7 +1251,7 @@ void FUN_180057d70(int64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t p
   param_1[0x124] = 0;
   *(int32_t *)(param_1 + 0x126) = 0;
   param_1[0x123] = (int64_t)&system_state_ptr;
-  FUN_180058370(param_1 + 0x11d,param_1[0x11f],param_3,param_4,uVar3);
+  CoreEngineStateManager(param_1 + 0x11d,param_1[0x11f],param_3,param_4,uVar3);
   if (param_1[0x119] == 0) {
     FUN_18005d580();
     FUN_18005d580();
