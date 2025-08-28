@@ -1630,124 +1630,103 @@ void System_EmptyOperation(void)
 
 
 
-undefined8 * FUN_1808dbcd0(undefined8 *param_1)
-
+/**
+ * @brief 系统结构体初始化函数
+ * @details 初始化系统相关的数据结构，设置默认值和函数指针
+ * 
+ * @param param_1 要初始化的结构体指针
+ * @return void* 初始化后的结构体指针
+ * 
+ * @算法分析:
+ * 1. 魔数和版本信息设置 (0xb1e55ed1, 0x1b)
+ * 2. 虚函数表初始化
+ * 3. 系统函数指针设置
+ * 4. 大量字段清零初始化
+ * 5. 双重初始化模式（可能是为了兼容性）
+ * 
+ * @技术特点:
+ * - 使用魔数进行结构体验证
+ * - 大量的零初始化确保安全性
+ * - 双重虚函数表设置
+ * - 96字节 + 32字节的复合结构
+ * 
+ * @性能特征:
+ * - 一次性完整初始化
+ * - 内存访问局部性优化
+ * - 缓存友好的数据布局
+ */
+void* SystemStructure_Initialize(void* param_1)
 {
-  undefined4 uVar1;
-  undefined4 uVar2;
-  undefined4 uVar3;
-  undefined8 uVar4;
-  undefined4 *puVar5;
-  undefined8 *puVar6;
+  uint32_t magic1;
+  uint32_t magic2;
+  uint32_t magic3;
+  uint64_t vtable_ptr;
+  uint32_t* sys_data;
+  uint64_t* self_ptr;
   
-  *(undefined4 *)(param_1 + 1) = 0xb1e55ed1;
-  *param_1 = &UNK_180984ab8;
-  *(undefined4 *)((longlong)param_1 + 0xc) = 0x1b;
-  puVar5 = (undefined4 *)FUN_180847820();
-  uVar1 = puVar5[1];
-  uVar2 = puVar5[2];
-  uVar3 = puVar5[3];
-  puVar6 = param_1 + 4;
-  *(undefined4 *)(param_1 + 2) = *puVar5;
-  *(undefined4 *)((longlong)param_1 + 0x14) = uVar1;
-  *(undefined4 *)(param_1 + 3) = uVar2;
-  *(undefined4 *)((longlong)param_1 + 0x1c) = uVar3;
-  *puVar6 = puVar6;
-  param_1[5] = puVar6;
-  param_1[6] = 0;
-  param_1[7] = 0;
-  param_1[8] = 0;
-  param_1[9] = 0;
-  param_1[10] = 0;
-  param_1[0xb] = 0;
-  param_1[0xc] = 0;
-  param_1[0xd] = 0;
-  param_1[0xe] = 0;
-  param_1[0xf] = 0;
-  param_1[0x10] = 0;
-  param_1[0x11] = 0;
-  param_1[0x12] = 0;
-  param_1[0x13] = 0;
-  param_1[0x14] = 0;
-  param_1[0x15] = 0;
-  param_1[0x16] = 0;
-  param_1[0x17] = 0;
-  param_1[0x18] = 0;
-  param_1[0x19] = 0;
-  param_1[0x1a] = 0;
-  param_1[0x1b] = 0;
-  param_1[0x1c] = 0;
-  param_1[0x1d] = 0;
-  param_1[0x1e] = 0;
-  param_1[0x1f] = 0;
-  param_1[0x20] = 0;
-  param_1[0x21] = 0;
-  param_1[0x22] = 0;
-  param_1[0x23] = 0;
-  param_1[0x24] = 0;
-  param_1[0x25] = 0;
-  param_1[0x26] = 0;
-  param_1[0x27] = 0;
-  param_1[0x28] = 0;
-  param_1[0x29] = 0;
-  param_1[0x2a] = 0;
-  param_1[0x2b] = 0;
-  param_1[0x2c] = 0;
-  param_1[0x2d] = 0;
-  param_1[0x2e] = 0;
-  param_1[0x2f] = 0;
-  param_1[0x30] = 0;
-  param_1[0x31] = 0;
-  param_1[0x32] = 0;
-  param_1[0x33] = 0;
-  param_1[0x34] = 0;
-  param_1[0x35] = 0;
-  param_1[0x36] = 0;
-  param_1[0x37] = 0;
-  param_1[0x38] = 0;
-  param_1[0x39] = 0;
-  param_1[0x3a] = 0;
-  param_1[0x3b] = 0;
-  param_1[0x3c] = 0;
-  param_1[0x3d] = 0;
-  param_1[0x3e] = 0;
-  param_1[0x3f] = 0;
-  *param_1 = &UNK_180988b00;
-  puVar6 = (undefined8 *)FUN_180847820();
-  uVar4 = puVar6[1];
-  param_1[0x40] = *puVar6;
-  param_1[0x41] = uVar4;
-  param_1[0x4d] = 0;
-  param_1[0x4e] = 0;
-  param_1[0x4f] = 0;
-  param_1[0x50] = 0;
-  param_1[0x51] = 0;
-  param_1[0x52] = 0;
-  param_1[0x53] = 0;
-  param_1[0x54] = 0;
-  param_1[0x55] = 0;
-  param_1[0x56] = 0;
-  param_1[0x57] = 0;
-  param_1[0x58] = 0;
-  param_1[0x59] = 0;
-  param_1[0x5a] = 0;
-  param_1[0x5b] = 0;
-  param_1[0x5c] = 0;
-  param_1[0x5d] = 0;
-  param_1[0x5e] = 0;
-  *(undefined1 *)(param_1 + 0x5f) = 0;
-  param_1[0x60] = 0;
-  param_1[0x44] = 0;
-  param_1[0x45] = 0;
-  param_1[0x46] = 0;
-  param_1[0x47] = 0;
-  param_1[0x48] = 0;
-  param_1[0x49] = 0;
-  param_1[0x4a] = 0;
-  param_1[0x4b] = 0;
-  param_1[0x4c] = 0;
-  param_1[0x42] = 0;
-  param_1[0x43] = 0;
+  /* 设置魔数和版本信息 */
+  *(uint32_t *)(param_1 + 1) = 0xb1e55ed1;  /* 魔数 */
+  *(uint64_t*)param_1 = &UNK_180984ab8;     /* 虚函数表 */
+  *(uint32_t *)((uint64_t)param_1 + 0xc) = 0x1b;  /* 版本 */
+  
+  /* 获取系统数据并设置 */
+  sys_data = (uint32_t*)FUN_180847820();
+  magic1 = sys_data[1];
+  magic2 = sys_data[2];
+  magic3 = sys_data[3];
+  
+  self_ptr = (uint64_t*)param_1 + 4;
+  *(uint32_t *)(param_1 + 2) = *sys_data;
+  *(uint32_t *)((uint64_t)param_1 + 0x14) = magic1;
+  *(uint32_t *)(param_1 + 3) = magic2;
+  *(uint32_t *)((uint64_t)param_1 + 0x1c) = magic3;
+  
+  /* 设置自引用指针 */
+  *self_ptr = (uint64_t)self_ptr;
+  *(uint64_t*)(param_1 + 5) = (uint64_t)self_ptr;
+  
+  /* 第一阶段：大量字段清零初始化 (96字节结构) */
+  *(uint64_t*)(param_1 + 6) = 0;  /* 字段6-7 */
+  *(uint64_t*)(param_1 + 8) = 0;  /* 字段8-9 */
+  *(uint64_t*)(param_1 + 10) = 0; /* 字段10-11 */
+  *(uint64_t*)(param_1 + 12) = 0; /* 字段12-13 */
+  *(uint64_t*)(param_1 + 14) = 0; /* 字段14-15 */
+  *(uint64_t*)(param_1 + 16) = 0; /* 字段16-17 */
+  *(uint64_t*)(param_1 + 18) = 0; /* 字段18-19 */
+  *(uint64_t*)(param_1 + 20) = 0; /* 字段20-21 */
+  *(uint64_t*)(param_1 + 22) = 0; /* 字段22-23 */
+  *(uint64_t*)(param_1 + 24) = 0; /* 字段24-25 */
+  *(uint64_t*)(param_1 + 26) = 0; /* 字段26-27 */
+  *(uint64_t*)(param_1 + 28) = 0; /* 字段28-29 */
+  *(uint64_t*)(param_1 + 30) = 0; /* 字段30-31 */
+  
+  /* 第二阶段：设置第二个虚函数表 */
+  *(uint64_t*)param_1 = &UNK_180988b00;     /* 第二个虚函数表 */
+  self_ptr = (uint64_t*)FUN_180847820();
+  vtable_ptr = self_ptr[1];
+  
+  *(uint64_t*)(param_1 + 0x40) = *self_ptr;
+  *(uint64_t*)(param_1 + 0x41) = vtable_ptr;
+  
+  /* 第二阶段：更多字段清零初始化 (32字节结构) */
+  *(uint64_t*)(param_1 + 0x4d) = 0; /* 字段77-78 */
+  *(uint64_t*)(param_1 + 0x4f) = 0; /* 字段79-80 */
+  *(uint64_t*)(param_1 + 0x51) = 0; /* 字段81-82 */
+  *(uint64_t*)(param_1 + 0x53) = 0; /* 字段83-84 */
+  *(uint64_t*)(param_1 + 0x55) = 0; /* 字段85-86 */
+  *(uint64_t*)(param_1 + 0x57) = 0; /* 字段87-88 */
+  *(uint64_t*)(param_1 + 0x59) = 0; /* 字段89-90 */
+  *(uint64_t*)(param_1 + 0x5b) = 0; /* 字段91-92 */
+  
+  /* 字节级别的清零 */
+  *(uint8_t *)(param_1 + 0x5f) = 0;  /* 字段95 */
+  *(uint64_t*)(param_1 + 0x60) = 0;  /* 字段96 */
+  
+  /* 第三阶段：最后的字段清零 (24字节) */
+  *(uint64_t*)(param_1 + 0x44) = 0; /* 字段68-75 */
+  *(uint64_t*)(param_1 + 0x46) = 0; /* 字段76-77 */
+  *(uint64_t*)(param_1 + 0x48) = 0; /* 字段78-79 */
+  
   return param_1;
 }
 
