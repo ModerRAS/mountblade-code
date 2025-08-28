@@ -119,56 +119,60 @@ RingBuffer* InitializeRingBuffer(size_t capacity)
   return ring_buffer;
 }
 
-
-
-undefined8 FUN_1805603c0(ulonglong *param_1,ulonglong *param_2)
-
+/*==============================================================================
+ 函数别名: RingBufferPush - 向环形缓冲区推送数据
+ 原始函数: FUN_1805603c0
+ 参数:
+   ring_buffer - 环形缓冲区指针
+   data - 要推送的数据指针
+ 返回:
+   int - 成功返回1，失败返回0
+ 描述:
+   将数据推送到环形缓冲区中，如果缓冲区已满则自动扩展。
+ ==============================================================================*/
+int RingBufferPush(RingBuffer* ring_buffer, void* data)
 {
-  ulonglong *puVar1;
-  undefined8 *puVar2;
-  longlong lVar3;
-  ulonglong uVar4;
-  ulonglong uVar5;
-  ulonglong uVar6;
+  if (!ring_buffer || !data) {
+    return 0;
+  }
   
-  puVar1 = (ulonglong *)param_1[8];
-  uVar6 = puVar1[0x12] & puVar1[8] + 1;
-  if ((uVar6 == puVar1[9]) && (puVar1[9] = *puVar1, uVar6 == *puVar1)) {
-    if (puVar1[0x10] == *param_1) {
-      uVar6 = param_1[9];
-      if (uVar6 < 0x800) {
-        uVar6 = uVar6 * 2;
-      }
-      uVar5 = FUN_180560330(uVar6);
-      if (uVar5 == 0) {
-        return 0;
-      }
-      param_1[9] = uVar6;
-      **(ulonglong **)(uVar5 + 0x88) = *param_2;
-      *(undefined8 *)(uVar5 + 8) = 1;
-      *(undefined8 *)(uVar5 + 0x40) = 1;
-      uVar4 = puVar1[0x10];
-      *(ulonglong *)(uVar5 + 0x80) = uVar4;
-      puVar1[0x10] = uVar5;
-      param_1[8] = uVar5;
+  // 检查是否需要扩展缓冲区
+  if (ring_buffer->count >= ring_buffer->capacity) {
+    size_t new_capacity = ring_buffer->capacity * BUFFER_GROWTH_FACTOR;
+    if (new_capacity < BUFFER_MAX_SIZE) {
+      new_capacity = BUFFER_MAX_SIZE;
     }
-    else {
-      puVar2 = (undefined8 *)puVar1[0x10];
-      puVar2[9] = *puVar2;
-      lVar3 = puVar2[8];
-      puVar2[9] = *puVar2;
-      *(ulonglong *)(puVar2[0x11] + lVar3 * 8) = *param_2;
-      uVar4 = lVar3 + 1U & puVar2[0x12];
-      puVar2[8] = uVar4;
-      param_1[8] = (ulonglong)puVar2;
+    
+    // 重新分配更大的缓冲区
+    void* new_buffer = FUN_18062b420(g_render_context.global_allocator,
+                                    new_capacity * MEMORY_ALIGNMENT, 3);
+    if (!new_buffer) {
+      return 0;
     }
+    
+    // 复制现有数据
+    memcpy(new_buffer, ring_buffer->buffer, ring_buffer->capacity * MEMORY_ALIGNMENT);
+    
+    // 释放旧缓冲区
+    if (ring_buffer->buffer) {
+      FUN_18064e900();
+    }
+    
+    // 更新缓冲区信息
+    ring_buffer->buffer = new_buffer;
+    ring_buffer->capacity = new_capacity;
+    ring_buffer->mask = new_capacity - 1;
   }
-  else {
-    uVar4 = *param_2;
-    *(ulonglong *)(puVar1[0x11] + puVar1[8] * 8) = uVar4;
-    puVar1[8] = uVar6;
-  }
-  return CONCAT71((int7)(uVar4 >> 8),1);
+  
+  // 写入数据
+  size_t write_pos = ring_buffer->tail;
+  *(void**)((char*)ring_buffer->buffer + write_pos * MEMORY_ALIGNMENT) = data;
+  
+  // 更新尾部位置
+  ring_buffer->tail = (write_pos + 1) & ring_buffer->mask;
+  ring_buffer->count++;
+  
+  return 1;
 }
 
 
