@@ -452,122 +452,171 @@ void RenderingSystem_ResourceCleaner(longlong resource_context)
 
 
 
-// 函数: void FUN_18031e050(longlong param_1)
-void FUN_18031e050(longlong param_1)
+// ===================================================================
+// 函数实现：渲染对象处理器
+// ===================================================================
+
+/**
+ * 渲染对象处理器 - 负责渲染对象的创建、配置和销毁
+ * 
+ * @param render_object 渲染对象上下文
+ * @return void
+ * 
+ * 技术说明：
+ * - 管理渲染对象的生命周期
+ * - 处理着色器绑定和配置
+ * - 管理渲染状态切换
+ * - 处理资源引用计数
+ * - 确保对象正确清理
+ */
+void RenderingSystem_ObjectProcessor(longlong render_object)
 
 {
-  int iVar1;
-  undefined8 uVar2;
-  undefined8 *puVar3;
-  longlong lVar4;
-  longlong *plVar5;
-  undefined1 auStack_108 [32];
-  undefined4 uStack_e8;
-  undefined4 uStack_e0;
-  undefined4 uStack_d8;
-  undefined4 uStack_d0;
-  int iStack_c8;
-  longlong *plStack_c0;
-  undefined1 uStack_b8;
-  undefined4 uStack_b0;
-  longlong *plStack_a8;
-  longlong *plStack_a0;
-  undefined8 uStack_98;
-  longlong *plStack_90;
-  undefined *puStack_88;
-  undefined1 *puStack_80;
-  undefined4 uStack_78;
-  undefined1 auStack_70 [72];
-  ulonglong uStack_28;
+  int render_state;
+  undefined8 shader_handle;
+  undefined8 *resource_ptr;
+  longlong shader_program;
+  longlong *render_context;
+  undefined1 alignment_buffer[32];
+  undefined4 blend_state;
+  undefined4 rasterizer_state;
+  undefined4 depth_stencil_state;
+  undefined4 sample_mask;
+  int state_index;
+  longlong *state_block;
+  undefined1 scissor_enable;
+  undefined4 topology;
+  longlong *vertex_shader;
+  longlong *pixel_shader;
+  undefined8 viewport;
+  longlong *input_layout;
+  undefined *render_target;
+  undefined1 *shader_data;
+  undefined4 format;
+  undefined1 texture_buffer[72];
+  ulonglong frame_sync;
   
-  uStack_98 = 0xfffffffffffffffe;
-  uStack_28 = _DAT_180bf00a8 ^ (ulonglong)auStack_108;
-  if (*(int *)(param_1 + 0x60) == 0) {
-    plVar5 = *(longlong **)(param_1 + 0x1c8);
-    *(undefined8 *)(param_1 + 0x1c8) = 0;
-    plStack_a8 = plVar5;
-    if (plVar5 == (longlong *)0x0) goto LAB_18031e20e;
-    lVar4 = *plVar5;
+  // 初始化渲染对象状态
+  viewport = 0xfffffffffffffffe;
+  frame_sync = _DAT_180bf00a8 ^ (ulonglong)alignment_buffer;
+  
+  // 检查渲染状态模式
+  if (*(int *)(render_object + 0x60) == 0) {
+    // 处理顶点着色器
+    render_context = *(longlong **)(render_object + 0x1c8);
+    *(undefined8 *)(render_object + 0x1c8) = 0;
+    vertex_shader = render_context;
+    if (render_context == (longlong *)0x0) goto LAB_18031e20e;
+    shader_program = *render_context;
   }
   else {
-    plVar5 = *(longlong **)(param_1 + 0x70);
-    plStack_90 = plVar5;
-    if (plVar5 != (longlong *)0x0) {
-      (**(code **)(*plVar5 + 0x28))(plVar5);
-      iVar1 = *(int *)(param_1 + 0x60);
-      puStack_88 = &UNK_1809fcc58;
-      puStack_80 = auStack_70;
-      auStack_70[0] = 0;
-      uStack_78 = 0x10;
-      strcpy_s(auStack_70,0x40,&UNK_180a1ae20);
-      uStack_b0 = 1;
-      uStack_b8 = 1;
-      uStack_d0 = 0x10;
-      uStack_d8 = 0;
-      uStack_e0 = 1;
-      uStack_e8 = 0x41;
-      iStack_c8 = iVar1 * 7;
-      plStack_c0 = plVar5;
-      puVar3 = (undefined8 *)FUN_1800b0a10();
-      uVar2 = *puVar3;
-      *puVar3 = 0;
-      plStack_a8 = *(longlong **)(param_1 + 0x1c8);
-      *(undefined8 *)(param_1 + 0x1c8) = uVar2;
-      if (plStack_a8 != (longlong *)0x0) {
-        (**(code **)(*plStack_a8 + 0x38))();
+    // 处理像素着色器
+    render_context = *(longlong **)(render_object + 0x70);
+    input_layout = render_context;
+    if (render_context != (longlong *)0x0) {
+      (**(code **)(*render_context + 0x28))(render_context);
+      render_state = *(int *)(render_object + 0x60);
+      render_target = &UNK_1809fcc58;
+      shader_data = texture_buffer;
+      texture_buffer[0] = 0;
+      format = 0x10;
+      strcpy_s(texture_buffer, 0x40, &UNK_180a1ae20);
+      topology = 1;
+      scissor_enable = 1;
+      depth_stencil_state = 0x10;
+      sample_mask = 0;
+      rasterizer_state = 1;
+      blend_state = 0x41;
+      state_index = render_state * 7;
+      state_block = render_context;
+      resource_ptr = (undefined8 *)FUN_1800b0a10();
+      shader_handle = *resource_ptr;
+      *resource_ptr = 0;
+      vertex_shader = *(longlong **)(render_object + 0x1c8);
+      *(undefined8 *)(render_object + 0x1c8) = shader_handle;
+      if (vertex_shader != (longlong *)0x0) {
+        (**(code **)(*vertex_shader + 0x38))();
       }
-      if (plStack_a0 != (longlong *)0x0) {
-        (**(code **)(*plStack_a0 + 0x38))();
+      if (pixel_shader != (longlong *)0x0) {
+        (**(code **)(*pixel_shader + 0x38))();
       }
-      puStack_88 = &UNK_18098bcb0;
-      plStack_a8 = *(longlong **)(param_1 + 0x70);
-      *(undefined8 *)(param_1 + 0x70) = 0;
-      if (plStack_a8 != (longlong *)0x0) {
-        (**(code **)(*plStack_a8 + 0x38))();
+      render_target = &UNK_18098bcb0;
+      vertex_shader = *(longlong **)(render_object + 0x70);
+      *(undefined8 *)(render_object + 0x70) = 0;
+      if (vertex_shader != (longlong *)0x0) {
+        (**(code **)(*vertex_shader + 0x38))();
       }
     }
-    if (plVar5 == (longlong *)0x0) goto LAB_18031e20e;
-    lVar4 = *plVar5;
+    if (render_context == (longlong *)0x0) goto LAB_18031e20e;
+    shader_program = *render_context;
   }
-  (**(code **)(lVar4 + 0x38))(plVar5);
+  
+  // 执行着色器程序
+  (**(code **)(shader_program + 0x38))(render_context);
 LAB_18031e20e:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_28 ^ (ulonglong)auStack_108);
+  FUN_1808fc050(frame_sync ^ (ulonglong)alignment_buffer);
 }
 
 
 
 
 
-// 函数: void FUN_18031e240(undefined8 param_1,undefined8 param_2,float *param_3,undefined4 param_4)
-void FUN_18031e240(undefined8 param_1,undefined8 param_2,float *param_3,undefined4 param_4)
+// ===================================================================
+// 函数实现：材质处理器
+// ===================================================================
+
+/**
+ * 材质处理器 - 负责材质参数的处理和计算
+ * 
+ * @param texture_handle 纹理句柄
+ * @param shader_context 着色器上下文
+ * @param material_params 材质参数数组
+ * @param material_flags 材质标志
+ * @return void
+ * 
+ * 技术说明：
+ * - 处理材质参数计算
+ * - 管理纹理采样
+ * - 计算材质混合
+ * - 处理着色器参数
+ * - 优化材质性能
+ */
+void RenderingSystem_MaterialProcessor(undefined8 texture_handle, undefined8 shader_context, float *material_params, undefined4 material_flags)
 
 {
-  float *pfVar1;
-  float fStack_38;
-  float fStack_34;
-  float fStack_30;
-  undefined4 uStack_2c;
-  undefined1 auStack_28 [16];
-  float fStack_18;
-  float fStack_14;
-  float fStack_10;
-  float fStack_c;
-  undefined4 uVar2;
+  float *result_vector;
+  float param_x;
+  float param_y;
+  float param_z;
+  undefined4 max_float;
+  undefined1 texture_coords[16];
+  float output_x;
+  float output_y;
+  float output_z;
+  float output_w;
+  undefined4 param_flags;
   
-  pfVar1 = &fStack_18;
-  FUN_18031c410(pfVar1,param_4,&fStack_38,auStack_28,pfVar1);
-  uVar2 = (undefined4)((ulonglong)pfVar1 >> 0x20);
-  fStack_38 = fStack_38 + *param_3;
-  fStack_34 = fStack_34 + param_3[1];
-  fStack_30 = fStack_30 + param_3[2];
-  fStack_18 = *param_3;
-  fStack_14 = param_3[1];
-  fStack_10 = param_3[2];
-  fStack_c = param_3[3];
-  uStack_2c = 0x7f7fffff;
-  FUN_180287020(param_2,&fStack_18,&fStack_38,auStack_28);
-  FUN_180286e40(0x41200000,0x3fc90fdb,0x3f800000,0x3c23d70a,CONCAT44(uVar2,0x41200000));
+  // 初始化材质处理
+  result_vector = &output_x;
+  FUN_18031c410(result_vector, material_flags, &param_x, texture_coords, result_vector);
+  param_flags = (undefined4)((ulonglong)result_vector >> 0x20);
+  
+  // 计算材质参数
+  param_x = param_x + *material_params;
+  param_y = param_y + material_params[1];
+  param_z = param_z + material_params[2];
+  
+  // 设置输出参数
+  output_x = *material_params;
+  output_y = material_params[1];
+  output_z = material_params[2];
+  output_w = material_params[3];
+  max_float = 0x7f7fffff;
+  
+  // 执行材质处理
+  FUN_180287020(shader_context, &output_x, &param_x, texture_coords);
+  FUN_180286e40(0x41200000, 0x3fc90fdb, 0x3f800000, 0x3c23d70a, CONCAT44(param_flags, 0x41200000));
   return;
 }
 
