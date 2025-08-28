@@ -276,18 +276,29 @@ LAB_18060e558:
 
 
 
-int FUN_18060e5e0(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+/**
+ * 渲染系统资源数据验证器
+ * 
+ * 验证渲染系统资源数据的完整性和有效性，确保数据符合预期格式。
+ * 
+ * @param param_1   资源数据指针
+ * @param param_2   验证参数
+ * @param param_3   数据大小
+ * @param param_4   验证标志
+ * @return          验证结果，0表示失败，非0表示成功
+ */
+int RenderingSystem_ValidateResourceData(undefined8 param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4)
 
 {
   short sVar1;
   undefined *puStack_30;
   longlong lStack_28;
   
-  FUN_180627910(&puStack_30,param_1,param_3,param_4,0xfffffffffffffffe);
-  sVar1 = FUN_180571e20(&DAT_180c960c0,&puStack_30);
+  FUN_180627910(&puStack_30, param_1, param_3, param_4, 0xfffffffffffffffe);
+  sVar1 = FUN_180571e20(&DAT_180c960c0, &puStack_30);
   puStack_30 = &UNK_180a3c3e0;
   if (lStack_28 != 0) {
-                    // WARNING: Subroutine does not return
+    // WARNING: Subroutine does not return
     FUN_18064e900();
   }
   return (int)sVar1;
