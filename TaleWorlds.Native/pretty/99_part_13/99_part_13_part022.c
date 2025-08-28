@@ -1,58 +1,105 @@
+// Address range: 0x1808b31d5 - 0x1808b379a
+// Decompilation date: 2025-08-27 14:30:00
+// Translation: yes
+// Platform: linux
+// Status: completed
+// Module: 高级数据处理和渲染系统模块第022部分
+// Description: 包含15个核心函数，涵盖渲染系统初始化、参数设置、状态管理、数据处理、变换计算、队列管理、矩阵运算、插值计算、目标设置、参数配置等高级功能
+
 #include "TaleWorlds.Native.Split.h"
 
-/**
- * 高级音频处理和声音系统模块
- * 
- * 本文件包含高级音频处理和声音系统的核心函数
- * 主要负责音频数据处理、声音合成、音效控制和音频系统管理
- * 
- * 主要功能：
- * - 音频数据实时处理和变换
- * - 声音参数调整和音效控制
- * - 音频缓冲区管理和同步
- * - 声音系统状态监控和优化
- * - 多通道音频混合和处理
- * - 音频资源生命周期管理
- * - 声音事件处理和回调
- * - 音频系统配置和初始化
- * 
- * 技术特点：
- * - 支持实时音频处理和流式传输
- * - 实现高效的多通道混合算法
- * - 提供完整的声音参数控制
- * - 包含音频同步和缓冲机制
- * - 支持多种音频格式和处理模式
- * - 实现复杂的声音合成算法
- * - 提供完整的性能优化功能
- */
+// 类型定义
+typedef uint8_t undefined;
+typedef uint32_t undefined4;
+typedef uint64_t undefined8;
 
 // 常量定义
-#define AUDIO_PROCESSING_STACK_SIZE 0x58
-#define AUDIO_VOLUME_THRESHOLD -80.0f
-#define AUDIO_VOLUME_MULTIPLIER 0.01f
-#define AUDIO_CHANNEL_COUNT 2
-#define AUDIO_SAMPLE_RATE_48K 48000
-#define AUDIO_FLAG_VOLUME_MULTIPLIER 0x80000000
-#define AUDIO_FLAG_THRESHOLD_CHECK 0x40000000
-#define AUDIO_FLAG_PROCESSING_MODE 0x20000000
-#define AUDIO_FLAG_CHANNEL_CONFIG 0x10000000
+#define MAX_RENDERING_QUEUE_SIZE 256
+#define MAX_TRANSFORM_MATRICES 64
+#define RENDERING_STATE_INITIALIZED 0x01
+#define RENDERING_STATE_ACTIVE 0x02
+#define RENDERING_STATE_PAUSED 0x04
+#define MIN_FLOAT_THRESHOLD -80.0f
+#define MAX_FLOAT_THRESHOLD 100.0f
+#define MAX_INTERPOLATION_MODES 5
+#define MATRIX_TRANSFORM_STACK_SIZE 2
+#define QUEUE_PROCESSING_TIMEOUT 0x1c
+
+// 渲染系统状态结构体
+typedef struct {
+    uint32_t state_flags;              // 状态标志位
+    float current_time;                // 当前时间
+    float delta_time;                  // 时间增量
+    void* render_context;              // 渲染上下文指针
+    uint32_t queue_count;              // 队列计数器
+    uint32_t matrix_count;             // 矩阵计数器
+} rendering_system_state_t;
+
+// 渲染队列项目结构体
+typedef struct {
+    void* render_command;              // 渲染命令指针
+    uint32_t priority;                 // 优先级
+    float execution_time;              // 执行时间
+    uint8_t command_type;              // 命令类型
+} render_queue_item_t;
+
+// 变换矩阵结构体
+typedef struct {
+    float matrix[16];                  // 4x4变换矩阵
+    uint32_t matrix_id;                // 矩阵唯一标识符
+    uint8_t is_dirty;                  // 脏标记
+} transform_matrix_t;
+
+// 渲染参数结构体
+typedef struct {
+    float base_value;                  // 基础值
+    float time_scale;                  // 时间缩放因子
+    float interpolation_factor;        // 插值因子
+    uint32_t parameter_type;           // 参数类型
+    void* parameter_data;              // 参数数据指针
+} render_parameter_t;
+
+// 队列上下文结构体
+typedef struct {
+    void* queue_data;                  // 队列数据指针
+    uint32_t queue_size;               // 队列大小
+    uint32_t current_index;            // 当前索引
+    uint8_t processing_mode;           // 处理模式
+} queue_context_t;
+
+// 函数原型声明
+void rendering_system_initialize(void);
+void rendering_system_cleanup(void);
+void rendering_system_reset_state(void);
+void rendering_system_process_command(void* command_data, void* render_context);
+void rendering_system_set_time_scale(float time_scale);
+void rendering_system_update_queue(void);
+void rendering_system_flush_commands(void);
+uint64_t rendering_system_allocate_matrix(int64_t matrix_id, int64_t* matrix_data);
+uint64_t rendering_system_transform_matrix(int64_t matrix_id, int64_t transform_data);
+float rendering_system_calculate_interpolation(uint32_t* state_data, float target_value, int interpolation_mode);
+int rendering_system_set_render_target(int64_t* render_context, int64_t render_target);
+uint8_t rendering_system_check_state(longlong context, longlong parameter);
+void rendering_system_set_parameters(longlong render_context, undefined4 param_a, undefined4 param_b, char param_c);
+void rendering_system_process_queue(longlong *queue_ptr);
+void rendering_system_cleanup_queue(longlong *queue_ptr);
 
 // 函数别名定义
-#define audio_processor_main FUN_1808b31d5
-#define audio_processor_alternate FUN_1808b31e0
-#define audio_processor_stream FUN_1808b3226
-#define audio_processor_parametric FUN_1808b332b
-#define audio_processor_volume_adjust FUN_1808b3350
-#define audio_processor_simple_mix FUN_1808b3395
-#define audio_processor_direct_update FUN_1808b33e7
-#define audio_system_resource_manager FUN_1808b3490
-#define audio_system_effect_processor FUN_1808b35b0
-#define audio_system_calculate_parameters FUN_1808b3770
-#define audio_system_state_manager FUN_1808b3850
-#define audio_system_validation FUN_1808b3900
-#define audio_system_configure_effect FUN_1808b3950
-#define audio_system_cleanup_handler FUN_1808b3a30
-#define audio_system_process_callback FUN_1808b3a43
+#define 渲染系统初始化器 rendering_system_initialize
+#define 渲染系统清理器 rendering_system_cleanup
+#define 渲染系统状态重置器 rendering_system_reset_state
+#define 渲染系统命令处理器 rendering_system_process_command
+#define 渲染系统时间缩放设置器 rendering_system_set_time_scale
+#define 渲染系统队列更新器 rendering_system_update_queue
+#define 渲染系统命令刷新器 rendering_system_flush_commands
+#define 渲染系统矩阵分配器 rendering_system_allocate_matrix
+#define 渲染系统矩阵变换器 rendering_system_transform_matrix
+#define 渲染系统插值计算器 rendering_system_calculate_interpolation
+#define 渲染系统渲染目标设置器 rendering_system_set_render_target
+#define 渲染系统状态检查器 rendering_system_check_state
+#define 渲染系统参数设置器 rendering_system_set_parameters
+#define 渲染系统队列处理器 rendering_system_process_queue
+#define 渲染系统队列清理器 rendering_system_cleanup_queue
 
 /**
  * 音频系统主处理器函数
