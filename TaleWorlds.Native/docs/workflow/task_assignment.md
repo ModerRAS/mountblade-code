@@ -351,7 +351,7 @@
 - [x] `02_core_engine_part194.c` - 已完成 - 负责人: Claude - 完成时间: 2025-08-28
 - [-] `02_core_engine_part195_sub001.c` - 进行中 - 负责人: Claude - 预计完成时间: 2025-08-28
 - [ ] `02_core_engine_part195_sub002.c` - 未开始 - 负责人: - 预计完成时间: -
-- [ ] `02_core_engine_part196.c` - 未开始 - 负责人: - 预计完成时间: -
+- [-] `02_core_engine_part196.c` - 进行中 - 负责人: Claude - 预计完成时间: 2025-08-28
 - [ ] `02_core_engine_part197.c` - 未开始 - 负责人: - 预计完成时间: -
 - [ ] `02_core_engine_part198.c` - 未开始 - 负责人: - 预计完成时间: -
 - [ ] `02_core_engine_part199.c` - 未开始 - 负责人: - 预计完成时间: -
