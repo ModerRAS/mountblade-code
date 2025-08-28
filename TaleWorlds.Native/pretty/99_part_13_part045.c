@@ -155,6 +155,23 @@ void SystemDataStructureProcessor(int64_t *param_1, uint64_t *param_2);
 void SystemResourceManager(int32_t param_1, uint64_t param_2, int64_t param_3);
 
 // ============================================================================
+// FUN_函数别名定义
+// ============================================================================
+
+// 系统错误处理相关函数
+#define FUN_180768400 SystemErrorTerminator
+#define FUN_18084b240 SystemAllocationFailureHandler
+#define FUN_1808b2950 SystemDataValidator
+#define FUN_1808b2f30 SystemDataProcessor
+#define FUN_1808c3dad SystemErrorHandlerExit
+#define FUN_180847820 SystemMemoryAllocator
+#define FUN_1808bc240 SystemDataChecker
+#define FUN_1808c4160 SystemDataValidator2
+#define FUN_1808c4570 SystemDataProcessor2
+#define FUN_180742250 SystemResourceHandler
+#define FUN_1808fc050 SystemSecurityChecker
+
+// ============================================================================
 // 原始函数映射
 // ============================================================================
 
@@ -172,7 +189,7 @@ void SystemResourceManager(int32_t param_1, uint64_t param_2, int64_t param_3);
 void SystemErrorHandler(void)
 {
     // WARNING: 此函数不返回，会调用系统错误处理终止程序
-    FUN_180768400();
+    SystemErrorTerminator();
 }
 
 // 函数: void SystemDataStructureProcessor(int64_t *param_1, uint64_t *param_2)
@@ -216,7 +233,7 @@ void SystemDataStructureProcessor(int64_t *param_1, uint64_t *param_2)
         lVar3 = (**(code **)(*(int64_t *)*param_2 + SYSTEM_OFFSET_0X2F8))((int64_t *)*param_2, lVar5, 1);
         if (lVar3 == 0) {
             // WARNING: 分配失败，不返回
-            FUN_18084b240(lVar5, auStack_58);
+            SystemAllocationFailureHandler(lVar5, auStack_58);
         }
         param_1[0xb] = lVar3;
     }
