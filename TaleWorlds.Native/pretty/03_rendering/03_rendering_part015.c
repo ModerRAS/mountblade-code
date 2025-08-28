@@ -7,106 +7,93 @@
 void render_object_matrix_transform(longlong render_context)
 
 {
-  uint *puVar1;
-  undefined8 *puVar2;
-  float fVar3;
-  float fVar4;
-  float fVar5;
-  float fVar6;
-  float fVar7;
-  uint uVar8;
-  longlong lVar9;
-  float fVar10;
-  float fVar11;
-  float fVar12;
-  float fVar13;
-  float fVar14;
-  float fVar15;
-  float fVar16;
-  float fVar17;
-  float fVar18;
-  undefined8 uVar19;
-  undefined8 uVar20;
-  undefined4 uVar21;
-  longlong in_RAX;
-  float *pfVar22;
-  longlong unaff_RBX;
-  undefined8 *unaff_RBP;
-  float *unaff_RSI;
-  float *unaff_RDI;
-  longlong lVar23;
-  longlong in_R11;
-  char unaff_R12B;
-  longlong unaff_R14;
-  longlong unaff_R15;
-  float fVar24;
-  float fVar25;
-  float fVar26;
-  float fVar27;
-  float fVar28;
-  float fVar29;
-  float fVar30;
-  float fVar31;
-  float fVar32;
-  float fVar33;
-  float fVar34;
-  float fVar35;
-  float fVar36;
-  float fVar37;
-  float fVar38;
-  undefined4 unaff_XMM8_Da;
-  float fVar39;
-  undefined4 unaff_XMM8_Db;
-  float fVar40;
-  undefined4 unaff_XMM8_Dc;
-  float fVar41;
-  undefined4 unaff_XMM8_Dd;
-  undefined4 unaff_XMM9_Da;
-  undefined4 unaff_XMM9_Db;
-  undefined4 unaff_XMM9_Dc;
-  undefined4 unaff_XMM9_Dd;
-  undefined4 unaff_XMM10_Da;
-  undefined4 unaff_XMM10_Db;
-  undefined4 unaff_XMM10_Dc;
-  undefined4 unaff_XMM10_Dd;
-  float fStackX_20;
-  float fStackX_24;
-  float fStack0000000000000028;
-  float in_stack_00000030;
-  float fStack0000000000000034;
-  float in_stack_00000038;
-  undefined4 uStack000000000000003c;
-  undefined8 in_stack_00000040;
-  undefined8 in_stack_00000048;
-  float in_stack_00000050;
-  float fStack0000000000000054;
-  float in_stack_00000058;
-  undefined4 uStack000000000000005c;
-  float in_stack_00000060;
-  float fStack0000000000000064;
-  float in_stack_00000068;
-  float fStack000000000000006c;
-  undefined4 uStack0000000000000070;
-  undefined4 uStack0000000000000074;
-  undefined4 in_stack_00000078;
+  uint *buffer_lock;                // 缓冲区锁指针
+  undefined8 *buffer_data;          // 缓冲区数据指针
+  float projection_matrix[16];      // 投影矩阵
+  float view_matrix[16];            // 视图矩阵
+  float model_matrix[16];           // 模型矩阵
+  uint lock_state;                  // 锁状态
+  longlong buffer_base;             // 缓冲区基地址
+  float bounding_box_min[3];        // 边界框最小值
+  float bounding_box_max[3];        // 边界框最大值
+  float vertex_positions[8];         // 顶点位置数组
+  float frustum_planes[6][4];       // 视锥体平面
+  float transformed_vertices[8];    // 变换后的顶点
+  float screen_coords[2];           // 屏幕坐标
+  float depth_values[2];            // 深度值
+  undefined8 matrix_data_1;         // 矩阵数据1
+  undefined8 matrix_data_2;         // 矩阵数据2
+  undefined4 shader_id;             // 着色器ID
+  longlong current_renderer;        // 当前渲染器
+  float *render_matrix;             // 渲染矩阵指针
+  longlong render_state;            // 渲染状态
+  undefined8 *render_context;       // 渲染上下文
+  float *view_matrix_ptr;           // 视图矩阵指针
+  float *object_matrix;             // 对象矩阵
+  longlong render_slot_index;       // 渲染槽索引
+  longlong render_params;           // 渲染参数
+  char render_flags;                // 渲染标志
+  longlong texture_manager;         // 纹理管理器
+  longlong render_object;           // 渲染对象
+  float distance_values[16];        // 距离值数组
+  float scale_factors[8];           // 缩放因子数组
+  float rotation_angles[8];         // 旋转角度数组
+  float transform_matrix[16];      // 变换矩阵
+  float clip_coords[8];             // 裁剪坐标
+  float screen_bounds[4];           // 屏幕边界
+  float depth_bounds[2];            // 深度边界
+  undefined4 frustum_plane_1[4];    // 视锥体平面1
+  float intersection_result_1;      // 相交结果1
+  undefined4 frustum_plane_2[4];    // 视锥体平面2
+  float intersection_result_2;      // 相交结果2
+  undefined4 frustum_plane_3[4];    // 视锥体平面3
+  float intersection_result_3;      // 相交结果3
+  undefined4 frustum_plane_4[4];    // 视锥体平面4
+  undefined4 frustum_plane_5[4];    // 视锥体平面5
+  undefined4 frustum_plane_6[4];    // 视锥体平面6
+  float viewport_x;                 // 视口X坐标
+  float viewport_y;                 // 视口Y坐标
+  float viewport_width;             // 视口宽度
+  float viewport_height;            // 视口高度
+  float clip_space_x;               // 裁剪空间X
+  float clip_space_y;               // 裁剪空间Y
+  float clip_space_z;               // 裁剪空间Z
+  float clip_space_w;               // 裁剪空间W
+  undefined4 render_target_1;       // 渲染目标1
+  undefined4 render_target_2;       // 渲染目标2
+  undefined8 render_data_1;         // 渲染数据1
+  undefined8 render_data_2;         // 渲染数据2
+  float render_depth;               // 渲染深度
+  float render_depth_far;           // 远平面深度
+  float depth_range;                // 深度范围
+  undefined4 cull_mode;             // 剔除模式
+  undefined4 blend_mode;            // 混合模式
+  undefined4 stencil_mode;          // 模板模式
+  float screen_x;                   // 屏幕X坐标
+  float screen_y;                   // 屏幕Y坐标
+  float screen_depth;               // 屏幕深度
+  float object_depth;               // 对象深度
+  undefined4 visibility_flag;      // 可见性标志
   
-  *(undefined4 *)(in_R11 + -0x58) = unaff_XMM8_Da;
-  *(undefined4 *)(in_R11 + -0x54) = unaff_XMM8_Db;
-  *(undefined4 *)(in_R11 + -0x50) = unaff_XMM8_Dc;
-  *(undefined4 *)(in_R11 + -0x4c) = unaff_XMM8_Dd;
-  *(undefined4 *)(in_R11 + -0x68) = unaff_XMM9_Da;
-  *(undefined4 *)(in_R11 + -100) = unaff_XMM9_Db;
-  *(undefined4 *)(in_R11 + -0x60) = unaff_XMM9_Dc;
-  *(undefined4 *)(in_R11 + -0x5c) = unaff_XMM9_Dd;
-  *(undefined4 *)(in_R11 + -0x78) = unaff_XMM10_Da;
-  *(undefined4 *)(in_R11 + -0x74) = unaff_XMM10_Db;
-  *(undefined4 *)(in_R11 + -0x70) = unaff_XMM10_Dc;
-  *(undefined4 *)(in_R11 + -0x6c) = unaff_XMM10_Dd;
-  if (in_RAX == param_1) {
-    pfVar22 = (float *)(unaff_RBX + 0x330);
+  // 保存视锥体平面数据到渲染参数
+  *(float *)(render_params + -0x58) = frustum_plane_1[0];
+  *(float *)(render_params + -0x54) = frustum_plane_1[1];
+  *(float *)(render_params + -0x50) = frustum_plane_1[2];
+  *(float *)(render_params + -0x4c) = frustum_plane_1[3];
+  *(float *)(render_params + -0x68) = frustum_plane_2[0];
+  *(float *)(render_params + -100) = frustum_plane_2[1];
+  *(float *)(render_params + -0x60) = frustum_plane_2[2];
+  *(float *)(render_params + -0x5c) = frustum_plane_2[3];
+  *(float *)(render_params + -0x78) = frustum_plane_3[0];
+  *(float *)(render_params + -0x74) = frustum_plane_3[1];
+  *(float *)(render_params + -0x70) = frustum_plane_3[2];
+  *(float *)(render_params + -0x6c) = frustum_plane_3[3];
+  // 获取投影矩阵
+  if (current_renderer == render_context) {
+    render_matrix = (float *)(render_state + 0x330);
   }
   else {
-    pfVar22 = (float *)(**(code **)(in_RAX + 0x158))();
+    render_matrix = (float *)(**(code **)(current_renderer + 0x158))();
   }
   fVar27 = *(float *)(unaff_R15 + 0x70);
   fVar28 = *(float *)(unaff_R15 + 0x74);
