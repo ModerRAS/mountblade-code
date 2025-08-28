@@ -1,182 +1,177 @@
 #include "TaleWorlds.Native.Split.h"
 
 // 03_rendering_part034.c - 渲染系统矩阵变换和投影计算模块
-// 包含6个核心函数，涵盖矩阵运算、投影变换、相机参数设置和视锥体裁剪等功能
+// 包含7个核心函数，涵盖矩阵变换、投影计算、相机参数设置、向量归一化、坐标系转换等功能
 
-// 函数：矩阵归一化和向量处理
-// 对输入的矩阵进行归一化处理，计算向量的长度并标准化
-void normalize_matrix_vectors(float *matrix_data)
+/**
+ * 归一化向量长度
+ * @param vector 指向float数组的指针，包含向量的x、y、z分量
+ * @note 该函数将向量长度归一化为1.0，保持方向不变
+ */
+void normalize_vector_length(float *vector)
 {
-    float vector_x;
-    float vector_y;
-    float vector_z;
-    float vector_w;
-    float temp_value;
-    float norm_x;
-    float norm_y;
-    float norm_z;
-    float magnitude;
-    float inverse_magnitude;
+    float length_squared;
+    float reciprocal_sqrt;
+    float normalized_length;
+    float temp1, temp2, temp3;
     
-    // 设置矩阵的W分量
-    matrix_data[0x20] = 1.0f;  // XMM0_Qa的低位
-    matrix_data[0x21] = 0.0f;  // XMM0_Qa的高位
-    matrix_data[0x22] = 0.0f;  // XMM0_Dc
-    matrix_data[0x23] = 0.0f;  // XMM0_Dd
+    // 复制原始矩阵数据
+    vector[0x20] = 1.0f;  // 设置默认值
+    vector[0x21] = 0.0f;
+    vector[0x22] = 0.0f;
+    vector[0x23] = 0.0f;
     
-    // 复制变换矩阵数据
-    *(uint64_t *)(matrix_data + 0x28) = *(uint64_t *)(matrix_data + 0x3c);
-    *(uint64_t *)(matrix_data + 0x2a) = *(uint64_t *)(matrix_data + 0x3e);
-    *(uint64_t *)(matrix_data + 0x18) = *(uint64_t *)(matrix_data + 0x3c);
-    *(uint64_t *)(matrix_data + 0x1a) = *(uint64_t *)(matrix_data + 0x3e);
-    *(uint64_t *)(matrix_data + 0x10) = *(uint64_t *)(matrix_data + 0x3c);
-    *(uint64_t *)(matrix_data + 0x12) = *(uint64_t *)(matrix_data + 0x3e);
+    // 复制矩阵数据块
+    *(undefined8 *)(vector + 0x28) = *(undefined8 *)(vector + 0x3c);
+    *(undefined8 *)(vector + 0x2a) = *(undefined8 *)(vector + 0x3e);
+    *(undefined8 *)(vector + 0x18) = *(undefined8 *)(vector + 0x3c);
+    *(undefined8 *)(vector + 0x1a) = *(undefined8 *)(vector + 0x3e);
+    *(undefined8 *)(vector + 0x10) = *(undefined8 *)(vector + 0x3c);
+    *(undefined8 *)(vector + 0x12) = *(undefined8 *)(vector + 0x3e);
     
-    // 计算第一个向量的叉积
-    vector_w = matrix_data[0x45];
-    vector_z = matrix_data[0x43];
-    norm_x = -(vector_w * matrix_data[0x34]) - vector_z * matrix_data[0x38];
-    norm_y = -(vector_w * matrix_data[0x35]) - vector_z * matrix_data[0x39];
-    temp_value = 3.4028235e+38f;  // FLT_MAX
-    norm_z = -(vector_w * matrix_data[0x36]) - vector_z * matrix_data[0x3a];
+    // 计算向量叉积 - 第一个向量
+    temp1 = vector[0x45];
+    temp2 = vector[0x43];
+    temp3 = -(temp1 * vector[0x34]) - temp2 * vector[0x38];
+    temp1 = -(temp1 * vector[0x35]) - temp2 * vector[0x39];
+    temp2 = -(temp1 * vector[0x36]) - temp2 * vector[0x3a];
     
-    matrix_data[0x24] = norm_x;
-    matrix_data[0x25] = norm_y;
-    matrix_data[0x26] = norm_z;
-    matrix_data[0x27] = temp_value;
+    vector[0x24] = temp3;
+    vector[0x25] = temp1;
+    vector[0x26] = temp2;
+    vector[0x27] = 3.4028235e+38f;  // FLT_MAX
     
-    // 计算第二个向量的点积
-    vector_w = matrix_data[0x45];
-    vector_z = matrix_data[0x44];
-    norm_x = vector_z * matrix_data[0x38] + vector_w * matrix_data[0x34];
-    norm_z = vector_z * matrix_data[0x3a] + vector_w * matrix_data[0x36];
-    norm_y = vector_z * matrix_data[0x39] + vector_w * matrix_data[0x35];
-    temp_value = 3.4028235e+38f;  // FLT_MAX
+    // 计算向量叉积 - 第二个向量
+    temp1 = vector[0x45];
+    temp2 = vector[0x44];
+    temp3 = temp2 * vector[0x38] + temp1 * vector[0x34];
+    temp2 = temp2 * vector[0x3a] + temp1 * vector[0x36];
+    temp1 = temp2 * vector[0x39] + temp1 * vector[0x35];
     
-    matrix_data[0x2c] = norm_x;
-    matrix_data[0x2d] = norm_y;
-    matrix_data[0x2e] = norm_z;
-    matrix_data[0x2f] = temp_value;
+    vector[0x2c] = temp3;
+    vector[0x2d] = temp1;
+    vector[0x2e] = temp2;
+    vector[0x2f] = 3.4028235e+38f;  // FLT_MAX
     
-    // 计算第三个向量的变换
-    vector_w = matrix_data[0x45];
-    vector_z = matrix_data[0x42];
-    temp_value = matrix_data[0x30];
-    norm_y = matrix_data[0x31];
-    norm_z = matrix_data[0x32];
+    // 计算向量叉积 - 第三个向量
+    temp1 = vector[0x45];
+    temp2 = vector[0x42];
+    temp3 = vector[0x30];
+    temp1 = vector[0x31];
+    temp2 = vector[0x32];
+    temp3 = -(temp1 * temp3) - temp2 * vector[0x38];
+    temp1 = -(temp1 * temp1) - temp2 * vector[0x39];
+    temp2 = -(temp1 * temp2) - temp2 * vector[0x3a];
     
-    norm_x = -(vector_w * temp_value) - vector_z * matrix_data[0x38];
-    norm_y = -(vector_w * norm_y) - vector_z * matrix_data[0x39];
-    temp_value = matrix_data[0x3a];
-    norm_z = -(vector_w * norm_z) - vector_z * temp_value;
-    temp_value = 3.4028235e+38f;  // FLT_MAX
+    vector[0x1c] = temp3;
+    vector[0x1d] = temp1;
+    vector[0x1e] = temp2;
+    vector[0x1f] = 3.4028235e+38f;  // FLT_MAX
     
-    matrix_data[0x1c] = norm_x;
-    matrix_data[0x1d] = norm_y;
-    matrix_data[0x1e] = norm_z;
-    matrix_data[0x1f] = temp_value;
+    // 计算向量叉积 - 第四个向量
+    temp1 = vector[0x45];
+    temp2 = vector[0x41];
+    temp3 = vector[0x31];
+    temp1 = vector[0x38];
+    temp2 = temp2 * temp1 + temp1 * vector[0x30];
+    temp1 = temp1 * temp3 + temp2 * vector[0x39];
+    temp2 = temp2 * vector[0x3a] + temp1 * vector[0x32];
     
-    // 计算第四个向量的变换
-    vector_w = matrix_data[0x45];
-    vector_z = matrix_data[0x41];
-    norm_y = matrix_data[0x31];
-    temp_value = matrix_data[0x38];
-    
-    norm_x = vector_z * temp_value + vector_w * matrix_data[0x30];
-    norm_z = vector_z * matrix_data[0x39] + vector_w * norm_y;
-    temp_value = 3.4028235e+38f;  // FLT_MAX
-    norm_y = vector_z * matrix_data[0x3a] + vector_w * matrix_data[0x32];
-    
-    matrix_data[0x14] = norm_x;
-    matrix_data[0x15] = norm_z;
-    matrix_data[0x16] = norm_y;
-    matrix_data[0x17] = temp_value;
+    vector[0x14] = temp2;
+    vector[0x15] = temp1;
+    vector[0x16] = temp2;
+    vector[0x17] = 3.4028235e+38f;  // FLT_MAX
     
     // 归一化第一个向量
-    vector_w = matrix_data[0x25];
-    vector_z = matrix_data[0x24];
-    temp_value = matrix_data[0x26];
-    magnitude = vector_z * vector_z + vector_w * vector_w + temp_value * temp_value;
-    inverse_magnitude = 1.0f / sqrtf(magnitude);
+    temp1 = vector[0x25];
+    temp2 = vector[0x24];
+    temp3 = vector[0x26];
+    length_squared = temp2 * temp2 + temp1 * temp1 + temp3 * temp3;
     
-    matrix_data[0x24] = vector_z * inverse_magnitude;
-    matrix_data[0x25] = vector_w * inverse_magnitude;
-    matrix_data[0x26] = temp_value * inverse_magnitude;
+    // 使用快速倒数平方根算法
+    reciprocal_sqrt = rsqrtss(ZEXT416((uint)length_squared), ZEXT416((uint)length_squared))._0_4_;
+    normalized_length = reciprocal_sqrt * 0.5f * (3.0f - length_squared * reciprocal_sqrt * reciprocal_sqrt);
+    
+    vector[0x24] = temp2 * normalized_length;
+    vector[0x25] = temp1 * normalized_length;
+    vector[0x26] = temp3 * normalized_length;
     
     // 归一化第二个向量
-    vector_w = matrix_data[0x2d];
-    vector_z = matrix_data[0x2c];
-    temp_value = matrix_data[0x2e];
-    magnitude = vector_z * vector_z + vector_w * vector_w + temp_value * temp_value;
-    inverse_magnitude = 1.0f / sqrtf(magnitude);
+    temp1 = vector[0x2d];
+    temp2 = vector[0x2c];
+    temp3 = vector[0x2e];
+    length_squared = temp2 * temp2 + temp1 * temp1 + temp3 * temp3;
     
-    matrix_data[0x2c] = vector_z * inverse_magnitude;
-    matrix_data[0x2d] = vector_w * inverse_magnitude;
-    matrix_data[0x2e] = temp_value * inverse_magnitude;
+    reciprocal_sqrt = rsqrtss(ZEXT416((uint)length_squared), ZEXT416((uint)length_squared))._0_4_;
+    normalized_length = reciprocal_sqrt * 0.5f * (3.0f - length_squared * reciprocal_sqrt * reciprocal_sqrt);
+    
+    vector[0x2c] = temp2 * normalized_length;
+    vector[0x2d] = temp1 * normalized_length;
+    vector[0x2e] = temp3 * normalized_length;
     
     // 归一化第三个向量
-    vector_w = matrix_data[0x1d];
-    vector_z = matrix_data[0x1c];
-    temp_value = matrix_data[0x1e];
-    magnitude = vector_z * vector_z + vector_w * vector_w + temp_value * temp_value;
-    inverse_magnitude = 1.0f / sqrtf(magnitude);
+    temp1 = vector[0x1d];
+    temp2 = vector[0x1c];
+    temp3 = vector[0x1e];
+    length_squared = temp2 * temp2 + temp1 * temp1 + temp3 * temp3;
     
-    matrix_data[0x1c] = vector_z * inverse_magnitude;
-    matrix_data[0x1d] = vector_w * inverse_magnitude;
-    matrix_data[0x1e] = temp_value * inverse_magnitude;
+    reciprocal_sqrt = rsqrtss(ZEXT416((uint)length_squared), ZEXT416((uint)length_squared))._0_4_;
+    normalized_length = reciprocal_sqrt * 0.5f * (3.0f - length_squared * reciprocal_sqrt * reciprocal_sqrt);
+    
+    vector[0x1c] = temp2 * normalized_length;
+    vector[0x1d] = temp1 * normalized_length;
+    vector[0x1e] = temp3 * normalized_length;
     
     // 归一化第四个向量
-    vector_w = matrix_data[0x15];
-    vector_z = matrix_data[0x14];
-    temp_value = matrix_data[0x16];
-    magnitude = vector_z * vector_z + vector_w * vector_w + temp_value * temp_value;
-    inverse_magnitude = 1.0f / sqrtf(magnitude);
+    temp1 = vector[0x15];
+    temp2 = vector[0x14];
+    temp3 = vector[0x16];
+    length_squared = temp2 * temp2 + temp1 * temp1 + temp3 * temp3;
     
-    matrix_data[0x14] = vector_z * inverse_magnitude;
-    matrix_data[0x15] = vector_w * inverse_magnitude;
-    matrix_data[0x16] = temp_value * inverse_magnitude;
+    reciprocal_sqrt = rsqrtss(ZEXT416((uint)length_squared), ZEXT416((uint)length_squared))._0_4_;
+    normalized_length = reciprocal_sqrt * 0.5f * (3.0f - length_squared * reciprocal_sqrt * reciprocal_sqrt);
     
-    // 计算相机视锥体的近平面
-    vector_w = matrix_data[0x46];
-    norm_x = matrix_data[0x3c] - vector_w * matrix_data[0x38];
-    norm_y = matrix_data[0x3d] - vector_w * matrix_data[0x39];
-    temp_value = 3.4028235e+38f;  // FLT_MAX
-    norm_z = matrix_data[0x3e] - vector_w * matrix_data[0x3a];
+    vector[0x14] = temp2 * normalized_length;
+    vector[0x15] = temp1 * normalized_length;
+    vector[0x16] = temp3 * normalized_length;
     
-    matrix_data[8] = norm_x;
-    matrix_data[9] = norm_y;
-    matrix_data[10] = norm_z;
-    matrix_data[0xb] = temp_value;
+    // 计算最终投影向量
+    temp1 = vector[0x46];
+    temp2 = vector[0x3c] - temp1 * vector[0x38];
+    temp3 = vector[0x3d] - temp1 * vector[0x39];
+    temp1 = vector[0x3e] - temp1 * vector[0x3a];
     
-    // 计算相机视锥体的远平面
-    vector_w = matrix_data[0x45];
-    temp_value = matrix_data[0x38];
-    norm_z = matrix_data[0x3a];
-    norm_y = matrix_data[0x3d] - vector_w * matrix_data[0x39];
-    temp_value = 3.4028235e+38f;  // FLT_MAX
-    norm_x = matrix_data[0x3c] - vector_w * temp_value;
-    norm_z = matrix_data[0x3e] - vector_w * norm_z;
+    vector[8] = temp2;
+    vector[9] = temp3;
+    vector[10] = temp1;
+    vector[0xb] = 3.4028235e+38f;  // FLT_MAX
     
-    *matrix_data = norm_x;
-    matrix_data[1] = norm_y;
-    matrix_data[2] = norm_z;
-    matrix_data[3] = temp_value;
+    // 计算相机变换向量
+    temp1 = vector[0x45];
+    temp2 = vector[0x38];
+    temp3 = vector[0x3a];
+    temp2 = vector[0x3d] - temp1 * vector[0x39];
+    temp1 = vector[0x3c] - temp1 * temp2;
+    temp3 = vector[0x3e] - temp1 * temp3;
     
-    // 设置投影矩阵的平移部分
-    *(uint64_t *)(matrix_data + 0xc) = *(uint64_t *)(matrix_data + 0x38);
-    *(uint64_t *)(matrix_data + 0xe) = *(uint64_t *)(matrix_data + 0x3a);
+    *vector = temp1;
+    vector[1] = temp2;
+    vector[2] = temp3;
+    vector[3] = 3.4028235e+38f;  // FLT_MAX
     
-    // 设置投影矩阵的缩放部分（负值表示翻转）
-    norm_x = matrix_data[0x38];
-    norm_y = matrix_data[0x39];
-    vector_w = matrix_data[0x3a];
-    temp_value = 3.4028235e+38f;  // FLT_MAX
-    norm_z = 3.4028235e+38f;  // FLT_MAX
+    // 复制视图矩阵数据
+    *(undefined8 *)(vector + 0xc) = *(undefined8 *)(vector + 0x38);
+    *(undefined8 *)(vector + 0xe) = *(undefined8 *)(vector + 0x3a);
     
-    matrix_data[4] = -norm_x;
-    matrix_data[5] = -norm_y;
-    matrix_data[6] = -vector_w;
-    matrix_data[7] = temp_value;
+    // 设置最终向量
+    temp1 = vector[0x38];
+    temp2 = vector[0x39];
+    temp3 = vector[0x3a];
+    
+    vector[4] = -temp1;
+    vector[5] = -temp2;
+    vector[6] = -temp3;
+    vector[7] = 3.4028235e+38f;  // FLT_MAX
 }
 
 // 函数：矩阵变换和投影设置
