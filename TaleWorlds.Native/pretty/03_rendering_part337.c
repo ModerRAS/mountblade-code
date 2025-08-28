@@ -7,7 +7,7 @@
 // 渲染数据管理函数
 #define RenderingSystem_DataProcessor FUN_1804485c0          // 渲染系统数据处理器
 #define RenderingSystem_DataManager FUN_1804489a0            // 渲染系统数据管理器
-#define RenderingSystem_DataInitializer FUN_180448d90        // 渲染系统数据初始化器
+#define RenderingSystem_DataInitializer RenderingSystem_DataInitializer        // 渲染系统数据初始化器
 #define RenderingSystem_DataCleaner FUN_180448df0            // 渲染系统数据清理器
 #define RenderingSystem_DataValidator FUN_180448e50         // 渲染系统数据验证器
 #define RenderingSystem_StatusChecker FUN_180448ea0         // 渲染系统状态检查器
@@ -439,7 +439,7 @@ void RenderingSystem_DataProcessor(int64_t *param_1, void *param_2, void *param_
  * - 提供扩展的错误处理机制
  * - 优化大数据量处理性能
  */
-void FUN_1804489a0(int64_t *param_1, void *param_2, void *param_3, void *param_4,
+void RenderingSystem_DataManager(int64_t *param_1, void *param_2, void *param_3, void *param_4,
                   void *param_5, void *param_6, void *param_7, unsigned int param_8,
                   unsigned int param_9, unsigned int param_10)
 {
@@ -598,7 +598,7 @@ void FUN_1804489a0(int64_t *param_1, void *param_2, void *param_3, void *param_4
 }
 
 /**
- * @brief 渲染系统状态控制器 (FUN_180448d90)
+ * @brief 渲染系统状态控制器 (RenderingSystem_DataInitializer)
  * 
  * 功能：控制渲染对象的状态和生命周期
  * 参数：param_1 - 对象管理器指针
@@ -609,7 +609,7 @@ void FUN_1804489a0(int64_t *param_1, void *param_2, void *param_3, void *param_4
  * - 实现状态验证和控制
  * - 处理对象的激活和停用
  */
-void FUN_180448d90(int64_t *param_1)
+void RenderingSystem_DataInitializer(int64_t *param_1)
 {
     RenderObjectPtr object_ptr;
     unsigned char *status_flag;
@@ -1543,7 +1543,7 @@ void associate_object_with_system(int64_t *object, int64_t *system)
 // 导出核心数据处理函数
 EXPORT_FUNCTION(RenderDataProcessor, FUN_1804485c0);
 EXPORT_FUNCTION(RenderDataProcessor, FUN_1804489a0);
-EXPORT_FUNCTION(RenderObjectManager, FUN_180448d90);
+EXPORT_FUNCTION(RenderObjectManager, RenderingSystem_DataInitializer);
 EXPORT_FUNCTION(RenderParamHandler, FUN_180448df0);
 EXPORT_FUNCTION(MemoryAllocator, FUN_180448e50);
 

@@ -163,7 +163,7 @@ int SystemGetState(SystemHandle handle)
         return SYSTEM_ERROR_INVALID;
     }
     
-    return FUN_00000006(handle);
+    return SystemStateQuerier(handle);
 }
 
 //==============================================================================

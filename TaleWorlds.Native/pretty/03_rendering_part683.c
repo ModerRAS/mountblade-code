@@ -172,49 +172,52 @@ void RenderingSystem_AdvancedAngleCalculator(uint64_t param_1,uint param_2,uint 
                                            uint64_t param_9,uint64_t param_10,uint64_t param_11,uint64_t param_12)
 
 {
-  float *pfVar1;
-  char cVar2;
-  bool bVar3;
-  int64_t lVar4;
-  float *pfVar5;
-  int iVar6;
-  int64_t lVar7;
-  int64_t lVar8;
-  uint64_t unaff_RBX;
-  int64_t unaff_RBP;
-  int iVar9;
-  uint64_t unaff_RDI;
-  uint64_t uVar10;
-  int64_t unaff_R12;
-  char cVar11;
-  float unaff_R13D;
-  float *unaff_R14;
-  char unaff_R15B;
-  bool in_ZF;
-  float fVar12;
-  float fVar13;
-  float fVar14;
-  float fVar15;
-  float fVar16;
-  float fVar17;
-  float fVar18;
-  float fVar19;
-  float fVar20;
-  float fVar21;
-  int8_t auVar22 [16];
-  float fVar23;
-  float fVar24;
-  float unaff_XMM6_Da;
-  float fVar25;
-  float unaff_XMM8_Da;
-  float unaff_XMM9_Da;
-  float fStack0000000000000038;
-  float fStack000000000000003c;
-  float fStack000000000000006c;
-  float fStack0000000000000074;
-  float fStack000000000000007c;
-  float afStack_60e8 [6200];
-  uint64_t uStack_8;
+    // 局部变量声明和初始化
+    float *pfVar1;                    // 浮点指针变量1
+    char cVar2;                       // 字符变量2
+    bool bVar3;                       // 布尔变量3
+    int64_t lVar4;                    // 长整型变量4
+    float *pfVar5;                    // 浮点指针变量5
+    int iVar6;                        // 整型变量6
+    int64_t lVar7;                    // 长整型变量7
+    int64_t lVar8;                    // 长整型变量8
+    uint64_t unaff_RBX;               // 寄存器RBX值
+    int64_t unaff_RBP;                // 寄存器RBP值
+    int iVar9;                        // 整型变量9
+    uint64_t unaff_RDI;               // 寄存器RDI值
+    uint64_t uVar10;                  // 无符号长整型变量10
+    int64_t unaff_R12;                // 寄存器R12值
+    char cVar11;                      // 字符变量11
+    float unaff_R13D;                 // 寄存器R13D值
+    float *unaff_R14;                 // 寄存器R14值（浮点指针）
+    char unaff_R15B;                  // 寄存器R15B值
+    bool in_ZF;                       // 零标志位
+    float fVar12;                     // 浮点变量12
+    float fVar13;                     // 浮点变量13
+    float fVar14;                     // 浮点变量14
+    float fVar15;                     // 浮点变量15
+    float fVar16;                     // 浮点变量16
+    float fVar17;                     // 浮点变量17
+    float fVar18;                     // 浮点变量18
+    float fVar19;                     // 浮点变量19
+    float fVar20;                     // 浮点变量20
+    float fVar21;                     // 浮点变量21
+    int8_t auVar22 [16];              // 8位整型数组22
+    float fVar23;                     // 浮点变量23
+    float fVar24;                     // 浮点变量24
+    float unaff_XMM6_Da;              // XMM6寄存器值
+    float fVar25;                     // 浮点变量25
+    float unaff_XMM8_Da;              // XMM8寄存器值
+    float unaff_XMM9_Da;              // XMM9寄存器值
+    
+    // 栈变量声明
+    float fStack0000000000000038;     // 栈变量38
+    float fStack000000000000003c;     // 栈变量3c
+    float fStack000000000000006c;     // 栈变量6c
+    float fStack0000000000000074;     // 栈变量74
+    float fStack000000000000007c;     // 栈变量7c
+    float afStack_60e8 [6200];        // 大型浮点数组（用于渲染计算）
+    uint64_t uStack_8;                // 栈变量8（用于调试和错误处理）
   
   if (!in_ZF) {
                     // WARNING: Subroutine does not return

@@ -104,8 +104,8 @@
 #define CoreEngineSystemInitializer CoreEngineSystemInitializer       // 核心引擎系统初始化器
 
 // 高级处理函数别名
-#define CoreEngineAdvancedProcessor FUN_180057510       // 核心引擎高级处理器
-#define CoreEngineOptimizationManager FUN_180057530     // 核心引擎优化管理器
+#define CoreEngineAdvancedProcessor CoreEngineAdvancedProcessor       // 核心引擎高级处理器
+#define CoreEngineOptimizationManager CoreEngineOptimizationManager     // 核心引擎优化管理器
 #define CoreEngineResourceHandler FUN_180057550         // 核心引擎资源处理器
 #define CoreEngineSystemController FUN_180057556        // 核心引擎系统控制器
 #define CoreEngineMemoryManager FUN_180057580           // 核心引擎内存管理器
@@ -347,8 +347,8 @@ void FUN_1800574b0(int64_t *param_1)
 
 
 
-// 函数: void FUN_180057510(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
-void FUN_180057510(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
+// 函数: void CoreEngineAdvancedProcessor(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
+void CoreEngineAdvancedProcessor(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
   CoreEngineResourceManager(param_1,*(uint64_t *)(param_1 + 0x10),param_3,param_4,0xfffffffffffffffe);
@@ -359,8 +359,8 @@ void FUN_180057510(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t pa
 
 
 
-// 函数: void FUN_180057530(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
-void FUN_180057530(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
+// 函数: void CoreEngineOptimizationManager(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
+void CoreEngineOptimizationManager(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
   CoreEngineStateManager(param_1,*(uint64_t *)(param_1 + 0x10),param_3,param_4,0xfffffffffffffffe);
