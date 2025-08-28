@@ -97,299 +97,297 @@ void process_gpu_cache_creation(longlong engine_context, longlong *cache_manager
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// 警告：全局变量名在相同地址上重叠
 
-
-
-// 函数: void FUN_1801762b0(longlong param_1,undefined **param_2,longlong param_3,undefined **param_4)
-void FUN_1801762b0(longlong param_1,undefined **param_2,longlong param_3,undefined **param_4)
+// 函数：处理瓦片集(tileset)创建和纹理管理的核心函数
+void process_tileset_creation(longlong engine_context, undefined **texture_array, longlong tileset_params, undefined **output_buffer)
 
 {
-  undefined **ppuVar1;
-  undefined **ppuVar2;
-  uint uVar3;
-  int iVar4;
-  longlong lVar5;
-  undefined **ppuVar6;
-  longlong *plVar7;
-  undefined *puVar8;
-  undefined1 *puVar9;
-  longlong *plVar10;
-  ulonglong uVar11;
-  longlong *plVar12;
-  undefined *puVar13;
-  undefined1 auStack_718 [32];
-  undefined *puStack_6f8;
-  undefined1 *puStack_6f0;
-  int iStack_6e8;
-  ulonglong uStack_6e0;
-  longlong lStack_6d8;
-  undefined4 uStack_6d0;
-  undefined **ppuStack_6c8;
-  undefined4 uStack_6c0;
-  longlong *plStack_6b8;
-  longlong *plStack_6b0;
-  undefined *puStack_6a8;
-  longlong *plStack_6a0;
-  uint uStack_698;
-  undefined8 uStack_690;
-  undefined4 uStack_688;
-  undefined **appuStack_680 [2];
-  undefined8 uStack_670;
-  undefined *apuStack_668 [68];
-  undefined *apuStack_448 [128];
-  ulonglong uStack_48;
+  undefined **texture_ptr1;
+  undefined **texture_ptr2;
+  uint texture_width;
+  int operation_result;
+  longlong texture_handle;
+  undefined **tileset_ptr;
+  longlong *cache_manager;
+  undefined *texture_data;
+  undefined1 *texture_buffer;
+  longlong *memory_pool;
+  ulonglong data_size;
+  longlong *resource_ptr;
+  undefined *resource_data;
+  undefined1 stack_buffer_1816 [32];
+  undefined *string_buffer;
+  undefined1 *char_buffer;
+  int buffer_length;
+  ulonglong buffer_capacity;
+  longlong tileset_id;
+  undefined4 creation_flags;
+  undefined **output_ptr;
+  undefined4 format_flags;
+  longlong *cpu_cache_params;
+  longlong *gpu_cache_params;
+  undefined *texture_manager;
+  longlong *data_buffer;
+  uint texture_height;
+  undefined8 dimension_info;
+  undefined4 quality_flags;
+  undefined **texture_array_ptr [2];
+  undefined8 pool_size;
+  undefined *texture_cache [68];
+  undefined *wchar_buffer [128];
+  ulonglong security_cookie;
   
-  uStack_670 = 0xfffffffffffffffe;
-  uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_718;
-  plVar10 = *(longlong **)(param_1 + 200);
-  appuStack_680[0] = param_2;
-  for (plVar12 = *(longlong **)(param_1 + 0xc0); lStack_6d8 = param_3, ppuStack_6c8 = param_4,
-      plVar12 != plVar10; plVar12 = plVar12 + 1) {
-    uStack_6d0 = 0;
-    lVar5 = *plVar12;
-    puStack_6f8 = &UNK_180a3c3e0;
-    uStack_6e0 = 0;
-    puStack_6f0 = (undefined1 *)0x0;
-    iStack_6e8 = 0;
-    FUN_1806277c0(&puStack_6f8,*(undefined4 *)(lVar5 + 0xb8));
-    if (*(int *)(lVar5 + 0xb8) != 0) {
-                    // WARNING: Subroutine does not return
-      memcpy(puStack_6f0,*(undefined8 *)(lVar5 + 0xb0),*(int *)(lVar5 + 0xb8) + 1);
+  pool_size = 0xfffffffffffffffe;
+  security_cookie = SECURITY_COOKIE_VALUE ^ (ulonglong)stack_buffer_1816;
+  memory_pool = *(longlong **)(engine_context + 200);
+  texture_array_ptr[0] = texture_array;
+  for (resource_ptr = *(longlong **)(engine_context + 0xc0); tileset_id = tileset_params, output_ptr = output_buffer,
+      resource_ptr != memory_pool; resource_ptr = resource_ptr + 1) {
+    creation_flags = 0;
+    texture_handle = *resource_ptr;
+    string_buffer = &EMPTY_STRING;
+    buffer_capacity = 0;
+    char_buffer = (undefined1 *)0x0;
+    buffer_length = 0;
+    allocate_string_buffer(&string_buffer, *(undefined4 *)(texture_handle + 0xb8));
+    if (*(int *)(texture_handle + 0xb8) != 0) {
+      // 警告：此函数不返回
+      memcpy(char_buffer, *(undefined8 *)(texture_handle + 0xb0), *(int *)(texture_handle + 0xb8) + 1);
     }
-    if (*(longlong *)(lVar5 + 0xb0) != 0) {
-      iStack_6e8 = 0;
-      if (puStack_6f0 != (undefined1 *)0x0) {
-        *puStack_6f0 = 0;
+    if (*(longlong *)(texture_handle + 0xb0) != 0) {
+      buffer_length = 0;
+      if (char_buffer != (undefined1 *)0x0) {
+        *char_buffer = 0;
       }
-      uStack_6e0 = uStack_6e0 & 0xffffffff;
+      buffer_capacity = buffer_capacity & 0xffffffff;
     }
-    uStack_6d0 = 0;
-    puStack_6f8 = &UNK_180a3c3e0;
-    if (puStack_6f0 != (undefined1 *)0x0) {
-                    // WARNING: Subroutine does not return
-      FUN_18064e900();
+    creation_flags = 0;
+    string_buffer = &EMPTY_STRING;
+    if (char_buffer != (undefined1 *)0x0) {
+      // 警告：此函数不返回
+      free_memory_buffer();
     }
-    puStack_6f0 = (undefined1 *)0x0;
-    uStack_6e0 = uStack_6e0 & 0xffffffff00000000;
-    puStack_6f8 = &UNK_18098bcb0;
-    param_3 = lStack_6d8;
-    param_4 = ppuStack_6c8;
+    char_buffer = (undefined1 *)0x0;
+    buffer_capacity = buffer_capacity & 0xffffffff00000000;
+    string_buffer = &EMPTY_WSTRING;
+    tileset_params = tileset_id;
+    output_buffer = output_ptr;
   }
-  uStack_6d0 = 0;
-  __0TileSetCreationParameters_Granite_Graphine__QEAA_XZ(&ppuStack_6c8);
-  ppuVar1 = appuStack_680[0];
-  lVar5 = FUN_180624440(apuStack_668,appuStack_680[0]);
-  puStack_6f8 = &UNK_180a3c3e0;
-  uStack_6e0 = 0;
-  puStack_6f0 = (undefined1 *)0x0;
-  iStack_6e8 = 0;
-  FUN_1806277c0(&puStack_6f8,*(undefined4 *)(lVar5 + 0x10));
-  if (0 < *(int *)(lVar5 + 0x10)) {
-    puVar8 = &DAT_18098bc73;
-    if (*(undefined **)(lVar5 + 8) != (undefined *)0x0) {
-      puVar8 = *(undefined **)(lVar5 + 8);
+  creation_flags = 0;
+  initialize_tileset_parameters(&output_ptr);
+  texture_ptr1 = texture_array_ptr[0];
+  texture_handle = get_texture_info(texture_cache, texture_array_ptr[0]);
+  string_buffer = &EMPTY_STRING;
+  buffer_capacity = 0;
+  char_buffer = (undefined1 *)0x0;
+  buffer_length = 0;
+  allocate_string_buffer(&string_buffer, *(undefined4 *)(texture_handle + 0x10));
+  if (0 < *(int *)(texture_handle + 0x10)) {
+    texture_data = &DEFAULT_TEXTURE_DATA;
+    if (*(undefined **)(texture_handle + 8) != (undefined *)0x0) {
+      texture_data = *(undefined **)(texture_handle + 8);
     }
-                    // WARNING: Subroutine does not return
-    memcpy(puStack_6f0,puVar8,(longlong)(*(int *)(lVar5 + 0x10) + 1));
+    // 警告：此函数不返回
+    memcpy(char_buffer, texture_data, (longlong)(*(int *)(texture_handle + 0x10) + 1));
   }
-  if ((*(longlong *)(lVar5 + 8) != 0) && (iStack_6e8 = 0, puStack_6f0 != (undefined1 *)0x0)) {
-    *puStack_6f0 = 0;
+  if ((*(longlong *)(texture_handle + 8) != 0) && (buffer_length = 0, char_buffer != (undefined1 *)0x0)) {
+    *char_buffer = 0;
   }
-  apuStack_668[0] = &UNK_18098bcb0;
-  puVar9 = &DAT_18098bc73;
-  if (puStack_6f0 != (undefined1 *)0x0) {
-    puVar9 = puStack_6f0;
+  texture_cache[0] = &EMPTY_WSTRING;
+  texture_buffer = &DEFAULT_TEXTURE_DATA;
+  if (char_buffer != (undefined1 *)0x0) {
+    texture_buffer = char_buffer;
   }
-  mbstowcs(apuStack_448,puVar9,(longlong)(iStack_6e8 + 1));
-  ppuStack_6c8 = apuStack_448;
-  uStack_6c0 = 0;
-  iVar4 = (**(code **)(**(longlong **)(param_1 + 0xe8) + 0x48))
-                    (*(longlong **)(param_1 + 0xe8),&ppuStack_6c8,&plStack_6b8);
-  plVar12 = plStack_6b8;
-  if ((plStack_6b8 == (longlong *)0x0) || (iVar4 != 0)) {
-    if (DAT_180c82860 == '\0') {
-      puVar8 = &DAT_18098bc73;
-      if (ppuVar1[1] != (undefined *)0x0) {
-        puVar8 = ppuVar1[1];
+  mbstowcs(wchar_buffer, texture_buffer, (longlong)(buffer_length + 1));
+  output_ptr = wchar_buffer;
+  format_flags = 0;
+  operation_result = (**(code **)(**(longlong **)(engine_context + 0xe8) + 0x48))
+                    (*(longlong **)(engine_context + 0xe8), &output_ptr, &cpu_cache_params);
+  resource_ptr = cpu_cache_params;
+  if ((cpu_cache_params == (longlong *)0x0) || (operation_result != 0)) {
+    if (DEBUG_MODE_ENABLED == '\0') {
+      texture_data = &DEFAULT_TEXTURE_DATA;
+      if (texture_ptr1[1] != (undefined *)0x0) {
+        texture_data = texture_ptr1[1];
       }
-      puVar13 = &DAT_18098bc73;
-      if (*(undefined **)(param_3 + 8) != (undefined *)0x0) {
-        puVar13 = *(undefined **)(param_3 + 8);
+      resource_data = &DEFAULT_TEXTURE_DATA;
+      if (*(undefined **)(tileset_params + 8) != (undefined *)0x0) {
+        resource_data = *(undefined **)(tileset_params + 8);
       }
-      FUN_180626f80(&UNK_180a091f0,puVar13,puVar8);
+      log_texture_error(&ERROR_TEXTURE_LOADING, resource_data, texture_data);
     }
-    puStack_6f8 = &UNK_180a3c3e0;
-    if (puStack_6f0 != (undefined1 *)0x0) {
-                    // WARNING: Subroutine does not return
-      FUN_18064e900();
+    string_buffer = &EMPTY_STRING;
+    if (char_buffer != (undefined1 *)0x0) {
+      // 警告：此函数不返回
+      free_memory_buffer();
     }
-    puStack_6f0 = (undefined1 *)0x0;
-    uStack_6e0 = uStack_6e0 & 0xffffffff00000000;
-    puStack_6f8 = &UNK_18098bcb0;
-    goto LAB_1801769b0;
+    char_buffer = (undefined1 *)0x0;
+    buffer_capacity = buffer_capacity & 0xffffffff00000000;
+    string_buffer = &EMPTY_WSTRING;
+    goto CLEANUP_AND_EXIT;
   }
-  puStack_6f8 = &UNK_180a3c3e0;
-  if (puStack_6f0 != (undefined1 *)0x0) {
-                    // WARNING: Subroutine does not return
-    FUN_18064e900();
+  string_buffer = &EMPTY_STRING;
+  if (char_buffer != (undefined1 *)0x0) {
+    // 警告：此函数不返回
+    free_memory_buffer();
   }
-  puStack_6f0 = (undefined1 *)0x0;
-  uStack_6e0 = uStack_6e0 & 0xffffffff00000000;
-  puStack_6f8 = &UNK_18098bcb0;
-  lStack_6d8 = 0;
-  (**(code **)(**(longlong **)(param_1 + 0xe8) + 0x140))
-            (*(longlong **)(param_1 + 0xe8),plStack_6b8,&lStack_6d8);
-  if (lStack_6d8 == 0) {
-    __0CpuCacheCreationParameters_Granite_Graphine__QEAA_XZ(appuStack_680);
-    iVar4 = (**(code **)(*plVar12 + 0x38))(plVar12,0x3fffc00,appuStack_680);
-    if (iVar4 != 0) {
-      FUN_180626ee0(&UNK_180a09158);
+  char_buffer = (undefined1 *)0x0;
+  buffer_capacity = buffer_capacity & 0xffffffff00000000;
+  string_buffer = &EMPTY_WSTRING;
+  tileset_id = 0;
+  (**(code **)(**(longlong **)(engine_context + 0xe8) + 0x140))
+          (*(longlong **)(engine_context + 0xe8), cpu_cache_params, &tileset_id);
+  if (tileset_id == 0) {
+    initialize_cpu_cache_parameters(texture_array_ptr);
+    operation_result = (**(code **)(*resource_ptr + 0x38))(resource_ptr, 0x3fffc00, texture_array_ptr);
+    if (operation_result != 0) {
+      log_error(&ERROR_CPU_CACHE_INIT);
     }
-    iVar4 = (**(code **)(**(longlong **)(param_1 + 0xe8) + 0x120))
-                      (*(longlong **)(param_1 + 0xe8),appuStack_680,&lStack_6d8);
-    if ((lStack_6d8 == 0) || (iVar4 != 0)) {
-      FUN_180626ee0(&UNK_180a091c8);
+    operation_result = (**(code **)(**(longlong **)(engine_context + 0xe8) + 0x120))
+                      (*(longlong **)(engine_context + 0xe8), texture_array_ptr, &tileset_id);
+    if ((tileset_id == 0) || (operation_result != 0)) {
+      log_error(&ERROR_CACHE_ALLOCATION);
     }
   }
-  iVar4 = (**(code **)(*plStack_6b8 + 0x130))(plStack_6b8,lStack_6d8);
-  if (iVar4 != 0) {
-    FUN_180626ee0(&UNK_180a09280);
+  operation_result = (**(code **)(*cpu_cache_params + 0x130))(cpu_cache_params, tileset_id);
+  if (operation_result != 0) {
+    log_error(&ERROR_TILESET_CREATION);
   }
-  appuStack_680[0] = &puStack_6a8;
-  puStack_6a8 = &UNK_180a3c3e0;
-  uStack_690 = 0;
-  plStack_6a0 = (longlong *)0x0;
-  uStack_698 = 0;
-  plStack_6b0 = plStack_6b8;
-  uVar3 = *(uint *)(param_3 + 0x10);
-  uVar11 = (ulonglong)uVar3;
-  if (*(longlong *)(param_3 + 8) != 0) {
-    FUN_1806277c0(&puStack_6a8,uVar11);
+  texture_array_ptr[0] = &texture_manager;
+  texture_manager = &EMPTY_STRING;
+  dimension_info = 0;
+  data_buffer = (longlong *)0x0;
+  texture_height = 0;
+  gpu_cache_params = cpu_cache_params;
+  texture_width = *(uint *)(tileset_params + 0x10);
+  data_size = (ulonglong)texture_width;
+  if (*(longlong *)(tileset_params + 8) != 0) {
+    allocate_data_buffer(&texture_manager, data_size);
   }
-  if (uVar3 != 0) {
-                    // WARNING: Subroutine does not return
-    memcpy(plStack_6a0,*(undefined8 *)(param_3 + 8),uVar11);
+  if (texture_width != 0) {
+    // 警告：此函数不返回
+    memcpy(data_buffer, *(undefined8 *)(tileset_params + 8), data_size);
   }
-  if (plStack_6a0 != (longlong *)0x0) {
-    *(undefined1 *)(uVar11 + (longlong)plStack_6a0) = 0;
+  if (data_buffer != (longlong *)0x0) {
+    *(undefined1 *)(data_size + (longlong)data_buffer) = 0;
   }
-  uStack_690 = CONCAT44(*(undefined4 *)(param_3 + 0x1c),(undefined4)uStack_690);
-  uStack_688 = (undefined4)(*(longlong *)(param_1 + 200) - *(longlong *)(param_1 + 0xc0) >> 3);
-  uStack_698 = uVar3;
-  ppuVar6 = (undefined **)FUN_18062b1e0(_DAT_180c8ed18,0x1c0,8,3);
-  ppuStack_6c8 = ppuVar6 + 1;
-  appuStack_680[0] = ppuVar6;
-  _Mtx_init_in_situ(ppuStack_6c8,2);
-  ppuStack_6c8 = ppuVar6 + 0xb;
-  _Mtx_init_in_situ(ppuStack_6c8,2);
-  uVar3 = uStack_698;
-  ppuVar1 = ppuVar6 + 0x15;
-  *ppuVar1 = &UNK_18098bcb0;
-  ppuVar6[0x16] = (undefined *)0x0;
-  *(undefined4 *)(ppuVar6 + 0x17) = 0;
-  *ppuVar1 = &UNK_180a3c3e0;
-  ppuVar6[0x18] = (undefined *)0x0;
-  ppuVar6[0x16] = (undefined *)0x0;
-  *(undefined4 *)(ppuVar6 + 0x17) = 0;
-  ppuVar2 = ppuVar6 + 0x2a;
-  ppuVar6[0x2d] = (undefined *)0x0;
-  *(undefined4 *)(ppuVar6 + 0x2f) = 3;
-  *ppuVar2 = (undefined *)ppuVar2;
-  ppuVar6[0x2b] = (undefined *)ppuVar2;
-  ppuVar6[0x2c] = (undefined *)0x0;
-  *(undefined1 *)(ppuVar6 + 0x2d) = 0;
-  ppuVar6[0x2e] = (undefined *)0x0;
-  ppuStack_6c8 = ppuVar6 + 0x30;
-  ppuVar6[0x33] = (undefined *)0x0;
-  *(undefined4 *)(ppuVar6 + 0x35) = 3;
-  *ppuStack_6c8 = (undefined *)ppuStack_6c8;
-  ppuVar6[0x31] = (undefined *)ppuStack_6c8;
-  ppuVar6[0x32] = (undefined *)0x0;
-  *(undefined1 *)(ppuVar6 + 0x33) = 0;
-  ppuVar6[0x34] = (undefined *)0x0;
-  ppuVar6[0x29] = (undefined *)plStack_6b0;
-  uVar11 = (ulonglong)uStack_698;
-  if (plStack_6a0 != (longlong *)0x0) {
-    FUN_1806277c0(ppuVar1,uVar11);
+  dimension_info = CONCAT44(*(undefined4 *)(tileset_params + 0x1c), (undefined4)dimension_info);
+  quality_flags = (undefined4)(*(longlong *)(engine_context + 200) - *(longlong *)(engine_context + 0xc0) >> 3);
+  texture_height = texture_width;
+  tileset_ptr = (undefined **)allocate_memory_pool(MEMORY_POOL_ID, 0x1c0, 8, 3);
+  output_ptr = tileset_ptr + 1;
+  texture_array_ptr[0] = tileset_ptr;
+  initialize_mutex(output_ptr, 2);
+  output_ptr = tileset_ptr + 0xb;
+  initialize_mutex(output_ptr, 2);
+  texture_width = texture_height;
+  texture_ptr1 = tileset_ptr + 0x15;
+  *texture_ptr1 = &EMPTY_WSTRING;
+  tileset_ptr[0x16] = (undefined *)0x0;
+  *(undefined4 *)(tileset_ptr + 0x17) = 0;
+  *texture_ptr1 = &EMPTY_STRING;
+  tileset_ptr[0x18] = (undefined *)0x0;
+  tileset_ptr[0x16] = (undefined *)0x0;
+  *(undefined4 *)(tileset_ptr + 0x17) = 0;
+  texture_ptr2 = tileset_ptr + 0x2a;
+  tileset_ptr[0x2d] = (undefined *)0x0;
+  *(undefined4 *)(tileset_ptr + 0x2f) = 3;
+  *texture_ptr2 = (undefined *)texture_ptr2;
+  tileset_ptr[0x2b] = (undefined *)texture_ptr2;
+  tileset_ptr[0x2c] = (undefined *)0x0;
+  *(undefined1 *)(tileset_ptr + 0x2d) = 0;
+  tileset_ptr[0x2e] = (undefined *)0x0;
+  output_ptr = tileset_ptr + 0x30;
+  tileset_ptr[0x33] = (undefined *)0x0;
+  *(undefined4 *)(tileset_ptr + 0x35) = 3;
+  *output_ptr = (undefined *)output_ptr;
+  tileset_ptr[0x31] = (undefined *)output_ptr;
+  tileset_ptr[0x32] = (undefined *)0x0;
+  *(undefined1 *)(tileset_ptr + 0x33) = 0;
+  tileset_ptr[0x34] = (undefined *)0x0;
+  tileset_ptr[0x29] = (undefined *)gpu_cache_params;
+  data_size = (ulonglong)texture_height;
+  if (data_buffer != (longlong *)0x0) {
+    allocate_data_buffer(texture_ptr1, data_size);
   }
-  if (uVar3 != 0) {
-                    // WARNING: Subroutine does not return
-    memcpy(ppuVar6[0x16],plStack_6a0,uVar11);
+  if (texture_width != 0) {
+    // 警告：此函数不返回
+    memcpy(tileset_ptr[0x16], data_buffer, data_size);
   }
-  *(undefined4 *)(ppuVar6 + 0x17) = 0;
-  if (ppuVar6[0x16] != (undefined *)0x0) {
-    ppuVar6[0x16][uVar11] = 0;
+  *(undefined4 *)(tileset_ptr + 0x17) = 0;
+  if (tileset_ptr[0x16] != (undefined *)0x0) {
+    tileset_ptr[0x16][data_size] = 0;
   }
-  *(undefined4 *)((longlong)ppuVar6 + 0xc4) = uStack_690._4_4_;
-  *(undefined4 *)ppuVar6 = uStack_688;
-  *(undefined4 *)(ppuVar6 + 0x36) = *(undefined4 *)param_4;
-  *(undefined4 *)((longlong)ppuVar6 + 0x1b4) = *(undefined4 *)((longlong)param_4 + 4);
-  *(undefined4 *)(ppuVar6 + 0x37) = *(undefined4 *)(param_4 + 1);
-  *(undefined4 *)((longlong)ppuVar6 + 0x1bc) = *(undefined4 *)((longlong)param_4 + 0xc);
-  plVar12 = *(longlong **)(param_1 + 200);
-  if (plVar12 < *(longlong **)(param_1 + 0xd0)) {
-    *(longlong **)(param_1 + 200) = plVar12 + 1;
-    *plVar12 = (longlong)ppuVar6;
-    plVar10 = plStack_6a0;
+  *(undefined4 *)((longlong)tileset_ptr + 0xc4) = dimension_info._4_4_;
+  *(undefined4 *)tileset_ptr = quality_flags;
+  *(undefined4 *)(tileset_ptr + 0x36) = *(undefined4 *)output_buffer;
+  *(undefined4 *)((longlong)tileset_ptr + 0x1b4) = *(undefined4 *)((longlong)output_buffer + 4);
+  *(undefined4 *)(tileset_ptr + 0x37) = *(undefined4 *)(output_buffer + 1);
+  *(undefined4 *)((longlong)tileset_ptr + 0x1bc) = *(undefined4 *)((longlong)output_buffer + 0xc);
+  resource_ptr = *(longlong **)(engine_context + 200);
+  if (resource_ptr < *(longlong **)(engine_context + 0xd0)) {
+    *(longlong **)(engine_context + 200) = resource_ptr + 1;
+    *resource_ptr = (longlong)tileset_ptr;
+    memory_pool = data_buffer;
   }
   else {
-    plVar10 = *(longlong **)(param_1 + 0xc0);
-    lVar5 = (longlong)plVar12 - (longlong)plVar10 >> 3;
-    if (lVar5 == 0) {
-      lVar5 = 1;
-LAB_180176827:
-      plVar7 = (longlong *)FUN_18062b420(_DAT_180c8ed18,lVar5 * 8,*(undefined1 *)(param_1 + 0xd8));
-      plVar12 = *(longlong **)(param_1 + 200);
-      plVar10 = *(longlong **)(param_1 + 0xc0);
+    memory_pool = *(longlong **)(engine_context + 0xc0);
+    texture_handle = (longlong)resource_ptr - (longlong)memory_pool >> 3;
+    if (texture_handle == 0) {
+      texture_handle = 1;
+EXPAND_MEMORY_POOL:
+      cache_manager = (longlong *)expand_memory_pool(MEMORY_POOL_ID, texture_handle * 8, *(undefined1 *)(engine_context + 0xd8));
+      resource_ptr = *(longlong **)(engine_context + 200);
+      memory_pool = *(longlong **)(engine_context + 0xc0);
     }
     else {
-      lVar5 = lVar5 * 2;
-      if (lVar5 != 0) goto LAB_180176827;
-      plVar7 = (longlong *)0x0;
+      texture_handle = texture_handle * 2;
+      if (texture_handle != 0) goto EXPAND_MEMORY_POOL;
+      cache_manager = (longlong *)0x0;
     }
-    if (plVar10 != plVar12) {
-                    // WARNING: Subroutine does not return
-      memmove(plVar7,plVar10,(longlong)plVar12 - (longlong)plVar10);
+    if (memory_pool != resource_ptr) {
+      // 警告：此函数不返回
+      memmove(cache_manager, memory_pool, (longlong)resource_ptr - (longlong)memory_pool);
     }
-    *plVar7 = (longlong)ppuVar6;
-    if (*(longlong *)(param_1 + 0xc0) != 0) {
-                    // WARNING: Subroutine does not return
-      FUN_18064e900();
+    *cache_manager = (longlong)tileset_ptr;
+    if (*(longlong *)(engine_context + 0xc0) != 0) {
+      // 警告：此函数不返回
+      free_memory_buffer();
     }
-    *(longlong **)(param_1 + 0xc0) = plVar7;
-    *(longlong **)(param_1 + 200) = plVar7 + 1;
-    *(longlong **)(param_1 + 0xd0) = plVar7 + lVar5;
+    *(longlong **)(engine_context + 0xc0) = cache_manager;
+    *(longlong **)(engine_context + 200) = cache_manager + 1;
+    *(longlong **)(engine_context + 0xd0) = cache_manager + texture_handle;
   }
-  FUN_1801769e0(param_1,plVar10);
-  plVar10 = *(longlong **)(param_1 + 200);
-  for (plVar12 = *(longlong **)(param_1 + 0xc0); plVar12 != plVar10; plVar12 = plVar12 + 1) {
-    lVar5 = *plVar12;
-    ppuVar1 = (undefined **)(lVar5 + 0x58);
-    appuStack_680[0] = ppuVar1;
-    iVar4 = _Mtx_lock(ppuVar1);
-    if (iVar4 != 0) {
-      __Throw_C_error_std__YAXH_Z(iVar4);
+  cleanup_engine_resources(engine_context, memory_pool);
+  memory_pool = *(longlong **)(engine_context + 200);
+  for (resource_ptr = *(longlong **)(engine_context + 0xc0); resource_ptr != memory_pool; resource_ptr = resource_ptr + 1) {
+    texture_handle = *resource_ptr;
+    texture_ptr1 = (undefined **)(texture_handle + 0x58);
+    texture_array_ptr[0] = texture_ptr1;
+    operation_result = lock_mutex(texture_ptr1);
+    if (operation_result != 0) {
+      throw_thread_error(operation_result);
     }
-    plVar7 = *(longlong **)(lVar5 + 0x148);
-    (**(code **)(*plVar7 + 0x110))(plVar7,2);
-    iVar4 = _Mtx_unlock(ppuVar1);
-    if (iVar4 != 0) {
-      __Throw_C_error_std__YAXH_Z(iVar4);
+    cache_manager = *(longlong **)(texture_handle + 0x148);
+    (**(code **)(*cache_manager + 0x110))(cache_manager, 2);
+    operation_result = unlock_mutex(texture_ptr1);
+    if (operation_result != 0) {
+      throw_thread_error(operation_result);
     }
   }
-  appuStack_680[0] = &puStack_6a8;
-  puStack_6a8 = &UNK_180a3c3e0;
-  if (plStack_6a0 != (longlong *)0x0) {
-                    // WARNING: Subroutine does not return
-    FUN_18064e900();
+  texture_array_ptr[0] = &texture_manager;
+  texture_manager = &EMPTY_STRING;
+  if (data_buffer != (longlong *)0x0) {
+    // 警告：此函数不返回
+    free_memory_buffer();
   }
-  plStack_6a0 = (longlong *)0x0;
-  uStack_690 = uStack_690 & 0xffffffff00000000;
-  puStack_6a8 = &UNK_18098bcb0;
-LAB_1801769b0:
-                    // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_48 ^ (ulonglong)auStack_718);
+  data_buffer = (longlong *)0x0;
+  dimension_info = dimension_info & 0xffffffff00000000;
+  texture_manager = &EMPTY_WSTRING;
+CLEANUP_AND_EXIT:
+  // 警告：此函数不返回
+  security_check(security_cookie ^ (ulonglong)stack_buffer_1816);
 }
 
 
