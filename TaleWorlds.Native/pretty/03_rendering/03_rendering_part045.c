@@ -7,6 +7,8 @@
 static void* g_rendering_memory_manager = NULL;    // 渲染内存管理器指针
 static void* g_rendering_allocator = NULL;          // 渲染内存分配器
 static int g_rendering_counter = 0;                  // 渲染计数器
+static void* g_error_data_pointer = NULL;           // 错误数据指针
+static void* g_system_allocator = NULL;             // 系统内存分配器
 
 /**
  * 初始化渲染数据解析器
@@ -297,12 +299,17 @@ void cleanup_rendering_data_parser(void)
 
 
 
-// 函数: void FUN_180290020(void)
-void FUN_180290020(void)
-
+/**
+ * 渲染系统错误处理函数
+ * 处理渲染系统中的严重错误，不会返回
+ * 简化实现：直接调用系统错误处理函数
+ */
+void handle_rendering_error(void)
 {
-                    // WARNING: Subroutine does not return
-  FUN_180059ba0(0,_DAT_180c8a9a8);
+    // 调用系统错误处理函数，处理严重错误
+    // 参数：错误码0，错误数据指针
+    // 注意：此函数不会返回
+    system_error_handler(0, g_error_data_pointer);
 }
 
 
