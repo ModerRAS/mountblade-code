@@ -1492,11 +1492,11 @@ void pass_managed_initialize_method_pointer(undefined8 init_method_ptr)
 undefined8 ui_cleanup_managed_resource(undefined8 resource_ptr, ulonglong flags)
 
 {
-  FUN_180651910();
-  if ((param_2 & 1) != 0) {
-    free(param_1,400);
+  ui_release_resource_reference();
+  if ((flags & 1) != 0) {
+    free(resource_ptr,400);
   }
-  return param_1;
+  return resource_ptr;
 }
 
 
@@ -1514,13 +1514,13 @@ undefined8 ui_cleanup_managed_resource(undefined8 resource_ptr, ulonglong flags)
 void ui_cleanup_global_data_structure(undefined8 *global_ptr)
 
 {
-  *param_1 = &UNK_180a3dcb0;
+  *global_ptr = &UNK_180a3dcb0;
   _DAT_180c8f008 = 0;                  // _DAT_180c8f008: 托管库函数指针表（重置）
-  if (param_1[0x2d] != 0) {
+  if (global_ptr[0x2d] != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    ui_cleanup_resource_memory();
   }
-  param_1[1] = &UNK_180a3dca0;
+  global_ptr[1] = &UNK_180a3dca0;
   return;
 }
 
