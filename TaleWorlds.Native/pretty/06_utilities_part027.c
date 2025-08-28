@@ -24,6 +24,11 @@
  */
 
 #include "TaleWorlds.Native.Split.h"
+#include <stdlib.h>
+
+// 类型定义
+typedef long long longlong;
+typedef unsigned long long ulonglong;
 
 // 工具函数模块常量定义
 #define UTILITIES_FLAG_NEGATIVE_0x3FFFFFFB -0x3ffffffb  // 负数标志位
@@ -124,7 +129,7 @@ typedef struct {
 // 参数：param_1 - 系统上下文，param_2 - 状态参数
 // 返回值：无
 // =============================================================================
-void utilities_system_state_checker(uint64_t param_1, longlong param_2)
+void utilities_system_state_checker(uint64_t param_1, long long param_2)
 
 {
   char status_flag;
@@ -157,7 +162,7 @@ void utilities_system_state_checker(uint64_t param_1, longlong param_2)
 // 参数：param_1 - 系统上下文，param_2 - 状态参数
 // 返回值：无
 // =============================================================================
-void utilities_system_state_resetter(uint64_t param_1, longlong param_2)
+void utilities_system_state_resetter(uint64_t param_1, long long param_2)
 
 {
   char reset_flag;
@@ -279,7 +284,7 @@ void utilities_system_data_processor(uint64_t param_1, longlong param_2)
 // 参数：param_1 - 系统上下文，param_2 - 状态参数
 // 返回值：int32_t - 状态码（0表示成功）
 // =============================================================================
-int32_t utilities_system_state_initializer(uint64_t param_1, longlong param_2)
+int32_t utilities_system_state_initializer(uint64_t param_1, long long param_2)
 
 {
   // 设置系统状态参数

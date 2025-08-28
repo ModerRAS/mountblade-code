@@ -49,7 +49,7 @@
 #define RenderingSystem_ProcessorInitializer_Standard FUN_18036a930
 #define RenderingSystem_ProcessorInitializer_Enhanced FUN_18036aa50
 #define RenderingSystem_ManagerCreator FUN_18036ab70
-#define RenderingSystem_HandleUpdater FUN_18036abc0
+#define RenderingSystem_HandleUpdater SystemRenderUpdater
 #define RenderingSystem_SimpleHandleSetter FUN_18036ac90
 #define RenderingSystem_StringValidator FUN_18036adb0
 /* @} */
@@ -73,8 +73,8 @@
 #define SystemStringHandleManager SystemStringHandleManager
 #define SystemRenderInitializer SystemRenderInitializer
 #define SystemHandleProcessor SystemHandleProcessor
-#define SystemRenderUpdater FUN_18036abc0
-#define SystemRenderPostProcessor FUN_18036b380
+#define SystemRenderUpdater SystemRenderUpdater
+#define SystemRenderPostProcessor SystemRenderPostProcessor
 /* @} */
 
 /**
@@ -224,16 +224,16 @@ void RenderingSystem_SetupRenderParameters(uint64_t param_1, uint64_t param_2)
   puVar3 = (uint64_t *)SystemMemoryManager(_DAT_180c8ed18,0x90,8,3);
   uStack_28 = 0xfffffffffffffffe;
   puVar2 = puVar3;
-  FUN_1803456e0(puVar3,param_2,param_1);
+  SystemBaseInitializer(puVar3,param_2,param_1);
   *puVar2 = &unknown_var_1040_ptr;
   puStack_108 = &unknown_var_3456_ptr;
   uStack_f0 = 0;
   puStack_100 = (uint64_t *)0x0;
   uStack_f8 = 0;
-  puVar2 = (uint64_t *)FUN_18062b420(_DAT_180c8ed18,0x10,0x13);
+  puVar2 = (uint64_t *)SystemMemoryAllocator(_DAT_180c8ed18,0x10,0x13);
   *(int8_t *)puVar2 = 0;
   puStack_100 = puVar2;
-  uVar1 = FUN_18064e990(puVar2);
+  uVar1 = SystemStringHashCalculator(puVar2);
   uStack_f0 = CONCAT44(uStack_f0._4_4_,uVar1);
   *puVar2 = 0x6f4d6f54656d6954;
   *(int32_t *)(puVar2 + 1) = 0x416564;
@@ -334,10 +334,10 @@ void RenderingSystem_ProcessRenderConfiguration(uint64_t param_1)
   auStack_2b0[0] = 0;
   uStack_2b8 = 0xb;
   strcpy_s(auStack_2b0,0x40,&system_memory_0c78);
-  FUN_1800b8300(apuStack_328,&puStack_2c8);
+  SystemResourceInitializer(apuStack_328,&puStack_2c8);
   uStack_2d0 = 2;
   uStack_348 = 1;
-  FUN_180180730(param_1,appuStack_340,apuStack_328);
+  SystemContextProcessor(param_1,appuStack_340,apuStack_328);
   uStack_348 = 0;
   appuStack_340[0] = apuStack_328;
   apuStack_328[0] = &unknown_var_720_ptr;
@@ -347,10 +347,10 @@ void RenderingSystem_ProcessRenderConfiguration(uint64_t param_1)
   auStack_250[0] = 0;
   uStack_258 = 0xb;
   strcpy_s(auStack_250,0x40,&system_memory_0c68);
-  FUN_1800b8300(apuStack_328,&puStack_268);
+  SystemResourceInitializer(apuStack_328,&puStack_268);
   uStack_2d0 = 2;
   uStack_348 = 2;
-  FUN_180180730(param_1,appuStack_340,apuStack_328);
+  SystemContextProcessor(param_1,appuStack_340,apuStack_328);
   uStack_348 = 0;
   appuStack_340[0] = apuStack_328;
   apuStack_328[0] = &unknown_var_720_ptr;
@@ -363,7 +363,7 @@ void RenderingSystem_ProcessRenderConfiguration(uint64_t param_1)
   FUN_1800b8300(apuStack_328,&puStack_208);
   uStack_2d0 = 2;
   uStack_348 = 4;
-  FUN_180180730(param_1,appuStack_340,apuStack_328);
+  SystemContextProcessor(param_1,appuStack_340,apuStack_328);
   uStack_348 = 0;
   appuStack_340[0] = apuStack_328;
   apuStack_328[0] = &unknown_var_720_ptr;
@@ -376,7 +376,7 @@ void RenderingSystem_ProcessRenderConfiguration(uint64_t param_1)
   FUN_1800b8300(apuStack_328,&puStack_1a8);
   uStack_2d0 = 2;
   uStack_348 = 8;
-  FUN_180180730(param_1,appuStack_340,apuStack_328);
+  SystemContextProcessor(param_1,appuStack_340,apuStack_328);
   uStack_348 = 0;
   appuStack_340[0] = apuStack_328;
   apuStack_328[0] = &unknown_var_720_ptr;
@@ -389,7 +389,7 @@ void RenderingSystem_ProcessRenderConfiguration(uint64_t param_1)
   FUN_1800b8300(apuStack_328,&puStack_148);
   uStack_2d0 = 2;
   uStack_348 = 0x10;
-  FUN_180180730(param_1,appuStack_340,apuStack_328);
+  SystemContextProcessor(param_1,appuStack_340,apuStack_328);
   uStack_348 = 0;
   appuStack_340[0] = apuStack_328;
   apuStack_328[0] = &unknown_var_720_ptr;
@@ -402,7 +402,7 @@ void RenderingSystem_ProcessRenderConfiguration(uint64_t param_1)
   FUN_1800b8300(apuStack_328,&puStack_e8);
   uStack_2d0 = 2;
   uStack_348 = 0x20;
-  FUN_180180730(param_1,appuStack_340,apuStack_328);
+  SystemContextProcessor(param_1,appuStack_340,apuStack_328);
   uStack_348 = 0;
   appuStack_340[0] = apuStack_328;
   apuStack_328[0] = &unknown_var_720_ptr;
@@ -415,7 +415,7 @@ void RenderingSystem_ProcessRenderConfiguration(uint64_t param_1)
   FUN_1800b8300(apuStack_328,&puStack_88);
   uStack_2d0 = 2;
   uStack_348 = 0x40;
-  FUN_180180730(param_1,appuStack_340,apuStack_328);
+  SystemContextProcessor(param_1,appuStack_340,apuStack_328);
   uStack_348 = 0;
   appuStack_340[0] = apuStack_328;
   apuStack_328[0] = &unknown_var_720_ptr;
@@ -1009,7 +1009,7 @@ void RenderingSystem_ProcessorInitializer_Standard(longlong render_context) {
     }
     
     // 执行后初始化步骤
-    FUN_18036abc0(render_context);
+    SystemRenderUpdater(render_context);
     
     // 处理回调函数
     if (*(int *)(render_context + 0xc0) == 0) {
@@ -1081,7 +1081,7 @@ void RenderingSystem_ProcessorInitializer_Enhanced(longlong render_context) {
     }
     
     // 执行后初始化步骤
-    FUN_18036abc0(render_context);
+    SystemRenderUpdater(render_context);
     
     // 处理回调函数
     if (*(int *)(render_context + 0xc0) == 0) {
@@ -1298,7 +1298,7 @@ void RenderingSystem_HandleUpdater(longlong render_context, uint64_t param_2,
         (**(code **)(*callback_handler + 0x10))(callback_handler, callback_param);
         
         // 调用后处理函数
-        FUN_18036b380(render_context);
+        SystemRenderPostProcessor(render_context);
         
         // 更新状态值
         *(int32_t *)(render_context + 0xf4) = *(int32_t *)(*(longlong *)(render_context + 0xd8) + 0x70);
@@ -1343,7 +1343,7 @@ void RenderingSystem_SimpleHandleSetter(longlong render_context, uint64_t param_
     
     // 如果句柄有效，执行后处理
     if (*(longlong *)(render_context + 0xd8) != 0) {
-        FUN_18036b380(render_context); // 调用后处理函数
+        SystemRenderPostProcessor(render_context); // 调用后处理函数
         *(int32_t *)(render_context + 0xf4) = *(int32_t *)(*(longlong *)(render_context + 0xd8) + 0x70);
     }
 }
@@ -1417,7 +1417,7 @@ uint64_t RenderingSystem_StringValidator(uint64_t param_1, longlong string_info)
 #define RenderingSystem_ProcessorInitializer_Standard FUN_18036a930
 #define RenderingSystem_ProcessorInitializer_Enhanced FUN_18036aa50
 #define RenderingSystem_ManagerCreator FUN_18036ab70
-#define RenderingSystem_HandleUpdater FUN_18036abc0
+#define RenderingSystem_HandleUpdater SystemRenderUpdater
 #define RenderingSystem_SimpleHandleSetter FUN_18036ac90
 #define RenderingSystem_StringValidator FUN_18036adb0
 

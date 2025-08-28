@@ -17,6 +17,7 @@
  */
 
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 /* ============================================================================
  * UI系统高级数据处理和状态管理常量定义
@@ -133,7 +134,7 @@ void UISystem_AdvancedDataProcessor(longlong system_context, longlong *data_buff
   ulonglong security_cookie;
   
   // 安全检查：设置栈保护cookie
-  security_cookie = _DAT_180bf00a8 ^ (ulonglong)&operation_result;
+  security_cookie = GET_SECURITY_COOKIE() ^ (ulonglong)&operation_result;
   
   // 检查数据缓冲区有效性
   if ((data_buffer != (longlong *)0x0) && (data_context = *data_buffer, data_context != 0)) {
@@ -173,7 +174,7 @@ void UISystem_AdvancedDataProcessor(longlong system_context, longlong *data_buff
   }
   
   // 调用清理函数（不返回）
-  FUN_1808fc050(_DAT_180bf00a8);
+  FUN_1808fc050(GET_SECURITY_COOKIE());
 }
 
 
