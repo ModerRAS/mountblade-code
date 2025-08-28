@@ -209,7 +209,26 @@ static void Entity_ProcessCustomData(EntityContext* entity);
 /* ============================================================================
  * 核心函数实现
  * ============================================================================ */
-void process_entity_initialization(longlong *entity_context, longlong *scene_context, char initialization_flags)
+/**
+ * @brief 实体初始化处理器
+ * 
+ * 处理实体的完整初始化过程，包括：
+ * - 实体状态同步和检查
+ * - 组件系统的初始化和管理
+ * - 位置和变换数据的同步
+ * - 资源的分配和初始化
+ * - 自定义数据的处理
+ * - 实体状态的更新和验证
+ * 
+ * @param entity_context 实体上下文指针，包含实体的所有状态信息
+ * @param scene_context 场景上下文指针，包含场景的环境信息
+ * @param initialization_flags 初始化标志，控制初始化的范围和行为
+ * 
+ * @note 这是一个复杂的初始化函数，处理实体的完整生命周期
+ * @warning 需要确保传入的指针有效，否则会导致系统崩溃
+ * @see Entity_CopyPositionData, Entity_CopyTransformData, Entity_SyncComponentData
+ */
+void EntityInitializationProcessor(EntityContextPtr entity_context, SceneContextPtr scene_context, EntityInitializationFlags initialization_flags)
 
 {
   // 局部变量声明
@@ -1173,10 +1192,24 @@ void process_entity_initialization(longlong *entity_context, longlong *scene_con
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-// 函数: uint32_t process_entity_data_transfer(longlong *entity_data)
-// 处理实体数据传输，包括数据复制、状态更新和资源管理
-// 返回传输状态码
-uint32_t process_entity_data_transfer(longlong *entity_data)
+/**
+ * @brief 实体数据传输器
+ * 
+ * 处理实体数据的传输和同步操作，包括：
+ * - 实体数据的复制和备份
+ * - 状态信息的更新和同步
+ * - 变换数据的传输和处理
+ * - 资源引用的管理
+ * - 线程安全的数据操作
+ * 
+ * @param entity_data 实体数据指针，包含要传输的实体信息
+ * @return EntityTransferStatus 传输状态码，表示操作的成功或失败状态
+ * 
+ * @note 该函数确保数据传输的原子性和一致性
+ * @warning 传输过程中会锁定相关资源，可能影响性能
+ * @see EntityResourceCleanup, EntityPointerSwap
+ */
+uint32_t EntityDataTransfer(EntityContextPtr entity_data)
 
 {
   // 局部变量声明

@@ -191,7 +191,7 @@ FOUND_CURVE_SECTION:
            (version_format_ptr = &VERSION_FORMAT_180a3cb84, (string_ptr2[1] + 0xa8U & 0xdf) != 0)) {
           version_format_ptr = &VERSION_FORMAT_180a063a0;
         }
-        parse_version_string(string_ptr2, undefined_ptr1, version_array);
+        parse_version_string(string_ptr2, version_format_ptr, version_array);
         break;
       }
       long_offset = (longlong)&VERSION_CONSTANT_180a015b0 - (longlong)string_ptr2;
