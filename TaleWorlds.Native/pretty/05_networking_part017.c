@@ -409,15 +409,15 @@ PROTOCOL_HANDLER_SETUP:
     else {
       if (connection_status != CONNECTION_TYPE_SSL) {
         if (connection_status == CONNECTION_TYPE_TLS) {
-          protocol_handler = &UNK_180984cb0;
+          protocol_handler = &network_ssl_handler_ptr;
         }
         else {
           if (connection_status != CONNECTION_TYPE_CUSTOM) goto PROTOCOL_SETUP_COMPLETE;
-          protocol_handler = &UNK_180984cc0;
+          protocol_handler = &network_custom_handler_ptr;
         }
         goto SETUP_PROTOCOL_HANDLER;
       }
-      operation_result = NetworkingSystem_ProtocolInitializer(temp_result_1, &UNK_18095af38, &network_context);
+      operation_result = NetworkingSystem_ProtocolInitializer(temp_result_1, &network_default_config_ptr, &network_context);
       if (operation_result == 0) {
         operation_result = NetworkingSystem_ConfigInitializer(temp_result_1, 0x19, &config_context);
         if ((operation_result != 0) || (operation_result = NetworkingSystem_ConfigValidator(config_context, 1), operation_result != 0)) goto PROTOCOL_HANDLER_ERROR;
@@ -820,15 +820,15 @@ CLEANUP_PROTOCOL_SETUP:
     else {
       if (connection_status != CONNECTION_TYPE_SSL) {
         if (connection_status == CONNECTION_TYPE_TLS) {
-          protocol_handler = &UNK_180984cb0;
+          protocol_handler = &network_ssl_handler_ptr;
         }
         else {
           if (connection_status != CONNECTION_TYPE_CUSTOM) goto CLEANUP_PROTOCOL_COMPLETE;
-          protocol_handler = &UNK_180984cc0;
+          protocol_handler = &network_custom_handler_ptr;
         }
         goto CLEANUP_PROTOCOL_HANDLER;
       }
-      operation_result = NetworkingSystem_ProtocolInitializer(temp_result_1, &UNK_18095af38, &resource_manager);
+      operation_result = NetworkingSystem_ProtocolInitializer(temp_result_1, &network_default_config_ptr, &resource_manager);
       if (operation_result == 0) {
         operation_result = NetworkingSystem_ConfigInitializer(temp_result_1, 0x19, &resource_manager);
         if ((operation_result != 0) || (operation_result = NetworkingSystem_ConfigValidator(resource_manager, 1), operation_result != 0)) goto CLEANUP_PROTOCOL_ERROR;

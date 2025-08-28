@@ -562,7 +562,7 @@ void utilities_system_data_resetter(void)
 // 参数：无
 // 返回值：无
 // =============================================================================
-void FUN_180941610(void)
+void utilities_system_flag_resetter(void)
 
 {
   // 重置系统标志并设置为默认值
@@ -880,7 +880,7 @@ void FUN_1809418a0(void)
 
 {
   // 重置系统模式指针并设置为默认值
-  _DAT_180bf6620 = &UNK_18098bcb0;  // 设置默认模式指针
+  *utilities_system_mode_ptr = SYSTEM_DEFAULT_VALUE;  // 设置默认模式指针
   return;
 }
 
@@ -901,7 +901,7 @@ void FUN_1809418c0(void)
 
 {
   // 重置系统状态模式并设置为默认值
-  _DAT_180bf6650 = &UNK_18098bcb0;  // 设置默认状态模式指针
+  *system_state_mode_ptr = SYSTEM_DEFAULT_VALUE;  // 设置默认状态模式指针
   return;
 }
 
@@ -922,7 +922,7 @@ void FUN_1809418e0(void)
 
 {
   // 重置系统操作模式并设置为默认值
-  _DAT_180bf6680 = &UNK_18098bcb0;  // 设置默认操作模式指针
+  *utilities_system_operation_ptr = SYSTEM_DEFAULT_VALUE;  // 设置默认操作模式指针
   return;
 }
 
@@ -943,7 +943,7 @@ void FUN_180941900(void)
 
 {
   // 重置系统控制模式并设置为默认值
-  _DAT_180bf66b0 = &UNK_18098bcb0;  // 设置默认控制模式指针
+  *utilities_system_control_ptr = SYSTEM_DEFAULT_VALUE;  // 设置默认控制模式指针
   return;
 }
 

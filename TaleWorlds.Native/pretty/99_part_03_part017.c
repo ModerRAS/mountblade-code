@@ -548,7 +548,7 @@ uint32_t AdvancedDataStructureProcessor(uint64_t process_context, uint64_t* data
     stack_param_32 = 3;
     
     /* 调用初始化函数 */
-    FUN_1800b7eb0(0, &stack_array, operation_flag, resource_data, 0);
+    SystemStateCleaner(0, &stack_array, operation_flag, resource_data, 0);
     
     /* 设置处理参数 */
     stack_param = 0;
@@ -576,7 +576,7 @@ uint32_t AdvancedDataStructureProcessor(uint64_t process_context, uint64_t* data
                         buffer_size = 0;
                         
                         /* 调用处理函数 */
-                        FUN_1806277c0(&stack_pointer, *(uint32_t*)(structure_offset + 0x20));
+                        AdvancedDataStructureProcessor(&stack_pointer, *(uint32_t*)(structure_offset + 0x20));
                         
                         /* 处理字符串数据 */
                         if (0 < *(int32_t*)(structure_offset + 0x20)) {
@@ -658,15 +658,15 @@ uint32_t AdvancedDataStructureProcessor(uint64_t process_context, uint64_t* data
                         }
                         
                         /* 调用后续处理函数 */
-                        FUN_180627ae0(&stack_data, &stack_pointer);
+                        StringProcessor(&stack_data, &stack_pointer);
                         stack_param_16 = 0;
-                        FUN_1801eac40(data_structure, stack_buffer);
+                        TreeSearchProcessor(data_structure, stack_buffer);
                         stack_pptr = &stack_data;
                         stack_data = &system_null_ptr;
                         
                         if (stack_value != 0) {
                             /* 错误处理 */
-                            FUN_18064e900();
+                            MemoryAllocator();
                         }
                         
                         stack_value = 0;
@@ -750,7 +750,7 @@ uint32_t AdvancedDataStructureProcessor(uint64_t process_context, uint64_t* data
                         /* 清理资源 */
                         stack_pointer = &system_null_ptr;
                         if (string_buffer != (uint8_t*)0x0) {
-                            FUN_18064e900();
+                            MemoryAllocator();
                         }
                         string_buffer = (uint8_t*)0x0;
                         stack_offset = stack_offset & 0xffffffff00000000;
@@ -774,7 +774,7 @@ uint32_t AdvancedDataStructureProcessor(uint64_t process_context, uint64_t* data
     
     /* 清理栈资源 */
     if (stack_array != (uint64_t*)0x0) {
-        FUN_18064e900(stack_array);
+        MemoryAllocator(stack_array);
     }
     
     return 0;
