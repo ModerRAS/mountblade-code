@@ -441,7 +441,7 @@ void heap_build_unconditional(void)
 // 功能: 初始化数据结构，分配内存并设置默认值
 // 参数: param_1 - 参数1 (未使用), param_2 - 参数2 (未使用), param_3 - 指向数据结构的指针
 // 返回: void
-// 说明: 通过FUN_18008f430()分配内存，然后初始化各个字段为默认值
+// 说明: 通过memory_allocate_0x58_bytes()分配内存，然后初始化各个字段为默认值
 void data_structure_initialize(undefined8 param_1,undefined8 param_2,longlong *param_3)
 
 {
@@ -618,7 +618,7 @@ binary_tree_node_insert(longlong *param_1,undefined8 *param_2,char param_3,undef
   
   if (0x2e8ba2e8ba2e8b8 < (ulonglong)param_1[1]) {
     throw_length_error();
-    __Xlength_error_std__YAXPEBD_Z(&UNK_180a009a8);
+    __Xlength_error_std__YAXPEBD_Z(&字符串常量_长度错误信息);
     pcVar3 = (code *)swi(3);
     puVar4 = (undefined8 *)(*pcVar3)();
     return puVar4;
