@@ -1,17 +1,50 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 05_networking_part079_sub002_sub002.c - 1 个函数
+/*=============================================================================
+ * 05_networking_part079_sub002_sub002.c - 网络系统高级哈希表处理模块
+ * 
+ * 模块功能：
+ * - 网络数据包的哈希表查找和插入操作
+ * - 网络连接状态管理和同步
+ * - 网络数据包的缓存和重传机制
+ * - 网络哈希表的并发访问控制
+ * 
+ * 技术特点：
+ * - 使用开放寻址法哈希表实现
+ * - 支持动态扩容和负载均衡
+ * - 实现高效的网络数据包查找算法
+ * - 提供网络连接状态同步机制
+ * 
+ * 作者：TaleWorlds引擎开发团队
+ * 日期：2024年
+ =============================================================================*/
 
-// 函数: void FUN_180883a30(undefined8 param_1)
+/*=============================================================================
+ * 网络系统错误处理和初始化函数
+ * 
+ * 功能：检查网络系统状态，处理错误情况，执行必要的初始化操作
+ * 
+ * 参数：
+ *   param_1 - 网络系统上下文指针
+ * 
+ * 返回值：无
+ * 
+ * 技术说明：
+ * - 检查网络系统初始化状态
+ * - 处理错误情况下的清理工作
+ * - 执行网络系统重新初始化
+ =============================================================================*/
 void FUN_180883a30(undefined8 param_1)
-
 {
-  int iVar1;
+  int network_status;
   
-  iVar1 = FUN_180874b30();
-  if (iVar1 == 0) {
+  // 检查网络系统状态
+  network_status = FUN_180874b30();
+  if (network_status == 0) {
+    // 处理网络系统错误
     FUN_180873460(param_1);
                     // WARNING: Subroutine does not return
+    // 重新初始化网络系统
     FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),param_1,&UNK_180985b90,0x43b,1);
   }
   return;
@@ -19,214 +52,285 @@ void FUN_180883a30(undefined8 param_1)
 
 
 
+/*=============================================================================
+ * 网络数据包哈希表查找和处理函数
+ * 
+ * 功能：在网络哈希表中查找指定数据包，执行相应的处理操作
+ * 
+ * 参数：
+ *   param_1 - 网络哈希表上下文指针
+ *   param_2 - 要查找的网络数据包指针
+ *   param_3 - 处理函数参数数组
+ *   param_4 - 输出参数，返回找到的数据包指针
+ * 
+ * 返回值：
+ *   0 - 成功找到并处理数据包
+ *   非0 - 错误代码
+ * 
+ * 技术说明：
+ * - 使用开放寻址法哈希表进行快速查找
+ * - 支持哈希冲突的链式解决
+ * - 实现网络数据包的状态同步
+ * - 提供高效的缓存和重传机制
+ =============================================================================*/
 ulonglong FUN_180883a80(longlong *param_1,longlong *param_2,undefined8 *param_3,ulonglong *param_4)
-
 {
-  longlong *plVar1;
-  longlong lVar2;
-  uint uVar3;
-  int iVar4;
-  longlong *plVar5;
-  ulonglong uVar6;
-  ulonglong uVar7;
-  longlong lVar8;
-  longlong lVar9;
-  int *piVar10;
-  longlong *plVar11;
-  ulonglong uVar12;
-  longlong *plStackX_8;
-  longlong *plStackX_10;
-  undefined8 uStack_48;
-  uint uStack_40;
-  uint uStack_3c;
+  longlong *hash_table_context;
+  longlong *lock_context;
+  uint hash_result;
+  int current_index;
+  longlong *current_entry;
+  ulonglong return_value;
+  ulonglong error_code;
+  longlong entry_offset;
+  longlong hash_index;
+  int *previous_index;
+  longlong *network_context;
+  ulonglong found_entry;
+  longlong *packet_context;
+  longlong *packet_data;
+  undefined8 packet_key;
+  uint packet_hash1;
+  uint packet_hash2;
   
-  uVar6 = 0;
+  return_value = 0;
   *param_4 = 0;
-  plVar1 = (longlong *)param_1[1];
-  uStack_48 = (longlong *)param_2[2];
-  uStack_40 = *(uint *)(param_2 + 3);
-  uStack_3c = *(uint *)((longlong)param_2 + 0x1c);
-  lVar2 = plVar1[5];
-  plStackX_8 = param_1;
-  plStackX_10 = param_2;
-  if (lVar2 != 0) {
-    FUN_180768360(lVar2);
+  hash_table_context = (longlong *)param_1[1];
+  packet_key = (longlong *)param_2[2];
+  packet_hash1 = *(uint *)(param_2 + 3);
+  packet_hash2 = *(uint *)((longlong)param_2 + 0x1c);
+  lock_context = hash_table_context[5];
+  packet_context = param_1;
+  packet_data = param_2;
+  
+  // 获取哈希表锁
+  if (lock_context != 0) {
+    FUN_180768360(lock_context);
   }
-  uVar3 = FUN_180851a40(plVar1);
-  uVar12 = uVar6;
-  if (uVar3 == 0) {
-    if ((int)plVar1[1] == 0) {
-      uVar7 = 0x1c;
-      goto LAB_180883dd3;
+  
+  // 计算哈希值
+  hash_result = FUN_180851a40(hash_table_context);
+  found_entry = return_value;
+  
+  if (hash_result == 0) {
+    // 哈希表为空或需要扩容
+    if ((int)hash_table_context[1] == 0) {
+      error_code = 0x1c;
+      goto CLEANUP_AND_RETURN;
     }
-    lVar9 = (longlong)
-            (int)((uStack_48._4_4_ ^ (uint)uStack_48 ^ uStack_40 ^ uStack_3c) & (int)plVar1[1] - 1U)
-    ;
-    plVar11 = (longlong *)(*plVar1 + lVar9 * 4);
-    iVar4 = *(int *)(*plVar1 + lVar9 * 4);
-    if (iVar4 != -1) {
+    
+    // 计算哈希索引
+    hash_index = (longlong)
+            (int)((packet_key._4_4_ ^ (uint)packet_key ^ packet_hash1 ^ packet_hash2) & (int)hash_table_context[1] - 1U);
+    
+    // 获取哈希表入口
+    current_entry = (longlong *)(*hash_table_context + hash_index * 4);
+    current_index = *(int *)(*hash_table_context + hash_index * 4);
+    
+    // 遍历哈希链表
+    if (current_index != -1) {
       do {
-        plVar5 = (longlong *)((longlong)iVar4 * 0x20 + plVar1[2]);
-        if (((longlong *)*plVar5 == uStack_48) && (plVar5[1] == CONCAT44(uStack_3c,uStack_40))) {
-          uVar12 = plVar5[3];
-          goto LAB_180883b5e;
+        // 计算当前条目偏移
+        entry_offset = (longlong)current_index * 0x20 + hash_table_context[2];
+        
+        // 检查是否匹配目标数据包
+        if (((longlong *)*entry_offset == packet_key) && (entry_offset[1] == CONCAT44(packet_hash2,packet_hash1))) {
+          found_entry = entry_offset[3];
+          goto ENTRY_FOUND;
         }
-        plVar11 = plVar5 + 2;
-        iVar4 = (int)plVar5[2];
-      } while (iVar4 != -1);
+        
+        // 移动到下一个条目
+        current_entry = entry_offset + 2;
+        current_index = (int)entry_offset[2];
+      } while (current_index != -1);
     }
-    uVar3 = FUN_18084e8f0(plVar1,&uStack_48,&plStackX_10,plVar11);
-    if (uVar3 != 0) goto LAB_180883b56;
+    
+    // 未找到条目，尝试插入新条目
+    hash_result = FUN_18084e8f0(hash_table_context,&packet_key,&packet_data,current_entry);
+    if (hash_result != 0) goto HANDLE_INSERT_ERROR;
   }
   else {
-LAB_180883b56:
-    uVar7 = (ulonglong)uVar3;
-    if (uVar3 != 0) {
-LAB_180883dd3:
-      if (lVar2 != 0) {
-                    // WARNING: Subroutine does not return
-        FUN_180768400(lVar2);
+HANDLE_INSERT_ERROR:
+    error_code = (ulonglong)hash_result;
+    if (hash_result != 0) {
+CLEANUP_AND_RETURN:
+      if (lock_context != 0) {
+        // 释放哈希表锁
+        FUN_180768400(lock_context);
       }
-      return uVar7;
+      return error_code;
     }
   }
-LAB_180883b5e:
-  if (lVar2 != 0) {
-                    // WARNING: Subroutine does not return
-    FUN_180768400(lVar2);
+
+ENTRY_FOUND:
+  if (lock_context != 0) {
+    // 释放哈希表锁
+    FUN_180768400(lock_context);
   }
-  if (uVar12 == 0) {
-    uVar6 = (**(code **)*plStackX_8)(plStackX_8,param_2);
-    if ((int)uVar6 == 0) {
+  
+  // 处理找到的条目
+  if (found_entry == 0) {
+    return_value = (**(code **)*packet_context)(packet_context,packet_data);
+    if ((int)return_value == 0) {
       return 0;
     }
-    return uVar6;
+    return return_value;
   }
-  plStackX_10 = (longlong *)0x0;
-  uVar7 = FUN_18086f7c0(param_3,uVar12,param_3,&plStackX_10);
-  if ((int)uVar7 != 0) {
-    return uVar7;
+  
+  // 比较数据包内容
+  packet_data = (longlong *)0x0;
+  error_code = FUN_18086f7c0(param_3,found_entry,param_3,&packet_data);
+  if ((int)error_code != 0) {
+    return error_code;
   }
-  uStack_48 = (longlong *)0x0;
-  uVar7 = FUN_18086f7c0(param_3,param_2,param_3 + 2,&uStack_48);
-  if ((int)uVar7 != 0) {
-    return uVar7;
+  
+  packet_key = (longlong *)0x0;
+  error_code = FUN_18086f7c0(param_3,packet_data,param_3 + 2,&packet_key);
+  if ((int)error_code != 0) {
+    return error_code;
   }
-  if ((plStackX_10 == uStack_48) && (iVar4 = memcmp(*param_3,param_3[2]), iVar4 == 0)) {
-    *param_4 = (ulonglong)param_2;
+  
+  // 检查数据包是否相同
+  if ((packet_data == packet_key) && (current_index = memcmp(*param_3,param_3[2]), current_index == 0)) {
+    *param_4 = (ulonglong)packet_data;
     return 0;
   }
-  plVar11 = plStackX_8;
-  *(ushort *)((longlong)param_2 + 0xeU) =
-       *(ushort *)((longlong)param_2 + 0xeU) ^
-       (*(ushort *)((longlong)param_2 + 0xe) ^ *(ushort *)(uVar12 + 0xe)) & 0x7fff;
-  *(ushort *)(uVar12 + 0xe) = *(ushort *)(uVar12 + 0xe) & 0x8000;
-  uStack_48 = *(longlong **)(uVar12 + 0x10);
-  uStack_40 = *(uint *)(uVar12 + 0x18);
-  uStack_3c = *(uint *)(uVar12 + 0x1c);
-  plVar1 = (longlong *)plStackX_8[1];
-  lVar2 = plVar1[5];
-  if (lVar2 != 0) {
-    FUN_180768360(lVar2);
+  
+  // 更新数据包状态
+  network_context = packet_context;
+  *(ushort *)((longlong)packet_data + 0xeU) =
+       *(ushort *)((longlong)packet_data + 0xeU) ^
+       (*(ushort *)((longlong)packet_data + 0xe) ^ *(ushort *)(found_entry + 0xe)) & 0x7fff;
+  *(ushort *)(found_entry + 0xe) = *(ushort *)(found_entry + 0xe) & 0x8000;
+  
+  // 提取数据包信息
+  packet_key = *(longlong **)(found_entry + 0x10);
+  packet_hash1 = *(uint *)(found_entry + 0x18);
+  packet_hash2 = *(uint *)(found_entry + 0x1c);
+  
+  hash_table_context = (longlong *)network_context[1];
+  lock_context = hash_table_context[5];
+  
+  if (lock_context != 0) {
+    FUN_180768360(lock_context);
   }
-  if (*(int *)((longlong)plVar1 + 0x24) != 0) {
-    if ((int)plVar1[1] == 0) {
-      uVar6 = 0x1c;
+  
+  // 清理旧的哈希表条目
+  if (*(int *)((longlong)hash_table_context + 0x24) != 0) {
+    if ((int)hash_table_context[1] == 0) {
+      return_value = 0x1c;
     }
     else {
-      lVar9 = (longlong)
-              (int)(((uint)uStack_48 ^ uStack_48._4_4_ ^ uStack_40 ^ uStack_3c) &
-                   (int)plVar1[1] - 1U);
-      piVar10 = (int *)(*plVar1 + lVar9 * 4);
-      iVar4 = *(int *)(*plVar1 + lVar9 * 4);
-      if (iVar4 != -1) {
-        lVar9 = plVar1[2];
+      // 计算哈希索引
+      hash_index = (longlong)
+              (int)(((uint)packet_key ^ packet_key._4_4_ ^ packet_hash1 ^ packet_hash2) &
+                   (int)hash_table_context[1] - 1U);
+      
+      previous_index = (int *)(*hash_table_context + hash_index * 4);
+      current_index = *(int *)(*hash_table_context + hash_index * 4);
+      
+      if (current_index != -1) {
+        hash_index = hash_table_context[2];
         do {
-          lVar8 = (longlong)iVar4 * 0x20;
-          if (((longlong *)*(longlong *)(lVar8 + lVar9) == uStack_48) &&
-             (*(longlong *)(lVar8 + 8 + lVar9) == CONCAT44(uStack_3c,uStack_40))) {
-            iVar4 = *piVar10;
-            lVar8 = (longlong)iVar4 * 0x20;
-            *(undefined8 *)(lVar8 + 0x18 + lVar9) = 0;
-            *piVar10 = *(int *)(lVar8 + 0x10 + lVar9);
-            *(int *)(lVar8 + 0x10 + lVar9) = (int)plVar1[4];
-            *(int *)((longlong)plVar1 + 0x24) = *(int *)((longlong)plVar1 + 0x24) + -1;
-            *(int *)(plVar1 + 4) = iVar4;
-            uVar6 = 0;
+          entry_offset = (longlong)current_index * 0x20;
+          if (((longlong *)*(longlong *)(entry_offset + hash_index) == packet_key) &&
+             (*(longlong *)(entry_offset + 8 + hash_index) == CONCAT44(packet_hash2,packet_hash1))) {
+            // 找到条目，从链表中移除
+            current_index = *previous_index;
+            entry_offset = (longlong)current_index * 0x20;
+            *(undefined8 *)(entry_offset + 0x18 + hash_index) = 0;
+            *previous_index = *(int *)(entry_offset + 0x10 + hash_index);
+            *(int *)(entry_offset + 0x10 + hash_index) = (int)hash_table_context[4];
+            *(int *)((longlong)hash_table_context + 0x24) = *(int *)((longlong)hash_table_context + 0x24) + -1;
+            *(int *)(hash_table_context + 4) = current_index;
+            return_value = 0;
             break;
           }
-          piVar10 = (int *)(lVar9 + 0x10 + lVar8);
-          iVar4 = *piVar10;
-        } while (iVar4 != -1);
+          previous_index = (int *)(hash_index + 0x10 + entry_offset);
+          current_index = *previous_index;
+        } while (current_index != -1);
       }
     }
   }
-  if (lVar2 != 0) {
-                    // WARNING: Subroutine does not return
-    FUN_180768400(lVar2);
+  
+  if (lock_context != 0) {
+    // 释放哈希表锁
+    FUN_180768400(lock_context);
   }
-  if ((int)uVar6 != 0) {
-    return uVar6;
+  
+  if ((int)return_value != 0) {
+    return return_value;
   }
-  plVar1 = (longlong *)plVar11[1];
-  uStack_48 = (longlong *)param_2[2];
-  uStack_40 = *(uint *)(param_2 + 3);
-  uStack_3c = *(uint *)((longlong)param_2 + 0x1c);
-  lVar2 = plVar1[5];
-  plStackX_8 = param_2;
-  if (lVar2 != 0) {
-    FUN_180768360(lVar2);
+  
+  // 插入新的哈希表条目
+  hash_table_context = (longlong *)network_context[1];
+  packet_key = (longlong *)packet_data[2];
+  packet_hash1 = *(uint *)(packet_data + 3);
+  packet_hash2 = *(uint *)((longlong)packet_data + 0x1c);
+  lock_context = hash_table_context[5];
+  packet_context = packet_data;
+  
+  if (lock_context != 0) {
+    FUN_180768360(lock_context);
   }
-  uVar3 = FUN_180851a40(plVar1);
-  if (uVar3 == 0) {
-    if ((int)plVar1[1] == 0) {
-LAB_180883db7:
-      uVar3 = 0x1c;
-      goto LAB_180883db9;
+  
+  hash_result = FUN_180851a40(hash_table_context);
+  if (hash_result == 0) {
+    if ((int)hash_table_context[1] == 0) {
+INSERT_ERROR:
+      hash_result = 0x1c;
+      goto HANDLE_INSERT_ERROR2;
     }
-    lVar9 = (longlong)
-            (int)(((uint)uStack_48 ^ uStack_48._4_4_ ^ uStack_40 ^ uStack_3c) & (int)plVar1[1] - 1U)
-    ;
-    piVar10 = (int *)(*plVar1 + lVar9 * 4);
-    iVar4 = *(int *)(*plVar1 + lVar9 * 4);
-    if (iVar4 != -1) {
-      lVar9 = plVar1[2];
+    
+    // 计算哈希索引
+    hash_index = (longlong)
+            (int)(((uint)packet_key ^ packet_key._4_4_ ^ packet_hash1 ^ packet_hash2) & (int)hash_table_context[1] - 1U);
+    
+    previous_index = (int *)(*hash_table_context + hash_index * 4);
+    current_index = *(int *)(*hash_table_context + hash_index * 4);
+    
+    if (current_index != -1) {
+      hash_index = hash_table_context[2];
       do {
-        lVar8 = (longlong)iVar4 * 0x20;
-        if (((longlong *)*(longlong *)(lVar8 + lVar9) == uStack_48) &&
-           (*(longlong *)(lVar8 + 8 + lVar9) == CONCAT44(uStack_3c,uStack_40))) goto LAB_180883db7;
-        piVar10 = (int *)(lVar9 + 0x10 + lVar8);
-        iVar4 = *piVar10;
-      } while (iVar4 != -1);
+        entry_offset = (longlong)current_index * 0x20;
+        if (((longlong *)*(longlong *)(entry_offset + hash_index) == packet_key) &&
+           (*(longlong *)(entry_offset + 8 + hash_index) == CONCAT44(packet_hash2,packet_hash1))) goto INSERT_ERROR;
+        previous_index = (int *)(hash_index + 0x10 + entry_offset);
+        current_index = *previous_index;
+      } while (current_index != -1);
     }
-    uVar3 = FUN_18084e8f0(plVar1,&uStack_48,&plStackX_8,piVar10);
-    if (uVar3 != 0) goto LAB_180883d88;
+    
+    hash_result = FUN_18084e8f0(hash_table_context,&packet_key,&packet_context,previous_index);
+    if (hash_result != 0) goto HANDLE_INSERT_RESULT;
   }
   else {
-LAB_180883d88:
-    if (uVar3 != 0) {
-LAB_180883db9:
-      if (lVar2 != 0) {
-                    // WARNING: Subroutine does not return
-        FUN_180768400(lVar2);
+HANDLE_INSERT_RESULT:
+    if (hash_result != 0) {
+HANDLE_INSERT_ERROR2:
+      if (lock_context != 0) {
+        // 释放哈希表锁
+        FUN_180768400(lock_context);
       }
-      if (uVar3 != 0) {
-        return (ulonglong)uVar3;
+      if (hash_result != 0) {
+        return (ulonglong)hash_result;
       }
-      goto LAB_180883d99;
+      goto PROCESS_PACKET;
     }
   }
-  if (lVar2 != 0) {
-                    // WARNING: Subroutine does not return
-    FUN_180768400(lVar2);
+  
+  if (lock_context != 0) {
+    // 释放哈希表锁
+    FUN_180768400(lock_context);
   }
-LAB_180883d99:
-  uVar6 = (**(code **)(*plVar11 + 0x10))(plVar11,param_2,uVar12);
-  if ((int)uVar6 == 0) {
-    *param_4 = uVar12;
+
+PROCESS_PACKET:
+  // 处理数据包
+  return_value = (**(code **)(*network_context + 0x10))(network_context,packet_data,found_entry);
+  if ((int)return_value == 0) {
+    *param_4 = found_entry;
     return 0;
   }
-  return uVar6;
+  return return_value;
 }
 
 

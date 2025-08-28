@@ -119,47 +119,103 @@ void RenderingSystemAdvancedDataProcessor(
 );
 
 // 渲染系统状态管理函数别名
-void RenderingSystemStateManager(
-    longlong system_handle, unsigned long long param1, unsigned long long param2
-);
+void RenderingSystemStateManager(longlong system_handle);
 
 // 渲染系统标志检查函数别名
 void RenderingSystemFlagChecker(
     longlong system_handle, int param_index, int param_value, 
-    unsigned long long param1, short param2
+    undefined8 param3, short param4
 );
 
 // 渲染系统条件处理函数别名
 void RenderingSystemConditionHandler(
-    longlong system_handle, unsigned long long param1, unsigned long long param2, 
-    unsigned int param3, longlong *param4, unsigned char param5, unsigned long long param6
+    longlong system_handle, undefined8 param1, undefined8 param2, 
+    undefined4 param3, longlong *param4, undefined1 param5, undefined8 param6
 );
 
 // 渲染系统数学计算函数别名
-void RenderingSystemFloatCalculator(
-    longlong system_handle, int param_index, unsigned char param_value
-);
+void RenderingSystemAdvancedCalculator(longlong system_handle);
 
 // 渲染系统内存访问函数别名
 void RenderingSystemMemoryAccessor(
-    longlong system_handle, unsigned long long param1, unsigned long long param2
+    longlong system_handle, undefined8 param1, undefined8 param2, 
+    undefined4 param3, longlong *param4, undefined4 param5, undefined8 param6
 );
 
 // 渲染系统系统调用函数别名
 void RenderingSystemSystemCaller(
-    longlong system_handle, unsigned long long param1, int param2, unsigned char param3
+    longlong system_handle, undefined8 param1, undefined8 param2, 
+    undefined4 param3, longlong *param4, undefined4 param5, undefined8 param6
 );
 
 // 渲染系统参数设置函数别名
 void RenderingSystemParameterSetter(
-    longlong system_handle, unsigned long long param1, longlong param2
+    longlong system_handle, int param_index, char param_flag
 );
 
 // 渲染系统数据验证函数别名
 void RenderingSystemDataValidator(
-    longlong system_handle, int param_index, int param_value, 
-    unsigned long long param1, short param2
+    longlong system_handle, undefined8 param1, undefined8 param2, 
+    undefined4 param3, longlong *param4, undefined4 param5, undefined8 param6
 );
+
+// 渲染系统资源管理函数别名
+void RenderingSystemResourceManager(longlong system_handle, int param_index);
+
+// 渲染系统线程同步函数别名
+void RenderingSystemThreadSynchronizer(longlong system_handle, int param_index, char param_flag);
+
+// 渲染系统错误处理函数别名
+void RenderingSystemErrorHandler(longlong system_handle, undefined8 param1);
+
+// 渲染系统性能优化函数别名
+void RenderingSystemPerformanceOptimizer(longlong system_handle);
+
+// 渲染系统内存清理函数别名
+void RenderingSystemMemoryCleaner(longlong system_handle, int param_index);
+
+// 渲染系统渲染管线函数别名
+void RenderingSystemPipelineManager(longlong system_handle, undefined4 *param1);
+
+// 渲染系统着色器函数别名
+void RenderingSystemShaderProcessor(undefined8 param1, longlong param2);
+
+// 渲染系统纹理函数别名
+void RenderingSystemTextureManager(longlong system_handle, uint *param1);
+
+// 渲染系统缓冲区函数别名
+void RenderingSystemBufferManager(longlong system_handle, undefined4 param1);
+
+// 渲染系统配置函数别名
+void RenderingSystemConfigManager(longlong system_handle, int param_index, undefined8 *param1);
+
+// 渲染系统状态查询函数别名
+undefined4 RenderingSystemStateQuerier(
+    undefined8 param1, undefined8 param2, undefined8 param3, undefined8 param4
+);
+
+// 渲染系统标志设置函数别名
+void RenderingSystemFlagSetter(longlong system_handle, ulonglong param1);
+
+// 渲染系统初始化函数别名
+undefined8 * RenderingSystemInitializer(undefined8 *param1, longlong param2);
+
+// 渲染系统清理函数别名
+void RenderingSystemCleaner(undefined8 param1, undefined8 param2, longlong param3);
+
+// 渲染系统空操作函数别名
+void RenderingSystemNoOperation(void);
+
+// 渲染系统参数更新函数别名
+void RenderingSystemParameterUpdater(
+    undefined8 param1, undefined4 param2, undefined4 param3, undefined8 param4,
+    undefined1 param5, undefined4 param6, undefined4 param7, undefined4 param8,
+    undefined4 param9, undefined4 param10, undefined1 param11, undefined4 param12,
+    undefined1 param13
+);
+
+// 渲染系统动画处理器函数别名
+void RenderingSystemAnimationProcessor(longlong system_handle);
 
 /*==============================================================================
     渲染系统高级处理模块 - 核心函数实现
@@ -252,146 +308,153 @@ void RenderingSystemAdvancedDataProcessor(
 
 
 
-// 函数: void FUN_1806000e0(longlong param_1)
-void FUN_1806000e0(longlong param_1)
-
+/**
+ * 渲染系统高级参数计算器
+ * 处理渲染系统的高级参数计算、条件判断和浮点数处理
+ * 
+ * @param system_handle 渲染系统句柄
+ */
+void RenderingSystemAdvancedCalculator(longlong system_handle)
 {
-  int iVar1;
-  longlong *plVar2;
-  longlong lVar3;
-  longlong *plVar4;
-  longlong lVar5;
-  char cVar6;
-  short sVar7;
-  int iVar8;
-  longlong lVar9;
-  longlong lVar10;
-  uint *puVar11;
-  longlong lVar12;
-  int iVar13;
-  int iVar14;
-  longlong lVar15;
-  float *pfVar16;
-  bool bVar17;
-  bool bVar18;
-  float fVar19;
-  float fVar20;
-  int aiStackX_10 [2];
-  undefined4 auStackX_18 [2];
-  undefined4 auStackX_20 [2];
-  undefined1 auStack_50 [24];
+  int param_index;
+  longlong *data_ptr;
+  longlong registry_ptr;
+  longlong *state_ptr;
+  longlong offset_ptr;
+  char validation_flag;
+  short param_count;
+  int state_index;
+  longlong system_state;
+  longlong data_offset;
+  uint *flag_ptr;
+  longlong item_offset;
+  int iteration_count;
+  int current_index;
+  longlong loop_counter;
+  float *float_param_ptr;
+  bool condition_equal;
+  bool condition_less;
+  float float_value1;
+  float float_value2;
+  int temp_array1 [2];
+  undefined4 temp_array2 [2];
+  undefined4 temp_array3 [2];
+  undefined1 temp_buffer [24];
   
-  FUN_180537de0(*(undefined8 *)(param_1 + 0x8f8));
-  pfVar16 = (float *)(*(longlong *)(param_1 + 0x6d8) + 0x128);
-  iVar14 = 0;
-  lVar15 = 0;
-  lVar12 = 0;
-  iVar1 = *(int *)(*(longlong *)(param_1 + 0x8f8) + 0x9e0);
-  plVar2 = *(longlong **)(*(longlong *)(param_1 + 0x8f8) + 0x9e8);
+  // 初始化渲染系统数据
+  FUN_180537de0(*(undefined8 *)(system_handle + 0x8f8));
+  float_param_ptr = (float *)(*(longlong *)(system_handle + 0x6d8) + 0x128);
+  current_index = 0;
+  loop_counter = 0;
+  item_offset = 0;
+  param_index = *(int *)(*(longlong *)(system_handle + 0x8f8) + 0x9e0);
+  data_ptr = *(longlong **)(*(longlong *)(system_handle + 0x8f8) + 0x9e8);
+  
+  // 主循环处理渲染参数
   do {
-    lVar9 = *(longlong *)(param_1 + 0x8f8);
-    if (((*(longlong *)(pfVar16 + -0x26) != 0) && (0 < *(int *)(lVar9 + 0x38 + lVar12))) &&
-       ((lVar3 = *(longlong *)(lVar9 + 0xd8 + lVar12),
-        (*(uint *)((longlong)*(int *)(lVar9 + 0xf8 + lVar12) * 0xa0 + 0x50 + lVar3) >> 9 & 1) == 0
-        || (0 < *(short *)(lVar9 + 0x10 + lVar12))))) {
-      lVar10 = *(longlong *)(lVar9 + 0xe0 + lVar12) - lVar3;
-      iVar13 = 0;
-      lVar5 = lVar10 >> 0x3f;
-      lVar10 = lVar10 / 0xa0 + lVar5;
-      if (lVar10 != lVar5) {
-        puVar11 = (uint *)(lVar3 + 0x50);
+    system_state = *(longlong *)(system_handle + 0x8f8);
+    if (((*(longlong *)(float_param_ptr + -0x26) != 0) && (0 < *(int *)(system_state + 0x38 + item_offset))) &&
+       ((registry_ptr = *(longlong *)(system_state + 0xd8 + item_offset),
+        (*(uint *)((longlong)*(int *)(system_state + 0xf8 + item_offset) * 0xa0 + 0x50 + registry_ptr) >> 9 & 1) == 0
+        || (0 < *(short *)(system_state + 0x10 + item_offset))))) {
+      data_offset = *(longlong *)(system_state + 0xe0 + item_offset) - registry_ptr;
+      iteration_count = 0;
+      offset_ptr = data_offset >> 0x3f;
+      data_offset = data_offset / 0xa0 + offset_ptr;
+      if (data_offset != offset_ptr) {
+        flag_ptr = (uint *)(registry_ptr + 0x50);
         do {
-          if ((*puVar11 >> 8 & 1) != 0) {
-            sVar7 = *(short *)(lVar9 + 0x10 + lVar12);
-            iVar13 = (int)sVar7;
-            if ((lVar15 == iVar1) && (0 < sVar7)) {
-              plVar4 = *(longlong **)(param_1 + 0x590);
-              iVar8 = (int)plVar4[0x493];
-              if (iVar8 != -1) {
-                if ((*(int *)((longlong)iVar8 * 0x68 + 0x58 + _DAT_180c96150) == 0x10) ||
-                   (iVar8 = *(int *)((longlong)iVar8 * 0x68 + 0x58 + _DAT_180c96150), iVar8 == 0x11)
+          if ((*flag_ptr >> 8 & 1) != 0) {
+            param_count = *(short *)(system_state + 0x10 + item_offset);
+            iteration_count = (int)param_count;
+            if ((loop_counter == param_index) && (0 < param_count)) {
+              state_ptr = *(longlong **)(system_handle + 0x590);
+              state_index = (int)state_ptr[0x493];
+              if (state_index != -1) {
+                if ((*(int *)((longlong)state_index * 0x68 + 0x58 + _DAT_180c96150) == 0x10) ||
+                   (state_index = *(int *)((longlong)state_index * 0x68 + 0x58 + _DAT_180c96150), state_index == 0x11)
                    ) {
-                  lVar9 = (**(code **)(*plVar4 + 0x128))(plVar4,1);
-                  fVar19 = *(float *)(lVar9 + 0x1d8);
-                  fVar20 = (float)(**(code **)(**(longlong **)(param_1 + 0x590) + 0x90))
-                                            (*(longlong **)(param_1 + 0x590),1);
-                  bVar18 = fVar19 == fVar20;
-                  bVar17 = fVar19 < fVar20;
+                  system_state = (**(code **)(*state_ptr + 0x128))(state_ptr,1);
+                  float_value1 = *(float *)(system_state + 0x1d8);
+                  float_value2 = (float)(**(code **)(**(longlong **)(system_handle + 0x590) + 0x90))
+                                            (*(longlong **)(system_handle + 0x590),1);
+                  condition_equal = float_value1 == float_value2;
+                  condition_less = float_value1 < float_value2;
                 }
                 else {
-                  if (iVar8 != 0x12) goto LAB_18054079f;
-                  lVar9 = (**(code **)(*plVar4 + 0x128))(plVar4,1);
-                  plVar4 = *(longlong **)(param_1 + 0x590);
-                  if (((int)plVar4[0x493] == -1) ||
-                     (*(char *)((longlong)(int)plVar4[0x493] * 0x68 + 0x60 + _DAT_180c96150) !=
-                      '\x04')) goto LAB_1805407d6;
-                  fVar19 = (float)(**(code **)(*plVar4 + 0x90))(plVar4,1);
-                  bVar18 = fVar19 == *(float *)(lVar9 + 0x1d8);
-                  bVar17 = fVar19 < *(float *)(lVar9 + 0x1d8);
+                  if (state_index != 0x12) goto LAB_RENDERING_STATE_CHECK;
+                  system_state = (**(code **)(*state_ptr + 0x128))(state_ptr,1);
+                  state_ptr = *(longlong **)(system_handle + 0x590);
+                  if (((int)state_ptr[0x493] == -1) ||
+                     (*(char *)((longlong)(int)state_ptr[0x493] * 0x68 + 0x60 + _DAT_180c96150) !=
+                      '\x04')) goto LAB_RENDERING_CONDITION_HANDLER;
+                  float_value1 = (float)(**(code **)(*state_ptr + 0x90))(state_ptr,1);
+                  condition_equal = float_value1 == *(float *)(system_state + 0x1d8);
+                  condition_less = float_value1 < *(float *)(system_state + 0x1d8);
                 }
-                if (bVar17 || bVar18) goto LAB_1805407d6;
+                if (condition_less || condition_equal) goto LAB_RENDERING_CONDITION_HANDLER;
               }
-LAB_18054079f:
-              if (0 < sVar7) {
-                iVar13 = iVar13 + -1;
+LAB_RENDERING_STATE_CHECK:
+              if (0 < param_count) {
+                iteration_count = iteration_count + -1;
               }
             }
-            else if ((plVar2 != (longlong *)0x0) &&
-                    ((*(uint *)((longlong)(int)plVar2[0x1e] * 0xa0 + 0x50 + plVar2[0x1a]) & 0x102)
+            else if ((data_ptr != (longlong *)0x0) &&
+                    ((*(uint *)((longlong)(int)data_ptr[0x1e] * 0xa0 + 0x50 + data_ptr[0x1a]) & 0x102)
                      == 2)) {
-              if ((*(longlong **)(param_1 + 0x628) == plVar2) && (*(int *)(param_1 + 0x644) == -1))
+              if ((*(longlong **)(system_handle + 0x628) == data_ptr) && (*(int *)(system_handle + 0x644) == -1))
               {
-                iVar8 = *(int *)(param_1 + 0x640);
+                state_index = *(int *)(system_handle + 0x640);
               }
               else {
-                aiStackX_10[0] = -1;
-                auStackX_20[0] = 0xffffffff;
-                auStackX_18[0] = 0xffffffff;
-                FUN_18050e440(param_1,plVar2,auStackX_20,auStackX_18,aiStackX_10,auStack_50,
+                temp_array1[0] = -1;
+                temp_array3[0] = 0xffffffff;
+                temp_array2[0] = 0xffffffff;
+                FUN_18050e440(system_handle,data_ptr,temp_array3,temp_array2,temp_array1,temp_buffer,
                               0xffffffff);
-                iVar8 = aiStackX_10[0];
+                state_index = temp_array1[0];
               }
-              if (iVar8 == iVar14) {
-                plVar4 = *(longlong **)(param_1 + 0x590);
-                if (((int)plVar4[0x493] == -1) ||
-                   (*(int *)((longlong)(int)plVar4[0x493] * 0x68 + 0x58 + _DAT_180c96150) != 0x12))
+              if (state_index == current_index) {
+                state_ptr = *(longlong **)(system_handle + 0x590);
+                if (((int)state_ptr[0x493] == -1) ||
+                   (*(int *)((longlong)(int)state_ptr[0x493] * 0x68 + 0x58 + _DAT_180c96150) != 0x12))
                 {
-                  if ((*plVar2 != 0) &&
-                     ((*(int *)(*plVar2 + 0x30) == *(int *)(lVar9 + 0x38 + lVar12) &&
-                      (cVar6 = func_0x000180534460(plVar2,0x80000), cVar6 != '\0')))) {
-                    sVar7 = func_0x000180535050(plVar2);
-                    iVar13 = iVar13 - sVar7;
+                  if ((*data_ptr != 0) &&
+                     ((*(int *)(*data_ptr + 0x30) == *(int *)(system_state + 0x38 + item_offset) &&
+                      (validation_flag = func_0x000180534460(data_ptr,0x80000), validation_flag != '\0')))) {
+                    param_count = func_0x000180535050(data_ptr);
+                    iteration_count = iteration_count - param_count;
                   }
                 }
                 else {
-                  lVar9 = (**(code **)(*plVar4 + 0x128))(plVar4,1);
-                  plVar4 = *(longlong **)(param_1 + 0x590);
-                  if (((((int)plVar4[0x493] != -1) &&
-                       (*(char *)((longlong)(int)plVar4[0x493] * 0x68 + 0x60 + _DAT_180c96150) ==
+                  system_state = (**(code **)(*state_ptr + 0x128))(state_ptr,1);
+                  state_ptr = *(longlong **)(system_handle + 0x590);
+                  if (((((int)state_ptr[0x493] != -1) &&
+                       (*(char *)((longlong)(int)state_ptr[0x493] * 0x68 + 0x60 + _DAT_180c96150) ==
                         '\x04')) &&
-                      (fVar19 = (float)(**(code **)(*plVar4 + 0x90))(plVar4,1),
-                      *(float *)(lVar9 + 0x1d8) <= fVar19 && fVar19 != *(float *)(lVar9 + 0x1d8)))
-                     && ((cVar6 = func_0x000180534460(plVar2,0x80000), cVar6 != '\0' ||
-                         (fVar19 = (float)(**(code **)(**(longlong **)(param_1 + 0x590) + 0x90))
-                                                    (*(longlong **)(param_1 + 0x590),1),
-                         fVar19 < *(float *)(lVar9 + 0x1dc))))) goto LAB_18054079f;
+                      (float_value1 = (float)(**(code **)(*state_ptr + 0x90))(state_ptr,1),
+                      *(float *)(system_state + 0x1d8) <= float_value1 && float_value1 != *(float *)(system_state + 0x1d8)))
+                     && ((validation_flag = func_0x000180534460(data_ptr,0x80000), validation_flag != '\0' ||
+                         (float_value1 = (float)(**(code **)(**(longlong **)(system_handle + 0x590) + 0x90))
+                                                    (*(longlong **)(system_handle + 0x590),1),
+                         float_value1 < *(float *)(system_state + 0x1dc))))) goto LAB_RENDERING_STATE_CHECK;
                 }
               }
             }
-LAB_1805407d6:
-            *pfVar16 = (float)(8 - iVar13);
+LAB_RENDERING_CONDITION_HANDLER:
+            *float_param_ptr = (float)(8 - iteration_count);
             break;
           }
-          iVar13 = iVar13 + 1;
-          puVar11 = puVar11 + 0x28;
-        } while ((ulonglong)(longlong)iVar13 < (ulonglong)(lVar10 - lVar5));
+          iteration_count = iteration_count + 1;
+          flag_ptr = flag_ptr + 0x28;
+        } while ((ulonglong)(longlong)iteration_count < (ulonglong)(data_offset - offset_ptr));
       }
     }
-    iVar14 = iVar14 + 1;
-    lVar15 = lVar15 + 1;
-    lVar12 = lVar12 + 0x1f8;
-    pfVar16 = pfVar16 + 0x60;
-    if (0x9d7 < lVar12) {
+    current_index = current_index + 1;
+    loop_counter = loop_counter + 1;
+    item_offset = item_offset + 0x1f8;
+    float_param_ptr = float_param_ptr + 0x60;
+    if (0x9d7 < item_offset) {
       return;
     }
   } while( true );
@@ -403,28 +466,41 @@ LAB_1805407d6:
 
 
 
-// 函数: void FUN_180600130(longlong param_1)
-void FUN_180600130(longlong param_1)
-
+/**
+ * 渲染系统状态管理器
+ * 管理渲染系统的状态初始化、标志设置和状态更新
+ * 
+ * @param system_handle 渲染系统句柄
+ */
+void RenderingSystemStateManager(longlong system_handle)
 {
-  ushort *puVar1;
-  longlong lVar2;
-  undefined1 uVar3;
+  ushort *flag_ptr;
+  longlong data_ptr;
+  undefined1 state_flag;
   
-  FUN_180537a80(*(undefined8 *)(param_1 + 0x8f8));
-  lVar2 = *(longlong *)(param_1 + 0x6d8);
-  if ((*(int *)(param_1 + 0x570) == 2) && (DAT_180c8ec8a != '\0')) {
-    uVar3 = 1;
+  // 初始化渲染系统状态
+  FUN_180537a80(*(undefined8 *)(system_handle + 0x8f8));
+  data_ptr = *(longlong *)(system_handle + 0x6d8);
+  
+  // 根据系统状态设置标志
+  if ((*(int *)(system_handle + 0x570) == 2) && (DAT_180c8ec8a != '\0')) {
+    state_flag = 1;
   }
   else {
-    uVar3 = 0;
+    state_flag = 0;
   }
-  *(undefined1 *)(lVar2 + 0x848) = uVar3;
-  FUN_180543e30(lVar2);
-  FUN_180540440(lVar2,param_1);
-  if (((_DAT_180c92514 != 1) && (_DAT_180c92514 != 4)) && (*(int *)(param_1 + 0x570) == 1)) {
-    puVar1 = (ushort *)(*(longlong *)(param_1 + 0x6e0) + 0x130);
-    *puVar1 = *puVar1 | 1;
+  
+  // 设置系统状态标志
+  *(undefined1 *)(data_ptr + 0x848) = state_flag;
+  
+  // 执行状态更新和同步操作
+  FUN_180543e30(data_ptr);
+  FUN_180540440(data_ptr,system_handle);
+  
+  // 如果系统处于特定状态，更新渲染标志
+  if (((_DAT_180c92514 != 1) && (_DAT_180c92514 != 4)) && (*(int *)(system_handle + 0x570) == 1)) {
+    flag_ptr = (ushort *)(*(longlong *)(system_handle + 0x6e0) + 0x130);
+    *flag_ptr = *flag_ptr | 1;
   }
   return;
 }
@@ -435,156 +511,177 @@ void FUN_180600130(longlong param_1)
 
 
 
-// 函数: void FUN_1806001e0(longlong param_1,int param_2,undefined8 param_3,short param_4)
-void FUN_1806001e0(longlong param_1,int param_2,undefined8 param_3,short param_4)
-
+/**
+ * 渲染系统标志检查器
+ * 检查渲染系统的标志位、参数验证和条件处理
+ * 
+ * @param system_handle 渲染系统句柄
+ * @param param_index 参数索引
+ * @param param_value 参数值
+ * @param param3 参数3
+ * @param param4 参数4
+ */
+void RenderingSystemFlagChecker(
+    longlong system_handle, 
+    int param_index, 
+    int param_value, 
+    undefined8 param3, 
+    short param4
+)
 {
-  int iVar1;
-  longlong *plVar2;
-  longlong lVar3;
-  longlong *plVar4;
-  longlong lVar5;
-  char cVar6;
-  short sVar7;
-  int iVar8;
-  longlong lVar9;
-  ulonglong uVar10;
-  longlong lVar11;
-  uint *puVar12;
-  longlong lVar13;
-  int iVar14;
-  int iVar15;
-  longlong lVar16;
-  float *pfVar17;
-  bool bVar18;
-  bool bVar19;
-  float fVar20;
-  float fVar21;
-  int aiStackX_10 [2];
-  undefined4 auStackX_18 [2];
-  undefined4 auStackX_20 [2];
-  undefined1 auStack_50 [24];
+  int validation_result;
+  longlong *data_ptr;
+  longlong registry_ptr;
+  longlong *state_ptr;
+  longlong offset_ptr;
+  char validation_flag;
+  short param_count;
+  int state_index;
+  longlong system_state;
+  ulonglong flag_value;
+  longlong data_offset;
+  uint *flag_ptr;
+  longlong item_offset;
+  int iteration_count;
+  int current_index;
+  longlong loop_counter;
+  float *float_param_ptr;
+  bool condition_equal;
+  bool condition_less;
+  float float_value1;
+  float float_value2;
+  int temp_array1 [2];
+  undefined4 temp_array2 [2];
+  undefined4 temp_array3 [2];
+  undefined1 temp_buffer [24];
   
-  uVar10 = *(ulonglong *)((longlong)param_2 * 0x1f8 + 8 + *(longlong *)(param_1 + 0x8f8));
-  if (uVar10 != 0) {
-    uVar10 = (ulonglong)*(ushort *)(uVar10 + 8);
+  // 验证参数和标志
+  flag_value = *(ulonglong *)((longlong)param_index * 0x1f8 + 8 + *(longlong *)(system_handle + 0x8f8));
+  if (flag_value != 0) {
+    flag_value = (ulonglong)*(ushort *)(flag_value + 8);
   }
-  if ((short)uVar10 < param_4) {
-    FUN_180537230();
+  
+  // 根据标志值执行相应的操作
+  if ((short)flag_value < param4) {
+    FUN_180537230(); // 执行失败处理
   }
   else {
-    FUN_1805373f0();
+    FUN_1805373f0(); // 执行成功处理
   }
-  pfVar17 = (float *)(*(longlong *)(param_1 + 0x6d8) + 0x128);
-  iVar15 = 0;
-  lVar16 = 0;
-  lVar13 = 0;
-  iVar1 = *(int *)(*(longlong *)(param_1 + 0x8f8) + 0x9e0);
-  plVar2 = *(longlong **)(*(longlong *)(param_1 + 0x8f8) + 0x9e8);
+  
+  // 初始化参数处理
+  float_param_ptr = (float *)(*(longlong *)(system_handle + 0x6d8) + 0x128);
+  current_index = 0;
+  loop_counter = 0;
+  item_offset = 0;
+  validation_result = *(int *)(*(longlong *)(system_handle + 0x8f8) + 0x9e0);
+  data_ptr = *(longlong **)(*(longlong *)(system_handle + 0x8f8) + 0x9e8);
+  
+  // 主循环处理标志检查
   do {
-    lVar9 = *(longlong *)(param_1 + 0x8f8);
-    if (((*(longlong *)(pfVar17 + -0x26) != 0) && (0 < *(int *)(lVar9 + 0x38 + lVar13))) &&
-       ((lVar3 = *(longlong *)(lVar9 + 0xd8 + lVar13),
-        (*(uint *)((longlong)*(int *)(lVar9 + 0xf8 + lVar13) * 0xa0 + 0x50 + lVar3) >> 9 & 1) == 0
-        || (0 < *(short *)(lVar9 + 0x10 + lVar13))))) {
-      lVar11 = *(longlong *)(lVar9 + 0xe0 + lVar13) - lVar3;
-      iVar14 = 0;
-      lVar5 = lVar11 >> 0x3f;
-      lVar11 = lVar11 / 0xa0 + lVar5;
-      if (lVar11 != lVar5) {
-        puVar12 = (uint *)(lVar3 + 0x50);
+    system_state = *(longlong *)(system_handle + 0x8f8);
+    if (((*(longlong *)(float_param_ptr + -0x26) != 0) && (0 < *(int *)(system_state + 0x38 + item_offset))) &&
+       ((registry_ptr = *(longlong *)(system_state + 0xd8 + item_offset),
+        (*(uint *)((longlong)*(int *)(system_state + 0xf8 + item_offset) * 0xa0 + 0x50 + registry_ptr) >> 9 & 1) == 0
+        || (0 < *(short *)(system_state + 0x10 + item_offset))))) {
+      data_offset = *(longlong *)(system_state + 0xe0 + item_offset) - registry_ptr;
+      iteration_count = 0;
+      offset_ptr = data_offset >> 0x3f;
+      data_offset = data_offset / 0xa0 + offset_ptr;
+      if (data_offset != offset_ptr) {
+        flag_ptr = (uint *)(registry_ptr + 0x50);
         do {
-          if ((*puVar12 >> 8 & 1) != 0) {
-            sVar7 = *(short *)(lVar9 + 0x10 + lVar13);
-            iVar14 = (int)sVar7;
-            if ((lVar16 == iVar1) && (0 < sVar7)) {
-              plVar4 = *(longlong **)(param_1 + 0x590);
-              iVar8 = (int)plVar4[0x493];
-              if (iVar8 != -1) {
-                if ((*(int *)((longlong)iVar8 * 0x68 + 0x58 + _DAT_180c96150) == 0x10) ||
-                   (iVar8 = *(int *)((longlong)iVar8 * 0x68 + 0x58 + _DAT_180c96150), iVar8 == 0x11)
+          if ((*flag_ptr >> 8 & 1) != 0) {
+            param_count = *(short *)(system_state + 0x10 + item_offset);
+            iteration_count = (int)param_count;
+            if ((loop_counter == validation_result) && (0 < param_count)) {
+              state_ptr = *(longlong **)(system_handle + 0x590);
+              state_index = (int)state_ptr[0x493];
+              if (state_index != -1) {
+                if ((*(int *)((longlong)state_index * 0x68 + 0x58 + _DAT_180c96150) == 0x10) ||
+                   (state_index = *(int *)((longlong)state_index * 0x68 + 0x58 + _DAT_180c96150), state_index == 0x11)
                    ) {
-                  lVar9 = (**(code **)(*plVar4 + 0x128))(plVar4,1);
-                  fVar20 = *(float *)(lVar9 + 0x1d8);
-                  fVar21 = (float)(**(code **)(**(longlong **)(param_1 + 0x590) + 0x90))
-                                            (*(longlong **)(param_1 + 0x590),1);
-                  bVar19 = fVar20 == fVar21;
-                  bVar18 = fVar20 < fVar21;
+                  system_state = (**(code **)(*state_ptr + 0x128))(state_ptr,1);
+                  float_value1 = *(float *)(system_state + 0x1d8);
+                  float_value2 = (float)(**(code **)(**(longlong **)(system_handle + 0x590) + 0x90))
+                                            (*(longlong **)(system_handle + 0x590),1);
+                  condition_equal = float_value1 == float_value2;
+                  condition_less = float_value1 < float_value2;
                 }
                 else {
-                  if (iVar8 != 0x12) goto LAB_18054079f;
-                  lVar9 = (**(code **)(*plVar4 + 0x128))(plVar4,1);
-                  plVar4 = *(longlong **)(param_1 + 0x590);
-                  if (((int)plVar4[0x493] == -1) ||
-                     (*(char *)((longlong)(int)plVar4[0x493] * 0x68 + 0x60 + _DAT_180c96150) !=
-                      '\x04')) goto LAB_1805407d6;
-                  fVar20 = (float)(**(code **)(*plVar4 + 0x90))(plVar4,1);
-                  bVar19 = fVar20 == *(float *)(lVar9 + 0x1d8);
-                  bVar18 = fVar20 < *(float *)(lVar9 + 0x1d8);
+                  if (state_index != 0x12) goto LAB_RENDERING_FLAG_CHECK;
+                  system_state = (**(code **)(*state_ptr + 0x128))(state_ptr,1);
+                  state_ptr = *(longlong **)(system_handle + 0x590);
+                  if (((int)state_ptr[0x493] == -1) ||
+                     (*(char *)((longlong)(int)state_ptr[0x493] * 0x68 + 0x60 + _DAT_180c96150) !=
+                      '\x04')) goto LAB_RENDERING_FLAG_PROCESSOR;
+                  float_value1 = (float)(**(code **)(*state_ptr + 0x90))(state_ptr,1);
+                  condition_equal = float_value1 == *(float *)(system_state + 0x1d8);
+                  condition_less = float_value1 < *(float *)(system_state + 0x1d8);
                 }
-                if (bVar18 || bVar19) goto LAB_1805407d6;
+                if (condition_less || condition_equal) goto LAB_RENDERING_FLAG_PROCESSOR;
               }
-LAB_18054079f:
-              if (0 < sVar7) {
-                iVar14 = iVar14 + -1;
+LAB_RENDERING_FLAG_CHECK:
+              if (0 < param_count) {
+                iteration_count = iteration_count + -1;
               }
             }
-            else if ((plVar2 != (longlong *)0x0) &&
-                    ((*(uint *)((longlong)(int)plVar2[0x1e] * 0xa0 + 0x50 + plVar2[0x1a]) & 0x102)
+            else if ((data_ptr != (longlong *)0x0) &&
+                    ((*(uint *)((longlong)(int)data_ptr[0x1e] * 0xa0 + 0x50 + data_ptr[0x1a]) & 0x102)
                      == 2)) {
-              if ((*(longlong **)(param_1 + 0x628) == plVar2) && (*(int *)(param_1 + 0x644) == -1))
+              if ((*(longlong **)(system_handle + 0x628) == data_ptr) && (*(int *)(system_handle + 0x644) == -1))
               {
-                iVar8 = *(int *)(param_1 + 0x640);
+                state_index = *(int *)(system_handle + 0x640);
               }
               else {
-                aiStackX_10[0] = -1;
-                auStackX_20[0] = 0xffffffff;
-                auStackX_18[0] = 0xffffffff;
-                FUN_18050e440(param_1,plVar2,auStackX_20,auStackX_18,aiStackX_10,auStack_50,
+                temp_array1[0] = -1;
+                temp_array3[0] = 0xffffffff;
+                temp_array2[0] = 0xffffffff;
+                FUN_18050e440(system_handle,data_ptr,temp_array3,temp_array2,temp_array1,temp_buffer,
                               0xffffffff);
-                iVar8 = aiStackX_10[0];
+                state_index = temp_array1[0];
               }
-              if (iVar8 == iVar15) {
-                plVar4 = *(longlong **)(param_1 + 0x590);
-                if (((int)plVar4[0x493] == -1) ||
-                   (*(int *)((longlong)(int)plVar4[0x493] * 0x68 + 0x58 + _DAT_180c96150) != 0x12))
+              if (state_index == current_index) {
+                state_ptr = *(longlong **)(system_handle + 0x590);
+                if (((int)state_ptr[0x493] == -1) ||
+                   (*(int *)((longlong)(int)state_ptr[0x493] * 0x68 + 0x58 + _DAT_180c96150) != 0x12))
                 {
-                  if ((*plVar2 != 0) &&
-                     ((*(int *)(*plVar2 + 0x30) == *(int *)(lVar9 + 0x38 + lVar13) &&
-                      (cVar6 = func_0x000180534460(plVar2,0x80000), cVar6 != '\0')))) {
-                    sVar7 = func_0x000180535050(plVar2);
-                    iVar14 = iVar14 - sVar7;
+                  if ((*data_ptr != 0) &&
+                     ((*(int *)(*data_ptr + 0x30) == *(int *)(system_state + 0x38 + item_offset) &&
+                      (validation_flag = func_0x000180534460(data_ptr,0x80000), validation_flag != '\0')))) {
+                    param_count = func_0x000180535050(data_ptr);
+                    iteration_count = iteration_count - param_count;
                   }
                 }
                 else {
-                  lVar9 = (**(code **)(*plVar4 + 0x128))(plVar4,1);
-                  plVar4 = *(longlong **)(param_1 + 0x590);
-                  if (((((int)plVar4[0x493] != -1) &&
-                       (*(char *)((longlong)(int)plVar4[0x493] * 0x68 + 0x60 + _DAT_180c96150) ==
+                  system_state = (**(code **)(*state_ptr + 0x128))(state_ptr,1);
+                  state_ptr = *(longlong **)(system_handle + 0x590);
+                  if (((((int)state_ptr[0x493] != -1) &&
+                       (*(char *)((longlong)(int)state_ptr[0x493] * 0x68 + 0x60 + _DAT_180c96150) ==
                         '\x04')) &&
-                      (fVar20 = (float)(**(code **)(*plVar4 + 0x90))(plVar4,1),
-                      *(float *)(lVar9 + 0x1d8) <= fVar20 && fVar20 != *(float *)(lVar9 + 0x1d8)))
-                     && ((cVar6 = func_0x000180534460(plVar2,0x80000), cVar6 != '\0' ||
-                         (fVar20 = (float)(**(code **)(**(longlong **)(param_1 + 0x590) + 0x90))
-                                                    (*(longlong **)(param_1 + 0x590),1),
-                         fVar20 < *(float *)(lVar9 + 0x1dc))))) goto LAB_18054079f;
+                      (float_value1 = (float)(**(code **)(*state_ptr + 0x90))(state_ptr,1),
+                      *(float *)(system_state + 0x1d8) <= float_value1 && float_value1 != *(float *)(system_state + 0x1d8)))
+                     && ((validation_flag = func_0x000180534460(data_ptr,0x80000), validation_flag != '\0' ||
+                         (float_value1 = (float)(**(code **)(**(longlong **)(system_handle + 0x590) + 0x90))
+                                                    (*(longlong **)(system_handle + 0x590),1),
+                         float_value1 < *(float *)(system_state + 0x1dc))))) goto LAB_RENDERING_FLAG_CHECK;
                 }
               }
             }
-LAB_1805407d6:
-            *pfVar17 = (float)(8 - iVar14);
+LAB_RENDERING_FLAG_PROCESSOR:
+            *float_param_ptr = (float)(8 - iteration_count);
             break;
           }
-          iVar14 = iVar14 + 1;
-          puVar12 = puVar12 + 0x28;
-        } while ((ulonglong)(longlong)iVar14 < (ulonglong)(lVar11 - lVar5));
+          iteration_count = iteration_count + 1;
+          flag_ptr = flag_ptr + 0x28;
+        } while ((ulonglong)(longlong)iteration_count < (ulonglong)(data_offset - offset_ptr));
       }
     }
-    iVar15 = iVar15 + 1;
-    lVar16 = lVar16 + 1;
-    lVar13 = lVar13 + 0x1f8;
-    pfVar17 = pfVar17 + 0x60;
-    if (0x9d7 < lVar13) {
+    current_index = current_index + 1;
+    loop_counter = loop_counter + 1;
+    item_offset = item_offset + 0x1f8;
+    float_param_ptr = float_param_ptr + 0x60;
+    if (0x9d7 < item_offset) {
       return;
     }
   } while( true );
