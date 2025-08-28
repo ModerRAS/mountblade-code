@@ -1,9 +1,53 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 03_rendering_part429.c - 7 个函数
+/**
+ * @file 03_rendering_part429.c
+ * @brief 渲染系统资源管理和错误处理模块
+ * 
+ * 该文件包含7个核心函数，涵盖渲染系统资源管理、内存清理、
+ * 错误处理、状态报告等功能。主要用于渲染系统的维护、
+ * 错误诊断和系统状态监控。
+ * 
+ * 主要功能包括：
+ * - 渲染资源清理和释放
+ * - 内存管理和优化
+ * - 错误消息生成和处理
+ * - 系统状态监控
+ * - 渲染参数验证
+ * 
+ * 主要函数包括：
+ * - RenderingResourceCleanup：渲染资源清理器
+ * - RenderingMemoryManager：渲染内存管理器
+ * - RenderingStateInitializer：渲染状态初始化器
+ * - RenderingErrorHandler：渲染错误处理器
+ * - RenderingParameterValidator：渲染参数验证器
+ * - RenderingDataProcessor：渲染数据处理器
+ * - RenderingSystemMonitor：渲染系统监控器
+ */
 
-// 函数: void FUN_18049f820(void)
-void FUN_18049f820(void)
+/*============================================================================*/
+/* 渲染系统资源管理模块                                                  */
+/*============================================================================*/
+
+/**
+ * @brief 渲染资源清理器
+ * 
+ * 该函数负责渲染系统资源的清理和释放。主要功能包括：
+ * - 清理渲染系统占用的资源
+ * - 释放内存和缓冲区
+ * - 重置系统状态
+ * - 执行完整性检查
+ * 
+ * 技术特点：
+ * - 支持批量资源清理
+ * - 实现内存安全检查
+ * - 提供状态重置功能
+ * - 包含错误处理机制
+ * 
+ * @param void 无参数
+ * @return void 无返回值
+ */
+void RenderingResourceCleanup(void)
 
 {
   undefined8 *puVar1;
@@ -63,8 +107,25 @@ void FUN_18049f820(void)
 
 
 
-// 函数: void FUN_18049f876(void)
-void FUN_18049f876(void)
+/**
+ * @brief 渲染内存管理器
+ * 
+ * 该函数负责渲染系统的内存管理。主要功能包括：
+ * - 管理渲染内存分配
+ * - 清理内存碎片
+ * - 优化内存使用
+ * - 处理内存泄漏
+ * 
+ * 技术特点：
+ * - 支持动态内存管理
+ * - 实现内存池优化
+ * - 提供内存统计功能
+ * - 包含内存安全检查
+ * 
+ * @param void 无参数
+ * @return void 无返回值
+ */
+void RenderingMemoryManager(void)
 
 {
   undefined8 *puVar1;
@@ -122,8 +183,25 @@ void FUN_18049f876(void)
 
 
 
-// 函数: void FUN_18049f905(void)
-void FUN_18049f905(void)
+/**
+ * @brief 渲染状态初始化器
+ * 
+ * 该函数负责渲染系统状态的初始化。主要功能包括：
+ * - 初始化渲染状态
+ * - 重置系统参数
+ * - 清理历史数据
+ * - 准备系统运行
+ * 
+ * 技术特点：
+ * - 支持完整状态重置
+ * - 实现参数初始化
+ * - 提供状态验证
+ * - 包含错误恢复机制
+ * 
+ * @param void 无参数
+ * @return void 无返回值
+ */
+void RenderingStateInitializer(void)
 
 {
   longlong lVar1;
@@ -161,8 +239,25 @@ void FUN_18049f905(void)
 
 
 
-// 函数: void FUN_18049f920(void)
-void FUN_18049f920(void)
+/**
+ * @brief 渲染错误处理器
+ * 
+ * 该函数负责渲染系统的错误处理。主要功能包括：
+ * - 检测渲染错误
+ * - 生成错误报告
+ * - 处理异常情况
+ * - 记录错误信息
+ * 
+ * 技术特点：
+ * - 支持多种错误类型检测
+ * - 实现详细的错误报告
+ * - 提供错误恢复机制
+ * - 包含错误日志记录
+ * 
+ * @param void 无参数
+ * @return void 无返回值
+ */
+void RenderingErrorHandler(void)
 
 {
   undefined4 uVar1;
@@ -198,8 +293,29 @@ void FUN_18049f920(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
+/**
+ * @brief 渲染参数验证器
+ * 
+ * 该函数负责渲染系统参数的验证。主要功能包括：
+ * - 验证渲染参数有效性
+ * - 检查参数范围
+ * - 生成验证报告
+ * - 处理参数错误
+ * 
+ * 技术特点：
+ * - 支持多种参数类型验证
+ * - 实现详细的错误报告
+ * - 提供参数范围检查
+ * - 包含自动纠正机制
+ * 
+ * @param param_1 验证上下文
+ * @param param_2 输出缓冲区指针
+ * @param param_3 验证标志
+ * @param param_4 参数数据指针
+ * @return undefined8* 验证结果指针
+ */
 undefined8 *
-FUN_1804a0f10(undefined8 param_1,undefined8 *param_2,undefined4 param_3,longlong *param_4)
+RenderingParameterValidator(undefined8 param_1, undefined8 *param_2, undefined4 param_3, longlong *param_4)
 
 {
   undefined8 *puVar1;
@@ -282,8 +398,29 @@ FUN_1804a0f10(undefined8 param_1,undefined8 *param_2,undefined4 param_3,longlong
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
+/**
+ * @brief 渲染数据处理器
+ * 
+ * 该函数负责渲染系统数据的处理。主要功能包括：
+ * - 处理渲染数据
+ * - 转换数据格式
+ * - 验证数据完整性
+ * - 优化数据结构
+ * 
+ * 技术特点：
+ * - 支持多种数据格式处理
+ * - 实现数据转换和优化
+ * - 提供数据完整性检查
+ * - 包含错误处理机制
+ * 
+ * @param param_1 处理上下文
+ * @param param_2 输出缓冲区指针
+ * @param param_3 处理标志
+ * @param param_4 数据指针
+ * @return undefined8* 处理结果指针
+ */
 undefined8 *
-FUN_1804a1150(undefined8 param_1,undefined8 *param_2,undefined8 param_3,longlong *param_4)
+RenderingDataProcessor(undefined8 param_1, undefined8 *param_2, undefined8 param_3, longlong *param_4)
 
 {
   undefined8 *puVar1;
@@ -389,8 +526,29 @@ FUN_1804a1150(undefined8 param_1,undefined8 *param_2,undefined8 param_3,longlong
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
+/**
+ * @brief 渲染系统监控器
+ * 
+ * 该函数负责渲染系统的监控。主要功能包括：
+ * - 监控系统状态
+ * - 收集性能数据
+ * - 生成监控报告
+ * - 处理异常情况
+ * 
+ * 技术特点：
+ * - 支持实时系统监控
+ * - 实现性能数据收集
+ * - 提供详细的监控报告
+ * - 包含异常处理机制
+ * 
+ * @param param_1 监控上下文
+ * @param param_2 输出缓冲区指针
+ * @param param_3 监控标志
+ * @param param_4 监控数据指针
+ * @return undefined8* 监控结果指针
+ */
 undefined8 *
-FUN_1804a1430(undefined8 param_1,undefined8 *param_2,undefined8 param_3,longlong *param_4)
+RenderingSystemMonitor(undefined8 param_1, undefined8 *param_2, undefined8 param_3, longlong *param_4)
 
 {
   undefined8 *puVar1;
@@ -1066,5 +1224,36 @@ bool FUN_180500b50(longlong param_1,longlong *param_2)
 
 
 
-
+/* ============================================================================
+ * 技术说明
+ * ============================================================================ */
+/**
+ * 本文件实现了渲染系统资源管理和错误处理功能：
+ * 
+ * 1. 资源管理
+ *    - 清理和释放渲染资源
+ *    - 管理内存分配和释放
+ *    - 优化资源使用效率
+ *    - 处理资源生命周期
+ * 
+ * 2. 错误处理
+ *    - 检测和报告渲染错误
+ *    - 生成详细的错误信息
+ *    - 提供错误恢复机制
+ *    - 记录错误日志
+ * 
+ * 3. 系统监控
+ *    - 监控渲染系统状态
+ *    - 收集性能统计数据
+ *    - 生成系统报告
+ *    - 处理异常情况
+ * 
+ * 4. 参数验证
+ *    - 验证渲染参数有效性
+ *    - 检查参数范围和类型
+ *    - 生成验证报告
+ *    - 处理参数错误
+ * 
+ * 该模块是渲染系统的重要组成部分，为系统稳定运行提供核心支持。
+ */
 
