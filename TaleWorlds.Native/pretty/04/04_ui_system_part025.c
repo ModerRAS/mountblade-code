@@ -1,42 +1,9 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 04_ui_system_part025.c - UI系统高级处理模块
-// 包含15个核心函数，涵盖UI系统参数处理、数据转换、状态管理、线程同步、CPU特性检测等高级UI功能
-// 主要功能包括UI控件处理、数据格式转换、线程安全、CPU指令集优化、错误处理等
+// 04_ui_system_part025.c - 15 个函数
 
-// 常量定义
-#define UI_SYSTEM_MAX_PARAMS 10          // UI系统最大参数数量
-#define UI_SYSTEM_BUFFER_SIZE 0x4f       // UI系统缓冲区大小
-#define UI_SYSTEM_ALIGNMENT_MASK 0xfffffff0 // UI系统内存对齐掩码
-#define UI_SYSTEM_CRITICAL_SECTION_SIZE 0x28 // UI系统临界区大小
-#define UI_SYSTEM_DATA_BLOCK_SIZE 0x90   // UI系统数据块大小
-#define UI_SYSTEM_LARGE_BLOCK_SIZE 0x12a0 // UI系统大数据块大小
-
-// 函数别名定义
-#define ui_system_process_main_parameters FUN_18066c7e0
-#define ui_system_initialize_data_structures FUN_18066cdf0
-#define ui_system_process_data_block_type1 FUN_18066cf80
-#define ui_system_process_data_block_type2 FUN_18066d040
-#define ui_system_validate_and_queue_parameters FUN_18066d130
-#define ui_system_process_parameter_data FUN_18066d210
-#define ui_system_cleanup_resource_handler FUN_18066d310
-#define ui_system_set_error_with_format FUN_18066d370
-#define ui_system_set_error_simple FUN_18066d37f
-#define ui_system_trigger_error_jump FUN_18066d398
-#define ui_system_execute_error_jump FUN_18066d3e9
-#define ui_system_no_operation FUN_18066d3f4
-#define ui_system_execute_once_protected FUN_18066d410
-#define ui_system_cpu_feature_detection FUN_18066d4e0
-#define ui_system_execute_once_alternative FUN_18066d6f0
-#define ui_system_execute_once_initializer FUN_18066d426
-#define ui_system_execute_once_finalizer FUN_18066d483
-#define ui_system_execute_once_alternative_initializer FUN_18066d706
-#define ui_system_execute_once_alternative_finalizer FUN_18066d763
-
-// 函数: UI系统主参数处理器
-// 处理UI系统的主要参数输入，包括参数验证、数据结构初始化、状态管理和错误处理
-// 参数: param_1 - UI系统上下文指针, param_2 - 输入参数1, param_3 - 输入参数2, param_4 - 输入参数3, param_5 - 输入参数4
-void ui_system_process_main_parameters(longlong *param_1,longlong param_2,ulonglong param_3,longlong param_4,int param_5)
+// 函数: void FUN_18066c7e0(longlong *param_1,longlong param_2,ulonglong param_3,longlong param_4,int param_5
+void FUN_18066c7e0(longlong *param_1,longlong param_2,ulonglong param_3,longlong param_4,int param_5
                   )
 
 {
@@ -350,10 +317,8 @@ LAB_18066cdc1:
 
 
 
-// 函数: UI系统数据结构初始化器
-// 初始化UI系统的核心数据结构，包括内存分配、参数设置和状态初始化
-// 参数: param_1 - 系统上下文指针, param_2 - 输出参数指针
-void ui_system_initialize_data_structures(longlong param_1,longlong *param_2)
+// 函数: void FUN_18066cdf0(longlong param_1,longlong *param_2)
+void FUN_18066cdf0(longlong param_1,longlong *param_2)
 
 {
   int iVar1;
@@ -421,11 +386,7 @@ void ui_system_initialize_data_structures(longlong param_1,longlong *param_2)
 
 
 
-// 函数: UI系统数据块处理器类型1
-// 处理第一种类型的数据块，包括数据解析、格式转换和参数验证
-// 参数: param_1 - 系统上下文指针, param_2 - 数据块指针
-// 返回值: 处理结果状态码
-undefined8 ui_system_process_data_block_type1(longlong param_1,undefined8 *param_2)
+undefined8 FUN_18066cf80(longlong param_1,undefined8 *param_2)
 
 {
   undefined4 *puVar1;
@@ -469,11 +430,7 @@ undefined8 ui_system_process_data_block_type1(longlong param_1,undefined8 *param
 
 
 
-// 函数: UI系统数据块处理器类型2
-// 处理第二种类型的数据块，与类型1类似但使用不同的处理逻辑
-// 参数: param_1 - 系统上下文指针, param_2 - 数据块指针
-// 返回值: 处理结果状态码
-undefined8 ui_system_process_data_block_type2(longlong param_1,undefined8 *param_2)
+undefined8 FUN_18066d040(longlong param_1,undefined8 *param_2)
 
 {
   undefined4 *puVar1;
@@ -517,11 +474,7 @@ undefined8 ui_system_process_data_block_type2(longlong param_1,undefined8 *param
 
 
 
-// 函数: UI系统参数验证和队列管理器
-// 验证输入参数的有效性并管理参数队列，支持最多10个参数的缓存
-// 参数: param_1 - 系统上下文指针, param_2 - 参数1, param_3 - 参数2, param_4 - 状态输出指针
-// 返回值: 验证结果和状态码
-undefined8 ui_system_validate_and_queue_parameters(longlong param_1,longlong param_2,int param_3,undefined4 *param_4)
+undefined8 FUN_18066d130(longlong param_1,longlong param_2,int param_3,undefined4 *param_4)
 
 {
   int iVar1;
@@ -565,10 +518,8 @@ undefined8 ui_system_validate_and_queue_parameters(longlong param_1,longlong par
 
 
 
-// 函数: UI系统参数数据处理器
-// 处理UI系统的参数数据，包括数据解析、格式验证和特殊标记处理
-// 参数: param_1 - 数据缓冲区指针, param_2 - 数据长度, param_3 - 输出结构指针, param_4 - 处理函数指针, param_5 - 附加参数
-void ui_system_process_parameter_data(byte *param_1,uint param_2,longlong param_3,code *param_4,undefined8 param_5)
+// 函数: void FUN_18066d210(byte *param_1,uint param_2,longlong param_3,code *param_4,undefined8 param_5)
+void FUN_18066d210(byte *param_1,uint param_2,longlong param_3,code *param_4,undefined8 param_5)
 
 {
   uint uVar1;
@@ -600,11 +551,7 @@ void ui_system_process_parameter_data(byte *param_1,uint param_2,longlong param_
 
 
 
-// 函数: UI系统资源清理器
-// 清理UI系统占用的资源，包括内存释放、句柄关闭和状态重置
-// 参数: param_1 - 资源句柄指针
-// 返回值: 清理结果状态码
-undefined8 ui_system_cleanup_resource_handler(undefined8 *param_1)
+undefined8 FUN_18066d310(undefined8 *param_1)
 
 {
   if (param_1 == (undefined8 *)0x0) {
@@ -626,10 +573,8 @@ undefined8 ui_system_cleanup_resource_handler(undefined8 *param_1)
 
 
 
-// 函数: UI系统带格式错误设置器
-// 设置UI系统错误状态并支持格式化错误消息
-// 参数: param_1 - 错误结构指针, param_2 - 错误代码, param_3 - 格式化字符串, param_4 - 可变参数
-void ui_system_set_error_with_format(undefined4 *param_1,undefined4 param_2,longlong param_3,undefined8 param_4)
+// 函数: void FUN_18066d370(undefined4 *param_1,undefined4 param_2,longlong param_3,undefined8 param_4)
+void FUN_18066d370(undefined4 *param_1,undefined4 param_2,longlong param_3,undefined8 param_4)
 
 {
   ulonglong *puVar1;
@@ -655,10 +600,8 @@ void ui_system_set_error_with_format(undefined4 *param_1,undefined4 param_2,long
 
 
 
-// 函数: UI系统简单错误设置器
-// 设置UI系统错误状态的简化版本，不支持格式化消息
-// 参数: param_1 - 错误结构指针, param_2 - 错误代码, param_3 - 错误消息
-void ui_system_set_error_simple(undefined4 *param_1,undefined4 param_2,longlong param_3)
+// 函数: void FUN_18066d37f(undefined4 *param_1,undefined4 param_2,longlong param_3)
+void FUN_18066d37f(undefined4 *param_1,undefined4 param_2,longlong param_3)
 
 {
   ulonglong *puVar1;
@@ -682,10 +625,8 @@ void ui_system_set_error_simple(undefined4 *param_1,undefined4 param_2,longlong 
 
 
 
-// 函数: UI系统错误跳转触发器
-// 触发UI系统的错误处理跳转机制，实现错误状态的快速传播
-// 参数: param_1 - 错误上下文指针
-void ui_system_trigger_error_jump(longlong param_1)
+// 函数: void FUN_18066d398(longlong param_1)
+void FUN_18066d398(longlong param_1)
 
 {
   ulonglong *puVar1;
@@ -706,9 +647,8 @@ void ui_system_trigger_error_jump(longlong param_1)
 
 
 
-// 函数: UI系统错误跳转执行器
-// 执行UI系统的错误跳转操作，将控制权转移到错误处理代码
-void ui_system_execute_error_jump(void)
+// 函数: void FUN_18066d3e9(void)
+void FUN_18066d3e9(void)
 
 {
   undefined4 *unaff_RDI;
@@ -724,9 +664,8 @@ void ui_system_execute_error_jump(void)
 
 
 
-// 函数: UI系统空操作函数
-// 不执行任何操作的占位符函数，用于保持API完整性
-void ui_system_no_operation(void)
+// 函数: void FUN_18066d3f4(void)
+void FUN_18066d3f4(void)
 
 {
   return;
@@ -738,10 +677,8 @@ void ui_system_no_operation(void)
 
 
 
-// 函数: UI系统一次性执行保护器
-// 确保指定的函数只执行一次，使用临界区保护线程安全
-// 参数: param_1 - 要执行的函数指针
-void ui_system_execute_once_protected(code *param_1)
+// 函数: void FUN_18066d410(code *param_1)
+void FUN_18066d410(code *param_1)
 
 {
   int iVar1;
@@ -793,9 +730,8 @@ void ui_system_execute_once_protected(code *param_1)
 
 
 
-// 函数: UI系统一次性执行初始化器
-// 初始化一次性执行机制的上下文，为后续的函数执行做准备
-void ui_system_execute_once_initializer(void)
+// 函数: void FUN_18066d426(void)
+void FUN_18066d426(void)
 
 {
   int iVar1;
@@ -846,9 +782,8 @@ void ui_system_execute_once_initializer(void)
 
 
 
-// 函数: UI系统一次性执行完成器
-// 完成一次性执行的收尾工作，包括临界区清理和资源释放
-void ui_system_execute_once_finalizer(void)
+// 函数: void FUN_18066d483(void)
+void FUN_18066d483(void)
 
 {
   int iVar1;
@@ -880,10 +815,8 @@ void ui_system_execute_once_finalizer(void)
 
 
 
-// 函数: UI系统CPU特性检测器
-// 检测CPU支持的指令集特性，并根据检测结果优化函数指针选择
-// 支持SSE、AVX等指令集的自动检测和优化
-void ui_system_cpu_feature_detection(void)
+// 函数: void FUN_18066d4e0(void)
+void FUN_18066d4e0(void)
 
 {
   uint *puVar1;
@@ -968,10 +901,8 @@ void ui_system_cpu_feature_detection(void)
 
 
 
-// 函数: UI系统一次性执行保护器（替代版本）
-// 与主版本功能相同，但使用不同的临界区变量，避免冲突
-// 参数: param_1 - 要执行的函数指针
-void ui_system_execute_once_alternative(code *param_1)
+// 函数: void FUN_18066d6f0(code *param_1)
+void FUN_18066d6f0(code *param_1)
 
 {
   int iVar1;
@@ -1023,9 +954,8 @@ void ui_system_execute_once_alternative(code *param_1)
 
 
 
-// 函数: UI系统替代一次性执行初始化器
-// 初始化替代版本的一次性执行机制，使用不同的临界区变量
-void ui_system_execute_once_alternative_initializer(void)
+// 函数: void FUN_18066d706(void)
+void FUN_18066d706(void)
 
 {
   int iVar1;
@@ -1076,9 +1006,8 @@ void ui_system_execute_once_alternative_initializer(void)
 
 
 
-// 函数: UI系统替代一次性执行完成器
-// 完成替代版本一次性执行的收尾工作
-void ui_system_execute_once_alternative_finalizer(void)
+// 函数: void FUN_18066d763(void)
+void FUN_18066d763(void)
 
 {
   int iVar1;

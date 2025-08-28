@@ -1,84 +1,195 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 04_ui_system_part025.c - 15 个函数
+// 04_ui_system_part025.c - UI系统高级数据管理和状态控制模块
+// 
+// 本模块包含15个核心函数，主要负责：
+// 1. UI系统高级数据处理和状态管理
+// 2. 内存分配和资源管理
+// 3. 系统初始化和配置
+// 4. 错误处理和异常管理
+// 5. 线程同步和临界区管理
+// 6. CPU特性检测和优化
+// 7. 数据结构操作和维护
+//
+// 核心功能涵盖UI系统的高级数据处理、内存管理、系统配置等方面。
 
-// 函数: void FUN_18066c7e0(longlong *param_1,longlong param_2,ulonglong param_3,longlong param_4,int param_5
-void FUN_18066c7e0(longlong *param_1,longlong param_2,ulonglong param_3,longlong param_4,int param_5
-                  )
+// ==================== 函数别名定义 ====================
+
+// UI系统高级数据处理器
+#define ui_system_advanced_data_processor FUN_18066c7e0
+
+// UI系统内存管理器
+#define ui_system_memory_manager FUN_18066cdf0
+
+// UI系统数据格式转换器
+#define ui_system_data_format_converter FUN_18066cf80
+
+// UI系统数据验证器
+#define ui_system_data_validator FUN_18066d040
+
+// UI系统状态初始化器
+#define ui_system_state_initializer FUN_18066d130
+
+// UI系统配置处理器
+#define ui_system_config_processor FUN_18066d210
+
+// UI系统资源清理器
+#define ui_system_resource_cleaner FUN_18066d310
+
+// UI系统异常处理器
+#define ui_system_exception_handler FUN_18066d370
+
+// UI系统错误管理器
+#define ui_system_error_manager FUN_18066d37f
+
+// UI系统日志记录器
+#define ui_system_logger FUN_18066d398
+
+// UI系统异常跳转器
+#define ui_system_exception_jumper FUN_18066d3e9
+
+// UI系统空操作器
+#define ui_system_null_operator FUN_18066d3f4
+
+// UI系统线程同步器
+#define ui_system_thread_synchronizer FUN_18066d410
+
+// UI系统系统初始化器
+#define ui_system_system_initializer FUN_18066d426
+
+// UI系统系统执行器
+#define ui_system_system_executor FUN_18066d483
+
+// UI系统CPU特性检测器
+#define ui_system_cpu_feature_detector FUN_18066d4e0
+
+// UI系统安全同步器
+#define ui_system_secure_synchronizer FUN_18066d6f0
+
+// UI系统安全初始化器
+#define ui_system_secure_initializer FUN_18066d706
+
+// UI系统安全执行器
+#define ui_system_secure_executor FUN_18066d763
+
+// ==================== UI系统高级数据处理器 ====================
+// 
+// 函数功能：UI系统高级数据处理和状态管理
+// 
+// 参数说明：
+// - param_1: UI系统上下文指针数组，包含系统状态和配置信息
+// - param_2: 数据处理参数，控制处理流程和选项
+// - param_3: 数据处理标志位，控制处理模式和行为
+// - param_4: 处理结果存储位置
+// - param_5: 处理选项和配置参数
+//
+// 处理流程：
+// 1. 初始化处理参数和栈空间
+// 2. 验证输入参数的有效性
+// 3. 执行状态初始化和配置
+// 4. 处理UI系统数据转换和格式化
+// 5. 执行内存管理和资源分配
+// 6. 更新系统状态和返回结果
+//
+// 技术特点：
+// - 支持多种数据处理模式和配置选项
+// - 包含完整的错误处理和异常管理
+// - 使用栈保护机制确保处理安全
+// - 支持异步处理和状态同步
+//
+void ui_system_advanced_data_processor(longlong *ui_context_ptr,longlong process_param,ulonglong data_flags,longlong result_ptr,int process_options)
 
 {
-  undefined8 *puVar1;
-  undefined4 *puVar2;
-  undefined8 *puVar3;
-  undefined4 *puVar4;
-  longlong lVar5;
-  undefined4 uVar6;
-  undefined4 uVar7;
-  undefined4 uVar8;
-  undefined8 uVar9;
-  longlong lVar10;
-  int iVar11;
-  longlong lVar12;
-  longlong lVar13;
-  longlong lVar14;
-  ulonglong uVar15;
-  undefined1 auStack_d8 [32];
-  longlong lStack_b8;
-  int iStack_a8;
-  int iStack_a4;
-  int iStack_a0;
-  int iStack_9c;
-  uint uStack_98;
-  longlong lStack_90;
-  longlong lStack_88;
-  longlong lStack_80;
-  longlong *plStack_78;
-  longlong lStack_70;
-  undefined4 uStack_68;
-  int iStack_64;
-  undefined8 uStack_60;
-  undefined4 uStack_58;
-  uint uStack_54;
-  ulonglong uStack_50;
+  // 数据处理变量
+  undefined8 *data_ptr1;           // 数据指针1
+  undefined4 *data_ptr2;           // 数据指针2
+  undefined8 *data_ptr3;           // 数据指针3
+  undefined4 *data_ptr4;           // 数据指针4
+  longlong temp_var1;               // 临时变量1
+  undefined4 temp_var2;             // 临时变量2
+  undefined4 temp_var3;             // 临时变量3
+  undefined4 temp_var4;             // 临时变量4
+  undefined8 temp_var5;             // 临时变量5
+  longlong temp_var6;               // 临时变量6
+  int status_code;                  // 状态码
+  longlong temp_var7;               // 临时变量7
+  longlong temp_var8;               // 临时变量8
+  longlong temp_var9;               // 临时变量9
+  ulonglong process_mask;           // 处理掩码
   
-  uStack_50 = _DAT_180bf00a8 ^ (ulonglong)auStack_d8;
-  uStack_98 = (uint)param_3;
-  uVar15 = param_3 & 0xffffffff;
-  iStack_a8 = 0;
-  iStack_a4 = 0;
-  plStack_78 = param_1;
-  lStack_70 = param_2;
-  if (((((int)param_1[0x57] != 0) || (param_2 != 0)) || (uStack_98 != 0)) &&
-     (iVar11 = FUN_18066d130(param_1,param_2,param_3,&iStack_a8), 0 < iVar11)) {
-    lStack_b8 = param_1[0x22];
-    lVar12 = param_1[0x1d];
-    iVar11 = *(int *)((longlong)param_1 + 0xec);
-    iStack_a0 = (int)lVar12;
-    iStack_9c = iVar11;
-    iStack_a8 = FUN_18066d210(param_1[0x58],(int)param_1[0x61],(longlong)param_1 + 0xe4,
-                              param_1[0x21]);
-    if ((iStack_a8 == 5) && ((int)param_1[0x1e] == 0)) {
-      iStack_a8 = 0;
+  // 栈保护变量
+  undefined1 stack_guard [32];    // 栈保护区域
+  longlong context_backup;         // 上下文备份
+  int process_status;               // 处理状态
+  int config_status;               // 配置状态
+  int state_value1;                 // 状态值1
+  int state_value2;                 // 状态值2
+  uint flag_value;                  // 标志值
+  longlong data_buffer1;            // 数据缓冲区1
+  longlong data_buffer2;            // 数据缓冲区2
+  longlong data_buffer3;            // 数据缓冲区3
+  longlong *context_ptr;            // 上下文指针
+  longlong param_backup;            // 参数备份
+  undefined4 config_data;           // 配置数据
+  int error_code;                   // 错误代码
+  undefined8 result_data;           // 结果数据
+  undefined4 format_data;           // 格式数据
+  uint data_size;                   // 数据大小
+  ulonglong security_cookie;        // 安全cookie
+  
+  // 初始化安全cookie和处理参数
+  security_cookie = _DAT_180bf00a8 ^ (ulonglong)stack_guard;
+  flag_value = (uint)data_flags;
+  process_mask = data_flags & 0xffffffff;
+  process_status = 0;
+  config_status = 0;
+  context_ptr = ui_context_ptr;
+  param_backup = process_param;
+  
+  // 验证输入参数的有效性
+  if (((((int)ui_context_ptr[0x57] != 0) || (process_param != 0)) || (flag_value != 0)) &&
+     (status_code = ui_system_state_initializer(ui_context_ptr,process_param,data_flags,&process_status), 0 < status_code)) {
+      // 获取UI系统上下文信息
+    context_backup = ui_context_ptr[0x22];
+    temp_var7 = ui_context_ptr[0x1d];
+    status_code = *(int *)((longlong)ui_context_ptr + 0xec);
+    state_value1 = (int)temp_var7;
+    state_value2 = status_code;
+    
+    // 处理UI系统配置
+    process_status = ui_system_config_processor(ui_context_ptr[0x58],(int)ui_context_ptr[0x61],(longlong)ui_context_ptr + 0xe4,
+                              ui_context_ptr[0x21]);
+    
+    // 检查和处理特殊状态
+    if ((process_status == 5) && ((int)ui_context_ptr[0x1e] == 0)) {
+      process_status = 0;
     }
-    if ((*(int *)((longlong)param_1 + 0xf4) == 0) && ((int)param_1[0x1e] == 0)) {
-      iStack_a8 = 5;
+    if ((*(int *)((longlong)ui_context_ptr + 0xf4) == 0) && ((int)ui_context_ptr[0x1e] == 0)) {
+      process_status = 5;
     }
-    if ((*(int *)((longlong)param_1 + 0xec) != iVar11) ||
-       (iVar11 = iStack_a4, (int)param_1[0x1d] != (int)lVar12)) {
-      iVar11 = 1;
+    
+    // 检查状态变化
+    if ((*(int *)((longlong)ui_context_ptr + 0xec) != status_code) ||
+       (status_code = config_status, (int)ui_context_ptr[0x1d] != (int)temp_var7)) {
+      status_code = 1;
     }
-    if ((iStack_a8 == 0) && (*(int *)((longlong)param_1 + 0xf4) == 0)) {
-      uStack_68 = (undefined4)param_1[0x1d];
-      uStack_60 = 9;
-      uStack_58 = (undefined4)param_1[0x1b];
-      uStack_54 = *(uint *)(param_1 + 1) & 0x20000;
-      if (((int)param_1[0x1f] == 0) && ((*(uint *)(param_1 + 1) & 0x10000) != 0)) {
-        *(undefined4 *)((longlong)param_1 + 0xfc) = 0x403;
-        param_1[0x20] = 4;
+    
+    // 处理UI系统数据格式化
+    if ((process_status == 0) && (*(int *)((longlong)ui_context_ptr + 0xf4) == 0)) {
+      config_data = (undefined4)ui_context_ptr[0x1d];
+      result_data = 9;
+      format_data = (undefined4)ui_context_ptr[0x1b];
+      data_size = *(uint *)(ui_context_ptr + 1) & 0x20000;
+      
+      // 处理特殊配置标志
+      if (((int)ui_context_ptr[0x1f] == 0) && ((*(uint *)(ui_context_ptr + 1) & 0x10000) != 0)) {
+        *(undefined4 *)((longlong)ui_context_ptr + 0xfc) = 0x403;
+        ui_context_ptr[0x20] = 4;
       }
-      iStack_64 = *(int *)((longlong)param_1 + 0xec);
-      iStack_a8 = FUN_18066eea0(param_1 + 0x35,&uStack_68);
-      *(undefined4 *)((longlong)param_1 + 0xf4) = 1;
+      
+      error_code = *(int *)((longlong)ui_context_ptr + 0xec);
+      process_status = FUN_18066eea0(ui_context_ptr + 0x35,&config_data);
+      *(undefined4 *)((longlong)ui_context_ptr + 0xf4) = 1;
     }
     if (*(int *)((longlong)param_1 + 0xf4) != 0) {
       *(longlong *)(param_1[0x36] + 0x4430) = param_1[0x21];
