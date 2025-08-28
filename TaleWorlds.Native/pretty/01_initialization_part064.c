@@ -1179,7 +1179,7 @@ int32_t InitializationSystem_Cleanup(void)
  * 
  * @return undefined 验证结果状态
  */
-undefined InitializationSystem_ValidateState(void)
+int32_t InitializationSystem_ValidateState(void)
 {
     // 状态验证逻辑实现
     
