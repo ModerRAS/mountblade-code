@@ -3,9 +3,10 @@
 // 02_core_engine_part086.c - 核心引擎模块第086部分
 // 本文件包含4个函数，主要处理图形渲染相关的计算和操作
 
-// 函数: void FUN_1801122ca(void)
+// 函数: void process_render_state_and_float_operations(void)
 // 功能: 处理图形渲染相关的浮点数计算和矩阵操作
-void FUN_1801122ca(void)
+// 这个函数处理XMM寄存器的存储和恢复，并根据条件执行不同的渲染计算路径
+void process_render_state_and_float_operations(void)
 
 {
   float *pfVar1;
@@ -51,6 +52,7 @@ void FUN_1801122ca(void)
   undefined4 unaff_XMM10_Dc;
   undefined4 unaff_XMM10_Dd;
   
+  // 保存XMM寄存器状态到栈内存
   *(undefined4 *)(in_R11 + -0x18) = unaff_XMM6_Da;
   *(undefined4 *)(in_R11 + -0x14) = unaff_XMM6_Db;
   *(undefined4 *)(in_R11 + -0x10) = unaff_XMM6_Dc;
@@ -71,10 +73,13 @@ void FUN_1801122ca(void)
   *(undefined4 *)(in_R11 + -0x54) = unaff_XMM10_Db;
   *(undefined4 *)(in_R11 + -0x50) = unaff_XMM10_Dc;
   *(undefined4 *)(in_R11 + -0x4c) = unaff_XMM10_Dd;
+  
   if (in_ZF) {
+    // 第一个分支：处理零标志位设置的情况
     *(undefined1 *)(unaff_RBX + 0xb1) = 1;
     lVar9 = *(longlong *)(in_R10 + 0x1af8);
     if (*(char *)(lVar9 + 0xb4) == '\0') {
+      // 从内存中读取浮点数值
       pfVar1 = (float *)(lVar9 + 0x100);
       fVar13 = *pfVar1;
       fVar15 = *(float *)(lVar9 + 0x104);
@@ -100,6 +105,8 @@ void FUN_1801122ca(void)
       *(undefined4 *)(unaff_RBP + -0x15) = uVar5;
       *(float *)(unaff_RBP + -0x11) = fVar10;
       *(float *)(unaff_RBP + -0xd) = fVar12;
+      
+      // 检查边界条件并执行渲染操作
       if ((((*(float *)(lVar4 + 0x22c) <= fVar16 && fVar16 != *(float *)(lVar4 + 0x22c)) &&
            (fVar15 < *(float *)(lVar4 + 0x234))) &&
           ((*(float *)(lVar4 + 0x228) <= fVar14 && fVar14 != *(float *)(lVar4 + 0x228) &&
@@ -132,6 +139,7 @@ void FUN_1801122ca(void)
     }
   }
   else {
+    // 第二个分支：处理零标志位未设置的情况
     if (*(longlong *)(unaff_RBX + 0x210) != 0) {
       FUN_180126d80();
       in_R10 = _DAT_180c8a9b0;
@@ -158,6 +166,8 @@ void FUN_1801122ca(void)
     *(float *)(unaff_RBP + -0x15) = fVar2;
     *(float *)(unaff_RBP + -0x11) = fVar11;
     *(float *)(unaff_RBP + -0xd) = fVar10;
+    
+    // 检查边界条件并执行渲染操作
     if (((((*(float *)(lVar3 + 0x22c) <= fVar12 && fVar12 != *(float *)(lVar3 + 0x22c)) &&
           (fVar2 < *(float *)(lVar3 + 0x234))) &&
          (*(float *)(lVar3 + 0x228) <= fVar15 && fVar15 != *(float *)(lVar3 + 0x228))) &&
@@ -199,9 +209,9 @@ void FUN_1801122ca(void)
 
 
 
-// 函数: void FUN_18011260c(void)
+// 函数: void empty_operation_placeholder_1(void)
 // 功能: 空函数，可能作为占位符或未来扩展
-void FUN_18011260c(void)
+void empty_operation_placeholder_1(void)
 
 {
   return;
@@ -211,10 +221,11 @@ void FUN_18011260c(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-// 函数: ulonglong FUN_180112630(undefined8 *param_1,ulonglong param_2,int param_3,float *param_4,
+// 函数: ulonglong process_complex_parameters(undefined8 *param_1,ulonglong param_2,int param_3,float *param_4,
 //                       float *param_5,float param_6,float param_7,byte param_8,char param_9)
 // 功能: 处理图形坐标变换和浮点数运算
-ulonglong FUN_180112630(undefined8 *param_1,ulonglong param_2,int param_3,float *param_4,
+// 这个函数处理复杂的参数组合，包括坐标变换、浮点运算和状态更新
+ulonglong process_complex_parameters(undefined8 *param_1,ulonglong param_2,int param_3,float *param_4,
                        float *param_5,float param_6,float param_7,byte param_8,char param_9)
 
 {
@@ -241,13 +252,16 @@ ulonglong FUN_180112630(undefined8 *param_1,ulonglong param_2,int param_3,float 
   undefined8 uStack_48;
   undefined8 uStack_40;
   
+  // 初始化全局变量和状态
   lVar6 = _DAT_180c8a9b0;
   lVar5 = *(longlong *)(_DAT_180c8a9b0 + 0x1af8);
   uVar4 = *(uint *)(lVar5 + 0x1a8);
   *(uint *)(lVar5 + 0x1a8) = uVar4 | 0x18;
   uVar10 = FUN_180124190(param_1,param_2,0);
   *(uint *)(lVar5 + 0x1a8) = uVar4;
+  
   if ((char)uVar10 != '\0') {
+    // 根据参数类型设置不同的浮点数值
     if (param_3 != 1) {
       fVar14 = 4.0;
       uStack_68 = 0x40800000;
@@ -257,6 +271,8 @@ ulonglong FUN_180112630(undefined8 *param_1,ulonglong param_2,int param_3,float 
       fStack_5c = 4.0;
       uStack_60 = 0;
     }
+    
+    // 处理坐标变换
     uStack_58._0_4_ = (float)*param_1;
     fStack_50 = (float)param_1[1];
     uStack_58._0_4_ = (float)uStack_58 - fVar14;
@@ -271,6 +287,8 @@ ulonglong FUN_180112630(undefined8 *param_1,ulonglong param_2,int param_3,float 
     _fStack_50 = CONCAT44(fStack_4c + *pfVar11,fStack_50 + fVar14);
     FUN_18010f170(&uStack_58,param_2 & 0xffffffff,&param_9,&param_8,0x60);
     bVar7 = param_8;
+    
+    // 检查并更新渲染状态
     if (*(int *)(lVar6 + 0x1b2c) != iVar13) {
       iVar8 = *(int *)(*(longlong *)(lVar6 + 0x1af8) + 0x144);
       if (*(int *)(lVar6 + 0x1b18) == iVar8) {
@@ -281,6 +299,8 @@ ulonglong FUN_180112630(undefined8 *param_1,ulonglong param_2,int param_3,float 
         *(undefined1 *)(lVar6 + 0x1b3d) = 1;
       }
     }
+    
+    // 根据参数状态设置渲染模式
     if ((param_8 != 0) ||
        (((*(int *)(lVar6 + 0x1b18) == iVar13 && (*(int *)(lVar6 + 0x1b20) == iVar13)) &&
         (0.04 < *(float *)(lVar6 + 0x1b24) || *(float *)(lVar6 + 0x1b24) == 0.04)))) {
@@ -288,7 +308,9 @@ ulonglong FUN_180112630(undefined8 *param_1,ulonglong param_2,int param_3,float 
     }
     uStack_48 = *param_1;
     uStack_40 = param_1[1];
+    
     if (param_8 == 0) {
+      // 处理参数为0的情况
       if ((param_9 == '\0') ||
          (lVar12 = 0x1c, *(float *)(lVar6 + 0x1b24) <= 0.04 && *(float *)(lVar6 + 0x1b24) != 0.04))
       {
@@ -296,6 +318,7 @@ ulonglong FUN_180112630(undefined8 *param_1,ulonglong param_2,int param_3,float 
       }
     }
     else {
+      // 处理参数不为0的情况
       if (param_3 == 1) {
         uStack_58._4_4_ = (*(float *)(lVar6 + 0x11c) - *(float *)(lVar6 + 0x1b4c)) - uStack_58._4_4_
         ;
@@ -304,6 +327,8 @@ ulonglong FUN_180112630(undefined8 *param_1,ulonglong param_2,int param_3,float 
         uStack_58._4_4_ =
              (*(float *)(lVar6 + 0x118) - *(float *)(lVar6 + 0x1b48)) - (float)uStack_58;
       }
+      
+      // 计算参数差值并调整
       param_6 = *param_4 - param_6;
       if (param_6 <= 0.0) {
         param_6 = 0.0;
@@ -319,6 +344,8 @@ ulonglong FUN_180112630(undefined8 *param_1,ulonglong param_2,int param_3,float 
       if (param_7 <= fVar14) {
         fVar14 = param_7;
       }
+      
+      // 如果计算结果不为0，更新参数值
       if (fVar14 != 0.0) {
         *param_4 = *param_4 + fVar14;
         *param_5 = *param_5 - fVar14;
@@ -345,6 +372,8 @@ ulonglong FUN_180112630(undefined8 *param_1,ulonglong param_2,int param_3,float 
       }
       lVar12 = 0x1d;
     }
+    
+    // 执行最终的渲染操作
     puVar2 = (undefined8 *)(lVar6 + 0x1628 + (lVar12 + 10) * 0x10);
     uStack_58 = *puVar2;
     _fStack_50 = CONCAT44(*(float *)((longlong)puVar2 + 0xc) * *(float *)(lVar6 + 0x1628),
@@ -359,9 +388,10 @@ ulonglong FUN_180112630(undefined8 *param_1,ulonglong param_2,int param_3,float 
 
 
 
-// 函数: char FUN_180112693(void)
+// 函数: char validate_and_adjust_render_parameters(void)
 // 功能: 处理图形渲染状态和坐标变换
-char FUN_180112693(void)
+// 这个函数验证渲染参数并进行必要的调整，确保渲染状态正确
+char validate_and_adjust_render_parameters(void)
 
 {
   uint *puVar1;
@@ -384,9 +414,12 @@ char FUN_180112693(void)
   float fVar11;
   float fVar12;
   
+  // 从寄存器中读取参数值
   uVar5 = unaff_R15[1];
   *(undefined8 *)(unaff_RBP + -0x30) = *unaff_R15;
   *(undefined8 *)(unaff_RBP + -0x28) = uVar5;
+  
+  // 根据ESI寄存器的值设置不同的浮点数值
   if (unaff_ESI != 1) {
     fVar10 = 4.0;
     *(undefined8 *)(unaff_RBP + -0x40) = 0x40800000;
@@ -400,12 +433,16 @@ char FUN_180112693(void)
   if (unaff_ESI == 1) {
     pfVar8 = (float *)(unaff_RBP + -0x34);
   }
+  
+  // 执行坐标变换计算
   *(float *)(unaff_RBP + -0x30) = *(float *)(unaff_RBP + -0x30) - fVar10;
   fVar11 = *pfVar8;
   *(float *)(unaff_RBP + -0x28) = *(float *)(unaff_RBP + -0x28) + fVar10;
   *(float *)(unaff_RBP + -0x2c) = *(float *)(unaff_RBP + -0x2c) - fVar11;
   *(float *)(unaff_RBP + -0x24) = *(float *)(unaff_RBP + -0x24) + *pfVar8;
   FUN_18010f170(unaff_RBP + -0x30,unaff_R14D,unaff_RBP + 0x70,unaff_RBP + 0x68,0x60);
+  
+  // 检查并更新渲染状态
   if (*(int *)(unaff_RDI + 0x1b2c) != unaff_R14D) {
     iVar6 = *(int *)(*(longlong *)(unaff_RDI + 0x1af8) + 0x144);
     if (*(int *)(unaff_RDI + 0x1b18) == iVar6) {
@@ -417,15 +454,19 @@ char FUN_180112693(void)
     }
   }
   cVar3 = *(char *)(unaff_RBP + 0x68);
+  
+  // 根据状态设置渲染模式
   if ((cVar3 != '\0') ||
      (((*(int *)(unaff_RDI + 0x1b18) == unaff_R14D && (*(int *)(unaff_RDI + 0x1b20) == unaff_R14D))
-      && (0.04 < *(float *)(unaff_RDI + 0x1b24) || *(float *)(unaff_RDI + 0x1b24) == 0.04))) {
+      && (0.04 < *(float *)(unaff_RDI + 0x1b24) || *(float *)(unaff_RDI + 0x1b24) == 0.04)))) {
     *(uint *)(unaff_RDI + 0x1dcc) = (unaff_ESI != 1) + 3;
   }
   uVar5 = unaff_R15[1];
   *(undefined8 *)(unaff_RBP + -0x20) = *unaff_R15;
   *(undefined8 *)(unaff_RBP + -0x18) = uVar5;
+  
   if (cVar3 == '\0') {
+    // 处理状态为0的情况
     if ((*(char *)(unaff_RBP + 0x70) == '\0') ||
        (lVar9 = 0x1c,
        *(float *)(unaff_RDI + 0x1b24) <= 0.04 && *(float *)(unaff_RDI + 0x1b24) != 0.04)) {
@@ -433,6 +474,7 @@ char FUN_180112693(void)
     }
   }
   else {
+    // 处理状态不为0的情况
     if (unaff_ESI == 1) {
       fVar10 = (*(float *)(unaff_RDI + 0x11c) - *(float *)(unaff_RDI + 0x1b4c)) -
                *(float *)(unaff_RBP + -0x2c);
@@ -457,6 +499,8 @@ char FUN_180112693(void)
     if (fVar10 <= fVar12) {
       fVar12 = fVar10;
     }
+    
+    // 如果计算结果不为0，更新参数值
     if (fVar12 != 0.0) {
       *unaff_R12 = *unaff_R12 + fVar12;
       *pfVar8 = *pfVar8 - fVar12;
@@ -488,6 +532,8 @@ char FUN_180112693(void)
     }
     lVar9 = 0x1d;
   }
+  
+  // 执行最终的渲染操作
   puVar2 = (undefined4 *)(unaff_RDI + 0x1628 + (lVar9 + 10) * 0x10);
   uVar7 = puVar2[1];
   uVar4 = puVar2[2];
@@ -505,9 +551,9 @@ char FUN_180112693(void)
 
 
 
-// 函数: void FUN_180112934(void)
+// 函数: void empty_operation_placeholder_2(void)
 // 功能: 空函数，可能作为占位符或未来扩展
-void FUN_180112934(void)
+void empty_operation_placeholder_2(void)
 
 {
   return;
@@ -518,9 +564,11 @@ void FUN_180112934(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_1801129b0(char *param_1,float *param_2,uint param_3)
+
+// 函数: void process_advanced_text_and_render_operations(char *param_1,float *param_2,uint param_3)
 // 功能: 处理文本渲染和图形显示相关的复杂计算
-void FUN_1801129b0(char *param_1,float *param_2,uint param_3)
+// 这个函数处理高级文本渲染操作，包括文本布局、坐标计算和图形显示
+void process_advanced_text_and_render_operations(char *param_1,float *param_2,uint param_3)
 
 {
   undefined4 *puVar1;
@@ -576,6 +624,7 @@ void FUN_1801129b0(char *param_1,float *param_2,uint param_3)
   byte abStack_df [15];
   ulonglong uStack_d0;
   
+  // 初始化全局变量和状态
   lVar5 = _DAT_180c8a9b0;
   uStack_d0 = _DAT_180bf00a8 ^ (ulonglong)auStack_178;
   fStack_128 = *(float *)(_DAT_180c8a9b0 + 0x1be0);
@@ -584,7 +633,9 @@ void FUN_1801129b0(char *param_1,float *param_2,uint param_3)
   lVar17 = *(longlong *)(lVar5 + 0x1af8);
   uStack_110 = param_2;
   pcStack_e8 = param_1;
+  
   if (*(char *)(lVar17 + 0xb4) == '\0') {
+    // 处理文本渲染参数
     iVar11 = FUN_180121250(param_1,0,
                            *(undefined4 *)
                             (*(longlong *)(lVar17 + 0x220) + -4 +
@@ -602,6 +653,8 @@ void FUN_1801129b0(char *param_1,float *param_2,uint param_3)
     else {
       fVar26 = 0.0;
     }
+    
+    // 查找文本中的特殊标记
     pcVar14 = param_1;
     if (param_1 != (char *)0xffffffffffffffff) {
       while (*pcVar14 != '\0') {
@@ -609,6 +662,8 @@ void FUN_1801129b0(char *param_1,float *param_2,uint param_3)
            (pcVar14 = pcVar14 + 1, pcVar14 == (char *)0xffffffffffffffff)) break;
       }
     }
+    
+    // 计算文本尺寸和位置
     pfVar21 = *(float **)(lVar5 + 0x19f0);
     fVar25 = *(float *)(lVar5 + 0x19f8);
     if (param_1 == pcVar14) {
@@ -632,6 +687,8 @@ void FUN_1801129b0(char *param_1,float *param_2,uint param_3)
     if (uVar20 == 0) {
       fVar24 = (float)func_0x00018012d6a0();
     }
+    
+    // 计算文本位置
     fStack_108 = *(float *)(lVar17 + 0x100);
     fStack_104 = *(float *)(lVar17 + 0x104);
     uStack_f8 = *(undefined8 *)(lVar17 + 0x100);
@@ -647,7 +704,9 @@ void FUN_1801129b0(char *param_1,float *param_2,uint param_3)
     uStack_120 = CONCAT44(fStack_fc - fStack_104,fStack_100 - fStack_108);
     func_0x000180124080(&uStack_120);
     cVar10 = FUN_180124190(&fStack_108,iVar11,&uStack_f8);
+    
     if (cVar10 != '\0') {
+      // 执行文本渲染操作
       pfStack_158 = (float *)((ulonglong)pfStack_158 & 0xffffffff00000000);
       acStack_137[0] = FUN_18010f170(&uStack_f8,iVar11,&cStack_138,acStack_137);
       uVar8 = uStack_f0;

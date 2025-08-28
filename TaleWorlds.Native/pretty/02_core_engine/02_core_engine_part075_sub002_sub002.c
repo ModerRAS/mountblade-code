@@ -1,6 +1,13 @@
 #include "TaleWorlds.Native.Split.h"
 
 // 02_core_engine_part075_sub002_sub002.c - 1 个函数
+//
+// 本文件包含游戏引擎渲染参数初始化的核心功能
+// 主要功能：
+// - 初始化渲染状态和材质参数
+// - 配置着色器和纹理资源
+// - 设置错误处理机制
+// - 管理渲染管道的各种参数
 
 // 渲染系统偏移量常量定义
 #define RENDER_STATE_OFFSET     0x198
@@ -36,6 +43,13 @@ extern void FUN_180626f80(undefined *error_ptr, undefined *handler);
 
 // 辅助函数：设置材质参数
 // 功能：统一的材质参数设置接口，减少代码重复
+// 参数：
+//   engine_context - 引擎上下文指针
+//   param_offset - 参数在上下文中的偏移量
+//   cleanup_func - 清理函数指针
+//   param_handler - 参数处理器
+//   shader_table - 着色器参数表
+//   default_texture - 默认纹理指针
 static void setup_material_parameter(
   longlong engine_context,
   longlong param_offset,
