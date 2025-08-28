@@ -308,7 +308,15 @@ int RenderingSystem_ValidateResourceData(undefined8 param_1, undefined8 param_2,
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int FUN_18060e650(longlong param_1)
+/**
+ * 渲染系统哈希表资源查找器
+ * 
+ * 在哈希表中查找指定的资源，支持字符串匹配和索引查找。
+ * 
+ * @param param_1   要查找的资源字符串
+ * @return          找到的资源索引，未找到返回-1
+ */
+int RenderingSystem_FindResourceInHashTable(longlong param_1)
 
 {
   char cVar1;
@@ -373,8 +381,15 @@ LAB_18060e6f6:
 
 
 
-// 函数: void FUN_18060e720(longlong param_1,int *param_2)
-void FUN_18060e720(longlong param_1,int *param_2)
+/**
+ * 渲染系统资源匹配收集器
+ * 
+ * 收集所有匹配指定条件的资源索引，支持批量操作。
+ * 
+ * @param param_1   要匹配的资源字符串
+ * @param param_2   输出数组，存储匹配的索引
+ */
+void RenderingSystem_CollectResourceMatches(longlong param_1, int *param_2)
 
 {
   byte *pbVar1;
@@ -433,8 +448,12 @@ LAB_18060e7be:
 
 
 
-// 函数: void FUN_18060e762(void)
-void FUN_18060e762(void)
+/**
+ * 渲染系统资源批量处理器
+ * 
+ * 批量处理资源匹配和收集操作，支持循环处理。
+ */
+void RenderingSystem_ProcessResourceBatch(void)
 
 {
   byte *pbVar1;
@@ -489,8 +508,12 @@ LAB_18060e7be:
 
 
 
-// 函数: void FUN_18060e7e0(void)
-void FUN_18060e7e0(void)
+/**
+ * 渲染系统空函数1
+ * 
+ * 占位符函数，用于系统扩展和接口兼容性。
+ */
+void RenderingSystem_EmptyFunction1(void)
 
 {
   return;
@@ -502,8 +525,12 @@ void FUN_18060e7e0(void)
 
 
 
-// 函数: void FUN_18060e7f0(void)
-void FUN_18060e7f0(void)
+/**
+ * 渲染系统资源表初始化器
+ * 
+ * 初始化渲染系统资源表，设置时间戳和系统状态。
+ */
+void RenderingSystem_InitializeResourceTable(void)
 
 {
   uint uVar1;
@@ -529,8 +556,14 @@ void FUN_18060e7f0(void)
 
 
 
-// 函数: void FUN_18060e860(char param_1)
-void FUN_18060e860(char param_1)
+/**
+ * 渲染系统资源状态更新器
+ * 
+ * 根据参数更新渲染系统资源状态，支持条件判断和状态切换。
+ * 
+ * @param param_1   状态更新标志
+ */
+void RenderingSystem_UpdateResourceState(char param_1)
 
 {
   bool bVar1;
@@ -549,10 +582,24 @@ void FUN_18060e860(char param_1)
 
 
 
-// 函数: void FUN_18060e8a0(undefined8 *param_1,undefined8 param_2,longlong param_3,longlong param_4,
-void FUN_18060e8a0(undefined8 *param_1,undefined8 param_2,longlong param_3,longlong param_4,
-                  undefined8 param_5,longlong param_6,longlong param_7,undefined8 param_8,
-                  undefined1 param_9)
+/**
+ * 渲染系统资源上下文创建器
+ * 
+ * 创建渲染系统资源上下文，支持多参数配置和资源管理。
+ * 
+ * @param param_1   输出参数指针
+ * @param param_2   渲染上下文参数
+ * @param param_3   资源数据指针
+ * @param param_4   资源数据偏移
+ * @param param_5   渲染目标参数
+ * @param param_6   目标数据指针
+ * @param param_7   目标数据偏移
+ * @param param_8   渲染配置参数
+ * @param param_9   渲染标志位
+ */
+void RenderingSystem_CreateResourceContext(undefined8 *param_1, undefined8 param_2, longlong param_3, longlong param_4,
+                                        undefined8 param_5, longlong param_6, longlong param_7, undefined8 param_8,
+                                        undefined1 param_9)
 
 {
   longlong *plVar1;
@@ -766,7 +813,15 @@ void FUN_18060e8a0(undefined8 *param_1,undefined8 param_2,longlong param_3,longl
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-longlong FUN_18060ece0(longlong *param_1)
+/**
+ * 渲染系统指针资源查找器
+ * 
+ * 根据指针查找资源在表中的位置，支持内存地址映射。
+ * 
+ * @param param_1   要查找的资源指针
+ * @return          资源在表中的位置，未找到返回0
+ */
+longlong RenderingSystem_FindResourceByPointer(longlong *param_1)
 
 {
   int iVar1;
@@ -820,8 +875,16 @@ longlong FUN_18060ece0(longlong *param_1)
 
 
 
-// 函数: void FUN_18060ee30(longlong *param_1,undefined4 param_2,undefined1 param_3)
-void FUN_18060ee30(longlong *param_1,undefined4 param_2,undefined1 param_3)
+/**
+ * 渲染系统资源表添加器
+ * 
+ * 将资源添加到哈希表中，支持重复检查和内存管理。
+ * 
+ * @param param_1   要添加的资源指针
+ * @param param_2   资源类型参数
+ * @param param_3   添加标志位
+ */
+void RenderingSystem_AddResourceToTable(longlong *param_1, undefined4 param_2, undefined1 param_3)
 
 {
   longlong lVar1;
@@ -852,8 +915,17 @@ void FUN_18060ee30(longlong *param_1,undefined4 param_2,undefined1 param_3)
 
 
 
-// 函数: void FUN_18060ef00(longlong param_1,char param_2,undefined8 param_3,undefined8 param_4)
-void FUN_18060ef00(longlong param_1,char param_2,undefined8 param_3,undefined8 param_4)
+/**
+ * 渲染系统资源表移除器
+ * 
+ * 从哈希表中移除指定资源，支持资源清理和状态更新。
+ * 
+ * @param param_1   要移除的资源指针
+ * @param param_2   移除标志位
+ * @param param_3   移除参数1
+ * @param param_4   移除参数2
+ */
+void RenderingSystem_RemoveResourceFromTable(longlong param_1, char param_2, undefined8 param_3, undefined8 param_4)
 
 {
   code *pcVar1;
@@ -865,18 +937,18 @@ void FUN_18060ef00(longlong param_1,char param_2,undefined8 param_3,undefined8 p
   undefined8 *puVar7;
   
   if (param_1 != 0) {
-    lVar5 = FUN_18060ece0();
+    lVar5 = RenderingSystem_FindResourceByPointer();
     if (lVar5 != 0) {
-      FUN_1802ee720(*(undefined8 *)(lVar5 + 0x18),1);
+      FUN_1802ee720(*(undefined8 *)(lVar5 + 0x18),RENDERING_SYSTEM_FLAG_ENABLE);
       if (param_2 != '\0') {
         FUN_1802ea560(*(undefined8 *)(lVar5 + 0x18),0x3f800000);
       }
       lVar3 = *(longlong *)(lVar5 + 0x10);
       uVar4 = *(uint *)(lVar5 + 0xc);
-      piVar6 = (int *)(lVar3 + 0x87bd28);
+      piVar6 = (int *)(lVar3 + RENDERING_SYSTEM_DATA_OFFSET_0x5c8);
       puVar7 = (undefined8 *)
-               ((ulonglong)(uVar4 & 0xf) * 0x40 +
-               *(longlong *)(*(longlong *)(lVar3 + 0x87bd50) + (ulonglong)(uVar4 >> 4) * 8));
+               ((ulonglong)(uVar4 & 0xf) * RENDERING_SYSTEM_HASH_TABLE_SIZE +
+               *(longlong *)(*(longlong *)(lVar3 + RENDERING_SYSTEM_DATA_OFFSET_0x5d0) + (ulonglong)(uVar4 >> 4) * 8));
       pcVar1 = *(code **)((undefined *)*puVar7 + 0x10);
       if ((undefined *)*puVar7 == &UNK_180a308a0) {
         puVar7[2] = 0;
@@ -889,15 +961,15 @@ void FUN_18060ef00(longlong param_1,char param_2,undefined8 param_3,undefined8 p
       else {
         (*pcVar1)(puVar7,pcVar1,(ulonglong)(uVar4 >> 4),param_4,0xfffffffffffffffe);
       }
-      *(undefined4 *)(puVar7 + 1) = 0;
-      FUN_1800571e0(lVar3 + 0x87bd30,&stack0x00000010);
+      *(undefined4 *)(puVar7 + 1) = RENDERING_SYSTEM_FLAG_DISABLE;
+      FUN_1800571e0(lVar3 + RENDERING_SYSTEM_DATA_OFFSET_0x5d0,&stack0x00000010);
       if (*piVar6 - 1U == uVar4) {
-        *piVar6 = 0;
-        uVar4 = *(int *)(lVar3 + 0x87bd2c) - 1;
+        *piVar6 = RENDERING_SYSTEM_FLAG_DISABLE;
+        uVar4 = *(int *)(lVar3 + RENDERING_SYSTEM_DATA_OFFSET_0x5c8) - 1;
         if (-1 < (int)uVar4) {
           while (*(int *)(*(longlong *)
-                           (*(longlong *)(lVar3 + 0x87bd50) + (ulonglong)(uVar4 >> 4) * 8) + 8 +
-                         (ulonglong)(uVar4 & 0xf) * 0x40) == 0) {
+                           (*(longlong *)(lVar3 + RENDERING_SYSTEM_DATA_OFFSET_0x5d0) + (ulonglong)(uVar4 >> 4) * 8) + 8 +
+                         (ulonglong)(uVar4 & 0xf) * RENDERING_SYSTEM_HASH_TABLE_SIZE) == RENDERING_SYSTEM_FLAG_DISABLE) {
             uVar4 = uVar4 - 1;
             if ((int)uVar4 < 0) {
               return;
@@ -908,7 +980,7 @@ void FUN_18060ef00(longlong param_1,char param_2,undefined8 param_3,undefined8 p
       }
       return;
     }
-    FUN_1802ee720(param_1,1);
+    FUN_1802ee720(param_1,RENDERING_SYSTEM_FLAG_ENABLE);
     if (param_2 != '\0') {
       FUN_1802ea560(param_1,0x3f800000);
     }
