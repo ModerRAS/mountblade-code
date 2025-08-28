@@ -163,7 +163,7 @@ void ui_system_data_validator(uint64_t validation_context, uint64_t validation_f
   FUN_18063b470(&temp_value_4, &temp_value_3);
   
   // 验证结果处理
-  FUN_1808fc050(security_key ^ (uint64_t)&temp_value_1);
+  SystemSecurityChecker(security_key ^ (uint64_t)&temp_value_1);
 }
 
 // UI系统状态管理器 - 管理UI系统中的状态转换和状态机
@@ -192,7 +192,7 @@ void ui_system_state_manager(uint64_t state_context, uint64_t state_flags)
   FUN_18063b470(&temp_value_4, &temp_value_3);
   
   // 状态更新处理
-  FUN_1808fc050(security_key ^ (uint64_t)&temp_value_1);
+  SystemSecurityChecker(security_key ^ (uint64_t)&temp_value_1);
 }
 
 // UI系统资源清理器 - 清理UI系统中的资源和内存
@@ -221,7 +221,7 @@ void ui_system_resource_cleaner(uint64_t cleanup_context, uint64_t cleanup_flags
   FUN_18063b470(&temp_value_4, &temp_value_3);
   
   // 清理完成处理
-  FUN_1808fc050(security_key ^ (uint64_t)&temp_value_1);
+  SystemSecurityChecker(security_key ^ (uint64_t)&temp_value_1);
 }
 
 // UI系统参数处理器 - 处理UI系统中的参数计算和更新
@@ -295,7 +295,7 @@ void ui_system_data_transformer(uint64_t transform_context, uint64_t transform_f
   FUN_18063b470(&temp_value_4, &temp_value_3);
   
   // 转换结果处理
-  FUN_1808fc050(security_key ^ (uint64_t)&temp_value_1);
+  SystemSecurityChecker(security_key ^ (uint64_t)&temp_value_1);
 }
 
 // UI系统安全检查器 - 检查UI系统中的安全性和完整性
@@ -324,7 +324,7 @@ void ui_system_security_checker(uint64_t security_context, uint64_t security_fla
   FUN_18063b470(&temp_value_4, &temp_value_3);
   
   // 安全检查结果处理
-  FUN_1808fc050(security_key ^ (uint64_t)&temp_value_1);
+  SystemSecurityChecker(security_key ^ (uint64_t)&temp_value_1);
 }
 
 // UI系统内存释放器 - 释放UI系统中的内存和资源
