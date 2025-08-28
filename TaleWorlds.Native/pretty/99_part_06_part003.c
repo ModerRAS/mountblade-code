@@ -120,8 +120,8 @@ typedef struct {
 #define SystemConfigurationValidator SystemConfigurationValidator
 #define SystemDataTransformer SystemDataTransformer
 #define SystemDataOptimizer SystemDataOptimizer
-#define SystemDataEnhancer FUN_1803a7050
-#define SystemDataInitializer FUN_180627be0
+#define SystemDataEnhancer SystemDataEnhancer
+#define SystemDataInitializer SystemDataInitializer
 #define SystemDataManager FUN_180627910
 #define SystemDataOrganizer FUN_180627340
 #define SystemDataHandler FUN_18010cbc0
@@ -658,7 +658,7 @@ void MemoryManager(int64_t param_1)
                 puStack_d8 = puVar1;
                 puStack_88 = puVar1;
                 uStack_78 = puVar1;
-                FUN_1803a7050(&uStack_78, &puStack_88);
+                SystemDataEnhancer(&uStack_78, &puStack_88);
             }
         }
         while (iVar10 = (int)uVar13, (uint64_t)(int64_t)iVar10 < (uint64_t)*puVar1) {
@@ -741,7 +741,7 @@ int64_t SystemInitializer(int64_t param_1, uint64_t *param_2, uint64_t param_3, 
     *(uint64_t *)(param_1 + 0x540) = 0;
     *(int8_t *)(param_1 + 0x548) = 0;
     *(uint64_t *)(param_1 + 0x550) = 0;
-    FUN_180627be0(param_1 + 0x50, param_2);
+    SystemDataInitializer(param_1 + 0x50, param_2);
     *(int32_t *)(param_1 + 0x70) = *(int32_t *)(param_2 + 4);
     *(int32_t *)(param_1 + 0x74) = *(int32_t *)((int64_t)param_2 + 0x24);
     *(int32_t *)(param_1 + 0x78) = *(int32_t *)(param_2 + 5);
