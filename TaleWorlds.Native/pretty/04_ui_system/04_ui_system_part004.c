@@ -14,6 +14,54 @@
 #define UI_STACK_BUFFER_SIZE 0x118                // UI堆栈缓冲区大小
 #define UI_ERROR_BUFFER_SIZE 0x80                 // UI错误缓冲区大小
 
+/*=============================================================================
+ UI系统模块第4部分 - 功能概述
+ =============================================================================
+
+ 本模块包含19个函数，主要负责UI系统的以下功能：
+
+ 1. UI组件管理：
+    - ui_set_component_data: 设置UI组件数据
+    - ui_process_component_stack: 处理UI组件堆栈
+    - ui_initialize_component_handlers: 初始化UI组件处理器
+    - ui_process_component_list: 处理UI组件列表
+    - ui_enable_component: 启用UI组件
+    - ui_disable_component: 禁用UI组件
+
+ 2. 回调和事件处理：
+    - ui_execute_callback_queue: 执行UI回调队列
+    - ui_execute_callback_queue_alt: 执行UI回调队列的替代版本
+    - ui_mark_callback_complete: 标记UI回调完成
+    - ui_add_event_listener: 添加UI事件监听器
+    - ui_process_event_data: 处理UI事件数据
+
+ 3. 内存管理：
+    - ui_parse_dimension_data: 解析UI尺寸数据
+    - ui_initialize_stack_buffer: 初始化UI堆栈缓冲区
+    - ui_allocate_zeroed_memory: 分配并清零UI内存
+    - ui_resize_buffer: 调整UI缓冲区大小
+    - ui_resize_buffer_alt: 调整UI缓冲区大小替代版本
+    - ui_resize_buffer_final: 调整UI缓冲区大小最终版本
+
+ 4. 字符串处理：
+    - ui_format_component_string: 格式化UI组件字符串
+    - ui_copy_string_safely: 安全复制UI字符串
+    - ui_convert_mono_string: 转换Mono字符串
+    - ui_create_error_message: 创建UI错误消息
+
+ 5. 系统集成：
+    - get_ftdn_managed_interface: 获取FTDN托管接口
+    - ui_process_thread_safe_operation: 处理UI线程安全操作
+    - ui_execute_software_interrupt: 执行UI软件中断
+    - ui_output_debug_string: 输出UI调试字符串
+    - ui_initialize_mono_allocator: 初始化Mono分配器
+    - ui_load_mono_assembly: 加载Mono程序集
+
+ 本模块是UI系统的核心组成部分，提供了完整的UI组件生命周期管理、
+ 事件处理、内存管理和系统集成功能。
+
+ =============================================================================*/
+
 // 函数: ui_set_component_data - 设置UI组件数据
 // 参数: param_1 - UI组件对象指针, param_2 - 要设置的数据
 void ui_set_component_data(longlong param_1, undefined8 param_2)
