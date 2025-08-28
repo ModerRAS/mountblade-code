@@ -82,22 +82,22 @@ void* DAT_180bf5280;   // 系统构建信息
 void* DAT_180bf5288;   // 系统环境信息
 
 // 函数: 系统环境检查器
-undefined FUN_1800637c0;  // SystemEnvironmentChecker - 系统环境检查器
-undefined UNK_180941780;   // 环境配置数据指针
+void* FUN_1800637c0;  // SystemEnvironmentChecker - 系统环境检查器
+void* UNK_180941780;   // 环境配置数据指针
 
 // 函数: 系统资源初始化器
-undefined FUN_1800637f0;  // SystemResourceInitializer - 系统资源初始化器
-undefined DAT_180c91900;   // 资源池管理器
+void* FUN_1800637f0;  // SystemResourceInitializer - 系统资源初始化器
+void* DAT_180c91900;   // 资源池管理器
 
 // 函数: 系统组件注册器
-undefined FUN_1802281a0;  // SystemComponentRegistrar - 系统组件注册器
-undefined DAT_1809ff9e8;   // 组件注册表
-undefined UNK_1809ff978;   // 组件工厂指针
-undefined DAT_1809ff9c0;   // 组件依赖关系表
-undefined UNK_1809ff990;   // 组件生命周期管理器
+void* FUN_1802281a0;  // SystemComponentRegistrar - 系统组件注册器
+void* DAT_1809ff9e8;   // 组件注册表
+void* UNK_1809ff978;   // 组件工厂指针
+void* DAT_1809ff9c0;   // 组件依赖关系表
+void* UNK_1809ff990;   // 组件生命周期管理器
 
 // 函数: 系统配置加载器
-undefined FUN_1802285e0;  // SystemConfigurationLoader - 系统配置加载器
+void* FUN_1802285e0;  // SystemConfigurationLoader - 系统配置加载器
 
 /*==============================================================================
     内存管理和对象创建功能

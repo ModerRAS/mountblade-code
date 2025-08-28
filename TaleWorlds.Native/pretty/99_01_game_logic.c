@@ -45,7 +45,7 @@ typedef uint64_t GameLogic_Processor_type;
  * - 事件队列管理
  * - 事件状态监控
  */
-typedef undefined GameLogic_EventManager_type;
+typedef uint64_t GameLogic_EventManager_type;
 
 /**
  * @brief 游戏状态管理器类型
