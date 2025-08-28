@@ -665,11 +665,11 @@ void process_resource_manager_advanced_data(longlong *resource_manager, ulonglon
   longlong stack_long2;
   longlong stack_long3;
   
-  if (((*(char *)((longlong)param_1 + 0x41) != '\0') ||
-      (lVar11 = SUB168(SEXT816(-0x7777777777777777) * SEXT816(param_1[1] - *param_1),8) +
-                (param_1[1] - *param_1), lVar11 >> 6 == lVar11 >> 0x3f)) ||
-     ((lVar11 = param_1[7], lVar11 == 0 &&
-      ((param_4 < 1 && (*(float *)((longlong)param_1 + 0x2c) <= 0.0)))))) {
+  if (((*(char *)((longlong)resource_manager + 0x41) != '\0') ||
+      (resource_base = SUB168(SEXT816(-0x7777777777777777) * SEXT816(resource_manager[1] - *resource_manager),8) +
+                (resource_manager[1] - *resource_manager), resource_base >> 6 == resource_base >> 0x3f)) ||
+     ((resource_base = resource_manager[7], resource_base == 0 &&
+      ((data_count < 1 && (*(float *)((longlong)resource_manager + 0x2c) <= 0.0)))))) {
     lVar11 = *param_1;
     uVar22 = 0;
     lVar20 = SUB168(SEXT816(-0x7777777777777777) * SEXT816(param_1[1] - lVar11),8) +
