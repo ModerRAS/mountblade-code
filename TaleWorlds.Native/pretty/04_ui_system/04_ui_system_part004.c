@@ -479,39 +479,43 @@ undefined8 get_ftdn_managed_interface(void)
 
 
 
-// 函数: void FUN_180652400(longlong *param_1,longlong param_2)
-void FUN_180652400(longlong *param_1,longlong param_2)
+/**
+ * UI系统配置解析器
+ * 解析UI系统配置数据并转换为内部格式
+ * 
+ * @param config_parser 配置解析器指针
+ * @param config_data 配置数据指针
+ */
+void ui_config_parser(longlong *config_parser, longlong config_data)
 
 {
-  undefined4 *puVar1;
-  undefined4 uVar2;
-  undefined4 uVar3;
-  undefined4 uVar4;
-  undefined8 *puVar5;
-  undefined8 *puVar6;
-  int iVar7;
-  int iVar8;
-  ulonglong uVar9;
-  undefined8 *puVar10;
-  longlong lVar11;
-  longlong lVar12;
-  undefined8 *puVar13;
-  longlong lVar14;
-  undefined8 *puVar15;
-  undefined2 auStackX_10 [4];
-  ulonglong uStackX_18;
-  undefined8 uStackX_20;
-  undefined8 *puStack_98;
-  undefined8 *puStack_90;
-  undefined8 uStack_88;
-  undefined4 uStack_80;
-  undefined *puStack_78;
-  longlong lStack_70;
-  undefined4 uStack_60;
-  undefined8 *puStack_58;
-  undefined8 *puStack_50;
-  undefined8 uStack_48;
-  undefined4 uStack_40;
+  undefined4 *dimension_data;     // 维度数据指针
+  undefined4 width_value;          // 宽度值
+  undefined4 height_value;         // 高度值
+  undefined4 depth_value;          // 深度值
+  undefined8 *array_ptr;           // 数组指针
+  undefined8 *end_ptr;             // 结束指针
+  int parsed_width;                // 解析的宽度
+  int parsed_height;               // 解析的高度
+  ulonglong item_count;            // 项目计数
+  undefined8 *new_array;           // 新数组指针
+  longlong old_capacity;           // 旧容量
+  longlong new_capacity;           // 新容量
+  undefined8 *source_ptr;         // 源指针
+  longlong array_capacity;         // 数组容量
+  undefined8 *temp_array;          // 临时数组指针
+  undefined2 parse_config[4];      // 解析配置数组
+  ulonglong total_items;           // 总项目数
+  undefined8 parsed_value;         // 解析的值
+  undefined8 *result_array;        // 结果数组指针
+  undefined8 result_capacity;     // 结果容量
+  undefined *temp_buffer;          // 临时缓冲区
+  longlong buffer_handle;           // 缓冲区句柄
+  undefined4 buffer_flags;         // 缓冲区标志
+  undefined8 *item_array;          // 项目数组指针
+  undefined8 *item_end;            // 项目结束指针
+  undefined8 item_data;            // 项目数据
+  undefined4 item_flags;           // 项目标志
   
   if (*(int *)(param_2 + 0x10) != 0) {
     puStack_98 = (undefined8 *)0x0;

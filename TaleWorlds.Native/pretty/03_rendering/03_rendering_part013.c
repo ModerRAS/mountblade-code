@@ -1017,89 +1017,121 @@ undefined1 Return_Success_Flag(void)
 
 
 
-// 函数: void FUN_180276610(longlong param_1,undefined4 param_2)
-void FUN_180276610(longlong param_1,undefined4 param_2)
+/**
+ * 渲染状态更新函数
+ * 更新渲染状态和清理资源，处理渲染元素的完整生命周期
+ * @param render_state 渲染状态指针
+ * @param state_value 状态值
+ */
+void Update_Render_State(longlong render_state, undefined4 state_value)
 
 {
-  longlong *plVar1;
-  longlong *plVar2;
-  ulonglong uVar3;
-  uint uVar4;
-  ulonglong uVar5;
-  longlong *plVar6;
-  longlong *plStack_68;
-  undefined1 auStack_60 [8];
-  longlong *plStack_58;
-  undefined4 uStack_50;
-  longlong *plStack_48;
-  undefined2 uStack_40;
-  char cStack_3e;
+  longlong *element_ptr;
+  longlong *resource_ptr;
+  ulonglong array_index;
+  uint element_count;
+  ulonglong state_index;
+  longlong *temp_ptr;
+  longlong *cleanup_ptr;
+  undefined1 resource_data[8];
+  longlong *resource_handle;
+  undefined4 resource_flag;
+  longlong *element_data;
+  undefined2 cleanup_flag;
+  char process_flag;
   
-  plVar6 = *(longlong **)(param_1 + 0x38);
-  if (plVar6 < *(longlong **)(param_1 + 0x40)) {
+  // 遍历渲染状态数组
+  element_ptr = *(longlong **)(render_state + 0x38);
+  if (element_ptr < *(longlong **)(render_state + 0x40)) {
     do {
-      plVar1 = (longlong *)*plVar6;
-      if (plVar1 != (longlong *)0x0) {
-        (**(code **)(*plVar1 + 0x28))(plVar1);
+      element_ptr = (longlong *)*element_ptr;
+      if (element_ptr != (longlong *)0x0) {
+        // 调用元素的初始化函数
+        (**(code **)(*element_ptr + 0x28))(element_ptr);
       }
-      plStack_48 = (longlong *)0x0;
-      plStack_58 = (longlong *)0x0;
-      auStack_60[0] = 0;
-      if (plVar1 != (longlong *)0x0) {
-        (**(code **)(*plVar1 + 0x28))(plVar1);
+      
+      // 初始化资源处理
+      element_data = (longlong *)0x0;
+      resource_handle = (longlong *)0x0;
+      resource_data[0] = 0;
+      
+      if (element_ptr != (longlong *)0x0) {
+        (**(code **)(*element_ptr + 0x28))(element_ptr);
       }
-      uStack_50 = 0;
-      plStack_58 = plVar1;
-      FUN_18007f4c0(auStack_60);
-      plVar2 = plStack_48;
-      if (plStack_48 != (longlong *)0x0) {
-        (**(code **)(*plStack_48 + 0x28))(plStack_48);
+      
+      resource_flag = 0;
+      resource_handle = element_ptr;
+      
+      // 处理资源数据
+      process_resource_data(resource_data);
+      
+      resource_ptr = element_data;
+      if (element_data != (longlong *)0x0) {
+        (**(code **)(*element_data + 0x28))(element_data);
       }
-      plStack_68 = plVar2;
-      uStack_40 = 0;
-      cStack_3e = '\0';
-      if (plVar1 != (longlong *)0x0) {
-        (**(code **)(*plVar1 + 0x38))(plVar1);
+      
+      cleanup_ptr = resource_ptr;
+      cleanup_flag = 0;
+      process_flag = '\0';
+      
+      if (element_ptr != (longlong *)0x0) {
+        (**(code **)(*element_ptr + 0x38))(element_ptr);
       }
-      uVar3 = 0;
-      uVar5 = 0;
-      if (0 < (int)plVar2[0xc]) {
+      
+      array_index = 0;
+      state_index = 0;
+      
+      // 更新元素状态
+      if (0 < (int)resource_ptr[0xc]) {
         do {
-          *(undefined4 *)(plVar2[0xd] + 0x54 + uVar3) = param_2;
-          uVar4 = (int)uVar5 + 1;
-          uVar3 = uVar3 + 0x5c;
-          uVar5 = (ulonglong)uVar4;
-        } while ((int)uVar4 < (int)plVar2[0xc]);
+          *(undefined4 *)(resource_ptr[0xd] + 0x54 + array_index) = state_value;
+          element_count = (int)state_index + 1;
+          array_index = array_index + 0x5c;
+          state_index = (ulonglong)element_count;
+        } while ((int)element_count < (int)resource_ptr[0xc]);
       }
-      uStack_40 = CONCAT11(uStack_40._1_1_,1);
-      if ((plVar1 != (longlong *)0x0) && (plVar2 != (longlong *)0x0)) {
-        if (cStack_3e != '\0') {
-          FUN_180075b70();
+      
+      cleanup_flag = CONCAT11(cleanup_flag._1_1_, 1);
+      
+      // 处理元素和资源
+      if ((element_ptr != (longlong *)0x0) && (resource_ptr != (longlong *)0x0)) {
+        if (process_flag != '\0') {
+          execute_special_processing();
         }
-        FUN_18007f6a0(auStack_60);
-        if ((char)uStack_40 != '\0') {
-          FUN_180079520(plVar1);
+        
+        cleanup_resource_data(resource_data);
+        
+        if ((char)cleanup_flag != '\0') {
+          process_element_data(element_ptr);
         }
-        if (uStack_40._1_1_ != '\0') {
-          FUN_180079520(plVar1);
+        
+        if (cleanup_flag._1_1_ != '\0') {
+          process_element_data(element_ptr);
         }
-        plStack_68 = (longlong *)0x0;
-        if (plVar2 != (longlong *)0x0) {
-          (**(code **)(*plVar2 + 0x38))();
+        
+        cleanup_ptr = (longlong *)0x0;
+        if (resource_ptr != (longlong *)0x0) {
+          (**(code **)(*resource_ptr + 0x38))();
         }
       }
-      FUN_18007f6a0(auStack_60);
-      if (plStack_48 != (longlong *)0x0) {
-        (**(code **)(*plStack_48 + 0x38))();
+      
+      // 清理资源
+      cleanup_resource_data(resource_data);
+      
+      if (element_data != (longlong *)0x0) {
+        (**(code **)(*element_data + 0x38))();
       }
-      if (plStack_68 != (longlong *)0x0) {
-        (**(code **)(*plStack_68 + 0x38))();
+      
+      if (cleanup_ptr != (longlong *)0x0) {
+        (**(code **)(*cleanup_ptr + 0x38))();
       }
-      if (plVar1 != (longlong *)0x0) {
-        (**(code **)(*plVar1 + 0x38))();
+      
+      if (element_ptr != (longlong *)0x0) {
+        (**(code **)(*element_ptr + 0x38))();
       }
-      plVar6 = plVar6 + 2;
-    } while (plVar6 < *(longlong **)(param_1 + 0x40));
+      
+      element_ptr = element_ptr + 2;
+    } while (element_ptr < *(longlong **)(render_state + 0x40));
   }
   return;
 }
