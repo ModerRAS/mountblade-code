@@ -124,10 +124,10 @@ extern uint64_t global_var_2048_ptr;
 // =============================================================================
 
 /** 函数指针类型定义 */
-typedef void (*code)(void);
+typedef void (*func_ptr)(void);
 
 /** 系统回调函数类型 */
-typedef code* (*callback_func)(void);
+typedef func_ptr* (*callback_func)(void);
 
 // =============================================================================
 // 函数声明区域

@@ -347,10 +347,10 @@ void SystemDataStructureProcessor(int64_t *param_1, uint64_t *param_2)
                                 iVar2 = SystemDataValidator2(param_1 + 9, &plStack_78);
                                 uStack_98 = (int64_t *)CONCAT44(uStack_98._4_4_, (int32_t)uStack_98);
                                 if (iVar2 != 0) goto SystemErrorHandlerExit;
-                                iVar2 = FUN_1808c4570(param_1);
+                                iVar2 = SystemDataProcessor2(param_1);
                                 uStack_98 = (int64_t *)CONCAT44(uStack_98._4_4_, (int32_t)uStack_98);
                                 if (iVar2 != 0) goto SystemErrorHandlerExit;
-                                iVar2 = FUN_1808c4160(plVar10 + 7, &plStack_68);
+                                iVar2 = SystemDataValidator2(plVar10 + 7, &plStack_68);
                                 uStack_98 = (int64_t *)CONCAT44(uStack_98._4_4_, (int32_t)uStack_98);
                                 if (iVar2 != 0) goto SystemErrorHandlerExit;
                             }
@@ -375,7 +375,7 @@ LAB_1808c3b65:
         *plVar10 = (int64_t)plVar10;
         uStack_98 = plStack_68;
         // WARNING: 资源清理，不返回
-        FUN_180742250(*(uint64_t *)(system_data_buffer + SYSTEM_CONST_0X1A0), plVar10, &global_state_1696_ptr, SYSTEM_CONST_0XE1);
+        SystemResourceHandler(*(uint64_t *)(system_data_buffer + SYSTEM_CONST_0X1A0), plVar10, &global_state_1696_ptr, SYSTEM_CONST_0XE1);
     }
     goto LAB_1808c3bc4;
     while ((plVar10 != plStack_68 && (plVar10 = (int64_t *)*plVar10, plVar10 != plStack_68))) {
@@ -404,7 +404,7 @@ LAB_1808c3bc4:
             plVar10[1] = (int64_t)plVar10;
             *plVar10 = (int64_t)plVar10;
             // WARNING: 资源清理，不返回
-            FUN_180742250(*(uint64_t *)(system_data_buffer + SYSTEM_CONST_0X1A0), plVar10, &global_state_1696_ptr, SYSTEM_CONST_0XE1);
+            SystemResourceHandler(*(uint64_t *)(system_data_buffer + SYSTEM_CONST_0X1A0), plVar10, &global_state_1696_ptr, SYSTEM_CONST_0XE1);
         }
     }
     else {

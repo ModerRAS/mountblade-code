@@ -395,7 +395,10 @@ LAB_18009ac35:
 
 
 
-int64_t FUN_18009ad10(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
+int64_t CoreEngine_SystemInitializer(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
+// 核心引擎系统初始化器 - 初始化系统数据和配置
+// 功能：初始化系统数据结构、设置配置参数、准备系统状态
+// 参数：param_1 - 系统句柄，param_2 - 配置参数，param_3 - 状态参数，param_4 - 扩展参数
 
 {
   int64_t lVar1;
@@ -456,7 +459,10 @@ int64_t FUN_18009ad10(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t
 
 
 
-float FUN_18009ae50(int64_t param_1,int64_t param_2)
+float CoreEngine_FloatCalculator(int64_t param_1,int64_t param_2)
+// 核心引擎浮点数计算器 - 执行浮点数运算和转换
+// 功能：计算浮点数值、执行数学运算、处理精度转换
+// 参数：param_1 - 输入数据，param_2 - 配置参数
 
 {
   int64_t lVar1;
@@ -467,7 +473,7 @@ float FUN_18009ae50(int64_t param_1,int64_t param_2)
   float fVar6;
   int8_t auStackX_8 [8];
   
-  plVar2 = (int64_t *)FUN_180058080(param_1,auStackX_8,param_2 + 0x20);
+  plVar2 = (int64_t *)CoreEngine_DataBufferProcessor(param_1,auStackX_8,param_2 + 0x20);
   lVar1 = *plVar2;
   if (lVar1 != param_1) {
     lVar4 = *(int64_t *)(lVar1 + 0x60);
@@ -493,7 +499,10 @@ float FUN_18009ae50(int64_t param_1,int64_t param_2)
 
 
 
-float FUN_18009ae87(int64_t param_1)
+float CoreEngine_FloatProcessor(int64_t param_1)
+// 核心引擎浮点数处理器 - 处理浮点数数据流
+// 功能：处理浮点数运算、执行数学函数、处理异常情况
+// 参数：param_1 - 输入数据
 
 {
   int64_t in_RAX;
@@ -518,7 +527,10 @@ float FUN_18009ae87(int64_t param_1)
 
 
 
-float FUN_18009aee2(void)
+float CoreEngine_FloatExtractor(void)
+// 核心引擎浮点数提取器 - 提取浮点数值
+// 功能：从数据结构中提取浮点数值、执行格式转换
+// 返回值：提取的浮点数值
 
 {
   int64_t unaff_RDI;
@@ -938,7 +950,7 @@ void FUN_18009b220(int32_t *param_1)
         if (iVar5 + 1 < iVar6) {
           iVar3 = iVar6;
         }
-        FUN_18011dd10(piVar9,iVar3);
+        CoreEngine_ArrayInitializer(piVar9,iVar3);
         iVar5 = *piVar9;
       }
       puVar11 = puVar11 + 2;
@@ -970,7 +982,7 @@ void FUN_18009b327(void)
   do {
     uVar1 = *unaff_RDI;
     if (iVar2 == unaff_RBX[1]) {
-      FUN_18011dd10();
+      CoreEngine_ArrayInitializer();
       iVar2 = *unaff_RBX;
     }
     unaff_RDI = unaff_RDI + 2;
