@@ -490,22 +490,24 @@ void UIEventHandler_ProcessEvent(longlong *uiContext, longlong eventData)
   }
   
   /* 处理特殊事件类型 */
-    iVar4 = (int)param_1[0x37];
-    if (iVar4 == -1) {
-      uStack_118 = 1;
-      uStack_114 = 1;
-      uStack_fc = 0x100;
-      uStack_f9 = 0;
-      uStack_f5 = 0;
-      uStack_ec = 0;
-      uStack_110 = (int32_t)param_1[0xe];
-      cStack_fa = (char)param_1[10];
-      uStack_f6 = cStack_fa == '\0';
-      uStack_f7 = 1;
-      uStack_10c = 0;
-      uStack_104 = 0;
-      uStack_f0 = *(uint *)(param_2 + 0x1bd4);
-      if (*(char *)((longlong)param_1 + 0x4c) == '\0') {
+  eventType = (int)uiContext[0x37];
+  if (eventType == -1) {
+    /* 初始化默认事件参数 */
+    eventFlags = 1;
+    eventModifiers = 1;
+    eventKeyCode = 0x100;
+    eventScanCode = 0;
+    eventPrevious = 0;
+    eventReserved = 0;
+    eventButton = (int32_t)uiContext[0xe];
+    eventChar = (char)uiContext[10];
+    eventExtended = eventChar == '\0';
+    eventRepeat = 1;
+    eventTimestamp = 0;
+    eventSequence = 0;
+    eventDeviceId = *(uint *)(eventData + 0x1bd4);
+    
+    /* 处理非字符事件 */
         iStack_120 = (int)(longlong)(double)param_1[0xb];
         iStack_11c = (int)(longlong)(double)param_1[0xc];
         if (param_1[0x85] != 0) goto LAB_1803f8744;

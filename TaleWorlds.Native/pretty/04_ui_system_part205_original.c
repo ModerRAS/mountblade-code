@@ -1121,7 +1121,20 @@ void UI_RecursiveProcess(uint *data_ptr, uint base_value, int step_size, int pro
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-uint64_t FUN_180789470(longlong param_1,uint param_2,char param_3)
+/**
+ * UI_AllocateMemory - UI系统内存分配
+ * 
+ * 为UI系统分配内存资源，包括主缓冲区、次缓冲区和索引缓冲区
+ * 支持多种内存分配模式和错误处理
+ * 
+ * @param system_ptr 系统指针
+ * @param size 分配大小
+ * @param flags 分配标志
+ * @return 分配结果：0=成功，0x26=内存错误，0x1f=初始化错误
+ * 
+ * 原始实现：FUN_180789470
+ */
+uint64_t UI_AllocateMemory(longlong system_ptr, uint size, char flags)
 
 {
   uint uVar1;
@@ -1201,7 +1214,17 @@ uint64_t FUN_180789470(longlong param_1,uint param_2,char param_3)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-uint64_t FUN_1807894bb(longlong param_1)
+/**
+ * UI_AllocateMemory2 - UI系统内存分配（备用版本）
+ * 
+ * UI系统内存分配的备用实现，支持更灵活的参数配置
+ * 
+ * @param system_ptr 系统指针
+ * @return 分配结果：0=成功，0x26=内存错误
+ * 
+ * 原始实现：FUN_1807894bb
+ */
+uint64_t UI_AllocateMemory2(longlong system_ptr)
 
 {
   int iVar1;
@@ -1286,7 +1309,17 @@ uint64_t FUN_1807894bb(longlong param_1)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-uint64_t FUN_1807894e0(longlong param_1)
+/**
+ * UI_AllocateMemory3 - UI系统内存分配（第三版本）
+ * 
+ * UI系统内存分配的第三种实现，提供优化的内存分配策略
+ * 
+ * @param system_ptr 系统指针
+ * @return 分配结果：0=成功，0x26=内存错误
+ * 
+ * 原始实现：FUN_1807894e0
+ */
+uint64_t UI_AllocateMemory3(longlong system_ptr)
 
 {
   int iVar1;
@@ -1378,8 +1411,14 @@ uint64_t FUN_1807894e0(longlong param_1)
 
 
 
-// 函数: void FUN_1807895a2(void)
-void FUN_1807895a2(void)
+/**
+ * UI_EmptyFunction4 - UI系统空函数4
+ * 
+ * 空函数，用于占位或作为默认函数指针
+ * 
+ * 原始实现：FUN_1807895a2
+ */
+void UI_EmptyFunction4(void)
 
 {
   return;
@@ -1389,7 +1428,16 @@ void FUN_1807895a2(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-uint64_t FUN_1807895b5(void)
+/**
+ * UI_SetupMemory - UI系统内存设置
+ * 
+ * 设置UI系统的内存配置和参数，包括缓冲区分配和初始化
+ * 
+ * @return 设置结果：0=成功，0x26=内存错误
+ * 
+ * 原始实现：FUN_1807895b5
+ */
+uint64_t UI_SetupMemory(void)
 
 {
   ulonglong uVar1;
@@ -1451,7 +1499,18 @@ uint64_t FUN_1807895b5(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-uint64_t FUN_18078961b(uint64_t param_1)
+/**
+ * UI_InitializeRenderer - UI系统渲染器初始化
+ * 
+ * 初始化UI系统的渲染器组件，包括顶点缓冲区和纹理坐标设置
+ * 支持多种渲染模式和错误处理
+ * 
+ * @param param1 初始化参数
+ * @return 初始化结果：0=成功
+ * 
+ * 原始实现：FUN_18078961b
+ */
+uint64_t UI_InitializeRenderer(uint64_t param1)
 
 {
   uint64_t uVar1;
@@ -1489,7 +1548,17 @@ uint64_t FUN_18078961b(uint64_t param_1)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-uint64_t FUN_1807896ae(uint64_t param_1)
+/**
+ * UI_InitializeRenderer2 - UI系统渲染器初始化（备用版本）
+ * 
+ * UI系统渲染器初始化的备用实现，支持更灵活的参数配置
+ * 
+ * @param param1 初始化参数
+ * @return 初始化结果：0=成功
+ * 
+ * 原始实现：FUN_1807896ae
+ */
+uint64_t UI_InitializeRenderer2(uint64_t param1)
 
 {
   uint64_t uVar1;
@@ -1520,7 +1589,16 @@ uint64_t FUN_1807896ae(uint64_t param_1)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-uint64_t FUN_18078971b(void)
+/**
+ * UI_InitializeRenderer3 - UI系统渲染器初始化（第三版本）
+ * 
+ * UI系统渲染器初始化的第三种实现，提供优化的初始化策略
+ * 
+ * @return 初始化结果：0=成功
+ * 
+ * 原始实现：FUN_18078971b
+ */
+uint64_t UI_InitializeRenderer3(void)
 
 {
   uint64_t uVar1;
@@ -1540,7 +1618,16 @@ uint64_t FUN_18078971b(void)
 
 
 
-uint64_t FUN_18078978e(void)
+/**
+ * UI_HandleMemoryError - UI系统内存错误处理
+ * 
+ * 处理UI系统中的内存分配错误，返回内存错误代码
+ * 
+ * @return 错误代码：0x26
+ * 
+ * 原始实现：FUN_18078978e
+ */
+uint64_t UI_HandleMemoryError(void)
 
 {
   return 0x26;
@@ -1548,7 +1635,16 @@ uint64_t FUN_18078978e(void)
 
 
 
-uint64_t FUN_180789798(void)
+/**
+ * UI_HandleInitError - UI系统初始化错误处理
+ * 
+ * 处理UI系统中的初始化错误，返回初始化错误代码
+ * 
+ * @return 错误代码：0x1f
+ * 
+ * 原始实现：FUN_180789798
+ */
+uint64_t UI_HandleInitError(void)
 
 {
   return 0x1f;
