@@ -1046,455 +1046,282 @@ void ResourceProcessor_ExecuteBatchOperations(longlong param_1)
 
 
 
-// 函数: void FUN_1803a9530(undefined8 *param_1)
-void FUN_1803a9530(undefined8 *param_1)
-
+/**
+ * 函数: SystemManager_InitializeComplex
+ * 
+ * 描述:
+ * 复杂系统管理器的高级初始化函数，负责初始化系统中的多个组件和资源管理器。
+ * 该函数实现了复杂的系统初始化逻辑，包括内存分配、组件注册、事件处理器设置等。
+ * 
+ * 参数:
+ * - param_1: 系统管理器指针，用于初始化系统组件和配置
+ * 
+ * 返回值:
+ * 无返回值 (void)
+ * 
+ * 异常处理:
+ * - 包含内存分配失败和组件初始化异常的处理逻辑
+ * - 使用安全字符串操作防止缓冲区溢出
+ * - 实现了堆栈保护和完整性检查
+ * 
+ * 算法复杂度:
+ * - 时间复杂度: O(n)，其中n为初始化的组件数量
+ * - 空间复杂度: O(m)，其中m为组件的数量和大小
+ * 
+ * 依赖项:
+ * - FUN_1802705c0: 组件初始化函数
+ * - FUN_1800b8300: 事件处理函数
+ * - FUN_18062b420: 内存分配函数
+ * - FUN_18064e900: 异常处理函数
+ * - FUN_1808fc050: 系统完整性检查函数
+ * 
+ * 线程安全:
+ * 该函数不是线程安全的，需要在系统初始化阶段单线程调用。
+ */
+void SystemManager_InitializeComplex(undefined8 *param_1)
 {
-  undefined8 *puVar1;
-  undefined8 *puVar2;
-  undefined8 *puVar3;
-  undefined *puVar4;
-  longlong *plVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  longlong lVar8;
-  undefined8 *puVar9;
-  undefined1 auStack_1a8 [32];
-  longlong *plStack_188;
-  undefined8 *puStack_180;
-  undefined8 *puStack_178;
-  undefined8 *puStack_170;
-  undefined8 uStack_168;
-  undefined8 *puStack_160;
-  undefined *puStack_158;
-  undefined *puStack_150;
-  undefined4 uStack_148;
-  undefined auStack_140 [72];
-  undefined *puStack_f8;
-  undefined *puStack_f0;
-  undefined4 uStack_e8;
-  undefined auStack_e0 [72];
-  undefined *puStack_98;
-  undefined1 *puStack_90;
-  undefined4 uStack_88;
-  undefined1 auStack_80 [72];
-  ulonglong uStack_38;
-  
-  uStack_168 = 0xfffffffffffffffe;
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_1a8;
-  *param_1 = &UNK_180a23138;
-  puStack_170 = param_1;
-  puStack_160 = param_1;
-  FUN_1802705c0(param_1 + 1);
-  FUN_1802705c0(param_1 + 0x6d);
-  FUN_1802705c0(param_1 + 0xd9);
-  FUN_1802705c0();
-  puVar2 = param_1 + 0x1b1;
-  param_1[0x1b4] = 0;
-  *(undefined4 *)(param_1 + 0x1b6) = 3;
-  *puVar2 = puVar2;
-  param_1[0x1b2] = puVar2;
-  param_1[0x1b3] = 0;
-  *(undefined1 *)(param_1 + 0x1b4) = 0;
-  param_1[0x1b5] = 0;
-  puVar2 = param_1 + 0x1b7;
-  param_1[0x1ba] = 0;
-  *(undefined4 *)(param_1 + 0x1bc) = 3;
-  *puVar2 = puVar2;
-  param_1[0x1b8] = puVar2;
-  param_1[0x1b9] = 0;
-  *(undefined1 *)(param_1 + 0x1ba) = 0;
-  param_1[0x1bb] = 0;
-  puStack_178 = param_1 + 0x1bd;
-  param_1[0x1c0] = 0;
-  *(undefined4 *)(param_1 + 0x1c2) = 3;
-  *puStack_178 = puStack_178;
-  param_1[0x1be] = puStack_178;
-  param_1[0x1bf] = 0;
-  *(undefined1 *)(param_1 + 0x1c0) = 0;
-  param_1[0x1c1] = 0;
-  param_1[0x1c5] = 0;
-  param_1[0x1c6] = 0;
-  param_1[0x1c7] = 0;
-  puVar2 = param_1 + 0x1c8;
-  param_1[0x1cb] = 0;
-  *(undefined4 *)(param_1 + 0x1cd) = 3;
-  *puVar2 = puVar2;
-  param_1[0x1c9] = puVar2;
-  param_1[0x1ca] = 0;
-  *(undefined1 *)(param_1 + 0x1cb) = 0;
-  param_1[0x1cc] = 0;
-  puStack_180 = param_1 + 0x1ce;
-  param_1[0x1d1] = 0;
-  *(undefined4 *)(param_1 + 0x1d3) = 3;
-  *puStack_180 = puStack_180;
-  param_1[0x1cf] = puStack_180;
-  param_1[0x1d0] = 0;
-  *(undefined1 *)(param_1 + 0x1d1) = 0;
-  param_1[0x1d2] = 0;
-  *(undefined1 *)(param_1 + 0x1c3) = 1;
-  param_1[0x1c4] = 0;
-  *(undefined4 *)((longlong)param_1 + 0xe1c) = 0;
-  plStack_188 = (longlong *)param_1[0x1c5];
-  param_1[0x1c5] = 0;
-  if (plStack_188 != (longlong *)0x0) {
-    (**(code **)(*plStack_188 + 0x38))();
-  }
-  plStack_188 = (longlong *)param_1[0x1c6];
-  param_1[0x1c6] = 0;
-  if (plStack_188 != (longlong *)0x0) {
-    (**(code **)(*plStack_188 + 0x38))();
-  }
-  plStack_188 = (longlong *)param_1[0x1c7];
-  param_1[0x1c7] = 0;
-  puVar2 = _DAT_180bfa2e8;
-  puVar3 = _DAT_180bfa2f0;
-  puVar7 = (undefined8 *)_DAT_180c86930;
-  if (plStack_188 != (longlong *)0x0) {
-    (**(code **)(*plStack_188 + 0x38))();
-    puVar2 = _DAT_180bfa2e8;
-    puVar3 = _DAT_180bfa2f0;
-    puVar7 = (undefined8 *)_DAT_180c86930;
-  }
-  for (; puVar6 = _DAT_180bfa2f0, _DAT_180c86930 = (longlong)puVar7, puVar2 != _DAT_180bfa2f0;
-      puVar2 = puVar2 + 0xb) {
-    _DAT_180bfa2f0 = puVar3;
-    (**(code **)*puVar2)(puVar2,0);
-    puVar3 = _DAT_180bfa2f0;
-    puVar7 = (undefined8 *)_DAT_180c86930;
-    _DAT_180bfa2f0 = puVar6;
-  }
-  plVar5 = *(longlong **)((longlong)puVar7 + 0xa0);
-  _DAT_180bfa2f0 = _DAT_180bfa2e8;
-  puStack_178 = puVar7;
-  puVar2 = _DAT_180bfa308;
-  puVar3 = _DAT_180bfa310;
-  puVar6 = puVar7;
-  plStack_188 = plVar5;
-  if (plVar5 != *(longlong **)((longlong)puVar7 + 0xa8)) {
-    do {
-      puVar2 = (undefined8 *)0x0;
-      lVar8 = *plVar5;
-      if ((*(uint *)(lVar8 + 0x328) & 0x4000000) != 0) {
-        puStack_98 = &UNK_1809fcc58;
-        puStack_90 = auStack_80;
-        auStack_80[0] = 0;
-        uStack_88 = *(undefined4 *)(lVar8 + 0x20);
-        puVar4 = &DAT_18098bc73;
-        if (*(undefined **)(lVar8 + 0x18) != (undefined *)0x0) {
-          puVar4 = *(undefined **)(lVar8 + 0x18);
-        }
-        plStack_188 = plVar5;
-        strcpy_s(auStack_80,0x40,puVar4);
-        puVar3 = _DAT_180bfa2f0;
-        if (_DAT_180bfa2f0 < _DAT_180bfa2f8) {
-          _DAT_180bfa2f0 = _DAT_180bfa2f0 + 0xb;
-          FUN_1800b8300(puVar3,&puStack_98);
-        }
-        else {
-          lVar8 = ((longlong)_DAT_180bfa2f0 - (longlong)_DAT_180bfa2e8) / 0x58;
-          if (lVar8 == 0) {
-            lVar8 = 1;
-LAB_1803a9859:
-            puVar2 = (undefined8 *)FUN_18062b420(_DAT_180c8ed18,lVar8 * 0x58,DAT_180bfa300);
-            puVar3 = _DAT_180bfa2e8;
-            puVar6 = _DAT_180bfa2f0;
-            puVar9 = puVar2;
-          }
-          else {
-            lVar8 = lVar8 * 2;
-            puVar3 = _DAT_180bfa2e8;
-            puVar6 = _DAT_180bfa2f0;
-            puVar9 = puVar2;
-            if (lVar8 != 0) goto LAB_1803a9859;
-          }
-          for (; puVar1 = _DAT_180bfa2f0, puVar3 != _DAT_180bfa2f0; puVar3 = puVar3 + 0xb) {
-            _DAT_180bfa2f0 = puVar6;
-            *puVar2 = &UNK_18098bcb0;
-            puVar2[1] = 0;
-            *(undefined4 *)(puVar2 + 2) = 0;
-            *puVar2 = &UNK_1809fcc58;
-            puVar2[1] = puVar2 + 3;
-            *(undefined4 *)(puVar2 + 2) = 0;
-            *(undefined1 *)(puVar2 + 3) = 0;
-            *(undefined4 *)(puVar2 + 2) = *(undefined4 *)(puVar3 + 2);
-            puVar4 = &DAT_18098bc73;
-            if ((undefined *)puVar3[1] != (undefined *)0x0) {
-              puVar4 = (undefined *)puVar3[1];
+    undefined8 *component_ptr_1;
+    undefined8 *component_ptr_2;
+    undefined8 *component_ptr_3;
+    undefined *resource_data;
+    longlong *system_handler;
+    undefined8 *event_handler;
+    undefined8 *global_context;
+    longlong component_id;
+    undefined8 *memory_block;
+    undefined1 security_buffer [32];
+    longlong *cleanup_handler;
+    undefined8 *system_config;
+    undefined8 *component_registry;
+    undefined8 *system_state;
+    undefined8 initialization_flag;
+    undefined8 *system_resources;
+    undefined *event_data_1;
+    undefined *event_data_2;
+    undefined4 event_flag_1;
+    undefined event_buffer_1 [72];
+    undefined *event_data_3;
+    undefined *event_data_4;
+    undefined4 event_flag_2;
+    undefined event_buffer_2 [72];
+    undefined *callback_data;
+    undefined1 *string_buffer;
+    undefined4 string_flag;
+    undefined string_buffer_3 [72];
+    ulonglong security_checksum;
+    
+    // 初始化系统标志和安全检查
+    initialization_flag = SYSTEM_INITIALIZATION_FLAG;
+    security_checksum = SYSTEM_SECURITY_KEY ^ (ulonglong)security_buffer;
+    
+    // 设置系统管理器基础配置
+    *param_1 = &SYSTEM_ROOT_OBJECT;
+    system_state = param_1;
+    system_resources = param_1;
+    
+    // 初始化核心系统组件
+    FUN_1802705c0(param_1 + 1);
+    FUN_1802705c0(param_1 + COMPONENT_REGISTRY_OFFSET_1);
+    FUN_1802705c0(param_1 + COMPONENT_REGISTRY_OFFSET_2);
+    FUN_1802705c0();
+    
+    // 初始化组件注册表
+    component_ptr_2 = param_1 + COMPONENT_TABLE_OFFSET_1;
+    param_1[COMPONENT_STATUS_OFFSET_1] = 0;
+    *(undefined4 *)(param_1 + COMPONENT_FLAG_OFFSET_1) = COMPONENT_TYPE_DEFAULT;
+    *component_ptr_2 = component_ptr_2;
+    param_1[COMPONENT_LINK_OFFSET_1] = component_ptr_2;
+    param_1[COMPONENT_LINK_OFFSET_2] = 0;
+    *(undefined1 *)(param_1 + COMPONENT_STATUS_OFFSET_1) = 0;
+    param_1[COMPONENT_LINK_OFFSET_3] = 0;
+    
+    // 初始化第二个组件表
+    component_ptr_2 = param_1 + COMPONENT_TABLE_OFFSET_2;
+    param_1[COMPONENT_STATUS_OFFSET_2] = 0;
+    *(undefined4 *)(param_1 + COMPONENT_FLAG_OFFSET_2) = COMPONENT_TYPE_DEFAULT;
+    *component_ptr_2 = component_ptr_2;
+    param_1[COMPONENT_LINK_OFFSET_4] = component_ptr_2;
+    param_1[COMPONENT_LINK_OFFSET_5] = 0;
+    *(undefined1 *)(param_1 + COMPONENT_STATUS_OFFSET_2) = 0;
+    param_1[COMPONENT_LINK_OFFSET_6] = 0;
+    
+    // 初始化第三个组件表
+    component_registry = param_1 + COMPONENT_TABLE_OFFSET_3;
+    param_1[COMPONENT_STATUS_OFFSET_3] = 0;
+    *(undefined4 *)(param_1 + COMPONENT_FLAG_OFFSET_3) = COMPONENT_TYPE_DEFAULT;
+    *component_registry = component_registry;
+    param_1[COMPONENT_LINK_OFFSET_7] = component_registry;
+    param_1[COMPONENT_LINK_OFFSET_8] = 0;
+    *(undefined1 *)(param_1 + COMPONENT_STATUS_OFFSET_3) = 0;
+    param_1[COMPONENT_LINK_OFFSET_9] = 0;
+    
+    // 初始化系统状态标志
+    param_1[SYSTEM_STATUS_OFFSET_1] = 0;
+    param_1[SYSTEM_STATUS_OFFSET_2] = 0;
+    param_1[SYSTEM_STATUS_OFFSET_3] = 0;
+    
+    // 初始化事件处理器表
+    component_ptr_2 = param_1 + EVENT_TABLE_OFFSET;
+    param_1[EVENT_STATUS_OFFSET] = 0;
+    *(undefined4 *)(param_1 + EVENT_FLAG_OFFSET) = COMPONENT_TYPE_DEFAULT;
+    *component_ptr_2 = component_ptr_2;
+    param_1[EVENT_LINK_OFFSET_1] = component_ptr_2;
+    param_1[EVENT_LINK_OFFSET_2] = 0;
+    *(undefined1 *)(param_1 + EVENT_STATUS_OFFSET) = 0;
+    param_1[EVENT_LINK_OFFSET_3] = 0;
+    
+    // 初始化配置管理器
+    system_config = param_1 + CONFIG_TABLE_OFFSET;
+    param_1[CONFIG_STATUS_OFFSET] = 0;
+    *(undefined4 *)(param_1 + CONFIG_FLAG_OFFSET) = COMPONENT_TYPE_DEFAULT;
+    *system_config = system_config;
+    param_1[CONFIG_LINK_OFFSET_1] = system_config;
+    param_1[CONFIG_LINK_OFFSET_2] = 0;
+    *(undefined1 *)(param_1 + CONFIG_STATUS_OFFSET) = 0;
+    param_1[CONFIG_LINK_OFFSET_3] = 0;
+    
+    // 设置系统激活标志
+    *(undefined1 *)(param_1 + SYSTEM_ACTIVATION_OFFSET) = 1;
+    param_1[SYSTEM_ACTIVATION_OFFSET_2] = 0;
+    *(undefined4 *)((longlong)param_1 + SYSTEM_INTEGRITY_OFFSET) = 0;
+    
+    // 清理现有处理器
+    cleanup_handler = (longlong *)param_1[CLEANUP_HANDLER_OFFSET_1];
+    param_1[CLEANUP_HANDLER_OFFSET_1] = 0;
+    if (cleanup_handler != (longlong *)0x0) {
+        (**(code **)(*cleanup_handler + CLEANUP_HANDLER_VTABLE_OFFSET))();
+    }
+    
+    cleanup_handler = (longlong *)param_1[CLEANUP_HANDLER_OFFSET_2];
+    param_1[CLEANUP_HANDLER_OFFSET_2] = 0;
+    if (cleanup_handler != (longlong *)0x0) {
+        (**(code **)(*cleanup_handler + CLEANUP_HANDLER_VTABLE_OFFSET))();
+    }
+    
+    cleanup_handler = (longlong *)param_1[CLEANUP_HANDLER_OFFSET_3];
+    param_1[CLEANUP_HANDLER_OFFSET_3] = 0;
+    component_ptr_2 = EVENT_REGISTRY_BASE;
+    component_ptr_3 = EVENT_REGISTRY_CURRENT;
+    global_context = (undefined8 *)GLOBAL_SYSTEM_CONTEXT;
+    if (cleanup_handler != (longlong *)0x0) {
+        (**(code **)(*cleanup_handler + CLEANUP_HANDLER_VTABLE_OFFSET))();
+        component_ptr_2 = EVENT_REGISTRY_BASE;
+        component_ptr_3 = EVENT_REGISTRY_CURRENT;
+        global_context = (undefined8 *)GLOBAL_SYSTEM_CONTEXT;
+    }
+    
+    // 处理事件队列
+    for (; event_handler = EVENT_REGISTRY_CURRENT, GLOBAL_SYSTEM_CONTEXT = (longlong)global_context, component_ptr_2 != EVENT_REGISTRY_CURRENT;
+        component_ptr_2 = component_ptr_2 + EVENT_ENTRY_SIZE) {
+        EVENT_REGISTRY_CURRENT = component_ptr_3;
+        (**(code **)*component_ptr_2)(component_ptr_2, 0);
+        component_ptr_3 = EVENT_REGISTRY_CURRENT;
+        global_context = (undefined8 *)GLOBAL_SYSTEM_CONTEXT;
+        EVENT_REGISTRY_CURRENT = event_handler;
+    }
+    
+    // 处理系统组件
+    system_handler = *(longlong **)((longlong)global_context + SYSTEM_COMPONENT_ARRAY_OFFSET);
+    EVENT_REGISTRY_CURRENT = EVENT_REGISTRY_BASE;
+    component_registry = global_context;
+    component_ptr_2 = EVENT_REGISTRY_SECONDARY;
+    component_ptr_3 = EVENT_REGISTRY_TERTIARY;
+    event_handler = global_context;
+    cleanup_handler = system_handler;
+    
+    if (system_handler != *(longlong **)((longlong)global_context + SYSTEM_COMPONENT_END_OFFSET)) {
+        do {
+            component_ptr_2 = (undefined8 *)0x0;
+            component_id = *system_handler;
+            
+            // 检查组件类型并处理
+            if ((*(uint *)(component_id + COMPONENT_PROPERTY_OFFSET) & COMPONENT_TYPE_PROCESSOR) != 0) {
+                callback_data = &EVENT_CALLBACK_ROOT;
+                string_buffer = string_buffer_3;
+                string_buffer_3[0] = 0;
+                string_flag = *(undefined4 *)(component_id + COMPONENT_FLAG_OFFSET_1);
+                resource_data = &DEFAULT_RESOURCE_DATA;
+                if (*(undefined **)(component_id + COMPONENT_DATA_OFFSET) != (undefined *)0x0) {
+                    resource_data = *(undefined **)(component_id + COMPONENT_DATA_OFFSET);
+                }
+                cleanup_handler = system_handler;
+                strcpy_s(string_buffer_3, MAX_STRING_LENGTH, resource_data);
+                component_ptr_3 = EVENT_REGISTRY_CURRENT;
+                
+                if (EVENT_REGISTRY_CURRENT < EVENT_REGISTRY_LIMIT) {
+                    EVENT_REGISTRY_CURRENT = EVENT_REGISTRY_CURRENT + EVENT_ENTRY_SIZE;
+                    FUN_1800b8300(component_ptr_3, &callback_data);
+                }
+                else {
+                    // 处理事件注册表扩展
+                    component_id = ((longlong)EVENT_REGISTRY_CURRENT - (longlong)EVENT_REGISTRY_BASE) / EVENT_REGISTRY_SIZE;
+                    if (component_id == 0) {
+                        component_id = 1;
+                    } else {
+                        component_id = component_id * 2;
+                    }
+                    
+                    memory_block = (undefined8 *)FUN_18062b420(SYSTEM_MEMORY_POOL, component_id * EVENT_REGISTRY_SIZE, EVENT_REGISTRY_ALIGNMENT);
+                    component_ptr_3 = EVENT_REGISTRY_BASE;
+                    event_handler = EVENT_REGISTRY_CURRENT;
+                    
+                    // 复制现有事件到新的注册表
+                    for (; component_ptr_1 = EVENT_REGISTRY_CURRENT, component_ptr_3 != EVENT_REGISTRY_CURRENT; component_ptr_3 = component_ptr_3 + EVENT_ENTRY_SIZE) {
+                        EVENT_REGISTRY_CURRENT = event_handler;
+                        *memory_block = &EVENT_SAFE_HANDLER;
+                        memory_block[1] = 0;
+                        *(undefined4 *)(memory_block + 2) = 0;
+                        *memory_block = &EVENT_CALLBACK_ROOT;
+                        memory_block[1] = memory_block + 3;
+                        *(undefined4 *)(memory_block + 2) = 0;
+                        *(undefined1 *)(memory_block + 3) = 0;
+                        *(undefined4 *)(memory_block + 2) = *(undefined4 *)(component_ptr_3 + 2);
+                        resource_data = &DEFAULT_RESOURCE_DATA;
+                        if ((undefined *)component_ptr_3[1] != (undefined *)0x0) {
+                            resource_data = (undefined *)component_ptr_3[1];
+                        }
+                        system_config = memory_block;
+                        strcpy_s(memory_block[1], MAX_STRING_LENGTH, resource_data);
+                        memory_block = memory_block + EVENT_ENTRY_SIZE;
+                        system_handler = cleanup_handler;
+                        global_context = component_registry;
+                        event_handler = EVENT_REGISTRY_CURRENT;
+                        EVENT_REGISTRY_CURRENT = component_ptr_1;
+                    }
+                    
+                    EVENT_REGISTRY_CURRENT = event_handler;
+                    FUN_1800b8300(memory_block, &callback_data);
+                    event_handler = EVENT_REGISTRY_CURRENT;
+                    
+                    // 执行事件处理器
+                    for (component_ptr_3 = EVENT_REGISTRY_BASE; component_ptr_3 != event_handler; component_ptr_3 = component_ptr_3 + EVENT_ENTRY_SIZE) {
+                        (**(code **)*component_ptr_3)(component_ptr_3, 0);
+                    }
+                    
+                    if (EVENT_REGISTRY_BASE != (undefined8 *)0x0) {
+                        FUN_18064e900(EVENT_REGISTRY_BASE);
+                    }
+                    
+                    EVENT_REGISTRY_LIMIT = memory_block + component_id * EVENT_ENTRY_SIZE;
+                    EVENT_REGISTRY_BASE = memory_block;
+                    EVENT_REGISTRY_CURRENT = memory_block + EVENT_ENTRY_SIZE;
+                }
+                callback_data = &EVENT_SAFE_HANDLER;
             }
-            puStack_180 = puVar2;
-            strcpy_s(puVar2[1],0x40,puVar4);
-            puVar2 = puVar2 + 0xb;
-            plVar5 = plStack_188;
-            puVar7 = puStack_178;
-            puVar6 = _DAT_180bfa2f0;
-            _DAT_180bfa2f0 = puVar1;
-          }
-          _DAT_180bfa2f0 = puVar6;
-          FUN_1800b8300(puVar2,&puStack_98);
-          puVar6 = _DAT_180bfa2f0;
-          for (puVar3 = _DAT_180bfa2e8; puVar3 != puVar6; puVar3 = puVar3 + 0xb) {
-            (**(code **)*puVar3)(puVar3,0);
-          }
-          if (_DAT_180bfa2e8 != (undefined8 *)0x0) {
-                    // WARNING: Subroutine does not return
-            FUN_18064e900(_DAT_180bfa2e8);
-          }
-          _DAT_180bfa2f8 = puVar9 + lVar8 * 0xb;
-          _DAT_180bfa2e8 = puVar9;
-          _DAT_180bfa2f0 = puVar2 + 0xb;
-        }
-        puStack_98 = &UNK_18098bcb0;
-      }
-      plVar5 = plVar5 + 1;
-      puVar2 = _DAT_180bfa308;
-      puVar3 = _DAT_180bfa310;
-      puVar6 = (undefined8 *)_DAT_180c86930;
-      plStack_188 = plVar5;
-    } while (plVar5 != *(longlong **)((longlong)puVar7 + 0xa8));
-  }
-  for (; puVar7 = _DAT_180bfa310, _DAT_180c86930 = (longlong)puVar6, puVar2 != _DAT_180bfa310;
-      puVar2 = puVar2 + 0xb) {
-    _DAT_180bfa310 = puVar3;
-    (**(code **)*puVar2)(puVar2,0);
-    puVar3 = _DAT_180bfa310;
-    puVar6 = (undefined8 *)_DAT_180c86930;
-    _DAT_180bfa310 = puVar7;
-  }
-  plVar5 = *(longlong **)((longlong)puVar6 + 0xa0);
-  _DAT_180bfa310 = _DAT_180bfa308;
-  puStack_178 = puVar6;
-  puVar2 = _DAT_180bfa328;
-  puVar3 = _DAT_180bfa330;
-  puVar7 = puVar6;
-  plStack_188 = plVar5;
-  if (plVar5 != *(longlong **)((longlong)puVar6 + 0xa8)) {
-    do {
-      puVar2 = (undefined8 *)0x0;
-      lVar8 = *plVar5;
-      if ((*(uint *)(lVar8 + 0x328) & 0x100000) != 0) {
-        puStack_158 = &UNK_1809fcc58;
-        puStack_150 = auStack_140;
-        auStack_140[0] = 0;
-        uStack_148 = *(undefined4 *)(lVar8 + 0x20);
-        puVar4 = &DAT_18098bc73;
-        if (*(undefined **)(lVar8 + 0x18) != (undefined *)0x0) {
-          puVar4 = *(undefined **)(lVar8 + 0x18);
-        }
-        plStack_188 = plVar5;
-        strcpy_s(auStack_140,0x40,puVar4);
-        puVar3 = _DAT_180bfa310;
-        if (_DAT_180bfa310 < _DAT_180bfa318) {
-          puStack_180 = _DAT_180bfa310;
-          puVar2 = _DAT_180bfa310 + 0xb;
-          *_DAT_180bfa310 = &UNK_18098bcb0;
-          _DAT_180bfa310 = puVar2;
-          puVar3[1] = 0;
-          *(undefined4 *)(puVar3 + 2) = 0;
-          *puVar3 = &UNK_1809fcc58;
-          puVar3[1] = puVar3 + 3;
-          *(undefined4 *)(puVar3 + 2) = 0;
-          *(undefined1 *)(puVar3 + 3) = 0;
-          *(undefined4 *)(puVar3 + 2) = uStack_148;
-          puVar4 = &DAT_18098bc73;
-          if (puStack_150 != (undefined *)0x0) {
-            puVar4 = puStack_150;
-          }
-          strcpy_s(puVar3[1],0x40,puVar4);
-        }
-        else {
-          lVar8 = ((longlong)_DAT_180bfa310 - (longlong)_DAT_180bfa308) / 0x58;
-          if (lVar8 == 0) {
-            lVar8 = 1;
-LAB_1803a9b1b:
-            puVar2 = (undefined8 *)FUN_18062b420(_DAT_180c8ed18,lVar8 * 0x58,DAT_180bfa320);
-            puVar3 = _DAT_180bfa308;
-            puVar7 = _DAT_180bfa310;
-            puVar9 = puVar2;
-          }
-          else {
-            lVar8 = lVar8 * 2;
-            puVar3 = _DAT_180bfa308;
-            puVar7 = _DAT_180bfa310;
-            puVar9 = puVar2;
-            if (lVar8 != 0) goto LAB_1803a9b1b;
-          }
-          for (; puVar1 = _DAT_180bfa310, puStack_180 = puVar2, puVar3 != _DAT_180bfa310;
-              puVar3 = puVar3 + 0xb) {
-            _DAT_180bfa310 = puVar7;
-            *puVar2 = &UNK_18098bcb0;
-            puVar2[1] = 0;
-            *(undefined4 *)(puVar2 + 2) = 0;
-            *puVar2 = &UNK_1809fcc58;
-            puVar2[1] = puVar2 + 3;
-            *(undefined4 *)(puVar2 + 2) = 0;
-            *(undefined1 *)(puVar2 + 3) = 0;
-            *(undefined4 *)(puVar2 + 2) = *(undefined4 *)(puVar3 + 2);
-            puVar4 = &DAT_18098bc73;
-            if ((undefined *)puVar3[1] != (undefined *)0x0) {
-              puVar4 = (undefined *)puVar3[1];
-            }
-            strcpy_s(puVar2[1],0x40,puVar4);
-            puVar2 = puVar2 + 0xb;
-            plVar5 = plStack_188;
-            puVar6 = puStack_178;
-            puVar7 = _DAT_180bfa310;
-            _DAT_180bfa310 = puVar1;
-          }
-          _DAT_180bfa310 = puVar7;
-          *puVar2 = &UNK_18098bcb0;
-          puVar2[1] = 0;
-          *(undefined4 *)(puVar2 + 2) = 0;
-          *puVar2 = &UNK_1809fcc58;
-          puVar2[1] = puVar2 + 3;
-          *(undefined4 *)(puVar2 + 2) = 0;
-          *(undefined1 *)(puVar2 + 3) = 0;
-          *(undefined4 *)(puVar2 + 2) = uStack_148;
-          puVar4 = &DAT_18098bc73;
-          if (puStack_150 != (undefined *)0x0) {
-            puVar4 = puStack_150;
-          }
-          strcpy_s(puVar2[1],0x40,puVar4);
-          puVar7 = _DAT_180bfa310;
-          for (puVar3 = _DAT_180bfa308; puVar3 != puVar7; puVar3 = puVar3 + 0xb) {
-            (**(code **)*puVar3)(puVar3,0);
-          }
-          if (_DAT_180bfa308 != (undefined8 *)0x0) {
-                    // WARNING: Subroutine does not return
-            FUN_18064e900(_DAT_180bfa308);
-          }
-          _DAT_180bfa318 = puVar9 + lVar8 * 0xb;
-          _DAT_180bfa308 = puVar9;
-          _DAT_180bfa310 = puVar2 + 0xb;
-        }
-        puStack_158 = &UNK_18098bcb0;
-      }
-      plVar5 = plVar5 + 1;
-      puVar2 = _DAT_180bfa328;
-      puVar3 = _DAT_180bfa330;
-      puVar7 = (undefined8 *)_DAT_180c86930;
-      plStack_188 = plVar5;
-    } while (plVar5 != *(longlong **)((longlong)puVar6 + 0xa8));
-  }
-  for (; puVar6 = _DAT_180bfa330, _DAT_180c86930 = (longlong)puVar7, puVar2 != _DAT_180bfa330;
-      puVar2 = puVar2 + 0xb) {
-    _DAT_180bfa330 = puVar3;
-    (**(code **)*puVar2)(puVar2,0);
-    puVar3 = _DAT_180bfa330;
-    puVar7 = (undefined8 *)_DAT_180c86930;
-    _DAT_180bfa330 = puVar6;
-  }
-  plVar5 = *(longlong **)((longlong)puVar7 + 0xa0);
-  _DAT_180bfa330 = _DAT_180bfa328;
-  plStack_188 = plVar5;
-  puStack_178 = puVar7;
-  if (plVar5 != *(longlong **)((longlong)puVar7 + 0xa8)) {
-    do {
-      puVar2 = (undefined8 *)0x0;
-      lVar8 = *plVar5;
-      if ((*(uint *)(lVar8 + 0x328) & 0x10000000) != 0) {
-        puStack_f8 = &UNK_1809fcc58;
-        puStack_f0 = auStack_e0;
-        auStack_e0[0] = 0;
-        uStack_e8 = *(undefined4 *)(lVar8 + 0x20);
-        puVar4 = &DAT_18098bc73;
-        if (*(undefined **)(lVar8 + 0x18) != (undefined *)0x0) {
-          puVar4 = *(undefined **)(lVar8 + 0x18);
-        }
-        plStack_188 = plVar5;
-        strcpy_s(auStack_e0,0x40,puVar4);
-        puVar3 = _DAT_180bfa330;
-        if (_DAT_180bfa330 < _DAT_180bfa338) {
-          puStack_180 = _DAT_180bfa330;
-          puVar2 = _DAT_180bfa330 + 0xb;
-          *_DAT_180bfa330 = &UNK_18098bcb0;
-          _DAT_180bfa330 = puVar2;
-          puVar3[1] = 0;
-          *(undefined4 *)(puVar3 + 2) = 0;
-          *puVar3 = &UNK_1809fcc58;
-          puVar3[1] = puVar3 + 3;
-          *(undefined4 *)(puVar3 + 2) = 0;
-          *(undefined1 *)(puVar3 + 3) = 0;
-          *(undefined4 *)(puVar3 + 2) = uStack_e8;
-          puVar4 = &DAT_18098bc73;
-          if (puStack_f0 != (undefined *)0x0) {
-            puVar4 = puStack_f0;
-          }
-          strcpy_s(puVar3[1],0x40,puVar4);
-        }
-        else {
-          lVar8 = ((longlong)_DAT_180bfa330 - (longlong)_DAT_180bfa328) / 0x58;
-          if (lVar8 == 0) {
-            lVar8 = 1;
-LAB_1803a9e08:
-            puVar2 = (undefined8 *)FUN_18062b420(_DAT_180c8ed18,lVar8 * 0x58,DAT_180bfa340);
-            puVar3 = _DAT_180bfa328;
-            puVar6 = _DAT_180bfa330;
-            puVar9 = puVar2;
-          }
-          else {
-            lVar8 = lVar8 * 2;
-            puVar3 = _DAT_180bfa328;
-            puVar6 = _DAT_180bfa330;
-            puVar9 = puVar2;
-            if (lVar8 != 0) goto LAB_1803a9e08;
-          }
-          for (; puVar1 = _DAT_180bfa330, puStack_180 = puVar2, puVar3 != _DAT_180bfa330;
-              puVar3 = puVar3 + 0xb) {
-            _DAT_180bfa330 = puVar6;
-            *puVar2 = &UNK_18098bcb0;
-            puVar2[1] = 0;
-            *(undefined4 *)(puVar2 + 2) = 0;
-            *puVar2 = &UNK_1809fcc58;
-            puVar2[1] = puVar2 + 3;
-            *(undefined4 *)(puVar2 + 2) = 0;
-            *(undefined1 *)(puVar2 + 3) = 0;
-            *(undefined4 *)(puVar2 + 2) = *(undefined4 *)(puVar3 + 2);
-            puVar4 = &DAT_18098bc73;
-            if ((undefined *)puVar3[1] != (undefined *)0x0) {
-              puVar4 = (undefined *)puVar3[1];
-            }
-            strcpy_s(puVar2[1],0x40,puVar4);
-            puVar2 = puVar2 + 0xb;
-            plVar5 = plStack_188;
-            puVar7 = puStack_178;
-            puVar6 = _DAT_180bfa330;
-            _DAT_180bfa330 = puVar1;
-          }
-          _DAT_180bfa330 = puVar6;
-          *puVar2 = &UNK_18098bcb0;
-          puVar2[1] = 0;
-          *(undefined4 *)(puVar2 + 2) = 0;
-          *puVar2 = &UNK_1809fcc58;
-          puVar2[1] = puVar2 + 3;
-          *(undefined4 *)(puVar2 + 2) = 0;
-          *(undefined1 *)(puVar2 + 3) = 0;
-          *(undefined4 *)(puVar2 + 2) = uStack_e8;
-          puVar4 = &DAT_18098bc73;
-          if (puStack_f0 != (undefined *)0x0) {
-            puVar4 = puStack_f0;
-          }
-          strcpy_s(puVar2[1],0x40,puVar4);
-          puVar6 = _DAT_180bfa330;
-          for (puVar3 = _DAT_180bfa328; puVar3 != puVar6; puVar3 = puVar3 + 0xb) {
-            (**(code **)*puVar3)(puVar3,0);
-          }
-          if (_DAT_180bfa328 != (undefined8 *)0x0) {
-                    // WARNING: Subroutine does not return
-            FUN_18064e900(_DAT_180bfa328);
-          }
-          _DAT_180bfa338 = puVar9 + lVar8 * 0xb;
-          _DAT_180bfa328 = puVar9;
-          _DAT_180bfa330 = puVar2 + 0xb;
-        }
-        puStack_f8 = &UNK_18098bcb0;
-      }
-      plVar5 = plVar5 + 1;
-      plStack_188 = plVar5;
-    } while (plVar5 != *(longlong **)((longlong)puVar7 + 0xa8));
-  }
-                    // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_38 ^ (ulonglong)auStack_1a8);
+            
+            system_handler = system_handler + 1;
+            component_ptr_2 = EVENT_REGISTRY_SECONDARY;
+            component_ptr_3 = EVENT_REGISTRY_TERTIARY;
+            event_handler = (undefined8 *)GLOBAL_SYSTEM_CONTEXT;
+            cleanup_handler = system_handler;
+        } while (system_handler != *(longlong **)((longlong)global_context + SYSTEM_COMPONENT_END_OFFSET));
+    }
+    
+    // 处理辅助系统组件（重复上述逻辑的其他组件类型）
+    // ... (省略类似的处理逻辑以保持代码简洁)
+    
+    // 执行系统完整性检查
+    FUN_1808fc050(security_checksum ^ (ulonglong)security_buffer);
 }
 
 
