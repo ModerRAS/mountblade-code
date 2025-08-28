@@ -1,6 +1,41 @@
 #include "TaleWorlds.Native.Split.h"
 
 // 03_rendering_part080.c - 3 个函数
+// 渲染系统高级处理模块
+
+// 渲染系统全局常量
+#define RENDERING_CONTEXT_GLOBAL    0x180c86920
+#define RENDERING_SHADER_CONTEXT    0x180c868d0
+#define RENDERING_STATE_CONTEXT     0x180c86950
+#define RENDERING_BUFFER_CONTEXT    0x180c86870
+#define RENDERING_TIME_DELTA        0x180bf3ff8
+#define RENDERING_PI_CONSTANT       0x180a401f0
+
+// 渲染操作码常量
+#define RENDER_OPCODE_DEPTH_TEST   0xde
+#define RENDER_OPCODE_TRANSFORM    0xdf
+#define RENDER_OPCODE_POSITION_X   0xe8
+#define RENDER_OPCODE_POSITION_Y   0xe9
+#define RENDER_OPCODE_ROTATION      0xea
+#define RENDER_OPCODE_ROTATION_INV  0xeb
+#define RENDER_OPCODE_COLOR_R       0xec
+#define RENDER_OPCODE_COLOR_G       0xed
+#define RENDER_OPCODE_COLOR_B       0xee
+#define RENDER_OPCODE_ALPHA         0xef
+
+// 渲染状态常量
+#define RENDER_STATE_VISIBLE       0xe7
+#define RENDER_STATE_TRANSPARENT   0xfe
+#define RENDER_STATE_OPAQUE        0xff
+
+// 函数声明
+void rendering_system_execute_render_command(undefined8 param_1, undefined1 *param_2);
+void rendering_system_cleanup_render_context(ulonglong param_1);
+void rendering_system_update_collision_data(void);
+void rendering_system_update_vertex_buffer(undefined8 param_1, undefined8 param_2);
+void rendering_system_apply_material(undefined4 param_1, void *param_2, undefined8 param_3, undefined8 param_4, undefined4 param_5);
+void rendering_system_check_render_state(undefined4 param_1, void *param_2);
+void rendering_system_finalize_render(ulonglong param_1);
 
 // 函数: void rendering_system_process_render_data(void)
 // 渲染系统数据处理函数
