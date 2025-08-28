@@ -244,13 +244,13 @@ void FUN_1800fe640(uint64_t param_1,longlong *param_2,longlong param_3)
   int8_t auVar148 [16];
   int8_t auVar152 [16];
   int32_t uVar176;
-  undefined6 uVar177;
+  uint8_t uVar177;
   uint64_t uVar178;
   int8_t auVar179 [12];
   int8_t auVar180 [14];
   int8_t auVar183 [16];
   int32_t uVar224;
-  undefined6 uVar225;
+  uint8_t uVar225;
   uint64_t uVar226;
   int8_t auVar227 [12];
   int8_t auVar228 [14];

@@ -140,7 +140,7 @@ void FUN_18069ca80(longlong param_1,int param_2,int8_t (*param_3) [16])
   int8_t uVar109;
   int8_t uVar111;
   int32_t uVar114;
-  undefined6 uVar115;
+  uint8_t uVar115;
   uint64_t uVar116;
   int8_t auVar117 [12];
   int8_t auVar118 [14];

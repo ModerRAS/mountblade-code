@@ -61,7 +61,7 @@ void FUN_1805a97d0(uint64_t param_1,longlong param_2,int param_3,int param_4,uin
   int32_t uStack_1a0;
   int32_t uStack_19c;
   int16_t uStack_198;
-  undefined6 uStack_196;
+  uint8_t uStack_196;
   uint64_t uStack_190;
   uint64_t uStack_188;
   uint uStack_180;

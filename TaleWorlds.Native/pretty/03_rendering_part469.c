@@ -1290,7 +1290,7 @@ void FUN_18051d060(longlong param_1,byte param_2,int param_3)
   uint64_t uStack_f8;
   uint64_t uStack_f0;
   int16_t uStack_e8;
-  undefined6 uStack_e6;
+  uint8_t uStack_e6;
   uint64_t uStack_d8;
   uint64_t uStack_c8;
   uint64_t uStack_c0;

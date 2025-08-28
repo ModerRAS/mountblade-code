@@ -106,7 +106,7 @@ LAB_18039466d:
     if ((char)(uVar11 >> 8) < '\0') {
       uVar8 = uVar8 | 0x8000;
     }
-    uStack_108._2_6_ = (undefined6)(uVar11 >> 0x10);
+    uStack_108._2_6_ = (uint8_t)(uVar11 >> 0x10);
     uStack_108 = CONCAT62(uStack_108._2_6_,uVar8) | 0x8000;
     uStack_118 = uVar11;
     lStack_110 = param_2;

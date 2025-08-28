@@ -187,7 +187,7 @@ void FUN_180673220(longlong param_1,longlong *param_2)
   short sVar17;
   short sVar18;
   short sVar19;
-  undefined6 uVar20;
+  uint8_t uVar20;
   int8_t auVar21 [16];
   ushort uVar22;
   ushort uVar23;

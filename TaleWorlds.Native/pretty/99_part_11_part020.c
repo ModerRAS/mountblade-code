@@ -369,7 +369,7 @@ void FUN_1806efd3c(longlong *param_1)
   char *in_stack_00000070;
   char *in_stack_00000078;
   int16_t uStack0000000000000080;
-  undefined6 uStack0000000000000082;
+  uint8_t uStack0000000000000082;
   uint uVar8;
   
   pcVar9 = in_stack_00000078;
@@ -454,7 +454,7 @@ void FUN_1806efd69(longlong *param_1)
   longlong *in_stack_00000060;
   char *in_stack_00000070;
   int16_t uStack0000000000000080;
-  undefined6 uStack0000000000000082;
+  uint8_t uStack0000000000000082;
   
   uVar1 = unaff_ESI;
   if (*unaff_RBP != (char)unaff_ESI) {

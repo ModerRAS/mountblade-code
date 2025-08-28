@@ -291,7 +291,7 @@ void FUN_1800fe720(void)
   int8_t auVar106 [16];
   int8_t auVar107 [16];
   int32_t uVar125;
-  undefined6 uVar126;
+  uint8_t uVar126;
   uint64_t uVar127;
   int8_t auVar128 [12];
   int8_t auVar129 [14];
@@ -314,7 +314,7 @@ void FUN_1800fe720(void)
   int8_t auVar216 [14];
   int8_t auVar217 [16];
   int32_t uVar227;
-  undefined6 uVar228;
+  uint8_t uVar228;
   uint64_t uVar229;
   int8_t auVar230 [12];
   int8_t auVar231 [14];

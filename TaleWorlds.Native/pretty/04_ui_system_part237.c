@@ -748,7 +748,7 @@ void FUN_180803cf0(longlong param_1,int param_2,uint64_t param_3,int *param_4,in
   int16_t uStack_5e;
   uint uStack_5c;
   int16_t uStack_58;
-  undefined6 uStack_56;
+  uint8_t uStack_56;
   uint64_t uStack_50;
   ulonglong uStack_48;
   
