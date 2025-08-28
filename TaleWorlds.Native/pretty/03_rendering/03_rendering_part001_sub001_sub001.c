@@ -1,7 +1,6 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 03_rendering_part001_sub001_sub001.c - 渲染系统基础函数 (251 个函数)
-// 本文件包含渲染系统的核心基础函数，主要负责渲染管线的基础设置和管理
+// 03_rendering_part001_sub001_sub001.c - 251 个函数
 
 #include "TaleWorlds.Native.Split.h"
 
@@ -18,70 +17,67 @@
 
 
 
-// 函数: 初始化渲染设备
-// 负责设置和初始化渲染设备，为后续渲染操作做准备
-undefined initialize_render_device;
-undefined UNK_180a01310;  // 渲染设备配置参数
+// 函数: undefined FUN_180627850;
+undefined FUN_180627850;
+undefined UNK_180a01310;
 
 
 
 
-// 函数: 创建渲染上下文
-// 负责创建渲染上下文，管理渲染状态和资源
-undefined create_render_context;
-undefined UNK_180277e10;  // 上下文配置结构
-undefined UNK_180a01378;  // 渲染格式设置
-undefined UNK_180a01360;  // 上下文属性
-undefined UNK_180a16bd0;  // 渲染状态标志
-undefined DAT_180c8aa08;  // 全局渲染状态
-undefined UNK_180a01340;  // 上下文初始化参数
-undefined UNK_180a013a8;  // 渲染设备引用
-undefined UNK_180a013b8;  // 上下文句柄
-undefined UNK_180049530;  // 渲染目标设置
-undefined UNK_180093fa0;  // 视口配置
-undefined UNK_180093fc0;  // 裁剪区域
-undefined UNK_180093fd0;  // 深度缓冲设置
-undefined UNK_180a013b0;  // 模板缓冲配置
-undefined UNK_180a013e0;  // 上下文扩展参数
+// 函数: undefined FUN_180627b90;
+undefined FUN_180627b90;
+undefined UNK_180277e10;
+undefined UNK_180a01378;
+undefined UNK_180a01360;
+undefined UNK_180a16bd0;
+undefined DAT_180c8aa08;
+undefined UNK_180a01340;
+undefined UNK_180a013a8;
+undefined UNK_180a013b8;
+undefined UNK_180049530;
+undefined UNK_180093fa0;
+undefined UNK_180093fc0;
+undefined UNK_180093fd0;
+undefined UNK_180a013b0;
+undefined UNK_180a013e0;
 
 
 
 
-// 函数: 设置渲染管线
-// 负责配置渲染管线状态，包括着色器、混合模式、光栅化等设置
-undefined setup_render_pipeline;
-undefined DAT_180c8a988;  // 管线配置结构
-undefined UNK_180a04f28;  // 顶点着色器设置
-undefined UNK_180a04f58;  // 片段着色器设置
-undefined DAT_180a02bf0;  // 着色器程序
-undefined DAT_180a03fc0;  // 着色器参数
-undefined UNK_180a04f68;  // 混合模式设置
-undefined UNK_180a04f70;  // 深度测试设置
-undefined UNK_180a04f78;  // 模板测试设置
-undefined UNK_180a04f80;  // 裁剪模式设置
-undefined UNK_180a04f88;  // 多边形模式设置
-undefined UNK_180a04f90;  // 线宽设置
-undefined UNK_180a04fd4;  // 点大小设置
-undefined UNK_180a04f98;  // 前面剔除设置
-undefined UNK_1803cfb60;  // 背面剔除设置
-undefined UNK_180a24148;  // 光栅化状态
-undefined UNK_180a05068;  // 多重采样设置
-undefined UNK_180a05088;  // 采样器状态
-undefined UNK_180a05010;  // 纹理绑定设置
-undefined UNK_180a05038;  // 缓冲区绑定设置
-undefined UNK_180a05050;  // 顶点属性设置
-undefined UNK_180a23df0;  // 变换反馈设置
-undefined UNK_180a050a8;  // 几何着色器设置
-undefined UNK_180a04ff8;  // 细分控制着色器设置
-undefined UNK_180a05240;  // 细分评估着色器设置
-undefined UNK_180a051b0;  // 计算着色器设置
-undefined UNK_180a05178;  // 着色器存储缓冲区
-undefined UNK_180a173b0;  // 原子计数器设置
-undefined UNK_180a05158;  // 变换缓冲区设置
-undefined UNK_180a05168;  // 查询对象设置
-undefined UNK_180a05128;  // 同步对象设置
-undefined UNK_180a05148;  // 条件渲染设置
-undefined UNK_180a05138;  // 管线缓存设置
+// 函数: undefined FUN_180627ae0;
+undefined FUN_180627ae0;
+undefined DAT_180c8a988;
+undefined UNK_180a04f28;
+undefined UNK_180a04f58;
+undefined DAT_180a02bf0;
+undefined DAT_180a03fc0;
+undefined UNK_180a04f68;
+undefined UNK_180a04f70;
+undefined UNK_180a04f78;
+undefined UNK_180a04f80;
+undefined UNK_180a04f88;
+undefined UNK_180a04f90;
+undefined UNK_180a04fd4;
+undefined UNK_180a04f98;
+undefined UNK_1803cfb60;
+undefined UNK_180a24148;
+undefined UNK_180a05068;
+undefined UNK_180a05088;
+undefined UNK_180a05010;
+undefined UNK_180a05038;
+undefined UNK_180a05050;
+undefined UNK_180a23df0;
+undefined UNK_180a050a8;
+undefined UNK_180a04ff8;
+undefined UNK_180a05240;
+undefined UNK_180a051b0;
+undefined UNK_180a05178;
+undefined UNK_180a173b0;
+undefined UNK_180a05158;
+undefined UNK_180a05168;
+undefined UNK_180a05128;
+undefined UNK_180a05148;
+undefined UNK_180a05138;
 
 
 

@@ -1,3 +1,15 @@
+// 02_core_engine_part015.c - 核心引擎模块第15部分 - 资源管理系统
+// 
+// 本文件包含23个函数，主要负责：
+// - 资源管理器的初始化、清理和重置
+// - 资源的分配、释放和合并
+// - 资源事件的监控和处理
+// - 资源缓存的维护和管理
+// - 资源回调函数的执行
+//
+// 简化说明：为提高代码可读性，函数已重命名为语义化名称，
+//          并添加了中文注释说明功能。部分复杂算法进行了简化处理。
+
 #include "TaleWorlds.Native.Split.h"
 
 // 02_core_engine_part015.c - 核心引擎模块第15部分 - 23个函数
@@ -273,150 +285,188 @@ void initialize_system_configuration(void)
 
 
 
-// 函数: void FUN_180056150(longlong param_1)
-void FUN_180056150(longlong param_1)
+// 函数: void merge_and_deduplicate_resources(longlong resource_container)
+// 功能: 合并和去重资源容器中的资源项
+// 原本实现: 这是一个复杂的资源合并算法，比较资源标识符和名称，合并重复项
+// 简化实现: 保留核心功能，但简化了复杂的比较逻辑
+void merge_and_deduplicate_resources(longlong resource_container)
 
 {
-  char cVar1;
-  char cVar2;
-  int iVar3;
-  undefined8 *puVar4;
-  ulonglong uVar5;
-  int iVar6;
-  char *pcVar7;
-  longlong *plVar8;
-  longlong lVar9;
-  ulonglong uVar10;
-  longlong lVar11;
-  longlong lVar12;
-  int iVar13;
-  longlong lVar14;
-  int iVar15;
-  longlong lVar16;
-  int iVar17;
-  ulonglong uVar18;
-  int iVar19;
-  bool bVar20;
+  char char1, char2;
+  int resource_type1, resource_type2;
+  undefined8 *resource_ptr;
+  ulonglong array_size;
+  int match_index;
+  char *resource_name1, *resource_name2;
+  longlong *sub_resource_array;
+  longlong array_end, array_start;
+  int outer_index, inner_index;
+  longlong current_offset, compare_offset;
+  int found_index;
+  longlong resource_data;
+  ulonglong current_index;
+  longlong name_length;
+  longlong array_base;
+  int loop_counter1, loop_counter2;
+  longlong offset1, offset2;
+  int resource_count;
+  int current_pos;
+  bool is_match;
   
-  uVar10 = 0;
-  lVar9 = *(longlong *)(param_1 + 0x50);
-  lVar12 = *(longlong *)(param_1 + 0x48);
-  if (lVar9 - lVar12 >> 3 != 0) {
-    iVar19 = 1;
-    lVar16 = 8;
-    uVar18 = uVar10;
+  current_index = 0;
+  array_end = *(longlong *)(resource_container + 0x50);
+  array_start = *(longlong *)(resource_container + 0x48);
+  
+  // 检查数组是否为空
+  if ((array_end - array_start) >> 3 != 0) {
+    resource_count = 1;
+    offset1 = 8;
+    offset2 = current_index;
+    
     do {
-      iVar17 = (int)uVar10;
-      iVar6 = -1;
-      if ((ulonglong)(longlong)iVar19 < (ulonglong)(lVar9 - lVar12 >> 3)) {
-        lVar9 = *(longlong *)(param_1 + 0x50);
-        lVar14 = lVar16;
-        iVar13 = iVar19;
-        iVar15 = -1;
+      current_pos = (int)current_index;
+      match_index = -1;
+      
+      // 内层循环：查找匹配的资源
+      if ((ulonglong)(longlong)resource_count < (ulonglong)((array_end - array_start) >> 3)) {
+        array_end = *(longlong *)(resource_container + 0x50);
+        current_offset = offset1;
+        inner_index = resource_count;
+        found_index = -1;
+        
         do {
-          iVar6 = *(int *)(*(longlong *)(lVar14 + lVar12) + 0x10);
-          iVar3 = *(int *)(*(longlong *)(uVar18 + lVar12) + 0x10);
-          if (iVar6 == iVar3) {
-            if (iVar6 == 0) {
-LAB_180056220:
-              if (iVar3 != 0) goto LAB_180056228;
-              bVar20 = true;
+          // 获取资源类型进行比较
+          resource_type1 = *(int *)(*(longlong *)(current_offset + array_start) + 0x10);
+          resource_type2 = *(int *)(*(longlong *)(offset2 + array_start) + 0x10);
+          
+          if (resource_type1 == resource_type2) {
+            if (resource_type1 == 0) {
+              // 空类型资源的特殊处理
+              if (resource_type2 != 0) {
+                is_match = false;
+              } else {
+                is_match = true;
+              }
             }
             else {
-              pcVar7 = *(char **)(*(longlong *)(lVar14 + lVar12) + 8);
-              lVar11 = *(longlong *)(*(longlong *)(uVar18 + lVar12) + 8) - (longlong)pcVar7;
+              // 比较资源名称字符串
+              resource_name1 = *(char **)(*(longlong *)(current_offset + array_start) + 8);
+              name_length = *(longlong *)(*(longlong *)(offset2 + array_start) + 8) - (longlong)resource_name1;
+              
               do {
-                cVar1 = *pcVar7;
-                cVar2 = pcVar7[lVar11];
-                if (cVar1 != cVar2) break;
-                pcVar7 = pcVar7 + 1;
-              } while (cVar2 != '\0');
-              bVar20 = cVar1 == cVar2;
+                char1 = *resource_name1;
+                char2 = resource_name1[name_length];
+                if (char1 != char2) break;
+                resource_name1 = resource_name1 + 1;
+              } while (char2 != '\0');
+              
+              is_match = char1 == char2;
             }
           }
           else {
-            if (iVar6 == 0) goto LAB_180056220;
-LAB_180056228:
-            bVar20 = false;
-          }
-          iVar6 = iVar13;
-          if (!bVar20) {
-            iVar6 = iVar15;
-          }
-          iVar13 = iVar13 + 1;
-          lVar14 = lVar14 + 8;
-          iVar15 = iVar6;
-        } while ((ulonglong)(longlong)iVar13 < (ulonglong)(lVar9 - lVar12 >> 3));
-      }
-      if (iVar6 != -1) {
-        lVar14 = (longlong)iVar6;
-        lVar9 = *(longlong *)(lVar12 + lVar14 * 8);
-        *(double *)(*(longlong *)(uVar18 + lVar12) + 0x40) =
-             *(double *)(lVar9 + 0x40) + *(double *)(*(longlong *)(uVar18 + lVar12) + 0x40);
-        plVar8 = *(longlong **)(lVar9 + 0x48);
-        if (plVar8 != *(longlong **)(lVar9 + 0x50)) {
-          lVar12 = *(longlong *)(param_1 + 0x48);
-          do {
-            *(undefined8 *)(*plVar8 + 0x68) = *(undefined8 *)(uVar18 + lVar12);
-            plVar8 = plVar8 + 1;
-            lVar12 = *(longlong *)(param_1 + 0x48);
-          } while (plVar8 != *(longlong **)(*(longlong *)(lVar12 + lVar14 * 8) + 0x50));
-        }
-        lVar9 = *(longlong *)(lVar12 + lVar14 * 8);
-        FUN_180058a20(*(longlong *)(uVar18 + lVar12) + 0x48,
-                      *(undefined8 *)(*(longlong *)(uVar18 + lVar12) + 0x50),
-                      *(undefined8 *)(lVar9 + 0x48),*(undefined8 *)(lVar9 + 0x50));
-        lVar9 = *(longlong *)(*(longlong *)(param_1 + 0x48) + lVar14 * 8);
-        *(undefined8 *)(lVar9 + 0x50) = *(undefined8 *)(lVar9 + 0x48);
-        FUN_180056150(*(undefined8 *)(uVar18 + *(longlong *)(param_1 + 0x48)));
-        FUN_180056410(*(undefined8 *)(*(longlong *)(param_1 + 0x48) + lVar14 * 8));
-        puVar4 = *(undefined8 **)(*(longlong *)(param_1 + 0x48) + lVar14 * 8);
-        if (puVar4 != (undefined8 *)0x0) {
-          if (puVar4[9] != 0) {
-                    // WARNING: Subroutine does not return
-            FUN_18064e900();
-          }
-          puVar4[4] = &UNK_180a3c3e0;
-          if (puVar4[5] == 0) {
-            puVar4[5] = 0;
-            *(undefined4 *)(puVar4 + 7) = 0;
-            puVar4[4] = &UNK_18098bcb0;
-            *puVar4 = &UNK_180a3c3e0;
-            if (puVar4[1] == 0) {
-              puVar4[1] = 0;
-              *(undefined4 *)(puVar4 + 3) = 0;
-              *puVar4 = &UNK_18098bcb0;
-                    // WARNING: Subroutine does not return
-              FUN_18064e900(puVar4);
+            if (resource_type1 == 0) {
+              is_match = false;
+            } else {
+              is_match = false;
             }
-                    // WARNING: Subroutine does not return
+          }
+          
+          match_index = inner_index;
+          if (!is_match) {
+            match_index = found_index;
+          }
+          
+          inner_index = inner_index + 1;
+          current_offset = current_offset + 8;
+          found_index = match_index;
+        } while ((ulonglong)(longlong)inner_index < (ulonglong)((array_end - array_start) >> 3));
+      }
+      
+      // 如果找到匹配项，合并资源
+      if (match_index != -1) {
+        current_offset = (longlong)match_index;
+        array_end = *(longlong *)(array_start + current_offset * 8);
+        
+        // 合并资源数据（例如：累加数值）
+        *(double *)(*(longlong *)(offset2 + array_start) + 0x40) = 
+             *(double *)(array_end + 0x40) + *(double *)(*(longlong *)(offset2 + array_start) + 0x40);
+        
+        // 处理子资源数组
+        sub_resource_array = *(longlong **)(array_end + 0x48);
+        if (sub_resource_array != *(longlong **)(array_end + 0x50)) {
+          array_base = *(longlong *)(resource_container + 0x48);
+          do {
+            *(undefined8 *)(*sub_resource_array + 0x68) = *(undefined8 *)(offset2 + array_base);
+            sub_resource_array = sub_resource_array + 1;
+            array_base = *(longlong *)(resource_container + 0x48);
+          } while (sub_resource_array != *(longlong **)(*(longlong *)(array_base + current_offset * 8) + 0x50));
+        }
+        
+        // 合并资源数据结构
+        array_end = *(longlong *)(array_base + current_offset * 8);
+        FUN_180058a20(*(longlong *)(offset2 + array_base) + 0x48,
+                      *(undefined8 *)(*(longlong *)(offset2 + array_base) + 0x50),
+                      *(undefined8 *)(array_end + 0x48), *(undefined8 *)(array_end + 0x50));
+        
+        // 递归处理子资源
+        array_end = *(longlong *)(*(longlong *)(resource_container + 0x48) + current_offset * 8);
+        *(undefined8 *)(array_end + 0x50) = *(undefined8 *)(array_end + 0x48);
+        FUN_180056150(*(undefined8 *)(offset2 + *(longlong *)(resource_container + 0x48)));
+        cleanup_resource_array(*(undefined8 *)(*(longlong *)(resource_container + 0x48) + current_offset * 8));
+        
+        // 清理重复资源
+        resource_ptr = *(undefined8 **)(*(longlong *)(resource_container + 0x48) + current_offset * 8);
+        if (resource_ptr != (undefined8 *)0x0) {
+          // 资源清理逻辑
+          if (resource_ptr[9] != 0) {
             FUN_18064e900();
           }
-                    // WARNING: Subroutine does not return
+          
+          // 重置资源指针
+          resource_ptr[4] = &UNK_180a3c3e0;
+          if (resource_ptr[5] == 0) {
+            resource_ptr[5] = 0;
+            *(undefined4 *)(resource_ptr + 7) = 0;
+            resource_ptr[4] = &UNK_18098bcb0;
+            *resource_ptr = &UNK_180a3c3e0;
+            
+            if (resource_ptr[1] == 0) {
+              resource_ptr[1] = 0;
+              *(undefined4 *)(resource_ptr + 3) = 0;
+              *resource_ptr = &UNK_18098bcb0;
+              FUN_18064e900(resource_ptr);
+            }
+            FUN_18064e900();
+          }
           FUN_18064e900();
         }
-        *(undefined8 *)(*(longlong *)(param_1 + 0x48) + lVar14 * 8) = 0;
-        lVar9 = *(longlong *)(param_1 + 0x48) + lVar14 * 8;
-        uVar10 = lVar9 + 8;
-        uVar5 = *(ulonglong *)(param_1 + 0x50);
-        if (uVar10 < uVar5) {
-                    // WARNING: Subroutine does not return
-          memmove(lVar9,uVar10,uVar5 - uVar10);
+        
+        // 从数组中移除重复项
+        *(undefined8 *)(*(longlong *)(resource_container + 0x48) + current_offset * 8) = 0;
+        array_end = *(longlong *)(resource_container + 0x48) + current_offset * 8;
+        current_index = array_end + 8;
+        array_size = *(ulonglong *)(resource_container + 0x50);
+        
+        if (current_index < array_size) {
+          memmove(array_end, current_index, array_size - current_index);
         }
-        lVar9 = uVar5 - 8;
-        *(longlong *)(param_1 + 0x50) = lVar9;
-        iVar17 = iVar17 + -1;
-        iVar19 = iVar19 + -1;
-        uVar18 = uVar18 - 8;
-        lVar16 = lVar16 + -8;
+        
+        array_end = array_size - 8;
+        *(longlong *)(resource_container + 0x50) = array_end;
+        current_pos = current_pos + -1;
+        resource_count = resource_count + -1;
+        offset2 = offset2 - 8;
+        offset1 = offset1 + -8;
       }
-      uVar10 = (ulonglong)(iVar17 + 1U);
-      iVar19 = iVar19 + 1;
-      uVar18 = uVar18 + 8;
-      lVar16 = lVar16 + 8;
-      lVar12 = *(longlong *)(param_1 + 0x48);
-    } while ((ulonglong)(longlong)(int)(iVar17 + 1U) < (ulonglong)(lVar9 - lVar12 >> 3));
+      
+      current_index = (ulonglong)(current_pos + 1U);
+      resource_count = resource_count + 1;
+      offset2 = offset2 + 8;
+      offset1 = offset1 + 8;
+      array_start = *(longlong *)(resource_container + 0x48);
+    } while ((ulonglong)(longlong)(int)(current_pos + 1U) < (ulonglong)((array_end - array_start) >> 3));
   }
+  
   return;
 }
 
@@ -426,8 +476,8 @@ LAB_180056228:
 
 
 
-// 函数: void FUN_180056410(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-void FUN_180056410(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+// 函数: void cleanup_resource_array(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+void cleanup_resource_array(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
   ulonglong *puVar1;
@@ -449,7 +499,7 @@ void FUN_180056410(longlong param_1,undefined8 param_2,undefined8 param_3,undefi
   uVar8 = uVar3;
   if ((longlong)(*(longlong *)(param_1 + 0x50) - uVar4) >> 3 != 0) {
     do {
-      FUN_180056410(*(undefined8 *)(uVar4 + uVar5));
+      cleanup_resource_array(*(undefined8 *)(uVar4 + uVar5));
       puVar2 = *(undefined8 **)(*puVar1 + uVar5);
       if (puVar2 != (undefined8 *)0x0) {
         if (puVar2[9] != 0) {
@@ -515,8 +565,8 @@ void FUN_180056410(longlong param_1,undefined8 param_2,undefined8 param_3,undefi
 
 
 
-// 函数: void FUN_1800565f0(longlong *param_1)
-void FUN_1800565f0(longlong *param_1)
+// 函数: void initialize_resource_handler(longlong *param_1)
+void initialize_resource_handler(longlong *param_1)
 
 {
   undefined8 *puVar1;
@@ -579,7 +629,7 @@ void FUN_1800565f0(longlong *param_1)
 
 
 
-undefined8 FUN_1800567c0(undefined8 param_1,ulonglong param_2,undefined8 param_3,undefined8 param_4)
+undefined8 free_resource_memory(undefined8 param_1,ulonglong param_2,undefined8 param_3,undefined8 param_4)
 
 {
   undefined8 uVar1;
@@ -598,8 +648,8 @@ undefined8 FUN_1800567c0(undefined8 param_1,ulonglong param_2,undefined8 param_3
 
 
 
-// 函数: void FUN_180056810(longlong param_1)
-void FUN_180056810(longlong param_1)
+// 函数: void monitor_resource_performance(longlong param_1)
+void monitor_resource_performance(longlong param_1)
 
 {
   uint uVar1;
@@ -738,8 +788,8 @@ void FUN_180056810(longlong param_1)
 
 
 
-// 函数: void FUN_180056b30(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-void FUN_180056b30(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+// 函数: void shutdown_resource_system(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+void shutdown_resource_system(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
   longlong lVar1;
@@ -784,8 +834,8 @@ void FUN_180056b30(undefined8 param_1,undefined8 param_2,undefined8 param_3,unde
 
 
 
-// 函数: void FUN_180056c50(undefined8 param_1,undefined8 *param_2,undefined4 param_3)
-void FUN_180056c50(undefined8 param_1,undefined8 *param_2,undefined4 param_3)
+// 函数: void process_resource_event(undefined8 param_1,undefined8 *param_2,undefined4 param_3)
+void process_resource_event(undefined8 param_1,undefined8 *param_2,undefined4 param_3)
 
 {
   undefined8 uVar1;
@@ -849,7 +899,7 @@ void FUN_180056c50(undefined8 param_1,undefined8 *param_2,undefined4 param_3)
 
 
 
-undefined8 * FUN_180056de0(undefined8 *param_1)
+undefined8 * initialize_resource_buffer(undefined8 *param_1)
 
 {
   *param_1 = 0;
@@ -861,7 +911,7 @@ undefined8 * FUN_180056de0(undefined8 *param_1)
 
 
 
-undefined8 * FUN_180056e10(undefined8 *param_1)
+undefined8 * reset_resource_buffer(undefined8 *param_1)
 
 {
   *param_1 = 0;
@@ -875,17 +925,17 @@ undefined8 * FUN_180056e10(undefined8 *param_1)
 
 
 
-// 函数: void FUN_180056e40(void)
-void FUN_180056e40(void)
+// 函数: void trigger_resource_initialization(void)
+void trigger_resource_initialization(void)
 
 {
-  FUN_180057010();
+  clear_resource_cache();
   return;
 }
 
 
 
-undefined8 * FUN_180056e60(undefined8 *param_1)
+undefined8 * setup_resource_allocator(undefined8 *param_1)
 
 {
   *param_1 = 0;
@@ -897,7 +947,7 @@ undefined8 * FUN_180056e60(undefined8 *param_1)
 
 
 
-undefined8 * FUN_180056e90(undefined8 *param_1)
+undefined8 * configure_resource_manager(undefined8 *param_1)
 
 {
   undefined8 *puVar1;
@@ -921,7 +971,7 @@ undefined8 * FUN_180056e90(undefined8 *param_1)
 
 
 
-longlong * FUN_180056f10(longlong *param_1,longlong *param_2)
+longlong * update_resource_pointer(longlong *param_1,longlong *param_2)
 
 {
   longlong *plVar1;
@@ -941,8 +991,8 @@ longlong * FUN_180056f10(longlong *param_1,longlong *param_2)
 
 
 
-// 函数: void FUN_180056f70(longlong param_1,longlong param_2)
-void FUN_180056f70(longlong param_1,longlong param_2)
+// 函数: void copy_resource_name(longlong param_1,longlong param_2)
+void copy_resource_name(longlong param_1,longlong param_2)
 
 {
   longlong lVar1;
@@ -978,8 +1028,8 @@ void FUN_180056f70(longlong param_1,longlong param_2)
 
 
 
-// 函数: void FUN_180057010(longlong *param_1)
-void FUN_180057010(longlong *param_1)
+// 函数: void clear_resource_cache(longlong *param_1)
+void clear_resource_cache(longlong *param_1)
 
 {
   longlong *plVar1;
@@ -1007,8 +1057,8 @@ void FUN_180057010(longlong *param_1)
 
 
 
-// 函数: void FUN_180057029(longlong param_1)
-void FUN_180057029(longlong param_1)
+// 函数: void cleanup_resource_cache_entry(longlong param_1)
+void cleanup_resource_cache_entry(longlong param_1)
 
 {
   longlong unaff_RSI;
@@ -1034,8 +1084,8 @@ void FUN_180057029(longlong param_1)
 
 
 
-// 函数: void FUN_180057062(void)
-void FUN_180057062(void)
+// 函数: void reset_resource_cache_pointer(void)
+void reset_resource_cache_pointer(void)
 
 {
   longlong unaff_RSI;
@@ -1050,7 +1100,7 @@ void FUN_180057062(void)
 
 
 undefined8 *
-FUN_180057090(undefined8 *param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
+initialize_resource_info(undefined8 *param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
   longlong lVar1;
@@ -1077,8 +1127,8 @@ FUN_180057090(undefined8 *param_1,longlong param_2,undefined8 param_3,undefined8
 
 
 
-// 函数: void FUN_180057110(longlong *param_1)
-void FUN_180057110(longlong *param_1)
+// 函数: void cleanup_resource_callbacks(longlong *param_1)
+void cleanup_resource_callbacks(longlong *param_1)
 
 {
   undefined8 *puVar1;
@@ -1102,8 +1152,8 @@ void FUN_180057110(longlong *param_1)
 
 
 
-// 函数: void FUN_180057170(longlong *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-void FUN_180057170(longlong *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+// 函数: void execute_resource_callbacks(longlong *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+void execute_resource_callbacks(longlong *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
   undefined8 *puVar1;
@@ -1128,8 +1178,8 @@ void FUN_180057170(longlong *param_1,undefined8 param_2,undefined8 param_3,undef
 
 
 
-// 函数: void FUN_1800571e0(longlong *param_1,undefined4 *param_2)
-void FUN_1800571e0(longlong *param_1,undefined4 *param_2)
+// 函数: void add_resource_to_queue(longlong *param_1,undefined4 *param_2)
+void add_resource_to_queue(longlong *param_1,undefined4 *param_2)
 
 {
   longlong lVar1;
@@ -1178,8 +1228,8 @@ LAB_18005726e:
 
 
 
-// 函数: void FUN_1800572d0(longlong param_1)
-void FUN_1800572d0(longlong param_1)
+// 函数: void reset_resource_handler(longlong param_1)
+void reset_resource_handler(longlong param_1)
 
 {
   undefined8 *puVar1;
@@ -1202,8 +1252,8 @@ void FUN_1800572d0(longlong param_1)
 
 
 
-// 函数: void FUN_1800572e6(void)
-void FUN_1800572e6(void)
+// 函数: void cleanup_resource_handler(void)
+void cleanup_resource_handler(void)
 
 {
   FUN_18004b790();
@@ -1215,8 +1265,8 @@ void FUN_1800572e6(void)
 
 
 
-// 函数: void FUN_180057314(void)
-void FUN_180057314(void)
+// 函数: void initialize_resource_node(void)
+void initialize_resource_node(void)
 
 {
   longlong unaff_RBX;
