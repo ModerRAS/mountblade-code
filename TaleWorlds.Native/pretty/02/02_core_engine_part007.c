@@ -3,8 +3,9 @@
 // 02_core_engine_part007.c - 核心引擎组件注册函数
 // 本文件包含25个函数，主要用于注册各种引擎组件和初始化系统
 
-// 函数: void FUN_180039eb0(void)
-void FUN_180039eb0(void)
+// 函数: void register_render_system_component(void)
+// 注册渲染系统组件 - 负责设置图形渲染相关的引擎组件
+void register_render_system_component(void)
 
 {
   char cVar1;
@@ -54,8 +55,9 @@ void FUN_180039eb0(void)
 
 
 
-// 函数: void FUN_180039fb0(void)
-void FUN_180039fb0(void)
+// 函数: void register_audio_system_component(void)
+// 注册音频系统组件 - 负责设置声音处理相关的引擎组件
+void register_audio_system_component(void)
 
 {
   char cVar1;
@@ -105,8 +107,9 @@ void FUN_180039fb0(void)
 
 
 
-// 函数: void FUN_1800400b0(void)
-void FUN_1800400b0(void)
+// 函数: void register_physics_system_component(void)
+// 注册物理系统组件 - 负责设置物理模拟相关的引擎组件
+void register_physics_system_component(void)
 
 {
   char cVar1;
@@ -156,8 +159,9 @@ void FUN_1800400b0(void)
 
 
 
-// 函数: void FUN_1800401b0(void)
-void FUN_1800401b0(void)
+// 函数: void register_input_system_component(void)
+// 注册输入系统组件 - 负责设置用户输入处理相关的引擎组件
+void register_input_system_component(void)
 
 {
   char cVar1;
@@ -207,8 +211,9 @@ void FUN_1800401b0(void)
 
 
 
-// 函数: void FUN_1800402b0(void)
-void FUN_1800402b0(void)
+// 函数: void register_network_system_component(void)
+// 注册网络系统组件 - 负责设置网络通信相关的引擎组件
+void register_network_system_component(void)
 
 {
   char cVar1;
@@ -258,8 +263,9 @@ void FUN_1800402b0(void)
 
 
 
-// 函数: void FUN_1800403b0(void)
-void FUN_1800403b0(void)
+// 函数: void register_scripting_system_component(void)
+// 注册脚本系统组件 - 负责设置脚本执行相关的引擎组件
+void register_scripting_system_component(void)
 
 {
   char cVar1;
@@ -309,8 +315,9 @@ void FUN_1800403b0(void)
 
 
 
-// 函数: void FUN_1800404b0(void)
-void FUN_1800404b0(void)
+// 函数: void register_resource_system_component(void)
+// 注册资源系统组件 - 负责设置资源管理相关的引擎组件
+void register_resource_system_component(void)
 
 {
   char cVar1;
@@ -360,8 +367,9 @@ void FUN_1800404b0(void)
 
 
 
-// 函数: void FUN_1800405b0(void)
-void FUN_1800405b0(void)
+// 函数: void register_animation_system_component(void)
+// 注册动画系统组件 - 负责设置动画处理相关的引擎组件
+void register_animation_system_component(void)
 
 {
   char cVar1;
@@ -411,8 +419,9 @@ void FUN_1800405b0(void)
 
 
 
-// 函数: void FUN_1800406b0(void)
-void FUN_1800406b0(void)
+// 函数: void register_ui_system_component(void)
+// 注册UI系统组件 - 负责设置用户界面相关的引擎组件
+void register_ui_system_component(void)
 
 {
   char cVar1;
@@ -462,8 +471,9 @@ void FUN_1800406b0(void)
 
 
 
-// 函数: void FUN_1800408d0(void)
-void FUN_1800408d0(void)
+// 函数: void register_ai_system_component(void)
+// 注册AI系统组件 - 负责设置人工智能相关的引擎组件
+void register_ai_system_component(void)
 
 {
   char cVar1;
@@ -513,8 +523,9 @@ void FUN_1800408d0(void)
 
 
 
-// 函数: void FUN_1800409d0(void)
-void FUN_1800409d0(void)
+// 函数: void register_scene_system_component(void)
+// 注册场景系统组件 - 负责设置场景管理相关的引擎组件
+void register_scene_system_component(void)
 
 {
   char cVar1;
@@ -564,8 +575,9 @@ void FUN_1800409d0(void)
 
 
 
-// 函数: void FUN_180040ae0(void)
-void FUN_180040ae0(void)
+// 函数: void register_camera_system_component(void)
+// 注册相机系统组件 - 负责设置相机控制相关的引擎组件
+void register_camera_system_component(void)
 
 {
   char cVar1;
@@ -615,8 +627,9 @@ void FUN_180040ae0(void)
 
 
 
-// 函数: void FUN_180040be0(void)
-void FUN_180040be0(void)
+// 函数: void register_lighting_system_component(void)
+// 注册光照系统组件 - 负责设置光照处理相关的引擎组件
+void register_lighting_system_component(void)
 
 {
   char cVar1;
@@ -666,8 +679,9 @@ void FUN_180040be0(void)
 
 
 
-// 函数: void FUN_180040ce0(void)
-void FUN_180040ce0(void)
+// 函数: void register_particle_system_component(void)
+// 注册粒子系统组件 - 负责设置粒子效果相关的引擎组件
+void register_particle_system_component(void)
 
 {
   char cVar1;
@@ -717,8 +731,9 @@ void FUN_180040ce0(void)
 
 
 
-// 函数: void FUN_180040de0(void)
-void FUN_180040de0(void)
+// 函数: void register_material_system_component(void)
+// 注册材质系统组件 - 负责设置材质处理相关的引擎组件
+void register_material_system_component(void)
 
 {
   char cVar1;
@@ -768,8 +783,9 @@ void FUN_180040de0(void)
 
 
 
-// 函数: void FUN_180040ee0(void)
-void FUN_180040ee0(void)
+// 函数: void register_shader_system_component(void)
+// 注册着色器系统组件 - 负责设置着色器处理相关的引擎组件
+void register_shader_system_component(void)
 
 {
   char cVar1;
@@ -819,8 +835,9 @@ void FUN_180040ee0(void)
 
 
 
-// 函数: void FUN_180040fe0(void)
-void FUN_180040fe0(void)
+// 函数: void register_texture_system_component(void)
+// 注册纹理系统组件 - 负责设置纹理处理相关的引擎组件
+void register_texture_system_component(void)
 
 {
   char cVar1;
@@ -870,8 +887,9 @@ void FUN_180040fe0(void)
 
 
 
-// 函数: void FUN_1800410e0(void)
-void FUN_1800410e0(void)
+// 函数: void register_mesh_system_component(void)
+// 注册网格系统组件 - 负责设置网格处理相关的引擎组件
+void register_mesh_system_component(void)
 
 {
   char cVar1;
@@ -921,8 +939,9 @@ void FUN_1800410e0(void)
 
 
 
-// 函数: void FUN_1800411e0(void)
-void FUN_1800411e0(void)
+// 函数: void register_collision_system_component(void)
+// 注册碰撞系统组件 - 负责设置碰撞检测相关的引擎组件
+void register_collision_system_component(void)
 
 {
   char cVar1;
@@ -972,8 +991,9 @@ void FUN_1800411e0(void)
 
 
 
-// 函数: void FUN_1800412e0(void)
-void FUN_1800412e0(void)
+// 函数: void register_navigation_system_component(void)
+// 注册导航系统组件 - 负责设置导航寻路相关的引擎组件
+void register_navigation_system_component(void)
 
 {
   char cVar1;

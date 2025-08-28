@@ -8,134 +8,170 @@
 void BuildProcessIdString(undefined8 param_1,undefined8 param_2,longlong param_3)
 
 {
-  longlong lVar1;
-  longlong lVar2;
-  undefined4 uVar3;
-  int iVar4;
-  uint uVar5;
-  uint uVar6;
-  undefined1 *puVar7;
-  ulonglong uVar8;
-  undefined *puVar9;
-  longlong lVar10;
-  uint uVar11;
-  undefined1 auStack_228 [32];
-  undefined1 uStack_208;
-  undefined4 uStack_1f8;
-  undefined4 uStack_1f4;
-  undefined *puStack_1b0;
-  undefined1 *puStack_1a8;
-  uint uStack_1a0;
-  undefined8 uStack_198;
-  undefined *puStack_f0;
-  longlong lStack_e8;
-  uint uStack_e0;
-  undefined8 uStack_d8;
-  undefined8 uStack_d0;
-  undefined *puStack_c8;
-  undefined8 uStack_c0;
-  undefined4 uStack_b8;
-  undefined8 uStack_b0;
-  undefined1 auStack_88 [32];
-  undefined8 uStack_68;
-  undefined8 uStack_60;
-  char acStack_58 [16];
-  ulonglong uStack_48;
+  longlong buffer_ptr;
+  longlong pid_length;
+  undefined4 process_id;
+  int buffer_size;
+  uint string_length;
+  uint input_length;
+  undefined1 *output_buffer;
+  ulonglong buffer_offset;
+  undefined *format_string_ptr;
+  longlong char_index;
+  uint hash_value;
+  undefined1 stack_guard_228 [32];
+  undefined1 allocation_type;
+  undefined4 operation_type;
+  undefined4 flags;
+  undefined *string_builder_ptr;
+  undefined1 *temp_buffer_ptr;
+  uint buffer_capacity;
+  undefined8 hash_result;
+  undefined *string_stream_ptr;
+  longlong stream_position;
+  uint stream_length;
+  undefined8 context_param;
+  undefined8 param2_copy;
+  undefined *allocator_ptr;
+  undefined8 allocator_context;
+  undefined4 allocator_flags;
+  undefined8 allocation_result;
+  undefined1 stack_guard_88 [32];
+  undefined8 security_cookie;
+  undefined8 param2_copy2;
+  char pid_buffer [16];
+  ulonglong stack_canary;
   
-  uStack_68 = 0xfffffffffffffffe;
-  uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_228;
-  puVar7 = (undefined1 *)0x0;
-  uStack_1f8 = 0;
-  uStack_d0 = param_2;
-  uStack_60 = param_2;
-  uVar3 = GetCurrentProcessId();
-  puStack_f0 = &UNK_180a3c3e0;
-  uStack_d8 = 0;
-  lStack_e8 = 0;
-  uStack_e0 = 0;
-  FUN_1806277c0(&puStack_f0,6);
-  lVar1 = lStack_e8;
-  uVar8 = (ulonglong)uStack_e0;
-  *(undefined4 *)(uVar8 + lStack_e8) = 0x44495020;
-  *(undefined2 *)(uVar8 + 4 + lStack_e8) = 0x203a;
-  *(undefined1 *)(uVar8 + 6 + lStack_e8) = 0;
-  uStack_e0 = 6;
-  FUN_180060680(acStack_58,&UNK_1809fd0a0,uVar3);
-  lVar2 = -1;
+  // 安全检查：设置堆栈安全cookie
+  security_cookie = 0xfffffffffffffffe;
+  stack_canary = GLOBAL_STACK_COOKIE ^ (ulonglong)stack_guard_228;
+  
+  // 初始化变量
+  output_buffer = (undefined1 *)0x0;
+  operation_type = 0;
+  param2_copy = param_2;
+  param2_copy2 = param_2;
+  
+  // 获取当前进程ID
+  process_id = GetCurrentProcessId();
+  
+  // 初始化字符串流
+  string_stream_ptr = &GLOBAL_STRING_STREAM;
+  context_param = 0;
+  stream_position = 0;
+  stream_length = 0;
+  
+  // 分配6字节空间用于"PID : "字符串
+  AllocateStringBuffer(&string_stream_ptr, 6);
+  buffer_ptr = stream_position;
+  buffer_offset = (ulonglong)stream_length;
+  
+  // 写入"PID : "字符串到缓冲区
+  *(undefined4 *)(buffer_offset + stream_position) = 0x44495020;  // "DIP "
+  *(undefined2 *)(buffer_offset + 4 + stream_position) = 0x203a;  // " :"
+  *(undefined1 *)(buffer_offset + 6 + stream_position) = 0;       // null terminator
+  stream_length = 6;
+  
+  // 将进程ID转换为字符串
+  FormatIntegerToString(pid_buffer, &INTEGER_FORMAT_STRING, process_id);
+  
+  // 计算进程ID字符串长度
+  pid_length = -1;
   do {
-    lVar10 = lVar2;
-    lVar2 = lVar10 + 1;
-  } while (acStack_58[lVar10 + 1] != '\0');
-  if (0 < (int)(lVar10 + 1)) {
-    FUN_1806277c0(&puStack_f0,(int)lVar10 + 7);
-                    // WARNING: Subroutine does not return
-    memcpy((ulonglong)uStack_e0 + lStack_e8,acStack_58,(longlong)((int)lVar10 + 2));
+    char_index = pid_length;
+    pid_length = char_index + 1;
+  } while (pid_buffer[char_index + 1] != '\0');
+  
+  // 如果进程ID字符串长度大于0，则添加到缓冲区
+  if (0 < (int)(pid_length + 1)) {
+    AllocateStringBuffer(&string_stream_ptr, (int)pid_length + 7);
+    // WARNING: Subroutine does not return
+    memcpy((ulonglong)stream_length + stream_position, pid_buffer, (longlong)((int)pid_length + 2));
   }
-  puVar9 = &DAT_1809fd128;
-  if (DAT_180c82841 != '\0') {
-    puVar9 = &UNK_1809fd730;
+  
+  // 根据调试标志选择格式字符串
+  format_string_ptr = &DEFAULT_FORMAT_STRING;
+  if (DEBUG_MODE_ENABLED != '\0') {
+    format_string_ptr = &DEBUG_FORMAT_STRING;
   }
-  FUN_180627910(auStack_88,puVar9);
-  puStack_c8 = &UNK_180a3c3e0;
-  uStack_b0 = 0;
-  uStack_c0 = 0;
-  uStack_b8 = 0;
-  puStack_1b0 = &UNK_180a3c3e0;
-  uVar11 = 0;
-  uStack_198 = 0;
-  puStack_1a8 = (undefined1 *)0x0;
-  uStack_1a0 = 0;
-  uStack_1f8 = 2;
-  uVar6 = *(uint *)(param_3 + 0x10);
-  uVar8 = (ulonglong)uVar6;
-  uVar5 = 0;
+  
+  // 格式化字符串
+  FormatStringWithArguments(stack_guard_88, format_string_ptr);
+  
+  // 初始化分配器
+  allocator_ptr = &GLOBAL_STRING_STREAM;
+  allocation_result = 0;
+  allocator_context = 0;
+  allocator_flags = 0;
+  
+  // 初始化临时字符串构建器
+  string_builder_ptr = &GLOBAL_STRING_STREAM;
+  hash_value = 0;
+  hash_result = 0;
+  temp_buffer_ptr = (undefined1 *)0x0;
+  buffer_capacity = 0;
+  operation_type = 2;
+  
+  // 获取输入字符串长度
+  input_length = *(uint *)(param_3 + 0x10);
+  buffer_offset = (ulonglong)input_length;
+  string_length = 0;
+  
+  // 处理输入字符串
   if (*(longlong *)(param_3 + 8) == 0) {
-LAB_1800535b0:
-    uVar11 = uVar5;
-    if (uVar6 != 0) {
-                    // WARNING: Subroutine does not return
-      memcpy(puVar7,*(undefined8 *)(param_3 + 8),uVar8);
+HANDLE_STRING_DATA:
+    hash_value = string_length;
+    if (input_length != 0) {
+      // WARNING: Subroutine does not return
+      memcpy(output_buffer, *(undefined8 *)(param_3 + 8), buffer_offset);
     }
   }
-  else if (uVar6 != 0) {
-    iVar4 = uVar6 + 1;
-    if (iVar4 < 0x10) {
-      iVar4 = 0x10;
+  else if (input_length != 0) {
+    buffer_size = input_length + 1;
+    if (buffer_size < 0x10) {
+      buffer_size = 0x10;
     }
-    puVar7 = (undefined1 *)FUN_18062b420(_DAT_180c8ed18,(longlong)iVar4,0x13);
-    *puVar7 = 0;
-    puStack_1a8 = puVar7;
-    uVar5 = FUN_18064e990(puVar7);
-    uStack_198 = CONCAT44(uStack_198._4_4_,uVar5);
-    goto LAB_1800535b0;
+    output_buffer = (undefined1 *)AllocateMemory(GLOBAL_MEMORY_ALLOCATOR, (longlong)buffer_size, 0x13);
+    *output_buffer = 0;
+    temp_buffer_ptr = output_buffer;
+    string_length = CalculateStringHash(output_buffer);
+    hash_result = CONCAT44(hash_result._4_4_, string_length);
+    goto HANDLE_STRING_DATA;
   }
-  if (puVar7 != (undefined1 *)0x0) {
-    puVar7[uVar8] = 0;
+  
+  // 确保字符串以null结尾
+  if (output_buffer != (undefined1 *)0x0) {
+    output_buffer[buffer_offset] = 0;
   }
-  uStack_1f4 = *(undefined4 *)(param_3 + 0x1c);
-  uStack_198 = CONCAT44(uStack_1f4,(undefined4)uStack_198);
-  uStack_1a0 = uVar6;
-  if (uVar6 != 0xfffffffa) {
-    uVar6 = uVar6 + 7;
-    if (puVar7 == (undefined1 *)0x0) {
-      if ((int)uVar6 < 0x10) {
-        uVar6 = 0x10;
+  
+  // 获取标志位
+  flags = *(undefined4 *)(param_3 + 0x1c);
+  hash_result = CONCAT44(flags, (undefined4)hash_result);
+  buffer_capacity = input_length;
+  
+  // 处理额外的字符串数据
+  if (input_length != 0xfffffffa) {
+    input_length = input_length + 7;
+    if (output_buffer == (undefined1 *)0x0) {
+      if ((int)input_length < 0x10) {
+        input_length = 0x10;
       }
-      puVar7 = (undefined1 *)FUN_18062b420(_DAT_180c8ed18,(longlong)(int)uVar6,0x13);
-      *puVar7 = 0;
+      output_buffer = (undefined1 *)AllocateMemory(GLOBAL_MEMORY_ALLOCATOR, (longlong)(int)input_length, 0x13);
+      *output_buffer = 0;
     }
     else {
-      if (uVar6 <= uVar11) goto LAB_18005364c;
-      uStack_208 = 0x13;
-      puVar7 = (undefined1 *)FUN_18062b8b0(_DAT_180c8ed18,puVar7,uVar6,0x10);
+      if (input_length <= hash_value) goto FINALIZE_STRING;
+      allocation_type = 0x13;
+      output_buffer = (undefined1 *)ReallocateMemory(GLOBAL_MEMORY_ALLOCATOR, output_buffer, input_length, 0x10);
     }
-    puStack_1a8 = puVar7;
-    uVar3 = FUN_18064e990(puVar7);
-    uStack_198 = CONCAT44(uStack_198._4_4_,uVar3);
+    temp_buffer_ptr = output_buffer;
+    process_id = CalculateStringHash(output_buffer);
+    hash_result = CONCAT44(hash_result._4_4_, process_id);
   }
-LAB_18005364c:
-                    // WARNING: Subroutine does not return
-  memcpy(puVar7 + uVar8,lVar1,7);
+  
+FINALIZE_STRING:
+  // WARNING: Subroutine does not return
+  memcpy(output_buffer + buffer_offset, buffer_ptr, 7);
 }
 
 

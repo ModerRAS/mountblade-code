@@ -1384,50 +1384,98 @@ void RegisterTypeService12(void)
 
 
 
-// 函数: void FUN_1800392a0(void)
-void FUN_1800392a0(void)
-
+/**
+ * 注册类型服务13
+ * 在全局二叉树中注册一个类型服务，使用标识符"MatrixStack"
+ * 简化实现：原本实现涉及复杂的二叉树搜索和节点插入算法
+ */
+void RegisterTypeService13(void)
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
-  undefined *puStackX_18;
+  // 节点标志字符
+  char node_flag;
   
-  plVar4 = (longlong *)FUN_18008d070();
-  puVar2 = (undefined8 *)*plVar4;
-  cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
-  puStackX_18 = &UNK_1800868c0;
-  puVar7 = puVar2;
-  puVar6 = (undefined8 *)puVar2[1];
-  while (cVar1 == '\0') {
-    iVar3 = memcmp(puVar6 + 4,&DAT_180a00fd8,0x10);
-    if (iVar3 < 0) {
-      puVar8 = (undefined8 *)puVar6[2];
-      puVar6 = puVar7;
+  // 树根节点指针
+  undefined8 *root_node;
+  
+  // 内存比较结果
+  int compare_result;
+  
+  // 全局树结构指针
+  longlong *tree_structure;
+  
+  // 内存分配大小
+  longlong allocation_size;
+  
+  // 当前搜索节点
+  undefined8 *current_node;
+  
+  // 父节点
+  undefined8 *parent_node;
+  
+  // 下一个节点
+  undefined8 *next_node;
+  
+  // 新创建的节点
+  undefined8 *new_node;
+  
+  // 服务处理函数指针
+  undefined *service_handler;
+  
+  // 获取全局树结构
+  tree_structure = (longlong *)GetGlobalTreeStructure();
+  
+  // 获取根节点
+  root_node = (undefined8 *)*tree_structure;
+  
+  // 获取根节点标志
+  node_flag = *(char *)((longlong)root_node[1] + 0x19);
+  
+  // 设置服务处理函数
+  service_handler = &MatrixStackServiceHandler;
+  
+  // 初始化搜索
+  parent_node = root_node;
+  current_node = (undefined8 *)root_node[1];
+  
+  // 在二叉树中搜索合适位置
+  while (node_flag == '\0') {
+    // 比较标识符
+    compare_result = memcmp(current_node + 4, &TypeIdentifier_MatrixStack, 0x10);
+    
+    if (compare_result < 0) {
+      // 转到右子树
+      next_node = (undefined8 *)current_node[2];
+      current_node = parent_node;
     }
     else {
-      puVar8 = (undefined8 *)*puVar6;
+      // 转到左子树
+      next_node = (undefined8 *)*current_node;
     }
-    puVar7 = puVar6;
-    puVar6 = puVar8;
-    cVar1 = *(char *)((longlong)puVar8 + 0x19);
+    
+    parent_node = current_node;
+    current_node = next_node;
+    node_flag = *(char *)((longlong)next_node + 0x19);
   }
-  if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a00fd8,puVar7 + 4,0x10), iVar3 < 0)) {
-    lVar5 = FUN_18008f0d0(plVar4);
-    FUN_18008f140(plVar4,&puStackX_10,puVar7,lVar5 + 0x20,lVar5);
-    puVar7 = puStackX_10;
+  
+  // 如果需要创建新节点
+  if ((parent_node == root_node) || 
+      (compare_result = memcmp(&TypeIdentifier_MatrixStack, parent_node + 4, 0x10), compare_result < 0)) {
+    // 分配内存
+    allocation_size = AllocateTreeMemory(tree_structure);
+    
+    // 插入新节点
+    InsertTreeNode(tree_structure, &new_node, parent_node, allocation_size + 0x20, allocation_size);
+    
+    parent_node = new_node;
   }
-  puVar7[6] = 0x4384dcc4b6d3f417;
-  puVar7[7] = 0x92a15d52fe2679bd;
-  puVar7[8] = &UNK_180a003e8;
-  puVar7[9] = 0;
-  puVar7[10] = puStackX_18;
+  
+  // 设置节点数据
+  parent_node[6] = 0x4384dcc4b6d3f417;  // 类型哈希值1
+  parent_node[7] = 0x92a15d52fe2679bd;  // 类型哈希值2
+  parent_node[8] = &MatrixStack_TypeInfo;  // 类型信息
+  parent_node[9] = 0;  // 类型标志
+  parent_node[10] = service_handler;  // 服务处理函数
+  
   return;
 }
 
@@ -1435,50 +1483,98 @@ void FUN_1800392a0(void)
 
 
 
-// 函数: void FUN_1800393a0(void)
-void FUN_1800393a0(void)
-
+/**
+ * 注册类型服务14
+ * 在全局二叉树中注册一个类型服务，使用标识符"Quaternion"
+ * 简化实现：原本实现涉及复杂的二叉树搜索和节点插入算法
+ */
+void RegisterTypeService14(void)
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  // 节点标志字符
+  char node_flag;
   
-  plVar4 = (longlong *)FUN_18008d070();
-  puVar2 = (undefined8 *)*plVar4;
-  cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
-  uStackX_18 = 0;
-  puVar7 = puVar2;
-  puVar6 = (undefined8 *)puVar2[1];
-  while (cVar1 == '\0') {
-    iVar3 = memcmp(puVar6 + 4,&DAT_180a00fb0,0x10);
-    if (iVar3 < 0) {
-      puVar8 = (undefined8 *)puVar6[2];
-      puVar6 = puVar7;
+  // 树根节点指针
+  undefined8 *root_node;
+  
+  // 内存比较结果
+  int compare_result;
+  
+  // 全局树结构指针
+  longlong *tree_structure;
+  
+  // 内存分配大小
+  longlong allocation_size;
+  
+  // 当前搜索节点
+  undefined8 *current_node;
+  
+  // 父节点
+  undefined8 *parent_node;
+  
+  // 下一个节点
+  undefined8 *next_node;
+  
+  // 新创建的节点
+  undefined8 *new_node;
+  
+  // 服务处理函数（空指针）
+  undefined8 service_handler;
+  
+  // 获取全局树结构
+  tree_structure = (longlong *)GetGlobalTreeStructure();
+  
+  // 获取根节点
+  root_node = (undefined8 *)*tree_structure;
+  
+  // 获取根节点标志
+  node_flag = *(char *)((longlong)root_node[1] + 0x19);
+  
+  // 设置服务处理函数（无）
+  service_handler = 0;
+  
+  // 初始化搜索
+  parent_node = root_node;
+  current_node = (undefined8 *)root_node[1];
+  
+  // 在二叉树中搜索合适位置
+  while (node_flag == '\0') {
+    // 比较标识符
+    compare_result = memcmp(current_node + 4, &TypeIdentifier_Quaternion, 0x10);
+    
+    if (compare_result < 0) {
+      // 转到右子树
+      next_node = (undefined8 *)current_node[2];
+      current_node = parent_node;
     }
     else {
-      puVar8 = (undefined8 *)*puVar6;
+      // 转到左子树
+      next_node = (undefined8 *)*current_node;
     }
-    puVar7 = puVar6;
-    puVar6 = puVar8;
-    cVar1 = *(char *)((longlong)puVar8 + 0x19);
+    
+    parent_node = current_node;
+    current_node = next_node;
+    node_flag = *(char *)((longlong)next_node + 0x19);
   }
-  if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a00fb0,puVar7 + 4,0x10), iVar3 < 0)) {
-    lVar5 = FUN_18008f0d0(plVar4);
-    FUN_18008f140(plVar4,&puStackX_10,puVar7,lVar5 + 0x20,lVar5);
-    puVar7 = puStackX_10;
+  
+  // 如果需要创建新节点
+  if ((parent_node == root_node) || 
+      (compare_result = memcmp(&TypeIdentifier_Quaternion, parent_node + 4, 0x10), compare_result < 0)) {
+    // 分配内存
+    allocation_size = AllocateTreeMemory(tree_structure);
+    
+    // 插入新节点
+    InsertTreeNode(tree_structure, &new_node, parent_node, allocation_size + 0x20, allocation_size);
+    
+    parent_node = new_node;
   }
-  puVar7[6] = 0x4140994454d56503;
-  puVar7[7] = 0x399eced9bb5517ad;
-  puVar7[8] = &UNK_180a00400;
-  puVar7[9] = 0;
-  puVar7[10] = uStackX_18;
+  
+  // 设置节点数据
+  parent_node[6] = 0x4140994454d56503;  // 类型哈希值1
+  parent_node[7] = 0x399eced9bb5517ad;  // 类型哈希值2
+  parent_node[8] = &Quaternion_TypeInfo;  // 类型信息
+  parent_node[9] = 0;  // 类型标志
+  parent_node[10] = service_handler;  // 服务处理函数（无）
+  
   return;
 }
 

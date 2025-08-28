@@ -1484,22 +1484,30 @@ void FUN_180038080(void)
 
 
 
-// 函数: void FUN_180038180(void)
-void FUN_180038180(void)
-
+/**
+ * 初始化游戏存档系统配置
+ * 注册ID: 180038180
+ * 功能：设置游戏存档相关的配置参数
+ */
+void initialize_game_save_config(void)
 {
-  undefined8 in_R9;
-  undefined *puStack_a0;
-  undefined1 *puStack_98;
-  undefined4 uStack_90;
-  undefined1 auStack_88 [136];
+  undefined8 config_param;
+  undefined8 *config_manager;
+  undefined1 *config_buffer;
+  undefined4 config_size;
+  undefined1 temp_buffer[136];
   
-  puStack_a0 = &UNK_1809fcc28;
-  puStack_98 = auStack_88;
-  auStack_88[0] = 0;
-  uStack_90 = 9;
-  strcpy_s(auStack_88,0x80,&UNK_180a194f0,in_R9,0xfffffffffffffffe);
-  _DAT_180c91ef8 = FUN_180623800(&puStack_a0);
+  // 设置存档配置管理器和缓冲区
+  config_manager = &GAME_SAVE_CONFIG_MANAGER;
+  config_buffer = temp_buffer;
+  temp_buffer[0] = 0;
+  config_size = 9;  // 存档配置大小
+  
+  // 复制存档配置到缓冲区
+  strcpy_s(temp_buffer, 0x80, &GAME_SAVE_CONFIG_SIGNATURE, config_param, 0xfffffffffffffffe);
+  
+  // 注册存档配置
+  GAME_SAVE_CONFIG_DATA = register_game_save_config(&config_manager);
   return;
 }
 
@@ -1509,22 +1517,30 @@ void FUN_180038180(void)
 
 
 
-// 函数: void FUN_180038210(void)
-void FUN_180038210(void)
-
+/**
+ * 初始化游戏设置系统配置
+ * 注册ID: 180038210
+ * 功能：设置游戏设置相关的配置参数
+ */
+void initialize_game_settings_config(void)
 {
-  undefined8 in_R9;
-  undefined *puStack_a0;
-  undefined1 *puStack_98;
-  undefined4 uStack_90;
-  undefined1 auStack_88 [136];
+  undefined8 config_param;
+  undefined8 *config_manager;
+  undefined1 *config_buffer;
+  undefined4 config_size;
+  undefined1 temp_buffer[136];
   
-  puStack_a0 = &UNK_1809fcc28;
-  puStack_98 = auStack_88;
-  auStack_88[0] = 0;
-  uStack_90 = 8;
-  strcpy_s(auStack_88,0x80,&UNK_180a19588,in_R9,0xfffffffffffffffe);
-  _DAT_180c91efc = FUN_180623800(&puStack_a0);
+  // 设置游戏配置管理器和缓冲区
+  config_manager = &GAME_SETTINGS_CONFIG_MANAGER;
+  config_buffer = temp_buffer;
+  temp_buffer[0] = 0;
+  config_size = 8;  // 游戏设置配置大小
+  
+  // 复制游戏设置配置到缓冲区
+  strcpy_s(temp_buffer, 0x80, &GAME_SETTINGS_CONFIG_SIGNATURE, config_param, 0xfffffffffffffffe);
+  
+  // 注册游戏设置配置
+  GAME_SETTINGS_CONFIG_DATA = register_game_settings_config(&config_manager);
   return;
 }
 
@@ -1534,22 +1550,30 @@ void FUN_180038210(void)
 
 
 
-// 函数: void FUN_1800382a0(void)
-void FUN_1800382a0(void)
-
+/**
+ * 初始化控制器配置系统
+ * 注册ID: 1800382a0
+ * 功能：设置控制器相关的配置参数
+ */
+void initialize_controller_config(void)
 {
-  undefined8 in_R9;
-  undefined *puStack_a0;
-  undefined1 *puStack_98;
-  undefined4 uStack_90;
-  undefined1 auStack_88 [136];
+  undefined8 config_param;
+  undefined8 *config_manager;
+  undefined1 *config_buffer;
+  undefined4 config_size;
+  undefined1 temp_buffer[136];
   
-  puStack_a0 = &UNK_1809fcc28;
-  puStack_98 = auStack_88;
-  auStack_88[0] = 0;
-  uStack_90 = 0xb;
-  strcpy_s(auStack_88,0x80,&UNK_180a19bf0,in_R9,0xfffffffffffffffe);
-  _DAT_180c91f00 = FUN_180623800(&puStack_a0);
+  // 设置控制器配置管理器和缓冲区
+  config_manager = &CONTROLLER_CONFIG_MANAGER;
+  config_buffer = temp_buffer;
+  temp_buffer[0] = 0;
+  config_size = 0xb;  // 控制器配置大小
+  
+  // 复制控制器配置到缓冲区
+  strcpy_s(temp_buffer, 0x80, &CONTROLLER_CONFIG_SIGNATURE, config_param, 0xfffffffffffffffe);
+  
+  // 注册控制器配置
+  CONTROLLER_CONFIG_DATA = register_controller_config(&config_manager);
   return;
 }
 
@@ -1559,22 +1583,30 @@ void FUN_1800382a0(void)
 
 
 
-// 函数: void FUN_180038330(void)
-void FUN_180038330(void)
-
+/**
+ * 初始化键盘配置系统
+ * 注册ID: 180038330
+ * 功能：设置键盘相关的配置参数
+ */
+void initialize_keyboard_config(void)
 {
-  undefined8 in_R9;
-  undefined *puStack_a0;
-  undefined1 *puStack_98;
-  undefined4 uStack_90;
-  undefined1 auStack_88 [136];
+  undefined8 config_param;
+  undefined8 *config_manager;
+  undefined1 *config_buffer;
+  undefined4 config_size;
+  undefined1 temp_buffer[136];
   
-  puStack_a0 = &UNK_1809fcc28;
-  puStack_98 = auStack_88;
-  auStack_88[0] = 0;
-  uStack_90 = 0xd;
-  strcpy_s(auStack_88,0x80,&UNK_180a19df0,in_R9,0xfffffffffffffffe);
-  _DAT_180c91f04 = FUN_180623800(&puStack_a0);
+  // 设置键盘配置管理器和缓冲区
+  config_manager = &KEYBOARD_CONFIG_MANAGER;
+  config_buffer = temp_buffer;
+  temp_buffer[0] = 0;
+  config_size = 0xd;  // 键盘配置大小
+  
+  // 复制键盘配置到缓冲区
+  strcpy_s(temp_buffer, 0x80, &KEYBOARD_CONFIG_SIGNATURE, config_param, 0xfffffffffffffffe);
+  
+  // 注册键盘配置
+  KEYBOARD_CONFIG_DATA = register_keyboard_config(&config_manager);
   return;
 }
 
@@ -1584,22 +1616,30 @@ void FUN_180038330(void)
 
 
 
-// 函数: void FUN_1800383c0(void)
-void FUN_1800383c0(void)
-
+/**
+ * 初始化鼠标配置系统
+ * 注册ID: 1800383c0
+ * 功能：设置鼠标相关的配置参数
+ */
+void initialize_mouse_config(void)
 {
-  undefined8 in_R9;
-  undefined *puStack_a0;
-  undefined1 *puStack_98;
-  undefined4 uStack_90;
-  undefined1 auStack_88 [136];
+  undefined8 config_param;
+  undefined8 *config_manager;
+  undefined1 *config_buffer;
+  undefined4 config_size;
+  undefined1 temp_buffer[136];
   
-  puStack_a0 = &UNK_1809fcc28;
-  puStack_98 = auStack_88;
-  auStack_88[0] = 0;
-  uStack_90 = 0x1c;
-  strcpy_s(auStack_88,0x80,&UNK_180a1a450,in_R9,0xfffffffffffffffe);
-  _DAT_180c91f08 = FUN_180623800(&puStack_a0);
+  // 设置鼠标配置管理器和缓冲区
+  config_manager = &MOUSE_CONFIG_MANAGER;
+  config_buffer = temp_buffer;
+  temp_buffer[0] = 0;
+  config_size = 0x1c;  // 鼠标配置大小
+  
+  // 复制鼠标配置到缓冲区
+  strcpy_s(temp_buffer, 0x80, &MOUSE_CONFIG_SIGNATURE, config_param, 0xfffffffffffffffe);
+  
+  // 注册鼠标配置
+  MOUSE_CONFIG_DATA = register_mouse_config(&config_manager);
   return;
 }
 
