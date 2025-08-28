@@ -616,39 +616,43 @@ void Engine_ApplyTransformAndDecrementRefCount(longlong engine_instance, longlon
 
 
 
-// 函数: void FUN_18012d18f(void)
-void FUN_18012d18f(void)
+// 函数: void Engine_DecrementBatchCountAndProcessContext(int batch_index, longlong engine_instance, longlong target_instance)
+void Engine_DecrementBatchCountAndProcessContext(int batch_index, longlong engine_instance, longlong target_instance)
 
 {
-  longlong lVar1;
-  int in_EAX;
-  longlong unaff_RBX;
-  longlong unaff_RSI;
-  longlong unaff_RDI;
-  float fVar2;
+  longlong context_handle;
+  longlong current_context;
+  longlong result_context;
+  float computed_scale;
   
-  *(int *)(unaff_RDI + 0x1bc0) = *(int *)(unaff_RDI + 0x1bc0) + -1;
-  if (in_EAX != 0) {
-    unaff_RSI = *(longlong *)(*(longlong *)(unaff_RDI + 0x1ad8) + -8 + (longlong)in_EAX * 8);
+  // 减少批次计数
+  *(int *)(target_instance + 0x1bc0) = *(int *)(target_instance + 0x1bc0) + -1;
+  
+  // 获取上下文句柄
+  if (batch_index != 0) {
+    current_context = *(longlong *)(*(longlong *)(target_instance + 0x1ad8) + -8 + (longlong)batch_index * 8);
   }
-  *(longlong *)(unaff_RBX + 0x1af8) = unaff_RSI;
-  if (unaff_RSI != 0) {
-    fVar2 = *(float *)(unaff_RBX + 0x19fc) * *(float *)(unaff_RSI + 0x2d8) *
-            *(float *)(unaff_RSI + 0x2dc);
-    *(float *)(unaff_RBX + 0x1a10) = fVar2;
-    *(float *)(unaff_RBX + 0x19f8) = fVar2;
+  *(longlong *)(engine_instance + 0x1af8) = current_context;
+  
+  // 计算缩放因子
+  if (current_context != 0) {
+    computed_scale = *(float *)(engine_instance + 0x19fc) * *(float *)(current_context + 0x2d8) *
+                   *(float *)(current_context + 0x2dc);
+    *(float *)(engine_instance + 0x1a10) = computed_scale;
+    *(float *)(engine_instance + 0x19f8) = computed_scale;
   }
-  if (*(longlong *)(unaff_RDI + 0x1af8) != 0) {
-    lVar1 = *(longlong *)(*(longlong *)(unaff_RDI + 0x1af8) + 0x28);
-    if (lVar1 != 0) {
-      *(undefined4 *)(lVar1 + 0x54) = *(undefined4 *)(unaff_RBX + 0x1a90);
+  
+  // 更新当前对象并触发回调
+  if (*(longlong *)(target_instance + 0x1af8) != 0) {
+    context_handle = *(longlong *)(*(longlong *)(target_instance + 0x1af8) + 0x28);
+    if (context_handle != 0) {
+      *(uint32_t *)(context_handle + 0x54) = *(uint32_t *)(engine_instance + 0x1a90);
     }
-    if (((*(longlong *)(unaff_RBX + 0x1c78) != lVar1) &&
-        (*(longlong *)(unaff_RBX + 0x1c78) = lVar1, lVar1 != 0)) &&
-       (*(code **)(unaff_RBX + 0x15c0) != (code *)0x0)) {
-                    // WARNING: Could not recover jumptable at 0x00018012d226. Too many branches
-                    // WARNING: Treating indirect jump as call
-      (**(code **)(unaff_RBX + 0x15c0))();
+    if (((*(longlong *)(engine_instance + 0x1c78) != context_handle) &&
+        (*(longlong *)(engine_instance + 0x1c78) = context_handle, context_handle != 0)) &&
+       (*(code **)(engine_instance + 0x15c0) != (code *)0x0)) {
+      // 调用对象更新回调函数
+      (**(code **)(engine_instance + 0x15c0))();
       return;
     }
   }
@@ -659,23 +663,24 @@ void FUN_18012d18f(void)
 
 
 
-// 函数: void FUN_18012d1ed(longlong param_1)
-void FUN_18012d1ed(longlong param_1)
+// 函数: void Engine_SetObjectPropertiesAndTriggerCallback(longlong render_obj, longlong engine_instance)
+void Engine_SetObjectPropertiesAndTriggerCallback(longlong render_obj, longlong engine_instance)
 
 {
-  longlong lVar1;
-  longlong unaff_RBX;
+  longlong object_data;
   
-  lVar1 = *(longlong *)(param_1 + 0x28);
-  if (lVar1 != 0) {
-    *(undefined4 *)(lVar1 + 0x54) = *(undefined4 *)(unaff_RBX + 0x1a90);
+  // 设置对象属性
+  object_data = *(longlong *)(render_obj + 0x28);
+  if (object_data != 0) {
+    *(uint32_t *)(object_data + 0x54) = *(uint32_t *)(engine_instance + 0x1a90);
   }
-  if (((*(longlong *)(unaff_RBX + 0x1c78) != lVar1) &&
-      (*(longlong *)(unaff_RBX + 0x1c78) = lVar1, lVar1 != 0)) &&
-     (*(code **)(unaff_RBX + 0x15c0) != (code *)0x0)) {
-                    // WARNING: Could not recover jumptable at 0x00018012d226. Too many branches
-                    // WARNING: Treating indirect jump as call
-    (**(code **)(unaff_RBX + 0x15c0))();
+  
+  // 触发回调函数
+  if (((*(longlong *)(engine_instance + 0x1c78) != object_data) &&
+      (*(longlong *)(engine_instance + 0x1c78) = object_data, object_data != 0)) &&
+     (*(code **)(engine_instance + 0x15c0) != (code *)0x0)) {
+    // 调用对象更新回调函数
+    (**(code **)(engine_instance + 0x15c0))();
     return;
   }
   return;
