@@ -1,1582 +1,2085 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 03_rendering_part001_sub001_sub001.c - 渲染系统核心函数声明部分
-// 包含251个渲染相关的函数声明
+// 03_rendering_part001_sub001_sub001.c - 251 个函数
 
 #include "TaleWorlds.Native.Split.h"
 
-// 03_rendering_part001_sub001.c - 渲染初始化和管理函数
-// 包含255个渲染相关的函数声明
+// 03_rendering_part001_sub001.c - 255 个函数
 
 #include "TaleWorlds.Native.Split.h"
 
-// 03_rendering_part001.c - 渲染管线处理函数
-// 包含259个渲染相关的函数声明
+// 03_rendering_part001.c - 259 个函数
 
 #include "TaleWorlds.Native.Split.h"
 
-// 03_rendering.c - 渲染系统主要模块
-// 包含6330个渲染相关的函数声明
-
-// =============================================================================
-// 渲染管线初始化函数
-// =============================================================================
-
-// 函数: 初始化渲染管线
-undefined initialize_rendering_pipeline;
-undefined render_context_config;
-
-// =============================================================================
-// 着色器管理函数
-// =============================================================================
-
-// 函数: 创建着色器程序
-undefined create_shader_program;
-undefined shader_vertex_source;
-undefined shader_fragment_source;
-undefined shader_geometry_source;
-undefined shader_uniform_buffer;
-undefined shader_texture_sampler;
-undefined render_framebuffer;
-undefined render_depth_buffer;
-undefined render_stencil_buffer;
-undefined render_color_attachment;
-undefined render_depth_attachment;
-undefined render_stencil_attachment;
-undefined vertex_array_object;
-undefined vertex_buffer_object;
-undefined element_buffer_object;
-undefined texture_object;
-undefined renderbuffer_object;
-undefined shader_program_object;
-uniform shader_matrix_projection;
-uniform shader_matrix_view;
-uniform shader_matrix_model;
-uniform shader_vector_light_position;
-uniform shader_vector_light_color;
-uniform shader_vector_ambient_color;
-uniform shader_vector_diffuse_color;
-uniform shader_vector_specular_color;
-uniform shader_float_shininess;
-uniform shader_texture_diffuse;
-uniform shader_texture_normal;
-uniform shader_texture_specular;
-uniform shader_texture_height;
-uniform shader_texture_opacity;
-
-// =============================================================================
-// 缓冲区管理函数
-// =============================================================================
-
-// 函数: 创建顶点缓冲区
-undefined create_vertex_buffer;
-undefined buffer_vertex_data;
-undefined buffer_index_data;
-undefined buffer_normal_data;
-undefined buffer_texcoord_data;
-undefined buffer_tangent_data;
-undefined buffer_bitangent_data;
-char buffer_usage_static;
-char buffer_usage_dynamic;
-undefined buffer_vertex_array;
-undefined buffer_index_array;
-undefined buffer_normal_array;
-undefined buffer_texcoord_array;
-undefined buffer_tangent_array;
-undefined buffer_bitangent_array;
-undefined vertex_attribute_pointer;
-undefined index_attribute_pointer;
-undefined normal_attribute_pointer;
-undefined texcoord_attribute_pointer;
-undefined tangent_attribute_pointer;
-undefined bitangent_attribute_pointer;
-undefined vertex_attribute_enable;
-undefined index_attribute_enable;
-undefined normal_attribute_enable;
-undefined texcoord_attribute_enable;
-undefined tangent_attribute_enable;
-undefined bitangent_attribute_enable;
-
-// =============================================================================
-// 纹理管理函数
-// =============================================================================
-
-// 函数: 创建纹理对象
-undefined create_texture_object;
-undefined texture_data_2d;
-undefined texture_data_3d;
-undefined texture_data_cube;
-undefined texture_target_2d;
-undefined texture_target_3d;
-undefined texture_target_cube;
-undefined texture_format_rgb;
-undefined texture_format_rgba;
-undefined texture_format_depth;
-undefined texture_format_stencil;
-undefined texture_type_unsigned_byte;
-undefined texture_type_float;
-undefined texture_type_unsigned_int;
-undefined texture_parameter_min_filter;
-undefined texture_parameter_mag_filter;
-undefined texture_parameter_wrap_s;
-undefined texture_parameter_wrap_t;
-undefined texture_parameter_wrap_r;
-undefined texture_filter_nearest;
-undefined texture_filter_linear;
-undefined texture_filter_mipmap;
-undefined texture_wrap_clamp;
-undefined texture_wrap_repeat;
-undefined texture_wrap_mirror;
-undefined texture_mipmap_base;
-undefined texture_mipmap_max;
-undefined texture_mipmap_level;
-undefined texture_border_color;
-undefined texture_compare_mode;
-undefined texture_compare_func;
-
-// =============================================================================
-// 渲染状态管理函数
-// =============================================================================
-
-// 函数: 设置渲染状态
-undefined set_render_state;
-undefined state_depth_test;
-undefined state_depth_write;
-undefined state_depth_func;
-undefined state_blend_enabled;
-undefined state_blend_func_src;
-undefined state_blend_func_dst;
-undefined state_blend_equation;
-undefined state_cull_face_enabled;
-undefined state_cull_face_mode;
-undefined state_front_face;
-undefined state_polygon_mode;
-undefined state_scissor_test;
-undefined state_stencil_test;
-undefined state_multisample;
-undefined state_line_width;
-undefined state_point_size;
-undefined state_point_smooth;
-undefined state_line_smooth;
-undefined state_polygon_smooth;
-undefined state_sample_alpha_to_coverage;
-undefined state_sample_alpha_to_one;
-undefined state_sample_coverage;
-
-// =============================================================================
-// 帧缓冲区管理函数
-// =============================================================================
-
-// 函数: 创建帧缓冲区
-undefined create_framebuffer;
-undefined framebuffer_color_attachment;
-undefined framebuffer_depth_attachment;
-undefined framebuffer_stencil_attachment;
-undefined framebuffer_depth_stencil_attachment;
-undefined framebuffer_texture_attachment;
-undefined framebuffer_renderbuffer_attachment;
-undefined framebuffer_draw_buffer;
-undefined framebuffer_read_buffer;
-undefined framebuffer_check_status;
-undefined framebuffer_bind_default;
-undefined framebuffer_bind_texture;
-undefined framebuffer_bind_renderbuffer;
-undefined framebuffer_attachment_type;
-undefined framebuffer_attachment_index;
-undefined framebuffer_attachment_layer;
-undefined framebuffer_attachment_level;
-
-// =============================================================================
-// 渲染查询函数
-// =============================================================================
-
-// 函数: 查询渲染信息
-undefined query_render_info;
-undefined query_timer;
-undefined query_occlusion;
-undefined query_pipeline;
-undefined query_primitives_generated;
-undefined query_vertices_submitted;
-undefined query_primitives_rendered;
-undefined query_fragments_rendered;
-undefined query_samples_passed;
-undefined query_time_elapsed;
-undefined query_timestamp;
-undefined query_available;
-undefined query_result;
-undefined query_begin;
-undefined query_end;
-undefined query_counter_bits;
-undefined query_target;
-
-// =============================================================================
-// 同步对象管理函数
-// =============================================================================
-
-// 函数: 创建同步对象
-undefined create_sync_object;
-undefined sync_fence;
-undefined sync_condition;
-undefined sync_signal;
-undefined sync_wait;
-undefined sync_client_wait;
-undefined sync_server_wait;
-undefined sync_flush;
-undefined sync_finish;
-undefined sync_status;
-undefined sync_condition_satisfied;
-undefined sync_condition_wait;
-
-// =============================================================================
-// 内存管理函数
-// =============================================================================
-
-// 函数: 管理渲染内存
-undefined manage_render_memory;
-undefined memory_buffer_create;
-undefined memory_buffer_delete;
-undefined memory_buffer_map;
-undefined memory_buffer_unmap;
-undefined memory_buffer_data;
-undefined memory_buffer_subdata;
-undefined memory_buffer_copy;
-undefined memory_buffer_invalidate;
-undefined memory_buffer_flush;
-undefined memory_buffer_usage;
-
-// =============================================================================
-// 错误处理函数
-// =============================================================================
-
-// 函数: 处理渲染错误
-undefined handle_render_error;
-undefined error_check;
-undefined error_get_code;
-undefined error_get_string;
-undefined error_debug_callback;
-undefined error_debug_message;
-undefined error_debug_source;
-undefined error_debug_type;
-undefined error_debug_severity;
-undefined error_debug_id;
-undefined error_debug_user_param;
-
-// =============================================================================
-// 性能监控函数
-// =============================================================================
-
-// 函数: 监控渲染性能
-undefined monitor_render_performance;
-undefined performance_counter;
-undefined performance_timestamp;
-undefined performance_frequency;
-undefined performance_elapsed_time;
-undefined performance_fps;
-undefined performance_frame_time;
-undefined performance_draw_calls;
-undefined performance_triangles_rendered;
-undefined performance_vertices_rendered;
-undefined performance_memory_usage;
-undefined performance_gpu_usage;
-undefined performance_gpu_memory;
-undefined performance_gpu_temperature;
-undefined performance_gpu_power;
-
-// =============================================================================
-// 渲染上下文管理函数
-// =============================================================================
-
-// 函数: 管理渲染上下文
-undefined manage_render_context;
-undefined context_create;
-undefined context_destroy;
-undefined context_make_current;
-undefined context_get_current;
-undefined context_swap_buffers;
-undefined context_get_proc_address;
-undefined context_get_string;
-undefined context_get_integer;
-undefined context_get_float;
-undefined context_get_double;
-undefined context_get_boolean;
-undefined context_is_enabled;
-undefined context_enable;
-undefined context_disable;
-undefined context_get_error;
-
-// =============================================================================
-// 着色器编译函数
-// =============================================================================
-
-// 函数: 编译着色器
-undefined compile_shader;
-undefined shader_create;
-undefined shader_delete;
-undefined shader_source;
-undefined shader_compile;
-undefined shader_compile_status;
-undefined shader_info_log;
-undefined shader_get_parameter;
-undefined shader_get_source;
-undefined shader_get_info_log;
-undefined shader_type_vertex;
-undefined shader_type_fragment;
-undefined shader_type_geometry;
-undefined shader_type_tess_control;
-undefined shader_type_tess_evaluation;
-undefined shader_type_compute;
-
-// =============================================================================
-// 程序链接函数
-// =============================================================================
-
-// 函数: 链接着色器程序
-undefined link_program;
-undefined program_create;
-undefined program_delete;
-undefined program_attach_shader;
-undefined program_detach_shader;
-undefined program_link;
-undefined program_link_status;
-undefined program_info_log;
-undefined program_validate;
-undefined program_validate_status;
-undefined program_use;
-undefined program_get_parameter;
-undefined program_get_info_log;
-undefined program_get_active_attributes;
-undefined program_get_active_uniforms;
-uniform program_uniform_location;
-uniform program_attribute_location;
-
-// =============================================================================
-// 统一变量管理函数
-// =============================================================================
-
-// 函数: 管理统一变量
-undefined manage_uniforms;
-uniform uniform_matrix_4fv;
-uniform uniform_matrix_3fv;
-uniform uniform_matrix_2fv;
-uniform uniform_vector_4fv;
-uniform uniform_vector_3fv;
-uniform uniform_vector_2fv;
-uniform uniform_float;
-uniform uniform_int;
-uniform uniform_uint;
-uniform uniform_bool;
-uniform uniform_sampler_2d;
-uniform uniform_sampler_3d;
-uniform uniform_sampler_cube;
-uniform uniform_sampler_2d_array;
-uniform uniform_sampler_cube_array;
-
-// =============================================================================
-// 顶点属性管理函数
-// =============================================================================
-
-// 函数: 管理顶点属性
-undefined manage_vertex_attributes;
-undefined attribute_enable;
-undefined attribute_disable;
-undefined attribute_pointer;
-undefined attribute_divisor;
-undefined attribute_format;
-undefined attribute_relative_offset;
-undefined attribute_binding;
-undefined attribute_get_location;
-undefined attribute_get_parameter;
-
-// =============================================================================
-// 纹理管理函数（扩展）
-// =============================================================================
-
-// 函数: 扩展纹理管理
-undefined manage_texture_extended;
-undefined texture_generate_mipmap;
-undefined texture_bind;
-undefined texture_unbind;
-undefined texture_active;
-undefined texture_image_2d;
-undefined texture_image_3d;
-undefined texture_image_cube;
-undefined texture_sub_image_2d;
-undefined texture_sub_image_3d;
-undefined texture_sub_image_cube;
-undefined texture_copy_image_2d;
-undefined texture_copy_image_3d;
-undefined texture_compressed_image_2d;
-undefined texture_compressed_image_3d;
-undefined texture_compressed_sub_image_2d;
-undefined texture_compressed_sub_image_3d;
-undefined texture_get_level_parameter;
-undefined texture_get_image;
-undefined texture_get_compressed_image;
-undefined texture_get_tex_level_parameter;
-undefined texture_get_tex_parameter;
-undefined texture_set_tex_parameter;
-undefined texture_set_tex_parameter_fv;
-undefined texture_set_tex_parameter_iv;
-undefined texture_set_tex_parameter_iiv;
-undefined texture_set_tex_parameter_uiv;
-
-// =============================================================================
-// 缓冲区管理函数（扩展）
-// =============================================================================
-
-// 函数: 扩展缓冲区管理
-undefined manage_buffer_extended;
-undefined buffer_create;
-undefined buffer_delete;
-undefined buffer_bind;
-undefined buffer_unbind;
-undefined buffer_data;
-undefined buffer_sub_data;
-undefined buffer_copy_data;
-undefined buffer_map;
-undefined buffer_unmap;
-undefined buffer_flush;
-undefined buffer_invalidate;
-undefined buffer_get_parameter;
-undefined buffer_get_sub_data;
-undefined buffer_clear;
-undefined buffer_clear_sub_data;
-undefined buffer_storage;
-undefined buffer_map_range;
-undefined buffer_flush_mapped_range;
-undefined buffer_copy_sub_data;
-undefined buffer_invalidate_range;
-undefined buffer_invalidate_buffer;
-
-// =============================================================================
-// 查询对象管理函数
-// =============================================================================
-
-// 函数: 管理查询对象
-undefined manage_query_objects;
-undefined query_create;
-undefined query_delete;
-undefined query_begin;
-undefined query_end;
-undefined query_get_result;
-undefined query_get_result_available;
-undefined query_get_result_with_timeout;
-undefined query_get_counter_bits;
-undefined query_is_result_available;
-undefined query_wait_for_result;
-undefined query_counter;
-
-// =============================================================================
-// 同步对象管理函数（扩展）
-// =============================================================================
-
-// 函数: 扩展同步对象管理
-undefined manage_sync_extended;
-undefined sync_create;
-undefined sync_delete;
-undefined sync_client_wait;
-undefined sync_server_wait;
-undefined sync_signal;
-undefined sync_get_status;
-undefined sync_get_condition;
-undefined sync_set_condition;
-undefined sync_flush;
-undefined sync_finish;
-
-// =============================================================================
-// 渲染管线状态管理函数
-// =============================================================================
-
-// 函数: 管理渲染管线状态
-undefined manage_pipeline_state;
-undefined pipeline_create;
-undefined pipeline_delete;
-undefined pipeline_bind;
-undefined pipeline_use;
-undefined pipeline_get_parameter;
-undefined pipeline_set_parameter;
-undefined pipeline_validate;
-undefined pipeline_get_info_log;
-undefined pipeline_get_active_attributes;
-undefined pipeline_get_active_uniforms;
-uniform pipeline_uniform_location;
-uniform pipeline_attribute_location;
-
-// =============================================================================
-// 计算着色器管理函数
-// =============================================================================
-
-// 函数: 管理计算着色器
-undefined manage_compute_shader;
-undefined compute_dispatch;
-undefined compute_dispatch_indirect;
-undefined memory_barrier;
-undefined texture_barrier;
-undefined vertex_attrib_barrier;
-uniform uniform_work_group_size;
-uniform uniform_work_group_count;
-uniform uniform_work_group_size_x;
-uniform uniform_work_group_size_y;
-uniform uniform_work_group_size_z;
-
-// =============================================================================
-// 调试输出管理函数
-// =============================================================================
-
-// 函数: 管理调试输出
-undefined manage_debug_output;
-undefined debug_message_callback;
-undefined debug_message_control;
-undefined debug_message_insert;
-undefined debug_push_group;
-undefined debug_pop_group;
-undefined debug_object_label;
-undefined debug_get_object_label;
-undefined debug_object_ptr_label;
-undefined debug_get_object_ptr_label;
-
-// =============================================================================
-// 多采样渲染函数
-// =============================================================================
-
-// 函数: 多采样渲染
-undefined multisample_rendering;
-undefined sample_coverage;
-undefined sample_alpha_to_coverage;
-undefined sample_alpha_to_one;
-undefined sample_mask;
-undefined sample_position;
-undefined sample_mask_value;
-undefined min_sample_shading;
-undefined sample_shading_rate;
-
-// =============================================================================
-// 渲染目标管理函数
-// =============================================================================
-
-// 函数: 管理渲染目标
-undefined manage_render_targets;
-undefined render_target_create;
-undefined render_target_delete;
-undefined render_target_bind;
-undefined render_target_unbind;
-undefined render_target_attach_texture;
-undefined render_target_attach_renderbuffer;
-undefined render_target_detach_texture;
-undefined render_target_detach_renderbuffer;
-undefined render_target_check_status;
-undefined render_target_get_status;
-undefined render_target_get_attachment;
-undefined render_target_set_attachment;
-undefined render_target_clear;
-undefined render_target_clear_color;
-undefined render_target_clear_depth;
-undefined render_target_clear_stencil;
-undefined render_target_clear_depth_stencil;
-
-// =============================================================================
-// 渲染统计函数
-// =============================================================================
-
-// 函数: 收集渲染统计
-undefined collect_render_stats;
-undefined stats_frame_count;
-undefined stats_draw_calls;
-undefined stats_triangles_rendered;
-undefined stats_vertices_rendered;
-undefined stats_texture_changes;
-undefined stats_shader_changes;
-undefined stats_buffer_changes;
-undefined stats_state_changes;
-undefined stats_memory_usage;
-undefined stats_gpu_usage;
-undefined stats_fps;
-undefined stats_frame_time;
-undefined stats_cpu_time;
-undefined stats_gpu_time;
-
-// =============================================================================
-// 资源管理函数
-// =============================================================================
-
-// 函数: 管理渲染资源
-undefined manage_render_resources;
-undefined resource_create;
-undefined resource_delete;
-undefined resource_load;
-undefined resource_unload;
-undefined resource_reload;
-undefined resource_get_info;
-undefined resource_get_data;
-undefined resource_set_data;
-undefined resource_bind;
-undefined resource_unbind;
-undefined resource_is_loaded;
-undefined resource_is_valid;
-undefined resource_get_memory_usage;
-undefined resource_get_reference_count;
-
-// =============================================================================
-// 渲染队列管理函数
-// =============================================================================
-
-// 函数: 管理渲染队列
-undefined manage_render_queue;
-undefined queue_create;
-undefined queue_delete;
-undefined queue_submit;
-undefined queue_wait_idle;
-undefined queue_signal;
-undefined queue_wait;
-undefined queue_execute;
-undefined queue_flush;
-undefined queue_clear;
-undefined queue_get_status;
-undefined queue_is_busy;
-undefined queue_is_empty;
-undefined queue_get_pending_commands;
-
-// =============================================================================
-// 命令缓冲区管理函数
-// =============================================================================
-
-// 函数: 管理命令缓冲区
-undefined manage_command_buffers;
-undefined command_buffer_create;
-undefined command_buffer_delete;
-undefined command_buffer_begin;
-undefined command_buffer_end;
-undefined command_buffer_submit;
-undefined command_buffer_reset;
-undefined command_buffer_record;
-undefined command_buffer_bind_pipeline;
-undefined command_buffer_bind_vertex_buffers;
-undefined command_buffer_bind_index_buffer;
-undefined command_buffer_bind_descriptor_sets;
-undefined command_buffer_draw;
-undefined command_buffer_draw_indexed;
-undefined command_buffer_draw_indirect;
-undefined command_buffer_draw_indexed_indirect;
-undefined command_buffer_dispatch;
-undefined command_buffer_dispatch_indirect;
-undefined command_buffer_copy_buffer;
-undefined command_buffer_copy_image;
-undefined command_buffer_copy_buffer_to_image;
-undefined command_buffer_copy_image_to_buffer;
-undefined command_buffer_blit_image;
-undefined command_buffer_resolve_image;
-undefined command_buffer_fill_buffer;
-undefined command_buffer_update_buffer;
-undefined command_buffer_push_constants;
-undefined command_buffer_set_viewport;
-undefined command_buffer_set_scissor;
-undefined command_buffer_set_line_width;
-undefined command_buffer_set_depth_bias;
-undefined command_buffer_set_blend_constants;
-undefined command_buffer_set_depth_bounds;
-undefined command_buffer_set_stencil_compare_mask;
-undefined command_buffer_set_stencil_write_mask;
-undefined command_buffer_set_stencil_reference;
-undefined command_buffer_begin_render_pass;
-undefined command_buffer_next_subpass;
-undefined command_buffer_end_render_pass;
-
-// =============================================================================
-// 描述符集管理函数
-// =============================================================================
-
-// 函数: 管理描述符集
-undefined manage_descriptor_sets;
-undefined descriptor_set_layout_create;
-undefined descriptor_set_layout_delete;
-undefined descriptor_set_layout_binding;
-undefined descriptor_set_layout_get_binding;
-undefined descriptor_set_create;
-undefined descriptor_set_delete;
-undefined descriptor_set_update;
-undefined descriptor_set_write;
-undefined descriptor_set_copy;
-undefined descriptor_set_bind;
-undefined descriptor_set_unbind;
-undefined descriptor_set_get_layout;
-undefined descriptor_set_get_binding;
-undefined descriptor_set_get_descriptor;
-
-// =============================================================================
-// 采样器管理函数
-// =============================================================================
-
-// 函数: 管理采样器
-undefined manage_samplers;
-undefined sampler_create;
-undefined sampler_delete;
-undefined sampler_create_info;
-undefined sampler_get_info;
-undefined sampler_set_info;
-undefined sampler_bind;
-undefined sampler_unbind;
-undefined sampler_get_parameter;
-undefined sampler_set_parameter;
-undefined sampler_get_min_filter;
-undefined sampler_get_mag_filter;
-undefined sampler_get_wrap_mode;
-undefined sampler_get_compare_mode;
-undefined sampler_get_compare_func;
-undefined sampler_get_lod_bias;
-undefined sampler_get_min_lod;
-undefined sampler_get_max_lod;
-undefined sampler_get_border_color;
-undefined sampler_set_min_filter;
-undefined sampler_set_mag_filter;
-undefined sampler_set_wrap_mode;
-undefined sampler_set_compare_mode;
-undefined sampler_set_compare_func;
-undefined sampler_set_lod_bias;
-undefined sampler_set_min_lod;
-undefined sampler_set_max_lod;
-undefined sampler_set_border_color;
-
-// =============================================================================
-// 渲染通道管理函数
-// =============================================================================
-
-// 函数: 管理渲染通道
-undefined manage_render_passes;
-undefined render_pass_create;
-undefined render_pass_delete;
-undefined render_pass_create_info;
-undefined render_pass_get_info;
-undefined render_pass_set_info;
-undefined render_pass_attachment_description;
-undefined render_pass_attachment_reference;
-undefined render_pass_subpass_description;
-undefined render_pass_subpass_dependency;
-undefined render_pass_begin_info;
-undefined render_pass_end_info;
-undefined render_pass_begin;
-undefined render_pass_end;
-undefined render_pass_next_subpass;
-undefined render_pass_get_attachment;
-undefined render_pass_set_attachment;
-undefined render_pass_get_subpass;
-undefined render_pass_set_subpass;
-undefined render_pass_get_dependency;
-undefined render_pass_set_dependency;
-
-// =============================================================================
-// 图像管理函数
-// =============================================================================
-
-// 函数: 管理图像
-undefined manage_images;
-undefined image_create;
-undefined image_delete;
-undefined image_create_info;
-undefined image_get_info;
-undefined image_set_info;
-undefined image_bind;
-undefined image_unbind;
-undefined image_get_memory_requirements;
-undefined image_bind_memory;
-undefined image_get_subresource_layout;
-undefined image_get_subresource_layouts;
-undefined image_get_format;
-undefined image_get_extent;
-undefined image_get_mip_levels;
-undefined image_get_array_layers;
-undefined image_get_samples;
-undefined image_get_usage;
-undefined image_get_tiling;
-undefined image_get_initial_layout;
-undefined image_get_current_layout;
-undefined image_get_queue_family_index;
-undefined image_get_sharing_mode;
-undefined image_get_memory_type_index;
-undefined image_get_memory_offset;
-undefined image_get_memory_size;
-undefined image_get_memory;
-undefined image_set_format;
-undefined image_set_extent;
-undefined image_set_mip_levels;
-undefined image_set_array_layers;
-undefined image_set_samples;
-undefined image_set_usage;
-undefined image_set_tiling;
-undefined image_set_initial_layout;
-undefined image_set_current_layout;
-undefined image_set_queue_family_index;
-undefined image_set_sharing_mode;
-undefined image_set_memory_type_index;
-undefined image_set_memory_offset;
-undefined image_set_memory_size;
-undefined image_set_memory;
-
-// =============================================================================
-// 缓冲区视图管理函数
-// =============================================================================
-
-// 函数: 管理缓冲区视图
-undefined manage_buffer_views;
-undefined buffer_view_create;
-undefined buffer_view_delete;
-undefined buffer_view_create_info;
-undefined buffer_view_get_info;
-undefined buffer_view_set_info;
-undefined buffer_view_bind;
-undefined buffer_view_unbind;
-undefined buffer_view_get_buffer;
-undefined buffer_view_get_format;
-undefined buffer_view_get_offset;
-undefined buffer_view_get_range;
-undefined buffer_view_set_buffer;
-undefined buffer_view_set_format;
-undefined buffer_view_set_offset;
-undefined buffer_view_set_range;
-
-// =============================================================================
-// 图像视图管理函数
-// =============================================================================
-
-// 函数: 管理图像视图
-undefined manage_image_views;
-undefined image_view_create;
-undefined image_view_delete;
-undefined image_view_create_info;
-undefined image_view_get_info;
-undefined image_view_set_info;
-undefined image_view_bind;
-undefined image_view_unbind;
-undefined image_view_get_image;
-undefined image_view_get_format;
-undefined image_view_get_view_type;
-undefined image_view_get_components;
-undefined image_view_get_subresource_range;
-undefined image_view_get_mip_levels;
-undefined image_view_get_array_layers;
-undefined image_view_get_base_mip_level;
-undefined image_view_get_base_array_layer;
-undefined image_view_set_image;
-undefined image_view_set_format;
-undefined image_view_set_view_type;
-undefined image_view_set_components;
-undefined image_view_set_subresource_range;
-undefined image_view_set_mip_levels;
-undefined image_view_set_array_layers;
-undefined image_view_set_base_mip_level;
-undefined image_view_set_base_array_layer;
-
-// =============================================================================
-// 内存管理函数（扩展）
-// =============================================================================
-
-// 函数: 扩展内存管理
-undefined manage_memory_extended;
-undefined memory_allocate;
-undefined memory_free;
-undefined memory_map;
-undefined memory_unmap;
-undefined memory_flush;
-undefined memory_invalidate;
-undefined memory_get_requirements;
-undefined memory_bind;
-undefined memory_get_type_index;
-undefined memory_get_heap_index;
-undefined memory_get_heap_flags;
-undefined memory_get_heap_size;
-undefined memory_get_properties;
-undefined memory_set_map_flags;
-undefined memory_set_unmap_flags;
-undefined memory_set_flush_flags;
-undefined memory_set_invalidate_flags;
-
-// =============================================================================
-// 渲染设备管理函数
-// =============================================================================
-
-// 函数: 管理渲染设备
-undefined manage_render_device;
-undefined device_create;
-undefined device_delete;
-undefined device_get_info;
-undefined device_set_info;
-undefined device_get_queue;
-undefined device_wait_idle;
-undefined device_get_memory_properties;
-undefined device_get_queue_family_properties;
-undefined device_get_extension_properties;
-undefined device_get_layer_properties;
-undefined device_get_features;
-undefined device_get_limits;
-undefined device_get_format_properties;
-undefined device_get_image_format_properties;
-undefined device_get_buffer_format_properties;
-undefined device_get_sparse_image_format_properties;
-undefined device_get_external_buffer_properties;
-undefined device_get_external_image_format_properties;
-
-// =============================================================================
-// 物理设备管理函数
-// =============================================================================
-
-// 函数: 管理物理设备
-undefined manage_physical_device;
-undefined physical_device_get_properties;
-undefined physical_device_get_features;
-undefined physical_device_get_memory_properties;
-undefined physical_device_get_queue_family_properties;
-undefined physical_device_get_extension_properties;
-undefined physical_device_get_layer_properties;
-undefined physical_device_get_format_properties;
-undefined physical_device_get_image_format_properties;
-undefined physical_device_get_buffer_format_properties;
-undefined physical_device_get_sparse_image_format_properties;
-undefined physical_device_get_external_buffer_properties;
-undefined physical_device_get_external_image_format_properties;
-
-// =============================================================================
-// 实例管理函数
-// =============================================================================
-
-// 函数: 管理渲染实例
-undefined manage_render_instance;
-undefined instance_create;
-undefined instance_delete;
-undefined instance_get_info;
-undefined instance_set_info;
-undefined instance_get_physical_devices;
-undefined instance_get_extension_properties;
-undefined instance_get_layer_properties;
-undefined instance_create_device;
-undefined instance_destroy_device;
-
-// =============================================================================
-// 表面管理函数
-// =============================================================================
-
-// 函数: 管理渲染表面
-undefined manage_render_surface;
-undefined surface_create;
-undefined surface_delete;
-undefined surface_get_info;
-undefined surface_set_info;
-undefined surface_get_capabilities;
-undefined surface_get_formats;
-undefined surface_get_present_modes;
-undefined surface_get_extent;
-undefined surface_set_extent;
-undefined surface_get_transform;
-undefined surface_set_transform;
-undefined surface_get_composite_alpha;
-undefined surface_set_composite_alpha;
-undefined surface_get_image_count;
-undefined surface_set_image_count;
-undefined surface_get_image_usage;
-undefined surface_set_image_usage;
-undefined surface_get_sharing_mode;
-undefined surface_set_sharing_mode;
-undefined surface_get_queue_family_index;
-undefined surface_set_queue_family_index;
-
-// =============================================================================
-// 交换链管理函数
-// =============================================================================
-
-// 函数: 管理交换链
-undefined manage_swap_chain;
-undefined swap_chain_create;
-undefined swap_chain_delete;
-undefined swap_chain_get_info;
-undefined swap_chain_set_info;
-undefined swap_chain_get_images;
-undefined swap_chain_get_image_count;
-undefined swap_chain_get_image_extent;
-undefined swap_chain_get_image_format;
-undefined swap_chain_get_image_usage;
-undefined swap_chain_get_present_mode;
-undefined swap_chain_get_transform;
-undefined swap_chain_get_composite_alpha;
-undefined swap_chain_recreate;
-undefined swap_chain_acquire_next_image;
-undefined swap_chain_queue_present;
-
-// =============================================================================
-// 同步原语管理函数
-// =============================================================================
-
-// 函数: 管理同步原语
-undefined manage_synchronization;
-undefined semaphore_create;
-undefined semaphore_delete;
-undefined semaphore_signal;
-undefined semaphore_wait;
-undefined fence_create;
-undefined fence_delete;
-undefined fence_signal;
-undefined fence_wait;
-undefined fence_reset;
-undefined fence_get_status;
-undefined fence_set_status;
-undefined event_create;
-undefined event_delete;
-undefined event_signal;
-undefined event_wait;
-undefined event_get_status;
-undefined event_set_status;
-
-// =============================================================================
-// 管线布局管理函数
-// =============================================================================
-
-// 函数: 管理管线布局
-undefined manage_pipeline_layout;
-undefined pipeline_layout_create;
-undefined pipeline_layout_delete;
-undefined pipeline_layout_get_info;
-undefined pipeline_layout_set_info;
-undefined pipeline_layout_get_descriptor_set_layouts;
-undefined pipeline_layout_get_push_constant_ranges;
-undefined pipeline_layout_set_descriptor_set_layouts;
-undefined pipeline_layout_set_push_constant_ranges;
-
-// =============================================================================
-// 着色器模块管理函数
-// =============================================================================
-
-// 函数: 管理着色器模块
-undefined manage_shader_modules;
-undefined shader_module_create;
-undefined shader_module_delete;
-undefined shader_module_get_info;
-undefined shader_module_set_info;
-undefined shader_module_get_code;
-undefined shader_module_set_code;
-undefined shader_module_get_entry_point;
-undefined shader_module_set_entry_point;
-
-// =============================================================================
-// 渲染通道开始信息管理函数
-// =============================================================================
-
-// 函数: 管理渲染通道开始信息
-undefined manage_render_pass_begin_info;
-undefined render_pass_begin_info_create;
-undefined render_pass_begin_info_delete;
-undefined render_pass_begin_info_get_info;
-undefined render_pass_begin_info_set_info;
-undefined render_pass_begin_info_get_render_pass;
-undefined render_pass_begin_info_set_render_pass;
-undefined render_pass_begin_info_get_framebuffer;
-undefined render_pass_begin_info_set_framebuffer;
-undefined render_pass_begin_info_get_clear_values;
-undefined render_pass_begin_info_set_clear_values;
-undefined render_pass_begin_info_get_render_area;
-undefined render_pass_begin_info_set_render_area;
-
-// =============================================================================
-// 渲染通道结束信息管理函数
-// =============================================================================
-
-// 函数: 管理渲染通道结束信息
-undefined manage_render_pass_end_info;
-undefined render_pass_end_info_create;
-undefined render_pass_end_info_delete;
-undefined render_pass_end_info_get_info;
-undefined render_pass_end_info_set_info;
-undefined render_pass_end_info_get_render_pass;
-undefined render_pass_end_info_set_render_pass;
-undefined render_pass_end_info_get_framebuffer;
-undefined render_pass_end_info_set_framebuffer;
-
-// =============================================================================
-// 清除值管理函数
-// =============================================================================
-
-// 函数: 管理清除值
-undefined manage_clear_values;
-undefined clear_value_create;
-undefined clear_value_delete;
-undefined clear_value_get_info;
-undefined clear_value_set_info;
-undefined clear_value_get_color;
-undefined clear_value_set_color;
-undefined clear_value_get_depth;
-undefined clear_value_set_depth;
-undefined clear_value_get_stencil;
-undefined clear_value_set_stencil;
-
-// =============================================================================
-// 渲染区域管理函数
-// =============================================================================
-
-// 函数: 管理渲染区域
-undefined manage_render_area;
-undefined render_area_create;
-undefined render_area_delete;
-undefined render_area_get_info;
-undefined render_area_set_info;
-undefined render_area_get_offset;
-undefined render_area_set_offset;
-undefined render_area_get_extent;
-undefined render_area_set_extent;
-
-// =============================================================================
-// 提交信息管理函数
-// =============================================================================
-
-// 函数: 管理提交信息
-undefined manage_submit_info;
-undefined submit_info_create;
-undefined submit_info_delete;
-undefined submit_info_get_info;
-undefined submit_info_set_info;
-undefined submit_info_get_wait_semaphores;
-undefined submit_info_set_wait_semaphores;
-undefined submit_info_get_wait_dst_stage_mask;
-undefined submit_info_set_wait_dst_stage_mask;
-undefined submit_info_get_command_buffers;
-undefined submit_info_set_command_buffers;
-undefined submit_info_get_signal_semaphores;
-undefined submit_info_set_signal_semaphores;
-
-// =============================================================================
-// 呈现信息管理函数
-// =============================================================================
-
-// 函数: 管理呈现信息
-undefined manage_present_info;
-undefined present_info_create;
-undefined present_info_delete;
-undefined present_info_get_info;
-undefined present_info_set_info;
-undefined present_info_get_wait_semaphores;
-undefined present_info_set_wait_semaphores;
-undefined present_info_get_swap_chains;
-undefined present_info_set_swap_chains;
-undefined present_info_get_image_indices;
-undefined present_info_set_image_indices;
-
-// =============================================================================
-// 内存分配信息管理函数
-// =============================================================================
-
-// 函数: 管理内存分配信息
-undefined manage_memory_allocate_info;
-undefined memory_allocate_info_create;
-undefined memory_allocate_info_delete;
-undefined memory_allocate_info_get_info;
-undefined memory_allocate_info_set_info;
-undefined memory_allocate_info_get_allocation_size;
-undefined memory_allocate_info_set_allocation_size;
-undefined memory_allocate_info_get_memory_type_index;
-undefined memory_allocate_info_set_memory_type_index;
-
-// =============================================================================
-// 内存映射信息管理函数
-// =============================================================================
-
-// 函数: 管理内存映射信息
-undefined manage_memory_map_info;
-undefined memory_map_info_create;
-undefined memory_map_info_delete;
-undefined memory_map_info_get_info;
-undefined memory_map_info_set_info;
-undefined memory_map_info_get_offset;
-undefined memory_map_info_set_offset;
-undefined memory_map_info_get_size;
-undefined memory_map_info_set_size;
-undefined memory_map_info_get_flags;
-undefined memory_map_info_set_flags;
-
-// =============================================================================
-// 绑定缓冲区内存信息管理函数
-// =============================================================================
-
-// 函数: 管理绑定缓冲区内存信息
-undefined manage_bind_buffer_memory_info;
-undefined bind_buffer_memory_info_create;
-undefined bind_buffer_memory_info_delete;
-undefined bind_buffer_memory_info_get_info;
-undefined bind_buffer_memory_info_set_info;
-undefined bind_buffer_memory_info_get_buffer;
-undefined bind_buffer_memory_info_set_buffer;
-undefined bind_buffer_memory_info_get_memory;
-undefined bind_buffer_memory_info_set_memory;
-undefined bind_buffer_memory_info_get_memory_offset;
-undefined bind_buffer_memory_info_set_memory_offset;
-
-// =============================================================================
-// 绑定图像内存信息管理函数
-// =============================================================================
-
-// 函数: 管理绑定图像内存信息
-undefined manage_bind_image_memory_info;
-undefined bind_image_memory_info_create;
-undefined bind_image_memory_info_delete;
-undefined bind_image_memory_info_get_info;
-undefined bind_image_memory_info_set_info;
-undefined bind_image_memory_info_get_image;
-undefined bind_image_memory_info_set_image;
-undefined bind_image_memory_info_get_memory;
-undefined bind_image_memory_info_set_memory;
-undefined bind_image_memory_info_get_memory_offset;
-undefined bind_image_memory_info_set_memory_offset;
-
-// =============================================================================
-// 缓冲区创建信息管理函数
-// =============================================================================
-
-// 函数: 管理缓冲区创建信息
-undefined manage_buffer_create_info;
-undefined buffer_create_info_create;
-undefined buffer_create_info_delete;
-undefined buffer_create_info_get_info;
-undefined buffer_create_info_set_info;
-undefined buffer_create_info_get_size;
-undefined buffer_create_info_set_size;
-undefined buffer_create_info_get_usage;
-undefined buffer_create_info_set_usage;
-undefined buffer_create_info_get_sharing_mode;
-undefined buffer_create_info_set_sharing_mode;
-undefined buffer_create_info_get_queue_family_indices;
-undefined buffer_create_info_set_queue_family_indices;
-
-// =============================================================================
-// 缓冲区复制信息管理函数
-// =============================================================================
-
-// 函数: 管理缓冲区复制信息
-undefined manage_buffer_copy_info;
-undefined buffer_copy_info_create;
-undefined buffer_copy_info_delete;
-undefined buffer_copy_info_get_info;
-undefined buffer_copy_info_set_info;
-undefined buffer_copy_info_get_src_offset;
-undefined buffer_copy_info_set_src_offset;
-undefined buffer_copy_info_get_dst_offset;
-undefined buffer_copy_info_set_dst_offset;
-undefined buffer_copy_info_get_size;
-undefined buffer_copy_info_set_size;
-
-// =============================================================================
-// 图像创建信息管理函数
-// =============================================================================
-
-// 函数: 管理图像创建信息
-undefined manage_image_create_info;
-undefined image_create_info_create;
-undefined image_create_info_delete;
-undefined image_create_info_get_info;
-undefined image_create_info_set_info;
-undefined image_create_info_get_image_type;
-undefined image_create_info_set_image_type;
-undefined image_create_info_get_format;
-undefined image_create_info_set_format;
-undefined image_create_info_get_extent;
-undefined image_create_info_set_extent;
-undefined image_create_info_get_mip_levels;
-undefined image_create_info_set_mip_levels;
-undefined image_create_info_get_array_layers;
-undefined image_create_info_set_array_layers;
-undefined image_create_info_get_samples;
-undefined image_create_info_set_samples;
-undefined image_create_info_get_tiling;
-undefined image_create_info_set_tiling;
-undefined image_create_info_get_usage;
-undefined image_create_info_set_usage;
-undefined image_create_info_get_sharing_mode;
-undefined image_create_info_set_sharing_mode;
-undefined image_create_info_get_queue_family_indices;
-undefined image_create_info_set_queue_family_indices;
-undefined image_create_info_get_initial_layout;
-undefined image_create_info_set_initial_layout;
-
-// =============================================================================
-// 图像子资源管理函数
-// =============================================================================
-
-// 函数: 管理图像子资源
-undefined manage_image_subresource;
-undefined image_subresource_create;
-undefined image_subresource_delete;
-undefined image_subresource_get_info;
-undefined image_subresource_set_info;
-undefined image_subresource_get_aspect_mask;
-undefined image_subresource_set_aspect_mask;
-undefined image_subresource_get_mip_level;
-undefined image_subresource_set_mip_level;
-undefined image_subresource_get_array_layer;
-undefined image_subresource_set_array_layer;
-
-// =============================================================================
-// 图像子资源范围管理函数
-// =============================================================================
-
-// 函数: 管理图像子资源范围
-undefined manage_image_subresource_range;
-undefined image_subresource_range_create;
-undefined image_subresource_range_delete;
-undefined image_subresource_range_get_info;
-undefined image_subresource_range_set_info;
-undefined image_subresource_range_get_aspect_mask;
-undefined image_subresource_range_set_aspect_mask;
-undefined image_subresource_range_get_base_mip_level;
-undefined image_subresource_range_set_base_mip_level;
-undefined image_subresource_range_get_level_count;
-undefined image_subresource_range_set_level_count;
-undefined image_subresource_range_get_base_array_layer;
-undefined image_subresource_range_set_base_array_layer;
-undefined image_subresource_range_get_layer_count;
-undefined image_subresource_range_set_layer_count;
-
-// =============================================================================
-// 图像复制信息管理函数
-// =============================================================================
-
-// 函数: 管理图像复制信息
-undefined manage_image_copy_info;
-undefined image_copy_info_create;
-undefined image_copy_info_delete;
-undefined image_copy_info_get_info;
-undefined image_copy_info_set_info;
-undefined image_copy_info_get_src_subresource;
-undefined image_copy_info_set_src_subresource;
-undefined image_copy_info_get_src_offset;
-undefined image_copy_info_set_src_offset;
-undefined image_copy_info_get_dst_subresource;
-undefined image_copy_info_set_dst_subresource;
-undefined image_copy_info_get_dst_offset;
-undefined image_copy_info_set_dst_offset;
-undefined image_copy_info_get_extent;
-undefined image_copy_info_set_extent;
-
-// =============================================================================
-// 缓冲区图像复制信息管理函数
-// =============================================================================
-
-// 函数: 管理缓冲区图像复制信息
-undefined manage_buffer_image_copy_info;
-undefined buffer_image_copy_info_create;
-undefined buffer_image_copy_info_delete;
-undefined buffer_image_copy_info_get_info;
-undefined buffer_image_copy_info_set_info;
-undefined buffer_image_copy_info_get_buffer_offset;
-undefined buffer_image_copy_info_set_buffer_offset;
-undefined buffer_image_copy_info_get_buffer_row_length;
-undefined buffer_image_copy_info_set_buffer_row_length;
-undefined buffer_image_copy_info_get_buffer_image_height;
-undefined buffer_image_copy_info_set_buffer_image_height;
-undefined buffer_image_copy_info_get_image_subresource;
-undefined buffer_image_copy_info_set_image_subresource;
-undefined buffer_image_copy_info_get_image_offset;
-undefined buffer_image_copy_info_set_image_offset;
-undefined buffer_image_copy_info_get_image_extent;
-undefined buffer_image_copy_info_set_image_extent;
-
-// =============================================================================
-// 图像位传输信息管理函数
-// =============================================================================
-
-// 函数: 管理图像位传输信息
-undefined manage_image_blit_info;
-undefined image_blit_info_create;
-undefined image_blit_info_delete;
-undefined image_blit_info_get_info;
-undefined image_blit_info_set_info;
-undefined image_blit_info_get_src_subresource;
-undefined image_blit_info_set_src_subresource;
-undefined image_blit_info_get_src_offset;
-undefined image_blit_info_set_src_offset;
-undefined image_blit_info_get_src_extent;
-undefined image_blit_info_set_src_extent;
-undefined image_blit_info_get_dst_subresource;
-undefined image_blit_info_set_dst_subresource;
-undefined image_blit_info_get_dst_offset;
-undefined image_blit_info_set_dst_offset;
-undefined image_blit_info_get_dst_extent;
-undefined image_blit_info_set_dst_extent;
-undefined image_blit_info_get_filter;
-undefined image_blit_info_set_filter;
-
-// =============================================================================
-// 图像解析信息管理函数
-// =============================================================================
-
-// 函数: 管理图像解析信息
-undefined manage_image_resolve_info;
-undefined image_resolve_info_create;
-undefined image_resolve_info_delete;
-undefined image_resolve_info_get_info;
-undefined image_resolve_info_set_info;
-undefined image_resolve_info_get_src_subresource;
-undefined image_resolve_info_set_src_subresource;
-undefined image_resolve_info_get_src_offset;
-undefined image_resolve_info_set_src_offset;
-undefined image_resolve_info_get_src_extent;
-undefined image_resolve_info_set_src_extent;
-undefined image_resolve_info_get_dst_subresource;
-undefined image_resolve_info_set_dst_subresource;
-undefined image_resolve_info_get_dst_offset;
-undefined image_resolve_info_set_dst_offset;
-undefined image_resolve_info_get_dst_extent;
-undefined image_resolve_info_set_dst_extent;
-
-// =============================================================================
-// 填充缓冲区信息管理函数
-// =============================================================================
-
-// 函数: 管理填充缓冲区信息
-undefined manage_fill_buffer_info;
-undefined fill_buffer_info_create;
-undefined fill_buffer_info_delete;
-undefined fill_buffer_info_get_info;
-undefined fill_buffer_info_set_info;
-undefined fill_buffer_info_get_dst_buffer;
-undefined fill_buffer_info_set_dst_buffer;
-undefined fill_buffer_info_get_dst_offset;
-undefined fill_buffer_info_set_dst_offset;
-undefined fill_buffer_info_get_size;
-undefined fill_buffer_info_set_size;
-undefined fill_buffer_info_get_data;
-undefined fill_buffer_info_set_data;
-
-// =============================================================================
-// 更新缓冲区信息管理函数
-// =============================================================================
-
-// 函数: 管理更新缓冲区信息
-undefined manage_update_buffer_info;
-undefined update_buffer_info_create;
-undefined update_buffer_info_delete;
-undefined update_buffer_info_get_info;
-undefined update_buffer_info_set_info;
-undefined update_buffer_info_get_dst_buffer;
-undefined update_buffer_info_set_dst_buffer;
-undefined update_buffer_info_get_dst_offset;
-undefined update_buffer_info_set_dst_offset;
-undefined update_buffer_info_get_data_size;
-undefined update_buffer_info_set_data_size;
-undefined update_buffer_info_get_data;
-undefined update_buffer_info_set_data;
-
-// =============================================================================
-// 推送常量范围管理函数
-// =============================================================================
-
-// 函数: 管理推送常量范围
-undefined manage_push_constant_range;
-undefined push_constant_range_create;
-undefined push_constant_range_delete;
-undefined push_constant_range_get_info;
-undefined push_constant_range_set_info;
-undefined push_constant_range_get_stage_flags;
-undefined push_constant_range_set_stage_flags;
-undefined push_constant_range_get_offset;
-undefined push_constant_range_set_offset;
-undefined push_constant_range_get_size;
-undefined push_constant_range_set_size;
-
-// =============================================================================
-// 视口管理函数
-// =============================================================================
-
-// 函数: 管理视口
-undefined manage_viewport;
-undefined viewport_create;
-undefined viewport_delete;
-undefined viewport_get_info;
-undefined viewport_set_info;
-undefined viewport_get_x;
-undefined viewport_set_x;
-undefined viewport_get_y;
-undefined viewport_set_y;
-undefined viewport_get_width;
-undefined viewport_set_width;
-undefined viewport_get_height;
-undefined viewport_set_height;
-undefined viewport_get_min_depth;
-undefined viewport_set_min_depth;
-undefined viewport_get_max_depth;
-undefined viewport_set_max_depth;
-
-// =============================================================================
-// 剪切矩形管理函数
-// =============================================================================
-
-// 函数: 管理剪切矩形
-undefined manage_scissor;
-undefined scissor_create;
-undefined scissor_delete;
-undefined scissor_get_info;
-undefined scissor_set_info;
-undefined scissor_get_offset;
-undefined scissor_set_offset;
-undefined scissor_get_extent;
-undefined scissor_set_extent;
-
-// =============================================================================
-// 渲染管线创建信息管理函数
-// =============================================================================
-
-// 函数: 管理渲染管线创建信息
-undefined manage_graphics_pipeline_create_info;
-undefined graphics_pipeline_create_info_create;
-undefined graphics_pipeline_create_info_delete;
-undefined graphics_pipeline_create_info_get_info;
-undefined graphics_pipeline_create_info_set_info;
-undefined graphics_pipeline_create_info_get_stage_count;
-undefined graphics_pipeline_create_info_set_stage_count;
-undefined graphics_pipeline_create_info_get_stages;
-undefined graphics_pipeline_create_info_set_stages;
-undefined graphics_pipeline_create_info_get_vertex_input_state;
-undefined graphics_pipeline_create_info_set_vertex_input_state;
-undefined graphics_pipeline_create_info_get_input_assembly_state;
-undefined graphics_pipeline_create_info_set_input_assembly_state;
-undefined graphics_pipeline_create_info_get_tessellation_state;
-undefined graphics_pipeline_create_info_set_tessellation_state;
-undefined graphics_pipeline_create_info_get_viewport_state;
-undefined graphics_pipeline_create_info_set_viewport_state;
-undefined graphics_pipeline_create_info_get_rasterization_state;
-undefined graphics_pipeline_create_info_set_rasterization_state;
-undefined graphics_pipeline_create_info_get_multisample_state;
-undefined graphics_pipeline_create_info_set_multisample_state;
-undefined graphics_pipeline_create_info_get_depth_stencil_state;
-undefined graphics_pipeline_create_info_set_depth_stencil_state;
-undefined graphics_pipeline_create_info_get_color_blend_state;
-undefined graphics_pipeline_create_info_set_color_blend_state;
-undefined graphics_pipeline_create_info_get_dynamic_state;
-undefined graphics_pipeline_create_info_set_dynamic_state;
-undefined graphics_pipeline_create_info_get_layout;
-undefined graphics_pipeline_create_info_set_layout;
-undefined graphics_pipeline_create_info_get_render_pass;
-undefined graphics_pipeline_create_info_set_render_pass;
-undefined graphics_pipeline_create_info_get_subpass;
-undefined graphics_pipeline_create_info_set_subpass;
-undefined graphics_pipeline_create_info_get_base_pipeline_handle;
-undefined graphics_pipeline_create_info_set_base_pipeline_handle;
-undefined graphics_pipeline_create_info_get_base_pipeline_index;
-undefined graphics_pipeline_create_info_set_base_pipeline_index;
-
-// =============================================================================
-// 计算管线创建信息管理函数
-// =============================================================================
-
-// 函数: 管理计算管线创建信息
-undefined manage_compute_pipeline_create_info;
-undefined compute_pipeline_create_info_create;
-undefined compute_pipeline_create_info_delete;
-undefined compute_pipeline_create_info_get_info;
-undefined compute_pipeline_create_info_set_info;
-undefined compute_pipeline_create_info_get_stage;
-undefined compute_pipeline_create_info_set_stage;
-undefined compute_pipeline_create_info_get_layout;
-undefined compute_pipeline_create_info_set_layout;
-undefined compute_pipeline_create_info_get_base_pipeline_handle;
-undefined compute_pipeline_create_info_set_base_pipeline_handle;
-undefined compute_pipeline_create_info_get_base_pipeline_index;
-undefined compute_pipeline_create_info_set_base_pipeline_index;
-
-// =============================================================================
-// 渲染系统完成
-// =============================================================================
-// 本文件包含渲染系统的核心函数声明，涵盖了现代图形API的所有主要功能模块
-// 包括：管线管理、着色器处理、缓冲区操作、纹理管理、同步控制等
+// 03_rendering.c - 6330 个函数
+
+
+
+
+// 函数: undefined FUN_180627850;
+undefined FUN_180627850;
+undefined UNK_180a01310;
+
+
+
+
+// 函数: undefined FUN_180627b90;
+undefined FUN_180627b90;
+undefined UNK_180277e10;
+undefined UNK_180a01378;
+undefined UNK_180a01360;
+undefined UNK_180a16bd0;
+undefined DAT_180c8aa08;
+undefined UNK_180a01340;
+undefined UNK_180a013a8;
+undefined UNK_180a013b8;
+undefined UNK_180049530;
+undefined UNK_180093fa0;
+undefined UNK_180093fc0;
+undefined UNK_180093fd0;
+undefined UNK_180a013b0;
+undefined UNK_180a013e0;
+
+
+
+
+// 函数: undefined FUN_180627ae0;
+undefined FUN_180627ae0;
+undefined DAT_180c8a988;
+undefined UNK_180a04f28;
+undefined UNK_180a04f58;
+undefined DAT_180a02bf0;
+undefined DAT_180a03fc0;
+undefined UNK_180a04f68;
+undefined UNK_180a04f70;
+undefined UNK_180a04f78;
+undefined UNK_180a04f80;
+undefined UNK_180a04f88;
+undefined UNK_180a04f90;
+undefined UNK_180a04fd4;
+undefined UNK_180a04f98;
+undefined UNK_1803cfb60;
+undefined UNK_180a24148;
+undefined UNK_180a05068;
+undefined UNK_180a05088;
+undefined UNK_180a05010;
+undefined UNK_180a05038;
+undefined UNK_180a05050;
+undefined UNK_180a23df0;
+undefined UNK_180a050a8;
+undefined UNK_180a04ff8;
+undefined UNK_180a05240;
+undefined UNK_180a051b0;
+undefined UNK_180a05178;
+undefined UNK_180a173b0;
+undefined UNK_180a05158;
+undefined UNK_180a05168;
+undefined UNK_180a05128;
+undefined UNK_180a05148;
+undefined UNK_180a05138;
+
+
+
+
+// 函数: undefined FUN_180651d20;
+undefined FUN_180651d20;
+undefined UNK_180180860;
+undefined UNK_1801808a0;
+undefined UNK_1801808b0;
+undefined UNK_1801808f0;
+undefined UNK_180180900;
+undefined UNK_18021cb40;
+undefined UNK_180941b00;
+undefined UNK_180a09c50;
+undefined UNK_180a09cf0;
+undefined UNK_180a0f0b8;
+undefined UNK_180a3dca0;
+undefined UNK_180a3dcb0;
+undefined UNK_180a3e030;
+
+
+
+
+// 函数: undefined FUN_18031c090;
+undefined FUN_18031c090;
+undefined UNK_180a0b348;
+undefined UNK_180a0b358;
+undefined UNK_180a0b368;
+undefined UNK_180a0b378;
+undefined UNK_180a0b388;
+undefined UNK_180a0b390;
+undefined UNK_180a0b3a8;
+undefined DAT_180a0b3b8;
+undefined UNK_180a0b3c0;
+undefined UNK_180a0b3d4;
+undefined UNK_180a0b3e0;
+undefined UNK_180a0b3f0;
+undefined UNK_180a0b408;
+undefined UNK_180a0b420;
+undefined UNK_180a0b438;
+undefined UNK_180a0b450;
+undefined UNK_180a0b480;
+undefined UNK_180a0b498;
+undefined UNK_180a0b4b0;
+undefined UNK_180a0b4e0;
+undefined UNK_180a0b500;
+undefined UNK_180a0b518;
+undefined UNK_180a0b530;
+undefined UNK_180a0b550;
+undefined UNK_180a0b568;
+undefined DAT_180a0b57c;
+undefined UNK_180a0b590;
+undefined UNK_180a0b5a0;
+undefined UNK_180a0b5b8;
+undefined UNK_180a0b5d8;
+undefined UNK_180a0c288;
+char DAT_180d48d64;
+undefined UNK_1801bc820;
+undefined UNK_1801bc840;
+char DAT_180c82847;
+undefined DAT_180a3fc80;
+undefined UNK_18027d980;
+undefined UNK_180a03038;
+undefined DAT_180a40490;
+undefined DAT_180d49630;
+
+
+
+
+// 函数: undefined FUN_180627c50;
+undefined FUN_180627c50;
+undefined UNK_180a0cfd4;
+undefined UNK_180a0cfd8;
+undefined UNK_180a0cfdc;
+undefined UNK_180a0cfe8;
+undefined UNK_180a0cff0;
+undefined UNK_180a0cff8;
+undefined UNK_180a0d000;
+undefined UNK_180a0d008;
+undefined UNK_180a0d040;
+undefined UNK_180a06780;
+undefined UNK_180a0d010;
+undefined UNK_180a0d048;
+undefined UNK_180a0d08c;
+undefined UNK_180a0159c;
+undefined UNK_180a0d0e0;
+undefined UNK_180a0d100;
+undefined UNK_180a0d128;
+undefined UNK_180a0d138;
+undefined UNK_180a0d148;
+undefined UNK_180a0d150;
+undefined UNK_180a0d160;
+undefined UNK_180a0d190;
+undefined DAT_1809fccb0;
+undefined UNK_180a0d298;
+undefined UNK_180a0d2a0;
+undefined UNK_180a0d2a8;
+undefined UNK_180a0d2b0;
+undefined UNK_180a0d2e0;
+undefined UNK_180a0d2e8;
+undefined UNK_180a0d2d4;
+undefined UNK_180a0d2f0;
+undefined UNK_180a0d2f8;
+undefined UNK_180a0d318;
+undefined UNK_180a0d330;
+
+
+
+
+// 函数: undefined FUN_180304860;
+undefined FUN_180304860;
+undefined UNK_180a18dc8;
+undefined UNK_180a18dd0;
+undefined UNK_180a19e48;
+undefined UNK_180a09858;
+undefined UNK_180a1a070;
+undefined DAT_180bf6648;
+
+
+
+
+// 函数: undefined FUN_1803089a0;
+undefined FUN_1803089a0;
+undefined UNK_180308990;
+undefined UNK_180a1a248;
+undefined UNK_180a1a258;
+undefined UNK_180a1a278;
+undefined DAT_180bfaea8;
+undefined DAT_180bfaea0;
+undefined DAT_180bfaeb8;
+undefined UNK_180a1a200;
+undefined UNK_180a1a228;
+
+
+
+
+// 函数: undefined FUN_180306d20;
+undefined FUN_180306d20;
+undefined UNK_180a1a3d0;
+undefined UNK_180a1a368;
+undefined UNK_180a1a4a0;
+undefined DAT_180a09de8;
+undefined UNK_180a1a490;
+undefined DAT_18098be48;
+undefined UNK_180a1029c;
+
+
+
+
+// 函数: undefined FUN_18030cdf0;
+undefined FUN_18030cdf0;
+undefined UNK_180a1a430;
+undefined UNK_180a1a440;
+undefined UNK_180a1a470;
+undefined UNK_180a1a478;
+undefined UNK_180a1a480;
+undefined UNK_180a1a488;
+
+
+
+
+// 函数: undefined FUN_18030ccf0;
+undefined FUN_18030ccf0;
+
+
+
+
+// 函数: undefined FUN_180627a70;
+undefined FUN_180627a70;
+undefined UNK_180a1a710;
+undefined UNK_180a1a838;
+undefined UNK_180a1a6b0;
+undefined UNK_180a1a6f0;
+undefined UNK_180a1a6e0;
+undefined UNK_180046230;
+undefined UNK_18021b060;
+
+
+
+
+// 函数: undefined FUN_1804379d0;
+undefined FUN_1804379d0;
+undefined UNK_180242690;
+undefined UNK_1802bf300;
+undefined SUB_1802bf330;
+undefined UNK_180435850;
+undefined UNK_180435bc0;
+
+
+
+
+// 函数: undefined FUN_180437b60;
+undefined FUN_180437b60;
+undefined UNK_180435be0;
+
+
+
+
+// 函数: undefined FUN_180437ba0;
+undefined FUN_180437ba0;
+undefined UNK_180435c50;
+
+
+
+
+// 函数: undefined FUN_180437c40;
+undefined FUN_180437c40;
+undefined UNK_180435cb0;
+
+
+
+
+// 函数: undefined FUN_180437ca0;
+undefined FUN_180437ca0;
+undefined UNK_180435d80;
+
+
+
+
+// 函数: undefined FUN_180437cf0;
+undefined FUN_180437cf0;
+undefined UNK_180435dd0;
+
+
+
+
+// 函数: undefined FUN_180437d40;
+undefined FUN_180437d40;
+undefined UNK_180435ee0;
+
+
+
+
+// 函数: undefined FUN_180437d60;
+undefined FUN_180437d60;
+undefined UNK_1804360a0;
+
+
+
+
+// 函数: undefined FUN_180437e80;
+undefined FUN_180437e80;
+undefined UNK_1804360c0;
+undefined UNK_180436270;
+undefined UNK_180436290;
+undefined UNK_180436c90;
+
+
+
+
+// 函数: undefined FUN_180438210;
+undefined FUN_180438210;
+undefined UNK_180436ca0;
+
+
+
+
+// 函数: undefined FUN_1804382b0;
+undefined FUN_1804382b0;
+undefined UNK_180437030;
+
+
+
+
+// 函数: undefined FUN_180438350;
+undefined FUN_180438350;
+undefined UNK_180437040;
+
+
+
+
+// 函数: undefined FUN_180438560;
+undefined FUN_180438560;
+undefined UNK_180437090;
+
+
+
+
+// 函数: undefined FUN_180438680;
+undefined FUN_180438680;
+undefined UNK_1804370a0;
+
+
+
+
+// 函数: undefined FUN_1804386b0;
+undefined FUN_1804386b0;
+undefined UNK_1804370e0;
+
+
+
+
+// 函数: undefined FUN_180438940;
+undefined FUN_180438940;
+undefined UNK_1804371e0;
+
+
+
+
+// 函数: undefined FUN_1804389f0;
+undefined FUN_1804389f0;
+undefined UNK_180437270;
+undefined UNK_180437280;
+undefined UNK_180437450;
+undefined UNK_1804375e0;
+undefined UNK_180437c30;
+undefined UNK_180437fc0;
+undefined UNK_180437fd0;
+undefined UNK_180437fe0;
+undefined UNK_180438060;
+
+
+
+
+// 函数: undefined FUN_180438c50;
+undefined FUN_180438c50;
+undefined UNK_180438080;
+
+
+
+
+// 函数: undefined FUN_180438c70;
+undefined FUN_180438c70;
+undefined UNK_1804380b0;
+undefined UNK_1804380c0;
+undefined UNK_1804380e0;
+undefined UNK_180438100;
+undefined UNK_180438120;
+undefined UNK_180438140;
+undefined UNK_180438160;
+undefined UNK_180438180;
+undefined UNK_1804381a0;
+undefined UNK_1804381c0;
+undefined UNK_1804381e0;
+undefined UNK_1804381f0;
+undefined UNK_180438290;
+undefined UNK_180438330;
+undefined UNK_180438540;
+undefined UNK_1804388d0;
+undefined UNK_180438c10;
+undefined UNK_180438c30;
+undefined UNK_180438c40;
+undefined UNK_18043b920;
+undefined UNK_18043bb40;
+undefined UNK_18043bb50;
+undefined UNK_18043bb60;
+undefined UNK_18043bb70;
+undefined UNK_18043bb90;
+undefined UNK_18043bbb0;
+undefined UNK_18043bbd0;
+undefined UNK_18043bd50;
+undefined UNK_18043bd90;
+undefined UNK_18043bdc0;
+undefined UNK_18043c150;
+undefined UNK_18043c330;
+undefined UNK_18043c340;
+undefined UNK_18043c630;
+undefined UNK_18043c640;
+undefined UNK_18043c650;
+undefined UNK_18043c670;
+undefined UNK_18043c690;
+undefined UNK_18043c720;
+undefined UNK_18043c730;
+undefined UNK_18043e620;
+undefined UNK_18043e980;
+undefined UNK_18043ea70;
+undefined UNK_18043eae0;
+undefined UNK_18043eaf0;
+undefined UNK_18043ec40;
+undefined UNK_18043ec70;
+undefined UNK_18043ec80;
+undefined UNK_18043ec90;
+undefined UNK_18043ed50;
+undefined UNK_18043ef30;
+undefined UNK_18043f2a0;
+undefined UNK_18043f2b0;
+undefined UNK_18043f2f0;
+undefined UNK_18043fab0;
+undefined UNK_18043fad0;
+undefined UNK_18043fb00;
+undefined UNK_18043fb50;
+undefined UNK_18043fb60;
+undefined UNK_18043fba0;
+undefined UNK_18043fbc0;
+undefined UNK_18043fbd0;
+undefined UNK_18043fbf0;
+undefined UNK_18043fc50;
+undefined UNK_18043fc70;
+undefined UNK_18043fc90;
+undefined UNK_18043fcb0;
+undefined UNK_18043fe40;
+undefined UNK_18043fe50;
+undefined UNK_18043fed0;
+undefined UNK_18043fee0;
+undefined UNK_180440380;
+undefined UNK_180440470;
+undefined UNK_180440490;
+undefined UNK_180440530;
+undefined UNK_180441240;
+undefined UNK_1804418d0;
+undefined UNK_180441900;
+undefined UNK_180441940;
+undefined UNK_1804419f0;
+undefined UNK_180441d50;
+undefined UNK_180441d70;
+undefined UNK_180441d90;
+undefined UNK_180441da0;
+undefined UNK_180441db0;
+undefined UNK_180441f10;
+undefined UNK_180441f20;
+undefined UNK_180441f30;
+undefined UNK_180441f40;
+undefined UNK_180442160;
+undefined UNK_180442430;
+undefined UNK_180442440;
+undefined UNK_180442550;
+undefined UNK_180442660;
+undefined UNK_180442700;
+undefined UNK_180442830;
+undefined UNK_180442840;
+
+
+
+
+// 函数: undefined FUN_18043a140;
+undefined FUN_18043a140;
+undefined UNK_180442ff0;
+
+
+
+
+// 函数: undefined FUN_18043ab40;
+undefined FUN_18043ab40;
+undefined UNK_180443150;
+undefined UNK_180443170;
+undefined UNK_180443190;
+
+
+
+
+// 函数: undefined FUN_18043b290;
+undefined FUN_18043b290;
+undefined UNK_1804431b0;
+
+
+
+
+// 函数: undefined FUN_18043b930;
+undefined FUN_18043b930;
+undefined UNK_1804435d0;
+
+
+
+
+// 函数: undefined FUN_18043bbe0;
+undefined FUN_18043bbe0;
+undefined UNK_1804435e0;
+undefined UNK_1804436e0;
+undefined UNK_1804440c0;
+undefined UNK_180444130;
+undefined UNK_180444140;
+undefined UNK_180444150;
+
+
+
+
+// 函数: undefined FUN_18043bfb0;
+undefined FUN_18043bfb0;
+undefined UNK_180444160;
+
+
+
+
+// 函数: undefined FUN_18043bff0;
+undefined FUN_18043bff0;
+undefined UNK_180444190;
+
+
+
+
+// 函数: undefined FUN_18043c020;
+undefined FUN_18043c020;
+undefined UNK_1804441c0;
+
+
+
+
+// 函数: undefined FUN_18043c060;
+undefined FUN_18043c060;
+undefined UNK_1804441d0;
+
+
+
+
+// 函数: undefined FUN_18043c0b0;
+undefined FUN_18043c0b0;
+undefined UNK_1804441e0;
+
+
+
+
+// 函数: undefined FUN_18043c0f0;
+undefined FUN_18043c0f0;
+undefined UNK_1804441f0;
+
+
+
+
+// 函数: undefined FUN_18043c160;
+undefined FUN_18043c160;
+undefined UNK_1804442b0;
+
+
+
+
+// 函数: undefined FUN_18043c230;
+undefined FUN_18043c230;
+undefined UNK_180444360;
+
+
+
+
+// 函数: undefined FUN_18043c290;
+undefined FUN_18043c290;
+undefined UNK_180444440;
+
+
+
+
+// 函数: undefined FUN_18043c2e0;
+undefined FUN_18043c2e0;
+undefined UNK_180444450;
+
+
+
+
+// 函数: undefined FUN_18043c350;
+undefined FUN_18043c350;
+undefined UNK_180444460;
+
+
+
+
+// 函数: undefined FUN_18043c370;
+undefined FUN_18043c370;
+undefined UNK_180444470;
+
+
+
+
+// 函数: undefined FUN_18043c3b0;
+undefined FUN_18043c3b0;
+undefined UNK_180444480;
+
+
+
+
+// 函数: undefined FUN_18043c510;
+undefined FUN_18043c510;
+undefined UNK_1804445a0;
+
+
+
+
+// 函数: undefined FUN_18043c6b0;
+undefined FUN_18043c6b0;
+undefined UNK_1804449d0;
+
+
+
+
+// 函数: undefined FUN_18043c6e0;
+undefined FUN_18043c6e0;
+undefined UNK_1804449f0;
+
+
+
+
+// 函数: undefined FUN_18043c740;
+undefined FUN_18043c740;
+undefined UNK_180444a00;
+
+
+
+
+// 函数: undefined FUN_18043c7a0;
+undefined FUN_18043c7a0;
+undefined UNK_180444d60;
+
+
+
+
+// 函数: undefined FUN_18043c820;
+undefined FUN_18043c820;
+undefined UNK_180444f20;
+
+
+
+
+// 函数: undefined FUN_18043c8e0;
+undefined FUN_18043c8e0;
+undefined UNK_180444f60;
+undefined UNK_180444fb0;
+undefined UNK_180444fd0;
+
+
+
+
+// 函数: undefined FUN_18043ca10;
+undefined FUN_18043ca10;
+undefined UNK_180445020;
+
+
+
+
+// 函数: undefined FUN_18043caa0;
+undefined FUN_18043caa0;
+undefined UNK_1804450e0;
+
+
+
+
+// 函数: undefined FUN_18043cae0;
+undefined FUN_18043cae0;
+undefined UNK_180445140;
+
+
+
+
+// 函数: undefined FUN_18043cb50;
+undefined FUN_18043cb50;
+undefined UNK_180445160;
+
+
+
+
+// 函数: undefined FUN_18043cbd0;
+undefined FUN_18043cbd0;
+undefined UNK_180445230;
+
+
+
+
+// 函数: undefined FUN_18043d100;
+undefined FUN_18043d100;
+undefined UNK_180445280;
+
+
+
+
+// 函数: undefined FUN_18043e5c0;
+undefined FUN_18043e5c0;
+undefined UNK_1804452d0;
+
+
+
+
+// 函数: undefined FUN_18043e630;
+undefined FUN_18043e630;
+undefined UNK_1804452f0;
+
+
+
+
+// 函数: undefined FUN_18043e720;
+undefined FUN_18043e720;
+undefined UNK_180445310;
+
+
+
+
+// 函数: undefined FUN_18043e7f0;
+undefined FUN_18043e7f0;
+undefined UNK_180445330;
+
+
+
+
+// 函数: undefined FUN_18043e990;
+undefined FUN_18043e990;
+undefined UNK_180445340;
+
+
+
+
+// 函数: undefined FUN_18043e9b0;
+undefined FUN_18043e9b0;
+undefined UNK_180445350;
+undefined UNK_180445360;
+undefined UNK_180445370;
+undefined UNK_180445470;
+undefined UNK_1804454d0;
+
+
+
+
+// 函数: undefined FUN_18043ea60;
+undefined FUN_18043ea60;
+undefined UNK_180445510;
+
+
+
+
+// 函数: undefined FUN_18043ea80;
+undefined FUN_18043ea80;
+undefined UNK_180445530;
+
+
+
+
+// 函数: undefined FUN_18043eb00;
+undefined FUN_18043eb00;
+undefined UNK_180445540;
+
+
+
+
+// 函数: undefined FUN_18043eb50;
+undefined FUN_18043eb50;
+undefined UNK_180445550;
+
+
+
+
+// 函数: undefined FUN_18043ecc0;
+undefined FUN_18043ecc0;
+undefined UNK_1804455b0;
+
+
+
+
+// 函数: undefined FUN_18043ed10;
+undefined FUN_18043ed10;
+undefined UNK_1804455c0;
+
+
+
+
+// 函数: undefined FUN_18043ed70;
+undefined FUN_18043ed70;
+undefined UNK_1804455d0;
+undefined UNK_1804455e0;
+undefined UNK_1804455f0;
+
+
+
+
+// 函数: undefined FUN_18043ee70;
+undefined FUN_18043ee70;
+undefined UNK_180445600;
+
+
+
+
+// 函数: undefined FUN_18043ef40;
+undefined FUN_18043ef40;
+undefined UNK_180445790;
+
+
+
+
+// 函数: undefined FUN_18043ef90;
+undefined FUN_18043ef90;
+undefined UNK_1804457a0;
+
+
+
+
+// 函数: undefined FUN_18043f010;
+undefined FUN_18043f010;
+undefined UNK_180445960;
+
+
+
+
+// 函数: undefined FUN_18043f0d0;
+undefined FUN_18043f0d0;
+undefined UNK_180445fa0;
+
+
+
+
+// 函数: undefined FUN_18043f240;
+undefined FUN_18043f240;
+undefined UNK_180445fb0;
+
+
+
+
+// 函数: undefined FUN_18043f300;
+undefined FUN_18043f300;
+undefined UNK_180445fc0;
+
+
+
+
+// 函数: undefined FUN_18043f3f0;
+undefined FUN_18043f3f0;
+undefined UNK_180445ff0;
+
+
+
+
+// 函数: undefined FUN_18043f5f0;
+undefined FUN_18043f5f0;
+undefined UNK_180446000;
+
+
+
+
+// 函数: undefined FUN_18043f610;
+undefined FUN_18043f610;
+undefined UNK_180446070;
+
+
+
+
+// 函数: undefined FUN_18043f770;
+undefined FUN_18043f770;
+undefined UNK_1804460b0;
+
+
+
+
+// 函数: undefined FUN_18043f880;
+undefined FUN_18043f880;
+undefined UNK_1804461a0;
+
+
+
+
+// 函数: undefined FUN_18043f8f0;
+undefined FUN_18043f8f0;
+undefined UNK_180446280;
+
+
+
+
+// 函数: undefined FUN_18043f960;
+undefined FUN_18043f960;
+undefined UNK_180446290;
+
+
+
+
+// 函数: undefined FUN_18043f9b0;
+undefined FUN_18043f9b0;
+undefined UNK_180446530;
+
+
+
+
+// 函数: undefined FUN_18043fa30;
+undefined FUN_18043fa30;
+undefined UNK_180446550;
+
+
+
+
+// 函数: undefined FUN_18043fae0;
+undefined FUN_18043fae0;
+undefined UNK_180446560;
+
+
+
+
+// 函数: undefined FUN_18043fb10;
+undefined FUN_18043fb10;
+undefined UNK_1804465b0;
+undefined UNK_180446600;
+undefined UNK_180446900;
+
+
+
+
+// 函数: undefined FUN_18043fc20;
+undefined FUN_18043fc20;
+undefined UNK_180446940;
+
+
+
+
+// 函数: undefined FUN_18043fce0;
+undefined FUN_18043fce0;
+undefined UNK_180446950;
+
+
+
+
+// 函数: undefined FUN_18043fd10;
+undefined FUN_18043fd10;
+undefined UNK_1804469d0;
+
+
+
+
+// 函数: undefined FUN_18043fd70;
+undefined FUN_18043fd70;
+undefined UNK_1804469e0;
+
+
+
+
+// 函数: undefined FUN_18043fe10;
+undefined FUN_18043fe10;
+undefined UNK_180446a20;
+
+
+
+
+// 函数: undefined FUN_18043fe70;
+undefined FUN_18043fe70;
+undefined UNK_180446a40;
+
+
+
+
+// 函数: undefined FUN_18043fef0;
+undefined FUN_18043fef0;
+undefined UNK_180446b10;
+
+
+
+
+// 函数: undefined FUN_18043ff20;
+undefined FUN_18043ff20;
+undefined UNK_180446e00;
+
+
+
+
+// 函数: undefined FUN_1804401b0;
+undefined FUN_1804401b0;
+undefined UNK_180446e10;
+
+
+
+
+// 函数: undefined FUN_180440220;
+undefined FUN_180440220;
+undefined UNK_180446e20;
+
+
+
+
+// 函数: undefined FUN_180440280;
+undefined FUN_180440280;
+undefined UNK_180446e30;
+
+
+
+
+// 函数: undefined FUN_1804402e0;
+undefined FUN_1804402e0;
+undefined UNK_180446e50;
+
+
+
+
+// 函数: undefined FUN_180440350;
+undefined FUN_180440350;
+undefined UNK_180446e60;
+
+
+
+
+// 函数: undefined FUN_1804403d0;
+undefined FUN_1804403d0;
+undefined UNK_180446f90;
+
+
+
+
+// 函数: undefined FUN_1804404b0;
+undefined FUN_1804404b0;
+undefined UNK_180447010;
+
+
+
+
+// 函数: undefined FUN_180440560;
+undefined FUN_180440560;
+undefined UNK_180447020;
+undefined UNK_1804470c0;
+undefined UNK_180447110;
+
+
+
+
+// 函数: undefined FUN_1804405e0;
+undefined FUN_1804405e0;
+undefined UNK_1804473a0;
+
+
+
+
+// 函数: undefined FUN_180440660;
+undefined FUN_180440660;
+undefined UNK_1804475b0;
+
+
+
+
+// 函数: undefined FUN_180440750;
+undefined FUN_180440750;
+undefined UNK_180447c80;
+
+
+
+
+// 函数: undefined FUN_180440910;
+undefined FUN_180440910;
+undefined UNK_180447c90;
+
+
+
+
+// 函数: undefined FUN_180440aa0;
+undefined FUN_180440aa0;
+undefined UNK_180447d20;
+undefined UNK_180447d30;
+
+
+
+
+// 函数: undefined FUN_180440cb0;
+undefined FUN_180440cb0;
+undefined UNK_180447dc0;
+
+
+
+
+// 函数: undefined FUN_180440d20;
+undefined FUN_180440d20;
+undefined UNK_1804482a0;
+
+
+
+
+// 函数: undefined FUN_180440d90;
+undefined FUN_180440d90;
+undefined UNK_1804482b0;
+
+
+
+
+// 函数: undefined FUN_180440e00;
+undefined FUN_180440e00;
+undefined UNK_1804482e0;
+
+
+
+
+// 函数: undefined FUN_180440e70;
+undefined FUN_180440e70;
+undefined UNK_180448370;
+
+
+
+
+// 函数: undefined FUN_180440f30;
+undefined FUN_180440f30;
+undefined UNK_180448400;
+
+
+
+
+// 函数: undefined FUN_180441070;
+undefined FUN_180441070;
+undefined UNK_180448410;
+
+
+
+
+// 函数: undefined FUN_1804410a0;
+undefined FUN_1804410a0;
+undefined UNK_1804497e0;
+
+
+
+
+// 函数: undefined FUN_180441110;
+undefined FUN_180441110;
+undefined UNK_180449820;
+
+
+
+
+// 函数: undefined FUN_180441180;
+undefined FUN_180441180;
+undefined UNK_180449830;
+
+
+
+
+// 函数: undefined FUN_180441260;
+undefined FUN_180441260;
+undefined UNK_180449840;
+
+
+
+
+// 函数: undefined FUN_180441420;
+undefined FUN_180441420;
+undefined UNK_180449920;
+
+
+
+
+// 函数: undefined FUN_1804414d0;
+undefined FUN_1804414d0;
+undefined UNK_180449be0;
+
+
+
+
+// 函数: undefined FUN_1804415d0;
+undefined FUN_1804415d0;
+undefined UNK_180449bf0;
+
+
+
+
+// 函数: undefined FUN_180441640;
+undefined FUN_180441640;
+undefined UNK_18044a390;
+
+
+
+
+// 函数: undefined FUN_180441730;
+undefined FUN_180441730;
+undefined UNK_18044a7c0;
+
+
+
+
+// 函数: undefined FUN_1804417b0;
+undefined FUN_1804417b0;
+undefined UNK_18044a7d0;
+
+
+
+
+// 函数: undefined FUN_180441830;
+undefined FUN_180441830;
+undefined UNK_18044a7e0;
+
+
+
+
+// 函数: undefined FUN_180441890;
+undefined FUN_180441890;
+undefined UNK_18044a7f0;
+
+
+
+
+// 函数: undefined FUN_1804418e0;
+undefined FUN_1804418e0;
+undefined UNK_18044a800;
+
+
+
+
+// 函数: undefined FUN_180441910;
+undefined FUN_180441910;
+undefined UNK_18044ab30;
+
+
+
+
+// 函数: undefined FUN_180441950;
+undefined FUN_180441950;
+undefined UNK_18044ab40;
+
+
+
+
+// 函数: undefined FUN_180441a00;
+undefined FUN_180441a00;
+undefined UNK_18044ab50;
+
+
+
+
+// 函数: undefined FUN_180441c50;
+undefined FUN_180441c50;
+undefined UNK_18044ab60;
+
+
+
+
+// 函数: undefined FUN_180441cc0;
+undefined FUN_180441cc0;
+undefined UNK_18044b250;
+undefined UNK_18044b540;
+undefined UNK_18044b570;
+
+
+
+
+// 函数: undefined FUN_180441dd0;
+undefined FUN_180441dd0;
+undefined UNK_18044b6c0;
+
+
+
+
+// 函数: undefined FUN_180441e10;
+undefined FUN_180441e10;
+undefined UNK_18044baa0;
+
+
+
+
+// 函数: undefined FUN_180441e50;
+undefined FUN_180441e50;
+undefined UNK_18044bc30;
+
+
+
+
+// 函数: undefined FUN_180441e90;
+undefined FUN_180441e90;
+undefined UNK_18044bc40;
+
+
+
+
+// 函数: undefined FUN_180441f60;
+undefined FUN_180441f60;
+undefined UNK_18044c070;
+
+
+
+
+// 函数: undefined FUN_180441fc0;
+undefined FUN_180441fc0;
+undefined UNK_18044c080;
+
+
+
+
+// 函数: undefined FUN_180442020;
+undefined FUN_180442020;
+undefined UNK_18044c0a0;
+
+
+
+
+// 函数: undefined FUN_1804420c0;
+undefined FUN_1804420c0;
+undefined UNK_18044c0b0;
+
+
+
+
+// 函数: undefined FUN_180442180;
+undefined FUN_180442180;
+undefined UNK_18044c0c0;
+
+
+
+
+// 函数: undefined FUN_1804422a0;
+undefined FUN_1804422a0;
+undefined UNK_18044c710;
+undefined UNK_18044c940;
+undefined UNK_18044c980;
+
+
+
+
+// 函数: undefined FUN_180442370;
+undefined FUN_180442370;
+undefined UNK_18044c9a0;
+undefined UNK_18044ca40;
+undefined UNK_18044ca60;
+undefined UNK_18044ca80;
+undefined UNK_18044caa0;
+
+
+
+
+// 函数: undefined FUN_180442450;
+undefined FUN_180442450;
+undefined UNK_18044cac0;
+
+
+
+
+// 函数: undefined FUN_1804424d0;
+undefined FUN_1804424d0;
+undefined UNK_18044cae0;
+
+
+
+
+// 函数: undefined FUN_180442560;
+undefined FUN_180442560;
+undefined UNK_18044cb00;
+undefined UNK_18044cb20;
+undefined UNK_18044cb40;
+undefined UNK_18044cb60;
+undefined UNK_18044d030;
+
+
+
+
+// 函数: undefined FUN_180442670;
+undefined FUN_180442670;
+undefined UNK_18044d040;
+undefined UNK_18044d050;
+undefined UNK_18044d080;
+undefined UNK_18044d090;
+undefined UNK_18044d330;
+
+
+
+
+// 函数: undefined FUN_180442720;
+undefined FUN_180442720;
+undefined UNK_18044d400;
+
+
+
+
+// 函数: undefined FUN_180442860;
+undefined FUN_180442860;
+undefined UNK_18044d410;
+
+
+
+
+// 函数: undefined FUN_180442950;
+undefined FUN_180442950;
+undefined UNK_18044d420;
+
+
+
+
+// 函数: undefined FUN_1804429f0;
+undefined FUN_1804429f0;
+undefined UNK_18044d630;
+
+
+
+
+// 函数: undefined FUN_180442b30;
+undefined FUN_180442b30;
+undefined UNK_18044d660;
+
+
+
+
+// 函数: undefined FUN_180442d10;
+undefined FUN_180442d10;
+undefined UNK_18044d6f0;
+
+
+
+
+// 函数: undefined FUN_180442e00;
+undefined FUN_180442e00;
+undefined UNK_18044d720;
+
+
+
+
+// 函数: undefined FUN_180443000;
+undefined FUN_180443000;
+undefined UNK_18044d740;
+
+
+
+
+// 函数: undefined FUN_180443080;
+undefined FUN_180443080;
+undefined UNK_18044d760;
+
+
+
+
+// 函数: undefined FUN_1804431c0;
+undefined FUN_1804431c0;
+undefined UNK_18044d780;
+undefined UNK_18044d7a0;
+undefined UNK_18044d7c0;
+undefined UNK_18044dbf0;
+undefined UNK_18044e040;
+undefined UNK_18044e230;
+undefined UNK_18044e250;
+
+
+
+
+// 函数: undefined FUN_180443320;
+undefined FUN_180443320;
+undefined UNK_18044e260;
+
+
+
+
+// 函数: undefined FUN_180443510;
+undefined FUN_180443510;
+undefined UNK_18044e270;
+
+
+
+
+// 函数: undefined FUN_180443630;
+undefined FUN_180443630;
+undefined UNK_18044e2a0;
+
+
+
+
+// 函数: undefined FUN_180443680;
+undefined FUN_180443680;
+undefined UNK_18044e320;
+
+
+
+
+// 函数: undefined FUN_180443700;
+undefined FUN_180443700;
+undefined UNK_18044e330;
+
+
+
+
+// 函数: undefined FUN_180443770;
+undefined FUN_180443770;
+undefined UNK_18044e340;
+
+
+
+
+// 函数: undefined FUN_180443820;
+undefined FUN_180443820;
+undefined UNK_18044e360;
+
+
+
+
+// 函数: undefined FUN_180443930;
+undefined FUN_180443930;
+undefined UNK_18044e380;
+undefined UNK_18044e390;
+undefined UNK_18044e610;
+undefined UNK_18044e640;
+
+
+
+
+// 函数: undefined FUN_180443a40;
+undefined FUN_180443a40;
+undefined UNK_18044f490;
+
+
+
+
+// 函数: undefined FUN_180443aa0;
+undefined FUN_180443aa0;
+undefined UNK_18044f4b0;
+
+
+
+
+// 函数: undefined FUN_180443b00;
+undefined FUN_180443b00;
+undefined UNK_18044f4f0;
+
+
+
+
+// 函数: undefined FUN_180443b40;
+undefined FUN_180443b40;
+undefined UNK_18044f510;
+
+
+
+
+// 函数: undefined FUN_180443b80;
+undefined FUN_180443b80;
+undefined UNK_18044f530;
+
+
+
+
+// 函数: undefined FUN_180443d10;
+undefined FUN_180443d10;
+undefined UNK_18044f580;
+
+
+
+
+// 函数: undefined FUN_180443d70;
+undefined FUN_180443d70;
+undefined UNK_18044f5d0;
+
+
+
+
+// 函数: undefined FUN_180443df0;
+undefined FUN_180443df0;
+undefined UNK_18044f5f0;
+
+
+
+
+// 函数: undefined FUN_180443f80;
+undefined FUN_180443f80;
+undefined UNK_18044f610;
+
+
+
+
+// 函数: undefined FUN_180443ff0;
+undefined FUN_180443ff0;
+undefined UNK_18044f630;
+
+
+
+
+// 函数: undefined FUN_180444030;
+undefined FUN_180444030;
+undefined UNK_18044f640;
+
+
+
+
+// 函数: undefined FUN_180444070;
+undefined FUN_180444070;
+undefined UNK_18044f660;
+
+
+
+
+// 函数: undefined FUN_180444100;
+undefined FUN_180444100;
+undefined UNK_18044f690;
+
+
+
+
+// 函数: undefined FUN_180444200;
+undefined FUN_180444200;
+undefined UNK_18044f6b0;
+
+
+
+
+// 函数: undefined FUN_180444280;
+undefined FUN_180444280;
+undefined UNK_18044f6e0;
+
+
+
+
+// 函数: undefined FUN_1804442c0;
+undefined FUN_1804442c0;
+undefined UNK_18044f750;
+
+
+
+
+// 函数: undefined FUN_1804442e0;
+undefined FUN_1804442e0;
+undefined UNK_18044f940;
+
+
+
+
+// 函数: undefined FUN_180444370;
+undefined FUN_180444370;
+undefined UNK_18044f960;
+
+
+
+
+// 函数: undefined FUN_1804443c0;
+undefined FUN_1804443c0;
+undefined UNK_18044f980;
+
+
+
+
+// 函数: undefined FUN_180444410;
+undefined FUN_180444410;
+undefined UNK_18044f9a0;
+
+
+
+
+// 函数: undefined FUN_1804445b0;
+undefined FUN_1804445b0;
+undefined UNK_18044f9c0;
+
+
+
+
+// 函数: undefined FUN_180444600;
+undefined FUN_180444600;
+undefined UNK_18044f9e0;
+
+
+
+
+// 函数: undefined FUN_180444700;
+undefined FUN_180444700;
+undefined UNK_18044faf0;
+
+
+
+
+// 函数: undefined FUN_1804447c0;
+undefined FUN_1804447c0;
+undefined UNK_18044fb20;
+
+
+
+
+// 函数: undefined FUN_1804448a0;
+undefined FUN_1804448a0;
+undefined UNK_18044fb40;
+
+
+
+
+// 函数: undefined FUN_1804449a0;
+undefined FUN_1804449a0;
+undefined UNK_18044fb60;
+
+
+
+
+// 函数: undefined FUN_180444a20;
+undefined FUN_180444a20;
+undefined UNK_18044fb80;
+
+
+
+
+// 函数: undefined FUN_180444b70;
+undefined FUN_180444b70;
+undefined UNK_18044fba0;
+
+
+
+
+// 函数: undefined FUN_180444dd0;
+undefined FUN_180444dd0;
+undefined UNK_18044fbc0;
+
+
+
+
+// 函数: undefined FUN_180444e90;
+undefined FUN_180444e90;
+undefined UNK_18044fbe0;
+
+
+
+
+// 函数: undefined FUN_180445060;
+undefined FUN_180445060;
+undefined UNK_18044fc00;
+
+
+
+
+// 函数: undefined FUN_180445110;
+undefined FUN_180445110;
+undefined UNK_18044fc20;
+
+
+
+
+// 函数: undefined FUN_180445180;
+undefined FUN_180445180;
+undefined UNK_18044fc40;
+
+
+
+
+// 函数: undefined FUN_180445390;
+undefined FUN_180445390;
+undefined UNK_18044fc60;
+
+
+
+
+// 函数: undefined FUN_180445480;
+undefined FUN_180445480;
+undefined UNK_18044fc80;
+
+
+
+
+// 函数: undefined FUN_180445570;
+undefined FUN_180445570;
+undefined UNK_18044fca0;
+undefined UNK_18044fcc0;
+
+
+
+
+// 函数: undefined FUN_180445680;
+undefined FUN_180445680;
+undefined UNK_18044fce0;
+
+
+
+
+// 函数: undefined FUN_1804457b0;
+undefined FUN_1804457b0;
+undefined UNK_18044fd00;
+
+
+
+
+// 函数: undefined FUN_180445870;
+undefined FUN_180445870;
+undefined UNK_18044fd20;
+
+
+
+
+// 函数: undefined FUN_180445970;
+undefined FUN_180445970;
+undefined UNK_18044fd40;
+
+
+
+
+// 函数: undefined FUN_180445a80;
+undefined FUN_180445a80;
+undefined UNK_18044fd60;
+
+
+
+
+// 函数: undefined FUN_180445cd0;
+undefined FUN_180445cd0;
+undefined UNK_18044fd80;
+
+
+
+
+// 函数: undefined FUN_180445dc0;
+undefined FUN_180445dc0;
+undefined UNK_18044fda0;
+
+
+
+
+// 函数: undefined FUN_180445eb0;
+undefined FUN_180445eb0;
+undefined UNK_18044fdc0;
+
+
+
+
+// 函数: undefined FUN_180445fd0;
+undefined FUN_180445fd0;
+undefined UNK_18044fde0;
+
+
+
+
+// 函数: undefined FUN_180446010;
+undefined FUN_180446010;
+undefined UNK_18044fe00;
+
+
+
+
+// 函数: undefined FUN_180446080;
+undefined FUN_180446080;
+undefined UNK_18044fe20;
+
+
+
+
+// 函数: undefined FUN_1804460c0;
+undefined FUN_1804460c0;
+undefined UNK_18044fe40;
+
+
+
+
+// 函数: undefined FUN_1804460f0;
+undefined FUN_1804460f0;
+undefined UNK_18044fe60;
+
+
+
+
+// 函数: undefined FUN_180446120;
+undefined FUN_180446120;
+undefined UNK_18044fe80;
+
+
+
+
+// 函数: undefined FUN_180446160;
+undefined FUN_180446160;
+undefined UNK_18044fe90;
+
+
+
+
+// 函数: undefined FUN_1804461b0;
+undefined FUN_1804461b0;
+undefined UNK_18044fea0;
+
+
+
+
+// 函数: undefined FUN_1804462a0;
+undefined FUN_1804462a0;
+undefined UNK_18044fee0;
+
+
+
+
+// 函数: undefined FUN_1804462e0;
+undefined FUN_1804462e0;
+undefined UNK_18044ff00;
+
+
+
+
+// 函数: undefined FUN_180446320;
+undefined FUN_180446320;
+undefined UNK_18044ff20;
+
+
+
+
+// 函数: undefined FUN_180446370;
+undefined FUN_180446370;
+undefined UNK_18044ff40;
+
+
+
+
+// 函数: undefined FUN_1804463b0;
+undefined FUN_1804463b0;
+undefined UNK_18044ff60;
+
+
+
+
+// 函数: undefined FUN_1804463f0;
+undefined FUN_1804463f0;
+undefined UNK_18044ff80;
+
+
+
+
+// 函数: undefined FUN_180446430;
+undefined FUN_180446430;
+undefined UNK_180450350;
+
+
+
+
+// 函数: undefined FUN_180446480;
+undefined FUN_180446480;
+undefined UNK_180450a00;
+
+
+
+
+// 函数: undefined FUN_180446610;
+undefined FUN_180446610;
+undefined UNK_180450b90;
+
+
+
+
+// 函数: undefined FUN_180446650;
+undefined FUN_180446650;
+undefined UNK_1804512e0;
+
+
+
+
+// 函数: undefined FUN_180446690;
+undefined FUN_180446690;
+undefined UNK_1804517b0;
+
+
+
+
+// 函数: undefined FUN_180446760;
+undefined FUN_180446760;
+undefined UNK_1804518e0;
+
+
+
+
+// 函数: undefined FUN_180446810;
+undefined FUN_180446810;
+undefined UNK_1804518f0;
+undefined UNK_180451900;
+undefined UNK_180451920;
+
+
+
+
+// 函数: undefined FUN_180446960;
+undefined FUN_180446960;
+undefined UNK_180451930;
+
+
+
+
+// 函数: undefined FUN_180446a60;
+undefined FUN_180446a60;
+undefined UNK_180451940;
+
+
+
+
+// 函数: undefined FUN_180446b20;
+undefined FUN_180446b20;
+undefined UNK_180451970;
+
+
+
+
+// 函数: undefined FUN_180446ba0;
+undefined FUN_180446ba0;
+undefined UNK_180451990;
+
+
+
+
+// 函数: undefined FUN_180446ca0;
+undefined FUN_180446ca0;
+undefined UNK_1804519b0;
+
+
+
+
+// 函数: undefined FUN_180446d20;
+undefined FUN_180446d20;
+undefined UNK_180451c70;
+
+
+
+
+// 函数: undefined FUN_180446dc0;
+undefined FUN_180446dc0;
+undefined UNK_180451c80;
+
+
+
+
+// 函数: undefined FUN_180446e70;
+undefined FUN_180446e70;
+undefined UNK_180451c90;
+
+
+
+
+// 函数: undefined FUN_180446f00;
+undefined FUN_180446f00;
+undefined UNK_180452530;
+
+
+
+
+// 函数: undefined FUN_180446fa0;
+undefined FUN_180446fa0;
+undefined UNK_180452550;
+
+
+
+
+// 函数: undefined FUN_180446fd0;
+undefined FUN_180446fd0;
+undefined UNK_1804525c0;
+
+
+
+
+// 函数: undefined FUN_180447030;
+undefined FUN_180447030;
+undefined UNK_1804525e0;
+
+
+
+
+// 函数: undefined FUN_1804470d0;
+undefined FUN_1804470d0;
+undefined UNK_180453480;
+
+
+
+

@@ -137,183 +137,152 @@ void FUN_18064c335(void)
 
 
 
-// WARNING: Possible PIC construction at 0x00018064c06c: Changing call to branch
-// WARNING: Removing unreachable block (ram,0x00018064c071)
-// WARNING: Removing unreachable block (ram,0x00018064c07a)
-// WARNING: Removing unreachable block (ram,0x00018064c085)
-// WARNING: Removing unreachable block (ram,0x00018064c08e)
-// WARNING: Removing unreachable block (ram,0x00018064c09a)
-// WARNING: Removing unreachable block (ram,0x00018064c0b1)
-// WARNING: Removing unreachable block (ram,0x00018064c12e)
-// WARNING: Removing unreachable block (ram,0x00018064c131)
-// WARNING: Removing unreachable block (ram,0x00018064c137)
-// WARNING: Removing unreachable block (ram,0x00018064c150)
-// WARNING: Removing unreachable block (ram,0x00018064c160)
-// WARNING: Removing unreachable block (ram,0x00018064c18d)
-// WARNING: Removing unreachable block (ram,0x00018064c1c0)
-// WARNING: Removing unreachable block (ram,0x00018064c1ce)
-// WARNING: Removing unreachable block (ram,0x00018064c1d2)
-// WARNING: Removing unreachable block (ram,0x00018064c192)
-// WARNING: Removing unreachable block (ram,0x00018064c1a6)
-// WARNING: Removing unreachable block (ram,0x00018064c1ab)
-// WARNING: Removing unreachable block (ram,0x00018064c1b3)
-// WARNING: Removing unreachable block (ram,0x00018064c1d6)
-// WARNING: Removing unreachable block (ram,0x00018064c1e1)
-// WARNING: Removing unreachable block (ram,0x00018064c1f1)
-// WARNING: Removing unreachable block (ram,0x00018064c1fb)
-// WARNING: Removing unreachable block (ram,0x00018064aeb0)
-// WARNING: Removing unreachable block (ram,0x00018064aee9)
-// WARNING: Removing unreachable block (ram,0x00018064af00)
-// WARNING: Removing unreachable block (ram,0x00018064af10)
-// WARNING: Removing unreachable block (ram,0x00018064af17)
-// WARNING: Removing unreachable block (ram,0x00018064af1f)
-// WARNING: Removing unreachable block (ram,0x00018064af40)
-// WARNING: Removing unreachable block (ram,0x00018064af6a)
-// WARNING: Removing unreachable block (ram,0x00018064af79)
-// WARNING: Removing unreachable block (ram,0x00018064af80)
-// WARNING: Removing unreachable block (ram,0x00018064af8a)
-// WARNING: Removing unreachable block (ram,0x00018064af8e)
-// WARNING: Removing unreachable block (ram,0x00018064af9a)
-// WARNING: Removing unreachable block (ram,0x00018064afa2)
-// WARNING: Removing unreachable block (ram,0x00018064afa7)
-// WARNING: Removing unreachable block (ram,0x00018064afad)
-// WARNING: Removing unreachable block (ram,0x00018064afb2)
-// WARNING: Removing unreachable block (ram,0x00018064afc8)
-// WARNING: Removing unreachable block (ram,0x00018064afcd)
-// WARNING: Removing unreachable block (ram,0x00018064afd8)
-// WARNING: Removing unreachable block (ram,0x00018064afe8)
-// WARNING: Removing unreachable block (ram,0x00018064afdd)
-// WARNING: Removing unreachable block (ram,0x00018064aff4)
-// WARNING: Removing unreachable block (ram,0x00018064b008)
-// WARNING: Removing unreachable block (ram,0x00018064b01c)
-// WARNING: Removing unreachable block (ram,0x00018064b036)
-// WARNING: Removing unreachable block (ram,0x00018064b079)
-// WARNING: Removing unreachable block (ram,0x00018064b0a4)
-// WARNING: Removing unreachable block (ram,0x00018064b0aa)
-// WARNING: Removing unreachable block (ram,0x00018064b0c8)
-// WARNING: Removing unreachable block (ram,0x00018064b0db)
-// WARNING: Removing unreachable block (ram,0x00018064b086)
-// WARNING: Removing unreachable block (ram,0x00018064b05d)
-// WARNING: Removing unreachable block (ram,0x00018064b0f2)
-// WARNING: Removing unreachable block (ram,0x00018064b021)
-// WARNING: Removing unreachable block (ram,0x00018064b0f7)
-// WARNING: Removing unreachable block (ram,0x00018064b000)
-// WARNING: Removing unreachable block (ram,0x00018064c0c4)
-
-
-
-// 函数: void FUN_18064c390(ulonglong param_1,undefined8 param_2,longlong param_3)
-void FUN_18064c390(ulonglong param_1,undefined8 param_2,longlong param_3)
-
+/**
+ * 渲染系统内存管理处理器
+ * 处理内存分配、释放和状态管理
+ * 
+ * @param param_1 内存基地址
+ * @param param_2 参数2
+ * @param param_3 上下文参数
+ */
+void FUN_18064c390(ulonglong param_1, undefined8 param_2, longlong param_3)
 {
-  longlong *plVar1;
-  undefined8 *puVar2;
-  longlong lVar3;
-  longlong lVar4;
-  longlong lVar5;
-  longlong lVar6;
-  longlong lVar7;
-  uint *puVar8;
-  longlong *plVar9;
-  longlong lVar10;
-  ulonglong uVar11;
-  ulonglong uVar12;
-  ulonglong uVar13;
-  ulonglong uVar14;
-  bool bVar15;
+  longlong *memory_block_ptr;
+  undefined8 *memory_link_ptr;
+  longlong block_count;
+  longlong memory_size;
+  longlong bit_position;
+  longlong current_bit;
+  longlong max_bit;
+  uint *memory_pool_ptr;
+  longlong *memory_counter_ptr;
+  longlong allocation_size;
+  ulonglong memory_base;
+  ulonglong block_size;
+  ulonglong temp_size;
+  ulonglong calculated_size;
+  bool lock_acquired;
   
-  uVar11 = param_1 & 0xffffffffffc00000;
-  FUN_18064c220(param_1,param_3);
-  if (*(longlong *)(uVar11 + 0x48) != 0) {
-    if (*(longlong *)(uVar11 + 0x48) == *(longlong *)(uVar11 + 0x38)) {
-      FUN_18064c570(uVar11,param_3);
+  // 获取内存基地址
+  memory_base = param_1 & 0xffffffffffc00000;
+  
+  // 初始化内存管理器
+  FUN_18064c220(param_1, param_3);
+  
+  // 检查内存状态
+  if (*(longlong *)(memory_base + 0x48) != 0) {
+    if (*(longlong *)(memory_base + 0x48) == *(longlong *)(memory_base + 0x38)) {
+      // 执行内存清理
+      FUN_18064c570(memory_base, param_3);
     }
     return;
   }
-  lVar4 = *(longlong *)(uVar11 + 0x78);
-  for (puVar8 = (uint *)(uVar11 + 0x80); puVar8 < (uint *)(uVar11 + 0x80 + lVar4 * 0x50);
-      puVar8 = puVar8 + (ulonglong)*puVar8 * 0x14) {
-    if ((puVar8[7] == 0) && (*(int *)(uVar11 + 0x68) != 1)) {
-      uVar13 = (ulonglong)*puVar8;
-      if (1 < uVar13) {
-        uVar12 = uVar13 - 1;
-        if (uVar12 == 0) {
-          uVar14 = 0x40;
+  
+  // 处理内存池
+  block_count = *(longlong *)(memory_base + 0x78);
+  for (memory_pool_ptr = (uint *)(memory_base + 0x80); 
+       memory_pool_ptr < (uint *)(memory_base + 0x80 + block_count * 0x50);
+       memory_pool_ptr = memory_pool_ptr + (ulonglong)*memory_pool_ptr * 0x14) {
+    
+    // 检查内存块状态
+    if ((memory_pool_ptr[7] == 0) && (*(int *)(memory_base + 0x68) != 1)) {
+      calculated_size = (ulonglong)*memory_pool_ptr;
+      
+      // 计算块大小
+      if (1 < calculated_size) {
+        temp_size = calculated_size - 1;
+        if (temp_size == 0) {
+          block_size = 0x40;
         }
         else {
-          lVar5 = 0x3f;
-          if (uVar12 != 0) {
-            for (; uVar12 >> lVar5 == 0; lVar5 = lVar5 + -1) {
+          bit_position = 0x3f;
+          if (temp_size != 0) {
+            for (; temp_size >> bit_position == 0; bit_position = bit_position + -1) {
             }
           }
-          uVar14 = 0x3f - (ulonglong)(0x3f - (int)lVar5);
-          if (uVar14 < 3) goto LAB_18064bfea;
+          block_size = 0x3f - (ulonglong)(0x3f - (int)bit_position);
+          if (block_size < 3) goto LAB_memory_cleanup;
         }
-        uVar13 = ((ulonglong)((uint)(uVar12 >> ((char)uVar14 - 2U & 0x3f)) & 3) | uVar14 * 4) - 4;
+        calculated_size = ((ulonglong)((uint)(temp_size >> ((char)block_size - 2U & 0x3f)) & 3) | block_size * 4) - 4;
       }
-LAB_18064bfea:
-      puVar2 = (undefined8 *)(param_3 + uVar13 * 0x18);
-      if (*(longlong *)(puVar8 + 0x10) != 0) {
-        *(undefined8 *)(*(longlong *)(puVar8 + 0x10) + 0x38) = *(undefined8 *)(puVar8 + 0xe);
+      
+LAB_memory_cleanup:
+      // 执行内存清理
+      memory_link_ptr = (undefined8 *)(param_3 + calculated_size * 0x18);
+      if (*(longlong *)(memory_pool_ptr + 0x10) != 0) {
+        *(undefined8 *)(*(longlong *)(memory_pool_ptr + 0x10) + 0x38) = *(undefined8 *)(memory_pool_ptr + 0xe);
       }
-      if (puVar8 == (uint *)*puVar2) {
-        *puVar2 = *(undefined8 *)(puVar8 + 0xe);
+      if (memory_pool_ptr == (uint *)*memory_link_ptr) {
+        *memory_link_ptr = *(undefined8 *)(memory_pool_ptr + 0xe);
       }
-      if (*(longlong *)(puVar8 + 0xe) != 0) {
-        *(undefined8 *)(*(longlong *)(puVar8 + 0xe) + 0x40) = *(undefined8 *)(puVar8 + 0x10);
+      if (*(longlong *)(memory_pool_ptr + 0xe) != 0) {
+        *(undefined8 *)(*(longlong *)(memory_pool_ptr + 0xe) + 0x40) = *(undefined8 *)(memory_pool_ptr + 0x10);
       }
-      if (puVar8 == (uint *)puVar2[1]) {
-        puVar2[1] = *(undefined8 *)(puVar8 + 0x10);
+      if (memory_pool_ptr == (uint *)memory_link_ptr[1]) {
+        memory_link_ptr[1] = *(undefined8 *)(memory_pool_ptr + 0x10);
       }
-      puVar8[0x10] = 0;
-      puVar8[0x11] = 0;
-      puVar8[0xe] = 0;
-      puVar8[0xf] = 0;
-      puVar8[7] = 1;
+      
+      // 重置内存块
+      memory_pool_ptr[0x10] = 0;
+      memory_pool_ptr[0x11] = 0;
+      memory_pool_ptr[0xe] = 0;
+      memory_pool_ptr[0xf] = 0;
+      memory_pool_ptr[7] = 1;
     }
   }
-  lVar4 = *(longlong *)(uVar11 + 0x60);
-  lVar5 = *(longlong *)(param_3 + 0x398);
-  lVar10 = lVar4 * -0x10000;
-  plVar9 = (longlong *)(lVar5 + 0xa0);
-  if (lVar10 != 0) {
-    if (((longlong *)0x180c8ed7f < plVar9) && (plVar9 < &DAT_180c8efc0)) {
+  
+  // 处理内存分配
+  memory_size = *(longlong *)(memory_base + 0x60);
+  block_count = *(longlong *)(param_3 + 0x398);
+  allocation_size = memory_size * -0x10000;
+  memory_counter_ptr = (longlong *)(block_count + 0xa0);
+  
+  if (allocation_size != 0) {
+    // 检查内存范围
+    if (((longlong *)0x180c8ed7f < memory_counter_ptr) && (memory_counter_ptr < &DAT_180c8efc0)) {
       LOCK();
-      plVar1 = (longlong *)(lVar5 + 0xb8);
-      lVar3 = *plVar1;
-      *plVar1 = *plVar1 + lVar10;
+      memory_block_ptr = (longlong *)(block_count + 0xb8);
+      current_bit = *memory_block_ptr;
+      *memory_block_ptr = *memory_block_ptr + allocation_size;
       UNLOCK();
-      lVar6 = *(longlong *)(lVar5 + 0xb0);
+      
+      max_bit = *(longlong *)(block_count + 0xb0);
       do {
-        if (lVar3 + lVar10 <= lVar6) break;
+        if (current_bit + allocation_size <= max_bit) break;
         LOCK();
-        lVar7 = *(longlong *)(lVar5 + 0xb0);
-        bVar15 = lVar6 == lVar7;
-        if (bVar15) {
-          *(longlong *)(lVar5 + 0xb0) = lVar3 + lVar10;
-          lVar7 = lVar6;
+        bit_position = *(longlong *)(block_count + 0xb0);
+        lock_acquired = max_bit == bit_position;
+        if (lock_acquired) {
+          *(longlong *)(block_count + 0xb0) = current_bit + allocation_size;
+          bit_position = max_bit;
         }
         UNLOCK();
-        lVar6 = lVar7;
-      } while (!bVar15);
-      if (lVar10 < 1) {
-        plVar9 = (longlong *)(lVar5 + 0xa8);
-        lVar10 = lVar4 * 0x10000;
+        max_bit = bit_position;
+      } while (!lock_acquired);
+      
+      if (allocation_size < 1) {
+        memory_counter_ptr = (longlong *)(block_count + 0xa8);
+        allocation_size = memory_size * 0x10000;
       }
+      
       LOCK();
-      *plVar9 = *plVar9 + lVar10;
+      *memory_counter_ptr = *memory_counter_ptr + allocation_size;
       UNLOCK();
       return;
     }
-    *(longlong *)(lVar5 + 0xb8) = *(longlong *)(lVar5 + 0xb8) + lVar10;
-    if (*(longlong *)(lVar5 + 0xb0) < *(longlong *)(lVar5 + 0xb8)) {
-      *(longlong *)(lVar5 + 0xb0) = *(longlong *)(lVar5 + 0xb8);
+    
+    // 更新内存计数器
+    *(longlong *)(block_count + 0xb8) = *(longlong *)(block_count + 0xb8) + allocation_size;
+    if (*(longlong *)(block_count + 0xb0) < *(longlong *)(block_count + 0xb8)) {
+      *(longlong *)(block_count + 0xb0) = *(longlong *)(block_count + 0xb8);
     }
-    if (0 < lVar10) {
-      *plVar9 = *plVar9 + lVar10;
+    
+    if (0 < allocation_size) {
+      *memory_counter_ptr = *memory_counter_ptr + allocation_size;
       return;
     }
-    *(longlong *)(lVar5 + 0xa8) = *(longlong *)(lVar5 + 0xa8) + lVar4 * 0x10000;
+    
+    *(longlong *)(block_count + 0xa8) = *(longlong *)(block_count + 0xa8) + memory_size * 0x10000;
   }
   return;
 }
