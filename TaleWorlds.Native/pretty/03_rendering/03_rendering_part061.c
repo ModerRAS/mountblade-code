@@ -553,97 +553,113 @@ void FUN_18029d280(longlong param_1,longlong param_2)
 
 
 
-// 函数: void FUN_18029d500(longlong param_1,longlong param_2)
+// 渲染系统报告创建函数
+// 创建渲染系统的状态报告
+// param_1: 渲染系统上下文指针
+// param_2: 报告缓冲区指针
 void FUN_18029d500(longlong param_1,longlong param_2)
-
 {
-  undefined4 *puVar1;
-  int iVar2;
-  int iVar3;
-  longlong *plVar4;
-  undefined *puVar5;
-  undefined1 auStack_118 [32];
-  undefined4 uStack_f8;
-  longlong lStack_f0;
-  undefined8 uStack_e8;
-  undefined *puStack_d8;
-  undefined *puStack_d0;
-  undefined4 uStack_c8;
-  undefined auStack_c0 [136];
-  ulonglong uStack_38;
+  undefined4 *report_data;
+  int buffer_size;
+  int slot_index;
+  longlong *render_targets;
+  undefined *target_name;
+  undefined1 security_buffer[RENDER_BUFFER_SIZE_LARGE];
+  undefined4 report_type;
+  longlong render_context;
+  undefined8 magic_value;
+  undefined *target_info;
+  undefined *target_data;
+  undefined4 target_id;
+  undefined target_buffer[RENDER_BUFFER_NAME_MAX];
+  ulonglong security_key;
   
-  uStack_e8 = 0xfffffffffffffffe;
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_118;
-  iVar3 = 0;
-  uStack_f8 = 0;
-  iVar2 = *(int *)(param_2 + 0x10) + 0x1a;
-  lStack_f0 = param_1;
-  FUN_1806277c0(param_2,iVar2);
-  puVar1 = (undefined4 *)((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8));
-  *puVar1 = 0x646e6552;
-  puVar1[1] = 0x54207265;
-  puVar1[2] = 0x65677261;
-  puVar1[3] = 0x6c532074;
-  *(undefined8 *)(puVar1 + 4) = 0x207473694c20746f;
-  *(undefined2 *)(puVar1 + 6) = 0xa3a;
-  *(undefined1 *)((longlong)puVar1 + 0x1a) = 0;
-  *(int *)(param_2 + 0x10) = iVar2;
-  plVar4 = (longlong *)(param_1 + 0x83b8);
+  magic_value = 0xfffffffffffffffe;
+  security_key = _DAT_180bf00a8 ^ (ulonglong)security_buffer;
+  slot_index = 0;
+  report_type = 0;
+  buffer_size = *(int *)(param_2 + 0x10) + 0x1a;
+  render_context = param_1;
+  
+  // 初始化报告缓冲区
+  FUN_1806277c0(param_2, buffer_size);
+  
+  // 写入报告标题
+  report_data = (undefined4 *)((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8));
+  *report_data = 0x646e6552;        // "Rend"
+  report_data[1] = 0x54207265;       // "er T"
+  report_data[2] = 0x65677261;       // "arge"
+  report_data[3] = 0x6c532074;       // "t Sl"
+  *(undefined8 *)(report_data + 4) = 0x207473694c20746f;  // "ot Lis "
+  *(undefined2 *)(report_data + 6) = 0xa3a;              // ":" + 终止符
+  *(undefined1 *)((longlong)report_data + 0x1a) = 0;
+  *(int *)(param_2 + 0x10) = buffer_size;
+  
+  // 遍历渲染目标（最多7个）
+  render_targets = (longlong *)(param_1 + 0x83b8);
   do {
-    if (*plVar4 != 0) {
-      puStack_d8 = &UNK_1809fcc28;
-      puStack_d0 = auStack_c0;
-      auStack_c0[0] = 0;
-      uStack_c8 = 0;
-      strcpy_s(auStack_c0,0x80,&DAT_18098bc73);
-      uStack_f8 = 1;
-      puVar5 = &DAT_18098bc73;
-      if (puStack_d0 != (undefined *)0x0) {
-        puVar5 = puStack_d0;
+    if (*render_targets != 0) {
+      target_info = &UNK_1809fcc28;
+      target_data = target_buffer;
+      target_buffer[0] = 0;
+      target_id = 0;
+      strcpy_s(target_buffer, 0x80, &DAT_18098bc73);
+      report_type = 1;
+      target_name = &DAT_18098bc73;
+      if (target_data != (undefined *)0x0) {
+        target_name = target_data;
       }
-      FUN_180628040(param_2,&UNK_180a17308,iVar3,puVar5);
-      uStack_f8 = 0;
-      puStack_d8 = &UNK_18098bcb0;
+      
+      // 写入渲染目标信息
+      FUN_180628040(param_2, &UNK_180a17308, slot_index, target_name);
+      report_type = 0;
+      target_info = &UNK_18098bcb0;
     }
-    iVar3 = iVar3 + 1;
-    plVar4 = plVar4 + 1;
-  } while (iVar3 < 7);
-  iVar2 = *(int *)(param_2 + 0x10);
-  iVar3 = iVar2 + 0x14;
-  FUN_1806277c0(param_2,iVar3);
-  puVar1 = (undefined4 *)((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8));
-  *puVar1 = 0x74706544;
-  puVar1[1] = 0x61542068;
-  puVar1[2] = 0x74656772;
-  puVar1[3] = 0x6f6c5320;
-  puVar1[4] = 0x203a2074;
-  *(undefined1 *)(puVar1 + 5) = 0;
-  *(int *)(param_2 + 0x10) = iVar3;
-  if (*(longlong *)(lStack_f0 + 0x83f0) == 0) {
-    iVar2 = iVar2 + 0x19;
-    FUN_1806277c0(param_2,iVar2);
-    puVar1 = (undefined4 *)((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8));
-    *puVar1 = 0x6c6c756e;
-    *(undefined2 *)(puVar1 + 1) = 10;
-    *(int *)(param_2 + 0x10) = iVar2;
+    slot_index = slot_index + 1;
+    render_targets = render_targets + 1;
+  } while (slot_index < 7);
+  
+  // 写入数据部分标题
+  buffer_size = *(int *)(param_2 + 0x10);
+  slot_index = buffer_size + 0x14;
+  FUN_1806277c0(param_2, slot_index);
+  report_data = (undefined4 *)((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8));
+  *report_data = 0x74706544;        // "Dept"
+  report_data[1] = 0x61542068;       // "h Ta"
+  report_data[2] = 0x74656772;       // "rget"
+  report_data[3] = 0x6f6c5320;       // " Slo"
+  report_data[4] = 0x203a2074;        // "t :"
+  *(undefined1 *)(report_data + 5) = 0;
+  *(int *)(param_2 + 0x10) = slot_index;
+  
+  // 检查是否有深度目标
+  if (*(longlong *)(render_context + 0x83f0) == 0) {
+    buffer_size = buffer_size + 0x19;
+    FUN_1806277c0(param_2, buffer_size);
+    report_data = (undefined4 *)((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8));
+    *report_data = 0x6c6c756e;  // "null"
+    *(undefined2 *)(report_data + 1) = 10;  // 换行符
+    *(int *)(param_2 + 0x10) = buffer_size;
   }
   else {
-    puStack_d8 = &UNK_1809fcc28;
-    puStack_d0 = auStack_c0;
-    auStack_c0[0] = 0;
-    uStack_c8 = 0;
-    strcpy_s(auStack_c0,0x80,&DAT_18098bc73);
-    uStack_f8 = 2;
-    puVar5 = &DAT_18098bc73;
-    if (puStack_d0 != (undefined *)0x0) {
-      puVar5 = puStack_d0;
+    // 写入深度目标信息
+    target_info = &UNK_1809fcc28;
+    target_data = target_buffer;
+    target_buffer[0] = 0;
+    target_id = 0;
+    strcpy_s(target_buffer, 0x80, &DAT_18098bc73);
+    report_type = 2;
+    target_name = &DAT_18098bc73;
+    if (target_data != (undefined *)0x0) {
+      target_name = target_data;
     }
-    FUN_180628040(param_2,&UNK_180a0d2d4,puVar5);
-    uStack_f8 = 0;
-    puStack_d8 = &UNK_18098bcb0;
+    FUN_180628040(param_2, &UNK_180a0d2d4, target_name);
+    report_type = 0;
+    target_info = &UNK_18098bcb0;
   }
-                    // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_38 ^ (ulonglong)auStack_118);
+  
+  // 清理安全缓冲区（函数不返回）
+  FUN_1808fc050(security_key ^ (ulonglong)security_buffer);
 }
 
 
