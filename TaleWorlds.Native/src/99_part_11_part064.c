@@ -109,144 +109,160 @@ void advanced_data_processor(void)
 
 
 
-undefined8 FUN_1807c3df0(longlong param_1,ulonglong param_2,uint param_3,undefined4 *param_4)
+/**
+ * 字符串解析器 - 解析和处理字符串数据
+ * 
+ * 功能：
+ * - 解析字符串参数和配置
+ * - 处理数据格式转换
+ * - 管理字符串缓冲区
+ * - 执行字符串验证和清理
+ * 
+ * @param data_context 数据上下文指针
+ * @param buffer_address 缓冲区地址
+ * @param data_size 数据大小
+ * @param result_pointer 结果指针
+ * @return 处理状态码（0表示成功，非0表示错误）
+ */
+undefined8 string_parser(longlong data_context, ulonglong buffer_address, uint data_size, undefined4 *result_pointer)
 
 {
-  char cVar1;
-  undefined2 uVar2;
-  undefined2 uVar3;
-  undefined2 uVar4;
-  undefined8 *puVar5;
-  uint uVar6;
-  int iVar7;
-  longlong lVar8;
-  longlong *plVar9;
-  int iVar10;
-  ulonglong uVar11;
-  char *pcVar12;
-  char *pcVar13;
-  char *pcVar14;
-  undefined2 *puVar15;
-  ulonglong uVar16;
+  char string_char;
+  undefined2 swap_data1;
+  undefined2 swap_data2;
+  undefined2 swap_data3;
+  undefined8 *function_pointer;
+  uint operation_result;
+  int string_length;
+  longlong data_alignment;
+  longlong *string_array;
+  int data_type;
+  ulonglong alignment_size;
+  char *key_string;
+  char *current_char;
+  char *value_string;
+  undefined2 *data_buffer;
+  ulonglong processed_count;
   
-  iVar10 = *(int *)(*(longlong *)(param_1 + 8) + 8);
-  if (iVar10 == 1) {
-    lVar8 = 8;
+  /* 数据类型对齐大小计算 */
+  data_type = *(int *)(*(longlong *)(data_context + 8) + 8);
+  if (data_type == 1) {
+    data_alignment = 8;
   }
-  else if (iVar10 == 2) {
-    lVar8 = 0x10;
+  else if (data_type == 2) {
+    data_alignment = 0x10;
   }
-  else if (iVar10 == 3) {
-    lVar8 = 0x18;
+  else if (data_type == 3) {
+    data_alignment = 0x18;
   }
   else {
-    if ((iVar10 != 4) && (iVar10 != 5)) goto LAB_1807c3e66;
-    lVar8 = 0x20;
+    if ((data_type != 4) && (data_type != 5)) goto SKIP_ALIGNMENT_CALC;
+    data_alignment = 0x20;
   }
-  param_3 = (uint)((ulonglong)param_3 * lVar8 >> 3);
-LAB_1807c3e66:
-  uVar6 = FUN_180819060(param_1,param_1 + 0x178,param_2,
-                        *(int *)(*(longlong *)(param_1 + 8) + 0xc) * param_3,0,2,1,0);
-  uVar16 = (ulonglong)uVar6;
-  if ((int)uVar6 < 1) {
-    if (uVar6 == 0xffffff7d) {
-      return 0x1f;
+  data_size = (uint)((ulonglong)data_size * data_alignment >> 3);
+SKIP_ALIGNMENT_CALC:
+  operation_result = data_processor_function(data_context, data_context + 0x178, buffer_address,
+                        *(int *)(*(longlong *)(data_context + 8) + 0xc) * data_size, 0, 2, 1, 0);
+  processed_count = (ulonglong)operation_result;
+  if ((int)operation_result < 1) {
+    if (operation_result == 0xffffff7d) {
+      return ERROR_INVALID_FORMAT;
     }
-    if (uVar6 == 0xffffff75) {
-      return 0x26;
+    if (operation_result == 0xffffff75) {
+      return ERROR_BUFFER_OVERFLOW;
     }
-    uVar16 = 0;
-    if (uVar6 != 0xfffffffd) {
-      return 0x10;
+    processed_count = 0;
+    if (operation_result != 0xfffffffd) {
+      return ERROR_PROCESSING_FAILED;
     }
   }
-  iVar10 = *(int *)(*(longlong *)(param_1 + 8) + 0xc);
-  if (iVar10 == 6) {
-    if (param_2 < uVar16 + param_2) {
-      puVar15 = (undefined2 *)(param_2 + 4);
-      lVar8 = (uVar16 - 1) / 0xc + 1;
+  data_type = *(int *)(*(longlong *)(data_context + 8) + 0xc);
+  if (data_type == 6) {
+    if (buffer_address < processed_count + buffer_address) {
+      data_buffer = (undefined2 *)(buffer_address + 4);
+      data_alignment = (processed_count - 1) / 0xc + 1;
       do {
-        uVar2 = puVar15[-1];
-        uVar3 = puVar15[1];
-        uVar4 = puVar15[2];
-        puVar15[-1] = *puVar15;
-        puVar15[1] = puVar15[3];
-        *puVar15 = uVar2;
-        puVar15[2] = uVar3;
-        puVar15[3] = uVar4;
-        puVar15 = puVar15 + 6;
-        lVar8 = lVar8 + -1;
-      } while (lVar8 != 0);
+        swap_data1 = data_buffer[-1];
+        swap_data2 = data_buffer[1];
+        swap_data3 = data_buffer[2];
+        data_buffer[-1] = *data_buffer;
+        data_buffer[1] = data_buffer[3];
+        *data_buffer = swap_data1;
+        data_buffer[2] = swap_data2;
+        data_buffer[3] = swap_data3;
+        data_buffer = data_buffer + 6;
+        data_alignment = data_alignment + -1;
+      } while (data_alignment != 0);
     }
   }
-  else if ((iVar10 == 8) && (param_2 < uVar16 + param_2)) {
-    puVar15 = (undefined2 *)(param_2 + 4);
-    lVar8 = (uVar16 - 1 >> 4) + 1;
+  else if ((data_type == 8) && (buffer_address < processed_count + buffer_address)) {
+    data_buffer = (undefined2 *)(buffer_address + 4);
+    data_alignment = (processed_count - 1 >> 4) + 1;
     do {
-      uVar2 = puVar15[-1];
-      uVar3 = puVar15[1];
-      uVar4 = puVar15[2];
-      puVar15[-1] = *puVar15;
-      puVar15[1] = puVar15[5];
-      puVar15[2] = puVar15[3];
-      puVar15[3] = puVar15[4];
-      *puVar15 = uVar2;
-      puVar15[4] = uVar3;
-      puVar15[5] = uVar4;
-      puVar15 = puVar15 + 8;
-      lVar8 = lVar8 + -1;
-    } while (lVar8 != 0);
+      swap_data1 = data_buffer[-1];
+      swap_data2 = data_buffer[1];
+      swap_data3 = data_buffer[2];
+      data_buffer[-1] = *data_buffer;
+      data_buffer[1] = data_buffer[5];
+      data_buffer[2] = data_buffer[3];
+      data_buffer[3] = data_buffer[4];
+      *data_buffer = swap_data1;
+      data_buffer[4] = swap_data2;
+      data_buffer[5] = swap_data3;
+      data_buffer = data_buffer + 8;
+      data_alignment = data_alignment + -1;
+    } while (data_alignment != 0);
   }
-  plVar9 = (longlong *)func_0x000180817c80(param_1 + 0x178);
-  if ((plVar9 != (longlong *)0x0) && ((int)plVar9[2] != 0)) {
-    if (0 < (int)plVar9[2]) {
-      iVar10 = 0;
-      lVar8 = 0;
+  string_array = (longlong *)get_string_array_function(data_context + 0x178);
+  if ((string_array != (longlong *)0x0) && ((int)string_array[2] != 0)) {
+    if (0 < (int)string_array[2]) {
+      data_type = 0;
+      data_alignment = 0;
       do {
-        pcVar14 = *(char **)(lVar8 + *plVar9);
-        cVar1 = *pcVar14;
-        pcVar13 = pcVar14;
-        while (cVar1 != '\0') {
-          if (cVar1 == '=') {
-            *pcVar13 = '\0';
-            pcVar12 = pcVar14;
-            pcVar14 = pcVar13 + 1;
-            goto LAB_1807c4027;
+        value_string = *(char **)(data_alignment + *string_array);
+        string_char = *value_string;
+        current_char = value_string;
+        while (string_char != '\0') {
+          if (string_char == '=') {
+            *current_char = '\0';
+            key_string = value_string;
+            value_string = current_char + 1;
+            goto PARSE_COMPLETE;
           }
-          pcVar12 = pcVar13 + 1;
-          pcVar13 = pcVar13 + 1;
-          cVar1 = *pcVar12;
+          key_string = current_char + 1;
+          current_char = current_char + 1;
+          string_char = *key_string;
         }
-        pcVar12 = "NONAME";
-LAB_1807c4027:
-        puVar5 = *(undefined8 **)(param_1 + 0x10);
-        iVar7 = func_0x00018076b690(pcVar14);
-        (*(code *)*puVar5)(param_1,3,pcVar12,pcVar14,iVar7 + 1,6,1);
-        iVar10 = iVar10 + 1;
-        lVar8 = lVar8 + 8;
-      } while (iVar10 < (int)plVar9[2]);
+        key_string = "NONAME";
+PARSE_COMPLETE:
+        function_pointer = *(undefined8 **)(data_context + 0x10);
+        string_length = get_string_length_function(value_string);
+        (*(code *)*function_pointer)(data_context, 3, key_string, value_string, string_length + 1, 6, 1);
+        data_type = data_type + 1;
+        data_alignment = data_alignment + 8;
+      } while (data_type < (int)string_array[2]);
     }
-    FUN_180816ee0(param_1);
+    cleanup_string_function(data_context);
   }
-  uVar11 = 0x20;
-  if (param_4 != (undefined4 *)0x0) {
-    uVar6 = *(uint *)(*(longlong *)(param_1 + 8) + 0xc);
-    if (uVar6 != 0) {
-      iVar10 = *(int *)(*(longlong *)(param_1 + 8) + 8);
-      if (iVar10 == 1) {
-        uVar11 = 8;
+  alignment_size = 0x20;
+  if (result_pointer != (undefined4 *)0x0) {
+    operation_result = *(uint *)(*(longlong *)(data_context + 8) + 0xc);
+    if (operation_result != 0) {
+      data_type = *(int *)(*(longlong *)(data_context + 8) + 8);
+      if (data_type == 1) {
+        alignment_size = 8;
       }
-      else if (iVar10 == 2) {
-        uVar11 = 0x10;
+      else if (data_type == 2) {
+        alignment_size = 0x10;
       }
-      else if (iVar10 == 3) {
-        uVar11 = 0x18;
+      else if (data_type == 3) {
+        alignment_size = 0x18;
       }
-      else if ((iVar10 != 4) && (iVar10 != 5)) {
-        *param_4 = (int)uVar16;
+      else if ((data_type != 4) && (data_type != 5)) {
+        *result_pointer = (int)processed_count;
         return 0;
       }
-      *param_4 = (int)(((uVar16 << 3) / uVar11 & 0xffffffff) / (ulonglong)uVar6);
+      *result_pointer = (int)(((processed_count << 3) / alignment_size & 0xffffffff) / (ulonglong)operation_result);
     }
   }
   return 0;

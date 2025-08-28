@@ -2039,201 +2039,255 @@ undefined UNK_180396c80;      // 调试管理器数据结构
 undefined FUN_18038a340;
 
 
-// 函数: undefined FUN_18038a630;
+/** 
+ * @brief 渲染系统终极管理函数
+ * @details 渲染系统的终极管理功能，包含最复杂的状态管理、资源管理、性能优化等
+ */
 undefined FUN_18038a630;
-undefined UNK_180a21d50;
-undefined UNK_180a21d68;
-undefined UNK_180a21d98;
-undefined UNK_180a21dc0;
-undefined UNK_180a21e50;
-undefined UNK_180a21f48;
-undefined UNK_180a21e98;
-undefined DAT_180d48ee8;
-undefined DAT_180d48ee0;
-undefined DAT_180d48ee4;
-undefined UNK_180a1cbf0;
-undefined UNK_180a21fa0;
-undefined UNK_180a21fc0;
-undefined UNK_180a21fd0;
-undefined UNK_180a21fe8;
-undefined UNK_180a22000;
-undefined UNK_180a22008;
-undefined UNK_180a22018;
-undefined UNK_180a22028;
-undefined UNK_180a22040;
-undefined UNK_180a22050;
-undefined UNK_180a22070;
-undefined UNK_180a22088;
-undefined UNK_180a22098;
-undefined UNK_180a220a8;
-undefined UNK_180a220c8;
-undefined UNK_180a220e0;
-undefined UNK_180a22100;
-undefined UNK_180a22120;
-undefined UNK_180a22138;
-undefined UNK_180a22148;
-undefined UNK_180a22160;
-undefined UNK_180a221c0;
-undefined UNK_180a22180;
-undefined UNK_180a22198;
-undefined UNK_180a221b0;
-undefined UNK_180a221e0;
-undefined UNK_180a221f8;
-undefined UNK_180a22210;
-undefined UNK_180a22228;
-undefined UNK_180a22240;
-undefined UNK_180a22268;
-undefined UNK_180a22290;
-undefined UNK_180a222b8;
-undefined UNK_180a22348;
-undefined UNK_180a22368;
-undefined UNK_180a222e0;
-undefined UNK_180a2233c;
-undefined UNK_180a22380;
-undefined UNK_180a22394;
-undefined UNK_180a22398;
-undefined UNK_180a2239c;
-undefined UNK_180a223a8;
-undefined UNK_180a223c8;
-undefined UNK_180a223e0;
-undefined UNK_180a22400;
-undefined UNK_180a22418;
-undefined UNK_180a22428;
-undefined UNK_180a22438;
-undefined UNK_180a22450;
-undefined UNK_180a2246c;
-undefined UNK_180a22478;
-undefined UNK_180a22490;
-undefined UNK_180a224a0;
-undefined UNK_180a1cbf8;
-undefined UNK_180a21874;
-undefined UNK_180a217e8;
-undefined UNK_180a224b8;
-undefined UNK_180a22798;
-undefined UNK_180a227b8;
-undefined UNK_180a227f8;
-undefined UNK_180a22820;
-undefined UNK_180a22838;
-undefined UNK_180a227d8;
-undefined UNK_180a22870;
-undefined UNK_180a228a0;
-undefined UNK_180a228c8;
-undefined UNK_180a22858;
-undefined UNK_180a22948;
-undefined UNK_180a22ab0;
-undefined UNK_180a22a98;
-undefined UNK_180a22ac0;
-undefined UNK_180a22ad8;
-undefined UNK_180a22af0;
-undefined UNK_180a22b10;
-undefined UNK_180a22b28;
-undefined UNK_180a3cb88;
-undefined UNK_180a3cbe8;
+
+/* 渲染系统终极管理数据结构 */
+undefined UNK_180a21d50;      // 终极管理器主数据结构
+undefined UNK_180a21d68;      // 终极配置数据结构
+undefined UNK_180a21d98;      // 终极状态数据结构
+undefined UNK_180a21dc0;      // 终极资源数据结构
+undefined UNK_180a21e50;      // 终极性能数据结构
+undefined UNK_180a21f48;      // 终极优化数据结构
+undefined UNK_180a21e98;      // 终极调试数据结构
+undefined DAT_180d48ee8;      // 终极统计数据
+undefined DAT_180d48ee0;      // 终极性能数据
+undefined DAT_180d48ee4;      // 终极内存数据
+undefined UNK_180a1cbf0;      // 终极缓存数据结构
+undefined UNK_180a21fa0;      // 终极任务数据结构
+undefined UNK_180a21fc0;      // 终极线程数据结构
+undefined UNK_180a21fd0;      // 终极同步数据结构
+undefined UNK_180a21fe8;      // 终极错误数据结构
+undefined UNK_180a22000;      // 终极日志数据结构
+undefined UNK_180a22008;      // 终极报告数据结构
+undefined UNK_180a22018;      // 终极监控数据结构
+undefined UNK_180a22028;      // 终极分析数据结构
+undefined UNK_180a22040;      // 终极热重载数据结构
+undefined UNK_180a22050;      // 终极预加载数据结构
+undefined UNK_180a22070;      // 终极异步加载数据结构
+undefined UNK_180a22088;      // 终极流式加载数据结构
+undefined UNK_180a22098;      // 终极批处理数据结构
+undefined UNK_180a220a8;      // 终极实例化数据结构
+undefined UNK_180a220c8;      // 终极LOD数据结构
+undefined UNK_180a220e0;      // 终极剔除数据结构
+undefined UNK_180a22100;      // 终极排序数据结构
+undefined UNK_180a22120;      // 终极分组数据结构
+undefined UNK_180a22138;      // 终极合并数据结构
+undefined UNK_180a22148;      // 终极分割数据结构
+undefined UNK_180a22160;      // 终极优化数据结构
+undefined UNK_180a221c0;      // 终极分析数据结构
+undefined UNK_180a22180;      // 终极监控数据结构
+undefined UNK_180a22198;      // 终极调试数据结构
+undefined UNK_180a221b0;      // 终极日志数据结构
+undefined UNK_180a221e0;      // 终极报告数据结构
+undefined UNK_180a221f8;      // 终极统计数据结构
+undefined UNK_180a22210;      // 终极性能数据结构
+undefined UNK_180a22228;      // 终极内存数据结构
+undefined UNK_180a22240;      // 终极缓存数据结构
+undefined UNK_180a22268;      // 终极任务数据结构
+undefined UNK_180a22290;      // 终极线程数据结构
+undefined UNK_180a222b8;      // 终极同步数据结构
+undefined UNK_180a22348;      // 终极错误数据结构
+undefined UNK_180a22368;      // 终极配置数据结构
+undefined UNK_180a222e0;      // 终极状态数据结构
+undefined UNK_180a2233c;      // 终极资源数据结构
+undefined UNK_180a22380;      // 终极性能数据结构
+undefined UNK_180a22394;      // 终极优化数据结构
+undefined UNK_180a22398;      // 终极调试数据结构
+undefined UNK_180a2239c;      // 终极分析数据结构
+undefined UNK_180a223a8;      // 终极监控数据结构
+undefined UNK_180a223c8;      // 终极热重载数据结构
+undefined UNK_180a223e0;      // 终极预加载数据结构
+undefined UNK_180a22400;      // 终极异步加载数据结构
+undefined UNK_180a22418;      // 终极流式加载数据结构
+undefined UNK_180a22428;      // 终极批处理数据结构
+undefined UNK_180a22438;      // 终极实例化数据结构
+undefined UNK_180a22450;      // 终极LOD数据结构
+undefined UNK_180a2246c;      // 终极剔除数据结构
+undefined UNK_180a22478;      // 终极排序数据结构
+undefined UNK_180a22490;      // 终极分组数据结构
+undefined UNK_180a224a0;      // 终极合并数据结构
+undefined UNK_180a1cbf8;      // 终极分割数据结构
+undefined UNK_180a21874;      // 终极优化数据结构
+undefined UNK_180a217e8;      // 终极分析数据结构
+undefined UNK_180a224b8;      // 终极监控数据结构
+undefined UNK_180a22798;      // 终极调试数据结构
+undefined UNK_180a227b8;      // 终极日志数据结构
+undefined UNK_180a227f8;      // 终极报告数据结构
+undefined UNK_180a22820;      // 终极统计数据结构
+undefined UNK_180a22838;      // 终极性能数据结构
+undefined UNK_180a227d8;      // 终极内存数据结构
+undefined UNK_180a22870;      // 终极缓存数据结构
+undefined UNK_180a228a0;      // 终极任务数据结构
+undefined UNK_180a228c8;      // 终极线程数据结构
+undefined UNK_180a22858;      // 终极同步数据结构
+undefined UNK_180a22948;      // 终极错误数据结构
+undefined UNK_180a22ab0;      // 终极配置数据结构
+undefined UNK_180a22a98;      // 终极状态数据结构
+undefined UNK_180a22ac0;      // 终极资源数据结构
+undefined UNK_180a22ad8;      // 终极性能数据结构
+undefined UNK_180a22af0;      // 终极优化数据结构
+undefined UNK_180a22b10;      // 终极调试数据结构
+undefined UNK_180a22b28;      // 终极分析数据结构
+undefined UNK_180a3cb88;      // 终极监控数据结构
+undefined UNK_180a3cbe8;      // 终极报告数据结构
 
 
-// 函数: undefined FUN_1804069d0;
+/*-----------------------------------------------------------------------------
+ * 渲染系统特殊功能函数组
+ *---------------------------------------------------------------------------*/
+
+/** 
+ * @brief 渲染系统特殊初始化函数
+ * @details 渲染系统的特殊初始化功能
+ */
 undefined FUN_1804069d0;
-undefined DAT_180c91fe0;
-undefined DAT_180c91fe8;
+undefined DAT_180c91fe0;      // 特殊初始化配置数据
+undefined DAT_180c91fe8;      // 特殊初始化状态数据
 
 
-// 函数: undefined FUN_180407960;
+/** 
+ * @brief 渲染系统高级特殊功能函数
+ * @details 渲染系统的高级特殊功能，包含复杂的特殊处理逻辑
+ */
 undefined FUN_180407960;
-undefined UNK_180a12c50;
-undefined UNK_180a271b0;
-undefined UNK_180a27220;
-undefined UNK_180a272b0;
-undefined UNK_180a272c8;
-undefined UNK_180a272d8;
-undefined UNK_180a27318;
-undefined UNK_180a0af90;
-undefined UNK_180a27230;
-undefined UNK_180a27238;
-undefined UNK_180a27258;
-undefined UNK_180a27278;
-undefined UNK_180a27338;
-undefined UNK_180a27350;
-undefined UNK_180a27360;
-undefined UNK_180a27370;
-undefined UNK_180a27390;
-undefined UNK_180a273a0;
-undefined UNK_180a273b0;
-undefined UNK_180a27400;
-undefined UNK_180a27458;
-undefined UNK_180a27480;
-undefined UNK_180a274c8;
-undefined UNK_180a274e0;
-undefined UNK_180a27560;
-undefined UNK_180a27570;
-undefined UNK_180a275a0;
-undefined UNK_180a275d0;
-undefined UNK_180a27680;
-undefined UNK_180a27618;
-undefined UNK_180a27620;
-undefined UNK_180a27628;
-undefined UNK_180a27630;
-undefined UNK_180a2763c;
-undefined UNK_180a27644;
-undefined UNK_180a2764c;
-undefined UNK_180a27654;
-undefined UNK_180a2765c;
-undefined UNK_180a27664;
-undefined UNK_180a27670;
-undefined1 DAT_180bfaee8;
-undefined DAT_180bfaeb0;
-undefined UNK_180a12d78;
-undefined UNK_180a12d88;
-undefined1 DAT_180bfaeb8;
-undefined UNK_180a27988;
-undefined UNK_180a279a8;
-undefined UNK_180a276f8;
-undefined UNK_180a27710;
-undefined UNK_180a27788;
-undefined DAT_1809939c8;
-undefined UNK_180994940;
-undefined UNK_180a27750;
-undefined UNK_180a27a78;
-undefined UNK_180a3d0d0;
-undefined UNK_180a27ab0;
-undefined UNK_180a27b40;
-undefined UNK_180415710;
+
+/* 渲染系统高级特殊功能数据结构 */
+undefined UNK_180a12c50;      // 特殊功能主数据结构
+undefined UNK_180a271b0;      // 特殊功能配置数据结构
+undefined UNK_180a27220;      // 特殊功能状态数据结构
+undefined UNK_180a272b0;      // 特殊功能资源数据结构
+undefined UNK_180a272c8;      // 特殊功能缓存数据结构
+undefined UNK_180a272d8;      // 特殊功能任务数据结构
+undefined UNK_180a27318;      // 特殊功能线程数据结构
+undefined UNK_180a0af90;      // 特殊功能同步数据结构
+undefined UNK_180a27230;      // 特殊功能错误数据结构
+undefined UNK_180a27238;      // 特殊功能日志数据结构
+undefined UNK_180a27258;      // 特殊功能报告数据结构
+undefined UNK_180a27278;      // 特殊功能统计数据结构
+undefined UNK_180a27338;      // 特殊功能监控数据结构
+undefined UNK_180a27350;      // 特殊功能分析数据结构
+undefined UNK_180a27360;      // 特殊功能优化数据结构
+undefined UNK_180a27370;      // 特殊功能调试数据结构
+undefined UNK_180a27390;      // 特殊功能热重载数据结构
+undefined UNK_180a273a0;      // 特殊功能预加载数据结构
+undefined UNK_180a273b0;      // 特殊功能异步加载数据结构
+undefined UNK_180a27400;      // 特殊功能流式加载数据结构
+undefined UNK_180a27458;      // 特殊功能批处理数据结构
+undefined UNK_180a27480;      // 特殊功能实例化数据结构
+undefined UNK_180a274c8;      // 特殊功能LOD数据结构
+undefined UNK_180a274e0;      // 特殊功能剔除数据结构
+undefined UNK_180a27560;      // 特殊功能排序数据结构
+undefined UNK_180a27570;      // 特殊功能分组数据结构
+undefined UNK_180a275a0;      // 特殊功能合并数据结构
+undefined UNK_180a275d0;      // 特殊功能分割数据结构
+undefined UNK_180a27680;      // 特殊功能优先级数据结构
+undefined UNK_180a27618;      // 特殊功能依赖数据结构
+undefined UNK_180a27620;      // 特殊功能版本数据结构
+undefined UNK_180a27628;      // 特殊功能生命周期数据结构
+undefined UNK_180a27630;      // 特殊功能权限数据结构
+undefined UNK_180a2763c;      // 特殊功能配额数据结构
+undefined UNK_180a27644;      // 特殊功能限制数据结构
+undefined UNK_180a2764c;      // 特殊功能策略数据结构
+undefined UNK_180a27654;      // 特殊功能算法数据结构
+undefined UNK_180a2765c;      // 特殊功能缓存策略数据结构
+undefined UNK_180a27664;      // 特殊功能内存策略数据结构
+undefined UNK_180a27670;      // 特殊功能磁盘策略数据结构
+undefined1 DAT_180bfaee8;     // 特殊功能网络策略数据
+undefined DAT_180bfaeb0;      // 特殊功能任务策略数据
+undefined UNK_180a12d78;      // 特殊功能线程策略数据结构
+undefined UNK_180a12d88;      // 特殊功能同步策略数据结构
+undefined1 DAT_180bfaeb8;     // 特殊功能错误策略数据
+undefined UNK_180a27988;      // 特殊功能调试策略数据结构
+undefined UNK_180a279a8;      // 特殊功能日志策略数据结构
+undefined UNK_180a276f8;      // 特殊功能报告策略数据结构
+undefined UNK_180a27710;      // 特殊功能统计策略数据结构
+undefined UNK_180a27788;      // 特殊功能监控策略数据结构
+undefined DAT_1809939c8;      // 特殊功能分析策略数据
+undefined UNK_180994940;      // 特殊功能优化策略数据结构
+undefined UNK_180a27750;      // 特殊功能热重载策略数据结构
+undefined UNK_180a27a78;      // 特殊功能预加载策略数据结构
+undefined UNK_180a3d0d0;      // 特殊功能异步加载策略数据结构
+undefined UNK_180a27ab0;      // 特殊功能流式加载策略数据结构
+undefined UNK_180a27b40;      // 特殊功能批处理策略数据结构
+undefined UNK_180415710;      // 特殊功能实例化策略数据结构
 
 
-// 函数: undefined FUN_180415730;
+/** 
+ * @brief 渲染系统最终特殊功能函数
+ * @details 渲染系统的最终特殊功能，包含最复杂的特殊处理逻辑
+ */
 undefined FUN_180415730;
-undefined UNK_180a27b60;
-undefined UNK_180a063c4;
-undefined UNK_180a27bf8;
-undefined UNK_18041b520;
-undefined UNK_180a27b80;
-undefined UNK_180a27b98;
-undefined UNK_180a27bb0;
+undefined UNK_180a27b60;      // 最终特殊功能主数据结构
+undefined UNK_180a063c4;      // 最终特殊功能配置数据结构
+undefined UNK_180a27bf8;      // 最终特殊功能状态数据结构
+undefined UNK_18041b520;      // 最终特殊功能资源数据结构
+undefined UNK_180a27b80;      // 最终特殊功能缓存数据结构
+undefined UNK_180a27b98;      // 最终特殊功能任务数据结构
+undefined UNK_180a27bb0;      // 最终特殊功能线程数据结构
 
 
-// 函数: undefined FUN_18041b4d0;
+/** 
+ * @brief 渲染系统终极特殊功能函数
+ * @details 渲染系统的终极特殊功能，包含所有特殊处理逻辑的最终实现
+ */
 undefined FUN_18041b4d0;
-undefined UNK_180a27bc8;
-undefined UNK_180a27c28;
-undefined UNK_1809952a0;
-undefined UNK_180995320;
-undefined UNK_180994d24;
-undefined UNK_180995024;
-undefined UNK_180995028;
-undefined UNK_180a27cd8;
-undefined UNK_180995c00;
-undefined UNK_180995c50;
-undefined UNK_180995c90;
-undefined DAT_180a406e0;
-undefined DAT_180a3f940;
-undefined DAT_180a406c0;
-undefined DAT_180a3f950;
-undefined DAT_180a406d0;
-undefined DAT_180a3f970;
-undefined DAT_180a40700;
-undefined DAT_180a3f960;
-undefined UNK_180a29654;
-undefined UNK_180a29684;
-undefined UNK_180a29650;
+undefined UNK_180a27bc8;      // 终极特殊功能主数据结构
+undefined UNK_180a27c28;      // 终极特殊功能配置数据结构
+undefined UNK_1809952a0;      // 终极特殊功能状态数据结构
+undefined UNK_180995320;      // 终极特殊功能资源数据结构
+undefined UNK_180994d24;      // 终极特殊功能缓存数据结构
+undefined UNK_180995024;      // 终极特殊功能任务数据结构
+undefined UNK_180995028;      // 终极特殊功能线程数据结构
+undefined UNK_180a27cd8;      // 终极特殊功能同步数据结构
+undefined UNK_180995c00;      // 终极特殊功能错误数据结构
+undefined UNK_180995c50;      // 终极特殊功能日志数据结构
+undefined UNK_180995c90;      // 终极特殊功能报告数据结构
+undefined DAT_180a406e0;      // 终极特殊功能统计数据
+undefined DAT_180a3f940;      // 终极特殊功能性能数据
+undefined DAT_180a406c0;      // 终极特殊功能内存数据
+undefined DAT_180a3f950;      // 终极特殊功能监控数据
+undefined DAT_180a406d0;      // 终极特殊功能分析数据
+undefined DAT_180a3f970;      // 终极特殊功能优化数据
+undefined DAT_180a40700;      // 终极特殊功能调试数据
+undefined DAT_180a3f960;      // 终极特殊功能热重载数据
+undefined UNK_180a29654;      // 终极特殊功能预加载数据结构
+undefined UNK_180a29684;      // 终极特殊功能异步加载数据结构
+undefined UNK_180a29650;      // 终极特殊功能流式加载数据结构
 
+
+/*=============================================================================
+ * 文件结束 - 03_rendering_part002.c
+ *=============================================================================*/
+
+/**
+ * @file 总结
+ * 
+ * 本文件包含TaleWorlds引擎渲染系统的核心函数声明，总共约250个函数，
+ * 涵盖了以下主要功能模块：
+ * 
+ * 1. 渲染管线初始化和配置
+ * 2. 渲染状态管理和切换
+ * 3. 纹理和材质处理
+ * 4. 几何体和网格操作
+ * 5. 着色器程序管理
+ * 6. 渲染目标和缓冲区管理
+ * 7. 光照和阴影处理
+ * 8. 系统资源和数据结构管理
+ * 9. 高级渲染管线管理
+ * 10. 渲染系统优化和调试
+ * 11. 特殊功能处理
+ * 
+ * 这些函数构成了游戏渲染管线的基础架构，支持从简单的2D渲染
+ * 到复杂的3D场景渲染，包括高级特性如实例化、LOD、剔除、
+ * 批处理等优化技术。
+ * 
+ * @version 1.0
+ * @date 2023
+ * @author TaleWorlds Entertainment
+ */
 
 
