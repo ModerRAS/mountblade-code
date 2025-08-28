@@ -225,8 +225,17 @@ void RenderingSystem_SetupRenderParameters(uint64_t param_1, uint64_t param_2)
 
 
 
-// 函数: void FUN_180369850(longlong param_1,longlong param_2)
-void FUN_180369850(longlong param_1,longlong param_2)
+/**
+ * @brief 渲染系统参数验证器
+ * 
+ * 该函数负责验证渲染系统的参数，确保参数的有效性
+ * 和一致性。支持浮点参数的特殊验证。
+ * 
+ * @param param_1 参数1（包含浮点参数）
+ * @param param_2 参数2（包含验证条件）
+ * @return void
+ */
+void RenderingSystem_ValidateRenderParameters(longlong param_1, longlong param_2)
 
 {
   int iVar1;
@@ -246,8 +255,16 @@ void FUN_180369850(longlong param_1,longlong param_2)
 
 
 
-// 函数: void FUN_180369890(uint64_t param_1)
-void FUN_180369890(uint64_t param_1)
+/**
+ * @brief 渲染系统配置处理器
+ * 
+ * 该函数负责处理渲染系统的配置，包括多个字符串处理
+ * 和系统初始化操作。
+ * 
+ * @param param_1 参数1（用于配置处理）
+ * @return void
+ */
+void RenderingSystem_ProcessRenderConfiguration(uint64_t param_1)
 
 {
   int8_t auStack_368 [32];
