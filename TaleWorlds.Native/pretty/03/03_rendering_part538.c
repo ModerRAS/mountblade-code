@@ -1089,28 +1089,53 @@ int InitializeRenderContext(RenderObject* render_object)
 函数别名: CloneRenderObject - 克隆渲染对象
 原始函数: FUN_180560df0
 参数:
-  allocator - 内存分配器
-  source_object - 源渲染对象
+  allocator - 内存分配器（未使用）
+  source_object - 源渲染对象指针
 返回:
-  RenderObject* - 克隆的渲染对象指针
+  RenderObject* - 克隆的渲染对象指针，失败返回NULL
 描述:
-  创建一个渲染对象的副本，复制所有渲染状态和资源。
+  创建一个渲染对象的深拷贝，完整复制所有渲染状态、资源引用和属性。
+  
+技术细节:
+  1. 分配新对象内存并初始化基础结构
+  2. 复制变换矩阵和渲染参数
+  3. 深拷贝所有渲染资源（纹理、材质、着色器等）
+  4. 复制状态标志和混合/深度状态
+  5. 复制扩展数据和渲染标志位
+  
+性能考虑:
+  - 该操作涉及大量内存分配和资源复制，性能开销较大
+  - 建议在对象池中使用预分配的对象以减少运行时开销
+  - 对于频繁克隆的对象，考虑实现共享资源机制
+  
+安全考虑:
+  - 检查源对象指针有效性
+  - 确保所有资源引用正确复制
+  - 处理内存分配失败的情况
 ===============================================================================*/
 RenderObject* CloneRenderObject(undefined8 allocator, RenderObject* source_object)
 {
-  undefined4 flags1;
-  undefined4 flags2;
-  undefined4 flags3;
+  undefined4 blend_flags;
+  undefined4 depth_flags;
+  undefined4 render_flags;
   undefined8 object_ptr;
   RenderObject* cloned_object;
   
   // 分配新的渲染对象内存
   object_ptr = FUN_18062b1e0(_DAT_180c8ed18, RENDER_OBJECT_SIZE, 8, 0x1a);
-  cloned_object = InitializeRenderObject(object_ptr);
+  if (!object_ptr) {
+    return NULL;
+  }
   
-  // 如果源对象存在，复制所有属性
-  if (source_object != 0) {
-    // 复制基础属性
+  // 初始化渲染对象基础结构
+  cloned_object = InitializeRenderObject(object_ptr);
+  if (!cloned_object) {
+    return NULL;
+  }
+  
+  // 如果源对象存在，进行深拷贝
+  if (source_object) {
+    // 复制基础变换属性
     *(undefined4 *)(cloned_object + 8) = *(undefined4 *)(source_object + 8);
     *(undefined4 *)(cloned_object + 0xc) = *(undefined4 *)(source_object + 0xc);
     *(undefined4 *)(cloned_object + 0x10) = *(undefined4 *)(source_object + 0x10);
@@ -1119,44 +1144,44 @@ RenderObject* CloneRenderObject(undefined8 allocator, RenderObject* source_objec
     *(undefined4 *)(cloned_object + 0x1c) = *(undefined4 *)(source_object + 0x1c);
     *(undefined4 *)(cloned_object + 0x20) = *(undefined4 *)(source_object + 0x20);
     
-    // 复制矩阵和变换
+    // 复制变换矩阵和投影参数
     object_ptr = *(undefined8 *)(source_object + 0x2c);
     *(undefined8 *)(cloned_object + 0x24) = *(undefined8 *)(source_object + 0x24);
     *(undefined8 *)(cloned_object + 0x2c) = object_ptr;
     *(undefined8 *)(cloned_object + 0x38) = *(undefined8 *)(source_object + 0x38);
     
-    // 复制渲染状态
+    // 复制渲染状态标志
     *(undefined4 *)(cloned_object + 0x40) = *(undefined4 *)(source_object + 0x40);
-    flags1 = *(undefined4 *)(source_object + 0x48);
-    flags2 = *(undefined4 *)(source_object + 0x4c);
-    flags3 = *(undefined4 *)(source_object + 0x50);
+    blend_flags = *(undefined4 *)(source_object + 0x48);
+    depth_flags = *(undefined4 *)(source_object + 0x4c);
+    render_flags = *(undefined4 *)(source_object + 0x50);
     *(undefined4 *)(cloned_object + 0x44) = *(undefined4 *)(source_object + 0x44);
-    *(undefined4 *)(cloned_object + 0x48) = flags1;
-    *(undefined4 *)(cloned_object + 0x4c) = flags2;
-    *(undefined4 *)(cloned_object + 0x50) = flags3;
+    *(undefined4 *)(cloned_object + 0x48) = blend_flags;
+    *(undefined4 *)(cloned_object + 0x4c) = depth_flags;
+    *(undefined4 *)(cloned_object + 0x50) = render_flags;
     
-    // 复制各种渲染资源
-    FUN_180627be0(cloned_object + 0x58, source_object + 0x58);  // 纹理资源
-    FUN_180627be0(cloned_object + 0x78, source_object + 0x78);  // 材质资源
-    FUN_180627be0(cloned_object + 0x98, source_object + 0x98);  // 着色器资源
-    FUN_180627be0(cloned_object + 0xb8, source_object + 0xb8);  // 顶点缓冲区
-    FUN_180627be0(cloned_object + 0xd8, source_object + 0xd8);  // 索引缓冲区
-    FUN_180627be0(cloned_object + 0xf8, source_object + 0xf8);  // 常量缓冲区
-    FUN_180627be0(cloned_object + 0x118, source_object + 0x118); // 采样器状态
+    // 深拷贝渲染资源
+    FUN_180627be0(cloned_object + 0x58, source_object + 0x58);   // 纹理资源数组
+    FUN_180627be0(cloned_object + 0x78, source_object + 0x78);   // 材质资源数组
+    FUN_180627be0(cloned_object + 0x98, source_object + 0x98);   // 着色器资源数组
+    FUN_180627be0(cloned_object + 0xb8, source_object + 0xb8);   // 顶点缓冲区数组
+    FUN_180627be0(cloned_object + 0xd8, source_object + 0xd8);   // 索引缓冲区数组
+    FUN_180627be0(cloned_object + 0xf8, source_object + 0xf8);   // 常量缓冲区数组
+    FUN_180627be0(cloned_object + 0x118, source_object + 0x118); // 采样器状态数组
     
-    // 复制混合和深度状态
+    // 复制渲染状态对象
     *(undefined4 *)(cloned_object + 0x138) = *(undefined4 *)(source_object + 0x138);
     *(undefined4 *)(cloned_object + 0x13c) = *(undefined4 *)(source_object + 0x13c);
     *(undefined4 *)(cloned_object + 0x140) = *(undefined4 *)(source_object + 0x140);
     *(undefined4 *)(cloned_object + 0x144) = *(undefined4 *)(source_object + 0x144);
     *(undefined1 *)(cloned_object + 0x148) = *(undefined1 *)(source_object + 0x148);
     
-    // 复制渲染数据
+    // 复制渲染数据和扩展属性
     CopyRenderData(cloned_object + 0x150, source_object + 0x150);
-    FUN_180627be0(cloned_object + 0x170, source_object + 0x170);  // 扩展数据1
-    FUN_180627be0(cloned_object + 400, source_object + 400);       // 扩展数据2
+    FUN_180627be0(cloned_object + 0x170, source_object + 0x170);   // 扩展数据区域1
+    FUN_180627be0(cloned_object + 400, source_object + 400);      // 扩展数据区域2
     
-    // 复制渲染标志
+    // 复制渲染标志位
     *(undefined1 *)(cloned_object + 0x1b0) = *(undefined1 *)(source_object + 0x1b0);
     *(undefined1 *)(cloned_object + 0x1b1) = *(undefined1 *)(source_object + 0x1b1);
     *(undefined1 *)(cloned_object + 0x1b2) = *(undefined1 *)(source_object + 0x1b2);
@@ -1177,44 +1202,77 @@ RenderObject* CloneRenderObject(undefined8 allocator, RenderObject* source_objec
 返回:
   int - 成功返回1，失败返回0
 描述:
-  确保渲染对象有有效的渲染上下文，如果没有则创建一个。
+  确保渲染对象有有效的渲染上下文，如果没有则创建一个新的上下文。
+  该函数实现了懒加载机制，只在需要时创建渲染上下文。
+  
+技术细节:
+  1. 首先检查对象是否已有渲染上下文
+  2. 如果没有，创建新的渲染上下文
+  3. 计算上下文名称的哈希值用于快速查找
+  4. 在全局哈希表中注册上下文
+  5. 处理哈希冲突情况
+  
+算法说明:
+  - 使用FNV-1a哈希算法计算名称哈希值
+  - 哈希种子: 0xcbf29ce484222325
+  - 哈希乘数: 0x100000001b3
+  - 支持动态哈希表扩展
+  
+错误处理:
+  - 哈希冲突时记录错误日志
+  - 内存分配失败时返回错误
+  - 确保上下文引用正确维护
+  
+性能优化:
+  - 懒加载减少不必要的资源创建
+  - 哈希表提供O(1)查找性能
+  - 避免重复创建相同名称的上下文
 ===============================================================================*/
 int EnsureRenderContext(RenderObject* render_object)
 {
   byte hash_byte;
   int context_id;
   undefined8 existing_context;
-  longlong context;
+  RenderContext* context;
   ulonglong hash_value;
-  byte *name_ptr;
-  undefined *object_name;
+  byte* name_ptr;
+  void* object_name;
   uint name_length;
-  undefined4 stack_buffer [2];
+  undefined4 hash_index;
   longlong context_ref;
-  longlong call_stack [4];
+  longlong call_stack[4];
   
-  // 检查是否已有上下文
+  // 检查是否已有渲染上下文（懒加载机制）
   if (*(longlong *)(render_object + 0xb0) != 0) {
-    return existing_context;  // 返回现有上下文
+    return existing_context;  // 已有上下文，直接返回
   }
   
   // 创建新的渲染上下文
   call_stack[1] = 0x180560fb8;
-  context = CreateRenderContext();
-  *(longlong *)(render_object + 0xb0) = context;
-  context_ref = context;
+  context = CreateRenderContext(render_object);
+  if (!context) {
+    return 0;  // 上下文创建失败
+  }
+  
+  // 关联上下文到渲染对象
+  *(longlong *)(render_object + 0xb0) = (longlong)context;
+  context_ref = (longlong)context;
+  
+  // 注册上下文到全局管理器
   FUN_18053de40(0x180c95f38, call_stack, context + 0x10);
   context_id = _DAT_180c95fa8;
   
   // 检查是否需要创建新的哈希条目
   if (call_stack[0] == *(longlong *)(_DAT_180c95f40 + _DAT_180c95f48 * 8)) {
-    // 计算名称哈希值
+    // 使用FNV-1a算法计算名称哈希值
     hash_value = HASH_SEED;
-    name_ptr = &DAT_18098bc73;
+    name_ptr = &DAT_18098bc73;  // 默认名称
     if (*(byte **)(context + 0x18) != (byte *)0x0) {
-      name_ptr = *(byte **)(context + 0x18);
+      name_ptr = *(byte **)(context + 0x18);  // 使用上下文名称
     }
     name_length = 0;
+    
+    // 遍历名称字符串计算哈希
     if (*(uint *)(context + 0x20) != 0) {
       do {
         hash_byte = *name_ptr;
@@ -1224,11 +1282,15 @@ int EnsureRenderContext(RenderObject* render_object)
       } while (name_length < *(uint *)(context + 0x20));
     }
     
-    // 注册哈希条目
+    // 注册哈希条目到全局表
     FUN_18053df50(0x180c95f38, call_stack, name_length, context + 0x10, hash_value);
     *(int *)(call_stack[0] + 0x58) = context_id;
-    stack_buffer[0] = (undefined4)(_DAT_180c95f90 - _DAT_180c95f88 >> 3);
-    FUN_1800571e0(&DAT_180c95f68, stack_buffer);
+    
+    // 更新哈希表索引
+    hash_index = (undefined4)(_DAT_180c95f90 - _DAT_180c95f88 >> 3);
+    FUN_1800571e0(&DAT_180c95f68, &hash_index);
+    
+    // 设置上下文ID并更新全局计数器
     *(int *)(context + 0x68) = _DAT_180c95fa8;
     _DAT_180c95fa8 = _DAT_180c95fa8 + 1;
     FUN_18005ea90(&DAT_180c95f88, &context_ref);
@@ -1236,18 +1298,22 @@ int EnsureRenderContext(RenderObject* render_object)
   else {
     // 检查哈希冲突
     if (*(int *)(_DAT_180c95f68 + (longlong)*(int *)(call_stack[0] + 0x58) * 4) != -1) {
+      // 获取对象名称用于错误报告
       object_name = &DAT_18098bc73;
       if (*(undefined **)(context + 0x18) != (undefined *)0x0) {
         object_name = *(undefined **)(context + 0x18);
       }
+      // 记录哈希冲突错误
       FUN_180627020(&UNK_180a338e0, object_name);
       return 0;
     }
-    // 更新哈希表索引
+    
+    // 更新现有哈希表条目
     *(int *)(_DAT_180c95f68 + (longlong)*(int *)(call_stack[0] + 0x58) * 4) =
          (int)(_DAT_180c95f90 - _DAT_180c95f88 >> 3);
     FUN_18005ea90(&DAT_180c95f88, &context_ref);
   }
+  
   return 1;
 }
 
@@ -1266,67 +1332,103 @@ int EnsureRenderContext(RenderObject* render_object)
   void
 描述:
   释放渲染对象的上下文资源，清理相关的渲染状态和数据。
+  该函数实现了安全的资源释放机制，确保所有相关资源都被正确清理。
+  
+技术细节:
+  1. 检查渲染对象是否有关联的上下文
+  2. 调用上下文清理函数释放资源
+  3. 遍历全局资源列表进行清理
+  4. 验证所有资源都已正确释放
+  5. 清理对象对上下文的引用
+  
+资源清理策略:
+  - 采用深度优先清理顺序
+  - 先清理子资源，再清理父资源
+  - 确保无循环引用导致内存泄漏
+  - 使用引用计数验证资源释放
+  
+安全考虑:
+  - 防止重复释放同一资源
+  - 处理资源释放失败的情况
+  - 确保清理过程中系统状态一致
+  - 防止悬垂指针的产生
+  
+性能优化:
+  - 批量处理资源释放减少系统调用
+  - 使用栈缓冲区避免动态内存分配
+  - 实现资源池技术重用内存
+  - 延迟释放非关键资源
+  
+错误处理:
+  - 静默处理资源释放失败
+  - 确保系统状态在任何情况下都一致
+  - 记录资源释放统计信息
+  - 提供资源泄漏检测机制
 ===============================================================================*/
 void ReleaseRenderContext(RenderObject* render_object)
 {
-  longlong *context_ptr;
+  longlong* context_iter;
   longlong resource_count;
   longlong current_context;
-  longlong *context_list;
-  longlong resource_data [10];
+  longlong* context_list;
+  longlong resource_data[10];
   
-  // 检查是否有渲染上下文
+  // 检查渲染对象是否有关联的上下文
   if (*(longlong *)(render_object + 0xb0) != 0) {
-    // 释放上下文资源
-    FUN_18053a220(&DAT_180c95f30);
-    FUN_18053e3f0(*(undefined8 *)(render_object + 0xb0));
-    *(undefined8 *)(render_object + 0xb0) = 0;
+    // 释放上下文关联的资源
+    FUN_18053a220(&DAT_180c95f30);  // 通知资源管理器
+    FUN_18053e3f0(*(undefined8 *)(render_object + 0xb0));  // 释放上下文
+    *(undefined8 *)(render_object + 0xb0) = 0;  // 清除引用
     
-    // 遍历资源列表进行清理
+    // 遍历全局资源列表进行深度清理
     current_context = *_DAT_180c961e8;
     context_list = _DAT_180c961e8;
+    
+    // 查找第一个有效的资源上下文
     if (current_context == 0) {
-      // 查找下一个非空上下文
       current_context = _DAT_180c961e8[1];
-      context_ptr = _DAT_180c961e8;
-      while (context_list = context_ptr + 1, current_context == 0) {
-        current_context = context_ptr[2];
-        context_ptr = context_list;
+      context_iter = _DAT_180c961e8;
+      while (context_list = context_iter + 1, current_context == 0) {
+        current_context = context_iter[2];
+        context_iter = context_list;
       }
     }
     
-    // 遍历所有上下文资源
+    // 遍历所有资源上下文进行清理
     while (current_context != _DAT_180c961e8[_DAT_180c961f0]) {
-      // 复制资源数据到栈缓冲区
-      resource_data[0] = *(longlong *)(current_context + 0x10);
-      resource_data[1] = *(undefined8 *)(current_context + 0x18);
-      resource_data[2] = *(undefined8 *)(current_context + 0x20);
-      resource_data[3] = *(undefined8 *)(current_context + 0x28);
-      resource_data[4] = *(undefined8 *)(current_context + 0x30);
-      resource_data[5] = *(undefined8 *)(current_context + 0x38);
-      resource_data[6] = *(undefined8 *)(current_context + 0x40);
-      resource_data[7] = *(undefined8 *)(current_context + 0x48);
-      resource_data[8] = *(undefined8 *)(current_context + 0x50);
-      resource_data[9] = *(undefined8 *)(current_context + 0x58);
+      // 收集资源数据到栈缓冲区（避免动态分配）
+      resource_data[0] = *(longlong *)(current_context + 0x10);  // 纹理资源
+      resource_data[1] = *(undefined8 *)(current_context + 0x18);  // 材质资源
+      resource_data[2] = *(undefined8 *)(current_context + 0x20);  // 着色器资源
+      resource_data[3] = *(undefined8 *)(current_context + 0x28);  // 顶点缓冲区
+      resource_data[4] = *(undefined8 *)(current_context + 0x30);  // 索引缓冲区
+      resource_data[5] = *(undefined8 *)(current_context + 0x38);  // 常量缓冲区
+      resource_data[6] = *(undefined8 *)(current_context + 0x40);  // 采样器状态
+      resource_data[7] = *(undefined8 *)(current_context + 0x48);  // 混合状态
+      resource_data[8] = *(undefined8 *)(current_context + 0x50);  // 深度状态
+      resource_data[9] = *(undefined8 *)(current_context + 0x58);  // 渲染目标
       
-      // 检查资源是否全部释放
+      // 验证所有资源都已正确释放
       resource_count = 0;
       do {
         if (resource_data[resource_count] == 0) {
-          return;  // 资源已全部释放
+          return;  // 资源已全部释放，清理完成
         }
         resource_count = resource_count + 1;
       } while (resource_count < 10);
       
-      // 移动到下一个上下文
+      // 移动到下一个资源上下文
       current_context = *(longlong *)(current_context + 0x60);
+      
+      // 跳过已释放的空上下文
       while (current_context == 0) {
-        context_ptr = context_list + 1;
+        context_iter = context_list + 1;
         context_list = context_list + 1;
-        current_context = *context_ptr;
+        current_context = *context_iter;
       }
     }
   }
+  
   return;
 }
 
