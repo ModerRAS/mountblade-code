@@ -123,7 +123,7 @@ typedef struct {
 #define SystemDataEnhancer SystemDataEnhancer
 #define SystemDataInitializer SystemDataInitializer
 #define SystemDataManager SystemDataManager
-#define SystemDataOrganizer FUN_180627340
+#define SystemDataOrganizer SystemDataOrganizer
 #define SystemDataHandler FUN_18010cbc0
 #define SystemDataConfigurator FUN_180631330
 #define SystemDataModifier FUN_180631850
@@ -1041,7 +1041,7 @@ LAB_180631224:
 joined_r0x0001806311cf:
         if (cVar2 != '\0') {
 LAB_1806311d1:
-            FUN_180627340(&unknown_var_5416_ptr, &unknown_var_8824_ptr, lVar9, &unknown_var_5512_ptr, uVar14);
+            SystemDataOrganizer(&unknown_var_5416_ptr, &unknown_var_8824_ptr, lVar9, &unknown_var_5512_ptr, uVar14);
             puStack_30 = &system_data_buffer_ptr;
             if (pcStack_28 != (char *)0x0) {
                 SystemMemoryPoolInitializer();
