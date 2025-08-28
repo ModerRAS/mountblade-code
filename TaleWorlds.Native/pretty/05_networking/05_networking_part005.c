@@ -611,42 +611,51 @@ void release_network_packet_resources(void)
 void check_network_connection_status(ulonglong connection_handle, undefined4 *status_buffer)
 
 {
-  int connection_result;
-  undefined1 security_buffer[32];
-  undefined1 *message_buffer;
-  undefined8 session_handle;
-  undefined8 connection_info;
-  longlong connection_data;
-  longlong status_info;
-  undefined1 packet_buffer[NETWORK_BUFFER_SIZE];
-  ulonglong security_key;
+  int connection_result;       // 连接结果
+  undefined1 security_buffer[32]; // 安全缓冲区
+  undefined1 *message_buffer;   // 消息缓冲区
+  undefined8 session_handle;    // 会话句柄
+  undefined8 connection_info;    // 连接信息
+  longlong connection_data;     // 连接数据
+  longlong status_info;         // 状态信息
+  undefined1 packet_buffer[NETWORK_BUFFER_SIZE]; // 数据包缓冲区
+  ulonglong security_key;       // 安全密钥
   
+  // 生成安全密钥
   security_key = NETWORK_SECURITY_KEY ^ (ulonglong)security_buffer;
+  // 检查状态缓冲区有效性
   if (status_buffer == (undefined4 *)0x0) {
+    // 检查网络状态标志
     if ((*(byte *)(NETWORK_STATUS_FLAG + 0x10) & 0x80) == 0) {
-                    // WARNING: Subroutine does not return
+      // 安全验证失败，执行异常处理（函数不返回）
       FUN_1808fc050(security_key ^ (ulonglong)security_buffer);
     }
+    // 准备错误消息包
     FUN_18074b930(packet_buffer, NETWORK_BUFFER_SIZE, 0);
     message_buffer = packet_buffer;
-                    // WARNING: Subroutine does not return
+    // 发送错误消息（函数不返回）
     FUN_180749ef0(0x1f, 0xc, connection_handle, NETWORK_STATUS_MESSAGE);
   }
+  
+  // 初始化状态缓冲区
   *status_buffer = 0;
   session_handle = 0;
   connection_info = 0;
   connection_data = 0;
+  // 获取连接信息
   connection_result = func_0x00018088c590(0, &connection_info);
   if (((connection_result == 0) && (connection_result = FUN_18088c740(&session_handle, connection_info), connection_result == 0)) &&
      (connection_result = func_0x00018088c530(connection_handle & 0xffffffff, &status_info), connection_result == 0)) {
+    // 提取连接数据
     connection_data = *(longlong *)(status_info + 8);
   }
   else if (connection_result != 0) {
-                    // WARNING: Subroutine does not return
+    // 清理会话句柄（函数不返回）
     FUN_18088c790(&session_handle);
   }
+  // 提取连接状态信息
   *status_buffer = *(undefined4 *)(connection_data + 0x88);
-                    // WARNING: Subroutine does not return
+  // 清理会话句柄（函数不返回）
   FUN_18088c790(&session_handle);
 }
 
@@ -656,7 +665,11 @@ void check_network_connection_status(ulonglong connection_handle, undefined4 *st
 
 
 // 函数: 设置网络连接缓冲区
-void set_network_connection_buffers(ulonglong connection_handle, undefined1 *buffer_data, int buffer_size, undefined4 *result_buffer)
+// 功能：设置网络连接的缓冲区配置，包括缓冲区大小和数据管理
+// 参数：connection_handle - 连接句柄，buffer_data - 缓冲区数据，buffer_size - 缓冲区大小，result_buffer - 结果缓冲区
+// 返回：无返回值，结果通过result_buffer返回
+// 注意：函数包含缓冲区验证、配置设置和错误处理机制
+void setup_network_connection_buffers(ulonglong connection_handle, undefined1 *buffer_data, int buffer_size, undefined4 *result_buffer)
 
 {
   int connection_result;
