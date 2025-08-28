@@ -205,9 +205,9 @@ typedef struct {
 #define InitializationSystemMemoryKey8 InitializationSystemMemoryKey8
 #define InitializationSystemMemoryKey9 InitializationSystemMemoryKey9
 #define InitializationSystemMemoryKey10 InitializationSystemMemoryKey10
-#define InitializationSystemMemoryKey11 system_memory_10a0
-#define InitializationSystemMemoryKey12 system_memory_1078
-#define InitializationSystemMemoryKey13 system_memory_1050
+#define InitializationSystemMemoryKey11 InitializationSystemMemoryKey11
+#define InitializationSystemMemoryKey12 InitializationSystemMemoryKey12
+#define InitializationSystemMemoryKey13 InitializationSystemMemoryKey13
 #define InitializationSystemMemoryKey14 system_memory_1028
 #define InitializationSystemMemoryKey15 system_memory_1000
 #define InitializationSystemMemoryKey16 system_memory_0fd8
@@ -990,7 +990,7 @@ void InitializationSystem_RegistrySearchAndInsert13(void)
     
     // 搜索目标节点
     while (node_flag == 0) {
-        compare_result = memcmp(current_node + 4, &system_memory_10a0, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE);
+        compare_result = memcmp(current_node + 4, &InitializationSystemMemoryKey11, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE);
         if (compare_result < 0) {
             child_node = (void*)current_node[2];
             current_node = parent_node;
@@ -1003,7 +1003,7 @@ void InitializationSystem_RegistrySearchAndInsert13(void)
     }
     
     // 插入新节点
-    if ((parent_node == root_node) || (compare_result = memcmp(&system_memory_10a0, parent_node + 4, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE), compare_result < 0)) {
+    if ((parent_node == root_node) || (compare_result = memcmp(&InitializationSystemMemoryKey11, parent_node + 4, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE), compare_result < 0)) {
         memory_size = InitializationSystemMemoryAllocator(registry_root);
         InitializationSystemMemoryInserter(registry_root, &new_node, parent_node, memory_size + 0x20, memory_size);
         parent_node = new_node;
@@ -1048,7 +1048,7 @@ void InitializationSystem_RegistrySearchAndInsert14(void)
     
     // 搜索目标节点
     while (node_flag == 0) {
-        compare_result = memcmp(current_node + 4, &system_memory_1078, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE);
+        compare_result = memcmp(current_node + 4, &InitializationSystemMemoryKey12, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE);
         if (compare_result < 0) {
             child_node = (void*)current_node[2];
             current_node = parent_node;
@@ -1061,7 +1061,7 @@ void InitializationSystem_RegistrySearchAndInsert14(void)
     }
     
     // 插入新节点
-    if ((parent_node == root_node) || (compare_result = memcmp(&system_memory_1078, parent_node + 4, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE), compare_result < 0)) {
+    if ((parent_node == root_node) || (compare_result = memcmp(&InitializationSystemMemoryKey12, parent_node + 4, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE), compare_result < 0)) {
         memory_size = InitializationSystemMemoryAllocator(registry_root);
         InitializationSystemMemoryInserter(registry_root, &new_node, parent_node, memory_size + 0x20, memory_size);
         parent_node = new_node;
@@ -1106,7 +1106,7 @@ void InitializationSystem_RegistrySearchAndInsert15(void)
     
     // 搜索目标节点
     while (node_flag == 0) {
-        compare_result = memcmp(current_node + 4, &system_memory_1050, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE);
+        compare_result = memcmp(current_node + 4, &InitializationSystemMemoryKey13, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE);
         if (compare_result < 0) {
             child_node = (void*)current_node[2];
             current_node = parent_node;
@@ -1119,7 +1119,7 @@ void InitializationSystem_RegistrySearchAndInsert15(void)
     }
     
     // 插入新节点
-    if ((parent_node == root_node) || (compare_result = memcmp(&system_memory_1050, parent_node + 4, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE), compare_result < 0)) {
+    if ((parent_node == root_node) || (compare_result = memcmp(&InitializationSystemMemoryKey13, parent_node + 4, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE), compare_result < 0)) {
         memory_size = InitializationSystemMemoryAllocator(registry_root);
         InitializationSystemMemoryInserter(registry_root, &new_node, parent_node, memory_size + 0x20, memory_size);
         parent_node = new_node;
@@ -1473,7 +1473,7 @@ void InitializationSystem_RegistrySearchAndInsert21(void)
     
     // 搜索目标节点
     while (node_flag == 0) {
-        compare_result = memcmp(current_node + 4, &system_memory_10a0, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE);
+        compare_result = memcmp(current_node + 4, &InitializationSystemMemoryKey11, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE);
         if (compare_result < 0) {
             child_node = (void*)current_node[2];
             current_node = parent_node;
@@ -1486,7 +1486,7 @@ void InitializationSystem_RegistrySearchAndInsert21(void)
     }
     
     // 插入新节点
-    if ((parent_node == root_node) || (compare_result = memcmp(&system_memory_10a0, parent_node + 4, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE), compare_result < 0)) {
+    if ((parent_node == root_node) || (compare_result = memcmp(&InitializationSystemMemoryKey11, parent_node + 4, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE), compare_result < 0)) {
         memory_size = InitializationSystemMemoryAllocator(registry_root);
         InitializationSystemMemoryInserter(registry_root, &new_node, parent_node, memory_size + 0x20, memory_size);
         parent_node = new_node;
@@ -1531,7 +1531,7 @@ void InitializationSystem_RegistrySearchAndInsert22(void)
     
     // 搜索目标节点
     while (node_flag == 0) {
-        compare_result = memcmp(current_node + 4, &system_memory_1078, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE);
+        compare_result = memcmp(current_node + 4, &InitializationSystemMemoryKey12, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE);
         if (compare_result < 0) {
             child_node = (void*)current_node[2];
             current_node = parent_node;
@@ -1544,7 +1544,7 @@ void InitializationSystem_RegistrySearchAndInsert22(void)
     }
     
     // 插入新节点
-    if ((parent_node == root_node) || (compare_result = memcmp(&system_memory_1078, parent_node + 4, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE), compare_result < 0)) {
+    if ((parent_node == root_node) || (compare_result = memcmp(&InitializationSystemMemoryKey12, parent_node + 4, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE), compare_result < 0)) {
         memory_size = InitializationSystemMemoryAllocator(registry_root);
         InitializationSystemMemoryInserter(registry_root, &new_node, parent_node, memory_size + 0x20, memory_size);
         parent_node = new_node;
@@ -1589,7 +1589,7 @@ void InitializationSystem_RegistrySearchAndInsert23(void)
     
     // 搜索目标节点
     while (node_flag == 0) {
-        compare_result = memcmp(current_node + 4, &system_memory_1050, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE);
+        compare_result = memcmp(current_node + 4, &InitializationSystemMemoryKey13, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE);
         if (compare_result < 0) {
             child_node = (void*)current_node[2];
             current_node = parent_node;
@@ -1602,7 +1602,7 @@ void InitializationSystem_RegistrySearchAndInsert23(void)
     }
     
     // 插入新节点
-    if ((parent_node == root_node) || (compare_result = memcmp(&system_memory_1050, parent_node + 4, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE), compare_result < 0)) {
+    if ((parent_node == root_node) || (compare_result = memcmp(&InitializationSystemMemoryKey13, parent_node + 4, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE), compare_result < 0)) {
         memory_size = InitializationSystemMemoryAllocator(registry_root);
         InitializationSystemMemoryInserter(registry_root, &new_node, parent_node, memory_size + 0x20, memory_size);
         parent_node = new_node;
