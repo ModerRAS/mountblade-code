@@ -997,58 +997,82 @@ void rendering_system_process_render_state(longlong *state_ptr, undefined8 param
   longlong iteration_count;
   longlong *stack_pointer;
   
-  lVar5 = *param_1;
-  if (lVar5 != 0) {
-    cVar3 = FUN_18055f260(param_3,&plStackX_8,&UNK_1809fa490);
-    FUN_1804fe350(&UNK_180a30280,cVar3,&UNK_180a302c0,&plStackX_8);
-    if ((((cVar3 != '\0') && (-1 < (int)(uint)plStackX_8)) &&
-        ((int)(uint)plStackX_8 < *(int *)(lVar5 + 0x87b31c))) &&
-       (lVar5 = (ulonglong)((uint)plStackX_8 & 0xf) * 0xbe0 +
-                *(longlong *)
-                 (*(longlong *)(lVar5 + 0x87b340) + (ulonglong)((uint)plStackX_8 >> 4) * 8),
-       *(int *)(lVar5 + 8) != 0)) {
-      lVar6 = 0;
+  state_data = *state_ptr;
+  if (state_data != 0) {
+    // 获取状态信息
+    system_status = FUN_18055f260(param_2, &stack_pointer, &UNK_1809fa490);
+    FUN_1804fe350(&UNK_180a30280, system_status, &UNK_180a302c0, &stack_pointer);
+    
+    // 检查状态有效性
+    if ((((system_status != '\0') && (-1 < (int)(uint)stack_pointer)) &&
+        ((int)(uint)stack_pointer < *(int)(state_data + 0x87b31c))) &&
+       (state_data = (ulonglong)((uint)stack_pointer & 0xf) * 0xbe0 +
+                *(longlong *)(*(longlong *)(state_data + 0x87b340) + (ulonglong)((uint)stack_pointer >> 4) * 8),
+       *(int *)(state_data + 8) != 0)) {
+      
+      iteration_count = 0;
+      
+      // 检查锁状态
       if (((_DAT_180c92514 - 2U & 0xfffffffc) == 0) && (_DAT_180c92514 != 4)) {
-        iVar4 = _Mtx_lock(0x180c95528);
-        if (iVar4 != 0) {
-          __Throw_C_error_std__YAXH_Z(iVar4);
+        // 获取锁
+        lock_result = _Mtx_lock(0x180c95528);
+        if (lock_result != 0) {
+          __Throw_C_error_std__YAXH_Z(lock_result);
         }
-        uVar1 = *(undefined4 *)(lVar5 + 0xc);
-        cVar3 = FUN_180645c10(0x180c95578,0,&UNK_1809fa560);
-        if ((cVar3 != '\0') &&
-           (cVar3 = FUN_180645c10(0x180c95578,0x13,&UNK_1809fa540), cVar3 != '\0')) {
-          FUN_180645c10(0x180c95578,uVar1,&UNK_1809fa490);
+        
+        // 获取状态值
+        state_flag = *(undefined4 *)(state_data + 0xc);
+        system_status = FUN_180645c10(0x180c95578, 0, &UNK_1809fa560);
+        
+        // 处理状态清理
+        if ((system_status != '\0') &&
+           (system_status = FUN_180645c10(0x180c95578, 0x13, &UNK_1809fa540), system_status != '\0')) {
+          FUN_180645c10(0x180c95578, state_flag, &UNK_1809fa490);
         }
+        
+        // 清理全局状态
         _DAT_180c95b3c = _DAT_180c95b3c & 0xffffffff00000000;
-        iVar4 = (int)(_DAT_180c92ce0 - _DAT_180c92cd8 >> 3);
-        lVar5 = _DAT_180c92cd8;
-        if (0 < iVar4) {
+        lock_result = (int)(_DAT_180c92ce0 - _DAT_180c92cd8 >> 3);
+        state_data = _DAT_180c92cd8;
+        
+        // 遍历清理状态数据
+        if (0 < lock_result) {
           do {
-            lVar2 = *(longlong *)(lVar5 + lVar6 * 8);
-            if ((lVar2 != 0) && (*(char *)(*(longlong *)(lVar2 + 0x58f8) + 0x1c) != '\0')) {
-              FUN_1805b59d0(lVar2,0x180c95578);
-              lVar5 = _DAT_180c92cd8;
+            longlong item_data = *(longlong *)(state_data + iteration_count * 8);
+            if ((item_data != 0) && (*(char *)(*(longlong *)(item_data + 0x58f8) + 0x1c) != '\0')) {
+              FUN_1805b59d0(item_data, 0x180c95578);
+              state_data = _DAT_180c92cd8;
             }
-            lVar6 = lVar6 + 1;
-          } while (lVar6 < iVar4);
+            iteration_count = iteration_count + 1;
+          } while (iteration_count < lock_result);
         }
+        
+        // 执行最终清理
         if (_DAT_180c96070 != 0) {
-          FUN_180567f30(_DAT_180c92580,0x180c95578);
+          FUN_180567f30(_DAT_180c92580, 0x180c95578);
         }
+        
         _DAT_180c95b3c = 0;
-                    // WARNING: Subroutine does not return
-        memset(_DAT_180c95b10,0,(longlong)(_DAT_180c95b08 >> 3));
+        memset(_DAT_180c95b10, 0, (longlong)(_DAT_180c95b08 >> 3));
       }
-      *(undefined2 *)(lVar5 + 0x3d1) = 0;
-      if (*(longlong *)(*(longlong *)(lVar5 + 0xe0) + 0x20) != 0) {
+      
+      // 重置状态标志
+      *(undefined2 *)(state_data + 0x3d1) = 0;
+      
+      // 检查并清理渲染上下文
+      if (*(longlong *)(*(longlong *)(state_data + 0xe0) + 0x20) != 0) {
         FUN_180198980();
       }
-      plStackX_8 = *(longlong **)(lVar5 + 0xe0);
-      *(undefined8 *)(lVar5 + 0xe0) = 0;
-      if (plStackX_8 != (longlong *)0x0) {
-        (**(code **)(*plStackX_8 + 0x38))();
+      
+      // 清理上下文指针
+      stack_pointer = *(longlong **)(state_data + 0xe0);
+      *(undefined8 *)(state_data + 0xe0) = 0;
+      
+      if (stack_pointer != (longlong *)0x0) {
+        (**(code **)(*stack_pointer + 0x38))();
       }
-      *(undefined8 *)(lVar5 + 0xe8) = 0;
+      
+      *(undefined8 *)(state_data + 0xe8) = 0;
       return;
     }
   }
@@ -1061,70 +1085,101 @@ void rendering_system_process_render_state(longlong *state_ptr, undefined8 param
 
 
 
-// 函数: void FUN_1805358ec(void)
-void FUN_1805358ec(void)
+/**
+ * 渲染系统资源清理函数
+ * 清理渲染系统资源并重置状态
+ */
+void rendering_system_cleanup_render_resources(void)
 
 {
-  undefined4 uVar1;
-  longlong lVar2;
-  char cVar3;
-  int iVar4;
-  longlong lVar5;
-  longlong lVar6;
-  longlong unaff_RDI;
-  uint uStack0000000000000030;
+  undefined4 status_flag;
+  longlong resource_handle;
+  char system_status;
+  int lock_result;
+  longlong state_data;
+  longlong iteration_count;
+  longlong *stack_pointer;
+  longlong context_ptr;
+  uint stack_param;
   
-  cVar3 = FUN_18055f260();
-  FUN_1804fe350(&UNK_180a30280,cVar3,&UNK_180a302c0,&stack0x00000030);
-  if ((((cVar3 != '\0') && (-1 < (int)uStack0000000000000030)) &&
-      ((int)uStack0000000000000030 < *(int *)(unaff_RDI + 0x87b31c))) &&
-     (lVar5 = (ulonglong)(uStack0000000000000030 & 0xf) * 0xbe0 +
-              *(longlong *)
-               (*(longlong *)(unaff_RDI + 0x87b340) + (ulonglong)(uStack0000000000000030 >> 4) * 8),
-     *(int *)(lVar5 + 8) != 0)) {
-    lVar6 = 0;
-    if (((_DAT_180c92514 - 2U & 0xfffffffc) == 0) && (_DAT_180c92514 != 4)) {
-      iVar4 = _Mtx_lock(0x180c95528);
-      if (iVar4 != 0) {
-        __Throw_C_error_std__YAXH_Z(iVar4);
+  // 执行状态检查函数
+  system_status = FUN_18055f260();
+  FUN_1804fe350(&UNK_180a30280, system_status, &UNK_180a302c0, &stack_param);
+  
+  // 验证系统状态
+  if (((system_status != '\0') && (-1 < (int)stack_param)) &&
+      ((int)stack_param < *(int *)(context_ptr + 0x87b31c))) {
+    
+    // 计算状态数据地址
+    state_data = (ulonglong)(stack_param & 0xf) * 0xbe0 +
+                 *(longlong *)(*(longlong *)(context_ptr + 0x87b340) + 
+                 (ulonglong)(stack_param >> 4) * 8);
+    
+    // 检查状态数据是否有效
+    if (*(int *)(state_data + 8) != 0) {
+      iteration_count = 0;
+      
+      // 处理系统状态同步
+      if ((((_DAT_180c92514 - 2U & 0xfffffffc) == 0) && (_DAT_180c92514 != 4))) {
+        // 获取锁
+        lock_result = _Mtx_lock(0x180c95528);
+        if (lock_result != 0) {
+          __Throw_C_error_std__YAXH_Z(lock_result);
+        }
+        
+        // 处理状态标志
+        status_flag = *(undefined4 *)(state_data + 0xc);
+        system_status = FUN_180645c10(0x180c95578, 0, &UNK_1809fa560);
+        
+        // 验证系统状态
+        if ((system_status != '\0') && 
+            (system_status = FUN_180645c10(0x180c95578, 0x13, &UNK_1809fa540), system_status != '\0')) {
+          FUN_180645c10(0x180c95578, status_flag, &UNK_1809fa490);
+        }
+        
+        // 清理状态数据
+        _DAT_180c95b3c = _DAT_180c95b3c & 0xffffffff00000000;
+        lock_result = (int)(_DAT_180c92ce0 - _DAT_180c92cd8 >> 3);
+        state_data = _DAT_180c92cd8;
+        
+        // 处理状态清理循环
+        if (0 < lock_result) {
+          do {
+            resource_handle = *(longlong *)(state_data + iteration_count * 8);
+            if ((resource_handle != 0) && 
+                (*(char *)(*(longlong *)(resource_handle + 0x58f8) + 0x1c) != '\0')) {
+              FUN_1805b59d0(resource_handle, 0x180c95578);
+              state_data = _DAT_180c92cd8;
+            }
+            iteration_count = iteration_count + 1;
+          } while (iteration_count < lock_result);
+        }
+        
+        // 执行最终清理
+        if (_DAT_180c96070 != 0) {
+          FUN_180567f30(_DAT_180c92580, 0x180c95578);
+        }
+        _DAT_180c95b3c = 0;
+        memset(_DAT_180c95b10, 0, (longlong)(_DAT_180c95b08 >> 3));
       }
-      uVar1 = *(undefined4 *)(lVar5 + 0xc);
-      cVar3 = FUN_180645c10(0x180c95578,0,&UNK_1809fa560);
-      if ((cVar3 != '\0') && (cVar3 = FUN_180645c10(0x180c95578,0x13,&UNK_1809fa540), cVar3 != '\0')
-         ) {
-        FUN_180645c10(0x180c95578,uVar1,&UNK_1809fa490);
+      
+      // 重置状态标志
+      *(undefined2 *)(state_data + 0x3d1) = 0;
+      
+      // 处理资源释放
+      if (*(longlong *)(*(longlong *)(state_data + 0xe0) + 0x20) != 0) {
+        FUN_180198980();
       }
-      _DAT_180c95b3c = _DAT_180c95b3c & 0xffffffff00000000;
-      iVar4 = (int)(_DAT_180c92ce0 - _DAT_180c92cd8 >> 3);
-      lVar5 = _DAT_180c92cd8;
-      if (0 < iVar4) {
-        do {
-          lVar2 = *(longlong *)(lVar5 + lVar6 * 8);
-          if ((lVar2 != 0) && (*(char *)(*(longlong *)(lVar2 + 0x58f8) + 0x1c) != '\0')) {
-            FUN_1805b59d0(lVar2,0x180c95578);
-            lVar5 = _DAT_180c92cd8;
-          }
-          lVar6 = lVar6 + 1;
-        } while (lVar6 < iVar4);
+      
+      // 清理指针
+      stack_pointer = *(longlong **)(state_data + 0xe0);
+      *(undefined8 *)(state_data + 0xe0) = 0;
+      if (stack_pointer != (longlong *)0x0) {
+        (**(code **)(*stack_pointer + 0x38))();
       }
-      if (_DAT_180c96070 != 0) {
-        FUN_180567f30(_DAT_180c92580,0x180c95578);
-      }
-      _DAT_180c95b3c = 0;
-                    // WARNING: Subroutine does not return
-      memset(_DAT_180c95b10,0,(longlong)(_DAT_180c95b08 >> 3));
+      *(undefined8 *)(state_data + 0xe8) = 0;
+      return;
     }
-    *(undefined2 *)(lVar5 + 0x3d1) = 0;
-    if (*(longlong *)(*(longlong *)(lVar5 + 0xe0) + 0x20) != 0) {
-      FUN_180198980();
-    }
-    _uStack0000000000000030 = *(longlong **)(lVar5 + 0xe0);
-    *(undefined8 *)(lVar5 + 0xe0) = 0;
-    if (_uStack0000000000000030 != (longlong *)0x0) {
-      (**(code **)(*_uStack0000000000000030 + 0x38))();
-    }
-    *(undefined8 *)(lVar5 + 0xe8) = 0;
-    return;
   }
   return;
 }
@@ -1135,67 +1190,92 @@ void FUN_1805358ec(void)
 
 
 
-// 函数: void FUN_180535925(void)
-void FUN_180535925(void)
+/**
+ * 渲染系统状态重置函数
+ * 重置渲染系统状态并清理相关资源
+ * 
+ * @param context_param 上下文参数
+ */
+void rendering_system_reset_render_state(uint context_param)
 
 {
-  undefined4 uVar1;
-  longlong lVar2;
-  longlong *plVar3;
-  char cVar4;
-  int iVar5;
-  longlong lVar6;
-  longlong lVar7;
-  longlong unaff_RDI;
-  uint in_stack_00000030;
+  undefined4 status_flag;
+  longlong resource_handle;
+  char system_status;
+  int lock_result;
+  longlong state_data;
+  longlong iteration_count;
+  longlong *resource_ptr;
+  longlong context_ptr;
   
-  if (((-1 < (int)in_stack_00000030) && ((int)in_stack_00000030 < *(int *)(unaff_RDI + 0x87b31c)))
-     && (lVar6 = (ulonglong)(in_stack_00000030 & 0xf) * 0xbe0 +
-                 *(longlong *)
-                  (*(longlong *)(unaff_RDI + 0x87b340) + (ulonglong)(in_stack_00000030 >> 4) * 8),
-        *(int *)(lVar6 + 8) != 0)) {
-    lVar7 = 0;
-    if (((_DAT_180c92514 - 2U & 0xfffffffc) == 0) && (_DAT_180c92514 != 4)) {
-      iVar5 = _Mtx_lock(0x180c95528);
-      if (iVar5 != 0) {
-        __Throw_C_error_std__YAXH_Z(iVar5);
+  // 验证上下文参数
+  if (((-1 < (int)context_param) && ((int)context_param < *(int *)(context_ptr + 0x87b31c))) &&
+      (state_data = (ulonglong)(context_param & 0xf) * 0xbe0 +
+                   *(longlong *)(*(longlong *)(context_ptr + 0x87b340) + 
+                   (ulonglong)(context_param >> 4) * 8),
+       *(int *)(state_data + 8) != 0)) {
+    
+    iteration_count = 0;
+    
+    // 处理系统状态同步
+    if ((((_DAT_180c92514 - 2U & 0xfffffffc) == 0) && (_DAT_180c92514 != 4))) {
+      // 获取锁
+      lock_result = _Mtx_lock(0x180c95528);
+      if (lock_result != 0) {
+        __Throw_C_error_std__YAXH_Z(lock_result);
       }
-      uVar1 = *(undefined4 *)(lVar6 + 0xc);
-      cVar4 = FUN_180645c10(0x180c95578,0,&UNK_1809fa560);
-      if ((cVar4 != '\0') && (cVar4 = FUN_180645c10(0x180c95578,0x13,&UNK_1809fa540), cVar4 != '\0')
-         ) {
-        FUN_180645c10(0x180c95578,uVar1,&UNK_1809fa490);
+      
+      // 处理状态标志
+      status_flag = *(undefined4 *)(state_data + 0xc);
+      system_status = FUN_180645c10(0x180c95578, 0, &UNK_1809fa560);
+      
+      // 验证系统状态
+      if ((system_status != '\0') && 
+          (system_status = FUN_180645c10(0x180c95578, 0x13, &UNK_1809fa540), system_status != '\0')) {
+        FUN_180645c10(0x180c95578, status_flag, &UNK_1809fa490);
       }
+      
+      // 清理状态数据
       _DAT_180c95b3c = _DAT_180c95b3c & 0xffffffff00000000;
-      iVar5 = (int)(_DAT_180c92ce0 - _DAT_180c92cd8 >> 3);
-      lVar6 = _DAT_180c92cd8;
-      if (0 < iVar5) {
+      lock_result = (int)(_DAT_180c92ce0 - _DAT_180c92cd8 >> 3);
+      state_data = _DAT_180c92cd8;
+      
+      // 处理状态清理循环
+      if (0 < lock_result) {
         do {
-          lVar2 = *(longlong *)(lVar6 + lVar7 * 8);
-          if ((lVar2 != 0) && (*(char *)(*(longlong *)(lVar2 + 0x58f8) + 0x1c) != '\0')) {
-            FUN_1805b59d0(lVar2,0x180c95578);
-            lVar6 = _DAT_180c92cd8;
+          resource_handle = *(longlong *)(state_data + iteration_count * 8);
+          if ((resource_handle != 0) && 
+              (*(char *)(*(longlong *)(resource_handle + 0x58f8) + 0x1c) != '\0')) {
+            FUN_1805b59d0(resource_handle, 0x180c95578);
+            state_data = _DAT_180c92cd8;
           }
-          lVar7 = lVar7 + 1;
-        } while (lVar7 < iVar5);
+          iteration_count = iteration_count + 1;
+        } while (iteration_count < lock_result);
       }
+      
+      // 执行最终清理
       if (_DAT_180c96070 != 0) {
-        FUN_180567f30(_DAT_180c92580,0x180c95578);
+        FUN_180567f30(_DAT_180c92580, 0x180c95578);
       }
       _DAT_180c95b3c = 0;
-                    // WARNING: Subroutine does not return
-      memset(_DAT_180c95b10,0,(longlong)(_DAT_180c95b08 >> 3));
+      memset(_DAT_180c95b10, 0, (longlong)(_DAT_180c95b08 >> 3));
     }
-    *(undefined2 *)(lVar6 + 0x3d1) = 0;
-    if (*(longlong *)(*(longlong *)(lVar6 + 0xe0) + 0x20) != 0) {
+    
+    // 重置状态标志
+    *(undefined2 *)(state_data + 0x3d1) = 0;
+    
+    // 处理资源释放
+    if (*(longlong *)(*(longlong *)(state_data + 0xe0) + 0x20) != 0) {
       FUN_180198980();
     }
-    plVar3 = *(longlong **)(lVar6 + 0xe0);
-    *(undefined8 *)(lVar6 + 0xe0) = 0;
-    if (plVar3 != (longlong *)0x0) {
-      (**(code **)(*plVar3 + 0x38))();
+    
+    // 清理指针
+    resource_ptr = *(longlong **)(state_data + 0xe0);
+    *(undefined8 *)(state_data + 0xe0) = 0;
+    if (resource_ptr != (longlong *)0x0) {
+      (**(code **)(*resource_ptr + 0x38))();
     }
-    *(undefined8 *)(lVar6 + 0xe8) = 0;
+    *(undefined8 *)(state_data + 0xe8) = 0;
     return;
   }
   return;

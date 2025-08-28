@@ -1,13 +1,57 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 04_ui_system_part019_sub002_sub002.c - 1 个函数
+// 04_ui_system_part019_sub002_sub002.c - UI系统高级矩阵变换和动画处理模块
 
-// 函数: void FUN_1806603d0(longlong param_1,longlong param_2,longlong param_3,float param_4,float param_5,
-void FUN_1806603d0(longlong param_1,longlong param_2,longlong param_3,float param_4,float param_5,
-                  float *param_6,undefined1 param_7,undefined8 param_8,float param_9,
-                  undefined4 param_10,undefined1 param_11,undefined8 param_12,float param_13,
-                  undefined4 param_14,undefined1 param_15,undefined8 param_16,undefined1 param_17,
-                  undefined1 param_18,float *param_19)
+/**
+ * UI系统高级矩阵变换和动画处理函数
+ * 
+ * 该函数负责UI元素的复杂变换处理，包括：
+ * - 四元数旋转和角度计算
+ * - 矩阵插值和球面线性插值(SLERP)
+ * - UI变换动画的混合和过渡
+ * - 多层变换的级联应用
+ * 
+ * @param param_1 输入变换数据结构指针
+ * @param param_2 UI系统上下文指针
+ * @param param_3 变换参数结构指针
+ * @param param_4 旋转角度参数1
+ * @param param_5 旋转角度参数2
+ * @param param_6 变换矩阵指针
+ * @param param_7 变换模式标志
+ * @param param_8 变换参数指针
+ * @param param_9 插值权重参数1
+ * @param param_10 变换配置参数
+ * @param param_11 变换模式标志2
+ * @param param_12 变换参数指针2
+ * @param param_13 插值权重参数2
+ * @param param_14 变换配置参数2
+ * @param param_15 变换模式标志3
+ * @param param_16 变换参数指针3
+ * @param param_17 变换索引1
+ * @param param_18 变换索引2
+ * @param param_19 输出变换参数指针
+ */
+void UI_System_AdvancedMatrixTransformAndAnimation(
+    longlong inputTransformData,    // param_1: 输入变换数据结构指针
+    longlong uiSystemContext,       // param_2: UI系统上下文指针
+    longlong transformParams,       // param_3: 变换参数结构指针
+    float rotationAngle1,           // param_4: 旋转角度参数1
+    float rotationAngle2,           // param_5: 旋转角度参数2
+    float *transformMatrix,        // param_6: 变换矩阵指针
+    unsigned char transformMode,   // param_7: 变换模式标志
+    uint64_t animationParams,      // param_8: 动画参数指针
+    float interpolationWeight1,     // param_9: 插值权重参数1
+    uint32_t transformConfig,      // param_10: 变换配置参数
+    unsigned char transformMode2,  // param_11: 变换模式标志2
+    uint64_t animationParams2,     // param_12: 动画参数指针2
+    float interpolationWeight2,     // param_13: 插值权重参数2
+    uint32_t transformConfig2,     // param_14: 变换配置参数2
+    unsigned char transformMode3,  // param_15: 变换模式标志3
+    uint64_t animationParams3,     // param_16: 动画参数指针3
+    unsigned char transformIndex1, // param_17: 变换索引1
+    unsigned char transformIndex2, // param_18: 变换索引2
+    float *outputTransformParams   // param_19: 输出变换参数指针
+)
 
 {
   longlong lVar1;

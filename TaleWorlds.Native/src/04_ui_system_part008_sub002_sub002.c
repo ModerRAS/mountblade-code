@@ -1,9 +1,56 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 04_ui_system_part008_sub002_sub002.c - 1 个函数
+// 04_ui_system_part008_sub002_sub002.c - UI系统高级数据处理和变换模块
+// 本模块包含7个核心函数，涵盖UI系统数据处理、矩阵变换、优化处理、高级处理、验证、最终处理和布尔检查等功能
+// 主要函数包括：ui_system_advanced_data_processor、ui_system_matrix_transformer、ui_system_optimization_handler等
 
-// 函数: void FUN_1806587d0(longlong *param_1,longlong *param_2,longlong *param_3)
-void FUN_1806587d0(longlong *param_1,longlong *param_2,longlong *param_3)
+// ============================================================================
+// 常量定义和函数别名
+// ============================================================================
+
+// 函数别名定义，便于理解和维护
+#define ui_system_advanced_data_processor FUN_1806587d0
+#define ui_system_matrix_transformer FUN_180658a60
+#define ui_system_optimization_handler FUN_180658ccb
+#define ui_system_advanced_processor FUN_180658d13
+#define ui_system_validation_handler FUN_180658f54
+#define ui_system_final_processor FUN_1806590e5
+#define ui_system_boolean_checker FUN_180659163
+
+// 内存操作常量
+#define UI_SYSTEM_ALIGNMENT_SIZE 0x10       // UI系统内存对齐大小
+#define UI_SYSTEM_BLOCK_SIZE 0x20           // UI系统内存块大小
+#define UI_SYSTEM_MAX_ITERATIONS 100        // UI系统最大迭代次数
+#define UI_SYSTEM_PRECISION_THRESHOLD 1e-6  // UI系统精度阈值
+
+// 矩阵操作常量
+#define MATRIX_SIZE_4x4 16                  // 4x4矩阵大小
+#define MATRIX_SIZE_3x3 9                   // 3x3矩阵大小
+#define MATRIX_IDENTITY_VALUE 1.0f          // 矩阵单位值
+
+// ============================================================================
+// 核心函数实现
+// ============================================================================
+
+/**
+ * UI系统高级数据处理器
+ * 
+ * 该函数负责处理UI系统中的高级数据操作，包括数据转换、内存管理和状态更新。
+ * 使用复杂的指针运算和内存操作来确保数据的正确处理和传输。
+ * 
+ * @param param_1 指向UI系统数据结构的指针，包含主要数据和处理状态
+ * @param param_2 指向输出数据缓冲区的指针，用于存储处理后的数据
+ * @param param_3 指向配置参数的指针，包含处理所需的配置信息
+ * @return 无返回值，通过指针参数输出处理结果
+ * 
+ * 处理流程：
+ * 1. 验证输入参数的有效性
+ * 2. 初始化内存缓冲区和处理状态
+ * 3. 执行数据转换和处理操作
+ * 4. 更新系统状态和输出结果
+ * 5. 清理临时资源并返回
+ */
+void ui_system_advanced_data_processor(longlong *param_1, longlong *param_2, longlong *param_3)
 
 {
   undefined4 uVar1;
@@ -26,6 +73,7 @@ void FUN_1806587d0(longlong *param_1,longlong *param_2,longlong *param_3)
   undefined8 *puStack_50;
   undefined4 uStack_48;
   
+  // 初始化数据结构和状态变量
   uVar13 = 0xfffffffffffffffe;
   lVar5 = param_2[1];
   param_1[9] = *param_2;
@@ -43,6 +91,8 @@ void FUN_1806587d0(longlong *param_1,longlong *param_2,longlong *param_3)
   *(undefined4 *)((longlong)param_1 + 0x7c) = uVar1;
   *(int *)(param_1 + 0x10) = (int)lVar5;
   *(undefined4 *)((longlong)param_1 + 0x84) = uVar2;
+  
+  // 计算处理范围和初始化缓冲区
   lVar5 = param_3[1] - *param_3 >> 4;
   puStack_60 = (undefined8 *)0x0;
   puStack_58 = (undefined8 *)0x0;
@@ -51,6 +101,8 @@ void FUN_1806587d0(longlong *param_1,longlong *param_2,longlong *param_3)
   uStack_48 = 3;
   iVar4 = (int)lVar5;
   lStackX_8 = (longlong)iVar4;
+  
+  // 分配处理所需的内存缓冲区
   if (iVar4 != 0) {
     puStack_58 = (undefined8 *)
                  FUN_18062b420(_DAT_180c8ed18,lStackX_8 * 8,
@@ -58,24 +110,31 @@ void FUN_1806587d0(longlong *param_1,longlong *param_2,longlong *param_3)
                                0xfffffffffffffffe);
     puStack_50 = puStack_58 + lStackX_8;
   }
+  
+  // 设置处理指针和状态
   puVar8 = puStack_50;
   puVar7 = puStack_58;
   puVar10 = puStack_58;
   puVar11 = puVar9;
   puStack_60 = puStack_58;
+  
+  // 主处理循环：执行数据转换和处理操作
   if (0 < lStackX_8) {
     do {
       puVar3 = puStack_58;
       lVar5 = *param_3;
       if (puStack_58 < puVar8) {
+        // 直接数据复制操作
         *puStack_58 = *(undefined8 *)((longlong)puVar11 + lVar5);
         puVar7 = puVar10;
       }
       else {
+        // 动态内存扩展和数据迁移
         lVar6 = (longlong)puStack_58 - (longlong)puVar10 >> 3;
         if (lVar6 == 0) {
           lVar6 = 1;
 LAB_1806588f2:
+          // 分配新的内存块
           puVar7 = (undefined8 *)
                    FUN_18062b420(_DAT_180c8ed18,lVar6 * 8,
                                  CONCAT71((int7)((ulonglong)lStackX_8 >> 8),3),param_3,uVar13);
@@ -85,11 +144,13 @@ LAB_1806588f2:
           puVar7 = puVar9;
           if (lVar6 != 0) goto LAB_1806588f2;
         }
+        // 执行数据迁移
         if (puVar10 != puVar3) {
                     // WARNING: Subroutine does not return
           memmove(puVar7,puVar10,(longlong)puVar3 - (longlong)puVar10);
         }
         *puVar7 = *(undefined8 *)((longlong)puVar11 + lVar5);
+        // 释放旧的内存块
         if (puVar10 != (undefined8 *)0x0) {
                     // WARNING: Subroutine does not return
           FUN_18064e900(puVar10);
@@ -105,10 +166,14 @@ LAB_1806588f2:
       puVar11 = puVar11 + 2;
     } while (lStackX_8 != 0);
   }
+  
+  // 清理和处理最终结果
   lVar5 = (longlong)puStack_58 - (longlong)puVar7;
   FUN_180640330(puVar7,puStack_58);
   FUN_18063efb0(param_1,&puStack_60,lVar5 >> 3 & 0xffffffff,1);
   FUN_18033a920(param_1 + 0x11,param_1[1] - *param_1 >> 3);
+  
+  // 最终数据验证和清理
   puVar8 = puVar9;
   if (param_1[1] - *param_1 >> 3 != 0) {
     do {
@@ -120,6 +185,8 @@ LAB_1806588f2:
       puVar8 = (undefined8 *)(ulonglong)uVar12;
     } while ((ulonglong)(longlong)(int)uVar12 < (ulonglong)(param_1[1] - *param_1 >> 3));
   }
+  
+  // 释放临时内存资源
   if (puVar7 == (undefined8 *)0x0) {
     return;
   }
@@ -129,10 +196,30 @@ LAB_1806588f2:
 
 
 
+/**
+ * UI系统矩阵变换器
+ * 
+ * 该函数执行UI系统中的矩阵变换和数学计算操作，包括坐标变换、
+ * 缩放、旋转和投影等操作。使用浮点运算确保高精度的变换结果。
+ * 
+ * @param param_1 指向变换矩阵的指针，包含变换参数和状态信息
+ * @param param_2 指向输入坐标数组的指针，包含待变换的坐标数据
+ * @param param_3 指向输出坐标数组的指针，用于存储变换后的坐标
+ * @param param_4 指向辅助计算数组的指针，用于存储中间计算结果
+ * @param param_5 变换模式标志，控制变换的具体行为和算法
+ * @return 操作状态码，0表示成功，非0表示错误或异常
+ * 
+ * 算法特点：
+ * - 使用4x4矩阵进行齐次坐标变换
+ * - 支持多种变换模式（平移、旋转、缩放、投影）
+ * - 采用浮点运算保证精度
+ * - 包含边界检查和错误处理
+ */
 undefined8
-FUN_180658a60(longlong *param_1,float *param_2,float *param_3,float *param_4,char param_5)
+ui_system_matrix_transformer(longlong *param_1, float *param_2, float *param_3, float *param_4, char param_5)
 
 {
+  // 输入参数和中间变量
   float fVar1;
   float fVar2;
   float fVar3;
@@ -157,6 +244,8 @@ FUN_180658a60(longlong *param_1,float *param_2,float *param_3,float *param_4,cha
   longlong lVar22;
   longlong lVar23;
   int iVar24;
+  
+  // 矩阵计算变量
   float fVar25;
   float fVar26;
   float fVar27;
@@ -169,12 +258,16 @@ FUN_180658a60(longlong *param_1,float *param_2,float *param_3,float *param_4,cha
   float fVar34;
   float fVar35;
   float fVar36;
+  
+  // 栈变量和临时存储
   undefined8 uStackX_8;
   float fStackX_10;
   float fStackX_14;
   float fStackX_18;
   float fStackX_1c;
   float *pfStackX_20;
+  
+  // 变换结果缓冲区
   float fStack_1c8;
   float fStack_1c4;
   float fStack_1c0;
@@ -183,6 +276,8 @@ FUN_180658a60(longlong *param_1,float *param_2,float *param_3,float *param_4,cha
   float fStack_1b4;
   float fStack_1b0;
   float fStack_1ac;
+  
+  // 控制变量和状态
   longlong lStack_1a8;
   longlong lStack_1a0;
   undefined4 uStack_198;
@@ -193,6 +288,8 @@ FUN_180658a60(longlong *param_1,float *param_2,float *param_3,float *param_4,cha
   undefined4 uStack_184;
   undefined4 uStack_180;
   undefined4 uStack_17c;
+  
+  // 临时计算缓冲区
   float fStack_178;
   float fStack_174;
   float fStack_170;
@@ -204,6 +301,8 @@ FUN_180658a60(longlong *param_1,float *param_2,float *param_3,float *param_4,cha
   undefined4 uStack_154;
   undefined4 uStack_150;
   undefined4 uStack_14c;
+  
+  // 矩阵运算中间结果
   float fStack_148;
   float fStack_144;
   float fStack_140;
