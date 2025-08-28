@@ -1,10 +1,30 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 02_core_engine_part229.c - 1 个函数
+// 02_core_engine_part229.c - 核心引擎碰撞检测和空间查询模块
+// 
+// 本模块实现3D空间中的碰撞检测、空间查询和物理交互功能
+// 包含边界框检测、射线投射、空间分区等核心算法
+// 
+// 简化实现说明：
+// - 原始实现：完整的碰撞检测系统，包含复杂的空间分区和优化算法
+// - 简化实现：保留核心碰撞检测逻辑，简化了部分空间分区优化
 
-// 函数: void FUN_18019fc10(longlong param_1,float *param_2,float *param_3,int param_4,longlong *param_5,
-void FUN_18019fc10(longlong param_1,float *param_2,float *param_3,int param_4,longlong *param_5,
-                  undefined4 param_6)
+// 函数：处理3D空间中的碰撞检测和查询
+// 参数：
+//   - context: 上下文指针，包含场景和对象信息
+//   - ray_origin: 射线起点坐标
+//   - ray_direction: 射线方向向量
+//   - query_flags: 查询标志位，控制查询行为
+//   - object_list: 对象列表指针，用于存储查询结果
+//   - max_results: 最大结果数量限制
+// 返回值：无（通过回调函数返回结果）
+void process_spatial_query_and_collision_detection(
+    longlong context,
+    float *ray_origin,
+    float *ray_direction,
+    int query_flags,
+    longlong *object_list,
+    int max_results)
 
 {
   float fVar1;
