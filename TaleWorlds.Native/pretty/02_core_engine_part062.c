@@ -544,8 +544,11 @@ float CoreEngine_FloatExtractor(void)
 
 
 
-// 函数: void FUN_18009af00(uint64_t *param_1)
-void FUN_18009af00(uint64_t *param_1)
+// 函数: void CoreEngine_ConfigManager(uint64_t *param_1)
+// 核心引擎配置管理器 - 管理系统配置参数
+// 功能：设置配置参数、验证配置数据、处理配置更新
+// 参数：param_1 - 配置数据指针
+void CoreEngine_ConfigManager(uint64_t *param_1)
 
 {
   int64_t *plVar1;
@@ -724,8 +727,11 @@ void FUN_18009af00(uint64_t *param_1)
 
 
 
-// 函数: void FUN_18009b10b(int64_t param_1)
-void FUN_18009b10b(int64_t param_1)
+// 函数: void CoreEngine_MemoryOptimizer(int64_t param_1)
+// 核心引擎内存优化器 - 优化内存使用
+// 功能：优化内存布局、减少内存碎片、提高内存使用效率
+// 参数：param_1 - 内存管理器句柄
+void CoreEngine_MemoryOptimizer(int64_t param_1)
 
 {
   int64_t lVar1;
@@ -794,8 +800,10 @@ void FUN_18009b10b(int64_t param_1)
 
 
 
-// 函数: void FUN_18009b13a(void)
-void FUN_18009b13a(void)
+// 函数: void CoreEngine_MemoryAllocator(void)
+// 核心引擎内存分配器 - 分配内存资源
+// 功能：分配内存块、管理内存池、处理内存请求
+void CoreEngine_MemoryAllocator(void)
 
 {
   int64_t lVar1;
@@ -830,8 +838,11 @@ void FUN_18009b13a(void)
 
 
 
-// 函数: void FUN_18009b19b(int64_t param_1)
-void FUN_18009b19b(int64_t param_1)
+// 函数: void CoreEngine_DataHandler(int64_t param_1)
+// 核心引擎数据处理器 - 处理数据流
+// 功能：处理数据流、执行数据转换、管理数据缓冲区
+// 参数：param_1 - 数据句柄
+void CoreEngine_DataHandler(int64_t param_1)
 
 {
   int64_t lVar1;
@@ -870,8 +881,10 @@ void FUN_18009b19b(int64_t param_1)
 
 
 
-// 函数: void FUN_18009b216(void)
-void FUN_18009b216(void)
+// 函数: void CoreEngine_EmptyFunction(void)
+// 核心引擎空函数 - 空操作函数
+// 功能：执行空操作、用于占位或兼容性
+void CoreEngine_EmptyFunction(void)
 
 {
   return;
@@ -883,8 +896,11 @@ void FUN_18009b216(void)
 
 
 
-// 函数: void FUN_18009b220(int32_t *param_1)
-void FUN_18009b220(int32_t *param_1)
+// 函数: void CoreEngine_ConfigApplier(int32_t *param_1)
+// 核心引擎配置应用器 - 应用配置参数
+// 功能：应用配置参数、更新系统状态、验证配置效果
+// 参数：param_1 - 配置参数数组
+void CoreEngine_ConfigApplier(int32_t *param_1)
 
 {
   int32_t uVar1;
@@ -967,8 +983,10 @@ void FUN_18009b220(int32_t *param_1)
 
 
 
-// 函数: void FUN_18009b327(void)
-void FUN_18009b327(void)
+// 函数: void CoreEngine_ArrayProcessor(void)
+// 核心引擎数组处理器 - 处理数组数据
+// 功能：处理数组操作、执行数组计算、管理数组内存
+void CoreEngine_ArrayProcessor(void)
 
 {
   int16_t uVar1;
