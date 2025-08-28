@@ -692,7 +692,7 @@ uint64_t initialize_rendering_resource_manager(int64_t resource_manager, int64_t
     }
     
     // 设置资源管理器地址
-    resource_ptr = (uint64_t *)FUN_18028b000(temp_buffer_6, &temp_buffer_5);
+    resource_ptr = (uint64_t *)data_parser(temp_buffer_6, &temp_buffer_5);
     init_result = resource_ptr[1];
     *(uint64_t *)(resource_manager + 0x80) = *resource_ptr;
     *(uint64_t *)(resource_manager + 0x88) = init_result;
@@ -721,7 +721,7 @@ uint64_t initialize_rendering_resource_manager(int64_t resource_manager, int64_t
     }
   }
   
-  resource_ptr = (uint64_t *)FUN_18028b000(temp_buffer_6, &temp_buffer_5);
+  resource_ptr = (uint64_t *)data_parser(temp_buffer_6, &temp_buffer_5);
   init_result = resource_ptr[1];
   *(uint64_t *)(resource_manager + 0x50) = *resource_ptr;
   *(uint64_t *)(resource_manager + 0x58) = init_result;

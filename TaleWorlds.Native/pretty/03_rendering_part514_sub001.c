@@ -52,7 +52,7 @@
 #define SystemCoreProcessor FUN_1800e8140  // 系统核心处理器
 
 // 主要渲染功能函数
-#define RenderMainProcessor FUN_180541920  // 渲染主处理器
+#define RenderMainProcessor Render_Processor  // 渲染主处理器
 #define RenderSceneProcessor FUN_180542260  // 渲染场景处理器
 #define RenderWorldProcessor FUN_180542286  // 渲染世界处理器
 #define RenderNullProcessor FUN_1805422e2  // 渲染空处理器

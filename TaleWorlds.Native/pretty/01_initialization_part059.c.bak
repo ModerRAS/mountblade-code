@@ -766,11 +766,11 @@ void FUN_18007df50(int64_t param_1,int64_t *param_2,char param_3,uint64_t param_
     if (param_3 == '\0') {
       uVar4 = FUN_180081350(param_1,&plStackX_8,*(int *)(param_1 + 0x88) * 3,param_4,
                             0xfffffffffffffffe);
-      RenderingSystem_ResourceAllocator(param_2,uVar4);
+      FUN_180080810(param_2,uVar4);
     }
     else {
       uVar4 = FUN_180081220();
-      RenderingSystem_ResourceAllocator(param_2,uVar4);
+      FUN_180080810(param_2,uVar4);
     }
     if (plStackX_8 != (int64_t *)0x0) {
       (**(code **)(*plStackX_8 + 0x38))();

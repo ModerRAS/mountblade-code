@@ -755,7 +755,7 @@ LAB_1805411ce:
       } while ((uint64_t)(int64_t)iVar13 <
                (uint64_t)(*(int64_t *)(param_1 + 0x818) - lVar9 >> 3));
     }
-    FUN_180541920(param_1,param_2);
+    Render_Processor(param_1,param_2);
   }
   return;
 }

@@ -197,7 +197,7 @@ void FUN_180653530(uint64_t param_1)
 {
   FUN_1806533a0();
   OutputDebugStringA(param_1);
-  FUN_180626ee0(&unknown_var_16_ptr);
+  FUN_180626ee0(&rendering_param16_ptr);
 
 
 // 函数: void FUN_180653670(int64_t param_1,int64_t param_2)
