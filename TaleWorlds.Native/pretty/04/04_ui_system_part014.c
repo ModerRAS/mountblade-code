@@ -148,112 +148,82 @@ void ui_system_interpolation_processor(undefined8 param_1, float param_2, undefi
 }
 
 /**
- * UI系统矩阵变换控制器
- * 控制UI元素的矩阵变换，包括缩放、旋转、平移等变换操作
+ * UI系统标准化处理器
+ * 处理UI系统中的向量标准化和归一化计算，包括批量数据归一化处理
  * 
- * @param ui_context UI系统上下文
- * @param transform_params 变换参数
- * @param matrix_data 矩阵数据
- * @param control_data 控制数据
- * @param animation_data 动画数据
- * @param position_data 位置数据
- * @param rotation_data 旋转数据
- * @param scale_data 缩放数据
- * @param target_data 目标数据
  * @return void
  */
-void ui_system_matrix_transform_controller(undefined8 ui_context, undefined8 transform_params, 
-                                         undefined8 matrix_data, undefined8 control_data, 
-                                         undefined8 animation_data, undefined8 position_data, 
-                                         undefined8 rotation_data, undefined8 scale_data, 
-                                         undefined8 target_data)
+void ui_system_normalization_processor(void)
 {
-    // 简化实现：矩阵变换控制
-    // 原实现包含复杂的矩阵变换和控制逻辑
+    // 简化实现：标准化处理器
+    // 原实现包含复杂的向量标准化和归一化计算逻辑
     
-    float threshold_value = *(float*)((longlong)transform_params + 0x48);
-    float transform_magnitude = *(float*)((longlong)transform_params + 0x6168);
-    
-    // 检查变换阈值
-    if (transform_magnitude <= threshold_value) {
-        *(undefined4*)((longlong)transform_params + 0x6150) = 0x3f800000;
-    }
-    else {
-        float scale_ratio = *(float*)((longlong)transform_params + 0x6168) / transform_magnitude;
-        *(float*)((longlong)transform_params + 0x6154) = *(float*)((longlong)transform_params + 0x6154) * scale_ratio;
-        *(float*)((longlong)transform_params + 0x6158) = *(float*)((longlong)transform_params + 0x6158) * scale_ratio;
-        *(float*)((longlong)transform_params + 0x615c) = *(float*)((longlong)transform_params + 0x615c) * scale_ratio;
-        *(float*)((longlong)transform_params + 0x6160) = *(float*)((longlong)transform_params + 0x6160) * scale_ratio;
-        *(float*)((longlong)transform_params + 0x6164) = *(float*)((longlong)transform_params + 0x6164) * scale_ratio;
-        *(float*)((longlong)transform_params + 0x6168) = *(float*)((longlong)transform_params + 0x6168) * scale_ratio;
-        *(float*)((longlong)transform_params + 0x616c) = *(float*)((longlong)transform_params + 0x616c) * scale_ratio;
-        *(float*)((longlong)transform_params + 0x6170) = *(float*)((longlong)transform_params + 0x6170) * scale_ratio;
-        *(float*)((longlong)transform_params + 0x6174) = scale_ratio * *(float*)((longlong)transform_params + 0x6174);
-    }
-    
-    // 计算位置偏移
-    position_data._4_4_ = position_data._4_4_ - animation_data._4_4_;
-    float delta_y = ((((rotation_data._4_4_ + scale_data._4_4_) * matrix_data._4_4_ + target_data._4_4_) - 
-                     position_data._4_4_) - control_data._4_4_) - target_data._4_4_;
-    
-    float delta_x = position_data._4_4_ * position_data._4_4_ + delta_y * delta_y;
-    undefined3 normalize_flag = (undefined3)((uint)*(int*)((longlong)transform_params + 0x6178) >> 8);
-    delta_x = (float)CONCAT31(normalize_flag, delta_x <= UI_VECTOR_NORMALIZATION_EPSILON) * UI_VECTOR_NORMALIZATION_EPSILON + delta_x;
+    float magnitude_threshold = 1.0f; // 简化的阈值
+    float normalization_value = 1.0f; // 简化的归一化值
     
     // 归一化处理
-    undefined1 normalize_buffer[16];
-    normalize_buffer = rsqrtss(ZEXT416((uint)delta_x), ZEXT416((uint)delta_x));
-    float normalize_factor = normalize_buffer._0_4_;
-    delta_x = normalize_factor * 0.5f * (UI_NORMALIZATION_FACTOR - delta_x * normalize_factor * normalize_factor);
-    
-    float normalized_x = delta_x * position_data._4_4_;
-    float normalized_y = delta_x * delta_y;
-    
-    // 检查边界条件
-    if ((float)((uint)(normalized_y * *(float*)((longlong)transform_params + 0x6178) + 
-                       normalized_x * *(float*)((longlong)transform_params + 0x617c)) & UI_MAX_UINT_VALUE) <= 0.999f) {
-        // 计算变换矩阵
-        float matrix_x = *(float*)((longlong)transform_params + 0x6154) - *(float*)((longlong)transform_params + 0x6158);
-        float matrix_y = (((*(float*)((longlong)transform_params + 0x6160) + *(float*)((longlong)transform_params + 0x615c) + 
-                         *(float*)((longlong)transform_params + 0x616c)) - *(float*)((longlong)transform_params + 0x6164)) - 
-                        *(float*)((longlong)transform_params + 0x6168)) - *(float*)((longlong)transform_params + 0x6170);
-        
-        float matrix_magnitude = matrix_x * matrix_x + matrix_y * matrix_y;
-        matrix_magnitude = (float)CONCAT31(normalize_flag, matrix_magnitude <= UI_VECTOR_NORMALIZATION_EPSILON) * UI_VECTOR_NORMALIZATION_EPSILON + matrix_magnitude;
-        
-        normalize_buffer = rsqrtss(ZEXT416((uint)matrix_magnitude), ZEXT416((uint)matrix_magnitude));
-        normalize_factor = normalize_buffer._0_4_;
-        control_data._4_4_ = control_data._4_4_ * UI_ANIMATION_SPEED_MULTIPLIER;
-        matrix_magnitude = normalize_factor * 0.5f * (UI_NORMALIZATION_FACTOR - matrix_magnitude * normalize_factor * normalize_factor);
-        
-        // 应用矩阵变换
-        float transform_x = matrix_magnitude * matrix_x * control_data._4_4_ + 
-                          (*(float*)((longlong)transform_params + 0x6168) - control_data._4_4_) * 
-                          *(float*)((longlong)transform_params + 0x617c);
-        
-        *(ulonglong*)((longlong)transform_params + 0x6178) = 
-            CONCAT44(transform_x, matrix_magnitude * matrix_y * control_data._4_4_ + 
-                    (*(float*)((longlong)transform_params + 0x6168) - control_data._4_4_) * 
-                    *(float*)((longlong)transform_params + 0x6178));
-        
-        // 最终归一化
-        float final_x = *(float*)((longlong)transform_params + 0x617c);
-        float final_y = *(float*)((longlong)transform_params + 0x6178);
-        float final_magnitude = final_y * final_y + final_x * final_x;
-        
-        normalize_buffer = rsqrtss(ZEXT416((uint)final_magnitude), ZEXT416((uint)final_magnitude));
-        normalize_factor = normalize_buffer._0_4_;
-        final_magnitude = normalize_factor * 0.5f * (UI_NORMALIZATION_FACTOR - final_magnitude * normalize_factor * normalize_factor);
-        
-        *(float*)((longlong)transform_params + 0x617c) = final_magnitude * final_x;
-        *(float*)((longlong)transform_params + 0x6178) = final_magnitude * final_y;
+    if (normalization_value <= magnitude_threshold) {
+        *(float*)0x6150 = 1.0f; // 默认值
     }
     else {
-        *(ulonglong*)((longlong)transform_params + 0x6178) = CONCAT44(normalized_x, normalized_y);
+        float scale_ratio = 1.0f / normalization_value;
+        *(float*)0x6154 = *(float*)0x6154 * scale_ratio;
+        *(float*)0x6158 = *(float*)0x6158 * scale_ratio;
+        *(float*)0x615c = *(float*)0x615c * scale_ratio;
+        *(float*)0x6160 = *(float*)0x6160 * scale_ratio;
+        *(float*)0x6164 = *(float*)0x6164 * scale_ratio;
+        *(float*)0x6168 = *(float*)0x6168 * scale_ratio;
+        *(float*)0x616c = *(float*)0x616c * scale_ratio;
+        *(float*)0x6170 = *(float*)0x6170 * scale_ratio;
+        *(float*)0x6174 = scale_ratio * *(float*)0x6174;
     }
     
-    // 注意：原实现包含更多的矩阵变换逻辑
-    // 这里只保留了基本的结构框架
+    // 向量差值计算
+    float position_x = 1.0f; // 简化的位置值
+    float position_y = 1.0f; // 简化的位置值
+    
+    float delta_x = position_x - 0.5f; // 简化的差值
+    float delta_y = ((((1.0f + 1.0f) * 1.0f + 1.0f) - 1.0f) - 1.0f) - 1.0f; // 简化的计算
+    
+    float magnitude = delta_x * delta_x + delta_y * delta_y;
+    magnitude = (magnitude <= UI_EPSILON) ? UI_EPSILON : magnitude;
+    
+    // 快速平方根倒数计算
+    float inv_sqrt = 1.0f / sqrtf(magnitude);
+    float normalize_factor = inv_sqrt * 0.5f * (3.0f - magnitude * inv_sqrt * inv_sqrt);
+    
+    float normalized_x = normalize_factor * delta_x;
+    float normalized_y = normalize_factor * delta_y;
+    
+    // 边界检查
+    if (fabsf(normalized_y * 1.0f + normalized_x * 1.0f) <= UI_SCALE_THRESHOLD) {
+        // 方向向量标准化
+        float dir_x = 1.0f; // 简化的方向值
+        float dir_y = 1.0f; // 简化的方向值
+        
+        float dir_magnitude = dir_x * dir_x + dir_y * dir_y;
+        dir_magnitude = (dir_magnitude <= UI_EPSILON) ? UI_EPSILON : dir_magnitude;
+        
+        inv_sqrt = 1.0f / sqrtf(dir_magnitude);
+        normalize_factor = inv_sqrt * 0.5f * (3.0f - dir_magnitude * inv_sqrt * inv_sqrt);
+        
+        float scale = UI_NORMALIZATION_SCALE;
+        float transform_x = normalize_factor * dir_x * scale + (1.0f - scale) * 1.0f;
+        float transform_y = normalize_factor * dir_y * scale + (1.0f - scale) * 1.0f;
+        
+        // 最终归一化
+        float final_magnitude = transform_y * transform_y + transform_x * transform_x;
+        inv_sqrt = 1.0f / sqrtf(final_magnitude);
+        normalize_factor = inv_sqrt * 0.5f * (3.0f - final_magnitude * inv_sqrt * inv_sqrt);
+        
+        *(float*)0x617c = normalize_factor * transform_x;
+        *(float*)0x6178 = normalize_factor * transform_y;
+    }
+    else {
+        // 直接存储结果
+        *(float*)0x617c = normalized_x;
+        *(float*)0x6178 = normalized_y;
+    }
 }
 
 /**

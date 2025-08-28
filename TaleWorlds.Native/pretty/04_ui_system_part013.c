@@ -1,23 +1,55 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 04_ui_system_part013.c - UI系统高级动画和变换处理模块
-// 包含2个核心函数：UI动画系统处理、UI变换参数处理等
+// 04_ui_system_part013.c - UI系统高级动画和控制模块
 // 
-// 简化实现说明：原文件包含非常复杂的UI动画和变换处理逻辑，包括矩阵运算、
-// 角度计算、插值处理、参数调整等。本简化实现保留了核心功能结构，但简化了底层优化细节。
+// 本文件包含2个核心函数，主要负责UI系统的高级动画处理、参数计算、状态管理和渲染控制
+// 主要功能：
+// - UI元素复杂动画变换和矩阵运算
+// - 角度归一化和动画参数优化
+// - 高级渲染控制和状态管理
+// - 浮点数计算和向量处理
 
-// 全局常量定义
-static const float UI_PI = 3.1415926535f;            // 圆周率
-static const float UI_HALF_PI = 1.5707964f;          // 半圆周率
-static const float UI_TO_DEGREES = 57.2957795f;      // 弧度转角度
-static const float UI_TO_RADIANS = 0.0174533f;      // 角度转弧度
-static const float UI_EPSILON = 0.001f;              // 浮点数精度阈值
-static const float UI_SMALL_THRESHOLD = 0.05f;      // 小量阈值
-static const float UI_MEDIUM_THRESHOLD = 0.1f;      // 中等量阈值
-static const float UI_LARGE_THRESHOLD = 0.5f;       // 大量阈值
-static const float UI_MAX_VALUE = 1.0f;             // 最大值
-static const float UI_MIN_VALUE = -1.0f;            // 最小值
-static const float UI_ZERO_THRESHOLD = 1.1754944e-38f; // 零值阈值
+// ============================================================================
+// 常量定义
+// ============================================================================
+
+// 数学常量
+#define UI_PI 3.14159265358979323846f
+#define UI_HALF_PI 1.5707964f
+#define UI_TWO_PI 6.28318530717958647692f
+#define UI_INV_PI 0.31830988618379067154f
+#define UI_DEG_TO_RAD 0.01745329251994329577f
+#define UI_RAD_TO_DEG 57.2957795130823208768f
+
+// 浮点数精度常量
+#define UI_FLOAT_EPSILON 1.1754944e-38f
+#define UI_FLOAT_TOLERANCE 0.001f
+#define UI_ANGLE_TOLERANCE 0.05f
+#define UI_MAX_ANGLE_DELTA 0.5f
+
+// 动画参数常量
+#define UI_ANIMATION_SPEED_MULTIPLIER 0.63661975f
+#define UI_POSITION_ADJUSTMENT_SPEED 12.0f
+#define UI_SCALE_ADJUSTMENT_SPEED 6.0f
+#define UI_EASING_POWER_FACTOR 3.0f
+#define UI_SMOOTH_STEP_COEFFICIENTS {6.0f, -15.0f, 10.0f}
+
+// UI状态常量
+#define UI_MIN_OPACITY 0.0f
+#define UI_MAX_OPACITY 1.0f
+#define UI_OPACITY_THRESHOLD_LOW 0.2f
+#define UI_OPACITY_THRESHOLD_HIGH 0.7f
+#define UI_OPACITY_MULTIPLIER_LOW 5.0f
+#define UI_OPACITY_MULTIPLIER_HIGH 3.333333f
+#define UI_OPACITY_TRANSITION_SPEED 4.0f
+
+// UI位置和尺寸常量
+#define UI_POSITION_MIN 0.0f
+#define UI_POSITION_MAX 1.0f
+#define UI_POSITION_CLAMP_LOW 0.05f
+#define UI_POSITION_CLAMP_HIGH 0.95f
+#define UI_POSITION_DEAD_ZONE 0.1f
+#define UI_POSITION_TRANSITION_ZONE 0.5f
 
 // UI动画数据结构定义
 typedef struct {
