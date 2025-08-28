@@ -5334,7 +5334,7 @@ int AdvancedDataProcessor(uint64_t param_1,int32_t param_2)
 
 
 
-int FUN_1806c6e38(void)
+int SystemStatusQuerier(void)
 
 {
   int *piVar1;
@@ -5396,7 +5396,7 @@ int FUN_1806c6e38(void)
 
 
 
-int FUN_1806c6ed2(void)
+int SystemResetter(void)
 
 {
   char cVar1;
