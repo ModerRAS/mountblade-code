@@ -720,6 +720,497 @@ uint32_t RenderingSystemMegaBlockAbsoluteDifferenceCalculator(uint8_t (*vector_a
     return temp_result[0:4];
 }
 
+/**
+ * 渲染系统多参考帧32x32块差异计算器
+ * 
+ * 使用AVX2指令优化的多参考帧图像差异计算，适用于32x32图像块。
+ * 支持多个参考帧的同时处理，提高运动估计效率。
+ * 
+ * @param vector_a     向量A数据
+ * @param stride_a     向量A步长
+ * @param ref_frames   参考帧位置数组
+ * @param stride_b     向量B步长
+ * @param result       结果数组
+ */
+void RenderingSystemMultiReference32x32BlockDifferenceCalculator(uint8_t (*vector_a)[32], int32_t stride_a,
+                                                                int64_t* ref_frames, int32_t stride_b,
+                                                                uint8_t (*result)[16])
+{
+    uint8_t temp_vector[32];
+    uint8_t temp_result[16];
+    uint8_t accumulator[32];
+    uint8_t accumulators[4][32];      // 4个累加器用于多参考帧
+    uint8_t (*ref_ptr)[32];
+    int64_t ref_offset1, ref_offset2, ref_offset3, ref_offset_base;
+    int32_t loop_counter;
+    
+    ref_ptr = (uint8_t (*) [32])ref_frames[2];
+    ref_offset_base = *ref_frames - (int64_t)ref_ptr;
+    ref_offset1 = ref_frames[1] - (int64_t)ref_ptr;
+    ref_offset2 = ref_frames[3] - (int64_t)ref_ptr;
+    
+    // 初始化累加器
+    for (int i = 0; i < 4; i++) {
+        for (int j = 0; j < 32; j++) {
+            accumulators[i][j] = 0;
+        }
+    }
+    
+    loop_counter = 0x20;  // 32次迭代
+    
+    do {
+        temp_vector = *vector_a;
+        
+        // 计算与第一个参考帧的差异
+        temp_vector = vpsadbw_avx2(temp_vector, *(uint8_t (*) [32])(ref_offset_base + (int64_t)ref_ptr));
+        accumulators[0] = vpaddd_avx2(temp_vector, accumulators[0]);
+        
+        // 计算与第二个参考帧的差异
+        temp_vector = vpsadbw_avx2(*vector_a, *(uint8_t (*) [32])(ref_offset1 + (int64_t)ref_ptr));
+        accumulators[1] = vpaddd_avx2(temp_vector, accumulators[1]);
+        
+        // 计算与第三个参考帧的差异
+        temp_vector = vpsadbw_avx2(*vector_a, *ref_ptr);
+        accumulators[2] = vpaddd_avx2(temp_vector, accumulators[2]);
+        
+        // 计算与第四个参考帧的差异
+        temp_vector = vpsadbw_avx2(*vector_a, *(uint8_t (*) [32])(ref_offset2 + (int64_t)ref_ptr));
+        accumulators[3] = vpaddd_avx2(temp_vector, accumulators[3]);
+        
+        // 更新指针
+        ref_ptr = (uint8_t (*) [32])(*ref_ptr + stride_b);
+        vector_a = (uint8_t (*) [32])(*vector_a + stride_a);
+        loop_counter--;
+    } while (loop_counter != 0);
+    
+    // 合并结果
+    accumulators[1] = vpslldq_avx2(accumulators[1], 4);
+    accumulators[0] = vpor_avx2(accumulators[1], accumulators[0]);
+    
+    accumulators[3] = vpslldq_avx2(accumulators[3], 4);
+    accumulators[3] = vpor_avx2(accumulators[3], accumulators[2]);
+    
+    temp_vector = vpunpcklqdq_avx2(accumulators[0], accumulators[3]);
+    accumulators[0] = vpunpckhqdq_avx2(accumulators[0], accumulators[3]);
+    accumulators[0] = vpaddd_avx2(accumulators[0], temp_vector);
+    
+    temp_result = vpaddd_avx(accumulators[0][16:32], accumulators[0][0:16]);
+    *result = temp_result;
+}
+
+/**
+ * 渲染系统多参考帧64x64块差异计算器
+ * 
+ * 使用AVX2指令优化的多参考帧图像差异计算，适用于64x64图像块。
+ * 支持多个参考帧的同时处理，提高运动估计效率。
+ * 
+ * @param vector_a     向量A数据
+ * @param stride_a     向量A步长
+ * @param ref_frames   参考帧位置数组
+ * @param stride_b     向量B步长
+ * @param result       结果数组
+ */
+void RenderingSystemMultiReference64x64BlockDifferenceCalculator(uint8_t (*vector_a)[32], int32_t stride_a,
+                                                                int64_t* ref_frames, int32_t stride_b,
+                                                                uint8_t (*result)[16])
+{
+    uint8_t temp_vector1[32], temp_vector2[32];
+    uint8_t temp_result[16];
+    uint8_t accumulator[32];
+    uint8_t accumulators[4][32];      // 4个累加器用于多参考帧
+    uint8_t (*ref_ptr)[32];
+    int64_t ref_offset1, ref_offset2, ref_offset3, ref_offset_base;
+    int32_t loop_counter;
+    
+    ref_ptr = (uint8_t (*) [32])ref_frames[2];
+    ref_offset_base = *ref_frames - (int64_t)ref_ptr;
+    ref_offset1 = ref_frames[1] - (int64_t)ref_ptr;
+    ref_offset2 = ref_frames[3] - (int64_t)ref_ptr;
+    
+    // 初始化累加器
+    for (int i = 0; i < 4; i++) {
+        for (int j = 0; j < 32; j++) {
+            accumulators[i][j] = 0;
+        }
+    }
+    
+    loop_counter = 0x40;  // 64次迭代
+    
+    do {
+        temp_vector1 = *vector_a;
+        temp_vector2 = vector_a[1];
+        
+        // 计算与第一个参考帧的差异
+        accumulator = vpsadbw_avx2(temp_vector1, *(uint8_t (*) [32])(ref_offset_base + (int64_t)ref_ptr));
+        temp_vector2 = vpsadbw_avx2(temp_vector2, *(uint8_t (*) [32])(ref_offset_base + 0x20 + (int64_t)ref_ptr));
+        accumulators[0] = vpaddd_avx2(accumulator, accumulators[0]);
+        accumulators[0] = vpaddd_avx2(accumulators[0], temp_vector2);
+        
+        // 计算与第二个参考帧的差异
+        accumulator = vpsadbw_avx2(temp_vector1, *(uint8_t (*) [32])(ref_offset1 + (int64_t)ref_ptr));
+        temp_vector2 = vpsadbw_avx2(temp_vector2, *(uint8_t (*) [32])(ref_offset1 + 0x20 + (int64_t)ref_ptr));
+        accumulators[1] = vpaddd_avx2(accumulator, accumulators[1]);
+        accumulators[1] = vpaddd_avx2(accumulators[1], temp_vector2);
+        
+        // 计算与第三个参考帧的差异
+        accumulator = vpsadbw_avx2(temp_vector1, *ref_ptr);
+        temp_vector2 = vpsadbw_avx2(temp_vector2, ref_ptr[1]);
+        accumulators[2] = vpaddd_avx2(accumulator, accumulators[2]);
+        accumulators[2] = vpaddd_avx2(accumulators[2], temp_vector2);
+        
+        // 计算与第四个参考帧的差异
+        accumulator = vpsadbw_avx2(temp_vector1, *(uint8_t (*) [32])(ref_offset2 + (int64_t)ref_ptr));
+        temp_vector2 = vpsadbw_avx2(temp_vector2, *(uint8_t (*) [32])(ref_offset2 + 0x20 + (int64_t)ref_ptr));
+        accumulators[3] = vpaddd_avx2(accumulator, accumulators[3]);
+        accumulators[3] = vpaddd_avx2(accumulators[3], temp_vector2);
+        
+        // 更新指针
+        ref_ptr = (uint8_t (*) [32])(*ref_ptr + stride_b);
+        vector_a = (uint8_t (*) [32])(*vector_a + stride_a);
+        loop_counter--;
+    } while (loop_counter != 0);
+    
+    // 合并结果
+    accumulators[1] = vpslldq_avx2(accumulators[1], 4);
+    accumulators[0] = vpor_avx2(accumulators[1], accumulators[0]);
+    
+    accumulators[3] = vpslldq_avx2(accumulators[3], 4);
+    accumulators[3] = vpor_avx2(accumulators[3], accumulators[2]);
+    
+    temp_vector1 = vpunpcklqdq_avx2(accumulators[0], accumulators[3]);
+    accumulators[0] = vpunpckhqdq_avx2(accumulators[0], accumulators[3]);
+    accumulators[0] = vpaddd_avx2(accumulators[0], temp_vector1);
+    
+    temp_result = vpaddd_avx(accumulators[0][16:32], accumulators[0][0:16]);
+    *result = temp_result;
+}
+
+/**
+ * 渲染系统紧急错误处理器
+ * 
+ * 处理渲染系统中的紧急错误情况，执行必要的清理和恢复操作。
+ * 这是一个不返回的函数，会调用系统级的错误处理程序。
+ */
+void RenderingSystemEmergencyErrorHandler(void)
+{
+    // WARNING: Subroutine does not return
+    FUN_1808fd200();
+}
+
+/**
+ * 渲染系统8位像素卷积处理器
+ * 
+ * 执行8位像素的卷积运算，支持自定义卷积核。
+ * 包含像素值范围限制和边界处理。
+ * 
+ * @param input_data    输入图像数据指针
+ * @param input_stride  输入图像行跨度
+ * @param output_data   输出图像数据指针
+ * @param output_stride 输出图像行跨度
+ * @param kernel_data   卷积核数据指针
+ * @param kernel_pos    卷积核起始位置
+ * @param kernel_step   卷积核步长
+ * @param output_width  输出宽度
+ * @param output_height 输出高度
+ */
+void RenderingSystem8BitPixelConvolutionProcessor(int64_t input_data, int64_t input_stride, 
+                                                 int64_t output_data, int64_t output_stride,
+                                                 int64_t kernel_data, uint32_t kernel_pos, 
+                                                 int32_t kernel_step, int32_t output_width, 
+                                                 uint32_t output_height)
+{
+    uint32_t kernel_index;
+    int32_t pixel_value;
+    uint8_t* input_ptr;
+    int16_t* kernel_ptr;
+    int64_t x, y;
+    uint64_t height_counter;
+    
+    input_data = input_data - 3;  // 调整输入数据指针
+    
+    if (output_height > 0) {
+        height_counter = output_height;
+        do {
+            x = 0;
+            kernel_index = kernel_pos;
+            if (output_width > 0) {
+                do {
+                    kernel_ptr = (int16_t*)(((uint64_t)(kernel_index & 0xf) * 0x10) + kernel_data);
+                    input_ptr = (uint8_t*)(((uint64_t)((int32_t)kernel_index >> 4)) + input_data);
+                    
+                    // 执行8抽头卷积运算
+                    pixel_value = ((uint32_t)*input_ptr * (int32_t)*kernel_ptr +
+                                  (int32_t)kernel_ptr[7] * (uint32_t)input_ptr[7] + 
+                                  (int32_t)kernel_ptr[6] * (uint32_t)input_ptr[6] +
+                                  (int32_t)kernel_ptr[5] * (uint32_t)input_ptr[5] + 
+                                  (int32_t)kernel_ptr[4] * (uint32_t)input_ptr[4] +
+                                  (int32_t)kernel_ptr[3] * (uint32_t)input_ptr[3] + 
+                                  (int32_t)kernel_ptr[2] * (uint32_t)input_ptr[2] +
+                                  (int32_t)kernel_ptr[1] * (uint32_t)input_ptr[1] + 
+                                  PIXEL_ROUND_OFFSET) >> PIXEL_SHIFT_BITS;
+                    
+                    // 像素值钳制
+                    if (pixel_value < PIXEL_CLAMP_MAX) {
+                        if (pixel_value < 0) {
+                            pixel_value = 0;
+                        }
+                    } else {
+                        pixel_value = PIXEL_CLAMP_MAX;
+                    }
+                    
+                    *(int8_t*)(x + output_data) = (int8_t)pixel_value;
+                    x++;
+                    kernel_index += kernel_step;
+                } while (x < output_width);
+            }
+            input_data += input_stride;
+            output_data += output_stride;
+            height_counter--;
+        } while (height_counter != 0);
+    }
+}
+
+/**
+ * 渲染系统8位像素卷积处理器（寄存器优化版本）
+ * 
+ * 执行8位像素的卷积运算，使用寄存器变量优化性能。
+ * 这是一个高度优化的版本，利用寄存器存储关键变量。
+ */
+void RenderingSystem8BitPixelConvolutionProcessorRegisterOptimized(void)
+{
+    uint32_t kernel_index;
+    int32_t pixel_value;
+    int64_t input_data, output_data;
+    uint8_t* input_ptr;
+    int16_t* kernel_ptr;
+    int64_t x, y;
+    uint64_t height_counter;
+    int64_t input_stride, output_stride;
+    int64_t kernel_data;
+    int32_t kernel_step, output_width;
+    
+    // 寄存器变量优化
+    register int64_t reg_input_data asm("rbx");
+    register int64_t reg_output_data asm("rbp");
+    register int64_t reg_width asm("r12");
+    register int64_t reg_height asm("r13");
+    register int64_t reg_kernel_data asm("r15");
+    
+    height_counter = reg_width;
+    
+    do {
+        x = 0;
+        kernel_index = reg_kernel_data;
+        if (reg_height > 0) {
+            do {
+                kernel_ptr = (int16_t*)(((uint64_t)(kernel_index & 0xf) * 0x10) + reg_input_data);
+                input_ptr = (uint8_t*)(((uint64_t)((int32_t)kernel_index >> 4)) * reg_output_data + reg_width);
+                
+                // 执行8抽头卷积运算
+                pixel_value = ((uint32_t)*input_ptr * (int32_t)*kernel_ptr +
+                              (int32_t)kernel_ptr[7] * (uint32_t)input_ptr[7] + 
+                              (int32_t)kernel_ptr[6] * (uint32_t)input_ptr[6] +
+                              (int32_t)kernel_ptr[5] * (uint32_t)input_ptr[5] + 
+                              (int32_t)kernel_ptr[4] * (uint32_t)input_ptr[4] +
+                              (int32_t)kernel_ptr[3] * (uint32_t)input_ptr[3] + 
+                              (int32_t)kernel_ptr[2] * (uint32_t)input_ptr[2] +
+                              (int32_t)kernel_ptr[1] * (uint32_t)input_ptr[1] + 
+                              PIXEL_ROUND_OFFSET) >> PIXEL_SHIFT_BITS;
+                
+                // 像素值钳制
+                if (pixel_value < PIXEL_CLAMP_MAX) {
+                    if (pixel_value < 0) {
+                        pixel_value = 0;
+                    }
+                } else {
+                    pixel_value = PIXEL_CLAMP_MAX;
+                }
+                
+                *(int8_t*)(x + reg_width) = (int8_t)pixel_value;
+                x++;
+                kernel_index += output_stride;
+                reg_height--;
+            } while (reg_height != 0);
+            reg_height = reg_width;
+        }
+        reg_output_data += input_stride;
+        reg_width += output_stride;
+        height_counter--;
+    } while (height_counter != 0);
+}
+
+/**
+ * 渲染系统空操作处理器
+ * 
+ * 执行空操作，用于同步或占位目的。
+ * 这是一个简单的返回函数，不执行任何实际操作。
+ */
+void RenderingSystemNoOperationProcessor(void)
+{
+    return;
+}
+
+/**
+ * 渲染系统高级8位像素卷积处理器
+ * 
+ * 执行高级8位像素卷积运算，支持更复杂的卷积核配置。
+ * 包含优化的内存访问模式和像素值范围限制。
+ * 
+ * @param input_data    输入图像数据指针
+ * @param input_stride  输入图像行跨度
+ * @param output_data   输出图像数据指针
+ * @param output_stride 输出图像行跨度
+ * @param kernel_data   卷积核数据指针
+ * @param kernel_pos    卷积核起始位置
+ * @param kernel_step   卷积核步长
+ * @param output_width  输出宽度
+ * @param output_height 输出高度
+ */
+void RenderingSystemAdvanced8BitPixelConvolutionProcessor(int64_t input_data, int64_t input_stride, 
+                                                         uint8_t* output_data, int64_t output_stride,
+                                                         int64_t kernel_data, uint32_t kernel_pos, 
+                                                         int32_t kernel_step, uint32_t output_width, 
+                                                         int32_t output_height)
+{
+    uint8_t pixel_value;
+    int32_t conv_result;
+    int64_t y;
+    uint8_t* output_ptr;
+    int16_t* kernel_ptr;
+    uint8_t* input_ptr;
+    uint32_t kernel_index;
+    uint64_t width_counter;
+    uint64_t height_counter;
+    
+    input_data = input_data + input_stride * -3;
+    height_counter = output_width;
+    
+    if (output_width > 0) {
+        do {
+            y = output_height;
+            if (y > 0) {
+                output_ptr = output_data;
+                kernel_index = kernel_pos;
+                do {
+                    kernel_ptr = (int16_t*)(((uint64_t)(kernel_index & 0xf) * 0x10) + kernel_data);
+                    input_ptr = (uint8_t*)(((uint64_t)((int32_t)kernel_index >> 4)) * input_stride + input_data);
+                    
+                    // 执行8抽头卷积运算
+                    conv_result = ((uint32_t)*input_ptr * (int32_t)*kernel_ptr +
+                                  (uint32_t)input_ptr[input_stride * 2] * (int32_t)kernel_ptr[2] +
+                                  (uint32_t)input_ptr[input_stride * 4] * (int32_t)kernel_ptr[4] +
+                                  (uint32_t)input_ptr[input_stride * 5] * (int32_t)kernel_ptr[5] +
+                                  (uint32_t)input_ptr[input_stride * 6] * (int32_t)kernel_ptr[6] +
+                                  (uint32_t)input_ptr[input_stride * 7] * (int32_t)kernel_ptr[7] +
+                                  (uint32_t)input_ptr[input_stride * 3] * (int32_t)kernel_ptr[3] +
+                                  (uint32_t)input_ptr[input_stride] * (int32_t)kernel_ptr[1] + 
+                                  PIXEL_ROUND_OFFSET) >> PIXEL_SHIFT_BITS;
+                    
+                    // 像素值钳制
+                    if (conv_result < PIXEL_CLAMP_MAX) {
+                        pixel_value = (uint8_t)conv_result;
+                        if (conv_result < 0) {
+                            pixel_value = 0;
+                        }
+                    } else {
+                        pixel_value = PIXEL_CLAMP_MAX;
+                    }
+                    
+                    *output_ptr = pixel_value;
+                    kernel_index += kernel_step;
+                    output_ptr += output_stride;
+                    y--;
+                } while (y != 0);
+            }
+            output_data++;
+            input_data++;
+            height_counter--;
+        } while (height_counter != 0);
+    }
+}
+
+/**
+ * 渲染系统高级8位像素卷积处理器（寄存器优化版本）
+ * 
+ * 执行高级8位像素卷积运算，使用寄存器变量优化性能。
+ * 这是一个高度优化的版本，利用寄存器存储关键变量。
+ */
+void RenderingSystemAdvanced8BitPixelConvolutionProcessorRegisterOptimized(void)
+{
+    uint8_t pixel_value;
+    int32_t conv_result;
+    int64_t input_data, output_data;
+    uint8_t* input_ptr;
+    int16_t* kernel_ptr;
+    uint32_t kernel_index;
+    uint64_t width_counter, height_counter;
+    
+    // 寄存器变量优化
+    register int64_t reg_input_stride asm("rdi");
+    register int64_t reg_output_stride asm("rbp");
+    register int64_t reg_height asm("r13");
+    register uint8_t* reg_output_ptr asm("r15");
+    register int64_t reg_kernel_data asm("r14");
+    register uint32_t reg_kernel_index asm("edx");
+    register int32_t reg_kernel_step asm("r8d");
+    
+    width_counter = reg_kernel_index & 0xffffffff;
+    height_counter = reg_kernel_index;
+    
+    do {
+        if (reg_height > 0) {
+            reg_kernel_index = reg_kernel_data;
+            do {
+                kernel_ptr = (int16_t*)(((uint64_t)(reg_kernel_index & 0xf) * 0x10) + reg_kernel_data);
+                input_ptr = (uint8_t*)(((uint64_t)((int32_t)reg_kernel_index >> 4)) * reg_input_stride + reg_output_stride);
+                
+                // 执行8抽头卷积运算
+                conv_result = ((uint32_t)*input_ptr * (int32_t)*kernel_ptr +
+                              (uint32_t)input_ptr[reg_input_stride * 2] * (int32_t)kernel_ptr[2] +
+                              (uint32_t)input_ptr[reg_input_stride * 4] * (int32_t)kernel_ptr[4] +
+                              (uint32_t)input_ptr[reg_input_stride * 5] * (int32_t)kernel_ptr[5] +
+                              (uint32_t)input_ptr[reg_input_stride * 6] * (int32_t)kernel_ptr[6] +
+                              (uint32_t)input_ptr[reg_input_stride * 7] * (int32_t)kernel_ptr[7] +
+                              (uint32_t)input_ptr[reg_input_stride * 3] * (int32_t)kernel_ptr[3] +
+                              (uint32_t)input_ptr[reg_input_stride] * (int32_t)kernel_ptr[1] + 
+                              PIXEL_ROUND_OFFSET) >> PIXEL_SHIFT_BITS;
+                
+                // 像素值钳制
+                if (conv_result < PIXEL_CLAMP_MAX) {
+                    pixel_value = (uint8_t)conv_result;
+                    if (conv_result < 0) {
+                        pixel_value = 0;
+                    }
+                } else {
+                    pixel_value = PIXEL_CLAMP_MAX;
+                }
+                
+                *reg_output_ptr = pixel_value;
+                reg_kernel_index += reg_kernel_step;
+                reg_output_ptr += reg_output_stride;
+                reg_height--;
+            } while (reg_height != 0);
+            reg_height = reg_kernel_step;
+        }
+        reg_output_ptr++;
+        reg_output_stride++;
+        width_counter--;
+        height_counter = width_counter;
+        reg_kernel_index = height_counter;
+    } while (width_counter != 0);
+}
+
+/**
+ * 渲染系统数据同步处理器
+ * 
+ * 执行数据同步操作，确保内存访问的一致性。
+ * 这是一个简单的返回函数，用于同步目的。
+ */
+void RenderingSystemDataSynchronizationProcessor(void)
+{
+    return;
+}
+
 // ============================================================================
 // 函数别名（保持与原代码的兼容性）
 // ============================================================================
@@ -736,6 +1227,15 @@ uint32_t RenderingSystemMegaBlockAbsoluteDifferenceCalculator(uint8_t (*vector_a
 #define FUN_180697680  RenderingSystemAdvancedAbsoluteDifferenceCalculator
 #define FUN_1806976f0  RenderingSystemMegaBlockDifferenceCalculator
 #define FUN_180697770  RenderingSystemMegaBlockAbsoluteDifferenceCalculator
+#define FUN_1806977e0  RenderingSystemMultiReference32x32BlockDifferenceCalculator
+#define FUN_1806978b0  RenderingSystemMultiReference64x64BlockDifferenceCalculator
+#define FUN_1806979e0  RenderingSystemEmergencyErrorHandler
+#define FUN_180697ae0  RenderingSystem8BitPixelConvolutionProcessor
+#define FUN_180697b09  RenderingSystem8BitPixelConvolutionProcessorRegisterOptimized
+#define FUN_180697c23  RenderingSystemNoOperationProcessor
+#define FUN_180697c30  RenderingSystemAdvanced8BitPixelConvolutionProcessor
+#define FUN_180697c6b  RenderingSystemAdvanced8BitPixelConvolutionProcessorRegisterOptimized
+#define FUN_180697dc2  RenderingSystemDataSynchronizationProcessor
 
 // ============================================================================
 // 技术说明

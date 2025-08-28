@@ -373,8 +373,22 @@ undefined8 FUN_180697f32(undefined8 param_1, uint param_2, int param_3)
 
 
 
-undefined8 FUN_18069801e(undefined4 param_1,int param_2,int param_3,longlong param_4)
-
+/**
+ * @brief 渲染系统参数设置器
+ * @details 设置渲染系统参数和缓冲区指针
+ * @param param_1 渲染参数值
+ * @param param_2 宽度参数
+ * @param param_3 高度参数
+ * @param param_4 基础指针
+ * @return undefined8 设置状态码
+ * 功能：
+ * - 设置渲染缓冲区尺寸
+ * - 计算缓冲区偏移量
+ * - 初始化渲染参数
+ * - 配置内存布局
+ * @note 使用寄存器传递参数，优化性能
+ */
+undefined8 FUN_18069801e(undefined4 param_1, int param_2, int param_3, longlong param_4)
 {
   longlong lVar1;
   undefined4 *unaff_RBX;
@@ -389,46 +403,73 @@ undefined8 FUN_18069801e(undefined4 param_1,int param_2,int param_3,longlong par
   undefined4 unaff_R14D;
   undefined4 unaff_R15D;
   
-  unaff_RBX[6] = param_1;
-  unaff_RBX[2] = param_2;
-  unaff_RBX[4] = unaff_ESI;
-  unaff_RBX[7] = (param_2 + 1) / 2;
-  iVar2 = (int)unaff_RDI;
-  unaff_RBX[5] = in_R10D;
-  unaff_RBX[8] = (in_R11D + 1) / 2;
-  unaff_RBX[3] = in_R11D;
-  *unaff_RBX = unaff_R14D;
+  // 设置渲染缓冲区参数
+  unaff_RBX[6] = param_1;                   // 渲染参数值
+  unaff_RBX[2] = param_2;                   // 宽度
+  unaff_RBX[4] = unaff_ESI;                 // 对齐宽度
+  unaff_RBX[7] = (param_2 + 1) / 2;         // 半宽度
+  iVar2 = (int)unaff_RDI;                   // 深度
+  unaff_RBX[5] = in_R10D;                   // 对齐半宽度
+  unaff_RBX[8] = (in_R11D + 1) / 2;         // 半高度
+  unaff_RBX[3] = in_R11D;                   // 高度
+  *unaff_RBX = unaff_R14D;                  // 对齐宽度
+  
+  // 计算缓冲区偏移量
   *(longlong *)(unaff_RBX + 0xe) = unaff_ESI * iVar2 + param_4 + unaff_RDI;
-  unaff_RBX[1] = unaff_R15D;
-  unaff_RBX[9] = unaff_R12D;
-  *(undefined8 *)(unaff_RBX + 10) = 0;
-  unaff_RBX[0xc] = 0;
+  unaff_RBX[1] = unaff_R15D;                 // 对齐高度
+  unaff_RBX[9] = unaff_R12D;                 // 半宽度
+  *(undefined8 *)(unaff_RBX + 10) = 0;      // 标志位
+  unaff_RBX[0xc] = 0;                       // 标志位
+  
+  // 计算缓冲区指针
   lVar1 = (iVar2 / 2) * unaff_R12D + param_4 + (longlong)(iVar2 / 2);
-  unaff_RBX[0x19] = iVar2;
-  unaff_RBX[0x1a] = unaff_EBP;
-  *(undefined8 *)(unaff_RBX + 0x14) = 0;
-  unaff_RBX[0x22] = 0;
+  unaff_RBX[0x19] = iVar2;                  // 深度
+  unaff_RBX[0x1a] = unaff_EBP;              // 总大小
+  *(undefined8 *)(unaff_RBX + 0x14) = 0;    // 偏移量
+  unaff_RBX[0x22] = 0;                      // 偏移量
   *(longlong *)(unaff_RBX + 0x10) = unaff_R13D + lVar1;
   *(longlong *)(unaff_RBX + 0x12) = (longlong)param_3 + (longlong)unaff_R13D + lVar1;
-  return 0;
+  
+  return RENDERING_SUCCESS;
 }
 
+// 函数别名：RenderingSystemParameterSetter
+// 技术说明：该函数高效设置渲染参数，使用寄存器优化性能
 
 
+
+/**
+ * @brief 渲染系统错误检查器
+ * @details 检查渲染系统错误状态
+ * @return undefined8 错误状态码
+ * 功能：
+ * - 返回渲染系统错误状态
+ * - 提供错误诊断信息
+ * @note 简化实现，直接返回错误码
+ */
 undefined8 FUN_1806980bd(void)
-
 {
-  return 0xfffffffe;
+  return RENDERING_ERROR_INVALID_PARAM;
 }
 
+// 函数别名：RenderingSystemErrorChecker
+// 技术说明：该函数是简化实现，用于错误状态检查
 
 
-// WARNING: Removing unreachable block (ram,0x0001806981f9)
-// WARNING: Removing unreachable block (ram,0x00018069818a)
-// WARNING: Removing unreachable block (ram,0x000180698174)
 
+/**
+ * @brief 渲染系统CPU检测器
+ * @details 检测CPU特性以优化渲染性能
+ * @param param_1 渲染系统上下文指针
+ * @return uint CPU特性标志
+ * 功能：
+ * - 获取系统信息
+ * - 检测CPU特性
+ * - 设置渲染优化参数
+ * - 返回CPU特性标志
+ * @note 支持SSE、AVX等指令集检测
+ */
 uint FUN_180698140(longlong param_1)
-
 {
   uint *puVar1;
   longlong lVar2;
@@ -442,58 +483,86 @@ uint FUN_180698140(longlong param_1)
   undefined1 auStack_38 [32];
   int iStack_18;
   
+  // 获取系统信息
   GetNativeSystemInfo(auStack_38);
   iVar6 = 1;
   if (0 < iStack_18) {
     iVar6 = iStack_18;
   }
-  *(int *)(param_1 + 0x2228) = iVar6;
+  *(int *)(param_1 + RENDERING_OFFSET_2228) = iVar6;
+  
+  // 获取CPU基本信息
   puVar1 = (uint *)cpuid_basic_info(0);
   uVar3 = *puVar1;
   uVar8 = 0;
   uVar5 = uVar3;
+  
   if (uVar3 != 0) {
+    // 获取CPU版本信息
     lVar2 = cpuid_Version_info(1);
     uVar5 = *(uint *)(lVar2 + 8);
     uVar4 = *(uint *)(lVar2 + 0xc);
-    uVar7 = (uint)((uVar5 & 0x800000) != 0);
+    
+    // 检测SSE指令集
+    uVar7 = (uint)((uVar5 & 0x800000) != 0);  // SSE
     if ((uVar5 >> 0x19 & 1) != 0) {
-      uVar7 = uVar7 | 2;
+      uVar7 = uVar7 | CPU_FEATURE_SSE2;       // SSE2
     }
     if ((uVar5 >> 0x1a & 1) != 0) {
-      uVar7 = uVar7 | 4;
+      uVar7 = uVar7 | CPU_FEATURE_SSE3;       // SSE3
     }
+    
+    // 检测更多指令集
     if ((uVar4 & 1) != 0) {
-      uVar7 = uVar7 | 8;
+      uVar7 = uVar7 | CPU_FEATURE_SSSE3;      // SSSE3
     }
     if ((uVar4 >> 9 & 1) != 0) {
-      uVar7 = uVar7 | 0x10;
+      uVar7 = uVar7 | CPU_FEATURE_SSE41;      // SSE4.1
     }
     if ((uVar4 >> 0x13 & 1) != 0) {
-      uVar7 = uVar7 | 0x20;
+      uVar7 = uVar7 | CPU_FEATURE_SSE42;      // SSE4.2
     }
+    
     uVar8 = uVar7;
     uVar5 = uVar5 & 0x800000;
+    
+    // 检测AVX指令集
     if ((((uVar4 & 0x18000000) == 0x18000000) && (uVar5 = in_XCR0, ((byte)in_XCR0 & 6) == 6)) &&
-       (uVar8 = uVar7 | 0x40, 6 < uVar3)) {
+       (uVar8 = uVar7 | CPU_FEATURE_AVX, 6 < uVar3)) {
       puVar1 = (uint *)cpuid_Extended_Feature_Enumeration_info(7);
       uVar5 = *puVar1;
       if ((puVar1[1] & 0x20) != 0) {
-        uVar8 = uVar7 | 0xc0;
+        uVar8 = uVar7 | CPU_FEATURE_AVX2;     // AVX2
       }
     }
   }
-  *(uint *)(param_1 + 0x2e70) = uVar8;
+  
+  // 设置CPU特性标志
+  *(uint *)(param_1 + RENDERING_OFFSET_2E70) = uVar8;
   return uVar5;
 }
 
+// 函数别名：RenderingSystemCPUDetector
+// 技术说明：该函数检测CPU特性以优化渲染性能，支持多种指令集
 
 
 
 
-// 函数: void FUN_1806982a0(longlong param_1,longlong param_2,int param_3)
-void FUN_1806982a0(longlong param_1,longlong param_2,int param_3)
 
+/**
+ * @brief 渲染系统参数处理器
+ * @details 处理渲染系统参数和缓冲区数据
+ * @param param_1 渲染系统上下文指针
+ * @param param_2 参数数据指针
+ * @param param_3 处理参数
+ * 功能：
+ * - 检查渲染状态变化
+ * - 初始化渲染缓冲区
+ * - 处理参数数据
+ * - 更新渲染参数
+ * @note 处理4个缓冲区的参数数据
+ */
+void FUN_1806982a0(longlong param_1, longlong param_2, int param_3)
 {
   int iVar1;
   undefined1 uVar2;
@@ -508,102 +577,129 @@ void FUN_1806982a0(longlong param_1,longlong param_2,int param_3)
   undefined1 *puVar11;
   longlong lVar12;
   
-  if (*(int *)(param_1 + 0x1924) != *(int *)(param_1 + 0x1928)) {
-    FUN_180698800(param_1 + 0xc10);
-    *(undefined4 *)(param_1 + 0x1924) = *(undefined4 *)(param_1 + 0x1928);
+  // 检查渲染状态变化
+  if (*(int *)(param_1 + RENDERING_OFFSET_1924) != *(int *)(param_1 + RENDERING_OFFSET_1928)) {
+    FUN_180698800(param_1 + RENDERING_OFFSET_C10);
+    *(undefined4 *)(param_1 + RENDERING_OFFSET_1924) = *(undefined4 *)(param_1 + RENDERING_OFFSET_1928);
   }
+  
+  // 初始化缓冲区指针
   lVar7 = 0;
-  puVar11 = (undefined1 *)(param_1 + 0x1857);
-  puVar5 = (undefined1 *)(param_1 + 0x1850);
+  puVar11 = (undefined1 *)(param_1 + RENDERING_OFFSET_1857);
+  puVar5 = (undefined1 *)(param_1 + RENDERING_OFFSET_1850);
   lVar12 = 4;
-  iVar10 = 0x3f;
+  iVar10 = MAX_TEXTURE_DIMENSION;
   puVar6 = puVar5;
+  
+  // 处理4个缓冲区
   do {
+    // 计算基础参数
     iVar9 = param_3;
-    if ((*(char *)(param_2 + 0xf60) != '\0') &&
-       (iVar9 = (int)*(char *)(lVar7 + 0xf6b + param_2), *(char *)(param_2 + 0xf63) != '\x01')) {
+    if ((*(char *)(param_2 + RENDERING_BUFFER_F60) != '\0') &&
+       (iVar9 = (int)*(char *)(lVar7 + RENDERING_BUFFER_F6B + param_2), 
+        *(char *)(param_2 + RENDERING_BUFFER_F63) != '\x01')) {
       iVar9 = iVar9 + param_3;
       if (iVar9 < 1) {
         iVar9 = 0;
       }
-      else if (0x3f < iVar9) {
+      else if (MAX_TEXTURE_DIMENSION < iVar9) {
         iVar9 = iVar10;
       }
     }
-    if (*(char *)(param_2 + 0xf6f) == '\0') {
-                    // WARNING: Subroutine does not return
-      memset(puVar5,iVar9,0x10);
+    
+    // 初始化缓冲区
+    if (*(char *)(param_2 + RENDERING_BUFFER_F6F) == '\0') {
+      // 清空缓冲区（警告：该函数不会返回）
+      memset(puVar5, iVar9, RENDERING_BUFFER_SIZE);
     }
-    iVar1 = *(char *)(param_2 + 0xf75) + iVar9;
-    iVar3 = *(char *)(param_2 + 0xf7d) + iVar1;
+    
+    // 计算渲染参数
+    iVar1 = *(char *)(param_2 + RENDERING_BUFFER_F75) + iVar9;
+    iVar3 = *(char *)(param_2 + RENDERING_BUFFER_F7D) + iVar1;
     if (iVar3 < 1) {
       uVar2 = 0;
     }
     else {
-      if (0x3f < iVar3) {
+      if (MAX_TEXTURE_DIMENSION < iVar3) {
         iVar3 = iVar10;
       }
       uVar2 = (undefined1)iVar3;
     }
     *puVar6 = uVar2;
+    
+    // 处理第二个参数
     if (iVar1 < 1) {
       uVar2 = 0;
     }
     else {
-      if (0x3f < iVar1) {
+      if (MAX_TEXTURE_DIMENSION < iVar1) {
         iVar1 = iVar10;
       }
       uVar2 = (undefined1)iVar1;
     }
     puVar6[1] = uVar2;
+    
+    // 处理4个通道的数据
     lVar8 = 1;
     puVar4 = puVar11;
     do {
-      iVar1 = *(char *)(param_2 + 0xf75 + lVar8) + iVar9;
-      iVar3 = *(char *)(param_2 + 0xf7e) + iVar1;
+      // 计算通道参数
+      iVar1 = *(char *)(param_2 + RENDERING_BUFFER_F75 + lVar8) + iVar9;
+      iVar3 = *(char *)(param_2 + RENDERING_BUFFER_F7E) + iVar1;
       if (iVar3 < 1) {
         uVar2 = 0;
       }
       else {
-        if (0x3f < iVar3) {
+        if (MAX_TEXTURE_DIMENSION < iVar3) {
           iVar3 = iVar10;
         }
         uVar2 = (undefined1)iVar3;
       }
       puVar4[-2] = uVar2;
-      iVar3 = *(char *)(param_2 + 0xf7f) + iVar1;
+      
+      // 处理第二个通道
+      iVar3 = *(char *)(param_2 + RENDERING_BUFFER_F7F) + iVar1;
       if (iVar3 < 1) {
         uVar2 = 0;
       }
       else {
-        if (0x3f < iVar3) {
+        if (MAX_TEXTURE_DIMENSION < iVar3) {
           iVar3 = iVar10;
         }
         uVar2 = (undefined1)iVar3;
       }
       puVar4[-1] = uVar2;
-      iVar1 = *(char *)(param_2 + 0xf80) + iVar1;
+      
+      // 处理第三个通道
+      iVar1 = *(char *)(param_2 + RENDERING_BUFFER_F80) + iVar1;
       if (iVar1 < 1) {
         uVar2 = 0;
       }
       else {
-        if (0x3f < iVar1) {
+        if (MAX_TEXTURE_DIMENSION < iVar1) {
           iVar1 = iVar10;
         }
         uVar2 = (undefined1)iVar1;
       }
       *puVar4 = uVar2;
+      
       lVar8 = lVar8 + 1;
       puVar4 = puVar4 + 4;
     } while (lVar8 < 4);
-    puVar5 = puVar5 + 0x10;
+    
+    // 移动到下一个缓冲区
+    puVar5 = puVar5 + RENDERING_BUFFER_SIZE;
     lVar7 = lVar7 + 1;
-    puVar6 = puVar6 + 0x10;
-    puVar11 = puVar11 + 0x10;
+    puVar6 = puVar6 + RENDERING_BUFFER_SIZE;
+    puVar11 = puVar11 + RENDERING_BUFFER_SIZE;
     lVar12 = lVar12 + -1;
   } while (lVar12 != 0);
+  
   return;
 }
+
+// 函数别名：RenderingSystemParameterProcessor
+// 技术说明：该函数处理复杂的渲染参数计算和缓冲区初始化
 
 
 
