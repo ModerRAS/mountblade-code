@@ -257,20 +257,20 @@ uint8_t RenderCalculateResourceSize; // 计算资源大小 - 计算资源内存�
  * =================================================================== */
 
 /* SIMD权重和掩码表 - 用于像素计算的常量数据 */
-uint8_t DAT;               // SIMD权重表1 - 像素混合权重
-uint8_t DAT;               // SIMD权重表2 - 像素混合权重
-uint8_t DAT;               // SIMD权重表3 - 像素混合权重
-uint8_t DAT;               // SIMD掩码表1 - 像素通道掩码
-uint8_t DAT;               // SIMD掩码表2 - 像素通道掩码
-uint8_t DAT;               // SIMD掩码表3 - 像素通道掩码
-uint8_t DAT;               // SIMD掩码表4 - 像素通道掩码
+static uint8_t simd_weight_table_1[16] = {0};    // SIMD权重表1 - 像素混合权重
+static uint8_t simd_weight_table_2[16] = {0};    // SIMD权重表2 - 像素混合权重
+static uint8_t simd_weight_table_3[16] = {0};    // SIMD权重表3 - 像素混合权重
+static uint8_t simd_mask_table_1[16] = {0};     // SIMD掩码表1 - 像素通道掩码
+static uint8_t simd_mask_table_2[16] = {0};     // SIMD掩码表2 - 像素通道掩码
+static uint8_t simd_mask_table_3[16] = {0};     // SIMD掩码表3 - 像素通道掩码
+static uint8_t simd_mask_table_4[16] = {0};     // SIMD掩码表4 - 像素通道掩码
 
 /* 渲染系统状态变量 - 渲染系统的内部状态 */
-uint8_t UNK_180946b38;               // 渲染状态1 - 当前渲染状态
-uint8_t UNK_180946b50;               // 渲染状态2 - 渲染模式
-uint8_t UNK_180946b70;               // 渲染状态3 - 渲染质量
-uint8_t UNK_180946ba0;               // 渲染状态4 - 渲染目标
-uint8_t UNK_180946bd8;               // 渲染状态5 - 渲染视口
+static RenderState render_current_state = RENDER_STATE_IDLE;    // 渲染状态1 - 当前渲染状态
+static uint32_t render_mode = 0;                              // 渲染状态2 - 渲染模式
+static uint8_t render_quality = 0;                            // 渲染状态3 - 渲染质量
+static uint64_t render_target = 0;                            // 渲染状态4 - 渲染目标
+static uint32_t render_viewport = 0;                          // 渲染状态5 - 渲染视口
 
 /* 纹理缓存数据 - 纹理缓存系统的内部数据 */
 uint8_t UNK_180946c30;               // 纹理缓存指针1 - 主纹理缓存

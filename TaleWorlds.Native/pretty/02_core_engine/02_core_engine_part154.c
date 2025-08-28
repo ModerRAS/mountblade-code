@@ -24,12 +24,12 @@ extern char DAT_18098bc73;            // 字符常量
 extern char UNK_180a06474;            // 默认字符串常量
 
 // 函数声明
-void FUN_18013c760(uint64_t *param_1, int param_2, ...);
-uint64_t FUN_1801210b0(byte *param_1);
-uint64_t func_0x000180120ce0(longlong param_1, uint64_t param_2);
-void FUN_180059ba0(uint64_t param_1, uint64_t param_2);
-longlong FUN_180121300(longlong param_1, uint64_t *param_2);
-uint64_t FUN_18013ce40(uint64_t *param_1);
+void StringProcessor_FormatAndWrite(uint64_t *param_1, int param_2, ...);
+uint64_t StringStorage_CreateCopy(byte *param_1);
+uint64_t MemoryManager_Allocate(longlong param_1, uint64_t param_2);
+void ResourceCleaner_Release(uint64_t param_1, uint64_t param_2);
+longlong FileHandler_Open(longlong param_1, uint64_t *param_2);
+uint64_t DataBuffer_Prepare(uint64_t *param_1);
 
 /**
  * 处理字符串并写入缓冲区
@@ -107,11 +107,11 @@ void process_string_and_write_buffer(longlong context, char *input_start, char *
       // 根据格式选择写入方式
       if ((should_use_alternative_format) || (current_pos != input_start)) {
         // 使用替代格式写入
-        FUN_18013c760(&UNK_180a06770, (write_index - current_count) * 4, &DAT_18098bc73, line_length, current_pos);
+        StringProcessor_FormatAndWrite(&UNK_180a06770, (write_index - current_count) * 4, &DAT_18098bc73, line_length, current_pos);
       }
       else {
         // 使用标准格式写入
-        FUN_18013c760(&UNK_180a06768, line_length, current_pos);
+        StringProcessor_FormatAndWrite(&UNK_180a06768, line_length, current_pos);
       }
     }
     
@@ -171,7 +171,7 @@ uint64_t *create_string_hash_entry(byte *input_string)
     // 执行数组扩展
     if (capacity < new_capacity) {
       *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + 1;
-      new_array = func_0x000180120ce0((longlong)new_capacity * 0x38, new_array);
+      new_array = MemoryManager_Allocate((longlong)new_capacity * 0x38, new_array);
       
       // 复制现有数据
       if (*(longlong *)(global_data + 0x2e30) != 0) {
@@ -213,7 +213,7 @@ uint64_t *create_string_hash_entry(byte *input_string)
   entry_ptr = (uint64_t *)((longlong)current_count * 0x38 + *(longlong *)(global_data + 0x2e30));
   
   // 存储字符串指针
-  new_array = FUN_1801210b0(input_string);
+  new_array = StringStorage_CreateCopy(input_string);
   *entry_ptr = new_array;
   
   // 计算字符串哈希值
@@ -354,7 +354,7 @@ uint64_t *create_string_hash_entry_with_params(byte *input_string)
   entry_ptr = (uint64_t *)((longlong)current_count * 0x38 + *(longlong *)(global_data + 0x2e30));
   
   // 存储字符串指针并计算哈希值（与create_string_hash_entry相同的逻辑）
-  array_ptr = FUN_1801210b0(input_string);
+  array_ptr = StringStorage_CreateCopy(input_string);
   *entry_ptr = array_ptr;
   
   hash_value = 0xffffffff;
@@ -412,7 +412,7 @@ uint64_t *create_default_string_hash_entry(void)
   uint64_t stack_param9;
   
   // 分配新数组
-  new_array = func_0x000180120ce0();
+  new_array = MemoryManager_Allocate();
   
   // 复制现有数据到新数组
   if (*(longlong *)(global_base + 0x2e30) != 0) {
@@ -538,7 +538,7 @@ uint64_t *create_string_hash_entry_at_index(int entry_index)
   entry_ptr = (uint64_t *)((longlong)current_count * 0x38 + *(longlong *)(global_base + 0x2e30));
   
   // 存储字符串指针
-  string_ptr = FUN_1801210b0();
+  string_ptr = StringStorage_CreateCopy();
   *entry_ptr = string_ptr;
   
   // 计算字符串哈希值
@@ -638,7 +638,7 @@ void copy_string_to_new_memory(longlong source_string, longlong string_length)
   }
   
   // 分配内存并复制字符串
-  new_memory = func_0x000180120ce0(string_length + 1, _DAT_180c8a9a8);
+  new_memory = MemoryManager_Allocate(string_length + 1, _DAT_180c8a9a8);
   memcpy(new_memory, source_string, string_length);
 }
 
@@ -677,7 +677,7 @@ void copy_string_with_register_values(longlong source_string, longlong string_le
   }
   
   // 分配内存并复制字符串
-  new_memory = func_0x000180120ce0(register_rbx + 1, _DAT_180c8a9a8);
+  new_memory = MemoryManager_Allocate(register_rbx + 1, _DAT_180c8a9a8);
   memcpy(new_memory, source_string, register_rbx);
 }
 
@@ -819,7 +819,7 @@ continue_parsing:
         *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
       }
       
-      FUN_180059ba0(stack_param, _DAT_180c8a9a8);
+      ResourceCleaner_Release(stack_param, _DAT_180c8a9a8);
     }
   } while( true );
 }
@@ -846,7 +846,7 @@ void cleanup_with_r14_register(void)
   }
   
   // 调用清理函数
-  FUN_180059ba0();
+  ResourceCleaner_Release();
 }
 
 
@@ -871,7 +871,7 @@ void simple_cleanup(void)
   }
   
   // 调用清理函数
-  FUN_180059ba0();
+  ResourceCleaner_Release();
 }
 
 
@@ -1011,7 +1011,7 @@ continue_parsing:
           *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
         }
         
-        FUN_180059ba0(stack_param, _DAT_180c8a9a8);
+        ResourceCleaner_Release(stack_param, _DAT_180c8a9a8);
       }
     }
   } while( true );
@@ -1045,9 +1045,9 @@ void write_data_to_file(longlong file_path)
   if (file_path != 0) {
     data_size = 0;
     // 准备要写入的数据
-    data_buffer = FUN_18013ce40(&data_size);
+    data_buffer = DataBuffer_Prepare(&data_size);
     // 打开文件
-    file_handle = FUN_180121300(file_path, &UNK_180a06794);
+    file_handle = FileHandler_Open(file_path, &UNK_180a06794);
     
     if (file_handle != 0) {
       // 写入数据并关闭文件
@@ -1077,9 +1077,9 @@ void write_data_to_default_file(void)
   uint64_t data_size;
   
   // 准备要写入的数据
-  data_buffer = FUN_18013ce40();
+  data_buffer = DataBuffer_Prepare();
   // 打开默认文件
-  file_handle = FUN_180121300();
+  file_handle = FileHandler_Open();
   
   if (file_handle != 0) {
     // 写入数据并关闭文件
