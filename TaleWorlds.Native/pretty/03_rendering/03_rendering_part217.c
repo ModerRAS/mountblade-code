@@ -30,11 +30,43 @@
  */
 void RenderingSystem_AdvancedCollisionDetection(longlong render_context, int object_id_1, int object_id_2, int object_id_3)
 {
-    // 声明变量
-    byte has_components_flag;
-    undefined8 *component_ptr;
-    float *float_ptr;
-    undefined8 *object_ptr;
+    // 渲染对象指针和组件遍历
+    undefined8 *render_object_array_ptr;
+    undefined8 *current_object_ptr;
+    undefined8 *target_object_ptr;
+    undefined8 *collision_object_ptr;
+    
+    // 循环计数器和索引变量
+    ulonglong loop_counter;
+    ulonglong object_index;
+    ulonglong component_index;
+    ulonglong collision_index;
+    
+    // 碰撞检测相关变量
+    bool collision_found;
+    float min_distance;
+    float current_distance;
+    bool collision_flag;
+    
+    // 向量和几何计算变量
+    float vector_x;
+    float vector_y;
+    float normal_x;
+    float normal_y;
+    float dot_product;
+    float inv_sqrt;
+    float distance_x;
+    float distance_y;
+    float center_x;
+    float center_y;
+    
+    // 对象属性和状态变量
+    int object_id;
+    int component_id;
+    int collision_id;
+    bool has_components;
+    
+    // 临时变量和指针
     longlong temp_long_1;
     longlong temp_long_2;
     longlong temp_long_3;
@@ -44,96 +76,106 @@ void RenderingSystem_AdvancedCollisionDetection(longlong render_context, int obj
     longlong temp_long_7;
     longlong temp_long_8;
     longlong temp_long_9;
-    bool collision_detected;
+    longlong temp_long_10;
+    
+    // 数组和数据结构指针
+    undefined8 *component_array_ptr;
+    undefined8 *data_array_ptr;
     longlong *long_ptr;
-    ulonglong ulong_temp_1;
-    int int_temp_1;
-    int int_temp_2;
-    uint uint_temp_1;
-    uint uint_temp_2;
-    ulonglong ulong_temp_2;
-    undefined8 *data_ptr;
-    int int_temp_3;
-    ulonglong ulong_temp_3;
-    uint uint_temp_3;
-    ulonglong ulong_temp_4;
-    ulonglong ulong_temp_5;
-    undefined8 *array_ptr;
-    bool bool_temp_1;
-    ulonglong ulong_temp_6;
     longlong *long_ptr_2;
-    undefined8 *ptr_temp_1;
     longlong *long_ptr_3;
-    int int_temp_4;
-    uint uint_temp_4;
-    longlong long_temp_10;
-    ulonglong *ulong_ptr_1;
-    ulonglong ulong_temp_7;
-    uint uint_temp_5;
-    int int_temp_5;
     longlong *long_ptr_4;
-    ulonglong ulong_temp_8;
-    char char_temp_1;
-    undefined4 undefined_temp_1;
-    float float_temp_1;
-    undefined1 byte_array_1 [16];
-    float distance_x;
-    float distance_y;
-    float vector_x;
-    float vector_y;
-    float center_x;
-    float center_y;
-    float normal_x;
-    float normal_y;
-    float dot_product;
-    float inv_sqrt;
-    char stack_char_1;
+    ulonglong *ulong_ptr_1;
+    
+    // 栈变量用于保存状态
     uint stack_uint_1;
+    uint stack_uint_2;
     int stack_int_1;
     ulonglong stack_ulong_1;
     float stack_float_1;
-    uint stack_uint_2;
+    char stack_char_1;
+    
+    // 杂项变量
+    byte byte_temp_1;
+    char char_temp_1;
+    undefined4 undefined_temp_1;
+    float float_temp_1;
+    undefined1 byte_array_1[16];
+    bool bool_temp_1;
+    
+    // 用于存储中间结果的变量
+    ulonglong ulong_temp_1;
+    ulonglong ulong_temp_2;
+    ulonglong ulong_temp_3;
+    ulonglong ulong_temp_4;
+    ulonglong ulong_temp_5;
+    ulonglong ulong_temp_6;
+    ulonglong ulong_temp_7;
+    ulonglong ulong_temp_8;
     ulonglong ulong_temp_9;
+    
+    int int_temp_1;
+    int int_temp_2;
+    int int_temp_3;
+    int int_temp_4;
+    int int_temp_5;
+    uint uint_temp_1;
+    uint uint_temp_2;
+    uint uint_temp_3;
+    uint uint_temp_4;
+    uint uint_temp_5;
   
-  puVar34 = *(ulonglong **)(param_1 + 0x478);
-  uVar22 = 0;
-  uVar21 = 0;
-  uVar15 = 0;
-  uVar20 = *(longlong *)(param_1 + 0x480) - (longlong)puVar34 >> 3;
-  uVar12 = uVar22;
-  uVar26 = uVar22;
-  uVar17 = uVar22;
-  uVar35 = uVar22;
-  if (uVar20 != 0) {
+  // 获取渲染对象数组指针和对象数量
+  render_object_array_ptr = *(ulonglong **)(render_context + 0x478);
+  object_index = 0;
+  collision_index = 0;
+  component_index = 0;
+  loop_counter = 0;
+  ulonglong object_count = *(longlong *)(render_context + 0x480) - (longlong)render_object_array_ptr >> 3;
+  
+  current_object_ptr = 0;
+  target_object_ptr = 0;
+  collision_object_ptr = 0;
+  // 遍历渲染对象数组，查找指定的对象
+  if (object_count != 0) {
     do {
-      uVar32 = *puVar34;
-      iVar14 = *(int *)(uVar32 + 0x130);
-      uVar23 = uVar32;
-      uVar39 = uVar35;
-      if (((param_2 != iVar14) && (uVar23 = uVar12, uVar39 = uVar32, param_3 != iVar14)) &&
-         (uVar39 = uVar35, param_4 == iVar14)) {
-        uVar26 = uVar32;
+      undefined8 current_object_data = *render_object_array_ptr;
+      int current_object_id = *(int *)(current_object_data + 0x130);
+      undefined8 temp_object_ptr = current_object_data;
+      undefined8 prev_object_ptr = loop_counter;
+      
+      // 检查对象ID是否匹配目标对象
+      if (((object_id_1 != current_object_id) && (temp_object_ptr = current_object_ptr, prev_object_ptr = current_object_data, object_id_2 != current_object_id)) &&
+         (prev_object_ptr = loop_counter, object_id_3 == current_object_id)) {
+        target_object_ptr = current_object_data;
       }
-      if (((uVar23 != 0) && (uVar39 != 0)) && (uVar26 != 0)) break;
-      uVar36 = (int)uVar17 + 1;
-      uVar17 = (ulonglong)uVar36;
-      puVar34 = puVar34 + 1;
-      uVar12 = uVar23;
-      uVar35 = uVar39;
-    } while ((ulonglong)(longlong)(int)uVar36 < uVar20);
-    if (((uVar23 != 0) && (uVar39 != 0)) && (uVar26 != 0)) {
-      uVar36 = 0xffffffff;
-      cVar40 = false;
-      iVar13 = -1;
-      fStack_100 = 10000.0;
-      bVar1 = *(byte *)(uVar23 + 0xa8);
-      iVar30 = -1;
-      uStack_fc = 0xffffffff;
-      iVar14 = -1;
-      iStack_110 = -1;
-      uStack_108 = 0;
-      cStack0000000000000028 = false;
-      uStack_124 = 0;
+      
+      // 如果找到所有必需的对象，退出循环
+      if (((temp_object_ptr != 0) && (prev_object_ptr != 0)) && (target_object_ptr != 0)) break;
+      
+      // 更新循环计数器和指针
+      ulonglong next_index = (int)component_index + 1;
+      component_index = (ulonglong)next_index;
+      render_object_array_ptr = render_object_array_ptr + 1;
+      current_object_ptr = temp_object_ptr;
+      loop_counter = prev_object_ptr;
+    } while ((ulonglong)(longlong)(int)next_index < object_count);
+    // 如果找到所有必需的对象，开始碰撞检测
+    if (((current_object_ptr != 0) && (loop_counter != 0)) && (target_object_ptr != 0)) {
+      ulonglong best_collision_index = 0xffffffff;
+      bool collision_found = false;
+      int best_component_id = -1;
+      float min_collision_distance = 10000.0;
+      
+      // 获取当前对象的组件标志
+      byte has_components = *(byte *)(current_object_ptr + 0xa8);
+      int temp_component_id = -1;
+      uint stack_temp_uint = 0xffffffff;
+      int current_collision_id = -1;
+      int stack_temp_int = -1;
+      uint stack_temp_uint_2 = 0;
+      bool stack_temp_bool = false;
+      uint stack_temp_uint_3 = 0;
       if (bVar1 != 0) {
         puVar18 = (undefined8 *)(uVar23 + 0x60);
         uVar12 = uVar22;
