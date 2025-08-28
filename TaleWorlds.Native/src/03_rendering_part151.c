@@ -374,35 +374,47 @@ void FUN_18035ec20(longlong param_1,longlong param_2)
   // 初始化渲染管线句柄
   plStack_3b0 = (longlong *)0x0;                       // 重置顶点管线句柄
   plStack_3f8 = (longlong *)0x0;                       // 重置片段管线句柄
-  plVar12 = *(longlong **)(param_1 + 0x70);
-  uStack_398 = param_1;
+  
+  // 第三阶段：渲染管线激活和状态管理
+  // 获取并激活顶点渲染管线
+  plVar12 = *(longlong **)(param_1 + 0x70);            // 从渲染上下文获取顶点管线句柄
+  uStack_398 = param_1;                               // 保存渲染上下文
   if (plVar12 != (longlong *)0x0) {
-    uStack_410 = (longlong **)plVar12;
-    (**(code **)(*plVar12 + 0x28))(plVar12);
+    uStack_410 = (longlong **)plVar12;                // 设置当前管线为顶点管线
+    (**(code **)(*plVar12 + 0x28))(plVar12);           // 调用管线初始化函数
   }
-  uStack_410 = (longlong **)plStack_3b0;
+  
+  // 切换到顶点管线并执行管线设置
+  uStack_410 = (longlong **)plStack_3b0;               // 设置当前管线为顶点管线
   if (plStack_3b0 != (longlong *)0x0) {
-    lVar8 = *plStack_3b0;
-    plStack_3b0 = plVar12;
-    (**(code **)(lVar8 + 0x38))();
-    plVar12 = plStack_3b0;
+    lVar8 = *plStack_3b0;                              // 获取顶点管线函数表
+    plStack_3b0 = plVar12;                             // 设置顶点管线句柄
+    (**(code **)(lVar8 + 0x38))();                     // 调用顶点管线设置函数
+    plVar12 = plStack_3b0;                             // 恢复管线句柄
   }
-  plStack_3b0 = plVar12;
-  plVar12 = *(longlong **)(param_1 + 0x78);
+  plStack_3b0 = plVar12;                               // 保存顶点管线句柄
+  
+  // 获取并激活片段渲染管线
+  plVar12 = *(longlong **)(param_1 + 0x78);            // 从渲染上下文获取片段管线句柄
   if (plVar12 != (longlong *)0x0) {
-    uStack_410 = (longlong **)plVar12;
-    (**(code **)(*plVar12 + 0x28))(plVar12);
+    uStack_410 = (longlong **)plVar12;                // 设置当前管线为片段管线
+    (**(code **)(*plVar12 + 0x28))(plVar12);           // 调用管线初始化函数
   }
-  uStack_410 = (longlong **)plStack_3f8;
+  
+  // 切换到片段管线并执行管线设置
+  uStack_410 = (longlong **)plStack_3f8;               // 设置当前管线为片段管线
   if (plStack_3f8 != (longlong *)0x0) {
-    lVar8 = *plStack_3f8;
-    plStack_3f8 = plVar12;
-    (**(code **)(lVar8 + 0x38))();
-    plVar12 = plStack_3f8;
+    lVar8 = *plStack_3f8;                              // 获取片段管线函数表
+    plStack_3f8 = plVar12;                             // 设置片段管线句柄
+    (**(code **)(lVar8 + 0x38))();                     // 调用片段管线设置函数
+    plVar12 = plStack_3f8;                             // 恢复管线句柄
   }
-  plStack_3f8 = plVar12;
+  plStack_3f8 = plVar12;                               // 保存片段管线句柄
+  
+  // 第四阶段：管线完整性检查
+  // 验证顶点管线和片段管线是否都成功激活
   if ((plStack_3b0 == (longlong *)0x0) || (plStack_3f8 == (longlong *)0x0)) {
-    FUN_180627020(&UNK_180a1f6f0);
+    FUN_180627020(&UNK_180a1f6f0);                    // 管线激活失败，调用错误处理函数
   }
   else {
     uStack_3e8 = (undefined **)alStack_1b8;
