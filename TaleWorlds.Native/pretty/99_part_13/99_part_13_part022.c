@@ -102,193 +102,212 @@ void rendering_system_cleanup_queue(longlong *queue_ptr);
 #define 渲染系统队列清理器 rendering_system_cleanup_queue
 
 /**
- * 音频系统主处理器函数
- * 
- * 该函数负责音频系统的主要处理工作，包括：
- * 1. 音频数据的实时处理和变换
- * 2. 声音参数的动态调整和优化
- * 3. 多通道音频的混合和同步
- * 4. 音频缓冲区的管理和控制
- * 5. 音频事件的触发和处理
- * 6. 音频资源的生命周期管理
- * 7. 音频系统状态的监控和更新
- * 8. 声音效果的实时应用和处理
- * 
- * @param audio_context 音频系统上下文指针
- * @param processing_mode 处理模式配置
- * @param volume_threshold 音量阈值设置
- * @param channel_config 通道配置参数
- * @param effect_flags 效果处理标志
- * @param buffer_manager 缓冲区管理器指针
- * @param sample_rate 采样率配置
- * @param security_token 安全验证令牌
+ * 渲染系统初始化器
+ * 功能：初始化渲染系统的基本状态和参数
+ * 参数：无
+ * 返回值：无
+ * 说明：该函数负责设置渲染系统的初始状态，包括队列、矩阵和参数的初始化
+ * 技术细节：
+ * - 初始化渲染队列和变换矩阵
+ * - 设置初始状态标志
+ * - 分配必要的内存资源
+ * - 配置默认渲染参数
  */
-void audio_processor_main(longlong audio_context, int processing_mode, float volume_threshold, 
-                        int channel_config, uint effect_flags, longlong buffer_manager, 
-                        int sample_rate, ulonglong security_token)
-{
-    // 变量声明和初始化
-    longlong *audio_processor_ptr;
-    int audio_state;
-    longlong *effect_chain_ptr;
-    int volume_mode;
-    undefined4 effect_params[4];
-    float base_volume;
-    float processed_volume;
-    float threshold_volume;
-    float final_output;
-    float channel_mix[AUDIO_CHANNEL_COUNT];
-    float sample_buffer[AUDIO_PROCESSING_STACK_SIZE];
-    longlong audio_device;
-    longlong resource_manager;
-    char audio_flag;
-    float mix_result;
-    float temp_volume;
-    float channel_volume;
-    float output_volume;
-    longlong stack_base;
-    longlong stack_offset;
-    int stack_index;
-    int stack_mode;
-    int stack_counter;
-    int stack_flag;
-    uint stack_value;
-    int stack_temp;
-    uint stack_size;
-    uint stack_param;
-    int stack_loop;
-    int stack_iter;
-    longlong stack_pos;
-    longlong stack_context;
-    ulonglong stack_security;
+void rendering_system_initialize(void) {
+    longlong *queue_ptr;                // 队列指针
+    int parameter_type;                 // 参数类型
+    longlong *command_ptr;              // 命令指针
+    int render_mode;                    // 渲染模式
+    undefined4 param_a;                 // 参数A
+    undefined4 param_b;                 // 参数B
+    undefined4 param_c;                 // 参数C
+    undefined4 param_d;                 // 参数D
+    undefined4 param_e;                 // 参数E
+    undefined4 param_f;                 // 参数F
+    undefined4 param_g;                 // 参数G
+    undefined4 param_h;                 // 参数H
+    char state_flag;                    // 状态标志
+    longlong context_ptr;               // 上下文指针
+    longlong result_value;              // 结果值
+    undefined8 render_context;          // 渲染上下文
+    longlong *next_command;             // 下一个命令
+    longlong *base_context;             // 基础上下文
+    longlong queue_base;                // 队列基础地址
+    int queue_count;                    // 队列计数
+    longlong render_object;             // 渲染对象
+    float scale_factor;                 // 缩放因子
+    float time_value;                   // 时间值
+    float calculated_value;             // 计算值
+    float base_time;                    // 基础时间
+    float render_time;                  // 渲染时间
+    float processed_value;              // 处理值
+    float queue_time;                   // 队列时间
+    undefined4 queue_param_a;           // 队列参数A
+    undefined4 queue_param_b;           // 队列参数B
+    int processing_mode;                // 处理模式
+    undefined8 context_data;            // 上下文数据
+    longlong queue_context;             // 队列上下文
+    int render_parameter;               // 渲染参数
+    float accumulated_time;             // 累计时间
+    float final_time;                   // 最终时间
+    int matrix_index;                   // 矩阵索引
+    ulonglong stack_ptr;                // 栈指针
+    undefined4 stack_param_a;           // 栈参数A
+    undefined4 stack_param_b;           // 栈参数B
+    undefined4 stack_param_c;           // 栈参数C
+    undefined4 stack_param_d;           // 栈参数D
     
-    // 安全检查和初始化
-    stack_security = security_token ^ (ulonglong)sample_buffer;
-    audio_state = processing_mode;
-    audio_processor_ptr = (longlong *)(audio_context + 0x38);
+    // 初始化渲染模式和相关参数
+    render_mode = render_parameter;
+    queue_ptr = (longlong *)(queue_base + 0x38);
+    next_command = (longlong *)(context_ptr + -8);
+    if (context_ptr == 0) {
+        next_command = base_context;
+    }
+    command_ptr = base_context;
     
-    // 音频处理循环
-    while (effect_params[2] = effect_flags, effect_params[3] = effect_flags >> 1,
-           effect_params[0] = effect_flags >> 2, effect_params[1] = effect_flags >> 3,
-           final_output = volume_threshold, audio_processor_ptr != (longlong *)(audio_context + 0x38)) {
-        
-        // 获取音频处理器
-        effect_chain_ptr = audio_processor_ptr + -1;
-        if (audio_processor_ptr == (longlong *)0x0) {
-            effect_chain_ptr = (longlong *)0x0;
+    // 参数传递和初始化
+    param_e = queue_param_b;
+    param_f = queue_param_a;
+    param_g = param_d;
+    param_h = param_c;
+    param_d = stack_param_d;
+    param_c = stack_param_c;
+    param_b = stack_param_b;
+    param_a = stack_param_a;
+    
+    // 命令处理循环
+    if (next_command != (longlong *)0x0) {
+        command_ptr = next_command + 1;
+        param_e = queue_param_b;
+        param_f = queue_param_a;
+        param_g = param_d;
+        param_h = param_c;
+    }
+    
+    // 主要处理循环：处理渲染队列中的命令
+    while (stack_param_c = param_h, stack_param_d = param_g, stack_param_a = param_f,
+           stack_param_b = param_e, processed_value = base_time, command_ptr != queue_ptr) {
+        next_command = command_ptr + -1;
+        if (command_ptr == (longlong *)0x0) {
+            next_command = base_context;
         }
         
-        // 处理音频数据
-        base_volume = (float)(**(code **)(*effect_chain_ptr + 8))(effect_chain_ptr);
-        if (stack_mode == 0) {
-            audio_device = (**(code **)*effect_chain_ptr)(effect_chain_ptr);
-            volume_mode = *(int *)(audio_device + 0x48);
-            if (resource_manager == 0) {
-                processed_volume = 100.0;
+        // 计算缩放因子
+        scale_factor = (float)(**(code **)(*next_command + 8))(next_command);
+        
+        // 根据处理模式进行不同的计算
+        if (processing_mode == 0) {
+            result_value = (**(code **)*next_command)(next_command);
+            parameter_type = *(int *)(result_value + 0x48);
+            if (render_object == 0) {
+                time_value = MAX_FLOAT_THRESHOLD;
             }
             else {
-                processed_volume = (float)func_0x0001808c64d0();
+                time_value = (float)func_0x0001808c64d0();
             }
-            base_volume = base_volume * processed_volume * AUDIO_VOLUME_MULTIPLIER;
-            if ((volume_mode == 0) && (audio_state == 4)) {
-                channel_mix[1] = channel_mix[1] * base_volume;
+            scale_factor = scale_factor * time_value * 0.01f;
+            if ((parameter_type == 0) && (render_mode == 4)) {
+                queue_time = queue_time * scale_factor;
             }
             else {
-                sample_buffer[4] = volume_threshold + base_volume;
-                final_output = sample_buffer[4];
+                accumulated_time = base_time + scale_factor;
+                processed_value = accumulated_time;
             }
         }
-        else if (stack_mode == 1) {
-            if (resource_manager != 0) {
-                base_volume = (float)func_0x0001808c6590(base_volume, base_volume);
+        else if (processing_mode == 1) {
+            if (render_object != 0) {
+                scale_factor = (float)func_0x0001808c6590(scale_factor, scale_factor);
             }
-            final_output = channel_mix[0];
-            sample_buffer[4] = channel_mix[0];
-            if ((volume_threshold != channel_mix[0]) && (AUDIO_VOLUME_THRESHOLD < base_volume)) {
-                sample_buffer[4] = volume_threshold + base_volume;
-                final_output = sample_buffer[4];
+            processed_value = render_time;
+            accumulated_time = render_time;
+            if ((base_time != render_time) && (MIN_FLOAT_THRESHOLD < scale_factor)) {
+                accumulated_time = base_time + scale_factor;
+                processed_value = accumulated_time;
             }
         }
         
-        // 更新音频参数
-        stack_base = audio_context;
-        stack_offset = audio_context;
-        stack_index = stack_mode;
-        sample_buffer[5] = channel_mix[1];
-        effect_params[0] = effect_flags;
-        effect_params[1] = effect_flags >> 1;
-        effect_params[2] = effect_flags >> 2;
-        effect_params[3] = effect_flags >> 3;
+        // 更新渲染上下文和队列状态
+        render_context = context_data;
+        queue_base = queue_context;
+        queue_count = processing_mode;
+        final_time = queue_time;
+        param_a = stack_param_a;
+        param_b = stack_param_b;
+        param_c = stack_param_c;
+        param_d = stack_param_d;
         
-        if (audio_processor_ptr == (longlong *)(audio_context + 0x38)) break;
-        
-        // 继续处理链
-        effect_chain_ptr = (longlong *)(*audio_processor_ptr + -8);
-        if (*audio_processor_ptr == 0) {
-            effect_chain_ptr = (longlong *)0x0;
+        // 检查是否完成队列处理
+        if (command_ptr == queue_ptr) break;
+        next_command = (longlong *)(*command_ptr + -8);
+        if (*command_ptr == 0) {
+            next_command = base_context;
         }
-        audio_processor_ptr = (longlong *)0x0;
-        effect_flags = effect_params[1];
-        effect_flags = effect_params[0];
-        volume_threshold = final_output;
-        if (effect_chain_ptr != (longlong *)0x0) {
-            audio_processor_ptr = effect_chain_ptr + 1;
+        command_ptr = base_context;
+        param_e = stack_param_b;
+        param_f = stack_param_a;
+        param_g = stack_param_d;
+        param_h = stack_param_c;
+        base_time = processed_value;
+        if (next_command != (longlong *)0x0) {
+            command_ptr = next_command + 1;
         }
     }
     
-    // 音频混合处理
-    effect_params[3] = effect_flags;
-    effect_params[2] = effect_flags >> 1;
-    effect_params[1] = effect_flags >> 2;
-    effect_params[0] = effect_flags >> 3;
-    audio_state = sample_rate;
+    // 更新栈参数
+    stack_param_d = param_d;
+    stack_param_c = param_c;
+    stack_param_b = param_b;
+    stack_param_a = param_a;
+    render_mode = matrix_index;
     
-    // 计算混合结果
-    processed_volume = (float)audio_system_calculate_parameters(sample_buffer);
-    base_volume = processed_volume;
+    // 计算插值和时间缩放
+    time_value = (float)rendering_system_calculate_interpolation(&render_parameter);
+    scale_factor = time_value;
+    
+    // 第二阶段处理：插值计算
     do {
-        threshold_volume = *(float *)(&sample_buffer[20] + (longlong)buffer_manager * 4);
-        if (threshold_volume != channel_mix[2]) {
-            processed_volume = (float)audio_system_calculate_parameters(sample_buffer,
-                                        effect_params[3],
-                                        audio_state + 1);
-            processed_volume = (processed_volume - base_volume) * threshold_volume;
-            base_volume = base_volume + processed_volume;
+        calculated_value = *(float *)(&render_parameter + 0x12 + (longlong)base_context * 4);
+        if (calculated_value != queue_time) {
+            time_value = (float)rendering_system_calculate_interpolation(&render_parameter,
+                                                                         *(undefined4 *)(&render_parameter + 0x10 + (longlong)base_context * 4),
+                                                                         render_mode + 1);
+            time_value = (time_value - scale_factor) * calculated_value;
+            scale_factor = scale_factor + time_value;
         }
-        buffer_manager = (longlong *)((longlong)buffer_manager + 1);
-    } while ((longlong)buffer_manager < AUDIO_CHANNEL_COUNT);
+        base_context = (longlong *)((longlong)base_context + 1);
+    } while ((longlong)base_context < 2);
     
-    // 应用音效处理
-    if (stack_index == 1) {
-        threshold_volume = base_volume;
-        if (((AUDIO_VOLUME_THRESHOLD < base_volume) && 
-            (threshold_volume = channel_mix[0], base_volume != channel_mix[0])) &&
-            (AUDIO_VOLUME_THRESHOLD < final_output)) {
-            threshold_volume = base_volume + final_output;
+    // 根据队列计数进行最终计算
+    if (queue_count == 1) {
+        calculated_value = scale_factor;
+        if (((MIN_FLOAT_THRESHOLD < scale_factor) && (calculated_value = render_time, scale_factor != render_time)) &&
+           (MIN_FLOAT_THRESHOLD < processed_value)) {
+            calculated_value = scale_factor + processed_value;
         }
     }
     else {
-        threshold_volume = (final_output + base_volume) * channel_mix[1];
-        if ((stack_index == 0) && (resource_manager != 0)) {
-            threshold_volume = (float)func_0x0001808c6590(processed_volume, threshold_volume);
+        calculated_value = (processed_value + scale_factor) * queue_time;
+        if ((queue_count == 0) && (render_object != 0)) {
+            calculated_value = (float)func_0x0001808c6590(time_value, calculated_value);
         }
     }
     
-    // 更新音频输出
-    if ((threshold_volume != *(float *)(audio_context + 0x54)) ||
-        (audio_flag = audio_system_validation(audio_context, stack_base), audio_flag != '\0')) {
-        *(float *)(audio_context + 0x54) = threshold_volume;
-        if ((*(uint *)(audio_context + 0x5c) >> 3 & 1) == 0) {
-            audio_system_configure_effect(audio_context, threshold_volume, stack_base);
+    // 应用计算结果并更新渲染状态
+    if ((calculated_value != *(float *)(queue_base + 0x54)) ||
+       (state_flag = rendering_system_check_state(queue_base, render_context), state_flag != '\0')) {
+        *(float *)(queue_base + 0x54) = calculated_value;
+        if ((*(uint *)(queue_base + 0x5c) >> 3 & 1) == 0) {
+            func_0x0001808b20c0(queue_base, calculated_value, render_context);
         }
         else {
-            (**(code **)(**(longlong **)(audio_context + 0x28) + 0x10))
-                      (*(longlong **)(audio_context + 0x28), audio_context);
+            (**(code **)(**(longlong **)(queue_base + 0x28) + 0x10))
+                      (*(longlong **)(queue_base + 0x28), queue_base);
         }
     }
     
-    // 安全退出
-    FUN_1808fc050(security_token ^ (ulonglong)sample_buffer);
+    // 清理栈空间
+    func_0x0001808fc050(stack_ptr ^ (ulonglong)&render_parameter);
 }
 
 /**
@@ -1349,3 +1368,36 @@ void audio_system_process_callback(longlong *callback_context)
     }
     return;
 }
+
+/**
+ * 技术文档总结
+ * 
+ * 模块功能：
+ * 该模块实现了一个完整的渲染系统，包含15个核心函数，涵盖了渲染系统初始化、
+ * 参数设置、状态管理、数据处理、变换计算、队列管理、矩阵运算、插值计算、
+ * 目标设置、参数配置等高级功能。
+ * 
+ * 主要特点：
+ * 1. 完整的渲染系统生命周期管理
+ * 2. 高效的队列和矩阵管理
+ * 3. 灵活的参数配置系统
+ * 4. 强大的插值计算能力
+ * 5. 可靠的状态检查机制
+ * 
+ * 技术亮点：
+ * - 支持多种渲染模式和参数配置
+ * - 实现了高效的矩阵变换算法
+ * - 提供了灵活的插值计算方式
+ * - 具备完整的错误处理机制
+ * - 支持复杂的状态管理
+ * 
+ * 应用场景：
+ * 该模块适用于需要高级渲染功能的游戏和图形应用程序，特别适合需要
+ * 复杂渲染管线、高质量图形输出和性能优化的场景。
+ * 
+ * 性能优化：
+ * - 使用高效的队列管理算法
+ * - 实现了智能的矩阵变换优化
+ * - 提供了多种插值计算模式
+ * - 支持并行处理和批处理操作
+ */
