@@ -408,6 +408,64 @@ static uint64_t* system_memory_cleanup_ptr = (uint64_t*)0x180d49950;      // 系
 static uint64_t* system_memory_handler_ptr = (uint64_t*)0x180d498a0;      // 系统内存处理指针
 static uint64_t* system_memory_data_ptr = (uint64_t*)0x180d49830;         // 系统内存数据指针
 
+// 系统同步相关指针
+static uint64_t* system_sync_count_ptr = (uint64_t*)0x180c91d30;          // 系统同步计数指针
+static uint64_t* system_sync_data_ptr = (uint64_t*)0x180c91d28;           // 系统同步数据指针
+static uint64_t* system_sync_handler_ptr = (uint64_t*)0x180c91d18;         // 系统同步处理器指针
+static uint64_t* system_sync_flag_ptr = (uint64_t*)0x180c91cf0;            // 系统同步标志指针
+static uint64_t* system_sync_cleanup_ptr = (uint64_t*)0x180c919f0;         // 系统同步清理指针
+
+// 系统缓冲区相关指针
+static uint64_t* system_buffer_ptr = (uint64_t*)0x180bfc140;              // 系统缓冲区指针
+static uint64_t* system_buffer_size_ptr = (uint64_t*)0x180bfc118;          // 系统缓冲区大小指针
+static uint64_t* system_buffer_status_ptr = (uint64_t*)0x180bfc110;        // 系统缓冲区状态指针
+
+// 系统数据内存相关指针
+static uint64_t* system_data_memory_size_ptr = (uint64_t*)0x180d499c0;     // 系统数据内存大小指针
+static uint64_t* system_data_memory_status_ptr = (uint64_t*)0x180d499b8;   // 系统数据内存状态指针
+static uint64_t* system_data_memory_ptr = (uint64_t*)0x180d499a8;          // 系统数据内存指针
+
+// 系统回调相关指针
+static uint64_t* system_callback_end_ptr = (uint64_t*)0x180bfa2f0;          // 系统回调结束指针
+static uint64_t* system_callback_start_ptr = (uint64_t*)0x180bfa2e8;        // 系统回调开始指针
+static uint64_t* system_callback_end_ptr_2 = (uint64_t*)0x180bfa310;       // 系统回调结束指针2
+static uint64_t* system_callback_start_ptr_2 = (uint64_t*)0x180bfa308;     // 系统回调开始指针2
+static uint64_t* system_callback_end_ptr_3 = (uint64_t*)0x180bfa330;       // 系统回调结束指针3
+static uint64_t* system_callback_start_ptr_3 = (uint64_t*)0x180bfa328;     // 系统回调开始指针3
+
+// 系统临时指针
+static uint64_t* system_temp_ptr_1 = (uint64_t*)0x180c91f18;               // 系统临时指针1
+static uint64_t* system_temp_ptr_2 = (uint64_t*)0x180c91f28;               // 系统临时指针2
+
+// 工具系统附加指针
+static uint64_t* utilities_system_additional_ptr_1 = (uint64_t*)0x180bf72b0; // 工具系统附加指针1
+static uint64_t* utilities_system_additional_ptr_2 = (uint64_t*)0x180bf7310; // 工具系统附加指针2
+static uint64_t* utilities_system_additional_ptr_3 = (uint64_t*)0x180bf90b0; // 工具系统附加指针3
+static uint64_t* utilities_system_additional_ptr_4 = (uint64_t*)0x180bf5b88; // 工具系统附加指针4
+static uint64_t* utilities_system_additional_ptr_5 = (uint64_t*)0x180d48db8; // 工具系统附加指针5
+static uint64_t* utilities_system_additional_status_1 = (uint64_t*)0x180d48dc0; // 工具系统附加状态1
+static uint64_t* utilities_system_additional_cleanup_1 = (uint64_t*)0x180d48dd0; // 工具系统附加清理1
+
+// 更多工具系统指针数组
+static uint64_t* utilities_system_ptr_array[40] = {
+    (uint64_t*)0x180bf91b0, (uint64_t*)0x180bf9210, (uint64_t*)0x180bf9270,
+    (uint64_t*)0x180bf92d0, (uint64_t*)0x180bf9330, (uint64_t*)0x180bf9390,
+    (uint64_t*)0x180bf93f0, (uint64_t*)0x180bf9450, (uint64_t*)0x180bf94b0,
+    (uint64_t*)0x180bf9510, (uint64_t*)0x180bf9570, (uint64_t*)0x180bf95d0,
+    (uint64_t*)0x180bf9630, (uint64_t*)0x180bf9690, (uint64_t*)0x180bf96f0,
+    (uint64_t*)0x180bf9750, (uint64_t*)0x180bf97b0, (uint64_t*)0x180bf9810,
+    (uint64_t*)0x180bf9870, (uint64_t*)0x180bf98d0, (uint64_t*)0x180bf9930,
+    (uint64_t*)0x180bf9990, (uint64_t*)0x180bf99f0, (uint64_t*)0x180bf9a50,
+    (uint64_t*)0x180bf9ab0, (uint64_t*)0x180bf9b10, (uint64_t*)0x180bf9b70,
+    (uint64_t*)0x180bf9bd0, (uint64_t*)0x180bf9c30, (uint64_t*)0x180bf9c90,
+    (uint64_t*)0x180bf9cf0, (uint64_t*)0x180bf9d50, (uint64_t*)0x180bf9db0,
+    (uint64_t*)0x180bf9e10, (uint64_t*)0x180bf9e70, (uint64_t*)0x180bf9ed0,
+    (uint64_t*)0x180bf9f30, (uint64_t*)0x180bf9f90, (uint64_t*)0x180bf9ff0,
+    (uint64_t*)0x180bfa050, (uint64_t*)0x180bfa0b0, (uint64_t*)0x180bfa110,
+    (uint64_t*)0x180bfa170, (uint64_t*)0x180bfa1d0, (uint64_t*)0x180bfa230,
+    (uint64_t*)0x180bfa290
+};
+
 // =============================================================================
 // 系统模块初始化器 (SystemModuleInitializer)
 // =============================================================================
