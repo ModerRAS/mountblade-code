@@ -10,25 +10,25 @@
 //==============================================================================
 
 // 数据结构操作函数别名
-#define FUN_18008d810 CoreEngine_DataStructureProcessor
-#define FUN_18008da10 CoreEngine_TreeStructureSearcher
-#define FUN_18008dfa0 CoreEngine_DataStructureInserter
-#define FUN_18008e0f0 CoreEngine_DataStructureNodeManager
-#define FUN_18008eaf0 CoreEngine_DataStructureMerger
+#define CoreEngine_DataStructureProcessor CoreEngine_DataStructureProcessor
+#define CoreEngine_TreeStructureSearcher CoreEngine_TreeStructureSearcher
+#define CoreEngine_DataStructureInserter CoreEngine_DataStructureInserter
+#define CoreEngine_DataStructureNodeManager CoreEngine_DataStructureNodeManager
+#define CoreEngine_DataStructureMerger CoreEngine_DataStructureMerger
 
 // 内存管理函数别名
-#define FUN_18062b420 CoreEngine_MemoryPoolAllocator
-#define FUN_18064e900 CoreEngine_MemoryCleanupHandler
+#define CoreEngine_MemoryPoolAllocator CoreEngine_MemoryPoolAllocator
+#define CoreEngine_MemoryCleanupHandler CoreEngine_MemoryCleanupHandler
 
 // 数据处理函数别名
-#define FUN_18004b730 CoreEngine_DataOperationProcessor
-#define FUN_180058370 CoreEngine_DataFieldProcessor
-#define FUN_18004b640 CoreEngine_DataSizeCalculator
+#define CoreEngine_DataOperationProcessor CoreEngine_DataOperationProcessor
+#define CoreEngine_DataFieldProcessor CoreEngine_DataFieldProcessor
+#define CoreEngine_DataSizeCalculator CoreEngine_DataSizeCalculator
 
 // 系统工具函数别名
-#define FUN_180089640 CoreEngine_ElementDeallocator
-#define FUN_180627ae0 CoreEngine_DataStructureInitializer
-#define FUN_18066bdc0 CoreEngine_NodeInsertionHandler
+#define CoreEngine_ElementDeallocator CoreEngine_ElementDeallocator
+#define CoreEngine_DataStructureInitializer CoreEngine_DataStructureInitializer
+#define CoreEngine_NodeInsertionHandler CoreEngine_NodeInsertionHandler
 
 //==============================================================================
 // 系统常量定义
@@ -337,7 +337,7 @@ void priority_queue_insert(uint64_t *queue_head,uint64_t element,ulonglong *prio
   }
   if (*(ulonglong *)(new_node + 0x20) <= (ulonglong)queue_node[4]) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900(new_node);
+    CoreEngine_MemoryCleanupHandler(new_node);
   }
 INSERT_AT_HEAD:
   if ((queue_node == queue_head) || (*(ulonglong *)(new_node + 0x20) < (ulonglong)queue_node[4])) {
@@ -347,7 +347,7 @@ INSERT_AT_HEAD:
     direction = 1;
   }
                     // WARNING: Subroutine does not return
-  FUN_18066bdc0(new_node,queue_node,queue_head,direction);
+  CoreEngine_NodeInsertionHandler(new_node,queue_node,queue_head,direction);
 }
 
 
@@ -358,12 +358,12 @@ void recursive_data_cleanup(uint64_t param_1,uint64_t *node_ptr,uint64_t param_3
 
 {
   if (node_ptr != (uint64_t *)0x0) {
-    FUN_18008d810(param_1,*node_ptr,param_3,param_4,0xfffffffffffffffe);
-    FUN_18004b730();
-    FUN_180058370(node_ptr + 0xc,node_ptr[0xe]);
-    FUN_18004b730(node_ptr + 6);
+    CoreEngine_DataStructureProcessor(param_1,*node_ptr,param_3,param_4,0xfffffffffffffffe);
+    CoreEngine_DataOperationProcessor();
+    CoreEngine_DataFieldProcessor(node_ptr + 0xc,node_ptr[0xe]);
+    CoreEngine_DataOperationProcessor(node_ptr + 6);
                     // WARNING: Subroutine does not return
-    FUN_18064e900(node_ptr);
+    CoreEngine_MemoryCleanupHandler(node_ptr);
   }
   return;
 }
@@ -404,7 +404,7 @@ INSERT_DIRECTLY:
       compare_node = current_node;
 PERFORM_INSERT:
       if (compare_node != (longlong *)0x0) {
-        FUN_18008dfa0(structure_head,result_ptr,compare_node,operation_flag,param_5);
+        CoreEngine_DataStructureInserter(structure_head,result_ptr,compare_node,operation_flag,param_5);
         return result_ptr;
       }
     }
@@ -435,7 +435,7 @@ CHECK_POSITION:
     compare_result = memcmp(current_node + 4,param_5,0x10);
     if (-1 < compare_result) goto RETURN_RESULT;
   }
-  FUN_18008dfa0(structure_head,&stack_ptr,current_node,0,param_5);
+  CoreEngine_DataStructureInserter(structure_head,&stack_ptr,current_node,0,param_5);
   current_node = stack_ptr;
 RETURN_RESULT:
   *result_ptr = current_node;
@@ -481,7 +481,7 @@ INSERT_NEW_NODE:
       compare_node = current_node;
 DO_INSERT:
       if (compare_node != (longlong *)0x0) {
-        FUN_18008e0f0(structure_head,result_ptr,compare_node,operation_flag,node_data);
+        CoreEngine_DataStructureNodeManager(structure_head,result_ptr,compare_node,operation_flag,node_data);
         return result_ptr;
       }
     }
@@ -518,7 +518,7 @@ ALLOCATE_NEW_NODE:
   else {
     operation_flag = 1;
   }
-  allocation_size = FUN_18062b420(system_memory_pool_ptr,0x38,(char)structure_head[5]);
+  allocation_size = CoreEngine_MemoryPoolAllocator(system_memory_pool_ptr,0x38,(char)structure_head[5]);
   data_field1 = node_data[1];
   data_field2 = node_data[2];
   data_field3 = node_data[3];
@@ -528,7 +528,7 @@ ALLOCATE_NEW_NODE:
   *(int32_t *)(allocation_size + 0x2c) = data_field3;
   *(int32_t *)(allocation_size + 0x30) = 0;
                     // WARNING: Subroutine does not return
-  FUN_18066bdc0(allocation_size,temp_node,structure_head,operation_flag);
+  CoreEngine_NodeInsertionHandler(allocation_size,temp_node,structure_head,operation_flag);
 }
 
 
@@ -549,7 +549,7 @@ void data_copy_and_initialize(int32_t source_data)
   if (source_ptr != base_offset) {
     memcmp(source_data,source_ptr + 0x20,0x10);
   }
-  new_node = FUN_18062b420(system_memory_pool_ptr,0x38,*(int8_t *)(base_offset + 0x28));
+  new_node = CoreEngine_MemoryPoolAllocator(system_memory_pool_ptr,0x38,*(int8_t *)(base_offset + 0x28));
   copy_field1 = data_ptr[1];
   copy_field2 = data_ptr[2];
   copy_field3 = data_ptr[3];
@@ -559,7 +559,7 @@ void data_copy_and_initialize(int32_t source_data)
   *(int32_t *)(new_node + 0x2c) = copy_field3;
   *(int32_t *)(new_node + 0x30) = 0;
                     // WARNING: Subroutine does not return
-  FUN_18066bdc0(new_node);
+  CoreEngine_NodeInsertionHandler(new_node);
 }
 
 
@@ -610,7 +610,7 @@ void dynamic_array_cleanup(longlong *array_ptr,ulonglong clear_count)
     total_elements = 0;
   }
   else {
-    total_elements = FUN_18062b420(system_memory_pool_ptr,clear_count * 0x30,(char)array_ptr[3]);
+    total_elements = CoreEngine_MemoryPoolAllocator(system_memory_pool_ptr,clear_count * 0x30,(char)array_ptr[3]);
     element_count = *array_ptr;
     array_end = array_ptr[1];
   }
@@ -624,7 +624,7 @@ void dynamic_array_cleanup(longlong *array_ptr,ulonglong clear_count)
   }
   if (*array_ptr != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    CoreEngine_MemoryCleanupHandler();
   }
   *array_ptr = total_elements;
   array_ptr[2] = clear_count * 0x30 + total_elements;
@@ -660,7 +660,7 @@ void dynamic_array_expand(void)
     new_size = 0;
   }
   else {
-    new_size = FUN_18062b420(system_memory_pool_ptr,expansion_factor * 0x30,(char)array_ptr[3]);
+    new_size = CoreEngine_MemoryPoolAllocator(system_memory_pool_ptr,expansion_factor * 0x30,(char)array_ptr[3]);
     new_capacity = *array_ptr;
     old_end = array_ptr[1];
   }
@@ -674,7 +674,7 @@ void dynamic_array_expand(void)
   }
   if (*array_ptr != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    CoreEngine_MemoryCleanupHandler();
   }
   *array_ptr = new_size;
   array_ptr[2] = expansion_factor * 0x30 + new_size;
@@ -734,7 +734,7 @@ void complex_data_structure_rebuild(longlong *structure_ptr,longlong data_size,u
     if (stack_offset == 0) goto ALLOCATION_COMPLETE;
   }
   element_ptr = (uint64_t *)
-           FUN_18062b420(system_memory_pool_ptr,stack_offset * 0x60,(char)structure_ptr[3],param_4,
+           CoreEngine_MemoryPoolAllocator(system_memory_pool_ptr,stack_offset * 0x60,(char)structure_ptr[3],param_4,
                          expansion_flag);
   next_element = (uint64_t *)structure_ptr[1];
   current_element = (uint64_t *)*structure_ptr;
@@ -780,15 +780,15 @@ ALLOCATION_COMPLETE:
       current_element = current_element + 0xc;
     } while (next_element != (uint64_t *)structure_ptr[1]);
   }
-  FUN_180627ae0(temp_element,data_size);
-  FUN_18004b640(temp_element + 4,data_size + 0x20);
+  CoreEngine_DataStructureInitializer(temp_element,data_size);
+  CoreEngine_DataSizeCalculator(temp_element + 4,data_size + 0x20);
   *(int8_t *)(temp_element + 0xb) = *(int8_t *)(data_size + 0x58);
   *(int32_t *)((longlong)temp_element + 0x5c) = *(int32_t *)(data_size + 0x5c);
   element_count = structure_ptr[1];
   element_offset = *structure_ptr;
   if (element_offset != element_count) {
     do {
-      FUN_180089640(element_offset);
+      CoreEngine_ElementDeallocator(element_offset);
       element_offset = element_offset + 0x60;
     } while (element_offset != element_count);
     element_offset = *structure_ptr;
@@ -800,7 +800,7 @@ ALLOCATION_COMPLETE:
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900(element_offset);
+  CoreEngine_MemoryCleanupHandler(element_offset);
 }
 
 
@@ -819,7 +819,7 @@ void data_structure_node_insert(longlong structure_ptr,uint64_t param_2,longlong
   if ((insert_flag == '\0') && (insert_pos != structure_ptr)) {
     memcmp(node_data,insert_pos + 0x20,0x10,0,0xfffffffffffffffe);
   }
-  new_node = FUN_18062b420(system_memory_pool_ptr,0xc0,*(int8_t *)(structure_ptr + 0x28));
+  new_node = CoreEngine_MemoryPoolAllocator(system_memory_pool_ptr,0xc0,*(int8_t *)(structure_ptr + 0x28));
   data_field1 = node_data[1];
   data_field2 = node_data[2];
   data_field3 = node_data[3];
@@ -855,7 +855,7 @@ void data_structure_node_insert_variant(longlong structure_ptr,uint64_t param_2,
   }
   insert_direction = 0;
 DETERMINE_DIRECTION:
-  new_node = FUN_18062b420(system_memory_pool_ptr,0x38,*(int8_t *)(structure_ptr + 0x28));
+  new_node = CoreEngine_MemoryPoolAllocator(system_memory_pool_ptr,0x38,*(int8_t *)(structure_ptr + 0x28));
   data_field1 = node_data[1];
   data_field2 = node_data[2];
   data_field3 = node_data[3];
@@ -865,7 +865,7 @@ DETERMINE_DIRECTION:
   *(int32_t *)(new_node + 0x2c) = data_field3;
   *(int32_t *)(new_node + 0x30) = 0;
                     // WARNING: Subroutine does not return
-  FUN_18066bdc0(new_node,insert_pos,structure_ptr,insert_direction);
+  CoreEngine_NodeInsertionHandler(new_node,insert_pos,structure_ptr,insert_direction);
 }
 
 
@@ -916,7 +916,7 @@ void complex_data_structure_merge(longlong *target_ptr,uint64_t *source_ptr,long
       }
       temp_array = new_array;
       if (total_elements != 0) {
-        new_array = (int32_t *)FUN_18062b420(system_memory_pool_ptr,total_elements << 4,(char)target_ptr[3]);
+        new_array = (int32_t *)CoreEngine_MemoryPoolAllocator(system_memory_pool_ptr,total_elements << 4,(char)target_ptr[3]);
         merge_target = (uint64_t *)*target_ptr;
         temp_array = new_array;
       }
@@ -932,7 +932,7 @@ void complex_data_structure_merge(longlong *target_ptr,uint64_t *source_ptr,long
       }
       temp_offset = *range_end;
       temp_buffer[0] = *range_start;
-      new_array = (int32_t *)FUN_18008eaf0(temp_buffer,&temp_offset);
+      new_array = (int32_t *)CoreEngine_DataStructureMerger(temp_buffer,&temp_offset);
       merge_target = (uint64_t *)target_ptr[1];
       if (source_ptr != merge_target) {
         do {
@@ -950,7 +950,7 @@ void complex_data_structure_merge(longlong *target_ptr,uint64_t *source_ptr,long
       }
       if (*target_ptr != 0) {
                     // WARNING: Subroutine does not return
-        FUN_18064e900();
+        CoreEngine_MemoryCleanupHandler();
       }
       *target_ptr = (longlong)temp_array;
       target_ptr[2] = (longlong)(temp_array + total_elements * 4);
@@ -1009,7 +1009,7 @@ void complex_data_structure_merge(longlong *target_ptr,uint64_t *source_ptr,long
         }
         temp_offset = *range_end;
         temp_buffer[0] = current_pos;
-        FUN_18008eaf0(temp_buffer,&temp_offset,field_ptr1);
+        CoreEngine_DataStructureMerger(temp_buffer,&temp_offset,field_ptr1);
         merge_target = (uint64_t *)target_ptr[1];
         result_ptr = merge_target + ((longlong)temp_array - (longlong)new_array) * 2;
         merge_source = source_ptr;

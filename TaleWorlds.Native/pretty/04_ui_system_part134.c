@@ -120,24 +120,24 @@ struct UIMemoryBlock {
 void UISystem_SetComponentActivation(int32_t component_id, uint state_flags, uint64_t param_handle);
 
 /**
- * @brief 处理UI组件事件
+ * @brief 处理UI组件事件（事件处理函数）
  * @param component_handle 组件句柄
  * @param event_data 事件数据
  * @param callback_handle 回调句柄
  */
-void UISystem_ProcessComponentEvent(uint64_t component_handle, uint64_t event_data, uint64_t callback_handle);
+void UISystem_ProcessComponentEvent_EventHandler(uint64_t component_handle, uint64_t event_data, uint64_t callback_handle);
 
 /**
- * @brief 更新UI组件参数
+ * @brief 更新UI组件参数（参数更新函数）
  * @param component_handle 组件句柄
  * @param param_id 参数ID
  * @param update_flags 更新标志
  * @param value_handle 值句柄
  */
-void UISystem_UpdateComponentParameter(uint64_t component_handle, int32_t param_id, uint update_flags, uint64_t value_handle);
+void UISystem_UpdateComponentParameter_ParameterUpdater(uint64_t component_handle, int32_t param_id, uint update_flags, uint64_t value_handle);
 
 /**
- * @brief 查找UI组件
+ * @brief 查找UI组件（搜索算法函数）
  * @param search_context 搜索上下文
  * @param search_criteria 搜索条件
  * @param result_handle 结果句柄
@@ -145,10 +145,10 @@ void UISystem_UpdateComponentParameter(uint64_t component_handle, int32_t param_
  * @param output_handle 输出句柄
  * @return 操作状态码
  */
-ulonglong UISystem_FindComponent(uint64_t search_context, longlong search_criteria, uint64_t result_handle, int8_t search_mode, uint64_t *output_handle);
+ulonglong UISystem_FindComponent_SearchAlgorithm(uint64_t search_context, longlong search_criteria, uint64_t result_handle, int8_t search_mode, uint64_t *output_handle);
 
 /**
- * @brief 高级组件搜索
+ * @brief 高级组件搜索（高级搜索算法）
  * @param search_handle 搜索句柄
  * @param criteria_handle 条件句柄
  * @param options 选项
@@ -156,50 +156,50 @@ ulonglong UISystem_FindComponent(uint64_t search_context, longlong search_criter
  * @param result_ptr 结果指针
  * @return 操作状态码
  */
-ulonglong UISystem_AdvancedComponentSearch(longlong search_handle, longlong criteria_handle, uint64_t options, int8_t mode, longlong *result_ptr);
+ulonglong UISystem_AdvancedComponentSearch_AdvancedSearch(longlong search_handle, longlong criteria_handle, uint64_t options, int8_t mode, longlong *result_ptr);
 
 /**
- * @brief 基于距离的组件搜索
+ * @brief 基于距离的组件搜索（距离筛选函数）
  * @param distance 距离值
  * @return 操作状态码
  */
-ulonglong UISystem_DistanceBasedSearch(float distance);
+ulonglong UISystem_DistanceBasedSearch_DistanceFilter(float distance);
 
 /**
- * @brief 组件搜索thunk函数
+ * @brief 组件搜索thunk函数（搜索跳转函数）
  * @return 操作状态码
  */
-ulonglong UISystem_ComponentSearchThunk(void);
+ulonglong UISystem_ComponentSearchThunk_SearchJump(void);
 
 /**
- * @brief 简化组件搜索
+ * @brief 简化组件搜索（简化搜索算法）
  * @return 操作状态码
  */
-ulonglong UISystem_SimpleComponentSearch(void);
+ulonglong UISystem_SimpleComponentSearch_SimpleSearch(void);
 
 /**
- * @brief 通用组件搜索
+ * @brief 通用组件搜索（通用搜索算法）
  * @return 操作状态码
  */
-ulonglong UISystem_GeneralComponentSearch(void);
+ulonglong UISystem_GeneralComponentSearch_GeneralSearch(void);
 
 /**
- * @brief 设置UI组件布局
+ * @brief 设置UI组件布局（布局管理函数）
  * @param layout_id 布局ID
  * @param component_id 组件ID
  * @param layout_params 布局参数
  * @param alignment 对齐方式
  */
-void UISystem_SetComponentLayout(int32_t layout_id, int32_t component_id, uint64_t layout_params, int32_t alignment);
+void UISystem_SetComponentLayout_LayoutManager(int32_t layout_id, int32_t component_id, uint64_t layout_params, int32_t alignment);
 
 /**
- * @brief 分配UI组件数据
+ * @brief 分配UI组件数据（内存分配函数）
  * @param context_handle 上下文句柄
  * @param data_ptr 数据指针
  * @param result_ptr 结果指针
  * @return 操作状态码
  */
-uint64_t UISystem_AllocateComponentData(longlong context_handle, longlong *data_ptr, uint64_t *result_ptr);
+uint64_t UISystem_AllocateComponentData_MemoryAllocator(longlong context_handle, longlong *data_ptr, uint64_t *result_ptr);
 
 /**
  * @brief 调整数组容量
