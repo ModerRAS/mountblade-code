@@ -169,6 +169,7 @@ typedef struct {
 #define InitializationSystemNodeHandler4 FUN_18025c000
 #define InitializationSystemNodeHandler5 FUN_18025d270
 #define InitializationSystemNodeHandler6 FUN_18025e330
+#define InitializationSystemStringProcessor FUN_180623800
 #define InitializationSystemConfigData1 unknown_var_7304_ptr
 #define InitializationSystemConfigData2 unknown_var_4992_ptr
 #define InitializationSystemConfigData3 unknown_var_6248_ptr
@@ -805,7 +806,7 @@ void InitializationSystem_RegistrySearchAndInsert9(void)
     registry_root = (void**)InitializationSystemRegistryRoot();
     root_node = (void*)*registry_root;
     node_flag = *(uint8_t*)((uint64_t)root_node[1] + 0x19);
-    node_handler = FUN_180073930;
+    node_handler = InitializationSystemNodeHandler2;
     parent_node = root_node;
     current_node = (void*)root_node[1];
     
@@ -1273,7 +1274,7 @@ void InitializationSystem_RegistrySearchAndInsert18(void)
     registry_root = (void**)InitializationSystemRegistryRoot();
     root_node = (void*)*registry_root;
     node_flag = *(uint8_t*)((uint64_t)root_node[1] + 0x19);
-    node_handler = &unknown_var_2048_ptr;
+    node_handler = &InitializationSystemHandlerData;
     parent_node = root_node;
     current_node = (void*)root_node[1];
     
@@ -1301,7 +1302,7 @@ void InitializationSystem_RegistrySearchAndInsert18(void)
     // 设置节点数据
     parent_node[6] = 0x4384dcc4b6d3f417;
     parent_node[7] = 0x92a15d52fe2679bd;
-    parent_node[8] = &unknown_var_7704_ptr;
+    parent_node[8] = &InitializationSystemNodeData16;
     parent_node[9] = 0;
     parent_node[10] = node_handler;
     
@@ -1359,7 +1360,7 @@ void InitializationSystem_RegistrySearchAndInsert19(void)
     // 设置节点数据
     parent_node[6] = 0x4140994454d56503;
     parent_node[7] = 0x399eced9bb5517ad;
-    parent_node[8] = &unknown_var_7728_ptr;
+    parent_node[8] = &InitializationSystemNodeData17;
     parent_node[9] = 0;
     parent_node[10] = node_value;
     
@@ -1436,7 +1437,7 @@ void InitializationSystem_RegistrySearchAndInsert20(void)
     // 设置节点数据
     parent_node[6] = 0x45425dc186a5d575;
     parent_node[7] = 0xfab48faa65382fa5;
-    parent_node[8] = &unknown_var_7824_ptr;
+    parent_node[8] = &InitializationSystemNodeData18;
     parent_node[9] = 0;
     parent_node[10] = node_handler;
     
@@ -1756,7 +1757,7 @@ void InitializationSystem_RegistrySearchAndInsert26(void)
     registry_root = (void**)InitializationSystemRegistryRoot();
     root_node = (void*)*registry_root;
     node_flag = *(uint8_t*)((uint64_t)root_node[1] + 0x19);
-    node_handler = &unknown_var_2048_ptr;
+    node_handler = &InitializationSystemHandlerData;
     parent_node = root_node;
     current_node = (void*)root_node[1];
     
@@ -1784,7 +1785,7 @@ void InitializationSystem_RegistrySearchAndInsert26(void)
     // 设置节点数据
     parent_node[6] = 0x4384dcc4b6d3f417;
     parent_node[7] = 0x92a15d52fe2679bd;
-    parent_node[8] = &unknown_var_7704_ptr;
+    parent_node[8] = &InitializationSystemNodeData16;
     parent_node[9] = 0;
     parent_node[10] = node_handler;
     

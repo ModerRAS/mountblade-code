@@ -867,7 +867,8 @@ void UISystem_SetComponentLayout_LayoutManager(int32_t param_1,int32_t param_2,u
 
 
 
-uint64_t FUN_180747d80(longlong param_1,longlong *param_2,uint64_t *param_3)
+// 函数: uint64_t FUN_180747d80(longlong param_1,longlong *param_2,uint64_t *param_3) - UI组件内存分配函数
+uint64_t UISystem_AllocateComponentData_MemoryAllocator(longlong param_1,longlong *param_2,uint64_t *param_3)
 
 {
   uint64_t uVar1;

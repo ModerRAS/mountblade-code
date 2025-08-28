@@ -305,7 +305,7 @@ void RenderResource_Cleanup(longlong resource_handle)
       *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) - 1;
     }
     // 释放附加资源内存
-    FUN_180059ba0(resource_data, SYSTEM_DATA_MANAGER_B);
+    SystemMemoryAllocator(resource_data, SYSTEM_DATA_MANAGER_B);
   }
   
   // 清理资源句柄
@@ -399,7 +399,7 @@ void RenderObject_Release(longlong object_handle)
       do {
         context_data = *(longlong *)(index + *(longlong *)(object_handle + RENDER_REFERENCE_OFFSET));
         if (context_data != 0) {
-          FUN_180296ad0(context_data);
+          SystemDataTransformer(context_data);
           if (SYSTEM_DATA_MANAGER_A != 0) {
             *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) - 1;
           }
@@ -428,7 +428,7 @@ void RenderObject_Release(longlong object_handle)
     *(int *)(context_data + 0x3a8) = *(int *)(context_data + 0x3a8) - 1;
   }
   // 释放主要配置数据
-  FUN_180059ba0(resource_data, SYSTEM_DATA_MANAGER_B);
+  SystemMemoryAllocator(resource_data, SYSTEM_DATA_MANAGER_B);
 }
 
 /**
@@ -520,7 +520,7 @@ void RenderObject_ReleaseByIndex(longlong object_handle, longlong index)
       do {
         context_data = *(longlong *)(iteration_index + *(longlong *)(object_handle + RENDER_REFERENCE_OFFSET));
         if (context_data != 0) {
-          FUN_180296ad0(context_data);
+          SystemDataTransformer(context_data);
           if (SYSTEM_DATA_MANAGER_A != 0) {
             *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) - 1;
           }
@@ -550,7 +550,7 @@ void RenderObject_ReleaseByIndex(longlong object_handle, longlong index)
     *(int *)(context_data + 0x3a8) = *(int *)(context_data + 0x3a8) - 1;
   }
   // 释放主要配置数据
-  FUN_180059ba0(resource_data, SYSTEM_DATA_MANAGER_B);
+  SystemMemoryAllocator(resource_data, SYSTEM_DATA_MANAGER_B);
 }
 
 /**
@@ -588,7 +588,7 @@ void RenderResource_BatchCleanup(void)
         *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) - 1;
       }
       // 释放资源内存
-      FUN_180059ba0(resource_data, SYSTEM_DATA_MANAGER_B);
+      SystemMemoryAllocator(resource_data, SYSTEM_DATA_MANAGER_B);
     }
     resource_count = resource_count + 1;
     context_data = context_data + 8;
@@ -603,7 +603,7 @@ void RenderResource_BatchCleanup(void)
       *resource_counter = *resource_counter - 1;
     }
     // 释放资源表内存
-    FUN_180059ba0(resource_data, SYSTEM_DATA_MANAGER_B);
+    SystemMemoryAllocator(resource_data, SYSTEM_DATA_MANAGER_B);
   }
   return;
 }
@@ -639,7 +639,7 @@ void RenderResource_QuickRelease(longlong resource_handle, uint64_t context_data
       *resource_counter = *resource_counter - 1;
     }
     // 快速释放资源
-    FUN_180059ba0(resource_data, SYSTEM_DATA_MANAGER_B);
+    SystemMemoryAllocator(resource_data, SYSTEM_DATA_MANAGER_B);
   }
   return;
 }
