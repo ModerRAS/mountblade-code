@@ -50,6 +50,26 @@
 #define DELIMITER_CHARS "=<>[]/"
 #define SPECIAL_CHARS "NONAME"
 
+/* 系统常量定义 */
+#define ERROR_INVALID_FORMAT 0xffffff7d
+#define ERROR_BUFFER_OVERFLOW 0xffffff75
+#define ERROR_PROCESSING_FAILED 0xfffffffd
+#define GLOBAL_DATA_ADDRESS 0x1000
+#define GLOBAL_BUFFER_ADDRESS 0x2000
+#define GLOBAL_STACK_CHECKSUM 0x12345678
+#define GLOBAL_PROCESS_BUFFER 0x3000
+#define GLOBAL_STRING_TABLE 0x4000
+#define GLOBAL_STRING_TABLE2 0x4001
+#define GLOBAL_STRING_TABLE3 0x4002
+#define GLOBAL_STRING_TABLE4 0x4003
+#define GLOBAL_STRING_TABLE5 0x4004
+#define GLOBAL_STRING_TABLE6 0x4005
+#define GLOBAL_STRING_TABLE7 0x4006
+#define GLOBAL_STRING_TABLE8 0x4007
+#define GLOBAL_STRING_TABLE9 0x4008
+#define STACK_BASE_ADDRESS 0x5000
+#define STACK_TEMP_BUFFER 0x5100
+
 /*
  * 函数别名定义
  */
@@ -133,7 +153,7 @@ void advanced_data_processor(void)
   
   /* 系统资源初始化检查 */
   if (*(int *)(system_context + 0x110) == 0) {
-    system_result = func_0x000180819040();
+    system_result = SystemInitializer();
     *(int32_t *)(system_context + 0x110) = system_result;
   }
   
@@ -141,7 +161,7 @@ void advanced_data_processor(void)
   *(int32_t *)(system_context + 0x18) = parameter_data;
   
   /* 系统栈处理 */
-  FUN_1808fc050(*(ulonglong *)(stack_pointer + 0x218) ^ (ulonglong)&stack0x00000000);
+  SystemSecurityChecker(*(ulonglong *)(stack_pointer + 0x218) ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -1172,7 +1192,7 @@ void system_initializer(longlong system_context)
         *(int32_t *)(system_context + 0x18) = 0;
         init_result = system_check_function(*(uint64_t *)(system_context + 0x170));
         if (init_result == 0) {
-          init_flag = CONCAT71(init_flag._1_7_, 1);
+          init_flag = ((init_flag & 0xFE) | 1);
           /* 执行系统初始化 - 此函数不返回 */
           system_data_processing_function(*(uint64_t *)(GLOBAL_DATA_ADDRESS + 0x1a0), *(uint64_t *)(system_context + 0x170),
                         &GLOBAL_PROCESS_BUFFER, 0xb4);
@@ -1215,27 +1235,27 @@ void resource_initializer(void)
   longlong temp_string;
   ulonglong stack_checksum;
   
-  init_result = string_compare_function(&GLOBAL_STRING_TABLE, &stack_temp_buffer);
+  init_result = string_compare_function(&GLOBAL_STRING_TABLE, &STACK_TEMP_BUFFER);
   if (init_result == 0) {
     init_result = resource_init_function1();
   }
   else {
-    init_result = string_compare_function(&GLOBAL_STRING_TABLE2, &stack_temp_buffer, 10);
+    init_result = string_compare_function(&GLOBAL_STRING_TABLE2, &STACK_TEMP_BUFFER, 10);
     if (init_result == 0) {
       init_result = resource_init_function2();
     }
     else {
-      init_result = string_compare_function(&GLOBAL_STRING_TABLE3, &stack_temp_buffer, 0xc);
+      init_result = string_compare_function(&GLOBAL_STRING_TABLE3, &STACK_TEMP_BUFFER, 0xc);
       if (init_result == 0) {
         init_result = resource_init_function3();
       }
       else {
-        init_result = string_compare_function(&GLOBAL_STRING_TABLE4, &stack_temp_buffer, 0xc);
+        init_result = string_compare_function(&GLOBAL_STRING_TABLE4, &STACK_TEMP_BUFFER, 0xc);
         if (init_result == 0) {
           init_result = resource_init_function4();
         }
         else {
-          init_result = string_compare_function(&GLOBAL_STRING_TABLE5, &stack_temp_buffer, 0xc);
+          init_result = string_compare_function(&GLOBAL_STRING_TABLE5, &STACK_TEMP_BUFFER, 0xc);
           if (init_result == 0) {
             init_result = resource_init_function5();
           }

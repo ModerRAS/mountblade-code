@@ -146,28 +146,28 @@
 #define NetworkingSystem_SessionProcessor NetworkingSystem_SessionProcessor
 
 // 网络系统连接管理器4
-#define NetworkingSystem_ConnectionManager4 FUN_1808a1870
+#define NetworkingSystem_ConnectionManager4 NetworkingSystem_ConnectionManager4
 
 // 网络系统连接管理器5
-#define NetworkingSystem_ConnectionManager5 FUN_1808a3d50
+#define NetworkingSystem_ConnectionManager5 NetworkingSystem_ConnectionManager5
 
 // 网络系统协议栈管理器2
-#define NetworkingSystem_ProtocolStackManager2 FUN_1808a4fb0
+#define NetworkingSystem_ProtocolStackManager2 NetworkingSystem_ProtocolStackManager2
 
 // 网络系统连接管理器6
-#define NetworkingSystem_ConnectionManager6 FUN_1808a6e50
+#define NetworkingSystem_ConnectionManager6 NetworkingSystem_ConnectionManager6
 
 // 网络系统协议管理器2
-#define NetworkingSystem_ProtocolManager2 FUN_1808a7b00
+#define NetworkingSystem_ProtocolManager2 NetworkingSystem_ProtocolManager2
 
 // 网络系统性能优化器
-#define NetworkingSystem_PerformanceOptimizer FUN_1808a87d0
+#define NetworkingSystem_PerformanceOptimizer NetworkingSystem_PerformanceOptimizer
 
 // 网络系统连接管理器7
-#define NetworkingSystem_ConnectionManager7 FUN_1808acf30
+#define NetworkingSystem_ConnectionManager7 NetworkingSystem_ConnectionManager7
 
 // 网络系统连接管理器8
-#define NetworkingSystem_ConnectionManager8 FUN_1808afd90
+#define NetworkingSystem_ConnectionManager8 NetworkingSystem_ConnectionManager8
 
 // 网络系统协议栈管理器3
 #define NetworkingSystem_ProtocolStackManager3 NetworkingSystem_DataProcessor
@@ -325,7 +325,7 @@ uint64_t NetworkingSystem_ConnectionManager(longlong param_1,longlong *param_2)
       uVar1 = NetworkingSystem_ConnectionManager2(*param_2,param_1 + 0x10);
       if (((int)uVar1 == 0) &&
          ((NETWORKING_MAX_CONNECTIONS < *(uint *)(param_2 + 8) ||
-          (uVar1 = FUN_1808afd90(param_2,param_1 + 0x44), (int)uVar1 == 0)))) {
+          (uVar1 = NetworkingSystem_ConnectionManager8(param_2,param_1 + 0x44), (int)uVar1 == 0)))) {
         if (*(int *)(param_2[1] + 0x18) == 0) {
           // 处理连接类型映射
           switch(*(int32_t *)(param_1 + 0x60)) {
@@ -486,7 +486,7 @@ uint64_t NetworkingSystem_StateProcessor(void)
   if (*(int *)(in_RAX + 0x18) == 0) {
     uVar1 = NetworkingSystem_ConnectionManager2(*unaff_RBX,unaff_RSI + 0x10);
     if (((int)uVar1 == 0) &&
-       ((NETWORKING_MAX_CONNECTIONS < *(uint *)(unaff_RBX + 8) || (uVar1 = FUN_1808afd90(), (int)uVar1 == 0)))) {
+       ((NETWORKING_MAX_CONNECTIONS < *(uint *)(unaff_RBX + 8) || (uVar1 = NetworkingSystem_ConnectionManager8(), (int)uVar1 == 0)))) {
       if (*(int *)(unaff_RBX[1] + 0x18) == 0) {
         // 处理状态类型映射
         switch(*(int32_t *)(unaff_RSI + 0x60)) {
@@ -646,7 +646,7 @@ void NetworkingSystem_ErrorHandler(void)
   // 处理错误类型
   if (in_EAX == 0x1b) {
     if (*(uint *)(unaff_RBX + 8) < NETWORKING_PROTOCOL_VERSION) {
-      iVar1 = FUN_1808a87d0();
+      iVar1 = NetworkingSystem_PerformanceOptimizer();
       if (iVar1 != 0) {
         return;
       }
@@ -669,7 +669,7 @@ void NetworkingSystem_ErrorHandler(void)
     }
     iVar1 = 0;
     do {
-      iVar2 = FUN_1808acf30();
+      iVar2 = NetworkingSystem_ConnectionManager7();
       if (iVar2 != 0) {
         return;
       }
@@ -766,7 +766,7 @@ ulonglong NetworkingSystem_PacketProcessor(longlong param_1,uint64_t *param_2,in
       uVar1 = NetworkingSystem_ConnectionManager2(*param_2,param_1 + 0x10);
       uVar2 = (ulonglong)uVar1;
       if ((uVar1 == 0) &&
-         ((param_5 == '\0' || (uVar2 = FUN_1808a1870(param_1 + 0x48,param_2), (int)uVar2 == 0)))) {
+         ((param_5 == '\0' || (uVar2 = NetworkingSystem_ConnectionManager4(param_1 + 0x48,param_2), (int)uVar2 == 0)))) {
                     // 数据包处理成功，执行后续操作
         NetworkingSystem_ResourceManager(param_2,auStack_70);
       }
@@ -807,7 +807,7 @@ ulonglong NetworkingSystem_RouteManager(void)
       uVar1 = NetworkingSystem_ConnectionManager2(*unaff_RBX,unaff_RBP + 0x10);
       uVar2 = (ulonglong)uVar1;
       if ((uVar1 == 0) &&
-         ((in_stack_000000d0 == '\0' || (uVar2 = FUN_1808a1870(unaff_RBP + 0x48), (int)uVar2 == 0)))
+         ((in_stack_000000d0 == '\0' || (uVar2 = NetworkingSystem_ConnectionManager4(unaff_RBP + 0x48), (int)uVar2 == 0)))
          ) {
                     // 路由管理成功，执行后续操作
         NetworkingSystem_ResourceManager();
@@ -1355,7 +1355,7 @@ void NetworkingSystem_ConnectionCleaner(longlong param_1,uint64_t param_2)
   // 执行连接清理
   iVar1 = NetworkingSystem_DataProcessor(param_2,auStack_28,0,PROTOCOL_ID_ORTC,0);
   if (iVar1 == 0) {
-    iVar1 = FUN_1808a7b00(param_2,param_1 + 8);
+    iVar1 = NetworkingSystem_ProtocolManager2(param_2,param_1 + 8);
     if (iVar1 == 0) {
                     // 连接清理成功，执行后续操作
       NetworkingSystem_ResourceManager(param_2,auStack_28);
@@ -1396,7 +1396,7 @@ uint64_t NetworkingSystem_ValidationProcessor(longlong param_1,uint64_t *param_2
         return 0x1c;
       }
       uVar1 = NetworkingSystem_ConnectionManager2(*param_2,param_1 + 0x20);
-      if (((int)uVar1 == 0) && (uVar1 = FUN_1808a4fb0(param_2,param_1 + 0x30,1,0), (int)uVar1 == 0))
+      if (((int)uVar1 == 0) && (uVar1 = NetworkingSystem_ProtocolStackManager2(param_2,param_1 + 0x30,1,0), (int)uVar1 == 0))
       {
                     // 验证处理成功，执行后续操作
         NetworkingSystem_ResourceManager(param_2,auStack_28);
@@ -1577,7 +1577,7 @@ uint64_t NetworkingSystem_ProtocolStackManager(longlong param_1,uint64_t *param_
       }
       uVar1 = NetworkingSystem_ConnectionManager2(*param_2,param_1 + 0xd8);
       if ((((int)uVar1 == 0) && (uVar1 = NetworkingSystem_ConnectionStatusChecker(param_2,param_1 + 0xf8), (int)uVar1 == 0)) &&
-         (uVar1 = FUN_1808a6e50(param_2,param_1 + 0xe8,1,param_1), (int)uVar1 == 0)) {
+         (uVar1 = NetworkingSystem_ConnectionManager6(param_2,param_1 + 0xe8,1,param_1), (int)uVar1 == 0)) {
                     // 协议栈管理成功，执行后续操作
         NetworkingSystem_ResourceManager(param_2,auStack_48);
       }
@@ -1608,7 +1608,7 @@ uint64_t NetworkingSystem_EventHandler(uint64_t param_1,longlong param_2)
   
   // 处理网络事件
   if (*(uint *)(param_2 + 0x40) < NETWORKING_MAX_SESSIONS) {
-    uVar1 = FUN_1808a3d50(param_1,param_2,PROTOCOL_ID_TNVE);
+    uVar1 = NetworkingSystem_ConnectionManager5(param_1,param_2,PROTOCOL_ID_TNVE);
     if ((int)uVar1 == 0) {
       uVar1 = 0;
     }
@@ -1616,7 +1616,7 @@ uint64_t NetworkingSystem_EventHandler(uint64_t param_1,longlong param_2)
   else {
     uVar1 = NetworkingSystem_DataProcessor(param_2,auStack_28,1,PROTOCOL_ID_LIST,PROTOCOL_ID_TNVE);
     if ((int)uVar1 == 0) {
-      uVar1 = FUN_1808a3d50(param_1,param_2,PROTOCOL_ID_BTVE);
+      uVar1 = NetworkingSystem_ConnectionManager5(param_1,param_2,PROTOCOL_ID_BTVE);
       if ((int)uVar1 == 0) {
         uVar1 = NetworkingSystem_SessionProcessor(param_1,param_2);
         if ((int)uVar1 == 0) {
