@@ -681,106 +681,105 @@ undefined8 * move_8byte_array_segment(undefined8 *src_start, undefined8 *src_end
 
 
 
-undefined8 * FUN_180189b30(undefined8 *param_1,undefined8 *param_2,undefined8 *param_3)
-
+// 函数：复制5字节数组段
+undefined8 * copy_5byte_array_segment(undefined8 *src_start, undefined8 *src_end, undefined8 *dest_ptr)
 {
-  undefined8 uVar1;
+  undefined8 temp_value;
   
-  if (param_1 != param_2) {
+  if (src_start != src_end) {
     do {
-      param_3[2] = 0;
-      param_3[3] = 0;
-      uVar1 = param_1[1];
-      *param_3 = *param_1;
-      param_3[1] = uVar1;
-      uVar1 = param_1[3];
-      param_3[2] = param_1[2];
-      param_3[3] = uVar1;
-      param_1[2] = 0;
-      param_1[3] = 0xf;
-      *(undefined1 *)param_1 = 0;
-      *(undefined1 *)(param_3 + 4) = *(undefined1 *)(param_1 + 4);
-      param_3 = param_3 + 5;
-      param_1 = param_1 + 5;
-    } while (param_1 != param_2);
+      dest_ptr[2] = 0;
+      dest_ptr[3] = 0;
+      temp_value = src_start[1];
+      *dest_ptr = *src_start;
+      dest_ptr[1] = temp_value;
+      temp_value = src_start[3];
+      dest_ptr[2] = src_start[2];
+      dest_ptr[3] = temp_value;
+      src_start[2] = 0;
+      src_start[3] = 0xf;
+      *(undefined1 *)src_start = 0;
+      *(undefined1 *)(dest_ptr + 4) = *(undefined1 *)(src_start + 4);
+      dest_ptr = dest_ptr + 5;
+      src_start = src_start + 5;
+    } while (src_start != src_end);
   }
-  return param_3;
+  return dest_ptr;
 }
 
 
 
-undefined8 * FUN_180189bc0(undefined8 *param_1,undefined8 *param_2,undefined8 *param_3)
-
+// 函数：复制结构体数组段
+undefined8 * copy_struct_array_segment(undefined8 *src_start, undefined8 *src_end, undefined8 *dest_ptr)
 {
-  undefined8 *puVar1;
-  undefined8 uVar2;
-  undefined8 *puVar3;
+  undefined8 *temp_ptr;
+  undefined8 temp_value;
+  undefined8 *src_ptr;
   
-  if (param_1 != param_2) {
-    puVar3 = param_1 + 3;
+  if (src_start != src_end) {
+    src_ptr = src_start + 3;
     do {
-      param_3[2] = 0;
-      param_3[3] = 0;
-      uVar2 = puVar3[-2];
-      *param_3 = puVar3[-3];
-      param_3[1] = uVar2;
-      uVar2 = *puVar3;
-      param_3[2] = puVar3[-1];
-      param_3[3] = uVar2;
-      puVar3[-1] = 0;
-      *puVar3 = 0xf;
-      *(undefined1 *)(puVar3 + -3) = 0;
-      *(undefined4 *)(param_3 + 4) = *(undefined4 *)(puVar3 + 1);
-      *(undefined4 *)((longlong)param_3 + 0x24) = *(undefined4 *)((longlong)puVar3 + 0xc);
-      param_3 = param_3 + 5;
-      puVar1 = puVar3 + 2;
-      puVar3 = puVar3 + 5;
-    } while (puVar1 != param_2);
+      dest_ptr[2] = 0;
+      dest_ptr[3] = 0;
+      temp_value = src_ptr[-2];
+      *dest_ptr = src_ptr[-3];
+      dest_ptr[1] = temp_value;
+      temp_value = *src_ptr;
+      dest_ptr[2] = src_ptr[-1];
+      dest_ptr[3] = temp_value;
+      src_ptr[-1] = 0;
+      *src_ptr = 0xf;
+      *(undefined1 *)(src_ptr + -3) = 0;
+      *(undefined4 *)(dest_ptr + 4) = *(undefined4 *)(src_ptr + 1);
+      *(undefined4 *)((longlong)dest_ptr + 0x24) = *(undefined4 *)((longlong)src_ptr + 0xc);
+      dest_ptr = dest_ptr + 5;
+      temp_ptr = src_ptr + 2;
+      src_ptr = src_ptr + 5;
+    } while (temp_ptr != src_end);
   }
-  return param_3;
+  return dest_ptr;
 }
 
 
 
-longlong * FUN_180189c50(longlong *param_1,longlong *param_2)
-
+// 函数：复制链表数据
+longlong * copy_linked_list_data(longlong *dest_ptr, longlong *src_ptr)
 {
-  longlong *plVar1;
-  longlong *plVar2;
-  longlong lVar3;
-  longlong *plVar4;
-  longlong lVar5;
-  undefined8 uVar6;
+  longlong *dest_node;
+  longlong *src_node;
+  longlong node_id;
+  longlong *temp_node;
+  longlong current_node;
+  undefined8 temp_value;
   
-  uVar6 = 0xfffffffffffffffe;
-  *param_1 = 0;
-  param_1[1] = 0;
-  lVar3 = FUN_180188490();
-  *param_1 = lVar3;
-  uVar6 = FUN_18018a8c0(param_1,*(undefined8 *)(*param_2 + 8),*param_1,(ulonglong)param_1 & 0xff,
-                        uVar6);
-  *(undefined8 *)(*param_1 + 8) = uVar6;
-  param_1[1] = param_2[1];
-  plVar1 = (longlong *)*param_1;
-  plVar2 = (longlong *)plVar1[1];
-  if (*(char *)(plVar1[1] + 0x19) == '\0') {
+  temp_value = 0xfffffffffffffffe;
+  *dest_ptr = 0;
+  dest_ptr[1] = 0;
+  node_id = get_next_available_id();
+  *dest_ptr = node_id;
+  temp_value = process_linked_list_node(dest_ptr, *(undefined8 *)(*src_ptr + 8), *dest_ptr, (ulonglong)dest_ptr & 0xff, temp_value);
+  *(undefined8 *)(*dest_ptr + 8) = temp_value;
+  dest_ptr[1] = src_ptr[1];
+  dest_node = (longlong *)*dest_ptr;
+  src_node = (longlong *)dest_node[1];
+  if (*(char *)(dest_node[1] + 0x19) == '\0') {
     do {
-      plVar4 = plVar2;
-      plVar2 = (longlong *)*plVar4;
-    } while (*(char *)((longlong)plVar2 + 0x19) == '\0');
-    *plVar1 = (longlong)plVar4;
-    lVar3 = *(longlong *)(*param_1 + 8);
+      temp_node = src_node;
+      src_node = (longlong *)*temp_node;
+    } while (*(char *)((longlong)src_node + 0x19) == '\0');
+    *dest_node = (longlong)temp_node;
+    node_id = *(longlong *)(*dest_ptr + 8);
     do {
-      lVar5 = lVar3;
-      lVar3 = *(longlong *)(lVar5 + 0x10);
-    } while (*(char *)(lVar3 + 0x19) == '\0');
-    *(longlong *)(*param_1 + 0x10) = lVar5;
+      current_node = node_id;
+      node_id = *(longlong *)(current_node + 0x10);
+    } while (*(char *)(node_id + 0x19) == '\0');
+    *(longlong *)(*dest_ptr + 0x10) = current_node;
   }
   else {
-    *plVar1 = (longlong)plVar1;
-    *(longlong *)(*param_1 + 0x10) = *param_1;
+    *dest_node = (longlong)dest_node;
+    *(longlong *)(*dest_ptr + 0x10) = *dest_ptr;
   }
-  return param_1;
+  return dest_ptr;
 }
 
 
