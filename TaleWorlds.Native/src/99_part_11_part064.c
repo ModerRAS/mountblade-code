@@ -491,16 +491,29 @@ undefined8 data_validator(longlong data_context, undefined8 validation_context, 
 
 
 
-// 函数: void FUN_1807c4170(longlong param_1,int param_2,int param_3)
-void FUN_1807c4170(longlong param_1,int param_2,int param_3)
+/**
+ * 数据乘法器 - 执行数据乘法运算
+ * 
+ * 功能：
+ * - 执行数据乘法运算
+ * - 更新数据计数器
+ * - 管理数据缓冲区
+ * - 处理运算结果
+ * 
+ * @param data_context 数据上下文指针
+ * @param multiplier 乘数
+ * @param multiplicand 被乘数
+ * @return 无返回值
+ */
+void data_multiplier(longlong data_context, int multiplier, int multiplicand)
 
 {
-  longlong lVar1;
+  longlong operation_result;
   
-  lVar1 = FUN_180742050(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),param_2 * param_3,&UNK_18097c540,
-                        0x22,0);
-  if ((lVar1 != 0) && (param_1 != 0)) {
-    *(int *)(param_1 + 0x4f0) = *(int *)(param_1 + 0x4f0) + param_2 * param_3;
+  operation_result = data_multiplication_function(*(undefined8 *)(GLOBAL_DATA_ADDRESS + 0x1a0), multiplier * multiplicand, &GLOBAL_BUFFER_ADDRESS,
+                        0x22, 0);
+  if ((operation_result != 0) && (data_context != 0)) {
+    *(int *)(data_context + 0x4f0) = *(int *)(data_context + 0x4f0) + multiplier * multiplicand;
   }
   return;
 }
