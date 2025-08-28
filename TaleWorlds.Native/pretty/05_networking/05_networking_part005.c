@@ -672,68 +672,90 @@ void check_network_connection_status(ulonglong connection_handle, undefined4 *st
 void setup_network_connection_buffers(ulonglong connection_handle, undefined1 *buffer_data, int buffer_size, undefined4 *result_buffer)
 
 {
-  int connection_result;
-  int encode_result;
-  undefined1 security_buffer[32];
-  undefined4 *output_buffer;
-  undefined8 session_handle;
-  undefined8 connection_info;
-  longlong connection_data;
-  longlong buffer_info;
-  undefined4 buffer_params[4];
-  undefined1 packet_buffer[NETWORK_BUFFER_SIZE];
-  ulonglong security_key;
+  int connection_result;       // 连接结果
+  int encode_result;          // 编码结果
+  undefined1 security_buffer[32]; // 安全缓冲区
+  undefined4 *output_buffer;   // 输出缓冲区
+  undefined8 session_handle;    // 会话句柄
+  undefined8 connection_info;    // 连接信息
+  longlong connection_data;     // 连接数据
+  longlong buffer_info;         // 缓冲区信息
+  undefined4 buffer_params[4];  // 缓冲区参数
+  undefined1 packet_buffer[NETWORK_BUFFER_SIZE]; // 数据包缓冲区
+  ulonglong security_key;       // 安全密钥
   
+  // 生成安全密钥
   security_key = NETWORK_SECURITY_KEY ^ (ulonglong)security_buffer;
+  // 初始化输出参数
   if (buffer_data != (undefined1 *)0x0) {
     *buffer_data = 0;
   }
   if (result_buffer != (undefined4 *)0x0) {
     *result_buffer = 0;
   }
+  
+  // 检查缓冲区参数有效性
   if (((buffer_data != (undefined1 *)0x0) || (buffer_size == 0)) && (-1 < buffer_size)) {
+    // 初始化连接数据
     connection_data = 0;
     session_handle = 0;
     connection_info = 0;
+    // 获取连接信息
     connection_result = func_0x00018088c590(0, &connection_info);
     if (((connection_result == 0) && (connection_result = FUN_18088c740(&session_handle, connection_info), connection_result == 0)) &&
        (connection_result = func_0x00018088c530(connection_handle & 0xffffffff, &buffer_info), connection_result == 0)) {
+      // 提取连接数据
       connection_data = *(longlong *)(buffer_info + 8);
     }
     else if (connection_result != 0) {
-                    // WARNING: Subroutine does not return
+      // 清理会话句柄（函数不返回）
       FUN_18088c790(&session_handle);
     }
+    
+    // 提取缓冲区参数
     buffer_params[0] = *(undefined4 *)(connection_data + 0x10);
     buffer_params[1] = *(undefined4 *)(connection_data + 0x14);
     buffer_params[2] = *(undefined4 *)(connection_data + 0x18);
     buffer_params[3] = *(undefined4 *)(connection_data + 0x1c);
     output_buffer = result_buffer;
+    // 配置缓冲区参数
     FUN_180882160(connection_info, buffer_params, buffer_data, buffer_size);
-                    // WARNING: Subroutine does not return
+    // 清理会话句柄（函数不返回）
     FUN_18088c790(&session_handle);
   }
+  
+  // 检查网络状态标志
   if ((*(byte *)(NETWORK_STATUS_FLAG + 0x10) & 0x80) == 0) {
-                    // WARNING: Subroutine does not return
+    // 安全验证失败，执行异常处理（函数不返回）
     FUN_1808fc050(security_key ^ (ulonglong)security_buffer);
   }
+  
+  // 编码缓冲区数据
   connection_result = FUN_18074b880(packet_buffer, NETWORK_BUFFER_SIZE, buffer_data);
+  // 编码数据分隔符
   encode_result = FUN_18074b880(packet_buffer + connection_result, NETWORK_BUFFER_SIZE - connection_result, NETWORK_DATA_SEPARATOR);
   connection_result = connection_result + encode_result;
+  // 编码缓冲区大小
   encode_result = func_0x00018074b7d0(packet_buffer + connection_result, NETWORK_BUFFER_SIZE - connection_result, buffer_size);
   connection_result = connection_result + encode_result;
+  // 编码数据分隔符
   encode_result = FUN_18074b880(packet_buffer + connection_result, NETWORK_BUFFER_SIZE - connection_result, NETWORK_DATA_SEPARATOR);
+  // 编码结果缓冲区
   FUN_18074b930(packet_buffer + (connection_result + encode_result), NETWORK_BUFFER_SIZE - (connection_result + encode_result), result_buffer);
   output_buffer = (undefined4 *)packet_buffer;
-                    // WARNING: Subroutine does not return
+  // 发送缓冲区配置消息（函数不返回）
   FUN_180749ef0(0x1f, 0xc, connection_handle, NETWORK_BUFFER_MESSAGE);
 }
 
 
 
 
-// 函数: 发送网络缓冲消息
-void send_network_buffer_message(void)
+// 函数: 发送缓冲的网络消息
+// 功能：发送已经缓冲的网络消息，包含数据编码和消息发送功能
+// 参数：无显式参数，使用内部缓冲区
+// 返回：无返回值
+// 注意：函数包含数据编码、分隔符添加和消息发送机制
+void send_buffered_network_message(void)
 
 {
   int connection_result;
