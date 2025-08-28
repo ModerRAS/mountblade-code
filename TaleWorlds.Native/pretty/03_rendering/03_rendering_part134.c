@@ -1,30 +1,8 @@
 #include "TaleWorlds.Native.Split.h"
 
-// =============================================================================
-// 03_rendering_part134.c - 渲染系统场景管理和边界计算模块
-// =============================================================================
-// 本模块包含16个核心函数，主要负责：
-// - 场景对象边界计算和碰撞检测
-// - 渲染系统内存管理和资源清理
-// - 对象状态更新和生命周期管理
-// - 着色器参数设置和纹理坐标处理
-// - 场景节点遍历和层次结构管理
-// =============================================================================
+// 03_rendering_part134.c - 16 个函数
 
-// 常量定义
-#define RENDERING_MAX_BOUNDING_BOX   0x7f7fffff  // 最大边界框值
-#define RENDERING_MIN_BOUNDING_BOX   0xff7fffff  // 最小边界框值
-#define RENDERING_DEFAULT_SHADER_ID  0x3f800000  // 默认着色器ID
-#define RENDERING_MAX_TEXTURE_COORD  0x41a00000  // 最大纹理坐标
-#define RENDERING_MESH_TYPE_MASK     0x14        // 网格类型掩码
-
-// =============================================================================
-// 渲染系统场景对象边界计算器 (RenderingSystemSceneObjectBoundaryCalculator)
-// =============================================================================
-// 功能：计算场景对象的边界框，用于碰撞检测和视锥体裁剪
-// 参数：param_1 - 场景对象指针
-// 返回值：无
-// =============================================================================
+// 函数: void FUN_180348d90(longlong param_1)
 void FUN_180348d90(longlong param_1)
 
 {
@@ -47,7 +25,6 @@ void FUN_180348d90(longlong param_1)
   undefined8 uStack_20;
   undefined4 uStack_18;
   
-  // 获取场景对象的渲染上下文
   lVar1 = *(longlong *)(param_1 + 0x18);
   lStackX_8 = 0;
   uStack_18 = 0;
@@ -57,31 +34,23 @@ void FUN_180348d90(longlong param_1)
   uStack_30 = 0;
   uStack_28 = 0;
   uStack_20 = 0;
-  
-  // 执行边界计算
   FUN_180348e60(0,lVar1,&lStackX_8,&uStack_48);
-  
-  // 如果成功获取边界，设置边界框参数
   if (lStackX_8 != 0) {
-    uStack_58 = RENDERING_MAX_BOUNDING_BOX;  // 最大X坐标
-    uStack_54 = RENDERING_MAX_BOUNDING_BOX;  // 最大Y坐标
-    uStack_50 = RENDERING_MAX_BOUNDING_BOX;  // 最大Z坐标
-    uStack_4c = RENDERING_MAX_BOUNDING_BOX;  // 最大W坐标
-    uStack_68 = RENDERING_MIN_BOUNDING_BOX;  // 最小X坐标
-    uStack_64 = RENDERING_MIN_BOUNDING_BOX;  // 最小Y坐标
-    uStack_60 = RENDERING_MIN_BOUNDING_BOX;  // 最小Z坐标
-    uStack_5c = RENDERING_MAX_BOUNDING_BOX;  // 最小W坐标
+    uStack_58 = 0x7f7fffff;
+    uStack_54 = 0x7f7fffff;
+    uStack_50 = 0x7f7fffff;
+    uStack_4c = 0x7f7fffff;
+    uStack_68 = 0xff7fffff;
+    uStack_64 = 0xff7fffff;
+    uStack_60 = 0xff7fffff;
+    uStack_5c = 0x7f7fffff;
     FUN_180347ca0(param_1,lVar1,&uStack_48,&uStack_58,&uStack_68);
     return;
   }
-  
-  // 获取默认材质数据
   puVar2 = &DAT_18098bc73;
   if (*(undefined **)(lVar1 + 0x290) != (undefined *)0x0) {
     puVar2 = *(undefined **)(lVar1 + 0x290);
   }
-  
-  // 应用默认材质设置
   FUN_180627020(&UNK_180a1cf60,puVar2);
   return;
 }
@@ -90,13 +59,7 @@ void FUN_180348d90(longlong param_1)
 
 
 
-// =============================================================================
-// 渲染系统边界框优化计算器 (RenderingSystemBoundingBoxOptimizer)
-// =============================================================================
-// 功能：优化计算多个对象的边界框，支持批量处理和内存管理
-// 参数：param_1 - 标志位，param_2 - 渲染对象，param_3 - 结果指针，param_4 - 边界数据
-// 返回值：无
-// =============================================================================
+// 函数: void FUN_180348e60(undefined8 param_1,longlong param_2,longlong *param_3,undefined8 *param_4)
 void FUN_180348e60(undefined8 param_1,longlong param_2,longlong *param_3,undefined8 *param_4)
 
 {
@@ -133,27 +96,19 @@ void FUN_180348e60(undefined8 param_1,longlong param_2,longlong *param_3,undefin
   undefined4 uStack_84;
   undefined4 uStack_80;
   
-  // 检查是否需要批量处理多个对象
   if (*(longlong *)(param_2 + 0x110) == 0) {
-    // 初始化批处理缓冲区
     plStack_d0 = (longlong *)0x0;
     plStack_c8 = (longlong *)0x0;
     uVar8 = 0;
     uStack_c0 = 0;
     uStack_b8 = 3;
-    
-    // 获取需要处理的对象列表
     FUN_180347ab0(param_2,&plStack_d0,param_3,(char)param_4,0xfffffffffffffffe);
-    
-    // 初始化边界框极值
-    fVar15 = 3.4028235e+38;  // 最大正浮点数
-    fVar13 = 3.4028235e+38;  // 最大正浮点数
-    fVar14 = 3.4028235e+38;  // 最大正浮点数
-    fVar10 = 1.1754944e-38;  // 最小正浮点数
-    fVar11 = 1.1754944e-38;  // 最小正浮点数
-    fVar12 = 1.1754944e-38;  // 最小正浮点数
-    
-    // 遍历所有对象计算边界框
+    fVar15 = 3.4028235e+38;
+    fVar13 = 3.4028235e+38;
+    fVar14 = 3.4028235e+38;
+    fVar10 = 1.1754944e-38;
+    fVar11 = 1.1754944e-38;
+    fVar12 = 1.1754944e-38;
     if ((longlong)plStack_c8 - (longlong)plStack_d0 >> 3 != 0) {
       fVar12 = 1.1754944e-38;
       fVar11 = 1.1754944e-38;
@@ -166,8 +121,6 @@ void FUN_180348e60(undefined8 param_1,longlong param_2,longlong *param_3,undefin
         if (cVar4 == '\0') {
           *param_3 = lVar1;
           FUN_1802f4040(lVar1,&fStack_b0,1);
-          
-          // 更新最大边界值
           if (fStack_b0 <= fVar15) {
             fVar15 = fStack_b0;
           }
@@ -177,8 +130,6 @@ void FUN_180348e60(undefined8 param_1,longlong param_2,longlong *param_3,undefin
           if (fStack_a8 <= fVar14) {
             fVar14 = fStack_a8;
           }
-          
-          // 更新最小边界值
           if (fVar10 <= fStack_a0) {
             fVar10 = fStack_a0;
           }
@@ -196,10 +147,8 @@ void FUN_180348e60(undefined8 param_1,longlong param_2,longlong *param_3,undefin
       } while ((ulonglong)(longlong)(int)uVar7 <
                (ulonglong)((longlong)plStack_c8 - (longlong)plVar6 >> 3));
     }
-    
-    // 设置最终的边界框数据
-    uStack_94 = RENDERING_MAX_BOUNDING_BOX;
-    uStack_a4 = RENDERING_MAX_BOUNDING_BOX;
+    uStack_94 = 0x7f7fffff;
+    uStack_a4 = 0x7f7fffff;
     fStack_b0 = fVar15;
     fStack_ac = fVar13;
     fStack_a8 = fVar14;
@@ -217,20 +166,17 @@ void FUN_180348e60(undefined8 param_1,longlong param_2,longlong *param_3,undefin
     *(undefined4 *)(param_4 + 5) = uStack_88;
     *(undefined4 *)((longlong)param_4 + 0x2c) = uStack_84;
     *(undefined4 *)(param_4 + 6) = uStack_80;
-    
-    // 清理临时对象
     for (plVar6 = plStack_d0; plVar6 != plVar3; plVar6 = plVar6 + 1) {
       if ((longlong *)*plVar6 != (longlong *)0x0) {
         (**(code **)(*(longlong *)*plVar6 + 0x38))();
       }
     }
     if (plStack_d0 != (longlong *)0x0) {
-      // 释放批处理内存
+                    // WARNING: Subroutine does not return
       FUN_18064e900();
     }
   }
   else {
-    // 单个对象的简单处理
     *param_3 = param_2;
     puVar5 = (undefined8 *)FUN_1802f4040(param_2,&fStack_b0,1);
     uVar2 = puVar5[1];

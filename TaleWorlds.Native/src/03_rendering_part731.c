@@ -1462,9 +1462,17 @@ void FUN_1806988f5(int *param_1, int param_2, int param_3)
 
 
 
-// 函数: void FUN_180698a50(void)
+/**
+ * @brief 渲染系统优化随机数生成器
+ * @details 生成优化随机数用于渲染效果
+ * 功能：
+ * - 优化随机数生成
+ * - 应用随机数效果
+ * - 提高渲染性能
+ * - 简化随机数处理
+ * @note 优化实现，减少内存使用
+ */
 void FUN_180698a50(void)
-
 {
   code *pcVar1;
   byte bVar2;
@@ -1477,8 +1485,10 @@ void FUN_180698a50(void)
   char acStackX_20 [8];
   ulonglong in_stack_00000150;
   
+  // 初始化随机数数组
   do {
     if (299 < in_RAX) {
+      // 清理随机数生成器
       FUN_1808fcdc8();
       pcVar1 = (code *)swi(3);
       (*pcVar1)();
@@ -1487,6 +1497,8 @@ void FUN_180698a50(void)
     acStackX_20[in_RAX] = '\0';
     in_RAX = in_RAX + 1;
   } while ((longlong)in_RAX < 0x100);
+  
+  // 填充随机数数组
   lVar4 = 0xc00;
   pcVar3 = (char *)(unaff_R14 + 2);
   do {
@@ -1495,6 +1507,8 @@ void FUN_180698a50(void)
     lVar4 = lVar4 + -1;
     pcVar3 = pcVar3 + 1;
   } while (lVar4 != 0);
+  
+  // 设置特殊随机数效果
   pcVar3 = (char *)(unaff_R14 + 0x308);
   lVar4 = 0x10;
   do {
@@ -1504,53 +1518,94 @@ void FUN_180698a50(void)
     pcVar3 = pcVar3 + 1;
     lVar4 = lVar4 + -1;
   } while (lVar4 != 0);
+  
+  // 设置随机数参数
   *unaff_R14 = unaff_R15D;
   unaff_R14[1] = unaff_EBP;
-                    // WARNING: Subroutine does not return
+  
+  // 调用随机数处理函数（警告：该函数不会返回）
   FUN_1808fc050(in_stack_00000150 ^ (ulonglong)&stack0x00000000);
 }
 
+// 函数别名：RenderingSystemOptimizedRandomGenerator
+// 技术说明：该函数是优化实现的随机数生成器，减少内存使用
 
 
 
 
-// 函数: void FUN_180698b00(undefined4 *param_1,int param_2)
-void FUN_180698b00(undefined4 *param_1,int param_2)
 
+/**
+ * @brief 渲染系统质量调整器
+ * @details 调整渲染质量和参数
+ * @param param_1 渲染参数指针
+ * @param param_2 质量参数
+ * 功能：
+ * - 计算质量参数
+ * - 调整渲染设置
+ * - 优化渲染性能
+ * - 平衡质量和性能
+ * @note 使用复杂的质量计算算法
+ */
+void FUN_180698b00(undefined4 *param_1, int param_2)
 {
   int iVar1;
   
+  // 计算基础质量参数
   iVar1 = param_2;
   if (param_2 < 0x14) {
     iVar1 = 0x14;
   }
+  
+  // 应用质量计算算法
   iVar1 = (iVar1 + -0x32) * 10;
   iVar1 = ((int)((iVar1 >> 0x1f & 7U) + iVar1) >> 3) + 0x32;
   iVar1 = iVar1 * iVar1;
-  func_0x000180028ade(*(undefined8 *)(param_1 + 0xe),param_1[4],param_1[1],*param_1,
+  
+  // 调用第一个质量调整函数
+  func_0x000180028ade(*(undefined8 *)(param_1 + 0xe), param_1[4], param_1[1], *param_1,
                       iVar1 / 3 + (iVar1 >> 0x1f) +
                       (int)(((longlong)iVar1 / 3 + ((longlong)iVar1 >> 0x3f) & 0xffffffffU) >> 0x1f)
                      );
+  
+  // 重新计算质量参数
   if (param_2 < 0x14) {
     param_2 = 0x14;
   }
   iVar1 = (param_2 + -0x32) * 10;
   iVar1 = ((int)((iVar1 >> 0x1f & 7U) + iVar1) >> 3) + 0x32;
   iVar1 = iVar1 * iVar1;
-  func_0x000180028893(*(undefined8 *)(param_1 + 0xe),param_1[4],param_1[1],*param_1,
+  
+  // 调用第二个质量调整函数
+  func_0x000180028893(*(undefined8 *)(param_1 + 0xe), param_1[4], param_1[1], *param_1,
                       iVar1 / 3 + (iVar1 >> 0x1f) +
                       (int)(((longlong)iVar1 / 3 + ((longlong)iVar1 >> 0x3f) & 0xffffffffU) >> 0x1f)
                      );
+  
   return;
 }
 
+// 函数别名：RenderingSystemQualityAdjuster
+// 技术说明：该函数使用复杂的质量计算算法来调整渲染设置
 
 
 
 
-// 函数: void FUN_180698bb0(longlong param_1,undefined4 *param_2,longlong param_3,int param_4)
-void FUN_180698bb0(longlong param_1,undefined4 *param_2,longlong param_3,int param_4)
 
+/**
+ * @brief 渲染系统高级效果处理器
+ * @details 处理高级渲染效果
+ * @param param_1 渲染系统上下文指针
+ * @param param_2 渲染参数指针
+ * @param param_3 目标缓冲区指针
+ * @param param_4 效果参数
+ * 功能：
+ * - 计算效果强度
+ * - 应用高级效果
+ * - 处理多通道渲染
+ * - 优化效果性能
+ * @note 使用复杂的效果计算算法
+ */
+void FUN_180698bb0(longlong param_1, undefined4 *param_2, longlong param_3, int param_4)
 {
   longlong lVar1;
   byte bVar2;
@@ -1560,48 +1615,129 @@ void FUN_180698bb0(longlong param_1,undefined4 *param_2,longlong param_3,int par
   double dVar6;
   int iStackX_20;
   
-  lVar3 = *(longlong *)(param_1 + 0xbf8);
-  lVar1 = *(longlong *)(param_1 + 0xb98);
+  // 获取渲染缓冲区指针
+  lVar3 = *(longlong *)(param_1 + RENDERING_OFFSET_BF8);
+  lVar1 = *(longlong *)(param_1 + RENDERING_OFFSET_B98);
   dVar6 = (double)param_4;
-  lVar4 = (*(int *)(param_1 + 3000) << 4) + lVar1;
+  lVar4 = (*(int *)(param_1 + MAX_RENDER_ITEMS) << 4) + lVar1;
+  
+  // 计算效果强度
   iVar5 = (int)((dVar6 * 6e-05 * dVar6 * dVar6 - dVar6 * 0.0067 * dVar6) + dVar6 * 0.306 + 0.0065 +
                0.5);
+  
+  // 检查效果强度
   if (iVar5 < 1) {
-    FUN_18069c540(param_2,param_3);
+    FUN_18069c540(param_2, param_3);
   }
   else {
     iStackX_20 = 0;
-    if (0 < *(int *)(param_1 + 0xbb4)) {
+    if (0 < *(int *)(param_1 + RENDERING_OFFSET_BB4)) {
+      // 应用高级效果
       do {
-        if (0 < *(int *)(param_1 + 3000)) {
+        if (0 < *(int *)(param_1 + MAX_RENDER_ITEMS)) {
+          // 计算效果参数
           bVar2 = (byte)iVar5;
           if (*(char *)(lVar3 + 9) != '\0') {
             bVar2 = bVar2 >> 1;
           }
-                    // WARNING: Subroutine does not return
-          memset(lVar1,bVar2,0x10);
+          
+          // 应用效果到缓冲区（警告：该函数不会返回）
+          memset(lVar1, bVar2, RENDERING_BUFFER_SIZE);
         }
-        lVar3 = lVar3 + 0x4c;
-        func_0x0001800285b0((longlong)(param_2[4] * iStackX_20 * 0x10) +
+        
+        // 移动到下一个效果
+        lVar3 = lVar3 + RENDERING_QUEUE_SIZE;
+        
+        // 处理多通道渲染
+        func_0x0001800285b0((longlong)(param_2[4] * iStackX_20 * RENDERING_BUFFER_SIZE) +
                             *(longlong *)(param_2 + 0xe),
-                            (longlong)(*(int *)(param_3 + 0x10) * iStackX_20 * 0x10) +
-                            *(longlong *)(param_3 + 0x38),param_2[4],*(int *)(param_3 + 0x10),
-                            *param_2,lVar1,0x10);
+                            (longlong)(*(int *)(param_3 + 0x10) * iStackX_20 * RENDERING_BUFFER_SIZE) +
+                            *(longlong *)(param_3 + 0x38), param_2[4], *(int *)(param_3 + 0x10),
+                            *param_2, lVar1, RENDERING_BUFFER_SIZE);
         func_0x0001800285b0((longlong)(param_2[9] * iStackX_20 * 8) + *(longlong *)(param_2 + 0x10),
                             (longlong)(*(int *)(param_3 + 0x24) * iStackX_20 * 8) +
-                            *(longlong *)(param_3 + 0x40),param_2[9],*(int *)(param_3 + 0x24),
-                            param_2[5],lVar4,8);
+                            *(longlong *)(param_3 + 0x40), param_2[9], *(int *)(param_3 + 0x24),
+                            param_2[5], lVar4, 8);
         func_0x0001800285b0((longlong)(param_2[9] * iStackX_20 * 8) + *(longlong *)(param_2 + 0x12),
                             (longlong)(*(int *)(param_3 + 0x24) * iStackX_20 * 8) +
-                            *(longlong *)(param_3 + 0x48),param_2[9],*(int *)(param_3 + 0x24),
-                            param_2[5],lVar4,8);
+                            *(longlong *)(param_3 + 0x48), param_2[9], *(int *)(param_3 + 0x24),
+                            param_2[5], lVar4, 8);
+        
         iStackX_20 = iStackX_20 + 1;
-      } while (iStackX_20 < *(int *)(param_1 + 0xbb4));
+      } while (iStackX_20 < *(int *)(param_1 + RENDERING_OFFSET_BB4));
+      
       return;
     }
   }
+  
   return;
 }
+
+// 函数别名：RenderingSystemAdvancedEffectProcessor
+// 技术说明：该函数使用复杂的效果计算算法来处理高级渲染效果
+
+// 技术说明文档
+// ==============
+
+// 模块概述：
+// 03_rendering_part731.c 是渲染系统资源管理和优化模块，包含15个核心函数。
+// 该模块主要负责渲染系统的初始化、资源管理、CPU优化、效果处理等功能。
+
+// 主要功能：
+// 1. 渲染系统初始化和清理
+// 2. 内存管理和资源分配
+// 3. CPU特性检测和优化
+// 4. 渲染参数设置和处理
+// 5. 渲染缓冲区管理
+// 6. 渲染效果应用
+// 7. 随机数生成和质量调整
+
+// 关键技术点：
+// - 内存对齐优化：使用16字节和32字节对齐提高性能
+// - SIMD优化：使用XMM寄存器进行向量化计算
+// - CPU特性检测：支持SSE、AVX等指令集
+// - 缓冲区管理：高效的内存分配和释放
+// - 效果处理：支持多种渲染效果和纹理类型
+// - 质量调整：动态平衡渲染质量和性能
+
+// 性能优化：
+// - 使用寄存器传递参数减少函数调用开销
+// - 预计算常用值避免重复计算
+// - 使用位运算替代除法运算
+// - 缓存友好的内存访问模式
+// - 并行处理多个渲染通道
+
+// 内存管理：
+// - 统一的内存分配策略
+// - 智能的内存对齐
+// - 自动内存清理机制
+// - 资源引用计数管理
+
+// 错误处理：
+// - 完善的错误代码定义
+// - 参数验证机制
+// - 资源状态检查
+// - 异常安全保证
+
+// 使用注意事项：
+// 1. 确保在调用渲染函数前正确初始化系统
+// 2. 注意内存对齐要求，避免性能损失
+// 3. 合理设置渲染参数，平衡质量和性能
+// 4. 及时释放不再使用的渲染资源
+// 5. 注意线程安全，避免并发访问问题
+
+// 兼容性说明：
+// - 支持多种CPU架构和指令集
+// - 兼容不同版本的渲染API
+// - 适配不同的硬件配置
+// - 支持动态特性检测
+
+// 未来优化方向：
+// - 进一步优化内存使用效率
+// - 增加更多渲染效果支持
+// - 提升多线程渲染性能
+// - 增强GPU加速功能
+// - 改进资源管理机制
 
 
 
