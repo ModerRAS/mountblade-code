@@ -1094,45 +1094,55 @@ void SystemStateManager_ResetState(longlong *systemContext, uint64_t resetFlags,
 
 
 
-// 函数: void FUN_1803f8f80(longlong *param_1,longlong param_2)
-void FUN_1803f8f80(longlong *param_1,longlong param_2)
-
+/**
+ * @brief 用户界面资源管理器
+ * 
+ * 负责管理用户界面相关资源的生命周期
+ * 包括纹理、字体、布局等UI资源的加载和释放
+ * 
+ * @param uiManager UI管理器指针
+ * @param eventData 事件数据指针
+ * 
+ * @return void
+ */
+void UIResourceManager_ManageUIResources(longlong *uiManager, longlong eventData)
 {
-  longlong lVar1;
-  uint uVar2;
-  longlong *plVar3;
-  int iVar4;
-  int8_t auVar5 [16];
-  int8_t auVar6 [16];
-  int8_t auVar7 [16];
-  int8_t auVar8 [16];
-  int8_t auStack_1f8 [32];
-  longlong *plStack_1d8;
-  longlong *plStack_1d0;
-  longlong *plStack_1c8;
-  int iStack_1c0;
-  int iStack_1bc;
-  int32_t uStack_1b8;
-  int32_t uStack_1b4;
-  int32_t uStack_1b0;
-  uint64_t uStack_1ac;
-  uint64_t uStack_1a4;
-  int16_t uStack_19c;
-  int8_t uStack_19a;
-  int32_t uStack_199;
-  int16_t uStack_195;
-  uint uStack_190;
-  int8_t uStack_18c;
-  uint64_t uStack_188;
-  void *puStack_178;
-  int8_t *puStack_170;
-  int32_t uStack_168;
-  int8_t auStack_160 [136];
-  void *puStack_d8;
-  int8_t *puStack_d0;
-  int32_t uStack_c8;
-  int8_t auStack_c0 [136];
-  ulonglong uStack_38;
+  /* UI资源管理变量 */
+  longlong resourceSize;
+  uint resourceHash;
+  longlong *resourceHandler;
+  int resourceType;
+  int8_t resourceData1 [16];
+  int8_t resourceData2 [16];
+  int8_t resourceData3 [16];
+  int8_t resourceData4 [16];
+  int8_t securityBuffer [32];
+  longlong *textureResource;
+  longlong *fontResource;
+  longlong *layoutResource;
+  int resourceWidth;
+  int resourceHeight;
+  int32_t textureFlags;
+  int32_t fontFlags;
+  int32_t layoutFlags;
+  uint64_t resourceTimestamp;
+  uint64_t resourceSequence;
+  int16_t textureId;
+  int8_t textureFormat;
+  int32_t textureMipmaps;
+  int16_t fontId;
+  uint resourceDeviceId;
+  int8_t resourceCompression;
+  uint64_t memoryFlags;
+  void *textureManager;
+  int8_t *texturePath;
+  int32_t textureSize;
+  int8_t textureInfo [136];
+  void *fontManager;
+  int8_t *fontPath;
+  int32_t fontSize;
+  int8_t fontData [136];
+  ulonglong securityChecksum;
   
   uStack_188 = 0xfffffffffffffffe;
   uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_1f8;
