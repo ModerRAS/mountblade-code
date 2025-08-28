@@ -29,6 +29,60 @@
 #include <string.h>
 
 /*=============================================================================
+ * 标准类型别名定义
+=============================================================================*/
+
+/** 
+ * @defgroup StandardTypes 标准类型别名
+ * @brief 将undefined类型替换为标准C类型
+ * @{
+ */
+
+/** 8位无符号整数 - 原 undefined1 */
+typedef uint8_t uint8;
+
+/** 16位无符号整数 - 原 undefined2 */
+typedef uint16_t uint16;
+
+/** 32位无符号整数 - 原 undefined4 */
+typedef uint32_t uint32;
+
+/** 64位无符号整数 - 原 undefined8 */
+typedef uint64_t uint64;
+
+/** 通用指针类型 - 原 undefined* */
+typedef void* void_ptr;
+
+/** 函数指针类型 */
+typedef void* (*function_ptr)();
+
+/** 字节类型 */
+typedef uint8_t byte;
+
+/** 字符类型 */
+typedef char char_t;
+
+/** 布尔类型 */
+typedef bool bool_t;
+
+/** 句柄类型 */
+typedef uint64_t handle_t;
+
+/** 状态码类型 */
+typedef int32_t status_t;
+
+/** 错误码类型 */
+typedef int32_t error_t;
+
+/** 大小类型 */
+typedef size_t size_t;
+
+/** 偏移量类型 */
+typedef ptrdiff_t offset_t;
+
+/** @} */
+
+/*=============================================================================
  * 系统常量定义
  *=============================================================================*/
 
