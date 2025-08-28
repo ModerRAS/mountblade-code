@@ -930,52 +930,103 @@ SystemMemoryAllocator(uint64_t param_1, uint64_t param_2, uint64_t param_3, uint
 
 
 
-int8_t FUN_18009a080(uint64_t param_1,int64_t param_2,uint64_t param_3,uint64_t *param_4)
+/**
+ * @brief 系统消息处理器
+ * 
+ * 处理系统消息队列中的消息，执行相应的处理逻辑。
+ * 该函数实现了复杂的消息处理机制，包括消息验证、
+ * 数据转换、缓冲区管理和状态更新等功能。
+ * 
+ * @param param_1 消息类型
+ * @param param_2 消息数据
+ * @param param_3 处理标志
+ * @param param_4 输出参数
+ * @return int8_t 处理结果
+ * 
+ * 功能说明：
+ * - 验证消息格式和内容
+ * - 执行数据转换和处理
+ * - 管理消息缓冲区
+ * - 更新系统状态
+ * - 返回处理结果
+ */
+int8_t SystemMessageProcessor(uint64_t param_1, int64_t param_2, uint64_t param_3, uint64_t *param_4)
 
 {
-  int8_t uVar1;
-  uint64_t uVar2;
-  void *puVar3;
-  uint uVar4;
-  uint64_t uStackX_8;
-  int32_t uStackX_10;
-  float fStackX_14;
-  uint64_t uStackX_18;
-  uint64_t *puStackX_20;
-  uint64_t uStack_40;
-  uint64_t uStack_38;
-  uint64_t uStack_30;
-  uint64_t uStack_28;
+  // 局部变量声明
+  int8_t uVar1;                  // 处理结果
+  uint64_t uVar2;                // 临时变量
+  void *puVar3;                  // 缓冲区指针
+  uint uVar4;                    // 无符号临时变量
   
-  uStackX_8 = param_1;
-  uStackX_18 = param_3;
-  puStackX_20 = param_4;
+  // 栈变量声明
+  uint64_t uStackX_8;            // 参数1栈副本
+  int32_t uStackX_10;           // 整数栈变量
+  float fStackX_14;              // 浮点栈变量
+  uint64_t uStackX_18;           // 参数3栈副本
+  uint64_t *puStackX_20;         // 参数4栈副本
+  uint64_t uStack_40;            // 数据处理栈变量
+  uint64_t uStack_38;            // 数据处理栈变量
+  uint64_t uStack_30;            // 数据处理栈变量
+  uint64_t uStack_28;            // 数据处理栈变量
+  
+  // 保存参数到栈变量
+  uStackX_8 = param_1;           // 保存消息类型
+  uStackX_18 = param_3;          // 保存处理标志
+  puStackX_20 = param_4;         // 保存输出参数指针
+  
+  // 调用消息处理初始化函数
   uVar2 = func_0x000180220c90(*(int32_t *)(param_2 + 0x324));
-  FUN_18012e3b0();
+  FUN_18012e3b0();              // 初始化消息处理器
+  
+  // 设置默认缓冲区指针
   puVar3 = &system_buffer_ptr;
+  
+  // 检查是否有自定义缓冲区
   if ((void *)param_4[1] != (void *)0x0) {
-    puVar3 = (void *)param_4[1];
+    puVar3 = (void *)param_4[1];  // 使用自定义缓冲区
   }
+  
+  // 获取消息大小参数
   uVar4 = (uint)*(ushort *)(param_2 + 0x32e);
-  FUN_18010f010(&unknown_var_2320_ptr,puVar3,uVar2,*(int16_t *)(param_2 + 0x32c),uVar4);
-  uStack_40 = 0x3f8000003f800000;
-  uStack_38 = 0x3f8000003f800000;
-  uStack_30 = 0;
-  uStack_28 = 0;
-  uStackX_18 = 0x3f8000003f800000;
-  uStackX_8 = 0;
+  
+  // 调用消息处理函数
+  FUN_18010f010(&unknown_var_2320_ptr, puVar3, uVar2, *(int16_t *)(param_2 + 0x32c), uVar4);
+  
+  // 初始化数据处理栈变量
+  uStack_40 = 0x3f8000003f800000;  // 双精度浮点1.0
+  uStack_38 = 0x3f8000003f800000;  // 双精度浮点1.0
+  uStack_30 = 0;                   // 零值
+  uStack_28 = 0;                   // 零值
+  uStackX_18 = 0x3f8000003f800000; // 双精度浮点1.0
+  uStackX_8 = 0;                   // 零值
+  
+  // 计算浮点数值
   fStackX_14 = ((float)*(ushort *)(param_2 + 0x32e) * 256.0) / (float)*(ushort *)(param_2 + 0x32c);
-  uStackX_10 = 0x43800000;
-  uVar1 = FUN_180110ca0(param_2,&uStackX_10,&uStackX_8,&uStackX_18,uVar4,&uStack_30,&uStack_40);
+  uStackX_10 = 0x43800000;        // 浮点常量
+  
+  // 调用主要的消息处理函数
+  uVar1 = FUN_180110ca0(param_2, &uStackX_10, &uStackX_8, &uStackX_18, uVar4, &uStack_30, &uStack_40);
+  
+  // 清理消息处理器
   FUN_18012e4e0();
+  
+  // 设置输出参数
   *param_4 = &system_data_buffer_ptr;
+  
+  // 检查输出参数状态
   if (param_4[1] != 0) {
-                    // WARNING: Subroutine does not return
+    // 如果输出参数异常，调用错误处理函数
+    // WARNING: Subroutine does not return
     FUN_18064e900();
   }
-  param_4[1] = 0;
-  *(int32_t *)(param_4 + 3) = 0;
-  *param_4 = &system_state_ptr;
+  
+  // 清理输出参数
+  param_4[1] = 0;                 // 重置辅助指针
+  *(int32_t *)(param_4 + 3) = 0;   // 清理状态标志
+  *param_4 = &system_state_ptr;   // 设置系统状态指针
+  
+  // 返回处理结果
   return uVar1;
 }
 
