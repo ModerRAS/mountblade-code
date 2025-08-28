@@ -1,108 +1,149 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 01_initialization_part039.c - 3 个函数
+// 01_initialization_part039.c - 内存池管理和线程安全操作模块
 
-// 函数: void FUN_18006cf00(undefined8 *param_1)
-void FUN_18006cf00(undefined8 *param_1)
+// 常量定义
+#define MEMORY_POOL_INITIALIZED_STATE (&UNK_1809ff3e8)
+#define MEMORY_POOL_COMPLETED_STATE (&UNK_1809ff488)
+#define MEMORY_POOL_ENTRY_SIZE 0x1a8
+#define MEMORY_POOL_BATCH_SIZE 32
+#define MEMORY_POOL_BLOCK_HEADER_SIZE 0x3530
+#define MEMORY_POOL_REF_COUNT_OFFSET 0x3530
+#define MEMORY_POOL_NEXT_BLOCK_OFFSET 0x3538
+
+/**
+ * 初始化内存池管理器
+ * 
+ * 此函数负责初始化一个复杂的内存池管理系统，包括：
+ * - 设置内存池的初始状态
+ * - 初始化哈希表结构
+ * - 配置线程同步机制
+ * - 处理内存块的分发和回收
+ * 
+ * @param pool_manager 内存池管理器的指针
+ * 
+ * 功能说明：
+ * 1. 设置内存池管理器的状态指针
+ * 2. 遍历内存块范围，处理每个内存块的初始化
+ * 3. 使用哈希表来管理内存块的分配
+ * 4. 实现线程安全的内存块分配和回收
+ * 5. 处理内存块的引用计数和生命周期管理
+ */
+void InitializeMemoryPoolManager(undefined8 *pool_manager)
 
 {
-  int *piVar1;
-  int iVar2;
-  ulonglong uVar3;
-  ulonglong uVar4;
-  longlong *plVar5;
-  longlong lVar6;
-  longlong lVar7;
-  longlong lVar8;
-  longlong lVar9;
-  ulonglong uVar10;
-  bool bVar11;
+  int *ref_count_ptr;
+  int ref_count;
+  ulonglong start_index;
+  ulonglong end_index;
+  longlong *hash_table_ptr;
+  longlong pool_base;
+  longlong current_head;
+  longlong next_head;
+  longlong memory_block;
+  ulonglong block_index;
+  bool compare_success;
   
-  *param_1 = &UNK_1809ff3e8;
-  uVar3 = param_1[4];
-  lVar9 = 0;
-  uVar4 = param_1[5];
-  for (uVar10 = uVar4; uVar10 != uVar3; uVar10 = uVar10 + 1) {
-    if ((uVar10 & 0x1f) == 0) {
-      if (lVar9 != 0) {
-        lVar6 = param_1[10];
+  // 设置内存池管理器的初始状态
+  *pool_manager = MEMORY_POOL_INITIALIZED_STATE;
+  start_index = pool_manager[4];
+  memory_block = 0;
+  end_index = pool_manager[5];
+  
+  // 遍历内存块范围
+  for (block_index = end_index; block_index != start_index; block_index = block_index + 1) {
+    // 每32个内存块处理一次批量操作
+    if ((block_index & 0x1f) == 0) {
+      if (memory_block != 0) {
+        pool_base = pool_manager[10];
         LOCK();
-        piVar1 = (int *)(lVar9 + 0x3530);
-        iVar2 = *piVar1;
-        *piVar1 = *piVar1 + -0x80000000;
+        ref_count_ptr = (int *)(memory_block + MEMORY_POOL_REF_COUNT_OFFSET);
+        ref_count = *ref_count_ptr;
+        *ref_count_ptr = *ref_count_ptr + -0x80000000;
         UNLOCK();
-        if (iVar2 == 0) {
-          lVar8 = *(longlong *)(lVar6 + 0x28);
+        
+        // 如果引用计数为0，将内存块加入到空闲链表
+        if (ref_count == 0) {
+          current_head = *(longlong *)(pool_base + 0x28);
           do {
-            *(longlong *)(lVar9 + 0x3538) = lVar8;
-            *(undefined4 *)(lVar9 + 0x3530) = 1;
-            plVar5 = (longlong *)(lVar6 + 0x28);
+            *(longlong *)(memory_block + MEMORY_POOL_NEXT_BLOCK_OFFSET) = current_head;
+            *(undefined4 *)(memory_block + MEMORY_POOL_REF_COUNT_OFFSET) = 1;
+            hash_table_ptr = (longlong *)(pool_base + 0x28);
             LOCK();
-            lVar7 = *plVar5;
-            bVar11 = lVar8 == lVar7;
-            if (bVar11) {
-              *plVar5 = lVar9;
-              lVar7 = lVar8;
+            next_head = *hash_table_ptr;
+            compare_success = current_head == next_head;
+            if (compare_success) {
+              *hash_table_ptr = memory_block;
+              next_head = current_head;
             }
             UNLOCK();
-            if (bVar11) break;
+            if (compare_success) break;
             LOCK();
-            piVar1 = (int *)(lVar9 + 0x3530);
-            iVar2 = *piVar1;
-            *piVar1 = *piVar1 + 0x7fffffff;
+            ref_count_ptr = (int *)(memory_block + MEMORY_POOL_REF_COUNT_OFFSET);
+            ref_count = *ref_count_ptr;
+            *ref_count_ptr = *ref_count_ptr + 0x7fffffff;
             UNLOCK();
-            lVar8 = lVar7;
-          } while (iVar2 == 1);
+            current_head = next_head;
+          } while (ref_count == 1);
         }
       }
-LAB_18006cfb1:
-      plVar5 = (longlong *)param_1[0xc];
-      lVar9 = *(longlong *)
+LAB_PROCESS_MEMORY_BLOCK:
+      hash_table_ptr = (longlong *)pool_manager[0xc];
+      memory_block = *(longlong *)
                (*(longlong *)
-                 (plVar5[3] +
-                 (((uVar10 & 0xffffffffffffffe0) - **(longlong **)(plVar5[3] + plVar5[1] * 8) >> 5)
-                  + plVar5[1] & *plVar5 - 1U) * 8) + 8);
+                 (hash_table_ptr[3] +
+                 (((block_index & 0xffffffffffffffe0) - **(longlong **)(hash_table_ptr[3] + hash_table_ptr[1] * 8) >> 5)
+                  + hash_table_ptr[1] & *hash_table_ptr - 1U) * 8) + 8);
     }
-    else if (lVar9 == 0) goto LAB_18006cfb1;
-    FUN_180069530((ulonglong)((uint)uVar10 & 0x1f) * 0x1a8 + lVar9);
+    else if (memory_block == 0) goto LAB_PROCESS_MEMORY_BLOCK;
+    
+    // 初始化单个内存块
+    ProcessMemoryBlock((ulonglong)((uint)block_index & 0x1f) * MEMORY_POOL_ENTRY_SIZE + memory_block);
   }
-  lVar9 = param_1[8];
-  if ((lVar9 != 0) && ((uVar4 != uVar3 || ((uVar3 & 0x1f) != 0)))) {
-    lVar6 = param_1[10];
+  
+  // 处理剩余的内存块
+  memory_block = pool_manager[8];
+  if ((memory_block != 0) && ((end_index != start_index || ((start_index & 0x1f) != 0)))) {
+    pool_base = pool_manager[10];
     LOCK();
-    piVar1 = (int *)(lVar9 + 0x3530);
-    iVar2 = *piVar1;
-    *piVar1 = *piVar1 + -0x80000000;
+    ref_count_ptr = (int *)(memory_block + MEMORY_POOL_REF_COUNT_OFFSET);
+    ref_count = *ref_count_ptr;
+    *ref_count_ptr = *ref_count_ptr + -0x80000000;
     UNLOCK();
-    if (iVar2 == 0) {
-      lVar8 = *(longlong *)(lVar6 + 0x28);
+    
+    if (ref_count == 0) {
+      current_head = *(longlong *)(pool_base + 0x28);
       do {
-        *(longlong *)(lVar9 + 0x3538) = lVar8;
-        *(undefined4 *)(lVar9 + 0x3530) = 1;
-        plVar5 = (longlong *)(lVar6 + 0x28);
+        *(longlong *)(memory_block + MEMORY_POOL_NEXT_BLOCK_OFFSET) = current_head;
+        *(undefined4 *)(memory_block + MEMORY_POOL_REF_COUNT_OFFSET) = 1;
+        hash_table_ptr = (longlong *)(pool_base + 0x28);
         LOCK();
-        lVar7 = *plVar5;
-        bVar11 = lVar8 == lVar7;
-        if (bVar11) {
-          *plVar5 = lVar9;
-          lVar7 = lVar8;
+        next_head = *hash_table_ptr;
+        compare_success = current_head == next_head;
+        if (compare_success) {
+          *hash_table_ptr = memory_block;
+          next_head = current_head;
         }
         UNLOCK();
-        if (bVar11) break;
+        if (compare_success) break;
         LOCK();
-        piVar1 = (int *)(lVar9 + 0x3530);
-        iVar2 = *piVar1;
-        *piVar1 = *piVar1 + 0x7fffffff;
+        ref_count_ptr = (int *)(memory_block + MEMORY_POOL_REF_COUNT_OFFSET);
+        ref_count = *ref_count_ptr;
+        *ref_count_ptr = *ref_count_ptr + 0x7fffffff;
         UNLOCK();
-        lVar8 = lVar7;
-      } while (iVar2 == 1);
+        current_head = next_head;
+      } while (ref_count == 1);
     }
   }
-  if (param_1[0xc] != 0) {
+  
+  // 如果存在哈希表，执行最终的清理操作
+  if (pool_manager[0xc] != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    CleanupMemoryPoolSystem();
   }
-  *param_1 = &UNK_1809ff488;
+  
+  // 设置内存池管理器为完成状态
+  *pool_manager = MEMORY_POOL_COMPLETED_STATE;
   return;
 }
 

@@ -2,270 +2,304 @@
 
 // 01_initialization_part032.c - 16 个函数
 
-// 函数: void FUN_1800606e0(longlong *param_1)
-void FUN_1800606e0(longlong *param_1)
-
+/**
+ * 执行线程同步和资源清理循环
+ * 当对象的0xb字节不为0时，持续执行清理操作
+ * @param obj 指向待清理对象的指针
+ */
+void 执行线程同步资源清理(longlong *obj)
 {
-  longlong *plVar1;
-  char cVar2;
-  int iVar3;
-  undefined8 uStackX_8;
-  longlong *plStack_20;
-  char cStack_18;
+  longlong *thread_local_ptr;
+  char cleanup_result;
+  int lock_result;
+  undefined8 operation_code;
+  longlong *queue_ptr;
+  char lock_acquired;
   
-  if ((char)param_1[0xb] != '\0') {
-    plVar1 = (longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8);
+  if ((char)obj[0xb] != '\0') {
+    thread_local_ptr = (longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8);
     do {
-      cVar2 = (**(code **)(*param_1 + 0x20))(param_1,1);
-      if (cVar2 == '\0') {
-        FUN_18064e0d0(*(undefined8 *)(*plVar1 + 0x10),0);
-        plStack_20 = param_1 + 0x33;
-        cStack_18 = 0;
-        iVar3 = _Mtx_lock();
-        if (iVar3 != 0) {
-          __Throw_C_error_std__YAXH_Z(iVar3);
+      cleanup_result = (**(code **)(*obj + 0x20))(obj,1);
+      if (cleanup_result == '\0') {
+        FUN_18064e0d0(*(undefined8 *)(*thread_local_ptr + 0x10),0);
+        queue_ptr = obj + 0x33;
+        lock_acquired = 0;
+        lock_result = _Mtx_lock();
+        if (lock_result != 0) {
+          __Throw_C_error_std__YAXH_Z(lock_result);
         }
-        cStack_18 = '\x01';
-        if ((char)param_1[0x3d] == '\x01') {
-          *(undefined1 *)(param_1 + 0x3d) = 0;
+        lock_acquired = '\x01';
+        if ((char)obj[0x3d] == '\x01') {
+          *(undefined1 *)(obj + 0x3d) = 0;
         }
         else {
-          uStackX_8 = 0x32;
-          FUN_1800495d0(param_1 + 0x2a,&plStack_20,&uStackX_8);
-          *(undefined1 *)(param_1 + 0x3d) = 0;
-          if (cStack_18 == '\0') goto LAB_1800607cc;
+          operation_code = 0x32;
+          FUN_1800495d0(obj + 0x2a,&queue_ptr,&operation_code);
+          *(undefined1 *)(obj + 0x3d) = 0;
+          if (lock_acquired == '\0') goto LAB_1800607cc;
         }
-        iVar3 = _Mtx_unlock(plStack_20);
-        if (iVar3 != 0) {
-          __Throw_C_error_std__YAXH_Z(iVar3);
+        lock_result = _Mtx_unlock(queue_ptr);
+        if (lock_result != 0) {
+          __Throw_C_error_std__YAXH_Z(lock_result);
         }
       }
 LAB_1800607cc:
-    } while ((char)param_1[0xb] != '\0');
+    } while ((char)obj[0xb] != '\0');
   }
   return;
 }
 
 
 
-undefined8 FUN_1800607f0(longlong param_1,char param_2)
-
+/**
+ * 处理对象队列的出队和生命周期管理
+ * 根据条件从队列中移除对象并管理其生命周期
+ * @param queue_obj 队列对象指针
+ * @param should_process 是否处理队列的标志
+ * @return 成功处理返回1，否则返回0
+ */
+undefined8 处理对象队列出队(longlong queue_obj,char should_process)
 {
-  longlong lVar1;
-  int iVar2;
-  longlong *plVar3;
-  undefined8 uVar4;
-  longlong *plStackX_18;
+  longlong buffer_size;
+  int lock_result;
+  longlong *head_ptr;
+  undefined8 result;
+  longlong *dequeued_obj;
   
-  plStackX_18 = (longlong *)0x0;
-  plVar3 = (longlong *)0x0;
-  if (param_2 != '\0') {
-    if (*(int *)(param_1 + 0x140) < 1) {
-      plVar3 = (longlong *)0x0;
+  dequeued_obj = (longlong *)0x0;
+  head_ptr = (longlong *)0x0;
+  if (should_process != '\0') {
+    if (*(int *)(queue_obj + 0x140) < 1) {
+      head_ptr = (longlong *)0x0;
     }
     else {
-      iVar2 = _Mtx_lock(param_1 + 0xf0);
-      if (iVar2 != 0) {
-        __Throw_C_error_std__YAXH_Z(iVar2);
+      lock_result = _Mtx_lock(queue_obj + 0xf0);
+      if (lock_result != 0) {
+        __Throw_C_error_std__YAXH_Z(lock_result);
       }
-      if ((*(longlong *)(param_1 + 200) - *(longlong *)(param_1 + 0xd0) >> 3) +
-          ((*(longlong *)(param_1 + 0xe0) - *(longlong *)(param_1 + 0xc0) >> 3) + -1) * 0x20 +
-          (*(longlong *)(param_1 + 0xb8) - (longlong)*(longlong **)(param_1 + 0xa8) >> 3) != 0) {
-        plStackX_18 = (longlong *)**(longlong **)(param_1 + 0xa8);
-        if (plStackX_18 != (longlong *)0x0) {
-          (**(code **)(*plStackX_18 + 0x28))(plStackX_18);
+      if ((*(longlong *)(queue_obj + 200) - *(longlong *)(queue_obj + 0xd0) >> 3) +
+          ((*(longlong *)(queue_obj + 0xe0) - *(longlong *)(queue_obj + 0xc0) >> 3) + -1) * 0x20 +
+          (*(longlong *)(queue_obj + 0xb8) - (longlong)*(longlong **)(queue_obj + 0xa8) >> 3) != 0) {
+        dequeued_obj = (longlong *)**(longlong **)(queue_obj + 0xa8);
+        if (dequeued_obj != (longlong *)0x0) {
+          (**(code **)(*dequeued_obj + 0x28))(dequeued_obj);
         }
-        plVar3 = *(longlong **)(param_1 + 0xa8);
-        if (plVar3 + 1 == *(longlong **)(param_1 + 0xb8)) {
-          if ((longlong *)*plVar3 != (longlong *)0x0) {
-            (**(code **)(*(longlong *)*plVar3 + 0x38))();
+        head_ptr = *(longlong **)(queue_obj + 0xa8);
+        if (head_ptr + 1 == *(longlong **)(queue_obj + 0xb8)) {
+          if ((longlong *)*head_ptr != (longlong *)0x0) {
+            (**(code **)(*(longlong *)*head_ptr + 0x38))();
           }
-          if (*(longlong *)(param_1 + 0xb0) != 0) {
+          if (*(longlong *)(queue_obj + 0xb0) != 0) {
                     // WARNING: Subroutine does not return
             FUN_18064e900();
           }
-          plVar3 = (longlong *)(*(longlong *)(param_1 + 0xc0) + 8);
-          *(longlong **)(param_1 + 0xc0) = plVar3;
-          lVar1 = *plVar3;
-          *(longlong *)(param_1 + 0xb0) = lVar1;
-          *(longlong *)(param_1 + 0xb8) = lVar1 + 0x100;
-          *(undefined8 *)(param_1 + 0xa8) = *(undefined8 *)(param_1 + 0xb0);
+          head_ptr = (longlong *)(*(longlong *)(queue_obj + 0xc0) + 8);
+          *(longlong **)(queue_obj + 0xc0) = head_ptr;
+          buffer_size = *head_ptr;
+          *(longlong *)(queue_obj + 0xb0) = buffer_size;
+          *(longlong *)(queue_obj + 0xb8) = buffer_size + 0x100;
+          *(undefined8 *)(queue_obj + 0xa8) = *(undefined8 *)(queue_obj + 0xb0);
         }
         else {
-          *(longlong **)(param_1 + 0xa8) = plVar3 + 1;
-          if ((longlong *)*plVar3 != (longlong *)0x0) {
-            (**(code **)(*(longlong *)*plVar3 + 0x38))();
+          *(longlong **)(queue_obj + 0xa8) = head_ptr + 1;
+          if ((longlong *)*head_ptr != (longlong *)0x0) {
+            (**(code **)(*(longlong *)*head_ptr + 0x38))();
           }
         }
       }
-      iVar2 = _Mtx_unlock(param_1 + 0xf0);
-      if (iVar2 != 0) {
-        __Throw_C_error_std__YAXH_Z(iVar2);
+      lock_result = _Mtx_unlock(queue_obj + 0xf0);
+      if (lock_result != 0) {
+        __Throw_C_error_std__YAXH_Z(lock_result);
       }
-      plVar3 = plStackX_18;
-      if (plStackX_18 != (longlong *)0x0) {
-        (**(code **)(*plStackX_18 + 0x60))(plStackX_18);
-        (**(code **)(*plStackX_18 + 0x70))(plStackX_18);
+      head_ptr = dequeued_obj;
+      if (dequeued_obj != (longlong *)0x0) {
+        (**(code **)(*dequeued_obj + 0x60))(dequeued_obj);
+        (**(code **)(*dequeued_obj + 0x70))(dequeued_obj);
         LOCK();
-        *(int *)(param_1 + 0x140) = *(int *)(param_1 + 0x140) + -1;
+        *(int *)(queue_obj + 0x140) = *(int *)(queue_obj + 0x140) + -1;
         UNLOCK();
-        uVar4 = 1;
+        result = 1;
         goto LAB_180060993;
       }
     }
   }
-  plStackX_18 = plVar3;
-  uVar4 = 0;
+  dequeued_obj = head_ptr;
+  result = 0;
 LAB_180060993:
-  if (plStackX_18 != (longlong *)0x0) {
-    (**(code **)(*plStackX_18 + 0x38))(plStackX_18);
+  if (dequeued_obj != (longlong *)0x0) {
+    (**(code **)(*dequeued_obj + 0x38))(dequeued_obj);
   }
-  return uVar4;
+  return result;
 }
 
 
 
-bool FUN_1800609c0(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-
+/**
+ * 等待单个对象并处理队列操作
+ * 等待指定的对象，然后执行队列处理操作
+ * @param wait_obj 等待对象指针
+ * @param param2 参数2
+ * @param timeout 超时时间
+ * @param param4 参数4
+ * @return 操作成功返回true，否则返回false
+ */
+bool 等待对象并处理队列(longlong wait_obj,undefined8 param2,undefined8 timeout,undefined8 param4)
 {
-  longlong *plVar1;
-  char cVar2;
-  longlong *plStackX_8;
+  longlong *processed_obj;
+  char process_result;
+  longlong *queue_obj;
   
-  plStackX_8 = (longlong *)0x0;
-  WaitForSingleObject(**(undefined8 **)(param_1 + 0x1f0),1,param_3,param_4,0xfffffffffffffffe);
-  cVar2 = FUN_180060e40(*(undefined8 *)(param_1 + 0x60),param_1 + 0x78,&plStackX_8);
-  plVar1 = plStackX_8;
-  if (cVar2 != '\0') {
-    (**(code **)(*plStackX_8 + 0x60))(plStackX_8);
-    (**(code **)(*plVar1 + 0x70))(plVar1);
+  queue_obj = (longlong *)0x0;
+  WaitForSingleObject(**(undefined8 **)(wait_obj + 0x1f0),1,timeout,param4,0xfffffffffffffffe);
+  process_result = FUN_180060e40(*(undefined8 *)(wait_obj + 0x60),wait_obj + 0x78,&queue_obj);
+  processed_obj = queue_obj;
+  if (process_result != '\0') {
+    (**(code **)(*queue_obj + 0x60))(queue_obj);
+    (**(code **)(*processed_obj + 0x70))(processed_obj);
   }
-  if (plVar1 != (longlong *)0x0) {
-    (**(code **)(*plVar1 + 0x38))(plVar1);
+  if (processed_obj != (longlong *)0x0) {
+    (**(code **)(*processed_obj + 0x38))(processed_obj);
   }
-  return cVar2 != '\0';
+  return process_result != '\0';
 }
 
 
 
-ulonglong FUN_180060a50(longlong *param_1,uint *param_2)
-
+/**
+ * 管理链表节点的移动和更新
+ * 根据给定的参数管理链表节点的移动和更新操作
+ * @param node_list 链表节点数组
+ * @param state_ptr 状态指针
+ * @return 操作结果状态
+ */
+ulonglong 管理链表节点移动(longlong *node_list,uint *state_ptr)
 {
-  uint uVar1;
-  uint uVar2;
-  longlong lVar3;
-  ulonglong in_RAX;
-  ulonglong *puVar4;
-  ulonglong *puVar5;
-  ulonglong *puVar6;
-  ulonglong uVar7;
-  ulonglong *puVar8;
-  uint uVar9;
-  ulonglong uVar10;
+  uint node_size;
+  uint max_capacity;
+  longlong list_head;
+  ulonglong operation_result;
+  ulonglong *current_node;
+  ulonglong *next_node;
+  ulonglong *temp_node;
+  ulonglong nodes_to_move;
+  ulonglong *start_node;
+  uint remaining_nodes;
+  ulonglong move_count;
   
-  lVar3 = *param_1;
-  if ((*(longlong *)(param_2 + 6) == 0) && (lVar3 == 0)) {
-    return in_RAX & 0xffffffffffffff00;
+  list_head = *node_list;
+  if ((*(longlong *)(state_ptr + 6) == 0) && (list_head == 0)) {
+    return operation_result & 0xffffffffffffff00;
   }
-  uVar1 = *(uint *)(param_1 + 1);
-  uVar2 = *(uint *)(param_1 + 0x4c);
-  puVar8 = (ulonglong *)0x0;
-  puVar4 = *(ulonglong **)(param_2 + 6);
-  if (*(ulonglong **)(param_2 + 6) == (ulonglong *)0x0) {
-    puVar5 = (ulonglong *)(lVar3 + 8);
-    if (lVar3 == 0) {
-      puVar5 = puVar8;
+  node_size = *(uint *)(node_list + 1);
+  max_capacity = *(uint *)(node_list + 0x4c);
+  start_node = (ulonglong *)0x0;
+  current_node = *(ulonglong **)(state_ptr + 6);
+  if (*(ulonglong **)(state_ptr + 6) == (ulonglong *)0x0) {
+    next_node = (ulonglong *)(list_head + 8);
+    if (list_head == 0) {
+      next_node = start_node;
     }
-    *(ulonglong **)(param_2 + 6) = puVar5;
-    uVar9 = (uVar1 - *param_2 % uVar1) - 1;
-    uVar10 = (ulonglong)uVar9;
-    puVar4 = puVar5;
-    if (uVar9 != 0) {
+    *(ulonglong **)(state_ptr + 6) = next_node;
+    remaining_nodes = (node_size - *state_ptr % node_size) - 1;
+    move_count = (ulonglong)remaining_nodes;
+    current_node = next_node;
+    if (remaining_nodes != 0) {
       do {
-        if (puVar4 == (ulonglong *)0x0) {
-          puVar4 = (ulonglong *)&DAT_00000008;
+        if (current_node == (ulonglong *)0x0) {
+          current_node = (ulonglong *)&DAT_00000008;
         }
-        puVar6 = (ulonglong *)(*puVar4 - 8);
-        if (*puVar4 == 0) {
-          puVar6 = puVar8;
+        temp_node = (ulonglong *)(*current_node - 8);
+        if (*current_node == 0) {
+          temp_node = start_node;
         }
-        puVar4 = puVar6 + 1;
-        if (puVar6 == (ulonglong *)0x0) {
-          puVar4 = puVar8;
+        current_node = temp_node + 1;
+        if (temp_node == (ulonglong *)0x0) {
+          current_node = start_node;
         }
-        *(ulonglong **)(param_2 + 6) = puVar4;
-        if (puVar4 == (ulonglong *)0x0) {
-          *(ulonglong **)(param_2 + 6) = puVar5;
-          puVar4 = puVar5;
+        *(ulonglong **)(state_ptr + 6) = current_node;
+        if (current_node == (ulonglong *)0x0) {
+          *(ulonglong **)(state_ptr + 6) = next_node;
+          current_node = next_node;
         }
-        uVar10 = uVar10 - 1;
-      } while (uVar10 != 0);
+        move_count = move_count - 1;
+      } while (move_count != 0);
     }
   }
-  uVar9 = uVar2 - param_2[1];
-  uVar10 = (ulonglong)uVar9;
-  if (uVar1 <= uVar9) {
-    uVar10 = (ulonglong)uVar9 % (ulonglong)uVar1;
+  remaining_nodes = max_capacity - state_ptr[1];
+  move_count = (ulonglong)remaining_nodes;
+  if (node_size <= remaining_nodes) {
+    move_count = (ulonglong)remaining_nodes % (ulonglong)node_size;
   }
-  uVar7 = uVar10;
-  if ((int)uVar10 != 0) {
+  nodes_to_move = move_count;
+  if ((int)move_count != 0) {
     do {
-      if (puVar4 == (ulonglong *)0x0) {
-        puVar4 = (ulonglong *)&DAT_00000008;
+      if (current_node == (ulonglong *)0x0) {
+        current_node = (ulonglong *)&DAT_00000008;
       }
-      uVar10 = *puVar4;
-      puVar5 = (ulonglong *)(uVar10 - 8);
-      if (uVar10 == 0) {
-        puVar5 = puVar8;
+      move_count = *current_node;
+      next_node = (ulonglong *)(move_count - 8);
+      if (move_count == 0) {
+        next_node = start_node;
       }
-      puVar4 = puVar8;
-      if (puVar5 != (ulonglong *)0x0) {
-        puVar4 = puVar5 + 1;
+      current_node = start_node;
+      if (next_node != (ulonglong *)0x0) {
+        current_node = next_node + 1;
       }
-      *(ulonglong **)(param_2 + 6) = puVar4;
-      if (puVar4 == (ulonglong *)0x0) {
-        puVar4 = (ulonglong *)(lVar3 + 8);
-        if (lVar3 == 0) {
-          puVar4 = puVar8;
+      *(ulonglong **)(state_ptr + 6) = current_node;
+      if (current_node == (ulonglong *)0x0) {
+        current_node = (ulonglong *)(list_head + 8);
+        if (list_head == 0) {
+          current_node = start_node;
         }
-        *(ulonglong **)(param_2 + 6) = puVar4;
+        *(ulonglong **)(state_ptr + 6) = current_node;
       }
-      uVar7 = uVar7 - 1;
-    } while (uVar7 != 0);
+      nodes_to_move = nodes_to_move - 1;
+    } while (nodes_to_move != 0);
   }
-  param_2[1] = uVar2;
-  param_2[2] = 0;
-  *(ulonglong **)(param_2 + 4) = puVar4;
-  return CONCAT71((int7)(uVar10 >> 8),1);
+  state_ptr[1] = max_capacity;
+  state_ptr[2] = 0;
+  *(ulonglong **)(state_ptr + 4) = current_node;
+  return CONCAT71((int7)(move_count >> 8),1);
 }
 
 
 
-longlong * FUN_180060b80(longlong *param_1,longlong *param_2)
-
+/**
+ * 交换链表头节点并释放资源
+ * 交换两个链表的头节点，并释放原头节点的资源
+ * @param head_ptr1 链表头指针1
+ * @param head_ptr2 链表头指针2
+ * @return 更新后的链表头指针1
+ */
+longlong * 交换链表头节点(longlong *head_ptr1,longlong *head_ptr2)
 {
-  longlong lVar1;
-  longlong *plVar2;
+  longlong temp_head;
+  longlong *old_head;
   
-  lVar1 = *param_2;
-  *param_2 = 0;
-  plVar2 = (longlong *)*param_1;
-  *param_1 = lVar1;
-  if (plVar2 != (longlong *)0x0) {
-    (**(code **)(*plVar2 + 0x38))();
+  temp_head = *head_ptr2;
+  *head_ptr2 = 0;
+  old_head = (longlong *)*head_ptr1;
+  *head_ptr1 = temp_head;
+  if (old_head != (longlong *)0x0) {
+    (**(code **)(*old_head + 0x38))();
   }
-  return param_1;
+  return head_ptr1;
 }
 
 
 
-longlong * FUN_180060bd0(longlong *param_1)
-
+/**
+ * 释放链表头节点资源
+ * 释放链表头节点占用的资源
+ * @param head_ptr 链表头指针
+ * @return 更新后的链表头指针
+ */
+longlong * 释放链表头节点(longlong *head_ptr)
 {
-  if ((longlong *)*param_1 != (longlong *)0x0) {
-    (**(code **)(*(longlong *)*param_1 + 0x38))();
+  if ((longlong *)*head_ptr != (longlong *)0x0) {
+    (**(code **)(*(longlong *)*head_ptr + 0x38))();
   }
-  return param_1;
+  return head_ptr;
 }
 
 

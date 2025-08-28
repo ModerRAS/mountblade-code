@@ -779,27 +779,28 @@ void free_module_resource_array(longlong resource_array)
   ulonglong array_size;        // 数组大小
   ulonglong index;             // 索引计数器
   
-  uVar3 = *(ulonglong *)(param_1 + 0x10);
-  lVar1 = *(longlong *)(param_1 + 8);
-  uVar4 = 0;
-  if (uVar3 != 0) {
+  array_size = *(ulonglong *)(resource_array + 0x10);
+  array_pointer = *(longlong *)(resource_array + 8);
+  index = 0;
+  if (array_size != 0) {
     do {
-      lVar2 = *(longlong *)(lVar1 + uVar4 * 8);
-      if (lVar2 != 0) {
-        if (*(longlong **)(lVar2 + 0x10) != (longlong *)0x0) {
-          (**(code **)(**(longlong **)(lVar2 + 0x10) + 0x38))();
+      resource_data = *(longlong *)(array_pointer + index * 8);
+      if (resource_data != 0) {
+        // 调用资源的清理函数
+        if (*(longlong **)(resource_data + 0x10) != (longlong *)0x0) {
+          (**(code **)(**(longlong **)(resource_data + 0x10) + 0x38))();
         }
-                    // WARNING: Subroutine does not return
-        FUN_18064e900(lVar2);
+        // 释放资源内存
+        FUN_18064e900(resource_data);
       }
-      *(undefined8 *)(lVar1 + uVar4 * 8) = 0;
-      uVar4 = uVar4 + 1;
-    } while (uVar4 < uVar3);
-    uVar3 = *(ulonglong *)(param_1 + 0x10);
+      *(undefined8 *)(array_pointer + index * 8) = 0;
+      index = index + 1;
+    } while (index < array_size);
+    array_size = *(ulonglong *)(resource_array + 0x10);
   }
-  *(undefined8 *)(param_1 + 0x18) = 0;
-  if ((1 < uVar3) && (*(longlong *)(param_1 + 8) != 0)) {
-                    // WARNING: Subroutine does not return
+  *(undefined8 *)(resource_array + 0x18) = 0;
+  if ((1 < array_size) && (*(longlong *)(resource_array + 8) != 0)) {
+    // 如果还有未释放的资源，调用错误处理
     FUN_18064e900();
   }
   return;
@@ -815,14 +816,15 @@ void free_module_resource_array(longlong resource_array)
 longlong initialize_string_buffer(longlong buffer_handle)
 
 {
-  *(undefined8 *)(param_1 + 8) = &UNK_18098bcb0;
-  *(undefined8 *)(param_1 + 0x10) = 0;
-  *(undefined4 *)(param_1 + 0x18) = 0;
-  *(undefined8 *)(param_1 + 8) = &UNK_180a3c3e0;
-  *(undefined8 *)(param_1 + 0x20) = 0;
-  *(undefined8 *)(param_1 + 0x10) = 0;
-  *(undefined4 *)(param_1 + 0x18) = 0;
-  return param_1;
+  // 初始化字符串缓冲区的各个字段
+  *(undefined8 *)(buffer_handle + 8) = &UNK_18098bcb0;  // 设置字符串指针为空
+  *(undefined8 *)(buffer_handle + 0x10) = 0;           // 清零长度
+  *(undefined4 *)(buffer_handle + 0x18) = 0;           // 清零标志
+  *(undefined8 *)(buffer_handle + 8) = &UNK_180a3c3e0;  // 重置字符串指针
+  *(undefined8 *)(buffer_handle + 0x20) = 0;           // 清零容量
+  *(undefined8 *)(buffer_handle + 0x10) = 0;           // 清零长度
+  *(undefined4 *)(buffer_handle + 0x18) = 0;           // 清零标志
+  return buffer_handle;
 }
 
 

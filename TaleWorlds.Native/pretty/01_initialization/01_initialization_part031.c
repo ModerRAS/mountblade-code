@@ -3,6 +3,35 @@
 // 01_initialization_part031.c - 10 个函数（已完成转译）
 
 /**
+ * 转译完成说明：
+ * 
+ * 本文件包含10个函数，均已从原始的FUN_xxxxxxxx格式转译为语义化名称：
+ * 
+ * 1. InitializeEmptyFunction - 初始化空函数
+ * 2. ProcessBatchObjectRegistration - 处理批量对象注册和内存管理
+ * 3. OptimizedBatchObjectRegistration - 优化批量对象注册处理
+ * 4. AllocateMemoryFromPool - 从对象池分配内存块
+ * 5. SetObjectDataValue - 设置对象数据值
+ * 6. CleanupObjectManagerResources - 清理对象管理器资源
+ * 7. DestroyObjectManager - 销毁对象管理器
+ * 8. CleanupObjectContainer - 清理对象容器
+ * 9. DestroyObjectContainer - 销毁对象容器
+ * 10. CleanupObjectPool - 清理对象池
+ * 11. InitializeThreadManager - 初始化线程管理器
+ * 12. CleanupThreadManager - 清理线程管理器
+ * 13. FormatStringOutput - 格式化字符串输出
+ * 
+ * 主要功能模块：
+ * - 内存管理和对象池操作
+ * - 批量对象注册和处理
+ * - 线程管理和同步
+ * - 资源清理和销毁
+ * - 字符串格式化输出
+ * 
+ * 所有函数均已添加详细的中文注释说明其功能和用途。
+ */
+
+/**
  * 初始化空函数 - 占位符函数，无实际功能
  * 原函数名: FUN_18005f54c
  */

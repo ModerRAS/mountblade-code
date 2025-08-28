@@ -472,61 +472,78 @@ void release_single_object(undefined8 *object_ptr)
 
 
 
-// 函数: void FUN_180059fc0(longlong *param_1)
-void FUN_180059fc0(longlong *param_1)
-
+// 函数: void cleanup_thread_resources(longlong *thread_ptr)
+// 功能: 清理线程相关资源，包括互斥锁和条件变量
+void cleanup_thread_resources(longlong *thread_ptr)
 {
-  int *piVar1;
-  char *pcVar2;
-  undefined8 *puVar3;
-  longlong lVar4;
-  ulonglong uVar5;
+  int *ref_count;
+  char *status_flag;
+  undefined8 *resource_obj;
+  longlong block_info;
+  ulonglong memory_region;
+  longlong next_block;
   
-  _Mtx_destroy_in_situ();
-  _Cnd_destroy_in_situ();
-  puVar3 = (undefined8 *)*param_1;
-  if (puVar3 != (undefined8 *)0x0) {
-    if ((undefined8 *)puVar3[3] != (undefined8 *)0x0) {
-      *(undefined8 *)puVar3[3] = 0;
+  // 销毁线程同步对象
+  _Mtx_destroy_in_situ();  // 销毁互斥锁
+  _Cnd_destroy_in_situ();  // 销毁条件变量
+  
+  // 清理主资源对象
+  resource_obj = (undefined8 *)*thread_ptr;
+  if (resource_obj != (undefined8 *)0x0) {
+    if ((undefined8 *)resource_obj[3] != (undefined8 *)0x0) {
+      *(undefined8 *)resource_obj[3] = 0;  // 清理引用
     }
-    (**(code **)*puVar3)(puVar3,0);
-                    // WARNING: Subroutine does not return
-    FUN_18064e900(puVar3);
+    // 调用对象的析构函数
+    (**(code **)*resource_obj)(resource_obj, 0);
+    // 释放资源对象内存
+    FUN_18064e900(resource_obj);
   }
-  if ((param_1[6] != 0) && (*(longlong *)(param_1[6] + 0x10) != 0)) {
-                    // WARNING: Subroutine does not return
+  
+  // 清理相关联的资源
+  if ((thread_ptr[6] != 0) && (*(longlong *)(thread_ptr[6] + 0x10) != 0)) {
     FUN_18064e900();
   }
-  lVar4 = param_1[5];
-  while (lVar4 != 0) {
-    pcVar2 = (char *)(lVar4 + 0x141);
-    lVar4 = *(longlong *)(lVar4 + 0x138);
-    if (*pcVar2 != '\0') {
-                    // WARNING: Subroutine does not return
+  
+  // 遍历并清理所有子块
+  next_block = thread_ptr[5];
+  while (next_block != 0) {
+    status_flag = (char *)(next_block + 0x141);
+    next_block = *(longlong *)(next_block + 0x138);
+    if (*status_flag != '\0') {
       FUN_18064e900();
     }
   }
-  puVar3 = (undefined8 *)param_1[3];
-  if (puVar3 == (undefined8 *)0x0) {
+  
+  // 清理主引用块
+  resource_obj = (undefined8 *)thread_ptr[3];
+  if (resource_obj == (undefined8 *)0x0) {
     return;
   }
-  uVar5 = (ulonglong)puVar3 & 0xffffffffffc00000;
-  if (uVar5 != 0) {
-    lVar4 = uVar5 + 0x80 + ((longlong)puVar3 - uVar5 >> 0x10) * 0x50;
-    lVar4 = lVar4 - (ulonglong)*(uint *)(lVar4 + 4);
-    if ((*(void ***)(uVar5 + 0x70) == &ExceptionList) && (*(char *)(lVar4 + 0xe) == '\0')) {
-      *puVar3 = *(undefined8 *)(lVar4 + 0x20);
-      *(undefined8 **)(lVar4 + 0x20) = puVar3;
-      piVar1 = (int *)(lVar4 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
-        FUN_18064d630();
+  
+  // 处理内存区域和引用计数
+  memory_region = (ulonglong)resource_obj & 0xffffffffffc00000;
+  if (memory_region != 0) {
+    block_info = memory_region + 0x80 + ((longlong)resource_obj - memory_region >> 0x10) * 0x50;
+    block_info = block_info - (ulonglong)*(uint *)(block_info + 4);
+    
+    // 检查是否在异常列表中
+    if ((*(void ***)(memory_region + 0x70) == &ExceptionList) && (*(char *)(block_info + 0xe) == '\0')) {
+      // 从链表中移除
+      *resource_obj = *(undefined8 *)(block_info + 0x20);
+      *(undefined8 **)(block_info + 0x20) = resource_obj;
+      
+      // 减少引用计数
+      ref_count = (int *)(block_info + 0x18);
+      *ref_count = *ref_count - 1;
+      if (*ref_count == 0) {
+        FUN_18064d630();  // 清理内存管理器
         return;
       }
     }
     else {
-      func_0x00018064e870(uVar5,CONCAT71(0xff000000,*(void ***)(uVar5 + 0x70) == &ExceptionList),
-                          puVar3,uVar5,0xfffffffffffffffe);
+      // 处理异常情况
+      func_0x00018064e870(memory_region, CONCAT71(0xff000000, *(void ***)(memory_region + 0x70) == &ExceptionList),
+                          resource_obj, memory_region, 0xfffffffffffffffe);
     }
   }
   return;
@@ -536,36 +553,46 @@ void FUN_180059fc0(longlong *param_1)
 
 
 
-// 函数: void FUN_18005a010(longlong param_1)
-void FUN_18005a010(longlong param_1)
-
+// 函数: void release_context_object(longlong context_ptr)
+// 功能: 释放上下文中的对象引用
+void release_context_object(longlong context_ptr)
 {
-  int *piVar1;
-  undefined8 *puVar2;
-  longlong lVar3;
-  ulonglong uVar4;
+  int *ref_count;
+  undefined8 *context_obj;
+  longlong block_info;
+  ulonglong memory_region;
   
-  puVar2 = *(undefined8 **)(param_1 + 0x18);
-  if (puVar2 == (undefined8 *)0x0) {
+  // 获取上下文对象
+  context_obj = *(undefined8 **)(context_ptr + 0x18);
+  if (context_obj == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
-        FUN_18064d630();
+  
+  // 计算内存区域
+  memory_region = (ulonglong)context_obj & 0xffffffffffc00000;
+  if (memory_region != 0) {
+    // 计算块信息偏移
+    block_info = memory_region + 0x80 + ((longlong)context_obj - memory_region >> 0x10) * 0x50;
+    block_info = block_info - (ulonglong)*(uint *)(block_info + 4);
+    
+    // 检查是否在异常列表中
+    if ((*(void ***)(memory_region + 0x70) == &ExceptionList) && (*(char *)(block_info + 0xe) == '\0')) {
+      // 从链表中移除对象
+      *context_obj = *(undefined8 *)(block_info + 0x20);
+      *(undefined8 **)(block_info + 0x20) = context_obj;
+      
+      // 减少引用计数
+      ref_count = (int *)(block_info + 0x18);
+      *ref_count = *ref_count - 1;
+      if (*ref_count == 0) {
+        FUN_18064d630();  // 引用计数为0，清理内存管理器
         return;
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      // 处理异常情况
+      func_0x00018064e870(memory_region, CONCAT71(0xff000000, *(void ***)(memory_region + 0x70) == &ExceptionList),
+                          context_obj, memory_region, 0xfffffffffffffffe);
     }
   }
   return;
@@ -575,36 +602,40 @@ void FUN_18005a010(longlong param_1)
 
 
 
-// 函数: void FUN_18005a050(longlong param_1)
-void FUN_18005a050(longlong param_1)
-
+// 函数: void cleanup_object_array(longlong array_ptr)
+// 功能: 清理对象数组，释放数组中的所有对象
+void cleanup_object_array(longlong array_ptr)
 {
-  ulonglong uVar1;
-  longlong lVar2;
-  longlong lVar3;
-  ulonglong uVar4;
+  ulonglong array_size;
+  longlong array_base;
+  longlong current_obj;
+  ulonglong index;
   
-  uVar1 = *(ulonglong *)(param_1 + 0x10);
-  lVar2 = *(longlong *)(param_1 + 8);
-  uVar4 = 0;
-  if (uVar1 == 0) {
-    *(undefined8 *)(param_1 + 0x18) = 0;
+  // 获取数组大小和基地址
+  array_size = *(ulonglong *)(array_ptr + 0x10);
+  array_base = *(longlong *)(array_ptr + 8);
+  index = 0;
+  
+  if (array_size == 0) {
+    *(undefined8 *)(array_ptr + 0x18) = 0;  // 清空数组引用
   }
   else {
+    // 遍历数组中的所有对象
     do {
-      lVar3 = *(longlong *)(lVar2 + uVar4 * 8);
-      if (lVar3 != 0) {
-        if (*(longlong *)(lVar3 + 0x18) != 0) {
-                    // WARNING: Subroutine does not return
+      current_obj = *(longlong *)(array_base + index * 8);
+      if (current_obj != 0) {
+        // 检查对象是否有关联的资源
+        if (*(longlong *)(current_obj + 0x18) != 0) {
           FUN_18064e900();
         }
-                    // WARNING: Subroutine does not return
-        FUN_18064e900(lVar3);
+        // 释放对象
+        FUN_18064e900(current_obj);
       }
-      *(undefined8 *)(lVar2 + uVar4 * 8) = 0;
-      uVar4 = uVar4 + 1;
-    } while (uVar4 < uVar1);
-    *(undefined8 *)(param_1 + 0x18) = 0;
+      // 清空数组元素
+      *(undefined8 *)(array_base + index * 8) = 0;
+      index = index + 1;
+    } while (index < array_size);
+    *(undefined8 *)(array_ptr + 0x18) = 0;  // 清空数组引用
   }
   return;
 }
@@ -613,35 +644,47 @@ void FUN_18005a050(longlong param_1)
 
 
 
-// 函数: void FUN_18005a100(longlong param_1)
-void FUN_18005a100(longlong param_1)
-
+// 函数: void cleanup_extended_array(longlong array_ptr)
+// 功能: 清理扩展数组，包含额外的引用计数处理
+void cleanup_extended_array(longlong array_ptr)
 {
-  int *piVar1;
-  undefined8 *puVar2;
-  longlong lVar3;
-  ulonglong uVar4;
+  int *ref_count;
+  undefined8 *array_obj;
+  longlong block_info;
+  ulonglong memory_region;
   
-  FUN_18005a050();
-  if ((1 < *(ulonglong *)(param_1 + 0x10)) &&
-     (puVar2 = *(undefined8 **)(param_1 + 8), puVar2 != (undefined8 *)0x0)) {
-    uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-    if (uVar4 != 0) {
-      lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
-      lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-      if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-        *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-        *(undefined8 **)(lVar3 + 0x20) = puVar2;
-        piVar1 = (int *)(lVar3 + 0x18);
-        *piVar1 = *piVar1 + -1;
-        if (*piVar1 == 0) {
-          FUN_18064d630();
+  // 首先清理对象数组
+  cleanup_object_array(array_ptr);
+  
+  // 如果数组大小大于1且存在数组对象，进行额外的清理
+  if ((1 < *(ulonglong *)(array_ptr + 0x10)) &&
+     (array_obj = *(undefined8 **)(array_ptr + 8), array_obj != (undefined8 *)0x0)) {
+    
+    // 计算内存区域
+    memory_region = (ulonglong)array_obj & 0xffffffffffc00000;
+    if (memory_region != 0) {
+      // 计算块信息偏移
+      block_info = memory_region + 0x80 + ((longlong)array_obj - memory_region >> 0x10) * 0x50;
+      block_info = block_info - (ulonglong)*(uint *)(block_info + 4);
+      
+      // 检查是否在异常列表中
+      if ((*(void ***)(memory_region + 0x70) == &ExceptionList) && (*(char *)(block_info + 0xe) == '\0')) {
+        // 从链表中移除数组对象
+        *array_obj = *(undefined8 *)(block_info + 0x20);
+        *(undefined8 **)(block_info + 0x20) = array_obj;
+        
+        // 减少引用计数
+        ref_count = (int *)(block_info + 0x18);
+        *ref_count = *ref_count - 1;
+        if (*ref_count == 0) {
+          FUN_18064d630();  // 引用计数为0，清理内存管理器
           return;
         }
       }
       else {
-        func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                            puVar2,uVar4,0xfffffffffffffffe);
+        // 处理异常情况
+        func_0x00018064e870(memory_region, CONCAT71(0xff000000, *(void ***)(memory_region + 0x70) == &ExceptionList),
+                            array_obj, memory_region, 0xfffffffffffffffe);
       }
     }
     return;
@@ -653,80 +696,26 @@ void FUN_18005a100(longlong param_1)
 
 
 
-// 函数: void FUN_18005a130(longlong param_1)
-void FUN_18005a130(longlong param_1)
-
+// 函数: void cleanup_extended_array_v2(longlong array_ptr)
+// 功能: 清理扩展数组的第二个版本（简化实现）
+// 注意：此函数与cleanup_extended_array功能相同，可能是针对不同场景的版本
+void cleanup_extended_array_v2(longlong array_ptr)
 {
-  int *piVar1;
-  undefined8 *puVar2;
-  longlong lVar3;
-  ulonglong uVar4;
-  
-  FUN_18005a050();
-  if ((1 < *(ulonglong *)(param_1 + 0x10)) &&
-     (puVar2 = *(undefined8 **)(param_1 + 8), puVar2 != (undefined8 *)0x0)) {
-    uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-    if (uVar4 != 0) {
-      lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
-      lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-      if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-        *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-        *(undefined8 **)(lVar3 + 0x20) = puVar2;
-        piVar1 = (int *)(lVar3 + 0x18);
-        *piVar1 = *piVar1 + -1;
-        if (*piVar1 == 0) {
-          FUN_18064d630();
-          return;
-        }
-      }
-      else {
-        func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                            puVar2,uVar4,0xfffffffffffffffe);
-      }
-    }
-    return;
-  }
-  return;
+  // 实现与cleanup_extended_array相同
+  cleanup_extended_array(array_ptr);
 }
 
 
 
 
 
-// 函数: void FUN_18005a170(longlong param_1)
-void FUN_18005a170(longlong param_1)
-
+// 函数: void cleanup_extended_array_v3(longlong array_ptr)
+// 功能: 清理扩展数组的第三个版本（简化实现）
+// 注意：此函数与前两个函数功能相同，可能是针对不同场景的版本
+void cleanup_extended_array_v3(longlong array_ptr)
 {
-  int *piVar1;
-  undefined8 *puVar2;
-  longlong lVar3;
-  ulonglong uVar4;
-  
-  FUN_18005a050();
-  if ((1 < *(ulonglong *)(param_1 + 0x10)) &&
-     (puVar2 = *(undefined8 **)(param_1 + 8), puVar2 != (undefined8 *)0x0)) {
-    uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-    if (uVar4 != 0) {
-      lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
-      lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-      if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-        *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-        *(undefined8 **)(lVar3 + 0x20) = puVar2;
-        piVar1 = (int *)(lVar3 + 0x18);
-        *piVar1 = *piVar1 + -1;
-        if (*piVar1 == 0) {
-          FUN_18064d630();
-          return;
-        }
-      }
-      else {
-        func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                            puVar2,uVar4,0xfffffffffffffffe);
-      }
-    }
-    return;
-  }
-  return;
+  // 实现与cleanup_extended_array相同
+  cleanup_extended_array(array_ptr);
 }
 
 

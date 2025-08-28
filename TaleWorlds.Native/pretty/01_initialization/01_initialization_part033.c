@@ -331,178 +331,191 @@ code_r0x0001800630e9:
 
 
 
-int FUN_1800634b0(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+// 函数: int format_string_with_args(void *buffer, void *format, void *arg_list, void *extra_arg)
+// 功能: 使用参数列表格式化字符串，类似于sprintf_s的安全版本
+int format_string_with_args(void *buffer, void *format, void *arg_list, void *extra_arg)
 
 {
-  int iVar1;
-  undefined8 *puVar2;
-  undefined8 uStackX_20;
+  int result;
+  undefined8 *stdio_config;
+  undefined8 extra_param;
   
-  uStackX_20 = param_4;
-  puVar2 = (undefined8 *)func_0x00018004b9a0();
-  iVar1 = __stdio_common_vsprintf_s(*puVar2,param_1,param_2,param_3,0,&uStackX_20);
-  if (iVar1 < 0) {
-    iVar1 = -1;
+  extra_param = extra_arg;
+  stdio_config = (undefined8 *)get_stdio_common_config();
+  result = __stdio_common_vsprintf_s(*stdio_config,buffer,format,arg_list,0,&extra_param);
+  if (result < 0) {
+    result = -1;
   }
-  return iVar1;
+  return result;
 }
 
 
 
-ulonglong FUN_180063510(longlong *param_1,longlong param_2)
+// 函数: ulonglong find_string_in_hash_table(longlong *hash_table, longlong search_key)
+// 功能: 在哈希表中查找字符串，返回查找结果
+ulonglong find_string_in_hash_table(longlong *hash_table, longlong search_key)
 
 {
-  byte *pbVar1;
-  uint uVar2;
-  uint uVar3;
-  longlong lVar4;
-  ulonglong in_RAX;
-  byte *pbVar5;
-  uint uVar6;
-  ulonglong uVar7;
-  longlong lVar8;
-  int iVar9;
-  longlong lVar10;
+  byte *string_ptr1;
+  uint hash_value1;
+  uint hash_value2;
+  longlong table_offset;
+  ulonglong result;
+  byte *string_ptr2;
+  uint char_diff;
+  ulonglong entry_count;
+  longlong string_length;
+  int compare_index;
+  longlong current_entry;
   
-  lVar4 = *param_1;
-  iVar9 = 0;
-  uVar7 = param_1[1] - lVar4 >> 5;
-  if (uVar7 != 0) {
-    uVar2 = *(uint *)(param_2 + 0x10);
-    lVar10 = 0;
+  table_offset = *hash_table;
+  compare_index = 0;
+  entry_count = hash_table[1] - table_offset >> 5;
+  if (entry_count != 0) {
+    hash_value2 = *(uint *)(search_key + 0x10);
+    current_entry = 0;
     do {
-      uVar3 = *(uint *)(lVar10 + 0x10 + lVar4);
-      pbVar5 = (byte *)(ulonglong)uVar3;
-      uVar6 = uVar2;
-      if (uVar3 == uVar2) {
-        if (uVar3 != 0) {
-          pbVar5 = *(byte **)(lVar10 + 8 + lVar4);
-          lVar8 = *(longlong *)(param_2 + 8) - (longlong)pbVar5;
+      hash_value1 = *(uint *)(current_entry + 0x10 + table_offset);
+      string_ptr2 = (byte *)(ulonglong)hash_value1;
+      char_diff = hash_value2;
+      if (hash_value1 == hash_value2) {
+        if (hash_value1 != 0) {
+          string_ptr2 = *(byte **)(current_entry + 8 + table_offset);
+          string_length = *(longlong *)(search_key + 8) - (longlong)string_ptr2;
           do {
-            pbVar1 = pbVar5 + lVar8;
-            uVar6 = (uint)*pbVar5 - (uint)*pbVar1;
-            if (uVar6 != 0) break;
-            pbVar5 = pbVar5 + 1;
-          } while (*pbVar1 != 0);
+            string_ptr1 = string_ptr2 + string_length;
+            char_diff = (uint)*string_ptr2 - (uint)*string_ptr1;
+            if (char_diff != 0) break;
+            string_ptr2 = string_ptr2 + 1;
+          } while (*string_ptr1 != 0);
         }
-LAB_18006357e:
-        if (uVar6 == 0) {
-          return CONCAT71((int7)((ulonglong)pbVar5 >> 8),1);
+found_match:
+        if (char_diff == 0) {
+          return CONCAT71((int7)((ulonglong)string_ptr2 >> 8),1);
         }
       }
-      else if (uVar3 == 0) goto LAB_18006357e;
-      iVar9 = iVar9 + 1;
-      lVar10 = lVar10 + 0x20;
-      in_RAX = (ulonglong)iVar9;
-    } while (in_RAX < uVar7);
+      else if (hash_value1 == 0) goto found_match;
+      compare_index = compare_index + 1;
+      current_entry = current_entry + 0x20;
+      result = (ulonglong)compare_index;
+    } while (result < entry_count);
   }
-  return in_RAX & 0xffffffffffffff00;
+  return result & 0xffffffffffffff00;
 }
 
 
 
 
 
-// 函数: void FUN_1800635c0(void)
-void FUN_1800635c0(void)
+// 函数: void initialize_string_formatter(void)
+// 功能: 初始化字符串格式化系统
+void initialize_string_formatter(void)
 
 {
-  FUN_1800635e0();
+  setup_string_formatting();
   return;
 }
 
 
 
-int FUN_1800635e0(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+// 函数: int format_string_unsafe(void *buffer, void *format, void *arg_list, void *extra_arg)
+// 功能: 不安全版本的字符串格式化，使用stdio_common_vsprintf
+int format_string_unsafe(void *buffer, void *format, void *arg_list, void *extra_arg)
 
 {
-  int iVar1;
-  ulonglong *puVar2;
+  int result;
+  ulonglong *stdio_config;
   
-  puVar2 = (ulonglong *)func_0x00018004b9a0();
-  iVar1 = __stdio_common_vsprintf(*puVar2 | 2,param_1,param_2,param_3,0,param_4);
-  if (iVar1 < 0) {
-    iVar1 = -1;
+  stdio_config = (ulonglong *)get_stdio_common_config();
+  result = __stdio_common_vsprintf(*stdio_config | 2,buffer,format,arg_list,0,extra_arg);
+  if (result < 0) {
+    result = -1;
   }
-  return iVar1;
+  return result;
 }
 
 
 
-undefined8 *
-FUN_180063650(undefined8 *param_1,ulonglong param_2,undefined8 param_3,undefined8 param_4)
+// 函数: undefined8 *cleanup_string_buffer(undefined8 *buffer_ptr, ulonglong flags, undefined8 param3, undefined8 param4)
+// 功能: 清理字符串缓冲区，根据标志决定是否释放内存
+undefined8 *cleanup_string_buffer(undefined8 *buffer_ptr, ulonglong flags, undefined8 param3, undefined8 param4)
 
 {
-  param_1[6] = &UNK_180a3c3e0;
-  if (param_1[7] != 0) {
+  buffer_ptr[6] = &UNK_180a3c3e0;
+  if (buffer_ptr[7] != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    release_string_buffer();
   }
-  param_1[7] = 0;
-  *(undefined4 *)(param_1 + 9) = 0;
-  param_1[6] = &UNK_18098bcb0;
-  *param_1 = &UNK_18098bdc8;
-  *param_1 = &UNK_180a21720;
-  *param_1 = &UNK_180a21690;
-  if ((param_2 & 1) != 0) {
-    free(param_1,0x70,param_3,param_4,0xfffffffffffffffe);
+  buffer_ptr[7] = 0;
+  *(undefined4 *)(buffer_ptr + 9) = 0;
+  buffer_ptr[6] = &UNK_18098bcb0;
+  *buffer_ptr = &UNK_18098bdc8;
+  *buffer_ptr = &UNK_180a21720;
+  *buffer_ptr = &UNK_180a21690;
+  if ((flags & 1) != 0) {
+    free(buffer_ptr,0x70,param3,param4,0xfffffffffffffffe);
   }
-  return param_1;
+  return buffer_ptr;
 }
 
 
 
-undefined8 *
-FUN_1800636f0(undefined8 *param_1,undefined4 param_2,undefined8 param_3,undefined8 param_4)
+// 函数: undefined8 *initialize_string_buffer_with_config(undefined8 *buffer_ptr, undefined4 config, undefined8 param3, undefined8 param4)
+// 功能: 使用配置初始化字符串缓冲区
+undefined8 *initialize_string_buffer_with_config(undefined8 *buffer_ptr, undefined4 config, undefined8 param3, undefined8 param4)
 
 {
-  longlong *plVar1;
+  longlong *buffer_manager;
   
-  *param_1 = &UNK_180a21690;
-  *param_1 = &UNK_180a21720;
-  *(undefined4 *)(param_1 + 1) = 0;
-  *param_1 = &UNK_18098bdc8;
+  *buffer_ptr = &UNK_180a21690;
+  *buffer_ptr = &UNK_180a21720;
+  *(undefined4 *)(buffer_ptr + 1) = 0;
+  *buffer_ptr = &UNK_18098bdc8;
   LOCK();
-  *(undefined1 *)(param_1 + 2) = 0;
+  *(undefined1 *)(buffer_ptr + 2) = 0;
   UNLOCK();
-  param_1[3] = 0xffffffffffffffff;
-  *param_1 = &UNK_1809fe650;
-  plVar1 = param_1 + 6;
-  *plVar1 = (longlong)&UNK_18098bcb0;
-  param_1[7] = 0;
-  *(undefined4 *)(param_1 + 8) = 0;
-  *plVar1 = (longlong)&UNK_180a3c3e0;
-  param_1[9] = 0;
-  param_1[7] = 0;
-  *(undefined4 *)(param_1 + 8) = 0;
-  *(undefined4 *)(param_1 + 5) = param_2;
-  param_1[4] = param_3;
-  (**(code **)(*plVar1 + 0x10))(plVar1,&DAT_18098bc73,param_3,param_4,0xfffffffffffffffe);
-  *(undefined4 *)(param_1 + 10) = 0xd;
-  *(undefined8 *)((longlong)param_1 + 0x54) = 0xe;
-  param_1[0xc] = 0xffffffff00000000;
-  *(undefined4 *)(param_1 + 0xd) = 0;
-  return param_1;
+  buffer_ptr[3] = 0xffffffffffffffff;
+  *buffer_ptr = &UNK_1809fe650;
+  buffer_manager = buffer_ptr + 6;
+  *buffer_manager = (longlong)&UNK_18098bcb0;
+  buffer_ptr[7] = 0;
+  *(undefined4 *)(buffer_ptr + 8) = 0;
+  *buffer_manager = (longlong)&UNK_180a3c3e0;
+  buffer_ptr[9] = 0;
+  buffer_ptr[7] = 0;
+  *(undefined4 *)(buffer_ptr + 8) = 0;
+  *(undefined4 *)(buffer_ptr + 5) = config;
+  buffer_ptr[4] = param3;
+  (**(code **)(*buffer_manager + 0x10))(buffer_manager,&DAT_18098bc73,param3,param4,0xfffffffffffffffe);
+  *(undefined4 *)(buffer_ptr + 10) = 0xd;
+  *(undefined8 *)((longlong)buffer_ptr + 0x54) = 0xe;
+  buffer_ptr[0xc] = 0xffffffff00000000;
+  *(undefined4 *)(buffer_ptr + 0xd) = 0;
+  return buffer_ptr;
 }
 
 
 
-longlong FUN_1800637c0(longlong param_1)
+// 函数: longlong setup_function_pointer_table(longlong table_ptr)
+// 功能: 设置函数指针表，用于初始化或其他配置
+longlong setup_function_pointer_table(longlong table_ptr)
 
 {
-  *(undefined8 *)(param_1 + 0x10) = 0;
-  *(code **)(param_1 + 0x18) = FUN_180066dd0;
-  return param_1;
+  *(undefined8 *)(table_ptr + 0x10) = 0;
+  *(code **)(table_ptr + 0x18) = initialize_module_functions;
+  return table_ptr;
 }
 
 
 
-longlong FUN_1800637f0(longlong param_1)
+// 函数: longlong setup_security_function_pointer(longlong table_ptr)
+// 功能: 设置安全相关的函数指针，使用guard检查
+longlong setup_security_function_pointer(longlong table_ptr)
 
 {
-  *(undefined8 *)(param_1 + 0x10) = 0;
-  *(code **)(param_1 + 0x18) = _guard_check_icall;
-  return param_1;
+  *(undefined8 *)(table_ptr + 0x10) = 0;
+  *(code **)(table_ptr + 0x18) = _guard_check_icall;
+  return table_ptr;
 }
 
 
@@ -511,23 +524,24 @@ longlong FUN_1800637f0(longlong param_1)
 
 
 
-// 函数: void FUN_180063820(undefined8 param_1)
-void FUN_180063820(undefined8 param_1)
+// 函数: void initialize_system_buffers(undefined8 system_param)
+// 功能: 初始化系统缓冲区，包括安全检查和内存清零
+void initialize_system_buffers(undefined8 system_param)
 
 {
-  undefined1 auStack_2e8 [96];
-  undefined1 auStack_288 [64];
-  undefined8 uStack_248;
-  undefined8 uStack_240;
-  undefined1 auStack_238 [512];
-  ulonglong uStack_38;
+  undefined1 security_buffer [96];
+  undefined1 config_buffer [64];
+  undefined8 stack_cookie;
+  undefined8 param_value;
+  undefined1 zero_buffer [512];
+  ulonglong security_check;
   
-  uStack_248 = 0xfffffffffffffffe;
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_2e8;
-  uStack_240 = param_1;
-  FUN_180627ae0(auStack_288,_DAT_180c86928 + 0x28);
+  stack_cookie = 0xfffffffffffffffe;
+  security_check = _DAT_180bf00a8 ^ (ulonglong)security_buffer;
+  param_value = system_param;
+  initialize_buffer_manager(config_buffer,_DAT_180c86928 + 0x28);
                     // WARNING: Subroutine does not return
-  memset(auStack_238,0,0x200);
+  memset(zero_buffer,0,0x200);
 }
 
 
