@@ -66,190 +66,188 @@ void dynamic_array_insert_8byte(longlong *array_info, longlong insert_pos, undef
 
 
 
-undefined4 * FUN_180188d20(longlong *param_1,longlong param_2,undefined4 *param_3)
-
+// 函数：向4字节元素数组中插入元素
+undefined4 * array_insert_4byte_elements(longlong *array_info, longlong insert_pos, undefined4 *element_data)
 {
-  ulonglong uVar1;
-  undefined4 *puVar2;
-  code *pcVar3;
-  undefined4 uVar4;
-  undefined4 uVar5;
-  undefined4 uVar6;
-  undefined4 *puVar7;
-  undefined4 *puVar8;
-  longlong lVar9;
-  ulonglong uVar10;
-  ulonglong uVar11;
-  longlong lVar12;
-  undefined4 *puVar13;
-  undefined8 uVar14;
-  undefined4 *puVar15;
+  ulonglong new_element_count;
+  undefined4 *new_array;
+  code *error_handler;
+  undefined4 *result_ptr;
+  undefined4 element_field_1;
+  undefined4 element_field_2;
+  undefined4 element_field_3;
+  undefined4 *element_ptr;
+  undefined4 *temp_ptr;
+  longlong array_start;
+  longlong array_end;
+  undefined8 temp_var;
+  ulonglong current_count;
+  ulonglong new_capacity;
+  longlong element_offset;
   
-  uVar14 = 0xfffffffffffffffe;
-  lVar12 = *param_1;
-  lVar9 = (param_1[1] - lVar12) / 0x28;
-  if (lVar9 == 0x666666666666666) {
-    FUN_180189990();
-    pcVar3 = (code *)swi(3);
-    puVar8 = (undefined4 *)(*pcVar3)();
-    return puVar8;
+  array_end = *array_info;
+  element_offset = (array_info[1] - array_end) / 0x28;
+  if (element_offset == 0x666666666666666) {
+    // 错误处理：数组大小无效
+    handle_array_size_error();
+    error_handler = (code *)swi(3);
+    result_ptr = (undefined4 *)(*error_handler)();
+    return result_ptr;
   }
-  uVar1 = lVar9 + 1;
-  uVar11 = (param_1[2] - lVar12) / 0x28;
-  uVar10 = uVar1;
-  if ((uVar11 <= 0x666666666666666 - (uVar11 >> 1)) &&
-     (uVar10 = uVar11 + (uVar11 >> 1), uVar10 < uVar1)) {
-    uVar10 = uVar1;
+  new_element_count = element_offset + 1;
+  current_count = (array_info[2] - array_end) / 0x28;
+  new_capacity = new_element_count;
+  if ((current_count <= 0x666666666666666 - (current_count >> 1)) &&
+     (new_capacity = current_count + (current_count >> 1), new_capacity < new_element_count)) {
+    new_capacity = new_element_count;
   }
-  lVar9 = uVar10 * 0x28;
-  if (0x666666666666666 < uVar10) {
-    lVar9 = -1;
+  element_offset = new_capacity * 0x28;
+  if (0x666666666666666 < new_capacity) {
+    element_offset = -1;
   }
-  puVar7 = (undefined4 *)FUN_180067110(lVar9);
-  puVar2 = puVar7 + ((param_2 - lVar12) / 0x28) * 10;
-  *(undefined8 *)(puVar2 + 4) = 0;
-  *(undefined8 *)(puVar2 + 6) = 0;
-  uVar4 = param_3[1];
-  uVar5 = param_3[2];
-  uVar6 = param_3[3];
-  *puVar2 = *param_3;
-  puVar2[1] = uVar4;
-  puVar2[2] = uVar5;
-  puVar2[3] = uVar6;
-  uVar4 = param_3[5];
-  uVar5 = param_3[6];
-  uVar6 = param_3[7];
-  puVar2[4] = param_3[4];
-  puVar2[5] = uVar4;
-  puVar2[6] = uVar5;
-  puVar2[7] = uVar6;
-  *(undefined8 *)(param_3 + 4) = 0;
-  *(undefined8 *)(param_3 + 6) = 0xf;
-  *(undefined1 *)param_3 = 0;
-  *(undefined1 *)(puVar2 + 8) = *(undefined1 *)(param_3 + 8);
-  lVar12 = param_1[1];
-  lVar9 = *param_1;
-  puVar8 = puVar7;
-  puVar13 = puVar2;
-  puVar15 = puVar2;
-  if (param_2 != lVar12) {
-    FUN_180189b30(*param_1,param_2,puVar7,param_1,puVar2,uVar14,puVar2);
-    puVar8 = puVar2 + 10;
-    lVar12 = param_1[1];
-    lVar9 = param_2;
-    puVar13 = puVar7;
+  new_array = (undefined4 *)allocate_memory(element_offset);
+  result_ptr = new_array + ((insert_pos - array_end) / 0x28) * 10;
+  *(undefined8 *)(result_ptr + 4) = 0;
+  *(undefined8 *)(result_ptr + 6) = 0;
+  element_field_1 = element_data[1];
+  element_field_2 = element_data[2];
+  element_field_3 = element_data[3];
+  *result_ptr = *element_data;
+  result_ptr[1] = element_field_1;
+  result_ptr[2] = element_field_2;
+  result_ptr[3] = element_field_3;
+  element_field_1 = element_data[5];
+  element_field_2 = element_data[6];
+  element_field_3 = element_data[7];
+  result_ptr[4] = element_data[4];
+  result_ptr[5] = element_field_1;
+  result_ptr[6] = element_field_2;
+  result_ptr[7] = element_field_3;
+  *(undefined8 *)(element_data + 4) = 0;
+  *(undefined8 *)(element_data + 6) = 0xf;
+  *(undefined1 *)element_data = 0;
+  *(undefined1 *)(result_ptr + 8) = *(undefined1 *)(element_data + 8);
+  array_end = array_info[1];
+  element_offset = (longlong)new_array;
+  temp_ptr = new_array;
+  element_ptr = result_ptr;
+  if (insert_pos != array_end) {
+    copy_array_segment_with_4byte_elements(*array_info, insert_pos, new_array, array_info, result_ptr, 0xfffffffffffffffe, result_ptr);
+    temp_ptr = result_ptr + 10;
+    array_end = array_info[1];
+    element_offset = insert_pos;
+    element_ptr = new_array;
   }
-  FUN_180189b30(lVar9,lVar12,puVar8,param_1,puVar13,uVar14,puVar15);
-  lVar12 = *param_1;
-  if (lVar12 != 0) {
-    lVar9 = param_1[1];
-    if (lVar12 != lVar9) {
+  copy_array_segment_with_4byte_elements(element_offset, array_end, temp_ptr, array_info, element_ptr, 0xfffffffffffffffe, result_ptr);
+  element_offset = *array_info;
+  if (element_offset != 0) {
+    array_end = array_info[1];
+    if (element_offset != array_end) {
       do {
-        FUN_180067070(lVar12);
-        lVar12 = lVar12 + 0x28;
-      } while (lVar12 != lVar9);
-      lVar12 = *param_1;
+        free_memory(element_offset);
+        element_offset = element_offset + 0x28;
+      } while (element_offset != array_end);
+      element_offset = *array_info;
     }
-    uVar11 = ((param_1[2] - lVar12) / 0x28) * 0x28;
-    lVar9 = lVar12;
-    if (0xfff < uVar11) {
-      lVar9 = *(longlong *)(lVar12 + -8);
-      if (0x1f < (lVar12 - lVar9) - 8U) {
-                    // WARNING: Subroutine does not return
-        _invalid_parameter_noinfo_noreturn(param_1[2] - lVar12,uVar11 + 0x27);
+    current_count = ((array_info[2] - element_offset) / 0x28) * 0x28;
+    array_end = element_offset;
+    if (0xfff < current_count) {
+      array_end = *(longlong *)(element_offset + -8);
+      if (0x1f < (element_offset - array_end) - 8U) {
+        // WARNING: Subroutine does not return
+        invalid_parameter_no_info_no_return(array_info[2] - element_offset, current_count + 0x27);
       }
     }
-    free(lVar9);
+    free(array_end);
   }
-  *param_1 = (longlong)puVar7;
-  param_1[1] = (longlong)(puVar7 + uVar1 * 10);
-  param_1[2] = (longlong)(puVar7 + uVar10 * 10);
-  return puVar2;
+  *array_info = (longlong)new_array;
+  array_info[1] = (longlong)(new_array + new_element_count * 10);
+  array_info[2] = (longlong)(new_array + new_capacity * 10);
+  return result_ptr;
 }
 
 
 
-longlong FUN_180188f60(longlong *param_1,longlong param_2,longlong param_3)
-
+// 函数：向数组中插入结构体元素
+longlong array_insert_struct_element(longlong *array_info, longlong insert_pos, longlong element_data)
 {
-  ulonglong uVar1;
-  code *pcVar2;
-  longlong lVar3;
-  longlong lVar4;
-  longlong lVar5;
-  longlong lVar6;
-  ulonglong uVar7;
-  ulonglong uVar8;
-  longlong lVar9;
-  longlong lVar10;
-  longlong lVar11;
-  undefined8 uVar12;
-  longlong lVar13;
+  ulonglong new_element_count;
+  code *error_handler;
+  longlong array_start;
+  longlong array_end;
+  longlong new_array_start;
+  longlong insert_position;
+  ulonglong current_count;
+  ulonglong new_capacity;
+  longlong element_offset;
+  undefined8 temp_var;
+  longlong new_array;
+  longlong result_ptr;
   
-  uVar12 = 0xfffffffffffffffe;
-  lVar4 = *param_1;
-  lVar5 = (param_1[1] - lVar4) / 0x28;
-  if (lVar5 == 0x666666666666666) {
-    FUN_180189990();
-    pcVar2 = (code *)swi(3);
-    lVar4 = (*pcVar2)();
-    return lVar4;
+  temp_var = 0xfffffffffffffffe;
+  array_start = *array_info;
+  array_end = (array_info[1] - array_start) / 0x28;
+  if (array_end == 0x666666666666666) {
+    handle_array_size_error();
+    error_handler = (code *)swi(3);
+    array_start = (*error_handler)();
+    return array_start;
   }
-  uVar1 = lVar5 + 1;
-  uVar8 = (param_1[2] - lVar4) / 0x28;
-  uVar7 = uVar1;
-  if ((uVar8 <= 0x666666666666666 - (uVar8 >> 1)) && (uVar7 = uVar8 + (uVar8 >> 1), uVar7 < uVar1))
-  {
-    uVar7 = uVar1;
+  new_element_count = array_end + 1;
+  current_count = (array_info[2] - array_start) / 0x28;
+  new_capacity = new_element_count;
+  if ((current_count <= 0x666666666666666 - (current_count >> 1)) && 
+     (new_capacity = current_count + (current_count >> 1), new_capacity < new_element_count)) {
+    new_capacity = new_element_count;
   }
-  lVar5 = uVar7 * 0x28;
-  if (0x666666666666666 < uVar7) {
-    lVar5 = -1;
+  array_end = new_capacity * 0x28;
+  if (0x666666666666666 < new_capacity) {
+    array_end = -1;
   }
-  lVar3 = FUN_180067110(lVar5);
-  lVar4 = lVar3 + ((param_2 - lVar4) / 0x28) * 0x28;
-  lVar11 = lVar3;
-  lVar13 = lVar4;
-  FUN_18018b350(lVar4,param_3);
-  *(undefined4 *)(lVar4 + 0x20) = *(undefined4 *)(param_3 + 0x20);
-  *(undefined4 *)(lVar4 + 0x24) = *(undefined4 *)(param_3 + 0x24);
-  lVar5 = param_1[1];
-  lVar6 = *param_1;
-  lVar9 = lVar3;
-  lVar10 = lVar4;
-  if (param_2 != lVar5) {
-    FUN_180189bc0(*param_1,param_2,lVar3,param_1,lVar4,lVar11,uVar12,lVar13);
-    lVar5 = param_1[1];
-    lVar6 = param_2;
-    lVar9 = lVar4 + 0x28;
-    lVar10 = lVar3;
+  new_array = allocate_memory(array_end);
+  result_ptr = new_array + ((insert_pos - array_start) / 0x28) * 0x28;
+  new_array_start = new_array;
+  insert_position = result_ptr;
+  copy_struct_data(result_ptr, element_data);
+  *(undefined4 *)(result_ptr + 0x20) = *(undefined4 *)(element_data + 0x20);
+  *(undefined4 *)(result_ptr + 0x24) = *(undefined4 *)(element_data + 0x24);
+  array_end = array_info[1];
+  array_start = *array_info;
+  new_array = new_array_start;
+  result_ptr = insert_position;
+  if (insert_pos != array_end) {
+    copy_array_segment_with_structs(array_info, array_start, insert_pos, new_array_start, result_ptr, new_array, temp_var, insert_position);
+    array_end = array_info[1];
+    array_start = insert_pos;
+    new_array = result_ptr + 0x28;
+    result_ptr = new_array_start;
   }
-  FUN_180189bc0(lVar6,lVar5,lVar9,param_1,lVar10,lVar11,uVar12,lVar13);
-  lVar5 = *param_1;
-  if (lVar5 != 0) {
-    lVar6 = param_1[1];
-    if (lVar5 != lVar6) {
+  copy_array_segment_with_structs(array_start, array_end, new_array, array_info, result_ptr, new_array, temp_var, insert_position);
+  array_start = *array_info;
+  if (array_start != 0) {
+    array_end = array_info[1];
+    if (array_start != array_end) {
       do {
-        FUN_180067070(lVar5);
-        lVar5 = lVar5 + 0x28;
-      } while (lVar5 != lVar6);
-      lVar5 = *param_1;
+        free_memory(array_start);
+        array_start = array_start + 0x28;
+      } while (array_start != array_end);
+      array_start = *array_info;
     }
-    uVar8 = ((param_1[2] - lVar5) / 0x28) * 0x28;
-    lVar6 = lVar5;
-    if (0xfff < uVar8) {
-      lVar6 = *(longlong *)(lVar5 + -8);
-      if (0x1f < (lVar5 - lVar6) - 8U) {
-                    // WARNING: Subroutine does not return
-        _invalid_parameter_noinfo_noreturn(param_1[2] - lVar5,uVar8 + 0x27);
+    current_count = ((array_info[2] - array_start) / 0x28) * 0x28;
+    array_end = array_start;
+    if (0xfff < current_count) {
+      array_end = *(longlong *)(array_start + -8);
+      if (0x1f < (array_start - array_end) - 8U) {
+        // WARNING: Subroutine does not return
+        invalid_parameter_no_info_no_return(array_info[2] - array_start, current_count + 0x27);
       }
     }
-    free(lVar6);
+    free(array_end);
   }
-  *param_1 = lVar3;
-  param_1[1] = lVar3 + uVar1 * 0x28;
-  param_1[2] = uVar7 * 0x28 + lVar3;
-  return lVar4;
+  *array_info = new_array_start;
+  array_info[1] = new_array_start + new_element_count * 0x28;
+  array_info[2] = new_capacity * 0x28 + new_array_start;
+  return result_ptr;
 }
 
 
