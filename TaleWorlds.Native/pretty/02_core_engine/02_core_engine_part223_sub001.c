@@ -49,7 +49,7 @@ void CoreEngineSubsystem_Initialize(uint64_t param_1, uint64_t param_2, uint64_t
     // 验证初始化结果
     if (*subsystem_state == 0) {
       // 初始化失败处理
-      FUN_18064e900();  // 错误处理函数
+      CoreEngineMemoryPoolCleaner();  // 错误处理函数
     }
     
     // 清理临时资源

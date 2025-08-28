@@ -572,5 +572,5 @@ void process_render_batch(int64_t render_context, int64_t scene_data)
            (uint64_t)((*(int64_t **)(saved_rbp + 0x2c))[1] - scene_data >> 3));
   
   // 清理资源（此函数不会返回）
-  FUN_1808fc050(*(uint64_t *)(saved_rbp + 0xa8) ^ (uint64_t)&stack_padding);
+  SystemSecurityChecker(*(uint64_t *)(saved_rbp + 0xa8) ^ (uint64_t)&stack_padding);
 }

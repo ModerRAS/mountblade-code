@@ -3,8 +3,12 @@
 
 // 02_core_engine_part180.c - 1 个函数
 
-// 函数: void FUN_1801659e0(void)
-void FUN_1801659e0(void)
+/**
+ * 系统初始化函数
+ * 负责初始化核心引擎系统，设置安全参数和系统状态
+ */
+// 函数: void CoreEngineSystemInitializer(void)
+void CoreEngineSystemInitializer(void)
 
 {
   int64_t *plVar1;

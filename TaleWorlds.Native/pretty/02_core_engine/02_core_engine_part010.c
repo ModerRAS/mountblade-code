@@ -58,7 +58,7 @@ void process_string_operation(int64_t param_1,int64_t param_2,int64_t param_3)
   }
   debug_ptr = &system_state_ptr;
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(stack_hash ^ (uint64_t)auStack_498);
+  SystemSecurityChecker(stack_hash ^ (uint64_t)auStack_498);
 }
 
 
@@ -155,7 +155,7 @@ int64_t process_data_structure(int32_t *data_ptr,int32_t *input_ptr)
         if (*(void **)(data_ptr + 4) != (void *)0x0) {
           error_msg = *(void **)(data_ptr + 4);
         }
-        FUN_180626f80(&unknown_var_544_ptr,error_msg);
+        SystemDataInitializer(&unknown_var_544_ptr,error_msg);
       }
       *data_ptr = data_ptr[0x12];
       return (uint64_t)(uint3)((uint)data_ptr[0x12] >> 8) << 8;
@@ -191,7 +191,7 @@ void set_system_parameter(uint64_t system_handle,int32_t parameter)
       if (*(void **)(system_base + 0x22a0) != (void *)0x0) {
         error_msg = *(void **)(system_base + 0x22a0);
       }
-      FUN_180626f80(&unknown_var_544_ptr,error_msg);
+      SystemDataInitializer(&unknown_var_544_ptr,error_msg);
     }
     *(int32_t *)(system_base + 0x2290) = *(int32_t *)(system_base + 0x22d8);
     return;
@@ -242,7 +242,7 @@ void initialize_string_data(int64_t str_ptr,int64_t input_str)
     strcpy_s(*(uint64_t *)(str_ptr + 8),0x20);
     return;
   }
-  FUN_180626f80(&unknown_var_616_ptr,0x20,input_str);
+  SystemDataInitializer(&unknown_var_616_ptr,0x20,input_str);
   *(int32_t *)(str_ptr + 0x10) = 0;
   **(int8_t **)(str_ptr + 8) = 0;
   return;
@@ -355,7 +355,7 @@ void string_operation_with_guard(int64_t param_1,int64_t param_2,int64_t param_3
   }
   debug_ptr = &system_state_ptr;
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(stack_hash ^ (uint64_t)auStack_a8);
+  SystemSecurityChecker(stack_hash ^ (uint64_t)auStack_a8);
 }
 
 
@@ -469,7 +469,7 @@ void cleanup_data_blocks(int64_t *data_array)
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  CoreEngineMemoryPoolCleaner();
 }
 
 
@@ -489,7 +489,7 @@ void cleanup_linked_list(int64_t *list_ptr)
     *current_node = &system_data_buffer_ptr;
     if (current_node[1] != 0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      CoreEngineMemoryPoolCleaner();
     }
     current_node[1] = 0;
     *(int32_t *)(current_node + 3) = 0;
@@ -497,7 +497,7 @@ void cleanup_linked_list(int64_t *list_ptr)
   }
   if (*list_ptr != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    CoreEngineMemoryPoolCleaner();
   }
   return;
 }
@@ -647,7 +647,7 @@ int insert_into_dynamic_array(int64_t array_ptr,int64_t element_ptr)
   if (old_end == 0) {
     old_end = 1;
 LAB_EXPAND_ARRAY:
-    new_memory = FUN_18062b420(system_memory_pool_ptr,old_end << 8,*(int8_t *)(array_ptr + 0x20));
+    new_memory = CoreEngineMemoryPoolAllocator(system_memory_pool_ptr,old_end << 8,*(int8_t *)(array_ptr + 0x20));
     current_pos = *(uint64_t *)(array_ptr + 0x10);
     old_base = *(int64_t *)(array_ptr + 8);
   }
@@ -670,7 +670,7 @@ LAB_EXPAND_ARRAY:
   }
   if (old_current != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900(old_current);
+    CoreEngineMemoryPoolCleaner(old_current);
   }
   *(int64_t *)(array_ptr + 8) = new_memory;
   *(uint64_t *****)(array_ptr + 0x10) = array_ptr_ptr;
@@ -686,7 +686,7 @@ LAB_RETURN_INDEX:
     return index;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  CoreEngineMemoryPoolCleaner();
 }
 
 
@@ -702,7 +702,7 @@ void cleanup_single_block(uint64_t *block_ptr,uint64_t param_2,uint64_t param_3,
   *block_ptr = &system_data_buffer_ptr;
   if (block_ptr[1] != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    CoreEngineMemoryPoolCleaner();
   }
   block_ptr[1] = 0;
   *(int32_t *)(block_ptr + 3) = 0;
@@ -810,7 +810,7 @@ void initialize_system_components(int64_t *system_ptr,uint64_t *config_ptr)
   temp_ptr = system_ptr;
   config = config_ptr;
   FUN_180047fc0();
-  new_system = (int64_t *)FUN_18062b1e0(system_memory_pool_ptr,200,8,3,flags,stack_guard);
+  new_system = (int64_t *)CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,200,8,3,flags,stack_guard);
   temp_ptr = new_system;
   FUN_180049830(new_system);
   *new_system = (int64_t)&unknown_var_3136_ptr;
@@ -828,7 +828,7 @@ void initialize_system_components(int64_t *system_ptr,uint64_t *config_ptr)
   *config_ptr = &system_data_buffer_ptr;
   if (config_ptr[1] != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    CoreEngineMemoryPoolCleaner();
   }
   config_ptr[1] = 0;
   *(int32_t *)(config_ptr + 3) = 0;
@@ -919,10 +919,10 @@ void initialize_game_engine(void)
   temp_flag = 0;
   if (*(int *)(system_main_module_state + 0x224) - core_system_control_pointer < 0xfb) {
                     // WARNING: Subroutine does not return
-    FUN_1808fc050(stack_hash ^ (uint64_t)auStack_698);
+    SystemSecurityChecker(stack_hash ^ (uint64_t)auStack_698);
   }
   *(int8_t *)(core_system_data_pointer + 0x39) = 1;
-  engine_obj = (int64_t ***)FUN_18062b1e0(system_memory_pool_ptr,200,8,3);
+  engine_obj = (int64_t ***)CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,200,8,3);
   temp_engine = engine_obj;
   FUN_180049830(engine_obj);
   *engine_obj = (int64_t **)&unknown_var_3136_ptr;
@@ -937,7 +937,7 @@ void initialize_game_engine(void)
   FUN_18005e300(system_handle,&temp_engine2);
   temp_flag = 0;
   (*(code *)(*engine_obj)[7])(engine_obj);
-  FUN_180627ae0(&context_ptr,&system_memory_52c0);
+  CoreEngineDataTransformer(&context_ptr,&system_memory_52c0);
   if (data_size == 0) {
     (**(code **)(context_ptr + 0x10))(&context_ptr,&unknown_var_2272_ptr);
     success = FUN_180624a00(&context_ptr);
@@ -1028,7 +1028,7 @@ void initialize_game_engine(void)
     temp_ptr4 = &system_data_buffer_ptr;
     if (temp_offset2 != 0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      CoreEngineMemoryPoolCleaner();
     }
     temp_offset2 = 0;
     temp_val4 = 0;
@@ -1036,7 +1036,7 @@ void initialize_game_engine(void)
     temp_ptr3 = &system_data_buffer_ptr;
     if (temp_offset != 0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      CoreEngineMemoryPoolCleaner();
     }
     temp_offset = 0;
     temp_val5 = 0;
@@ -1050,7 +1050,7 @@ void initialize_game_engine(void)
   temp_size = 0;
   temp_buffer = (int8_t *)0x0;
   buffer_size = 0;
-  FUN_1806277c0(&temp_ptr1,data_size);
+  CoreEngineDataBufferProcessor(&temp_ptr1,data_size);
   if (data_size != 0) {
                     // WARNING: Subroutine does not return
     memcpy(temp_buffer,file_data,data_size + 1);
@@ -1064,7 +1064,7 @@ void initialize_game_engine(void)
   }
   FUN_18062c1e0(&context_ptr,1);
   index = buffer_size + 0x11;
-  FUN_1806277c0(&temp_ptr1,index);
+  CoreEngineDataBufferProcessor(&temp_ptr1,index);
   value_ptr = (int32_t *)(temp_buffer + buffer_size);
   *value_ptr = 0x69676e65;
   value_ptr[1] = 0x635f656e;
@@ -1072,7 +1072,7 @@ void initialize_game_engine(void)
   value_ptr[3] = 0x78742e67;
   *(int16_t *)(value_ptr + 4) = 0x74;
   buffer_size = index;
-  config_ptr = (uint64_t *)FUN_18062b1e0(system_memory_pool_ptr,0x18,8,3);
+  config_ptr = (uint64_t *)CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x18,8,3);
   buffer_ptr = &system_buffer_ptr;
   if (temp_buffer != (int8_t *)0x0) {
     buffer_ptr = temp_buffer;
@@ -1096,7 +1096,7 @@ void initialize_game_engine(void)
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900(config_ptr);
+  CoreEngineMemoryPoolCleaner(config_ptr);
 }
 
 

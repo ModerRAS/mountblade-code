@@ -165,7 +165,7 @@ int process_resource_hash_table_operations(int64_t param_1, int64_t *param_2)
                 iVar5 = iVar5 + 1;
                 if (*param_2 != 0) {
                     uStackX_8 = param_1;
-                    FUN_18005ea90(*param_2,&uStackX_8);
+                    SystemInitializer(*param_2,&uStackX_8);
                 }
             }
         }
@@ -214,7 +214,7 @@ int process_resource_hash_table_operations(int64_t param_1, int64_t *param_2)
     plVar1 = param_2 + 5;
     lVar9 = param_2[7] - *plVar1;
     if ((uint64_t)(lVar9 / 0x18) < 0x100) {
-        lVar7 = FUN_18062b420(system_memory_pool_ptr,0x1800,(char)param_2[8]);
+        lVar7 = CoreEngineMemoryPoolAllocator(system_memory_pool_ptr,0x1800,(char)param_2[8]);
         lVar9 = *plVar1;
         if (lVar9 != param_2[6]) {
                     // WARNING: 此函数不会返回
@@ -222,7 +222,7 @@ int process_resource_hash_table_operations(int64_t param_1, int64_t *param_2)
         }
         if (lVar9 != 0) {
                     // WARNING: 此函数不会返回
-            FUN_18064e900();
+            CoreEngineMemoryPoolCleaner();
         }
         *plVar1 = lVar7;
         param_2[6] = lVar7;
@@ -283,7 +283,7 @@ void cleanup_resource_array(int64_t *param_1)
         *puVar2 = &system_data_buffer_ptr;
         if (puVar2[1] != 0) {
                     // WARNING: 此函数不会返回
-            FUN_18064e900();
+            CoreEngineMemoryPoolCleaner();
         }
         puVar2[1] = 0;
         *(int32_t *)(puVar2 + 3) = 0;
@@ -291,7 +291,7 @@ void cleanup_resource_array(int64_t *param_1)
     }
     if (*param_1 != 0) {
                     // WARNING: 此函数不会返回
-        FUN_18064e900();
+        CoreEngineMemoryPoolCleaner();
     }
     return;
 }
@@ -339,7 +339,7 @@ uint64_t update_resource_status_manager(int64_t param_1)
     if (bVar2 != 0) {
         if (*(int64_t *)(param_1 + 0x1d8) != 0) {
                     // WARNING: 此函数不会返回
-            FUN_18064e900();
+            CoreEngineMemoryPoolCleaner();
         }
         *(uint64_t *)(param_1 + 0x1d8) = 0;
         LOCK();
@@ -464,7 +464,7 @@ void process_resource_event_callbacks(int64_t *param_1)
     }
 LAB_18007738d:
                     // WARNING: 此函数不会返回
-    FUN_1808fc050(uStack_20 ^ (uint64_t)auStack_88);
+    SystemSecurityChecker(uStack_20 ^ (uint64_t)auStack_88);
 }
 
 // WARNING: 全局变量符号重叠警告
@@ -545,7 +545,7 @@ uint64_t process_resource_loading_status(int64_t param_1, int64_t param_2)
         if (iVar8 < 1) {
             if (lStack_50 != 0) {
                     // WARNING: 此函数不会返回
-                FUN_18064e900();
+                CoreEngineMemoryPoolCleaner();
             }
             bVar5 = false;
             if ((*(byte *)(param_1 + 0xfd) & 8) != 0) {
@@ -572,7 +572,7 @@ uint64_t process_resource_loading_status(int64_t param_1, int64_t param_2)
                         uVar9 = uVar3 >> 10;
                         uVar14 = (uint64_t)uVar9;
                         if (*(int64_t *)(lVar11 + 0x3f70 + (uint64_t)uVar9 * 8) == 0) {
-                            lVar10 = FUN_18062b420(system_memory_pool_ptr,0x2000,0x25);
+                            lVar10 = CoreEngineMemoryPoolAllocator(system_memory_pool_ptr,0x2000,0x25);
                             plVar2 = (int64_t *)(lVar11 + 0x3f70 + uVar14 * 8);
                             LOCK();
                             bVar16 = *plVar2 == 0;
@@ -588,7 +588,7 @@ uint64_t process_resource_loading_status(int64_t param_1, int64_t param_2)
                             else {
                                 if (lVar10 != 0) {
                                     // WARNING: 此函数不会返回
-                                    FUN_18064e900();
+                                    CoreEngineMemoryPoolCleaner();
                                 }
                                 do {
                                 } while (*(char *)(uVar14 + 0x48 + (int64_t)puVar1) != '\0');
@@ -614,7 +614,7 @@ uint64_t process_resource_loading_status(int64_t param_1, int64_t param_2)
         }
         if (lStack_50 != 0) {
                     // WARNING: 此函数不会返回
-            FUN_18064e900();
+            CoreEngineMemoryPoolCleaner();
         }
     }
     return 0;

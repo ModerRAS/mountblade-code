@@ -167,7 +167,7 @@ void process_object_initialization_type1(uint64_t *object_ptr,uint init_flags)
     stack_buffer_f0[0] = 0;
     stack_var_70 = 0x25;
     stack_var_68 = object_ptr[3];
-    temp_var1 = FUN_18062b1e0(GLOBAL_DATA_180c8ed18,0x100,8,3);
+    temp_var1 = CoreEngineMemoryPoolReallocator(GLOBAL_DATA_180c8ed18,0x100,8,3);
     function_ptr = (void **)FUN_18005ce30(temp_var1,&stack_ptr_108);
     stack_ptr_118 = function_ptr;
     if (function_ptr != (void **)0x0) {
@@ -192,7 +192,7 @@ void process_object_initialization_type1(uint64_t *object_ptr,uint init_flags)
     free(object_ptr,0x20);
   }
                     // 警告：子函数不返回
-  FUN_1808fc050(stack_var_28 ^ (uint64_t)stack_buffer_158);
+  SystemSecurityChecker(stack_var_28 ^ (uint64_t)stack_buffer_158);
 }
 
 
@@ -234,7 +234,7 @@ void process_object_initialization_type2(uint64_t *object_ptr,uint init_flags)
     stack_buffer_f0[0] = 0;
     stack_var_70 = 0x23;
     stack_var_68 = object_ptr[3];
-    temp_var1 = FUN_18062b1e0(GLOBAL_DATA_180c8ed18,0x100,8,3);
+    temp_var1 = CoreEngineMemoryPoolReallocator(GLOBAL_DATA_180c8ed18,0x100,8,3);
     function_ptr = (void **)FUN_18005ce30(temp_var1,&stack_ptr_108);
     stack_ptr_118 = function_ptr;
     if (function_ptr != (void **)0x0) {
@@ -259,7 +259,7 @@ void process_object_initialization_type2(uint64_t *object_ptr,uint init_flags)
     free(object_ptr,0x28);
   }
                     // 警告：子函数不返回
-  FUN_1808fc050(stack_var_28 ^ (uint64_t)stack_buffer_158);
+  SystemSecurityChecker(stack_var_28 ^ (uint64_t)stack_buffer_158);
 }
 
 
@@ -318,13 +318,13 @@ void reallocate_data_buffer(int *buffer_info)
   if (buffer_info[1] < 1) {
     if (*(int64_t *)(buffer_info + 2) != 0) {
                     // 警告：子函数不返回
-      FUN_18064e900();
+      CoreEngineMemoryPoolCleaner();
     }
     buffer_info[2] = 0;
     buffer_info[3] = 0;
     return;
   }
-  new_buffer_ptr = FUN_18062b420(GLOBAL_DATA_180c8ed18,(int64_t)buffer_info[1] << 4,(char)buffer_info[8]);
+  new_buffer_ptr = CoreEngineMemoryPoolAllocator(GLOBAL_DATA_180c8ed18,(int64_t)buffer_info[1] << 4,(char)buffer_info[8]);
   if (*(int64_t *)(buffer_info + 2) != 0) {
                     // 警告：子函数不返回
     memcpy(new_buffer_ptr,*(int64_t *)(buffer_info + 2),(int64_t)*buffer_info << 4);
@@ -345,7 +345,7 @@ void copy_data_buffer(void)
   uint64_t new_buffer_ptr;
   int *source_buffer;
   
-  new_buffer_ptr = FUN_18062b420();
+  new_buffer_ptr = CoreEngineMemoryPoolAllocator();
   if (*(int64_t *)(source_buffer + 2) != 0) {
                     // 警告：子函数不返回
     memcpy(new_buffer_ptr,*(int64_t *)(source_buffer + 2),(int64_t)*source_buffer << 4);
@@ -367,7 +367,7 @@ void validate_data_pointer(int64_t object_ptr)
   
   if (*(int64_t *)(object_ptr + 8) != 0) {
                     // 警告：子函数不返回
-    FUN_18064e900();
+    CoreEngineMemoryPoolCleaner();
   }
   *(uint64_t *)(data_offset + 8) = 0;
   return;
@@ -918,18 +918,18 @@ void free_object_resources(int64_t object_ptr)
     do {
       if (*(int64_t *)((uint64_t)resource_index + object_ptr + 0x30) != 0) {
                     // 警告：子函数不返回
-        FUN_18064e900();
+        CoreEngineMemoryPoolCleaner();
       }
       if (*(int64_t *)((uint64_t)resource_index + object_ptr + 8) != 0) {
                     // 警告：子函数不返回
-        FUN_18064e900();
+        CoreEngineMemoryPoolCleaner();
       }
       resource_index = resource_index + (int)resource_count;
       resource_type = resource_type - 1;
     } while (resource_type != 0);
   }
                     // 警告：子函数不返回
-  FUN_18064e900(object_ptr + -0x10);
+  CoreEngineMemoryPoolCleaner(object_ptr + -0x10);
 }
 
 
@@ -948,7 +948,7 @@ allocate_resource_array(uint64_t array_size,uint64_t param_2,uint64_t param_3,ui
     return (uint64_t *)0x0;
   }
   array_ptr = (uint64_t *)
-           FUN_18062b420(GLOBAL_DATA_180c8ed18,array_size * 0x50 + 0x10,0xf,param_4,0xfffffffffffffffe);
+           CoreEngineMemoryPoolAllocator(GLOBAL_DATA_180c8ed18,array_size * 0x50 + 0x10,0xf,param_4,0xfffffffffffffffe);
   *array_ptr = array_size << 0x20 | 0x50;
   element_index = 0;
   current_element = array_ptr + 8;
@@ -995,7 +995,7 @@ void copy_object_data(int64_t *destination,int64_t *source)
   *(short *)(destination + 2) = (short)source[2];
   if (destination[1] != 0) {
                     // 警告：子函数不返回
-    FUN_18064e900();
+    CoreEngineMemoryPoolCleaner();
   }
   temp_var = 0;
   destination[1] = 0;
@@ -1007,7 +1007,7 @@ void copy_object_data(int64_t *destination,int64_t *source)
   src_ushort = *(ushort *)(destination + 2);
   dest_offset = temp_var;
   if ((uint64_t)src_ushort != 0) {
-    dest_offset = FUN_18062b420(GLOBAL_DATA_180c8ed18,(uint64_t)src_ushort * 4,0xf);
+    dest_offset = CoreEngineMemoryPoolAllocator(GLOBAL_DATA_180c8ed18,(uint64_t)src_ushort * 4,0xf);
     src_ushort = *(ushort *)(destination + 2);
   }
   destination[1] = dest_offset;

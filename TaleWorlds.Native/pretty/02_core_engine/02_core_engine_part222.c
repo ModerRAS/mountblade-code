@@ -82,9 +82,9 @@ void process_engine_component_initialization(int64_t engine_instance, uint64_t e
   }
   
   // 分配事件缓冲区
-  FUN_180627ae0(&heap_ptr, event_data);
+  CoreEngineDataTransformer(&heap_ptr, event_data);
   component_count = memory_size + 3;
-  FUN_1806277c0(&heap_ptr, component_count);
+  CoreEngineDataBufferProcessor(&heap_ptr, component_count);
   string_buffer = memory_buffer + memory_size;
   string_buffer[0] = 0x5f;
   string_buffer[1] = 0x30;
@@ -118,14 +118,14 @@ LAB_180198f21:
   if ((int)component_count < (int)memory_size) {
     string_length = component_count;
   }
-  FUN_1806277c0(&global_ptr, string_length + 1);
+  CoreEngineDataBufferProcessor(&global_ptr, string_length + 1);
   temp_offset = address_offset;
   
   if (0 < (int)component_count) {
     do {
       if (memory_size <= (uint)temp_offset) break;
       temp_byte = memory_buffer[address_offset];
-      FUN_1806277c0(&global_ptr, global_size + 1);
+      CoreEngineDataBufferProcessor(&global_ptr, global_size + 1);
       global_buffer[global_size] = temp_byte;
       global_buffer[global_size + 1] = 0;
       global_size = global_size + 1;
@@ -138,7 +138,7 @@ LAB_180198f21:
   temp_component_ptr = stack_component_ptr;
   component_count = global_size;
   if (memory_buffer != (byte *)0x0) {
-    FUN_18064e900(memory_buffer);
+    CoreEngineMemoryPoolCleaner(memory_buffer);
   }
   
   // 继续处理引擎事件...
@@ -176,7 +176,7 @@ int64_t * create_engine_event_handler(uint64_t engine_instance, int64_t *event_p
   else {
     // 复杂模式：初始化事件栈和回调
     FUN_1801a0860(engine_instance, &stack_handler_ptr2);
-    temp_address = FUN_18062b1e0(system_memory_pool_ptr, 0x3d0, 8, 3);
+    temp_address = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr, 0x3d0, 8, 3);
     event_handler = (int64_t *)FUN_180275090(temp_address);
     if (event_handler != (int64_t *)0x0) {
       stack_handler_ptr = event_handler;

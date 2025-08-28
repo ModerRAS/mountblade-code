@@ -676,7 +676,7 @@ void initialize_game_entity(int64_t entity_id,int entity_type,float *size_data,u
     *(int32_t *)(lVar6 + 0x1b60) = 2;
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_48 ^ (uint64_t)auStack_188);
+  SystemSecurityChecker(uStack_48 ^ (uint64_t)auStack_188);
 }
 
 
@@ -820,7 +820,7 @@ void process_entity_boundary_box(void)
           }
                     // WARNING: Subroutine does not return
           puStack_40 = &unknown_var_4107_ptr;
-          FUN_180059ba0(lVar8,SYSTEM_DATA_MANAGER_B);
+          SystemResourceCleaner(lVar8,SYSTEM_DATA_MANAGER_B);
         }
       }
       lVar9 = SYSTEM_DATA_MANAGER_A;

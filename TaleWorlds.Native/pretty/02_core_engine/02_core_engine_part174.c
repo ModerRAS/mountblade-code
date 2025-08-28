@@ -156,7 +156,7 @@ uint64_t *create_engine_data_structure(uint64_t item_count, uint64_t param2, uin
       temp_ptr2[-2] = (uint64_t)(-(int)temp_ptr2 & 7) + (int64_t)temp_ptr2;
       temp_ptr2[-1] = (uint64_t)temp_ptr1;
       *temp_ptr1 = (uint64_t)&unknown_var_8432_ptr;
-      temp_ptr2[0x601] = (uint64_t)FUN_180059ba0;
+      temp_ptr2[0x601] = (uint64_t)SystemResourceCleaner;
       index = index + 1;
       temp_ptr2 = temp_ptr2 + 0x611;
     } while ((uint64_t)(int64_t)index < item_count);

@@ -1132,17 +1132,17 @@ void move_data_block(int64_t param_1, int64_t *param_2)
 #define GLOBAL_CLEANUP_ROUTINE_003   unknown_var_7824
 
 // 函数指针声明
-#define trigger_error_handler         FUN_18064e900
-#define cleanup_reference_object     FUN_18064d630
+#define trigger_error_handler         CoreEngineMemoryPoolCleaner
+#define cleanup_reference_object     SystemDataCleaner
 #define handle_memory_exception      func_0x00018064e870
 #define execute_cleanup_routine      FUN_18004b730
 #define destroy_mutex_in_place       _Mtx_destroy_in_situ
 #define execute_data_transfer         FUN_18017b400
 #define cleanup_resource_item         FUN_18017a9c0
-#define allocate_managed_memory       FUN_18062b1e0
+#define allocate_managed_memory       CoreEngineMemoryPoolReallocator
 #define create_object_wrapper         FUN_18007f2f0
 #define execute_cleanup_sequence     FUN_180083100
-#define allocate_structured_memory    FUN_18062b420
+#define allocate_structured_memory    CoreEngineMemoryPoolAllocator
 #define create_tree_node              func_0x00018066b9a0
 #define insert_tree_node              FUN_18066bdc0
 #define process_event_queue           FUN_18005e890
