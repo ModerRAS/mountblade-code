@@ -463,11 +463,11 @@ typedef struct {
  * @param data_ptr 数据指针数组
  * @return void
  */
-void core_engine_data_block_cleaner(longlong *data_ptr)
+void core_engine_data_block_cleaner(int64_t *data_ptr)
 {
-    longlong start_index;
-    longlong end_index;
-    longlong current_index;
+    int64_t start_index;
+    int64_t end_index;
+    int64_t current_index;
     uint64_t *data_element;
     
     // 获取数据块的起始和结束索引
@@ -482,7 +482,7 @@ void core_engine_data_block_cleaner(longlong *data_ptr)
         *(uint64_t *)(current_index + 8) = &system_data_buffer_ptr;
         
         // 检查数据完整性
-        if (*(longlong *)(current_index + 0x10) != 0) {
+        if (*(int64_t *)(current_index + 0x10) != 0) {
             // 发现数据损坏，调用错误处理
             ErrorHandler();
         }
@@ -522,13 +522,13 @@ void core_engine_data_block_cleaner(longlong *data_ptr)
  * @param config_flags 配置标志
  * @return 处理结果：成功返回0，失败返回错误码
  */
-void core_engine_config_parameter_processor(uint64_t config_handle, longlong param_data, uint64_t config_flags)
+void core_engine_config_parameter_processor(uint64_t config_handle, int64_t param_data, uint64_t config_flags)
 {
     uint param_size;
     int32_t *format_result;
     void *context_ptr;
     void *buffer_ptr;
-    longlong data_context;
+    int64_t data_context;
     uint64_t *allocated_buffer;
     int16_t *string_buffer;
     void *temp_ptr;
@@ -536,7 +536,7 @@ void core_engine_config_parameter_processor(uint64_t config_handle, longlong par
     int32_t stack_data_1;
     uint64_t stack_data_2;
     void *stack_data_3;
-    longlong stack_data_4;
+    int64_t stack_data_4;
     int32_t stack_data_5;
     
     // 初始化栈数据
@@ -569,11 +569,11 @@ void core_engine_config_parameter_processor(uint64_t config_handle, longlong par
     temp_ptr = (int8_t *)0x0;
     
     // 处理数据上下文
-    if (*(longlong *)(data_context + 8) == 0) {
+    if (*(int64_t *)(data_context + 8) == 0) {
 PROCESS_DATA:
         if (param_size != 0) {
             // 执行数据复制操作
-            memcpy(temp_ptr, *(uint64_t *)(data_context + 8), (ulonglong)param_size);
+            memcpy(temp_ptr, *(uint64_t *)(data_context + 8), (uint64_t)param_size);
         }
     }
     else if (param_size != 0) {
@@ -583,7 +583,7 @@ PROCESS_DATA:
         }
         
         // 分配数据缓冲区
-        temp_ptr = (int8_t *)MemoryAllocator(system_memory_pool_ptr, (longlong)buffer_size, 0x13);
+        temp_ptr = (int8_t *)MemoryAllocator(system_memory_pool_ptr, (int64_t)buffer_size, 0x13);
         *temp_ptr = 0;
         param_size = FormatProcessor(temp_ptr);
         goto PROCESS_DATA;
@@ -601,7 +601,7 @@ PROCESS_DATA:
             if ((int)buffer_size < 0x10) {
                 buffer_size = 0x10;
             }
-            temp_ptr = (int8_t *)MemoryAllocator(system_memory_pool_ptr, (longlong)(int)buffer_size, 0x13);
+            temp_ptr = (int8_t *)MemoryAllocator(system_memory_pool_ptr, (int64_t)(int)buffer_size, 0x13);
             *temp_ptr = 0;
         }
         else {
@@ -651,19 +651,19 @@ FINALIZE_STRING:
  * @param param_data 参数数据
  * @return 处理结果：成功返回目标数据指针，失败返回错误码
  */
-void core_engine_data_structure_manager(uint64_t struct_handle, longlong source_data, uint64_t target_data, uint64_t struct_size, uint64_t copy_flags, uint64_t param_data)
+void core_engine_data_structure_manager(uint64_t struct_handle, int64_t source_data, uint64_t target_data, uint64_t struct_size, uint64_t copy_flags, uint64_t param_data)
 {
     uint64_t *global_data_ptr;
     uint64_t *struct_ptr;
-    ulonglong data_size;
+    uint64_t data_size;
     void *context_ptr;
     uint64_t stack_data_1;
     void *stack_data_2;
-    longlong stack_data_3;
+    int64_t stack_data_3;
     uint stack_data_4;
     uint64_t stack_data_5;
     void *stack_data_6;
-    longlong stack_data_7;
+    int64_t stack_data_7;
     uint stack_data_8;
     uint64_t stack_data_9;
     
@@ -683,8 +683,8 @@ void core_engine_data_structure_manager(uint64_t struct_handle, longlong source_
     ConfigBlockInitializer(&context_ptr, source_data, target_data, struct_size, 1, 0xfffffffffffffffe);
     
     // 处理源数据复制
-    data_size = (ulonglong)*(uint *)(source_data + 0x10);
-    if (*(longlong *)(source_data + 8) != 0) {
+    data_size = (uint64_t)*(uint *)(source_data + 0x10);
+    if (*(int64_t *)(source_data + 8) != 0) {
         ConfigBlockInitializer(&stack_data_2, data_size, target_data, param_data, 1, 0xfffffffffffffffe);
     }
     
@@ -725,7 +725,7 @@ void core_engine_data_structure_manager(uint64_t struct_handle, longlong source_
         *(uint64_t *)(struct_ptr + 4) = 0;
         struct_ptr[6] = 0;
         struct_ptr[6] = 1;
-        *(longlong *)(struct_ptr + 4) = stack_data_3;
+        *(int64_t *)(struct_ptr + 4) = stack_data_3;
         struct_ptr[9] = stack_data_5._4_4_;
         struct_ptr[8] = (int32_t)stack_data_5;
         stack_data_4 = 0;
@@ -766,14 +766,14 @@ void core_engine_data_structure_manager(uint64_t struct_handle, longlong source_
  * @param config_array 配置数组
  * @return 处理结果：成功返回0，失败返回错误码
  */
-uint64_t core_engine_resource_manager(longlong resource_data, int *config_array)
+uint64_t core_engine_resource_manager(int64_t resource_data, int *config_array)
 {
     int *config_ptr;
     int config_value;
-    longlong resource_offset;
-    longlong resource_end;
+    int64_t resource_offset;
+    int64_t resource_end;
     void *resource_name_ptr;
-    longlong name_length;
+    int64_t name_length;
     void *temp_ptr;
     void *stack_ptr_1;
     void *stack_ptr_2;
@@ -785,8 +785,8 @@ uint64_t core_engine_resource_manager(longlong resource_data, int *config_array)
     if (config_value == 0x40) {
         // 检查资源数据状态
         if ((*(char *)(resource_data + 0x60) != '\0') && 
-            (resource_offset = *(longlong *)(resource_data + 0x20),
-             *(longlong *)(resource_data + 0x28) - resource_offset >> 5 != 0)) {
+            (resource_offset = *(int64_t *)(resource_data + 0x20),
+             *(int64_t *)(resource_data + 0x28) - resource_offset >> 5 != 0)) {
             
             // 获取资源名称
             resource_end = -1;
@@ -800,7 +800,7 @@ uint64_t core_engine_resource_manager(longlong resource_data, int *config_array)
                 } while (resource_name_ptr[resource_end] != '\0');
             }
             else {
-                temp_ptr = *(void **)((longlong)*(int *)(resource_data + 100) * 0x20 + 8 + resource_offset);
+                temp_ptr = *(void **)((int64_t)*(int *)(resource_data + 100) * 0x20 + 8 + resource_offset);
                 if (temp_ptr != (void *)0x0) {
                     resource_name_ptr = temp_ptr;
                 }
@@ -814,7 +814,7 @@ uint64_t core_engine_resource_manager(longlong resource_data, int *config_array)
         }
         
         // 检查资源数据范围
-        if ((*(longlong *)(resource_data + 0x28) - *(longlong *)(resource_data + 0x20) & 0xffffffffffffffe0U) == 0) {
+        if ((*(int64_t *)(resource_data + 0x28) - *(int64_t *)(resource_data + 0x20) & 0xffffffffffffffe0U) == 0) {
             *(int8_t *)(resource_data + 0x60) = 0;
             core_engine_data_block_cleaner(resource_data);
             *(uint64_t *)(resource_data + 100) = 0xffffffffffffffff;
@@ -826,7 +826,7 @@ uint64_t core_engine_resource_manager(longlong resource_data, int *config_array)
         core_engine_data_block_cleaner(resource_data);
         
         // 检查资源数据范围
-        if (*(longlong *)(resource_data + 0x28) - *(longlong *)(resource_data + 0x20) >> 5 != 0) {
+        if (*(int64_t *)(resource_data + 0x28) - *(int64_t *)(resource_data + 0x20) >> 5 != 0) {
             *(int8_t *)(resource_data + 0x60) = 1;
             
             // 处理配置标志
@@ -836,7 +836,7 @@ uint64_t core_engine_resource_manager(longlong resource_data, int *config_array)
                 if (*config_ptr < 0) {
                     *(int8_t *)(resource_data + 0x70) = 1;
                     *(int *)(resource_data + 100) = 
-                         (int)(*(longlong *)(resource_data + 0x28) - *(longlong *)(resource_data + 0x20) >> 5) + -1;
+                         (int)(*(int64_t *)(resource_data + 0x28) - *(int64_t *)(resource_data + 0x20) >> 5) + -1;
                     return 0;
                 }
             }
@@ -846,7 +846,7 @@ uint64_t core_engine_resource_manager(longlong resource_data, int *config_array)
                 }
                 *(int *)(resource_data + 100) = *(int *)(resource_data + 100) + 1;
                 config_value = *(int *)(resource_data + 100);
-                if ((int)(*(longlong *)(resource_data + 0x28) - *(longlong *)(resource_data + 0x20) >> 5) + -1 <
+                if ((int)(*(int64_t *)(resource_data + 0x28) - *(int64_t *)(resource_data + 0x20) >> 5) + -1 <
                     *(int *)(resource_data + 100)) {
                     config_value = 0;
                 }
@@ -861,7 +861,7 @@ uint64_t core_engine_resource_manager(longlong resource_data, int *config_array)
         core_engine_data_block_cleaner(resource_data);
         
         // 检查资源数据范围
-        if ((*(longlong *)(resource_data + 0x28) - *(longlong *)(resource_data + 0x20) & 0xffffffffffffffe0U) == 0) {
+        if ((*(int64_t *)(resource_data + 0x28) - *(int64_t *)(resource_data + 0x20) & 0xffffffffffffffe0U) == 0) {
             *(int8_t *)(resource_data + 0x60) = 0;
             core_engine_data_block_cleaner(resource_data);
             *(uint64_t *)(resource_data + 100) = 0xffffffffffffffff;
@@ -872,7 +872,7 @@ uint64_t core_engine_resource_manager(longlong resource_data, int *config_array)
             // 处理资源名称
             if (*(int *)(resource_data + 0x68) != -1) {
                 resource_name_ptr = *(void **)
-                          ((longlong)*(int *)(resource_data + 0x68) * 0x20 + 8 + *(longlong *)(resource_data + 0x20));
+                          ((int64_t)*(int *)(resource_data + 0x68) * 0x20 + 8 + *(int64_t *)(resource_data + 0x20));
                 resource_end = -1;
                 temp_ptr = &system_buffer_ptr;
                 if (resource_name_ptr != (void *)0x0) {
@@ -918,7 +918,7 @@ uint64_t core_engine_resource_manager(longlong resource_data, int *config_array)
  * @param string_data 字符串数据
  * @return void
  */
-void core_engine_string_parser(longlong string_data)
+void core_engine_string_parser(int64_t string_data)
 {
     uint64_t *stack_ptr_1;
     uint64_t *stack_ptr_2;
@@ -936,51 +936,51 @@ void core_engine_string_parser(longlong string_data)
     int8_t *stack_ptr_9;
     int8_t *stack_ptr_10;
     uint stack_data_6;
-    ulonglong stack_data_7;
+    uint64_t stack_data_7;
     uint64_t *stack_ptr_11;
-    longlong *stack_ptr_12;
-    ulonglong stack_data_8;
+    int64_t *stack_ptr_12;
+    uint64_t stack_data_8;
     uint64_t *stack_ptr_13;
     void *stack_ptr_14;
     uint stack_data_9;
     int32_t stack_data_10;
     uint64_t stack_data_11;
     void *stack_ptr_15;
-    longlong stack_data_12;
+    int64_t stack_data_12;
     uint stack_data_13;
-    ulonglong stack_data_14;
+    uint64_t stack_data_14;
     void *stack_ptr_16;
-    longlong stack_data_15;
+    int64_t stack_data_15;
     int32_t stack_data_16;
     uint64_t stack_data_17;
     
     // 初始化栈数据
     stack_data_17 = 0xfffffffffffffffe;
-    stack_ptr_12 = (longlong *)(string_data + 0x20);
+    stack_ptr_12 = (int64_t *)(string_data + 0x20);
     stack_ptr_13 = stack_ptr_12;
     ConfigValidator(stack_ptr_12);
     
     // 检查字符串处理标志
     if (*(char *)(string_data + 0x74) == '\0') {
         stack_data_8 = 0;
-        stack_ptr_11 = *(longlong *)(string_data + 0x40);
+        stack_ptr_11 = *(int64_t *)(string_data + 0x40);
         stack_data_14 = stack_data_8;
         
         // 处理数据块
-        if (*(longlong *)(string_data + 0x48) - stack_ptr_11 >> 5 != 0) {
+        if (*(int64_t *)(string_data + 0x48) - stack_ptr_11 >> 5 != 0) {
             do {
-                if (*(ulonglong *)(string_data + 0x28) < *(ulonglong *)(string_data + 0x30)) {
-                    *(ulonglong *)(string_data + 0x28) = *(ulonglong *)(string_data + 0x28) + 0x20;
+                if (*(uint64_t *)(string_data + 0x28) < *(uint64_t *)(string_data + 0x30)) {
+                    *(uint64_t *)(string_data + 0x28) = *(uint64_t *)(string_data + 0x28) + 0x20;
                     StringInitializer();
                 }
                 else {
                     ConfigProcessor(stack_ptr_12, stack_data_8 * 0x20 + stack_ptr_11);
                 }
                 stack_data_9 = (int)stack_data_14 + 1;
-                stack_ptr_11 = *(longlong *)(string_data + 0x40);
-                stack_data_8 = (ulonglong)(int)stack_data_9;
-                stack_data_14 = (ulonglong)stack_data_9;
-            } while (stack_data_8 < (ulonglong)(*(longlong *)(string_data + 0x48) - stack_ptr_11 >> 5));
+                stack_ptr_11 = *(int64_t *)(string_data + 0x40);
+                stack_data_8 = (uint64_t)(int)stack_data_9;
+                stack_data_14 = (uint64_t)stack_data_9;
+            } while (stack_data_8 < (uint64_t)(*(int64_t *)(string_data + 0x48) - stack_ptr_11 >> 5));
         }
     }
     else {
@@ -1019,8 +1019,8 @@ void core_engine_string_parser(longlong string_data)
                     stack_data_6 = stack_data_6 + 1;
                     stack_data_13 = (int)stack_ptr_9 + 1;
                     stack_ptr_5 = stack_ptr_5 + 1;
-                    stack_ptr_9 = (int8_t *)(ulonglong)stack_data_13;
-                    stack_ptr_16 = (int8_t *)(ulonglong)stack_data_6;
+                    stack_ptr_9 = (int8_t *)(uint64_t)stack_data_13;
+                    stack_ptr_16 = (int8_t *)(uint64_t)stack_data_6;
                 } while (stack_data_13 < stack_data_4 - 1);
             }
             
@@ -1029,9 +1029,9 @@ void core_engine_string_parser(longlong string_data)
                 stack_ptr_9 = stack_ptr_10;
                 stack_ptr_16 = stack_ptr_10;
                 do {
-                    stack_ptr_9[(longlong)stack_ptr_16] = (stack_ptr_9 + (int)stack_data_6)[(longlong)stack_ptr_16];
+                    stack_ptr_9[(int64_t)stack_ptr_16] = (stack_ptr_9 + (int)stack_data_6)[(int64_t)stack_ptr_16];
                     stack_data_13 = (int)stack_ptr_16 + 1;
-                    stack_ptr_16 = (int8_t *)(ulonglong)stack_data_13;
+                    stack_ptr_16 = (int8_t *)(uint64_t)stack_data_13;
                     stack_ptr_9 = stack_ptr_9 + 1;
                 } while (stack_data_13 < stack_data_4 - 1);
             }
@@ -1053,8 +1053,8 @@ void core_engine_string_parser(longlong string_data)
                         stack_data_6 = stack_data_6 + 1;
                         stack_data_13 = (int)stack_ptr_9 + 1;
                         stack_ptr_5 = stack_ptr_5 + 1;
-                        stack_ptr_9 = (int8_t *)(ulonglong)stack_data_13;
-                        stack_ptr_16 = (int8_t *)(ulonglong)stack_data_6;
+                        stack_ptr_9 = (int8_t *)(uint64_t)stack_data_13;
+                        stack_ptr_16 = (int8_t *)(uint64_t)stack_data_6;
                     } while (stack_data_13 < stack_data_4 - 1);
                 }
                 
@@ -1062,9 +1062,9 @@ void core_engine_string_parser(longlong string_data)
                     stack_ptr_9 = stack_ptr_10;
                     stack_ptr_16 = stack_ptr_10;
                     do {
-                        stack_ptr_9[(longlong)stack_ptr_16] = (stack_ptr_9 + (int)stack_data_6)[(longlong)stack_ptr_16];
+                        stack_ptr_9[(int64_t)stack_ptr_16] = (stack_ptr_9 + (int)stack_data_6)[(int64_t)stack_ptr_16];
                         stack_data_13 = (int)stack_ptr_16 + 1;
-                        stack_ptr_16 = (int8_t *)(ulonglong)stack_data_13;
+                        stack_ptr_16 = (int8_t *)(uint64_t)stack_data_13;
                         stack_ptr_9 = stack_ptr_9 + 1;
                     } while (stack_data_13 < stack_data_4 - 1);
                 }
@@ -1074,7 +1074,7 @@ void core_engine_string_parser(longlong string_data)
                 
                 // 处理尾部空格
                 if (stack_data_4 != 0) {
-                    stack_ptr_11 = (longlong)(int)(stack_data_4 - 1);
+                    stack_ptr_11 = (int64_t)(int)(stack_data_4 - 1);
                     stack_ptr_9 = stack_ptr_10;
                     stack_data_6 = stack_data_9;
                     
@@ -1083,7 +1083,7 @@ void core_engine_string_parser(longlong string_data)
                             stack_data_6 = (uint)stack_ptr_9;
                             if (stack_ptr_16[stack_ptr_11] != ' ') break;
                             stack_data_6 = stack_data_6 + 1;
-                            stack_ptr_9 = (int8_t *)(ulonglong)stack_data_6;
+                            stack_ptr_9 = (int8_t *)(uint64_t)stack_data_6;
                             stack_ptr_11 = stack_ptr_11 + -1;
                         } while (0 < stack_ptr_11);
                     }
@@ -1139,14 +1139,14 @@ void core_engine_string_parser(longlong string_data)
             ErrorHandler();
         }
         
-        stack_ptr_14 = (uint64_t *)((ulonglong)stack_ptr_14 & 0xffffffff00000000);
-        stack_data_8 = (longlong)stack_ptr_7 - (longlong)stack_ptr_6 >> 5;
+        stack_ptr_14 = (uint64_t *)((uint64_t)stack_ptr_14 & 0xffffffff00000000);
+        stack_data_8 = (int64_t)stack_ptr_7 - (int64_t)stack_ptr_6 >> 5;
         stack_ptr_4 = stack_ptr_6;
         stack_ptr_7 = stack_ptr_2;
         
         // 处理数据块
         if (stack_data_8 != 0) {
-            stack_ptr_11 = (longlong)stack_ptr_11 - (longlong)stack_ptr_2 >> 5;
+            stack_ptr_11 = (int64_t)stack_ptr_11 - (int64_t)stack_ptr_2 >> 5;
             stack_ptr_12 = stack_ptr_6 + 1;
             stack_ptr_6 = stack_ptr_11;
             
@@ -1162,7 +1162,7 @@ void core_engine_string_parser(longlong string_data)
                     stack_ptr_16 = stack_ptr_10;
                     
                     do {
-                        stack_ptr_11 = stack_ptr_2 + (longlong)stack_ptr_3 * 4;
+                        stack_ptr_11 = stack_ptr_2 + (int64_t)stack_ptr_3 * 4;
                         StringFormatter(stack_ptr_11, 10);
                         StringFormatter(stack_ptr_11, 0x20);
                         stack_data_6 = *stack_ptr_13;
@@ -1170,18 +1170,18 @@ void core_engine_string_parser(longlong string_data)
                         if (stack_data_6 != 0) {
                             stack_data_13 = stack_data_9;
                             if (0 < (int)(stack_data_6 - 1)) {
-                                stack_ptr_11 = (longlong)(int)(stack_data_6 - 1);
+                                stack_ptr_11 = (int64_t)(int)(stack_data_6 - 1);
                                 stack_ptr_3 = stack_ptr_10;
                                 do {
                                     stack_data_13 = (uint)stack_ptr_3;
-                                    if (*(char *)(*(longlong *)(stack_ptr_13 + -2) + stack_ptr_11) != ' ') break;
+                                    if (*(char *)(*(int64_t *)(stack_ptr_13 + -2) + stack_ptr_11) != ' ') break;
                                     stack_data_13 = stack_data_13 + 1;
-                                    stack_ptr_3 = (int8_t *)(ulonglong)stack_data_13;
+                                    stack_ptr_3 = (int8_t *)(uint64_t)stack_data_13;
                                     stack_ptr_11 = stack_ptr_11 + -1;
                                 } while (0 < stack_ptr_11);
                             }
                             *stack_ptr_13 = stack_data_6 - stack_data_13;
-                            *(int8_t *)((ulonglong)(stack_data_6 - stack_data_13) + *(longlong *)(stack_ptr_13 + -2)) = 0;
+                            *(int8_t *)((uint64_t)(stack_data_6 - stack_data_13) + *(int64_t *)(stack_ptr_13 + -2)) = 0;
                         }
                         
                         StringHandler(stack_ptr_11);
@@ -1195,7 +1195,7 @@ void core_engine_string_parser(longlong string_data)
                                     if ((int)stack_data_9 < 0x10) {
                                         stack_data_9 = 0x10;
                                     }
-                                    stack_ptr_9 = (int8_t *)MemoryAllocator(system_memory_pool_ptr, (longlong)(int)stack_data_9, 0x13);
+                                    stack_ptr_9 = (int8_t *)MemoryAllocator(system_memory_pool_ptr, (int64_t)(int)stack_data_9, 0x13);
                                     *stack_ptr_9 = 0;
                                     FormatProcessor(stack_ptr_9);
                                 }
@@ -1205,7 +1205,7 @@ void core_engine_string_parser(longlong string_data)
                                 }
                             }
                             
-                            memcpy(stack_ptr_16 + (longlong)stack_ptr_9, *(uint64_t *)(stack_ptr_13 + -2), (longlong)(int)(*stack_ptr_13 + 1));
+                            memcpy(stack_ptr_16 + (int64_t)stack_ptr_9, *(uint64_t *)(stack_ptr_13 + -2), (int64_t)(int)(*stack_ptr_13 + 1));
                         }
                         
                         stack_data_13 = stack_data_13 + 1;
@@ -1216,51 +1216,51 @@ void core_engine_string_parser(longlong string_data)
                                 if ((int)stack_data_6 < 0x10) {
                                     stack_data_6 = 0x10;
                                 }
-                                stack_ptr_9 = (int8_t *)MemoryAllocator(system_memory_pool_ptr, (longlong)(int)stack_data_6, 0x13);
+                                stack_ptr_9 = (int8_t *)MemoryAllocator(system_memory_pool_ptr, (int64_t)(int)stack_data_6, 0x13);
                                 *stack_ptr_9 = 0;
-                                stack_data_14 = (ulonglong)stack_ptr_9 & 0xffffffffffc00000;
+                                stack_data_14 = (uint64_t)stack_ptr_9 & 0xffffffffffc00000;
                                 stack_ptr_8 = stack_ptr_10;
                                 
                                 if (stack_data_14 != 0) {
-                                    stack_ptr_11 = ((longlong)stack_ptr_9 - stack_data_14 >> 0x10) * 0x50 + 0x80 + stack_data_14;
-                                    stack_ptr_13 = (uint *)(stack_ptr_11 - (ulonglong)*(uint *)(stack_ptr_11 + 4));
+                                    stack_ptr_11 = ((int64_t)stack_ptr_9 - stack_data_14 >> 0x10) * 0x50 + 0x80 + stack_data_14;
+                                    stack_ptr_13 = (uint *)(stack_ptr_11 - (uint64_t)*(uint *)(stack_ptr_11 + 4));
                                     
-                                    if ((*(byte *)((longlong)stack_ptr_13 + 0xe) & 2) == 0) {
-                                        stack_ptr_8 = (int8_t *)(ulonglong)stack_ptr_13[7];
-                                        if ((int8_t *)0x3ffffff < (int8_t *)(ulonglong)stack_ptr_13[7]) {
-                                            stack_ptr_8 = (int8_t *)((ulonglong)*stack_ptr_13 << 0x10);
+                                    if ((*(byte *)((int64_t)stack_ptr_13 + 0xe) & 2) == 0) {
+                                        stack_ptr_8 = (int8_t *)(uint64_t)stack_ptr_13[7];
+                                        if ((int8_t *)0x3ffffff < (int8_t *)(uint64_t)stack_ptr_13[7]) {
+                                            stack_ptr_8 = (int8_t *)((uint64_t)*stack_ptr_13 << 0x10);
                                         }
                                     }
                                     else {
-                                        stack_data_7 = (ulonglong)stack_ptr_13[7];
+                                        stack_data_7 = (uint64_t)stack_ptr_13[7];
                                         if (stack_data_7 < 0x4000000) {
-                                            stack_data_14 = (ulonglong)stack_ptr_13[7];
+                                            stack_data_14 = (uint64_t)stack_ptr_13[7];
                                         }
                                         else {
-                                            stack_data_14 = (ulonglong)*stack_ptr_13 << 0x10;
+                                            stack_data_14 = (uint64_t)*stack_ptr_13 << 0x10;
                                         }
                                         
                                         if (0x3ffffff < stack_data_7) {
-                                            stack_data_7 = (ulonglong)*stack_ptr_13 << 0x10;
+                                            stack_data_7 = (uint64_t)*stack_ptr_13 << 0x10;
                                         }
                                         
                                         stack_ptr_8 = (int8_t *)
-                                                 (stack_data_7 - ((longlong)stack_ptr_9 -
-                                                           (((longlong)((longlong)stack_ptr_13 + (-0x80 - stack_data_14)) / 0x50) *
+                                                 (stack_data_7 - ((int64_t)stack_ptr_9 -
+                                                           (((int64_t)((int64_t)stack_ptr_13 + (-0x80 - stack_data_14)) / 0x50) *
                                                             0x10000 + stack_data_14)) % stack_data_14);
                                     }
                                 }
                                 
-                                stack_ptr_8 = (int8_t *)((ulonglong)stack_ptr_8 & 0xffffffff);
+                                stack_ptr_8 = (int8_t *)((uint64_t)stack_ptr_8 & 0xffffffff);
                             }
                             else if ((uint)stack_ptr_8 < stack_data_6) {
                                 stack_ptr_9 = (int8_t *)MemoryReallocator(system_memory_pool_ptr, stack_ptr_9, stack_data_6, 0x10, 0x13);
                                 stack_data_6 = FormatProcessor(stack_ptr_9);
-                                stack_ptr_8 = (int8_t *)(ulonglong)stack_data_6;
+                                stack_ptr_8 = (int8_t *)(uint64_t)stack_data_6;
                             }
                         }
                         
-                        stack_ptr_16[(longlong)stack_ptr_9] = 0x3b;
+                        stack_ptr_16[(int64_t)stack_ptr_9] = 0x3b;
                         stack_ptr_9[stack_data_13] = 0;
                         
                         if (stack_data_13 != -2) {
@@ -1269,58 +1269,58 @@ void core_engine_string_parser(longlong string_data)
                                 if ((int)stack_data_6 < 0x10) {
                                     stack_data_6 = 0x10;
                                 }
-                                stack_ptr_9 = (int8_t *)MemoryAllocator(system_memory_pool_ptr, (longlong)(int)stack_data_6, 0x13);
+                                stack_ptr_9 = (int8_t *)MemoryAllocator(system_memory_pool_ptr, (int64_t)(int)stack_data_6, 0x13);
                                 *stack_ptr_9 = 0;
-                                stack_data_14 = (ulonglong)stack_ptr_9 & 0xffffffffffc00000;
+                                stack_data_14 = (uint64_t)stack_ptr_9 & 0xffffffffffc00000;
                                 stack_ptr_8 = stack_ptr_10;
                                 
                                 if (stack_data_14 != 0) {
-                                    stack_ptr_11 = ((longlong)stack_ptr_9 - stack_data_14 >> 0x10) * 0x50 + 0x80 + stack_data_14;
-                                    stack_ptr_13 = (uint *)(stack_ptr_11 - (ulonglong)*(uint *)(stack_ptr_11 + 4));
+                                    stack_ptr_11 = ((int64_t)stack_ptr_9 - stack_data_14 >> 0x10) * 0x50 + 0x80 + stack_data_14;
+                                    stack_ptr_13 = (uint *)(stack_ptr_11 - (uint64_t)*(uint *)(stack_ptr_11 + 4));
                                     
-                                    if ((*(byte *)((longlong)stack_ptr_13 + 0xe) & 2) == 0) {
-                                        stack_ptr_8 = (int8_t *)(ulonglong)stack_ptr_13[7];
-                                        if ((int8_t *)0x3ffffff < (int8_t *)(ulonglong)stack_ptr_13[7]) {
-                                            stack_ptr_8 = (int8_t *)((ulonglong)*stack_ptr_13 << 0x10);
+                                    if ((*(byte *)((int64_t)stack_ptr_13 + 0xe) & 2) == 0) {
+                                        stack_ptr_8 = (int8_t *)(uint64_t)stack_ptr_13[7];
+                                        if ((int8_t *)0x3ffffff < (int8_t *)(uint64_t)stack_ptr_13[7]) {
+                                            stack_ptr_8 = (int8_t *)((uint64_t)*stack_ptr_13 << 0x10);
                                         }
                                     }
                                     else {
-                                        stack_data_7 = (ulonglong)stack_ptr_13[7];
+                                        stack_data_7 = (uint64_t)stack_ptr_13[7];
                                         if (stack_data_7 < 0x4000000) {
-                                            stack_data_14 = (ulonglong)stack_ptr_13[7];
+                                            stack_data_14 = (uint64_t)stack_ptr_13[7];
                                         }
                                         else {
-                                            stack_data_14 = (ulonglong)*stack_ptr_13 << 0x10;
+                                            stack_data_14 = (uint64_t)*stack_ptr_13 << 0x10;
                                         }
                                         
                                         if (0x3ffffff < stack_data_7) {
-                                            stack_data_7 = (ulonglong)*stack_ptr_13 << 0x10;
+                                            stack_data_7 = (uint64_t)*stack_ptr_13 << 0x10;
                                         }
                                         
                                         stack_ptr_8 = (int8_t *)
-                                                 (stack_data_7 - ((longlong)stack_ptr_9 -
-                                                           (((longlong)((longlong)stack_ptr_13 + (-0x80 - stack_data_14)) / 0x50) *
+                                                 (stack_data_7 - ((int64_t)stack_ptr_9 -
+                                                           (((int64_t)((int64_t)stack_ptr_13 + (-0x80 - stack_data_14)) / 0x50) *
                                                             0x10000 + stack_data_14)) % stack_data_14);
                                     }
                                 }
                                 
-                                stack_ptr_8 = (int8_t *)((ulonglong)stack_ptr_8 & 0xffffffff);
+                                stack_ptr_8 = (int8_t *)((uint64_t)stack_ptr_8 & 0xffffffff);
                             }
                             else if ((uint)stack_ptr_8 < stack_data_6) {
                                 stack_ptr_9 = (int8_t *)MemoryReallocator(system_memory_pool_ptr, stack_ptr_9, stack_data_6, 0x10, 0x13);
                                 stack_data_6 = FormatProcessor(stack_ptr_9);
-                                stack_ptr_8 = (int8_t *)(ulonglong)stack_data_6;
+                                stack_ptr_8 = (int8_t *)(uint64_t)stack_data_6;
                             }
                         }
                         
                         stack_data_6 = (uint)stack_ptr_8;
                         stack_ptr_9[stack_data_13] = 0x20;
-                        stack_ptr_16 = (int8_t *)(ulonglong)(stack_data_13 + 2);
-                        stack_ptr_16[(longlong)stack_ptr_9] = 0;
+                        stack_ptr_16 = (int8_t *)(uint64_t)(stack_data_13 + 2);
+                        stack_ptr_16[(int64_t)stack_ptr_9] = 0;
                         stack_data_13 = (int)stack_ptr_16 + 1;
-                        stack_ptr_16 = (int8_t *)(ulonglong)stack_data_13;
+                        stack_ptr_16 = (int8_t *)(uint64_t)stack_data_13;
                         stack_ptr_13 = stack_ptr_13 + 8;
-                        stack_ptr_3 = (int8_t *)(longlong)(int)stack_data_13;
+                        stack_ptr_3 = (int8_t *)(int64_t)(int)stack_data_13;
                     } while (stack_ptr_3 < (int8_t *)(stack_ptr_11 + -1));
                 }
                 
@@ -1332,13 +1332,13 @@ void core_engine_string_parser(longlong string_data)
                             if ((int)stack_data_9 < 0x10) {
                                 stack_data_9 = 0x10;
                             }
-                            stack_ptr_9 = (int8_t *)MemoryAllocator(system_memory_pool_ptr, (longlong)(int)stack_data_9, 0x13);
+                            stack_ptr_9 = (int8_t *)MemoryAllocator(system_memory_pool_ptr, (int64_t)(int)stack_data_9, 0x13);
                             *stack_ptr_9 = 0;
                         }
                         else {
                             if (stack_data_9 <= stack_data_6) {
 CONTINUE_PROCESSING:
-                                memcpy(stack_ptr_16 + (longlong)stack_ptr_9, *stack_ptr_12, (longlong)((int)*stack_ptr_12 + 1));
+                                memcpy(stack_ptr_16 + (int64_t)stack_ptr_9, *stack_ptr_12, (int64_t)((int)*stack_ptr_12 + 1));
                             }
                             else {
                                 stack_ptr_9 = (int8_t *)MemoryReallocator(system_memory_pool_ptr, stack_ptr_9, stack_data_9, 0x10, 0x13);
@@ -1348,7 +1348,7 @@ CONTINUE_PROCESSING:
                     }
                     
 CONTINUE_PROCESSING:
-                    memcpy(stack_ptr_16 + (longlong)stack_ptr_9, *stack_ptr_12, (longlong)((int)*stack_ptr_12 + 1));
+                    memcpy(stack_ptr_16 + (int64_t)stack_ptr_9, *stack_ptr_12, (int64_t)((int)*stack_ptr_12 + 1));
                 }
                 
                 if (stack_ptr_9 != (int8_t *)0x0) {
@@ -1365,7 +1365,7 @@ CONTINUE_PROCESSING:
                     stack_ptr_16[*stack_ptr_12] = 0;
                 }
                 
-                *(int32_t *)((longlong)stack_ptr_12 + 0x14) = 0;
+                *(int32_t *)((int64_t)stack_ptr_12 + 0x14) = 0;
                 
                 if (stack_ptr_9 != (int8_t *)0x0) {
                     ErrorHandler(stack_ptr_9);
@@ -1376,11 +1376,11 @@ CONTINUE_PROCESSING:
                 stack_ptr_12 = stack_ptr_12 + 4;
                 stack_ptr_4 = stack_ptr_13;
                 stack_ptr_11 = stack_ptr_6;
-            } while ((ulonglong)(longlong)stack_data_13 < stack_data_8);
+            } while ((uint64_t)(int64_t)stack_data_13 < stack_data_8);
         }
         
         stack_ptr_6 = stack_ptr_11;
-        stack_ptr_14 = (uint64_t *)((ulonglong)stack_ptr_14 & 0xffffffff00000000);
+        stack_ptr_14 = (uint64_t *)((uint64_t)stack_ptr_14 & 0xffffffff00000000);
         
         if (stack_data_8 != 0) {
             stack_ptr_4 = stack_ptr_4 + 1;
@@ -1409,7 +1409,7 @@ CONTINUE_PROCESSING:
                             stack_data_9 = 0x10;
                         }
                         
-                        stack_ptr_10 = (int8_t *)MemoryAllocator(system_memory_pool_ptr, (longlong)stack_data_9, &unknown_var_563_ptr);
+                        stack_ptr_10 = (int8_t *)MemoryAllocator(system_memory_pool_ptr, (int64_t)stack_data_9, &unknown_var_563_ptr);
                         *stack_ptr_10 = 0;
                         FormatProcessor(stack_ptr_10);
                         memcpy(stack_ptr_10, stack_ptr_15, stack_data_13);
@@ -1419,21 +1419,21 @@ CONTINUE_PROCESSING:
                 stack_ptr_11 = (uint64_t *)stack_ptr_13[1];
                 
                 if (stack_ptr_11 < (uint64_t *)stack_ptr_13[2]) {
-                    stack_ptr_13[1] = (longlong)(stack_ptr_11 + 4);
+                    stack_ptr_13[1] = (int64_t)(stack_ptr_11 + 4);
                     *stack_ptr_11 = &system_state_ptr;
                     stack_ptr_11[1] = 0;
                     *(int32_t *)(stack_ptr_11 + 2) = 0;
                     *stack_ptr_11 = &system_data_buffer_ptr;
                     *(int32_t *)(stack_ptr_11 + 2) = 0;
                     stack_ptr_11[1] = 0;
-                    *(int32_t *)((longlong)stack_ptr_11 + 0x1c) = 0;
+                    *(int32_t *)((int64_t)stack_ptr_11 + 0x1c) = 0;
                     *(int32_t *)(stack_ptr_11 + 3) = 0;
                     stack_data_9 = (int)stack_ptr_9;
                     stack_ptr_14 = stack_ptr_11;
                 }
                 else {
                     stack_ptr_11 = *stack_ptr_13;
-                    stack_ptr_13 = (longlong)stack_ptr_11 - (longlong)*stack_ptr_13 >> 5;
+                    stack_ptr_13 = (int64_t)stack_ptr_11 - (int64_t)*stack_ptr_13 >> 5;
                     
                     if (stack_ptr_13 == 0) {
                         stack_ptr_13 = 1;
@@ -1455,7 +1455,7 @@ ALLOCATE_MEMORY:
                     *stack_ptr_4 = &system_data_buffer_ptr;
                     *(int32_t *)(stack_ptr_4 + 2) = 0;
                     stack_ptr_4[1] = 0;
-                    *(int32_t *)((longlong)stack_ptr_4 + 0x1c) = 0;
+                    *(int32_t *)((int64_t)stack_ptr_4 + 0x1c) = 0;
                     *(int32_t *)(stack_ptr_4 + 3) = 0;
                     stack_ptr_2 = stack_ptr_4 + 4;
                     stack_ptr_11 = (uint64_t *)stack_ptr_12[1];
@@ -1473,17 +1473,17 @@ ALLOCATE_MEMORY:
                         ErrorHandler(stack_ptr_6);
                     }
                     
-                    *stack_ptr_12 = (longlong)stack_ptr_9;
-                    stack_ptr_12[1] = (longlong)stack_ptr_2;
-                    stack_ptr_12[2] = (longlong)(stack_ptr_9 + stack_ptr_13 * 0x20);
+                    *stack_ptr_12 = (int64_t)stack_ptr_9;
+                    stack_ptr_12[1] = (int64_t)stack_ptr_2;
+                    stack_ptr_12[2] = (int64_t)(stack_ptr_9 + stack_ptr_13 * 0x20);
                     stack_data_9 = (int)stack_ptr_14;
                 }
                 
                 stack_data_9 = stack_data_9 + 1;
-                stack_ptr_9 = (int8_t *)(ulonglong)stack_data_9;
+                stack_ptr_9 = (int8_t *)(uint64_t)stack_data_9;
                 stack_ptr_14 = (uint64_t *)CONCAT44(stack_ptr_14._4_4_, stack_data_9);
                 stack_ptr_4 = stack_ptr_4 + 4;
-            } while ((ulonglong)(longlong)stack_data_9 < stack_data_8);
+            } while ((uint64_t)(int64_t)stack_data_9 < stack_data_8);
         }
         
         stack_ptr_11 = stack_ptr_1;
@@ -1535,11 +1535,11 @@ ALLOCATE_MEMORY:
  * ============================================================================ */
 
 // 原始函数声明，保持与转换代码的兼容性
-void FUN_18016a890(longlong *param_1);
-void FUN_18016a8b0(uint64_t param_1, longlong param_2);
-void FUN_18016ae30(uint64_t param_1, longlong param_2, uint64_t param_3, uint64_t param_4);
-void FUN_18016afc0(longlong param_1);
-uint64_t FUN_18016bb80(longlong param_1, int *param_2);
+void FUN_18016a890(int64_t *param_1);
+void FUN_18016a8b0(uint64_t param_1, int64_t param_2);
+void FUN_18016ae30(uint64_t param_1, int64_t param_2, uint64_t param_3, uint64_t param_4);
+void FUN_18016afc0(int64_t param_1);
+uint64_t FUN_18016bb80(int64_t param_1, int *param_2);
 
 /* ============================================================================
  * 文件结束标记

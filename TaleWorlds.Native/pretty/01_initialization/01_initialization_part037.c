@@ -8,14 +8,14 @@ void initialize_memory_pool(void *context)
 {
   int *lock_counter;
   int lock_value;
-  ulonglong start_address;
-  ulonglong end_address;
-  longlong *queue_ptr;
-  longlong queue_head;
-  longlong queue_tail;
-  longlong current_item;
-  longlong pool_entry;
-  ulonglong current_offset;
+  uint64_t start_address;
+  uint64_t end_address;
+  int64_t *queue_ptr;
+  int64_t queue_head;
+  int64_t queue_tail;
+  int64_t current_item;
+  int64_t pool_entry;
+  uint64_t current_offset;
   bool is_queue_empty;
   
   *context = &MEMORY_POOL_START_ADDRESS;
@@ -32,11 +32,11 @@ void initialize_memory_pool(void *context)
         *lock_counter = *lock_counter + -0x80000000;
         UNLOCK();
         if (lock_value == 0) {
-          queue_tail = *(longlong *)(queue_head + 0x28);
+          queue_tail = *(int64_t *)(queue_head + 0x28);
           do {
-            *(longlong *)(pool_entry + 0x138) = queue_tail;
+            *(int64_t *)(pool_entry + 0x138) = queue_tail;
             *(int32_t *)(pool_entry + 0x130) = 1;
-            queue_ptr = (longlong *)(queue_head + 0x28);
+            queue_ptr = (int64_t *)(queue_head + 0x28);
             LOCK();
             current_item = *queue_ptr;
             is_queue_empty = queue_tail == current_item;
@@ -56,12 +56,12 @@ void initialize_memory_pool(void *context)
         }
       }
 LAB_180069842:
-      queue_ptr = (longlong *)context[0xc];
-      pool_entry = *(longlong *)
-               (*(longlong *)
+      queue_ptr = (int64_t *)context[0xc];
+      pool_entry = *(int64_t *)
+               (*(int64_t *)
                  (queue_ptr[3] +
                  (queue_ptr[1] +
-                  ((current_offset & 0xffffffffffffffe0) - **(longlong **)(queue_ptr[3] + queue_ptr[1] * 8) >> 5)
+                  ((current_offset & 0xffffffffffffffe0) - **(int64_t **)(queue_ptr[3] + queue_ptr[1] * 8) >> 5)
                  & *queue_ptr - 1U) * 8) + 8);
     }
     else if (pool_entry == 0) goto LAB_180069842;
@@ -75,11 +75,11 @@ LAB_180069842:
     *lock_counter = *lock_counter + -0x80000000;
     UNLOCK();
     if (lock_value == 0) {
-      queue_tail = *(longlong *)(queue_head + 0x28);
+      queue_tail = *(int64_t *)(queue_head + 0x28);
       do {
-        *(longlong *)(pool_entry + 0x138) = queue_tail;
+        *(int64_t *)(pool_entry + 0x138) = queue_tail;
         *(int32_t *)(pool_entry + 0x130) = 1;
-        queue_ptr = (longlong *)(queue_head + 0x28);
+        queue_ptr = (int64_t *)(queue_head + 0x28);
         LOCK();
         current_item = *queue_ptr;
         is_queue_empty = queue_tail == current_item;
@@ -110,21 +110,21 @@ LAB_180069842:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void * get_thread_local_storage(longlong *thread_context)
+void * get_thread_local_storage(int64_t *thread_context)
 
 {
-  longlong *thread_counter;
+  int64_t *thread_counter;
   uint *slot_status;
-  ulonglong *hash_table;
-  ulonglong hash_value;
+  uint64_t *hash_table;
+  uint64_t hash_value;
   uint thread_id;
-  ulonglong slot_index;
-  ulonglong *thread_table;
+  uint64_t slot_index;
+  uint64_t *thread_table;
   void *thread_data;
-  longlong allocation_count;
-  longlong new_size;
+  int64_t allocation_count;
+  int64_t new_size;
   void *new_table;
-  ulonglong table_size;
+  uint64_t table_size;
   uint temp_thread_id;
   void *found_data;
   bool slot_available;
@@ -133,9 +133,9 @@ void * get_thread_local_storage(longlong *thread_context)
   thread_id = GetCurrentThreadId();
   table_size = (thread_id >> 0x10 ^ thread_id) * -0x7a143595;
   table_size = (table_size >> 0xd ^ table_size) * -0x3d4d51cb;
-  hash_value = (ulonglong)(table_size >> 0x10 ^ table_size);
-  thread_table = (ulonglong *)thread_context[6];
-  for (hash_table = thread_table; slot_index = hash_value, hash_table != (ulonglong *)0x0; hash_table = (ulonglong *)hash_table[2])
+  hash_value = (uint64_t)(table_size >> 0x10 ^ table_size);
+  thread_table = (uint64_t *)thread_context[6];
+  for (hash_table = thread_table; slot_index = hash_value, hash_table != (uint64_t *)0x0; hash_table = (uint64_t *)hash_table[2])
   {
     while( true ) {
       slot_index = slot_index & *hash_table - 1;
@@ -182,7 +182,7 @@ void * get_thread_local_storage(longlong *thread_context)
       *slot_status = *slot_status | 1;
       UNLOCK();
       if ((table_size & 1) == 0) {
-        hash_table = (ulonglong *)thread_context[6];
+        hash_table = (uint64_t *)thread_context[6];
         thread_table = hash_table;
         table_size = *hash_table;
         if (*hash_table >> 1 <= slot_index) {
@@ -190,8 +190,8 @@ void * get_thread_local_storage(longlong *thread_context)
             hash_value = table_size;
             table_size = hash_value * 2;
           } while ((hash_value & 0x7fffffffffffffff) <= slot_index);
-          thread_table = (ulonglong *)allocate_thread_table(MEMORY_ALLOCATOR,hash_value * 0x20 + 0x1f,10);
-          if (thread_table == (ulonglong *)0x0) {
+          thread_table = (uint64_t *)allocate_thread_table(MEMORY_ALLOCATOR,hash_value * 0x20 + 0x1f,10);
+          if (thread_table == (uint64_t *)0x0) {
             LOCK();
             thread_context[7] = thread_context[7] + -1;
             UNLOCK();
@@ -199,21 +199,21 @@ void * get_thread_local_storage(longlong *thread_context)
             return (void *)0x0;
           }
           *thread_table = table_size;
-          thread_table[1] = (ulonglong)(-(int)(thread_table + 3) & 7) + (longlong)(thread_table + 3);
+          thread_table[1] = (uint64_t)(-(int)(thread_table + 3) & 7) + (int64_t)(thread_table + 3);
           new_table = found_data;
           for (; table_size != 0; table_size = table_size - 1) {
-            *(void *)((longlong)new_table + thread_table[1] + 8) = 0;
-            *(int32_t *)((longlong)new_table + thread_table[1]) = 0;
+            *(void *)((int64_t)new_table + thread_table[1] + 8) = 0;
+            *(int32_t *)((int64_t)new_table + thread_table[1]) = 0;
             new_table = new_table + 2;
           }
-          thread_table[2] = (ulonglong)hash_table;
-          thread_context[6] = (longlong)thread_table;
+          thread_table[2] = (uint64_t)hash_table;
+          thread_context[6] = (int64_t)thread_table;
         }
         *(int32_t *)(thread_context + 0x4b) = 0;
       }
     }
     if (slot_index < (*thread_table >> 2) + (*thread_table >> 1)) break;
-    thread_table = (ulonglong *)thread_context[6];
+    thread_table = (uint64_t *)thread_context[6];
   }
   new_table = (void *)*thread_context;
   while (new_table != (void *)0x0) {
@@ -266,7 +266,7 @@ void * get_thread_local_storage(longlong *thread_context)
       new_size = *thread_context;
       slot_available = allocation_count == new_size;
       if (slot_available) {
-        *thread_context = (longlong)hash_table;
+        *thread_context = (int64_t)hash_table;
         new_size = allocation_count;
       }
       UNLOCK();
@@ -307,27 +307,27 @@ LAB_180069c2b:
 
 
 
-ulonglong add_to_thread_queue(void thread_handle,void *data)
+uint64_t add_to_thread_queue(void thread_handle,void *data)
 
 {
-  ulonglong queue_position;
-  longlong *queue_header;
+  uint64_t queue_position;
+  int64_t *queue_header;
   void queue_data;
-  longlong thread_storage;
-  ulonglong available_space;
-  ulonglong *queue_slot;
+  int64_t thread_storage;
+  uint64_t available_space;
+  uint64_t *queue_slot;
   
   thread_storage = get_thread_local_storage();
   if (thread_storage == 0) {
     return 0;
   }
-  queue_position = *(ulonglong *)(thread_storage + 0x20);
+  queue_position = *(uint64_t *)(thread_storage + 0x20);
   if ((queue_position & 0x1f) == 0) {
-    available_space = (*(longlong *)(thread_storage + 0x28) - queue_position) - 0x20;
+    available_space = (*(int64_t *)(thread_storage + 0x28) - queue_position) - 0x20;
     if ((0x8000000000000000 < available_space) &&
-       (queue_header = *(longlong **)(thread_storage + 0x60), queue_header != (longlong *)0x0)) {
+       (queue_header = *(int64_t **)(thread_storage + 0x60), queue_header != (int64_t *)0x0)) {
       available_space = *queue_header - 1U & queue_header[1] + 1U;
-      queue_slot = *(ulonglong **)(queue_header[3] + available_space * 8);
+      queue_slot = *(uint64_t **)(queue_header[3] + available_space * 8);
       if ((*queue_slot == 1) || (queue_slot[1] == 0)) {
         *queue_slot = queue_position;
         queue_header[1] = available_space;
@@ -335,9 +335,9 @@ ulonglong add_to_thread_queue(void thread_handle,void *data)
       else {
         available_space = process_thread_queue(thread_storage);
         if ((char)available_space == '\0') goto LAB_180069dc3;
-        queue_header = *(longlong **)(thread_storage + 0x60);
+        queue_header = *(int64_t **)(thread_storage + 0x60);
         available_space = *queue_header - 1U & queue_header[1] + 1U;
-        queue_slot = *(ulonglong **)(queue_header[3] + available_space * 8);
+        queue_slot = *(uint64_t **)(queue_header[3] + available_space * 8);
         *queue_slot = queue_position;
         queue_header[1] = available_space;
       }
@@ -345,10 +345,10 @@ ulonglong add_to_thread_queue(void thread_handle,void *data)
       if (available_space != 0) {
         *(void *)(available_space + 0x108) = 0;
         queue_slot[1] = available_space;
-        *(ulonglong *)(thread_storage + 0x40) = available_space;
+        *(uint64_t *)(thread_storage + 0x40) = available_space;
         goto LAB_180069dda;
       }
-      queue_header = *(longlong **)(thread_storage + 0x60);
+      queue_header = *(int64_t **)(thread_storage + 0x60);
       available_space = queue_header[1] - 1;
       queue_header[1] = *queue_header - 1U & available_space;
       queue_slot[1] = 0;
@@ -359,9 +359,9 @@ LAB_180069dc3:
   else {
 LAB_180069dda:
     queue_data = *data;
-    *(void *)(*(longlong *)(thread_storage + 0x40) + (ulonglong)((uint)queue_position & 0x1f) * 8) = queue_data;
-    *(ulonglong *)(thread_storage + 0x20) = queue_position + 1;
-    available_space = CONCAT71((int7)((ulonglong)queue_data >> 8),1);
+    *(void *)(*(int64_t *)(thread_storage + 0x40) + (uint64_t)((uint)queue_position & 0x1f) * 8) = queue_data;
+    *(uint64_t *)(thread_storage + 0x20) = queue_position + 1;
+    available_space = CONCAT71((int7)((uint64_t)queue_data >> 8),1);
   }
   return available_space;
 }
@@ -440,7 +440,7 @@ void * initialize_semaphore(void *semaphore_param,void *semaphore_context)
 
 
 
-void cleanup_thread_storage(void *storage_param,ulonglong cleanup_flags,void cleanup_param3,void cleanup_param4)
+void cleanup_thread_storage(void *storage_param,uint64_t cleanup_flags,void cleanup_param3,void cleanup_param4)
 
 {
   void cleanup_result;
@@ -463,13 +463,13 @@ void validate_system_state(int state_code)
   if ((state_code != -0x3fffff03) && (state_code != -0x3ffffffb)) {
     return 0;
   }
-  (**(code **)(*(longlong *)*SYSTEM_STATE_POINTER + 0x68))();
+  (**(code **)(*(int64_t *)*SYSTEM_STATE_POINTER + 0x68))();
   return 1;
 }
 
 
 
-void * initialize_resource_manager(void *resource_context,ulonglong resource_flags)
+void * initialize_resource_manager(void *resource_context,uint64_t resource_flags)
 
 {
   *resource_context = &RESOURCE_MANAGER_START_ADDRESS;
@@ -494,17 +494,17 @@ void * initialize_resource_manager(void *resource_context,ulonglong resource_fla
 
 
 
-// 函数: void initialize_system_components(longlong system_handle)
-void initialize_system_components(longlong system_handle)
+// 函数: void initialize_system_components(int64_t system_handle)
+void initialize_system_components(int64_t system_handle)
 
 {
-  longlong *component_manager;
+  int64_t *component_manager;
   char init_result;
   void system_config;
   void *module_handle;
   void *module_loader;
   int8_t module_stack[40];
-  longlong *module_stack_ptr;
+  int64_t *module_stack_ptr;
   int module_flags;
   char module_status;
   void system_heap;
@@ -524,19 +524,19 @@ void initialize_system_components(longlong system_handle)
   setup_system_monitor();
   if ((*(char *)(SYSTEM_CONFIG_ADDRESS + 0x20) == '\0') && (*(char *)(SYSTEM_CONFIG_ADDRESS + 0x21) == '\0')) {
     system_config = allocate_system_memory(0x428);
-    module_stack_ptr = (longlong *)load_system_modules(system_config);
+    module_stack_ptr = (int64_t *)load_system_modules(system_config);
   }
   else {
-    module_stack_ptr = (longlong *)allocate_system_memory(SYSTEM_MEMORY_ALLOCATOR,0x28,8,3);
-    *module_stack_ptr = (longlong)&MODULE_LOADER_ADDRESS;
-    *module_stack_ptr = (longlong)&MODULE_REGISTRY_ADDRESS;
+    module_stack_ptr = (int64_t *)allocate_system_memory(SYSTEM_MEMORY_ALLOCATOR,0x28,8,3);
+    *module_stack_ptr = (int64_t)&MODULE_LOADER_ADDRESS;
+    *module_stack_ptr = (int64_t)&MODULE_REGISTRY_ADDRESS;
     module_stack_ptr[4] = 0;
     *(int8_t *)(module_stack_ptr + 1) = 0;
     module_stack_ptr[2] = 0;
     *(int8_t *)(module_stack_ptr + 3) = 0;
-    component_manager = (longlong *)module_stack_ptr[4];
+    component_manager = (int64_t *)module_stack_ptr[4];
     module_stack_ptr[4] = 0;
-    if (component_manager != (longlong *)0x0) {
+    if (component_manager != (int64_t *)0x0) {
       (**(code **)(*component_manager + 0x38))();
     }
   }
@@ -575,22 +575,22 @@ void initialize_system_components(longlong system_handle)
   module_handle[10] = 0;
   *(int32_t *)(module_handle + 0xb) = 3;
   *(int8_t *)(module_handle + 0xc) = 0;
-  *(void *)((longlong)module_handle + 100) = 0xffffffffffffffff;
-  *(int32_t *)((longlong)module_handle + 0x6c) = 0;
+  *(void *)((int64_t)module_handle + 100) = 0xffffffffffffffff;
+  *(int32_t *)((int64_t)module_handle + 0x6c) = 0;
   *(int16_t *)(module_handle + 0xe) = 0;
-  *(int8_t *)((longlong)module_handle + 0x72) = 0;
+  *(int8_t *)((int64_t)module_handle + 0x72) = 0;
                     // WARNING: Subroutine does not return
-  memset((longlong)module_handle + 0x74,0,0x400);
+  memset((int64_t)module_handle + 0x74,0,0x400);
 }
 
 
 
-// 函数: void cleanup_system_components(longlong system_handle)
-void cleanup_system_components(longlong system_handle)
+// 函数: void cleanup_system_components(int64_t system_handle)
+void cleanup_system_components(int64_t system_handle)
 
 {
   *(void *)(system_handle + 0xa0) = &RESOURCE_VTABLE_ADDRESS;
-  if (*(longlong *)(system_handle + 0xa8) != 0) {
+  if (*(int64_t *)(system_handle + 0xa8) != 0) {
                     // WARNING: Subroutine does not return
     trigger_system_error();
   }
@@ -598,7 +598,7 @@ void cleanup_system_components(longlong system_handle)
   *(int32_t *)(system_handle + 0xb8) = 0;
   *(void *)(system_handle + 0xa0) = &RESOURCE_CLEANUP_ADDRESS;
   *(void *)(system_handle + 0x80) = &RESOURCE_VTABLE_ADDRESS;
-  if (*(longlong *)(system_handle + 0x88) != 0) {
+  if (*(int64_t *)(system_handle + 0x88) != 0) {
                     // WARNING: Subroutine does not return
     trigger_system_error();
   }
@@ -606,7 +606,7 @@ void cleanup_system_components(longlong system_handle)
   *(int32_t *)(system_handle + 0x98) = 0;
   *(void *)(system_handle + 0x80) = &RESOURCE_CLEANUP_ADDRESS;
   *(void *)(system_handle + 0x58) = &RESOURCE_VTABLE_ADDRESS;
-  if (*(longlong *)(system_handle + 0x60) != 0) {
+  if (*(int64_t *)(system_handle + 0x60) != 0) {
                     // WARNING: Subroutine does not return
     trigger_system_error();
   }
@@ -614,7 +614,7 @@ void cleanup_system_components(longlong system_handle)
   *(int32_t *)(system_handle + 0x70) = 0;
   *(void *)(system_handle + 0x58) = &RESOURCE_CLEANUP_ADDRESS;
   *(void *)(system_handle + 0x38) = &RESOURCE_VTABLE_ADDRESS;
-  if (*(longlong *)(system_handle + 0x40) != 0) {
+  if (*(int64_t *)(system_handle + 0x40) != 0) {
                     // WARNING: Subroutine does not return
     trigger_system_error();
   }
@@ -622,7 +622,7 @@ void cleanup_system_components(longlong system_handle)
   *(int32_t *)(system_handle + 0x50) = 0;
   *(void *)(system_handle + 0x38) = &RESOURCE_CLEANUP_ADDRESS;
   *(void *)(system_handle + 8) = &RESOURCE_VTABLE_ADDRESS;
-  if (*(longlong *)(system_handle + 0x10) != 0) {
+  if (*(int64_t *)(system_handle + 0x10) != 0) {
                     // WARNING: Subroutine does not return
     trigger_system_error();
   }
@@ -636,7 +636,7 @@ void cleanup_system_components(longlong system_handle)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-longlong handle_system_operation(longlong *operation_handle,longlong *operation_data,int operation_type)
+int64_t handle_system_operation(int64_t *operation_handle,int64_t *operation_data,int operation_type)
 
 {
   void *operation_result;
@@ -662,7 +662,7 @@ longlong handle_system_operation(longlong *operation_handle,longlong *operation_
       *(int32_t *)(operation_result + 1) = *(int32_t *)(source_data + 1);
       operation_result[2] = source_data[2];
       operation_result[3] = source_data[3];
-      *operation_handle = (longlong)operation_result;
+      *operation_handle = (int64_t)operation_result;
       return 0;
     }
     if (operation_type == 2) {
@@ -676,15 +676,15 @@ longlong handle_system_operation(longlong *operation_handle,longlong *operation_
 
 
 
-// 函数: void update_system_status(longlong system_handle,int32_t status_code)
-void update_system_status(longlong system_handle,int32_t status_code)
+// 函数: void update_system_status(int64_t system_handle,int32_t status_code)
+void update_system_status(int64_t system_handle,int32_t status_code)
 
 {
   char callback_result;
   void *status_handler;
   int32_t status_stack[6];
   
-  if ((*(longlong *)(system_handle + 0x1e20) != 0) &&
+  if ((*(int64_t *)(system_handle + 0x1e20) != 0) &&
      (status_stack[0] = status_code, callback_result = (**(code **)(system_handle + 0x1e28))(status_stack),
      status_code = status_stack[0], callback_result == '\0')) {
     if (SYSTEM_STATUS_FLAG == '\0') {
@@ -703,15 +703,15 @@ void update_system_status(longlong system_handle,int32_t status_code)
 
 
 
-// 函数: void update_system_flags(longlong system_handle,int32_t flag_code)
-void update_system_flags(longlong system_handle,int32_t flag_code)
+// 函数: void update_system_flags(int64_t system_handle,int32_t flag_code)
+void update_system_flags(int64_t system_handle,int32_t flag_code)
 
 {
   char callback_result;
   void *flag_handler;
   int32_t flag_stack[6];
   
-  if ((*(longlong *)(system_handle + 0x1db0) != 0) &&
+  if ((*(int64_t *)(system_handle + 0x1db0) != 0) &&
      (flag_stack[0] = flag_code, callback_result = (**(code **)(system_handle + 0x1db8))(flag_stack),
      flag_code = flag_stack[0], callback_result == '\0')) {
     if (SYSTEM_STATUS_FLAG == '\0') {
@@ -734,13 +734,13 @@ void update_system_flags(longlong system_handle,int32_t flag_code)
 void update_global_status(uint64_t global_param,int32_t global_status)
 
 {
-  longlong system_context;
+  int64_t system_context;
   char callback_result;
   void *global_handler;
   int32_t global_stack[6];
   
   system_context = SYSTEM_CONTEXT_HANDLE;
-  if ((*(longlong *)(SYSTEM_CONTEXT_HANDLE + 0x1870) != 0) &&
+  if ((*(int64_t *)(SYSTEM_CONTEXT_HANDLE + 0x1870) != 0) &&
      (global_stack[0] = global_status, callback_result = (**(code **)(SYSTEM_CONTEXT_HANDLE + 0x1878))(global_stack),
      global_status = global_stack[0], callback_result == '\0')) {
     if (SYSTEM_STATUS_FLAG == '\0') {
@@ -759,7 +759,7 @@ void update_global_status(uint64_t global_param,int32_t global_status)
 
 
 
-longlong cleanup_system_context(longlong context_handle,uint cleanup_flags,uint64_t cleanup_param3,uint64_t cleanup_param4)
+int64_t cleanup_system_context(int64_t context_handle,uint cleanup_flags,uint64_t cleanup_param3,uint64_t cleanup_param4)
 
 {
   if (*(code **)(context_handle + 0xd0) != (code *)0x0) {
@@ -803,8 +803,8 @@ initialize_thread_context(void *thread_context,void *thread_data,void thread_par
 
 
 
-// 函数: void execute_cleanup_handlers(longlong *handler_list,uint64_t cleanup_param2,uint64_t cleanup_param3,uint64_t cleanup_param4)
-void execute_cleanup_handlers(longlong *handler_list,uint64_t cleanup_param2,uint64_t cleanup_param3,uint64_t cleanup_param4)
+// 函数: void execute_cleanup_handlers(int64_t *handler_list,uint64_t cleanup_param2,uint64_t cleanup_param3,uint64_t cleanup_param4)
+void execute_cleanup_handlers(int64_t *handler_list,uint64_t cleanup_param2,uint64_t cleanup_param3,uint64_t cleanup_param4)
 
 {
   void *current_handler;
@@ -825,8 +825,8 @@ void execute_cleanup_handlers(longlong *handler_list,uint64_t cleanup_param2,uin
 
 
 
-// 函数: void execute_shutdown_handlers(longlong *handler_list,uint64_t shutdown_param2,uint64_t shutdown_param3,uint64_t shutdown_param4)
-void execute_shutdown_handlers(longlong *handler_list,uint64_t shutdown_param2,uint64_t shutdown_param3,uint64_t shutdown_param4)
+// 函数: void execute_shutdown_handlers(int64_t *handler_list,uint64_t shutdown_param2,uint64_t shutdown_param3,uint64_t shutdown_param4)
+void execute_shutdown_handlers(int64_t *handler_list,uint64_t shutdown_param2,uint64_t shutdown_param3,uint64_t shutdown_param4)
 
 {
   void *current_handler;
@@ -851,8 +851,8 @@ void execute_shutdown_handlers(longlong *handler_list,uint64_t shutdown_param2,u
 void initialize_system_monitor(void)
 
 {
-  longlong *monitor_counter;
-  longlong monitor_value;
+  int64_t *monitor_counter;
+  int64_t monitor_value;
   char monitor_status;
   
   if (SYSTEM_MONITOR_HANDLE != 0) {
@@ -860,12 +860,12 @@ void initialize_system_monitor(void)
   }
 
 
-// 函数: void setup_performance_monitor(longlong monitor_handle)
-void setup_performance_monitor(longlong monitor_handle)
+// 函数: void setup_performance_monitor(int64_t monitor_handle)
+void setup_performance_monitor(int64_t monitor_handle)
 
 {
   *(void *)(monitor_handle + 0x20) = &PERFORMANCE_VTABLE_ADDRESS;
-  if (*(longlong *)(monitor_handle + 0x28) != 0) {
+  if (*(int64_t *)(monitor_handle + 0x28) != 0) {
                     // WARNING: Subroutine does not return
     trigger_system_error();
   }
@@ -885,21 +885,21 @@ void setup_performance_monitor(longlong monitor_handle)
 void initialize_system_monitor(void *monitor_context)
 
 {
-  ulonglong monitor_index;
-  ulonglong monitor_count;
-  ulonglong monitor_size;
+  uint64_t monitor_index;
+  uint64_t monitor_count;
+  uint64_t monitor_size;
   void *monitor_entry;
   void *monitor_ptr;
-  longlong entry_size;
-  longlong total_size;
+  int64_t entry_size;
+  int64_t total_size;
   int8_t monitor_stack[48];
   void *monitor_stack_ptr;
   void *monitor_data;
   void monitor_param;
-  ulonglong monitor_hash;
+  uint64_t monitor_hash;
   
   monitor_param = 0xfffffffffffffffe;
-  monitor_hash = SYSTEM_MONITOR_HASH ^ (ulonglong)monitor_stack;
+  monitor_hash = SYSTEM_MONITOR_HASH ^ (uint64_t)monitor_stack;
   *monitor_context = &MONITOR_SYSTEM_START_ADDRESS;
   monitor_count = 0;
   monitor_context[1] = 0;
@@ -918,7 +918,7 @@ void initialize_system_monitor(void *monitor_context)
     monitor_entry = monitor_entry + 2;
     entry_size = entry_size + -1;
   } while (entry_size != 0);
-  *(void *)((longlong)monitor_context + 0x26c) = 0;
+  *(void *)((int64_t)monitor_context + 0x26c) = 0;
   *(int32_t *)(monitor_context + 0x4d) = 0;
   monitor_context[9] = 0;
   monitor_context[10] = 0x20;
@@ -946,18 +946,18 @@ void initialize_system_monitor(void *monitor_context)
       *(int8_t *)(monitor_count + 0x141 + monitor_context[5]) = 0;
       monitor_size = monitor_size + 1;
       monitor_count = monitor_count + 0x148;
-    } while (monitor_size < (ulonglong)monitor_context[6]);
+    } while (monitor_size < (uint64_t)monitor_context[6]);
   }
   monitor_stack_ptr = monitor_context + 0x4f;
   initialize_condition_variable();
   monitor_stack_ptr = monitor_context + 0x58;
   initialize_mutex(monitor_stack_ptr,2);
   *(int32_t *)(monitor_context + 0x65) = 0;
-  *(int32_t *)((longlong)monitor_context + 0x32c) = 0x80;
+  *(int32_t *)((int64_t)monitor_context + 0x32c) = 0x80;
   monitor_data = monitor_context + 0x66;
   *(int32_t *)(monitor_context + 0x6a) = 0x3f800000;
-  *(void *)((longlong)monitor_context + 0x354) = 0x40000000;
-  *(int32_t *)((longlong)monitor_context + 0x35c) = 3;
+  *(void *)((int64_t)monitor_context + 0x354) = 0x40000000;
+  *(int32_t *)((int64_t)monitor_context + 0x35c) = 3;
   monitor_context[0x68] = 1;
   monitor_context[0x67] = &MONITOR_DATA_START_ADDRESS;
   monitor_context[0x69] = 0;
@@ -970,7 +970,7 @@ void initialize_system_monitor(void *monitor_context)
 
 
 
-void cleanup_monitor_system(void *monitor_param,ulonglong cleanup_flags)
+void cleanup_monitor_system(void *monitor_param,uint64_t cleanup_flags)
 
 {
   cleanup_monitor_resources();
@@ -982,17 +982,17 @@ void cleanup_monitor_system(void *monitor_param,ulonglong cleanup_flags)
 
 
 
-// 函数: void cleanup_resource_tables(longlong resource_handle)
-void cleanup_resource_tables(longlong resource_handle)
+// 函数: void cleanup_resource_tables(int64_t resource_handle)
+void cleanup_resource_tables(int64_t resource_handle)
 
 {
-  longlong table_size;
+  int64_t table_size;
   void **resource_table;
-  ulonglong resource_count;
-  ulonglong current_index;
+  uint64_t resource_count;
+  uint64_t current_index;
   
-  resource_count = *(ulonglong *)(resource_handle + 0x10);
-  table_size = *(longlong *)(resource_handle + 8);
+  resource_count = *(uint64_t *)(resource_handle + 0x10);
+  table_size = *(int64_t *)(resource_handle + 8);
   current_index = 0;
   if (resource_count != 0) {
     do {
@@ -1005,10 +1005,10 @@ void cleanup_resource_tables(longlong resource_handle)
       *(void *)(table_size + current_index * 8) = 0;
       current_index = current_index + 1;
     } while (current_index < resource_count);
-    resource_count = *(ulonglong *)(resource_handle + 0x10);
+    resource_count = *(uint64_t *)(resource_handle + 0x10);
   }
   *(void *)(resource_handle + 0x18) = 0;
-  if ((1 < resource_count) && (*(longlong *)(resource_handle + 8) != 0)) {
+  if ((1 < resource_count) && (*(int64_t *)(resource_handle + 8) != 0)) {
                     // WARNING: Subroutine does not return
     trigger_system_error();
   }
@@ -1017,17 +1017,17 @@ void cleanup_resource_tables(longlong resource_handle)
 
 
 
-// 函数: void cleanup_memory_tables(longlong memory_handle)
-void cleanup_memory_tables(longlong memory_handle)
+// 函数: void cleanup_memory_tables(int64_t memory_handle)
+void cleanup_memory_tables(int64_t memory_handle)
 
 {
-  longlong table_size;
+  int64_t table_size;
   void **memory_table;
-  ulonglong memory_count;
-  ulonglong current_index;
+  uint64_t memory_count;
+  uint64_t current_index;
   
-  memory_count = *(ulonglong *)(memory_handle + 0x10);
-  table_size = *(longlong *)(memory_handle + 8);
+  memory_count = *(uint64_t *)(memory_handle + 0x10);
+  table_size = *(int64_t *)(memory_handle + 8);
   current_index = 0;
   if (memory_count != 0) {
     do {
@@ -1040,10 +1040,10 @@ void cleanup_memory_tables(longlong memory_handle)
       *(void *)(table_size + current_index * 8) = 0;
       current_index = current_index + 1;
     } while (current_index < memory_count);
-    memory_count = *(ulonglong *)(memory_handle + 0x10);
+    memory_count = *(uint64_t *)(memory_handle + 0x10);
   }
   *(void *)(memory_handle + 0x18) = 0;
-  if ((1 < memory_count) && (*(longlong *)(memory_handle + 8) != 0)) {
+  if ((1 < memory_count) && (*(int64_t *)(memory_handle + 8) != 0)) {
                     // WARNING: Subroutine does not return
     trigger_system_error();
   }
@@ -1057,93 +1057,93 @@ void cleanup_memory_tables(longlong memory_handle)
 
 
 void
-allocate_system_resources(longlong system_context,longlong resource_context,longlong *primary_buffer,longlong *secondary_buffer,
-             longlong *buffer_size)
+allocate_system_resources(int64_t system_context,int64_t resource_context,int64_t *primary_buffer,int64_t *secondary_buffer,
+             int64_t *buffer_size)
 
 {
-  longlong available_memory;
-  longlong *memory_manager;
-  longlong buffer_size_value;
-  ulonglong required_size;
-  ulonglong allocated_size;
-  ulonglong page_size;
+  int64_t available_memory;
+  int64_t *memory_manager;
+  int64_t buffer_size_value;
+  uint64_t required_size;
+  uint64_t allocated_size;
+  uint64_t page_size;
   uint8_t alignment_flags;
   
-  buffer_size_value = *(longlong *)(resource_context + 0x128);
+  buffer_size_value = *(int64_t *)(resource_context + 0x128);
   if (buffer_size_value != 0) {
     *primary_buffer = buffer_size_value;
-    buffer_size_value = *(longlong *)(resource_context + 0x128);
+    buffer_size_value = *(int64_t *)(resource_context + 0x128);
   }
-  available_memory = *(longlong *)(resource_context + 0x130);
+  available_memory = *(int64_t *)(resource_context + 0x130);
   required_size = 0;
   if (available_memory == 0) {
     if (buffer_size_value == 0) {
-      required_size = *(ulonglong *)(resource_context + 0x120);
+      required_size = *(uint64_t *)(resource_context + 0x120);
     }
   }
   else {
-    required_size = *(ulonglong *)(resource_context + 0x120);
+    required_size = *(uint64_t *)(resource_context + 0x120);
     if (buffer_size_value == 0) {
-      required_size = required_size + *(longlong *)(resource_context + 0x138);
+      required_size = required_size + *(int64_t *)(resource_context + 0x138);
     }
   }
   *(void *)(resource_context + 0x1a0) = 0;
   *(void *)(resource_context + 0x198) = 0;
   *(void *)(resource_context + 400) = 0;
   *(void *)(resource_context + 0x188) = 0;
-  allocated_size = (*(longlong *)(resource_context + 0x120) - (*(ulonglong *)(resource_context + 0x118) & 0xfffffffffffff000))
-          + *(ulonglong *)(resource_context + 0x118);
+  allocated_size = (*(int64_t *)(resource_context + 0x120) - (*(uint64_t *)(resource_context + 0x118) & 0xfffffffffffff000))
+          + *(uint64_t *)(resource_context + 0x118);
   page_size = allocated_size & 0xfffffffffffff000;
   buffer_size_value = (-(uint)((allocated_size & 0xfff) != 0) & 0x1000) + page_size;
-  if (*(ulonglong *)(system_context + 0x360) < required_size) {
+  if (*(uint64_t *)(system_context + 0x360) < required_size) {
     alignment_flags = (uint8_t)(page_size >> 8);
     if (available_memory == 0) {
       if (*primary_buffer == 0) {
         buffer_size_value = allocate_system_memory(SYSTEM_MEMORY_ALLOCATOR,buffer_size_value,CONCAT71(alignment_flags,3));
         *primary_buffer = buffer_size_value;
-        *(longlong *)(resource_context + 0x198) = buffer_size_value;
+        *(int64_t *)(resource_context + 0x198) = buffer_size_value;
         *buffer_size = *primary_buffer;
       }
     }
     else {
       buffer_size_value = allocate_system_memory(SYSTEM_MEMORY_ALLOCATOR,buffer_size_value,CONCAT71(alignment_flags,3));
       *secondary_buffer = buffer_size_value;
-      *(longlong *)(resource_context + 0x198) = buffer_size_value;
+      *(int64_t *)(resource_context + 0x198) = buffer_size_value;
       *buffer_size = *secondary_buffer;
       if (*primary_buffer == 0) {
         buffer_size_value = allocate_system_memory(SYSTEM_MEMORY_ALLOCATOR,*(void *)(resource_context + 0x138),3);
         *primary_buffer = buffer_size_value;
-        *(longlong *)(resource_context + 0x1a0) = buffer_size_value;
+        *(int64_t *)(resource_context + 0x1a0) = buffer_size_value;
       }
     }
   }
   else if (available_memory == 0) {
     if (*primary_buffer == 0) {
-      memory_manager = (longlong *)allocate_memory_buffer(system_context,buffer_size_value);
-      *(longlong **)(resource_context + 400) = memory_manager;
-      if (memory_manager == (longlong *)0x0) goto LAB_18006bf7f;
-      buffer_size_value = *(longlong *)(system_context + 800) + *memory_manager;
+      memory_manager = (int64_t *)allocate_memory_buffer(system_context,buffer_size_value);
+      *(int64_t **)(resource_context + 400) = memory_manager;
+      if (memory_manager == (int64_t *)0x0) goto LAB_18006bf7f;
+      buffer_size_value = *(int64_t *)(system_context + 800) + *memory_manager;
       *primary_buffer = buffer_size_value;
       *buffer_size = buffer_size_value;
     }
   }
   else {
-    memory_manager = (longlong *)allocate_memory_buffer(system_context,buffer_size_value);
-    *(longlong **)(resource_context + 0x188) = memory_manager;
-    if (memory_manager == (longlong *)0x0) {
+    memory_manager = (int64_t *)allocate_memory_buffer(system_context,buffer_size_value);
+    *(int64_t **)(resource_context + 0x188) = memory_manager;
+    if (memory_manager == (int64_t *)0x0) {
 LAB_18006bf7f:
       cleanup_memory_allocation(system_context,*(void *)(resource_context + 0x188));
       cleanup_memory_allocation(system_context,*(void *)(resource_context + 400));
       return 0;
     }
-    buffer_size_value = *memory_manager + *(longlong *)(system_context + 800);
+    buffer_size_value = *memory_manager + *(int64_t *)(system_context + 800);
     *secondary_buffer = buffer_size_value;
     *buffer_size = buffer_size_value;
     if (*primary_buffer == 0) {
-      memory_manager = (longlong *)allocate_memory_buffer(system_context,*(void *)(resource_context + 0x138));
-      *(longlong **)(resource_context + 400) = memory_manager;
-      if (memory_manager == (longlong *)0x0) goto LAB_18006bf7f;
-      *primary_buffer = *memory_manager + *(longlong *)(system_context + 800);
+      memory_manager = (int64_t *)allocate_memory_buffer(system_context,*(void *)(resource_context + 0x138));
+      *(int64_t **)(resource_context + 400) = memory_manager;
+      if (memory_manager == (int64_t *)0x0) goto LAB_18006bf7f;
+      *primary_buffer = *memory_manager + *(int64_t *)(system_context + 800);
     }
   }
   return 1;
@@ -1160,8 +1160,8 @@ void shutdown_monitor_system(void *monitor_context)
   destroy_mutex();
   destroy_condition_variable();
   cleanup_monitor_entries(monitor_context + 2);
-  if ((longlong *)monitor_context[1] != (longlong *)0x0) {
-    (**(code **)(*(longlong *)monitor_context[1] + 0x38))();
+  if ((int64_t *)monitor_context[1] != (int64_t *)0x0) {
+    (**(code **)(*(int64_t *)monitor_context[1] + 0x38))();
   }
   return;
 }

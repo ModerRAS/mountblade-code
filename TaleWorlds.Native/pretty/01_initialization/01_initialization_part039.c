@@ -34,14 +34,14 @@ void InitializeMemoryPoolManager(uint64_t *pool_manager)
 {
   int *ref_count_ptr;
   int ref_count;
-  ulonglong start_index;
-  ulonglong end_index;
-  longlong *hash_table_ptr;
-  longlong pool_base;
-  longlong current_head;
-  longlong next_head;
-  longlong memory_block;
-  ulonglong block_index;
+  uint64_t start_index;
+  uint64_t end_index;
+  int64_t *hash_table_ptr;
+  int64_t pool_base;
+  int64_t current_head;
+  int64_t next_head;
+  int64_t memory_block;
+  uint64_t block_index;
   bool compare_success;
   
   // 设置内存池管理器的初始状态
@@ -64,11 +64,11 @@ void InitializeMemoryPoolManager(uint64_t *pool_manager)
         
         // 如果引用计数为0，将内存块加入到空闲链表
         if (ref_count == 0) {
-          current_head = *(longlong *)(pool_base + 0x28);
+          current_head = *(int64_t *)(pool_base + 0x28);
           do {
-            *(longlong *)(memory_block + MEMORY_POOL_NEXT_BLOCK_OFFSET) = current_head;
+            *(int64_t *)(memory_block + MEMORY_POOL_NEXT_BLOCK_OFFSET) = current_head;
             *(int32_t *)(memory_block + MEMORY_POOL_REF_COUNT_OFFSET) = 1;
-            hash_table_ptr = (longlong *)(pool_base + 0x28);
+            hash_table_ptr = (int64_t *)(pool_base + 0x28);
             LOCK();
             next_head = *hash_table_ptr;
             compare_success = current_head == next_head;
@@ -88,17 +88,17 @@ void InitializeMemoryPoolManager(uint64_t *pool_manager)
         }
       }
 LAB_PROCESS_MEMORY_BLOCK:
-      hash_table_ptr = (longlong *)pool_manager[0xc];
-      memory_block = *(longlong *)
-               (*(longlong *)
+      hash_table_ptr = (int64_t *)pool_manager[0xc];
+      memory_block = *(int64_t *)
+               (*(int64_t *)
                  (hash_table_ptr[3] +
-                 (((block_index & 0xffffffffffffffe0) - **(longlong **)(hash_table_ptr[3] + hash_table_ptr[1] * 8) >> 5)
+                 (((block_index & 0xffffffffffffffe0) - **(int64_t **)(hash_table_ptr[3] + hash_table_ptr[1] * 8) >> 5)
                   + hash_table_ptr[1] & *hash_table_ptr - 1U) * 8) + 8);
     }
     else if (memory_block == 0) goto LAB_PROCESS_MEMORY_BLOCK;
     
     // 初始化单个内存块
-    FUN_180069530((ulonglong)((uint)block_index & 0x1f) * MEMORY_POOL_ENTRY_SIZE + memory_block);
+    FUN_180069530((uint64_t)((uint)block_index & 0x1f) * MEMORY_POOL_ENTRY_SIZE + memory_block);
   }
   
   // 处理剩余的内存块
@@ -112,11 +112,11 @@ LAB_PROCESS_MEMORY_BLOCK:
     UNLOCK();
     
     if (ref_count == 0) {
-      current_head = *(longlong *)(pool_base + 0x28);
+      current_head = *(int64_t *)(pool_base + 0x28);
       do {
-        *(longlong *)(memory_block + MEMORY_POOL_NEXT_BLOCK_OFFSET) = current_head;
+        *(int64_t *)(memory_block + MEMORY_POOL_NEXT_BLOCK_OFFSET) = current_head;
         *(int32_t *)(memory_block + MEMORY_POOL_REF_COUNT_OFFSET) = 1;
-        hash_table_ptr = (longlong *)(pool_base + 0x28);
+        hash_table_ptr = (int64_t *)(pool_base + 0x28);
         LOCK();
         next_head = *hash_table_ptr;
         compare_success = current_head == next_head;
@@ -159,22 +159,22 @@ LAB_PROCESS_MEMORY_BLOCK:
  * @param thread_context 线程上下文指针
  * @return 线程本地存储数据指针，失败返回NULL
  */
-uint64_t * GetThreadLocalStorageData(longlong *thread_context)
+uint64_t * GetThreadLocalStorageData(int64_t *thread_context)
 
 {
-  longlong *plVar1;
+  int64_t *plVar1;
   uint *puVar2;
-  ulonglong *puVar3;
-  ulonglong uVar4;
+  uint64_t *puVar3;
+  uint64_t uVar4;
   uint uVar5;
-  ulonglong uVar6;
-  ulonglong *puVar7;
+  uint64_t uVar6;
+  uint64_t *puVar7;
   uint64_t *puVar8;
-  longlong lVar9;
-  longlong lVar10;
+  int64_t lVar9;
+  int64_t lVar10;
   uint64_t *puVar11;
-  ulonglong uVar12;
-  ulonglong uVar13;
+  uint64_t uVar12;
+  uint64_t uVar13;
   uint uVar14;
   uint64_t *puVar15;
   bool bVar16;
@@ -184,13 +184,13 @@ uint64_t * GetThreadLocalStorageData(longlong *thread_context)
   uVar5 = GetCurrentThreadId();
   uVar14 = (uVar5 >> 0x10 ^ uVar5) * -0x7a143595;
   uVar14 = (uVar14 >> 0xd ^ uVar14) * -0x3d4d51cb;
-  uVar13 = (ulonglong)(uVar14 >> 0x10 ^ uVar14);
+  uVar13 = (uint64_t)(uVar14 >> 0x10 ^ uVar14);
   
   // 获取线程本地存储哈希表
-  puVar7 = (ulonglong *)param_1[6];
+  puVar7 = (uint64_t *)param_1[6];
   
   // 遍历哈希表链表查找线程数据
-  for (puVar3 = puVar7; uVar6 = uVar13, puVar3 != (ulonglong *)0x0; puVar3 = (ulonglong *)puVar3[2])
+  for (puVar3 = puVar7; uVar6 = uVar13, puVar3 != (uint64_t *)0x0; puVar3 = (uint64_t *)puVar3[2])
   {
     while( true ) {
       // 计算哈希槽位索引
@@ -249,7 +249,7 @@ uint64_t * GetThreadLocalStorageData(longlong *thread_context)
       UNLOCK();
       if ((uVar14 & 1) == 0) {
         // 执行哈希表扩展
-        puVar3 = (ulonglong *)param_1[6];
+        puVar3 = (uint64_t *)param_1[6];
         puVar7 = puVar3;
         uVar12 = *puVar3;
         if (*puVar3 >> 1 <= uVar6) {
@@ -260,8 +260,8 @@ uint64_t * GetThreadLocalStorageData(longlong *thread_context)
           } while ((uVar4 & 0x7fffffffffffffff) <= uVar6);
           
           // 分配新的哈希表内存
-          puVar7 = (ulonglong *)FUN_18062b420(system_memory_pool_ptr,uVar4 * 0x20 + 0x1f,10);
-          if (puVar7 == (ulonglong *)0x0) {
+          puVar7 = (uint64_t *)FUN_18062b420(system_memory_pool_ptr,uVar4 * 0x20 + 0x1f,10);
+          if (puVar7 == (uint64_t *)0x0) {
             // 分配失败，回滚计数器
             LOCK();
             param_1[7] = param_1[7] + -1;
@@ -272,21 +272,21 @@ uint64_t * GetThreadLocalStorageData(longlong *thread_context)
           
           // 初始化新的哈希表
           *puVar7 = uVar12;
-          puVar7[1] = (ulonglong)(-(int)(puVar7 + 3) & 7) + (longlong)(puVar7 + 3);
+          puVar7[1] = (uint64_t)(-(int)(puVar7 + 3) & 7) + (int64_t)(puVar7 + 3);
           puVar11 = puVar15;
           for (; uVar12 != 0; uVar12 = uVar12 - 1) {
-            *(uint64_t *)((longlong)puVar11 + puVar7[1] + 8) = 0;
-            *(int32_t *)((longlong)puVar11 + puVar7[1]) = 0;
+            *(uint64_t *)((int64_t)puVar11 + puVar7[1] + 8) = 0;
+            *(int32_t *)((int64_t)puVar11 + puVar7[1]) = 0;
             puVar11 = puVar11 + 2;
           }
-          puVar7[2] = (ulonglong)puVar3;
-          param_1[6] = (longlong)puVar7;
+          puVar7[2] = (uint64_t)puVar3;
+          param_1[6] = (int64_t)puVar7;
         }
         *(int32_t *)(param_1 + 0x4b) = 0;
       }
     }
     if (uVar6 < (*puVar7 >> 2) + (*puVar7 >> 1)) break;
-    puVar7 = (ulonglong *)param_1[6];
+    puVar7 = (uint64_t *)param_1[6];
   }
   // 查找可用的线程数据槽位
   puVar11 = (uint64_t *)*param_1;
@@ -349,7 +349,7 @@ uint64_t * GetThreadLocalStorageData(longlong *thread_context)
       lVar10 = *param_1;
       bVar16 = lVar9 == lVar10;
       if (bVar16) {
-        *param_1 = (longlong)puVar8;
+        *param_1 = (int64_t)puVar8;
         lVar10 = lVar9;
       }
       UNLOCK();
@@ -407,7 +407,7 @@ LAB_18006d3bb:
  * @param dest_start 目标数据起始地址
  * @return 返回结果指针
  */
-longlong * ProcessMemoryBlockDataConversion(longlong *result_ptr, uint64_t *src_start, uint64_t *src_end, uint64_t *dest_start)
+int64_t * ProcessMemoryBlockDataConversion(int64_t *result_ptr, uint64_t *src_start, uint64_t *src_end, uint64_t *dest_start)
 
 {
   uint64_t *puVar1;
@@ -415,7 +415,7 @@ longlong * ProcessMemoryBlockDataConversion(longlong *result_ptr, uint64_t *src_
   uint64_t *puVar3;
   void *puVar4;
   
-  *result_ptr = (longlong)dest_start;
+  *result_ptr = (int64_t)dest_start;
   if (src_start != src_end) {
     puVar3 = src_start + 0x2b;
     do {
@@ -501,46 +501,46 @@ longlong * ProcessMemoryBlockDataConversion(longlong *result_ptr, uint64_t *src_
  * @param size 需要分配的内存大小
  * @return 成功返回分配的内存块指针，失败返回NULL
  */
-longlong * AllocateMemoryBlockOfSize(longlong pool_info, longlong size)
+int64_t * AllocateMemoryBlockOfSize(int64_t pool_info, int64_t size)
 
 {
-  longlong lVar1;
-  longlong *plVar2;
-  longlong *plVar3;
-  ulonglong uVar4;
-  longlong *plVar5;
+  int64_t lVar1;
+  int64_t *plVar2;
+  int64_t *plVar3;
+  uint64_t uVar4;
+  int64_t *plVar5;
   
   // 获取内存池管理器
-  plVar5 = *(longlong **)(pool_info + 0x318);
+  plVar5 = *(int64_t **)(pool_info + 0x318);
   uVar4 = size + 0xfU & 0xfffffffffffffff0;  // 对齐到16字节边界
-  plVar3 = (longlong *)0x0;
-  plVar2 = (longlong *)plVar5[3];
+  plVar3 = (int64_t *)0x0;
+  plVar2 = (int64_t *)plVar5[3];
   
   // 查找合适的空闲内存块
-  if (plVar2 != (longlong *)0x0) {
+  if (plVar2 != (int64_t *)0x0) {
     do {
-      if ((((char)plVar2[4] == '\0') && (uVar4 <= (ulonglong)plVar2[1])) &&
-         ((plVar3 == (longlong *)0x0 || ((ulonglong)plVar2[1] < (ulonglong)plVar3[1])))) {
+      if ((((char)plVar2[4] == '\0') && (uVar4 <= (uint64_t)plVar2[1])) &&
+         ((plVar3 == (int64_t *)0x0 || ((uint64_t)plVar2[1] < (uint64_t)plVar3[1])))) {
         plVar3 = plVar2;  // 记录最佳匹配的内存块
       }
-      plVar2 = (longlong *)plVar2[2];
-    } while (plVar2 != (longlong *)0x0);
+      plVar2 = (int64_t *)plVar2[2];
+    } while (plVar2 != (int64_t *)0x0);
     
-    if (plVar3 != (longlong *)0x0) {
+    if (plVar3 != (int64_t *)0x0) {
       // 检查是否需要分割内存块
-      if (uVar4 < (ulonglong)plVar3[1]) {
+      if (uVar4 < (uint64_t)plVar3[1]) {
         // 分割内存块
-        plVar2 = (longlong *)func_0x00018006e810(plVar5 + 4);
+        plVar2 = (int64_t *)func_0x00018006e810(plVar5 + 4);
         *(int8_t *)(plVar2 + 4) = 0;
         *plVar2 = *plVar3 + uVar4;
         plVar2[1] = plVar3[1] - uVar4;
         lVar1 = plVar3[2];
         plVar2[2] = lVar1;
         if (lVar1 != 0) {
-          *(longlong **)(lVar1 + 0x18) = plVar2;
+          *(int64_t **)(lVar1 + 0x18) = plVar2;
         }
-        plVar3[2] = (longlong)plVar2;
-        plVar2[3] = (longlong)plVar3;
+        plVar3[2] = (int64_t)plVar2;
+        plVar2[3] = (int64_t)plVar3;
         plVar3[1] = uVar4;
       }
       
@@ -551,7 +551,7 @@ longlong * AllocateMemoryBlockOfSize(longlong pool_info, longlong size)
       return plVar3;
     }
   }
-  return (longlong *)0x0;
+  return (int64_t *)0x0;
 }
 
 
@@ -565,7 +565,7 @@ longlong * AllocateMemoryBlockOfSize(longlong pool_info, longlong size)
  * @param flags 销毁标志，第0位为1时表示释放管理器内存
  * @return 传入的管理器指针
  */
-longlong CleanupAndDestroyMemoryPoolManager(longlong manager, ulonglong flags)
+int64_t CleanupAndDestroyMemoryPoolManager(int64_t manager, uint64_t flags)
 
 {
   // 执行清理操作

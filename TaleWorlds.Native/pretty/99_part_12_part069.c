@@ -33,7 +33,7 @@ typedef float Vector4D[4];           // 4D向量类型
 typedef float Matrix4x4[16];         // 4x4矩阵类型
 typedef uint ElementCount;           // 元素计数类型
 typedef int StrideValue;             // 步长值类型
-typedef longlong MatrixPointer;      // 矩阵指针类型
+typedef int64_t MatrixPointer;      // 矩阵指针类型
 typedef float WeightFactor;          // 权重因子类型
 
 /*=============================================================================
@@ -74,8 +74,8 @@ typedef float WeightFactor;          // 权重因子类型
  * 4. 优化内存访问模式
  */
 void Math_MatrixTransformProcessor(float *outputVector, float *inputVector, uint elementCount, 
-                                   int stride, int matrixIndex, longlong matrixA, longlong matrixB, 
-                                   longlong matrixC, longlong matrixD, float weightA, 
+                                   int stride, int matrixIndex, int64_t matrixA, int64_t matrixB, 
+                                   int64_t matrixC, int64_t matrixD, float weightA, 
                                    float weightB, float weightC)
 {
   // 声明浮点数变量用于矩阵计算
@@ -87,15 +87,15 @@ void Math_MatrixTransformProcessor(float *outputVector, float *inputVector, uint
   float intermediateResult_A, intermediateResult_B, intermediateResult_C, intermediateResult_D;
   
   // 声明循环控制变量
-  longlong matrixPointer;
+  int64_t matrixPointer;
   int loopCounter;
   int stride_2x, stride_3x;
-  longlong matrixRowPointer;
-  longlong currentMatrixIndex;
+  int64_t matrixRowPointer;
+  int64_t currentMatrixIndex;
   float calculationResult_A, calculationResult_B, calculationResult_C, calculationResult_D;
   
   // 初始化矩阵索引和循环计数器
-  currentMatrixIndex = (longlong)matrixIndex;
+  currentMatrixIndex = (int64_t)matrixIndex;
   loopCounter = (int)elementCount >> 2;  // 除以4，用于4路循环展开
   
   // 主循环：处理4个元素为一组的数据块
@@ -107,7 +107,7 @@ void Math_MatrixTransformProcessor(float *outputVector, float *inputVector, uint
       // ============ 第一个元素处理 ============
       
       // 从矩阵A中读取数据并进行向量变换
-      matrixRowPointer = *(longlong *)(matrixA + 8 + currentMatrixIndex * MATRIX_BLOCK_SIZE);
+      matrixRowPointer = *(int64_t *)(matrixA + 8 + currentMatrixIndex * MATRIX_BLOCK_SIZE);
       matrixElement_A1 = *(float *)(matrixA + currentMatrixIndex * MATRIX_BLOCK_SIZE);
       matrixElement_A2 = *(float *)(matrixA + 4 + currentMatrixIndex * MATRIX_BLOCK_SIZE);
       matrixElement_A3 = *(float *)(matrixRowPointer + 0x18);
@@ -123,7 +123,7 @@ void Math_MatrixTransformProcessor(float *outputVector, float *inputVector, uint
       *(float *)(matrixA + currentMatrixIndex * MATRIX_BLOCK_SIZE) = intermediateResult_A;
       
       // 从矩阵C中读取数据并进行向量变换
-      matrixRowPointer = *(longlong *)(matrixC + 8 + currentMatrixIndex * MATRIX_BLOCK_SIZE);
+      matrixRowPointer = *(int64_t *)(matrixC + 8 + currentMatrixIndex * MATRIX_BLOCK_SIZE);
       matrixElement_C1 = *(float *)(matrixC + currentMatrixIndex * MATRIX_BLOCK_SIZE);
       matrixElement_C2 = *(float *)(matrixRowPointer + 0x14);
       matrixElement_C3 = *(float *)(matrixC + 4 + currentMatrixIndex * MATRIX_BLOCK_SIZE);
@@ -139,7 +139,7 @@ void Math_MatrixTransformProcessor(float *outputVector, float *inputVector, uint
       *(float *)(matrixC + currentMatrixIndex * MATRIX_BLOCK_SIZE) = intermediateResult_C;
       
       // 从矩阵B中读取数据并进行复合计算
-      matrixRowPointer = *(longlong *)(matrixB + 8 + currentMatrixIndex * MATRIX_BLOCK_SIZE);
+      matrixRowPointer = *(int64_t *)(matrixB + 8 + currentMatrixIndex * MATRIX_BLOCK_SIZE);
       matrixElement_B1 = *(float *)(matrixB + 4 + currentMatrixIndex * MATRIX_BLOCK_SIZE);
       matrixElement_B2 = *(float *)(matrixRowPointer + 0x18);
       matrixElement_B3 = *(float *)(matrixB + currentMatrixIndex * MATRIX_BLOCK_SIZE);
@@ -157,7 +157,7 @@ void Math_MatrixTransformProcessor(float *outputVector, float *inputVector, uint
       *(float *)(matrixB + currentMatrixIndex * MATRIX_BLOCK_SIZE) = intermediateResult_B;
       
       // 从矩阵D中读取数据并进行向量变换
-      matrixRowPointer = *(longlong *)(matrixD + 8 + currentMatrixIndex * MATRIX_BLOCK_SIZE);
+      matrixRowPointer = *(int64_t *)(matrixD + 8 + currentMatrixIndex * MATRIX_BLOCK_SIZE);
       matrixElement_D1 = *(float *)(matrixD + currentMatrixIndex * MATRIX_BLOCK_SIZE);
       matrixElement_D2 = *(float *)(matrixD + 4 + currentMatrixIndex * MATRIX_BLOCK_SIZE);
       matrixElement_D3 = *(float *)(matrixRowPointer + 0x18);
@@ -182,7 +182,7 @@ void Math_MatrixTransformProcessor(float *outputVector, float *inputVector, uint
       // ============ 第二个元素处理 ============
       
       // 从矩阵A中读取数据并进行向量变换（使用步长偏移）
-      matrixRowPointer = *(longlong *)(matrixA + 8 + currentMatrixIndex * MATRIX_BLOCK_SIZE);
+      matrixRowPointer = *(int64_t *)(matrixA + 8 + currentMatrixIndex * MATRIX_BLOCK_SIZE);
       matrixElement_A1 = *(float *)(matrixA + currentMatrixIndex * MATRIX_BLOCK_SIZE);
       matrixElement_A2 = *(float *)(matrixA + 4 + currentMatrixIndex * MATRIX_BLOCK_SIZE);
       matrixElement_A3 = *(float *)(matrixRowPointer + 0x18);
@@ -198,7 +198,7 @@ void Math_MatrixTransformProcessor(float *outputVector, float *inputVector, uint
       *(float *)(matrixA + currentMatrixIndex * MATRIX_BLOCK_SIZE) = intermediateResult_A;
       
       // 从矩阵C中读取数据并进行向量变换
-      matrixRowPointer = *(longlong *)(matrixC + 8 + currentMatrixIndex * MATRIX_BLOCK_SIZE);
+      matrixRowPointer = *(int64_t *)(matrixC + 8 + currentMatrixIndex * MATRIX_BLOCK_SIZE);
       matrixElement_C1 = *(float *)(matrixC + currentMatrixIndex * MATRIX_BLOCK_SIZE);
       matrixElement_C2 = *(float *)(matrixC + 4 + currentMatrixIndex * MATRIX_BLOCK_SIZE);
       matrixElement_C3 = *(float *)(matrixRowPointer + 0x18);
@@ -214,7 +214,7 @@ void Math_MatrixTransformProcessor(float *outputVector, float *inputVector, uint
       *(float *)(matrixC + currentMatrixIndex * MATRIX_BLOCK_SIZE) = intermediateResult_C;
       
       // 从矩阵B中读取数据并进行复合计算
-      matrixRowPointer = *(longlong *)(matrixB + 8 + currentMatrixIndex * MATRIX_BLOCK_SIZE);
+      matrixRowPointer = *(int64_t *)(matrixB + 8 + currentMatrixIndex * MATRIX_BLOCK_SIZE);
       matrixElement_B1 = *(float *)(matrixB + 4 + currentMatrixIndex * MATRIX_BLOCK_SIZE);
       matrixElement_B2 = *(float *)(matrixRowPointer + 0x18);
       matrixElement_B3 = *(float *)(matrixB + currentMatrixIndex * MATRIX_BLOCK_SIZE);
@@ -232,7 +232,7 @@ void Math_MatrixTransformProcessor(float *outputVector, float *inputVector, uint
       *(float *)(matrixB + currentMatrixIndex * MATRIX_BLOCK_SIZE) = intermediateResult_B;
       
       // 从矩阵D中读取数据并进行向量变换
-      matrixRowPointer = *(longlong *)(matrixD + 8 + currentMatrixIndex * MATRIX_BLOCK_SIZE);
+      matrixRowPointer = *(int64_t *)(matrixD + 8 + currentMatrixIndex * MATRIX_BLOCK_SIZE);
       matrixElement_D1 = *(float *)(matrixD + currentMatrixIndex * MATRIX_BLOCK_SIZE);
       matrixElement_D2 = *(float *)(matrixD + 4 + currentMatrixIndex * MATRIX_BLOCK_SIZE);
       matrixElement_D3 = *(float *)(matrixRowPointer + 0x18);
@@ -258,7 +258,7 @@ void Math_MatrixTransformProcessor(float *outputVector, float *inputVector, uint
       // ============ 第三个元素处理 ============
       
       // 从矩阵A中读取数据并进行向量变换（使用2倍步长偏移）
-      matrixRowPointer = *(longlong *)(matrixA + 8 + currentMatrixIndex * MATRIX_BLOCK_SIZE);
+      matrixRowPointer = *(int64_t *)(matrixA + 8 + currentMatrixIndex * MATRIX_BLOCK_SIZE);
       matrixElement_A1 = *(float *)(matrixA + currentMatrixIndex * MATRIX_BLOCK_SIZE);
       matrixElement_A2 = *(float *)(matrixA + 4 + currentMatrixIndex * MATRIX_BLOCK_SIZE);
       matrixElement_A3 = *(float *)(matrixRowPointer + 0x18);
@@ -274,7 +274,7 @@ void Math_MatrixTransformProcessor(float *outputVector, float *inputVector, uint
       *(float *)(matrixA + currentMatrixIndex * MATRIX_BLOCK_SIZE) = intermediateResult_A;
       
       // 从矩阵C中读取数据并进行向量变换
-      matrixRowPointer = *(longlong *)(matrixC + 8 + currentMatrixIndex * MATRIX_BLOCK_SIZE);
+      matrixRowPointer = *(int64_t *)(matrixC + 8 + currentMatrixIndex * MATRIX_BLOCK_SIZE);
       matrixElement_C1 = *(float *)(matrixC + currentMatrixIndex * MATRIX_BLOCK_SIZE);
       matrixElement_C2 = *(float *)(matrixRowPointer + 0x14);
       matrixElement_C3 = *(float *)(matrixC + 4 + currentMatrixIndex * MATRIX_BLOCK_SIZE);
@@ -290,7 +290,7 @@ void Math_MatrixTransformProcessor(float *outputVector, float *inputVector, uint
       *(float *)(matrixC + currentMatrixIndex * MATRIX_BLOCK_SIZE) = intermediateResult_C;
       
       // 从矩阵B中读取数据并进行复合计算
-      matrixRowPointer = *(longlong *)(matrixB + 8 + currentMatrixIndex * MATRIX_BLOCK_SIZE);
+      matrixRowPointer = *(int64_t *)(matrixB + 8 + currentMatrixIndex * MATRIX_BLOCK_SIZE);
       matrixElement_B1 = *(float *)(matrixB + 4 + currentMatrixIndex * MATRIX_BLOCK_SIZE);
       matrixElement_B2 = *(float *)(matrixRowPointer + 0x18);
       matrixElement_B3 = *(float *)(matrixB + currentMatrixIndex * MATRIX_BLOCK_SIZE);
@@ -308,7 +308,7 @@ void Math_MatrixTransformProcessor(float *outputVector, float *inputVector, uint
       *(float *)(matrixB + currentMatrixIndex * MATRIX_BLOCK_SIZE) = intermediateResult_B;
       
       // 从矩阵D中读取数据并进行向量变换
-      matrixRowPointer = *(longlong *)(matrixD + 8 + currentMatrixIndex * MATRIX_BLOCK_SIZE);
+      matrixRowPointer = *(int64_t *)(matrixD + 8 + currentMatrixIndex * MATRIX_BLOCK_SIZE);
       matrixElement_D1 = *(float *)(matrixD + currentMatrixIndex * MATRIX_BLOCK_SIZE);
       matrixElement_D2 = *(float *)(matrixD + 4 + currentMatrixIndex * MATRIX_BLOCK_SIZE);
       matrixElement_D3 = *(float *)(matrixRowPointer + 0x14);
@@ -334,7 +334,7 @@ void Math_MatrixTransformProcessor(float *outputVector, float *inputVector, uint
       // ============ 第四个元素处理 ============
       
       // 从矩阵A中读取数据并进行向量变换（使用3倍步长偏移）
-      matrixRowPointer = *(longlong *)(matrixA + 8 + currentMatrixIndex * MATRIX_BLOCK_SIZE);
+      matrixRowPointer = *(int64_t *)(matrixA + 8 + currentMatrixIndex * MATRIX_BLOCK_SIZE);
       matrixElement_A1 = *(float *)(matrixA + currentMatrixIndex * MATRIX_BLOCK_SIZE);
       matrixElement_A2 = *(float *)(matrixA + 4 + currentMatrixIndex * MATRIX_BLOCK_SIZE);
       matrixElement_A3 = *(float *)(matrixRowPointer + 0x18);
@@ -350,7 +350,7 @@ void Math_MatrixTransformProcessor(float *outputVector, float *inputVector, uint
       *(float *)(matrixA + 4 + currentMatrixIndex * MATRIX_BLOCK_SIZE) = matrixElement_A1;
       
       // 从矩阵C中读取数据并进行向量变换
-      matrixRowPointer = *(longlong *)(matrixC + 8 + currentMatrixIndex * MATRIX_BLOCK_SIZE);
+      matrixRowPointer = *(int64_t *)(matrixC + 8 + currentMatrixIndex * MATRIX_BLOCK_SIZE);
       matrixElement_C1 = *(float *)(matrixC + currentMatrixIndex * MATRIX_BLOCK_SIZE);
       matrixElement_C2 = *(float *)(matrixC + 4 + currentMatrixIndex * MATRIX_BLOCK_SIZE);
       matrixElement_C3 = *(float *)(matrixRowPointer + 0x18);
@@ -366,7 +366,7 @@ void Math_MatrixTransformProcessor(float *outputVector, float *inputVector, uint
       *(float *)(matrixC + 4 + currentMatrixIndex * MATRIX_BLOCK_SIZE) = matrixElement_C1;
       
       // 从矩阵B中读取数据并进行复合计算
-      matrixRowPointer = *(longlong *)(matrixB + 8 + currentMatrixIndex * MATRIX_BLOCK_SIZE);
+      matrixRowPointer = *(int64_t *)(matrixB + 8 + currentMatrixIndex * MATRIX_BLOCK_SIZE);
       matrixElement_B1 = *(float *)(matrixB + 4 + currentMatrixIndex * MATRIX_BLOCK_SIZE);
       matrixElement_B2 = *(float *)(matrixRowPointer + 0x18);
       matrixElement_B3 = *(float *)(matrixB + currentMatrixIndex * MATRIX_BLOCK_SIZE);
@@ -384,7 +384,7 @@ void Math_MatrixTransformProcessor(float *outputVector, float *inputVector, uint
       *(float *)(matrixB + 4 + currentMatrixIndex * MATRIX_BLOCK_SIZE) = matrixElement_B3;
       
       // 从矩阵D中读取数据并进行向量变换
-      matrixRowPointer = *(longlong *)(matrixD + 8 + currentMatrixIndex * MATRIX_BLOCK_SIZE);
+      matrixRowPointer = *(int64_t *)(matrixD + 8 + currentMatrixIndex * MATRIX_BLOCK_SIZE);
       matrixElement_D1 = *(float *)(matrixD + currentMatrixIndex * MATRIX_BLOCK_SIZE);
       matrixElement_D2 = *(float *)(matrixD + 4 + currentMatrixIndex * MATRIX_BLOCK_SIZE);
       matrixElement_D3 = *(float *)(matrixRowPointer + 0x18);
@@ -417,12 +417,12 @@ void Math_MatrixTransformProcessor(float *outputVector, float *inputVector, uint
   // 处理剩余的元素（少于4个）
   elementCount = elementCount & 3;
   if (elementCount != 0) {
-    currentMatrixIndex = (longlong)matrixIndex;
-    matrixPointer = (longlong)outputVector - (longlong)inputVector;
+    currentMatrixIndex = (int64_t)matrixIndex;
+    matrixPointer = (int64_t)outputVector - (int64_t)inputVector;
     
     do {
       // 处理单个剩余元素的完整矩阵变换
-      matrixRowPointer = *(longlong *)(matrixA + 8 + currentMatrixIndex * MATRIX_BLOCK_SIZE);
+      matrixRowPointer = *(int64_t *)(matrixA + 8 + currentMatrixIndex * MATRIX_BLOCK_SIZE);
       matrixElement_A1 = *(float *)(matrixA + currentMatrixIndex * MATRIX_BLOCK_SIZE);
       matrixElement_A2 = *(float *)(matrixA + 4 + currentMatrixIndex * MATRIX_BLOCK_SIZE);
       matrixElement_A3 = *(float *)(matrixRowPointer + 0x18);
@@ -438,7 +438,7 @@ void Math_MatrixTransformProcessor(float *outputVector, float *inputVector, uint
       *(float *)(matrixA + 4 + currentMatrixIndex * MATRIX_BLOCK_SIZE) = matrixElement_A1;
       
       // 从矩阵C中读取数据并进行向量变换
-      matrixRowPointer = *(longlong *)(matrixC + 8 + currentMatrixIndex * MATRIX_BLOCK_SIZE);
+      matrixRowPointer = *(int64_t *)(matrixC + 8 + currentMatrixIndex * MATRIX_BLOCK_SIZE);
       matrixElement_C1 = *(float *)(matrixC + currentMatrixIndex * MATRIX_BLOCK_SIZE);
       matrixElement_C2 = *(float *)(matrixC + 4 + currentMatrixIndex * MATRIX_BLOCK_SIZE);
       matrixElement_C3 = *(float *)(matrixRowPointer + 0x18);
@@ -454,7 +454,7 @@ void Math_MatrixTransformProcessor(float *outputVector, float *inputVector, uint
       *(float *)(matrixC + 4 + currentMatrixIndex * MATRIX_BLOCK_SIZE) = matrixElement_C1;
       
       // 从矩阵B中读取数据并进行复合计算
-      matrixRowPointer = *(longlong *)(matrixB + 8 + currentMatrixIndex * MATRIX_BLOCK_SIZE);
+      matrixRowPointer = *(int64_t *)(matrixB + 8 + currentMatrixIndex * MATRIX_BLOCK_SIZE);
       matrixElement_B1 = *(float *)(matrixB + 4 + currentMatrixIndex * MATRIX_BLOCK_SIZE);
       matrixElement_B2 = *(float *)(matrixRowPointer + 0x18);
       matrixElement_B3 = *(float *)(matrixB + currentMatrixIndex * MATRIX_BLOCK_SIZE);
@@ -472,7 +472,7 @@ void Math_MatrixTransformProcessor(float *outputVector, float *inputVector, uint
       *(float *)(matrixB + 4 + currentMatrixIndex * MATRIX_BLOCK_SIZE) = matrixElement_B3;
       
       // 从矩阵D中读取数据并进行向量变换
-      matrixRowPointer = *(longlong *)(matrixD + 8 + currentMatrixIndex * MATRIX_BLOCK_SIZE);
+      matrixRowPointer = *(int64_t *)(matrixD + 8 + currentMatrixIndex * MATRIX_BLOCK_SIZE);
       matrixElement_D1 = *(float *)(matrixD + currentMatrixIndex * MATRIX_BLOCK_SIZE);
       matrixElement_D2 = *(float *)(matrixD + 4 + currentMatrixIndex * MATRIX_BLOCK_SIZE);
       matrixElement_D3 = *(float *)(matrixRowPointer + 0x14);
@@ -488,7 +488,7 @@ void Math_MatrixTransformProcessor(float *outputVector, float *inputVector, uint
       *(float *)(matrixD + currentMatrixIndex * MATRIX_BLOCK_SIZE) = intermediateResult_D;
       
       // 最终加权计算
-      *(float *)(matrixPointer + (longlong)inputVector) = 
+      *(float *)(matrixPointer + (int64_t)inputVector) = 
            ((intermediateResult_A * matrixElement_A3 + matrixElement_A1 * matrixElement_A4 + 
              matrixElement_A2 * matrixElement_B2) * weightA - 
             (matrixElement_B3 * matrixElement_B4 + intermediateResult_B * matrixElement_C1 + 
@@ -608,21 +608,21 @@ void Math_VectorCalculationEngine(uint64_t context, float *inputVector, uint ele
   float intermediateResult_A, intermediateResult_B, intermediateResult_C, intermediateResult_D;
   
   // 整数和指针变量声明
-  longlong tempPointer;
+  int64_t tempPointer;
   int loopCounter, stride_2x, stride_3x;
-  longlong registerRAX;
-  longlong matrixPointer;
-  longlong registerRBX;
+  int64_t registerRAX;
+  int64_t matrixPointer;
+  int64_t registerRBX;
   int mainLoopCounter;
   uint64_t registerRBP;
   float *outputVector;
-  longlong tempVariable;
-  longlong registerR10;
-  longlong registerR11;
+  int64_t tempVariable;
+  int64_t registerR10;
+  int64_t registerR11;
   uint64_t registerR12;
   uint64_t registerR13;
   uint64_t registerR14;
-  ulonglong registerR15;
+  uint64_t registerR15;
   float calculationResult_A, calculationResult_B, calculationResult_C, calculationResult_D;
   
   // XMM寄存器变量（用于SIMD指令）
@@ -630,7 +630,7 @@ void Math_VectorCalculationEngine(uint64_t context, float *inputVector, uint ele
   float xmmRegister9;
   float xmmRegister10;
   uint stackParameter_b0;
-  longlong stackParameter_b8;
+  int64_t stackParameter_b8;
   
   // 保存寄存器状态到栈中
   *(uint64_t *)(registerRAX + 8) = registerRBP;
@@ -648,7 +648,7 @@ void Math_VectorCalculationEngine(uint64_t context, float *inputVector, uint ele
       // ============ 第一个元素处理 ============
       
       // 从栈矩阵中读取数据并进行向量变换
-      matrixPointer = *(longlong *)(stackParameter_b8 + 8 + registerR15 * MATRIX_BLOCK_SIZE);
+      matrixPointer = *(int64_t *)(stackParameter_b8 + 8 + registerR15 * MATRIX_BLOCK_SIZE);
       matrixElement_A1 = *(float *)(stackParameter_b8 + registerR15 * MATRIX_BLOCK_SIZE);
       matrixElement_A2 = *(float *)(stackParameter_b8 + 4 + registerR15 * MATRIX_BLOCK_SIZE);
       matrixElement_A3 = *(float *)(matrixPointer + 0x18);
@@ -664,7 +664,7 @@ void Math_VectorCalculationEngine(uint64_t context, float *inputVector, uint ele
       *(float *)(stackParameter_b8 + registerR15 * MATRIX_BLOCK_SIZE) = calculationResult_A;
       
       // 从R11矩阵中读取数据并进行向量变换
-      matrixPointer = *(longlong *)(registerR11 + 8 + registerR15 * MATRIX_BLOCK_SIZE);
+      matrixPointer = *(int64_t *)(registerR11 + 8 + registerR15 * MATRIX_BLOCK_SIZE);
       matrixElement_C1 = *(float *)(registerR11 + registerR15 * MATRIX_BLOCK_SIZE);
       matrixElement_C2 = *(float *)(matrixPointer + 0x14);
       matrixElement_C3 = *(float *)(registerR11 + 4 + registerR15 * MATRIX_BLOCK_SIZE);
@@ -680,7 +680,7 @@ void Math_VectorCalculationEngine(uint64_t context, float *inputVector, uint ele
       *(float *)(registerR11 + registerR15 * MATRIX_BLOCK_SIZE) = calculationResult_C;
       
       // 从RBX矩阵中读取数据并进行复合计算
-      matrixPointer = *(longlong *)(registerRBX + 8 + registerR15 * MATRIX_BLOCK_SIZE);
+      matrixPointer = *(int64_t *)(registerRBX + 8 + registerR15 * MATRIX_BLOCK_SIZE);
       matrixElement_B1 = *(float *)(registerRBX + 4 + registerR15 * MATRIX_BLOCK_SIZE);
       matrixElement_B2 = *(float *)(matrixPointer + 0x18);
       matrixElement_B3 = *(float *)(registerRBX + registerR15 * MATRIX_BLOCK_SIZE);
@@ -698,7 +698,7 @@ void Math_VectorCalculationEngine(uint64_t context, float *inputVector, uint ele
       *(float *)(registerRBX + registerR15 * MATRIX_BLOCK_SIZE) = calculationResult_B;
       
       // 从R10矩阵中读取数据并进行向量变换
-      matrixPointer = *(longlong *)(registerR10 + 8 + registerR15 * MATRIX_BLOCK_SIZE);
+      matrixPointer = *(int64_t *)(registerR10 + 8 + registerR15 * MATRIX_BLOCK_SIZE);
       matrixElement_D1 = *(float *)(registerR10 + registerR15 * MATRIX_BLOCK_SIZE);
       matrixElement_D2 = *(float *)(registerR10 + 4 + registerR15 * MATRIX_BLOCK_SIZE);
       matrixElement_D3 = *(float *)(matrixPointer + 0x18);
@@ -724,7 +724,7 @@ void Math_VectorCalculationEngine(uint64_t context, float *inputVector, uint ele
       // ============ 第二个元素处理 ============
       
       // 从栈矩阵中读取数据并进行向量变换（使用步长偏移）
-      matrixPointer = *(longlong *)(stackParameter_b8 + 8 + registerR15 * MATRIX_BLOCK_SIZE);
+      matrixPointer = *(int64_t *)(stackParameter_b8 + 8 + registerR15 * MATRIX_BLOCK_SIZE);
       matrixElement_A1 = *(float *)(stackParameter_b8 + registerR15 * MATRIX_BLOCK_SIZE);
       matrixElement_A2 = *(float *)(stackParameter_b8 + 4 + registerR15 * MATRIX_BLOCK_SIZE);
       matrixElement_A3 = *(float *)(matrixPointer + 0x18);
@@ -740,7 +740,7 @@ void Math_VectorCalculationEngine(uint64_t context, float *inputVector, uint ele
       *(float *)(stackParameter_b8 + registerR15 * MATRIX_BLOCK_SIZE) = calculationResult_A;
       
       // 从R11矩阵中读取数据并进行向量变换
-      matrixPointer = *(longlong *)(registerR11 + 8 + registerR15 * MATRIX_BLOCK_SIZE);
+      matrixPointer = *(int64_t *)(registerR11 + 8 + registerR15 * MATRIX_BLOCK_SIZE);
       matrixElement_C1 = *(float *)(registerR11 + registerR15 * MATRIX_BLOCK_SIZE);
       matrixElement_C2 = *(float *)(registerR11 + 4 + registerR15 * MATRIX_BLOCK_SIZE);
       matrixElement_C3 = *(float *)(matrixPointer + 0x18);
@@ -756,7 +756,7 @@ void Math_VectorCalculationEngine(uint64_t context, float *inputVector, uint ele
       *(float *)(registerR11 + registerR15 * MATRIX_BLOCK_SIZE) = calculationResult_C;
       
       // 从RBX矩阵中读取数据并进行复合计算
-      matrixPointer = *(longlong *)(registerRBX + 8 + registerR15 * MATRIX_BLOCK_SIZE);
+      matrixPointer = *(int64_t *)(registerRBX + 8 + registerR15 * MATRIX_BLOCK_SIZE);
       matrixElement_B1 = *(float *)(registerRBX + 4 + registerR15 * MATRIX_BLOCK_SIZE);
       matrixElement_B2 = *(float *)(matrixPointer + 0x18);
       matrixElement_B3 = *(float *)(registerRBX + registerR15 * MATRIX_BLOCK_SIZE);
@@ -774,7 +774,7 @@ void Math_VectorCalculationEngine(uint64_t context, float *inputVector, uint ele
       *(float *)(registerRBX + registerR15 * MATRIX_BLOCK_SIZE) = calculationResult_B;
       
       // 从R10矩阵中读取数据并进行向量变换
-      matrixPointer = *(longlong *)(registerR10 + 8 + registerR15 * MATRIX_BLOCK_SIZE);
+      matrixPointer = *(int64_t *)(registerR10 + 8 + registerR15 * MATRIX_BLOCK_SIZE);
       matrixElement_D1 = *(float *)(registerR10 + registerR15 * MATRIX_BLOCK_SIZE);
       matrixElement_D2 = *(float *)(registerR10 + 4 + registerR15 * MATRIX_BLOCK_SIZE);
       matrixElement_D3 = *(float *)(matrixPointer + 0x18);
@@ -800,7 +800,7 @@ void Math_VectorCalculationEngine(uint64_t context, float *inputVector, uint ele
       // ============ 第三个元素处理 ============
       
       // 从栈矩阵中读取数据并进行向量变换（使用2倍步长偏移）
-      matrixPointer = *(longlong *)(stackParameter_b8 + 8 + registerR15 * MATRIX_BLOCK_SIZE);
+      matrixPointer = *(int64_t *)(stackParameter_b8 + 8 + registerR15 * MATRIX_BLOCK_SIZE);
       matrixElement_A1 = *(float *)(stackParameter_b8 + registerR15 * MATRIX_BLOCK_SIZE);
       matrixElement_A2 = *(float *)(stackParameter_b8 + 4 + registerR15 * MATRIX_BLOCK_SIZE);
       matrixElement_A3 = *(float *)(matrixPointer + 0x18);
@@ -816,7 +816,7 @@ void Math_VectorCalculationEngine(uint64_t context, float *inputVector, uint ele
       *(float *)(stackParameter_b8 + registerR15 * MATRIX_BLOCK_SIZE) = calculationResult_A;
       
       // 从R11矩阵中读取数据并进行向量变换
-      matrixPointer = *(longlong *)(registerR11 + 8 + registerR15 * MATRIX_BLOCK_SIZE);
+      matrixPointer = *(int64_t *)(registerR11 + 8 + registerR15 * MATRIX_BLOCK_SIZE);
       matrixElement_C1 = *(float *)(registerR11 + registerR15 * MATRIX_BLOCK_SIZE);
       matrixElement_C2 = *(float *)(matrixPointer + 0x14);
       matrixElement_C3 = *(float *)(registerR11 + 4 + registerR15 * MATRIX_BLOCK_SIZE);
@@ -832,7 +832,7 @@ void Math_VectorCalculationEngine(uint64_t context, float *inputVector, uint ele
       *(float *)(registerR11 + registerR15 * MATRIX_BLOCK_SIZE) = calculationResult_C;
       
       // 从RBX矩阵中读取数据并进行复合计算
-      matrixPointer = *(longlong *)(registerRBX + 8 + registerR15 * MATRIX_BLOCK_SIZE);
+      matrixPointer = *(int64_t *)(registerRBX + 8 + registerR15 * MATRIX_BLOCK_SIZE);
       matrixElement_B1 = *(float *)(registerRBX + 4 + registerR15 * MATRIX_BLOCK_SIZE);
       matrixElement_B2 = *(float *)(matrixPointer + 0x18);
       matrixElement_B3 = *(float *)(registerRBX + registerR15 * MATRIX_BLOCK_SIZE);
@@ -850,7 +850,7 @@ void Math_VectorCalculationEngine(uint64_t context, float *inputVector, uint ele
       *(float *)(registerRBX + registerR15 * MATRIX_BLOCK_SIZE) = calculationResult_B;
       
       // 从R10矩阵中读取数据并进行向量变换
-      matrixPointer = *(longlong *)(registerR10 + 8 + registerR15 * MATRIX_BLOCK_SIZE);
+      matrixPointer = *(int64_t *)(registerR10 + 8 + registerR15 * MATRIX_BLOCK_SIZE);
       matrixElement_D1 = *(float *)(registerR10 + registerR15 * MATRIX_BLOCK_SIZE);
       matrixElement_D2 = *(float *)(registerR10 + 4 + registerR15 * MATRIX_BLOCK_SIZE);
       matrixElement_D3 = *(float *)(matrixPointer + 0x14);
@@ -876,7 +876,7 @@ void Math_VectorCalculationEngine(uint64_t context, float *inputVector, uint ele
       // ============ 第四个元素处理 ============
       
       // 从栈矩阵中读取数据并进行向量变换（使用3倍步长偏移）
-      matrixPointer = *(longlong *)(stackParameter_b8 + 8 + registerR15 * MATRIX_BLOCK_SIZE);
+      matrixPointer = *(int64_t *)(stackParameter_b8 + 8 + registerR15 * MATRIX_BLOCK_SIZE);
       matrixElement_A1 = *(float *)(stackParameter_b8 + registerR15 * MATRIX_BLOCK_SIZE);
       matrixElement_A2 = *(float *)(stackParameter_b8 + 4 + registerR15 * MATRIX_BLOCK_SIZE);
       matrixElement_A3 = *(float *)(matrixPointer + 0x18);
@@ -892,7 +892,7 @@ void Math_VectorCalculationEngine(uint64_t context, float *inputVector, uint ele
       *(float *)(stackParameter_b8 + 4 + registerR15 * MATRIX_BLOCK_SIZE) = matrixElement_A1;
       
       // 从R11矩阵中读取数据并进行向量变换
-      matrixPointer = *(longlong *)(registerR11 + 8 + registerR15 * MATRIX_BLOCK_SIZE);
+      matrixPointer = *(int64_t *)(registerR11 + 8 + registerR15 * MATRIX_BLOCK_SIZE);
       matrixElement_C1 = *(float *)(registerR11 + registerR15 * MATRIX_BLOCK_SIZE);
       matrixElement_C2 = *(float *)(registerR11 + 4 + registerR15 * MATRIX_BLOCK_SIZE);
       matrixElement_C3 = *(float *)(matrixPointer + 0x18);
@@ -908,7 +908,7 @@ void Math_VectorCalculationEngine(uint64_t context, float *inputVector, uint ele
       *(float *)(registerR11 + 4 + registerR15 * MATRIX_BLOCK_SIZE) = matrixElement_C1;
       
       // 从RBX矩阵中读取数据并进行复合计算
-      matrixPointer = *(longlong *)(registerRBX + 8 + registerR15 * MATRIX_BLOCK_SIZE);
+      matrixPointer = *(int64_t *)(registerRBX + 8 + registerR15 * MATRIX_BLOCK_SIZE);
       matrixElement_B1 = *(float *)(registerRBX + 4 + registerR15 * MATRIX_BLOCK_SIZE);
       matrixElement_B2 = *(float *)(matrixPointer + 0x18);
       matrixElement_B3 = *(float *)(registerRBX + registerR15 * MATRIX_BLOCK_SIZE);
@@ -926,7 +926,7 @@ void Math_VectorCalculationEngine(uint64_t context, float *inputVector, uint ele
       *(float *)(registerRBX + 4 + registerR15 * MATRIX_BLOCK_SIZE) = matrixElement_B3;
       
       // 从R10矩阵中读取数据并进行向量变换
-      matrixPointer = *(longlong *)(registerR10 + 8 + registerR15 * MATRIX_BLOCK_SIZE);
+      matrixPointer = *(int64_t *)(registerR10 + 8 + registerR15 * MATRIX_BLOCK_SIZE);
       matrixElement_D1 = *(float *)(registerR10 + registerR15 * MATRIX_BLOCK_SIZE);
       matrixElement_D2 = *(float *)(registerR10 + 4 + registerR15 * MATRIX_BLOCK_SIZE);
       matrixElement_D3 = *(float *)(matrixPointer + 0x18);
@@ -956,18 +956,18 @@ void Math_VectorCalculationEngine(uint64_t context, float *inputVector, uint ele
     } while (mainLoopCounter != 0);
     
     // 恢复寄存器状态
-    registerR15 = (ulonglong)stackParameter_b0;
+    registerR15 = (uint64_t)stackParameter_b0;
   }
   
   // 处理剩余的元素（少于4个）
   elementCount = elementCount & 3;
   if (elementCount != 0) {
-    matrixPointer = (longlong)(int)registerR15;
-    tempVariable = (longlong)outputVector - (longlong)inputVector;
+    matrixPointer = (int64_t)(int)registerR15;
+    tempVariable = (int64_t)outputVector - (int64_t)inputVector;
     
     do {
       // 处理单个剩余元素的完整矩阵变换
-      tempPointer = *(longlong *)(stackParameter_b8 + 8 + matrixPointer * MATRIX_BLOCK_SIZE);
+      tempPointer = *(int64_t *)(stackParameter_b8 + 8 + matrixPointer * MATRIX_BLOCK_SIZE);
       matrixElement_A1 = *(float *)(stackParameter_b8 + matrixPointer * MATRIX_BLOCK_SIZE);
       matrixElement_A2 = *(float *)(stackParameter_b8 + 4 + matrixPointer * MATRIX_BLOCK_SIZE);
       matrixElement_A3 = *(float *)(tempPointer + 0x18);
@@ -983,7 +983,7 @@ void Math_VectorCalculationEngine(uint64_t context, float *inputVector, uint ele
       *(float *)(stackParameter_b8 + 4 + matrixPointer * MATRIX_BLOCK_SIZE) = matrixElement_A1;
       
       // 从R11矩阵中读取数据并进行向量变换
-      tempPointer = *(longlong *)(registerR11 + 8 + matrixPointer * MATRIX_BLOCK_SIZE);
+      tempPointer = *(int64_t *)(registerR11 + 8 + matrixPointer * MATRIX_BLOCK_SIZE);
       matrixElement_C1 = *(float *)(registerR11 + matrixPointer * MATRIX_BLOCK_SIZE);
       matrixElement_C2 = *(float *)(registerR11 + 4 + matrixPointer * MATRIX_BLOCK_SIZE);
       matrixElement_C3 = *(float *)(tempPointer + 0x18);
@@ -999,7 +999,7 @@ void Math_VectorCalculationEngine(uint64_t context, float *inputVector, uint ele
       *(float *)(registerR11 + 4 + matrixPointer * MATRIX_BLOCK_SIZE) = matrixElement_C1;
       
       // 从RBX矩阵中读取数据并进行复合计算
-      tempPointer = *(longlong *)(registerRBX + 8 + matrixPointer * MATRIX_BLOCK_SIZE);
+      tempPointer = *(int64_t *)(registerRBX + 8 + matrixPointer * MATRIX_BLOCK_SIZE);
       matrixElement_B1 = *(float *)(registerRBX + 4 + matrixPointer * MATRIX_BLOCK_SIZE);
       matrixElement_B2 = *(float *)(tempPointer + 0x18);
       matrixElement_B3 = *(float *)(registerRBX + matrixPointer * MATRIX_BLOCK_SIZE);
@@ -1017,7 +1017,7 @@ void Math_VectorCalculationEngine(uint64_t context, float *inputVector, uint ele
       *(float *)(registerRBX + 4 + matrixPointer * MATRIX_BLOCK_SIZE) = matrixElement_B3;
       
       // 从R10矩阵中读取数据并进行向量变换
-      tempPointer = *(longlong *)(registerR10 + 8 + matrixPointer * MATRIX_BLOCK_SIZE);
+      tempPointer = *(int64_t *)(registerR10 + 8 + matrixPointer * MATRIX_BLOCK_SIZE);
       matrixElement_D1 = *(float *)(registerR10 + matrixPointer * MATRIX_BLOCK_SIZE);
       matrixElement_D2 = *(float *)(registerR10 + 4 + matrixPointer * MATRIX_BLOCK_SIZE);
       matrixElement_D3 = *(float *)(tempPointer + 0x14);
@@ -1033,7 +1033,7 @@ void Math_VectorCalculationEngine(uint64_t context, float *inputVector, uint ele
       *(float *)(registerR10 + matrixPointer * MATRIX_BLOCK_SIZE) = calculationResult_D;
       
       // 使用XMM寄存器进行最终加权计算
-      *(float *)(tempVariable + (longlong)inputVector) = 
+      *(float *)(tempVariable + (int64_t)inputVector) = 
            ((calculationResult_A * matrixElement_A3 + matrixElement_A1 * matrixElement_A4 + 
              matrixElement_A2 * matrixElement_B2) * xmmRegister10 - 
             (matrixElement_B3 * matrixElement_B4 + calculationResult_B * matrixElement_C1 + 

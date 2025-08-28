@@ -45,7 +45,7 @@
  */
 void SystemInitializationProcessor(void)
 {
-    longlong systemStatus;
+    int64_t systemStatus;
     int32_t *targetBuffer;
     int32_t vectorData_A;
     int32_t vectorData_B;
@@ -100,13 +100,13 @@ void SystemInitializationProcessor(void)
  * @param param_2 要搜索的字符串
  * @return uint64_t* 找到的数据结构指针，未找到返回NULL
  */
-uint64_t * StringSearchAndCompareProcessor(longlong param_1, char *param_2)
+uint64_t * StringSearchAndCompareProcessor(int64_t param_1, char *param_2)
 {
     char *currentChar;
     char searchChar;
     uint64_t *currentNode;
     char *nodeString;
-    longlong stringLength;
+    int64_t stringLength;
     char *compareStart;
     
     // 空指针检查
@@ -140,14 +140,14 @@ uint64_t * StringSearchAndCompareProcessor(longlong param_1, char *param_2)
         }
         
         // 字符串长度匹配检查
-        if (stringLength == (longlong)currentChar - (longlong)param_2) {
+        if (stringLength == (int64_t)currentChar - (int64_t)param_2) {
             compareStart = nodeString + stringLength;
             if (compareStart <= nodeString) {
                 return currentNode;
             }
             
             // 逐字符比较
-            stringLength = (longlong)param_2 - (longlong)nodeString;
+            stringLength = (int64_t)param_2 - (int64_t)nodeString;
             while (*nodeString == nodeString[stringLength]) {
                 nodeString = nodeString + 1;
                 if (compareStart <= nodeString) {
@@ -183,9 +183,9 @@ uint64_t * DataStructureLookupHandler(uint64_t param_1, uint64_t *param_2)
 {
     char *currentString;
     char *compareString;
-    longlong stringLength;
-    longlong compareLength;
-    longlong searchLength;
+    int64_t stringLength;
+    int64_t compareLength;
+    int64_t searchLength;
     
     if (param_2 != (uint64_t *)0x0) {
         do {
@@ -205,7 +205,7 @@ uint64_t * DataStructureLookupHandler(uint64_t param_1, uint64_t *param_2)
                 }
                 
                 // 字符串比较
-                stringLength = compareLength - (longlong)compareString;
+                stringLength = compareLength - (int64_t)compareString;
                 while (*compareString == compareString[stringLength]) {
                     compareString = compareString + 1;
                     if (currentString <= compareString) {
@@ -245,9 +245,9 @@ uint64_t * AdvancedDataStructureLookupHandler(uint64_t param_1, uint64_t *param_
     char *endOfString;
     char *startOfString;
     char *baseAddress;
-    longlong stringLength;
-    longlong searchLength;
-    longlong compareLength;
+    int64_t stringLength;
+    int64_t searchLength;
+    int64_t compareLength;
     
     while (true) {
         do {
@@ -270,7 +270,7 @@ uint64_t * AdvancedDataStructureLookupHandler(uint64_t param_1, uint64_t *param_
         if (endOfString <= startOfString) break;
         
         // 字符串比较
-        stringLength = compareLength - (longlong)startOfString;
+        stringLength = compareLength - (int64_t)startOfString;
         while (*startOfString == startOfString[stringLength]) {
             startOfString = startOfString + 1;
             if (endOfString <= startOfString) {
@@ -300,7 +300,7 @@ uint64_t * AdvancedDataStructureLookupHandler(uint64_t param_1, uint64_t *param_
  * @param param_1 数据结构指针
  * @return uint64_t 查询到的数据
  */
-uint64_t SystemDataQueryHandler(longlong param_1)
+uint64_t SystemDataQueryHandler(int64_t param_1)
 {
     return *(uint64_t *)(param_1 + 0x40);
 }
@@ -336,15 +336,15 @@ uint64_t SystemDataQueryHandler(longlong param_1)
  * @param param_3 输入字符串结束指针
  * @param param_4 分隔字符
  * @param param_5 输出状态指针
- * @return longlong* 处理后的缓冲区指针
+ * @return int64_t* 处理后的缓冲区指针
  */
-longlong * HTMLEscapeProcessor(longlong *param_1, char *param_2, char *param_3, char param_4, longlong *param_5)
+int64_t * HTMLEscapeProcessor(int64_t *param_1, char *param_2, char *param_3, char param_4, int64_t *param_5)
 {
-    longlong outputLength;
-    longlong outputBuffer;
+    int64_t outputLength;
+    int64_t outputBuffer;
     char currentChar;
     uint64_t escapeSequence;
-    longlong *outputState;
+    int64_t *outputState;
     
     if (param_2 != param_3) {
         outputLength = *param_5;
@@ -490,15 +490,15 @@ longlong * HTMLEscapeProcessor(longlong *param_1, char *param_2, char *param_3, 
  */
 void AdvancedHTMLEscapeProcessor(void)
 {
-    longlong outputLength;
-    longlong outputBuffer;
+    int64_t outputLength;
+    int64_t outputBuffer;
     char currentChar;
     uint64_t escapeSequence;
     char *inputStart;
     char *inputEnd;
-    longlong *outputState;
+    int64_t *outputState;
     char delimiter;
-    longlong *outputPointer;
+    int64_t *outputPointer;
     
     outputLength = *outputPointer;
     outputBuffer = outputPointer[1];
@@ -674,27 +674,27 @@ void BufferOperationHandler(void)
  * @param param_1 输出缓冲区指针
  * @param param_2 输入缓冲区指针
  * @param param_3 数据结构参数
- * @return longlong* 处理后的缓冲区指针
+ * @return int64_t* 处理后的缓冲区指针
  */
-longlong * AdvancedBufferDataProcessor(longlong *param_1, longlong *param_2, longlong param_3)
+int64_t * AdvancedBufferDataProcessor(int64_t *param_1, int64_t *param_2, int64_t param_3)
 {
     int8_t currentChar;
-    longlong outputLength;
-    longlong outputBuffer;
+    int64_t outputLength;
+    int64_t outputBuffer;
     int8_t *dataPointer;
-    longlong dataLength;
+    int64_t dataLength;
     int8_t *stringStart;
     int8_t *currentPosition;
     int32_t *tempBuffer;
     bool hasQuotes;
-    longlong stringLength;
+    int64_t stringLength;
     uint8_t truncatedString;
-    longlong remainingLength;
+    int64_t remainingLength;
     uint64_t quoteChar;
-    longlong tempLength;
+    int64_t tempLength;
     uint64_t *dataNode;
-    longlong stackParam1;
-    longlong stackParam2;
+    int64_t stackParam1;
+    int64_t stackParam2;
     int8_t stackBuffer1[16];
     int8_t stackBuffer2[32];
     
@@ -776,7 +776,7 @@ longlong * AdvancedBufferDataProcessor(longlong *param_1, longlong *param_2, lon
             hasQuotes = true;
             
         QUOTE_PROCESSING:
-            truncatedString = (uint8_t)((ulonglong)(stringStart + stringLength) >> 8);
+            truncatedString = (uint8_t)((uint64_t)(stringStart + stringLength) >> 8);
             
             if (hasQuotes) {
                 WriteCharacterToBuffer(dataLength, CONCAT71(truncatedString, 0x27));
@@ -831,9 +831,9 @@ longlong * AdvancedBufferDataProcessor(longlong *param_1, longlong *param_2, lon
             int32_t tempData2 = tempBuffer[2];
             int32_t tempData3 = tempBuffer[3];
             *(int32_t *)param_2 = *tempBuffer;
-            *(int32_t *)((longlong)param_2 + 4) = tempData1;
+            *(int32_t *)((int64_t)param_2 + 4) = tempData1;
             *(int32_t *)(param_2 + 1) = tempData2;
-            *(int32_t *)((longlong)param_2 + 0xc) = tempData3;
+            *(int32_t *)((int64_t)param_2 + 0xc) = tempData3;
             
             outputBuffer = param_2[1];
             WriteCharacterToBuffer(outputBuffer, quoteChar);
@@ -871,18 +871,18 @@ longlong * AdvancedBufferDataProcessor(longlong *param_1, longlong *param_2, lon
  * @param param_3 数据结构参数
  * @param param_4 处理标志
  * @param param_5 缩进级别
- * @return longlong* 处理后的缓冲区指针
+ * @return int64_t* 处理后的缓冲区指针
  */
-longlong * StringFormattingProcessor(longlong *param_1, longlong *param_2, longlong param_3, byte param_4, uint param_5)
+int64_t * StringFormattingProcessor(int64_t *param_1, int64_t *param_2, int64_t param_3, byte param_4, uint param_5)
 {
     int8_t currentChar;
-    longlong outputLength;
-    longlong outputBuffer;
+    int64_t outputLength;
+    int64_t outputBuffer;
     int8_t *dataPointer;
     int8_t *stringStart;
-    longlong stringLength;
+    int64_t stringLength;
     int8_t *currentPosition;
-    ulonglong indentCount;
+    uint64_t indentCount;
     int8_t *tempPointer;
     
     // 条件处理：根据标志决定是否处理缩进
@@ -890,7 +890,7 @@ longlong * StringFormattingProcessor(longlong *param_1, longlong *param_2, longl
         outputLength = *param_2;
         outputBuffer = param_2[1];
         if (0 < (int)param_5) {
-            indentCount = (ulonglong)param_5;
+            indentCount = (uint64_t)param_5;
             do {
                 WriteCharacterToBuffer(outputBuffer, '\t');
                 if (outputLength != 0) {
@@ -936,7 +936,7 @@ longlong * StringFormattingProcessor(longlong *param_1, longlong *param_2, longl
         tempPointer = (int8_t *)0x180d48d24;
         stringLength = 0;
     } else {
-        stringLength = *(longlong *)(param_3 + 0x18);
+        stringLength = *(int64_t *)(param_3 + 0x18);
         tempPointer = dataPointer;
     }
     
@@ -1000,18 +1000,18 @@ longlong * StringFormattingProcessor(longlong *param_1, longlong *param_2, longl
  * @param param_4 处理标志
  * @return void 无返回值
  */
-void DataOutputProcessor(uint64_t param_1, longlong *param_2, longlong param_3, byte param_4)
+void DataOutputProcessor(uint64_t param_1, int64_t *param_2, int64_t param_3, byte param_4)
 {
     int8_t currentChar;
-    longlong outputLength;
-    longlong outputBuffer;
+    int64_t outputLength;
+    int64_t outputBuffer;
     int8_t *dataPointer;
     int8_t *stringStart;
-    longlong stringLength;
+    int64_t stringLength;
     int8_t *currentPosition;
-    ulonglong indentCount;
+    uint64_t indentCount;
     int8_t *tempPointer;
-    longlong *outputPointer;
+    int64_t *outputPointer;
     uint indentLevel;
     
     // 条件处理：根据标志决定是否处理缩进
@@ -1019,7 +1019,7 @@ void DataOutputProcessor(uint64_t param_1, longlong *param_2, longlong param_3, 
         outputLength = *param_2;
         outputBuffer = param_2[1];
         if (0 < (int)indentLevel) {
-            indentCount = (ulonglong)indentLevel;
+            indentCount = (uint64_t)indentLevel;
             do {
                 WriteCharacterToBuffer(outputBuffer, '\t');
                 if (outputLength != 0) {
@@ -1065,7 +1065,7 @@ void DataOutputProcessor(uint64_t param_1, longlong *param_2, longlong param_3, 
         tempPointer = (int8_t *)0x180d48d24;
         stringLength = 0;
     } else {
-        stringLength = *(longlong *)(param_3 + 0x18);
+        stringLength = *(int64_t *)(param_3 + 0x18);
         tempPointer = dataPointer;
     }
     
@@ -1132,7 +1132,7 @@ void DataOutputProcessor(uint64_t param_1, longlong *param_2, longlong param_3, 
  */
 void ContentGenerationProcessor(void)
 {
-    longlong systemStatus;
+    int64_t systemStatus;
     int32_t *targetBuffer;
     int32_t vectorData_A;
     int32_t vectorData_B;

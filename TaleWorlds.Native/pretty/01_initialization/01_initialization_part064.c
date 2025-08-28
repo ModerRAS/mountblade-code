@@ -20,10 +20,10 @@ int8_t *graphics_device_buffer;
 int32_t graphics_device_mode;
 
 // 全局变量：渲染缓冲区参数
-longlong render_buffer_size;
-longlong render_buffer_offset;
-longlong frame_buffer_size;
-longlong frame_buffer_offset;
+int64_t render_buffer_size;
+int64_t render_buffer_offset;
+int64_t frame_buffer_size;
+int64_t frame_buffer_offset;
 int32_t buffer_width;
 int32_t buffer_height;
 
@@ -37,10 +37,10 @@ uint8_t video_mode_data;
 
 // 常量：渲染管线配置
 uint8_t render_pipeline_config;
-longlong render_pipeline_state;
+int64_t render_pipeline_state;
 uint64_t render_pipeline_flags;
-longlong render_shader_params;
-longlong *render_texture_ptr;
+int64_t render_shader_params;
+int64_t *render_texture_ptr;
 
 // 简化实现说明：
 // 原始实现仅包含函数声明和变量定义，没有具体实现代码

@@ -56,19 +56,19 @@
 #define PIPELINE_STAGE_OUTPUT 0x03                     // 管线阶段：输出处理
 
 // 类型别名定义
-typedef longlong RenderContextHandle;                  // 渲染上下文句柄
-typedef longlong RenderPipelineHandle;                 // 渲染管线句柄
-typedef longlong RenderTextureHandle;                 // 渲染纹理句柄
-typedef longlong RenderBufferHandle;                   // 渲染缓冲区句柄
-typedef longlong RenderStateHandle;                    // 渲染状态句柄
+typedef int64_t RenderContextHandle;                  // 渲染上下文句柄
+typedef int64_t RenderPipelineHandle;                 // 渲染管线句柄
+typedef int64_t RenderTextureHandle;                 // 渲染纹理句柄
+typedef int64_t RenderBufferHandle;                   // 渲染缓冲区句柄
+typedef int64_t RenderStateHandle;                    // 渲染状态句柄
 typedef float RenderVertex[3];                         // 渲染顶点坐标
 typedef float RenderTexCoord[2];                      // 渲染纹理坐标
 typedef float RenderColor[4];                          // 渲染颜色值
 typedef uint RenderFlags;                              // 渲染标志位
-typedef ulonglong RenderMemoryPtr;                    // 渲染内存指针
+typedef uint64_t RenderMemoryPtr;                    // 渲染内存指针
 typedef code* RenderShaderFunction;                   // 渲染着色器函数
 typedef uint64_t* RenderDataBuffer;                 // 渲染数据缓冲区
-typedef longlong** RenderResourceTable;               // 渲染资源表
+typedef int64_t** RenderResourceTable;               // 渲染资源表
 
 // 渲染顶点结构体
 typedef struct {
@@ -186,7 +186,7 @@ typedef struct {
  * @author 渲染引擎开发团队
  * @version 1.0
  */
-void RenderingSystem_AdvancedVertexProcessor(longlong renderContext, longlong renderData)
+void RenderingSystem_AdvancedVertexProcessor(int64_t renderContext, int64_t renderData)
 
 {
   // 渲染计算变量
@@ -197,19 +197,19 @@ void RenderingSystem_AdvancedVertexProcessor(longlong renderContext, longlong re
   int32_t uVar5;                                      // 未定义4字节变量5
   int32_t uVar6;                                      // 未定义4字节变量6
   int32_t uVar7;                                      // 未定义4字节变量7
-  longlong lVar8;                                        // 长整型计算变量
+  int64_t lVar8;                                        // 长整型计算变量
   
   // 渲染缓冲区变量
   int8_t auVar9 [8];                                 // 8字节渲染缓冲区
   uint64_t *puVar10;                                   // 渲染数据指针
   uint64_t uVar11;                                      // 渲染数据变量
-  longlong *plVar12;                                      // 渲染管线指针
-  longlong *plVar13;                                      // 渲染管线指针
+  int64_t *plVar12;                                      // 渲染管线指针
+  int64_t *plVar13;                                      // 渲染管线指针
   float *pfVar14;                                         // 浮点数据指针
   int iVar15;                                            // 整数索引变量
   uint64_t *puVar16;                                   // 渲染数据指针
   int iVar17;                                            // 整数索引变量
-  longlong **pplVar18;                                    // 渲染资源表指针
+  int64_t **pplVar18;                                    // 渲染资源表指针
   uint64_t *puVar19;                                   // 渲染数据指针
   uint64_t *puVar20;                                   // 渲染数据指针
   float *pfVar21;                                         // 浮点数据指针
@@ -226,14 +226,14 @@ void RenderingSystem_AdvancedVertexProcessor(longlong renderContext, longlong re
   // 栈变量定义
   int8_t auStack_458 [32];                           // 32字节栈缓冲区
   float *pfStack_438;                                    // 浮点栈指针
-  longlong ***ppplStack_430;                              // 三级指针栈变量
+  int64_t ***ppplStack_430;                              // 三级指针栈变量
   void *puStack_428;                                // 未定义栈指针
   int32_t uStack_420;                                // 4字节栈变量
   float afStack_418 [2];                                  // 浮点数组栈变量
   uint64_t uStack_410;                                 // 8字节栈变量
   uint64_t uStack_408;                                 // 8字节栈变量
-  longlong **pplStack_400;                               // 二级指针栈变量
-  longlong *plStack_3f8;                                 // 长整型指针栈变量
+  int64_t **pplStack_400;                               // 二级指针栈变量
+  int64_t *plStack_3f8;                                 // 长整型指针栈变量
   uint64_t uStack_3f0;                                 // 8字节栈变量
   uint64_t uStack_3e8;                                 // 8字节栈变量
   uint64_t uStack_3e0;                                 // 8字节栈变量
@@ -241,16 +241,16 @@ void RenderingSystem_AdvancedVertexProcessor(longlong renderContext, longlong re
   uint64_t *puStack_3d0;                               // 8字节栈指针
   code *pcStack_3c8;                                     // 代码指针栈变量
   code *pcStack_3c0;                                     // 代码指针栈变量
-  longlong *plStack_3b8;                                 // 长整型指针栈变量
-  longlong *plStack_3b0;                                 // 长整型指针栈变量
+  int64_t *plStack_3b8;                                 // 长整型指针栈变量
+  int64_t *plStack_3b0;                                 // 长整型指针栈变量
   float *pfStack_3a8;                                    // 浮点指针栈变量
   uint64_t uStack_3a0;                                 // 8字节栈变量
   uint64_t uStack_398;                                 // 8字节栈变量
-  longlong *plStack_390;                                 // 长整型指针栈变量
-  longlong **pplStack_388;                               // 二级指针栈变量
-  longlong *plStack_380;                                 // 长整型指针栈变量
+  int64_t *plStack_390;                                 // 长整型指针栈变量
+  int64_t **pplStack_388;                               // 二级指针栈变量
+  int64_t *plStack_380;                                 // 长整型指针栈变量
   uint64_t uStack_378;                                 // 8字节栈变量
-  longlong *plStack_368;                                 // 长整型指针栈变量
+  int64_t *plStack_368;                                 // 长整型指针栈变量
   
   // 渲染状态变量
   char cStack_360;                                       // 字符状态变量
@@ -309,9 +309,9 @@ void RenderingSystem_AdvancedVertexProcessor(longlong renderContext, longlong re
   float fStack_294;                                      // 浮点栈变量294
   float fStack_290;                                      // 浮点栈变量290
   int32_t uStack_28c;                                 // 4字节栈变量
-  longlong *plStack_288;                                 // 长整型指针栈变量
+  int64_t *plStack_288;                                 // 长整型指针栈变量
   uint64_t uStack_280;                                 // 8字节栈变量
-  longlong *plStack_278;                                 // 长整型指针栈变量
+  int64_t *plStack_278;                                 // 长整型指针栈变量
   float *pfStack_270;                                    // 浮点指针栈变量
   float *pfStack_268;                                    // 浮点指针栈变量
   
@@ -331,7 +331,7 @@ void RenderingSystem_AdvancedVertexProcessor(longlong renderContext, longlong re
   void *puStack_1d0;                                // 渲染资源指针
   code *pcStack_1c8;                                     // 代码指针栈变量
   uint64_t uStack_1c0;                                 // 8字节栈变量
-  longlong alStack_1b8 [2];                              // 长整型数组栈变量
+  int64_t alStack_1b8 [2];                              // 长整型数组栈变量
   
   // 渲染状态管理栈变量
   int16_t uStack_1a8;                                 // 2字节栈变量
@@ -366,7 +366,7 @@ void RenderingSystem_AdvancedVertexProcessor(longlong renderContext, longlong re
   int16_t uStack_e8;                                  // 2字节栈变量
   int32_t uStack_e6;                                  // 4字节栈变量
   int8_t uStack_e2;                                  // 1字节栈变量
-  ulonglong uStack_d8;                                    // 无符号长整型栈变量
+  uint64_t uStack_d8;                                    // 无符号长整型栈变量
   
   // 第一阶段：参数验证和初始化检查
   // 验证渲染数据句柄的有效性和兼容性
@@ -379,7 +379,7 @@ void RenderingSystem_AdvancedVertexProcessor(longlong renderContext, longlong re
   // 第二阶段：渲染系统初始化
   // 初始化渲染管线状态、缓冲区和内存管理器
   uStack_280 = 0xfffffffffffffffe;                    // 设置渲染管线状态掩码
-  uStack_d8 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_458; // 计算内存保护密钥
+  uStack_d8 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_458; // 计算内存保护密钥
   puVar10 = (uint64_t *)0x0;                         // 初始化渲染数据指针
   
   // 初始化渲染管线数组
@@ -429,21 +429,21 @@ void RenderingSystem_AdvancedVertexProcessor(longlong renderContext, longlong re
   uStack_fc = 0;                                       // 清空数据缓冲区7
   
   // 初始化渲染管线句柄
-  plStack_3b0 = (longlong *)0x0;                       // 重置顶点管线句柄
-  plStack_3f8 = (longlong *)0x0;                       // 重置片段管线句柄
+  plStack_3b0 = (int64_t *)0x0;                       // 重置顶点管线句柄
+  plStack_3f8 = (int64_t *)0x0;                       // 重置片段管线句柄
   
   // 第三阶段：渲染管线激活和状态管理
   // 获取并激活顶点渲染管线
-  plVar12 = *(longlong **)(renderContext + 0x70);            // 从渲染上下文获取顶点管线句柄
+  plVar12 = *(int64_t **)(renderContext + 0x70);            // 从渲染上下文获取顶点管线句柄
   uStack_398 = renderContext;                               // 保存渲染上下文
-  if (plVar12 != (longlong *)0x0) {
-    uStack_410 = (longlong **)plVar12;                // 设置当前管线为顶点管线
+  if (plVar12 != (int64_t *)0x0) {
+    uStack_410 = (int64_t **)plVar12;                // 设置当前管线为顶点管线
     (**(code **)(*plVar12 + 0x28))(plVar12);           // 调用管线初始化函数
   }
   
   // 切换到顶点管线并执行管线设置
-  uStack_410 = (longlong **)plStack_3b0;               // 设置当前管线为顶点管线
-  if (plStack_3b0 != (longlong *)0x0) {
+  uStack_410 = (int64_t **)plStack_3b0;               // 设置当前管线为顶点管线
+  if (plStack_3b0 != (int64_t *)0x0) {
     lVar8 = *plStack_3b0;                              // 获取顶点管线函数表
     plStack_3b0 = plVar12;                             // 设置顶点管线句柄
     (**(code **)(lVar8 + 0x38))();                     // 调用顶点管线设置函数
@@ -452,15 +452,15 @@ void RenderingSystem_AdvancedVertexProcessor(longlong renderContext, longlong re
   plStack_3b0 = plVar12;                               // 保存顶点管线句柄
   
   // 获取并激活片段渲染管线
-  plVar12 = *(longlong **)(renderContext + 0x78);            // 从渲染上下文获取片段管线句柄
-  if (plVar12 != (longlong *)0x0) {
-    uStack_410 = (longlong **)plVar12;                // 设置当前管线为片段管线
+  plVar12 = *(int64_t **)(renderContext + 0x78);            // 从渲染上下文获取片段管线句柄
+  if (plVar12 != (int64_t *)0x0) {
+    uStack_410 = (int64_t **)plVar12;                // 设置当前管线为片段管线
     (**(code **)(*plVar12 + 0x28))(plVar12);           // 调用管线初始化函数
   }
   
   // 切换到片段管线并执行管线设置
-  uStack_410 = (longlong **)plStack_3f8;               // 设置当前管线为片段管线
-  if (plStack_3f8 != (longlong *)0x0) {
+  uStack_410 = (int64_t **)plStack_3f8;               // 设置当前管线为片段管线
+  if (plStack_3f8 != (int64_t *)0x0) {
     lVar8 = *plStack_3f8;                              // 获取片段管线函数表
     plStack_3f8 = plVar12;                             // 设置片段管线句柄
     (**(code **)(lVar8 + 0x38))();                     // 调用片段管线设置函数
@@ -471,7 +471,7 @@ void RenderingSystem_AdvancedVertexProcessor(longlong renderContext, longlong re
   // 第四阶段：管线完整性检查
   // 验证顶点管线和片段管线是否都成功激活
   // 这是关键的错误检查点，确保双管线架构的完整性
-  if ((plStack_3b0 == (longlong *)0x0) || (plStack_3f8 == (longlong *)0x0)) {
+  if ((plStack_3b0 == (int64_t *)0x0) || (plStack_3f8 == (int64_t *)0x0)) {
     FUN_180627020(&unknown_var_5456_ptr);                    // 管线激活失败，调用错误处理函数
   }
   else {
@@ -484,8 +484,8 @@ void RenderingSystem_AdvancedVertexProcessor(longlong renderContext, longlong re
     pfStack_438 = (float *)auStack_3d8;
     auStack_3d8 = (int8_t  [8])uStack_3e8;
     puStack_3d0 = uStack_3e0;
-    (**(code **)(**(longlong **)(plStack_3b0[0x15] + 0x88) + 0x60))
-              (*(longlong **)(plStack_3b0[0x15] + 0x88),&system_memory_1050,plStack_3b0[0x15] + 0xc,0);
+    (**(code **)(**(int64_t **)(plStack_3b0[0x15] + 0x88) + 0x60))
+              (*(int64_t **)(plStack_3b0[0x15] + 0x88),&system_memory_1050,plStack_3b0[0x15] + 0xc,0);
     if (pcStack_3c8 != (code *)0x0) {
       (*pcStack_3c8)(auStack_3d8,0,0);
     }
@@ -496,8 +496,8 @@ void RenderingSystem_AdvancedVertexProcessor(longlong renderContext, longlong re
     puStack_3d0 = uStack_3e0;
     auStack_3d8 = (int8_t  [8])uStack_3e8;
     pfStack_438 = (float *)auStack_3d8;
-    (**(code **)(**(longlong **)(plStack_3f8[0x15] + 0x88) + 0x60))
-              (*(longlong **)(plStack_3f8[0x15] + 0x88),&system_memory_1050,plStack_3f8[0x15] + 0xc,0);
+    (**(code **)(**(int64_t **)(plStack_3f8[0x15] + 0x88) + 0x60))
+              (*(int64_t **)(plStack_3f8[0x15] + 0x88),&system_memory_1050,plStack_3f8[0x15] + 0xc,0);
     if (pcStack_3c8 != (code *)0x0) {
       (*pcStack_3c8)(auStack_3d8,0,0);
     }
@@ -529,7 +529,7 @@ void RenderingSystem_AdvancedVertexProcessor(longlong renderContext, longlong re
           // 计算当前顶点的基准坐标和偏移量
           fVar28 = (float)(int)SUB84(puVar10,0);            // 获取顶点X坐标
           fVar25 = fVar28 + 0.5;                            // 计算X坐标的中心点偏移
-          pfStack_3a8 = (float *)((ulonglong)(uint)((fVar24 - fVar25) * fVar26) << 0x20);
+          pfStack_3a8 = (float *)((uint64_t)(uint)((fVar24 - fVar25) * fVar26) << 0x20);
           puVar10 = puVar16;                                // 重置纹理坐标指针
           puVar19 = (uint64_t *)auVar9;                   // 设置纹理坐标数据指针
           
@@ -586,7 +586,7 @@ void RenderingSystem_AdvancedVertexProcessor(longlong renderContext, longlong re
               }
               else {
                 // 缓冲区空间不足，需要重新分配
-                lVar8 = (longlong)puVar10 - (longlong)puVar19 >> 3;
+                lVar8 = (int64_t)puVar10 - (int64_t)puVar19 >> 3;
                 if (lVar8 == 0) {
                   lVar8 = 1;
 LAB_18035f156:
@@ -602,12 +602,12 @@ LAB_18035f156:
                 // 复制现有数据到新缓冲区
                 if (puVar19 != puVar10) {
                     // WARNING: Subroutine does not return
-                  memmove(auVar9,puVar19,(longlong)puVar10 - (longlong)puVar19);
+                  memmove(auVar9,puVar19,(int64_t)puVar10 - (int64_t)puVar19);
                 }
                 
                 // 写入新的纹理坐标数据
                 *(uint64_t *)auVar9 = uStack_408;
-                puVar16 = (uint64_t *)((longlong)auVar9 + 8);
+                puVar16 = (uint64_t *)((int64_t)auVar9 + 8);
                 
                 // 释放旧的缓冲区内存
                 if (puVar19 != (uint64_t *)0x0) {
@@ -618,7 +618,7 @@ LAB_18035f156:
                 // 更新缓冲区指针和状态
                 puStack_3d0 = puVar16;
                 auStack_3d8 = auVar9;
-                puVar20 = (uint64_t *)((longlong)auVar9 + lVar8 * 8);
+                puVar20 = (uint64_t *)((int64_t)auVar9 + lVar8 * 8);
                 pcStack_3c8 = (code *)puVar20;
               }
             }
@@ -629,12 +629,12 @@ LAB_18035f156:
           } while (iVar4 < (int)fVar24);
         }
         afStack_418[0] = (float)((int)fVar27 + 1);
-        puVar10 = (uint64_t *)(ulonglong)(uint)afStack_418[0];
+        puVar10 = (uint64_t *)(uint64_t)(uint)afStack_418[0];
         renderContext = uStack_398;
       } while ((int)afStack_418[0] < (int)fVar24);
     }
     FUN_1802e9fa0(*(uint64_t *)(renderContext + 0x18),1,0);
-    if (((longlong)puVar16 - (longlong)auVar9 & 0xfffffffffffffff8U) != 0) {
+    if (((int64_t)puVar16 - (int64_t)auVar9 & 0xfffffffffffffff8U) != 0) {
       puStack_1f0 = (void *)0x0;
       ppuStack_1e8 = (void **)0x0;
       uStack_1e0 = (void *)0x0;
@@ -642,9 +642,9 @@ LAB_18035f156:
       pfStack_438 = (float *)&uStack_410;
       FUN_18046a8c0();
       uVar11 = FUN_18062b1e0(system_memory_pool_ptr,0x3d0,8,0x16);
-      plVar12 = (longlong *)FUN_180275090(uVar11);
+      plVar12 = (int64_t *)FUN_180275090(uVar11);
       plStack_288 = plVar12;
-      if (plVar12 != (longlong *)0x0) {
+      if (plVar12 != (int64_t *)0x0) {
         (**(code **)(*plVar12 + 0x28))(plVar12);
       }
       (**(code **)(plVar12[0x3e] + 0x10))(plVar12 + 0x3e,&unknown_var_5440_ptr);
@@ -654,38 +654,38 @@ LAB_18035f156:
       (**(code **)(*plVar12 + 0x28))(plVar12);
       uStack_410 = &plStack_3b8;
       FUN_1802edcd0(uVar11,plStack_3b8,1);
-      if (plStack_3b8 != (longlong *)0x0) {
+      if (plStack_3b8 != (int64_t *)0x0) {
         (**(code **)(*plStack_3b8 + 0x38))();
       }
       (**(code **)(*plVar12 + 0xd8))(plVar12);
       uVar11 = FUN_18062b1e0(system_memory_pool_ptr,0x300,0x10,3);
-      plVar13 = (longlong *)FUN_180075030(uVar11,1);
+      plVar13 = (int64_t *)FUN_180075030(uVar11,1);
       plStack_278 = plVar13;
-      if (plVar13 != (longlong *)0x0) {
+      if (plVar13 != (int64_t *)0x0) {
         (**(code **)(*plVar13 + 0x28))(plVar13);
       }
       (**(code **)(plVar13[2] + 0x10))(plVar13 + 2,&unknown_var_5584_ptr);
       puStack_1f0 = &unknown_var_672_ptr;
       ppuStack_1e8 = &puStack_1d8;
-      puStack_1d8 = (void *)((ulonglong)puStack_1d8 & 0xffffffffffffff00);
-      uStack_1e0 = (void *)CONCAT44((int)((ulonglong)uStack_1e0 >> 0x20),0x12);
+      puStack_1d8 = (void *)((uint64_t)puStack_1d8 & 0xffffffffffffff00);
+      uStack_1e0 = (void *)CONCAT44((int)((uint64_t)uStack_1e0 >> 0x20),0x12);
       strcpy_s(&puStack_1d8,0x20,&unknown_var_5560_ptr);
       uVar11 = FUN_1800b30d0(system_resource_state,&uStack_410,&puStack_1f0,1);
       FUN_180076910(plVar13,uVar11);
-      if (uStack_410 != (longlong **)0x0) {
+      if (uStack_410 != (int64_t **)0x0) {
         (*(code *)(*uStack_410)[7])();
       }
       puStack_1f0 = &system_state_ptr;
-      plStack_390 = (longlong *)0x0;
-      pplStack_388 = (longlong **)0x0;
+      plStack_390 = (int64_t *)0x0;
+      pplStack_388 = (int64_t **)0x0;
       pplStack_400 = &plStack_380;
-      plStack_368 = (longlong *)0x0;
+      plStack_368 = (int64_t *)0x0;
       uStack_378 = 0;
       plStack_380._0_1_ = 0;
       FUN_18022f2e0(&plStack_390,plVar13,0);
-      pplVar18 = *(longlong ***)(*(longlong *)(renderContext + 0x18) + 0x20);
-      fStack_354 = *(float *)((longlong)pplVar18 + 0x3ec4);
-      uStack_410 = (longlong **)pplVar18[0xc170][4];
+      pplVar18 = *(int64_t ***)(*(int64_t *)(renderContext + 0x18) + 0x20);
+      fStack_354 = *(float *)((int64_t)pplVar18 + 0x3ec4);
+      uStack_410 = (int64_t **)pplVar18[0xc170][4];
       fStack_358 = (float)uStack_410 * fVar26;
       pfStack_3a8 = pfStack_268;
       pplStack_400 = pplVar18;
@@ -734,19 +734,19 @@ LAB_18035f156:
                 if ((char)plVar12[0xd] == '\0') {
                   uStack_3a0 = 0;
                   lVar8 = FUN_1803a5130(plVar12,&fStack_2d8,&iStack_2d0,&uStack_3a0);
-                  fVar24 = (float)(**(code **)(**(longlong **)(lVar8 + 0x60) + 8))
-                                            (*(longlong **)(lVar8 + 0x60),
+                  fVar24 = (float)(**(code **)(**(int64_t **)(lVar8 + 0x60) + 8))
+                                            (*(int64_t **)(lVar8 + 0x60),
                                              (float)iStack_2cc + uStack_3a0._4_4_,
                                              (float)iStack_2d0 + (float)uStack_3a0);
                 }
                 else {
-                  fVar24 = (float)(**(code **)(*(longlong *)plVar12[10] + 8))
-                                            ((longlong *)plVar12[10],
+                  fVar24 = (float)(**(code **)(*(int64_t *)plVar12[10] + 8))
+                                            ((int64_t *)plVar12[10],
                                              (1.0 / *(float *)(plVar12 + 0xb)) * fStack_2d4 *
                                              (float)(int)plVar12[0xc],
                                              fStack_2d8 * (1.0 / *(float *)(plVar12 + 0xb)) *
                                              (float)(int)plVar12[0xc]);
-                  fVar24 = fVar24 + *(float *)((longlong)plVar12 + 0x5c);
+                  fVar24 = fVar24 + *(float *)((int64_t)plVar12 + 0x5c);
                 }
                 plVar12 = pplVar18[0x521];
                 fStack_348 = fVar23 * pfVar21[-2];
@@ -754,19 +754,19 @@ LAB_18035f156:
                 if ((char)plVar12[0xd] == '\0') {
                   uStack_3f0 = 0;
                   lVar8 = FUN_1803a5130(plVar12,&fStack_34c,&iStack_340,&uStack_3f0);
-                  fVar27 = (float)(**(code **)(**(longlong **)(lVar8 + 0x60) + 8))
-                                            (*(longlong **)(lVar8 + 0x60),
+                  fVar27 = (float)(**(code **)(**(int64_t **)(lVar8 + 0x60) + 8))
+                                            (*(int64_t **)(lVar8 + 0x60),
                                              (float)iStack_33c + uStack_3f0._4_4_,
                                              (float)iStack_340 + (float)uStack_3f0);
                 }
                 else {
-                  fVar27 = (float)(**(code **)(*(longlong *)plVar12[10] + 8))
-                                            ((longlong *)plVar12[10],
+                  fVar27 = (float)(**(code **)(*(int64_t *)plVar12[10] + 8))
+                                            ((int64_t *)plVar12[10],
                                              (1.0 / *(float *)(plVar12 + 0xb)) * fStack_348 *
                                              (float)(int)plVar12[0xc],
                                              fStack_34c * (1.0 / *(float *)(plVar12 + 0xb)) *
                                              (float)(int)plVar12[0xc]);
-                  fVar27 = fVar27 + *(float *)((longlong)plVar12 + 0x5c);
+                  fVar27 = fVar27 + *(float *)((int64_t)plVar12 + 0x5c);
                 }
                 plVar12 = pplVar18[0x521];
                 fStack_334 = fVar23 * *pfVar21;
@@ -774,19 +774,19 @@ LAB_18035f156:
                 if ((char)plVar12[0xd] == '\0') {
                   uStack_408 = 0;
                   lVar8 = FUN_1803a5130(plVar12,&fStack_338,&iStack_330,&uStack_408);
-                  fVar25 = (float)(**(code **)(**(longlong **)(lVar8 + 0x60) + 8))
-                                            (*(longlong **)(lVar8 + 0x60),
+                  fVar25 = (float)(**(code **)(**(int64_t **)(lVar8 + 0x60) + 8))
+                                            (*(int64_t **)(lVar8 + 0x60),
                                              (float)iStack_32c + uStack_408._4_4_,
                                              (float)iStack_330 + (float)uStack_408);
                 }
                 else {
-                  fVar25 = (float)(**(code **)(*(longlong *)plVar12[10] + 8))
-                                            ((longlong *)plVar12[10],
+                  fVar25 = (float)(**(code **)(*(int64_t *)plVar12[10] + 8))
+                                            ((int64_t *)plVar12[10],
                                              (1.0 / *(float *)(plVar12 + 0xb)) * fStack_334 *
                                              (float)(int)plVar12[0xc],
                                              fStack_338 * (1.0 / *(float *)(plVar12 + 0xb)) *
                                              (float)(int)plVar12[0xc]);
-                  fVar25 = fVar25 + *(float *)((longlong)plVar12 + 0x5c);
+                  fVar25 = fVar25 + *(float *)((int64_t)plVar12 + 0x5c);
                 }
                 fStack_328 = (pfVar21[-5] + 0.5) * fVar26;
                 fStack_324 = (pfVar21[-4] + 0.5) * fVar26;
@@ -794,7 +794,7 @@ LAB_18035f156:
                                                  CONCAT44(fStack_324,fStack_328),1);
                 uStack_3e8 = (void **)
                              CONCAT44((pfVar14[1] + pfVar14[1]) - 1.0,(*pfVar14 + *pfVar14) - 1.0);
-                uStack_3e0 = (longlong **)CONCAT44(0x7f7fffff,(pfVar14[2] + pfVar14[2]) - 1.0);
+                uStack_3e0 = (int64_t **)CONCAT44(0x7f7fffff,(pfVar14[2] + pfVar14[2]) - 1.0);
                 fStack_320 = (pfVar21[-3] + 0.5) * fVar26;
                 fStack_31c = (pfVar21[-2] + 0.5) * fVar26;
                 pfVar14 = (float *)FUN_1802a11e0(&puStack_148,auStack_200,
@@ -815,7 +815,7 @@ LAB_18035f156:
                 if (fVar24 < fStack_354) {
                   uVar5 = 0xffffff;
                 }
-                plStack_3b8 = (longlong *)CONCAT44(plStack_3b8._4_4_,uVar5);
+                plStack_3b8 = (int64_t *)CONCAT44(plStack_3b8._4_4_,uVar5);
                 uStack_350 = 0xffffffff;
                 if (fVar27 < fStack_354) {
                   uStack_350 = 0xffffff;
@@ -824,7 +824,7 @@ LAB_18035f156:
                 if (fVar25 < fStack_354) {
                   afStack_418[0] = 2.3509886e-38;
                 }
-                uStack_410 = (longlong **)CONCAT44(pfVar21[-4] * fVar26,pfVar21[-5] * fVar26);
+                uStack_410 = (int64_t **)CONCAT44(pfVar21[-4] * fVar26,pfVar21[-5] * fVar26);
                 uStack_398 = CONCAT44(pfVar21[-2] * fVar26,pfVar21[-3] * fVar26);
                 fStack_30c = *pfVar21 * fVar26;
                 fStack_310 = pfVar21[-1] * fVar26;
@@ -877,12 +877,12 @@ LAB_18035f156:
         if ((void *)plStack_390[3] != (void *)0x0) {
           puStack_428 = (void *)plStack_390[3];
         }
-        ppplStack_430 = (longlong ***)((ulonglong)ppplStack_430 & 0xffffffff00000000);
+        ppplStack_430 = (int64_t ***)((uint64_t)ppplStack_430 & 0xffffffff00000000);
         pfStack_438 = (float *)&unknown_var_5472_ptr;
         FUN_1800623b0(system_message_context,0,0x80000000000,3);
       }
       cStack_360 = '\x01';
-      if (pplStack_388 != (longlong **)0x0) {
+      if (pplStack_388 != (int64_t **)0x0) {
         if (cStack_35e != '\0') {
           FUN_180075b70(plStack_390);
         }
@@ -895,34 +895,34 @@ LAB_18035f156:
         }
         pplVar18 = pplStack_388;
         pplStack_400 = pplStack_388;
-        pplStack_388 = (longlong **)0x0;
-        if (pplVar18 != (longlong **)0x0) {
+        pplStack_388 = (int64_t **)0x0;
+        if (pplVar18 != (int64_t **)0x0) {
           (*(code *)(*pplVar18)[7])();
         }
       }
-      pplStack_400 = (longlong **)&uStack_410;
-      uStack_410 = (longlong **)plVar13;
+      pplStack_400 = (int64_t **)&uStack_410;
+      uStack_410 = (int64_t **)plVar13;
       (**(code **)(*plVar13 + 0x28))(plVar13);
       FUN_180275cf0(plVar12,0,&uStack_410,1);
       if (*(code **)(*plVar12 + 0x160) == (code *)&unknown_var_6368_ptr) {
-        FUN_180276f30(plVar12,(longlong)plVar12 + 0x214,0);
+        FUN_180276f30(plVar12,(int64_t)plVar12 + 0x214,0);
       }
       else {
         (**(code **)(*plVar12 + 0x160))(plVar12);
       }
       FUN_18007c860(plVar13,1);
-      if (plStack_390 != (longlong *)0x0) {
+      if (plStack_390 != (int64_t *)0x0) {
         FUN_18022f390(&plStack_390);
       }
       pplStack_400 = &plStack_380;
       FUN_18007f6a0(&plStack_380);
-      if (plStack_368 != (longlong *)0x0) {
+      if (plStack_368 != (int64_t *)0x0) {
         (**(code **)(*plStack_368 + 0x38))();
       }
-      if (pplStack_388 != (longlong **)0x0) {
+      if (pplStack_388 != (int64_t **)0x0) {
         (*(code *)(*pplStack_388)[7])();
       }
-      if (plStack_390 != (longlong *)0x0) {
+      if (plStack_390 != (int64_t *)0x0) {
         (**(code **)(*plStack_390 + 0x38))();
       }
       (**(code **)(*plVar13 + 0x38))(plVar13);
@@ -942,12 +942,12 @@ LAB_18035f156:
   // 按照正确的顺序释放渲染资源，确保系统的稳定性
   
   // 释放片段渲染管线资源
-  if (plStack_3f8 != (longlong *)0x0) {
+  if (plStack_3f8 != (int64_t *)0x0) {
     (**(code **)(*plStack_3f8 + 0x38))();                 // 调用片段管线的清理函数
   }
   
   // 释放顶点渲染管线资源
-  if (plStack_3b0 != (longlong *)0x0) {
+  if (plStack_3b0 != (int64_t *)0x0) {
     (**(code **)(*plStack_3b0 + 0x38))();                 // 调用顶点管线的清理函数
   }
   
@@ -980,7 +980,7 @@ LAB_18035f156:
   // 使用内存保护密钥进行最终验证，确保内存访问的安全性
   // 这是一个反调试和内存保护机制，防止非法访问和修改
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_d8 ^ (ulonglong)auStack_458);      // 内存保护验证函数
+  FUN_1808fc050(uStack_d8 ^ (uint64_t)auStack_458);      // 内存保护验证函数
 }
 
 

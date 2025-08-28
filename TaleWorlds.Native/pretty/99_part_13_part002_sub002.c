@@ -7,24 +7,24 @@
 void FUN_1808a736f(void)
 
 {
-  longlong *unaff_RBX;
+  int64_t *unaff_RBX;
   
   FUN_1808b0fb0(unaff_RBX + 3,0);
-  *(longlong *)unaff_RBX[1] = *unaff_RBX;
-  *(longlong *)(*unaff_RBX + 8) = unaff_RBX[1];
-  unaff_RBX[1] = (longlong)unaff_RBX;
-  *unaff_RBX = (longlong)unaff_RBX;
-  *(longlong **)unaff_RBX[1] = unaff_RBX;
-  *(longlong *)(*unaff_RBX + 8) = unaff_RBX[1];
-  unaff_RBX[1] = (longlong)unaff_RBX;
-  *unaff_RBX = (longlong)unaff_RBX;
+  *(int64_t *)unaff_RBX[1] = *unaff_RBX;
+  *(int64_t *)(*unaff_RBX + 8) = unaff_RBX[1];
+  unaff_RBX[1] = (int64_t)unaff_RBX;
+  *unaff_RBX = (int64_t)unaff_RBX;
+  *(int64_t **)unaff_RBX[1] = unaff_RBX;
+  *(int64_t *)(*unaff_RBX + 8) = unaff_RBX[1];
+  unaff_RBX[1] = (int64_t)unaff_RBX;
+  *unaff_RBX = (int64_t)unaff_RBX;
                     // WARNING: Subroutine does not return
   FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0));
 }
 
 
 
-uint64_t FUN_1808a7460(longlong *param_1,uint64_t *param_2,uint param_3)
+uint64_t FUN_1808a7460(int64_t *param_1,uint64_t *param_2,uint param_3)
 
 {
   uint64_t *puVar1;
@@ -101,7 +101,7 @@ uint64_t FUN_1808a74e4(void)
   uint64_t *puVar1;
   uint64_t uVar2;
   uint unaff_EBX;
-  longlong *unaff_RSI;
+  int64_t *unaff_RSI;
   uint64_t *unaff_R14;
   int unaff_R15D;
   uint uStack0000000000000050;

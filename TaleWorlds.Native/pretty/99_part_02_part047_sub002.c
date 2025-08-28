@@ -71,15 +71,15 @@
  * - 防止数组越界访问
  * - 处理浮点数精度问题
  */
-void CoordinateSpaceCalculator(longlong *param_1, float *param_2, float *param_3, int32_t param_4)
+void CoordinateSpaceCalculator(int64_t *param_1, float *param_2, float *param_3, int32_t param_4)
 {
     // 变量声明和初始化
-    longlong lVar1;              // 通用长整型变量
+    int64_t lVar1;              // 通用长整型变量
     int iVar2;                   // 通用整型变量
-    longlong *plVar3;            // 长整型指针变量
-    longlong lVar4;              // 通用长整型变量
+    int64_t *plVar3;            // 长整型指针变量
+    int64_t lVar4;              // 通用长整型变量
     int iVar5;                   // Y坐标索引变量
-    ulonglong uVar6;             // 无符号长整型变量
+    uint64_t uVar6;             // 无符号长整型变量
     int iVar7;                   // X坐标索引变量
     int32_t *puVar8;          // 4字节指针变量
     int32_t *puVar9;          // 4字节指针变量
@@ -103,12 +103,12 @@ void CoordinateSpaceCalculator(longlong *param_1, float *param_2, float *param_3
     }
     
     // 获取Y方向的最大尺寸
-    iVar2 = *(int *)((longlong)param_1 + 0x24);
+    iVar2 = *(int *)((int64_t)param_1 + 0x24);
     
     // 计算第一个坐标点的Y索引
     // 公式: (输入Y坐标 - 基准Y坐标 - 精度阈值) / Y方向缩放因子
-    iVar5 = (int)(((param_2[1] - *(float *)((longlong)param_1 + 0xc)) - MATH_PRECISION_EPSILON) /
-                 *(float *)((longlong)param_1 + 0x1c));
+    iVar5 = (int)(((param_2[1] - *(float *)((int64_t)param_1 + 0xc)) - MATH_PRECISION_EPSILON) /
+                 *(float *)((int64_t)param_1 + 0x1c));
     
     // 边界检查：确保Y索引在有效范围内
     if (iVar5 < 0) {
@@ -130,8 +130,8 @@ void CoordinateSpaceCalculator(longlong *param_1, float *param_2, float *param_3
     }
     
     // 计算第二个坐标点的Y索引
-    iVar12 = (int)(((param_3[1] - *(float *)((longlong)param_1 + 0xc)) - MATH_PRECISION_EPSILON) /
-                 *(float *)((longlong)param_1 + 0x1c));
+    iVar12 = (int)(((param_3[1] - *(float *)((int64_t)param_1 + 0xc)) - MATH_PRECISION_EPSILON) /
+                 *(float *)((int64_t)param_1 + 0x1c));
     
     // 边界检查：确保第二个坐标点的Y索引在有效范围内
     if (iVar12 < 0) {
@@ -153,13 +153,13 @@ void CoordinateSpaceCalculator(longlong *param_1, float *param_2, float *param_3
         for (; iVar2 <= iVar12; iVar2 = iVar2 + 1) {
             // 计算当前点的线性索引
             // 公式: X索引 * Y方向尺寸 + Y索引
-            lVar4 = (longlong)(iVar11 * *(int *)((longlong)param_1 + 0x24) + iVar2);
+            lVar4 = (int64_t)(iVar11 * *(int *)((int64_t)param_1 + 0x24) + iVar2);
             
             // 计算当前点在数据结构中的基地址
             lVar1 = *param_1 + lVar4 * 0x28;  // 0x28是每个元素的大小
             
             // 调用初始化函数处理当前点
-            FUN_1801bb0b0(lVar1 + 8, (longlong)*(int *)(*param_1 + lVar4 * 0x28));
+            FUN_1801bb0b0(lVar1 + 8, (int64_t)*(int *)(*param_1 + lVar4 * 0x28));
             
             // 获取当前点的数据指针
             puVar9 = *(int32_t **)(lVar1 + 0x10);
@@ -175,17 +175,17 @@ void CoordinateSpaceCalculator(longlong *param_1, float *param_2, float *param_3
                 puVar8 = *(int32_t **)(lVar1 + 0x8);         // 获取缓冲区起始地址
                 
                 // 计算当前缓冲区使用量
-                lVar4 = (longlong)puVar9 - (longlong)puVar8 >> 2;  // 转换为元素数量
+                lVar4 = (int64_t)puVar9 - (int64_t)puVar8 >> 2;  // 转换为元素数量
                 
                 if (lVar4 == 0) {
                     // 缓冲区为空，分配最小空间
                     lVar4 = 1;
 LAB_1801b9874:
                     // 获取内存管理器指针
-                    plVar3 = *(longlong **)(lVar1 + 0x20);
+                    plVar3 = *(int64_t **)(lVar1 + 0x20);
                     
                     // 计算新的内存分配大小（16字节对齐）
-                    uVar6 = (longlong)((int)plVar3[2] + 0xf) & 0xfffffffffffffff0;
+                    uVar6 = (int64_t)((int)plVar3[2] + 0xf) & 0xfffffffffffffff0;
                     puVar10 = (int32_t *)(*plVar3 + uVar6);
                     
                     // 更新内存管理器中的分配大小
@@ -205,7 +205,7 @@ LAB_1801b9874:
                 // 如果原有数据存在，需要复制到新缓冲区
                 if (puVar8 != puVar9) {
                     // WARNING: Subroutine does not return
-                    memmove(puVar10, puVar8, (longlong)puVar9 - (longlong)puVar8);
+                    memmove(puVar10, puVar8, (int64_t)puVar9 - (int64_t)puVar8);
                 }
                 
                 // 在新缓冲区中存储数据

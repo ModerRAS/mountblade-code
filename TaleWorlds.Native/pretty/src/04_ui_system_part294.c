@@ -377,7 +377,7 @@ float UIOptimalValueCalculator(uint32_t* base_value, uint32_t target_value)
     int optimized_value;
     int current_product;
     int next_product;
-    ulonglong iteration_count;
+    uint64_t iteration_count;
     int adjustment_factor;
     
     // 提取参数
@@ -404,7 +404,7 @@ float UIOptimalValueCalculator(uint32_t* base_value, uint32_t target_value)
         next_product = 1;
         
         if (0 < (int)base) {
-            iteration_count = (ulonglong)base;
+            iteration_count = (uint64_t)base;
             do {
                 current_product = current_product * optimized_value;
                 next_product = next_product * (optimized_value + 1);
@@ -442,24 +442,24 @@ float UIOptimalValueCalculator(uint32_t* base_value, uint32_t target_value)
  * @param data_size 数据大小
  * @param output_flags 输出标志
  * @param control_indices 控件索引数组
- * @return longlong 处理结果句柄
+ * @return int64_t 处理结果句柄
  */
-longlong UIAdvancedDataProcessor(UI_SYSTEM_CONTEXT* context, uint32_t* input_data, int data_size, int* output_flags)
+int64_t UIAdvancedDataProcessor(UI_SYSTEM_CONTEXT* context, uint32_t* input_data, int data_size, int* output_flags)
 {
     uint32_t width;
     int height;
     float scale_x;
     float scale_y;
-    longlong result_handle;
+    int64_t result_handle;
     uint32_t temp_width;
-    ulonglong width_iterator;
-    ulonglong temp_iterator;
+    uint64_t width_iterator;
+    uint64_t temp_iterator;
     int temp_height;
     int loop_counter;
     int inner_counter;
     int optimization_result;
     int* control_index_ptr;
-    longlong temp_handle;
+    int64_t temp_handle;
     float calculated_value;
     double transform_x;
     double transform_y;
@@ -483,7 +483,7 @@ longlong UIAdvancedDataProcessor(UI_SYSTEM_CONTEXT* context, uint32_t* input_dat
         // 处理一维数据
         if (input_data[4] == 1) {
             width = *input_data;
-            temp_iterator = (ulonglong)width;
+            temp_iterator = (uint64_t)width;
             temp_width = input_data[1];
             
             // 计算优化参数
@@ -521,20 +521,20 @@ longlong UIAdvancedDataProcessor(UI_SYSTEM_CONTEXT* context, uint32_t* input_dat
                 temp_handle = 0;
                 control_index_ptr = output_flags;
                 do {
-                    if ((output_flags == (int *)0x0) || (*(int *)(temp_handle + *(longlong *)(input_data + 2)) != 0)) {
+                    if ((output_flags == (int *)0x0) || (*(int *)(temp_handle + *(int64_t *)(input_data + 2)) != 0)) {
                         inner_counter = 0;
                         calculated_value = 0.0f;
                         height = 1;
                         if (0 < (int)temp_iterator) {
                             do {
-                                calculated_value = ABS((float)*(int *)(*(longlong *)(input_data + 10) +
-                                                            (longlong)
-                                                            (int)((longlong)
-                                                                  ((ulonglong)
-                                                                   (uint)((int)((longlong)loop_counter / (longlong)height)
+                                calculated_value = ABS((float)*(int *)(*(int64_t *)(input_data + 10) +
+                                                            (int64_t)
+                                                            (int)((int64_t)
+                                                                  ((uint64_t)
+                                                                   (uint)((int)((int64_t)loop_counter / (int64_t)height)
                                                                          >> 0x1f) << 0x20 |
-                                                                  (longlong)loop_counter / (longlong)height & 0xffffffffU)
-                                                                 % (longlong)optimization_result) * 4)) * (float)transform_y +
+                                                                  (int64_t)loop_counter / (int64_t)height & 0xffffffffU)
+                                                                 % (int64_t)optimization_result) * 4)) * (float)transform_y +
                                              (float)transform_x + calculated_value;
                                 if (input_data[8] != 0) {
                                     calculated_value = calculated_value;
@@ -546,8 +546,8 @@ longlong UIAdvancedDataProcessor(UI_SYSTEM_CONTEXT* context, uint32_t* input_dat
                                 height = inner_counter + (int)temp_iterator * height;
                                 height = height * optimization_result;
                                 inner_counter = inner_counter + 1;
-                                *(float *)(result_handle + (longlong)height * 4) = calculated_value;
-                                temp_iterator = (ulonglong)*input_data;
+                                *(float *)(result_handle + (int64_t)height * 4) = calculated_value;
+                                temp_iterator = (uint64_t)*input_data;
                             } while (inner_counter < (int)*input_data);
                         }
                         loop_counter = loop_counter + 1;
@@ -563,14 +563,14 @@ longlong UIAdvancedDataProcessor(UI_SYSTEM_CONTEXT* context, uint32_t* input_dat
             temp_handle = 0;
             control_index_ptr = output_flags;
             do {
-                if ((output_flags == (int *)0x0) || (*(int *)(temp_handle + *(longlong *)(input_data + 2)) != 0)) {
+                if ((output_flags == (int *)0x0) || (*(int *)(temp_handle + *(int64_t *)(input_data + 2)) != 0)) {
                     width = *input_data;
                     loop_counter = 0;
                     calculated_value = 0.0f;
                     if (0 < (int)width) {
                         do {
-                            calculated_value = ABS((float)*(int *)(*(longlong *)(input_data + 10) +
-                                                        (longlong)(int)(width * height + loop_counter) * 4)) *
+                            calculated_value = ABS((float)*(int *)(*(int64_t *)(input_data + 10) +
+                                                        (int64_t)(int)(width * height + loop_counter) * 4)) *
                                          (float)transform_y + (float)transform_x + calculated_value;
                             if (input_data[8] != 0) {
                                 calculated_value = calculated_value;
@@ -581,7 +581,7 @@ longlong UIAdvancedDataProcessor(UI_SYSTEM_CONTEXT* context, uint32_t* input_dat
                             }
                             height = height * width + loop_counter;
                             loop_counter = loop_counter + 1;
-                            *(float *)(result_handle + (longlong)height * 4) = calculated_value;
+                            *(float *)(result_handle + (int64_t)height * 4) = calculated_value;
                             width = *input_data;
                         } while (loop_counter < (int)width);
                     }
@@ -621,15 +621,15 @@ void UIBatchDataProcessor(UI_SYSTEM_CONTEXT* context, uint32_t* input_data, int 
     int height;
     int loop_counter;
     int inner_counter;
-    ulonglong width_iterator;
-    ulonglong unaff_RBX;
+    uint64_t width_iterator;
+    uint64_t unaff_RBX;
     int unaff_EBP;
-    longlong unaff_RSI;
+    int64_t unaff_RSI;
     uint32_t* unaff_RDI;
     int temp_counter;
     int* control_ptr;
     int* unaff_R14;
-    longlong temp_handle;
+    int64_t temp_handle;
     float calculated_value;
     float scale_x;
     float scale_y;
@@ -674,20 +674,20 @@ void UIBatchDataProcessor(UI_SYSTEM_CONTEXT* context, uint32_t* input_data, int 
         temp_handle = 0;
         control_ptr = unaff_R14;
         do {
-            if ((unaff_R14 == (int *)0x0) || (*(int *)(temp_handle + *(longlong *)(unaff_RDI + 2)) != 0)) {
+            if ((unaff_R14 == (int *)0x0) || (*(int *)(temp_handle + *(int64_t *)(unaff_RDI + 2)) != 0)) {
                 loop_counter = 0;
                 calculated_value = 0.0f;
                 temp_counter = 1;
                 if (0 < (int)unaff_RBX) {
                     do {
-                        calculated_value = ABS((float)*(int *)(*(longlong *)(unaff_RDI + 10) +
-                                            (longlong)
-                                            (int)((longlong)
-                                                  ((ulonglong)
-                                                   (uint)((int)((longlong)inner_counter / (longlong)temp_counter)
+                        calculated_value = ABS((float)*(int *)(*(int64_t *)(unaff_RDI + 10) +
+                                            (int64_t)
+                                            (int)((int64_t)
+                                                  ((uint64_t)
+                                                   (uint)((int)((int64_t)inner_counter / (int64_t)temp_counter)
                                                          >> 0x1f) << 0x20 |
-                                                  (longlong)inner_counter / (longlong)temp_counter & 0xffffffffU)
-                                                 % (longlong)height) * 4)) * scale_x + scale_y
+                                                  (int64_t)inner_counter / (int64_t)temp_counter & 0xffffffffU)
+                                                 % (int64_t)height) * 4)) * scale_x + scale_y
                                          + calculated_value;
                         if (unaff_RDI[8] != 0) {
                             calculated_value = calculated_value;
@@ -699,8 +699,8 @@ void UIBatchDataProcessor(UI_SYSTEM_CONTEXT* context, uint32_t* input_data, int 
                         height = loop_counter + (int)unaff_RBX * height;
                         temp_counter = temp_counter * height;
                         loop_counter = loop_counter + 1;
-                        *(float *)(unaff_RSI + (longlong)height * 4) = calculated_value;
-                        unaff_RBX = (ulonglong)*unaff_RDI;
+                        *(float *)(unaff_RSI + (int64_t)height * 4) = calculated_value;
+                        unaff_RBX = (uint64_t)*unaff_RDI;
                     } while (loop_counter < (int)*unaff_RDI);
                 }
                 unaff_EBP = unaff_EBP + 1;
@@ -746,13 +746,13 @@ void UISystemEmptyFunction(void)
  */
 void UIMemoryInitializer(UI_SYSTEM_CONTEXT* context, uint32_t memory_size, int init_flag, int security_param)
 {
-    longlong memory_handle;
+    int64_t memory_handle;
     uint8_t stack_buffer[32];
     uint8_t security_buffer[144];
-    ulonglong security_key;
+    uint64_t security_key;
     
     // 安全密钥生成
-    security_key = GET_SECURITY_COOKIE() ^ (ulonglong)stack_buffer;
+    security_key = GET_SECURITY_COOKIE() ^ (uint64_t)stack_buffer;
     
     // 参数验证和调整
     if (security_param != 0) {
@@ -767,7 +767,7 @@ void UIMemoryInitializer(UI_SYSTEM_CONTEXT* context, uint32_t memory_size, int i
     }
     
     // 调用系统初始化函数
-    UISystem_SecurityValidate(security_key ^ (ulonglong)stack_buffer);
+    UISystem_SecurityValidate(security_key ^ (uint64_t)stack_buffer);
 }
 
 /**
@@ -804,10 +804,10 @@ void UIMemoryCleaner(UI_SYSTEM_CONTEXT* context, uint32_t memory_ptr)
  */
 void UIResourceReleaser(void)
 {
-    ulonglong resource_handle;
+    uint64_t resource_handle;
     
     // 释放系统资源
-    UISystem_SecurityValidate(resource_handle ^ (ulonglong)&stack0x00000000);
+    UISystem_SecurityValidate(resource_handle ^ (uint64_t)&stack0x00000000);
 }
 
 /**
@@ -839,7 +839,7 @@ void UIErrorHandler(void)
  * @param control_handle 控件句柄
  * @return uint32_t 控件值
  */
-uint32_t UIControlValueGetter(longlong control_handle)
+uint32_t UIControlValueGetter(int64_t control_handle)
 {
     int index;
     
@@ -847,7 +847,7 @@ uint32_t UIControlValueGetter(longlong control_handle)
     if (0 < *(int *)(control_handle + 8)) {
         index = UISystem_FindIndex();
         if (-1 < index) {
-            return *(uint32_t *)(*(longlong *)(control_handle + 0x28) + (longlong)index * 4);
+            return *(uint32_t *)(*(int64_t *)(control_handle + 0x28) + (int64_t)index * 4);
         }
     }
     
@@ -869,28 +869,28 @@ uint32_t UIControlValueGetter(longlong control_handle)
  * @param batch_size 批处理大小
  * @return uint32_t 变换结果
  */
-uint32_t UIAdvancedDataTransformer(int* control_indices, longlong output_buffer, uint32_t transform_handle, uint32_t batch_size)
+uint32_t UIAdvancedDataTransformer(int* control_indices, int64_t output_buffer, uint32_t transform_handle, uint32_t batch_size)
 {
     int control_count;
     float transform_value;
-    longlong data_handle;
+    int64_t data_handle;
     int temp_index;
     uint32_t width;
     int height;
-    ulonglong width_iterator;
-    ulonglong temp_iterator;
+    uint64_t width_iterator;
+    uint64_t temp_iterator;
     int temp_height;
     int loop_counter;
     int inner_counter;
     int optimization_result;
     float* data_ptr;
-    ulonglong temp_width;
-    ulonglong temp_width2;
+    uint64_t temp_width;
+    uint64_t temp_width2;
     int temp_counter;
-    ulonglong temp_iterator2;
-    longlong temp_handle;
+    uint64_t temp_iterator2;
+    int64_t temp_handle;
     
-    width_iterator = (ulonglong)(int)batch_size;
+    width_iterator = (uint64_t)(int)batch_size;
     if (0 < control_indices[2]) {
         
         // 处理多维数据
@@ -934,12 +934,12 @@ uint32_t UIAdvancedDataTransformer(int* control_indices, longlong output_buffer,
                                     temp_height = temp_height >> 1;
                                     control_count = temp_height + width;
                                     height = temp_height;
-                                    if (width < *(uint32_t *)(*(longlong *)(control_indices + 8) + (longlong)control_count * 4)) {
+                                    if (width < *(uint32_t *)(*(int64_t *)(control_indices + 8) + (int64_t)control_count * 4)) {
                                         height = inner_counter;
                                     }
                                     width = width + height;
                                     height = inner_counter;
-                                    if (width < *(uint32_t *)(*(longlong *)(control_indices + 8) + (longlong)control_count * 4)) {
+                                    if (width < *(uint32_t *)(*(int64_t *)(control_indices + 8) + (int64_t)control_count * 4)) {
                                         height = temp_height;
                                     }
                                     temp_index = temp_index - height;
@@ -947,23 +947,23 @@ uint32_t UIAdvancedDataTransformer(int* control_indices, longlong output_buffer,
                                 } while (1 < temp_height);
                             }
                             
-                            temp_index = (int)*(char *)(*(longlong *)(control_indices + 0xc) + (longlong)(int)width);
+                            temp_index = (int)*(char *)(*(int64_t *)(control_indices + 0xc) + (int64_t)(int)width);
                             if (height < temp_index) {
                                 // 错误处理
                                 UISystem_HandleError(transform_handle, height);
                                 return 0xffffffff;
                             }
-                            width_iterator = (ulonglong)batch_size;
+                            width_iterator = (uint64_t)batch_size;
                         } while (false);
                         
                         // 数据处理
-                        width = *(uint32_t *)(*(longlong *)(control_indices + 0xe) + (longlong)temp_index * 4);
+                        width = *(uint32_t *)(*(int64_t *)(control_indices + 0xe) + (int64_t)temp_index * 4);
                         if ((int)width < 0) {
                             temp_index = control_indices[2] - (width & 0x7fff);
                             width = (int)width >> 0xf & 0x7fff;
                         } else {
                             width = width - 1;
-                            temp_index = (int)*(char *)(*(longlong *)(control_indices + 0xc) + (longlong)(int)width);
+                            temp_index = (int)*(char *)(*(int64_t *)(control_indices + 0xc) + (int64_t)(int)width);
                         }
                         
                         // 数据变换处理
@@ -972,8 +972,8 @@ uint32_t UIAdvancedDataTransformer(int* control_indices, longlong output_buffer,
                             return 0xffffffff;
                         }
                         
-                        data_handle = *(longlong *)(control_indices + 6);
-                        temp_handle = (longlong)(int)(*control_indices * width);
+                        data_handle = *(int64_t *)(control_indices + 6);
+                        temp_handle = (int64_t)(int)(*control_indices * width);
                         temp_width2 = temp_width;
                         temp_width = temp_width;
                         
@@ -981,57 +981,57 @@ uint32_t UIAdvancedDataTransformer(int* control_indices, longlong output_buffer,
                         switch(*control_indices) {
                         case 8:
                             inner_counter = 1;
-                            temp_handle = (longlong)temp_counter;
+                            temp_handle = (int64_t)temp_counter;
                             temp_width2 = 1;
                             temp_counter = temp_counter + 1;
                             *(float *)(output_buffer + temp_handle * 4) =
                                  *(float *)(data_handle + temp_handle * 4) + *(float *)(output_buffer + temp_handle * 4);
                         case 7:
-                            temp_handle = (longlong)temp_counter;
+                            temp_handle = (int64_t)temp_counter;
                             inner_counter = inner_counter + 1;
                             temp_width = temp_width2 + 1;
                             temp_counter = temp_counter + 1;
                             *(float *)(output_buffer + temp_handle * 4) =
                                  *(float *)(data_handle + (temp_width2 + temp_handle) * 4) + *(float *)(output_buffer + temp_handle * 4);
                         case 6:
-                            temp_handle = (longlong)temp_counter;
+                            temp_handle = (int64_t)temp_counter;
                             inner_counter = inner_counter + 1;
                             temp_width2 = temp_width + 1;
                             temp_counter = temp_counter + 1;
                             *(float *)(output_buffer + temp_handle * 4) =
                                  *(float *)(data_handle + (temp_width + temp_handle) * 4) + *(float *)(output_buffer + temp_handle * 4);
                         case 5:
-                            temp_handle = (longlong)temp_counter;
+                            temp_handle = (int64_t)temp_counter;
                             inner_counter = inner_counter + 1;
                             temp_width = temp_width2 + 1;
                             temp_counter = temp_counter + 1;
                             *(float *)(output_buffer + temp_handle * 4) =
                                  *(float *)(data_handle + (temp_width2 + temp_handle) * 4) + *(float *)(output_buffer + temp_handle * 4);
                         case 4:
-                            temp_handle = (longlong)temp_counter;
+                            temp_handle = (int64_t)temp_counter;
                             inner_counter = inner_counter + 1;
                             temp_width2 = temp_width + 1;
                             temp_counter = temp_counter + 1;
                             *(float *)(output_buffer + temp_handle * 4) =
                                  *(float *)(data_handle + (temp_width + temp_handle) * 4) + *(float *)(output_buffer + temp_handle * 4);
                         case 3:
-                            temp_handle = (longlong)temp_counter;
+                            temp_handle = (int64_t)temp_counter;
                             inner_counter = inner_counter + 1;
                             temp_counter = temp_counter + 1;
                             *(float *)(output_buffer + temp_handle * 4) =
                                  *(float *)(data_handle + (temp_width2 + temp_handle) * 4) + *(float *)(output_buffer + temp_handle * 4);
                         case 2:
-                            temp_handle = (longlong)temp_counter;
-                            data_handle = (longlong)inner_counter;
+                            temp_handle = (int64_t)temp_counter;
+                            data_handle = (int64_t)inner_counter;
                             inner_counter = inner_counter + 1;
                             temp_counter = temp_counter + 1;
                             *(float *)(output_buffer + temp_handle * 4) =
                                  *(float *)(data_handle + (data_handle + temp_handle) * 4) + *(float *)(output_buffer + temp_handle * 4);
                         case 1:
-                            temp_iterator2 = (ulonglong)(temp_counter + 1);
-                            *(float *)(output_buffer + (longlong)temp_counter * 4) =
+                            temp_iterator2 = (uint64_t)(temp_counter + 1);
+                            *(float *)(output_buffer + (int64_t)temp_counter * 4) =
                                  *(float *)(data_handle + (inner_counter + temp_handle) * 4) +
-                                 *(float *)(output_buffer + (longlong)temp_counter * 4);
+                                 *(float *)(output_buffer + (int64_t)temp_counter * 4);
                         }
                     } while ((int)temp_iterator2 < (int)width_iterator);
                 }
@@ -1074,12 +1074,12 @@ uint32_t UIAdvancedDataTransformer(int* control_indices, longlong output_buffer,
                                 inner_counter = inner_counter >> 1;
                                 temp_counter = inner_counter + width;
                                 height = inner_counter;
-                                if (width < *(uint32_t *)(*(longlong *)(control_indices + 8) + (longlong)temp_counter * 4)) {
+                                if (width < *(uint32_t *)(*(int64_t *)(control_indices + 8) + (int64_t)temp_counter * 4)) {
                                     height = 0;
                                 }
                                 width = width + height;
                                 height = 0;
-                                if (width < *(uint32_t *)(*(longlong *)(control_indices + 8) + (longlong)temp_counter * 4)) {
+                                if (width < *(uint32_t *)(*(int64_t *)(control_indices + 8) + (int64_t)temp_counter * 4)) {
                                     height = inner_counter;
                                 }
                                 temp_index = temp_index - height;
@@ -1087,7 +1087,7 @@ uint32_t UIAdvancedDataTransformer(int* control_indices, longlong output_buffer,
                             } while (1 < inner_counter);
                         }
                         
-                        temp_index = (int)*(char *)(*(longlong *)(control_indices + 0xc) + (longlong)(int)width);
+                        temp_index = (int)*(char *)(*(int64_t *)(control_indices + 0xc) + (int64_t)(int)width);
                         if (height < temp_index) {
                             // 错误处理
                             UISystem_HandleError(transform_handle, height);
@@ -1096,13 +1096,13 @@ uint32_t UIAdvancedDataTransformer(int* control_indices, longlong output_buffer,
                     } while (false);
                     
                     // 数据处理
-                    width = *(uint32_t *)(*(longlong *)(control_indices + 0xe) + (longlong)temp_index * 4);
+                    width = *(uint32_t *)(*(int64_t *)(control_indices + 0xe) + (int64_t)temp_index * 4);
                     if ((int)width < 0) {
                         temp_index = control_indices[2] - (width & 0x7fff);
                         width = (int)width >> 0xf & 0x7fff;
                     } else {
                         width = width - 1;
-                        temp_index = (int)*(char *)(*(longlong *)(control_indices + 0xc) + (longlong)(int)width);
+                        temp_index = (int)*(char *)(*(int64_t *)(control_indices + 0xc) + (int64_t)(int)width);
                     }
                     
                     // 数据变换处理
@@ -1112,7 +1112,7 @@ uint32_t UIAdvancedDataTransformer(int* control_indices, longlong output_buffer,
                     }
                     
                     // 数据处理
-                    data_ptr = (float *)(*(longlong *)(control_indices + 6) + (longlong)(int)(*control_indices * width) * 4);
+                    data_ptr = (float *)(*(int64_t *)(control_indices + 6) + (int64_t)(int)(*control_indices * width) * 4);
                     temp_width = 0;
                     if (0 < *control_indices) {
                         do {
@@ -1121,11 +1121,11 @@ uint32_t UIAdvancedDataTransformer(int* control_indices, longlong output_buffer,
                             data_ptr = data_ptr + 1;
                             *(float *)(output_buffer + temp_iterator2 * 4) = *(float *)(output_buffer + temp_iterator2 * 4) + transform_value;
                             temp_iterator2 = temp_iterator2 + 1;
-                            temp_width = (ulonglong)width;
+                            temp_width = (uint64_t)width;
                         } while ((int)width < *control_indices);
                     }
                 }
-            } while ((longlong)temp_iterator2 < (longlong)width_iterator);
+            } while ((int64_t)temp_iterator2 < (int64_t)width_iterator);
         }
     }
     

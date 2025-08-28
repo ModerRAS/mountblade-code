@@ -56,11 +56,11 @@ void *free_sync_object(void *sync_obj, unsigned long long flags, void *attr1, vo
 }
 
 // 函数：安全复制字符串数据
-void safe_string_copy(longlong str_obj, void *src, int length)
+void safe_string_copy(int64_t str_obj, void *src, int length)
 {
   if (length + 1 < MAX_PATH_LENGTH) {
     // 安全复制字符串
-    memcpy(*(void **)(str_obj + 8), src, (longlong)length);
+    memcpy(*(void **)(str_obj + 8), src, (int64_t)length);
   }
   **(unsigned char **)(str_obj + 8) = 0;
   *(unsigned int *)(str_obj + 16) = 0;
@@ -77,7 +77,7 @@ void memory_copy_wrapper(void)
 // 函数：重置字符串对象
 void reset_string_object(unsigned char *str_obj)
 {
-  longlong obj_ptr;
+  int64_t obj_ptr;
   
   *str_obj = 0;
   *(unsigned int *)(obj_ptr + 16) = 0;
@@ -98,11 +98,11 @@ void *initialize_string_object(void *str_obj)
 }
 
 // 函数：字符串搜索和替换
-void string_search_replace(longlong str_obj, longlong search_str, longlong replace_str)
+void string_search_replace(int64_t str_obj, int64_t search_str, int64_t replace_str)
 {
-  longlong pos;
-  longlong search_len;
-  longlong replace_len;
+  int64_t pos;
+  int64_t search_len;
+  int64_t replace_len;
   unsigned char stack_buffer[32];
   unsigned long long stack_var;
   void *temp_ptr;
@@ -125,7 +125,7 @@ void string_search_replace(longlong str_obj, longlong search_str, longlong repla
       replace_len = replace_len + 1;
     } while (*(char *)(replace_str + replace_len) != '\0');
     // 复制前缀
-    memcpy(dest_ptr, *(longlong *)(str_obj + 8), pos - *(longlong *)(str_obj + 8));
+    memcpy(dest_ptr, *(int64_t *)(str_obj + 8), pos - *(int64_t *)(str_obj + 8));
   }
   temp_ptr = &global_vtable_18098bcb0;
   // 执行字符串处理
@@ -133,7 +133,7 @@ void string_search_replace(longlong str_obj, longlong search_str, longlong repla
 }
 
 // 函数：带缓冲区的字符串初始化
-void *initialize_string_with_buffer(void *str_obj, longlong src_str, void *attr1, void *attr2)
+void *initialize_string_with_buffer(void *str_obj, int64_t src_str, void *attr1, void *attr2)
 {
   void *string_ptr;
   
@@ -164,9 +164,9 @@ void *free_string_object(void *str_obj, unsigned long long flags, void *attr1, v
 }
 
 // 函数：设置字符串内容
-void set_string_content(longlong str_obj, longlong src_str)
+void set_string_content(int64_t str_obj, int64_t src_str)
 {
-  longlong str_len;
+  int64_t str_len;
   
   if (src_str == 0) {
     *(unsigned int *)(str_obj + 16) = 0;
@@ -191,11 +191,11 @@ void set_string_content(longlong str_obj, longlong src_str)
 }
 
 // 函数：短字符串安全复制
-void short_string_copy(longlong str_obj, void *src, int length)
+void short_string_copy(int64_t str_obj, void *src, int length)
 {
   if (length + 1 < MAX_SHORT_PATH_LENGTH) {
     // 安全复制短字符串
-    memcpy(*(void **)(str_obj + 8), src, (longlong)length);
+    memcpy(*(void **)(str_obj + 8), src, (int64_t)length);
   }
   **(unsigned char **)(str_obj + 8) = 0;
   *(unsigned int *)(str_obj + 16) = 0;
@@ -212,7 +212,7 @@ void short_string_memcpy(void)
 // 函数：重置短字符串对象
 void reset_short_string_object(unsigned char *str_obj)
 {
-  longlong obj_ptr;
+  int64_t obj_ptr;
   
   *str_obj = 0;
   *(unsigned int *)(obj_ptr + 16) = 0;
@@ -233,11 +233,11 @@ void *initialize_short_string_object(void *str_obj)
 }
 
 // 函数：短字符串搜索和替换
-void short_string_search_replace(longlong str_obj, longlong search_str, longlong replace_str)
+void short_string_search_replace(int64_t str_obj, int64_t search_str, int64_t replace_str)
 {
-  longlong pos;
-  longlong search_len;
-  longlong replace_len;
+  int64_t pos;
+  int64_t search_len;
+  int64_t replace_len;
   unsigned char stack_buffer[32];
   unsigned long long stack_var;
   void *temp_ptr;
@@ -260,7 +260,7 @@ void short_string_search_replace(longlong str_obj, longlong search_str, longlong
       replace_len = replace_len + 1;
     } while (*(char *)(replace_str + replace_len) != '\0');
     // 复制前缀
-    memcpy(dest_ptr, *(longlong *)(str_obj + 8), pos - *(longlong *)(str_obj + 8));
+    memcpy(dest_ptr, *(int64_t *)(str_obj + 8), pos - *(int64_t *)(str_obj + 8));
   }
   temp_ptr = &global_vtable_18098bcb0;
   // 执行字符串处理
@@ -268,9 +268,9 @@ void short_string_search_replace(longlong str_obj, longlong search_str, longlong
 }
 
 // 函数：初始化带长度的短字符串
-void *initialize_short_string_with_length(void *str_obj, longlong src_str, void *attr1, void *attr2)
+void *initialize_short_string_with_length(void *str_obj, int64_t src_str, void *attr1, void *attr2)
 {
-  longlong str_len;
+  int64_t str_len;
   
   *(void **)str_obj = &global_vtable_18098bcb0;
   ((void **)str_obj)[1] = 0;
@@ -340,21 +340,21 @@ void cleanup_object_recursive(void *parent_obj, void *child_obj, void *attr1, vo
 }
 
 // 函数：清理对象包装器1
-void cleanup_object_wrapper1(longlong obj_ptr, void *attr1, void *attr2, void *attr3)
+void cleanup_object_wrapper1(int64_t obj_ptr, void *attr1, void *attr2, void *attr3)
 {
   cleanup_object_recursive(obj_ptr, *(void **)(obj_ptr + 16), attr2, attr3, MUTEX_TIMEOUT_INFINITE);
   return;
 }
 
 // 函数：清理对象包装器2
-void cleanup_object_wrapper2(longlong obj_ptr, void *attr1, void *attr2, void *attr3)
+void cleanup_object_wrapper2(int64_t obj_ptr, void *attr1, void *attr2, void *attr3)
 {
   cleanup_object_recursive(obj_ptr, *(void **)(obj_ptr + 16), attr2, attr3, MUTEX_TIMEOUT_INFINITE);
   return;
 }
 
 // 函数：清理对象包装器3
-void cleanup_object_wrapper3(longlong obj_ptr, void *attr1, void *attr2, void *attr3)
+void cleanup_object_wrapper3(int64_t obj_ptr, void *attr1, void *attr2, void *attr3)
 {
   cleanup_object_recursive(obj_ptr, *(void **)(obj_ptr + 16), attr2, attr3, MUTEX_TIMEOUT_INFINITE);
   return;
@@ -375,9 +375,9 @@ void cleanup_simple_object(void *obj_ptr)
 }
 
 // 函数：设置长字符串内容
-void set_long_string_content(longlong str_obj, longlong src_str)
+void set_long_string_content(int64_t str_obj, int64_t src_str)
 {
-  longlong str_len;
+  int64_t str_len;
   
   if (src_str == 0) {
     *(unsigned int *)(str_obj + 16) = 0;
@@ -409,7 +409,7 @@ void destroy_mutex_wrapper(void)
 }
 
 // 函数：线程安全插入元素
-void *threadsafe_insert_element(longlong container, unsigned int element, void *attr1, void *attr2)
+void *threadsafe_insert_element(int64_t container, unsigned int element, void *attr1, void *attr2)
 {
   int lock_result;
   void *element_ptr;
@@ -431,7 +431,7 @@ void *threadsafe_insert_element(longlong container, unsigned int element, void *
     goto unlock_and_return;
   }
   new_container_ptr = *(void **)(container + 8);
-  capacity = (longlong)current_ptr - (longlong)new_container_ptr >> 3;
+  capacity = (int64_t)current_ptr - (int64_t)new_container_ptr >> 3;
   if (capacity == 0) {
     capacity = 1;
 resize_container:
@@ -447,10 +447,10 @@ resize_container:
   }
   if (new_container_ptr != current_ptr) {
     // 移动现有元素
-    memmove(new_element_ptr, new_container_ptr, (longlong)current_ptr - (longlong)new_container_ptr);
+    memmove(new_element_ptr, new_container_ptr, (int64_t)current_ptr - (int64_t)new_container_ptr);
   }
   *(void **)new_element_ptr = element_ptr;
-  if (*(longlong *)(container + 8) != 0) {
+  if (*(int64_t *)(container + 8) != 0) {
     // 释放旧容器
     FUN_18064e900();
   }
@@ -497,24 +497,24 @@ void initialize_resource_manager(void *manager)
 }
 
 // 函数：分配资源
-void *allocate_resource(longlong resource_ptr, void *resource)
+void *allocate_resource(int64_t resource_ptr, void *resource)
 {
   void *allocated_resource;
-  longlong resource_size;
+  int64_t resource_size;
   
   allocated_resource = FUN_18062b1e0(system_memory_pool_ptr, resource, 16, 6);
   resource_size = FUN_18064e990(allocated_resource);
-  *(longlong *)(resource_ptr + 8) = *(longlong *)(resource_ptr + 8) + resource_size;
+  *(int64_t *)(resource_ptr + 8) = *(int64_t *)(resource_ptr + 8) + resource_size;
   return allocated_resource;
 }
 
 // 函数：释放资源
-void release_resource(longlong resource_ptr, void *resource)
+void release_resource(int64_t resource_ptr, void *resource)
 {
-  longlong resource_size;
+  int64_t resource_size;
   
   resource_size = FUN_18064e990(resource);
-  *(longlong *)(resource_ptr + 8) = *(longlong *)(resource_ptr + 8) - resource_size;
+  *(int64_t *)(resource_ptr + 8) = *(int64_t *)(resource_ptr + 8) - resource_size;
   if (resource != 0) {
     // 释放资源
     FUN_18064e900(resource);
@@ -542,7 +542,7 @@ bool check_engine_configuration(void)
   int buffer_size;
   bool has_config;
   void *file_handle;
-  longlong file_size;
+  int64_t file_size;
   void *file_path;
   unsigned int path_length;
   
@@ -676,8 +676,8 @@ void cleanup_path_string(void)
   void **path_ptr;
   char *path_str;
   void *cleaned_path;
-  longlong path_len;
-  longlong clean_len;
+  int64_t path_len;
+  int64_t clean_len;
   void *temp_ptr;
   int char_count;
   unsigned int path_length;
@@ -694,7 +694,7 @@ void cleanup_path_string(void)
       path_char = file_path[clean_len];
       if (((byte)(path_char + 0x9fU) < 0x1a) ||
          (((byte)(path_char - 0x30U) < 0x30 &&
-          ((0x87fffffe03ffU >> ((longlong)(char)(path_char - 0x30U) & 0x3fU) & 1) != 0)))) {
+          ((0x87fffffe03ffU >> ((int64_t)(char)(path_char - 0x30U) & 0x3fU) & 1) != 0)))) {
         if (path_len != clean_len) {
           file_path[path_len] = path_char;
         }
@@ -742,20 +742,20 @@ void cleanup_path_string(void)
 // 函数：关闭引擎系统
 void shutdown_engine_system(void)
 {
-  longlong **engine_ptr;
-  longlong engine_state;
-  longlong component_state;
+  int64_t **engine_ptr;
+  int64_t engine_state;
+  int64_t component_state;
   void in_R9;
   void *component_ptr;
   
-  if ((init_system_data_string != (longlong *)0x0) && ((char)init_system_data_string[0x42] == '\0')) {
+  if ((init_system_data_string != (int64_t *)0x0) && ((char)init_system_data_string[0x42] == '\0')) {
     ((void (**)(void))(*init_system_data_string + 0x38))();
   }
   engine_state = init_system_data_string;
-  ((void (**)(void *, longlong))(*(longlong **)(init_system_data_string + 32) + 264))
-            (*(longlong **)(init_system_data_string + 32), init_system_data_string + 192);
-  engine_ptr = *(longlong ***)(engine_state + 48);
-  if (engine_ptr != (longlong **)0x0) {
+  ((void (**)(void *, int64_t))(*(int64_t **)(init_system_data_string + 32) + 264))
+            (*(int64_t **)(init_system_data_string + 32), init_system_data_string + 192);
+  engine_ptr = *(int64_t ***)(engine_state + 48);
+  if (engine_ptr != (int64_t **)0x0) {
     component_state = __RTCastToVoid(engine_ptr);
     ((void (**)(void *, void *, void (*)(void), void, void))(*engine_ptr + 16))
             (engine_ptr, 0, (void (*)(void))(*engine_ptr + 16), in_R9, MUTEX_TIMEOUT_INFINITE);
@@ -819,7 +819,7 @@ void *build_module_path(void *path_obj, void *module_name, void *attr1, void *at
   path_ptr = (unsigned int *)((unsigned long)*(unsigned int *)((char *)path_obj + 16) + ((void **)path_obj)[1]);
   *path_ptr = 0x2e2f2e2e;  // "../.."
   *(unsigned short *)(path_ptr + 1) = 0x2f2e;  // "/."
-  *(unsigned char *)((longlong)path_ptr + 6) = 0;
+  *(unsigned char *)((int64_t)path_ptr + 6) = 0;
   *(int *)((char *)path_obj + 16) = path_length;
   total_length = total_length + 42;
   FUN_1806277c0(path_obj, total_length);
@@ -829,7 +829,7 @@ void *build_module_path(void *path_obj, void *module_name, void *attr1, void *at
   module_ptr[2] = 0x2f6e6f6974616d6fULL;  // "/omination/Att"
   module_ptr[3] = 0x656d686361747441ULL;  // "Attribute/charm"
   *(unsigned int *)(module_ptr + 4) = 0x2f73746e;  // "nts/"
-  *(unsigned char *)((longlong)module_ptr + 36) = 0;
+  *(unsigned char *)((int64_t)module_ptr + 36) = 0;
   *(int *)((char *)path_obj + 16) = total_length;
   return path_obj;
 }
@@ -837,13 +837,13 @@ void *build_module_path(void *path_obj, void *module_name, void *attr1, void *at
 // 函数：加载配置文件
 void load_configuration_file(char config_type)
 {
-  longlong **config_ptr;
+  int64_t **config_ptr;
   char config_status;
   unsigned int *config_data;
   void *temp_ptr;
   int buffer_size;
   void *file_handle;
-  longlong file_size;
+  int64_t file_size;
   void *file_path;
   unsigned int path_length;
   
@@ -921,9 +921,9 @@ bool check_main_thread(void)
   
   current_thread = _Thrd_id();
   if (init_system_string == 0) {
-    return current_thread == *(int *)(*(longlong **)(system_context_ptr + 8) + 72);
+    return current_thread == *(int *)(*(int64_t **)(system_context_ptr + 8) + 72);
   }
-  if ((current_thread != *(int *)(*(longlong **)(system_context_ptr + 8) + 72)) && 
+  if ((current_thread != *(int *)(*(int64_t **)(system_context_ptr + 8) + 72)) && 
       (current_thread != init_system_string)) {
     return false;
   }
@@ -935,7 +935,7 @@ void initialize_version_string(void *version_obj)
 {
   unsigned int version_length;
   int current_length;
-  longlong str_length;
+  int64_t str_length;
   unsigned int total_length;
   void *temp_ptr;
   void *version_str;
@@ -980,7 +980,7 @@ void initialize_version_string(void *version_obj)
   current_length = (int)str_length;
   if ((0 < current_length) && (*(unsigned int *)((char *)version_obj + 16) + current_length < 31)) {
     // 复制版本字符串
-    memcpy((unsigned long)*(unsigned int *)((char *)version_obj + 16) + ((void **)version_obj)[1], temp_ptr, (longlong)(current_length + 1));
+    memcpy((unsigned long)*(unsigned int *)((char *)version_obj + 16) + ((void **)version_obj)[1], temp_ptr, (int64_t)(current_length + 1));
   }
   flags = 1;
   version_str = &global_vtable_18098bcb0;
@@ -989,12 +989,12 @@ void initialize_version_string(void *version_obj)
 }
 
 // 函数：初始化系统配置
-longlong *initialize_system_config(longlong *config_obj, void *attr1, void *attr2, void *attr3)
+int64_t *initialize_system_config(int64_t *config_obj, void *attr1, void *attr2, void *attr3)
 {
-  *config_obj = (longlong)&global_vtable_18098bcb0;
+  *config_obj = (int64_t)&global_vtable_18098bcb0;
   config_obj[1] = 0;
   *(unsigned int *)((char *)config_obj + 8) = 0;
-  *config_obj = (longlong)&global_vtable_180a3c3e0;
+  *config_obj = (int64_t)&global_vtable_180a3c3e0;
   config_obj[3] = 0;
   config_obj[1] = 0;
   *(unsigned int *)((char *)config_obj + 8) = 0;
@@ -1013,7 +1013,7 @@ void set_thread_identifier(unsigned int *thread_id)
   int main_thread;
   int current_thread;
   
-  main_thread = *(int *)(*(longlong **)(system_context_ptr + 8) + 72);
+  main_thread = *(int *)(*(int64_t **)(system_context_ptr + 8) + 72);
   current_thread = _Thrd_id();
   if (current_thread != main_thread) {
     init_system_string = *thread_id;
@@ -1022,7 +1022,7 @@ void set_thread_identifier(unsigned int *thread_id)
 }
 
 // 函数：初始化模块名称
-void *initialize_module_name(void *name_obj, longlong src_str, void *attr1, void *attr2)
+void *initialize_module_name(void *name_obj, int64_t src_str, void *attr1, void *attr2)
 {
   void *module_name;
   
@@ -1057,7 +1057,7 @@ void initialize_system_config_manager(void *config_manager)
 }
 
 // 函数：清理模块容器
-void cleanup_module_container(longlong container, void *attr1, void *attr2, void *attr3)
+void cleanup_module_container(int64_t container, void *attr1, void *attr2, void *attr3)
 {
   void **module_ptr;
   
@@ -1071,7 +1071,7 @@ void cleanup_module_container(longlong container, void *attr1, void *attr2, void
 }
 
 // 函数：清理资源容器
-void cleanup_resource_container(longlong container, void *attr1, void *attr2, void *attr3)
+void cleanup_resource_container(int64_t container, void *attr1, void *attr2, void *attr3)
 {
   void **resource_ptr;
   

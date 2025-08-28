@@ -38,7 +38,7 @@
 // ================================
 
 /** UI系统数据句柄类型 */
-typedef longlong* UISystemDataHandle;
+typedef int64_t* UISystemDataHandle;
 
 /** UI系统参数索引类型 */
 typedef int UISystemParamIndex;
@@ -47,7 +47,7 @@ typedef int UISystemParamIndex;
 typedef int32_t* UISystemResultValue;
 
 /** UI系统上下文类型 */
-typedef longlong UISystemContext;
+typedef int64_t UISystemContext;
 
 /** UI系统返回值类型 */
 typedef uint64_t UISystemReturnValue;
@@ -130,7 +130,7 @@ UISystemReturnValue UISystem_ParameterExtractor(
     UISystemResultValue result_value, 
     UISystemContext context)
 {
-    longlong data_ptr;
+    int64_t data_ptr;
     UISystemFloatValue float_value;
     
     // 获取数据指针

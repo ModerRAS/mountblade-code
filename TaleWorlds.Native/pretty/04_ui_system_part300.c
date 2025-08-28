@@ -322,9 +322,9 @@ void FUN_180832ee0(void)
   short vertexData2;
   uint vertexOffset;
   uint *indexPtr;
-  longlong *stepPtr;
+  int64_t *stepPtr;
   int loopCounter;
-  longlong vertexBasePtr;
+  int64_t vertexBasePtr;
   float *outputBuffer;
   float interpolationFactor;
   float scaleFactor;
@@ -337,15 +337,15 @@ void FUN_180832ee0(void)
     vertexOffset = indexPtr[1] * 2;
     
     // 读取顶点数据
-    vertexData1 = *(short *)(vertexBasePtr + (ulonglong)vertexOffset * 2);
+    vertexData1 = *(short *)(vertexBasePtr + (uint64_t)vertexOffset * 2);
     interpolationFactor = (float)*indexPtr * scaleFactor;
-    vertexData2 = *(short *)(vertexBasePtr + (ulonglong)(vertexOffset + 2) * 2);
+    vertexData2 = *(short *)(vertexBasePtr + (uint64_t)(vertexOffset + 2) * 2);
     
     // 执行双线性插值计算
     // 第二个输出值：在vertexData1和vertexData3之间插值
-    outputBuffer[1] = (float)(int)*(short *)(vertexBasePtr + (ulonglong)(vertexOffset + 1) * 2) * scaleFactor *
+    outputBuffer[1] = (float)(int)*(short *)(vertexBasePtr + (uint64_t)(vertexOffset + 1) * 2) * scaleFactor *
                         (maxValue - interpolationFactor) +
-                        (float)(int)*(short *)(vertexBasePtr + (ulonglong)(vertexOffset + 3) * 2) * scaleFactor * interpolationFactor;
+                        (float)(int)*(short *)(vertexBasePtr + (uint64_t)(vertexOffset + 3) * 2) * scaleFactor * interpolationFactor;
     
     // 第一个输出值：在vertexData2和vertexData1之间插值
     *outputBuffer = (float)(int)vertexData2 * scaleFactor * interpolationFactor +
@@ -355,7 +355,7 @@ void FUN_180832ee0(void)
     outputBuffer = outputBuffer + 2;
     
     // 更新索引指针
-    *(longlong *)indexPtr = *(longlong *)indexPtr + *stepPtr;
+    *(int64_t *)indexPtr = *(int64_t *)indexPtr + *stepPtr;
     
     // 更新循环计数器
     loopCounter = loopCounter + -1;
@@ -399,12 +399,12 @@ void FUN_180832ee0(void)
  * - 空间复杂度：O(1)，使用固定数量的局部变量
  * - 优化策略：循环展开、寄存器优化、批处理
  */
-void FUN_180832fb0(float *outputBuffer, uint dataCount, longlong textureBase, ulonglong *texCoordPtr, longlong *stepPtr)
+void FUN_180832fb0(float *outputBuffer, uint dataCount, int64_t textureBase, uint64_t *texCoordPtr, int64_t *stepPtr)
 {
   // 纹理采样数据变量
   char texel1, texel2, texel3, texel4;
   char texel5, texel6, texel7, texel8;
-  ulonglong coord1, coord2;
+  uint64_t coord1, coord2;
   int batchCount;
   float interpolationFactor1, interpolationFactor2;
   float interpolationFactor3, interpolationFactor4;
@@ -417,29 +417,29 @@ void FUN_180832fb0(float *outputBuffer, uint dataCount, longlong textureBase, ul
   for (batchCount = (int)dataCount >> 2; batchCount != 0; batchCount = batchCount + -1) {
     // 第一组纹理坐标和数据采样
     coord1 = *texCoordPtr + *stepPtr;
-    texel1 = *(char *)((ulonglong)*(uint *)((longlong)texCoordPtr + 4) + textureBase);
-    texel2 = *(char *)((ulonglong)(*(uint *)((longlong)texCoordPtr + 4) + 1) + textureBase);
+    texel1 = *(char *)((uint64_t)*(uint *)((int64_t)texCoordPtr + 4) + textureBase);
+    texel2 = *(char *)((uint64_t)(*(uint *)((int64_t)texCoordPtr + 4) + 1) + textureBase);
     interpolationFactor1 = (float)(uint)*texCoordPtr * NORMALIZATION_FACTOR;
     *texCoordPtr = coord1;
     
     // 第二组纹理坐标和数据采样
     coord2 = *stepPtr + coord1;
     texel3 = *(char *)((coord1 >> 0x20) + textureBase);
-    texel4 = *(char *)((ulonglong)((int)(coord1 >> 0x20) + 1) + textureBase);
+    texel4 = *(char *)((uint64_t)((int)(coord1 >> 0x20) + 1) + textureBase);
     interpolationFactor2 = (float)(coord1 & 0xffffffff) * NORMALIZATION_FACTOR;
     *texCoordPtr = coord2;
     
     // 第三组纹理坐标和数据采样
     coord1 = *stepPtr + coord2;
     texel5 = *(char *)((coord2 >> 0x20) + textureBase);
-    texel6 = *(char *)((ulonglong)((int)(coord2 >> 0x20) + 1) + textureBase);
+    texel6 = *(char *)((uint64_t)((int)(coord2 >> 0x20) + 1) + textureBase);
     interpolationFactor3 = (float)(coord2 & 0xffffffff) * NORMALIZATION_FACTOR;
     *texCoordPtr = coord1;
     
     // 第四组纹理坐标和数据采样
     texel7 = *(char *)((coord1 >> 0x20) + textureBase);
     interpolationFactor4 = (float)(coord1 & 0xffffffff) * NORMALIZATION_FACTOR;
-    texel8 = *(char *)((ulonglong)((int)(coord1 >> 0x20) + 1) + textureBase);
+    texel8 = *(char *)((uint64_t)((int)(coord1 >> 0x20) + 1) + textureBase);
     *texCoordPtr = *stepPtr + coord1;
     
     // 执行双线性插值计算并存储结果
@@ -466,9 +466,9 @@ void FUN_180832fb0(float *outputBuffer, uint dataCount, longlong textureBase, ul
   // 边界处理：处理剩余的不足4个的数据项
   for (dataCount = dataCount & 3; dataCount != 0; dataCount = dataCount - 1) {
     interpolationFactor1 = (float)(uint)*texCoordPtr * NORMALIZATION_FACTOR;
-    *outputBuffer = (float)(int)*(char *)((ulonglong)*(uint *)((longlong)texCoordPtr + 4) + textureBase) *
+    *outputBuffer = (float)(int)*(char *)((uint64_t)*(uint *)((int64_t)texCoordPtr + 4) + textureBase) *
                     COLOR_SCALE_FACTOR * (1.0f - interpolationFactor1) +
-                    (float)(int)*(char *)((ulonglong)(*(uint *)((longlong)texCoordPtr + 4) + 1) + textureBase) *
+                    (float)(int)*(char *)((uint64_t)(*(uint *)((int64_t)texCoordPtr + 4) + 1) + textureBase) *
                     COLOR_SCALE_FACTOR * interpolationFactor1;
     outputBuffer = outputBuffer + 1;
     *texCoordPtr = *texCoordPtr + *stepPtr;
@@ -517,7 +517,7 @@ void FUN_180832fb0(float *outputBuffer, uint dataCount, longlong textureBase, ul
  * - 过渡动画：页面切换、状态变化的过渡效果
  * - 交互反馈：用户交互的视觉反馈动画
  */
-void FUN_180833200(float *outputBuffer, uint animationCount, longlong animationBase, ulonglong *timePtr, longlong *timeStepPtr)
+void FUN_180833200(float *outputBuffer, uint animationCount, int64_t animationBase, uint64_t *timePtr, int64_t *timeStepPtr)
 {
   // 动画关键帧数据变量
   char keyframe1, keyframe2, keyframe3, keyframe4;
@@ -527,7 +527,7 @@ void FUN_180833200(float *outputBuffer, uint animationCount, longlong animationB
   int frameIndex;
   uint frameOffset;
   int batchCount;
-  ulonglong time1, time2;
+  uint64_t time1, time2;
   float interpolationFactor1, interpolationFactor2;
   float interpolationFactor3, interpolationFactor4;
   
@@ -539,43 +539,43 @@ void FUN_180833200(float *outputBuffer, uint animationCount, longlong animationB
   for (batchCount = (int)animationCount >> 2; batchCount != 0; batchCount = batchCount + -1) {
     // 第一组动画时间和关键帧采样
     time1 = *timePtr + *timeStepPtr;
-    frameOffset = *(uint *)((longlong)timePtr + 4) * 2;
-    keyframe1 = *(char *)((ulonglong)frameOffset + animationBase);
-    keyframe2 = *(char *)((ulonglong)(frameOffset + 2) + animationBase);
+    frameOffset = *(uint *)((int64_t)timePtr + 4) * 2;
+    keyframe1 = *(char *)((uint64_t)frameOffset + animationBase);
+    keyframe2 = *(char *)((uint64_t)(frameOffset + 2) + animationBase);
     interpolationFactor1 = (float)(uint)*timePtr * NORMALIZATION_FACTOR;
-    keyframe3 = *(char *)((ulonglong)(frameOffset + 1) + animationBase);
-    keyframe4 = *(char *)((ulonglong)(frameOffset + 3) + animationBase);
+    keyframe3 = *(char *)((uint64_t)(frameOffset + 1) + animationBase);
+    keyframe4 = *(char *)((uint64_t)(frameOffset + 3) + animationBase);
     *timePtr = time1;
     
     // 第二组动画时间和关键帧采样
     time2 = *timeStepPtr + time1;
     frameOffset = (int)(time1 >> 0x20) * 2;
-    keyframe5 = *(char *)((ulonglong)frameOffset + animationBase);
-    keyframe6 = *(char *)((ulonglong)(frameOffset + 2) + animationBase);
+    keyframe5 = *(char *)((uint64_t)frameOffset + animationBase);
+    keyframe6 = *(char *)((uint64_t)(frameOffset + 2) + animationBase);
     interpolationFactor2 = (float)(time1 & 0xffffffff) * NORMALIZATION_FACTOR;
-    keyframe7 = *(char *)((ulonglong)(frameOffset + 3) + animationBase);
-    keyframe8 = *(char *)((ulonglong)(frameOffset + 1) + animationBase);
+    keyframe7 = *(char *)((uint64_t)(frameOffset + 3) + animationBase);
+    keyframe8 = *(char *)((uint64_t)(frameOffset + 1) + animationBase);
     *timePtr = time2;
     
     // 第三组动画时间和关键帧采样
     frameIndex = (int)(time2 >> 0x20);
     frameOffset = frameIndex * 2;
     interpolationFactor3 = (float)(time2 & 0xffffffff) * NORMALIZATION_FACTOR;
-    keyframe9 = *(char *)((ulonglong)frameOffset + animationBase);
-    keyframe10 = *(char *)((ulonglong)(frameOffset + 2) + animationBase);
+    keyframe9 = *(char *)((uint64_t)frameOffset + animationBase);
+    keyframe10 = *(char *)((uint64_t)(frameOffset + 2) + animationBase);
     time2 = *timeStepPtr + time2;
     frameIndex = frameIndex * 2;
-    keyframe11 = *(char *)((ulonglong)(frameIndex + 1) + animationBase);
-    keyframe12 = *(char *)((ulonglong)(frameIndex + 3) + animationBase);
+    keyframe11 = *(char *)((uint64_t)(frameIndex + 1) + animationBase);
+    keyframe12 = *(char *)((uint64_t)(frameIndex + 3) + animationBase);
     *timePtr = time2;
     
     // 第四组动画时间和关键帧采样
     frameOffset = (int)(time2 >> 0x20) * 2;
-    keyframe13 = *(char *)((ulonglong)frameOffset + animationBase);
-    keyframe14 = *(char *)((ulonglong)(frameOffset + 2) + animationBase);
+    keyframe13 = *(char *)((uint64_t)frameOffset + animationBase);
+    keyframe14 = *(char *)((uint64_t)(frameOffset + 2) + animationBase);
     interpolationFactor4 = (float)(time2 & 0xffffffff) * NORMALIZATION_FACTOR;
-    keyframe15 = *(char *)((ulonglong)(frameOffset + 1) + animationBase);
-    keyframe16 = *(char *)((ulonglong)(frameOffset + 3) + animationBase);
+    keyframe15 = *(char *)((uint64_t)(frameOffset + 1) + animationBase);
+    keyframe16 = *(char *)((uint64_t)(frameOffset + 3) + animationBase);
     *timePtr = *timeStepPtr + time2;
     
     // 执行双线性插值计算并存储结果
@@ -609,12 +609,12 @@ void FUN_180833200(float *outputBuffer, uint animationCount, longlong animationB
   
   // 边界处理：处理剩余的不足4个的动画数据项
   for (animationCount = animationCount & 3; animationCount != 0; animationCount = animationCount - 1) {
-    frameOffset = *(uint *)((longlong)timePtr + 4) * 2;
-    keyframe1 = *(char *)((ulonglong)(frameOffset + 1) + animationBase);
+    frameOffset = *(uint *)((int64_t)timePtr + 4) * 2;
+    keyframe1 = *(char *)((uint64_t)(frameOffset + 1) + animationBase);
     interpolationFactor2 = (float)(uint)*timePtr * NORMALIZATION_FACTOR;
-    keyframe2 = *(char *)((ulonglong)(frameOffset + 3) + animationBase);
-    *outputBuffer = (float)(int)*(char *)((ulonglong)(frameOffset + 2) + animationBase) * COLOR_SCALE_FACTOR * interpolationFactor2 +
-                     (float)(int)*(char *)((ulonglong)frameOffset + animationBase) * COLOR_SCALE_FACTOR * (1.0f - interpolationFactor2);
+    keyframe2 = *(char *)((uint64_t)(frameOffset + 3) + animationBase);
+    *outputBuffer = (float)(int)*(char *)((uint64_t)(frameOffset + 2) + animationBase) * COLOR_SCALE_FACTOR * interpolationFactor2 +
+                     (float)(int)*(char *)((uint64_t)frameOffset + animationBase) * COLOR_SCALE_FACTOR * (1.0f - interpolationFactor2);
     outputBuffer[1] = (float)(int)keyframe1 * COLOR_SCALE_FACTOR * (1.0f - interpolationFactor2) +
                       (float)(int)keyframe2 * COLOR_SCALE_FACTOR * interpolationFactor2;
     outputBuffer = outputBuffer + 2;
@@ -675,15 +675,15 @@ void FUN_180833250(uint64_t context, int blockCount)
   char data13, data14, data15, data16;
   int index;
   uint offset;
-  longlong basePtr;
-  ulonglong *dataPtr;
+  int64_t basePtr;
+  uint64_t *dataPtr;
   uint64_t contextData;
-  longlong *stepPtr;
+  int64_t *stepPtr;
   uint remainder;
   uint dataOffset;
-  ulonglong coord1, coord2;
+  uint64_t coord1, coord2;
   float *outputBuffer;
-  longlong dataBase;
+  int64_t dataBase;
   float factor1, factor2, factor3, factor4;
   uint64_t simdReg1, simdReg2;
   uint64_t simdReg3, simdReg4;
@@ -713,40 +713,40 @@ void FUN_180833250(uint64_t context, int blockCount)
     do {
       // 批量数据采样和处理
       coord1 = *dataPtr + *stepPtr;
-      dataOffset = *(uint *)((longlong)dataPtr + 4) * 2;
-      data1 = *(char *)((ulonglong)dataOffset + dataBase);
-      data2 = *(char *)((ulonglong)(dataOffset + 2) + dataBase);
+      dataOffset = *(uint *)((int64_t)dataPtr + 4) * 2;
+      data1 = *(char *)((uint64_t)dataOffset + dataBase);
+      data2 = *(char *)((uint64_t)(dataOffset + 2) + dataBase);
       factor1 = (float)(uint)*dataPtr * scale2;
-      data3 = *(char *)((ulonglong)(dataOffset + 1) + dataBase);
-      data4 = *(char *)((ulonglong)(dataOffset + 3) + dataBase);
+      data3 = *(char *)((uint64_t)(dataOffset + 1) + dataBase);
+      data4 = *(char *)((uint64_t)(dataOffset + 3) + dataBase);
       *dataPtr = coord1;
       
       coord2 = *stepPtr + coord1;
       dataOffset = (int)(coord1 >> 0x20) * 2;
-      data5 = *(char *)((ulonglong)dataOffset + dataBase);
-      data6 = *(char *)((ulonglong)(dataOffset + 2) + dataBase);
+      data5 = *(char *)((uint64_t)dataOffset + dataBase);
+      data6 = *(char *)((uint64_t)(dataOffset + 2) + dataBase);
       factor2 = (float)(coord1 & 0xffffffff) * scale2;
-      data7 = *(char *)((ulonglong)(dataOffset + 3) + dataBase);
-      data8 = *(char *)((ulonglong)(dataOffset + 1) + dataBase);
+      data7 = *(char *)((uint64_t)(dataOffset + 3) + dataBase);
+      data8 = *(char *)((uint64_t)(dataOffset + 1) + dataBase);
       *dataPtr = coord2;
       
       index = (int)(coord2 >> 0x20);
       dataOffset = index * 2;
       factor3 = (float)(coord2 & 0xffffffff) * scale2;
-      data9 = *(char *)((ulonglong)dataOffset + dataBase);
-      data10 = *(char *)((ulonglong)(dataOffset + 2) + dataBase);
+      data9 = *(char *)((uint64_t)dataOffset + dataBase);
+      data10 = *(char *)((uint64_t)(dataOffset + 2) + dataBase);
       coord2 = *stepPtr + coord2;
       index = index * 2;
-      data11 = *(char *)((ulonglong)(index + 1) + dataBase);
-      data12 = *(char *)((ulonglong)(index + 3) + dataBase);
+      data11 = *(char *)((uint64_t)(index + 1) + dataBase);
+      data12 = *(char *)((uint64_t)(index + 3) + dataBase);
       *dataPtr = coord2;
       
       dataOffset = (int)(coord2 >> 0x20) * 2;
-      data13 = *(char *)((ulonglong)dataOffset + dataBase);
-      data14 = *(char *)((ulonglong)(dataOffset + 2) + dataBase);
+      data13 = *(char *)((uint64_t)dataOffset + dataBase);
+      data14 = *(char *)((uint64_t)(dataOffset + 2) + dataBase);
       factor4 = (float)(coord2 & 0xffffffff) * scale2;
-      data15 = *(char *)((ulonglong)(dataOffset + 1) + dataBase);
-      data16 = *(char *)((ulonglong)(dataOffset + 3) + dataBase);
+      data15 = *(char *)((uint64_t)(dataOffset + 1) + dataBase);
+      data16 = *(char *)((uint64_t)(dataOffset + 3) + dataBase);
       *dataPtr = *stepPtr + coord2;
       
       // 执行插值计算并输出结果
@@ -766,12 +766,12 @@ void FUN_180833250(uint64_t context, int blockCount)
   
   // 边界处理：处理剩余的不足4个的数据块
   for (dataOffset = remainder & 3; dataOffset != 0; dataOffset = dataOffset - 1) {
-    offset = *(uint *)((longlong)dataPtr + 4) * 2;
-    data1 = *(char *)((ulonglong)(offset + 1) + dataBase);
+    offset = *(uint *)((int64_t)dataPtr + 4) * 2;
+    data1 = *(char *)((uint64_t)(offset + 1) + dataBase);
     factor2 = (float)(uint)*dataPtr * scale2;
-    data2 = *(char *)((ulonglong)(offset + 3) + dataBase);
-    *outputBuffer = (float)(int)*(char *)((ulonglong)(offset + 2) + dataBase) * scale1 * factor2 +
-                  (float)(int)*(char *)((ulonglong)offset + dataBase) * scale1 * (scale3 - factor2);
+    data2 = *(char *)((uint64_t)(offset + 3) + dataBase);
+    *outputBuffer = (float)(int)*(char *)((uint64_t)(offset + 2) + dataBase) * scale1 * factor2 +
+                  (float)(int)*(char *)((uint64_t)offset + dataBase) * scale1 * (scale3 - factor2);
     outputBuffer[1] = (float)(int)data1 * scale1 * (scale3 - factor2) + (float)(int)data2 * scale1 * factor2;
     outputBuffer = outputBuffer + 2;
     *dataPtr = *dataPtr + *stepPtr;
@@ -837,16 +837,16 @@ void FUN_180833261(void)
   char cVar16;
   int iVar17;
   uint uVar18;
-  longlong in_RAX;
-  ulonglong *unaff_RBX;
+  int64_t in_RAX;
+  uint64_t *unaff_RBX;
   int unaff_EBP;
-  longlong *unaff_RSI;
+  int64_t *unaff_RSI;
   uint unaff_EDI;
   uint uVar19;
-  ulonglong uVar20;
-  ulonglong uVar21;
+  uint64_t uVar20;
+  uint64_t uVar21;
   float *in_R10;
-  longlong in_R11;
+  int64_t in_R11;
   float fVar22;
   float fVar23;
   float fVar24;
@@ -877,37 +877,37 @@ void FUN_180833261(void)
   *(uint64_t *)(in_RAX + -0x50) = unaff_XMM10_Qb;
   do {
     uVar20 = *unaff_RBX + *unaff_RSI;
-    uVar19 = *(uint *)((longlong)unaff_RBX + 4) * 2;
-    cVar1 = *(char *)((ulonglong)uVar19 + in_R11);
-    cVar2 = *(char *)((ulonglong)(uVar19 + 2) + in_R11);
+    uVar19 = *(uint *)((int64_t)unaff_RBX + 4) * 2;
+    cVar1 = *(char *)((uint64_t)uVar19 + in_R11);
+    cVar2 = *(char *)((uint64_t)(uVar19 + 2) + in_R11);
     fVar23 = (float)(uint)*unaff_RBX * unaff_XMM12_Da;
-    cVar3 = *(char *)((ulonglong)(uVar19 + 1) + in_R11);
-    cVar4 = *(char *)((ulonglong)(uVar19 + 3) + in_R11);
+    cVar3 = *(char *)((uint64_t)(uVar19 + 1) + in_R11);
+    cVar4 = *(char *)((uint64_t)(uVar19 + 3) + in_R11);
     *unaff_RBX = uVar20;
     uVar21 = *unaff_RSI + uVar20;
     uVar19 = (int)(uVar20 >> 0x20) * 2;
-    cVar5 = *(char *)((ulonglong)uVar19 + in_R11);
-    cVar6 = *(char *)((ulonglong)(uVar19 + 2) + in_R11);
+    cVar5 = *(char *)((uint64_t)uVar19 + in_R11);
+    cVar6 = *(char *)((uint64_t)(uVar19 + 2) + in_R11);
     fVar22 = (float)(uVar20 & 0xffffffff) * unaff_XMM12_Da;
-    cVar7 = *(char *)((ulonglong)(uVar19 + 3) + in_R11);
-    cVar8 = *(char *)((ulonglong)(uVar19 + 1) + in_R11);
+    cVar7 = *(char *)((uint64_t)(uVar19 + 3) + in_R11);
+    cVar8 = *(char *)((uint64_t)(uVar19 + 1) + in_R11);
     *unaff_RBX = uVar21;
     iVar17 = (int)(uVar21 >> 0x20);
     uVar19 = iVar17 * 2;
     fVar24 = (float)(uVar21 & 0xffffffff) * unaff_XMM12_Da;
-    cVar9 = *(char *)((ulonglong)uVar19 + in_R11);
-    cVar10 = *(char *)((ulonglong)(uVar19 + 2) + in_R11);
+    cVar9 = *(char *)((uint64_t)uVar19 + in_R11);
+    cVar10 = *(char *)((uint64_t)(uVar19 + 2) + in_R11);
     uVar21 = *unaff_RSI + uVar21;
     iVar17 = iVar17 * 2;
-    cVar11 = *(char *)((ulonglong)(iVar17 + 1) + in_R11);
-    cVar12 = *(char *)((ulonglong)(iVar17 + 3) + in_R11);
+    cVar11 = *(char *)((uint64_t)(iVar17 + 1) + in_R11);
+    cVar12 = *(char *)((uint64_t)(iVar17 + 3) + in_R11);
     *unaff_RBX = uVar21;
     uVar19 = (int)(uVar21 >> 0x20) * 2;
-    cVar13 = *(char *)((ulonglong)uVar19 + in_R11);
-    cVar14 = *(char *)((ulonglong)(uVar19 + 2) + in_R11);
+    cVar13 = *(char *)((uint64_t)uVar19 + in_R11);
+    cVar14 = *(char *)((uint64_t)(uVar19 + 2) + in_R11);
     fVar25 = (float)(uVar21 & 0xffffffff) * unaff_XMM12_Da;
-    cVar15 = *(char *)((ulonglong)(uVar19 + 1) + in_R11);
-    cVar16 = *(char *)((ulonglong)(uVar19 + 3) + in_R11);
+    cVar15 = *(char *)((uint64_t)(uVar19 + 1) + in_R11);
+    cVar16 = *(char *)((uint64_t)(uVar19 + 3) + in_R11);
     *unaff_RBX = *unaff_RSI + uVar21;
     *in_R10 = (float)(int)cVar2 * unaff_XMM11_Da * fVar23 +
               (float)(int)cVar1 * unaff_XMM11_Da * (unaff_XMM13_Da - fVar23);
@@ -929,12 +929,12 @@ void FUN_180833261(void)
     unaff_EBP = unaff_EBP + -1;
   } while (unaff_EBP != 0);
   for (uVar19 = unaff_EDI & 3; uVar19 != 0; uVar19 = uVar19 - 1) {
-    uVar18 = *(uint *)((longlong)unaff_RBX + 4) * 2;
-    cVar1 = *(char *)((ulonglong)(uVar18 + 1) + in_R11);
+    uVar18 = *(uint *)((int64_t)unaff_RBX + 4) * 2;
+    cVar1 = *(char *)((uint64_t)(uVar18 + 1) + in_R11);
     fVar22 = (float)(uint)*unaff_RBX * unaff_XMM12_Da;
-    cVar2 = *(char *)((ulonglong)(uVar18 + 3) + in_R11);
-    *in_R10 = (float)(int)*(char *)((ulonglong)(uVar18 + 2) + in_R11) * unaff_XMM11_Da * fVar22 +
-              (float)(int)*(char *)((ulonglong)uVar18 + in_R11) * unaff_XMM11_Da *
+    cVar2 = *(char *)((uint64_t)(uVar18 + 3) + in_R11);
+    *in_R10 = (float)(int)*(char *)((uint64_t)(uVar18 + 2) + in_R11) * unaff_XMM11_Da * fVar22 +
+              (float)(int)*(char *)((uint64_t)uVar18 + in_R11) * unaff_XMM11_Da *
               (unaff_XMM13_Da - fVar22);
     in_R10[1] = (float)(int)cVar1 * unaff_XMM11_Da * (unaff_XMM13_Da - fVar22) +
                 (float)(int)cVar2 * unaff_XMM11_Da * fVar22;
@@ -986,11 +986,11 @@ void FUN_180833529(void)
   char cVar2;
   uint uVar3;
   uint *unaff_RBX;
-  longlong *unaff_RSI;
+  int64_t *unaff_RSI;
   uint unaff_EDI;
   uint uVar4;
   float *in_R10;
-  longlong in_R11;
+  int64_t in_R11;
   float fVar5;
   float unaff_XMM11_Da;
   float unaff_XMM12_Da;
@@ -998,16 +998,16 @@ void FUN_180833529(void)
   
   for (uVar4 = unaff_EDI & 3; uVar4 != 0; uVar4 = uVar4 - 1) {
     uVar3 = unaff_RBX[1] * 2;
-    cVar1 = *(char *)((ulonglong)(uVar3 + 1) + in_R11);
+    cVar1 = *(char *)((uint64_t)(uVar3 + 1) + in_R11);
     fVar5 = (float)*unaff_RBX * unaff_XMM12_Da;
-    cVar2 = *(char *)((ulonglong)(uVar3 + 3) + in_R11);
-    *in_R10 = (float)(int)*(char *)((ulonglong)(uVar3 + 2) + in_R11) * unaff_XMM11_Da * fVar5 +
-              (float)(int)*(char *)((ulonglong)uVar3 + in_R11) * unaff_XMM11_Da *
+    cVar2 = *(char *)((uint64_t)(uVar3 + 3) + in_R11);
+    *in_R10 = (float)(int)*(char *)((uint64_t)(uVar3 + 2) + in_R11) * unaff_XMM11_Da * fVar5 +
+              (float)(int)*(char *)((uint64_t)uVar3 + in_R11) * unaff_XMM11_Da *
               (unaff_XMM13_Da - fVar5);
     in_R10[1] = (float)(int)cVar1 * unaff_XMM11_Da * (unaff_XMM13_Da - fVar5) +
                 (float)(int)cVar2 * unaff_XMM11_Da * fVar5;
     in_R10 = in_R10 + 2;
-    *(longlong *)unaff_RBX = *(longlong *)unaff_RBX + *unaff_RSI;
+    *(int64_t *)unaff_RBX = *(int64_t *)unaff_RBX + *unaff_RSI;
   }
   return;
 }
@@ -1054,10 +1054,10 @@ void FUN_180833540(void)
   char cVar2;
   uint uVar3;
   uint *unaff_RBX;
-  longlong *unaff_RSI;
+  int64_t *unaff_RSI;
   int unaff_EDI;
   float *in_R10;
-  longlong in_R11;
+  int64_t in_R11;
   float fVar4;
   float unaff_XMM11_Da;
   float unaff_XMM12_Da;
@@ -1065,16 +1065,16 @@ void FUN_180833540(void)
   
   do {
     uVar3 = unaff_RBX[1] * 2;
-    cVar1 = *(char *)((ulonglong)(uVar3 + 1) + in_R11);
+    cVar1 = *(char *)((uint64_t)(uVar3 + 1) + in_R11);
     fVar4 = (float)*unaff_RBX * unaff_XMM12_Da;
-    cVar2 = *(char *)((ulonglong)(uVar3 + 3) + in_R11);
-    *in_R10 = (float)(int)*(char *)((ulonglong)(uVar3 + 2) + in_R11) * unaff_XMM11_Da * fVar4 +
-              (float)(int)*(char *)((ulonglong)uVar3 + in_R11) * unaff_XMM11_Da *
+    cVar2 = *(char *)((uint64_t)(uVar3 + 3) + in_R11);
+    *in_R10 = (float)(int)*(char *)((uint64_t)(uVar3 + 2) + in_R11) * unaff_XMM11_Da * fVar4 +
+              (float)(int)*(char *)((uint64_t)uVar3 + in_R11) * unaff_XMM11_Da *
               (unaff_XMM13_Da - fVar4);
     in_R10[1] = (float)(int)cVar1 * unaff_XMM11_Da * (unaff_XMM13_Da - fVar4) +
                 (float)(int)cVar2 * unaff_XMM11_Da * fVar4;
     in_R10 = in_R10 + 2;
-    *(longlong *)unaff_RBX = *(longlong *)unaff_RBX + *unaff_RSI;
+    *(int64_t *)unaff_RBX = *(int64_t *)unaff_RBX + *unaff_RSI;
     unaff_EDI = unaff_EDI + -1;
   } while (unaff_EDI != 0);
   return;
@@ -1125,11 +1125,11 @@ void FUN_180833540(void)
  * - 状态重置：重置UI系统的运行状态
  * - 资源回收：回收UI系统的各种资源
  */
-void FUN_180833610(float *param_1,uint param_2,longlong param_3,uint *param_4,longlong *param_5)
+void FUN_180833610(float *param_1,uint param_2,int64_t param_3,uint *param_4,int64_t *param_5)
 
 {
   float *pfVar1;
-  longlong lVar2;
+  int64_t lVar2;
   float *pfVar3;
   float *pfVar4;
   float fVar5;
@@ -1144,7 +1144,7 @@ void FUN_180833610(float *param_1,uint param_2,longlong param_3,uint *param_4,lo
   float fVar14;
   float fVar15;
   float fVar16;
-  longlong lVar17;
+  int64_t lVar17;
   float fVar18;
   float fVar19;
   float fVar20;
@@ -1155,9 +1155,9 @@ void FUN_180833610(float *param_1,uint param_2,longlong param_3,uint *param_4,lo
   float fVar25;
   float fVar26;
   int iVar27;
-  ulonglong uVar28;
+  uint64_t uVar28;
   uint uVar29;
-  ulonglong *puVar30;
+  uint64_t *puVar30;
   int iVar31;
   float fVar32;
   float fVar33;
@@ -1169,7 +1169,7 @@ void FUN_180833610(float *param_1,uint param_2,longlong param_3,uint *param_4,lo
   int iVar40;
   int8_t auVar39 [16];
   int iVar42;
-  longlong lVar41;
+  int64_t lVar41;
   int iVar44;
   int8_t auVar43 [16];
   int iVar45;
@@ -1177,40 +1177,40 @@ void FUN_180833610(float *param_1,uint param_2,longlong param_3,uint *param_4,lo
   int8_t auStack_e8 [8];
   uint64_t uStack_e0;
   uint64_t uStack_d8;
-  ulonglong auStack_b8 [22];
+  uint64_t auStack_b8 [22];
   
   puVar30 = auStack_b8;
-  auStack_b8[0] = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_b8;
-  uVar28 = (ulonglong)param_1 & 0xf;
+  auStack_b8[0] = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_b8;
+  uVar28 = (uint64_t)param_1 & 0xf;
   for (; (uVar28 != 0 && (param_2 != 0)); param_2 = param_2 - 1) {
     uVar29 = param_4[1] * 6;
     fVar46 = (float)(*param_4 >> 1) * 4.656613e-10;
-    fVar5 = *(float *)(param_3 + (ulonglong)(uVar29 + 1) * 4);
-    fVar6 = *(float *)(param_3 + (ulonglong)(uVar29 + 2) * 4);
-    fVar7 = *(float *)(param_3 + (ulonglong)(uVar29 + 3) * 4);
-    fVar8 = *(float *)(param_3 + (ulonglong)(uVar29 + 4) * 4);
-    fVar9 = *(float *)(param_3 + (ulonglong)(uVar29 + 5) * 4);
-    fVar10 = *(float *)(param_3 + (ulonglong)(uVar29 + 8) * 4);
-    fVar11 = *(float *)(param_3 + (ulonglong)(uVar29 + 9) * 4);
-    fVar12 = *(float *)(param_3 + (ulonglong)(uVar29 + 10) * 4);
-    fVar13 = *(float *)(param_3 + (ulonglong)(uVar29 + 0xb) * 4);
-    fVar14 = *(float *)(param_3 + (ulonglong)(uVar29 + 6) * 4);
-    fVar15 = *(float *)(param_3 + (ulonglong)uVar29 * 4);
-    fVar16 = *(float *)(param_3 + (ulonglong)uVar29 * 4);
-    param_1[1] = (*(float *)(param_3 + (ulonglong)(uVar29 + 7) * 4) - fVar5) * fVar46 + fVar5;
+    fVar5 = *(float *)(param_3 + (uint64_t)(uVar29 + 1) * 4);
+    fVar6 = *(float *)(param_3 + (uint64_t)(uVar29 + 2) * 4);
+    fVar7 = *(float *)(param_3 + (uint64_t)(uVar29 + 3) * 4);
+    fVar8 = *(float *)(param_3 + (uint64_t)(uVar29 + 4) * 4);
+    fVar9 = *(float *)(param_3 + (uint64_t)(uVar29 + 5) * 4);
+    fVar10 = *(float *)(param_3 + (uint64_t)(uVar29 + 8) * 4);
+    fVar11 = *(float *)(param_3 + (uint64_t)(uVar29 + 9) * 4);
+    fVar12 = *(float *)(param_3 + (uint64_t)(uVar29 + 10) * 4);
+    fVar13 = *(float *)(param_3 + (uint64_t)(uVar29 + 0xb) * 4);
+    fVar14 = *(float *)(param_3 + (uint64_t)(uVar29 + 6) * 4);
+    fVar15 = *(float *)(param_3 + (uint64_t)uVar29 * 4);
+    fVar16 = *(float *)(param_3 + (uint64_t)uVar29 * 4);
+    param_1[1] = (*(float *)(param_3 + (uint64_t)(uVar29 + 7) * 4) - fVar5) * fVar46 + fVar5;
     param_1[2] = (fVar10 - fVar6) * fVar46 + fVar6;
     param_1[3] = (fVar11 - fVar7) * fVar46 + fVar7;
     param_1[4] = (fVar12 - fVar8) * fVar46 + fVar8;
     *param_1 = (fVar14 - fVar15) * fVar46 + fVar16;
     param_1[5] = (fVar13 - fVar9) * fVar46 + fVar9;
     param_1 = param_1 + 6;
-    *(longlong *)param_4 = *(longlong *)param_4 + *param_5;
-    uVar28 = (ulonglong)param_1 & 0xf;
+    *(int64_t *)param_4 = *(int64_t *)param_4 + *param_5;
+    uVar28 = (uint64_t)param_1 & 0xf;
   }
   iVar31 = (int)param_2 >> 2;
   if (iVar31 != 0) {
     lVar41 = *param_5;
-    lVar17 = *(longlong *)param_4;
+    lVar17 = *(int64_t *)param_4;
     lVar2 = lVar41 * 4;
     iVar40 = (int)lVar41;
     iVar27 = iVar40 * 4;
@@ -1219,7 +1219,7 @@ void FUN_180833610(float *param_1,uint param_2,longlong param_3,uint *param_4,lo
     auVar39._0_8_ = lVar17;
     auVar43._0_8_ = lVar41 * 2 + lVar17;
     auVar43._8_8_ = lVar41 * 3 + lVar17;
-    puVar30 = (ulonglong *)auStack_e8;
+    puVar30 = (uint64_t *)auStack_e8;
     uVar36 = iVar40 + uVar29;
     uVar37 = iVar40 * 2 + uVar29;
     uVar38 = iVar40 * 3 + uVar29;
@@ -1236,7 +1236,7 @@ void FUN_180833610(float *param_1,uint param_2,longlong param_3,uint *param_4,lo
       lVar41 = auVar39._8_8_;
       auVar39._0_8_ = auVar39._0_8_ + lVar2;
       auVar39._8_8_ = lVar41 + lVar2;
-      uVar28 = (ulonglong)(uint)(iVar40 * 6);
+      uVar28 = (uint64_t)(uint)(iVar40 * 6);
       fVar32 = (float)(uVar29 >> 1) * 4.656613e-10;
       fVar33 = (float)(uVar36 >> 1) * 4.656613e-10;
       fVar34 = (float)(uVar37 >> 1) * 4.656613e-10;
@@ -1254,7 +1254,7 @@ void FUN_180833610(float *param_1,uint param_2,longlong param_3,uint *param_4,lo
       fVar12 = pfVar4[1];
       fVar13 = pfVar4[2];
       fVar14 = pfVar4[3];
-      uVar28 = (ulonglong)(uint)(iVar42 * 6);
+      uVar28 = (uint64_t)(uint)(iVar42 * 6);
       pfVar4 = (float *)(param_3 + 0x10 + uVar28 * 4);
       fVar15 = *pfVar4;
       fVar16 = pfVar4[1];
@@ -1282,7 +1282,7 @@ void FUN_180833610(float *param_1,uint param_2,longlong param_3,uint *param_4,lo
       param_1[9] = fVar22 + (fVar24 - fVar22) * fVar33;
       param_1[10] = fVar15 + (fVar25 - fVar15) * fVar33;
       param_1[0xb] = fVar16 + (fVar26 - fVar16) * fVar33;
-      uVar28 = (ulonglong)(uint)(iVar44 * 6);
+      uVar28 = (uint64_t)(uint)(iVar44 * 6);
       pfVar1 = (float *)(param_3 + uVar28 * 4);
       fVar5 = pfVar1[1];
       fVar6 = pfVar1[2];
@@ -1296,7 +1296,7 @@ void FUN_180833610(float *param_1,uint param_2,longlong param_3,uint *param_4,lo
       fVar12 = pfVar4[1];
       fVar13 = pfVar4[2];
       fVar14 = pfVar4[3];
-      uVar28 = (ulonglong)(uint)(iVar45 * 6);
+      uVar28 = (uint64_t)(uint)(iVar45 * 6);
       pfVar4 = (float *)(param_3 + uVar28 * 4);
       fVar15 = *pfVar4;
       fVar16 = pfVar4[1];
@@ -1331,7 +1331,7 @@ void FUN_180833610(float *param_1,uint param_2,longlong param_3,uint *param_4,lo
       uVar37 = uVar37 + iVar27;
       uVar38 = uVar38 + iVar27;
     } while (iVar31 != 0);
-    *(longlong *)param_4 = auVar39._0_8_;
+    *(int64_t *)param_4 = auVar39._0_8_;
   }
   param_2 = param_2 & 3;
   if (param_2 != 0) {
@@ -1339,32 +1339,32 @@ void FUN_180833610(float *param_1,uint param_2,longlong param_3,uint *param_4,lo
     do {
       uVar29 = param_4[1] * 6;
       fVar46 = (float)(*param_4 >> 1) * 4.656613e-10;
-      fVar5 = *(float *)(param_3 + (ulonglong)(uVar29 + 1) * 4);
-      fVar6 = *(float *)(param_3 + (ulonglong)(uVar29 + 2) * 4);
-      fVar7 = *(float *)(param_3 + (ulonglong)(uVar29 + 3) * 4);
-      fVar8 = *(float *)(param_3 + (ulonglong)(uVar29 + 4) * 4);
-      fVar9 = *(float *)(param_3 + (ulonglong)(uVar29 + 5) * 4);
-      fVar10 = *(float *)(param_3 + (ulonglong)(uVar29 + 8) * 4);
-      fVar11 = *(float *)(param_3 + (ulonglong)(uVar29 + 9) * 4);
-      fVar12 = *(float *)(param_3 + (ulonglong)(uVar29 + 10) * 4);
-      fVar13 = *(float *)(param_3 + (ulonglong)(uVar29 + 0xb) * 4);
-      fVar14 = *(float *)(param_3 + (ulonglong)(uVar29 + 6) * 4);
-      fVar15 = *(float *)(param_3 + (ulonglong)uVar29 * 4);
-      fVar16 = *(float *)(param_3 + (ulonglong)uVar29 * 4);
-      param_1[-1] = (*(float *)(param_3 + (ulonglong)(uVar29 + 7) * 4) - fVar5) * fVar46 + fVar5;
+      fVar5 = *(float *)(param_3 + (uint64_t)(uVar29 + 1) * 4);
+      fVar6 = *(float *)(param_3 + (uint64_t)(uVar29 + 2) * 4);
+      fVar7 = *(float *)(param_3 + (uint64_t)(uVar29 + 3) * 4);
+      fVar8 = *(float *)(param_3 + (uint64_t)(uVar29 + 4) * 4);
+      fVar9 = *(float *)(param_3 + (uint64_t)(uVar29 + 5) * 4);
+      fVar10 = *(float *)(param_3 + (uint64_t)(uVar29 + 8) * 4);
+      fVar11 = *(float *)(param_3 + (uint64_t)(uVar29 + 9) * 4);
+      fVar12 = *(float *)(param_3 + (uint64_t)(uVar29 + 10) * 4);
+      fVar13 = *(float *)(param_3 + (uint64_t)(uVar29 + 0xb) * 4);
+      fVar14 = *(float *)(param_3 + (uint64_t)(uVar29 + 6) * 4);
+      fVar15 = *(float *)(param_3 + (uint64_t)uVar29 * 4);
+      fVar16 = *(float *)(param_3 + (uint64_t)uVar29 * 4);
+      param_1[-1] = (*(float *)(param_3 + (uint64_t)(uVar29 + 7) * 4) - fVar5) * fVar46 + fVar5;
       *param_1 = (fVar10 - fVar6) * fVar46 + fVar6;
       param_1[1] = (fVar11 - fVar7) * fVar46 + fVar7;
       param_1[2] = (fVar12 - fVar8) * fVar46 + fVar8;
       param_1[-2] = (fVar14 - fVar15) * fVar46 + fVar16;
       param_1[3] = (fVar13 - fVar9) * fVar46 + fVar9;
       param_1 = param_1 + 6;
-      *(longlong *)param_4 = *(longlong *)param_4 + *param_5;
+      *(int64_t *)param_4 = *(int64_t *)param_4 + *param_5;
       param_2 = param_2 - 1;
     } while (param_2 != 0);
   }
                     // WARNING: Subroutine does not return
-  *(uint64_t *)((longlong)puVar30 + -8) = 0x180833afc;
-  FUN_1808fc050(auStack_b8[0] ^ (ulonglong)auStack_b8);
+  *(uint64_t *)((int64_t)puVar30 + -8) = 0x180833afc;
+  FUN_1808fc050(auStack_b8[0] ^ (uint64_t)auStack_b8);
 }
 
 // ============================================

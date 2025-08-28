@@ -74,7 +74,7 @@
  ========================================*/
 
 /** 异常处理函数指针类型 */
-typedef void (*ExceptionHandlerFunc)(longlong, uint64_t, uint64_t, longlong);
+typedef void (*ExceptionHandlerFunc)(int64_t, uint64_t, uint64_t, int64_t);
 
 /** 系统初始化函数指针类型 */
 typedef void (*SystemInitFunc)(void);
@@ -92,28 +92,28 @@ typedef void (*SecurityCheckFunc)(void);
 typedef void (*ExceptionCleanupFunc)(void);
 
 /** 数学计算函数指针类型 */
-typedef ulonglong (*MathCalculationFunc)(uint64_t, int32_t);
+typedef uint64_t (*MathCalculationFunc)(uint64_t, int32_t);
 
 /** 内存管理函数指针类型 */
 typedef void (*MemoryManagerFunc)(void);
 
 /** 对象构造函数指针类型 */
-typedef uint64_t* (*ObjectConstructorFunc)(uint64_t*, longlong);
+typedef uint64_t* (*ObjectConstructorFunc)(uint64_t*, int64_t);
 
 /** 对象析构函数指针类型 */
-typedef uint64_t* (*ObjectDestructorFunc)(uint64_t*, ulonglong);
+typedef uint64_t* (*ObjectDestructorFunc)(uint64_t*, uint64_t);
 
 /** 异常抛出函数指针类型 */
 typedef void (*ExceptionThrowerFunc)(void);
 
 /** 向量数学函数指针类型 */
-typedef ulonglong (*VectorMathFunc)(uint64_t, int32_t);
+typedef uint64_t (*VectorMathFunc)(uint64_t, int32_t);
 
 /** 时间戳类型 */
-typedef ulonglong timestamp_t;
+typedef uint64_t timestamp_t;
 
 /** 系统标识符类型 */
-typedef ulonglong system_id_t;
+typedef uint64_t system_id_t;
 
 /** 进程ID类型 */
 typedef uint process_id_t;
@@ -197,10 +197,10 @@ typedef enum {
 
 /** 异常处理上下文结构体 */
 typedef struct {
-    longlong context_handle;
+    int64_t context_handle;
     uint64_t exception_code;
     uint64_t exception_flags;
-    longlong exception_info;
+    int64_t exception_info;
     ExceptionHandlerFunc handler;
     exception_state_t state;
 } exception_context_t;
@@ -233,7 +233,7 @@ typedef struct {
 
 /** 安全检查信息结构体 */
 typedef struct {
-    longlong *security_pointer;
+    int64_t *security_pointer;
     SecurityCheckFunc checker;
     security_state_t state;
 } security_check_info_t;
@@ -249,8 +249,8 @@ typedef struct {
 
 /** 内存管理信息结构体 */
 typedef struct {
-    longlong *memory_pointer;
-    longlong *memory_end;
+    int64_t *memory_pointer;
+    int64_t *memory_end;
     MemoryManagerFunc manager;
     size_t memory_size;
 } memory_management_info_t;
@@ -258,7 +258,7 @@ typedef struct {
 /** 对象构造信息结构体 */
 typedef struct {
     uint64_t *object_pointer;
-    longlong construction_params;
+    int64_t construction_params;
     ObjectConstructorFunc constructor;
     uint64_t *vtable_pointer;
 } object_construction_info_t;
@@ -266,7 +266,7 @@ typedef struct {
 /** 对象析构信息结构体 */
 typedef struct {
     uint64_t *object_pointer;
-    ulonglong destruction_flags;
+    uint64_t destruction_flags;
     ObjectDestructorFunc destructor;
     uint cleanup_flags;
 } object_destruction_info_t;
@@ -338,16 +338,16 @@ typedef struct {
  ========================================*/
 
 /** 系统初始化魔数变量 */
-extern ulonglong GET_SECURITY_COOKIE();
+extern uint64_t GET_SECURITY_COOKIE();
 
 /** 系统标识符变量 */
-extern ulonglong system_system_control_ui;
+extern uint64_t system_system_control_ui;
 
 /** 安全检查指针变量 */
-extern longlong global_state_8824_ptr;
+extern int64_t global_state_8824_ptr;
 
 /** 安全检查指针变量2 */
-extern longlong global_state_8840_ptr;
+extern int64_t global_state_8840_ptr;
 
 /** 异常类型指针变量 */
 extern uint64_t global_state_9816_ptr;
@@ -407,13 +407,13 @@ extern uint64_t global_state_5488_ptr;
  * @note 这是一个简化的实现版本
  * @see ExceptionHandlerFunc
  */
-void ExceptionHandlerAndFrameProcessor(longlong param_1, uint64_t param_2, 
-                                       uint64_t param_3, longlong param_4)
+void ExceptionHandlerAndFrameProcessor(int64_t param_1, uint64_t param_2, 
+                                       uint64_t param_3, int64_t param_4)
 {
-    longlong context_pointer;
+    int64_t context_pointer;
     
     /* 获取异常上下文指针 */
-    context_pointer = *(longlong *)(param_4 + 0x38);
+    context_pointer = *(int64_t *)(param_4 + 0x38);
     
     /* 调用异常预处理函数 */
     FUN_1808fd18c(param_2, param_4);
@@ -469,10 +469,10 @@ void SystemInitializerAndRandomSeedGenerator(void)
         
         /* 生成系统ID（使用时间、线程ID、进程ID和性能计数器的组合） */
         GET_SECURITY_COOKIE() = ((
-            (ulonglong)performance_counter << 0x20 ^ 
+            (uint64_t)performance_counter << 0x20 ^ 
             CONCAT44(performance_counter_low, performance_counter) ^ 
             generated_id ^ 
-            (ulonglong)&generated_id
+            (uint64_t)&generated_id
         ) & 0xffffffffffff);
         
         /* 防止生成的ID与魔数相同 */
@@ -529,14 +529,14 @@ uint64_t LibraryLoaderAndThreadController(uint64_t param_1, int param_2)
  */
 void SystemStateActivatorAndFlagSetter(void)
 {
-    ulonglong *system_flags_pointer;
+    uint64_t *system_flags_pointer;
     
     /* 获取系统标志指针1并设置内存保护标志 */
-    system_flags_pointer = (ulonglong *)func_0x00018004b9a0();
+    system_flags_pointer = (uint64_t *)func_0x00018004b9a0();
     *system_flags_pointer |= SYSTEM_FLAG_MEMORY_PROTECTION;
     
     /* 获取系统标志指针2并设置运行时控制标志 */
-    system_flags_pointer = (ulonglong *)func_0x00018010cbb0();
+    system_flags_pointer = (uint64_t *)func_0x00018010cbb0();
     *system_flags_pointer |= SYSTEM_FLAG_RUNTIME_CONTROL;
     
     return;
@@ -609,10 +609,10 @@ void SystemStateSetterAndProcessorHandler(int32_t param_1)
  */
 void SecurityCheckerAndCallGuardian(void)
 {
-    longlong *security_pointer;
+    int64_t *security_pointer;
     
     /* 遍历安全检查指针数组 */
-    for (security_pointer = (longlong *)&global_state_8824_ptr; 
+    for (security_pointer = (int64_t *)&global_state_8824_ptr; 
          security_pointer < &global_state_8824_ptr; 
          security_pointer++) {
         
@@ -641,10 +641,10 @@ void SecurityCheckerAndCallGuardian(void)
  */
 void MemoryCleanerAndSecurityChecker(void)
 {
-    longlong *memory_pointer;
+    int64_t *memory_pointer;
     
     /* 遍历内存指针数组 */
-    for (memory_pointer = (longlong *)&global_state_8840_ptr; 
+    for (memory_pointer = (int64_t *)&global_state_8840_ptr; 
          memory_pointer < &global_state_8840_ptr; 
          memory_pointer++) {
         
@@ -695,7 +695,7 @@ void MemoryManagerAndFreeHandler(void)
  * @note 这是一个简化的实现版本
  * @see ObjectConstructorFunc
  */
-uint64_t *ObjectConstructorAndExceptionCopier(uint64_t *param_1, longlong param_2)
+uint64_t *ObjectConstructorAndExceptionCopier(uint64_t *param_1, int64_t param_2)
 {
     /* 设置虚表指针 */
     *param_1 = &global_state_9816_ptr;
@@ -729,7 +729,7 @@ uint64_t *ObjectConstructorAndExceptionCopier(uint64_t *param_1, longlong param_
  * @note 这是一个简化的实现版本
  * @see ObjectDestructorFunc
  */
-uint64_t *ObjectDestructorAndMemoryCleaner(uint64_t *param_1, ulonglong param_2)
+uint64_t *ObjectDestructorAndMemoryCleaner(uint64_t *param_1, uint64_t param_2)
 {
     /* 重置虚表指针 */
     *param_1 = &global_state_9816_ptr;
@@ -813,18 +813,18 @@ void ExceptionThrowerAndSystemTerminator2(void)
  * 
  * @param param_1 输入向量参数（包含4个浮点数）
  * @param param_2 计算标志参数（控制计算模式和精度）
- * @return ulonglong 返回计算结果向量（64位结果）
+ * @return uint64_t 返回计算结果向量（64位结果）
  * 
  * @note 这是一个简化的实现版本
  * @warning 实际实现包含复杂的SIMD指令和多项式计算
  * @see VectorMathFunc
  */
-ulonglong VectorMathSinCalculator(uint64_t param_1, int32_t param_2)
+uint64_t VectorMathSinCalculator(uint64_t param_1, int32_t param_2)
 {
     int32_t register_eax;
     uint calculation_flags;
-    ulonglong temp_ulong;
-    longlong loop_counter;
+    uint64_t temp_ulong;
+    int64_t loop_counter;
     int processor_flags;
     float input_x;
     float input_y;
@@ -862,7 +862,7 @@ ulonglong VectorMathSinCalculator(uint64_t param_1, int32_t param_2)
     int8_t temp_vector7 [16];
     double reduction_temp2;
     float float_array[8];
-    ulonglong mask_temp;
+    uint64_t mask_temp;
     uint flag_temp1;
     uint flag_temp2;
     int8_t result_vectors[3][16];
@@ -907,7 +907,7 @@ ulonglong VectorMathSinCalculator(uint64_t param_1, int32_t param_2)
         return CONCAT44(0, 0); /* 简化实现 */
     }
     /* 处理复杂范围的参数 */
-    mask_temp = (ulonglong)system_memory_f6d0 & input_vector._0_8_;
+    mask_temp = (uint64_t)system_memory_f6d0 & input_vector._0_8_;
     
     /* 角度归一化计算 */
     int_x = (int)(angle_x * MATH_PI_INVERSE);
@@ -949,14 +949,14 @@ ulonglong VectorMathSinCalculator(uint64_t param_1, int32_t param_2)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-ulonglong FUN_1808fe1a0(uint64_t param_1,int32_t param_2)
+uint64_t FUN_1808fe1a0(uint64_t param_1,int32_t param_2)
 
 {
   int32_t in_EAX;
   uint uVar1;
-  ulonglong uVar2;
+  uint64_t uVar2;
   int iVar3;
-  longlong lVar4;
+  int64_t lVar4;
   float fVar5;
   float fVar6;
   float fVar7;
@@ -1182,24 +1182,24 @@ ulonglong FUN_1808fe1a0(uint64_t param_1,int32_t param_2)
           fVar16 = fVar16 - fVar16;
         }
         else {
-          uVar2 = (ulonglong)(((uint)ABS(fVar16) >> 0x17) - 0x8e & 0xfff8);
-          dVar18 = (double)(*(ulonglong *)(&global_state_6528_ptr + uVar2 * 2) & 0xffffffffff000000) *
+          uVar2 = (uint64_t)(((uint)ABS(fVar16) >> 0x17) - 0x8e & 0xfff8);
+          dVar18 = (double)(*(uint64_t *)(&global_state_6528_ptr + uVar2 * 2) & 0xffffffffff000000) *
                    dVar17;
-          dVar21 = (double)(*(ulonglong *)(&global_state_6528_ptr + uVar2 * 2) << 0x28) * dVar17;
+          dVar21 = (double)(*(uint64_t *)(&global_state_6528_ptr + uVar2 * 2) << 0x28) * dVar17;
           dVar19 = dVar18 + dVar21;
           iVar3 = SUB84(dVar19 + 6755399441055744.0,0);
           uVar38 = iVar3 * 2;
           uVar39 = (iVar3 << 0x19) >> 0x1f;
           dVar17 = dVar17 * *(double *)(&global_state_6536_ptr + uVar2 * 2) + dVar21 + (dVar18 - dVar19) +
                    (dVar19 - ((dVar19 + 6755399441055744.0) - 6755399441055744.0));
-          uVar2 = (ulonglong)((uVar38 + uVar39 ^ uVar39) & 0xfe);
-          fVar16 = (float)((double)((ulonglong)
+          uVar2 = (uint64_t)((uVar38 + uVar39 ^ uVar39) & 0xfe);
+          fVar16 = (float)((double)((uint64_t)
                                     ((3320.092545592124 - dVar17 * dVar17) *
                                     *(double *)(&global_state_5496_ptr + uVar2 * 8)) ^
-                                   (ulonglong)(((uVar38 & 0x180) + 0x80 & 0x100) << 0x17) << 0x20) +
+                                   (uint64_t)(((uVar38 & 0x180) + 0x80 & 0x100) << 0x17) << 0x20) +
                           *(double *)(&global_state_5488_ptr + uVar2 * 8) * dVar17 *
-                          (double)((ulonglong)(9960.277636776373 - dVar17 * dVar17) ^
-                                  (ulonglong)((uVar38 & 0x100) << 0x17) << 0x20));
+                          (double)((uint64_t)(9960.277636776373 - dVar17 * dVar17) ^
+                                  (uint64_t)((uVar38 & 0x100) << 0x17) << 0x20));
         }
         *(float *)(aauStack_38[0] + lVar4 * 4) = fVar16;
       }

@@ -3,16 +3,16 @@
 
 // 03_rendering_part190.c - 2 个函数
 
-// 函数: void FUN_18037ad00(longlong param_1)
-void FUN_18037ad00(longlong param_1)
+// 函数: void FUN_18037ad00(int64_t param_1)
+void FUN_18037ad00(int64_t param_1)
 
 {
-  longlong lVar1;
+  int64_t lVar1;
   uint64_t uVar2;
-  longlong lVar3;
+  int64_t lVar3;
   
   uVar2 = FUN_180244ff0();
-  lVar1 = *(longlong *)(param_1 + 0x9650);
+  lVar1 = *(int64_t *)(param_1 + 0x9650);
   if ((*(int *)(param_1 + 0x124e8) == 0) && (*(int *)(param_1 + 0x124ec) == 0)) {
     FUN_18037a770(uVar2,*(uint64_t *)(lVar1 + 0x10));
     lVar3 = FUN_180275820(*(uint64_t *)(lVar1 + 0x20));
@@ -33,11 +33,11 @@ FUN_18037ad90(uint64_t *param_1,uint64_t *param_2,uint64_t param_3,uint64_t para
 
 {
   uint uVar1;
-  longlong lVar2;
-  longlong lVar3;
+  int64_t lVar2;
+  int64_t lVar3;
   
   *param_1 = *param_2;
-  lVar3 = (longlong)(param_2[2] - param_2[1]) >> 5;
+  lVar3 = (int64_t)(param_2[2] - param_2[1]) >> 5;
   uVar1 = *(uint *)(param_2 + 4);
   *(uint *)(param_1 + 4) = uVar1;
   if (lVar3 == 0) {
@@ -63,8 +63,8 @@ FUN_18037ad90(uint64_t *param_1,uint64_t *param_2,uint64_t param_3,uint64_t para
 
 
 
-// 函数: void FUN_18037ae40(longlong param_1,longlong *param_2)
-void FUN_18037ae40(longlong param_1,longlong *param_2)
+// 函数: void FUN_18037ae40(int64_t param_1,int64_t *param_2)
+void FUN_18037ae40(int64_t param_1,int64_t *param_2)
 
 {
   FUN_18037fb10(param_1 + 0x21e0,*(uint64_t *)(param_1 + 0x21e8),*param_2,param_2[1]);

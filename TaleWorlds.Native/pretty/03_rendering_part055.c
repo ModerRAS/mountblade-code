@@ -12,18 +12,18 @@ void RenderSystem_ParticleSystem_Update(void)
 {
   float fVar1;
   float fVar2;
-  longlong lVar3;
+  int64_t lVar3;
   bool bVar4;
-  longlong lVar5;
-  longlong lVar6;
+  int64_t lVar5;
+  int64_t lVar6;
   uint64_t unaff_RBX;
   uint64_t *puVar7;
-  longlong unaff_RBP;
+  int64_t unaff_RBP;
   uint unaff_ESI;
   int32_t unaff_00000034;
   uint64_t unaff_RDI;
-  longlong lVar8;
-  longlong in_R11;
+  int64_t lVar8;
+  int64_t in_R11;
   uint64_t unaff_R13;
   int iVar9;
   uint64_t unaff_R14;
@@ -94,7 +94,7 @@ void RenderSystem_ParticleSystem_Update(void)
   *(uint64_t *)(in_R11 + -0x18) = unaff_R13;
   lVar5 = SYSTEM_DATA_MANAGER_A;
   *(uint64_t *)(in_R11 + -0x20) = unaff_R14;
-  lVar3 = *(longlong *)(lVar5 + 0xa0);
+  lVar3 = *(int64_t *)(lVar5 + 0xa0);
   
   // 执行初始化循环
   do {
@@ -109,7 +109,7 @@ void RenderSystem_ParticleSystem_Update(void)
     lVar8 = CONCAT44(unaff_00000034,unaff_ESI) + CONCAT44(unaff_00000034,unaff_ESI) * 2;
     fVar13 = fStack0000000000000034 - *(float *)(lVar8 * 8 + 0x180bf9104);
     fVar14 = fStack0000000000000030 - *(float *)(lVar8 * 8 + 0x180bf9100);
-    lVar6 = (longlong)*(int *)(lVar3 + 0x70) * 0x20 + *(longlong *)(lVar3 + 0x58);
+    lVar6 = (int64_t)*(int *)(lVar3 + 0x70) * 0x20 + *(int64_t *)(lVar3 + 0x58);
     fVar1 = *(float *)(lVar8 * 8 + 0x180bf90f8);
     fVar2 = *(float *)(lVar8 * 8 + 0x180bf90fc);
     fVar11 = (float)*(ushort *)(lVar6 + 8) + *(float *)(lVar8 * 8 + 0x180bf90f0);
@@ -123,7 +123,7 @@ void RenderSystem_ParticleSystem_Update(void)
     fVar12 = *(float *)(lVar3 + 0x34);
     *(float *)(unaff_RBP + -0x80) = (fVar11 + 109.0 + fVar1) * *(float *)(lVar3 + 0x30);
     *(float *)(unaff_RBP + -0x7c) = (fVar2 + fVar10) * fVar12;
-    lVar3 = *(longlong *)(lVar3 + 8);
+    lVar3 = *(int64_t *)(lVar3 + 8);
     iVar9 = 0;
     fStack0000000000000030 = fVar14;
     fStack0000000000000034 = fVar13;
@@ -148,7 +148,7 @@ void RenderSystem_ParticleSystem_Update(void)
       in_stack_00000110 = unaff_XMM6_Da;
       in_stack_00000118 = unaff_XMM6_Dc;
       do {
-        lVar6 = *(longlong *)(lVar8 + *(longlong *)(lVar5 + 0x1c70));
+        lVar6 = *(int64_t *)(lVar8 + *(int64_t *)(lVar5 + 0x1c70));
         // 边界检测和碰撞处理
         if ((((fVar13 < *(float *)(lVar6 + 0xc) + *(float *)(lVar6 + 0x14)) &&
              (*(float *)(lVar6 + 0xc) < (fVar2 + 2.0) * unaff_XMM9_Da + fVar13)) &&
@@ -163,8 +163,8 @@ void RenderSystem_ParticleSystem_Update(void)
           fStack0000000000000038 = fStack0000000000000040 + fVar12;
           fStack0000000000000044 = fVar13;
           if ((*(int *)(lVar6 + 0x70) == 0) ||
-             (lVar3 != *(longlong *)
-                        (*(longlong *)(lVar6 + 0x78) + -8 + (longlong)*(int *)(lVar6 + 0x70) * 8)))
+             (lVar3 != *(int64_t *)
+                        (*(int64_t *)(lVar6 + 0x78) + -8 + (int64_t)*(int *)(lVar6 + 0x70) * 8)))
           {
             bVar4 = true;
             FUN_180291c70(lVar6,lVar3);
@@ -183,8 +183,8 @@ void RenderSystem_ParticleSystem_Update(void)
           fStack0000000000000048 = fStack0000000000000050 + fVar12;
           fStack0000000000000054 = fVar13;
           if ((*(int *)(lVar6 + 0x70) == 0) ||
-             (lVar3 != *(longlong *)
-                        (*(longlong *)(lVar6 + 0x78) + -8 + (longlong)*(int *)(lVar6 + 0x70) * 8)))
+             (lVar3 != *(int64_t *)
+                        (*(int64_t *)(lVar6 + 0x78) + -8 + (int64_t)*(int *)(lVar6 + 0x70) * 8)))
           {
             bVar4 = true;
             FUN_180291c70(lVar6,lVar3);
@@ -203,8 +203,8 @@ void RenderSystem_ParticleSystem_Update(void)
           fStack0000000000000058 = fVar12;
           fStack000000000000005c = fVar10;
           if ((*(int *)(lVar6 + 0x70) == 0) ||
-             (lVar3 != *(longlong *)
-                        (*(longlong *)(lVar6 + 0x78) + -8 + (longlong)*(int *)(lVar6 + 0x70) * 8)))
+             (lVar3 != *(int64_t *)
+                        (*(int64_t *)(lVar6 + 0x78) + -8 + (int64_t)*(int *)(lVar6 + 0x70) * 8)))
           {
             bVar4 = true;
             FUN_180291c70(lVar6,lVar3);
@@ -221,8 +221,8 @@ void RenderSystem_ParticleSystem_Update(void)
           fStack0000000000000060 = fVar12;
           fStack0000000000000064 = fVar10;
           if ((*(int *)(lVar6 + 0x70) == 0) ||
-             (lVar3 != *(longlong *)
-                        (*(longlong *)(lVar6 + 0x78) + -8 + (longlong)*(int *)(lVar6 + 0x70) * 8)))
+             (lVar3 != *(int64_t *)
+                        (*(int64_t *)(lVar6 + 0x78) + -8 + (int64_t)*(int *)(lVar6 + 0x70) * 8)))
           {
             bVar4 = true;
             FUN_180291c70(lVar6,lVar3);
@@ -245,7 +245,7 @@ void RenderSystem_ParticleSystem_Update(void)
     }
   }
   // 调用渲染系统底层函数
-  FUN_1808fc050(*(ulonglong *)(unaff_RBP + -0x78) ^ (ulonglong)&stack0x00000000);
+  FUN_1808fc050(*(uint64_t *)(unaff_RBP + -0x78) ^ (uint64_t)&stack0x00000000);
 }
 
 /**
@@ -253,20 +253,20 @@ void RenderSystem_ParticleSystem_Update(void)
  * 处理粒子效果的多参数渲染和变换
  * 这是简化实现，原始实现包含复杂的参数传递和矩阵运算
  */
-void RenderSystem_ParticleEffect_Process(longlong param_1,longlong param_2,longlong param_3,uint64_t param_4,
+void RenderSystem_ParticleEffect_Process(int64_t param_1,int64_t param_2,int64_t param_3,uint64_t param_4,
                   uint64_t param_5,uint64_t param_6,uint64_t param_7,uint64_t param_8,
                   uint64_t param_9,uint64_t param_10,uint64_t param_11,uint64_t param_12)
 {
   float fVar1;
   float fVar2;
   bool bVar3;
-  longlong lVar4;
-  longlong lVar5;
-  longlong unaff_RBP;
-  longlong unaff_R13;
+  int64_t lVar4;
+  int64_t lVar5;
+  int64_t unaff_RBP;
+  int64_t unaff_R13;
   int iVar6;
-  longlong unaff_R14;
-  longlong lVar7;
+  int64_t unaff_R14;
+  int64_t lVar7;
   float fVar8;
   float fVar9;
   int32_t unaff_XMM6_Da;
@@ -299,7 +299,7 @@ void RenderSystem_ParticleEffect_Process(longlong param_1,longlong param_2,longl
   // 计算粒子效果参数
   fVar11 = param_6._4_4_ - *(float *)(param_3 + 0x14 + param_2 * 8);
   fVar12 = (float)param_6 - *(float *)(param_3 + 0x10 + param_2 * 8);
-  lVar5 = param_1 * 0x20 + *(longlong *)(unaff_R14 + 0x58);
+  lVar5 = param_1 * 0x20 + *(int64_t *)(unaff_R14 + 0x58);
   fVar1 = *(float *)(param_3 + 8 + param_2 * 8);
   fVar2 = *(float *)(param_3 + 0xc + param_2 * 8);
   fVar9 = (float)*(ushort *)(lVar5 + 8) + *(float *)(param_3 + param_2 * 8);
@@ -313,7 +313,7 @@ void RenderSystem_ParticleEffect_Process(longlong param_1,longlong param_2,longl
   fVar10 = *(float *)(unaff_R14 + 0x34);
   *(float *)(unaff_RBP + -0x80) = (fVar9 + 109.0 + fVar1) * *(float *)(unaff_R14 + 0x30);
   *(float *)(unaff_RBP + -0x7c) = (fVar2 + fVar8) * fVar10;
-  lVar5 = *(longlong *)(unaff_R14 + 8);
+  lVar5 = *(int64_t *)(unaff_R14 + 8);
   iVar6 = 0;
   param_6._0_4_ = fVar12;
   param_6._4_4_ = fVar11;
@@ -330,7 +330,7 @@ void RenderSystem_ParticleEffect_Process(longlong param_1,longlong param_2,longl
     in_stack_00000110 = unaff_XMM6_Da;
     in_stack_00000118 = unaff_XMM6_Dc;
     do {
-      lVar4 = *(longlong *)(lVar7 + *(longlong *)(unaff_R13 + 0x1c70));
+      lVar4 = *(int64_t *)(lVar7 + *(int64_t *)(unaff_R13 + 0x1c70));
       // 粒子效果边界检测
       if ((((fVar11 < *(float *)(lVar4 + 0xc) + *(float *)(lVar4 + 0x14)) &&
            (*(float *)(lVar4 + 0xc) < (fVar2 + 2.0) * unaff_XMM9_Da + fVar11)) &&
@@ -345,8 +345,8 @@ void RenderSystem_ParticleEffect_Process(longlong param_1,longlong param_2,longl
         param_7._0_4_ = (float)param_8 + fVar10;
         param_8._4_4_ = fVar11;
         if ((*(int *)(lVar4 + 0x70) == 0) ||
-           (lVar5 != *(longlong *)
-                      (*(longlong *)(lVar4 + 0x78) + -8 + (longlong)*(int *)(lVar4 + 0x70) * 8))) {
+           (lVar5 != *(int64_t *)
+                      (*(int64_t *)(lVar4 + 0x78) + -8 + (int64_t)*(int *)(lVar4 + 0x70) * 8))) {
           bVar3 = true;
           FUN_180291c70(lVar4,lVar5);
         }
@@ -364,8 +364,8 @@ void RenderSystem_ParticleEffect_Process(longlong param_1,longlong param_2,longl
         param_9._0_4_ = (float)param_10 + fVar10;
         param_10._4_4_ = fVar11;
         if ((*(int *)(lVar4 + 0x70) == 0) ||
-           (lVar5 != *(longlong *)
-                      (*(longlong *)(lVar4 + 0x78) + -8 + (longlong)*(int *)(lVar4 + 0x70) * 8))) {
+           (lVar5 != *(int64_t *)
+                      (*(int64_t *)(lVar4 + 0x78) + -8 + (int64_t)*(int *)(lVar4 + 0x70) * 8))) {
           bVar3 = true;
           FUN_180291c70(lVar4,lVar5);
         }
@@ -383,8 +383,8 @@ void RenderSystem_ParticleEffect_Process(longlong param_1,longlong param_2,longl
         param_11._0_4_ = fVar10;
         param_11._4_4_ = fVar8;
         if ((*(int *)(lVar4 + 0x70) == 0) ||
-           (lVar5 != *(longlong *)
-                      (*(longlong *)(lVar4 + 0x78) + -8 + (longlong)*(int *)(lVar4 + 0x70) * 8))) {
+           (lVar5 != *(int64_t *)
+                      (*(int64_t *)(lVar4 + 0x78) + -8 + (int64_t)*(int *)(lVar4 + 0x70) * 8))) {
           bVar3 = true;
           FUN_180291c70(lVar4,lVar5);
         }
@@ -400,8 +400,8 @@ void RenderSystem_ParticleEffect_Process(longlong param_1,longlong param_2,longl
         param_12._0_4_ = fVar10;
         param_12._4_4_ = fVar8;
         if ((*(int *)(lVar4 + 0x70) == 0) ||
-           (lVar5 != *(longlong *)
-                      (*(longlong *)(lVar4 + 0x78) + -8 + (longlong)*(int *)(lVar4 + 0x70) * 8))) {
+           (lVar5 != *(int64_t *)
+                      (*(int64_t *)(lVar4 + 0x78) + -8 + (int64_t)*(int *)(lVar4 + 0x70) * 8))) {
           bVar3 = true;
           FUN_180291c70(lVar4,lVar5);
         }
@@ -422,7 +422,7 @@ void RenderSystem_ParticleEffect_Process(longlong param_1,longlong param_2,longl
     } while (iVar6 < *(int *)(unaff_R13 + 0x1c68));
   }
   // 调用渲染系统底层函数
-  FUN_1808fc050(*(ulonglong *)(unaff_RBP + -0x78) ^ (ulonglong)&stack0x00000000);
+  FUN_1808fc050(*(uint64_t *)(unaff_RBP + -0x78) ^ (uint64_t)&stack0x00000000);
 }
 
 /**
@@ -433,12 +433,12 @@ void RenderSystem_ParticleEffect_Process(longlong param_1,longlong param_2,longl
 void RenderSystem_AdvancedParticleEffect_Process(void)
 {
   bool bVar1;
-  longlong lVar2;
-  longlong unaff_RBP;
-  longlong unaff_RDI;
-  longlong unaff_R13;
+  int64_t lVar2;
+  int64_t unaff_RBP;
+  int64_t unaff_RDI;
+  int64_t unaff_R13;
   uint unaff_R14D;
-  ulonglong uVar3;
+  uint64_t uVar3;
   float fVar4;
   float fVar5;
   float unaff_XMM8_Da;
@@ -457,9 +457,9 @@ void RenderSystem_AdvancedParticleEffect_Process(void)
   float fStack0000000000000060;
   float fStack0000000000000064;
   
-  uVar3 = (ulonglong)unaff_R14D;
+  uVar3 = (uint64_t)unaff_R14D;
   do {
-    lVar2 = *(longlong *)(uVar3 + *(longlong *)(unaff_R13 + 0x1c70));
+    lVar2 = *(int64_t *)(uVar3 + *(int64_t *)(unaff_R13 + 0x1c70));
     // 高级粒子效果边界检测和计算
     if ((((unaff_XMM8_Da < *(float *)(lVar2 + 0xc) + *(float *)(lVar2 + 0x14)) &&
          (*(float *)(lVar2 + 0xc) < (unaff_XMM14_Da + 2.0) * unaff_XMM9_Da + unaff_XMM8_Da)) &&
@@ -474,7 +474,7 @@ void RenderSystem_AdvancedParticleEffect_Process(void)
       fStack0000000000000038 = in_stack_00000040 + fVar4;
       if ((*(int *)(lVar2 + 0x70) == 0) ||
          (unaff_RDI !=
-          *(longlong *)(*(longlong *)(lVar2 + 0x78) + -8 + (longlong)*(int *)(lVar2 + 0x70) * 8))) {
+          *(int64_t *)(*(int64_t *)(lVar2 + 0x78) + -8 + (int64_t)*(int *)(lVar2 + 0x70) * 8))) {
         bVar1 = true;
         FUN_180291c70(lVar2);
       }
@@ -492,7 +492,7 @@ void RenderSystem_AdvancedParticleEffect_Process(void)
       fStack0000000000000048 = in_stack_00000050 + fVar4;
       if ((*(int *)(lVar2 + 0x70) == 0) ||
          (unaff_RDI !=
-          *(longlong *)(*(longlong *)(lVar2 + 0x78) + -8 + (longlong)*(int *)(lVar2 + 0x70) * 8))) {
+          *(int64_t *)(*(int64_t *)(lVar2 + 0x78) + -8 + (int64_t)*(int *)(lVar2 + 0x70) * 8))) {
         bVar1 = true;
         FUN_180291c70(lVar2);
       }
@@ -511,7 +511,7 @@ void RenderSystem_AdvancedParticleEffect_Process(void)
       fStack000000000000005c = fVar5;
       if ((*(int *)(lVar2 + 0x70) == 0) ||
          (unaff_RDI !=
-          *(longlong *)(*(longlong *)(lVar2 + 0x78) + -8 + (longlong)*(int *)(lVar2 + 0x70) * 8))) {
+          *(int64_t *)(*(int64_t *)(lVar2 + 0x78) + -8 + (int64_t)*(int *)(lVar2 + 0x70) * 8))) {
         bVar1 = true;
         FUN_180291c70(lVar2);
       }
@@ -528,7 +528,7 @@ void RenderSystem_AdvancedParticleEffect_Process(void)
       fStack0000000000000064 = fVar5;
       if ((*(int *)(lVar2 + 0x70) == 0) ||
          (unaff_RDI !=
-          *(longlong *)(*(longlong *)(lVar2 + 0x78) + -8 + (longlong)*(int *)(lVar2 + 0x70) * 8))) {
+          *(int64_t *)(*(int64_t *)(lVar2 + 0x78) + -8 + (int64_t)*(int *)(lVar2 + 0x70) * 8))) {
         bVar1 = true;
         FUN_180291c70(lVar2);
       }
@@ -548,7 +548,7 @@ void RenderSystem_AdvancedParticleEffect_Process(void)
     uVar3 = uVar3 + 8;
   } while ((int)unaff_R14D < *(int *)(unaff_R13 + 0x1c68));
   // 调用渲染系统底层函数
-  FUN_1808fc050(*(ulonglong *)(unaff_RBP + -0x78) ^ (ulonglong)&stack0x00000000);
+  FUN_1808fc050(*(uint64_t *)(unaff_RBP + -0x78) ^ (uint64_t)&stack0x00000000);
 }
 
 /**
@@ -557,10 +557,10 @@ void RenderSystem_AdvancedParticleEffect_Process(void)
  */
 void RenderSystem_EmptyFunction_1(void)
 {
-  longlong unaff_RBP;
+  int64_t unaff_RBP;
   
   // 调用渲染系统底层函数
-  FUN_1808fc050(*(ulonglong *)(unaff_RBP + -0x78) ^ (ulonglong)&stack0x00000000);
+  FUN_1808fc050(*(uint64_t *)(unaff_RBP + -0x78) ^ (uint64_t)&stack0x00000000);
 }
 
 /**
@@ -569,10 +569,10 @@ void RenderSystem_EmptyFunction_1(void)
  */
 void RenderSystem_EmptyFunction_2(void)
 {
-  longlong unaff_RBP;
+  int64_t unaff_RBP;
   
   // 调用渲染系统底层函数
-  FUN_1808fc050(*(ulonglong *)(unaff_RBP + -0x78) ^ (ulonglong)&stack0x00000000);
+  FUN_1808fc050(*(uint64_t *)(unaff_RBP + -0x78) ^ (uint64_t)&stack0x00000000);
 }
 
 /**
@@ -581,10 +581,10 @@ void RenderSystem_EmptyFunction_2(void)
  */
 void RenderSystem_EmptyFunction_3(void)
 {
-  longlong unaff_RBP;
+  int64_t unaff_RBP;
   
   // 调用渲染系统底层函数
-  FUN_1808fc050(*(ulonglong *)(unaff_RBP + -0x78) ^ (ulonglong)&stack0x00000000);
+  FUN_1808fc050(*(uint64_t *)(unaff_RBP + -0x78) ^ (uint64_t)&stack0x00000000);
 }
 
 /**
@@ -604,9 +604,9 @@ void RenderSystem_FloatCalculation_Process(uint64_t param_1,uint64_t param_2,uin
   
   // 浮点数计算处理
   uStack_28._0_4_ = (float)param_2;
-  uStack_28._4_4_ = (float)((ulonglong)param_2 >> 0x20);
+  uStack_28._4_4_ = (float)((uint64_t)param_2 >> 0x20);
   uStack_20._0_4_ = (float)param_3;
-  uStack_20._4_4_ = (float)((ulonglong)param_3 >> 0x20);
+  uStack_20._4_4_ = (float)((uint64_t)param_3 >> 0x20);
   fStack_14 = uStack_28._4_4_ - uStack_20._4_4_;
   fStack_18 = (float)uStack_20 + (float)uStack_28;
   fStack_10 = (float)uStack_28 - (float)uStack_20;
@@ -622,7 +622,7 @@ void RenderSystem_FloatCalculation_Process(uint64_t param_1,uint64_t param_2,uin
  * 处理复杂的曲线绘制和贝塞尔曲线计算
  * 这是简化实现，原始实现包含高级的曲线算法
  */
-void RenderSystem_AdvancedCurve_Draw(longlong param_1,float *param_2,int32_t param_3,float param_4,float param_5)
+void RenderSystem_AdvancedCurve_Draw(int64_t param_1,float *param_2,int32_t param_3,float param_4,float param_5)
 {
   int *piVar1;
   float fVar2;
@@ -733,7 +733,7 @@ void RenderSystem_AdvancedCurve_Draw(longlong param_1,float *param_2,int32_t par
         FUN_18011dc70(piVar1,iVar5);
         iVar7 = *piVar1;
       }
-      *(ulonglong *)(*(longlong *)(param_1 + 0x88) + (longlong)iVar7 * 8) =
+      *(uint64_t *)(*(int64_t *)(param_1 + 0x88) + (int64_t)iVar7 * 8) =
            CONCAT44(fStack_cc,fStack_d0);
       *piVar1 = *piVar1 + 1;
       iVar7 = *piVar1;
@@ -754,7 +754,7 @@ void RenderSystem_AdvancedCurve_Draw(longlong param_1,float *param_2,int32_t par
         FUN_18011dc70(piVar1,iVar5);
         iVar7 = *piVar1;
       }
-      *(ulonglong *)(*(longlong *)(param_1 + 0x88) + (longlong)iVar7 * 8) =
+      *(uint64_t *)(*(int64_t *)(param_1 + 0x88) + (int64_t)iVar7 * 8) =
            CONCAT44(fStack_cc,fStack_d0);
       *piVar1 = *piVar1 + 1;
     }
@@ -823,7 +823,7 @@ void RenderSystem_AdvancedCurve_Draw(longlong param_1,float *param_2,int32_t par
           FUN_18011dc70(piVar1,iVar5);
           iVar7 = *piVar1;
         }
-        *(ulonglong *)(*(longlong *)(param_1 + 0x88) + (longlong)iVar7 * 8) =
+        *(uint64_t *)(*(int64_t *)(param_1 + 0x88) + (int64_t)iVar7 * 8) =
              CONCAT44(fStackX_14,fStackX_10);
         *piVar1 = *piVar1 + 1;
         iVar7 = *piVar1;
@@ -841,7 +841,7 @@ void RenderSystem_AdvancedCurve_Draw(longlong param_1,float *param_2,int32_t par
           FUN_18011dc70(piVar1,iVar6);
           iVar7 = *piVar1;
         }
-        *(ulonglong *)(*(longlong *)(param_1 + 0x88) + (longlong)iVar7 * 8) =
+        *(uint64_t *)(*(int64_t *)(param_1 + 0x88) + (int64_t)iVar7 * 8) =
              CONCAT44(fStackX_14,fStackX_10);
         *piVar1 = *piVar1 + 1;
       }
