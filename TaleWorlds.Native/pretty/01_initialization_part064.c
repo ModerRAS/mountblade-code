@@ -227,6 +227,14 @@ typedef struct {
 #define InitializationSystem_ValidateState FUN_180058c80        // 状态验证器
 #define InitializationSystem_HandleError FUN_18004bb90           // 错误处理器
 
+// 系统核心功能函数别名
+#define InitializationSystem_PrepareInit FUN_1800591c0          // 系统初始化准备器
+#define InitializationSystem_HandleInitError FUN_18064e900       // 系统初始化错误处理器
+#define InitializationSystem_InitConfig FUN_180057010            // 系统配置初始化器
+#define InitializationSystem_ManageResource FUN_1800582b0        // 系统资源管理器
+#define InitializationSystem_ManageState FUN_180058370          // 系统状态管理器
+#define InitializationSystem_ProcessError FUN_180058420          // 系统错误处理器
+
 /* ============================================================================
  * 全局变量声明
  * ============================================================================ */
