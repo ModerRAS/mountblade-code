@@ -990,18 +990,31 @@ void empty_function_1(void)
 
 
 
-undefined1 FUN_1807c4780(longlong param_1,char param_2)
+/**
+ * 行结束检查器 - 检查行结束符
+ * 
+ * 功能：
+ * - 检查换行符
+ * - 处理回车符
+ * - 验证行结束状态
+ * - 返回检查结果
+ * 
+ * @param text_context 文本上下文指针
+ * @param check_char 要检查的字符
+ * @return 检查结果（1表示行结束，0表示未结束）
+ */
+undefined1 line_end_checker(longlong text_context, char check_char)
 
 {
-  char acStackX_10 [24];
+  char next_buffer[24];
   
-  if (param_2 == '\n') {
+  if (check_char == '\n') {
     return 1;
   }
-  if (param_2 == '\r') {
-    FUN_180769720(*(undefined8 *)(param_1 + 0x170),acStackX_10);
-    FUN_18076a440(*(undefined8 *)(param_1 + 0x170),0xffffffff,1);
-    if (acStackX_10[0] != '\n') {
+  if (check_char == '\r') {
+    read_char_function(*(undefined8 *)(text_context + 0x170), next_buffer);
+    set_parser_state_function(*(undefined8 *)(text_context + 0x170), 0xffffffff, 1);
+    if (next_buffer[0] != '\n') {
       return 1;
     }
   }
@@ -1015,107 +1028,124 @@ undefined1 FUN_1807c4780(longlong param_1,char param_2)
 
 
 
-// 函数: void FUN_1807c47e0(longlong param_1)
-void FUN_1807c47e0(longlong param_1)
+/**
+ * 系统初始化器 - 初始化系统上下文
+ * 
+ * 功能：
+ * - 初始化系统数据结构
+ * - 设置系统参数
+ * - 分配系统资源
+ * - 配置系统状态
+ * 
+ * @param system_context 系统上下文指针
+ * @return 无返回值
+ */
+void system_initializer(longlong system_context)
 
 {
-  int iVar1;
-  ulonglong uVar2;
-  longlong lVar3;
-  undefined1 auStack_68 [32];
-  undefined8 uStack_48;
-  char acStack_38 [8];
-  longlong lStack_30;
-  longlong lStack_28;
-  undefined8 uStack_20;
-  ulonglong uStack_18;
+  int init_result;
+  ulonglong parse_result;
+  longlong string_length;
+  undefined1 stack_protection[32];
+  undefined8 init_flag;
+  char temp_buffer[8];
+  longlong temp_value1;
+  longlong temp_value2;
+  undefined8 temp_value3;
+  ulonglong stack_checksum;
   
-  uStack_18 = _DAT_180bf00a8 ^ (ulonglong)auStack_68;
-  *(undefined4 *)(param_1 + 0x28) = 0xb;
-  *(undefined8 *)(param_1 + 0x120) = 0;
-  *(undefined8 *)(param_1 + 0x128) = 0;
-  *(undefined8 *)(param_1 + 0x130) = 0;
-  *(undefined8 *)(param_1 + 0x148) = 0;
-  *(undefined8 *)(param_1 + 0x138) = 0;
-  *(undefined8 *)(param_1 + 0x168) = 0;
-  *(undefined4 *)(param_1 + 0x18) = 0;
-  *(undefined8 *)(param_1 + 8) = 0;
+  stack_checksum = GLOBAL_STACK_CHECKSUM ^ (ulonglong)stack_protection;
+  
+  /* 初始化系统参数 */
+  *(undefined4 *)(system_context + 0x28) = 0xb;
+  *(undefined8 *)(system_context + 0x120) = 0;
+  *(undefined8 *)(system_context + 0x128) = 0;
+  *(undefined8 *)(system_context + 0x130) = 0;
+  *(undefined8 *)(system_context + 0x148) = 0;
+  *(undefined8 *)(system_context + 0x138) = 0;
+  *(undefined8 *)(system_context + 0x168) = 0;
+  *(undefined4 *)(system_context + 0x18) = 0;
+  *(undefined8 *)(system_context + 8) = 0;
+  
+  /* 跳过空白字符 */
   do {
-    iVar1 = FUN_180769720(*(undefined8 *)(param_1 + 0x170),acStack_38);
-    if (iVar1 != 0) goto FUN_1807c4ae8;
-  } while ((((acStack_38[0] == ' ') || (acStack_38[0] == '\t')) || (acStack_38[0] == '\n')) ||
-          (acStack_38[0] == '\r'));
-  iVar1 = FUN_18076a440(*(undefined8 *)(param_1 + 0x170),0xffffffff,1);
-  if (iVar1 == 0) {
-    uStack_48 = 0;
-    lStack_28 = 0;
-    uStack_20 = 0;
-    uVar2 = FUN_180769ed0(*(undefined8 *)(param_1 + 0x170),&lStack_28,0xc,1);
-    if ((uVar2 & 0xffffffef) == 0) {
-      iVar1 = FUN_18076b6f0(&UNK_18097c600,&lStack_28,7);
-      if (iVar1 == 0) {
-        iVar1 = FUN_1807c5610();
+    init_result = read_char_function(*(undefined8 *)(system_context + 0x170), temp_buffer);
+    if (init_result != 0) goto CLEANUP_AND_EXIT;
+  } while ((((temp_buffer[0] == ' ') || (temp_buffer[0] == '\t')) || (temp_buffer[0] == '\n')) ||
+          (temp_buffer[0] == '\r'));
+  
+  init_result = set_parser_state_function(*(undefined8 *)(system_context + 0x170), 0xffffffff, 1);
+  if (init_result == 0) {
+    init_flag = 0;
+    temp_value2 = 0;
+    temp_value3 = 0;
+    parse_result = read_token_function(*(undefined8 *)(system_context + 0x170), &temp_value2, 0xc, 1);
+    if ((parse_result & 0xffffffef) == 0) {
+      init_result = string_compare_function(&GLOBAL_STRING_TABLE, &temp_value2, 7);
+      if (init_result == 0) {
+        init_result = system_init_function1();
       }
       else {
-        iVar1 = FUN_18076b6f0(&UNK_18097c608,&lStack_28,10);
-        if (iVar1 == 0) {
-          iVar1 = FUN_1807c59a0();
+        init_result = string_compare_function(&GLOBAL_STRING_TABLE2, &temp_value2, 10);
+        if (init_result == 0) {
+          init_result = system_init_function2();
         }
         else {
-          iVar1 = FUN_18076b6f0(&UNK_18097c618,&lStack_28,0xc);
-          if (iVar1 == 0) {
-            iVar1 = FUN_1807c4b10();
+          init_result = string_compare_function(&GLOBAL_STRING_TABLE3, &temp_value2, 0xc);
+          if (init_result == 0) {
+            init_result = system_init_function3();
           }
           else {
-            iVar1 = FUN_18076b6f0(&UNK_18097c628,&lStack_28,0xc);
-            if (iVar1 == 0) {
-              iVar1 = FUN_1807c5ed0();
+            init_result = string_compare_function(&GLOBAL_STRING_TABLE4, &temp_value2, 0xc);
+            if (init_result == 0) {
+              init_result = system_init_function4();
             }
             else {
-              iVar1 = FUN_18076b6f0(&UNK_18097c638,&lStack_28,0xc);
-              if (iVar1 == 0) {
-                iVar1 = FUN_1807c5030();
+              init_result = string_compare_function(&GLOBAL_STRING_TABLE5, &temp_value2, 0xc);
+              if (init_result == 0) {
+                init_result = system_init_function5();
               }
               else {
-                iVar1 = func_0x000180769a80(*(undefined8 *)(param_1 + 0x170),&lStack_30);
-                if (iVar1 != 0) goto FUN_1807c4ae8;
-                iVar1 = func_0x00018076b690(lStack_30);
-                lVar3 = (longlong)(iVar1 + -4);
-                iVar1 = func_0x00018076b6b0(lStack_30 + lVar3,&UNK_18097c648,4);
-                if (((iVar1 != 0) &&
-                    (iVar1 = func_0x00018076b6b0(lStack_30 + lVar3,&UNK_18097c650,4), iVar1 != 0))
-                   && ((iVar1 = func_0x00018076b6b0(lStack_30 + lVar3,&UNK_18097c658,4), iVar1 != 0
-                       && (iVar1 = func_0x00018076b6b0(lStack_30 + lVar3,&UNK_18097c660,4),
-                          iVar1 != 0)))) goto FUN_1807c4ae8;
-                iVar1 = FUN_1807c5c50();
+                init_result = read_string_function(*(undefined8 *)(system_context + 0x170), &temp_value1);
+                if (init_result != 0) goto CLEANUP_AND_EXIT;
+                init_result = get_string_length_function(temp_value1);
+                string_length = (longlong)(init_result + -4);
+                init_result = string_compare_function(temp_value1 + string_length, &GLOBAL_STRING_TABLE6, 4);
+                if (((init_result != 0) &&
+                    (init_result = string_compare_function(temp_value1 + string_length, &GLOBAL_STRING_TABLE7, 4), init_result != 0))
+                   && ((init_result = string_compare_function(temp_value1 + string_length, &GLOBAL_STRING_TABLE8, 4), init_result != 0
+                       && (init_result = string_compare_function(temp_value1 + string_length, &GLOBAL_STRING_TABLE9, 4),
+                          init_result != 0)))) goto CLEANUP_AND_EXIT;
+                init_result = system_init_function6();
               }
             }
           }
         }
       }
-      if (iVar1 == 0) {
-        *(undefined8 *)(param_1 + 0x178) = 0;
-        *(undefined8 *)(param_1 + 0x180) = 0;
-        *(undefined8 *)(param_1 + 0x188) = 0;
-        *(undefined8 *)(param_1 + 400) = 0;
-        *(undefined8 *)(param_1 + 0x198) = 0;
-        *(undefined8 *)(param_1 + 0x1a0) = 0;
-        *(undefined8 *)(param_1 + 0x1a8) = 0;
-        *(undefined8 **)(param_1 + 8) = (undefined8 *)(param_1 + 0x178);
-        *(undefined4 *)(param_1 + 0x18) = 0;
-        iVar1 = FUN_180769080(*(undefined8 *)(param_1 + 0x170));
-        if (iVar1 == 0) {
-          uStack_48 = CONCAT71(uStack_48._1_7_,1);
-                    // WARNING: Subroutine does not return
-          FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*(undefined8 *)(param_1 + 0x170),
-                        &UNK_18097c670,0xb4);
+      if (init_result == 0) {
+        /* 初始化系统数据结构 */
+        *(undefined8 *)(system_context + 0x178) = 0;
+        *(undefined8 *)(system_context + 0x180) = 0;
+        *(undefined8 *)(system_context + 0x188) = 0;
+        *(undefined8 *)(system_context + 400) = 0;
+        *(undefined8 *)(system_context + 0x198) = 0;
+        *(undefined8 *)(system_context + 0x1a0) = 0;
+        *(undefined8 *)(system_context + 0x1a8) = 0;
+        *(undefined8 **)(system_context + 8) = (undefined8 *)(system_context + 0x178);
+        *(undefined4 *)(system_context + 0x18) = 0;
+        init_result = system_check_function(*(undefined8 *)(system_context + 0x170));
+        if (init_result == 0) {
+          init_flag = CONCAT71(init_flag._1_7_, 1);
+          /* 执行系统初始化 - 此函数不返回 */
+          system_data_processing_function(*(undefined8 *)(GLOBAL_DATA_ADDRESS + 0x1a0), *(undefined8 *)(system_context + 0x170),
+                        &GLOBAL_PROCESS_BUFFER, 0xb4);
         }
       }
     }
   }
-FUN_1807c4ae8:
-                    // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_18 ^ (ulonglong)auStack_68);
+CLEANUP_AND_EXIT:
+  /* 清理并退出 */
+  stack_cleanup_function(stack_checksum ^ (ulonglong)stack_protection);
 }
 
 

@@ -529,75 +529,109 @@ undefined UNK_1806f4cb0;  // 内存碎片表
 
 
 
-// 函数: undefined FUN_1806f4c40;
+/**
+ * @brief 系统网络处理器
+ * @details 处理系统网络相关操作
+ */
 undefined FUN_1806f4c40;
-undefined UNK_1806f4cc0;
 
+/**
+ * @brief 系统网络数据
+ * @details 系统网络处理器的相关数据
+ */
+undefined UNK_1806f4cc0;  // 网络状态
 
-
-// 函数: undefined FUN_1806f4c80;
+/**
+ * @brief 系统存储处理器
+ * @details 处理系统存储相关操作
+ * @note 包含大量存储管理相关的数据结构
+ */
 undefined FUN_1806f4c80;
-undefined UNK_1806f4cd0;
-undefined UNK_1806f4ce0;
-undefined UNK_1806f4cf0;
-undefined UNK_1806f4d00;
-undefined UNK_1806f4d10;
-undefined UNK_18094e720;
-undefined UNK_18094e728;
-undefined UNK_18094e738;
-undefined UNK_18094e748;
-undefined UNK_18094e758;
-undefined UNK_1806f4d20;
-undefined UNK_1806f4d30;
-undefined UNK_1806f4d40;
-undefined UNK_1806f4d50;
-undefined UNK_1806f4d60;
-undefined UNK_1806f4d70;
-undefined UNK_1806f4d80;
-undefined UNK_1806f4d90;
-undefined UNK_1806f4e30;
-undefined UNK_1806f4e40;
 
+/**
+ * @brief 系统存储数据结构
+ * @details 系统存储处理器的相关数据结构
+ */
+undefined UNK_1806f4cd0;  // 存储管理器
+undefined UNK_1806f4ce0;  // 存储分配器
+undefined UNK_1806f4cf0;  // 存储缓存
+undefined UNK_1806f4d00;  // 存储统计
+undefined UNK_1806f4d10;  // 存储监控
+undefined UNK_18094e720;  // 存储块
+undefined UNK_18094e728;  // 存储页
+undefined UNK_18094e738;  // 存储段
+undefined UNK_18094e748;  // 存储区
+undefined UNK_18094e758;  // 存储池
+undefined UNK_1806f4d20;  // 存储队列
+undefined UNK_1806f4d30;  // 存储栈
+undefined UNK_1806f4d40;  // 存储堆
+undefined UNK_1806f4d50;  // 存储映射
+undefined UNK_1806f4d60;  // 存储索引
+undefined UNK_1806f4d70;  // 存储哈希
+undefined UNK_1806f4d80;  // 存储列表
+undefined UNK_1806f4d90;  // 存储树
+undefined UNK_1806f4e30;  // 存储压缩
+undefined UNK_1806f4e40;  // 存储加密
 
-
-// 函数: undefined FUN_1806f4da0;
+/**
+ * @brief 系统设备处理器
+ * @details 处理系统设备相关操作
+ */
 undefined FUN_1806f4da0;
-undefined UNK_1806f4e50;
 
+/**
+ * @brief 系统设备数据
+ * @details 系统设备处理器的相关数据
+ */
+undefined UNK_1806f4e50;  // 设备状态
 
-
-// 函数: undefined FUN_1806f4dd0;
+/**
+ * @brief 系统驱动处理器
+ * @details 处理系统驱动相关操作
+ */
 undefined FUN_1806f4dd0;
-undefined UNK_1806f4e60;
 
+/**
+ * @brief 系统驱动数据
+ * @details 系统驱动处理器的相关数据
+ */
+undefined UNK_1806f4e60;  // 驱动状态
 
-
-// 函数: undefined FUN_1806f4e00;
+/**
+ * @brief 系统服务处理器
+ * @details 处理系统服务相关操作
+ * @note 包含大量服务管理相关的数据结构
+ */
 undefined FUN_1806f4e00;
-undefined UNK_1806f4e70;
-undefined UNK_18094e768;
-undefined UNK_18094e778;
-undefined UNK_18094e784;
-undefined UNK_18094e790;
-undefined UNK_1806f4e80;
-undefined UNK_1806f4e90;
-undefined UNK_1806f4ea0;
-undefined UNK_1806f4ee0;
-undefined UNK_1806f4f00;
-undefined UNK_1806f4f10;
-undefined UNK_1806f4f20;
-undefined UNK_1806f4f30;
-undefined UNK_1806f4f40;
-undefined UNK_1806f4fb0;
-undefined UNK_1806f4fc0;
-undefined UNK_1806f4fd0;
-undefined UNK_1806f4fe0;
-undefined UNK_1806f4ff0;
-undefined UNK_18094e7a4;
-undefined UNK_18094e7b0;
-undefined UNK_18094e7c0;
-undefined UNK_18094e7d0;
-undefined UNK_18094e7e0;
+
+/**
+ * @brief 系统服务数据结构
+ * @details 系统服务处理器的相关数据结构
+ */
+undefined UNK_1806f4e70;  // 服务管理器
+undefined UNK_18094e768;  // 服务配置
+undefined UNK_18094e778;  // 服务状态
+undefined UNK_18094e784;  // 服务队列
+undefined UNK_18094e790;  // 服务缓存
+undefined UNK_1806f4e80;  // 服务线程
+undefined UNK_1806f4e90;  // 服务进程
+undefined UNK_1806f4ea0;  // 服务同步
+undefined UNK_1806f4ee0;  // 服务通信
+undefined UNK_1806f4f00;  // 服务监控
+undefined UNK_1806f4f10;  // 服务日志
+undefined UNK_1806f4f20;  // 服务调试
+undefined UNK_1806f4f30;  // 服务优化
+undefined UNK_1806f4f40;  // 服务清理
+undefined UNK_1806f4fb0;  // 服务统计
+undefined UNK_1806f4fc0;  // 服务计数器
+undefined UNK_1806f4fd0;  // 服务定时器
+undefined UNK_1806f4fe0;  // 服务事件
+undefined UNK_1806f4ff0;  // 服务信号
+undefined UNK_18094e7a4;  // 服务标志
+undefined UNK_18094e7b0;  // 服务锁
+undefined UNK_18094e7c0;  // 服务信号量
+undefined UNK_18094e7d0;  // 服务条件变量
+undefined UNK_18094e7e0;  // 服务屏障
 
 
 

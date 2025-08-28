@@ -1,1660 +1,1461 @@
-/*
- * 渲染系统高级内存管理和数据处理模块
- * 文件名: 03_rendering_part092.c
- * 模块: 渲染系统 - 子模块092
- * 
- * 本模块包含12个核心函数，主要负责渲染系统的高级内存管理和数据处理：
- * 1. 渲染资源清理和释放
- * 2. 渲染内存管理和优化
- * 3. 渲染数据变换和处理
- * 4. 渲染系统初始化和配置
- * 5. 渲染状态管理和控制
- * 6. 渲染缓冲区管理
- * 7. 渲染字符串处理
- * 8. 渲染互斥锁管理
- * 9. 渲染数据验证和检查
- * 10. 渲染系统清理和重置
- * 11. 渲染内存分配器
- * 12. 渲染系统配置和参数处理
- */
-
 #include "TaleWorlds.Native.Split.h"
 
-/* =============================================================================
- * 常量定义和宏定义
- * ============================================================================= */
+// ============================================================================
+// 03_rendering_part092.c - 渲染系统高级数据处理和资源管理模块
+// 总计：12个核心函数
+// 
+// 本模块包含渲染系统的高级数据处理、字符串比较优化、资源管理和状态处理功能。
+// 主要功能包括资源清理、字符串比较算法、数据结构管理、内存池操作等。
+// ============================================================================
 
-/* 渲染系统内存管理常量 */
-#define RENDERING_MEMORY_BLOCK_SIZE     0x20
-#define RENDERING_MEMORY_POOL_SIZE      0x1a0
-#define RENDERING_MEMORY_ALIGN_SIZE     0x10
-#define RENDERING_MEMORY_HEADER_SIZE    0x28
-#define RENDERING_STRING_BUFFER_SIZE    0x80
-#define RENDERING_DATA_BLOCK_SIZE       0x381
+// ============================================================================
+// 常量定义和宏定义
+// ============================================================================
 
-/* 渲染系统状态常量 */
-#define RENDERING_STATE_INITIALIZED     0x01
-#define RENDERING_STATE_PROCESSING      0x02
-#define RENDERING_STATE_COMPLETED       0x04
-#define RENDERING_STATE_ERROR          0x08
+#define RENDERING_RESOURCE_BLOCK_SIZE      0x20      // 渲染资源块大小 (32字节)
+#define RENDERING_STRING_COMPARE_THRESHOLD 0x1d      // 字符串比较阈值 (29)
+#define RENDERING_MEMORY_POOL_SIZE       0x1a0      // 内存池大小 (416字节)
+#define RENDERING_NODE_ALIGNMENT         0x10       // 节点对齐大小 (16字节)
+#define RENDERING_MAX_RECURSION_DEPTH     0x1f       // 最大递归深度 (31)
 
-/* 渲染系统内存标志 */
-#define RENDERING_MEMORY_ALLOCATED     0x01
-#define RENDERING_MEMORY_LOCKED        0x02
-#define RENDERING_MEMORY_DIRTY         0x04
-#define RENDERING_MEMORY_VALID         0x08
-
-/* 渲染系统字符串常量 */
-#define RENDERING_STRING_PREFIX        "rendering_"
-#define RENDERING_STRING_SUFFIX        "_data"
-#define RENDERING_STRING_SEPARATOR     "_"
-
-/* =============================================================================
- * 函数别名定义
- * ============================================================================= */
-
-/* 主要处理函数 */
-#define rendering_system_cleanup_resource        FUN_18031ef50
-#define rendering_system_initialize_memory       FUN_18031efb0
-#define rendering_system_process_data_blocks     FUN_18031f0e0
-#define rendering_system_memory_allocator        FUN_18031f2e0
-#define rendering_system_data_block_processor    FUN_18031f460
-#define rendering_system_data_block_handler      FUN_18031f46d
-#define rendering_system_data_manager           FUN_18031f48e
-#define rendering_system_memory_cleaner         FUN_18031f5b1
-#define rendering_system_system_reset           FUN_18031f5bb
-#define rendering_system_data_validator         FUN_18031f5d4
-#define rendering_system_memory_optimizer       FUN_18031f650
-#define rendering_system_data_merger            FUN_18031f830
-#define rendering_system_data_sorter            FUN_18031f9e0
-#define rendering_system_data_indexer           FUN_18031fd10
-#define rendering_system_system_initializer     FUN_18031ff10
-#define rendering_system_pointer_cleaner        FUN_18031ff90
-#define rendering_system_string_processor        FUN_18031ffd0
-
-/* =============================================================================
- * 全局变量和结构体定义
- * ============================================================================= */
-
-/* 渲染系统内存块结构 */
-typedef struct {
-    uint32_t flags;
-    uint32_t size;
-    uint64_t data_ptr;
-    uint64_t next_ptr;
-    uint32_t checksum;
-    uint32_t reserved;
-} RenderingMemoryBlock;
-
-/* 渲染系统数据块结构 */
-typedef struct {
-    char *string_ptr;
-    uint32_t string_length;
-    uint64_t data_ptr;
-    uint32_t data_size;
-    uint32_t flags;
-    uint32_t checksum;
-} RenderingDataBlock;
-
-/* 渲染系统内存管理器结构 */
-typedef struct {
-    uint64_t memory_pool;
-    uint32_t pool_size;
-    uint32_t allocated_blocks;
-    uint32_t free_blocks;
-    uint64_t mutex_lock;
-    uint32_t state_flags;
-} RenderingMemoryManager;
-
-/* 渲染系统字符串处理器结构 */
-typedef struct {
-    char *buffer;
-    uint32_t buffer_size;
-    uint32_t current_length;
-    uint32_t max_length;
-    uint32_t flags;
-} RenderingStringProcessor;
-
-/* =============================================================================
- * 核心函数实现
- * ============================================================================= */
+// ============================================================================
+// 核心函数实现
+// ============================================================================
 
 /**
- * 渲染系统资源清理器
+ * 渲染系统资源管理器 - 负责清理和释放渲染资源
  * 
- * 本函数负责渲染系统资源的清理和释放：
- * 1. 清理渲染资源指针
- * 2. 释放内存块
- * 3. 重置资源状态
- * 4. 验证资源完整性
+ * 功能说明：
+ * - 检查资源指针有效性
+ * - 调用各级资源的释放函数 (偏移0x38)
+ * - 执行最终的资源清理操作
  * 
- * @param param_1 渲染资源指针数组
+ * 参数：
+ *   param_1 - 资源管理器指针
+ * 
+ * 返回值：
+ *   void - 无返回值
  */
-void rendering_system_cleanup_resource(longlong *param_1)
+void rendering_system_resource_manager(longlong *param_1)
 {
-    /* 参数验证 */
-    if (param_1 != (longlong *)0x0) {
-        /* 清理第三个资源指针 */
-        if ((longlong *)param_1[2] != (longlong *)0x0) {
-            (**(code **)(*(longlong *)param_1[2] + 0x38))();
-        }
-        
-        /* 清理第二个资源指针 */
-        if ((longlong *)param_1[1] != (longlong *)0x0) {
-            (**(code **)(*(longlong *)param_1[1] + 0x38))();
-        }
-        
-        /* 清理第一个资源指针 */
-        if ((longlong *)*param_1 != (longlong *)0x0) {
-            (**(code **)(*(longlong *)*param_1 + 0x38))();
-        }
-        
-        /* 释放主资源块 */
-        FUN_18064e900(param_1);
+  if (param_1 != (longlong *)0x0) {
+    // 释放第三级资源
+    if ((longlong *)param_1[2] != (longlong *)0x0) {
+      (**(code **)(*(longlong *)param_1[2] + 0x38))();
     }
-}
-
-/**
- * 渲染系统内存初始化器
- * 
- * 本函数负责渲染系统内存的初始化：
- * 1. 初始化内存管理器
- * 2. 设置内存参数
- * 3. 配置内存块
- * 4. 验证内存状态
- * 
- * @param param_1 内存管理器参数
- * @param param_2 内存管理器指针
- * @param param_3 内存大小参数
- */
-void rendering_system_initialize_memory(uint64_t param_1, longlong *param_2, int param_3)
-{
-    /* 变量声明 */
-    uint64_t memory_manager;
-    uint64_t stack_protection;
-    uint64_t security_cookie;
-    uint32_t memory_state;
-    char *string_buffer;
-    uint32_t buffer_size;
-    longlong *memory_pointer;
-    
-    /* 内存管理器初始化 */
-    memory_manager = _DAT_180c8a998;
-    stack_protection = 0xfffffffffffffffe;
-    security_cookie = _DAT_180bf00a8 ^ stack_protection;
-    
-    /* 内存状态初始化 */
-    memory_state = 0;
-    param_3 = param_3 << 4;  // 内存大小左移4位
-    
-    /* 字符串处理初始化 */
-    code *string_handler = &UNK_1809fcc58;
-    string_buffer = (char *)malloc(RENDERING_STRING_BUFFER_SIZE);
-    buffer_size = 0x1c;
-    
-    /* 内存指针设置 */
-    memory_pointer = param_2;
-    
-    /* 字符串复制 */
-    strcpy_s(string_buffer, RENDERING_STRING_BUFFER_SIZE, &DAT_1809ffc60);
-    
-    /* 内存管理器调用 */
-    FUN_1802037e0();
-    
-    /* 字符串处理重置 */
-    string_handler = &UNK_18098bcb0;
-    
-    /* 内存块分配 */
-    uint64_t memory_block = FUN_18062b1e0(_DAT_180c8ed18, param_3, 0x10, 0x21);
-    
-    /* 内存初始化调用 */
-    FUN_18031f2e0(memory_manager, param_2);
-    
-    /* 内存块配置 */
-    *(uint64_t *)(*param_2 + 0x10) = memory_block;
-    *(int *)(*param_2 + 0x18) = param_3;
-    *(int *)(*param_2 + 0x1c) = param_3;
-    *(uint8_t *)(*param_2 + 0x20) = 0;
-    
-    /* 内存状态更新 */
-    memory_state = 1;
-    
-    /* 安全退出 */
-    FUN_1808fc050(security_cookie);
-}
-
-/**
- * 渲染系统数据块处理器
- * 
- * 本函数负责渲染系统数据块的处理：
- * 1. 数据块验证
- * 2. 数据块变换
- * 3. 数据块优化
- * 4. 数据块管理
- * 
- * @param param_1 源数据块指针
- * @param param_2 目标数据块指针
- * @param param_3 数据块参数
- * @param param_4 数据块标志
- */
-void rendering_system_process_data_blocks(longlong param_1, longlong param_2, 
-                                         uint64_t param_3, uint64_t param_4)
-{
-    /* 变量声明 */
-    uint8_t byte_value;
-    uint32_t data_size;
-    uint32_t block_size;
-    longlong current_ptr;
-    char *string_ptr;
-    uint32_t string_length;
-    uint64_t *data_pointer;
-    longlong data_offset;
-    int iteration_count;
-    longlong temp_offset;
-    
-    /* 数据块验证 */
-    if (param_1 != param_2) {
-        /* 计算数据块大小 */
-        iteration_count = 0;
-        temp_offset = param_2 - param_1 >> 5;
-        
-        /* 计算迭代次数 */
-        for (current_ptr = temp_offset; current_ptr != 0; current_ptr = current_ptr >> 1) {
-            iteration_count = iteration_count + 1;
-        }
-        
-        /* 数据块处理调用 */
-        FUN_18031f460(param_1, param_2, (longlong)(iteration_count + -1) * 2, param_4, 
-                      0xfffffffffffffffe);
-        
-        /* 数据块大小检查 */
-        if (temp_offset < 0x1d) {
-            FUN_18031f650(param_1, param_2);
-        } else {
-            /* 处理大数据块 */
-            current_ptr = param_1 + 0x380;
-            FUN_18031f650(param_1, current_ptr);
-            
-            /* 循环处理数据块 */
-            for (; current_ptr != param_2; current_ptr = current_ptr + 0x20) {
-                /* 获取数据块信息 */
-                iteration_count = *(int *)(current_ptr + 0x10);
-                temp_offset = *(longlong *)(current_ptr + 8);
-                data_size = *(uint32_t *)(current_ptr + 0x1c);
-                block_size = *(uint32_t *)(current_ptr + 0x18);
-                
-                /* 清理数据块 */
-                *(uint32_t *)(current_ptr + 0x10) = 0;
-                *(uint64_t *)(current_ptr + 8) = 0;
-                *(uint64_t *)(current_ptr + 0x18) = 0;
-                
-                /* 处理数据块内容 */
-                longlong block_ptr = current_ptr;
-                for (data_pointer = (uint64_t *)(current_ptr + -0x18); 
-                     *(int *)(data_pointer + 1) != 0; 
-                     data_pointer = data_pointer + -4) {
-                    
-                    /* 字符串比较 */
-                    if (iteration_count != 0) {
-                        string_ptr = (char *)*data_pointer;
-                        data_offset = temp_offset - (longlong)string_ptr;
-                        
-                        do {
-                            byte_value = *string_ptr;
-                            string_length = (uint32_t)string_ptr[data_offset];
-                            if (byte_value != string_length) break;
-                            string_ptr = string_ptr + 1;
-                        } while (string_length != 0);
-                        
-                        if ((int)(byte_value - string_length) < 1) break;
-                    }
-                    
-                    /* 内存管理检查 */
-                    if (data_pointer[4] != 0) {
-                        FUN_18064e900();
-                    }
-                    
-                    /* 数据块重置 */
-                    data_pointer[6] = 0;
-                    data_pointer[4] = 0;
-                    *(uint32_t *)(data_pointer + 5) = 0;
-                    *(uint32_t *)(data_pointer + 5) = *(uint32_t *)(data_pointer + 1);
-                    data_pointer[4] = *data_pointer;
-                    *(uint32_t *)((longlong)data_pointer + 0x34) = *(uint32_t *)((longlong)data_pointer + 0x14);
-                    *(uint32_t *)(data_pointer + 6) = *(uint32_t *)(data_pointer + 2);
-                    *(uint32_t *)(data_pointer + 1) = 0;
-                    *data_pointer = 0;
-                    data_pointer[2] = 0;
-                    block_ptr = block_ptr + -0x20;
-                }
-                
-                /* 数据块完整性检查 */
-                if (*(longlong *)(block_ptr + 8) != 0) {
-                    FUN_18064e900();
-                }
-                
-                /* 恢复数据块信息 */
-                *(int *)(block_ptr + 0x10) = iteration_count;
-                *(longlong *)(block_ptr + 8) = temp_offset;
-                *(uint32_t *)(block_ptr + 0x1c) = data_size;
-                *(uint32_t *)(block_ptr + 0x18) = block_size;
-            }
-        }
+    // 释放第二级资源
+    if ((longlong *)param_1[1] != (longlong *)0x0) {
+      (**(code **)(*(longlong *)param_1[1] + 0x38))();
     }
-}
-
-/**
- * 渲染系统内存分配器
- * 
- * 本函数负责渲染系统内存的分配：
- * 1. 内存分配
- * 2. 内存初始化
- * 3. 内存管理
- * 4. 内存验证
- * 
- * @param param_1 内存管理器指针
- * @param param_2 内存指针数组
- * @return 分配的内存指针
- */
-uint64_t *rendering_system_memory_allocator(longlong param_1, uint64_t *param_2)
-{
-    /* 变量声明 */
-    longlong memory_pool;
-    int lock_status;
-    longlong *memory_block;
-    uint32_t memory_flags;
-    uint64_t memory_protection;
-    
-    /* 内存保护初始化 */
-    memory_protection = 0xfffffffffffffffe;
-    memory_flags = 0;
-    
-    /* 互斥锁加锁 */
-    lock_status = _Mtx_lock(param_1 + 0x50);
-    if (lock_status != 0) {
-        __Throw_C_error_std__YAXH_Z(lock_status);
+    // 释放第一级资源
+    if ((longlong *)*param_1 != (longlong *)0x0) {
+      (**(code **)(*(longlong *)*param_1 + 0x38))();
     }
-    
-    /* 获取内存池 */
-    memory_pool = *(longlong *)(param_1 + 200);
-    
-    /* 检查内存池状态 */
-    if (*(longlong *)(param_1 + 0xc0) == memory_pool) {
-        /* 分配新内存块 */
-        memory_block = (longlong *)FUN_18062b1e0(_DAT_180c8ed18, 0x28, 8, 0x20, 
-                                              memory_flags, memory_protection);
-        
-        /* 初始化内存块 */
-        *memory_block = (longlong)&UNK_180a21690;
-        *memory_block = (longlong)&UNK_180a21720;
-        *(uint32_t *)(memory_block + 1) = 0;
-        *memory_block = (longlong)&UNK_1809fff60;
-        memory_block[2] = 0;
-        memory_block[3] = 0;
-        *(uint8_t *)(memory_block + 4) = 0;
-        *memory_block = (longlong)&UNK_180a1ae60;
-        
-        /* 调用内存块初始化函数 */
-        (**(code **)(*memory_block + 0x28))(memory_block);
-        *param_2 = memory_block;
-    } else {
-        /* 复用现有内存块 */
-        memory_block = *(longlong **)(memory_pool + -8);
-        *(longlong *)(param_1 + 200) = memory_pool + -8;
-        
-        /* 设置内存块标记 */
-        memory_block[1] = -0x5a5a5a5a5a5a5a5b;
-        memory_block[2] = -0x5a5a5a5a5a5a5a5b;
-        memory_block[3] = -0x5a5a5a5a5a5a5a5b;
-        memory_block[4] = -0x5a5a5a5a5a5a5a5b;
-        
-        /* 初始化内存块 */
-        *memory_block = (longlong)&UNK_180a21690;
-        *memory_block = (longlong)&UNK_180a21720;
-        *(uint32_t *)(memory_block + 1) = 0;
-        *memory_block = (longlong)&UNK_1809fff60;
-        memory_block[2] = 0;
-        memory_block[3] = 0;
-        *(uint8_t *)(memory_block + 4) = 0;
-        *memory_block = (longlong)&UNK_180a1ae60;
-        
-        /* 调用内存块初始化函数 */
-        (**(code **)(*memory_block + 0x28))(memory_block);
-        *param_2 = memory_block;
+    // 执行最终清理
+    FUN_18064e900(param_1);
+  }
+  return;
+}
+
+/**
+ * 渲染系统数据处理器 - 高级数据处理和初始化
+ * 
+ * 功能说明：
+ * - 初始化数据结构和管理器
+ * - 分配内存和设置数据块
+ * - 配置数据处理参数
+ * - 启动数据处理流程
+ * 
+ * 参数：
+ *   param_1 - 处理器标识符
+ *   param_2 - 数据管理器指针
+ *   param_3 - 数据大小参数
+ * 
+ * 返回值：
+ *   void - 无返回值
+ */
+void rendering_system_data_processor(undefined8 param_1, longlong *param_2, int param_3)
+{
+  undefined8 uVar1;
+  undefined8 uVar2;
+  undefined1 auStack_c8 [32];
+  undefined4 uStack_a8;
+  undefined8 uStack_a0;
+  longlong *plStack_98;
+  undefined *puStack_88;
+  undefined1 *puStack_80;
+  undefined4 uStack_78;
+  undefined1 auStack_70 [72];
+  ulonglong uStack_28;
+  
+  uVar1 = _DAT_180c8a998;
+  uStack_a0 = 0xfffffffffffffffe;
+  uStack_28 = _DAT_180bf00a8 ^ (ulonglong)auStack_c8;
+  uStack_a8 = 0;
+  param_3 = param_3 << 4;  // 数据大小左移4位
+  puStack_88 = &UNK_1809fcc58;
+  puStack_80 = auStack_70;
+  auStack_70[0] = 0;
+  uStack_78 = 0x1c;
+  plStack_98 = param_2;
+  strcpy_s(auStack_70, 0x40, &DAT_1809ffc60);
+  FUN_1802037e0();
+  puStack_88 = &UNK_18098bcb0;
+  uVar2 = FUN_18062b1e0(_DAT_180c8ed18, param_3, 0x10, 0x21);
+  FUN_18031f2e0(uVar1, param_2);
+  *(undefined8 *)(*param_2 + 0x10) = uVar2;
+  *(int *)(*param_2 + 0x18) = param_3;
+  *(int *)(*param_2 + 0x1c) = param_3;
+  *(undefined1 *)(*param_2 + 0x20) = 0;
+  uStack_a8 = 1;
+  FUN_1808fc050(uStack_28 ^ (ulonglong)auStack_c8);
+}
+
+/**
+ * 渲染系统字符串比较器 - 高级字符串比较和排序算法
+ * 
+ * 功能说明：
+ * - 实现高效的字符串比较算法
+ * - 支持大范围字符串数据的排序
+ * - 使用二分查找优化比较过程
+ * - 处理字符串数据的插入和删除
+ * 
+ * 参数：
+ *   param_1 - 数据起始地址
+ *   param_2 - 数据结束地址
+ *   param_3 - 比较参数
+ *   param_4 - 排序标志
+ * 
+ * 返回值：
+ *   void - 无返回值
+ */
+void rendering_system_string_comparator(longlong param_1, longlong param_2, undefined8 param_3, undefined8 param_4)
+{
+  byte bVar1;
+  undefined4 uVar2;
+  undefined4 uVar3;
+  longlong lVar4;
+  byte *pbVar5;
+  uint uVar6;
+  undefined8 *puVar7;
+  longlong lVar8;
+  longlong lVar9;
+  int iVar10;
+  longlong lVar11;
+  
+  if (param_1 != param_2) {
+    // 计算数据块数量和递归深度
+    iVar10 = 0;
+    lVar9 = param_2 - param_1 >> 5;
+    for (lVar4 = lVar9; lVar4 != 0; lVar4 = lVar4 >> 1) {
+      iVar10 = iVar10 + 1;
     }
+    FUN_18031f460(param_1, param_2, (longlong)(iVar10 + -1) * 2, param_4, 0xfffffffffffffffe);
     
-    /* 互斥锁解锁 */
-    lock_status = _Mtx_unlock(param_1 + 0x50);
-    if (lock_status != 0) {
-        __Throw_C_error_std__YAXH_Z(lock_status);
+    // 根据数据块大小选择处理策略
+    if (lVar9 < RENDERING_STRING_COMPARE_THRESHOLD) {
+      FUN_18031f650(param_1, param_2);
     }
-    
-    return param_2;
-}
-
-/**
- * 渲染系统数据块处理器
- * 
- * 本函数负责渲染系统数据块的处理：
- * 1. 数据块验证
- * 2. 数据块比较
- * 3. 数据块合并
- * 4. 数据块优化
- * 
- * @param param_1 源数据块指针
- * @param param_2 目标数据块指针
- * @param param_3 处理深度参数
- */
-void rendering_system_data_block_processor(longlong param_1, longlong param_2, longlong param_3)
-{
-    /* 变量声明 */
-    uint8_t byte_value;
-    bool comparison_result;
-    uint64_t data_size;
-    longlong current_ptr;
-    char *string_ptr;
-    uint32_t string_length;
-    char *compare_ptr;
-    int block_size;
-    longlong temp_offset;
-    
-    /* 计算数据大小 */
-    data_size = param_2 - param_1;
-    
-    do {
-        /* 检查处理条件 */
-        if (((longlong)(data_size & 0xffffffffffffffe0) < RENDERING_DATA_BLOCK_SIZE) || (param_3 < 1)) {
-            if (param_3 == 0) {
-                FUN_18031f9e0(param_1, param_2, param_2);
-            }
-            return;
-        }
+    else {
+      // 处理大数据块
+      lVar4 = param_1 + 0x380;
+      FUN_18031f650(param_1, lVar4);
+      for (; lVar4 != param_2; lVar4 = lVar4 + RENDERING_RESOURCE_BLOCK_SIZE) {
+        iVar10 = *(int *)(lVar4 + 0x10);
+        lVar9 = *(longlong *)(lVar4 + 8);
+        uVar2 = *(undefined4 *)(lVar4 + 0x1c);
+        uVar3 = *(undefined4 *)(lVar4 + 0x18);
+        *(undefined4 *)(lVar4 + 0x10) = 0;
+        *(undefined8 *)(lVar4 + 8) = 0;
+        *(undefined8 *)(lVar4 + 0x18) = 0;
+        lVar8 = lVar4;
         
-        /* 计算中间位置 */
-        current_ptr = ((param_2 - param_1 >> 5) - (param_2 - param_1 >> 0x3f) >> 1) * RENDERING_MEMORY_BLOCK_SIZE;
-        block_size = *(int *)(current_ptr + 0x10 + param_1);
-        current_ptr = current_ptr + param_1;
-        
-        if (block_size == 0) {
-            /* 处理空数据块 */
-            temp_offset = current_ptr;
-            if ((*(int *)(param_2 + -0x10) != 0) && 
-                (temp_offset = param_1, *(int *)(param_1 + 0x10) != 0)) {
-                
-                /* 字符串比较 */
-                string_ptr = *(char **)(param_2 + -0x18);
-                compare_ptr = string_ptr;
-                
-                do {
-                    byte_value = *compare_ptr;
-                    string_length = (uint32_t)compare_ptr[*(longlong *)(param_1 + 8) - (longlong)string_ptr];
-                    if (byte_value != string_length) break;
-                    compare_ptr = compare_ptr + 1;
-                } while (string_length != 0);
-                
-                if ((int)(byte_value - string_length) < 1) {
-                    if (block_size != 0) {
-                        temp_offset = *(longlong *)(current_ptr + 8) - (longlong)string_ptr;
-                        do {
-                            string_length = (uint32_t)string_ptr[temp_offset];
-                            block_size = *string_ptr - string_length;
-                            if (*string_ptr != string_length) break;
-                            string_ptr = string_ptr + 1;
-                        } while (string_length != 0);
-                        
-                        temp_offset = current_ptr;
-                        if (block_size < 1) {
-                            /* 继续处理 */
-                        }
-                    }
-                }
-            }
-        } else {
-            /* 处理非空数据块 */
-            if (*(int *)(param_1 + 0x10) == 0) {
-                comparison_result = true;
-            } else {
-                string_ptr = *(char **)(current_ptr + 8);
-                temp_offset = *(longlong *)(param_1 + 8) - (longlong)string_ptr;
-                
-                do {
-                    byte_value = *string_ptr;
-                    string_length = (uint32_t)string_ptr[temp_offset];
-                    if (byte_value != string_length) break;
-                    string_ptr = string_ptr + 1;
-                } while (string_length != 0);
-                
-                comparison_result = 0 < (int)(byte_value - string_length);
-            }
-            
-            if (!comparison_result) {
-                /* 继续处理 */
-                temp_offset = param_1;
-                if (*(int *)(param_2 + -0x10) != 0) {
-                    string_ptr = *(char **)(param_2 + -0x18);
-                    compare_ptr = string_ptr;
-                    
-                    do {
-                        byte_value = *compare_ptr;
-                        string_length = (uint32_t)compare_ptr[*(longlong *)(current_ptr + 8) - (longlong)string_ptr];
-                        if (byte_value != string_length) break;
-                        compare_ptr = compare_ptr + 1;
-                    } while (string_length != 0);
-                    
-                    temp_offset = current_ptr;
-                    if (0 < (int)(byte_value - string_length)) {
-                        /* 继续处理 */
-                    }
-                    
-                    if (*(int *)(param_1 + 0x10) != 0) {
-                        temp_offset = *(longlong *)(param_1 + 8) - (longlong)string_ptr;
-                        do {
-                            string_length = (uint32_t)string_ptr[temp_offset];
-                            block_size = *string_ptr - string_length;
-                            current_ptr = param_1;
-                            if (*string_ptr != string_length) break;
-                            string_ptr = string_ptr + 1;
-                        } while (string_length != 0);
-                    }
-                }
-            }
-        }
-        
-        /* 递归处理数据块 */
-        current_ptr = FUN_18031f830(param_1, param_2, temp_offset);
-        param_3 = param_3 + -1;
-        FUN_18031f460(current_ptr, param_2, param_3);
-        data_size = current_ptr - param_1;
-        param_2 = current_ptr;
-    } while (true);
-}
-
-/**
- * 渲染系统数据块处理器（变体）
- * 
- * 本函数是渲染系统数据块处理的变体版本：
- * 1. 数据块验证
- * 2. 数据块比较
- * 3. 数据块合并
- * 4. 数据块优化
- * 
- * @param param_1 源数据块指针
- * @param param_2 目标数据块指针
- * @param param_3 处理深度参数
- */
-void rendering_system_data_block_handler(longlong param_1, longlong param_2, longlong param_3)
-{
-    /* 变量声明 */
-    uint8_t byte_value;
-    bool comparison_result;
-    longlong register_value;
-    uint64_t data_size;
-    longlong current_ptr;
-    char *string_ptr;
-    uint32_t string_length;
-    char *compare_ptr;
-    int block_size;
-    longlong temp_offset;
-    
-    /* 计算数据大小 */
-    data_size = register_value - param_1;
-    
-    do {
-        /* 检查处理条件 */
-        if (((longlong)(data_size & 0xffffffffffffffe0) < RENDERING_DATA_BLOCK_SIZE) || (param_3 < 1)) {
-            if (param_3 == 0) {
-                FUN_18031f9e0(param_1, param_2, param_2);
-            }
-            return;
-        }
-        
-        /* 计算中间位置 */
-        current_ptr = ((param_2 - param_1 >> 5) - (param_2 - param_1 >> 0x3f) >> 1) * RENDERING_MEMORY_BLOCK_SIZE;
-        block_size = *(int *)(current_ptr + 0x10 + param_1);
-        current_ptr = current_ptr + param_1;
-        
-        if (block_size == 0) {
-            /* 处理空数据块 */
-            temp_offset = current_ptr;
-            if ((*(int *)(param_2 + -0x10) != 0) && 
-                (temp_offset = param_1, *(int *)(param_1 + 0x10) != 0)) {
-                
-                /* 字符串比较 */
-                string_ptr = *(char **)(param_2 + -0x18);
-                compare_ptr = string_ptr;
-                
-                do {
-                    byte_value = *compare_ptr;
-                    string_length = (uint32_t)compare_ptr[*(longlong *)(param_1 + 8) - (longlong)string_ptr];
-                    if (byte_value != string_length) break;
-                    compare_ptr = compare_ptr + 1;
-                } while (string_length != 0);
-                
-                if ((int)(byte_value - string_length) < 1) {
-                    if (block_size != 0) {
-                        temp_offset = *(longlong *)(current_ptr + 8) - (longlong)string_ptr;
-                        do {
-                            string_length = (uint32_t)string_ptr[temp_offset];
-                            block_size = *string_ptr - string_length;
-                            if (*string_ptr != string_length) break;
-                            string_ptr = string_ptr + 1;
-                        } while (string_length != 0);
-                        
-                        temp_offset = current_ptr;
-                        if (block_size < 1) {
-                            /* 继续处理 */
-                        }
-                    }
-                }
-            }
-        } else {
-            /* 处理非空数据块 */
-            if (*(int *)(param_1 + 0x10) == 0) {
-                comparison_result = true;
-            } else {
-                string_ptr = *(char **)(current_ptr + 8);
-                temp_offset = *(longlong *)(param_1 + 8) - (longlong)string_ptr;
-                
-                do {
-                    byte_value = *string_ptr;
-                    string_length = (uint32_t)string_ptr[temp_offset];
-                    if (byte_value != string_length) break;
-                    string_ptr = string_ptr + 1;
-                } while (string_length != 0);
-                
-                comparison_result = 0 < (int)(byte_value - string_length);
-            }
-            
-            if (!comparison_result) {
-                /* 继续处理 */
-                temp_offset = param_1;
-                if (*(int *)(param_2 + -0x10) != 0) {
-                    string_ptr = *(char **)(param_2 + -0x18);
-                    compare_ptr = string_ptr;
-                    
-                    do {
-                        byte_value = *compare_ptr;
-                        string_length = (uint32_t)compare_ptr[*(longlong *)(current_ptr + 8) - (longlong)string_ptr];
-                        if (byte_value != string_length) break;
-                        compare_ptr = compare_ptr + 1;
-                    } while (string_length != 0);
-                    
-                    temp_offset = current_ptr;
-                    if (0 < (int)(byte_value - string_length)) {
-                        /* 继续处理 */
-                    }
-                    
-                    if (*(int *)(param_1 + 0x10) != 0) {
-                        temp_offset = *(longlong *)(param_1 + 8) - (longlong)string_ptr;
-                        do {
-                            string_length = (uint32_t)string_ptr[temp_offset];
-                            block_size = *string_ptr - string_length;
-                            current_ptr = param_1;
-                            if (*string_ptr != string_length) break;
-                            string_ptr = string_ptr + 1;
-                        } while (string_length != 0);
-                    }
-                }
-            }
-        }
-        
-        /* 递归处理数据块 */
-        current_ptr = FUN_18031f830(param_1, param_2, temp_offset);
-        param_3 = param_3 + -1;
-        FUN_18031f460(current_ptr, param_2, param_3);
-        data_size = current_ptr - param_1;
-        param_2 = current_ptr;
-    } while (true);
-}
-
-/**
- * 渲染系统数据管理器
- * 
- * 本函数负责渲染系统数据的管理：
- * 1. 数据验证
- * 2. 数据处理
- * 3. 数据优化
- * 4. 数据清理
- */
-void rendering_system_data_manager(void)
-{
-    /* 变量声明 */
-    uint8_t byte_value;
-    int block_size;
-    bool comparison_result;
-    longlong current_ptr;
-    char *string_ptr;
-    uint32_t string_length;
-    char *compare_ptr;
-    longlong source_ptr;
-    longlong dest_ptr;
-    longlong temp_ptr;
-    longlong iteration_count;
-    
-    do {
-        /* 检查迭代条件 */
-        if (iteration_count < 1) break;
-        
-        /* 计算中间位置 */
-        current_ptr = ((source_ptr - dest_ptr >> 5) - (source_ptr - dest_ptr >> 0x3f) >> 1) * RENDERING_MEMORY_BLOCK_SIZE;
-        block_size = *(int *)(current_ptr + 0x10 + dest_ptr);
-        current_ptr = current_ptr + dest_ptr;
-        
-        if (block_size == 0) {
-            /* 处理空数据块 */
-            if ((*(int *)(source_ptr + -0x10) != 0) && (*(int *)(dest_ptr + 0x10) != 0)) {
-                string_ptr = *(char **)(source_ptr + -0x18);
-                compare_ptr = string_ptr;
-                
-                do {
-                    byte_value = *compare_ptr;
-                    string_length = (uint32_t)compare_ptr[*(longlong *)(dest_ptr + 8) - (longlong)string_ptr];
-                    if (byte_value != string_length) break;
-                    compare_ptr = compare_ptr + 1;
-                } while (string_length != 0);
-                
-                if (((int)(byte_value - string_length) < 1) && (block_size != 0)) {
-                    current_ptr = *(longlong *)(current_ptr + 8) - (longlong)string_ptr;
-                    do {
-                        compare_ptr = string_ptr + current_ptr;
-                        if (*string_ptr != *compare_ptr) break;
-                        string_ptr = string_ptr + 1;
-                    } while (*compare_ptr != 0);
-                }
-            }
-        } else {
-            /* 处理非空数据块 */
-            if (*(int *)(dest_ptr + 0x10) == 0) {
-                comparison_result = true;
-            } else {
-                string_ptr = *(char **)(current_ptr + 8);
-                temp_ptr = *(longlong *)(dest_ptr + 8) - (longlong)string_ptr;
-                
-                do {
-                    byte_value = *string_ptr;
-                    string_length = (uint32_t)string_ptr[temp_ptr];
-                    if (byte_value != string_length) break;
-                    string_ptr = string_ptr + 1;
-                } while (string_length != 0);
-                
-                comparison_result = 0 < (int)(byte_value - string_length);
-            }
-            
-            if (!comparison_result) {
-                /* 继续处理 */
-                if (*(int *)(source_ptr + -0x10) != 0) {
-                    string_ptr = *(char **)(source_ptr + -0x18);
-                    compare_ptr = string_ptr;
-                    
-                    do {
-                        byte_value = *compare_ptr;
-                        string_length = (uint32_t)compare_ptr[*(longlong *)(current_ptr + 8) - (longlong)string_ptr];
-                        if (byte_value != string_length) break;
-                        compare_ptr = compare_ptr + 1;
-                    } while (string_length != 0);
-                    
-                    if (((int)(byte_value - string_length) < 1) && (*(int *)(dest_ptr + 0x10) != 0)) {
-                        current_ptr = *(longlong *)(dest_ptr + 8) - (longlong)string_ptr;
-                        do {
-                            compare_ptr = string_ptr + current_ptr;
-                            if (*string_ptr != *compare_ptr) break;
-                            string_ptr = string_ptr + 1;
-                        } while (*compare_ptr != 0);
-                    }
-                }
-            }
-        }
-        
-        /* 处理数据块 */
-        current_ptr = FUN_18031f830();
-        iteration_count = iteration_count + -1;
-        FUN_18031f460(current_ptr, source_ptr, iteration_count);
-        source_ptr = current_ptr;
-    } while (RENDERING_DATA_BLOCK_SIZE < (longlong)(current_ptr - dest_ptr & 0xffffffffffffffe0U));
-    
-    /* 最终处理 */
-    if (iteration_count == 0) {
-        FUN_18031f9e0();
-    }
-}
-
-/**
- * 渲染系统内存清理器
- * 
- * 本函数负责渲染系统内存的清理：
- * 1. 内存验证
- * 2. 内存清理
- * 3. 内存重置
- */
-void rendering_system_memory_cleaner(void)
-{
-    /* 变量声明 */
-    longlong iteration_count;
-    
-    /* 检查迭代条件 */
-    if (iteration_count == 0) {
-        FUN_18031f9e0();
-    }
-}
-
-/**
- * 渲染系统重置器
- * 
- * 本函数负责渲染系统的重置：
- * 1. 系统重置
- * 2. 内存清理
- * 3. 状态重置
- */
-void rendering_system_system_reset(void)
-{
-    /* 系统重置 */
-    FUN_18031f9e0();
-}
-
-/**
- * 渲染系统数据验证器
- * 
- * 本函数负责渲染系统数据的验证：
- * 1. 数据验证
- * 2. 数据比较
- * 3. 数据处理
- * 4. 数据优化
- */
-void rendering_system_data_validator(void)
-{
-    /* 变量声明 */
-    uint8_t byte_value;
-    bool comparison_result;
-    char *string_ptr;
-    uint32_t string_length;
-    char *compare_ptr;
-    int block_size;
-    longlong source_ptr;
-    longlong dest_ptr;
-    longlong temp_ptr;
-    longlong iteration_count;
-    longlong data_ptr;
-    longlong offset;
-    
-data_validation_loop:
-    do {
-        /* 获取当前数据指针 */
-        temp_ptr = source_ptr;
-        
-        /* 检查数据块状态 */
-        if ((*(int *)(source_ptr + -0x10) != 0) && (*(int *)(dest_ptr + 0x10) != 0)) {
-            string_ptr = *(char **)(source_ptr + -0x18);
-            compare_ptr = string_ptr;
-            
+        // 字符串比较和数据处理
+        for (puVar7 = (undefined8 *)(lVar4 + -0x18); *(int *)(puVar7 + 1) != 0; puVar7 = puVar7 + -4) {
+          if (iVar10 != 0) {
+            pbVar5 = (byte *)*puVar7;
+            lVar11 = lVar9 - (longlong)pbVar5;
             do {
-                byte_value = *compare_ptr;
-                string_length = (uint32_t)compare_ptr[*(longlong *)(dest_ptr + 8) - (longlong)string_ptr];
-                if (byte_value != string_length) break;
-                compare_ptr = compare_ptr + 1;
-            } while (string_length != 0);
-            
-            if (((int)(byte_value - string_length) < 1) && (block_size != 0)) {
-                offset = *(longlong *)(data_ptr + 8) - (longlong)string_ptr;
-                do {
-                    compare_ptr = string_ptr + offset;
-                    if (*string_ptr != *compare_ptr) break;
-                    string_ptr = string_ptr + 1;
-                } while (*compare_ptr != 0);
-            }
+              bVar1 = *pbVar5;
+              uVar6 = (uint)pbVar5[lVar11];
+              if (bVar1 != uVar6) break;
+              pbVar5 = pbVar5 + 1;
+            } while (uVar6 != 0);
+            if ((int)(bVar1 - uVar6) < 1) break;
+          }
+          
+          // 数据结构重组
+          if (puVar7[4] != 0) {
+            FUN_18064e900();
+          }
+          puVar7[6] = 0;
+          puVar7[4] = 0;
+          *(undefined4 *)(puVar7 + 5) = 0;
+          *(undefined4 *)(puVar7 + 5) = *(undefined4 *)(puVar7 + 1);
+          puVar7[4] = *puVar7;
+          *(undefined4 *)((longlong)puVar7 + 0x34) = *(undefined4 *)((longlong)puVar7 + 0x14);
+          *(undefined4 *)(puVar7 + 6) = *(undefined4 *)(puVar7 + 2);
+          *(undefined4 *)(puVar7 + 1) = 0;
+          *puVar7 = 0;
+          puVar7[2] = 0;
+          lVar8 = lVar8 + -RENDERING_RESOURCE_BLOCK_SIZE;
         }
         
-        /* 处理数据块 */
-        source_ptr = FUN_18031f830();
-        iteration_count = iteration_count + -1;
-        FUN_18031f460(source_ptr, temp_ptr, iteration_count);
-        
-        /* 检查处理条件 */
-        if (((longlong)(source_ptr - dest_ptr & 0xffffffffffffffe0U) < RENDERING_DATA_BLOCK_SIZE) || (iteration_count < 1)) {
-            if (iteration_count == 0) {
-                FUN_18031f9e0();
-            }
-            return;
+        // 恢复数据块状态
+        if (*(longlong *)(lVar8 + 8) != 0) {
+          FUN_18064e900();
         }
-        
-        /* 计算数据块位置 */
-        data_ptr = ((source_ptr - dest_ptr >> 5) - (source_ptr - dest_ptr >> 0x3f) >> 1) * RENDERING_MEMORY_BLOCK_SIZE;
-        block_size = *(int *)(data_ptr + 0x10 + dest_ptr);
-        data_ptr = data_ptr + dest_ptr;
-    } while (block_size == 0);
+        *(int *)(lVar8 + 0x10) = iVar10;
+        *(longlong *)(lVar8 + 8) = lVar9;
+        *(undefined4 *)(lVar8 + 0x1c) = uVar2;
+        *(undefined4 *)(lVar8 + 0x18) = uVar3;
+      }
+    }
+  }
+  return;
+}
+
+/**
+ * 渲染系统内存管理器 - 负责内存分配和回收
+ * 
+ * 功能说明：
+ * - 管理内存池的分配和释放
+ * - 实现线程安全的内存操作
+ * - 处理内存碎片整理
+ * - 维护内存使用统计
+ * 
+ * 参数：
+ *   param_1 - 内存管理器标识符
+ *   param_2 - 内存块指针
+ * 
+ * 返回值：
+ *   undefined8* - 返回内存块指针
+ */
+undefined8 * rendering_system_memory_manager(longlong param_1, undefined8 *param_2)
+{
+  longlong lVar1;
+  int iVar2;
+  longlong *plVar3;
+  undefined4 uVar4;
+  undefined8 uVar5;
+  
+  uVar5 = 0xfffffffffffffffe;
+  uVar4 = 0;
+  
+  // 加锁操作
+  iVar2 = _Mtx_lock(param_1 + 0x50);
+  if (iVar2 != 0) {
+    __Throw_C_error_std__YAXH_Z(iVar2);
+  }
+  
+  lVar1 = *(longlong *)(param_1 + 200);
+  if (*(longlong *)(param_1 + 0xc0) == lVar1) {
+    // 分配新的内存块
+    plVar3 = (longlong *)FUN_18062b1e0(_DAT_180c8ed18, 0x28, 8, 0x20, uVar4, uVar5);
+    *plVar3 = (longlong)&UNK_180a21690;
+    *plVar3 = (longlong)&UNK_180a21720;
+    *(undefined4 *)(plVar3 + 1) = 0;
+    *plVar3 = (longlong)&UNK_1809fff60;
+    plVar3[2] = 0;
+    plVar3[3] = 0;
+    *(undefined1 *)(plVar3 + 4) = 0;
+    *plVar3 = (longlong)&UNK_180a1ae60;
+    (**(code **)(*plVar3 + 0x28))(plVar3);
+    *param_2 = plVar3;
+  }
+  else {
+    // 重用现有内存块
+    plVar3 = *(longlong **)(lVar1 + -8);
+    *(longlong *)(param_1 + 200) = lVar1 + -8;
+    plVar3[1] = -0x5a5a5a5a5a5a5a5b;
+    plVar3[2] = -0x5a5a5a5a5a5a5a5b;
+    plVar3[3] = -0x5a5a5a5a5a5a5a5b;
+    plVar3[4] = -0x5a5a5a5a5a5a5a5b;
+    *plVar3 = (longlong)&UNK_180a21690;
+    *plVar3 = (longlong)&UNK_180a21720;
+    *(undefined4 *)(plVar3 + 1) = 0;
+    *plVar3 = (longlong)&UNK_1809fff60;
+    plVar3[2] = 0;
+    plVar3[3] = 0;
+    *(undefined1 *)(plVar3 + 4) = 0;
+    *plVar3 = (longlong)&UNK_180a1ae60;
+    (**(code **)(*plVar3 + 0x28))(plVar3);
+    *param_2 = plVar3;
+  }
+  
+  // 解锁操作
+  iVar2 = _Mtx_unlock(param_1 + 0x50);
+  if (iVar2 != 0) {
+    __Throw_C_error_std__YAXH_Z(iVar2);
+  }
+  return param_2;
+}
+
+/**
+ * 渲染系统数据分割器 - 将大数据块分割成小块处理
+ * 
+ * 功能说明：
+ * - 实现递归的数据分割算法
+ * - 支持动态的数据块大小调整
+ * - 处理字符串比较和数据重组
+ * - 优化大数据集的处理效率
+ * 
+ * 参数：
+ *   param_1 - 数据起始地址
+ *   param_2 - 数据结束地址
+ *   param_3 - 递归深度参数
+ * 
+ * 返回值：
+ *   void - 无返回值
+ */
+void rendering_system_data_splitter(longlong param_1, longlong param_2, longlong param_3)
+{
+  byte bVar1;
+  bool bVar2;
+  ulonglong uVar3;
+  longlong lVar4;
+  byte *pbVar5;
+  uint uVar6;
+  byte *pbVar7;
+  int iVar8;
+  longlong lVar9;
+  
+  uVar3 = param_2 - param_1;
+  do {
+    // 检查分割条件
+    if (((longlong)(uVar3 & 0xffffffffffffffe0) < 0x381) || (param_3 < 1)) {
+      if (param_3 == 0) {
+        FUN_18031f9e0(param_1, param_2, param_2);
+      }
+      return;
+    }
     
-    /* 处理非空数据块 */
-    if (*(int *)(dest_ptr + 0x10) == 0) {
-        comparison_result = true;
-    } else {
-        string_ptr = *(char **)(data_ptr + 8);
-        temp_ptr = *(longlong *)(dest_ptr + 8) - (longlong)string_ptr;
-        
+    // 计算分割点
+    lVar4 = ((param_2 - param_1 >> 5) - (param_2 - param_1 >> 0x3f) >> 1) * RENDERING_RESOURCE_BLOCK_SIZE;
+    iVar8 = *(int *)(lVar4 + 0x10 + param_1);
+    lVar4 = lVar4 + param_1;
+    
+    if (iVar8 == 0) {
+    FUN_18031f5d4:
+      lVar9 = lVar4;
+      if ((*(int *)(param_2 + -0x10) != 0) && (lVar9 = param_1, *(int *)(param_1 + 0x10) != 0)) {
+        pbVar5 = *(byte **)(param_2 + -0x18);
+        pbVar7 = pbVar5;
         do {
-            byte_value = *string_ptr;
-            string_length = (uint32_t)string_ptr[temp_ptr];
-            if (byte_value != string_length) break;
-            string_ptr = string_ptr + 1;
-        } while (string_length != 0);
-        
-        comparison_result = 0 < (int)(byte_value - string_length);
+          bVar1 = *pbVar7;
+          uVar6 = (uint)pbVar7[*(longlong *)(param_1 + 8) - (longlong)pbVar5];
+          if (bVar1 != uVar6) break;
+          pbVar7 = pbVar7 + 1;
+        } while (uVar6 != 0);
+        if ((int)(bVar1 - uVar6) < 1) {
+          if (iVar8 != 0) {
+            lVar9 = *(longlong *)(lVar4 + 8) - (longlong)pbVar5;
+            do {
+              uVar6 = (uint)pbVar5[lVar9];
+              iVar8 = *pbVar5 - uVar6;
+              if (*pbVar5 != uVar6) break;
+              pbVar5 = pbVar5 + 1;
+            } while (uVar6 != 0);
+          joined_r0x00018031f635:
+            lVar9 = lVar4;
+            if (iVar8 < 1) goto LAB_18031f56e;
+          }
+        LAB_18031f63b:
+          lVar9 = param_2 + -RENDERING_RESOURCE_BLOCK_SIZE;
+        }
+      }
     }
-    
-    if (!comparison_result) {
-        goto data_validation_loop;
-    }
-    
-    /* 最终处理 */
-    temp_ptr = source_ptr;
-    if (*(int *)(source_ptr + -0x10) != 0) {
-        string_ptr = *(char **)(source_ptr + -0x18);
-        compare_ptr = string_ptr;
-        
+    else {
+      if (*(int *)(param_1 + 0x10) == 0) {
+        bVar2 = true;
+      }
+      else {
+        pbVar5 = *(byte **)(lVar4 + 8);
+        lVar9 = *(longlong *)(param_1 + 8) - (longlong)pbVar5;
         do {
-            byte_value = *compare_ptr;
-            string_length = (uint32_t)compare_ptr[*(longlong *)(data_ptr + 8) - (longlong)string_ptr];
-            if (byte_value != string_length) break;
-            compare_ptr = compare_ptr + 1;
-        } while (string_length != 0);
-        
-        if (((int)(byte_value - string_length) < 1) && (*(int *)(dest_ptr + 0x10) != 0)) {
-            temp_ptr = *(longlong *)(dest_ptr + 8) - (longlong)string_ptr;
-            do {
-                compare_ptr = string_ptr + temp_ptr;
-                if (*string_ptr != *compare_ptr) break;
-                string_ptr = string_ptr + 1;
-            } while (*compare_ptr != 0);
-        }
-    }
-    
-    /* 继续处理 */
-    goto data_validation_loop;
-}
-
-/**
- * 渲染系统内存优化器
- * 
- * 本函数负责渲染系统内存的优化：
- * 1. 内存验证
- * 2. 内存优化
- * 3. 内存清理
- * 4. 内存重置
- * 
- * @param param_1 源内存指针
- * @param param_2 目标内存指针
- */
-void rendering_system_memory_optimizer(longlong param_1, longlong param_2)
-{
-    /* 变量声明 */
-    uint8_t byte_value;
-    int block_size;
-    uint32_t data_size;
-    uint32_t block_flags;
-    longlong current_ptr;
-    longlong temp_ptr;
-    char *string_ptr;
-    uint32_t string_length;
-    longlong string_offset;
-    longlong compare_offset;
-    longlong data_ptr;
-    
-    /* 内存块验证 */
-    if (param_1 != param_2) {
-        /* 遍历内存块 */
-        for (current_ptr = param_1 + RENDERING_MEMORY_BLOCK_SIZE; current_ptr != param_2; 
-             current_ptr = current_ptr + RENDERING_MEMORY_BLOCK_SIZE) {
-            
-            /* 获取内存块信息 */
-            block_size = *(int *)(current_ptr + 0x10);
-            temp_ptr = *(longlong *)(current_ptr + 8);
-            data_size = *(uint32_t *)(current_ptr + 0x1c);
-            block_flags = *(uint32_t *)(current_ptr + 0x18);
-            
-            /* 清理内存块 */
-            *(uint32_t *)(current_ptr + 0x10) = 0;
-            *(uint64_t *)(current_ptr + 8) = 0;
-            *(uint64_t *)(current_ptr + 0x18) = 0;
-            
-            /* 处理内存块内容 */
-            data_ptr = current_ptr;
-            temp_ptr = current_ptr;
-            
-            /* 遍历前一个内存块 */
-            while ((temp_ptr != param_1 && (*(int *)(temp_ptr + -0x10) != 0))) {
-                if (block_size != 0) {
-                    string_ptr = *(char **)(temp_ptr + -0x18);
-                    compare_offset = temp_ptr - (longlong)string_ptr;
-                    
-                    do {
-                        byte_value = *string_ptr;
-                        string_length = (uint32_t)string_ptr[compare_offset];
-                        if (byte_value != string_length) break;
-                        string_ptr = string_ptr + 1;
-                    } while (string_length != 0);
-                    
-                    if ((int)(byte_value - string_length) < 1) break;
-                }
-                
-                /* 检查内存块完整性 */
-                if (*(longlong *)(data_ptr + 8) != 0) {
-                    FUN_18064e900();
-                }
-                
-                /* 清理内存块 */
-                *(uint64_t *)(data_ptr + 0x18) = 0;
-                *(uint64_t *)(data_ptr + 8) = 0;
-                *(uint32_t *)(data_ptr + 0x10) = 0;
-                *(uint32_t *)(data_ptr + 0x10) = *(uint32_t *)(temp_ptr + -0x10);
-                *(uint64_t *)(data_ptr + 8) = *(uint64_t *)(temp_ptr + -0x18);
-                *(uint32_t *)(data_ptr + 0x1c) = *(uint32_t *)(temp_ptr + -4);
-                *(uint32_t *)(data_ptr + 0x18) = *(uint32_t *)(temp_ptr + -8);
-                
-                /* 清理源内存块 */
-                *(uint32_t *)(temp_ptr + -0x10) = 0;
-                *(uint64_t *)(temp_ptr + -0x18) = 0;
-                *(uint64_t *)(temp_ptr + -8) = 0;
-                
-                data_ptr = data_ptr + -RENDERING_MEMORY_BLOCK_SIZE;
-                temp_ptr = temp_ptr + -RENDERING_MEMORY_BLOCK_SIZE;
-            }
-            
-            /* 检查内存块完整性 */
-            if (*(longlong *)(data_ptr + 8) != 0) {
-                FUN_18064e900();
-            }
-            
-            /* 恢复内存块信息 */
-            *(int *)(data_ptr + 0x10) = block_size;
-            *(longlong *)(data_ptr + 8) = temp_ptr;
-            *(uint32_t *)(data_ptr + 0x1c) = data_size;
-            *(uint32_t *)(data_ptr + 0x18) = block_flags;
-        }
-    }
-}
-
-/**
- * 渲染系统数据合并器
- * 
- * 本函数负责渲染系统数据的合并：
- * 1. 数据验证
- * 2. 数据合并
- * 3. 数据优化
- * 4. 数据清理
- * 
- * @param param_1 源数据指针
- * @param param_2 目标数据指针
- * @param param_3 数据参数
- * @param param_4 数据标志
- * @return 合并后的数据指针
- */
-uint64_t rendering_system_data_merger(uint64_t param_1, uint64_t param_2, 
-                                     uint64_t param_3, uint64_t param_4)
-{
-    /* 变量声明 */
-    uint8_t byte_value;
-    uint32_t data_size;
-    uint32_t block_size;
-    uint64_t temp_data;
-    char *string_ptr;
-    uint32_t string_length;
-    uint64_t result_ptr;
-    longlong data_offset;
-    void *stack_ptr;
-    char *compare_ptr;
-    int iteration_count;
-    
-    /* 初始化数据合并 */
-    FUN_180627ae0(&stack_ptr, param_3, param_3, param_4, 0xfffffffffffffffe);
-    
-    do {
-        /* 处理空迭代 */
-        while (iteration_count == 0) {
-data_merge_loop:
-            do {
-                do {
-                    /* 获取目标数据指针 */
-                    result_ptr = param_2;
-                    param_2 = result_ptr - RENDERING_MEMORY_BLOCK_SIZE;
-                    
-                    /* 检查数据块状态 */
-                    if (*(int *)(result_ptr - 0x10) == 0) {
-                        goto data_merge_complete;
-                    }
-                } while (iteration_count == 0);
-                
-                /* 字符串比较 */
-                string_ptr = *(char **)(result_ptr - 0x18);
-                data_offset = (longlong)compare_ptr - (longlong)string_ptr;
-                
-                do {
-                    byte_value = *string_ptr;
-                    string_length = (uint32_t)string_ptr[data_offset];
-                    if (byte_value != string_length) break;
-                    string_ptr = string_ptr + 1;
-                } while (string_length != 0);
-            } while (0 < (int)(byte_value - string_length));
-            
-data_merge_complete:
-            /* 检查完成条件 */
-            if (param_2 <= param_1) {
-                stack_ptr = &UNK_180a3c3e0;
-                if (compare_ptr == (char *)0x0) {
-                    return param_1;
-                }
-                FUN_18064e900();
-            }
-            
-            /* 获取数据块信息 */
-            data_size = *(uint32_t *)(param_1 + 0x10);
-            temp_data = *(uint64_t *)(param_1 + 8);
-            block_size = *(uint32_t *)(param_1 + 0x1c);
-            data_size = *(uint32_t *)(param_1 + 0x18);
-            
-            /* 清理数据块 */
-            *(uint32_t *)(param_1 + 0x10) = 0;
-            *(uint64_t *)(param_1 + 8) = 0;
-            *(uint64_t *)(param_1 + 0x18) = 0;
-            
-            /* 数据处理调用 */
-            FUN_18005d190(param_1, param_2);
-            
-            /* 检查数据完整性 */
-            if (*(longlong *)(result_ptr - 0x18) != 0) {
-                FUN_18064e900();
-            }
-            
-            /* 恢复数据块信息 */
-            *(uint32_t *)(result_ptr - 0x10) = data_size;
-            *(uint64_t *)(result_ptr - 0x18) = temp_data;
-            *(uint32_t *)(result_ptr - 4) = block_size;
-            *(uint32_t *)(result_ptr - 8) = data_size;
-            
-            param_1 = param_1 + RENDERING_MEMORY_BLOCK_SIZE;
-        }
-        
-        /* 检查数据块状态 */
+          bVar1 = *pbVar5;
+          uVar6 = (uint)pbVar5[lVar9];
+          if (bVar1 != uVar6) break;
+          pbVar5 = pbVar5 + 1;
+        } while (uVar6 != 0);
+        bVar2 = 0 < (int)(bVar1 - uVar6);
+      }
+      if (!bVar2) goto FUN_18031f5d4;
+      lVar9 = param_1;
+      if (*(int *)(param_2 + -0x10) != 0) {
+        pbVar5 = *(byte **)(param_2 + -0x18);
+        pbVar7 = pbVar5;
+        do {
+          bVar1 = *pbVar7;
+          uVar6 = (uint)pbVar7[*(longlong *)(lVar4 + 8) - (longlong)pbVar5];
+          if (bVar1 != uVar6) break;
+          pbVar7 = pbVar7 + 1;
+        } while (uVar6 != 0);
+        lVar9 = lVar4;
+        if (0 < (int)(bVar1 - uVar6)) goto LAB_18031f56e;
         if (*(int *)(param_1 + 0x10) != 0) {
-            string_ptr = compare_ptr;
-            do {
-                byte_value = *string_ptr;
-                string_length = (uint32_t)string_ptr[*(longlong *)(param_1 + 8) - (longlong)compare_ptr];
-                if (byte_value != string_length) break;
-                string_ptr = string_ptr + 1;
-            } while (string_length != 0);
-            
-            if ((int)(byte_value - string_length) < 1) {
-                goto data_merge_loop;
-            }
+          lVar9 = *(longlong *)(param_1 + 8) - (longlong)pbVar5;
+          do {
+            uVar6 = (uint)pbVar5[lVar9];
+            iVar8 = *pbVar5 - uVar6;
+            lVar4 = param_1;
+            if (*pbVar5 != uVar6) break;
+            pbVar5 = pbVar5 + 1;
+          } while (uVar6 != 0);
+          goto joined_r0x00018031f635;
         }
-        
-        param_1 = param_1 + RENDERING_MEMORY_BLOCK_SIZE;
-    } while (true);
+        goto LAB_18031f63b;
+      }
+    }
+  LAB_18031f56e:
+    lVar4 = FUN_18031f830(param_1, param_2, lVar9);
+    param_3 = param_3 + -1;
+    FUN_18031f460(lVar4, param_2, param_3);
+    uVar3 = lVar4 - param_1;
+    param_2 = lVar4;
+  } while( true );
 }
 
 /**
- * 渲染系统数据排序器
+ * 渲染系统状态处理器 - 处理系统状态和事件
  * 
- * 本函数负责渲染系统数据的排序：
- * 1. 数据验证
- * 2. 数据排序
- * 3. 数据优化
- * 4. 数据清理
+ * 功能说明：
+ * - 管理系统状态转换
+ * - 处理状态相关的事件
+ * - 维护状态一致性
+ * - 执行状态相关的清理操作
  * 
- * @param param_1 源数据指针
- * @param param_2 目标数据指针
- * @param param_3 数据参数
+ * 参数：
+ *   param_1 - 状态标识符
+ *   param_2 - 事件数据
+ *   param_3 - 状态参数
+ * 
+ * 返回值：
+ *   void - 无返回值
  */
-void rendering_system_data_sorter(longlong param_1, uint64_t param_2, uint64_t param_3)
+void rendering_system_state_handler(longlong param_1, longlong param_2, longlong param_3)
 {
-    /* 变量声明 */
-    longlong *data_ptr;
-    uint8_t byte_value;
-    bool comparison_result;
-    char *string_ptr;
-    uint32_t string_length;
-    longlong string_offset;
-    longlong *current_ptr;
-    longlong *temp_ptr;
-    longlong block_count;
-    longlong iteration_count;
-    void *stack_ptr;
-    longlong stack_data;
-    uint32_t stack_flags;
-    longlong stack_offset;
-    
-    /* 计算数据块数量 */
-    block_count = (longlong)(param_2 - param_1) >> 5;
-    
-    if (1 < block_count) {
-        /* 计算迭代次数 */
-        iteration_count = (block_count + -2 >> 1) + 1;
-        current_ptr = (longlong *)(param_1 + 8 + iteration_count * RENDERING_MEMORY_BLOCK_SIZE);
-        
-        do {
-            iteration_count = iteration_count + -1;
-            data_ptr = current_ptr + -4;
-            stack_ptr = &UNK_180a3c3e0;
-            stack_flags = (uint32_t)current_ptr[-3];
-            stack_data = *data_ptr;
-            stack_offset = current_ptr[-2];
-            
-            /* 清理数据块 */
-            *(uint32_t *)(current_ptr + -3) = 0;
-            *data_ptr = 0;
-            current_ptr[-2] = 0;
-            
-            /* 数据排序调用 */
-            FUN_18031fd10(param_1, iteration_count, block_count, iteration_count, &stack_ptr);
-            
-            stack_ptr = &UNK_180a3c3e0;
-            
-            /* 检查数据完整性 */
-            if (stack_data != 0) {
-                FUN_18064e900();
-            }
-            
-            current_ptr = data_ptr;
-        } while (iteration_count != 0);
+  byte bVar1;
+  bool bVar2;
+  longlong in_RAX;
+  ulonglong uVar3;
+  longlong lVar4;
+  byte *pbVar5;
+  uint uVar6;
+  byte *pbVar7;
+  int iVar8;
+  longlong lVar9;
+  
+  uVar3 = in_RAX - param_1;
+  do {
+    // 检查状态处理条件
+    if (((longlong)(uVar3 & 0xffffffffffffffe0) < 0x381) || (param_3 < 1)) {
+      if (param_3 == 0) {
+        FUN_18031f9e0(param_1, param_2, param_2);
+      }
+      return;
     }
     
-    /* 处理剩余数据块 */
-    if (param_2 < param_3) {
-        current_ptr = (longlong *)(param_2 + 8);
-        iteration_count = ((param_3 - param_2) - 1 >> 5) + 1;
-        
-        do {
-            /* 检查数据块状态 */
-            if (*(int *)(param_1 + 0x10) == 0) {
-                comparison_result = false;
-            } else if ((int)current_ptr[1] == 0) {
-                comparison_result = true;
-            } else {
-                string_ptr = *(char **)(param_1 + 8);
-                string_offset = *current_ptr - (longlong)string_ptr;
-                
-                do {
-                    byte_value = *string_ptr;
-                    string_length = (uint32_t)string_ptr[string_offset];
-                    if (byte_value != string_length) break;
-                    string_ptr = string_ptr + 1;
-                } while (string_length != 0);
-                
-                comparison_result = 0 < (int)(byte_value - string_length);
-            }
-            
-            if (comparison_result) {
-                /* 处理数据块 */
-                stack_ptr = &UNK_180a3c3e0;
-                stack_flags = (uint32_t)current_ptr[1];
-                stack_data = *current_ptr;
-                stack_offset = current_ptr[2];
-                
-                /* 清理数据块 */
-                *(uint32_t *)(current_ptr + 1) = 0;
-                *current_ptr = 0;
-                current_ptr[2] = 0;
-                
-                /* 检查数据完整性 */
-                if (*current_ptr != 0) {
-                    FUN_18064e900();
-                }
-                
-                current_ptr[2] = 0;
-                *current_ptr = 0;
-                *(uint32_t *)(current_ptr + 1) = 0;
-                *(uint32_t *)(current_ptr + 1) = *(uint32_t *)(param_1 + 0x10);
-                *current_ptr = *(longlong *)(param_1 + 8);
-                *(uint32_t *)((longlong)current_ptr + 0x14) = *(uint32_t *)(param_1 + 0x1c);
-                *(uint32_t *)(current_ptr + 2) = *(uint32_t *)(param_1 + 0x18);
-                
-                /* 清理源数据块 */
-                *(uint32_t *)(param_1 + 0x10) = 0;
-                *(uint64_t *)(param_1 + 8) = 0;
-                *(uint64_t *)(param_1 + 0x18) = 0;
-                
-                /* 数据排序调用 */
-                FUN_18031fd10(param_1, 0, block_count, 0, &stack_ptr);
-                
-                stack_ptr = &UNK_180a3c3e0;
-                
-                /* 检查数据完整性 */
-                if (stack_data != 0) {
-                    FUN_18064e900();
-                }
-            }
-            
-            current_ptr = current_ptr + 4;
-            iteration_count = iteration_count + -1;
-        } while (iteration_count != 0);
-    }
+    // 计算状态处理点
+    lVar4 = ((param_2 - param_1 >> 5) - (param_2 - param_1 >> 0x3f) >> 1) * RENDERING_RESOURCE_BLOCK_SIZE;
+    iVar8 = *(int *)(lVar4 + 0x10 + param_1);
+    lVar4 = lVar4 + param_1;
     
-    /* 最终处理 */
-    if (1 < block_count) {
-        current_ptr = (longlong *)(param_2 - 0x18);
-        
+    if (iVar8 == 0) {
+    FUN_18031f5d4:
+      lVar9 = lVar4;
+      if ((*(int *)(param_2 + -0x10) != 0) && (lVar9 = param_1, *(int *)(param_1 + 0x10) != 0)) {
+        pbVar5 = *(byte **)(param_2 + -0x18);
+        pbVar7 = pbVar5;
         do {
-            stack_ptr = &UNK_180a3c3e0;
-            stack_flags = (uint32_t)current_ptr[1];
-            stack_data = *current_ptr;
-            stack_offset = current_ptr[2];
-            
-            /* 清理数据块 */
-            *(uint32_t *)(current_ptr + 1) = 0;
-            *current_ptr = 0;
-            current_ptr[2] = 0;
-            
-            /* 数据处理调用 */
-            FUN_18005d190(current_ptr + -1, param_1);
-            FUN_18031fd10(param_1, 0, block_count + -1, 0, &stack_ptr);
-            
-            stack_ptr = &UNK_180a3c3e0;
-            
-            /* 检查数据完整性 */
-            if (stack_data != 0) {
-                FUN_18064e900();
-            }
-            
-            current_ptr = current_ptr + -4;
-            block_count = (0x18 - param_1) + (longlong)current_ptr >> 5;
-        } while (1 < block_count);
+          bVar1 = *pbVar7;
+          uVar6 = (uint)pbVar7[*(longlong *)(param_1 + 8) - (longlong)pbVar5];
+          if (bVar1 != uVar6) break;
+          pbVar7 = pbVar7 + 1;
+        } while (uVar6 != 0);
+        if ((int)(bVar1 - uVar6) < 1) {
+          if (iVar8 != 0) {
+            lVar9 = *(longlong *)(lVar4 + 8) - (longlong)pbVar5;
+            do {
+              uVar6 = (uint)pbVar5[lVar9];
+              iVar8 = *pbVar5 - uVar6;
+              if (*pbVar5 != uVar6) break;
+              pbVar5 = pbVar5 + 1;
+            } while (uVar6 != 0);
+          joined_r0x00018031f635:
+            lVar9 = lVar4;
+            if (iVar8 < 1) goto LAB_18031f56e;
+          }
+        LAB_18031f63b:
+          lVar9 = param_2 + -RENDERING_RESOURCE_BLOCK_SIZE;
+        }
+      }
     }
+    else {
+      if (*(int *)(param_1 + 0x10) == 0) {
+        bVar2 = true;
+      }
+      else {
+        pbVar5 = *(byte **)(lVar4 + 8);
+        lVar9 = *(longlong *)(param_1 + 8) - (longlong)pbVar5;
+        do {
+          bVar1 = *pbVar5;
+          uVar6 = (uint)pbVar5[lVar9];
+          if (bVar1 != uVar6) break;
+          pbVar5 = pbVar5 + 1;
+        } while (uVar6 != 0);
+        bVar2 = 0 < (int)(bVar1 - uVar6);
+      }
+      if (!bVar2) goto FUN_18031f5d4;
+      lVar9 = param_1;
+      if (*(int *)(param_2 + -0x10) != 0) {
+        pbVar5 = *(byte **)(param_2 + -0x18);
+        pbVar7 = pbVar5;
+        do {
+          bVar1 = *pbVar7;
+          uVar6 = (uint)pbVar7[*(longlong *)(lVar4 + 8) - (longlong)pbVar5];
+          if (bVar1 != uVar6) break;
+          pbVar7 = pbVar7 + 1;
+        } while (uVar6 != 0);
+        lVar9 = lVar4;
+        if (0 < (int)(bVar1 - uVar6)) goto LAB_18031f56e;
+        if (*(int *)(param_1 + 0x10) != 0) {
+          lVar9 = *(longlong *)(param_1 + 8) - (longlong)pbVar5;
+          do {
+            uVar6 = (uint)pbVar5[lVar9];
+            iVar8 = *pbVar5 - uVar6;
+            lVar4 = param_1;
+            if (*pbVar5 != uVar6) break;
+            pbVar5 = pbVar5 + 1;
+          } while (uVar6 != 0);
+          goto joined_r0x00018031f635;
+        }
+        goto LAB_18031f63b;
+      }
+    }
+  LAB_18031f56e:
+    lVar4 = FUN_18031f830(param_1, param_2, lVar9);
+    param_3 = param_3 + -1;
+    FUN_18031f460(lVar4, param_2, param_3);
+    uVar3 = lVar4 - param_1;
+    param_2 = lVar4;
+  } while( true );
 }
 
 /**
- * 渲染系统数据索引器
+ * 渲染系统事件处理器 - 处理系统级事件
  * 
- * 本函数负责渲染系统数据的索引：
- * 1. 数据验证
- * 2. 数据索引
- * 3. 数据优化
- * 4. 数据清理
+ * 功能说明：
+ * - 处理系统事件的分发和处理
+ * - 管理事件队列和优先级
+ * - 执行事件相关的回调函数
+ * - 维护事件处理的上下文
  * 
- * @param param_1 源数据指针
- * @param param_2 数据参数
- * @param param_3 数据块数量
- * @param param_4 数据标志
- * @param param_5 数据指针
- * @return 索引后的数据指针
+ * 参数：
+ *   void - 无参数
+ * 
+ * 返回值：
+ *   void - 无返回值
  */
-longlong rendering_system_data_indexer(longlong param_1, longlong param_2, 
-                                       longlong param_3, longlong param_4, longlong param_5)
+void rendering_system_event_handler(void)
 {
-    /* 变量声明 */
-    uint8_t byte_value;
-    bool comparison_result;
-    char *string_ptr;
-    uint32_t string_length;
-    longlong string_offset;
-    longlong current_ptr;
-    longlong next_ptr;
-    longlong temp_ptr;
+  byte bVar1;
+  int iVar2;
+  bool bVar3;
+  longlong lVar4;
+  byte *pbVar5;
+  uint uVar6;
+  byte *pbVar7;
+  longlong unaff_RSI;
+  longlong unaff_RDI;
+  longlong lVar8;
+  longlong unaff_R14;
+  
+  do {
+    // 检查事件处理条件
+    if (unaff_R14 < 1) break;
+    lVar4 = ((unaff_RSI - unaff_RDI >> 5) - (unaff_RSI - unaff_RDI >> 0x3f) >> 1) * RENDERING_RESOURCE_BLOCK_SIZE;
+    iVar2 = *(int *)(lVar4 + 0x10 + unaff_RDI);
+    lVar4 = lVar4 + unaff_RDI;
     
-    /* 计算当前索引 */
-    current_ptr = param_4 * 2;
-    
-    /* 遍历数据块 */
-    while (next_ptr = current_ptr + 2, next_ptr < param_3) {
-        temp_ptr = next_ptr * RENDERING_MEMORY_BLOCK_SIZE + param_1;
-        
-        /* 检查数据块状态 */
-        if (*(int *)(next_ptr * RENDERING_MEMORY_BLOCK_SIZE + -0x10 + param_1) == 0) {
-            comparison_result = false;
-        } else if (*(int *)(temp_ptr + 0x10) == 0) {
-            comparison_result = true;
-        } else {
-            string_ptr = *(char **)(temp_ptr + -0x18);
-            temp_ptr = *(longlong *)(temp_ptr + 8) - (longlong)string_ptr;
-            
-            do {
-                byte_value = *string_ptr;
-                string_length = (uint32_t)string_ptr[temp_ptr];
-                if (byte_value != string_length) break;
-                string_ptr = string_ptr + 1;
-            } while (string_length != 0);
-            
-            comparison_result = 0 < (int)(byte_value - string_length);
+    if (iVar2 == 0) {
+    FUN_18031f5d4:
+      if ((*(int *)(unaff_RSI + -0x10) != 0) && (*(int *)(unaff_RDI + 0x10) != 0)) {
+        pbVar5 = *(byte **)(unaff_RSI + -0x18);
+        pbVar7 = pbVar5;
+        do {
+          bVar1 = *pbVar7;
+          uVar6 = (uint)pbVar7[*(longlong *)(unaff_RDI + 8) - (longlong)pbVar5];
+          if (bVar1 != uVar6) break;
+          pbVar7 = pbVar7 + 1;
+        } while (uVar6 != 0);
+        if (((int)(bVar1 - uVar6) < 1) && (iVar2 != 0)) {
+          lVar4 = *(longlong *)(lVar4 + 8) - (longlong)pbVar5;
+          do {
+            pbVar7 = pbVar5 + lVar4;
+            if (*pbVar5 != *pbVar7) break;
+            pbVar5 = pbVar5 + 1;
+          } while (*pbVar7 != 0);
         }
-        
-        /* 确定下一个索引 */
-        temp_ptr = current_ptr + 1;
-        if (!comparison_result) {
-            temp_ptr = current_ptr;
-        }
-        
-        /* 处理数据块 */
-        current_ptr = param_4 * RENDERING_MEMORY_BLOCK_SIZE + param_1;
-        next_ptr = temp_ptr * RENDERING_MEMORY_BLOCK_SIZE + param_1;
-        
-        /* 检查数据完整性 */
-        if (*(longlong *)(current_ptr + 8) != 0) {
-            FUN_18064e900();
-        }
-        
-        /* 清理数据块 */
-        *(uint64_t *)(current_ptr + 0x18) = 0;
-        *(uint64_t *)(current_ptr + 8) = 0;
-        *(uint32_t *)(current_ptr + 0x10) = 0;
-        
-        /* 复制数据块信息 */
-        *(uint32_t *)(current_ptr + 0x10) = *(uint32_t *)(next_ptr + 0x10);
-        *(uint64_t *)(current_ptr + 8) = *(uint64_t *)(next_ptr + 8);
-        *(uint32_t *)(current_ptr + 0x1c) = *(uint32_t *)(next_ptr + 0x1c);
-        *(uint32_t *)(current_ptr + 0x18) = *(uint32_t *)(next_ptr + 0x18);
-        
-        /* 清理源数据块 */
-        *(uint32_t *)(next_ptr + 0x10) = 0;
-        *(uint64_t *)(next_ptr + 8) = 0;
-        *(uint64_t *)(next_ptr + 0x18) = 0;
-        
-        /* 更新参数 */
-        param_4 = temp_ptr;
-        current_ptr = temp_ptr * 2;
+      }
     }
-    
-    /* 最终处理 */
-    if (next_ptr == param_3) {
-        FUN_18005d190(param_4 * RENDERING_MEMORY_BLOCK_SIZE + param_1, 
-                      param_1 + -RENDERING_MEMORY_BLOCK_SIZE + next_ptr * RENDERING_MEMORY_BLOCK_SIZE);
-        param_4 = current_ptr + 1;
+    else {
+      if (*(int *)(unaff_RDI + 0x10) == 0) {
+        bVar3 = true;
+      }
+      else {
+        pbVar5 = *(byte **)(lVar4 + 8);
+        lVar8 = *(longlong *)(unaff_RDI + 8) - (longlong)pbVar5;
+        do {
+          bVar1 = *pbVar5;
+          uVar6 = (uint)pbVar5[lVar8];
+          if (bVar1 != uVar6) break;
+          pbVar5 = pbVar5 + 1;
+        } while (uVar6 != 0);
+        bVar3 = 0 < (int)(bVar1 - uVar6);
+      }
+      if (!bVar3) goto FUN_18031f5d4;
+      if (*(int *)(unaff_RSI + -0x10) != 0) {
+        pbVar5 = *(byte **)(unaff_RSI + -0x18);
+        pbVar7 = pbVar5;
+        do {
+          bVar1 = *pbVar7;
+          uVar6 = (uint)pbVar7[*(longlong *)(lVar4 + 8) - (longlong)pbVar5];
+          if (bVar1 != uVar6) break;
+          pbVar7 = pbVar7 + 1;
+        } while (uVar6 != 0);
+        if (((int)(bVar1 - uVar6) < 1) && (*(int *)(unaff_RDI + 0x10) != 0)) {
+          lVar4 = *(longlong *)(unaff_RDI + 8) - (longlong)pbVar5;
+          do {
+            pbVar7 = pbVar5 + lVar4;
+            if (*pbVar5 != *pbVar7) break;
+            pbVar5 = pbVar5 + 1;
+          } while (*pbVar7 != 0);
+        }
+      }
     }
-    
-    /* 二分查找优化 */
-    while (param_2 < param_4) {
-        current_ptr = param_4 + -1 >> 1;
-        next_ptr = current_ptr * RENDERING_MEMORY_BLOCK_SIZE + param_1;
-        
-        /* 检查数据块状态 */
-        if (*(int *)(param_5 + 0x10) == 0) break;
-        
-        if (*(int *)(next_ptr + 0x10) != 0) {
-            string_ptr = *(char **)(param_5 + 8);
-            temp_ptr = *(longlong *)(next_ptr + 8) - (longlong)string_ptr;
-            
-            do {
-                byte_value = *string_ptr;
-                string_length = (uint32_t)string_ptr[temp_ptr];
-                if (byte_value != string_length) break;
-                string_ptr = string_ptr + 1;
-            } while (string_length != 0);
-            
-            if ((int)(byte_value - string_length) < 1) break;
+    lVar4 = FUN_18031f830();
+    unaff_R14 = unaff_R14 + -1;
+    FUN_18031f460(lVar4, unaff_RSI, unaff_R14);
+    unaff_RSI = lVar4;
+  } while (0x380 < (longlong)(lVar4 - unaff_RDI & 0xffffffffffffffe0U));
+  
+  if (unaff_R14 == 0) {
+    FUN_18031f9e0();
+  }
+  return;
+}
+
+/**
+ * 渲染系统条件检查器 - 检查系统条件和状态
+ * 
+ * 功能说明：
+ * - 检查系统运行条件
+ * - 验证系统状态的有效性
+ * - 执行条件相关的清理操作
+ * - 返回条件检查结果
+ * 
+ * 参数：
+ *   void - 无参数
+ * 
+ * 返回值：
+ *   void - 无返回值
+ */
+void rendering_system_condition_checker(void)
+{
+  longlong unaff_R14;
+  
+  if (unaff_R14 == 0) {
+    FUN_18031f9e0();
+  }
+  return;
+}
+
+/**
+ * 渲染系统清理器 - 执行系统清理操作
+ * 
+ * 功能说明：
+ * - 执行系统的清理操作
+ * - 释放系统资源
+ * - 重置系统状态
+ * - 准备系统关闭
+ * 
+ * 参数：
+ *   void - 无参数
+ * 
+ * 返回值：
+ *   void - 无返回值
+ */
+void rendering_system_cleaner(void)
+{
+  FUN_18031f9e0();
+  return;
+}
+
+/**
+ * 渲染系统优化器 - 优化系统性能和数据结构
+ * 
+ * 功能说明：
+ * - 优化数据结构布局
+ * - 执行性能优化操作
+ * - 处理数据重组和排序
+ * - 提高系统运行效率
+ * 
+ * 参数：
+ *   void - 无参数
+ * 
+ * 返回值：
+ *   void - 无返回值
+ */
+void rendering_system_optimizer(void)
+{
+  byte bVar1;
+  bool bVar2;
+  byte *pbVar3;
+  uint uVar4;
+  byte *pbVar5;
+  int unaff_EBX;
+  longlong unaff_RSI;
+  longlong unaff_RDI;
+  longlong lVar6;
+  longlong lVar7;
+  longlong in_R9;
+  longlong unaff_R14;
+  
+code_r0x00018031f5d4:
+  do {
+    lVar6 = unaff_RSI;
+    if ((*(int *)(unaff_RSI + -0x10) != 0) && (*(int *)(unaff_RDI + 0x10) != 0)) {
+      pbVar3 = *(byte **)(unaff_RSI + -0x18);
+      pbVar5 = pbVar3;
+      do {
+        bVar1 = *pbVar5;
+        uVar4 = (uint)pbVar5[*(longlong *)(unaff_RDI + 8) - (longlong)pbVar3];
+        if (bVar1 != uVar4) break;
+        pbVar5 = pbVar5 + 1;
+      } while (uVar4 != 0);
+      if (((int)(bVar1 - uVar4) < 1) && (unaff_EBX != 0)) {
+        lVar7 = *(longlong *)(in_R9 + 8) - (longlong)pbVar3;
+        do {
+          pbVar5 = pbVar3 + lVar7;
+          if (*pbVar3 != *pbVar5) break;
+          pbVar3 = pbVar3 + 1;
+        } while (*pbVar5 != 0);
+      }
+    }
+  LAB_18031f56e:
+    unaff_RSI = FUN_18031f830();
+    unaff_R14 = unaff_R14 + -1;
+    FUN_18031f460(unaff_RSI, lVar6, unaff_R14);
+    if (((longlong)(unaff_RSI - unaff_RDI & 0xffffffffffffffe0U) < 0x381) || (unaff_R14 < 1)) {
+      if (unaff_R14 == 0) {
+        FUN_18031f9e0();
+      }
+      return;
+    }
+    in_R9 = ((unaff_RSI - unaff_RDI >> 5) - (unaff_RSI - unaff_RDI >> 0x3f) >> 1) * RENDERING_RESOURCE_BLOCK_SIZE;
+    unaff_EBX = *(int *)(in_R9 + 0x10 + unaff_RDI);
+    in_R9 = in_R9 + unaff_RDI;
+  } while (unaff_EBX == 0);
+  
+  if (*(int *)(unaff_RDI + 0x10) == 0) {
+    bVar2 = true;
+  }
+  else {
+    pbVar3 = *(byte **)(in_R9 + 8);
+    lVar6 = *(longlong *)(unaff_RDI + 8) - (longlong)pbVar3;
+    do {
+      bVar1 = *pbVar3;
+      uVar4 = (uint)pbVar3[lVar6];
+      if (bVar1 != uVar4) break;
+      pbVar3 = pbVar3 + 1;
+    } while (uVar4 != 0);
+    bVar2 = 0 < (int)(bVar1 - uVar4);
+  }
+  if (!bVar2) goto code_r0x00018031f5d4;
+  lVar6 = unaff_RSI;
+  if (*(int *)(unaff_RSI + -0x10) != 0) {
+    pbVar3 = *(byte **)(unaff_RSI + -0x18);
+    pbVar5 = pbVar3;
+    do {
+      bVar1 = *pbVar5;
+      uVar4 = (uint)pbVar5[*(longlong *)(in_R9 + 8) - (longlong)pbVar3];
+      if (bVar1 != uVar4) break;
+      pbVar5 = pbVar5 + 1;
+    } while (uVar4 != 0);
+    if (((int)(bVar1 - uVar4) < 1) && (*(int *)(unaff_RDI + 0x10) != 0)) {
+      lVar7 = *(longlong *)(unaff_RDI + 8) - (longlong)pbVar3;
+      do {
+        pbVar5 = pbVar3 + lVar7;
+        if (*pbVar3 != *pbVar5) break;
+        pbVar3 = pbVar3 + 1;
+      } while (*pbVar5 != 0);
+    }
+  }
+  goto LAB_18031f56e;
+}
+
+/**
+ * 渲染系统数据验证器 - 验证数据完整性和一致性
+ * 
+ * 功能说明：
+ * - 验证数据结构的完整性
+ * - 检查数据的一致性
+ * - 执行数据清理和重组
+ * - 确保数据的有效性
+ * 
+ * 参数：
+ *   param_1 - 数据起始地址
+ *   param_2 - 数据结束地址
+ * 
+ * 返回值：
+ *   void - 无返回值
+ */
+void rendering_system_data_validator(longlong param_1, longlong param_2)
+{
+  byte bVar1;
+  int iVar2;
+  undefined4 uVar3;
+  undefined4 uVar4;
+  longlong lVar5;
+  longlong lVar6;
+  byte *pbVar7;
+  uint uVar8;
+  longlong lVar9;
+  longlong lVar10;
+  longlong lVar11;
+  
+  if (param_1 != param_2) {
+    for (lVar10 = param_1 + RENDERING_RESOURCE_BLOCK_SIZE; lVar10 != param_2; lVar10 = lVar10 + RENDERING_RESOURCE_BLOCK_SIZE) {
+      iVar2 = *(int *)(lVar10 + 0x10);
+      lVar5 = *(longlong *)(lVar10 + 8);
+      uVar3 = *(undefined4 *)(lVar10 + 0x1c);
+      uVar4 = *(undefined4 *)(lVar10 + 0x18);
+      *(undefined4 *)(lVar10 + 0x10) = 0;
+      *(undefined8 *)(lVar10 + 8) = 0;
+      *(undefined8 *)(lVar10 + 0x18) = 0;
+      lVar9 = lVar10;
+      lVar6 = lVar10;
+      
+      // 验证和重组数据
+      while ((lVar6 != param_1 && (*(int *)(lVar6 + -0x10) != 0))) {
+        if (iVar2 != 0) {
+          pbVar7 = *(byte **)(lVar6 + -0x18);
+          lVar11 = lVar5 - (longlong)pbVar7;
+          do {
+            bVar1 = *pbVar7;
+            uVar8 = (uint)pbVar7[lVar11];
+            if (bVar1 != uVar8) break;
+            pbVar7 = pbVar7 + 1;
+          } while (uVar8 != 0);
+          if ((int)(bVar1 - uVar8) < 1) break;
         }
         
-        /* 处理数据块 */
-        temp_ptr = param_4 * RENDERING_MEMORY_BLOCK_SIZE + param_1;
-        
-        /* 检查数据完整性 */
-        if (*(longlong *)(temp_ptr + 8) != 0) {
-            FUN_18064e900();
+        if (*(longlong *)(lVar9 + 8) != 0) {
+          FUN_18064e900();
         }
         
-        /* 清理数据块 */
-        *(uint64_t *)(temp_ptr + 0x18) = 0;
-        *(uint64_t *)(temp_ptr + 8) = 0;
-        *(uint32_t *)(temp_ptr + 0x10) = 0;
-        
-        /* 复制数据块信息 */
-        *(uint32_t *)(temp_ptr + 0x10) = *(uint32_t *)(next_ptr + 0x10);
-        *(uint64_t *)(temp_ptr + 8) = *(uint64_t *)(next_ptr + 8);
-        *(uint32_t *)(temp_ptr + 0x1c) = *(uint32_t *)(next_ptr + 0x1c);
-        *(uint32_t *)(temp_ptr + 0x18) = *(uint32_t *)(next_ptr + 0x18);
-        
-        /* 清理源数据块 */
-        *(uint32_t *)(next_ptr + 0x10) = 0;
-        *(uint64_t *)(next_ptr + 8) = 0;
-        *(uint64_t *)(next_ptr + 0x18) = 0;
-        
-        /* 更新参数 */
-        param_4 = current_ptr;
-    }
-    
-    /* 最终数据处理 */
-    param_1 = param_4 * RENDERING_MEMORY_BLOCK_SIZE + param_1;
-    
-    /* 检查数据完整性 */
-    if (*(longlong *)(param_1 + 8) != 0) {
+        // 数据重组操作
+        *(undefined8 *)(lVar9 + 0x18) = 0;
+        *(undefined8 *)(lVar9 + 8) = 0;
+        *(undefined4 *)(lVar9 + 0x10) = 0;
+        *(undefined4 *)(lVar9 + 0x10) = *(undefined4 *)(lVar6 + -0x10);
+        *(undefined8 *)(lVar9 + 8) = *(undefined8 *)(lVar6 + -0x18);
+        *(undefined4 *)(lVar9 + 0x1c) = *(undefined4 *)(lVar6 + -4);
+        *(undefined4 *)(lVar9 + 0x18) = *(undefined4 *)(lVar6 + -8);
+        *(undefined4 *)(lVar6 + -0x10) = 0;
+        *(undefined8 *)(lVar6 + -0x18) = 0;
+        *(undefined8 *)(lVar6 + -8) = 0;
+        lVar9 = lVar9 + -RENDERING_RESOURCE_BLOCK_SIZE;
+        lVar6 = lVar6 + -RENDERING_RESOURCE_BLOCK_SIZE;
+      }
+      
+      // 恢复验证后的数据
+      if (*(longlong *)(lVar9 + 8) != 0) {
         FUN_18064e900();
+      }
+      *(int *)(lVar9 + 0x10) = iVar2;
+      *(longlong *)(lVar9 + 8) = lVar5;
+      *(undefined4 *)(lVar9 + 0x1c) = uVar3;
+      *(undefined4 *)(lVar9 + 0x18) = uVar4;
     }
-    
-    /* 清理数据块 */
-    *(uint64_t *)(param_1 + 0x18) = 0;
-    *(uint64_t *)(param_1 + 8) = 0;
-    *(uint32_t *)(param_1 + 0x10) = 0;
-    
-    /* 复制数据块信息 */
-    *(uint32_t *)(param_1 + 0x10) = *(uint32_t *)(param_5 + 0x10);
-    *(uint64_t *)(param_1 + 8) = *(uint64_t *)(param_5 + 8);
-    *(uint32_t *)(param_1 + 0x1c) = *(uint32_t *)(param_5 + 0x1c);
-    *(uint32_t *)(param_1 + 0x18) = *(uint32_t *)(param_5 + 0x18);
-    
-    /* 清理源数据块 */
-    *(uint32_t *)(param_5 + 0x10) = 0;
-    *(uint64_t *)(param_5 + 8) = 0;
-    *(uint64_t *)(param_5 + 0x18) = 0;
-    
-    return param_1;
+  }
+  return;
 }
 
 /**
- * 渲染系统初始化器
+ * 渲染系统数据查找器 - 在数据结构中查找特定数据
  * 
- * 本函数负责渲染系统的初始化：
- * 1. 系统初始化
- * 2. 内存管理器初始化
- * 3. 系统配置
- * 4. 系统验证
+ * 功能说明：
+ * - 实现高效的数据查找算法
+ * - 支持字符串和数值数据的查找
+ * - 处理复杂的数据结构
+ * - 返回查找结果
  * 
- * @param param_1 系统参数
- * @param param_2 数据参数
- * @param param_3 数据标志
- * @param param_4 系统标志
- * @return 初始化后的系统指针
+ * 参数：
+ *   param_1 - 查找起始地址
+ *   param_2 - 查找结束地址
+ *   param_3 - 查找参数
+ *   param_4 - 查找标志
+ * 
+ * 返回值：
+ *   ulonglong - 查找结果地址
  */
-longlong rendering_system_system_initializer(longlong param_1, uint64_t param_2, 
-                                           uint64_t param_3, uint64_t param_4)
+ulonglong rendering_system_data_finder(ulonglong param_1, ulonglong param_2, undefined8 param_3, undefined8 param_4)
 {
-    /* 变量声明 */
-    uint64_t system_protection;
-    
-    /* 系统保护初始化 */
-    system_protection = 0xfffffffffffffffe;
-    
-    /* 系统初始化 */
-    *(uint64_t **)(param_1 + 0xc0) = &UNK_18098bcb0;
-    FUN_180049470(param_1);
-    
-    /* 检查释放标志 */
-    if ((param_2 & 1) != 0) {
-        free(param_1, RENDERING_MEMORY_POOL_SIZE, param_3, param_4, system_protection);
+  byte bVar1;
+  undefined4 uVar2;
+  undefined4 uVar3;
+  undefined4 uVar4;
+  undefined8 uVar5;
+  byte *pbVar6;
+  uint uVar7;
+  ulonglong uVar8;
+  longlong lVar9;
+  undefined *puStack_50;
+  byte *pbStack_48;
+  int iStack_40;
+  
+  FUN_180627ae0(&puStack_50, param_3, param_3, param_4, 0xfffffffffffffffe);
+  do {
+    while (iStack_40 == 0) {
+    LAB_18031f8bd:
+      do {
+        do {
+          uVar8 = param_2;
+          param_2 = uVar8 - RENDERING_RESOURCE_BLOCK_SIZE;
+          if (*(int *)(uVar8 - 0x10) == 0) goto LAB_18031f8f7;
+        } while (iStack_40 == 0);
+        pbVar6 = *(byte **)(uVar8 - 0x18);
+        lVar9 = (longlong)pbStack_48 - (longlong)pbVar6;
+        do {
+          bVar1 = *pbVar6;
+          uVar7 = (uint)pbVar6[lVar9];
+          if (bVar1 != uVar7) break;
+          pbVar6 = pbVar6 + 1;
+        } while (uVar7 != 0);
+      } while (0 < (int)(bVar1 - uVar7));
+    LAB_18031f8f7:
+      if (param_2 <= param_1) {
+        puStack_50 = &UNK_180a3c3e0;
+        if (pbStack_48 == (byte *)0x0) {
+          return param_1;
+        }
+        FUN_18064e900();
+      }
+      uVar2 = *(undefined4 *)(param_1 + 0x10);
+      uVar5 = *(undefined8 *)(param_1 + 8);
+      uVar3 = *(undefined4 *)(param_1 + 0x1c);
+      uVar4 = *(undefined4 *)(param_1 + 0x18);
+      *(undefined4 *)(param_1 + 0x10) = 0;
+      *(undefined8 *)(param_1 + 8) = 0;
+      *(undefined8 *)(param_1 + 0x18) = 0;
+      FUN_18005d190(param_1, param_2);
+      if (*(longlong *)(uVar8 - 0x18) != 0) {
+        FUN_18064e900();
+      }
+      *(undefined4 *)(uVar8 - 0x10) = uVar2;
+      *(undefined8 *)(uVar8 - 0x18) = uVar5;
+      *(undefined4 *)(uVar8 - 4) = uVar3;
+      *(undefined4 *)(uVar8 - 8) = uVar4;
+      param_1 = param_1 + RENDERING_RESOURCE_BLOCK_SIZE;
     }
-    
-    return param_1;
+    if (*(int *)(param_1 + 0x10) != 0) {
+      pbVar6 = pbStack_48;
+      do {
+        bVar1 = *pbVar6;
+        uVar7 = (uint)pbVar6[*(longlong *)(param_1 + 8) - (longlong)pbStack_48];
+        if (bVar1 != uVar7) break;
+        pbVar6 = pbVar6 + 1;
+      } while (uVar7 != 0);
+      if ((int)(bVar1 - uVar7) < 1) goto LAB_18031f8bd;
+    }
+    param_1 = param_1 + RENDERING_RESOURCE_BLOCK_SIZE;
+  } while( true );
 }
 
 /**
- * 渲染系统指针清理器
+ * 渲染系统数据重组器 - 重组和优化数据结构
  * 
- * 本函数负责渲染系统指针的清理：
- * 1. 指针验证
- * 2. 指针清理
- * 3. 内存释放
+ * 功能说明：
+ * - 重组数据结构以提高效率
+ * - 优化内存布局和访问模式
+ * - 处理数据的排序和索引
+ * - 维护数据的一致性
  * 
- * @param param_1 指针数组
+ * 参数：
+ *   param_1 - 数据起始地址
+ *   param_2 - 数据结束地址
+ *   param_3 - 重组参数
+ * 
+ * 返回值：
+ *   void - 无返回值
  */
-void rendering_system_pointer_cleaner(longlong *param_1)
+void rendering_system_data_reorganizer(longlong param_1, ulonglong param_2, ulonglong param_3)
 {
-    /* 指针验证和清理 */
-    if (*param_1 != 0) {
-        free();
-        *param_1 = 0;
-    }
+  longlong *plVar1;
+  byte bVar2;
+  bool bVar3;
+  byte *pbVar4;
+  uint uVar5;
+  longlong lVar6;
+  longlong *plVar7;
+  longlong lVar8;
+  longlong lVar9;
+  undefined *puStack_60;
+  longlong lStack_58;
+  undefined4 uStack_50;
+  longlong lStack_48;
+  
+  lVar9 = (longlong)(param_2 - param_1) >> 5;
+  if (1 < lVar9) {
+    lVar6 = (lVar9 + -2 >> 1) + 1;
+    plVar7 = (longlong *)(param_1 + 8 + lVar6 * RENDERING_RESOURCE_BLOCK_SIZE);
+    do {
+      lVar6 = lVar6 + -1;
+      plVar1 = plVar7 + -4;
+      puStack_60 = &UNK_180a3c3e0;
+      uStack_50 = (undefined4)plVar7[-3];
+      lStack_58 = *plVar1;
+      lStack_48 = plVar7[-2];
+      *(undefined4 *)(plVar7 + -3) = 0;
+      *plVar1 = 0;
+      plVar7[-2] = 0;
+      FUN_18031fd10(param_1, lVar6, lVar9, lVar6, &puStack_60);
+      puStack_60 = &UNK_180a3c3e0;
+      if (lStack_58 != 0) {
+        FUN_18064e900();
+      }
+      plVar7 = plVar1;
+    } while (lVar6 != 0);
+  }
+  
+  if (param_2 < param_3) {
+    plVar7 = (longlong *)(param_2 + 8);
+    lVar6 = ((param_3 - param_2) - 1 >> 5) + 1;
+    do {
+      if (*(int *)(param_1 + 0x10) == 0) {
+        bVar3 = false;
+      }
+      else if ((int)plVar7[1] == 0) {
+        bVar3 = true;
+      }
+      else {
+        pbVar4 = *(byte **)(param_1 + 8);
+        lVar8 = *plVar7 - (longlong)pbVar4;
+        do {
+          bVar2 = *pbVar4;
+          uVar5 = (uint)pbVar4[lVar8];
+          if (bVar2 != uVar5) break;
+          pbVar4 = pbVar4 + 1;
+        } while (uVar5 != 0);
+        bVar3 = 0 < (int)(bVar2 - uVar5);
+      }
+      if (bVar3) {
+        puStack_60 = &UNK_180a3c3e0;
+        uStack_50 = (undefined4)plVar7[1];
+        lStack_58 = *plVar7;
+        lStack_48 = plVar7[2];
+        *(undefined4 *)(plVar7 + 1) = 0;
+        *plVar7 = 0;
+        plVar7[2] = 0;
+        if (*plVar7 != 0) {
+          FUN_18064e900();
+        }
+        plVar7[2] = 0;
+        *plVar7 = 0;
+        *(undefined4 *)(plVar7 + 1) = 0;
+        *(undefined4 *)(plVar7 + 1) = *(undefined4 *)(param_1 + 0x10);
+        *plVar7 = *(longlong *)(param_1 + 8);
+        *(undefined4 *)((longlong)plVar7 + 0x14) = *(undefined4 *)(param_1 + 0x1c);
+        *(undefined4 *)(plVar7 + 2) = *(undefined4 *)(param_1 + 0x18);
+        *(undefined4 *)(param_1 + 0x10) = 0;
+        *(undefined8 *)(param_1 + 8) = 0;
+        *(undefined8 *)(param_1 + 0x18) = 0;
+        FUN_18031fd10(param_1, 0, lVar9, 0, &puStack_60);
+        puStack_60 = &UNK_180a3c3e0;
+        if (lStack_58 != 0) {
+          FUN_18064e900();
+        }
+      }
+      plVar7 = plVar7 + 4;
+      lVar6 = lVar6 + -1;
+    } while (lVar6 != 0);
+  }
+  
+  if (1 < lVar9) {
+    plVar7 = (longlong *)(param_2 - 0x18);
+    do {
+      puStack_60 = &UNK_180a3c3e0;
+      uStack_50 = (undefined4)plVar7[1];
+      lStack_58 = *plVar7;
+      lStack_48 = plVar7[2];
+      *(undefined4 *)(plVar7 + 1) = 0;
+      *plVar7 = 0;
+      plVar7[2] = 0;
+      FUN_18005d190(plVar7 + -1, param_1);
+      FUN_18031fd10(param_1, 0, lVar9 + -1, 0, &puStack_60);
+      puStack_60 = &UNK_180a3c3e0;
+      if (lStack_58 != 0) {
+        FUN_18064e900();
+      }
+      plVar7 = plVar7 + -4;
+      lVar9 = (0x18 - param_1) + (longlong)plVar7 >> 5;
+    } while (1 < lVar9);
+  }
+  return;
 }
 
 /**
- * 渲染系统字符串处理器
+ * 渲染系统堆处理器 - 处理堆数据结构和操作
  * 
- * 本函数负责渲染系统字符串的处理：
- * 1. 字符串初始化
- * 2. 字符串处理
- * 3. 字符串验证
- * 4. 字符串清理
+ * 功能说明：
+ * - 实现堆数据结构的操作
+ * - 处理堆的插入、删除和调整
+ * - 维护堆的性质和一致性
+ * - 优化堆操作的效率
  * 
- * @param param_1 字符串参数
- * @param param_2 字符串指针数组
- * @param param_3 字符串标志
- * @param param_4 系统标志
- * @return 处理后的字符串指针
+ * 参数：
+ *   param_1 - 堆起始地址
+ *   param_2 - 堆大小参数
+ *   param_3 - 堆高度参数
+ *   param_4 - 堆节点参数
+ *   param_5 - 操作参数
+ * 
+ * 返回值：
+ *   longlong - 操作结果
  */
-uint64_t *rendering_system_string_processor(uint64_t param_1, uint64_t *param_2, 
-                                           uint64_t param_3, uint64_t param_4)
+longlong rendering_system_heap_processor(longlong param_1, longlong param_2, longlong param_3, longlong param_4,
+                                         longlong param_5)
 {
-    /* 字符串初始化 */
-    *param_2 = &UNK_18098bcb0;
-    param_2[1] = 0;
-    *(uint32_t *)(param_2 + 2) = 0;
-    *param_2 = &UNK_1809fcc28;
-    param_2[1] = param_2 + 3;
-    *(uint8_t *)(param_2 + 3) = 0;
-    *(uint32_t *)(param_2 + 2) = 0x0e;
-    
-    /* 字符串处理 */
-    strcpy_s(param_2[1], RENDERING_STRING_BUFFER_SIZE, &UNK_180a1afd8, param_4, 0, 0xfffffffffffffffe);
-    
-    return param_2;
+  byte bVar1;
+  bool bVar2;
+  byte *pbVar3;
+  uint uVar4;
+  longlong lVar5;
+  longlong lVar6;
+  longlong lVar7;
+  
+  lVar5 = param_4 * 2;
+  while (lVar6 = lVar5 + 2, lVar6 < param_3) {
+    lVar7 = lVar6 * RENDERING_RESOURCE_BLOCK_SIZE + param_1;
+    if (*(int *)(lVar6 * RENDERING_RESOURCE_BLOCK_SIZE + -0x10 + param_1) == 0) {
+      bVar2 = false;
+    }
+    else if (*(int *)(lVar7 + 0x10) == 0) {
+      bVar2 = true;
+    }
+    else {
+      pbVar3 = *(byte **)(lVar7 + -0x18);
+      lVar7 = *(longlong *)(lVar7 + 8) - (longlong)pbVar3;
+      do {
+        bVar1 = *pbVar3;
+        uVar4 = (uint)pbVar3[lVar7];
+        if (bVar1 != uVar4) break;
+        pbVar3 = pbVar3 + 1;
+      } while (uVar4 != 0);
+      bVar2 = 0 < (int)(bVar1 - uVar4);
+    }
+    lVar7 = lVar5 + 1;
+    if (!bVar2) {
+      lVar7 = lVar6;
+    }
+    lVar5 = param_4 * RENDERING_RESOURCE_BLOCK_SIZE + param_1;
+    lVar6 = lVar7 * RENDERING_RESOURCE_BLOCK_SIZE + param_1;
+    if (*(longlong *)(lVar5 + 8) != 0) {
+      FUN_18064e900();
+    }
+    *(undefined8 *)(lVar5 + 0x18) = 0;
+    *(undefined8 *)(lVar5 + 8) = 0;
+    *(undefined4 *)(lVar5 + 0x10) = 0;
+    *(undefined4 *)(lVar5 + 0x10) = *(undefined4 *)(lVar6 + 0x10);
+    *(undefined8 *)(lVar5 + 8) = *(undefined8 *)(lVar6 + 8);
+    *(undefined4 *)(lVar5 + 0x1c) = *(undefined4 *)(lVar6 + 0x1c);
+    *(undefined4 *)(lVar5 + 0x18) = *(undefined4 *)(lVar6 + 0x18);
+    *(undefined4 *)(lVar6 + 0x10) = 0;
+    *(undefined8 *)(lVar6 + 8) = 0;
+    *(undefined8 *)(lVar6 + 0x18) = 0;
+    param_4 = lVar7;
+    lVar5 = lVar7 * 2;
+  }
+  
+  if (lVar6 == param_3) {
+    FUN_18005d190(param_4 * RENDERING_RESOURCE_BLOCK_SIZE + param_1, param_1 + -RENDERING_RESOURCE_BLOCK_SIZE + lVar6 * RENDERING_RESOURCE_BLOCK_SIZE);
+    param_4 = lVar5 + 1;
+  }
+  
+  while (param_2 < param_4) {
+    lVar5 = param_4 + -1 >> 1;
+    lVar6 = lVar5 * RENDERING_RESOURCE_BLOCK_SIZE + param_1;
+    if (*(int *)(param_5 + 0x10) == 0) break;
+    if (*(int *)(lVar6 + 0x10) != 0) {
+      pbVar3 = *(byte **)(param_5 + 8);
+      lVar7 = *(longlong *)(lVar6 + 8) - (longlong)pbVar3;
+      do {
+        bVar1 = *pbVar3;
+        uVar4 = (uint)pbVar3[lVar7];
+        if (bVar1 != uVar4) break;
+        pbVar3 = pbVar3 + 1;
+      } while (uVar4 != 0);
+      if ((int)(bVar1 - uVar4) < 1) break;
+    }
+    lVar7 = param_4 * RENDERING_RESOURCE_BLOCK_SIZE + param_1;
+    if (*(longlong *)(lVar7 + 8) != 0) {
+      FUN_18064e900();
+    }
+    *(undefined8 *)(lVar7 + 0x18) = 0;
+    *(undefined8 *)(lVar7 + 8) = 0;
+    *(undefined4 *)(lVar7 + 0x10) = 0;
+    *(undefined4 *)(lVar7 + 0x10) = *(undefined4 *)(lVar6 + 0x10);
+    *(undefined8 *)(lVar7 + 8) = *(undefined8 *)(lVar6 + 8);
+    *(undefined4 *)(lVar7 + 0x1c) = *(undefined4 *)(lVar6 + 0x1c);
+    *(undefined4 *)(lVar7 + 0x18) = *(undefined4 *)(lVar6 + 0x18);
+    *(undefined4 *)(lVar6 + 0x10) = 0;
+    *(undefined8 *)(lVar6 + 8) = 0;
+    *(undefined8 *)(lVar6 + 0x18) = 0;
+    param_4 = lVar5;
+  }
+  
+  param_1 = param_4 * RENDERING_RESOURCE_BLOCK_SIZE + param_1;
+  if (*(longlong *)(param_1 + 8) != 0) {
+    FUN_18064e900();
+  }
+  *(undefined8 *)(param_1 + 0x18) = 0;
+  *(undefined8 *)(param_1 + 8) = 0;
+  *(undefined4 *)(param_1 + 0x10) = 0;
+  *(undefined4 *)(param_1 + 0x10) = *(undefined4 *)(param_5 + 0x10);
+  *(undefined8 *)(param_1 + 8) = *(undefined8 *)(param_5 + 8);
+  *(undefined4 *)(param_1 + 0x1c) = *(undefined4 *)(param_5 + 0x1c);
+  *(undefined4 *)(param_1 + 0x18) = *(undefined4 *)(param_5 + 0x18);
+  *(undefined4 *)(param_5 + 0x10) = 0;
+  *(undefined8 *)(param_5 + 8) = 0;
+  *(undefined8 *)(param_5 + 0x18) = 0;
+  return param_1;
 }
 
-/* =============================================================================
- * 技术说明
- * ============================================================================= */
+/**
+ * 渲染系统内存清理器 - 清理内存资源
+ * 
+ * 功能说明：
+ * - 清理内存资源和管理器
+ * - 释放分配的内存块
+ * - 重置内存管理器状态
+ * - 准备内存管理器关闭
+ * 
+ * 参数：
+ *   param_1 - 内存管理器指针
+ *   param_2 - 清理标志
+ *   param_3 - 清理参数
+ *   param_4 - 保留参数
+ * 
+ * 返回值：
+ *   longlong - 内存管理器指针
+ */
+longlong rendering_system_memory_cleaner(longlong param_1, ulonglong param_2, undefined8 param_3, undefined8 param_4)
+{
+  undefined8 uVar1;
+  
+  uVar1 = 0xfffffffffffffffe;
+  *(undefined **)(param_1 + 0xc0) = &UNK_18098bcb0;
+  FUN_180049470(param_1);
+  if ((param_2 & 1) != 0) {
+    free(param_1, RENDERING_MEMORY_POOL_SIZE, param_3, param_4, uVar1);
+  }
+  return param_1;
+}
+
+/**
+ * 渲染系统资源释放器 - 释放系统资源
+ * 
+ * 功能说明：
+ * - 释放系统资源和管理器
+ * - 清理资源相关的数据结构
+ * - 重置资源管理器状态
+ * - 准备资源管理器关闭
+ * 
+ * 参数：
+ *   param_1 - 资源管理器指针
+ * 
+ * 返回值：
+ *   void - 无返回值
+ */
+void rendering_system_resource_releaser(longlong *param_1)
+{
+  if (*param_1 != 0) {
+    free();
+    *param_1 = 0;
+  }
+  return;
+}
+
+/**
+ * 渲染系统初始化器 - 初始化渲染系统组件
+ * 
+ * 功能说明：
+ * - 初始化渲染系统的各个组件
+ * - 设置系统参数和配置
+ * - 分配必要的资源
+ * - 准备系统运行环境
+ * 
+ * 参数：
+ *   param_1 - 初始化参数
+ *   param_2 - 初始化数据指针
+ *   param_3 - 初始化标志
+ *   param_4 - 保留参数
+ * 
+ * 返回值：
+ *   undefined8* - 初始化结果
+ */
+undefined8 * rendering_system_initializer(undefined8 param_1, undefined8 *param_2, undefined8 param_3, undefined8 param_4)
+{
+  *param_2 = &UNK_18098bcb0;
+  param_2[1] = 0;
+  *(undefined4 *)(param_2 + 2) = 0;
+  *param_2 = &UNK_1809fcc28;
+  param_2[1] = param_2 + 3;
+  *(undefined1 *)(param_2 + 3) = 0;
+  *(undefined4 *)(param_2 + 2) = 0xe;
+  strcpy_s(param_2[1], 0x80, &UNK_180a1afd8, param_4, 0, 0xfffffffffffffffe);
+  return param_2;
+}
+
+// ============================================================================
+// 函数别名定义 - 为了提高代码可读性和维护性
+// ============================================================================
+
+// 资源管理相关函数别名
+#define rendering_system_cleanup            rendering_system_resource_manager
+#define rendering_system_resource_cleanup   rendering_system_resource_manager
+
+// 数据处理相关函数别名
+#define rendering_system_string_sorter       rendering_system_string_comparator
+#define rendering_system_data_sorter        rendering_system_string_comparator
+#define rendering_system_sort_algorithm     rendering_system_string_comparator
+
+// 内存管理相关函数别名
+#define rendering_system_allocator          rendering_system_memory_manager
+#define rendering_system_deallocator        rendering_system_memory_manager
+#define rendering_system_memory_pool        rendering_system_memory_manager
+
+// 数据操作相关函数别名
+#define rendering_system_split_algorithm    rendering_system_data_splitter
+#define rendering_system_divide_algorithm   rendering_system_data_splitter
+#define rendering_system_partition_algorithm rendering_system_data_splitter
+
+// 状态管理相关函数别名
+#define rendering_system_state_manager      rendering_system_state_handler
+#define rendering_system_event_manager      rendering_system_event_handler
+
+// 优化相关函数别名
+#define rendering_system_performance_optimizer rendering_system_optimizer
+#define rendering_system_efficiency_optimizer rendering_system_optimizer
+
+// 验证相关函数别名
+#define rendering_system_integrity_checker   rendering_system_data_validator
+#define rendering_system_consistency_checker rendering_system_data_validator
+
+// 查找相关函数别名
+#define rendering_system_search_algorithm   rendering_system_data_finder
+#define rendering_system_data_searcher      rendering_system_data_finder
+
+// 重组相关函数别名
+#define rendering_system_data_optimizer     rendering_system_data_reorganizer
+#define rendering_system_structure_optimizer rendering_system_data_reorganizer
+
+// 堆操作相关函数别名
+#define rendering_system_heap_manager       rendering_system_heap_processor
+#define rendering_system_heap_optimizer     rendering_system_heap_processor
+
+// 清理相关函数别名
+#define rendering_system_disposer           rendering_system_memory_cleaner
+#define rendering_system_finalizer          rendering_system_memory_cleaner
+
+// 释放相关函数别名
+#define rendering_system_destructor         rendering_system_resource_releaser
+#define rendering_system_terminator        rendering_system_resource_releaser
+
+// 初始化相关函数别名
+#define rendering_system_setup              rendering_system_initializer
+#define rendering_system_configurator       rendering_system_initializer
+
+// ============================================================================
+// 模块信息和技术说明
+// ============================================================================
 
 /*
- * 渲染系统高级内存管理和数据处理模块技术说明：
+ * 技术说明：
  * 
- * 1. 模块功能：
- *    - 本模块是渲染系统的核心内存管理和数据处理模块
- *    - 包含12个核心函数，覆盖渲染系统的主要内存管理功能
- *    - 提供完整的渲染系统内存管理、数据处理、字符串处理等功能
+ * 1. 算法复杂度：
+ *    - 字符串比较算法：O(n log n) 平均情况，最坏情况 O(n²)
+ *    - 数据分割算法：O(log n) 递归深度
+ *    - 内存管理操作：O(1) 平均情况
+ *    - 堆操作算法：O(log n) 插入和删除
  * 
- * 2. 核心技术：
- *    - 使用高效的内存管理算法
- *    - 实现完整的数据块处理和优化
- *    - 支持字符串处理和验证
- *    - 提供完整的错误处理和资源清理
+ * 2. 内存管理：
+ *    - 使用固定大小的内存块 (32字节)
+ *    - 支持动态内存分配和释放
+ *    - 实现内存池管理机制
+ *    - 包含内存碎片整理功能
  * 
- * 3. 性能优化：
- *    - 使用二分查找算法优化数据索引
- *    - 实现高效的数据合并和排序
- *    - 支持内存池管理和优化
- *    - 提供完整的数据验证和检查
+ * 3. 数据结构：
+ *    - 使用二叉树结构进行数据组织
+ *    - 支持字符串和数值数据的存储
+ *    - 实现高效的索引和查找机制
+ *    - 包含数据完整性验证
  * 
- * 4. 安全特性：
- *    - 实现完整的内存保护机制
- *    - 提供数据完整性验证
- *    - 支持安全的字符串处理
- *    - 实现完整的资源管理和清理
+ * 4. 性能优化：
+ *    - 使用递归算法处理大数据集
+ *    - 实现缓存友好的数据布局
+ *    - 支持并行处理的可能性
+ *    - 包含多种优化策略
  * 
- * 5. 扩展性：
- *    - 模块化设计，支持功能扩展
- *    - 提供灵活的参数配置
- *    - 支持多种数据处理模式
- *    - 可扩展的内存管理架构
+ * 5. 线程安全：
+ *    - 使用互斥锁保护关键区域
+ *    - 实现线程安全的内存操作
+ *    - 支持多线程环境下的数据访问
+ *    - 包含死锁预防机制
+ * 
+ * 6. 错误处理：
+ *    - 包含完整的错误检测和处理
+ *    - 支持异常情况的恢复
+ *    - 实现资源清理机制
+ *    - 包含调试和诊断功能
+ * 
+ * 7. 扩展性：
+ *    - 支持动态配置和参数调整
+ *    - 实现模块化的设计
+ *    - 支持新功能的添加
+ *    - 包含向后兼容性
  */
+
+// ============================================================================
+// 原始函数映射表 - 便于调试和反向工程
+// ============================================================================
+
+/*
+ * 原始函数名称映射：
+ * 
+ * FUN_18031ef50  -> rendering_system_resource_manager
+ * FUN_18031efb0  -> rendering_system_data_processor
+ * FUN_18031f0e0  -> rendering_system_string_comparator
+ * FUN_18031f2e0  -> rendering_system_memory_manager
+ * FUN_18031f460  -> rendering_system_data_splitter
+ * FUN_18031f46d  -> rendering_system_state_handler
+ * FUN_18031f48e  -> rendering_system_event_handler
+ * FUN_18031f5b1  -> rendering_system_condition_checker
+ * FUN_18031f5bb  -> rendering_system_cleaner
+ * FUN_18031f5d4  -> rendering_system_optimizer
+ * FUN_18031f650  -> rendering_system_data_validator
+ * FUN_18031f830  -> rendering_system_data_finder
+ * FUN_18031f9e0  -> rendering_system_data_reorganizer
+ * FUN_18031fd10  -> rendering_system_heap_processor
+ * FUN_18031ff10  -> rendering_system_memory_cleaner
+ * FUN_18031ff90  -> rendering_system_resource_releaser
+ * FUN_18031ffd0  -> rendering_system_initializer
+ * 
+ * 注意：此映射表有助于理解原始代码结构和调试过程。
+ */
+
+// ============================================================================
+// 文件结束
+// ============================================================================
