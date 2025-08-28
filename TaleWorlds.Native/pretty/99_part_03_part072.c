@@ -826,7 +826,7 @@ void FUN_18023e240(longlong param_1,uint64_t param_2,uint64_t param_3,longlong *
   int16_t uStack_46;
   int16_t uStack_44;
   int8_t uStack_42;
-  undefined5 uStack_41;
+  uint8_t uStack_41;
   ulonglong uStack_38;
   
   uStack_b8 = 0xfffffffffffffffe;
@@ -851,7 +851,7 @@ void FUN_18023e240(longlong param_1,uint64_t param_2,uint64_t param_3,longlong *
   uVar1 = *(uint64_t *)(lStack_c8 + 0x334);
   uStack_44 = (int16_t)uVar1;
   uStack_42 = (int8_t)((ulonglong)uVar1 >> 0x10);
-  uStack_41 = (undefined5)((ulonglong)uVar1 >> 0x18);
+  uStack_41 = (uint8_t)((ulonglong)uVar1 >> 0x18);
   uStack_98 = 1;
   uStack_c0 = (int32_t)param_4[5];
   if (*(int *)(_DAT_180c86920 + 0x3f0) == 0) {
