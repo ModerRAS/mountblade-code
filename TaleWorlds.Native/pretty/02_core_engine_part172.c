@@ -776,9 +776,23 @@ int64_t * EventDispatcher(int64_t *dispatcher, int64_t *dispatch_result, uint64_
 
 // WARNING: Removing unreachable block (ram,0x000180158286)
 
-int64_t *
-FUN_1801580f0(int64_t *param_1,int64_t *param_2,uint64_t param_3,int64_t param_4,
-             uint64_t param_5,int8_t param_6,int8_t param_7)
+// 函数: int64_t* EventQueueManager(int64_t *queue_system, int64_t *queue_result, uint64_t event_data, int64_t queue_config, uint64_t queue_flags, int8_t is_priority, int8_t is_thread_safe)
+// 事件队列管理器：管理事件队列的添加和处理
+// 参数：
+//   - queue_system: 队列系统指针
+//   - queue_result: 队列结果指针
+//   - event_data: 事件数据
+//   - queue_config: 队列配置
+//   - queue_flags: 队列标志
+//   - is_priority: 是否优先队列
+//   - is_thread_safe: 是否线程安全
+// 返回值：
+//   - 队列结果指针
+// 功能：
+//   - 管理事件的入队和出队
+//   - 处理优先级队列
+//   - 确保线程安全的队列操作
+int64_t * EventQueueManager(int64_t *queue_system, int64_t *queue_result, uint64_t event_data, int64_t queue_config, uint64_t queue_flags, int8_t is_priority, int8_t is_thread_safe)
 
 {
   int64_t *plVar1;
