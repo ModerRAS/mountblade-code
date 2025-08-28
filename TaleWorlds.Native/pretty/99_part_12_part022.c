@@ -150,7 +150,7 @@ void FUN_1807d9211(uint param_1)
     in_stack_00000030 = param_1;
   } while (param_1 < in_stack_000010c0);
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00001050 ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(in_stack_00001050 ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -165,7 +165,7 @@ void FUN_1807d93f2(void)
   uint64_t in_stack_00001050;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00001050 ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(in_stack_00001050 ^ (uint64_t)&stack0x00000000);
 }
 
 

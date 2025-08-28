@@ -313,7 +313,7 @@ void FUN_1805ad601(uint64_t param_1,int64_t param_2,int64_t param_3)
     } while (cVar10 < unaff_RDI[1]);
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(*(uint64_t *)(unaff_RBP + 0x3c) ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(*(uint64_t *)(unaff_RBP + 0x3c) ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -403,7 +403,7 @@ void FUN_1805ad956(uint64_t param_1,uint64_t param_2,uint *param_3)
     } while (cVar4 < unaff_RDI[1]);
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(*(uint64_t *)(unaff_RBP + 0xf0) ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(*(uint64_t *)(unaff_RBP + 0xf0) ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -432,7 +432,7 @@ void FUN_1805adaf5(void)
     } while (cVar1 < *(char *)(unaff_RDI + 1));
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(*(uint64_t *)(unaff_RBP + 0xf0) ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(*(uint64_t *)(unaff_RBP + 0xf0) ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -483,7 +483,7 @@ FUN_1805adb60(uint64_t *param_1,uint64_t *param_2,uint64_t param_3,uint64_t para
     lVar8 = 0;
   }
   else {
-    lVar8 = FUN_18062b420(system_memory_pool_ptr,lVar9 * 8,uVar1 & 0xff,param_4,0xfffffffffffffffe);
+    lVar8 = CoreEngineMemoryPoolAllocator(system_memory_pool_ptr,lVar9 * 8,uVar1 & 0xff,param_4,0xfffffffffffffffe);
   }
   param_1[9] = lVar8;
   param_1[10] = lVar8;
@@ -556,7 +556,7 @@ void FUN_1805adca0(int64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t p
     if (lVar13 == 0) goto LAB_1805add23;
   }
   puVar6 = (uint64_t *)
-           FUN_18062b420(system_memory_pool_ptr,lVar13 * 0xb0,(char)param_1[3],param_4,0xfffffffffffffffe);
+           CoreEngineMemoryPoolAllocator(system_memory_pool_ptr,lVar13 * 0xb0,(char)param_1[3],param_4,0xfffffffffffffffe);
   puVar12 = (int32_t *)param_1[1];
   puVar7 = (int32_t *)*param_1;
 LAB_1805add23:
@@ -646,7 +646,7 @@ LAB_1805add23:
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900(lVar10);
+  CoreEngineMemoryPoolCleaner(lVar10);
 }
 
 

@@ -106,7 +106,7 @@ static RenderParameterConfigurator g_param_config;      /**< 全局参数配置�
 #define render_resource_allocator      FUN_18035a770     /**< 渲染资源分配器 */
 #define render_state_initializer       FUN_180389090     /**< 渲染状态初始化器 */
 #define render_resource_cleaner        FUN_180358b30     /**< 渲染资源清理器 */
-#define render_memory_allocator        FUN_18062b1e0     /**< 渲染内存分配器 */
+#define render_memory_allocator        CoreEngineMemoryPoolReallocator     /**< 渲染内存分配器 */
 #define render_system_initializer      FUN_170ac0         /**< 渲染系统初始化器 */
 #define render_state_controller       FUN_1802ee810     /**< 渲染状态控制器 */
 
@@ -842,7 +842,7 @@ LAB_18035a6fd:
         render_resource_cleaner(param_1);
     }
     /* 系统调用结束 */
-    FUN_1808fc050(uStack_38 ^ (uint64_t)auStack_6c8);
+    SystemSecurityChecker(uStack_38 ^ (uint64_t)auStack_6c8);
 }
 
 /**

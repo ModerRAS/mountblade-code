@@ -129,7 +129,7 @@ uint64_t FUN_180012345(uint64_t param_1, uint64_t param_2)
     }
     
     // 安全退出：栈保护检查
-    FUN_1808fc050(uStack_8 ^ (uint64_t)auStack_28);
+    SystemSecurityChecker(uStack_8 ^ (uint64_t)auStack_28);
     
     return uVar1;                                // 返回操作结果
 }

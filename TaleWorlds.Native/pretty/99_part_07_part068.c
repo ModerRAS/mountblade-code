@@ -706,7 +706,7 @@ LAB_1804d977d:
     } while ((int)uStack_284 < *(int *)(param_1 + 0x2c3c));
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_b8 ^ (uint64_t)auStack_2b8);
+  SystemSecurityChecker(uStack_b8 ^ (uint64_t)auStack_2b8);
 }
 
 

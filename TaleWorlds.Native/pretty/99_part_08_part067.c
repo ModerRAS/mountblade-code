@@ -179,7 +179,7 @@ LAB_1805b5d50:
   }
 LAB_1805b613c:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_58 ^ (uint64_t)auStack_708);
+  SystemSecurityChecker(uStack_58 ^ (uint64_t)auStack_708);
 LAB_1805b5ece:
   lVar2 = *(int64_t *)(param_1 + 0x5960);
   if (plVar5 == (int64_t *)0x0) goto LAB_1805b613c;
@@ -374,7 +374,7 @@ void FUN_1805b62d0(uint64_t *param_1)
       if (lVar1 == 0) {
         lVar1 = 1;
 LAB_1805b6357:
-        puVar2 = (uint64_t *)FUN_18062b420(system_memory_pool_ptr,lVar1 * 8,(char)param_1[3]);
+        puVar2 = (uint64_t *)CoreEngineMemoryPoolAllocator(system_memory_pool_ptr,lVar1 * 8,(char)param_1[3]);
         puVar4 = (uint64_t *)*param_1;
         puVar5 = (uint64_t *)param_1[1];
       }
@@ -390,7 +390,7 @@ LAB_1805b6357:
       *puVar2 = *(uint64_t *)(lVar7 + uVar3);
       if (*param_1 != 0) {
                     // WARNING: Subroutine does not return
-        FUN_18064e900();
+        CoreEngineMemoryPoolCleaner();
       }
       *param_1 = (uint64_t)puVar2;
       param_1[2] = (uint64_t)(puVar2 + lVar1);
@@ -438,7 +438,7 @@ void FUN_1805b62f6(uint64_t param_1,uint64_t param_2)
       if (lVar1 == 0) {
         lVar1 = 1;
 LAB_1805b6357:
-        puVar2 = (uint64_t *)FUN_18062b420(system_memory_pool_ptr,lVar1 * 8,(char)unaff_RBX[3]);
+        puVar2 = (uint64_t *)CoreEngineMemoryPoolAllocator(system_memory_pool_ptr,lVar1 * 8,(char)unaff_RBX[3]);
         puVar3 = (uint64_t *)*unaff_RBX;
         puVar4 = (uint64_t *)unaff_RBX[1];
       }
@@ -454,7 +454,7 @@ LAB_1805b6357:
       *puVar2 = *(uint64_t *)(lVar5 + param_2);
       if (*unaff_RBX != 0) {
                     // WARNING: Subroutine does not return
-        FUN_18064e900();
+        CoreEngineMemoryPoolCleaner();
       }
       *unaff_RBX = (uint64_t)puVar2;
       unaff_RBX[2] = (uint64_t)(puVar2 + lVar1);
@@ -713,7 +713,7 @@ void FUN_1805b68c0(int64_t param_1)
         piVar1 = (int *)(lVar3 + 0x18);
         *piVar1 = *piVar1 + -1;
         if (*piVar1 == 0) {
-          FUN_18064d630();
+          SystemDataCleaner();
           return;
         }
       }

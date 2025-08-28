@@ -413,7 +413,7 @@ void FUN_180494ad0(int64_t param_1,float *param_2,int param_3)
 LAB_1804954a0:
   uStack_180 = lVar7;
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_68 ^ (uint64_t)&uStack_188);
+  SystemSecurityChecker(uStack_68 ^ (uint64_t)&uStack_188);
 }
 
 

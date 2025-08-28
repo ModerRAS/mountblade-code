@@ -132,10 +132,10 @@ uint32_t ThreadSafeDataProcessor(void* context, void* data_buffer, uint64_t oper
     if (temp_data < *(uint64_t*)(system_data + 0x358)) {
         /* 分配内存块 */
         *(uint64_t*)(system_data + 0x350) = temp_data + 0x50;
-        FUN_180627ae0(temp_data);
+        CoreEngineDataTransformer(temp_data);
         *(uint64_t*)(temp_data + 0x20) = operation_id;
         *(uint32_t*)(temp_data + 0x28) = param4;
-        FUN_180627ae0(temp_data + 0x30, &stack_buffer[1]);
+        CoreEngineDataTransformer(temp_data + 0x30, &stack_buffer[1]);
     } else {
         /* 处理内存池溢出 */
         FUN_1801e8960(system_data + 0x348, &stack_buffer[0]);
@@ -150,7 +150,7 @@ uint32_t ThreadSafeDataProcessor(void* context, void* data_buffer, uint64_t oper
     /* 清理资源 */
     stack_buffer[1] = (void*)0x180a3c3e0;
     if (buffer_size != 0) {
-        FUN_18064e900();
+        CoreEngineMemoryPoolCleaner();
     }
     buffer_size = 0;
     allocated_size = allocated_size & 0xffffffff00000000;
@@ -158,7 +158,7 @@ uint32_t ThreadSafeDataProcessor(void* context, void* data_buffer, uint64_t oper
     stack_buffer[0] = (void*)0x180a3c3e0;
     
     if (buffer_size != 0) {
-        FUN_18064e900();
+        CoreEngineMemoryPoolCleaner();
     }
     
     return 0;
@@ -176,7 +176,7 @@ uint32_t ResourceCleaner(void** resource_handle) {
     /* 重置资源状态 */
     resource_handle[6] = (void*)0x180a3c3e0;
     if (resource_handle[7] != 0) {
-        FUN_18064e900();
+        CoreEngineMemoryPoolCleaner();
     }
     resource_handle[7] = 0;
     *(uint32_t*)(resource_handle + 9) = 0;
@@ -185,7 +185,7 @@ uint32_t ResourceCleaner(void** resource_handle) {
     resource_handle[6] = (void*)0x18098bcb0;
     *resource_handle = (void*)0x180a3c3e0;
     if (resource_handle[1] != 0) {
-        FUN_18064e900();
+        CoreEngineMemoryPoolCleaner();
     }
     resource_handle[1] = 0;
     *(uint32_t*)(resource_handle + 3) = 0;
@@ -473,7 +473,7 @@ uint32_t DynamicArrayManager(uint64_t param1, void** array_data, uint64_t elemen
     if (new_size == 0) {
         new_size = 1;
     EXPAND_ARRAY:
-        new_array = (void**)FUN_18062b420(*(int64_t*)0x180c8ed18, new_size * 0x28, (char)array_info[3]);
+        new_array = (void**)CoreEngineMemoryPoolAllocator(*(int64_t*)0x180c8ed18, new_size * 0x28, (char)array_info[3]);
         array_start = (void**)array_info[1];
         new_array = (void**)*array_info;
     } else {
@@ -498,7 +498,7 @@ uint32_t DynamicArrayManager(uint64_t param1, void** array_data, uint64_t elemen
     
     /* 释放旧数组 */
     if (*array_info != 0) {
-        FUN_18064e900();
+        CoreEngineMemoryPoolCleaner();
     }
     
     /* 更新数组信息 */

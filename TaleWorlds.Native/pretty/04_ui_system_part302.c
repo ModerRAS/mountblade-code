@@ -341,7 +341,7 @@ void FUN_180834880(float *param_1,uint param_2,int64_t param_3,uint *param_4,int
   }
                     // WARNING: Subroutine does not return
   *(uint64_t *)((int64_t)piVar21 + -8) = 0x180834f5a;
-  FUN_1808fc050(uStack_b8 ^ (uint64_t)&iStack_c8);
+  SystemSecurityChecker(uStack_b8 ^ (uint64_t)&iStack_c8);
 }
 
 
