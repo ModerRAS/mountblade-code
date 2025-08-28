@@ -28,6 +28,10 @@
 #define ui_system_execute_once_protected FUN_18066d410
 #define ui_system_cpu_feature_detection FUN_18066d4e0
 #define ui_system_execute_once_alternative FUN_18066d6f0
+#define ui_system_execute_once_initializer FUN_18066d426
+#define ui_system_execute_once_finalizer FUN_18066d483
+#define ui_system_execute_once_alternative_initializer FUN_18066d706
+#define ui_system_execute_once_alternative_finalizer FUN_18066d763
 
 // 函数: UI系统主参数处理器
 // 处理UI系统的主要参数输入，包括参数验证、数据结构初始化、状态管理和错误处理
