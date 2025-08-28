@@ -100,7 +100,18 @@ int initialize_resource_management() {
     global_resource_count = 0;
     
     // 注册默认资源类型
-    // TODO: 实现资源类型注册逻辑
+    /* 实现资源类型注册逻辑 */
+    for (int i = 0; i < RESOURCE_TYPE_MAX; i++) {
+        global_resource_table[i].resource_id = i;
+        global_resource_table[i].resource_type = i;
+        global_resource_table[i].resource_status = RESOURCE_STATUS_UNLOADED;
+        global_resource_table[i].reference_count = 0;
+        global_resource_table[i].memory_size = 0;
+        global_resource_table[i].resource_data = NULL;
+        global_resource_table[i].load_function = NULL;
+        global_resource_table[i].unload_function = NULL;
+        global_resource_count++;
+    }
     
     return 0; // 初始化成功
 }
