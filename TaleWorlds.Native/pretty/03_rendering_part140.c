@@ -279,7 +279,7 @@ FUN_18034fd90(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param
   uint64_t uVar1;
   
   uVar1 = 0xfffffffffffffffe;
-  *param_1 = &unknown_var_128_ptr;
+  *param_1 = &rendering_adapter_ptr;
   FUN_1803457d0();
   if ((param_2 & 1) != 0) {
     free(param_1,0xa8,param_3,param_4,uVar1);
@@ -308,7 +308,7 @@ void FUN_18034fde0(uint64_t *param_1)
   uStack_38 = 0xfffffffffffffffe;
   puVar2 = param_1;
   FUN_1803456e0();
-  *puVar2 = &unknown_var_128_ptr;
+  *puVar2 = &rendering_adapter_ptr;
   *(int32_t *)(param_1 + 0x14) = 0x3f800000;
   param_1[0xe] = 0x4044000000000000;
   param_1[0xf] = 0x4010000000000000;

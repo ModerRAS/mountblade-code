@@ -528,7 +528,7 @@ void FUN_1803530c0(int64_t *param_1, int64_t param_2, uint64_t param_3)
         } while (*pcVar3 != '\0');
         
         // 设置变量属性
-        *puVar2 = &unknown_var_384_ptr;        // 变量类型
+        *puVar2 = &rendering_thread_ptr;        // 变量类型
         puVar2[2] = pcVar4 + -0x180a194ff;  // 变量名称偏移
         puVar5 = &system_buffer_ptr;        // 默认值
         if (puStack_7b0 != (int8_t *)0x0) {

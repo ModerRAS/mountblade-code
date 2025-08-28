@@ -805,7 +805,7 @@ void SystemInitializer(void)
 
 
 uint64_t *
-FUN_180057090(uint64_t *param_1,int64_t param_2,uint64_t param_3,uint64_t param_4)
+SystemDataProcessor(uint64_t *param_1,int64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
   int64_t lVar1;
