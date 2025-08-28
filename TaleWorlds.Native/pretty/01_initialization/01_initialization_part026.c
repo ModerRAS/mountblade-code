@@ -1110,12 +1110,13 @@ void process_device_definition(undefined8 param_1, undefined8 param_2, undefined
 
 
 
-undefined8 FUN_18005b520(undefined8 param_1,ulonglong param_2)
-
+// 函数: undefined8 initialize_audio_system(undefined8 param_1, ulonglong param_2)
+// 功能: 初始化音频系统，设置音频设备和参数
+undefined8 initialize_audio_system(undefined8 param_1, ulonglong param_2)
 {
-  FUN_18005b560();
+  FUN_18005b560();  // 调用音频系统初始化子函数
   if ((param_2 & 1) != 0) {
-    free(param_1,0x13c0);
+    free(param_1, 0x13c0);  // 释放5056字节内存
   }
   return param_1;
 }
