@@ -623,30 +623,44 @@ void SystemInitializer_SetInitializationState(uint64_t systemId, longlong system
 
 
 
-// 函数: void FUN_1803f8790(longlong *param_1,uint64_t param_2,uint64_t param_3,int32_t param_4,
-void FUN_1803f8790(longlong *param_1,uint64_t param_2,uint64_t param_3,int32_t param_4,
-                  int32_t param_5)
-
+/**
+ * @brief 系统资源清理和卸载器
+ * 
+ * 负责在系统关闭时清理和卸载所有资源
+ * 确保资源的正确释放和内存的清理
+ * 
+ * @param resourceContext 资源上下文指针
+ * @param cleanupFlags 清理标志位
+ * @param contextData 上下文数据
+ * @param priorityLevel 优先级级别
+ * @param timeoutMs 超时时间（毫秒）
+ * 
+ * @return void
+ */
+void SystemResourceCleaner_CleanupAndUnload(longlong *resourceContext, uint64_t cleanupFlags, 
+                                            uint64_t contextData, int32_t priorityLevel, 
+                                            int32_t timeoutMs)
 {
-  int iVar1;
-  longlong lVar2;
-  void *puVar3;
-  int8_t auStack_1a8 [32];
-  int32_t uStack_188;
-  int32_t uStack_180;
-  uint64_t uStack_178;
-  int8_t auStack_168 [8];
-  uint64_t uStack_160;
-  void **ppuStack_158;
-  void *puStack_148;
-  int8_t *puStack_140;
-  int32_t uStack_138;
-  int8_t auStack_130 [72];
-  void *puStack_e8;
-  void *puStack_e0;
-  uint uStack_d8;
-  uint8_t auStack_d0 [136];
-  ulonglong uStack_48;
+  /* 清理参数 */
+  int resourceCount;
+  longlong resourceSize;
+  void *resourceName;
+  int8_t securityBuffer [32];
+  int32_t cleanupCounter;
+  int32_t cleanupTotal;
+  uint64_t cleanupTime;
+  int8_t cleanupId [8];
+  uint64_t memoryFlags;
+  void **resourceList;
+  void *currentResource;
+  int8_t *resourcePath;
+  int32_t resourceIndex;
+  int8_t resourceInfo [72];
+  void *resourceManager;
+  void *resourceCache;
+  uint resourceHash;
+  uint8_t resourceData [136];
+  ulonglong securityChecksum;
   
   uStack_160 = 0xfffffffffffffffe;
   uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_1a8;

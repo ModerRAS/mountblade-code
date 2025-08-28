@@ -171,7 +171,7 @@ typedef void*     memory_ptr_t;           /**< 内存指针类型 */
 #define SystemState_Validator         FUN_1807881c0    /**< 系统状态验证器 */
 #define UI_InternalInit               FUN_180768360    /**< UI内部初始化函数 */
 #define UI_InternalCleanup            FUN_180768400    /**< UI内部清理函数 */
-#define UI_MemoryAllocator            FUN_180741e10    /**< UI内存分配器 */
+#define UI_MemoryAllocator            UI_MemoryAllocator    /**< UI内存分配器 */
 #define UI_ProcessorInit              FUN_1807682e0    /**< UI处理器初始化函数 */
 #define UI_ErrorHandler               FUN_1808fd400    /**< UI错误处理器 */
 #define UI_EventProcessor             FUN_180767c00    /**< UI事件处理器 */
@@ -1204,7 +1204,7 @@ uint64_t UI_AllocateMemory(longlong system_ptr, uint size, char flags)
         uVar2 = (int)uVar2 >> 1;
       }
                     // WARNING: Subroutine does not return
-      FUN_1808fd400();
+      UI_ErrorHandler();
     }
   }
   return 0x26;
@@ -1299,7 +1299,7 @@ uint64_t UI_AllocateMemory2(longlong system_ptr)
         uVar2 = (ulonglong)uVar6;
       }
                     // WARNING: Subroutine does not return
-      FUN_1808fd400();
+      UI_ErrorHandler();
     }
   }
   return 0x26;
@@ -1356,7 +1356,7 @@ uint64_t UI_AllocateMemory3(longlong system_ptr)
     else {
       uStack0000000000000030 = 1;
       uStack0000000000000028 = uVar8;
-      lVar3 = FUN_180741e10(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),iVar7,&UNK_18095ad40,
+      lVar3 = UI_MemoryAllocator(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),iVar7,&UNK_18095ad40,
                             (int)unaff_R12 + 0x58);
       *(longlong *)(unaff_RSI + 0x48) = lVar3;
       if (lVar3 == 0) {
@@ -1372,7 +1372,7 @@ uint64_t UI_AllocateMemory3(longlong system_ptr)
     uVar4 = unaff_R15 >> 1 & 0x7fffffff;
     uVar9 = (uint)uVar4;
     uStack0000000000000028 = uVar8;
-    lVar3 = FUN_180741e10(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),
+    lVar3 = UI_MemoryAllocator(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),
                           (((uint)(unaff_R15 >> 2) & 0x3fffffff) + uVar9) * 8 + 0x10,&UNK_18095ad40,
                           0x6b);
     *(longlong *)(unaff_RSI + 0x50) = lVar3;
@@ -1401,7 +1401,7 @@ uint64_t UI_AllocateMemory3(longlong system_ptr)
         uVar2 = (ulonglong)uVar6;
       }
                     // WARNING: Subroutine does not return
-      FUN_1808fd400();
+      UI_ErrorHandler();
     }
   }
   return 0x26;
@@ -1473,7 +1473,7 @@ uint64_t UI_SetupMemory(void)
     uVar4 = uVar5;
     if (0 < (int)unaff_R15 / 2) {
                     // WARNING: Subroutine does not return
-      FUN_1808fd400();
+      UI_ErrorHandler();
     }
     while (uVar4 != 0) {
       if ((int)uVar1 >> 2 != 0) {
