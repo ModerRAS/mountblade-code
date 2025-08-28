@@ -624,38 +624,63 @@ LAB_18057b6d9:
     unaff_RBP[0x11] = unaff_RBP[0x11] * fVar31;
     unaff_RBP[0x12] = unaff_RBP[0x12] * fVar31;
   }
-  uStack000000000000003c = 0x7f7fffff;
-  uVar5 = *(undefined8 *)(unaff_RBP + 0xe);
-  uVar6 = *(undefined8 *)(unaff_RBP + 0x10);
-  uVar7 = *(undefined8 *)(unaff_RBP + 0x12);
-  fVar15 = unaff_RBP[-0x20];
-  fVar21 = unaff_RBP[-0x1f];
-  fVar29 = unaff_RBP[-0x1e];
-  fVar23 = unaff_RBP[-0x1d];
-  fVar18 = unaff_RBP[-0x1e];
-  fVar31 = unaff_RBP[-0x1f];
-  fVar25 = unaff_RBP[-0x20];
-  *(undefined8 *)(unaff_RBX + 200) = *(undefined8 *)(unaff_RBP + 0xc);
-  *(undefined8 *)(unaff_RBX + 0xd0) = uVar5;
-  uVar5 = *(undefined8 *)(unaff_RBP + 0x14);
-  uVar8 = *(undefined8 *)(unaff_RBP + 0x16);
-  *(undefined8 *)(unaff_RBX + 0xd8) = uVar6;
-  *(undefined8 *)(unaff_RBX + 0xe0) = uVar7;
-  *(undefined8 *)(unaff_RBX + 0xe8) = uVar5;
-  *(undefined8 *)(unaff_RBX + 0xf0) = uVar8;
-  *(undefined8 *)(unaff_RBP + -0x10) = *(undefined8 *)(unaff_RBP + -0x1c);
-  *(undefined8 *)(unaff_RBP + -0xe) = *(undefined8 *)(unaff_RBP + -0x1a);
-  unaff_RBP[-0x14] = fVar15;
-  unaff_RBP[-0x13] = fVar21;
-  unaff_RBP[-0x12] = fVar29;
-  unaff_RBP[-0x11] = fVar23;
-  unaff_RBP[-8] = in_stack_00000060;
-  unaff_RBP[-7] = fStack0000000000000064;
-  unaff_RBP[-6] = in_stack_00000068;
-  unaff_RBP[-5] = fStack000000000000006c;
-  fVar26 = in_stack_00000060;
-  fVar27 = fStack0000000000000064;
-  fVar28 = in_stack_00000068;
+  // 第七阶段：最终数据存储和矩阵构建
+  // 设置最大浮点数标记
+  result_w = 0x7f7fffff;  // 设置最大浮点数
+  
+  // 提取矩阵数据
+  temp_undefined1 = *(undefined8 *)(stack_frame_ptr + 0xe);
+  temp_undefined2 = *(undefined8 *)(stack_frame_ptr + 0x10);
+  temp_undefined3 = *(undefined8 *)(stack_frame_ptr + 0x12);
+  
+  // 获取四元数数据
+  quaternion_x = stack_frame_ptr[-0x20];              // 四元数X分量
+  quaternion_y = stack_frame_ptr[-0x1f];              // 四元数Y分量
+  quaternion_w = stack_frame_ptr[-0x1e];              // 四元数W分量
+  normal_z = stack_frame_ptr[-0x1d];                  // 法线Z分量
+  
+  // 备份四元数数据
+  quaternion_w = stack_frame_ptr[-0x1e];              // 备份四元数W分量
+  quaternion_y = stack_frame_ptr[-0x1f];              // 备份四元数Y分量
+  quaternion_x = stack_frame_ptr[-0x20];              // 备份四元数X分量
+  
+  // 存储变换结果到渲染数据缓冲区
+  *(undefined8 *)(render_data_ptr + 200) = *(undefined8 *)(stack_frame_ptr + 0xc);  // 存储变换矩阵X部分
+  *(undefined8 *)(render_data_ptr + 0xd0) = temp_undefined1;                       // 存储变换矩阵Y部分
+  
+  // 提取更多矩阵数据
+  temp_undefined1 = *(undefined8 *)(stack_frame_ptr + 0x14);
+  temp_undefined4 = *(undefined8 *)(stack_frame_ptr + 0x16);
+  
+  // 存储矩阵数据到渲染数据
+  *(undefined8 *)(render_data_ptr + 0xd8) = temp_undefined2;  // 存储矩阵数据1
+  *(undefined8 *)(render_data_ptr + 0xe0) = temp_undefined3;  // 存储矩阵数据2
+  *(undefined8 *)(render_data_ptr + 0xe8) = temp_undefined1;  // 存储矩阵数据3
+  *(undefined8 *)(render_data_ptr + 0xf0) = temp_undefined4;  // 存储矩阵数据4
+  
+  // 备份矩阵数据到栈帧
+  *(undefined8 *)(stack_frame_ptr + -0x10) = *(undefined8 *)(stack_frame_ptr + -0x1c);  // 备份矩阵数据1
+  *(undefined8 *)(stack_frame_ptr + -0xe) = *(undefined8 *)(stack_frame_ptr + -0x1a);   // 备份矩阵数据2
+  
+  // 存储四元数数据到栈帧
+  stack_frame_ptr[-0x14] = quaternion_x;              // 存储四元数X
+  stack_frame_ptr[-0x13] = quaternion_y;              // 存储四元数Y
+  stack_frame_ptr[-0x12] = quaternion_w;              // 存储四元数W
+  stack_frame_ptr[-0x11] = normal_z;                  // 存储法线Z
+  
+  // 存储顶点坐标到栈帧
+  stack_frame_ptr[-8] = vertex_x;                      // 存储顶点X
+  stack_frame_ptr[-7] = vertex_y;                      // 存储顶点Y
+  stack_frame_ptr[-6] = vertex_z;                      // 存储顶点Z
+  stack_frame_ptr[-5] = *(float *)&result_w;           // 存储顶点W
+  
+  // 备份顶点坐标
+  vertex_x = stack_frame_ptr[-8];                      // 备份顶点X
+  vertex_y = stack_frame_ptr[-7];                      // 备份顶点Y
+  vertex_z = stack_frame_ptr[-6];                      // 备份顶点Z
+  
+  // 标签：最终变换处理阶段
+  FINAL_TRANSFORM_PROCESS:
 LAB_18057b795:
   fVar11 = in_stack_00000078;
   fVar10 = fStack0000000000000074;

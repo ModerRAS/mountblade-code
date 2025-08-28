@@ -103,60 +103,89 @@
 #define ui_system_data_processor_16 FUN_18089fed0
 #define ui_system_data_processor_17 FUN_18089ffe0
 
-// 函数: void FUN_18089ef24(void)
-void FUN_18089ef24(void)
-
+/**
+ * UI系统空函数1
+ * 
+ * 这是一个空函数，用作UI系统的占位符或默认处理函数。
+ * 在UI系统中用于初始化或清理操作。
+ */
+void ui_system_empty_function_1(void)
 {
-  return;
+    return;
 }
 
 
 
-undefined8 FUN_18089ef40(longlong param_1,longlong *param_2)
-
+/**
+ * UI系统数据验证器1
+ * 
+ * 验证UI系统数据的完整性和有效性，支持多种数据类型的验证。
+ * 该函数通过多层次的验证机制确保UI系统数据的正确性。
+ * 
+ * @param param_1 数据对象指针
+ * @param param_2 验证参数指针数组
+ * @return 验证结果：0表示成功，0x1c表示失败
+ */
+undefined8 ui_system_data_validator_1(longlong param_1, longlong *param_2)
 {
-  undefined8 uVar1;
-  undefined4 auStackX_10 [6];
-  
-  if (*(int *)(param_2[1] + 0x18) != 0) {
-    return 0x1c;
-  }
-  auStackX_10[0] = *(undefined4 *)(param_1 + 0x50);
-  uVar1 = (**(code **)**(undefined8 **)(*param_2 + 8))(*(undefined8 **)(*param_2 + 8),auStackX_10,4)
-  ;
-  if ((int)uVar1 == 0) {
-    if (*(int *)(param_2[1] + 0x18) != 0) {
-      return 0x1c;
+    undefined8 validation_result;
+    undefined4 validation_stack[6];
+    
+    // 检查验证状态
+    if (*(int *)(param_2[1] + UI_OFFSET_0x18) != 0) {
+        return UI_VALIDATION_ERROR;
     }
-    auStackX_10[0] = *(undefined4 *)(param_1 + 0x54);
-    uVar1 = (**(code **)**(undefined8 **)(*param_2 + 8))
-                      (*(undefined8 **)(*param_2 + 8),auStackX_10,4);
-    if ((int)uVar1 == 0) {
-      if (*(int *)(param_2[1] + 0x18) != 0) {
-        return 0x1c;
-      }
-      auStackX_10[0] = *(undefined4 *)(param_1 + 0x58);
-      uVar1 = (**(code **)**(undefined8 **)(*param_2 + 8))
-                        (*(undefined8 **)(*param_2 + 8),auStackX_10,4);
-      if ((int)uVar1 == 0) {
-        if (*(int *)(param_2[1] + 0x18) != 0) {
-          return 0x1c;
+    
+    // 验证第一个数据字段
+    validation_stack[0] = *(undefined4 *)(param_1 + UI_OFFSET_0x50);
+    validation_result = (**(code **)**(undefined8 **)(*param_2 + 8))
+                         (*(undefined8 **)(*param_2 + 8), validation_stack, 4);
+    
+    if ((int)validation_result == 0) {
+        // 验证第二个数据字段
+        if (*(int *)(param_2[1] + UI_OFFSET_0x18) != 0) {
+            return UI_VALIDATION_ERROR;
         }
-        auStackX_10[0] = *(undefined4 *)(param_1 + 0x60);
-        uVar1 = (**(code **)**(undefined8 **)(*param_2 + 8))
-                          (*(undefined8 **)(*param_2 + 8),auStackX_10,4);
-        if (((((int)uVar1 == 0) && (uVar1 = FUN_180898eb0(param_2,param_1 + 100), (int)uVar1 == 0))
-            && (uVar1 = FUN_180898eb0(param_2,param_1 + 0x68), (int)uVar1 == 0)) &&
-           (((uVar1 = FUN_180898eb0(param_2,param_1 + 0x6c), (int)uVar1 == 0 &&
-             (uVar1 = FUN_180898eb0(param_2,param_1 + 0x70), (int)uVar1 == 0)) &&
-            ((uVar1 = FUN_180898eb0(param_2,param_1 + 0x74), (int)uVar1 == 0 &&
-             (uVar1 = FUN_180898eb0(param_2,param_1 + 0x78), (int)uVar1 == 0)))))) {
-          uVar1 = FUN_1808a7c40(param_2,param_1 + 0x5c,0x74);
+        
+        validation_stack[0] = *(undefined4 *)(param_1 + UI_OFFSET_0x54);
+        validation_result = (**(code **)**(undefined8 **)(*param_2 + 8))
+                             (*(undefined8 **)(*param_2 + 8), validation_stack, 4);
+        
+        if ((int)validation_result == 0) {
+            // 验证第三个数据字段
+            if (*(int *)(param_2[1] + UI_OFFSET_0x18) != 0) {
+                return UI_VALIDATION_ERROR;
+            }
+            
+            validation_stack[0] = *(undefined4 *)(param_1 + UI_OFFSET_0x58);
+            validation_result = (**(code **)**(undefined8 **)(*param_2 + 8))
+                                 (*(undefined8 **)(*param_2 + 8), validation_stack, 4);
+            
+            if ((int)validation_result == 0) {
+                // 验证第四个数据字段
+                if (*(int *)(param_2[1] + UI_OFFSET_0x18) != 0) {
+                    return UI_VALIDATION_ERROR;
+                }
+                
+                validation_stack[0] = *(undefined4 *)(param_1 + UI_OFFSET_0x60);
+                validation_result = (**(code **)**(undefined8 **)(*param_2 + 8))
+                                     (*(undefined8 **)(*param_2 + 8), validation_stack, 4);
+                
+                // 执行深度验证
+                if (((((int)validation_result == 0) && 
+                      (validation_result = FUN_180898eb0(param_2, param_1 + 100), (int)validation_result == 0)) &&
+                     ((validation_result = FUN_180898eb0(param_2, param_1 + UI_OFFSET_0x68), (int)validation_result == 0))) &&
+                    (((validation_result = FUN_180898eb0(param_2, param_1 + UI_OFFSET_0x6c), (int)validation_result == 0 &&
+                      (validation_result = FUN_180898eb0(param_2, param_1 + UI_OFFSET_0x70), (int)validation_result == 0)) &&
+                     ((validation_result = FUN_180898eb0(param_2, param_1 + UI_OFFSET_0x74), (int)validation_result == 0 &&
+                      (validation_result = FUN_180898eb0(param_2, param_1 + UI_OFFSET_0x78), (int)validation_result == 0)))))) {
+                    // 执行最终验证
+                    validation_result = FUN_1808a7c40(param_2, param_1 + UI_OFFSET_0x5c, 0x74);
+                }
+            }
         }
-      }
     }
-  }
-  return uVar1;
+    return validation_result;
 }
 
 
