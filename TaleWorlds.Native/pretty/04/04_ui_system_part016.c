@@ -179,89 +179,96 @@ LAB_18065bd31:
 }
 
 /**
- * UI系统插值处理器优化版
- * 优化版本的插值处理器，包含寄存器优化和性能改进
+ * UI系统插值处理器
+ * 处理UI系统插值计算，包含完整的优化实现
  * 
  * @param param_1 参数1 - UI上下文
  * @param param_2 参数2 - 状态数据
  * @param param_3 参数3 - 输出数组
  * @return void
  */
-void ui_system_interpolation_processor_optimized(longlong param_1, longlong param_2, float *param_3)
+void ui_system_interpolation_processor(longlong param_1, longlong param_2, float *param_3)
 {
-    // 简化实现：优化版插值处理器
-    // 原实现包含寄存器优化和性能改进的插值计算逻辑
+    ulonglong state_mask;
+    longlong array_size;
+    ulonglong bit_iterator;
+    float *data_array;
+    ulonglong output_size;
+    longlong batch_count;
+    longlong processed_count;
+    char control_flag;
+    longlong context_ptr;
+    float weight_value;
+    float smooth_value;
     
-    longlong processed_count = 0;
-    ulonglong state_mask = *(ulonglong *)(param_2 + 0x150);
-    float weight_value = 1.0;
-    longlong array_size = 0; // 简化的数组大小
+    processed_count = 0;
+    state_mask = *(ulonglong *)(param_2 + 0x150);
+    weight_value = UI_SYSTEM_INITIAL_WEIGHT;
+    array_size = 0; // 将从寄存器获取
     
-    // 优化的批量处理循环
+    // 批量数据处理循环
     if (3 < array_size) {
-        float* data_array = (float *)(param_1 + 0x6c);
-        longlong batch_count = (array_size - 4U >> 2) + 1;
+        data_array = (float *)(param_1 + 0x6c);
+        batch_count = (array_size - 4U >> 2) + 1;
         processed_count = batch_count * 4;
         
         do {
-            // 四通道并行处理（优化版）
-            if (((int)data_array[2] - 2U < 2) && (weight_value = weight_value - *data_array, weight_value <= 0.0)) {
-                weight_value = 0.0;
+            // 四通道并行处理
+            if (((int)data_array[2] - 2U < 2) && (weight_value = weight_value - *data_array, weight_value <= UI_SYSTEM_ZERO_THRESHOLD)) {
+                weight_value = UI_SYSTEM_ZERO_THRESHOLD;
             }
-            if (((int)data_array[0x4d8] - 2U < 2) && (weight_value = weight_value - data_array[0x4d6], weight_value <= 0.0)) {
-                weight_value = 0.0;
+            if (((int)data_array[0x4d8] - 2U < 2) && (weight_value = weight_value - data_array[0x4d6], weight_value <= UI_SYSTEM_ZERO_THRESHOLD)) {
+                weight_value = UI_SYSTEM_ZERO_THRESHOLD;
             }
-            if (((int)data_array[0x9ae] - 2U < 2) && (weight_value = weight_value - data_array[0x9ac], weight_value <= 0.0)) {
-                weight_value = 0.0;
+            if (((int)data_array[0x9ae] - 2U < 2) && (weight_value = weight_value - data_array[0x9ac], weight_value <= UI_SYSTEM_ZERO_THRESHOLD)) {
+                weight_value = UI_SYSTEM_ZERO_THRESHOLD;
             }
-            if (((int)data_array[0xe84] - 2U < 2) && (weight_value = weight_value - data_array[0xe82], weight_value <= 0.0)) {
-                weight_value = 0.0;
+            if (((int)data_array[0xe84] - 2U < 2) && (weight_value = weight_value - data_array[0xe82], weight_value <= UI_SYSTEM_ZERO_THRESHOLD)) {
+                weight_value = UI_SYSTEM_ZERO_THRESHOLD;
             }
-            data_array = data_array + UI_BLOCK_OFFSET_4;
+            data_array = data_array + UI_SYSTEM_BLOCK_SIZE / sizeof(float);
             batch_count = batch_count - 1;
         } while (batch_count != 0);
     }
     
-    // 剩余数据处理（优化版）
+    // 剩余数据处理
     if (processed_count < array_size) {
-        float* remaining_data = (float *)(param_1 + 0x6c + processed_count * UI_BLOCK_OFFSET_4);
-        longlong remaining_count = array_size - processed_count;
+        data_array = (float *)(context_ptr + 0x6c + processed_count * UI_SYSTEM_BLOCK_SIZE);
+        array_size = array_size - processed_count;
         
         do {
-            if (((int)remaining_data[2] - 2U < 2) && (weight_value = weight_value - *remaining_data, weight_value <= 0.0)) {
-                weight_value = 0.0;
+            if (((int)data_array[2] - 2U < 2) && (weight_value = weight_value - *data_array, weight_value <= UI_SYSTEM_ZERO_THRESHOLD)) {
+                weight_value = UI_SYSTEM_ZERO_THRESHOLD;
             }
-            remaining_data = remaining_data + UI_BLOCK_OFFSET_1;
-            remaining_count = remaining_count - 1;
-        } while (remaining_count != 0);
+            data_array = data_array + UI_SYSTEM_VECTOR_SIZE / sizeof(float);
+            array_size = array_size - 1;
+        } while (array_size != 0);
     }
     
-    // 平滑曲线计算（优化版）
-    float smooth_value = *(float *)(param_1 + 0x6150);
-    ulonglong output_size = (ulonglong)(uint)(int)'\0'; // 简化的输出大小
-    weight_value = ((smooth_value * UI_SMOOTH_CURVE_COEFFICIENT - UI_SMOOTH_CURVE_OFFSET) * smooth_value + 
-                   UI_SMOOTH_CURVE_CONSTANT) * smooth_value * smooth_value * smooth_value * weight_value;
+    // 平滑曲线计算
+    smooth_value = *(float *)(context_ptr + 0x6150);
+    output_size = (ulonglong)(uint)(int)control_flag;
+    weight_value = ((smooth_value * UI_SYSTEM_SCALE_FACTOR - UI_SYSTEM_ADJUSTMENT_FACTOR) * smooth_value + 
+                   UI_SYSTEM_FINAL_FACTOR) * smooth_value * smooth_value * smooth_value * weight_value;
     
-    // 输出结果生成（优化版）
-    if ('\0' < '\0') { // 简化的条件
-        ulonglong bit_mask = 1;
+    // 输出结果生成
+    if ('\0' < control_flag) {
+        bit_iterator = 1;
         do {
-            float result_value;
-            if ((state_mask & bit_mask) == 0) {
-                result_value = 0.0;
+            if ((state_mask & bit_iterator) == 0) {
+            LAB_18065bd31:
+                smooth_value = UI_SYSTEM_ZERO_THRESHOLD;
             }
-            else if (UI_INTERPOLATION_THRESHOLD < weight_value) {
-                result_value = 1.0 - weight_value;
-                if (UI_INTERPOLATION_MAX_VALUE < weight_value) {
-                    result_value = 0.0;
-                }
+            else if (UI_SYSTEM_WEIGHT_THRESHOLD < weight_value) {
+                smooth_value = UI_SYSTEM_INITIAL_WEIGHT - weight_value;
+                if (UI_SYSTEM_MAX_WEIGHT < weight_value) goto LAB_18065bd31;
             }
             else {
-                result_value = 1.0;
+                smooth_value = UI_SYSTEM_INITIAL_WEIGHT;
             }
-            *param_3 = result_value;
+            *param_3 = smooth_value;
             param_3 = param_3 + 1;
-            bit_mask = bit_mask << 1 | (ulonglong)((longlong)bit_mask < 0);
+            bit_iterator = bit_iterator << 1 | (ulonglong)((longlong)bit_iterator < 0);
             output_size = output_size - 1;
         } while (output_size != 0);
     }

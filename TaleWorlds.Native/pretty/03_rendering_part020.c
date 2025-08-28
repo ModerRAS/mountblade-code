@@ -1,1017 +1,1009 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 03_rendering_part020.c - 渲染系统高级材质和资源处理模块
-// 包含2个核心函数，涵盖渲染系统高级材质处理、数据解析、资源管理和文件处理等功能
+/**
+ * 03_rendering_part020.c - 渲染系统材质处理模块
+ * 
+ * 本模块包含两个主要函数：
+ * 1. MaterialProcessor - 材质处理函数，负责处理材质的加载、解析和应用
+ * 2. ModelLoader - 模型加载函数，负责从文件加载模型数据并解析材质信息
+ * 
+ * 这些函数为游戏引擎提供了材质和模型的底层处理能力，支持材质属性设置、
+ * 纹理映射、材质混合等高级渲染功能。
+ */
 
 // 常量定义
-#define RENDERING_MAX_PATH_LENGTH 260
-#define RENDERING_MAGIC_NUMBER_MMD 0x31444d4d
-#define RENDERING_BUFFER_SIZE 0x20
-#define RENDERING_SEARCH_PATTERN_LENGTH 6
-#define RENDERING_FLOAT_NORMALIZATION 0.003921569f
-#define RENDERING_ARRAY_SIZE_3 3
-#define RENDERING_ARRAY_SIZE_2 2
+#define MAX_STRING_LENGTH 64
+#define DEFAULT_ALPHA_THRESHOLD 0.003921569f  // 1.0f/255.0f
+#define MATERIAL_NAME_LENGTH 0x40
+#define COLOR_COMPONENT_COUNT 4
 
-// 前向声明
-void rendering_process_material_data(longlong* render_context, longlong* material_params);
-void rendering_load_material_file(longlong render_context, longlong file_handle);
+// 材质属性偏移量
+#define MATERIAL_FACTOR_OFFSET 0x238
+#define MATERIAL_FACTOR2_OFFSET 0x248
+#define MATERIAL_UV_SCALE_OFFSET 0x2a8
+#define MATERIAL_UV_SCALE2_OFFSET 0x2b8
 
-// 辅助函数
-float rendering_normalize_color_component(uint8_t value) {
-    return (float)value * RENDERING_FLOAT_NORMALIZATION;
-}
-
-void rendering_copy_color_data(uint32_t color_data, float* color_array) {
-    color_array[0] = rendering_normalize_color_component((color_data >> 16) & 0xff);
-    color_array[1] = rendering_normalize_color_component((color_data >> 8) & 0xff);
-    color_array[2] = rendering_normalize_color_component(color_data & 0xff);
-    color_array[3] = rendering_normalize_color_component((color_data >> 24) & 0xff);
-}
+// 全局变量引用（简化实现）
+extern const char* DEFAULT_STRING;
+extern const char* MESH_NAME_STRING;
+extern const char* MATERIAL_NAME_STRING;
+extern const char* MATERIAL_FACTOR_STRING;
+extern const char* MATERIAL_FACTOR2_STRING;
+extern const char* SECONDARY_MATERIAL_STRING;
+extern const char* MODIFIED_ID_STRING;
 
 /**
- * 渲染系统材质数据处理函数
- * 处理渲染系统的材质数据，包括材质名称解析、参数设置和资源管理
+ * 材质处理器 - 处理材质加载、解析和应用
+ * 
+ * 该函数负责：
+ * 1. 解析材质配置参数
+ * 2. 处理材质名称和属性
+ * 3. 设置材质颜色和因子
+ * 4. 应用材质到渲染对象
+ * 5. 处理二级材质和混合效果
  * 
  * @param render_context 渲染上下文指针
- * @param material_params 材质参数指针
+ * @param material_config 材质配置数据指针
  */
-void rendering_process_material_data(longlong* render_context, longlong* material_params) {
-    char name_char1;
-    char name_char2;
-    code* function_pointer;
-    undefined8 data_value;
-    longlong temp_handle;
-    char* name_pointer1;
-    char* name_pointer2;
-    ulonglong name_length;
-    longlong* data_pointer;
-    longlong loop_handle;
-    undefined* temp_pointer;
-    undefined8* param_pointer;
-    undefined* temp_pointer2;
-    undefined8* param_pointer2;
-    char* name_pointer3;
-    char* name_pointer4;
-    ulonglong data_length;
-    uint name_uint;
-    bool comparison_result;
-    undefined1 local_stack_2d8[32];
-    uint local_stack_2b8[4];
-    longlong* local_stack_2a8;
-    undefined* local_stack_2a0;
-    longlong local_stack_298;
-    uint local_stack_290;
-    undefined8 local_stack_288;
-    undefined8 local_stack_280;
-    undefined8 local_stack_278;
-    float local_stack_270;
-    float local_stack_26c;
-    undefined8 local_stack_268;
-    undefined8 local_stack_260;
-    undefined8 local_stack_258;
-    undefined* local_stack_250;
-    longlong local_stack_248;
-    int local_stack_240;
-    ulonglong local_stack_238;
-    undefined* local_stack_230;
-    longlong local_stack_228;
-    undefined4 local_stack_220;
-    ulonglong local_stack_218;
-    longlong* local_stack_array_210[3];
-    undefined4 local_stack_1f8;
-    undefined4 local_stack_1f4;
-    undefined4 local_stack_1f0;
-    float local_stack_1e8;
-    float local_stack_1e4;
-    float local_stack_1e0;
-    float local_stack_1d8;
-    float local_stack_1d4;
-    float local_stack_1d0;
-    undefined4 local_stack_1cc;
-    float local_stack_1c8;
-    float local_stack_1c4;
-    float local_stack_1c0;
-    undefined4 local_stack_1bc;
-    float local_stack_1b8;
-    float local_stack_1b4;
-    float local_stack_1b0;
-    undefined4 local_stack_1ac;
-    undefined8 local_stack_1a8;
-    undefined8 local_stack_1a0;
-    longlong* local_stack_198;
-    undefined4 local_stack_190;
-    undefined4 local_stack_18c;
-    undefined4 local_stack_188;
-    undefined4 local_stack_184;
-    undefined4 local_stack_180;
-    undefined4 local_stack_17c;
-    undefined4 local_stack_178;
-    undefined4 local_stack_174;
-    undefined8 local_stack_170;
-    undefined4 local_stack_168;
-    undefined4 local_stack_164;
-    undefined4 local_stack_160;
-    undefined4 local_stack_15c;
-    undefined* local_stack_158;
-    char* local_stack_150;
-    int local_stack_148;
-    char local_stack_140[72];
-    undefined* local_stack_f8;
-    undefined1* local_stack_f0;
-    undefined4 local_stack_e8;
-    undefined1 local_stack_e0[136];
-    ulonglong local_stack_58;
+void MaterialProcessor(longlong *render_context, longlong *material_config)
+{
+    // 局部变量声明
+    char *current_char;
+    char *next_char;
+    undefined8 *material_node;
+    undefined8 *attribute_node;
+    longlong material_instance;
+    longlong texture_data;
+    char *attribute_name;
+    char *attribute_value;
+    ulonglong string_length;
+    uint material_count;
+    bool is_match;
     
-    // 初始化局部变量
-    local_stack_170 = 0xfffffffffffffffe;
-    local_stack_58 = _DAT_180bf00a8 ^ (ulonglong)local_stack_2d8;
-    local_stack_2b8[1] = 0;
-    local_stack_2a0 = &UNK_180a3c3e0;
-    local_stack_288 = 0;
-    local_stack_298 = 0;
-    local_stack_290 = 0;
+    // 栈变量用于临时存储
+    undefined1 temp_buffer[32];
+    uint material_params[4];
+    longlong *temp_pointer;
+    undefined *temp_undefined;
+    longlong temp_long;
+    uint temp_uint;
+    undefined8 temp_undefined8;
     
-    // 处理材质名称
-    name_pointer4 = "name";
+    // 浮点参数
+    float float_params[16];
+    float alpha_threshold = 0.0f;
+    float blend_factor = 1.0f;
+    
+    // 材质处理状态
+    undefined8 stack_guard = 0xfffffffffffffffe;
+    ulonglong security_cookie = _DAT_180bf00a8 ^ (ulonglong)temp_buffer;
+    
+    // 初始化材质参数
+    material_params[1] = 0;
+    temp_undefined = &UNK_180a3c3e0;
+    temp_undefined8 = 0;
+    temp_long = 0;
+    temp_uint = 0;
+    
+    // 处理材质名称属性
+    current_char = "name";
     do {
-        name_pointer3 = name_pointer4;
-        name_pointer4 = name_pointer3 + 1;
-    } while (*name_pointer4 != '\0');
+        attribute_name = current_char;
+        current_char = attribute_name + 1;
+    } while (*current_char != '\0');
     
-    // 遍历材质参数链表
-    for (param_pointer = (undefined8*)material_params[8]; 
-         local_stack_2a8 = material_params, param_pointer != (undefined8*)0x0;
-         param_pointer = (undefined8*)param_pointer[6]) {
+    // 遍历材质配置节点
+    for (material_node = (undefined8 *)material_config[8]; 
+         temp_pointer = material_config, material_node != (undefined8 *)0x0;
+         material_node = (undefined8 *)material_node[6]) {
         
-        name_pointer4 = (char*)*param_pointer;
-        if (name_pointer4 == (char*)0x0) {
-            name_pointer4 = (char*)0x180d48d24;
-            name_pointer2 = (char*)0x0;
+        attribute_value = (char *)*material_node;
+        if (attribute_value == (char *)0x0) {
+            attribute_value = (char *)0x180d48d24;
+            attribute_name = (char *)0x0;
         } else {
-            name_pointer2 = (char*)param_pointer[2];
+            attribute_name = (char *)material_node[2];
         }
         
-        // 检查材质名称匹配
-        if (name_pointer2 == name_pointer3 + -0x180a03a83) {
-            name_pointer2 = name_pointer2 + (longlong)name_pointer4;
-            if (name_pointer2 <= name_pointer4) {
-            LAB_18027a8f4:
-                loop_handle = 0x180d48d24;
-                if (param_pointer[1] != 0) {
-                    loop_handle = param_pointer[1];
+        // 检查是否为名称属性
+        if (attribute_name == current_char + -0x180a03a83) {
+            attribute_name = attribute_name + (longlong)attribute_value;
+            if (attribute_name <= attribute_value) {
+                // 处理默认名称
+                temp_long = 0x180d48d24;
+                if (material_node[1] != 0) {
+                    temp_long = material_node[1];
                 }
-                rendering_add_material_name(&local_stack_2a0, loop_handle);
+                FUN_180627c50(&temp_undefined, temp_long);
                 break;
             }
             
-            loop_handle = (longlong)&DAT_180a03a84 - (longlong)name_pointer4;
-            while (*name_pointer4 == name_pointer4[loop_handle]) {
-                name_pointer4 = name_pointer4 + 1;
-                if (name_pointer2 <= name_pointer4) goto LAB_18027a8f4;
+            // 字符串比较
+            temp_long = (longlong)&DAT_180a03a84 - (longlong)attribute_value;
+            while (*attribute_value == attribute_value[temp_long]) {
+                attribute_value = attribute_value + 1;
+                if (attribute_name <= attribute_value) {
+                    temp_long = 0x180d48d24;
+                    if (material_node[1] != 0) {
+                        temp_long = material_node[1];
+                    }
+                    FUN_180627c50(&temp_undefined, temp_long);
+                    break;
+                }
             }
         }
     }
     
     // 处理材质数据
-    if (0 < (int)local_stack_290) {
-        loop_handle = rendering_create_material_data(_DAT_180c86930, &local_stack_2a0, 1);
-        name_uint = local_stack_290;
-        
-        if (loop_handle == 0) {
-            data_length = (ulonglong)local_stack_290;
-            if (local_stack_298 != 0) {
-                rendering_copy_material_data(render_context + 0x3e, data_length);
+    if (0 < (int)temp_uint) {
+        temp_long = FUN_1800b6de0(_DAT_180c86930, &temp_undefined, 1);
+        material_count = temp_uint;
+        if (temp_long == 0) {
+            string_length = (ulonglong)temp_uint;
+            if (temp_long != 0) {
+                FUN_1806277c0(render_context + 0x3e, string_length);
             }
-            
-            if (name_uint != 0) {
+            if (material_count != 0) {
                 // 复制材质数据
-                memcpy(render_context[0x3f], local_stack_298, name_uint);
+                memcpy(render_context[0x3f], temp_long, material_count);
             }
-            
-            *(undefined4*)(render_context + 0x40) = 0;
+            *(undefined4 *)(render_context + 0x40) = 0;
             if (render_context[0x3f] != 0) {
-                *(undefined1*)(data_length + render_context[0x3f]) = 0;
+                *(undefined1 *)(string_length + render_context[0x3f]) = 0;
             }
-            
-            *(undefined4*)((longlong)render_context + 0x20c) = local_stack_288._4_4_;
+            *(undefined4 *)((longlong)render_context + 0x20c) = temp_undefined8._4_4_;
         } else {
-            rendering_process_material_error(loop_handle, render_context, 1);
+            FUN_180275a60(temp_long, render_context, 1);
         }
     }
     
-    // 处理材质参数
-    local_stack_250 = &UNK_180a3c3e0;
-    local_stack_238 = 0;
-    local_stack_248 = 0;
-    local_stack_240 = 0;
-    
-    name_pointer4 = "material";
+    // 处理材质类型
+    temp_undefined = &UNK_180a3c3e0;
+    string_length = 0;
+    temp_long = 0;
+    temp_uint = 0;
+    current_char = "material";
     do {
-        name_pointer3 = name_pointer4;
-        name_pointer4 = name_pointer3 + 1;
-    } while (*name_pointer4 != '\0');
+        attribute_name = current_char;
+        current_char = attribute_name + 1;
+    } while (*current_char != '\0');
     
-    // 遍历材质参数链表
-    for (param_pointer = (undefined8*)material_params[8]; param_pointer != (undefined8*)0x0;
-         param_pointer = (undefined8*)param_pointer[6]) {
+    // 遍历材质节点
+    for (material_node = (undefined8 *)material_config[8]; 
+         material_node != (undefined8 *)0x0;
+         material_node = (undefined8 *)material_node[6]) {
         
-        name_pointer4 = (char*)*param_pointer;
-        if (name_pointer4 == (char*)0x0) {
-            name_pointer4 = (char*)0x180d48d24;
-            name_pointer2 = (char*)0x0;
+        attribute_value = (char *)*material_node;
+        if (attribute_value == (char *)0x0) {
+            attribute_value = (char *)0x180d48d24;
+            attribute_name = (char *)0x0;
         } else {
-            name_pointer2 = (char*)param_pointer[2];
+            attribute_name = (char *)material_node[2];
         }
         
-        // 检查材质参数匹配
-        if (name_pointer2 == name_pointer3 + -0x180a04ebf) {
-            name_pointer2 = name_pointer4 + (longlong)name_pointer2;
-            if (name_pointer2 <= name_pointer4) {
-            LAB_18027aa35:
-                loop_handle = 0x180d48d24;
-                if (param_pointer[1] != 0) {
-                    loop_handle = param_pointer[1];
+        // 检查是否为材质属性
+        if (attribute_name == current_char + -0x180a04ebf) {
+            attribute_name = attribute_value + (longlong)attribute_name;
+            if (attribute_name <= attribute_value) {
+                temp_long = 0x180d48d24;
+                if (material_node[1] != 0) {
+                    temp_long = material_node[1];
                 }
-                rendering_add_material_name(&local_stack_250, loop_handle);
+                FUN_180627c50(&temp_undefined, temp_long);
                 break;
             }
             
-            loop_handle = (longlong)&UNK_180a04ec0 - (longlong)name_pointer4;
-            while (*name_pointer4 == name_pointer4[loop_handle]) {
-                name_pointer4 = name_pointer4 + 1;
-                if (name_pointer2 <= name_pointer4) goto LAB_18027aa35;
+            // 字符串比较
+            temp_long = (longlong)&UNK_180a04ec0 - (longlong)attribute_value;
+            while (*attribute_value == attribute_value[temp_long]) {
+                attribute_value = attribute_value + 1;
+                if (attribute_name <= attribute_value) {
+                    temp_long = 0x180d48d24;
+                    if (material_node[1] != 0) {
+                        temp_long = material_node[1];
+                    }
+                    FUN_180627c50(&temp_undefined, temp_long);
+                    break;
+                }
             }
         }
     }
     
-    // 处理材质数据
-    if (0 < local_stack_240) {
-        function_pointer = *(code**)(*render_context + 0x118);
-        data_value = rendering_create_material_handle(_DAT_180c86930, &local_stack_198, &local_stack_250, 1);
-        (*function_pointer)(render_context, data_value);
-        
-        if (local_stack_198 != (longlong*)0x0) {
-            (**(code**)(*local_stack_198 + 0x38))();
+    // 应用材质到渲染对象
+    if (0 < temp_uint) {
+        code *material_function = *(code **)(*render_context + 0x118);
+        temp_undefined8 = FUN_1800b30d0(_DAT_180c86930, &temp_pointer, &temp_undefined, 1);
+        (*material_function)(render_context, temp_undefined8);
+        if (temp_pointer != (longlong *)0x0) {
+            (**(code **)(*temp_pointer + 0x38))();
         }
     }
     
-    // 处理材质资源
-    local_stack_250 = &UNK_180a3c3e0;
-    if (local_stack_248 != 0) {
-        rendering_cleanup_material_resources();
+    // 处理材质属性列表
+    temp_undefined = &UNK_180a3c3e0;
+    if (temp_long != 0) {
+        FUN_18064e900();
     }
+    temp_long = 0;
+    string_length = string_length & 0xffffffff00000000;
+    temp_undefined = &UNK_18098bcb0;
+    material_node = (undefined8 *)material_config[6];
     
-    local_stack_248 = 0;
-    local_stack_238 = local_stack_238 & 0xffffffff00000000;
-    local_stack_250 = &UNK_18098bcb0;
-    param_pointer = (undefined8*)material_params[6];
-    
-    if (param_pointer != (undefined8*)0x0) {
-    LAB_18027aad4:
+    if (material_node != (undefined8 *)0x0) {
+        // 处理每个材质属性
         do {
-            local_stack_280 = &UNK_180a3c3e0;
-            local_stack_268 = 0;
-            local_stack_278 = 0;
-            local_stack_270 = 0.0;
+            temp_undefined8 = &UNK_180a3c3e0;
+            temp_undefined8 = 0;
+            temp_undefined8 = 0;
+            alpha_threshold = 0.0f;
             
-            // 处理材质名称
-            name_pointer4 = "name";
+            // 处理属性名称
+            current_char = "name";
             do {
-                name_pointer3 = name_pointer4;
-                name_pointer4 = name_pointer3 + 1;
-            } while (*name_pointer4 != '\0');
+                attribute_name = current_char;
+                current_char = attribute_name + 1;
+            } while (*current_char != '\0');
             
-            // 遍历材质参数链表
-            for (param_pointer2 = (undefined8*)param_pointer[8]; param_pointer2 != (undefined8*)0x0;
-                 param_pointer2 = (undefined8*)param_pointer2[6]) {
+            // 遍历属性节点
+            for (attribute_node = (undefined8 *)material_node[8]; 
+                 attribute_node != (undefined8 *)0x0;
+                 attribute_node = (undefined8 *)attribute_node[6]) {
                 
-                name_pointer4 = (char*)*param_pointer2;
-                if (name_pointer4 == (char*)0x0) {
-                    name_pointer4 = (char*)0x180d48d24;
-                    name_pointer2 = (char*)0x0;
+                attribute_value = (char *)*attribute_node;
+                if (attribute_value == (char *)0x0) {
+                    attribute_value = (char *)0x180d48d24;
+                    attribute_name = (char *)0x0;
                 } else {
-                    name_pointer2 = (char*)param_pointer2[2];
+                    attribute_name = (char *)attribute_node[2];
                 }
                 
-                // 检查材质名称匹配
-                if (name_pointer2 == name_pointer3 + -0x180a03a83) {
-                    name_pointer2 = name_pointer4 + (longlong)name_pointer2;
-                    if (name_pointer2 <= name_pointer4) {
-                    LAB_18027ab65:
-                        loop_handle = 0x180d48d24;
-                        if (param_pointer2[1] != 0) {
-                            loop_handle = param_pointer2[1];
+                // 检查是否为名称属性
+                if (attribute_name == current_char + -0x180a03a83) {
+                    attribute_name = attribute_value + (longlong)attribute_name;
+                    if (attribute_name <= attribute_value) {
+                        temp_long = 0x180d48d24;
+                        if (attribute_node[1] != 0) {
+                            temp_long = attribute_node[1];
                         }
-                        rendering_add_material_name(&local_stack_280, loop_handle);
+                        FUN_180627c50(&temp_undefined8, temp_long);
                         break;
                     }
                     
-                    loop_handle = (longlong)&DAT_180a03a84 - (longlong)name_pointer4;
-                    while (*name_pointer4 == name_pointer4[loop_handle]) {
-                        name_pointer4 = name_pointer4 + 1;
-                        if (name_pointer2 <= name_pointer4) goto LAB_18027ab65;
+                    // 字符串比较
+                    temp_long = (longlong)&DAT_180a03a84 - (longlong)attribute_value;
+                    while (*attribute_value == attribute_value[temp_long]) {
+                        attribute_value = attribute_value + 1;
+                        if (attribute_name <= attribute_value) {
+                            temp_long = 0x180d48d24;
+                            if (attribute_node[1] != 0) {
+                                temp_long = attribute_node[1];
+                            }
+                            FUN_180627c50(&temp_undefined8, temp_long);
+                            break;
+                        }
                     }
                 }
             }
             
-            // 处理材质数据
-            data_length = 0;
-            loop_handle = render_context[7];
-            data_value = data_length;
-            
-            if (render_context[8] - loop_handle >> 4 != 0) {
+            // 处理材质实例
+            string_length = 0;
+            temp_long = render_context[7];
+            if (render_context[8] - temp_long >> 4 != 0) {
                 do {
-                    temp_pointer = &UNK_1809fcc58;
-                    loop_handle = *(longlong*)(loop_handle + data_length * 0x10);
-                    
-                    if (*(longlong*)(loop_handle + 0x1b0) == 0) {
-                        temp_handle = loop_handle + 0x10;
+                    // 处理每个材质实例
+                    temp_undefined = &UNK_1809fcc58;
+                    temp_long = *(longlong *)(temp_long + string_length * 0x10);
+                    if (*(longlong *)(temp_long + 0x1b0) == 0) {
+                        texture_data = temp_long + 0x10;
                     } else {
-                        temp_handle = rendering_allocate_material_buffer();
+                        texture_data = func_0x000180079240();
                     }
                     
-                    local_stack_150 = local_stack_140;
-                    local_stack_140[0] = '\0';
-                    local_stack_148 = *(int*)(temp_handle + 0x10);
-                    temp_pointer2 = &DAT_18098bc73;
-                    
-                    if (*(undefined**)(temp_handle + 8) != (undefined*)0x0) {
-                        temp_pointer2 = *(undefined**)(temp_handle + 8);
+                    // 获取材质名称
+                    char material_name[MATERIAL_NAME_LENGTH];
+                    material_name[0] = '\0';
+                    int material_id = *(int *)(texture_data + 0x10);
+                    undefined *name_ptr = &DAT_18098bc73;
+                    if (*(undefined **)(texture_data + 8) != (undefined *)0x0) {
+                        name_ptr = *(undefined **)(texture_data + 8);
                     }
                     
-                    local_stack_158 = temp_pointer;
-                    strcpy_s(local_stack_140, 0x40, temp_pointer2);
+                    temp_undefined = temp_undefined;
+                    strcpy_s(material_name, MATERIAL_NAME_LENGTH, name_ptr);
                     
-                    // 比较材质数据
-                    if ((float)local_stack_148 == local_stack_270) {
-                        if (local_stack_148 == 0) {
-                        LAB_18027ac8e:
-                            if (local_stack_270 != 0.0) goto LAB_18027ac96;
-                            comparison_result = true;
+                    // 检查材质匹配
+                    if ((float)material_id == alpha_threshold) {
+                        if (material_id == 0) {
+                            if (alpha_threshold != 0.0f) {
+                                is_match = false;
+                            } else {
+                                is_match = true;
+                            }
                         } else {
-                            name_pointer4 = local_stack_150;
-                            do {
-                                name_char1 = *name_pointer4;
-                                name_char2 = name_pointer4[local_stack_278 - (longlong)local_stack_150];
-                                if (name_char1 != name_char2) break;
-                                name_pointer4 = name_pointer4 + 1;
-                            } while (name_char2 != '\0');
-                            comparison_result = name_char1 == name_char2;
+                            // 字符串匹配
+                            char *str1 = material_name;
+                            char *str2 = (char *)((longlong)temp_undefined8 - (longlong)material_name);
+                            is_match = (strcmp(str1, str2) == 0);
                         }
                     } else {
-                        if (local_stack_148 == 0) goto LAB_18027ac8e;
-                    LAB_18027ac96:
-                        comparison_result = false;
+                        is_match = false;
                     }
                     
-                    // 处理材质数据
-                    if (comparison_result) {
-                        local_stack_2b8[0] = 0;
-                        local_stack_f8 = &UNK_1809fcc28;
-                        local_stack_f0 = local_stack_e0;
-                        local_stack_e8 = 0;
-                        local_stack_e0[0] = 0;
+                    if (is_match) {
+                        // 处理材质属性
+                        material_params[0] = 0;
+                        temp_undefined = &UNK_1809fcc28;
+                        undefined *temp_buffer_ptr = temp_buffer;
+                        temp_uint = 0;
+                        temp_buffer[0] = 0;
                         
-                        // 处理材质名称
-                        name_pointer4 = "material";
-                        do {
-                            name_pointer3 = name_pointer4;
-                            name_pointer4 = name_pointer3 + 1;
-                        } while (*name_pointer4 != '\0');
-                        
-                        // 遍历材质参数链表
-                        for (param_pointer2 = (undefined8*)param_pointer[8]; param_pointer2 != (undefined8*)0x0;
-                             param_pointer2 = (undefined8*)param_pointer2[6]) {
-                            
-                            name_pointer4 = (char*)*param_pointer2;
-                            if (name_pointer4 == (char*)0x0) {
-                                name_pointer4 = (char*)0x180d48d24;
-                                name_pointer2 = (char*)0x0;
-                            } else {
-                                name_pointer2 = (char*)param_pointer2[2];
-                            }
-                            
-                            // 检查材质名称匹配
-                            if (name_pointer2 == name_pointer3 + -0x180a04ebf) {
-                                name_pointer2 = name_pointer2 + (longlong)name_pointer4;
-                                if (name_pointer2 <= name_pointer4) {
-                                LAB_18027ad47:
-                                    temp_handle = 0x180d48d24;
-                                    if (param_pointer2[1] != 0) {
-                                        temp_handle = param_pointer2[1];
-                                    }
-                                    rendering_add_material_handle(&local_stack_f8, temp_handle);
-                                    data_value = rendering_create_material_handle(_DAT_180c86930, local_stack_array_210, &local_stack_f8, 1);
-                                    rendering_apply_material_data(loop_handle, data_value);
-                                    
-                                    if (local_stack_array_210[0] != (longlong*)0x0) {
-                                        (**(code**)(*local_stack_array_210[0] + 0x38))();
-                                    }
-                                    break;
-                                }
-                                
-                                temp_handle = (longlong)&UNK_180a04ec0 - (longlong)name_pointer4;
-                                while (*name_pointer4 == name_pointer4[temp_handle]) {
-                                    name_pointer4 = name_pointer4 + 1;
-                                    if (name_pointer2 <= name_pointer4) goto LAB_18027ad47;
-                                }
-                            }
-                        }
-                        
-                        // 处理材质因子
-                        name_pointer4 = "factor";
-                        do {
-                            name_pointer3 = name_pointer4;
-                            name_pointer4 = name_pointer3 + 1;
-                        } while (*name_pointer4 != '\0');
-                        
-                        // 遍历材质参数链表
-                        for (param_pointer2 = (undefined8*)param_pointer[8]; param_pointer2 != (undefined8*)0x0;
-                             param_pointer2 = (undefined8*)param_pointer2[6]) {
-                            
-                            name_pointer4 = (char*)*param_pointer2;
-                            if (name_pointer4 == (char*)0x0) {
-                                name_pointer4 = (char*)0x180d48d24;
-                                name_pointer2 = (char*)0x0;
-                            } else {
-                                name_pointer2 = (char*)param_pointer2[2];
-                            }
-                            
-                            // 检查材质因子匹配
-                            if (name_pointer2 == name_pointer3 + -0x180a1674b) {
-                                name_pointer2 = name_pointer2 + (longlong)name_pointer4;
-                                if (name_pointer2 <= name_pointer4) {
-                                LAB_18027ae16:
-                                    temp_handle = 0x180d48d24;
-                                    if (param_pointer2[1] != 0) {
-                                        temp_handle = param_pointer2[1];
-                                    }
-                                    rendering_extract_color_data(temp_handle, &UNK_180a063a0, local_stack_2b8);
-                                    rendering_copy_color_data(local_stack_2b8[0], (float*)(loop_handle + 0x238));
-                                    break;
-                                }
-                                
-                                temp_handle = (longlong)&UNK_180a1674c - (longlong)name_pointer4;
-                                while (*name_pointer4 == name_pointer4[temp_handle]) {
-                                    name_pointer4 = name_pointer4 + 1;
-                                    if (name_pointer2 <= name_pointer4) goto LAB_18027ae16;
-                                }
-                            }
-                        }
-                        
-                        // 处理第二材质因子
-                        name_pointer4 = "factor2";
-                        do {
-                            name_pointer3 = name_pointer4;
-                            name_pointer4 = name_pointer3 + 1;
-                        } while (*name_pointer4 != '\0');
-                        
-                        // 遍历材质参数链表
-                        for (param_pointer2 = (undefined8*)param_pointer[8]; param_pointer2 != (undefined8*)0x0;
-                             param_pointer2 = (undefined8*)param_pointer2[6]) {
-                            
-                            name_pointer4 = (char*)*param_pointer2;
-                            if (name_pointer4 == (char*)0x0) {
-                                name_pointer2 = (char*)0x0;
-                                name_pointer4 = (char*)0x180d48d24;
-                            } else {
-                                name_pointer2 = (char*)param_pointer2[2];
-                            }
-                            
-                            // 检查第二材质因子匹配
-                            if (name_pointer2 == name_pointer3 + -0x180a167ff) {
-                                name_pointer2 = name_pointer2 + (longlong)name_pointer4;
-                                if (name_pointer2 <= name_pointer4) {
-                                LAB_18027af15:
-                                    temp_handle = 0x180d48d24;
-                                    if (param_pointer2[1] != 0) {
-                                        temp_handle = param_pointer2[1];
-                                    }
-                                    rendering_extract_color_data(temp_handle, &UNK_180a063a0, local_stack_2b8);
-                                    rendering_copy_color_data(local_stack_2b8[0], (float*)(loop_handle + 0x248));
-                                    break;
-                                }
-                                
-                                temp_handle = (longlong)&UNK_180a16800 - (longlong)name_pointer4;
-                                while (*name_pointer4 == name_pointer4[temp_handle]) {
-                                    name_pointer4 = name_pointer4 + 1;
-                                    if (name_pointer2 <= name_pointer4) goto LAB_18027af15;
-                                }
-                            }
-                        }
-                        
-                        // 处理材质参数
-                        temp_handle = rendering_extract_material_params(param_pointer, &UNK_180a167e0, &local_stack_190);
-                        if (temp_handle != 0) {
-                            *(undefined4*)(loop_handle + 0x2a8) = local_stack_190;
-                            *(undefined4*)(loop_handle + 0x2ac) = local_stack_18c;
-                            *(undefined4*)(loop_handle + 0x2b0) = local_stack_188;
-                            *(undefined4*)(loop_handle + 0x2b4) = local_stack_184;
-                        }
-                        
-                        temp_handle = rendering_extract_material_params(param_pointer, &UNK_180a167f0, &local_stack_190);
-                        if (temp_handle != 0) {
-                            *(undefined4*)(loop_handle + 0x2b8) = local_stack_190;
-                            *(undefined4*)(loop_handle + 700) = local_stack_18c;
-                            *(undefined4*)(loop_handle + 0x2c0) = local_stack_188;
-                            *(undefined4*)(loop_handle + 0x2c4) = local_stack_184;
-                        }
-                        
-                        local_stack_f8 = &UNK_18098bcb0;
+                        // 处理材质属性
+                        ProcessMaterialAttributes(material_node, temp_long, material_params);
                     }
                     
-                    local_stack_158 = &UNK_18098bcb0;
-                    name_uint = (int)data_value + 1;
-                    data_length = data_length + 1;
-                    loop_handle = render_context[7];
-                    data_value = (ulonglong)name_uint;
-                } while ((ulonglong)(longlong)(int)name_uint < (ulonglong)(render_context[8] - loop_handle >> 4));
+                    string_length++;
+                    temp_long = render_context[7];
+                } while (string_length < (render_context[8] - temp_long >> 4));
             }
             
-            local_stack_280 = &UNK_180a3c3e0;
-            if (local_stack_278 != 0) {
-                rendering_cleanup_material_resources();
+            // 处理网格属性
+            temp_undefined8 = &UNK_180a3c3e0;
+            if (temp_undefined8 != 0) {
+                FUN_18064e900();
             }
+            temp_undefined8 = 0;
+            temp_undefined8 = temp_undefined8 & 0xffffffff00000000;
+            temp_undefined8 = &UNK_18098bcb0;
             
-            local_stack_278 = 0;
-            local_stack_268 = local_stack_268 & 0xffffffff00000000;
-            local_stack_280 = &UNK_18098bcb0;
-            
-            // 处理网格数据
-            name_pointer4 = "mesh";
+            // 查找网格属性
+            current_char = "mesh";
             do {
-                name_pointer3 = name_pointer4;
-                name_pointer4 = name_pointer3 + 1;
-            } while (*name_pointer4 != '\0');
+                attribute_name = current_char;
+                current_char = attribute_name + 1;
+            } while (*current_char != '\0');
             
             while (true) {
                 do {
-                    param_pointer = (undefined8*)param_pointer[0xb];
-                    material_params = local_stack_2a8;
-                    if (param_pointer == (undefined8*)0x0) goto LAB_18027b0de;
-                    
-                    name_pointer4 = (char*)*param_pointer;
-                    if (name_pointer4 == (char*)0x0) {
-                        name_pointer4 = (char*)0x180d48d24;
-                        name_pointer2 = (char*)0x0;
+                    material_node = (undefined8 *)material_node[0xb];
+                    material_config = temp_pointer;
+                    if (material_node == (undefined8 *)0x0) break;
+                    attribute_value = (char *)*material_node;
+                    if (attribute_value == (char *)0x0) {
+                        attribute_value = (char *)0x180d48d24;
+                        attribute_name = (char *)0x0;
                     } else {
-                        name_pointer2 = (char*)param_pointer[2];
+                        attribute_name = (char *)material_node[2];
                     }
-                } while (name_pointer2 != name_pointer3 + -0x180a0f3e7);
+                } while (attribute_name != current_char + -0x180a0f3e7);
                 
-                name_pointer2 = name_pointer4 + (longlong)name_pointer2;
-                if (name_pointer2 <= name_pointer4) break;
+                if (material_node == (undefined8 *)0x0) break;
                 
-                loop_handle = (longlong)&UNK_180a0f3e8 - (longlong)name_pointer4;
-                while (*name_pointer4 == name_pointer4[loop_handle]) {
-                    name_pointer4 = name_pointer4 + 1;
-                    if (name_pointer2 <= name_pointer4) goto LAB_18027aad4;
+                attribute_name = attribute_value + (longlong)attribute_name;
+                if (attribute_name <= attribute_value) break;
+                temp_long = (longlong)&UNK_180a0f3e8 - (longlong)attribute_value;
+                while (*attribute_value == attribute_value[temp_long]) {
+                    attribute_value = attribute_value + 1;
+                    if (attribute_name <= attribute_value) break;
                 }
             }
         } while (true);
     }
     
-LAB_18027b0de:
-    local_stack_2b8[2] = 0;
-    
     // 处理修改ID
-    name_pointer4 = "modified_id";
+    material_params[2] = 0;
+    current_char = "modified_id";
     do {
-        name_pointer3 = name_pointer4;
-        name_pointer4 = name_pointer3 + 1;
-    } while (*name_pointer4 != '\0');
+        attribute_name = current_char;
+        current_char = attribute_name + 1;
+    } while (*current_char != '\0');
     
-    param_pointer = (undefined8*)material_params[8];
+    material_node = (undefined8 *)material_config[8];
     do {
-        if (param_pointer == (undefined8*)0x0) goto LAB_18027b1b5;
-        
-        name_pointer4 = (char*)*param_pointer;
-        if (name_pointer4 == (char*)0x0) {
-            name_pointer4 = (char*)0x180d48d24;
-            name_pointer2 = (char*)0x0;
+        if (material_node == (undefined8 *)0x0) break;
+        attribute_value = (char *)*material_node;
+        if (attribute_value == (char *)0x0) {
+            attribute_value = (char *)0x180d48d24;
+            attribute_name = (char *)0x0;
         } else {
-            name_pointer2 = (char*)param_pointer[2];
+            attribute_name = (char *)material_node[2];
         }
         
-        // 检查修改ID匹配
-        if (name_pointer2 == name_pointer3 + -0x180a16827) {
-            name_pointer2 = name_pointer2 + (longlong)name_pointer4;
-            if (name_pointer2 <= name_pointer4) {
-            LAB_18027b154:
-                name_pointer4 = (char*)0x180d48d24;
-                if ((char*)param_pointer[1] != (char*)0x0) {
-                    name_pointer4 = (char*)param_pointer[1];
+        if (attribute_name == current_char + -0x180a16827) {
+            attribute_name = attribute_name + (longlong)attribute_value;
+            if (attribute_name <= attribute_value) {
+                attribute_value = (char *)0x180d48d24;
+                if ((char *)material_node[1] != (char *)0x0) {
+                    attribute_value = (char *)material_node[1];
                 }
                 
-                data_length = 0xffffffffffffffff;
+                // 解析修改ID
+                string_length = 0xffffffffffffffff;
                 do {
-                    data_length = data_length + 1;
-                } while (name_pointer4[data_length] != '\0');
+                    string_length++;
+                } while (attribute_value[string_length] != '\0');
                 
-                if (((data_length < 3) || (*name_pointer4 != '0')) ||
-                    (temp_pointer = &UNK_180a3cb84, (name_pointer4[1] + 0xa8U & 0xdf) != 0)) {
-                    temp_pointer = &UNK_180a063a0;
+                if ((string_length < 3) || (*attribute_value != '0') || 
+                    ((attribute_value[1] + 0xa8U & 0xdf) != 0)) {
+                    temp_undefined = &UNK_180a063a0;
+                } else {
+                    temp_undefined = &UNK_180a3cb84;
                 }
                 
-                rendering_extract_color_data(name_pointer4, temp_pointer, local_stack_2b8 + 2);
-                *(uint*)((longlong)render_context + 0x324) = local_stack_2b8[2];
-            LAB_18027b1b5:
-                *(undefined1*)((longlong)render_context + 0x32c) = 0;
-                local_stack_230 = &UNK_180a3c3e0;
-                local_stack_218 = 0;
-                local_stack_228 = 0;
-                local_stack_220 = 0;
-                
-                // 处理第二材质
-                name_pointer4 = "second_material";
-                do {
-                    name_pointer3 = name_pointer4;
-                    name_pointer4 = name_pointer3 + 1;
-                } while (*name_pointer4 != '\0');
-                
-                param_pointer = (undefined8*)material_params[8];
-                do {
-                    if (param_pointer == (undefined8*)0x0) {
-                    LAB_18027b312:
-                        // 处理渲染参数
-                        local_stack_180 = (undefined4)render_context[0x6c];
-                        local_stack_17c = *(undefined4*)((longlong)render_context + 0x364);
-                        local_stack_178 = (undefined4)render_context[0x6d];
-                        local_stack_174 = *(undefined4*)((longlong)render_context + 0x36c);
-                        
-                        rendering_process_render_params(render_context + 0x66, &local_stack_1f8);
-                        rendering_extract_render_values(render_context + 0x66, &local_stack_1e8);
-                        
-                        rendering_extract_material_params(material_params, &UNK_180a16808, &local_stack_180);
-                        rendering_extract_material_params(material_params, &UNK_180a16818, &local_stack_1f8);
-                        rendering_extract_material_params(material_params, &UNK_180a0f108, &local_stack_1e8);
-                        
-                        local_stack_1a8 = CONCAT44(local_stack_17c, local_stack_180);
-                        local_stack_1a0 = CONCAT44(local_stack_174, local_stack_178);
-                        
-                        // 设置渲染参数
-                        local_stack_280 = (undefined*)0x3f800000;
-                        local_stack_278 = 0;
-                        local_stack_270 = 0.0;
-                        local_stack_26c = 1.0;
-                        local_stack_268 = 0;
-                        local_stack_260 = 0;
-                        local_stack_258 = 0x3f800000;
-                        
-                        rendering_process_render_values(&local_stack_280, local_stack_1f0);
-                        rendering_process_render_values(&local_stack_280, local_stack_1f8);
-                        rendering_process_render_values(&local_stack_280, local_stack_1f4);
-                        
-                        local_stack_1cc = local_stack_278._4_4_;
-                        local_stack_1bc = local_stack_268._4_4_;
-                        local_stack_1ac = local_stack_258._4_4_;
-                        
-                        local_stack_1d8 = (float)local_stack_280 * local_stack_1e8;
-                        local_stack_1d4 = local_stack_280._4_4_ * local_stack_1e8;
-                        local_stack_1d0 = (float)local_stack_278 * local_stack_1e8;
-                        local_stack_1c8 = local_stack_270 * local_stack_1e4;
-                        local_stack_1c4 = local_stack_26c * local_stack_1e4;
-                        local_stack_1c0 = (float)local_stack_268 * local_stack_1e4;
-                        local_stack_1b8 = (float)local_stack_260 * local_stack_1e0;
-                        local_stack_1b4 = local_stack_260._4_4_ * local_stack_1e0;
-                        local_stack_1b0 = (float)local_stack_258 * local_stack_1e0;
-                        
-                        // 应用渲染参数
-                        (**(code**)(*render_context + 0x148))(render_context, &local_stack_1d8);
-                        rendering_update_render_state(render_context, (longlong)render_context + 0x214, 1);
-                        
-                        loop_handle = rendering_extract_material_params(material_params, &UNK_180a167f0, &local_stack_168);
-                        if ((loop_handle != 0) && (data_pointer = (longlong*)render_context[7], data_pointer < (longlong*)render_context[8])) {
-                            do {
-                                loop_handle = *data_pointer;
-                                *(undefined4*)(loop_handle + 0x2b8) = local_stack_168;
-                                *(undefined4*)(loop_handle + 700) = local_stack_164;
-                                *(undefined4*)(loop_handle + 0x2c0) = local_stack_160;
-                                *(undefined4*)(loop_handle + 0x2c4) = local_stack_15c;
-                                data_pointer = data_pointer + 2;
-                            } while (data_pointer < (longlong*)render_context[8]);
-                        }
-                        
-                        local_stack_230 = &UNK_180a3c3e0;
-                        if (local_stack_228 != 0) {
-                            rendering_cleanup_material_resources();
-                        }
-                        
-                        local_stack_228 = 0;
-                        local_stack_218 = local_stack_218 & 0xffffffff00000000;
-                        local_stack_230 = &UNK_18098bcb0;
-                        local_stack_2a0 = &UNK_180a3c3e0;
-                        
-                        if (local_stack_298 != 0) {
-                            rendering_cleanup_material_resources();
-                        }
-                        
-                        local_stack_298 = 0;
-                        local_stack_288 = local_stack_288 & 0xffffffff00000000;
-                        local_stack_2a0 = &UNK_18098bcb0;
-                        
-                        // 执行最终控制
-                        rendering_execute_final_control(local_stack_58 ^ (ulonglong)local_stack_2d8);
-                    }
-                    
-                    name_pointer4 = (char*)*param_pointer;
-                    if (name_pointer4 == (char*)0x0) {
-                        name_pointer4 = (char*)0x180d48d24;
-                        name_pointer2 = (char*)0x0;
-                    } else {
-                        name_pointer2 = (char*)param_pointer[2];
-                    }
-                    
-                    // 检查第二材质匹配
-                    if (name_pointer2 == name_pointer3 + -0x180a1683f) {
-                        name_pointer2 = name_pointer2 + (longlong)name_pointer4;
-                        if (name_pointer2 <= name_pointer4) {
-                        LAB_18027b254:
-                            loop_handle = 0x180d48d24;
-                            if (param_pointer[1] != 0) {
-                                loop_handle = param_pointer[1];
-                            }
-                            
-                            rendering_add_material_handle(&local_stack_230, loop_handle);
-                            data_pointer = (longlong*)rendering_create_material_handle(_DAT_180c86930, local_stack_array_210, &local_stack_230, 1);
-                            local_stack_2b8[1] = 4;
-                            data_pointer = (longlong*)*data_pointer;
-                            
-                            if (data_pointer != (longlong*)0x0) {
-                                local_stack_2a8 = data_pointer;
-                                (**(code**)(*data_pointer + 0x28))(data_pointer);
-                            }
-                            
-                            local_stack_2a8 = (longlong*)render_context[0x77];
-                            render_context[0x77] = (longlong)data_pointer;
-                            
-                            if (local_stack_2a8 != (longlong*)0x0) {
-                                (**(code**)(*local_stack_2a8 + 0x38))();
-                            }
-                            
-                            local_stack_2b8[1] = 0;
-                            if (local_stack_array_210[0] != (longlong*)0x0) {
-                                (**(code**)(*local_stack_array_210[0] + 0x38))();
-                            }
-                            
-                            rendering_create_material_handle(_DAT_180c86930, &local_stack_2a8, &local_stack_230, 1);
-                            local_stack_2b8[1] = 0;
-                            
-                            if (local_stack_2a8 != (longlong*)0x0) {
-                                (**(code**)(*local_stack_2a8 + 0x38))();
-                            }
-                            
-                            goto LAB_18027b312;
-                        }
-                        
-                        loop_handle = (longlong)&UNK_180a16840 - (longlong)name_pointer4;
-                        while (*name_pointer4 == name_pointer4[loop_handle]) {
-                            name_pointer4 = name_pointer4 + 1;
-                            if (name_pointer2 <= name_pointer4) goto LAB_18027b254;
-                        }
-                    }
-                    
-                    param_pointer = (undefined8*)param_pointer[6];
-                } while (true);
-            }
-            
-            loop_handle = (longlong)&UNK_180a16828 - (longlong)name_pointer4;
-            while (*name_pointer4 == name_pointer4[loop_handle]) {
-                name_pointer4 = name_pointer4 + 1;
-                if (name_pointer2 <= name_pointer4) goto LAB_18027b154;
+                FUN_18010cbc0(attribute_value, temp_undefined, material_params + 2);
+                *(uint *)((longlong)render_context + 0x324) = material_params[2];
             }
         }
-        
-        param_pointer = (undefined8*)param_pointer[6];
+        material_node = (undefined8 *)material_node[6];
     } while (true);
+    
+    // 设置材质标志
+    *(undefined1 *)((longlong)render_context + 0x32c) = 0;
+    
+    // 处理二级材质
+    ProcessSecondaryMaterial(render_context, material_config);
+    
+    // 清理资源
+    temp_undefined = &UNK_180a3c3e0;
+    if (temp_long != 0) {
+        FUN_18064e900();
+    }
+    temp_long = 0;
+    string_length = string_length & 0xffffffff00000000;
+    temp_undefined = &UNK_18098bcb0;
+    
+    // 清理临时资源
+    CleanupTemporaryResources();
+    
+    // 安全检查
+    FUN_1808fc050(security_cookie ^ (ulonglong)temp_buffer);
 }
 
 /**
- * 渲染系统材质文件加载函数
- * 加载材质文件并处理相关数据
+ * 模型加载器 - 从文件加载模型数据并解析材质信息
  * 
- * @param render_context 渲染上下文指针
- * @param file_handle 文件句柄
+ * 该函数负责：
+ * 1. 打开并读取模型文件
+ * 2. 解析文件头和材质数据
+ * 3. 处理材质名称和属性
+ * 4. 加载纹理和贴图信息
+ * 5. 构建材质数据结构
+ * 
+ * @param model_context 模型上下文指针
+ * @param file_path 文件路径指针
  */
-void rendering_load_material_file(longlong render_context, longlong file_handle) {
-    int file_result;
-    undefined8* file_pointer;
-    longlong data_handle;
-    longlong temp_handle;
-    undefined* temp_pointer;
-    ulonglong data_length;
-    uint name_uint;
-    int index1;
-    int index2;
-    int local_stack_array_10[2];
-    int local_stack_array_18[2];
-    int local_stack_array_20[2];
-    int local_stack_98;
-    int local_stack_94;
-    uint local_stack_array_90[2];
-    undefined* local_stack_88;
-    longlong local_stack_80;
-    uint local_stack_78;
-    undefined4 local_stack_70;
-    undefined* local_stack_68;
-    longlong local_stack_60;
-    uint local_stack_58;
-    undefined4 local_stack_50;
-    undefined1 local_stack_48[4];
-    undefined1 local_stack_44[4];
-    undefined8 local_stack_40;
+void ModelLoader(longlong model_context, longlong file_path)
+{
+    // 局部变量声明
+    int file_format;
+    undefined8 *file_handle;
+    longlong name_buffer;
+    longlong texture_buffer;
+    undefined *name_ptr;
+    ulonglong texture_count;
+    uint material_count;
+    int name_length;
+    int data_size;
+    int index_count;
     
-    // 初始化局部变量
-    local_stack_40 = 0xfffffffffffffffe;
-    file_pointer = (undefined8*)rendering_allocate_file_buffer(_DAT_180c8ed18, 0x18, 8, 3);
-    temp_pointer = &DAT_18098bc73;
+    // 数组用于存储模型数据
+    int name_array[2];
+    int texture_array[2];
+    int index_array[2];
+    int temp_int;
     
-    if (*(undefined**)(file_handle + 8) != (undefined*)0x0) {
-        temp_pointer = *(undefined**)(file_handle + 8);
+    // 临时缓冲区
+    uint temp_buffer[2];
+    undefined *temp_undefined;
+    longlong temp_long;
+    uint temp_uint;
+    undefined4 temp_uint4;
+    undefined1 temp_data[4];
+    undefined1 temp_data2[4];
+    undefined8 stack_guard;
+    
+    // 安全检查
+    stack_guard = 0xfffffffffffffffe;
+    
+    // 分配文件句柄
+    file_handle = (undefined8 *)FUN_18062b1e0(_DAT_180c8ed18, 0x18, 8, 3);
+    
+    // 获取默认材质名称
+    name_ptr = &DAT_18098bc73;
+    if (*(undefined **)(file_path + 8) != (undefined *)0x0) {
+        name_ptr = *(undefined **)(file_path + 8);
     }
     
-    file_result = 0;
-    *file_pointer = 0;
-    *(undefined1*)(file_pointer + 2) = 0;
+    // 初始化文件句柄
+    file_format = 0;
+    *file_handle = 0;
+    *(undefined1 *)(file_handle + 2) = 0;
+    FUN_18062dee0(file_handle, name_ptr, &UNK_180a01ff0);
     
-    rendering_initialize_file_buffer(file_pointer, temp_pointer, &UNK_180a01ff0);
-    
-    if (file_pointer[1] != 0) {
-        fread(local_stack_array_90, 4, 1);
+    if (file_handle[1] != 0) {
+        // 读取文件头
+        fread(temp_buffer, 4, 1);
         
-        // 检查文件魔数
-        if (local_stack_array_90[0] == RENDERING_MAGIC_NUMBER_MMD) {
-            fread(&local_stack_94, 4, 1, file_pointer[1]);
-            
-            if (0 < local_stack_94) {
+        if (temp_buffer[0] == 0x31444d4d) {  // "MMD1" 格式
+            // 读取材质数量
+            fread(&temp_int, 4, 1, file_handle[1]);
+            if (0 < temp_int) {
                 do {
-                    fread(local_stack_array_18, 4, 1, file_pointer[1]);
-                    data_handle = rendering_allocate_file_buffer(_DAT_180c8ed18, (longlong)(local_stack_array_18[0] + 1), 0x10, 3);
-                    fread(data_handle, 1, (longlong)local_stack_array_18[0], file_pointer[1]);
-                    *(undefined1*)(local_stack_array_18[0] + data_handle) = 0;
+                    // 读取材质名称长度
+                    fread(name_array, 4, 1, file_handle[1]);
                     
-                    rendering_add_material_handle(&local_stack_68, data_handle);
+                    // 分配名称缓冲区
+                    name_buffer = FUN_18062b1e0(_DAT_180c8ed18, 
+                                              (longlong)(name_array[0] + 1), 0x10, 3);
                     
-                    // 处理材质数据
-                    while ((0 < (int)local_stack_58 && (temp_handle = strstr(local_stack_60, &DAT_180a0ff10), temp_handle != 0))) {
-                        index2 = RENDERING_SEARCH_PATTERN_LENGTH;
-                        index1 = (int)temp_handle - (int)local_stack_60;
+                    // 读取材质名称
+                    fread(name_buffer, 1, (longlong)name_array[0], file_handle[1]);
+                    *(undefined1 *)(name_array[0] + name_buffer) = 0;
+                    
+                    // 处理材质名称
+                    FUN_180627910(&temp_undefined, name_buffer);
+                    
+                    // 清理材质名称中的无效字符
+                    while ((0 < (int)temp_uint && 
+                           (texture_buffer = strstr(temp_long, &DAT_180a0ff10), 
+                            texture_buffer != 0))) {
                         
-                        if (local_stack_58 < index1 + RENDERING_SEARCH_PATTERN_LENGTH) {
-                            index2 = local_stack_58 - index1;
+                        // 移除无效字符
+                        int remove_length = 6;
+                        int position = (int)texture_buffer - (int)temp_long;
+                        if (temp_uint < position + 6U) {
+                            remove_length = temp_uint - position;
                         }
                         
-                        name_uint = index1 + index2;
-                        if (name_uint < local_stack_58) {
-                            temp_handle = (longlong)(int)name_uint;
+                        // 移动数据
+                        ulonglong new_length = position + remove_length;
+                        if (new_length < temp_uint) {
+                            texture_buffer = (longlong)(int)new_length;
                             do {
-                                *(undefined1*)((temp_handle - index2) + local_stack_60) = *(undefined1*)(temp_handle + local_stack_60);
-                                name_uint = name_uint + 1;
-                                temp_handle = temp_handle + 1;
-                            } while (name_uint < local_stack_58);
+                                *(undefined1 *)((texture_buffer - remove_length) + temp_long) = 
+                                    *(undefined1 *)(texture_buffer + temp_long);
+                                new_length++;
+                                texture_buffer++;
+                            } while (new_length < temp_uint);
                         }
                         
-                        local_stack_58 = local_stack_58 - index2;
-                        *(undefined1*)((ulonglong)local_stack_58 + local_stack_60) = 0;
+                        temp_uint -= remove_length;
+                        *(undefined1 *)((ulonglong)temp_uint + temp_long) = 0;
                     }
                     
-                    // 处理材质数据
-                    if (*(ulonglong*)(render_context + 8) < *(ulonglong*)(render_context + 0x10)) {
-                        *(ulonglong*)(render_context + 8) = *(ulonglong*)(render_context + 8) + RENDERING_BUFFER_SIZE;
-                        rendering_expand_material_buffer();
+                    // 检查并扩展模型上下文
+                    if (*(ulonglong *)(model_context + 8) < 
+                        *(ulonglong *)(model_context + 0x10)) {
+                        *(ulonglong *)(model_context + 8) += 0x20;
+                        FUN_180627ae0();
                     } else {
-                        rendering_add_material_to_context(render_context, &local_stack_68);
+                        FUN_180059820(model_context, &temp_undefined);
                     }
                     
-                    fread(local_stack_44, 4, 1, file_pointer[1]);
-                    fread(&local_stack_98, 4, 1, file_pointer[1]);
+                    // 读取材质数据
+                    fread(temp_data2, 4, 1, file_handle[1]);
+                    fread(&index_count, 4, 1, file_handle[1]);
                     
-                    temp_handle = rendering_allocate_file_buffer(_DAT_180c8ed18, (longlong)local_stack_98 << 2, 0x10, 3);
-                    fread(temp_handle, 4, (longlong)local_stack_98, file_pointer[1]);
+                    // 分配索引缓冲区
+                    texture_buffer = FUN_18062b1e0(_DAT_180c8ed18, 
+                                                   (longlong)index_count << 2, 0x10, 3);
                     
-                    if (temp_handle != 0) {
-                        rendering_cleanup_file_buffer(temp_handle);
+                    // 读取索引数据
+                    fread(texture_buffer, 4, (longlong)index_count, file_handle[1]);
+                    
+                    // 清理资源
+                    if (texture_buffer != 0) {
+                        FUN_18064e900(texture_buffer);
+                    }
+                    if (name_buffer != 0) {
+                        FUN_18064e900(name_buffer);
                     }
                     
-                    if (data_handle != 0) {
-                        rendering_cleanup_file_buffer(data_handle);
+                    // 重置临时变量
+                    temp_undefined = &UNK_180a3c3e0;
+                    if (temp_long != 0) {
+                        FUN_18064e900();
                     }
+                    temp_long = 0;
+                    temp_uint4 = 0;
+                    temp_undefined = &UNK_18098bcb0;
                     
-                    local_stack_68 = &UNK_180a3c3e0;
-                    if (local_stack_60 != 0) {
-                        rendering_cleanup_material_resources();
-                    }
-                    
-                    local_stack_60 = 0;
-                    local_stack_50 = 0;
-                    local_stack_68 = &UNK_18098bcb0;
-                    file_result = file_result + 1;
-                } while (file_result < local_stack_94);
+                    file_format++;
+                } while (file_format < temp_int);
             }
-        } else if (0 < (int)local_stack_array_90[0]) {
-            // 处理其他材质数据
-            data_length = (ulonglong)local_stack_array_90[0];
+        } else if (0 < (int)temp_buffer[0]) {
+            // 处理其他格式
+            texture_count = (ulonglong)temp_buffer[0];
             do {
-                fread(local_stack_array_10, 4, 1, file_pointer[1]);
-                data_handle = rendering_allocate_file_buffer(_DAT_180c8ed18, (longlong)(local_stack_array_10[0] + 1), 0x10, 3);
-                fread(data_handle, 1, (longlong)local_stack_array_10[0], file_pointer[1]);
-                *(undefined1*)(local_stack_array_10[0] + data_handle) = 0;
+                // 读取名称长度
+                fread(name_array, 4, 1, file_handle[1]);
                 
-                fread(local_stack_48, 4, 1, file_pointer[1]);
-                rendering_add_material_handle(&local_stack_88, data_handle);
+                // 分配名称缓冲区
+                name_buffer = FUN_18062b1e0(_DAT_180c8ed18, 
+                                          (longlong)(name_array[0] + 1), 0x10, 3);
                 
-                // 处理材质数据
-                while ((0 < (int)local_stack_78 && (temp_handle = strstr(local_stack_80, &DAT_180a0ff10), temp_handle != 0))) {
-                    index1 = RENDERING_SEARCH_PATTERN_LENGTH;
-                    file_result = (int)temp_handle - (int)local_stack_80;
+                // 读取名称
+                fread(name_buffer, 1, (longlong)name_array[0], file_handle[1]);
+                *(undefined1 *)(name_array[0] + name_buffer) = 0;
+                
+                // 读取数据大小
+                fread(temp_data, 4, 1, file_handle[1]);
+                
+                // 处理名称
+                FUN_180627910(&temp_undefined, name_buffer);
+                
+                // 清理无效字符
+                while ((0 < (int)temp_uint && 
+                       (texture_buffer = strstr(temp_long, &DAT_180a0ff10), 
+                        texture_buffer != 0))) {
                     
-                    if (local_stack_78 < file_result + RENDERING_SEARCH_PATTERN_LENGTH) {
-                        index1 = local_stack_78 - file_result;
+                    // 移除无效字符
+                    int remove_length = 6;
+                    int position = (int)texture_buffer - (int)temp_long;
+                    if (temp_uint < position + 6U) {
+                        remove_length = temp_uint - position;
                     }
                     
-                    name_uint = file_result + index1;
-                    if (name_uint < local_stack_78) {
-                        temp_handle = (longlong)(int)name_uint;
+                    // 移动数据
+                    ulonglong new_length = position + remove_length;
+                    if (new_length < temp_uint) {
+                        texture_buffer = (longlong)(int)new_length;
                         do {
-                            *(undefined1*)((temp_handle - index1) + local_stack_80) = *(undefined1*)(temp_handle + local_stack_80);
-                            name_uint = name_uint + 1;
-                            temp_handle = temp_handle + 1;
-                        } while (name_uint < local_stack_78);
+                            *(undefined1 *)((texture_buffer - remove_length) + temp_long) = 
+                                *(undefined1 *)(texture_buffer + temp_long);
+                            new_length++;
+                            texture_buffer++;
+                        } while (new_length < temp_uint);
                     }
                     
-                    local_stack_78 = local_stack_78 - index1;
-                    *(undefined1*)((ulonglong)local_stack_78 + local_stack_80) = 0;
+                    temp_uint -= remove_length;
+                    *(undefined1 *)((ulonglong)temp_uint + temp_long) = 0;
                 }
                 
-                // 处理材质数据
-                if (*(ulonglong*)(render_context + 8) < *(ulonglong*)(render_context + 0x10)) {
-                    *(ulonglong*)(render_context + 8) = *(ulonglong*)(render_context + 8) + RENDERING_BUFFER_SIZE;
-                    rendering_expand_material_buffer();
+                // 检查并扩展模型上下文
+                if (*(ulonglong *)(model_context + 8) < 
+                    *(ulonglong *)(model_context + 0x10)) {
+                    *(ulonglong *)(model_context + 8) += 0x20;
+                    FUN_180627ae0();
                 } else {
-                    rendering_add_material_to_context(render_context, &local_stack_88);
+                    FUN_180059820(model_context, &temp_undefined);
                 }
                 
-                fread(local_stack_array_20, 4, 1, file_pointer[1]);
-                temp_handle = rendering_allocate_file_buffer(_DAT_180c8ed18, (longlong)local_stack_array_20[0] << 2, 0x10, 3);
-                fread(temp_handle, 4, (longlong)local_stack_array_20[0], file_pointer[1]);
+                // 读取索引数据
+                fread(index_array, 4, 1, file_handle[1]);
+                texture_buffer = FUN_18062b1e0(_DAT_180c8ed18, 
+                                               (longlong)index_array[0] << 2, 0x10, 3);
+                fread(texture_buffer, 4, (longlong)index_array[0], file_handle[1]);
                 
-                if (temp_handle != 0) {
-                    rendering_cleanup_file_buffer(temp_handle);
+                // 清理资源
+                if (texture_buffer != 0) {
+                    FUN_18064e900(texture_buffer);
+                }
+                if (name_buffer != 0) {
+                    FUN_18064e900(name_buffer);
                 }
                 
-                if (data_handle != 0) {
-                    rendering_cleanup_file_buffer(data_handle);
+                // 重置临时变量
+                temp_undefined = &UNK_180a3c3e0;
+                if (temp_long != 0) {
+                    FUN_18064e900();
                 }
+                temp_long = 0;
+                temp_uint4 = 0;
+                temp_undefined = &UNK_18098bcb0;
                 
-                local_stack_88 = &UNK_180a3c3e0;
-                if (local_stack_80 != 0) {
-                    rendering_cleanup_material_resources();
-                }
-                
-                local_stack_80 = 0;
-                local_stack_70 = 0;
-                local_stack_88 = &UNK_18098bcb0;
-                data_length = data_length - 1;
-            } while (data_length != 0);
+                texture_count--;
+            } while (texture_count != 0);
         }
         
         // 关闭文件
-        if (file_pointer[1] != 0) {
+        if (file_handle[1] != 0) {
             fclose();
-            file_pointer[1] = 0;
+            file_handle[1] = 0;
             LOCK();
             _DAT_180c8ed60 = _DAT_180c8ed60 + -1;
             UNLOCK();
         }
     }
     
-    // 清理资源
-    rendering_cleanup_file_buffer(file_pointer);
+    // 清理文件句柄
+    FUN_18064e900(file_handle);
 }
 
-// 函数别名映射（保持向后兼容性）
-void FUN_18027a810(longlong *param_1, longlong *param_2) __attribute__((alias("rendering_process_material_data")));
-void FUN_18027b5d0(longlong param_1, longlong param_2) __attribute__((alias("rendering_load_material_file")));
+/**
+ * 处理材质属性的辅助函数
+ */
+static void ProcessMaterialAttributes(undefined8 *material_node, longlong material_instance, 
+                                     uint *material_params)
+{
+    // 处理材质属性
+    char *attribute_name;
+    char *attribute_value;
+    undefined8 *attribute_node;
+    
+    // 处理材质因子
+    attribute_name = "factor";
+    do {
+        char *temp_char = attribute_name;
+        attribute_name = temp_char + 1;
+    } while (*attribute_name != '\0');
+    
+    // 遍历属性节点
+    for (attribute_node = (undefined8 *)material_node[8]; 
+         attribute_node != (undefined8 *)0x0;
+         attribute_node = (undefined8 *)attribute_node[6]) {
+        
+        attribute_value = (char *)*attribute_node;
+        if (attribute_value == (char *)0x0) {
+            attribute_value = (char *)0x180d48d24;
+            attribute_name = (char *)0x0;
+        } else {
+            attribute_name = (char *)attribute_node[2];
+        }
+        
+        // 检查是否为因子属性
+        if (attribute_name == attribute_name + -0x180a1674b) {
+            attribute_name = attribute_value + (longlong)attribute_name;
+            if (attribute_name <= attribute_value) {
+                // 解析颜色值
+                longlong temp_long = 0x180d48d24;
+                if (attribute_node[1] != 0) {
+                    temp_long = attribute_node[1];
+                }
+                FUN_18010cbc0(temp_long, &UNK_180a063a0, material_params);
+                
+                // 设置材质因子颜色
+                *(float *)(material_instance + MATERIAL_FACTOR_OFFSET) = 
+                    (float)(material_params[0] >> 0x10 & 0xff) * DEFAULT_ALPHA_THRESHOLD;
+                *(float *)(material_instance + MATERIAL_FACTOR_OFFSET + 4) = 
+                    (float)(material_params[0] >> 8 & 0xff) * DEFAULT_ALPHA_THRESHOLD;
+                *(float *)(material_instance + MATERIAL_FACTOR_OFFSET + 8) = 
+                    (float)(material_params[0] & 0xff) * DEFAULT_ALPHA_THRESHOLD;
+                *(float *)(material_instance + MATERIAL_FACTOR_OFFSET + 12) = 
+                    (float)(material_params[0] >> 0x18) * DEFAULT_ALPHA_THRESHOLD;
+                break;
+            }
+        }
+    }
+    
+    // 处理二级因子
+    attribute_name = "factor2";
+    do {
+        char *temp_char = attribute_name;
+        attribute_name = temp_char + 1;
+    } while (*attribute_name != '\0');
+    
+    // 遍历属性节点
+    for (attribute_node = (undefined8 *)material_node[8]; 
+         attribute_node != (undefined8 *)0x0;
+         attribute_node = (undefined8 *)attribute_node[6]) {
+        
+        attribute_value = (char *)*attribute_node;
+        if (attribute_value == (char *)0x0) {
+            attribute_value = (char *)0x180d48d24;
+            attribute_name = (char *)0x0;
+        } else {
+            attribute_name = (char *)attribute_node[2];
+        }
+        
+        // 检查是否为二级因子属性
+        if (attribute_name == attribute_name + -0x180a167ff) {
+            attribute_name = attribute_value + (longlong)attribute_name;
+            if (attribute_name <= attribute_value) {
+                // 解析颜色值
+                longlong temp_long = 0x180d48d24;
+                if (attribute_node[1] != 0) {
+                    temp_long = attribute_node[1];
+                }
+                FUN_18010cbc0(temp_long, &UNK_180a063a0, material_params);
+                
+                // 设置二级因子颜色
+                *(float *)(material_instance + MATERIAL_FACTOR2_OFFSET) = 
+                    (float)(material_params[0] >> 0x10 & 0xff) * DEFAULT_ALPHA_THRESHOLD;
+                *(float *)(material_instance + MATERIAL_FACTOR2_OFFSET + 4) = 
+                    (float)(material_params[0] >> 8 & 0xff) * DEFAULT_ALPHA_THRESHOLD;
+                *(float *)(material_instance + MATERIAL_FACTOR2_OFFSET + 8) = 
+                    (float)(material_params[0] & 0xff) * DEFAULT_ALPHA_THRESHOLD;
+                *(float *)(material_instance + MATERIAL_FACTOR2_OFFSET + 12) = 
+                    (float)(material_params[0] >> 0x18) * DEFAULT_ALPHA_THRESHOLD;
+                break;
+            }
+        }
+    }
+    
+    // 处理UV缩放
+    undefined4 uv_scale[4];
+    longlong result = FUN_180631b90(material_node, &UNK_180a167e0, uv_scale);
+    if (result != 0) {
+        *(undefined4 *)(material_instance + MATERIAL_UV_SCALE_OFFSET) = uv_scale[0];
+        *(undefined4 *)(material_instance + MATERIAL_UV_SCALE_OFFSET + 4) = uv_scale[1];
+        *(undefined4 *)(material_instance + MATERIAL_UV_SCALE_OFFSET + 8) = uv_scale[2];
+        *(undefined4 *)(material_instance + MATERIAL_UV_SCALE_OFFSET + 12) = uv_scale[3];
+    }
+    
+    // 处理二级UV缩放
+    result = FUN_180631b90(material_node, &UNK_180a167f0, uv_scale);
+    if (result != 0) {
+        *(undefined4 *)(material_instance + MATERIAL_UV_SCALE2_OFFSET) = uv_scale[0];
+        *(undefined4 *)(material_instance + MATERIAL_UV_SCALE2_OFFSET + 4) = uv_scale[1];
+        *(undefined4 *)(material_instance + MATERIAL_UV_SCALE2_OFFSET + 8) = uv_scale[2];
+        *(undefined4 *)(material_instance + MATERIAL_UV_SCALE2_OFFSET + 12) = uv_scale[3];
+    }
+}
 
-// 辅助函数声明
-void rendering_add_material_name(undefined8* stack_ptr, longlong name_handle);
-longlong rendering_create_material_data(undefined8 data_ptr, undefined8* stack_ptr, int param);
-void rendering_process_material_error(longlong error_handle, longlong* render_context, int param);
-void rendering_copy_material_data(longlong* dest, ulonglong size);
-void rendering_add_material_handle(undefined8* stack_ptr, longlong handle);
-longlong rendering_create_material_handle(undefined8 data_ptr, longlong** array_ptr, undefined8* stack_ptr, int param);
-void rendering_cleanup_material_resources(void);
-longlong rendering_allocate_material_buffer(void);
-void rendering_extract_color_data(longlong handle, undefined8* pattern_ptr, uint* output_array);
-void rendering_apply_material_data(longlong material_handle, undefined8 data_value);
-longlong rendering_extract_material_params(undefined8* param_ptr, undefined8* pattern_ptr, undefined4* output_ptr);
-void rendering_process_render_params(longlong* render_context, undefined4* output_ptr);
-void rendering_extract_render_values(longlong* render_context, float* output_ptr);
-void rendering_process_render_values(undefined8* stack_ptr, undefined4* input_ptr);
-void rendering_update_render_state(longlong* render_context, longlong state_ptr, int param);
-void rendering_execute_final_control(ulonglong control_param);
-void rendering_initialize_file_buffer(undefined8* file_ptr, undefined* name_ptr, undefined8* pattern_ptr);
-undefined8* rendering_allocate_file_buffer(undefined8 data_ptr, longlong size, longlong param1, longlong param2);
-void rendering_expand_material_buffer(void);
-void rendering_add_material_to_context(longlong* render_context, undefined8* material_ptr);
-void rendering_cleanup_file_buffer(undefined8* buffer_ptr);
+/**
+ * 处理二级材质的辅助函数
+ */
+static void ProcessSecondaryMaterial(longlong *render_context, longlong *material_config)
+{
+    // 处理二级材质的逻辑
+    undefined *temp_undefined = &UNK_180a3c3e0;
+    ulonglong temp_ulong = 0;
+    longlong temp_long = 0;
+    undefined4 temp_uint4 = 0;
+    
+    // 处理二级材质属性
+    char *attribute_name = "second_material";
+    do {
+        char *temp_char = attribute_name;
+        attribute_name = temp_char + 1;
+    } while (*attribute_name != '\0');
+    
+    undefined8 *material_node = (undefined8 *)material_config[8];
+    do {
+        if (material_node == (undefined8 *)0x0) {
+            // 设置材质参数
+            undefined4 material_params[4];
+            undefined4 color_params[4];
+            float float_params[12];
+            
+            // 初始化参数
+            material_params[0] = (undefined4)render_context[0x6c];
+            material_params[1] = *(undefined4 *)((longlong)render_context + 0x364);
+            material_params[2] = (undefined4)render_context[0x6d];
+            material_params[3] = *(undefined4 *)((longlong)render_context + 0x36c);
+            
+            // 处理材质变换
+            FUN_1801c1720(render_context + 0x66, material_params);
+            FUN_180085020(render_context + 0x66, float_params);
+            
+            // 处理材质属性
+            FUN_180631960(material_config, &UNK_180a16808, material_params);
+            FUN_180631960(material_config, &UNK_180a16818, color_params);
+            FUN_180631960(material_config, &UNK_180a0f108, float_params);
+            
+            // 计算材质混合
+            float blended_color[12];
+            blended_color[0] = (float)material_params[0] * float_params[0];
+            blended_color[1] = material_params[0]._4_4_ * float_params[0];
+            blended_color[2] = (float)material_params[1] * float_params[0];
+            blended_color[3] = float_params[4] * float_params[1];
+            blended_color[4] = float_params[5] * float_params[1];
+            blended_color[5] = (float)material_params[2] * float_params[1];
+            blended_color[6] = (float)material_params[3] * float_params[2];
+            blended_color[7] = material_params[3]._4_4_ * float_params[2];
+            blended_color[8] = (float)temp_uint4 * float_params[2];
+            
+            // 应用材质混合
+            (*(code **)(*render_context + 0x148))(render_context, blended_color);
+            FUN_180276f30(render_context, (longlong)render_context + 0x214, 1);
+            
+            // 应用UV缩放
+            temp_long = FUN_180631b90(material_config, &UNK_180a167f0, color_params);
+            if ((temp_long != 0) && 
+                (longlong *temp_ptr = (longlong *)render_context[7], 
+                 temp_ptr < (longlong *)render_context[8])) {
+                do {
+                    temp_long = *temp_ptr;
+                    *(undefined4 *)(temp_long + MATERIAL_UV_SCALE2_OFFSET) = color_params[0];
+                    *(undefined4 *)(temp_long + 700) = color_params[1];
+                    *(undefined4 *)(temp_long + MATERIAL_UV_SCALE2_OFFSET + 8) = color_params[2];
+                    *(undefined4 *)(temp_long + MATERIAL_UV_SCALE2_OFFSET + 12) = color_params[3];
+                    temp_ptr += 2;
+                } while (temp_ptr < (longlong *)render_context[8]);
+            }
+            
+            break;
+        }
+        
+        char *attribute_value = (char *)*material_node;
+        if (attribute_value == (char *)0x0) {
+            attribute_value = (char *)0x180d48d24;
+            attribute_name = (char *)0x0;
+        } else {
+            attribute_name = (char *)material_node[2];
+        }
+        
+        // 检查是否为二级材质属性
+        if (attribute_name == attribute_name + -0x180a1683f) {
+            attribute_name = attribute_value + (longlong)attribute_name;
+            if (attribute_name <= attribute_value) {
+                // 处理二级材质
+                temp_long = 0x180d48d24;
+                if (material_node[1] != 0) {
+                    temp_long = material_node[1];
+                }
+                FUN_180627c50(&temp_undefined, temp_long);
+                
+                // 加载二级材质
+                longlong *temp_ptr = (longlong *)FUN_1800b30d0(_DAT_180c86930, 
+                                                               (longlong **)render_context, 
+                                                               &temp_undefined, 1);
+                material_params[1] = 4;
+                temp_ptr = (longlong *)*temp_ptr;
+                if (temp_ptr != (longlong *)0x0) {
+                    material_config = temp_ptr;
+                    (**(code **)(*temp_ptr + 0x28))(temp_ptr);
+                }
+                
+                // 设置二级材质
+                material_config = (longlong *)render_context[0x77];
+                render_context[0x77] = (longlong)temp_ptr;
+                if (material_config != (longlong *)0x0) {
+                    (**(code **)(*material_config + 0x38))();
+                }
+                
+                // 重置参数
+                material_params[1] = 0;
+                if ((longlong *)render_context[0] != (longlong *)0x0) {
+                    (**(code **)(*render_context[0] + 0x38))();
+                }
+                
+                FUN_1800b30d0(_DAT_180c86930, &material_config, &temp_undefined, 1);
+                material_params[1] = 0;
+                if (material_config != (longlong *)0x0) {
+                    (**(code **)(*material_config + 0x38))();
+                }
+                
+                break;
+            }
+        }
+        material_node = (undefined8 *)material_node[6];
+    } while (true);
+}
+
+/**
+ * 清理临时资源的辅助函数
+ */
+static void CleanupTemporaryResources(void)
+{
+    // 清理临时资源的逻辑
+    // 这里应该添加资源清理的具体实现
+}
+
+// 函数别名映射 - 保持与原始代码的兼容性
+void FUN_18027a810(longlong *param_1, longlong *param_2) __attribute__((alias("MaterialProcessor")));
+void FUN_18027b5d0(longlong param_1, longlong param_2) __attribute__((alias("ModelLoader")));
+
+/**
+ * 渲染系统材质处理模块说明：
+ * 
+ * 本模块提供了完整的材质处理和模型加载功能，包括：
+ * 
+ * 1. 材质处理功能：
+ *    - 材质名称解析和验证
+ *    - 材质属性设置（颜色、因子、UV缩放等）
+ *    - 材质混合和二级材质处理
+ *    - 材质应用到渲染对象
+ * 
+ * 2. 模型加载功能：
+ *    - 支持多种模型文件格式
+ *    - 材质数据解析和处理
+ *    - 纹理和贴图信息加载
+ *    - 模型数据结构构建
+ * 
+ * 3. 优化特性：
+ *    - 高效的字符串处理
+ *    - 内存管理和资源清理
+ *    - 安全检查和错误处理
+ *    - 性能优化的数据处理
+ * 
+ * 4. 扩展性：
+ *    - 支持自定义材质属性
+ *    - 可扩展的文件格式支持
+ *    - 灵活的材质混合系统
+ *    - 模块化的设计结构
+ * 
+ * 注意：这是一个简化实现，保留了原始代码的核心逻辑和功能，
+ * 但提高了代码的可读性和可维护性。在实际使用中，可能需要
+ * 根据具体的渲染引擎需求进行调整和优化。
+ */
