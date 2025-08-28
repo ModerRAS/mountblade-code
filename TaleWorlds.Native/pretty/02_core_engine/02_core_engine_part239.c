@@ -56,9 +56,20 @@ void 处理复杂数据结构(undefined8 上下文参数, undefined8 数据输�
     // 建议进一步分析此函数的具体用途和优化方案
 }
 
-// 函数: 清理数据结构
-// 此函数用于清理和重置数据结构
-void cleanup_data_structure(longlong *param_1)
+/**
+ * 清理和重置数据结构
+ * 
+ * 此函数用于清理和重置数据结构，释放相关资源。
+ * 
+ * @param 数据结构指针       指向要清理的数据结构
+ * 
+ * 主要功能:
+ * - 遍历数据结构中的所有元素
+ * - 释放分配的内存和资源
+ * - 重置状态标志和计数器
+ * - 确保数据结构处于安全状态
+ */
+void 清理数据结构(longlong *数据结构指针)
 {
     // 函数实现包含50多行代码
     // 主要功能包括：
@@ -69,9 +80,24 @@ void cleanup_data_structure(longlong *param_1)
     // 原始代码位置: src/02_core_engine_part239.c:229-280
 }
 
-// 函数: 处理浮点数数据
-// 此函数处理浮点数数据的插值和计算
-void process_float_data(longlong param_1, longlong param_2, int *param_3, longlong param_4, float param_5)
+/**
+ * 处理浮点数数据插值
+ * 
+ * 此函数处理浮点数数据的插值计算和权重处理。
+ * 
+ * @param 数据源1          第一个数据源
+ * @param 数据源2          第二个数据源
+ * @param 结果指针         存储计算结果的指针
+ * @param 插值参数         插值计算参数
+ * @param 权重因子         插值权重因子
+ * 
+ * 主要功能:
+ * - 执行浮点数插值计算
+ * - 验证数据范围和有效性
+ * - 计算权重和插值系数
+ * - 存储计算结果到指定位置
+ */
+void 处理浮点数数据插值(longlong 数据源1, longlong 数据源2, int *结果指针, longlong 插值参数, float 权重因子)
 {
     // 函数实现包含140多行代码
     // 主要功能包括：
@@ -83,9 +109,21 @@ void process_float_data(longlong param_1, longlong param_2, int *param_3, longlo
     // 原始代码位置: src/02_core_engine_part239.c:286-428
 }
 
-// 函数: 处理浮点数数组（版本1）
-// 此函数处理浮点数数组的操作和计算
-void process_float_array_v1(undefined8 param_1, float param_2, float param_3)
+/**
+ * 处理浮点数数组（版本1）
+ * 
+ * 此函数处理浮点数数组的操作和计算，第一个实现版本。
+ * 
+ * @param 数组指针         指向浮点数数组
+ * @param 阈值1            第一个比较阈值
+ * @param 阈值2            第二个比较阈值
+ * 
+ * 主要功能:
+ * - 处理浮点数数组元素
+ * - 执行阈值比较操作
+ * - 存储处理结果
+ */
+void 处理浮点数数组版本1(undefined8 数组指针, float 阈值1, float 阈值2)
 {
     // 函数实现包含100多行代码
     // 主要功能包括：
@@ -96,9 +134,22 @@ void process_float_array_v1(undefined8 param_1, float param_2, float param_3)
     // 原始代码位置: src/02_core_engine_part239.c:434-534
 }
 
-// 函数: 处理浮点数数组（版本2）
-// 此函数处理浮点数数组的另一种实现
-void process_float_array_v2(undefined8 param_1, undefined8 param_2, float param_3, float param_4)
+/**
+ * 处理浮点数数组（版本2）
+ * 
+ * 此函数处理浮点数数组的操作和计算，第二个实现版本。
+ * 
+ * @param 数组指针1        第一个数组指针
+ * @param 数组指针2        第二个数组指针
+ * @param 阈值1            第一个比较阈值
+ * @param 阈值2            第二个比较阈值
+ * 
+ * 主要功能:
+ * - 处理两个浮点数数组
+ * - 执行阈值比较操作
+ * - 存储处理结果
+ */
+void 处理浮点数数组版本2(undefined8 数组指针1, undefined8 数组指针2, float 阈值1, float 阈值2)
 {
     // 函数实现包含100多行代码
     // 主要功能包括：
@@ -109,9 +160,17 @@ void process_float_array_v2(undefined8 param_1, undefined8 param_2, float param_
     // 原始代码位置: src/02_core_engine_part239.c:540-636
 }
 
-// 函数: 处理浮点数数组（版本3）
-// 此函数处理浮点数数组的第三种实现
-void process_float_array_v3(void)
+/**
+ * 处理浮点数数组（版本3）
+ * 
+ * 此函数处理浮点数数组的操作和计算，第三个实现版本。
+ * 
+ * 主要功能:
+ * - 处理浮点数数组元素
+ * - 执行阈值比较操作
+ * - 存储处理结果
+ */
+void 处理浮点数数组版本3(void)
 {
     // 函数实现包含60多行代码
     // 主要功能包括：
@@ -122,17 +181,30 @@ void process_float_array_v3(void)
     // 原始代码位置: src/02_core_engine_part239.c:642-701
 }
 
-// 函数: 空函数1
-// 此函数为空实现，可能用于占位
-void empty_function_1(void)
+/**
+ * 空函数1
+ * 
+ * 此函数为空实现，可能用于占位或调试目的。
+ */
+void 空函数1(void)
 {
     // 空实现
     // 原始代码位置: src/02_core_engine_part239.c:707-712
 }
 
-// 函数: 处理数据结构（版本1）
-// 此函数处理数据结构的特定操作
-void process_data_structure_v1(longlong *param_1)
+/**
+ * 处理数据结构（版本1）
+ * 
+ * 此函数处理数据结构的特定操作，第一个实现版本。
+ * 
+ * @param 数据结构指针     指向要处理的数据结构
+ * 
+ * 主要功能:
+ * - 遍历数据结构元素
+ * - 检查状态和条件
+ * - 执行特定的数据操作
+ */
+void 处理数据结构版本1(longlong *数据结构指针)
 {
     // 函数实现包含50多行代码
     // 主要功能包括：
@@ -143,9 +215,17 @@ void process_data_structure_v1(longlong *param_1)
     // 原始代码位置: src/02_core_engine_part239.c:718-762
 }
 
-// 函数: 处理数据结构（版本2）
-// 此函数处理数据结构的另一种实现
-void process_data_structure_v2(void)
+/**
+ * 处理数据结构（版本2）
+ * 
+ * 此函数处理数据结构的特定操作，第二个实现版本。
+ * 
+ * 主要功能:
+ * - 遍历数据结构元素
+ * - 检查状态和条件
+ * - 执行特定的数据操作
+ */
+void 处理数据结构版本2(void)
 {
     // 函数实现包含40多行代码
     // 主要功能包括：
@@ -156,17 +236,31 @@ void process_data_structure_v2(void)
     // 原始代码位置: src/02_core_engine_part239.c:768-808
 }
 
-// 函数: 空函数2
-// 此函数为空实现，可能用于占位
-void empty_function_2(void)
+/**
+ * 空函数2
+ * 
+ * 此函数为空实现，可能用于占位或调试目的。
+ */
+void 空函数2(void)
 {
     // 空实现
     // 原始代码位置: src/02_core_engine_part239.c:814-819
 }
 
-// 函数: 初始化数据结构
-// 此函数用于初始化数据结构
-longlong initialize_data_structure(longlong param_1)
+/**
+ * 初始化数据结构
+ * 
+ * 此函数用于初始化数据结构，设置初始值。
+ * 
+ * @param 初始参数         初始化所需的参数
+ * @return 返回初始化后的数据结构指针
+ * 
+ * 主要功能:
+ * - 设置数据结构的初始值
+ * - 初始化内部指针和引用
+ * - 返回初始化完成的结构
+ */
+longlong 初始化数据结构(longlong 初始参数)
 {
     // 函数实现包含10多行代码
     // 主要功能包括：
@@ -175,12 +269,24 @@ longlong initialize_data_structure(longlong param_1)
     // 3. 返回初始化后的结构
     
     // 原始代码位置: src/02_core_engine_part239.c:823-834
-    return param_1;
+    return 初始参数;
 }
 
-// 函数: 处理未定义数据
-// 此函数处理未定义类型的数据操作
-void process_undefined_data(undefined8 *param_1, longlong param_2, undefined8 param_3)
+/**
+ * 处理未定义数据类型
+ * 
+ * 此函数处理未定义类型的数据操作，主要用于低级数据处理。
+ * 
+ * @param 数据指针         指向要处理的数据
+ * @param 大小参数         数据大小参数
+ * @param 操作参数         操作相关的参数
+ * 
+ * 主要功能:
+ * - 执行内存分配操作
+ * - 进行数据比较和验证
+ * - 处理链表操作和节点管理
+ */
+void 处理未定义数据(undefined8 *数据指针, longlong 大小参数, undefined8 操作参数)
 {
     // 函数实现包含60多行代码
     // 主要功能包括：
@@ -191,9 +297,22 @@ void process_undefined_data(undefined8 *param_1, longlong param_2, undefined8 pa
     // 原始代码位置: src/02_core_engine_part239.c:842-900
 }
 
-// 函数: 处理数据引用
-// 此函数处理数据引用和清理操作
-void process_data_reference(longlong param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4)
+/**
+ * 处理数据引用和清理
+ * 
+ * 此函数处理数据引用的清理和资源释放操作。
+ * 
+ * @param 数据参数1        第一个数据参数
+ * @param 引用参数1        第一个引用参数
+ * @param 引用参数2        第二个引用参数
+ * @param 引用参数3        第三个引用参数
+ * 
+ * 主要功能:
+ * - 处理数据引用关系
+ * - 清理相关的内存资源
+ * - 释放分配的资源
+ */
+void 处理数据引用(longlong 数据参数1, undefined8 引用参数1, undefined8 引用参数2, undefined8 引用参数3)
 {
     // 函数实现包含10多行代码
     // 主要功能包括：
