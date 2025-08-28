@@ -240,19 +240,22 @@ static uint8_t utilities_advanced_data_processor_type1(void)
 static uint8_t utilities_advanced_data_processor_type2(void)
 {
     // 实现字符串和文本数据的复杂操作
-    return FUN_180941920;
+    // 原始实现：FUN_180941920
+    return SystemDataProcessorType2();
 }
 
 static uint8_t utilities_advanced_data_processor_type3(void)
 {
     // 实现数组和容器的优化操作
-    return FUN_1809419e0;
+    // 原始实现：FUN_1809419e0
+    return SystemDataProcessorType3();
 }
 
 static uint8_t utilities_advanced_data_processor_type4(void)
 {
     // 实现内存管理和资源分配操作
-    return FUN_180941a30;
+    // 原始实现：FUN_180941a30
+    return SystemDataProcessorType4();
 }
 
 static uint8_t utilities_advanced_data_processor_type5(void)
