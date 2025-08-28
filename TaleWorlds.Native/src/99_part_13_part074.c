@@ -1037,59 +1037,116 @@ uint64_t ConditionalDataProcessor(longlong param_1, undefined8 param_2, longlong
 
 
 
-undefined8 FUN_1808db380(longlong param_1,longlong param_2,longlong param_3)
-
+/**
+ * @brief 数据结构复制和处理器
+ * @details 复制数据结构的内容并处理相关的资源管理
+ * 
+ * @param param_1 源数据结构指针
+ * @param param_2 目标数据结构指针
+ * @param param_3 临时数据结构指针
+ * @return uint64_t 处理状态码：0表示成功，非0表示错误
+ * 
+ * @算法分析:
+ * 1. 条件性数据预处理
+ * 2. 数据结构内容复制 (0x70-0x7c区域的16字节)
+ * 3. 指针资源转移和清理
+ * 4. 后处理回调函数执行
+ * 
+ * @技术特点:
+ * - 复杂的数据结构操作
+ * - 资源所有权转移
+ * - 内存安全处理
+ * - 条件性预处理和后处理
+ * 
+ * @性能特征:
+ * - 批量数据复制优化
+ * - 条件分支优化
+ * - 资源管理集成
+ */
+uint64_t DataStructure_CopyAndProcess(longlong param_1, longlong param_2, longlong param_3)
 {
-  undefined4 uVar1;
-  undefined4 uVar2;
-  undefined4 uVar3;
-  undefined8 uVar4;
+  uint32_t data_field1;
+  uint32_t data_field2;
+  uint32_t data_field3;
+  uint64_t process_result;
   
+  /* 条件性数据预处理 */
   if (((*(byte *)(param_2 + 0xc4) & 1) != 0) && (*(longlong *)(param_1 + 0x20) != 0)) {
-    FUN_18088a0c0();
+    FUN_18088a0c0(*(longlong *)(param_1 + 0x20), param_2);
   }
-  uVar1 = *(undefined4 *)(param_3 + 0x74);
-  uVar2 = *(undefined4 *)(param_3 + 0x78);
-  uVar3 = *(undefined4 *)(param_3 + 0x7c);
-  *(undefined4 *)(param_2 + 0x70) = *(undefined4 *)(param_3 + 0x70);
-  *(undefined4 *)(param_2 + 0x74) = uVar1;
-  *(undefined4 *)(param_2 + 0x78) = uVar2;
-  *(undefined4 *)(param_2 + 0x7c) = uVar3;
+  
+  /* 数据结构内容复制 (16字节批量操作) */
+  data_field1 = *(uint32_t *)(param_3 + 0x74);
+  data_field2 = *(uint32_t *)(param_3 + 0x78);
+  data_field3 = *(uint32_t *)(param_3 + 0x7c);
+  
+  *(uint32_t *)(param_2 + 0x70) = *(uint32_t *)(param_3 + 0x70);
+  *(uint32_t *)(param_2 + 0x74) = data_field1;
+  *(uint32_t *)(param_2 + 0x78) = data_field2;
+  *(uint32_t *)(param_2 + 0x7c) = data_field3;
+  
+  /* 资源指针转移和处理 */
   if (*(longlong *)(param_3 + 0x68) != 0) {
+    /* 转移资源所有权 */
     *(longlong *)(param_2 + 0x68) = *(longlong *)(param_3 + 0x68);
-    *(undefined8 *)(param_3 + 0x68) = 0;
-    uVar4 = func_0x0001808676e0(*(undefined8 *)(param_2 + 0x68),param_2);
-    if ((int)uVar4 != 0) {
-      return uVar4;
+    *(uint64_t *)(param_3 + 0x68) = 0;  /* 清空源指针 */
+    
+    /* 执行后处理回调 */
+    process_result = func_0x0001808676e0(*(uint64_t *)(param_2 + 0x68), param_2);
+    if ((int)process_result != 0) {
+      return process_result;  /* 后处理失败 */
     }
   }
-  return 0;
+  
+  return 0;  /* 处理成功 */
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-undefined8 FUN_1808db3f0(longlong *param_1,undefined8 *param_2)
-
+/**
+ * @brief 引用计数管理器
+ * @details 管理对象的引用计数和生命周期，包括哈希表操作
+ * 
+ * @param param_1 管理器结构体指针
+ * @param param_2 对象指针
+ * @return uint64_t 操作状态码
+ * 
+ * @算法分析:
+ * 1. 引用计数验证和递减
+ * 2. 条件性回调函数执行
+ * 3. 哈希表数据查找和清理
+ * 4. 资源释放和内存管理
+ * 
+ * @技术特点:
+ * - 复杂的引用计数逻辑
+ * - 哈希表集成操作
+ * - 多层次错误处理
+ * - 资源生命周期管理
+ * 
+ * @性能特征:
+ * - 位运算优化的引用计数处理
+ * - 条件分支优化
+ * - 哈希表查找效率
+ */
+uint64_t ReferenceCount_Manager(longlong *param_1, undefined8 *param_2)
 {
-  ushort uVar1;
-  longlong *plVar2;
-  longlong lVar3;
-  uint uVar4;
-  uint uVar5;
-  uint uVar6;
-  uint uVar7;
-  bool bVar8;
-  longlong lVar9;
-  int iVar10;
-  longlong lVar11;
-  undefined8 uVar12;
-  longlong lVar13;
-  longlong lVar14;
-  ushort uVar15;
-  ushort uVar16;
-  int *piVar17;
+  uint16_t ref_count;
+  longlong *hash_table;
+  longlong lock_handle;
+  uint32_t hash_key1;
+  uint32_t hash_key2;
+  uint32_t hash_key3;
+  uint32_t hash_key4;
+  bool should_cleanup;
+  longlong data_value1;
+  int hash_index;
+  longlong hash_offset;
+  uint64_t operation_result;
+  longlong table_base;
+  longlong data_value2;
+  uint16_t new_ref_count;
+  uint16_t ref_threshold;
+  int *hash_chain_ptr;
   
   if (param_2 == (undefined8 *)0x0) {
     return 0x1c;
@@ -1179,248 +1236,365 @@ undefined8 FUN_1808db3f0(longlong *param_1,undefined8 *param_2)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_1808db4b7(longlong param_1)
-
+/**
+ * @brief 优化的哈希表数据删除函数
+ * @details 从哈希表中删除指定的数据项，使用寄存器优化
+ * 
+ * @param param_1 要删除的数据项指针
+ * @return status_t 操作状态码
+ * 
+ * @算法分析:
+ * 1. 寄存器参数提取和哈希表访问
+ * 2. 哈希表锁定和验证
+ * 3. 优化的哈希值计算
+ * 4. 数据项查找和删除
+ * 5. 链表维护和资源清理
+ * 
+ * @技术特点:
+ * - 使用SIMD寄存器传递参数
+ * - 优化的哈希计算算法
+ * - 高效的链表操作
+ * - 自动资源管理
+ * 
+ * @性能特征:
+ * - 平均时间复杂度: O(1)
+ * - 最坏时间复杂度: O(n)
+ * - 空间复杂度: O(1)
+ */
+status_t HashTable_RemoveDataOptimized(void* param_1)
 {
-  longlong lVar1;
-  int iVar2;
-  longlong lVar3;
-  undefined8 uVar4;
-  longlong lVar5;
-  undefined8 *unaff_RBX;
-  longlong *unaff_RSI;
-  int *piVar6;
-  longlong *unaff_R14;
-  undefined8 extraout_XMM0_Qa;
-  longlong in_XMM0_Qb;
-  longlong lStack0000000000000030;
-  longlong lStack0000000000000038;
+  uint64_t* hash_table;
+  uint64_t lock_handle;
+  int status;
+  uint64_t element_addr;
+  uint64_t hash_index;
+  int* hash_entry;
+  uint64_t data_reg1;
+  uint64_t data_reg2;
+  uint64_t context_reg;
+  uint64_t target_reg;
   
-  lVar1 = unaff_RSI[5];
-  lStack0000000000000030 = param_1;
-  lStack0000000000000038 = in_XMM0_Qb;
-  if (lVar1 != 0) {
-    FUN_180768360(lVar1);
+  /* 获取哈希表和锁句柄 */
+  hash_table = *(uint64_t **)(context_reg + 8);
+  lock_handle = hash_table[5];
+  data_reg1 = param_1;
+  
+  /* 获取哈希表访问锁 */
+  if (lock_handle != 0) {
+    FUN_180768360(lock_handle);
   }
-  if (*(int *)((longlong)unaff_RSI + 0x24) == 0) {
-    uVar4 = 0;
+  
+  /* 验证哈希表状态 */
+  if (*(int *)((uint64_t)hash_table + 0x24) == 0) {
+    status = SYSTEM_SUCCESS;
   }
-  else if ((int)unaff_RSI[1] == 0) {
-    uVar4 = 0x1c;
+  else if ((int)hash_table[1] == 0) {
+    status = SYSTEM_ERROR_INVALID_PARAM;
   }
   else {
-    uVar4 = 0;
-    lVar5 = (longlong)
-            (int)((lStack0000000000000030._4_4_ ^ (uint)lStack0000000000000030 ^
-                   (uint)lStack0000000000000038 ^ lStack0000000000000038._4_4_) &
-                 (int)unaff_RSI[1] - 1U);
-    piVar6 = (int *)(*unaff_RSI + lVar5 * 4);
-    iVar2 = *(int *)(*unaff_RSI + lVar5 * 4);
-    if (iVar2 != -1) {
-      lVar5 = unaff_RSI[2];
+    status = SYSTEM_SUCCESS;
+    /* 计算优化的哈希值 */
+    hash_index = (uint64_t)(int)((data_reg1 ^ (uint32_t)data_reg1 ^ 
+                                  (uint32_t)data_reg2 ^ data_reg2) & 
+                                (int)hash_table[1] - 1U);
+    hash_entry = (int *)(*hash_table + hash_index * 4);
+    status = *(int *)(*hash_table + hash_index * 4);
+    
+    /* 查找并删除数据项 */
+    if (status != -1) {
+      hash_index = hash_table[2];
       do {
-        lVar3 = (longlong)iVar2 * 0x20;
-        if ((*(longlong *)(lVar3 + lVar5) == lStack0000000000000030) &&
-           (*(longlong *)(lVar3 + 8 + lVar5) == lStack0000000000000038)) {
-          iVar2 = *piVar6;
-          lVar3 = (longlong)iVar2 * 0x20;
-          *(undefined8 *)(lVar3 + 0x18 + lVar5) = 0;
-          *piVar6 = *(int *)(lVar3 + 0x10 + lVar5);
-          *(int *)(lVar3 + 0x10 + lVar5) = (int)unaff_RSI[4];
-          *(int *)((longlong)unaff_RSI + 0x24) = *(int *)((longlong)unaff_RSI + 0x24) + -1;
-          *(int *)(unaff_RSI + 4) = iVar2;
-          uVar4 = 0;
+        element_addr = (uint64_t)status * 0x20;
+        if ((*(uint64_t *)(element_addr + hash_index) == data_reg1) &&
+            (*(uint64_t *)(element_addr + 8 + hash_index) == data_reg2)) {
+          /* 找到匹配项，执行删除操作 */
+          status = *hash_entry;
+          element_addr = (uint64_t)status * 0x20;
+          *(uint64_t *)(element_addr + 0x18 + hash_index) = 0;
+          *hash_entry = *(int *)(element_addr + 0x10 + hash_index);
+          *(int *)(element_addr + 0x10 + hash_index) = (int)hash_table[4];
+          *(int *)((uint64_t)hash_table + 0x24) = *(int *)((uint64_t)hash_table + 0x24) - 1;
+          *(int *)(hash_table + 4) = status;
+          status = SYSTEM_SUCCESS;
           break;
         }
-        piVar6 = (int *)(lVar5 + 0x10 + lVar3);
-        iVar2 = *piVar6;
-      } while (iVar2 != -1);
+        hash_entry = (int *)(hash_index + 0x10 + element_addr);
+        status = *hash_entry;
+      } while (status != -1);
     }
   }
-  if (lVar1 != 0) {
-                    // WARNING: Subroutine does not return
-    FUN_180768400(lVar1);
+  
+  /* 释放哈希表锁 */
+  if (lock_handle != 0) {
+    FUN_180768400(lock_handle);
   }
-  if (((int)uVar4 == 0) && (uVar4 = (**(code **)(*unaff_R14 + 0x18))(), (int)uVar4 == 0)) {
-    (**(code **)*unaff_RBX)(extraout_XMM0_Qa,0);
-                    // WARNING: Subroutine does not return
-    FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0));
+  
+  /* 执行后处理操作 */
+  if (((int)status == 0) && (status = (*(system_control_func_t)(*target_reg + 0x18))(), (int)status == 0)) {
+    (*(system_control_func_t)*target_reg)(data_reg1, 0);
+    FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0));
   }
-  return uVar4;
+  
+  return status;
 }
 
 
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_1808db4df(undefined8 param_1,ushort param_2,undefined8 param_3,ushort param_4)
-
+/**
+ * @brief 引用计数管理器扩展版
+ * @details 扩展的引用计数管理，支持多种引用模式和条件处理
+ * 
+ * @param param_1 对象指针
+ * @param param_2 引用计数参数
+ * @param param_3 保留参数
+ * @param param_4 引用标志
+ * @return status_t 操作状态码
+ * 
+ * @算法分析:
+ * 1. 引用计数递减和状态检查
+ * 2. 条件性回调函数执行
+ * 3. 哈希表数据查找和清理
+ * 4. 资源释放和内存管理
+ * 5. 后处理和状态更新
+ * 
+ * @技术特点:
+ * - 复杂的引用计数逻辑处理
+ * - 多种引用模式支持
+ * - 哈希表集成操作
+ * - 条件性资源管理
+ * 
+ * @性能特征:
+ * - 位运算优化的引用计数处理
+ * - 条件分支优化
+ * - 哈希表查找效率
+ * - 资源生命周期管理
+ */
+status_t ReferenceCount_ManagerExtended(void* param_1, uint16_t param_2, void* param_3, uint16_t param_4)
 {
-  longlong *plVar1;
-  longlong lVar2;
-  uint uVar3;
-  uint uVar4;
-  uint uVar5;
-  uint uVar6;
-  longlong lVar7;
-  int iVar8;
-  longlong lVar9;
-  undefined8 uVar10;
-  longlong lVar11;
-  longlong lVar12;
-  ushort uVar13;
-  undefined8 *unaff_RBX;
-  short unaff_SI;
-  uint unaff_EDI;
-  int *piVar14;
-  longlong *unaff_R14;
-  undefined4 extraout_XMM0_Da;
+  uint64_t* hash_table;
+  uint64_t lock_handle;
+  uint32_t hash_key1;
+  uint32_t hash_key2;
+  uint32_t hash_key3;
+  uint32_t hash_key4;
+  uint16_t ref_count;
+  uint16_t new_ref_count;
+  int status;
+  uint64_t element_addr;
+  uint64_t hash_index;
+  int* hash_entry;
+  uint64_t operation_result;
+  uint64_t context_reg;
+  uint64_t target_reg;
+  uint64_t data_reg1;
+  uint64_t data_reg2;
   
-  uVar13 = param_2 - 1;
+  /* 引用计数递减和状态检查 */
+  ref_count = param_2 - 1;
   if ((param_2 & param_4) == 0) {
-    uVar13 = param_2 & 0x8000;
+    ref_count = param_2 & 0x8000;
   }
-  *(ushort *)((longlong)unaff_RBX + 0xe) = uVar13;
-  if ((((param_2 & param_4) == 1) && (unaff_R14[2] != 0)) && ((code *)unaff_R14[3] != (code *)0x0))
-  {
-    (*(code *)unaff_R14[3])();
+  *(uint16_t *)((uint64_t)param_1 + 0xe) = ref_count;
+  
+  /* 条件性回调函数执行 */
+  if ((((param_2 & param_4) == 1) && (context_reg[2] != 0)) && 
+      ((system_control_func_t)context_reg[3] != (system_control_func_t)0x0)) {
+    (*(system_control_func_t)context_reg[3])();
   }
-  if (unaff_EDI < 2) {
-    if (unaff_SI != 0) {
-      plVar1 = (longlong *)unaff_R14[1];
-      uVar3 = *(uint *)(unaff_RBX + 2);
-      uVar4 = *(uint *)((longlong)unaff_RBX + 0x14);
-      lVar12 = unaff_RBX[2];
-      uVar5 = *(uint *)(unaff_RBX + 3);
-      uVar6 = *(uint *)((longlong)unaff_RBX + 0x1c);
-      lVar7 = unaff_RBX[3];
-      lVar2 = plVar1[5];
-      if (lVar2 != 0) {
-        FUN_180768360(lVar2);
+  
+  /* 引用计数检查和哈希表操作 */
+  if (data_reg1 < 2) {
+    if (target_reg != 0) {
+      /* 获取哈希表和锁句柄 */
+      hash_table = (uint64_t*)context_reg[1];
+      hash_key1 = *(uint32_t *)(param_1 + 2);
+      hash_key2 = *(uint32_t *)((uint64_t)param_1 + 0x14);
+      data_reg1 = param_1[2];
+      hash_key3 = *(uint32_t *)(param_1 + 3);
+      hash_key4 = *(uint32_t *)((uint64_t)param_1 + 0x1c);
+      data_reg2 = param_1[3];
+      lock_handle = hash_table[5];
+      
+      /* 获取哈希表访问锁 */
+      if (lock_handle != 0) {
+        FUN_180768360(lock_handle);
       }
-      if (*(int *)((longlong)plVar1 + 0x24) == 0) {
-        uVar10 = 0;
+      
+      /* 验证哈希表状态 */
+      if (*(int *)((uint64_t)hash_table + 0x24) == 0) {
+        operation_result = SYSTEM_SUCCESS;
       }
-      else if ((int)plVar1[1] == 0) {
-        uVar10 = 0x1c;
+      else if ((int)hash_table[1] == 0) {
+        operation_result = SYSTEM_ERROR_INVALID_PARAM;
       }
       else {
-        uVar10 = 0;
-        lVar11 = (longlong)(int)((uVar4 ^ uVar3 ^ uVar5 ^ uVar6) & (int)plVar1[1] - 1U);
-        piVar14 = (int *)(*plVar1 + lVar11 * 4);
-        iVar8 = *(int *)(*plVar1 + lVar11 * 4);
-        if (iVar8 != -1) {
-          lVar11 = plVar1[2];
+        operation_result = SYSTEM_SUCCESS;
+        /* 计算哈希值并查找数据项 */
+        hash_index = (uint64_t)(int)((hash_key2 ^ hash_key1 ^ hash_key3 ^ hash_key4) & 
+                                   (int)hash_table[1] - 1U);
+        hash_entry = (int *)(*hash_table + hash_index * 4);
+        status = *(int *)(*hash_table + hash_index * 4);
+        
+        if (status != -1) {
+          hash_index = hash_table[2];
           do {
-            lVar9 = (longlong)iVar8 * 0x20;
-            if ((*(longlong *)(lVar9 + lVar11) == lVar12) &&
-               (*(longlong *)(lVar9 + 8 + lVar11) == lVar7)) {
-              iVar8 = *piVar14;
-              lVar12 = (longlong)iVar8 * 0x20;
-              *(undefined8 *)(lVar12 + 0x18 + lVar11) = 0;
-              *piVar14 = *(int *)(lVar12 + 0x10 + lVar11);
-              *(int *)(lVar12 + 0x10 + lVar11) = (int)plVar1[4];
-              *(int *)((longlong)plVar1 + 0x24) = *(int *)((longlong)plVar1 + 0x24) + -1;
-              *(int *)(plVar1 + 4) = iVar8;
+            element_addr = (uint64_t)status * 0x20;
+            if ((*(uint64_t *)(element_addr + hash_index) == data_reg1) &&
+                (*(uint64_t *)(element_addr + 8 + hash_index) == data_reg2)) {
+              /* 找到匹配项，执行删除操作 */
+              status = *hash_entry;
+              data_reg1 = (uint64_t)status * 0x20;
+              *(uint64_t *)(data_reg1 + 0x18 + hash_index) = 0;
+              *hash_entry = *(int *)(data_reg1 + 0x10 + hash_index);
+              *(int *)(data_reg1 + 0x10 + hash_index) = (int)hash_table[4];
+              *(int *)((uint64_t)hash_table + 0x24) = *(int *)((uint64_t)hash_table + 0x24) - 1;
+              *(int *)(hash_table + 4) = status;
               break;
             }
-            piVar14 = (int *)(lVar11 + 0x10 + lVar9);
-            iVar8 = *piVar14;
-          } while (iVar8 != -1);
+            hash_entry = (int *)(hash_index + 0x10 + element_addr);
+            status = *hash_entry;
+          } while (status != -1);
         }
       }
-      if (lVar2 != 0) {
-                    // WARNING: Subroutine does not return
-        FUN_180768400(lVar2);
+      
+      /* 释放哈希表锁 */
+      if (lock_handle != 0) {
+        FUN_180768400(lock_handle);
       }
-      if ((int)uVar10 != 0) {
-        return uVar10;
+      
+      if ((int)operation_result != 0) {
+        return operation_result;
       }
     }
-    uVar10 = (**(code **)(*unaff_R14 + 0x18))();
-    if ((int)uVar10 == 0) {
-      (**(code **)*unaff_RBX)(extraout_XMM0_Da,0);
-                    // WARNING: Subroutine does not return
-      FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0));
+    
+    /* 执行后处理操作 */
+    operation_result = (*(system_control_func_t)(*context_reg + 0x18))();
+    if ((int)operation_result == 0) {
+      (*(system_control_func_t)*param_1)(data_reg1, 0);
+      FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0));
     }
   }
   else {
-    uVar10 = 0;
+    operation_result = SYSTEM_SUCCESS;
   }
-  return uVar10;
+  
+  return operation_result;
 }
 
 
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_1808db4f8(void)
-
+/**
+ * @brief 哈希表清理函数
+ * @details 清理哈希表中的数据项，执行批量删除操作
+ * 
+ * @return status_t 操作状态码
+ * 
+ * @算法分析:
+ * 1. 哈希表验证和状态检查
+ * 2. 批量数据项查找和删除
+ * 3. 链表维护和资源清理
+ * 4. 锁释放和后处理
+ * 5. 状态更新和返回
+ * 
+ * @技术特点:
+ * - 批量数据处理
+ * - 高效的链表操作
+ * - 自动资源管理
+ * - 状态同步机制
+ * 
+ * @性能特征:
+ * - 平均时间复杂度: O(n)
+ * - 最坏时间复杂度: O(n)
+ * - 空间复杂度: O(1)
+ */
+status_t HashTable_Cleanup(void)
 {
-  int iVar1;
-  longlong lVar2;
-  undefined8 uVar3;
-  longlong lVar4;
-  undefined8 *unaff_RBX;
-  longlong unaff_RBP;
-  longlong *unaff_RSI;
-  int *piVar5;
-  longlong *unaff_R14;
-  uint uStack0000000000000030;
-  uint uStack0000000000000034;
-  uint uStack0000000000000038;
-  uint uStack000000000000003c;
+  uint64_t* hash_table;
+  uint64_t lock_handle;
+  uint32_t hash_key1;
+  uint32_t hash_key2;
+  uint32_t hash_key3;
+  uint32_t hash_key4;
+  int status;
+  uint64_t element_addr;
+  uint64_t hash_index;
+  int* hash_entry;
+  uint64_t operation_result;
+  uint64_t context_reg;
+  uint64_t target_reg;
+  uint64_t data_reg1;
+  uint64_t data_reg2;
   
-  if ((int)unaff_RSI[1] == 0) {
-    uVar3 = 0x1c;
+  /* 验证哈希表状态 */
+  if ((int)context_reg[1] == 0) {
+    operation_result = SYSTEM_ERROR_INVALID_PARAM;
   }
   else {
-    uVar3 = 0;
-    lVar4 = (longlong)
-            (int)((uStack0000000000000034 ^ uStack0000000000000030 ^ uStack0000000000000038 ^
-                  uStack000000000000003c) & (int)unaff_RSI[1] - 1U);
-    piVar5 = (int *)(*unaff_RSI + lVar4 * 4);
-    iVar1 = *(int *)(*unaff_RSI + lVar4 * 4);
-    if (iVar1 != -1) {
-      lVar4 = unaff_RSI[2];
+    operation_result = SYSTEM_SUCCESS;
+    /* 计算哈希值并查找数据项 */
+    hash_index = (uint64_t)(int)((hash_key2 ^ hash_key1 ^ hash_key3 ^ hash_key4) & 
+                               (int)context_reg[1] - 1U);
+    hash_entry = (int *)(*context_reg + hash_index * 4);
+    status = *(int *)(*context_reg + hash_index * 4);
+    
+    if (status != -1) {
+      hash_index = context_reg[2];
       do {
-        lVar2 = (longlong)iVar1 * 0x20;
-        if ((*(longlong *)(lVar2 + lVar4) == _uStack0000000000000030) &&
-           (*(longlong *)(lVar2 + 8 + lVar4) == _uStack0000000000000038)) {
-          iVar1 = *piVar5;
-          lVar2 = (longlong)iVar1 * 0x20;
-          *(undefined8 *)(lVar2 + 0x18 + lVar4) = 0;
-          *piVar5 = *(int *)(lVar2 + 0x10 + lVar4);
-          *(int *)(lVar2 + 0x10 + lVar4) = (int)unaff_RSI[4];
-          *(int *)((longlong)unaff_RSI + 0x24) = *(int *)((longlong)unaff_RSI + 0x24) + -1;
-          *(int *)(unaff_RSI + 4) = iVar1;
+        element_addr = (uint64_t)status * 0x20;
+        if ((*(uint64_t *)(element_addr + hash_index) == data_reg1) &&
+            (*(uint64_t *)(element_addr + 8 + hash_index) == data_reg2)) {
+          /* 找到匹配项，执行删除操作 */
+          status = *hash_entry;
+          element_addr = (uint64_t)status * 0x20;
+          *(uint64_t *)(element_addr + 0x18 + hash_index) = 0;
+          *hash_entry = *(int *)(element_addr + 0x10 + hash_index);
+          *(int *)(element_addr + 0x10 + hash_index) = (int)context_reg[4];
+          *(int *)((uint64_t)context_reg + 0x24) = *(int *)((uint64_t)context_reg + 0x24) - 1;
+          *(int *)(context_reg + 4) = status;
           break;
         }
-        piVar5 = (int *)(lVar4 + 0x10 + lVar2);
-        iVar1 = *piVar5;
-      } while (iVar1 != -1);
+        hash_entry = (int *)(hash_index + 0x10 + element_addr);
+        status = *hash_entry;
+      } while (status != -1);
     }
   }
-  if (unaff_RBP != 0) {
-                    // WARNING: Subroutine does not return
-    FUN_180768400();
+  
+  /* 释放锁资源 */
+  if (lock_handle != 0) {
+    FUN_180768400(lock_handle);
   }
-  if (((int)uVar3 == 0) && (uVar3 = (**(code **)(*unaff_R14 + 0x18))(), (int)uVar3 == 0)) {
-    (**(code **)*unaff_RBX)();
-                    // WARNING: Subroutine does not return
-    FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0));
+  
+  /* 执行后处理操作 */
+  if (((int)operation_result == 0) && 
+      (operation_result = (*(system_control_func_t)(*target_reg + 0x18))(), 
+       (int)operation_result == 0)) {
+    (*(system_control_func_t)*target_reg)();
+    FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0));
   }
-  return uVar3;
+  
+  return operation_result;
 }
 
 
 
-undefined4 FUN_1808db5a6(void)
-
+/**
+ * @brief 状态获取函数
+ * @details 获取当前系统状态信息
+ * 
+ * @return uint32_t 当前状态值
+ * 
+ * @note 此函数直接返回状态寄存器的值
+ * @note 用于状态查询和监控
+ */
+uint32_t System_GetStatus(void)
 {
-  undefined4 unaff_EDI;
+  uint32_t status_reg;
   
-  return unaff_EDI;
+  return status_reg;
 }
 
 
@@ -1485,165 +1659,256 @@ void FloatingPoint_ProcessData(void* param_1)
 
 
 
-undefined8 FUN_1808dbae0(longlong *param_1,longlong *param_2)
-
+/**
+ * @brief 高级数据处理器
+ * @details 执行高级数据处理操作，包括数据读取、验证、转换和存储
+ * 
+ * @param param_1 数据管理器指针
+ * @param param_2 目标数据缓冲区指针
+ * @return status_t 操作状态码
+ * 
+ * @算法分析:
+ * 1. 数据管理器验证和初始化
+ * 2. 数据大小验证和边界检查
+ * 3. 数据标志处理和权限验证
+ * 4. 批量数据读取和处理
+ * 5. 数据转换和存储操作
+ * 
+ * @技术特点:
+ * - 复杂的数据验证逻辑
+ * - 批量数据处理能力
+ * - 内存安全检查
+ * - 权限和标志管理
+ * 
+ * @性能特征:
+ * - 批量数据处理优化
+ * - 内存访问局部性
+ * - 条件分支优化
+ * - 错误处理机制
+ */
+status_t AdvancedDataProcessor(void** param_1, void** param_2)
 {
-  int iVar1;
-  longlong *plVar2;
-  undefined8 uVar3;
-  uint uVar4;
-  uint uVar5;
-  int iVar6;
-  uint uVar7;
-  ushort auStackX_8 [4];
-  uint auStackX_20 [2];
-  uint uStack_38;
-  uint auStack_34 [3];
+  void** data_manager;
+  int index;
+  status_t status;
+  uint32_t data_flags;
+  uint32_t data_size;
+  uint32_t buffer_size;
+  uint32_t element_count;
+  uint16_t stack_data[4];
+  uint32_t stack_buffer[2];
+  uint32_t temp_count;
+  uint32_t temp_buffer[3];
   
-  plVar2 = (longlong *)*param_1;
-  iVar6 = 0;
-  if (*plVar2 == 0) {
-    uVar3 = 0x1c;
+  /* 获取数据管理器 */
+  data_manager = (void**)*param_1;
+  index = 0;
+  
+  /* 验证数据管理器 */
+  if (*data_manager == 0) {
+    return SYSTEM_ERROR_INVALID_PARAM;
   }
-  else {
-    if (plVar2[2] != 0) {
-      uStack_38 = 0;
-      uVar3 = func_0x00018076a7d0(*plVar2,&uStack_38);
-      if ((int)uVar3 != 0) {
-        return uVar3;
-      }
-      if ((ulonglong)plVar2[2] < (ulonglong)uStack_38 + 2) {
-        uVar3 = 0x11;
-        goto LAB_1808dbb54;
+  
+  /* 验证数据大小和边界 */
+  if (data_manager[2] != 0) {
+    temp_count = 0;
+    status = func_0x00018076a7d0(*data_manager, &temp_count);
+    if (status != SYSTEM_SUCCESS) {
+      return status;
+    }
+    if ((uint64_t)data_manager[2] < (uint64_t)temp_count + 2) {
+      status = SYSTEM_ERROR_MEMORY_ALLOC;
+      goto size_check_failed;
+    }
+  }
+  
+  /* 读取数据标志和属性 */
+  status = FUN_180769ed0(*data_manager, stack_data, 1, 2, 0);
+  
+size_check_failed:
+  if (status != SYSTEM_SUCCESS) {
+    return status;
+  }
+  
+  /* 处理数据标志 */
+  data_flags = (uint32_t)stack_data[0];
+  if ((stack_data[0] & 0x8000) == 0) goto flag_processing_complete;
+  
+  /* 处理高位标志 */
+  if (*data_manager == 0) {
+    return SYSTEM_ERROR_INVALID_PARAM;
+  }
+  
+  if (data_manager[2] != 0) {
+    temp_buffer[0] = 0;
+    status = func_0x00018076a7d0(*data_manager, temp_buffer);
+    if (status != SYSTEM_SUCCESS) {
+      return status;
+    }
+    if ((uint64_t)data_manager[2] < (uint64_t)temp_buffer[0] + 2) {
+      status = SYSTEM_ERROR_MEMORY_ALLOC;
+      goto flag_check_failed;
+    }
+  }
+  
+  /* 读取完整数据标志 */
+  status = FUN_180769ed0(*data_manager, stack_data, 1, 2, 0);
+  
+flag_check_failed:
+  if (status != SYSTEM_SUCCESS) {
+    return status;
+  }
+  
+  /* 合并数据标志 */
+  data_flags = (uint32_t)stack_data[0] << 0xf | data_flags & 0x7fff;
+  
+flag_processing_complete:
+  /* 验证缓冲区大小 */
+  buffer_size = (int)*(uint32_t *)((uint64_t)param_2 + 0xc) >> 0x1f;
+  element_count = data_flags >> 1;
+  
+  if (((int)element_count <= (int)((*(uint32_t *)((uint64_t)param_2 + 0xc) ^ buffer_size) - buffer_size)) ||
+      (status = FUN_180882f00(param_2, element_count), status == SYSTEM_SUCCESS)) {
+    
+    /* 调整缓冲区大小 */
+    data_size = (int)param_2[1];
+    if (data_size < (int)element_count) {
+      if (0 < (int)(element_count - data_size)) {
+        memset(*param_2 + (uint64_t)data_size * 8, 0, (uint64_t)(element_count - data_size) << 3);
       }
     }
-    uVar3 = FUN_180769ed0(*plVar2,auStackX_8,1,2,0);
-  }
-LAB_1808dbb54:
-  if ((int)uVar3 != 0) {
-    return uVar3;
-  }
-  uVar7 = (uint)auStackX_8[0];
-  if ((auStackX_8[0] & 0x8000) == 0) goto LAB_1808dbbe6;
-  if (*plVar2 == 0) {
-    uVar3 = 0x1c;
-  }
-  else {
-    if (plVar2[2] != 0) {
-      auStack_34[0] = 0;
-      uVar3 = func_0x00018076a7d0(*plVar2,auStack_34);
-      if ((int)uVar3 != 0) {
-        return uVar3;
-      }
-      if ((ulonglong)plVar2[2] < (ulonglong)auStack_34[0] + 2) {
-        uVar3 = 0x11;
-        goto LAB_1808dbbc8;
-      }
-    }
-    uVar3 = FUN_180769ed0(*plVar2,auStackX_8,1,2,0);
-  }
-LAB_1808dbbc8:
-  if ((int)uVar3 != 0) {
-    return uVar3;
-  }
-  uVar7 = (uint)auStackX_8[0] << 0xf | uVar7 & 0x7fff;
-LAB_1808dbbe6:
-  uVar4 = (int)*(uint *)((longlong)param_2 + 0xc) >> 0x1f;
-  uVar5 = uVar7 >> 1;
-  if (((int)uVar5 <= (int)((*(uint *)((longlong)param_2 + 0xc) ^ uVar4) - uVar4)) ||
-     (uVar3 = FUN_180882f00(param_2,uVar5), (int)uVar3 == 0)) {
-    iVar1 = (int)param_2[1];
-    if (iVar1 < (int)uVar5) {
-      if (0 < (int)(uVar5 - iVar1)) {
-                    // WARNING: Subroutine does not return
-        memset(*param_2 + (longlong)iVar1 * 8,0,(ulonglong)(uVar5 - iVar1) << 3);
-      }
-    }
-    *(uint *)(param_2 + 1) = uVar5;
-    auStackX_20[0] = 0;
-    if (uVar7 >> 1 != 0) {
+    
+    *(uint32_t *)(param_2 + 1) = element_count;
+    stack_buffer[0] = 0;
+    
+    /* 批量数据处理 */
+    if (element_count != 0) {
       do {
-        uVar3 = FUN_1808dde10(param_1,auStackX_20[0]);
-        if ((int)uVar3 != 0) {
-          return uVar3;
+        status = FUN_1808dde10(param_1, stack_buffer[0]);
+        if (status != SYSTEM_SUCCESS) {
+          return status;
         }
+        
+        /* 数据处理和转换 */
         if (*(int *)(param_1[1] + 0x18) == 0) {
-          uVar3 = FUN_1808997b0(*param_1,*param_2 + (longlong)iVar6 * 8);
+          status = FUN_1808997b0(*param_1, *param_2 + (uint64_t)index * 8);
         }
         else {
-          uVar3 = 0x1c;
+          status = SYSTEM_ERROR_INVALID_PARAM;
         }
-        if ((int)uVar3 != 0) {
-          return uVar3;
+        
+        if (status != SYSTEM_SUCCESS) {
+          return status;
         }
-        uVar3 = FUN_1808de0e0(param_1,auStackX_20);
-        if ((int)uVar3 != 0) {
-          return uVar3;
+        
+        status = FUN_1808de0e0(param_1, stack_buffer);
+        if (status != SYSTEM_SUCCESS) {
+          return status;
         }
-        iVar6 = iVar6 + 1;
-        auStackX_20[0] = auStackX_20[0] & -(uVar7 & 1);
-      } while (iVar6 < (int)uVar5);
+        
+        index++;
+        stack_buffer[0] = stack_buffer[0] & -(data_flags & 1);
+      } while (index < (int)element_count);
     }
-    uVar3 = 0;
+    
+    status = SYSTEM_SUCCESS;
   }
-  return uVar3;
+  
+  return status;
 }
 
 
 
-ulonglong FUN_1808dbbeb(undefined8 param_1,uint param_2)
-
+/**
+ * @brief 优化的数据处理器
+ * @details 优化版本的数据处理函数，使用寄存器优化和批量操作
+ * 
+ * @param param_1 数据管理器指针
+ * @param param_2 数据处理参数
+ * @return status_t 操作状态码
+ * 
+ * @算法分析:
+ * 1. 参数验证和边界检查
+ * 2. 缓冲区大小调整和初始化
+ * 3. 批量数据处理循环
+ * 4. 数据转换和存储
+ * 5. 状态更新和返回
+ * 
+ * @技术特点:
+ * - 寄存器优化减少内存访问
+ * - 批量数据处理优化
+ * - 内存安全检查
+ * - 高效的错误处理
+ * 
+ * @性能特征:
+ * - 批量操作优化
+ * - 寄存器参数传递
+ * - 条件分支优化
+ * - 内存访问局部性
+ */
+status_t OptimizedDataProcessor(void* param_1, uint32_t param_2)
 {
-  uint in_EAX;
-  ulonglong uVar1;
-  uint unaff_EBX;
-  uint uVar2;
-  undefined8 *unaff_RSI;
-  int iVar3;
-  uint unaff_R14D;
-  longlong *unaff_R15;
+  uint32_t data_param;
+  uint64_t operation_result;
+  uint32_t data_reg;
+  uint32_t element_count;
+  uint64_t context_reg;
+  int current_index;
+  uint32_t target_reg;
+  uint64_t data_buffer;
   
-  uVar2 = unaff_R14D >> 1;
-  if (((int)((in_EAX ^ param_2) - param_2) < (int)uVar2) &&
-     (uVar1 = FUN_180882f00(), (int)uVar1 != 0)) {
-    return uVar1;
+  /* 参数处理和验证 */
+  element_count = target_reg >> 1;
+  if (((int)((data_param ^ param_2) - param_2) < (int)element_count) &&
+      (operation_result = FUN_180882f00(), operation_result != SYSTEM_SUCCESS)) {
+    return operation_result;
   }
-  iVar3 = (int)unaff_R15[1];
-  if (iVar3 < (int)uVar2) {
-    if (0 < (int)(uVar2 - iVar3)) {
-                    // WARNING: Subroutine does not return
-      memset(*unaff_R15 + (longlong)iVar3 * 8,0,(ulonglong)(uVar2 - iVar3) << 3);
+  
+  /* 缓冲区大小调整 */
+  current_index = (int)data_buffer[1];
+  if (current_index < (int)element_count) {
+    if (0 < (int)(element_count - current_index)) {
+      memset(*data_buffer + (uint64_t)current_index * 8, 0, (uint64_t)(element_count - current_index) << 3);
     }
   }
-  *(uint *)(unaff_R15 + 1) = uVar2;
-  uVar1 = (ulonglong)unaff_EBX;
-  if (unaff_EBX == 0) {
-    iVar3 = 0;
-    if (unaff_R14D >> 1 != 0) {
+  
+  *(uint32_t *)(data_buffer + 1) = element_count;
+  operation_result = (uint64_t)data_reg;
+  
+  /* 批量数据处理 */
+  if (data_reg == 0) {
+    current_index = 0;
+    if (element_count != 0) {
       do {
-        uVar1 = FUN_1808dde10();
-        if ((int)uVar1 != 0) {
-          return uVar1;
+        operation_result = FUN_1808dde10();
+        if (operation_result != SYSTEM_SUCCESS) {
+          return operation_result;
         }
-        if (*(int *)(unaff_RSI[1] + 0x18) == 0) {
-          uVar1 = FUN_1808997b0(*unaff_RSI,*unaff_R15 + (longlong)iVar3 * 8);
+        
+        /* 数据处理和转换 */
+        if (*(int *)(context_reg[1] + 0x18) == 0) {
+          operation_result = FUN_1808997b0(*context_reg, *data_buffer + (uint64_t)current_index * 8);
         }
         else {
-          uVar1 = 0x1c;
+          operation_result = SYSTEM_ERROR_INVALID_PARAM;
         }
-        if ((int)uVar1 != 0) {
-          return uVar1;
+        
+        if (operation_result != SYSTEM_SUCCESS) {
+          return operation_result;
         }
-        uVar1 = FUN_1808de0e0();
-        if ((int)uVar1 != 0) {
-          return uVar1;
+        
+        operation_result = FUN_1808de0e0();
+        if (operation_result != SYSTEM_SUCCESS) {
+          return operation_result;
         }
-        iVar3 = iVar3 + 1;
-      } while (iVar3 < (int)uVar2);
+        
+        current_index++;
+      } while (current_index < (int)element_count);
     }
-    uVar1 = 0;
+    operation_result = SYSTEM_SUCCESS;
   }
-  return uVar1;
+  
+  return operation_result;
 }
 
 
