@@ -77,10 +77,10 @@ typedef enum {
 #define RenderingSystemGlobalData _DAT_180c8ed18
 #define RenderingSystemDefaultData &system_buffer_ptr
 #define RenderingSystemVTableData1 &UNK_18098bcb0
-#define RenderingSystemVTableData2 RenderingSystemVTableData2
-#define RenderingSystemVTableData3 RenderingSystemVTableData3
-#define RenderingSystemVTableData4 RenderingSystemVTableData4
-#define RenderingSystemVTableData5 RenderingSystemVTableData5
+#define RenderingSystemVTableData2 &UNK_1809fcc58
+#define RenderingSystemVTableData3 &UNK_180a3c3e0
+#define RenderingSystemVTableData4 &UNK_180a21720
+#define RenderingSystemVTableData5 &UNK_180a21690
 
 // ============================================================================
 // 函数声明
