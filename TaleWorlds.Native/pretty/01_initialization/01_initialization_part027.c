@@ -1265,7 +1265,11 @@ void format_value_to_buffer(ulonglong value, longlong buffer)
 
 
 
-longlong FUN_18005d190(longlong param_1,longlong param_2)
+// 函数: longlong copy_and_initialize_simple_structure(longlong dest, longlong src)
+// 功能: 复制和初始化简单数据结构
+// 参数: dest - 目标指针，src - 源数据
+// 返回: 目标指针
+longlong copy_and_initialize_simple_structure(longlong dest, longlong src)
 
 {
   if (*(longlong *)(param_1 + 8) != 0) {
@@ -1276,7 +1280,7 @@ longlong FUN_18005d190(longlong param_1,longlong param_2)
   *(undefined8 *)(param_1 + 8) = 0;
   *(undefined4 *)(param_1 + 0x10) = 0;
   *(undefined4 *)(param_1 + 0x10) = *(undefined4 *)(param_2 + 0x10);
-  *(undefined8 *)(param_1 + 8) = *(undefined8 *)(param_2 + 8);
+  *(undefined8 *)(dest + 8) = *(undefined8 *)(src + 8); // 复制数据
   *(undefined4 *)(param_1 + 0x1c) = *(undefined4 *)(param_2 + 0x1c);
   *(undefined4 *)(param_1 + 0x18) = *(undefined4 *)(param_2 + 0x18);
   *(undefined4 *)(src + 0x10) = 0; // 清空源数据
