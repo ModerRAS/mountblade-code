@@ -391,7 +391,13 @@ void FUN_1803490e0(longlong param_1,longlong param_2,undefined8 param_3,undefine
 
 
 
-// 函数: void FUN_180349330(longlong param_1)
+// =============================================================================
+// 渲染系统批量对象清理器 (RenderingSystemBatchObjectCleaner)
+// =============================================================================
+// 功能：批量清理和释放渲染对象，处理复杂的内存管理和状态同步
+// 参数：param_1 - 渲染系统上下文
+// 返回值：无
+// =============================================================================
 void FUN_180349330(longlong param_1)
 
 {
@@ -441,10 +447,14 @@ void FUN_180349330(longlong param_1)
   uStack_110 = 0;
   uStack_108 = 3;
   lStack_168 = param_1;
+  
+  // 获取需要清理的对象列表
   FUN_1802e92b0(*(undefined8 *)(param_1 + 0x18),&plStack_120,1,0xffffffff);
   uVar11 = (longlong)plStack_118 - (longlong)plStack_120 >> 3;
   uVar10 = uVar7;
   plVar12 = plStack_120;
+  
+  // 第一阶段：清理对象管理器
   if (uVar11 != 0) {
     do {
       lVar2 = *plVar12;
@@ -464,6 +474,7 @@ void FUN_180349330(longlong param_1)
         puStack_f8 = &UNK_18098bcb0;
         plVar8 = plVar6;
         if (lVar3 != 0) {
+          // 分离对象管理器
           puVar4 = (undefined8 *)FUN_18022cb40(plVar6,&plStack_158);
           plVar8 = (longlong *)*puVar4;
           *puVar4 = 0;
@@ -475,6 +486,8 @@ void FUN_180349330(longlong param_1)
           if (plStack_158 != (longlong *)0x0) {
             (**(code **)(*plStack_158 + 0x38))();
           }
+          
+          // 清理管理器状态
           puStack_98 = &UNK_1809fcc58;
           puStack_90 = auStack_80;
           auStack_80[0] = 0;
@@ -496,6 +509,8 @@ void FUN_180349330(longlong param_1)
       plVar12 = plVar12 + 1;
     } while ((ulonglong)(longlong)(int)uVar9 < uVar11);
   }
+  
+  // 第二阶段：清理渲染对象
   plVar12 = plStack_118;
   lStack_148 = 0;
   lStack_140 = 0;
@@ -505,13 +520,15 @@ void FUN_180349330(longlong param_1)
   lStack_168 = *(longlong *)(param_1 + 0x18);
   uVar13 = FUN_18005ea90(&lStack_148,&lStack_168);
   uVar10 = uVar7;
+  
   if (lStack_140 - lStack_148 >> 3 != 0) {
     do {
       lVar2 = *(longlong *)(uVar10 + lStack_148);
       *(undefined1 *)(lVar2 + 0x2d8) = 0;
+      
+      // 清理主渲染对象
       if (*(longlong *)(lVar2 + 0x110) != 0) {
-        plVar6 = (longlong *)FUN_1800b3430(uVar13,&lStack_168,*(longlong *)(lVar2 + 0x110) + 0x10,1)
-        ;
+        plVar6 = (longlong *)FUN_1800b3430(uVar13,&lStack_168,*(longlong *)(lVar2 + 0x110) + 0x10,1);
         uVar13 = extraout_XMM0_Da;
         plStack_160 = plVar6;
         if (*plVar6 != *(longlong *)(lVar2 + 0x110)) {
@@ -530,6 +547,8 @@ void FUN_180349330(longlong param_1)
           uVar13 = FUN_1802f28f0(lVar2,lVar3);
         }
       }
+      
+      // 清理辅助渲染对象
       if (*(longlong *)(lVar2 + 0x10) != 0) {
         uVar1 = *(undefined4 *)(lVar2 + 0x18);
         puVar4 = (undefined8 *)
@@ -544,9 +563,10 @@ void FUN_180349330(longlong param_1)
       uVar10 = uVar10 + 8;
     } while ((ulonglong)(longlong)(int)uVar9 < (ulonglong)(lStack_140 - lStack_148 >> 3));
   }
+  
+  // 第三阶段：清理临时资源
   plVar6 = plStack_120;
   if (lStack_148 != 0) {
-                    // WARNING: Subroutine does not return
     FUN_18064e900();
   }
   lStack_148 = 0;
@@ -556,15 +576,20 @@ void FUN_180349330(longlong param_1)
     }
   }
   if (plVar6 != (longlong *)0x0) {
-                    // WARNING: Subroutine does not return
     FUN_18064e900(plVar6);
   }
-                    // WARNING: Subroutine does not return
   FUN_1808fc050(uStack_38 ^ (ulonglong)auStack_188);
 }
 
 
 
+// =============================================================================
+// 渲染系统内存分配器 (RenderingSystemMemoryAllocator)
+// =============================================================================
+// 功能：为渲染系统分配内存，支持多种分配模式和标志位
+// 参数：param_1 - 内存指针，param_2 - 分配大小，param_3/4 - 标志位
+// 返回值：分配的内存指针
+// =============================================================================
 undefined8 *
 FUN_180349730(undefined8 *param_1,ulonglong param_2,undefined8 param_3,undefined8 param_4)
 
@@ -586,7 +611,13 @@ FUN_180349730(undefined8 *param_1,ulonglong param_2,undefined8 param_3,undefined
 
 
 
-// 函数: void FUN_180349780(undefined8 *param_1)
+// =============================================================================
+// 渲染系统材质初始化器 (RenderingSystemMaterialInitializer)
+// =============================================================================
+// 功能：初始化渲染材质对象，设置默认参数和属性
+// 参数：param_1 - 材质对象指针
+// 返回值：无
+// =============================================================================
 void FUN_180349780(undefined8 *param_1)
 
 {
@@ -603,22 +634,25 @@ void FUN_180349780(undefined8 *param_1)
   FUN_1803456e0();
   *puVar2 = &UNK_180a1d230;
   puVar2[0xe] = 0;
-  *(undefined4 *)(puVar2 + 0xf) = 0x3f800000;
+  *(undefined4 *)(puVar2 + 0xf) = RENDERING_DEFAULT_SHADER_ID;
   puStack_90 = &UNK_180a3c3e0;
   uStack_78 = 0;
   puStack_88 = (undefined8 *)0x0;
   uStack_80 = 0;
+  
+  // 创建材质名称 "Material"
   puVar2 = (undefined8 *)FUN_18062b420(_DAT_180c8ed18,0x10,0x13);
   *(undefined1 *)puVar2 = 0;
   puStack_88 = puVar2;
   uVar1 = FUN_18064e990(puVar2);
   uStack_78 = CONCAT44(uStack_78._4_4_,uVar1);
-  *puVar2 = 0x6c6169726574614d;
+  *puVar2 = 0x6c6169726574614d;  // "Material"
   *(undefined1 *)(puVar2 + 1) = 0;
   uStack_80 = 8;
+  
+  // 应用材质参数
   FUN_1803460a0(param_1,&puStack_90,param_1 + 0xe,10,uVar3);
   puStack_90 = &UNK_180a3c3e0;
-                    // WARNING: Subroutine does not return
   FUN_18064e900(puVar2);
 }
 
@@ -626,7 +660,13 @@ void FUN_180349780(undefined8 *param_1)
 
 
 
-// 函数: void FUN_1803499b0(longlong param_1)
+// =============================================================================
+// 渲染系统场景更新器 (RenderingSystemSceneUpdater)
+// =============================================================================
+// 功能：更新场景中的活动对象，处理状态变化和事件通知
+// 参数：param_1 - 场景对象
+// 返回值：无
+// =============================================================================
 void FUN_1803499b0(longlong param_1)
 
 {
@@ -635,10 +675,13 @@ void FUN_1803499b0(longlong param_1)
   uint uVar3;
   ulonglong uVar4;
   
+  // 检查是否有活动对象需要更新
   if (*(longlong *)(param_1 + 0x70) != 0) {
     lVar1 = *(longlong *)(param_1 + 0x18);
     uVar2 = 0;
     uVar4 = uVar2;
+    
+    // 遍历所有活动对象并调用更新方法
     if (*(longlong *)(lVar1 + 0xf8) - *(longlong *)(lVar1 + 0xf0) >> 3 != 0) {
       do {
         (**(code **)(**(longlong **)(uVar2 + *(longlong *)(lVar1 + 0xf0)) + 0x98))();
@@ -656,7 +699,13 @@ void FUN_1803499b0(longlong param_1)
 
 
 
-// 函数: void FUN_1803499bb(longlong param_1)
+// =============================================================================
+// 渲染系统强制场景更新器 (RenderingSystemForceSceneUpdater)
+// =============================================================================
+// 功能：强制更新场景中的所有对象，忽略活动状态检查
+// 参数：param_1 - 场景对象
+// 返回值：无
+// =============================================================================
 void FUN_1803499bb(longlong param_1)
 
 {
@@ -668,6 +717,8 @@ void FUN_1803499bb(longlong param_1)
   lVar1 = *(longlong *)(param_1 + 0x18);
   uVar2 = 0;
   uVar4 = uVar2;
+  
+  // 强制遍历所有对象并调用更新方法
   if (*(longlong *)(lVar1 + 0xf8) - *(longlong *)(lVar1 + 0xf0) >> 3 != 0) {
     do {
       (**(code **)(**(longlong **)(uVar2 + *(longlong *)(lVar1 + 0xf0)) + 0x98))();
@@ -684,7 +735,13 @@ void FUN_1803499bb(longlong param_1)
 
 
 
-// 函数: void FUN_1803499e2(void)
+// =============================================================================
+// 渲染系统全局场景更新器 (RenderingSystemGlobalSceneUpdater)
+// =============================================================================
+// 功能：全局更新所有场景对象，使用寄存器变量优化性能
+// 参数：无
+// 返回值：无
+// =============================================================================
 void FUN_1803499e2(void)
 
 {
@@ -693,6 +750,8 @@ void FUN_1803499e2(void)
   uint unaff_EDI;
   
   uVar1 = (ulonglong)unaff_EDI;
+  
+  // 使用寄存器变量优化的全局场景更新循环
   do {
     (**(code **)(**(longlong **)(uVar1 + *(longlong *)(unaff_RBX + 0xf0)) + 0x98))();
     uVar1 = uVar1 + 8;
@@ -706,7 +765,13 @@ void FUN_1803499e2(void)
 
 
 
-// 函数: void FUN_180349a29(void)
+// =============================================================================
+// 渲染系统空操作器 (RenderingSystemNoOperation)
+// =============================================================================
+// 功能：空操作函数，用于系统初始化和状态同步
+// 参数：无
+// 返回值：无
+// =============================================================================
 void FUN_180349a29(void)
 
 {
@@ -717,7 +782,13 @@ void FUN_180349a29(void)
 
 
 
-// 函数: void FUN_180349a33(void)
+// =============================================================================
+// 渲染系统同步点 (RenderingSystemSynchronizationPoint)
+// =============================================================================
+// 功能：系统同步点，用于多线程渲染同步
+// 参数：无
+// 返回值：无
+// =============================================================================
 void FUN_180349a33(void)
 
 {
