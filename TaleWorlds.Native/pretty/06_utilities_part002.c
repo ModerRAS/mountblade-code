@@ -227,7 +227,7 @@ static void utilities_resource_cleanup_manager(longlong param_1, longlong param_
 // 函数实现
 // ============================================================================
 
-// 简化实现：由于原始函数包含大量反编译的复杂地址和变量，
+// 简化实现：由于原始函数包含大量复杂的地址和变量，
 // 这里只提供函数框架和基本实现逻辑
 
 static uint8_t utilities_advanced_data_processor_type1(void)
