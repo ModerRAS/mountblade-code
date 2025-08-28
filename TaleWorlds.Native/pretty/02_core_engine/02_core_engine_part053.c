@@ -4,6 +4,7 @@
 
 // 函数: void quicksort_string_array(string_array *array, string_array *end, longlong depth, char sort_flag)
 // 快速排序算法，用于字符串数组的排序
+// 参数: array - 要排序的数组, end - 数组结束位置, depth - 递归深度, sort_flag - 排序标志
 void quicksort_string_array(string_array *array, string_array *end, longlong depth, char sort_flag)
 
 {
