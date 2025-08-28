@@ -285,12 +285,3 @@ void initialize_render_parameters(longlong engine_context, undefined8 param_2, u
   
   return;
 }
-
-
-
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-
-

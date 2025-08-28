@@ -146,67 +146,28 @@ void update_entity_position_with_bounds_check(float blend_factor, void *context_
 
 
 
-// 函数: void FUN_180111c84(void)
-void FUN_180111c84(void)
-
+/**
+ * 批量更新实体位置并进行边界检查优化
+ * 这是一个高性能的位置更新函数，使用SIMD寄存器优化批量计算
+ * @param context_ptr - 上下文指针
+ * @param blend_factor - 混合因子
+ * @param position_offset - 位置偏移量
+ */
+void batch_update_entity_positions_optimized(void *context_ptr, float blend_factor, float position_offset)
 {
-  longlong lVar1;
-  char cVar2;
-  undefined4 uVar3;
-  float *pfVar4;
-  longlong unaff_RBX;
-  char *pcVar5;
-  longlong unaff_RBP;
-  longlong unaff_RDI;
-  undefined8 *in_R9;
-  longlong lVar6;
-  longlong in_R11;
-  undefined8 unaff_R14;
-  undefined4 uVar7;
-  float fVar8;
-  undefined4 unaff_XMM6_Da;
-  undefined4 unaff_XMM6_Db;
-  undefined4 unaff_XMM6_Dc;
-  undefined4 unaff_XMM6_Dd;
-  undefined4 unaff_XMM7_Da;
-  float fVar9;
-  undefined4 unaff_XMM7_Db;
-  undefined4 unaff_XMM7_Dc;
-  undefined4 unaff_XMM7_Dd;
-  float unaff_XMM8_Da;
-  undefined4 unaff_XMM9_Da;
-  float fVar10;
-  undefined4 unaff_XMM9_Db;
-  undefined4 unaff_XMM9_Dc;
-  undefined4 unaff_XMM9_Dd;
-  undefined4 unaff_XMM10_Da;
-  undefined4 unaff_XMM10_Dc;
-  undefined4 unaff_XMM11_Da;
-  float fVar11;
-  undefined4 unaff_XMM11_Db;
-  undefined4 unaff_XMM11_Dc;
-  undefined4 unaff_XMM11_Dd;
-  undefined4 unaff_XMM12_Da;
-  float fVar12;
-  undefined4 unaff_XMM12_Db;
-  undefined4 unaff_XMM12_Dc;
-  undefined4 unaff_XMM12_Dd;
-  undefined8 in_stack_00000020;
-  undefined8 uVar13;
-  float in_stack_00000040;
-  float fStack0000000000000044;
-  float in_stack_00000048;
-  float fStack000000000000004c;
-  float in_stack_00000050;
-  float fStack0000000000000054;
-  float fStack0000000000000058;
-  float fStack000000000000005c;
-  undefined4 uStack0000000000000060;
-  float fStack0000000000000064;
-  undefined4 uStack0000000000000068;
-  undefined4 uStack000000000000006c;
-  undefined4 in_stack_000000c0;
-  undefined4 in_stack_000000c8;
+    void *engine_context;
+    float *offset_vector;
+    float original_x, original_y;
+    float new_x, new_y;
+    float delta_x, delta_y;
+    float bounds_min_x, bounds_min_y;
+    float bounds_max_x, bounds_max_y;
+    float temp_x, temp_y;
+    float scale_x, scale_y;
+    char *text_buffer;
+    uint32_t flags;
+    float step_distance;
+    float interpolated_x;
   
   uVar3 = (undefined4)((ulonglong)in_stack_00000020 >> 0x20);
   *(undefined8 *)(in_R11 + 0x18) = unaff_R14;
