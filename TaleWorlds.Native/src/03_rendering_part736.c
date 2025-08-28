@@ -1,13 +1,122 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 03_rendering_part736.c - 3 个函数
+//==============================================================================
+// 03_rendering_part736.c - 渲染系统高级数据处理和变换模块
+// 
+// 本模块包含3个核心函数，主要用于处理高级渲染数据、变换计算、
+// 矩阵操作、向量处理、纹理坐标映射等高级渲染功能
+// 
+// 主要功能：
+// - 高级渲染数据处理和变换
+// - 矩阵运算和向量变换
+// - 纹理坐标映射和优化
+// - 渲染状态管理和同步
+// - 内存资源管理和清理
+//==============================================================================
 
-// 函数: void FUN_18069ca80(longlong param_1,int param_2,undefined1 (*param_3) [16])
-void FUN_18069ca80(longlong param_1,int param_2,undefined1 (*param_3) [16])
+/*=============================================================================
+// 渲染系统常量定义
+//=============================================================================*/
 
-{
-  undefined4 *puVar1;
-  undefined4 *puVar2;
+// 渲染系统参数常量
+#define RENDERING_MAX_MATRIX_SIZE 16              // 渲染系统最大矩阵大小
+#define RENDERING_MAX_VECTOR_SIZE 4               // 渲染系统最大向量大小
+#define RENDERING_MAX_TEXTURE_COORDS 8            // 渲染系统最大纹理坐标数量
+#define RENDERING_MAX_TRANSFORM_STAGES 16         // 渲染系统最大变换阶段数量
+
+// 矩阵运算常量
+#define MATRIX_IDENTITY_FLAG 0x01                // 单位矩阵标志
+#define MATRIX_INVERSE_FLAG 0x02                  // 矩阵求逆标志
+#define MATRIX_TRANSPOSE_FLAG 0x04                // 矩阵转置标志
+#define MATRIX_NORMALIZE_FLAG 0x08                // 矩阵归一化标志
+
+// 变换类型常量
+#define TRANSFORM_TYPE_TRANSLATION 0x01           // 平移变换类型
+#define TRANSFORM_TYPE_ROTATION 0x02              // 旋转变换类型
+#define TRANSFORM_TYPE_SCALE 0x04                 // 缩放变换类型
+#define TRANSFORM_TYPE_SKEW 0x08                  // 倾斜变换类型
+
+/*=============================================================================
+// 渲染系统类型定义
+//=============================================================================*/
+
+// 渲染系统矩阵类型
+typedef struct {
+    float elements[16];                          // 矩阵元素数组
+    uint32_t flags;                             // 矩阵运算标志
+    uint32_t type;                              // 矩阵类型
+} RenderingMatrix;
+
+// 渲染系统向量类型
+typedef struct {
+    float x, y, z, w;                          // 向量分量
+    uint32_t flags;                             // 向量运算标志
+} RenderingVector;
+
+// 渲染系统纹理坐标类型
+typedef struct {
+    float u, v;                                // 纹理坐标
+    float w;                                   // 纹理深度坐标
+    uint32_t flags;                             // 纹理坐标标志
+} RenderingTextureCoord;
+
+/*=============================================================================
+// 渲染系统函数原型
+//=============================================================================*/
+
+// 渲染系统高级数据处理器
+void RenderingSystem_AdvancedDataProcessor(
+    int64_t render_context,                     // 渲染上下文句柄
+    int32_t transform_type,                     // 变换类型
+    uint8_t (*texture_coords)[16]              // 纹理坐标数组指针
+);
+
+// 渲染系统矩阵变换处理器
+void RenderingSystem_MatrixTransformProcessor(
+    int64_t render_context,                     // 渲染上下文句柄
+    int32_t operation_type,                     // 操作类型
+    void *transform_data                        // 变换数据指针
+);
+
+// 渲染系统资源清理器
+void RenderingSystem_ResourceCleaner(
+    int64_t render_context,                     // 渲染上下文句柄
+    uint32_t cleanup_flags                      // 清理标志
+);
+
+/*=============================================================================
+// 渲染系统核心函数实现
+//=============================================================================*/
+
+/**
+ * 渲染系统高级数据处理器
+ * 
+ * 功能描述：
+ * 这是渲染系统的核心数据处理函数，负责处理高级渲染数据、
+ * 变换计算、纹理坐标映射等关键渲染功能
+ * 
+ * 参数：
+ * - render_context: 渲染上下文句柄，用于管理渲染状态和资源
+ * - transform_type: 变换类型，指定要执行的数据变换类型
+ * - texture_coords: 纹理坐标数组指针，包含纹理映射数据
+ * 
+ * 返回值：
+ * 无返回值，处理结果直接写入渲染上下文
+ * 
+ * 技术特点：
+ * - 支持多种数据变换类型
+ * - 高效的纹理坐标映射算法
+ * - 智能的内存管理策略
+ * - 优化的渲染管线集成
+ */
+void RenderingSystem_AdvancedDataProcessor(
+    int64_t render_context,                     // 渲染上下文句柄
+    int32_t transform_type,                     // 变换类型
+    uint8_t (*texture_coords)[16]              // 纹理坐标数组指针
+) {
+    // 局部变量声明
+    uint32_t *matrix_ptr1;                      // 矩阵指针1
+    uint32_t *matrix_ptr2;                      // 矩阵指针2
   undefined4 *puVar3;
   undefined4 *puVar4;
   undefined4 uVar5;

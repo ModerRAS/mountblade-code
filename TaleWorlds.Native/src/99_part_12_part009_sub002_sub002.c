@@ -1986,51 +1986,63 @@ undefined8 SystemErrorHandler(longlong system_context, char error_flag)
   longlong loop_counter;
   ulonglong temp_ulong;
   
-  bVar7 = false;
-  iVar18 = *(int *)(param_1 + 0x3c8);
-  pcVar22 = (char *)((longlong)(iVar18 * *(int *)(param_1 + 0xbf8)) * 5 +
+  /* 初始化错误处理状态 */
+  recovery_needed = false;
+  total_errors = *(int )(system_context + 0x3c8);
+  system_data = (char *)((longlong)(total_errors * *(int )(system_context + 0xbf8)) * 5 +
                     *(longlong *)
-                     ((ulonglong)*(byte *)((longlong)*(int *)(param_1 + 0xbfc) + 0x290 + param_1) *
-                      0x10 + 8 + *(longlong *)(param_1 + 0x278)));
-  if (pcVar22 != (char *)0x0) {
-    if (*(longlong *)(param_1 + 0x288) != 0) {
-      pcVar14 = (char *)((longlong)(*(int *)(param_1 + 0xbfc) * 0x100 + *(int *)(param_1 + 0xbf8)) +
-                        *(longlong *)(param_1 + 0x288));
-      if (*pcVar14 != '\0') {
-        *(undefined1 *)(param_1 + 0xbe9) = 1;
-        return 0;
+                     ((ulonglong)*(byte *)((longlong)*(int )(system_context + 0xbfc) + 0x290 + system_context) *
+                      0x10 + 8 + *(longlong )(system_context + 0x278)));
+  
+  /* 检查系统数据是否有效 */
+  if (system_data != (char *)0x0) {
+    /* 检查错误标志是否已设置 */
+    if (*(longlong )(system_context + 0x288) != 0) {
+      error_message = (char *)((longlong)(*(int )(system_context + 0xbfc) * 0x100 + *(int )(system_context + 0xbf8)) +
+                        *(longlong )(system_context + 0x288));
+      if (*error_message != '\0') {
+        *(undefined1 )(system_context + 0xbe9) = 1; /* 设置错误状态标志 */
+        return 0; /* 错误已处理 */
       }
-      *pcVar14 = '\x01';
-      iVar18 = *(int *)(param_1 + 0x3c8);
+      *error_message = '\x01'; /* 标记错误消息 */
+      total_errors = *(int )(system_context + 0x3c8);
     }
-    iStackX_18 = 0;
-    if (0 < iVar18) {
-      lStack_58 = 0;
+    /* 开始错误处理循环 */
+    iteration_index = 0;
+    if (0 < total_errors) {
+      loop_counter = 0;
       do {
-        bVar10 = pcVar22[4];
-        lVar4 = *(longlong *)(param_1 + 0x3d0 + lStack_58 * 8);
-        plVar1 = (longlong *)(lVar4 + 8);
-        lStack_68 = *plVar1;
-        bVar17 = bVar10 & 0xf;
-        bVar21 = bVar10 >> 4;
-        if (((longlong *)lStack_68 == plVar1) && (*(longlong **)(lVar4 + 0x10) == plVar1)) {
+        /* 解析错误数据 */
+        error_type = system_data[4];
+        error_context = *(longlong )(system_context + 0x3d0 + loop_counter * 8);
+        error_processor = (longlong *)(error_context + 8);
+        context_data = *error_processor;
+        sub_error_code = error_type & 0xf;
+        severity_level = error_type >> 4;
+        
+        /* 检查是否需要特殊处理 */
+        if (((longlong *)context_data == error_processor) && (*(longlong **)(error_context + 0x10) == error_processor)) {
           _DAT_180be7ae8 = &DAT_180be7a80;
-          lStack_68 = 0x180be7ac0;
+          context_data = 0x180be7ac0; /* 默认错误处理器 */
         }
-        if ((pcVar22[3] - 3U & 0xfd) == 0) {
-          bVar6 = true;
-          if (lStack_68 == 0x180be7ac0) {
-            bVar6 = false;
+        
+        /* 确定错误类型 */
+        if ((system_data[3] - 3U & 0xfd) == 0) {
+          error_detected = true;
+          if (context_data == 0x180be7ac0) {
+            error_detected = false; /* 使用默认处理器，无需特殊处理 */
           }
         }
         else {
-          bVar6 = false;
+          error_detected = false;
         }
-        if ((pcVar22[1] != '\0') && (!bVar6)) {
-          *(char *)(lVar4 + 0xd0) = pcVar22[1] + -1;
+        
+        /* 处理错误代码 */
+        if ((system_data[1] != '\0') && (!error_detected)) {
+          *(char )(error_context + 0xd0) = system_data[1] + -1;
         }
-        if (((byte)(*pcVar22 - 1U) < 0xfe) && (!bVar6)) {
-          *(char *)(lVar4 + 0xd1) = *pcVar22 + -1;
+        if (((byte)(*system_data - 1U) < 0xfe) && (!error_detected)) {
+          *(char )(error_context + 0xd1) = *system_data + -1;
         }
         if ((int)(uint)*(byte *)(lVar4 + 0xd0) < *(int *)(param_1 + 0x8f8)) {
           lStack_70 = (ulonglong)*(byte *)(lVar4 + 0xd0) * 0x618 + *(longlong *)(param_1 + 0x900);
