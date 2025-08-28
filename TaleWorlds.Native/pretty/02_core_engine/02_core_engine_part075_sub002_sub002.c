@@ -20,12 +20,19 @@
 // 函数指针和全局变量（美化后的命名）
 // 注意：这些是原始代码中引用的外部符号，在此声明为外部引用
 extern code *material_cleanup_function_1;
+extern code *material_cleanup_function_2;
 extern undefined *default_parameter_handler;
 extern undefined1 *default_texture_ptr;
 extern undefined *shader_parameter_table_1;
+extern undefined *shader_parameter_table_2;
 extern char global_debug_flag;
 extern undefined *error_message_table;
 extern undefined *default_error_handler;
+
+// 外部函数声明
+extern void log_render_error(undefined *message_table, undefined *handler);
+extern void FUN_18005ea90(longlong context, undefined8 *param);
+extern void FUN_180626f80(undefined *error_ptr, undefined *handler);
 
 // 函数: void initialize_render_parameters(longlong engine_context, undefined8 param_2, undefined8 param_3, undefined8 param_4)
 // 功能: 初始化渲染参数，配置材质和着色器参数
@@ -49,6 +56,16 @@ void initialize_render_parameters(longlong engine_context, undefined8 param_2, u
   // 清理函数和参数处理函数
   code *cleanup_function;
   undefined *parameter_handler;
+  
+  // 材质配置变量
+  undefined4 material_param_value;
+  undefined8 material_config_ptr;
+  undefined *material_cleanup;
+  undefined *material_param_handler;
+  
+  // 调试和错误处理变量
+  undefined *error_handler_ptr;
+  undefined *debug_message_ptr;
   
   // 初始化清理函数和参数处理器
   cleanup_function = (code *)&material_cleanup_function_1;
@@ -81,10 +98,10 @@ void initialize_render_parameters(longlong engine_context, undefined8 param_2, u
   (*(code **)(*(longlong *)(engine_context + SHADER_CONTEXT_OFFSET) + 0x10))(engine_context + SHADER_CONTEXT_OFFSET, &shader_parameter_table_1);
   
   // 设置默认参数值
-  render_parameter._0_4_ = 0;
+  material_param_value = 0;
   render_value = 0;
   if ((*(longlong *)(engine_context + CLEANUP_FUNC_OFFSET) != 0) &&
-      (success_flag = (**(code **)(engine_context + PARAM_HANDLER_OFFSET))(&render_parameter), render_value = (undefined4)render_parameter,
+      (success_flag = (**(code **)(engine_context + PARAM_HANDLER_OFFSET))(&material_param_value), render_value = (undefined4)material_param_value,
        success_flag == '\0')) {
     // 处理参数设置失败的情况
     if (global_debug_flag == '\0') {
@@ -99,85 +116,96 @@ void initialize_render_parameters(longlong engine_context, undefined8 param_2, u
   
   // 保存渲染参数
   *(undefined4 *)(engine_context + RENDER_PARAM_1_OFFSET) = render_value;
-  uStackX_8 = (undefined8 *)((ulonglong)uStackX_8._4_4_ << 0x20);
-  uVar5 = 0;
-  if (*(longlong *)(param_1 + 0x1b0) != 0) {
-    cVar4 = (**(code **)(param_1 + 0x1b8))(&uStackX_8,puVar1);
-    if (cVar4 == '\0') {
-      if (DAT_180c82860 == '\0') {
-        puVar7 = &DAT_18098bc73;
-        if (*(undefined **)(param_1 + 0x160) != (undefined *)0x0) {
-          puVar7 = *(undefined **)(param_1 + 0x160);
+  // 设置第一个材质参数
+  material_config_ptr = (undefined8 *)((ulonglong)material_config_ptr << 0x20);
+  material_param_value = 0;
+  if (*(longlong *)(engine_context + 0x1b0) != 0) {
+    success_flag = (**(code **)(engine_context + 0x1b8))(&material_config_ptr, texture_ptr);
+    if (success_flag == '\0') {
+      if (global_debug_flag == '\0') {
+        error_handler_ptr = &default_error_handler;
+        if (*(undefined **)(engine_context + ERROR_HANDLER_OFFSET) != (undefined *)0x0) {
+          error_handler_ptr = *(undefined **)(engine_context + ERROR_HANDLER_OFFSET);
         }
-        FUN_180626f80(&UNK_18098bc00,puVar7);
+        log_render_error(&error_message_table, error_handler_ptr);
       }
-      uVar5 = *(undefined4 *)(param_1 + 0x198);
+      material_param_value = *(undefined4 *)(engine_context + RENDER_STATE_OFFSET);
     }
     else {
-      uVar5 = (undefined4)uStackX_8;
+      material_param_value = (undefined4)material_config_ptr;
     }
   }
-  *(undefined4 *)(param_1 + 0x154) = uVar5;
-  uStackX_8 = (undefined8 *)(param_1 + 0x150);
-  FUN_18005ea90(param_1 + 8,&uStackX_8);
-  pcStack_40 = (code *)&UNK_18010c590;
-  puStack_38 = &UNK_18010c300;
-  *(undefined4 *)(param_1 + 0x2e8) = 0;
-  puVar1 = (undefined1 *)(param_1 + 0x2f0);
-  if (puVar1 != auStack_50) {
-    if (*(code **)(param_1 + 0x300) != (code *)0x0) {
-      (**(code **)(param_1 + 0x300))(puVar1,0,0);
+  *(undefined4 *)(engine_context + RENDER_PARAM_1_OFFSET) = material_param_value;
+  material_config_ptr = (undefined8 *)(engine_context + RENDER_PARAM_1_OFFSET);
+  FUN_18005ea90(engine_context + 8, &material_config_ptr);
+  
+  // 配置材质清理函数和参数处理器
+  material_cleanup = (code *)&material_cleanup_function_2;
+  material_param_handler = &default_parameter_handler;
+  
+  // 初始化材质参数1
+  *(undefined4 *)(engine_context + MATERIAL_PARAM_1_OFFSET) = 0;
+  texture_ptr = (undefined1 *)(engine_context + MATERIAL_PARAM_1_OFFSET + 8);
+  if (texture_ptr != default_texture_ptr) {
+    if (*(code **)(engine_context + MATERIAL_PARAM_1_OFFSET + 16) != (code *)0x0) {
+      (**(code **)(engine_context + MATERIAL_PARAM_1_OFFSET + 16))(texture_ptr, 0, 0);
     }
-    if (pcStack_40 != (code *)0x0) {
-      (*pcStack_40)(puVar1,auStack_50,1);
+    if (material_cleanup != (code *)0x0) {
+      (*material_cleanup)(texture_ptr, default_texture_ptr, 1);
     }
-    *(code **)(param_1 + 0x300) = pcStack_40;
-    *(undefined **)(param_1 + 0x308) = puStack_38;
+    *(code **)(engine_context + MATERIAL_PARAM_1_OFFSET + 16) = material_cleanup;
+    *(undefined **)(engine_context + MATERIAL_PARAM_1_OFFSET + 24) = material_param_handler;
   }
-  if (pcStack_40 != (code *)0x0) {
-    (*pcStack_40)(auStack_50,0,0);
+  if (material_cleanup != (code *)0x0) {
+    (*material_cleanup)(default_texture_ptr, 0, 0);
   }
-  (**(code **)(*(longlong *)(param_1 + 0x2a8) + 0x10))(param_1 + 0x2a8,&UNK_180a05d38);
-  uStackX_8 = (undefined8 *)((ulonglong)uStackX_8 & 0xffffffff00000000);
-  uVar5 = 0;
-  if (*(longlong *)(param_1 + 0x300) != 0) {
-    cVar4 = (**(code **)(param_1 + 0x308))(&uStackX_8);
-    if (cVar4 == '\0') {
-      if (DAT_180c82860 == '\0') {
-        puVar7 = &DAT_18098bc73;
-        if (*(undefined **)(param_1 + 0x2b0) != (undefined *)0x0) {
-          puVar7 = *(undefined **)(param_1 + 0x2b0);
+  
+  // 初始化着色器参数表
+  (*(code **)(*(longlong *)(engine_context + 0x2a8) + 0x10))(engine_context + 0x2a8, &shader_parameter_table_2);
+  
+  // 设置材质参数值
+  material_config_ptr = (undefined8 *)((ulonglong)material_config_ptr & 0xffffffff00000000);
+  material_param_value = 0;
+  if (*(longlong *)(engine_context + MATERIAL_PARAM_1_OFFSET + 16) != 0) {
+    success_flag = (**(code **)(engine_context + MATERIAL_PARAM_1_OFFSET + 24))(&material_config_ptr);
+    if (success_flag == '\0') {
+      if (global_debug_flag == '\0') {
+        error_handler_ptr = &default_error_handler;
+        if (*(undefined **)(engine_context + 0x2b0) != (undefined *)0x0) {
+          error_handler_ptr = *(undefined **)(engine_context + 0x2b0);
         }
-        FUN_180626f80(&UNK_18098bc00,puVar7);
+        log_render_error(&error_message_table, error_handler_ptr);
       }
-      uVar5 = *(undefined4 *)(param_1 + 0x2e8);
+      material_param_value = *(undefined4 *)(engine_context + MATERIAL_PARAM_1_OFFSET);
     }
     else {
-      uVar5 = (undefined4)uStackX_8;
+      material_param_value = (undefined4)material_config_ptr;
     }
   }
-  *(undefined4 *)(param_1 + 0x2a0) = uVar5;
-  uStackX_8 = (undefined8 *)((ulonglong)uStackX_8 & 0xffffffff00000000);
-  uVar5 = 0;
-  if (*(longlong *)(param_1 + 0x300) != 0) {
-    cVar4 = (**(code **)(param_1 + 0x308))(&uStackX_8,puVar1);
-    if (cVar4 == '\0') {
-      if (DAT_180c82860 == '\0') {
-        puVar7 = &DAT_18098bc73;
-        if (*(undefined **)(param_1 + 0x2b0) != (undefined *)0x0) {
-          puVar7 = *(undefined **)(param_1 + 0x2b0);
+  *(undefined4 *)(engine_context + 0x2a0) = material_param_value;
+  
+  // 设置第二个材质参数
+  material_config_ptr = (undefined8 *)((ulonglong)material_config_ptr & 0xffffffff00000000);
+  material_param_value = 0;
+  if (*(longlong *)(engine_context + MATERIAL_PARAM_1_OFFSET + 16) != 0) {
+    success_flag = (**(code **)(engine_context + MATERIAL_PARAM_1_OFFSET + 24))(&material_config_ptr, texture_ptr);
+    if (success_flag == '\0') {
+      if (global_debug_flag == '\0') {
+        error_handler_ptr = &default_error_handler;
+        if (*(undefined **)(engine_context + 0x2b0) != (undefined *)0x0) {
+          error_handler_ptr = *(undefined **)(engine_context + 0x2b0);
         }
-        FUN_180626f80(&UNK_18098bc00,puVar7);
+        log_render_error(&error_message_table, error_handler_ptr);
       }
-      uVar5 = *(undefined4 *)(param_1 + 0x2e8);
+      material_param_value = *(undefined4 *)(engine_context + MATERIAL_PARAM_1_OFFSET);
     }
     else {
-      uVar5 = (undefined4)uStackX_8;
+      material_param_value = (undefined4)material_config_ptr;
     }
   }
-  *(undefined4 *)(param_1 + 0x2a4) = uVar5;
-  uStackX_8 = (undefined8 *)(param_1 + 0x2a0);
-  FUN_18005ea90(param_1 + 8,&uStackX_8);
+  *(undefined4 *)(engine_context + 0x2a4) = material_param_value;
+  material_config_ptr = (undefined8 *)(engine_context + 0x2a0);
+  FUN_18005ea90(engine_context + 8, &material_config_ptr);
   pcStack_40 = (code *)&UNK_18010c570;
   puStack_38 = &UNK_18010c300;
   *(undefined4 *)(param_1 + 0x208) = 0;

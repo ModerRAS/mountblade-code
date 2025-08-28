@@ -642,106 +642,110 @@ LAB_18010ed80:
 
 
 
-// 函数: void FUN_18010e97b(undefined8 param_1)
-void FUN_18010e97b(undefined8 param_1)
+/**
+ * 函数：update_text_area - 更新文本区域
+ * 功能：根据给定的参数更新文本区域的布局和渲染信息
+ * 参数：
+ *   param_1 - 文本区域参数（包含位置、尺寸等信息）
+ */
+void update_text_area(undefined8 area_params)
 
 {
-  float fVar1;
-  float fVar2;
-  float *pfVar3;
-  longlong lVar4;
-  char cVar5;
-  ulonglong uVar6;
-  ulonglong uVar7;
-  ulonglong unaff_RBX;
-  longlong unaff_RBP;
-  longlong unaff_RSI;
-  ulonglong unaff_RDI;
-  longlong lVar8;
-  ulonglong unaff_R12;
-  uint uVar9;
-  uint uVar10;
-  int iVar11;
-  float fVar12;
-  float in_XMM0_Dd;
-  float fVar13;
-  float fVar14;
-  float unaff_XMM8_Da;
-  undefined4 unaff_XMM9_Da;
-  float fVar15;
-  undefined4 unaff_XMM9_Dc;
-  float fVar16;
-  undefined4 unaff_XMM12_Da;
-  undefined4 unaff_XMM12_Dc;
-  float unaff_XMM13_Da;
-  float unaff_XMM14_Da;
-  undefined4 unaff_XMM15_Da;
-  undefined4 unaff_XMM15_Dc;
-  float fStack0000000000000050;
-  float fStack0000000000000058;
-  float fStack000000000000005c;
-  undefined4 in_stack_00000060;
-  undefined4 in_stack_00000068;
-  undefined4 in_stack_00000090;
-  undefined4 in_stack_00000098;
-  undefined4 in_stack_000000c0;
-  undefined4 in_stack_000000c8;
+  float scale_factor;
+  float font_size;
+  float *font_metrics;
+  longlong render_context;
+  char update_flag;
+  ulonglong text_start;
+  ulonglong text_end;
+  ulonglong text_length;
+  longlong context_base;
+  longlong render_data;
+  longlong font_data;
+  longlong layout_data;
+  ulonglong area_width;
+  uint line_count;
+  uint char_count;
+  int max_lines;
+  float text_width;
+  float text_height;
+  float baseline;
+  float area_x;
+  float area_y;
+  float max_char_width;
+  float min_char_width;
+  float font_scale;
+  undefined4 texture_format;
+  float texture_width;
+  float texture_height;
+  float area_depth;
+  undefined4 render_flags;
+  undefined4 alignment_flags;
+  undefined4 clipping_flags;
+  undefined4 color_flags;
+  undefined4 effect_flags;
   
-  fStack0000000000000050 = (float)param_1;
-  fVar13 = 0.0;
-  fVar1 = *(float *)(unaff_RSI + 0x19f8);
-  fVar16 = 0.0;
-  *(undefined4 *)(unaff_RBP + 0x48) = 0;
-  *(undefined4 *)(unaff_RBP + 0x4c) = 0;
-  cVar5 = (char)unaff_R12;
-  if (unaff_XMM13_Da <= in_XMM0_Dd) {
-    *(float *)(unaff_RBP + 0x40) = unaff_XMM14_Da;
-    *(float *)(unaff_RBP + 0x44) = unaff_XMM13_Da;
-    uVar10 = (uint)unaff_R12;
-    fVar13 = unaff_XMM13_Da;
-    if (*(char *)(unaff_RSI + 0x2e38) == cVar5) {
-      *(float *)(unaff_RBP + 0x44) = unaff_XMM13_Da;
-      iVar11 = (int)(((float)((ulonglong)param_1 >> 0x20) - unaff_XMM13_Da) / fVar1);
-      if (0 < iVar11) {
-        uVar7 = unaff_R12 & 0xffffffff;
-        uVar9 = uVar10;
-        if (unaff_RDI < unaff_RBX) {
+  // 初始化文本区域参数
+  texture_width = (float)area_params;
+  baseline = 0.0;
+  font_size = *(float *)(context_base + 0x19f8);
+  max_char_width = 0.0;
+  *(undefined4 *)(stack_base + 0x48) = 0;  // 清除渲染标志
+  *(undefined4 *)(stack_base + 0x4c) = 0;  // 清除布局标志
+  update_flag = (char)text_length;
+  
+  // 检查是否需要更新文本区域
+  if (area_y <= area_depth) {
+    *(float *)(stack_base + 0x40) = area_x;
+    *(float *)(stack_base + 0x44) = area_y;
+    char_count = (uint)text_length;
+    baseline = area_y;
+    if (*(char *)(context_base + 0x2e38) == update_flag) {
+      *(float *)(stack_base + 0x44) = area_y;
+      max_lines = (int)(((float)((ulonglong)area_params >> 0x20) - area_y) / font_size);
+      if (0 < max_lines) {
+        text_length = text_length & 0xffffffff;
+        line_count = char_count;
+        if (text_start < text_end) {
           do {
-            uVar9 = (uint)uVar7;
-            if (iVar11 <= (int)uVar9) break;
-            uVar6 = memchr(unaff_RDI,10,unaff_RBX - unaff_RDI);
-            if (uVar6 == 0) {
-              uVar6 = unaff_RBX;
+            line_count = (uint)text_length;
+            if (max_lines <= (int)line_count) break;
+            text_start = memchr(text_start, 10, text_end - text_start);
+            if (text_start == 0) {
+              text_start = text_end;
             }
-            uVar9 = uVar9 + 1;
-            uVar7 = (ulonglong)uVar9;
-            unaff_RDI = uVar6 + 1;
-          } while (unaff_RDI < unaff_RBX);
+            line_count = line_count + 1;
+            text_length = (ulonglong)line_count;
+            text_start = text_start + 1;
+          } while (text_start < text_end);
         }
-        fVar13 = (float)(int)uVar9 * fVar1 + unaff_XMM13_Da;
-        *(float *)(unaff_RBP + 0x44) = fVar13;
+        baseline = (float)(int)line_count * font_size + area_y;
+        *(float *)(stack_base + 0x44) = baseline;
       }
     }
-    if (unaff_RDI < unaff_RBX) {
-      fVar15 = fVar13;
-      fVar14 = fVar13;
-      in_stack_00000060 = unaff_XMM15_Da;
-      in_stack_00000068 = unaff_XMM15_Dc;
-      in_stack_00000090 = unaff_XMM12_Da;
-      in_stack_00000098 = unaff_XMM12_Dc;
-      in_stack_000000c0 = unaff_XMM9_Da;
-      in_stack_000000c8 = unaff_XMM9_Dc;
+    
+    // 处理文本内容
+    if (text_start < text_end) {
+      text_width = baseline;
+      text_height = baseline;
+      // 设置渲染参数
+      render_flags = texture_format;
+      alignment_flags = effect_flags;
+      clipping_flags = color_flags;
+      
       do {
-        fVar15 = fVar15 + fVar1;
-        lVar8 = *(longlong *)(unaff_RSI + 0x1af8);
-        if (((((fVar15 < *(float *)(lVar8 + 0x22c) || fVar15 == *(float *)(lVar8 + 0x22c)) ||
-              (*(float *)(lVar8 + 0x234) <= fVar13)) ||
-             (unaff_XMM14_Da + 3.4028235e+38 < *(float *)(lVar8 + 0x228) ||
-              unaff_XMM14_Da + 3.4028235e+38 == *(float *)(lVar8 + 0x228))) ||
-            (*(float *)(lVar8 + 0x230) <= unaff_XMM14_Da)) &&
-           (*(char *)(unaff_RSI + 0x2e38) == cVar5)) break;
-        uVar7 = memchr(unaff_RDI,10,unaff_RBX - unaff_RDI);
-        pfVar3 = *(float **)(unaff_RSI + 0x19f0);
+        text_width = text_width + font_size;
+        render_data = *(longlong *)(context_base + 0x1af8);
+        // 检查边界条件
+        if (((((text_width < *(float *)(render_data + 0x22c) || text_width == *(float *)(render_data + 0x22c)) ||
+              (text_height <= baseline)) ||
+             (area_x + 3.4028235e+38 < *(float *)(render_data + 0x228) ||
+              area_x + 3.4028235e+38 == *(float *)(render_data + 0x228))) ||
+            (*(float *)(render_data + 0x230) <= area_x)) &&
+           (*(char *)(context_base + 0x2e38) == update_flag)) break;
+        
+        text_end = memchr(text_start, 10, text_end - text_start);
+        font_metrics = *(float **)(context_base + 0x19f0);
         fVar2 = *(float *)(unaff_RSI + 0x19f8);
         if (uVar7 == 0) {
           uVar7 = unaff_RBX;
