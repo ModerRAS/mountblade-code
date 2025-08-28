@@ -75,7 +75,7 @@ typedef enum {
 
 // 全局数据引用
 #define RenderingSystemGlobalData _DAT_180c8ed18
-#define RenderingSystemDefaultData &system_buffer_ptr
+#define RenderingSystemDefaultData RenderingSystemDefaultData
 #define RenderingSystemVTableData1 &UNK_18098bcb0
 #define RenderingSystemVTableData2 &UNK_1809fcc58
 #define RenderingSystemVTableData3 &UNK_180a3c3e0
@@ -789,7 +789,7 @@ longlong *RenderingSystemCreateRenderQueue(longlong *param_1, int32_t *param_2, 
             *(int32_t *)(param_4 + 2) = 0;
             *(int8_t *)(param_4 + 3) = 0;
             *(int32_t *)(param_4 + 2) = puVar7[-0x56];
-            puVar8 = &system_buffer_ptr;
+            puVar8 = RenderingSystemDefaultData;
             if (*(void **)(puVar7 + -0x58) != (void *)0x0) {
                 puVar8 = *(void **)(puVar7 + -0x58);
             }
