@@ -149,9 +149,17 @@ LAB_PROCESS_MEMORY_BLOCK:
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: 全局变量起始地址与较小符号重叠
 
-undefined8 * FUN_18006d0b0(longlong *param_1)
+/**
+ * 获取线程本地存储数据
+ * 使用线程ID进行哈希查找，获取线程特定的数据存储
+ * 原函数名：FUN_18006d0b0
+ * 
+ * @param thread_context 线程上下文指针
+ * @return 线程本地存储数据指针，失败返回NULL
+ */
+undefined8 * GetThreadLocalStorageData(longlong *thread_context)
 
 {
   longlong *plVar1;
@@ -172,21 +180,31 @@ undefined8 * FUN_18006d0b0(longlong *param_1)
   bool bVar16;
   bool bVar17;
   
+  // 获取当前线程ID并计算哈希值
   uVar5 = GetCurrentThreadId();
   uVar14 = (uVar5 >> 0x10 ^ uVar5) * -0x7a143595;
   uVar14 = (uVar14 >> 0xd ^ uVar14) * -0x3d4d51cb;
   uVar13 = (ulonglong)(uVar14 >> 0x10 ^ uVar14);
+  
+  // 获取线程本地存储哈希表
   puVar7 = (ulonglong *)param_1[6];
+  
+  // 遍历哈希表链表查找线程数据
   for (puVar3 = puVar7; uVar6 = uVar13, puVar3 != (ulonglong *)0x0; puVar3 = (ulonglong *)puVar3[2])
   {
     while( true ) {
+      // 计算哈希槽位索引
       uVar6 = uVar6 & *puVar3 - 1;
       uVar14 = *(uint *)(uVar6 * 0x10 + puVar3[1]);
+      
+      // 如果找到匹配的线程ID，返回对应的线程数据
       if (uVar14 == uVar5) {
         puVar15 = *(undefined8 **)(puVar3[1] + 8 + uVar6 * 0x10);
         if (puVar3 == puVar7) {
           return puVar15;
         }
+        
+        // 在主哈希表中添加缓存条目
         do {
           uVar13 = uVar13 & *puVar7 - 1;
           if (*(int *)(puVar7[1] + uVar13 * 0x10) == 0) {

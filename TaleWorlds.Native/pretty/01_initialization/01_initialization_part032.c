@@ -304,216 +304,241 @@ longlong * 释放链表头节点(longlong *head_ptr)
 
 
 
-undefined8 FUN_180060c60(longlong param_1,undefined8 param_2)
-
+/**
+ * 处理缓冲区插入和对象生命周期管理
+ * 根据不同的模式处理缓冲区插入操作和对象的生命周期管理
+ * @param buffer_obj 缓冲区对象
+ * @param data_obj 数据对象
+ * @return 成功插入返回1，否则返回0
+ */
+undefined8 处理缓冲区插入操作(longlong buffer_obj,undefined8 data_obj)
 {
-  longlong *plVar1;
-  ulonglong *puVar2;
-  longlong lVar3;
-  ulonglong uVar4;
-  longlong lVar5;
-  longlong lVar6;
-  ulonglong uVar7;
+  longlong *position_ptr;
+  ulonglong *index_ptr;
+  longlong current_pos;
+  ulonglong index;
+  longlong slot_count;
+  longlong base_addr;
+  ulonglong slot_offset;
   
-  if (*(char *)(param_1 + 0x48) == '\0') {
+  if (*(char *)(buffer_obj + 0x48) == '\0') {
     if ((ulonglong)
-        ((*(longlong *)(param_1 + 0x30) - *(longlong *)(param_1 + 0x38)) -
-        *(longlong *)(param_1 + 0x20)) < 0x8000000000000001) {
+        ((*(longlong *)(buffer_obj + 0x30) - *(longlong *)(buffer_obj + 0x38)) -
+        *(longlong *)(buffer_obj + 0x20)) < 0x8000000000000001) {
       return 0;
     }
     LOCK();
-    plVar1 = (longlong *)(param_1 + 0x30);
-    lVar3 = *plVar1;
-    *plVar1 = *plVar1 + 1;
+    position_ptr = (longlong *)(buffer_obj + 0x30);
+    current_pos = *position_ptr;
+    *position_ptr = *position_ptr + 1;
     UNLOCK();
     if (0x8000000000000000 <
-        (ulonglong)((lVar3 - *(longlong *)(param_1 + 0x20)) - *(longlong *)(param_1 + 0x38))) {
+        (ulonglong)((current_pos - *(longlong *)(buffer_obj + 0x20)) - *(longlong *)(buffer_obj + 0x38))) {
       LOCK();
-      puVar2 = (ulonglong *)(param_1 + 0x28);
-      uVar4 = *puVar2;
-      *puVar2 = *puVar2 + 1;
+      index_ptr = (ulonglong *)(buffer_obj + 0x28);
+      index = *index_ptr;
+      *index_ptr = *index_ptr + 1;
       UNLOCK();
-      plVar1 = *(longlong **)(param_1 + 0x60);
-      lVar3 = *(longlong *)
-               (plVar1[3] +
-               (((uVar4 & 0xffffffffffffffe0) - **(longlong **)(plVar1[3] + plVar1[1] * 8) >> 5) +
-                plVar1[1] & *plVar1 - 1U) * 8);
-      lVar6 = *(longlong *)(lVar3 + 8);
-      plVar1 = (longlong *)(lVar6 + (ulonglong)((uint)uVar4 & 0x1f) * 8);
-      FUN_180060b80(param_2,plVar1);
-      plVar1 = (longlong *)*plVar1;
-      if (plVar1 != (longlong *)0x0) {
-        (**(code **)(*plVar1 + 0x38))();
+      position_ptr = *(longlong **)(buffer_obj + 0x60);
+      current_pos = *(longlong *)
+               (position_ptr[3] +
+               (((index & 0xffffffffffffffe0) - **(longlong **)(position_ptr[3] + position_ptr[1] * 8) >> 5) +
+                position_ptr[1] & *position_ptr - 1U) * 8);
+      base_addr = *(longlong *)(current_pos + 8);
+      position_ptr = (longlong *)(base_addr + (ulonglong)((uint)index & 0x1f) * 8);
+      FUN_180060b80(data_obj,position_ptr);
+      position_ptr = (longlong *)*position_ptr;
+      if (position_ptr != (longlong *)0x0) {
+        (**(code **)(*position_ptr + 0x38))();
       }
       LOCK();
-      plVar1 = (longlong *)(lVar6 + 0x108);
-      lVar5 = *plVar1;
-      *plVar1 = *plVar1 + 1;
+      position_ptr = (longlong *)(base_addr + 0x108);
+      slot_count = *position_ptr;
+      *position_ptr = *position_ptr + 1;
       UNLOCK();
-      if (lVar5 == 0x1f) {
-        *(undefined8 *)(lVar3 + 8) = 0;
-        func_0x000180060c10(*(undefined8 *)(param_1 + 0x50),lVar6);
+      if (slot_count == 0x1f) {
+        *(undefined8 *)(current_pos + 8) = 0;
+        func_0x000180060c10(*(undefined8 *)(buffer_obj + 0x50),base_addr);
       }
       return 1;
     }
   }
   else {
     if ((ulonglong)
-        ((*(longlong *)(param_1 + 0x30) - *(longlong *)(param_1 + 0x38)) -
-        *(longlong *)(param_1 + 0x20)) < 0x8000000000000001) {
+        ((*(longlong *)(buffer_obj + 0x30) - *(longlong *)(buffer_obj + 0x38)) -
+        *(longlong *)(buffer_obj + 0x20)) < 0x8000000000000001) {
       return 0;
     }
     LOCK();
-    plVar1 = (longlong *)(param_1 + 0x30);
-    lVar3 = *plVar1;
-    *plVar1 = *plVar1 + 1;
+    position_ptr = (longlong *)(buffer_obj + 0x30);
+    current_pos = *position_ptr;
+    *position_ptr = *position_ptr + 1;
     UNLOCK();
     if (0x8000000000000000 <
-        (ulonglong)((lVar3 - *(longlong *)(param_1 + 0x20)) - *(longlong *)(param_1 + 0x38))) {
+        (ulonglong)((current_pos - *(longlong *)(buffer_obj + 0x20)) - *(longlong *)(buffer_obj + 0x38))) {
       LOCK();
-      puVar2 = (ulonglong *)(param_1 + 0x28);
-      uVar4 = *puVar2;
-      *puVar2 = *puVar2 + 1;
+      index_ptr = (ulonglong *)(buffer_obj + 0x28);
+      index = *index_ptr;
+      *index_ptr = *index_ptr + 1;
       UNLOCK();
-      plVar1 = *(longlong **)(param_1 + 0x58);
-      uVar7 = (ulonglong)((uint)uVar4 & 0x1f);
-      lVar3 = *(longlong *)
-               (plVar1[2] + 8 +
-               (((uVar4 & 0xffffffffffffffe0) - *(longlong *)(plVar1[2] + plVar1[1] * 0x10) >> 5) +
-                plVar1[1] & *plVar1 - 1U) * 0x10);
-      plVar1 = (longlong *)(lVar3 + uVar7 * 8);
-      FUN_180060b80(param_2,plVar1);
-      plVar1 = (longlong *)*plVar1;
-      if (plVar1 != (longlong *)0x0) {
-        (**(code **)(*plVar1 + 0x38))();
+      position_ptr = *(longlong **)(buffer_obj + 0x58);
+      slot_offset = (ulonglong)((uint)index & 0x1f);
+      current_pos = *(longlong *)
+               (position_ptr[2] + 8 +
+               (((index & 0xffffffffffffffe0) - *(longlong *)(position_ptr[2] + position_ptr[1] * 0x10) >> 5) +
+                position_ptr[1] & *position_ptr - 1U) * 0x10);
+      position_ptr = (longlong *)(current_pos + slot_offset * 8);
+      FUN_180060b80(data_obj,position_ptr);
+      position_ptr = (longlong *)*position_ptr;
+      if (position_ptr != (longlong *)0x0) {
+        (**(code **)(*position_ptr + 0x38))();
       }
-      *(undefined1 *)((lVar3 - uVar7) + 0x12f) = 1;
+      *(undefined1 *)((current_pos - slot_offset) + 0x12f) = 1;
       return 1;
     }
   }
   LOCK();
-  *(longlong *)(param_1 + 0x38) = *(longlong *)(param_1 + 0x38) + 1;
+  *(longlong *)(buffer_obj + 0x38) = *(longlong *)(buffer_obj + 0x38) + 1;
   UNLOCK();
   return 0;
 }
 
 
 
-undefined8 FUN_180060d76(void)
-
+/**
+ * 批量处理缓冲区槽位
+ * 批量处理缓冲区中的槽位操作，支持多个槽位的处理
+ * @param count 处理数量
+ * @param buffer_ptr 缓冲区指针
+ * @return 处理结果
+ */
+undefined8 批量处理缓冲区槽位(void)
 {
-  ulonglong *puVar1;
-  ulonglong uVar2;
-  longlong lVar3;
-  longlong *plVar4;
-  longlong lVar5;
-  longlong lVar6;
+  ulonglong *index_ptr;
+  ulonglong start_index;
+  longlong current_pos;
+  longlong *buffer_info;
+  longlong slot_count;
+  longlong base_addr;
   ulonglong unaff_RSI;
   longlong unaff_RDI;
   
   LOCK();
-  puVar1 = (ulonglong *)(unaff_RDI + 0x28);
-  uVar2 = *puVar1;
-  *puVar1 = *puVar1 + (unaff_RSI & 0xffffffff);
+  index_ptr = (ulonglong *)(unaff_RDI + 0x28);
+  start_index = *index_ptr;
+  *index_ptr = *index_ptr + (unaff_RSI & 0xffffffff);
   UNLOCK();
-  plVar4 = *(longlong **)(unaff_RDI + 0x60);
-  lVar5 = *(longlong *)
-           (plVar4[3] +
-           (((uVar2 & 0xffffffffffffffe0) - **(longlong **)(plVar4[3] + plVar4[1] * 8) >> 5) +
-            plVar4[1] & *plVar4 - 1U) * 8);
-  lVar6 = *(longlong *)(lVar5 + 8);
+  buffer_info = *(longlong **)(unaff_RDI + 0x60);
+  current_pos = *(longlong *)
+           (buffer_info[3] +
+           (((start_index & 0xffffffffffffffe0) - **(longlong **)(buffer_info[3] + buffer_info[1] * 8) >> 5) +
+            buffer_info[1] & *buffer_info - 1U) * 8);
+  base_addr = *(longlong *)(current_pos + 8);
   FUN_180060b80();
-  plVar4 = *(longlong **)(lVar6 + (ulonglong)((uint)uVar2 & 0x1f) * 8);
-  if (plVar4 != (longlong *)0x0) {
-    (**(code **)(*plVar4 + 0x38))();
+  buffer_info = *(longlong **)(base_addr + (ulonglong)((uint)start_index & 0x1f) * 8);
+  if (buffer_info != (longlong *)0x0) {
+    (**(code **)(*buffer_info + 0x38))();
   }
   LOCK();
-  plVar4 = (longlong *)(lVar6 + 0x108);
-  lVar3 = *plVar4;
-  *plVar4 = *plVar4 + unaff_RSI;
+  buffer_info = (longlong *)(base_addr + 0x108);
+  slot_count = *buffer_info;
+  *buffer_info = *buffer_info + unaff_RSI;
   UNLOCK();
-  if (lVar3 == 0x1f) {
-    *(undefined8 *)(lVar5 + 8) = 0;
-    func_0x000180060c10(*(undefined8 *)(unaff_RDI + 0x50),lVar6);
+  if (slot_count == 0x1f) {
+    *(undefined8 *)(current_pos + 8) = 0;
+    func_0x000180060c10(*(undefined8 *)(unaff_RDI + 0x50),base_addr);
   }
   return 1;
 }
 
 
 
-undefined1 FUN_180060e22(void)
-
+/**
+ * 更新缓冲区位置
+ * 更新缓冲区的当前位置，增加指定的偏移量
+ * @param offset 偏移量
+ * @param buffer_ptr 缓冲区指针
+ * @return 操作结果
+ */
+undefined1 更新缓冲区位置(void)
 {
-  longlong unaff_RSI;
-  longlong unaff_RDI;
+  longlong offset;
+  longlong buffer_ptr;
   
   LOCK();
-  *(longlong *)(unaff_RDI + 0x38) = *(longlong *)(unaff_RDI + 0x38) + unaff_RSI;
+  *(longlong *)(buffer_ptr + 0x38) = *(longlong *)(buffer_ptr + 0x38) + offset;
   UNLOCK();
   return 0;
 }
 
 
 
-undefined8 FUN_180060e40(undefined8 *param_1,longlong param_2,undefined8 param_3)
-
+/**
+ * 尝试将对象插入缓冲区
+ * 尝试将指定的对象插入到缓冲区中，处理各种边界条件
+ * @param buffer_info 缓冲区信息
+ * @param queue_info 队列信息
+ * @param data_obj 数据对象
+ * @return 成功插入返回1，否则返回0
+ */
+undefined8 尝试插入缓冲区(undefined8 *buffer_info,longlong queue_info,undefined8 data_obj)
 {
-  char cVar1;
-  longlong *plVar2;
-  longlong lVar3;
-  longlong *plVar4;
-  longlong *plVar5;
-  longlong *plVar6;
+  char insert_result;
+  longlong *current_node;
+  longlong node_value;
+  longlong *start_node;
+  longlong *next_node;
+  longlong *target_node;
   
-  if (((*(longlong *)(param_2 + 0x18) == 0) || (*(int *)(param_2 + 4) != *(int *)(param_1 + 0x4c)))
-     && (cVar1 = FUN_180060a50(), cVar1 == '\0')) {
+  if (((*(longlong *)(queue_info + 0x18) == 0) || (*(int *)(queue_info + 4) != *(int *)(buffer_info + 0x4c)))
+     && (insert_result = FUN_180060a50(), insert_result == '\0')) {
     return 0;
   }
-  plVar6 = (longlong *)0x0;
-  plVar4 = (longlong *)(*(longlong *)(param_2 + 0x10) + -8);
-  if (*(longlong *)(param_2 + 0x10) == 0) {
-    plVar4 = plVar6;
+  target_node = (longlong *)0x0;
+  start_node = (longlong *)(*(longlong *)(queue_info + 0x10) + -8);
+  if (*(longlong *)(queue_info + 0x10) == 0) {
+    start_node = target_node;
   }
-  cVar1 = FUN_180060c60(plVar4,param_3);
-  if (cVar1 == '\0') {
-    plVar4 = (longlong *)*param_1;
-    plVar2 = *(longlong **)(param_2 + 0x10);
-    if (plVar2 == (longlong *)0x0) {
-      plVar2 = (longlong *)&DAT_00000008;
+  insert_result = FUN_180060c60(start_node,data_obj);
+  if (insert_result == '\0') {
+    start_node = (longlong *)*buffer_info;
+    current_node = *(longlong **)(queue_info + 0x10);
+    if (current_node == (longlong *)0x0) {
+      current_node = (longlong *)&DAT_00000008;
     }
-    lVar3 = *plVar2;
+    node_value = *current_node;
     while( true ) {
-      plVar2 = (longlong *)(lVar3 + -8);
-      if (lVar3 == 0) {
-        plVar2 = plVar6;
+      current_node = (longlong *)(node_value + -8);
+      if (node_value == 0) {
+        current_node = target_node;
       }
-      plVar5 = plVar4;
-      if (plVar2 != (longlong *)0x0) {
-        plVar5 = plVar2;
+      next_node = start_node;
+      if (current_node != (longlong *)0x0) {
+        next_node = current_node;
       }
-      plVar2 = (longlong *)(*(longlong *)(param_2 + 0x10) + -8);
-      if (*(longlong *)(param_2 + 0x10) == 0) {
-        plVar2 = plVar6;
+      current_node = (longlong *)(*(longlong *)(queue_info + 0x10) + -8);
+      if (*(longlong *)(queue_info + 0x10) == 0) {
+        current_node = target_node;
       }
-      if (plVar5 == plVar2) {
+      if (next_node == current_node) {
         return 0;
       }
-      cVar1 = FUN_180060c60(plVar5,param_3);
-      if (cVar1 != '\0') break;
-      lVar3 = plVar5[1];
+      insert_result = FUN_180060c60(next_node,data_obj);
+      if (insert_result != '\0') break;
+      node_value = next_node[1];
     }
-    *(undefined4 *)(param_2 + 8) = 1;
-    plVar4 = plVar5 + 1;
-    if (plVar5 == (longlong *)0x0) {
-      plVar4 = plVar6;
+    *(undefined4 *)(queue_info + 8) = 1;
+    start_node = next_node + 1;
+    if (next_node == (longlong *)0x0) {
+      start_node = target_node;
     }
-    *(longlong **)(param_2 + 0x10) = plVar4;
+    *(longlong **)(queue_info + 0x10) = start_node;
   }
   else {
-    *(int *)(param_2 + 8) = *(int *)(param_2 + 8) + 1;
-    if (*(int *)(param_2 + 8) == 0x100) {
+    *(int *)(queue_info + 8) = *(int *)(queue_info + 8) + 1;
+    if (*(int *)(queue_info + 8) == 0x100) {
       LOCK();
-      *(int *)(param_1 + 0x4c) = *(int *)(param_1 + 0x4c) + 1;
+      *(int *)(buffer_info + 0x4c) = *(int *)(buffer_info + 0x4c) + 1;
       UNLOCK();
     }
   }
@@ -522,25 +547,33 @@ undefined8 FUN_180060e40(undefined8 *param_1,longlong param_2,undefined8 param_3
 
 
 
-bool FUN_180060f50(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-
+/**
+ * 尝试插入对象到队列
+ * 尝试将对象插入到指定的队列中，并处理相关的生命周期管理
+ * @param queue_obj 队列对象
+ * @param param2 参数2
+ * @param param3 参数3
+ * @param param4 参数4
+ * @return 成功插入返回true，否则返回false
+ */
+bool 尝试插入队列(longlong queue_obj,undefined8 param2,undefined8 param3,undefined8 param4)
 {
-  longlong *plVar1;
-  char cVar2;
-  longlong *plStackX_8;
+  longlong *inserted_obj;
+  char insert_result;
+  longlong *queue_item;
   
-  plStackX_8 = (longlong *)0x0;
-  cVar2 = FUN_180060e40(*(undefined8 *)(param_1 + 0x60),param_1 + 0x78,&plStackX_8,param_4,
+  queue_item = (longlong *)0x0;
+  insert_result = FUN_180060e40(*(undefined8 *)(queue_obj + 0x60),queue_obj + 0x78,&queue_item,param4,
                         0xfffffffffffffffe);
-  plVar1 = plStackX_8;
-  if (cVar2 != '\0') {
-    (**(code **)(*plStackX_8 + 0x60))(plStackX_8);
-    (**(code **)(*plVar1 + 0x70))(plVar1);
+  inserted_obj = queue_item;
+  if (insert_result != '\0') {
+    (**(code **)(*queue_item + 0x60))(queue_item);
+    (**(code **)(*inserted_obj + 0x70))(inserted_obj);
   }
-  if (plVar1 != (longlong *)0x0) {
-    (**(code **)(*plVar1 + 0x38))(plVar1);
+  if (inserted_obj != (longlong *)0x0) {
+    (**(code **)(*inserted_obj + 0x38))(inserted_obj);
   }
-  return cVar2 != '\0';
+  return insert_result != '\0';
 }
 
 

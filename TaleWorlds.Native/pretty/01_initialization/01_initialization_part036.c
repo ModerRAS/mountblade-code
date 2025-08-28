@@ -351,64 +351,85 @@ void close_file_handle_and_release_entry(longlong engine_context, undefined8 *fi
 
 
 
-// 函数: void FUN_1800686b0(longlong param_1)
-void FUN_1800686b0(longlong param_1)
+// 函数: 清理内存池并释放所有未使用的内存块
+// 功能: 遍历内存池，将所有未使用的内存块释放回空闲链表，并更新内存池的统计信息
+// 参数: param_1 - 内存池管理器指针
+void cleanup_memory_pool(longlong memory_pool_manager)
 
 {
-  longlong *plVar1;
-  longlong *plVar2;
-  longlong lVar3;
-  char cVar4;
-  longlong *plVar5;
-  longlong *plVar6;
-  longlong *plVar7;
-  longlong *plStackX_8;
+  longlong *memory_stats;
+  longlong *free_list_head;
+  longlong block_size;
+  char has_blocks;
+  longlong *current_block;
+  longlong *list_end;
+  longlong *next_block;
+  longlong *block_info;
   
-  cVar4 = FUN_180068a90(param_1 + 0x10,&plStackX_8);
+  // 查找可用的内存块
+  has_blocks = find_available_memory_block(memory_pool_manager + 0x10, &block_info);
   do {
-    if (cVar4 == '\0') {
-      return;
+    if (has_blocks == '\0') {
+      return;  // 没有更多块需要处理
     }
-    plVar2 = *(longlong **)(param_1 + 0x318);
-    if (plStackX_8 != (longlong *)0x0) {
-      *(undefined1 *)(plStackX_8 + 4) = 0;
-      *plVar2 = *plVar2 - plStackX_8[1];
-      plVar2[2] = plVar2[2] + plStackX_8[1];
-      plVar7 = (longlong *)plStackX_8[3];
-      plVar6 = (longlong *)plVar2[3];
-      plVar5 = plStackX_8;
-      if (plVar7 != plVar6) {
+    
+    // 获取内存池统计信息
+    memory_stats = *(longlong **)(memory_pool_manager + 0x318);
+    if (block_info != (longlong *)0x0) {
+      // 标记块为已释放
+      *(undefined1 *)(block_info + 4) = 0;
+      
+      // 更新内存池统计信息
+      *memory_stats = *memory_stats - block_info[1];  // 减少已使用内存
+      memory_stats[2] = memory_stats[2] + block_info[1];  // 增加空闲内存
+      
+      // 处理块链表
+      next_block = (longlong *)block_info[3];
+      list_end = (longlong *)memory_stats[3];
+      current_block = block_info;
+      
+      if (next_block != list_end) {
+        // 遍历链表，处理所有未使用的块
         do {
-          if ((plVar7 == (longlong *)0x0) || ((char)plVar7[4] != '\0')) break;
-          lVar3 = plVar5[2];
-          plVar7[2] = lVar3;
-          if (lVar3 != 0) {
-            *(longlong **)(lVar3 + 0x18) = plVar7;
+          if ((next_block == (longlong *)0x0) || ((char)next_block[4] != '\0')) break;
+          
+          // 重新链接块
+          block_size = current_block[2];
+          next_block[2] = block_size;
+          if (block_size != 0) {
+            *(longlong **)(block_size + 0x18) = next_block;
           }
-          plVar7[1] = plVar7[1] + plVar5[1];
-          *plVar5 = plVar2[0x28005];
-          plVar2[0x28005] = (longlong)plVar5;
-          plVar6 = (longlong *)plVar2[3];
-          plVar1 = plVar7 + 3;
-          plVar5 = plVar7;
-          plVar7 = (longlong *)*plVar1;
-        } while ((longlong *)*plVar1 != plVar6);
+          
+          // 更新块大小信息
+          next_block[1] = next_block[1] + current_block[1];
+          *current_block = memory_stats[0x28005];  // 添加到空闲链表
+          memory_stats[0x28005] = (longlong)current_block;
+          
+          list_end = (longlong *)memory_stats[3];
+          memory_stats = next_block + 3;
+          current_block = next_block;
+          next_block = (longlong *)*memory_stats;
+        } while ((longlong *)*memory_stats != list_end);
       }
-      plVar7 = (longlong *)plVar5[2];
-      while (((plVar5 != plVar6 && (plVar7 != (longlong *)0x0)) && ((char)plVar7[4] == '\0'))) {
-        lVar3 = plVar7[2];
-        plVar5[2] = lVar3;
-        if (lVar3 != 0) {
-          *(longlong **)(lVar3 + 0x18) = plVar5;
+      
+      // 处理剩余的块
+      next_block = (longlong *)current_block[2];
+      while (((current_block != list_end && (next_block != (longlong *)0x0)) && ((char)next_block[4] == '\0'))) {
+        block_size = next_block[2];
+        current_block[2] = block_size;
+        if (block_size != 0) {
+          *(longlong **)(block_size + 0x18) = current_block;
         }
-        plVar5[1] = plVar5[1] + plVar7[1];
-        *plVar7 = plVar2[0x28005];
-        plVar2[0x28005] = (longlong)plVar7;
-        plVar6 = (longlong *)plVar2[3];
-        plVar7 = (longlong *)plVar5[2];
+        current_block[1] = current_block[1] + next_block[1];
+        *next_block = memory_stats[0x28005];
+        memory_stats[0x28005] = (longlong)next_block;
+        list_end = (longlong *)memory_stats[3];
+        next_block = (longlong *)current_block[2];
       }
     }
-    cVar4 = FUN_180068a90(param_1 + 0x10,&plStackX_8);
+    
+    // 继续查找下一个可用块
+    has_blocks = find_available_memory_block(memory_pool_manager + 0x10, &block_info);
   } while( true );
 }
 
@@ -416,71 +437,112 @@ void FUN_1800686b0(longlong param_1)
 
 
 
-// 函数: void FUN_1800687d0(longlong param_1,undefined8 *param_2)
-void FUN_1800687d0(longlong param_1,undefined8 *param_2)
+// 函数: 释放缓冲区槽位并将其返回到空闲链表
+// 功能: 将指定的缓冲区槽位释放，并将其添加到缓冲区管理器的空闲链表中
+// 参数: param_1 - 缓冲区管理器指针
+//       param_2 - 要释放的缓冲区槽位指针
+void release_buffer_slot(longlong buffer_manager, undefined8 *buffer_slot)
 
 {
-  int iVar1;
+  int lock_result;
   
-  iVar1 = _Mtx_lock(param_1 + 0x200010);
-  if (iVar1 != 0) {
-    __Throw_C_error_std__YAXH_Z(iVar1);
+  // 获取缓冲区管理器锁
+  lock_result = _Mtx_lock(buffer_manager + 0x200010);
+  if (lock_result != 0) {
+    __Throw_C_error_std__YAXH_Z(lock_result);
   }
-  FUN_180069530(param_2 + 4);
-  *param_2 = *(undefined8 *)(param_1 + 0x200008);
-  *(undefined8 **)(param_1 + 0x200008) = param_2;
-  iVar1 = _Mtx_unlock(param_1 + 0x200010);
-  if (iVar1 != 0) {
-    __Throw_C_error_std__YAXH_Z(iVar1);
+  
+  // 清理缓冲区槽位的回调结构
+  cleanup_callback_structure(buffer_slot + 4);
+  
+  // 将槽位添加到空闲链表头部
+  *buffer_slot = *(undefined8 *)(buffer_manager + 0x200008);
+  *(undefined8 **)(buffer_manager + 0x200008) = buffer_slot;
+  
+  // 释放锁
+  lock_result = _Mtx_unlock(buffer_manager + 0x200010);
+  if (lock_result != 0) {
+    __Throw_C_error_std__YAXH_Z(lock_result);
   }
   return;
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: 全局变量起始地址与较小符号重叠
 
+// 函数: 创建文件表项并将其添加到哈希表中
+// 功能: 根据给定的键值在哈希表中查找或创建文件表项
+// 参数: param_1 - 文件表管理器指针
+//       param_2 - 输出参数，返回创建的文件表项
+//       param_3 - 保留参数
+//       param_4 - 文件信息参数
+//       param_5 - 哈希键值
+// 返回: param_2 - 指向创建的文件表项
 longlong *
-FUN_180068860(longlong param_1,longlong *param_2,undefined8 param_3,undefined8 param_4,
-             ulonglong param_5)
+create_file_table_entry(longlong file_table_manager, longlong *file_entry, undefined8 param_3, undefined8 param_4,
+                        ulonglong hash_key)
 
 {
-  longlong lVar1;
-  ulonglong uVar2;
-  longlong lVar3;
-  undefined8 uVar4;
+  longlong hash_table_base;
+  ulonglong hash_index;
+  longlong new_entry;
+  undefined8 extension_data;
   
-  uVar2 = param_5 % (ulonglong)*(uint *)(param_1 + 0x10);
-  lVar3 = func_0x0001800694c0(param_1,*(undefined8 *)(*(longlong *)(param_1 + 8) + uVar2 * 8),
-                              param_4);
-  if (lVar3 == 0) {
-    FUN_18066c220(param_1 + 0x20,&param_5,*(undefined4 *)(param_1 + 0x10),
-                  *(undefined4 *)(param_1 + 0x18),1);
-    lVar3 = FUN_18062b420(_DAT_180c8ed18,0x128,*(undefined1 *)(param_1 + 0x2c));
-    FUN_180068ff0(lVar3,param_4);
-    *(undefined8 *)(lVar3 + 0x118) = 0;
-    *(undefined8 *)(lVar3 + 0x120) = 0;
-    if ((char)param_5 != '\0') {
-      uVar4 = FUN_18062b1e0(_DAT_180c8ed18,(ulonglong)param_5._4_4_ * 8 + 8,8,
-                            *(undefined1 *)(param_1 + 0x2c));
-                    // WARNING: Subroutine does not return
-      memset(uVar4,0,(ulonglong)param_5._4_4_ * 8);
+  // 计算哈希索引
+  hash_index = hash_key % (ulonglong)*(uint *)(file_table_manager + 0x10);
+  
+  // 在哈希表中查找现有项
+  new_entry = find_file_entry_by_key(file_table_manager, 
+                                     *(undefined8 *)(*(longlong *)(file_table_manager + 8) + hash_index * 8),
+                                     param_4);
+  
+  if (new_entry == 0) {
+    // 未找到现有项，创建新的文件表项
+    expand_file_table_if_needed(file_table_manager + 0x20, &hash_key, 
+                                *(undefined4 *)(file_table_manager + 0x10),
+                                *(undefined4 *)(file_table_manager + 0x18), 1);
+    
+    // 分配新的文件表项内存
+    new_entry = allocate_memory_block(_DAT_180c8ed18, 0x128, *(undefined1 *)(file_table_manager + 0x2c));
+    
+    // 初始化文件读取上下文
+    initialize_file_read_context(new_entry, param_4);
+    
+    // 清理文件表项字段
+    *(undefined8 *)(new_entry + 0x118) = 0;  // 清理扩展属性
+    *(undefined8 *)(new_entry + 0x120) = 0;  // 清理时间戳
+    
+    // 如果有扩展数据，分配并初始化
+    if ((char)hash_key != '\0') {
+      extension_data = allocate_memory_block(_DAT_180c8ed18, (ulonglong)hash_key._4_4_ * 8 + 8, 8,
+                                            *(undefined1 *)(file_table_manager + 0x2c));
+      // WARNING: 子函数不返回
+      memset(extension_data, 0, (ulonglong)hash_key._4_4_ * 8);
     }
-    *(undefined8 *)(lVar3 + 0x120) = *(undefined8 *)(*(longlong *)(param_1 + 8) + uVar2 * 8);
-    *(longlong *)(*(longlong *)(param_1 + 8) + uVar2 * 8) = lVar3;
-    *(longlong *)(param_1 + 0x18) = *(longlong *)(param_1 + 0x18) + 1;
-    lVar1 = *(longlong *)(param_1 + 8);
-    *param_2 = lVar3;
-    param_2[1] = lVar1 + uVar2 * 8;
-    *(undefined1 *)(param_2 + 2) = 1;
+    
+    // 将新项插入哈希表
+    *(undefined8 *)(new_entry + 0x120) = *(undefined8 *)(*(longlong *)(file_table_manager + 8) + hash_index * 8);
+    *(longlong *)(*(longlong *)(file_table_manager + 8) + hash_index * 8) = new_entry;
+    
+    // 更新文件表计数
+    *(longlong *)(file_table_manager + 0x18) = *(longlong *)(file_table_manager + 0x18) + 1;
+    
+    // 设置输出参数
+    hash_table_base = *(longlong *)(file_table_manager + 8);
+    *file_entry = new_entry;
+    file_entry[1] = hash_table_base + hash_index * 8;
+    *(undefined1 *)(file_entry + 2) = 1;  // 标记为新创建的项
   }
   else {
-    lVar1 = *(longlong *)(param_1 + 8);
-    *param_2 = lVar3;
-    param_2[1] = lVar1 + uVar2 * 8;
-    *(undefined1 *)(param_2 + 2) = 0;
+    // 找到现有项
+    hash_table_base = *(longlong *)(file_table_manager + 8);
+    *file_entry = new_entry;
+    file_entry[1] = hash_table_base + hash_index * 8;
+    *(undefined1 *)(file_entry + 2) = 0;  // 标记为现有项
   }
-  return param_2;
+  
+  return file_entry;
 }
 
 

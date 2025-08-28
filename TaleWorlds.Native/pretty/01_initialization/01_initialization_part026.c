@@ -720,15 +720,16 @@ void cleanup_extended_array_v3(longlong array_ptr)
 
 
 
-undefined8 FUN_18005a1b0(undefined8 param_1,ulonglong param_2,undefined8 param_3,undefined8 param_4)
-
+// 函数: undefined8 release_memory_with_flags(undefined8 param_1, ulonglong param_2, undefined8 param_3, undefined8 param_4)
+// 功能: 根据标志位释放内存，提供条件性的内存释放功能
+undefined8 release_memory_with_flags(undefined8 param_1, ulonglong param_2, undefined8 param_3, undefined8 param_4)
 {
-  undefined8 uVar1;
+  undefined8 release_flag;
   
-  uVar1 = 0xfffffffffffffffe;
-  FUN_180049470();
-  if ((param_2 & 1) != 0) {
-    free(param_1,0xc0,param_3,param_4,uVar1);
+  release_flag = 0xfffffffffffffffe;  // 设置释放标志
+  FUN_180049470();  // 执行释放前的准备工作
+  if ((param_2 & 1) != 0) {  // 检查是否需要释放内存
+    free(param_1, 0xc0, param_3, param_4, release_flag);  // 释放192字节内存
   }
   return param_1;
 }
@@ -739,103 +740,127 @@ undefined8 FUN_18005a1b0(undefined8 param_1,ulonglong param_2,undefined8 param_3
 
 
 
-// 函数: void FUN_18005a200(undefined8 *param_1)
-void FUN_18005a200(undefined8 *param_1)
-
+// 函数: void initialize_thread_manager(undefined8 *thread_manager_ptr)
+// 功能: 初始化线程管理器，设置同步对象和状态标志
+void initialize_thread_manager(undefined8 *thread_manager_ptr)
 {
-  ulonglong uVar1;
-  undefined8 uVar2;
-  ulonglong uVar3;
-  ulonglong uVar4;
-  undefined8 *puVar5;
-  longlong lVar6;
-  undefined8 *puVar7;
-  longlong lVar8;
+  ulonglong init_flag;
+  undefined8 sync_obj;
+  ulonglong block_count;
+  ulonglong max_blocks;
+  undefined8 *block_ptr;
+  longlong alloc_result;
+  undefined8 *init_ptr;
+  longlong loop_count;
   
-  uVar3 = 0;
-  *param_1 = 0;
-  *(undefined4 *)(param_1 + 1) = 0;
-  param_1[2] = 0;
-  param_1[5] = 0;
-  puVar5 = param_1 + 0xb;
-  lVar8 = 0x20;
-  lVar6 = 0x20;
-  puVar7 = puVar5;
+  block_count = 0;
+  *thread_manager_ptr = 0;  // 清空主指针
+  *(undefined4 *)(thread_manager_ptr + 1) = 0;  // 清空标志
+  thread_manager_ptr[2] = 0;  // 清空引用计数
+  thread_manager_ptr[5] = 0;  // 清空块链表
+  block_ptr = thread_manager_ptr + 0xb;  // 块起始位置
+  loop_count = 0x20;  // 32个块
+  alloc_result = 0x20;  // 初始计数
+  init_ptr = block_ptr;
+  
+  // 初始化所有块
   do {
-    func_0x000180059bb0(puVar7);
-    puVar7 = puVar7 + 2;
-    lVar6 = lVar6 + -1;
-  } while (lVar6 != 0);
-  *(undefined8 *)((longlong)param_1 + 0x25c) = 0;
-  *(undefined4 *)(param_1 + 0x4b) = 0;
-  param_1[7] = 0;
-  param_1[8] = 0x20;
-  param_1[9] = puVar5;
+    func_0x000180059bb0(init_ptr);  // 初始化单个块
+    init_ptr = init_ptr + 2;
+    alloc_result = alloc_result - 1;
+  } while (alloc_result != 0);
+  
+  // 设置管理器状态
+  *(undefined8 *)((longlong)thread_manager_ptr + 0x25c) = 0;  // 清空扩展区域
+  *(undefined4 *)(thread_manager_ptr + 0x4b) = 0;  // 清空状态标志
+  thread_manager_ptr[7] = 0;  // 清空引用
+  thread_manager_ptr[8] = 0x20;  // 设置块大小
+  thread_manager_ptr[9] = block_ptr;  // 设置块指针
+  
+  // 清空所有块的状态
   do {
-    *(undefined4 *)puVar5 = 0;
-    puVar5 = puVar5 + 2;
-    lVar8 = lVar8 + -1;
-  } while (lVar8 != 0);
-  param_1[10] = 0;
-  param_1[6] = param_1 + 8;
-  param_1[4] = 0x15;
-  lVar6 = FUN_180059bc0();
-  param_1[3] = lVar6;
-  if (lVar6 == 0) {
-    param_1[4] = 0;
-    uVar1 = uVar3;
+    *(undefined4 *)block_ptr = 0;
+    block_ptr = block_ptr + 2;
+    loop_count = loop_count - 1;
+  } while (loop_count != 0);
+  
+  // 设置管理器参数
+  thread_manager_ptr[10] = 0;  // 清空扩展标志
+  thread_manager_ptr[6] = thread_manager_ptr + 8;  // 设置自引用
+  thread_manager_ptr[4] = 0x15;  // 设置版本号
+  alloc_result = FUN_180059bc0();  // 获取分配结果
+  thread_manager_ptr[3] = alloc_result;
+  if (alloc_result == 0) {
+    thread_manager_ptr[4] = 0;
+    init_flag = block_count;
   }
   else {
-    uVar1 = param_1[4];
+    init_flag = thread_manager_ptr[4];
   }
-  uVar4 = uVar3;
-  if (uVar1 != 0) {
+  
+  // 初始化块状态标志
+  max_blocks = block_count;
+  if (init_flag != 0) {
     do {
-      *(undefined1 *)(uVar4 + 0x141 + param_1[3]) = 0;
-      uVar3 = uVar3 + 1;
-      uVar4 = uVar4 + 0x148;
-    } while (uVar3 < (ulonglong)param_1[4]);
+      *(undefined1 *)(max_blocks + 0x141 + thread_manager_ptr[3]) = 0;  // 清空状态标志
+      block_count = block_count + 1;
+      max_blocks = max_blocks + 0x148;  // 下一个块
+    } while (block_count < (ulonglong)thread_manager_ptr[4]);
   }
-  _Cnd_init_in_situ();
-  _Mtx_init_in_situ(param_1 + 0x56,2);
-  param_1[0x60] = 0;
-  param_1[0x61] = 0;
-  param_1[0x62] = 0;
-  *(undefined4 *)(param_1 + 99) = 3;
-  param_1[0x65] = 0;
-  *(undefined4 *)(param_1 + 0x6a) = 0x3f800000;
-  *(undefined8 *)((longlong)param_1 + 0x354) = 0x40000000;
-  *(undefined4 *)((longlong)param_1 + 0x35c) = 3;
-  param_1[0x68] = 1;
-  param_1[0x67] = &DAT_180be0000;
-  param_1[0x69] = 0;
-  *(undefined4 *)(param_1 + 0x6b) = 0;
-  uVar2 = FUN_18062b1e0(_DAT_180c8ed18,0xc0,8,4);
-                    // WARNING: Subroutine does not return
-  memset(uVar2,0,0xc0);
+  
+  // 初始化同步对象
+  _Cnd_init_in_situ();  // 初始化条件变量
+  _Mtx_init_in_situ(thread_manager_ptr + 0x56, 2);  // 初始化互斥锁
+  
+  // 设置默认参数
+  thread_manager_ptr[0x60] = 0;  // 清空状态
+  thread_manager_ptr[0x61] = 0;  // 清空计数器
+  thread_manager_ptr[0x62] = 0;  // 清空标志
+  *(undefined4 *)(thread_manager_ptr + 99) = 3;  // 设置优先级
+  thread_manager_ptr[0x65] = 0;  // 清空错误标志
+  *(undefined4 *)(thread_manager_ptr + 0x6a) = 0x3f800000;  // 设置浮点参数 (1.0)
+  *(undefined8 *)((longlong)thread_manager_ptr + 0x354) = 0x40000000;  // 设置双精度参数 (2.0)
+  *(undefined4 *)((longlong)thread_manager_ptr + 0x35c) = 3;  // 设置精度参数
+  thread_manager_ptr[0x68] = 1;  // 设置启用标志
+  thread_manager_ptr[0x67] = &DAT_180be0000;  // 设置数据表指针
+  thread_manager_ptr[0x69] = 0;  // 清空扩展标志
+  *(undefined4 *)(thread_manager_ptr + 0x6b) = 0;  // 清空保留字段
+  
+  // 分配并初始化同步对象内存
+  sync_obj = FUN_18062b1e0(_DAT_180c8ed18, 0xc0, 8, 4);  // 分配192字节
+  memset(sync_obj, 0, 0xc0);  // 清空内存
 }
 
 
 
-undefined8 * FUN_18005a420(undefined8 *param_1,ulonglong param_2)
-
+// 函数: undefined8 * initialize_graphics_object(undefined8 *graphics_obj_ptr, ulonglong param_2)
+// 功能: 初始化图形对象，设置多个子组件和渲染器
+undefined8 * initialize_graphics_object(undefined8 *graphics_obj_ptr, ulonglong param_2)
 {
-  *param_1 = &UNK_1809fdd78;
-  FUN_18005b7c0(param_1 + 0xa4);
-  FUN_18005b960(param_1 + 0x8c);
-  FUN_18005b7c0(param_1 + 0x7e);
-  FUN_18005b7c0(param_1 + 0x70);
-  FUN_18005b7c0(param_1 + 0x62);
-  FUN_18005b7c0(param_1 + 0x54);
-  FUN_18005b7c0(param_1 + 0x46);
-  FUN_18005b7c0(param_1 + 0x38);
-  FUN_18005b7c0(param_1 + 0x2a);
-  FUN_18005b7c0(param_1 + 0x1c);
-  FUN_1800ae640(param_1);
+  // 设置主对象指针
+  *graphics_obj_ptr = &UNK_1809fdd78;
+  
+  // 初始化各种图形组件（按偏移量递减顺序）
+  FUN_18005b7c0(graphics_obj_ptr + 0xa4);  // 初始化组件10 (偏移0xa4)
+  FUN_18005b960(graphics_obj_ptr + 0x8c);  // 初始化组件9 (偏移0x8c)
+  FUN_18005b7c0(graphics_obj_ptr + 0x7e);  // 初始化组件8 (偏移0x7e)
+  FUN_18005b7c0(graphics_obj_ptr + 0x70);  // 初始化组件7 (偏移0x70)
+  FUN_18005b7c0(graphics_obj_ptr + 0x62);  // 初始化组件6 (偏移0x62)
+  FUN_18005b7c0(graphics_obj_ptr + 0x54);  // 初始化组件5 (偏移0x54)
+  FUN_18005b7c0(graphics_obj_ptr + 0x46);  // 初始化组件4 (偏移0x46)
+  FUN_18005b7c0(graphics_obj_ptr + 0x38);  // 初始化组件3 (偏移0x38)
+  FUN_18005b7c0(graphics_obj_ptr + 0x2a);  // 初始化组件2 (偏移0x2a)
+  FUN_18005b7c0(graphics_obj_ptr + 0x1c);  // 初始化组件1 (偏移0x1c)
+  
+  // 初始化图形系统
+  FUN_1800ae640(graphics_obj_ptr);
+  
+  // 根据标志决定是否释放内存
   if ((param_2 & 1) != 0) {
-    free(param_1,0x590);
+    free(graphics_obj_ptr, 0x590);  // 释放1424字节内存
   }
-  return param_1;
+  
+  return graphics_obj_ptr;
 }
 
 
@@ -844,44 +869,57 @@ undefined8 * FUN_18005a420(undefined8 *param_1,ulonglong param_2)
 
 
 
-// 函数: void FUN_18005a500(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-void FUN_18005a500(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-
+// 函数: void process_engine_definition(undefined8 param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4)
+// 功能: 处理引擎定义字符串，创建并配置引擎对象
+void process_engine_definition(undefined8 param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4)
 {
-  undefined4 uVar1;
-  undefined8 *puVar2;
-  undefined *puStack_50;
-  undefined8 *puStack_48;
-  undefined4 uStack_40;
-  undefined8 uStack_38;
+  undefined4 string_length;
+  undefined8 *engine_string;
+  undefined *stack_ptr1;
+  undefined8 *stack_ptr2;
+  undefined4 stack_length;
+  undefined8 stack_param;
   
-  puStack_50 = &UNK_180a3c3e0;
-  uStack_38 = 0;
-  puStack_48 = (undefined8 *)0x0;
-  uStack_40 = 0;
-  puVar2 = (undefined8 *)FUN_18062b420(_DAT_180c8ed18,0x10,0x13,param_4,0xfffffffffffffffe);
-  *(undefined1 *)puVar2 = 0;
-  puStack_48 = puVar2;
-  uVar1 = FUN_18064e990(puVar2);
-  uStack_38 = CONCAT44(uStack_38._4_4_,uVar1);
-  *puVar2 = 0x6320726f74696445;
-  *(undefined4 *)(puVar2 + 1) = 0x69666e6f;
-  *(undefined2 *)((longlong)puVar2 + 0xc) = 0x67;
-  uStack_40 = 0xd;
-  FUN_1800ae520(param_1,&puStack_50);
-  puStack_50 = &UNK_180a3c3e0;
-                    // WARNING: Subroutine does not return
-  FUN_18064e900(puVar2);
+  // 设置栈参数
+  stack_ptr1 = &UNK_180a3c3e0;
+  stack_param = 0;
+  stack_ptr2 = (undefined8 *)0x0;
+  stack_length = 0;
+  
+  // 分配引擎字符串内存
+  engine_string = (undefined8 *)FUN_18062b420(_DAT_180c8ed18, 0x10, 0x13, param_4, 0xfffffffffffffffe);
+  *(undefined1 *)engine_string = 0;  // 初始化字符串
+  stack_ptr2 = engine_string;
+  
+  // 获取字符串长度
+  string_length = FUN_18064e990(engine_string);
+  stack_param = CONCAT44(stack_param._4_4_, string_length);
+  
+  // 设置引擎定义字符串 "Engine definition"
+  *engine_string = 0x6320726f74696445;  // "Edition c"
+  *(undefined4 *)(engine_string + 1) = 0x69666e6f;    // "onfi"
+  *(undefined2 *)((longlong)engine_string + 0xc) = 0x67;  // "g"
+  
+  // 设置字符串长度
+  stack_length = 0xd;  // 13个字符
+  
+  // 处理引擎定义
+  FUN_1800ae520(param_1, &stack_ptr1);
+  stack_ptr1 = &UNK_180a3c3e0;
+  
+  // 临时字符串内存（不返回）
+  FUN_18064e900(engine_string);
 }
 
 
 
-undefined8 FUN_18005a960(undefined8 param_1,ulonglong param_2)
-
+// 函数: undefined8 initialize_render_system(undefined8 param_1, ulonglong param_2)
+// 功能: 初始化渲染系统，设置渲染管线和参数
+undefined8 initialize_render_system(undefined8 param_1, ulonglong param_2)
 {
-  FUN_18005a9a0();
+  FUN_18005a9a0();  // 调用渲染系统初始化子函数
   if ((param_2 & 1) != 0) {
-    free(param_1,0xa90);
+    free(param_1, 0xa90);  // 释放2704字节内存
   }
   return param_1;
 }
