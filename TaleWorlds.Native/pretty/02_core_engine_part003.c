@@ -1,5 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
-#include "include/global_constants.h"
+#include "../include/global_constants.h"
 #include <stdint.h>
 #include <stdlib.h>
 #include <string.h>
