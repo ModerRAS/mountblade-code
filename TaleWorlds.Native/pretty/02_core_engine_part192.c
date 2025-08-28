@@ -1,10 +1,12 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
-// 02_core_engine_part192.c - 13 个函数
+// 02_core_engine_part192.c - 核心引擎高级数据处理和内存管理模块
+// 包含13个关键函数，负责系统核心数据处理、内存管理、安全检查等功能
 
-// 函数: void FUN_1801749d0(uint64_t param_1,int64_t *param_2)
-void FUN_1801749d0(uint64_t param_1,int64_t *param_2)
+// 函数: void CoreEngineDataProcessor(uint64_t system_context,int64_t *data_buffer)
+// 功能: 核心引擎数据处理器，负责系统数据的初始化、处理和安全检查
+void CoreEngineDataProcessor(uint64_t system_context,int64_t *data_buffer)
 
 {
   int64_t lVar1;
@@ -45,7 +47,7 @@ void FUN_1801749d0(uint64_t param_1,int64_t *param_2)
   LOCK();
   *uStack_1d8 = 0;
   UNLOCK();
-  puStack_1c8 = &unknown_var_2008_ptr;
+  puStack_1c8 = &core_system_data_buffer_ptr;
   puStack_1c0 = auStack_1b0;
   uStack_1b8 = 0;
   auStack_1b0[0] = 0;
@@ -72,7 +74,7 @@ void FUN_1801749d0(uint64_t param_1,int64_t *param_2)
   if (pcStack_70 != (code *)0x0) {
     (*pcStack_70)(&uStack_80,0,0);
   }
-  pcStack_70 = (code *)&unknown_var_8832_ptr;
+  pcStack_70 = (code *)&system_event_handler_ptr;
   pcStack_68 = FUN_180179e40;
   uStack_80 = (int32_t)uStack_1e0;
   uStack_7c = uStack_1e0._4_4_;

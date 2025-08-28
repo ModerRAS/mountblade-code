@@ -1614,3 +1614,8 @@ set_matrix_size:
 #define process_rendering_vertex_batch FUN_18028c308
 #define process_rendering_vertex_extension FUN_18028c387
 #define process_rendering_transformation_matrix FUN_18028c3e0
+
+// 新增函数别名定义
+#define data_parser FUN_18028b000
+#define matrix_transform_processor FUN_18028e390
+#define memory_deallocator FUN_180059ba0
