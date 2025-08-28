@@ -476,10 +476,10 @@ uint64_t NetworkingSystem_ConnectionManager(int64_t param_1,int64_t *param_2)
 uint64_t NetworkingSystem_StateProcessor(void)
 
 {
-  longlong in_RAX;
+  int64_t in_RAX;
   uint64_t uVar1;
-  longlong *unaff_RBX;
-  longlong unaff_RSI;
+  int64_t *unaff_RBX;
+  int64_t unaff_RSI;
   int32_t in_stack_000000b0;
   
   // 检查连接状态
@@ -638,9 +638,9 @@ void NetworkingSystem_ErrorHandler(void)
   int in_EAX;
   int iVar1;
   int iVar2;
-  longlong *unaff_RBX;
+  int64_t *unaff_RBX;
   int unaff_EBP;
-  longlong unaff_RSI;
+  int64_t unaff_RSI;
   int32_t in_stack_000000b0;
   
   // 处理错误类型
@@ -754,7 +754,7 @@ uint64_t NetworkingSystem_PacketProcessor(int64_t param_1,uint64_t *param_2,int3
 
 {
   uint uVar1;
-  ulonglong uVar2;
+  uint64_t uVar2;
   int8_t auStack_70 [64];
   int8_t auStack_30 [40];
   
@@ -764,7 +764,7 @@ uint64_t NetworkingSystem_PacketProcessor(int64_t param_1,uint64_t *param_2,int3
   {
     if (*(int *)(param_2[1] + 0x18) == 0) {
       uVar1 = NetworkingSystem_ConnectionManager2(*param_2,param_1 + 0x10);
-      uVar2 = (ulonglong)uVar1;
+      uVar2 = (uint64_t)uVar1;
       if ((uVar1 == 0) &&
          ((param_5 == '\0' || (uVar2 = NetworkingSystem_ConnectionManager4(param_1 + 0x48,param_2), (int)uVar2 == 0)))) {
                     // 数据包处理成功，执行后续操作
@@ -791,13 +791,13 @@ uint64_t NetworkingSystem_PacketProcessor(int64_t param_1,uint64_t *param_2,int3
  * @param 使用栈传递的上下文信息
  * @return 路由管理状态码（0表示成功，0x1c表示错误）
  */
-ulonglong NetworkingSystem_RouteManager(void)
+uint64_t NetworkingSystem_RouteManager(void)
 
 {
   uint uVar1;
-  ulonglong uVar2;
+  uint64_t uVar2;
   uint64_t *unaff_RBX;
-  longlong unaff_RBP;
+  int64_t unaff_RBP;
   char in_stack_000000d0;
   
   // 验证路由协议
@@ -805,7 +805,7 @@ ulonglong NetworkingSystem_RouteManager(void)
   if ((int)uVar2 == 0) {
     if (*(int *)(unaff_RBX[1] + 0x18) == 0) {
       uVar1 = NetworkingSystem_ConnectionManager2(*unaff_RBX,unaff_RBP + 0x10);
-      uVar2 = (ulonglong)uVar1;
+      uVar2 = (uint64_t)uVar1;
       if ((uVar1 == 0) &&
          ((in_stack_000000d0 == '\0' || (uVar2 = NetworkingSystem_ConnectionManager4(unaff_RBP + 0x48), (int)uVar2 == 0)))
          ) {
@@ -904,13 +904,13 @@ uint64_t NetworkingSystem_ProtocolManager(int64_t param_1,int64_t *param_2)
  * @param param_2 连接参数指针数组
  * @return 连接处理状态码（0表示成功，0x1c表示错误）
  */
-ulonglong NetworkingSystem_ConnectionProcessor(longlong param_1,longlong *param_2)
+uint64_t NetworkingSystem_ConnectionProcessor(int64_t param_1,int64_t *param_2)
 
 {
-  longlong lVar1;
+  int64_t lVar1;
   uint uVar2;
   int32_t *puVar3;
-  ulonglong uVar4;
+  uint64_t uVar4;
   int16_t auStackX_18 [4];
   int16_t auStackX_20 [4];
   int32_t auStack_58 [2];
@@ -934,13 +934,13 @@ ulonglong NetworkingSystem_ConnectionProcessor(longlong param_1,longlong *param_
   }
   if (*(int *)(param_2[1] + 0x18) == 0) {
     uVar2 = NetworkingSystem_ConnectionManager2(*param_2,param_1 + 0x10);
-    uVar4 = (ulonglong)uVar2;
+    uVar4 = (uint64_t)uVar2;
     if (uVar2 == 0) {
       if (*(int *)(param_2[1] + 0x18) != 0) {
         return 0x1c;
       }
       uVar2 = NetworkingSystem_ConnectionManager2(*param_2,param_1 + 0x20);
-      uVar4 = (ulonglong)uVar2;
+      uVar4 = (uint64_t)uVar2;
       if (uVar2 == 0) {
         uVar4 = 0x1c;
         uVar2 = 0;
@@ -965,11 +965,11 @@ ulonglong NetworkingSystem_ConnectionProcessor(longlong param_1,longlong *param_
           }
         }
         if (uVar2 != 0) {
-          return (ulonglong)uVar2;
+          return (uint64_t)uVar2;
         }
         if (*(int *)(param_2[1] + 0x18) == 0) {
           uVar2 = NetworkingSystem_ConnectionManager2(*param_2,param_1 + 0x30);
-          uVar4 = (ulonglong)uVar2;
+          uVar4 = (uint64_t)uVar2;
           if (uVar2 == 0) {
             uVar4 = NetworkingSystem_ConnectionValidator2(param_2,param_1 + 0x40);
             if ((int)uVar4 != 0) {
@@ -999,16 +999,16 @@ ulonglong NetworkingSystem_ConnectionProcessor(longlong param_1,longlong *param_
  * @param 使用栈传递的上下文信息
  * @return 状态检查结果（0表示成功，0x1c表示错误）
  */
-ulonglong NetworkingSystem_StateChecker(void)
+uint64_t NetworkingSystem_StateChecker(void)
 
 {
-  longlong lVar1;
+  int64_t lVar1;
   uint uVar2;
-  longlong in_RAX;
-  ulonglong uVar3;
-  longlong unaff_RBP;
+  int64_t in_RAX;
+  uint64_t uVar3;
+  int64_t unaff_RBP;
   uint unaff_ESI;
-  longlong *unaff_RDI;
+  int64_t *unaff_RDI;
   int32_t in_stack_00000030;
   int32_t uStack0000000000000038;
   int16_t uStack000000000000003c;
@@ -1021,13 +1021,13 @@ ulonglong NetworkingSystem_StateChecker(void)
     return 0x1c;
   }
   uVar2 = NetworkingSystem_ConnectionManager2(*unaff_RDI,unaff_RBP + 0x10);
-  uVar3 = (ulonglong)uVar2;
+  uVar3 = (uint64_t)uVar2;
   if (uVar2 == 0) {
     if (*(uint *)(unaff_RDI[1] + 0x18) != unaff_ESI) {
       return 0x1c;
     }
     uVar2 = NetworkingSystem_ConnectionManager2(*unaff_RDI,unaff_RBP + 0x20);
-    uVar3 = (ulonglong)uVar2;
+    uVar3 = (uint64_t)uVar2;
     if (uVar2 == 0) {
       uVar3 = 0x1c;
       uVar2 = unaff_ESI;
@@ -1053,11 +1053,11 @@ ulonglong NetworkingSystem_StateChecker(void)
         }
       }
       if (uVar2 != 0) {
-        return (ulonglong)uVar2;
+        return (uint64_t)uVar2;
       }
       if (*(int *)(unaff_RDI[1] + 0x18) == 0) {
         uVar2 = NetworkingSystem_ConnectionManager2(*unaff_RDI,unaff_RBP + 0x30);
-        uVar3 = (ulonglong)uVar2;
+        uVar3 = (uint64_t)uVar2;
         if (uVar2 == 0) {
           uVar3 = NetworkingSystem_ConnectionValidator2();
           if ((int)uVar3 == 0) {
@@ -1085,15 +1085,15 @@ ulonglong NetworkingSystem_StateChecker(void)
  * @param 使用栈传递的上下文信息
  * @return 连接验证结果（0表示成功，0x1c表示错误）
  */
-ulonglong NetworkingSystem_ConnectionValidator(void)
+uint64_t NetworkingSystem_ConnectionValidator(void)
 
 {
-  longlong lVar1;
+  int64_t lVar1;
   uint uVar2;
-  ulonglong uVar3;
-  longlong unaff_RBP;
+  uint64_t uVar3;
+  int64_t unaff_RBP;
   uint unaff_ESI;
-  longlong *unaff_RDI;
+  int64_t *unaff_RDI;
   int32_t in_stack_00000030;
   int32_t uStack0000000000000038;
   int16_t uStack000000000000003c;
@@ -1103,7 +1103,7 @@ ulonglong NetworkingSystem_ConnectionValidator(void)
   
   // 验证连接配置
   uVar2 = NetworkingSystem_ConnectionManager2(*unaff_RDI,unaff_RBP + 0x20);
-  uVar3 = (ulonglong)uVar2;
+  uVar3 = (uint64_t)uVar2;
   if (uVar2 == 0) {
     uVar3 = 0x1c;
     uVar2 = unaff_ESI;
@@ -1129,11 +1129,11 @@ ulonglong NetworkingSystem_ConnectionValidator(void)
       }
     }
     if (uVar2 != 0) {
-      return (ulonglong)uVar2;
+      return (uint64_t)uVar2;
     }
     if (*(int *)(unaff_RDI[1] + 0x18) == 0) {
       uVar2 = NetworkingSystem_ConnectionManager2(*unaff_RDI,unaff_RBP + 0x30);
-      uVar3 = (ulonglong)uVar2;
+      uVar3 = (uint64_t)uVar2;
       if (uVar2 == 0) {
         uVar3 = NetworkingSystem_ConnectionValidator2();
         if ((int)uVar3 != 0) {
@@ -1160,15 +1160,15 @@ ulonglong NetworkingSystem_ConnectionValidator(void)
  * @param 使用栈传递的上下文信息
  * @return 数据发送结果（0表示成功，错误码表示失败）
  */
-ulonglong NetworkingSystem_DataSender(void)
+uint64_t NetworkingSystem_DataSender(void)
 
 {
-  longlong lVar1;
+  int64_t lVar1;
   uint uVar2;
-  ulonglong uVar3;
-  ulonglong unaff_RBX;
-  longlong unaff_RBP;
-  longlong *unaff_RDI;
+  uint64_t uVar3;
+  uint64_t unaff_RBX;
+  int64_t unaff_RBP;
+  int64_t *unaff_RDI;
   uint64_t in_stack_00000038;
   int16_t in_stack_000000a0;
   int16_t in_stack_000000a8;
@@ -1191,11 +1191,11 @@ ulonglong NetworkingSystem_DataSender(void)
     }
   }
   if (uVar2 != 0) {
-    return (ulonglong)uVar2;
+    return (uint64_t)uVar2;
   }
   if (*(int *)(unaff_RDI[1] + 0x18) == 0) {
     uVar2 = NetworkingSystem_ConnectionManager2(*unaff_RDI,unaff_RBP + 0x30);
-    unaff_RBX = (ulonglong)uVar2;
+    unaff_RBX = (uint64_t)uVar2;
     if (uVar2 == 0) {
       uVar3 = NetworkingSystem_ConnectionValidator2();
       if ((int)uVar3 == 0) {
@@ -1221,23 +1221,23 @@ ulonglong NetworkingSystem_DataSender(void)
  * @param 使用栈传递的上下文信息
  * @return 数据接收结果（0表示成功，错误码表示失败）
  */
-ulonglong NetworkingSystem_DataReceiver(void)
+uint64_t NetworkingSystem_DataReceiver(void)
 
 {
   uint uVar1;
-  ulonglong uVar2;
-  ulonglong unaff_RBX;
-  longlong unaff_RBP;
+  uint64_t uVar2;
+  uint64_t unaff_RBX;
+  int64_t unaff_RBP;
   uint unaff_ESI;
   uint64_t *unaff_RDI;
   
   // 检查错误状态
   if (unaff_ESI != 0) {
-    return (ulonglong)unaff_ESI;
+    return (uint64_t)unaff_ESI;
   }
   if (*(int *)(unaff_RDI[1] + 0x18) == 0) {
     uVar1 = NetworkingSystem_ConnectionManager2(*unaff_RDI,unaff_RBP + 0x30);
-    unaff_RBX = (ulonglong)uVar1;
+    unaff_RBX = (uint64_t)uVar1;
     if (uVar1 == 0) {
       uVar2 = NetworkingSystem_ConnectionValidator2();
       if ((int)uVar2 == 0) {
@@ -1263,19 +1263,19 @@ ulonglong NetworkingSystem_DataReceiver(void)
  * @param 使用栈传递的上下文信息
  * @return 会话管理结果（0表示成功，错误码表示失败）
  */
-ulonglong NetworkingSystem_SessionManager(void)
+uint64_t NetworkingSystem_SessionManager(void)
 
 {
   uint uVar1;
-  ulonglong uVar2;
-  ulonglong unaff_RBX;
-  longlong unaff_RBP;
+  uint64_t uVar2;
+  uint64_t unaff_RBX;
+  int64_t unaff_RBP;
   uint64_t *unaff_RDI;
   
   // 管理会话状态
   if (*(int *)(unaff_RDI[1] + 0x18) == 0) {
     uVar1 = NetworkingSystem_ConnectionManager2(*unaff_RDI,unaff_RBP + 0x30);
-    unaff_RBX = (ulonglong)uVar1;
+    unaff_RBX = (uint64_t)uVar1;
     if (uVar1 == 0) {
       uVar2 = NetworkingSystem_ConnectionValidator2();
       if ((int)uVar2 == 0) {
@@ -1346,7 +1346,7 @@ void NetworkingSystem_EmptyOperation5(void)
  * @param param_2 清理参数
  * @return 无返回值
  */
-void NetworkingSystem_ConnectionCleaner(longlong param_1,uint64_t param_2)
+void NetworkingSystem_ConnectionCleaner(int64_t param_1,uint64_t param_2)
 
 {
   int iVar1;
@@ -1378,7 +1378,7 @@ void NetworkingSystem_ConnectionCleaner(longlong param_1,uint64_t param_2)
  * @param param_2 验证参数指针数组
  * @return 验证处理结果（0表示成功，0x1c表示错误）
  */
-uint64_t NetworkingSystem_ValidationProcessor(longlong param_1,uint64_t *param_2)
+uint64_t NetworkingSystem_ValidationProcessor(int64_t param_1,uint64_t *param_2)
 
 {
   uint64_t uVar1;
@@ -1420,7 +1420,7 @@ uint64_t NetworkingSystem_ValidationProcessor(longlong param_1,uint64_t *param_2
  * @param param_2 协议参数指针数组
  * @return 协议处理结果（0表示成功，0x1c表示错误）
  */
-uint64_t NetworkingSystem_ProtocolHandler(longlong param_1,uint64_t *param_2)
+uint64_t NetworkingSystem_ProtocolHandler(int64_t param_1,uint64_t *param_2)
 
 {
   uint64_t uVar1;
@@ -1463,7 +1463,7 @@ uint64_t NetworkingSystem_ProtocolHandler(longlong param_1,uint64_t *param_2)
  * @param param_2 配置参数指针数组
  * @return 配置管理结果（0表示成功，0x1c表示错误）
  */
-uint64_t NetworkingSystem_ConfigManager(longlong param_1,longlong *param_2)
+uint64_t NetworkingSystem_ConfigManager(int64_t param_1,int64_t *param_2)
 
 {
   uint64_t uVar1;
@@ -1556,7 +1556,7 @@ uint64_t NetworkingSystem_ConfigManager(longlong param_1,longlong *param_2)
  * @param param_2 协议栈参数指针数组
  * @return 协议栈管理结果（0表示成功，0x1c表示错误）
  */
-uint64_t NetworkingSystem_ProtocolStackManager(longlong param_1,uint64_t *param_2)
+uint64_t NetworkingSystem_ProtocolStackManager(int64_t param_1,uint64_t *param_2)
 
 {
   uint64_t uVar1;
@@ -1600,7 +1600,7 @@ uint64_t NetworkingSystem_ProtocolStackManager(longlong param_1,uint64_t *param_
  * @param param_2 事件上下文指针
  * @return 事件处理结果（0表示成功，错误码表示失败）
  */
-uint64_t NetworkingSystem_EventHandler(uint64_t param_1,longlong param_2)
+uint64_t NetworkingSystem_EventHandler(uint64_t param_1,int64_t param_2)
 
 {
   uint64_t uVar1;

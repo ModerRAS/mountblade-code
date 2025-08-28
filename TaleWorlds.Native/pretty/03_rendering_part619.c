@@ -48,6 +48,13 @@
 #define RenderingSystem_GetResourceIndex                FUN_18060f2b0  /* 渲染系统资源索引获取器 */
 #define RenderingSystem_ProcessResourceCommand          FUN_18060f370  /* 渲染系统资源命令处理器 */
 
+/* 渲染系统内存和数据处理函数别名定义 */
+#define RenderingSystem_DataBufferProcessor              FUN_1804c0610  /* 渲染系统数据缓冲区处理器 */
+#define RenderingSystem_MemoryPoolAllocator             FUN_18062b420  /* 渲染系统内存池分配器 */
+#define RenderingSystem_FormatProcessor                  FUN_18064e990  /* 渲染系统格式化处理器 */
+#define RenderingSystem_DataContextInitializer           FUN_180628380  /* 渲染系统数据上下文初始化器 */
+#define RenderingSystem_MemoryPoolReallocator            FUN_18062b8b0  /* 渲染系统内存池重分配器 */
+
 /**
  * 渲染系统资源请求处理器
  * 

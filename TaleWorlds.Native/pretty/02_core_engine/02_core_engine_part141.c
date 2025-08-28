@@ -4,16 +4,16 @@
 // FUN_ 函数语义化别名定义
 // 渲染系统核心函数
 #define RenderQueueProcessor                   RenderQueueProcessor
-#define RenderQueueFinalizer                   FUN_180291cf0
+#define RenderQueueFinalizer                   RenderQueueFinalizer
 
 // 动画系统核心函数
-#define AnimationInitializer                   FUN_18012e2d0
-#define AnimationIDResolver                    FUN_180121250
-#define AnimationDataAllocator                 FUN_180134480
-#define AnimationParameterUpdater              FUN_18013e250
+#define AnimationInitializer                   AnimationInitializer
+#define AnimationIDResolver                    AnimationIDResolver
+#define AnimationDataAllocator                 AnimationDataAllocator
+#define AnimationParameterUpdater              AnimationParameterUpdater
 
 // 渲染效果处理函数
-#define RenderEffectProcessor                  FUN_18011dbd0
+#define RenderEffectProcessor                  RenderEffectProcessor
 
 // 02_core_engine_part141.c - 核心引擎模块第141部分
 // 包含4个函数定义：渲染队列管理和动画效果处理相关函数
@@ -223,14 +223,14 @@ void process_animation_render_effects(void *animation_data, int frame_count, int
     lVar5 = *(longlong *)(lVar6 + 0x1af8);
     
     // 初始化动画参数
-    FUN_18012e2d0(iVar11 + 0x11223347);
+    AnimationInitializer(iVar11 + 0x11223347);
     puVar15 = &unknown_var_2648_ptr;
     if (animation_data != (void *)0x0) {
         puVar15 = animation_data;
     }
     
     // 获取动画ID
-    iVar11 = FUN_180121250(puVar15,0,
+    iVar11 = AnimationIDResolver(puVar15,0,
                              *(int32_t *)
                               (*(longlong *)(lVar5 + 0x220) + -4 + (longlong)*(int *)(lVar5 + 0x218) * 4
                               ));
@@ -249,7 +249,7 @@ void process_animation_render_effects(void *animation_data, int frame_count, int
     *piVar16 = *piVar16 + -1;
     
     // 创建新的渲染条目
-    lVar14 = FUN_180134480(lVar5);
+    lVar14 = AnimationDataAllocator(lVar5);
     *(int32_t *)(lVar14 + 0xc) = 0;
     *(int *)(lVar14 + 0x10) = frame_count;
     *(int32_t *)(lVar14 + 4) = effect_params;
@@ -288,7 +288,7 @@ void process_animation_render_effects(void *animation_data, int frame_count, int
             if (0 < (int)uVar12) {
                 uVar17 = (ulonglong)uVar12;
             }
-            FUN_18013e250(lVar14 + 0x30,uVar17);
+            AnimationParameterUpdater(lVar14 + 0x30,uVar17);
         }
         *(int32_t *)(lVar14 + 0x30) = 0;
         iVar11 = 0;
@@ -298,7 +298,7 @@ void process_animation_render_effects(void *animation_data, int frame_count, int
     // 初始化动画帧插值
     if (iVar11 == 0) {
         iVar11 = frame_count + 1;
-        FUN_18013e250(lVar14 + 0x30,iVar11);
+        AnimationParameterUpdater(lVar14 + 0x30,iVar11);
         if (0 < iVar11) {
             iVar10 = *(int *)(lVar14 + 0x30);
             uVar17 = uVar20;
@@ -316,7 +316,7 @@ void process_animation_render_effects(void *animation_data, int frame_count, int
                     if (iVar10 + 1 < iVar13) {
                         iVar8 = iVar13;
                     }
-                    FUN_18013e250(lVar14 + 0x30,iVar8);
+                    AnimationParameterUpdater(lVar14 + 0x30,iVar8);
                     iVar10 = *(int *)(lVar14 + 0x30);
                 }
                 lVar6 = *(longlong *)(lVar14 + 0x38);
@@ -388,7 +388,7 @@ void process_animation_render_effects(void *animation_data, int frame_count, int
     }
     
     // 应用渲染效果
-    FUN_180291cf0(*(uint64_t *)(lVar5 + 0x2e8),*(int32_t *)(lVar14 + 0x10));
+    RenderQueueFinalizer(*(uint64_t *)(lVar5 + 0x2e8),*(int32_t *)(lVar14 + 0x10));
     lVar5 = SYSTEM_DATA_MANAGER_A;
     lVar6 = *(longlong *)(*(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1af8) + 0x210);
     lVar14 = (longlong)*(int *)(lVar6 + 0xc) * 0x1c + *(longlong *)(lVar6 + 0x38);
@@ -433,7 +433,7 @@ void process_animation_render_effects(void *animation_data, int frame_count, int
         if (iVar11 + 1 < iVar10) {
             iVar13 = iVar10;
         }
-        FUN_18011dbd0(piVar16,iVar13,iVar13,lVar6,unaff_RDI);
+        RenderEffectProcessor(piVar16,iVar13,iVar13,lVar6,unaff_RDI);
         iVar11 = *piVar16;
     }
     *(float *)(*(longlong *)(lVar5 + 0x1d0) + (longlong)iVar11 * 4) = *(float *)(lVar5 + 0x1ac);
@@ -535,14 +535,14 @@ void process_advanced_animation_render_effects(void *animation_data, int frame_c
     lVar5 = *(longlong *)(lVar6 + 0x1af8);
     
     // 初始化动画
-    FUN_18012e2d0(iVar11 + 0x11223347);
+    AnimationInitializer(iVar11 + 0x11223347);
     puVar15 = &unknown_var_2648_ptr;
     if (animation_data != (void *)0x0) {
         puVar15 = animation_data;
     }
     
     // 获取动画ID
-    iVar11 = FUN_180121250(puVar15,0,
+    iVar11 = AnimationIDResolver(puVar15,0,
                              *(int32_t *)
                               (*(longlong *)(lVar5 + 0x220) + -4 + (longlong)*(int *)(lVar5 + 0x218) * 4
                               ));
@@ -561,7 +561,7 @@ void process_advanced_animation_render_effects(void *animation_data, int frame_c
     *piVar16 = *piVar16 + -1;
     
     // 创建新的渲染条目
-    lVar14 = FUN_180134480(lVar5);
+    lVar14 = AnimationDataAllocator(lVar5);
     *(int32_t *)(lVar14 + 0xc) = 0;
     *(int *)(lVar14 + 0x10) = frame_count;
     *(int32_t *)(lVar14 + 4) = effect_params;
@@ -600,7 +600,7 @@ void process_advanced_animation_render_effects(void *animation_data, int frame_c
             if (0 < (int)uVar12) {
                 uVar17 = (ulonglong)uVar12;
             }
-            FUN_18013e250(lVar14 + 0x30,uVar17);
+            AnimationParameterUpdater(lVar14 + 0x30,uVar17);
         }
         *(int32_t *)(lVar14 + 0x30) = 0;
         iVar11 = 0;
@@ -610,7 +610,7 @@ void process_advanced_animation_render_effects(void *animation_data, int frame_c
     // 初始化动画帧插值
     if (iVar11 == 0) {
         iVar11 = frame_count + 1;
-        FUN_18013e250(lVar14 + 0x30,iVar11);
+        AnimationParameterUpdater(lVar14 + 0x30,iVar11);
         if (0 < iVar11) {
             iVar10 = *(int *)(lVar14 + 0x30);
             uVar17 = uVar20;
@@ -628,7 +628,7 @@ void process_advanced_animation_render_effects(void *animation_data, int frame_c
                     if (iVar10 + 1 < iVar13) {
                         iVar8 = iVar13;
                     }
-                    FUN_18013e250(lVar14 + 0x30,iVar8);
+                    AnimationParameterUpdater(lVar14 + 0x30,iVar8);
                     iVar10 = *(int *)(lVar14 + 0x30);
                 }
                 lVar6 = *(longlong *)(lVar14 + 0x38);
@@ -700,7 +700,7 @@ void process_advanced_animation_render_effects(void *animation_data, int frame_c
     }
     
     // 应用渲染效果
-    FUN_180291cf0(*(uint64_t *)(lVar5 + 0x2e8),*(int32_t *)(lVar14 + 0x10));
+    RenderQueueFinalizer(*(uint64_t *)(lVar5 + 0x2e8),*(int32_t *)(lVar14 + 0x10));
     lVar5 = SYSTEM_DATA_MANAGER_A;
     lVar6 = *(longlong *)(*(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1af8) + 0x210);
     lVar14 = (longlong)*(int *)(lVar6 + 0xc) * 0x1c + *(longlong *)(lVar6 + 0x38);
@@ -745,7 +745,7 @@ void process_advanced_animation_render_effects(void *animation_data, int frame_c
         if (iVar11 + 1 < iVar10) {
             iVar13 = iVar10;
         }
-        FUN_18011dbd0(piVar16,iVar13);
+        RenderEffectProcessor(piVar16,iVar13);
         iVar11 = *piVar16;
     }
     *(float *)(*(longlong *)(lVar6 + 0x1d0) + (longlong)iVar11 * 4) = *(float *)(lVar6 + 0x1ac);
@@ -843,8 +843,8 @@ void process_optimized_animation_render_effects(uint64_t matrix_data, int frame_
     lVar5 = *(longlong *)(lVar6 + 0x1af8);
     
     // 初始化动画系统
-    uVar21 = FUN_18012e2d0(iVar10 + 0x11223347);
-    iVar10 = FUN_180121250(uVar21,0,*(int32_t *)
+    uVar21 = AnimationInitializer(iVar10 + 0x11223347);
+    iVar10 = AnimationIDResolver(uVar21,0,*(int32_t *)
                                    (*(longlong *)(lVar5 + 0x220) + -4 +
                                    (longlong)*(int *)(lVar5 + 0x218) * 4));
     
@@ -862,7 +862,7 @@ void process_optimized_animation_render_effects(uint64_t matrix_data, int frame_
     *piVar14 = *piVar14 + -1;
     
     // 创建优化的渲染条目
-    lVar13 = FUN_180134480(lVar5);
+    lVar13 = AnimationDataAllocator(lVar5);
     *(int32_t *)(lVar13 + 0xc) = 0;
     *(int *)(lVar13 + 0x10) = frame_count;
     *(int32_t *)(lVar13 + 4) = effect_params;
@@ -901,7 +901,7 @@ void process_optimized_animation_render_effects(uint64_t matrix_data, int frame_
             if (0 < (int)uVar11) {
                 uVar15 = (ulonglong)uVar11;
             }
-            FUN_18013e250(lVar13 + 0x30,uVar15);
+            AnimationParameterUpdater(lVar13 + 0x30,uVar15);
         }
         *(int32_t *)(lVar13 + 0x30) = 0;
         iVar10 = 0;
@@ -911,7 +911,7 @@ void process_optimized_animation_render_effects(uint64_t matrix_data, int frame_
     // 优化的动画帧插值初始化
     if (iVar10 == 0) {
         iVar10 = frame_count + 1;
-        FUN_18013e250(lVar13 + 0x30,iVar10);
+        AnimationParameterUpdater(lVar13 + 0x30,iVar10);
         if (0 < iVar10) {
             iVar9 = *(int *)(lVar13 + 0x30);
             uVar15 = uVar18;
@@ -929,7 +929,7 @@ void process_optimized_animation_render_effects(uint64_t matrix_data, int frame_
                     if (iVar9 + 1 < iVar12) {
                         iVar8 = iVar12;
                     }
-                    FUN_18013e250(lVar13 + 0x30,iVar8);
+                    AnimationParameterUpdater(lVar13 + 0x30,iVar8);
                     iVar9 = *(int *)(lVar13 + 0x30);
                 }
                 lVar6 = *(longlong *)(lVar13 + 0x38);
@@ -1001,7 +1001,7 @@ void process_optimized_animation_render_effects(uint64_t matrix_data, int frame_
     }
     
     // 应用优化的渲染效果
-    FUN_180291cf0(*(uint64_t *)(lVar5 + 0x2e8),*(int32_t *)(lVar13 + 0x10));
+    RenderQueueFinalizer(*(uint64_t *)(lVar5 + 0x2e8),*(int32_t *)(lVar13 + 0x10));
     lVar5 = SYSTEM_DATA_MANAGER_A;
     lVar6 = *(longlong *)(*(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1af8) + 0x210);
     lVar13 = (longlong)*(int *)(lVar6 + 0xc) * 0x1c + *(longlong *)(lVar6 + 0x38);
@@ -1046,7 +1046,7 @@ void process_optimized_animation_render_effects(uint64_t matrix_data, int frame_
         if (iVar10 + 1 < iVar9) {
             iVar12 = iVar9;
         }
-        FUN_18011dbd0(piVar14,iVar12);
+        RenderEffectProcessor(piVar14,iVar12);
         iVar10 = *piVar14;
     }
     *(float *)(*(longlong *)(lVar6 + 0x1d0) + (longlong)iVar10 * 4) = *(float *)(lVar6 + 0x1ac);
