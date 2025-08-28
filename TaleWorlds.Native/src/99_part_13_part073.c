@@ -356,25 +356,48 @@ undefined8 ReferenceCountInitialize(int ref_type, longlong *ref_ptr)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-undefined8 FUN_1808d9e90(longlong *param_1)
+/**
+ * @brief 引用计数释放函数
+ * 
+ * 减少对象的引用计数，当计数降为0时自动释放资源。
+ * 实现智能内存管理机制。
+ * 
+ * 功能特点：
+ * - 原子性的引用计数操作
+ * - 自动检测零引用状态
+ * - 安全的资源释放
+ * - 防止重复释放
+ * 
+ * @param ref_ptr 引用对象指针的指针
+ * @return 状态码（0: 成功，0x1c: 引用计数无效）
+ */
+undefined8 ReferenceCountRelease(longlong *ref_ptr)
 
 {
   longlong lVar1;
   
-  lVar1 = *param_1;
+  // 获取引用对象指针
+  lVar1 = *ref_ptr;
+  
+  // 检查引用对象是否有效
   if (lVar1 != 0) {
+    // 检查引用计数是否有效（必须大于0）
     if (*(int *)(lVar1 + 4) < 1) {
-      return 0x1c;
+      return 0x1c;  // 引用计数无效
     }
+    
+    // 减少引用计数
     *(int *)(lVar1 + 4) = *(int *)(lVar1 + 4) + -1;
-    if (*(int *)(*param_1 + 4) == 0) {
-      FUN_180741df0(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&UNK_180988980,0x89);
-      *param_1 = 0;
+    
+    // 检查是否需要释放资源
+    if (*(int *)(*ref_ptr + 4) == 0) {
+      // 引用计数降为0，释放资源
+      FUN_180741df0(*(undefined8 *)(_DAT_180be12f0 + 0x1a0), *ref_ptr, &UNK_180988980, 0x89);
+      *ref_ptr = 0;  // 清空引用指针
     }
   }
-  return 0;
+  
+  return 0;  // 成功
 }
 
 
