@@ -177,8 +177,9 @@ swap_elements:
 
 
 
-// 函数: void FUN_18008edf4(void)
-void FUN_18008edf4(void)
+// 函数: void quicksort_string_array_optimized(string_array *array_start, string_array *array_end, longlong depth, char sort_flag)
+// 优化的快速排序算法实现，包含递归深度限制和堆排序优化
+void quicksort_string_array_optimized(string_array *array_start, string_array *array_end, longlong depth, char sort_flag)
 
 {
   byte bVar1;
@@ -352,8 +353,12 @@ LAB_18008eff7:
 
 
 
-// 函数: void FUN_18008effc(void)
-void FUN_18008effc(void)
+// 函数: void heap_build_conditional(void)
+// 功能: 条件性地构建堆数据结构，用于堆排序算法的初始化阶段
+// 参数: 通过寄存器传递 (unaff_R12, unaff_R14, unaff_R15)
+// 返回: void
+// 说明: 当unaff_R12为0时，对指定范围内的元素进行堆化处理
+void heap_build_conditional(void)
 
 {
   longlong lVar1;
@@ -391,8 +396,12 @@ void FUN_18008effc(void)
 
 
 
-// 函数: void FUN_18008f00a(void)
-void FUN_18008f00a(void)
+// 函数: void heap_build_unconditional(void)
+// 功能: 无条件构建堆数据结构，用于堆排序算法的初始化阶段
+// 参数: 通过寄存器传递 (unaff_R14, unaff_R15)
+// 返回: void
+// 说明: 对指定范围内的元素进行堆化处理，与heap_build_conditional类似但没有条件检查
+void heap_build_unconditional(void)
 
 {
   longlong lVar1;
@@ -427,8 +436,12 @@ void FUN_18008f00a(void)
 
 
 
-// 函数: void FUN_18008f0d0(undefined8 param_1,undefined8 param_2,longlong *param_3)
-void FUN_18008f0d0(undefined8 param_1,undefined8 param_2,longlong *param_3)
+// 函数: void data_structure_initialize(undefined8 param_1,undefined8 param_2,longlong *param_3)
+// 功能: 初始化数据结构，分配内存并设置默认值
+// 参数: param_1 - 参数1 (未使用), param_2 - 参数2 (未使用), param_3 - 指向数据结构的指针
+// 返回: void
+// 说明: 通过FUN_18008f430()分配内存，然后初始化各个字段为默认值
+void data_structure_initialize(undefined8 param_1,undefined8 param_2,longlong *param_3)
 
 {
   undefined8 uVar1;

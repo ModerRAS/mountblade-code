@@ -263,250 +263,394 @@ void reset_string_object(undefined1 *string_obj)
 
 
 
-// 函数: void FUN_18008fe90(longlong param_1,longlong param_2,longlong param_3)
-void FUN_18008fe90(longlong param_1,longlong param_2,longlong param_3)
-
+/**
+ * 字符串替换和内存操作
+ * 在字符串中查找并替换子字符串，执行复杂的内存操作
+ * 
+ * @param string_buffer 字符串缓冲区结构体指针
+ * @param search_string 搜索字符串指针
+ * @param replace_string 替换字符串指针
+ */
+void string_replace_and_memory_operation(longlong string_buffer, longlong search_string, longlong replace_string)
 {
-  longlong lVar1;
-  longlong lVar2;
-  longlong lVar3;
-  undefined1 auStack_298 [32];
-  undefined8 uStack_278;
-  undefined *puStack_268;
-  undefined1 *puStack_260;
-  undefined4 uStack_258;
-  undefined1 auStack_250 [520];
-  ulonglong uStack_48;
+  longlong search_result;
+  longlong search_len;
+  longlong replace_len;
+  undefined1 stack_buffer_298 [32];
+  undefined8 stack_value_278;
+  undefined *stack_ptr_268;
+  undefined1 *stack_buffer_260;
+  undefined4 stack_value_258;
+  undefined1 stack_buffer_250 [520];
+  ulonglong security_cookie;
   
-  uStack_278 = 0xfffffffffffffffe;
-  uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_298;
-  puStack_268 = &UNK_180a009c8;
-  puStack_260 = auStack_250;
-  uStack_258 = 0;
-  auStack_250[0] = 0;
-  lVar1 = strstr(*(undefined8 *)(param_1 + 8));
-  if (lVar1 != 0) {
-    lVar2 = -1;
-    lVar3 = -1;
+  // 初始化栈变量和安全cookie
+  stack_value_278 = 0xfffffffffffffffe;
+  security_cookie = _DAT_180bf00a8 ^ (ulonglong)stack_buffer_298;
+  stack_ptr_268 = &UNK_180a009c8;
+  stack_buffer_260 = stack_buffer_250;
+  stack_value_258 = 0;
+  stack_buffer_250[0] = 0;
+  
+  // 在字符串中搜索目标子字符串
+  search_result = strstr(*(char **)(string_buffer + 8));
+  if (search_result != 0) {
+    // 计算搜索字符串长度
+    search_len = -1;
+    replace_len = -1;
     do {
-      lVar3 = lVar3 + 1;
-    } while (*(char *)(param_2 + lVar3) != '\0');
+      replace_len = replace_len + 1;
+    } while (*(char *)(search_string + replace_len) != '\0');
+    
+    // 计算替换字符串长度
     do {
-      lVar2 = lVar2 + 1;
-    } while (*(char *)(lVar2 + param_3) != '\0');
-                    // WARNING: Subroutine does not return
-    memcpy(puStack_260,*(longlong *)(param_1 + 8),lVar1 - *(longlong *)(param_1 + 8));
+      search_len = search_len + 1;
+    } while (*(char *)(search_len + replace_string) != '\0');
+    
+    // 复制字符串到栈缓冲区
+    memcpy(stack_buffer_260, *(longlong *)(string_buffer + 8), search_result - *(longlong *)(string_buffer + 8));
   }
-  puStack_268 = &UNK_18098bcb0;
-                    // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_48 ^ (ulonglong)auStack_298);
+  
+  // 设置虚函数表指针
+  stack_ptr_268 = &UNK_18098bcb0;
+  
+  // 执行内存清理操作
+  FUN_1808fc050(security_cookie ^ (ulonglong)stack_buffer_298);
 }
 
 
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 * FUN_180090020(undefined8 param_1,undefined4 param_2)
-
+/**
+ * 创建并初始化内存管理器对象
+ * 分配内存并初始化内存管理器的虚函数表和相关数据
+ * 
+ * @param memory_pool 内存池标识符
+ * @param config_flags 配置标志
+ * @return 返回初始化后的内存管理器对象指针
+ */
+undefined8 * create_memory_manager_object(undefined8 memory_pool, undefined4 config_flags)
 {
-  undefined8 *puVar1;
+  undefined8 *manager_ptr;
   
-  puVar1 = (undefined8 *)FUN_18062b1e0(_DAT_180c8ed18,0xb8,8,0x1a,0xfffffffffffffffe);
-  FUN_1802565b0(puVar1,param_1,param_2);
-  *puVar1 = &UNK_180a00a18;
-  puVar1[0x16] = 0;
-  return puVar1;
+  // 分配内存管理器对象
+  manager_ptr = (undefined8 *)FUN_18062b1e0(_DAT_180c8ed18, 0xb8, 8, 0x1a, 0xfffffffffffffffe);
+  
+  // 初始化管理器配置
+  FUN_1802565b0(manager_ptr, memory_pool, config_flags);
+  
+  // 设置虚函数表
+  *manager_ptr = &UNK_180a00a18;
+  
+  // 初始化成员变量
+  manager_ptr[0x16] = 0;
+  
+  return manager_ptr;
 }
 
 
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 * FUN_1800900c0(undefined8 param_1,undefined4 param_2)
-
+/**
+ * 创建并初始化高级内存管理器对象
+ * 分配内存并初始化高级内存管理器的虚函数表和相关数据
+ * 
+ * @param memory_pool 内存池标识符
+ * @param config_flags 配置标志
+ * @return 返回初始化后的高级内存管理器对象指针
+ */
+undefined8 * create_advanced_memory_manager_object(undefined8 memory_pool, undefined4 config_flags)
 {
-  undefined8 *puVar1;
+  undefined8 *manager_ptr;
   
-  puVar1 = (undefined8 *)FUN_18062b1e0(_DAT_180c8ed18,0xb8,8,0x1a,0xfffffffffffffffe);
-  FUN_1802565b0(puVar1,param_1,param_2);
-  *puVar1 = &UNK_180a00ae8;
-  puVar1[0x16] = 0;
-  return puVar1;
+  // 分配高级内存管理器对象
+  manager_ptr = (undefined8 *)FUN_18062b1e0(_DAT_180c8ed18, 0xb8, 8, 0x1a, 0xfffffffffffffffe);
+  
+  // 初始化管理器配置
+  FUN_1802565b0(manager_ptr, memory_pool, config_flags);
+  
+  // 设置高级虚函数表
+  *manager_ptr = &UNK_180a00ae8;
+  
+  // 初始化成员变量
+  manager_ptr[0x16] = 0;
+  
+  return manager_ptr;
 }
 
 
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 * FUN_180090130(undefined8 *param_1)
-
+/**
+ * 初始化线程管理器和相关组件
+ * 创建并初始化线程管理器，包括互斥锁、线程池和同步对象
+ * 
+ * @param thread_manager 线程管理器对象指针
+ * @return 返回初始化后的线程管理器指针
+ */
+undefined8 * initialize_thread_manager(undefined8 *thread_manager)
 {
-  longlong *plVar1;
-  int iVar2;
-  undefined8 uVar3;
-  longlong *plVar4;
-  longlong lVar5;
-  longlong lVar6;
-  longlong *plVar7;
+  longlong *old_object;
+  int mutex_result;
+  undefined8 new_object;
+  longlong *thread_object;
+  longlong object_ptr;
+  longlong loop_counter;
+  longlong *thread_pool;
   
-  lVar6 = 0x20;
-  FUN_1808fc838(param_1 + 1,8,0x20,&SUB_18005d5f0,FUN_180045af0);
-  plVar7 = param_1 + 0x21;
-  FUN_1808fc838(plVar7,8,0x20,&SUB_18005d5f0,FUN_180045af0);
-  param_1[0x71] = 0;
-  param_1[0x72] = 0;
-  param_1[0x73] = 0;
-  *(undefined4 *)(param_1 + 0x74) = 3;
-  FUN_1808fc838(param_1 + 0x76,0x20,0x20,FUN_180627850,FUN_180627b90);
-  param_1[0x75] = 0;
-  _Mtx_init_in_situ(param_1 + 0x106,0x102);
+  // 初始化32个线程槽位
+  loop_counter = 0x20;
+  FUN_1808fc838(thread_manager + 1, 8, 0x20, &SUB_18005d5f0, FUN_180045af0);
+  thread_pool = thread_manager + 0x21;
+  FUN_1808fc838(thread_pool, 8, 0x20, &SUB_18005d5f0, FUN_180045af0);
+  
+  // 初始化状态标志
+  thread_manager[0x71] = 0;
+  thread_manager[0x72] = 0;
+  thread_manager[0x73] = 0;
+  *(int *)(thread_manager + 0x74) = 3;
+  
+  // 初始化线程池
+  FUN_1808fc838(thread_manager + 0x76, 0x20, 0x20, FUN_180627850, FUN_180627b90);
+  thread_manager[0x75] = 0;
+  
+  // 初始化互斥锁
+  _Mtx_init_in_situ(thread_manager + 0x106, 0x102);
+  
+  // 循环初始化线程对象
   do {
-    uVar3 = FUN_18062b1e0(_DAT_180c8ed18,0x3d0,8,3);
-    plVar4 = (longlong *)FUN_180275090(uVar3);
-    if (plVar4 != (longlong *)0x0) {
-      (**(code **)(*plVar4 + 0x28))(plVar4);
+    // 创建主线程对象
+    new_object = FUN_18062b1e0(_DAT_180c8ed18, 0x3d0, 8, 3);
+    thread_object = (longlong *)FUN_180275090(new_object);
+    if (thread_object != (longlong *)0x0) {
+      // 调用线程对象的初始化函数
+      (**(code **)(*thread_object + 0x28))(thread_object);
     }
-    plVar1 = (longlong *)plVar7[-0x20];
-    plVar7[-0x20] = (longlong)plVar4;
-    if (plVar1 != (longlong *)0x0) {
-      (**(code **)(*plVar1 + 0x38))();
+    
+    // 替换旧的线程对象
+    old_object = (longlong *)thread_pool[-0x20];
+    thread_pool[-0x20] = (longlong)thread_object;
+    if (old_object != (longlong *)0x0) {
+      // 清理旧的线程对象
+      (**(code **)(*old_object + 0x38))();
     }
-    uVar3 = FUN_18062b1e0(_DAT_180c8ed18,0x300,0x10,3);
-    plVar4 = (longlong *)FUN_180075030(uVar3,1);
-    if (plVar4 != (longlong *)0x0) {
-      (**(code **)(*plVar4 + 0x28))(plVar4);
+    
+    // 创建辅助线程对象
+    new_object = FUN_18062b1e0(_DAT_180c8ed18, 0x300, 0x10, 3);
+    thread_object = (longlong *)FUN_180075030(new_object, 1);
+    if (thread_object != (longlong *)0x0) {
+      // 调用辅助线程对象的初始化函数
+      (**(code **)(*thread_object + 0x28))(thread_object);
     }
-    plVar1 = (longlong *)*plVar7;
-    *plVar7 = (longlong)plVar4;
-    if (plVar1 != (longlong *)0x0) {
-      (**(code **)(*plVar1 + 0x38))();
+    
+    // 替换旧的辅助线程对象
+    old_object = (longlong *)*thread_pool;
+    *thread_pool = (longlong)thread_object;
+    if (old_object != (longlong *)0x0) {
+      // 清理旧的辅助线程对象
+      (**(code **)(*old_object + 0x38))();
     }
-    (**(code **)(*(longlong *)(*plVar7 + 0x10) + 0x10))((longlong *)(*plVar7 + 0x10),&UNK_180a01310)
-    ;
-    lVar5 = *plVar7;
-    if (*(char *)(lVar5 + 0xfa) != '\x01') {
-      *(undefined1 *)(lVar5 + 0xfa) = 1;
-      FUN_180079520(lVar5);
-      lVar5 = *plVar7;
+    
+    // 调用线程对象的设置函数
+    (**(code **)(*(longlong *)(*thread_pool + 0x10) + 0x10))((longlong *)(*thread_pool + 0x10), &UNK_180a01310);
+    
+    object_ptr = *thread_pool;
+    
+    // 设置线程状态标志1
+    if (*(char *)(object_ptr + 0xfa) != '\x01') {
+      *(undefined1 *)(object_ptr + 0xfa) = 1;
+      FUN_180079520(object_ptr);
+      object_ptr = *thread_pool;
     }
-    if (*(char *)(lVar5 + 0xfb) != '\x01') {
-      *(undefined1 *)(lVar5 + 0xfb) = 1;
-      FUN_180079520(lVar5);
-      lVar5 = *plVar7;
+    
+    // 设置线程状态标志2
+    if (*(char *)(object_ptr + 0xfb) != '\x01') {
+      *(undefined1 *)(object_ptr + 0xfb) = 1;
+      FUN_180079520(object_ptr);
+      object_ptr = *thread_pool;
     }
-    iVar2 = _Mtx_lock(0x180c91910);
-    if (iVar2 != 0) {
-      __Throw_C_error_std__YAXH_Z(iVar2);
+    
+    // 线程安全地增加引用计数
+    mutex_result = _Mtx_lock(0x180c91910);
+    if (mutex_result != 0) {
+      __Throw_C_error_std__YAXH_Z(mutex_result);
     }
-    *(char *)(lVar5 + 0xfc) = *(char *)(lVar5 + 0xfc) + '\x01';
-    iVar2 = _Mtx_unlock(0x180c91910);
-    if (iVar2 != 0) {
-      __Throw_C_error_std__YAXH_Z(iVar2);
+    *(char *)(object_ptr + 0xfc) = *(char *)(object_ptr + 0xfc) + '\x01';
+    mutex_result = _Mtx_unlock(0x180c91910);
+    if (mutex_result != 0) {
+      __Throw_C_error_std__YAXH_Z(mutex_result);
     }
-    plVar7 = plVar7 + 1;
-    lVar6 = lVar6 + -1;
-  } while (lVar6 != 0);
-  *param_1 = 0;
-  return param_1;
+    
+    thread_pool = thread_pool + 1;
+    loop_counter = loop_counter + -1;
+  } while (loop_counter != 0);
+  
+  // 清空管理器指针
+  *thread_manager = 0;
+  return thread_manager;
 }
 
 
 
 
 
-// 函数: void FUN_180090380(longlong param_1)
-void FUN_180090380(longlong param_1)
-
+/**
+ * 销毁线程管理器和相关资源
+ * 清理线程管理器占用的所有资源，包括互斥锁和线程池
+ * 
+ * @param thread_manager 线程管理器对象指针
+ */
+void destroy_thread_manager(longlong thread_manager)
 {
-  undefined8 uVar1;
+  undefined8 cleanup_flag;
   
-  uVar1 = 0xfffffffffffffffe;
+  cleanup_flag = 0xfffffffffffffffe;
+  
+  // 销毁互斥锁
   _Mtx_destroy_in_situ();
-  FUN_1808fc8a8(param_1 + 0x3b0,0x20,0x20,FUN_180627b90,uVar1);
+  
+  // 清理线程池资源
+  FUN_1808fc8a8(thread_manager + 0x3b0, 0x20, 0x20, FUN_180627b90, cleanup_flag);
+  
+  // 清理内部状态
   FUN_18005d580();
-  FUN_1808fc8a8(param_1 + 0x108,8,0x20,FUN_180045af0);
-  FUN_1808fc8a8(param_1 + 8,8,0x20,FUN_180045af0);
-  return;
-}
-
-
-
-
-
-// 函数: void FUN_180090420(longlong *param_1)
-void FUN_180090420(longlong *param_1)
-
-{
-  longlong *plVar1;
-  undefined8 uVar2;
   
-  uVar2 = 0xfffffffffffffffe;
-  param_1[0x1a5] = *(longlong *)(&DAT_180c8ed30 + (longlong)(int)param_1[0x1a6] * 8) + -100000;
-  FUN_180090b80(param_1);
-  *(undefined4 *)(param_1 + 0x1a7) = 0;
-  plVar1 = (longlong *)param_1[0x1a4];
-  param_1[0x1a4] = 0;
-  if (plVar1 != (longlong *)0x0) {
-    (**(code **)(*plVar1 + 0x38))();
-  }
-  if ((longlong *)param_1[0x1a4] != (longlong *)0x0) {
-    (**(code **)(*(longlong *)param_1[0x1a4] + 0x38))();
-  }
-  FUN_1808fc8a8(param_1 + 6,0x20,0x50,FUN_180627b90,uVar2);
-  FUN_1808fc8a8(param_1 + 1,8,4,FUN_180045af0);
-  if ((longlong *)*param_1 != (longlong *)0x0) {
-    (**(code **)(*(longlong *)*param_1 + 0x38))();
-  }
-  return;
-}
-
-
-
-
-
-// 函数: void FUN_1800904f0(longlong param_1)
-void FUN_1800904f0(longlong param_1)
-
-{
-  FUN_1808fc8a8(param_1 + 8,0x20,0x20,FUN_180627b90,0xfffffffffffffffe);
-  return;
-}
-
-
-
-
-
-// 函数: void FUN_180090520(undefined8 *param_1)
-void FUN_180090520(undefined8 *param_1)
-
-{
-  int iVar1;
-  longlong lVar2;
-  undefined8 *puVar3;
-  undefined8 *puVar4;
+  // 清理辅助线程池
+  FUN_1808fc8a8(thread_manager + 0x108, 8, 0x20, FUN_180045af0);
   
-  iVar1 = _Mtx_lock(param_1 + 0x106);
-  if (iVar1 != 0) {
-    __Throw_C_error_std__YAXH_Z(iVar1);
+  // 清理主线程池
+  FUN_1808fc8a8(thread_manager + 8, 8, 0x20, FUN_180045af0);
+  
+  return;
+}
+
+
+
+
+
+/**
+ * 清理资源管理器对象
+ * 释放资源管理器占用的所有资源，包括内存池和对象引用
+ * 
+ * @param resource_manager 资源管理器对象指针
+ */
+void cleanup_resource_manager(longlong *resource_manager)
+{
+  longlong *old_object;
+  undefined8 cleanup_flag;
+  
+  cleanup_flag = 0xfffffffffffffffe;
+  
+  // 计算并设置资源管理器的基地址
+  resource_manager[0x1a5] = *(longlong *)(&DAT_180c8ed30 + (longlong)(int)resource_manager[0x1a6] * 8) + -100000;
+  
+  // 调用清理函数
+  FUN_180090b80(resource_manager);
+  
+  // 重置状态标志
+  *(int *)(resource_manager + 0x1a7) = 0;
+  
+  // 清理主要资源对象
+  old_object = (longlong *)resource_manager[0x1a4];
+  resource_manager[0x1a4] = 0;
+  if (old_object != (longlong *)0x0) {
+    (**(code **)(*old_object + 0x38))();
   }
-  *param_1 = 0;
-  puVar4 = param_1 + 0x21;
-  puVar3 = param_1 + 0x51;
-  lVar2 = 0x20;
+  
+  // 二次检查确保清理完成
+  if ((longlong *)resource_manager[0x1a4] != (longlong *)0x0) {
+    (**(code **)(*(longlong *)resource_manager[0x1a4] + 0x38))();
+  }
+  
+  // 清理资源池
+  FUN_1808fc8a8(resource_manager + 6, 0x20, 0x50, FUN_180627b90, cleanup_flag);
+  
+  // 清理对象引用
+  FUN_1808fc8a8(resource_manager + 1, 8, 4, FUN_180045af0);
+  
+  // 清理主对象引用
+  if ((longlong *)*resource_manager != (longlong *)0x0) {
+    (**(code **)(*(longlong *)*resource_manager + 0x38))();
+  }
+  
+  return;
+}
+
+
+
+
+
+/**
+ * 清理简单资源管理器
+ * 释放简单资源管理器占用的基础资源
+ * 
+ * @param simple_manager 简单资源管理器指针
+ */
+void cleanup_simple_resource_manager(longlong simple_manager)
+{
+  // 清理资源管理器的基础资源
+  FUN_1808fc8a8(simple_manager + 8, 0x20, 0x20, FUN_180627b90, 0xfffffffffffffffe);
+  return;
+}
+
+
+
+
+
+/**
+ * 重置线程管理器状态
+ * 线程安全地重置线程管理器的所有状态和计数器
+ * 
+ * @param thread_manager 线程管理器对象指针
+ */
+void reset_thread_manager_state(undefined8 *thread_manager)
+{
+  int mutex_result;
+  longlong loop_counter;
+  undefined8 *counter_ptr;
+  undefined8 *thread_pool_ptr;
+  
+  // 获取互斥锁
+  mutex_result = _Mtx_lock(thread_manager + 0x106);
+  if (mutex_result != 0) {
+    __Throw_C_error_std__YAXH_Z(mutex_result);
+  }
+  
+  // 重置管理器状态
+  *thread_manager = 0;
+  thread_pool_ptr = thread_manager + 0x21;
+  counter_ptr = thread_manager + 0x51;
+  
+  // 重置32个线程槽位的计数器
+  loop_counter = 0x20;
   do {
-    *(undefined4 *)(puVar3 + -0x10) = 0x49742400;
-    *(undefined4 *)puVar3 = 0x3dcccccd;
-    (**(code **)(*(longlong *)puVar4[-0x20] + 0xd8))();
-    FUN_180076760(*puVar4);
-    puVar3 = (undefined8 *)((longlong)puVar3 + 4);
-    puVar4 = puVar4 + 1;
-    lVar2 = lVar2 + -1;
-  } while (lVar2 != 0);
-  FUN_180057110(param_1 + 0x71);
-  iVar1 = _Mtx_unlock(param_1 + 0x106);
-  if (iVar1 != 0) {
-    __Throw_C_error_std__YAXH_Z(iVar1);
+    // 设置计数器初始值
+    *(int *)(counter_ptr + -0x10) = 0x49742400;
+    *(int *)counter_ptr = 0x3dcccccd;
+    
+    // 调用线程对象的清理函数
+    (**(code **)(*(longlong *)thread_pool_ptr[-0x20] + 0xd8))();
+    
+    // 清理线程对象
+    FUN_180076760(*thread_pool_ptr);
+    
+    counter_ptr = (undefined8 *)((longlong)counter_ptr + 4);
+    thread_pool_ptr = thread_pool_ptr + 1;
+    loop_counter = loop_counter + -1;
+  } while (loop_counter != 0);
+  
+  // 清理管理器状态
+  FUN_180057110(thread_manager + 0x71);
+  
+  // 释放互斥锁
+  mutex_result = _Mtx_unlock(thread_manager + 0x106);
+  if (mutex_result != 0) {
+    __Throw_C_error_std__YAXH_Z(mutex_result);
   }
+  
   return;
 }
 
@@ -514,58 +658,73 @@ void FUN_180090520(undefined8 *param_1)
 
 
 
-// 函数: void FUN_1800905f0(float *param_1,float param_2)
-void FUN_1800905f0(float *param_1,float param_2)
-
+/**
+ * 更新浮点数数组值
+ * 线程安全地更新浮点数数组的所有元素，并调整基准值
+ * 
+ * @param float_array 浮点数数组指针
+ * @param delta_value 要添加的增量值
+ */
+void update_float_array_values(float *float_array, float delta_value)
 {
-  int iVar1;
-  float fVar2;
+  int mutex_result;
+  float new_base_value;
   
-  iVar1 = _Mtx_lock(param_1 + 0x20c);
-  if (iVar1 != 0) {
-    __Throw_C_error_std__YAXH_Z(iVar1);
+  // 获取互斥锁
+  mutex_result = _Mtx_lock(float_array + 0x20c);
+  if (mutex_result != 0) {
+    __Throw_C_error_std__YAXH_Z(mutex_result);
   }
-  param_1[0x82] = param_1[0x82] + param_2;
-  param_1[0x83] = param_1[0x83] + param_2;
-  param_1[0x84] = param_1[0x84] + param_2;
-  param_1[0x85] = param_1[0x85] + param_2;
-  param_1[0x86] = param_1[0x86] + param_2;
-  param_1[0x87] = param_1[0x87] + param_2;
-  param_1[0x88] = param_1[0x88] + param_2;
-  param_1[0x89] = param_1[0x89] + param_2;
-  param_1[0x8a] = param_1[0x8a] + param_2;
-  param_1[0x8b] = param_1[0x8b] + param_2;
-  param_1[0x8c] = param_1[0x8c] + param_2;
-  param_1[0x8d] = param_1[0x8d] + param_2;
-  param_1[0x8e] = param_1[0x8e] + param_2;
-  param_1[0x8f] = param_1[0x8f] + param_2;
-  param_1[0x90] = param_1[0x90] + param_2;
-  param_1[0x91] = param_1[0x91] + param_2;
-  param_1[0x92] = param_1[0x92] + param_2;
-  param_1[0x93] = param_1[0x93] + param_2;
-  param_1[0x94] = param_1[0x94] + param_2;
-  param_1[0x95] = param_1[0x95] + param_2;
-  param_1[0x96] = param_1[0x96] + param_2;
-  param_1[0x97] = param_1[0x97] + param_2;
-  param_1[0x98] = param_1[0x98] + param_2;
-  param_1[0x99] = param_1[0x99] + param_2;
-  param_1[0x9a] = param_1[0x9a] + param_2;
-  param_1[0x9b] = param_1[0x9b] + param_2;
-  param_1[0x9c] = param_1[0x9c] + param_2;
-  param_1[0x9d] = param_1[0x9d] + param_2;
-  param_1[0x9e] = param_1[0x9e] + param_2;
-  param_1[0x9f] = param_1[0x9f] + param_2;
-  param_1[0xa0] = param_1[0xa0] + param_2;
-  param_1[0xa1] = param_1[0xa1] + param_2;
-  fVar2 = *param_1 - param_2 * 0.1;
-  *param_1 = fVar2;
-  if (fVar2 < 0.0) {
-    *param_1 = 0.0;
+  
+  // 更新所有浮点数数组元素
+  float_array[0x82] = float_array[0x82] + delta_value;
+  float_array[0x83] = float_array[0x83] + delta_value;
+  float_array[0x84] = float_array[0x84] + delta_value;
+  float_array[0x85] = float_array[0x85] + delta_value;
+  float_array[0x86] = float_array[0x86] + delta_value;
+  float_array[0x87] = float_array[0x87] + delta_value;
+  float_array[0x88] = float_array[0x88] + delta_value;
+  float_array[0x89] = float_array[0x89] + delta_value;
+  float_array[0x8a] = float_array[0x8a] + delta_value;
+  float_array[0x8b] = float_array[0x8b] + delta_value;
+  float_array[0x8c] = float_array[0x8c] + delta_value;
+  float_array[0x8d] = float_array[0x8d] + delta_value;
+  float_array[0x8e] = float_array[0x8e] + delta_value;
+  float_array[0x8f] = float_array[0x8f] + delta_value;
+  float_array[0x90] = float_array[0x90] + delta_value;
+  float_array[0x91] = float_array[0x91] + delta_value;
+  float_array[0x92] = float_array[0x92] + delta_value;
+  float_array[0x93] = float_array[0x93] + delta_value;
+  float_array[0x94] = float_array[0x94] + delta_value;
+  float_array[0x95] = float_array[0x95] + delta_value;
+  float_array[0x96] = float_array[0x96] + delta_value;
+  float_array[0x97] = float_array[0x97] + delta_value;
+  float_array[0x98] = float_array[0x98] + delta_value;
+  float_array[0x99] = float_array[0x99] + delta_value;
+  float_array[0x9a] = float_array[0x9a] + delta_value;
+  float_array[0x9b] = float_array[0x9b] + delta_value;
+  float_array[0x9c] = float_array[0x9c] + delta_value;
+  float_array[0x9d] = float_array[0x9d] + delta_value;
+  float_array[0x9e] = float_array[0x9e] + delta_value;
+  float_array[0x9f] = float_array[0x9f] + delta_value;
+  float_array[0xa0] = float_array[0xa0] + delta_value;
+  float_array[0xa1] = float_array[0xa1] + delta_value;
+  
+  // 调整基准值，减去增量的10%
+  new_base_value = *float_array - delta_value * 0.1;
+  *float_array = new_base_value;
+  
+  // 确保基准值不小于0
+  if (new_base_value < 0.0) {
+    *float_array = 0.0;
   }
-  iVar1 = _Mtx_unlock(param_1 + 0x20c);
-  if (iVar1 != 0) {
-    __Throw_C_error_std__YAXH_Z(iVar1);
+  
+  // 释放互斥锁
+  mutex_result = _Mtx_unlock(float_array + 0x20c);
+  if (mutex_result != 0) {
+    __Throw_C_error_std__YAXH_Z(mutex_result);
   }
+  
   return;
 }
 

@@ -258,69 +258,73 @@ void process_data_array_extended(undefined8 context,longlong *output_ptr,undefin
 
 
 
-// 函数: void FUN_1800816c0(longlong param_1,longlong *param_2)
-void FUN_1800816c0(longlong param_1,longlong *param_2)
+// 函数: process_data_array_4x_copy - 处理4倍数据数组并复制
+// 原始函数名: FUN_1800816c0
+// 功能: 处理4倍大小的数据数组，并复制源数据到新分配的内存中
+// 参数: source_context - 源数据上下文，output_ptr - 输出指针
+// 实现简化：使用标准的内存分配和复制模式，添加错误检查
+void process_data_array_4x_copy(longlong source_context, longlong *output_ptr)
 
 {
-  int iVar1;
-  undefined8 uVar2;
-  longlong *plVar3;
-  longlong lVar4;
-  undefined1 auStack_d8 [32];
-  undefined4 uStack_b8;
-  longlong *plStack_b0;
-  longlong *plStack_a8;
-  undefined8 uStack_a0;
-  undefined *puStack_98;
-  undefined1 *puStack_90;
-  undefined4 uStack_88;
-  undefined1 auStack_80 [72];
-  ulonglong uStack_38;
+  int element_count;
+  undefined8 system_context;
+  longlong *new_container;
+  longlong memory_allocator;
+  undefined1 security_stack [32];
+  undefined4 stack_flag;
+  longlong *temp_container;
+  longlong *old_container;
+  undefined8 stack_canary;
+  undefined *debug_info;
+  undefined1 *buffer_ptr;
+  undefined4 buffer_size;
+  undefined1 temp_buffer [72];
+  ulonglong security_cookie;
   
-  uStack_a0 = 0xfffffffffffffffe;
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_d8;
-  uStack_b8 = 0;
-  iVar1 = **(int **)(param_1 + 8);
-  *(int **)(param_1 + 8) = *(int **)(param_1 + 8) + 1;
-  uVar2 = _DAT_180c8a998;
-  if (iVar1 != 0) {
-    iVar1 = iVar1 * 4;
-    puStack_98 = &UNK_1809fcc58;
-    puStack_90 = auStack_80;
-    auStack_80[0] = 0;
-    uStack_88 = 0x1c;
-    strcpy_s(auStack_80,0x40,&DAT_1809ffc60);
-    FUN_1802037e0();
-    puStack_98 = &UNK_18098bcb0;
-    lVar4 = FUN_18062b1e0(_DAT_180c8ed18,iVar1,0x10,0x1e);
-    FUN_180083520(uVar2,&plStack_b0);
-    plVar3 = plStack_b0;
-    plStack_b0[2] = lVar4;
-    *(int *)(plStack_b0 + 3) = iVar1;
-    *(int *)((longlong)plStack_b0 + 0x1c) = iVar1;
-    *(undefined1 *)(plStack_b0 + 4) = 0;
-    uStack_b8 = 1;
-    plStack_b0 = (longlong *)0x0;
-    plStack_a8 = (longlong *)*param_2;
-    *param_2 = (longlong)plVar3;
-    if (plStack_a8 != (longlong *)0x0) {
-      (**(code **)(*plStack_a8 + 0x38))();
+  stack_canary = 0xfffffffffffffffe;  // 栈保护
+  security_cookie = _DAT_180bf00a8 ^ (ulonglong)security_stack;  // 安全cookie
+  stack_flag = 0;
+  element_count = **(int **)(source_context + 8);
+  *(int **)(source_context + 8) = *(int **)(source_context + 8) + 1;
+  system_context = _DAT_180c8a998;  // 系统上下文
+  if (element_count != 0) {
+    element_count = element_count * 4;  // 元素数量乘以4
+    debug_info = &UNK_1809fcc58;  // 调试信息
+    buffer_ptr = temp_buffer;
+    temp_buffer[0] = 0;
+    buffer_size = 0x1c;
+    strcpy_s(temp_buffer,0x40,&DAT_1809ffc60);  // 复制字符串
+    initialize_security_context();  // FUN_1802037e0
+    debug_info = &UNK_18098bcb0;
+    memory_allocator = allocate_container_memory(_DAT_180c8ed18,element_count,0x10,0x1e);  // FUN_18062b1e0
+    create_4x_data_container(system_context,&temp_container);  // FUN_180083520
+    new_container = temp_container;
+    temp_container[2] = memory_allocator;
+    *(int *)(temp_container + 3) = element_count;
+    *(int *)((longlong)temp_container + 0x1c) = element_count;
+    *(undefined1 *)(temp_container + 4) = 0;
+    stack_flag = 1;
+    temp_container = (longlong *)0x0;
+    old_container = (longlong *)*output_ptr;
+    *output_ptr = (longlong)new_container;
+    if (old_container != (longlong *)0x0) {
+      (**(code **)(*old_container + 0x38))();  // 调用析构函数
     }
-    uStack_b8 = 0;
-    if (plStack_b0 != (longlong *)0x0) {
-      (**(code **)(*plStack_b0 + 0x38))();
+    stack_flag = 0;
+    if (temp_container != (longlong *)0x0) {
+      (**(code **)(*temp_container + 0x38))();  // 调用析构函数
     }
-                    // WARNING: Subroutine does not return
-    memcpy(*(undefined8 *)(*param_2 + 0x10),*(undefined8 *)(param_1 + 8),
-           (longlong)*(int *)(*param_2 + 0x1c));
+    // 复制源数据到新容器
+    memcpy(*(undefined8 *)(*output_ptr + 0x10),*(undefined8 *)(source_context + 8),
+           (longlong)*(int *)(*output_ptr + 0x1c));
   }
-  plStack_a8 = (longlong *)*param_2;
-  *param_2 = 0;
-  if (plStack_a8 != (longlong *)0x0) {
-    (**(code **)(*plStack_a8 + 0x38))();
+  old_container = (longlong *)*output_ptr;
+  *output_ptr = 0;
+  if (old_container != (longlong *)0x0) {
+    (**(code **)(*old_container + 0x38))();  // 调用析构函数
   }
-                    // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_38 ^ (ulonglong)auStack_d8);
+  // 安全检查退出
+  security_check_exit(security_cookie ^ (ulonglong)security_stack);  // FUN_1808fc050
 }
 
 
@@ -329,69 +333,73 @@ void FUN_1800816c0(longlong param_1,longlong *param_2)
 
 
 
-// 函数: void FUN_180081870(longlong param_1,longlong *param_2)
-void FUN_180081870(longlong param_1,longlong *param_2)
+// 函数: process_data_array_4x_alt - 处理4倍数据数组（替代版本）
+// 原始函数名: FUN_180081870
+// 功能: 处理4倍大小的数据数组，使用不同的容器创建函数
+// 参数: source_context - 源数据上下文，output_ptr - 输出指针
+// 实现简化：与上一个函数类似，但使用不同的容器创建函数
+void process_data_array_4x_alt(longlong source_context, longlong *output_ptr)
 
 {
-  int iVar1;
-  undefined8 uVar2;
-  longlong *plVar3;
-  longlong lVar4;
-  undefined1 auStack_d8 [32];
-  undefined4 uStack_b8;
-  longlong *plStack_b0;
-  longlong *plStack_a8;
-  undefined8 uStack_a0;
-  undefined *puStack_98;
-  undefined1 *puStack_90;
-  undefined4 uStack_88;
-  undefined1 auStack_80 [72];
-  ulonglong uStack_38;
+  int element_count;
+  undefined8 system_context;
+  longlong *new_container;
+  longlong memory_allocator;
+  undefined1 security_stack [32];
+  undefined4 stack_flag;
+  longlong *temp_container;
+  longlong *old_container;
+  undefined8 stack_canary;
+  undefined *debug_info;
+  undefined1 *buffer_ptr;
+  undefined4 buffer_size;
+  undefined1 temp_buffer [72];
+  ulonglong security_cookie;
   
-  uStack_a0 = 0xfffffffffffffffe;
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_d8;
-  uStack_b8 = 0;
-  iVar1 = **(int **)(param_1 + 8);
-  *(int **)(param_1 + 8) = *(int **)(param_1 + 8) + 1;
-  uVar2 = _DAT_180c8a998;
-  if (iVar1 != 0) {
-    iVar1 = iVar1 * 4;
-    puStack_98 = &UNK_1809fcc58;
-    puStack_90 = auStack_80;
-    auStack_80[0] = 0;
-    uStack_88 = 0x1c;
-    strcpy_s(auStack_80,0x40,&DAT_1809ffc60);
-    FUN_1802037e0();
-    puStack_98 = &UNK_18098bcb0;
-    lVar4 = FUN_18062b1e0(_DAT_180c8ed18,iVar1,0x10,0x1e);
-    FUN_1800836a0(uVar2,&plStack_b0);
-    plVar3 = plStack_b0;
-    plStack_b0[2] = lVar4;
-    *(int *)(plStack_b0 + 3) = iVar1;
-    *(int *)((longlong)plStack_b0 + 0x1c) = iVar1;
-    *(undefined1 *)(plStack_b0 + 4) = 0;
-    uStack_b8 = 1;
-    plStack_b0 = (longlong *)0x0;
-    plStack_a8 = (longlong *)*param_2;
-    *param_2 = (longlong)plVar3;
-    if (plStack_a8 != (longlong *)0x0) {
-      (**(code **)(*plStack_a8 + 0x38))();
+  stack_canary = 0xfffffffffffffffe;  // 栈保护
+  security_cookie = _DAT_180bf00a8 ^ (ulonglong)security_stack;  // 安全cookie
+  stack_flag = 0;
+  element_count = **(int **)(source_context + 8);
+  *(int **)(source_context + 8) = *(int **)(source_context + 8) + 1;
+  system_context = _DAT_180c8a998;  // 系统上下文
+  if (element_count != 0) {
+    element_count = element_count * 4;  // 元素数量乘以4
+    debug_info = &UNK_1809fcc58;  // 调试信息
+    buffer_ptr = temp_buffer;
+    temp_buffer[0] = 0;
+    buffer_size = 0x1c;
+    strcpy_s(temp_buffer,0x40,&DAT_1809ffc60);  // 复制字符串
+    initialize_security_context();  // FUN_1802037e0
+    debug_info = &UNK_18098bcb0;
+    memory_allocator = allocate_container_memory(_DAT_180c8ed18,element_count,0x10,0x1e);  // FUN_18062b1e0
+    create_4x_data_container_alt(system_context,&temp_container);  // FUN_1800836a0
+    new_container = temp_container;
+    temp_container[2] = memory_allocator;
+    *(int *)(temp_container + 3) = element_count;
+    *(int *)((longlong)temp_container + 0x1c) = element_count;
+    *(undefined1 *)(temp_container + 4) = 0;
+    stack_flag = 1;
+    temp_container = (longlong *)0x0;
+    old_container = (longlong *)*output_ptr;
+    *output_ptr = (longlong)new_container;
+    if (old_container != (longlong *)0x0) {
+      (**(code **)(*old_container + 0x38))();  // 调用析构函数
     }
-    uStack_b8 = 0;
-    if (plStack_b0 != (longlong *)0x0) {
-      (**(code **)(*plStack_b0 + 0x38))();
+    stack_flag = 0;
+    if (temp_container != (longlong *)0x0) {
+      (**(code **)(*temp_container + 0x38))();  // 调用析构函数
     }
-                    // WARNING: Subroutine does not return
-    memcpy(*(undefined8 *)(*param_2 + 0x10),*(undefined8 *)(param_1 + 8),
-           (longlong)*(int *)(*param_2 + 0x1c));
+    // 复制源数据到新容器
+    memcpy(*(undefined8 *)(*output_ptr + 0x10),*(undefined8 *)(source_context + 8),
+           (longlong)*(int *)(*output_ptr + 0x1c));
   }
-  plStack_a8 = (longlong *)*param_2;
-  *param_2 = 0;
-  if (plStack_a8 != (longlong *)0x0) {
-    (**(code **)(*plStack_a8 + 0x38))();
+  old_container = (longlong *)*output_ptr;
+  *output_ptr = 0;
+  if (old_container != (longlong *)0x0) {
+    (**(code **)(*old_container + 0x38))();  // 调用析构函数
   }
-                    // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_38 ^ (ulonglong)auStack_d8);
+  // 安全检查退出
+  security_check_exit(security_cookie ^ (ulonglong)security_stack);  // FUN_1808fc050
 }
 
 
@@ -400,69 +408,73 @@ void FUN_180081870(longlong param_1,longlong *param_2)
 
 
 
-// 函数: void FUN_180081a20(longlong param_1,longlong *param_2)
-void FUN_180081a20(longlong param_1,longlong *param_2)
+// 函数: process_data_array_24x - 处理24倍数据数组
+// 原始函数名: FUN_180081a20
+// 功能: 处理24倍大小的数据数组（0x18 = 24字节）
+// 参数: source_context - 源数据上下文，output_ptr - 输出指针
+// 实现简化：使用24字节对齐的数据处理，适用于大型数据结构
+void process_data_array_24x(longlong source_context, longlong *output_ptr)
 
 {
-  undefined8 uVar1;
-  longlong *plVar2;
-  longlong lVar3;
-  int iVar4;
-  undefined1 auStack_d8 [32];
-  undefined4 uStack_b8;
-  longlong *plStack_b0;
-  longlong *plStack_a8;
-  undefined8 uStack_a0;
-  undefined *puStack_98;
-  undefined1 *puStack_90;
-  undefined4 uStack_88;
-  undefined1 auStack_80 [72];
-  ulonglong uStack_38;
+  undefined8 system_context;
+  longlong *new_container;
+  longlong memory_allocator;
+  int element_count;
+  undefined1 security_stack [32];
+  undefined4 stack_flag;
+  longlong *temp_container;
+  longlong *old_container;
+  undefined8 stack_canary;
+  undefined *debug_info;
+  undefined1 *buffer_ptr;
+  undefined4 buffer_size;
+  undefined1 temp_buffer [72];
+  ulonglong security_cookie;
   
-  uStack_a0 = 0xfffffffffffffffe;
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_d8;
-  uStack_b8 = 0;
-  iVar4 = **(int **)(param_1 + 8);
-  *(int **)(param_1 + 8) = *(int **)(param_1 + 8) + 1;
-  uVar1 = _DAT_180c8a998;
-  if (iVar4 != 0) {
-    iVar4 = iVar4 * 0x18;
-    puStack_98 = &UNK_1809fcc58;
-    puStack_90 = auStack_80;
-    auStack_80[0] = 0;
-    uStack_88 = 0x1c;
-    strcpy_s(auStack_80,0x40,&DAT_1809ffc60);
-    FUN_1802037e0();
-    puStack_98 = &UNK_18098bcb0;
-    lVar3 = FUN_18062b1e0(_DAT_180c8ed18,iVar4,0x10,0x1e);
-    FUN_180083820(uVar1,&plStack_b0);
-    plVar2 = plStack_b0;
-    plStack_b0[2] = lVar3;
-    *(int *)(plStack_b0 + 3) = iVar4;
-    *(int *)((longlong)plStack_b0 + 0x1c) = iVar4;
-    *(undefined1 *)(plStack_b0 + 4) = 0;
-    uStack_b8 = 1;
-    plStack_b0 = (longlong *)0x0;
-    plStack_a8 = (longlong *)*param_2;
-    *param_2 = (longlong)plVar2;
-    if (plStack_a8 != (longlong *)0x0) {
-      (**(code **)(*plStack_a8 + 0x38))();
+  stack_canary = 0xfffffffffffffffe;  // 栈保护
+  security_cookie = _DAT_180bf00a8 ^ (ulonglong)security_stack;  // 安全cookie
+  stack_flag = 0;
+  element_count = **(int **)(source_context + 8);
+  *(int **)(source_context + 8) = *(int **)(source_context + 8) + 1;
+  system_context = _DAT_180c8a998;  // 系统上下文
+  if (element_count != 0) {
+    element_count = element_count * 0x18;  // 元素数量乘以24（0x18）
+    debug_info = &UNK_1809fcc58;  // 调试信息
+    buffer_ptr = temp_buffer;
+    temp_buffer[0] = 0;
+    buffer_size = 0x1c;
+    strcpy_s(temp_buffer,0x40,&DAT_1809ffc60);  // 复制字符串
+    initialize_security_context();  // FUN_1802037e0
+    debug_info = &UNK_18098bcb0;
+    memory_allocator = allocate_container_memory(_DAT_180c8ed18,element_count,0x10,0x1e);  // FUN_18062b1e0
+    create_24x_data_container(system_context,&temp_container);  // FUN_180083820
+    new_container = temp_container;
+    temp_container[2] = memory_allocator;
+    *(int *)(temp_container + 3) = element_count;
+    *(int *)((longlong)temp_container + 0x1c) = element_count;
+    *(undefined1 *)(temp_container + 4) = 0;
+    stack_flag = 1;
+    temp_container = (longlong *)0x0;
+    old_container = (longlong *)*output_ptr;
+    *output_ptr = (longlong)new_container;
+    if (old_container != (longlong *)0x0) {
+      (**(code **)(*old_container + 0x38))();  // 调用析构函数
     }
-    uStack_b8 = 0;
-    if (plStack_b0 != (longlong *)0x0) {
-      (**(code **)(*plStack_b0 + 0x38))();
+    stack_flag = 0;
+    if (temp_container != (longlong *)0x0) {
+      (**(code **)(*temp_container + 0x38))();  // 调用析构函数
     }
-                    // WARNING: Subroutine does not return
-    memcpy(*(undefined8 *)(*param_2 + 0x10),*(undefined8 *)(param_1 + 8),
-           (longlong)*(int *)(*param_2 + 0x1c));
+    // 复制源数据到新容器
+    memcpy(*(undefined8 *)(*output_ptr + 0x10),*(undefined8 *)(source_context + 8),
+           (longlong)*(int *)(*output_ptr + 0x1c));
   }
-  plStack_a8 = (longlong *)*param_2;
-  *param_2 = 0;
-  if (plStack_a8 != (longlong *)0x0) {
-    (**(code **)(*plStack_a8 + 0x38))();
+  old_container = (longlong *)*output_ptr;
+  *output_ptr = 0;
+  if (old_container != (longlong *)0x0) {
+    (**(code **)(*old_container + 0x38))();  // 调用析构函数
   }
-                    // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_38 ^ (ulonglong)auStack_d8);
+  // 安全检查退出
+  security_check_exit(security_cookie ^ (ulonglong)security_stack);  // FUN_1808fc050
 }
 
 
@@ -471,69 +483,73 @@ void FUN_180081a20(longlong param_1,longlong *param_2)
 
 
 
-// 函数: void FUN_180081bd0(longlong param_1,longlong *param_2)
-void FUN_180081bd0(longlong param_1,longlong *param_2)
+// 函数: process_data_array_8x - 处理8倍数据数组
+// 原始函数名: FUN_180081bd0
+// 功能: 处理8倍大小的数据数组，适用于8字节对齐的数据结构
+// 参数: source_context - 源数据上下文，output_ptr - 输出指针
+// 实现简化：使用8字节对齐的数据处理，适用于标准数据类型
+void process_data_array_8x(longlong source_context, longlong *output_ptr)
 
 {
-  int iVar1;
-  undefined8 uVar2;
-  longlong *plVar3;
-  longlong lVar4;
-  undefined1 auStack_d8 [32];
-  undefined4 uStack_b8;
-  longlong *plStack_b0;
-  longlong *plStack_a8;
-  undefined8 uStack_a0;
-  undefined *puStack_98;
-  undefined1 *puStack_90;
-  undefined4 uStack_88;
-  undefined1 auStack_80 [72];
-  ulonglong uStack_38;
+  int element_count;
+  undefined8 system_context;
+  longlong *new_container;
+  longlong memory_allocator;
+  undefined1 security_stack [32];
+  undefined4 stack_flag;
+  longlong *temp_container;
+  longlong *old_container;
+  undefined8 stack_canary;
+  undefined *debug_info;
+  undefined1 *buffer_ptr;
+  undefined4 buffer_size;
+  undefined1 temp_buffer [72];
+  ulonglong security_cookie;
   
-  uStack_a0 = 0xfffffffffffffffe;
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_d8;
-  uStack_b8 = 0;
-  iVar1 = **(int **)(param_1 + 8);
-  *(int **)(param_1 + 8) = *(int **)(param_1 + 8) + 1;
-  uVar2 = _DAT_180c8a998;
-  if (iVar1 != 0) {
-    iVar1 = iVar1 * 8;
-    puStack_98 = &UNK_1809fcc58;
-    puStack_90 = auStack_80;
-    auStack_80[0] = 0;
-    uStack_88 = 0x1c;
-    strcpy_s(auStack_80,0x40,&DAT_1809ffc60);
-    FUN_1802037e0();
-    puStack_98 = &UNK_18098bcb0;
-    lVar4 = FUN_18062b1e0(_DAT_180c8ed18,iVar1,0x10,0x1e);
-    FUN_1800839a0(uVar2,&plStack_b0);
-    plVar3 = plStack_b0;
-    plStack_b0[2] = lVar4;
-    *(int *)(plStack_b0 + 3) = iVar1;
-    *(int *)((longlong)plStack_b0 + 0x1c) = iVar1;
-    *(undefined1 *)(plStack_b0 + 4) = 0;
-    uStack_b8 = 1;
-    plStack_b0 = (longlong *)0x0;
-    plStack_a8 = (longlong *)*param_2;
-    *param_2 = (longlong)plVar3;
-    if (plStack_a8 != (longlong *)0x0) {
-      (**(code **)(*plStack_a8 + 0x38))();
+  stack_canary = 0xfffffffffffffffe;  // 栈保护
+  security_cookie = _DAT_180bf00a8 ^ (ulonglong)security_stack;  // 安全cookie
+  stack_flag = 0;
+  element_count = **(int **)(source_context + 8);
+  *(int **)(source_context + 8) = *(int **)(source_context + 8) + 1;
+  system_context = _DAT_180c8a998;  // 系统上下文
+  if (element_count != 0) {
+    element_count = element_count * 8;  // 元素数量乘以8
+    debug_info = &UNK_1809fcc58;  // 调试信息
+    buffer_ptr = temp_buffer;
+    temp_buffer[0] = 0;
+    buffer_size = 0x1c;
+    strcpy_s(temp_buffer,0x40,&DAT_1809ffc60);  // 复制字符串
+    initialize_security_context();  // FUN_1802037e0
+    debug_info = &UNK_18098bcb0;
+    memory_allocator = allocate_container_memory(_DAT_180c8ed18,element_count,0x10,0x1e);  // FUN_18062b1e0
+    create_8x_data_container(system_context,&temp_container);  // FUN_1800839a0
+    new_container = temp_container;
+    temp_container[2] = memory_allocator;
+    *(int *)(temp_container + 3) = element_count;
+    *(int *)((longlong)temp_container + 0x1c) = element_count;
+    *(undefined1 *)(temp_container + 4) = 0;
+    stack_flag = 1;
+    temp_container = (longlong *)0x0;
+    old_container = (longlong *)*output_ptr;
+    *output_ptr = (longlong)new_container;
+    if (old_container != (longlong *)0x0) {
+      (**(code **)(*old_container + 0x38))();  // 调用析构函数
     }
-    uStack_b8 = 0;
-    if (plStack_b0 != (longlong *)0x0) {
-      (**(code **)(*plStack_b0 + 0x38))();
+    stack_flag = 0;
+    if (temp_container != (longlong *)0x0) {
+      (**(code **)(*temp_container + 0x38))();  // 调用析构函数
     }
-                    // WARNING: Subroutine does not return
-    memcpy(*(undefined8 *)(*param_2 + 0x10),*(undefined8 *)(param_1 + 8),
-           (longlong)*(int *)(*param_2 + 0x1c));
+    // 复制源数据到新容器
+    memcpy(*(undefined8 *)(*output_ptr + 0x10),*(undefined8 *)(source_context + 8),
+           (longlong)*(int *)(*output_ptr + 0x1c));
   }
-  plStack_a8 = (longlong *)*param_2;
-  *param_2 = 0;
-  if (plStack_a8 != (longlong *)0x0) {
-    (**(code **)(*plStack_a8 + 0x38))();
+  old_container = (longlong *)*output_ptr;
+  *output_ptr = 0;
+  if (old_container != (longlong *)0x0) {
+    (**(code **)(*old_container + 0x38))();  // 调用析构函数
   }
-                    // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_38 ^ (ulonglong)auStack_d8);
+  // 安全检查退出
+  security_check_exit(security_cookie ^ (ulonglong)security_stack);  // FUN_1808fc050
 }
 
 
@@ -542,69 +558,73 @@ void FUN_180081bd0(longlong param_1,longlong *param_2)
 
 
 
-// 函数: void FUN_180081d80(longlong param_1,longlong *param_2)
-void FUN_180081d80(longlong param_1,longlong *param_2)
+// 函数: process_data_array_4x_direct - 直接处理4倍数据数组
+// 原始函数名: FUN_180081d80
+// 功能: 直接处理4倍大小的数据数组，使用直接数据处理函数
+// 参数: source_context - 源数据上下文，output_ptr - 输出指针
+// 实现简化：使用直接数据处理方式，避免中间转换步骤
+void process_data_array_4x_direct(longlong source_context, longlong *output_ptr)
 
 {
-  int iVar1;
-  undefined8 uVar2;
-  longlong *plVar3;
-  longlong lVar4;
-  undefined1 auStack_d8 [32];
-  undefined4 uStack_b8;
-  longlong *plStack_b0;
-  longlong *plStack_a8;
-  undefined8 uStack_a0;
-  undefined *puStack_98;
-  undefined1 *puStack_90;
-  undefined4 uStack_88;
-  undefined1 auStack_80 [72];
-  ulonglong uStack_38;
+  int element_count;
+  undefined8 system_context;
+  longlong *new_container;
+  longlong memory_allocator;
+  undefined1 security_stack [32];
+  undefined4 stack_flag;
+  longlong *temp_container;
+  longlong *old_container;
+  undefined8 stack_canary;
+  undefined *debug_info;
+  undefined1 *buffer_ptr;
+  undefined4 buffer_size;
+  undefined1 temp_buffer [72];
+  ulonglong security_cookie;
   
-  uStack_a0 = 0xfffffffffffffffe;
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_d8;
-  uStack_b8 = 0;
-  iVar1 = **(int **)(param_1 + 8);
-  *(int **)(param_1 + 8) = *(int **)(param_1 + 8) + 1;
-  uVar2 = _DAT_180c8a998;
-  if (iVar1 != 0) {
-    iVar1 = iVar1 * 4;
-    puStack_98 = &UNK_1809fcc58;
-    puStack_90 = auStack_80;
-    auStack_80[0] = 0;
-    uStack_88 = 0x1c;
-    strcpy_s(auStack_80,0x40,&DAT_1809ffc60);
-    FUN_1802037e0();
-    puStack_98 = &UNK_18098bcb0;
-    lVar4 = FUN_18062b1e0(_DAT_180c8ed18,iVar1,0x10,0x1e);
-    FUN_180082aa0(uVar2,&plStack_b0);
-    plVar3 = plStack_b0;
-    plStack_b0[2] = lVar4;
-    *(int *)(plStack_b0 + 3) = iVar1;
-    *(int *)((longlong)plStack_b0 + 0x1c) = iVar1;
-    *(undefined1 *)(plStack_b0 + 4) = 0;
-    uStack_b8 = 1;
-    plStack_b0 = (longlong *)0x0;
-    plStack_a8 = (longlong *)*param_2;
-    *param_2 = (longlong)plVar3;
-    if (plStack_a8 != (longlong *)0x0) {
-      (**(code **)(*plStack_a8 + 0x38))();
+  stack_canary = 0xfffffffffffffffe;  // 栈保护
+  security_cookie = _DAT_180bf00a8 ^ (ulonglong)security_stack;  // 安全cookie
+  stack_flag = 0;
+  element_count = **(int **)(source_context + 8);
+  *(int **)(source_context + 8) = *(int **)(source_context + 8) + 1;
+  system_context = _DAT_180c8a998;  // 系统上下文
+  if (element_count != 0) {
+    element_count = element_count * 4;  // 元素数量乘以4
+    debug_info = &UNK_1809fcc58;  // 调试信息
+    buffer_ptr = temp_buffer;
+    temp_buffer[0] = 0;
+    buffer_size = 0x1c;
+    strcpy_s(temp_buffer,0x40,&DAT_1809ffc60);  // 复制字符串
+    initialize_security_context();  // FUN_1802037e0
+    debug_info = &UNK_18098bcb0;
+    memory_allocator = allocate_container_memory(_DAT_180c8ed18,element_count,0x10,0x1e);  // FUN_18062b1e0
+    process_direct_4x_data(system_context,&temp_container);  // FUN_180082aa0
+    new_container = temp_container;
+    temp_container[2] = memory_allocator;
+    *(int *)(temp_container + 3) = element_count;
+    *(int *)((longlong)temp_container + 0x1c) = element_count;
+    *(undefined1 *)(temp_container + 4) = 0;
+    stack_flag = 1;
+    temp_container = (longlong *)0x0;
+    old_container = (longlong *)*output_ptr;
+    *output_ptr = (longlong)new_container;
+    if (old_container != (longlong *)0x0) {
+      (**(code **)(*old_container + 0x38))();  // 调用析构函数
     }
-    uStack_b8 = 0;
-    if (plStack_b0 != (longlong *)0x0) {
-      (**(code **)(*plStack_b0 + 0x38))();
+    stack_flag = 0;
+    if (temp_container != (longlong *)0x0) {
+      (**(code **)(*temp_container + 0x38))();  // 调用析构函数
     }
-                    // WARNING: Subroutine does not return
-    memcpy(*(undefined8 *)(*param_2 + 0x10),*(undefined8 *)(param_1 + 8),
-           (longlong)*(int *)(*param_2 + 0x1c));
+    // 复制源数据到新容器
+    memcpy(*(undefined8 *)(*output_ptr + 0x10),*(undefined8 *)(source_context + 8),
+           (longlong)*(int *)(*output_ptr + 0x1c));
   }
-  plStack_a8 = (longlong *)*param_2;
-  *param_2 = 0;
-  if (plStack_a8 != (longlong *)0x0) {
-    (**(code **)(*plStack_a8 + 0x38))();
+  old_container = (longlong *)*output_ptr;
+  *output_ptr = 0;
+  if (old_container != (longlong *)0x0) {
+    (**(code **)(*old_container + 0x38))();  // 调用析构函数
   }
-                    // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_38 ^ (ulonglong)auStack_d8);
+  // 安全检查退出
+  security_check_exit(security_cookie ^ (ulonglong)security_stack);  // FUN_1808fc050
 }
 
 
@@ -613,68 +633,72 @@ void FUN_180081d80(longlong param_1,longlong *param_2)
 
 
 
-// 函数: void FUN_180081f30(longlong param_1,longlong *param_2)
-void FUN_180081f30(longlong param_1,longlong *param_2)
+// 函数: process_data_array_direct_copy - 直接处理数据数组并复制
+// 原始函数名: FUN_180081f30
+// 功能: 直接处理数据数组，不进行倍数转换，直接复制源数据
+// 参数: source_context - 源数据上下文，output_ptr - 输出指针
+// 实现简化：直接处理原始数据，保持原有大小和格式
+void process_data_array_direct_copy(longlong source_context, longlong *output_ptr)
 
 {
-  int iVar1;
-  undefined8 uVar2;
-  longlong *plVar3;
-  longlong lVar4;
-  undefined1 auStack_d8 [32];
-  undefined4 uStack_b8;
-  longlong *plStack_b0;
-  longlong *plStack_a8;
-  undefined8 uStack_a0;
-  undefined *puStack_98;
-  undefined1 *puStack_90;
-  undefined4 uStack_88;
-  undefined1 auStack_80 [72];
-  ulonglong uStack_38;
+  int element_count;
+  undefined8 system_context;
+  longlong *new_container;
+  longlong memory_allocator;
+  undefined1 security_stack [32];
+  undefined4 stack_flag;
+  longlong *temp_container;
+  longlong *old_container;
+  undefined8 stack_canary;
+  undefined *debug_info;
+  undefined1 *buffer_ptr;
+  undefined4 buffer_size;
+  undefined1 temp_buffer [72];
+  ulonglong security_cookie;
   
-  uStack_a0 = 0xfffffffffffffffe;
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_d8;
-  uStack_b8 = 0;
-  iVar1 = **(int **)(param_1 + 8);
-  *(int **)(param_1 + 8) = *(int **)(param_1 + 8) + 1;
-  uVar2 = _DAT_180c8a998;
-  if (iVar1 != 0) {
-    puStack_98 = &UNK_1809fcc58;
-    puStack_90 = auStack_80;
-    auStack_80[0] = 0;
-    uStack_88 = 0x1c;
-    strcpy_s(auStack_80,0x40,&DAT_1809ffc60);
-    FUN_1802037e0();
-    puStack_98 = &UNK_18098bcb0;
-    lVar4 = FUN_18062b1e0(_DAT_180c8ed18,iVar1,0x10,0x1e);
-    FUN_1800828d0(uVar2,&plStack_b0);
-    plVar3 = plStack_b0;
-    plStack_b0[2] = lVar4;
-    *(int *)(plStack_b0 + 3) = iVar1;
-    *(int *)((longlong)plStack_b0 + 0x1c) = iVar1;
-    *(undefined1 *)(plStack_b0 + 4) = 0;
-    uStack_b8 = 1;
-    plStack_b0 = (longlong *)0x0;
-    plStack_a8 = (longlong *)*param_2;
-    *param_2 = (longlong)plVar3;
-    if (plStack_a8 != (longlong *)0x0) {
-      (**(code **)(*plStack_a8 + 0x38))();
+  stack_canary = 0xfffffffffffffffe;  // 栈保护
+  security_cookie = _DAT_180bf00a8 ^ (ulonglong)security_stack;  // 安全cookie
+  stack_flag = 0;
+  element_count = **(int **)(source_context + 8);
+  *(int **)(source_context + 8) = *(int **)(source_context + 8) + 1;
+  system_context = _DAT_180c8a998;  // 系统上下文
+  if (element_count != 0) {
+    debug_info = &UNK_1809fcc58;  // 调试信息
+    buffer_ptr = temp_buffer;
+    temp_buffer[0] = 0;
+    buffer_size = 0x1c;
+    strcpy_s(temp_buffer,0x40,&DAT_1809ffc60);  // 复制字符串
+    initialize_security_context();  // FUN_1802037e0
+    debug_info = &UNK_18098bcb0;
+    memory_allocator = allocate_container_memory(_DAT_180c8ed18,element_count,0x10,0x1e);  // FUN_18062b1e0
+    process_direct_data_copy(system_context,&temp_container);  // FUN_1800828d0
+    new_container = temp_container;
+    temp_container[2] = memory_allocator;
+    *(int *)(temp_container + 3) = element_count;
+    *(int *)((longlong)temp_container + 0x1c) = element_count;
+    *(undefined1 *)(temp_container + 4) = 0;
+    stack_flag = 1;
+    temp_container = (longlong *)0x0;
+    old_container = (longlong *)*output_ptr;
+    *output_ptr = (longlong)new_container;
+    if (old_container != (longlong *)0x0) {
+      (**(code **)(*old_container + 0x38))();  // 调用析构函数
     }
-    uStack_b8 = 0;
-    if (plStack_b0 != (longlong *)0x0) {
-      (**(code **)(*plStack_b0 + 0x38))();
+    stack_flag = 0;
+    if (temp_container != (longlong *)0x0) {
+      (**(code **)(*temp_container + 0x38))();  // 调用析构函数
     }
-                    // WARNING: Subroutine does not return
-    memcpy(*(undefined8 *)(*param_2 + 0x10),*(undefined8 *)(param_1 + 8),
-           (longlong)*(int *)(*param_2 + 0x1c));
+    // 复制源数据到新容器
+    memcpy(*(undefined8 *)(*output_ptr + 0x10),*(undefined8 *)(source_context + 8),
+           (longlong)*(int *)(*output_ptr + 0x1c));
   }
-  plStack_a8 = (longlong *)*param_2;
-  *param_2 = 0;
-  if (plStack_a8 != (longlong *)0x0) {
-    (**(code **)(*plStack_a8 + 0x38))();
+  old_container = (longlong *)*output_ptr;
+  *output_ptr = 0;
+  if (old_container != (longlong *)0x0) {
+    (**(code **)(*old_container + 0x38))();  // 调用析构函数
   }
-                    // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_38 ^ (ulonglong)auStack_d8);
+  // 安全检查退出
+  security_check_exit(security_cookie ^ (ulonglong)security_stack);  // FUN_1808fc050
 }
 
 
@@ -683,69 +707,73 @@ void FUN_180081f30(longlong param_1,longlong *param_2)
 
 
 
-// 函数: void FUN_1800820e0(longlong param_1,longlong *param_2)
-void FUN_1800820e0(longlong param_1,longlong *param_2)
+// 函数: process_data_array_2x_copy - 处理2倍数据数组并复制
+// 原始函数名: FUN_1800820e0
+// 功能: 处理2倍大小的数据数组，适用于需要双倍空间的数据结构
+// 参数: source_context - 源数据上下文，output_ptr - 输出指针
+// 实现简化：使用2倍数据处理，适用于需要扩展的数据结构
+void process_data_array_2x_copy(longlong source_context, longlong *output_ptr)
 
 {
-  int iVar1;
-  undefined8 uVar2;
-  longlong *plVar3;
-  longlong lVar4;
-  undefined1 auStack_d8 [32];
-  undefined4 uStack_b8;
-  longlong *plStack_b0;
-  longlong *plStack_a8;
-  undefined8 uStack_a0;
-  undefined *puStack_98;
-  undefined1 *puStack_90;
-  undefined4 uStack_88;
-  undefined1 auStack_80 [72];
-  ulonglong uStack_38;
+  int element_count;
+  undefined8 system_context;
+  longlong *new_container;
+  longlong memory_allocator;
+  undefined1 security_stack [32];
+  undefined4 stack_flag;
+  longlong *temp_container;
+  longlong *old_container;
+  undefined8 stack_canary;
+  undefined *debug_info;
+  undefined1 *buffer_ptr;
+  undefined4 buffer_size;
+  undefined1 temp_buffer [72];
+  ulonglong security_cookie;
   
-  uStack_a0 = 0xfffffffffffffffe;
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_d8;
-  uStack_b8 = 0;
-  iVar1 = **(int **)(param_1 + 8);
-  *(int **)(param_1 + 8) = *(int **)(param_1 + 8) + 1;
-  uVar2 = _DAT_180c8a998;
-  if (iVar1 != 0) {
-    iVar1 = iVar1 * 2;
-    puStack_98 = &UNK_1809fcc58;
-    puStack_90 = auStack_80;
-    auStack_80[0] = 0;
-    uStack_88 = 0x1c;
-    strcpy_s(auStack_80,0x40,&DAT_1809ffc60);
-    FUN_1802037e0();
-    puStack_98 = &UNK_18098bcb0;
-    lVar4 = FUN_18062b1e0(_DAT_180c8ed18,iVar1,0x10,0x1e);
-    FUN_180082c20(uVar2,&plStack_b0);
-    plVar3 = plStack_b0;
-    plStack_b0[2] = lVar4;
-    *(int *)(plStack_b0 + 3) = iVar1;
-    *(int *)((longlong)plStack_b0 + 0x1c) = iVar1;
-    *(undefined1 *)(plStack_b0 + 4) = 0;
-    uStack_b8 = 1;
-    plStack_b0 = (longlong *)0x0;
-    plStack_a8 = (longlong *)*param_2;
-    *param_2 = (longlong)plVar3;
-    if (plStack_a8 != (longlong *)0x0) {
-      (**(code **)(*plStack_a8 + 0x38))();
+  stack_canary = 0xfffffffffffffffe;  // 栈保护
+  security_cookie = _DAT_180bf00a8 ^ (ulonglong)security_stack;  // 安全cookie
+  stack_flag = 0;
+  element_count = **(int **)(source_context + 8);
+  *(int **)(source_context + 8) = *(int **)(source_context + 8) + 1;
+  system_context = _DAT_180c8a998;  // 系统上下文
+  if (element_count != 0) {
+    element_count = element_count * 2;  // 元素数量乘以2
+    debug_info = &UNK_1809fcc58;  // 调试信息
+    buffer_ptr = temp_buffer;
+    temp_buffer[0] = 0;
+    buffer_size = 0x1c;
+    strcpy_s(temp_buffer,0x40,&DAT_1809ffc60);  // 复制字符串
+    initialize_security_context();  // FUN_1802037e0
+    debug_info = &UNK_18098bcb0;
+    memory_allocator = allocate_container_memory(_DAT_180c8ed18,element_count,0x10,0x1e);  // FUN_18062b1e0
+    process_2x_data_copy(system_context,&temp_container);  // FUN_180082c20
+    new_container = temp_container;
+    temp_container[2] = memory_allocator;
+    *(int *)(temp_container + 3) = element_count;
+    *(int *)((longlong)temp_container + 0x1c) = element_count;
+    *(undefined1 *)(temp_container + 4) = 0;
+    stack_flag = 1;
+    temp_container = (longlong *)0x0;
+    old_container = (longlong *)*output_ptr;
+    *output_ptr = (longlong)new_container;
+    if (old_container != (longlong *)0x0) {
+      (**(code **)(*old_container + 0x38))();  // 调用析构函数
     }
-    uStack_b8 = 0;
-    if (plStack_b0 != (longlong *)0x0) {
-      (**(code **)(*plStack_b0 + 0x38))();
+    stack_flag = 0;
+    if (temp_container != (longlong *)0x0) {
+      (**(code **)(*temp_container + 0x38))();  // 调用析构函数
     }
-                    // WARNING: Subroutine does not return
-    memcpy(*(undefined8 *)(*param_2 + 0x10),*(undefined8 *)(param_1 + 8),
-           (longlong)*(int *)(*param_2 + 0x1c));
+    // 复制源数据到新容器
+    memcpy(*(undefined8 *)(*output_ptr + 0x10),*(undefined8 *)(source_context + 8),
+           (longlong)*(int *)(*output_ptr + 0x1c));
   }
-  plStack_a8 = (longlong *)*param_2;
-  *param_2 = 0;
-  if (plStack_a8 != (longlong *)0x0) {
-    (**(code **)(*plStack_a8 + 0x38))();
+  old_container = (longlong *)*output_ptr;
+  *output_ptr = 0;
+  if (old_container != (longlong *)0x0) {
+    (**(code **)(*old_container + 0x38))();  // 调用析构函数
   }
-                    // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_38 ^ (ulonglong)auStack_d8);
+  // 安全检查退出
+  security_check_exit(security_cookie ^ (ulonglong)security_stack);  // FUN_1808fc050
 }
 
 

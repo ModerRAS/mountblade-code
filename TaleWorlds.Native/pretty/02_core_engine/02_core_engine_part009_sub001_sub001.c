@@ -956,151 +956,175 @@ LAB_180044db8:
 
 
 // 函数: void FUN_180044dc0(undefined8 param_1,longlong param_2)
-void FUN_180044dc0(undefined8 param_1,longlong param_2)
-
+/**
+ * 初始化系统调试和性能计数器
+ * 功能：初始化系统调试功能、符号处理和性能计数器
+ * 参数：param_1 - 参数1，param_2 - 参数2
+ */
+void initialize_debug_and_performance(undefined8 param_1, longlong param_2)
 {
-  longlong **pplVar1;
-  int iVar2;
-  uint uVar3;
-  undefined4 uVar4;
-  undefined8 uVar5;
-  longlong *plVar6;
-  longlong lVar7;
-  undefined8 *puVar8;
-  undefined8 *puVar9;
-  undefined8 *puVar10;
-  undefined1 *puVar11;
-  char *pcVar12;
-  undefined *puVar13;
-  ulonglong uVar14;
-  uint uVar15;
-  char cVar16;
-  longlong *plStackX_10;
-  longlong **pplStackX_18;
-  longlong lStackX_20;
-  undefined *puStack_b8;
-  undefined *puStack_b0;
-  undefined4 uStack_a0;
-  undefined *puStack_98;
-  longlong lStack_90;
-  uint uStack_88;
-  undefined *puStack_78;
-  undefined *puStack_70;
-  undefined4 uStack_60;
-  undefined8 uStack_58;
-  longlong **pplStack_50;
-  longlong *plStack_48;
-  
-  uStack_58 = 0xfffffffffffffffe;
-  uVar5 = FUN_180043f90();
-  FUN_180629770();
-  plVar6 = (longlong *)FUN_18062b1e0(_DAT_180c8ed18,0x68,8,3);
-  pplVar1 = (longlong **)(plVar6 + 1);
-  plStackX_10 = plVar6;
-  pplStackX_18 = pplVar1;
-  _Mtx_init_in_situ(pplVar1,2);
-  plVar6[0xb] = 0;
-  plVar6[0xc] = 0;
-  *(undefined2 *)plVar6 = 0;
-  _DAT_180c8ed10 = plVar6;
-  if ((char)*plVar6 != '\0') goto LAB_180044faf;
-  pplStack_50 = pplVar1;
-  iVar2 = _Mtx_lock(pplVar1);
-  if (iVar2 != 0) {
-    __Throw_C_error_std__YAXH_Z(iVar2);
-  }
-  SymSetOptions(0x2017);
-  FUN_180629090(&puStack_b8);
-  puVar13 = &DAT_18098bc73;
-  if (puStack_b0 != (undefined *)0x0) {
-    puVar13 = puStack_b0;
-  }
-  SymSetSearchPath(_DAT_180c96218,puVar13);
-  lVar7 = plVar6[0xb];
-  if (lVar7 == 0) {
-    lVar7 = LoadLibraryA(&UNK_180a3c428);
-    plVar6[0xb] = lVar7;
-    if (lVar7 != 0) goto LAB_180044ee3;
-    puStack_b8 = &UNK_180a3c3e0;
-    if (puStack_b0 != (undefined *)0x0) {
-                    // WARNING: Subroutine does not return
-      FUN_18064e900();
+    longlong **pplVar1;
+    int iVar2;
+    uint uVar3;
+    undefined4 uVar4;
+    undefined8 uVar5;
+    longlong *plVar6;
+    longlong lVar7;
+    undefined8 *puVar8;
+    undefined8 *puVar9;
+    undefined8 *puVar10;
+    undefined1 *puVar11;
+    char *pcVar12;
+    undefined *puVar13;
+    ulonglong uVar14;
+    uint uVar15;
+    char cVar16;
+    longlong *plStackX_10;
+    longlong **pplStackX_18;
+    longlong lStackX_20;
+    undefined *puStack_b8;
+    undefined *puStack_b0;
+    undefined4 uStack_a0;
+    undefined *puStack_98;
+    longlong lStack_90;
+    uint uStack_88;
+    undefined *puStack_78;
+    undefined *puStack_70;
+    undefined4 uStack_60;
+    undefined8 uStack_58;
+    longlong **pplStack_50;
+    longlong *plStack_48;
+    
+    uStack_58 = 0xfffffffffffffffe;
+    uVar5 = FUN_180043f90();
+    FUN_180629770();
+    
+    // 初始化互斥锁和数据结构
+    plVar6 = (longlong *)FUN_18062b1e0(_DAT_180c8ed18, 0x68, 8, 3);
+    pplVar1 = (longlong **)(plVar6 + 1);
+    plStackX_10 = plVar6;
+    pplStackX_18 = pplVar1;
+    _Mtx_init_in_situ(pplVar1, 2);
+    plVar6[0xb] = 0;
+    plVar6[0xc] = 0;
+    *(undefined2 *)plVar6 = 0;
+    _DAT_180c8ed10 = plVar6;
+    
+    // 检查是否已经初始化
+    if ((char)*plVar6 != '\0') goto LAB_180044faf;
+    
+    // 初始化符号处理
+    pplStack_50 = pplVar1;
+    iVar2 = _Mtx_lock(pplVar1);
+    if (iVar2 != 0) {
+        __Throw_C_error_std__YAXH_Z(iVar2);
     }
-  }
-  else {
-LAB_180044ee3:
-    if (plVar6[0xc] == 0) {
-      lVar7 = GetProcAddress(lVar7,&UNK_180a3c410);
-      plVar6[0xc] = lVar7;
-      if (lVar7 == 0) {
-        puStack_b8 = &UNK_180a3c3e0;
-        if (puStack_b0 != (undefined *)0x0) {
-                    // WARNING: Subroutine does not return
-          FUN_18064e900();
-        }
-        goto LAB_180044f8f;
-      }
-    }
+    
+    SymSetOptions(0x2017);
+    FUN_180629090(&puStack_b8);
     puVar13 = &DAT_18098bc73;
     if (puStack_b0 != (undefined *)0x0) {
-      puVar13 = puStack_b0;
+        puVar13 = puStack_b0;
     }
-    iVar2 = SymInitialize(_DAT_180c96218,puVar13,1);
-    if (iVar2 == 0) {
-      puStack_b8 = &UNK_180a3c3e0;
-      if (puStack_b0 != (undefined *)0x0) {
-                    // WARNING: Subroutine does not return
-        FUN_18064e900();
-      }
+    SymSetSearchPath(_DAT_180c96218, puVar13);
+    
+    // 加载调试库
+    lVar7 = plVar6[0xb];
+    if (lVar7 == 0) {
+        lVar7 = LoadLibraryA(&UNK_180a3c428);
+        plVar6[0xb] = lVar7;
+        if (lVar7 != 0) goto LAB_180044ee3;
+        puStack_b8 = &UNK_180a3c3e0;
+        if (puStack_b0 != (undefined *)0x0) {
+            // WARNING: Subroutine does not return
+            FUN_18064e900();
+        }
     }
     else {
-      *(char *)plVar6 = '\x01';
-      puStack_b8 = &UNK_180a3c3e0;
-      if (puStack_b0 != (undefined *)0x0) {
+LAB_180044ee3:
+        // 获取调试函数地址
+        if (plVar6[0xc] == 0) {
+            lVar7 = GetProcAddress(lVar7, &UNK_180a3c410);
+            plVar6[0xc] = lVar7;
+            if (lVar7 == 0) {
+                puStack_b8 = &UNK_180a3c3e0;
+                if (puStack_b0 != (undefined *)0x0) {
                     // WARNING: Subroutine does not return
-        FUN_18064e900();
-      }
+                    FUN_18064e900();
+                }
+                goto LAB_180044f8f;
+            }
+        }
+        
+        // 初始化符号系统
+        puVar13 = &DAT_18098bc73;
+        if (puStack_b0 != (undefined *)0x0) {
+            puVar13 = puStack_b0;
+        }
+        iVar2 = SymInitialize(_DAT_180c96218, puVar13, 1);
+        if (iVar2 == 0) {
+            puStack_b8 = &UNK_180a3c3e0;
+            if (puStack_b0 != (undefined *)0x0) {
+                // WARNING: Subroutine does not return
+                FUN_18064e900();
+            }
+        }
+        else {
+            *(char *)plVar6 = '\x01';
+            puStack_b8 = &UNK_180a3c3e0;
+            if (puStack_b0 != (undefined *)0x0) {
+                // WARNING: Subroutine does not return
+                FUN_18064e900();
+            }
+        }
     }
-  }
 LAB_180044f8f:
-  uStack_a0 = 0;
-  puStack_b0 = (undefined *)0x0;
-  puStack_b8 = &UNK_18098bcb0;
-  iVar2 = _Mtx_unlock(pplVar1);
-  if (iVar2 != 0) {
-    __Throw_C_error_std__YAXH_Z(iVar2);
-  }
+    uStack_a0 = 0;
+    puStack_b0 = (undefined *)0x0;
+    puStack_b8 = &UNK_18098bcb0;
+    iVar2 = _Mtx_unlock(pplVar1);
+    if (iVar2 != 0) {
+        __Throw_C_error_std__YAXH_Z(iVar2);
+    }
 LAB_180044faf:
-  puVar8 = (undefined8 *)FUN_18062b1e0(_DAT_180c8ed18,8,8,3);
-  *puVar8 = 0;
-  puVar9 = (undefined8 *)FUN_18062b1e0(_DAT_180c8ed18,8,8,3);
-  *puVar8 = &UNK_18098bb60;
-  *puVar9 = &UNK_18098bb88;
-  puVar10 = (undefined8 *)FUN_18062b1e0(_DAT_180c8ed18,0x20,8,3);
-  puVar11 = (undefined1 *)FUN_18062b1e0(_DAT_180c8ed18,1,1,3);
-  *puVar11 = 0;
-  puVar10[2] = puVar11;
-  _DAT_180c8ed08 = puVar10;
-  *puVar10 = puVar9;
-  puVar10[1] = puVar8;
-  puVar10[3] = uVar5;
-  uVar5 = FUN_18062b1e0(_DAT_180c8ed18,0x198,8,3);
-  _DAT_180c8ed68 = FUN_18024e5c0(uVar5);
-  uVar5 = FUN_18062b1e0(_DAT_180c8ed18,0xa8,8,3);
-  _DAT_180c8ed00 = FUN_180637560(uVar5);
-  FUN_18062b1e0(_DAT_180c8ed18,1,1,3);
-  iVar2 = QueryPerformanceFrequency(&pplStackX_18);
-  if (iVar2 == 0) {
-    FUN_180626ee0(&UNK_180a3c090);
-  }
-  _DAT_180c8ed50 = 1.0 / (double)(longlong)pplStackX_18;
-  timeBeginPeriod(1);
-  QueryPerformanceCounter(&lStackX_20);
-  if (DAT_180bf0102 != '\0') {
-    _DAT_180c8ed48 = _DAT_180c8ed48 + (lStackX_20 - _DAT_180c8ed58);
-  }
-  _DAT_180c8ed58 = 0;
-  _DAT_180c8ed40 = lStackX_20;
+    // 初始化数据结构
+    puVar8 = (undefined8 *)FUN_18062b1e0(_DAT_180c8ed18, 8, 8, 3);
+    *puVar8 = 0;
+    puVar9 = (undefined8 *)FUN_18062b1e0(_DAT_180c8ed18, 8, 8, 3);
+    *puVar8 = &UNK_18098bb60;
+    *puVar9 = &UNK_18098bb88;
+    puVar10 = (undefined8 *)FUN_18062b1e0(_DAT_180c8ed18, 0x20, 8, 3);
+    puVar11 = (undefined1 *)FUN_18062b1e0(_DAT_180c8ed18, 1, 1, 3);
+    *puVar11 = 0;
+    puVar10[2] = puVar11;
+    _DAT_180c8ed08 = puVar10;
+    *puVar10 = puVar9;
+    puVar10[1] = puVar8;
+    puVar10[3] = uVar5;
+    
+    // 初始化系统组件
+    uVar5 = FUN_18062b1e0(_DAT_180c8ed18, 0x198, 8, 3);
+    _DAT_180c8ed68 = FUN_18024e5c0(uVar5);
+    uVar5 = FUN_18062b1e0(_DAT_180c8ed18, 0xa8, 8, 3);
+    _DAT_180c8ed00 = FUN_180637560(uVar5);
+    FUN_18062b1e0(_DAT_180c8ed18, 1, 1, 3);
+    
+    // 初始化性能计数器
+    iVar2 = QueryPerformanceFrequency(&pplStackX_18);
+    if (iVar2 == 0) {
+        FUN_180626ee0(&UNK_180a3c090);
+    }
+    _DAT_180c8ed50 = 1.0 / (double)(longlong)pplStackX_18;
+    timeBeginPeriod(1);
+    QueryPerformanceCounter(&lStackX_20);
+    
+    // 更新性能计数器状态
+    if (DAT_180bf0102 != '\0') {
+        _DAT_180c8ed48 = _DAT_180c8ed48 + (lStackX_20 - _DAT_180c8ed58);
+    }
+    _DAT_180c8ed58 = 0;
+    _DAT_180c8ed40 = lStackX_20;
+}
 
 
 
