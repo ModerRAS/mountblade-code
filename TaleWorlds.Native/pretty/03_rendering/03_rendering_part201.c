@@ -641,44 +641,44 @@ void rendering_system_initializer(void)
  */
 void rendering_data_processor(longlong param_1, uint64_t param_2, longlong param_3)
 {
-    int int_param1;
-    int int_param2;
-    longlong long_param1;
-    uint64_t *render_data_ptr1;
-    longlong long_param2;
-    longlong long_param3;
-    uint64_t *render_data_ptr2;
-    char stack_char [8];
-    longlong stack_long;
-    uint64_t memory_stack_param;
-    uint64_t *heap_ptr1;
-    uint64_t *heap_ptr2;
-    uint64_t *heap_ptr3;
-    int32_t stack_uint;
-    uint64_t **heap_ptr_ptr;
-    char *char_ptr;
-    uint64_t stack_int8_t;
-    uint64_t stack_int16_t;
-    longlong stack_long1;
-    longlong *stack_long_ptr [2];
-    code *code_ptr1;
-    code *code_ptr2;
-    longlong **long_ptr_ptr;
-    uint64_t memory_stack_param3;
-    int32_t stack_uint1;
-    int16_t stack_ushort;
-    uint64_t stack_int32_t;
-    uint64_t memory_stack_param5;
-    int32_t stack_uint2;
-    int8_t stack_byte;
-    int32_t stack_uint3;
-    uint64_t memory_stack_param6;
-    int16_t stack_ushort1;
-    uint64_t memory_stack_param7;
-    int32_t stack_uint4;
-    int8_t stack_byte1;
-    longlong stack_long2;
-    uint64_t stack_uint64_t;
+    int int_param1;                         // 整数参数1
+    int int_param2;                         // 整数参数2
+    longlong long_param1;                   // 长整型参数1
+    uint64_t *render_data_ptr1;             // 渲染数据指针1
+    longlong long_param2;                   // 长整型参数2
+    longlong long_param3;                   // 长整型参数3
+    uint64_t *render_data_ptr2;             // 渲染数据指针2
+    char stack_char [8];                    // 栈字符数组
+    longlong stack_long;                    // 栈长整型变量
+    uint64_t memory_stack_param;            // 内存栈参数
+    uint64_t *heap_ptr1;                    // 堆指针1
+    uint64_t *heap_ptr2;                    // 堆指针2
+    uint64_t *heap_ptr3;                    // 堆指针3
+    int32_t stack_uint;                     // 栈32位无符号整数
+    uint64_t **heap_ptr_ptr;                // 堆指针的指针
+    char *char_ptr;                         // 字符指针
+    uint64_t stack_int8_t;                  // 栈8位整数
+    uint64_t stack_int16_t;                 // 栈16位整数
+    longlong stack_long1;                   // 栈长整型变量1
+    longlong *stack_long_ptr [2];           // 栈长整型指针数组
+    code *code_ptr1;                        // 代码指针1
+    code *code_ptr2;                        // 代码指针2
+    longlong **long_ptr_ptr;                // 长整型指针的指针
+    uint64_t memory_stack_param3;           // 内存栈参数3
+    int32_t stack_uint1;                    // 栈32位无符号整数1
+    int16_t stack_ushort;                   // 栈无符号短整型
+    uint64_t stack_int32_t;                 // 栈32位整数
+    uint64_t memory_stack_param5;           // 内存栈参数5
+    int32_t stack_uint2;                    // 栈32位无符号整数2
+    int8_t stack_byte;                      // 栈字节
+    int32_t stack_uint3;                    // 栈32位无符号整数3
+    uint64_t memory_stack_param6;           // 内存栈参数6
+    int16_t stack_ushort1;                  // 栈无符号短整型1
+    uint64_t memory_stack_param7;           // 内存栈参数7
+    int32_t stack_uint4;                    // 栈32位无符号整数4
+    int8_t stack_byte1;                     // 栈字节1
+    longlong stack_long2;                   // 栈长整型变量2
+    uint64_t stack_uint64_t;                // 栈64位无符号整数
     
     // 初始化栈数据
     stack_uint64_t = 0xfffffffffffffffe;

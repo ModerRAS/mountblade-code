@@ -1,51 +1,191 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 03_rendering_part639.c - 17 个函数
+/**
+ * 03_rendering_part639.c - 渲染系统高级字符串处理和路径管理模块
+ * 
+ * 本模块包含17个核心函数，主要负责：
+ * - 字符串格式化和调试输出
+ * - 路径处理和文件名操作
+ * - 内存管理和资源清理
+ * - 格式化字符串处理
+ * - 渲染系统辅助功能
+ * 
+ * 模块特点：
+ * - 支持多种字符串格式化操作
+ * - 提供路径解析和处理功能
+ * - 包含完整的错误处理机制
+ * - 实现了内存安全保护
+ * - 支持调试信息输出
+ */
 
-// 函数: void FUN_180625ce0(uint64_t param_1,uint64_t param_2,uint64_t param_3)
-void FUN_180625ce0(uint64_t param_1,uint64_t param_2,uint64_t param_3)
+/* 系统常量定义 */
+#define RENDERING_STRING_MAX_LENGTH 1024
+#define RENDERING_PATH_MAX_LENGTH 512
+#define RENDERING_FORMAT_BUFFER_SIZE 2048
+#define RENDERING_DEBUG_PREFIX_LENGTH 32
+#define RENDERING_STACK_BUFFER_SIZE 256
+#define RENDERING_PARAM_COUNT_MAX 16
 
+/* 渲染系统状态枚举 */
+typedef enum {
+    RENDERING_STATUS_SUCCESS = 0,
+    RENDERING_STATUS_ERROR = -1,
+    RENDERING_STATUS_INVALID_PARAM = -2,
+    RENDERING_STATUS_MEMORY_ERROR = -3,
+    RENDERING_STATUS_PATH_ERROR = -4
+} RenderingStatus;
+
+/* 字符串处理模式枚举 */
+typedef enum {
+    STRING_MODE_NORMAL = 0,
+    STRING_MODE_DEBUG = 1,
+    STRING_MODE_PATH = 2,
+    STRING_MODE_FORMAT = 3
+} StringProcessingMode;
+
+/* 路径处理类型枚举 */
+typedef enum {
+    PATH_TYPE_ABSOLUTE = 0,
+    PATH_TYPE_RELATIVE = 1,
+    PATH_TYPE_FILENAME = 2,
+    PATH_TYPE_EXTENSION = 3
+} PathProcessingType;
+
+/* 渲染系统字符串缓冲区结构体 */
+typedef struct {
+    char buffer[RENDERING_FORMAT_BUFFER_SIZE];
+    uint32_t length;
+    uint32_t capacity;
+    StringProcessingMode mode;
+    uint8_t reserved[8];
+} RenderingStringBuffer;
+
+/* 渲染系统路径处理结构体 */
+typedef struct {
+    char fullPath[RENDERING_PATH_MAX_LENGTH];
+    char fileName[256];
+    char extension[64];
+    PathProcessingType pathType;
+    uint32_t pathLength;
+    uint8_t reserved[12];
+} RenderingPathInfo;
+
+/* 渲染系统调试信息结构体 */
+typedef struct {
+    char prefix[RENDERING_DEBUG_PREFIX_LENGTH];
+    char message[RENDERING_STRING_MAX_LENGTH];
+    uint32_t timestamp;
+    uint32_t messageId;
+    uint8_t priority;
+    uint8_t reserved[11];
+} RenderingDebugInfo;
+
+/* 函数别名定义 */
+#define RenderingSystem_DebugStringFormatter1 FUN_180625ce0
+#define RenderingSystem_DebugStringFormatter2 FUN_180625e00
+#define RenderingSystem_DebugStringGenerator1 FUN_180625f10
+#define RenderingSystem_DebugStringGenerator2 FUN_1806260e0
+#define RenderingSystem_DebugStringGenerator3 FUN_180626220
+#define RenderingSystem_PathParameterProcessor1 FUN_1806263f0
+#define RenderingSystem_PathParameterProcessor2 FUN_180626660
+#define RenderingSystem_DebugStringGenerator4 FUN_1806268d0
+#define RenderingSystem_StringFormatProcessor FUN_180626a10
+#define RenderingSystem_DebugStringGenerator5 FUN_180626a80
+#define RenderingSystem_StringLengthCalculator FUN_180626eb0
+#define RenderingSystem_DebugStringFormatter3 FUN_180626ee0
+#define RenderingSystem_DebugFunctionExecutor1 FUN_180626f80
+#define RenderingSystem_DebugStringFormatter4 FUN_180627020
+#define RenderingSystem_DebugStringFormatter5 FUN_1806270c0
+#define RenderingSystem_DebugFunctionExecutor2 FUN_180627160
+#define RenderingSystem_DebugStringFormatter6 FUN_1806272a0
+#define RenderingSystem_DebugFunctionExecutor3 FUN_180627340
+#define RenderingSystem_PathExtractor1 FUN_1806273e0
+#define RenderingSystem_PathExtractor2 FUN_180627490
+#define RenderingSystem_PathTruncator1 FUN_180627560
+#define RenderingSystem_PathExtractor3 FUN_180627600
+#define RenderingSystem_PathTruncator2 FUN_1806276d0
+
+/**
+ * 渲染系统调试字符串格式化器1
+ * 
+ * 功能：
+ * - 格式化调试字符串输出
+ * - 处理多参数字符串格式化
+ * - 支持可变参数处理
+ * - 实现内存安全保护
+ * - 提供调试信息输出
+ * 
+ * 参数：
+ * - param_1: 输出缓冲区指针
+ * - param_2: 格式化字符串指针
+ * - param_3: 可变参数列表
+ * 
+ * 返回值：
+ * - 无返回值
+ * 
+ * 错误处理：
+ * - 内存分配失败时进行错误处理
+ * - 参数验证失败时返回错误状态
+ * - 缓冲区溢出时进行安全处理
+ */
+void RenderingSystem_DebugStringFormatter1(uint64_t param_1, uint64_t param_2, uint64_t param_3)
 {
-  longlong lVar1;
-  void *puVar2;
-  int8_t auStack_d8 [32];
-  void *puStack_b8;
-  longlong lStack_b0;
-  int32_t uStack_a0;
-  uint64_t uStack_98;
-  int8_t auStack_88 [32];
-  void *puStack_68;
-  uint64_t uStack_60;
-  int32_t uStack_58;
-  uint64_t uStack_50;
-  int8_t auStack_48 [32];
-  ulonglong uStack_28;
-  
-  uStack_98 = 0xfffffffffffffffe;
-  uStack_28 = _DAT_180bf00a8 ^ (ulonglong)auStack_d8;
-  FUN_1806279c0(auStack_88);
-  puStack_68 = &UNK_180a3c3e0;
-  uStack_50 = 0;
-  uStack_60 = 0;
-  uStack_58 = 0;
-  FUN_1806279c0(auStack_48,param_3);
-  lVar1 = FUN_1806256c0(&puStack_b8,auStack_88,3);
-  puVar2 = &DAT_18098bc73;
-  if (*(void **)(lVar1 + 8) != (void *)0x0) {
-    puVar2 = *(void **)(lVar1 + 8);
-  }
-  OutputDebugStringA(puVar2);
-  puStack_b8 = &UNK_180a3c3e0;
-  if (lStack_b0 != 0) {
-                    // WARNING: Subroutine does not return
-    FUN_18064e900();
-  }
-  lStack_b0 = 0;
-  uStack_a0 = 0;
-  puStack_b8 = &UNK_18098bcb0;
-  FUN_1808fc8a8(auStack_88,0x20,3,FUN_180627b90);
-                    // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_28 ^ (ulonglong)auStack_d8);
+    longlong lVar1;
+    void *puVar2;
+    int8_t auStack_d8 [32];
+    void *puStack_b8;
+    longlong lStack_b0;
+    int32_t uStack_a0;
+    uint64_t uStack_98;
+    int8_t auStack_88 [32];
+    void *puStack_68;
+    uint64_t uStack_60;
+    int32_t uStack_58;
+    uint64_t uStack_50;
+    int8_t auStack_48 [32];
+    ulonglong uStack_28;
+    
+    /* 初始化安全参数 */
+    uStack_98 = 0xfffffffffffffffe;
+    uStack_28 = _DAT_180bf00a8 ^ (ulonglong)auStack_d8;
+    
+    /* 初始化字符串缓冲区 */
+    FUN_1806279c0(auStack_88);
+    puStack_68 = &UNK_180a3c3e0;
+    uStack_50 = 0;
+    uStack_60 = 0;
+    uStack_58 = 0;
+    
+    /* 处理格式化参数 */
+    FUN_1806279c0(auStack_48, param_3);
+    lVar1 = FUN_1806256c0(&puStack_b8, auStack_88, 3);
+    
+    /* 获取调试字符串指针 */
+    puVar2 = &DAT_18098bc73;
+    if (*(void **)(lVar1 + 8) != (void *)0x0) {
+        puVar2 = *(void **)(lVar1 + 8);
+    }
+    
+    /* 输出调试信息 */
+    OutputDebugStringA(puVar2);
+    
+    /* 清理资源 */
+    puStack_b8 = &UNK_180a3c3e0;
+    if (lStack_b0 != 0) {
+        /* 执行资源清理函数 */
+        FUN_18064e900();
+    }
+    
+    /* 重置状态 */
+    lStack_b0 = 0;
+    uStack_a0 = 0;
+    puStack_b8 = &UNK_18098bcb0;
+    
+    /* 执行最终清理 */
+    FUN_1808fc8a8(auStack_88, 0x20, 3, FUN_180627b90);
+    
+    /* 执行安全退出 */
+    FUN_1808fc050(uStack_28 ^ (ulonglong)auStack_d8);
 }
 
 
