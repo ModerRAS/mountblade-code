@@ -242,24 +242,6 @@ void initialize_render_parameters(longlong engine_context, undefined8 param_2, u
     default_texture_ptr
   );
   
-  // 继续设置其他材质参数...
-    success_flag = (**(code **)(engine_context + MATERIAL_PARAM_1_OFFSET + 24))(&material_config_ptr);
-    if (success_flag == '\0') {
-      if (global_debug_flag == '\0') {
-        error_handler_ptr = &default_error_handler;
-        if (*(undefined **)(engine_context + 0x2b0) != (undefined *)0x0) {
-          error_handler_ptr = *(undefined **)(engine_context + 0x2b0);
-        }
-        log_render_error(&error_message_table, error_handler_ptr);
-      }
-      material_param_value = *(undefined4 *)(engine_context + MATERIAL_PARAM_1_OFFSET);
-    }
-    else {
-      material_param_value = (undefined4)material_config_ptr;
-    }
-  }
-  *(undefined4 *)(engine_context + 0x2a0) = material_param_value;
-  
   // 设置第二个材质参数
   material_config_ptr = (undefined8 *)((ulonglong)material_config_ptr & 0xffffffff00000000);
   material_param_value = 0;
@@ -268,8 +250,8 @@ void initialize_render_parameters(longlong engine_context, undefined8 param_2, u
     if (success_flag == '\0') {
       if (global_debug_flag == '\0') {
         error_handler_ptr = &default_error_handler;
-        if (*(undefined **)(engine_context + 0x2b0) != (undefined *)0x0) {
-          error_handler_ptr = *(undefined **)(engine_context + 0x2b0);
+        if (*(undefined **)(engine_context + ERROR_HANDLER_OFFSET) != (undefined *)0x0) {
+          error_handler_ptr = *(undefined **)(engine_context + ERROR_HANDLER_OFFSET);
         }
         log_render_error(&error_message_table, error_handler_ptr);
       }
@@ -279,67 +261,19 @@ void initialize_render_parameters(longlong engine_context, undefined8 param_2, u
       material_param_value = (undefined4)material_config_ptr;
     }
   }
-  *(undefined4 *)(engine_context + 0x2a4) = material_param_value;
-  material_config_ptr = (undefined8 *)(engine_context + 0x2a0);
+  *(undefined4 *)(engine_context + MATERIAL_PARAM_2_OFFSET) = material_param_value;
+  material_config_ptr = (undefined8 *)(engine_context + MATERIAL_PARAM_2_OFFSET);
   FUN_18005ea90(engine_context + 8, &material_config_ptr);
-  pcStack_40 = (code *)&UNK_18010c570;
-  puStack_38 = &UNK_18010c300;
-  *(undefined4 *)(param_1 + 0x208) = 0;
-  puVar1 = (undefined1 *)(param_1 + 0x210);
-  if (puVar1 != auStack_50) {
-    if (*(code **)(param_1 + 0x220) != (code *)0x0) {
-      (**(code **)(param_1 + 0x220))(puVar1,0,0);
-    }
-    if (pcStack_40 != (code *)0x0) {
-      (*pcStack_40)(puVar1,auStack_50,1);
-    }
-    *(code **)(param_1 + 0x220) = pcStack_40;
-    *(undefined **)(param_1 + 0x228) = puStack_38;
-  }
-  if (pcStack_40 != (code *)0x0) {
-    (*pcStack_40)(auStack_50,0,0);
-  }
-  (**(code **)(*(longlong *)(param_1 + 0x1c8) + 0x10))(param_1 + 0x1c8,&UNK_180a05d78);
-  uStackX_8 = (undefined8 *)((ulonglong)uStackX_8 & 0xffffffff00000000);
-  uVar5 = 0;
-  if (*(longlong *)(param_1 + 0x220) != 0) {
-    cVar4 = (**(code **)(param_1 + 0x228))(&uStackX_8);
-    if (cVar4 == '\0') {
-      if (DAT_180c82860 == '\0') {
-        puVar7 = &DAT_18098bc73;
-        if (*(undefined **)(param_1 + 0x1d0) != (undefined *)0x0) {
-          puVar7 = *(undefined **)(param_1 + 0x1d0);
-        }
-        FUN_180626f80(&UNK_18098bc00,puVar7);
-      }
-      uVar5 = *(undefined4 *)(param_1 + 0x208);
-    }
-    else {
-      uVar5 = (undefined4)uStackX_8;
-    }
-  }
-  *(undefined4 *)(param_1 + 0x1c0) = uVar5;
-  uStackX_8 = (undefined8 *)((ulonglong)uStackX_8 & 0xffffffff00000000);
-  uVar5 = 0;
-  if (*(longlong *)(param_1 + 0x220) != 0) {
-    cVar4 = (**(code **)(param_1 + 0x228))(&uStackX_8,puVar1);
-    if (cVar4 == '\0') {
-      if (DAT_180c82860 == '\0') {
-        puVar7 = &DAT_18098bc73;
-        if (*(undefined **)(param_1 + 0x1d0) != (undefined *)0x0) {
-          puVar7 = *(undefined **)(param_1 + 0x1d0);
-        }
-        FUN_180626f80(&UNK_18098bc00,puVar7);
-      }
-      uVar5 = *(undefined4 *)(param_1 + 0x208);
-    }
-    else {
-      uVar5 = (undefined4)uStackX_8;
-    }
-  }
-  *(undefined4 *)(param_1 + 0x1c4) = uVar5;
-  uStackX_8 = (undefined8 *)(param_1 + 0x1c0);
-  FUN_18005ea90(param_1 + 8,&uStackX_8);
+  
+  // 使用统一的材质参数设置函数处理第三个参数
+  setup_material_parameter(
+    engine_context,
+    MATERIAL_PARAM_3_OFFSET,
+    (code *)&material_cleanup_function_2,
+    &default_parameter_handler,
+    &shader_parameter_table_2,
+    default_texture_ptr
+  );
   pcStack_40 = (code *)&UNK_18010c550;
   puStack_38 = &UNK_18010c300;
   *(undefined4 *)(param_1 + 0x278) = 0;
