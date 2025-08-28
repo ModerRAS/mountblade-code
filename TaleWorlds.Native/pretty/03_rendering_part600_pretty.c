@@ -86,7 +86,7 @@
 // - 处理角度环绕和规范化
 // - 支持多种渲染模式的切换
 //============================================================================
-void RenderingSystemAdvancedProcessor(longlong render_context, uint64_t render_params, float delta_time, longlong state_data)
+void RenderingSystemAdvancedProcessor(int64_t render_context, uint64_t render_params, float delta_time, int64_t state_data)
 {
     char state_flag;
     int direction1, direction2;
@@ -220,11 +220,11 @@ position_update_complete:
 // - 实现相同的位置插值和角度处理逻辑
 // - 支持独立的渲染状态管理
 //============================================================================
-void RenderingSystemSecondaryProcessor(uint64_t render_params, uint64_t additional_params, float delta_time, longlong state_data)
+void RenderingSystemSecondaryProcessor(uint64_t render_params, uint64_t additional_params, float delta_time, int64_t state_data)
 {
     char state_flag;
     int direction1, direction2;
-    longlong unaff_rbx;
+    int64_t unaff_rbx;
     float current_x, current_y, current_z;
     float target_x, target_y, target_z;
     float distance, interpolation_weight;
@@ -358,8 +358,8 @@ position_update_complete:
 void RenderingSystemInterpolationHandler(uint64_t render_params, uint64_t additional_params, float base_weight, float additional_weight)
 {
     int direction1, direction2;
-    longlong unaff_rbx;
-    longlong unaff_rdi;
+    int64_t unaff_rbx;
+    int64_t unaff_rdi;
     float current_x, current_y, current_z;
     float vector_length, normalization_factor;
     int8_t simd_result[16];
@@ -470,8 +470,8 @@ void RenderingSystemInterpolationHandler(uint64_t render_params, uint64_t additi
 void RenderingSystemPositionUpdater(void)
 {
     int direction1, direction2;
-    longlong unaff_rbx;
-    longlong unaff_rdi;
+    int64_t unaff_rbx;
+    int64_t unaff_rdi;
     float current_x, current_y, current_z;
     float angle_delta, angle_difference;
     float unaff_xmm8_da;
@@ -538,8 +538,8 @@ void RenderingSystemPositionUpdater(void)
 //============================================================================
 void RenderingSystemSimpleProcessor(void)
 {
-    longlong unaff_rbx;
-    longlong unaff_rdi;
+    int64_t unaff_rbx;
+    int64_t unaff_rdi;
     
     // 根据状态标志调用相应的处理函数
     if (*(char *)(unaff_rdi + 0x98) == '\0') {
@@ -564,7 +564,7 @@ void RenderingSystemSimpleProcessor(void)
 // - 支持基于距离的旋转速度调整
 // - 包含高级的旋转预测算法
 //============================================================================
-void CameraRotationController(longlong camera_context, float rotation_param, longlong state_data)
+void CameraRotationController(int64_t camera_context, float rotation_param, int64_t state_data)
 {
     bool rotation_active;
     uint state_flags;
@@ -787,12 +787,12 @@ rotation_complete:
 // - 更复杂的角度计算逻辑
 // - 支持多种旋转模式的混合
 //============================================================================
-void AdvancedRotationProcessor(longlong camera_context, float rotation_param, longlong state_data)
+void AdvancedRotationProcessor(int64_t camera_context, float rotation_param, int64_t state_data)
 {
     int state_index;
     bool rotation_active;
     uint state_flags;
-    longlong in_rax;
+    int64_t in_rax;
     uint64_t unaff_rdi;
     float current_angle, target_angle, angle_difference;
     float rotation_speed, max_rotation_speed;
@@ -1050,7 +1050,7 @@ rotation_complete:
 void RenderingSystemAngleHandler(uint64_t render_params, uint64_t additional_params, float angle_increment)
 {
     uint state_flags;
-    longlong unaff_rbx;
+    int64_t unaff_rbx;
     int32_t unaff_ebp;
     char unaff_sil;
     float angle_result;
@@ -1087,7 +1087,7 @@ void RenderingSystemAngleHandler(uint64_t render_params, uint64_t additional_par
 void RenderingSystemResetHandler(void)
 {
     uint state_flags;
-    longlong unaff_rbx;
+    int64_t unaff_rbx;
     int32_t unaff_ebp;
     char unaff_sil;
     
@@ -1115,7 +1115,7 @@ void RenderingSystemResetHandler(void)
 // - 支持多种归一化模式的切换
 // - 实现高效的向量长度计算
 //============================================================================
-void VectorNormalizationProcessor(float *vector_ptr, float normalization_param, char mode_flag, longlong context_data)
+void VectorNormalizationProcessor(float *vector_ptr, float normalization_param, char mode_flag, int64_t context_data)
 {
     float vector_magnitude, normalized_magnitude;
     int8_t simd_result[16];
@@ -1199,7 +1199,7 @@ void VectorNormalizationProcessor(float *vector_ptr, float normalization_param, 
     }
     
     // 直接设置向量值
-    *(ulonglong *)(context_data + 0x8c) = (ulonglong)(uint)vector_magnitude;
+    *(uint64_t *)(context_data + 0x8c) = (uint64_t)(uint)vector_magnitude;
     return;
 }
 
@@ -1210,7 +1210,7 @@ void VectorNormalizationProcessor(float *vector_ptr, float normalization_param, 
 // 参数：param_1 - 基础值, param_2 - 计算参数, param_3 - 模式标志, param_4 - 上下文数据
 // 返回：void
 //============================================================================
-void AdvancedVectorCalculator(float base_value, float calc_param, char mode_flag, longlong context_data)
+void AdvancedVectorCalculator(float base_value, float calc_param, char mode_flag, int64_t context_data)
 {
     float vector_magnitude, normalized_magnitude;
     uint in_xmm2_da;
@@ -1294,7 +1294,7 @@ void AdvancedVectorCalculator(float base_value, float calc_param, char mode_flag
     }
     
     // 直接设置向量值
-    *(ulonglong *)(context_data + 0x8c) = CONCAT44(in_stack_00000060._4_4_, vector_magnitude);
+    *(uint64_t *)(context_data + 0x8c) = CONCAT44(in_stack_00000060._4_4_, vector_magnitude);
     return;
 }
 
@@ -1305,7 +1305,7 @@ void AdvancedVectorCalculator(float base_value, float calc_param, char mode_flag
 // 参数：param_1 - 渲染参数, param_2 - 附加参数, param_3 - 向量分量, param_4 - 上下文数据
 // 返回：void
 //============================================================================
-void SimplifiedVectorHandler(uint64_t render_params, uint64_t additional_params, float vector_component, longlong context_data)
+void SimplifiedVectorHandler(uint64_t render_params, uint64_t additional_params, float vector_component, int64_t context_data)
 {
     float normalization_factor;
     uint in_xmm5_da;
@@ -1349,7 +1349,7 @@ void SimplifiedVectorHandler(uint64_t render_params, uint64_t additional_params,
 //============================================================================
 void VectorResetProcessor(void)
 {
-    longlong in_r9;
+    int64_t in_r9;
     uint64_t in_stack_00000060;
     
     // 重置向量状态

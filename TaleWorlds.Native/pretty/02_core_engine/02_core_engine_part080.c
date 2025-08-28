@@ -7,7 +7,7 @@
 // 函数：处理文本布局和渲染计算
 // 原始函数名：FUN_18010e8a0
 // 这是一个复杂的文本处理函数，负责计算文本布局、行高和渲染参数
-void process_text_layout_and_rendering(ulonglong text_start, ulonglong text_end)
+void process_text_layout_and_rendering(uint64_t text_start, uint64_t text_end)
 
 {
   uint64_t *render_context;
@@ -16,11 +16,11 @@ void process_text_layout_and_rendering(ulonglong text_start, ulonglong text_end)
   int line_count;
   char render_flag;
   uint text_flags;
-  ulonglong char_ptr;
-  longlong engine_context;
-  longlong font_data;
-  longlong layout_data;
-  longlong render_state;
+  uint64_t char_ptr;
+  int64_t engine_context;
+  int64_t font_data;
+  int64_t layout_data;
+  int64_t render_state;
   int char_index;
   int line_height;
   int max_lines;
@@ -45,8 +45,8 @@ void process_text_layout_and_rendering(ulonglong text_start, ulonglong text_end)
   
   // 获取引擎上下文和设置渲染标志
   engine_context = SYSTEM_DATA_MANAGER_A;
-  *(int8_t *)(*(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1af8) + 0xb1) = 1;
-  render_state = *(longlong *)(engine_context + 0x1af8);
+  *(int8_t *)(*(int64_t *)(SYSTEM_DATA_MANAGER_A + 0x1af8) + 0xb1) = 1;
+  render_state = *(int64_t *)(engine_context + 0x1af8);
   
   // 检查是否已经启用渲染
   if (*(char *)(render_state + 0xb4) != '\0') {
@@ -68,7 +68,7 @@ void process_text_layout_and_rendering(ulonglong text_start, ulonglong text_end)
   total_height = *(float *)(render_state + 0x128) + *(float *)(render_state + 0x104);
   
   // 处理长文本的特殊布局逻辑
-  if ((longlong)(text_end - text_start) < 0x7d1) {
+  if ((int64_t)(text_end - text_start) < 0x7d1) {
     if (0.0 <= base_font_size) goto NORMAL_LAYOUT;
   }
   else {
@@ -123,7 +123,7 @@ void process_text_layout_and_rendering(ulonglong text_start, ulonglong text_end)
           
           do {
             height = height + base_font_size;
-            render_state = *(longlong *)(engine_context + 0x1af8);
+            render_state = *(int64_t *)(engine_context + 0x1af8);
             
             // 检查边界条件
             if (((((height < *(float *)(render_state + 0x22c) || height == *(float *)(render_state + 0x22c)) ||
@@ -196,7 +196,7 @@ void process_text_layout_and_rendering(ulonglong text_start, ulonglong text_end)
       
       // 调用布局处理函数
       func_0x000180124080(&temp_float1,0);
-      render_state = *(longlong *)(engine_context + 0x1af8);
+      render_state = *(int64_t *)(engine_context + 0x1af8);
       
       // 设置渲染状态
       *(uint64_t *)(render_state + 0x144) = 0;
@@ -206,7 +206,7 @@ void process_text_layout_and_rendering(ulonglong text_start, ulonglong text_end)
       *(float *)(render_state + 0x158) = base_font_size;
       
       // 验证布局参数
-      font_data = *(longlong *)(engine_context + 0x1af8);
+      font_data = *(int64_t *)(engine_context + 0x1af8);
       render_buffer1 = CONCAT44(total_height,line_spacing);
       render_buffer2 = CONCAT44(base_font_size,max_line_height);
       
@@ -233,7 +233,7 @@ NORMAL_LAYOUT:
     if (0.0 <= base_font_size) {
       if (base_font_size == 0.0) {
         // 处理等宽字体布局
-        font_data = *(longlong *)(render_state + 0x210);
+        font_data = *(int64_t *)(render_state + 0x210);
         base_font_size = *(float *)(render_state + 0x278) - *(float *)(render_state + 0x40);
         
         if (font_data != 0) {
@@ -244,7 +244,7 @@ NORMAL_LAYOUT:
           }
           
           base_font_size = ((*(float *)(font_data + 0x18) - *(float *)(font_data + 0x14)) *
-                    *(float *)((longlong)max_lines * 0x1c + *(longlong *)(font_data + 0x38)) +
+                    *(float *)((int64_t)max_lines * 0x1c + *(int64_t *)(font_data + 0x38)) +
                    *(float *)(font_data + 0x14)) - *(float *)(render_state + 0x70);
         }
         
@@ -293,7 +293,7 @@ FINAL_LAYOUT:
   
   // 调用最终布局处理
   func_0x000180124080(&stack_temp,0);
-  render_state = *(longlong *)(engine_context + 0x1af8);
+  render_state = *(int64_t *)(engine_context + 0x1af8);
   
   // 设置最终渲染状态
   *(uint64_t *)(render_state + 0x144) = 0;
@@ -303,7 +303,7 @@ FINAL_LAYOUT:
   *(float *)(render_state + 0x158) = max_line_height;
   
   // 验证最终布局
-  font_data = *(longlong *)(engine_context + 0x1af8);
+  font_data = *(int64_t *)(engine_context + 0x1af8);
   render_buffer1 = CONCAT44(total_height,line_spacing);
   render_buffer2 = CONCAT44(max_line_height,current_height);
   
@@ -334,13 +334,13 @@ FINAL_LAYOUT:
     if (text_start != text_end) {
       // 获取渲染上下文
       render_buffer1 = *(uint64_t *)(engine_context + 0x16c8);
-      render_state = *(longlong *)(*(longlong *)(engine_context + 0x1af8) + 0x2e8);
+      render_state = *(int64_t *)(*(int64_t *)(engine_context + 0x1af8) + 0x2e8);
       render_buffer2 = CONCAT44(*(float *)(engine_context + 0x16d4) * *(float *)(engine_context + 0x1628),
                            *(int32_t *)(engine_context + 0x16d0));
       text_flags = func_0x000180121e20(&render_buffer1);
       
       line_spacing = *(float *)(engine_context + 0x19f8);
-      font_data = *(longlong *)(engine_context + 0x19f0);
+      font_data = *(int64_t *)(engine_context + 0x19f0);
       
       if ((text_flags & 0xff000000) != 0) {
         char_ptr = text_end;
@@ -354,14 +354,14 @@ FINAL_LAYOUT:
         
         if (text_start != char_ptr) {
           if (font_data == 0) {
-            font_data = *(longlong *)(*(longlong *)(render_state + 0x38) + 8);
+            font_data = *(int64_t *)(*(int64_t *)(render_state + 0x38) + 8);
           }
           if (line_spacing == 0.0) {
-            line_spacing = *(float *)(*(longlong *)(render_state + 0x38) + 0x10);
+            line_spacing = *(float *)(*(int64_t *)(render_state + 0x38) + 0x10);
           }
           
           render_context = (uint64_t *)
-                   (*(longlong *)(render_state + 0x68) + -0x10 + (longlong)*(int *)(render_state + 0x60) * 0x10);
+                   (*(int64_t *)(render_state + 0x68) + -0x10 + (int64_t)*(int *)(render_state + 0x60) * 0x10);
           
           render_buffer1 = *render_context;
           render_buffer2 = render_context[1];
@@ -382,7 +382,7 @@ FINAL_LAYOUT:
 // 函数：处理高级文本布局和渲染
 // 原始函数名：FUN_18010e8e1
 // 这是第一个函数的变体，处理更复杂的文本布局场景
-void process_advanced_text_layout(longlong render_context, longlong text_params)
+void process_advanced_text_layout(int64_t render_context, int64_t text_params)
 
 {
   uint64_t *layout_engine;
@@ -392,13 +392,13 @@ void process_advanced_text_layout(longlong render_context, longlong text_params)
   int line_count;
   char layout_flag;
   uint render_flags;
-  ulonglong text_position;
-  longlong engine_state;
-  ulonglong text_start;
-  ulonglong text_end;
-  longlong layout_data;
-  longlong font_data;
-  longlong render_buffer;
+  uint64_t text_position;
+  int64_t engine_state;
+  uint64_t text_start;
+  uint64_t text_end;
+  int64_t layout_data;
+  int64_t font_data;
+  int64_t render_buffer;
   int char_index;
   int line_height;
   int max_lines;
@@ -456,7 +456,7 @@ void process_advanced_text_layout(longlong render_context, longlong text_params)
   text_height = *(float *)(render_context + 0x128) + *(float *)(render_context + 0x104);
   
   // 处理长文本布局
-  if ((longlong)(text_position - text_start) < 0x7d1) {
+  if ((int64_t)(text_position - text_start) < 0x7d1) {
     if (font_size >= 0.0) goto NORMAL_LAYOUT_ADVANCED;
   }
   else {
@@ -522,7 +522,7 @@ void process_advanced_text_layout(longlong render_context, longlong text_params)
           
           do {
             char_width = char_width + font_size;
-            engine_state = *(longlong *)(engine_state + 0x1af8);
+            engine_state = *(int64_t *)(engine_state + 0x1af8);
             
             // 检查边界条件
             if (((((char_width < *(float *)(engine_state + 0x22c) || char_width == *(float *)(engine_state + 0x22c)) ||
@@ -596,7 +596,7 @@ void process_advanced_text_layout(longlong render_context, longlong text_params)
       
       // 调用布局处理函数
       func_0x000180124080(layout_data + 0x48,0);
-      engine_state = *(longlong *)(engine_state + 0x1af8);
+      engine_state = *(int64_t *)(engine_state + 0x1af8);
       
       // 设置渲染状态
       *(uint64_t *)(engine_state + 0x144) = 0;
@@ -606,7 +606,7 @@ void process_advanced_text_layout(longlong render_context, longlong text_params)
       *(float *)(engine_state + 0x158) = current_height;
       
       // 验证布局参数
-      font_data = *(longlong *)(engine_state + 0x1af8);
+      font_data = *(int64_t *)(engine_state + 0x1af8);
       stack_var1 = CONCAT44(text_height,base_size);
       stack_var2 = CONCAT44(current_height,text_width);
       
@@ -632,7 +632,7 @@ NORMAL_LAYOUT_ADVANCED:
     if (0.0 <= font_size) {
       if (font_size == 0.0) {
         // 等宽字体处理
-        engine_state = *(longlong *)(render_context + 0x210);
+        engine_state = *(int64_t *)(render_context + 0x210);
         font_size = *(float *)(render_context + 0x278) - *(float *)(render_context + 0x40);
         
         if (engine_state != 0) {
@@ -643,7 +643,7 @@ NORMAL_LAYOUT_ADVANCED:
           }
           
           font_size = ((*(float *)(engine_state + 0x18) - *(float *)(engine_state + 0x14)) *
-                    *(float *)((longlong)max_lines * 0x1c + *(longlong *)(engine_state + 0x38)) +
+                    *(float *)((int64_t)max_lines * 0x1c + *(int64_t *)(engine_state + 0x38)) +
                    *(float *)(engine_state + 0x14)) - *(float *)(render_context + 0x70);
         }
         
@@ -693,7 +693,7 @@ FINAL_LAYOUT_ADVANCED:
   
   // 调用最终布局处理
   func_0x000180124080(layout_data + 0x40,0);
-  engine_state = *(longlong *)(engine_state + 0x1af8);
+  engine_state = *(int64_t *)(engine_state + 0x1af8);
   
   // 设置最终状态
   *(uint64_t *)(engine_state + 0x144) = 0;
@@ -703,7 +703,7 @@ FINAL_LAYOUT_ADVANCED:
   *(float *)(engine_state + 0x158) = char_width;
   
   // 验证最终布局
-  font_data = *(longlong *)(engine_state + 0x1af8);
+  font_data = *(int64_t *)(engine_state + 0x1af8);
   stack_var1 = CONCAT44(text_height,base_size);
   stack_var2 = CONCAT44(char_width,font_size);
   
@@ -719,7 +719,7 @@ FINAL_LAYOUT_ADVANCED:
       *(uint *)(engine_state + 0x148) = *(uint *)(engine_state + 0x148) | 1;
     }
     
-    engine_state = *(longlong *)(engine_state + 0x1af8);
+    engine_state = *(int64_t *)(engine_state + 0x1af8);
     *(uint64_t *)(layout_data + 0x40) = stack_var1;
     
     // 处理最终文本渲染
@@ -733,14 +733,14 @@ FINAL_LAYOUT_ADVANCED:
     
     if (text_start != text_position) {
       stack_var1 = *(uint64_t *)(engine_state + 0x16c8);
-      engine_state = *(longlong *)(engine_state + 0x2e8);
+      engine_state = *(int64_t *)(engine_state + 0x2e8);
       stack_var2 =
            CONCAT44(*(float *)(engine_state + 0x16d4) * *(float *)(engine_state + 0x1628),
                     *(int32_t *)(engine_state + 0x16d0));
       render_flags = func_0x000180121e20(&stack_var1);
       
       base_size = *(float *)(engine_state + 0x19f8);
-      font_data = *(longlong *)(engine_state + 0x19f0);
+      font_data = *(int64_t *)(engine_state + 0x19f0);
       
       if ((render_flags & 0xff000000) != 0) {
         if (text_position == 0) {
@@ -753,14 +753,14 @@ FINAL_LAYOUT_ADVANCED:
         
         if (text_start != text_position) {
           if (font_data == 0) {
-            font_data = *(longlong *)(*(longlong *)(engine_state + 0x38) + 8);
+            font_data = *(int64_t *)(*(int64_t *)(engine_state + 0x38) + 8);
           }
           if (base_size == 0.0) {
-            base_size = *(float *)(*(longlong *)(engine_state + 0x38) + 0x10);
+            base_size = *(float *)(*(int64_t *)(engine_state + 0x38) + 0x10);
           }
           
           layout_engine = (uint64_t *)
-                   (*(longlong *)(engine_state + 0x68) + -0x10 + (longlong)*(int *)(engine_state + 0x60) * 0x10);
+                   (*(int64_t *)(engine_state + 0x68) + -0x10 + (int64_t)*(int *)(engine_state + 0x60) * 0x10);
           
           stack_var1 = *layout_engine;
           stack_var2 = layout_engine[1];
@@ -787,14 +787,14 @@ void process_optimized_text_rendering(uint64_t render_params)
   float font_size;
   float line_height;
   float *font_metrics;
-  longlong render_context;
+  int64_t render_context;
   char render_flag;
-  ulonglong text_start;
-  ulonglong text_end;
-  ulonglong text_position;
-  longlong layout_data;
-  longlong engine_state;
-  longlong font_data;
+  uint64_t text_start;
+  uint64_t text_end;
+  uint64_t text_position;
+  int64_t layout_data;
+  int64_t engine_state;
+  int64_t font_data;
   uint text_flags;
   uint line_count;
   int char_index;
@@ -845,7 +845,7 @@ void process_optimized_text_rendering(uint64_t render_params)
     
     if (*(char *)(engine_state + 0x2e38) == render_flag) {
       *(float *)(layout_data + 0x44) = font_ascent;
-      char_index = (int)(((float)((ulonglong)render_params >> 0x20) - font_ascent) / font_size);
+      char_index = (int)(((float)((uint64_t)render_params >> 0x20) - font_ascent) / font_size);
       
       if (0 < char_index) {
         text_end = text_flags & 0xffffffff;
@@ -862,7 +862,7 @@ void process_optimized_text_rendering(uint64_t render_params)
             }
             
             text_position = text_position + 1;
-            text_end = (ulonglong)text_position;
+            text_end = (uint64_t)text_position;
             text_start = text_start + 1;
           } while (text_start < text_end);
         }
@@ -887,7 +887,7 @@ void process_optimized_text_rendering(uint64_t render_params)
       
       do {
         char_width = char_width + font_size;
-        render_context = *(longlong *)(engine_state + 0x1af8);
+        render_context = *(int64_t *)(engine_state + 0x1af8);
         
         // 检查边界条件
         if (((((char_width < *(float *)(render_context + 0x22c) || char_width == *(float *)(render_context + 0x22c)) ||
@@ -945,7 +945,7 @@ void process_optimized_text_rendering(uint64_t render_params)
         }
         
         line_count = (int)text_end + 1;
-        text_end = (ulonglong)line_count;
+        text_end = (uint64_t)line_count;
         text_start = text_position + 1;
       }
       
@@ -962,17 +962,17 @@ void process_optimized_text_rendering(uint64_t render_params)
   
   // 调用布局处理函数
   func_0x000180124080(layout_data + 0x48);
-  render_context = *(longlong *)(engine_state + 0x1af8);
+  render_context = *(int64_t *)(engine_state + 0x1af8);
   
   // 设置渲染状态
-  *(ulonglong *)(render_context + 0x144) = text_flags;
+  *(uint64_t *)(render_context + 0x144) = text_flags;
   *(float *)(render_context + 0x14c) = font_descent;
   *(float *)(render_context + 0x150) = font_ascent;
   *(float *)(render_context + 0x154) = text_width;
   *(float *)(render_context + 0x158) = text_height;
   
   // 验证最终布局
-  font_data = *(longlong *)(engine_state + 0x1af8);
+  font_data = *(int64_t *)(engine_state + 0x1af8);
   
   if (((((*(float *)(font_data + 0x22c) <= text_height && text_height != *(float *)(font_data + 0x22c)) &&
         (font_ascent < *(float *)(font_data + 0x234))) &&

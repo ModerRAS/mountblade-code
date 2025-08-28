@@ -12,18 +12,18 @@ void process_graphics_rendering_calculations(int render_mode)
   int32_t *render_data;
   float offset_value;
   int texture_id;
-  longlong render_context;
+  int64_t render_context;
   bool collision_flag;
-  longlong vertex_buffer;
-  longlong shader_program;
+  int64_t vertex_buffer;
+  int64_t shader_program;
   int render_state;
   uint material_flags;
   int32_t render_params;
   void *callback_ptr;
   char texture_enabled;
-  longlong transform_matrix;
+  int64_t transform_matrix;
   uint vertex_flags;
-  ulonglong buffer_address;
+  uint64_t buffer_address;
   float depth_value;
   float position_x;
   float position_y;
@@ -53,7 +53,7 @@ void process_graphics_rendering_calculations(int render_mode)
   // 获取渲染上下文
   render_context = GLOBAL_RENDER_CONTEXT;
   callback_ptr = &TEXTURE_SAMPLER_TABLE;
-  vertex_buffer = *(longlong *)(GLOBAL_RENDER_CONTEXT + 0x1af8);
+  vertex_buffer = *(int64_t *)(GLOBAL_RENDER_CONTEXT + 0x1af8);
   
   // 根据渲染模式选择纹理采样器
   if (render_mode == 0) {
@@ -63,7 +63,7 @@ void process_graphics_rendering_calculations(int render_mode)
   // 获取纹理ID
   texture_id = get_texture_id(callback_ptr, 0,
                         *(int32_t *)
-                         (*(longlong *)(vertex_buffer + 0x220) + -4 + (longlong)*(int *)(vertex_buffer + 0x218) * 4)
+                         (*(int64_t *)(vertex_buffer + 0x220) + -4 + (int64_t)*(int *)(vertex_buffer + 0x218) * 4)
                        );
   
   // 检查纹理状态
@@ -103,7 +103,7 @@ void process_graphics_rendering_calculations(int render_mode)
     stack_f0 = (temp_float1 - bitangent_z) - normal_z;
   }
   else {
-    buffer_address = (ulonglong)*(uint *)(vertex_buffer + 0xc);
+    buffer_address = (uint64_t)*(uint *)(vertex_buffer + 0xc);
     depth_value = *(float *)(vertex_buffer + 0x44) + normal_z;
     stack_f8 = temp_float1 - *(float *)(render_context + 0x168c);
     stack_f0 = temp_float1 - normal_z;
@@ -259,7 +259,7 @@ void process_graphics_rendering_calculations(int render_mode)
     
     // 处理碰撞检测
     if (temp_buffer1[0] == '\0') {
-      shader_program = (ulonglong)(temp_buffer2[0] != '\0') + 0xf;
+      shader_program = (uint64_t)(temp_buffer2[0] != '\0') + 0xf;
     }
     else {
       if (position_y < 1.0) {

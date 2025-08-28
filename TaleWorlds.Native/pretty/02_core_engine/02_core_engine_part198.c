@@ -16,7 +16,7 @@ void create_base_system_component(void* param_1, void* param_2)
     void* string_data;
     void* stack_data[2];
     int string_length;
-    longlong temp_value;
+    int64_t temp_value;
     
     // 分配组件内存空间
     component_data = (void*)allocate_component_memory(_global_memory_pool, 0xa8, 8, 3);
@@ -72,15 +72,15 @@ void create_base_system_component(void* param_1, void* param_2)
  */
 void create_extended_system_component(void* param_1, void* param_2)
 {
-    longlong* interface_ptr;
+    int64_t* interface_ptr;
     int string_length;
     void* component_data;
     void* vtable_ptr;
-    longlong temp_value;
-    longlong* method_ptr;
+    int64_t temp_value;
+    int64_t* method_ptr;
     void* stack_data[2];
     int stack_length;
-    longlong stack_value;
+    int64_t stack_value;
     
     temp_value = 0xfffffffffffffffe;
     
@@ -90,13 +90,13 @@ void create_extended_system_component(void* param_1, void* param_2)
     
     // 设置虚函数表
     *component_data = &extended_component_vtable;
-    interface_ptr = (longlong*)component_data + 0x2a;
-    *interface_ptr = (longlong)&component_interface_table;
+    interface_ptr = (int64_t*)component_data + 0x2a;
+    *interface_ptr = (int64_t)&component_interface_table;
     
     // 初始化扩展组件属性
     component_data[0x2b] = 0;
     *(int*)(component_data + 0x2c) = 0;
-    *interface_ptr = (longlong)&extended_method_table;
+    *interface_ptr = (int64_t)&extended_method_table;
     component_data[0x2d] = 0;
     component_data[0x2b] = 0;
     *(int*)(component_data + 0x2c) = 0;
@@ -145,8 +145,8 @@ void create_memory_management_component(void* param_1, void* param_2)
     void* vtable_ptr;
     void* stack_data[2];
     int stack_length;
-    longlong stack_value;
-    longlong function_ptr;
+    int64_t stack_value;
+    int64_t function_ptr;
     
     // 设置函数指针
     function_ptr = 0x18017ca3a;
@@ -183,8 +183,8 @@ void create_memory_management_component(void* param_1, void* param_2)
     // 设置名称为 "Summer Memory"
     *vtable_ptr = 0x614d72656d6d7553;  // "SummerMem"
     *(int*)(vtable_ptr + 1) = 0x69726574; // "ory"
-    *(short*)((longlong)vtable_ptr + 0xc) = 0x6c61; // "la"
-    *(char*)((longlong)vtable_ptr + 0xe) = 0;
+    *(short*)((int64_t)vtable_ptr + 0xc) = 0x6c61; // "la"
+    *(char*)((int64_t)vtable_ptr + 0xe) = 0;
     stack_length = 0xe;
     
     // 注册内存管理组件
@@ -203,13 +203,13 @@ void create_memory_management_component(void* param_1, void* param_2)
  */
 void create_multi_interface_component(void* param_1, void* param_2)
 {
-    longlong* interface1_ptr;
-    longlong* interface2_ptr;
-    longlong* interface3_ptr;
+    int64_t* interface1_ptr;
+    int64_t* interface2_ptr;
+    int64_t* interface3_ptr;
     int string_length;
     void* component_data;
     void* vtable_ptr;
-    longlong stack_value;
+    int64_t stack_value;
     
     // 分配多接口组件内存
     component_data = (void*)allocate_component_memory(_global_memory_pool, 0x130, 8, 3);
@@ -221,31 +221,31 @@ void create_multi_interface_component(void* param_1, void* param_2)
     *vtable_ptr = &multi_interface_vtable;
     
     // 设置第一个接口
-    interface1_ptr = (longlong*)vtable_ptr + 0xe;
-    *interface1_ptr = (longlong)&component_interface_table;
+    interface1_ptr = (int64_t*)vtable_ptr + 0xe;
+    *interface1_ptr = (int64_t)&component_interface_table;
     vtable_ptr[0xf] = 0;
     *(int*)(vtable_ptr + 0x10) = 0;
-    *interface1_ptr = (longlong)&interface_method_table;
+    *interface1_ptr = (int64_t)&interface_method_table;
     vtable_ptr[0x11] = 0;
     vtable_ptr[0xf] = 0;
     *(int*)(vtable_ptr + 0x10) = 0;
     
     // 设置第二个接口
-    interface2_ptr = (longlong*)component_data + 0x12;
-    *interface2_ptr = (longlong)&component_interface_table;
+    interface2_ptr = (int64_t*)component_data + 0x12;
+    *interface2_ptr = (int64_t)&component_interface_table;
     component_data[0x13] = 0;
     *(int*)(component_data + 0x14) = 0;
-    *interface2_ptr = (longlong)&interface_method_table;
+    *interface2_ptr = (int64_t)&interface_method_table;
     component_data[0x15] = 0;
     component_data[0x13] = 0;
     *(int*)(component_data + 0x14) = 0;
     
     // 设置第三个接口
-    interface3_ptr = (longlong*)component_data + 0x16;
-    *interface3_ptr = (longlong)&component_interface_table;
+    interface3_ptr = (int64_t*)component_data + 0x16;
+    *interface3_ptr = (int64_t)&component_interface_table;
     component_data[0x17] = 0;
     *(int*)(component_data + 0x18) = 0;
-    *interface3_ptr = (longlong)&interface_method_table;
+    *interface3_ptr = (int64_t)&interface_method_table;
     component_data[0x19] = 0;
     component_data[0x17] = 0;
     *(int*)(component_data + 0x18) = 0;
@@ -303,7 +303,7 @@ void* create_simple_data_component(void* param_1, void* param_2)
 void*
 destroy_simple_data_component(void* param_1, unsigned long long param_2, void* param_3, void* param_4)
 {
-    longlong destroy_flag;
+    int64_t destroy_flag;
     
     destroy_flag = 0xfffffffffffffffe;
     *param_1 = &simple_data_vtable;
@@ -330,7 +330,7 @@ void create_display_component(void* param_1, void* param_2)
     int* string_ptr;
     void* stack_data[2];
     int stack_length;
-    longlong stack_value;
+    int64_t stack_value;
     
     // 分配显示组件内存
     component_data = (void*)allocate_component_memory(_global_memory_pool, 0xa8, 8, 3, 0xfffffffffffffffe);
@@ -348,7 +348,7 @@ void create_display_component(void* param_1, void* param_2)
     vtable_ptr[0x11] = 0;
     vtable_ptr[0x12] = 0;
     vtable_ptr[0x13] = 0;
-    *(char*)((longlong)vtable_ptr + 0xa4) = 0;
+    *(char*)((int64_t)vtable_ptr + 0xa4) = 0;
     
     // 设置组件标识
     stack_data[0] = &display_method_table;
@@ -369,7 +369,7 @@ void create_display_component(void* param_1, void* param_2)
     stack_length = 4;
     
     // 注册显示组件
-    register_display_component(component_data, &stack_data[0], (longlong)component_data + 0xa4, 3);
+    register_display_component(component_data, &stack_data[0], (int64_t)component_data + 0xa4, 3);
     
     // 清理临时数据
     stack_data[0] = &display_method_table;
@@ -385,7 +385,7 @@ void process_system_message(void* param_1)
 {
     char message_buffer[32];
     int message_flags;
-    longlong context_value;
+    int64_t context_value;
     void* message_handlers[2];
     void* message_data;
     char* message_text;
@@ -393,10 +393,10 @@ void process_system_message(void* param_1)
     char temp_buffer[72];
     void* handler_params[11];
     int handler_type;
-    unsigned longlong message_hash;
+    unsigned int64_t message_hash;
     
     context_value = 0xfffffffffffffffe;
-    message_hash = _message_constant ^ (unsigned longlong)message_buffer;
+    message_hash = _message_constant ^ (unsigned int64_t)message_buffer;
     message_flags = 0;
     
     // 设置消息数据
@@ -424,7 +424,7 @@ void process_system_message(void* param_1)
     
     // 执行消息处理
     // 注意: 此函数不会返回
-    execute_message_handler(message_hash ^ (unsigned longlong)message_buffer);
+    execute_message_handler(message_hash ^ (unsigned int64_t)message_buffer);
 }
 
 /**
@@ -438,7 +438,7 @@ void process_system_message(void* param_1)
 void*
 destroy_display_component(void* param_1, unsigned long long param_2, void* param_3, void* param_4)
 {
-    longlong destroy_flag;
+    int64_t destroy_flag;
     
     destroy_flag = 0xfffffffffffffffe;
     *param_1 = &display_component_vtable;
@@ -459,11 +459,11 @@ destroy_display_component(void* param_1, unsigned long long param_2, void* param
  */
 void create_device_driver_component(void* param_1, void* param_2)
 {
-    longlong* driver_interface;
+    int64_t* driver_interface;
     int string_length;
     void* component_data;
     void* vtable_ptr;
-    longlong stack_value;
+    int64_t stack_value;
     
     // 分配设备驱动组件内存
     component_data = (void*)allocate_component_memory(_global_memory_pool, 0x230, 0x10, 3);
@@ -483,9 +483,9 @@ void create_device_driver_component(void* param_1, void* param_2)
     component_data[0x44] = 0;
     
     // 清理旧的驱动接口
-    driver_interface = (longlong*)component_data[0x36];
+    driver_interface = (int64_t*)component_data[0x36];
     component_data[0x36] = 0;
-    if (driver_interface != (longlong*)0x0) {
+    if (driver_interface != (int64_t*)0x0) {
         (*(void(**)())(*driver_interface + 0x38))();
     }
     
@@ -493,7 +493,7 @@ void create_device_driver_component(void* param_1, void* param_2)
     component_data[0x37] = 0x404e000000000000;  // 驱动版本
     *(int*)(component_data + 0x38) = 0x100;      // 缓冲区大小
     *(int*)(component_data + 0x39) = 0x100;      // 块大小
-    *(int*)((longlong)component_data + 0x1c4) = 0x100; // 队列大小
+    *(int*)((int64_t)component_data + 0x1c4) = 0x100; // 队列大小
     
     // 设置驱动性能参数
     component_data[0x3a] = 0x3f847ae147ae147b;  // 1.03
@@ -505,9 +505,9 @@ void create_device_driver_component(void* param_1, void* param_2)
     
     // 设置驱动精度参数
     *(int*)(component_data + 0x3c) = 0x3f800000;  // 1.0
-    *(int*)((longlong)component_data + 0x1e4) = 0;
+    *(int*)((int64_t)component_data + 0x1e4) = 0;
     *(int*)(component_data + 0x3d) = 0x3f800000;  // 1.0
-    *(int*)((longlong)component_data + 0x1ec) = 0x3f800000; // 1.0
+    *(int*)((int64_t)component_data + 0x1ec) = 0x3f800000; // 1.0
     *(char*)(component_data + 0x3e) = 0;
     
     // 注册设备驱动组件
@@ -522,9 +522,9 @@ void initialize_component_factory(void* param_1)
 {
     char security_buffer[32];
     int factory_flags;
-    longlong context_value;
+    int64_t context_value;
     void* factory_handlers[2];
-    longlong factory_data;
+    int64_t factory_data;
     void* component_params[11];
     int param_count;
     void* component_data;
@@ -575,10 +575,10 @@ void initialize_component_factory(void* param_1)
     char* ui_text;
     int ui_length;
     char ui_buffer[72];
-    unsigned longlong factory_hash;
+    unsigned int64_t factory_hash;
     
     factory_data = 0xfffffffffffffffe;
-    factory_hash = _factory_constant ^ (unsigned longlong)security_buffer;
+    factory_hash = _factory_constant ^ (unsigned int64_t)security_buffer;
     factory_flags = 0;
     
     // 初始化基础组件
@@ -795,7 +795,7 @@ void initialize_component_factory(void* param_1)
     
     // 执行工厂初始化
     // 注意: 此函数不会返回
-    execute_factory_initialization(factory_hash ^ (unsigned longlong)security_buffer);
+    execute_factory_initialization(factory_hash ^ (unsigned int64_t)security_buffer);
 }
 
 /**
@@ -811,7 +811,7 @@ void create_render_object_component(void* param_1, void* param_2)
     void* vtable_ptr;
     void* stack_data[2];
     int stack_length;
-    longlong stack_value;
+    int64_t stack_value;
     
     // 分配渲染对象组件内存
     component_data = (void*)allocate_component_memory(_global_memory_pool, 0x88, 8, 3, 0xfffffffffffffffe);
@@ -825,7 +825,7 @@ void create_render_object_component(void* param_1, void* param_2)
     vtable_ptr[0xe] = param_2;
     vtable_ptr[0xf] = 0;
     *(int*)(vtable_ptr + 0x10) = 0;
-    *(char*)((longlong)vtable_ptr + 0x84) = 0;
+    *(char*)((int64_t)vtable_ptr + 0x84) = 0;
     
     // 设置组件标识
     stack_data[0] = &render_method_table;
@@ -848,7 +848,7 @@ void create_render_object_component(void* param_1, void* param_2)
     stack_length = 0xf;
     
     // 注册渲染对象组件
-    register_render_object(component_data, &stack_data[0], (longlong)component_data + 0x84, 3);
+    register_render_object(component_data, &stack_data[0], (int64_t)component_data + 0x84, 3);
     
     // 清理临时数据
     stack_data[0] = &render_method_table;
@@ -863,12 +863,12 @@ void create_render_object_component(void* param_1, void* param_2)
  */
 void create_camera_system_component(void* param_1, void* param_2)
 {
-    longlong* camera_interface;
+    int64_t* camera_interface;
     int string_length;
     void* component_data;
     void* vtable_ptr;
-    longlong stack_value;
-    longlong* interface_ptr;
+    int64_t stack_value;
+    int64_t* interface_ptr;
     
     // 分配相机系统组件内存
     component_data = (void*)allocate_component_memory(_global_memory_pool, 0xa0, 8, 3);
@@ -880,11 +880,11 @@ void create_camera_system_component(void* param_1, void* param_2)
     *vtable_ptr = &camera_system_vtable;
     
     // 设置相机接口
-    camera_interface = (longlong*)vtable_ptr + 0xe;
-    *camera_interface = (longlong)&camera_interface_table;
+    camera_interface = (int64_t*)vtable_ptr + 0xe;
+    *camera_interface = (int64_t)&camera_interface_table;
     vtable_ptr[0xf] = 0;
     *(int*)(vtable_ptr + 0x10) = 0;
-    *camera_interface = (longlong)&camera_method_table;
+    *camera_interface = (int64_t)&camera_method_table;
     vtable_ptr[0x11] = 0;
     vtable_ptr[0xf] = 0;
     *(int*)(vtable_ptr + 0x10) = 0;
@@ -914,7 +914,7 @@ void* create_animation_component(void* param_1, void* param_2)
     *component_data = &animation_component_vtable;
     
     // 设置动画组件标志
-    *(int*)((longlong)component_data + 0x74) = 0xdeadbeaf;
+    *(int*)((int64_t)component_data + 0x74) = 0xdeadbeaf;
     *(char*)(component_data + 0xe) = 0;
     
     return component_data;
@@ -932,8 +932,8 @@ void create_audio_mixer_component(void* param_1, void* param_2)
     void* vtable_ptr;
     void* stack_data[2];
     int stack_length;
-    longlong stack_value;
-    longlong function_ptr;
+    int64_t stack_value;
+    int64_t function_ptr;
     
     // 设置函数指针
     function_ptr = 0x18017da2a;
@@ -952,9 +952,9 @@ void create_audio_mixer_component(void* param_1, void* param_2)
     component_data[0xe] = 0x4044000000000000;      // 32.0
     component_data[0xf] = 0x4010000000000000;      // 4.0
     *(int*)(component_data + 0x12) = 0;
-    *(int*)((longlong)component_data + 0x94) = 0;
+    *(int*)((int64_t)component_data + 0x94) = 0;
     *(int*)(component_data + 0x13) = 0;
-    *(int*)((longlong)component_data + 0x9c) = 0;
+    *(int*)((int64_t)component_data + 0x9c) = 0;
     *(int*)(component_data + 0x14) = 0x3f800000;   // 1.0
     component_data[0x10] = 0x4024000000000000;    // 10.0
     component_data[0x11] = 0x3fd0000000000000;    // 0.25
@@ -993,13 +993,13 @@ void create_audio_mixer_component(void* param_1, void* param_2)
  */
 void create_particle_system_component(void* param_1, void* param_2)
 {
-    longlong* emitter_interface;
-    longlong* particle_data;
+    int64_t* emitter_interface;
+    int64_t* particle_data;
     int string_length;
     void* component_data;
     void* vtable_ptr;
-    longlong stack_value;
-    longlong* interface_ptr;
+    int64_t stack_value;
+    int64_t* interface_ptr;
     
     stack_value = 0xfffffffffffffffe;
     
@@ -1012,11 +1012,11 @@ void create_particle_system_component(void* param_1, void* param_2)
     *vtable_ptr = &particle_system_vtable;
     
     // 设置发射器接口
-    emitter_interface = (longlong*)vtable_ptr + 0xe;
-    *emitter_interface = (longlong)&particle_interface_table;
+    emitter_interface = (int64_t*)vtable_ptr + 0xe;
+    *emitter_interface = (int64_t)&particle_interface_table;
     vtable_ptr[0xf] = 0;
     *(int*)(vtable_ptr + 0x10) = 0;
-    *emitter_interface = (longlong)&emitter_method_table;
+    *emitter_interface = (int64_t)&emitter_method_table;
     vtable_ptr[0x11] = 0;
     vtable_ptr[0xf] = 0;
     *(int*)(vtable_ptr + 0x10) = 0;
@@ -1024,12 +1024,12 @@ void create_particle_system_component(void* param_1, void* param_2)
     
     // 调用发射器初始化方法
     interface_ptr = emitter_interface;
-    (*(void(**)(void*, longlong))(*emitter_interface + 0x10))(emitter_interface, 0);
+    (*(void(**)(void*, int64_t))(*emitter_interface + 0x10))(emitter_interface, 0);
     
     // 清理旧的粒子数据
-    particle_data = (longlong*)component_data[0x12];
+    particle_data = (int64_t*)component_data[0x12];
     component_data[0x12] = 0;
-    if (particle_data != (longlong*)0x0) {
+    if (particle_data != (int64_t*)0x0) {
         (*(void(**)())(*particle_data + 0x38))();
     }
     
@@ -1050,7 +1050,7 @@ void create_resource_component(void* param_1, void* param_2)
     void* vtable_ptr;
     void* stack_data[2];
     int stack_length;
-    longlong stack_value;
+    int64_t stack_value;
     
     // 分配资源组件内存
     component_data = (void*)allocate_component_memory(_global_memory_pool, 0x78, 8, 3, 0xfffffffffffffffe);
@@ -1106,8 +1106,8 @@ void create_bounding_box_component(void* param_1, void* param_2)
     void* vtable_ptr;
     void* stack_data[2];
     int stack_length;
-    longlong stack_value;
-    longlong function_ptr;
+    int64_t stack_value;
+    int64_t function_ptr;
     
     // 设置函数指针
     function_ptr = 0x18017dd3a;
@@ -1145,11 +1145,11 @@ void create_bounding_box_component(void* param_1, void* param_2)
     string_ptr[1] = 0x676e6964; // "ding"
     string_ptr[2] = 0x786f4220; // "Box "
     string_ptr[3] = 0x6e6f4320; // "Con"
-    *(longlong*)(string_ptr + 4) = 0x746e6961727473; // "straints"
+    *(int64_t*)(string_ptr + 4) = 0x746e6961727473; // "straints"
     stack_length = 0x17;
     
     // 注册边界框组件
-    register_bounding_box(component_data, &stack_data[0], (longlong)component_data + 0x74, 2);
+    register_bounding_box(component_data, &stack_data[0], (int64_t)component_data + 0x74, 2);
     
     // 清理临时数据
     stack_data[0] = &bounding_box_method_table;

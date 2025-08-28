@@ -65,7 +65,7 @@ extern uint64_t global_state_3480;      // UI系统字符串常量
 // 函数声明
 //===================================================================
 
-void ui_system_advanced_rendering_batch_processor(longlong ui_context, longlong render_context, int render_mode);
+void ui_system_advanced_rendering_batch_processor(int64_t ui_context, int64_t render_context, int render_mode);
 
 //===================================================================
 // UI系统高级渲染和批处理管理器
@@ -96,12 +96,12 @@ void ui_system_advanced_rendering_batch_processor(longlong ui_context, longlong 
  * 内存使用：动态分配，基于渲染需求
  * 线程安全：是，使用同步机制保证线程安全
  */
-void ui_system_advanced_rendering_batch_processor(longlong ui_context, longlong render_context, int render_mode)
+void ui_system_advanced_rendering_batch_processor(int64_t ui_context, int64_t render_context, int render_mode)
 
 {
   int32_t *render_data_ptr;
   int32_t *texture_data_ptr;
-  longlong buffer_address;
+  int64_t buffer_address;
   byte render_flag;
   int render_count;
   uint64_t *resource_ptr;
@@ -114,18 +114,18 @@ void ui_system_advanced_rendering_batch_processor(longlong ui_context, longlong 
   uint texture_width;
   int *batch_counter;
   int8_t *shader_data;
-  longlong transform_matrix;
+  int64_t transform_matrix;
   uint texture_height;
-  longlong render_target;
-  ulonglong pixel_offset;
-  longlong vertex_buffer;
-  ulonglong vertex_offset;
-  ulonglong index_offset;
+  int64_t render_target;
+  uint64_t pixel_offset;
+  int64_t vertex_buffer;
+  uint64_t vertex_offset;
+  uint64_t index_offset;
   uint batch_size;
   int8_t security_buffer[32];
   uint max_batch_size;
-  longlong *texture_manager;
-  longlong render_offset;
+  int64_t *texture_manager;
+  int64_t render_offset;
   int current_batch;
   int target_batch;
   int source_batch;
@@ -137,22 +137,22 @@ void ui_system_advanced_rendering_batch_processor(longlong ui_context, longlong 
   int thread_id;
   uint pixel_stride;
   uint vertex_stride;
-  longlong vertex_address;
-  longlong index_address;
-  ulonglong checksum_value;
-  ulonglong texture_checksum;
+  int64_t vertex_address;
+  int64_t index_address;
+  uint64_t checksum_value;
+  uint64_t texture_checksum;
   int *current_counter;
   int *target_counter;
-  longlong frame_buffer;
-  longlong depth_buffer;
-  longlong stencil_buffer;
+  int64_t frame_buffer;
+  int64_t depth_buffer;
+  int64_t stencil_buffer;
   int *render_state;
-  longlong shader_program;
-  longlong vertex_shader;
-  longlong fragment_shader;
-  longlong geometry_shader;
+  int64_t shader_program;
+  int64_t vertex_shader;
+  int64_t fragment_shader;
+  int64_t geometry_shader;
   uint texture_format[4];
-  longlong texture_handles[6];
+  int64_t texture_handles[6];
   uint64_t transform_matrix_x;
   uint64_t transform_matrix_y;
   uint64_t transform_matrix_z;
@@ -160,20 +160,20 @@ void ui_system_advanced_rendering_batch_processor(longlong ui_context, longlong 
   uint64_t projection_matrix;
   uint64_t view_matrix;
   uint64_t model_matrix;
-  ulonglong stack_guard;
+  uint64_t stack_guard;
   
   // 栈保护初始化
-  stack_guard = GET_SECURITY_COOKIE() ^ (ulonglong)security_buffer;
+  stack_guard = GET_SECURITY_COOKIE() ^ (uint64_t)security_buffer;
   
   // 获取渲染配置
   current_batch = *(int *)(ui_context + 0x43a4);
-  render_target = *(longlong *)(ui_context + 0x12a0);
+  render_target = *(int64_t *)(ui_context + 0x12a0);
   target_batch = *(int *)(ui_context + 0x1e78) + current_batch;
   
   // 获取纹理配置
-  pixel_offset = (ulonglong)(int)*(uint *)(render_target + 0x10);
+  pixel_offset = (uint64_t)(int)*(uint *)(render_target + 0x10);
   max_batch_size = *(uint *)(render_target + 0x24);
-  texture_checksum = (ulonglong)(int)max_batch_size;
+  texture_checksum = (uint64_t)(int)max_batch_size;
   
   // 获取着色器配置
   render_state = *(int **)(ui_context + 0x12a8);
@@ -185,7 +185,7 @@ void ui_system_advanced_rendering_batch_processor(longlong ui_context, longlong 
   texture_handles[5] = *(uint64_t *)(render_state + 0x12);
   
   // 获取变换矩阵
-  transform_matrix = *(longlong *)(ui_context + 0x12b0);
+  transform_matrix = *(int64_t *)(ui_context + 0x12b0);
   texture_format[1] = render_state[0x22];
   
   // 获取纹理尺寸
@@ -195,7 +195,7 @@ void ui_system_advanced_rendering_batch_processor(longlong ui_context, longlong 
   transform_matrix_z = *(uint64_t *)(transform_matrix + 0x48);
   
   // 获取深度缓冲区
-  depth_buffer = *(longlong *)(ui_context + 0x12b8);
+  depth_buffer = *(int64_t *)(ui_context + 0x12b8);
   texture_format[2] = *(int32_t *)(transform_matrix + 0x88);
   texture_format[0] = 0;
   
@@ -206,9 +206,9 @@ void ui_system_advanced_rendering_batch_processor(longlong ui_context, longlong 
   texture_format[3] = *(int32_t *)(depth_buffer + 0x88);
   
   // 获取帧缓冲区
-  frame_buffer = *(longlong *)(render_target + 0x38);
-  depth_buffer = *(longlong *)(render_target + 0x40);
-  stencil_buffer = *(longlong *)(render_target + 0x48);
+  frame_buffer = *(int64_t *)(render_target + 0x38);
+  depth_buffer = *(int64_t *)(render_target + 0x40);
+  stencil_buffer = *(int64_t *)(render_target + 0x48);
   
   // 设置渲染标志
   *(uint *)(render_context + 0xf10) = (uint)(render_mode != 0);
@@ -223,19 +223,19 @@ void ui_system_advanced_rendering_batch_processor(longlong ui_context, longlong 
     do {
       // 设置当前批次
       dest_batch = source_batch;
-      *(longlong *)(render_context + 0xfb8) =
-           ((longlong)(source_batch % vertex_stride) + UI_SYSTEM_RENDERING_OFFSET_0X15C) * UI_SYSTEM_RENDERING_MULTIPLIER_0X30 + ui_context;
+      *(int64_t *)(render_context + 0xfb8) =
+           ((int64_t)(source_batch % vertex_stride) + UI_SYSTEM_RENDERING_OFFSET_0X15C) * UI_SYSTEM_RENDERING_MULTIPLIER_0X30 + ui_context;
       
       // 设置批处理指针
       if (source_batch < 1) {
         current_counter = &target_batch;
       }
       else {
-        current_counter = (int *)(*(longlong *)(ui_context + 0x43a8) + (longlong)(source_batch + -1) * 4);
+        current_counter = (int *)(*(int64_t *)(ui_context + 0x43a8) + (int64_t)(source_batch + -1) * 4);
       }
       
-      render_offset = (longlong)source_batch;
-      target_counter = (int *)(*(longlong *)(ui_context + 0x43a8) + render_offset * 4);
+      render_offset = (int64_t)source_batch;
+      target_counter = (int *)(*(int64_t *)(ui_context + 0x43a8) + render_offset * 4);
       
       // 设置渲染数据
       *(uint64_t *)(render_context + 0xf50) = *(uint64_t *)(ui_context + 0x2c18);
@@ -255,28 +255,28 @@ void ui_system_advanced_rendering_batch_processor(longlong ui_context, longlong 
       // 检查渲染模式
       if (*(int *)(ui_context + 0x2be0) == 0) {
         // 标准渲染模式
-        *(longlong *)(render_context + 0xf18) = batch_index + frame_buffer;
-        *(longlong *)(render_context + 0xf20) = depth_buffer + dest_batch;
-        *(longlong *)(render_context + 0xf28) = stencil_buffer + dest_batch;
-        *(longlong *)(render_context + 0xf30) = *(longlong *)(render_context + 0xf18) + -1;
-        *(longlong *)(render_context + 0xf38) = *(longlong *)(render_context + 0xf20) + -1;
+        *(int64_t *)(render_context + 0xf18) = batch_index + frame_buffer;
+        *(int64_t *)(render_context + 0xf20) = depth_buffer + dest_batch;
+        *(int64_t *)(render_context + 0xf28) = stencil_buffer + dest_batch;
+        *(int64_t *)(render_context + 0xf30) = *(int64_t *)(render_context + 0xf18) + -1;
+        *(int64_t *)(render_context + 0xf38) = *(int64_t *)(render_context + 0xf20) + -1;
         pixel_data = *(int8_t **)(render_context + 0xf38);
-        *(longlong *)(render_context + 0xf40) = *(longlong *)(render_context + 0xf28) + -1;
+        *(int64_t *)(render_context + 0xf40) = *(int64_t *)(render_context + 0xf28) + -1;
         vertex_data = *(int8_t **)(render_context + 0xf40);
         
         // 调整渲染偏移
-        *(longlong *)(render_context + 0xf18) =
-             *(longlong *)(render_context + 0xf18) - (longlong)*(int *)(render_context + 0xe80);
+        *(int64_t *)(render_context + 0xf18) =
+             *(int64_t *)(render_context + 0xf18) - (int64_t)*(int *)(render_context + 0xe80);
         buffer_address = UI_SYSTEM_RENDERING_OFFSET_0X10;
-        *(longlong *)(render_context + 0xf20) =
-             *(longlong *)(render_context + 0xf20) - (longlong)*(int *)(render_context + 0xe94);
-        *(longlong *)(render_context + 0xf28) =
-             *(longlong *)(render_context + 0xf28) - (longlong)*(int *)(render_context + 0xe94);
+        *(int64_t *)(render_context + 0xf20) =
+             *(int64_t *)(render_context + 0xf20) - (int64_t)*(int *)(render_context + 0xe94);
+        *(int64_t *)(render_context + 0xf28) =
+             *(int64_t *)(render_context + 0xf28) - (int64_t)*(int *)(render_context + 0xe94);
         
         // 设置渲染参数
         *(int32_t *)(render_context + 0xf48) = *(int32_t *)(render_context + 0xe80);
         *(int32_t *)(render_context + 0xf4c) = *(int32_t *)(render_context + 0xe94);
-        buffer_address = (longlong)*(int *)(render_context + 0xe94);
+        buffer_address = (int64_t)*(int *)(render_context + 0xe94);
         shader_data = *(int8_t **)(render_context + 0xf30);
         render_count = *(int *)(render_context + 0xe80);
         
@@ -309,18 +309,18 @@ void ui_system_advanced_rendering_batch_processor(longlong ui_context, longlong 
       }
       else {
         // 高级渲染模式
-        *(longlong *)(render_context + 0xf18) =
-             *(longlong *)(*(longlong *)(ui_context + 0x43b0) + render_offset * 8) + UI_SYSTEM_RENDERING_OFFSET_0X20;
-        *(longlong *)(render_context + 0xf20) =
-             *(longlong *)(*(longlong *)(ui_context + 0x43b8) + render_offset * 8) + UI_SYSTEM_RENDERING_OFFSET_0X10;
-        *(longlong *)(render_context + 0xf28) =
-             *(longlong *)(*(longlong *)(ui_context + 0x43c0) + render_offset * 8) + UI_SYSTEM_RENDERING_OFFSET_0X10;
+        *(int64_t *)(render_context + 0xf18) =
+             *(int64_t *)(*(int64_t *)(ui_context + 0x43b0) + render_offset * 8) + UI_SYSTEM_RENDERING_OFFSET_0X20;
+        *(int64_t *)(render_context + 0xf20) =
+             *(int64_t *)(*(int64_t *)(ui_context + 0x43b8) + render_offset * 8) + UI_SYSTEM_RENDERING_OFFSET_0X10;
+        *(int64_t *)(render_context + 0xf28) =
+             *(int64_t *)(*(int64_t *)(ui_context + 0x43c0) + render_offset * 8) + UI_SYSTEM_RENDERING_OFFSET_0X10;
         *(uint64_t *)(render_context + 0xf30) =
-             *(uint64_t *)(*(longlong *)(ui_context + 0x43c8) + render_offset * 8);
+             *(uint64_t *)(*(int64_t *)(ui_context + 0x43c8) + render_offset * 8);
         *(uint64_t *)(render_context + 0xf38) =
-             *(uint64_t *)(*(longlong *)(ui_context + 0x43d0) + render_offset * 8);
+             *(uint64_t *)(*(int64_t *)(ui_context + 0x43d0) + render_offset * 8);
         *(uint64_t *)(render_context + 0xf40) =
-             *(uint64_t *)(*(longlong *)(ui_context + 0x43d8) + render_offset * 8);
+             *(uint64_t *)(*(int64_t *)(ui_context + 0x43d8) + render_offset * 8);
         *(int32_t *)(render_context + 0xf48) = 1;
         *(int32_t *)(render_context + 0xf4c) = 1;
       }
@@ -343,28 +343,28 @@ void ui_system_advanced_rendering_batch_processor(longlong ui_context, longlong 
             do {
               Sleep(0);
             } while (*batch_counter - render_count < (int)batch_size);
-            pixel_offset = (ulonglong)(int)index_offset;
+            pixel_offset = (uint64_t)(int)index_offset;
           }
           
           // 设置渲染参数
-          buffer_address = *(longlong *)(render_context + 0xf00);
-          transform_matrix = (longlong)dest_batch;
+          buffer_address = *(int64_t *)(render_context + 0xf00);
+          transform_matrix = (int64_t)dest_batch;
           *(int *)(render_context + 0xf84) = batch_index;
           render_count = *(int *)(ui_context + 0x1e78);
           
           // 设置渲染缓冲区
-          *(longlong *)(render_context + 0xea8) = frame_buffer + batch_index;
-          *(longlong *)(render_context + 0xeb0) = depth_buffer + transform_matrix;
+          *(int64_t *)(render_context + 0xea8) = frame_buffer + batch_index;
+          *(int64_t *)(render_context + 0xeb0) = depth_buffer + transform_matrix;
           *(uint *)(render_context + 0xf88) = ((render_count - batch_size) + -1) * UI_SYSTEM_RENDERING_MULTIPLIER_0X80;
-          *(longlong *)(render_context + 0xeb8) = stencil_buffer + transform_matrix;
+          *(int64_t *)(render_context + 0xeb8) = stencil_buffer + transform_matrix;
           
           // 设置着色器参数
-          *(longlong *)(render_context + 0xe18) =
-               texture_handles[(ulonglong)*(byte *)(buffer_address + 2) * 3] + (longlong)batch_index;
-          *(longlong *)(render_context + 0xe20) =
-               texture_handles[(ulonglong)*(byte *)(buffer_address + 2) * 3 + 1] + transform_matrix;
-          *(longlong *)(render_context + 0xe28) =
-               texture_handles[(ulonglong)*(byte *)(buffer_address + 2) * 3 + 2] + transform_matrix;
+          *(int64_t *)(render_context + 0xe18) =
+               texture_handles[(uint64_t)*(byte *)(buffer_address + 2) * 3] + (int64_t)batch_index;
+          *(int64_t *)(render_context + 0xe20) =
+               texture_handles[(uint64_t)*(byte *)(buffer_address + 2) * 3 + 1] + transform_matrix;
+          *(int64_t *)(render_context + 0xe28) =
+               texture_handles[(uint64_t)*(byte *)(buffer_address + 2) * 3 + 2] + transform_matrix;
           
           // 设置渲染标志
           *(uint *)(render_context + 0xfc0) =
@@ -378,18 +378,18 @@ void ui_system_advanced_rendering_batch_processor(longlong ui_context, longlong 
           // 更新渲染标志
           *(uint *)(render_context + 0xfc0) =
                *(uint *)(render_context + 0xfc0) |
-               (uint)(*(int *)(*(longlong *)(render_context + 0xfb8) + 0x18) - UI_SYSTEM_RENDERING_OFFSET_0X41 < UI_SYSTEM_RENDERING_OFFSET_0X3FFFFFBF);
+               (uint)(*(int *)(*(int64_t *)(render_context + 0xfb8) + 0x18) - UI_SYSTEM_RENDERING_OFFSET_0X41 < UI_SYSTEM_RENDERING_OFFSET_0X3FFFFFBF);
           
           // 更新渲染偏移
-          *(longlong *)(render_context + 0xf18) = *(longlong *)(render_context + 0xf18) + UI_SYSTEM_RENDERING_OFFSET_0X10;
-          *(longlong *)(render_context + 0xf20) = *(longlong *)(render_context + 0xf20) + UI_SYSTEM_RENDERING_OFFSET_0X8;
-          *(longlong *)(render_context + 0xf28) = *(longlong *)(render_context + 0xf28) + UI_SYSTEM_RENDERING_OFFSET_0X8;
+          *(int64_t *)(render_context + 0xf18) = *(int64_t *)(render_context + 0xf18) + UI_SYSTEM_RENDERING_OFFSET_0X10;
+          *(int64_t *)(render_context + 0xf20) = *(int64_t *)(render_context + 0xf20) + UI_SYSTEM_RENDERING_OFFSET_0X8;
+          *(int64_t *)(render_context + 0xf28) = *(int64_t *)(render_context + 0xf28) + UI_SYSTEM_RENDERING_OFFSET_0X8;
           
           // 检查渲染模式
           if (*(int *)(ui_context + 0x2be0) == 0) {
-            *(longlong *)(render_context + 0xf30) = *(longlong *)(render_context + 0xf30) + UI_SYSTEM_RENDERING_OFFSET_0X10;
-            *(longlong *)(render_context + 0xf38) = *(longlong *)(render_context + 0xf38) + UI_SYSTEM_RENDERING_OFFSET_0X8;
-            *(longlong *)(render_context + 0xf40) = *(longlong *)(render_context + 0xf40) + UI_SYSTEM_RENDERING_OFFSET_0X8;
+            *(int64_t *)(render_context + 0xf30) = *(int64_t *)(render_context + 0xf30) + UI_SYSTEM_RENDERING_OFFSET_0X10;
+            *(int64_t *)(render_context + 0xf38) = *(int64_t *)(render_context + 0xf38) + UI_SYSTEM_RENDERING_OFFSET_0X8;
+            *(int64_t *)(render_context + 0xf40) = *(int64_t *)(render_context + 0xf40) + UI_SYSTEM_RENDERING_OFFSET_0X8;
             if (*(int *)(ui_context + 0x2be0) != 0) goto advanced_render_path;
           }
           else {
@@ -401,19 +401,19 @@ void ui_system_advanced_rendering_batch_processor(longlong ui_context, longlong 
             }
             
             // 获取渲染类型
-            render_flag = *(byte *)((ulonglong)*(byte *)((ulonglong)render_flag + UI_SYSTEM_RENDERING_OFFSET_0XD00 + ui_context + 0x1ed0) +
+            render_flag = *(byte *)((uint64_t)*(byte *)((uint64_t)render_flag + UI_SYSTEM_RENDERING_OFFSET_0XD00 + ui_context + 0x1ed0) +
                               ui_context + 0x1ed0 + UI_SYSTEM_RENDERING_OFFSET_0XC40 +
-                             ((ulonglong)index_data[2] + (ulonglong)index_data[0xb] * 4) * 4);
+                             ((uint64_t)index_data[2] + (uint64_t)index_data[0xb] * 4) * 4);
             vertex_count = (uint)render_flag;
             
             // 处理纹理数据
             if (source_batch != *(int *)(ui_context + 0x1e74) + -1) {
-              render_data_ptr = (int32_t *)(index_offset * UI_SYSTEM_RENDERING_MULTIPLIER_0XF + *(longlong *)(render_context + 0xea8));
+              render_data_ptr = (int32_t *)(index_offset * UI_SYSTEM_RENDERING_MULTIPLIER_0XF + *(int64_t *)(render_context + 0xea8));
               color_value = render_data_ptr[1];
               texture_value = render_data_ptr[2];
               normal_value = render_data_ptr[3];
               texture_data_ptr = (int32_t *)
-                       (*(longlong *)(*(longlong *)(ui_context + 0x43b0) + UI_SYSTEM_RENDERING_OFFSET_0X8 + render_offset * 8) +
+                       (*(int64_t *)(*(int64_t *)(ui_context + 0x43b0) + UI_SYSTEM_RENDERING_OFFSET_0X8 + render_offset * 8) +
                        index_address);
               *texture_data_ptr = *render_data_ptr;
               texture_data_ptr[1] = color_value;
@@ -422,76 +422,76 @@ void ui_system_advanced_rendering_batch_processor(longlong ui_context, longlong 
               
               // 设置顶点数据
               *(uint64_t *)
-               (vertex_address + *(longlong *)(*(longlong *)(ui_context + 0x43b8) + UI_SYSTEM_RENDERING_OFFSET_0X8 + render_offset * 8)) =
-                   *(uint64_t *)(texture_checksum * 7 + *(longlong *)(render_context + 0xeb0));
+               (vertex_address + *(int64_t *)(*(int64_t *)(ui_context + 0x43b8) + UI_SYSTEM_RENDERING_OFFSET_0X8 + render_offset * 8)) =
+                   *(uint64_t *)(texture_checksum * 7 + *(int64_t *)(render_context + 0xeb0));
               *(uint64_t *)
-               (vertex_address + *(longlong *)(*(longlong *)(ui_context + 0x43c0) + UI_SYSTEM_RENDERING_OFFSET_0X8 + render_offset * 8)) =
-                   *(uint64_t *)(texture_checksum * 7 + *(longlong *)(render_context + 0xeb8));
+               (vertex_address + *(int64_t *)(*(int64_t *)(ui_context + 0x43c0) + UI_SYSTEM_RENDERING_OFFSET_0X8 + render_offset * 8)) =
+                   *(uint64_t *)(texture_checksum * 7 + *(int64_t *)(render_context + 0xeb8));
             }
             
             // 处理像素数据
             if ((batch_size != *(int *)(ui_context + 0x1e78) - 1U) &&
-               (*(char *)(*(longlong *)(render_context + 0xf00) + UI_SYSTEM_RENDERING_OFFSET_0X4E) == '\0')) {
+               (*(char *)(*(int64_t *)(render_context + 0xf00) + UI_SYSTEM_RENDERING_OFFSET_0X4E) == '\0')) {
               transform_matrix = 0;
               buffer_address = pixel_offset * 2;
               do {
                 vertex_buffer = buffer_address + pixel_offset;
                 *(int8_t *)
-                 (transform_matrix + *(longlong *)(*(longlong *)(ui_context + 0x43c8) + render_offset * 8)) =
+                 (transform_matrix + *(int64_t *)(*(int64_t *)(ui_context + 0x43c8) + render_offset * 8)) =
                      *(int8_t *)
-                      (buffer_address + pixel_offset * -2 + UI_SYSTEM_RENDERING_OFFSET_0XF + *(longlong *)(render_context + 0xea8));
+                      (buffer_address + pixel_offset * -2 + UI_SYSTEM_RENDERING_OFFSET_0XF + *(int64_t *)(render_context + 0xea8));
                 *(int8_t *)
-                 (*(longlong *)(*(longlong *)(ui_context + 0x43c8) + render_offset * 8) + 1 + transform_matrix) =
-                     *(int8_t *)((*(longlong *)(render_context + 0xea8) + buffer_address + UI_SYSTEM_RENDERING_OFFSET_0XF) - pixel_offset);
+                 (*(int64_t *)(*(int64_t *)(ui_context + 0x43c8) + render_offset * 8) + 1 + transform_matrix) =
+                     *(int8_t *)((*(int64_t *)(render_context + 0xea8) + buffer_address + UI_SYSTEM_RENDERING_OFFSET_0XF) - pixel_offset);
                 
                 // 处理顶点数据
                 vertex_buffer = buffer_address + UI_SYSTEM_RENDERING_OFFSET_0XF;
                 buffer_address = buffer_address + pixel_offset * 4;
                 *(int8_t *)
-                 (*(longlong *)(*(longlong *)(ui_context + 0x43c8) + render_offset * 8) + 2 + transform_matrix) =
-                     *(int8_t *)(vertex_buffer + *(longlong *)(render_context + 0xea8));
+                 (*(int64_t *)(*(int64_t *)(ui_context + 0x43c8) + render_offset * 8) + 2 + transform_matrix) =
+                     *(int8_t *)(vertex_buffer + *(int64_t *)(render_context + 0xea8));
                 *(int8_t *)
-                 (*(longlong *)(*(longlong *)(ui_context + 0x43c8) + render_offset * 8) + 3 + transform_matrix) =
-                     *(int8_t *)(vertex_buffer + UI_SYSTEM_RENDERING_OFFSET_0XF + *(longlong *)(render_context + 0xea8));
+                 (*(int64_t *)(*(int64_t *)(ui_context + 0x43c8) + render_offset * 8) + 3 + transform_matrix) =
+                     *(int8_t *)(vertex_buffer + UI_SYSTEM_RENDERING_OFFSET_0XF + *(int64_t *)(render_context + 0xea8));
                 transform_matrix = transform_matrix + 4;
               } while (transform_matrix < UI_SYSTEM_RENDERING_OFFSET_0X10);
               
               // 设置像素数据
-              **(int8_t **)(*(longlong *)(ui_context + 0x43d0) + render_offset * 8) =
-                   *(int8_t *)(*(longlong *)(render_context + 0xeb0) + 7);
-              **(int8_t **)(*(longlong *)(ui_context + 0x43d8) + render_offset * 8) =
-                   *(int8_t *)(*(longlong *)(render_context + 0xeb8) + 7);
+              **(int8_t **)(*(int64_t *)(ui_context + 0x43d0) + render_offset * 8) =
+                   *(int8_t *)(*(int64_t *)(render_context + 0xeb0) + 7);
+              **(int8_t **)(*(int64_t *)(ui_context + 0x43d8) + render_offset * 8) =
+                   *(int8_t *)(*(int64_t *)(render_context + 0xeb8) + 7);
               
               // 设置顶点属性
-              *(int8_t *)(*(longlong *)(*(longlong *)(ui_context + 0x43d0) + render_offset * 8) + 1) =
-                   *(int8_t *)(texture_checksum + 7 + *(longlong *)(render_context + 0xeb0));
-              *(int8_t *)(*(longlong *)(*(longlong *)(ui_context + 0x43d8) + render_offset * 8) + 1) =
-                   *(int8_t *)(*(longlong *)(render_context + 0xeb8) + 7 + texture_checksum);
-              *(int8_t *)(*(longlong *)(*(longlong *)(ui_context + 0x43d0) + render_offset * 8) + 2) =
-                   *(int8_t *)(*(longlong *)(render_context + 0xeb0) + 7 + texture_checksum * 2);
-              *(int8_t *)(*(longlong *)(*(longlong *)(ui_context + 0x43d8) + render_offset * 8) + 2) =
-                   *(int8_t *)(*(longlong *)(render_context + 0xeb8) + 7 + texture_checksum * 2);
-              *(int8_t *)(*(longlong *)(*(longlong *)(ui_context + 0x43d0) + render_offset * 8) + 3) =
-                   *(int8_t *)(texture_checksum * 3 + 7 + *(longlong *)(render_context + 0xeb0));
-              *(int8_t *)(*(longlong *)(*(longlong *)(ui_context + 0x43d8) + render_offset * 8) + 3) =
-                   *(int8_t *)(*(longlong *)(render_context + 0xeb8) + 7 + texture_checksum * 3);
-              *(int8_t *)(*(longlong *)(*(longlong *)(ui_context + 0x43d0) + render_offset * 8) + 4) =
-                   *(int8_t *)(*(longlong *)(render_context + 0xeb0) + 7 + texture_checksum * 4);
-              *(int8_t *)(*(longlong *)(*(longlong *)(ui_context + 0x43d8) + render_offset * 8) + 4) =
-                   *(int8_t *)(*(longlong *)(render_context + 0xeb8) + 7 + texture_checksum * 4);
-              *(int8_t *)(*(longlong *)(*(longlong *)(ui_context + 0x43d0) + render_offset * 8) + 5) =
-                   *(int8_t *)(texture_checksum * 5 + 7 + *(longlong *)(render_context + 0xeb0));
-              *(int8_t *)(*(longlong *)(*(longlong *)(ui_context + 0x43d8) + render_offset * 8) + 5) =
-                   *(int8_t *)(*(longlong *)(render_context + 0xeb8) + 7 + texture_checksum * 5);
-              *(int8_t *)(*(longlong *)(*(longlong *)(ui_context + 0x43d0) + render_offset * 8) + 6) =
-                   *(int8_t *)(texture_checksum * 6 + 7 + *(longlong *)(render_context + 0xeb0));
-              *(int8_t *)(*(longlong *)(*(longlong *)(ui_context + 0x43d8) + render_offset * 8) + 6) =
-                   *(int8_t *)(*(longlong *)(render_context + 0xeb8) + 7 + texture_checksum * 6);
-              index_offset = (ulonglong)vertex_count;
-              *(int8_t *)(*(longlong *)(*(longlong *)(ui_context + 0x43d0) + render_offset * 8) + 7) =
-                   *(int8_t *)(texture_checksum * 7 + 7 + *(longlong *)(render_context + 0xeb0));
-              *(int8_t *)(*(longlong *)(*(longlong *)(ui_context + 0x43d8) + render_offset * 8) + 7) =
-                   *(int8_t *)(*(longlong *)(render_context + 0xeb8) + 7 + texture_checksum * 7);
+              *(int8_t *)(*(int64_t *)(*(int64_t *)(ui_context + 0x43d0) + render_offset * 8) + 1) =
+                   *(int8_t *)(texture_checksum + 7 + *(int64_t *)(render_context + 0xeb0));
+              *(int8_t *)(*(int64_t *)(*(int64_t *)(ui_context + 0x43d8) + render_offset * 8) + 1) =
+                   *(int8_t *)(*(int64_t *)(render_context + 0xeb8) + 7 + texture_checksum);
+              *(int8_t *)(*(int64_t *)(*(int64_t *)(ui_context + 0x43d0) + render_offset * 8) + 2) =
+                   *(int8_t *)(*(int64_t *)(render_context + 0xeb0) + 7 + texture_checksum * 2);
+              *(int8_t *)(*(int64_t *)(*(int64_t *)(ui_context + 0x43d8) + render_offset * 8) + 2) =
+                   *(int8_t *)(*(int64_t *)(render_context + 0xeb8) + 7 + texture_checksum * 2);
+              *(int8_t *)(*(int64_t *)(*(int64_t *)(ui_context + 0x43d0) + render_offset * 8) + 3) =
+                   *(int8_t *)(texture_checksum * 3 + 7 + *(int64_t *)(render_context + 0xeb0));
+              *(int8_t *)(*(int64_t *)(*(int64_t *)(ui_context + 0x43d8) + render_offset * 8) + 3) =
+                   *(int8_t *)(*(int64_t *)(render_context + 0xeb8) + 7 + texture_checksum * 3);
+              *(int8_t *)(*(int64_t *)(*(int64_t *)(ui_context + 0x43d0) + render_offset * 8) + 4) =
+                   *(int8_t *)(*(int64_t *)(render_context + 0xeb0) + 7 + texture_checksum * 4);
+              *(int8_t *)(*(int64_t *)(*(int64_t *)(ui_context + 0x43d8) + render_offset * 8) + 4) =
+                   *(int8_t *)(*(int64_t *)(render_context + 0xeb8) + 7 + texture_checksum * 4);
+              *(int8_t *)(*(int64_t *)(*(int64_t *)(ui_context + 0x43d0) + render_offset * 8) + 5) =
+                   *(int8_t *)(texture_checksum * 5 + 7 + *(int64_t *)(render_context + 0xeb0));
+              *(int8_t *)(*(int64_t *)(*(int64_t *)(ui_context + 0x43d8) + render_offset * 8) + 5) =
+                   *(int8_t *)(*(int64_t *)(render_context + 0xeb8) + 7 + texture_checksum * 5);
+              *(int8_t *)(*(int64_t *)(*(int64_t *)(ui_context + 0x43d0) + render_offset * 8) + 6) =
+                   *(int8_t *)(texture_checksum * 6 + 7 + *(int64_t *)(render_context + 0xeb0));
+              *(int8_t *)(*(int64_t *)(*(int64_t *)(ui_context + 0x43d8) + render_offset * 8) + 6) =
+                   *(int8_t *)(*(int64_t *)(render_context + 0xeb8) + 7 + texture_checksum * 6);
+              index_offset = (uint64_t)vertex_count;
+              *(int8_t *)(*(int64_t *)(*(int64_t *)(ui_context + 0x43d0) + render_offset * 8) + 7) =
+                   *(int8_t *)(texture_checksum * 7 + 7 + *(int64_t *)(render_context + 0xeb0));
+              *(int8_t *)(*(int64_t *)(*(int64_t *)(ui_context + 0x43d8) + render_offset * 8) + 7) =
+                   *(int8_t *)(*(int64_t *)(render_context + 0xeb8) + 7 + texture_checksum * 7);
             }
             
             // 处理着色器数据
@@ -500,12 +500,12 @@ void ui_system_advanced_rendering_batch_processor(longlong ui_context, longlong 
             if (texture_height != 0) {
               if (*(int *)(ui_context + 0x1ec0) == 0) {
                 // 标准着色器处理
-                transform_matrix = (longlong)(int)texture_height;
+                transform_matrix = (int64_t)(int)texture_height;
                 depth_buffer = transform_matrix * UI_SYSTEM_RENDERING_OFFSET_0X10 + buffer_address;
                 stencil_buffer = (transform_matrix + UI_SYSTEM_RENDERING_OFFSET_0X40) * UI_SYSTEM_RENDERING_OFFSET_0X10 + buffer_address;
                 frame_buffer = (transform_matrix + UI_SYSTEM_RENDERING_OFFSET_0X80) * UI_SYSTEM_RENDERING_OFFSET_0X10 + buffer_address;
-                shader_program = ((ulonglong)
-                             *(byte *)(((longlong)*(int *)(ui_context + 0x1e64) + UI_SYSTEM_RENDERING_OFFSET_0X32) * UI_SYSTEM_RENDERING_MULTIPLIER_0X40 + transform_matrix
+                shader_program = ((uint64_t)
+                             *(byte *)(((int64_t)*(int *)(ui_context + 0x1e64) + UI_SYSTEM_RENDERING_OFFSET_0X32) * UI_SYSTEM_RENDERING_MULTIPLIER_0X40 + transform_matrix
                                       + buffer_address) + UI_SYSTEM_RENDERING_OFFSET_0XC0) * UI_SYSTEM_RENDERING_OFFSET_0X10 + buffer_address;
                 
                 if (0 < (int)batch_size) {
@@ -541,20 +541,20 @@ void ui_system_advanced_rendering_batch_processor(longlong ui_context, longlong 
                 // 高级着色器处理
                 if (0 < (int)batch_size) {
                   func_0x00018001c253(*(uint64_t *)(render_context + 0xea8),index_offset & 0xffffffff,
-                                      (longlong)(int)texture_height * UI_SYSTEM_RENDERING_OFFSET_0X10 + buffer_address);
+                                      (int64_t)(int)texture_height * UI_SYSTEM_RENDERING_OFFSET_0X10 + buffer_address);
                 }
                 render_count = dest_batch;
                 if (dest_batch == 0) {
                   FUN_18069ca80(*(uint64_t *)(render_context + 0xea8),index_offset & 0xffffffff,
-                                ((longlong)(int)texture_height + UI_SYSTEM_RENDERING_OFFSET_0X40) * UI_SYSTEM_RENDERING_OFFSET_0X10 + buffer_address);
+                                ((int64_t)(int)texture_height + UI_SYSTEM_RENDERING_OFFSET_0X40) * UI_SYSTEM_RENDERING_OFFSET_0X10 + buffer_address);
                 }
                 if (0 < render_offset) {
                   func_0x00018001c10b(*(uint64_t *)(render_context + 0xea8),index_offset & 0xffffffff,
-                                      (longlong)(int)texture_height * UI_SYSTEM_RENDERING_OFFSET_0X10 + buffer_address);
+                                      (int64_t)(int)texture_height * UI_SYSTEM_RENDERING_OFFSET_0X10 + buffer_address);
                 }
                 if (render_count == 0) {
                   FUN_18069c990(*(uint64_t *)(render_context + 0xea8),index_offset & 0xffffffff,
-                                ((longlong)(int)texture_height + UI_SYSTEM_RENDERING_OFFSET_0X40) * UI_SYSTEM_RENDERING_OFFSET_0X10 + buffer_address);
+                                ((int64_t)(int)texture_height + UI_SYSTEM_RENDERING_OFFSET_0X40) * UI_SYSTEM_RENDERING_OFFSET_0X10 + buffer_address);
                 }
               }
             }
@@ -565,45 +565,45 @@ void ui_system_advanced_rendering_batch_processor(longlong ui_context, longlong 
           batch_index = batch_index + -UI_SYSTEM_RENDERING_MULTIPLIER_0X80;
           batch_index = batch_index + UI_SYSTEM_RENDERING_OFFSET_0X10;
           dest_batch = dest_batch + 8;
-          *(longlong *)(render_context + 0xf00) = *(longlong *)(render_context + 0xf00) + UI_SYSTEM_RENDERING_MULTIPLIER_0X4C;
-          *(longlong *)(render_context + 0xf50) = *(longlong *)(render_context + 0xf50) + 9;
+          *(int64_t *)(render_context + 0xf00) = *(int64_t *)(render_context + 0xf00) + UI_SYSTEM_RENDERING_MULTIPLIER_0X4C;
+          *(int64_t *)(render_context + 0xf50) = *(int64_t *)(render_context + 0xf50) + 9;
           index_address = index_address + UI_SYSTEM_RENDERING_OFFSET_0X10;
           vertex_address = vertex_address + UI_SYSTEM_RENDERING_OFFSET_0X8;
-          pixel_offset = (ulonglong)(int)index_offset;
+          pixel_offset = (uint64_t)(int)index_offset;
         } while ((int)batch_size < *(int *)(ui_context + 0x1e78));
-        pixel_offset = (ulonglong)(int)index_offset;
+        pixel_offset = (uint64_t)(int)index_offset;
       }
       
       // 清理渲染资源
       if (*(int *)(ui_context + 0x2be0) == 0) {
-        func_0x00018069cbd0(render_target,*(longlong *)(render_context + 0xea8) + UI_SYSTEM_RENDERING_OFFSET_0X10,
-                            *(longlong *)(render_context + 0xeb0) + UI_SYSTEM_RENDERING_OFFSET_0X8,*(longlong *)(render_context + 0xeb8) + UI_SYSTEM_RENDERING_OFFSET_0X8);
+        func_0x00018069cbd0(render_target,*(int64_t *)(render_context + 0xea8) + UI_SYSTEM_RENDERING_OFFSET_0X10,
+                            *(int64_t *)(render_context + 0xeb0) + UI_SYSTEM_RENDERING_OFFSET_0X8,*(int64_t *)(render_context + 0xeb8) + UI_SYSTEM_RENDERING_OFFSET_0X8);
       }
       else if (source_batch != *(int *)(ui_context + 0x1e74) + -1) {
         // 清理纹理数据
         buffer_address = 0;
         render_count = *render_state;
-        transform_matrix = (longlong)((render_count >> 1) + UI_SYSTEM_RENDERING_OFFSET_0X10);
+        transform_matrix = (int64_t)((render_count >> 1) + UI_SYSTEM_RENDERING_OFFSET_0X10);
         do {
-          vertex_buffer = *(longlong *)(*(longlong *)(ui_context + 0x43b0) + UI_SYSTEM_RENDERING_OFFSET_0X8 + render_offset * 8) +
-                   (longlong)(render_count + UI_SYSTEM_RENDERING_OFFSET_0X20);
+          vertex_buffer = *(int64_t *)(*(int64_t *)(ui_context + 0x43b0) + UI_SYSTEM_RENDERING_OFFSET_0X8 + render_offset * 8) +
+                   (int64_t)(render_count + UI_SYSTEM_RENDERING_OFFSET_0X20);
           *(int8_t *)(vertex_buffer + buffer_address) = *(int8_t *)(vertex_buffer + -1);
-          vertex_buffer = *(longlong *)(*(longlong *)(ui_context + 0x43b8) + UI_SYSTEM_RENDERING_OFFSET_0X8 + render_offset * 8) + transform_matrix;
+          vertex_buffer = *(int64_t *)(*(int64_t *)(ui_context + 0x43b8) + UI_SYSTEM_RENDERING_OFFSET_0X8 + render_offset * 8) + transform_matrix;
           *(int8_t *)(vertex_buffer + buffer_address) = *(int8_t *)(vertex_buffer + -1);
-          vertex_buffer = *(longlong *)(*(longlong *)(ui_context + 0x43c0) + UI_SYSTEM_RENDERING_OFFSET_0X8 + render_offset * 8) + transform_matrix;
+          vertex_buffer = *(int64_t *)(*(int64_t *)(ui_context + 0x43c0) + UI_SYSTEM_RENDERING_OFFSET_0X8 + render_offset * 8) + transform_matrix;
           *(int8_t *)(vertex_buffer + buffer_address) = *(int8_t *)(vertex_buffer + -1);
           buffer_address = buffer_address + 1;
         } while (buffer_address < 4);
       }
       
       // 更新纹理信息
-      texture_checksum = (ulonglong)max_batch_size;
+      texture_checksum = (uint64_t)max_batch_size;
       *target_counter = batch_size + current_batch;
-      *(longlong *)(render_context + 0xf00) = *(longlong *)(render_context + 0xf00) + UI_SYSTEM_RENDERING_MULTIPLIER_0X4C;
+      *(int64_t *)(render_context + 0xf00) = *(int64_t *)(render_context + 0xf00) + UI_SYSTEM_RENDERING_MULTIPLIER_0X4C;
       *(int32_t *)(render_context + 0xf10) = 1;
-      *(longlong *)(render_context + 0xf00) =
-           *(longlong *)(render_context + 0xf00) +
-           (ulonglong)(uint)(*(int *)(render_context + 0xf08) * *(int *)(ui_context + 0x438c)) * UI_SYSTEM_RENDERING_MULTIPLIER_0X4C;
+      *(int64_t *)(render_context + 0xf00) =
+           *(int64_t *)(render_context + 0xf00) +
+           (uint64_t)(uint)(*(int *)(render_context + 0xf08) * *(int *)(ui_context + 0x438c)) * UI_SYSTEM_RENDERING_MULTIPLIER_0X4C;
       source_batch = source_batch + 1 + *(int *)(ui_context + 0x438c);
       render_mode = dest_batch;
     } while (source_batch < *(int *)(ui_context + 0x1e74));
@@ -615,7 +615,7 @@ void ui_system_advanced_rendering_batch_processor(longlong ui_context, longlong 
   }
   
   // 清理和保护栈
-  FUN_1808fc050(stack_guard ^ (ulonglong)security_buffer);
+  FUN_1808fc050(stack_guard ^ (uint64_t)security_buffer);
 }
 
 //===================================================================

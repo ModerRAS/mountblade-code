@@ -27,7 +27,7 @@ void generate_config_file(void *param_1, void *param_2, void *param_3, void *par
     char current_char;
     uint buffer_size;
     void *temp_ptr;
-    longlong temp_long1, temp_long2;
+    int64_t temp_long1, temp_long2;
     void *output_buffer;
     char *string_ptr;
     uint temp_uint;
@@ -40,16 +40,16 @@ void generate_config_file(void *param_1, void *param_2, void *param_3, void *par
     
     // 初始化输出缓冲区
     output_buffer = &g_invalid_chars;  // 临时使用，后续会被重新分配
-    buffer_size = *(uint *)((longlong)g_engine_context + 0x180);
+    buffer_size = *(uint *)((int64_t)g_engine_context + 0x180);
     
     // 分配并初始化缓冲区
-    if (*(longlong *)((longlong)g_engine_context + 0x178) != 0) {
+    if (*(int64_t *)((int64_t)g_engine_context + 0x178) != 0) {
         allocate_buffer(&output_buffer, buffer_size, param_3, param_4, 1, 0xfffffffffffffffe);
     }
     
     // 复制数据到缓冲区
     if (buffer_size != 0) {
-        memcpy(output_buffer, *(void **)((longlong)g_engine_context + 0x178), buffer_size);
+        memcpy(output_buffer, *(void **)((int64_t)g_engine_context + 0x178), buffer_size);
     }
     
     // 确保字符串以null结尾
@@ -71,7 +71,7 @@ void generate_config_file(void *param_1, void *param_2, void *param_3, void *par
     
     // 初始化配置对象
     *temp_ptr = 0;
-    *(char *)((longlong)temp_ptr + 2) = 0;
+    *(char *)((int64_t)temp_ptr + 2) = 0;
     initialize_config_object(temp_ptr, string_ptr, &g_config_template);
     
     // 处理配置项
@@ -91,12 +91,12 @@ void generate_config_file(void *param_1, void *param_2, void *param_3, void *par
 void process_config_items(void *config_obj)
 {
     uint item_count = 0;
-    ulonglong current_offset = 0;
-    longlong base_address;
-    longlong item_index;
+    uint64_t current_offset = 0;
+    int64_t base_address;
+    int64_t item_index;
     
     // 遍历所有配置项
-    while ((ulonglong)(longlong)item_count < (ulonglong)((g_config_end - g_config_start) >> 8)) {
+    while ((uint64_t)(int64_t)item_count < (uint64_t)((g_config_end - g_config_start) >> 8)) {
         base_address = g_config_start;
         item_index = 0;
         
@@ -114,12 +114,12 @@ void process_config_items(void *config_obj)
  * @param base_address 基地址
  * @param offset 偏移量
  */
-void process_single_config_item(void *config_obj, longlong base_address, ulonglong offset)
+void process_single_config_item(void *config_obj, int64_t base_address, uint64_t offset)
 {
     char *item_name;
     char *cleaned_name;
     double value1, value2;
-    longlong long_value;
+    int64_t long_value;
     
     // 获取配置项名称
     item_name = get_config_item_name(base_address, offset);
@@ -155,7 +155,7 @@ void process_single_config_item(void *config_obj, longlong base_address, ulonglo
 char *clean_string(char *input_string)
 {
     char *current_char = input_string;
-    longlong index = 0;
+    int64_t index = 0;
     
     if (input_string == (char *)0x0) {
         return "";
@@ -177,11 +177,11 @@ char *clean_string(char *input_string)
  * @brief 释放资源数组
  * @param resource_array 资源数组指针
  */
-void free_resource_array(longlong *resource_array)
+void free_resource_array(int64_t *resource_array)
 {
-    longlong start_addr = *resource_array;
-    longlong end_addr = resource_array[1];
-    longlong current_addr;
+    int64_t start_addr = *resource_array;
+    int64_t end_addr = resource_array[1];
+    int64_t current_addr;
     
     // 遍历并释放每个资源
     for (current_addr = start_addr; current_addr != end_addr; current_addr += 0x100) {
@@ -198,7 +198,7 @@ void free_resource_array(longlong *resource_array)
  * @brief 清理数据结构数组
  * @param data_array 数据数组指针
  */
-void cleanup_data_array(longlong *data_array)
+void cleanup_data_array(int64_t *data_array)
 {
     void **current_ptr;
     void **end_ptr;
@@ -232,9 +232,9 @@ void safe_free_memory(void *memory_obj)
 {
     if (memory_obj != 0) {
         // 检查是否有文件句柄需要关闭
-        if (*(longlong *)((longlong)memory_obj + 8) != 0) {
-            close_file_handle(*(longlong *)((longlong)memory_obj + 8));
-            *(longlong *)((longlong)memory_obj + 8) = 0;
+        if (*(int64_t *)((int64_t)memory_obj + 8) != 0) {
+            close_file_handle(*(int64_t *)((int64_t)memory_obj + 8));
+            *(int64_t *)((int64_t)memory_obj + 8) = 0;
             
             // 减少文件句柄计数
             acquire_lock();
@@ -255,11 +255,11 @@ void safe_free_memory(void *memory_obj)
  * @param param_4 保留参数
  * @return 目标对象指针
  */
-longlong copy_config_object(longlong dest, longlong source, void *param_3, void *param_4)
+int64_t copy_config_object(int64_t dest, int64_t source, void *param_3, void *param_4)
 {
     void *temp_ptr;
     uint temp_uint1, temp_uint2, temp_uint3, temp_uint4;
-    ulonglong temp_ulong;
+    uint64_t temp_ulong;
     
     // 初始化复制操作
     initialize_copy_operation();
@@ -287,7 +287,7 @@ longlong copy_config_object(longlong dest, longlong source, void *param_3, void 
  * @param param_4 保留参数
  * @return 释放后的内存指针
  */
-uint64_t free_config_memory(uint64_t memory_ptr, ulonglong flags, uint64_t param_3, uint64_t param_4)
+uint64_t free_config_memory(uint64_t memory_ptr, uint64_t flags, uint64_t param_3, uint64_t param_4)
 {
     initialize_memory_free();
     
@@ -308,17 +308,17 @@ uint64_t free_config_memory(uint64_t memory_ptr, ulonglong flags, uint64_t param
  * @param param_5 保留参数
  * @return 找到的配置项
  */
-uint64_t *find_config_item(longlong *config_array, uint64_t *search_key, uint64_t param_3, 
-                           longlong *search_item, longlong param_5)
+uint64_t *find_config_item(int64_t *config_array, uint64_t *search_key, uint64_t param_3, 
+                           int64_t *search_item, int64_t param_5)
 {
     byte *key_data, *search_data;
     uint key_char, search_char;
-    longlong key_length;
+    int64_t key_length;
     bool match_found;
-    longlong *current_item, *prev_item;
+    int64_t *current_item, *prev_item;
     
     // 检查边界条件
-    if ((search_item == (longlong *)*config_array) || (search_item == config_array)) {
+    if ((search_item == (int64_t *)*config_array) || (search_item == config_array)) {
         // 检查是否匹配当前项
         if (config_matches_criteria(config_array, search_item, param_5)) {
             return process_matching_item(config_array, search_key, search_item, param_5);
@@ -326,7 +326,7 @@ uint64_t *find_config_item(longlong *config_array, uint64_t *search_key, uint64_
     }
     
     // 在链表中搜索
-    current_item = (longlong *)traverse_list(search_item);
+    current_item = (int64_t *)traverse_list(search_item);
     if (compare_items(current_item, search_item, param_5)) {
         return find_best_match(config_array, search_key, current_item, search_item, param_5);
     }
@@ -346,14 +346,14 @@ uint64_t *find_config_item(longlong *config_array, uint64_t *search_key, uint64_
  * @param insert_flag 插入标志
  * @param param_5 保留参数
  */
-void insert_config_item(longlong config_array, uint64_t insert_pos, longlong config_item, 
-                       uint64_t insert_flag, longlong param_5)
+void insert_config_item(int64_t config_array, uint64_t insert_pos, int64_t config_item, 
+                       uint64_t insert_flag, int64_t param_5)
 {
     byte *name1, *name2;
     uint char1, char2;
-    longlong name_length;
+    int64_t name_length;
     void *new_item;
-    ulonglong temp_ulong;
+    uint64_t temp_ulong;
     
     // 检查是否可以直接插入
     if (((char)insert_flag != '\0') || (config_item == config_array)) {
@@ -363,7 +363,7 @@ void insert_config_item(longlong config_array, uint64_t insert_pos, longlong con
     }
     
     // 创建新的配置项
-    new_item = create_config_item(g_memory_pool, 0x68, *(char *)((longlong)config_array + 0x28), 
+    new_item = create_config_item(g_memory_pool, 0x68, *(char *)((int64_t)config_array + 0x28), 
                                  insert_flag, 0xfffffffffffffffe);
     
     // 初始化新项
@@ -381,9 +381,9 @@ void insert_config_item(longlong config_array, uint64_t insert_pos, longlong con
  * @param param_4 保留参数
  * @return 复制的树结构
  */
-uint64_t *copy_config_tree(longlong dest, longlong *source_tree, uint64_t param_3, uint64_t param_4)
+uint64_t *copy_config_tree(int64_t dest, int64_t *source_tree, uint64_t param_3, uint64_t param_4)
 {
-    longlong *current_node;
+    int64_t *current_node;
     uint64_t *new_node;
     uint64_t *prev_node;
     uint64_t temp_ulong;
@@ -400,8 +400,8 @@ uint64_t *copy_config_tree(longlong dest, longlong *source_tree, uint64_t param_
     prev_node = new_node;
     
     // 复制兄弟节点
-    for (current_node = (longlong *)source_tree[1]; current_node != (longlong *)0x0; 
-         current_node = (longlong *)current_node[1]) {
+    for (current_node = (int64_t *)source_tree[1]; current_node != (int64_t *)0x0; 
+         current_node = (int64_t *)current_node[1]) {
         
         // 创建新节点
         new_node = create_config_node();
@@ -430,13 +430,13 @@ uint64_t *copy_config_tree(longlong dest, longlong *source_tree, uint64_t param_
  * @param param_4 保留参数
  * @return 新创建的节点
  */
-uint64_t *create_config_node(longlong dest, longlong *source, uint64_t param_3, uint64_t param_4)
+uint64_t *create_config_node(int64_t dest, int64_t *source, uint64_t param_3, uint64_t param_4)
 {
     uint64_t *new_node;
     
     // 分配节点内存
     new_node = (uint64_t *)allocate_config_node(g_memory_pool, 0x68, 
-                                                 *(char *)((longlong)dest + 0x28), 
+                                                 *(char *)((int64_t)dest + 0x28), 
                                                  param_4, 0xfffffffffffffffe);
     
     // 复制节点数据
@@ -461,13 +461,13 @@ uint64_t *create_config_node(longlong dest, longlong *source, uint64_t param_3, 
  * @param param_4 保留参数
  * @return 处理结果
  */
-uint64_t *batch_process_config_items(uint64_t *result_ptr, longlong *start_range, 
-                                       longlong *end_range, uint64_t *param_4)
+uint64_t *batch_process_config_items(uint64_t *result_ptr, int64_t *start_range, 
+                                       int64_t *end_range, uint64_t *param_4)
 {
-    longlong *current_item;
+    int64_t *current_item;
     uint64_t *current_result;
     int32_t temp_uint;
-    longlong temp_long;
+    int64_t temp_long;
     
     *result_ptr = param_4;
     
@@ -510,7 +510,7 @@ void initialize_sync_object(uint64_t *sync_obj)
  * @param flags 清理标志
  * @return 清理后的对象指针
  */
-uint64_t cleanup_sync_object(uint64_t sync_obj, ulonglong flags)
+uint64_t cleanup_sync_object(uint64_t sync_obj, uint64_t flags)
 {
     initialize_sync_object();
     
@@ -526,7 +526,7 @@ uint64_t cleanup_sync_object(uint64_t sync_obj, ulonglong flags)
  * @param sync_obj 同步对象
  * @param state 要设置的状态
  */
-void set_sync_state(longlong sync_obj, int8_t state)
+void set_sync_state(int64_t sync_obj, int8_t state)
 {
     int lock_result;
     
@@ -552,16 +552,16 @@ void set_sync_state(longlong sync_obj, int8_t state)
  * @param mutex 互斥锁
  * @param timeout 超时时间
  */
-void wait_for_condition(uint64_t condition, uint64_t *mutex, longlong *timeout)
+void wait_for_condition(uint64_t condition, uint64_t *mutex, int64_t *timeout)
 {
     int wait_result;
     uint timed_wait_result;
-    longlong abs_timeout;
+    int64_t abs_timeout;
     int rel_timeout_ns;
-    ulonglong stack_cookie;
+    uint64_t stack_cookie;
     
     // 栈保护检查
-    stack_cookie = g_stack_cookie ^ (ulonglong)&abs_timeout;
+    stack_cookie = g_stack_cookie ^ (uint64_t)&abs_timeout;
     
     // 计算绝对超时时间
     if (*timeout < 1) {
@@ -586,7 +586,7 @@ void wait_for_condition(uint64_t condition, uint64_t *mutex, longlong *timeout)
     }
     
     // 栈保护清理
-    cleanup_stack_protection(stack_cookie ^ (ulonglong)&abs_timeout);
+    cleanup_stack_protection(stack_cookie ^ (uint64_t)&abs_timeout);
 }
 
 /**
@@ -597,12 +597,12 @@ void wait_for_condition(uint64_t condition, uint64_t *mutex, longlong *timeout)
  * @param param_4 保留参数
  * @return 状态值
  */
-int8_t wait_for_state_change(longlong sync_obj, uint64_t param_2, uint64_t param_3, uint64_t param_4)
+int8_t wait_for_state_change(int64_t sync_obj, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
     int8_t current_state;
     int lock_result;
     uint64_t wait_timeout;
-    longlong lock_addr;
+    int64_t lock_addr;
     char lock_acquired;
     
     lock_addr = sync_obj + 0x48;

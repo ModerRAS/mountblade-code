@@ -241,7 +241,7 @@ void ui_system_vector_assignment(uint64_t transform_data, uint64_t position_data
     // 原实现包含基本的向量赋值操作
     
     // 直接应用变换数据
-    *(uint64_t*)((longlong)transform_data + 0x6178) = position_data;
+    *(uint64_t*)((int64_t)transform_data + 0x6178) = position_data;
     
     // 注意：原实现包含更多的向量赋值逻辑
     // 这里只保留了基本的结构框架

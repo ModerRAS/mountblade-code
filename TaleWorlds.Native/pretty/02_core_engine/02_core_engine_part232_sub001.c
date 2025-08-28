@@ -4,10 +4,10 @@
 // 02_core_engine_part232_sub001.c - 13 个函数
 // 核心引擎模块第232部分子文件001 - 浮点数排序和统计计算模块
 
-// 函数: void process_statistics_and_sort_data(longlong context_ptr)
+// 函数: void process_statistics_and_sort_data(int64_t context_ptr)
 // 功能: 处理统计数据并对数据进行排序
 // 参数: context_ptr - 上下文指针，包含数据缓冲区和统计信息
-void process_statistics_and_sort_data(longlong context_ptr)
+void process_statistics_and_sort_data(int64_t context_ptr)
 
 {
   float temp_float1;
@@ -28,17 +28,17 @@ void process_statistics_and_sort_data(longlong context_ptr)
   double temp_double3;
   double temp_double4;
   double temp_double5;
-  longlong temp_long1;
-  ulonglong temp_ulong1;
-  ulonglong temp_ulong2;
+  int64_t temp_long1;
+  uint64_t temp_ulong1;
+  uint64_t temp_ulong2;
   uint temp_uint1;
   uint temp_uint2;
   float *float_ptr5;
-  longlong temp_long2;
-  longlong temp_long3;
+  int64_t temp_long2;
+  int64_t temp_long3;
   float *float_ptr6;
-  ulonglong temp_ulong3;
-  ulonglong temp_ulong4;
+  uint64_t temp_ulong3;
+  uint64_t temp_ulong4;
   double temp_double6;
   double temp_double7;
   double temp_double8;
@@ -56,18 +56,18 @@ void process_statistics_and_sort_data(longlong context_ptr)
   
   // 第一个缓冲区排序处理
   if (float_ptr1 != float_ptr6) {
-    temp_long3 = (longlong)float_ptr6 - (longlong)float_ptr1 >> 2;
+    temp_long3 = (int64_t)float_ptr6 - (int64_t)float_ptr1 >> 2;
     temp_ulong4 = temp_ulong2;
     temp_uint1 = temp_uint2;
     
     // 计算排序深度
     for (temp_long1 = temp_long3; temp_long1 != 0; temp_long1 = temp_long1 >> 1) {
       temp_uint1 = (int)temp_ulong4 + 1;
-      temp_ulong4 = (ulonglong)temp_uint1;
+      temp_ulong4 = (uint64_t)temp_uint1;
     }
     
     // 执行排序操作
-    perform_sort_operation(float_ptr1,float_ptr6,(longlong)(int)(temp_uint1 - 1) * 2,0);
+    perform_sort_operation(float_ptr1,float_ptr6,(int64_t)(int)(temp_uint1 - 1) * 2,0);
     
     // 根据数据量选择排序算法
     if (temp_long3 < 0x1d) {
@@ -98,15 +98,15 @@ void process_statistics_and_sort_data(longlong context_ptr)
   float_ptr6 = *(float **)(context_ptr + 0x90);
   float_ptr1 = *(float **)(context_ptr + 0x88);
   if (float_ptr1 != float_ptr6) {
-    temp_long3 = (longlong)float_ptr6 - (longlong)float_ptr1 >> 2;
+    temp_long3 = (int64_t)float_ptr6 - (int64_t)float_ptr1 >> 2;
     temp_ulong4 = temp_ulong2;
     
     for (temp_long1 = temp_long3; temp_long1 != 0; temp_long1 = temp_long1 >> 1) {
       temp_uint2 = (int)temp_ulong4 + 1;
-      temp_ulong4 = (ulonglong)temp_uint2;
+      temp_ulong4 = (uint64_t)temp_uint2;
     }
     
-    perform_sort_operation(float_ptr1,float_ptr6,(longlong)(int)(temp_uint2 - 1) * 2,0);
+    perform_sort_operation(float_ptr1,float_ptr6,(int64_t)(int)(temp_uint2 - 1) * 2,0);
     
     if (temp_long3 < 0x1d) {
       insertion_sort(float_ptr1,float_ptr6);
@@ -135,7 +135,7 @@ void process_statistics_and_sort_data(longlong context_ptr)
   temp_double7 = 0.0;
   temp_double13 = 0.0;
   temp_double6 = 0.0;
-  temp_ulong4 = *(longlong *)(context_ptr + 0x70) - (longlong)float_ptr6 >> 2;
+  temp_ulong4 = *(int64_t *)(context_ptr + 0x70) - (int64_t)float_ptr6 >> 2;
   temp_double8 = 0.0;
   temp_double2 = 0.0;
   temp_double11 = 0.0;
@@ -163,24 +163,24 @@ void process_statistics_and_sort_data(longlong context_ptr)
     
     // 遍历数据收集统计信息
     do {
-      if ((longlong)temp_ulong1 < (longlong)(int)((temp_ulong4 - temp_long1 >> 1) + temp_long1 >> 6)) {
+      if ((int64_t)temp_ulong1 < (int64_t)(int)((temp_ulong4 - temp_long1 >> 1) + temp_long1 >> 6)) {
         temp_double6 = temp_double6 + 1.0;
         temp_double13 = temp_double13 + (double)*float_ptr6;
       }
-      if ((longlong)temp_ulong1 < (longlong)(int)((temp_ulong4 * 0xf - temp_long3 >> 1) + temp_long3 >> 6)) {
+      if ((int64_t)temp_ulong1 < (int64_t)(int)((temp_ulong4 * 0xf - temp_long3 >> 1) + temp_long3 >> 6)) {
         temp_double2 = temp_double2 + 1.0;
         temp_double8 = temp_double8 + (double)*float_ptr6;
       }
-      if ((longlong)temp_ulong1 < (longlong)(int)((temp_ulong4 * 0x1e - temp_long2 >> 1) + temp_long2 >> 6)) {
+      if ((int64_t)temp_ulong1 < (int64_t)(int)((temp_ulong4 * 0x1e - temp_long2 >> 1) + temp_long2 >> 6)) {
         temp_double4 = temp_double4 + 1.0;
         temp_double11 = temp_double11 + (double)*float_ptr6;
       }
       
       temp_uint2 = (int)temp_ulong3 + 1;
-      temp_ulong3 = (ulonglong)temp_uint2;
+      temp_ulong3 = (uint64_t)temp_uint2;
       temp_ulong1 = temp_ulong1 + 1;
       float_ptr6 = float_ptr6 + 1;
-    } while ((ulonglong)(longlong)(int)temp_uint2 < temp_ulong4);
+    } while ((uint64_t)(int64_t)(int)temp_uint2 < temp_ulong4);
   }
   
   // 更新统计信息
@@ -200,7 +200,7 @@ void process_statistics_and_sort_data(longlong context_ptr)
   
   // 统计第二个缓冲区的数据
   float_ptr6 = *(float **)(context_ptr + 0x88);
-  temp_ulong4 = *(longlong *)(context_ptr + 0x90) - (longlong)float_ptr6 >> 2;
+  temp_ulong4 = *(int64_t *)(context_ptr + 0x90) - (int64_t)float_ptr6 >> 2;
   
   if (temp_ulong4 != 0) {
     // 计算第二个缓冲区的统计分位点
@@ -221,23 +221,23 @@ void process_statistics_and_sort_data(longlong context_ptr)
     temp_double3 = 0.0;
     
     do {
-      if ((longlong)temp_ulong2 < (longlong)(int)((temp_ulong4 - temp_long1 >> 1) + temp_long1 >> 6)) {
+      if ((int64_t)temp_ulong2 < (int64_t)(int)((temp_ulong4 - temp_long1 >> 1) + temp_long1 >> 6)) {
         temp_double7 = temp_double7 + (double)*float_ptr6;
       }
-      if ((longlong)temp_ulong2 < (longlong)(int)((temp_ulong4 * 0xf - temp_long3 >> 1) + temp_long3 >> 6)) {
+      if ((int64_t)temp_ulong2 < (int64_t)(int)((temp_ulong4 * 0xf - temp_long3 >> 1) + temp_long3 >> 6)) {
         temp_double1 = temp_double1 + 1.0;
         temp_double9 = temp_double9 + (double)*float_ptr6;
       }
-      if ((longlong)temp_ulong2 < (longlong)(int)((temp_ulong4 * 0x1e - temp_long2 >> 1) + temp_long2 >> 6)) {
+      if ((int64_t)temp_ulong2 < (int64_t)(int)((temp_ulong4 * 0x1e - temp_long2 >> 1) + temp_long2 >> 6)) {
         temp_double3 = temp_double3 + 1.0;
         temp_double13 = temp_double13 + (double)*float_ptr6;
       }
       
       temp_uint2 = (int)temp_ulong1 + 1;
-      temp_ulong1 = (ulonglong)temp_uint2;
+      temp_ulong1 = (uint64_t)temp_uint2;
       temp_ulong2 = temp_ulong2 + 1;
       float_ptr6 = float_ptr6 + 1;
-    } while ((ulonglong)(longlong)(int)temp_uint2 < temp_ulong4);
+    } while ((uint64_t)(int64_t)(int)temp_uint2 < temp_ulong4);
   }
   
   // 更新统计计数器和最终结果
@@ -273,21 +273,21 @@ void update_statistics_with_sorting(void)
   int8_t temp_array5 [16];
   int8_t temp_array6 [16];
   double temp_double1;
-  longlong context_ptr;
-  longlong temp_long1;
-  ulonglong temp_ulong1;
+  int64_t context_ptr;
+  int64_t temp_long1;
+  uint64_t temp_ulong1;
   uint temp_uint1;
   float *float_ptr4;
   float *float_ptr5;
-  longlong temp_long2;
+  int64_t temp_long2;
   float *buffer_start;
   uint64_t stack_ptr;
-  longlong temp_long3;
-  ulonglong index_counter;
+  int64_t temp_long3;
+  uint64_t index_counter;
   float *buffer_end;
-  ulonglong temp_ulong2;
-  ulonglong temp_ulong3;
-  longlong context_offset;
+  uint64_t temp_ulong2;
+  uint64_t temp_ulong3;
+  int64_t context_offset;
   double temp_double2;
   double temp_double3;
   double temp_double4;
@@ -313,7 +313,7 @@ void update_statistics_with_sorting(void)
   
   // 第一个缓冲区排序
   if (buffer_end != buffer_start) {
-    temp_long3 = (longlong)buffer_start - (longlong)buffer_end >> 2;
+    temp_long3 = (int64_t)buffer_start - (int64_t)buffer_end >> 2;
     
     // 计算排序深度
     for (temp_long1 = temp_long3; temp_long1 != 0; temp_long1 = temp_long1 >> 1) {
@@ -350,14 +350,14 @@ void update_statistics_with_sorting(void)
   
   if (float_ptr1 != float_ptr4) {
     temp_ulong2 = index_counter & 0xffffffff;
-    temp_long3 = (longlong)float_ptr4 - (longlong)float_ptr1 >> 2;
+    temp_long3 = (int64_t)float_ptr4 - (int64_t)float_ptr1 >> 2;
     
     for (temp_long1 = temp_long3; temp_long1 != 0; temp_long1 = temp_long1 >> 1) {
       temp_uint1 = (int)temp_ulong2 + 1;
-      temp_ulong2 = (ulonglong)temp_uint1;
+      temp_ulong2 = (uint64_t)temp_uint1;
     }
     
-    perform_sort_operation(float_ptr1,float_ptr4,(longlong)(int)(temp_uint1 - 1) * 2,0);
+    perform_sort_operation(float_ptr1,float_ptr4,(int64_t)(int)(temp_uint1 - 1) * 2,0);
     
     if (temp_long3 < 0x1d) {
       insertion_sort(float_ptr1,float_ptr4);
@@ -386,7 +386,7 @@ void update_statistics_with_sorting(void)
   temp_double2 = 0.0;
   temp_double6 = 0.0;
   temp_double1 = 0.0;
-  temp_ulong3 = *(longlong *)(context_offset + 0x70) - (longlong)float_ptr4 >> 2;
+  temp_ulong3 = *(int64_t *)(context_offset + 0x70) - (int64_t)float_ptr4 >> 2;
   temp_double3 = 0.0;
   temp_double8 = 0.0;
   temp_double5 = 0.0;
@@ -411,24 +411,24 @@ void update_statistics_with_sorting(void)
     temp_double1 = 0.0;
     
     do {
-      if ((longlong)temp_ulong1 < (longlong)(int)((temp_ulong3 - temp_long1 >> 1) + temp_long1 >> 6)) {
+      if ((int64_t)temp_ulong1 < (int64_t)(int)((temp_ulong3 - temp_long1 >> 1) + temp_long1 >> 6)) {
         temp_double1 = temp_double1 + 1.0;
         temp_double6 = temp_double6 + (double)*float_ptr4;
       }
-      if ((longlong)temp_ulong1 < (longlong)(int)((temp_ulong3 * 0xf - temp_long3 >> 1) + temp_long3 >> 6)) {
+      if ((int64_t)temp_ulong1 < (int64_t)(int)((temp_ulong3 * 0xf - temp_long3 >> 1) + temp_long3 >> 6)) {
         temp_double8 = temp_double8 + 1.0;
         temp_double3 = temp_double3 + (double)*float_ptr4;
       }
-      if ((longlong)temp_ulong1 < (longlong)(int)((temp_ulong3 * 0x1e - temp_long2 >> 1) + temp_long2 >> 6)) {
+      if ((int64_t)temp_ulong1 < (int64_t)(int)((temp_ulong3 * 0x1e - temp_long2 >> 1) + temp_long2 >> 6)) {
         temp_double1 = temp_double1 + 1.0;
         temp_double5 = temp_double5 + (double)*float_ptr4;
       }
       
       temp_uint1 = (int)temp_ulong2 + 1;
-      temp_ulong2 = (ulonglong)temp_uint1;
+      temp_ulong2 = (uint64_t)temp_uint1;
       temp_ulong1 = temp_ulong1 + 1;
       float_ptr4 = float_ptr4 + 1;
-    } while ((ulonglong)(longlong)(int)temp_uint1 < temp_ulong3);
+    } while ((uint64_t)(int64_t)(int)temp_uint1 < temp_ulong3);
   }
   
   // 更新统计结果
@@ -449,7 +449,7 @@ void update_statistics_with_sorting(void)
   
   // 处理第二个缓冲区的统计数据
   float_ptr4 = *(float **)(context_offset + 0x88);
-  temp_ulong2 = *(longlong *)(context_offset + 0x90) - (longlong)float_ptr4 >> 2;
+  temp_ulong2 = *(int64_t *)(context_offset + 0x90) - (int64_t)float_ptr4 >> 2;
   
   if (temp_ulong2 != 0) {
     // 计算第二个缓冲区的统计分位点
@@ -468,23 +468,23 @@ void update_statistics_with_sorting(void)
     temp_ulong3 = index_counter;
     
     do {
-      if ((longlong)index_counter < (longlong)(int)((temp_ulong2 - temp_long1 >> 1) + temp_long1 >> 6)) {
+      if ((int64_t)index_counter < (int64_t)(int)((temp_ulong2 - temp_long1 >> 1) + temp_long1 >> 6)) {
         temp_double2 = temp_double2 + (double)*float_ptr4;
       }
-      if ((longlong)index_counter < (longlong)(int)((temp_ulong2 * 0xf - temp_long3 >> 1) + temp_long3 >> 6)) {
+      if ((int64_t)index_counter < (int64_t)(int)((temp_ulong2 * 0xf - temp_long3 >> 1) + temp_long3 >> 6)) {
         temp_double7 = temp_double7 + 1.0;
         temp_double4 = temp_double4 + (double)*float_ptr4;
       }
-      if ((longlong)index_counter < (longlong)(int)((temp_ulong2 * 0x1e - temp_long2 >> 1) + temp_long2 >> 6)) {
+      if ((int64_t)index_counter < (int64_t)(int)((temp_ulong2 * 0x1e - temp_long2 >> 1) + temp_long2 >> 6)) {
         temp_double9 = temp_double9 + 1.0;
         temp_double6 = temp_double6 + (double)*float_ptr4;
       }
       
       temp_uint1 = (int)temp_ulong3 + 1;
-      temp_ulong3 = (ulonglong)temp_uint1;
+      temp_ulong3 = (uint64_t)temp_uint1;
       index_counter = index_counter + 1;
       float_ptr4 = float_ptr4 + 1;
-    } while ((ulonglong)(longlong)(int)temp_uint1 < temp_ulong2);
+    } while ((uint64_t)(int64_t)(int)temp_uint1 < temp_ulong2);
   }
   
   // 最终统计更新
@@ -523,17 +523,17 @@ void calculate_weighted_statistics(uint64_t context_ptr,double weight1,double we
   int8_t temp_array11 [16];
   int8_t temp_array12 [16];
   int8_t temp_array13 [16];
-  ulonglong temp_ulong1;
-  longlong temp_long1;
-  longlong temp_long2;
-  longlong temp_long3;
+  uint64_t temp_ulong1;
+  int64_t temp_long1;
+  int64_t temp_long2;
+  int64_t temp_long3;
   uint temp_uint1;
-  ulonglong index_counter;
-  ulonglong data_count;
+  uint64_t index_counter;
+  uint64_t data_count;
   float *data_ptr;
   float *float_ptr1;
-  ulonglong buffer_size;
-  longlong context_offset;
+  uint64_t buffer_size;
+  int64_t context_offset;
   double base_value1;
   double base_value2;
   double temp_double1;
@@ -545,7 +545,7 @@ void calculate_weighted_statistics(uint64_t context_ptr,double weight1,double we
   double temp_double4;
   double temp_double5;
   double temp_double6;
-  ulonglong temp_ulong2;
+  uint64_t temp_ulong2;
   
   // 计算加权统计分位点
   temp_array1._8_8_ = 0;
@@ -570,15 +570,15 @@ void calculate_weighted_statistics(uint64_t context_ptr,double weight1,double we
   
   // 遍历数据计算加权统计
   do {
-    if ((longlong)temp_ulong1 < (longlong)(int)((buffer_size - temp_long1 >> 1) + temp_long1 >> 6)) {
+    if ((int64_t)temp_ulong1 < (int64_t)(int)((buffer_size - temp_long1 >> 1) + temp_long1 >> 6)) {
       weight1 = weight1 + weight2;
       weighted_value1 = weighted_value1 + (double)*data_ptr;
     }
-    if ((longlong)temp_ulong1 < (longlong)(int)((buffer_size * 0xf - temp_long2 >> 1) + temp_long2 >> 6)) {
+    if ((int64_t)temp_ulong1 < (int64_t)(int)((buffer_size * 0xf - temp_long2 >> 1) + temp_long2 >> 6)) {
       weighted_value2 = weighted_value2 + weight2;
       base_value2 = base_value2 + (double)*data_ptr;
     }
-    if ((longlong)temp_ulong1 < (longlong)(int)((buffer_size * 0x1e - temp_long3 >> 1) + temp_long3 >> 6)) {
+    if ((int64_t)temp_ulong1 < (int64_t)(int)((buffer_size * 0x1e - temp_long3 >> 1) + temp_long3 >> 6)) {
       weighted_value3 = weighted_value3 + weight2;
       weighted_value1 = weighted_value1 + (double)*data_ptr;
     }
@@ -586,7 +586,7 @@ void calculate_weighted_statistics(uint64_t context_ptr,double weight1,double we
     sample_count = sample_count + 1;
     temp_ulong1 = temp_ulong1 + 1;
     data_ptr = data_ptr + 1;
-  } while ((ulonglong)(longlong)sample_count < buffer_size);
+  } while ((uint64_t)(int64_t)sample_count < buffer_size);
   
   // 计算最终加权统计结果
   temp_int = *(int *)(context_offset + 0xdc);
@@ -602,7 +602,7 @@ void calculate_weighted_statistics(uint64_t context_ptr,double weight1,double we
   
   // 处理第二个缓冲区的加权统计
   float_ptr1 = *(float **)(context_offset + 0x88);
-  temp_ulong1 = *(longlong *)(context_offset + 0x90) - (longlong)float_ptr1 >> 2;
+  temp_ulong1 = *(int64_t *)(context_offset + 0x90) - (int64_t)float_ptr1 >> 2;
   temp_double1 = base_value1;
   temp_double2 = base_value1;
   temp_double3 = base_value1;
@@ -631,23 +631,23 @@ void calculate_weighted_statistics(uint64_t context_ptr,double weight1,double we
     temp_ulong2 = index_counter;
     
     do {
-      if ((longlong)index_counter < (longlong)(int)((temp_ulong1 - temp_long1 >> 1) + temp_long1 >> 6)) {
+      if ((int64_t)index_counter < (int64_t)(int)((temp_ulong1 - temp_long1 >> 1) + temp_long1 >> 6)) {
         base_value1 = base_value1 + (double)*float_ptr1;
       }
-      if ((longlong)index_counter < (longlong)(int)((temp_ulong1 * 0xf - temp_long2 >> 1) + temp_long2 >> 6)) {
+      if ((int64_t)index_counter < (int64_t)(int)((temp_ulong1 * 0xf - temp_long2 >> 1) + temp_long2 >> 6)) {
         temp_double3 = temp_double3 + weight2;
         temp_double1 = temp_double1 + (double)*float_ptr1;
       }
-      if ((longlong)index_counter < (longlong)(int)((temp_ulong1 * 0x1e - temp_long3 >> 1) + temp_long3 >> 6)) {
+      if ((int64_t)index_counter < (int64_t)(int)((temp_ulong1 * 0x1e - temp_long3 >> 1) + temp_long3 >> 6)) {
         temp_double4 = temp_double4 + weight2;
         temp_double2 = temp_double2 + (double)*float_ptr1;
       }
       
       temp_uint1 = (int)temp_ulong2 + 1;
-      temp_ulong2 = (ulonglong)temp_uint1;
+      temp_ulong2 = (uint64_t)temp_uint1;
       index_counter = index_counter + 1;
       float_ptr1 = float_ptr1 + 1;
-    } while ((ulonglong)(longlong)(int)temp_uint1 < temp_ulong1);
+    } while ((uint64_t)(int64_t)(int)temp_uint1 < temp_ulong1);
   }
   
   // 更新最终加权统计结果
@@ -678,16 +678,16 @@ void update_moving_statistics(uint64_t param1,uint64_t param2,double weight,doub
   int8_t temp_array4 [16];
   int8_t temp_array5 [16];
   int8_t temp_array6 [16];
-  longlong temp_long1;
-  longlong temp_long2;
-  longlong temp_long3;
+  int64_t temp_long1;
+  int64_t temp_long2;
+  int64_t temp_long3;
   int temp_int;
   uint temp_uint1;
-  ulonglong index_counter;
-  ulonglong data_count;
+  uint64_t index_counter;
+  uint64_t data_count;
   float *data_ptr;
-  ulonglong buffer_size;
-  longlong context_offset;
+  uint64_t buffer_size;
+  int64_t context_offset;
   double base_value1;
   double base_value2;
   double moving_value1;
@@ -697,7 +697,7 @@ void update_moving_statistics(uint64_t param1,uint64_t param2,double weight,doub
   int32_t xmm_register_a;
   int32_t xmm_register_b;
   double moving_value5;
-  ulonglong temp_ulong1;
+  uint64_t temp_ulong1;
   
   // 计算移动统计分位点
   temp_array1._8_8_ = 0;
@@ -722,23 +722,23 @@ void update_moving_statistics(uint64_t param1,uint64_t param2,double weight,doub
   
   // 遍历数据计算移动统计
   do {
-    if ((longlong)index_counter < (longlong)(int)((buffer_size - temp_long1 >> 1) + temp_long1 >> 6)) {
+    if ((int64_t)index_counter < (int64_t)(int)((buffer_size - temp_long1 >> 1) + temp_long1 >> 6)) {
       value = value + (double)*data_ptr;
     }
-    if ((longlong)index_counter < (longlong)(int)((buffer_size * 0xf - temp_long2 >> 1) + temp_long2 >> 6)) {
+    if ((int64_t)index_counter < (int64_t)(int)((buffer_size * 0xf - temp_long2 >> 1) + temp_long2 >> 6)) {
       moving_value1 = moving_value1 + weight;
       base_value2 = base_value2 + (double)*data_ptr;
     }
-    if ((longlong)index_counter < (longlong)(int)((buffer_size * 0x1e - temp_long3 >> 1) + temp_long3 >> 6)) {
+    if ((int64_t)index_counter < (int64_t)(int)((buffer_size * 0x1e - temp_long3 >> 1) + temp_long3 >> 6)) {
       moving_value2 = moving_value2 + weight;
       base_value1 = base_value1 + (double)*data_ptr;
     }
     
     temp_uint1 = (int)temp_ulong1 + 1;
-    temp_ulong1 = (ulonglong)temp_uint1;
+    temp_ulong1 = (uint64_t)temp_uint1;
     index_counter = index_counter + 1;
     data_ptr = data_ptr + 1;
-  } while ((ulonglong)(longlong)(int)temp_uint1 < buffer_size);
+  } while ((uint64_t)(int64_t)(int)temp_uint1 < buffer_size);
   
   // 更新移动统计结果
   *(int *)(context_offset + 0xdc) = temp_int + 1;
@@ -764,10 +764,10 @@ void update_moving_statistics(uint64_t param1,uint64_t param2,double weight,doub
 // 警告: 以下全局变量可能与较小符号重叠地址
 
 
-// 函数: void execute_performance_analysis(longlong context_ptr)
+// 函数: void execute_performance_analysis(int64_t context_ptr)
 // 功能: 执行性能分析
 // 参数: context_ptr - 上下文指针
-void execute_performance_analysis(longlong context_ptr)
+void execute_performance_analysis(int64_t context_ptr)
 
 {
   uint64_t temp_ulong1;
@@ -817,26 +817,26 @@ void execute_performance_analysis(longlong context_ptr)
 }
 
 
-// 函数: void optimized_quicksort(float *array_start,float *array_end,longlong depth,int8_t sort_flag)
+// 函数: void optimized_quicksort(float *array_start,float *array_end,int64_t depth,int8_t sort_flag)
 // 功能: 优化的快速排序算法
 // 参数: array_start - 数组起始指针，array_end - 数组结束指针，depth - 递归深度，sort_flag - 排序标志
-void optimized_quicksort(float *array_start,float *array_end,longlong depth,int8_t sort_flag)
+void optimized_quicksort(float *array_start,float *array_end,int64_t depth,int8_t sort_flag)
 
 {
   float pivot1;
   float pivot2;
-  ulonglong array_size;
-  longlong middle_index;
+  uint64_t array_size;
+  int64_t middle_index;
   float *left_ptr;
   float *right_ptr;
   float temp_float1;
   float temp_float2;
   
-  array_size = (longlong)array_end - (longlong)array_start;
+  array_size = (int64_t)array_end - (int64_t)array_start;
   
   // 当数组足够大且递归深度大于0时使用快速排序
-  while ((0x70 < (longlong)(array_size & 0xfffffffffffffffc) && (0 < depth))) {
-    middle_index = (longlong)array_end - (longlong)array_start >> 2;
+  while ((0x70 < (int64_t)(array_size & 0xfffffffffffffffc) && (0 < depth))) {
+    middle_index = (int64_t)array_end - (int64_t)array_start >> 2;
     if (middle_index < 0) {
       middle_index = middle_index + 1;
     }
@@ -887,7 +887,7 @@ void optimized_quicksort(float *array_start,float *array_end,longlong depth,int8
     // 递归排序右半部分
     depth = depth + -1;
     optimized_quicksort(right_ptr,array_end,depth,sort_flag);
-    array_size = (longlong)right_ptr - (longlong)array_start;
+    array_size = (int64_t)right_ptr - (int64_t)array_start;
     array_end = right_ptr;
   }
   
@@ -899,26 +899,26 @@ void optimized_quicksort(float *array_start,float *array_end,longlong depth,int8
 }
 
 
-// 函数: void alternative_quicksort(float *array_start,float *array_end,longlong depth,int8_t sort_flag)
+// 函数: void alternative_quicksort(float *array_start,float *array_end,int64_t depth,int8_t sort_flag)
 // 功能: 替代的快速排序实现
 // 参数: array_start - 数组起始指针，array_end - 数组结束指针，depth - 递归深度，sort_flag - 排序标志
-void alternative_quicksort(float *array_start,float *array_end,longlong depth,int8_t sort_flag)
+void alternative_quicksort(float *array_start,float *array_end,int64_t depth,int8_t sort_flag)
 
 {
   float pivot1;
   float pivot2;
-  longlong array_base;
-  ulonglong array_size;
-  longlong middle_index;
+  int64_t array_base;
+  uint64_t array_size;
+  int64_t middle_index;
   float *left_ptr;
   float *right_ptr;
   float temp_float1;
   float temp_float2;
   
-  array_size = array_base - (longlong)array_start;
+  array_size = array_base - (int64_t)array_start;
   
-  while ((0x70 < (longlong)(array_size & 0xfffffffffffffffc) && (0 < depth))) {
-    middle_index = (longlong)array_end - (longlong)array_start >> 2;
+  while ((0x70 < (int64_t)(array_size & 0xfffffffffffffffc) && (0 < depth))) {
+    middle_index = (int64_t)array_end - (int64_t)array_start >> 2;
     if (middle_index < 0) {
       middle_index = middle_index + 1;
     }
@@ -965,7 +965,7 @@ void alternative_quicksort(float *array_start,float *array_end,longlong depth,in
     
     depth = depth + -1;
     optimized_quicksort(right_ptr,array_end,depth,sort_flag);
-    array_size = (longlong)right_ptr - (longlong)array_start;
+    array_size = (int64_t)right_ptr - (int64_t)array_start;
     array_end = right_ptr;
   }
   
@@ -984,11 +984,11 @@ void iterative_quicksort(int32_t depth_param,float *array_end)
 {
   float pivot1;
   float pivot2;
-  longlong temp_long1;
+  int64_t temp_long1;
   float *left_ptr;
   float *right_ptr;
   int8_t sort_flag;
-  longlong array_base;
+  int64_t array_base;
   float *array_start;
   float temp_float1;
   float temp_float2;
@@ -997,7 +997,7 @@ void iterative_quicksort(int32_t depth_param,float *array_end)
     right_ptr = array_end;
     if (array_base < 1) break;
     
-    temp_long1 = (longlong)array_end - (longlong)array_start >> 2;
+    temp_long1 = (int64_t)array_end - (int64_t)array_start >> 2;
     if (temp_long1 < 0) {
       temp_long1 = temp_long1 + 1;
     }
@@ -1045,7 +1045,7 @@ void iterative_quicksort(int32_t depth_param,float *array_end)
     array_base = array_base + -1;
     depth_param = optimized_quicksort(right_ptr,array_end,array_base,sort_flag);
     array_end = right_ptr;
-  } while (0x70 < (longlong)((longlong)right_ptr - (longlong)array_start & 0xfffffffffffffffcU));
+  } while (0x70 < (int64_t)((int64_t)right_ptr - (int64_t)array_start & 0xfffffffffffffffcU));
   
   if (array_base == 0) {
     final_insertion_sort(depth_param,right_ptr,right_ptr,sort_flag);
@@ -1059,7 +1059,7 @@ void iterative_quicksort(int32_t depth_param,float *array_end)
 void conditional_insertion_sort(void)
 
 {
-  longlong array_base;
+  int64_t array_base;
   
   if (array_base == 0) {
     final_insertion_sort();
@@ -1078,25 +1078,25 @@ void direct_insertion_sort(void)
 }
 
 
-// 函数: void hybrid_quicksort(float *array_start,float *array_end,longlong depth,int8_t sort_flag)
+// 函数: void hybrid_quicksort(float *array_start,float *array_end,int64_t depth,int8_t sort_flag)
 // 功能: 混合快速排序算法
 // 参数: array_start - 数组起始指针，array_end - 数组结束指针，depth - 递归深度，sort_flag - 排序标志
-void hybrid_quicksort(float *array_start,float *array_end,longlong depth,int8_t sort_flag)
+void hybrid_quicksort(float *array_start,float *array_end,int64_t depth,int8_t sort_flag)
 
 {
   float pivot1;
   float pivot2;
-  ulonglong array_size;
-  longlong middle_index;
+  uint64_t array_size;
+  int64_t middle_index;
   float *left_ptr;
   float *right_ptr;
   float temp_float1;
   float temp_float2;
   
-  array_size = (longlong)array_end - (longlong)array_start;
+  array_size = (int64_t)array_end - (int64_t)array_start;
   
-  while ((0x70 < (longlong)(array_size & 0xfffffffffffffffc) && (0 < depth))) {
-    middle_index = (longlong)array_end - (longlong)array_start >> 2;
+  while ((0x70 < (int64_t)(array_size & 0xfffffffffffffffc) && (0 < depth))) {
+    middle_index = (int64_t)array_end - (int64_t)array_start >> 2;
     if (middle_index < 0) {
       middle_index = middle_index + 1;
     }
@@ -1143,7 +1143,7 @@ void hybrid_quicksort(float *array_start,float *array_end,longlong depth,int8_t 
     
     depth = depth + -1;
     hybrid_quicksort(right_ptr,array_end,depth,sort_flag);
-    array_size = (longlong)right_ptr - (longlong)array_start;
+    array_size = (int64_t)right_ptr - (int64_t)array_start;
     array_end = right_ptr;
   }
   
@@ -1154,26 +1154,26 @@ void hybrid_quicksort(float *array_start,float *array_end,longlong depth,int8_t 
 }
 
 
-// 函数: void alternative_hybrid_quicksort(float *array_start,float *array_end,longlong depth,int8_t sort_flag)
+// 函数: void alternative_hybrid_quicksort(float *array_start,float *array_end,int64_t depth,int8_t sort_flag)
 // 功能: 替代的混合快速排序实现
 // 参数: array_start - 数组起始指针，array_end - 数组结束指针，depth - 递归深度，sort_flag - 排序标志
-void alternative_hybrid_quicksort(float *array_start,float *array_end,longlong depth,int8_t sort_flag)
+void alternative_hybrid_quicksort(float *array_start,float *array_end,int64_t depth,int8_t sort_flag)
 
 {
   float pivot1;
   float pivot2;
-  longlong array_base;
-  ulonglong array_size;
-  longlong middle_index;
+  int64_t array_base;
+  uint64_t array_size;
+  int64_t middle_index;
   float *left_ptr;
   float *right_ptr;
   float temp_float1;
   float temp_float2;
   
-  array_size = array_base - (longlong)array_start;
+  array_size = array_base - (int64_t)array_start;
   
-  while ((0x70 < (longlong)(array_size & 0xfffffffffffffffc) && (0 < depth))) {
-    middle_index = (longlong)array_end - (longlong)array_start >> 2;
+  while ((0x70 < (int64_t)(array_size & 0xfffffffffffffffc) && (0 < depth))) {
+    middle_index = (int64_t)array_end - (int64_t)array_start >> 2;
     if (middle_index < 0) {
       middle_index = middle_index + 1;
     }
@@ -1220,7 +1220,7 @@ void alternative_hybrid_quicksort(float *array_start,float *array_end,longlong d
     
     depth = depth + -1;
     hybrid_quicksort(right_ptr,array_end,depth,sort_flag);
-    array_size = (longlong)right_ptr - (longlong)array_start;
+    array_size = (int64_t)right_ptr - (int64_t)array_start;
     array_end = right_ptr;
   }
   
@@ -1231,11 +1231,11 @@ void alternative_hybrid_quicksort(float *array_start,float *array_end,longlong d
 }
 
 
-// 函数: void FUN_180202180(longlong param_1)
+// 函数: void FUN_180202180(int64_t param_1)
 // 功能: 处理浮点数数组排序和统计计算
 // 原始实现: 处理浮点数数组的快速排序和移动平均统计计算
 // 简化实现: 保留原始的排序算法和统计计算逻辑
-void process_float_array_sorting_and_statistics(longlong param_1)
+void process_float_array_sorting_and_statistics(int64_t param_1)
 
 {
   float fVar1;
@@ -1253,17 +1253,17 @@ void process_float_array_sorting_and_statistics(longlong param_1)
   double dVar13;
   double dVar14;
   double dVar15;
-  longlong lVar16;
-  ulonglong uVar17;
-  ulonglong uVar18;
+  int64_t lVar16;
+  uint64_t uVar17;
+  uint64_t uVar18;
   uint uVar19;
   uint uVar20;
   float *pfVar21;
-  longlong lVar22;
-  longlong lVar23;
+  int64_t lVar22;
+  int64_t lVar23;
   float *pfVar24;
-  ulonglong uVar25;
-  ulonglong uVar26;
+  uint64_t uVar25;
+  uint64_t uVar26;
   double dVar27;
   double dVar28;
   double dVar29;
@@ -1278,14 +1278,14 @@ void process_float_array_sorting_and_statistics(longlong param_1)
   pfVar4 = *(float **)(param_1 + 0x68);
   uVar20 = 0;
   if (pfVar4 != pfVar24) {
-    lVar23 = (longlong)pfVar24 - (longlong)pfVar4 >> 2;
+    lVar23 = (int64_t)pfVar24 - (int64_t)pfVar4 >> 2;
     uVar26 = uVar18;
     uVar19 = uVar20;
     for (lVar16 = lVar23; lVar16 != 0; lVar16 = lVar16 >> 1) {
       uVar19 = (int)uVar26 + 1;
-      uVar26 = (ulonglong)uVar19;
+      uVar26 = (uint64_t)uVar19;
     }
-    FUN_180202d20(pfVar4,pfVar24,(longlong)(int)(uVar19 - 1) * 2,0);
+    FUN_180202d20(pfVar4,pfVar24,(int64_t)(int)(uVar19 - 1) * 2,0);
     if (lVar23 < 0x1d) {
       func_0x00018009d8a0(pfVar4,pfVar24);
     }
@@ -1310,13 +1310,13 @@ void process_float_array_sorting_and_statistics(longlong param_1)
   pfVar24 = *(float **)(param_1 + 0x90);
   pfVar4 = *(float **)(param_1 + 0x88);
   if (pfVar4 != pfVar24) {
-    lVar23 = (longlong)pfVar24 - (longlong)pfVar4 >> 2;
+    lVar23 = (int64_t)pfVar24 - (int64_t)pfVar4 >> 2;
     uVar26 = uVar18;
     for (lVar16 = lVar23; lVar16 != 0; lVar16 = lVar16 >> 1) {
       uVar20 = (int)uVar26 + 1;
-      uVar26 = (ulonglong)uVar20;
+      uVar26 = (uint64_t)uVar20;
     }
-    FUN_180202d20(pfVar4,pfVar24,(longlong)(int)(uVar20 - 1) * 2,0);
+    FUN_180202d20(pfVar4,pfVar24,(int64_t)(int)(uVar20 - 1) * 2,0);
     if (lVar23 < 0x1d) {
       func_0x00018009d8a0(pfVar4,pfVar24);
     }
@@ -1342,7 +1342,7 @@ void process_float_array_sorting_and_statistics(longlong param_1)
   dVar28 = 0.0;
   dVar32 = 0.0;
   dVar27 = 0.0;
-  uVar26 = *(longlong *)(param_1 + 0x70) - (longlong)pfVar24 >> 2;
+  uVar26 = *(int64_t *)(param_1 + 0x70) - (int64_t)pfVar24 >> 2;
   dVar29 = 0.0;
   dVar12 = 0.0;
   dVar31 = 0.0;
@@ -1363,23 +1363,23 @@ void process_float_array_sorting_and_statistics(longlong param_1)
     dVar12 = 0.0;
     dVar14 = 0.0;
     do {
-      if ((longlong)uVar17 < (longlong)(int)((uVar26 - lVar16 >> 1) + lVar16 >> 6)) {
+      if ((int64_t)uVar17 < (int64_t)(int)((uVar26 - lVar16 >> 1) + lVar16 >> 6)) {
         dVar27 = dVar27 + 1.0;
         dVar32 = dVar32 + (double)*pfVar24;
       }
-      if ((longlong)uVar17 < (longlong)(int)((uVar26 * 0xf - lVar23 >> 1) + lVar23 >> 6)) {
+      if ((int64_t)uVar17 < (int64_t)(int)((uVar26 * 0xf - lVar23 >> 1) + lVar23 >> 6)) {
         dVar12 = dVar12 + 1.0;
         dVar29 = dVar29 + (double)*pfVar24;
       }
-      if ((longlong)uVar17 < (longlong)(int)((uVar26 * 0x1e - lVar22 >> 1) + lVar22 >> 6)) {
+      if ((int64_t)uVar17 < (int64_t)(int)((uVar26 * 0x1e - lVar22 >> 1) + lVar22 >> 6)) {
         dVar14 = dVar14 + 1.0;
         dVar31 = dVar31 + (double)*pfVar24;
       }
       uVar20 = (int)uVar25 + 1;
-      uVar25 = (ulonglong)uVar20;
+      uVar25 = (uint64_t)uVar20;
       uVar17 = uVar17 + 1;
       pfVar24 = pfVar24 + 1;
-    } while ((ulonglong)(longlong)(int)uVar20 < uVar26);
+    } while ((uint64_t)(int64_t)(int)uVar20 < uVar26);
   }
   
   // 更新移动平均统计值
@@ -1397,7 +1397,7 @@ void process_float_array_sorting_and_statistics(longlong param_1)
   
   // 计算第二个数组的统计信息
   pfVar24 = *(float **)(param_1 + 0x88);
-  uVar26 = *(longlong *)(param_1 + 0x90) - (longlong)pfVar24 >> 2;
+  uVar26 = *(int64_t *)(param_1 + 0x90) - (int64_t)pfVar24 >> 2;
   if (uVar26 != 0) {
     auVar8._8_8_ = 0;
     auVar8._0_8_ = uVar26;
@@ -1412,22 +1412,22 @@ void process_float_array_sorting_and_statistics(longlong param_1)
     dVar11 = 0.0;
     dVar13 = 0.0;
     do {
-      if ((longlong)uVar18 < (longlong)(int)((uVar26 - lVar16 >> 1) + lVar16 >> 6)) {
+      if ((int64_t)uVar18 < (int64_t)(int)((uVar26 - lVar16 >> 1) + lVar16 >> 6)) {
         dVar28 = dVar28 + (double)*pfVar24;
       }
-      if ((longlong)uVar18 < (longlong)(int)((uVar26 * 0xf - lVar23 >> 1) + lVar23 >> 6)) {
+      if ((int64_t)uVar18 < (int64_t)(int)((uVar26 * 0xf - lVar23 >> 1) + lVar23 >> 6)) {
         dVar11 = dVar11 + 1.0;
         dVar30 = dVar30 + (double)*pfVar24;
       }
-      if ((longlong)uVar18 < (longlong)(int)((uVar26 * 0x1e - lVar22 >> 1) + lVar22 >> 6)) {
+      if ((int64_t)uVar18 < (int64_t)(int)((uVar26 * 0x1e - lVar22 >> 1) + lVar22 >> 6)) {
         dVar13 = dVar13 + 1.0;
         dVar32 = dVar32 + (double)*pfVar24;
       }
       uVar20 = (int)uVar17 + 1;
-      uVar17 = (ulonglong)uVar20;
+      uVar17 = (uint64_t)uVar20;
       uVar18 = uVar18 + 1;
       pfVar24 = pfVar24 + 1;
-    } while ((ulonglong)(longlong)(int)uVar20 < uVar26);
+    } while ((uint64_t)(int64_t)(int)uVar20 < uVar26);
   }
   
   // 更新最终的统计结果
@@ -1462,21 +1462,21 @@ void process_float_array_sorting_and_statistics_variant(void)
   int8_t auVar9 [16];
   int8_t auVar10 [16];
   double dVar11;
-  longlong in_RAX;
-  longlong lVar12;
-  ulonglong uVar13;
+  int64_t in_RAX;
+  int64_t lVar12;
+  uint64_t uVar13;
   uint uVar14;
   float *pfVar15;
   float *pfVar16;
-  longlong lVar17;
+  int64_t lVar17;
   float *unaff_RBX;
   uint64_t unaff_RBP;
-  longlong lVar18;
-  ulonglong unaff_RSI;
+  int64_t lVar18;
+  uint64_t unaff_RSI;
   float *unaff_RDI;
-  ulonglong uVar19;
-  ulonglong uVar20;
-  longlong unaff_R14;
+  uint64_t uVar19;
+  uint64_t uVar20;
+  int64_t unaff_R14;
   double dVar21;
   double dVar22;
   double dVar23;
@@ -1503,7 +1503,7 @@ void process_float_array_sorting_and_statistics_variant(void)
   
   // 处理第一个浮点数数组的排序
   if (unaff_RDI != unaff_RBX) {
-    lVar18 = (longlong)unaff_RBX - (longlong)unaff_RDI >> 2;
+    lVar18 = (int64_t)unaff_RBX - (int64_t)unaff_RDI >> 2;
     for (lVar12 = lVar18; lVar12 != 0; lVar12 = lVar12 >> 1) {
     }
     FUN_180202d20();
@@ -1532,12 +1532,12 @@ void process_float_array_sorting_and_statistics_variant(void)
   pfVar4 = *(float **)(unaff_R14 + 0x88);
   if (pfVar4 != pfVar15) {
     uVar19 = unaff_RSI & 0xffffffff;
-    lVar18 = (longlong)pfVar15 - (longlong)pfVar4 >> 2;
+    lVar18 = (int64_t)pfVar15 - (int64_t)pfVar4 >> 2;
     for (lVar12 = lVar18; lVar12 != 0; lVar12 = lVar12 >> 1) {
       uVar14 = (int)uVar19 + 1;
-      uVar19 = (ulonglong)uVar14;
+      uVar19 = (uint64_t)uVar14;
     }
-    FUN_180202d20(pfVar4,pfVar15,(longlong)(int)(uVar14 - 1) * 2,0);
+    FUN_180202d20(pfVar4,pfVar15,(int64_t)(int)(uVar14 - 1) * 2,0);
     if (lVar18 < 0x1d) {
       func_0x00018009d8a0(pfVar4,pfVar15);
     }
@@ -1563,7 +1563,7 @@ void process_float_array_sorting_and_statistics_variant(void)
   dVar22 = 0.0;
   dVar26 = 0.0;
   dVar21 = 0.0;
-  uVar20 = *(longlong *)(unaff_R14 + 0x70) - (longlong)pfVar15 >> 2;
+  uVar20 = *(int64_t *)(unaff_R14 + 0x70) - (int64_t)pfVar15 >> 2;
   dVar23 = 0.0;
   dVar28 = 0.0;
   dVar25 = 0.0;
@@ -1582,23 +1582,23 @@ void process_float_array_sorting_and_statistics_variant(void)
     uVar13 = unaff_RSI;
     dVar11 = 0.0;
     do {
-      if ((longlong)uVar13 < (longlong)(int)((uVar20 - lVar12 >> 1) + lVar12 >> 6)) {
+      if ((int64_t)uVar13 < (int64_t)(int)((uVar20 - lVar12 >> 1) + lVar12 >> 6)) {
         dVar21 = dVar21 + 1.0;
         dVar26 = dVar26 + (double)*pfVar15;
       }
-      if ((longlong)uVar13 < (longlong)(int)((uVar20 * 0xf - lVar18 >> 1) + lVar18 >> 6)) {
+      if ((int64_t)uVar13 < (int64_t)(int)((uVar20 * 0xf - lVar18 >> 1) + lVar18 >> 6)) {
         dVar28 = dVar28 + 1.0;
         dVar23 = dVar23 + (double)*pfVar15;
       }
-      if ((longlong)uVar13 < (longlong)(int)((uVar20 * 0x1e - lVar17 >> 1) + lVar17 >> 6)) {
+      if ((int64_t)uVar13 < (int64_t)(int)((uVar20 * 0x1e - lVar17 >> 1) + lVar17 >> 6)) {
         dVar11 = dVar11 + 1.0;
         dVar25 = dVar25 + (double)*pfVar15;
       }
       uVar14 = (int)uVar19 + 1;
-      uVar19 = (ulonglong)uVar14;
+      uVar19 = (uint64_t)uVar14;
       uVar13 = uVar13 + 1;
       pfVar15 = pfVar15 + 1;
-    } while ((ulonglong)(longlong)(int)uVar14 < uVar20);
+    } while ((uint64_t)(int64_t)(int)uVar14 < uVar20);
   }
   
   // 更新移动平均统计值
@@ -1618,7 +1618,7 @@ void process_float_array_sorting_and_statistics_variant(void)
   
   // 计算第二个数组的统计信息
   pfVar15 = *(float **)(unaff_R14 + 0x88);
-  uVar19 = *(longlong *)(unaff_R14 + 0x90) - (longlong)pfVar15 >> 2;
+  uVar19 = *(int64_t *)(unaff_R14 + 0x90) - (int64_t)pfVar15 >> 2;
   if (uVar19 != 0) {
     auVar8._8_8_ = 0;
     auVar8._0_8_ = uVar19;
@@ -1631,22 +1631,22 @@ void process_float_array_sorting_and_statistics_variant(void)
     lVar17 = SUB168(ZEXT816(0x47ae147ae147ae15) * auVar10,8);
     uVar20 = unaff_RSI;
     do {
-      if ((longlong)unaff_RSI < (longlong)(int)((uVar19 - lVar12 >> 1) + lVar12 >> 6)) {
+      if ((int64_t)unaff_RSI < (int64_t)(int)((uVar19 - lVar12 >> 1) + lVar12 >> 6)) {
         dVar22 = dVar22 + (double)*pfVar15;
       }
-      if ((longlong)unaff_RSI < (longlong)(int)((uVar19 * 0xf - lVar18 >> 1) + lVar18 >> 6)) {
+      if ((int64_t)unaff_RSI < (int64_t)(int)((uVar19 * 0xf - lVar18 >> 1) + lVar18 >> 6)) {
         dVar27 = dVar27 + 1.0;
         dVar24 = dVar24 + (double)*pfVar15;
       }
-      if ((longlong)unaff_RSI < (longlong)(int)((uVar19 * 0x1e - lVar17 >> 1) + lVar17 >> 6)) {
+      if ((int64_t)unaff_RSI < (int64_t)(int)((uVar19 * 0x1e - lVar17 >> 1) + lVar17 >> 6)) {
         dVar29 = dVar29 + 1.0;
         dVar26 = dVar26 + (double)*pfVar15;
       }
       uVar14 = (int)uVar20 + 1;
-      uVar20 = (ulonglong)uVar14;
+      uVar20 = (uint64_t)uVar14;
       unaff_RSI = unaff_RSI + 1;
       pfVar15 = pfVar15 + 1;
-    } while ((ulonglong)(longlong)(int)uVar14 < uVar19);
+    } while ((uint64_t)(int64_t)(int)uVar14 < uVar19);
   }
   
   // 更新最终的统计结果

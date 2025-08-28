@@ -57,11 +57,11 @@
 //============================================================================
 // 类型别名定义
 //============================================================================
-typedef longlong* DataPointer;                     // 数据指针类型
-typedef ulonglong* HashTablePointer;               // 哈希表指针类型
+typedef int64_t* DataPointer;                     // 数据指针类型
+typedef uint64_t* HashTablePointer;               // 哈希表指针类型
 typedef uint IndexType;                             // 索引类型
-typedef ulonglong DataValue;                        // 数据值类型
-typedef longlong ProcessCounter;                    // 处理计数器类型
+typedef uint64_t DataValue;                        // 数据值类型
+typedef int64_t ProcessCounter;                    // 处理计数器类型
 typedef bool ComparisonResult;                      // 比较结果类型
 typedef int8_t SystemFlag;                      // 系统标志类型
 typedef uint64_t* ExtendedDataPointer;            // 扩展数据指针类型
@@ -160,18 +160,18 @@ typedef struct {
     DataOperationEnum currentOperation;             // 当前操作
     MemoryStatusEnum memoryStatus;                  // 内存状态
     SystemErrorCodeEnum lastError;                  // 最后错误
-    ulonglong totalOperations;                       // 总操作数
-    ulonglong successfulOperations;                 // 成功操作数
+    uint64_t totalOperations;                       // 总操作数
+    uint64_t successfulOperations;                 // 成功操作数
 } SystemStatusStruct;
 
 /**
  * @brief 性能监控结构
  */
 typedef struct {
-    ulonglong startTime;                            // 开始时间
-    ulonglong endTime;                              // 结束时间
-    ulonglong memoryUsage;                          // 内存使用量
-    ulonglong operationCount;                       // 操作计数
+    uint64_t startTime;                            // 开始时间
+    uint64_t endTime;                              // 结束时间
+    uint64_t memoryUsage;                          // 内存使用量
+    uint64_t operationCount;                       // 操作计数
     double averageTime;                             // 平均时间
 } PerformanceMonitorStruct;
 
@@ -215,7 +215,7 @@ void AdvancedDataProcessor(DataPointer param_1, DataPointer param_2, ProcessCoun
     HashTablePointer localPtr6, localPtr7, localPtr9, localPtr11;
     IndexType localIndex8, localIndex10;
     ComparisonResult compareResult;
-    ulonglong stack_c8, stack_c0;
+    uint64_t stack_c8, stack_c0;
     StatusFlag stack_b8, stack_b4, stack_b0, stack_ac;
     StatusFlag stack_a8, stack_a4, stack_a0, stack_9c;
     ProcessCounter stack_98, stack_90;

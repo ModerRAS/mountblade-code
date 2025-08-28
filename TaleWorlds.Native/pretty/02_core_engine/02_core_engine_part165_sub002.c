@@ -21,23 +21,23 @@
  * @param allocation_size 分配大小参数
  * @param base_address 基地址参数
  */
-void optimize_memory_allocation(uint64_t memory_manager, uint64_t allocation_size, longlong base_address)
+void optimize_memory_allocation(uint64_t memory_manager, uint64_t allocation_size, int64_t base_address)
 {
-    longlong memory_offset;
-    longlong current_address;
-    ulonglong block_count;
-    longlong loop_counter;
-    ulonglong max_blocks;
-    longlong memory_context;
-    longlong data_manager;
-    longlong allocation_context;
-    longlong size_param;
+    int64_t memory_offset;
+    int64_t current_address;
+    uint64_t block_count;
+    int64_t loop_counter;
+    uint64_t max_blocks;
+    int64_t memory_context;
+    int64_t data_manager;
+    int64_t allocation_context;
+    int64_t size_param;
     uint64_t stack_param;
     
     // 计算内存偏移量
     memory_offset = calculate_aligned_offset(
         sign_extend_16bit(size_param) * 
-        sign_extend_16bit(*(longlong *)(allocation_context + 8) - base_address), 
+        sign_extend_16bit(*(int64_t *)(allocation_context + 8) - base_address), 
         8
     );
     
@@ -54,7 +54,7 @@ void optimize_memory_allocation(uint64_t memory_manager, uint64_t allocation_siz
     else {
         // 需要分配新的内存块
         current_address = initialize_memory_pool();
-        memory_offset = *(longlong *)(allocation_context + 8);
+        memory_offset = *(int64_t *)(allocation_context + 8);
         
         // 批量处理内存块
         for (loop_counter = current_address; loop_counter != memory_offset; loop_counter = loop_counter + 0x88) {
@@ -62,7 +62,7 @@ void optimize_memory_allocation(uint64_t memory_manager, uint64_t allocation_siz
         }
         
         // 更新内存管理器状态
-        *(longlong *)(allocation_context + 8) = current_address;
+        *(int64_t *)(allocation_context + 8) = current_address;
     }
     
     return;
@@ -77,7 +77,7 @@ void optimize_memory_allocation(uint64_t memory_manager, uint64_t allocation_siz
  * @param offset 偏移量
  * @return 对齐后的偏移地址
  */
-longlong calculate_aligned_offset(longlong base_address, longlong offset)
+int64_t calculate_aligned_offset(int64_t base_address, int64_t offset)
 {
     return base_address + offset;
 }
@@ -90,9 +90,9 @@ longlong calculate_aligned_offset(longlong base_address, longlong offset)
  * @param value_16bit 16位输入值
  * @return 符号扩展后的64位值
  */
-longlong sign_extend_16bit(longlong value_16bit)
+int64_t sign_extend_16bit(int64_t value_16bit)
 {
-    return (longlong)(short)value_16bit;
+    return (int64_t)(short)value_16bit;
 }
 
 /**
@@ -102,7 +102,7 @@ longlong sign_extend_16bit(longlong value_16bit)
  * 
  * @return 初始化后的内存池地址
  */
-longlong initialize_memory_pool(void)
+int64_t initialize_memory_pool(void)
 {
     // 初始化内存池系统
     // 具体实现根据上下文确定
@@ -117,7 +117,7 @@ longlong initialize_memory_pool(void)
  * @param block_ptr 内存块指针
  * @param block_size 内存块大小
  */
-void setup_memory_block(uint64_t *block_ptr, ulonglong block_size)
+void setup_memory_block(uint64_t *block_ptr, uint64_t block_size)
 {
     // 设置内存块的参数和属性
     // 具体实现根据上下文确定
@@ -130,7 +130,7 @@ void setup_memory_block(uint64_t *block_ptr, ulonglong block_size)
  * 
  * @param block_address 内存块地址
  */
-void process_memory_block(longlong block_address)
+void process_memory_block(int64_t block_address)
 {
     // 处理单个内存块
     // 具体实现根据上下文确定

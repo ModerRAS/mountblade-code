@@ -92,9 +92,9 @@ void initialize_engine_system_components(uint64_t *engine_context, uint64_t para
  * @param param3 参数3
  * @return 处理结果，1表示成功，0表示失败
  */
-uint64_t process_system_configuration(longlong config_context, longlong param2, longlong param3)
+uint64_t process_system_configuration(int64_t config_context, int64_t param2, int64_t param3)
 {
-    longlong config_ptr;
+    int64_t config_ptr;
     char validation_result;
     int compare_result;
     void *string_ptr;
@@ -115,7 +115,7 @@ uint64_t process_system_configuration(longlong config_context, longlong param2, 
         config_ptr = global_config_manager;
         
         // 验证配置值
-        if ((*(longlong *)(global_config_manager + 0x530) != 0) &&
+        if ((*(int64_t *)(global_config_manager + 0x530) != 0) &&
             (validation_result = (**(code **)(global_config_manager + 0x538))(config_values), validation_result == '\0')) {
             
             // 配置验证失败，使用默认值
@@ -152,7 +152,7 @@ uint64_t process_system_configuration(longlong config_context, longlong param2, 
         config_values[0] = (uint)(compare_result != 0);
         
         // 验证配置值
-        if ((*(longlong *)(config_context + 0xa00) != 0) &&
+        if ((*(int64_t *)(config_context + 0xa00) != 0) &&
             (validation_result = (**(code **)(config_context + 0xa08))(config_values), validation_result == '\0')) {
             
             // 配置验证失败，使用默认值
@@ -180,7 +180,7 @@ uint64_t process_system_configuration(longlong config_context, longlong param2, 
  * 执行系统清理和资源释放
  * @param system_context 系统上下文指针
  */
-void execute_system_cleanup(longlong system_context)
+void execute_system_cleanup(int64_t system_context)
 {
     int cleanup_level;
     char cleanup_status;
@@ -190,13 +190,13 @@ void execute_system_cleanup(longlong system_context)
     int8_t *log_message;
     int32_t log_code;
     int8_t log_buffer[32];
-    ulonglong security_key;
+    uint64_t security_key;
     
     // 设置清理标志
     cleanup_flag = 0xfffffffffffffffe;
     
     // 生成安全密钥
-    security_key = global_security_key ^ (ulonglong)temp_buffer;
+    security_key = global_security_key ^ (uint64_t)temp_buffer;
     
     // 确定清理级别
     cleanup_level = *(int *)(system_context + 0xbd0);
@@ -227,5 +227,5 @@ void execute_system_cleanup(longlong system_context)
     }
     
     // 执行最终清理并退出
-    execute_final_cleanup(security_key ^ (ulonglong)temp_buffer);
+    execute_final_cleanup(security_key ^ (uint64_t)temp_buffer);
 }

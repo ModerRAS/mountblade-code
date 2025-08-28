@@ -2,12 +2,12 @@
 
 // 02_core_engine_part230.c - 核心引擎模块第230部分
 
-// 函数: void process_render_batch(longlong render_context, longlong scene_data)
+// 函数: void process_render_batch(int64_t render_context, int64_t scene_data)
 // 处理渲染批次，包括视锥体剔除、矩阵变换和渲染对象管理
-void process_render_batch(longlong render_context, longlong scene_data)
+void process_render_batch(int64_t render_context, int64_t scene_data)
 
 {
-  longlong *object_ptr;
+  int64_t *object_ptr;
   float near_plane;
   float far_plane;
   float left_plane;
@@ -24,25 +24,25 @@ void process_render_batch(longlong render_context, longlong scene_data)
   uint64_t temp_value1;
   uint64_t temp_value2;
   int32_t temp_value3;
-  longlong object_data;
+  int64_t object_data;
   float *camera_position;
   uint *render_flags;
   uint64_t saved_rbx;
-  longlong mesh_data;
+  int64_t mesh_data;
   float *saved_rbp;
   int object_count;
   uint batch_index;
   uint64_t saved_rsi;
-  longlong vertex_count;
+  int64_t vertex_count;
   uint64_t saved_rdi;
-  longlong stack_offset;
+  int64_t stack_offset;
   float *saved_r12;
   float *saved_r13;
   uint64_t saved_r14;
   char lod_level;
   uint64_t saved_r15;
-  ulonglong vertex_offset;
-  longlong transform_matrix;
+  uint64_t vertex_offset;
+  int64_t transform_matrix;
   float transform_x;
   float transform_y;
   float transform_z;
@@ -71,11 +71,11 @@ void process_render_batch(longlong render_context, longlong scene_data)
   int32_t stack_padding[4];
   char material_id;
   int instance_count;
-  longlong base_address;
-  longlong texture_id;
+  int64_t base_address;
+  int64_t texture_id;
   float depth_value;
   float color_value[3];
-  ulonglong index_counter;
+  uint64_t index_counter;
   
   // 保存寄存器状态
   *(uint64_t *)(stack_offset + -0x20) = saved_rbx;
@@ -127,15 +127,15 @@ void process_render_batch(longlong render_context, longlong scene_data)
   
   // 主渲染循环：遍历场景中的所有对象
   do {
-    object_data = *(longlong *)(scene_data + depth_value);
-    mesh_data = *(longlong *)(object_data + 0x20);
-    vertex_count = *(longlong *)(object_data + 0x260);
-    *(longlong *)(saved_rbp + -0x20) = vertex_count;
+    object_data = *(int64_t *)(scene_data + depth_value);
+    mesh_data = *(int64_t *)(object_data + 0x20);
+    vertex_count = *(int64_t *)(object_data + 0x260);
+    *(int64_t *)(saved_rbp + -0x20) = vertex_count;
     transform_matrix = depth_value;
     
     // 检查对象是否在视锥体内
     if (mesh_data != 0) {
-      if ((vertex_count != 0) && (*(char *)(*(longlong *)(vertex_count + 0x208) + 0x1b0) == '\x02')) {
+      if ((vertex_count != 0) && (*(char *)(*(int64_t *)(vertex_count + 0x208) + 0x1b0) == '\x02')) {
         camera_position = *(float **)(object_data + 0x28);
         bounding_radius = *saved_r12;
         
@@ -152,35 +152,35 @@ void process_render_batch(longlong render_context, longlong scene_data)
           // 遍历所有LOD级别
           if ('\0' < *(char *)(vertex_count + 0x20)) {
             do {
-              mesh_data = (longlong)lod_level * 0x100 + *(longlong *)(vertex_count + 0x18);
+              mesh_data = (int64_t)lod_level * 0x100 + *(int64_t *)(vertex_count + 0x18);
               object_count = 0;
               
               // 处理每个LOD级别的子对象
-              if (*(longlong *)(mesh_data + 0xb8) - *(longlong *)(mesh_data + 0xb0) >> 3 != 0) {
+              if (*(int64_t *)(mesh_data + 0xb8) - *(int64_t *)(mesh_data + 0xb0) >> 3 != 0) {
                 base_address = render_context + 0x3fb8;
                 vertex_count = 0;
                 do {
-                  object_ptr = *(longlong **)(vertex_count + *(longlong *)(mesh_data + 0xb0));
+                  object_ptr = *(int64_t **)(vertex_count + *(int64_t *)(mesh_data + 0xb0));
                   (**(code **)(*object_ptr + 0x208))(object_ptr, base_address);
                   vertex_count = vertex_count + 8;
                   object_count = object_count + 1;
                   render_context = base_address;
-                } while ((ulonglong)(longlong)object_count <
-                         (ulonglong)
-                         (*(longlong *)(mesh_data + 0xb8) - *(longlong *)(mesh_data + 0xb0) >> 3));
+                } while ((uint64_t)(int64_t)object_count <
+                         (uint64_t)
+                         (*(int64_t *)(mesh_data + 0xb8) - *(int64_t *)(mesh_data + 0xb0) >> 3));
               }
-              vertex_count = *(longlong *)(saved_rbp + -0x20);
+              vertex_count = *(int64_t *)(saved_rbp + -0x20);
               lod_level = lod_level + '\x01';
             } while (lod_level < *(char *)(vertex_count + 0x20));
           }
           
           // 处理材质和纹理
-          mesh_data = *(longlong *)(object_data + 0xf0);
-          if (*(longlong *)(object_data + 0xf8) - mesh_data >> 3 != 0) {
+          mesh_data = *(int64_t *)(object_data + 0xf0);
+          if (*(int64_t *)(object_data + 0xf8) - mesh_data >> 3 != 0) {
             index_counter = 0;
             vertex_offset = index_counter;
             do {
-              object_ptr = *(longlong **)(mesh_data + vertex_offset);
+              object_ptr = *(int64_t **)(mesh_data + vertex_offset);
               object_count = (**(code **)(*object_ptr + 0x98))(object_ptr);
               
               // 检查对象是否可见
@@ -280,7 +280,7 @@ void process_render_batch(longlong render_context, longlong scene_data)
                 saved_rbp[0x16] = transform_x * frustum_planes[0][0] + projection_matrix[2] * frustum_planes[0][1] + projection_matrix[0] * frustum_planes[0][2];
                 saved_rbp[0x17] = transform_x * frustum_planes[0][3] + projection_matrix[2] * frustum_planes[0][3] + projection_matrix[0] * frustum_planes[0][3];
                 projection_matrix[1] = saved_r13[1] - frustum_planes[3][1];
-                mesh_data = *(longlong *)(object_data + 0x20);
+                mesh_data = *(int64_t *)(object_data + 0x20);
                 view_matrix[3] = saved_r13[2] - frustum_planes[3][2];
                 vertex_count = object_ptr[99];
                 saved_rbp[0x2e] = projection_matrix[1] * mvp_matrix[1] + rotation_y * mvp_matrix[0] + view_matrix[3] * mvp_matrix[2];
@@ -290,13 +290,13 @@ void process_render_batch(longlong render_context, longlong scene_data)
                 
                 // 检查是否需要创建新的渲染状态
                 if ((int)vertex_count == -1) {
-                  *(int32_t *)((longlong)object_ptr + 0x314) = 0x10;
+                  *(int32_t *)((int64_t)object_ptr + 0x314) = 0x10;
                   temp_value3 = FUN_1801b9a40(mesh_data + 0x51d0, 0x10);
                   *(int32_t *)(object_ptr + 99) = temp_value3;
                   LOCK();
                   *(int32_t *)(object_ptr + 0x62) = 0;
                   UNLOCK();
-                  mesh_data = *(longlong *)(object_data + 0x20);
+                  mesh_data = *(int64_t *)(object_data + 0x20);
                 }
                 
                 // 设置渲染参数
@@ -320,13 +320,13 @@ void process_render_batch(longlong render_context, longlong scene_data)
                 saved_rbp[0x43] = (float)instance_count;
                 FUN_18020a7b0(object_ptr + 0x61, mesh_data + 0x3fb8, saved_rbp + 0x3c);
               }
-              mesh_data = *(longlong *)(object_data + 0xf0);
+              mesh_data = *(int64_t *)(object_data + 0xf0);
               batch_index = (int)index_counter + 1;
-              index_counter = (ulonglong)batch_index;
+              index_counter = (uint64_t)batch_index;
               vertex_offset = vertex_offset + 8;
-            } while ((ulonglong)(longlong)(int)batch_index <
-                     (ulonglong)(*(longlong *)(object_data + 0xf8) - mesh_data >> 3));
-            vertex_count = *(longlong *)(saved_rbp + -0x20);
+            } while ((uint64_t)(int64_t)(int)batch_index <
+                     (uint64_t)(*(int64_t *)(object_data + 0xf8) - mesh_data >> 3));
+            vertex_count = *(int64_t *)(saved_rbp + -0x20);
           }
         }
       }
@@ -368,9 +368,9 @@ void process_render_batch(longlong render_context, longlong scene_data)
       // 执行深度测试和可见性检查
       if ((vertex_count != 0) &&
          (lod_level = FUN_1802edfe0(object_data, saved_rbp + 0x32, saved_rbp + 0x1c, saved_rbp + 0x78,
-                                 (longlong)&stack_padding + 5), lod_level != '\0')) {
-        mesh_data = (longlong)material_id;
-        render_flags = (uint *)(mesh_data * 0x100 + *(longlong *)(vertex_count + 0x18));
+                                 (int64_t)&stack_padding + 5), lod_level != '\0')) {
+        mesh_data = (int64_t)material_id;
+        render_flags = (uint *)(mesh_data * 0x100 + *(int64_t *)(vertex_count + 0x18));
         do {
           LOCK();
           batch_index = *render_flags;
@@ -497,7 +497,7 @@ void process_render_batch(longlong render_context, longlong scene_data)
              fov_y * saved_rbp[7] + fov_x * saved_rbp[0xb] + projection_matrix[0] * saved_rbp[0xf] +
              saved_rbp[0x13];
         FUN_1801c1140(saved_rbp + 0x68, saved_rbp + 0x20);
-        object_data = mesh_data * 0x1b0 + *(longlong *)(*(longlong *)(vertex_count + 0x208) + 0x140);
+        object_data = mesh_data * 0x1b0 + *(int64_t *)(*(int64_t *)(vertex_count + 0x208) + 0x140);
         rotation_y = *(float *)(object_data + 0x30);
         rotation_z = *(float *)(object_data + 0x34);
         view_matrix[0] = *(float *)(object_data + 0x38);
@@ -566,11 +566,11 @@ void process_render_batch(longlong render_context, longlong scene_data)
     }
     depth_value = transform_matrix + 8;
     instance_count = instance_count + 1;
-    scene_data = **(longlong **)(saved_rbp + 0x2c);
+    scene_data = **(int64_t **)(saved_rbp + 0x2c);
     render_context = base_address;
-  } while ((ulonglong)(longlong)instance_count <
-           (ulonglong)((*(longlong **)(saved_rbp + 0x2c))[1] - scene_data >> 3));
+  } while ((uint64_t)(int64_t)instance_count <
+           (uint64_t)((*(int64_t **)(saved_rbp + 0x2c))[1] - scene_data >> 3));
   
   // 清理资源（此函数不会返回）
-  FUN_1808fc050(*(ulonglong *)(saved_rbp + 0xa8) ^ (ulonglong)&stack_padding);
+  FUN_1808fc050(*(uint64_t *)(saved_rbp + 0xa8) ^ (uint64_t)&stack_padding);
 }

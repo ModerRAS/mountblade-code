@@ -17,12 +17,12 @@
  * @param vector_array 向量数组指针，包含向量的起始地址和大小信息
  * @param scale_factor 缩放因子，用于控制向量的整体缩放比例
  */
-void normalize_ui_vector_array(longlong *vector_array, float scale_factor)
+void normalize_ui_vector_array(int64_t *vector_array, float scale_factor)
 {
-  ulonglong iteration_index;
-  longlong array_start;
+  uint64_t iteration_index;
+  int64_t array_start;
   uint element_count;
-  ulonglong current_index;
+  uint64_t current_index;
   float x_component, y_component;
   float magnitude;
   float inverse_magnitude;
@@ -41,7 +41,7 @@ void normalize_ui_vector_array(longlong *vector_array, float scale_factor)
       element_count = (int)current_index + 1;
       
       // 提取向量的X和Y分量
-      y_component = (float)((ulonglong)*(uint64_t *)(iteration_index + array_start) >> 0x20);
+      y_component = (float)((uint64_t)*(uint64_t *)(iteration_index + array_start) >> 0x20);
       x_component = (float)*(uint64_t *)(iteration_index + array_start);
       
       // 计算向量长度
@@ -55,15 +55,15 @@ void normalize_ui_vector_array(longlong *vector_array, float scale_factor)
       magnitude = inverse_magnitude * 0.5 * (3.0 - magnitude * inverse_magnitude * inverse_magnitude);
       
       // 应用归一化和缩放，并保存到目标位置
-      *(ulonglong *)(iteration_index + vector_array[0x11]) =
+      *(uint64_t *)(iteration_index + vector_array[0x11]) =
            CONCAT44(magnitude * y_component * scale_factor + *(float *)(iteration_index + 4 + array_start),
                     magnitude * x_component * scale_factor + *(float *)(iteration_index + array_start));
       
       // 移动到下一个元素
       iteration_index = iteration_index + 8;
       array_start = *vector_array;
-      current_index = (ulonglong)element_count;
-    } while ((ulonglong)(longlong)(int)element_count < (ulonglong)(vector_array[1] - array_start >> 3));
+      current_index = (uint64_t)element_count;
+    } while ((uint64_t)(int64_t)(int)element_count < (uint64_t)(vector_array[1] - array_start >> 3));
   }
   
   return;
@@ -78,9 +78,9 @@ void normalize_ui_vector_array(longlong *vector_array, float scale_factor)
  * @param source_data 源数据指针
  * @param data_offset 数据偏移量
  */
-void apply_ui_vector_transform(uint64_t transform_matrix, longlong *target_array, uint64_t source_data, longlong data_offset)
+void apply_ui_vector_transform(uint64_t transform_matrix, int64_t *target_array, uint64_t source_data, int64_t data_offset)
 {
-  ulonglong iteration_index;
+  uint64_t iteration_index;
   uint element_counter;
   float x_component, y_component;
   float magnitude;
@@ -90,13 +90,13 @@ void apply_ui_vector_transform(uint64_t transform_matrix, longlong *target_array
   float normalized_x, normalized_y;
   
   // 获取初始元素计数
-  iteration_index = (ulonglong)element_counter;
+  iteration_index = (uint64_t)element_counter;
   do {
     // 更新元素计数
     element_counter = element_counter + 1;
     
     // 提取向量分量
-    y_component = (float)((ulonglong)*(uint64_t *)(iteration_index + data_offset) >> 0x20);
+    y_component = (float)((uint64_t)*(uint64_t *)(iteration_index + data_offset) >> 0x20);
     x_component = (float)*(uint64_t *)(iteration_index + data_offset);
     
     // 计算向量长度
@@ -110,14 +110,14 @@ void apply_ui_vector_transform(uint64_t transform_matrix, longlong *target_array
     magnitude = inverse_magnitude * 0.5 * (3.0 - magnitude * inverse_magnitude * inverse_magnitude);
     
     // 应用变换并保存结果
-    *(ulonglong *)(iteration_index + target_array[0x11]) =
+    *(uint64_t *)(iteration_index + target_array[0x11]) =
          CONCAT44(magnitude * y_component * transform_factor + *(float *)(iteration_index + 4 + data_offset),
                   magnitude * x_component * transform_factor + *(float *)(iteration_index + data_offset));
     
     // 移动到下一个元素
     iteration_index = iteration_index + 8;
     data_offset = *target_array;
-  } while ((ulonglong)(longlong)(int)element_counter < (ulonglong)(target_array[1] - data_offset >> 3));
+  } while ((uint64_t)(int64_t)(int)element_counter < (uint64_t)(target_array[1] - data_offset >> 3));
   
   return;
 }
@@ -149,7 +149,7 @@ void initialize_ui_animation_system(void)
  * @param intensity 强度参数
  * @param additional_params 附加参数
  */
-void update_ui_animation_parameters(float *animation_data, float time_delta, longlong context_ptr, char enable_interpolation, 
+void update_ui_animation_parameters(float *animation_data, float time_delta, int64_t context_ptr, char enable_interpolation, 
                                   char enable_smoothing, char enable_damping, uint64_t effect_params, 
                                   uint64_t color_params, float intensity, uint64_t additional_params)
 {
@@ -157,13 +157,13 @@ void update_ui_animation_parameters(float *animation_data, float time_delta, lon
   bool use_complex_animation;
   char interpolation_flag;
   int element_index;
-  longlong context_offset;
+  int64_t context_offset;
   float *element_ptr;
-  longlong array_base;
-  longlong element_offset;
+  int64_t array_base;
+  int64_t element_offset;
   float *next_element_ptr;
   int iteration_counter;
-  ulonglong max_iterations;
+  uint64_t max_iterations;
   float current_value, next_value;
   float smooth_value, target_value;
   float blend_factor, blend_factor2;
@@ -213,10 +213,10 @@ void update_ui_animation_parameters(float *animation_data, float time_delta, lon
   float blend_theta;
   float blend_iota;
   float blend_kappa;
-  ulonglong hash_key;
+  uint64_t hash_key;
   
   // 初始化基本参数
-  hash_key = GET_SECURITY_COOKIE() ^ (ulonglong)stack_buffer;
+  hash_key = GET_SECURITY_COOKIE() ^ (uint64_t)stack_buffer;
   weight_sum = 0.0;
   element_index = 0;
   stack_param5 = additional_params;
@@ -306,11 +306,11 @@ void update_ui_animation_parameters(float *animation_data, float time_delta, lon
   }
   
   // 分解变换参数
-  stack_param2._4_4_ = (float)((ulonglong)transform_param1 >> 0x20);
+  stack_param2._4_4_ = (float)((uint64_t)transform_param1 >> 0x20);
   velocity_y = stack_param2._4_4_;
   stack_param2._0_4_ = (float)transform_param1;
   current_value = (float)stack_param2;
-  stack_param3._4_4_ = (float)((ulonglong)transform_param2 >> 0x20);
+  stack_param3._4_4_ = (float)((uint64_t)transform_param2 >> 0x20);
   angle_y = stack_param3._4_4_;
   stack_param3._0_4_ = (float)transform_param2;
   scale_x = (float)stack_param3;
@@ -326,8 +326,8 @@ void update_ui_animation_parameters(float *animation_data, float time_delta, lon
   
   // 计算旋转角度
   stack_param1 = 0x1806599e0;
-  rotation_angle = (float)atan2f(*(uint *)(*(longlong *)(context_ptr + 0x10) + 0x80) ^ 0x80000000,
-                               *(int32_t *)(*(longlong *)(context_ptr + 0x10) + 0x84));
+  rotation_angle = (float)atan2f(*(uint *)(*(int64_t *)(context_ptr + 0x10) + 0x80) ^ 0x80000000,
+                               *(int32_t *)(*(int64_t *)(context_ptr + 0x10) + 0x84));
   rotation_angle = rotation_angle + animation_data[6];
   animation_data[0xb] = rotation_angle;
   
@@ -346,9 +346,9 @@ ROTATION_NORMALIZED:
   
   // 处理动画边界
   rotation_angle = animation_data[0x18];
-  context_offset = (longlong)(int)rotation_angle;
+  context_offset = (int64_t)(int)rotation_angle;
   if (0 < (int)rotation_angle) {
-    if (*(char *)(context_offset * 0x1358 + 0x4e + (longlong)animation_data) == '\0') {
+    if (*(char *)(context_offset * 0x1358 + 0x4e + (int64_t)animation_data) == '\0') {
       blend_factor = 0.0;
     }
     else {
@@ -362,8 +362,8 @@ ROTATION_NORMALIZED:
       rotation_angle = animation_data[0x18];
     }
     
-    context_offset = (longlong)(int)rotation_angle;
-    if (*(char *)(context_offset * 0x1358 + 0x66 + (longlong)animation_data) == '\0') {
+    context_offset = (int64_t)(int)rotation_angle;
+    if (*(char *)(context_offset * 0x1358 + 0x66 + (int64_t)animation_data) == '\0') {
       blend_factor = 0.0;
     }
     else {
@@ -438,13 +438,13 @@ COMPLEX_ANIMATION_ENABLED:
   if ((use_complex_animation) && (0 < (int)animation_data[0x18])) {
     blend_factor2 = 0.0;
     element_ptr = animation_data + 0x1b;
-    max_iterations = (ulonglong)(uint)animation_data[0x18];
+    max_iterations = (uint64_t)(uint)animation_data[0x18];
     
     do {
       next_element_ptr = element_ptr + 0x495;
       rotation_angle = *element_ptr;
       element_ptr = element_ptr + 0x4d6;
-      blend_factor2 = blend_factor2 + *(float *)(*(longlong *)(*(longlong *)next_element_ptr + 0x48) + 0x188) * rotation_angle;
+      blend_factor2 = blend_factor2 + *(float *)(*(int64_t *)(*(int64_t *)next_element_ptr + 0x48) + 0x188) * rotation_angle;
       max_iterations = max_iterations - 1;
     } while (max_iterations != 0);
     
@@ -505,12 +505,12 @@ COMPLEX_ANIMATION_ENABLED:
     weight_sum = 0.0;
     if (0 < (int)animation_data[0x18]) {
       element_ptr = animation_data + 0x1b;
-      max_iterations = (ulonglong)(uint)animation_data[0x18];
+      max_iterations = (uint64_t)(uint)animation_data[0x18];
       do {
         next_element_ptr = element_ptr + 0x495;
         blend_factor = *element_ptr;
         element_ptr = element_ptr + 0x4d6;
-        weight_sum = weight_sum + *(float *)(**(longlong **)next_element_ptr + 0x188) * blend_factor;
+        weight_sum = weight_sum + *(float *)(**(int64_t **)next_element_ptr + 0x188) * blend_factor;
         max_iterations = max_iterations - 1;
       } while (max_iterations != 0);
     }
@@ -554,7 +554,7 @@ COMPLEX_ANIMATION_ENABLED:
       else {
         rotation_angle = -1.0;
       }
-      context_offset = *(longlong *)(animation_data + (longlong)(int)weight_sum * 0x4d6 + -0x26);
+      context_offset = *(int64_t *)(animation_data + (int64_t)(int)weight_sum * 0x4d6 + -0x26);
       stack_param1 = 0x180659ea7;
       array_base = FUN_18065fd40(*(uint64_t *)(context_offset + 8));
       element_offset = 0x14;
@@ -663,13 +663,13 @@ ANIMATION_BOUNDARY_CHECK:
   // 更新动画进度
   velocity_y = animation_data[0x11];
   if (velocity_y == 0.0) {
-    *(bool *)((longlong)animation_data + 0x5d) = current_value < 0.0;
+    *(bool *)((int64_t)animation_data + 0x5d) = current_value < 0.0;
   }
-  velocity_y = (*(float *)(*(longlong *)
-                        (*(longlong *)(animation_data + (longlong)(int)animation_data[0x18] * 0x4d6 + -0x26) + 8)
+  velocity_y = (*(float *)(*(int64_t *)
+                        (*(int64_t *)(animation_data + (int64_t)(int)animation_data[0x18] * 0x4d6 + -0x26) + 8)
                       + 0x188) /
-           *(float *)(*(longlong *)
-                       (*(longlong *)(animation_data + (longlong)(int)animation_data[0x18] * 0x4d6 + -0x26) + 0x38
+           *(float *)(*(int64_t *)
+                       (*(int64_t *)(animation_data + (int64_t)(int)animation_data[0x18] * 0x4d6 + -0x26) + 0x38
                        ) + 0x188)) * blend_factor * base_intensity + velocity_y;
   if (1.0 <= velocity_y) {
     velocity_y = 1.0;
@@ -678,7 +678,7 @@ ANIMATION_BOUNDARY_CHECK:
   
   // 处理动画循环
   if (animation_data[0x12] <= 0.0 && animation_data[0x12] != 0.0) {
-    if (*(char *)((longlong)animation_data + 0x5d) == '\0') {
+    if (*(char *)((int64_t)animation_data + 0x5d) == '\0') {
       scale_x = 1.0;
     }
     else {
@@ -686,7 +686,7 @@ ANIMATION_BOUNDARY_CHECK:
     }
     if (0.0 <= scale_x * current_value) {
       current_value = velocity_y;
-      if (*(char *)((longlong)animation_data + 0x5d) == '\0') {
+      if (*(char *)((int64_t)animation_data + 0x5d) == '\0') {
         stack_param1 = 0x18065a252;
         current_value = (float)fmodf(velocity_y + 0.5, 0x3f800000);
       }
@@ -793,7 +793,7 @@ FINAL_ANIMATION_UPDATE:
   element_ptr = animation_data + 0x1855;
   element_index = 1;
   do {
-    weight_sum = *(float *)(((longlong)local_buffer - (longlong)animation_data) + (longlong)element_ptr);
+    weight_sum = *(float *)(((int64_t)local_buffer - (int64_t)animation_data) + (int64_t)element_ptr);
     scale_x = weight_sum - element_ptr[-10];
     angle_y = ABS(scale_x);
     if (0.001 <= angle_y) {
@@ -827,14 +827,14 @@ FINAL_ANIMATION_UPDATE:
       else {
         scale_x = current_value;
         if (element_index == 7) {
-          if (*(char *)((longlong)animation_data + 0x5d) != '\0') {
+          if (*(char *)((int64_t)animation_data + 0x5d) != '\0') {
 WEIGHT_ADJUSTMENT:
             scale_x = 0.0;
           }
         }
         else {
           if (element_index != 8) goto WEIGHT_PROCESSING;
-          if (*(char *)((longlong)animation_data + 0x5d) == '\0') goto WEIGHT_ADJUSTMENT;
+          if (*(char *)((int64_t)animation_data + 0x5d) == '\0') goto WEIGHT_ADJUSTMENT;
         }
       }
       weight_sum = scale_x * weight_sum;
@@ -842,7 +842,7 @@ WEIGHT_ADJUSTMENT:
     }
     
 WEIGHT_PROCESSING:
-    scale_x = *(float *)((longlong)local_buffer + (4 - (longlong)animation_data) + (longlong)element_ptr);
+    scale_x = *(float *)((int64_t)local_buffer + (4 - (int64_t)animation_data) + (int64_t)element_ptr);
     angle_y = scale_x - element_ptr[-9];
     rotation_angle = ABS(angle_y);
     if (0.001 <= rotation_angle) {
@@ -878,14 +878,14 @@ WEIGHT_PROCESSING:
       else {
         angle_y = current_value;
         if (iteration_counter == 7) {
-          if (*(char *)((longlong)animation_data + 0x5d) != '\0') {
+          if (*(char *)((int64_t)animation_data + 0x5d) != '\0') {
 WEIGHT_ADJUSTMENT_SECOND:
             angle_y = 0.0;
           }
         }
         else {
           if (iteration_counter != 8) goto SECOND_WEIGHT_PROCESSING;
-          if (*(char *)((longlong)animation_data + 0x5d) == '\0') goto WEIGHT_ADJUSTMENT_SECOND;
+          if (*(char *)((int64_t)animation_data + 0x5d) == '\0') goto WEIGHT_ADJUSTMENT_SECOND;
         }
       }
       scale_x = angle_y * scale_x;
@@ -893,7 +893,7 @@ WEIGHT_ADJUSTMENT_SECOND:
     }
     
 SECOND_WEIGHT_PROCESSING:
-    scale_x = *(float *)((longlong)local_buffer + (8 - (longlong)animation_data) + (longlong)element_ptr);
+    scale_x = *(float *)((int64_t)local_buffer + (8 - (int64_t)animation_data) + (int64_t)element_ptr);
     rotation_angle = scale_x - element_ptr[-8];
     blend_speed = ABS(rotation_angle);
     if (0.001 <= blend_speed) {
@@ -929,14 +929,14 @@ SECOND_WEIGHT_PROCESSING:
       else {
         rotation_angle = current_value;
         if (iteration_counter == 7) {
-          if (*(char *)((longlong)animation_data + 0x5d) != '\0') {
+          if (*(char *)((int64_t)animation_data + 0x5d) != '\0') {
 FINAL_WEIGHT_ADJUSTMENT:
             rotation_angle = 0.0;
           }
         }
         else {
           if (iteration_counter != 8) goto FINAL_WEIGHT_PROCESSING;
-          if (*(char *)((longlong)animation_data + 0x5d) == '\0') goto FINAL_WEIGHT_ADJUSTMENT;
+          if (*(char *)((int64_t)animation_data + 0x5d) == '\0') goto FINAL_WEIGHT_ADJUSTMENT;
         }
       }
       scale_x = rotation_angle * scale_x;
@@ -1016,7 +1016,7 @@ FINAL_WEIGHT_PROCESSING:
       blend_gamma = smooth_factor4;
       smooth_factor3 = smooth_factor4;
       smooth_factor4 = smooth_factor4;
-      FUN_1808fc050(hash_key ^ (ulonglong)stack_buffer);
+      FUN_1808fc050(hash_key ^ (uint64_t)stack_buffer);
     }
   } while( true );
 }

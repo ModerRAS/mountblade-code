@@ -14,7 +14,7 @@
  * 主要用于保持寄存器状态的完整性
  */
 void set_unused_register_values() {
-    longlong reg_r15;
+    int64_t reg_r15;
     float reg_xmm7;
     float reg_xmm8;
     
@@ -37,14 +37,14 @@ void set_unused_register_values() {
  * @param object_context 对象上下文指针
  * @return 处理状态码
  */
-ulonglong process_object_management(int *object_manager, char *object_name, char *object_properties, uint object_flags, longlong object_context) {
+uint64_t process_object_management(int *object_manager, char *object_name, char *object_properties, uint object_flags, int64_t object_context) {
     uint *object_array;
-    longlong *object_data;
+    int64_t *object_data;
     float *position_ptr;
     float position_y;
     float temp_float1;
     float temp_float2;
-    longlong context_base;
+    int64_t context_base;
     uint64_t temp_undef1;
     uint64_t temp_undef2;
     int object_count;
@@ -53,19 +53,19 @@ ulonglong process_object_management(int *object_manager, char *object_name, char
     uint temp_uint2;
     int temp_int1;
     int32_t temp_undef4;
-    ulonglong result_ulong;
-    longlong temp_long1;
-    longlong temp_long2;
+    uint64_t result_ulong;
+    int64_t temp_long1;
+    int64_t temp_long2;
     int temp_int2;
     uint *temp_uint_ptr;
-    longlong temp_long3;
+    int64_t temp_long3;
     byte temp_byte1;
     char *temp_char_ptr;
     uint *temp_uint_ptr2;
     uint *temp_uint_ptr3;
     uint temp_uint3;
-    longlong temp_long4;
-    ulonglong temp_ulong2;
+    int64_t temp_long4;
+    uint64_t temp_ulong2;
     bool temp_bool1;
     float temp_float3;
     float temp_float4;
@@ -86,7 +86,7 @@ ulonglong process_object_management(int *object_manager, char *object_name, char
     float stack_float5;
     float stack_float6;
     uint stack_uint2;
-    ulonglong stack_ulong1;
+    uint64_t stack_ulong1;
     int stack_int1;
     float stack_float7;
     float stack_float8;
@@ -101,8 +101,8 @@ ulonglong process_object_management(int *object_manager, char *object_name, char
     int32_t stack_undef8;
     int8_t stack_undef9;
     uint8_t stack_undef10;
-    longlong stack_long1;
-    longlong stack_long2;
+    int64_t stack_long1;
+    int64_t stack_long2;
     uint *temp_uint_ptr4;
     
     temp_char_ptr = object_properties;
@@ -116,7 +116,7 @@ ulonglong process_object_management(int *object_manager, char *object_name, char
     }
     
     context_base = get_global_context_base();
-    stack_ulong1 = *(ulonglong *)(context_base + 0x1af8);
+    stack_ulong1 = *(uint64_t *)(context_base + 0x1af8);
     
     // 检查系统状态
     if (*(char *)(stack_ulong1 + 0xb4) != '\0') {
@@ -127,8 +127,8 @@ ulonglong process_object_management(int *object_manager, char *object_name, char
     
     // 处理空属性情况
     if ((object_properties != (char *)0x0) && (*object_properties == '\0')) {
-        *(int8_t *)(*(longlong *)(context_base + 0x1af8) + 0xb1) = 1;
-        context_base = *(longlong *)(context_base + 0x1af8);
+        *(int8_t *)(*(int64_t *)(context_base + 0x1af8) + 0xb1) = 1;
+        context_base = *(int64_t *)(context_base + 0x1af8);
         temp_uint_ptr3 = (uint *)(context_base + 0x1a8);
         *temp_uint_ptr3 = *temp_uint_ptr3 | 0x18;
         update_object_bounds(context_base + 0x1b8);
@@ -136,12 +136,12 @@ ulonglong process_object_management(int *object_manager, char *object_name, char
         stack_float4 = 3.4028235e+38;
         stack_float5 = -3.4028235e+38;
         stack_float6 = -3.4028235e+38;
-        update_object_bounds_ext(&stack_float3, (ulonglong)temp_uint1, 0);
+        update_object_bounds_ext(&stack_float3, (uint64_t)temp_uint1, 0);
         result_ulong = get_system_timestamp();
         return result_ulong & 0xffffffffffffff00;
     }
     
-    temp_uint_ptr2 = (uint *)((ulonglong)temp_char_ptr & 0xffffffffffffff00);
+    temp_uint_ptr2 = (uint *)((uint64_t)temp_char_ptr & 0xffffffffffffff00);
     get_object_position(&stack_float1, object_name);
     temp_uint_ptr3 = (uint *)0x0;
     
@@ -152,16 +152,16 @@ ulonglong process_object_management(int *object_manager, char *object_name, char
         object_array = temp_uint_ptr2;
         do {
             if (*object_array == temp_uint1) {
-                temp_uint_ptr3 = temp_uint_ptr2 + (longlong)(int)temp_uint_ptr4 * 10;
+                temp_uint_ptr3 = temp_uint_ptr2 + (int64_t)(int)temp_uint_ptr4 * 10;
                 break;
             }
             temp_uint2 = (int)temp_uint_ptr4 + 1;
-            temp_uint_ptr4 = (uint *)(ulonglong)temp_uint2;
+            temp_uint_ptr4 = (uint *)(uint64_t)temp_uint2;
             object_array = object_array + 10;
         } while ((int)temp_uint2 < *object_manager);
     }
     
-    result_ulong = (ulonglong)temp_uint_ptr2 & 0xffffffffffffff00;
+    result_ulong = (uint64_t)temp_uint_ptr2 & 0xffffffffffffff00;
     temp_long4 = context_base;
     
     // 创建新对象
@@ -185,32 +185,32 @@ ulonglong process_object_management(int *object_manager, char *object_name, char
             if ((int)(temp_int2 + 1U) < (int)temp_uint2) {
                 temp_uint3 = temp_uint2;
             }
-            result_ulong = (ulonglong)temp_uint3;
+            result_ulong = (uint64_t)temp_uint3;
             resize_object_array(object_manager, result_ulong);
             temp_int2 = *object_manager;
             temp_long4 = get_global_context_base();
         }
         
-        temp_long1 = (longlong)temp_int2;
+        temp_long1 = (int64_t)temp_int2;
         result_ulong = CONCAT71((int7)(result_ulong >> 8), 1);
-        temp_long2 = *(longlong *)(object_manager + 2);
+        temp_long2 = *(int64_t *)(object_manager + 2);
         temp_undef1 = (uint64_t *)(temp_long2 + temp_long1 * 0x28);
         *temp_undef1 = stack_undef2;
         temp_undef1[1] = stack_undef3;
         temp_undef1 = (uint64_t *)(temp_long2 + 0x10 + temp_long1 * 0x28);
         *temp_undef1 = stack_undef4;
         temp_undef1[1] = CONCAT44(stack_undef6, stack_undef5);
-        *(ulonglong *)(temp_long2 + 0x20 + temp_long1 * 0x28) = CONCAT44(stack_undef8, stack_undef7);
-        temp_long1 = (longlong)*object_manager;
+        *(uint64_t *)(temp_long2 + 0x20 + temp_long1 * 0x28) = CONCAT44(stack_undef8, stack_undef7);
+        temp_long1 = (int64_t)*object_manager;
         *object_manager = *object_manager + 1;
-        temp_long2 = *(longlong *)(object_manager + 2);
+        temp_long2 = *(int64_t *)(object_manager + 2);
         *(float *)(temp_long2 + 0x1c + temp_long1 * 0x28) = stack_float1;
         *(uint *)(temp_long2 + temp_long1 * 0x28) = temp_uint1;
         temp_uint_ptr3 = (uint *)(temp_long2 + temp_long1 * 0x28);
     }
     
     // 更新对象索引
-    *(short *)((longlong)object_manager + 0x5a) = (short)(((longlong)temp_uint_ptr3 - *(longlong *)(object_manager + 2)) / 0x28);
+    *(short *)((int64_t)object_manager + 0x5a) = (short)(((int64_t)temp_uint_ptr3 - *(int64_t *)(object_manager + 2)) / 0x28);
     temp_uint_ptr3[8] = (uint)stack_float1;
     stack_int1 = temp_uint_ptr3[4] + 1;
     temp_uint2 = *(uint *)(context_base + 0x1a90);
@@ -218,7 +218,7 @@ ulonglong process_object_management(int *object_manager, char *object_name, char
     stack_uint2 = (uint)object_manager[0x13] >> 0x16 & 0xffffff01;
     temp_uint_ptr3[4] = temp_uint2;
     temp_uint_ptr3[1] = stack_uint1;
-    *(longlong *)(temp_uint_ptr3 + 2) = object_context;
+    *(int64_t *)(temp_uint_ptr3 + 2) = object_context;
     
     // 处理对象优先级
     if (stack_int1 < (int)temp_uint2) {
@@ -231,13 +231,13 @@ ulonglong process_object_management(int *object_manager, char *object_name, char
     }
     
     temp_bool1 = object_manager[7] == temp_uint1;
-    temp_ulong2 = CONCAT71((int7)((ulonglong)object_name >> 8), temp_bool1);
+    temp_ulong2 = CONCAT71((int7)((uint64_t)object_name >> 8), temp_bool1);
     stack_undef1 = (int32_t)temp_ulong2;
     
     if (temp_bool1) {
-        *(int8_t *)((longlong)object_manager + 0x59) = 1;
+        *(int8_t *)((int64_t)object_manager + 0x59) = 1;
     } else if ((((object_manager[5] == 0) && (temp_int2 < (int)temp_uint2)) && (object_context == 0)) && (*object_manager == 1)) {
-        temp_ulong2 = (ulonglong)temp_bool1;
+        temp_ulong2 = (uint64_t)temp_bool1;
         if ((*(byte *)(object_manager + 0x13) & 2) == 0) {
             temp_ulong2 = 1;
         }
@@ -246,8 +246,8 @@ ulonglong process_object_management(int *object_manager, char *object_name, char
     
     // 处理对象更新
     if ((stack_int1 < (int)temp_uint2) && (((int)temp_uint2 <= temp_int2 || ((char)result_ulong != '\0')))) {
-        *(int8_t *)(*(longlong *)(temp_long4 + 0x1af8) + 0xb1) = 1;
-        context_base = *(longlong *)(temp_long4 + 0x1af8);
+        *(int8_t *)(*(int64_t *)(temp_long4 + 0x1af8) + 0xb1) = 1;
+        context_base = *(int64_t *)(temp_long4 + 0x1af8);
         temp_uint_ptr3 = (uint *)(context_base + 0x1a8);
         *temp_uint_ptr3 = *temp_uint_ptr3 | 0x18;
         update_object_bounds(context_base + 0x1b8);
@@ -335,7 +335,7 @@ ulonglong process_object_management(int *object_manager, char *object_name, char
     position_y = stack_float3;
     
     // 处理对象上下文
-    if (((((object_context == 0) || (temp_long2 = *(longlong *)(object_context + 0x408), temp_long2 == 0)) || (*(longlong *)(temp_long2 + 8) != 0)) || (((*(byte *)(temp_long2 + 0xa0) & 0x10) != 0 || (*(int *)(temp_long2 + 0x20) != 1)))) || (*(char *)(context_base + 0xc2) == '\0')) {
+    if (((((object_context == 0) || (temp_long2 = *(int64_t *)(object_context + 0x408), temp_long2 == 0)) || (*(int64_t *)(temp_long2 + 8) != 0)) || (((*(byte *)(temp_long2 + 0xa0) & 0x10) != 0 || (*(int *)(temp_long2 + 0x20) != 1)))) || (*(char *)(context_base + 0xc2) == '\0')) {
         temp_bool1 = false;
     } else {
         temp_bool1 = true;
@@ -396,13 +396,13 @@ ulonglong process_object_management(int *object_manager, char *object_name, char
                 if (temp_float3 <= temp_float6 * 2.2) {
                     goto FINAL_PROCESSING;
                 }
-                if (((-1 < object_manager[0x15]) || (temp_int2 = (int)((longlong)temp_uint_ptr3 - *(longlong *)(object_manager + 2) >> 0x3f), (int)(((longlong)temp_uint_ptr3 - *(longlong *)(object_manager + 2)) / 0x28) + temp_int2 != temp_int2)) && ((object_manager[0x15] < 1 || ((int)(((longlong)temp_uint_ptr3 - *(longlong *)(object_manager + 2)) / 0x28) != *object_manager + -1)))) {
+                if (((-1 < object_manager[0x15]) || (temp_int2 = (int)((int64_t)temp_uint_ptr3 - *(int64_t *)(object_manager + 2) >> 0x3f), (int)(((int64_t)temp_uint_ptr3 - *(int64_t *)(object_manager + 2)) / 0x28) + temp_int2 != temp_int2)) && ((object_manager[0x15] < 1 || ((int)(((int64_t)temp_uint_ptr3 - *(int64_t *)(object_manager + 2)) / 0x28) != *object_manager + -1)))) {
                     goto CONTEXT_UPDATE;
                 }
             }
         }
         
-        temp_long2 = *(longlong *)(context_base + 0x2df8);
+        temp_long2 = *(int64_t *)(context_base + 0x2df8);
         stack_undef5 = 0;
         stack_undef6 = 0;
         stack_undef3 = 0;
@@ -431,8 +431,8 @@ ulonglong process_object_management(int *object_manager, char *object_name, char
             temp_long4 = get_global_context_base();
         }
         
-        temp_long3 = *(longlong *)(temp_long2 + 0x18);
-        temp_long3 = (longlong)temp_int1 * 0x40;
+        temp_long3 = *(int64_t *)(temp_long2 + 0x18);
+        temp_long3 = (int64_t)temp_int1 * 0x40;
         *(uint64_t *)(temp_long3 + temp_long3) = stack_undef2;
         ((uint64_t *)(temp_long3 + temp_long3))[1] = stack_undef3;
         temp_undef1 = (uint64_t *)(temp_long3 + 0x10 + temp_long3);
@@ -441,11 +441,11 @@ ulonglong process_object_management(int *object_manager, char *object_name, char
         temp_undef1 = (uint64_t *)(temp_long3 + 0x20 + temp_long3);
         *temp_undef1 = CONCAT44(stack_undef8, stack_undef7);
         temp_undef1[1] = CONCAT71(stack_undef10, stack_undef9);
-        temp_undef1 = (longlong *)(temp_long3 + 0x30 + temp_long3);
+        temp_undef1 = (int64_t *)(temp_long3 + 0x30 + temp_long3);
         *temp_undef1 = stack_long1;
         temp_undef1[1] = stack_long2;
         *(int *)(temp_long2 + 0x10) = *(int *)(temp_long2 + 0x10) + 1;
-        *(longlong *)(context_base + 0x1b78) = object_context;
+        *(int64_t *)(context_base + 0x1b78) = object_context;
         *(int32_t *)(context_base + 0x1b2c) = *(int32_t *)(object_context + 0x84);
         temp_float3 = *(float *)(object_context + 0x44);
         *(float *)(context_base + 0x1b48) = *(float *)(context_base + 0x1b48) - (*(float *)(object_context + 0x40) - position_y);
@@ -466,7 +466,7 @@ FINAL_PROCESSING:
                 temp_long2 = 0x21;
             }
         } else {
-            temp_long2 = ((ulonglong)(byte)stack_uint2 ^ 1) * 2 + 0x23;
+            temp_long2 = ((uint64_t)(byte)stack_uint2 ^ 1) * 2 + 0x23;
         }
     } else {
         temp_long2 = 0x22;
@@ -501,7 +501,7 @@ FINAL_PROCESSING:
     if (stack_char_ptr2 == (char *)0x0) {
         temp_undef4 = 0;
     } else {
-        temp_undef4 = get_object_instance_data(stack_ulong1, (ulonglong)temp_uint1 + 1);
+        temp_undef4 = get_object_instance_data(stack_ulong1, (uint64_t)temp_uint1 + 1);
     }
     
     result_flag = finalize_object_update(temp_undef2, &stack_float3, temp_uint3, stack_char_ptr1, temp_uint1, temp_undef4);
@@ -532,7 +532,7 @@ FINAL_PROCESSING:
         log_object_interaction(&GLOBAL_DEBUG_INFO, (int)temp_char_ptr - (int)stack_char_ptr1, stack_char_ptr1);
     }
     
-    return (ulonglong)(byte)stack_undef1;
+    return (uint64_t)(byte)stack_undef1;
 }
 
 /**
@@ -557,7 +557,7 @@ FINAL_PROCESSING:
  * @param param15 交互参数15
  * @return 交互处理结果
  */
-ulonglong process_object_interaction_ext(uint64_t param1, uint64_t param2, ulonglong param3, uint64_t param4, uint64_t param5, char param6, float param7, float param8, uint param9, longlong param10, int param11, uint64_t param12, int32_t param13, uint64_t param14, uint64_t param15) {
+uint64_t process_object_interaction_ext(uint64_t param1, uint64_t param2, uint64_t param3, uint64_t param4, uint64_t param5, char param6, float param7, float param8, uint param9, int64_t param10, int param11, uint64_t param12, int32_t param13, uint64_t param14, uint64_t param15) {
     uint *object_ptr;
     uint64_t *temp_undef_ptr1;
     int32_t *temp_undef_ptr2;
@@ -565,7 +565,7 @@ ulonglong process_object_interaction_ext(uint64_t param1, uint64_t param2, ulong
     int32_t temp_undef4;
     uint64_t temp_undef8;
     int temp_int1;
-    longlong temp_long1;
+    int64_t temp_long1;
     char *temp_char_ptr;
     uint64_t temp_undef8_2;
     uint64_t temp_undef8_3;
@@ -575,23 +575,23 @@ ulonglong process_object_interaction_ext(uint64_t param1, uint64_t param2, ulong
     uint temp_uint2;
     int temp_int2;
     int32_t temp_undef4_2;
-    longlong temp_long2;
+    int64_t temp_long2;
     char *temp_char_ptr2;
     int temp_int3;
     int *temp_int_ptr;
-    longlong temp_long3;
+    int64_t temp_long3;
     int *unaff_rbx;
-    longlong unaff_rbp;
-    longlong unaff_rsi;
+    int64_t unaff_rbp;
+    int64_t unaff_rsi;
     int temp_int4;
-    ulonglong unaff_rdi;
+    uint64_t unaff_rdi;
     byte temp_byte1;
     int *temp_int_ptr2;
-    ulonglong temp_ulong1;
+    uint64_t temp_ulong1;
     int *temp_int_ptr3;
-    longlong unaff_r13;
+    int64_t unaff_r13;
     uint64_t unaff_r14;
-    ulonglong temp_ulong2;
+    uint64_t temp_ulong2;
     bool temp_bool1;
     int32_t temp_undef4_3;
     float temp_float2;
@@ -629,17 +629,17 @@ ulonglong process_object_interaction_ext(uint64_t param1, uint64_t param2, ulong
         temp_int_ptr = temp_int_ptr2;
         do {
             if (*temp_int_ptr == temp_int4) {
-                temp_int_ptr3 = temp_int_ptr2 + (longlong)(int)temp_int_ptr4 * 10;
+                temp_int_ptr3 = temp_int_ptr2 + (int64_t)(int)temp_int_ptr4 * 10;
                 break;
             }
             temp_uint1 = (int)temp_int_ptr4 + 1;
-            temp_int_ptr4 = (int *)(ulonglong)temp_uint1;
+            temp_int_ptr4 = (int *)(uint64_t)temp_uint1;
             temp_int_ptr = temp_int_ptr + 10;
         } while ((int)temp_uint1 < *unaff_rbx);
     }
     
     temp_int2 = *(int *)(unaff_rbp + 0x70);
-    temp_ulong1 = (ulonglong)temp_int_ptr2 & 0xffffffffffffff00;
+    temp_ulong1 = (uint64_t)temp_int_ptr2 & 0xffffffffffffff00;
     
     if (temp_int_ptr3 == (int *)0x0) {
         temp_int3 = *unaff_rbx;
@@ -660,17 +660,17 @@ ulonglong process_object_interaction_ext(uint64_t param1, uint64_t param2, ulong
             if ((int)(temp_int3 + 1U) < (int)temp_uint1) {
                 temp_uint2 = temp_uint1;
             }
-            temp_ulong1 = (ulonglong)temp_uint2;
+            temp_ulong1 = (uint64_t)temp_uint2;
             resize_object_array(temp_undef4_3, temp_ulong1);
             temp_int3 = *unaff_rbx;
             unaff_r13 = get_global_context_base();
         }
         
-        temp_long1 = (longlong)temp_int3;
+        temp_long1 = (int64_t)temp_int3;
         temp_ulong1 = CONCAT71((int7)(temp_ulong1 >> 8), 1);
         temp_undef8_2 = *(uint64_t *)(unaff_rbp + -0x80);
         temp_undef8_3 = *(uint64_t *)(unaff_rbp + -0x78);
-        temp_long2 = *(longlong *)(unaff_rbx + 2);
+        temp_long2 = *(int64_t *)(unaff_rbx + 2);
         temp_undef_ptr1 = (uint64_t *)(temp_long2 + temp_long1 * 0x28);
         *temp_undef_ptr1 = param14;
         temp_undef_ptr1[1] = param15;
@@ -679,16 +679,16 @@ ulonglong process_object_interaction_ext(uint64_t param1, uint64_t param2, ulong
         *temp_undef_ptr1 = temp_undef8_2;
         temp_undef_ptr1[1] = temp_undef8_3;
         *(uint64_t *)(temp_long2 + 0x20 + temp_long1 * 0x28) = temp_undef8;
-        temp_long1 = (longlong)*unaff_rbx;
+        temp_long1 = (int64_t)*unaff_rbx;
         *unaff_rbx = *unaff_rbx + 1;
-        temp_long2 = *(longlong *)(unaff_rbx + 2);
+        temp_long2 = *(int64_t *)(unaff_rbx + 2);
         *(int *)(temp_long2 + 0x1c + temp_long1 * 0x28) = temp_int2;
         *(int *)(temp_long2 + temp_long1 * 0x28) = temp_int4;
         temp_int_ptr3 = (int *)(temp_long2 + temp_long1 * 0x28);
     }
     
-    temp_long2 = *(longlong *)(unaff_rbp + 0x90);
-    *(short *)((longlong)unaff_rbx + 0x5a) = (short)(((longlong)temp_int_ptr3 - *(longlong *)(unaff_rbx + 2)) / 0x28);
+    temp_long2 = *(int64_t *)(unaff_rbp + 0x90);
+    *(short *)((int64_t)unaff_rbx + 0x5a) = (short)(((int64_t)temp_int_ptr3 - *(int64_t *)(unaff_rbx + 2)) / 0x28);
     temp_int_ptr3[8] = temp_int2;
     param11 = temp_int_ptr3[4] + 1;
     temp_int2 = *(int *)(unaff_rsi + 0x1a90);
@@ -696,7 +696,7 @@ ulonglong process_object_interaction_ext(uint64_t param1, uint64_t param2, ulong
     param9 = (uint)unaff_rbx[0x13] >> 0x16 & 0xffffff01;
     temp_int_ptr3[4] = temp_int2;
     temp_int_ptr3[1] = *(int *)(unaff_rbp + 0x88);
-    *(longlong *)(temp_int_ptr3 + 2) = temp_long2;
+    *(int64_t *)(temp_int_ptr3 + 2) = temp_long2;
     
     if (param11 < temp_int2) {
         if ((((unaff_rbx[0x13] & 2U) != 0) && (unaff_rbx[6] == 0)) && ((temp_int2 <= temp_int3 || (unaff_rbx[5] == 0)))) {
@@ -708,13 +708,13 @@ ulonglong process_object_interaction_ext(uint64_t param1, uint64_t param2, ulong
     }
     
     temp_bool1 = unaff_rbx[7] == temp_int4;
-    temp_ulong2 = CONCAT71((int7)((ulonglong)unaff_r14 >> 8), temp_bool1);
+    temp_ulong2 = CONCAT71((int7)((uint64_t)unaff_r14 >> 8), temp_bool1);
     _bStack0000000000000034 = (int32_t)temp_ulong2;
     
     if (temp_bool1) {
-        *(int8_t *)((longlong)unaff_rbx + 0x59) = 1;
+        *(int8_t *)((int64_t)unaff_rbx + 0x59) = 1;
     } else if ((((unaff_rbx[5] == 0) && (temp_int3 < temp_int2)) && (temp_long2 == 0)) && (*unaff_rbx == 1)) {
-        temp_ulong2 = (ulonglong)temp_bool1;
+        temp_ulong2 = (uint64_t)temp_bool1;
         if ((*(byte *)(unaff_rbx + 0x13) & 2) == 0) {
             temp_ulong2 = 1;
         }
@@ -722,8 +722,8 @@ ulonglong process_object_interaction_ext(uint64_t param1, uint64_t param2, ulong
     }
     
     if ((param11 < temp_int2) && ((temp_int2 <= temp_int3 || ((char)temp_ulong1 != '\0')))) {
-        *(int8_t *)(*(longlong *)(unaff_r13 + 0x1af8) + 0xb1) = 1;
-        temp_long2 = *(longlong *)(unaff_r13 + 0x1af8);
+        *(int8_t *)(*(int64_t *)(unaff_r13 + 0x1af8) + 0xb1) = 1;
+        temp_long2 = *(int64_t *)(unaff_r13 + 0x1af8);
         object_ptr = (uint *)(temp_long2 + 0x1a8);
         *object_ptr = *object_ptr | 0x18;
         update_object_bounds(temp_long2 + 0x1b8);
@@ -809,9 +809,9 @@ ulonglong process_object_interaction_ext(uint64_t param1, uint64_t param2, ulong
     
     temp_float7 = stack_float1;
     temp_float1 = param7;
-    temp_long2 = *(longlong *)(unaff_rbp + 0x90);
+    temp_long2 = *(int64_t *)(unaff_rbp + 0x90);
     
-    if ((((temp_long2 == 0) || (temp_long1 = *(longlong *)(temp_long2 + 0x408), temp_long1 == 0)) || (*(longlong *)(temp_long1 + 8) != 0)) || (((*(byte *)(temp_long1 + 0xa0) & 0x10) != 0 || (*(int *)(temp_long1 + 0x20) != 1)) || (*(char *)(unaff_rsi + 0xc2) == '\0')))) {
+    if ((((temp_long2 == 0) || (temp_long1 = *(int64_t *)(temp_long2 + 0x408), temp_long1 == 0)) || (*(int64_t *)(temp_long1 + 8) != 0)) || (((*(byte *)(temp_long1 + 0xa0) & 0x10) != 0 || (*(int *)(temp_long1 + 0x20) != 1)) || (*(char *)(unaff_rsi + 0xc2) == '\0')))) {
         temp_bool1 = false;
     } else {
         temp_bool1 = true;
@@ -872,13 +872,13 @@ ulonglong process_object_interaction_ext(uint64_t param1, uint64_t param2, ulong
                 if (temp_float2 <= temp_float6 * 2.2) {
                     goto FINAL_PROCESSING;
                 }
-                if (((-1 < unaff_rbx[0x15]) || (temp_int2 = (int)((longlong)temp_int_ptr3 - *(longlong *)(unaff_rbx + 2) >> 0x3f), (int)(((longlong)temp_int_ptr3 - *(longlong *)(unaff_rbx + 2)) / 0x28) + temp_int2 != temp_int2)) && ((unaff_rbx[0x15] < 1 || ((int)(((longlong)temp_int_ptr3 - *(longlong *)(unaff_rbx + 2)) / 0x28) != *unaff_rbx + -1)))) {
+                if (((-1 < unaff_rbx[0x15]) || (temp_int2 = (int)((int64_t)temp_int_ptr3 - *(int64_t *)(unaff_rbx + 2) >> 0x3f), (int)(((int64_t)temp_int_ptr3 - *(int64_t *)(unaff_rbx + 2)) / 0x28) + temp_int2 != temp_int2)) && ((unaff_rbx[0x15] < 1 || ((int)(((int64_t)temp_int_ptr3 - *(int64_t *)(unaff_rbx + 2)) / 0x28) != *unaff_rbx + -1)))) {
                     goto CONTEXT_UPDATE;
                 }
             }
         }
         
-        temp_long1 = *(longlong *)(unaff_rsi + 0x2df8);
+        temp_long1 = *(int64_t *)(unaff_rsi + 0x2df8);
         *(uint64_t *)(unaff_rbp + -0x78) = 0;
         param15 = 0;
         *(uint64_t *)(unaff_rbp + -0x58) = 0;
@@ -889,7 +889,7 @@ ulonglong process_object_interaction_ext(uint64_t param1, uint64_t param2, ulong
         *(int32_t *)(unaff_rbp + -0x70) = 0xffffffff;
         *(int32_t *)(unaff_rbp + -0x6c) = 0x3f000000;
         param14 = CONCAT44(param14._4_4_, 2);
-        *(longlong *)(unaff_rbp + -0x60) = temp_long2;
+        *(int64_t *)(unaff_rbp + -0x60) = temp_long2;
         
         if (temp_int3 == temp_int2) {
             if (temp_int2 == 0) {
@@ -903,14 +903,14 @@ ulonglong process_object_interaction_ext(uint64_t param1, uint64_t param2, ulong
             }
             resize_object_array(temp_long1 + 0x10, temp_int1);
             temp_int3 = *(int *)(temp_long1 + 0x10);
-            temp_long2 = *(longlong *)(unaff_rbp + 0x90);
+            temp_long2 = *(int64_t *)(unaff_rbp + 0x90);
             unaff_r13 = get_global_context_base();
         }
         
         temp_undef8 = *(uint64_t *)(unaff_rbp + -0x80);
         temp_undef8_2 = *(uint64_t *)(unaff_rbp + -0x78);
-        temp_long3 = *(longlong *)(temp_long1 + 0x18);
-        temp_long3 = (longlong)temp_int3 * 0x40;
+        temp_long3 = *(int64_t *)(temp_long1 + 0x18);
+        temp_long3 = (int64_t)temp_int3 * 0x40;
         *(uint64_t *)(temp_long3 + temp_long3) = param14;
         ((uint64_t *)(temp_long3 + temp_long3))[1] = param15;
         temp_undef8_3 = *(uint64_t *)(unaff_rbp + -0x70);
@@ -927,7 +927,7 @@ ulonglong process_object_interaction_ext(uint64_t param1, uint64_t param2, ulong
         *temp_undef_ptr1 = temp_undef8;
         temp_undef_ptr1[1] = temp_undef8_2;
         *(int *)(temp_long1 + 0x10) = *(int *)(temp_long1 + 0x10) + 1;
-        *(longlong *)(unaff_rsi + 0x1b78) = temp_long2;
+        *(int64_t *)(unaff_rsi + 0x1b78) = temp_long2;
         *(int32_t *)(unaff_rsi + 0x1b2c) = *(int32_t *)(temp_long2 + 0x84);
         temp_float2 = *(float *)(temp_long2 + 0x44);
         *(float *)(unaff_rsi + 0x1b48) = *(float *)(unaff_rsi + 0x1b48) - (*(float *)(temp_long2 + 0x40) - temp_float1);
@@ -948,7 +948,7 @@ FINAL_PROCESSING:
                 temp_long2 = 0x21;
             }
         } else {
-            temp_long2 = ((ulonglong)(byte)param9 ^ 1) * 2 + 0x23;
+            temp_long2 = ((uint64_t)(byte)param9 ^ 1) * 2 + 0x23;
         }
     } else {
         temp_long2 = 0x22;
@@ -980,7 +980,7 @@ FINAL_PROCESSING:
         temp_uint2 = temp_uint1;
     }
     
-    if (*(longlong *)(unaff_rbp + 0x80) != 0) {
+    if (*(int64_t *)(unaff_rbp + 0x80) != 0) {
         get_object_instance_data(param10, unaff_rdi + 1);
     }
     
@@ -1013,7 +1013,7 @@ FINAL_PROCESSING:
         log_object_interaction(&GLOBAL_DEBUG_INFO, (int)temp_char_ptr2 - (int)temp_char_ptr, temp_char_ptr);
     }
     
-    return (ulonglong)stack_byte1;
+    return (uint64_t)stack_byte1;
 }
 
 /**
@@ -1029,7 +1029,7 @@ char update_object_state() {
     float temp_float1;
     int32_t temp_undef4;
     int32_t temp_undef4_2;
-    longlong temp_long1;
+    int64_t temp_long1;
     uint64_t temp_undef8;
     char *temp_char_ptr;
     int temp_int1;
@@ -1042,19 +1042,19 @@ char update_object_state() {
     int temp_int2;
     int temp_int3;
     int32_t temp_undef4_3;
-    longlong temp_long2;
+    int64_t temp_long2;
     char *temp_char_ptr2;
-    longlong temp_long3;
+    int64_t temp_long3;
     int *unaff_rbx;
-    longlong unaff_rbp;
-    longlong unaff_rsi;
+    int64_t unaff_rbp;
+    int64_t unaff_rsi;
     int temp_int4;
-    ulonglong unaff_rdi;
+    uint64_t unaff_rdi;
     byte temp_byte1;
     uint temp_uint2;
-    longlong temp_long4;
+    int64_t temp_long4;
     int unaff_r12d;
-    longlong unaff_r13;
+    int64_t unaff_r13;
     char unaff_r14b;
     int *unaff_r15;
     float temp_float2;
@@ -1072,7 +1072,7 @@ char update_object_state() {
     float stack_float3;
     float stack_float4;
     byte stack_byte1;
-    longlong stack_long1;
+    int64_t stack_long1;
     int stack_int1;
     float stack_float5;
     float stack_float6;
@@ -1156,9 +1156,9 @@ char update_object_state() {
     
     temp_float6 = stack_float2;
     temp_float1 = stack_float1;
-    temp_long2 = *(longlong *)(unaff_rbp + 0x90);
+    temp_long2 = *(int64_t *)(unaff_rbp + 0x90);
     
-    if ((((temp_long2 == 0) || (temp_long4 = *(longlong *)(temp_long2 + 0x408), temp_long4 == 0)) || (*(longlong *)(temp_long4 + 8) != 0)) || ((((*(byte *)(temp_long4 + 0xa0) & 0x10) != 0 || (*(int *)(temp_long4 + 0x20) != 1)) || (*(char *)(unaff_rsi + 0xc2) == '\0')))) {
+    if ((((temp_long2 == 0) || (temp_long4 = *(int64_t *)(temp_long2 + 0x408), temp_long4 == 0)) || (*(int64_t *)(temp_long4 + 8) != 0)) || ((((*(byte *)(temp_long4 + 0xa0) & 0x10) != 0 || (*(int *)(temp_long4 + 0x20) != 1)) || (*(char *)(unaff_rsi + 0xc2) == '\0')))) {
         temp_bool1 = false;
     } else {
         temp_bool1 = true;
@@ -1219,13 +1219,13 @@ char update_object_state() {
                 if (temp_float2 <= temp_float5 * 2.2) {
                     goto FINAL_PROCESSING;
                 }
-                if (((-1 < unaff_rbx[0x15]) || (temp_int2 = (int)((longlong)unaff_r15 - *(longlong *)(unaff_rbx + 2) >> 0x3f), (int)(((longlong)unaff_r15 - *(longlong *)(unaff_rbx + 2)) / 0x28) + temp_int2 != temp_int2)) && ((unaff_rbx[0x15] < 1 || ((int)(((longlong)unaff_r15 - *(longlong *)(unaff_rbx + 2)) / 0x28) != *unaff_rbx + -1)))) {
+                if (((-1 < unaff_rbx[0x15]) || (temp_int2 = (int)((int64_t)unaff_r15 - *(int64_t *)(unaff_rbx + 2) >> 0x3f), (int)(((int64_t)unaff_r15 - *(int64_t *)(unaff_rbx + 2)) / 0x28) + temp_int2 != temp_int2)) && ((unaff_rbx[0x15] < 1 || ((int)(((int64_t)unaff_r15 - *(int64_t *)(unaff_rbx + 2)) / 0x28) != *unaff_rbx + -1)))) {
                     goto CONTEXT_UPDATE;
                 }
             }
         }
         
-        temp_long4 = *(longlong *)(unaff_rsi + 0x2df8);
+        temp_long4 = *(int64_t *)(unaff_rsi + 0x2df8);
         *(uint64_t *)(unaff_rbp + -0x78) = 0;
         stack_undef4 = 0;
         *(uint64_t *)(unaff_rbp + -0x58) = 0;
@@ -1236,7 +1236,7 @@ char update_object_state() {
         *(int32_t *)(unaff_rbp + -0x70) = 0xffffffff;
         *(int32_t *)(unaff_rbp + -0x6c) = 0x3f000000;
         stack_undef2 = 2;
-        *(longlong *)(unaff_rbp + -0x60) = temp_long2;
+        *(int64_t *)(unaff_rbp + -0x60) = temp_long2;
         
         if (temp_int3 == temp_int2) {
             if (temp_int2 == 0) {
@@ -1250,14 +1250,14 @@ char update_object_state() {
             }
             resize_object_array(temp_long4 + 0x10, temp_int1);
             temp_int3 = *(int *)(temp_long4 + 0x10);
-            temp_long2 = *(longlong *)(unaff_rbp + 0x90);
+            temp_long2 = *(int64_t *)(unaff_rbp + 0x90);
             unaff_r13 = get_global_context_base();
         }
         
         temp_undef8 = *(uint64_t *)(unaff_rbp + -0x80);
         temp_undef8_2 = *(uint64_t *)(unaff_rbp + -0x78);
-        temp_long1 = *(longlong *)(temp_long4 + 0x18);
-        temp_long3 = (longlong)temp_int3 * 0x40;
+        temp_long1 = *(int64_t *)(temp_long4 + 0x18);
+        temp_long3 = (int64_t)temp_int3 * 0x40;
         *(uint64_t *)(temp_long3 + temp_long1) = CONCAT44(stack_undef3, stack_undef2);
         ((uint64_t *)(temp_long3 + temp_long1))[1] = stack_undef4;
         temp_undef8_3 = *(uint64_t *)(unaff_rbp + -0x70);
@@ -1274,7 +1274,7 @@ char update_object_state() {
         *temp_undef_ptr1 = temp_undef8;
         temp_undef_ptr1[1] = temp_undef8_2;
         *(int *)(temp_long4 + 0x10) = *(int *)(temp_long4 + 0x10) + 1;
-        *(longlong *)(unaff_rsi + 0x1b78) = temp_long2;
+        *(int64_t *)(unaff_rsi + 0x1b78) = temp_long2;
         *(int32_t *)(unaff_rsi + 0x1b2c) = *(int32_t *)(temp_long2 + 0x84);
         temp_float2 = *(float *)(temp_long2 + 0x44);
         *(float *)(unaff_rsi + 0x1b48) = *(float *)(unaff_rsi + 0x1b48) - (*(float *)(temp_long2 + 0x40) - temp_float1);
@@ -1295,7 +1295,7 @@ FINAL_PROCESSING:
                 temp_long2 = 0x21;
             }
         } else {
-            temp_long2 = ((ulonglong)stack_byte1 ^ 1) * 2 + 0x23;
+            temp_long2 = ((uint64_t)stack_byte1 ^ 1) * 2 + 0x23;
         }
     } else {
         temp_long2 = 0x22;
@@ -1327,7 +1327,7 @@ FINAL_PROCESSING:
         temp_uint1 = temp_uint2;
     }
     
-    if (*(longlong *)(unaff_rbp + 0x80) != 0) {
+    if (*(int64_t *)(unaff_rbp + 0x80) != 0) {
         get_object_instance_data(stack_long1, unaff_rdi + 1);
     }
     
@@ -1376,7 +1376,7 @@ int8_t handle_object_collision() {
     int32_t unaff_xmm11_da;
     int32_t unaff_xmm12_da;
     uint64_t in_stack_00000030;
-    longlong in_stack_00000050;
+    int64_t in_stack_00000050;
     
     if (in_stack_00000030._1_1_ != in_al) {
         trigger_collision_event();

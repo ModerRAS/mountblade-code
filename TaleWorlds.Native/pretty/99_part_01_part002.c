@@ -182,18 +182,18 @@ static void memory_optimizer(uint64_t context, uint64_t param1, uint64_t param2)
  * @param param_3 附加数据参数
  * @param param_4 控制标志参数
  */
-void FUN_1800a0051(uint64_t param_1, longlong *param_2, longlong param_3, byte param_4)
+void FUN_1800a0051(uint64_t param_1, int64_t *param_2, int64_t param_3, byte param_4)
 {
   int8_t uVar1;
-  longlong lVar2;
-  longlong lVar3;
+  int64_t lVar2;
+  int64_t lVar3;
   int8_t *puVar4;
-  longlong lVar5;
+  int64_t lVar5;
   int8_t *puVar6;
-  longlong lVar7;
-  ulonglong uVar8;
+  int64_t lVar7;
+  uint64_t uVar8;
   int8_t *puVar9;
-  longlong *unaff_R15;
+  int64_t *unaff_R15;
   uint in_stack_00000080;
   
   // 检查控制标志
@@ -202,7 +202,7 @@ void FUN_1800a0051(uint64_t param_1, longlong *param_2, longlong param_3, byte p
     lVar3 = param_2[1];
     // 处理迭代数据
     if (0 < (int)in_stack_00000080) {
-      uVar8 = (ulonglong)in_stack_00000080;
+      uVar8 = (uint64_t)in_stack_00000080;
       do {
         // 输出制表符
         FUN_1800a0e50(lVar3, 9);
@@ -282,7 +282,7 @@ void FUN_1800a0051(uint64_t param_1, longlong *param_2, longlong param_3, byte p
     lVar7 = 0;
   }
   else {
-    lVar7 = *(longlong *)(param_3 + 0x18);
+    lVar7 = *(int64_t *)(param_3 + 0x18);
     puVar6 = puVar4;
   }
   puVar9 = (int8_t *)0x180d48d24;
@@ -451,7 +451,7 @@ void module_cleanup(void)
  * 导出函数：系统核心数据处理器
  * 对应原始函数：FUN_1800a0051
  */
-void SystemCoreDataProcessor(uint64_t param_1, longlong *param_2, longlong param_3, byte param_4)
+void SystemCoreDataProcessor(uint64_t param_1, int64_t *param_2, int64_t param_3, byte param_4)
 {
   FUN_1800a0051(param_1, param_2, param_3, param_4);
 }

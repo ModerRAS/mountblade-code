@@ -45,7 +45,7 @@ initialize_thread_sync_objects(uint64_t *sync_object, uint64_t param_2, uint64_t
 
 // 函数：释放线程同步对象
 uint64_t *
-release_thread_sync_objects(uint64_t *sync_object, ulonglong flags, uint64_t param_3, uint64_t param_4)
+release_thread_sync_objects(uint64_t *sync_object, uint64_t flags, uint64_t param_3, uint64_t param_4)
 
 {
   *sync_object = &EMPTY_OBJECT_TABLE;
@@ -56,12 +56,12 @@ release_thread_sync_objects(uint64_t *sync_object, ulonglong flags, uint64_t par
 }
 
 // 函数：复制字符串数据（大缓冲区）
-void copy_string_data_large(longlong dest_ptr, uint64_t src_ptr, int length)
+void copy_string_data_large(int64_t dest_ptr, uint64_t src_ptr, int length)
 
 {
   if (length + 1 < 0x80) {
     // WARNING: Subroutine does not return
-    memcpy(*(int8_t **)(dest_ptr + 8), src_ptr, (longlong)length);
+    memcpy(*(int8_t **)(dest_ptr + 8), src_ptr, (int64_t)length);
   }
   **(int8_t **)(dest_ptr + 8) = 0;
   *(int32_t *)(dest_ptr + 0x10) = 0;
@@ -80,7 +80,7 @@ void perform_memory_copy(void)
 void reset_string_object(int8_t *string_obj)
 
 {
-  longlong context_ptr;
+  int64_t context_ptr;
   
   *string_obj = 0;
   *(int32_t *)(context_ptr + 0x10) = 0;
@@ -102,22 +102,22 @@ uint64_t * initialize_string_processor(uint64_t *string_processor)
 }
 
 // 函数：字符串替换处理
-void process_string_replacement(longlong src_ptr, longlong old_str_ptr, longlong new_str_ptr)
+void process_string_replacement(int64_t src_ptr, int64_t old_str_ptr, int64_t new_str_ptr)
 
 {
-  longlong found_pos;
-  longlong old_len;
-  longlong new_len;
+  int64_t found_pos;
+  int64_t old_len;
+  int64_t new_len;
   int8_t local_buffer[32];
   uint64_t stack_param1;
   void *handler_ptr;
   int8_t *buffer_ptr;
   int32_t buffer_size;
   int8_t temp_buffer[136];
-  ulonglong checksum;
+  uint64_t checksum;
   
   stack_param1 = 0xfffffffffffffffe;
-  checksum = MEMORY_CHECKSUM ^ (ulonglong)local_buffer;
+  checksum = MEMORY_CHECKSUM ^ (uint64_t)local_buffer;
   handler_ptr = &STRING_HANDLER_TABLE;
   buffer_ptr = temp_buffer;
   buffer_size = 0;
@@ -133,16 +133,16 @@ void process_string_replacement(longlong src_ptr, longlong old_str_ptr, longlong
       old_len = old_len + 1;
     } while (*(char *)(old_len + new_str_ptr) != '\0');
     // WARNING: Subroutine does not return
-    memcpy(buffer_ptr, *(longlong *)(src_ptr + 8), found_pos - *(longlong *)(src_ptr + 8));
+    memcpy(buffer_ptr, *(int64_t *)(src_ptr + 8), found_pos - *(int64_t *)(src_ptr + 8));
   }
   handler_ptr = &EMPTY_OBJECT_TABLE;
   // WARNING: Subroutine does not return
-  PROCESS_STRING_DATA(checksum ^ (ulonglong)local_buffer);
+  PROCESS_STRING_DATA(checksum ^ (uint64_t)local_buffer);
 }
 
 // 函数：初始化增强字符串处理器
 uint64_t *
-initialize_enhanced_string_processor(uint64_t *processor, longlong source_ptr, uint64_t param_3, uint64_t param_4)
+initialize_enhanced_string_processor(uint64_t *processor, int64_t source_ptr, uint64_t param_3, uint64_t param_4)
 
 {
   void *data_ptr;
@@ -165,7 +165,7 @@ initialize_enhanced_string_processor(uint64_t *processor, longlong source_ptr, u
 
 // 函数：释放增强字符串处理器
 uint64_t *
-release_enhanced_string_processor(uint64_t *processor, ulonglong flags, uint64_t param_3, uint64_t param_4)
+release_enhanced_string_processor(uint64_t *processor, uint64_t flags, uint64_t param_3, uint64_t param_4)
 
 {
   *processor = &EMPTY_OBJECT_TABLE;
@@ -176,10 +176,10 @@ release_enhanced_string_processor(uint64_t *processor, ulonglong flags, uint64_t
 }
 
 // 函数：设置字符串数据
-void set_string_data(longlong dest_ptr, longlong src_ptr)
+void set_string_data(int64_t dest_ptr, int64_t src_ptr)
 
 {
-  longlong str_len;
+  int64_t str_len;
   
   if (src_ptr == 0) {
     *(int32_t *)(dest_ptr + 0x10) = 0;
@@ -204,12 +204,12 @@ void set_string_data(longlong dest_ptr, longlong src_ptr)
 }
 
 // 函数：复制字符串数据（小缓冲区）
-void copy_string_data_small(longlong dest_ptr, uint64_t src_ptr, int length)
+void copy_string_data_small(int64_t dest_ptr, uint64_t src_ptr, int length)
 
 {
   if (length + 1 < 0x40) {
     // WARNING: Subroutine does not return
-    memcpy(*(int8_t **)(dest_ptr + 8), src_ptr, (longlong)length);
+    memcpy(*(int8_t **)(dest_ptr + 8), src_ptr, (int64_t)length);
   }
   **(int8_t **)(dest_ptr + 8) = 0;
   *(int32_t *)(dest_ptr + 0x10) = 0;
@@ -228,7 +228,7 @@ void perform_memory_copy_simple(void)
 void reset_string_object_simple(int8_t *string_obj)
 
 {
-  longlong context_ptr;
+  int64_t context_ptr;
   
   *string_obj = 0;
   *(int32_t *)(context_ptr + 0x10) = 0;
@@ -250,22 +250,22 @@ uint64_t * initialize_string_processor_simple(uint64_t *string_processor)
 }
 
 // 函数：字符串替换处理（简化版）
-void process_string_replacement_simple(longlong src_ptr, longlong old_str_ptr, longlong new_str_ptr)
+void process_string_replacement_simple(int64_t src_ptr, int64_t old_str_ptr, int64_t new_str_ptr)
 
 {
-  longlong found_pos;
-  longlong old_len;
-  longlong new_len;
+  int64_t found_pos;
+  int64_t old_len;
+  int64_t new_len;
   int8_t local_buffer[32];
   uint64_t stack_param1;
   void *handler_ptr;
   int8_t *buffer_ptr;
   int32_t buffer_size;
   int8_t temp_buffer[72];
-  ulonglong checksum;
+  uint64_t checksum;
   
   stack_param1 = 0xfffffffffffffffe;
-  checksum = MEMORY_CHECKSUM ^ (ulonglong)local_buffer;
+  checksum = MEMORY_CHECKSUM ^ (uint64_t)local_buffer;
   handler_ptr = &STRING_HANDLER_ALT;
   buffer_ptr = temp_buffer;
   buffer_size = 0;
@@ -281,19 +281,19 @@ void process_string_replacement_simple(longlong src_ptr, longlong old_str_ptr, l
       old_len = old_len + 1;
     } while (*(char *)(old_len + new_str_ptr) != '\0');
     // WARNING: Subroutine does not return
-    memcpy(buffer_ptr, *(longlong *)(src_ptr + 8), found_pos - *(longlong *)(src_ptr + 8));
+    memcpy(buffer_ptr, *(int64_t *)(src_ptr + 8), found_pos - *(int64_t *)(src_ptr + 8));
   }
   handler_ptr = &EMPTY_OBJECT_TABLE;
   // WARNING: Subroutine does not return
-  PROCESS_STRING_DATA(checksum ^ (ulonglong)local_buffer);
+  PROCESS_STRING_DATA(checksum ^ (uint64_t)local_buffer);
 }
 
 // 函数：初始化高级字符串处理器
 uint64_t *
-initialize_advanced_string_processor(uint64_t *processor, longlong source_ptr, uint64_t param_3, uint64_t param_4)
+initialize_advanced_string_processor(uint64_t *processor, int64_t source_ptr, uint64_t param_3, uint64_t param_4)
 
 {
-  longlong str_len;
+  int64_t str_len;
   
   *processor = &EMPTY_OBJECT_TABLE;
   processor[1] = 0;
@@ -368,33 +368,33 @@ void cleanup_object_recursive(uint64_t param_1, uint64_t *object_ptr, uint64_t p
 void initialize_engine_core(void)
 
 {
-  longlong *module_ptr;
+  int64_t *module_ptr;
   uint64_t *config_ptr;
   code *init_func;
   int8_t *data_ptr;
   uint64_t system_param;
-  longlong core_data;
+  int64_t core_data;
   int status;
-  longlong **module_array;
+  int64_t **module_array;
   int16_t *flag_array;
   uint flag_index;
-  ulonglong iteration_count;
+  uint64_t iteration_count;
   float timing_value;
   double performance_counter;
   double elapsed_time;
-  longlong **temp_module_ptr;
-  longlong *temp_ptr1;
-  longlong *temp_ptr2;
-  longlong temp_long1;
-  longlong stack_data_90;
-  longlong stack_data_88;
-  longlong stack_data_80;
-  longlong stack_data_78;
-  longlong ***module_ptr_ptr;
+  int64_t **temp_module_ptr;
+  int64_t *temp_ptr1;
+  int64_t *temp_ptr2;
+  int64_t temp_long1;
+  int64_t stack_data_90;
+  int64_t stack_data_88;
+  int64_t stack_data_80;
+  int64_t stack_data_78;
+  int64_t ***module_ptr_ptr;
   uint64_t stack_param_68;
-  longlong **stack_module_ptr;
+  int64_t **stack_module_ptr;
   uint64_t stack_param_58;
-  ulonglong loop_counter;
+  uint64_t loop_counter;
   
   core_data = ENGINE_CORE_DATA;
   module_ptr = ENGINE_MODULE_BASE;
@@ -416,20 +416,20 @@ void initialize_engine_core(void)
   ENGINE_STATUS_FLAG = 0;
   PERFORMANCE_MONITOR = 0;
   if (MODULE_LOAD_FLAG != '\0') {
-    module_ptr = *(longlong **)(module_ptr + 8);
-    module_array = (longlong **)ALLOCATE_MODULE_STRUCTURE(ENGINE_HEAP_BASE, 0x48, 8, 3);
-    *module_array = (longlong *)&THREAD_SYNC_TABLE_1;
-    *module_array = (longlong *)&THREAD_SYNC_TABLE_2;
+    module_ptr = *(int64_t **)(module_ptr + 8);
+    module_array = (int64_t **)ALLOCATE_MODULE_STRUCTURE(ENGINE_HEAP_BASE, 0x48, 8, 3);
+    *module_array = (int64_t *)&THREAD_SYNC_TABLE_1;
+    *module_array = (int64_t *)&THREAD_SYNC_TABLE_2;
     *(int32_t *)(module_array + 1) = 0;
-    *module_array = (longlong *)&MUTEX_TABLE;
+    *module_array = (int64_t *)&MUTEX_TABLE;
     LOCK();
     *(int8_t *)(module_array + 2) = 0;
     UNLOCK();
-    module_array[3] = (longlong *)0xffffffffffffffff;
-    *module_array = (longlong *)&PERFORMANCE_TABLE;
+    module_array[3] = (int64_t *)0xffffffffffffffff;
+    *module_array = (int64_t *)&PERFORMANCE_TABLE;
     *(int32_t *)(module_array + 5) = 4;
     module_array[4] = module_ptr;
-    module_ptr_ptr = (longlong ***)module_array;
+    module_ptr_ptr = (int64_t ***)module_array;
     stack_module_ptr = module_array;
     (*(code *)(*module_array)[5])(module_array);
     config_ptr = (uint64_t *)module_ptr[0x28];
@@ -441,19 +441,19 @@ void initialize_engine_core(void)
     CLEANUP_MODULE_RESOURCES(module_ptr[0x28]);
     (*(code *)(*module_array)[7])(module_array);
   }
-  core_data = *(longlong *)(ENGINE_CONFIG_TABLE + 0x18) - *(longlong *)(ENGINE_CONFIG_TABLE + 0x10);
+  core_data = *(int64_t *)(ENGINE_CONFIG_TABLE + 0x18) - *(int64_t *)(ENGINE_CONFIG_TABLE + 0x10);
   iteration_count = loop_counter;
   if (core_data / 0x1c != 0) {
     do {
-      PROCESS_MODULE_DATA(core_data, iteration_count * 0x1c + *(longlong *)(ENGINE_CONFIG_TABLE + 0x10));
+      PROCESS_MODULE_DATA(core_data, iteration_count * 0x1c + *(int64_t *)(ENGINE_CONFIG_TABLE + 0x10));
       flag_index = (int)loop_counter + 1;
-      loop_counter = (ulonglong)flag_index;
-      core_data = *(longlong *)(ENGINE_CONFIG_TABLE + 0x18) - *(longlong *)(ENGINE_CONFIG_TABLE + 0x10);
-      iteration_count = (longlong)(int)flag_index;
-    } while ((ulonglong)(longlong)(int)flag_index < (ulonglong)(core_data / 0x1c));
+      loop_counter = (uint64_t)flag_index;
+      core_data = *(int64_t *)(ENGINE_CONFIG_TABLE + 0x18) - *(int64_t *)(ENGINE_CONFIG_TABLE + 0x10);
+      iteration_count = (int64_t)(int)flag_index;
+    } while ((uint64_t)(int64_t)(int)flag_index < (uint64_t)(core_data / 0x1c));
   }
   *(uint64_t *)(ENGINE_CONFIG_TABLE + 0x18) = *(uint64_t *)(ENGINE_CONFIG_TABLE + 0x10);
-  *(int8_t *)(*(longlong *)(*(longlong *)(module_ptr + 8) + 0x140) + 0x208) = 1;
+  *(int8_t *)(*(int64_t *)(*(int64_t *)(module_ptr + 8) + 0x140) + 0x208) = 1;
   if (*(char *)(module_ptr + 0x3c8) != '\0') {
     CLEANUP_MODULE_RESOURCES_ALT(module_ptr);
     LOCK();
@@ -489,35 +489,35 @@ void initialize_engine_core(void)
     }
 
 // 函数：初始化引擎核心组件（参数化版本）
-void initialize_engine_core_param(longlong param_1)
+void initialize_engine_core_param(int64_t param_1)
 
 {
-  longlong *module_ptr;
+  int64_t *module_ptr;
   uint64_t *config_ptr;
   code *init_func;
   int8_t *data_ptr;
   uint64_t system_param;
   int status;
-  longlong **module_array;
+  int64_t **module_array;
   int16_t *flag_array;
   uint flag_index;
-  ulonglong iteration_count;
+  uint64_t iteration_count;
   float timing_value;
   double performance_counter;
   double elapsed_time;
-  longlong **temp_module_ptr;
-  longlong *temp_ptr1;
-  longlong *temp_ptr2;
-  longlong temp_long1;
-  longlong stack_data_90;
-  longlong stack_data_88;
-  longlong stack_data_80;
-  longlong stack_data_78;
-  longlong ***module_ptr_ptr;
+  int64_t **temp_module_ptr;
+  int64_t *temp_ptr1;
+  int64_t *temp_ptr2;
+  int64_t temp_long1;
+  int64_t stack_data_90;
+  int64_t stack_data_88;
+  int64_t stack_data_80;
+  int64_t stack_data_78;
+  int64_t ***module_ptr_ptr;
   uint64_t stack_param_68;
-  longlong **stack_module_ptr;
+  int64_t **stack_module_ptr;
   uint64_t stack_param_58;
-  ulonglong loop_counter;
+  uint64_t loop_counter;
   
   core_data = ENGINE_CORE_DATA;
   stack_param_68 = 0xfffffffffffffffe;
@@ -534,20 +534,20 @@ void initialize_engine_core_param(longlong param_1)
   ENGINE_STATUS_FLAG = 0;
   PERFORMANCE_MONITOR = 0;
   if (MODULE_LOAD_FLAG != '\0') {
-    module_ptr = *(longlong **)(param_1 + 8);
-    module_array = (longlong **)ALLOCATE_MODULE_STRUCTURE(ENGINE_HEAP_BASE, 0x48, 8, 3);
-    *module_array = (longlong *)&THREAD_SYNC_TABLE_1;
-    *module_array = (longlong *)&THREAD_SYNC_TABLE_2;
+    module_ptr = *(int64_t **)(param_1 + 8);
+    module_array = (int64_t **)ALLOCATE_MODULE_STRUCTURE(ENGINE_HEAP_BASE, 0x48, 8, 3);
+    *module_array = (int64_t *)&THREAD_SYNC_TABLE_1;
+    *module_array = (int64_t *)&THREAD_SYNC_TABLE_2;
     *(int32_t *)(module_array + 1) = 0;
-    *module_array = (longlong *)&MUTEX_TABLE;
+    *module_array = (int64_t *)&MUTEX_TABLE;
     LOCK();
     *(int8_t *)(module_array + 2) = 0;
     UNLOCK();
-    module_array[3] = (longlong *)0xffffffffffffffff;
-    *module_array = (longlong *)&PERFORMANCE_TABLE;
+    module_array[3] = (int64_t *)0xffffffffffffffff;
+    *module_array = (int64_t *)&PERFORMANCE_TABLE;
     *(int32_t *)(module_array + 5) = 4;
     module_array[4] = module_ptr;
-    module_ptr_ptr = (longlong ***)module_array;
+    module_ptr_ptr = (int64_t ***)module_array;
     stack_module_ptr = module_array;
     (*(code *)(*module_array)[5])(module_array);
     config_ptr = (uint64_t *)module_ptr[0x28];
@@ -559,19 +559,19 @@ void initialize_engine_core_param(longlong param_1)
     CLEANUP_MODULE_RESOURCES(module_ptr[0x28]);
     (*(code *)(*module_array)[7])(module_array);
   }
-  core_data = *(longlong *)(ENGINE_CONFIG_TABLE + 0x18) - *(longlong *)(ENGINE_CONFIG_TABLE + 0x10);
+  core_data = *(int64_t *)(ENGINE_CONFIG_TABLE + 0x18) - *(int64_t *)(ENGINE_CONFIG_TABLE + 0x10);
   iteration_count = loop_counter;
   if (core_data / 0x1c != 0) {
     do {
-      PROCESS_MODULE_DATA(core_data, iteration_count * 0x1c + *(longlong *)(ENGINE_CONFIG_TABLE + 0x10));
+      PROCESS_MODULE_DATA(core_data, iteration_count * 0x1c + *(int64_t *)(ENGINE_CONFIG_TABLE + 0x10));
       flag_index = (int)loop_counter + 1;
-      loop_counter = (ulonglong)flag_index;
-      core_data = *(longlong *)(ENGINE_CONFIG_TABLE + 0x18) - *(longlong *)(ENGINE_CONFIG_TABLE + 0x10);
-      iteration_count = (longlong)(int)flag_index;
-    } while ((ulonglong)(longlong)(int)flag_index < (ulonglong)(core_data / 0x1c));
+      loop_counter = (uint64_t)flag_index;
+      core_data = *(int64_t *)(ENGINE_CONFIG_TABLE + 0x18) - *(int64_t *)(ENGINE_CONFIG_TABLE + 0x10);
+      iteration_count = (int64_t)(int)flag_index;
+    } while ((uint64_t)(int64_t)(int)flag_index < (uint64_t)(core_data / 0x1c));
   }
   *(uint64_t *)(ENGINE_CONFIG_TABLE + 0x18) = *(uint64_t *)(ENGINE_CONFIG_TABLE + 0x10);
-  *(int8_t *)(*(longlong *)(*(longlong *)(param_1 + 8) + 0x140) + 0x208) = 1;
+  *(int8_t *)(*(int64_t *)(*(int64_t *)(param_1 + 8) + 0x140) + 0x208) = 1;
   if (*(char *)(param_1 + 0x3c8) != '\0') {
     CLEANUP_MODULE_RESOURCES_ALT(param_1);
     LOCK();
@@ -607,10 +607,10 @@ void initialize_engine_core_param(longlong param_1)
     }
 
 // 函数：更新引擎性能统计
-void update_engine_performance_stats(longlong param_1, uint64_t param_2)
+void update_engine_performance_stats(int64_t param_1, uint64_t param_2)
 
 {
-  longlong *module_ptr;
+  int64_t *module_ptr;
   char flag1;
   char flag2;
   int status;
@@ -618,39 +618,39 @@ void update_engine_performance_stats(longlong param_1, uint64_t param_2)
   int8_t *data_ptr;
   uint64_t *config_ptr;
   uint64_t *system_ptr;
-  longlong timing_data;
+  int64_t timing_data;
   uint performance_index;
-  longlong memory_addr;
-  ulonglong checksum;
-  longlong *resource_ptr;
+  int64_t memory_addr;
+  uint64_t checksum;
+  int64_t *resource_ptr;
   float performance_value;
   uint64_t system_handle;
   float calculated_value;
   int8_t local_buffer[32];
-  longlong **module_array;
+  int64_t **module_array;
   void *handler_ptr;
   int32_t buffer_size;
   uint64_t stack_param_308;
   char stack_flag;
   char flag_array[7];
-  longlong *resource_manager;
+  int64_t *resource_manager;
   int32_t resource_config;
   void *cleanup_handler;
   uint64_t *memory_allocator;
   int32_t memory_config;
   int32_t config_array[2];
-  longlong *stack_ptr;
+  int64_t *stack_ptr;
   uint64_t stack_param_2b8;
   uint64_t temp_buffer[67];
-  longlong stack_array[3];
+  int64_t stack_array[3];
   int32_t stack_param_78;
-  ulonglong stack_checksum;
-  ulonglong iteration_counter;
+  uint64_t stack_checksum;
+  uint64_t iteration_counter;
   
   stack_param_2b8 = 0xfffffffffffffffe;
-  stack_checksum = MEMORY_CHECKSUM ^ (ulonglong)local_buffer;
+  stack_checksum = MEMORY_CHECKSUM ^ (uint64_t)local_buffer;
   performance_value = (float)param_2;
-  PERFORMANCE_ACCUMULATOR = (longlong)(performance_value * 100000.0);
+  PERFORMANCE_ACCUMULATOR = (int64_t)(performance_value * 100000.0);
   PERFORMANCE_ACCUMULATOR = PERFORMANCE_ACCUMULATOR + PERFORMANCE_ACCUMULATOR;
   PERFORMANCE_CURRENT = performance_value;
   system_handle = GET_SYSTEM_TIME();
@@ -664,22 +664,22 @@ void update_engine_performance_stats(longlong param_1, uint64_t param_2)
   else {
 
 // 函数：清理异常处理程序
-void cleanup_exception_handler(longlong param_1)
+void cleanup_exception_handler(int64_t param_1)
 
 {
   int *ref_count;
   uint64_t *exception_ptr;
-  longlong handler_addr;
-  ulonglong memory_mask;
+  int64_t handler_addr;
+  uint64_t memory_mask;
   
   exception_ptr = *(uint64_t **)(param_1 + 0x218);
   if (exception_ptr == (uint64_t *)0x0) {
     return;
   }
-  memory_mask = (ulonglong)exception_ptr & 0xffffffffffc00000;
+  memory_mask = (uint64_t)exception_ptr & 0xffffffffffc00000;
   if (memory_mask != 0) {
-    handler_addr = memory_mask + 0x80 + ((longlong)exception_ptr - memory_mask >> 0x10) * 0x50;
-    handler_addr = handler_addr - (ulonglong)*(uint *)(handler_addr + 4);
+    handler_addr = memory_mask + 0x80 + ((int64_t)exception_ptr - memory_mask >> 0x10) * 0x50;
+    handler_addr = handler_addr - (uint64_t)*(uint *)(handler_addr + 4);
     if ((*(void ***)(memory_mask + 0x70) == &ExceptionList) && (*(char *)(handler_addr + 0xe) == '\0')) {
       *exception_ptr = *(uint64_t *)(handler_addr + 0x20);
       *(uint64_t **)(handler_addr + 0x20) = exception_ptr;
@@ -702,40 +702,40 @@ void cleanup_exception_handler(longlong param_1)
 uint64_t * copy_object_data(uint64_t *dest_ptr, uint64_t *src_ptr)
 
 {
-  longlong *dest_data;
-  longlong src_start;
-  longlong src_end;
-  longlong dest_start;
-  ulonglong data_size;
-  longlong buffer_size;
+  int64_t *dest_data;
+  int64_t src_start;
+  int64_t src_end;
+  int64_t dest_start;
+  uint64_t data_size;
+  int64_t buffer_size;
   int8_t *dest_buffer;
-  longlong copy_length;
-  ulonglong required_size;
+  int64_t copy_length;
+  uint64_t required_size;
   
-  dest_buffer = (int8_t *)((longlong)dest_ptr + 0xf);
+  dest_buffer = (int8_t *)((int64_t)dest_ptr + 0xf);
   *dest_ptr = *src_ptr;
   *(int32_t *)(dest_ptr + 1) = *(int32_t *)(src_ptr + 1);
-  *(int8_t *)((longlong)dest_ptr + 0xc) = *(int8_t *)((longlong)src_ptr + 0xc);
-  *(int8_t *)((longlong)dest_ptr + 0xd) = *(int8_t *)((longlong)src_ptr + 0xd);
-  *(int8_t *)((longlong)dest_ptr + 0xe) = *(int8_t *)((longlong)src_ptr + 0xe);
+  *(int8_t *)((int64_t)dest_ptr + 0xc) = *(int8_t *)((int64_t)src_ptr + 0xc);
+  *(int8_t *)((int64_t)dest_ptr + 0xd) = *(int8_t *)((int64_t)src_ptr + 0xd);
+  *(int8_t *)((int64_t)dest_ptr + 0xe) = *(int8_t *)((int64_t)src_ptr + 0xe);
   buffer_size = 0x100;
   do {
-    *dest_buffer = dest_buffer[(longlong)src_ptr - (longlong)dest_ptr];
-    dest_buffer[1] = dest_buffer[((longlong)src_ptr - (longlong)dest_ptr) + 1];
+    *dest_buffer = dest_buffer[(int64_t)src_ptr - (int64_t)dest_ptr];
+    dest_buffer[1] = dest_buffer[((int64_t)src_ptr - (int64_t)dest_ptr) + 1];
     dest_buffer = dest_buffer + 2;
     buffer_size = buffer_size + -1;
   } while (buffer_size != 0);
-  *(int8_t *)((longlong)dest_ptr + 0x20f) = *(int8_t *)((longlong)src_ptr + 0x20f);
+  *(int8_t *)((int64_t)dest_ptr + 0x20f) = *(int8_t *)((int64_t)src_ptr + 0x20f);
   dest_data = dest_ptr + 0x43;
   *(int8_t *)(dest_ptr + 0x42) = *(int8_t *)(src_ptr + 0x42);
-  *(int8_t *)((longlong)dest_ptr + 0x211) = *(int8_t *)((longlong)src_ptr + 0x211);
+  *(int8_t *)((int64_t)dest_ptr + 0x211) = *(int8_t *)((int64_t)src_ptr + 0x211);
   if (dest_data != src_ptr + 0x43) {
     buffer_size = *dest_data;
     src_start = src_ptr[0x44];
     src_end = src_ptr[0x43];
     copy_length = src_start - src_end;
     required_size = copy_length >> 2;
-    if ((ulonglong)(dest_ptr[0x45] - buffer_size >> 2) < required_size) {
+    if ((uint64_t)(dest_ptr[0x45] - buffer_size >> 2) < required_size) {
       if (required_size == 0) {
         buffer_size = 0;
       }
@@ -783,22 +783,22 @@ uint64_t * copy_object_data(uint64_t *dest_ptr, uint64_t *src_ptr)
 }
 
 // 函数：调整数据缓冲区大小
-void resize_data_buffer(longlong param_1)
+void resize_data_buffer(int64_t param_1)
 
 {
-  longlong src_start;
-  longlong src_end;
-  longlong dest_capacity;
-  longlong buffer_end;
-  ulonglong available_space;
-  longlong *dest_buffer;
-  ulonglong required_size;
+  int64_t src_start;
+  int64_t src_end;
+  int64_t dest_capacity;
+  int64_t buffer_end;
+  uint64_t available_space;
+  int64_t *dest_buffer;
+  uint64_t required_size;
   
   src_start = SOURCE_BUFFER[1];
   src_end = *SOURCE_BUFFER;
   required_size = src_start - src_end;
   available_space = required_size >> 2;
-  if ((ulonglong)(dest_capacity - param_1 >> 2) < available_space) {
+  if ((uint64_t)(dest_capacity - param_1 >> 2) < available_space) {
     if (available_space == 0) {
       buffer_end = 0;
     }
@@ -848,12 +848,12 @@ void resize_data_buffer(longlong param_1)
 void expand_data_buffer(void)
 
 {
-  longlong new_buffer;
-  longlong src_start;
-  longlong dest_capacity;
-  longlong *dest_buffer;
-  longlong *src_buffer;
-  longlong buffer_size;
+  int64_t new_buffer;
+  int64_t src_start;
+  int64_t dest_capacity;
+  int64_t *dest_buffer;
+  int64_t *src_buffer;
+  int64_t buffer_size;
   
   if (buffer_size == 0) {
     new_buffer = 0;
@@ -877,18 +877,18 @@ void expand_data_buffer(void)
 }
 
 // 函数：收缩数据缓冲区
-void shrink_data_buffer(longlong param_1)
+void shrink_data_buffer(int64_t param_1)
 
 {
-  longlong buffer_end;
-  longlong data_start;
-  ulonglong available_space;
-  longlong dest_capacity;
-  longlong src_start;
-  longlong dest_buffer;
-  ulonglong buffer_size;
+  int64_t buffer_end;
+  int64_t data_start;
+  uint64_t available_space;
+  int64_t dest_capacity;
+  int64_t src_start;
+  int64_t dest_buffer;
+  uint64_t buffer_size;
   
-  buffer_end = *(longlong *)(dest_buffer + 8);
+  buffer_end = *(int64_t *)(dest_buffer + 8);
   available_space = buffer_end - param_1 >> 2;
   if (available_space < buffer_size) {
     data_start = available_space * 4 + src_start;
@@ -900,14 +900,14 @@ void shrink_data_buffer(longlong param_1)
       // WARNING: Subroutine does not return
       memmove(buffer_end, data_start, dest_capacity - data_start);
     }
-    *(longlong *)(dest_buffer + 8) = buffer_end;
+    *(int64_t *)(dest_buffer + 8) = buffer_end;
   }
   else {
     if (src_start != dest_capacity) {
       // WARNING: Subroutine does not return
       memmove();
     }
-    *(longlong *)(dest_buffer + 8) = param_1;
+    *(int64_t *)(dest_buffer + 8) = param_1;
   }
   return;
 }
@@ -920,7 +920,7 @@ void perform_no_operation(void)
 }
 
 // 函数：检查对象状态
-bool check_object_status(longlong param_1)
+bool check_object_status(int64_t param_1)
 
 {
   uint64_t *object_ptr;
@@ -929,7 +929,7 @@ bool check_object_status(longlong param_1)
   byte *compare_ptr;
   uint compare_value;
   int comparison_result;
-  longlong temp_data;
+  int64_t temp_data;
   uint64_t *iterator_ptr;
   uint64_t *current_ptr;
   uint64_t *next_ptr;
@@ -955,7 +955,7 @@ bool check_object_status(longlong param_1)
         else {
           compare_ptr = string_ptr;
           do {
-            compare_value = (uint)compare_ptr[iterator_ptr[5] - (longlong)string_ptr];
+            compare_value = (uint)compare_ptr[iterator_ptr[5] - (int64_t)string_ptr];
             comparison_result = *compare_ptr - compare_value;
             if (*compare_ptr != compare_value) break;
             compare_ptr = compare_ptr + 1;
@@ -980,7 +980,7 @@ OBJECT_FOUND:
       if (*(int *)(next_ptr + 6) == 0) goto OBJECT_VALID;
       if (stack_param != 0) {
         compare_ptr = (byte *)next_ptr[5];
-        temp_data = (longlong)string_ptr - (longlong)compare_ptr;
+        temp_data = (int64_t)string_ptr - (int64_t)compare_ptr;
         do {
           status_byte = *compare_ptr;
           compare_value = (uint)compare_ptr[temp_data];
@@ -1011,7 +1011,7 @@ create_system_resource(uint64_t param_1, uint64_t param_2, uint64_t param_3, uin
 }
 
 // 函数：初始化系统路径
-void initialize_system_path(longlong param_1)
+void initialize_system_path(int64_t param_1)
 
 {
   uint64_t *system_ptr;
@@ -1019,19 +1019,19 @@ void initialize_system_path(longlong param_1)
   int8_t local_buffer[32];
   int32_t buffer_size;
   uint64_t stack_param_b8;
-  longlong path_data;
+  int64_t path_data;
   int8_t path_buffer[128];
-  ulonglong checksum;
+  uint64_t checksum;
   
   stack_param_b8 = 0xfffffffffffffffe;
-  checksum = MEMORY_CHECKSUM ^ (ulonglong)local_buffer;
+  checksum = MEMORY_CHECKSUM ^ (uint64_t)local_buffer;
   buffer_size = 0;
   path_data = param_1;
   INITIALIZE_SYSTEM_COMPONENT(param_1, ENGINE_MODULE_BASE + 0x170);
   buffer_size = 1;
   path_length = *(int *)(param_1 + 0x10) + 8;
   RESIZE_PATH_BUFFER(param_1, path_length);
-  system_ptr = (uint64_t *)((ulonglong)*(uint *)(param_1 + 0x10) + *(longlong *)(param_1 + 8));
+  system_ptr = (uint64_t *)((uint64_t)*(uint *)(param_1 + 0x10) + *(int64_t *)(param_1 + 8));
   *system_ptr = 0x2f73656873617263; // "crashes/" in hex
   *(int8_t *)(system_ptr + 1) = 0;
   *(int *)(param_1 + 0x10) = path_length;

@@ -13,7 +13,7 @@ void remove_object_from_array(int *object_array, int object_id)
 {
   int array_size;
   int *array_data;
-  longlong item_index;
+  int64_t item_index;
   int current_index;
   int *current_item;
   
@@ -25,8 +25,8 @@ void remove_object_from_array(int *object_array, int object_id)
       current_item = array_data;
       do {
         if (*current_item == object_id) {
-          if (array_data + (longlong)current_index * 10 != (int *)0x0) {
-            item_index = ((longlong)current_index * 0x28) / 0x28;
+          if (array_data + (int64_t)current_index * 10 != (int *)0x0) {
+            item_index = ((int64_t)current_index * 0x28) / 0x28;
                     // WARNING: Subroutine does not return
             memmove(array_data + item_index * 10, array_data + item_index * 10 + 10, (array_size - item_index) * 0x28 + -0x28);
           }
@@ -58,7 +58,7 @@ void remove_object_from_array(int *object_array, int object_id)
  */
 int * process_object_collision(int *object_data)
 {
-  longlong engine_base;
+  int64_t engine_base;
   uint64_t *collision_data;
   int32_t *render_params;
   uint64_t *transform_data;
@@ -74,15 +74,15 @@ int * process_object_collision(int *object_data)
   int32_t temp_param1;
   int32_t temp_param2;
   int collision_flags;
-  longlong object_transform;
-  longlong camera_data;
+  int64_t object_transform;
+  int64_t camera_data;
   int *collision_result;
   int32_t render_state1;
   int32_t render_state2;
   int32_t render_state3;
   uint64_t matrix_data;
   bool is_colliding;
-  longlong temp_offset;
+  int64_t temp_offset;
   char collision_result_char;
   int object_count;
   int boundary_check;
@@ -99,7 +99,7 @@ int * process_object_collision(int *object_data)
   
   engine_base = SYSTEM_DATA_MANAGER_A;
   position_x = *(float *)(SYSTEM_DATA_MANAGER_A + 0x1660);
-  object_transform = *(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1af8);
+  object_transform = *(int64_t *)(SYSTEM_DATA_MANAGER_A + 0x1af8);
   position_y = *(float *)(SYSTEM_DATA_MANAGER_A + 0x19f8);
   collision_height = position_y - 2.0;
   width = *(float *)(object_transform + 0x104);
@@ -112,12 +112,12 @@ int * process_object_collision(int *object_data)
     velocity_x = (float)object_data[0xc];
     boundary_check = object_data[0xd];
     *(int8_t *)(object_transform + 0xb1) = 1;
-    camera_data = *(longlong *)(engine_base + 0x1af8);
+    camera_data = *(int64_t *)(engine_base + 0x1af8);
     FUN_180291b40(*(uint64_t *)(camera_data + 0x2e8), *(uint64_t *)(object_data + 10),
                   CONCAT44(boundary_check, depth + velocity_x), 1);
     collision_data = (uint64_t *)
-             (*(longlong *)(*(longlong *)(camera_data + 0x2e8) + 0x68) + -0x10 +
-             (longlong)*(int *)(*(longlong *)(camera_data + 0x2e8) + 0x60) * 0x10);
+             (*(int64_t *)(*(int64_t *)(camera_data + 0x2e8) + 0x68) + -0x10 +
+             (int64_t)*(int *)(*(int64_t *)(camera_data + 0x2e8) + 0x60) * 0x10);
     matrix_data = collision_data[1];
     *(uint64_t *)(camera_data + 0x228) = *collision_data;
     *(uint64_t *)(camera_data + 0x230) = matrix_data;
@@ -172,26 +172,26 @@ int * process_object_collision(int *object_data)
     boundary_check = 1;
   }
   collision_data = (uint64_t *)
-           (*(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1b88) + -0x10 +
-           (longlong)*(int *)(SYSTEM_DATA_MANAGER_A + 0x1b80) * 0x14);
+           (*(int64_t *)(SYSTEM_DATA_MANAGER_A + 0x1b88) + -0x10 +
+           (int64_t)*(int *)(SYSTEM_DATA_MANAGER_A + 0x1b80) * 0x14);
   matrix_data = collision_data[1];
   transform_data = (uint64_t *)
            (SYSTEM_DATA_MANAGER_A + 0x16c8 +
-           (longlong)
-           *(int *)(*(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1b88) + -0x14 +
-                   (longlong)*(int *)(SYSTEM_DATA_MANAGER_A + 0x1b80) * 0x14) * 0x10);
+           (int64_t)
+           *(int *)(*(int64_t *)(SYSTEM_DATA_MANAGER_A + 0x1b88) + -0x14 +
+                   (int64_t)*(int *)(SYSTEM_DATA_MANAGER_A + 0x1b80) * 0x14) * 0x10);
   *transform_data = *collision_data;
   transform_data[1] = matrix_data;
   collision_flags = *(int *)(camera_data + 0x1b80);
   *(int *)(camera_data + 0x1b80) = collision_flags + -1;
-  temp_offset = (longlong)collision_flags + -2;
-  render_params = (int32_t *)(*(longlong *)(camera_data + 0x1b88) + 4 + temp_offset * 0x14);
+  temp_offset = (int64_t)collision_flags + -2;
+  render_params = (int32_t *)(*(int64_t *)(camera_data + 0x1b88) + 4 + temp_offset * 0x14);
   render_state1 = render_params[1];
   render_state2 = render_params[2];
   render_state3 = render_params[3];
   vertex_data = (int32_t *)
            (camera_data + 0x16c8 +
-           (longlong)*(int *)(*(longlong *)(camera_data + 0x1b88) + temp_offset * 0x14) * 0x10);
+           (int64_t)*(int *)(*(int64_t *)(camera_data + 0x1b88) + temp_offset * 0x14) * 0x10);
   *vertex_data = *render_params;
   vertex_data[1] = render_state1;
   vertex_data[2] = render_state2;
@@ -210,17 +210,17 @@ int * process_object_collision(int *object_data)
       object_count = (int)collision_result;
       array_item = (int *)0x0;
       if (*array_pointer == object_data[5]) {
-        if (object_array + (longlong)object_count * 10 != (int *)0x0) {
-          object_count = (int)(((longlong)object_count * 0x28) / 0x28);
+        if (object_array + (int64_t)object_count * 10 != (int *)0x0) {
+          object_count = (int)(((int64_t)object_count * 0x28) / 0x28);
           boundary_check = object_count + boundary_check;
           if ((boundary_check < 0) || (collision_flags <= boundary_check)) {
             boundary_check = object_count;
           }
-          array_item = object_array + (longlong)boundary_check * 10;
+          array_item = object_array + (int64_t)boundary_check * 10;
         }
         break;
       }
-      collision_result = (int *)(ulonglong)(object_count + 1U);
+      collision_result = (int *)(uint64_t)(object_count + 1U);
       array_pointer = array_pointer + 10;
     } while ((int)(object_count + 1U) < collision_flags);
   }
@@ -237,9 +237,9 @@ int * process_object_collision(int *object_data)
  * @param object_data 对象数据指针
  * @return 返回更新状态标志
  */
-ulonglong update_object_position(int *object_data)
+uint64_t update_object_position(int *object_data)
 {
-  longlong engine_base;
+  int64_t engine_base;
   uint64_t *position_data;
   int32_t *render_params;
   uint64_t *transform_data;
@@ -247,26 +247,26 @@ ulonglong update_object_position(int *object_data)
   int32_t position_x;
   int32_t position_y;
   int array_size;
-  longlong object_transform;
+  int64_t object_transform;
   int32_t render_state1;
   int32_t render_state2;
   int32_t render_state3;
   uint64_t matrix_data;
-  longlong camera_offset;
+  int64_t camera_offset;
   char update_flag;
   uint loop_counter;
-  ulonglong result_flag;
-  ulonglong temp_result;
+  uint64_t result_flag;
+  uint64_t temp_result;
   float position_z;
   int32_t stack_param1;
   int32_t stack_param2;
   int32_t stack_param3;
   int32_t stack_param4;
   int32_t stack_param5;
-  ulonglong collision_result;
+  uint64_t collision_result;
   
   engine_base = SYSTEM_DATA_MANAGER_A;
-  object_transform = *(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1af8);
+  object_transform = *(int64_t *)(SYSTEM_DATA_MANAGER_A + 0x1af8);
   position_x = *(int32_t *)(object_transform + 0x100);
   position_y = *(int32_t *)(object_transform + 0x104);
   position_z = (float)object_data[0xc] -
@@ -306,26 +306,26 @@ ulonglong update_object_position(int *object_data)
   update_flag = FUN_1801129b0(&system_callback2_ptr, 0, 0x41);
   camera_offset = SYSTEM_DATA_MANAGER_A;
   position_data = (uint64_t *)
-           (*(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1b88) + -0x10 +
-           (longlong)*(int *)(SYSTEM_DATA_MANAGER_A + 0x1b80) * 0x14);
+           (*(int64_t *)(SYSTEM_DATA_MANAGER_A + 0x1b88) + -0x10 +
+           (int64_t)*(int *)(SYSTEM_DATA_MANAGER_A + 0x1b80) * 0x14);
   matrix_data = position_data[1];
   transform_data = (uint64_t *)
            (SYSTEM_DATA_MANAGER_A + 0x16c8 +
-           (longlong)
-           *(int *)(*(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1b88) + -0x14 +
-                   (longlong)*(int *)(SYSTEM_DATA_MANAGER_A + 0x1b80) * 0x14) * 0x10);
+           (int64_t)
+           *(int *)(*(int64_t *)(SYSTEM_DATA_MANAGER_A + 0x1b88) + -0x14 +
+                   (int64_t)*(int *)(SYSTEM_DATA_MANAGER_A + 0x1b80) * 0x14) * 0x10);
   *transform_data = *position_data;
   transform_data[1] = matrix_data;
   array_size = *(int *)(camera_offset + 0x1b80);
   *(int *)(camera_offset + 0x1b80) = array_size + -1;
-  engine_base = (longlong)array_size + -2;
-  render_params = (int32_t *)(*(longlong *)(camera_offset + 0x1b88) + 4 + engine_base * 0x14);
+  engine_base = (int64_t)array_size + -2;
+  render_params = (int32_t *)(*(int64_t *)(camera_offset + 0x1b88) + 4 + engine_base * 0x14);
   render_state1 = render_params[1];
   render_state2 = render_params[2];
   render_state3 = render_params[3];
   vertex_data = (int32_t *)
            (camera_offset + 0x16c8 +
-           (longlong)*(int *)(*(longlong *)(camera_offset + 0x1b88) + engine_base * 0x14) * 0x10);
+           (int64_t)*(int *)(*(int64_t *)(camera_offset + 0x1b88) + engine_base * 0x14) * 0x10);
   *vertex_data = *render_params;
   vertex_data[1] = render_state1;
   vertex_data[2] = render_state2;
@@ -336,13 +336,13 @@ ulonglong update_object_position(int *object_data)
     temp_result = collision_result;
     if (0 < *object_data) {
       do {
-        engine_base = *(longlong *)(object_data + 2);
+        engine_base = *(int64_t *)(object_data + 2);
         update_flag = FUN_18011aad0(**(uint64_t **)(engine_base + temp_result + 8));
         if (update_flag != '\0') {
           result_flag = engine_base + temp_result;
         }
         loop_counter = (int)collision_result + 1;
-        collision_result = (ulonglong)loop_counter;
+        collision_result = (uint64_t)loop_counter;
         temp_result = temp_result + 0x28;
       } while ((int)loop_counter < *object_data);
     }
@@ -361,9 +361,9 @@ ulonglong update_object_position(int *object_data)
  * @param distance_y Y轴距离
  * @return 返回计算结果
  */
-ulonglong calculate_object_distance(float distance_x, float distance_y)
+uint64_t calculate_object_distance(float distance_x, float distance_y)
 {
-  longlong engine_base;
+  int64_t engine_base;
   uint64_t *distance_data;
   int32_t *render_params;
   uint64_t *transform_data;
@@ -375,15 +375,15 @@ ulonglong calculate_object_distance(float distance_x, float distance_y)
   int32_t render_state2;
   int32_t render_state3;
   uint64_t matrix_data;
-  longlong camera_offset;
+  int64_t camera_offset;
   char update_flag;
-  longlong register_RCX;
-  longlong register_RBX;
+  int64_t register_RCX;
+  int64_t register_RBX;
   uint loop_counter;
   int *register_RSI;
-  ulonglong result_flag;
-  ulonglong temp_result;
-  longlong register_R15;
+  uint64_t result_flag;
+  uint64_t temp_result;
+  int64_t register_R15;
   float calculated_distance;
   int32_t stack_param1;
   float stack_param2;
@@ -391,7 +391,7 @@ ulonglong calculate_object_distance(float distance_x, float distance_y)
   int32_t stack_param4;
   int32_t stack_param5;
   int32_t stack_param6;
-  ulonglong distance_result;
+  uint64_t distance_result;
   
   position_x = *(int32_t *)(register_R15 + 0x100);
   position_y = *(int32_t *)(register_R15 + 0x104);
@@ -429,26 +429,26 @@ ulonglong calculate_object_distance(float distance_x, float distance_y)
   update_flag = FUN_1801129b0(&system_callback2_ptr, 0, 0x41);
   camera_offset = SYSTEM_DATA_MANAGER_A;
   distance_data = (uint64_t *)
-           (*(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1b88) + -0x10 +
-           (longlong)*(int *)(SYSTEM_DATA_MANAGER_A + 0x1b80) * 0x14);
+           (*(int64_t *)(SYSTEM_DATA_MANAGER_A + 0x1b88) + -0x10 +
+           (int64_t)*(int *)(SYSTEM_DATA_MANAGER_A + 0x1b80) * 0x14);
   matrix_data = distance_data[1];
   transform_data = (uint64_t *)
            (SYSTEM_DATA_MANAGER_A + 0x16c8 +
-           (longlong)
-           *(int *)(*(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1b88) + -0x14 +
-                   (longlong)*(int *)(SYSTEM_DATA_MANAGER_A + 0x1b80) * 0x14) * 0x10);
+           (int64_t)
+           *(int *)(*(int64_t *)(SYSTEM_DATA_MANAGER_A + 0x1b88) + -0x14 +
+                   (int64_t)*(int *)(SYSTEM_DATA_MANAGER_A + 0x1b80) * 0x14) * 0x10);
   *transform_data = *distance_data;
   transform_data[1] = matrix_data;
   array_size = *(int *)(camera_offset + 0x1b80);
   *(int *)(camera_offset + 0x1b80) = array_size + -1;
-  engine_base = (longlong)array_size + -2;
-  render_params = (int32_t *)(*(longlong *)(camera_offset + 0x1b88) + 4 + engine_base * 0x14);
+  engine_base = (int64_t)array_size + -2;
+  render_params = (int32_t *)(*(int64_t *)(camera_offset + 0x1b88) + 4 + engine_base * 0x14);
   render_state1 = render_params[1];
   render_state2 = render_params[2];
   render_state3 = render_params[3];
   vertex_data = (int32_t *)
            (camera_offset + 0x16c8 +
-           (longlong)*(int *)(*(longlong *)(camera_offset + 0x1b88) + engine_base * 0x14) * 0x10);
+           (int64_t)*(int *)(*(int64_t *)(camera_offset + 0x1b88) + engine_base * 0x14) * 0x10);
   *vertex_data = *render_params;
   vertex_data[1] = render_state1;
   vertex_data[2] = render_state2;
@@ -459,13 +459,13 @@ ulonglong calculate_object_distance(float distance_x, float distance_y)
     temp_result = distance_result;
     if (0 < *register_RSI) {
       do {
-        engine_base = *(longlong *)(register_RSI + 2);
+        engine_base = *(int64_t *)(register_RSI + 2);
         update_flag = FUN_18011aad0(**(uint64_t **)(engine_base + temp_result + 8));
         if (update_flag != '\0') {
           result_flag = engine_base + temp_result;
         }
         loop_counter = (int)distance_result + 1;
-        distance_result = (ulonglong)loop_counter;
+        distance_result = (uint64_t)loop_counter;
         temp_result = temp_result + 0x28;
       } while ((int)loop_counter < *register_RSI);
     }
@@ -482,15 +482,15 @@ ulonglong calculate_object_distance(float distance_x, float distance_y)
  * @param search_param2 搜索参数2
  * @return 返回找到的对象指针
  */
-ulonglong find_matching_object(uint64_t search_param1, uint64_t search_param2)
+uint64_t find_matching_object(uint64_t search_param1, uint64_t search_param2)
 {
-  longlong object_pointer;
+  int64_t object_pointer;
   char match_found;
   uint loop_counter;
-  ulonglong current_index;
+  uint64_t current_index;
   int *object_array;
-  ulonglong search_index;
-  longlong transform_data;
+  uint64_t search_index;
+  int64_t transform_data;
   int32_t render_param1;
   int32_t render_param2;
   
@@ -498,13 +498,13 @@ ulonglong find_matching_object(uint64_t search_param1, uint64_t search_param2)
   if ((int)search_index < *object_array) {
     search_index = search_index & 0xffffffff;
     do {
-      object_pointer = *(longlong *)(object_array + 2);
+      object_pointer = *(int64_t *)(object_array + 2);
       match_found = FUN_18011aad0(**(uint64_t **)(object_pointer + search_index + 8), search_param2, 0);
       if (match_found != '\0') {
         search_index = object_pointer + search_index;
       }
       loop_counter = (int)current_index + 1;
-      current_index = (ulonglong)loop_counter;
+      current_index = (uint64_t)loop_counter;
       search_index = search_index + 0x28;
     } while ((int)loop_counter < *object_array);
   }
@@ -520,20 +520,20 @@ ulonglong find_matching_object(uint64_t search_param1, uint64_t search_param2)
  * @param search_param2 搜索参数2
  * @return 返回找到的对象指针
  */
-ulonglong traverse_object_array(uint64_t search_param1, uint64_t search_param2)
+uint64_t traverse_object_array(uint64_t search_param1, uint64_t search_param2)
 {
-  longlong object_pointer;
+  int64_t object_pointer;
   char match_found;
   int loop_counter;
   int *object_array;
-  ulonglong current_index;
-  longlong transform_data;
+  uint64_t current_index;
+  int64_t transform_data;
   int32_t render_param1;
   int32_t render_param2;
   
   current_index = search_index & 0xffffffff;
   do {
-    object_pointer = *(longlong *)(object_array + 2);
+    object_pointer = *(int64_t *)(object_array + 2);
     match_found = FUN_18011aad0(**(uint64_t **)(object_pointer + current_index + 8), search_param2, 0);
     if (match_found != '\0') {
       search_index = object_pointer + current_index;
@@ -553,7 +553,7 @@ ulonglong traverse_object_array(uint64_t search_param1, uint64_t search_param2)
  */
 void reset_render_state(void)
 {
-  longlong transform_data;
+  int64_t transform_data;
   int32_t render_param1;
   int32_t render_param2;
   

@@ -9,16 +9,16 @@
  * @param buffer_info 缓冲区信息指针 [起始位置, 当前位置, 结束位置, 分配标志]
  * @param required_size 需要的大小（以8字节为单位）
  */
-void resize_buffer(longlong *buffer_info, ulonglong required_size)
+void resize_buffer(int64_t *buffer_info, uint64_t required_size)
 {
-  longlong current_start;
-  longlong current_end;
-  ulonglong available_space;
-  ulonglong additional_space;
-  ulonglong new_size;
-  longlong new_buffer;
-  longlong old_start;
-  longlong old_end;
+  int64_t current_start;
+  int64_t current_end;
+  uint64_t available_space;
+  uint64_t additional_space;
+  uint64_t new_size;
+  int64_t new_buffer;
+  int64_t old_start;
+  int64_t old_end;
   
   current_end = buffer_info[1];
   current_start = *buffer_info;
@@ -33,7 +33,7 @@ void resize_buffer(longlong *buffer_info, ulonglong required_size)
   additional_space = required_size - available_space;
   
   // 如果剩余空间足够，清零并扩展
-  if (additional_space <= (ulonglong)((buffer_info[2] - current_end) >> 3)) {
+  if (additional_space <= (uint64_t)((buffer_info[2] - current_end) >> 3)) {
     if (additional_space != 0) {
       memset((void *)current_end, 0, additional_space * 8);
     }
@@ -88,19 +88,19 @@ void resize_buffer(longlong *buffer_info, ulonglong required_size)
  * @param allocation_flag 分配标志
  * @param capacity_info 容量信息
  */
-void expand_buffer_capacity(longlong current_size, ulonglong required_size, uint64_t allocation_flag, longlong *buffer_info)
+void expand_buffer_capacity(int64_t current_size, uint64_t required_size, uint64_t allocation_flag, int64_t *buffer_info)
 {
-  longlong in_RAX;
-  longlong new_buffer;
-  longlong *unaff_RBX;
-  ulonglong size_difference;
-  ulonglong new_capacity;
-  longlong unaff_RDI;
+  int64_t in_RAX;
+  int64_t new_buffer;
+  int64_t *unaff_RBX;
+  uint64_t size_difference;
+  uint64_t new_capacity;
+  int64_t unaff_RDI;
   
   size_difference = required_size - current_size;
   
   // 检查是否有足够空间
-  if (size_difference <= (ulonglong)((in_RAX - unaff_RDI) >> 3)) {
+  if (size_difference <= (uint64_t)((in_RAX - unaff_RDI) >> 3)) {
     if (size_difference != 0) {
       memset();
     }
@@ -153,8 +153,8 @@ void expand_buffer_capacity(longlong current_size, ulonglong required_size, uint
  */
 void reset_buffer_content(void)
 {
-  longlong unaff_RBX;
-  longlong unaff_RSI;
+  int64_t unaff_RBX;
+  int64_t unaff_RSI;
   uint64_t unaff_RDI;
   
   if (unaff_RSI != 0) {
@@ -171,11 +171,11 @@ void reset_buffer_content(void)
  * @param param3 参数3
  * @param new_position 新位置
  */
-void update_buffer_position(uint64_t buffer_handle, longlong offset, uint64_t param3, longlong new_position)
+void update_buffer_position(uint64_t buffer_handle, int64_t offset, uint64_t param3, int64_t new_position)
 {
-  longlong unaff_RBX;
+  int64_t unaff_RBX;
   
-  *(longlong *)(unaff_RBX + 8) = new_position + offset * 8;
+  *(int64_t *)(unaff_RBX + 8) = new_position + offset * 8;
   return;
 }
 
@@ -186,7 +186,7 @@ void update_buffer_position(uint64_t buffer_handle, longlong offset, uint64_t pa
  * @param param3 参数3
  * @param param4 参数4
  */
-void process_buffer_type1(longlong buffer_info, uint64_t param2, uint64_t param3, uint64_t param4)
+void process_buffer_type1(int64_t buffer_info, uint64_t param2, uint64_t param3, uint64_t param4)
 {
   execute_buffer_operation(buffer_info, *(uint64_t *)(buffer_info + 0x10), param3, param4, 0xfffffffffffffffe);
   return;
@@ -196,10 +196,10 @@ void process_buffer_type1(longlong buffer_info, uint64_t param2, uint64_t param3
  * 释放缓冲区资源
  * @param buffer_info 缓冲区信息指针
  */
-void release_buffer_resources(longlong *buffer_info)
+void release_buffer_resources(int64_t *buffer_info)
 {
-  longlong current_item;
-  longlong end_item;
+  int64_t current_item;
+  int64_t end_item;
   
   end_item = buffer_info[1];
   for (current_item = *buffer_info; current_item != end_item; current_item = current_item + 0x48) {
@@ -219,7 +219,7 @@ void release_buffer_resources(longlong *buffer_info)
  * @param param3 参数3
  * @param param4 参数4
  */
-void process_buffer_type2(longlong buffer_info, uint64_t param2, uint64_t param3, uint64_t param4)
+void process_buffer_type2(int64_t buffer_info, uint64_t param2, uint64_t param3, uint64_t param4)
 {
   execute_buffer_operation_type2(buffer_info, *(uint64_t *)(buffer_info + 0x10), param3, param4, 0xfffffffffffffffe);
   return;
@@ -232,7 +232,7 @@ void process_buffer_type2(longlong buffer_info, uint64_t param2, uint64_t param3
  * @param param3 参数3
  * @param param4 参数4
  */
-void process_buffer_type3(longlong buffer_info, uint64_t param2, uint64_t param3, uint64_t param4)
+void process_buffer_type3(int64_t buffer_info, uint64_t param2, uint64_t param3, uint64_t param4)
 {
   execute_buffer_operation_type3(buffer_info, *(uint64_t *)(buffer_info + 0x10), param3, param4, 0xfffffffffffffffe);
   return;
@@ -242,29 +242,29 @@ void process_buffer_type3(longlong buffer_info, uint64_t param2, uint64_t param3
  * 清理指针数组
  * @param array_info 数组信息指针
  */
-void cleanup_pointer_array(longlong array_info)
+void cleanup_pointer_array(int64_t array_info)
 {
   int *piVar1;
-  longlong item_ptr;
+  int64_t item_ptr;
   uint64_t *puVar3;
-  longlong lVar4;
-  ulonglong current_index;
-  ulonglong array_size;
+  int64_t lVar4;
+  uint64_t current_index;
+  uint64_t array_size;
   
-  array_size = *(ulonglong *)(array_info + 0x10);
-  lVar4 = *(longlong *)(array_info + 8);
+  array_size = *(uint64_t *)(array_info + 0x10);
+  lVar4 = *(int64_t *)(array_info + 8);
   current_index = 0;
   
   if (array_size != 0) {
     do {
-      item_ptr = *(longlong *)(lVar4 + current_index * 8);
+      item_ptr = *(int64_t *)(lVar4 + current_index * 8);
       if (item_ptr != 0) {
         release_memory(item_ptr);
       }
       *(uint64_t *)(lVar4 + current_index * 8) = 0;
       current_index = current_index + 1;
     } while (current_index < array_size);
-    array_size = *(ulonglong *)(array_info + 0x10);
+    array_size = *(uint64_t *)(array_info + 0x10);
   }
   
   *(uint64_t *)(array_info + 0x18) = 0;
@@ -279,29 +279,29 @@ void cleanup_pointer_array(longlong array_info)
  * 清理指针数组变体1
  * @param array_info 数组信息指针
  */
-void cleanup_pointer_array_variant1(longlong array_info)
+void cleanup_pointer_array_variant1(int64_t array_info)
 {
   int *piVar1;
-  longlong item_ptr;
+  int64_t item_ptr;
   uint64_t *puVar3;
-  longlong lVar4;
-  ulonglong current_index;
-  ulonglong array_size;
+  int64_t lVar4;
+  uint64_t current_index;
+  uint64_t array_size;
   
-  array_size = *(ulonglong *)(array_info + 0x10);
-  lVar4 = *(longlong *)(array_info + 8);
+  array_size = *(uint64_t *)(array_info + 0x10);
+  lVar4 = *(int64_t *)(array_info + 8);
   current_index = 0;
   
   if (array_size != 0) {
     do {
-      item_ptr = *(longlong *)(lVar4 + current_index * 8);
+      item_ptr = *(int64_t *)(lVar4 + current_index * 8);
       if (item_ptr != 0) {
         release_memory(item_ptr);
       }
       *(uint64_t *)(lVar4 + current_index * 8) = 0;
       current_index = current_index + 1;
     } while (current_index < array_size);
-    array_size = *(ulonglong *)(array_info + 0x10);
+    array_size = *(uint64_t *)(array_info + 0x10);
   }
   
   *(uint64_t *)(array_info + 0x18) = 0;
@@ -316,20 +316,20 @@ void cleanup_pointer_array_variant1(longlong array_info)
  * 清理指针数组变体2
  * @param array_info 数组信息指针
  */
-void cleanup_pointer_array_variant2(longlong array_info)
+void cleanup_pointer_array_variant2(int64_t array_info)
 {
   int *piVar1;
   uint64_t *puVar2;
-  longlong lVar3;
-  longlong unaff_RBP;
-  ulonglong unaff_RSI;
-  ulonglong unaff_RDI;
-  ulonglong uVar4;
-  longlong unaff_R14;
+  int64_t lVar3;
+  int64_t unaff_RBP;
+  uint64_t unaff_RSI;
+  uint64_t unaff_RDI;
+  uint64_t uVar4;
+  int64_t unaff_R14;
   uint64_t unaff_R15;
   
   do {
-    lVar3 = *(longlong *)(unaff_R14 + unaff_RDI * 8);
+    lVar3 = *(int64_t *)(unaff_R14 + unaff_RDI * 8);
     if (lVar3 != 0) {
       release_memory(lVar3);
     }
@@ -339,9 +339,9 @@ void cleanup_pointer_array_variant2(longlong array_info)
   
   *(uint64_t *)(unaff_RBP + 0x18) = unaff_R15;
   
-  if ((1 < *(ulonglong *)(unaff_RBP + 0x10)) &&
+  if ((1 < *(uint64_t *)(unaff_RBP + 0x10)) &&
      (puVar2 = *(uint64_t **)(unaff_RBP + 8), puVar2 != (uint64_t *)0x0)) {
-    release_array_memory(puVar2, *(ulonglong *)(unaff_RBP + 0x10));
+    release_array_memory(puVar2, *(uint64_t *)(unaff_RBP + 0x10));
   }
   return;
 }
@@ -350,14 +350,14 @@ void cleanup_pointer_array_variant2(longlong array_info)
  * 清理指针数组变体3
  * @param array_info 数组信息指针
  */
-void cleanup_pointer_array_variant3(longlong array_info)
+void cleanup_pointer_array_variant3(int64_t array_info)
 {
   int *piVar1;
   uint64_t *puVar2;
-  longlong lVar3;
-  longlong unaff_RBP;
-  ulonglong unaff_RSI;
-  ulonglong uVar4;
+  int64_t lVar3;
+  int64_t unaff_RBP;
+  uint64_t unaff_RSI;
+  uint64_t uVar4;
   uint64_t unaff_R15;
   
   *(uint64_t *)(unaff_RBP + 0x18) = unaff_R15;
@@ -372,20 +372,20 @@ void cleanup_pointer_array_variant3(longlong array_info)
  * 清理指针数组变体4
  * @param array_info 数组信息指针
  */
-void cleanup_pointer_array_variant4(longlong array_info)
+void cleanup_pointer_array_variant4(int64_t array_info)
 {
   int *piVar1;
   uint64_t *puVar2;
-  longlong lVar3;
-  longlong unaff_RBP;
-  ulonglong uVar4;
+  int64_t lVar3;
+  int64_t unaff_RBP;
+  uint64_t uVar4;
   
   puVar2 = *(uint64_t **)(unaff_RBP + 8);
   if (puVar2 == (uint64_t *)0x0) {
     return;
   }
   
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (uint64_t)puVar2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
     release_array_memory(puVar2, 1);
   }
@@ -399,7 +399,7 @@ void cleanup_pointer_array_variant4(longlong array_info)
  * @param param3 参数3
  * @param param4 参数4
  */
-void process_buffer_type4(longlong buffer_info, uint64_t param2, uint64_t param3, uint64_t param4)
+void process_buffer_type4(int64_t buffer_info, uint64_t param2, uint64_t param3, uint64_t param4)
 {
   execute_buffer_operation_type4(buffer_info, *(uint64_t *)(buffer_info + 0x10), param3, param4, 0xfffffffffffffffe);
   return;
@@ -412,7 +412,7 @@ void process_buffer_type4(longlong buffer_info, uint64_t param2, uint64_t param3
  * @param param3 参数3
  * @param param4 参数4
  */
-void iterate_and_process_buffer_items(longlong *buffer_info, uint64_t param2, uint64_t param3, uint64_t param4)
+void iterate_and_process_buffer_items(int64_t *buffer_info, uint64_t param2, uint64_t param3, uint64_t param4)
 {
   uint64_t *current_item;
   uint64_t *end_item;
@@ -435,35 +435,35 @@ void iterate_and_process_buffer_items(longlong *buffer_info, uint64_t param2, ui
  * 清理对象数组
  * @param array_info 数组信息指针
  */
-void cleanup_object_array(longlong array_info)
+void cleanup_object_array(int64_t array_info)
 {
-  longlong item_ptr;
-  longlong lVar2;
-  ulonglong current_index;
-  ulonglong array_size;
+  int64_t item_ptr;
+  int64_t lVar2;
+  uint64_t current_index;
+  uint64_t array_size;
   
-  array_size = *(ulonglong *)(array_info + 0x10);
-  lVar2 = *(longlong *)(array_info + 8);
+  array_size = *(uint64_t *)(array_info + 0x10);
+  lVar2 = *(int64_t *)(array_info + 8);
   current_index = 0;
   
   if (array_size != 0) {
     do {
-      item_ptr = *(longlong *)(lVar2 + current_index * 8);
+      item_ptr = *(int64_t *)(lVar2 + current_index * 8);
       if (item_ptr != 0) {
-        if (*(longlong **)(item_ptr + 0x10) != (longlong *)0x0) {
-          (**(code **)(**(longlong **)(item_ptr + 0x10) + 0x38))();
+        if (*(int64_t **)(item_ptr + 0x10) != (int64_t *)0x0) {
+          (**(code **)(**(int64_t **)(item_ptr + 0x10) + 0x38))();
         }
         release_memory(item_ptr);
       }
       *(uint64_t *)(lVar2 + current_index * 8) = 0;
       current_index = current_index + 1;
     } while (current_index < array_size);
-    array_size = *(ulonglong *)(array_info + 0x10);
+    array_size = *(uint64_t *)(array_info + 0x10);
   }
   
   *(uint64_t *)(array_info + 0x18) = 0;
   
-  if ((1 < array_size) && (*(longlong *)(array_info + 8) != 0)) {
+  if ((1 < array_size) && (*(int64_t *)(array_info + 8) != 0)) {
     release_memory();
   }
   return;
@@ -473,10 +473,10 @@ void cleanup_object_array(longlong array_info)
  * 释放链表资源
  * @param list_head 链表头指针
  */
-void release_linked_list_resources(longlong *list_head)
+void release_linked_list_resources(int64_t *list_head)
 {
-  longlong current_node;
-  longlong end_node;
+  int64_t current_node;
+  int64_t end_node;
   
   end_node = list_head[1];
   for (current_node = *list_head; current_node != end_node; current_node = current_node + 0x18) {
@@ -493,29 +493,29 @@ void release_linked_list_resources(longlong *list_head)
  * 清理资源数组
  * @param array_info 数组信息指针
  */
-void cleanup_resource_array(longlong array_info)
+void cleanup_resource_array(int64_t array_info)
 {
   int *piVar1;
-  longlong item_ptr;
+  int64_t item_ptr;
   uint64_t *puVar3;
-  longlong lVar4;
-  ulonglong current_index;
-  ulonglong array_size;
+  int64_t lVar4;
+  uint64_t current_index;
+  uint64_t array_size;
   
-  array_size = *(ulonglong *)(array_info + 0x10);
-  lVar4 = *(longlong *)(array_info + 8);
+  array_size = *(uint64_t *)(array_info + 0x10);
+  lVar4 = *(int64_t *)(array_info + 8);
   current_index = 0;
   
   if (array_size != 0) {
     do {
-      item_ptr = *(longlong *)(lVar4 + current_index * 8);
+      item_ptr = *(int64_t *)(lVar4 + current_index * 8);
       if (item_ptr != 0) {
         release_memory(item_ptr);
       }
       *(uint64_t *)(lVar4 + current_index * 8) = 0;
       current_index = current_index + 1;
     } while (current_index < array_size);
-    array_size = *(ulonglong *)(array_info + 0x10);
+    array_size = *(uint64_t *)(array_info + 0x10);
   }
   
   *(uint64_t *)(array_info + 0x18) = 0;
@@ -530,29 +530,29 @@ void cleanup_resource_array(longlong array_info)
  * 清理资源数组变体1
  * @param array_info 数组信息指针
  */
-void cleanup_resource_array_variant1(longlong array_info)
+void cleanup_resource_array_variant1(int64_t array_info)
 {
   int *piVar1;
-  longlong item_ptr;
+  int64_t item_ptr;
   uint64_t *puVar3;
-  longlong lVar4;
-  ulonglong current_index;
-  ulonglong array_size;
+  int64_t lVar4;
+  uint64_t current_index;
+  uint64_t array_size;
   
-  array_size = *(ulonglong *)(array_info + 0x10);
-  lVar4 = *(longlong *)(array_info + 8);
+  array_size = *(uint64_t *)(array_info + 0x10);
+  lVar4 = *(int64_t *)(array_info + 8);
   current_index = 0;
   
   if (array_size != 0) {
     do {
-      item_ptr = *(longlong *)(lVar4 + current_index * 8);
+      item_ptr = *(int64_t *)(lVar4 + current_index * 8);
       if (item_ptr != 0) {
         release_memory(item_ptr);
       }
       *(uint64_t *)(lVar4 + current_index * 8) = 0;
       current_index = current_index + 1;
     } while (current_index < array_size);
-    array_size = *(ulonglong *)(array_info + 0x10);
+    array_size = *(uint64_t *)(array_info + 0x10);
   }
   
   *(uint64_t *)(array_info + 0x18) = 0;
@@ -567,20 +567,20 @@ void cleanup_resource_array_variant1(longlong array_info)
  * 清理资源数组变体2
  * @param array_info 数组信息指针
  */
-void cleanup_resource_array_variant2(longlong array_info)
+void cleanup_resource_array_variant2(int64_t array_info)
 {
   int *piVar1;
   uint64_t *puVar2;
-  longlong lVar3;
-  longlong unaff_RBP;
-  ulonglong unaff_RSI;
-  ulonglong unaff_RDI;
-  ulonglong uVar4;
-  longlong unaff_R14;
+  int64_t lVar3;
+  int64_t unaff_RBP;
+  uint64_t unaff_RSI;
+  uint64_t unaff_RDI;
+  uint64_t uVar4;
+  int64_t unaff_R14;
   uint64_t unaff_R15;
   
   do {
-    lVar3 = *(longlong *)(unaff_R14 + unaff_RDI * 8);
+    lVar3 = *(int64_t *)(unaff_R14 + unaff_RDI * 8);
     if (lVar3 != 0) {
       release_memory(lVar3);
     }
@@ -590,9 +590,9 @@ void cleanup_resource_array_variant2(longlong array_info)
   
   *(uint64_t *)(unaff_RBP + 0x18) = unaff_R15;
   
-  if ((1 < *(ulonglong *)(unaff_RBP + 0x10)) &&
+  if ((1 < *(uint64_t *)(unaff_RBP + 0x10)) &&
      (puVar2 = *(uint64_t **)(unaff_RBP + 8), puVar2 != (uint64_t *)0x0)) {
-    release_array_memory(puVar2, *(ulonglong *)(unaff_RBP + 0x10));
+    release_array_memory(puVar2, *(uint64_t *)(unaff_RBP + 0x10));
   }
   return;
 }
@@ -601,14 +601,14 @@ void cleanup_resource_array_variant2(longlong array_info)
  * 清理资源数组变体3
  * @param array_info 数组信息指针
  */
-void cleanup_resource_array_variant3(longlong array_info)
+void cleanup_resource_array_variant3(int64_t array_info)
 {
   int *piVar1;
   uint64_t *puVar2;
-  longlong lVar3;
-  longlong unaff_RBP;
-  ulonglong unaff_RSI;
-  ulonglong uVar4;
+  int64_t lVar3;
+  int64_t unaff_RBP;
+  uint64_t unaff_RSI;
+  uint64_t uVar4;
   uint64_t unaff_R15;
   
   *(uint64_t *)(unaff_RBP + 0x18) = unaff_R15;
@@ -623,20 +623,20 @@ void cleanup_resource_array_variant3(longlong array_info)
  * 清理资源数组变体4
  * @param array_info 数组信息指针
  */
-void cleanup_resource_array_variant4(longlong array_info)
+void cleanup_resource_array_variant4(int64_t array_info)
 {
   int *piVar1;
   uint64_t *puVar2;
-  longlong lVar3;
-  longlong unaff_RBP;
-  ulonglong uVar4;
+  int64_t lVar3;
+  int64_t unaff_RBP;
+  uint64_t uVar4;
   
   puVar2 = *(uint64_t **)(unaff_RBP + 8);
   if (puVar2 == (uint64_t *)0x0) {
     return;
   }
   
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (uint64_t)puVar2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
     release_array_memory(puVar2, 1);
   }
@@ -650,7 +650,7 @@ void cleanup_resource_array_variant4(longlong array_info)
  * @param param3 参数3
  * @param param4 参数4
  */
-void process_buffer_type5(longlong buffer_info, uint64_t param2, uint64_t param3, uint64_t param4)
+void process_buffer_type5(int64_t buffer_info, uint64_t param2, uint64_t param3, uint64_t param4)
 {
   execute_buffer_operation_type5(buffer_info, *(uint64_t *)(buffer_info + 0x10), param3, param4, 0xfffffffffffffffe);
   return;
@@ -663,7 +663,7 @@ void process_buffer_type5(longlong buffer_info, uint64_t param2, uint64_t param3
  * @param param3 参数3
  * @param param4 参数4
  */
-void iterate_and_process_objects(longlong *array_info, uint64_t param2, uint64_t param3, uint64_t param4)
+void iterate_and_process_objects(int64_t *array_info, uint64_t param2, uint64_t param3, uint64_t param4)
 {
   uint64_t *current_item;
   uint64_t *end_item;
@@ -673,8 +673,8 @@ void iterate_and_process_objects(longlong *array_info, uint64_t param2, uint64_t
   end_item = (uint64_t *)array_info[1];
   
   for (current_item = (uint64_t *)*array_info; current_item != end_item; current_item = current_item + 1) {
-    if ((longlong *)*current_item != (longlong *)0x0) {
-      (**(code **)(*(longlong *)*current_item + 0x38))();
+    if ((int64_t *)*current_item != (int64_t *)0x0) {
+      (**(code **)(*(int64_t *)*current_item + 0x38))();
     }
   }
   
@@ -688,12 +688,12 @@ void iterate_and_process_objects(longlong *array_info, uint64_t param2, uint64_t
  * 清理系统资源
  * @param system_info 系统信息指针
  */
-void cleanup_system_resources(longlong *system_info)
+void cleanup_system_resources(int64_t *system_info)
 {
   int *piVar1;
   uint64_t *puVar2;
-  longlong lVar3;
-  ulonglong uVar4;
+  int64_t lVar3;
+  uint64_t uVar4;
   
   puVar2 = system_data_pointer;
   if (system_data_pointer == (uint64_t *)0x0) {
@@ -702,22 +702,22 @@ void cleanup_system_resources(longlong *system_info)
   
   cleanup_global_resources();
   
-  if ((longlong *)puVar2[0x30b] != (longlong *)0x0) {
-    (**(code **)(*(longlong *)puVar2[0x30b] + 0x38))();
+  if ((int64_t *)puVar2[0x30b] != (int64_t *)0x0) {
+    (**(code **)(*(int64_t *)puVar2[0x30b] + 0x38))();
   }
   
   destroy_mutex_in_place();
   
-  if ((longlong *)puVar2[0x300] != (longlong *)0x0) {
-    (**(code **)(*(longlong *)puVar2[0x300] + 0x38))();
+  if ((int64_t *)puVar2[0x300] != (int64_t *)0x0) {
+    (**(code **)(*(int64_t *)puVar2[0x300] + 0x38))();
   }
   
-  if ((longlong *)puVar2[0x2d3] != (longlong *)0x0) {
-    (**(code **)(*(longlong *)puVar2[0x2d3] + 0x38))();
+  if ((int64_t *)puVar2[0x2d3] != (int64_t *)0x0) {
+    (**(code **)(*(int64_t *)puVar2[0x2d3] + 0x38))();
   }
   
-  if ((longlong *)puVar2[0x2c0] != (longlong *)0x0) {
-    (**(code **)(*(longlong *)puVar2[0x2c0] + 0x38))();
+  if ((int64_t *)puVar2[0x2c0] != (int64_t *)0x0) {
+    (**(code **)(*(int64_t *)puVar2[0x2c0] + 0x38))();
   }
   
   cleanup_resource_manager(puVar2 + 0x116);
@@ -727,7 +727,7 @@ void cleanup_system_resources(longlong *system_info)
     release_memory();
   }
   
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (uint64_t)puVar2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
     release_system_memory(puVar2);
   }
@@ -741,17 +741,17 @@ void cleanup_system_resources(longlong *system_info)
  * @param delimiters 分隔符字符串
  * @param process_flag 处理标志
  */
-void split_and_process_string(longlong string_info, longlong delimiter_info, uint64_t delimiters, uint64_t process_flag)
+void split_and_process_string(int64_t string_info, int64_t delimiter_info, uint64_t delimiters, uint64_t process_flag)
 {
   char current_char;
-  longlong found_position;
+  int64_t found_position;
   char *string_start;
   char *current_position;
   uint64_t operation_flag;
   void *puStack_50;
-  longlong lStack_48;
+  int64_t lStack_48;
   int32_t uStack_40;
-  ulonglong uStack_38;
+  uint64_t uStack_38;
   
   operation_flag = 0xfffffffffffffffe;
   string_start = *(char **)(string_info + 8);
@@ -770,8 +770,8 @@ void split_and_process_string(longlong string_info, longlong delimiter_info, uin
         process_string_segment(&puStack_50, current_position, (int)string_start - (int)current_position, process_flag, operation_flag);
         current_position = string_start + 1;
         
-        if (*(ulonglong *)(delimiter_info + 8) < *(ulonglong *)(delimiter_info + 0x10)) {
-          *(ulonglong *)(delimiter_info + 8) = *(ulonglong *)(delimiter_info + 8) + 0x20;
+        if (*(uint64_t *)(delimiter_info + 8) < *(uint64_t *)(delimiter_info + 0x10)) {
+          *(uint64_t *)(delimiter_info + 8) = *(uint64_t *)(delimiter_info + 8) + 0x20;
           expand_delimiter_buffer();
         } else {
           add_delimiter_segment(delimiter_info, &puStack_50);
@@ -798,8 +798,8 @@ void split_and_process_string(longlong string_info, longlong delimiter_info, uin
       
       process_string_segment(&puStack_50, current_position, (int)string_start - (int)current_position, process_flag, operation_flag);
       
-      if (*(ulonglong *)(delimiter_info + 8) < *(ulonglong *)(delimiter_info + 0x10)) {
-        *(ulonglong *)(delimiter_info + 8) = *(ulonglong *)(delimiter_info + 8) + 0x20;
+      if (*(uint64_t *)(delimiter_info + 8) < *(uint64_t *)(delimiter_info + 0x10)) {
+        *(uint64_t *)(delimiter_info + 8) = *(uint64_t *)(delimiter_info + 8) + 0x20;
         expand_delimiter_buffer();
       } else {
         add_delimiter_segment(delimiter_info, &puStack_50);
@@ -820,14 +820,14 @@ void split_and_process_string(longlong string_info, longlong delimiter_info, uin
  * @param result_info 结果信息
  * @param comparison_flag 比较标志
  */
-longlong * create_and_compare_string(longlong source_info, longlong *result_info, uint64_t comparison_flag)
+int64_t * create_and_compare_string(int64_t source_info, int64_t *result_info, uint64_t comparison_flag)
 {
   byte current_byte;
   uint comparison_byte;
-  longlong new_string;
-  longlong existing_string;
+  int64_t new_string;
+  int64_t existing_string;
   byte *source_ptr;
-  longlong length_difference;
+  int64_t length_difference;
   uint64_t comparison_result;
   char temp_buffer [8];
   
@@ -850,7 +850,7 @@ longlong * create_and_compare_string(longlong source_info, longlong *result_info
     
     if (*(int *)(new_string + 0x30) != 0) {
       source_ptr = *(byte **)(existing_string + 0x28);
-      length_difference = *(longlong *)(new_string + 0x28) - (longlong)source_ptr;
+      length_difference = *(int64_t *)(new_string + 0x28) - (int64_t)source_ptr;
       
       do {
         current_byte = *source_ptr;
@@ -942,7 +942,7 @@ uint64_t * initialize_string_processing(uint64_t *string_ptr, uint length, uint6
  * @param param3 参数3
  * @param param4 参数4
  */
-void process_complex_buffer_operation(longlong *buffer_info, uint64_t param2, uint64_t param3, uint64_t param4)
+void process_complex_buffer_operation(int64_t *buffer_info, uint64_t param2, uint64_t param3, uint64_t param4)
 {
   uint64_t *current_item;
   uint64_t *end_item;
@@ -952,7 +952,7 @@ void process_complex_buffer_operation(longlong *buffer_info, uint64_t param2, ui
   initialize_buffer_operations();
   initialize_buffer_operations();
   
-  buffer_info[0x123] = (longlong)&empty_string_marker;
+  buffer_info[0x123] = (int64_t)&empty_string_marker;
   
   if (buffer_info[0x124] != 0) {
     release_memory();
@@ -960,7 +960,7 @@ void process_complex_buffer_operation(longlong *buffer_info, uint64_t param2, ui
   
   buffer_info[0x124] = 0;
   *(int32_t *)(buffer_info + 0x126) = 0;
-  buffer_info[0x123] = (longlong)&string_buffer_marker;
+  buffer_info[0x123] = (int64_t)&string_buffer_marker;
   
   execute_buffer_operation_type3(buffer_info + 0x11d, buffer_info[0x11f], param3, param4, operation_flag);
   
@@ -968,8 +968,8 @@ void process_complex_buffer_operation(longlong *buffer_info, uint64_t param2, ui
     initialize_string_comparator();
     initialize_string_comparator();
     execute_buffer_operation(buffer_info + 0x10b, buffer_info[0x10d]);
-    buffer_info[0x87] = (longlong)&string_buffer_marker;
-    buffer_info[4] = (longlong)&string_buffer_marker;
+    buffer_info[0x87] = (int64_t)&string_buffer_marker;
+    buffer_info[4] = (int64_t)&string_buffer_marker;
     operation_flag = 0xfffffffffffffffe;
     
     current_item = (uint64_t *)buffer_info[1];
@@ -994,7 +994,7 @@ void process_complex_buffer_operation(longlong *buffer_info, uint64_t param2, ui
  * @param param3 参数3
  * @param param4 参数4
  */
-void process_buffer_type6(longlong buffer_info, uint64_t param2, uint64_t param3, uint64_t param4)
+void process_buffer_type6(int64_t buffer_info, uint64_t param2, uint64_t param3, uint64_t param4)
 {
   execute_buffer_operation(buffer_info, *(uint64_t *)(buffer_info + 0x10), param3, param4, 0xfffffffffffffffe);
   return;
@@ -1007,7 +1007,7 @@ void process_buffer_type6(longlong buffer_info, uint64_t param2, uint64_t param3
  * @param param3 参数3
  * @param param4 参数4
  */
-void process_buffer_with_cleanup(longlong buffer_info, uint64_t param2, uint64_t param3, uint64_t param4)
+void process_buffer_with_cleanup(int64_t buffer_info, uint64_t param2, uint64_t param3, uint64_t param4)
 {
   uint64_t *sub_buffer;
   
@@ -1027,7 +1027,7 @@ void process_buffer_with_cleanup(longlong buffer_info, uint64_t param2, uint64_t
  * @param param3 参数3
  * @param param4 参数4
  */
-void process_buffer_type7(longlong buffer_info, uint64_t param2, uint64_t param3, uint64_t param4)
+void process_buffer_type7(int64_t buffer_info, uint64_t param2, uint64_t param3, uint64_t param4)
 {
   execute_buffer_operation(buffer_info, *(uint64_t *)(buffer_info + 0x10), param3, param4, 0xfffffffffffffffe);
   return;
@@ -1040,7 +1040,7 @@ void process_buffer_type7(longlong buffer_info, uint64_t param2, uint64_t param3
  * @param param3 参数3
  * @param param4 参数4
  */
-void process_buffer_with_cleanup_variant1(longlong buffer_info, uint64_t param2, uint64_t param3, uint64_t param4)
+void process_buffer_with_cleanup_variant1(int64_t buffer_info, uint64_t param2, uint64_t param3, uint64_t param4)
 {
   uint64_t *sub_buffer;
   

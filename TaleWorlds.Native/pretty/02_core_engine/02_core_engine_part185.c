@@ -30,31 +30,31 @@
  *   - 管理事件状态
  *   - 更新配置信息
  */
-void process_engine_event_system(longlong ***event_queue_ptr, longlong event_count, uint64_t *config_ptr1, uint64_t *config_ptr2, uint64_t event_flags)
+void process_engine_event_system(int64_t ***event_queue_ptr, int64_t event_count, uint64_t *config_ptr1, uint64_t *config_ptr2, uint64_t event_flags)
 {
   int *int_ptr1;
   uint64_t *data_ptr1;
   uint uint_var1;
-  longlong ***event_array_ptr1;
+  int64_t ***event_array_ptr1;
   code *code_ptr;
   char status_flag;
   int int_var1;
   uint64_t data_var1;
-  longlong long_var1;
-  longlong long_var2;
-  longlong long_var3;
-  longlong ****event_array_ptr2;
+  int64_t long_var1;
+  int64_t long_var2;
+  int64_t long_var3;
+  int64_t ****event_array_ptr2;
   uint64_t *data_ptr2;
   void *string_ptr1;
   void *string_ptr2;
-  longlong ***event_array_ptr3;
-  longlong long_var4;
-  ulonglong ulong_var1;
+  int64_t ***event_array_ptr3;
+  int64_t long_var4;
+  uint64_t ulong_var1;
   int int_var2;
-  longlong **data_array_ptr;
-  longlong *data_item_ptr;
-  longlong ****event_array_ptr4;
-  longlong ****event_array_ptr5;
+  int64_t **data_array_ptr;
+  int64_t *data_item_ptr;
+  int64_t ****event_array_ptr4;
+  int64_t ****event_array_ptr5;
   uint64_t *stack_ptr1;
   uint64_t *stack_ptr2;
   int32_t uint_var2;
@@ -62,7 +62,7 @@ void process_engine_event_system(longlong ***event_queue_ptr, longlong event_cou
   int32_t stack_data2;
   int32_t stack_data3;
   void *stack_ptr3;
-  longlong stack_long1;
+  int64_t stack_long1;
   int stack_int1;
   uint64_t stack_data4;
   int32_t stack_data5;
@@ -71,9 +71,9 @@ void process_engine_event_system(longlong ***event_queue_ptr, longlong event_cou
   int32_t stack_data8;
   int32_t stack_data9;
   int32_t stack_data10;
-  longlong ****event_array_ptr6;
+  int64_t ****event_array_ptr6;
   uint64_t stack_data11;
-  longlong ****event_array_ptr7;
+  int64_t ****event_array_ptr7;
   
   stack_data11 = 0xfffffffffffffffe;
   stack_ptr1 = config_ptr1;
@@ -97,16 +97,16 @@ void process_engine_event_system(longlong ***event_queue_ptr, longlong event_cou
   }
   else {
     event_array_ptr1 =
-         (longlong ****)
-         ((ulonglong)
+         (int64_t ****)
+         ((uint64_t)
           (uint)(*(float *)(global_engine_context + 0x1660) + *(float *)(global_engine_context + 0x1660) +
                  *(float *)(global_engine_context + 0x19f8) + *(float *)(global_engine_context + 0x1670)) << 0x20
          ^ 0x8000000000000000);
-    *(int8_t *)(*(longlong *)(global_engine_context + 0x1af8) + 0xb1) = 1;
+    *(int8_t *)(*(int64_t *)(global_engine_context + 0x1af8) + 0xb1) = 1;
     int_var1 = create_event_index(&event_system_table, 0,
                           *(int32_t *)
-                           (*(longlong *)(*(longlong *)(long_var4 + 0x1af8) + 0x220) + -4 +
-                           (longlong)*(int *)(*(longlong *)(long_var4 + 0x1af8) + 0x218) * 4));
+                           (*(int64_t *)(*(int64_t *)(long_var4 + 0x1af8) + 0x220) + -4 +
+                           (int64_t)*(int *)(*(int64_t *)(long_var4 + 0x1af8) + 0x218) * 4));
     if (*(int *)(long_var4 + 0x1b2c) == int_var1) {
       *(int *)(long_var4 + 0x1b34) = int_var1;
     }
@@ -118,8 +118,8 @@ void process_engine_event_system(longlong ***event_queue_ptr, longlong event_cou
     long_var4 = global_engine_context;
     int_var1 = create_event_index(&event_handler_table, 0,
                           *(int32_t *)
-                           (*(longlong *)(*(longlong *)(global_engine_context + 0x1af8) + 0x220) + -4 +
-                           (longlong)*(int *)(*(longlong *)(global_engine_context + 0x1af8) + 0x218) * 4));
+                           (*(int64_t *)(*(int64_t *)(global_engine_context + 0x1af8) + 0x220) + -4 +
+                           (int64_t)*(int *)(*(int64_t *)(global_engine_context + 0x1af8) + 0x218) * 4));
     if (*(int *)(long_var4 + 0x1b2c) == int_var1) {
       *(int *)(long_var4 + 0x1b34) = int_var1;
     }
@@ -131,32 +131,32 @@ void process_engine_event_system(longlong ***event_queue_ptr, longlong event_cou
     }
     status_flag = validate_event_index(int_var1, 0x141);
     if (status_flag != '\0') {
-      event_array_ptr1 = (longlong ****)0x0;
+      event_array_ptr1 = (int64_t ****)0x0;
       status_flag = create_event_processor(&event_processor_table, 0, 0, &event_array_ptr1, uint_var2);
       if (status_flag != '\0') {
-        event_array_ptr1 = (longlong ***)event_queue_ptr[1];
-        event_array_ptr3 = (longlong ***)*event_queue_ptr;
-        event_array_ptr1 = (longlong ****)event_array_ptr3;
+        event_array_ptr1 = (int64_t ***)event_queue_ptr[1];
+        event_array_ptr3 = (int64_t ***)*event_queue_ptr;
+        event_array_ptr1 = (int64_t ****)event_array_ptr3;
         if (event_array_ptr3 != event_array_ptr1) {
           do {
-            event_array_ptr2 = (longlong ****)(event_array_ptr3 + 1);
-            *event_array_ptr2 = (longlong ***)&null_event_table;
-            if (event_array_ptr3[2] != (longlong **)0x0) {
-              event_array_ptr1 = (longlong ****)event_array_ptr3;
+            event_array_ptr2 = (int64_t ****)(event_array_ptr3 + 1);
+            *event_array_ptr2 = (int64_t ***)&null_event_table;
+            if (event_array_ptr3[2] != (int64_t **)0x0) {
+              event_array_ptr1 = (int64_t ****)event_array_ptr3;
                     // WARNING: Subroutine does not return
               cleanup_event_array();
             }
-            event_array_ptr3[2] = (longlong **)0x0;
+            event_array_ptr3[2] = (int64_t **)0x0;
             *(int32_t *)(event_array_ptr3 + 4) = 0;
-            *event_array_ptr2 = (longlong ***)&default_event_table;
-            event_array_ptr1 = (longlong ****)(event_array_ptr3 + 5);
-            event_array_ptr3 = (longlong ***)event_array_ptr1;
-          } while (event_array_ptr1 != (longlong ****)event_array_ptr1);
-          event_array_ptr3 = (longlong ***)*event_queue_ptr;
+            *event_array_ptr2 = (int64_t ***)&default_event_table;
+            event_array_ptr1 = (int64_t ****)(event_array_ptr3 + 5);
+            event_array_ptr3 = (int64_t ***)event_array_ptr1;
+          } while (event_array_ptr1 != (int64_t ****)event_array_ptr1);
+          event_array_ptr3 = (int64_t ***)*event_queue_ptr;
           config_ptr1 = stack_ptr1;
         }
-        event_queue_ptr[1] = (longlong **)event_array_ptr3;
-        *(int8_t *)((longlong)event_queue_ptr + 0x72) = 1;
+        event_queue_ptr[1] = (int64_t **)event_array_ptr3;
+        *(int8_t *)((int64_t)event_queue_ptr + 0x72) = 1;
       }
       finalize_event_setup();
     }
@@ -168,28 +168,28 @@ void process_engine_event_system(longlong ***event_queue_ptr, longlong event_cou
     *(int32_t *)(long_var4 + 0x166c) = 0x40800000;
     *(int32_t *)(long_var4 + 0x1670) = 0x3f800000;
     data_array_ptr = *event_queue_ptr;
-    long_var4 = (longlong)event_queue_ptr[1] - (longlong)data_array_ptr >> 0x3f;
-    if (((longlong)event_queue_ptr[1] - (longlong)data_array_ptr) / 0x28 + long_var4 != long_var4) {
+    long_var4 = (int64_t)event_queue_ptr[1] - (int64_t)data_array_ptr >> 0x3f;
+    if (((int64_t)event_queue_ptr[1] - (int64_t)data_array_ptr) / 0x28 + long_var4 != long_var4) {
       stack_data3 = 0x3f800000;
       long_var4 = 0;
       do {
         stack_data1._0_4_ = 0x3f800000;
         stack_data1._4_4_ = 0x3f800000;
         stack_data2 = 0x3f800000;
-        if (*(int *)(long_var4 + (longlong)data_array_ptr) == 4) {
+        if (*(int *)(long_var4 + (int64_t)data_array_ptr) == 4) {
 PROCESS_EVENT_TYPE:
           stack_data1._4_4_ = 0x3ecccccd;
           stack_data2 = 0x3ecccccd;
         }
         else {
-          string_ptr1 = *(void **)(long_var4 + 0x10 + (longlong)data_array_ptr);
+          string_ptr1 = *(void **)(long_var4 + 0x10 + (int64_t)data_array_ptr);
           string_ptr2 = &default_string_buffer;
           if (string_ptr1 != (void *)0x0) {
             string_ptr2 = string_ptr1;
           }
           long_var1 = find_substring(string_ptr2, &event_type_pattern);
           if (long_var1 != 0) goto PROCESS_EVENT_TYPE;
-          int_var1 = *(int *)(long_var4 + (longlong)data_array_ptr);
+          int_var1 = *(int *)(long_var4 + (int64_t)data_array_ptr);
           if (int_var1 == 3) {
             stack_data1._4_4_ = 0x3f47ae14;
             stack_data2 = 0x3f147ae1;
@@ -205,27 +205,27 @@ PROCESS_EVENT_TYPE:
           }
         }
         long_var1 = global_engine_context;
-        if (*(char *)((longlong)event_queue_ptr + 0x72) != '\0') {
-          *(int8_t *)(*(longlong *)(global_engine_context + 0x1af8) + 0xb1) = 1;
-          long_var2 = *(longlong *)(long_var1 + 0x1af8);
+        if (*(char *)((int64_t)event_queue_ptr + 0x72) != '\0') {
+          *(int8_t *)(*(int64_t *)(global_engine_context + 0x1af8) + 0xb1) = 1;
+          long_var2 = *(int64_t *)(long_var1 + 0x1af8);
           *(int8_t *)(long_var2 + 0xb1) = 1;
-          long_var1 = *(longlong *)(long_var1 + 0x1af8);
+          long_var1 = *(int64_t *)(long_var1 + 0x1af8);
           *(float *)(long_var1 + 0x98) =
                (float)(int)((*(float *)(long_var2 + 0x10c) - *(float *)(long_var2 + 0x44)) +
                             *(float *)(long_var2 + 0x130) * 0.5 + *(float *)(long_var1 + 0x90));
           *(int32_t *)(long_var1 + 0xa0) = 0x3f000000;
-          *(int8_t *)((longlong)event_queue_ptr + 0x72) = 0;
+          *(int8_t *)((int64_t)event_queue_ptr + 0x72) = 0;
         }
         long_var1 = global_engine_context;
         stack_data5 = 0;
         stack_data6 = (int32_t)*(uint64_t *)(global_engine_context + 0x16c8);
-        stack_data7 = (int32_t)((ulonglong)*(uint64_t *)(global_engine_context + 0x16c8) >> 0x20);
+        stack_data7 = (int32_t)((uint64_t)*(uint64_t *)(global_engine_context + 0x16c8) >> 0x20);
         stack_data8 = (int32_t)*(uint64_t *)(global_engine_context + 0x16d0);
-        stack_data9 = (int32_t)((ulonglong)*(uint64_t *)(global_engine_context + 0x16d0) >> 0x20);
+        stack_data9 = (int32_t)((uint64_t)*(uint64_t *)(global_engine_context + 0x16d0) >> 0x20);
         update_engine_config(global_engine_context + 0x1b80, &stack_data5);
-        *(ulonglong *)(long_var1 + 0x16c8) = CONCAT44(stack_data1._4_4_, (int32_t)stack_data1);
-        *(ulonglong *)(long_var1 + 0x16d0) = CONCAT44(stack_data3, stack_data2);
-        string_ptr1 = *(void **)(long_var4 + 0x10 + (longlong)data_array_ptr);
+        *(uint64_t *)(long_var1 + 0x16c8) = CONCAT44(stack_data1._4_4_, (int32_t)stack_data1);
+        *(uint64_t *)(long_var1 + 0x16d0) = CONCAT44(stack_data3, stack_data2);
+        string_ptr1 = *(void **)(long_var4 + 0x10 + (int64_t)data_array_ptr);
         string_ptr2 = &default_string_buffer;
         if (string_ptr1 != (void *)0x0) {
           string_ptr2 = string_ptr1;
@@ -233,14 +233,14 @@ PROCESS_EVENT_TYPE:
         process_string_data(string_ptr2, 0);
         long_var1 = global_engine_context;
         data_ptr2 = (uint64_t *)
-                  (*(longlong *)(global_engine_context + 0x1b88) + -0x10 +
-                  (longlong)*(int *)(global_engine_context + 0x1b80) * 0x14);
+                  (*(int64_t *)(global_engine_context + 0x1b88) + -0x10 +
+                  (int64_t)*(int *)(global_engine_context + 0x1b80) * 0x14);
         data_var1 = data_ptr2[1];
         data_ptr1 = (uint64_t *)
                  (global_engine_context + 0x16c8 +
-                 (longlong)
-                 *(int *)(*(longlong *)(global_engine_context + 0x1b88) + -0x14 +
-                         (longlong)*(int *)(global_engine_context + 0x1b80) * 0x14) * 0x10);
+                 (int64_t)
+                 *(int *)(*(int64_t *)(global_engine_context + 0x1b88) + -0x14 +
+                         (int64_t)*(int *)(global_engine_context + 0x1b80) * 0x14) * 0x10);
         *data_ptr1 = *data_ptr2;
         data_ptr1[1] = data_var1;
         *(int *)(long_var1 + 0x1b80) = *(int *)(long_var1 + 0x1b80) + -1;
@@ -248,14 +248,14 @@ PROCESS_EVENT_TYPE:
         long_var4 = long_var4 + 0x28;
         data_array_ptr = *event_queue_ptr;
         config_ptr1 = stack_ptr1;
-      } while ((ulonglong)(longlong)int_var2 <
-               (ulonglong)(((longlong)event_queue_ptr[1] - (longlong)data_array_ptr) / 0x28));
+      } while ((uint64_t)(int64_t)int_var2 <
+               (uint64_t)(((int64_t)event_queue_ptr[1] - (int64_t)data_array_ptr) / 0x28));
     }
     long_var1 = global_engine_context;
-    long_var2 = (longlong)*(int *)(global_engine_context + 0x1b90);
-    long_var4 = *(longlong *)(global_engine_context + 0x1b98);
-    long_var3 = (longlong)*(int *)(long_var4 + -0xc + long_var2 * 0xc);
-    ulong_var1 = (ulonglong)*(uint *)(&event_type_table + long_var3 * 0xc);
+    long_var2 = (int64_t)*(int *)(global_engine_context + 0x1b90);
+    long_var4 = *(int64_t *)(global_engine_context + 0x1b98);
+    long_var3 = (int64_t)*(int *)(long_var4 + -0xc + long_var2 * 0xc);
+    ulong_var1 = (uint64_t)*(uint *)(&event_type_table + long_var3 * 0xc);
     if (*(int *)(&event_type_data + long_var3 * 0xc) == 4) {
       if (*(int *)(&event_type_flags + long_var3 * 0xc) == 1) {
         *(int32_t *)(ulong_var1 + 0x1628 + global_engine_context) =
@@ -270,36 +270,36 @@ PROCESS_EVENT_TYPE:
     int_ptr1 = (int *)(long_var1 + 0x1b90);
     *int_ptr1 = *int_ptr1 + -1;
     cleanup_event_processor();
-    event_array_ptr1 = (longlong ****)0x0;
-    status_flag = create_event_callback(&event_callback_table, (longlong)event_queue_ptr + 0x74, 0x400, &event_array_ptr1, 0x3e0,
+    event_array_ptr1 = (int64_t ****)0x0;
+    status_flag = create_event_callback(&event_callback_table, (int64_t)event_queue_ptr + 0x74, 0x400, &event_array_ptr1, 0x3e0,
                           &event_callback_function, event_queue_ptr);
     long_var4 = global_engine_context;
     if (status_flag != '\0') {
-      *(int8_t *)(*(longlong *)(global_engine_context + 0x1af8) + 0xb1) = 1;
-      long_var4 = *(longlong *)(long_var4 + 0x1af8);
+      *(int8_t *)(*(int64_t *)(global_engine_context + 0x1af8) + 0xb1) = 1;
+      long_var4 = *(int64_t *)(long_var4 + 0x1af8);
       *(int32_t *)(long_var4 + 0x400) = *(int32_t *)(long_var4 + 0x3f0);
       *(int32_t *)(long_var4 + 0x404) = 0x7fffffff;
-      *(int8_t *)((longlong)event_queue_ptr + 0x71) = 1;
-      if ((*(char *)(event_queue_ptr + 0xc) != '\0') && (*(int *)((longlong)event_queue_ptr + 100) != -1)) {
-        data_item_ptr = (longlong *)&default_string_buffer;
-        if (event_queue_ptr[4][(longlong)*(int *)((longlong)event_queue_ptr + 100) * 4 + 1] != (longlong *)0x0) {
-          data_item_ptr = event_queue_ptr[4][(longlong)*(int *)((longlong)event_queue_ptr + 100) * 4 + 1];
+      *(int8_t *)((int64_t)event_queue_ptr + 0x71) = 1;
+      if ((*(char *)(event_queue_ptr + 0xc) != '\0') && (*(int *)((int64_t)event_queue_ptr + 100) != -1)) {
+        data_item_ptr = (int64_t *)&default_string_buffer;
+        if (event_queue_ptr[4][(int64_t)*(int *)((int64_t)event_queue_ptr + 100) * 4 + 1] != (int64_t *)0x0) {
+          data_item_ptr = event_queue_ptr[4][(int64_t)*(int *)((int64_t)event_queue_ptr + 100) * 4 + 1];
         }
         long_var4 = -1;
         do {
           long_var1 = long_var4;
           long_var4 = long_var1 + 1;
-        } while (*(char *)((longlong)data_item_ptr + long_var4) != '\0');
+        } while (*(char *)((int64_t)data_item_ptr + long_var4) != '\0');
                     // WARNING: Subroutine does not return
-        memcpy((longlong)event_queue_ptr + 0x74, data_item_ptr, long_var1 + 2);
+        memcpy((int64_t)event_queue_ptr + 0x74, data_item_ptr, long_var1 + 2);
       }
-      long_var4 = create_string_buffer(&stack_data5, (longlong)event_queue_ptr + 0x74);
+      long_var4 = create_string_buffer(&stack_data5, (int64_t)event_queue_ptr + 0x74);
       if (stack_long1 != 0) {
                     // WARNING: Subroutine does not return
         cleanup_event_array();
       }
       stack_int1 = *(int *)(long_var4 + 0x10);
-      stack_long1 = *(longlong *)(long_var4 + 8);
+      stack_long1 = *(int64_t *)(long_var4 + 8);
       stack_data4 = *(uint64_t *)(long_var4 + 0x18);
       *(int32_t *)(long_var4 + 0x10) = 0;
       *(uint64_t *)(long_var4 + 8) = 0;
@@ -315,61 +315,61 @@ PROCESS_EVENT_TYPE:
       stack_data10 = 0;
       stack_data5 = 0x8098bcb0;
       stack_data6 = 1;
-      *(int8_t *)((longlong)event_queue_ptr + 0x72) = 1;
-      *(int8_t *)((longlong)event_queue_ptr + 0x74) = 0;
+      *(int8_t *)((int64_t)event_queue_ptr + 0x72) = 1;
+      *(int8_t *)((int64_t)event_queue_ptr + 0x74) = 0;
       long_var4 = global_engine_context;
       *(int8_t *)(event_queue_ptr + 0xc) = 0;
-      *(int32_t *)((longlong)event_queue_ptr + 100) = 0xffffffff;
+      *(int32_t *)((int64_t)event_queue_ptr + 100) = 0xffffffff;
     }
     if (*(int *)(event_queue_ptr + 0xd) != -1) {
-      *(int8_t *)(*(longlong *)(long_var4 + 0x1af8) + 0xb1) = 1;
-      long_var1 = *(longlong *)(long_var4 + 0x1af8);
+      *(int8_t *)(*(int64_t *)(long_var4 + 0x1af8) + 0xb1) = 1;
+      long_var1 = *(int64_t *)(long_var4 + 0x1af8);
       *(int32_t *)(long_var1 + 0x400) = *(int32_t *)(long_var1 + 0x3f0);
       *(int32_t *)(long_var1 + 0x404) = 0x7fffffff;
       *(int8_t *)(event_queue_ptr + 0xc) = 0;
     }
-    *config_ptr1 = *(uint64_t *)(*(longlong *)(long_var4 + 0x1af8) + 0x14c);
-    if ((((*(longlong *)(long_var4 + 0x1c98) != 0) &&
-         (*(longlong *)(*(longlong *)(long_var4 + 0x1c98) + 0x3a8) ==
-          *(longlong *)(*(longlong *)(long_var4 + 0x1af8) + 0x3a8))) &&
+    *config_ptr1 = *(uint64_t *)(*(int64_t *)(long_var4 + 0x1af8) + 0x14c);
+    if ((((*(int64_t *)(long_var4 + 0x1c98) != 0) &&
+         (*(int64_t *)(*(int64_t *)(long_var4 + 0x1c98) + 0x3a8) ==
+          *(int64_t *)(*(int64_t *)(long_var4 + 0x1af8) + 0x3a8))) &&
         (*(int *)(long_var4 + 0x1b2c) == 0)) && (*(float *)(long_var4 + 0x424) != 0.0)) {
-      *(int8_t *)(*(longlong *)(long_var4 + 0x1af8) + 0xb1) = 1;
-      long_var1 = *(longlong *)(long_var4 + 0x1af8);
+      *(int8_t *)(*(int64_t *)(long_var4 + 0x1af8) + 0xb1) = 1;
+      long_var1 = *(int64_t *)(long_var4 + 0x1af8);
       *(int32_t *)(long_var1 + 0x400) = *(int32_t *)(long_var1 + 0x3f0);
       *(int32_t *)(long_var1 + 0x404) = 0x7fffffff;
     }
     *config_ptr2 = CONCAT44((*(float *)(long_var4 + 0x19f8) + *(float *)(long_var4 + 0x1670)) * 6.0 +
                             *(float *)(long_var4 + 0x1660) * 12.0,
-                            (*(float *)(*(longlong *)(long_var4 + 0x1af8) + 0x154) -
-                            *(float *)(*(longlong *)(long_var4 + 0x1af8) + 0x14c)) - 80.0);
-    *(float *)((longlong)config_ptr2 + 4) =
-         (*(float *)(*(longlong *)(long_var4 + 0x1af8) + 0x158) -
-         *(float *)(*(longlong *)(long_var4 + 0x1af8) + 0x150)) + *(float *)((longlong)config_ptr2 + 4);
+                            (*(float *)(*(int64_t *)(long_var4 + 0x1af8) + 0x154) -
+                            *(float *)(*(int64_t *)(long_var4 + 0x1af8) + 0x14c)) - 80.0);
+    *(float *)((int64_t)config_ptr2 + 4) =
+         (*(float *)(*(int64_t *)(long_var4 + 0x1af8) + 0x158) -
+         *(float *)(*(int64_t *)(long_var4 + 0x1af8) + 0x150)) + *(float *)((int64_t)config_ptr2 + 4);
     *(bool *)event_flags =
-         *(longlong *)(long_var4 + 0x1c98) == *(longlong *)(*(longlong *)(long_var4 + 0x1af8) + 0x3a8);
+         *(int64_t *)(long_var4 + 0x1c98) == *(int64_t *)(*(int64_t *)(long_var4 + 0x1af8) + 0x3a8);
     cleanup_event_system();
     int_var2 = unlock_mutex(0x180c91970);
     if (int_var2 != 0) {
       throw_error_code(int_var2);
     }
     if (stack_int1 != 0) {
-      event_array_ptr2 = (longlong ****)create_event_array(global_event_table, 0xe8, 8, 3);
-      event_array_ptr2 = (longlong ****)&stack_data5;
+      event_array_ptr2 = (int64_t ****)create_event_array(global_event_table, 0xe8, 8, 3);
+      event_array_ptr2 = (int64_t ****)&stack_data5;
       event_array_ptr1 = event_array_ptr2;
       data_ptr2 = (uint64_t *)create_string_buffer(&stack_data5, &stack_ptr3);
-      event_array_ptr6 = (longlong ****)data_ptr2;
+      event_array_ptr6 = (int64_t ****)data_ptr2;
       initialize_event_array(event_array_ptr2);
-      *event_array_ptr2 = (longlong ***)&event_handler_table;
+      *event_array_ptr2 = (int64_t ***)&event_handler_table;
       event_array_ptr2 = event_array_ptr2 + 0x19;
-      *event_array_ptr2 = (longlong ***)&default_event_table;
-      event_array_ptr2[0x1a] = (longlong ***)0x0;
+      *event_array_ptr2 = (int64_t ***)&default_event_table;
+      event_array_ptr2[0x1a] = (int64_t ***)0x0;
       *(int32_t *)(event_array_ptr2 + 0x1b) = 0;
-      *event_array_ptr2 = (longlong ***)&null_event_table;
-      event_array_ptr2[0x1c] = (longlong ***)0x0;
-      event_array_ptr2[0x1a] = (longlong ***)0x0;
+      *event_array_ptr2 = (int64_t ***)&null_event_table;
+      event_array_ptr2[0x1c] = (int64_t ***)0x0;
+      event_array_ptr2[0x1a] = (int64_t ***)0x0;
       *(int32_t *)(event_array_ptr2 + 0x1b) = 0;
       uint_var1 = *(uint *)(data_ptr2 + 2);
-      ulong_var1 = (ulonglong)uint_var1;
+      ulong_var1 = (uint64_t)uint_var1;
       long_var4 = data_ptr2[1];
       if (long_var4 != 0) {
         initialize_event_data(event_array_ptr2, ulong_var1);
@@ -380,10 +380,10 @@ PROCESS_EVENT_TYPE:
         memcpy(event_array_ptr2[0x1a], long_var4, ulong_var1);
       }
       *(int32_t *)(event_array_ptr2 + 0x1b) = 0;
-      if (event_array_ptr2[0x1a] != (longlong ***)0x0) {
-        *(int8_t *)(ulong_var1 + (longlong)event_array_ptr2[0x1a]) = 0;
+      if (event_array_ptr2[0x1a] != (int64_t ***)0x0) {
+        *(int8_t *)(ulong_var1 + (int64_t)event_array_ptr2[0x1a]) = 0;
       }
-      *(int32_t *)((longlong)event_array_ptr2 + 0xe4) = *(int32_t *)((longlong)data_ptr2 + 0x1c);
+      *(int32_t *)((int64_t)event_array_ptr2 + 0xe4) = *(int32_t *)((int64_t)data_ptr2 + 0x1c);
       event_array_ptr2[0x18] = event_queue_ptr;
       *data_ptr2 = &null_event_table;
       if (data_ptr2[1] != 0) {
@@ -396,19 +396,19 @@ PROCESS_EVENT_TYPE:
       event_array_ptr6 = event_array_ptr2;
       (*(code *)(*event_array_ptr2)[5])(event_array_ptr2, long_var4);
       long_var4 = global_event_callback;
-      event_array_ptr2 = (longlong ****)&event_array_ptr1;
+      event_array_ptr2 = (int64_t ****)&event_array_ptr1;
       event_array_ptr1 = event_array_ptr2;
       (*(code *)(*event_array_ptr2)[5])(event_array_ptr2);
-      event_array_ptr7 = (longlong ****)&event_array_ptr1;
+      event_array_ptr7 = (int64_t ****)&event_array_ptr1;
       data_ptr2 = (uint64_t **)**(uint64_t **)(long_var4 + 8);
       code_ptr = *(code **)*data_ptr2;
       stack_data1 = &event_array_ptr2;
       event_array_ptr2 = event_array_ptr1;
-      if (event_array_ptr1 != (longlong ****)0x0) {
+      if (event_array_ptr1 != (int64_t ****)0x0) {
         (*(code *)(*event_array_ptr1)[5])();
       }
       (*code_ptr)(data_ptr2, &event_array_ptr2);
-      if (event_array_ptr1 != (longlong ****)0x0) {
+      if (event_array_ptr1 != (int64_t ****)0x0) {
         (*(code *)(*event_array_ptr1)[7])();
       }
       (*(code *)(*event_array_ptr2)[7])(event_array_ptr2);
@@ -443,18 +443,18 @@ PROCESS_EVENT_TYPE:
  *   - 释放相关资源
  *   - 重置队列状态
  */
-void cleanup_engine_event_queue(longlong queue_handle, uint64_t cleanup_param1, uint64_t cleanup_param2, uint64_t cleanup_param3)
+void cleanup_engine_event_queue(int64_t queue_handle, uint64_t cleanup_param1, uint64_t cleanup_param2, uint64_t cleanup_param3)
 {
   uint64_t *data_ptr1;
   int int_var1;
   uint64_t *data_ptr2;
   uint64_t *data_ptr3;
   uint64_t *data_ptr4;
-  longlong long_var1;
-  ulonglong ulong_var1;
+  int64_t long_var1;
+  uint64_t ulong_var1;
   int int_var2;
   uint64_t *data_ptr5;
-  ulonglong ulong_var2;
+  uint64_t ulong_var2;
   int int_var3;
   int16_t stack_array [4];
   uint64_t *stack_ptr1;
@@ -467,12 +467,12 @@ void cleanup_engine_event_queue(longlong queue_handle, uint64_t cleanup_param1, 
   stack_data1 = 0;
   stack_data2 = 3;
   stack_array[0] = 0x3b;
-  if (*(longlong *)(queue_handle + 0xd0) != 0) {
+  if (*(int64_t *)(queue_handle + 0xd0) != 0) {
     process_event_cleanup(queue_handle + 200, &stack_ptr1, stack_array, cleanup_param3, 0xfffffffffffffffe);
   }
   data_ptr4 = stack_ptr2;
   data_ptr3 = stack_ptr1;
-  ulong_var2 = (longlong)stack_ptr2 - (longlong)stack_ptr1 >> 5;
+  ulong_var2 = (int64_t)stack_ptr2 - (int64_t)stack_ptr1 >> 5;
   int_var3 = 0;
   data_ptr2 = stack_ptr1;
   if (ulong_var2 != 0) {
@@ -486,7 +486,7 @@ void cleanup_engine_event_queue(longlong queue_handle, uint64_t cleanup_param1, 
       if (int_var1 != 0) {
         int_var2 = 0;
         if (0 < int_var1 + -1) {
-          long_var1 = (longlong)(int_var1 + -1);
+          long_var1 = (int64_t)(int_var1 + -1);
           do {
             if (*(char *)(data_ptr5[1] + long_var1) != ' ') break;
             int_var2 = int_var2 + 1;
@@ -494,13 +494,13 @@ void cleanup_engine_event_queue(longlong queue_handle, uint64_t cleanup_param1, 
           } while (0 < long_var1);
         }
         *(int *)(data_ptr5 + 2) = int_var1 - int_var2;
-        *(int8_t *)((ulonglong)(uint)(int_var1 - int_var2) + data_ptr5[1]) = 0;
+        *(int8_t *)((uint64_t)(uint)(int_var1 - int_var2) + data_ptr5[1]) = 0;
       }
       finalize_event_data(data_ptr1);
       process_event_callback(*(uint64_t *)(queue_handle + 0xc0), data_ptr1);
       int_var3 = int_var3 + 1;
       data_ptr5 = data_ptr5 + 4;
-      ulong_var1 = (ulonglong)int_var3;
+      ulong_var1 = (uint64_t)int_var3;
     } while (ulong_var1 < ulong_var2);
   }
   for (; data_ptr2 != data_ptr4; data_ptr2 = data_ptr2 + 4) {
@@ -531,10 +531,10 @@ void cleanup_engine_event_queue(longlong queue_handle, uint64_t cleanup_param1, 
  *   - 释放所有资源
  *   - 重置系统状态
  */
-longlong destroy_engine_event_system(longlong system_handle, ulonglong destroy_flags)
+int64_t destroy_engine_event_system(int64_t system_handle, uint64_t destroy_flags)
 {
   *(uint64_t *)(system_handle + 200) = &null_event_table;
-  if (*(longlong *)(system_handle + 0xd0) != 0) {
+  if (*(int64_t *)(system_handle + 0xd0) != 0) {
                     // WARNING: Subroutine does not return
     cleanup_event_array();
   }
@@ -566,7 +566,7 @@ longlong destroy_engine_event_system(longlong system_handle, ulonglong destroy_f
  *   - 更新配置信息
  *   - 执行事件响应
  */
-void process_engine_event_callback(longlong callback_handle, uint64_t *callback_param1, uint64_t *callback_param2, uint64_t callback_flags)
+void process_engine_event_callback(int64_t callback_handle, uint64_t *callback_param1, uint64_t *callback_param2, uint64_t callback_flags)
 {
   uint *uint_ptr1;
   int *int_ptr1;
@@ -577,17 +577,17 @@ void process_engine_event_callback(longlong callback_handle, uint64_t *callback_
   float float_var3;
   int int_var1;
   void *string_ptr1;
-  longlong long_var1;
+  int64_t long_var1;
   uint64_t data_var1;
   char char_var1;
   int int_var2;
-  longlong long_var2;
-  longlong long_var3;
+  int64_t long_var2;
+  int64_t long_var3;
   void *string_ptr2;
-  longlong long_var4;
-  ulonglong ulong_var1;
+  int64_t long_var4;
+  uint64_t ulong_var1;
   int32_t uint_var1;
-  ulonglong ulong_var2;
+  uint64_t ulong_var2;
   uint64_t stack_data1;
   int32_t stack_data2;
   uint64_t stack_data3;
@@ -605,8 +605,8 @@ void process_engine_event_callback(longlong callback_handle, uint64_t *callback_
   *(int32_t *)(long_var4 + 0x1bd4) = 1;
   process_string_validation(&event_callback_table, 0, 0x907);
   long_var4 = global_engine_context;
-  *(int8_t *)(*(longlong *)(global_engine_context + 0x1af8) + 0xb1) = 1;
-  long_var4 = *(longlong *)(long_var4 + 0x1af8);
+  *(int8_t *)(*(int64_t *)(global_engine_context + 0x1af8) + 0xb1) = 1;
+  long_var4 = *(int64_t *)(long_var4 + 0x1af8);
   uint_ptr1 = (uint *)(long_var4 + 0x1a8);
   *uint_ptr1 = *uint_ptr1 | 1;
   activate_event_handler(long_var4 + 0x1b8);
@@ -621,19 +621,19 @@ void process_engine_event_callback(longlong callback_handle, uint64_t *callback_
     initialize_event_callback(&event_callback_init_table);
     long_var4 = global_engine_context;
     data_ptr1 = (uint64_t *)
-             (*(longlong *)(global_engine_context + 0x1b88) + -0x10 +
-             (longlong)*(int *)(global_engine_context + 0x1b80) * 0x14);
+             (*(int64_t *)(global_engine_context + 0x1b88) + -0x10 +
+             (int64_t)*(int *)(global_engine_context + 0x1b80) * 0x14);
     data_var1 = data_ptr1[1];
     data_ptr2 = (uint64_t *)
              (global_engine_context + 0x16c8 +
-             (longlong)
-             *(int *)(*(longlong *)(global_engine_context + 0x1b88) + -0x14 +
-                     (longlong)*(int *)(global_engine_context + 0x1b80) * 0x14) * 0x10);
+             (int64_t)
+             *(int *)(*(int64_t *)(global_engine_context + 0x1b88) + -0x14 +
+                     (int64_t)*(int *)(global_engine_context + 0x1b80) * 0x14) * 0x10);
     *data_ptr2 = *data_ptr1;
     data_ptr2[1] = data_var1;
     *(int *)(long_var4 + 0x1b80) = *(int *)(long_var4 + 0x1b80) + -1;
   }
-  if (*(longlong *)(callback_handle + 0x28) - *(longlong *)(callback_handle + 0x20) >> 5 != 0) {
+  if (*(int64_t *)(callback_handle + 0x28) - *(int64_t *)(callback_handle + 0x20) >> 5 != 0) {
     stack_data1 = 0;
     ulong_var2 = ulong_var1;
     do {
@@ -648,7 +648,7 @@ void process_engine_event_callback(longlong callback_handle, uint64_t *callback_
         *(uint64_t *)(long_var4 + 0x1720) = 0x3f80000000000000;
       }
       process_event_data(ulong_var1);
-      string_ptr1 = *(void **)(*(longlong *)(callback_handle + 0x20) + 8 + ulong_var2);
+      string_ptr1 = *(void **)(*(int64_t *)(callback_handle + 0x20) + 8 + ulong_var2);
       string_ptr2 = &default_string_buffer;
       if (string_ptr1 != (void *)0x0) {
         string_ptr2 = string_ptr1;
@@ -658,57 +658,57 @@ void process_engine_event_callback(longlong callback_handle, uint64_t *callback_
         *(int *)(callback_handle + 0x68) = int_var2;
       }
       long_var4 = global_engine_context;
-      int_ptr1 = (int *)(*(longlong *)(global_engine_context + 0x1af8) + 0x218);
+      int_ptr1 = (int *)(*(int64_t *)(global_engine_context + 0x1af8) + 0x218);
       *int_ptr1 = *int_ptr1 + -1;
       if (int_var1 == int_var2) {
         if (*(char *)(callback_handle + 0x70) != '\0') {
-          *(int8_t *)(*(longlong *)(long_var4 + 0x1af8) + 0xb1) = 1;
-          long_var1 = *(longlong *)(long_var4 + 0x1af8);
+          *(int8_t *)(*(int64_t *)(long_var4 + 0x1af8) + 0xb1) = 1;
+          long_var1 = *(int64_t *)(long_var4 + 0x1af8);
           float_var3 = *(float *)(long_var1 + 0x130);
           float_var2 = *(float *)(long_var1 + 0x10c);
           float_var1 = *(float *)(long_var1 + 0x44);
           *(int8_t *)(long_var1 + 0xb1) = 1;
-          long_var1 = *(longlong *)(long_var4 + 0x1af8);
+          long_var1 = *(int64_t *)(long_var4 + 0x1af8);
           *(int32_t *)(long_var1 + 0xa0) = 0x3f000000;
           *(float *)(long_var1 + 0x98) =
                (float)(int)((float_var2 - float_var1) + float_var3 * 0.5 + *(float *)(long_var1 + 0x90));
           *(int8_t *)(callback_handle + 0x70) = 0;
         }
         data_ptr1 = (uint64_t *)
-                 (*(longlong *)(long_var4 + 0x1b88) + -0x10 +
-                 (longlong)*(int *)(long_var4 + 0x1b80) * 0x14);
+                 (*(int64_t *)(long_var4 + 0x1b88) + -0x10 +
+                 (int64_t)*(int *)(long_var4 + 0x1b80) * 0x14);
         data_var1 = data_ptr1[1];
         data_ptr2 = (uint64_t *)
                  (long_var4 + 0x16c8 +
-                 (longlong)
-                 *(int *)(*(longlong *)(long_var4 + 0x1b88) + -0x14 +
-                         (longlong)*(int *)(long_var4 + 0x1b80) * 0x14) * 0x10);
+                 (int64_t)
+                 *(int *)(*(int64_t *)(long_var4 + 0x1b88) + -0x14 +
+                         (int64_t)*(int *)(long_var4 + 0x1b80) * 0x14) * 0x10);
         *data_ptr2 = *data_ptr1;
         data_ptr2[1] = data_var1;
         *(int *)(long_var4 + 0x1b80) = *(int *)(long_var4 + 0x1b80) + -1;
       }
-      ulong_var1 = (ulonglong)(int_var2 + 1U);
+      ulong_var1 = (uint64_t)(int_var2 + 1U);
       ulong_var2 = ulong_var2 + 0x20;
-    } while ((ulonglong)(longlong)(int)(int_var2 + 1U) <
-             (ulonglong)(*(longlong *)(callback_handle + 0x28) - *(longlong *)(callback_handle + 0x20) >> 5));
+    } while ((uint64_t)(int64_t)(int)(int_var2 + 1U) <
+             (uint64_t)(*(int64_t *)(callback_handle + 0x28) - *(int64_t *)(callback_handle + 0x20) >> 5));
   }
   *(bool *)callback_flags =
-       *(longlong *)(long_var4 + 0x1c98) == *(longlong *)(*(longlong *)(long_var4 + 0x1af8) + 0x3a8);
-  *(int8_t *)(*(longlong *)(long_var4 + 0x1af8) + 0xb1) = 1;
-  long_var4 = *(longlong *)(long_var4 + 0x1af8);
+       *(int64_t *)(long_var4 + 0x1c98) == *(int64_t *)(*(int64_t *)(long_var4 + 0x1af8) + 0x3a8);
+  *(int8_t *)(*(int64_t *)(long_var4 + 0x1af8) + 0xb1) = 1;
+  long_var4 = *(int64_t *)(long_var4 + 0x1af8);
   int_var1 = *(int *)(long_var4 + 0x1b8);
   int_var2 = int_var1 + -1;
   *(int *)(long_var4 + 0x1b8) = int_var2;
   if (int_var2 != 0) {
-    uint_var1 = *(int32_t *)(*(longlong *)(long_var4 + 0x1c0) + -8 + (longlong)int_var1 * 4);
+    uint_var1 = *(int32_t *)(*(int64_t *)(long_var4 + 0x1c0) + -8 + (int64_t)int_var1 * 4);
   }
   *(int32_t *)(long_var4 + 0x1a8) = uint_var1;
   cleanup_event_system();
   long_var1 = global_engine_context;
-  long_var2 = (longlong)*(int *)(global_engine_context + 0x1b90);
-  long_var4 = *(longlong *)(global_engine_context + 0x1b98);
-  long_var3 = (longlong)*(int *)(long_var4 + -0xc + long_var2 * 0xc);
-  ulong_var1 = (ulonglong)*(uint *)(&event_type_table + long_var3 * 0xc);
+  long_var2 = (int64_t)*(int *)(global_engine_context + 0x1b90);
+  long_var4 = *(int64_t *)(global_engine_context + 0x1b98);
+  long_var3 = (int64_t)*(int *)(long_var4 + -0xc + long_var2 * 0xc);
+  ulong_var1 = (uint64_t)*(uint *)(&event_type_table + long_var3 * 0xc);
   if (*(int *)(&event_type_data + long_var3 * 0xc) == 4) {
     if (*(int *)(&event_type_flags + long_var3 * 0xc) == 1) {
       *(int32_t *)(ulong_var1 + 0x1628 + global_engine_context) =

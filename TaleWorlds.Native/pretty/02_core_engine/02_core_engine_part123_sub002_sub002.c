@@ -17,7 +17,7 @@
  * @param param_1 游戏引擎上下文指针
  * @param param_2 游戏对象数据指针
  */
-void update_game_object_and_render(uint64_t param_1, longlong param_2)
+void update_game_object_and_render(uint64_t param_1, int64_t param_2)
 {
     int16_t *object_flags;
     int *render_state;
@@ -34,25 +34,25 @@ void update_game_object_and_render(uint64_t param_1, longlong param_2)
     float *position_data;
     float *velocity_data;
     uint64_t *physics_data;
-    longlong time_delta;
+    int64_t time_delta;
     uint64_t frame_time;
     int8_t effect_type;
     uint particle_count;
-    longlong object_id;
+    int64_t object_id;
     uint render_flags;
     int mesh_index;
     float *camera_position;
     float *object_position;
-    longlong unaff_RSI;
+    int64_t unaff_RSI;
     byte visibility_flag;
     uint unaff_EDI;
     char unaff_R12B;
     float depth_value;
-    longlong unaff_R26;
+    int64_t unaff_R26;
     char unaff_R13B;
     bool is_visible;
     int32_t unaff_R14D;
-    ulonglong unaff_R15;
+    uint64_t unaff_R15;
     float rotation_x;
     float rotation_y;
     float rotation_z;
@@ -61,7 +61,7 @@ void update_game_object_and_render(uint64_t param_1, longlong param_2)
     float scale_z;
     float unaff_XMM13_Da;
     uint64_t *in_stack_00000020;
-    longlong in_stack_00000040;
+    int64_t in_stack_00000040;
     char cStack0000000000000048;
     char cStack0000000000000049;
     char cStack000000000000004a;
@@ -150,7 +150,7 @@ void update_game_object_and_render(uint64_t param_1, longlong param_2)
         texture_id = 0x3f800000;  // 默认纹理
     }
     else {
-        texture_id = *(int32_t *)(*(longlong *)(in_stack_00000040 + 0x28) + 0x18);
+        texture_id = *(int32_t *)(*(int64_t *)(in_stack_00000040 + 0x28) + 0x18);
     }
     *(int32_t *)(in_stack_00000040 + 0x2dc) = texture_id;
     
@@ -213,7 +213,7 @@ void update_game_object_and_render(uint64_t param_1, longlong param_2)
     // 处理网格和材质
     if ((((uint)depth_info & 0x21) == 0) && ((*(byte *)(in_stack_00000040 + 0x432) & visibility_flag) == 0)) {
         func_0x000180120c80(in_stack_00000040, unaff_RBP + 0x20);
-        if (((*(longlong *)(unaff_RSI + 0x1b00) == in_stack_00000040) &&
+        if (((*(int64_t *)(unaff_RSI + 0x1b00) == in_stack_00000040) &&
             (*(int *)(unaff_RSI + 0x1b18) == 0)) &&
            ((*(int *)(unaff_RSI + 0x1b20) == 0 &&
             ((collision_flag = FUN_180128040(unaff_RBP + 0x20, unaff_RBP + 0x22, unaff_EDI & 0xff), collision_flag != '\0'
@@ -294,7 +294,7 @@ void update_game_object_and_render(uint64_t param_1, longlong param_2)
     *(int8_t *)(in_stack_00000040 + 0xb4) = effect_type;
     
     // 调用最终的渲染函数
-    FUN_1808fc050(*(ulonglong *)(unaff_RBP + 0x24) ^ (ulonglong)&stack0x00000000);
+    FUN_1808fc050(*(uint64_t *)(unaff_RBP + 0x24) ^ (uint64_t)&stack0x00000000);
 }
 
 

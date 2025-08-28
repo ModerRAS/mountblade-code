@@ -6,26 +6,26 @@
 // 函数：计算文本布局参数
 // 参数：layout_params - 布局参数输出缓冲区，text_data - 文本数据指针，start_pos - 起始位置
 // 功能：根据文本数据计算布局所需的各项参数
-void calculate_text_layout_params(int32_t *layout_params, longlong text_data, int start_pos)
+void calculate_text_layout_params(int32_t *layout_params, int64_t text_data, int start_pos)
 {
   float max_width;
   ushort current_char;
-  longlong text_buffer;
+  int64_t text_buffer;
   float *char_width_table;
   float current_width;
   float total_width;
   float scale_factor;
   
-  text_buffer = *(longlong *)(text_data + 0x10);
+  text_buffer = *(int64_t *)(text_data + 0x10);
   max_width = 0.0;
   current_width = 0.0;
   char_width_table = *(float **)(GLOBAL_CHAR_WIDTH_TABLE + 0x19f0);
   scale_factor = *(float *)(GLOBAL_CHAR_WIDTH_TABLE + 0x19f8);
-  current_char_ptr = (ushort *)((longlong)start_pos * 2 + text_buffer);
+  current_char_ptr = (ushort *)((int64_t)start_pos * 2 + text_buffer);
   
   do {
     total_width = 0.0;
-    if ((ushort *)(text_buffer + (longlong)*(int *)(text_data + 0x3c) * 2) <= current_char_ptr) {
+    if ((ushort *)(text_buffer + (int64_t)*(int *)(text_data + 0x3c) * 2) <= current_char_ptr) {
       // 到达文本末尾，更新最终参数
       if (max_width <= current_width) {
         max_width = current_width;
@@ -35,7 +35,7 @@ void calculate_text_layout_params(int32_t *layout_params, longlong text_data, in
       }
       layout_params[1] = max_width;
       layout_params[2] = total_width;
-      layout_params[5] = (int)((longlong)current_char_ptr + ((longlong)start_pos * -2 - text_buffer) >> 1);
+      layout_params[5] = (int)((int64_t)current_char_ptr + ((int64_t)start_pos * -2 - text_buffer) >> 1);
       layout_params[4] = total_width;
       *layout_params = 0;
       layout_params[3] = 0;
@@ -57,7 +57,7 @@ void calculate_text_layout_params(int32_t *layout_params, longlong text_data, in
     
     if (current_char != 0xd) {  // 不是回车符
       if ((int)(uint)current_char < (int)char_width_table[8]) {
-        total_width = *(float *)(*(longlong *)(char_width_table + 10) + (ulonglong)current_char * 4);
+        total_width = *(float *)(*(int64_t *)(char_width_table + 10) + (uint64_t)current_char * 4);
       }
       else {
         total_width = char_width_table[0x12];
@@ -70,27 +70,27 @@ void calculate_text_layout_params(int32_t *layout_params, longlong text_data, in
 // 函数：查找前一个单词边界
 // 参数：text_data - 文本数据指针，position - 起始位置
 // 功能：从指定位置向前查找单词边界
-int find_previous_word_boundary(longlong text_data, int position)
+int find_previous_word_boundary(int64_t text_data, int position)
 {
   ushort current_char;
   bool continue_search;
-  longlong search_pos;
+  int64_t search_pos;
   
   position = position + -1;
   if (-1 < position) {
-    search_pos = (longlong)position;
+    search_pos = (int64_t)position;
     do {
       if (search_pos < 1) break;
       
-      current_char = *(ushort *)(*(longlong *)(text_data + 0x10) + -2 + search_pos * 2);
+      current_char = *(ushort *)(*(int64_t *)(text_data + 0x10) + -2 + search_pos * 2);
       
       // 检查是否为分隔符或特殊字符
       if (((((ushort)(current_char - 0x20) < 0x3e) &&
-           ((WORD_DELIMITER_MASK >> ((ulonglong)(current_char - 0x20 & 0xffff) & 0x3f) & 1) != 0)) ||
+           ((WORD_DELIMITER_MASK >> ((uint64_t)(current_char - 0x20 & 0xffff) & 0x3f) & 1) != 0)) ||
           (current_char == 9)) || ((current_char == 0x3000 || ((ushort)(current_char - 0x7b) < 3)))) {
-        current_char = *(ushort *)(*(longlong *)(text_data + 0x10) + search_pos * 2);
+        current_char = *(ushort *)(*(int64_t *)(text_data + 0x10) + search_pos * 2);
         if (((0x3d < (ushort)(current_char - 0x20)) ||
-            ((WORD_DELIMITER_MASK >> ((ulonglong)(current_char - 0x20 & 0xffff) & 0x3f) & 1) == 0)) &&
+            ((WORD_DELIMITER_MASK >> ((uint64_t)(current_char - 0x20 & 0xffff) & 0x3f) & 1) == 0)) &&
            (((current_char != 9 && (current_char != 0x3000)) && (2 < (ushort)(current_char - 0x7b))))) break;
       }
       
@@ -113,22 +113,22 @@ int find_next_word_boundary(uint64_t text_data, int position)
 {
   ushort current_char;
   bool continue_search;
-  longlong search_pos;
-  longlong text_ptr;
+  int64_t search_pos;
+  int64_t text_ptr;
   
-  search_pos = (longlong)position;
+  search_pos = (int64_t)position;
   do {
     if (search_pos < 1) break;
     
-    current_char = *(ushort *)(*(longlong *)(text_ptr + 0x10) + -2 + search_pos * 2);
+    current_char = *(ushort *)(*(int64_t *)(text_ptr + 0x10) + -2 + search_pos * 2);
     
     // 检查是否为分隔符或特殊字符
     if (((((ushort)(current_char - 0x20) < 0x3e) &&
-         ((WORD_DELIMITER_MASK >> ((ulonglong)(current_char - 0x20 & 0xffff) & 0x3f) & 1) != 0)) ||
+         ((WORD_DELIMITER_MASK >> ((uint64_t)(current_char - 0x20 & 0xffff) & 0x3f) & 1) != 0)) ||
         (current_char == 9)) || ((current_char == 0x3000 || ((ushort)(current_char - 0x7b) < 3)))) {
-      current_char = *(ushort *)(*(longlong *)(text_ptr + 0x10) + search_pos * 2);
+      current_char = *(ushort *)(*(int64_t *)(text_ptr + 0x10) + search_pos * 2);
       if (((0x3d < (ushort)(current_char - 0x20)) ||
-          ((WORD_DELIMITER_MASK >> ((ulonglong)(current_char - 0x20 & 0xffff) & 0x3f) & 1) == 0)) &&
+          ((WORD_DELIMITER_MASK >> ((uint64_t)(current_char - 0x20 & 0xffff) & 0x3f) & 1) == 0)) &&
          (((current_char != 9 && (current_char != 0x3000)) && (2 < (ushort)(current_char - 0x7b))))) break;
     }
     
@@ -157,31 +157,31 @@ int validate_position_bound(uint64_t text_data, int position)
 // 函数：查找下一个字符位置
 // 参数：text_data - 文本数据指针，position - 起始位置
 // 功能：从指定位置查找下一个有效字符位置
-int find_next_character_position(longlong text_data, int position)
+int find_next_character_position(int64_t text_data, int position)
 {
   short current_char;
   int text_length;
   int current_pos;
-  longlong search_pos;
+  int64_t search_pos;
   
   text_length = *(int *)(text_data + 0x3c);
   position = position + 1;
   current_pos = position - text_length;
   
   if (position < text_length) {
-    search_pos = (longlong)position;
+    search_pos = (int64_t)position;
     do {
       if (search_pos < 1) break;
       
-      current_char = *(short *)(*(longlong *)(text_data + 0x10) + -2 + search_pos * 2);
+      current_char = *(short *)(*(int64_t *)(text_data + 0x10) + -2 + search_pos * 2);
       
       // 检查字符类型
       if (((((ushort)(current_char - 0x20U) < 0x3e) &&
-           ((WORD_DELIMITER_MASK >> ((ulonglong)(ushort)(current_char - 0x20U) & 0x3f) & 1) != 0)) ||
+           ((WORD_DELIMITER_MASK >> ((uint64_t)(ushort)(current_char - 0x20U) & 0x3f) & 1) != 0)) ||
           (current_char == 9)) || ((current_char == 0x3000 || ((ushort)(current_char - 0x7bU) < 3)))) {
-        current_char = *(short *)(*(longlong *)(text_data + 0x10) + search_pos * 2);
+        current_char = *(short *)(*(int64_t *)(text_data + 0x10) + search_pos * 2);
         if (((0x3d < (ushort)(current_char - 0x20U)) ||
-            ((WORD_DELIMITER_MASK >> ((ulonglong)(ushort)(current_char - 0x20U) & 0x3f) & 1) == 0)) &&
+            ((WORD_DELIMITER_MASK >> ((uint64_t)(ushort)(current_char - 0x20U) & 0x3f) & 1) == 0)) &&
            (((current_char != 9 && (current_char != 0x3000)) && (2 < (ushort)(current_char - 0x7bU))))) break;
       }
       
@@ -204,24 +204,24 @@ int find_next_character_position(longlong text_data, int position)
 int find_previous_character_position(uint64_t text_data, int position)
 {
   short current_char;
-  longlong text_buffer;
-  longlong search_pos;
+  int64_t text_buffer;
+  int64_t search_pos;
   int max_length;
   int32_t temp_reg;
   
-  search_pos = (longlong)position;
+  search_pos = (int64_t)position;
   do {
     if (search_pos < 1) break;
     
-    current_char = *(short *)(*(longlong *)(text_buffer + 0x10) + -2 + search_pos * 2);
+    current_char = *(short *)(*(int64_t *)(text_buffer + 0x10) + -2 + search_pos * 2);
     
     // 检查字符类型
     if (((((ushort)(current_char - 0x20U) < 0x3e) &&
-         ((WORD_DELIMITER_MASK >> ((ulonglong)(ushort)(current_char - 0x20U) & 0x3f) & 1) != 0)) ||
+         ((WORD_DELIMITER_MASK >> ((uint64_t)(ushort)(current_char - 0x20U) & 0x3f) & 1) != 0)) ||
         (current_char == 9)) || ((current_char == 0x3000 || ((ushort)(current_char - 0x7bU) < 3)))) {
-      current_char = *(short *)(*(longlong)(text_buffer + 0x10) + search_pos * 2);
+      current_char = *(short *)(*(int64_t)(text_buffer + 0x10) + search_pos * 2);
       if (((0x3d < (ushort)(current_char - 0x20U)) ||
-          ((WORD_DELIMITER_MASK >> ((ulonglong)(ushort)(current_char - 0x20U) & 0x3f) & 1) == 0)) &&
+          ((WORD_DELIMITER_MASK >> ((uint64_t)(ushort)(current_char - 0x20U) & 0x3f) & 1) == 0)) &&
          (((current_char != 9 && (current_char != 0x3000)) && (2 < (ushort)(current_char - 0x7bU))))) break;
     }
     
@@ -254,20 +254,20 @@ int32_t conditional_select(uint64_t condition, int32_t value1, int32_t value2)
 // 函数：删除文本段
 // 参数：text_data - 文本数据指针，start_pos - 起始位置，length - 删除长度
 // 功能：从指定位置删除指定长度的文本
-void delete_text_segment(longlong text_data, int start_pos, int length)
+void delete_text_segment(int64_t text_data, int start_pos, int length)
 {
   short *text_ptr;
-  longlong buffer_offset;
+  int64_t buffer_offset;
   short current_char;
-  longlong end_pos;
+  int64_t end_pos;
   int chars_removed;
   short *dest_ptr;
   
-  end_pos = *(longlong *)(text_data + 0x10);
-  text_ptr = (short *)(end_pos + (longlong)start_pos * 2);
+  end_pos = *(int64_t *)(text_data + 0x10);
+  text_ptr = (short *)(end_pos + (int64_t)start_pos * 2);
   chars_removed = calculate_string_difference(text_ptr, text_ptr + length);
   *(int *)(text_data + 0x38) = *(int *)(text_data + 0x38) - chars_removed;
-  buffer_offset = (longlong)length + (longlong)start_pos;
+  buffer_offset = (int64_t)length + (int64_t)start_pos;
   *(int *)(text_data + 0x3c) = *(int *)(text_data + 0x3c) - length;
   dest_ptr = (short *)(end_pos + buffer_offset * 2);
   current_char = *(short *)(end_pos + buffer_offset * 2);
@@ -285,20 +285,20 @@ void delete_text_segment(longlong text_data, int start_pos, int length)
 // 函数：插入文本
 // 参数：text_data - 文本数据指针，position - 插入位置，new_text - 新文本指针，new_length - 新文本长度
 // 功能：在指定位置插入新文本
-ulonglong insert_text(longlong text_data, int position, longlong new_text, int new_length)
+uint64_t insert_text(int64_t text_data, int position, int64_t new_text, int new_length)
 {
   int text_length;
-  longlong buffer_ptr;
-  longlong new_text_size;
+  int64_t buffer_ptr;
+  int64_t new_text_size;
   int available_space;
   int capacity_needed;
-  ulonglong result;
+  uint64_t result;
   uint buffer_flags;
-  longlong capacity_check;
+  int64_t capacity_check;
   
   text_length = *(int *)(text_data + 0x3c);
-  capacity_check = (longlong)position;
-  new_text_size = (longlong)new_length * 2;
+  capacity_check = (int64_t)position;
+  new_text_size = (int64_t)new_length * 2;
   buffer_flags = *(uint *)(text_data + 0xe74) >> 0x12;
   result = calculate_string_difference(new_text, new_text_size + new_text);
   
@@ -327,10 +327,10 @@ ulonglong insert_text(longlong text_data, int position, longlong new_text, int n
     expand_buffer_capacity(text_data + 8, text_length + 1 + available_space);
   }
   
-  buffer_ptr = *(longlong *)(text_data + 0x10);
+  buffer_ptr = *(int64_t *)(text_data + 0x10);
   if (position != text_length) {
     // 移动现有文本为新文本腾出空间
-    memmove(buffer_ptr + (capacity_check + new_length) * 2, buffer_ptr + capacity_check * 2, (longlong)(text_length - position) * 2);
+    memmove(buffer_ptr + (capacity_check + new_length) * 2, buffer_ptr + capacity_check * 2, (int64_t)(text_length - position) * 2);
   }
   
   // 复制新文本到指定位置
@@ -342,19 +342,19 @@ ulonglong insert_text(longlong text_data, int position, longlong new_text, int n
 // 功能：移动文本块到新位置
 void move_text_block(void)
 {
-  longlong text_buffer;
-  longlong source_offset;
-  longlong dest_offset;
+  int64_t text_buffer;
+  int64_t source_offset;
+  int64_t dest_offset;
   int source_pos;
   int dest_pos;
   int length;
   int32_t temp_reg;
   
-  text_buffer = *(longlong *)(source_offset + 0x10);
+  text_buffer = *(int64_t *)(source_offset + 0x10);
   if (dest_pos != source_pos) {
     // 移动文本块
     memmove(text_buffer + (CONCAT44(temp_reg, dest_pos) + dest_offset) * 2,
-            text_buffer + CONCAT44(temp_reg, source_pos) * 2, (longlong)(source_pos - dest_pos) * 2);
+            text_buffer + CONCAT44(temp_reg, source_pos) * 2, (int64_t)(source_pos - dest_pos) * 2);
   }
   
   // 复制文本到目标位置
@@ -371,13 +371,13 @@ void empty_function_placeholder(void)
 // 函数：查找文本位置
 // 参数：text_data - 文本数据指针，x_coord - X坐标，y_coord - Y坐标
 // 功能：根据坐标查找对应的文本位置
-int find_text_position_by_coords(longlong text_data, float x_coord, float y_coord)
+int find_text_position_by_coords(int64_t text_data, float x_coord, float y_coord)
 {
   int text_length;
   int current_pos;
   int segment_start;
   uint segment_length;
-  ulonglong layout_data;
+  uint64_t layout_data;
   float total_width;
   float segment_width;
   float char_width;
@@ -401,7 +401,7 @@ int find_text_position_by_coords(longlong text_data, float x_coord, float y_coor
   
   while( true ) {
     calculate_text_layout_params(&layout_params, text_data, current_pos);
-    layout_data = (ulonglong)temp_param2;
+    layout_data = (uint64_t)temp_param2;
     
     if ((int)temp_param2 < 1) {
       return text_length;
@@ -450,7 +450,7 @@ int find_text_position_by_coords(longlong text_data, float x_coord, float y_coor
   
   current_pos = segment_length + current_pos;
   
-  if (*(short *)(*(longlong *)(text_data + 0x10) + -2 + (longlong)current_pos * 2) == 10) {
+  if (*(short *)(*(int64_t *)(text_data + 0x10) + -2 + (int64_t)current_pos * 2) == 10) {
     current_pos = current_pos + -1;
   }
   
@@ -475,7 +475,7 @@ void set_text_selection_range(uint64_t text_data, int32_t *selection_range, int3
   *selection_range = selected_pos;
   selection_range[1] = selected_pos;
   selection_range[2] = selected_pos;
-  *(int8_t *)((longlong)selection_range + 0xf) = 0;
+  *(int8_t *)((int64_t)selection_range + 0xf) = 0;
   return;
 }
 
@@ -508,16 +508,16 @@ void extend_text_selection_range(uint64_t text_data, int32_t *selection_range, i
 // 函数：计算文本尺寸
 // 参数：dimensions - 尺寸输出数组，text_data - 文本数据指针，target_width - 目标宽度，calculation_mode - 计算模式
 // 功能：计算文本的显示尺寸
-void calculate_text_dimensions(float *dimensions, longlong text_data, float target_width, int calculation_mode)
+void calculate_text_dimensions(float *dimensions, int64_t text_data, float target_width, int calculation_mode)
 {
   ushort current_char;
   float *width_table;
-  longlong text_buffer;
+  int64_t text_buffer;
   float max_width;
   float current_width;
   float char_width;
   float line_height;
-  longlong char_offset;
+  int64_t char_offset;
   float layout_height;
   float line_spacing;
   float ascent;
@@ -583,9 +583,9 @@ void calculate_text_dimensions(float *dimensions, longlong text_data, float targ
     text_buffer = GLOBAL_CHAR_TABLE_BASE;
     
     if ((int)line_height < (int)target_width) {
-      char_offset = (longlong)(int)line_height * 2;
+      char_offset = (int64_t)(int)line_height * 2;
       do {
-        current_char = *(ushort *)(char_offset + *(longlong *)(text_data + 0x10));
+        current_char = *(ushort *)(char_offset + *(int64_t *)(text_data + 0x10));
         
         if (current_char == 10) {
           char_width = -1.0;
@@ -594,7 +594,7 @@ void calculate_text_dimensions(float *dimensions, longlong text_data, float targ
           width_table = *(float **)(text_buffer + 0x19f0);
           
           if ((int)(uint)current_char < (int)width_table[8]) {
-            char_width = *(float *)(*(longlong *)(width_table + 10) + (ulonglong)current_char * 4);
+            char_width = *(float *)(*(int64_t *)(width_table + 10) + (uint64_t)current_char * 4);
           }
           else {
             char_width = width_table[0x12];
@@ -615,21 +615,21 @@ void calculate_text_dimensions(float *dimensions, longlong text_data, float targ
 // 函数：删除选中文本
 // 参数：text_data - 文本数据指针，selection_data - 选择数据指针，start_pos - 起始位置，length - 删除长度
 // 功能：删除选中的文本段
-void delete_selected_text(longlong text_data, longlong selection_data, int start_pos, int length)
+void delete_selected_text(int64_t text_data, int64_t selection_data, int start_pos, int length)
 {
   int16_t *temp_buffer;
   int16_t *buffer_ptr;
-  longlong remaining_chars;
+  int64_t remaining_chars;
   
-  remaining_chars = (longlong)length;
+  remaining_chars = (int64_t)length;
   temp_buffer = (int16_t *)allocate_temp_buffer(selection_data + 0x18, start_pos, length, 0);
   
   if ((temp_buffer != (int16_t *)0x0) && (0 < length)) {
     buffer_ptr = temp_buffer;
     do {
       *buffer_ptr = *(int16_t *)
-                 (*(longlong *)(text_data + 0x10) + ((longlong)start_pos * 2 - (longlong)temp_buffer) + -2 +
-                 (longlong)(buffer_ptr + 1));
+                 (*(int64_t *)(text_data + 0x10) + ((int64_t)start_pos * 2 - (int64_t)temp_buffer) + -2 +
+                 (int64_t)(buffer_ptr + 1));
       remaining_chars = remaining_chars + -1;
       buffer_ptr = buffer_ptr + 1;
     } while (remaining_chars != 0);
@@ -643,7 +643,7 @@ void delete_selected_text(longlong text_data, longlong selection_data, int start
 // 函数：处理文本选择
 // 参数：text_data - 文本数据指针，selection_range - 选择范围指针
 // 功能：处理文本选择逻辑，确保选择范围有效
-void process_text_selection(longlong text_data, int *selection_range)
+void process_text_selection(int64_t text_data, int *selection_range)
 {
   int text_length;
   int selection_start;
@@ -676,13 +676,13 @@ void process_text_selection(longlong text_data, int *selection_range)
       delete_selected_text(text_data, selection_range, selection_start, selection_end - selection_start);
       selection_range[2] = selection_range[1];
       *selection_range = selection_range[1];
-      *(int8_t *)((longlong)selection_range + 0xf) = 0;
+      *(int8_t *)((int64_t)selection_range + 0xf) = 0;
       return;
     }
     delete_selected_text(text_data, selection_range, selection_end, selection_start - selection_end);
     selection_range[1] = selection_range[2];
     *selection_range = selection_range[2];
-    *(int8_t *)((longlong)selection_range + 0xf) = 0;
+    *(int8_t *)((int64_t)selection_range + 0xf) = 0;
   }
   return;
 }
@@ -690,7 +690,7 @@ void process_text_selection(longlong text_data, int *selection_range)
 // 函数：处理文本插入
 // 参数：text_data - 文本数据指针，selection_range - 选择范围指针，new_text - 新文本指针，insert_length - 插入长度
 // 功能：在指定位置插入新文本
-uint64_t process_text_insertion(longlong text_data, int *selection_range, uint64_t new_text, int insert_length)
+uint64_t process_text_insertion(int64_t text_data, int *selection_range, uint64_t new_text, int insert_length)
 {
   int text_length;
   char insert_result;
@@ -724,8 +724,8 @@ uint64_t process_text_insertion(longlong text_data, int *selection_range, uint64
   insert_result = insert_text(text_data, *selection_range, new_text, insert_length);
   
   if (insert_result == '\0') {
-    if (*(short *)((longlong)selection_range + 0xe16) != 0) {
-      *(short *)((longlong)selection_range + 0xe16) = *(short *)((longlong)selection_range + 0xe16) + -1;
+    if (*(short *)((int64_t)selection_range + 0xe16) != 0) {
+      *(short *)((int64_t)selection_range + 0xe16) = *(short *)((int64_t)selection_range + 0xe16) + -1;
     }
     operation_result = 0;
   }
@@ -733,7 +733,7 @@ uint64_t process_text_insertion(longlong text_data, int *selection_range, uint64
     update_text_layout(selection_range, *selection_range, insert_length);
     *selection_range = *selection_range + insert_length;
     operation_result = 1;
-    *(int8_t *)((longlong)selection_range + 0xf) = 0;
+    *(int8_t *)((int64_t)selection_range + 0xf) = 0;
   }
   return operation_result;
 }

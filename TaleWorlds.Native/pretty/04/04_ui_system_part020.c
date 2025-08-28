@@ -60,8 +60,8 @@
  * - quaternion_data: 四元数数据指针
  * - control_flags: 控制标志
  */
-void ui_system_advanced_matrix_transform_processor(uint64_t transform_context, longlong matrix_data, 
-                                                  longlong state_data, char transform_index,
+void ui_system_advanced_matrix_transform_processor(uint64_t transform_context, int64_t matrix_data, 
+                                                  int64_t state_data, char transform_index,
                                                   float *quaternion_data, int32_t control_flags)
 {
   uint64_t *transform_result;
@@ -70,18 +70,18 @@ void ui_system_advanced_matrix_transform_processor(uint64_t transform_context, l
   uint64_t transform_output;
   float *matrix_ptr;
   uint64_t *state_ptr;
-  ulonglong index_offset;
-  longlong block_offset;
+  uint64_t index_offset;
+  int64_t block_offset;
   float result_x, result_y, result_z, result_w;
   int8_t temp_buffer[16];
   
   // 计算块偏移量
-  index_offset = (ulonglong)transform_index;
+  index_offset = (uint64_t)transform_index;
   block_offset = index_offset * UI_SYSTEM_PARAMETER_BLOCK_SIZE;
   
   // 获取矩阵数据
   matrix_ptr = (float *)ui_system_get_matrix_data(state_data, *(int8_t *)
-                                            (*(longlong *)(matrix_data + 0x140) + 0xf0 + block_offset), matrix_data
+                                            (*(int64_t *)(matrix_data + 0x140) + 0xf0 + block_offset), matrix_data
                                   );
   
   // 读取四元数数据
@@ -105,7 +105,7 @@ void ui_system_advanced_matrix_transform_processor(uint64_t transform_context, l
   // 应用变换
   state_ptr = (uint64_t *)
             ui_system_apply_transform(matrix_data, temp_buffer, transform_index,
-                          *(int32_t *)(*(longlong *)(matrix_data + 0x140) + 0x110 + block_offset),
+                          *(int32_t *)(*(int64_t *)(matrix_data + 0x140) + 0x110 + block_offset),
                           &result_w, control_flags);
   
   transform_output = state_ptr[1];
@@ -114,10 +114,10 @@ void ui_system_advanced_matrix_transform_processor(uint64_t transform_context, l
   transform_result[1] = transform_output;
   
   // 更新状态标志
-  *(ulonglong *)(state_data + 0x800) =
-       *(ulonglong *)(state_data + 0x800) |
-       *(ulonglong *)(*(longlong *)(matrix_data + 0x140) + 0xe8 + block_offset);
-  *(ulonglong *)(state_data + 0x808) = *(ulonglong *)(state_data + 0x808) | 1L << (index_offset & UI_SYSTEM_STATE_FLAG_MASK);
+  *(uint64_t *)(state_data + 0x800) =
+       *(uint64_t *)(state_data + 0x800) |
+       *(uint64_t *)(*(int64_t *)(matrix_data + 0x140) + 0xe8 + block_offset);
+  *(uint64_t *)(state_data + 0x808) = *(uint64_t *)(state_data + 0x808) | 1L << (index_offset & UI_SYSTEM_STATE_FLAG_MASK);
   
   return;
 }
@@ -138,7 +138,7 @@ void ui_system_advanced_matrix_transform_processor(uint64_t transform_context, l
  * 返回值：
  * - 内存指针
  */
-uint64_t *ui_system_memory_manager_1(uint64_t *memory_ptr, ulonglong flags, uint64_t param3, uint64_t param4)
+uint64_t *ui_system_memory_manager_1(uint64_t *memory_ptr, uint64_t flags, uint64_t param3, uint64_t param4)
 {
   *memory_ptr = &UI_SYSTEM_GLOBAL_DATA_1;
   if ((flags & 1) != 0) {
@@ -166,12 +166,12 @@ uint64_t *ui_system_memory_manager_1(uint64_t *memory_ptr, ulonglong flags, uint
  * 返回值：
  * - 初始化后的参数指针
  */
-longlong ui_system_parameter_initializer(longlong param1, int8_t param2, int8_t param3, int8_t param4,
+int64_t ui_system_parameter_initializer(int64_t param1, int8_t param2, int8_t param3, int8_t param4,
                                       int32_t param5, int32_t param6)
 {
-  longlong iter_ptr1;
-  longlong iter_ptr2;
-  longlong iter_count1;
+  int64_t iter_ptr1;
+  int64_t iter_ptr2;
+  int64_t iter_count1;
   
   iter_count1 = 8;
   iter_ptr1 = param1 + 0xa0;
@@ -225,7 +225,7 @@ uint64_t *ui_system_resource_initializer(uint64_t *resource_ptr)
   resource_ptr[0x3a] = 0;
   *(int32_t *)(resource_ptr + 0x3b) = 0x40400000;  // 浮点数常量
   *(int8_t *)(resource_ptr + 0x3c) = 0;
-  *(int32_t *)((longlong)resource_ptr + 0x1dc) = 0x7149f2ca;  // 魔数
+  *(int32_t *)((int64_t)resource_ptr + 0x1dc) = 0x7149f2ca;  // 魔数
   
   return resource_ptr;
 }
@@ -246,7 +246,7 @@ uint64_t *ui_system_resource_initializer(uint64_t *resource_ptr)
  * 返回值：
  * - 内存指针
  */
-uint64_t *ui_system_memory_manager_2(uint64_t *memory_ptr, ulonglong flags, uint64_t param3, uint64_t param4)
+uint64_t *ui_system_memory_manager_2(uint64_t *memory_ptr, uint64_t flags, uint64_t param3, uint64_t param4)
 {
   *memory_ptr = &UI_SYSTEM_GLOBAL_DATA_1;
   if ((flags & 1) != 0) {
@@ -272,13 +272,13 @@ uint64_t *ui_system_memory_manager_2(uint64_t *memory_ptr, ulonglong flags, uint
  * - vector_data: 向量数据
  * - param4: 参数4
  */
-void ui_system_advanced_data_processor(longlong context, longlong data_ptr, float *vector_data, longlong param4)
+void ui_system_advanced_data_processor(int64_t context, int64_t data_ptr, float *vector_data, int64_t param4)
 {
   float *matrix_data;
   char index1, index2;
   float v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15;
   uint64_t transform_result;
-  longlong offset;
+  int64_t offset;
   uint temp_uint;
   float result1, result2, result3, result4;
   int8_t temp_buffer[16];
@@ -289,19 +289,19 @@ void ui_system_advanced_data_processor(longlong context, longlong data_ptr, floa
   int32_t control_param;
   uint64_t temp_result;
   float calc_result1, calc_result2, calc_result3, calc_result4;
-  longlong stack_offset;
+  int64_t stack_offset;
   float f_result1, f_result2, f_result3, f_result4;
   float f_result5, f_result6, f_result7, f_result8;
   float f_result9, f_result10, f_result11, f_result12;
   float f_result13, f_result14, f_result15, f_result16;
-  ulonglong stack_offset2;
+  uint64_t stack_offset2;
   
   // 计算栈偏移量
-  stack_offset2 = UI_SYSTEM_GLOBAL_DATA ^ (ulonglong)stack_buffer;
+  stack_offset2 = UI_SYSTEM_GLOBAL_DATA ^ (uint64_t)stack_buffer;
   index1 = *(char *)(context + 0xa4);
   *(int8_t *)(context + 0x1e0) = 0;
   *(int8_t *)(context + 0x1c4) = 0;
-  offset = (longlong)*(char *)((longlong)index1 + 0x100 + param4);
+  offset = (int64_t)*(char *)((int64_t)index1 + 0x100 + param4);
   index2 = *(char *)(param4 + 0x100 + offset);
   
   // 计算向量长度
@@ -326,7 +326,7 @@ void ui_system_advanced_data_processor(longlong context, longlong data_ptr, floa
   v12 = vector_data[11];
   
   // 获取矩阵数据
-  matrix_data = (float *)(data_ptr + ((longlong)index2 + 0x40) * 0x10);
+  matrix_data = (float *)(data_ptr + ((int64_t)index2 + 0x40) * 0x10);
   m1 = *matrix_data;
   m2 = matrix_data[1];
   m3 = matrix_data[2];
@@ -402,9 +402,9 @@ void ui_system_advanced_data_processor(longlong context, longlong data_ptr, floa
   
   ui_system_calculate_intersection(&f_result1, &f_result5, &temp_result);
   stack_offset = offset * UI_SYSTEM_PARAMETER_BLOCK_SIZE;
-  result4 = *(float *)(stack_offset + 0x100 + *(longlong *)(param4 + 0x140));
-  temp_result = (longlong)index1 * UI_SYSTEM_PARAMETER_BLOCK_SIZE;
-  calc_result1 = *(float *)(temp_result + 0x100 + *(longlong *)(param4 + 0x140));
+  result4 = *(float *)(stack_offset + 0x100 + *(int64_t *)(param4 + 0x140));
+  temp_result = (int64_t)index1 * UI_SYSTEM_PARAMETER_BLOCK_SIZE;
+  calc_result1 = *(float *)(temp_result + 0x100 + *(int64_t *)(param4 + 0x140));
   result2 = (result4 + result4) * calc_result1;
   stack_flag = 1;
   result3 = f_result5 * f_result5 + f_result4 * f_result4;
@@ -459,21 +459,21 @@ void ui_system_advanced_data_processor(longlong context, longlong data_ptr, floa
  * - context: 上下文指针
  * - data_source: 数据源指针
  */
-void ui_system_data_loader(longlong context, longlong data_source)
+void ui_system_data_loader(int64_t context, int64_t data_source)
 {
   uint *data_ptr;
   int32_t *data_block;
   uint lock_status;
-  longlong source_ptr;
+  int64_t source_ptr;
   char data_index;
-  longlong block_offset;
+  int64_t block_offset;
   int32_t *target_ptr;
   int iteration_count;
   int32_t *write_ptr;
   int32_t data_values[8];
-  ulonglong stack_data;
+  uint64_t stack_data;
   
-  stack_data = UI_SYSTEM_GLOBAL_DATA ^ (ulonglong)&data_values;
+  stack_data = UI_SYSTEM_GLOBAL_DATA ^ (uint64_t)&data_values;
   data_index = *(char *)(context + 0xa4);
   iteration_count = 0;
   
@@ -487,8 +487,8 @@ void ui_system_data_loader(longlong context, longlong data_source)
       *(uint64_t *)(write_ptr + -0x20) = 0x3f800000;
       *(uint64_t *)(write_ptr + -0x1e) = 0;
       
-      source_ptr = *(longlong *)(data_source + 0x18);
-      block_offset = (longlong)data_index * 0x100;
+      source_ptr = *(int64_t *)(data_source + 0x18);
+      block_offset = (int64_t)data_index * 0x100;
       
       // 执行锁定操作
       do {
@@ -524,12 +524,12 @@ void ui_system_data_loader(longlong context, longlong data_source)
       write_ptr = write_ptr + 4;
       
       // 更新数据索引
-      data_index = *(char *)(block_offset + 0xa0 + *(longlong *)(data_source + 0x18));
+      data_index = *(char *)(block_offset + 0xa0 + *(int64_t *)(data_source + 0x18));
     } while (data_index != -1);
   }
   
   // 调用清理函数
-  ui_system_cleanup_resources(stack_data ^ (ulonglong)&data_values);
+  ui_system_cleanup_resources(stack_data ^ (uint64_t)&data_values);
 }
 
 /**
@@ -546,7 +546,7 @@ void ui_system_data_loader(longlong context, longlong data_source)
  * - param2: 参数2
  * - param3: 参数3
  */
-void ui_system_animation_controller(longlong context, float param2, uint64_t param3)
+void ui_system_animation_controller(int64_t context, float param2, uint64_t param3)
 {
   float current_value;
   float target_value;
@@ -593,12 +593,12 @@ void ui_system_animation_controller(longlong context, float param2, uint64_t par
 #define UI_SYSTEM_GLOBAL_DATA GET_SECURITY_COOKIE()
 
 // 内部函数声明
-uint64_t *ui_system_get_matrix_data(longlong param1, int8_t param2, longlong param3);
-uint64_t *ui_system_apply_transform(longlong param1, int8_t *param2, char param3, int32_t param4, float *param5, int32_t param6);
-void ui_system_cleanup_memory_block(longlong param1);
+uint64_t *ui_system_get_matrix_data(int64_t param1, int8_t param2, int64_t param3);
+uint64_t *ui_system_apply_transform(int64_t param1, int8_t *param2, char param3, int32_t param4, float *param5, int32_t param6);
+void ui_system_cleanup_memory_block(int64_t param1);
 void ui_system_apply_transform_2(float *param1, uint64_t param2);
 void ui_system_normalize_vector(float *param1, uint64_t param2);
 void ui_system_calculate_intersection(float *param1, float *param2, uint64_t *param3);
 uint64_t *ui_system_calculate_transform(float *param1, float *param2);
 void ui_system_process_angle(float param1);
-void ui_system_cleanup_resources(ulonglong param1);
+void ui_system_cleanup_resources(uint64_t param1);

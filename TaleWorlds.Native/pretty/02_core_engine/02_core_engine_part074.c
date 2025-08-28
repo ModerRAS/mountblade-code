@@ -12,11 +12,11 @@
  * @param param3 第三个参数，用途未知  
  * @param param4 第四个参数，用途未知
  */
-void initialize_engine_parameters(longlong engine_context, uint64_t param2, uint64_t param3, uint64_t param4)
+void initialize_engine_parameters(int64_t engine_context, uint64_t param2, uint64_t param3, uint64_t param4)
 {
     int8_t *resource_ptr;
     int32_t *value_ptr;
-    longlong temp_offset;
+    int64_t temp_offset;
     char operation_result;
     uint64_t function_ptr;
     void *data_ptr;
@@ -54,12 +54,12 @@ void initialize_engine_parameters(longlong engine_context, uint64_t param2, uint
     }
     
     // 调用渲染系统初始化
-    (**(code **)(*(longlong *)(engine_context + 0xe8) + 0x10))(engine_context + 0xe8, &RENDER_SYSTEM_CONFIG);
+    (**(code **)(*(int64_t *)(engine_context + 0xe8) + 0x10))(engine_context + 0xe8, &RENDER_SYSTEM_CONFIG);
     
     // 处理渲染参数
     stack_data._0_4_ = 0;
     temp_value = 0;
-    if ((*(longlong *)(engine_context + 0x140) != 0) &&
+    if ((*(int64_t *)(engine_context + 0x140) != 0) &&
         (operation_result = (**(code **)(engine_context + 0x148))(&stack_data), temp_value = (int32_t)stack_data,
          operation_result == '\0')) {
         if (DEBUG_MODE_ENABLED == '\0') {
@@ -74,9 +74,9 @@ void initialize_engine_parameters(longlong engine_context, uint64_t param2, uint
     *(int32_t *)(engine_context + 0xe0) = temp_value;
     
     // 处理第二个渲染参数
-    stack_data = (int32_t *)((ulonglong)stack_data._4_4_ << 0x20);
+    stack_data = (int32_t *)((uint64_t)stack_data._4_4_ << 0x20);
     temp_value = 0;
-    if (*(longlong *)(engine_context + 0x140) != 0) {
+    if (*(int64_t *)(engine_context + 0x140) != 0) {
         operation_result = (**(code **)(engine_context + 0x148))(&stack_data, resource_ptr);
         if (operation_result == '\0') {
             if (DEBUG_MODE_ENABLED == '\0') {
@@ -121,12 +121,12 @@ void initialize_engine_parameters(longlong engine_context, uint64_t param2, uint
     }
     
     // 调用物理系统初始化
-    (**(code **)(*(longlong *)(engine_context + 0x158) + 0x10))(engine_context + 0x158, &PHYSICS_SYSTEM_CONFIG);
+    (**(code **)(*(int64_t *)(engine_context + 0x158) + 0x10))(engine_context + 0x158, &PHYSICS_SYSTEM_CONFIG);
     
     // 处理物理参数
     stack_data._0_4_ = 1;
     temp_value = 1;
-    if ((*(longlong *)(engine_context + 0x1b0) != 0) &&
+    if ((*(int64_t *)(engine_context + 0x1b0) != 0) &&
         (operation_result = (**(code **)(engine_context + 0x1b8))(&stack_data), temp_value = (int32_t)stack_data,
          operation_result == '\0')) {
         if (DEBUG_MODE_ENABLED == '\0') {
@@ -142,7 +142,7 @@ void initialize_engine_parameters(longlong engine_context, uint64_t param2, uint
     
     stack_data = (int32_t *)CONCAT44(stack_data._4_4_, 1);
     temp_value = 1;
-    if (*(longlong *)(engine_context + 0x1b0) != 0) {
+    if (*(int64_t *)(engine_context + 0x1b0) != 0) {
         operation_result = (**(code **)(engine_context + 0x1b8))(&stack_data, resource_ptr);
         if (operation_result == '\0') {
             if (DEBUG_MODE_ENABLED == '\0') {
@@ -165,12 +165,12 @@ void initialize_engine_parameters(longlong engine_context, uint64_t param2, uint
     apply_engine_settings(engine_context + 8, &stack_data);
     
     // 调用音频系统初始化
-    (**(code **)(*(longlong *)(engine_context + 0x3f8) + 0x10))(engine_context + 0x3f8, &AUDIO_SYSTEM_CONFIG);
+    (**(code **)(*(int64_t *)(engine_context + 0x3f8) + 0x10))(engine_context + 0x3f8, &AUDIO_SYSTEM_CONFIG);
     
     // 处理音频参数
-    stack_data = (int32_t *)((ulonglong)stack_data & 0xffffffff00000000);
+    stack_data = (int32_t *)((uint64_t)stack_data & 0xffffffff00000000);
     temp_value = 0;
-    if (*(longlong *)(engine_context + 0x450) != 0) {
+    if (*(int64_t *)(engine_context + 0x450) != 0) {
         operation_result = (**(code **)(engine_context + 0x458))(&stack_data);
         if (operation_result == '\0') {
             if (DEBUG_MODE_ENABLED == '\0') {
@@ -189,9 +189,9 @@ void initialize_engine_parameters(longlong engine_context, uint64_t param2, uint
     *(int32_t *)(engine_context + 0x3f0) = temp_value;
     
     // 处理第二个音频参数
-    stack_data = (int32_t *)((ulonglong)stack_data & 0xffffffff00000000);
+    stack_data = (int32_t *)((uint64_t)stack_data & 0xffffffff00000000);
     temp_value = 0;
-    if (*(longlong *)(engine_context + 0x450) != 0) {
+    if (*(int64_t *)(engine_context + 0x450) != 0) {
         operation_result = (**(code **)(engine_context + 0x458))(&stack_data);
         if (operation_result == '\0') {
             if (DEBUG_MODE_ENABLED == '\0') {
@@ -236,12 +236,12 @@ void initialize_engine_parameters(longlong engine_context, uint64_t param2, uint
     }
     
     // 调用输入系统初始化
-    (**(code **)(*(longlong *)(engine_context + 0x1c8) + 0x10))(engine_context + 0x1c8, &INPUT_SYSTEM_CONFIG);
+    (**(code **)(*(int64_t *)(engine_context + 0x1c8) + 0x10))(engine_context + 0x1c8, &INPUT_SYSTEM_CONFIG);
     
     // 处理输入参数
     stack_data._0_4_ = 1;
     temp_value = 1;
-    if ((*(longlong *)(engine_context + 0x220) != 0) &&
+    if ((*(int64_t *)(engine_context + 0x220) != 0) &&
         (operation_result = (**(code **)(engine_context + 0x228))(&stack_data), temp_value = (int32_t)stack_data,
          operation_result == '\0')) {
         if (DEBUG_MODE_ENABLED == '\0') {
@@ -257,7 +257,7 @@ void initialize_engine_parameters(longlong engine_context, uint64_t param2, uint
     
     stack_data = (int32_t *)CONCAT44(stack_data._4_4_, 1);
     temp_value = 1;
-    if (*(longlong *)(engine_context + 0x220) != 0) {
+    if (*(int64_t *)(engine_context + 0x220) != 0) {
         operation_result = (**(code **)(engine_context + 0x228))(&stack_data, resource_ptr);
         if (operation_result == '\0') {
             if (DEBUG_MODE_ENABLED == '\0') {
@@ -280,13 +280,13 @@ void initialize_engine_parameters(longlong engine_context, uint64_t param2, uint
     apply_engine_settings(engine_context + 8, &stack_data);
     
     // 调用网络系统初始化
-    (**(code **)(*(longlong *)(engine_context + 0x318) + 0x10))(engine_context + 0x318, &NETWORK_SYSTEM_CONFIG);
+    (**(code **)(*(int64_t *)(engine_context + 0x318) + 0x10))(engine_context + 0x318, &NETWORK_SYSTEM_CONFIG);
     
     // 处理网络参数
     value_ptr = (int32_t *)(engine_context + 0x310);
     stack_data._0_4_ = 0x3f800000;  // 1.0f
     temp_value = 0x3f800000;
-    if ((*(longlong *)(engine_context + 0x370) == 0) ||
+    if ((*(int64_t *)(engine_context + 0x370) == 0) ||
         (operation_result = (**(code **)(engine_context + 0x378))(&stack_data), temp_value = (int32_t)stack_data,
          operation_result != '\0')) {
         *value_ptr = temp_value;
@@ -304,7 +304,7 @@ void initialize_engine_parameters(longlong engine_context, uint64_t param2, uint
     
     stack_data = (int32_t *)CONCAT44(stack_data._4_4_, 0x3f800000);
     temp_value = 0x3f800000;
-    if (*(longlong *)(engine_context + 0x370) == 0) {
+    if (*(int64_t *)(engine_context + 0x370) == 0) {
 SET_NETWORK_PARAM:
         *(int32_t *)(engine_context + 0x314) = temp_value;
     }
@@ -329,12 +329,12 @@ SET_NETWORK_PARAM:
     apply_engine_settings(engine_context + 0x28, &stack_data);
     
     // 调用UI系统初始化
-    (**(code **)(*(longlong *)(engine_context + 0x238) + 0x10))(engine_context + 0x238, &UI_SYSTEM_CONFIG);
+    (**(code **)(*(int64_t *)(engine_context + 0x238) + 0x10))(engine_context + 0x238, &UI_SYSTEM_CONFIG);
     
     // 处理UI参数
-    stack_data = (int32_t *)((ulonglong)stack_data & 0xffffffff00000000);
+    stack_data = (int32_t *)((uint64_t)stack_data & 0xffffffff00000000);
     temp_value = 0;
-    if (*(longlong *)(engine_context + 0x290) != 0) {
+    if (*(int64_t *)(engine_context + 0x290) != 0) {
         operation_result = (**(code **)(engine_context + 0x298))(&stack_data);
         if (operation_result == '\0') {
             if (DEBUG_MODE_ENABLED == '\0') {
@@ -353,9 +353,9 @@ SET_NETWORK_PARAM:
     *(int32_t *)(engine_context + 0x230) = temp_value;
     
     // 处理第二个UI参数
-    stack_data = (int32_t *)((ulonglong)stack_data & 0xffffffff00000000);
+    stack_data = (int32_t *)((uint64_t)stack_data & 0xffffffff00000000);
     temp_value = 0;
-    if (*(longlong *)(engine_context + 0x290) != 0) {
+    if (*(int64_t *)(engine_context + 0x290) != 0) {
         operation_result = (**(code **)(engine_context + 0x298))(&stack_data);
         if (operation_result == '\0') {
             if (DEBUG_MODE_ENABLED == '\0') {
@@ -378,12 +378,12 @@ SET_NETWORK_PARAM:
     apply_engine_settings(engine_context + 8, &stack_data);
     
     // 调用AI系统初始化
-    (**(code **)(*(longlong *)(engine_context + 0x2a8) + 0x10))(engine_context + 0x2a8, &AI_SYSTEM_CONFIG);
+    (**(code **)(*(int64_t *)(engine_context + 0x2a8) + 0x10))(engine_context + 0x2a8, &AI_SYSTEM_CONFIG);
     
     // 处理AI参数
     stack_data._0_4_ = 1;
     temp_value = 1;
-    if ((*(longlong *)(engine_context + 0x300) != 0) &&
+    if ((*(int64_t *)(engine_context + 0x300) != 0) &&
         (operation_result = (**(code **)(engine_context + 0x308))(&stack_data), temp_value = (int32_t)stack_data,
          operation_result == '\0')) {
         if (DEBUG_MODE_ENABLED == '\0') {
@@ -399,7 +399,7 @@ SET_NETWORK_PARAM:
     
     stack_data = (int32_t *)CONCAT44(stack_data._4_4_, 1);
     temp_value = 1;
-    if (*(longlong *)(engine_context + 0x300) != 0) {
+    if (*(int64_t *)(engine_context + 0x300) != 0) {
         operation_result = (**(code **)(engine_context + 0x308))(&stack_data);
         if (operation_result == '\0') {
             if (DEBUG_MODE_ENABLED == '\0') {
@@ -422,12 +422,12 @@ SET_NETWORK_PARAM:
     apply_engine_settings(engine_context + 8, &stack_data);
     
     // 调用动画系统初始化
-    (**(code **)(*(longlong *)(engine_context + 0x528) + 0x10))(engine_context + 0x528, &ANIMATION_SYSTEM_CONFIG);
+    (**(code **)(*(int64_t *)(engine_context + 0x528) + 0x10))(engine_context + 0x528, &ANIMATION_SYSTEM_CONFIG);
     
     // 处理动画参数
-    stack_data = (int32_t *)((ulonglong)stack_data & 0xffffffff00000000);
+    stack_data = (int32_t *)((uint64_t)stack_data & 0xffffffff00000000);
     temp_value = 0;
-    if (*(longlong *)(engine_context + 0x580) != 0) {
+    if (*(int64_t *)(engine_context + 0x580) != 0) {
         operation_result = (**(code **)(engine_context + 0x588))(&stack_data);
         if (operation_result == '\0') {
             if (DEBUG_MODE_ENABLED == '\0') {
@@ -446,9 +446,9 @@ SET_NETWORK_PARAM:
     *(int32_t *)(engine_context + 0x520) = temp_value;
     
     // 处理第二个动画参数
-    stack_data = (int32_t *)((ulonglong)stack_data & 0xffffffff00000000);
+    stack_data = (int32_t *)((uint64_t)stack_data & 0xffffffff00000000);
     temp_value = 0;
-    if (*(longlong *)(engine_context + 0x580) == 0) {
+    if (*(int64_t *)(engine_context + 0x580) == 0) {
 SET_ANIMATION_PARAM:
         *(int32_t *)(engine_context + 0x524) = temp_value;
     }
@@ -473,13 +473,13 @@ SET_ANIMATION_PARAM:
     apply_engine_settings(engine_context + 8, &stack_data);
     
     // 调用粒子系统初始化
-    (**(code **)(*(longlong *)(engine_context + 0x388) + 0x10))(engine_context + 0x388, &PARTICLE_SYSTEM_CONFIG);
+    (**(code **)(*(int64_t *)(engine_context + 0x388) + 0x10))(engine_context + 0x388, &PARTICLE_SYSTEM_CONFIG);
     
     // 处理粒子参数
     value_ptr = (int32_t *)(engine_context + 0x380);
     stack_data._0_4_ = 0x40000000;  // 2.0f
     temp_value = 0x40000000;
-    if ((*(longlong *)(engine_context + 0x3e0) == 0) ||
+    if ((*(int64_t *)(engine_context + 0x3e0) == 0) ||
         (operation_result = (**(code **)(engine_context + 1000))(&stack_data), temp_value = (int32_t)stack_data,
          operation_result != '\0')) {
         *value_ptr = temp_value;
@@ -497,7 +497,7 @@ SET_ANIMATION_PARAM:
     
     stack_data = (int32_t *)CONCAT44(stack_data._4_4_, 0x40000000);
     temp_value = 0x40000000;
-    if (*(longlong *)(engine_context + 0x3e0) != 0) {
+    if (*(int64_t *)(engine_context + 0x3e0) != 0) {
         operation_result = (**(code **)(engine_context + 1000))(&stack_data);
         if (operation_result == '\0') {
             if (DEBUG_MODE_ENABLED == '\0') {
@@ -521,7 +521,7 @@ APPLY_PARTICLE_SETTINGS:
     
     // 调用场景管理器初始化
     temp_offset = engine_context + 0x460;
-    (**(code **)(*(longlong *)(engine_context + 0x4a0) + 0x10))((longlong *)(engine_context + 0x4a0), &SCENE_MANAGER_CONFIG);
+    (**(code **)(*(int64_t *)(engine_context + 0x4a0) + 0x10))((int64_t *)(engine_context + 0x4a0), &SCENE_MANAGER_CONFIG);
     
     // 初始化场景资源
     function_ptr = get_system_time();

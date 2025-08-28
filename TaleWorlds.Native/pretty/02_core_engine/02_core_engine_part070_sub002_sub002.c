@@ -12,18 +12,18 @@ void format_engine_log_message(void* engine_context, char log_level)
   // 此版本提供基本的日志格式化功能
   
   // 基本变量声明
-  longlong buffer_offset;
+  int64_t buffer_offset;
   void* engine_instance;
   void* string_ptr;
-  ulonglong format_flags;
+  uint64_t format_flags;
   int log_priority;
   char is_enabled;
   
   // 日志格式化参数
   uint log_category;
-  ulonglong timestamp;
-  longlong memory_base;
-  ulonglong memory_size;
+  uint64_t timestamp;
+  int64_t memory_base;
+  uint64_t memory_size;
   
   // 格式化缓冲区
   char format_buffer[1024];
@@ -79,7 +79,7 @@ void format_engine_log_message(void* engine_context, char log_level)
 
 // 辅助函数声明
 void* get_engine_instance(void);
-ulonglong get_current_timestamp(void);
+uint64_t get_current_timestamp(void);
 const char* get_log_level_name(int priority);
 void output_formatted_log(const char* message);
 void cleanup_log_resources(void* instance);
@@ -90,7 +90,7 @@ void* get_engine_instance(void) {
   return NULL; // 简化实现
 }
 
-ulonglong get_current_timestamp(void) {
+uint64_t get_current_timestamp(void) {
   // 获取当前时间戳
   return 0; // 简化实现
 }

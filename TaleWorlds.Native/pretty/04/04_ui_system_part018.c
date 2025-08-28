@@ -37,17 +37,17 @@ extern const void* GET_SECURITY_COOKIE();     // UI系统安全数据
 
 // 函数声明
 void FUN_180403910(void);
-void FUN_1808fc050(ulonglong param_1);
+void FUN_1808fc050(uint64_t param_1);
 void func_0x000180669850(float* param_1, int32_t param_2, void* param_3, float param_4, int32_t param_5, float param_6);
-longlong FUN_18065fd40(longlong param_1);
-longlong FUN_18065cec0(longlong param_1, int param_2);
-char func_0x000180435420(longlong param_1, int param_2);
+int64_t FUN_18065fd40(int64_t param_1);
+int64_t FUN_18065cec0(int64_t param_1, int param_2);
+char func_0x000180435420(int64_t param_1, int param_2);
 uint64_t func_0x000180435400(void);
-void FUN_180405240(void* param_1, longlong param_2, float param_3, int param_4, ulonglong param_5, uint64_t param_6);
+void FUN_180405240(void* param_1, int64_t param_2, float param_3, int param_4, uint64_t param_5, uint64_t param_6);
 void FUN_18040dbf0(uint64_t param_1, void* param_2, char param_3, float param_4, uint64_t param_5, void* param_6);
-void FUN_180403be0(longlong param_1, char param_2, void* param_3, float param_4);
+void FUN_180403be0(int64_t param_1, char param_2, void* param_3, float param_4);
 void func_0x000180435370(uint64_t param_1);
-void func_0x0001804aabb0(longlong param_1);
+void func_0x0001804aabb0(int64_t param_1);
 
 /**
  * UI系统动画循环处理器
@@ -61,8 +61,8 @@ void ui_system_animation_loop_processor(void)
     // 原实现包含复杂的动画循环处理和帧更新逻辑
     
     int loop_counter = 0;
-    longlong context_base = 0; // 简化的上下文基址
-    longlong* state_array = 0; // 简化的状态数组
+    int64_t context_base = 0; // 简化的上下文基址
+    int64_t* state_array = 0; // 简化的状态数组
     float* animation_data = 0; // 简化的动画数据
     float threshold_value = 0.0; // 简化的阈值
     float comparison_value = 0.0; // 简化的比较值
@@ -93,7 +93,7 @@ void ui_system_animation_loop_processor(void)
  * @param param_6 参数6 - 输出数组
  * @return void
  */
-void ui_system_animation_parameter_processor(longlong param_1, float *param_2, int32_t param_3, int32_t param_4,
+void ui_system_animation_parameter_processor(int64_t param_1, float *param_2, int32_t param_3, int32_t param_4,
                                           int32_t param_5, float *param_6)
 {
     // 简化实现：动画参数处理器
@@ -103,7 +103,7 @@ void ui_system_animation_parameter_processor(longlong param_1, float *param_2, i
     float offset_value;
     char state_flag;
     float* output_array;
-    longlong context_data;
+    int64_t context_data;
     int8_t result_flag;
     uint64_t* parameter_ptr;
     int array_index;
@@ -210,7 +210,7 @@ void ui_system_animation_parameter_processor(longlong param_1, float *param_2, i
     }
     
     // 状态标志计算
-    state_flag = *(char *)((longlong)output_array + 0x16);
+    state_flag = *(char *)((int64_t)output_array + 0x16);
     blend_factor = UI_ZERO_THRESHOLD;
     if (state_flag == '\0') {
         animation_duration = UI_ZERO_THRESHOLD;
@@ -233,16 +233,16 @@ void ui_system_animation_parameter_processor(longlong param_1, float *param_2, i
         blend_factor = output_array[4] * UI_SCALE_FACTOR;
     }
     animation_duration = base_value + UI_POSITION_OFFSET;
-    *(bool *)((longlong)output_array + 0x16) = offset_value <= base_value + blend_factor;
+    *(bool *)((int64_t)output_array + 0x16) = offset_value <= base_value + blend_factor;
     
-    if ((offset_value <= animation_duration) && (*(char *)((longlong)output_array + 0x17) == '\0')) {
-        *(int8_t *)((longlong)output_array + 0x15) = 1;
-        *(bool *)((longlong)output_array + 0x17) = offset_value <= animation_duration;
+    if ((offset_value <= animation_duration) && (*(char *)((int64_t)output_array + 0x17) == '\0')) {
+        *(int8_t *)((int64_t)output_array + 0x15) = 1;
+        *(bool *)((int64_t)output_array + 0x17) = offset_value <= animation_duration;
         return;
     }
     
-    *(int8_t *)((longlong)output_array + 0x15) = 0;
-    *(bool *)((longlong)output_array + 0x17) = offset_value <= animation_duration;
+    *(int8_t *)((int64_t)output_array + 0x15) = 0;
+    *(bool *)((int64_t)output_array + 0x17) = offset_value <= animation_duration;
 }
 
 /**
@@ -265,7 +265,7 @@ void ui_system_state_flag_processor(void)
     float animation_duration;
     
     // 状态标志计算
-    state_flag = *(char *)((longlong)animation_data + 0x16);
+    state_flag = *(char *)((int64_t)animation_data + 0x16);
     blend_factor = UI_ZERO_THRESHOLD;
     if (state_flag == '\0') {
         animation_duration = UI_ZERO_THRESHOLD;
@@ -288,16 +288,16 @@ void ui_system_state_flag_processor(void)
         blend_factor = animation_data[4] * UI_SCALE_FACTOR;
     }
     animation_duration = base_value + UI_POSITION_OFFSET;
-    *(bool *)((longlong)animation_data + 0x16) = offset_value <= base_value + blend_factor;
+    *(bool *)((int64_t)animation_data + 0x16) = offset_value <= base_value + blend_factor;
     
-    if ((offset_value <= animation_duration) && (*(char *)((longlong)animation_data + 0x17) == '\0')) {
-        *(int8_t *)((longlong)animation_data + 0x15) = 1;
-        *(bool *)((longlong)animation_data + 0x17) = offset_value <= animation_duration;
+    if ((offset_value <= animation_duration) && (*(char *)((int64_t)animation_data + 0x17) == '\0')) {
+        *(int8_t *)((int64_t)animation_data + 0x15) = 1;
+        *(bool *)((int64_t)animation_data + 0x17) = offset_value <= animation_duration;
         return;
     }
     
-    *(int8_t *)((longlong)animation_data + 0x15) = 0;
-    *(bool *)((longlong)animation_data + 0x17) = offset_value <= animation_duration;
+    *(int8_t *)((int64_t)animation_data + 0x15) = 0;
+    *(bool *)((int64_t)animation_data + 0x17) = offset_value <= animation_duration;
 }
 
 /**
@@ -320,7 +320,7 @@ void ui_system_condition_processor(void)
     float animation_duration;
     
     // 条件判断处理
-    state_flag = *(char *)((longlong)animation_data + 0x16);
+    state_flag = *(char *)((int64_t)animation_data + 0x16);
     blend_factor = UI_ZERO_THRESHOLD;
     if (state_flag == '\0') {
         animation_duration = UI_ZERO_THRESHOLD;
@@ -343,16 +343,16 @@ void ui_system_condition_processor(void)
         blend_factor = animation_data[4] * UI_SCALE_FACTOR;
     }
     animation_duration = base_value + UI_POSITION_OFFSET;
-    *(bool *)((longlong)animation_data + 0x16) = offset_value <= base_value + blend_factor;
+    *(bool *)((int64_t)animation_data + 0x16) = offset_value <= base_value + blend_factor;
     
-    if ((offset_value <= animation_duration) && (*(char *)((longlong)animation_data + 0x17) == '\0')) {
-        *(int8_t *)((longlong)animation_data + 0x15) = 1;
-        *(bool *)((longlong)animation_data + 0x17) = offset_value <= animation_duration;
+    if ((offset_value <= animation_duration) && (*(char *)((int64_t)animation_data + 0x17) == '\0')) {
+        *(int8_t *)((int64_t)animation_data + 0x15) = 1;
+        *(bool *)((int64_t)animation_data + 0x17) = offset_value <= animation_duration;
         return;
     }
     
-    *(int8_t *)((longlong)animation_data + 0x15) = 0;
-    *(bool *)((longlong)animation_data + 0x17) = offset_value <= animation_duration;
+    *(int8_t *)((int64_t)animation_data + 0x15) = 0;
+    *(bool *)((int64_t)animation_data + 0x17) = offset_value <= animation_duration;
 }
 
 /**
@@ -386,7 +386,7 @@ void ui_system_system_call_handler_2(void)
  * @param param_11 参数11 - 控制标志
  * @return void
  */
-void ui_system_batch_animation_processor(longlong *param_1, longlong param_2, uint64_t param_3, longlong param_4,
+void ui_system_batch_animation_processor(int64_t *param_1, int64_t param_2, uint64_t param_3, int64_t param_4,
                                         uint64_t param_5, float param_6, float param_7, float param_8,
                                         float param_9, float param_10, float param_11, char param_12)
 {
@@ -394,7 +394,7 @@ void ui_system_batch_animation_processor(longlong *param_1, longlong param_2, ui
     // 原实现包含复杂的批量动画和特效渲染逻辑
     
     uint64_t context_data;
-    longlong resource_data;
+    int64_t resource_data;
     char process_flag;
     int8_t result_flag;
     int param_index;
@@ -403,13 +403,13 @@ void ui_system_batch_animation_processor(longlong *param_1, longlong param_2, ui
     float threshold_value;
     int8_t temp_stack[8];
     uint64_t temp_param;
-    ulonglong process_id;
+    uint64_t process_id;
     uint64_t animation_param;
     uint64_t temp_stack_f8;
-    longlong temp_stack_f0;
+    int64_t temp_stack_f0;
     char temp_stack_e8;
     uint64_t temp_stack_e0;
-    longlong temp_stack_d8;
+    int64_t temp_stack_d8;
     char temp_stack_d0;
     uint64_t temp_stack_c8;
     int8_t security_stack[32];
@@ -455,12 +455,12 @@ void ui_system_batch_animation_processor(longlong *param_1, longlong param_2, ui
             if (param_index - 2U < 4) {
                 threshold_value = param_7;
             }
-            process_id = (ulonglong)(uint)animation_value;
+            process_id = (uint64_t)(uint)animation_value;
             animation_param = context_data;
             FUN_180403910(*param_1, param_3, param_3, threshold_value, process_id, context_data);
             
-            if (*(longlong *)(param_4 + 0x810) != 0) {
-                process_id = (ulonglong)(uint)animation_value;
+            if (*(int64_t *)(param_4 + 0x810) != 0) {
+                process_id = (uint64_t)(uint)animation_value;
                 animation_param = context_data;
                 FUN_180403910(param_1[6], param_4);
             }
@@ -512,23 +512,23 @@ void ui_system_batch_animation_processor(longlong *param_1, longlong param_2, ui
  * @param param_1 参数1 - 状态数组
  * @return 查询结果
  */
-uint64_t ui_system_state_query_2(longlong param_1)
+uint64_t ui_system_state_query_2(int64_t param_1)
 {
     // 简化实现：状态查询器2
     // 原实现包含状态查询和信息检索逻辑
     
     int check_index;
     int query_index;
-    longlong* state_ptr;
+    int64_t* state_ptr;
     
-    state_ptr = (longlong *)(param_1 + 0x198);
+    state_ptr = (int64_t *)(param_1 + 0x198);
     query_index = 0;
     
     do {
-        if ((longlong *)*state_ptr != (longlong *)0x0) {
-            check_index = (**(code **)(*(longlong *)*state_ptr + 0x18))();
+        if ((int64_t *)*state_ptr != (int64_t *)0x0) {
+            check_index = (**(code **)(*(int64_t *)*state_ptr + 0x18))();
             if (check_index == 2) {
-                return *(uint64_t *)(param_1 + 0x198 + (longlong)query_index * 8);
+                return *(uint64_t *)(param_1 + 0x198 + (int64_t)query_index * 8);
             }
         }
         query_index = query_index + 1;
@@ -561,7 +561,7 @@ uint64_t ui_system_state_query_2(longlong param_1)
 void ui_system_effect_renderer(uint64_t *param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4,
                               uint64_t param_5, int32_t param_6, int32_t param_7, float param_8,
                               uint64_t param_9, float param_10, float param_11, float param_12,
-                              char param_13, longlong param_14, int *param_15)
+                              char param_13, int64_t param_14, int *param_15)
 {
     // 简化实现：特效渲染器
     // 原实现包含复杂的特效渲染和参数计算逻辑
@@ -637,13 +637,13 @@ void ui_system_effect_renderer(uint64_t *param_1, uint64_t param_2, uint64_t par
  * @param param_2 参数2 - 插值参数
  * @return 插值结果
  */
-float ui_system_animation_interpolator(longlong *param_1, float param_2)
+float ui_system_animation_interpolator(int64_t *param_1, float param_2)
 {
     // 简化实现：动画插值器
     // 原实现包含复杂的动画插值计算和平滑过渡逻辑
     
     float base_value;
-    longlong state_data;
+    int64_t state_data;
     float start_value;
     float end_value;
     float current_value;
@@ -693,7 +693,7 @@ float ui_system_animation_calculator(void)
     // 原实现包含复杂的动画参数计算和变换逻辑
     
     float base_value;
-    longlong context_data;
+    int64_t context_data;
     float start_value;
     float end_value;
     float current_value;
@@ -748,17 +748,17 @@ void ui_system_null_operation_handler_2(void)
  * @param param_2 参数2 - 输入参数
  * @return 计算结果
  */
-float ui_system_animation_value_calculator(longlong param_1, float param_2)
+float ui_system_animation_value_calculator(int64_t param_1, float param_2)
 {
     // 简化实现：动画值计算器
     // 原实现包含复杂的动画值计算和缩放逻辑
     
     float base_value;
-    longlong state_data;
+    int64_t state_data;
     float normalized_value;
     float scaled_value;
     
-    base_value = *(float *)(*(longlong *)(param_1 + 0x10) + 0x188);
+    base_value = *(float *)(*(int64_t *)(param_1 + 0x10) + 0x188);
     
     if (UI_ZERO_THRESHOLD < param_2) {
         state_data = FUN_18065cec0(param_1, 2);
@@ -783,14 +783,14 @@ float ui_system_animation_value_calculator(longlong param_1, float param_2)
  * @param param_1 参数1 - 资源上下文
  * @return 清理后的上下文
  */
-longlong ui_system_resource_cleaner(longlong param_1)
+int64_t ui_system_resource_cleaner(int64_t param_1)
 {
     // 简化实现：资源清理器
     // 原实现包含复杂的资源清理和内存管理逻辑
     
-    longlong cleanup_counter;
-    longlong loop_counter;
-    longlong context_ptr;
+    int64_t cleanup_counter;
+    int64_t loop_counter;
+    int64_t context_ptr;
     
     cleanup_counter = UI_BLOCK_COUNT;
     loop_counter = UI_BLOCK_COUNT;
@@ -825,8 +825,8 @@ longlong ui_system_resource_cleaner(longlong param_1)
  * @param param_6 参数6 - 动画状态
  * @return void
  */
-void ui_system_advanced_animation_processor(longlong param_1, uint64_t param_2, uint64_t param_3, longlong param_4,
-                                         uint64_t param_5, longlong param_6)
+void ui_system_advanced_animation_processor(int64_t param_1, uint64_t param_2, uint64_t param_3, int64_t param_4,
+                                         uint64_t param_5, int64_t param_6)
 {
     // 简化实现：高级动画处理器
     // 原实现包含复杂的高级动画处理和变换逻辑
@@ -871,8 +871,8 @@ void ui_system_advanced_animation_processor(longlong param_1, uint64_t param_2, 
             control_param_4 = render_param_1;
         }
         
-        FUN_18065fa20(**(longlong **)(param_1 + UI_MEMORY_OFFSET) + 
-                      (longlong)*(int *)(param_6 + 0x14) * UI_PARAMETER_OFFSET,
+        FUN_18065fa20(**(int64_t **)(param_1 + UI_MEMORY_OFFSET) + 
+                      (int64_t)*(int *)(param_6 + 0x14) * UI_PARAMETER_OFFSET,
                       param_2, animation_value, param_4, param_5, render_param_2, control_param_4, 
                       animation_value, control_param_1, control_param_2, control_param_3, animation_flag);
     }
@@ -886,12 +886,12 @@ void ui_system_advanced_animation_processor(longlong param_1, uint64_t param_2, 
         render_param_4 = render_param_1;
     }
     
-    FUN_18065fa20(**(longlong **)(param_1 + UI_MEMORY_OFFSET) + (longlong)state_index * UI_PARAMETER_OFFSET,
+    FUN_18065fa20(**(int64_t **)(param_1 + UI_MEMORY_OFFSET) + (int64_t)state_index * UI_PARAMETER_OFFSET,
                   param_2, param_3, param_4, param_5, render_param_1, render_param_4, base_value, 
                   control_param_1, control_param_2, control_param_3, animation_flag);
     
     func_0x000180435370(param_3);
-    if (*(longlong *)(param_4 + 0x808) != 0) {
+    if (*(int64_t *)(param_4 + 0x808) != 0) {
         func_0x000180435370(param_4);
     }
 }
@@ -899,7 +899,7 @@ void ui_system_advanced_animation_processor(longlong param_1, uint64_t param_2, 
 // 函数别名定义 - 保持与原函数名的兼容性
 void FUN_18065edd0(void) __attribute__((alias("ui_system_animation_loop_processor")));
 
-void FUN_18065ee60(longlong param_1, float *param_2, int32_t param_3, int32_t param_4,
+void FUN_18065ee60(int64_t param_1, float *param_2, int32_t param_3, int32_t param_4,
                    int32_t param_5, float *param_6) 
     __attribute__((alias("ui_system_animation_parameter_processor")));
 
@@ -909,33 +909,33 @@ void FUN_18065f1c2(void) __attribute__((alias("ui_system_condition_processor")))
 
 void FUN_18065f210(void) __attribute__((alias("ui_system_system_call_handler_2")));
 
-void FUN_18065fa20(longlong *param_1, longlong param_2, uint64_t param_3, longlong param_4,
+void FUN_18065fa20(int64_t *param_1, int64_t param_2, uint64_t param_3, int64_t param_4,
                    uint64_t param_5, float param_6, float param_7, float param_8, float param_9,
                    float param_10, float param_11, char param_12) 
     __attribute__((alias("ui_system_batch_animation_processor")));
 
-uint64_t FUN_18065fd40(longlong param_1) __attribute__((alias("ui_system_state_query_2")));
+uint64_t FUN_18065fd40(int64_t param_1) __attribute__((alias("ui_system_state_query_2")));
 
 void FUN_18065fdb0(uint64_t *param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4,
                    uint64_t param_5, int32_t param_6, int32_t param_7, float param_8,
                    uint64_t param_9, float param_10, float param_11, float param_12, char param_13,
-                   longlong param_14, int *param_15) 
+                   int64_t param_14, int *param_15) 
     __attribute__((alias("ui_system_effect_renderer")));
 
-float FUN_18065ffa0(longlong *param_1, float param_2) 
+float FUN_18065ffa0(int64_t *param_1, float param_2) 
     __attribute__((alias("ui_system_animation_interpolator")));
 
 float FUN_18065ffdf(void) __attribute__((alias("ui_system_animation_calculator")));
 
 void FUN_180660051(void) __attribute__((alias("ui_system_null_operation_handler_2")));
 
-float FUN_180660070(longlong param_1, float param_2) 
+float FUN_180660070(int64_t param_1, float param_2) 
     __attribute__((alias("ui_system_animation_value_calculator")));
 
-longlong FUN_180660100(longlong param_1) __attribute__((alias("ui_system_resource_cleaner")));
+int64_t FUN_180660100(int64_t param_1) __attribute__((alias("ui_system_resource_cleaner")));
 
-void FUN_180660190(longlong param_1, uint64_t param_2, uint64_t param_3, longlong param_4,
-                   uint64_t param_5, longlong param_6) 
+void FUN_180660190(int64_t param_1, uint64_t param_2, uint64_t param_3, int64_t param_4,
+                   uint64_t param_5, int64_t param_6) 
     __attribute__((alias("ui_system_advanced_animation_processor")));
 
 // 函数功能说明:

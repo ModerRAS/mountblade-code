@@ -5,8 +5,8 @@
 // 本模块包含29个函数，主要用于内存分配、数据结构操作和容器管理
 
 // 全局变量和常量定义
-extern longlong* system_memory_pool_ptr;  // 内存分配器实例
-extern longlong core_system_data_pointer;    // 默认数据模板
+extern int64_t* system_memory_pool_ptr;  // 内存分配器实例
+extern int64_t core_system_data_pointer;    // 默认数据模板
 extern uint64_t global_state_3456_ptr;    // 虚函数表指针
 extern uint64_t global_state_720_ptr;    // 空对象引用
 
@@ -19,9 +19,9 @@ extern uint64_t global_state_720_ptr;    // 空对象引用
 void copy_data_block(uint64_t param_1, uint64_t param_2, int32_t *param_3)
 {
     int32_t data_value;
-    longlong copy_count;
-    longlong source_data;
-    longlong target_buffer;
+    int64_t copy_count;
+    int64_t source_data;
+    int64_t target_buffer;
     int32_t *target_ptr;
     
     if (source_data != 0) {
@@ -42,15 +42,15 @@ void copy_data_block(uint64_t param_1, uint64_t param_2, int32_t *param_3)
  * @param new_size_ptr 新大小指针
  * @return 调整后的数组指针
  */
-longlong* resize_dynamic_array(longlong *array_ptr, longlong *new_size_ptr)
+int64_t* resize_dynamic_array(int64_t *array_ptr, int64_t *new_size_ptr)
 {
-    longlong old_start;
-    longlong new_start;
-    longlong new_end;
-    longlong old_end;
-    ulonglong required_size;
-    ulonglong available_size;
-    longlong new_buffer;
+    int64_t old_start;
+    int64_t new_start;
+    int64_t new_end;
+    int64_t old_end;
+    uint64_t required_size;
+    uint64_t available_size;
+    int64_t new_buffer;
     
     if (array_ptr != new_size_ptr) {
         old_start = *array_ptr;
@@ -60,7 +60,7 @@ longlong* resize_dynamic_array(longlong *array_ptr, longlong *new_size_ptr)
         available_size = required_size >> 5;
         
         // 检查是否需要重新分配内存
-        if ((ulonglong)(array_ptr[2] - old_start >> 5) < available_size) {
+        if ((uint64_t)(array_ptr[2] - old_start >> 5) < available_size) {
             if (available_size == 0) {
                 new_buffer = 0;
             } else {
@@ -114,21 +114,21 @@ longlong* resize_dynamic_array(longlong *array_ptr, longlong *new_size_ptr)
  * @param insert_pos 插入位置
  * @param data_ptr 数据指针
  */
-void insert_data_block(longlong insert_pos, longlong *data_ptr)
+void insert_data_block(int64_t insert_pos, int64_t *data_ptr)
 {
-    longlong data_start;
-    longlong data_end;
-    longlong available_space;
-    longlong new_buffer;
-    ulonglong required_size;
-    ulonglong available_capacity;
+    int64_t data_start;
+    int64_t data_end;
+    int64_t available_space;
+    int64_t new_buffer;
+    uint64_t required_size;
+    uint64_t available_capacity;
     
     data_start = *data_ptr;
     data_end = data_ptr[1];
     required_size = data_end - data_start;
     available_capacity = required_size >> 5;
     
-    if ((ulonglong)(available_space - insert_pos >> 5) < available_capacity) {
+    if ((uint64_t)(available_space - insert_pos >> 5) < available_capacity) {
         if (available_capacity == 0) {
             new_buffer = 0;
         } else {
@@ -178,10 +178,10 @@ void insert_data_block(longlong insert_pos, longlong *data_ptr)
  */
 void reallocate_container_memory(void)
 {
-    longlong new_buffer;
-    longlong *container_data;
-    longlong old_capacity;
-    longlong new_capacity;
+    int64_t new_buffer;
+    int64_t *container_data;
+    int64_t old_capacity;
+    int64_t new_capacity;
     
     if (new_capacity == 0) {
         new_buffer = 0;
@@ -209,14 +209,14 @@ void reallocate_container_memory(void)
  * @param remove_start 移除起始位置
  * @param container_ptr 容器指针
  */
-void remove_elements_from_container(longlong remove_start, longlong *container_ptr)
+void remove_elements_from_container(int64_t remove_start, int64_t *container_ptr)
 {
-    longlong buffer_end;
-    longlong remove_count;
-    longlong available_space;
-    longlong new_buffer;
+    int64_t buffer_end;
+    int64_t remove_count;
+    int64_t available_space;
+    int64_t new_buffer;
     
-    buffer_end = *(longlong *)(container_ptr + 8);
+    buffer_end = *(int64_t *)(container_ptr + 8);
     remove_count = buffer_end - remove_start >> 5;
     
     if (remove_count < available_space) {
@@ -229,12 +229,12 @@ void remove_elements_from_container(longlong remove_start, longlong *container_p
             memmove(buffer_end, new_buffer, buffer_end - new_buffer);
         }
         
-        *(longlong *)(container_ptr + 8) = buffer_end;
+        *(int64_t *)(container_ptr + 8) = buffer_end;
     } else {
         if (old_position != buffer_end) {
             memmove();
         }
-        *(longlong *)(container_ptr + 8) = remove_start;
+        *(int64_t *)(container_ptr + 8) = remove_start;
     }
     
     return;
@@ -252,13 +252,13 @@ void empty_operation(void)
  * 清理容器中的所有元素
  * @param container_ptr 容器指针
  */
-void clear_container_elements(longlong *container_ptr)
+void clear_container_elements(int64_t *container_ptr)
 {
-    longlong *current_pos;
-    longlong *end_pos;
+    int64_t *current_pos;
+    int64_t *end_pos;
     
-    current_pos = (longlong *)container_ptr[1];
-    end_pos = (longlong *)*container_ptr;
+    current_pos = (int64_t *)container_ptr[1];
+    end_pos = (int64_t *)*container_ptr;
     
     while (true) {
         if (end_pos == current_pos) {
@@ -285,23 +285,23 @@ void clear_container_elements(longlong *container_ptr)
  * @param container_ptr 容器指针
  * @param new_size 新大小
  */
-void resize_container(longlong *container_ptr, ulonglong new_size)
+void resize_container(int64_t *container_ptr, uint64_t new_size)
 {
-    longlong *current_end;
-    ulonglong current_size;
-    longlong *new_end;
-    longlong size_diff;
-    longlong start_pos;
+    int64_t *current_end;
+    uint64_t current_size;
+    int64_t *new_end;
+    int64_t size_diff;
+    int64_t start_pos;
     
-    current_end = (longlong *)container_ptr[1];
+    current_end = (int64_t *)container_ptr[1];
     start_pos = *container_ptr;
-    current_size = ((longlong)current_end - start_pos) / 0x38;
+    current_size = ((int64_t)current_end - start_pos) / 0x38;
     
     if (current_size < new_size) {
         size_diff = new_size - current_size;
-        expand_container(container_ptr, size_diff, (longlong)current_end - start_pos, size_diff, 0xfffffffffffffffe);
+        expand_container(container_ptr, size_diff, (int64_t)current_end - start_pos, size_diff, 0xfffffffffffffffe);
     } else {
-        new_end = (longlong *)(new_size * 0x38 + start_pos);
+        new_end = (int64_t *)(new_size * 0x38 + start_pos);
         if (new_end != current_end) {
             do {
                 if (*new_end != 0) {
@@ -325,10 +325,10 @@ void resize_container(longlong *container_ptr, ulonglong new_size)
  * 释放容器资源
  * @param container_ptr 容器指针
  */
-void free_container_resources(longlong *container_ptr)
+void free_container_resources(int64_t *container_ptr)
 {
-    longlong current_pos;
-    longlong end_pos;
+    int64_t current_pos;
+    int64_t end_pos;
     
     end_pos = container_ptr[1];
     for (current_pos = *container_ptr; current_pos != end_pos; current_pos = current_pos + 0x88) {
@@ -346,10 +346,10 @@ void free_container_resources(longlong *container_ptr)
  * 销毁容器元素
  * @param container_ptr 容器指针
  */
-void destroy_container_elements(longlong *container_ptr)
+void destroy_container_elements(int64_t *container_ptr)
 {
-    longlong current_pos;
-    longlong end_pos;
+    int64_t current_pos;
+    int64_t end_pos;
     
     end_pos = container_ptr[1];
     for (current_pos = *container_ptr; current_pos != end_pos; current_pos = current_pos + 0x60) {
@@ -367,15 +367,15 @@ void destroy_container_elements(longlong *container_ptr)
  * 重置容器状态
  * @param container_ptr 容器指针
  */
-void reset_container_state(longlong *container_ptr)
+void reset_container_state(int64_t *container_ptr)
 {
-    longlong current_pos;
-    longlong end_pos;
+    int64_t current_pos;
+    int64_t end_pos;
     
     end_pos = container_ptr[1];
     for (current_pos = *container_ptr; current_pos != end_pos; current_pos = current_pos + 0x48) {
         *(uint64_t *)(current_pos + 0x28) = &global_state_3456_ptr;
-        if (*(longlong *)(current_pos + 0x30) != 0) {
+        if (*(int64_t *)(current_pos + 0x30) != 0) {
             release_memory();
         }
         *(uint64_t *)(current_pos + 0x30) = 0;
@@ -394,15 +394,15 @@ void reset_container_state(longlong *container_ptr)
  * 清理智能指针容器
  * @param container_ptr 容器指针
  */
-void cleanup_smart_pointer_container(longlong *container_ptr)
+void cleanup_smart_pointer_container(int64_t *container_ptr)
 {
-    longlong current_pos;
-    longlong end_pos;
+    int64_t current_pos;
+    int64_t end_pos;
     
     end_pos = container_ptr[1];
     for (current_pos = *container_ptr; current_pos != end_pos; current_pos = current_pos + 0x38) {
         *(uint64_t *)(current_pos + 0x18) = &global_state_3456_ptr;
-        if (*(longlong *)(current_pos + 0x20) != 0) {
+        if (*(int64_t *)(current_pos + 0x20) != 0) {
             release_memory();
         }
         *(uint64_t *)(current_pos + 0x20) = 0;
@@ -421,13 +421,13 @@ void cleanup_smart_pointer_container(longlong *container_ptr)
  * 析构智能指针数组
  * @param array_ptr 数组指针
  */
-void destruct_smart_pointer_array(longlong *array_ptr)
+void destruct_smart_pointer_array(int64_t *array_ptr)
 {
-    if (array_ptr == (longlong *)0x0) {
+    if (array_ptr == (int64_t *)0x0) {
         return;
     }
     
-    array_ptr[0xc] = (longlong)&global_state_720_ptr;
+    array_ptr[0xc] = (int64_t)&global_state_720_ptr;
     free_container_resources();
     
     if (array_ptr[4] != 0) {
@@ -445,9 +445,9 @@ void destruct_smart_pointer_array(longlong *array_ptr)
  * 析构容器对象
  * @param container_ptr 容器指针
  */
-void destruct_container_object(longlong *container_ptr)
+void destruct_container_object(int64_t *container_ptr)
 {
-    if (container_ptr == (longlong *)0x0) {
+    if (container_ptr == (int64_t *)0x0) {
         return;
     }
     
@@ -470,9 +470,9 @@ void destruct_container_object(longlong *container_ptr)
  * @param context_ptr 上下文指针
  * @return 初始化后的数组指针
  */
-uint64_t* initialize_array_object(uint64_t *array_ptr, longlong context_ptr)
+uint64_t* initialize_array_object(uint64_t *array_ptr, int64_t context_ptr)
 {
-    longlong context_data;
+    int64_t context_data;
     uint64_t allocation_flag;
     int8_t temp_buffer[40];
     
@@ -503,17 +503,17 @@ uint64_t* initialize_array_object(uint64_t *array_ptr, longlong context_ptr)
  * @param array_ptr 数组指针
  * @param new_capacity 新容量
  */
-void resize_triple_array(longlong *array_ptr, ulonglong new_capacity)
+void resize_triple_array(int64_t *array_ptr, uint64_t new_capacity)
 {
-    longlong start_pos;
+    int64_t start_pos;
     int32_t *new_buffer;
     int32_t *copy_ptr;
-    longlong end_pos;
-    longlong current_pos;
+    int64_t end_pos;
+    int64_t current_pos;
     
     start_pos = *array_ptr;
     
-    if ((ulonglong)((array_ptr[2] - start_pos) / 0xc) < new_capacity) {
+    if ((uint64_t)((array_ptr[2] - start_pos) / 0xc) < new_capacity) {
         if (new_capacity == 0) {
             new_buffer = (int32_t *)0x0;
         } else {
@@ -525,13 +525,13 @@ void resize_triple_array(longlong *array_ptr, ulonglong new_capacity)
         copy_ptr = new_buffer;
         
         if (start_pos != end_pos) {
-            start_pos = start_pos - (longlong)new_buffer;
+            start_pos = start_pos - (int64_t)new_buffer;
             do {
-                *copy_ptr = *(int32_t *)(start_pos + (longlong)copy_ptr);
-                copy_ptr[1] = *(int32_t *)(start_pos + 4 + (longlong)copy_ptr);
-                copy_ptr[2] = *(int32_t *)(start_pos + 8 + (longlong)copy_ptr);
+                *copy_ptr = *(int32_t *)(start_pos + (int64_t)copy_ptr);
+                copy_ptr[1] = *(int32_t *)(start_pos + 4 + (int64_t)copy_ptr);
+                copy_ptr[2] = *(int32_t *)(start_pos + 8 + (int64_t)copy_ptr);
                 copy_ptr = copy_ptr + 3;
-            } while (start_pos + (longlong)copy_ptr != end_pos);
+            } while (start_pos + (int64_t)copy_ptr != end_pos);
             start_pos = *array_ptr;
         }
         
@@ -539,9 +539,9 @@ void resize_triple_array(longlong *array_ptr, ulonglong new_capacity)
             release_memory(start_pos);
         }
         
-        *array_ptr = (longlong)new_buffer;
-        array_ptr[1] = (longlong)copy_ptr;
-        array_ptr[2] = (longlong)(new_buffer + new_capacity * 3);
+        *array_ptr = (int64_t)new_buffer;
+        array_ptr[1] = (int64_t)copy_ptr;
+        array_ptr[2] = (int64_t)(new_buffer + new_capacity * 3);
     }
     
     return;
@@ -553,13 +553,13 @@ void resize_triple_array(longlong *array_ptr, ulonglong new_capacity)
  * @param src_ptr 源指针
  * @param count 复制数量
  */
-void batch_copy_triples(longlong dest_ptr, uint64_t src_ptr, uint64_t count, longlong context)
+void batch_copy_triples(int64_t dest_ptr, uint64_t src_ptr, uint64_t count, int64_t context)
 {
-    longlong start_pos;
+    int64_t start_pos;
     int32_t *dest_buffer;
     int32_t *src_buffer;
-    longlong end_pos;
-    longlong current_pos;
+    int64_t end_pos;
+    int64_t current_pos;
     
     if (count == 0) {
         dest_buffer = (int32_t *)0x0;
@@ -572,13 +572,13 @@ void batch_copy_triples(longlong dest_ptr, uint64_t src_ptr, uint64_t count, lon
     src_buffer = dest_buffer;
     
     if (context != end_pos) {
-        context = context - (longlong)dest_buffer;
+        context = context - (int64_t)dest_buffer;
         do {
-            *src_buffer = *(int32_t *)(context + (longlong)src_buffer);
-            src_buffer[1] = *(int32_t *)(context + 4 + (longlong)src_buffer);
-            src_buffer[2] = *(int32_t *)(context + 8 + (longlong)src_buffer);
+            *src_buffer = *(int32_t *)(context + (int64_t)src_buffer);
+            src_buffer[1] = *(int32_t *)(context + 4 + (int64_t)src_buffer);
+            src_buffer[2] = *(int32_t *)(context + 8 + (int64_t)src_buffer);
             src_buffer = src_buffer + 3;
-        } while (context + (longlong)src_buffer != end_pos);
+        } while (context + (int64_t)src_buffer != end_pos);
         context = *src_ptr;
     }
     
@@ -586,9 +586,9 @@ void batch_copy_triples(longlong dest_ptr, uint64_t src_ptr, uint64_t count, lon
         release_memory(context);
     }
     
-    *src_ptr = (longlong)dest_buffer;
-    src_ptr[1] = (longlong)src_buffer;
-    src_ptr[2] = (longlong)(dest_buffer + count * 3);
+    *src_ptr = (int64_t)dest_buffer;
+    src_ptr[1] = (int64_t)src_buffer;
+    src_ptr[2] = (int64_t)(dest_buffer + count * 3);
     return;
 }
 
@@ -605,15 +605,15 @@ void placeholder_function(void)
  * @param array_ptr 数组指针
  * @param new_size 新大小
  */
-void resize_integer_array(longlong *array_ptr, ulonglong new_size)
+void resize_integer_array(int64_t *array_ptr, uint64_t new_size)
 {
-    longlong start_pos;
-    longlong new_buffer;
-    longlong end_pos;
+    int64_t start_pos;
+    int64_t new_buffer;
+    int64_t end_pos;
     
     start_pos = *array_ptr;
     
-    if ((ulonglong)(array_ptr[2] - start_pos >> 2) < new_size) {
+    if ((uint64_t)(array_ptr[2] - start_pos >> 2) < new_size) {
         if (new_size == 0) {
             new_buffer = 0;
         } else {
@@ -642,11 +642,11 @@ void resize_integer_array(longlong *array_ptr, ulonglong new_size)
  * @param dest_pos 目标位置
  * @param src_pos 源位置
  */
-void move_integer_array_data(longlong dest_pos, longlong src_pos)
+void move_integer_array_data(int64_t dest_pos, int64_t src_pos)
 {
-    longlong new_buffer;
-    longlong *array_ptr;
-    longlong array_size;
+    int64_t new_buffer;
+    int64_t *array_ptr;
+    int64_t array_size;
     
     if (src_pos == 0) {
         new_buffer = 0;
@@ -682,7 +682,7 @@ void another_placeholder_function(void)
  * @param src_ptr 源对象指针
  * @return 目标对象指针
  */
-longlong copy_construct_object(longlong dest_ptr, longlong src_ptr)
+int64_t copy_construct_object(int64_t dest_ptr, int64_t src_ptr)
 {
     *(uint64_t *)(dest_ptr + 0x10) = 0;
     *(code **)(dest_ptr + 0x18) = _guard_check_icall;
@@ -703,21 +703,21 @@ longlong copy_construct_object(longlong dest_ptr, longlong src_ptr)
  * @param array_ptr 数组指针
  * @param new_capacity 新容量
  */
-void resize_object_array(longlong *array_ptr, ulonglong new_capacity)
+void resize_object_array(int64_t *array_ptr, uint64_t new_capacity)
 {
-    longlong template_data;
-    longlong current_end;
-    longlong current_size;
-    ulonglong required_capacity;
+    int64_t template_data;
+    int64_t current_end;
+    int64_t current_size;
+    uint64_t required_capacity;
     uint64_t *object_ptr;
-    longlong start_pos;
-    longlong new_start;
-    ulonglong allocated_capacity;
+    int64_t start_pos;
+    int64_t new_start;
+    uint64_t allocated_capacity;
     
     template_data = core_system_data_pointer;
     current_end = array_ptr[1];
     
-    if (new_capacity <= (ulonglong)((array_ptr[2] - current_end) / 0x30)) {
+    if (new_capacity <= (uint64_t)((array_ptr[2] - current_end) / 0x30)) {
         if (new_capacity != 0) {
             object_ptr = (uint64_t *)(current_end + 0x28);
             required_capacity = new_capacity;
@@ -783,17 +783,17 @@ void resize_object_array(longlong *array_ptr, ulonglong new_capacity)
  * @param array_ptr 数组指针
  * @param extension_size 扩展大小
  */
-void extend_object_array(longlong array_ptr, uint64_t base_ptr, uint64_t context_ptr, longlong extension_size)
+void extend_object_array(int64_t array_ptr, uint64_t base_ptr, uint64_t context_ptr, int64_t extension_size)
 {
-    longlong array_start;
-    longlong base_size;
-    longlong current_size;
-    longlong new_size;
+    int64_t array_start;
+    int64_t base_size;
+    int64_t current_size;
+    int64_t new_size;
     uint64_t *object_ptr;
-    longlong *array_data;
-    longlong array_end;
-    ulonglong required_capacity;
-    longlong insert_count;
+    int64_t *array_data;
+    int64_t array_end;
+    uint64_t required_capacity;
+    int64_t insert_count;
     
     new_size = calculate_size_difference(base_size, array_ptr - extension_size);
     new_size = (new_size >> 3) - (new_size >> 0x3f);
@@ -803,7 +803,7 @@ void extend_object_array(longlong array_ptr, uint64_t base_ptr, uint64_t context
         required_capacity = 1;
     }
     
-    if (required_capacity < (ulonglong)(new_size + insert_count)) {
+    if (required_capacity < (uint64_t)(new_size + insert_count)) {
         required_capacity = new_size + insert_count;
     }
     
@@ -847,12 +847,12 @@ void extend_object_array(longlong array_ptr, uint64_t base_ptr, uint64_t context
  */
 void append_to_object_array(void)
 {
-    longlong template_data;
-    longlong current_size;
+    int64_t template_data;
+    int64_t current_size;
     uint64_t *object_ptr;
-    longlong array_offset;
-    longlong array_end;
-    longlong element_count;
+    int64_t array_offset;
+    int64_t array_end;
+    int64_t element_count;
     
     template_data = core_system_data_pointer;
     
@@ -864,10 +864,10 @@ void append_to_object_array(void)
             object_ptr = object_ptr + 6;
             current_size = current_size + -1;
         } while (current_size != 0);
-        array_end = *(longlong *)(array_offset + 8);
+        array_end = *(int64_t *)(array_offset + 8);
     }
     
-    *(longlong *)(array_offset + 8) = element_count * 0x30 + array_end;
+    *(int64_t *)(array_offset + 8) = element_count * 0x30 + array_end;
     return;
 }
 
@@ -876,21 +876,21 @@ void append_to_object_array(void)
  * @param array_ptr 数组指针
  * @param new_capacity 新容量
  */
-void resize_struct_array(longlong *array_ptr, ulonglong new_capacity)
+void resize_struct_array(int64_t *array_ptr, uint64_t new_capacity)
 {
-    longlong template_data;
-    longlong current_end;
-    longlong current_size;
-    ulonglong required_capacity;
-    longlong new_start;
+    int64_t template_data;
+    int64_t current_end;
+    int64_t current_size;
+    uint64_t required_capacity;
+    int64_t new_start;
     uint64_t *struct_ptr;
-    ulonglong allocated_capacity;
-    longlong start_pos;
+    uint64_t allocated_capacity;
+    int64_t start_pos;
     
     template_data = core_system_data_pointer;
     current_end = array_ptr[1];
     
-    if (new_capacity <= (ulonglong)(array_ptr[2] - current_end >> 5)) {
+    if (new_capacity <= (uint64_t)(array_ptr[2] - current_end >> 5)) {
         if (new_capacity != 0) {
             struct_ptr = (uint64_t *)(current_end + 0x18);
             required_capacity = new_capacity;
@@ -956,17 +956,17 @@ void resize_struct_array(longlong *array_ptr, ulonglong new_capacity)
  * @param array_ptr 数组指针
  * @param extension_size 扩展大小
  */
-void extend_struct_array(longlong array_ptr, uint64_t base_ptr, uint64_t context_ptr, longlong extension_size)
+void extend_struct_array(int64_t array_ptr, uint64_t base_ptr, uint64_t context_ptr, int64_t extension_size)
 {
-    longlong base_size;
-    longlong current_size;
-    longlong new_size;
+    int64_t base_size;
+    int64_t current_size;
+    int64_t new_size;
     uint64_t *struct_ptr;
-    longlong array_data;
-    ulonglong required_capacity;
-    longlong insert_count;
-    longlong array_start;
-    longlong array_end;
+    int64_t array_data;
+    uint64_t required_capacity;
+    int64_t insert_count;
+    int64_t array_start;
+    int64_t array_end;
     
     current_size = base_size >> 5;
     required_capacity = current_size * 2;
@@ -975,7 +975,7 @@ void extend_struct_array(longlong array_ptr, uint64_t base_ptr, uint64_t context
         required_capacity = 1;
     }
     
-    if (required_capacity < (ulonglong)(current_size + extension_size)) {
+    if (required_capacity < (uint64_t)(current_size + extension_size)) {
         required_capacity = current_size + extension_size;
     }
     
@@ -1019,12 +1019,12 @@ void extend_struct_array(longlong array_ptr, uint64_t base_ptr, uint64_t context
  */
 void append_to_struct_array(void)
 {
-    longlong template_data;
-    longlong current_size;
+    int64_t template_data;
+    int64_t current_size;
     uint64_t *struct_ptr;
-    longlong array_offset;
-    longlong array_end;
-    longlong element_count;
+    int64_t array_offset;
+    int64_t array_end;
+    int64_t element_count;
     
     template_data = core_system_data_pointer;
     
@@ -1036,10 +1036,10 @@ void append_to_struct_array(void)
             struct_ptr = struct_ptr + 4;
             current_size = current_size + -1;
         } while (current_size != 0);
-        array_end = *(longlong *)(array_offset + 8);
+        array_end = *(int64_t *)(array_offset + 8);
     }
     
-    *(longlong *)(array_offset + 8) = element_count * 0x20 + array_end;
+    *(int64_t *)(array_offset + 8) = element_count * 0x20 + array_end;
     return;
 }
 
@@ -1048,29 +1048,29 @@ void append_to_struct_array(void)
  * @param container_ptr 容器指针
  * @param extension_size 扩展大小
  */
-void expand_compound_container(uint64_t *container_ptr, ulonglong extension_size)
+void expand_compound_container(uint64_t *container_ptr, uint64_t extension_size)
 {
     uint element_flags;
     uint64_t element_ptr;
-    longlong *current_element;
-    longlong element_start;
-    longlong *element_end;
-    longlong *new_element;
-    ulonglong current_capacity;
-    longlong *new_container;
-    ulonglong new_capacity;
-    longlong *temp_element;
-    longlong element_offset;
+    int64_t *current_element;
+    int64_t element_start;
+    int64_t *element_end;
+    int64_t *new_element;
+    uint64_t current_capacity;
+    int64_t *new_container;
+    uint64_t new_capacity;
+    int64_t *temp_element;
+    int64_t element_offset;
     uint64_t *sub_element_ptr;
-    ulonglong sub_element_count;
-    longlong *sub_element_start;
-    longlong sub_element_size;
+    uint64_t sub_element_count;
+    int64_t *sub_element_start;
+    int64_t sub_element_size;
     
-    element_end = (longlong *)container_ptr[1];
+    element_end = (int64_t *)container_ptr[1];
     
-    if ((ulonglong)((container_ptr[2] - (longlong)element_end) / 0x38) < extension_size) {
-        element_start = (longlong *)*container_ptr;
-        current_capacity = ((longlong)element_end - (longlong)element_start) / 0x38;
+    if ((uint64_t)((container_ptr[2] - (int64_t)element_end) / 0x38) < extension_size) {
+        element_start = (int64_t *)*container_ptr;
+        current_capacity = ((int64_t)element_end - (int64_t)element_start) / 0x38;
         new_capacity = current_capacity * 2;
         
         if (current_capacity == 0) {
@@ -1081,37 +1081,37 @@ void expand_compound_container(uint64_t *container_ptr, ulonglong extension_size
             new_capacity = current_capacity + extension_size;
         }
         
-        current_element = (longlong *)0x0;
+        current_element = (int64_t *)0x0;
         
         if (new_capacity != 0) {
-            current_element = (longlong *)allocate_memory(system_memory_pool_ptr, new_capacity * 0x38, *(int8_t *)(container_ptr + 3), 0x4924924924924925, 0xfffffffffffffffe);
-            element_end = (longlong *)container_ptr[1];
-            element_start = (longlong *)*container_ptr;
+            current_element = (int64_t *)allocate_memory(system_memory_pool_ptr, new_capacity * 0x38, *(int8_t *)(container_ptr + 3), 0x4924924924924925, 0xfffffffffffffffe);
+            element_end = (int64_t *)container_ptr[1];
+            element_start = (int64_t *)*container_ptr;
         }
         
         new_container = current_element;
         
         if (element_start != element_end) {
-            element_offset = (longlong)current_element - (longlong)element_start;
+            element_offset = (int64_t)current_element - (int64_t)element_start;
             element_start = element_start + 4;
             
             do {
                 *new_container = element_start[-4];
-                *(longlong *)(element_offset + -0x18 + (longlong)element_start) = element_start[-3];
-                *(int *)(element_offset + -0x10 + (longlong)element_start) = (int)element_start[-2];
-                sub_element_ptr = (uint64_t *)((longlong)element_start + element_offset + -8);
+                *(int64_t *)(element_offset + -0x18 + (int64_t)element_start) = element_start[-3];
+                *(int *)(element_offset + -0x10 + (int64_t)element_start) = (int)element_start[-2];
+                sub_element_ptr = (uint64_t *)((int64_t)element_start + element_offset + -8);
                 sub_element_size = *element_start - element_start[-1] >> 3;
                 element_flags = *(uint *)(element_start + 2);
-                *(uint *)(element_offset + 0x10 + (longlong)element_start) = element_flags;
-                temp_element = (longlong *)0x0;
+                *(uint *)(element_offset + 0x10 + (int64_t)element_start) = element_flags;
+                temp_element = (int64_t *)0x0;
                 
                 if (sub_element_size != 0) {
-                    temp_element = (longlong *)allocate_memory(system_memory_pool_ptr, sub_element_size * 8, element_flags & 0xff);
+                    temp_element = (int64_t *)allocate_memory(system_memory_pool_ptr, sub_element_size * 8, element_flags & 0xff);
                 }
                 
                 *sub_element_ptr = temp_element;
-                *(longlong **)(element_offset + (longlong)element_start) = temp_element;
-                *(longlong **)(element_offset + 8 + (longlong)element_start) = temp_element + sub_element_size;
+                *(int64_t **)(element_offset + (int64_t)element_start) = temp_element;
+                *(int64_t **)(element_offset + 8 + (int64_t)element_start) = temp_element + sub_element_size;
                 element_ptr = *sub_element_ptr;
                 sub_element_size = element_start[-1];
                 
@@ -1119,7 +1119,7 @@ void expand_compound_container(uint64_t *container_ptr, ulonglong extension_size
                     memmove(element_ptr, sub_element_size, *element_start - sub_element_size);
                 }
                 
-                *(uint64_t *)(element_offset + (longlong)element_start) = element_ptr;
+                *(uint64_t *)(element_offset + (int64_t)element_start) = element_ptr;
                 new_container = new_container + 7;
                 temp_element = element_start + 3;
                 element_start = element_start + 7;
@@ -1133,7 +1133,7 @@ void expand_compound_container(uint64_t *container_ptr, ulonglong extension_size
                 element_end[-4] = 0;
                 element_end[-3] = 0;
                 element_end[-2] = 0;
-                *(int32_t *)((longlong)element_end + 0x14) = 0;
+                *(int32_t *)((int64_t)element_end + 0x14) = 0;
                 element_end[-1] = 0;
                 *element_end = 0;
                 element_end[1] = 0;
@@ -1143,8 +1143,8 @@ void expand_compound_container(uint64_t *container_ptr, ulonglong extension_size
             } while (sub_element_count != 0);
         }
         
-        element_end = (longlong *)container_ptr[1];
-        element_start = (longlong *)*container_ptr;
+        element_end = (int64_t *)container_ptr[1];
+        element_start = (int64_t *)*container_ptr;
         
         if (element_start != element_end) {
             do {
@@ -1157,10 +1157,10 @@ void expand_compound_container(uint64_t *container_ptr, ulonglong extension_size
                 }
                 element_start = element_start + 7;
             } while (element_start != element_end);
-            element_start = (longlong *)*container_ptr;
+            element_start = (int64_t *)*container_ptr;
         }
         
-        if (element_start != (longlong *)0x0) {
+        if (element_start != (int64_t *)0x0) {
             release_memory(element_start);
         }
         
@@ -1187,7 +1187,7 @@ void expand_compound_container(uint64_t *container_ptr, ulonglong extension_size
                 element_start = element_start + 7;
                 new_capacity = new_capacity - 1;
             } while (new_capacity != 0);
-            element_end = (longlong *)container_ptr[1];
+            element_end = (int64_t *)container_ptr[1];
         }
         container_ptr[1] = element_end + extension_size * 7;
     }
@@ -1201,19 +1201,19 @@ void expand_compound_container(uint64_t *container_ptr, ulonglong extension_size
  * @param range_start 范围起始
  * @param range_end 范围结束
  */
-void insert_elements_in_range(longlong *array_ptr, longlong range_start, longlong range_end)
+void insert_elements_in_range(int64_t *array_ptr, int64_t range_start, int64_t range_end)
 {
-    ulonglong range_size;
-    ulonglong current_capacity;
-    longlong new_buffer;
-    longlong temp_buffer;
-    longlong current_start;
-    longlong current_end;
-    longlong element_size;
+    uint64_t range_size;
+    uint64_t current_capacity;
+    int64_t new_buffer;
+    int64_t temp_buffer;
+    int64_t current_start;
+    int64_t current_end;
+    int64_t element_size;
     
     range_size = (range_end - range_start) / 0x88;
     
-    if ((ulonglong)((array_ptr[2] - *array_ptr) / 0x88) < range_size) {
+    if ((uint64_t)((array_ptr[2] - *array_ptr) / 0x88) < range_size) {
         if (range_size == 0) {
             new_buffer = 0;
         } else {
@@ -1270,12 +1270,12 @@ void insert_elements_in_range(longlong *array_ptr, longlong range_start, longlon
  */
 void reallocate_element_array(void)
 {
-    longlong new_buffer;
-    longlong current_start;
-    longlong current_end;
-    longlong element_size;
-    longlong array_capacity;
-    longlong *array_data;
+    int64_t new_buffer;
+    int64_t current_start;
+    int64_t current_end;
+    int64_t element_size;
+    int64_t array_capacity;
+    int64_t *array_data;
     
     if (array_capacity == 0) {
         current_start = 0;
@@ -1308,17 +1308,17 @@ void reallocate_element_array(void)
 }
 
 // 函数指针和外部引用声明
-extern longlong allocate_memory(longlong*, ulonglong, char);
+extern int64_t allocate_memory(int64_t*, uint64_t, char);
 extern void release_memory(void);
-extern void cleanup_element(longlong);
-extern void destroy_element(longlong);
-extern void initialize_context(void*, longlong);
-extern longlong initialize_context(uint64_t*);
-extern uint64_t allocate_memory_with_flags(longlong*, ulonglong, ulonglong, longlong, uint64_t);
+extern void cleanup_element(int64_t);
+extern void destroy_element(int64_t);
+extern void initialize_context(void*, int64_t);
+extern int64_t initialize_context(uint64_t*);
+extern uint64_t allocate_memory_with_flags(int64_t*, uint64_t, uint64_t, int64_t, uint64_t);
 extern void array_element_destructor(void);
 extern uint64_t array_vtable;
 extern code _guard_check_icall;
 extern void perform_object_copy(void);
-extern longlong calculate_size_difference(longlong, longlong);
-extern void copy_elements(void*, longlong, longlong, longlong);
-extern void move_elements(longlong, longlong);
+extern int64_t calculate_size_difference(int64_t, int64_t);
+extern void copy_elements(void*, int64_t, int64_t, int64_t);
+extern void move_elements(int64_t, int64_t);

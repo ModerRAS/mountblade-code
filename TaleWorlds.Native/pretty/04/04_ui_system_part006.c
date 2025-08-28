@@ -10,18 +10,18 @@
  * @param offset_ptr 偏移量指针
  * @param data_size 数据大小
  */
-void ui_data_structure_copier(longlong target_ptr, uint64_t source_ptr, uint64_t offset_ptr, longlong data_size)
+void ui_data_structure_copier(int64_t target_ptr, uint64_t source_ptr, uint64_t offset_ptr, int64_t data_size)
 {
-  ulonglong buffer_size;
+  uint64_t buffer_size;
   uint64_t max_size;
   void *temp_buffer;
-  longlong source_data;
+  int64_t source_data;
   uint string_length;
   int32_t flags;
   
   max_size = 0xfffffffffffffffe;
   ui_string_buffer_initializer(&temp_buffer);
-  buffer_size = (ulonglong)string_length;
+  buffer_size = (uint64_t)string_length;
   if (source_data != 0) {
     ui_memory_allocate(target_ptr + 0x10, buffer_size);
   }
@@ -30,8 +30,8 @@ void ui_data_structure_copier(longlong target_ptr, uint64_t source_ptr, uint64_t
     memcpy(*(uint64_t *)(target_ptr + 0x18), source_data, buffer_size, data_size, max_size);
   }
   *(int32_t *)(target_ptr + 0x20) = 0;
-  if (*(longlong *)(target_ptr + 0x18) != 0) {
-    *(int8_t *)(buffer_size + *(longlong *)(target_ptr + 0x18)) = 0; // 字符串终止符
+  if (*(int64_t *)(target_ptr + 0x18) != 0) {
+    *(int8_t *)(buffer_size + *(int64_t *)(target_ptr + 0x18)) = 0; // 字符串终止符
   }
   *(int32_t *)(target_ptr + 0x2c) = flags;
   temp_buffer = &UI_STRING_TERMINATOR;
@@ -47,11 +47,11 @@ void ui_data_structure_copier(longlong target_ptr, uint64_t source_ptr, uint64_t
  * @param param_1 字符串内容指针，可为NULL
  * @return 返回创建的字符串对象指针
  */
-uint64_t * ui_string_object_creator(longlong param_1)
+uint64_t * ui_string_object_creator(int64_t param_1)
 {
   uint64_t *string_object;
-  ulonglong string_length;
-  ulonglong char_index;
+  uint64_t string_length;
+  uint64_t char_index;
   
   // 分配字符串对象内存
   string_object = (uint64_t *)ui_memory_allocator(GLOBAL_MEMORY_POOL, 0x20, 8, 3);
@@ -143,43 +143,43 @@ void ui_event_processor(uint64_t param_1, uint64_t param_2, uint64_t param_3, ui
  * UI组件初始化器 - 初始化UI组件并设置回调
  * @param param_1 组件对象指针
  */
-void ui_component_initializer(longlong *param_1)
+void ui_component_initializer(int64_t *param_1)
 {
   byte comparison_result;
   bool is_less_than;
   uint64_t *current_node;
   uint64_t *next_node;
   char string_char;
-  longlong node_data;
-  longlong *array_ptr;
+  int64_t node_data;
+  int64_t *array_ptr;
   byte *string_ptr;
   byte *temp_string;
   uint64_t *component_ptr;
   byte *processed_string;
   int string_index;
-  ulonglong iteration_count;
+  uint64_t iteration_count;
   int length;
-  longlong *current_array_ptr;
-  longlong array_size;
-  ulonglong capacity;
+  int64_t *current_array_ptr;
+  int64_t array_size;
+  uint64_t capacity;
   byte *source_string;
   byte *target_string;
-  ulonglong new_capacity;
-  longlong *new_array;
+  uint64_t new_capacity;
+  int64_t *new_array;
   uint new_size;
-  longlong temp_size;
-  longlong *temp_array_ptr;
+  int64_t temp_size;
+  int64_t *temp_array_ptr;
   void *stack_buffer;
   byte *local_buffer;
   uint buffer_size;
-  ulonglong buffer_capacity;
+  uint64_t buffer_capacity;
   void *temp_ptr;
   int8_t *string_buffer;
   uint string_length;
-  ulonglong total_length;
-  longlong *array_start;
-  longlong *array_end;
-  longlong *array_capacity;
+  uint64_t total_length;
+  int64_t *array_start;
+  int64_t *array_end;
+  int64_t *array_capacity;
   int32_t allocation_flags;
   uint64_t *ptr1;
   uint64_t *ptr2;
@@ -189,21 +189,21 @@ void ui_component_initializer(longlong *param_1)
   
   context = 0xfffffffffffffffe;
   GLOBAL_UI_COMPONENT = param_1;
-  if (param_1 != (longlong *)0x0) {
+  if (param_1 != (int64_t *)0x0) {
     // 调用组件的初始化回调
     (**(code **)(*param_1 + 8))();
   }
   
   // 初始化动态数组
-  array_start = (longlong *)0x0;
-  array_end = (longlong *)0x0;
+  array_start = (int64_t *)0x0;
+  array_end = (int64_t *)0x0;
   capacity = 0;
-  array_capacity = (longlong *)0x0;
+  array_capacity = (int64_t *)0x0;
   allocation_flags = 3;
   ui_dynamic_array_initializer(&array_start);
   
   current_array_ptr = array_end;
-  if (GLOBAL_UI_COMPONENT != (longlong *)0x0) {
+  if (GLOBAL_UI_COMPONENT != (int64_t *)0x0) {
     ptr1 = (uint64_t *)0x0;
     ptr2 = (uint64_t *)0x0;
     temp_value = 0;
@@ -215,7 +215,7 @@ void ui_component_initializer(longlong *param_1)
     current_array_ptr = array_end;
     
     // 处理组件数据数组
-    if ((longlong)ptr2 - (longlong)ptr1 >> 5 != 0) {
+    if ((int64_t)ptr2 - (int64_t)ptr1 >> 5 != 0) {
       temp_array_ptr = array_end;
       current_array_ptr = array_capacity;
       iteration_count = capacity;
@@ -229,13 +229,13 @@ void ui_component_initializer(longlong *param_1)
         buffer_size = 0;
         
         // 读取字符串数据
-        ui_memory_allocate(&stack_buffer, *(int32_t *)(capacity + 0x10 + (longlong)ptr1));
-        length = *(int *)(capacity + 0x10 + (longlong)component_ptr);
+        ui_memory_allocate(&stack_buffer, *(int32_t *)(capacity + 0x10 + (int64_t)ptr1));
+        length = *(int *)(capacity + 0x10 + (int64_t)component_ptr);
         if (length != 0) {
-          memcpy(local_buffer, *(uint64_t *)(capacity + 8 + (longlong)component_ptr), length + 1);
+          memcpy(local_buffer, *(uint64_t *)(capacity + 8 + (int64_t)component_ptr), length + 1);
         }
         
-        if (*(longlong *)(capacity + 8 + (longlong)component_ptr) != 0) {
+        if (*(int64_t *)(capacity + 8 + (int64_t)component_ptr) != 0) {
           buffer_size = 0;
           if (local_buffer != (int8_t *)0x0) {
             *local_buffer = 0;
@@ -268,8 +268,8 @@ void ui_component_initializer(longlong *param_1)
         component_ptr = (uint64_t *)(string_buffer + string_length);
         *component_ptr = 0x75646f4d6275532f; // "/SubotusMod"
         *(int32_t *)(component_ptr + 1) = 0x782e656c; // "le.x"
-        *(int16_t *)((longlong)component_ptr + 0xc) = 0x6c6d; // "ml"
-        *(int8_t *)((longlong)component_ptr + 0xe) = 0;
+        *(int16_t *)((int64_t)component_ptr + 0xc) = 0x6c6d; // "ml"
+        *(int8_t *)((int64_t)component_ptr + 0xe) = 0;
         string_length = string_length;
         
         // 验证字符串格式
@@ -285,17 +285,17 @@ void ui_component_initializer(longlong *param_1)
           }
           else {
             // 数组扩容
-            temp_size = (longlong)array_ptr - (longlong)array_start;
+            temp_size = (int64_t)array_ptr - (int64_t)array_start;
             array_size = temp_size >> 3;
             if (array_size == 0) {
               array_size = 1;
 LAB_ARRAY_EXPANSION:
-              array_ptr = (longlong *)ui_memory_reallocator(GLOBAL_MEMORY_POOL, array_size * 8, (int8_t)allocation_flags);
+              array_ptr = (int64_t *)ui_memory_reallocator(GLOBAL_MEMORY_POOL, array_size * 8, (int8_t)allocation_flags);
             }
             else {
               array_size = array_size * 2;
               if (array_size != 0) goto LAB_ARRAY_EXPANSION;
-              array_ptr = (longlong *)0x0;
+              array_ptr = (int64_t *)0x0;
             }
             
             if (array_start != temp_array_ptr) {
@@ -306,7 +306,7 @@ LAB_ARRAY_EXPANSION:
             current_array_ptr = array_ptr + 1;
             temp_array_ptr = current_array_ptr;
             
-            if (array_start != (longlong *)0x0) {
+            if (array_start != (int64_t *)0x0) {
               ui_memory_deallocator();
             }
             
@@ -335,12 +335,12 @@ LAB_ARRAY_EXPANSION:
         stack_buffer = &UI_VTABLE_START;
         
         new_size = (int)iteration_count + 1;
-        iteration_count = (ulonglong)new_size;
+        iteration_count = (uint64_t)new_size;
         capacity = capacity + 0x20;
         array_ptr = current_array_ptr;
         component_ptr = ptr1;
         current_array_ptr = array_end;
-      } while ((ulonglong)(longlong)new_size < (ulonglong)((longlong)ptr2 - (longlong)ptr1 >> 5));
+      } while ((uint64_t)(int64_t)new_size < (uint64_t)((int64_t)ptr2 - (int64_t)ptr1 >> 5));
     }
     
     // 清理组件数据
@@ -361,7 +361,7 @@ LAB_ARRAY_EXPANSION:
   
   // 处理已收集的组件数据
   length = 0;
-  capacity = (longlong)current_array_ptr - (longlong)array_start >> 3;
+  capacity = (int64_t)current_array_ptr - (int64_t)array_start >> 3;
   current_array_ptr = array_start;
   if (capacity != 0) {
     do {
@@ -379,7 +379,7 @@ LAB_ARRAY_EXPANSION:
         memcpy(local_buffer, *(uint64_t *)(node_data + 8), *(int *)(node_data + 0x10) + 1);
       }
       
-      if (*(longlong *)(node_data + 8) != 0) {
+      if (*(int64_t *)(node_data + 8) != 0) {
         buffer_size = 0;
         if (local_buffer != (byte *)0x0) {
           *local_buffer = 0;
@@ -396,7 +396,7 @@ LAB_ARRAY_EXPANSION:
             local_buffer[new_capacity] = local_buffer[new_capacity] + 0x20;
           }
           new_size = (int)iteration_count + 1;
-          iteration_count = (ulonglong)new_size;
+          iteration_count = (uint64_t)new_size;
           new_capacity = new_capacity + 1;
         } while (new_size < buffer_size);
       }
@@ -419,9 +419,9 @@ LAB_REGISTRY_SEARCH:
             else {
               source_string = local_buffer;
               do {
-                processed_string = source_string + (*(longlong *)(target_string + 0x28) - (longlong)local_buffer);
+                processed_string = source_string + (*(int64_t *)(target_string + 0x28) - (int64_t)local_buffer);
                 new_size = (uint)*source_string - (uint)*processed_string;
-                target_string = (byte *)(ulonglong)new_size;
+                target_string = (byte *)(uint64_t)new_size;
                 if (new_size != 0) break;
                 source_string = source_string + 1;
               } while (*processed_string != 0);
@@ -449,11 +449,11 @@ LAB_CREATE_COMPONENT:
         else if (*(int *)(source_string + 0x30) != 0) {
           if (buffer_size != 0) {
             target_string = *(byte **)(source_string + 0x28);
-            array_size = (longlong)local_buffer - (longlong)target_string;
+            array_size = (int64_t)local_buffer - (int64_t)target_string;
             do {
               temp_string = target_string + array_size;
               new_size = (uint)*target_string - (uint)*temp_string;
-              target_string = (byte *)(ulonglong)new_size;
+              target_string = (byte *)(uint64_t)new_size;
               if (new_size != 0) break;
               target_string = target_string + 1;
             } while (*temp_string != 0);
@@ -462,7 +462,7 @@ LAB_CREATE_COMPONENT:
           goto LAB_CREATE_COMPONENT;
         }
 LAB_COMPONENT_FOUND:
-        *(longlong *)(source_string + 0x40) = node_data;
+        *(int64_t *)(source_string + 0x40) = node_data;
       }
       else {
         // 在注册表中搜索匹配项
@@ -478,7 +478,7 @@ LAB_COMPONENT_FOUND:
             else {
               temp_string = local_buffer;
               do {
-                new_size = (uint)temp_string[*(longlong *)(target_string + 0x28) - (longlong)local_buffer];
+                new_size = (uint)temp_string[*(int64_t *)(target_string + 0x28) - (int64_t)local_buffer];
                 length = *temp_string - new_size;
                 if (*temp_string != new_size) break;
                 temp_string = temp_string + 1;
@@ -504,10 +504,10 @@ LAB_SEARCH_RESULT:
         if (*(int *)(source_string + 0x30) != 0) {
           if (buffer_size != 0) {
             source_string = *(byte **)(source_string + 0x28);
-            target_string = local_buffer + -(longlong)source_string;
+            target_string = local_buffer + -(int64_t)source_string;
             do {
               comparison_result = *source_string;
-              new_size = (uint)source_string[(longlong)target_string];
+              new_size = (uint)source_string[(int64_t)target_string];
               if (comparison_result != new_size) break;
               source_string = source_string + 1;
             } while (new_size != 0);
@@ -526,11 +526,11 @@ LAB_FINAL_PROCESS:
       stack_buffer = &UI_VTABLE_START;
       length = length + 1;
       current_array_ptr = current_array_ptr + 1;
-    } while ((ulonglong)(longlong)length < capacity);
+    } while ((uint64_t)(int64_t)length < capacity);
   }
   
   // 清理数组内存
-  if (array_start != (longlong *)0x0) {
+  if (array_start != (int64_t *)0x0) {
     ui_memory_deallocator(array_start);
   }
   return;
@@ -540,41 +540,41 @@ LAB_FINAL_PROCESS:
  * UI动态数组处理器 - 处理UI组件的动态数组操作
  * @param param_1 数组对象指针
  */
-void ui_dynamic_array_processor(ulonglong *param_1)
+void ui_dynamic_array_processor(uint64_t *param_1)
 {
   uint64_t *array_data;
   uint64_t *array_end;
   char validation_result;
   uint64_t hash_value;
-  longlong array_capacity;
+  int64_t array_capacity;
   uint64_t *array_start;
   uint64_t *temp_ptr;
   uint64_t *new_array;
   int item_count;
   int *item_size_ptr;
   int item_size;
-  ulonglong total_items;
+  uint64_t total_items;
   int8_t stack_buffer [32];
   void *buffer_ptr;
   int8_t *string_buffer;
   uint buffer_size;
-  ulonglong buffer_capacity;
+  uint64_t buffer_capacity;
   int32_t temp_flags;
   void *temp_buffer;
-  longlong temp_offset;
+  int64_t temp_offset;
   uint total_size;
   int32_t temp_size;
-  ulonglong array_length;
+  uint64_t array_length;
   uint64_t *current_ptr;
   uint64_t *end_ptr;
   uint64_t array_data_size;
   int32_t allocation_flags;
   uint64_t *iterator_ptr;
   int iteration_index;
-  ulonglong temp_array [2];
-  ulonglong security_cookie;
+  uint64_t temp_array [2];
+  uint64_t security_cookie;
   
-  security_cookie = GLOBAL_SECURITY_COOKIE ^ (ulonglong)stack_buffer;
+  security_cookie = GLOBAL_SECURITY_COOKIE ^ (uint64_t)stack_buffer;
   iteration_index = 0;
   temp_flags = 0;
   temp_buffer = &UI_STATIC_BUFFER;
@@ -590,8 +590,8 @@ void ui_dynamic_array_processor(ulonglong *param_1)
   ui_memory_allocate(&string_buffer, item_size);
   
   // 构建模块路径字符串
-  *(uint64_t *)((ulonglong)total_size + temp_offset) = 0x2f73656c75646f4d; // "Module/Sub"
-  *(int8_t *)((uint64_t *)((ulonglong)total_size + temp_offset) + 1) = 0;
+  *(uint64_t *)((uint64_t)total_size + temp_offset) = 0x2f73656c75646f4d; // "Module/Sub"
+  *(int8_t *)((uint64_t *)((uint64_t)total_size + temp_offset) + 1) = 0;
   
   current_ptr = (uint64_t *)0x0;
   end_ptr = (uint64_t *)0x0;
@@ -600,7 +600,7 @@ void ui_dynamic_array_processor(ulonglong *param_1)
   total_size = item_size;
   ui_collection_enumerator(&string_buffer, &current_ptr);
   
-  array_length = (longlong)end_ptr - (longlong)current_ptr >> 5;
+  array_length = (int64_t)end_ptr - (int64_t)current_ptr >> 5;
   buffer_capacity = array_length;
   array_start = current_ptr;
   temp_ptr = current_ptr;
@@ -611,7 +611,7 @@ void ui_dynamic_array_processor(ulonglong *param_1)
     do {
       temp_buffer = &UI_STRING_TERMINATOR;
       temp_array[0] = 0;
-      iterator_ptr = (ulonglong *)0x0;
+      iterator_ptr = (uint64_t *)0x0;
       iteration_index = 0;
       ui_memory_allocate(&temp_buffer, *item_size_ptr);
       
@@ -619,9 +619,9 @@ void ui_dynamic_array_processor(ulonglong *param_1)
         memcpy(iterator_ptr, *(uint64_t *)(item_size_ptr + -2), *item_size_ptr + 1);
       }
       
-      if (*(longlong *)(item_size_ptr + -2) != 0) {
+      if (*(int64_t *)(item_size_ptr + -2) != 0) {
         iteration_index = 0;
-        if (iterator_ptr != (ulonglong *)0x0) {
+        if (iterator_ptr != (uint64_t *)0x0) {
           *(int8_t *)iterator_ptr = 0;
         }
         temp_array[0] = temp_array[0] & 0xffffffff;
@@ -638,7 +638,7 @@ void ui_dynamic_array_processor(ulonglong *param_1)
         memcpy(string_buffer, iterator_ptr, iteration_index + 1);
       }
       
-      if (iterator_ptr != (ulonglong *)0x0) {
+      if (iterator_ptr != (uint64_t *)0x0) {
         buffer_size = 0;
         if (string_buffer != (int8_t *)0x0) {
           *string_buffer = 0;
@@ -652,8 +652,8 @@ void ui_dynamic_array_processor(ulonglong *param_1)
       array_start = (uint64_t *)(string_buffer + buffer_size);
       *array_start = 0x75646f4d6275532f; // "/SubotusMod"
       *(int32_t *)(array_start + 1) = 0x782e656c; // "le.x"
-      *(int16_t *)((longlong)array_start + 0xc) = 0x6c6d; // "ml"
-      *(int8_t *)((longlong)array_start + 0xe) = 0;
+      *(int16_t *)((int64_t)array_start + 0xc) = 0x6c6d; // "ml"
+      *(int8_t *)((int64_t)array_start + 0xe) = 0;
       buffer_size = buffer_size;
       
       // 验证字符串格式
@@ -662,13 +662,13 @@ void ui_dynamic_array_processor(ulonglong *param_1)
         hash_value = ui_component_hash_calculator(&buffer_ptr);
         array_start = (uint64_t *)param_1[1];
         if (array_start < (uint64_t *)param_1[2]) {
-          param_1[1] = (ulonglong)(array_start + 1);
+          param_1[1] = (uint64_t)(array_start + 1);
           *array_start = hash_value;
         }
         else {
           // 数组扩容处理
           temp_ptr = (uint64_t *)*param_1;
-          array_capacity = (longlong)array_start - (longlong)temp_ptr >> 3;
+          array_capacity = (int64_t)array_start - (int64_t)temp_ptr >> 3;
           if (array_capacity == 0) {
             array_capacity = 1;
 LAB_ARRAY_RESIZE:
@@ -683,7 +683,7 @@ LAB_ARRAY_RESIZE:
           }
           
           if (temp_ptr != array_start) {
-            memmove(new_array, temp_ptr, (longlong)array_start - (longlong)temp_ptr);
+            memmove(new_array, temp_ptr, (int64_t)array_start - (int64_t)temp_ptr);
           }
           
           *new_array = hash_value;
@@ -691,9 +691,9 @@ LAB_ARRAY_RESIZE:
             ui_memory_deallocator();
           }
           
-          *param_1 = (ulonglong)new_array;
-          param_1[1] = (ulonglong)(new_array + 1);
-          param_1[2] = (ulonglong)(new_array + array_capacity);
+          *param_1 = (uint64_t)new_array;
+          param_1[1] = (uint64_t)(new_array + 1);
+          param_1[2] = (uint64_t)(new_array + array_capacity);
           array_length = buffer_capacity;
         }
       }
@@ -707,10 +707,10 @@ LAB_ARRAY_RESIZE:
       buffer_capacity = buffer_capacity & 0xffffffff00000000;
       buffer_ptr = &UI_VTABLE_START;
       temp_buffer = &UI_STRING_TERMINATOR;
-      if (iterator_ptr != (ulonglong *)0x0) {
+      if (iterator_ptr != (uint64_t *)0x0) {
         ui_memory_deallocator();
       }
-      iterator_ptr = (ulonglong *)0x0;
+      iterator_ptr = (uint64_t *)0x0;
       temp_array[0] = temp_array[0] & 0xffffffff00000000;
       temp_buffer = &UI_VTABLE_START;
       iteration_index = iteration_index + 1;
@@ -718,7 +718,7 @@ LAB_ARRAY_RESIZE:
       array_start = current_ptr;
       temp_ptr = current_ptr;
       new_array = end_ptr;
-    } while ((ulonglong)(longlong)iteration_index < array_length);
+    } while ((uint64_t)(int64_t)iteration_index < array_length);
   }
   
   // 清理集合数据
@@ -750,7 +750,7 @@ LAB_ARRAY_RESIZE:
   end_ptr = new_array;
   
   // 安全检查
-  ui_security_check(security_cookie ^ (ulonglong)stack_buffer);
+  ui_security_check(security_cookie ^ (uint64_t)stack_buffer);
 }
 
 /**
@@ -765,10 +765,10 @@ uint64_t ui_resource_finder(uint64_t param_1, uint64_t param_2, uint64_t param_3
 {
   uint string_length;
   uint64_t result;
-  longlong string_data;
+  int64_t string_data;
   void *stack_buffer [3];
   void *temp_buffer;
-  longlong data_offset;
+  int64_t data_offset;
   uint buffer_size;
   
   ui_string_processor(&temp_buffer, param_1, param_3, param_4, 0xfffffffffffffffe);
@@ -820,14 +820,14 @@ void ui_cleanup_processor(uint64_t param_1, uint64_t param_2, uint64_t param_3, 
  * @param param_3 查找参数
  * @return 查找结果指针
  */
-uint64_t * ui_component_finder(uint64_t param_1, uint64_t *param_2, longlong param_3)
+uint64_t * ui_component_finder(uint64_t param_1, uint64_t *param_2, int64_t param_3)
 {
   byte char_comparison;
   bool is_less_than;
   byte *component_name;
   uint name_length;
   int comparison_result;
-  longlong name_offset;
+  int64_t name_offset;
   uint64_t *current_component;
   uint64_t *next_component;
   uint64_t *previous_component;
@@ -847,7 +847,7 @@ uint64_t * ui_component_finder(uint64_t param_1, uint64_t *param_2, longlong par
         }
         else {
           component_name = *(byte **)(param_3 + 8);
-          name_offset = current_component[5] - (longlong)component_name;
+          name_offset = current_component[5] - (int64_t)component_name;
           do {
             name_length = (uint)component_name[name_offset];
             comparison_result = *component_name - name_length;
@@ -879,7 +879,7 @@ LAB_RETURN_FOUND:
       }
       if (*(int *)(param_3 + 0x10) != 0) {
         component_name = (byte *)found_component[5];
-        name_offset = *(longlong *)(param_3 + 8) - (longlong)component_name;
+        name_offset = *(int64_t *)(param_3 + 8) - (int64_t)component_name;
         do {
           char_comparison = *component_name;
           name_length = (uint)component_name[name_offset];
@@ -931,41 +931,41 @@ void ui_recursive_cleanup(uint64_t param_1, uint64_t *param_2, uint64_t param_3,
  * @param param_5 上下文信息
  * @return 新创建的组件指针
  */
-uint64_t * ui_component_factory(ulonglong param_1, uint64_t *param_2, uint64_t param_3, longlong *param_4, longlong param_5)
+uint64_t * ui_component_factory(uint64_t param_1, uint64_t *param_2, uint64_t param_3, int64_t *param_4, int64_t param_5)
 {
   byte char_diff;
   bool is_less_than;
   uint64_t *component;
-  longlong *component_data;
+  int64_t *component_data;
   byte *name_ptr;
   uint64_t *temp_component;
   uint name_length;
-  longlong *name_offset;
-  longlong *current_component;
-  ulonglong search_result;
+  int64_t *name_offset;
+  int64_t *current_component;
+  uint64_t search_result;
   uint64_t component_data_size;
   
   // 检查是否为根组件或默认组件
-  if ((param_4 == UI_COMPONENT_ROOT) || (param_4 == (longlong *)&UI_STRING_DATA_START)) {
+  if ((param_4 == UI_COMPONENT_ROOT) || (param_4 == (int64_t *)&UI_STRING_DATA_START)) {
     if ((UI_COMPONENT_FLAG != 0) && (*(int *)(param_5 + 0x10) != 0)) {
       current_component = UI_COMPONENT_ROOT;
       name_offset = param_4;
       if ((int)UI_COMPONENT_ROOT[6] != 0) {
         name_ptr = *(byte **)(param_5 + 8);
-        name_offset = (longlong *)(UI_COMPONENT_ROOT[5] - (longlong)name_ptr);
+        name_offset = (int64_t *)(UI_COMPONENT_ROOT[5] - (int64_t)name_ptr);
         do {
           char_diff = *name_ptr;
-          param_1 = (ulonglong)name_ptr[(longlong)name_offset];
-          name_length = (uint)name_ptr[(longlong)name_offset];
+          param_1 = (uint64_t)name_ptr[(int64_t)name_offset];
+          name_length = (uint)name_ptr[(int64_t)name_offset];
           if (char_diff != name_length) break;
           name_ptr = name_ptr + 1;
         } while (name_length != 0);
         if ((int)(char_diff - name_length) < 1) goto LAB_USE_EXISTING;
       }
 LAB_USE_ROOT:
-      search_result = (ulonglong)name_offset & 0xffffffffffffff00;
+      search_result = (uint64_t)name_offset & 0xffffffffffffff00;
 LAB_PROCESS_COMPONENT:
-      if (current_component != (longlong *)0x0) {
+      if (current_component != (int64_t *)0x0) {
         ui_component_builder(param_1, param_2, current_component, search_result, param_5);
         return param_2;
       }
@@ -973,11 +973,11 @@ LAB_PROCESS_COMPONENT:
   }
   else {
     // 查找现有组件
-    component_data = (longlong *)ui_component_type_resolver(param_4);
+    component_data = (int64_t *)ui_component_type_resolver(param_4);
     if (*(int *)(param_5 + 0x10) != 0) {
       if ((int)param_4[6] != 0) {
         name_ptr = *(byte **)(param_5 + 8);
-        name_offset = param_4[5] - (longlong)name_ptr;
+        name_offset = param_4[5] - (int64_t)name_ptr;
         do {
           char_diff = *name_ptr;
           name_length = (uint)name_ptr[name_offset];
@@ -988,18 +988,18 @@ LAB_PROCESS_COMPONENT:
       }
       if ((int)component_data[6] != 0) {
         name_ptr = (byte *)component_data[5];
-        name_offset = (longlong *)(*(longlong *)(param_5 + 8) - (longlong)name_ptr);
+        name_offset = (int64_t *)(*(int64_t *)(param_5 + 8) - (int64_t)name_ptr);
         do {
           char_diff = *name_ptr;
-          param_1 = (ulonglong)name_ptr[(longlong)name_offset];
-          name_length = (uint)name_ptr[(longlong)name_offset];
+          param_1 = (uint64_t)name_ptr[(int64_t)name_offset];
+          name_length = (uint)name_ptr[(int64_t)name_offset];
           if (char_diff != name_length) break;
           name_ptr = name_ptr + 1;
         } while (name_length != 0);
         if (0 < (int)(char_diff - name_length)) {
           current_component = param_4;
           if (*param_4 == 0) goto LAB_USE_ROOT;
-          search_result = CONCAT71((int7)((ulonglong)name_offset >> 8), 1);
+          search_result = CONCAT71((int7)((uint64_t)name_offset >> 8), 1);
           current_component = component_data;
           goto LAB_PROCESS_COMPONENT;
         }
@@ -1024,7 +1024,7 @@ LAB_CONTINUE_SEARCH:
       }
       else {
         name_ptr = (byte *)temp_component[5];
-        name_offset = *(longlong *)(param_5 + 8) - (longlong)name_ptr;
+        name_offset = *(int64_t *)(param_5 + 8) - (int64_t)name_ptr;
         do {
           char_diff = *name_ptr;
           name_length = (uint)name_ptr[name_offset];
@@ -1054,7 +1054,7 @@ LAB_RETURN_COMPONENT:
     }
     if (*(int *)(temp_component + 6) != 0) {
       name_ptr = *(byte **)(param_5 + 8);
-      name_offset = temp_component[5] - (longlong)name_ptr;
+      name_offset = temp_component[5] - (int64_t)name_ptr;
       do {
         char_diff = *name_ptr;
         name_length = (uint)name_ptr[name_offset];
@@ -1074,7 +1074,7 @@ LAB_SET_PRIORITY:
     }
     if (*(int *)(param_5 + 0x10) != 0) {
       name_ptr = (byte *)component[5];
-      name_offset = *(longlong *)(param_5 + 8) - (longlong)name_ptr;
+      name_offset = *(int64_t *)(param_5 + 8) - (int64_t)name_ptr;
       do {
         char_diff = *name_ptr;
         name_length = (uint)name_ptr[name_offset];

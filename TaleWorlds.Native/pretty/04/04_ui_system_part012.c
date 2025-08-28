@@ -79,17 +79,17 @@ void ui_system_advanced_animation_processor(
     float *animation_data_ptr;
     char status_flag;
     bool animation_active;
-    longlong temp_offset;
+    int64_t temp_offset;
     float *weight_ptr;
     int index_counter;
-    longlong animation_offset;
-    longlong matrix_offset;
+    int64_t animation_offset;
+    int64_t matrix_offset;
     uint64_t context_register;
-    longlong base_pointer;
+    int64_t base_pointer;
     int loop_counter;
     uint64_t data_register;
-    ulonglong iteration_count;
-    longlong offset_register;
+    uint64_t iteration_count;
+    int64_t offset_register;
     char condition_flag;
     float time_scale;
     float *animation_array;
@@ -140,8 +140,8 @@ void ui_system_advanced_animation_processor(
     
     // 计算动画角度
     current_value = (float)atan2f(
-        *(uint *)(*(longlong *)(offset_register + 0x10) + 0x80) ^ frame_count,
-        *(int32_t *)(*(longlong *)(offset_register + 0x10) + 0x84));
+        *(uint *)(*(int64_t *)(offset_register + 0x10) + 0x80) ^ frame_count,
+        *(int32_t *)(*(int64_t *)(offset_register + 0x10) + 0x84));
     current_value = current_value + animation_array[6];
     animation_array[0xb] = current_value;
     
@@ -159,12 +159,12 @@ void ui_system_advanced_animation_processor(
     
     // 处理动画帧数据
     current_value = animation_array[0x18];
-    matrix_offset = (longlong)(int)current_value;
+    matrix_offset = (int64_t)(int)current_value;
     condition_flag = SUB41(time_scale, 0);
     
     if (0 < (int)current_value) {
         target_value = time_scale;
-        if (*(char *)(matrix_offset * 0x1358 + 0x4e + (longlong)animation_array) != condition_flag) {
+        if (*(char *)(matrix_offset * 0x1358 + 0x4e + (int64_t)animation_array) != condition_flag) {
             target_value = animation_array[matrix_offset * 0x4d6 + 0x12] * 0.05f;
         }
         
@@ -175,9 +175,9 @@ void ui_system_advanced_animation_processor(
             current_value = animation_array[0x18];
         }
         
-        matrix_offset = (longlong)(int)current_value;
+        matrix_offset = (int64_t)(int)current_value;
         target_value = time_scale;
-        if (*(char *)(matrix_offset * 0x1358 + 0x66 + (longlong)animation_array) != condition_flag) {
+        if (*(char *)(matrix_offset * 0x1358 + 0x66 + (int64_t)animation_array) != condition_flag) {
             target_value = animation_array[matrix_offset * 0x4d6 + 0x18] * 0.05f;
         }
         
@@ -240,7 +240,7 @@ void ui_system_advanced_animation_processor(
     // 处理动画权重
     if ((animation_active) && (0 < (int)animation_array[0x18])) {
         weight_ptr = animation_array + 0x1b;
-        iteration_count = (ulonglong)(uint)animation_array[0x18];
+        iteration_count = (uint64_t)(uint)animation_array[0x18];
         result_value = time_scale;
         
         do {
@@ -248,7 +248,7 @@ void ui_system_advanced_animation_processor(
             current_value = *weight_ptr;
             weight_ptr = weight_ptr + 0x4d6;
             result_value = result_value + 
-                *(float *)(*(longlong *)(*(longlong *)animation_data_ptr + 0x48) + 0x188) * current_value;
+                *(float *)(*(int64_t *)(*(int64_t *)animation_data_ptr + 0x48) + 0x188) * current_value;
             iteration_count = iteration_count - 1;
         } while (iteration_count != 0);
         
@@ -313,14 +313,14 @@ void ui_system_advanced_animation_processor(
         current_value = time_scale;
         if (0 < (int)animation_array[0x18]) {
             weight_ptr = animation_array + 0x1b;
-            iteration_count = (ulonglong)(uint)animation_array[0x18];
+            iteration_count = (uint64_t)(uint)animation_array[0x18];
             
             do {
                 animation_data_ptr = weight_ptr + 0x495;
                 target_value = *weight_ptr;
                 weight_ptr = weight_ptr + 0x4d6;
                 current_value = current_value + 
-                    *(float *)(**(longlong **)animation_data_ptr + 0x188) * target_value;
+                    *(float *)(**(int64_t **)animation_data_ptr + 0x188) * target_value;
                 iteration_count = iteration_count - 1;
             } while (iteration_count != 0);
         }
@@ -368,7 +368,7 @@ void ui_system_advanced_animation_processor(
                 current_value = -1.0f;
             }
             
-            temp_offset = *(longlong *)(animation_array + (longlong)(int)target_value * 0x4d6 + -0x26);
+            temp_offset = *(int64_t *)(animation_array + (int64_t)(int)target_value * 0x4d6 + -0x26);
             stack_canary = 0x180659ea7;
             matrix_offset = ui_system_get_animation_data(*(uint64_t *)(temp_offset + 8));
             animation_offset = 0x14;
@@ -385,7 +385,7 @@ void ui_system_advanced_animation_processor(
     }
     
     // 处理矩阵变换
-    stack_value_2 = (float)((ulonglong)data_register >> 0x20);
+    stack_value_2 = (float)((uint64_t)data_register >> 0x20);
     stack_value_1 = (float)data_register;
     target_value = stack_value_2 * stack_value_2 + stack_value_1 * stack_value_1;
     target_value = (float)(target_value <= 1.1754944e-38) * 1.1754944e-38 + target_value;
@@ -400,7 +400,7 @@ void ui_system_advanced_animation_processor(
     
     // 处理动画变换
     stack_value_1 = (float)context_register;
-    stack_value_2 = (float)((ulonglong)context_register >> 0x20);
+    stack_value_2 = (float)((uint64_t)context_register >> 0x20);
     
     if ((normalized_value != time_scale) || (temp_float != time_scale)) {
         if (time_scale <= stack_value_1 * normalized_value) {
@@ -486,15 +486,15 @@ void ui_system_advanced_animation_processor(
     // 处理动画数据更新
     temp_float = animation_array[0x11];
     if (temp_float == time_scale) {
-        *(bool *)((longlong)animation_array + 0x5d) = normalized_value < time_scale;
+        *(bool *)((int64_t)animation_array + 0x5d) = normalized_value < time_scale;
     }
     
-    temp_float = (*(float *)(*(longlong *)
-                            (*(longlong *)(animation_array + 
-                              (longlong)(int)animation_array[0x18] * 0x4d6 + -0x26) + 8) + 0x188) /
-                *(float *)(*(longlong *)
-                           (*(longlong *)(animation_array + 
-                             (longlong)(int)animation_array[0x18] * 0x4d6 + -0x26) + 0x38) + 0x188)) * 
+    temp_float = (*(float *)(*(int64_t *)
+                            (*(int64_t *)(animation_array + 
+                              (int64_t)(int)animation_array[0x18] * 0x4d6 + -0x26) + 8) + 0x188) /
+                *(float *)(*(int64_t *)
+                           (*(int64_t *)(animation_array + 
+                             (int64_t)(int)animation_array[0x18] * 0x4d6 + -0x26) + 0x38) + 0x188)) * 
                 interpolated_value * timing_params._4_4_ + temp_float;
     
     if (stack_value_3 <= temp_float) {
@@ -505,13 +505,13 @@ void ui_system_advanced_animation_processor(
     // 处理动画混合参数
     if (animation_array[0x12] <= time_scale && time_scale != animation_array[0x12]) {
         target_value = stack_value_3;
-        if (*(char *)((longlong)animation_array + 0x5d) != '\0') {
+        if (*(char *)((int64_t)animation_array + 0x5d) != '\0') {
             target_value = -1.0f;
         }
         
         if (time_scale <= target_value * normalized_value) {
             normalized_value = temp_float;
-            if (*(char *)((longlong)animation_array + 0x5d) == '\0') {
+            if (*(char *)((int64_t)animation_array + 0x5d) == '\0') {
                 stack_canary = 0x18065a252;
                 normalized_value = (float)fmodf(temp_float + 0.5f);
             }
@@ -613,8 +613,8 @@ animation_complete:
     result_value = time_scale;
     
     do {
-        blend_factor = *(float *)(((longlong)local_buffer - (longlong)animation_array) + 
-                                 (longlong)weight_ptr);
+        blend_factor = *(float *)(((int64_t)local_buffer - (int64_t)animation_array) + 
+                                 (int64_t)weight_ptr);
         temp_float = blend_factor - weight_ptr[-10];
         interpolated_value = ABS(temp_float);
         
@@ -649,7 +649,7 @@ animation_complete:
             } else {
                 temp_float = time_scale;
                 if (loop_counter == 7) {
-                    if (*(char *)((longlong)animation_array + 0x5d) == '\0') {
+                    if (*(char *)((int64_t)animation_array + 0x5d) == '\0') {
                     animation_value_assignment:
                         temp_float = normalized_value;
                     }
@@ -657,7 +657,7 @@ animation_complete:
                     if (loop_counter != 8) {
                         goto continue_animation_loop;
                     }
-                    if (*(char *)((longlong)animation_array + 0x5d) != '\0') {
+                    if (*(char *)((int64_t)animation_array + 0x5d) != '\0') {
                         goto animation_value_assignment;
                     }
                 }
@@ -667,8 +667,8 @@ animation_complete:
         }
         
     continue_animation_loop:
-        temp_float = *(float *)((longlong)local_buffer + (4 - (longlong)animation_array) + 
-                               (longlong)weight_ptr);
+        temp_float = *(float *)((int64_t)local_buffer + (4 - (int64_t)animation_array) + 
+                               (int64_t)weight_ptr);
         interpolated_value = temp_float - weight_ptr[-9];
         matrix_value = ABS(interpolated_value);
         
@@ -704,7 +704,7 @@ animation_complete:
             } else {
                 interpolated_value = time_scale;
                 if (index_counter == 7) {
-                    if (*(char *)((longlong)animation_array + 0x5d) == '\0') {
+                    if (*(char *)((int64_t)animation_array + 0x5d) == '\0') {
                     animation_value_assignment_2:
                         interpolated_value = normalized_value;
                     }
@@ -712,7 +712,7 @@ animation_complete:
                     if (index_counter != 8) {
                         goto continue_animation_loop_2;
                     }
-                    if (*(char *)((longlong)animation_array + 0x5d) != '\0') {
+                    if (*(char *)((int64_t)animation_array + 0x5d) != '\0') {
                         goto animation_value_assignment_2;
                     }
                 }
@@ -722,8 +722,8 @@ animation_complete:
         }
         
     continue_animation_loop_2:
-        interpolated_value = *(float *)((longlong)local_buffer + 
-                                        (8 - (longlong)animation_array) + (longlong)weight_ptr);
+        interpolated_value = *(float *)((int64_t)local_buffer + 
+                                        (8 - (int64_t)animation_array) + (int64_t)weight_ptr);
         matrix_value = interpolated_value - weight_ptr[-8];
         current_value = ABS(matrix_value);
         
@@ -759,7 +759,7 @@ animation_complete:
             } else {
                 matrix_value = time_scale;
                 if (index_counter == 7) {
-                    if (*(char *)((longlong)animation_array + 0x5d) == '\0') {
+                    if (*(char *)((int64_t)animation_array + 0x5d) == '\0') {
                     animation_value_assignment_3:
                         matrix_value = normalized_value;
                     }
@@ -767,7 +767,7 @@ animation_complete:
                     if (index_counter != 8) {
                         goto continue_animation_loop_3;
                     }
-                    if (*(char *)((longlong)animation_array + 0x5d) != '\0') {
+                    if (*(char *)((int64_t)animation_array + 0x5d) != '\0') {
                         goto animation_value_assignment_3;
                     }
                 }
@@ -853,8 +853,8 @@ animation_complete:
             // WARNING: Subroutine does not return
             stack_canary = 0x18065aa9f;
             stack_value_5 = callback_params._4_4_;
-            ui_system_error_handler(*(ulonglong *)(base_pointer + -0x70) ^ 
-                                   (ulonglong)&stack0x00000000);
+            ui_system_error_handler(*(uint64_t *)(base_pointer + -0x70) ^ 
+                                   (uint64_t)&stack0x00000000);
         }
     } while (true);
 }

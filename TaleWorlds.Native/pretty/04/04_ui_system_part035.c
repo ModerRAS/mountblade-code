@@ -33,17 +33,17 @@
 #define UI_SYSTEM_SIMD_PACK_SATURATION 1          // 饱和打包
 
 // 函数声明
-void ui_system_simd_vector_processor(longlong system_context, longlong *vector_data);
-void ui_system_advanced_vector_calculator(longlong system_context, longlong *vector_data);
-void ui_system_matrix_transform_processor(longlong system_context, int param_2, int param_3, int param_4, uint64_t transform_matrix, int32_t transform_params);
-void ui_system_vector_optimizer(longlong system_context, uint64_t vector_data, int param_3, int param_4, uint64_t optimization_params, int32_t optimization_flags);
-void ui_system_coordinate_transformer(longlong system_context, int param_2, int param_3, int param_4, uint64_t transform_params, int32_t transform_flags);
-void ui_system_data_processor(longlong system_context, uint64_t data_input, int param_3, int param_4, uint64_t process_params, int process_flags);
-void ui_system_batch_processor(longlong system_context, int param_2, int param_3, int param_4, uint64_t batch_params, int32_t batch_flags);
-void ui_system_advanced_calculator(longlong system_context, uint64_t calc_data, int param_3, int param_4, uint64_t calc_params, int32_t calc_flags);
-void ui_system_math_optimizer(longlong system_context, int param_2, int param_3, int param_4, uint64_t math_params, int32_t math_flags);
-void ui_system_vector_calculator(longlong system_context, uint64_t vector_data, int param_3, int param_4, uint64_t calc_params, int32_t calc_flags);
-void ui_system_block_processor(longlong system_context, uint64_t block_data, longlong block_size, uint64_t process_params, short *result_vector);
+void ui_system_simd_vector_processor(int64_t system_context, int64_t *vector_data);
+void ui_system_advanced_vector_calculator(int64_t system_context, int64_t *vector_data);
+void ui_system_matrix_transform_processor(int64_t system_context, int param_2, int param_3, int param_4, uint64_t transform_matrix, int32_t transform_params);
+void ui_system_vector_optimizer(int64_t system_context, uint64_t vector_data, int param_3, int param_4, uint64_t optimization_params, int32_t optimization_flags);
+void ui_system_coordinate_transformer(int64_t system_context, int param_2, int param_3, int param_4, uint64_t transform_params, int32_t transform_flags);
+void ui_system_data_processor(int64_t system_context, uint64_t data_input, int param_3, int param_4, uint64_t process_params, int process_flags);
+void ui_system_batch_processor(int64_t system_context, int param_2, int param_3, int param_4, uint64_t batch_params, int32_t batch_flags);
+void ui_system_advanced_calculator(int64_t system_context, uint64_t calc_data, int param_3, int param_4, uint64_t calc_params, int32_t calc_flags);
+void ui_system_math_optimizer(int64_t system_context, int param_2, int param_3, int param_4, uint64_t math_params, int32_t math_flags);
+void ui_system_vector_calculator(int64_t system_context, uint64_t vector_data, int param_3, int param_4, uint64_t calc_params, int32_t calc_flags);
+void ui_system_block_processor(int64_t system_context, uint64_t block_data, int64_t block_size, uint64_t process_params, short *result_vector);
 void ui_system_empty_function(void);
 
 // 函数实现
@@ -75,12 +75,12 @@ void ui_system_empty_function(void);
  * - 向量数据必须按16字节对齐
  * - 处理过程中会进行溢出检查
  */
-void ui_system_simd_vector_processor(longlong system_context, longlong *vector_data)
+void ui_system_simd_vector_processor(int64_t system_context, int64_t *vector_data)
 
 {
   short *input_vector_ptr;
   short *transform_vector_ptr;
-  longlong context_data;
+  int64_t context_data;
   int bit_position;
   ushort direction_mask;
   short vector_component_0;
@@ -130,10 +130,10 @@ void ui_system_simd_vector_processor(longlong system_context, longlong *vector_d
   int32_t stack_protection_2;
   int32_t stack_protection_3;
   int32_t stack_protection_4;
-  ulonglong stack_guard;
+  uint64_t stack_guard;
   
   // 栈保护机制初始化
-  stack_guard = GET_SECURITY_COOKIE() ^ (ulonglong)&stack_protection_1;
+  stack_guard = GET_SECURITY_COOKIE() ^ (uint64_t)&stack_protection_1;
   stack_protection_1 = 0x8040100;
   stack_protection_2 = 0x6030205;
   stack_protection_3 = 0xa0d0c09;
@@ -311,7 +311,7 @@ void ui_system_simd_vector_processor(longlong system_context, longlong *vector_d
   *(char *)vector_data[5] = direction_flag;
   
   // 栈保护检查
-  FUN_1808fc050(stack_guard ^ (ulonglong)&stack_protection_1);
+  FUN_1808fc050(stack_guard ^ (uint64_t)&stack_protection_1);
 }
 
 /**
@@ -342,12 +342,12 @@ void ui_system_simd_vector_processor(longlong system_context, longlong *vector_d
  * - 碰撞检测和响应
  * - 路径规划和导航
  */
-void ui_system_advanced_vector_calculator(longlong system_context, longlong *vector_data)
+void ui_system_advanced_vector_calculator(int64_t system_context, int64_t *vector_data)
 
 {
   short *input_vector_ptr;
   short *transform_vector_ptr;
-  longlong context_data;
+  int64_t context_data;
   bool comparison_result;
   short vector_component_0;
   short vector_component_1;
@@ -746,10 +746,10 @@ void ui_system_advanced_vector_calculator(longlong system_context, longlong *vec
 // 使用示例：
 // ```c
 // // 创建系统上下文
-// longlong system_context = create_ui_system_context();
+// int64_t system_context = create_ui_system_context();
 // 
 // // 分配向量数据内存
-// longlong vector_data[6];
+// int64_t vector_data[6];
 // initialize_vector_data(vector_data);
 // 
 // // 执行SIMD向量处理

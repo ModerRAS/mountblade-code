@@ -35,8 +35,8 @@ extern const void* _g_audio_format_table[16];  // 音频格式表 (原 global_co
  * @param result_storage 结果存储指针
  */
 void ui_system_process_audio_clamping(void* audio_context, uint sample_count, int start_offset, 
-                                     float* input_data, longlong buffer_base, int channel_count, 
-                                     longlong total_samples, float* result_storage)
+                                     float* input_data, int64_t buffer_base, int channel_count, 
+                                     int64_t total_samples, float* result_storage)
 {
     // 简化实现：音频信号裁剪和归一化
     // 原实现包含复杂的SIMD指令和内存对齐操作
@@ -68,7 +68,7 @@ void ui_system_process_audio_clamping(void* audio_context, uint sample_count, in
     // 动态范围压缩处理
     for (int i = 0; i < total_samples; i++) {
         float input_sample = input_data[i];
-        float* channel_data = (float*)(buffer_base + (longlong)input_data * 4);
+        float* channel_data = (float*)(buffer_base + (int64_t)input_data * 4);
         
         // 动态压缩处理
         for (int ch = 0; ch < channel_count; ch++) {
@@ -95,8 +95,8 @@ void ui_system_process_audio_clamping(void* audio_context, uint sample_count, in
  * @param max_threshold 最大阈值
  * @param result_storage 结果存储指针
  */
-void ui_system_advanced_audio_processing(float* input_data, longlong buffer_base, int channel_count, 
-                                        longlong total_samples, float min_threshold, float max_threshold, 
+void ui_system_advanced_audio_processing(float* input_data, int64_t buffer_base, int channel_count, 
+                                        int64_t total_samples, float min_threshold, float max_threshold, 
                                         float* result_storage)
 {
     // 简化实现：高级音频信号处理
@@ -106,7 +106,7 @@ void ui_system_advanced_audio_processing(float* input_data, longlong buffer_base
     
     do {
         float input_sample = *input_data;
-        float* channel_buffer = (float*)(buffer_base + (longlong)input_data);
+        float* channel_buffer = (float*)(buffer_base + (int64_t)input_data);
         
         // 动态范围压缩处理
         for (int ch = 0; ch < channel_count; ch++) {
@@ -180,7 +180,7 @@ void ui_system_placeholder_function_2(void)
  * @param extra_config 附加配置
  * @param extended_params 扩展参数
  */
-void ui_system_initialize_audio_config(longlong ui_context, int* audio_config, int config_type, 
+void ui_system_initialize_audio_config(int64_t ui_context, int* audio_config, int config_type, 
                                        int init_flags, void* audio_handle, void* extra_config, void* extended_params)
 {
     // 简化实现：UI系统音频初始化
@@ -239,7 +239,7 @@ void ui_system_initialize_audio_config(longlong ui_context, int* audio_config, i
  * 
  * @param ui_context UI系统上下文指针
  */
-void ui_system_cleanup_audio_resources(longlong ui_context)
+void ui_system_cleanup_audio_resources(int64_t ui_context)
 {
     // 简化实现：音频资源清理
     // 原实现包含复杂的资源释放和状态重置逻辑

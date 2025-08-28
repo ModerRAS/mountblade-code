@@ -111,30 +111,30 @@
 // =============================================================================
 
 // UI系统辅助函数声明
-extern int ui_system_validate_event_parameters(longlong event_context, int32_t event_param, int32_t validation_flag);
-extern void ui_system_initialize_event_context(longlong event_context, int32_t event_param);
-extern longlong ui_system_allocate_event_resources(longlong resource_manager, uint resource_size, void *resource_data, uint alignment, ulonglong stack_param, int flags, int priority);
-extern longlong ui_system_create_event_handler(longlong resource_handle);
-extern int ui_system_configure_event_handler(longlong event_handler, longlong event_context);
-extern void ui_system_register_event_handler(longlong event_handler, longlong event_data);
-extern void ui_system_process_event_data(longlong event_handler, longlong event_data);
-extern void ui_system_cleanup_event_handler(longlong event_handler);
-extern void ui_system_destroy_event_handler(longlong event_handler);
-extern longlong ui_system_get_event_type_handler(void);
-extern longlong ui_system_get_event_data_handler(void);
-extern longlong ui_system_get_event_config_handler(void);
-extern longlong ui_system_get_event_callback_handler(void);
-extern int ui_system_handle_basic_event(longlong event_handler, longlong event_type, longlong event_data, uint event_flags);
-extern int ui_system_handle_extended_event(longlong event_handler, longlong event_type, longlong event_data, uint event_size, uint event_flags);
-extern int ui_system_validate_event_handler(longlong event_handler, longlong event_type, longlong event_data, uint event_size, uint event_flags);
-extern int ui_system_process_event_callback(longlong event_handler, longlong callback_data, uint callback_id, uint callback_flags);
-extern void ui_system_update_event_state(longlong event_context, uint new_state);
-extern void ui_system_cleanup_event_resources_internal(longlong event_context);
-extern void ui_system_dispatch_event_callbacks(longlong event_handler, longlong callback_data, uint callback_count);
-extern void ui_system_initialize_event_queue(longlong event_context);
-extern void ui_system_process_event_queue_internal(longlong event_context);
-extern void ui_system_validate_event_configuration(longlong event_context);
-extern void ui_system_cleanup_event_queue(longlong event_context);
+extern int ui_system_validate_event_parameters(int64_t event_context, int32_t event_param, int32_t validation_flag);
+extern void ui_system_initialize_event_context(int64_t event_context, int32_t event_param);
+extern int64_t ui_system_allocate_event_resources(int64_t resource_manager, uint resource_size, void *resource_data, uint alignment, uint64_t stack_param, int flags, int priority);
+extern int64_t ui_system_create_event_handler(int64_t resource_handle);
+extern int ui_system_configure_event_handler(int64_t event_handler, int64_t event_context);
+extern void ui_system_register_event_handler(int64_t event_handler, int64_t event_data);
+extern void ui_system_process_event_data(int64_t event_handler, int64_t event_data);
+extern void ui_system_cleanup_event_handler(int64_t event_handler);
+extern void ui_system_destroy_event_handler(int64_t event_handler);
+extern int64_t ui_system_get_event_type_handler(void);
+extern int64_t ui_system_get_event_data_handler(void);
+extern int64_t ui_system_get_event_config_handler(void);
+extern int64_t ui_system_get_event_callback_handler(void);
+extern int ui_system_handle_basic_event(int64_t event_handler, int64_t event_type, int64_t event_data, uint event_flags);
+extern int ui_system_handle_extended_event(int64_t event_handler, int64_t event_type, int64_t event_data, uint event_size, uint event_flags);
+extern int ui_system_validate_event_handler(int64_t event_handler, int64_t event_type, int64_t event_data, uint event_size, uint event_flags);
+extern int ui_system_process_event_callback(int64_t event_handler, int64_t callback_data, uint callback_id, uint callback_flags);
+extern void ui_system_update_event_state(int64_t event_context, uint new_state);
+extern void ui_system_cleanup_event_resources_internal(int64_t event_context);
+extern void ui_system_dispatch_event_callbacks(int64_t event_handler, int64_t callback_data, uint callback_count);
+extern void ui_system_initialize_event_queue(int64_t event_context);
+extern void ui_system_process_event_queue_internal(int64_t event_context);
+extern void ui_system_validate_event_configuration(int64_t event_context);
+extern void ui_system_cleanup_event_queue(int64_t event_context);
 
 // =============================================================================
 // 核心函数实现
@@ -164,7 +164,7 @@ extern void ui_system_cleanup_event_queue(longlong event_context);
  * - 确保事件状态的正确初始化
  * - 处理失败时会设置相应的错误状态
  */
-void ui_system_set_event_parameter(longlong event_context, int32_t event_param)
+void ui_system_set_event_parameter(int64_t event_context, int32_t event_param)
 {
     int validation_result;
     
@@ -207,14 +207,14 @@ void ui_system_set_event_parameter(longlong event_context, int32_t event_param)
  * - 包含复杂的资源管理逻辑
  * - 提供全面的事件验证机制
  */
-int ui_system_process_event_queue(longlong event_context)
+int ui_system_process_event_queue(int64_t event_context)
 {
-    longlong resource_handle;
-    longlong *event_handler_ptr;
+    int64_t resource_handle;
+    int64_t *event_handler_ptr;
     uint64_t event_type;
-    longlong *handler_storage;
+    int64_t *handler_storage;
     int process_result;
-    ulonglong stack_parameter;
+    uint64_t stack_parameter;
     int32_t validation_flag;
     
     // 分配事件资源
@@ -226,21 +226,21 @@ int ui_system_process_event_queue(longlong event_context)
                                                      0, 
                                                      1);
     
-    event_handler_ptr = (longlong *)0x0;
+    event_handler_ptr = (int64_t *)0x0;
     
     // 如果资源分配成功，创建事件处理器
     if (resource_handle != 0) {
-        event_handler_ptr = (longlong *)ui_system_create_event_handler(resource_handle);
+        event_handler_ptr = (int64_t *)ui_system_create_event_handler(resource_handle);
     }
     
     // 存储事件处理器指针
-    handler_storage = (longlong *)(event_context + UI_EVENT_QUEUE_OFFSET);
-    *handler_storage = (longlong)event_handler_ptr;
+    handler_storage = (int64_t *)(event_context + UI_EVENT_QUEUE_OFFSET);
+    *handler_storage = (int64_t)event_handler_ptr;
     
     // 检查事件处理器是否创建成功
-    if (event_handler_ptr == (longlong *)0x0) {
+    if (event_handler_ptr == (int64_t *)0x0) {
         process_result = UI_EVENT_FAILURE;
-        handler_storage = (longlong *)0x0;
+        handler_storage = (int64_t *)0x0;
     }
     else {
         // 配置事件处理器
@@ -591,7 +591,7 @@ int ui_system_process_event_queue(longlong event_context)
     }
     
     // 清理事件处理器资源
-    if ((handler_storage != (longlong *)0x0) && (*handler_storage != 0)) {
+    if ((handler_storage != (int64_t *)0x0) && (*handler_storage != 0)) {
         ui_system_cleanup_event_handler(*handler_storage, 0);
         *handler_storage = 0;
     }
@@ -618,18 +618,18 @@ int ui_system_process_event_queue(longlong event_context)
  * - 多种事件类型的支持
  * - 高效的内存管理
  */
-void ui_system_event_handler_thunk(longlong event_context)
+void ui_system_event_handler_thunk(int64_t event_context)
 {
     uint64_t *event_processor;
     int32_t event_flags;
     uint64_t *event_handler;
     uint64_t event_data;
     int process_result;
-    longlong resource_manager;
-    ulonglong stack_cookie;
+    int64_t resource_manager;
+    uint64_t stack_cookie;
     uint event_counter;
-    ulonglong loop_counter;
-    ulonglong index_counter;
+    uint64_t loop_counter;
+    uint64_t index_counter;
     float weight_factor;
     int8_t stack_buffer[32];
     float *weight_array;
@@ -649,10 +649,10 @@ void ui_system_event_handler_thunk(longlong event_context)
     uint64_t stack_data[2];
     uint64_t register_data[2];
     int8_t workspace[48];
-    ulonglong workspace_cookie;
+    uint64_t workspace_cookie;
     
     // 初始化栈保护cookie
-    workspace_cookie = GET_SECURITY_COOKIE() ^ (ulonglong)stack_buffer;
+    workspace_cookie = GET_SECURITY_COOKIE() ^ (uint64_t)stack_buffer;
     
     // 检查事件上下文状态
     if (*(char *)(event_context + 8) != '\0') {
@@ -682,7 +682,7 @@ void ui_system_event_handler_thunk(longlong event_context)
         *(uint *)(event_context + 0x116b4) = event_id;
         
         // 处理事件资源管理
-        if ((*(longlong *)(event_context + 0x6b0) == 0) || 
+        if ((*(int64_t *)(event_context + 0x6b0) == 0) || 
             (process_result = func_0x000180069ee0(), process_result == 0)) {
             
             event_processor = (uint64_t *)(event_context + 0x12758);
@@ -760,7 +760,7 @@ void ui_system_event_handler_thunk(longlong event_context)
                     if ((process_result != 0) || 
                         (process_result = FUN_18078c760(event_context, event_counter), process_result != 0)) break;
                     
-                    if (*(longlong *)(event_context + 0x670) != 0) {
+                    if (*(int64_t *)(event_context + 0x670) != 0) {
                         ui_system_update_event_state(event_context + 0x11678, 1);
                         process_result = FUN_180789300(*(uint64_t *)(event_context + 0x670));
                         if (process_result != 0) break;
@@ -790,12 +790,12 @@ void ui_system_event_handler_thunk(longlong event_context)
     // 事件处理循环
     while (true) {
         event_counter = (int)index_counter + 1;
-        index_counter = (ulonglong)event_counter;
+        index_counter = (uint64_t)event_counter;
         event_counter = event_counter + UI_MEMORY_BLOCK_SIZE;
         if (*(int *)(event_context + 0x694) <= (int)event_counter) break;
         
     event_loop_start:
-        resource_manager = *(longlong *)(*(longlong *)(event_context + 0x6a0) + 0x30 + event_counter);
+        resource_manager = *(int64_t *)(*(int64_t *)(event_context + 0x6a0) + 0x30 + event_counter);
         if (((resource_manager != 0) && (*(char *)(resource_manager + 0x31) != '\0')) &&
            (process_result = ui_system_check_event_state(event_context, index_counter), process_result != 0)) 
             goto event_cleanup_handler;
@@ -803,7 +803,7 @@ void ui_system_event_handler_thunk(longlong event_context)
     
 event_processing_complete:
     // 处理最终事件状态
-    if (((*(longlong *)(event_context + 0x11838) != 0) && 
+    if (((*(int64_t *)(event_context + 0x11838) != 0) && 
          ((*(uint *)(event_context + 0x11840) & 0x1000) != 0)) &&
         (process_result = ui_system_validate_event_state(event_context), process_result != 0x39)) {
         
@@ -823,7 +823,7 @@ event_processing_complete:
             *(int16_t *)(resource_manager + -1) = 0;
             resource_manager = resource_manager + 0x70;
             event_counter = (int)loop_counter + 1;
-            loop_counter = (ulonglong)event_counter;
+            loop_counter = (uint64_t)event_counter;
         } while ((int)event_counter < *(int *)(event_context + 0x11400));
     }
     
@@ -834,11 +834,11 @@ event_processing_complete:
     }
     
     // 处理资源清理
-    resource_manager = *(longlong *)(event_context + 0x670);
+    resource_manager = *(int64_t *)(event_context + 0x670);
     if ((resource_manager != 0) && (0 < *(int *)(event_context + 0x10f70))) {
         if (event_context != 0) {
             func_0x000180743c20(event_context, 7);
-            resource_manager = *(longlong *)(event_context + 0x670);
+            resource_manager = *(int64_t *)(event_context + 0x670);
         }
         
         event_flags = *(int32_t *)(resource_manager + 0x318);
@@ -873,7 +873,7 @@ event_processing_complete:
             resource_manager = event_processor[2];
             event_processor = (uint64_t *)*event_processor;
             
-            if (((*(longlong *)(resource_manager + 0x120) != 0) && 
+            if (((*(int64_t *)(resource_manager + 0x120) != 0) && 
                  ((*(byte *)(resource_manager + 0x11a) & 0x40) != 0)) &&
                 ((*(uint *)(resource_manager + 100) >> 10 & 1) == 0)) {
                 (**(code **)(resource_manager + 0x120))(resource_manager + 0xb0, 0x40, 0);
@@ -905,7 +905,7 @@ event_processing_complete:
     }
     
 event_cleanup_handler:
-    FUN_1808fc050(workspace_cookie ^ (ulonglong)stack_buffer);
+    FUN_1808fc050(workspace_cookie ^ (uint64_t)stack_buffer);
 }
 
 /**
@@ -927,24 +927,24 @@ event_cleanup_handler:
  * - 全面的配置检查
  * - 高效的队列处理
  */
-void ui_system_validate_event_state(longlong event_context)
+void ui_system_validate_event_state(int64_t event_context)
 {
     int *event_counter_ptr;
     uint *event_flags_ptr;
-    longlong config_manager;
+    int64_t config_manager;
     int config_result;
     uint event_state;
-    ulonglong loop_counter;
+    uint64_t loop_counter;
     int8_t event_stack[64];
     int config_values[3];
     int stack_value;
     int event_flags[8];
     int8_t config_buffer[256];
-    ulonglong stack_cookie;
-    ulonglong config_cookie;
+    uint64_t stack_cookie;
+    uint64_t config_cookie;
     
     // 初始化栈保护cookie
-    stack_cookie = GET_SECURITY_COOKIE() ^ (ulonglong)event_stack;
+    stack_cookie = GET_SECURITY_COOKIE() ^ (uint64_t)event_stack;
     
     // 检查事件上下文状态
     if (*(char *)(event_context + 8) == '\0') goto validation_complete;
@@ -957,7 +957,7 @@ void ui_system_validate_event_state(longlong event_context)
     event_counter_ptr = (int *)(event_context + 0x698);
     
     // 检查配置管理器状态
-    if (*(longlong *)(*(longlong *)(event_context + 0x670) + 0x3e0) == 0) {
+    if (*(int64_t *)(*(int64_t *)(event_context + 0x670) + 0x3e0) == 0) {
     config_validation_complete:
         if (stack_value == *event_counter_ptr) goto validation_complete;
     }
@@ -970,7 +970,7 @@ void ui_system_validate_event_state(longlong event_context)
         if ((*(int *)(event_context + 0x6ac) == 0) ||
            (999 < (uint)(config_values[0] - *(int *)(event_context + 0x6ac)))) {
             
-            config_manager = *(longlong *)(event_context + 0x670);
+            config_manager = *(int64_t *)(event_context + 0x670);
             *(int *)(event_context + 0x6ac) = config_values[0];
             loop_counter = config_manager + 8;
             
@@ -991,8 +991,8 @@ void ui_system_validate_event_state(longlong event_context)
     if (0 < *(int *)(event_context + 0x694)) {
         do {
             event_state = (int)config_cookie + 1;
-            config_cookie = (ulonglong)event_state;
-            event_flags_ptr = (uint *)(loop_counter + 0x18 + *(longlong *)(event_context + 0x6a0));
+            config_cookie = (uint64_t)event_state;
+            event_flags_ptr = (uint *)(loop_counter + 0x18 + *(int64_t *)(event_context + 0x6a0));
             *event_flags_ptr = *event_flags_ptr & 0xfffffffe;
             loop_counter = loop_counter + UI_MEMORY_BLOCK_SIZE;
         } while ((int)event_state < *(int *)(event_context + 0x694));
@@ -1010,7 +1010,7 @@ void ui_system_validate_event_state(longlong event_context)
     *(int8_t *)(event_context + 0x6a8) = 1;
     
 validation_complete:
-    FUN_1808fc050(stack_cookie ^ (ulonglong)event_stack);
+    FUN_1808fc050(stack_cookie ^ (uint64_t)event_stack);
 }
 
 /**
@@ -1033,7 +1033,7 @@ void ui_system_cleanup_event_resources(void)
  * @param event_context 事件上下文指针
  * @param event_param 事件参数
  */
-void ui_system_initialize_event_system(longlong event_context, int32_t event_param)
+void ui_system_initialize_event_system(int64_t event_context, int32_t event_param)
 {
     int process_result;
     
@@ -1059,10 +1059,10 @@ void ui_system_initialize_event_system(longlong event_context, int32_t event_par
  * - 成功：UI_EVENT_SUCCESS
  * - 失败：相应的错误代码
  */
-int ui_system_process_event_callbacks(longlong event_context)
+int ui_system_process_event_callbacks(int64_t event_context)
 {
     int process_result;
-    longlong queue_manager;
+    int64_t queue_manager;
     int event_counter;
     
     if (event_context != 0) {
@@ -1075,7 +1075,7 @@ int ui_system_process_event_callbacks(longlong event_context)
     if (0 < *(int *)(event_context + 0x694)) {
         queue_manager = 0;
         do {
-            if (*(longlong *)(queue_manager + 0x30 + *(longlong *)(event_context + 0x6a0)) != 0) {
+            if (*(int64_t *)(queue_manager + 0x30 + *(int64_t *)(event_context + 0x6a0)) != 0) {
                 process_result = FUN_180788e60(*(uint64_t *)(event_context + 0x670));
                 if (process_result != 0) goto callback_complete;
             }
@@ -1104,10 +1104,10 @@ callback_complete:
  * - 成功：UI_EVENT_SUCCESS
  * - 失败：相应的错误代码
  */
-int ui_system_check_event_state(longlong event_context)
+int ui_system_check_event_state(int64_t event_context)
 {
     int process_result;
-    longlong queue_manager;
+    int64_t queue_manager;
     int event_counter;
     
     if (event_context != 0) {
@@ -1120,7 +1120,7 @@ int ui_system_check_event_state(longlong event_context)
     if (0 < *(int *)(event_context + 0x694)) {
         queue_manager = 0;
         do {
-            if (*(longlong *)(queue_manager + 0x30 + *(longlong *)(event_context + 0x6a0)) != 0) {
+            if (*(int64_t *)(queue_manager + 0x30 + *(int64_t *)(event_context + 0x6a0)) != 0) {
                 process_result = FUN_180788e60(*(uint64_t *)(event_context + 0x670));
                 if (process_result != 0) goto check_complete;
             }

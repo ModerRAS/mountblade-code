@@ -6,8 +6,8 @@
 void FUN_1800fe720(void)
 
 {
-  ulonglong uVar1;
-  ulonglong uVar2;
+  uint64_t uVar1;
+  uint64_t uVar2;
   char cVar3;
   char cVar9;
   short sVar10;
@@ -90,22 +90,22 @@ void FUN_1800fe720(void)
   int8_t (*pauVar87) [16];
   int unaff_EBX;
   int8_t (*pauVar88) [16];
-  longlong unaff_RSI;
-  longlong lVar89;
+  int64_t unaff_RSI;
+  int64_t lVar89;
   int unaff_EDI;
   int8_t (*pauVar90) [16];
   int8_t (*pauVar91) [16];
   uint in_R9D;
   int in_R10D;
-  ulonglong *puVar92;
+  uint64_t *puVar92;
   int in_R11D;
-  ulonglong *puVar93;
-  longlong unaff_R12;
-  ulonglong uVar94;
+  uint64_t *puVar93;
+  int64_t unaff_R12;
+  uint64_t uVar94;
   int unaff_R13D;
-  longlong unaff_R14;
-  longlong lVar95;
-  longlong unaff_R15;
+  int64_t unaff_R14;
+  int64_t lVar95;
+  int64_t unaff_R15;
   int8_t (*pauVar96) [16];
   short in_XMM0_Wa;
   short in_XMM0_Wb;
@@ -271,8 +271,8 @@ void FUN_1800fe720(void)
   int8_t auVar250 [16];
   int in_stack_00000120;
   int in_stack_00000128;
-  longlong in_stack_00000130;
-  longlong in_stack_00000138;
+  int64_t in_stack_00000130;
+  int64_t in_stack_00000138;
   char cVar4;
   char cVar5;
   char cVar6;
@@ -327,14 +327,14 @@ void FUN_1800fe720(void)
   int8_t auVar249 [16];
   
   pauVar86 = (int8_t (*) [16])(unaff_R14 + unaff_R15);
-  lVar95 = unaff_R14 - (longlong)pauVar86;
+  lVar95 = unaff_R14 - (int64_t)pauVar86;
   pauVar91 = (int8_t (*) [16])(unaff_EDI + unaff_RSI);
-  lVar89 = unaff_RSI - (longlong)pauVar91;
+  lVar89 = unaff_RSI - (int64_t)pauVar91;
   do {
-    pauVar88 = (int8_t (*) [16])(lVar95 + (longlong)pauVar86);
-    pauVar87 = (int8_t (*) [16])(lVar89 + (longlong)pauVar91);
-    puVar93 = (ulonglong *)((int)((in_R9D >> 1) * in_R11D) + in_stack_00000130);
-    puVar92 = (ulonglong *)((int)((in_R9D >> 1) * in_R10D) + unaff_R12);
+    pauVar88 = (int8_t (*) [16])(lVar95 + (int64_t)pauVar86);
+    pauVar87 = (int8_t (*) [16])(lVar89 + (int64_t)pauVar91);
+    puVar93 = (uint64_t *)((int)((in_R9D >> 1) * in_R11D) + in_stack_00000130);
+    puVar92 = (uint64_t *)((int)((in_R9D >> 1) * in_R10D) + unaff_R12);
     uVar145 = in_XMM4_Ba;
     uVar153 = in_XMM4_Bb;
     uVar154 = in_XMM4_Bc;
@@ -348,7 +348,7 @@ void FUN_1800fe720(void)
     uVar162 = in_XMM4_Bk;
     uVar163 = in_XMM4_Bl;
     if (0 < unaff_EBX) {
-      uVar94 = (ulonglong)((unaff_EBX - 1U >> 4) + 1);
+      uVar94 = (uint64_t)((unaff_EBX - 1U >> 4) + 1);
       pauVar90 = pauVar91;
       pauVar96 = pauVar86;
       do {
@@ -488,7 +488,7 @@ void FUN_1800fe720(void)
         sVar124 = (sVar123 - in_XMM0_Wa) * in_XMM5_Wa;
         sVar135 = ((short)((uint)uVar125 >> 0x10) - in_XMM0_Wb) * in_XMM5_Wb;
         sVar136 = ((short)((uint6)uVar126 >> 0x20) - in_XMM0_Wc) * in_XMM5_Wc;
-        sVar137 = ((short)((ulonglong)uVar127 >> 0x30) - in_XMM0_Wd) * in_XMM5_Wd;
+        sVar137 = ((short)((uint64_t)uVar127 >> 0x30) - in_XMM0_Wd) * in_XMM5_Wd;
         sVar138 = ((short)((unkuint10)auVar128._0_10_ >> 0x40) - in_XMM0_We) * in_XMM5_We;
         sVar139 = (auVar128._10_2_ - in_XMM0_Wf) * in_XMM5_Wf;
         sVar140 = (auVar129._12_2_ - in_XMM0_Wg) * in_XMM5_Wg;
@@ -565,7 +565,7 @@ void FUN_1800fe720(void)
         sVar214 = (sVar123 - in_XMM0_Wa) * in_XMM5_Wa;
         sVar218 = ((short)((uint)uVar125 >> 0x10) - in_XMM0_Wb) * in_XMM5_Wb;
         sVar219 = ((short)((uint6)uVar126 >> 0x20) - in_XMM0_Wc) * in_XMM5_Wc;
-        sVar220 = ((short)((ulonglong)uVar127 >> 0x30) - in_XMM0_Wd) * in_XMM5_Wd;
+        sVar220 = ((short)((uint64_t)uVar127 >> 0x30) - in_XMM0_Wd) * in_XMM5_Wd;
         sVar221 = ((short)((unkuint10)auVar215._0_10_ >> 0x40) - in_XMM0_We) * in_XMM5_We;
         sVar222 = (auVar215._10_2_ - in_XMM0_Wf) * in_XMM5_Wf;
         sVar223 = (auVar216._12_2_ - in_XMM0_Wg) * in_XMM5_Wg;
@@ -709,18 +709,18 @@ void FUN_1800fe720(void)
                                    ,uVar79));
         auVar80._4_8_ = 0;
         auVar80._0_4_ = uVar78;
-        auVar36._12_3_ = (int3)((ulonglong)uVar84 >> 0x28);
+        auVar36._12_3_ = (int3)((uint64_t)uVar84 >> 0x28);
         auVar36._0_12_ = auVar80 << 0x38;
         uVar81 = CONCAT44(auVar36._11_4_,
                           CONCAT13((0 < sVar14) * (sVar14 < 0x100) * auVar165[10] - (0xff < sVar14),
                                    uVar72));
-        auVar40._10_5_ = (int5)((ulonglong)uVar81 >> 0x18);
+        auVar40._10_5_ = (int5)((uint64_t)uVar81 >> 0x18);
         auVar40._0_10_ = (unkuint10)uVar60 << 0x38;
         uVar127 = CONCAT62(auVar40._9_6_,
                            CONCAT11((0 < sVar13) * (sVar13 < 0x100) * auVar165[8] - (0xff < sVar13),
                                     cVar3));
         auVar61._7_8_ = 0;
-        auVar61._0_7_ = (uint7)((ulonglong)uVar127 >> 8);
+        auVar61._0_7_ = (uint7)((uint64_t)uVar127 >> 8);
         Var62 = CONCAT81(SUB158(auVar61 << 0x40,7),
                          (0 < sVar12) * (sVar12 < 0x100) * auVar165[6] - (0xff < sVar12));
         auVar73._9_6_ = 0;
@@ -742,7 +742,7 @@ void FUN_1800fe720(void)
                                           (0xff < sVar122)),
                          CONCAT11((0 < sVar124) * (sVar124 < 0x100) * auVar150[8] - (0xff < sVar124)
                                   ,cVar9));
-        Var52 = CONCAT91(CONCAT81((longlong)((unkuint9)Var75 >> 8),
+        Var52 = CONCAT91(CONCAT81((int64_t)((unkuint9)Var75 >> 8),
                                   (0 < sVar120) * (sVar120 < 0x100) * auVar143[6] - (0xff < sVar120)
                                  ),
                          (0 < sVar121) * (sVar121 < 0x100) * auVar150[6] - (0xff < sVar121));
@@ -756,12 +756,12 @@ void FUN_1800fe720(void)
              CONCAT11((0 < sVar18) * (sVar18 < 0x100) * auVar143[0] - (0xff < sVar18),
                       (0 < sVar100) * (sVar100 < 0x100) * auVar150[0] - (0xff < sVar100));
         auVar131._2_14_ = auVar65;
-        auVar132._2_2_ = (short)((ulonglong)uVar127 >> 8);
+        auVar132._2_2_ = (short)((uint64_t)uVar127 >> 8);
         auVar132._0_2_ = (short)((unkuint9)Var75 >> 8);
         auVar132._4_2_ = (short)uVar126;
-        auVar132._6_2_ = (short)((ulonglong)uVar81 >> 0x18);
+        auVar132._6_2_ = (short)((uint64_t)uVar81 >> 0x18);
         auVar132._8_2_ = (short)uVar125;
-        auVar132._10_2_ = (short)((ulonglong)uVar84 >> 0x28);
+        auVar132._10_2_ = (short)((uint64_t)uVar84 >> 0x28);
         auVar132._12_2_ = uVar146;
         auVar132[0xe] = cVar3;
         auVar132[0xf] = 0;
@@ -822,7 +822,7 @@ void FUN_1800fe720(void)
         auVar151._0_14_ = auVar148;
         auVar151[0xf] = (0 < sVar32) * (sVar32 < 0x100) * auVar98[0xe] - (0xff < sVar32);
         auVar165 = psraw(auVar232,6);
-        auVar38._12_2_ = (short)((ulonglong)uVar127 >> 0x30);
+        auVar38._12_2_ = (short)((uint64_t)uVar127 >> 0x30);
         auVar38._0_12_ = auVar147;
         auVar38[0xe] = cVar7;
         auVar41[10] = cVar6;
@@ -985,7 +985,7 @@ void FUN_1800fe720(void)
                                           (0xff < sVar119)),
                          CONCAT11((0 < sVar12) * (sVar12 < 0x100) * auVar165[8] - (0xff < sVar12),
                                   cVar3));
-        Var52 = CONCAT91(CONCAT81((longlong)((unkuint9)Var75 >> 8),
+        Var52 = CONCAT91(CONCAT81((int64_t)((unkuint9)Var75 >> 8),
                                   (0 < sVar11) * (sVar11 < 0x100) * auVar98[6] - (0xff < sVar11)),
                          (0 < sVar118) * (sVar118 < 0x100) * auVar165[6] - (0xff < sVar118));
         auVar68._2_10_ = Var52;
@@ -1065,18 +1065,18 @@ void FUN_1800fe720(void)
                                    ,uVar79));
         auVar82._4_8_ = 0;
         auVar82._0_4_ = uVar78;
-        auVar37._12_3_ = (int3)((ulonglong)uVar84 >> 0x28);
+        auVar37._12_3_ = (int3)((uint64_t)uVar84 >> 0x28);
         auVar37._0_12_ = auVar82 << 0x38;
         uVar81 = CONCAT44(auVar37._11_4_,
                           CONCAT13((0 < sVar117) * (sVar117 < 0x100) * auVar143[10] -
                                    (0xff < sVar117),uVar72));
-        auVar42._10_5_ = (int5)((ulonglong)uVar81 >> 0x18);
+        auVar42._10_5_ = (int5)((uint64_t)uVar81 >> 0x18);
         auVar42._0_10_ = (unkuint10)uVar60 << 0x38;
         uVar127 = CONCAT62(auVar42._9_6_,
                            CONCAT11((0 < sVar116) * (sVar116 < 0x100) * auVar143[8] -
                                     (0xff < sVar116),cVar3));
         auVar69._7_8_ = 0;
-        auVar69._0_7_ = (uint7)((ulonglong)uVar127 >> 8);
+        auVar69._0_7_ = (uint7)((uint64_t)uVar127 >> 8);
         Var62 = CONCAT81(SUB158(auVar69 << 0x40,7),
                          (0 < sVar10) * (sVar10 < 0x100) * auVar143[6] - (0xff < sVar10));
         auVar76._9_6_ = 0;
@@ -1102,18 +1102,18 @@ void FUN_1800fe720(void)
         auVar112[2] = (0 < sVar123) * (sVar123 < 0x100) * auVar143[0] - (0xff < sVar123);
         auVar112._0_2_ = auVar133._0_2_;
         auVar112[3] = 0;
-        auVar134._2_2_ = (short)((ulonglong)uVar127 >> 8);
+        auVar134._2_2_ = (short)((uint64_t)uVar127 >> 8);
         auVar134._0_2_ = (short)((unkuint9)Var75 >> 8);
         auVar134._4_2_ = (short)uVar126;
-        auVar134._6_2_ = (short)((ulonglong)uVar81 >> 0x18);
+        auVar134._6_2_ = (short)((uint64_t)uVar81 >> 0x18);
         auVar134._8_2_ = (short)uVar125;
-        auVar134._10_2_ = (short)((ulonglong)uVar84 >> 0x28);
+        auVar134._10_2_ = (short)((uint64_t)uVar84 >> 0x28);
         auVar134._12_2_ = uVar146;
         auVar134[0xe] = cVar3;
         auVar134[0xf] = 0;
         *pauVar90 = auVar112;
         pauVar90[1] = auVar134;
-        auVar39._12_2_ = (short)((ulonglong)uVar229 >> 0x30);
+        auVar39._12_2_ = (short)((uint64_t)uVar229 >> 0x30);
         auVar39._0_12_ = auVar230;
         auVar39[0xe] = cVar7;
         auVar43[10] = cVar6;

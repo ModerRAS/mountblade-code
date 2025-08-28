@@ -32,17 +32,17 @@
 void ui_system_advanced_animation_processor(void)
 
 {
-  longlong lVar1;
+  int64_t lVar1;
   uint32_t uVar2;
   float *pfVar3;
   int iVar4;
   int iVar5;
   uint64_t unaff_RBX;
-  longlong unaff_RBP;
+  int64_t unaff_RBP;
   char cVar6;
   int32_t unaff_EDI;
   char unaff_R13B;
-  longlong unaff_R14;
+  int64_t unaff_R14;
   char unaff_R15B;
   float fVar7;
   float fVar8;
@@ -81,7 +81,7 @@ void ui_system_advanced_animation_processor(void)
   // 设置UI动画的基础参数
   *(float *)(unaff_R14 + 0x4c) = unaff_XMM6_Da;
   fVar7 = (float)unaff_RBX;
-  fVar15 = (float)((ulonglong)unaff_RBX >> 0x20);
+  fVar15 = (float)((uint64_t)unaff_RBX >> 0x20);
   
   // 执行动画角度的计算和优化
   if ((unaff_XMM12_Da != unaff_XMM6_Da) || (unaff_XMM14_Da != unaff_XMM6_Da)) {
@@ -164,9 +164,9 @@ LAB_18065a17c:
   if (fVar7 == unaff_XMM6_Da) {
     *(bool *)(unaff_R14 + 0x5d) = unaff_XMM12_Da < unaff_XMM6_Da;
   }
-  lVar1 = *(longlong *)((longlong)*(int *)(unaff_R14 + 0x60) * 0x1358 + -0x98 + unaff_R14);
-  fVar7 = (*(float *)(*(longlong *)(lVar1 + 8) + 0x188) /
-          *(float *)(*(longlong *)(lVar1 + 0x38) + 0x188)) * unaff_XMM9_Da * fStack0000000000000034
+  lVar1 = *(int64_t *)((int64_t)*(int *)(unaff_R14 + 0x60) * 0x1358 + -0x98 + unaff_R14);
+  fVar7 = (*(float *)(*(int64_t *)(lVar1 + 8) + 0x188) /
+          *(float *)(*(int64_t *)(lVar1 + 0x38) + 0x188)) * unaff_XMM9_Da * fStack0000000000000034
           + fVar7;
   if (unaff_XMM8_Da <= fVar7) {
     fVar7 = unaff_XMM8_Da;
@@ -283,7 +283,7 @@ LAB_18065a2e9:
   iVar5 = 1;
   fVar7 = unaff_XMM6_Da;
   do {
-    fVar10 = *(float *)(((longlong)afStack_60e8 - unaff_R14) + (longlong)pfVar3);
+    fVar10 = *(float *)(((int64_t)afStack_60e8 - unaff_R14) + (int64_t)pfVar3);
     fVar9 = fVar10 - pfVar3[-10];
     fVar12 = ABS(fVar9);
     if (UI_ANIMATION_THRESHOLD <= fVar12) {
@@ -327,7 +327,7 @@ LAB_18065a5b3:
       *pfVar3 = fVar10;
     }
 LAB_18065a5d3:
-    fVar9 = *(float *)((longlong)afStack_60e8 + (4 - unaff_R14) + (longlong)pfVar3);
+    fVar9 = *(float *)((int64_t)afStack_60e8 + (4 - unaff_R14) + (int64_t)pfVar3);
     fVar12 = fVar9 - pfVar3[-9];
     fVar13 = ABS(fVar12);
     if (UI_ANIMATION_THRESHOLD <= fVar13) {
@@ -372,7 +372,7 @@ LAB_18065a67b:
       pfVar3[1] = fVar9;
     }
 LAB_18065a69c:
-    fVar12 = *(float *)((longlong)afStack_60e8 + (8 - unaff_R14) + (longlong)pfVar3);
+    fVar12 = *(float *)((int64_t)afStack_60e8 + (8 - unaff_R14) + (int64_t)pfVar3);
     fVar13 = fVar12 - pfVar3[-8];
     fVar14 = ABS(fVar13);
     if (UI_ANIMATION_THRESHOLD <= fVar14) {
@@ -463,7 +463,7 @@ LAB_18065a765:
         fVar15 = auVar16._0_4_;
         fStack0000000000000034 = fStack0000000000000034 * UI_SCALE_FACTOR;
         fVar7 = fVar15 * UI_SMOOTHING_FACTOR * (UI_NORMALIZATION_FACTOR - fVar7 * fVar15 * fVar15);
-        *(ulonglong *)(unaff_R14 + 0x6178) =
+        *(uint64_t *)(unaff_R14 + 0x6178) =
              CONCAT44(fVar7 * fVar11 * fStack0000000000000034 +
                       (unaff_XMM8_Da - fStack0000000000000034) * *(float *)(unaff_R14 + 0x617c),
                       fVar7 * fVar17 * fStack0000000000000034 +
@@ -478,12 +478,12 @@ LAB_18065a765:
         *(float *)(unaff_R14 + 0x6178) = fVar11 * fVar15;
       }
       else {
-        *(ulonglong *)(unaff_R14 + 0x6178) = CONCAT44(fVar19,fVar7);
+        *(uint64_t *)(unaff_R14 + 0x6178) = CONCAT44(fVar19,fVar7);
       }
                     // WARNING: Subroutine does not return
       uStack_8 = 0x18065aa9f;
       fStack000000000000007c = fStack000000000000005c;
-      FUN_1808fc050(*(ulonglong *)(unaff_RBP + -0x70) ^ (ulonglong)&stack0x00000000);
+      FUN_1808fc050(*(uint64_t *)(unaff_RBP + -0x70) ^ (uint64_t)&stack0x00000000);
     }
   } while( true );
 }
@@ -522,10 +522,10 @@ void ui_system_animation_controller(uint64_t param_1,uint64_t param_2,float para
   int iVar3;
   int iVar4;
   float *unaff_RBX;
-  longlong unaff_RBP;
+  int64_t unaff_RBP;
   char cVar5;
   int32_t unaff_EDI;
-  longlong unaff_R14;
+  int64_t unaff_R14;
   float fVar6;
   float fVar7;
   float fVar8;
@@ -594,7 +594,7 @@ void ui_system_animation_controller(uint64_t param_1,uint64_t param_2,float para
   pfVar2 = (float *)(unaff_R14 + 0x6154);
   iVar4 = 1;
   do {
-    fVar7 = *(float *)(((longlong)afStack_60e8 - unaff_R14) + (longlong)pfVar2);
+    fVar7 = *(float *)(((int64_t)afStack_60e8 - unaff_R14) + (int64_t)pfVar2);
     fVar8 = fVar7 - pfVar2[-10];
     fVar9 = (float)((uint)fVar8 & in_XMM5_Da);
     if (UI_ANIMATION_THRESHOLD <= fVar9) {
@@ -640,7 +640,7 @@ LAB_18065a5b3:
       *pfVar2 = fVar7;
     }
 LAB_18065a5d3:
-    fVar8 = *(float *)((longlong)afStack_60e8 + (4 - unaff_R14) + (longlong)pfVar2);
+    fVar8 = *(float *)((int64_t)afStack_60e8 + (4 - unaff_R14) + (int64_t)pfVar2);
     fVar9 = fVar8 - pfVar2[-9];
     fVar10 = (float)((uint)fVar9 & in_XMM5_Da);
     if (UI_ANIMATION_THRESHOLD <= fVar10) {
@@ -686,7 +686,7 @@ LAB_18065a67b:
       pfVar2[1] = fVar8;
     }
 LAB_18065a69c:
-    fVar9 = *(float *)((longlong)afStack_60e8 + (8 - unaff_R14) + (longlong)pfVar2);
+    fVar9 = *(float *)((int64_t)afStack_60e8 + (8 - unaff_R14) + (int64_t)pfVar2);
     fVar10 = fVar9 - pfVar2[-8];
     fVar11 = (float)((uint)fVar10 & in_XMM5_Da);
     if (UI_ANIMATION_THRESHOLD <= fVar11) {
@@ -783,7 +783,7 @@ LAB_18065a765:
         fStack000000000000003c =
              fVar7 * fVar8 * param_6._4_4_ +
              (unaff_XMM8_Da - param_6._4_4_) * *(float *)(unaff_R14 + 0x617c);
-        *(ulonglong *)(unaff_R14 + 0x6178) =
+        *(uint64_t *)(unaff_R14 + 0x6178) =
              CONCAT44(fStack000000000000003c,
                       fVar7 * fVar9 * param_6._4_4_ +
                       (unaff_XMM8_Da - param_6._4_4_) * *(float *)(unaff_R14 + 0x6178));
@@ -797,11 +797,11 @@ LAB_18065a765:
         *(float *)(unaff_R14 + 0x6178) = fVar8 * fVar6;
       }
       else {
-        *(ulonglong *)(unaff_R14 + 0x6178) = CONCAT44(fStack000000000000003c,fVar7);
+        *(uint64_t *)(unaff_R14 + 0x6178) = CONCAT44(fStack000000000000003c,fVar7);
       }
                     // WARNING: Subroutine does not return
       uStack_8 = 0x18065aa9f;
-      FUN_1808fc050(*(ulonglong *)(unaff_RBP + -0x70) ^ (ulonglong)&stack0x00000000);
+      FUN_1808fc050(*(uint64_t *)(unaff_RBP + -0x70) ^ (uint64_t)&stack0x00000000);
     }
   } while( true );
 }

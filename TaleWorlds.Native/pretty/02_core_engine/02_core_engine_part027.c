@@ -44,10 +44,10 @@ void report_runtime_error(void* engine_context, const char* error_message, int e
   void* string_builder;
   void* format_buffer;
   uint format_length;
-  longlong context_data;
+  int64_t context_data;
   void* temp_pointer;
   uint new_size;
-  longlong str_length;
+  int64_t str_length;
   char is_debugger_attached;
   
   // 初始化栈变量
@@ -235,7 +235,7 @@ bool handle_system_error(void* error_context, void** error_data)
   int error_code;
   int wait_result;
   int thread_id;
-  longlong error_info;
+  int64_t error_info;
   void** error_info_ptr;
   void** temp_ptr;
   void*** ptr_ptr;
@@ -347,8 +347,8 @@ void handle_system_exception(void* exception_context, void* exception_data)
     
     // 如果不是调试模式，调用异常处理器
     if (is_debug_mode == '\0') {
-      (**(code **)(*(longlong *)core_system_data_buffer[1] + 0x18))
-                ((longlong *)core_system_data_buffer[1], &exception_info, debug_info);
+      (**(code **)(*(int64_t *)core_system_data_buffer[1] + 0x18))
+                ((int64_t *)core_system_data_buffer[1], &exception_info, debug_info);
     }
     
     // 清理资源
@@ -359,8 +359,8 @@ void handle_system_exception(void* exception_context, void* exception_data)
 // 辅助函数声明
 void* create_string_buffer(void);
 void append_format_string(void* buffer, const char* format, ...);
-longlong get_engine_context_info(void* context);
-void copy_message_data(void* dest, longlong src);
+int64_t get_engine_context_info(void* context);
+void copy_message_data(void* dest, int64_t src);
 void append_additional_info(void* buffer, const char* info, void* source);
 void cleanup_string_buffer(void** buffer);
 void* get_debug_interface(void);
@@ -372,8 +372,8 @@ void wait_for_correct_thread(void);
 void execute_main_thread_debug_logic(void);
 int get_exit_mode(void);
 void trigger_software_interrupt(void);
-longlong get_system_error_info(void** builder);
-void* extract_error_message(longlong context);
+int64_t get_system_error_info(void** builder);
+void* extract_error_message(int64_t context);
 void* create_error_report_header(void);
 void append_error_code(void* buffer, int code);
 void append_error_description(void* buffer, const char* desc);
@@ -406,10 +406,10 @@ void* create_output_buffer(void);
 void append_error_header(void* buffer, const char* header);
 void append_error_code_info(void* buffer, int code);
 void output_to_debugger(void* output);
-longlong get_system_config_info(void);
-char get_log_to_file_flag(longlong config);
+int64_t get_system_config_info(void);
+char get_log_to_file_flag(int64_t config);
 void* create_default_log_path(void);
-void* create_configured_log_path(longlong config);
+void* create_configured_log_path(int64_t config);
 void* build_complete_error_report(void** data, void* path, char log_to_file);
 void output_error_report(void* report);
 void cleanup_error_handler(void* context);

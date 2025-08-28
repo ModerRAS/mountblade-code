@@ -4,7 +4,7 @@
 
 // 函数: 初始化引擎组件并管理资源
 // 原函数名: FUN_18021fbb0
-void initialize_engine_components(longlong engine_context)
+void initialize_engine_components(int64_t engine_context)
 
 {
   uint64_t temp_var1;
@@ -18,9 +18,9 @@ void initialize_engine_components(longlong engine_context)
   uint64_t stack_val_120;
   int8_t stack_val_118;
   int32_t stack_val_110;
-  longlong *resource_ptr_108;
-  longlong *resource_ptr_100;
-  longlong *resource_ptr_f8;
+  int64_t *resource_ptr_108;
+  int64_t *resource_ptr_100;
+  int64_t *resource_ptr_f8;
   uint64_t stack_val_f0;
   void *resource_ptr_e8;
   int8_t *resource_ptr_e0;
@@ -30,11 +30,11 @@ void initialize_engine_components(longlong engine_context)
   int8_t *resource_ptr_80;
   int32_t stack_val_78;
   int8_t temp_buffer_70 [72];
-  ulonglong checksum_val_28;
+  uint64_t checksum_val_28;
   
   // 初始化栈变量
   stack_val_f0 = 0xfffffffffffffffe;
-  checksum_val_28 = ENGINE_DATA_CHECKSUM ^ (ulonglong)temp_buffer_168;
+  checksum_val_28 = ENGINE_DATA_CHECKSUM ^ (uint64_t)temp_buffer_168;
   resource_ptr_e8 = &ENGINE_RESOURCE_TABLE;
   resource_ptr_e0 = temp_buffer_d0;
   temp_buffer_d0[0] = 0;
@@ -51,12 +51,12 @@ void initialize_engine_components(longlong engine_context)
   temp_ptr2 = (uint64_t *)get_engine_state();
   temp_var1 = *temp_ptr2;
   *temp_ptr2 = 0;
-  resource_ptr_100 = *(longlong **)(engine_context + 0x1c70);
+  resource_ptr_100 = *(int64_t **)(engine_context + 0x1c70);
   *(uint64_t *)(engine_context + 0x1c70) = temp_var1;
-  if (resource_ptr_100 != (longlong *)0x0) {
+  if (resource_ptr_100 != (int64_t *)0x0) {
     (**(code **)(*resource_ptr_100 + 0x38))();
   }
-  if (resource_ptr_f8 != (longlong *)0x0) {
+  if (resource_ptr_f8 != (int64_t *)0x0) {
     (**(code **)(*resource_ptr_f8 + 0x38))();
   }
   resource_ptr_e8 = &ENGINE_CALLBACK_TABLE;
@@ -76,12 +76,12 @@ void initialize_engine_components(longlong engine_context)
   temp_ptr2 = (uint64_t *)get_engine_state();
   temp_var1 = *temp_ptr2;
   *temp_ptr2 = 0;
-  resource_ptr_100 = *(longlong **)(engine_context + 0x1cb8);
+  resource_ptr_100 = *(int64_t **)(engine_context + 0x1cb8);
   *(uint64_t *)(engine_context + 0x1cb8) = temp_var1;
-  if (resource_ptr_100 != (longlong *)0x0) {
+  if (resource_ptr_100 != (int64_t *)0x0) {
     (**(code **)(*resource_ptr_100 + 0x38))();
   }
-  if (resource_ptr_108 != (longlong *)0x0) {
+  if (resource_ptr_108 != (int64_t *)0x0) {
     (**(code **)(*resource_ptr_108 + 0x38))();
   }
   resource_ptr_88 = &ENGINE_CALLBACK_TABLE;
@@ -101,12 +101,12 @@ void initialize_engine_components(longlong engine_context)
   temp_ptr2 = (uint64_t *)get_engine_state();
   temp_var1 = *temp_ptr2;
   *temp_ptr2 = 0;
-  resource_ptr_f8 = *(longlong **)(engine_context + 0x1c78);
+  resource_ptr_f8 = *(int64_t **)(engine_context + 0x1c78);
   *(uint64_t *)(engine_context + 0x1c78) = temp_var1;
-  if (resource_ptr_f8 != (longlong *)0x0) {
+  if (resource_ptr_f8 != (int64_t *)0x0) {
     (**(code **)(*resource_ptr_f8 + 0x38))();
   }
-  if (resource_ptr_100 != (longlong *)0x0) {
+  if (resource_ptr_100 != (int64_t *)0x0) {
     (**(code **)(*resource_ptr_100 + 0x38))();
   }
   resource_ptr_e8 = &ENGINE_CALLBACK_TABLE;
@@ -126,12 +126,12 @@ void initialize_engine_components(longlong engine_context)
   temp_ptr2 = (uint64_t *)get_engine_state();
   temp_var1 = *temp_ptr2;
   *temp_ptr2 = 0;
-  resource_ptr_108 = *(longlong **)(engine_context + 0x1cb0);
+  resource_ptr_108 = *(int64_t **)(engine_context + 0x1cb0);
   *(uint64_t *)(engine_context + 0x1cb0) = temp_var1;
-  if (resource_ptr_108 != (longlong *)0x0) {
+  if (resource_ptr_108 != (int64_t *)0x0) {
     (**(code **)(*resource_ptr_108 + 0x38))();
   }
-  if (resource_ptr_f8 != (longlong *)0x0) {
+  if (resource_ptr_f8 != (int64_t *)0x0) {
     (**(code **)(*resource_ptr_f8 + 0x38))();
   }
   resource_ptr_88 = &ENGINE_CALLBACK_TABLE;
@@ -151,12 +151,12 @@ void initialize_engine_components(longlong engine_context)
   temp_ptr2 = (uint64_t *)get_engine_state();
   temp_var1 = *temp_ptr2;
   *temp_ptr2 = 0;
-  resource_ptr_108 = *(longlong **)(engine_context + 0x1c80);
+  resource_ptr_108 = *(int64_t **)(engine_context + 0x1c80);
   *(uint64_t *)(engine_context + 0x1c80) = temp_var1;
-  if (resource_ptr_108 != (longlong *)0x0) {
+  if (resource_ptr_108 != (int64_t *)0x0) {
     (**(code **)(*resource_ptr_108 + 0x38))();
   }
-  if (resource_ptr_100 != (longlong *)0x0) {
+  if (resource_ptr_100 != (int64_t *)0x0) {
     (**(code **)(*resource_ptr_100 + 0x38))();
   }
   resource_ptr_e8 = &ENGINE_CALLBACK_TABLE;
@@ -176,12 +176,12 @@ void initialize_engine_components(longlong engine_context)
   temp_ptr2 = (uint64_t *)get_engine_state();
   temp_var1 = *temp_ptr2;
   *temp_ptr2 = 0;
-  resource_ptr_108 = *(longlong **)(engine_context + 0x1c88);
+  resource_ptr_108 = *(int64_t **)(engine_context + 0x1c88);
   *(uint64_t *)(engine_context + 0x1c88) = temp_var1;
-  if (resource_ptr_108 != (longlong *)0x0) {
+  if (resource_ptr_108 != (int64_t *)0x0) {
     (**(code **)(*resource_ptr_108 + 0x38))();
   }
-  if (resource_ptr_f8 != (longlong *)0x0) {
+  if (resource_ptr_f8 != (int64_t *)0x0) {
     (**(code **)(*resource_ptr_f8 + 0x38))();
   }
   resource_ptr_88 = &ENGINE_CALLBACK_TABLE;
@@ -201,12 +201,12 @@ void initialize_engine_components(longlong engine_context)
   temp_ptr2 = (uint64_t *)get_engine_state();
   temp_var1 = *temp_ptr2;
   *temp_ptr2 = 0;
-  resource_ptr_108 = *(longlong **)(engine_context + 0x1c90);
+  resource_ptr_108 = *(int64_t **)(engine_context + 0x1c90);
   *(uint64_t *)(engine_context + 0x1c90) = temp_var1;
-  if (resource_ptr_108 != (longlong *)0x0) {
+  if (resource_ptr_108 != (int64_t *)0x0) {
     (**(code **)(*resource_ptr_108 + 0x38))();
   }
-  if (resource_ptr_100 != (longlong *)0x0) {
+  if (resource_ptr_100 != (int64_t *)0x0) {
     (**(code **)(*resource_ptr_100 + 0x38))();
   }
   resource_ptr_e8 = &ENGINE_CALLBACK_TABLE;
@@ -226,12 +226,12 @@ void initialize_engine_components(longlong engine_context)
   temp_ptr2 = (uint64_t *)get_engine_state();
   temp_var1 = *temp_ptr2;
   *temp_ptr2 = 0;
-  resource_ptr_108 = *(longlong **)(engine_context + 0x1ca0);
+  resource_ptr_108 = *(int64_t **)(engine_context + 0x1ca0);
   *(uint64_t *)(engine_context + 0x1ca0) = temp_var1;
-  if (resource_ptr_108 != (longlong *)0x0) {
+  if (resource_ptr_108 != (int64_t *)0x0) {
     (**(code **)(*resource_ptr_108 + 0x38))();
   }
-  if (resource_ptr_f8 != (longlong *)0x0) {
+  if (resource_ptr_f8 != (int64_t *)0x0) {
     (**(code **)(*resource_ptr_f8 + 0x38))();
   }
   resource_ptr_88 = &ENGINE_CALLBACK_TABLE;
@@ -251,12 +251,12 @@ void initialize_engine_components(longlong engine_context)
   temp_ptr2 = (uint64_t *)get_engine_state();
   temp_var1 = *temp_ptr2;
   *temp_ptr2 = 0;
-  resource_ptr_108 = *(longlong **)(engine_context + 0x1c98);
+  resource_ptr_108 = *(int64_t **)(engine_context + 0x1c98);
   *(uint64_t *)(engine_context + 0x1c98) = temp_var1;
-  if (resource_ptr_108 != (longlong *)0x0) {
+  if (resource_ptr_108 != (int64_t *)0x0) {
     (**(code **)(*resource_ptr_108 + 0x38))();
   }
-  if (resource_ptr_100 != (longlong *)0x0) {
+  if (resource_ptr_100 != (int64_t *)0x0) {
     (**(code **)(*resource_ptr_100 + 0x38))();
   }
   resource_ptr_e8 = &ENGINE_CALLBACK_TABLE;
@@ -276,12 +276,12 @@ void initialize_engine_components(longlong engine_context)
   temp_ptr2 = (uint64_t *)get_engine_state();
   temp_var1 = *temp_ptr2;
   *temp_ptr2 = 0;
-  resource_ptr_108 = *(longlong **)(engine_context + 0x1ca8);
+  resource_ptr_108 = *(int64_t **)(engine_context + 0x1ca8);
   *(uint64_t *)(engine_context + 0x1ca8) = temp_var1;
-  if (resource_ptr_108 != (longlong *)0x0) {
+  if (resource_ptr_108 != (int64_t *)0x0) {
     (**(code **)(*resource_ptr_108 + 0x38))();
   }
-  if (resource_ptr_f8 != (longlong *)0x0) {
+  if (resource_ptr_f8 != (int64_t *)0x0) {
     (**(code **)(*resource_ptr_f8 + 0x38))();
   }
   resource_ptr_88 = &ENGINE_CALLBACK_TABLE;
@@ -301,12 +301,12 @@ void initialize_engine_components(longlong engine_context)
   temp_ptr2 = (uint64_t *)get_engine_state();
   temp_var1 = *temp_ptr2;
   *temp_ptr2 = 0;
-  resource_ptr_108 = *(longlong **)(engine_context + 0x1cc8);
+  resource_ptr_108 = *(int64_t **)(engine_context + 0x1cc8);
   *(uint64_t *)(engine_context + 0x1cc8) = temp_var1;
-  if (resource_ptr_108 != (longlong *)0x0) {
+  if (resource_ptr_108 != (int64_t *)0x0) {
     (**(code **)(*resource_ptr_108 + 0x38))();
   }
-  if (resource_ptr_100 != (longlong *)0x0) {
+  if (resource_ptr_100 != (int64_t *)0x0) {
     (**(code **)(*resource_ptr_100 + 0x38))();
   }
   resource_ptr_e8 = &ENGINE_CALLBACK_TABLE;
@@ -326,12 +326,12 @@ void initialize_engine_components(longlong engine_context)
   temp_ptr2 = (uint64_t *)get_engine_state();
   temp_var1 = *temp_ptr2;
   *temp_ptr2 = 0;
-  resource_ptr_108 = *(longlong **)(engine_context + 0x1cc0);
+  resource_ptr_108 = *(int64_t **)(engine_context + 0x1cc0);
   *(uint64_t *)(engine_context + 0x1cc0) = temp_var1;
-  if (resource_ptr_108 != (longlong *)0x0) {
+  if (resource_ptr_108 != (int64_t *)0x0) {
     (**(code **)(*resource_ptr_108 + 0x38))();
   }
-  if (resource_ptr_f8 != (longlong *)0x0) {
+  if (resource_ptr_f8 != (int64_t *)0x0) {
     (**(code **)(*resource_ptr_f8 + 0x38))();
   }
   resource_ptr_88 = &ENGINE_CALLBACK_TABLE;
@@ -351,17 +351,17 @@ void initialize_engine_components(longlong engine_context)
   temp_ptr2 = (uint64_t *)get_engine_state();
   temp_var1 = *temp_ptr2;
   *temp_ptr2 = 0;
-  resource_ptr_108 = *(longlong **)(engine_context + 0x1cd0);
+  resource_ptr_108 = *(int64_t **)(engine_context + 0x1cd0);
   *(uint64_t *)(engine_context + 0x1cd0) = temp_var1;
-  if (resource_ptr_108 != (longlong *)0x0) {
+  if (resource_ptr_108 != (int64_t *)0x0) {
     (**(code **)(*resource_ptr_108 + 0x38))();
   }
-  if (resource_ptr_100 != (longlong *)0x0) {
+  if (resource_ptr_100 != (int64_t *)0x0) {
     (**(code **)(*resource_ptr_100 + 0x38))();
   }
   resource_ptr_e8 = &ENGINE_CALLBACK_TABLE;
                     // WARNING: Subroutine does not return
-  finalize_engine_initialization(checksum_val_28 ^ (ulonglong)temp_buffer_168);
+  finalize_engine_initialization(checksum_val_28 ^ (uint64_t)temp_buffer_168);
 }
 
 

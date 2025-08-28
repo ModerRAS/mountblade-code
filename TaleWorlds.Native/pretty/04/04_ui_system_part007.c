@@ -25,10 +25,10 @@
 #define ui_system_system_cleanup_handler FUN_180657fa0         // UI系统系统清理处理器
 
 // 函数声明
-uint64_t * ui_system_memory_manager_cleanup(uint64_t *memory_ptr, ulonglong cleanup_flag);
+uint64_t * ui_system_memory_manager_cleanup(uint64_t *memory_ptr, uint64_t cleanup_flag);
 void ui_system_steam_interface_initializer(uint64_t *interface_ptr);
 void ui_system_steam_interface_secondary(uint64_t *interface_ptr);
-uint64_t * ui_system_memory_allocator(uint64_t *memory_ptr, ulonglong alloc_flag, uint64_t param_3, uint64_t param_4);
+uint64_t * ui_system_memory_allocator(uint64_t *memory_ptr, uint64_t alloc_flag, uint64_t param_3, uint64_t param_4);
 void ui_system_system_call_handler(void);
 void ui_system_system_cleanup_handler(void);
 
@@ -51,13 +51,13 @@ void ui_system_system_cleanup_handler(void);
  * 4. 调用系统函数进行数据处理
  * 5. 返回处理结果
  */
-void ui_system_advanced_data_processor(uint64_t system_context, uint64_t data_flags, void *data_ptr, uint64_t process_flag, longlong data_offset)
+void ui_system_advanced_data_processor(uint64_t system_context, uint64_t data_flags, void *data_ptr, uint64_t process_flag, int64_t data_offset)
 {
     byte comparison_result;
     byte *source_data_ptr;
     uint target_data_value;
     int32_t process_status;
-    longlong data_difference;
+    int64_t data_difference;
     
     // 检查处理标志和数据指针有效性
     if (((char)process_flag == '\0') && (data_ptr != (void *)UI_SYSTEM_GLOBAL_DATA_1)) {
@@ -68,7 +68,7 @@ void ui_system_advanced_data_processor(uint64_t system_context, uint64_t data_fl
         }
         if (*(int *)(data_offset + 0x10) != 0) {
             source_data_ptr = *(byte **)(data_ptr + 0x28);
-            data_difference = *(longlong *)(data_offset + 8) - (longlong)source_data_ptr;
+            data_difference = *(int64_t *)(data_offset + 8) - (int64_t)source_data_ptr;
             
             // 执行数据比较循环
             do {
@@ -107,7 +107,7 @@ LAB_1806579f0:
  * 2. 根据清理标志决定是否释放内存
  * 3. 返回处理后的内存指针
  */
-uint64_t * ui_system_memory_manager_cleanup(uint64_t *memory_ptr, ulonglong cleanup_flag)
+uint64_t * ui_system_memory_manager_cleanup(uint64_t *memory_ptr, uint64_t cleanup_flag)
 {
     // 重置内存指针到预定义位置
     *memory_ptr = (uint64_t *)UI_SYSTEM_MEMORY_BLOCK_1;
@@ -184,7 +184,7 @@ void ui_system_steam_interface_secondary(uint64_t *interface_ptr)
  * 3. 执行系统初始化调用
  * 4. 根据标志决定是否释放内存
  */
-uint64_t * ui_system_memory_allocator(uint64_t *memory_ptr, ulonglong alloc_flag, uint64_t param_3, uint64_t param_4)
+uint64_t * ui_system_memory_allocator(uint64_t *memory_ptr, uint64_t alloc_flag, uint64_t param_3, uint64_t param_4)
 {
     uint64_t allocation_flag;
     
@@ -232,27 +232,27 @@ void ui_system_system_call_handler(void)
  * 4. 管理数据结构和内存分配
  * 5. 清理资源并返回结果
  */
-void ui_system_data_structure_processor(longlong data_source, longlong data_target, uint64_t process_param_3, uint64_t process_param_4)
+void ui_system_data_structure_processor(int64_t data_source, int64_t data_target, uint64_t process_param_3, uint64_t process_param_4)
 {
     int data_length;
     uint64_t *structure_ptr;
-    longlong source_offset;
-    ulonglong iteration_count;
+    int64_t source_offset;
+    uint64_t iteration_count;
     uint processed_count;
-    ulonglong block_count;
+    uint64_t block_count;
     uint64_t process_flag;
     void *stack_data_ptr;
     int8_t *memory_block_ptr;
     int memory_block_size;
-    ulonglong memory_block_flag;
+    uint64_t memory_block_flag;
     
     process_flag = 0xfffffffffffffffe;
     iteration_count = 0;
-    source_offset = *(longlong *)(data_source + 8);
+    source_offset = *(int64_t *)(data_source + 8);
     block_count = iteration_count;
     
     // 检查是否有数据需要处理
-    if (*(longlong *)(data_source + 0x10) - source_offset >> 5 != 0) {
+    if (*(int64_t *)(data_source + 0x10) - source_offset >> 5 != 0) {
         do {
             // 初始化数据结构
             stack_data_ptr = (void *)UI_SYSTEM_DATA_STRUCTURE_1;
@@ -270,7 +270,7 @@ void ui_system_data_structure_processor(longlong data_source, longlong data_targ
             }
             
             // 处理内存块数据
-            if (*(longlong *)(iteration_count + 8 + source_offset) != 0) {
+            if (*(int64_t *)(iteration_count + 8 + source_offset) != 0) {
                 memory_block_size = 0;
                 if (memory_block_ptr != (int8_t *)0x0) {
                     *memory_block_ptr = 0;
@@ -302,7 +302,7 @@ void ui_system_data_structure_processor(longlong data_source, longlong data_targ
                     if ((int8_t *)structure_ptr[1] != (int8_t *)0x0) {
                         *(int8_t *)structure_ptr[1] = 0;
                     }
-                    *(int32_t *)((longlong)structure_ptr + 0x1c) = 0;
+                    *(int32_t *)((int64_t)structure_ptr + 0x1c) = 0;
                 }
             }
             else {
@@ -319,9 +319,9 @@ void ui_system_data_structure_processor(longlong data_source, longlong data_targ
             
             processed_count = (int)block_count + 1;
             iteration_count = iteration_count + 0x20;
-            source_offset = *(longlong *)(data_source + 8);
-            block_count = (ulonglong)processed_count;
-        } while ((ulonglong)(longlong)(int)processed_count < (ulonglong)(*(longlong *)(data_source + 0x10) - source_offset >> 5));
+            source_offset = *(int64_t *)(data_source + 8);
+            block_count = (uint64_t)processed_count;
+        } while ((uint64_t)(int64_t)(int)processed_count < (uint64_t)(*(int64_t *)(data_source + 0x10) - source_offset >> 5));
     }
     return;
 }

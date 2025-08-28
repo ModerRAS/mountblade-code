@@ -21,7 +21,7 @@
  * @param array_size 数组大小参数
  * @param computation_flags 计算标志位
  */
-void execute_vector_math_operations(longlong data_array, uint64_t array_size, uint64_t computation_flags)
+void execute_vector_math_operations(int64_t data_array, uint64_t array_size, uint64_t computation_flags)
 {
     float temp_float1;
     uint64_t temp_uint8_1;
@@ -29,16 +29,16 @@ void execute_vector_math_operations(longlong data_array, uint64_t array_size, ui
     uint64_t temp_uint8_3;
     uint64_t temp_uint8_4;
     uint64_t temp_uint8_5;
-    longlong array_offset;
+    int64_t array_offset;
     uint element_index;
-    ulonglong iteration_count;
-    longlong loop_counter_1;
-    longlong loop_counter_2;
-    ulonglong max_iterations;
-    longlong computation_context;
-    longlong memory_manager;
+    uint64_t iteration_count;
+    int64_t loop_counter_1;
+    int64_t loop_counter_2;
+    uint64_t max_iterations;
+    int64_t computation_context;
+    int64_t memory_manager;
     float *vector_data;
-    ulonglong data_mask;
+    uint64_t data_mask;
     float vector_component_1;
     float vector_component_2;
     float vector_component_3;
@@ -54,7 +54,7 @@ void execute_vector_math_operations(longlong data_array, uint64_t array_size, ui
     float temp_float5;
     
     // 初始化计算参数
-    temp_uint4_2 = (int32_t)((ulonglong)computation_flags >> 0x20);
+    temp_uint4_2 = (int32_t)((uint64_t)computation_flags >> 0x20);
     temp_uint4_1 = (int32_t)computation_flags;
     
     // 计算数组偏移量和循环计数
@@ -168,7 +168,7 @@ void execute_vector_math_operations(longlong data_array, uint64_t array_size, ui
             
             // 更新迭代计数和指针
             element_index = (int)iteration_count + 1;
-            iteration_count = (ulonglong)element_index;
+            iteration_count = (uint64_t)element_index;
             vector_data = vector_data + 0xc;
             
             // 更新最大值数组
@@ -177,12 +177,12 @@ void execute_vector_math_operations(longlong data_array, uint64_t array_size, ui
             *(int32_t *)(computation_context + -0x61) = computation_param_1;
             *(int32_t *)(computation_context + -0x5d) = computation_param_2;
             
-        } while ((ulonglong)(longlong)(int)element_index < (ulonglong)(loop_counter_2 - loop_counter_1));
+        } while ((uint64_t)(int64_t)(int)element_index < (uint64_t)(loop_counter_2 - loop_counter_1));
     }
     
     // 第二阶段：处理内存中的数据块
-    loop_counter_1 = *(longlong *)(memory_manager + 0x20);
-    max_iterations = *(longlong *)(memory_manager + 0x28) - loop_counter_1 >> 5;
+    loop_counter_1 = *(int64_t *)(memory_manager + 0x20);
+    max_iterations = *(int64_t *)(memory_manager + 0x28) - loop_counter_1 >> 5;
     iteration_count = data_mask;
     
     if (max_iterations != 0) {
@@ -273,9 +273,9 @@ void execute_vector_math_operations(longlong data_array, uint64_t array_size, ui
             *(int32_t *)(computation_context + -0x61) = computation_param_1;
             *(int32_t *)(computation_context + -0x5d) = computation_param_2;
             
-            iteration_count = (ulonglong)element_index;
+            iteration_count = (uint64_t)element_index;
             
-        } while ((ulonglong)(longlong)(int)element_index < max_iterations);
+        } while ((uint64_t)(int64_t)(int)element_index < max_iterations);
     }
     
     // 第三阶段：整理和输出结果
@@ -320,7 +320,7 @@ void execute_vector_math_operations(longlong data_array, uint64_t array_size, ui
  * @param offset 偏移量
  * @return 计算后的偏移地址
  */
-longlong calculate_array_offset(longlong base_address, longlong offset)
+int64_t calculate_array_offset(int64_t base_address, int64_t offset)
 {
     return base_address + offset;
 }
@@ -333,9 +333,9 @@ longlong calculate_array_offset(longlong base_address, longlong offset)
  * @param value_16bit 16位输入值
  * @return 符号扩展后的64位值
  */
-longlong sign_extend_16bit(longlong value_16bit)
+int64_t sign_extend_16bit(int64_t value_16bit)
 {
-    return (longlong)(short)value_16bit;
+    return (int64_t)(short)value_16bit;
 }
 
 /**
@@ -345,7 +345,7 @@ longlong sign_extend_16bit(longlong value_16bit)
  * 
  * @param data_ptr 数据指针
  */
-void perform_mathematical_optimization(longlong data_ptr)
+void perform_mathematical_optimization(int64_t data_ptr)
 {
     // 这个函数在原始代码中调用，可能是用于执行额外的数学优化
     // 具体实现需要根据上下文确定

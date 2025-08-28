@@ -7,15 +7,15 @@
 void FUN_1807f75f2(void)
 
 {
-  ulonglong in_stack_00000860;
+  uint64_t in_stack_00000860;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000860 ^ (ulonglong)&stack0x00000000);
+  FUN_1808fc050(in_stack_00000860 ^ (uint64_t)&stack0x00000000);
 }
 
 
 
-uint64_t FUN_1807f7610(longlong param_1,uint64_t param_2,uint param_3,uint *param_4)
+uint64_t FUN_1807f7610(int64_t param_1,uint64_t param_2,uint param_3,uint *param_4)
 
 {
   uint uVar1;
@@ -76,20 +76,20 @@ uint64_t FUN_1807f769b(void)
   char cVar2;
   uint uVar3;
   uint uVar4;
-  longlong lVar5;
+  int64_t lVar5;
   int in_EAX;
   int iVar6;
-  longlong lVar7;
+  int64_t lVar7;
   int8_t *puVar8;
   uint64_t uVar9;
   uint uVar10;
-  longlong lVar11;
+  int64_t lVar11;
   uint unaff_EBP;
-  longlong unaff_RDI;
+  int64_t unaff_RDI;
   char cStack0000000000000090;
   uint *in_stack_000000a8;
   
-  lVar5 = *(longlong *)(unaff_RDI + 0x198);
+  lVar5 = *(int64_t *)(unaff_RDI + 0x198);
   cStack0000000000000090 = (char)in_EAX;
   if (lVar5 != 0) {
     func_0x000180743c20(lVar5,in_EAX + 0xb);
@@ -181,14 +181,14 @@ uint64_t FUN_1807f76aa(void)
   uint uVar4;
   char in_AL;
   int iVar5;
-  longlong lVar6;
+  int64_t lVar6;
   int8_t *puVar7;
   uint64_t uVar8;
   uint uVar9;
-  longlong lVar10;
+  int64_t lVar10;
   uint unaff_EBP;
-  longlong unaff_RDI;
-  longlong unaff_R12;
+  int64_t unaff_RDI;
+  int64_t unaff_R12;
   char cStack0000000000000090;
   uint *in_stack_000000a8;
   
@@ -282,17 +282,17 @@ uint64_t FUN_1807f76f9(char param_1)
   uint uVar3;
   uint uVar4;
   int iVar5;
-  longlong in_RAX;
+  int64_t in_RAX;
   int8_t *puVar6;
-  longlong lVar7;
+  int64_t lVar7;
   uint64_t uVar8;
   uint uVar9;
-  longlong unaff_RBX;
+  int64_t unaff_RBX;
   uint unaff_EBP;
-  longlong unaff_RDI;
-  longlong lVar10;
-  longlong unaff_R12;
-  longlong unaff_R14;
+  int64_t unaff_RDI;
+  int64_t lVar10;
+  int64_t unaff_R12;
+  int64_t unaff_R14;
   char in_stack_00000090;
   uint *in_stack_000000a8;
   
@@ -377,17 +377,17 @@ uint64_t FUN_1807f76fe(char param_1)
   uint uVar3;
   uint uVar4;
   int iVar5;
-  longlong in_RAX;
+  int64_t in_RAX;
   int8_t *puVar6;
-  longlong lVar7;
+  int64_t lVar7;
   uint64_t uVar8;
   uint uVar9;
-  longlong unaff_RBX;
+  int64_t unaff_RBX;
   uint unaff_EBP;
-  longlong unaff_RDI;
-  longlong lVar10;
-  longlong unaff_R12;
-  longlong unaff_R14;
+  int64_t unaff_RDI;
+  int64_t lVar10;
+  int64_t unaff_R12;
+  int64_t unaff_R14;
   char in_stack_00000090;
   uint *in_stack_000000a8;
   
@@ -472,16 +472,16 @@ uint64_t FUN_1807f777c(void)
   uint uVar3;
   uint uVar4;
   int iVar5;
-  longlong lVar6;
+  int64_t lVar6;
   uint64_t uVar7;
   uint uVar8;
-  longlong unaff_RBX;
+  int64_t unaff_RBX;
   uint unaff_EBP;
-  longlong unaff_RSI;
-  longlong unaff_RDI;
-  longlong lVar9;
-  longlong unaff_R12;
-  longlong unaff_R14;
+  int64_t unaff_RSI;
+  int64_t unaff_RDI;
+  int64_t lVar9;
+  int64_t unaff_R12;
+  int64_t unaff_R14;
   char in_stack_00000090;
   uint *in_stack_000000a8;
   
@@ -549,14 +549,14 @@ uint64_t FUN_1807f77c5(void)
   uint uVar3;
   uint uVar4;
   int iVar5;
-  longlong lVar6;
+  int64_t lVar6;
   uint64_t uVar7;
   uint uVar8;
   uint unaff_EBP;
-  longlong unaff_RSI;
-  longlong unaff_RDI;
-  longlong lVar9;
-  longlong unaff_R12;
+  int64_t unaff_RSI;
+  int64_t unaff_RDI;
+  int64_t lVar9;
+  int64_t unaff_R12;
   char in_stack_00000090;
   uint *in_stack_000000a8;
   
@@ -617,13 +617,13 @@ uint64_t FUN_1807f77e9(void)
   char cVar2;
   uint uVar3;
   uint uVar4;
-  longlong in_RAX;
+  int64_t in_RAX;
   uint64_t uVar5;
   uint uVar6;
   uint unaff_EBP;
-  longlong unaff_RDI;
-  longlong lVar7;
-  longlong unaff_R12;
+  int64_t unaff_RDI;
+  int64_t lVar7;
+  int64_t unaff_R12;
   char in_stack_00000090;
   uint *in_stack_000000a8;
   
@@ -683,7 +683,7 @@ uint64_t FUN_1807f788c(void)
   uint uVar4;
   uint unaff_EBP;
   uint *unaff_RSI;
-  longlong unaff_RDI;
+  int64_t unaff_RDI;
   
   if (in_EAX < unaff_EBP) {
     unaff_EBP = in_EAX;
@@ -729,9 +729,9 @@ void FUN_1807f7910(void)
 {
   int8_t auStack_878 [80];
   int8_t auStack_828 [2048];
-  ulonglong uStack_28;
+  uint64_t uStack_28;
   
-  uStack_28 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_878;
+  uStack_28 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_878;
                     // WARNING: Subroutine does not return
   memset(auStack_828,0,0x800);
 }
@@ -747,13 +747,13 @@ void FUN_1807f7964(void)
 {
   int iVar1;
   uint64_t in_RAX;
-  longlong unaff_RBX;
+  int64_t unaff_RBX;
   int32_t unaff_EDI;
   int32_t uStack0000000000000028;
   int16_t *puStack0000000000000030;
   uint64_t uStack0000000000000038;
   int32_t uStack0000000000000040;
-  ulonglong in_stack_00000850;
+  uint64_t in_stack_00000850;
   
   uStack0000000000000040 = 0x7ff;
   uStack0000000000000028 = 0x1000;
@@ -771,7 +771,7 @@ void FUN_1807f7964(void)
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000850 ^ (ulonglong)&stack0x00000000);
+  FUN_1808fc050(in_stack_00000850 ^ (uint64_t)&stack0x00000000);
 }
 
 

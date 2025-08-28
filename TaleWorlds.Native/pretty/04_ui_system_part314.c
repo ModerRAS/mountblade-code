@@ -20,17 +20,17 @@ void FUN_18083b202(uint64_t param_1,int8_t (*param_2) [32],int param_3,int param
   float fVar11;
   float fVar12;
   int8_t auVar13 [32];
-  longlong in_RAX;
-  longlong lVar14;
+  int64_t in_RAX;
+  int64_t lVar14;
   int8_t (*pauVar15) [32];
   int8_t (*pauVar16) [32];
-  longlong lVar17;
-  longlong lVar18;
+  int64_t lVar17;
+  int64_t lVar18;
   uint64_t unaff_RSI;
   uint uVar19;
   uint64_t unaff_RDI;
   int8_t (*pauVar20) [32];
-  ulonglong uVar21;
+  uint64_t uVar21;
   uint64_t unaff_R13;
   int iVar22;
   uint64_t unaff_R14;
@@ -62,16 +62,16 @@ void FUN_18083b202(uint64_t param_1,int8_t (*param_2) [32],int param_3,int param
       param_2 = pauVar16;
       if (0 < (int)uVar19) {
         iVar22 = 4 << (uStack0000000000000080 & 0x1f);
-        lVar17 = (longlong)param_4 >> ((longlong)(int)uStack0000000000000080 & 0x3fU);
+        lVar17 = (int64_t)param_4 >> ((int64_t)(int)uStack0000000000000080 & 0x3fU);
         auVar2 = vpinsrd_avx((int8_t  [16])0x0,iVar22 * 3,0);
         auVar2 = vpinsrd_avx(auVar2,iVar22 * 2,1);
-        lVar14 = (longlong)param_4;
+        lVar14 = (int64_t)param_4;
         lVar18 = lVar17 >> 1;
         vpinsrd_avx(auVar2,iVar22,2);
-        uVar21 = (ulonglong)uVar19;
+        uVar21 = (uint64_t)uVar19;
         do {
           pauVar15 = (int8_t (*) [32])(pauVar16[-1] + lVar18 * 4);
-          pauVar20 = (int8_t (*) [32])((longlong)pauVar15 + (lVar17 - lVar18) * 4);
+          pauVar20 = (int8_t (*) [32])((int64_t)pauVar15 + (lVar17 - lVar18) * 4);
           do {
             auVar1 = *pauVar20;
             auVar4 = vsubps_avx(auVar1,*pauVar15);
@@ -117,7 +117,7 @@ void FUN_18083b202(uint64_t param_1,int8_t (*param_2) [32],int param_3,int param
             pauVar20 = pauVar20 + -1;
           } while (pauVar16 <= pauVar15);
           pauVar16 = (int8_t (*) [32])
-                     (*pauVar16 + (lVar14 >> ((longlong)(int)uStack0000000000000080 & 0x3fU)) * 4);
+                     (*pauVar16 + (lVar14 >> ((int64_t)(int)uStack0000000000000080 & 0x3fU)) * 4);
           uVar21 = uVar21 - 1;
           param_2 = in_stack_00000088;
           param_4 = in_stack_00000098;
@@ -130,7 +130,7 @@ void FUN_18083b202(uint64_t param_1,int8_t (*param_2) [32],int param_3,int param
     } while (0 < iStack0000000000000090);
   }
   if (0 < param_4) {
-    uVar21 = (ulonglong)((param_4 - 1U >> 5) + 1);
+    uVar21 = (uint64_t)((param_4 - 1U >> 5) + 1);
     do {
       FUN_18083b4a0(param_2);
       param_2 = param_2 + 4;
@@ -144,7 +144,7 @@ void FUN_18083b202(uint64_t param_1,int8_t (*param_2) [32],int param_3,int param
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-ulonglong FUN_18083b22e(uint64_t param_1,uint param_2,uint64_t param_3,int param_4)
+uint64_t FUN_18083b22e(uint64_t param_1,uint param_2,uint64_t param_3,int param_4)
 
 {
   int8_t auVar1 [32];
@@ -160,15 +160,15 @@ ulonglong FUN_18083b22e(uint64_t param_1,uint param_2,uint64_t param_3,int param
   float fVar11;
   float fVar12;
   int8_t auVar13 [32];
-  longlong in_RAX;
+  int64_t in_RAX;
   int8_t (*pauVar14) [32];
-  longlong lVar15;
-  longlong lVar16;
-  ulonglong uVar17;
+  int64_t lVar15;
+  int64_t lVar16;
+  uint64_t uVar17;
   uint uVar18;
   uint64_t unaff_RDI;
   int8_t (*pauVar19) [32];
-  ulonglong uVar20;
+  uint64_t uVar20;
   int8_t (*unaff_R12) [32];
   int unaff_R13D;
   int iVar21;
@@ -190,20 +190,20 @@ ulonglong FUN_18083b22e(uint64_t param_1,uint param_2,uint64_t param_3,int param
   *(uint64_t *)(in_RAX + -0x30) = unaff_R14;
   *(uint64_t *)(in_RAX + -0x38) = unaff_R15;
   *(int8_t (*) [16])(in_RAX + -0x48) = in_ZMM6._0_16_;
-  uVar20 = (ulonglong)(param_2 + 4);
+  uVar20 = (uint64_t)(param_2 + 4);
   do {
     auVar13 = ui_system_memory_config;
     if (0 < (int)uVar18) {
       iVar21 = (int)uVar20 << (param_2 & 0x1f);
-      lVar15 = (longlong)param_4 >> ((longlong)(int)param_2 & 0x3fU);
+      lVar15 = (int64_t)param_4 >> ((int64_t)(int)param_2 & 0x3fU);
       auVar2 = vpinsrd_avx((int8_t  [16])0x0,iVar21 * 3,0);
       auVar2 = vpinsrd_avx(auVar2,iVar21 * 2,1);
       lVar16 = lVar15 >> 1;
       vpinsrd_avx(auVar2,iVar21,2);
-      uVar20 = (ulonglong)uVar18;
+      uVar20 = (uint64_t)uVar18;
       do {
         pauVar14 = (int8_t (*) [32])(unaff_R12[-1] + lVar16 * 4);
-        pauVar19 = (int8_t (*) [32])((longlong)pauVar14 + (lVar15 - lVar16) * 4);
+        pauVar19 = (int8_t (*) [32])((int64_t)pauVar14 + (lVar15 - lVar16) * 4);
         do {
           auVar1 = *pauVar19;
           auVar4 = vsubps_avx(auVar1,*pauVar14);
@@ -249,7 +249,7 @@ ulonglong FUN_18083b22e(uint64_t param_1,uint param_2,uint64_t param_3,int param
           pauVar19 = pauVar19 + -1;
         } while (unaff_R12 <= pauVar14);
         unaff_R12 = (int8_t (*) [32])
-                    (*unaff_R12 + ((longlong)param_4 >> ((longlong)(int)param_2 & 0x3fU)) * 4);
+                    (*unaff_R12 + ((int64_t)param_4 >> ((int64_t)(int)param_2 & 0x3fU)) * 4);
         uVar20 = uVar20 - 1;
       } while (uVar20 != 0);
       uVar20 = 4;
@@ -265,7 +265,7 @@ ulonglong FUN_18083b22e(uint64_t param_1,uint param_2,uint64_t param_3,int param
     in_stack_00000090 = unaff_R13D;
   } while (0 < unaff_R13D);
   if (0 < param_4) {
-    uVar17 = (ulonglong)((param_4 - 1U >> 5) + 1);
+    uVar17 = (uint64_t)((param_4 - 1U >> 5) + 1);
     do {
       uVar20 = FUN_18083b4a0(unaff_R12);
       unaff_R12 = unaff_R12 + 4;
@@ -283,12 +283,12 @@ ulonglong FUN_18083b22e(uint64_t param_1,uint param_2,uint64_t param_3,int param
 void FUN_18083b393(void)
 
 {
-  ulonglong uVar1;
+  uint64_t uVar1;
   int in_R9D;
-  longlong unaff_R12;
+  int64_t unaff_R12;
   
   if (0 < in_R9D) {
-    uVar1 = (ulonglong)((in_R9D - 1U >> 5) + 1);
+    uVar1 = (uint64_t)((in_R9D - 1U >> 5) + 1);
     do {
       FUN_18083b4a0(unaff_R12);
       unaff_R12 = unaff_R12 + 0x80;
@@ -306,11 +306,11 @@ void FUN_18083b393(void)
 void FUN_18083b3a2(void)
 
 {
-  ulonglong uVar1;
+  uint64_t uVar1;
   int in_R9D;
-  longlong unaff_R12;
+  int64_t unaff_R12;
   
-  uVar1 = (ulonglong)((in_R9D - 1U >> 5) + 1);
+  uVar1 = (uint64_t)((in_R9D - 1U >> 5) + 1);
   do {
     FUN_18083b4a0(unaff_R12);
     unaff_R12 = unaff_R12 + 0x80;

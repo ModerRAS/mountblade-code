@@ -3,9 +3,9 @@
 
 // 02_core_engine_part108.c - 6 个函数
 
-// 函数: void set_render_context(int context_id, longlong context_ptr)
+// 函数: void set_render_context(int context_id, int64_t context_ptr)
 // 设置渲染上下文，将指定的上下文ID和指针关联到全局状态中
-void set_render_context(int context_id, longlong context_ptr)
+void set_render_context(int context_id, int64_t context_ptr)
 {
   float *position_ptr;
   float offset_x;
@@ -15,17 +15,17 @@ void set_render_context(int context_id, longlong context_ptr)
   float base_x;
   float base_y;
   int layout_index;
-  longlong global_context;
+  int64_t global_context;
   
   global_context = global_render_context;
   layout_index = *(int *)(context_ptr + 0x16c);
-  if (*(longlong *)(global_render_context + 0x1c98) != context_ptr) {
+  if (*(int64_t *)(global_render_context + 0x1c98) != context_ptr) {
     *(int8_t *)(global_render_context + 0x1d09) = 0;
   }
   *(int *)(global_context + 0x1ca0) = context_id;
-  *(longlong *)(global_context + 0x1c98) = context_ptr;
+  *(int64_t *)(global_context + 0x1c98) = context_ptr;
   *(int *)(global_context + 0x1cfc) = layout_index;
-  *(int *)(context_ptr + 0x3c8 + (longlong)layout_index * 4) = context_id;
+  *(int *)(context_ptr + 0x3c8 + (int64_t)layout_index * 4) = context_id;
   if (*(int *)(context_ptr + 0x144) == context_id) {
     offset_x = *(float *)(context_ptr + 0x150);
     offset_y = *(float *)(context_ptr + 0x44);
@@ -33,7 +33,7 @@ void set_render_context(int context_id, longlong context_ptr)
     height = *(float *)(context_ptr + 0x40);
     base_x = *(float *)(context_ptr + 0x158);
     base_y = *(float *)(context_ptr + 0x44);
-    position_ptr = (float *)(context_ptr + ((longlong)layout_index + 0x3d) * 0x10);
+    position_ptr = (float *)(context_ptr + ((int64_t)layout_index + 0x3d) * 0x10);
     *position_ptr = *(float *)(context_ptr + 0x14c) - *(float *)(context_ptr + 0x40);
     position_ptr[1] = offset_x - offset_y;
     position_ptr[2] = width - height;
@@ -51,26 +51,26 @@ void set_render_context(int context_id, longlong context_ptr)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-// 函数: ulonglong setup_render_parameters(float *position_params, int render_flags, float *override_params)
+// 函数: uint64_t setup_render_parameters(float *position_params, int render_flags, float *override_params)
 // 设置渲染参数，包括位置、渲染标志和可能的覆盖参数
-ulonglong setup_render_parameters(float *position_params, int render_flags, float *override_params)
+uint64_t setup_render_parameters(float *position_params, int render_flags, float *override_params)
 {
-  longlong render_context;
-  longlong context_data;
+  int64_t render_context;
+  int64_t context_data;
   uint64_t position_data;
   uint64_t size_data;
-  longlong global_context;
+  int64_t global_context;
   char render_status;
   float *final_params;
-  ulonglong result;
+  uint64_t result;
   
   global_context = global_render_context;
-  render_context = *(longlong *)(global_render_context + 0x1af8);
+  render_context = *(int64_t *)(global_render_context + 0x1af8);
   if (((render_flags != 0) &&
       (((*(uint *)(render_context + 0x178) = *(uint *)(render_context + 0x178) | *(uint *)(render_context + 0x170),
         *(int *)(global_context + 0x1ca0) == render_flags || (*(char *)(global_context + 0x1d08) != '\0')) &&
-       (context_data = *(longlong *)(global_context + 0x1c98),
-       *(longlong *)(context_data + 0x3b8) == *(longlong *)(render_context + 0x3b8))))) &&
+       (context_data = *(int64_t *)(global_context + 0x1c98),
+       *(int64_t *)(context_data + 0x3b8) == *(int64_t *)(render_context + 0x3b8))))) &&
      ((render_context == context_data || (((*(uint *)(context_data + 0xc) | *(uint *)(render_context + 0xc)) >> 0x17 & 1) != 0)))) {
     final_params = position_params;
     if (override_params != (float *)0x0) {
@@ -84,7 +84,7 @@ ulonglong setup_render_parameters(float *position_params, int render_flags, floa
   *(int32_t *)(render_context + 0x148) = 0;
   *(uint64_t *)(render_context + 0x14c) = position_data;
   *(uint64_t *)(render_context + 0x154) = size_data;
-  context_data = *(longlong *)(global_context + 0x1af8);
+  context_data = *(int64_t *)(global_context + 0x1af8);
   final_params = (float *)(context_data + 0x228);
   if ((((*(float *)(context_data + 0x22c) <= position_params[3] && position_params[3] != *(float *)(context_data + 0x22c)) &&
        (position_params[1] < *(float *)(context_data + 0x234))) &&
@@ -99,7 +99,7 @@ ulonglong setup_render_parameters(float *position_params, int render_flags, floa
     result = result & 0xff;
   }
   else {
-    result = (ulonglong)final_params & 0xffffffffffffff00;
+    result = (uint64_t)final_params & 0xffffffffffffff00;
   }
   return result;
 }
@@ -108,17 +108,17 @@ ulonglong setup_render_parameters(float *position_params, int render_flags, floa
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-// 函数: ulonglong validate_render_flags(uint render_flags)
+// 函数: uint64_t validate_render_flags(uint render_flags)
 // 验证渲染标志，检查渲染状态和上下文信息以确定是否可以执行渲染操作
-ulonglong validate_render_flags(uint render_flags)
+uint64_t validate_render_flags(uint render_flags)
 {
   uint current_flags;
-  ulonglong result;
-  longlong render_context;
+  uint64_t result;
+  int64_t render_context;
   bool context_match;
   
-  result = (ulonglong)render_flags;
-  render_context = *(longlong *)(global_render_context + 0x1af8);
+  result = (uint64_t)render_flags;
+  render_context = *(int64_t *)(global_render_context + 0x1af8);
   
   // 检查渲染状态是否允许执行渲染操作
   if ((*(char *)(global_render_context + 0x1d07) == '\0') || 
@@ -126,8 +126,8 @@ ulonglong validate_render_flags(uint render_flags)
     
     // 检查渲染上下文状态
     if (((*(byte *)(render_context + 0x148) & 1) == 0) ||
-        ((result = *(ulonglong *)(render_context + 0x3a0), 
-          *(ulonglong *)(global_render_context + 0x1b08) != result && 
+        ((result = *(uint64_t *)(render_context + 0x3a0), 
+          *(uint64_t *)(global_render_context + 0x1b08) != result && 
           ((render_flags & 0x40) == 0)))) {
       goto validation_failed;
     }
@@ -135,7 +135,7 @@ ulonglong validate_render_flags(uint render_flags)
     // 检查渲染标志匹配
     if ((render_flags & 0x20) == 0) {
       current_flags = *(uint *)(global_render_context + 0x1b2c);
-      result = (ulonglong)current_flags;
+      result = (uint64_t)current_flags;
       if ((((current_flags != 0) && (current_flags != *(uint *)(render_context + 0x144))) &&
           (*(char *)(global_render_context + 0x1b3d) == '\0')) && 
           (current_flags != *(uint *)(render_context + 0x84))) {
@@ -144,7 +144,7 @@ ulonglong validate_render_flags(uint render_flags)
     }
     
     // 执行渲染验证函数
-    result = func_0x000180124000(render_context, (ulonglong)render_flags);
+    result = func_0x000180124000(render_context, (uint64_t)render_flags);
     if (((char)result == '\0') || 
         (((*(byte *)(render_context + 0x1a8) & 4) != 0 && (-1 < (char)render_flags)))) {
       goto validation_failed;
@@ -152,7 +152,7 @@ ulonglong validate_render_flags(uint render_flags)
     
     // 检查上下文标志匹配
     current_flags = *(uint *)(render_context + 0x144);
-    result = (ulonglong)current_flags;
+    result = (uint64_t)current_flags;
     if (current_flags != *(uint *)(render_context + 8)) {
       context_match = current_flags == *(uint *)(render_context + 0x84);
       goto check_context;
@@ -164,7 +164,7 @@ ulonglong validate_render_flags(uint render_flags)
       goto validation_failed;
     }
     current_flags = *(uint *)(render_context + 0x144);
-    result = (ulonglong)current_flags;
+    result = (uint64_t)current_flags;
     if (*(uint *)(global_render_context + 0x1ca0) != current_flags) {
       goto validation_failed;
     }
@@ -188,20 +188,20 @@ validation_failed:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-// 函数: int setup_render_context(longlong context_data, int context_id)
+// 函数: int setup_render_context(int64_t context_data, int context_id)
 // 设置渲染上下文，验证上下文数据并配置渲染参数
-int setup_render_context(longlong context_data, int context_id)
+int setup_render_context(int64_t context_data, int context_id)
 {
-  longlong render_context;
+  int64_t render_context;
   char setup_result;
-  longlong global_context;
+  int64_t global_context;
   
   // 检查上下文ID匹配和渲染状态
   if ((((*(int *)(global_render_context + 0x1b18) == 0) || 
        (*(int *)(global_render_context + 0x1b18) == context_id)) ||
       (*(char *)(global_render_context + 0x1b1c) != '\0')) &&
-     (render_context = *(longlong *)(global_render_context + 0x1af8),
-     *(longlong *)(global_render_context + 0x1b00) == render_context)) {
+     (render_context = *(int64_t *)(global_render_context + 0x1af8),
+     *(int64_t *)(global_render_context + 0x1b00) == render_context)) {
     
     // 检查渲染标志匹配
     if (((*(int *)(global_render_context + 0x1b2c) == 0) || 
@@ -238,14 +238,14 @@ int setup_render_context(longlong context_data, int context_id)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-// 函数: int update_render_counter(longlong render_context, int counter_id, char update_flag)
+// 函数: int update_render_counter(int64_t render_context, int counter_id, char update_flag)
 // 更新渲染计数器，管理渲染状态和计数器信息
-int update_render_counter(longlong render_context, int counter_id, char update_flag)
+int update_render_counter(int64_t render_context, int counter_id, char update_flag)
 {
   char validation_result;
   int counter_value;
   int max_counter;
-  longlong global_context;
+  int64_t global_context;
   uint render_flags;
   
   global_context = global_render_context;
@@ -298,8 +298,8 @@ int update_render_counter(longlong render_context, int counter_id, char update_f
 uint64_t *calculate_render_offset(uint64_t *position_ptr, uint64_t size_data, int32_t x_param, int32_t y_param)
 {
   int index;
-  longlong render_context;
-  longlong layout_data;
+  int64_t render_context;
+  int64_t layout_data;
   float y_offset;
   uint64_t result;
   int layout_index;
@@ -308,15 +308,15 @@ uint64_t *calculate_render_offset(uint64_t *position_ptr, uint64_t size_data, in
   uint64_t uStackX_8;
   
   height = 0.0;
-  uStackX_8._4_4_ = (float)((ulonglong)size_data >> 0x20);
+  uStackX_8._4_4_ = (float)((uint64_t)size_data >> 0x20);
   y_offset = uStackX_8._4_4_;
   x_offset = 0.0;
   uStackX_8._0_4_ = (float)size_data;
   
   // 检查是否需要调整负坐标
   if (((float)uStackX_8 < 0.0) || (uStackX_8._4_4_ < 0.0)) {
-    render_context = *(longlong *)(global_render_context + 0x1af8);
-    layout_data = *(longlong *)(render_context + 0x210);
+    render_context = *(int64_t *)(global_render_context + 0x1af8);
+    layout_data = *(int64_t *)(render_context + 0x210);
     x_offset = *(float *)(render_context + 0x278) - *(float *)(render_context + 0x40);
     
     // 计算布局偏移
@@ -327,7 +327,7 @@ uint64_t *calculate_render_offset(uint64_t *position_ptr, uint64_t size_data, in
         layout_index = index;
       }
       x_offset = ((*(float *)(layout_data + 0x18) - *(float *)(layout_data + 0x14)) *
-               *(float *)((longlong)layout_index * 0x1c + *(longlong *)(layout_data + 0x38)) +
+               *(float *)((int64_t)layout_index * 0x1c + *(int64_t *)(layout_data + 0x38)) +
               *(float *)(layout_data + 0x14)) - *(float *)(render_context + 0x70);
     }
     x_offset = x_offset + *(float *)(render_context + 0x40);
@@ -343,7 +343,7 @@ uint64_t *calculate_render_offset(uint64_t *position_ptr, uint64_t size_data, in
       result = uStackX_8;
     }
     else {
-      x_offset = x_offset - *(float *)(*(longlong *)(global_render_context + 0x1af8) + 0x100);
+      x_offset = x_offset - *(float *)(*(int64_t *)(global_render_context + 0x1af8) + 0x100);
       if (x_offset <= 4.0) {
         x_offset = 4.0;
       }
@@ -357,7 +357,7 @@ uint64_t *calculate_render_offset(uint64_t *position_ptr, uint64_t size_data, in
   // 调整Y坐标
   if (y_offset <= 0.0) {
     if (y_offset != 0.0) {
-      height = height - *(float *)(*(longlong *)(global_render_context + 0x1af8) + 0x104);
+      height = height - *(float *)(*(int64_t *)(global_render_context + 0x1af8) + 0x104);
       if (height <= 4.0) {
         height = 4.0;
       }
@@ -375,14 +375,14 @@ uint64_t *calculate_render_offset(uint64_t *position_ptr, uint64_t size_data, in
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-longlong FUN_180124730(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
+int64_t FUN_180124730(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
-  longlong lVar1;
+  int64_t lVar1;
   uint64_t uStackX_8;
-  longlong lStackX_10;
+  int64_t lStackX_10;
   uint64_t *puStackX_18;
-  longlong lStackX_20;
+  int64_t lStackX_20;
   
   if (SYSTEM_DATA_MANAGER_A != 0) {
     *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + 1;
@@ -408,19 +408,19 @@ longlong FUN_180124730(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-uint64_t FUN_1801247c0(longlong param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
+uint64_t FUN_1801247c0(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
-  longlong lVar1;
-  longlong lVar2;
+  int64_t lVar1;
+  int64_t lVar2;
   int8_t auStackX_8 [8];
-  longlong lStackX_10;
+  int64_t lStackX_10;
   int8_t *puStackX_18;
-  longlong lStackX_20;
+  int64_t lStackX_20;
   
   lVar1 = SYSTEM_DATA_MANAGER_A;
   lVar2 = 0;
-  if (*(longlong *)(param_1 + 0x80) == 0) {
+  if (*(int64_t *)(param_1 + 0x80) == 0) {
     if (SYSTEM_DATA_MANAGER_A != 0) {
       *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + 1;
     }
@@ -430,16 +430,16 @@ uint64_t FUN_1801247c0(longlong param_1,uint64_t param_2,uint64_t param_3,uint64
     if (lStackX_10 != 0) {
       lVar2 = FUN_18011fa30(lStackX_10,lVar1 + 0x1a00);
     }
-    *(longlong *)(param_1 + 0x80) = lVar2;
+    *(int64_t *)(param_1 + 0x80) = lVar2;
     *(void **)(lVar2 + 0x40) = &unknown_var_2408_ptr;
   }
   if (*(int *)(param_1 + 0x58) != *(int *)(lVar1 + 0x1a90)) {
     FUN_180291500(*(uint64_t *)(param_1 + 0x80));
-    FUN_180291c70(*(uint64_t *)(param_1 + 0x80),*(uint64_t *)(*(longlong *)(lVar1 + 0xa0) + 8));
+    FUN_180291c70(*(uint64_t *)(param_1 + 0x80),*(uint64_t *)(*(int64_t *)(lVar1 + 0xa0) + 8));
     FUN_180291b40(*(uint64_t *)(param_1 + 0x80),*(uint64_t *)(param_1 + 8),
                   CONCAT44(*(float *)(param_1 + 0xc) + *(float *)(param_1 + 0x14),
                            *(float *)(param_1 + 8) + *(float *)(param_1 + 0x10)),0);
-    *(uint *)(*(longlong *)(param_1 + 0x80) + 0x30) =
+    *(uint *)(*(int64_t *)(param_1 + 0x80) + 0x30) =
          -(uint)(*(char *)(lVar1 + 0x16c1) != '\0') & 2 | (uint)(*(char *)(lVar1 + 0x16c0) != '\0');
     *(int32_t *)(param_1 + 0x58) = *(int32_t *)(lVar1 + 0x1a90);
   }
@@ -452,24 +452,24 @@ uint64_t FUN_1801247c0(longlong param_1,uint64_t param_2,uint64_t param_3,uint64
 
 
 
-// 函数: void FUN_1801248f0(longlong param_1)
-void FUN_1801248f0(longlong param_1)
+// 函数: void FUN_1801248f0(int64_t param_1)
+void FUN_1801248f0(int64_t param_1)
 
 {
   float fVar1;
-  longlong lVar2;
+  int64_t lVar2;
   
   lVar2 = SYSTEM_DATA_MANAGER_A;
   FUN_18012d2e0();
   func_0x000180123e90(*(int32_t *)(param_1 + 0x84),param_1);
   *(int8_t *)(lVar2 + 0x1d06) = 1;
-  fVar1 = *(float *)(*(longlong *)(param_1 + 0x3a0) + 0x44);
+  fVar1 = *(float *)(*(int64_t *)(param_1 + 0x3a0) + 0x44);
   *(float *)(lVar2 + 0x1b48) =
-       *(float *)(lVar2 + 0x118) - *(float *)(*(longlong *)(param_1 + 0x3a0) + 0x40);
+       *(float *)(lVar2 + 0x118) - *(float *)(*(int64_t *)(param_1 + 0x3a0) + 0x40);
   *(float *)(lVar2 + 0x1b4c) = *(float *)(lVar2 + 0x11c) - fVar1;
   if (((*(byte *)(param_1 + 0xc) & 4) == 0) &&
-     ((*(byte *)(*(longlong *)(param_1 + 0x3a0) + 0xc) & 4) == 0)) {
-    *(longlong *)(lVar2 + 0x1b78) = param_1;
+     ((*(byte *)(*(int64_t *)(param_1 + 0x3a0) + 0xc) & 4) == 0)) {
+    *(int64_t *)(lVar2 + 0x1b78) = param_1;
   }
   return;
 }
@@ -486,23 +486,23 @@ void FUN_180124980(void)
 {
   uint *puVar1;
   int *piVar2;
-  longlong lVar3;
+  int64_t lVar3;
   int32_t uVar4;
-  longlong lVar5;
-  longlong *plVar6;
+  int64_t lVar5;
+  int64_t *plVar6;
   int iVar7;
   uint64_t unaff_RDI;
-  longlong lVar8;
+  int64_t lVar8;
   float fVar9;
   float fVar10;
   uint64_t uStackX_8;
   
   lVar5 = SYSTEM_DATA_MANAGER_A;
-  lVar8 = *(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1b78);
+  lVar8 = *(int64_t *)(SYSTEM_DATA_MANAGER_A + 0x1b78);
   if (lVar8 == 0) {
-    if ((*(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1b50) != 0) &&
+    if ((*(int64_t *)(SYSTEM_DATA_MANAGER_A + 0x1b50) != 0) &&
        (iVar7 = *(int *)(SYSTEM_DATA_MANAGER_A + 0x1b2c),
-       *(int *)(*(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1b50) + 0x84) == iVar7)) {
+       *(int *)(*(int64_t *)(SYSTEM_DATA_MANAGER_A + 0x1b50) + 0x84) == iVar7)) {
       *(int *)(SYSTEM_DATA_MANAGER_A + 0x1b34) = iVar7;
       if (*(int *)(lVar5 + 0x1b30) == iVar7) {
         *(int8_t *)(lVar5 + 0x1b3f) = 1;
@@ -526,7 +526,7 @@ void FUN_180124980(void)
   if (*(int *)(lVar5 + 0x1b30) == *piVar2) {
     *(int8_t *)(lVar5 + 0x1b3f) = 1;
   }
-  lVar8 = *(longlong *)(lVar8 + 0x3a0);
+  lVar8 = *(int64_t *)(lVar8 + 0x3a0);
   if (((*(char *)(lVar5 + 0x120) != '\0') && (-256000.0 <= *(float *)(lVar5 + 0x118))) &&
      (-256000.0 <= *(float *)(lVar5 + 0x11c))) {
     fVar10 = *(float *)(lVar5 + 0x118) - *(float *)(lVar5 + 0x1b48);
@@ -538,14 +538,14 @@ void FUN_180124980(void)
       }
       func_0x00018012ddc0(lVar8,&uStackX_8,1);
       if (*(char *)(lVar8 + 0xae) != '\0') {
-        *(uint64_t *)(*(longlong *)(lVar8 + 0x28) + 8) = uStackX_8;
+        *(uint64_t *)(*(int64_t *)(lVar8 + 0x28) + 8) = uStackX_8;
       }
     }
     lVar3 = SYSTEM_DATA_MANAGER_A;
-    lVar8 = *(longlong *)(lVar5 + 0x1b78);
+    lVar8 = *(int64_t *)(lVar5 + 0x1b78);
     uVar4 = 0;
-    if (*(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1c98) != lVar8) {
-      *(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1c98) = lVar8;
+    if (*(int64_t *)(SYSTEM_DATA_MANAGER_A + 0x1c98) != lVar8) {
+      *(int64_t *)(SYSTEM_DATA_MANAGER_A + 0x1c98) = lVar8;
       if ((lVar8 != 0) && (*(char *)(lVar3 + 0x1d07) != '\0')) {
         *(int8_t *)(lVar3 + 0x1d05) = 1;
       }
@@ -558,18 +558,18 @@ void FUN_180124980(void)
       *(int32_t *)(lVar3 + 0x1cfc) = 0;
     }
     if (lVar8 != 0) {
-      if ((*(longlong *)(lVar8 + 0x408) != 0) &&
-         (lVar5 = *(longlong *)(*(longlong *)(lVar8 + 0x408) + 0x30), lVar5 != 0)) {
+      if ((*(int64_t *)(lVar8 + 0x408) != 0) &&
+         (lVar5 = *(int64_t *)(*(int64_t *)(lVar8 + 0x408) + 0x30), lVar5 != 0)) {
         *(int32_t *)(lVar5 + 0x18) = *(int32_t *)(lVar8 + 8);
-        lVar5 = *(longlong *)(*(longlong *)(lVar8 + 0x408) + 0x30);
+        lVar5 = *(int64_t *)(*(int64_t *)(lVar8 + 0x408) + 0x30);
         *(int32_t *)(lVar5 + 0x14) = *(int32_t *)(lVar5 + 0x18);
       }
-      if (*(longlong *)(lVar8 + 0x3a0) != 0) {
-        lVar8 = *(longlong *)(lVar8 + 0x3a0);
+      if (*(int64_t *)(lVar8 + 0x3a0) != 0) {
+        lVar8 = *(int64_t *)(lVar8 + 0x3a0);
       }
       if (((((*(uint *)(lVar8 + 0xc) & 0x4000000) != 0) && (*(int *)(lVar3 + 0x1b2c) != 0)) &&
-          (*(longlong *)(lVar3 + 0x1b50) != 0)) &&
-         (*(longlong *)(*(longlong *)(lVar3 + 0x1b50) + 0x3a0) != lVar8)) {
+          (*(int64_t *)(lVar3 + 0x1b50) != 0)) &&
+         (*(int64_t *)(*(int64_t *)(lVar3 + 0x1b50) + 0x3a0) != lVar8)) {
         *(int16_t *)(lVar3 + 0x1b3c) = 1;
         *(int32_t *)(lVar3 + 0x1b38) = 0;
         *(int8_t *)(lVar3 + 0x1b3e) = 0;
@@ -577,17 +577,17 @@ void FUN_180124980(void)
         *(int32_t *)(lVar3 + 0x1b44) = 0;
         *(uint64_t *)(lVar3 + 0x1b50) = 0;
       }
-      if ((*(longlong *)
-            (*(longlong *)(lVar3 + 0x1ab8) + -8 + (longlong)*(int *)(lVar3 + 0x1ab0) * 8) != lVar8)
+      if ((*(int64_t *)
+            (*(int64_t *)(lVar3 + 0x1ab8) + -8 + (int64_t)*(int *)(lVar3 + 0x1ab0) * 8) != lVar8)
          && (iVar7 = *(int *)(lVar3 + 0x1ab0) + -2, -1 < iVar7)) {
-        lVar5 = (longlong)iVar7;
-        plVar6 = (longlong *)(*(longlong *)(lVar3 + 0x1ab8) + lVar5 * 8);
+        lVar5 = (int64_t)iVar7;
+        plVar6 = (int64_t *)(*(int64_t *)(lVar3 + 0x1ab8) + lVar5 * 8);
         do {
           if (*plVar6 == lVar8) {
                     // WARNING: Subroutine does not return
-            memmove(*(longlong *)(lVar3 + 0x1ab8) + (longlong)iVar7 * 8,
-                    *(longlong *)(lVar3 + 0x1ab8) + (longlong)(iVar7 + 1) * 8,
-                    (longlong)((*(int *)(lVar3 + 0x1ab0) - iVar7) + -1) << 3,(longlong)iVar7,
+            memmove(*(int64_t *)(lVar3 + 0x1ab8) + (int64_t)iVar7 * 8,
+                    *(int64_t *)(lVar3 + 0x1ab8) + (int64_t)(iVar7 + 1) * 8,
+                    (int64_t)((*(int *)(lVar3 + 0x1ab0) - iVar7) + -1) << 3,(int64_t)iVar7,
                     unaff_RDI);
           }
           iVar7 = iVar7 + -1;
@@ -607,7 +607,7 @@ void FUN_180124980(void)
   if ((*(char *)(lVar5 + 0x1dd0) == '\0') || (*(int *)(lVar5 + 0x1e40) == 0)) {
     *(uint64_t *)(lVar5 + 0x1c80) = *(uint64_t *)(lVar8 + 0x28);
   }
-  puVar1 = (uint *)(*(longlong *)(lVar8 + 0x28) + 4);
+  puVar1 = (uint *)(*(int64_t *)(lVar8 + 0x28) + 4);
   *puVar1 = *puVar1 & 0xfffffff7;
   *(bool *)(lVar5 + 0x1b3c) = *(int *)(lVar5 + 0x1b2c) != 0;
   if (*(int *)(lVar5 + 0x1b2c) != 0) {
@@ -632,26 +632,26 @@ void FUN_180124980(void)
 void FUN_180124b90(void)
 
 {
-  longlong lVar1;
+  int64_t lVar1;
   int iVar2;
-  longlong lVar3;
+  int64_t lVar3;
   int iVar4;
-  longlong lVar5;
-  longlong *plVar6;
+  int64_t lVar5;
+  int64_t *plVar6;
   int iVar7;
-  longlong lVar8;
+  int64_t lVar8;
   uint uVar9;
-  longlong lVar10;
-  longlong *plVar11;
+  int64_t lVar10;
+  int64_t *plVar11;
   bool bVar12;
   float fVar13;
   
   lVar8 = SYSTEM_DATA_MANAGER_A;
   if (((*(int *)(SYSTEM_DATA_MANAGER_A + 0x1b2c) == 0) && (*(int *)(SYSTEM_DATA_MANAGER_A + 0x1b18) == 0)) &&
-     ((lVar5 = *(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1c98), lVar5 == 0 ||
+     ((lVar5 = *(int64_t *)(SYSTEM_DATA_MANAGER_A + 0x1c98), lVar5 == 0 ||
       (*(char *)(lVar5 + 0xb5) == '\0')))) {
     if (*(char *)(SYSTEM_DATA_MANAGER_A + 0x410) != '\0') {
-      if (*(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1b08) == 0) {
+      if (*(int64_t *)(SYSTEM_DATA_MANAGER_A + 0x1b08) == 0) {
         if ((lVar5 != 0) && (lVar5 = func_0x00018012ea90(), lVar5 == 0)) {
           *(uint64_t *)(lVar8 + 0x1c98) = 0;
           *(int8_t *)(lVar8 + 0x1d09) = 0;
@@ -663,10 +663,10 @@ void FUN_180124b90(void)
       else {
         FUN_1801248f0(*(uint64_t *)(SYSTEM_DATA_MANAGER_A + 0x1b00));
         if (*(char *)(lVar8 + 0xcc) != '\0') {
-          lVar5 = *(longlong *)(lVar8 + 0x1b08);
+          lVar5 = *(int64_t *)(lVar8 + 0x1b08);
           uVar9 = *(uint *)(lVar5 + 0xc) & 1;
           if ((uVar9 == 0) ||
-             ((*(byte *)(*(longlong *)(*(longlong *)(lVar8 + 0x1b00) + 0x3a8) + 0x432) & 1) != 0)) {
+             ((*(byte *)(*(int64_t *)(*(int64_t *)(lVar8 + 0x1b00) + 0x3a8) + 0x432) & 1) != 0)) {
             if (uVar9 == 0) {
               fVar13 = *(float *)(lVar8 + 0x19fc) * *(float *)(lVar5 + 0x2d8) *
                        *(float *)(lVar5 + 0x2dc) +
@@ -691,12 +691,12 @@ void FUN_180124b90(void)
       bVar12 = lVar5 == 0;
       iVar4 = *(int *)(lVar8 + 0x1aa0) + -1;
       if (-1 < iVar4) {
-        lVar10 = (longlong)iVar4;
+        lVar10 = (int64_t)iVar4;
         do {
           if (bVar12) goto LAB_180124d2b;
-          lVar1 = *(longlong *)(*(longlong *)(lVar8 + 0x1aa8) + lVar10 * 8);
+          lVar1 = *(int64_t *)(*(int64_t *)(lVar8 + 0x1aa8) + lVar10 * 8);
           if (lVar1 == lVar5) goto LAB_180124d32;
-          if (lVar1 == *(longlong *)(lVar8 + 0x1b00)) {
+          if (lVar1 == *(int64_t *)(lVar8 + 0x1b00)) {
             bVar12 = true;
           }
           lVar10 = lVar10 + -1;
@@ -704,7 +704,7 @@ void FUN_180124b90(void)
       }
       if (bVar12) {
 LAB_180124d2b:
-        lVar5 = *(longlong *)(lVar8 + 0x1b00);
+        lVar5 = *(int64_t *)(lVar8 + 0x1b00);
       }
 LAB_180124d32:
       iVar4 = *(int *)(SYSTEM_DATA_MANAGER_A + 0x1bb0);
@@ -712,7 +712,7 @@ LAB_180124d32:
         iVar7 = 0;
         if ((lVar5 != 0) && (iVar7 = 0, 0 < iVar4)) {
           lVar8 = 0;
-          plVar11 = (longlong *)(*(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1bb8) + 8);
+          plVar11 = (int64_t *)(*(int64_t *)(SYSTEM_DATA_MANAGER_A + 0x1bb8) + 8);
           iVar7 = 0;
           do {
             if ((*plVar11 != 0) && ((*(uint *)(*plVar11 + 0xc) & 0x1000000) == 0)) {
@@ -723,7 +723,7 @@ LAB_180124d32:
               do {
                 if (bVar12) goto LAB_18012edb4;
                 if ((*plVar6 != 0) &&
-                   (*(longlong *)(*plVar6 + 0x3a0) == *(longlong *)(lVar5 + 0x3a0))) {
+                   (*(int64_t *)(*plVar6 + 0x3a0) == *(int64_t *)(lVar5 + 0x3a0))) {
                   bVar12 = true;
                 }
                 lVar10 = lVar10 + 1;
@@ -772,12 +772,12 @@ void FUN_180124e30(void)
 
 {
   float *pfVar1;
-  longlong lVar2;
+  int64_t lVar2;
   char cVar3;
   float *pfVar4;
   float *pfVar5;
   char *pcVar6;
-  longlong lVar7;
+  int64_t lVar7;
   float *pfVar8;
   float fVar9;
   float fVar10;
@@ -934,10 +934,10 @@ LAB_180124eff:
 void FUN_180125180(void)
 
 {
-  longlong lVar1;
-  longlong lVar2;
-  longlong lVar3;
-  longlong lVar4;
+  int64_t lVar1;
+  int64_t lVar2;
+  int64_t lVar3;
+  int64_t lVar4;
   uint uVar5;
   float fVar6;
   float fVar7;
@@ -945,14 +945,14 @@ void FUN_180125180(void)
   float fVar9;
   
   lVar4 = SYSTEM_DATA_MANAGER_A;
-  lVar1 = *(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1b00);
+  lVar1 = *(int64_t *)(SYSTEM_DATA_MANAGER_A + 0x1b00);
   if (((lVar1 != 0) && (*(char *)(lVar1 + 0xb2) == '\0')) &&
      ((fVar6 = *(float *)(SYSTEM_DATA_MANAGER_A + 0x128), fVar6 != 0.0 ||
       (*(float *)(SYSTEM_DATA_MANAGER_A + 300) != 0.0)))) {
     uVar5 = *(uint *)(lVar1 + 0xc);
     lVar3 = lVar1;
     while ((((uVar5 >> 0x18 & 1) != 0 && ((uVar5 & 0x218) == 0x10)) &&
-           (lVar2 = *(longlong *)(lVar3 + 0x398), lVar2 != 0))) {
+           (lVar2 = *(int64_t *)(lVar3 + 0x398), lVar2 != 0))) {
       uVar5 = *(uint *)(lVar2 + 0xc);
       lVar3 = lVar2;
     }

@@ -13,7 +13,7 @@ void FUN_1806905c0(int8_t (*param_1) [16],int param_2,int8_t (*param_3) [16],int
   int8_t auVar4 [32];
   int8_t auVar5 [32];
   int8_t auVar6 [32];
-  longlong lVar7;
+  int64_t lVar7;
   int8_t auVar8 [16];
   int8_t auVar9 [16];
   int8_t auVar10 [16];

@@ -12,20 +12,20 @@ const char* RENDER_TARGET_NAME = "render_target";  // 渲染目标名称常量
 void update_render_bounds(float delta_time)
 {
   float *texture_ptr;
-  longlong context_id;
+  int64_t context_id;
   uint32_t render_flags;
   bool has_texture;
   char texture_status;
   int compare_result;
   uint32_t texture_width;
   uint16_t bounds_height;
-  longlong render_context;
-  longlong texture_offset;
-  longlong vertex_buffer;
-  longlong shader_program;
+  int64_t render_context;
+  int64_t texture_offset;
+  int64_t vertex_buffer;
+  int64_t shader_program;
   uint16_t texture_coords;
-  longlong transform_matrix;
-  longlong render_state;
+  int64_t transform_matrix;
+  int64_t render_state;
   float *texture_data;
   float time_delta;
   float width_offset;
@@ -37,9 +37,9 @@ void update_render_bounds(float delta_time)
   float x2, y2;
   
   // 检查渲染上下文和纹理状态
-  if ((((*(longlong *)(render_context + 8) == texture_offset) && (vertex_buffer != 0)) &&
+  if ((((*(int64_t *)(render_context + 8) == texture_offset) && (vertex_buffer != 0)) &&
       ((*(byte *)(render_context + 4) & 0x40) != 0)) &&
-     (((render_state != 0 && (*(longlong *)(render_state + 0x10) == texture_offset)) &&
+     (((render_state != 0 && (*(int64_t *)(render_state + 0x10) == texture_offset)) &&
       (*(int *)(render_state + 0x20) == (int)texture_offset)))) {
     
     texture_data = (float *)(transform_matrix + 0x1de0);
@@ -51,7 +51,7 @@ void update_render_bounds(float delta_time)
     }
     
     // 如果纹理数据无效或宽度为-1，则使用默认边界
-    if ((texture_data == (float *)0x0) || (*(int *)((longlong)texture_data + 0x14) == -1)) {
+    if ((texture_data == (float *)0x0) || (*(int *)((int64_t)texture_data + 0x14) == -1)) {
       
       // 计算默认边界值
       min_y = *(float *)(render_state + 0x38) - -4.0;
@@ -61,7 +61,7 @@ void update_render_bounds(float delta_time)
       
       // 验证边界有效性
       if ((min_y <= max_x) && (min_x <= max_y)) {
-        context_id = *(longlong *)(vertex_buffer + 0x398);
+        context_id = *(int64_t *)(vertex_buffer + 0x398);
         delta_time = min_y - *(float *)(vertex_buffer + 0x40);
         bounds_height = (uint16_t)(int)(max_y - min_x);
         *(uint16_t *)(render_context + -0x57) = bounds_height;
@@ -104,7 +104,7 @@ void update_render_bounds(float delta_time)
   }
   
   // 处理无渲染上下文的情况
-  if (*(longlong *)(render_context + 8) == 0) {
+  if (*(int64_t *)(render_context + 8) == 0) {
     if (vertex_buffer == 0) goto cleanup_section;
     initialize_render_pipeline(delta_time, *(uint64_t *)(vertex_buffer + 0x40), *(uint64_t *)(vertex_buffer + 0x48));
     setup_render_state();
@@ -112,7 +112,7 @@ void update_render_bounds(float delta_time)
   }
   
   // 处理渲染状态更新
-  if ((((vertex_buffer != 0) && (*(longlong *)(render_context + 0x10) == 0)) &&
+  if ((((vertex_buffer != 0) && (*(int64_t *)(render_context + 0x10) == 0)) &&
       (*(int *)(render_context + 0x20) == 0)) &&
      (((*(byte *)(render_context + 0xa0) & 4) != 0 && ((*(byte *)(render_context + 4) & 0x40) == 0)))) {
     
@@ -207,12 +207,12 @@ cleanup_section:
     *(byte *)(render_context + 0xa0) = *(byte *)(render_context + 0xa0) & 0xf7;
     *(int *)(render_context + 0x9c) = (int)texture_offset;
     if (0 < *(int *)(render_context + 0x20)) {
-      *(uint32_t *)(render_context + 0x98) = *(uint32_t *)(**(longlong **)(render_context + 0x28) + 8);
+      *(uint32_t *)(render_context + 0x98) = *(uint32_t *)(**(int64_t **)(render_context + 0x28) + 8);
     }
   }
   else {
     update_render_context();
-    compare_result = *(int *)(*(longlong *)(render_context + 0x30) + 0x14);
+    compare_result = *(int *)(*(int64_t *)(render_context + 0x30) + 0x14);
     if (compare_result != 0) {
       *(int *)(render_context + 0x98) = compare_result;
     }
@@ -220,19 +220,19 @@ cleanup_section:
   
   // 检查是否需要重新初始化渲染器
   if ((((vertex_buffer != 0) && ((*(byte *)(render_context + 0xa0) & 4) != 0)) &&
-      (*(longlong *)(render_context + 8) == 0)) &&
-     ((*(longlong *)(shader_program + 0x1b78) == 0 ||
-      (*(longlong *)(*(longlong *)(shader_program + 0x1b78) + 0x3a0) != vertex_buffer)))) {
+      (*(int64_t *)(render_context + 8) == 0)) &&
+     ((*(int64_t *)(shader_program + 0x1b78) == 0 ||
+      (*(int64_t *)(*(int64_t *)(shader_program + 0x1b78) + 0x3a0) != vertex_buffer)))) {
     reinitialize_renderer();
   }
   
   // 更新渲染上下文状态
   *(uint32_t *)(render_context + 0x8c) = *(uint32_t *)(shader_program + 0x1a90);
   if (vertex_buffer != 0) {
-    if (*(longlong *)(render_context + 0x10) != 0) {
+    if (*(int64_t *)(render_context + 0x10) != 0) {
       cleanup_render_resources();
     }
-    if (*(longlong *)(render_context + 0x18) != 0) {
+    if (*(int64_t *)(render_context + 0x18) != 0) {
       cleanup_render_resources();
     }
     if (*(char *)(render_context + -0x68) != '\0') {
@@ -241,7 +241,7 @@ cleanup_section:
   }
   
   // 清理堆栈并返回
-  cleanup_stack_frame(*(ulonglong *)(render_context + -1) ^ (ulonglong)&stack0x00000000);
+  cleanup_stack_frame(*(uint64_t *)(render_context + -1) ^ (uint64_t)&stack0x00000000);
 }
 
 default_bounds:
@@ -257,10 +257,10 @@ void render_texture_overlay(uint32_t texture_id, uint64_t render_context, uint32
   float base_x;
   int render_status;
   uint32_t render_flags;
-  longlong frame_buffer;
-  longlong vertex_buffer;
-  longlong render_target;
-  longlong shader_program;
+  int64_t frame_buffer;
+  int64_t vertex_buffer;
+  int64_t render_target;
+  int64_t shader_program;
   uint32_t texture_format;
   uint32_t blend_mode;
   float overlay_height;
@@ -304,12 +304,12 @@ void render_texture_overlay(uint32_t texture_id, uint64_t render_context, uint32
     *(byte *)(render_target + 0xa0) = *(byte *)(render_target + 0xa0) & 0xf7;
     *(uint32_t *)(render_target + 0x9c) = texture_format;
     if (0 < *(int *)(render_target + 0x20)) {
-      *(uint32_t *)(render_target + 0x98) = *(uint32_t *)(**(longlong **)(render_target + 0x28) + 8);
+      *(uint32_t *)(render_target + 0x98) = *(uint32_t *)(**(int64_t **)(render_target + 0x28) + 8);
     }
   }
   else {
     update_render_context();
-    render_status = *(int *)(*(longlong *)(render_target + 0x30) + 0x14);
+    render_status = *(int *)(*(int64_t *)(render_target + 0x30) + 0x14);
     if (render_status != 0) {
       *(int *)(render_target + 0x98) = render_status;
     }
@@ -317,19 +317,19 @@ void render_texture_overlay(uint32_t texture_id, uint64_t render_context, uint32
   
   // 检查渲染器状态
   if ((((vertex_buffer != 0) && ((*(byte *)(render_target + 0xa0) & 4) != 0)) &&
-      (*(longlong *)(render_target + 8) == 0)) &&
-     ((*(longlong *)(shader_program + 0x1b78) == 0 ||
-      (*(longlong *)(*(longlong *)(shader_program + 0x1b78) + 0x3a0) != vertex_buffer)))) {
+      (*(int64_t *)(render_target + 8) == 0)) &&
+     ((*(int64_t *)(shader_program + 0x1b78) == 0 ||
+      (*(int64_t *)(*(int64_t *)(shader_program + 0x1b78) + 0x3a0) != vertex_buffer)))) {
     reinitialize_renderer();
   }
   
   // 更新渲染目标状态
   *(uint32_t *)(render_target + 0x8c) = *(uint32_t *)(shader_program + 0x1a90);
   if (vertex_buffer != 0) {
-    if (*(longlong *)(render_target + 0x10) != 0) {
+    if (*(int64_t *)(render_target + 0x10) != 0) {
       cleanup_render_resources();
     }
-    if (*(longlong *)(render_target + 0x18) != 0) {
+    if (*(int64_t *)(render_target + 0x18) != 0) {
       cleanup_render_resources();
     }
     if (*(char *)(frame_buffer + -0x68) != '\0') {
@@ -338,7 +338,7 @@ void render_texture_overlay(uint32_t texture_id, uint64_t render_context, uint32
   }
   
   // 清理堆栈并返回
-  cleanup_stack_frame(*(ulonglong *)(frame_buffer + -1) ^ (ulonglong)&stack0x00000000);
+  cleanup_stack_frame(*(uint64_t *)(frame_buffer + -1) ^ (uint64_t)&stack0x00000000);
 }
 
 // 函数: process_render_batch - 处理渲染批次
@@ -353,15 +353,15 @@ void process_render_batch(uint32_t batch_id)
   uint32_t render_flags;
   float scale_factor;
   uint32_t blend_mode;
-  longlong transform_matrix;
-  longlong frame_buffer;
-  longlong vertex_buffer;
-  longlong render_target;
-  longlong shader_program;
+  int64_t transform_matrix;
+  int64_t frame_buffer;
+  int64_t vertex_buffer;
+  int64_t render_target;
+  int64_t shader_program;
   uint32_t texture_format;
   
   // 检查渲染上下文状态
-  if (*(longlong *)(render_target + 8) == 0) {
+  if (*(int64_t *)(render_target + 8) == 0) {
     if (vertex_buffer == 0) goto cleanup_section;
     initialize_render_pipeline(batch_id, *(uint64_t *)(vertex_buffer + 0x40), *(uint64_t *)(vertex_buffer + 0x48));
     setup_render_state();
@@ -369,7 +369,7 @@ void process_render_batch(uint32_t batch_id)
   }
   
   // 处理渲染批次更新
-  if ((((vertex_buffer != 0) && (*(longlong *)(render_target + 0x10) == 0)) &&
+  if ((((vertex_buffer != 0) && (*(int64_t *)(render_target + 0x10) == 0)) &&
       (*(int *)(render_target + 0x20) == 0)) &&
      (((*(byte *)(render_target + 0xa0) & 4) != 0 && ((*(byte *)(render_target + 4) & 0x40) == 0)))) {
     
@@ -427,12 +427,12 @@ cleanup_section:
     *(byte *)(render_target + 0xa0) = *(byte *)(render_target + 0xa0) & 0xf7;
     *(uint32_t *)(render_target + 0x9c) = texture_format;
     if (0 < *(int *)(render_target + 0x20)) {
-      *(uint32_t *)(render_target + 0x98) = *(uint32_t *)(**(longlong **)(render_target + 0x28) + 8);
+      *(uint32_t *)(render_target + 0x98) = *(uint32_t *)(**(int64_t **)(render_target + 0x28) + 8);
     }
   }
   else {
     update_render_context();
-    context_status = *(int *)(*(longlong *)(render_target + 0x30) + 0x14);
+    context_status = *(int *)(*(int64_t *)(render_target + 0x30) + 0x14);
     if (context_status != 0) {
       *(int *)(render_target + 0x98) = context_status;
     }
@@ -440,19 +440,19 @@ cleanup_section:
   
   // 检查渲染器状态
   if ((((vertex_buffer != 0) && ((*(byte *)(render_target + 0xa0) & 4) != 0)) &&
-      (*(longlong *)(render_target + 8) == 0)) &&
-     ((*(longlong *)(shader_program + 0x1b78) == 0 ||
-      (*(longlong *)(*(longlong *)(shader_program + 0x1b78) + 0x3a0) != vertex_buffer)))) {
+      (*(int64_t *)(render_target + 8) == 0)) &&
+     ((*(int64_t *)(shader_program + 0x1b78) == 0 ||
+      (*(int64_t *)(*(int64_t *)(shader_program + 0x1b78) + 0x3a0) != vertex_buffer)))) {
     reinitialize_renderer();
   }
   
   // 更新渲染目标
   *(uint32_t *)(render_target + 0x8c) = *(uint32_t *)(shader_program + 0x1a90);
   if (vertex_buffer != 0) {
-    if (*(longlong *)(render_target + 0x10) != 0) {
+    if (*(int64_t *)(render_target + 0x10) != 0) {
       cleanup_render_resources();
     }
-    if (*(longlong *)(render_target + 0x18) != 0) {
+    if (*(int64_t *)(render_target + 0x18) != 0) {
       cleanup_render_resources();
     }
     if (*(char *)(frame_buffer + -0x68) != '\0') {
@@ -461,7 +461,7 @@ cleanup_section:
   }
   
   // 清理堆栈并返回
-  cleanup_stack_frame(*(ulonglong *)(frame_buffer + -1) ^ (ulonglong)&stack0x00000000);
+  cleanup_stack_frame(*(uint64_t *)(frame_buffer + -1) ^ (uint64_t)&stack0x00000000);
 }
 
 // 函数: finalize_render_batch - 完成渲染批次处理
@@ -469,10 +469,10 @@ cleanup_section:
 void finalize_render_batch(void)
 {
   int batch_status;
-  longlong frame_buffer;
-  longlong vertex_buffer;
-  longlong render_target;
-  longlong shader_program;
+  int64_t frame_buffer;
+  int64_t vertex_buffer;
+  int64_t render_target;
+  int64_t shader_program;
   uint32_t render_flags;
   
   // 检查批次状态并更新标志
@@ -481,12 +481,12 @@ void finalize_render_batch(void)
     *(byte *)(render_target + 0xa0) = *(byte *)(render_target + 0xa0) & 0xf7;
     *(uint32_t *)(render_target + 0x9c) = render_flags;
     if (0 < *(int *)(render_target + 0x20)) {
-      *(uint32_t *)(render_target + 0x98) = *(uint32_t *)(**(longlong **)(render_target + 0x28) + 8);
+      *(uint32_t *)(render_target + 0x98) = *(uint32_t *)(**(int64_t **)(render_target + 0x28) + 8);
     }
   }
   else {
     update_render_context();
-    batch_status = *(int *)(*(longlong *)(render_target + 0x30) + 0x14);
+    batch_status = *(int *)(*(int64_t *)(render_target + 0x30) + 0x14);
     if (batch_status != 0) {
       *(int *)(render_target + 0x98) = batch_status;
     }
@@ -494,19 +494,19 @@ void finalize_render_batch(void)
   
   // 检查渲染器状态
   if ((((vertex_buffer != 0) && ((*(byte *)(render_target + 0xa0) & 4) != 0)) &&
-      (*(longlong *)(render_target + 8) == 0)) &&
-     ((*(longlong *)(shader_program + 0x1b78) == 0 ||
-      (*(longlong *)(*(longlong *)(shader_program + 0x1b78) + 0x3a0) != vertex_buffer)))) {
+      (*(int64_t *)(render_target + 8) == 0)) &&
+     ((*(int64_t *)(shader_program + 0x1b78) == 0 ||
+      (*(int64_t *)(*(int64_t *)(shader_program + 0x1b78) + 0x3a0) != vertex_buffer)))) {
     reinitialize_renderer();
   }
   
   // 更新渲染目标状态
   *(uint32_t *)(render_target + 0x8c) = *(uint32_t *)(shader_program + 0x1a90);
   if (vertex_buffer != 0) {
-    if (*(longlong *)(render_target + 0x10) != 0) {
+    if (*(int64_t *)(render_target + 0x10) != 0) {
       cleanup_render_resources();
     }
-    if (*(longlong *)(render_target + 0x18) != 0) {
+    if (*(int64_t *)(render_target + 0x18) != 0) {
       cleanup_render_resources();
     }
     if (*(char *)(frame_buffer + -0x68) != '\0') {
@@ -515,21 +515,21 @@ void finalize_render_batch(void)
   }
   
   // 清理堆栈并返回
-  cleanup_stack_frame(*(ulonglong *)(frame_buffer + -1) ^ (ulonglong)&stack0x00000000);
+  cleanup_stack_frame(*(uint64_t *)(frame_buffer + -1) ^ (uint64_t)&stack0x00000000);
 }
 
 // 函数: cleanup_render_resources - 清理渲染资源
 // 功能: 释放和清理渲染相关的资源
 void cleanup_render_resources(void)
 {
-  longlong frame_buffer;
-  longlong render_target;
+  int64_t frame_buffer;
+  int64_t render_target;
   
   // 检查并清理渲染目标资源
-  if (*(longlong *)(render_target + 0x10) != 0) {
+  if (*(int64_t *)(render_target + 0x10) != 0) {
     cleanup_render_resources();
   }
-  if (*(longlong *)(render_target + 0x18) != 0) {
+  if (*(int64_t *)(render_target + 0x18) != 0) {
     cleanup_render_resources();
   }
   if (*(char *)(frame_buffer + -0x68) != '\0') {
@@ -537,7 +537,7 @@ void cleanup_render_resources(void)
   }
   
   // 清理堆栈并返回
-  cleanup_stack_frame(*(ulonglong *)(frame_buffer + -1) ^ (ulonglong)&stack0x00000000);
+  cleanup_stack_frame(*(uint64_t *)(frame_buffer + -1) ^ (uint64_t)&stack0x00000000);
 }
 
 // 注意：以下为简化实现的外部函数声明
@@ -550,7 +550,7 @@ void initialize_render_pipeline(float delta_time, uint64_t buffer1, uint64_t buf
 void setup_render_state(void);
 
 // 获取全局变换矩阵
-longlong get_global_transform_matrix(void);
+int64_t get_global_transform_matrix(void);
 
 // 验证纹理状态
 char validate_texture_state(float time_delta, uint64_t texture_handle);
@@ -583,4 +583,4 @@ void cleanup_render_resources(void);
 void release_texture_memory(void);
 
 // 清理堆栈帧
-void cleanup_stack_frame(ulonglong stack_pointer);
+void cleanup_stack_frame(uint64_t stack_pointer);

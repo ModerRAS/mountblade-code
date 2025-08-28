@@ -23,16 +23,16 @@ void CoreEngineSubsystem_Initialize(uint64_t param_1, uint64_t param_2, uint64_t
   // 5. 初始化状态验证
   
   // 核心变量（基于引擎模式推断）
-  longlong *engine_context;
+  int64_t *engine_context;
   uint64_t *subsystem_state;
   uint64_t *resource_manager;
   uint64_t initialization_flag;
   
   // 获取引擎上下文
-  engine_context = (longlong *)GLOBAL_ENGINE_CONTEXT;
+  engine_context = (int64_t *)GLOBAL_ENGINE_CONTEXT;
   
   // 检查引擎状态
-  if (engine_context != (longlong *)0x0) {
+  if (engine_context != (int64_t *)0x0) {
     // 初始化子系统状态
     subsystem_state = (uint64_t *)FUN_1800671b0(0x40);  // 分配状态缓冲区
     *subsystem_state = 0;  // 初始化为未激活状态

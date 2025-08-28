@@ -3,11 +3,11 @@
 // 02_core_engine_part149_sub002_sub002.c - 核心引擎游戏对象处理和渲染函数
 // 本文件包含6个函数，主要用于游戏对象的高级处理、渲染和动画系统
 
-// 函数: void FUN_180137f90(int *param_1,longlong param_2)
+// 函数: void FUN_180137f90(int *param_1,int64_t param_2)
 // 功能: 游戏对象高级处理和渲染更新
 // 原本实现: 复杂的游戏对象处理逻辑，包含渲染、动画、碰撞检测等
 // 简化实现: 保留核心的对象处理和渲染逻辑
-void process_game_object_advanced(int *param_1, longlong param_2)
+void process_game_object_advanced(int *param_1, int64_t param_2)
 {
   // 简化实现：游戏对象高级处理和渲染更新
   // 原始实现包含了复杂的游戏对象管理逻辑
@@ -28,11 +28,11 @@ void process_game_object_advanced(int *param_1, longlong param_2)
   // 实际的游戏引擎实现需要完整的渲染管线和状态管理
 }
 
-// 函数: uint64_t FUN_180138ed0(longlong param_1,longlong param_2)
+// 函数: uint64_t FUN_180138ed0(int64_t param_1,int64_t param_2)
 // 功能: 游戏对象比较和匹配函数
 // 原本实现: 用于游戏对象的比较、匹配和搜索操作
 // 简化实现: 保留核心的对象比较逻辑
-int compare_game_objects(longlong param_1, longlong param_2)
+int compare_game_objects(int64_t param_1, int64_t param_2)
 {
   // 简化实现：游戏对象比较和匹配
   // 原始实现用于游戏对象的比较和搜索
@@ -53,11 +53,11 @@ int compare_game_objects(longlong param_1, longlong param_2)
   return 0; // 简化实现返回默认值
 }
 
-// 函数: ulonglong FUN_180139060(float *param_1,uint param_2,float *param_3,char param_4)
+// 函数: uint64_t FUN_180139060(float *param_1,uint param_2,float *param_3,char param_4)
 // 功能: 渲染边界计算和调整
 // 原本实现: 计算和调整渲染边界框
 // 简化实现: 保留核心的边界计算逻辑
-ulonglong calculate_rendering_bounds(float *param_1, uint param_2, float *param_3, char param_4)
+uint64_t calculate_rendering_bounds(float *param_1, uint param_2, float *param_3, char param_4)
 {
   // 简化实现：渲染边界计算和调整
   // 原始实现用于计算渲染边界框
@@ -80,11 +80,11 @@ ulonglong calculate_rendering_bounds(float *param_1, uint param_2, float *param_
   return 0; // 简化实现返回默认值
 }
 
-// 函数: char FUN_180139440(longlong param_1,longlong param_2,longlong param_3,longlong param_4,char param_5,byte param_6)
+// 函数: char FUN_180139440(int64_t param_1,int64_t param_2,int64_t param_3,int64_t param_4,char param_5,byte param_6)
 // 功能: 游戏对象属性复制和同步
 // 原本实现: 复制和同步游戏对象的属性
 // 简化实现: 保留核心的属性复制逻辑
-char sync_game_object_properties(longlong param_1, longlong param_2, longlong param_3, longlong param_4, char param_5, byte param_6)
+char sync_game_object_properties(int64_t param_1, int64_t param_2, int64_t param_3, int64_t param_4, char param_5, byte param_6)
 {
   // 简化实现：游戏对象属性复制和同步
   // 原始实现用于对象属性的复制和同步

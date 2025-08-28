@@ -21,10 +21,10 @@ void initialize_engine_core_module(uint64_t *module_config)
   int8_t *string_ptr;
   int32_t buffer_size;
   int8_t name_buffer [16];
-  ulonglong stack_guard_2;
+  uint64_t stack_guard_2;
   
   stack_guard_1 = 0xfffffffffffffffe;
-  stack_guard_2 = GET_SECURITY_COOKIE() ^ (ulonglong)temp_buffer_1;
+  stack_guard_2 = GET_SECURITY_COOKIE() ^ (uint64_t)temp_buffer_1;
   init_status = 0;
   buffer_ptr = temp_buffer_2;
   resource_ptr = &system_config_ptr;
@@ -50,7 +50,7 @@ void initialize_engine_core_module(uint64_t *module_config)
   *(int32_t *)(module_config + 2) = 4;
   init_status = 1;
                     // WARNING: Subroutine does not return
-  execute_engine_initialization(stack_guard_2 ^ (ulonglong)temp_buffer_1);
+  execute_engine_initialization(stack_guard_2 ^ (uint64_t)temp_buffer_1);
 }
 
 
@@ -148,14 +148,14 @@ initialize_engine_resource_manager(uint64_t *param_1,uint64_t param_2,uint64_t p
 
 {
   int32_t *puVar1;
-  longlong *plVar2;
+  int64_t *plVar2;
   void *puVar3;
   int32_t uVar4;
   uint64_t uVar5;
   
   uVar5 = 0xfffffffffffffffe;
   uVar4 = 0;
-  plVar2 = (longlong *)FUN_18064e2a0();
+  plVar2 = (int64_t *)FUN_18064e2a0();
   puVar3 = (void *)(*plVar2 + 0x3d8);
   if (puVar3 != &system_buffer_ed80) {
     FUN_1806470a0();
@@ -192,44 +192,44 @@ void
 configure_engine_display_settings(uint64_t *param_1)
 
 {
-  longlong *plVar1;
+  int64_t *plVar1;
   int32_t *puVar2;
-  longlong lVar3;
-  longlong lVar4;
+  int64_t lVar3;
+  int64_t lVar4;
   uint uVar5;
-  ulonglong uVar7;
-  ulonglong uVar8;
+  uint64_t uVar7;
+  uint64_t uVar8;
   int8_t auStack_d8 [32];
   int32_t uStack_b8;
   uint64_t uStack_b0;
   uint64_t *puStack_a8;
-  ulonglong uStack_48;
-  ulonglong uVar6;
+  uint64_t uStack_48;
+  uint64_t uVar6;
   
   lVar3 = system_operation_state;
   uStack_b0 = 0xfffffffffffffffe;
-  uStack_48 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_d8;
+  uStack_48 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_d8;
   uVar6 = 0;
   uStack_b8 = 0;
-  lVar4 = *(longlong *)(system_operation_state + 0x1868);
+  lVar4 = *(int64_t *)(system_operation_state + 0x1868);
   uVar7 = uVar6;
   uVar8 = uVar6;
   puStack_a8 = param_1;
-  if (*(longlong *)(system_operation_state + 0x1870) - lVar4 >> 3 != 0) {
+  if (*(int64_t *)(system_operation_state + 0x1870) - lVar4 >> 3 != 0) {
     do {
-      plVar1 = *(longlong **)(uVar8 + lVar4);
-      if ((((*(char *)((longlong)plVar1 + 0xde) == '\0') &&
-           (*(char *)((longlong)plVar1 + 0xdd) != '\0')) &&
-          (*(float *)((longlong)plVar1 + 0x24) == 1920.0)) &&
+      plVar1 = *(int64_t **)(uVar8 + lVar4);
+      if ((((*(char *)((int64_t)plVar1 + 0xde) == '\0') &&
+           (*(char *)((int64_t)plVar1 + 0xdd) != '\0')) &&
+          (*(float *)((int64_t)plVar1 + 0x24) == 1920.0)) &&
          (lVar4 = (**(code **)(*plVar1 + 0xb8))(plVar1), lVar4 != 0)) {
-        uVar7 = (ulonglong)((int)uVar7 + 1);
+        uVar7 = (uint64_t)((int)uVar7 + 1);
       }
       uVar5 = (int)uVar6 + 1;
-      uVar6 = (ulonglong)uVar5;
-      lVar4 = *(longlong *)(lVar3 + 0x1868);
+      uVar6 = (uint64_t)uVar5;
+      lVar4 = *(int64_t *)(lVar3 + 0x1868);
       uVar8 = uVar8 + 8;
-    } while ((ulonglong)(longlong)(int)uVar5 <
-             (ulonglong)(*(longlong *)(lVar3 + 0x1870) - lVar4 >> 3));
+    } while ((uint64_t)(int64_t)(int)uVar5 <
+             (uint64_t)(*(int64_t *)(lVar3 + 0x1870) - lVar4 >> 3));
     if (1 < (int)uVar7) {
                     // WARNING: Subroutine does not return
       FUN_180062300(system_message_context,&unknown_var_1760_ptr);
@@ -249,7 +249,7 @@ configure_engine_display_settings(uint64_t *param_1)
   *(int32_t *)(param_1 + 2) = 4;
   uStack_b8 = 1;
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_48 ^ (ulonglong)auStack_d8);
+  FUN_1808fc050(uStack_48 ^ (uint64_t)auStack_d8);
 }
 
 
@@ -280,9 +280,9 @@ uint64_t start_engine_rendering_system(uint64_t param_1,uint64_t param_2,uint64_
 uint64_t * initialize_engine_audio_system(uint64_t *param_1)
 
 {
-  longlong lVar1;
+  int64_t lVar1;
   uint64_t *puVar2;
-  longlong lVar3;
+  int64_t lVar3;
   int iVar4;
   
   FUN_180176060(core_system_data_config);
@@ -292,9 +292,9 @@ uint64_t * initialize_engine_audio_system(uint64_t *param_1)
   if (iVar4 != 0) {
     __Throw_C_error_std__YAXH_Z(iVar4);
   }
-  (**(code **)(**(longlong **)(lVar3 + 0xe8) + 0xe0))();
+  (**(code **)(**(int64_t **)(lVar3 + 0xe8) + 0xe0))();
   if (*(char *)(lVar3 + 0x1f0) != '\0') {
-    (**(code **)(**(longlong **)(lVar3 + 0xe8) + 0xc0))();
+    (**(code **)(**(int64_t **)(lVar3 + 0xe8) + 0xc0))();
   }
   iVar4 = _Mtx_unlock(lVar1);
   if (iVar4 != 0) {
@@ -311,8 +311,8 @@ uint64_t * initialize_engine_audio_system(uint64_t *param_1)
   puVar2 = (uint64_t *)param_1[1];
   *puVar2 = 0x6c63206568636143;
   *(int32_t *)(puVar2 + 1) = 0x65726165;
-  *(int16_t *)((longlong)puVar2 + 0xc) = 0x2e64;
-  *(int8_t *)((longlong)puVar2 + 0xe) = 0;
+  *(int16_t *)((int64_t)puVar2 + 0xc) = 0x2e64;
+  *(int8_t *)((int64_t)puVar2 + 0xe) = 0;
   *(int32_t *)(param_1 + 2) = 0xe;
   return param_1;
 }
@@ -468,19 +468,19 @@ configure_engine_ai_system(uint64_t param_1,uint64_t param_2,uint64_t param_3,ui
  * @return 场景管理器指针
  */
 uint64_t *
-create_engine_scene_manager(uint64_t *param_1,uint64_t param_2,uint64_t *param_3,longlong *param_4)
+create_engine_scene_manager(uint64_t *param_1,uint64_t param_2,uint64_t *param_3,int64_t *param_4)
 
 {
   int32_t *puVar1;
   uint64_t uVar2;
   uint64_t uVar3;
   uint64_t uVar4;
-  longlong *plStackX_20;
+  int64_t *plStackX_20;
   void *puStack_c8;
-  longlong lStack_c0;
+  int64_t lStack_c0;
   int32_t uStack_b0;
   void *puStack_a8;
-  longlong lStack_a0;
+  int64_t lStack_a0;
   int32_t uStack_90;
   uint64_t uStack_88;
   int8_t *puStack_80;
@@ -501,8 +501,8 @@ create_engine_scene_manager(uint64_t *param_1,uint64_t param_2,uint64_t *param_3
   uStack_70 = uVar4;
   FUN_180627ae0(auStack_68,&puStack_c8);
   uVar4 = FUN_1801e77d0(auStack_48,&uStack_70);
-  plStackX_20 = (longlong *)FUN_18006b640(uVar3,uVar4);
-  if (plStackX_20 != (longlong *)0x0) {
+  plStackX_20 = (int64_t *)FUN_18006b640(uVar3,uVar4);
+  if (plStackX_20 != (int64_t *)0x0) {
     (**(code **)(*plStackX_20 + 0x28))(plStackX_20);
   }
   FUN_18005e300(uVar2,&plStackX_20);
@@ -595,8 +595,8 @@ create_engine_lighting_system(uint64_t *param_1,uint64_t param_2,uint64_t param_
 
 {
   int32_t *puVar1;
-  longlong lVar2;
-  longlong lVar3;
+  int64_t lVar2;
+  int64_t lVar3;
   int iVar4;
   int32_t uVar5;
   uint64_t uVar6;
@@ -604,15 +604,15 @@ create_engine_lighting_system(uint64_t *param_1,uint64_t param_2,uint64_t param_
   lVar2 = core_system_data_config;
   uVar6 = 0xfffffffffffffffe;
   uVar5 = 0;
-  for (lVar3 = *(longlong *)(core_system_data_config + 8); lVar3 != lVar2; lVar3 = func_0x00018066bd70(lVar3)
+  for (lVar3 = *(int64_t *)(core_system_data_config + 8); lVar3 != lVar2; lVar3 = func_0x00018066bd70(lVar3)
       ) {
     iVar4 = 0;
-    if (*(longlong *)(lVar3 + 0x30) - *(longlong *)(lVar3 + 0x28) >> 3 != 0) {
+    if (*(int64_t *)(lVar3 + 0x30) - *(int64_t *)(lVar3 + 0x28) >> 3 != 0) {
       do {
         FUN_18020b790(lVar2,*(int32_t *)(lVar3 + 0x20),iVar4,param_4,uVar5,uVar6);
         iVar4 = iVar4 + 1;
-      } while ((ulonglong)(longlong)iVar4 <
-               (ulonglong)(*(longlong *)(lVar3 + 0x30) - *(longlong *)(lVar3 + 0x28) >> 3));
+      } while ((uint64_t)(int64_t)iVar4 <
+               (uint64_t)(*(int64_t *)(lVar3 + 0x30) - *(int64_t *)(lVar3 + 0x28) >> 3));
     }
   }
   *param_1 = &system_state_ptr;
@@ -693,7 +693,7 @@ configure_engine_post_processing_system(uint64_t param_1,uint64_t param_2,uint64
  * @param param_3 队列数据
  * @return 渲染队列指针
  */
-uint64_t process_engine_render_queue(uint64_t param_1,uint64_t param_2,longlong *param_3)
+uint64_t process_engine_render_queue(uint64_t param_1,uint64_t param_2,int64_t *param_3)
 
 {
   void *puVar1;
@@ -721,24 +721,24 @@ uint64_t process_engine_render_queue(uint64_t param_1,uint64_t param_2,longlong 
  * @param param_4 参数4
  * @return 纹理管理器指针
  */
-uint64_t manage_engine_texture_resources(uint64_t param_1,uint64_t param_2,longlong *param_3,uint64_t param_4)
+uint64_t manage_engine_texture_resources(uint64_t param_1,uint64_t param_2,int64_t *param_3,uint64_t param_4)
 
 {
-  longlong lVar1;
+  int64_t lVar1;
   uint uVar2;
   int iVar3;
   void *puVar4;
   void *puStack_38;
   void *puStack_30;
   int32_t uStack_28;
-  ulonglong uStack_20;
+  uint64_t uStack_20;
   
   if (param_3[1] - *param_3 >> 5 == 0) {
     puStack_38 = &system_data_buffer_ptr;
     uStack_20 = 0;
     puStack_30 = (void *)0x0;
     uStack_28 = 0;
-    FUN_180628420(&puStack_38,*(int32_t *)(*(longlong *)(system_main_module_state + 0x3d8) + 0x160),param_3
+    FUN_180628420(&puStack_38,*(int32_t *)(*(int64_t *)(system_main_module_state + 0x3d8) + 0x160),param_3
                   ,param_4,0,0xfffffffffffffffe);
     puVar4 = &system_buffer_ptr;
     if (puStack_30 != (void *)0x0) {
@@ -754,12 +754,12 @@ uint64_t manage_engine_texture_resources(uint64_t param_1,uint64_t param_2,longl
     puStack_38 = &system_state_ptr;
   }
   else {
-    lVar1 = *(longlong *)(system_main_module_state + 0x3d8);
+    lVar1 = *(int64_t *)(system_main_module_state + 0x3d8);
     uVar2 = atoi(*(uint64_t *)(*param_3 + 8));
     if (*(int *)(lVar1 + 0x110) == 3) {
       FUN_1803214c0(lVar1);
     }
-    if ((ulonglong)uVar2 < *(longlong *)(lVar1 + 0x160) - 2U) {
+    if ((uint64_t)uVar2 < *(int64_t *)(lVar1 + 0x160) - 2U) {
       FUN_180323d00(lVar1,4,2);
       *(uint64_t *)(lVar1 + 0x158) = 0xffffffffffffffff;
       *(uint64_t *)(lVar1 + 0xb0) = 0;
@@ -773,7 +773,7 @@ uint64_t manage_engine_texture_resources(uint64_t param_1,uint64_t param_2,longl
       if (iVar3 != 0) {
         __Throw_C_error_std__YAXH_Z(iVar3);
       }
-      *(longlong *)(lVar1 + 0x150) = (longlong)(int)uVar2;
+      *(int64_t *)(lVar1 + 0x150) = (int64_t)(int)uVar2;
       FUN_1803336f0(lVar1);
       *(int32_t *)(lVar1 + 0x144) = 0;
       FUN_180323d00(lVar1,10);
@@ -802,8 +802,8 @@ initialize_engine_shader_system(uint64_t *param_1,uint64_t param_2,uint64_t para
 {
   int32_t *puVar1;
   
-  FUN_180321e80(*(longlong *)(system_main_module_state + 0x3d8),
-                1.0 / *(float *)(*(longlong *)(system_main_module_state + 0x3d8) + 0x13c),param_3,param_4,0,
+  FUN_180321e80(*(int64_t *)(system_main_module_state + 0x3d8),
+                1.0 / *(float *)(*(int64_t *)(system_main_module_state + 0x3d8) + 0x13c),param_3,param_4,0,
                 0xfffffffffffffffe);
   *param_1 = &system_state_ptr;
   param_1[1] = 0;
@@ -816,7 +816,7 @@ initialize_engine_shader_system(uint64_t *param_1,uint64_t param_2,uint64_t para
   puVar1 = (int32_t *)param_1[1];
   *puVar1 = 0x65766153;
   *(int16_t *)(puVar1 + 1) = 0x2164;
-  *(int8_t *)((longlong)puVar1 + 6) = 0;
+  *(int8_t *)((int64_t)puVar1 + 6) = 0;
   *(int32_t *)(param_1 + 2) = 6;
   return param_1;
 }
@@ -839,7 +839,7 @@ create_engine_buffer_manager(uint64_t *param_1,uint64_t param_2,uint64_t param_3
 {
   int32_t *puVar1;
   void *puStack_28;
-  longlong lStack_20;
+  int64_t lStack_20;
   int32_t uStack_10;
   
   FUN_18032c0b0(*(uint64_t *)(system_main_module_state + 0x3d8),&puStack_28,param_3,param_4,0,
@@ -863,7 +863,7 @@ create_engine_buffer_manager(uint64_t *param_1,uint64_t param_2,uint64_t param_3
   puVar1 = (int32_t *)param_1[1];
   *puVar1 = 0x65766153;
   *(int16_t *)(puVar1 + 1) = 0x2164;
-  *(int8_t *)((longlong)puVar1 + 6) = 0;
+  *(int8_t *)((int64_t)puVar1 + 6) = 0;
   *(int32_t *)(param_1 + 2) = 6;
   return param_1;
 }
@@ -881,32 +881,32 @@ create_engine_buffer_manager(uint64_t *param_1,uint64_t param_2,uint64_t param_3
  * @return 着色器管理器指针
  */
 uint64_t *
-manage_engine_shader_parameters(uint64_t *param_1,uint64_t param_2,longlong *param_3,uint64_t param_4)
+manage_engine_shader_parameters(uint64_t *param_1,uint64_t param_2,int64_t *param_3,uint64_t param_4)
 
 {
   int *piVar1;
-  longlong lVar2;
+  int64_t lVar2;
   int *piVar3;
   int32_t *puVar4;
   int iVar5;
   int *piVar6;
   int iVar7;
-  ulonglong uVar8;
+  uint64_t uVar8;
   uint64_t uStackX_20;
   
   iVar7 = 0;
   uStackX_20 = param_4;
   if ((param_3[1] - *param_3 & 0xffffffffffffffe0U) == 0) {
-    *(bool *)(*(longlong *)(system_main_module_state + 0x3d8) + 0xae0) =
-         *(char *)(*(longlong *)(system_main_module_state + 0x3d8) + 0xae0) == '\0';
+    *(bool *)(*(int64_t *)(system_main_module_state + 0x3d8) + 0xae0) =
+         *(char *)(*(int64_t *)(system_main_module_state + 0x3d8) + 0xae0) == '\0';
   }
   else {
     iVar5 = atoi(*(uint64_t *)(*param_3 + 8));
     uStackX_20 = CONCAT44(uStackX_20._4_4_,iVar5);
-    lVar2 = *(longlong *)(system_main_module_state + 0x3d8);
+    lVar2 = *(int64_t *)(system_main_module_state + 0x3d8);
     piVar3 = *(int **)(lVar2 + 0xac8);
     piVar6 = *(int **)(lVar2 + 0xac0);
-    uVar8 = (longlong)piVar3 - (longlong)piVar6 >> 2;
+    uVar8 = (int64_t)piVar3 - (int64_t)piVar6 >> 2;
     if (uVar8 != 0) {
       do {
         if (*piVar6 == iVar5) {
@@ -916,14 +916,14 @@ manage_engine_shader_parameters(uint64_t *param_1,uint64_t param_2,longlong *par
           piVar1 = piVar6 + 1;
           if ((piVar1 < piVar3) && (piVar1 != piVar3)) {
                     // WARNING: Subroutine does not return
-            memmove(piVar6,piVar1,(longlong)piVar3 - (longlong)piVar1);
+            memmove(piVar6,piVar1,(int64_t)piVar3 - (int64_t)piVar1);
           }
           *(int **)(lVar2 + 0xac8) = piVar3 + -1;
           goto LAB_18016f158;
         }
         iVar7 = iVar7 + 1;
         piVar6 = piVar6 + 1;
-      } while ((ulonglong)(longlong)iVar7 < uVar8);
+      } while ((uint64_t)(int64_t)iVar7 < uVar8);
     }
     FUN_1800571e0(lVar2 + 0xac0,&uStackX_20);
   }
@@ -1058,13 +1058,13 @@ initialize_engine_framebuffer(uint64_t *param_1,uint64_t param_2,uint64_t param_
 
 {
   int32_t *puVar1;
-  longlong lVar2;
+  int64_t lVar2;
   
   lVar2 = core_system_data_config;
   FUN_180058370(core_system_data_config,*(uint64_t *)(core_system_data_config + 0x10),param_3,param_4,0,
                 0xfffffffffffffffe);
-  *(longlong *)lVar2 = lVar2;
-  *(longlong *)(lVar2 + 8) = lVar2;
+  *(int64_t *)lVar2 = lVar2;
+  *(int64_t *)(lVar2 + 8) = lVar2;
   *(uint64_t *)(lVar2 + 0x10) = 0;
   *(int8_t *)(lVar2 + 0x18) = 0;
   *(uint64_t *)(lVar2 + 0x20) = 0;
@@ -1162,8 +1162,8 @@ create_engine_render_target(uint64_t *param_1,uint64_t param_2,uint64_t param_3,
   
   uVar2 = 0xfffffffffffffffe;
   uVar1 = 0;
-  if (*(longlong **)(core_system_data_config + 0x18) != (longlong *)0x0) {
-    (**(code **)(**(longlong **)(core_system_data_config + 0x18) + 0x50))();
+  if (*(int64_t **)(core_system_data_config + 0x18) != (int64_t *)0x0) {
+    (**(code **)(**(int64_t **)(core_system_data_config + 0x18) + 0x50))();
   }
   *param_1 = &system_state_ptr;
   param_1[1] = 0;
@@ -1217,14 +1217,14 @@ initialize_engine_viewport_system(uint64_t param_1,uint64_t param_2,uint64_t par
  * @param param_4 裁剪参数2
  * @return 裁剪区域指针
  */
-uint64_t configure_engine_scissor_region(uint64_t param_1,uint64_t param_2,longlong *param_3,longlong *param_4)
+uint64_t configure_engine_scissor_region(uint64_t param_1,uint64_t param_2,int64_t *param_3,int64_t *param_4)
 
 {
   uint64_t uVar1;
-  longlong *plVar2;
-  longlong *plStackX_18;
-  longlong *plStackX_20;
-  longlong alStack_40 [2];
+  int64_t *plVar2;
+  int64_t *plStackX_18;
+  int64_t *plStackX_20;
+  int64_t alStack_40 [2];
   void *puStack_30;
   code *pcStack_28;
   
@@ -1234,19 +1234,19 @@ uint64_t configure_engine_scissor_region(uint64_t param_1,uint64_t param_2,longl
   alStack_40[0] = *param_4;
   puStack_30 = &unknown_var_6656_ptr;
   pcStack_28 = FUN_18016f990;
-  plVar2 = (longlong *)FUN_18006b640(uVar1,alStack_40);
+  plVar2 = (int64_t *)FUN_18006b640(uVar1,alStack_40);
   plStackX_20 = plVar2;
-  if (plVar2 != (longlong *)0x0) {
+  if (plVar2 != (int64_t *)0x0) {
     (**(code **)(*plVar2 + 0x28))(plVar2);
   }
   *(int32_t *)*param_4 = 1;
   uVar1 = system_context_ptr;
   plStackX_18 = plVar2;
-  if (plVar2 != (longlong *)0x0) {
+  if (plVar2 != (int64_t *)0x0) {
     (**(code **)(*plVar2 + 0x28))(plVar2);
   }
   FUN_18005e110(uVar1,&plStackX_18);
-  if (plVar2 != (longlong *)0x0) {
+  if (plVar2 != (int64_t *)0x0) {
     (**(code **)(*plVar2 + 0x38))(plVar2);
   }
   FUN_180627910(param_1,&system_buffer_ptr);
@@ -1402,9 +1402,9 @@ uint64_t *
 manage_engine_instanced_data(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t *param_4)
 
 {
-  longlong lVar1;
+  int64_t lVar1;
   void *puStack_28;
-  longlong lStack_20;
+  int64_t lStack_20;
   
   lVar1 = (*(code *)*param_4)(&puStack_28);
   *param_1 = &system_state_ptr;
@@ -1416,7 +1416,7 @@ manage_engine_instanced_data(uint64_t *param_1,uint64_t param_2,uint64_t param_3
   *(int32_t *)(param_1 + 2) = 0;
   *(int32_t *)(param_1 + 2) = *(int32_t *)(lVar1 + 0x10);
   param_1[1] = *(uint64_t *)(lVar1 + 8);
-  *(int32_t *)((longlong)param_1 + 0x1c) = *(int32_t *)(lVar1 + 0x1c);
+  *(int32_t *)((int64_t)param_1 + 0x1c) = *(int32_t *)(lVar1 + 0x1c);
   *(int32_t *)(param_1 + 3) = *(int32_t *)(lVar1 + 0x18);
   *(int32_t *)(lVar1 + 0x10) = 0;
   *(uint64_t *)(lVar1 + 8) = 0;

@@ -70,13 +70,13 @@
  * 类型定义和别名
  * ============================================================================ */
 
-typedef longlong* EntityContextPtr;             // 实体上下文指针
-typedef longlong* SceneContextPtr;             // 场景上下文指针
+typedef int64_t* EntityContextPtr;             // 实体上下文指针
+typedef int64_t* SceneContextPtr;             // 场景上下文指针
 typedef uint64_t* ComponentDataPtr;             // 组件数据指针
-typedef longlong** EntityPtrArray;              // 实体指针数组
+typedef int64_t** EntityPtrArray;              // 实体指针数组
 typedef char EntityInitializationFlags;         // 实体初始化标志
 typedef uint32_t EntityTransferStatus;          // 实体传输状态
-typedef ulonglong ResourceCleanupFlags;         // 资源清理标志
+typedef uint64_t ResourceCleanupFlags;         // 资源清理标志
 
 /* ============================================================================
  * 实体初始化标志位定义
@@ -445,7 +445,7 @@ typedef struct {
     EntityTransformData transform;              // 变换数据
     EntityComponentData* components;           // 组件数据
     EntityResourceData* resources;             // 资源数据
-    longlong context_data[ENTITY_CONTEXT_SIZE]; // 上下文数据
+    int64_t context_data[ENTITY_CONTEXT_SIZE]; // 上下文数据
     char state_flags;                           // 状态标志
     char initialization_flags;                  // 初始化标志
 } EntityContext;
@@ -491,7 +491,7 @@ void EntityInitializationProcessor(EntityContextPtr entity_context, SceneContext
   float temp_float1;          // 临时浮点变量1
   float temp_float2;          // 临时浮点变量2
   uint64_t *data_ptr;              // 数据指针
-  longlong temp_long1;        // 临时长整型变量1
+  int64_t temp_long1;        // 临时长整型变量1
   code *code_ptr;             // 代码指针
   int temp_int1;              // 临时整型变量1
   int32_t status_flag;             // 状态标志
@@ -500,19 +500,19 @@ void EntityInitializationProcessor(EntityContextPtr entity_context, SceneContext
   int8_t control_flag;            // 控制标志
   int temp_int2;              // 临时整型变量2
   int32_t entity_id;               // 实体ID
-  longlong **ptr_ptr_long;    // 长整型二级指针
-  longlong *ptr_long1;        // 长整型指针1
-  longlong *ptr_long2;        // 长整型指针2
+  int64_t **ptr_ptr_long;    // 长整型二级指针
+  int64_t *ptr_long1;        // 长整型指针1
+  int64_t *ptr_long2;        // 长整型指针2
   uint64_t entity_data;           // 实体数据
-  longlong *ptr_long3;        // 长整型指针3
+  int64_t *ptr_long3;        // 长整型指针3
   uint temp_uint;             // 无符号整型变量
-  longlong *ptr_long4;        // 长整型指针4
-  longlong temp_long2;        // 临时长整型变量2
-  longlong *ptr_long5;        // 长整型指针5
-  longlong temp_long3;        // 临时长整型变量3
-  ulonglong temp_ulonglong;   // 无符号长整型变量
+  int64_t *ptr_long4;        // 长整型指针4
+  int64_t temp_long2;        // 临时长整型变量2
+  int64_t *ptr_long5;        // 长整型指针5
+  int64_t temp_long3;        // 临时长整型变量3
+  uint64_t temp_ulonglong;   // 无符号长整型变量
   byte temp_byte;             // 字节型变量
-  longlong temp_long4;        // 临时长整型变量4
+  int64_t temp_long4;        // 临时长整型变量4
   // 栈变量声明
   int8_t stack_buffer_32[32];  // 32字节栈缓冲区
   char stack_char1;                // 栈字符变量1
@@ -520,8 +520,8 @@ void EntityInitializationProcessor(EntityContextPtr entity_context, SceneContext
   float stack_float1;              // 栈浮点变量1
   int32_t stack_status_1;         // 栈状态1
   uint stack_uint1;                // 栈无符号整型变量1
-  longlong *stack_ptr_long1;       // 栈长整型指针1
-  longlong *stack_ptr_long2;       // 栈长整型指针2
+  int64_t *stack_ptr_long1;       // 栈长整型指针1
+  int64_t *stack_ptr_long2;       // 栈长整型指针2
   uint64_t stack_data_2;          // 栈数据2
   uint64_t stack_data_3;          // 栈数据3
   uint64_t stack_data_4;          // 栈数据4
@@ -534,50 +534,50 @@ void EntityInitializationProcessor(EntityContextPtr entity_context, SceneContext
   float stack_float6;              // 栈浮点变量6
   float stack_float7;              // 栈浮点变量7
   int32_t stack_status_3;         // 栈状态3
-  longlong *stack_ptr_long3;       // 栈长整型指针3
-  longlong **stack_ptr_ptr_long1;  // 栈长整型二级指针1
-  longlong **stack_ptr_ptr_long2;  // 栈长整型二级指针2
-  longlong stack_long1;            // 栈长整型变量1
-  longlong *stack_ptr_long4;       // 栈长整型指针4
-  longlong *stack_ptr_long5;       // 栈长整型指针5
-  longlong *stack_ptr_long6;       // 栈长整型指针6
-  longlong *stack_ptr_long7;       // 栈长整型指针7
-  longlong **stack_ptr_ptr_long3;  // 栈长整型二级指针3
-  longlong stack_long2;            // 栈长整型变量2
-  longlong stack_long3;            // 栈长整型变量3
-  longlong stack_long4;            // 栈长整型变量4
+  int64_t *stack_ptr_long3;       // 栈长整型指针3
+  int64_t **stack_ptr_ptr_long1;  // 栈长整型二级指针1
+  int64_t **stack_ptr_ptr_long2;  // 栈长整型二级指针2
+  int64_t stack_long1;            // 栈长整型变量1
+  int64_t *stack_ptr_long4;       // 栈长整型指针4
+  int64_t *stack_ptr_long5;       // 栈长整型指针5
+  int64_t *stack_ptr_long6;       // 栈长整型指针6
+  int64_t *stack_ptr_long7;       // 栈长整型指针7
+  int64_t **stack_ptr_ptr_long3;  // 栈长整型二级指针3
+  int64_t stack_long2;            // 栈长整型变量2
+  int64_t stack_long3;            // 栈长整型变量3
+  int64_t stack_long4;            // 栈长整型变量4
   uint stack_uint2;                // 栈无符号整型变量2
-  longlong *stack_ptr_long8;       // 栈长整型指针8
-  longlong *stack_ptr_long9;       // 栈长整型指针9
-  longlong *stack_ptr_long10;      // 栈长整型指针10
-  longlong *stack_ptr_long11;      // 栈长整型指针11
-  longlong *stack_ptr_long12;      // 栈长整型指针12
-  longlong *stack_ptr_long13;      // 栈长整型指针13
-  longlong *stack_ptr_long14;      // 栈长整型指针14
-  longlong *stack_ptr_long15;      // 栈长整型指针15
-  longlong *stack_ptr_long16;      // 栈长整型指针16
-  longlong *stack_ptr_long17;      // 栈长整型指针17
-  longlong *stack_ptr_long18;      // 栈长整型指针18
-  longlong *stack_ptr_long19;      // 栈长整型指针19
-  longlong *stack_ptr_long20;      // 栈长整型指针20
+  int64_t *stack_ptr_long8;       // 栈长整型指针8
+  int64_t *stack_ptr_long9;       // 栈长整型指针9
+  int64_t *stack_ptr_long10;      // 栈长整型指针10
+  int64_t *stack_ptr_long11;      // 栈长整型指针11
+  int64_t *stack_ptr_long12;      // 栈长整型指针12
+  int64_t *stack_ptr_long13;      // 栈长整型指针13
+  int64_t *stack_ptr_long14;      // 栈长整型指针14
+  int64_t *stack_ptr_long15;      // 栈长整型指针15
+  int64_t *stack_ptr_long16;      // 栈长整型指针16
+  int64_t *stack_ptr_long17;      // 栈长整型指针17
+  int64_t *stack_ptr_long18;      // 栈长整型指针18
+  int64_t *stack_ptr_long19;      // 栈长整型指针19
+  int64_t *stack_ptr_long20;      // 栈长整型指针20
   void *stack_data_ptr_1;        // 栈数据指针1
   code *stack_code_ptr;           // 栈代码指针
-  longlong *stack_ptr_long21;      // 栈长整型指针21
-  longlong *stack_ptr_long22;      // 栈长整型指针22
+  int64_t *stack_ptr_long21;      // 栈长整型指针21
+  int64_t *stack_ptr_long22;      // 栈长整型指针22
   void *stack_data_ptr_2;        // 栈数据指针2
   void *stack_data_ptr_3; // 栈数据指针3
   uint64_t stack_data_6;          // 栈数据6
-  longlong stack_array_40[40];     // 40个长整型的栈数组
-  ulonglong stack_ulonglong;       // 栈无符号长整型变量
+  int64_t stack_array_40[40];     // 40个长整型的栈数组
+  uint64_t stack_ulonglong;       // 栈无符号长整型变量
   
   // 初始化栈变量
   stack_uint64_t_6 = 0xfffffffffffffffe;
-  stack_ulonglong = _DAT ^ (ulonglong)stack_buffer_32;
+  stack_ulonglong = _DAT ^ (uint64_t)stack_buffer_32;
   // 检查实体是否有自定义数据，如果有则设置到指定位置
   if (entity_context[0xc170] != 0) {
-    *(longlong *)(entity_context[0x66] + 0x68) = entity_context[0xc170];
+    *(int64_t *)(entity_context[0x66] + 0x68) = entity_context[0xc170];
   }
-  ptr_long1 = (longlong *)0x0;  // 初始化长整型指针为空
+  ptr_long1 = (int64_t *)0x0;  // 初始化长整型指针为空
   stack_ptr_long20 = entity_context;  // 保存实体上下文到栈
   // 检查场景是否启用特定标志并且有活动对象
   if ((*(int *)(scene_context[0x6b0] + 0x110) != 0) && ((*(byte *)(scene_context + 0x37b) & 2) != 0)) {
@@ -630,13 +630,13 @@ void EntityInitializationProcessor(EntityContextPtr entity_context, SceneContext
     temp_long2 = ptr_long2[0x15];
     ptr_long4[0x14] = ptr_long2[0x14];
     ptr_long4[0x15] = temp_long2;
-    temp_int32_t_2 = *(int32_t *)((longlong)ptr_long2 + 0xb4);
+    temp_int32_t_2 = *(int32_t *)((int64_t)ptr_long2 + 0xb4);
     temp_long2 = ptr_long2[0x17];
-    temp_int32_t = *(int32_t *)((longlong)ptr_long2 + 0xbc);
+    temp_int32_t = *(int32_t *)((int64_t)ptr_long2 + 0xbc);
     *(int *)(ptr_long4 + 0x16) = (int)ptr_long2[0x16];
-    *(int32_t *)((longlong)ptr_long4 + 0xb4) = temp_int32_t_2;
+    *(int32_t *)((int64_t)ptr_long4 + 0xb4) = temp_int32_t_2;
     *(int *)(ptr_long4 + 0x17) = (int)temp_long2;
-    *(int32_t *)((longlong)ptr_long4 + 0xbc) = temp_int32_t;
+    *(int32_t *)((int64_t)ptr_long4 + 0xbc) = temp_int32_t;
     
     // 处理实体组件系统
     ptr_uint64_t = (uint64_t *)entity_context[0x534];
@@ -653,7 +653,7 @@ void EntityInitializationProcessor(EntityContextPtr entity_context, SceneContext
       }
       
       // 反向复制数据：从栈数组回到组件系统
-      ptr_long3 = (longlong *)(entity_context[0x534] + 0xc0);
+      ptr_long3 = (int64_t *)(entity_context[0x534] + 0xc0);
       ptr_long5 = stack_array_40;
       do {
         ptr_long4 = ptr_long5;     // 源指针
@@ -696,19 +696,19 @@ void EntityInitializationProcessor(EntityContextPtr entity_context, SceneContext
       temp_long2 = ptr_long4[0x15];
       ptr_long2[0x14] = ptr_long4[0x14];
       ptr_long2[0x15] = temp_long2;
-      temp_int32_t_2 = *(int32_t *)((longlong)ptr_long4 + 0xb4);
+      temp_int32_t_2 = *(int32_t *)((int64_t)ptr_long4 + 0xb4);
       temp_long2 = ptr_long4[0x17];
-      temp_int32_t = *(int32_t *)((longlong)ptr_long4 + 0xbc);
+      temp_int32_t = *(int32_t *)((int64_t)ptr_long4 + 0xbc);
       *(int *)(ptr_long2 + 0x16) = (int)ptr_long4[0x16];
-      *(int32_t *)((longlong)ptr_long2 + 0xb4) = temp_int32_t_2;
+      *(int32_t *)((int64_t)ptr_long2 + 0xb4) = temp_int32_t_2;
       *(int *)(ptr_long2 + 0x17) = (int)temp_long2;
-      *(int32_t *)((longlong)ptr_long2 + 0xbc) = temp_int32_t;
+      *(int32_t *)((int64_t)ptr_long2 + 0xbc) = temp_int32_t;
       
       // 清理组件系统资源
       temp_long2 = _DAT;
       stack_uint64_t_1 = &stack_ptr_long3;
-      stack_ptr_long3 = (longlong *)entity_context[0x534];
-      if (stack_ptr_long3 != (longlong *)0x0) {
+      stack_ptr_long3 = (int64_t *)entity_context[0x534];
+      if (stack_ptr_long3 != (int64_t *)0x0) {
         (**(code **)(*stack_ptr_long3 + 0x28))();
       }
       MemoryManager(temp_long2, &stack_ptr_long3);
@@ -717,7 +717,7 @@ void EntityInitializationProcessor(EntityContextPtr entity_context, SceneContext
   
   // 处理实体位置和变换数据同步
   // 检查是否需要更新位置数据
-  if ((*(char *)((longlong)scene_context + 0x9a31) != '\0') || ((*(byte *)(scene_context + 0x37b) & 0x20) != 0))
+  if ((*(char *)((int64_t)scene_context + 0x9a31) != '\0') || ((*(byte *)(scene_context + 0x37b) & 0x20) != 0))
   {
     // 备份当前位置数据
     entity_context[0x79] = entity_context[0x81];
@@ -739,20 +739,20 @@ void EntityInitializationProcessor(EntityContextPtr entity_context, SceneContext
     temp_long2 = scene_context[0x23];
     entity_context[0x85] = scene_context[0x22];
     entity_context[0x86] = temp_long2;
-    temp_int32_t_2 = *(int32_t *)((longlong)scene_context + 0x124);
+    temp_int32_t_2 = *(int32_t *)((int64_t)scene_context + 0x124);
     temp_long2 = scene_context[0x25];
-    temp_int32_t = *(int32_t *)((longlong)scene_context + 300);
+    temp_int32_t = *(int32_t *)((int64_t)scene_context + 300);
     *(int *)(entity_context + 0x87) = (int)scene_context[0x24];
-    *(int32_t *)((longlong)entity_context + 0x43c) = temp_int32_t_2;
+    *(int32_t *)((int64_t)entity_context + 0x43c) = temp_int32_t_2;
     *(int *)(entity_context + 0x88) = (int)temp_long2;
-    *(int32_t *)((longlong)entity_context + 0x444) = temp_int32_t;
-    *(int8_t *)((longlong)entity_context + 0x562) = 1;  // 标记位置已更新
+    *(int32_t *)((int64_t)entity_context + 0x444) = temp_int32_t;
+    *(int8_t *)((int64_t)entity_context + 0x562) = 1;  // 标记位置已更新
   }
-  *(char *)((longlong)param_2 + 0x124c4) = (char)param_1[0x1033];
-  if ((((param_3 == '\0') || (*(char *)((longlong)param_1 + 0x3e05) == '\0')) ||
+  *(char *)((int64_t)param_2 + 0x124c4) = (char)param_1[0x1033];
+  if ((((param_3 == '\0') || (*(char *)((int64_t)param_1 + 0x3e05) == '\0')) ||
       ((*(byte *)(param_1 + 0x7c1) & 2) != 0)) ||
      ((*(int *)(_DAT + 0xc40) < 1 ||
-      (cStack_308 = '\x01', *(longlong **)(param_2[0x6b0] + 0x588) != param_1)))) {
+      (cStack_308 = '\x01', *(int64_t **)(param_2[0x6b0] + 0x588) != param_1)))) {
     cStack_308 = '\0';
   }
   SceneDataProcessor(param_1,param_2);
@@ -761,7 +761,7 @@ void EntityInitializationProcessor(EntityContextPtr entity_context, SceneContext
     *(int32_t *)(param_2[0x6b0] + 0x5e4) = 0xffffffff;
   }
   *(int32_t *)(param_2[0x6b0] + 0x110) = 0;
-  if ((*(char *)((longlong)param_1 + 0x563) == '\0') ||
+  if ((*(char *)((int64_t)param_1 + 0x563) == '\0') ||
      (iVar6 = (int)(param_1[0xb6] - param_1[0xb5] >> 0x3f),
      iVar11 = (int)((param_1[0xb6] - param_1[0xb5]) / 0xc) + iVar6,
      iVar11 == iVar6 || iVar11 - iVar6 < 0)) {
@@ -772,7 +772,7 @@ void EntityInitializationProcessor(EntityContextPtr entity_context, SceneContext
   }
   *(int32_t *)(param_1 + 0x4cd) = 0;
   *(int32_t *)(param_2[0x6b0] + 0x628) = 0xffffffff;
-  if (((char)param_2[0x1347] == '\0') || (*(char *)((longlong)param_1 + 0x3f61) == '\0')) {
+  if (((char)param_2[0x1347] == '\0') || (*(char *)((int64_t)param_1 + 0x3f61) == '\0')) {
     uVar10 = 0;
   }
   else {
@@ -782,89 +782,89 @@ void EntityInitializationProcessor(EntityContextPtr entity_context, SceneContext
   lVar22 = _DAT;
   lVar20 = 1;
   if (bVar8) {
-    plVar17 = *(longlong **)(_DAT + 0x10408);
-    plVar21 = *(longlong **)(_DAT + 0x10400);
-    lVar25 = (longlong)plVar17 - (longlong)plVar21 >> 3;
-    if (plVar17 < *(longlong **)(_DAT + 0x10410)) {
-      *(longlong **)(_DAT + 0x10408) = plVar17 + 1;
-      *plVar17 = (longlong)(param_1 + 0xae);
+    plVar17 = *(int64_t **)(_DAT + 0x10408);
+    plVar21 = *(int64_t **)(_DAT + 0x10400);
+    lVar25 = (int64_t)plVar17 - (int64_t)plVar21 >> 3;
+    if (plVar17 < *(int64_t **)(_DAT + 0x10410)) {
+      *(int64_t **)(_DAT + 0x10408) = plVar17 + 1;
+      *plVar17 = (int64_t)(param_1 + 0xae);
     }
     else {
       if ((lVar25 == 0) || (lVar20 = lVar25 * 2, lVar20 != 0)) {
-        plVar14 = (longlong *)
+        plVar14 = (int64_t *)
                   DynamicMemoryAllocator(_DAT,lVar20 * 8,*(int8_t *)(_DAT + 0x10418))
         ;
-        plVar17 = *(longlong **)(lVar22 + 0x10408);
-        plVar21 = *(longlong **)(lVar22 + 0x10400);
+        plVar17 = *(int64_t **)(lVar22 + 0x10408);
+        plVar21 = *(int64_t **)(lVar22 + 0x10400);
       }
       if (plVar21 != plVar17) {
                     // WARNING: Subroutine does not return
-        memmove(plVar14,plVar21,(longlong)plVar17 - (longlong)plVar21);
+        memmove(plVar14,plVar21,(int64_t)plVar17 - (int64_t)plVar21);
       }
-      *plVar14 = (longlong)(param_1 + 0xae);
-      if (*(longlong *)(lVar22 + 0x10400) != 0) {
+      *plVar14 = (int64_t)(param_1 + 0xae);
+      if (*(int64_t *)(lVar22 + 0x10400) != 0) {
                     // WARNING: Subroutine does not return
         GlobalCleanup();
       }
-      *(longlong **)(lVar22 + 0x10400) = plVar14;
-      *(longlong **)(lVar22 + 0x10408) = plVar14 + 1;
-      *(longlong **)(lVar22 + 0x10410) = plVar14 + lVar20;
+      *(int64_t **)(lVar22 + 0x10400) = plVar14;
+      *(int64_t **)(lVar22 + 0x10408) = plVar14 + 1;
+      *(int64_t **)(lVar22 + 0x10410) = plVar14 + lVar20;
     }
     *(int *)(param_2[0x6b0] + 0x628) = (int)lVar25;
   }
   if ((int)param_1[0x4f8] < 7) {
     *(int8_t *)(param_2 + 0x38c) = 1;
     uVar10 = func_0x0001800e2bf0(_DAT,param_2);
-    *(int8_t *)((longlong)param_2 + 0x1c61) = uVar10;
+    *(int8_t *)((int64_t)param_2 + 0x1c61) = uVar10;
     if ((int)param_2[1] == -1) {
       bVar24 = 0;
     }
     else {
       bVar24 = (byte)(int)param_2[3];
     }
-    *(byte *)((longlong)param_2 + 0x1c62) = bVar24 & 1;
+    *(byte *)((int64_t)param_2 + 0x1c62) = bVar24 & 1;
     uVar12 = func_0x00018024c420(param_2);
-    *(int32_t *)((longlong)param_2 + 0x1c64) = uVar12;
+    *(int32_t *)((int64_t)param_2 + 0x1c64) = uVar12;
   }
   else {
     SceneManager(param_2[0x6b0]);
   }
-  pplVar13 = (longlong **)ObjectCreator(_DAT,0xd0,8,3);
+  pplVar13 = (int64_t **)ObjectCreator(_DAT,0xd0,8,3);
   uStack_300 = pplVar13;
   ObjectInitializer(pplVar13);
-  *pplVar13 = (longlong *)&ENTITY_PROCESSOR_VTABLE;
+  *pplVar13 = (int64_t *)&ENTITY_PROCESSOR_VTABLE;
   pplVar13[0x18] = param_1;
   pplVar13[0x19] = param_2;
   pplStack_290 = pplVar13;
   (*(code *)(*pplVar13)[5])(pplVar13);
   plVar14 = param_1 + 0x6c;
   DataTransferProcessor(plVar14,&pplStack_290);
-  if (pplStack_290 != (longlong **)0x0) {
+  if (pplStack_290 != (int64_t **)0x0) {
     (*(code *)(*pplStack_290)[7])();
   }
-  if ((param_1[0x70] != 0) && (*(char *)((longlong)param_1 + 0x60b91) != '\0')) {
+  if ((param_1[0x70] != 0) && (*(char *)((int64_t)param_1 + 0x60b91) != '\0')) {
     RenderDataProcessor(param_1,param_2);
   }
   EntityDataSynchronizer(param_1 + 0x1045,param_2);
   if (param_1[0x75] != 0) {
-    pplVar13 = (longlong **)ObjectCreator(_DAT,0xd0,8,3);
+    pplVar13 = (int64_t **)ObjectCreator(_DAT,0xd0,8,3);
     uStack_300 = pplVar13;
     ObjectInitializer(pplVar13);
-    *pplVar13 = (longlong *)&DATA_TRANSFER_VTABLE;
+    *pplVar13 = (int64_t *)&DATA_TRANSFER_VTABLE;
     pplVar13[0x18] = param_1;
     pplVar13[0x19] = param_2;
     pplStack_288 = pplVar13;
     (*(code *)(*pplVar13)[5])(pplVar13);
     DataTransferProcessor(plVar14,&pplStack_288);
-    if (pplStack_288 != (longlong **)0x0) {
+    if (pplStack_288 != (int64_t **)0x0) {
       (*(code *)(*pplStack_288)[7])();
     }
   }
   ResourceManager(_DAT,*plVar14,param_1[0x6d] - *plVar14 >> 3);
-  if (((cStack_308 != '\0') && (*(char *)((longlong)param_1 + 0x60b91) != '\0')) &&
+  if (((cStack_308 != '\0') && (*(char *)((int64_t)param_1 + 0x60b91) != '\0')) &&
      (1 < (int)param_1[0x4f8])) {
-    *(int32_t *)(param_2[0x6b0] + 0x5b0) = *(int32_t *)((longlong)param_1 + 0x27bc);
-    *(int32_t *)((longlong)param_2 + 0x995c) = *(int32_t *)(param_2[0x6b0] + 0x5b0);
+    *(int32_t *)(param_2[0x6b0] + 0x5b0) = *(int32_t *)((int64_t)param_1 + 0x27bc);
+    *(int32_t *)((int64_t)param_2 + 0x995c) = *(int32_t *)(param_2[0x6b0] + 0x5b0);
     lStack_280 = 0;
     iVar11 = DataCollector(param_2[0x6b0] + 0x560,param_2,&lStack_280);
     if (0 < iVar11) {
@@ -873,36 +873,36 @@ void EntityInitializationProcessor(EntityContextPtr entity_context, SceneContext
         lVar25 = lStack_280;
         lVar22 = param_1[0x103e];
         if (lVar22 != 0) {
-          lVar4 = *(longlong *)(lStack_280 + lVar20 * 8);
+          lVar4 = *(int64_t *)(lStack_280 + lVar20 * 8);
           fVar1 = *(float *)(lVar22 + 0xc);
           fVar2 = *(float *)(lVar22 + 8);
           *(float *)(lVar4 + 0x11ccc) = fVar1 * *(float *)(lVar22 + 4);
           *(float *)(lVar4 + 0x11cd0) = fVar1 * fVar2;
         }
         SceneManager(param_2[0x6b0],*(uint64_t *)(lStack_280 + lVar20 * 8));
-        lVar22 = *(longlong *)(lVar25 + lVar20 * 8);
+        lVar22 = *(int64_t *)(lVar25 + lVar20 * 8);
         LOCK();
         plVar14 = param_2 + 0x2349;
         lVar25 = *plVar14;
         *(int *)plVar14 = (int)*plVar14 + 1;
         UNLOCK();
-        param_2[(longlong)(int)lVar25 + 0x1349] = lVar22;
-        uVar16 = *(uint64_t *)((longlong)param_2 + 0x9a3c);
-        *(uint64_t *)(lVar22 + 0x9a34) = *(uint64_t *)((longlong)param_2 + 0x9a34);
+        param_2[(int64_t)(int)lVar25 + 0x1349] = lVar22;
+        uVar16 = *(uint64_t *)((int64_t)param_2 + 0x9a3c);
+        *(uint64_t *)(lVar22 + 0x9a34) = *(uint64_t *)((int64_t)param_2 + 0x9a34);
         *(uint64_t *)(lVar22 + 0x9a3c) = uVar16;
         lVar20 = lVar20 + 1;
       } while (lVar20 < iVar11);
     }
   }
   if ((((int)param_1[0xc188] == -1) ||
-      (lVar20 = *(longlong *)(param_1[0xc184] + (longlong)(int)param_1[0xc188] * 8), lVar20 == 0))
-     || (*(longlong *)(lVar20 + 0x40) == 0)) {
-    *(int32_t *)(param_2 + 0x253e) = *(int32_t *)((longlong)param_1 + 0x60c44);
+      (lVar20 = *(int64_t *)(param_1[0xc184] + (int64_t)(int)param_1[0xc188] * 8), lVar20 == 0))
+     || (*(int64_t *)(lVar20 + 0x40) == 0)) {
+    *(int32_t *)(param_2 + 0x253e) = *(int32_t *)((int64_t)param_1 + 0x60c44);
   }
   else {
     *(int32_t *)(param_2 + 0x253e) = 0xffffffff;
   }
-  *(int32_t *)((longlong)param_2 + 0x129f4) = *(int32_t *)((longlong)param_1 + 0x3ec4);
+  *(int32_t *)((int64_t)param_2 + 0x129f4) = *(int32_t *)((int64_t)param_1 + 0x3ec4);
   if (param_1[0x103e] != 0) {
     *(float *)(param_2 + 0x253f) = *(float *)(param_1 + 0x7d9) * 0.05;
   }
@@ -912,7 +912,7 @@ void EntityInitializationProcessor(EntityContextPtr entity_context, SceneContext
   else {
     iVar11 = (int)*(uint64_t *)(param_1[0xc170] + 0x1dd0);
   }
-  *(float *)((longlong)param_2 + 0x129fc) = (float)iVar11;
+  *(float *)((int64_t)param_2 + 0x129fc) = (float)iVar11;
   EntityStateManager(param_1);
   iVar11 = (int)param_1[0x4f8];
   if (4 < iVar11) {
@@ -922,27 +922,27 @@ void EntityInitializationProcessor(EntityContextPtr entity_context, SceneContext
   if (6 < iVar11) {
     RenderConfigurator(param_1 + 0xc182);
   }
-  plVar14 = (longlong *)ResourceAcquirer();
-  if (plVar14 != (longlong *)0x0) {
+  plVar14 = (int64_t *)ResourceAcquirer();
+  if (plVar14 != (int64_t *)0x0) {
     plStack_230 = plVar14;
     (**(code **)(*plVar14 + 0x28))(plVar14);
   }
-  plStack_230 = (longlong *)param_2[0x1330];
-  param_2[0x1330] = (longlong)plVar14;
-  if (plStack_230 != (longlong *)0x0) {
+  plStack_230 = (int64_t *)param_2[0x1330];
+  param_2[0x1330] = (int64_t)plVar14;
+  if (plStack_230 != (int64_t *)0x0) {
     (**(code **)(*plStack_230 + 0x38))();
   }
   if (((1 < (int)param_1[0x4f8]) && (lVar20 = param_1[100], lVar20 != 0)) &&
-     (lVar22 = *(longlong *)(lVar20 + 0x3c8), lVar22 != 0)) {
+     (lVar22 = *(int64_t *)(lVar20 + 0x3c8), lVar22 != 0)) {
     bVar8 = false;
-    if ((*(longlong *)(lVar22 + 0x20) - *(longlong *)(lVar22 + 0x18) >> 4 != 0) &&
-       (*(char *)(*(longlong *)(lVar20 + 0x88) + 0x60b91) != '\0')) {
+    if ((*(int64_t *)(lVar22 + 0x20) - *(int64_t *)(lVar22 + 0x18) >> 4 != 0) &&
+       (*(char *)(*(int64_t *)(lVar20 + 0x88) + 0x60b91) != '\0')) {
       SceneSynchronizer(lVar22,param_2);
       bVar8 = true;
     }
-    if (((*(char *)(*(longlong *)(lVar20 + 0x88) + 0x60b91) != '\0') && (bVar8)) &&
-       (*(longlong *)(*(longlong *)(lVar20 + 0x3c8) + 0x20) -
-        *(longlong *)(*(longlong *)(lVar20 + 0x3c8) + 0x18) >> 4 == 0)) {
+    if (((*(char *)(*(int64_t *)(lVar20 + 0x88) + 0x60b91) != '\0') && (bVar8)) &&
+       (*(int64_t *)(*(int64_t *)(lVar20 + 0x3c8) + 0x20) -
+        *(int64_t *)(*(int64_t *)(lVar20 + 0x3c8) + 0x18) >> 4 == 0)) {
       SceneCleaner();
     }
   }
@@ -951,34 +951,34 @@ void EntityInitializationProcessor(EntityContextPtr entity_context, SceneContext
   if (param_1[0x1d] - *plVar14 >> 3 != 0) {
     lVar20 = 0;
     do {
-      (**(code **)(**(longlong **)(lVar20 + *plVar14) + 0x38))
-                (*(longlong **)(lVar20 + *plVar14),param_2,param_1);
+      (**(code **)(**(int64_t **)(lVar20 + *plVar14) + 0x38))
+                (*(int64_t **)(lVar20 + *plVar14),param_2,param_1);
       iVar11 = iVar11 + 1;
       lVar20 = lVar20 + 8;
-    } while ((ulonglong)(longlong)iVar11 < (ulonglong)(param_1[0x1d] - *plVar14 >> 3));
+    } while ((uint64_t)(int64_t)iVar11 < (uint64_t)(param_1[0x1d] - *plVar14 >> 3));
   }
-  if (*(char *)((longlong)param_2 + 0x9a31) != '\0') {
-    if (((int)param_1[0x4f8] != 7) && (*(longlong *)(param_2[0x6b0] + 0x530) != 0)) {
-      *(int32_t *)(*(longlong *)(param_2[0x6b0] + 0x530) + 0x40) = 0x41200000;
+  if (*(char *)((int64_t)param_2 + 0x9a31) != '\0') {
+    if (((int)param_1[0x4f8] != 7) && (*(int64_t *)(param_2[0x6b0] + 0x530) != 0)) {
+      *(int32_t *)(*(int64_t *)(param_2[0x6b0] + 0x530) + 0x40) = 0x41200000;
     }
-    plVar17 = (longlong *)param_2[0x6b0];
+    plVar17 = (int64_t *)param_2[0x6b0];
     if (plVar17[0xa6] != 0) {
       cVar9 = (**(code **)(*plVar17 + 0x78))();
-      uVar18 = *(uint *)(*(longlong *)(param_2[0x6b0] + 0x530) + 0x94);
+      uVar18 = *(uint *)(*(int64_t *)(param_2[0x6b0] + 0x530) + 0x94);
       if (cVar9 == '\0') {
         uVar18 = uVar18 & 0x7fffffff;
       }
       else {
         uVar18 = uVar18 | 0x80000000;
       }
-      *(uint *)(*(longlong *)(param_2[0x6b0] + 0x530) + 0x94) = uVar18;
-      plVar17 = (longlong *)param_2[0x6b0];
+      *(uint *)(*(int64_t *)(param_2[0x6b0] + 0x530) + 0x94) = uVar18;
+      plVar17 = (int64_t *)param_2[0x6b0];
     }
     uVar18 = 0xdfffffff;
     if (plVar17[0xa6] != 0) {
       uVar18 = *(uint *)(plVar17[0xa6] + 0x94);
     }
-    if (((*(char *)((longlong)param_1 + 0x2a63) == '\0') || ((int)plVar17[0x22] == 0)) ||
+    if (((*(char *)((int64_t)param_1 + 0x2a63) == '\0') || ((int)plVar17[0x22] == 0)) ||
        (lVar20 = ConfigurationManager(plVar17[0x23]), lVar20 == 0)) {
       uVar18 = uVar18 & 0xfffff7ff;
     }
@@ -988,121 +988,121 @@ void EntityInitializationProcessor(EntityContextPtr entity_context, SceneContext
     uVar12 = func_0x0001801f2a40();
     *(int32_t *)(param_2 + 0x133d) = uVar12;
     SceneProcessor(param_2[0x6b0],uVar18,param_2);
-    plVar17 = *(longlong **)(param_2[0x6b0] + 0x530);
-    if (plVar17 != (longlong *)0x0) {
+    plVar17 = *(int64_t **)(param_2[0x6b0] + 0x530);
+    if (plVar17 != (int64_t *)0x0) {
       plStack_228 = plVar17;
       (**(code **)(*plVar17 + 0x28))(plVar17);
     }
-    plStack_228 = (longlong *)param_2[0x1337];
-    param_2[0x1337] = (longlong)plVar17;
-    if (plStack_228 != (longlong *)0x0) {
+    plStack_228 = (int64_t *)param_2[0x1337];
+    param_2[0x1337] = (int64_t)plVar17;
+    if (plStack_228 != (int64_t *)0x0) {
       (**(code **)(*plStack_228 + 0x38))();
     }
-    plVar17 = *(longlong **)(param_2[0x6b0] + 0x538);
-    if (plVar17 != (longlong *)0x0) {
+    plVar17 = *(int64_t **)(param_2[0x6b0] + 0x538);
+    if (plVar17 != (int64_t *)0x0) {
       plStack_220 = plVar17;
       (**(code **)(*plVar17 + 0x28))(plVar17);
     }
-    plStack_220 = (longlong *)param_2[0x1338];
-    param_2[0x1338] = (longlong)plVar17;
-    if (plStack_220 != (longlong *)0x0) {
+    plStack_220 = (int64_t *)param_2[0x1338];
+    param_2[0x1338] = (int64_t)plVar17;
+    if (plStack_220 != (int64_t *)0x0) {
       (**(code **)(*plStack_220 + 0x38))();
     }
-    plVar17 = *(longlong **)(param_2[0x6b0] + 0x540);
-    if (plVar17 != (longlong *)0x0) {
+    plVar17 = *(int64_t **)(param_2[0x6b0] + 0x540);
+    if (plVar17 != (int64_t *)0x0) {
       plStack_218 = plVar17;
       (**(code **)(*plVar17 + 0x28))(plVar17);
     }
-    plStack_218 = (longlong *)param_2[0x1339];
-    param_2[0x1339] = (longlong)plVar17;
-    if (plStack_218 != (longlong *)0x0) {
+    plStack_218 = (int64_t *)param_2[0x1339];
+    param_2[0x1339] = (int64_t)plVar17;
+    if (plStack_218 != (int64_t *)0x0) {
       (**(code **)(*plStack_218 + 0x38))();
     }
-    plVar17 = *(longlong **)(param_2[0x6b0] + 0x550);
-    if (plVar17 != (longlong *)0x0) {
+    plVar17 = *(int64_t **)(param_2[0x6b0] + 0x550);
+    if (plVar17 != (int64_t *)0x0) {
       plStack_210 = plVar17;
       (**(code **)(*plVar17 + 0x28))(plVar17);
     }
-    plStack_210 = (longlong *)param_2[0x133b];
-    param_2[0x133b] = (longlong)plVar17;
-    if (plStack_210 != (longlong *)0x0) {
+    plStack_210 = (int64_t *)param_2[0x133b];
+    param_2[0x133b] = (int64_t)plVar17;
+    if (plStack_210 != (int64_t *)0x0) {
       (**(code **)(*plStack_210 + 0x38))();
     }
-    *(int32_t *)(param_2 + 0x249b) = *(int32_t *)((longlong)param_1 + 0x3f54);
+    *(int32_t *)(param_2 + 0x249b) = *(int32_t *)((int64_t)param_1 + 0x3f54);
     *(int *)(param_2 + 0x249a) = (int)param_1[0x7eb];
-    *(int32_t *)((longlong)param_2 + 0x124d4) = *(int32_t *)((longlong)param_1 + 0x3f5c);
-    *(char *)((longlong)param_2 + 0x124dc) = (char)param_1[0x7ec];
+    *(int32_t *)((int64_t)param_2 + 0x124d4) = *(int32_t *)((int64_t)param_1 + 0x3f5c);
+    *(char *)((int64_t)param_2 + 0x124dc) = (char)param_1[0x7ec];
   }
-  plVar17 = *(longlong **)(param_2[0x6b0] + 0x558);
-  if (plVar17 != (longlong *)0x0) {
+  plVar17 = *(int64_t **)(param_2[0x6b0] + 0x558);
+  if (plVar17 != (int64_t *)0x0) {
     plStack_208 = plVar17;
     (**(code **)(*plVar17 + 0x28))(plVar17);
   }
-  plStack_208 = (longlong *)param_2[0x133c];
-  param_2[0x133c] = (longlong)plVar17;
-  if (plStack_208 != (longlong *)0x0) {
+  plStack_208 = (int64_t *)param_2[0x133c];
+  param_2[0x133c] = (int64_t)plVar17;
+  if (plStack_208 != (int64_t *)0x0) {
     (**(code **)(*plStack_208 + 0x38))();
   }
-  plVar17 = *(longlong **)(param_2[0x6b0] + 0x548);
-  if (plVar17 != (longlong *)0x0) {
+  plVar17 = *(int64_t **)(param_2[0x6b0] + 0x548);
+  if (plVar17 != (int64_t *)0x0) {
     plStack_200 = plVar17;
     (**(code **)(*plVar17 + 0x28))(plVar17);
   }
-  plStack_200 = (longlong *)param_2[0x133a];
-  param_2[0x133a] = (longlong)plVar17;
-  if (plStack_200 != (longlong *)0x0) {
+  plStack_200 = (int64_t *)param_2[0x133a];
+  param_2[0x133a] = (int64_t)plVar17;
+  if (plStack_200 != (int64_t *)0x0) {
     (**(code **)(*plStack_200 + 0x38))();
   }
-  if (param_1 == (longlong *)0xffffffffffffc950) {
-    *(int8_t *)((longlong)param_2 + 0x11cf4) = 0;
+  if (param_1 == (int64_t *)0xffffffffffffc950) {
+    *(int8_t *)((int64_t)param_2 + 0x11cf4) = 0;
   }
   else {
     SceneBuilder(param_2 + 0x23a0);
-    *(int8_t *)((longlong)param_2 + 0x11cf4) = 1;
+    *(int8_t *)((int64_t)param_2 + 0x11cf4) = 1;
   }
   lVar20 = param_1[0x103e];
   if (lVar20 != 0) {
     fVar1 = *(float *)(lVar20 + 0xc);
     fVar2 = *(float *)(lVar20 + 8);
-    *(float *)((longlong)param_2 + 0x11ccc) = fVar1 * *(float *)(lVar20 + 4);
+    *(float *)((int64_t)param_2 + 0x11ccc) = fVar1 * *(float *)(lVar20 + 4);
     *(float *)(param_2 + 0x239a) = fVar1 * fVar2;
   }
-  *(int32_t *)((longlong)param_2 + 0x124e4) = *(int32_t *)((longlong)param_1 + 0x5b9c);
+  *(int32_t *)((int64_t)param_2 + 0x124e4) = *(int32_t *)((int64_t)param_1 + 0x5b9c);
   lVar20 = param_1[0xc170];
   if (lVar20 == 0) {
-    *(uint64_t *)((longlong)param_2 + 0x11cd4) = 0;
-    *(uint64_t *)((longlong)param_2 + 0x11cdc) = 0;
-    plVar17 = (longlong *)param_2[0x1332];
+    *(uint64_t *)((int64_t)param_2 + 0x11cd4) = 0;
+    *(uint64_t *)((int64_t)param_2 + 0x11cdc) = 0;
+    plVar17 = (int64_t *)param_2[0x1332];
     param_2[0x1332] = 0;
     plStack_1f0 = plVar17;
   }
   else {
     uVar16 = *(uint64_t *)(lVar20 + 0x1c18);
-    *(uint64_t *)((longlong)param_2 + 0x11cd4) = *(uint64_t *)(lVar20 + 0x1c10);
-    *(uint64_t *)((longlong)param_2 + 0x11cdc) = uVar16;
-    plVar21 = *(longlong **)(param_1[0xc170] + 0x1c48);
-    if (plVar21 != (longlong *)0x0) {
+    *(uint64_t *)((int64_t)param_2 + 0x11cd4) = *(uint64_t *)(lVar20 + 0x1c10);
+    *(uint64_t *)((int64_t)param_2 + 0x11cdc) = uVar16;
+    plVar21 = *(int64_t **)(param_1[0xc170] + 0x1c48);
+    if (plVar21 != (int64_t *)0x0) {
       plStack_1f8 = plVar21;
       (**(code **)(*plVar21 + 0x28))(plVar21);
     }
-    plVar17 = (longlong *)param_2[0x1332];
-    param_2[0x1332] = (longlong)plVar21;
+    plVar17 = (int64_t *)param_2[0x1332];
+    param_2[0x1332] = (int64_t)plVar21;
     plStack_1f8 = plVar17;
   }
-  if (plVar17 != (longlong *)0x0) {
+  if (plVar17 != (int64_t *)0x0) {
     (**(code **)(*plVar17 + 0x38))();
   }
-  plVar17 = (longlong *)param_1[0x518];
-  if (plVar17 != (longlong *)0x0) {
+  plVar17 = (int64_t *)param_1[0x518];
+  if (plVar17 != (int64_t *)0x0) {
     (**(code **)(*plVar17 + 0x18))(plVar17,0,param_2 + 6);
   }
   uVar18 = 0;
   lVar20 = param_2[0x6b0];
   lVar22 = 0x118;
-  plStack_2e8 = (longlong *)0x118;
+  plStack_2e8 = (int64_t *)0x118;
   if (*(int *)(lVar20 + 0x110) != 0) {
     do {
-      lVar20 = *(longlong *)(lVar22 + lVar20);
+      lVar20 = *(int64_t *)(lVar22 + lVar20);
       if (((param_1[100] != 0) && ((*(byte *)(lVar20 + 0x1bd8) & 0x20) != 0)) &&
          ((*(byte *)(lVar20 + 0x1bd9) & 2) == 0)) {
         EntityManager(param_1[100],lVar20);
@@ -1116,8 +1116,8 @@ void EntityInitializationProcessor(EntityContextPtr entity_context, SceneContext
         bVar8 = true;
       }
       if (((*(int *)(_DAT + 0x12d8) == 0x12) || ((*(byte *)(lVar20 + 0x1bd8) & 0x20) == 0)
-          ) || (((*(longlong *)(lVar20 + 0x99b8) == 0 ||
-                 ((*(uint *)(*(longlong *)(lVar20 + 0x99b8) + 0x98) & 0x8000101e) == 0)) &&
+          ) || (((*(int64_t *)(lVar20 + 0x99b8) == 0 ||
+                 ((*(uint *)(*(int64_t *)(lVar20 + 0x99b8) + 0x98) & 0x8000101e) == 0)) &&
                 (((*(char *)(lVar20 + 0x124c4) == '\0' && (!bVar8)) &&
                  (*(int *)(lVar20 + 0x1bdc) == 0)))))) {
         uVar10 = 0;
@@ -1140,19 +1140,19 @@ void EntityInitializationProcessor(EntityContextPtr entity_context, SceneContext
       lVar20 = param_2[0x6b0];
     } while (uVar18 < *(uint *)(lVar20 + 0x110));
   }
-  plVar17 = (longlong *)0x118;
+  plVar17 = (int64_t *)0x118;
   lVar20 = param_1[0x1040];
   if (lVar20 != 0) {
     uStack_2d8 = *(uint64_t *)(lVar20 + 0x70);
     uStack_2d0 = *(uint64_t *)(lVar20 + 0x78);
-    fStack_2f8 = *(float *)(param_2 + 0x25) - *(float *)((longlong)param_1 + 0x3e14) * 2000.0;
-    fStack_2a4 = *(float *)((longlong)param_2 + 0x124) - *(float *)(param_1 + 0x7c2) * 2000.0;
-    fStack_2a8 = *(float *)(param_2 + 0x24) - *(float *)((longlong)param_1 + 0x3e0c) * 2000.0;
-    uStack_300 = (longlong **)CONCAT44(fStack_2a4,fStack_2a8);
+    fStack_2f8 = *(float *)(param_2 + 0x25) - *(float *)((int64_t)param_1 + 0x3e14) * 2000.0;
+    fStack_2a4 = *(float *)((int64_t)param_2 + 0x124) - *(float *)(param_1 + 0x7c2) * 2000.0;
+    fStack_2a8 = *(float *)(param_2 + 0x24) - *(float *)((int64_t)param_1 + 0x3e0c) * 2000.0;
+    uStack_300 = (int64_t **)CONCAT44(fStack_2a4,fStack_2a8);
     uStack_2f4 = 0x7f7fffff;
     uStack_29c = 0x7f7fffff;
-    uStack_2c8 = *(uint64_t *)((longlong)param_1 + 0x3e0c);
-    uStack_2c0 = *(uint64_t *)((longlong)param_1 + 0x3e14);
+    uStack_2c8 = *(uint64_t *)((int64_t)param_1 + 0x3e0c);
+    uStack_2c0 = *(uint64_t *)((int64_t)param_1 + 0x3e14);
     fStack_2b8 = 0.0;
     fStack_2b4 = 0.0;
     fStack_2b0 = 1.0;
@@ -1178,8 +1178,8 @@ void EntityInitializationProcessor(EntityContextPtr entity_context, SceneContext
   lVar20 = _DAT;
   if (*(int *)(param_2[0x6b0] + 0x110) != 0) {
     if ((*(byte *)(param_2 + 0x37b) & 2) != 0) {
-      plVar21 = (longlong *)param_1[0x534];
-      if ((plVar21 != (longlong *)0x0) && (_DAT != 0)) {
+      plVar21 = (int64_t *)param_1[0x534];
+      if ((plVar21 != (int64_t *)0x0) && (_DAT != 0)) {
         uStack_300 = &plStack_278;
         plStack_278 = plVar21;
         (**(code **)(*plVar21 + 0x28))();
@@ -1189,8 +1189,8 @@ void EntityInitializationProcessor(EntityContextPtr entity_context, SceneContext
         ComponentManager(param_1 + 0x534);
       }
       if ((*(char *)(_DAT + 0x1630) != '\0') &&
-         ((longlong *)param_1[0x535] != (longlong *)0x0)) {
-        (**(code **)(*(longlong *)param_1[0x535] + 0x40))();
+         ((int64_t *)param_1[0x535] != (int64_t *)0x0)) {
+        (**(code **)(*(int64_t *)param_1[0x535] + 0x40))();
       }
     }
     param_1[1999] = param_1[0x7ce];
@@ -1198,37 +1198,37 @@ void EntityInitializationProcessor(EntityContextPtr entity_context, SceneContext
     lVar20 = param_2[0x6b0];
     if (*(int *)(lVar20 + 0x110) != 0) {
       do {
-        uStack_300 = *(longlong ***)(lVar20 + (longlong)plVar17);
-        if ((*(uint *)((longlong)uStack_300 + 4) & 0x8000000) == 0) {
-          plVar21 = (longlong *)param_1[1999];
-          if (plVar21 < (longlong *)param_1[2000]) {
-            param_1[1999] = (longlong)(plVar21 + 1);
-            *plVar21 = (longlong)uStack_300;
+        uStack_300 = *(int64_t ***)(lVar20 + (int64_t)plVar17);
+        if ((*(uint *)((int64_t)uStack_300 + 4) & 0x8000000) == 0) {
+          plVar21 = (int64_t *)param_1[1999];
+          if (plVar21 < (int64_t *)param_1[2000]) {
+            param_1[1999] = (int64_t)(plVar21 + 1);
+            *plVar21 = (int64_t)uStack_300;
           }
           else {
-            plVar17 = (longlong *)param_1[0x7ce];
-            lVar22 = (longlong)plVar21 - (longlong)plVar17 >> 3;
+            plVar17 = (int64_t *)param_1[0x7ce];
+            lVar22 = (int64_t)plVar21 - (int64_t)plVar17 >> 3;
             lVar20 = 1;
             if ((lVar22 == 0) || (lVar20 = lVar22 * 2, lVar20 != 0)) {
-              plVar15 = (longlong *)DynamicMemoryAllocator(_DAT,lVar20 * 8,(char)param_1[0x7d1]);
-              plVar21 = (longlong *)param_1[1999];
-              plVar17 = (longlong *)param_1[0x7ce];
+              plVar15 = (int64_t *)DynamicMemoryAllocator(_DAT,lVar20 * 8,(char)param_1[0x7d1]);
+              plVar21 = (int64_t *)param_1[1999];
+              plVar17 = (int64_t *)param_1[0x7ce];
             }
             else {
-              plVar15 = (longlong *)0x0;
+              plVar15 = (int64_t *)0x0;
             }
             if (plVar17 != plVar21) {
                     // WARNING: Subroutine does not return
-              memmove(plVar15,plVar17,(longlong)plVar21 - (longlong)plVar17);
+              memmove(plVar15,plVar17,(int64_t)plVar21 - (int64_t)plVar17);
             }
-            *plVar15 = (longlong)uStack_300;
+            *plVar15 = (int64_t)uStack_300;
             if (param_1[0x7ce] != 0) {
                     // WARNING: Subroutine does not return
               GlobalCleanup();
             }
-            param_1[0x7ce] = (longlong)plVar15;
-            param_1[1999] = (longlong)(plVar15 + 1);
-            param_1[2000] = (longlong)(plVar15 + lVar20);
+            param_1[0x7ce] = (int64_t)plVar15;
+            param_1[1999] = (int64_t)(plVar15 + 1);
+            param_1[2000] = (int64_t)(plVar15 + lVar20);
             plVar17 = plStack_2e8;
           }
         }
@@ -1238,7 +1238,7 @@ void EntityInitializationProcessor(EntityContextPtr entity_context, SceneContext
         plStack_2e8 = plVar17;
       } while (uStack_2f0 < *(uint *)(lVar20 + 0x110));
     }
-    uStack_300 = (longlong **)&lStack_250;
+    uStack_300 = (int64_t **)&lStack_250;
     lVar20 = param_1[1999] - param_1[0x7ce] >> 3;
     uStack_238 = *(uint *)(param_1 + 0x7d1);
     if (lVar20 == 0) {
@@ -1259,11 +1259,11 @@ void EntityInitializationProcessor(EntityContextPtr entity_context, SceneContext
     if (param_1[0x1d] - *plVar14 >> 3 != 0) {
       lVar20 = 0;
       do {
-        (**(code **)(**(longlong **)(lVar20 + *plVar14) + 0x18))
-                  (*(longlong **)(lVar20 + *plVar14),param_1,param_2);
+        (**(code **)(**(int64_t **)(lVar20 + *plVar14) + 0x18))
+                  (*(int64_t **)(lVar20 + *plVar14),param_1,param_2);
         iVar11 = iVar11 + 1;
         lVar20 = lVar20 + 8;
-      } while ((ulonglong)(longlong)iVar11 < (ulonglong)(param_1[0x1d] - *plVar14 >> 3));
+      } while ((uint64_t)(int64_t)iVar11 < (uint64_t)(param_1[0x1d] - *plVar14 >> 3));
     }
     uVar16 = ObjectCreator(_DAT,0xe0,8,3);
     uStack_300 = &plStack_1d0;
@@ -1273,30 +1273,30 @@ void EntityInitializationProcessor(EntityContextPtr entity_context, SceneContext
     plStack_2e0 = param_2;
     plStack_1d0 = param_1;
     plStack_1c8 = param_2;
-    plVar14 = (longlong *)ObjectCreator2(uVar16,&plStack_1d0);
-    if (plVar14 != (longlong *)0x0) {
+    plVar14 = (int64_t *)ObjectCreator2(uVar16,&plStack_1d0);
+    if (plVar14 != (int64_t *)0x0) {
       plStack_1e8 = plVar14;
       (**(code **)(*plVar14 + 0x28))(plVar14);
     }
-    plStack_1e8 = (longlong *)param_1[0xc18e];
-    param_1[0xc18e] = (longlong)plVar14;
-    if (plStack_1e8 != (longlong *)0x0) {
+    plStack_1e8 = (int64_t *)param_1[0xc18e];
+    param_1[0xc18e] = (int64_t)plVar14;
+    if (plStack_1e8 != (int64_t *)0x0) {
       (**(code **)(*plStack_1e8 + 0x38))();
     }
     *(uint64_t *)(param_1[0xc18e] + 0x18) = 0xfffffffffffffffc;
     lVar20 = _DAT;
-    plVar14 = (longlong *)param_1[0xc18e];
+    plVar14 = (int64_t *)param_1[0xc18e];
     if (*(int *)(_DAT + 0x380) == 0) {
       uStack_300 = &plStack_270;
       plStack_270 = plVar14;
-      if (plVar14 != (longlong *)0x0) {
+      if (plVar14 != (int64_t *)0x0) {
         (**(code **)(*plVar14 + 0x28))();
       }
       MemoryManager(lVar20,&plStack_270);
     }
     else {
       (**(code **)(*plVar14 + 0x60))();
-      plVar14 = (longlong *)param_1[0xc18e];
+      plVar14 = (int64_t *)param_1[0xc18e];
       if (*(code **)(*plVar14 + 0x70) == (code *)&RESOURCE_CLEANUP_VTABLE) {
         LOCK();
         *(int8_t *)(plVar14 + 2) = 1;
@@ -1315,30 +1315,30 @@ void EntityInitializationProcessor(EntityContextPtr entity_context, SceneContext
     plStack_2e0 = param_2;
     plStack_1b0 = param_1;
     plStack_1a8 = param_2;
-    plVar14 = (longlong *)ObjectCreator2(uVar16,&plStack_1b0);
-    if (plVar14 != (longlong *)0x0) {
+    plVar14 = (int64_t *)ObjectCreator2(uVar16,&plStack_1b0);
+    if (plVar14 != (int64_t *)0x0) {
       plStack_1e0 = plVar14;
       (**(code **)(*plVar14 + 0x28))(plVar14);
     }
-    plStack_1e0 = (longlong *)param_1[0xc18f];
-    param_1[0xc18f] = (longlong)plVar14;
-    if (plStack_1e0 != (longlong *)0x0) {
+    plStack_1e0 = (int64_t *)param_1[0xc18f];
+    param_1[0xc18f] = (int64_t)plVar14;
+    if (plStack_1e0 != (int64_t *)0x0) {
       (**(code **)(*plStack_1e0 + 0x38))();
     }
     *(uint64_t *)(param_1[0xc18f] + 0x18) = 0xfffffffffffffffe;
     lVar20 = _DAT;
-    plVar14 = (longlong *)param_1[0xc18f];
+    plVar14 = (int64_t *)param_1[0xc18f];
     if (*(int *)(_DAT + 0x380) == 0) {
       uStack_300 = &plStack_268;
       plStack_268 = plVar14;
-      if (plVar14 != (longlong *)0x0) {
+      if (plVar14 != (int64_t *)0x0) {
         (**(code **)(*plVar14 + 0x28))();
       }
       MemoryManager(lVar20,&plStack_268);
     }
     else {
       (**(code **)(*plVar14 + 0x60))();
-      plVar14 = (longlong *)param_1[0xc18f];
+      plVar14 = (int64_t *)param_1[0xc18f];
       if (*(code **)(*plVar14 + 0x70) == (code *)&RESOURCE_CLEANUP_VTABLE) {
         LOCK();
         *(int8_t *)(plVar14 + 2) = 1;
@@ -1352,15 +1352,15 @@ void EntityInitializationProcessor(EntityContextPtr entity_context, SceneContext
     if (param_1[0x89] != 0) {
       EntityConnector(param_1[0x89],param_2);
     }
-    if ((*(char *)((longlong)param_1 + 0x563) != '\0') &&
+    if ((*(char *)((int64_t)param_1 + 0x563) != '\0') &&
        (iVar6 = (int)(param_1[0xb6] - param_1[0xb5] >> 0x3f),
        iVar11 = (int)((param_1[0xb6] - param_1[0xb5]) / 0xc) + iVar6,
        iVar11 != iVar6 && -1 < iVar11 - iVar6)) {
-      pplVar13 = (longlong **)ObjectCreator(_DAT,0xe8,8,3);
+      pplVar13 = (int64_t **)ObjectCreator(_DAT,0xe8,8,3);
       bVar24 = *(byte *)(param_2 + 0x37b);
       uStack_300 = pplVar13;
       ObjectInitializer(pplVar13);
-      *pplVar13 = (longlong *)&ENTITY_CALLBACK_VTABLE;
+      *pplVar13 = (int64_t *)&ENTITY_CALLBACK_VTABLE;
       pplVar13[0x18] = param_1;
       pplVar13[0x19] = param_2;
       *(byte *)(pplVar13 + 0x1a) = bVar24 >> 1 & 1;
@@ -1368,17 +1368,17 @@ void EntityInitializationProcessor(EntityContextPtr entity_context, SceneContext
       pplVar13[0x1c] = param_1 + 0x4cf;
       pplStack_258 = pplVar13;
       (*(code *)(*pplVar13)[5])(pplVar13);
-      pplStack_258 = (longlong **)param_1[0x4ce];
-      param_1[0x4ce] = (longlong)pplVar13;
-      if (pplStack_258 != (longlong **)0x0) {
+      pplStack_258 = (int64_t **)param_1[0x4ce];
+      param_1[0x4ce] = (int64_t)pplVar13;
+      if (pplStack_258 != (int64_t **)0x0) {
         (*(code *)(*pplStack_258)[7])();
       }
       lVar20 = _DAT;
-      plVar14 = (longlong *)param_1[0x4ce];
+      plVar14 = (int64_t *)param_1[0x4ce];
       if (*(int *)(_DAT + 0x380) == 0) {
         pplStack_258 = &plStack_260;
         plStack_260 = plVar14;
-        if (plVar14 != (longlong *)0x0) {
+        if (plVar14 != (int64_t *)0x0) {
           (**(code **)(*plVar14 + 0x28))();
         }
         MemoryManager(lVar20,&plStack_260);
@@ -1408,7 +1408,7 @@ void EntityInitializationProcessor(EntityContextPtr entity_context, SceneContext
       uVar23 = 0;
       if (lVar20 - lVar22 >> 3 == 0) break;
       do {
-        plVar17 = *(longlong **)(lVar22 + uVar23 * 8);
+        plVar17 = *(int64_t **)(lVar22 + uVar23 * 8);
         pcVar5 = *(code **)(*plVar17 + 0x68);
         if (pcVar5 == (code *)&COMPONENT_CHECK_VTABLE) {
           cVar9 = (char)plVar17[2] != '\0';
@@ -1418,10 +1418,10 @@ void EntityInitializationProcessor(EntityContextPtr entity_context, SceneContext
         }
         if (cVar9 == '\0') {
           bVar8 = true;
-          plVar17 = (longlong *)TempObjectManager(lVar25);
+          plVar17 = (int64_t *)TempObjectManager(lVar25);
           cVar9 = (**(code **)(*plVar17 + 0x20))(plVar17,0);
           if (cVar9 == '\0') {
-            plVar17 = *(longlong **)(*plVar14 + uVar23 * 8);
+            plVar17 = *(int64_t **)(*plVar14 + uVar23 * 8);
             pcVar5 = *(code **)(*plVar17 + 0x80);
             if (pcVar5 == (code *)&COMPONENT_CLEANER_VTABLE) {
               ComponentCleaner(plVar17 + 4);
@@ -1431,17 +1431,17 @@ void EntityInitializationProcessor(EntityContextPtr entity_context, SceneContext
             }
           }
         }
-        uVar23 = (ulonglong)((int)uVar23 + 1);
+        uVar23 = (uint64_t)((int)uVar23 + 1);
         lVar20 = param_1[0x6d];
         lVar22 = *plVar14;
-      } while (uVar23 < (ulonglong)(lVar20 - lVar22 >> 3));
+      } while (uVar23 < (uint64_t)(lVar20 - lVar22 >> 3));
     } while (bVar8);
     BufferManager(plVar14);
     param_1 = plStack_1d8;
   }
   *(int8_t *)(param_1 + 2) = 1;
                     // WARNING: Subroutine does not return
-  SystemSecurityChecker(uStack_48 ^ (ulonglong)auStack_328);
+  SystemSecurityChecker(uStack_48 ^ (uint64_t)auStack_328);
 }
 
 
@@ -1471,8 +1471,8 @@ uint32_t EntityDataTransfer(EntityContextPtr entity_data)
   // 局部变量声明
   int32_t *status_ptr;             // 状态指针
   int32_t original_status;          // 原始状态
-  longlong temp_long1;            // 临时长整型变量1
-  longlong temp_long2;            // 临时长整型变量2
+  int64_t temp_long1;            // 临时长整型变量1
+  int64_t temp_long2;            // 临时长整型变量2
   int32_t source_data_1;           // 源数据1
   int32_t source_data_2;           // 源数据2
   int32_t target_data_1;           // 目标数据1
@@ -1486,8 +1486,8 @@ uint32_t EntityDataTransfer(EntityContextPtr entity_data)
   uint64_t transform_data_5;        // 变换数据5;
   
   // 获取实体数据指针和组件数据
-  temp_long1 = *(longlong *)(entity_data + 0xc0);
-  temp_long2 = *(longlong *)(temp_long1 + 0x3a8);
+  temp_long1 = *(int64_t *)(entity_data + 0xc0);
+  temp_long2 = *(int64_t *)(temp_long1 + 0x3a8);
   
   // 备份源数据
   temp_int32_t_1 = *(int32_t *)(temp_long1 + 0x43c);
@@ -1513,13 +1513,13 @@ uint32_t EntityDataTransfer(EntityContextPtr entity_data)
   *(int32_t *)(temp_long2 + 0x3c) = temp_int32_t_7;
   
   // 调用数据处理函数
-  DataProcessor(*(uint64_t *)(*(longlong *)(entity_data + 0xc0) + 0x3a8));
-  DataTransmitter(*(longlong *)(entity_data + 200) + 0x12678,
-                *(uint64_t *)(*(longlong *)(entity_data + 0xc0) + 0x3a8));
+  DataProcessor(*(uint64_t *)(*(int64_t *)(entity_data + 0xc0) + 0x3a8));
+  DataTransmitter(*(int64_t *)(entity_data + 200) + 0x12678,
+                *(uint64_t *)(*(int64_t *)(entity_data + 0xc0) + 0x3a8));
   
   // 复制变换数据
-  temp_long1 = *(longlong *)(*(longlong *)(entity_data + 0xc0) + 0x3a8);
-  temp_long2 = *(longlong *)(entity_data + 200);
+  temp_long1 = *(int64_t *)(*(int64_t *)(entity_data + 0xc0) + 0x3a8);
+  temp_long2 = *(int64_t *)(entity_data + 200);
   temp_uint64_t_1 = *(uint64_t *)(temp_long1 + 0x38);
   temp_uint64_t_2 = *(uint64_t *)(temp_long1 + 0x40);
   temp_uint64_t_3 = *(uint64_t *)(temp_long1 + 0x48);
@@ -1535,12 +1535,12 @@ uint32_t EntityDataTransfer(EntityContextPtr entity_data)
   *(uint64_t *)(temp_long2 + 0x126d8) = temp_uint64_t_5;
   
   // 设置状态标志
-  *(byte *)(*(longlong *)(entity_data + 200) + 0x126a0) = *(byte *)(_DAT + 0x224) & 1;
-  *(int8_t *)(*(longlong *)(entity_data + 200) + 0x12670) = 1;
+  *(byte *)(*(int64_t *)(entity_data + 200) + 0x126a0) = *(byte *)(_DAT + 0x224) & 1;
+  *(int8_t *)(*(int64_t *)(entity_data + 200) + 0x12670) = 1;
   
   // 线程安全地获取并重置状态值
   LOCK();
-  ptr_int32_t_1 = (int32_t *)(*(longlong *)(*(longlong *)(entity_data + 0xc0) + 0x3a8) + 0x1060);
+  ptr_int32_t_1 = (int32_t *)(*(int64_t *)(*(int64_t *)(entity_data + 0xc0) + 0x3a8) + 0x1060);
   temp_int32_t_1 = *ptr_int32_t_1;
   *ptr_int32_t_1 = 0;
   UNLOCK();
@@ -1605,64 +1605,64 @@ uint64_t EntityResourceCleanup(uint64_t resource_ptr, ResourceCleanupFlags clean
  * @warning 错误的指针操作可能导致内存泄漏或系统崩溃
  * @see EntityInitializationProcessor, EntityResourceCleanup
  */
-longlong* EntityPointerSwap(EntityPtrArray target_ptr_array, EntityPtrArray source_ptr_array)
+int64_t* EntityPointerSwap(EntityPtrArray target_ptr_array, EntityPtrArray source_ptr_array)
 
 {
-  longlong *source_ptr;  // 源指针
-  longlong *target_ptr;  // 目标指针
+  int64_t *source_ptr;  // 源指针
+  int64_t *target_ptr;  // 目标指针
   
   // 处理第0个指针：获取源指针并清理旧的
-  source_ptr = (longlong *)*source_ptr_array;
-  if (source_ptr != (longlong *)0x0) {
+  source_ptr = (int64_t *)*source_ptr_array;
+  if (source_ptr != (int64_t *)0x0) {
     (**(code **)(*source_ptr + 0x28))(source_ptr);  // 调用清理函数
   }
-  target_ptr = (longlong *)*target_ptr_array;
-  *target_ptr_array = (longlong)source_ptr;  // 设置新指针
-  if (target_ptr != (longlong *)0x0) {
+  target_ptr = (int64_t *)*target_ptr_array;
+  *target_ptr_array = (int64_t)source_ptr;  // 设置新指针
+  if (target_ptr != (int64_t *)0x0) {
     (**(code **)(*target_ptr + 0x38))();  // 清理旧的目标指针
   }
   
   // 处理第1个指针
-  source_ptr = (longlong *)source_ptr_array[1];
-  if (source_ptr != (longlong *)0x0) {
+  source_ptr = (int64_t *)source_ptr_array[1];
+  if (source_ptr != (int64_t *)0x0) {
     (**(code **)(*source_ptr + 0x28))(source_ptr);
   }
-  target_ptr = (longlong *)target_ptr_array[1];
-  target_ptr_array[1] = (longlong)source_ptr;
-  if (target_ptr != (longlong *)0x0) {
+  target_ptr = (int64_t *)target_ptr_array[1];
+  target_ptr_array[1] = (int64_t)source_ptr;
+  if (target_ptr != (int64_t *)0x0) {
     (**(code **)(*target_ptr + 0x38))();
   }
   
   // 处理第2个指针
-  source_ptr = (longlong *)source_ptr_array[2];
-  if (source_ptr != (longlong *)0x0) {
+  source_ptr = (int64_t *)source_ptr_array[2];
+  if (source_ptr != (int64_t *)0x0) {
     (**(code **)(*source_ptr + 0x28))(source_ptr);
   }
-  target_ptr = (longlong *)target_ptr_array[2];
-  target_ptr_array[2] = (longlong)source_ptr;
-  if (target_ptr != (longlong *)0x0) {
+  target_ptr = (int64_t *)target_ptr_array[2];
+  target_ptr_array[2] = (int64_t)source_ptr;
+  if (target_ptr != (int64_t *)0x0) {
     (**(code **)(*target_ptr + 0x38))();
   }
   
   // 处理第3个指针
-  source_ptr = (longlong *)source_ptr_array[3];
-  if (source_ptr != (longlong *)0x0) {
+  source_ptr = (int64_t *)source_ptr_array[3];
+  if (source_ptr != (int64_t *)0x0) {
     (**(code **)(*source_ptr + 0x28))(source_ptr);
   }
-  target_ptr = (longlong *)target_ptr_array[3];
-  target_ptr_array[3] = (longlong)source_ptr;
-  if (target_ptr != (longlong *)0x0) {
+  target_ptr = (int64_t *)target_ptr_array[3];
+  target_ptr_array[3] = (int64_t)source_ptr;
+  if (target_ptr != (int64_t *)0x0) {
     (**(code **)(*target_ptr + 0x38))();
   }
   
   // 处理第4个指针
-  source_ptr = (longlong *)source_ptr_array[4];
-  if (source_ptr != (longlong *)0x0) {
+  source_ptr = (int64_t *)source_ptr_array[4];
+  if (source_ptr != (int64_t *)0x0) {
     (**(code **)(*source_ptr + 0x28))(source_ptr);
   }
-  target_ptr = (longlong *)target_ptr_array[4];
-  target_ptr_array[4] = (longlong)source_ptr;
-  if (target_ptr != (longlong *)0x0) {
+  target_ptr = (int64_t *)target_ptr_array[4];
+  target_ptr_array[4] = (int64_t)source_ptr;
+  if (target_ptr != (int64_t *)0x0) {
     (**(code **)(*target_ptr + 0x38))();
   }
   

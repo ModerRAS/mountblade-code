@@ -16,8 +16,8 @@
  * @param scale_x X轴缩放因子
  * @param scale_y Y轴缩放因子
  */
-void process_render_collision_detection(longlong engine_context, float *position_x, float *position_y, 
-                                     longlong text_start, longlong text_end, longlong *collision_data,
+void process_render_collision_detection(int64_t engine_context, float *position_x, float *position_y, 
+                                     int64_t text_start, int64_t text_end, int64_t *collision_data,
                                      float *scale_x, float *scale_y)
 {
   uint64_t *transform_data;
@@ -26,7 +26,7 @@ void process_render_collision_detection(longlong engine_context, float *position
   float scale_factor;
   bool is_colliding;
   byte flag;
-  longlong engine_base;
+  int64_t engine_base;
   uint render_flags;
   float *width_ptr;
   float *height_ptr;
@@ -40,15 +40,15 @@ void process_render_collision_detection(longlong engine_context, float *position
   engine_base = SYSTEM_DATA_MANAGER_A;  // 获取引擎基础地址
   stack_temp_x = *(uint64_t *)position_x;
   adjusted_x = (float)stack_temp_x;
-  adjusted_y = (float)((ulonglong)stack_temp_x >> 0x20);
+  adjusted_y = (float)((uint64_t)stack_temp_x >> 0x20);
   
   // 处理碰撞数据
-  if (collision_data == (longlong *)0x0) {
+  if (collision_data == (int64_t *)0x0) {
     scale_factor = *(float *)(SYSTEM_DATA_MANAGER_A + 0x19f8);
     width_ptr = *(float **)(SYSTEM_DATA_MANAGER_A + 0x19f0);
     
     if (text_start == text_end) {
-      collision_data = (longlong *)((ulonglong)(uint)scale_factor << 0x20);
+      collision_data = (int64_t *)((uint64_t)(uint)scale_factor << 0x20);
     }
     else {
       calculate_text_dimensions(width_ptr, &stack_transform_x, scale_factor, 0x7f7fffff, 0, 
@@ -59,13 +59,13 @@ void process_render_collision_detection(longlong engine_context, float *position
         boundary_width = (float)stack_transform_x - scale_factor / *width_ptr;
       }
       
-      collision_data = (longlong *)
-                CONCAT44((int)((ulonglong)stack_transform_x >> 0x20), 
+      collision_data = (int64_t *)
+                CONCAT44((int)((uint64_t)stack_transform_x >> 0x20), 
                         (float)(int)(boundary_width + 0.95));
     }
   }
   else {
-    collision_data = (longlong *)*collision_data;
+    collision_data = (int64_t *)*collision_data;
   }
   
   // 设置默认宽度和高度指针
@@ -138,8 +138,8 @@ void process_render_collision_detection(longlong engine_context, float *position
       }
       
       if (text_start != text_end) {
-        width_ptr = (float *)(*(longlong *)(engine_context + 0x68) + -0x10 +
-                            (longlong)*(int *)(engine_context + 0x60) * 0x10);
+        width_ptr = (float *)(*(int64_t *)(engine_context + 0x68) + -0x10 +
+                            (int64_t)*(int *)(engine_context + 0x60) * 0x10);
         
         stack_transform_x._0_4_ = *width_ptr;
         if (*width_ptr < temp_x) {
@@ -161,8 +161,8 @@ void process_render_collision_detection(longlong engine_context, float *position
           stack_transform_y._4_4_ = temp_y;
         }
         
-        render_text_element(*(uint64_t *)(*(longlong *)(engine_context + 0x38) + 8), 
-                           engine_context, *(int32_t *)(*(longlong *)(engine_context + 0x38) + 0x10),
+        render_text_element(*(uint64_t *)(*(int64_t *)(engine_context + 0x38) + 8), 
+                           engine_context, *(int32_t *)(*(int64_t *)(engine_context + 0x38) + 0x10),
                            CONCAT44(adjusted_y, adjusted_x), render_flags, &stack_transform_x, 
                            text_start, text_end, 0, 1);
       }
@@ -182,14 +182,14 @@ void process_render_collision_detection(longlong engine_context, float *position
       
       if (text_start != text_end) {
         transform_data = (uint64_t *)
-                 (*(longlong *)(engine_context + 0x68) + -0x10 + 
-                  (longlong)*(int *)(engine_context + 0x60) * 0x10);
+                 (*(int64_t *)(engine_context + 0x68) + -0x10 + 
+                  (int64_t)*(int *)(engine_context + 0x60) * 0x10);
         
         stack_transform_x = *transform_data;
         stack_transform_y = transform_data[1];
         
-        render_text_element(*(uint64_t *)(*(longlong *)(engine_context + 0x38) + 8), 
-                           engine_context, *(int32_t *)(*(longlong *)(engine_context + 0x38) + 0x10),
+        render_text_element(*(uint64_t *)(*(int64_t *)(engine_context + 0x38) + 8), 
+                           engine_context, *(int32_t *)(*(int64_t *)(engine_context + 0x38) + 0x10),
                            CONCAT44(adjusted_y, adjusted_x), render_flags, &stack_transform_x, 
                            text_start, text_end, 0, 0);
       }
@@ -223,14 +223,14 @@ void render_text_element_advanced(uint64_t render_context, float *position_x, fl
   bool needs_clipping;
   byte clip_flag;
   uint render_state;
-  longlong frame_buffer;
+  int64_t frame_buffer;
   float *font_width;
-  longlong text_start;
-  longlong text_end;
+  int64_t text_start;
+  int64_t text_end;
   float *font_height;
   uint64_t texture_handle;
-  longlong engine_context;
-  longlong render_target;
+  int64_t engine_context;
+  int64_t render_target;
   uint64_t shader_program;
   float boundary_width;
   float boundary_height;
@@ -241,7 +241,7 @@ void render_text_element_advanced(uint64_t render_context, float *position_x, fl
   // 设置渲染上下文状态
   *(uint64_t *)(frame_buffer + 0x18) = texture_handle;
   *(uint64_t *)(frame_buffer + 0x20) = shader_program;
-  *(ulonglong *)(render_target + 0x4f) = CONCAT44(texture_coords_y, texture_coords_x);
+  *(uint64_t *)(render_target + 0x4f) = CONCAT44(texture_coords_y, texture_coords_x);
   
   // 处理文本尺寸计算
   if (*(uint64_t **)(render_target + 0x6f) == (uint64_t *)0x0) {
@@ -308,8 +308,8 @@ void render_text_element_advanced(uint64_t render_context, float *position_x, fl
   if ((font_scale < **(float **)(render_target + 0x77)) &&
      (boundary_height = ((*position_y - temp_x) - *(float *)(render_target + 0x6f)) * 
                        **(float **)(render_target + 0x77) + temp_x, temp_x < boundary_height)) {
-    *(ulonglong *)(render_target + 0x4f) =
-         CONCAT44((int)((ulonglong)*(uint64_t *)(render_target + 0x4f) >> 0x20), boundary_height);
+    *(uint64_t *)(render_target + 0x4f) =
+         CONCAT44((int)((uint64_t)*(uint64_t *)(render_target + 0x4f) >> 0x20), boundary_height);
   }
   
   // 获取渲染状态
@@ -340,9 +340,9 @@ void render_text_element_advanced(uint64_t render_context, float *position_x, fl
       }
       
       if (text_start != text_end) {
-        engine_context = *(longlong *)(render_target + 0x38);
-        dimension_ptr = (float *)(*(longlong *)(render_target + 0x68) + -0x10 +
-                              (longlong)*(int *)(render_target + 0x60) * 0x10);
+        engine_context = *(int64_t *)(render_target + 0x38);
+        dimension_ptr = (float *)(*(int64_t *)(render_target + 0x68) + -0x10 +
+                              (int64_t)*(int *)(render_target + 0x60) * 0x10);
         
         width = *dimension_ptr;
         height = dimension_ptr[1];
@@ -385,11 +385,11 @@ void render_text_element_advanced(uint64_t render_context, float *position_x, fl
       
       if (text_start != text_end) {
         transform_data = (uint64_t *)
-                 (*(longlong *)(render_target + 0x68) + -0x10 +
-                 (longlong)*(int *)(render_target + 0x60) * 0x10);
+                 (*(int64_t *)(render_target + 0x68) + -0x10 +
+                 (int64_t)*(int *)(render_target + 0x60) * 0x10);
         
         transform_matrix = transform_data[1];
-        render_flags = *(uint64_t *)(*(longlong *)(render_target + 0x38) + 8);
+        render_flags = *(uint64_t *)(*(int64_t *)(render_target + 0x38) + 8);
         
         *(uint64_t *)(render_target + -0x59) = *transform_data;
         *(uint64_t *)(render_target + -0x51) = transform_matrix;
@@ -425,13 +425,13 @@ void process_2d_render_transform(uint64_t render_context, float *position)
   bool needs_clipping;
   byte clip_flag;
   uint render_state;
-  longlong frame_buffer;
+  int64_t frame_buffer;
   float *font_width;
-  longlong text_start;
-  longlong text_end;
+  int64_t text_start;
+  int64_t text_end;
   float *font_height;
   float *texture_coords;
-  longlong engine_context;
+  int64_t engine_context;
   uint64_t shader_program;
   float boundary_width;
   float boundary_height;
@@ -441,7 +441,7 @@ void process_2d_render_transform(uint64_t render_context, float *position)
   
   // 设置渲染状态
   *(uint64_t *)(frame_buffer + 0x20) = shader_program;
-  *(ulonglong *)(render_context + 0x4f) = CONCAT44(texture_coords_y, texture_coords_x);
+  *(uint64_t *)(render_context + 0x4f) = CONCAT44(texture_coords_y, texture_coords_x);
   
   // 处理文本尺寸计算
   if (*(uint64_t **)(render_context + 0x6f) == (uint64_t *)0x0) {
@@ -508,8 +508,8 @@ void process_2d_render_transform(uint64_t render_context, float *position)
   if ((font_scale < **(float **)(render_context + 0x77)) &&
      (boundary_height = ((*texture_coords - temp_x) - *(float *)(render_context + 0x6f)) * 
                        **(float **)(render_context + 0x77) + temp_x, temp_x < boundary_height)) {
-    *(ulonglong *)(render_context + 0x4f) =
-         CONCAT44((int)((ulonglong)*(uint64_t *)(render_context + 0x4f) >> 0x20), boundary_height);
+    *(uint64_t *)(render_context + 0x4f) =
+         CONCAT44((int)((uint64_t)*(uint64_t *)(render_context + 0x4f) >> 0x20), boundary_height);
   }
   
   // 获取渲染状态
@@ -540,9 +540,9 @@ void process_2d_render_transform(uint64_t render_context, float *position)
       }
       
       if (text_start != text_end) {
-        engine_context = *(longlong *)(render_context + 0x38);
-        dimension_ptr = (float *)(*(longlong *)(render_context + 0x68) + -0x10 +
-                              (longlong)*(int *)(render_context + 0x60) * 0x10);
+        engine_context = *(int64_t *)(render_context + 0x38);
+        dimension_ptr = (float *)(*(int64_t *)(render_context + 0x68) + -0x10 +
+                              (int64_t)*(int *)(render_context + 0x60) * 0x10);
         
         width = *dimension_ptr;
         height = dimension_ptr[1];
@@ -585,11 +585,11 @@ void process_2d_render_transform(uint64_t render_context, float *position)
       
       if (text_start != text_end) {
         transform_data = (uint64_t *)
-                 (*(longlong *)(render_context + 0x68) + -0x10 +
-                 (longlong)*(int *)(render_context + 0x60) * 0x10);
+                 (*(int64_t *)(render_context + 0x68) + -0x10 +
+                 (int64_t)*(int *)(render_context + 0x60) * 0x10);
         
         transform_matrix = transform_data[1];
-        render_flags = *(uint64_t *)(*(longlong *)(render_context + 0x38) + 8);
+        render_flags = *(uint64_t *)(*(int64_t *)(render_context + 0x38) + 8);
         
         *(uint64_t *)(render_context + -0x59) = *transform_data;
         *(uint64_t *)(render_context + -0x51) = transform_matrix;
@@ -627,11 +627,11 @@ void process_3d_render_transform(uint64_t render_context, uint64_t transform_mat
   byte clip_flag;
   uint render_state;
   float *font_width;
-  longlong text_start;
-  longlong text_end;
+  int64_t text_start;
+  int64_t text_end;
   float *font_height;
   float *texture_coords;
-  longlong engine_context;
+  int64_t engine_context;
   float *position_data;
   float font_scale;
   float model_scale;
@@ -694,8 +694,8 @@ void process_3d_render_transform(uint64_t render_context, uint64_t transform_mat
   if ((font_scale < **(float **)(render_context + 0x77)) &&
      (temp_y = ((*texture_coords - width) - *(float *)(render_context + 0x6f)) * 
                **(float **)(render_context + 0x77) + width, width < temp_y)) {
-    *(ulonglong *)(render_context + 0x4f) =
-         CONCAT44((int)((ulonglong)*(uint64_t *)(render_context + 0x4f) >> 0x20), temp_y);
+    *(uint64_t *)(render_context + 0x4f) =
+         CONCAT44((int)((uint64_t)*(uint64_t *)(render_context + 0x4f) >> 0x20), temp_y);
   }
   
   // 获取渲染状态
@@ -726,9 +726,9 @@ void process_3d_render_transform(uint64_t render_context, uint64_t transform_mat
       }
       
       if (text_start != text_end) {
-        engine_context = *(longlong *)(render_context + 0x38);
-        dimension_ptr = (float *)(*(longlong *)(render_context + 0x68) + -0x10 +
-                              (longlong)*(int *)(render_context + 0x60) * 0x10);
+        engine_context = *(int64_t *)(render_context + 0x38);
+        dimension_ptr = (float *)(*(int64_t *)(render_context + 0x68) + -0x10 +
+                              (int64_t)*(int *)(render_context + 0x60) * 0x10);
         
         width = *dimension_ptr;
         height = dimension_ptr[1];
@@ -771,11 +771,11 @@ void process_3d_render_transform(uint64_t render_context, uint64_t transform_mat
       
       if (text_start != text_end) {
         transform_data = (uint64_t *)
-                 (*(longlong *)(render_context + 0x68) + -0x10 +
-                 (longlong)*(int *)(render_context + 0x60) * 0x10);
+                 (*(int64_t *)(render_context + 0x68) + -0x10 +
+                 (int64_t)*(int *)(render_context + 0x60) * 0x10);
         
         matrix_data = transform_data[1];
-        render_flags = *(uint64_t *)(*(longlong *)(render_context + 0x38) + 8);
+        render_flags = *(uint64_t *)(*(int64_t *)(render_context + 0x38) + 8);
         
         *(uint64_t *)(render_context + -0x59) = *transform_data;
         *(uint64_t *)(render_context + -0x51) = matrix_data;
@@ -810,11 +810,11 @@ void process_sprite_rendering(void)
   byte clip_flag;
   uint render_state;
   float *font_width;
-  longlong text_start;
-  longlong text_end;
+  int64_t text_start;
+  int64_t text_end;
   float *font_height;
   float *texture_coords;
-  longlong engine_context;
+  int64_t engine_context;
   float *position_data;
   float font_scale;
   
@@ -858,8 +858,8 @@ void process_sprite_rendering(void)
   if ((font_scale < **(float **)(engine_context + 0x77)) &&
      (sprite_width = ((*texture_coords - temp_x) - *(float *)(engine_context + 0x6f)) * 
                **(float **)(engine_context + 0x77) + temp_x, temp_x < sprite_width)) {
-    *(ulonglong *)(engine_context + 0x4f) =
-         CONCAT44((int)((ulonglong)*(uint64_t *)(engine_context + 0x4f) >> 0x20), sprite_width);
+    *(uint64_t *)(engine_context + 0x4f) =
+         CONCAT44((int)((uint64_t)*(uint64_t *)(engine_context + 0x4f) >> 0x20), sprite_width);
   }
   
   // 获取渲染状态
@@ -890,9 +890,9 @@ void process_sprite_rendering(void)
       }
       
       if (text_start != text_end) {
-        engine_context = *(longlong *)(engine_context + 0x38);
-        dimension_ptr = (float *)(*(longlong *)(engine_context + 0x68) + -0x10 +
-                              (longlong)*(int *)(engine_context + 0x60) * 0x10);
+        engine_context = *(int64_t *)(engine_context + 0x38);
+        dimension_ptr = (float *)(*(int64_t *)(engine_context + 0x68) + -0x10 +
+                              (int64_t)*(int *)(engine_context + 0x60) * 0x10);
         
         width = *dimension_ptr;
         height = dimension_ptr[1];
@@ -935,13 +935,13 @@ void process_sprite_rendering(void)
       
       if (text_start != text_end) {
         sprite_data = (int32_t *)
-                 (*(longlong *)(engine_context + 0x68) + -0x10 +
-                 (longlong)*(int *)(engine_context + 0x60) * 0x10);
+                 (*(int64_t *)(engine_context + 0x68) + -0x10 +
+                 (int64_t)*(int *)(engine_context + 0x60) * 0x10);
         
         texture_id = sprite_data[1];
         shader_id = sprite_data[2];
         sprite_info = sprite_data[3];
-        render_flags = *(uint64_t *)(*(longlong *)(engine_context + 0x38) + 8);
+        render_flags = *(uint64_t *)(*(int64_t *)(engine_context + 0x38) + 8);
         
         *(int32_t *)(engine_context + -0x59) = *sprite_data;
         *(int32_t *)(engine_context + -0x55) = texture_id;
@@ -980,11 +980,11 @@ void process_texture_rendering(uint64_t render_context, float *texture_data)
   bool needs_clipping;
   byte clip_flag;
   uint render_state;
-  longlong frame_buffer;
-  longlong text_start;
-  longlong text_end;
-  longlong engine_context;
-  longlong render_target;
+  int64_t frame_buffer;
+  int64_t text_start;
+  int64_t text_end;
+  int64_t engine_context;
+  int64_t render_target;
   float font_scale;
   float texture_width;
   float texture_height;
@@ -1016,8 +1016,8 @@ void process_texture_rendering(uint64_t render_context, float *texture_data)
   if ((font_scale < **(float **)(render_target + 0x77)) &&
      (sprite_width = ((*texture_data - temp_x) - texture_width) * 
                **(float **)(render_target + 0x77) + temp_x, temp_x < sprite_width)) {
-    *(ulonglong *)(render_target + 0x4f) =
-         CONCAT44((int)((ulonglong)*(uint64_t *)(render_target + 0x4f) >> 0x20), sprite_width);
+    *(uint64_t *)(render_target + 0x4f) =
+         CONCAT44((int)((uint64_t)*(uint64_t *)(render_target + 0x4f) >> 0x20), sprite_width);
   }
   
   // 获取渲染状态
@@ -1048,9 +1048,9 @@ void process_texture_rendering(uint64_t render_context, float *texture_data)
       }
       
       if (text_start != text_end) {
-        engine_context = *(longlong *)(render_target + 0x38);
-        dimension_ptr = (float *)(*(longlong *)(render_target + 0x68) + -0x10 +
-                              (longlong)*(int *)(render_target + 0x60) * 0x10);
+        engine_context = *(int64_t *)(render_target + 0x38);
+        dimension_ptr = (float *)(*(int64_t *)(render_target + 0x68) + -0x10 +
+                              (int64_t)*(int *)(render_target + 0x60) * 0x10);
         
         width = *dimension_ptr;
         height = dimension_ptr[1];
@@ -1093,13 +1093,13 @@ void process_texture_rendering(uint64_t render_context, float *texture_data)
       
       if (text_start != text_end) {
         texture_info = (int32_t *)
-                 (*(longlong *)(render_target + 0x68) + -0x10 +
-                 (longlong)*(int *)(render_target + 0x60) * 0x10);
+                 (*(int64_t *)(render_target + 0x68) + -0x10 +
+                 (int64_t)*(int *)(render_target + 0x60) * 0x10);
         
         texture_id = texture_info[1];
         shader_id = texture_info[2];
         sprite_info = texture_info[3];
-        render_flags = *(uint64_t *)(*(longlong *)(render_target + 0x38) + 8);
+        render_flags = *(uint64_t *)(*(int64_t *)(render_target + 0x38) + 8);
         
         *(int32_t *)(render_target + -0x59) = *texture_info;
         *(int32_t *)(render_target + -0x55) = texture_id;
@@ -1121,7 +1121,7 @@ void process_texture_rendering(uint64_t render_context, float *texture_data)
  * @param ui_data UI数据指针
  * @param element_id 元素ID
  */
-void process_ui_element_rendering(uint64_t render_context, float *ui_data, longlong element_id)
+void process_ui_element_rendering(uint64_t render_context, float *ui_data, int64_t element_id)
 {
   float *dimension_ptr;
   float temp_x;
@@ -1133,10 +1133,10 @@ void process_ui_element_rendering(uint64_t render_context, float *ui_data, longl
   float ui_depth;
   float ui_scale;
   uint render_flags;
-  longlong text_start;
-  longlong text_end;
-  longlong engine_context;
-  longlong render_target;
+  int64_t text_start;
+  int64_t text_end;
+  int64_t engine_context;
+  int64_t render_target;
   float element_scale;
   
   temp_x = ui_data[1];
@@ -1154,9 +1154,9 @@ void process_ui_element_rendering(uint64_t render_context, float *ui_data, longl
     }
     
     if (text_start != text_end) {
-      engine_context = *(longlong *)(render_target + 0x38);
-      dimension_ptr = (float *)(*(longlong *)(render_target + 0x68) + -0x10 +
-                            (longlong)*(int *)(render_target + 0x60) * 0x10);
+      engine_context = *(int64_t *)(render_target + 0x38);
+      dimension_ptr = (float *)(*(int64_t *)(render_target + 0x68) + -0x10 +
+                            (int64_t)*(int *)(render_target + 0x60) * 0x10);
       
       ui_width = *dimension_ptr;
       ui_height = dimension_ptr[1];

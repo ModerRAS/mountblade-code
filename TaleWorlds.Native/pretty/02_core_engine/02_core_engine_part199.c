@@ -10,7 +10,7 @@
 void create_platform_object(uint64_t param_1, uint64_t param_2)
 
 {
-  longlong *object_ptr;
+  int64_t *object_ptr;
   int32_t temp_var;
   uint64_t *memory_block;
   int32_t *string_buffer;
@@ -32,12 +32,12 @@ void create_platform_object(uint64_t param_1, uint64_t param_2)
   // 设置对象虚函数表指针
   *object_data = &platform_object_vtable;
   object_ptr = object_data + 0xf;
-  *object_ptr = (longlong)&platform_object_methods;
+  *object_ptr = (int64_t)&platform_object_methods;
   
   // 初始化对象属性
   object_data[0x10] = 0;
   *(int32_t *)(object_data + 0x11) = 0;
-  *object_ptr = (longlong)&platform_object_interface;
+  *object_ptr = (int64_t)&platform_object_interface;
   object_data[0x12] = 0;
   object_data[0x10] = 0;
   *(int32_t *)(object_data + 0x11) = 0;
@@ -69,7 +69,7 @@ void create_platform_object(uint64_t param_1, uint64_t param_2)
   *(uint64_t *)(string_buffer + 4) = 0x746e657272754320;  // "e Current "
   string_buffer[6] = 0x76654c20;  // " Leve"
   *(int16_t *)(string_buffer + 7) = 0x6c65;  // "el"
-  *(int8_t *)((longlong)string_buffer + 0x1e) = 0;
+  *(int8_t *)((int64_t)string_buffer + 0x1e) = 0;
   stack_value_70 = 0x1e;
   
   // 调用对象方法设置错误消息
@@ -87,31 +87,31 @@ void create_platform_object(uint64_t param_1, uint64_t param_2)
 
 
 
-// 函数: void initialize_engine_object(longlong *param_1)
+// 函数: void initialize_engine_object(int64_t *param_1)
 // 功能: 初始化引擎对象，设置必要的配置和回调函数
 // 参数: 
 //   param_1 - 引擎对象指针的指针
-void initialize_engine_object(longlong *param_1)
+void initialize_engine_object(int64_t *param_1)
 
 {
   uint64_t config_value;
-  longlong base_address;
-  longlong *engine_object;
-  longlong *stack_ptr_8;
+  int64_t base_address;
+  int64_t *engine_object;
+  int64_t *stack_ptr_8;
   
   // 获取引擎配置基址
   base_address = _engine_config_address;
   stack_ptr_8 = param_1;
   
   // 分配引擎对象内存，大小为200字节，对齐为8字节
-  engine_object = (longlong *)allocate_memory(_memory_pool_address, 200, 8, 3, 0xfffffffffffffffe);
+  engine_object = (int64_t *)allocate_memory(_memory_pool_address, 200, 8, 3, 0xfffffffffffffffe);
   stack_ptr_8 = engine_object;
   
   // 初始化引擎对象基础结构
   initialize_engine_base(engine_object);
   
   // 设置引擎对象虚函数表
-  *engine_object = (longlong)&engine_object_vtable;
+  *engine_object = (int64_t)&engine_object_vtable;
   engine_object[0x18] = base_address + 0x38;
   engine_object[3] = -3;
   

@@ -43,8 +43,8 @@ static float ui_normalize_vector_component(float component, float magnitude);
 static void ui_apply_transform_matrix(float* matrix, float* vector, float* result);
 static float ui_calculate_inverse_square_root(float value);
 static void ui_process_control_points(float* control_data, float* weights, int count);
-static void ui_update_render_state(longlong render_context, int state_flags);
-static void ui_execute_render_command(longlong command_ptr, longlong param_data);
+static void ui_update_render_state(int64_t render_context, int state_flags);
+static void ui_execute_render_command(int64_t command_ptr, int64_t param_data);
 
 /**
  * UI系统高级变换处理器
@@ -60,7 +60,7 @@ static void ui_execute_render_command(longlong command_ptr, longlong param_data)
  * @param transform_context 变换上下文指针
  * @param render_data 渲染数据指针
  */
-void ui_system_advanced_transform_processor(longlong transform_context, longlong render_data)
+void ui_system_advanced_transform_processor(int64_t transform_context, int64_t render_data)
 {
     // 局部变量声明
     float smooth_factor;
@@ -86,23 +86,23 @@ void ui_system_advanced_transform_processor(longlong transform_context, longlong
     
     // 第一阶段变换处理
     if (*(int *)(transform_context + 0x10) == 1) {
-        ui_system_execute_render_command(*(longlong *)(transform_context + 0xc78) + UI_TRANSFORM_OFFSET, 
+        ui_system_execute_render_command(*(int64_t *)(transform_context + 0xc78) + UI_TRANSFORM_OFFSET, 
                                        *(uint *)(transform_context + 0x18) & 0x7fffffff);
     }
     else {
-        ui_system_execute_render_command((longlong)*(int *)(transform_context + 0x10) * UI_TRANSFORM_MULTIPLIER + 
-                                       *(longlong *)(transform_context + 0xc78),
+        ui_system_execute_render_command((int64_t)*(int *)(transform_context + 0x10) * UI_TRANSFORM_MULTIPLIER + 
+                                       *(int64_t *)(transform_context + 0xc78),
                                        *(int32_t *)(transform_context + 0x1c));
     }
     
     // 第二阶段变换处理
     if (*(int *)(transform_context + 0x14) == 1) {
-        ui_system_execute_render_command(*(longlong *)(transform_context + 0xc78) + UI_TRANSFORM_OFFSET, 
+        ui_system_execute_render_command(*(int64_t *)(transform_context + 0xc78) + UI_TRANSFORM_OFFSET, 
                                        *(uint *)(transform_context + 0x18) & 0x7fffffff);
     }
     else {
-        ui_system_execute_render_command((longlong)*(int *)(transform_context + 0x14) * UI_TRANSFORM_MULTIPLIER + 
-                                       *(longlong *)(transform_context + 0xc78),
+        ui_system_execute_render_command((int64_t)*(int *)(transform_context + 0x14) * UI_TRANSFORM_MULTIPLIER + 
+                                       *(int64_t *)(transform_context + 0xc78),
                                        *(int32_t *)(transform_context + 0x1c));
     }
     
@@ -115,7 +115,7 @@ void ui_system_advanced_transform_processor(longlong transform_context, longlong
                 control_weight_1 = *(float *)(transform_context + 0x34);
                 control_weight_2 = *(float *)(transform_context + 0x38);
                 control_weight_3 = *(float *)(transform_context + 0x30);
-                control_point_ptr = (uint64_t *)(*(longlong *)(transform_context + 0xc78) + UI_CONTROL_OFFSET_1);
+                control_point_ptr = (uint64_t *)(*(int64_t *)(transform_context + 0xc78) + UI_CONTROL_OFFSET_1);
                 intensity_2 = (1.0 - control_weight_1) - control_weight_2;
                 transform_type = control_index;
                 
@@ -154,7 +154,7 @@ end_control_loop_1:
             if (0.0 < threshold_value) {
                 control_weight_1 = *(float *)(transform_context + 0x34);
                 control_weight_2 = *(float *)(transform_context + 0x38);
-                control_point_ptr = (uint64_t *)(*(longlong *)(transform_context + 0xc78) + UI_CONTROL_OFFSET_2);
+                control_point_ptr = (uint64_t *)(*(int64_t *)(transform_context + 0xc78) + UI_CONTROL_OFFSET_2);
                 control_weight_3 = *(float *)(transform_context + 0x30);
                 intensity_2 = (1.0 - control_weight_1) - control_weight_2;
                 transform_type = control_index;
@@ -189,8 +189,8 @@ end_control_loop_2:
         }
         else {
             // 处理其他变换类型
-            ui_system_execute_render_command((longlong)*(int *)(transform_context + 0x14) * UI_TRANSFORM_MULTIPLIER + 
-                                           *(longlong *)(transform_context + 0xc78),
+            ui_system_execute_render_command((int64_t)*(int *)(transform_context + 0x14) * UI_TRANSFORM_MULTIPLIER + 
+                                           *(int64_t *)(transform_context + 0xc78),
                                            render_data);
         }
     }
@@ -204,7 +204,7 @@ end_control_loop_2:
             control_weight_2 = *(float *)(transform_context + 0x38);
             control_weight_3 = *(float *)(transform_context + 0x30);
             intensity_2 = (1.0 - smooth_factor) * blend_weight;
-            control_point_ptr = (uint64_t *)(*(longlong *)(transform_context + 0xc78) + UI_CONTROL_OFFSET_1);
+            control_point_ptr = (uint64_t *)(*(int64_t *)(transform_context + 0xc78) + UI_CONTROL_OFFSET_1);
             weight_result = (1.0 - control_weight_1) - control_weight_2;
             smooth_factor = -1.0;
             
@@ -249,7 +249,7 @@ end_control_loop_2:
         if (0.0 < smooth_factor) {
             control_weight_1 = *(float *)(transform_context + 0x34);
             control_weight_2 = *(float *)(transform_context + 0x38);
-            control_point_ptr = (uint64_t *)(*(longlong *)(transform_context + 0xc78) + UI_CONTROL_OFFSET_2);
+            control_point_ptr = (uint64_t *)(*(int64_t *)(transform_context + 0xc78) + UI_CONTROL_OFFSET_2);
             control_weight_3 = *(float *)(transform_context + 0x30);
             smooth_factor = smooth_factor * blend_weight;
             blend_weight = (1.0 - control_weight_1) - control_weight_2;
@@ -291,13 +291,13 @@ end_control_loop_2:
     }
     else {
         // 处理其他变换类型
-        ui_system_execute_render_command((longlong)*(int *)(transform_context + 0x10) * UI_TRANSFORM_MULTIPLIER + 
-                                       *(longlong *)(transform_context + 0xc78),
+        ui_system_execute_render_command((int64_t)*(int *)(transform_context + 0x10) * UI_TRANSFORM_MULTIPLIER + 
+                                       *(int64_t *)(transform_context + 0xc78),
                                        render_data);
     }
     
     // 更新渲染状态
-    if (*(longlong *)(render_data + UI_RENDER_FLAG_OFFSET) != 0) {
+    if (*(int64_t *)(render_data + UI_RENDER_FLAG_OFFSET) != 0) {
         ui_system_update_render_state(render_data);
     }
 }
@@ -311,13 +311,13 @@ end_control_loop_2:
  * @param context UI系统上下文
  * @param transform_param 变换参数
  */
-void ui_system_complex_transform_calculator(longlong context, float transform_param)
+void ui_system_complex_transform_calculator(int64_t context, float transform_param)
 {
     // 局部变量声明（包含栈操作和寄存器保存）
     float smooth_factor;
     float blend_weight;
     float transform_factor;
-    longlong stack_context;
+    int64_t stack_context;
     // ... 其他变量声明
     
     // 保存寄存器状态
@@ -355,11 +355,11 @@ void ui_system_transform_control_handler(int32_t control_param)
     float control_weight_2;
     float control_weight_3;
     code *jump_table_ptr;
-    longlong context_ptr;
+    int64_t context_ptr;
     uint control_index;
     uint transform_index;
     uint64_t *control_point_ptr;
-    longlong resource_ptr;
+    int64_t resource_ptr;
     float weight_result;
     float intensity_1;
     float intensity_2;
@@ -380,8 +380,8 @@ void ui_system_transform_control_handler(int32_t control_param)
                 // 处理变换控制点
                 do {
                     if (control_index < UI_CONTROL_POINT_COUNT) {
-                        jump_table_ptr = (code *)((ulonglong)*(uint *)(resource_ptr + 0x65ded4 + 
-                                                                 (longlong)(int)control_index * 4) + resource_ptr);
+                        jump_table_ptr = (code *)((uint64_t)*(uint *)(resource_ptr + 0x65ded4 + 
+                                                                 (int64_t)(int)control_index * 4) + resource_ptr);
                         (*jump_table_ptr)(jump_table_ptr);
                         return;
                     }
@@ -397,8 +397,8 @@ void ui_system_transform_control_handler(int32_t control_param)
             if (0.0 < blend_factor) {
                 do {
                     if (control_index < UI_CONTROL_POINT_COUNT) {
-                        jump_table_ptr = (code *)((ulonglong)*(uint *)(resource_ptr + 0x65deec + 
-                                                                 (longlong)(int)control_index * 4) + resource_ptr);
+                        jump_table_ptr = (code *)((uint64_t)*(uint *)(resource_ptr + 0x65deec + 
+                                                                 (int64_t)(int)control_index * 4) + resource_ptr);
                         (*jump_table_ptr)(jump_table_ptr);
                         return;
                     }
@@ -408,9 +408,9 @@ void ui_system_transform_control_handler(int32_t control_param)
         }
         else {
             // 处理其他变换类型
-            control_param = ui_system_execute_render_command((longlong)*(int *)(context_ptr + 0x14) * 
+            control_param = ui_system_execute_render_command((int64_t)*(int *)(context_ptr + 0x14) * 
                                                             UI_TRANSFORM_MULTIPLIER + 
-                                                            *(longlong *)(context_ptr + 0xc78));
+                                                            *(int64_t *)(context_ptr + 0xc78));
         }
     }
     
@@ -424,7 +424,7 @@ void ui_system_transform_control_handler(int32_t control_param)
             control_weight_2 = *(float *)(context_ptr + 0x38);
             control_weight_3 = *(float *)(context_ptr + 0x30);
             weight_result = (1.0 - blend_factor) * intensity_1;
-            control_point_ptr = (uint64_t *)(*(longlong *)(context_ptr + 0xc78) + UI_CONTROL_OFFSET_1);
+            control_point_ptr = (uint64_t *)(*(int64_t *)(context_ptr + 0xc78) + UI_CONTROL_OFFSET_1);
             intensity_2 = (1.0 - control_weight_1) - control_weight_2;
             blend_factor = -1.0;
             
@@ -470,11 +470,11 @@ void ui_system_transform_control_handler(int32_t control_param)
         
         transform_index = 0;
         if (0.0 < blend_factor) {
-            control_point_ptr = (uint64_t *)(*(longlong *)(context_ptr + 0xc78) + UI_CONTROL_OFFSET_2);
+            control_point_ptr = (uint64_t *)(*(int64_t *)(context_ptr + 0xc78) + UI_CONTROL_OFFSET_2);
             do {
                 if (transform_index < UI_CONTROL_POINT_COUNT) {
                     // 执行变换控制
-                    (*(code *)((ulonglong)*(uint *)(resource_ptr + 0x65df1c + (longlong)(int)transform_index * 4) +
+                    (*(code *)((uint64_t)*(uint *)(resource_ptr + 0x65df1c + (int64_t)(int)transform_index * 4) +
                               resource_ptr))(0x3f800000);
                     return;
                 }
@@ -498,13 +498,13 @@ void ui_system_transform_control_handler(int32_t control_param)
     }
     else {
         // 处理其他变换类型
-        control_param = ui_system_execute_render_command((longlong)*(int *)(context_ptr + 0x10) * 
+        control_param = ui_system_execute_render_command((int64_t)*(int *)(context_ptr + 0x10) * 
                                                         UI_TRANSFORM_MULTIPLIER + 
-                                                        *(longlong *)(context_ptr + 0xc78));
+                                                        *(int64_t *)(context_ptr + 0xc78));
     }
     
     // 更新渲染状态
-    if (*(longlong *)(/* 寄存器R12 */ + UI_RENDER_FLAG_OFFSET) != 0) {
+    if (*(int64_t *)(/* 寄存器R12 */ + UI_RENDER_FLAG_OFFSET) != 0) {
         ui_system_update_render_state(control_param);
     }
 }
@@ -536,7 +536,7 @@ void ui_system_matrix_transform_normalizer(uint64_t *matrix_ptr, uint64_t param_
                                         uint64_t *source_matrix, float param_5, float param_6)
 {
     // 局部变量声明
-    longlong resource_handle;
+    int64_t resource_handle;
     float scale_factor_1;
     float scale_factor_2;
     float scale_factor_3;
@@ -618,10 +618,10 @@ void ui_system_matrix_transform_normalizer(uint64_t *matrix_ptr, uint64_t param_
     *(float *)(matrix_ptr + 0x12) = (scale_factor_6 * *(float *)(resource_handle + 8)) / 
                                     *(float *)(matrix_ptr[3] + 0x188);
     resource_handle = ui_system_get_render_resource(matrix_ptr[4]);
-    *(float *)((longlong)matrix_ptr + 0x94) = (scale_factor_8 * *(float *)(resource_handle + 8)) / 
+    *(float *)((int64_t)matrix_ptr + 0x94) = (scale_factor_8 * *(float *)(resource_handle + 8)) / 
                                             *(float *)(matrix_ptr[4] + 0x188);
     resource_handle = ui_system_get_render_resource(matrix_ptr[1]);
-    *(float *)((longlong)matrix_ptr + 0x9c) = (scale_factor_7 * *(float *)(resource_handle + 8)) / 
+    *(float *)((int64_t)matrix_ptr + 0x9c) = (scale_factor_7 * *(float *)(resource_handle + 8)) / 
                                             *(float *)(matrix_ptr[1] + 0x188);
     resource_handle = ui_system_get_render_resource(matrix_ptr[2]);
     *(float *)(matrix_ptr + 0x13) = (scale_factor_5 * *(float *)(resource_handle + 8)) / 
@@ -651,21 +651,21 @@ void ui_system_effect_executor(void)
  * @param param_3 参数3
  * @param param_4 参数4
  */
-void ui_system_advanced_render_controller(longlong param_1, uint64_t param_2, longlong param_3, uint64_t param_4)
+void ui_system_advanced_render_controller(int64_t param_1, uint64_t param_2, int64_t param_3, uint64_t param_4)
 {
     // 局部变量声明
     int render_index;
-    longlong context_ptr;
-    ulonglong render_mask;
-    longlong *resource_ptr;
+    int64_t context_ptr;
+    uint64_t render_mask;
+    int64_t *resource_ptr;
     int8_t *data_ptr;
-    longlong buffer_ptr;
+    int64_t buffer_ptr;
     float *float_ptr;
-    ulonglong data_size;
+    uint64_t data_size;
     float intensity_factor;
     float threshold_1;
     float threshold_2;
-    longlong stack_context_1;
+    int64_t stack_context_1;
     uint64_t stack_context_2;
     
     // 计算强度因子
@@ -679,7 +679,7 @@ void ui_system_advanced_render_controller(longlong param_1, uint64_t param_2, lo
     stack_context_2 = param_4;
     
     // 处理渲染数据
-    if ((1e-06 < intensity_factor) && (*(longlong *)(param_3 + 0x810) != 0)) {
+    if ((1e-06 < intensity_factor) && (*(int64_t *)(param_3 + 0x810) != 0)) {
         data_ptr = &stack_buffer;
         data_size = render_mask & 0xffffffff;
         
@@ -726,7 +726,7 @@ void ui_system_advanced_render_controller(longlong param_1, uint64_t param_2, lo
     // 执行渲染循环
     render_index = 10;
     float_ptr = *(float **)(context_ptr + 0x10d0);
-    resource_ptr = (longlong *)(param_1 + 0x50);
+    resource_ptr = (int64_t *)(param_1 + 0x50);
     
     do {
         float_ptr = float_ptr + 1;
@@ -738,8 +738,8 @@ void ui_system_advanced_render_controller(longlong param_1, uint64_t param_2, lo
     } while (render_index < 0x12);
     
     // 清理渲染资源
-    ui_system_cleanup_render_resources(*(ulonglong *)(context_ptr + 0xfb0) ^ 
-                                      (ulonglong)&stack_buffer_start);
+    ui_system_cleanup_render_resources(*(uint64_t *)(context_ptr + 0xfb0) ^ 
+                                      (uint64_t)&stack_buffer_start);
 }
 
 /**
@@ -758,15 +758,15 @@ void ui_system_render_parameter_optimizer(void)
     int matrix_index;
     char component_flag;
     byte component_index;
-    longlong context_ptr;
-    longlong render_context;
-    longlong system_context;
+    int64_t context_ptr;
+    int64_t render_context;
+    int64_t system_context;
     float *control_point_ptr;
-    longlong *resource_ptr;
+    int64_t *resource_ptr;
     char transform_flag;
-    ulonglong transform_id;
+    uint64_t transform_id;
     char system_flag;
-    longlong buffer_ptr;
+    int64_t buffer_ptr;
     bool zero_flag;
     float intensity_1;
     float intensity_2;
@@ -790,9 +790,9 @@ void ui_system_render_parameter_optimizer(void)
     float intensity_18;
     float intensity_19;
     float stack_intensity;
-    longlong stack_context_1;
-    longlong stack_context_2;
-    longlong stack_context_3;
+    int64_t stack_context_1;
+    int64_t stack_context_2;
+    int64_t stack_context_3;
     uint64_t stack_context_4;
     
     // 计算变换参数
@@ -803,8 +803,8 @@ void ui_system_render_parameter_optimizer(void)
         if ('\0' < transform_flag) {
             do {
                 component_flag = (char)transform_id;
-                if ((*(ulonglong *)(render_context + 0x770) >> (transform_id & 0x3f) & 1) != 0) {
-                    control_point_ptr = (float *)(render_context + 0x780 + (longlong)component_flag * 0x10);
+                if ((*(uint64_t *)(render_context + 0x770) >> (transform_id & 0x3f) & 1) != 0) {
+                    control_point_ptr = (float *)(render_context + 0x780 + (int64_t)component_flag * 0x10);
                     intensity_12 = *control_point_ptr;
                     intensity_2 = control_point_ptr[1];
                     intensity_7 = control_point_ptr[2];
@@ -822,7 +822,7 @@ void ui_system_render_parameter_optimizer(void)
                     intensity_3 = transform_matrix._4_4_;
                     intensity_4 = transform_matrix._8_4_;
                     intensity_5 = transform_matrix._12_4_;
-                    control_point_ptr = (float *)(render_context + 0x780 + (longlong)component_flag * 0x10);
+                    control_point_ptr = (float *)(render_context + 0x780 + (int64_t)component_flag * 0x10);
                     *control_point_ptr = (UI_NORMALIZATION_FACTOR - intensity_1 * intensity_1 * 
                                        (intensity_8 + intensity_6)) * intensity_1 * UI_BLEND_FACTOR * intensity_12;
                     control_point_ptr[1] = (UI_NORMALIZATION_FACTOR - intensity_3 * intensity_3 * 
@@ -833,7 +833,7 @@ void ui_system_render_parameter_optimizer(void)
                                           intensity_10) * intensity_5 * UI_BLEND_FACTOR * vector_component;
                     transform_flag = *(char *)(render_context + 4000);
                 }
-                transform_id = (ulonglong)(byte)(component_flag + 1U);
+                transform_id = (uint64_t)(byte)(component_flag + 1U);
             } while ((char)(component_flag + 1U) < transform_flag);
         }
         
@@ -845,14 +845,14 @@ void ui_system_render_parameter_optimizer(void)
             
             do {
                 component_index = *(byte *)(stack_context_1 + buffer_ptr);
-                if ((*(ulonglong *)(render_context + 0x770) >> ((ulonglong)component_index & 0x3f) & 1) != 0) {
+                if ((*(uint64_t *)(render_context + 0x770) >> ((uint64_t)component_index & 0x3f) & 1) != 0) {
                     ui_system_get_render_resource(&stack_buffer);
                     intensity_12 = vector_ptr_2[1];
                     intensity_2 = *vector_ptr_2;
-                    vector_ptr = (float *)(render_context + 0x360 + (longlong)(char)component_index * 0x10);
+                    vector_ptr = (float *)(render_context + 0x360 + (int64_t)(char)component_index * 0x10);
                     vector_component = vector_ptr[2];
-                    intensity_7 = *(float *)((longlong)(char)component_index * 0x1b0 + 0x38 +
-                                         *(longlong *)(system_context + 0x140));
+                    intensity_7 = *(float *)((int64_t)(char)component_index * 0x1b0 + 0x38 +
+                                         *(int64_t *)(system_context + 0x140));
                     intensity_8 = (intensity_2 * *vector_ptr + intensity_12 * vector_ptr[1]) * 
                                  control_point_ptr[0x16];
                     intensity_6 = intensity_2 * vector_ptr[1] - intensity_12 * *vector_ptr;
@@ -879,8 +879,8 @@ void ui_system_render_parameter_optimizer(void)
     intensity_7 = *(float *)(render_context + 0xf88);
     vector_component = *(float *)(render_context + 0xf80);
     
-    *(ulonglong *)(context_ptr + 0x800) = *(ulonglong *)(context_ptr + 0x800) | 
-                                          *(ulonglong *)(context_ptr + 0x810);
+    *(uint64_t *)(context_ptr + 0x800) = *(uint64_t *)(context_ptr + 0x800) | 
+                                          *(uint64_t *)(context_ptr + 0x810);
     intensity_6 = *(float *)(render_context + 0xf84);
     
     *(float *)(context_ptr + 0x1020) = vector_component * intensity_19 + 
@@ -896,8 +896,8 @@ void ui_system_render_parameter_optimizer(void)
     // 处理渲染变换
     if ('\0' < *(char *)(context_ptr + 0x1040)) {
         do {
-            if ((*(ulonglong *)(context_ptr + 0x810) >> ((ulonglong)component_index & 0x3f) & 1) != 0) {
-                transform_id = (ulonglong)(char)component_index;
+            if ((*(uint64_t *)(context_ptr + 0x810) >> ((uint64_t)component_index & 0x3f) & 1) != 0) {
+                transform_id = (uint64_t)(char)component_index;
                 control_point_ptr = (float *)(render_context + 0x780 + transform_id * 0x10);
                 intensity_12 = *control_point_ptr;
                 intensity_2 = control_point_ptr[1];
@@ -932,10 +932,10 @@ void ui_system_render_parameter_optimizer(void)
                 vector_ptr_2[2] = intensity_6 + intensity_19 * intensity_7;
                 vector_ptr_2[3] = intensity_8 + intensity_19 * stack_intensity;
                 
-                *(ulonglong *)(context_ptr + 0x800) = *(ulonglong *)(context_ptr + 0x800) | 
-                                                  *(ulonglong *)(transform_id * 0x1b0 + 0xe8 + 
-                                                  *(longlong *)(system_context + 0x140));
-                *(ulonglong *)(context_ptr + 0x808) = *(ulonglong *)(context_ptr + 0x808) | 
+                *(uint64_t *)(context_ptr + 0x800) = *(uint64_t *)(context_ptr + 0x800) | 
+                                                  *(uint64_t *)(transform_id * 0x1b0 + 0xe8 + 
+                                                  *(int64_t *)(system_context + 0x140));
+                *(uint64_t *)(context_ptr + 0x808) = *(uint64_t *)(context_ptr + 0x808) | 
                                                   1L << (transform_id & 0x3f);
             }
             component_index = component_index + 1;
@@ -946,7 +946,7 @@ void ui_system_render_parameter_optimizer(void)
     intensity_19 = *(float *)(render_context + 0x1108);
     matrix_index = 10;
     control_point_ptr = *(float **)(render_context + 0x10d0);
-    resource_ptr = (longlong *)(stack_context_3 + 0x50);
+    resource_ptr = (int64_t *)(stack_context_3 + 0x50);
     
     do {
         control_point_ptr = control_point_ptr + 1;
@@ -958,8 +958,8 @@ void ui_system_render_parameter_optimizer(void)
     } while (matrix_index < 0x12);
     
     // 清理渲染资源
-    ui_system_cleanup_render_resources(*(ulonglong *)(render_context + 0xfb0) ^ 
-                                      (ulonglong)&stack_buffer_start);
+    ui_system_cleanup_render_resources(*(uint64_t *)(render_context + 0xfb0) ^ 
+                                      (uint64_t)&stack_buffer_start);
 }
 
 /**
@@ -972,18 +972,18 @@ void ui_system_final_render_processor(void)
 {
     // 局部变量声明
     int render_index;
-    longlong render_context;
-    longlong *resource_ptr;
+    int64_t render_context;
+    int64_t *resource_ptr;
     float *parameter_ptr;
     float threshold_1;
     float threshold_2;
-    longlong stack_context_1;
+    int64_t stack_context_1;
     uint64_t stack_context_2;
     
     // 初始化渲染参数
     render_index = 10;
     parameter_ptr = *(float **)(render_context + 0x10d0);
-    resource_ptr = (longlong *)(stack_context_1 + 0x50);
+    resource_ptr = (int64_t *)(stack_context_1 + 0x50);
     
     // 执行最终渲染处理
     do {
@@ -996,8 +996,8 @@ void ui_system_final_render_processor(void)
     } while (render_index < 0x12);
     
     // 清理渲染资源
-    ui_system_cleanup_render_resources(*(ulonglong *)(render_context + 0xfb0) ^ 
-                                      (ulonglong)&stack_buffer_start);
+    ui_system_cleanup_render_resources(*(uint64_t *)(render_context + 0xfb0) ^ 
+                                      (uint64_t)&stack_buffer_start);
 }
 
 // ============================================================================
@@ -1079,7 +1079,7 @@ static void ui_process_control_points(float* control_data, float* weights, int c
  * @param render_context 渲染上下文
  * @param state_flags 状态标志
  */
-static void ui_update_render_state(longlong render_context, int state_flags)
+static void ui_update_render_state(int64_t render_context, int state_flags)
 {
     *(int *)(render_context + 0xc84) = state_flags;
 }
@@ -1090,7 +1090,7 @@ static void ui_update_render_state(longlong render_context, int state_flags)
  * @param command_ptr 命令指针
  * @param param_data 参数数据
  */
-static void ui_execute_render_command(longlong command_ptr, longlong param_data)
+static void ui_execute_render_command(int64_t command_ptr, int64_t param_data)
 {
     // 简化实现：执行渲染命令
     // 原实现包含复杂的渲染命令处理逻辑

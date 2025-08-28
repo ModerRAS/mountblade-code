@@ -5,7 +5,7 @@
 
 // 函数：重新分配和扩容容器
 // 原始函数名：FUN_1800826b0
-void resize_container(longlong *container_ptr, longlong *data_range_ptr)
+void resize_container(int64_t *container_ptr, int64_t *data_range_ptr)
 {
     int32_t *data_start;
     int32_t *data_end;
@@ -15,9 +15,9 @@ void resize_container(longlong *container_ptr, longlong *data_range_ptr)
     int32_t *current_data;
     uint64_t *iterator;
     uint64_t *temp_ptr;
-    longlong *current_slot;
-    longlong capacity;
-    longlong new_capacity;
+    int64_t *current_slot;
+    int64_t capacity;
+    int64_t new_capacity;
     int32_t *element_ptr;
     uint64_t element_data;
     
@@ -27,7 +27,7 @@ void resize_container(longlong *container_ptr, longlong *data_range_ptr)
     data_start = (int32_t *)*container_ptr;
     
     // 计算当前容量
-    capacity = (longlong)element_ptr - (longlong)data_start >> 5;
+    capacity = (int64_t)element_ptr - (int64_t)data_start >> 5;
     new_container = (uint64_t *)0x0;
     
     // 确定新容量
@@ -53,24 +53,24 @@ ALLOCATION_COMPLETE:
     
     // 如果有数据需要迁移
     if (data_start != element_ptr) {
-        new_capacity = (longlong)new_container - (longlong)data_start;
+        new_capacity = (int64_t)new_container - (int64_t)data_start;
         data_start = data_start + 6;
         do {
             *iterator = 0;
-            *(uint64_t *)(new_capacity + -0x10 + (longlong)data_start) = 0;
-            *(uint64_t *)(new_capacity + -8 + (longlong)data_start) = 0;
-            *(int32_t *)(new_capacity + (longlong)data_start) = *data_start;
+            *(uint64_t *)(new_capacity + -0x10 + (int64_t)data_start) = 0;
+            *(uint64_t *)(new_capacity + -8 + (int64_t)data_start) = 0;
+            *(int32_t *)(new_capacity + (int64_t)data_start) = *data_start;
             element_data = *iterator;
             *iterator = *(uint64_t *)(data_start + -6);
             *(uint64_t *)(data_start + -6) = element_data;
-            element_data = *(uint64_t *)(new_capacity + -0x10 + (longlong)data_start);
-            *(uint64_t *)(new_capacity + -0x10 + (longlong)data_start) = *(uint64_t *)(data_start + -4);
+            element_data = *(uint64_t *)(new_capacity + -0x10 + (int64_t)data_start);
+            *(uint64_t *)(new_capacity + -0x10 + (int64_t)data_start) = *(uint64_t *)(data_start + -4);
             *(uint64_t *)(data_start + -4) = element_data;
-            element_data = *(uint64_t *)(new_capacity + -8 + (longlong)data_start);
-            *(uint64_t *)(new_capacity + -8 + (longlong)data_start) = *(uint64_t *)(data_start + -2);
+            element_data = *(uint64_t *)(new_capacity + -8 + (int64_t)data_start);
+            *(uint64_t *)(new_capacity + -8 + (int64_t)data_start) = *(uint64_t *)(data_start + -2);
             *(uint64_t *)(data_start + -2) = element_data;
-            element_ptr = *(int32_t *)(new_capacity + (longlong)data_start);
-            *(int32_t *)(new_capacity + (longlong)data_start) = *data_start;
+            element_ptr = *(int32_t *)(new_capacity + (int64_t)data_start);
+            *(int32_t *)(new_capacity + (int64_t)data_start) = *data_start;
             *data_start = element_ptr;
             iterator = iterator + 4;
             temp_ptr = data_start + 2;
@@ -90,7 +90,7 @@ ALLOCATION_COMPLETE:
     
     *iterator = temp_ptr;
     iterator[1] = temp_ptr;
-    iterator[2] = (longlong)temp_ptr + new_capacity * 4;
+    iterator[2] = (int64_t)temp_ptr + new_capacity * 4;
     new_capacity = *data_range_ptr;
     
     // 复制数据
@@ -100,25 +100,25 @@ ALLOCATION_COMPLETE:
     }
     
     iterator[1] = *iterator;
-    current_slot = (longlong *)*container_ptr;
+    current_slot = (int64_t *)*container_ptr;
     
     // 清理原有数据
-    if (current_slot != (longlong *)container_ptr[1]) {
+    if (current_slot != (int64_t *)container_ptr[1]) {
         do {
             if (*current_slot != 0) {
                 // WARNING: 此子程序不返回
                 cleanup_memory();
             }
             current_slot = current_slot + 4;
-        } while (current_slot != (longlong *)container_ptr[1]);
-        current_slot = (longlong *)*container_ptr;
+        } while (current_slot != (int64_t *)container_ptr[1]);
+        current_slot = (int64_t *)*container_ptr;
     }
     
     // 更新容器指针
-    if (current_slot == (longlong *)0x0) {
-        *container_ptr = (longlong)new_container;
-        container_ptr[1] = (longlong)(iterator + 4);
-        container_ptr[2] = (longlong)(new_container + capacity * 4);
+    if (current_slot == (int64_t *)0x0) {
+        *container_ptr = (int64_t)new_container;
+        container_ptr[1] = (int64_t)(iterator + 4);
+        container_ptr[2] = (int64_t)(new_container + capacity * 4);
         return;
     }
     
@@ -128,7 +128,7 @@ ALLOCATION_COMPLETE:
 
 // 函数：清理内存区域
 // 原始函数名：FUN_180082880
-void cleanup_memory_region(longlong *start_ptr, longlong *end_ptr)
+void cleanup_memory_region(int64_t *start_ptr, int64_t *end_ptr)
 {
     if (start_ptr != end_ptr) {
         do {
@@ -146,11 +146,11 @@ void cleanup_memory_region(longlong *start_ptr, longlong *end_ptr)
 
 // 函数：从内存池分配对象
 // 原始函数名：FUN_1800828d0
-uint64_t * allocate_from_pool(longlong pool_handle, uint64_t *object_ptr)
+uint64_t * allocate_from_pool(int64_t pool_handle, uint64_t *object_ptr)
 {
-    longlong pool_position;
+    int64_t pool_position;
     int lock_result;
-    longlong *new_object;
+    int64_t *new_object;
     int32_t init_flag;
     uint64_t allocation_flags;
     
@@ -163,40 +163,40 @@ uint64_t * allocate_from_pool(longlong pool_handle, uint64_t *object_ptr)
         throw_c_error(lock_result);
     }
     
-    pool_position = *(longlong *)(pool_handle + 200);
+    pool_position = *(int64_t *)(pool_handle + 200);
     
     // 检查池是否为空
-    if (*(longlong *)(pool_handle + 0xc0) == pool_position) {
+    if (*(int64_t *)(pool_handle + 0xc0) == pool_position) {
         // 分配新对象
-        new_object = (longlong *)allocate_object(_global_memory_allocator, 0x28, 8, 0x20, init_flag, allocation_flags);
-        *new_object = (longlong)&vtable_type_180a21690;
-        *new_object = (longlong)&vtable_type_180a21720;
+        new_object = (int64_t *)allocate_object(_global_memory_allocator, 0x28, 8, 0x20, init_flag, allocation_flags);
+        *new_object = (int64_t)&vtable_type_180a21690;
+        *new_object = (int64_t)&vtable_type_180a21720;
         *(int32_t *)(new_object + 1) = 0;
-        *new_object = (longlong)&vtable_type_1809fff60;
+        *new_object = (int64_t)&vtable_type_1809fff60;
         new_object[2] = 0;
         new_object[3] = 0;
         *(int8_t *)(new_object + 4) = 0;
-        *new_object = (longlong)&vtable_type_1809ffef8;
+        *new_object = (int64_t)&vtable_type_1809ffef8;
         // 调用虚函数
         (*(code **)(*new_object + 0x28))(new_object);
         *object_ptr = new_object;
     }
     else {
         // 从池中重用对象
-        new_object = *(longlong **)(pool_position + -8);
-        *(longlong *)(pool_handle + 200) = pool_position + -8;
+        new_object = *(int64_t **)(pool_position + -8);
+        *(int64_t *)(pool_handle + 200) = pool_position + -8;
         new_object[1] = -0x5a5a5a5a5a5a5a5b;  // 填充模式
         new_object[2] = -0x5a5a5a5a5a5a5a5b;
         new_object[3] = -0x5a5a5a5a5a5a5a5b;
         new_object[4] = -0x5a5a5a5a5a5a5a5b;
-        *new_object = (longlong)&vtable_type_180a21690;
-        *new_object = (longlong)&vtable_type_180a21720;
+        *new_object = (int64_t)&vtable_type_180a21690;
+        *new_object = (int64_t)&vtable_type_180a21720;
         *(int32_t *)(new_object + 1) = 0;
-        *new_object = (longlong)&vtable_type_1809fff60;
+        *new_object = (int64_t)&vtable_type_1809fff60;
         new_object[2] = 0;
         new_object[3] = 0;
         *(int8_t *)(new_object + 4) = 0;
-        *new_object = (longlong)&vtable_type_1809ffef8;
+        *new_object = (int64_t)&vtable_type_1809ffef8;
         // 调用虚函数
         (*(code **)(*new_object + 0x28))(new_object);
         *object_ptr = new_object;
@@ -213,7 +213,7 @@ uint64_t * allocate_from_pool(longlong pool_handle, uint64_t *object_ptr)
 
 // 函数：内存块移动
 // 原始函数名：FUN_180082a50
-void move_memory_block(longlong source, longlong destination, uint64_t size)
+void move_memory_block(int64_t source, int64_t destination, uint64_t size)
 {
     if (source != destination) {
         // WARNING: 此子程序不返回
@@ -226,11 +226,11 @@ void move_memory_block(longlong source, longlong destination, uint64_t size)
 
 // 函数：分配特定类型对象
 // 原始函数名：FUN_180082aa0
-uint64_t * allocate_specific_type(longlong pool_handle, uint64_t *object_ptr)
+uint64_t * allocate_specific_type(int64_t pool_handle, uint64_t *object_ptr)
 {
-    longlong pool_position;
+    int64_t pool_position;
     int lock_result;
-    longlong *new_object;
+    int64_t *new_object;
     int32_t init_flag;
     uint64_t allocation_flags;
     
@@ -243,40 +243,40 @@ uint64_t * allocate_specific_type(longlong pool_handle, uint64_t *object_ptr)
         throw_c_error(lock_result);
     }
     
-    pool_position = *(longlong *)(pool_handle + 200);
+    pool_position = *(int64_t *)(pool_handle + 200);
     
     // 检查池是否为空
-    if (*(longlong *)(pool_handle + 0xc0) == pool_position) {
+    if (*(int64_t *)(pool_handle + 0xc0) == pool_position) {
         // 分配新对象
-        new_object = (longlong *)allocate_object(_global_memory_allocator, 0x28, 8, 0x20, init_flag, allocation_flags);
-        *new_object = (longlong)&vtable_type_180a21690;
-        *new_object = (longlong)&vtable_type_180a21720;
+        new_object = (int64_t *)allocate_object(_global_memory_allocator, 0x28, 8, 0x20, init_flag, allocation_flags);
+        *new_object = (int64_t)&vtable_type_180a21690;
+        *new_object = (int64_t)&vtable_type_180a21720;
         *(int32_t *)(new_object + 1) = 0;
-        *new_object = (longlong)&vtable_type_1809fff60;
+        *new_object = (int64_t)&vtable_type_1809fff60;
         new_object[2] = 0;
         new_object[3] = 0;
         *(int8_t *)(new_object + 4) = 0;
-        *new_object = (longlong)&vtable_type_1809ffe28;
+        *new_object = (int64_t)&vtable_type_1809ffe28;
         // 调用虚函数
         (*(code **)(*new_object + 0x28))(new_object);
         *object_ptr = new_object;
     }
     else {
         // 从池中重用对象
-        new_object = *(longlong **)(pool_position + -8);
-        *(longlong *)(pool_handle + 200) = pool_position + -8;
+        new_object = *(int64_t **)(pool_position + -8);
+        *(int64_t *)(pool_handle + 200) = pool_position + -8;
         new_object[1] = -0x5a5a5a5a5a5a5a5b;
         new_object[2] = -0x5a5a5a5a5a5a5a5b;
         new_object[3] = -0x5a5a5a5a5a5a5a5b;
         new_object[4] = -0x5a5a5a5a5a5a5a5b;
-        *new_object = (longlong)&vtable_type_180a21690;
-        *new_object = (longlong)&vtable_type_180a21720;
+        *new_object = (int64_t)&vtable_type_180a21690;
+        *new_object = (int64_t)&vtable_type_180a21720;
         *(int32_t *)(new_object + 1) = 0;
-        *new_object = (longlong)&vtable_type_1809fff60;
+        *new_object = (int64_t)&vtable_type_1809fff60;
         new_object[2] = 0;
         new_object[3] = 0;
         *(int8_t *)(new_object + 4) = 0;
-        *new_object = (longlong)&vtable_type_1809ffe28;
+        *new_object = (int64_t)&vtable_type_1809ffe28;
         // 调用虚函数
         (*(code **)(*new_object + 0x28))(new_object);
         *object_ptr = new_object;
@@ -295,11 +295,11 @@ uint64_t * allocate_specific_type(longlong pool_handle, uint64_t *object_ptr)
 
 // 函数：分配另一种特定类型对象
 // 原始函数名：FUN_180082c20
-uint64_t * allocate_alternative_type(longlong pool_handle, uint64_t *object_ptr)
+uint64_t * allocate_alternative_type(int64_t pool_handle, uint64_t *object_ptr)
 {
-    longlong pool_position;
+    int64_t pool_position;
     int lock_result;
-    longlong *new_object;
+    int64_t *new_object;
     int32_t init_flag;
     uint64_t allocation_flags;
     
@@ -312,40 +312,40 @@ uint64_t * allocate_alternative_type(longlong pool_handle, uint64_t *object_ptr)
         throw_c_error(lock_result);
     }
     
-    pool_position = *(longlong *)(pool_handle + 200);
+    pool_position = *(int64_t *)(pool_handle + 200);
     
     // 检查池是否为空
-    if (*(longlong *)(pool_handle + 0xc0) == pool_position) {
+    if (*(int64_t *)(pool_handle + 0xc0) == pool_position) {
         // 分配新对象
-        new_object = (longlong *)allocate_object(_global_memory_allocator, 0x28, 8, 0x20, init_flag, allocation_flags);
-        *new_object = (longlong)&vtable_type_180a21690;
-        *new_object = (longlong)&vtable_type_180a21720;
+        new_object = (int64_t *)allocate_object(_global_memory_allocator, 0x28, 8, 0x20, init_flag, allocation_flags);
+        *new_object = (int64_t)&vtable_type_180a21690;
+        *new_object = (int64_t)&vtable_type_180a21720;
         *(int32_t *)(new_object + 1) = 0;
-        *new_object = (longlong)&vtable_type_1809fff60;
+        *new_object = (int64_t)&vtable_type_1809fff60;
         new_object[2] = 0;
         new_object[3] = 0;
         *(int8_t *)(new_object + 4) = 0;
-        *new_object = (longlong)&vtable_type_1809ffe90;
+        *new_object = (int64_t)&vtable_type_1809ffe90;
         // 调用虚函数
         (*(code **)(*new_object + 0x28))(new_object);
         *object_ptr = new_object;
     }
     else {
         // 从池中重用对象
-        new_object = *(longlong **)(pool_position + -8);
-        *(longlong *)(pool_handle + 200) = pool_position + -8;
+        new_object = *(int64_t **)(pool_position + -8);
+        *(int64_t *)(pool_handle + 200) = pool_position + -8;
         new_object[1] = -0x5a5a5a5a5a5a5a5b;
         new_object[2] = -0x5a5a5a5a5a5a5a5b;
         new_object[3] = -0x5a5a5a5a5a5a5a5b;
         new_object[4] = -0x5a5a5a5a5a5a5a5b;
-        *new_object = (longlong)&vtable_type_180a21690;
-        *new_object = (longlong)&vtable_type_180a21720;
+        *new_object = (int64_t)&vtable_type_180a21690;
+        *new_object = (int64_t)&vtable_type_180a21720;
         *(int32_t *)(new_object + 1) = 0;
-        *new_object = (longlong)&vtable_type_1809fff60;
+        *new_object = (int64_t)&vtable_type_1809fff60;
         new_object[2] = 0;
         new_object[3] = 0;
         *(int8_t *)(new_object + 4) = 0;
-        *new_object = (longlong)&vtable_type_1809ffe90;
+        *new_object = (int64_t)&vtable_type_1809ffe90;
         // 调用虚函数
         (*(code **)(*new_object + 0x28))(new_object);
         *object_ptr = new_object;
@@ -362,35 +362,35 @@ uint64_t * allocate_alternative_type(longlong pool_handle, uint64_t *object_ptr)
 
 // 函数：处理对象状态更新
 // 原始函数名：FUN_180082da0
-int8_t update_object_state(longlong *object_manager, uint64_t param_2, uint64_t param_3, uint64_t param_4)
+int8_t update_object_state(int64_t *object_manager, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
     int8_t *state_ptr;
     int8_t old_state;
     uint64_t vtable_entry;
-    longlong *subsystem_a;
-    longlong *subsystem_b;
-    longlong **temp_ptr_a;
+    int64_t *subsystem_a;
+    int64_t *subsystem_b;
+    int64_t **temp_ptr_a;
     uint64_t allocation_flags;
     
     allocation_flags = 0xfffffffffffffffe;
-    object_manager = (longlong *)*object_manager;
+    object_manager = (int64_t *)*object_manager;
     vtable_entry = *(uint64_t *)
-                   (*(longlong *)(*object_manager + 0x1e0) + (ulonglong)*(byte *)(object_manager + 1) * 0x18);
+                   (*(int64_t *)(*object_manager + 0x1e0) + (uint64_t)*(byte *)(object_manager + 1) * 0x18);
     
     temp_ptr_a = &subsystem_a;
-    subsystem_a = (longlong *)object_manager[2];
-    if (subsystem_a != (longlong *)0x0) {
+    subsystem_a = (int64_t *)object_manager[2];
+    if (subsystem_a != (int64_t *)0x0) {
         (*(code **)(*subsystem_a + 0x28))();
     }
     
     process_subsystem(vtable_entry, &subsystem_a, param_3, param_4, allocation_flags);
     
     vtable_entry = *(uint64_t *)
-                   (*(longlong *)(*object_manager + 0x1e0) + 8 + (ulonglong)*(byte *)(object_manager + 1) * 0x18);
+                   (*(int64_t *)(*object_manager + 0x1e0) + 8 + (uint64_t)*(byte *)(object_manager + 1) * 0x18);
     
     temp_ptr_a = &subsystem_b;
-    subsystem_b = (longlong *)object_manager[3];
-    if (subsystem_b != (longlong *)0x0) {
+    subsystem_b = (int64_t *)object_manager[3];
+    if (subsystem_b != (int64_t *)0x0) {
         (*(code **)(*subsystem_b + 0x28))();
     }
     
@@ -399,7 +399,7 @@ int8_t update_object_state(longlong *object_manager, uint64_t param_2, uint64_t 
     // 锁定并更新状态
     acquire_global_lock();
     state_ptr = (int8_t *)
-               (*(longlong *)(*object_manager + 0x1e0) + 0x15 + (ulonglong)*(byte *)(object_manager + 1) * 0x18);
+               (*(int64_t *)(*object_manager + 0x1e0) + 0x15 + (uint64_t)*(byte *)(object_manager + 1) * 0x18);
     old_state = *state_ptr;
     *state_ptr = 3;
     release_global_lock();
@@ -411,11 +411,11 @@ int8_t update_object_state(longlong *object_manager, uint64_t param_2, uint64_t 
 
 // 函数：对象生命周期管理
 // 原始函数名：FUN_180082e70
-longlong manage_object_lifecycle(longlong *object_ptr, longlong *source_ptr, int operation)
+int64_t manage_object_lifecycle(int64_t *object_ptr, int64_t *source_ptr, int operation)
 {
     uint64_t *new_object;
-    longlong *ref_counted_obj;
-    longlong object_handle;
+    int64_t *ref_counted_obj;
+    int64_t object_handle;
     uint64_t *source_data;
     
     if (operation == 3) {
@@ -428,11 +428,11 @@ longlong manage_object_lifecycle(longlong *object_ptr, longlong *source_ptr, int
         // 销毁对象
         object_handle = *object_ptr;
         if (object_handle != 0) {
-            if (*(longlong **)(object_handle + 0x18) != (longlong *)0x0) {
-                (*(code **)(**(longlong **)(object_handle + 0x18) + 0x38))();
+            if (*(int64_t **)(object_handle + 0x18) != (int64_t *)0x0) {
+                (*(code **)(**(int64_t **)(object_handle + 0x18) + 0x38))();
             }
-            if (*(longlong **)(object_handle + 0x10) != (longlong *)0x0) {
-                (*(code **)(**(longlong **)(object_handle + 0x10) + 0x38))();
+            if (*(int64_t **)(object_handle + 0x10) != (int64_t *)0x0) {
+                (*(code **)(**(int64_t **)(object_handle + 0x10) + 0x38))();
             }
             // WARNING: 此子程序不返回
             cleanup_memory(object_handle);
@@ -446,17 +446,17 @@ longlong manage_object_lifecycle(longlong *object_ptr, longlong *source_ptr, int
             new_object = (uint64_t *)*source_ptr;
             *source_data = *new_object;
             *(int8_t *)(source_data + 1) = *(int8_t *)(new_object + 1);
-            ref_counted_obj = (longlong *)new_object[2];
+            ref_counted_obj = (int64_t *)new_object[2];
             source_data[2] = ref_counted_obj;
-            if (ref_counted_obj != (longlong *)0x0) {
+            if (ref_counted_obj != (int64_t *)0x0) {
                 (*(code **)(*ref_counted_obj + 0x28))();
             }
-            ref_counted_obj = (longlong *)new_object[3];
+            ref_counted_obj = (int64_t *)new_object[3];
             source_data[3] = ref_counted_obj;
-            if (ref_counted_obj != (longlong *)0x0) {
+            if (ref_counted_obj != (int64_t *)0x0) {
                 (*(code **)(*ref_counted_obj + 0x28))();
             }
-            *object_ptr = (longlong)source_data;
+            *object_ptr = (int64_t)source_data;
             return 0;
         }
         if (operation == 2) {
@@ -473,38 +473,38 @@ longlong manage_object_lifecycle(longlong *object_ptr, longlong *source_ptr, int
 
 // 函数：初始化渲染上下文
 // 原始函数名：FUN_180082fd0
-void initialize_render_context(longlong context_handle, uint64_t param_2, uint64_t param_3, longlong *render_data)
+void initialize_render_context(int64_t context_handle, uint64_t param_2, uint64_t param_3, int64_t *render_data)
 {
     int render_param_a;
     int render_param_b;
-    longlong context_base;
-    longlong *new_renderer;
+    int64_t context_base;
+    int64_t *new_renderer;
     uint64_t render_object;
-    longlong *renderer_list;
+    int64_t *renderer_list;
     
     context_base = *render_data;
     render_object = allocate_object(_global_memory_allocator, 0xf0, 8, 3, 0xfffffffffffffffe);
-    renderer_list = (longlong *)create_renderer_instance(render_object);
+    renderer_list = (int64_t *)create_renderer_instance(render_object);
     
-    if (renderer_list != (longlong *)0x0) {
+    if (renderer_list != (int64_t *)0x0) {
         (*(code **)(*renderer_list + 0x28))(renderer_list);
     }
     
-    new_renderer = *(longlong **)(context_base + 0x210);
-    *(longlong **)(context_base + 0x210) = renderer_list;
+    new_renderer = *(int64_t **)(context_base + 0x210);
+    *(int64_t **)(context_base + 0x210) = renderer_list;
     
-    if (new_renderer != (longlong *)0x0) {
+    if (new_renderer != (int64_t *)0x0) {
         (*(code **)(*new_renderer + 0x38))();
     }
     
     *(int8_t *)(context_handle + 0x1a) = 0x12;
-    context_base = *(longlong *)(context_base + 0x210);
+    context_base = *(int64_t *)(context_base + 0x210);
     initialize_render_pipeline(context_base + 0x10);
     initialize_render_pipeline(context_base + 0x38, context_handle);
     
     *(int8_t *)(context_base + 0x80) = *(int8_t *)(context_handle + 0x1a);
     *(int32_t *)(context_base + 0x60) = **(int32_t **)(context_handle + 8);
-    *(longlong *)(context_handle + 8) = *(longlong *)(context_handle + 8) + 4;
+    *(int64_t *)(context_handle + 8) = *(int64_t *)(context_handle + 8) + 4;
     
     render_param_a = *(int *)(context_base + 0x60);
     render_param_b = *(int *)(context_base + 100);
@@ -527,7 +527,7 @@ void initialize_render_context(longlong context_handle, uint64_t param_2, uint64
     *(int *)(context_base + 0x60) = render_param_a;
     // WARNING: 此子程序不返回
     memcpy(*(uint64_t *)(context_base + 0x68), *(uint64_t *)(context_handle + 8), 
-           (longlong)(render_param_a * 0x5c));
+           (int64_t)(render_param_a * 0x5c));
 }
 
 // 函数：减少引用计数
@@ -550,15 +550,15 @@ int decrease_reference_count(uint64_t param_1, uint64_t param_2, uint64_t param_
 
 // 函数：处理对象销毁
 // 原始函数名：FUN_1800831c0
-void handle_object_destruction(uint64_t param_1, uint64_t param_2, uint64_t param_3, longlong *object_ptr)
+void handle_object_destruction(uint64_t param_1, uint64_t param_2, uint64_t param_3, int64_t *object_ptr)
 {
     uint64_t *object_data;
     uint64_t object_header;
-    longlong *destructor_a;
-    longlong *destructor_b;
+    int64_t *destructor_a;
+    int64_t *destructor_b;
     uint64_t stack_temp;
-    longlong **temp_ptr_a;
-    longlong **temp_ptr_b;
+    int64_t **temp_ptr_a;
+    int64_t **temp_ptr_b;
     
     stack_temp = 0xfffffffffffffffe;
     object_data = (uint64_t *)*object_ptr;
@@ -568,14 +568,14 @@ void handle_object_destruction(uint64_t param_1, uint64_t param_2, uint64_t para
     
     object_header = *object_data;
     temp_ptr_a = &destructor_a;
-    destructor_a = (longlong *)object_data[3];
-    if (destructor_a != (longlong *)0x0) {
+    destructor_a = (int64_t *)object_data[3];
+    if (destructor_a != (int64_t *)0x0) {
         (*(code **)(*destructor_a + 0x28))();
     }
     
     temp_ptr_b = &destructor_b;
-    destructor_b = (longlong *)object_data[2];
-    if (destructor_b != (longlong *)0x0) {
+    destructor_b = (int64_t *)object_data[2];
+    if (destructor_b != (int64_t *)0x0) {
         (*(code **)(*destructor_b + 0x28))();
     }
     
@@ -584,7 +584,7 @@ void handle_object_destruction(uint64_t param_1, uint64_t param_2, uint64_t para
     
     // WARNING: 无法恢复跳转表，分支过多
     // WARNING: 将间接跳转作为调用处理
-    (*(code **)(*(longlong *)*object_data + 0x38))();
+    (*(code **)(*(int64_t *)*object_data + 0x38))();
     return;
 }
 
@@ -592,9 +592,9 @@ void handle_object_destruction(uint64_t param_1, uint64_t param_2, uint64_t para
 
 // 函数：管理对象生命周期（变体）
 // 原始函数名：FUN_180083260
-longlong manage_object_lifecycle_variant(longlong *object_ptr, longlong *source_ptr, int operation)
+int64_t manage_object_lifecycle_variant(int64_t *object_ptr, int64_t *source_ptr, int operation)
 {
-    longlong result;
+    int64_t result;
     
     if (operation == 3) {
         return 0x180bfdbe0;  // 返回类型信息
@@ -606,11 +606,11 @@ longlong manage_object_lifecycle_variant(longlong *object_ptr, longlong *source_
         // 销毁对象
         result = *object_ptr;
         if (result != 0) {
-            if (*(longlong **)(result + 0x18) != (longlong *)0x0) {
-                (*(code **)(**(longlong **)(result + 0x18) + 0x38))();
+            if (*(int64_t **)(result + 0x18) != (int64_t *)0x0) {
+                (*(code **)(**(int64_t **)(result + 0x18) + 0x38))();
             }
-            if (*(longlong **)(result + 0x10) != (longlong *)0x0) {
-                (*(code **)(**(longlong **)(result + 0x10) + 0x38))();
+            if (*(int64_t **)(result + 0x10) != (int64_t *)0x0) {
+                (*(code **)(**(int64_t **)(result + 0x10) + 0x38))();
             }
             // WARNING: 此子程序不返回
             cleanup_memory(result);
@@ -639,11 +639,11 @@ longlong manage_object_lifecycle_variant(longlong *object_ptr, longlong *source_
 
 // 函数：管理对象生命周期（另一种变体）
 // 原始函数名：FUN_180083390
-longlong manage_object_lifecycle_alternative(longlong *object_ptr, longlong *source_ptr, int operation)
+int64_t manage_object_lifecycle_alternative(int64_t *object_ptr, int64_t *source_ptr, int operation)
 {
     uint64_t *new_object;
-    longlong *ref_counted_obj;
-    longlong object_handle;
+    int64_t *ref_counted_obj;
+    int64_t object_handle;
     uint64_t *source_data;
     
     if (operation == 3) {
@@ -656,11 +656,11 @@ longlong manage_object_lifecycle_alternative(longlong *object_ptr, longlong *sou
         // 销毁对象
         object_handle = *object_ptr;
         if (object_handle != 0) {
-            if (*(longlong **)(object_handle + 0x18) != (longlong *)0x0) {
-                (*(code **)(**(longlong **)(object_handle + 0x18) + 0x38))();
+            if (*(int64_t **)(object_handle + 0x18) != (int64_t *)0x0) {
+                (*(code **)(**(int64_t **)(object_handle + 0x18) + 0x38))();
             }
-            if (*(longlong **)(object_handle + 0x10) != (longlong *)0x0) {
-                (*(code **)(**(longlong **)(object_handle + 0x10) + 0x38))();
+            if (*(int64_t **)(object_handle + 0x10) != (int64_t *)0x0) {
+                (*(code **)(**(int64_t **)(object_handle + 0x10) + 0x38))();
             }
             // WARNING: 此子程序不返回
             cleanup_memory(object_handle);
@@ -674,17 +674,17 @@ longlong manage_object_lifecycle_alternative(longlong *object_ptr, longlong *sou
             new_object = (uint64_t *)*source_ptr;
             *source_data = *new_object;
             *(int8_t *)(source_data + 1) = *(int8_t *)(new_object + 1);
-            ref_counted_obj = (longlong *)new_object[2];
+            ref_counted_obj = (int64_t *)new_object[2];
             source_data[2] = ref_counted_obj;
-            if (ref_counted_obj != (longlong *)0x0) {
+            if (ref_counted_obj != (int64_t *)0x0) {
                 (*(code **)(*ref_counted_obj + 0x28))();
             }
-            ref_counted_obj = (longlong *)new_object[3];
+            ref_counted_obj = (int64_t *)new_object[3];
             source_data[3] = ref_counted_obj;
-            if (ref_counted_obj != (longlong *)0x0) {
+            if (ref_counted_obj != (int64_t *)0x0) {
                 (*(code **)(*ref_counted_obj + 0x28))();
             }
-            *object_ptr = (longlong)source_data;
+            *object_ptr = (int64_t)source_data;
             return 0;
         }
         if (operation == 2) {
@@ -699,22 +699,22 @@ longlong manage_object_lifecycle_alternative(longlong *object_ptr, longlong *sou
 
 // 函数：释放对象引用
 // 原始函数名：FUN_1800834f0
-void release_object_reference(ulonglong *object_ref_ptr)
+void release_object_reference(uint64_t *object_ref_ptr)
 {
     int *ref_count;
     uint64_t *object_ptr;
-    longlong memory_block;
-    ulonglong block_header;
+    int64_t memory_block;
+    uint64_t block_header;
     
     object_ptr = (uint64_t *)*object_ref_ptr;
     if (object_ptr == (uint64_t *)0x0) {
         return;
     }
     
-    block_header = (ulonglong)object_ptr & 0xffffffffffc00000;
+    block_header = (uint64_t)object_ptr & 0xffffffffffc00000;
     if (block_header != 0) {
-        memory_block = block_header + 0x80 + ((longlong)object_ptr - block_header >> 0x10) * 0x50;
-        memory_block = memory_block - (ulonglong)*(uint *)(memory_block + 4);
+        memory_block = block_header + 0x80 + ((int64_t)object_ptr - block_header >> 0x10) * 0x50;
+        memory_block = memory_block - (uint64_t)*(uint *)(memory_block + 4);
         
         if ((*(void ***)(block_header + 0x70) == &ExceptionList) && 
             (*(char *)(memory_block + 0xe) == '\0')) {
@@ -742,11 +742,11 @@ void release_object_reference(ulonglong *object_ref_ptr)
 
 // 函数：分配特定类型对象（变体A）
 // 原始函数名：FUN_180083520
-uint64_t * allocate_specific_type_variant_a(longlong pool_handle, uint64_t *object_ptr)
+uint64_t * allocate_specific_type_variant_a(int64_t pool_handle, uint64_t *object_ptr)
 {
-    longlong pool_position;
+    int64_t pool_position;
     int lock_result;
-    longlong *new_object;
+    int64_t *new_object;
     int32_t init_flag;
     uint64_t allocation_flags;
     
@@ -759,40 +759,40 @@ uint64_t * allocate_specific_type_variant_a(longlong pool_handle, uint64_t *obje
         throw_c_error(lock_result);
     }
     
-    pool_position = *(longlong *)(pool_handle + 200);
+    pool_position = *(int64_t *)(pool_handle + 200);
     
     // 检查池是否为空
-    if (*(longlong *)(pool_handle + 0xc0) == pool_position) {
+    if (*(int64_t *)(pool_handle + 0xc0) == pool_position) {
         // 分配新对象
-        new_object = (longlong *)allocate_object(_global_memory_allocator, 0x28, 8, 0x20, init_flag, allocation_flags);
-        *new_object = (longlong)&vtable_type_180a21690;
-        *new_object = (longlong)&vtable_type_180a21720;
+        new_object = (int64_t *)allocate_object(_global_memory_allocator, 0x28, 8, 0x20, init_flag, allocation_flags);
+        *new_object = (int64_t)&vtable_type_180a21690;
+        *new_object = (int64_t)&vtable_type_180a21720;
         *(int32_t *)(new_object + 1) = 0;
-        *new_object = (longlong)&vtable_type_1809fff60;
+        *new_object = (int64_t)&vtable_type_1809fff60;
         new_object[2] = 0;
         new_object[3] = 0;
         *(int8_t *)(new_object + 4) = 0;
-        *new_object = (longlong)&vtable_type_1809ffc88;
+        *new_object = (int64_t)&vtable_type_1809ffc88;
         // 调用虚函数
         (*(code **)(*new_object + 0x28))(new_object);
         *object_ptr = new_object;
     }
     else {
         // 从池中重用对象
-        new_object = *(longlong **)(pool_position + -8);
-        *(longlong *)(pool_handle + 200) = pool_position + -8;
+        new_object = *(int64_t **)(pool_position + -8);
+        *(int64_t *)(pool_handle + 200) = pool_position + -8;
         new_object[1] = -0x5a5a5a5a5a5a5a5b;
         new_object[2] = -0x5a5a5a5a5a5a5a5b;
         new_object[3] = -0x5a5a5a5a5a5a5a5b;
         new_object[4] = -0x5a5a5a5a5a5a5a5b;
-        *new_object = (longlong)&vtable_type_180a21690;
-        *new_object = (longlong)&vtable_type_180a21720;
+        *new_object = (int64_t)&vtable_type_180a21690;
+        *new_object = (int64_t)&vtable_type_180a21720;
         *(int32_t *)(new_object + 1) = 0;
-        *new_object = (longlong)&vtable_type_1809fff60;
+        *new_object = (int64_t)&vtable_type_1809fff60;
         new_object[2] = 0;
         new_object[3] = 0;
         *(int8_t *)(new_object + 4) = 0;
-        *new_object = (longlong)&vtable_type_1809ffc88;
+        *new_object = (int64_t)&vtable_type_1809ffc88;
         // 调用虚函数
         (*(code **)(*new_object + 0x28))(new_object);
         *object_ptr = new_object;
@@ -811,11 +811,11 @@ uint64_t * allocate_specific_type_variant_a(longlong pool_handle, uint64_t *obje
 
 // 函数：分配特定类型对象（变体B）
 // 原始函数名：FUN_1800836a0
-uint64_t * allocate_specific_type_variant_b(longlong pool_handle, uint64_t *object_ptr)
+uint64_t * allocate_specific_type_variant_b(int64_t pool_handle, uint64_t *object_ptr)
 {
-    longlong pool_position;
+    int64_t pool_position;
     int lock_result;
-    longlong *new_object;
+    int64_t *new_object;
     int32_t init_flag;
     uint64_t allocation_flags;
     
@@ -828,40 +828,40 @@ uint64_t * allocate_specific_type_variant_b(longlong pool_handle, uint64_t *obje
         throw_c_error(lock_result);
     }
     
-    pool_position = *(longlong *)(pool_handle + 200);
+    pool_position = *(int64_t *)(pool_handle + 200);
     
     // 检查池是否为空
-    if (*(longlong *)(pool_handle + 0xc0) == pool_position) {
+    if (*(int64_t *)(pool_handle + 0xc0) == pool_position) {
         // 分配新对象
-        new_object = (longlong *)allocate_object(_global_memory_allocator, 0x28, 8, 0x20, init_flag, allocation_flags);
-        *new_object = (longlong)&vtable_type_180a21690;
-        *new_object = (longlong)&vtable_type_180a21720;
+        new_object = (int64_t *)allocate_object(_global_memory_allocator, 0x28, 8, 0x20, init_flag, allocation_flags);
+        *new_object = (int64_t)&vtable_type_180a21690;
+        *new_object = (int64_t)&vtable_type_180a21720;
         *(int32_t *)(new_object + 1) = 0;
-        *new_object = (longlong)&vtable_type_1809fff60;
+        *new_object = (int64_t)&vtable_type_1809fff60;
         new_object[2] = 0;
         new_object[3] = 0;
         *(int8_t *)(new_object + 4) = 0;
-        *new_object = (longlong)&vtable_type_1809ffcf0;
+        *new_object = (int64_t)&vtable_type_1809ffcf0;
         // 调用虚函数
         (*(code **)(*new_object + 0x28))(new_object);
         *object_ptr = new_object;
     }
     else {
         // 从池中重用对象
-        new_object = *(longlong **)(pool_position + -8);
-        *(longlong *)(pool_handle + 200) = pool_position + -8;
+        new_object = *(int64_t **)(pool_position + -8);
+        *(int64_t *)(pool_handle + 200) = pool_position + -8;
         new_object[1] = -0x5a5a5a5a5a5a5a5b;
         new_object[2] = -0x5a5a5a5a5a5a5a5b;
         new_object[3] = -0x5a5a5a5a5a5a5a5b;
         new_object[4] = -0x5a5a5a5a5a5a5a5b;
-        *new_object = (longlong)&vtable_type_180a21690;
-        *new_object = (longlong)&vtable_type_180a21720;
+        *new_object = (int64_t)&vtable_type_180a21690;
+        *new_object = (int64_t)&vtable_type_180a21720;
         *(int32_t *)(new_object + 1) = 0;
-        *new_object = (longlong)&vtable_type_1809fff60;
+        *new_object = (int64_t)&vtable_type_1809fff60;
         new_object[2] = 0;
         new_object[3] = 0;
         *(int8_t *)(new_object + 4) = 0;
-        *new_object = (longlong)&vtable_type_1809ffcf0;
+        *new_object = (int64_t)&vtable_type_1809ffcf0;
         // 调用虚函数
         (*(code **)(*new_object + 0x28))(new_object);
         *object_ptr = new_object;
@@ -880,11 +880,11 @@ uint64_t * allocate_specific_type_variant_b(longlong pool_handle, uint64_t *obje
 
 // 函数：分配特定类型对象（变体C）
 // 原始函数名：FUN_180083820
-uint64_t * allocate_specific_type_variant_c(longlong pool_handle, uint64_t *object_ptr)
+uint64_t * allocate_specific_type_variant_c(int64_t pool_handle, uint64_t *object_ptr)
 {
-    longlong pool_position;
+    int64_t pool_position;
     int lock_result;
-    longlong *new_object;
+    int64_t *new_object;
     int32_t init_flag;
     uint64_t allocation_flags;
     
@@ -897,40 +897,40 @@ uint64_t * allocate_specific_type_variant_c(longlong pool_handle, uint64_t *obje
         throw_c_error(lock_result);
     }
     
-    pool_position = *(longlong *)(pool_handle + 200);
+    pool_position = *(int64_t *)(pool_handle + 200);
     
     // 检查池是否为空
-    if (*(longlong *)(pool_handle + 0xc0) == pool_position) {
+    if (*(int64_t *)(pool_handle + 0xc0) == pool_position) {
         // 分配新对象
-        new_object = (longlong *)allocate_object(_global_memory_allocator, 0x28, 8, 0x20, init_flag, allocation_flags);
-        *new_object = (longlong)&vtable_type_180a21690;
-        *new_object = (longlong)&vtable_type_180a21720;
+        new_object = (int64_t *)allocate_object(_global_memory_allocator, 0x28, 8, 0x20, init_flag, allocation_flags);
+        *new_object = (int64_t)&vtable_type_180a21690;
+        *new_object = (int64_t)&vtable_type_180a21720;
         *(int32_t *)(new_object + 1) = 0;
-        *new_object = (longlong)&vtable_type_1809fff60;
+        *new_object = (int64_t)&vtable_type_1809fff60;
         new_object[2] = 0;
         new_object[3] = 0;
         *(int8_t *)(new_object + 4) = 0;
-        *new_object = (longlong)&vtable_type_1809ffd58;
+        *new_object = (int64_t)&vtable_type_1809ffd58;
         // 调用虚函数
         (*(code **)(*new_object + 0x28))(new_object);
         *object_ptr = new_object;
     }
     else {
         // 从池中重用对象
-        new_object = *(longlong **)(pool_position + -8);
-        *(longlong *)(pool_handle + 200) = pool_position + -8;
+        new_object = *(int64_t **)(pool_position + -8);
+        *(int64_t *)(pool_handle + 200) = pool_position + -8;
         new_object[1] = -0x5a5a5a5a5a5a5a5b;
         new_object[2] = -0x5a5a5a5a5a5a5a5b;
         new_object[3] = -0x5a5a5a5a5a5a5a5b;
         new_object[4] = -0x5a5a5a5a5a5a5a5b;
-        *new_object = (longlong)&vtable_type_180a21690;
-        *new_object = (longlong)&vtable_type_180a21720;
+        *new_object = (int64_t)&vtable_type_180a21690;
+        *new_object = (int64_t)&vtable_type_180a21720;
         *(int32_t *)(new_object + 1) = 0;
-        *new_object = (longlong)&vtable_type_1809fff60;
+        *new_object = (int64_t)&vtable_type_1809fff60;
         new_object[2] = 0;
         new_object[3] = 0;
         *(int8_t *)(new_object + 4) = 0;
-        *new_object = (longlong)&vtable_type_1809ffd58;
+        *new_object = (int64_t)&vtable_type_1809ffd58;
         // 调用虚函数
         (*(code **)(*new_object + 0x28))(new_object);
         *object_ptr = new_object;
@@ -949,11 +949,11 @@ uint64_t * allocate_specific_type_variant_c(longlong pool_handle, uint64_t *obje
 
 // 函数：分配特定类型对象（变体D）
 // 原始函数名：FUN_1800839a0
-uint64_t * allocate_specific_type_variant_d(longlong pool_handle, uint64_t *object_ptr)
+uint64_t * allocate_specific_type_variant_d(int64_t pool_handle, uint64_t *object_ptr)
 {
-    longlong pool_position;
+    int64_t pool_position;
     int lock_result;
-    longlong *new_object;
+    int64_t *new_object;
     int32_t init_flag;
     uint64_t allocation_flags;
     
@@ -966,40 +966,40 @@ uint64_t * allocate_specific_type_variant_d(longlong pool_handle, uint64_t *obje
         throw_c_error(lock_result);
     }
     
-    pool_position = *(longlong *)(pool_handle + 200);
+    pool_position = *(int64_t *)(pool_handle + 200);
     
     // 检查池是否为空
-    if (*(longlong *)(pool_handle + 0xc0) == pool_position) {
+    if (*(int64_t *)(pool_handle + 0xc0) == pool_position) {
         // 分配新对象
-        new_object = (longlong *)allocate_object(_global_memory_allocator, 0x28, 8, 0x20, init_flag, allocation_flags);
-        *new_object = (longlong)&vtable_type_180a21690;
-        *new_object = (longlong)&vtable_type_180a21720;
+        new_object = (int64_t *)allocate_object(_global_memory_allocator, 0x28, 8, 0x20, init_flag, allocation_flags);
+        *new_object = (int64_t)&vtable_type_180a21690;
+        *new_object = (int64_t)&vtable_type_180a21720;
         *(int32_t *)(new_object + 1) = 0;
-        *new_object = (longlong)&vtable_type_1809fff60;
+        *new_object = (int64_t)&vtable_type_1809fff60;
         new_object[2] = 0;
         new_object[3] = 0;
         *(int8_t *)(new_object + 4) = 0;
-        *new_object = (longlong)&vtable_type_1809ffdc0;
+        *new_object = (int64_t)&vtable_type_1809ffdc0;
         // 调用虚函数
         (*(code **)(*new_object + 0x28))(new_object);
         *object_ptr = new_object;
     }
     else {
         // 从池中重用对象
-        new_object = *(longlong **)(pool_position + -8);
-        *(longlong *)(pool_handle + 200) = pool_position + -8;
+        new_object = *(int64_t **)(pool_position + -8);
+        *(int64_t *)(pool_handle + 200) = pool_position + -8;
         new_object[1] = -0x5a5a5a5a5a5a5a5b;
         new_object[2] = -0x5a5a5a5a5a5a5a5b;
         new_object[3] = -0x5a5a5a5a5a5a5a5b;
         new_object[4] = -0x5a5a5a5a5a5a5a5b;
-        *new_object = (longlong)&vtable_type_180a21690;
-        *new_object = (longlong)&vtable_type_180a21720;
+        *new_object = (int64_t)&vtable_type_180a21690;
+        *new_object = (int64_t)&vtable_type_180a21720;
         *(int32_t *)(new_object + 1) = 0;
-        *new_object = (longlong)&vtable_type_1809fff60;
+        *new_object = (int64_t)&vtable_type_1809fff60;
         new_object[2] = 0;
         new_object[3] = 0;
         *(int8_t *)(new_object + 4) = 0;
-        *new_object = (longlong)&vtable_type_1809ffdc0;
+        *new_object = (int64_t)&vtable_type_1809ffdc0;
         // 调用虚函数
         (*(code **)(*new_object + 0x28))(new_object);
         *object_ptr = new_object;
@@ -1016,13 +1016,13 @@ uint64_t * allocate_specific_type_variant_d(longlong pool_handle, uint64_t *obje
 
 // 函数：扩展缓冲区容量
 // 原始函数名：FUN_180083b20
-void expand_buffer_capacity(longlong buffer_manager, longlong additional_size)
+void expand_buffer_capacity(int64_t buffer_manager, int64_t additional_size)
 {
-    longlong *buffer_info;
-    ulonglong current_size;
+    int64_t *buffer_info;
+    uint64_t current_size;
     
-    buffer_info = *(longlong **)(buffer_manager + 0x30);
-    current_size = (longlong)(int)buffer_info[2] + 7U & 0xfffffffffffffff8;
+    buffer_info = *(int64_t **)(buffer_manager + 0x30);
+    current_size = (int64_t)(int)buffer_info[2] + 7U & 0xfffffffffffffff8;
     *(int *)(buffer_info + 2) = (int)current_size + ((int)additional_size + 1) * 8;
     // WARNING: 此子程序不返回
     memset(*buffer_info + current_size, 0, additional_size * 8);
@@ -1030,10 +1030,10 @@ void expand_buffer_capacity(longlong buffer_manager, longlong additional_size)
 
 // 函数：检查对象状态
 // 原始函数名：FUN_180083bf0
-uint64_t check_object_status(longlong object_handle)
+uint64_t check_object_status(int64_t object_handle)
 {
-    longlong vtable_ptr;
-    longlong index;
+    int64_t vtable_ptr;
+    int64_t index;
     
     // 检查特定标志位
     if ((*(byte *)(object_handle + 0xfd) & 0x20) == 0) {
@@ -1042,9 +1042,9 @@ uint64_t check_object_status(longlong object_handle)
     
     index = 0;
     // 遍历对象状态表
-    while ((*(longlong *)(object_handle + 0x1e0) == 0 ||
-           ((*(char *)(*(longlong *)(object_handle + 0x1e0) + 0x15 + index) != '\x01' &&
-            (*(char *)(*(longlong *)(object_handle + 0x1e0) + 0x15 + index) != '\x02'))))) {
+    while ((*(int64_t *)(object_handle + 0x1e0) == 0 ||
+           ((*(char *)(*(int64_t *)(object_handle + 0x1e0) + 0x15 + index) != '\x01' &&
+            (*(char *)(*(int64_t *)(object_handle + 0x1e0) + 0x15 + index) != '\x02'))))) {
         index = index + 0x18;
         if (0x17f < index) {
             return 1;  // 未找到匹配状态
@@ -1055,7 +1055,7 @@ uint64_t check_object_status(longlong object_handle)
 
 // 函数：初始化特定类型对象（变体A）
 // 原始函数名：FUN_180083c60
-uint64_t * initialize_specific_type_a(uint64_t *object_ptr, ulonglong flags, uint64_t param_3, uint64_t param_4)
+uint64_t * initialize_specific_type_a(uint64_t *object_ptr, uint64_t flags, uint64_t param_3, uint64_t param_4)
 {
     *object_ptr = &vtable_type_1809ffc88;
     *object_ptr = &vtable_type_180a21720;
@@ -1068,7 +1068,7 @@ uint64_t * initialize_specific_type_a(uint64_t *object_ptr, ulonglong flags, uin
 
 // 函数：初始化特定类型对象（变体B）
 // 原始函数名：FUN_180083cb0
-uint64_t * initialize_specific_type_b(uint64_t *object_ptr, ulonglong flags, uint64_t param_3, uint64_t param_4)
+uint64_t * initialize_specific_type_b(uint64_t *object_ptr, uint64_t flags, uint64_t param_3, uint64_t param_4)
 {
     *object_ptr = &vtable_type_1809ffcf0;
     *object_ptr = &vtable_type_180a21720;
@@ -1081,7 +1081,7 @@ uint64_t * initialize_specific_type_b(uint64_t *object_ptr, ulonglong flags, uin
 
 // 函数：初始化特定类型对象（变体C）
 // 原始函数名：FUN_180083d00
-uint64_t * initialize_specific_type_c(uint64_t *object_ptr, ulonglong flags, uint64_t param_3, uint64_t param_4)
+uint64_t * initialize_specific_type_c(uint64_t *object_ptr, uint64_t flags, uint64_t param_3, uint64_t param_4)
 {
     *object_ptr = &vtable_type_1809ffd58;
     *object_ptr = &vtable_type_180a21720;
@@ -1094,7 +1094,7 @@ uint64_t * initialize_specific_type_c(uint64_t *object_ptr, ulonglong flags, uin
 
 // 函数：初始化特定类型对象（变体D）
 // 原始函数名：FUN_180083d50
-uint64_t * initialize_specific_type_d(uint64_t *object_ptr, ulonglong flags, uint64_t param_3, uint64_t param_4)
+uint64_t * initialize_specific_type_d(uint64_t *object_ptr, uint64_t flags, uint64_t param_3, uint64_t param_4)
 {
     *object_ptr = &vtable_type_1809ffdc0;
     *object_ptr = &vtable_type_180a21720;
@@ -1107,7 +1107,7 @@ uint64_t * initialize_specific_type_d(uint64_t *object_ptr, ulonglong flags, uin
 
 // 函数：初始化特定类型对象（变体E）
 // 原始函数名：FUN_180083da0
-uint64_t * initialize_specific_type_e(uint64_t *object_ptr, ulonglong flags, uint64_t param_3, uint64_t param_4)
+uint64_t * initialize_specific_type_e(uint64_t *object_ptr, uint64_t flags, uint64_t param_3, uint64_t param_4)
 {
     *object_ptr = &vtable_type_1809ffe28;
     *object_ptr = &vtable_type_180a21720;
@@ -1120,7 +1120,7 @@ uint64_t * initialize_specific_type_e(uint64_t *object_ptr, ulonglong flags, uin
 
 // 函数：初始化特定类型对象（变体F）
 // 原始函数名：FUN_180083df0
-uint64_t * initialize_specific_type_f(uint64_t *object_ptr, ulonglong flags, uint64_t param_3, uint64_t param_4)
+uint64_t * initialize_specific_type_f(uint64_t *object_ptr, uint64_t flags, uint64_t param_3, uint64_t param_4)
 {
     *object_ptr = &vtable_type_1809ffe90;
     *object_ptr = &vtable_type_180a21720;
@@ -1133,7 +1133,7 @@ uint64_t * initialize_specific_type_f(uint64_t *object_ptr, ulonglong flags, uin
 
 // 函数：初始化特定类型对象（变体G）
 // 原始函数名：FUN_180083e40
-uint64_t * initialize_specific_type_g(uint64_t *object_ptr, ulonglong flags, uint64_t param_3, uint64_t param_4)
+uint64_t * initialize_specific_type_g(uint64_t *object_ptr, uint64_t flags, uint64_t param_3, uint64_t param_4)
 {
     *object_ptr = &vtable_type_1809ffef8;
     *object_ptr = &vtable_type_180a21720;
@@ -1155,7 +1155,7 @@ void set_object_vtable(uint64_t *object_ptr)
 
 // 函数：初始化基础对象类型
 // 原始函数名：FUN_180083ec0
-uint64_t * initialize_base_object_type(uint64_t *object_ptr, ulonglong flags, uint64_t param_3, uint64_t param_4)
+uint64_t * initialize_base_object_type(uint64_t *object_ptr, uint64_t flags, uint64_t param_3, uint64_t param_4)
 {
     *object_ptr = &vtable_type_180a21720;
     *object_ptr = &vtable_type_180a21690;
@@ -1167,47 +1167,47 @@ uint64_t * initialize_base_object_type(uint64_t *object_ptr, ulonglong flags, ui
 
 // 函数：销毁复合对象
 // 原始函数名：FUN_180083f10
-void destroy_composite_object(longlong *object_ptr)
+void destroy_composite_object(int64_t *object_ptr)
 {
     // 依次销毁所有子对象
-    if ((longlong *)object_ptr[0xc] != (longlong *)0x0) {
-        (*(code **)(*(longlong *)object_ptr[0xc] + 0x38))();
+    if ((int64_t *)object_ptr[0xc] != (int64_t *)0x0) {
+        (*(code **)(*(int64_t *)object_ptr[0xc] + 0x38))();
     }
-    if ((longlong *)object_ptr[0xb] != (longlong *)0x0) {
-        (*(code **)(*(longlong *)object_ptr[0xb] + 0x38))();
+    if ((int64_t *)object_ptr[0xb] != (int64_t *)0x0) {
+        (*(code **)(*(int64_t *)object_ptr[0xb] + 0x38))();
     }
-    if ((longlong *)object_ptr[10] != (longlong *)0x0) {
-        (*(code **)(*(longlong *)object_ptr[10] + 0x38))();
+    if ((int64_t *)object_ptr[10] != (int64_t *)0x0) {
+        (*(code **)(*(int64_t *)object_ptr[10] + 0x38))();
     }
-    if ((longlong *)object_ptr[9] != (longlong *)0x0) {
-        (*(code **)(*(longlong *)object_ptr[9] + 0x38))();
+    if ((int64_t *)object_ptr[9] != (int64_t *)0x0) {
+        (*(code **)(*(int64_t *)object_ptr[9] + 0x38))();
     }
-    if ((longlong *)object_ptr[8] != (longlong *)0x0) {
-        (*(code **)(*(longlong *)object_ptr[8] + 0x38))();
+    if ((int64_t *)object_ptr[8] != (int64_t *)0x0) {
+        (*(code **)(*(int64_t *)object_ptr[8] + 0x38))();
     }
-    if ((longlong *)object_ptr[7] != (longlong *)0x0) {
-        (*(code **)(*(longlong *)object_ptr[7] + 0x38))();
+    if ((int64_t *)object_ptr[7] != (int64_t *)0x0) {
+        (*(code **)(*(int64_t *)object_ptr[7] + 0x38))();
     }
-    if ((longlong *)object_ptr[6] != (longlong *)0x0) {
-        (*(code **)(*(longlong *)object_ptr[6] + 0x38))();
+    if ((int64_t *)object_ptr[6] != (int64_t *)0x0) {
+        (*(code **)(*(int64_t *)object_ptr[6] + 0x38))();
     }
-    if ((longlong *)object_ptr[5] != (longlong *)0x0) {
-        (*(code **)(*(longlong *)object_ptr[5] + 0x38))();
+    if ((int64_t *)object_ptr[5] != (int64_t *)0x0) {
+        (*(code **)(*(int64_t *)object_ptr[5] + 0x38))();
     }
-    if ((longlong *)object_ptr[4] != (longlong *)0x0) {
-        (*(code **)(*(longlong *)object_ptr[4] + 0x38))();
+    if ((int64_t *)object_ptr[4] != (int64_t *)0x0) {
+        (*(code **)(*(int64_t *)object_ptr[4] + 0x38))();
     }
-    if ((longlong *)object_ptr[3] != (longlong *)0x0) {
-        (*(code **)(*(longlong *)object_ptr[3] + 0x38))();
+    if ((int64_t *)object_ptr[3] != (int64_t *)0x0) {
+        (*(code **)(*(int64_t *)object_ptr[3] + 0x38))();
     }
-    if ((longlong *)object_ptr[2] != (longlong *)0x0) {
-        (*(code **)(*(longlong *)object_ptr[2] + 0x38))();
+    if ((int64_t *)object_ptr[2] != (int64_t *)0x0) {
+        (*(code **)(*(int64_t *)object_ptr[2] + 0x38))();
     }
-    if ((longlong *)object_ptr[1] != (longlong *)0x0) {
-        (*(code **)(*(longlong *)object_ptr[1] + 0x38))();
+    if ((int64_t *)object_ptr[1] != (int64_t *)0x0) {
+        (*(code **)(*(int64_t *)object_ptr[1] + 0x38))();
     }
-    if ((longlong *)*object_ptr != (longlong *)0x0) {
-        (*(code **)(*(longlong *)*object_ptr + 0x38))();
+    if ((int64_t *)*object_ptr != (int64_t *)0x0) {
+        (*(code **)(*(int64_t *)*object_ptr + 0x38))();
     }
     return;
 }

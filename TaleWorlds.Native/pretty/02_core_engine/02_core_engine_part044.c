@@ -59,15 +59,15 @@ uint64_t * initialize_object_structure(uint64_t *object_ptr)
 {
   *object_ptr = 0;
   object_ptr[1] = 0;
-  *(int8_t *)((longlong)object_ptr + 0x14) = 0;
+  *(int8_t *)((int64_t)object_ptr + 0x14) = 0;
   LOCK();
   *(int32_t *)(object_ptr + 2) = 0;
   UNLOCK();
   LOCK();
-  *(int8_t *)((longlong)object_ptr + 0x16) = 1;
+  *(int8_t *)((int64_t)object_ptr + 0x16) = 1;
   UNLOCK();
   LOCK();
-  *(int8_t *)((longlong)object_ptr + 0x15) = 0;
+  *(int8_t *)((int64_t)object_ptr + 0x15) = 0;
   UNLOCK();
   return object_ptr;
 }
@@ -77,14 +77,14 @@ uint64_t * initialize_object_structure(uint64_t *object_ptr)
 // 函数：清理对象资源
 // 释放对象占用的资源，根据标志位决定是否释放内存
 uint64_t *
-cleanup_object_resources(uint64_t *object_ptr,ulonglong cleanup_flags,uint64_t param_3,uint64_t param_4)
+cleanup_object_resources(uint64_t *object_ptr,uint64_t cleanup_flags,uint64_t param_3,uint64_t param_4)
 
 {
   uint64_t cleanup_mask;
   
   cleanup_mask = 0xfffffffffffffffe;
-  if ((longlong *)object_ptr[4] != (longlong *)0x0) {
-    (**(code **)(*(longlong *)object_ptr[4] + 0x38))();
+  if ((int64_t *)object_ptr[4] != (int64_t *)0x0) {
+    (**(code **)(*(int64_t *)object_ptr[4] + 0x38))();
   }
   *object_ptr = &GLOBAL_VTABLE_PTR_180a21720;
   *object_ptr = &GLOBAL_VTABLE_PTR_180a21690;
@@ -123,7 +123,7 @@ uint64_t * create_object_instance(uint64_t *object_ptr)
   *object_ptr = &GLOBAL_VTABLE_PTR_180a00098;
   FUN_1808fc838(object_ptr + 3,8,0x10,&SUB_18005d5f0,FUN_180045af0);
   *(int32_t *)(object_ptr + 2) = 0;
-  *(int8_t *)((longlong)object_ptr + 0x14) = 9;
+  *(int8_t *)((int64_t)object_ptr + 0x14) = 9;
   *(byte *)(object_ptr + 0x13) = *(byte *)(object_ptr + 0x13) | 1;
   return object_ptr;
 }
@@ -153,10 +153,10 @@ void process_object_initialization_type1(uint64_t *object_ptr,uint init_flags)
   int8_t stack_buffer_f0 [128];
   int32_t stack_var_70;
   uint64_t stack_var_68;
-  ulonglong stack_var_28;
+  uint64_t stack_var_28;
   
   stack_var_128 = 0xfffffffffffffffe;
-  stack_var_28 = GLOBAL_DATA_180bf00a8 ^ (ulonglong)stack_buffer_158;
+  stack_var_28 = GLOBAL_DATA_180bf00a8 ^ (uint64_t)stack_buffer_158;
   *object_ptr = &GLOBAL_VTABLE_PTR_180a00100;
   stack_ptr_120 = object_ptr;
   if (object_ptr[3] != 0) {
@@ -192,7 +192,7 @@ void process_object_initialization_type1(uint64_t *object_ptr,uint init_flags)
     free(object_ptr,0x20);
   }
                     // 警告：子函数不返回
-  FUN_1808fc050(stack_var_28 ^ (ulonglong)stack_buffer_158);
+  FUN_1808fc050(stack_var_28 ^ (uint64_t)stack_buffer_158);
 }
 
 
@@ -220,10 +220,10 @@ void process_object_initialization_type2(uint64_t *object_ptr,uint init_flags)
   int8_t stack_buffer_f0 [128];
   int32_t stack_var_70;
   uint64_t stack_var_68;
-  ulonglong stack_var_28;
+  uint64_t stack_var_28;
   
   stack_var_128 = 0xfffffffffffffffe;
-  stack_var_28 = GLOBAL_DATA_180bf00a8 ^ (ulonglong)stack_buffer_158;
+  stack_var_28 = GLOBAL_DATA_180bf00a8 ^ (uint64_t)stack_buffer_158;
   *object_ptr = &GLOBAL_VTABLE_PTR_180a00168;
   stack_ptr_120 = object_ptr;
   if (object_ptr[3] != 0) {
@@ -259,7 +259,7 @@ void process_object_initialization_type2(uint64_t *object_ptr,uint init_flags)
     free(object_ptr,0x28);
   }
                     // 警告：子函数不返回
-  FUN_1808fc050(stack_var_28 ^ (ulonglong)stack_buffer_158);
+  FUN_1808fc050(stack_var_28 ^ (uint64_t)stack_buffer_158);
 }
 
 
@@ -268,7 +268,7 @@ void process_object_initialization_type2(uint64_t *object_ptr,uint init_flags)
 
 // 函数：设置对象状态标志
 // 在线程安全的方式下设置对象的状态标志
-void set_object_status_flag(longlong *object_ptr)
+void set_object_status_flag(int64_t *object_ptr)
 
 {
   int status_result;
@@ -288,7 +288,7 @@ void set_object_status_flag(longlong *object_ptr)
 
 // 函数：设置对象扩展标志
 // 在线程安全的方式下设置对象的扩展标志
-void set_object_extended_flag(longlong object_ptr)
+void set_object_extended_flag(int64_t object_ptr)
 
 {
   int check_result;
@@ -316,7 +316,7 @@ void reallocate_data_buffer(int *buffer_info)
   uint64_t new_buffer_ptr;
   
   if (buffer_info[1] < 1) {
-    if (*(longlong *)(buffer_info + 2) != 0) {
+    if (*(int64_t *)(buffer_info + 2) != 0) {
                     // 警告：子函数不返回
       FUN_18064e900();
     }
@@ -324,10 +324,10 @@ void reallocate_data_buffer(int *buffer_info)
     buffer_info[3] = 0;
     return;
   }
-  new_buffer_ptr = FUN_18062b420(GLOBAL_DATA_180c8ed18,(longlong)buffer_info[1] << 4,(char)buffer_info[8]);
-  if (*(longlong *)(buffer_info + 2) != 0) {
+  new_buffer_ptr = FUN_18062b420(GLOBAL_DATA_180c8ed18,(int64_t)buffer_info[1] << 4,(char)buffer_info[8]);
+  if (*(int64_t *)(buffer_info + 2) != 0) {
                     // 警告：子函数不返回
-    memcpy(new_buffer_ptr,*(longlong *)(buffer_info + 2),(longlong)*buffer_info << 4);
+    memcpy(new_buffer_ptr,*(int64_t *)(buffer_info + 2),(int64_t)*buffer_info << 4);
   }
   *(uint64_t *)(buffer_info + 2) = new_buffer_ptr;
   return;
@@ -346,9 +346,9 @@ void copy_data_buffer(void)
   int *source_buffer;
   
   new_buffer_ptr = FUN_18062b420();
-  if (*(longlong *)(source_buffer + 2) != 0) {
+  if (*(int64_t *)(source_buffer + 2) != 0) {
                     // 警告：子函数不返回
-    memcpy(new_buffer_ptr,*(longlong *)(source_buffer + 2),(longlong)*source_buffer << 4);
+    memcpy(new_buffer_ptr,*(int64_t *)(source_buffer + 2),(int64_t)*source_buffer << 4);
   }
   *(uint64_t *)(source_buffer + 2) = new_buffer_ptr;
   return;
@@ -360,12 +360,12 @@ void copy_data_buffer(void)
 
 // 函数：验证数据指针
 // 验证数据指针的有效性，如果无效则触发错误
-void validate_data_pointer(longlong object_ptr)
+void validate_data_pointer(int64_t object_ptr)
 
 {
-  longlong data_offset;
+  int64_t data_offset;
   
-  if (*(longlong *)(object_ptr + 8) != 0) {
+  if (*(int64_t *)(object_ptr + 8) != 0) {
                     // 警告：子函数不返回
     FUN_18064e900();
   }
@@ -567,7 +567,7 @@ uint64_t * initialize_data_structure(uint64_t *data_ptr)
 
 {
   uint64_t temp_var;
-  longlong loop_counter;
+  int64_t loop_counter;
   uint64_t *current_ptr;
   int16_t stack_var;
   
@@ -655,7 +655,7 @@ float * calculate_matrix_scale_factors(float *matrix,float *scale_factors)
 
 // 函数：设置变换矩阵数据
 // 根据不同的模式设置变换矩阵的数据
-void set_transformation_matrix_data(float *matrix,longlong data_source,char mode,uint64_t *source_data)
+void set_transformation_matrix_data(float *matrix,int64_t data_source,char mode,uint64_t *source_data)
 
 {
   uint64_t data_chunk1;
@@ -695,18 +695,18 @@ void set_transformation_matrix_data(float *matrix,longlong data_source,char mode
     matrix[15] = 1.0;
     return;
   }
-  scale_factor = *(float *)((longlong)source_data + 0x34);
+  scale_factor = *(float *)((int64_t)source_data + 0x34);
   rotation_y = *(float *)(source_data + 7);
-  rotation_x = *(float *)((longlong)source_data + 0x3c);
+  rotation_x = *(float *)((int64_t)source_data + 0x3c);
   matrix[12] = *(float *)(source_data + 6);
   matrix[13] = scale_factor;
   matrix[14] = rotation_y;
   matrix[15] = rotation_x;
   if (mode == '\x01') {
     rotation_y = *(float *)(source_data + 4);
-    rotation_x = *(float *)((longlong)source_data + 0x24);
+    rotation_x = *(float *)((int64_t)source_data + 0x24);
     rotation_z = *(float *)(source_data + 5);
-    scale_x = *(float *)((longlong)source_data + 0x2c);
+    scale_x = *(float *)((int64_t)source_data + 0x2c);
     scale_factor = *(float *)(data_source + 0xc4);
     matrix[8] = rotation_y;
     matrix[9] = rotation_x;
@@ -778,7 +778,7 @@ void set_transformation_matrix_data(float *matrix,longlong data_source,char mode
 
 // 函数：设置变换矩阵数据扩展
 // 扩展版本的变换矩阵数据设置函数
-void set_transformation_matrix_data_extended(float *matrix,longlong data_source,uint64_t param_3,uint64_t param_4,
+void set_transformation_matrix_data_extended(float *matrix,int64_t data_source,uint64_t param_3,uint64_t param_4,
                                           uint64_t param_5)
 
 {
@@ -800,8 +800,8 @@ void set_transformation_matrix_data_extended(float *matrix,longlong data_source,
   float magnitude;
   float determinant;
   
-  temp_var3 = (int32_t)((ulonglong)param_4 >> 0x20);
-  determinant = (float)((ulonglong)xmm0_data >> 0x20);
+  temp_var3 = (int32_t)((uint64_t)param_4 >> 0x20);
+  determinant = (float)((uint64_t)xmm0_data >> 0x20);
   magnitude = (float)xmm0_data;
   matrix[8] = magnitude;
   matrix[9] = determinant;
@@ -862,7 +862,7 @@ void set_transformation_matrix_data_simplified(void)
   uint64_t data_chunk4;
   uint64_t input_r9;
   float *output_r10;
-  longlong input_r11;
+  int64_t input_r11;
   float stack_scale_20;
   float stack_scale_24;
   float stack_scale_28;
@@ -901,26 +901,26 @@ void set_transformation_matrix_data_simplified(void)
 
 // 函数：释放对象资源
 // 安全地释放对象及其相关资源
-void free_object_resources(longlong object_ptr)
+void free_object_resources(int64_t object_ptr)
 
 {
-  ulonglong resource_count;
-  ulonglong resource_type;
+  uint64_t resource_count;
+  uint64_t resource_type;
   uint resource_index;
   
   if (object_ptr == 0) {
     return;
   }
-  resource_count = *(ulonglong *)(object_ptr + -0x10);
+  resource_count = *(uint64_t *)(object_ptr + -0x10);
   resource_type = resource_count >> 0x20;
   resource_index = 0;
   if ((int)(resource_count >> 0x20) != 0) {
     do {
-      if (*(longlong *)((ulonglong)resource_index + object_ptr + 0x30) != 0) {
+      if (*(int64_t *)((uint64_t)resource_index + object_ptr + 0x30) != 0) {
                     // 警告：子函数不返回
         FUN_18064e900();
       }
-      if (*(longlong *)((ulonglong)resource_index + object_ptr + 8) != 0) {
+      if (*(int64_t *)((uint64_t)resource_index + object_ptr + 8) != 0) {
                     // 警告：子函数不返回
         FUN_18064e900();
       }
@@ -936,24 +936,24 @@ void free_object_resources(longlong object_ptr)
 
 // 警告：以'_'开头的全局变量与同一地址的较小符号重叠
 
-ulonglong *
-allocate_resource_array(ulonglong array_size,uint64_t param_2,uint64_t param_3,uint64_t param_4)
+uint64_t *
+allocate_resource_array(uint64_t array_size,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
-  ulonglong *array_ptr;
-  ulonglong *current_element;
+  uint64_t *array_ptr;
+  uint64_t *current_element;
   int element_index;
   
   if (array_size == 0) {
-    return (ulonglong *)0x0;
+    return (uint64_t *)0x0;
   }
-  array_ptr = (ulonglong *)
+  array_ptr = (uint64_t *)
            FUN_18062b420(GLOBAL_DATA_180c8ed18,array_size * 0x50 + 0x10,0xf,param_4,0xfffffffffffffffe);
   *array_ptr = array_size << 0x20 | 0x50;
   element_index = 0;
   current_element = array_ptr + 8;
   do {
-    *(int32_t *)((longlong)current_element + -0x2c) = 0;
+    *(int32_t *)((int64_t)current_element + -0x2c) = 0;
     *(int32_t *)(current_element + -6) = 0;
     current_element[-5] = 0;
     *(int8_t *)(current_element + -2) = 3;
@@ -962,7 +962,7 @@ allocate_resource_array(ulonglong array_size,uint64_t param_2,uint64_t param_3,u
     *(int8_t *)(current_element + 3) = 3;
     element_index = element_index + 1;
     current_element = current_element + 10;
-  } while ((ulonglong)(longlong)element_index < array_size);
+  } while ((uint64_t)(int64_t)element_index < array_size);
   return array_ptr + 2;
 }
 
@@ -974,7 +974,7 @@ allocate_resource_array(ulonglong array_size,uint64_t param_2,uint64_t param_3,u
 
 // 函数：复制对象数据
 // 深度复制对象数据，包括所有子对象和资源
-void copy_object_data(longlong *destination,longlong *source)
+void copy_object_data(int64_t *destination,int64_t *source)
 
 {
   int32_t *src_data_ptr;
@@ -984,12 +984,12 @@ void copy_object_data(longlong *destination,longlong *source)
   int32_t src_data2;
   int32_t src_data3;
   ushort src_ushort;
-  ulonglong dest_offset;
-  longlong src_ptr;
+  uint64_t dest_offset;
+  int64_t src_ptr;
   uint dest_count;
   uint src_max_count;
   uint *src_uint_ptr;
-  ulonglong temp_var;
+  uint64_t temp_var;
   uint *dest_uint_ptr;
   
   *(short *)(destination + 2) = (short)source[2];
@@ -1006,8 +1006,8 @@ void copy_object_data(longlong *destination,longlong *source)
   }
   src_ushort = *(ushort *)(destination + 2);
   dest_offset = temp_var;
-  if ((ulonglong)src_ushort != 0) {
-    dest_offset = FUN_18062b420(GLOBAL_DATA_180c8ed18,(ulonglong)src_ushort * 4,0xf);
+  if ((uint64_t)src_ushort != 0) {
+    dest_offset = FUN_18062b420(GLOBAL_DATA_180c8ed18,(uint64_t)src_ushort * 4,0xf);
     src_ushort = *(ushort *)(destination + 2);
   }
   destination[1] = dest_offset;
@@ -1039,13 +1039,13 @@ void copy_object_data(longlong *destination,longlong *source)
       *src_uint_ptr = src_max_count;
       if (*dest_uint_ptr != 0) {
         do {
-          src_ptr = (longlong)(int)dest_count;
+          src_ptr = (int64_t)(int)dest_count;
           dest_count = dest_count + 1;
-          src_data_ptr = (int32_t *)(*(longlong *)(dest_uint_ptr + 2) + src_ptr * 0x10);
+          src_data_ptr = (int32_t *)(*(int64_t *)(dest_uint_ptr + 2) + src_ptr * 0x10);
           src_data = src_data_ptr[1];
           src_data2 = src_data_ptr[2];
           src_data3 = src_data_ptr[3];
-          dest_data_ptr = (int32_t *)(*(longlong *)(src_uint_ptr + 2) + src_ptr * 0x10);
+          dest_data_ptr = (int32_t *)(*(int64_t *)(src_uint_ptr + 2) + src_ptr * 0x10);
           *dest_data_ptr = *src_data_ptr;
           dest_data_ptr[1] = src_data;
           dest_data_ptr[2] = src_data2;
@@ -1072,13 +1072,13 @@ void copy_object_data(longlong *destination,longlong *source)
       src_max_count = 0;
       if (dest_uint_ptr[10] != 0) {
         do {
-          src_ptr = (longlong)(int)src_max_count;
+          src_ptr = (int64_t)(int)src_max_count;
           src_max_count = src_max_count + 1;
-          src_data_ptr = (int32_t *)(*(longlong *)(dest_uint_ptr + 0xc) + src_ptr * 0x10);
+          src_data_ptr = (int32_t *)(*(int64_t *)(dest_uint_ptr + 0xc) + src_ptr * 0x10);
           src_data = src_data_ptr[1];
           src_data2 = src_data_ptr[2];
           src_data3 = src_data_ptr[3];
-          dest_data_ptr = (int32_t *)(*(longlong *)(src_uint_ptr + 0xc) + src_ptr * 0x10);
+          dest_data_ptr = (int32_t *)(*(int64_t *)(src_uint_ptr + 0xc) + src_ptr * 0x10);
           *dest_data_ptr = *src_data_ptr;
           dest_data_ptr[1] = src_data;
           dest_data_ptr[2] = src_data2;
@@ -1087,12 +1087,12 @@ void copy_object_data(longlong *destination,longlong *source)
       }
       src_ushort = *(ushort *)(destination + 2);
       src_max_count = (int)temp_var + 1;
-      temp_var = (ulonglong)src_max_count;
+      temp_var = (uint64_t)src_max_count;
       dest_offset = dest_offset + 0x50;
     } while ((int)src_max_count < (int)(uint)src_ushort);
   }
                     // 警告：子函数不返回
-  memcpy(destination[1],source[1],(ulonglong)src_ushort << 2);
+  memcpy(destination[1],source[1],(uint64_t)src_ushort << 2);
 }
 
 

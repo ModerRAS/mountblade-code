@@ -31,12 +31,12 @@
 
 // 函数声明
 void rendering_system_execute_render_command(uint64_t param_1, int8_t *param_2);
-void rendering_system_cleanup_render_context(ulonglong param_1);
+void rendering_system_cleanup_render_context(uint64_t param_1);
 void rendering_system_update_collision_data(void);
 void rendering_system_update_vertex_buffer(uint64_t param_1, uint64_t param_2);
 void rendering_system_apply_material(int32_t param_1, void *param_2, uint64_t param_3, uint64_t param_4, int32_t param_5);
 void rendering_system_check_render_state(int32_t param_1, void *param_2);
-void rendering_system_finalize_render(ulonglong param_1);
+void rendering_system_finalize_render(uint64_t param_1);
 
 // 函数: void rendering_system_process_render_data(void)
 // 渲染系统数据处理函数 (简化实现)
@@ -62,21 +62,21 @@ void rendering_system_process_render_data(void)
   ushort coord_y;
   ushort prev_coord_x;
   ushort prev_coord_y;
-  longlong render_context;
+  int64_t render_context;
   int render_param;
   int texture_id;
-  ulonglong color_data;
+  uint64_t color_data;
   byte alpha_value;
   int vertex_count;
   int32_t render_mode;
-  longlong object_ptr;
-  longlong scene_ptr;
+  int64_t object_ptr;
+  int64_t scene_ptr;
   char render_state;
   int frame_counter;
   int32_t render_flags_ext;
   byte visibility_flag;
   int index_offset;
-  longlong shader_ptr;
+  int64_t shader_ptr;
   float position_x;
   uint64_t matrix_data;
   int8_t transform_matrix[16];
@@ -87,7 +87,7 @@ void rendering_system_process_render_data(void)
   int8_t normal_matrix[16];
   int8_t texture_matrix[16];
   int8_t light_matrix[16];
-  ulonglong vertex_buffer;
+  uint64_t vertex_buffer;
   int8_t shadow_matrix[16];
   int8_t fog_matrix[16];
   float rotation_angle;
@@ -406,8 +406,8 @@ void rendering_system_process_render_data(void)
   uVar8 = 0;
   uVar26 = 0;
   if (*(char *)(unaff_RSI + 0x80) != cVar12) {
-    uVar8 = (ulonglong)*(uint *)(unaff_RSI + 0x88);
-    uVar26 = (ulonglong)*(uint *)(unaff_RSI + 0x84);
+    uVar8 = (uint64_t)*(uint *)(unaff_RSI + 0x88);
+    uVar26 = (uint64_t)*(uint *)(unaff_RSI + 0x84);
   }
   auVar28._8_8_ = 0;
   auVar28._0_8_ = uVar26;
@@ -418,11 +418,11 @@ void rendering_system_process_render_data(void)
     *(char *)(unaff_RSI + 0x7f) = cVar12;
     bVar9 = 0;
     if (*(byte *)(unaff_RSI + 400) < *(byte *)(unaff_RSI + 0x8c)) {
-      uVar8 = (ulonglong)*(byte *)(unaff_RSI + 400);
+      uVar8 = (uint64_t)*(byte *)(unaff_RSI + 400);
       auVar24 = ZEXT416(*(uint *)(unaff_RSI + 0x90 + uVar8 * 4));
       *(float *)(unaff_RSI + 0x110 + uVar8 * 4) = *(float *)(unaff_RSI + 0x110 + uVar8 * 4) - fVar15
       ;
-      if (*(float *)(unaff_RSI + 0x110 + (ulonglong)*(byte *)(unaff_RSI + 400) * 4) <= unaff_XMM8_Da
+      if (*(float *)(unaff_RSI + 0x110 + (uint64_t)*(byte *)(unaff_RSI + 400) * 4) <= unaff_XMM8_Da
          ) {
         *(byte *)(unaff_RSI + 400) = *(byte *)(unaff_RSI + 400) + 1;
       }
@@ -430,11 +430,11 @@ void rendering_system_process_render_data(void)
       bVar9 = unaff_R14B;
     }
     if (*(byte *)(unaff_RSI + 0x191) < *(byte *)(unaff_RSI + 0x8d)) {
-      uVar8 = (ulonglong)*(byte *)(unaff_RSI + 0x191);
+      uVar8 = (uint64_t)*(byte *)(unaff_RSI + 0x191);
       auVar28 = ZEXT416(*(uint *)(unaff_RSI + 0xd0 + uVar8 * 4));
       *(float *)(unaff_RSI + 0x150 + uVar8 * 4) = *(float *)(unaff_RSI + 0x150 + uVar8 * 4) - fVar15
       ;
-      if (*(float *)(unaff_RSI + 0x150 + (ulonglong)*(byte *)(unaff_RSI + 0x191) * 4) <=
+      if (*(float *)(unaff_RSI + 0x150 + (uint64_t)*(byte *)(unaff_RSI + 0x191) * 4) <=
           unaff_XMM8_Da) {
         *(byte *)(unaff_RSI + 0x191) = *(byte *)(unaff_RSI + 0x191) + 1;
       }
@@ -463,14 +463,14 @@ void rendering_system_process_render_data(void)
     }
     *(int8_t *)(unaff_RSI + 0x7e) = 1;
                     // WARNING: Subroutine does not return
-    FUN_1808fc050(*(ulonglong *)(unaff_RBP + 0xc0) ^ (ulonglong)&stack0x00000000);
+    FUN_1808fc050(*(uint64_t *)(unaff_RBP + 0xc0) ^ (uint64_t)&stack0x00000000);
   }
   bVar9 = *(byte *)(unaff_RSI + 0x318);
   *(char *)(unaff_RSI + 0x192) = cVar12;
   if (bVar9 < *(byte *)(unaff_RSI + 0x194)) {
-    *(float *)(unaff_RSI + 0x298 + (ulonglong)bVar9 * 4) =
-         *(float *)(unaff_RSI + 0x298 + (ulonglong)bVar9 * 4) - fVar15;
-    if (*(float *)(unaff_RSI + 0x298 + (ulonglong)*(byte *)(unaff_RSI + 0x318) * 4) <= unaff_XMM8_Da
+    *(float *)(unaff_RSI + 0x298 + (uint64_t)bVar9 * 4) =
+         *(float *)(unaff_RSI + 0x298 + (uint64_t)bVar9 * 4) - fVar15;
+    if (*(float *)(unaff_RSI + 0x298 + (uint64_t)*(byte *)(unaff_RSI + 0x318) * 4) <= unaff_XMM8_Da
        ) {
       *(byte *)(unaff_RSI + 0x318) = *(byte *)(unaff_RSI + 0x318) + 1;
     }
@@ -478,9 +478,9 @@ void rendering_system_process_render_data(void)
   }
   bVar9 = *(byte *)(unaff_RSI + 0x319);
   if (bVar9 < *(byte *)(unaff_RSI + 0x195)) {
-    *(float *)(unaff_RSI + 0x2d8 + (ulonglong)bVar9 * 4) =
-         *(float *)(unaff_RSI + 0x2d8 + (ulonglong)bVar9 * 4) - fVar15;
-    if (*(float *)(unaff_RSI + 0x2d8 + (ulonglong)*(byte *)(unaff_RSI + 0x319) * 4) <= unaff_XMM8_Da
+    *(float *)(unaff_RSI + 0x2d8 + (uint64_t)bVar9 * 4) =
+         *(float *)(unaff_RSI + 0x2d8 + (uint64_t)bVar9 * 4) - fVar15;
+    if (*(float *)(unaff_RSI + 0x2d8 + (uint64_t)*(byte *)(unaff_RSI + 0x319) * 4) <= unaff_XMM8_Da
        ) {
       *(byte *)(unaff_RSI + 0x319) = *(byte *)(unaff_RSI + 0x319) + 1;
     }
@@ -501,8 +501,8 @@ void rendering_system_finalize_render_process(void)
 
 {
   int32_t render_result;
-  longlong render_context;
-  longlong scene_object;
+  int64_t render_context;
+  int64_t scene_object;
   int32_t render_flags;
   int render_mode;
   
@@ -517,7 +517,7 @@ void rendering_system_finalize_render_process(void)
   // 标记渲染完成并执行最终清理
   *(int8_t *)(scene_object + 0x7e) = 1;
                     // WARNING: Subroutine does not return
-  rendering_system_cleanup_render_context(*(ulonglong *)(render_context + 0xc0) ^ (ulonglong)&render_mode);
+  rendering_system_cleanup_render_context(*(uint64_t *)(render_context + 0xc0) ^ (uint64_t)&render_mode);
 }
 
 

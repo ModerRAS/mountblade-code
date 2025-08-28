@@ -16,21 +16,21 @@
 void update_render_state(float *render_context, uint64_t param_2, float *render_target, uint64_t param_4,
                         uint64_t param_5)
 {
-  longlong *engine_context;
+  int64_t *engine_context;
   uint *render_flags;
   float time_delta;
-  longlong context_data;
+  int64_t context_data;
   bool is_valid;
-  longlong temp_offset;
+  int64_t temp_offset;
   char status_flag;
   char validation_result;
   int render_id;
   int32_t render_param;
   int texture_id;
   float *position_ptr;
-  longlong buffer_offset;
+  int64_t buffer_offset;
   float *texture_ptr;
-  longlong matrix_offset;
+  int64_t matrix_offset;
   float *vertex_ptr;
   float *normal_ptr;
   int shader_id;
@@ -41,7 +41,7 @@ void update_render_state(float *render_context, uint64_t param_2, float *render_
   float depth_value;
   float stencil_value;
   int32_t blend_mode;
-  ulonglong checksum;
+  uint64_t checksum;
   int8_t local_stack_buffer [32];
   float *stack_param_1;
   float *stack_param_2;
@@ -66,13 +66,13 @@ void update_render_state(float *render_context, uint64_t param_2, float *render_
   int32_t stack_c8;
   
   context_data = g_engine_context;
-  checksum = g_render_checksum ^ (ulonglong)local_stack_buffer;
-  *(int8_t *)(*(longlong *)(g_engine_context + 0x1af8) + 0xb1) = 1;
-  context_data = *(longlong *)(context_data + 0x1af8);
+  checksum = g_render_checksum ^ (uint64_t)local_stack_buffer;
+  *(int8_t *)(*(int64_t *)(g_engine_context + 0x1af8) + 0xb1) = 1;
+  context_data = *(int64_t *)(context_data + 0x1af8);
   if (*(char *)(context_data + 0xb4) != '\0') goto cleanup_render_state;
   render_id = get_render_object_id(render_context, 0,
                         *(int32_t *)
-                         (*(longlong *)(context_data + 0x220) + -4 + (longlong)*(int *)(context_data + 0x218) * 4)
+                         (*(int64_t *)(context_data + 0x220) + -4 + (int64_t)*(int *)(context_data + 0x218) * 4)
                        );
   if (*(int *)(context_data + 0x1b2c) == render_id) {
     *(int *)(context_data + 0x1b34) = render_id;
@@ -84,8 +84,8 @@ void update_render_state(float *render_context, uint64_t param_2, float *render_
   position_ptr = render_context;
   if (render_context != (float *)0xffffffffffffffff) {
     while (*(char *)position_ptr != '\0') {
-      if (((*(char *)position_ptr == '#') && (*(char *)((longlong)position_ptr + 1) == '#')) ||
-         (position_ptr = (float *)((longlong)position_ptr + 1), position_ptr == (float *)0xffffffffffffffff))
+      if (((*(char *)position_ptr == '#') && (*(char *)((int64_t)position_ptr + 1) == '#')) ||
+         (position_ptr = (float *)((int64_t)position_ptr + 1), position_ptr == (float *)0xffffffffffffffff))
       break;
     }
   }
@@ -142,7 +142,7 @@ process_render_batch:
         buffer_offset = 9;
       }
       else {
-        buffer_offset = (ulonglong)(*(int *)(context_data + 0x1b18) == render_id) + 7;
+        buffer_offset = (uint64_t)(*(int *)(context_data + 0x1b18) == render_id) + 7;
       }
       position_ptr = (float *)(context_data + 0x1628 + (buffer_offset + 10) * 0x10);
       depth_value = *position_ptr;
@@ -169,7 +169,7 @@ process_render_batch:
       stack_status = process_render_command(&color_b, render_id, 4, render_target);
       buffer_offset = g_engine_context;
       if (stack_status != '\0') {
-        engine_context = (longlong *)(g_engine_context + 0x1af8);
+        engine_context = (int64_t *)(g_engine_context + 0x1af8);
         *(int8_t *)(g_engine_context + 0x1b3e) = 1;
         render_flags = (uint *)(*engine_context + 0x148);
         *render_flags = *render_flags | 4;
@@ -189,7 +189,7 @@ process_render_batch:
       process_vertex_buffer(*(uint64_t *)(context_data + 0x2e8), &depth_value, &color_g, render_param);
       render_id = format_text_output(&blend_mode, 0x40, &g_empty_string, (double)*render_target);
       context_data = g_engine_context;
-      position_ptr = (float *)((longlong)&blend_mode + (longlong)render_id);
+      position_ptr = (float *)((int64_t)&blend_mode + (int64_t)render_id);
       color_g = 0.5;
       depth_value = 0.5;
       if (position_ptr == (float *)0x0) {
@@ -198,8 +198,8 @@ process_render_batch:
       texture_ptr = (float *)&blend_mode;
       if (&blend_mode < position_ptr) {
         while (*(char *)texture_ptr != '\0') {
-          if (((*(char *)texture_ptr == '#') && (*(char *)((longlong)texture_ptr + 1) == '#')) ||
-             (texture_ptr = (float *)((longlong)texture_ptr + 1), position_ptr <= texture_ptr)) break;
+          if (((*(char *)texture_ptr == '#') && (*(char *)((int64_t)texture_ptr + 1) == '#')) ||
+             (texture_ptr = (float *)((int64_t)texture_ptr + 1), position_ptr <= texture_ptr)) break;
         }
       }
       color_a = stencil_value;
@@ -208,18 +208,18 @@ process_render_batch:
         param_4 = 0;
         stack_param_1 = (float *)0x0;
         local_stack_buffer = texture_ptr;
-        render_text_overlay(*(uint64_t *)(*(longlong *)(g_engine_context + 0x1af8) + 0x2e8), &color_b,
+        render_text_overlay(*(uint64_t *)(*(int64_t *)(g_engine_context + 0x1af8) + 0x2e8), &color_b,
                       &color_b, &blend_mode);
         color_a = stencil_value;
         buffer_offset = g_engine_context;
         if (*(char *)(context_data + 0x2e38) != '\0') {
-          context_data = *(longlong *)(g_engine_context + 0x1af8);
+          context_data = *(int64_t *)(g_engine_context + 0x1af8);
           if ((texture_ptr == (float *)0x0) &&
              (texture_ptr = (float *)&blend_mode, &stack0x00000000 != (int8_t *)0xc7)) {
             do {
               if ((*(char *)texture_ptr == '\0') ||
-                 ((*(char *)texture_ptr == '#' && (*(char *)((longlong)texture_ptr + 1) == '#'))) break;
-              texture_ptr = (float *)((longlong)texture_ptr + 1);
+                 ((*(char *)texture_ptr == '#' && (*(char *)((int64_t)texture_ptr + 1) == '#'))) break;
+              texture_ptr = (float *)((int64_t)texture_ptr + 1);
             } while (texture_ptr != (float *)0xffffffffffffffff);
           }
           color_a = *(float *)(context_data + 0x138);
@@ -235,7 +235,7 @@ process_render_batch:
             texture_id = render_id;
           }
           while( true ) {
-            normal_ptr = (float *)memchr(position_ptr, 10, (longlong)texture_ptr - (longlong)position_ptr);
+            normal_ptr = (float *)memchr(position_ptr, 10, (int64_t)texture_ptr - (int64_t)position_ptr);
             vertex_ptr = texture_ptr;
             if (normal_ptr != (float *)0x0) {
               vertex_ptr = normal_ptr;
@@ -250,7 +250,7 @@ process_render_batch:
               }
             }
             if (vertex_ptr == texture_ptr) break;
-            position_ptr = (float *)((longlong)vertex_ptr + 1);
+            position_ptr = (float *)((int64_t)vertex_ptr + 1);
           }
         }
       }
@@ -277,7 +277,7 @@ process_render_batch:
   local_stack_buffer = render_target;
   finalize_render_state(&color_b, render_id, render_context);
 cleanup_render_state:
-  cleanup_render_resources(checksum ^ (ulonglong)local_stack_buffer);
+  cleanup_render_resources(checksum ^ (uint64_t)local_stack_buffer);
 }
 
 /**
@@ -287,9 +287,9 @@ cleanup_render_state:
  * @param param_data 参数数据指针
  * @param param_size 参数大小
  */
-void process_render_parameters(longlong param_data, uint64_t param_size)
+void process_render_parameters(int64_t param_data, uint64_t param_size)
 {
-  longlong *engine_context;
+  int64_t *engine_context;
   uint *render_flags;
   int32_t *param_buffer;
   float time_value;
@@ -301,15 +301,15 @@ void process_render_parameters(longlong param_data, uint64_t param_size)
   int32_t render_param;
   int32_t blend_mode;
   int texture_id;
-  longlong in_RAX;
+  int64_t in_RAX;
   char *text_ptr;
-  longlong buffer_offset;
+  int64_t buffer_offset;
   char *char_ptr;
-  longlong matrix_offset;
+  int64_t matrix_offset;
   char *string_ptr;
-  longlong context_base;
-  longlong context_offset;
-  longlong context_data;
+  int64_t context_base;
+  int64_t context_offset;
+  int64_t context_data;
   char *temp_ptr;
   uint64_t texture_handle;
   char *text_buffer;
@@ -331,8 +331,8 @@ void process_render_parameters(longlong param_data, uint64_t param_size)
   float in_stack_00000078;
   float stack_float_7c;
   
-  blend_mode = (int32_t)((ulonglong)in_stack_00000020 >> 0x20);
-  render_mode = (int32_t)((ulonglong)texture_handle >> 0x20);
+  blend_mode = (int32_t)((uint64_t)in_stack_00000020 >> 0x20);
+  render_mode = (int32_t)((uint64_t)texture_handle >> 0x20);
   render_id = get_render_object_id(color_value, param_size, *(int32_t *)(in_RAX + -4 + param_data * 4));
   if (*(int *)(context_offset + 0x1b2c) == render_id) {
     *(int *)(context_offset + 0x1b34) = render_id;
@@ -356,7 +356,7 @@ void process_render_parameters(longlong param_data, uint64_t param_size)
   else {
     param_data_2 = CONCAT44(blend_mode, 0xbf800000);
     calculate_texture_bounds(texture_ptr, context_base + -0x78, color_b, 0x7f7fffff, param_data_2);
-    blend_mode = (int32_t)((ulonglong)param_data_2 >> 0x20);
+    blend_mode = (int32_t)((uint64_t)param_data_2 >> 0x20);
     color_g = *(float *)(context_base + -0x78);
     if (0.0 < color_g) {
       color_g = color_g - color_b / *texture_ptr;
@@ -402,7 +402,7 @@ process_render_batch:
         buffer_offset = 9;
       }
       else {
-        buffer_offset = (ulonglong)(*(int *)(context_offset + 0x1b18) == render_id) + 7;
+        buffer_offset = (uint64_t)(*(int *)(context_offset + 0x1b18) == render_id) + 7;
       }
       param_buffer = (int32_t *)(context_offset + 0x1628 + (buffer_offset + 10) * 0x10);
       in_stack_00000068 = (float)*param_buffer;
@@ -423,7 +423,7 @@ process_render_batch:
       status_flag = process_render_command(&in_stack_00000078, render_id, 4);
       buffer_offset = g_engine_context;
       if (status_flag != '\0') {
-        engine_context = (longlong *)(g_engine_context + 0x1af8);
+        engine_context = (int64_t *)(g_engine_context + 0x1af8);
         *(int8_t *)(g_engine_context + 0x1b3e) = 1;
         render_flags = (uint *)(*engine_context + 0x148);
         *render_flags = *render_flags | 4;
@@ -445,7 +445,7 @@ process_render_batch:
       process_vertex_buffer(*(uint64_t *)(context_data + 0x2e8), &in_stack_00000068, &in_stack_00000070, blend_mode,
                     CONCAT44(render_mode, *(int32_t *)(context_offset + 0x1698)));
       render_id = format_text_output(context_base + -0x60, 0x40, &g_empty_string, (double)*vertex_buffer);
-      text_ptr = (char *)(context_base + -0x60 + (longlong)render_id);
+      text_ptr = (char *)(context_base + -0x60 + (int64_t)render_id);
       *(int32_t *)(context_base + -0x78) = 0x3f000000;
       *(int32_t *)(context_base + -0x74) = 0x3f000000;
       buffer_offset = g_engine_context;
@@ -462,11 +462,11 @@ process_render_batch:
       color_r = stack_float_7c;
       if (((int)temp_ptr != (int)context_base + -0x60) &&
          (text_ptr = temp_ptr,
-         render_text_overlay(*(uint64_t *)(*(longlong *)(g_engine_context + 0x1af8) + 0x2e8),
+         render_text_overlay(*(uint64_t *)(*(int64_t *)(g_engine_context + 0x1af8) + 0x2e8),
                        &in_stack_00000078, context_base + -0x80, context_base + -0x60, temp_ptr),
          color_r = stack_float_7c, matrix_offset = g_engine_context,
          *(char *)(buffer_offset + 0x2e38) != '\0')) {
-        buffer_offset = *(longlong *)(g_engine_context + 0x1af8);
+        buffer_offset = *(int64_t *)(g_engine_context + 0x1af8);
         if ((temp_ptr == (char *)0x0) && (temp_ptr = (char *)(context_base + -0x60), context_base != 0x5f))
         {
           while (*temp_ptr != '\0') {
@@ -487,7 +487,7 @@ process_render_batch:
           texture_id = render_id;
         }
         while( true ) {
-          char_ptr = (char *)memchr(string_ptr, 10, (longlong)temp_ptr - (longlong)string_ptr);
+          char_ptr = (char *)memchr(string_ptr, 10, (int64_t)temp_ptr - (int64_t)string_ptr);
           output_ptr = temp_ptr;
           if (char_ptr != (char *)0x0) {
             output_ptr = char_ptr;
@@ -527,7 +527,7 @@ process_render_batch:
   *(int *)(context_data + 0x3f4) = *(int *)(context_data + 0x3f4) + -1;
   finalize_render_state(&in_stack_00000078, render_id);
 cleanup_render_params:
-  cleanup_render_resources(*(ulonglong *)(context_base + -0x20) ^ (ulonglong)&stack0x00000000);
+  cleanup_render_resources(*(uint64_t *)(context_base + -0x20) ^ (uint64_t)&stack0x00000000);
 }
 
 /**
@@ -536,7 +536,7 @@ cleanup_render_params:
  */
 void process_default_render(void)
 {
-  longlong *engine_context;
+  int64_t *engine_context;
   uint *render_flags;
   int32_t *param_buffer;
   float time_value;
@@ -549,13 +549,13 @@ void process_default_render(void)
   int32_t blend_mode;
   int texture_id;
   char *text_ptr;
-  longlong buffer_offset;
+  int64_t buffer_offset;
   char *char_ptr;
-  longlong matrix_offset;
+  int64_t matrix_offset;
   char *string_ptr;
-  longlong context_base;
-  longlong context_offset;
-  longlong context_data;
+  int64_t context_base;
+  int64_t context_offset;
+  int64_t context_data;
   char *temp_ptr;
   uint64_t texture_handle;
   char *text_buffer;
@@ -576,8 +576,8 @@ void process_default_render(void)
   float in_stack_00000078;
   float stack_float_7c;
   
-  blend_mode = (int32_t)((ulonglong)in_stack_00000020 >> 0x20);
-  render_mode = (int32_t)((ulonglong)texture_handle >> 0x20);
+  blend_mode = (int32_t)((uint64_t)in_stack_00000020 >> 0x20);
+  render_mode = (int32_t)((uint64_t)texture_handle >> 0x20);
   render_id = get_render_object_id();
   if (*(int *)(context_offset + 0x1b2c) == render_id) {
     *(int *)(context_offset + 0x1b34) = render_id;
@@ -601,7 +601,7 @@ void process_default_render(void)
   else {
     param_data_2 = CONCAT44(blend_mode, 0xbf800000);
     calculate_texture_bounds(texture_ptr, context_base + -0x78, color_b, 0x7f7fffff, param_data_2);
-    blend_mode = (int32_t)((ulonglong)param_data_2 >> 0x20);
+    blend_mode = (int32_t)((uint64_t)param_data_2 >> 0x20);
     color_g = *(float *)(context_base + -0x78);
     if (0.0 < color_g) {
       color_g = color_g - color_b / *texture_ptr;
@@ -647,7 +647,7 @@ process_render_batch:
         buffer_offset = 9;
       }
       else {
-        buffer_offset = (ulonglong)(*(int *)(context_offset + 0x1b18) == render_id) + 7;
+        buffer_offset = (uint64_t)(*(int *)(context_offset + 0x1b18) == render_id) + 7;
       }
       param_buffer = (int32_t *)(context_offset + 0x1628 + (buffer_offset + 10) * 0x10);
       in_stack_00000068 = (float)*param_buffer;
@@ -668,7 +668,7 @@ process_render_batch:
       status_flag = process_render_command(&in_stack_00000078, render_id, 4);
       buffer_offset = g_engine_context;
       if (status_flag != '\0') {
-        engine_context = (longlong *)(g_engine_context + 0x1af8);
+        engine_context = (int64_t *)(g_engine_context + 0x1af8);
         *(int8_t *)(g_engine_context + 0x1b3e) = 1;
         render_flags = (uint *)(*engine_context + 0x148);
         *render_flags = *render_flags | 4;
@@ -690,7 +690,7 @@ process_render_batch:
       process_vertex_buffer(*(uint64_t *)(context_data + 0x2e8), &in_stack_00000068, &in_stack_00000070, blend_mode,
                     CONCAT44(render_mode, *(int32_t *)(context_offset + 0x1698)));
       render_id = format_text_output(context_base + -0x60, 0x40, &g_empty_string, (double)*vertex_buffer);
-      text_ptr = (char *)(context_base + -0x60 + (longlong)render_id);
+      text_ptr = (char *)(context_base + -0x60 + (int64_t)render_id);
       *(int32_t *)(context_base + -0x78) = 0x3f000000;
       *(int32_t *)(context_base + -0x74) = 0x3f000000;
       buffer_offset = g_engine_context;
@@ -707,11 +707,11 @@ process_render_batch:
       color_r = stack_float_7c;
       if (((int)temp_ptr != (int)context_base + -0x60) &&
          (text_ptr = temp_ptr,
-         render_text_overlay(*(uint64_t *)(*(longlong *)(g_engine_context + 0x1af8) + 0x2e8),
+         render_text_overlay(*(uint64_t *)(*(int64_t *)(g_engine_context + 0x1af8) + 0x2e8),
                        &in_stack_00000078, context_base + -0x80, context_base + -0x60, temp_ptr),
          color_r = stack_float_7c, matrix_offset = g_engine_context,
          *(char *)(buffer_offset + 0x2e38) != '\0')) {
-        buffer_offset = *(longlong *)(g_engine_context + 0x1af8);
+        buffer_offset = *(int64_t *)(g_engine_context + 0x1af8);
         if ((temp_ptr == (char *)0x0) && (temp_ptr = (char *)(context_base + -0x60), context_base != 0x5f))
         {
           while (*temp_ptr != '\0') {
@@ -732,7 +732,7 @@ process_render_batch:
           texture_id = render_id;
         }
         while( true ) {
-          char_ptr = (char *)memchr(string_ptr, 10, (longlong)temp_ptr - (longlong)string_ptr);
+          char_ptr = (char *)memchr(string_ptr, 10, (int64_t)temp_ptr - (int64_t)string_ptr);
           output_ptr = temp_ptr;
           if (char_ptr != (char *)0x0) {
             output_ptr = char_ptr;
@@ -772,7 +772,7 @@ process_render_batch:
   *(int *)(context_data + 0x3f4) = *(int *)(context_data + 0x3f4) + -1;
   finalize_render_state(&in_stack_00000078, render_id);
 cleanup_render_params:
-  cleanup_render_resources(*(ulonglong *)(context_base + -0x20) ^ (ulonglong)&stack0x00000000);
+  cleanup_render_resources(*(uint64_t *)(context_base + -0x20) ^ (uint64_t)&stack0x00000000);
 }
 
 /**
@@ -782,8 +782,8 @@ cleanup_render_params:
 void quick_render_cleanup(void)
 {
   int32_t render_param;
-  longlong context_base;
-  longlong context_offset;
+  int64_t context_base;
+  int64_t context_offset;
   float stack_float_68;
   float stack_float_6c;
   float stack_float_70;
@@ -793,7 +793,7 @@ void quick_render_cleanup(void)
   render_param = *(int32_t *)(context_offset + 0x1660);
   *(float *)(context_base + -0x78) = stack_float_70 - stack_float_68;
   apply_render_transform(context_base + -0x78, render_param);
-  cleanup_render_resources(*(ulonglong *)(context_base + -0x20) ^ (ulonglong)&stack0x00000000);
+  cleanup_render_resources(*(uint64_t *)(context_base + -0x20) ^ (uint64_t)&stack0x00000000);
 }
 
 /**
@@ -802,9 +802,9 @@ void quick_render_cleanup(void)
  */
 void cleanup_render_state(void)
 {
-  longlong context_base;
+  int64_t context_base;
   
-  cleanup_render_resources(*(ulonglong *)(context_base + -0x20) ^ (ulonglong)&stack0x00000000);
+  cleanup_render_resources(*(uint64_t *)(context_base + -0x20) ^ (uint64_t)&stack0x00000000);
 }
 
 // 全局变量定义

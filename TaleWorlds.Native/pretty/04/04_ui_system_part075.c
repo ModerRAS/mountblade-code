@@ -21,20 +21,20 @@
 
 // 函数别名定义
 typedef void (*ui_system_void_function)(void);
-typedef uint (*ui_system_data_processor)(longlong *, uint);
-typedef ulonglong (*ui_system_audio_decoder)(byte *, int, int, byte *, longlong, short *, int *, int *);
-typedef void (*ui_system_float_processor)(longlong, int, int, float *);
+typedef uint (*ui_system_data_processor)(int64_t *, uint);
+typedef uint64_t (*ui_system_audio_decoder)(byte *, int, int, byte *, int64_t, short *, int *, int *);
+typedef void (*ui_system_float_processor)(int64_t, int, int, float *);
 
 // 函数声明
 void ui_system_empty_function(void);
-uint ui_system_calculate_bit_allocation(longlong *ui_context, uint bit_count);
+uint ui_system_calculate_bit_allocation(int64_t *ui_context, uint bit_count);
 uint ui_system_process_audio_data(uint64_t param_1, uint param_2);
 uint ui_system_empty_function_return(uint64_t param_1);
-ulonglong ui_system_decode_audio_stream(byte *audio_data, int data_size, int decode_mode, byte *format_output, longlong buffer_ptr, short *channel_sizes, int *bytes_processed, int *total_size);
-ulonglong ui_system_process_audio_chunk(uint64_t param_1, uint64_t param_2, int param_3);
+uint64_t ui_system_decode_audio_stream(byte *audio_data, int data_size, int decode_mode, byte *format_output, int64_t buffer_ptr, short *channel_sizes, int *bytes_processed, int *total_size);
+uint64_t ui_system_process_audio_chunk(uint64_t param_1, uint64_t param_2, int param_3);
 int ui_system_validate_audio_data(void);
 uint ui_system_return_error_code(void);
-void ui_system_process_float_array(longlong array_ptr, int width, int height, float *output_buffer);
+void ui_system_process_float_array(int64_t array_ptr, int width, int height, float *output_buffer);
 
 /**
  * @brief UI系统空函数
@@ -53,7 +53,7 @@ void ui_system_empty_function(void)
  * 
  * 该函数根据输入参数计算位分配，用于UI系统的数据处理和资源分配
  */
-uint ui_system_calculate_bit_allocation(longlong *ui_context, uint bit_count)
+uint ui_system_calculate_bit_allocation(int64_t *ui_context, uint bit_count)
 {
   int bit_position;
   uint result;
@@ -68,16 +68,16 @@ uint ui_system_calculate_bit_allocation(longlong *ui_context, uint bit_count)
   
   current_bits = *(uint *)(ui_context + 4);
   available_bits = bit_count - 1;
-  processed_bits = *(uint *)((longlong)ui_context + 0x24);
+  processed_bits = *(uint *)((int64_t)ui_context + 0x24);
   bit_position = 0x1f;
   if (available_bits != 0) {
     for (; available_bits >> bit_position == 0; bit_position = bit_position + -1) {
     }
   }
   if (bit_position + 1 < 9) {
-    calculation_result = (int)((ulonglong)current_bits / (ulonglong)bit_count);
+    calculation_result = (int)((uint64_t)current_bits / (uint64_t)bit_count);
     *(int *)(ui_context + 5) = calculation_result;
-    adjustment_factor = (int)((ulonglong)processed_bits / ((ulonglong)current_bits / (ulonglong)bit_count));
+    adjustment_factor = (int)((uint64_t)processed_bits / ((uint64_t)current_bits / (uint64_t)bit_count));
     bit_position = 0;
     if (bit_count < adjustment_factor + 1U) {
       bit_position = (bit_count - adjustment_factor) + -1;
@@ -85,7 +85,7 @@ uint ui_system_calculate_bit_allocation(longlong *ui_context, uint bit_count)
     adjustment_factor = (bit_count - bit_position) - adjustment_factor;
     bit_position = (bit_count - adjustment_factor) * calculation_result;
     result = adjustment_factor - 1;
-    *(uint *)((longlong)ui_context + 0x24) = processed_bits - bit_position;
+    *(uint *)((int64_t)ui_context + 0x24) = processed_bits - bit_position;
     if (result == 0) {
       calculation_result = current_bits - bit_position;
     }
@@ -96,9 +96,9 @@ uint ui_system_calculate_bit_allocation(longlong *ui_context, uint bit_count)
     result = bit_position - 7;
     shift_bits = (byte)result;
     temp_value = (available_bits >> (shift_bits & 0x1f)) + 1;
-    calculation_result = (int)((ulonglong)current_bits / (ulonglong)temp_value);
+    calculation_result = (int)((uint64_t)current_bits / (uint64_t)temp_value);
     *(int *)(ui_context + 5) = calculation_result;
-    adjustment_factor = (int)((ulonglong)processed_bits / ((ulonglong)current_bits / (ulonglong)temp_value));
+    adjustment_factor = (int)((uint64_t)processed_bits / ((uint64_t)current_bits / (uint64_t)temp_value));
     bit_position = 0;
     if (temp_value < adjustment_factor + 1U) {
       bit_position = (temp_value - adjustment_factor) + -1;
@@ -106,22 +106,22 @@ uint ui_system_calculate_bit_allocation(longlong *ui_context, uint bit_count)
     adjustment_factor = (temp_value - bit_position) - adjustment_factor;
     bit_position = (temp_value - adjustment_factor) * calculation_result;
     adjustment_factor = adjustment_factor + -1;
-    *(uint *)((longlong)ui_context + 0x24) = processed_bits - bit_position;
+    *(uint *)((int64_t)ui_context + 0x24) = processed_bits - bit_position;
     if (adjustment_factor == 0) {
       calculation_result = current_bits - bit_position;
     }
     *(int *)(ui_context + 4) = calculation_result;
     ui_system_empty_function();
-    current_bits = *(uint *)((longlong)ui_context + 0x14);
+    current_bits = *(uint *)((int64_t)ui_context + 0x14);
     processed_bits = *(uint *)(ui_context + 2);
     if (current_bits < result) {
-      temp_value = *(uint *)((longlong)ui_context + 0xc);
+      temp_value = *(uint *)((int64_t)ui_context + 0xc);
       loop_counter = current_bits;
       do {
         if (temp_value < *(uint *)(ui_context + 1)) {
           temp_value = temp_value + 1;
-          *(uint *)((longlong)ui_context + 0xc) = temp_value;
-          result = (uint)*(byte *)((ulonglong)(*(uint *)(ui_context + 1) - temp_value) + *ui_context);
+          *(uint *)((int64_t)ui_context + 0xc) = temp_value;
+          result = (uint)*(byte *)((uint64_t)(*(uint *)(ui_context + 1) - temp_value) + *ui_context);
         }
         else {
           result = 0;
@@ -132,7 +132,7 @@ uint ui_system_calculate_bit_allocation(longlong *ui_context, uint bit_count)
       } while ((int)current_bits < 0x19);
     }
     *(uint *)(ui_context + 3) = (int)ui_context[3] + result;
-    *(uint *)((longlong)ui_context + 0x14) = current_bits - result;
+    *(uint *)((int64_t)ui_context + 0x14) = current_bits - result;
     *(uint *)(ui_context + 2) = processed_bits >> (shift_bits & 0x1f);
     result = (1 << (shift_bits & 0x1f)) - 1U & processed_bits | adjustment_factor << (shift_bits & 0x1f);
     if (available_bits < result) {
@@ -153,11 +153,11 @@ uint ui_system_calculate_bit_allocation(longlong *ui_context, uint bit_count)
  */
 uint ui_system_process_audio_data(uint64_t audio_context, uint sample_count)
 {
-  ulonglong sample_rate;
+  uint64_t sample_rate;
   byte bit_shift;
   int channel_count;
   uint bit_result;
-  ulonglong audio_data;
+  uint64_t audio_data;
   int frame_count;
   uint available_bits;
   uint total_bits;
@@ -171,10 +171,10 @@ uint ui_system_process_audio_data(uint64_t audio_context, uint sample_count)
   
   bit_shift = (byte)bit_offset;
   total_bits = (available_bits >> (bit_shift & 0x1f)) + 1;
-  sample_rate = ((ulonglong)sample_count << 0x20 | audio_data & 0xffffffff) / (ulonglong)total_bits;
+  sample_rate = ((uint64_t)sample_count << 0x20 | audio_data & 0xffffffff) / (uint64_t)total_bits;
   channel_count = (int)sample_rate;
   *(int *)(audio_context + 5) = channel_count;
-  frame_count = (int)((ulonglong)bit_depth / (sample_rate & 0xffffffff));
+  frame_count = (int)((uint64_t)bit_depth / (sample_rate & 0xffffffff));
   processed_bits = bit_depth;
   if (total_bits < frame_count + 1U) {
     processed_bits = (total_bits - frame_count) - 1;
@@ -182,23 +182,23 @@ uint ui_system_process_audio_data(uint64_t audio_context, uint sample_count)
   frame_count = (total_bits - processed_bits) - frame_count;
   adjustment_value = (total_bits - frame_count) * channel_count;
   frame_count = frame_count + -1;
-  *(uint *)((longlong)audio_context + 0x24) = bit_depth - adjustment_value;
+  *(uint *)((int64_t)audio_context + 0x24) = bit_depth - adjustment_value;
   if (frame_count == 0) {
     channel_count = samples_per_frame - adjustment_value;
   }
   *(int *)(audio_context + 4) = channel_count;
   ui_system_empty_function();
-  processed_bits = *(uint *)((longlong)audio_context + 0x14);
+  processed_bits = *(uint *)((int64_t)audio_context + 0x14);
   total_bits = *(uint *)(audio_context + 2);
   if (processed_bits < bit_offset) {
-    available_bits = *(uint *)((longlong)audio_context + 0xc);
+    available_bits = *(uint *)((int64_t)audio_context + 0xc);
     channel_size = processed_bits;
     do {
       bit_result = bit_depth;
       if (available_bits < *(uint *)(audio_context + 1)) {
         available_bits = available_bits + 1;
-        *(uint *)((longlong)audio_context + 0xc) = available_bits;
-        bit_result = (uint)*(byte *)((ulonglong)(*(uint *)(audio_context + 1) - available_bits) + *audio_context);
+        *(uint *)((int64_t)audio_context + 0xc) = available_bits;
+        bit_result = (uint)*(byte *)((uint64_t)(*(uint *)(audio_context + 1) - available_bits) + *audio_context);
       }
       processed_bits = channel_size + 8;
       total_bits = total_bits | bit_result << ((byte)channel_size & 0x1f);
@@ -206,7 +206,7 @@ uint ui_system_process_audio_data(uint64_t audio_context, uint sample_count)
     } while ((int)processed_bits < 0x19);
   }
   *(uint *)(audio_context + 3) = (int)audio_context[3] + bit_offset;
-  *(uint *)((longlong)audio_context + 0x14) = processed_bits - bit_offset;
+  *(uint *)((int64_t)audio_context + 0x14) = processed_bits - bit_offset;
   *(uint *)(audio_context + 2) = total_bits >> (bit_shift & 0x1f);
   processed_bits = (1 << (bit_shift & 0x1f)) - 1U & total_bits | frame_count << (bit_shift & 0x1f);
   if (available_bits < processed_bits) {
@@ -225,7 +225,7 @@ uint ui_system_process_audio_data(uint64_t audio_context, uint sample_count)
 uint ui_system_set_status_flag(void)
 {
   uint status_code;
-  longlong context_ptr;
+  int64_t context_ptr;
   
   *(uint *)(context_ptr + 0x30) = 1;
   return status_code;
@@ -241,22 +241,22 @@ uint ui_system_set_status_flag(void)
  * @param channel_sizes 通道大小数组
  * @param bytes_processed 已处理字节数
  * @param total_size 总大小
- * @return ulonglong 解码结果
+ * @return uint64_t 解码结果
  * 
  * 该函数用于解码音频流数据，支持多种音频格式和编码方式
  */
-ulonglong ui_system_decode_audio_stream(byte *audio_data, int data_size, int decode_mode, byte *format_output, longlong buffer_ptr, short *channel_sizes, int *bytes_processed, int *total_size)
+uint64_t ui_system_decode_audio_stream(byte *audio_data, int data_size, int decode_mode, byte *format_output, int64_t buffer_ptr, short *channel_sizes, int *bytes_processed, int *total_size)
 {
   byte format_header;
   byte encoding_flag;
   short channel_size;
   byte channel_mode;
-  ulonglong channel_count;
+  uint64_t channel_count;
   int sample_rate;
   int bitrate;
-  ulonglong result;
+  uint64_t result;
   uint channels_per_frame;
-  ulonglong frame_count;
+  uint64_t frame_count;
   uint frame_size;
   short *channel_ptr;
   uint total_frames;
@@ -339,7 +339,7 @@ SAMPLE_RATE_CALCULATION:
     channel_mode = *data_ptr;
     data_ptr = audio_data + 2;
     channels_per_frame = channel_mode & 0x3f;
-    frame_count = (ulonglong)channels_per_frame;
+    frame_count = (uint64_t)channels_per_frame;
     if ((channel_mode & 0x3f) == 0) {
       return 0xfffffffc;
     }
@@ -361,7 +361,7 @@ SAMPLE_RATE_CALCULATION:
         }
         skip_bytes = (int)result + frame_size;
         remaining_data = remaining_data + (-1 - frame_size);
-        result = (ulonglong)skip_bytes;
+        result = (uint64_t)skip_bytes;
       } while (encoding_flag == 0xff);
     }
     if ((int)remaining_data < 0) {
@@ -386,7 +386,7 @@ SAMPLE_RATE_CALCULATION:
           frame_size = (int)result + 1;
           data_ptr = data_ptr + sample_rate;
           total_frames = total_frames - (sample_rate + channel_size);
-          result = (ulonglong)frame_size;
+          result = (uint64_t)frame_size;
           channel_ptr = channel_ptr + 1;
         } while ((int)frame_size < (int)(channels_per_frame - 1));
       }
@@ -425,11 +425,11 @@ SAMPLE_RATE_CALCULATION:
       }
       else if (bitrate * (int)frame_count <= (int)(remaining_data - sample_rate)) {
         result = 0;
-        if (0 < (longlong)(frame_count - 1)) {
+        if (0 < (int64_t)(frame_count - 1)) {
           do {
             channel_sizes[result] = channel_sizes[frame_count - 1];
             result = result + 1;
-          } while ((longlong)result < (longlong)(frame_count - 1));
+          } while ((int64_t)result < (int64_t)(frame_count - 1));
         }
 DECODE_SUCCESS:
         if (bytes_processed != (int *)0x0) {
@@ -443,7 +443,7 @@ DECODE_SUCCESS:
             channel_ptr = channel_sizes + result;
             result = result + 1;
             data_ptr = data_ptr + *channel_ptr;
-          } while ((longlong)result < (longlong)frame_count);
+          } while ((int64_t)result < (int64_t)frame_count);
         }
         if (total_size != (int *)0x0) {
           *total_size = ((int)data_ptr - (int)audio_data) + skip_bytes;
@@ -464,20 +464,20 @@ DECODE_SUCCESS:
  * @param param_1 参数1
  * @param param_2 参数2
  * @param param_3 参数3
- * @return ulonglong 处理结果
+ * @return uint64_t 处理结果
  * 
  * 该函数处理音频数据块，用于UI系统的音频处理模块
  */
-ulonglong ui_system_process_audio_chunk(uint64_t param_1, uint64_t param_2, int param_3)
+uint64_t ui_system_process_audio_chunk(uint64_t param_1, uint64_t param_2, int param_3)
 {
   byte format_header;
   byte encoding_flag;
   short channel_size;
   byte channel_mode;
-  ulonglong result;
+  uint64_t result;
   int sample_rate;
   int bitrate;
-  ulonglong frame_count;
+  uint64_t frame_count;
   uint frame_size;
   short *channel_ptr;
   uint remaining_data;
@@ -547,7 +547,7 @@ SAMPLE_RATE_PROCESSING:
     channel_mode = *data_ptr;
     data_ptr = param_1 + 2;
     frame_size = channel_mode & 0x3f;
-    frame_count = (ulonglong)frame_size;
+    frame_count = (uint64_t)frame_size;
     if ((channel_mode & 0x3f) == 0) {
       return 0xfffffffc;
     }
@@ -590,7 +590,7 @@ SAMPLE_RATE_PROCESSING:
             return 0xfffffffc;
           }
           frame_size = (int)result + 1;
-          result = (ulonglong)frame_size;
+          result = (uint64_t)frame_size;
           data_ptr = data_ptr + sample_rate;
           total_frames = total_frames - (sample_rate + channel_size);
           channel_ptr = channel_ptr + 1;
@@ -631,11 +631,11 @@ SAMPLE_RATE_PROCESSING:
       }
       else if (bitrate * (int)frame_count <= (int)(remaining_data - sample_rate)) {
         result = result & 0xffffffff;
-        if (0 < (longlong)(frame_count - 1)) {
+        if (0 < (int64_t)(frame_count - 1)) {
           do {
             param_2[result] = param_2[frame_count - 1];
             result = result + 1;
-          } while ((longlong)result < (longlong)(frame_count - 1));
+          } while ((int64_t)result < (int64_t)(frame_count - 1));
         }
 PROCESSING_SUCCESS:
         if (bytes_processed != (int *)0x0) {
@@ -649,7 +649,7 @@ PROCESSING_SUCCESS:
             channel_ptr = param_2 + result;
             result = result + 1;
             data_ptr = data_ptr + *channel_ptr;
-          } while ((longlong)result < (longlong)frame_count);
+          } while ((int64_t)result < (int64_t)frame_count);
         }
         if (total_size != (int *)0x0) {
           *total_size = ((int)data_ptr - (int)param_1) + skip_bytes;
@@ -673,18 +673,18 @@ PROCESSING_SUCCESS:
  */
 int ui_system_validate_audio_data(void)
 {
-  longlong context_ptr;
-  longlong result_ptr;
+  int64_t context_ptr;
+  int64_t result_ptr;
   int channel_count;
-  longlong data_ptr;
+  int64_t data_ptr;
   int frame_count;
-  longlong output_ptr;
+  int64_t output_ptr;
   int sample_rate;
-  longlong buffer_offset;
+  int64_t buffer_offset;
   int8_t format_header;
-  longlong array_ptr;
+  int64_t array_ptr;
   int *bytes_processed;
-  longlong buffer_ptr;
+  int64_t buffer_ptr;
   int *total_size;
   
   if (frame_count < UI_MAX_CHANNEL_COUNT) {
@@ -695,7 +695,7 @@ int ui_system_validate_audio_data(void)
     if (channel_count != 0) {
       do {
         if (buffer_ptr != 0) {
-          *(longlong *)(buffer_ptr + result_ptr * 8) = data_ptr;
+          *(int64_t *)(buffer_ptr + result_ptr * 8) = data_ptr;
         }
         array_ptr = result_ptr * 2;
         result_ptr = result_ptr + 1;
@@ -735,7 +735,7 @@ uint ui_system_return_error_code(void)
  * 
  * 该函数处理浮点数组的限制和归一化，用于UI系统的数据处理
  */
-void ui_system_process_float_array(longlong array_ptr, int width, int height, float *output_buffer)
+void ui_system_process_float_array(int64_t array_ptr, int width, int height, float *output_buffer)
 {
   bool needs_clamping;
   int8_t temp_array_1[16];
@@ -744,19 +744,19 @@ void ui_system_process_float_array(longlong array_ptr, int width, int height, fl
   int8_t (*array_ptr_5)[16];
   uint element_count;
   int temp_value;
-  longlong offset;
+  int64_t offset;
   float *float_ptr;
   float *float_ptr_2;
   uint remaining_elements;
   int temp_index;
-  longlong offset_2;
-  longlong offset_3;
+  int64_t offset_2;
+  int64_t offset_3;
   int temp_index_2;
   int temp_index_3;
-  ulonglong loop_counter;
+  uint64_t loop_counter;
   int temp_index_4;
-  longlong offset_4;
-  longlong offset_5;
+  int64_t offset_4;
+  int64_t offset_5;
   int temp_index_5;
   float float_value;
   float float_value_2;
@@ -766,11 +766,11 @@ void ui_system_process_float_array(longlong array_ptr, int width, int height, fl
   float float_value_6;
   int8_t temp_array_3[16];
   float *stack_ptr;
-  longlong stack_offset;
+  int64_t stack_offset;
   
   temp_array_2 = UI_FLOAT_ARRAY_MAX;
   temp_array_1 = UI_FLOAT_ARRAY_MIN;
-  offset_5 = (longlong)height;
+  offset_5 = (int64_t)height;
   if ((((0 < height) && (0 < width)) && (array_ptr != 0)) && (output_buffer != (float *)0x0)) {
     element_count = width * height;
     temp_index_5 = 0;
@@ -803,8 +803,8 @@ void ui_system_process_float_array(longlong array_ptr, int width, int height, fl
       if (temp_index_5 < (int)element_count) {
         if (3 < (int)(element_count - temp_index_5)) {
           remaining_elements = ((element_count - temp_index_5) - 4 >> 2) + 1;
-          float_ptr = (float *)(array_ptr + ((longlong)temp_index_5 + 2) * 4);
-          loop_counter = (ulonglong)remaining_elements;
+          float_ptr = (float *)(array_ptr + ((int64_t)temp_index_5 + 2) * 4);
+          loop_counter = (uint64_t)remaining_elements;
           temp_index_5 = temp_index_5 + remaining_elements * 4;
           do {
             float_value_3 = float_ptr[-2];
@@ -844,8 +844,8 @@ void ui_system_process_float_array(longlong array_ptr, int width, int height, fl
           } while (loop_counter != 0);
         }
         if (temp_index_5 < (int)element_count) {
-          float_ptr = (float *)(array_ptr + (longlong)temp_index_5 * 4);
-          offset = (longlong)(int)(element_count - temp_index_5);
+          float_ptr = (float *)(array_ptr + (int64_t)temp_index_5 * 4);
+          offset = (int64_t)(int)(element_count - temp_index_5);
           do {
             float_value_3 = *float_ptr;
             if (UI_FLOAT_CLAMP_VALUE <= float_value_3) {
@@ -866,7 +866,7 @@ void ui_system_process_float_array(longlong array_ptr, int width, int height, fl
       stack_offset = offset_5;
       do {
         float_value_3 = *stack_ptr;
-        float_ptr = (float *)((array_ptr - (longlong)output_buffer) + (longlong)stack_ptr);
+        float_ptr = (float *)((array_ptr - (int64_t)output_buffer) + (int64_t)stack_ptr);
         temp_index_5 = 0;
         if (3 < width) {
           temp_index_4 = height * 2;
@@ -984,13 +984,13 @@ OUT_OF_BOUNDS:
           }
           if (temp_index_3 < temp_index_2) {
             if (3 < temp_index_2 - temp_index_3) {
-              offset = (longlong)((temp_index_3 + 2) * height);
+              offset = (int64_t)((temp_index_3 + 2) * height);
               float_ptr_2 = float_ptr + offset;
               offset_2 = (temp_index_3 + 1) * height - offset;
               offset_3 = (temp_index_3 + 3) * height - offset;
               offset = temp_index_3 * height - offset;
               remaining_elements = ((temp_index_2 - temp_index_3) - 4U >> 2) + 1;
-              loop_counter = (ulonglong)remaining_elements;
+              loop_counter = (uint64_t)remaining_elements;
               temp_index_3 = temp_index_3 + remaining_elements * 4;
               do {
                 float_ptr_2[offset] = (float_ptr_2[offset] * float_value + 1.0) * float_ptr_2[offset];
@@ -1003,7 +1003,7 @@ OUT_OF_BOUNDS:
             }
             if (temp_index_3 < temp_index_2) {
               float_ptr_2 = float_ptr + temp_index_3 * height;
-              offset = (longlong)(temp_index_2 - temp_index_3);
+              offset = (int64_t)(temp_index_2 - temp_index_3);
               do {
                 *float_ptr_2 = (*float_ptr_2 * float_value + 1.0) * *float_ptr_2;
                 float_ptr_2 = float_ptr_2 + offset_5;
@@ -1016,13 +1016,13 @@ OUT_OF_BOUNDS:
             float_value_2 = float_value_5 / (float)temp_index;
             if (temp_index_5 < temp_index) {
               if (3 < temp_index - temp_index_5) {
-                offset = (longlong)((temp_index_5 + 2) * height);
+                offset = (int64_t)((temp_index_5 + 2) * height);
                 float_ptr_2 = float_ptr + offset;
                 offset_2 = (temp_index_5 + 1) * height - offset;
                 offset_3 = (temp_index_5 + 3) * height - offset;
                 offset = temp_index_5 * height - offset;
                 remaining_elements = ((temp_index - temp_index_5) - 4U >> 2) + 1;
-                loop_counter = (ulonglong)remaining_elements;
+                loop_counter = (uint64_t)remaining_elements;
                 temp_index_5 = temp_index_5 + remaining_elements * 4;
                 do {
                   float_value_4 = (float_value_5 - float_value_2) + float_ptr_2[offset];
@@ -1066,7 +1066,7 @@ OUT_OF_BOUNDS:
               }
               if (temp_index_5 < temp_index) {
                 float_ptr_2 = float_ptr + temp_index_5 * height;
-                offset = (longlong)(temp_index - temp_index_5);
+                offset = (int64_t)(temp_index - temp_index_5);
                 do {
                   float_value_5 = float_value_5 - float_value_2;
                   float_value_4 = float_value_5 + *float_ptr_2;

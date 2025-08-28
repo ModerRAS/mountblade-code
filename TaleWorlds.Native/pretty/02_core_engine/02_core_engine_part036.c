@@ -27,14 +27,14 @@ uint64_t system_buffer_ptr;  // 默认名称指针
  * 简化实现：此函数处理复杂的3D对象变换初始化，包括矩阵运算和骨骼动画设置
  * 简化版本保留了基本功能，省略了复杂的矩阵计算细节
  */
-void initialize_3d_object_transform(uint64_t *object_ptr, longlong config_ptr)
+void initialize_3d_object_transform(uint64_t *object_ptr, int64_t config_ptr)
 {
-    longlong *bone_ptr;
-    longlong *next_bone;
+    int64_t *bone_ptr;
+    int64_t *next_bone;
     int bone_index;
-    longlong transform_data;
-    longlong matrix_ptr;
-    longlong stack_var[2];
+    int64_t transform_data;
+    int64_t matrix_ptr;
+    int64_t stack_var[2];
     uint64_t local_var1;
     uint64_t local_var2;
     int32_t local_var3;
@@ -46,17 +46,17 @@ void initialize_3d_object_transform(uint64_t *object_ptr, longlong config_ptr)
     // 处理7个骨骼节点
     do {
         // 获取骨骼指针
-        next_bone = (longlong *)get_bone_data(config_ptr, bone_index);
-        if (next_bone != (longlong *)0x0) {
+        next_bone = (int64_t *)get_bone_data(config_ptr, bone_index);
+        if (next_bone != (int64_t *)0x0) {
             // 初始化骨骼变换
             stack_var[0] = next_bone;
             (**(code **)(*next_bone + 0x28))(next_bone);
         }
         
         // 链接骨骼节点
-        stack_var[0] = (longlong *)*bone_ptr;
-        *bone_ptr = (longlong)next_bone;
-        if (stack_var[0] != (longlong *)0x0) {
+        stack_var[0] = (int64_t *)*bone_ptr;
+        *bone_ptr = (int64_t)next_bone;
+        if (stack_var[0] != (int64_t *)0x0) {
             (**(code **)(*stack_var[0] + 0x38))();
         }
         
@@ -83,8 +83,8 @@ void initialize_3d_object_transform(uint64_t *object_ptr, longlong config_ptr)
     
     // 查找或创建矩阵
     if ((bone_index == -1) || 
-        (matrix_ptr = (longlong)bone_index * 0x68 + *(longlong *)(transform_data + 0x38), matrix_ptr == 0)) {
-        matrix_ptr = *(longlong *)(transform_data + 0x28);
+        (matrix_ptr = (int64_t)bone_index * 0x68 + *(int64_t *)(transform_data + 0x38), matrix_ptr == 0)) {
+        matrix_ptr = *(int64_t *)(transform_data + 0x28);
     }
     
     // 设置默认模板
@@ -101,7 +101,7 @@ void initialize_3d_object_transform(uint64_t *object_ptr, longlong config_ptr)
     
     // 确保矩阵指针有效
     if (matrix_ptr == 0) {
-        matrix_ptr = *(longlong *)(core_system_data_pointer + 0x38);
+        matrix_ptr = *(int64_t *)(core_system_data_pointer + 0x38);
     }
     
     // 设置对象变换矩阵
@@ -133,7 +133,7 @@ void initialize_3d_object_transform(uint64_t *object_ptr, longlong config_ptr)
  * 原始实现：FUN_180078c10
  * 简化实现：处理4x4矩阵的数学运算，包括行列式计算和矩阵归一化
  */
-void process_4x4_matrix_operations(longlong matrix_ptr)
+void process_4x4_matrix_operations(int64_t matrix_ptr)
 {
     float *matrix_data;
     float determinant;
@@ -184,7 +184,7 @@ void process_4x4_matrix_operations(longlong matrix_ptr)
  * 原始实现：FUN_180078c70
  * 简化实现：将变换数据序列化写入缓冲区，处理缓冲区溢出
  */
-void write_transform_data_to_buffer(int32_t *transform_data, longlong *buffer_ptr)
+void write_transform_data_to_buffer(int32_t *transform_data, int64_t *buffer_ptr)
 {
     int32_t data_value;
     int32_t *write_ptr;
@@ -194,8 +194,8 @@ void write_transform_data_to_buffer(int32_t *transform_data, longlong *buffer_pt
     write_ptr = (int32_t *)buffer_ptr[1];
     
     // 检查缓冲区空间并写入数据
-    if ((ulonglong)((*buffer_ptr - (longlong)write_ptr) + buffer_ptr[2]) < 5) {
-        expand_buffer(buffer_ptr, (longlong)write_ptr + (4 - *buffer_ptr));
+    if ((uint64_t)((*buffer_ptr - (int64_t)write_ptr) + buffer_ptr[2]) < 5) {
+        expand_buffer(buffer_ptr, (int64_t)write_ptr + (4 - *buffer_ptr));
         write_ptr = (int32_t *)buffer_ptr[1];
     }
     *write_ptr = data_value;
@@ -214,28 +214,28 @@ void write_transform_data_to_buffer(int32_t *transform_data, longlong *buffer_pt
  * 原始实现：FUN_1800791a0
  * 简化实现：更新骨骼动画的状态信息和变换参数
  */
-void update_bone_animation_state(longlong anim_ptr)
+void update_bone_animation_state(int64_t anim_ptr)
 {
-    longlong bone_data;
-    longlong current_anim;
+    int64_t bone_data;
+    int64_t current_anim;
     byte flags;
     
     // 获取骨骼数据
-    bone_data = *(longlong *)(anim_ptr + 0x210);
+    bone_data = *(int64_t *)(anim_ptr + 0x210);
     *(int32_t *)(anim_ptr + 0x1f8) = *(int32_t *)(bone_data + 0x10);
     *(int32_t *)(anim_ptr + 0x1fc) = *(int32_t *)(bone_data + 0x88);
     *(int32_t *)(anim_ptr + 0x200) = *(int32_t *)(bone_data + 0x60);
     
     // 检查动画标志
     flags = *(byte *)(anim_ptr + 0xfd) & 0x40;
-    if ((((flags != 0) && (bone_data != 0)) || (*(longlong *)(anim_ptr + 0x1b0) == 0)) ||
+    if ((((flags != 0) && (bone_data != 0)) || (*(int64_t *)(anim_ptr + 0x1b0) == 0)) ||
        (current_anim = get_current_animation(), anim_ptr == current_anim)) {
         *(int32_t *)(anim_ptr + 0x204) = *(int32_t *)(bone_data + 200);
     }
     
     // 处理特殊情况
     if (((flags == 0) || (bone_data == 0)) &&
-       ((*(longlong *)(anim_ptr + 0x1b0) != 0 && 
+       ((*(int64_t *)(anim_ptr + 0x1b0) != 0 && 
          (current_anim = get_current_animation(), anim_ptr != current_anim)))) {
         return;
     }
@@ -246,14 +246,14 @@ void update_bone_animation_state(longlong anim_ptr)
 }
 
 // 辅助函数声明（简化实现）
-longlong get_bone_data(longlong config_ptr, int bone_index);
-uint64_t get_transform_matrix(longlong config_ptr, uint64_t *output_ptr);
+int64_t get_bone_data(int64_t config_ptr, int bone_index);
+uint64_t get_transform_matrix(int64_t config_ptr, uint64_t *output_ptr);
 int find_matrix_index(uint64_t table_ptr, uint64_t matrix_id);
 void register_bone_name(uint64_t *registry, void *name_ptr);
 void handle_memory_error(void);
-void set_bone_animation_data(longlong *target, uint64_t *matrix1, longlong *matrix2, uint64_t *matrix3, longlong **matrix4);
+void set_bone_animation_data(int64_t *target, uint64_t *matrix1, int64_t *matrix2, uint64_t *matrix3, int64_t **matrix4);
 void initialize_matrix_operations(void);
 float calculate_matrix_determinant(float *matrix_data);
-void normalize_matrix_elements(longlong matrix_ptr, float factor);
-void expand_buffer(longlong *buffer_ptr, longlong required_size);
-longlong get_current_animation(void);
+void normalize_matrix_elements(int64_t matrix_ptr, float factor);
+void expand_buffer(int64_t *buffer_ptr, int64_t required_size);
+int64_t get_current_animation(void);

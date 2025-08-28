@@ -73,7 +73,7 @@ static void* g_ui_context = NULL;                                   // UI系统�
  * @param config_data 配置数据指针
  * @return 无返回值
  */
-void UI_Component_Initialize(longlong ui_context, uint64_t config_data)
+void UI_Component_Initialize(int64_t ui_context, uint64_t config_data)
 {
   uint64_t stack_config[3];
   
@@ -100,11 +100,11 @@ void UI_Component_Initialize(longlong ui_context, uint64_t config_data)
  * @param param_4 处理参数4
  * @return 无返回值
  */
-void UI_Component_Process_Config(longlong ui_context, longlong *config_ptr, uint64_t param_3, uint64_t param_4)
+void UI_Component_Process_Config(int64_t ui_context, int64_t *config_ptr, uint64_t param_3, uint64_t param_4)
 {
   void *data_ptr1;
   void *data_ptr2;
-  longlong *config_stack;
+  int64_t *config_stack;
   void *stack_ptr_50;
   void *stack_ptr_48;
   int32_t stack_value_38;
@@ -158,7 +158,7 @@ void UI_Component_Process_Config(longlong ui_context, longlong *config_ptr, uint
  * @param event_data 事件数据指针
  * @return 无返回值
  */
-void UI_System_Handle_Event(longlong ui_context, longlong event_source, longlong event_data)
+void UI_System_Handle_Event(int64_t ui_context, int64_t event_source, int64_t event_data)
 {
   code *callback_ptr;
   void *event_data_ptr1;
@@ -189,7 +189,7 @@ void UI_System_Handle_Event(longlong ui_context, longlong event_source, longlong
   }
   (*ui_system_data_buffer)();
 event_processed:
-  *(longlong *)(ui_context + 0x10) = ui_context;
+  *(int64_t *)(ui_context + 0x10) = ui_context;
   (**(code **)(ui_context + 0x78))(0, UI_Callback_Function_01);
   (**(code **)(ui_context + 0x78))(1, UI_Callback_Function_02);
   (**(code **)(ui_context + 0x78))(2, &unknown_var_4448_ptr);
@@ -242,25 +242,25 @@ event_processed:
  * @param task_queue 任务队列指针
  * @return 无返回值
  */
-void UI_System_Process_Task_Queue(longlong task_queue)
+void UI_System_Process_Task_Queue(int64_t task_queue)
 {
-  ulonglong task_index;
+  uint64_t task_index;
   uint task_count;
-  ulonglong max_tasks;
+  uint64_t max_tasks;
   
   task_index = 0;
   max_tasks = task_index;
-  if (*(longlong *)(task_queue + 0x170) - *(longlong *)(task_queue + 0x168) >> 3 == 0) {
+  if (*(int64_t *)(task_queue + 0x170) - *(int64_t *)(task_queue + 0x168) >> 3 == 0) {
     *(int8_t *)(task_queue + 0x188) = 1;
     return;
   }
   do {
-    (**(code **)**(uint64_t **)(task_index + *(longlong *)(task_queue + 0x168)))();
+    (**(code **)**(uint64_t **)(task_index + *(int64_t *)(task_queue + 0x168)))();
     task_index = task_index + 8;
     task_count = (int)max_tasks + 1;
-    max_tasks = (ulonglong)task_count;
-  } while ((ulonglong)(longlong)(int)task_count <
-           (ulonglong)(*(longlong *)(task_queue + 0x170) - *(longlong *)(task_queue + 0x168) >> 3));
+    max_tasks = (uint64_t)task_count;
+  } while ((uint64_t)(int64_t)(int)task_count <
+           (uint64_t)(*(int64_t *)(task_queue + 0x170) - *(int64_t *)(task_queue + 0x168) >> 3));
   *(int8_t *)(task_queue + 0x188) = 1;
   return;
 }
@@ -278,17 +278,17 @@ void UI_System_Process_Task_Queue(longlong task_queue)
  */
 void UI_System_Task_Handler_Inline(void)
 {
-  longlong queue_context;
-  ulonglong task_index;
+  int64_t queue_context;
+  uint64_t task_index;
   uint task_counter;
   
-  task_index = (ulonglong)task_counter;
+  task_index = (uint64_t)task_counter;
   do {
-    (**(code **)**(uint64_t **)(task_index + *(longlong *)(queue_context + 0x168)))();
+    (**(code **)**(uint64_t **)(task_index + *(int64_t *)(queue_context + 0x168)))();
     task_index = task_index + 8;
     task_counter = task_counter + 1;
-  } while ((ulonglong)(longlong)(int)task_counter <
-           (ulonglong)(*(longlong *)(queue_context + 0x170) - *(longlong *)(queue_context + 0x168) >> 3));
+  } while ((uint64_t)(int64_t)(int)task_counter <
+           (uint64_t)(*(int64_t *)(queue_context + 0x170) - *(int64_t *)(queue_context + 0x168) >> 3));
   *(int8_t *)(queue_context + 0x188) = 1;
   return;
 }
@@ -305,7 +305,7 @@ void UI_System_Task_Handler_Inline(void)
  * @param task_context 任务上下文指针
  * @return 无返回值
  */
-void UI_System_Mark_Task_Complete(longlong task_context)
+void UI_System_Mark_Task_Complete(int64_t task_context)
 {
   *(int8_t *)(task_context + 0x188) = 1;
   return;
@@ -324,9 +324,9 @@ void UI_System_Mark_Task_Complete(longlong task_context)
  * @param resource_type 资源类型
  * @return 创建成功返回资源句柄，失败返回0
  */
-uint64_t UI_Create_Resource(longlong ui_context, uint64_t resource_data, int32_t resource_type)
+uint64_t UI_Create_Resource(int64_t ui_context, uint64_t resource_data, int32_t resource_type)
 {
-  longlong resource_handle;
+  int64_t resource_handle;
   void *resource_name;
   
   resource_handle = (**(code **)(ui_context + 0x148))(resource_type);
@@ -352,16 +352,16 @@ uint64_t UI_Create_Resource(longlong ui_context, uint64_t resource_data, int32_t
  * @param process_flags 处理标志位
  * @return 处理成功返回1，失败返回0
  */
-ulonglong UI_Process_Data(longlong ui_context, longlong data_dest, longlong data_source, uint64_t process_flags)
+uint64_t UI_Process_Data(int64_t ui_context, int64_t data_dest, int64_t data_source, uint64_t process_flags)
 {
-  ulonglong result_status;
-  longlong source_handle;
-  longlong temp_handle;
+  uint64_t result_status;
+  int64_t source_handle;
+  int64_t temp_handle;
   void *source_data;
-  ulonglong data_length;
+  uint64_t data_length;
   uint64_t process_mode;
   void *stack_buffer;
-  longlong buffer_handle;
+  int64_t buffer_handle;
   uint buffer_size;
   int32_t buffer_flags;
   
@@ -395,11 +395,11 @@ data_process:
     }
     if (buffer_size != 0) {
                     // WARNING: Subroutine does not return
-      memcpy(*(uint64_t *)(data_dest + 8), buffer_handle, (ulonglong)buffer_size, process_flags, process_mode);
+      memcpy(*(uint64_t *)(data_dest + 8), buffer_handle, (uint64_t)buffer_size, process_flags, process_mode);
     }
     *(int32_t *)(data_dest + 0x10) = 0;
-    if (*(longlong *)(data_dest + 8) != 0) {
-      *(int8_t *)((ulonglong)buffer_size + *(longlong *)(data_dest + 8)) = 0;
+    if (*(int64_t *)(data_dest + 8) != 0) {
+      *(int8_t *)((uint64_t)buffer_size + *(int64_t *)(data_dest + 8)) = 0;
     }
     *(int32_t *)(data_dest + 0x1c) = buffer_flags;
     result_status = 1;
@@ -424,7 +424,7 @@ data_process:
  * @param resource_handle 资源句柄
  * @return 激活成功返回1，失败返回0
  */
-uint64_t UI_Activate_Resource(longlong ui_context, longlong resource_handle)
+uint64_t UI_Activate_Resource(int64_t ui_context, int64_t resource_handle)
 {
   void *resource_data;
   
@@ -448,7 +448,7 @@ uint64_t UI_Activate_Resource(longlong ui_context, longlong resource_handle)
  * @param resource_handle 资源句柄
  * @return 停用成功返回1，失败返回0
  */
-uint64_t UI_Deactivate_Resource(longlong ui_context, longlong resource_handle)
+uint64_t UI_Deactivate_Resource(int64_t ui_context, int64_t resource_handle)
 {
   void *resource_data;
   
@@ -476,14 +476,14 @@ uint64_t UI_Deactivate_Resource(longlong ui_context, longlong resource_handle)
  * @param process_flags 处理标志位
  * @return 处理结果指针
  */
-int * UI_Batch_Process(longlong ui_context, int *result_count, longlong *item_array, uint64_t process_flags)
+int * UI_Batch_Process(int64_t ui_context, int *result_count, int64_t *item_array, uint64_t process_flags)
 {
   void *item_data;
   int batch_size;
-  longlong array_start;
+  int64_t array_start;
   uint item_index;
-  ulonglong current_index;
-  ulonglong max_items;
+  uint64_t current_index;
+  uint64_t max_items;
   void *item_name;
   int32_t item_flags;
   uint64_t process_params;
@@ -507,10 +507,10 @@ int * UI_Batch_Process(longlong ui_context, int *result_count, longlong *item_ar
       }
       (**(code **)(ui_context + 0x128))(*result_count, current_index, item_name, process_flags, item_flags, process_params);
       item_index = (int)current_index + 1;
-      current_index = (ulonglong)item_index;
+      current_index = (uint64_t)item_index;
       array_start = *item_array;
       max_items = max_items + 0x20;
-    } while ((ulonglong)(longlong)(int)item_index < (ulonglong)(item_array[1] - array_start >> 5));
+    } while ((uint64_t)(int64_t)(int)item_index < (uint64_t)(item_array[1] - array_start >> 5));
   }
   return result_count;
 }
@@ -549,7 +549,7 @@ uint64_t Get_FTDN_Managed_Interface(void)
  * @param config_source 配置源数据指针
  * @return 无返回值
  */
-void UI_Parse_Config_Data(longlong *config_context, longlong config_source)
+void UI_Parse_Config_Data(int64_t *config_context, int64_t config_source)
 {
   int32_t *data_ptr1;
   int32_t data_value1;
@@ -559,22 +559,22 @@ void UI_Parse_Config_Data(longlong *config_context, longlong config_source)
   uint64_t *data_ptr3;
   int int_value1;
   int int_value2;
-  ulonglong item_count;
+  uint64_t item_count;
   uint64_t *data_ptr4;
-  longlong long_value1;
-  longlong long_value2;
+  int64_t long_value1;
+  int64_t long_value2;
   uint64_t *data_ptr5;
-  longlong long_value3;
+  int64_t long_value3;
   uint64_t *data_ptr6;
   int16_t stack_config[4];
-  ulonglong stack_size;
+  uint64_t stack_size;
   uint64_t stack_data;
   uint64_t *stack_ptr_98;
   uint64_t *stack_ptr_90;
   uint64_t stack_value_88;
   int32_t stack_value_80;
   void *stack_ptr_78;
-  longlong stack_value_70;
+  int64_t stack_value_70;
   int32_t stack_value_60;
   uint64_t *stack_ptr_58;
   uint64_t *stack_ptr_50;
@@ -587,10 +587,10 @@ void UI_Parse_Config_Data(longlong *config_context, longlong config_source)
     stack_value_88 = 0;
     stack_value_80 = 3;
     stack_config[0] = 10;
-    if (*(longlong *)(config_source + 8) != 0) {
+    if (*(int64_t *)(config_source + 8) != 0) {
       System_Config_Parse(config_source, &stack_ptr_98, stack_config);
     }
-    item_count = (longlong)stack_ptr_90 - (longlong)stack_ptr_98 >> 5;
+    item_count = (int64_t)stack_ptr_90 - (int64_t)stack_ptr_98 >> 5;
     data_ptr6 = stack_ptr_98;
     data_ptr5 = stack_ptr_98;
     data_ptr2 = stack_ptr_90;
@@ -609,7 +609,7 @@ void UI_Parse_Config_Data(longlong *config_context, longlong config_source)
         data_ptr3 = stack_ptr_50;
         data_ptr2 = stack_ptr_58;
         data_ptr5 = stack_ptr_58;
-        if (((longlong)stack_ptr_50 - (longlong)stack_ptr_58 & 0xffffffffffffffe0U) == 0x60) {
+        if (((int64_t)stack_ptr_50 - (int64_t)stack_ptr_58 & 0xffffffffffffffe0U) == 0x60) {
           System_Data_Extract(&stack_ptr_78, stack_ptr_58);
           int_value1 = atoi(data_ptr2[5]);
           int_value2 = atoi(data_ptr2[9]);
@@ -617,13 +617,13 @@ void UI_Parse_Config_Data(longlong *config_context, longlong config_source)
           data_ptr5 = (uint64_t *)config_context[1];
           if (data_ptr5 < (uint64_t *)config_context[2]) {
             *data_ptr5 = stack_data;
-            data_ptr5[1] = (longlong)int_value1;
-            data_ptr5[2] = (longlong)int_value2;
+            data_ptr5[1] = (int64_t)int_value1;
+            data_ptr5[2] = (int64_t)int_value2;
             config_context[1] = config_context[1] + 0x18;
           }
           else {
             long_value3 = *config_context;
-            long_value2 = ((longlong)data_ptr5 - long_value3) / 0x18;
+            long_value2 = ((int64_t)data_ptr5 - long_value3) / 0x18;
             if (long_value2 == 0) {
               long_value2 = 1;
 resize_buffer:
@@ -636,34 +636,34 @@ resize_buffer:
               if (long_value2 != 0) goto resize_buffer;
               data_ptr4 = (uint64_t *)0x0;
             }
-            long_value1 = ((longlong)data_ptr5 - long_value3) / 0x18;
+            long_value1 = ((int64_t)data_ptr5 - long_value3) / 0x18;
             data_ptr5 = data_ptr4;
             if (0 < long_value1) {
               do {
-                data_ptr1 = (int32_t *)((longlong)data_ptr5 + (long_value3 - (longlong)data_ptr4));
+                data_ptr1 = (int32_t *)((int64_t)data_ptr5 + (long_value3 - (int64_t)data_ptr4));
                 data_value1 = data_ptr1[1];
                 data_value2 = data_ptr1[2];
                 data_value3 = data_ptr1[3];
                 *(int32_t *)data_ptr5 = *data_ptr1;
-                *(int32_t *)((longlong)data_ptr5 + 4) = data_value1;
+                *(int32_t *)((int64_t)data_ptr5 + 4) = data_value1;
                 *(int32_t *)(data_ptr5 + 1) = data_value2;
-                *(int32_t *)((longlong)data_ptr5 + 0xc) = data_value3;
+                *(int32_t *)((int64_t)data_ptr5 + 0xc) = data_value3;
                 data_ptr5[2] = *(uint64_t *)
-                              ((longlong)data_ptr5 + (long_value3 - (longlong)data_ptr4) + 0x10);
+                              ((int64_t)data_ptr5 + (long_value3 - (int64_t)data_ptr4) + 0x10);
                 long_value1 = long_value1 + -1;
                 data_ptr5 = data_ptr5 + 3;
               } while (0 < long_value1);
             }
             *data_ptr5 = stack_data;
-            data_ptr5[1] = (longlong)int_value1;
-            data_ptr5[2] = (longlong)int_value2;
+            data_ptr5[1] = (int64_t)int_value1;
+            data_ptr5[2] = (int64_t)int_value2;
             if (*config_context != 0) {
                     // WARNING: Subroutine does not return
               System_Error_Handler();
             }
-            *config_context = (longlong)data_ptr4;
-            config_context[1] = (longlong)(data_ptr5 + 3);
-            config_context[2] = (longlong)(data_ptr4 + long_value2 * 3);
+            *config_context = (int64_t)data_ptr4;
+            config_context[1] = (int64_t)(data_ptr5 + 3);
+            config_context[2] = (int64_t)(data_ptr4 + long_value2 * 3);
             item_count = stack_size;
           }
           stack_ptr_78 = &system_data_buffer_ptr;
@@ -734,10 +734,10 @@ void UI_System_Secure_Cleanup(void)
   int8_t secure_buffer[144];
   uint64_t cleanup_param;
   int8_t cleanup_area[288];
-  ulonglong security_key;
+  uint64_t security_key;
   
   cleanup_param = 0xfffffffffffffffe;
-  security_key = GET_SECURITY_COOKIE() ^ (ulonglong)secure_buffer;
+  security_key = GET_SECURITY_COOKIE() ^ (uint64_t)secure_buffer;
                     // WARNING: Subroutine does not return
   memset(cleanup_area, 0, 0x118);
 }
@@ -758,19 +758,19 @@ void UI_System_Secure_Cleanup(void)
  * @param data_array 数据数组指针
  * @return 无返回值
  */
-void UI_Thread_Safe_Process(uint64_t thread_param, longlong *data_array)
+void UI_Thread_Safe_Process(uint64_t thread_param, int64_t *data_array)
 {
   int mutex_result;
-  longlong array_size;
+  int64_t array_size;
   int8_t thread_buffer[184];
   int8_t temp_storage[32];
   uint64_t mutex_handle;
   uint64_t backup_handle;
   int8_t process_area[2048];
-  ulonglong stack_guard;
+  uint64_t stack_guard;
   
   mutex_handle = 0xfffffffffffffffe;
-  stack_guard = GET_SECURITY_COOKIE() ^ (ulonglong)thread_buffer;
+  stack_guard = GET_SECURITY_COOKIE() ^ (uint64_t)thread_buffer;
   System_Thread_Initialize();
   backup_handle = 0x180c96740;
   mutex_result = _Mtx_lock(0x180c96740);
@@ -788,7 +788,7 @@ void UI_Thread_Safe_Process(uint64_t thread_param, longlong *data_array)
     __Throw_C_error_std__YAXH_Z(mutex_result);
   }
                     // WARNING: Subroutine does not return
-  System_Thread_Finalize(stack_guard ^ (ulonglong)thread_buffer);
+  System_Thread_Finalize(stack_guard ^ (uint64_t)thread_buffer);
 }
 
 
@@ -805,20 +805,20 @@ void UI_Thread_Safe_Process(uint64_t thread_param, longlong *data_array)
  * @param process_flags 处理标志位
  * @return 处理结果指针
  */
-uint64_t * UI_Process_String_Data(longlong *string_array, uint64_t *result_buffer, uint64_t process_param, uint64_t process_flags)
+uint64_t * UI_Process_String_Data(int64_t *string_array, uint64_t *result_buffer, uint64_t process_param, uint64_t process_flags)
 {
   char *char_ptr;
   void *string_data;
-  longlong string_length;
-  ulonglong array_size;
-  longlong current_pos;
+  int64_t string_length;
+  uint64_t array_size;
+  int64_t current_pos;
   void *char_data;
   void *stack_buffer;
-  longlong buffer_handle;
+  int64_t buffer_handle;
   int32_t buffer_size;
   int32_t buffer_type;
   int32_t buffer_flags;
-  longlong temp_var;
+  int64_t temp_var;
   
   current_pos = 0;
   System_String_Initialize(&stack_buffer, &system_buffer_ptr, process_param, process_flags, 0, 0xfffffffffffffffe);
@@ -860,7 +860,7 @@ uint64_t * UI_Process_String_Data(longlong *string_array, uint64_t *result_buffe
   *result_buffer = &system_data_buffer_ptr;
   *(int32_t *)(result_buffer + 2) = buffer_size;
   result_buffer[1] = buffer_handle;
-  *(int32_t *)((longlong)result_buffer + 0x1c) = buffer_flags;
+  *(int32_t *)((int64_t)result_buffer + 0x1c) = buffer_flags;
   *(int32_t *)(result_buffer + 3) = buffer_type;
   return result_buffer;
 }
@@ -877,10 +877,10 @@ uint64_t * UI_Process_String_Data(longlong *string_array, uint64_t *result_buffe
  * @param string_param 字符串参数
  * @return 无返回值
  */
-void UI_String_Process_Wrapper(longlong string_param)
+void UI_String_Process_Wrapper(int64_t string_param)
 {
   uint string_length;
-  longlong temp_var;
+  int64_t temp_var;
   
   if (string_param == 0) {
     // 处理空字符串参数
@@ -898,10 +898,10 @@ void UI_String_Process_Wrapper(longlong string_param)
  * @param string_data 字符串数据指针
  * @return 无返回值
  */
-void UI_String_Length_Process(longlong string_data)
+void UI_String_Length_Process(int64_t string_data)
 {
   uint string_length;
-  longlong char_index;
+  int64_t char_index;
   
   char_index = -1;
   do {
@@ -912,7 +912,7 @@ void UI_String_Length_Process(longlong string_data)
     string_length = 0x1fff;
   }
                     // WARNING: Subroutine does not return
-  memcpy(&system_memory_f020, string_data, (longlong)(int)string_length);
+  memcpy(&system_memory_f020, string_data, (int64_t)(int)string_length);
 }
 
 
@@ -950,7 +950,7 @@ void UI_System_Call(void)
  * @param process_flags 处理标志位
  * @return 处理结果指针
  */
-uint64_t * UI_Process_Mono_String(uint64_t *result_buffer, longlong mono_string, uint64_t process_param, uint64_t process_flags)
+uint64_t * UI_Process_Mono_String(uint64_t *result_buffer, int64_t mono_string, uint64_t process_param, uint64_t process_flags)
 {
   uint64_t mono_handle;
   int32_t buffer_size;
@@ -973,7 +973,7 @@ uint64_t * UI_Process_Mono_String(uint64_t *result_buffer, longlong mono_string,
     *result_buffer = &system_data_buffer_ptr;
     *(int32_t *)(result_buffer + 2) = buffer_length;
     result_buffer[1] = buffer_handle;
-    *(int32_t *)((longlong)result_buffer + 0x1c) = buffer_flags;
+    *(int32_t *)((int64_t)result_buffer + 0x1c) = buffer_flags;
     *(int32_t *)(result_buffer + 3) = buffer_type;
     return result_buffer;
   }
@@ -1011,7 +1011,7 @@ void UI_Debug_Output(uint64_t debug_message)
  * @param element_count 元素数量
  * @return 无返回值
  */
-void UI_Memory_Allocate(longlong element_size, longlong element_count)
+void UI_Memory_Allocate(int64_t element_size, int64_t element_count)
 {
   uint64_t memory_handle;
   
@@ -1054,14 +1054,14 @@ void UI_Mono_Allocator_Initialize(void)
   environment_var[2] = 0x657a6973;
   environment_var[3] = 0x3931383d;
   *(int16_t *)(environment_var + 4) = 0x6b32;
-  *(int8_t *)((longlong)environment_var + 0x12) = 0;
+  *(int8_t *)((int64_t)environment_var + 0x12) = 0;
   allocator_table = (uint64_t *)System_Allocate_Buffer(system_memory_pool_ptr, 0x10, 0x13);
   *(int8_t *)allocator_table = 0;
   System_String_Sanitize(allocator_table);
   *allocator_table = 0x5f43475f4f4e4f4d;
   *(int32_t *)(allocator_table + 1) = 0x41524150;
-  *(int16_t *)((longlong)allocator_table + 0xc) = 0x534d;
-  *(int8_t *)((longlong)allocator_table + 0xe) = 0;
+  *(int16_t *)((int64_t)allocator_table + 0xc) = 0x534d;
+  *(int8_t *)((int64_t)allocator_table + 0xe) = 0;
   SetEnvironmentVariableA(allocator_table, environment_var);
                     // WARNING: Subroutine does not return
   System_Error_Handler(allocator_table);
@@ -1083,29 +1083,29 @@ void UI_Mono_Allocator_Initialize(void)
  */
 void UI_Load_Assembly(void)
 {
-  longlong *domain_handle;
+  int64_t *domain_handle;
   int32_t *assembly_name;
   int32_t name_length;
-  longlong assembly_handle;
+  int64_t assembly_handle;
   uint64_t *class_name;
   int32_t *namespace_ptr;
-  ulonglong string_length;
+  uint64_t string_length;
   int8_t stack_buffer[32];
   void *stack_ptr_b8;
   int32_t *stack_ptr_b0;
   uint stack_size_a8;
-  ulonglong stack_size_a0;
+  uint64_t stack_size_a0;
   int32_t stack_value_98;
   void *stack_ptr_90;
   uint64_t *stack_ptr_88;
   int32_t stack_value_80;
   uint64_t stack_value_78;
   uint64_t stack_value_50;
-  ulonglong stack_guard;
+  uint64_t stack_guard;
   
   domain_handle = ui_system_buffer;
   stack_value_50 = 0xfffffffffffffffe;
-  stack_guard = GET_SECURITY_COOKIE() ^ (ulonglong)stack_buffer;
+  stack_guard = GET_SECURITY_COOKIE() ^ (uint64_t)stack_buffer;
   stack_value_98 = 0;
   stack_ptr_b8 = &system_data_buffer_ptr;
   stack_size_a0 = 0;
@@ -1113,14 +1113,14 @@ void UI_Load_Assembly(void)
   stack_size_a8 = 0;
   System_String_Create(&stack_ptr_b8, 0x15);
   assembly_name = stack_ptr_b0;
-  string_length = (ulonglong)stack_size_a8;
-  namespace_ptr = (int32_t *)((longlong)stack_ptr_b0 + string_length);
+  string_length = (uint64_t)stack_size_a8;
+  namespace_ptr = (int32_t *)((int64_t)stack_ptr_b0 + string_length);
   *namespace_ptr = 0x656c6154;
   namespace_ptr[1] = 0x6c726f57;
   namespace_ptr[2] = 0x442e7364;
   namespace_ptr[3] = 0x654e746f;
-  *(int32_t *)((longlong)stack_ptr_b0 + string_length + 0x10) = 0x6c642e74;
-  *(int16_t *)((longlong)stack_ptr_b0 + string_length + 0x14) = 0x6c;
+  *(int32_t *)((int64_t)stack_ptr_b0 + string_length + 0x10) = 0x6c642e74;
+  *(int16_t *)((int64_t)stack_ptr_b0 + string_length + 0x14) = 0x6c;
   stack_size_a8 = 0x15;
   namespace_ptr = (int32_t *)&system_buffer_ptr;
   if (stack_ptr_b0 != (int32_t *)0x0) {
@@ -1156,7 +1156,7 @@ void UI_Load_Assembly(void)
   stack_value_78 = CONCAT44(stack_value_78._4_4_, name_length);
   *class_name = 0x6c6c6f72746e6f43;
   *(int16_t *)(class_name + 1) = 0x7265;
-  *(int8_t *)((longlong)class_name + 10) = 0;
+  *(int8_t *)((int64_t)class_name + 10) = 0;
   stack_value_80 = 10;
   stack_ptr_b8 = &system_data_buffer_ptr;
   stack_size_a0 = 0;
@@ -1223,24 +1223,24 @@ uint64_t * UI_String_Copy(uint64_t source_string, uint64_t *dest_buffer, uint64_
  * @param data_size 数据大小
  * @return 无返回值
  */
-void UI_Manage_Buffer(longlong buffer_context, uint64_t data_source, int data_size)
+void UI_Manage_Buffer(int64_t buffer_context, uint64_t data_source, int data_size)
 {
-  longlong buffer_start;
-  longlong buffer_end;
-  ulonglong current_size;
-  longlong buffer_capacity;
-  ulonglong required_size;
-  ulonglong new_size;
+  int64_t buffer_start;
+  int64_t buffer_end;
+  uint64_t current_size;
+  int64_t buffer_capacity;
+  uint64_t required_size;
+  uint64_t new_size;
   int data_offset;
   
   data_offset = *(int *)(buffer_context + 0x18) - *(int *)(buffer_context + 0x10);
-  buffer_start = *(longlong *)(buffer_context + 0x18);
-  buffer_end = *(longlong *)(buffer_context + 0x10);
+  buffer_start = *(int64_t *)(buffer_context + 0x18);
+  buffer_end = *(int64_t *)(buffer_context + 0x10);
   current_size = buffer_start - buffer_end;
-  required_size = (ulonglong)(data_offset + data_size);
+  required_size = (uint64_t)(data_offset + data_size);
   if (current_size < required_size) {
     required_size = (buffer_end - buffer_start) + required_size;
-    if ((ulonglong)(*(longlong *)(buffer_context + 0x20) - buffer_start) < required_size) {
+    if ((uint64_t)(*(int64_t *)(buffer_context + 0x20) - buffer_start) < required_size) {
       new_size = current_size * 2;
       if (current_size == 0) {
         new_size = 1;
@@ -1254,8 +1254,8 @@ void UI_Manage_Buffer(longlong buffer_context, uint64_t data_source, int data_si
       }
       else {
         buffer_start = System_Allocate_Buffer(system_memory_pool_ptr, new_size, *(int8_t *)(buffer_context + 0x28));
-        buffer_end = *(longlong *)(buffer_context + 0x10);
-        buffer_capacity = *(longlong *)(buffer_context + 0x18);
+        buffer_end = *(int64_t *)(buffer_context + 0x10);
+        buffer_capacity = *(int64_t *)(buffer_context + 0x18);
       }
       if (buffer_end != buffer_capacity) {
                     // WARNING: Subroutine does not return
@@ -1265,12 +1265,12 @@ void UI_Manage_Buffer(longlong buffer_context, uint64_t data_source, int data_si
                     // WARNING: Subroutine does not return
         memset(buffer_start, 0, required_size);
       }
-      if (*(longlong *)(buffer_context + 0x10) != 0) {
+      if (*(int64_t *)(buffer_context + 0x10) != 0) {
                     // WARNING: Subroutine does not return
         System_Error_Handler();
       }
-      *(longlong *)(buffer_context + 0x10) = buffer_start;
-      *(ulonglong *)(buffer_context + 0x20) = buffer_start + new_size;
+      *(int64_t *)(buffer_context + 0x10) = buffer_start;
+      *(uint64_t *)(buffer_context + 0x20) = buffer_start + new_size;
     }
     else if (required_size != 0) {
                     // WARNING: Subroutine does not return
@@ -1280,11 +1280,11 @@ void UI_Manage_Buffer(longlong buffer_context, uint64_t data_source, int data_si
   else {
     buffer_start = buffer_end + required_size;
   }
-  *(longlong *)(buffer_context + 0x18) = buffer_start;
+  *(int64_t *)(buffer_context + 0x18) = buffer_start;
                     // WARNING: Could not recover jumptable at 0x0001808ffc47. Too many branches
                     // WARNING: Subroutine does not return
                     // WARNING: Treating indirect jump as call
-  memcpy((longlong)data_offset + *(longlong *)(buffer_context + 0x10), data_source, (longlong)data_size);
+  memcpy((int64_t)data_offset + *(int64_t *)(buffer_context + 0x10), data_source, (int64_t)data_size);
   return;
 }
 
@@ -1306,21 +1306,21 @@ void UI_Manage_Buffer(longlong buffer_context, uint64_t data_source, int data_si
  * @param data_size 数据大小
  * @return 无返回值
  */
-void UI_Dynamic_Buffer_Manage(longlong target_pos, longlong source_pos, uint64_t data_source, longlong data_size)
+void UI_Dynamic_Buffer_Manage(int64_t target_pos, int64_t source_pos, uint64_t data_source, int64_t data_size)
 {
-  longlong current_buffer;
-  longlong buffer_start;
-  longlong new_buffer;
+  int64_t current_buffer;
+  int64_t buffer_start;
+  int64_t new_buffer;
   uint64_t buffer_data;
-  ulonglong required_size;
-  longlong buffer_context;
-  ulonglong new_capacity;
+  uint64_t required_size;
+  int64_t buffer_context;
+  uint64_t new_capacity;
   int buffer_offset;
-  longlong *buffer_ptr;
+  int64_t *buffer_ptr;
   uint64_t stack_param;
   
   required_size = (target_pos - buffer_start) + data_size;
-  if ((ulonglong)(current_buffer - buffer_start) < required_size) {
+  if ((uint64_t)(current_buffer - buffer_start) < required_size) {
     new_capacity = source_pos * 2;
     if (source_pos == 0) {
       new_capacity = 1;
@@ -1334,7 +1334,7 @@ void UI_Dynamic_Buffer_Manage(longlong target_pos, longlong source_pos, uint64_t
     }
     else {
       buffer_start = System_Allocate_Buffer(system_memory_pool_ptr, new_capacity, *(int8_t *)(buffer_context + 0x28));
-      target_pos = *(longlong *)(buffer_context + 0x10);
+      target_pos = *(int64_t *)(buffer_context + 0x10);
       new_buffer = *buffer_ptr;
     }
     if (target_pos != new_buffer) {
@@ -1345,12 +1345,12 @@ void UI_Dynamic_Buffer_Manage(longlong target_pos, longlong source_pos, uint64_t
                     // WARNING: Subroutine does not return
       memset(buffer_start, 0, required_size);
     }
-    if (*(longlong *)(buffer_context + 0x10) != 0) {
+    if (*(int64_t *)(buffer_context + 0x10) != 0) {
                     // WARNING: Subroutine does not return
       System_Error_Handler();
     }
-    *(longlong *)(buffer_context + 0x10) = buffer_start;
-    *(ulonglong *)(buffer_context + 0x20) = buffer_start + new_capacity;
+    *(int64_t *)(buffer_context + 0x10) = buffer_start;
+    *(uint64_t *)(buffer_context + 0x20) = buffer_start + new_capacity;
   }
   else {
     stack_param = buffer_data;
@@ -1363,7 +1363,7 @@ void UI_Dynamic_Buffer_Manage(longlong target_pos, longlong source_pos, uint64_t
                     // WARNING: Could not recover jumptable at 0x0001808ffc47. Too many branches
                     // WARNING: Subroutine does not return
                     // WARNING: Treating indirect jump as call
-  memcpy((longlong)buffer_offset + *(longlong *)(buffer_context + 0x10), stack_param);
+  memcpy((int64_t)buffer_offset + *(int64_t *)(buffer_context + 0x10), stack_param);
   return;
 }
 
@@ -1381,8 +1381,8 @@ void UI_Dynamic_Buffer_Manage(longlong target_pos, longlong source_pos, uint64_t
 void UI_Buffer_Manage_Inline(void)
 {
   uint64_t buffer_start;
-  longlong buffer_context;
-  longlong buffer_capacity;
+  int64_t buffer_context;
+  int64_t buffer_capacity;
   int buffer_offset;
   uint64_t *buffer_ptr;
   
@@ -1394,7 +1394,7 @@ void UI_Buffer_Manage_Inline(void)
                     // WARNING: Could not recover jumptable at 0x0001808ffc47. Too many branches
                     // WARNING: Subroutine does not return
                     // WARNING: Treating indirect jump as call
-  memcpy((longlong)buffer_offset + *(longlong *)(buffer_context + 0x10));
+  memcpy((int64_t)buffer_offset + *(int64_t *)(buffer_context + 0x10));
   return;
 }
 

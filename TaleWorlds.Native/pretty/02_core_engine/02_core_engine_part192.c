@@ -6,7 +6,7 @@
 // 全局变量声明
 static const char* EMPTY_STRING = "";  // 原始代码中的 system_buffer_ptr
 static void* NULL_HANDLE = (void*)0x0;  // 空句柄
-static longlong GLOBAL_MUTEX_COUNTER = 0;  // 全局互斥锁计数器
+static int64_t GLOBAL_MUTEX_COUNTER = 0;  // 全局互斥锁计数器
 static void* GLOBAL_ENGINE_CONTEXT = NULL;  // 全局引擎上下文
 static void* GLOBAL_PERFORMANCE_MANAGER = NULL;  // 全局性能管理器
 
@@ -22,11 +22,11 @@ void initialize_thread_resources_and_signal(void* context, ThreadContext* thread
     PerformanceManager* perf_manager;
     uint thread_id;
     uint thread_priority;
-    ulonglong timeout_value;
+    uint64_t timeout_value;
     
     // 初始化栈保护变量
-    ulonglong stack_guard = 0xfffffffffffffffe;
-    ulonglong security_cookie = GLOBAL_SECURITY_COOKIE ^ (ulonglong)&stack_guard;
+    uint64_t stack_guard = 0xfffffffffffffffe;
+    uint64_t security_cookie = GLOBAL_SECURITY_COOKIE ^ (uint64_t)&stack_guard;
     
     // 获取线程内部数据
     internal_data = thread_ctx->internal_data;
@@ -80,19 +80,19 @@ void initialize_thread_resources_and_signal(void* context, ThreadContext* thread
     cleanup_thread_event_data(&thread_event_data);
     
     // 执行栈保护检查
-    execute_stack_protection_check(security_cookie ^ (ulonglong)&stack_guard);
+    execute_stack_protection_check(security_cookie ^ (uint64_t)&stack_guard);
 }
 
 // 函数: 文件句柄关闭和清理
 // 原始函数名: FUN_180174c70
 // 功能: 安全关闭文件句柄，清理文件操作相关资源
-longlong close_file_handle_and_cleanup(void* context, FileContext* file_ctx)
+int64_t close_file_handle_and_cleanup(void* context, FileContext* file_ctx)
 {
     FileInternalData* file_data;
     Mutex* file_mutex;
-    longlong file_position;
-    longlong write_size;
-    longlong write_offset;
+    int64_t file_position;
+    int64_t write_size;
+    int64_t write_offset;
     char write_success;
     int lock_result;
     
@@ -160,8 +160,8 @@ void convert_wide_string_to_multibyte(void* context, const wchar_t* wide_string)
     uint memory_size;
     
     // 初始化栈保护变量
-    ulonglong stack_guard = 0xfffffffffffffffe;
-    ulonglong security_cookie = GLOBAL_SECURITY_COOKIE ^ (ulonglong)&stack_guard;
+    uint64_t stack_guard = 0xfffffffffffffffe;
+    uint64_t security_cookie = GLOBAL_SECURITY_COOKIE ^ (uint64_t)&stack_guard;
     
     // 转换宽字符串为多字节字符串
     wcstombs(multibyte_buffer, wide_string, sizeof(multibyte_buffer));
@@ -233,7 +233,7 @@ void destroy_file_context(void* context, FileContext* file_ctx)
 // 函数: 内存分配器重置
 // 原始函数名: FUN_180175020
 // 功能: 重置内存分配器状态
-MemoryAllocator* reset_memory_allocator(MemoryAllocator* allocator, ulonglong reset_flags, 
+MemoryAllocator* reset_memory_allocator(MemoryAllocator* allocator, uint64_t reset_flags, 
                                        void* context1, void* context2)
 {
     allocator->vtable = &RESET_VTABLE1;
@@ -255,7 +255,7 @@ void log_message(void* context, const wchar_t* message)
     size_t message_length;
     
     // 初始化栈保护变量
-    ulonglong stack_guard = GLOBAL_SECURITY_COOKIE ^ (ulonglong)&message_length;
+    uint64_t stack_guard = GLOBAL_SECURITY_COOKIE ^ (uint64_t)&message_length;
     
     // 计算消息长度
     message_length = 0;
@@ -282,8 +282,8 @@ void log_debug_info(void* context, const wchar_t* debug_info)
     uint prefix_length;
     
     // 初始化栈保护变量
-    ulonglong stack_guard = 0xfffffffffffffffe;
-    ulonglong security_cookie = GLOBAL_SECURITY_COOKIE ^ (ulonglong)&stack_guard;
+    uint64_t stack_guard = 0xfffffffffffffffe;
+    uint64_t security_cookie = GLOBAL_SECURITY_COOKIE ^ (uint64_t)&stack_guard;
     
     // 转换调试信息
     wcstombs(info_buffer, debug_info, sizeof(info_buffer));
@@ -309,7 +309,7 @@ void log_debug_info(void* context, const wchar_t* debug_info)
     cleanup_debug_log_handle(&log_message);
     
     // 执行栈保护检查
-    execute_stack_protection_check(security_cookie ^ (ulonglong)&stack_guard);
+    execute_stack_protection_check(security_cookie ^ (uint64_t)&stack_guard);
 }
 
 // 函数: 错误信息记录
@@ -324,8 +324,8 @@ void log_error_info(void* context, const wchar_t* error_info)
     uint prefix_length;
     
     // 初始化栈保护变量
-    ulonglong stack_guard = 0xfffffffffffffffe;
-    ulonglong security_cookie = GLOBAL_SECURITY_COOKIE ^ (ulonglong)&stack_guard;
+    uint64_t stack_guard = 0xfffffffffffffffe;
+    uint64_t security_cookie = GLOBAL_SECURITY_COOKIE ^ (uint64_t)&stack_guard;
     
     // 转换错误信息
     wcstombs(info_buffer, error_info, sizeof(info_buffer));
@@ -348,7 +348,7 @@ void log_error_info(void* context, const wchar_t* error_info)
     cleanup_error_log_handle(&log_message);
     
     // 执行栈保护检查
-    execute_stack_protection_check(security_cookie ^ (ulonglong)&stack_guard);
+    execute_stack_protection_check(security_cookie ^ (uint64_t)&stack_guard);
 }
 
 // 函数: 资源管理器清理
@@ -359,7 +359,7 @@ ResourceManager* cleanup_resource_manager(ResourceManager* manager, uint cleanup
     ResourceHandle** resource_list;
     ResourceHandle* current_resource;
     uint resource_index;
-    ulonglong cleanup_cookie;
+    uint64_t cleanup_cookie;
     
     cleanup_cookie = 0xfffffffffffffffe;
     
@@ -420,8 +420,8 @@ void** clear_pointer(void** pointer)
 // 功能: 更新图形渲染管线状态
 void update_graphics_render_pipeline(void* render_context, void* frame_data)
 {
-    ulonglong frame_counter;
-    ulonglong pipeline_index;
+    uint64_t frame_counter;
+    uint64_t pipeline_index;
     GraphicsDevice* graphics_device;
     SwapChain* swap_chain;
     RenderTarget* render_target;
@@ -430,7 +430,7 @@ void update_graphics_render_pipeline(void* render_context, void* frame_data)
     int present_result;
     
     // 获取帧计数器
-    frame_counter = *(ulonglong*)(render_context + 0x40);
+    frame_counter = *(uint64_t*)(render_context + 0x40);
     pipeline_index = (frame_counter + 4) % 3;
     
     // 预处理渲染数据
@@ -438,7 +438,7 @@ void update_graphics_render_pipeline(void* render_context, void* frame_data)
     
     // 获取渲染目标
     void* pipeline_data = render_context + pipeline_index * 8;
-    if (*(longlong*)(render_context + 0x28 + pipeline_index * 8) != 0) {
+    if (*(int64_t*)(render_context + 0x28 + pipeline_index * 8) != 0) {
         // 获取图形设备
         graphics_device = get_graphics_device_from_context(GLOBAL_ENGINE_CONTEXT);
         
@@ -467,7 +467,7 @@ void update_graphics_render_pipeline(void* render_context, void* frame_data)
     }
     
     // 更新帧计数器
-    *(longlong*)(render_context + 0x40) = *(longlong*)(render_context + 0x40) + 1;
+    *(int64_t*)(render_context + 0x40) = *(int64_t*)(render_context + 0x40) + 1;
 }
 
 // 函数: 性能监控更新
@@ -516,7 +516,7 @@ void optimize_resource_loading(void* resource_context)
     opt_params.optimization_level = 1;
     opt_params.async_loading = 0;
     opt_params.cache_enabled = 0;
-    opt_params.target_device = *(void**)(*(longlong**)(resource_context + 0x50) + 0x428);
+    opt_params.target_device = *(void**)(*(int64_t**)(resource_context + 0x50) + 0x428);
     
     // 执行资源优化
     optimize_resource_loading_process(GLOBAL_ENGINE_CONTEXT,
@@ -540,11 +540,11 @@ void configure_render_targets(void* render_context, void* frame_data)
     void* perf_context;
     
     // 初始化栈保护变量
-    ulonglong stack_guard = 0xfffffffffffffffe;
-    ulonglong security_cookie = GLOBAL_SECURITY_COOKIE ^ (ulonglong)&stack_guard;
+    uint64_t stack_guard = 0xfffffffffffffffe;
+    uint64_t security_cookie = GLOBAL_SECURITY_COOKIE ^ (uint64_t)&stack_guard;
     
     // 检查性能数据是否可用
-    if (*(longlong*)(frame_data + 0x99e0) != 0) {
+    if (*(int64_t*)(frame_data + 0x99e0) != 0) {
         void* perf_manager = get_performance_manager_from_frame_data(frame_data);
         if (perf_manager != NULL) {
             // 获取目标配置参数
@@ -572,7 +572,7 @@ void configure_render_targets(void* render_context, void* frame_data)
                     target_config.misc_flags = 0;
                     
                     // 创建渲染目标描述
-                    ulonglong target_desc = ((ulonglong)target_height << 16) | target_width;
+                    uint64_t target_desc = ((uint64_t)target_height << 16) | target_width;
                     target_config.format_flags = 0x100;
                     target_config.usage = CONCAT44(target_format, 1);
                     target_config.cpu_access = 2;
@@ -599,7 +599,7 @@ void configure_render_targets(void* render_context, void* frame_data)
     }
     
     // 执行栈保护检查
-    execute_stack_protection_check(security_cookie ^ (ulonglong)&stack_guard);
+    execute_stack_protection_check(security_cookie ^ (uint64_t)&stack_guard);
 }
 
 // 函数: 渲染管线清理
@@ -642,11 +642,11 @@ void initialize_directx11_device(GraphicsDeviceContext* device_context)
     DirectX11DeviceOptions dx11_options;
     ContextCreationParameters context_params;
     int init_result;
-    ulonglong context_budget;
+    uint64_t context_budget;
     
     // 初始化栈保护变量
-    ulonglong stack_guard = 0xfffffffffffffffe;
-    ulonglong security_cookie = GLOBAL_SECURITY_COOKIE ^ (ulonglong)&stack_guard;
+    uint64_t stack_guard = 0xfffffffffffffffe;
+    uint64_t security_cookie = GLOBAL_SECURITY_COOKIE ^ (uint64_t)&stack_guard;
     
     // 设置设备上下文虚表
     device_context->vtable = &GRAPHICS_DEVICE_VTABLE;
@@ -672,7 +672,7 @@ void initialize_directx11_device(GraphicsDeviceContext* device_context)
     
     // 设置设备标识
     device_context->device_id = 0;
-    *(uint*)((longlong)device_context + 0x1ec) = 0;
+    *(uint*)((int64_t)device_context + 0x1ec) = 0;
     
     // 注册内存分配器
     register_memory_allocator(device_context);
@@ -742,7 +742,7 @@ void initialize_directx11_device(GraphicsDeviceContext* device_context)
         if (*(int*)(GLOBAL_ENGINE_CONTEXT + 0x380) == 3) {
             memory_limit = 0xc0;
         }
-        context_budget = (ulonglong)memory_limit;
+        context_budget = (uint64_t)memory_limit;
     }
     
     // 应用内存限制
@@ -750,16 +750,16 @@ void initialize_directx11_device(GraphicsDeviceContext* device_context)
     render_context->set_multithreading_mode(render_context, 2);
     
     device_context->frame_index = 0;
-    *(uint*)((longlong)device_context + 0x1ec) = 0;
+    *(uint*)((int64_t)device_context + 0x1ec) = 0;
     
     // 执行栈保护检查
-    execute_stack_protection_check(security_cookie ^ (ulonglong)&stack_guard);
+    execute_stack_protection_check(security_cookie ^ (uint64_t)&stack_guard);
 }
 
 // 函数: 图形设备重置
 // 原始函数名: FUN_180175ee0
 // 功能: 重置图形设备状态
-GraphicsDevice* reset_graphics_device(GraphicsDevice* device, ulonglong reset_flags, 
+GraphicsDevice* reset_graphics_device(GraphicsDevice* device, uint64_t reset_flags, 
                                      void* context1, void* context2)
 {
     device->vtable = &RESET_DEVICE_VTABLE;
@@ -790,13 +790,13 @@ RenderContext* reset_render_context(RenderContext* context, uint reset_flags,
 // 函数: 纹理加载
 // 原始函数名: FUN_180175f80
 // 功能: 加载纹理资源
-longlong load_texture_resource(void* texture_manager, void* texture_data, 
+int64_t load_texture_resource(void* texture_manager, void* texture_data, 
                                void* context1, void* context2)
 {
     int load_result;
-    ulonglong texture_handle;
+    uint64_t texture_handle;
     TextureResource* texture_resource;
-    longlong texture_index;
+    int64_t texture_index;
     void* texture_cache;
     
     // 获取纹理缓存
@@ -810,10 +810,10 @@ longlong load_texture_resource(void* texture_manager, void* texture_data,
     // 检查是否需要创建新纹理
     if ((load_result < 0) || 
         (texture_cache = get_texture_cache_segment(GLOBAL_TEXTURE_MANAGER),
-         (ulonglong)(get_texture_cache_end(GLOBAL_TEXTURE_MANAGER) - texture_cache >> 5) <= (ulonglong)(longlong)load_result)) {
+         (uint64_t)(get_texture_cache_end(GLOBAL_TEXTURE_MANAGER) - texture_cache >> 5) <= (uint64_t)(int64_t)load_result)) {
         texture_index = create_new_texture_entry();
     } else {
-        texture_index = (longlong)load_result * 0x20 + texture_cache;
+        texture_index = (int64_t)load_result * 0x20 + texture_cache;
     }
     
     // 设置纹理数据
@@ -824,7 +824,7 @@ longlong load_texture_resource(void* texture_manager, void* texture_data,
     set_texture_name_length(texture_data, name_length);
     
     // 设置纹理名称
-    char* name_buffer = (char*)((ulonglong)*(uint*)(texture_data + 0x10) + *(longlong*)(texture_data + 8));
+    char* name_buffer = (char*)((uint64_t)*(uint*)(texture_data + 0x10) + *(int64_t*)(texture_data + 8));
     *name_buffer = 'T';
     *(name_buffer + 1) = 'e';
     *(name_buffer + 2) = 'x';

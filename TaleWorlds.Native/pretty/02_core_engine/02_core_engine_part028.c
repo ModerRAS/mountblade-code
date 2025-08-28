@@ -12,7 +12,7 @@ void process_packet_type_1(uint64_t param_1, uint64_t param_2)
   char system_status;          // 系统状态标志
   int32_t packet_header[4]; // 数据包头
   void *buffer_ptr;       // 缓冲区指针
-  longlong buffer_size;        // 缓冲区大小
+  int64_t buffer_size;        // 缓冲区大小
   
   // 记录调试信息并初始化数据包处理
   log_debug_info(system_message_context, 0, 0x100000000, 1, &DEBUG_PACKET_TYPE_1, param_2, 0xfffffffffffffffe);
@@ -33,8 +33,8 @@ void process_packet_type_1(uint64_t param_1, uint64_t param_2)
     
     // 根据系统状态决定是否处理数据包
     if (system_status == '\0') {
-      (**(code **)(*(longlong *)GLOBAL_SYSTEM_TABLE[1] + 0x18))
-                ((longlong *)GLOBAL_SYSTEM_TABLE[1], &buffer_ptr, packet_header);
+      (**(code **)(*(int64_t *)GLOBAL_SYSTEM_TABLE[1] + 0x18))
+                ((int64_t *)GLOBAL_SYSTEM_TABLE[1], &buffer_ptr, packet_header);
     }
     
     // 清理缓冲区并检查错误状态
@@ -60,7 +60,7 @@ void process_packet_type_2(uint64_t param_1, int32_t param_2, uint64_t param_3)
   char system_status;          // 系统状态标志
   int32_t packet_header[2]; // 数据包头
   void *buffer_ptr;       // 缓冲区指针
-  longlong buffer_size;        // 缓冲区大小
+  int64_t buffer_size;        // 缓冲区大小
   
   // 记录调试信息并初始化数据包处理
   log_debug_info(system_message_context, 0, 0x100000000, 0xc, &DEBUG_PACKET_TYPE_2, param_3, 0xfffffffffffffffe);
@@ -81,8 +81,8 @@ void process_packet_type_2(uint64_t param_1, int32_t param_2, uint64_t param_3)
     
     // 根据系统状态决定是否处理数据包
     if (system_status == '\0') {
-      (**(code **)(*(longlong *)GLOBAL_SYSTEM_TABLE[1] + 0x18))
-                ((longlong *)GLOBAL_SYSTEM_TABLE[1], &buffer_ptr, packet_header);
+      (**(code **)(*(int64_t *)GLOBAL_SYSTEM_TABLE[1] + 0x18))
+                ((int64_t *)GLOBAL_SYSTEM_TABLE[1], &buffer_ptr, packet_header);
     }
     
     // 清理缓冲区并检查错误状态
@@ -154,17 +154,17 @@ void cleanup_structure(uint64_t *param_1)
 
 {
   // 检查并清理指针字段
-  if (*(longlong *)((longlong)param_1 + 0x52) != 0) {
+  if (*(int64_t *)((int64_t)param_1 + 0x52) != 0) {
                     // 严重错误：不应该有活动的指针
     system_error_handler();
   }
-  *(uint64_t *)((longlong)param_1 + 0x52) = 0;
+  *(uint64_t *)((int64_t)param_1 + 0x52) = 0;
   
-  if (*(longlong *)((longlong)param_1 + 0x5a) != 0) {
+  if (*(int64_t *)((int64_t)param_1 + 0x5a) != 0) {
                     // 严重错误：不应该有活动的指针
     system_error_handler();
   }
-  *(uint64_t *)((longlong)param_1 + 0x5a) = 0;
+  *(uint64_t *)((int64_t)param_1 + 0x5a) = 0;
   
   if (param_1[8] != 0) {
                     // 严重错误：不应该有活动的指针
@@ -198,14 +198,14 @@ void cleanup_structure(uint64_t *param_1)
 
 // 函数：验证结构体链表
 // 功能：验证结构体链表中的每个节点是否正确清理
-void validate_structure_chain(longlong *param_1)
+void validate_structure_chain(int64_t *param_1)
 
 {
-  longlong *current_node;      // 当前节点指针
-  longlong *end_node;          // 结束节点指针
+  int64_t *current_node;      // 当前节点指针
+  int64_t *end_node;          // 结束节点指针
   
-  current_node = (longlong *)param_1[1];
-  end_node = (longlong *)*param_1;
+  current_node = (int64_t *)param_1[1];
+  end_node = (int64_t *)*param_1;
   while( true ) {
     // 检查是否到达链表末尾
     if (current_node == end_node) {
@@ -217,14 +217,14 @@ void validate_structure_chain(longlong *param_1)
     }
     
     // 验证当前节点的字段
-    if (*(longlong *)((longlong)current_node + 0x12) != 0) {
+    if (*(int64_t *)((int64_t)current_node + 0x12) != 0) {
                     // 严重错误：节点字段应该为空
       system_error_handler();
     }
-    *(uint64_t *)((longlong)current_node + 0x12) = 0;
+    *(uint64_t *)((int64_t)current_node + 0x12) = 0;
     
-    if (*(longlong *)((longlong)current_node + 0x1a) != 0) break;
-    *(uint64_t *)((longlong)current_node + 0x1a) = 0;
+    if (*(int64_t *)((int64_t)current_node + 0x1a) != 0) break;
+    *(uint64_t *)((int64_t)current_node + 0x1a) = 0;
     
     if (*current_node != 0) {
                     // 严重错误：节点数据应该为空
@@ -237,7 +237,7 @@ void validate_structure_chain(longlong *param_1)
       system_error_handler();
     }
     current_node[1] = 0;
-    current_node = (longlong *)((longlong)current_node + 0x24);
+    current_node = (int64_t *)((int64_t)current_node + 0x24);
   }
                     // 严重错误：链表验证失败
   system_error_handler();
@@ -249,7 +249,7 @@ void validate_structure_chain(longlong *param_1)
 
 // 函数：序列化数据到缓冲区
 // 功能：将复杂的数据结构序列化到缓冲区中
-void serialize_data_to_buffer(longlong source_ptr, longlong *buffer_ptr)
+void serialize_data_to_buffer(int64_t source_ptr, int64_t *buffer_ptr)
 
 {
   ushort data_size;            // 数据大小
@@ -257,38 +257,38 @@ void serialize_data_to_buffer(longlong source_ptr, longlong *buffer_ptr)
   int *buffer_writer;         // 缓冲区写入器
   int32_t *write_position;  // 写入位置
   uint *size_writer;          // 大小写入器
-  longlong data_length;       // 数据长度
-  longlong element_count;     // 元素数量
+  int64_t data_length;       // 数据长度
+  int64_t element_count;     // 元素数量
   int item_count;             // 项目计数
-  ulonglong copy_size;        // 复制大小
-  longlong element_offset;    // 元素偏移
+  uint64_t copy_size;        // 复制大小
+  int64_t element_offset;    // 元素偏移
   
   // 初始化缓冲区写入
   initialize_buffer_writer(buffer_ptr, source_ptr);
   
   // 计算数据长度和元素数量
-  data_length = *(longlong *)(source_ptr + 0x28) - *(longlong *)(source_ptr + 0x20);
+  data_length = *(int64_t *)(source_ptr + 0x28) - *(int64_t *)(source_ptr + 0x20);
   buffer_writer = (int *)buffer_ptr[1];
   data_length = data_length / 0x12 + (data_length >> 0x3f);
   item_count = (int)(data_length >> 1) - (int)(data_length >> 0x3f);
   
   // 检查缓冲区空间
-  if ((ulonglong)((*buffer_ptr - (longlong)buffer_writer) + buffer_ptr[2]) < 5) {
-    expand_buffer_capacity(buffer_ptr, (longlong)buffer_writer + (4 - *buffer_ptr));
+  if ((uint64_t)((*buffer_ptr - (int64_t)buffer_writer) + buffer_ptr[2]) < 5) {
+    expand_buffer_capacity(buffer_ptr, (int64_t)buffer_writer + (4 - *buffer_ptr));
     buffer_writer = (int *)buffer_ptr[1];
   }
   
   // 写入项目计数
   *buffer_writer = item_count;
   write_position = (int32_t *)(buffer_ptr[1] + 4);
-  buffer_ptr[1] = (longlong)write_position;
-  data_length = (longlong)item_count;
+  buffer_ptr[1] = (int64_t)write_position;
+  data_length = (int64_t)item_count;
   
   // 处理每个元素
   if (0 < item_count) {
     element_offset = 0;
     do {
-      element_count = *(longlong *)(source_ptr + 0x20) + element_offset;
+      element_count = *(int64_t *)(source_ptr + 0x20) + element_offset;
       
       // 写入元素数据
       write_element_data(buffer_ptr, write_position, element_count, 0x10);
@@ -310,7 +310,7 @@ void serialize_data_to_buffer(longlong source_ptr, longlong *buffer_ptr)
 
 // 函数：序列化数据到全局缓冲区
 // 功能：将数据序列化到全局缓冲区（简化版本）
-void serialize_to_global_buffer(longlong source_ptr)
+void serialize_to_global_buffer(int64_t source_ptr)
 
 {
   ushort data_size;            // 数据大小
@@ -318,24 +318,24 @@ void serialize_to_global_buffer(longlong source_ptr)
   int *buffer_writer;         // 缓冲区写入器
   int32_t *write_position;  // 写入位置
   uint *size_writer;          // 大小写入器
-  longlong data_length;       // 数据长度
-  longlong *global_buffer;    // 全局缓冲区
-  longlong element_count;     // 元素数量
+  int64_t data_length;       // 数据长度
+  int64_t *global_buffer;    // 全局缓冲区
+  int64_t element_count;     // 元素数量
   int item_count;             // 项目计数
-  ulonglong copy_size;        // 复制大小
-  longlong element_offset;    // 元素偏移
+  uint64_t copy_size;        // 复制大小
+  int64_t element_offset;    // 元素偏移
   
   // 初始化全局缓冲区写入
   initialize_global_buffer_writer();
   
   // 计算数据长度和元素数量
-  data_length = *(longlong *)(source_ptr + 0x28) - *(longlong *)(source_ptr + 0x20);
+  data_length = *(int64_t *)(source_ptr + 0x28) - *(int64_t *)(source_ptr + 0x20);
   buffer_writer = (int *)global_buffer[1];
   data_length = data_length / 0x12 + (data_length >> 0x3f);
   item_count = (int)(data_length >> 1) - (int)(data_length >> 0x3f);
   
   // 检查缓冲区空间
-  if ((ulonglong)((*global_buffer - (longlong)buffer_writer) + global_buffer[2]) < 5) {
+  if ((uint64_t)((*global_buffer - (int64_t)buffer_writer) + global_buffer[2]) < 5) {
     expand_global_buffer_capacity();
     buffer_writer = (int *)global_buffer[1];
   }
@@ -343,14 +343,14 @@ void serialize_to_global_buffer(longlong source_ptr)
   // 写入项目计数
   *buffer_writer = item_count;
   write_position = (int32_t *)(global_buffer[1] + 4);
-  global_buffer[1] = (longlong)write_position;
-  data_length = (longlong)item_count;
+  global_buffer[1] = (int64_t)write_position;
+  data_length = (int64_t)item_count;
   
   // 处理每个元素
   if (0 < item_count) {
     element_offset = 0;
     do {
-      element_count = *(longlong *)(source_ptr + 0x20) + element_offset;
+      element_count = *(int64_t *)(source_ptr + 0x20) + element_offset;
       
       // 写入元素数据
       write_global_element_data(write_position, element_count, 0x10);
@@ -379,16 +379,16 @@ void process_data_array(uint *buffer_ptr)
   uint64_t data_address;    // 数据地址
   int32_t *temp_buffer;    // 临时缓冲区
   uint *size_writer;          // 大小写入器
-  longlong *global_buffer;    // 全局缓冲区
-  longlong element_offset;    // 元素偏移
-  ulonglong copy_size;        // 复制大小
-  longlong array_length;      // 数组长度
+  int64_t *global_buffer;    // 全局缓冲区
+  int64_t element_offset;    // 元素偏移
+  uint64_t copy_size;        // 复制大小
+  int64_t array_length;      // 数组长度
   uint element_index;         // 元素索引
-  longlong source_address;    // 源地址
+  int64_t source_address;    // 源地址
   
-  copy_size = (ulonglong)element_index;
+  copy_size = (uint64_t)element_index;
   do {
-    element_offset = *(longlong *)(source_address + 0x20) + copy_size;
+    element_offset = *(int64_t *)(source_address + 0x20) + copy_size;
     
     // 处理数组元素
     process_array_element(buffer_ptr, element_offset, 0x10);
@@ -416,14 +416,14 @@ void write_data_block_to_buffer(int32_t *buffer_ptr)
   uint64_t data_address;    // 数据地址
   int32_t *temp_buffer;    // 临时缓冲区
   uint *size_writer;          // 大小写入器
-  longlong *global_buffer;    // 全局缓冲区
-  longlong data_offset;       // 数据偏移
-  ulonglong copy_size;        // 复制大小
+  int64_t *global_buffer;    // 全局缓冲区
+  int64_t data_offset;       // 数据偏移
+  uint64_t copy_size;        // 复制大小
   int32_t block_header;    // 数据块头部
-  longlong source_address;    // 源地址
+  int64_t source_address;    // 源地址
   
   // 检查缓冲区空间并写入头部
-  if ((ulonglong)((*global_buffer - (longlong)buffer_ptr) + global_buffer[2]) < 5) {
+  if ((uint64_t)((*global_buffer - (int64_t)buffer_ptr) + global_buffer[2]) < 5) {
     expand_buffer_capacity();
     buffer_ptr = (int32_t *)global_buffer[1];
   }
@@ -433,7 +433,7 @@ void write_data_block_to_buffer(int32_t *buffer_ptr)
   temp_buffer = (int32_t *)global_buffer[1];
   
   // 写入数据块大小
-  if ((ulonglong)((*global_buffer - (longlong)temp_buffer) + global_buffer[2]) < 5) {
+  if ((uint64_t)((*global_buffer - (int64_t)temp_buffer) + global_buffer[2]) < 5) {
     expand_buffer_capacity();
     temp_buffer = (int32_t *)global_buffer[1];
   }
@@ -443,19 +443,19 @@ void write_data_block_to_buffer(int32_t *buffer_ptr)
   data_size = *(ushort *)(source_address + 0x50);
   
   // 写入数据大小
-  if ((ulonglong)((*global_buffer - (longlong)size_writer) + global_buffer[2]) < 5) {
+  if ((uint64_t)((*global_buffer - (int64_t)size_writer) + global_buffer[2]) < 5) {
     expand_buffer_capacity();
     size_writer = (uint *)global_buffer[1];
   }
   *size_writer = (uint)data_size;
   temp_buffer = (int32_t *)(global_buffer[1] + 4);
-  global_buffer[1] = (longlong)temp_buffer;
+  global_buffer[1] = (int64_t)temp_buffer;
   
   // 写入数据内容
   if (*(ushort *)(source_address + 0x50) != 0) {
     data_address = *(uint64_t *)(source_address + 0x48);
-    copy_size = (ulonglong)*(ushort *)(source_address + 0x50) * 4;
-    if ((ulonglong)((*global_buffer - (longlong)temp_buffer) + global_buffer[2]) <= copy_size) {
+    copy_size = (uint64_t)*(ushort *)(source_address + 0x50) * 4;
+    if ((uint64_t)((*global_buffer - (int64_t)temp_buffer) + global_buffer[2]) <= copy_size) {
       expand_buffer_capacity();
       temp_buffer = (int32_t *)global_buffer[1];
     }
@@ -480,10 +480,10 @@ void write_simple_data_block(void)
   uint64_t data_address;    // 数据地址
   int32_t *temp_buffer;    // 临时缓冲区
   uint *size_writer;          // 大小写入器
-  longlong *global_buffer;    // 全局缓冲区
-  longlong data_offset;       // 数据偏移
-  ulonglong copy_size;        // 复制大小
-  longlong source_address;    // 源地址
+  int64_t *global_buffer;    // 全局缓冲区
+  int64_t data_offset;       // 数据偏移
+  uint64_t copy_size;        // 复制大小
+  int64_t source_address;    // 源地址
   
   // 扩展缓冲区容量
   expand_buffer_capacity();
@@ -495,7 +495,7 @@ void write_simple_data_block(void)
   data_size = *(ushort *)(source_address + 0x62);
   
   // 写入数据大小
-  if ((ulonglong)((*global_buffer - (longlong)size_writer) + global_buffer[2]) < 5) {
+  if ((uint64_t)((*global_buffer - (int64_t)size_writer) + global_buffer[2]) < 5) {
     expand_buffer_capacity();
     size_writer = (uint *)global_buffer[1];
   }
@@ -506,8 +506,8 @@ void write_simple_data_block(void)
   // 写入数据内容
   if (*(ushort *)(source_address + 0x62) != 0) {
     data_address = *(uint64_t *)(source_address + 0x5a);
-    copy_size = (ulonglong)*(ushort *)(source_address + 0x62) * 4;
-    if ((ulonglong)((*global_buffer - data_offset) + global_buffer[2]) <= copy_size) {
+    copy_size = (uint64_t)*(ushort *)(source_address + 0x62) * 4;
+    if ((uint64_t)((*global_buffer - data_offset) + global_buffer[2]) <= copy_size) {
       expand_buffer_capacity();
       data_offset = global_buffer[1];
     }

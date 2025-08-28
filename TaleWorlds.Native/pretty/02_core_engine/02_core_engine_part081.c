@@ -14,16 +14,16 @@ void process_text_layout_and_position_calculation(void)
 {
   float temp_float_1;
   float *float_pointer;
-  longlong long_var_1;
+  int64_t long_var_1;
   char char_var;
-  ulonglong ulong_var_1;
-  ulonglong ulong_var_2;
-  ulonglong unaff_rbx;
-  longlong unaff_rbp;
-  longlong unaff_rsi;
-  ulonglong unaff_rdi;
-  longlong long_var_2;
-  ulonglong unaff_r12;
+  uint64_t ulong_var_1;
+  uint64_t ulong_var_2;
+  uint64_t unaff_rbx;
+  int64_t unaff_rbp;
+  int64_t unaff_rsi;
+  uint64_t unaff_rdi;
+  int64_t long_var_2;
+  uint64_t unaff_r12;
   uint uint_var_1;
   uint uint_var_2;
   int int_var;
@@ -72,7 +72,7 @@ void process_text_layout_and_position_calculation(void)
             ulong_var_1 = unaff_rbx;
           }
           uint_var_1 = uint_var_1 + 1;
-          ulong_var_2 = (ulonglong)uint_var_1;
+          ulong_var_2 = (uint64_t)uint_var_1;
           unaff_rdi = ulong_var_1 + 1;
         } while (unaff_rdi < unaff_rbx);
       }
@@ -93,7 +93,7 @@ void process_text_layout_and_position_calculation(void)
     in_stack_c8 = unaff_xmm9_dc;
     do {
       temp_float_4 = temp_float_4 + unaff_xmm10_da;
-      long_var_2 = *(longlong *)(unaff_rsi + 0x1af8);
+      long_var_2 = *(int64_t *)(unaff_rsi + 0x1af8);
       
       // 边界检查条件
       if (((((temp_float_4 < *(float *)(long_var_2 + 0x22c) || temp_float_4 == *(float *)(long_var_2 + 0x22c)) ||
@@ -137,7 +137,7 @@ void process_text_layout_and_position_calculation(void)
         ulong_var_1 = unaff_rbx;
       }
       uint_var_2 = (int)ulong_var_2 + 1;
-      ulong_var_2 = (ulonglong)uint_var_2;
+      ulong_var_2 = (uint64_t)uint_var_2;
       unaff_rdi = ulong_var_1 + 1;
     }
     unaff_xmm6_da = temp_float_3 + (float)(int)uint_var_2 * unaff_xmm10_da;
@@ -148,13 +148,13 @@ void process_text_layout_and_position_calculation(void)
   temp_float_4 = unaff_xmm13_da + (unaff_xmm6_da - unaff_xmm13_da);
   temp_float_3 = unaff_xmm14_da + unaff_xmm11_da;
   update_render_state(unaff_rbp + 0x48);
-  long_var_2 = *(longlong *)(unaff_rsi + 0x1af8);
-  *(ulonglong *)(long_var_2 + 0x144) = unaff_r12;
+  long_var_2 = *(int64_t *)(unaff_rsi + 0x1af8);
+  *(uint64_t *)(long_var_2 + 0x144) = unaff_r12;
   *(float *)(long_var_2 + 0x14c) = unaff_xmm14_da;
   *(float *)(long_var_2 + 0x150) = unaff_xmm13_da;
   *(float *)(long_var_2 + 0x154) = temp_float_3;
   *(float *)(long_var_2 + 0x158) = temp_float_4;
-  long_var_1 = *(longlong *)(unaff_rsi + 0x1af8);
+  long_var_1 = *(int64_t *)(unaff_rsi + 0x1af8);
   if (((((*(float *)(long_var_1 + 0x22c) <= temp_float_4 && temp_float_4 != *(float *)(long_var_1 + 0x22c)) &&
         (unaff_xmm13_da < *(float *)(long_var_1 + 0x234))) &&
        ((*(float *)(long_var_1 + 0x228) <= temp_float_3 && temp_float_3 != *(float *)(long_var_1 + 0x228) &&
@@ -176,16 +176,16 @@ void process_text_layout_simple(void)
 {
   float temp_float_1;
   float *float_pointer;
-  longlong long_var_1;
+  int64_t long_var_1;
   char char_var;
-  ulonglong ulong_var_1;
-  ulonglong ulong_var_2;
-  ulonglong unaff_rbx;
-  longlong unaff_rbp;
-  longlong unaff_rsi;
-  ulonglong unaff_rdi;
-  longlong long_var_2;
-  ulonglong unaff_r12;
+  uint64_t ulong_var_1;
+  uint64_t ulong_var_2;
+  uint64_t unaff_rbx;
+  int64_t unaff_rbp;
+  int64_t unaff_rsi;
+  uint64_t unaff_rdi;
+  int64_t long_var_2;
+  uint64_t unaff_r12;
   uint uint_var_1;
   float temp_float_2;
   float unaff_xmm6_da;
@@ -204,7 +204,7 @@ void process_text_layout_simple(void)
   temp_float_4 = unaff_xmm6_da;
   
   do {
-    long_var_2 = *(longlong *)(unaff_rsi + 0x1af8);
+    long_var_2 = *(int64_t *)(unaff_rsi + 0x1af8);
     
     // 简化的边界检查
     if (((((temp_float_3 < *(float *)(long_var_2 + 0x22c) || temp_float_3 == *(float *)(long_var_2 + 0x22c)) ||
@@ -250,7 +250,7 @@ void process_text_layout_simple(void)
       ulong_var_2 = unaff_rbx;
     }
     uint_var_1 = (int)ulong_var_1 + 1;
-    ulong_var_1 = (ulonglong)uint_var_1;
+    ulong_var_1 = (uint64_t)uint_var_1;
     unaff_rdi = ulong_var_2 + 1;
   }
   
@@ -259,13 +259,13 @@ void process_text_layout_simple(void)
   temp_float_4 = unaff_xmm13_da + temp_float_4;
   temp_float_3 = unaff_xmm14_da + unaff_xmm11_da;
   update_render_state(unaff_rbp + 0x48);
-  long_var_2 = *(longlong *)(unaff_rsi + 0x1af8);
-  *(ulonglong *)(long_var_2 + 0x144) = unaff_r12;
+  long_var_2 = *(int64_t *)(unaff_rsi + 0x1af8);
+  *(uint64_t *)(long_var_2 + 0x144) = unaff_r12;
   *(float *)(long_var_2 + 0x14c) = unaff_xmm14_da;
   *(float *)(long_var_2 + 0x150) = unaff_xmm13_da;
   *(float *)(long_var_2 + 0x154) = temp_float_3;
   *(float *)(long_var_2 + 0x158) = temp_float_4;
-  long_var_1 = *(longlong *)(unaff_rsi + 0x1af8);
+  long_var_1 = *(int64_t *)(unaff_rsi + 0x1af8);
   if (((((*(float *)(long_var_1 + 0x22c) <= temp_float_4 && temp_float_4 != *(float *)(long_var_1 + 0x22c)) &&
         (unaff_xmm13_da < *(float *)(long_var_1 + 0x234))) &&
        ((*(float *)(long_var_1 + 0x228) <= temp_float_3 && temp_float_3 != *(float *)(long_var_1 + 0x228) &&
@@ -285,14 +285,14 @@ void process_text_layout_simple(void)
  */
 void process_text_lines_batch(void)
 {
-  longlong long_var_1;
+  int64_t long_var_1;
   char char_var;
-  ulonglong ulong_var_1;
-  ulonglong unaff_rbx;
-  longlong unaff_rbp;
-  longlong unaff_rsi;
-  ulonglong unaff_rdi;
-  longlong long_var_2;
+  uint64_t ulong_var_1;
+  uint64_t unaff_rbx;
+  int64_t unaff_rbp;
+  int64_t unaff_rsi;
+  uint64_t unaff_rdi;
+  int64_t long_var_2;
   uint64_t unaff_r12;
   int unaff_r14d;
   float unaff_xmm6_da;
@@ -322,13 +322,13 @@ void process_text_lines_batch(void)
   temp_float_1 = unaff_xmm13_da + temp_float_1;
   temp_float_2 = unaff_xmm14_da + unaff_xmm11_da;
   update_render_state(unaff_rbp + 0x48);
-  long_var_2 = *(longlong *)(unaff_rsi + 0x1af8);
+  long_var_2 = *(int64_t *)(unaff_rsi + 0x1af8);
   *(uint64_t *)(long_var_2 + 0x144) = unaff_r12;
   *(float *)(long_var_2 + 0x14c) = unaff_xmm14_da;
   *(float *)(long_var_2 + 0x150) = unaff_xmm13_da;
   *(float *)(long_var_2 + 0x154) = temp_float_2;
   *(float *)(long_var_2 + 0x158) = temp_float_1;
-  long_var_1 = *(longlong *)(unaff_rsi + 0x1af8);
+  long_var_1 = *(int64_t *)(unaff_rsi + 0x1af8);
   if (((((*(float *)(long_var_1 + 0x22c) <= temp_float_1 && temp_float_1 != *(float *)(long_var_1 + 0x22c)) &&
         (unaff_xmm13_da < *(float *)(long_var_1 + 0x234))) &&
        (*(float *)(long_var_1 + 0x228) <= temp_float_2 && temp_float_2 != *(float *)(long_var_1 + 0x228))) &&
@@ -351,11 +351,11 @@ void process_text_lines_batch(void)
  */
 void process_text_fast(void)
 {
-  longlong long_var_1;
+  int64_t long_var_1;
   char char_var;
-  longlong unaff_rbp;
-  longlong unaff_rsi;
-  longlong long_var_2;
+  int64_t unaff_rbp;
+  int64_t unaff_rsi;
+  int64_t long_var_2;
   uint64_t unaff_r12;
   float temp_float_1;
   float unaff_xmm6_da;
@@ -371,13 +371,13 @@ void process_text_fast(void)
   temp_float_1 = unaff_xmm13_da + unaff_xmm6_da;
   temp_float_2 = unaff_xmm14_da + unaff_xmm11_da;
   update_render_state(unaff_rbp + 0x48);
-  long_var_2 = *(longlong *)(unaff_rsi + 0x1af8);
+  long_var_2 = *(int64_t *)(unaff_rsi + 0x1af8);
   *(uint64_t *)(long_var_2 + 0x144) = unaff_r12;
   *(float *)(long_var_2 + 0x14c) = unaff_xmm14_da;
   *(float *)(long_var_2 + 0x150) = unaff_xmm13_da;
   *(float *)(long_var_2 + 0x154) = temp_float_2;
   *(float *)(long_var_2 + 0x158) = temp_float_1;
-  long_var_1 = *(longlong *)(unaff_rsi + 0x1af8);
+  long_var_1 = *(int64_t *)(unaff_rsi + 0x1af8);
   if (((((*(float *)(long_var_1 + 0x22c) <= temp_float_1 && temp_float_1 != *(float *)(long_var_1 + 0x22c)) &&
         (unaff_xmm13_da < *(float *)(long_var_1 + 0x234))) &&
        (*(float *)(long_var_1 + 0x228) <= temp_float_2 && temp_float_2 != *(float *)(long_var_1 + 0x228))) &&
@@ -404,8 +404,8 @@ void validate_text_layout_bounds(void)
   int8_t in_al;
   char char_var;
   uint8_t in_register_1;
-  longlong unaff_rsi;
-  longlong in_r10;
+  int64_t unaff_rsi;
+  int64_t in_r10;
   char unaff_r12b;
   float unaff_xmm7_da;
   float unaff_xmm13_da;
@@ -460,13 +460,13 @@ void text_processing_wrapper(uint64_t param_1, uint64_t param_2, uint64_t param_
  */
 void process_text_with_params(uint64_t param_1, uint64_t param_2)
 {
-  longlong long_var_1;
-  longlong long_var_2;
+  int64_t long_var_1;
+  int64_t long_var_2;
   int int_var;
   
   long_var_2 = SYSTEM_DATA_MANAGER_A;
-  *(int8_t *)(*(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1af8) + 0xb1) = 1;
-  if (*(char *)(*(longlong *)(long_var_2 + 0x1af8) + 0xb4) == '\0') {
+  *(int8_t *)(*(int64_t *)(SYSTEM_DATA_MANAGER_A + 0x1af8) + 0xb1) = 1;
+  if (*(char *)(*(int64_t *)(long_var_2 + 0x1af8) + 0xb4) == '\0') {
     long_var_1 = long_var_2 + 0x3054;
     int_var = buffer_operation(long_var_1, 0xc01, param_1, param_2);
     if (long_var_1 != 0) {
@@ -475,7 +475,7 @@ void process_text_with_params(uint64_t param_1, uint64_t param_2)
       }
       *(int8_t *)(int_var + long_var_1) = 0;
     }
-    finalize_text_processing(long_var_1, long_var_2 + 0x3054 + (longlong)int_var);
+    finalize_text_processing(long_var_1, long_var_2 + 0x3054 + (int64_t)int_var);
   }
   return;
 }
@@ -487,9 +487,9 @@ void process_text_with_params(uint64_t param_1, uint64_t param_2)
  */
 void buffer_operation_wrapper(uint64_t param_1)
 {
-  longlong long_var_1;
+  int64_t long_var_1;
   int int_var;
-  longlong unaff_rbx;
+  int64_t unaff_rbx;
   
   long_var_1 = unaff_rbx + 0x3054;
   int_var = buffer_operation(long_var_1, 0xc01, param_1);
@@ -499,7 +499,7 @@ void buffer_operation_wrapper(uint64_t param_1)
     }
     *(int8_t *)(int_var + long_var_1) = 0;
   }
-  finalize_text_processing(long_var_1, unaff_rbx + 0x3054 + (longlong)int_var);
+  finalize_text_processing(long_var_1, unaff_rbx + 0x3054 + (int64_t)int_var);
   return;
 }
 

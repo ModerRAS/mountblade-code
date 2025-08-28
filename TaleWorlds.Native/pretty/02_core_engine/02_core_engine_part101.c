@@ -4,7 +4,7 @@
 // 包含23个函数，主要处理内存分配、数组操作、文本渲染等功能
 
 // 全局变量
-longlong _DAT;  // 引擎全局上下文指针
+int64_t _DAT;  // 引擎全局上下文指针
 char _DAT;      // 常量字符串指针
 
 // 函数：引擎初始化完成检查
@@ -25,7 +25,7 @@ void reset_engine_state(void)
 float * calculate_text_rendering_width(float *output_result, char *text_start, char render_flag)
 {
   float *font_data;
-  longlong engine_context;
+  int64_t engine_context;
   char *text_end;
   float line_height;
   float max_width;
@@ -82,11 +82,11 @@ float * calculate_text_rendering_width(float *output_result, char *text_start, c
 }
 
 // 函数：添加渲染元素到队列
-void add_render_element_to_queue(longlong render_context, float *position_data, uint render_flags, int32_t render_type)
+void add_render_element_to_queue(int64_t render_context, float *position_data, uint render_flags, int32_t render_type)
 {
   int *queue_count;
   int current_count;
-  longlong engine_context;
+  int64_t engine_context;
   int queue_capacity;
   int new_capacity;
   int32_t temp_flags;
@@ -146,7 +146,7 @@ void add_render_element_to_queue(longlong render_context, float *position_data, 
   }
   
   z_position = z_position + 1.0 + height;
-  *(ulonglong *)(*(longlong *)(render_context + 0x88) + (longlong)current_count * 8) =
+  *(uint64_t *)(*(int64_t *)(render_context + 0x88) + (int64_t)current_count * 8) =
        CONCAT44(stack_temp2, stack_temp1);
   *queue_count = *queue_count + 1;
   
@@ -177,7 +177,7 @@ void add_render_element_to_queue(longlong render_context, float *position_data, 
     current_count = *queue_count;
   }
   
-  *(ulonglong *)(*(longlong *)(render_context + 0x88) + (longlong)current_count * 8) =
+  *(uint64_t *)(*(int64_t *)(render_context + 0x88) + (int64_t)current_count * 8) =
        CONCAT44(stack_temp2, stack_temp1);
   *queue_count = *queue_count + 1;
   
@@ -198,11 +198,11 @@ void add_render_element_to_queue(longlong render_context, float *position_data, 
 }
 
 // 函数：处理文本布局
-ulonglong process_text_layout(longlong render_context, float *position_data, uint layout_flags, char *text_start, int text_id, int font_id)
+uint64_t process_text_layout(int64_t render_context, float *position_data, uint layout_flags, char *text_start, int text_id, int font_id)
 {
   int32_t temp_var1;
-  longlong context_var1;
-  longlong context_var2;
+  int64_t context_var1;
+  int64_t context_var2;
   uint64_t temp_var4;
   uint64_t temp_var5;
   uint64_t temp_var6;
@@ -211,11 +211,11 @@ ulonglong process_text_layout(longlong render_context, float *position_data, uin
   int int_var1;
   int32_t temp_var10;
   char *text_current;
-  ulonglong result;
+  uint64_t result;
   float *font_data;
   char *text_end;
   int char_count;
-  longlong render_target;
+  int64_t render_target;
   bool text_found;
   float text_width;
   float x_position;
@@ -226,7 +226,7 @@ ulonglong process_text_layout(longlong render_context, float *position_data, uin
   uint stack_flags;
   float stack_float1;
   float stack_float2;
-  ulonglong stack_ulong;
+  uint64_t stack_ulong;
   uint64_t stack_render_params[4];  // 渲染参数数组
   float stack_float3;
   float stack_float4;
@@ -261,7 +261,7 @@ ulonglong process_text_layout(longlong render_context, float *position_data, uin
     if (0.0 < (float)stack_temp1) {
       x_position = (float)stack_temp1 - y_position / *font_data;
     }
-    text_current = (char *)(ulonglong)(uint)(int)(x_position + 0.95);
+    text_current = (char *)(uint64_t)(uint)(int)(x_position + 0.95);
     stack_float2 = stack_temp1._4_4_;
     x_position = (float)(int)(x_position + 0.95);
   }
@@ -306,7 +306,7 @@ ulonglong process_text_layout(longlong render_context, float *position_data, uin
     if ((font_id != 0) &&
        (((*(int *)(context_var2 + 0x1b18) == text_id || (*(int *)(context_var2 + 0x1b18) == font_id)) ||
         (*(int *)(context_var2 + 0x1b2c) == font_id))) {
-      render_target = *(longlong *)(render_target + 0x1af8);
+      render_target = *(int64_t *)(render_target + 0x1af8);
       y_position = *(float *)(context_var2 + 0x19f8) * 0.5;
       stack_temp1 = CONCAT71(SUB87(result, 1), 1);
       temp_var10 = *(int32_t *)(render_target + 0x144);
@@ -322,7 +322,7 @@ ulonglong process_text_layout(longlong render_context, float *position_data, uin
       if (char_flag != '\0') {
         stack_float1 = 1.4013e-45;
       }
-      context_var1 = *(longlong *)(_DAT + 0x1af8);
+      context_var1 = *(int64_t *)(_DAT + 0x1af8);
       *(int32_t *)(context_var1 + 0x144) = temp_var10;
       *(int32_t *)(context_var1 + 0x148) = temp_var1;
       *(uint64_t *)(context_var1 + 0x14c) = temp_var4;
@@ -384,11 +384,11 @@ ulonglong process_text_layout(longlong render_context, float *position_data, uin
         stack_render_params[3] = *(int32_t *)(_DAT + 0x16d0);
         stack_float3 = *(float *)(_DAT + 0x16d4) * *(float *)(_DAT + 0x1628);
         temp_var1 = func_0x000180121e20(&stack_render_params[1]);
-        render_target = *(longlong *)(*(longlong *)(render_context + 0x38) + 8);
+        render_target = *(int64_t *)(*(int64_t *)(render_context + 0x38) + 8);
         stack_float2 = (float)(int)((*(float *)(render_target + 0x60) + *(float *)(render_target + 0xc)) - 0.5) + stack_float6;
-        stack_temp1 = (ulonglong)(uint)(stack_float2 + 1.0) << 0x20;
+        stack_temp1 = (uint64_t)(uint)(stack_float2 + 1.0) << 0x20;
         do {
-          text_current = (char *)((ulonglong)text_current & 0xffffffff00000000);
+          text_current = (char *)((uint64_t)text_current & 0xffffffff00000000);
           x_position = (float)char_count + (float)char_count;
           stack_float3 = x_position + y_position;
           stack_temp1 = CONCAT44(stack_temp1._4_4_, y_position + 1.0 + x_position);
@@ -397,16 +397,16 @@ ulonglong process_text_layout(longlong render_context, float *position_data, uin
         } while (char_count < 3);
       }
     }
-    result = (ulonglong)stack_float1._0_1_;
+    result = (uint64_t)stack_float1._0_1_;
   }
   else {
-    result = (ulonglong)text_current & 0xffffffffffffff00;
+    result = (uint64_t)text_current & 0xffffffffffffff00;
   }
   return result;
 }
 
 // 函数：处理字符渲染
-int8_t process_character_rendering(float param_1, float param_2, ulonglong param_3, uint64_t param_4)
+int8_t process_character_rendering(float param_1, float param_2, uint64_t param_3, uint64_t param_4)
 {
   float temp_float1;
   float temp_float2;
@@ -414,8 +414,8 @@ int8_t process_character_rendering(float param_1, float param_2, ulonglong param
   byte byte_flag;
   int32_t temp_var5;
   int32_t temp_var6;
-  longlong context_var1;
-  longlong context_var2;
+  int64_t context_var1;
+  int64_t context_var2;
   uint64_t temp_var9;
   uint64_t temp_var10;
   uint64_t temp_var11;
@@ -424,15 +424,15 @@ int8_t process_character_rendering(float param_1, float param_2, ulonglong param
   int32_t temp_var14;
   float *font_data;
   char *text_ptr;
-  longlong stack_context;
+  int64_t stack_context;
   char char_flag2;
   uint uint_var1;
   char *text_ptr2;
-  longlong text_id;
-  longlong font_id;
+  int64_t text_id;
+  int64_t font_id;
   char *text_start;
   float *position_data;
-  longlong render_context;
+  int64_t render_context;
   bool bool_flag;
   float char_width;
   float line_height;
@@ -450,7 +450,7 @@ int8_t process_character_rendering(float param_1, float param_2, ulonglong param
   int32_t stack_flags[3];
   float stack_float9;
   
-  temp_var14 = (int32_t)((ulonglong)temp_result >> 0x20);
+  temp_var14 = (int32_t)((uint64_t)temp_result >> 0x20);
   stack_float8 = temp_result3 - param_2;
   param_2 = temp_result2 + param_2;
   stack_float7 = param_1 + *(float *)(render_context + 0x1660);
@@ -485,7 +485,7 @@ int8_t process_character_rendering(float param_1, float param_2, ulonglong param
     text_ptr = text_ptr2;
     stack_float8 = stack_float8;
     FUN_1801224c0(line_height, &text_start, stack_context + 0x6f, &_DAT);
-    temp_var14 = (int32_t)((ulonglong)text_ptr >> 0x20);
+    temp_var14 = (int32_t)((uint64_t)text_ptr >> 0x20);
     render_context = _DAT;
   }
   
@@ -497,7 +497,7 @@ int8_t process_character_rendering(float param_1, float param_2, ulonglong param
   if ((int_var1 != 0) &&
      (((*(int *)(font_id + 0x1b18) == *(int *)(stack_context + 0x77) ||
        (*(int *)(font_id + 0x1b18) == int_var1)) || (*(int *)(font_id + 0x1b2c) == int_var1)))) {
-    context_var1 = *(longlong *)(render_context + 0x1af8);
+    context_var1 = *(int64_t *)(render_context + 0x1af8);
     line_height = *(float *)(font_id + 0x19f8) * 0.5;
     *(int8_t *)(stack_context + 0x5f) = 1;
     temp_var5 = *(int32_t *)(context_var1 + 0x144);
@@ -515,7 +515,7 @@ int8_t process_character_rendering(float param_1, float param_2, ulonglong param
     }
     byte_flag = *(byte *)(stack_context + 0x67);
     *(uint *)(stack_context + 0x6f) = uint_var1;
-    context_var2 = *(longlong *)(context_var1 + 0x1af8);
+    context_var2 = *(int64_t *)(context_var1 + 0x1af8);
     *(int32_t *)(context_var2 + 0x144) = temp_var5;
     *(int32_t *)(context_var2 + 0x148) = temp_var6;
     *(uint64_t *)(context_var2 + 0x14c) = temp_result;
@@ -575,7 +575,7 @@ int8_t process_character_rendering(float param_1, float param_2, ulonglong param
       stack_flags[2] = *(int32_t *)(_DAT + 0x16d0);
       stack_float9 = *(float *)(_DAT + 0x16d4) * *(float *)(_DAT + 0x1628);
       temp_var14 = func_0x000180121e20(&stack_flags[0]);
-      context_var1 = *(longlong *)(*(longlong *)(render_context + 0x38) + 8);
+      context_var1 = *(int64_t *)(*(int64_t *)(render_context + 0x38) + 8);
       stack_float5 = (float)(int)((*(float *)(context_var1 + 0x60) + *(float *)(context_var1 + 0xc)) - 0.5) + stack_float7;
       *(float *)(stack_context + 99) = stack_float5 + 1.0;
       do {
@@ -586,7 +586,7 @@ int8_t process_character_rendering(float param_1, float param_2, ulonglong param
         *(float *)(stack_context + 0x5f) = line_height;
         FUN_180293f50(line_height, &stack_float4, stack_context + 0x5f, temp_var14, temp_result2);
         uint_var1 = (int)text_ptr2 + 1;
-        text_ptr2 = (char *)(ulonglong)uint_var1;
+        text_ptr2 = (char *)(uint64_t)uint_var1;
       } while ((int)uint_var1 < 3);
     }
   }
@@ -601,11 +601,11 @@ void clear_render_cache(void)
 }
 
 // 函数：释放渲染资源
-void free_render_resources(longlong resource_handle, uint64_t param_2, uint64_t param_3, uint64_t param_4)
+void free_render_resources(int64_t resource_handle, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
-  longlong resource_data;
+  int64_t resource_data;
   
-  resource_data = *(longlong *)(resource_handle + 8);
+  resource_data = *(int64_t *)(resource_handle + 8);
   if (resource_data != 0) {
     if (_DAT != 0) {
       *(int *)(_DAT + 0x3a8) = *(int *)(_DAT + 0x3a8) + -1;
@@ -642,7 +642,7 @@ void add_element_to_int_array(int *array_ptr, int32_t *element)
     current_size = *array_ptr;
   }
   
-  *(int32_t *)(*(longlong *)(array_ptr + 2) + (longlong)current_size * 4) = *element;
+  *(int32_t *)(*(int64_t *)(array_ptr + 2) + (int64_t)current_size * 4) = *element;
   *array_ptr = *array_ptr + 1;
   return;
 }
@@ -673,7 +673,7 @@ void add_element_to_uint64_array(int *array_ptr, uint64_t *element)
     current_size = *array_ptr;
   }
   
-  *(uint64_t *)(*(longlong *)(array_ptr + 2) + (longlong)current_size * 8) = *element;
+  *(uint64_t *)(*(int64_t *)(array_ptr + 2) + (int64_t)current_size * 8) = *element;
   *array_ptr = *array_ptr + 1;
   return;
 }
@@ -687,10 +687,10 @@ void resize_byte_array_capacity(int *array_ptr, int new_capacity)
     if (_DAT != 0) {
       *(int *)(_DAT + 0x3a8) = *(int *)(_DAT + 0x3a8) + 1;
     }
-    new_buffer = func_0x000180120ce0((longlong)new_capacity, _DAT);
-    if (*(longlong *)(array_ptr + 2) != 0) {
+    new_buffer = func_0x000180120ce0((int64_t)new_capacity, _DAT);
+    if (*(int64_t *)(array_ptr + 2) != 0) {
       // 警告：子函数不返回
-      memcpy(new_buffer, *(longlong *)(array_ptr + 2), (longlong)*array_ptr);
+      memcpy(new_buffer, *(int64_t *)(array_ptr + 2), (int64_t)*array_ptr);
     }
     *(uint64_t *)(array_ptr + 2) = new_buffer;
     array_ptr[1] = new_capacity;
@@ -701,7 +701,7 @@ void resize_byte_array_capacity(int *array_ptr, int new_capacity)
 // 函数：扩展字节数组
 void expand_byte_array(void)
 {
-  longlong context_ptr;
+  int64_t context_ptr;
   uint64_t new_buffer;
   int *array_ptr;
   int new_size;
@@ -709,10 +709,10 @@ void expand_byte_array(void)
   if (context_ptr != 0) {
     *(int *)(context_ptr + 0x3a8) = *(int *)(context_ptr + 0x3a8) + 1;
   }
-  new_buffer = func_0x000180120ce0((longlong)new_size, _DAT);
-  if (*(longlong *)(array_ptr + 2) != 0) {
+  new_buffer = func_0x000180120ce0((int64_t)new_size, _DAT);
+  if (*(int64_t *)(array_ptr + 2) != 0) {
     // 警告：子函数不返回
-    memcpy(new_buffer, *(longlong *)(array_ptr + 2), (longlong)*array_ptr);
+    memcpy(new_buffer, *(int64_t *)(array_ptr + 2), (int64_t)*array_ptr);
   }
   *(uint64_t *)(array_ptr + 2) = new_buffer;
   array_ptr[1] = new_size;
@@ -785,10 +785,10 @@ void resize_struct_array_capacity(int *array_ptr, int new_capacity)
     if (_DAT != 0) {
       *(int *)(_DAT + 0x3a8) = *(int *)(_DAT + 0x3a8) + 1;
     }
-    new_buffer = func_0x000180120ce0((longlong)new_capacity * 0x28, _DAT);
-    if (*(longlong *)(array_ptr + 2) != 0) {
+    new_buffer = func_0x000180120ce0((int64_t)new_capacity * 0x28, _DAT);
+    if (*(int64_t *)(array_ptr + 2) != 0) {
       // 警告：子函数不返回
-      memcpy(new_buffer, *(longlong *)(array_ptr + 2), (longlong)*array_ptr * 0x28);
+      memcpy(new_buffer, *(int64_t *)(array_ptr + 2), (int64_t)*array_ptr * 0x28);
     }
     *(uint64_t *)(array_ptr + 2) = new_buffer;
     array_ptr[1] = new_capacity;
@@ -799,18 +799,18 @@ void resize_struct_array_capacity(int *array_ptr, int new_capacity)
 // 函数：扩展结构体数组
 void expand_struct_array(void)
 {
-  longlong context_ptr;
+  int64_t context_ptr;
   uint64_t new_buffer;
   int *array_ptr;
-  longlong new_size;
+  int64_t new_size;
   
   if (context_ptr != 0) {
     *(int *)(context_ptr + 0x3a8) = *(int)(context_ptr + 0x3a8) + 1;
   }
   new_buffer = func_0x000180120ce0(new_size * 0x28, _DAT);
-  if (*(longlong *)(array_ptr + 2) != 0) {
+  if (*(int64_t *)(array_ptr + 2) != 0) {
     // 警告：子函数不返回
-    memcpy(new_buffer, *(longlong *)(array_ptr + 2), (longlong)*array_ptr * 0x28);
+    memcpy(new_buffer, *(int64_t *)(array_ptr + 2), (int64_t)*array_ptr * 0x28);
   }
   *(uint64_t *)(array_ptr + 2) = new_buffer;
   array_ptr[1] = (int)new_size;
@@ -833,10 +833,10 @@ void resize_float_array_capacity(int *array_ptr, int new_capacity)
     if (_DAT != 0) {
       *(int *)(_DAT + 0x3a8) = *(int)(_DAT + 0x3a8) + 1;
     }
-    new_buffer = func_0x000180120ce0((longlong)new_capacity << 2, _DAT);
-    if (*(longlong *)(array_ptr + 2) != 0) {
+    new_buffer = func_0x000180120ce0((int64_t)new_capacity << 2, _DAT);
+    if (*(int64_t *)(array_ptr + 2) != 0) {
       // 警告：子函数不返回
-      memcpy(new_buffer, *(longlong *)(array_ptr + 2), (longlong)*array_ptr << 2);
+      memcpy(new_buffer, *(int64_t *)(array_ptr + 2), (int64_t)*array_ptr << 2);
     }
     *(uint64_t *)(array_ptr + 2) = new_buffer;
     array_ptr[1] = new_capacity;
@@ -847,18 +847,18 @@ void resize_float_array_capacity(int *array_ptr, int new_capacity)
 // 函数：扩展浮点数数组
 void expand_float_array(void)
 {
-  longlong context_ptr;
+  int64_t context_ptr;
   uint64_t new_buffer;
   int *array_ptr;
-  longlong new_size;
+  int64_t new_size;
   
   if (context_ptr != 0) {
     *(int *)(context_ptr + 0x3a8) = *(int)(context_ptr + 0x3a8) + 1;
   }
   new_buffer = func_0x000180120ce0(new_size << 2, _DAT);
-  if (*(longlong *)(array_ptr + 2) != 0) {
+  if (*(int64_t *)(array_ptr + 2) != 0) {
     // 警告：子函数不返回
-    memcpy(new_buffer, *(longlong *)(array_ptr + 2), (longlong)*array_ptr << 2);
+    memcpy(new_buffer, *(int64_t *)(array_ptr + 2), (int64_t)*array_ptr << 2);
   }
   *(uint64_t *)(array_ptr + 2) = new_buffer;
   array_ptr[1] = (int)new_size;
@@ -881,10 +881,10 @@ void resize_uint64_array_capacity(int *array_ptr, int new_capacity)
     if (_DAT != 0) {
       *(int *)(_DAT + 0x3a8) = *(int)(_DAT + 0x3a8) + 1;
     }
-    new_buffer = func_0x000180120ce0((longlong)new_capacity << 3, _DAT);
-    if (*(longlong *)(array_ptr + 2) != 0) {
+    new_buffer = func_0x000180120ce0((int64_t)new_capacity << 3, _DAT);
+    if (*(int64_t *)(array_ptr + 2) != 0) {
       // 警告：子函数不返回
-      memcpy(new_buffer, *(longlong *)(array_ptr + 2), (longlong)*array_ptr << 3);
+      memcpy(new_buffer, *(int64_t *)(array_ptr + 2), (int64_t)*array_ptr << 3);
     }
     *(uint64_t *)(array_ptr + 2) = new_buffer;
     array_ptr[1] = new_capacity;
@@ -895,18 +895,18 @@ void resize_uint64_array_capacity(int *array_ptr, int new_capacity)
 // 函数：扩展64位数组
 void expand_uint64_array(void)
 {
-  longlong context_ptr;
+  int64_t context_ptr;
   uint64_t new_buffer;
   int *array_ptr;
-  longlong new_size;
+  int64_t new_size;
   
   if (context_ptr != 0) {
     *(int *)(context_ptr + 0x3a8) = *(int)(context_ptr + 0x3a8) + 1;
   }
   new_buffer = func_0x000180120ce0(new_size << 3, _DAT);
-  if (*(longlong *)(array_ptr + 2) != 0) {
+  if (*(int64_t *)(array_ptr + 2) != 0) {
     // 警告：子函数不返回
-    memcpy(new_buffer, *(longlong *)(array_ptr + 2), (longlong)*array_ptr << 3);
+    memcpy(new_buffer, *(int64_t *)(array_ptr + 2), (int64_t)*array_ptr << 3);
   }
   *(uint64_t *)(array_ptr + 2) = new_buffer;
   array_ptr[1] = (int)new_size;
@@ -929,10 +929,10 @@ void resize_uint16_array_capacity(int *array_ptr, int new_capacity)
     if (_DAT != 0) {
       *(int *)(_DAT + 0x3a8) = *(int)(_DAT + 0x3a8) + 1;
     }
-    new_buffer = func_0x000180120ce0((longlong)new_capacity * 2, _DAT);
-    if (*(longlong *)(array_ptr + 2) != 0) {
+    new_buffer = func_0x000180120ce0((int64_t)new_capacity * 2, _DAT);
+    if (*(int64_t *)(array_ptr + 2) != 0) {
       // 警告：子函数不返回
-      memcpy(new_buffer, *(longlong *)(array_ptr + 2), (longlong)*array_ptr * 2);
+      memcpy(new_buffer, *(int64_t *)(array_ptr + 2), (int64_t)*array_ptr * 2);
     }
     *(uint64_t *)(array_ptr + 2) = new_buffer;
     array_ptr[1] = new_capacity;
@@ -943,18 +943,18 @@ void resize_uint16_array_capacity(int *array_ptr, int new_capacity)
 // 函数：扩展16位数组
 void expand_uint16_array(void)
 {
-  longlong context_ptr;
+  int64_t context_ptr;
   uint64_t new_buffer;
   int *array_ptr;
-  longlong new_size;
+  int64_t new_size;
   
   if (context_ptr != 0) {
     *(int *)(context_ptr + 0x3a8) = *(int)(context_ptr + 0x3a8) + 1;
   }
   new_buffer = func_0x000180120ce0(new_size * 2, _DAT);
-  if (*(longlong *)(array_ptr + 2) != 0) {
+  if (*(int64_t *)(array_ptr + 2) != 0) {
     // 警告：子函数不返回
-    memcpy(new_buffer, *(longlong *)(array_ptr + 2), (longlong)*array_ptr * 2);
+    memcpy(new_buffer, *(int64_t *)(array_ptr + 2), (int64_t)*array_ptr * 2);
   }
   *(uint64_t *)(array_ptr + 2) = new_buffer;
   array_ptr[1] = (int)new_size;

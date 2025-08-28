@@ -4,27 +4,27 @@
 // 本文件包含容器管理、字符串处理和资源管理相关功能
 
 // 函数: 向容器中添加元素
-// 原始函数: void FUN_180161eb0(longlong param_1,longlong param_2)
-void container_add_element(longlong container_ptr, longlong element_ptr)
+// 原始函数: void FUN_180161eb0(int64_t param_1,int64_t param_2)
+void container_add_element(int64_t container_ptr, int64_t element_ptr)
 {
-  longlong *buffer_end;
-  longlong *buffer_start;
-  longlong capacity;
-  longlong *new_buffer;
+  int64_t *buffer_end;
+  int64_t *buffer_start;
+  int64_t capacity;
+  int64_t *new_buffer;
   
   // 将元素关联到容器
-  *(longlong *)(element_ptr + 0x48) = container_ptr;
+  *(int64_t *)(element_ptr + 0x48) = container_ptr;
   
   // 获取容器缓冲区信息
-  buffer_end = *(longlong **)(container_ptr + 0x30);
-  buffer_start = *(longlong **)(container_ptr + 0x28);
+  buffer_end = *(int64_t **)(container_ptr + 0x30);
+  buffer_start = *(int64_t **)(container_ptr + 0x28);
   
   // 计算当前元素数量
-  capacity = (longlong)buffer_end - (longlong)buffer_start >> 3;
+  capacity = (int64_t)buffer_end - (int64_t)buffer_start >> 3;
   
   // 如果缓冲区未满，直接添加元素
-  if (buffer_end < *(longlong **)(container_ptr + 0x38)) {
-    *(longlong **)(container_ptr + 0x30) = buffer_end + 1;
+  if (buffer_end < *(int64_t **)(container_ptr + 0x38)) {
+    *(int64_t **)(container_ptr + 0x30) = buffer_end + 1;
     *buffer_end = element_ptr;
     return;
   }
@@ -39,24 +39,24 @@ void container_add_element(longlong container_ptr, longlong element_ptr)
   }
   
   // 分配新的缓冲区
-  new_buffer = (longlong *)memory_allocate_from_pool(_GLOBAL_MEMORY_POOL, capacity * 8, *(char *)(container_ptr + 0x40));
-  buffer_start = *(longlong **)(container_ptr + 0x28);
-  buffer_end = *(longlong **)(container_ptr + 0x30);
+  new_buffer = (int64_t *)memory_allocate_from_pool(_GLOBAL_MEMORY_POOL, capacity * 8, *(char *)(container_ptr + 0x40));
+  buffer_start = *(int64_t **)(container_ptr + 0x28);
+  buffer_end = *(int64_t **)(container_ptr + 0x30);
   
 ALLOCATE_NEW_BUFFER:
   // 复制现有元素到新缓冲区
   if (buffer_start != buffer_end) {
-    memmove(new_buffer, buffer_start, (longlong)buffer_end - (longlong)buffer_start);
+    memmove(new_buffer, buffer_start, (int64_t)buffer_end - (int64_t)buffer_start);
   }
   
   // 添加新元素
   *new_buffer = element_ptr;
   
   // 更新容器指针
-  if (*(longlong *)(container_ptr + 0x28) == 0) {
-    *(longlong **)(container_ptr + 0x28) = new_buffer;
-    *(longlong **)(container_ptr + 0x38) = new_buffer + capacity;
-    *(longlong **)(container_ptr + 0x30) = new_buffer + 1;
+  if (*(int64_t *)(container_ptr + 0x28) == 0) {
+    *(int64_t **)(container_ptr + 0x28) = new_buffer;
+    *(int64_t **)(container_ptr + 0x38) = new_buffer + capacity;
+    *(int64_t **)(container_ptr + 0x30) = new_buffer + 1;
     return;
   }
   
@@ -65,20 +65,20 @@ ALLOCATE_NEW_BUFFER:
 }
 
 // 函数: 在容器中搜索匹配的元素
-// 原始函数: longlong * FUN_180161f80(longlong param_1,longlong *param_2,longlong param_3)
-longlong * container_search_elements(longlong container_ptr, longlong *result_array, longlong search_params)
+// 原始函数: int64_t * FUN_180161f80(int64_t param_1,int64_t *param_2,int64_t param_3)
+int64_t * container_search_elements(int64_t container_ptr, int64_t *result_array, int64_t search_params)
 {
-  longlong *current_element;
-  longlong element_count;
-  longlong *new_buffer;
+  int64_t *current_element;
+  int64_t element_count;
+  int64_t *new_buffer;
   char *search_string;
   uint string_length;
-  longlong element_data;
+  int64_t element_data;
   char *temp_buffer;
   uint temp_length;
-  ulonglong buffer_size;
-  ulonglong current_index;
-  ulonglong max_capacity;
+  uint64_t buffer_size;
+  uint64_t current_index;
+  uint64_t max_capacity;
   uint result_capacity;
   
   max_capacity = 0xfffffffffffffffe;
@@ -91,14 +91,14 @@ longlong * container_search_elements(longlong container_ptr, longlong *result_ar
   *(int *)(result_array + 3) = 3;
   result_capacity = 1;
   
-  element_data = *(longlong *)(container_ptr + 0x28);
+  element_data = *(int64_t *)(container_ptr + 0x28);
   buffer_size = current_index;
   
   // 遍历容器中的元素
-  if (*(longlong *)(container_ptr + 0x30) - element_data >> 3 != 0) {
+  if (*(int64_t *)(container_ptr + 0x30) - element_data >> 3 != 0) {
     do {
-      ulonglong char_index = 0;
-      element_data = *(longlong *)(element_data + current_index);
+      uint64_t char_index = 0;
+      element_data = *(int64_t *)(element_data + current_index);
       
       // 准备临时缓冲区
       temp_buffer = (char *)0x0;
@@ -107,11 +107,11 @@ longlong * container_search_elements(longlong container_ptr, longlong *result_ar
       // 获取元素的字符串数据
       string_buffer_init(&temp_buffer, *(int *)(element_data + 0x10));
       if (*(int *)(element_data + 0x10) != 0) {
-        memcpy(temp_buffer, *(longlong *)(element_data + 8), *(int *)(element_data + 0x10) + 1);
+        memcpy(temp_buffer, *(int64_t *)(element_data + 8), *(int *)(element_data + 0x10) + 1);
       }
       
       // 处理字符串内容
-      if (*(longlong *)(element_data + 8) != 0) {
+      if (*(int64_t *)(element_data + 8) != 0) {
         temp_length = 0;
         if (temp_buffer != (char *)0x0) {
           *temp_buffer = 0;
@@ -126,7 +126,7 @@ longlong * container_search_elements(longlong container_ptr, longlong *result_ar
             temp_buffer[char_index] = temp_buffer[char_index] + ' ';
           }
           uint next_char = (int)char_index + 1;
-          char_index = (ulonglong)next_char;
+          char_index = (uint64_t)next_char;
         } while (next_char < temp_length);
       }
       
@@ -141,34 +141,34 @@ longlong * container_search_elements(longlong container_ptr, longlong *result_ar
         source_string = temp_buffer;
       }
       
-      longlong search_result = string_search(source_string, search_pattern, char_index, temp_buffer, result_capacity, max_capacity);
+      int64_t search_result = string_search(source_string, search_pattern, char_index, temp_buffer, result_capacity, max_capacity);
       
       // 如果找到匹配，添加到结果数组
       if (search_result != 0) {
-        longlong *result_end = (longlong *)result_array[1];
-        if (result_end < (longlong *)result_array[2]) {
-          result_array[1] = (longlong)(result_end + 1);
+        int64_t *result_end = (int64_t *)result_array[1];
+        if (result_end < (int64_t *)result_array[2]) {
+          result_array[1] = (int64_t)(result_end + 1);
           *result_end = element_data;
         }
         else {
           // 扩展结果数组
-          element_count = (longlong)result_end - *result_array >> 3;
+          element_count = (int64_t)result_end - *result_array >> 3;
           if (element_count == 0) {
             element_count = 1;
 EXPAND_RESULT_ARRAY:
-            new_buffer = (longlong *)memory_allocate_from_pool(_GLOBAL_MEMORY_POOL, element_count * 8, (char)result_array[3]);
-            result_end = (longlong *)result_array[1];
+            new_buffer = (int64_t *)memory_allocate_from_pool(_GLOBAL_MEMORY_POOL, element_count * 8, (char)result_array[3]);
+            result_end = (int64_t *)result_array[1];
           }
           else {
             element_count = element_count * 2;
             if (element_count != 0) goto EXPAND_RESULT_ARRAY;
-            new_buffer = (longlong *)0x0;
+            new_buffer = (int64_t *)0x0;
           }
           
           // 复制现有结果
-          longlong *result_start = (longlong *)*result_array;
+          int64_t *result_start = (int64_t *)*result_array;
           if (result_start != result_end) {
-            memmove(new_buffer, result_start, (longlong)result_end - (longlong)result_start);
+            memmove(new_buffer, result_start, (int64_t)result_end - (int64_t)result_start);
           }
           
           // 添加新结果
@@ -178,9 +178,9 @@ EXPAND_RESULT_ARRAY:
           }
           
           // 更新结果数组指针
-          *result_array = (longlong)new_buffer;
-          result_array[1] = (longlong)(new_buffer + 1);
-          result_array[2] = (longlong)(new_buffer + element_count);
+          *result_array = (int64_t)new_buffer;
+          result_array[1] = (int64_t)(new_buffer + 1);
+          result_array[2] = (int64_t)(new_buffer + element_count);
         }
       }
       
@@ -192,26 +192,26 @@ EXPAND_RESULT_ARRAY:
       
       uint next_element = (int)buffer_size + 1;
       current_index = current_index + 8;
-      element_data = *(longlong *)(container_ptr + 0x28);
-      buffer_size = (ulonglong)next_element;
-    } while ((ulonglong)(longlong)(int)next_element < (ulonglong)(*(longlong *)(container_ptr + 0x30) - element_data >> 3));
+      element_data = *(int64_t *)(container_ptr + 0x28);
+      buffer_size = (uint64_t)next_element;
+    } while ((uint64_t)(int64_t)(int)next_element < (uint64_t)(*(int64_t *)(container_ptr + 0x30) - element_data >> 3));
   }
   
   return result_array;
 }
 
 // 函数: 递归处理容器元素
-// 原始函数: void FUN_180162220(longlong param_1,longlong param_2,uint64_t *param_3,uint64_t param_4)
-void process_container_elements_recursive(longlong container_ptr, longlong output_buffer, char *input_string, longlong processing_flags)
+// 原始函数: void FUN_180162220(int64_t param_1,int64_t param_2,uint64_t *param_3,uint64_t param_4)
+void process_container_elements_recursive(int64_t container_ptr, int64_t output_buffer, char *input_string, int64_t processing_flags)
 {
-  longlong string_length;
-  ulonglong element_index;
-  ulonglong current_index;
+  int64_t string_length;
+  uint64_t element_index;
+  uint64_t current_index;
   uint element_count;
   char *temp_string;
-  longlong temp_buffer;
+  int64_t temp_buffer;
   uint temp_length;
-  ulonglong buffer_size;
+  uint64_t buffer_size;
   
   element_index = 0;
   temp_string = &GLOBAL_TEMP_BUFFER;
@@ -219,9 +219,9 @@ void process_container_elements_recursive(longlong container_ptr, longlong outpu
   temp_length = 0;
   
   // 处理输入字符串
-  if (*(longlong *)(container_ptr + 0x48) == 0) {
+  if (*(int64_t *)(container_ptr + 0x48) == 0) {
     element_count = *(uint *)(input_string + 2);
-    string_length = (ulonglong)element_count;
+    string_length = (uint64_t)element_count;
     
     if (input_string[1] != 0) {
       string_buffer_init(&temp_string, string_length);
@@ -236,7 +236,7 @@ void process_container_elements_recursive(longlong container_ptr, longlong outpu
     }
     
     // 处理字符串格式
-    temp_string = CONCAT44(*(int *)((longlong)input_string + 0x1c), (int)temp_string);
+    temp_string = CONCAT44(*(int *)((int64_t)input_string + 0x1c), (int)temp_string);
     temp_length = 0;
     
 PROCESS_STRING:
@@ -251,13 +251,13 @@ PROCESS_STRING:
     }
     
     temp_length = *(uint *)(string_length + 0x10);
-    temp_buffer = *(longlong *)(string_length + 8);
-    temp_string = *(ulonglong *)(string_length + 0x18);
+    temp_buffer = *(int64_t *)(string_length + 8);
+    temp_string = *(uint64_t *)(string_length + 0x18);
     
     // 清理解析结果
     *(int *)(string_length + 0x10) = 0;
-    *(longlong *)(string_length + 8) = 0;
-    *(ulonglong *)(string_length + 0x18) = 0;
+    *(int64_t *)(string_length + 8) = 0;
+    *(uint64_t *)(string_length + 0x18) = 0;
     
     temp_string = &GLOBAL_TEMP_BUFFER;
     if (temp_string != (char *)0x0) {
@@ -270,16 +270,16 @@ PROCESS_STRING:
     
     if (*(int *)(container_ptr + 0x20) == 0) {
       string_buffer_init(&temp_string, temp_length + 1);
-      *(char *)((ulonglong)temp_length + temp_buffer) = '.';
-      *(char *)((ulonglong)(temp_length + 1) + temp_buffer) = 0;
+      *(char *)((uint64_t)temp_length + temp_buffer) = '.';
+      *(char *)((uint64_t)(temp_length + 1) + temp_buffer) = 0;
       temp_length = temp_length + 1;
       goto PROCESS_STRING;
     }
   }
   
   // 检查输出缓冲区空间
-  if (*(ulonglong *)(output_buffer + 8) < *(ulonglong *)(output_buffer + 0x10)) {
-    *(ulonglong *)(output_buffer + 8) = *(ulonglong *)(output_buffer + 8) + 0x20;
+  if (*(uint64_t *)(output_buffer + 8) < *(uint64_t *)(output_buffer + 0x10)) {
+    *(uint64_t *)(output_buffer + 8) = *(uint64_t *)(output_buffer + 8) + 0x20;
     expand_output_buffer();
   }
   else {
@@ -288,12 +288,12 @@ PROCESS_STRING:
   
 PROCESS_ELEMENTS:
   // 处理容器中的每个元素
-  string_length = *(longlong *)(container_ptr + 0x28);
+  string_length = *(int64_t *)(container_ptr + 0x28);
   string_length = element_index;
   
-  if (*(longlong *)(container_ptr + 0x30) - string_length >> 3 != 0) {
+  if (*(int64_t *)(container_ptr + 0x30) - string_length >> 3 != 0) {
     do {
-      longlong element_data = *(longlong *)(element_index + string_length);
+      int64_t element_data = *(int64_t *)(element_index + string_length);
       temp_string = &GLOBAL_TEMP_BUFFER;
       buffer_size = 0;
       temp_string = (char *)0x0;
@@ -318,9 +318,9 @@ PROCESS_ELEMENTS:
       
       uint next_element = (int)string_length + 1;
       element_index = element_index + 8;
-      string_length = *(longlong *)(container_ptr + 0x28);
-      string_length = (ulonglong)next_element;
-    } while ((ulonglong)(longlong)(int)next_element < (ulonglong)(*(longlong *)(container_ptr + 0x30) - string_length >> 3));
+      string_length = *(int64_t *)(container_ptr + 0x28);
+      string_length = (uint64_t)next_element;
+    } while ((uint64_t)(int64_t)(int)next_element < (uint64_t)(*(int64_t *)(container_ptr + 0x30) - string_length >> 3));
   }
   
   // 清理资源
@@ -345,13 +345,13 @@ PROCESS_ELEMENTS:
 }
 
 // 函数: 构建路径字符串
-// 原始函数: uint64_t * FUN_1801624e0(longlong param_1,uint64_t *param_2,uint64_t param_3,uint64_t param_4)
-char * build_path_string(longlong path_info, char *output_buffer, longlong param_3, longlong param_4)
+// 原始函数: uint64_t * FUN_1801624e0(int64_t param_1,uint64_t *param_2,uint64_t param_3,uint64_t param_4)
+char * build_path_string(int64_t path_info, char *output_buffer, int64_t param_3, int64_t param_4)
 {
-  longlong parent_path;
-  longlong path_segment;
+  int64_t parent_path;
+  int64_t path_segment;
   char *temp_buffer;
-  longlong temp_string;
+  int64_t temp_string;
   int string_length;
   
   // 初始化输出缓冲区
@@ -363,10 +363,10 @@ char * build_path_string(longlong path_info, char *output_buffer, longlong param
   output_buffer[1] = 0;
   *(int *)(output_buffer + 2) = 0;
   
-  parent_path = *(longlong *)(path_info + 0x48);
+  parent_path = *(int64_t *)(path_info + 0x48);
   
   // 递归处理父路径
-  if ((parent_path != 0) && (*(longlong *)(parent_path + 0x48) != 0)) {
+  if ((parent_path != 0) && (*(int64_t *)(parent_path + 0x48) != 0)) {
     path_segment = build_path_string(parent_path, &temp_buffer, param_3, param_4, 1, 0xfffffffffffffffe);
     append_to_output_buffer(output_buffer, path_segment);
     
@@ -381,15 +381,15 @@ char * build_path_string(longlong path_info, char *output_buffer, longlong param
     
     // 添加路径分隔符
     string_buffer_init(output_buffer, *(int *)(output_buffer + 2) + 1);
-    *(char *)((ulonglong)*(uint *)(output_buffer + 2) + output_buffer[1]) = '.';
-    *(char *)((ulonglong)(*(int *)(output_buffer + 2) + 1) + output_buffer[1]) = 0;
+    *(char *)((uint64_t)*(uint *)(output_buffer + 2) + output_buffer[1]) = '.';
+    *(char *)((uint64_t)(*(int *)(output_buffer + 2) + 1) + output_buffer[1]) = 0;
     *(int *)(output_buffer + 2) = *(int *)(output_buffer + 2) + 1;
   }
   
   // 添加当前路径段
   if (0 < *(int *)(path_info + 0x10)) {
     string_buffer_init(output_buffer, *(int *)(output_buffer + 2) + *(int *)(path_info + 0x10));
-    memcpy((ulonglong)*(uint *)(output_buffer + 2) + output_buffer[1], *(longlong *)(path_info + 8), (longlong)(*(int *)(path_info + 0x10) + 1));
+    memcpy((uint64_t)*(uint *)(output_buffer + 2) + output_buffer[1], *(int64_t *)(path_info + 8), (int64_t)(*(int *)(path_info + 0x10) + 1));
   }
   
   return output_buffer;
@@ -399,11 +399,11 @@ char * build_path_string(longlong path_info, char *output_buffer, longlong param
 // 原始函数: void FUN_180162600(void)
 void initialize_global_variable_table(void)
 {
-  longlong *global_table_ptr;
-  longlong table_handle;
+  int64_t *global_table_ptr;
+  int64_t table_handle;
   int table_size;
   char *table_name;
-  longlong name_buffer;
+  int64_t name_buffer;
   
   global_table_ptr = _GLOBAL_VARIABLE_TABLE;
   table_handle = 0xfffffffffffffffe;
@@ -417,7 +417,7 @@ void initialize_global_variable_table(void)
   table_size = 0;
   
   // 创建表名
-  name_buffer = (longlong *)memory_allocate_from_pool(_GLOBAL_MEMORY_POOL, 0x16, 0x13);
+  name_buffer = (int64_t *)memory_allocate_from_pool(_GLOBAL_MEMORY_POOL, 0x16, 0x13);
   *(char *)name_buffer = 0;
   table_name = name_buffer;
   
@@ -444,11 +444,11 @@ void initialize_global_variable_table(void)
 
 // 函数: 创建默认资源路径
 // 原始函数: uint64_t * FUN_180165950(uint64_t param_1,uint64_t *param_2,uint64_t param_3,uint64_t param_4)
-char * create_default_resource_path(longlong param_1, char *output_buffer, longlong param_3, longlong param_4)
+char * create_default_resource_path(int64_t param_1, char *output_buffer, int64_t param_3, int64_t param_4)
 {
   char *path_buffer;
   int path_length;
-  longlong path_handle;
+  int64_t path_handle;
   
   path_handle = 0xfffffffffffffffe;
   path_length = 0;
@@ -476,7 +476,7 @@ char * create_default_resource_path(longlong param_1, char *output_buffer, longl
 }
 
 // 全局变量定义
-longlong *_GLOBAL_VARIABLE_TABLE = (longlong *)0x180c868f8;  // 全局变量表指针
+int64_t *_GLOBAL_VARIABLE_TABLE = (int64_t *)0x180c868f8;  // 全局变量表指针
 char *_GLOBAL_MEMORY_POOL = (char *)0x180c8ed18;            // 全局内存池
 char *GLOBAL_STRING_CONST = (char *)0x18098bc73;             // 字符串常量
 char *GLOBAL_TEMP_BUFFER = (char *)0x180a3c3e0;              // 临时缓冲区

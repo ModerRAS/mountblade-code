@@ -15,11 +15,11 @@
  * 原始实现：FUN_180104cb0
  * 简化实现：为了便于理解，简化了复杂的内存操作，保留核心功能
  */
-void process_data_stream(longlong data_context, longlong file_context)
+void process_data_stream(int64_t data_context, int64_t file_context)
 {
     // 局部变量定义
     void* buffer_pointer = (void*)0x180104cd3;
-    longlong stream_data = 0;
+    int64_t stream_data = 0;
     int data_size = 0;
     uint64_t flags = 0;
     
@@ -37,7 +37,7 @@ void process_data_stream(longlong data_context, longlong file_context)
                            *(uint32_t*)(data_context + 0x5b0), 0xfffffffffffffffe);
     
     // 写入文件
-    write_file_data(stream_data, 1, (longlong)data_size, *(uint64_t*)(file_context + 8));
+    write_file_data(stream_data, 1, (int64_t)data_size, *(uint64_t*)(file_context + 8));
     
     // 重置缓冲区指针
     buffer_pointer = &global_stream_buffer;
@@ -184,7 +184,7 @@ extern void* global_control_flags;
 extern void* global_config_params;
 
 // 外部函数声明
-extern void process_engine_data(longlong, longlong, void*, longlong);
+extern void process_engine_data(int64_t, int64_t, void*, int64_t);
 extern void execute_stream_processing(void*, void*, void*, uint32_t, uint64_t);
-extern void write_file_data(longlong, size_t, longlong, FILE*);
+extern void write_file_data(int64_t, size_t, int64_t, FILE*);
 extern void handle_stream_error(void);

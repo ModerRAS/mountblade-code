@@ -140,11 +140,11 @@ void FUN_1807e184f(uint64_t param_1,uint64_t param_2,uint param_3,uint64_t param
   float *pfVar132;
   float *pfVar133;
   float *unaff_RBX;
-  longlong unaff_RBP;
+  int64_t unaff_RBP;
   float *unaff_RDI;
   uint uVar134;
-  longlong in_R9;
-  ulonglong uVar135;
+  int64_t in_R9;
+  uint64_t uVar135;
   int in_R11D;
   int32_t unaff_R12D;
   float *unaff_R14;
@@ -193,10 +193,10 @@ void FUN_1807e184f(uint64_t param_1,uint64_t param_2,uint param_3,uint64_t param
   uint uStackX_8;
   uint uStackX_c;
   
-  uVar137 = (uint)((ulonglong)param_4 >> 0x20);
+  uVar137 = (uint)((uint64_t)param_4 >> 0x20);
   uVar136 = (uint)param_4;
   uVar1 = *(uint *)(unaff_RBP + 0x77);
-  uVar135 = (ulonglong)param_3;
+  uVar135 = (uint64_t)param_3;
   do {
     if ((int)in_R9 - 1U < 0x20) {
       iVar131 = (int)uVar1 >> 2;

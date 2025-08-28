@@ -12,21 +12,21 @@ void update_engine_render_state(void)
   uint status_flags;
   int *resource_ptr;
   byte state_flag;
-  longlong resource_handle;
+  int64_t resource_handle;
   int16_t index_value;
   int32_t render_flags;
-  longlong current_resource;
+  int64_t current_resource;
   int *resource_array;
   uint texture_id;
-  longlong next_resource;
+  int64_t next_resource;
   uint64_t *engine_context;
   char state_char;
   int state_value;
-  ulonglong frame_counter;
-  ulonglong loop_index;
-  longlong global_data;
+  uint64_t frame_counter;
+  uint64_t loop_index;
+  int64_t global_data;
   byte render_mode;
-  longlong render_context;
+  int64_t render_context;
   uint64_t xmm0_reg;
   int8_t *output_param;
   char input_param;
@@ -45,22 +45,22 @@ void update_engine_render_state(void)
         *(int32_t *)(current_resource + 0x88) = *(int32_t *)(global_data + 0x1a90);
       }
     }
-    else if (*(ulonglong *)(current_resource + 0x10) != frame_counter) {
+    else if (*(uint64_t *)(current_resource + 0x10) != frame_counter) {
       if (engine_context[0x81] == frame_counter) {
         *(int *)(engine_context + 0x83) = state_value;
-        *(int8_t *)((longlong)engine_context + 0xb2) = 0;
+        *(int8_t *)((int64_t)engine_context + 0xb2) = 0;
       }
       else {
         release_resource(engine_context[0x81]);
         global_data = SYSTEM_DATA_MANAGER_A;
-        *(char *)((longlong)engine_context + 0xb2) = state_char;
+        *(char *)((int64_t)engine_context + 0xb2) = state_char;
       }
       goto setup_render_context;
     }
     activate_resource(current_resource);
     global_data = SYSTEM_DATA_MANAGER_A;
     *(uint64_t *)(SYSTEM_DATA_MANAGER_A + 0x1bf4) = engine_context[8];
-    *(ulonglong *)(global_data + 0x1bfc) = frame_counter;
+    *(uint64_t *)(global_data + 0x1bfc) = frame_counter;
     *(int32_t *)(global_data + 0x1bd0) = 1;
     *(int8_t *)(global_data + 0x1c14) = 1;
     *(uint64_t *)(global_data + 0x1c04) = engine_context[10];
@@ -71,56 +71,56 @@ void update_engine_render_state(void)
   // 检查渲染模式标志
   if (((*(byte *)(current_resource + 0xa0) & 0x20) == 0) || ((*(byte *)(current_resource + 4) & 8) == 0)) {
     if (*(int *)(current_resource + 0x88) < *(int *)(render_context + 0x1a90)) {
-      next_resource = *(longlong *)(current_resource + 8);
+      next_resource = *(int64_t *)(current_resource + 8);
       while (resource_handle = next_resource, resource_handle != 0) {
         current_resource = resource_handle;
-        next_resource = *(longlong *)(resource_handle + 8);
+        next_resource = *(int64_t *)(resource_handle + 8);
       }
       if (*(int *)(render_context + 0x1a90) <= *(int *)(current_resource + 0x88)) {
-        *(byte *)((longlong)engine_context + 0x432) = *(byte *)((longlong)engine_context + 0x432) & 0xfd | 1;
+        *(byte *)((int64_t)engine_context + 0x432) = *(byte *)((int64_t)engine_context + 0x432) & 0xfd | 1;
         return;
       }
     }
     else {
-      next_resource = *(longlong *)(current_resource + 0x68);
+      next_resource = *(int64_t *)(current_resource + 0x68);
       if (next_resource == 0) {
       cleanup_render_state:
-        *(byte *)((longlong)engine_context + 0x432) = *(byte *)((longlong)engine_context + 0x432) & 0xfd;
+        *(byte *)((int64_t)engine_context + 0x432) = *(byte *)((int64_t)engine_context + 0x432) & 0xfd;
         return;
       }
-      if (*(short *)(next_resource + 0xbc) <= *(short *)((longlong)engine_context + 0xbc)) {
+      if (*(short *)(next_resource + 0xbc) <= *(short *)((int64_t)engine_context + 0xbc)) {
         if (next_resource != 0) {
           *(uint64_t *)(global_data + 0x1bf4) = *(uint64_t *)(current_resource + 0x38);
-          *(ulonglong *)(global_data + 0x1bfc) = frame_counter;
+          *(uint64_t *)(global_data + 0x1bfc) = frame_counter;
           *(int32_t *)(global_data + 0x1bd0) = 1;
           *(int8_t *)(global_data + 0x1c14) = 1;
           *(uint64_t *)(global_data + 0x1c04) = *(uint64_t *)(current_resource + 0x40);
           *(int32_t *)(global_data + 0x1bd4) = 1;
           *(char *)(render_context + 0x1c14) = state_char;
-          state_flag = *(byte *)((longlong)engine_context + 0x432) & 0xfd;
+          state_flag = *(byte *)((int64_t)engine_context + 0x432) & 0xfd;
           render_mode = state_flag | 1;
-          *(byte *)((longlong)engine_context + 0x432) = render_mode;
+          *(byte *)((int64_t)engine_context + 0x432) = render_mode;
           if ((*(byte *)(current_resource + 4) & 1) != 0) {
             return;
           }
-          next_resource = *(longlong *)(current_resource + 0x30);
+          next_resource = *(int64_t *)(current_resource + 0x30);
           if ((next_resource != 0) && (*(int *)(next_resource + 0x1c) == *(int *)(engine_context + 1))) {
             render_mode = state_flag | 3;
-            *(byte *)((longlong)engine_context + 0x432) = render_mode;
-            next_resource = *(longlong *)(current_resource + 0x30);
+            *(byte *)((int64_t)engine_context + 0x432) = render_mode;
+            next_resource = *(int64_t *)(current_resource + 0x30);
           }
           if ((((render_mode & 2) == 0) && (next_resource != 0)) &&
              (*(int *)(next_resource + 0x18) == *(int *)(engine_context + 1))) {
-            *(int32_t *)((longlong)engine_context + 0xdc) = 2;
+            *(int32_t *)((int64_t)engine_context + 0xdc) = 2;
           }
-          status_flags = *(uint *)((longlong)engine_context + 0xc);
-          *(uint *)((longlong)engine_context + 0xc) = status_flags | 0x1010002;
+          status_flags = *(uint *)((int64_t)engine_context + 0xc);
+          *(uint *)((int64_t)engine_context + 0xc) = status_flags | 0x1010002;
           texture_id = status_flags & 0xfffffffe | 0x1010002;
           if ((*(byte *)(current_resource + 0xa0) & 0x40) != 0) {
             texture_id = status_flags | 0x1010003;
           }
-          *(uint *)((longlong)engine_context + 0xc) = texture_id;
-          if (*(ulonglong *)(current_resource + 0x30) != frame_counter) {
+          *(uint *)((int64_t)engine_context + 0xc) = texture_id;
+          if (*(uint64_t *)(current_resource + 0x30) != frame_counter) {
             resource_ptr = *(int **)(engine_context[0x81] + 0x30);
             if (((resource_ptr != (int *)0x0) && (*(int *)(engine_context + 1) != 0)) && (0 < *resource_ptr)) {
               resource_array = *(int **)(resource_ptr + 2);
@@ -128,16 +128,16 @@ void update_engine_render_state(void)
               do {
                 state_value = (int)loop_index;
                 if (*resource_array == *(int *)(engine_context + 1)) {
-                  if (*(int **)(resource_ptr + 2) + (longlong)state_value * 10 != (int *)0x0) {
-                    index_value = (int16_t)(((longlong)state_value * 0x28) / 0x28);
+                  if (*(int **)(resource_ptr + 2) + (int64_t)state_value * 10 != (int *)0x0) {
+                    index_value = (int16_t)(((int64_t)state_value * 0x28) / 0x28);
                     goto update_resource_index;
                   }
                   break;
                 }
-                loop_index = (ulonglong)(state_value + 1);
+                loop_index = (uint64_t)(state_value + 1);
                 frame_counter = frame_counter + 1;
                 resource_array = resource_array + 10;
-              } while ((longlong)frame_counter < (longlong)*resource_ptr);
+              } while ((int64_t)frame_counter < (int64_t)*resource_ptr);
             }
             index_value = 0xffff;
           update_resource_index:
@@ -165,10 +165,10 @@ void update_engine_render_state(void)
     release_all_resources();
     global_data = SYSTEM_DATA_MANAGER_A;
   }
-  *(char *)((longlong)engine_context + 0xb2) = state_char;
+  *(char *)((int64_t)engine_context + 0xb2) = state_char;
   
 setup_render_context:
-  *(byte *)((longlong)engine_context + 0x432) = *(byte *)((longlong)engine_context + 0x432) & 0xfc;
+  *(byte *)((int64_t)engine_context + 0x432) = *(byte *)((int64_t)engine_context + 0x432) & 0xfc;
   if (0.0 < *(float *)(global_data + 0x2e04)) {
     return;
   }
@@ -182,27 +182,27 @@ setup_render_context:
 
 
 
-// 函数: void FUN_18013b670(longlong param_1)
+// 函数: void FUN_18013b670(int64_t param_1)
 // 功能: 处理带参数的引擎状态更新
-void update_engine_state_with_param(longlong param_1)
+void update_engine_state_with_param(int64_t param_1)
 
 {
   uint state_flags;
   int *resource_data;
-  longlong temp_handle;
+  int64_t temp_handle;
   byte mode_flag;
   int16_t resource_index;
   int32_t render_config;
   int *resource_list;
   uint texture_handle;
-  ulonglong counter;
-  longlong resource_chain;
+  uint64_t counter;
+  int64_t resource_chain;
   uint64_t *engine_context;
   int state_value;
-  ulonglong loop_counter;
-  longlong global_data;
+  uint64_t loop_counter;
+  int64_t global_data;
   byte render_state;
-  longlong render_device;
+  int64_t render_device;
   uint64_t xmm0_reg;
   int8_t *status_output;
   char stack_param;
@@ -227,8 +227,8 @@ void update_engine_state_with_param(longlong param_1)
       release_resource(engine_context[0x81]);
       global_data = SYSTEM_DATA_MANAGER_A;
     }
-    *(byte *)((longlong)engine_context + 0x432) = *(byte *)((longlong)engine_context + 0x432) & 0xfc;
-    *(int8_t *)((longlong)engine_context + 0xb2) = 0;
+    *(byte *)((int64_t)engine_context + 0x432) = *(byte *)((int64_t)engine_context + 0x432) & 0xfc;
+    *(int8_t *)((int64_t)engine_context + 0xb2) = 0;
     if (0.0 < *(float *)(global_data + 0x2e04)) {
       return;
     }
@@ -246,15 +246,15 @@ void update_engine_state_with_param(longlong param_1)
         *(int32_t *)(resource_chain + 0x88) = *(int32_t *)(global_data + 0x1a90);
       }
     }
-    else if (*(longlong *)(resource_chain + 0x10) != 0) {
+    else if (*(int64_t *)(resource_chain + 0x10) != 0) {
       if (engine_context[0x81] == 0) {
         *(int32_t *)(engine_context + 0x83) = 0;
-        *(int8_t *)((longlong)engine_context + 0xb2) = 0;
+        *(int8_t *)((int64_t)engine_context + 0xb2) = 0;
       }
       else {
         release_resource(engine_context[0x81]);
         global_data = SYSTEM_DATA_MANAGER_A;
-        *(int8_t *)((longlong)engine_context + 0xb2) = 0;
+        *(int8_t *)((int64_t)engine_context + 0xb2) = 0;
       }
       goto setup_render_context;
     }
@@ -272,24 +272,24 @@ void update_engine_state_with_param(longlong param_1)
   // 处理资源链和渲染状态
   if (((*(byte *)(resource_chain + 0xa0) & 0x20) == 0) || ((*(byte *)(resource_chain + 4) & 8) == 0)) {
     if (*(int *)(resource_chain + 0x88) < *(int *)(render_device + 0x1a90)) {
-      temp_handle = *(longlong *)(resource_chain + 8);
+      temp_handle = *(int64_t *)(resource_chain + 8);
       while (resource_handle = temp_handle, resource_handle != 0) {
         resource_chain = resource_handle;
-        temp_handle = *(longlong *)(resource_handle + 8);
+        temp_handle = *(int64_t *)(resource_handle + 8);
       }
       if (*(int *)(render_device + 0x1a90) <= *(int *)(resource_chain + 0x88)) {
-        *(byte *)((longlong)engine_context + 0x432) = *(byte *)((longlong)engine_context + 0x432) & 0xfd | 1;
+        *(byte *)((int64_t)engine_context + 0x432) = *(byte *)((int64_t)engine_context + 0x432) & 0xfd | 1;
         return;
       }
     }
     else {
-      temp_handle = *(longlong *)(resource_chain + 0x68);
+      temp_handle = *(int64_t *)(resource_chain + 0x68);
       if (temp_handle == 0) {
       cleanup_render_state:
-        *(byte *)((longlong)engine_context + 0x432) = *(byte *)((longlong)engine_context + 0x432) & 0xfd;
+        *(byte *)((int64_t)engine_context + 0x432) = *(byte *)((int64_t)engine_context + 0x432) & 0xfd;
         return;
       }
-      if (*(short *)(temp_handle + 0xbc) <= *(short *)((longlong)engine_context + 0xbc)) {
+      if (*(short *)(temp_handle + 0xbc) <= *(short *)((int64_t)engine_context + 0xbc)) {
         if (temp_handle != 0) {
           *(uint64_t *)(global_data + 0x1bf4) = *(uint64_t *)(resource_chain + 0x38);
           *(uint64_t *)(global_data + 0x1bfc) = 0;
@@ -298,30 +298,30 @@ void update_engine_state_with_param(longlong param_1)
           *(uint64_t *)(global_data + 0x1c04) = *(uint64_t *)(resource_chain + 0x40);
           *(int32_t *)(global_data + 0x1bd4) = 1;
           *(int8_t *)(render_device + 0x1c14) = 0;
-          mode_flag = *(byte *)((longlong)engine_context + 0x432) & 0xfd;
+          mode_flag = *(byte *)((int64_t)engine_context + 0x432) & 0xfd;
           render_state = mode_flag | 1;
-          *(byte *)((longlong)engine_context + 0x432) = render_state;
+          *(byte *)((int64_t)engine_context + 0x432) = render_state;
           if ((*(byte *)(resource_chain + 4) & 1) != 0) {
             return;
           }
-          temp_handle = *(longlong *)(resource_chain + 0x30);
+          temp_handle = *(int64_t *)(resource_chain + 0x30);
           if ((temp_handle != 0) && (*(int *)(temp_handle + 0x1c) == *(int *)(engine_context + 1))) {
             render_state = mode_flag | 3;
-            *(byte *)((longlong)engine_context + 0x432) = render_state;
-            temp_handle = *(longlong *)(resource_chain + 0x30);
+            *(byte *)((int64_t)engine_context + 0x432) = render_state;
+            temp_handle = *(int64_t *)(resource_chain + 0x30);
           }
           if ((((render_state & 2) == 0) && (temp_handle != 0)) &&
              (*(int *)(temp_handle + 0x18) == *(int *)(engine_context + 1))) {
-            *(int32_t *)((longlong)engine_context + 0xdc) = 2;
+            *(int32_t *)((int64_t)engine_context + 0xdc) = 2;
           }
-          state_flags = *(uint *)((longlong)engine_context + 0xc);
-          *(uint *)((longlong)engine_context + 0xc) = state_flags | 0x1010002;
+          state_flags = *(uint *)((int64_t)engine_context + 0xc);
+          *(uint *)((int64_t)engine_context + 0xc) = state_flags | 0x1010002;
           texture_handle = state_flags & 0xfffffffe | 0x1010002;
           if ((*(byte *)(resource_chain + 0xa0) & 0x40) != 0) {
             texture_handle = state_flags | 0x1010003;
           }
-          *(uint *)((longlong)engine_context + 0xc) = texture_handle;
-          if (*(longlong *)(resource_chain + 0x30) != 0) {
+          *(uint *)((int64_t)engine_context + 0xc) = texture_handle;
+          if (*(int64_t *)(resource_chain + 0x30) != 0) {
             resource_data = *(int **)(engine_context[0x81] + 0x30);
             if (((resource_data != (int *)0x0) && (*(int *)(engine_context + 1) != 0)) && (0 < *resource_data)) {
               resource_list = *(int **)(resource_data + 2);
@@ -329,16 +329,16 @@ void update_engine_state_with_param(longlong param_1)
               do {
                 state_value = (int)loop_counter;
                 if (*resource_list == *(int *)(engine_context + 1)) {
-                  if (*(int **)(resource_data + 2) + (longlong)state_value * 10 != (int *)0x0) {
-                    resource_index = (int16_t)(((longlong)state_value * 0x28) / 0x28);
+                  if (*(int **)(resource_data + 2) + (int64_t)state_value * 10 != (int *)0x0) {
+                    resource_index = (int16_t)(((int64_t)state_value * 0x28) / 0x28);
                     goto update_resource_index;
                   }
                   break;
                 }
-                loop_counter = (ulonglong)(state_value + 1);
+                loop_counter = (uint64_t)(state_value + 1);
                 counter = counter + 1;
                 resource_list = resource_list + 10;
-              } while ((longlong)counter < (longlong)*resource_data);
+              } while ((int64_t)counter < (int64_t)*resource_data);
             }
             resource_index = 0xffff;
           update_resource_index:
@@ -366,10 +366,10 @@ void update_engine_state_with_param(longlong param_1)
     release_all_resources();
     global_data = SYSTEM_DATA_MANAGER_A;
   }
-  *(int8_t *)((longlong)engine_context + 0xb2) = 0;
+  *(int8_t *)((int64_t)engine_context + 0xb2) = 0;
   
 setup_render_context:
-  *(byte *)((longlong)engine_context + 0x432) = *(byte *)((longlong)engine_context + 0x432) & 0xfc;
+  *(byte *)((int64_t)engine_context + 0x432) = *(byte *)((int64_t)engine_context + 0x432) & 0xfc;
   if (0.0 < *(float *)(global_data + 0x2e04)) {
     return;
   }
@@ -386,9 +386,9 @@ setup_render_context:
 void reset_engine_state(void)
 
 {
-  longlong engine_context;
+  int64_t engine_context;
   int32_t reset_value;
-  longlong global_data;
+  int64_t global_data;
   
   // 重置引擎状态参数
   *(int32_t *)(engine_context + 0x418) = reset_value;
@@ -421,20 +421,20 @@ void process_resource_priority(void)
   int32_t queue_config;
   int *resource_list;
   uint texture_id;
-  longlong resource_handle;
+  int64_t resource_handle;
   uint64_t *engine_context;
   int priority_value;
-  ulonglong resource_counter;
-  longlong render_source;
-  longlong global_data;
+  uint64_t resource_counter;
+  int64_t render_source;
+  int64_t global_data;
   byte queue_state;
-  longlong render_target;
+  int64_t render_target;
   int8_t *status_flag;
   
   // 获取资源句柄
-  resource_handle = *(longlong *)(render_source + 0x68);
+  resource_handle = *(int64_t *)(render_source + 0x68);
   if (resource_handle != 0) {
-    if (*(short *)((longlong)engine_context + 0xbc) < *(short *)(resource_handle + 0xbc)) {
+    if (*(short *)((int64_t)engine_context + 0xbc) < *(short *)(resource_handle + 0xbc)) {
       if (engine_context[0x81] == 0) {
         *(int *)(engine_context + 0x83) = (int)resource_counter;
       }
@@ -442,8 +442,8 @@ void process_resource_priority(void)
         release_resource(engine_context[0x81]);
         global_data = SYSTEM_DATA_MANAGER_A;
       }
-      *(char *)((longlong)engine_context + 0xb2) = (char)resource_counter;
-      *(byte *)((longlong)engine_context + 0x432) = *(byte *)((longlong)engine_context + 0x432) & 0xfc;
+      *(char *)((int64_t)engine_context + 0xb2) = (char)resource_counter;
+      *(byte *)((int64_t)engine_context + 0x432) = *(byte *)((int64_t)engine_context + 0x432) & 0xfc;
       if (*(float *)(global_data + 0x2e04) <= 0.0) {
         *(int32_t *)(global_data + 0x2e04) = *(int32_t *)(global_data + 0x1c);
         return;
@@ -452,34 +452,34 @@ void process_resource_priority(void)
     else {
       if (resource_handle == 0) goto cleanup_priority_queue;
       *(uint64_t *)(global_data + 0x1bf4) = *(uint64_t *)(render_source + 0x38);
-      *(ulonglong *)(global_data + 0x1bfc) = resource_counter;
+      *(uint64_t *)(global_data + 0x1bfc) = resource_counter;
       *(int32_t *)(global_data + 0x1bd0) = 1;
       *(int8_t *)(global_data + 0x1c14) = 1;
       *(uint64_t *)(global_data + 0x1c04) = *(uint64_t *)(render_source + 0x40);
       *(int32_t *)(global_data + 0x1bd4) = 1;
       *(char *)(render_target + 0x1c14) = (char)resource_counter;
-      priority_flag = *(byte *)((longlong)engine_context + 0x432) & 0xfd;
+      priority_flag = *(byte *)((int64_t)engine_context + 0x432) & 0xfd;
       queue_state = priority_flag | 1;
-      *(byte *)((longlong)engine_context + 0x432) = queue_state;
+      *(byte *)((int64_t)engine_context + 0x432) = queue_state;
       if ((*(byte *)(render_source + 4) & 1) == 0) {
-        resource_handle = *(longlong *)(render_source + 0x30);
+        resource_handle = *(int64_t *)(render_source + 0x30);
         if ((resource_handle != 0) && (*(int *)(resource_handle + 0x1c) == *(int *)(engine_context + 1))) {
           queue_state = priority_flag | 3;
-          *(byte *)((longlong)engine_context + 0x432) = queue_state;
-          resource_handle = *(longlong *)(render_source + 0x30);
+          *(byte *)((int64_t)engine_context + 0x432) = queue_state;
+          resource_handle = *(int64_t *)(render_source + 0x30);
         }
         if ((((queue_state & 2) == 0) && (resource_handle != 0)) &&
            (*(int *)(resource_handle + 0x18) == *(int *)(engine_context + 1))) {
-          *(int32_t *)((longlong)engine_context + 0xdc) = 2;
+          *(int32_t *)((int64_t)engine_context + 0xdc) = 2;
         }
-        render_flags = *(uint *)((longlong)engine_context + 0xc);
-        *(uint *)((longlong)engine_context + 0xc) = render_flags | 0x1010002;
+        render_flags = *(uint *)((int64_t)engine_context + 0xc);
+        *(uint *)((int64_t)engine_context + 0xc) = render_flags | 0x1010002;
         texture_id = render_flags & 0xfffffffe | 0x1010002;
         if ((*(byte *)(render_source + 0xa0) & 0x40) != 0) {
           texture_id = render_flags | 0x1010003;
         }
-        *(uint *)((longlong)engine_context + 0xc) = texture_id;
-        if (*(ulonglong *)(render_source + 0x30) != resource_counter) {
+        *(uint *)((int64_t)engine_context + 0xc) = texture_id;
+        if (*(uint64_t *)(render_source + 0x30) != resource_counter) {
           resource_data = *(int **)(engine_context[0x81] + 0x30);
           if (((resource_data != (int *)0x0) && (*(int *)(engine_context + 1) != 0)) && (0 < *resource_data)) {
             resource_list = *(int **)(resource_data + 2);
@@ -487,16 +487,16 @@ void process_resource_priority(void)
             do {
               priority_value = (int)resource_counter;
               if (*resource_list == *(int *)(engine_context + 1)) {
-                if (*(int **)(resource_data + 2) + (longlong)priority_value * 10 != (int *)0x0) {
-                  priority_index = (int16_t)(((longlong)priority_value * 0x28) / 0x28);
+                if (*(int **)(resource_data + 2) + (int64_t)priority_value * 10 != (int *)0x0) {
+                  priority_index = (int16_t)(((int64_t)priority_value * 0x28) / 0x28);
                   goto update_priority_index;
                 }
                 break;
               }
-              resource_counter = (ulonglong)(priority_value + 1);
+              resource_counter = (uint64_t)(priority_value + 1);
               resource_counter = resource_counter + 1;
               resource_list = resource_list + 10;
-            } while ((longlong)resource_counter < (longlong)*resource_data);
+            } while ((int64_t)resource_counter < (int64_t)*resource_data);
           }
           priority_index = 0xffff;
         update_priority_index:
@@ -515,7 +515,7 @@ void process_resource_priority(void)
   }
   
 cleanup_priority_queue:
-  *(byte *)((longlong)engine_context + 0x432) = *(byte *)((longlong)engine_context + 0x432) & 0xfd;
+  *(byte *)((int64_t)engine_context + 0x432) = *(byte *)((int64_t)engine_context + 0x432) & 0xfd;
   return;
 }
 
@@ -523,9 +523,9 @@ cleanup_priority_queue:
 
 
 
-// 函数: void FUN_18013b86d(longlong param_1)
+// 函数: void FUN_18013b86d(int64_t param_1)
 // 功能: 处理单个资源的激活和状态更新
-void activate_single_resource(longlong param_1)
+void activate_single_resource(int64_t param_1)
 
 {
   uint render_flags;
@@ -535,53 +535,53 @@ void activate_single_resource(longlong param_1)
   int32_t activation_config;
   int *resource_list;
   uint texture_id;
-  longlong resource_handle;
+  int64_t resource_handle;
   uint64_t *engine_context;
   int index_value;
-  ulonglong resource_counter;
-  longlong render_source;
-  longlong global_data;
+  uint64_t resource_counter;
+  int64_t render_source;
+  int64_t global_data;
   byte active_state;
-  longlong render_target;
+  int64_t render_target;
   int8_t *status_output;
   
   // 检查资源有效性
   if (param_1 == 0) {
-    *(byte *)((longlong)engine_context + 0x432) = *(byte *)((longlong)engine_context + 0x432) & 0xfd;
+    *(byte *)((int64_t)engine_context + 0x432) = *(byte *)((int64_t)engine_context + 0x432) & 0xfd;
     return;
   }
   
   // 激活资源并设置渲染参数
   *(uint64_t *)(global_data + 0x1bf4) = *(uint64_t *)(render_source + 0x38);
-  *(ulonglong *)(global_data + 0x1bfc) = resource_counter;
+  *(uint64_t *)(global_data + 0x1bfc) = resource_counter;
   *(int32_t *)(global_data + 0x1bd0) = 1;
   *(int8_t *)(global_data + 0x1c14) = 1;
   *(uint64_t *)(global_data + 0x1c04) = *(uint64_t *)(render_source + 0x40);
   *(int32_t *)(global_data + 0x1bd4) = 1;
   *(char *)(render_target + 0x1c14) = (char)resource_counter;
-  activation_flag = *(byte *)((longlong)engine_context + 0x432) & 0xfd;
+  activation_flag = *(byte *)((int64_t)engine_context + 0x432) & 0xfd;
   active_state = activation_flag | 1;
-  *(byte *)((longlong)engine_context + 0x432) = active_state;
+  *(byte *)((int64_t)engine_context + 0x432) = active_state;
   
   if ((*(byte *)(render_source + 4) & 1) == 0) {
-    resource_handle = *(longlong *)(render_source + 0x30);
+    resource_handle = *(int64_t *)(render_source + 0x30);
     if ((resource_handle != 0) && (*(int *)(resource_handle + 0x1c) == *(int *)(engine_context + 1))) {
       active_state = activation_flag | 3;
-      *(byte *)((longlong)engine_context + 0x432) = active_state;
-      resource_handle = *(longlong *)(render_source + 0x30);
+      *(byte *)((int64_t)engine_context + 0x432) = active_state;
+      resource_handle = *(int64_t *)(render_source + 0x30);
     }
     if ((((active_state & 2) == 0) && (resource_handle != 0)) && 
         (*(int *)(resource_handle + 0x18) == *(int *)(engine_context + 1))) {
-      *(int32_t *)((longlong)engine_context + 0xdc) = 2;
+      *(int32_t *)((int64_t)engine_context + 0xdc) = 2;
     }
-    render_flags = *(uint *)((longlong)engine_context + 0xc);
-    *(uint *)((longlong)engine_context + 0xc) = render_flags | 0x1010002;
+    render_flags = *(uint *)((int64_t)engine_context + 0xc);
+    *(uint *)((int64_t)engine_context + 0xc) = render_flags | 0x1010002;
     texture_id = render_flags & 0xfffffffe | 0x1010002;
     if ((*(byte *)(render_source + 0xa0) & 0x40) != 0) {
       texture_id = render_flags | 0x1010003;
     }
-    *(uint *)((longlong)engine_context + 0xc) = texture_id;
-    if (*(ulonglong *)(render_source + 0x30) != resource_counter) {
+    *(uint *)((int64_t)engine_context + 0xc) = texture_id;
+    if (*(uint64_t *)(render_source + 0x30) != resource_counter) {
       resource_data = *(int **)(engine_context[0x81] + 0x30);
       if (((resource_data != (int *)0x0) && (*(int *)(engine_context + 1) != 0)) && (0 < *resource_data)) {
         resource_list = *(int **)(resource_data + 2);
@@ -589,16 +589,16 @@ void activate_single_resource(longlong param_1)
         do {
           index_value = (int)resource_counter;
           if (*resource_list == *(int *)(engine_context + 1)) {
-            if (*(int **)(resource_data + 2) + (longlong)index_value * 10 != (int *)0x0) {
-              resource_index = (int16_t)(((longlong)index_value * 0x28) / 0x28);
+            if (*(int **)(resource_data + 2) + (int64_t)index_value * 10 != (int *)0x0) {
+              resource_index = (int16_t)(((int64_t)index_value * 0x28) / 0x28);
               goto update_resource_index;
             }
             break;
           }
-          resource_counter = (ulonglong)(index_value + 1);
+          resource_counter = (uint64_t)(index_value + 1);
           resource_counter = resource_counter + 1;
           resource_list = resource_list + 10;
-        } while ((longlong)resource_counter < (longlong)*resource_data);
+        } while ((int64_t)resource_counter < (int64_t)*resource_data);
       }
       resource_index = 0xffff;
     update_resource_index:
@@ -631,47 +631,47 @@ void activate_resource_batch(void)
   int32_t batch_config;
   int *resource_list;
   uint texture_id;
-  longlong resource_handle;
+  int64_t resource_handle;
   uint64_t *engine_context;
   int batch_value;
-  ulonglong resource_counter;
-  longlong render_source;
-  longlong global_data;
+  uint64_t resource_counter;
+  int64_t render_source;
+  int64_t global_data;
   byte batch_state;
-  longlong render_target;
+  int64_t render_target;
   int8_t *status_output;
   
   // 批量激活资源并设置渲染参数
   *(uint64_t *)(global_data + 0x1bf4) = *(uint64_t *)(render_source + 0x38);
-  *(ulonglong *)(global_data + 0x1bfc) = resource_counter;
+  *(uint64_t *)(global_data + 0x1bfc) = resource_counter;
   *(int32_t *)(global_data + 0x1bd0) = 1;
   *(int8_t *)(global_data + 0x1c14) = 1;
   *(uint64_t *)(global_data + 0x1c04) = *(uint64_t *)(render_source + 0x40);
   *(int32_t *)(global_data + 0x1bd4) = 1;
   *(char *)(render_target + 0x1c14) = (char)resource_counter;
-  batch_flag = *(byte *)((longlong)engine_context + 0x432) & 0xfd;
+  batch_flag = *(byte *)((int64_t)engine_context + 0x432) & 0xfd;
   batch_state = batch_flag | 1;
-  *(byte *)((longlong)engine_context + 0x432) = batch_state;
+  *(byte *)((int64_t)engine_context + 0x432) = batch_state;
   
   if ((*(byte *)(render_source + 4) & 1) == 0) {
-    resource_handle = *(longlong *)(render_source + 0x30);
+    resource_handle = *(int64_t *)(render_source + 0x30);
     if ((resource_handle != 0) && (*(int *)(resource_handle + 0x1c) == *(int *)(engine_context + 1))) {
       batch_state = batch_flag | 3;
-      *(byte *)((longlong)engine_context + 0x432) = batch_state;
-      resource_handle = *(longlong *)(render_source + 0x30);
+      *(byte *)((int64_t)engine_context + 0x432) = batch_state;
+      resource_handle = *(int64_t *)(render_source + 0x30);
     }
     if ((((batch_state & 2) == 0) && (resource_handle != 0)) && 
         (*(int *)(resource_handle + 0x18) == *(int *)(engine_context + 1))) {
-      *(int32_t *)((longlong)engine_context + 0xdc) = 2;
+      *(int32_t *)((int64_t)engine_context + 0xdc) = 2;
     }
-    render_flags = *(uint *)((longlong)engine_context + 0xc);
-    *(uint *)((longlong)engine_context + 0xc) = render_flags | 0x1010002;
+    render_flags = *(uint *)((int64_t)engine_context + 0xc);
+    *(uint *)((int64_t)engine_context + 0xc) = render_flags | 0x1010002;
     texture_id = render_flags & 0xfffffffe | 0x1010002;
     if ((*(byte *)(render_source + 0xa0) & 0x40) != 0) {
       texture_id = render_flags | 0x1010003;
     }
-    *(uint *)((longlong)engine_context + 0xc) = texture_id;
-    if (*(ulonglong *)(render_source + 0x30) != resource_counter) {
+    *(uint *)((int64_t)engine_context + 0xc) = texture_id;
+    if (*(uint64_t *)(render_source + 0x30) != resource_counter) {
       resource_data = *(int **)(engine_context[0x81] + 0x30);
       if (((resource_data != (int *)0x0) && (*(int *)(engine_context + 1) != 0)) && (0 < *resource_data)) {
         resource_list = *(int **)(resource_data + 2);
@@ -679,16 +679,16 @@ void activate_resource_batch(void)
         do {
           batch_value = (int)resource_counter;
           if (*resource_list == *(int *)(engine_context + 1)) {
-            if (*(int **)(resource_data + 2) + (longlong)batch_value * 10 != (int *)0x0) {
-              batch_index = (int16_t)(((longlong)batch_value * 0x28) / 0x28);
+            if (*(int **)(resource_data + 2) + (int64_t)batch_value * 10 != (int *)0x0) {
+              batch_index = (int16_t)(((int64_t)batch_value * 0x28) / 0x28);
               goto update_batch_index;
             }
             break;
           }
-          resource_counter = (ulonglong)(batch_value + 1);
+          resource_counter = (uint64_t)(batch_value + 1);
           resource_counter = resource_counter + 1;
           resource_list = resource_list + 10;
-        } while ((longlong)resource_counter < (longlong)*resource_data);
+        } while ((int64_t)resource_counter < (int64_t)*resource_data);
       }
       batch_index = 0xffff;
     update_batch_index:
@@ -730,16 +730,16 @@ void update_resource_index_and_status(void)
   int32_t status_flags;
   uint64_t *engine_context;
   int context_param;
-  longlong render_source;
-  longlong resource_base;
+  int64_t render_source;
+  int64_t resource_base;
   int8_t *status_output;
   
   // 计算资源索引值
-  if ((longlong)context_param * 0x28 + resource_base == 0) {
+  if ((int64_t)context_param * 0x28 + resource_base == 0) {
     index_value = 0xffff;
   }
   else {
-    index_value = (int16_t)(((longlong)context_param * 0x28) / 0x28);
+    index_value = (int16_t)(((int64_t)context_param * 0x28) / 0x28);
   }
   *(int16_t *)(engine_context + 0x86) = index_value;
   
@@ -762,20 +762,20 @@ void update_resource_index_and_status(void)
 
 
 
-// 函数: void FUN_18013ba30(longlong param_1)
+// 函数: void FUN_18013ba30(int64_t param_1)
 // 功能: 处理渲染参数验证和资源分配
-void validate_render_parameters(longlong param_1)
+void validate_render_parameters(int64_t param_1)
 
 {
-  longlong global_context;
+  int64_t global_context;
   char validation_result;
   int32_t xmm0_value;
-  longlong render_stack[4];
+  int64_t render_stack[4];
   
   // 获取全局上下文
   global_context = SYSTEM_DATA_MANAGER_A;
   *(int32_t *)(param_1 + 0x144) = *(int32_t *)(param_1 + 0x84);
-  render_stack[0] = *(longlong *)(param_1 + 0x3a0);
+  render_stack[0] = *(int64_t *)(param_1 + 0x3a0);
   
   // 验证渲染参数
   if (*(char *)(global_context + 0xc1) == '\0') {
@@ -821,7 +821,7 @@ void validate_render_parameters(longlong param_1)
 void allocate_render_resources(void)
 
 {
-  longlong global_context;
+  int64_t global_context;
   
   // 分配渲染资源
   allocate_render_resources();

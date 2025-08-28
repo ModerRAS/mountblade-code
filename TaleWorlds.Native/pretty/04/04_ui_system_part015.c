@@ -60,8 +60,8 @@
  * @param effect_params 效果参数指针
  * @param control_data 控制数据指针
  */
-void ui_system_advanced_particle_system_update(longlong ui_context, longlong particle_data, 
-                                             longlong animation_data, float time_delta,
+void ui_system_advanced_particle_system_update(int64_t ui_context, int64_t particle_data, 
+                                             int64_t animation_data, float time_delta,
                                              int8_t *effect_params, char *control_data)
 {
     // 局部变量声明
@@ -76,16 +76,16 @@ void ui_system_advanced_particle_system_update(longlong ui_context, longlong par
     int8_t transform_matrix_3[16];
     int8_t transform_matrix_4[16];
     uint blend_mask_result;
-    longlong particle_index;
+    int64_t particle_index;
     float *particle_weight_ptr;
-    longlong animation_frame;
-    longlong particle_lifetime;
-    longlong particle_state;
-    longlong particle_effect;
-    longlong particle_system;
-    ulonglong particle_id;
-    ulonglong effect_id;
-    longlong render_target;
+    int64_t animation_frame;
+    int64_t particle_lifetime;
+    int64_t particle_state;
+    int64_t particle_effect;
+    int64_t particle_system;
+    uint64_t particle_id;
+    uint64_t effect_id;
+    int64_t render_target;
     float *render_data_ptr;
     int8_t *effect_param_ptr;
     float base_weight;
@@ -120,27 +120,27 @@ void ui_system_advanced_particle_system_update(longlong ui_context, longlong par
     int8_t blend_mode;
     float stack_weight_1;
     float stack_weight_2;
-    longlong stack_context_1;
-    longlong stack_context_2;
+    int64_t stack_context_1;
+    int64_t stack_context_2;
     char *stack_control_ptr;
     uint64_t stack_transform;
     float stack_scale_1;
     float stack_scale_2;
     float stack_scale_3;
-    longlong stack_animation_1;
-    longlong stack_animation_2;
-    longlong stack_particle_1;
+    int64_t stack_animation_1;
+    int64_t stack_animation_2;
+    int64_t stack_particle_1;
     char *stack_particle_ptr;
-    longlong stack_resource_1;
+    int64_t stack_resource_1;
     int8_t *stack_effect_ptr;
     float matrix_stack[UI_MATRIX_STACK_SIZE];
     int8_t stack_flag;
-    ulonglong stack_id;
+    uint64_t stack_id;
     
     // 初始化栈变量
-    stack_id = GET_SECURITY_COOKIE() ^ (ulonglong)stack_buffer;
+    stack_id = GET_SECURITY_COOKIE() ^ (uint64_t)stack_buffer;
     particle_intensity = *(float *)(ui_context + 0x6150);
-    stack_context_2 = *(longlong *)(particle_data + 0x208);
+    stack_context_2 = *(int64_t *)(particle_data + 0x208);
     stack_effect_ptr = effect_params;
     stack_control_ptr = control_data;
     stack_animation_2 = 2;
@@ -158,7 +158,7 @@ void ui_system_advanced_particle_system_update(longlong ui_context, longlong par
     stack_particle_1 = particle_data;
     
     // 检查是否需要处理粒子
-    if ((0.0 < target_weight) && (particle_index = (longlong)*(int *)(ui_context + 0x60), 0 < *(int *)(ui_context + 0x60)))
+    if ((0.0 < target_weight) && (particle_index = (int64_t)*(int *)(ui_context + 0x60), 0 < *(int *)(ui_context + 0x60)))
     {
         // 初始化粒子数据数组
         particle_weight_ptr = matrix_stack;
@@ -193,8 +193,8 @@ void ui_system_advanced_particle_system_update(longlong ui_context, longlong par
                     }
                     
                     // 计算四个方向的力
-                    particle_velocity_ptr = (float *)((longlong)particle_weight_ptr + particle_state + -0x1358);
-                    particle_position_ptr = (float *)(particle_state + (longlong)particle_weight_ptr);
+                    particle_velocity_ptr = (float *)((int64_t)particle_weight_ptr + particle_state + -0x1358);
+                    particle_position_ptr = (float *)(particle_state + (int64_t)particle_weight_ptr);
                     particle_turbulence = (1.0 - *particle_weight_ptr) * UI_BLEND_FACTOR_SMOOTH;
                     particle_damping = (1.0 - particle_weight_ptr[0x4d6]) * UI_BLEND_FACTOR_SMOOTH;
                     
@@ -207,8 +207,8 @@ void ui_system_advanced_particle_system_update(longlong ui_context, longlong par
                     }
                     
                     // 计算另外两个方向的力
-                    particle_acceleration_ptr = (float *)((longlong)particle_weight_ptr + particle_state + 0x1358);
-                    particle_force_ptr = (float *)((longlong)particle_weight_ptr + particle_state + 0x26b0);
+                    particle_acceleration_ptr = (float *)((int64_t)particle_weight_ptr + particle_state + 0x1358);
+                    particle_force_ptr = (float *)((int64_t)particle_weight_ptr + particle_state + 0x26b0);
                     particle_weight_ptr = particle_weight_ptr + 0x1358;
                     
                     // 综合计算粒子受到的总力
@@ -229,7 +229,7 @@ void ui_system_advanced_particle_system_update(longlong ui_context, longlong par
                 particle_frame = particle_index - particle_frame;
                 
                 do {
-                    particle_repulsion = (1.0 - *(float *)(particle_lifetime + (longlong)particle_weight_ptr)) * UI_BLEND_FACTOR_SMOOTH;
+                    particle_repulsion = (1.0 - *(float *)(particle_lifetime + (int64_t)particle_weight_ptr)) * UI_BLEND_FACTOR_SMOOTH;
                     if (particle_repulsion <= 0.0) {
                         particle_repulsion = 0.0;
                     }
@@ -249,7 +249,7 @@ void ui_system_advanced_particle_system_update(longlong ui_context, longlong par
         
         // 第二阶段：粒子位置更新
         particle_weight_ptr = matrix_stack;
-        particle_index = (longlong)effect_params - (longlong)control_data;
+        particle_index = (int64_t)effect_params - (int64_t)control_data;
         particle_effect = -UI_PARTICLE_OFFSET_Z;
         particle_state = UI_PARTICLE_OFFSET_Y;
         stack_resource_1 = 2;
@@ -260,7 +260,7 @@ void ui_system_advanced_particle_system_update(longlong ui_context, longlong par
         do {
             particle_intensity = *particle_weight_ptr;
             if (UI_PARTICLE_THRESHOLD < particle_intensity) {
-                particle_lifetime = (longlong)*(int *)(ui_context + 0x60);
+                particle_lifetime = (int64_t)*(int *)(ui_context + 0x60);
                 particle_repulsion = 0.0;
                 
                 if (0 < particle_lifetime) {
@@ -268,7 +268,7 @@ void ui_system_advanced_particle_system_update(longlong ui_context, longlong par
                     
                     // 计算粒子位置插值
                     do {
-                        if (*(char *)((longlong)particle_weight_ptr + 6) == '\0') {
+                        if (*(char *)((int64_t)particle_weight_ptr + 6) == '\0') {
                             particle_attraction = 0.0;
                         }
                         else {
@@ -286,7 +286,7 @@ void ui_system_advanced_particle_system_update(longlong ui_context, longlong par
                                 particle_opacity = particle_damping / particle_attraction;
                             }
                             
-                            if (*(char *)((longlong)particle_weight_ptr + 6) == '\0') {
+                            if (*(char *)((int64_t)particle_weight_ptr + 6) == '\0') {
                                 particle_size = 0.0;
                             }
                             else {
@@ -321,7 +321,7 @@ void ui_system_advanced_particle_system_update(longlong ui_context, longlong par
                                                (particle_damping / (ABS(particle_damping) + 1.0) -
                                                 (particle_damping - 30.0) / (ABS(particle_damping - 30.0) + 1.0)) * 
                                                UI_BLEND_WEIGHT_FACTOR * particle_attraction *
-                                               *(float *)(particle_effect + (longlong)particle_weight_ptr);
+                                               *(float *)(particle_effect + (int64_t)particle_weight_ptr);
                         }
                         
                         particle_weight_ptr = particle_weight_ptr + 0x4d6;
@@ -330,17 +330,17 @@ void ui_system_advanced_particle_system_update(longlong ui_context, longlong par
                 }
                 
                 // 获取粒子变换数据
-                effect_id = (ulonglong)stack_particle_ptr[particle_index];
+                effect_id = (uint64_t)stack_particle_ptr[particle_index];
                 control_flag = *stack_particle_ptr;
                 particle_index = effect_id * 0x1b0;
-                particle_weight_ptr = (float *)(*(longlong *)(stack_context_2 + 0x140) + 0x90 + particle_index);
+                particle_weight_ptr = (float *)(*(int64_t *)(stack_context_2 + 0x140) + 0x90 + particle_index);
                 
                 // 读取粒子位置数据
                 particle_attraction = *particle_weight_ptr;
                 particle_damping = particle_weight_ptr[1];
                 particle_turbulence = particle_weight_ptr[2];
                 particle_opacity = particle_weight_ptr[3];
-                particle_weight_ptr = (float *)(*(longlong *)(stack_context_2 + 0x140) + 0x40 + particle_index);
+                particle_weight_ptr = (float *)(*(int64_t *)(stack_context_2 + 0x140) + 0x40 + particle_index);
                 particle_size = *particle_weight_ptr;
                 particle_emission_rate = particle_weight_ptr[1];
                 particle_lifetime_factor = particle_weight_ptr[2];
@@ -406,7 +406,7 @@ void ui_system_advanced_particle_system_update(longlong ui_context, longlong par
                     matrix_stack[4] = 1.0;
                     matrix_stack[5] = 1.0;
                     blend_mask_result = movmskps((int)particle_weight_ptr, stack_matrix_2);
-                    effect_id = (ulonglong)(blend_mask_result & 1);
+                    effect_id = (uint64_t)(blend_mask_result & 1);
                     particle_weight_ptr = (float *)(effect_id * 2);
                     particle_size = matrix_stack[effect_id * 4 + 2];
                     particle_emission_rate = matrix_stack[effect_id * 4 + 3];
@@ -501,7 +501,7 @@ void ui_system_advanced_particle_system_update(longlong ui_context, longlong par
                         matrix_stack[4] = 1.0;
                         matrix_stack[5] = 1.0;
                         blend_mask_result = movmskps((int)particle_weight_ptr, stack_matrix_5);
-                        effect_id = (ulonglong)(blend_mask_result & 1);
+                        effect_id = (uint64_t)(blend_mask_result & 1);
                         particle_size = matrix_stack[effect_id * 4 + 2];
                         particle_attraction = matrix_stack[effect_id * 4 + 3];
                         interpolation_result = matrix_stack[effect_id * 4 + 4];
@@ -588,21 +588,21 @@ void ui_system_advanced_particle_system_update(longlong ui_context, longlong par
                 particle_weight_ptr[2] = particle_lifetime_factor;
                 particle_weight_ptr[3] = particle_intensity;
                 
-                *(ulonglong *)(stack_resource_1 + 0x800) =
-                     *(ulonglong *)(stack_resource_1 + 0x800) |
-                     *(ulonglong *)(*(longlong *)(stack_context_2 + 0x140) + 0xe8 + particle_index);
+                *(uint64_t *)(stack_resource_1 + 0x800) =
+                     *(uint64_t *)(stack_resource_1 + 0x800) |
+                     *(uint64_t *)(*(int64_t *)(stack_context_2 + 0x140) + 0xe8 + particle_index);
                 
-                effect_id = (ulonglong)control_flag;
-                *(ulonglong *)(stack_resource_1 + 0x808) =
-                     *(ulonglong *)(stack_resource_1 + 0x808) | 1L << (effect_id & 0x3f);
+                effect_id = (uint64_t)control_flag;
+                *(uint64_t *)(stack_resource_1 + 0x808) =
+                     *(uint64_t *)(stack_resource_1 + 0x808) | 1L << (effect_id & 0x3f);
                 
                 particle_index = effect_id * 0x1b0;
-                particle_weight_ptr = (float *)(*(longlong *)(stack_context_2 + 0x140) + 0x90 + particle_index);
+                particle_weight_ptr = (float *)(*(int64_t *)(stack_context_2 + 0x140) + 0x90 + particle_index);
                 particle_attraction = *particle_weight_ptr;
                 particle_damping = particle_weight_ptr[1];
                 particle_turbulence = particle_weight_ptr[2];
                 particle_opacity = particle_weight_ptr[3];
-                particle_weight_ptr = (float *)(*(longlong *)(stack_context_2 + 0x140) + 0x40 + particle_index);
+                particle_weight_ptr = (float *)(*(int64_t *)(stack_context_2 + 0x140) + 0x40 + particle_index);
                 particle_size = *particle_weight_ptr;
                 particle_emission_rate = particle_weight_ptr[1];
                 particle_lifetime_factor = particle_weight_ptr[2];
@@ -665,7 +665,7 @@ void ui_system_advanced_particle_system_update(longlong ui_context, longlong par
                     matrix_stack[4] = 1.0;
                     matrix_stack[5] = 1.0;
                     blend_mask_result = movmskps((int)particle_weight_ptr, stack_matrix_8);
-                    effect_id = (ulonglong)(blend_mask_result & 1);
+                    effect_id = (uint64_t)(blend_mask_result & 1);
                     particle_weight_ptr = (float *)(effect_id * 2);
                     particle_size = matrix_stack[effect_id * 4 + 2];
                     particle_emission_rate = matrix_stack[effect_id * 4 + 3];
@@ -760,7 +760,7 @@ void ui_system_advanced_particle_system_update(longlong ui_context, longlong par
                         matrix_stack[4] = 1.0;
                         matrix_stack[5] = 1.0;
                         blend_mask_result = movmskps((int)particle_weight_ptr, stack_matrix_2);
-                        effect_id = (ulonglong)(blend_mask_result & 1);
+                        effect_id = (uint64_t)(blend_mask_result & 1);
                         particle_opacity = matrix_stack[effect_id * 4 + 2];
                         particle_size = matrix_stack[effect_id * 4 + 3];
                         particle_attraction = matrix_stack[effect_id * 4 + 4];
@@ -843,11 +843,11 @@ void ui_system_advanced_particle_system_update(longlong ui_context, longlong par
                 particle_weight_ptr[2] = particle_lifetime_factor;
                 particle_weight_ptr[3] = particle_intensity;
                 
-                *(ulonglong *)(particle_frame + 0x800) =
-                     *(ulonglong *)(particle_frame + 0x800) |
-                     *(ulonglong *)(*(longlong *)(stack_context_2 + 0x140) + 0xe8 + particle_index);
-                *(ulonglong *)(particle_frame + 0x808) = 
-                     *(ulonglong *)(particle_frame + 0x808) | 1L << (effect_id & 0x3f);
+                *(uint64_t *)(particle_frame + 0x800) =
+                     *(uint64_t *)(particle_frame + 0x800) |
+                     *(uint64_t *)(*(int64_t *)(stack_context_2 + 0x140) + 0xe8 + particle_index);
+                *(uint64_t *)(particle_frame + 0x808) = 
+                     *(uint64_t *)(particle_frame + 0x808) | 1L << (effect_id & 0x3f);
                 
                 ui_context = stack_animation_1;
                 particle_index = stack_transform;
@@ -870,20 +870,20 @@ void ui_system_advanced_particle_system_update(longlong ui_context, longlong par
     particle_state = 2;
     particle_weight_ptr = (float *)(ui_context + 0x13a0);
     particle_repulsion = 1.0 - stack_weight_1;
-    stack_control_ptr = (char *)((longlong)control_data - (longlong)stack_effect_ptr);
+    stack_control_ptr = (char *)((int64_t)control_data - (int64_t)stack_effect_ptr);
     stack_effect_ptr = stack_effect_ptr;
     particle_intensity = stack_weight_1;
     stack_weight_2 = particle_repulsion;
     
     // 渲染粒子效果
     do {
-        particle_lifetime = (longlong)*(int *)(ui_context + 0x60);
+        particle_lifetime = (int64_t)*(int *)(ui_context + 0x60);
         particle_attraction = 0.0;
         particle_weight_ptr_temp = particle_weight_ptr;
         
         if (0 < particle_lifetime) {
             do {
-                if (*(char *)((longlong)particle_weight_ptr_temp + 6) == '\0') {
+                if (*(char *)((int64_t)particle_weight_ptr_temp + 6) == '\0') {
                     particle_damping = 0.0;
                 }
                 else {
@@ -896,7 +896,7 @@ void ui_system_advanced_particle_system_update(longlong ui_context, longlong par
                 // 计算粒子的运动状态
                 if (particle_damping + particle_turbulence < particle_opacity) {
                     particle_damping = *particle_weight_ptr_temp;
-                    if (*(char *)((longlong)particle_weight_ptr_temp + 6) == '\0') {
+                    if (*(char *)((int64_t)particle_weight_ptr_temp + 6) == '\0') {
                         particle_size = 0.0;
                     }
                     else {
@@ -924,11 +924,11 @@ void ui_system_advanced_particle_system_update(longlong ui_context, longlong par
                     }
                     
                     particle_damping = particle_damping * 
-                                     *(float *)(particle_effect + (longlong)particle_weight_ptr_temp) * 
+                                     *(float *)(particle_effect + (int64_t)particle_weight_ptr_temp) * 
                                      UI_WEIGHT_SCALE_FACTOR;
                 }
                 else {
-                    particle_damping = *(float *)(particle_effect + (longlong)particle_weight_ptr_temp);
+                    particle_damping = *(float *)(particle_effect + (int64_t)particle_weight_ptr_temp);
                 }
                 
                 particle_attraction = particle_damping + particle_attraction;
@@ -939,8 +939,8 @@ void ui_system_advanced_particle_system_update(longlong ui_context, longlong par
         
         particle_attraction = particle_repulsion * particle_attraction + particle_intensity;
         if (0.0 < particle_attraction) {
-            control_flag = stack_effect_ptr[(longlong)stack_control_ptr];
-            particle_state = *(longlong *)(stack_particle_1 + 0x10);
+            control_flag = stack_effect_ptr[(int64_t)stack_control_ptr];
+            particle_state = *(int64_t *)(stack_particle_1 + 0x10);
             matrix_stack[6] = 0.0;
             matrix_stack[7] = 0.0;
             matrix_stack[8] = 1.0;
@@ -956,7 +956,7 @@ void ui_system_advanced_particle_system_update(longlong ui_context, longlong par
             ui_system_get_particle_data(particle_index, control_flag, stack_context_2);
             blend_mode = 1;
             render_flags = 0x51b189;
-            particle_weight_ptr_temp = (float *)(particle_index + ((longlong)control_flag + 0x40) * 0x10);
+            particle_weight_ptr_temp = (float *)(particle_index + ((int64_t)control_flag + 0x40) * 0x10);
             particle_intensity = *particle_weight_ptr_temp;
             particle_damping = particle_weight_ptr_temp[1];
             particle_turbulence = particle_weight_ptr_temp[2];
@@ -1006,7 +1006,7 @@ void ui_system_advanced_particle_system_update(longlong ui_context, longlong par
                 }
                 
                 particle_damping = (float)asinf(particle_damping);
-                particle_state = *(longlong *)(stack_particle_1 + 0x10);
+                particle_state = *(int64_t *)(stack_particle_1 + 0x10);
                 particle_repulsion = *(float *)(particle_state + 0x90);
                 particle_opacity = *(float *)(particle_state + 0x74) * particle_intensity + 
                                  *(float *)(particle_state + 0x70) * particle_turbulence +
@@ -1053,5 +1053,5 @@ void ui_system_advanced_particle_system_update(longlong ui_context, longlong par
     } while (particle_state != 0);
     
     // 清理粒子系统资源
-    ui_system_cleanup_particle_resources(stack_id ^ (ulonglong)stack_buffer);
+    ui_system_cleanup_particle_resources(stack_id ^ (uint64_t)stack_buffer);
 }

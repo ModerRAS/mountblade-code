@@ -17,10 +17,10 @@ void *g_UnknownObject2 = (void *)0x18098bcb0;    // 未知对象2
 void add_element_to_array_48bytes(int *array_info, void *element)
 {
     void *data_ptr;
-    longlong offset;
+    int64_t offset;
     int current_count;
     int current_capacity;
-    longlong new_capacity;
+    int64_t new_capacity;
     
     current_count = *array_info;
     current_capacity = array_info[1];
@@ -43,7 +43,7 @@ void add_element_to_array_48bytes(int *array_info, void *element)
     }
     
     // 计算元素位置并复制数据
-    offset = (longlong)current_count;
+    offset = (int64_t)current_count;
     data_ptr = *(void **)(array_info + 2);
     
     // 复制前16字节
@@ -72,7 +72,7 @@ void add_element_to_array_12bytes(int *array_info, void *element)
     int requested_capacity;
     void *new_data;
     int current_count;
-    longlong data_ptr;
+    int64_t data_ptr;
     
     current_capacity = array_info[1];
     if (*array_info == current_capacity) {
@@ -91,10 +91,10 @@ void add_element_to_array_12bytes(int *array_info, void *element)
                 *(int *)((char *)g_EngineInstance + 0x3a8) += 1;  // 增加内存分配计数
             }
             
-            new_data = allocate_memory((longlong)requested_capacity * 0xc, g_MemoryAllocator);
+            new_data = allocate_memory((int64_t)requested_capacity * 0xc, g_MemoryAllocator);
             
             if (*(void **)(array_info + 2) != 0) {
-                memcpy(new_data, *(void **)(array_info + 2), (longlong)*array_info * 0xc);
+                memcpy(new_data, *(void **)(array_info + 2), (int64_t)*array_info * 0xc);
             }
             
             *(void **)(array_info + 2) = new_data;
@@ -103,11 +103,11 @@ void add_element_to_array_12bytes(int *array_info, void *element)
     }
     
     current_count = *array_info;
-    data_ptr = *(longlong *)(array_info + 2);
+    data_ptr = *(int64_t *)(array_info + 2);
     
     // 复制元素数据（12字节）
-    *(void **)(data_ptr + (longlong)current_count * 0xc) = *(void **)element;
-    *(int *)(data_ptr + (longlong)current_count * 0xc + 8) = *(int *)((char *)element + 8);
+    *(void **)(data_ptr + (int64_t)current_count * 0xc) = *(void **)element;
+    *(int *)(data_ptr + (int64_t)current_count * 0xc + 8) = *(int *)((char *)element + 8);
     
     *array_info = current_count + 1;
 }
@@ -145,7 +145,7 @@ void add_element_to_array_20bytes(int *array_info, void *element)
     int requested_capacity;
     void *new_data;
     int current_count;
-    longlong element_data;
+    int64_t element_data;
     
     current_capacity = array_info[1];
     if (*array_info == current_capacity) {
@@ -164,10 +164,10 @@ void add_element_to_array_20bytes(int *array_info, void *element)
                 *(int *)((char *)g_EngineInstance + 0x3a8) += 1;
             }
             
-            new_data = allocate_memory((longlong)requested_capacity * 0x14, g_MemoryAllocator);
+            new_data = allocate_memory((int64_t)requested_capacity * 0x14, g_MemoryAllocator);
             
             if (*(void **)(array_info + 2) != 0) {
-                memcpy(new_data, *(void **)(array_info + 2), (longlong)*array_info * 0x14);
+                memcpy(new_data, *(void **)(array_info + 2), (int64_t)*array_info * 0x14);
             }
             
             *(void **)(array_info + 2) = new_data;
@@ -176,13 +176,13 @@ void add_element_to_array_20bytes(int *array_info, void *element)
     }
     
     current_count = *array_info;
-    element_data = *(longlong *)((char *)element + 8);
+    element_data = *(int64_t *)((char *)element + 8);
     data_ptr = *(void **)(array_info + 2);
     
     // 复制元素数据（20字节）
-    *(void **)((char *)data_ptr + (longlong)current_count * 0x14) = *(void **)element;
-    *(void **)((char *)data_ptr + (longlong)current_count * 0x14 + 8) = *(void **)((char *)element + 8);
-    *(int *)((char *)data_ptr + (longlong)current_count * 0x14 + 16) = *(int *)((char *)element + 16);
+    *(void **)((char *)data_ptr + (int64_t)current_count * 0x14) = *(void **)element;
+    *(void **)((char *)data_ptr + (int64_t)current_count * 0x14 + 8) = *(void **)((char *)element + 8);
+    *(int *)((char *)data_ptr + (int64_t)current_count * 0x14 + 16) = *(int *)((char *)element + 16);
     
     *array_info = current_count + 1;
 }
@@ -246,10 +246,10 @@ void resize_array_28bytes(int *array_info, int new_capacity)
             *(int *)((char *)g_EngineInstance + 0x3a8) += 1;
         }
         
-        new_data = allocate_memory((longlong)new_capacity * 0x1c, g_MemoryAllocator);
+        new_data = allocate_memory((int64_t)new_capacity * 0x1c, g_MemoryAllocator);
         
         if (*(void **)(array_info + 2) != 0) {
-            memcpy(new_data, *(void **)(array_info + 2), (longlong)*array_info * 0x1c);
+            memcpy(new_data, *(void **)(array_info + 2), (int64_t)*array_info * 0x1c);
         }
         
         *(void **)(array_info + 2) = new_data;
@@ -338,11 +338,11 @@ void set_array_size(int *array_info, int new_size)
 void copy_array_20bytes(int *dest_info, int *src_info)
 {
     int *temp_ptr;
-    longlong data_ptr;
-    longlong engine_ptr;
+    int64_t data_ptr;
+    int64_t engine_ptr;
     
-    engine_ptr = (longlong)g_EngineInstance;
-    data_ptr = *(longlong *)(dest_info + 2);
+    engine_ptr = (int64_t)g_EngineInstance;
+    data_ptr = *(int64_t *)(dest_info + 2);
     
     if (data_ptr != 0) {
         dest_info[0] = 0;
@@ -359,7 +359,7 @@ void copy_array_20bytes(int *dest_info, int *src_info)
     resize_array_20bytes(dest_info, *src_info);
     
     // 复制数据
-    memcpy(*(void **)(dest_info + 2), *(void **)(src_info + 2), (longlong)*dest_info * 0x14);
+    memcpy(*(void **)(dest_info + 2), *(void **)(src_info + 2), (int64_t)*dest_info * 0x14);
 }
 
 /**
@@ -371,14 +371,14 @@ void copy_array_48bytes(int *dest_info, int *src_info)
 {
     int *temp_ptr;
     int src_count;
-    longlong data_ptr;
-    longlong engine_ptr;
+    int64_t data_ptr;
+    int64_t engine_ptr;
     int current_capacity;
     int required_capacity;
     void *new_data;
     
-    engine_ptr = (longlong)g_EngineInstance;
-    data_ptr = *(longlong *)(dest_info + 2);
+    engine_ptr = (int64_t)g_EngineInstance;
+    data_ptr = *(int64_t *)(dest_info + 2);
     
     if (data_ptr != 0) {
         dest_info[0] = 0;
@@ -413,7 +413,7 @@ void copy_array_48bytes(int *dest_info, int *src_info)
     }
     
     *dest_info = src_count;
-    memcpy(new_data, *(void **)(src_info + 2), (longlong)src_count * 0x30);
+    memcpy(new_data, *(void **)(src_info + 2), (int64_t)src_count * 0x30);
 }
 
 /**
@@ -423,21 +423,21 @@ void copy_array_48bytes(int *dest_info, int *src_info)
  * @param element 要插入的元素
  * @return 插入位置的指针
  */
-void *insert_element_at_position_16bytes(int *array_info, longlong position, void *element)
+void *insert_element_at_position_16bytes(int *array_info, int64_t position, void *element)
 {
     void *data_ptr;
     void *element_data;
     int current_count;
     int current_capacity;
     int required_capacity;
-    longlong data_offset;
-    longlong insert_position;
+    int64_t data_offset;
+    int64_t insert_position;
     
     current_count = *array_info;
     current_capacity = array_info[1];
     
     // 计算插入位置相对于数组起始位置的偏移
-    insert_position = position - *(longlong *)(array_info + 2) >> 4;
+    insert_position = position - *(int64_t *)(array_info + 2) >> 4;
     
     // 检查是否需要扩容
     if (current_count == current_capacity) {
@@ -458,19 +458,19 @@ void *insert_element_at_position_16bytes(int *array_info, longlong position, voi
     
     // 如果需要移动元素
     if (insert_position < current_count) {
-        data_offset = insert_position * 0x10 + *(longlong *)(array_info + 2);
+        data_offset = insert_position * 0x10 + *(int64_t *)(array_info + 2);
         memmove((char *)data_offset + 16, data_offset, (current_count - insert_position) * 0x10);
     }
     
     // 插入新元素
     element_data = *(void **)((char *)element + 8);
-    data_ptr = (void *)(insert_position * 0x10 + *(longlong *)(array_info + 2));
+    data_ptr = (void *)(insert_position * 0x10 + *(int64_t *)(array_info + 2));
     
     *(void **)data_ptr = *(void **)element;
     *(void **)((char *)data_ptr + 8) = element_data;
     
     *array_info = current_count + 1;
-    return (void *)(*(longlong *)(array_info + 2) + insert_position * 0x10);
+    return (void *)(*(int64_t *)(array_info + 2) + insert_position * 0x10);
 }
 
 /**
@@ -482,14 +482,14 @@ void copy_array_16bytes(int *dest_info, int *src_info)
 {
     int *temp_ptr;
     int src_count;
-    longlong data_ptr;
-    longlong engine_ptr;
+    int64_t data_ptr;
+    int64_t engine_ptr;
     int current_capacity;
     int required_capacity;
     void *new_data;
     
-    engine_ptr = (longlong)g_EngineInstance;
-    data_ptr = *(longlong *)(dest_info + 2);
+    engine_ptr = (int64_t)g_EngineInstance;
+    data_ptr = *(int64_t *)(dest_info + 2);
     
     if (data_ptr != 0) {
         dest_info[0] = 0;
@@ -524,7 +524,7 @@ void copy_array_16bytes(int *dest_info, int *src_info)
     }
     
     *dest_info = src_count;
-    memcpy(new_data, *(void **)(src_info + 2), (longlong)src_count * 2);
+    memcpy(new_data, *(void **)(src_info + 2), (int64_t)src_count * 2);
 }
 
 /**
@@ -541,10 +541,10 @@ void resize_array_16bytes(int *array_info, int new_capacity)
             *(int *)((char *)g_EngineInstance + 0x3a8) += 1;
         }
         
-        new_data = allocate_memory((longlong)new_capacity << 4, g_MemoryAllocator);
+        new_data = allocate_memory((int64_t)new_capacity << 4, g_MemoryAllocator);
         
         if (*(void **)(array_info + 2) != 0) {
-            memcpy(new_data, *(void **)(array_info + 2), (longlong)*array_info << 4);
+            memcpy(new_data, *(void **)(array_info + 2), (int64_t)*array_info << 4);
         }
         
         *(void **)(array_info + 2) = new_data;
@@ -582,10 +582,10 @@ void resize_array_64bytes(int *array_info, int new_capacity)
             *(int *)((char *)g_EngineInstance + 0x3a8) += 1;
         }
         
-        new_data = allocate_memory((longlong)new_capacity << 6, g_MemoryAllocator);
+        new_data = allocate_memory((int64_t)new_capacity << 6, g_MemoryAllocator);
         
         if (*(void **)(array_info + 2) != 0) {
-            memcpy(new_data, *(void **)(array_info + 2), (longlong)*array_info << 6);
+            memcpy(new_data, *(void **)(array_info + 2), (int64_t)*array_info << 6);
         }
         
         *(void **)(array_info + 2) = new_data;
@@ -623,10 +623,10 @@ void resize_array_48bytes(int *array_info, int new_capacity)
             *(int *)((char *)g_EngineInstance + 0x3a8) += 1;
         }
         
-        new_data = allocate_memory((longlong)new_capacity * 0x30, g_MemoryAllocator);
+        new_data = allocate_memory((int64_t)new_capacity * 0x30, g_MemoryAllocator);
         
         if (*(void **)(array_info + 2) != 0) {
-            memcpy(new_data, *(void **)(array_info + 2), (longlong)*array_info * 0x30);
+            memcpy(new_data, *(void **)(array_info + 2), (int64_t)*array_info * 0x30);
         }
         
         *(void **)(array_info + 2) = new_data;
@@ -683,10 +683,10 @@ void resize_array_20bytes(int *array_info, int new_size)
             *(int *)((char *)g_EngineInstance + 0x3a8) += 1;
         }
         
-        new_data = allocate_memory((longlong)requested_capacity * 0x14, g_MemoryAllocator);
+        new_data = allocate_memory((int64_t)requested_capacity * 0x14, g_MemoryAllocator);
         
         if (*(void **)(array_info + 2) != 0) {
-            memcpy(new_data, *(void **)(array_info + 2), (longlong)*array_info * 0x14);
+            memcpy(new_data, *(void **)(array_info + 2), (int64_t)*array_info * 0x14);
         }
         
         *(void **)(array_info + 2) = new_data;
@@ -724,10 +724,10 @@ void resize_array_20bytes_inline(int param_1)
             *(int *)((char *)g_EngineInstance + 0x3a8) += 1;
         }
         
-        new_data = allocate_memory((longlong)required_capacity * 0x14, g_MemoryAllocator);
+        new_data = allocate_memory((int64_t)required_capacity * 0x14, g_MemoryAllocator);
         
         if (*(void **)(0 + 2) != 0) {  // 这里应该是array_info + 2
-            memcpy(new_data, *(void **)(0 + 2), (longlong)*0 * 0x14);
+            memcpy(new_data, *(void **)(0 + 2), (int64_t)*0 * 0x14);
         }
         
         *(void **)(0 + 2) = new_data;  // 这里应该是array_info
@@ -760,15 +760,15 @@ void set_integer_value_v2(void)
  * 释放对象资源
  * @param object_ptr 对象指针
  */
-void free_object_resources(longlong object_ptr)
+void free_object_resources(int64_t object_ptr)
 {
-    longlong sub_object_ptr;
+    int64_t sub_object_ptr;
     
     if (object_ptr == 0) {
         return;
     }
     
-    sub_object_ptr = *(longlong *)(object_ptr + 0x80);
+    sub_object_ptr = *(int64_t *)(object_ptr + 0x80);
     if (sub_object_ptr != 0) {
         cleanup_sub_object(sub_object_ptr);
         
@@ -783,11 +783,11 @@ void free_object_resources(longlong object_ptr)
     cleanup_resource_manager(object_ptr + 0xb8, 0x10, 2, cleanup_function_1, 0xfffffffffffffffe);
     
     *(char *)(object_ptr + 0x88) = 0;
-    *(longlong *)(object_ptr + 0x90) = 0;
-    *(longlong *)(object_ptr + 0x9c) = 0;
+    *(int64_t *)(object_ptr + 0x90) = 0;
+    *(int64_t *)(object_ptr + 0x9c) = 0;
     *(int *)(object_ptr + 0x98) = 0;
-    *(longlong *)(object_ptr + 0xac) = 0;
-    *(longlong *)(object_ptr + 0xa4) = 0;
+    *(int64_t *)(object_ptr + 0xac) = 0;
+    *(int64_t *)(object_ptr + 0xa4) = 0;
     
     if (g_EngineInstance != 0) {
         *(int *)((char *)g_EngineInstance + 0x3a8) -= 1;
@@ -803,15 +803,15 @@ void free_object_resources(longlong object_ptr)
  * @param param3 参数3
  * @param param4 参数4
  */
-void free_object_resources_v2(longlong object_ptr, void *param2, void *param3, void *param4)
+void free_object_resources_v2(int64_t object_ptr, void *param2, void *param3, void *param4)
 {
-    longlong sub_object_ptr;
+    int64_t sub_object_ptr;
     
     if (object_ptr == 0) {
         return;
     }
     
-    sub_object_ptr = *(longlong *)(object_ptr + 8);
+    sub_object_ptr = *(int64_t *)(object_ptr + 8);
     if (sub_object_ptr != 0) {
         if (g_EngineInstance != 0) {
             *(int *)((char *)g_EngineInstance + 0x3a8) -= 1;
@@ -839,29 +839,29 @@ void call_unknown_function(void)
  * 清理链表结构
  * @param list_ptr 链表指针
  */
-void cleanup_linked_list(longlong list_ptr)
+void cleanup_linked_list(int64_t list_ptr)
 {
-    longlong *current_ptr;
-    longlong next_ptr;
-    longlong temp_ptr;
-    ulonglong index;
+    int64_t *current_ptr;
+    int64_t next_ptr;
+    int64_t temp_ptr;
+    uint64_t index;
     
-    next_ptr = *(longlong *)(list_ptr + 8);
+    next_ptr = *(int64_t *)(list_ptr + 8);
     index = 0;
     
     while (true) {
         if (next_ptr == list_ptr) {
             // 重置链表节点
             cleanup_list_node(list_ptr, *(void **)(list_ptr + 0x10));
-            *(longlong *)list_ptr = list_ptr;
-            *(longlong *)(list_ptr + 8) = list_ptr;
+            *(int64_t *)list_ptr = list_ptr;
+            *(int64_t *)(list_ptr + 8) = list_ptr;
             *(void **)(list_ptr + 0x10) = 0;
             *(char *)(list_ptr + 0x18) = 0;
-            *(longlong *)(list_ptr + 0x20) = 0;
+            *(int64_t *)(list_ptr + 0x20) = 0;
             return;
         }
         
-        temp_ptr = *(longlong *)(next_ptr + 0x40);
+        temp_ptr = *(int64_t *)(next_ptr + 0x40);
         if (temp_ptr != 0) {
             break;
         }
@@ -871,24 +871,24 @@ void cleanup_linked_list(longlong list_ptr)
     }
     
     // 清理数组内容
-    current_ptr = (longlong *)(temp_ptr + 0x360);
+    current_ptr = (int64_t *)(temp_ptr + 0x360);
     next_ptr = *current_ptr;
     
-    if (*(longlong *)(temp_ptr + 0x368) - next_ptr >> 3 != 0) {
+    if (*(int64_t *)(temp_ptr + 0x368) - next_ptr >> 3 != 0) {
         do {
-            if (*(longlong *)(next_ptr + index * 8) != 0) {
+            if (*(int64_t *)(next_ptr + index * 8) != 0) {
                 trigger_error();
             }
             *(void **)(*current_ptr + index * 8) = 0;
             index++;
             next_ptr = *current_ptr;
-        } while (index < (ulonglong)(*(longlong *)(temp_ptr + 0x368) - next_ptr >> 3));
+        } while (index < (uint64_t)(*(int64_t *)(temp_ptr + 0x368) - next_ptr >> 3));
     }
     
-    *(longlong *)(temp_ptr + 0x368) = next_ptr;
+    *(int64_t *)(temp_ptr + 0x368) = next_ptr;
     *(void **)(temp_ptr + 0x3a8) = g_UnknownObject1;
     
-    if (*(longlong *)(temp_ptr + 0x3b0) != 0) {
+    if (*(int64_t *)(temp_ptr + 0x3b0) != 0) {
         trigger_error();
     }
     
@@ -897,7 +897,7 @@ void cleanup_linked_list(longlong list_ptr)
     *(void **)(temp_ptr + 0x3a8) = g_UnknownObject2;
     *(void **)(temp_ptr + 0x388) = g_UnknownObject1;
     
-    if (*(longlong *)(temp_ptr + 0x390) != 0) {
+    if (*(int64_t *)(temp_ptr + 0x390) != 0) {
         trigger_error();
     }
     
@@ -923,20 +923,20 @@ void cleanup_linked_list(longlong list_ptr)
  * @param param5 参数5
  * @return 结果指针
  */
-void *complex_tree_operation(longlong *tree_info, void *param2, void *param3, longlong *param4, longlong param5)
+void *complex_tree_operation(int64_t *tree_info, void *param2, void *param3, int64_t *param4, int64_t param5)
 {
     byte char1;
     bool compare_result;
-    longlong *current_node;
+    int64_t *current_node;
     byte *string_ptr;
-    longlong *next_node;
+    int64_t *next_node;
     uint char2;
-    longlong string_offset;
-    longlong *temp_node;
-    ulonglong result;
+    int64_t string_offset;
+    int64_t *temp_node;
+    uint64_t result;
     void *return_value;
     
-    current_node = (longlong *)*tree_info;
+    current_node = (int64_t *)*tree_info;
     
     // 检查节点是否相同
     if ((param4 == current_node) || (param4 == tree_info)) {
@@ -945,12 +945,12 @@ void *complex_tree_operation(longlong *tree_info, void *param2, void *param3, lo
             
             if (*(int *)(current_node + 6) != 0) {
                 string_ptr = *(byte **)(param5 + 8);
-                temp_node = (longlong *)(current_node[5] - (longlong)string_ptr);
+                temp_node = (int64_t *)(current_node[5] - (int64_t)string_ptr);
                 
                 // 字符串比较
                 do {
                     char1 = *string_ptr;
-                    char2 = (uint)string_ptr[(longlong)temp_node];
+                    char2 = (uint)string_ptr[(int64_t)temp_node];
                     if (char1 != char2) break;
                     string_ptr++;
                 } while (char2 != 0);
@@ -961,21 +961,21 @@ void *complex_tree_operation(longlong *tree_info, void *param2, void *param3, lo
             }
             
             // 处理不匹配情况
-            result = (ulonglong)temp_node & 0xffffffffffffff00;
+            result = (uint64_t)temp_node & 0xffffffffffffff00;
             
-            if (current_node != (longlong *)0x0) {
+            if (current_node != (int64_t *)0x0) {
                 perform_tree_insertion(tree_info, param2, current_node, result, param5);
                 return param2;
             }
         }
     } else {
         // 处理不同节点的情况
-        next_node = (longlong *)get_next_node(param4);
+        next_node = (int64_t *)get_next_node(param4);
         
         if (*(int *)(param5 + 0x10) != 0) {
             if ((int)param4[6] != 0) {
                 string_ptr = *(byte **)(param5 + 8);
-                string_offset = param4[5] - (longlong)string_ptr;
+                string_offset = param4[5] - (int64_t)string_ptr;
                 
                 do {
                     char1 = *string_ptr;
@@ -991,11 +991,11 @@ void *complex_tree_operation(longlong *tree_info, void *param2, void *param3, lo
             
             if ((int)next_node[6] != 0) {
                 string_ptr = (byte *)next_node[5];
-                temp_node = (longlong *)(*(longlong *)(param5 + 8) - (longlong)string_ptr);
+                temp_node = (int64_t *)(*(int64_t *)(param5 + 8) - (int64_t)string_ptr);
                 
                 do {
                     char1 = *string_ptr;
-                    char2 = (uint)string_ptr[(longlong)temp_node];
+                    char2 = (uint)string_ptr[(int64_t)temp_node];
                     if (char1 != char2) break;
                     string_ptr++;
                 } while (char2 != 0);
@@ -1003,11 +1003,11 @@ void *complex_tree_operation(longlong *tree_info, void *param2, void *param3, lo
                 if (0 < (int)(char1 - char2)) {
                     current_node = param4;
                     if (*param4 == 0) {
-                        result = (ulonglong)temp_node & 0xffffffffffffff00;
+                        result = (uint64_t)temp_node & 0xffffffffffffff00;
                         current_node = next_node;
                         goto PROCESS_NODE;
                     }
-                    result = CONCAT71((int7)((ulonglong)temp_node >> 8), 1);
+                    result = CONCAT71((int7)((uint64_t)temp_node >> 8), 1);
                     current_node = next_node;
                     goto PROCESS_NODE;
                 }
@@ -1017,11 +1017,11 @@ void *complex_tree_operation(longlong *tree_info, void *param2, void *param3, lo
     
 MATCH_FOUND:
     compare_result = true;
-    current_node = (longlong *)tree_info[2];
+    current_node = (int64_t *)tree_info[2];
     temp_node = tree_info;
     
     // 遍历树节点
-    while (current_node != (longlong *)0x0) {
+    while (current_node != (int64_t *)0x0) {
         temp_node = current_node;
         if ((int)current_node[6] == 0) {
             compare_result = false;
@@ -1031,7 +1031,7 @@ MATCH_FOUND:
                 compare_result = true;
             } else {
                 string_ptr = (byte *)current_node[5];
-                string_offset = *(longlong *)(param5 + 8) - (longlong)string_ptr;
+                string_offset = *(int64_t *)(param5 + 8) - (int64_t)string_ptr;
                 
                 do {
                     char1 = *string_ptr;
@@ -1047,14 +1047,14 @@ MATCH_FOUND:
                 goto NEXT_NODE;
             }
             
-            current_node = (longlong *)current_node[1];
+            current_node = (int64_t *)current_node[1];
         }
     }
     
     current_node = temp_node;
     if (compare_result) {
-        if (temp_node != (longlong *)tree_info[1]) {
-            current_node = (longlong *)get_previous_node(temp_node);
+        if (temp_node != (int64_t *)tree_info[1]) {
+            current_node = (int64_t *)get_previous_node(temp_node);
             goto FINAL_PROCESS;
         }
     } else {
@@ -1065,7 +1065,7 @@ FINAL_PROCESS:
         
         if ((int)current_node[6] != 0) {
             string_ptr = *(byte **)(param5 + 8);
-            string_offset = current_node[5] - (longlong)string_ptr;
+            string_offset = current_node[5] - (int64_t)string_ptr;
             
             do {
                 char1 = *string_ptr;
@@ -1088,7 +1088,7 @@ FINAL_PROCESS:
         
         if (*(int *)(param5 + 0x10) != 0) {
             string_ptr = (byte *)temp_node[5];
-            string_offset = *(longlong *)(param5 + 8) - (longlong)string_ptr;
+            string_offset = *(int64_t *)(param5 + 8) - (int64_t)string_ptr;
             
             do {
                 char1 = *string_ptr;
@@ -1111,7 +1111,7 @@ INSERT_NODE:
     setup_tree_node(string_offset + 0x20, param5);
     *(void **)(string_offset + 0x40) = 0;
     
-    insert_tree_node(string_offset, temp_node, tree_info, (longlong)return_value);
+    insert_tree_node(string_offset, temp_node, tree_info, (int64_t)return_value);
     
 RETURN_RESULT:
     *param2 = current_node;
@@ -1119,20 +1119,20 @@ RETURN_RESULT:
 }
 
 // 辅助函数声明
-void *allocate_memory(longlong size, void *allocator);
+void *allocate_memory(int64_t size, void *allocator);
 void free_memory(void *ptr, void *allocator, ...);
 void resize_integer_array(int *array_info, int new_capacity);
 void resize_integer_array_v2(int *array_info, int new_capacity);
-void cleanup_sub_object(longlong object_ptr);
-void cleanup_resource_manager(longlong ptr, longlong size, int type, void *cleanup_func, longlong param);
-void cleanup_function_1(longlong ptr);
-void cleanup_function_2(longlong ptr);
+void cleanup_sub_object(int64_t object_ptr);
+void cleanup_resource_manager(int64_t ptr, int64_t size, int type, void *cleanup_func, int64_t param);
+void cleanup_function_1(int64_t ptr);
+void cleanup_function_2(int64_t ptr);
 void resize_array_16bytes_v2(int *array_info, int new_capacity);
-void cleanup_list_node(longlong node_ptr, void *data);
-longlong get_next_node(longlong node_ptr);
+void cleanup_list_node(int64_t node_ptr, void *data);
+int64_t get_next_node(int64_t node_ptr);
 void trigger_error(...);
-void perform_tree_insertion(longlong *tree_info, void *param2, longlong *node, ulonglong result, longlong param5);
-longlong get_previous_node(longlong node_ptr);
-longlong create_tree_node(void *template, longlong size, char type);
-void setup_tree_node(longlong node_ptr, longlong param_ptr);
-void insert_tree_node(longlong node_ptr, longlong *parent_ptr, longlong *tree_info, longlong flags);
+void perform_tree_insertion(int64_t *tree_info, void *param2, int64_t *node, uint64_t result, int64_t param5);
+int64_t get_previous_node(int64_t node_ptr);
+int64_t create_tree_node(void *template, int64_t size, char type);
+void setup_tree_node(int64_t node_ptr, int64_t param_ptr);
+void insert_tree_node(int64_t node_ptr, int64_t *parent_ptr, int64_t *tree_info, int64_t flags);

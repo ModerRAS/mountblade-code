@@ -9,11 +9,11 @@
 //   param_3 - 初始化参数2  
 //   param_4 - 初始化参数3
 // 功能: 初始化游戏引擎的各个核心组件系统
-void initialize_engine_components(longlong engine_context, uint64_t init_param1, uint64_t init_param2, uint64_t init_param3)
+void initialize_engine_components(int64_t engine_context, uint64_t init_param1, uint64_t init_param2, uint64_t init_param3)
 
 {
-  longlong component_ptr;
-  ulonglong resource_handle;
+  int64_t component_ptr;
+  uint64_t resource_handle;
   int32_t *component_data;
   int8_t *memory_buffer;
   char status_flag;
@@ -28,8 +28,8 @@ void initialize_engine_components(longlong engine_context, uint64_t init_param1,
   // 初始化第一个组件系统
   component_ptr = engine_context + 0xe0;
   // 调用组件初始化函数
-  (**(code **)(*(longlong *)(engine_context + 0x120) + 0x10))
-            ((longlong *)(engine_context + 0x120),&DEFAULT_RESOURCE_TABLE,init_param2,init_param3,0xfffffffffffffffe);
+  (**(code **)(*(int64_t *)(engine_context + 0x120) + 0x10))
+            ((int64_t *)(engine_context + 0x120),&DEFAULT_RESOURCE_TABLE,init_param2,init_param3,0xfffffffffffffffe);
   
   // 分配资源并设置组件
   resource_id = get_resource_handle();
@@ -43,7 +43,7 @@ void initialize_engine_components(longlong engine_context, uint64_t init_param1,
   
   // 初始化第二个组件系统
   component_ptr = engine_context + 0x1a0;
-  (**(code **)(*(longlong *)(engine_context + 0x1e0) + 0x10))((longlong *)(engine_context + 0x1e0),&RESOURCE_TABLE_V1);
+  (**(code **)(*(int64_t *)(engine_context + 0x1e0) + 0x10))((int64_t *)(engine_context + 0x1e0),&RESOURCE_TABLE_V1);
   
   // 分配资源并配置组件
   resource_id = get_resource_handle();
@@ -57,7 +57,7 @@ void initialize_engine_components(longlong engine_context, uint64_t init_param1,
   
   // 初始化第三个组件系统
   component_ptr = engine_context + 0x260;
-  (**(code **)(*(longlong *)(engine_context + 0x2a0) + 0x10))((longlong *)(engine_context + 0x2a0),&RESOURCE_TABLE_V2);
+  (**(code **)(*(int64_t *)(engine_context + 0x2a0) + 0x10))((int64_t *)(engine_context + 0x2a0),&RESOURCE_TABLE_V2);
   
   // 分配资源并配置组件
   resource_id = get_resource_handle();
@@ -71,7 +71,7 @@ void initialize_engine_components(longlong engine_context, uint64_t init_param1,
   
   // 初始化第四个组件系统
   component_ptr = engine_context + 800;
-  (**(code **)(*(longlong *)(engine_context + 0x360) + 0x10))((longlong *)(engine_context + 0x360),&RESOURCE_TABLE_V3);
+  (**(code **)(*(int64_t *)(engine_context + 0x360) + 0x10))((int64_t *)(engine_context + 0x360),&RESOURCE_TABLE_V3);
   
   // 分配资源并配置组件
   resource_id = get_resource_handle();
@@ -85,7 +85,7 @@ void initialize_engine_components(longlong engine_context, uint64_t init_param1,
   
   // 初始化第五个组件系统
   component_ptr = engine_context + 0x3e0;
-  (**(code **)(*(longlong *)(engine_context + 0x420) + 0x10))((longlong *)(engine_context + 0x420),&RESOURCE_TABLE_V4);
+  (**(code **)(*(int64_t *)(engine_context + 0x420) + 0x10))((int64_t *)(engine_context + 0x420),&RESOURCE_TABLE_V4);
   
   // 分配资源并配置组件
   resource_id = get_resource_handle();
@@ -99,7 +99,7 @@ void initialize_engine_components(longlong engine_context, uint64_t init_param1,
   
   // 初始化第六个组件系统
   component_ptr = engine_context + 0x4a0;
-  (**(code **)(*(longlong *)(engine_context + 0x4e0) + 0x10))((longlong *)(engine_context + 0x4e0),&RESOURCE_TABLE_V5);
+  (**(code **)(*(int64_t *)(engine_context + 0x4e0) + 0x10))((int64_t *)(engine_context + 0x4e0),&RESOURCE_TABLE_V5);
   
   // 分配资源并配置组件
   resource_id = get_resource_handle();
@@ -113,7 +113,7 @@ void initialize_engine_components(longlong engine_context, uint64_t init_param1,
   
   // 初始化第七个组件系统
   component_ptr = engine_context + 0x560;
-  (**(code **)(*(longlong *)(engine_context + 0x5a0) + 0x10))((longlong *)(engine_context + 0x5a0),&RESOURCE_TABLE_V6);
+  (**(code **)(*(int64_t *)(engine_context + 0x5a0) + 0x10))((int64_t *)(engine_context + 0x5a0),&RESOURCE_TABLE_V6);
   
   // 分配资源并配置组件
   resource_id = get_resource_handle();
@@ -127,7 +127,7 @@ void initialize_engine_components(longlong engine_context, uint64_t init_param1,
   
   // 初始化第八个组件系统
   component_ptr = engine_context + 0x620;
-  (**(code **)(*(longlong *)(engine_context + 0x660) + 0x10))((longlong *)(engine_context + 0x660),&RESOURCE_TABLE_V7);
+  (**(code **)(*(int64_t *)(engine_context + 0x660) + 0x10))((int64_t *)(engine_context + 0x660),&RESOURCE_TABLE_V7);
   
   // 分配资源并配置组件
   resource_id = get_resource_handle();
@@ -141,7 +141,7 @@ void initialize_engine_components(longlong engine_context, uint64_t init_param1,
   
   // 初始化第九个组件系统
   component_ptr = engine_context + 0x6e0;
-  (**(code **)(*(longlong *)(engine_context + 0x720) + 0x10))((longlong *)(engine_context + 0x720),&RESOURCE_TABLE_V8);
+  (**(code **)(*(int64_t *)(engine_context + 0x720) + 0x10))((int64_t *)(engine_context + 0x720),&RESOURCE_TABLE_V8);
   
   // 分配资源并配置组件
   resource_id = get_resource_handle();
@@ -154,7 +154,7 @@ void initialize_engine_components(longlong engine_context, uint64_t init_param1,
   register_component_to_engine(engine_context + 0x48, &stack_temp);
   
   // 初始化第十个组件系统
-  (**(code **)(*(longlong *)(engine_context + 0x7e0) + 0x10))((longlong *)(engine_context + 0x7e0),&RESOURCE_TABLE_V9);
+  (**(code **)(*(int64_t *)(engine_context + 0x7e0) + 0x10))((int64_t *)(engine_context + 0x7e0),&RESOURCE_TABLE_V9);
   
   component_ptr = engine_context + 0x7a0;
   resource_id = get_resource_handle();
@@ -167,7 +167,7 @@ void initialize_engine_components(longlong engine_context, uint64_t init_param1,
   register_component_to_engine(engine_context + 0x48, &stack_temp);
   
   // 初始化第十一个组件系统
-  (**(code **)(*(longlong *)(engine_context + 0x8a0) + 0x10))((longlong *)(engine_context + 0x8a0),&RESOURCE_TABLE_V10);
+  (**(code **)(*(int64_t *)(engine_context + 0x8a0) + 0x10))((int64_t *)(engine_context + 0x8a0),&RESOURCE_TABLE_V10);
   
   component_ptr = engine_context + 0x860;
   resource_id = get_resource_handle();
@@ -180,7 +180,7 @@ void initialize_engine_components(longlong engine_context, uint64_t init_param1,
   register_component_to_engine(engine_context + 0x48, &stack_temp);
   
   // 初始化第十二个组件系统
-  (**(code **)(*(longlong *)(engine_context + 0x960) + 0x10))((longlong *)(engine_context + 0x960),&RESOURCE_TABLE_V11);
+  (**(code **)(*(int64_t *)(engine_context + 0x960) + 0x10))((int64_t *)(engine_context + 0x960),&RESOURCE_TABLE_V11);
   
   component_ptr = engine_context + 0x920;
   resource_id = get_resource_handle();
@@ -193,7 +193,7 @@ void initialize_engine_components(longlong engine_context, uint64_t init_param1,
   register_component_to_engine(engine_context + 0x48, &stack_temp);
   
   // 初始化第十三个组件系统
-  (**(code **)(*(longlong *)(engine_context + 0xa20) + 0x10))((longlong *)(engine_context + 0xa20),&RESOURCE_TABLE_V12);
+  (**(code **)(*(int64_t *)(engine_context + 0xa20) + 0x10))((int64_t *)(engine_context + 0xa20),&RESOURCE_TABLE_V12);
   
   component_ptr = engine_context + 0x9e0;
   resource_id = get_resource_handle();
@@ -206,7 +206,7 @@ void initialize_engine_components(longlong engine_context, uint64_t init_param1,
   register_component_to_engine(engine_context + 0x48, &stack_temp);
   
   // 初始化第十四个组件系统
-  (**(code **)(*(longlong *)(engine_context + 0xae0) + 0x10))((longlong *)(engine_context + 0xae0),&RESOURCE_TABLE_V13);
+  (**(code **)(*(int64_t *)(engine_context + 0xae0) + 0x10))((int64_t *)(engine_context + 0xae0),&RESOURCE_TABLE_V13);
   
   component_ptr = engine_context + 0xaa0;
   resource_id = get_resource_handle();
@@ -219,7 +219,7 @@ void initialize_engine_components(longlong engine_context, uint64_t init_param1,
   register_component_to_engine(engine_context + 0x48, &stack_temp);
   
   // 初始化第十五个组件系统
-  (**(code **)(*(longlong *)(engine_context + 0xba0) + 0x10))((longlong *)(engine_context + 0xba0),&RESOURCE_TABLE_V14);
+  (**(code **)(*(int64_t *)(engine_context + 0xba0) + 0x10))((int64_t *)(engine_context + 0xba0),&RESOURCE_TABLE_V14);
   
   component_ptr = engine_context + 0xb60;
   resource_id = get_resource_handle();
@@ -232,7 +232,7 @@ void initialize_engine_components(longlong engine_context, uint64_t init_param1,
   register_component_to_engine(engine_context + 0x48, &stack_temp);
   
   // 初始化第十六个组件系统
-  (**(code **)(*(longlong *)(engine_context + 0xc60) + 0x10))((longlong *)(engine_context + 0xc60),&RESOURCE_TABLE_V15);
+  (**(code **)(*(int64_t *)(engine_context + 0xc60) + 0x10))((int64_t *)(engine_context + 0xc60),&RESOURCE_TABLE_V15);
   
   resource_handle = engine_context + 0xc20;
   resource_id = get_resource_handle();
@@ -245,12 +245,12 @@ void initialize_engine_components(longlong engine_context, uint64_t init_param1,
   register_component_to_engine(engine_context + 0x48, &stack_temp);
   
   // 处理配置数据
-  (**(code **)(*(longlong *)(engine_context + 0xce8) + 0x10))(engine_context + 0xce8, &CONFIG_DATA_V1);
+  (**(code **)(*(int64_t *)(engine_context + 0xce8) + 0x10))(engine_context + 0xce8, &CONFIG_DATA_V1);
   
   // 配置组件参数
-  stack_temp = (int32_t *)((ulonglong)stack_temp & 0xffffffff00000000);
+  stack_temp = (int32_t *)((uint64_t)stack_temp & 0xffffffff00000000);
   temp_value = 0;
-  if (*(longlong *)(engine_context + 0xd40) != 0) {
+  if (*(int64_t *)(engine_context + 0xd40) != 0) {
     status_flag = (**(code **)(engine_context + 0xd48))(&stack_temp);
     if (status_flag == '\0') {
       if (GLOBAL_DEBUG_FLAG == '\0') {
@@ -269,9 +269,9 @@ void initialize_engine_components(longlong engine_context, uint64_t init_param1,
   *(int32_t *)(engine_context + 0xce0) = temp_value;
   
   // 处理第二个配置数据
-  stack_temp = (int32_t *)((ulonglong)stack_temp & 0xffffffff00000000);
+  stack_temp = (int32_t *)((uint64_t)stack_temp & 0xffffffff00000000);
   temp_value = 0;
-  if (*(longlong *)(engine_context + 0xd40) != 0) {
+  if (*(int64_t *)(engine_context + 0xd40) != 0) {
     status_flag = (**(code **)(engine_context + 0xd48))(&stack_temp);
     if (status_flag == '\0') {
       if (GLOBAL_DEBUG_FLAG == '\0') {

@@ -22,11 +22,11 @@ void quicksort_float_array(uint64_t param_1, float *param_2)
   // 简化版本仅保留排序功能的核心逻辑
 }
 
-// 函数: void FUN_18009d87b(uint64_t param_1,longlong param_2)
+// 函数: void FUN_18009d87b(uint64_t param_1,int64_t param_2)
 // 功能: 堆排序算法实现，用于浮点数数组
 // 原本实现: 专门的堆排序实现，包含建堆和堆调整过程
 // 简化实现: 使用标准堆排序算法
-void heapsort_float_array(uint64_t param_1, longlong param_2)
+void heapsort_float_array(uint64_t param_1, int64_t param_2)
 {
   // 简化实现：标准堆排序算法
   // 原始实现包含了复杂的堆操作逻辑
@@ -40,11 +40,11 @@ void heapsort_float_array(uint64_t param_1, longlong param_2)
   // 简化版本保留堆排序的核心功能
 }
 
-// 函数: void FUN_18009d885(uint64_t param_1,longlong param_2)
+// 函数: void FUN_18009d885(uint64_t param_1,int64_t param_2)
 // 功能: 另一个堆排序变体，用于浮点数数组
 // 原本实现: 与上一个函数类似的堆排序实现
 // 简化实现: 统一的堆排序接口
-void heapsort_float_array_variant(uint64_t param_1, longlong param_2)
+void heapsort_float_array_variant(uint64_t param_1, int64_t param_2)
 {
   // 简化实现：堆排序的变体实现
   // 功能与上一个函数基本相同
@@ -57,11 +57,11 @@ void heapsort_float_array_variant(uint64_t param_1, longlong param_2)
   // 简化版本提供统一的排序接口
 }
 
-// 函数: void FUN_18009d8f0(longlong *param_1,longlong *param_2,longlong *param_3,longlong param_4)
+// 函数: void FUN_18009d8f0(int64_t *param_1,int64_t *param_2,int64_t *param_3,int64_t param_4)
 // 功能: 长整数数组的归并排序或快速排序
 // 原本实现: 复杂的长整数排序算法，可能包含字符串比较
 // 简化实现: 标准的长整数排序
-void sort_longlong_array(longlong *param_1, longlong *param_2, longlong *param_3, longlong param_4)
+void sort_longlong_array(int64_t *param_1, int64_t *param_2, int64_t *param_3, int64_t param_4)
 {
   // 简化实现：长整数数组排序
   // 原始实现可能包含了字符串比较的复杂逻辑
@@ -97,11 +97,11 @@ void sort_int_array(int *param_1, int *param_2, int *param_3, uint64_t *param_4)
   // 简化版本提供标准排序功能
 }
 
-// 函数: void FUN_18009dcd0(longlong *param_1,longlong *param_2,longlong *param_3)
+// 函数: void FUN_18009dcd0(int64_t *param_1,int64_t *param_2,int64_t *param_3)
 // 功能: 基于双精度浮点数的堆排序
 // 原本实现: 专门处理双精度浮点数的堆排序
 // 简化实现: 双精度浮点数排序
-void heapsort_double_array(longlong *param_1, longlong *param_2, longlong *param_3)
+void heapsort_double_array(int64_t *param_1, int64_t *param_2, int64_t *param_3)
 {
   // 简化实现：双精度浮点数堆排序
   // 原始实现针对双精度浮点数优化
@@ -116,11 +116,11 @@ void heapsort_double_array(longlong *param_1, longlong *param_2, longlong *param
   // 简化版本保留核心排序功能
 }
 
-// 函数: void FUN_18009dcde(longlong *param_1,longlong *param_2,longlong *param_3)
+// 函数: void FUN_18009dcde(int64_t *param_1,int64_t *param_2,int64_t *param_3)
 // 功能: 另一个双精度浮点数堆排序变体
 // 原本实现: 与上一个函数功能类似
 // 简化实现: 统一的双精度浮点数排序接口
-void heapsort_double_array_variant(longlong *param_1, longlong *param_2, longlong *param_3)
+void heapsort_double_array_variant(int64_t *param_1, int64_t *param_2, int64_t *param_3)
 {
   // 简化实现：双精度浮点数堆排序变体
   // 功能与上一个函数基本相同

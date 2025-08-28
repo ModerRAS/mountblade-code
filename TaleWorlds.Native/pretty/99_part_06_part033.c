@@ -341,12 +341,12 @@ static void* system_data_fc60 = NULL;
  */
 void SystemDataProcessor(uint64_t param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
-    longlong *memory_pool_ptr;
-    ulonglong allocated_size;
+    int64_t *memory_pool_ptr;
+    uint64_t allocated_size;
     int32_t *data_ptr;
-    longlong context_ptr;
+    int64_t context_ptr;
     int32_t *source_data;
-    longlong index_ptr;
+    int64_t index_ptr;
     uint64_t *target_ptr;
     char needs_cleanup;
     uint cleanup_size;
@@ -355,8 +355,8 @@ void SystemDataProcessor(uint64_t param_1, uint64_t param_2, uint64_t param_3, u
     SystemDataProcessor(param_1, &stack0x00000080, param_3, param_4, 1);
     
     /* 获取内存池指针并计算分配大小 */
-    memory_pool_ptr = *(longlong **)(context_ptr + SYSTEM_MEMORY_POOL_OFFSET);
-    allocated_size = (longlong)(int)memory_pool_ptr[2] + 0xfU & SYSTEM_MEMORY_ALIGNMENT_MASK;
+    memory_pool_ptr = *(int64_t **)(context_ptr + SYSTEM_MEMORY_POOL_OFFSET);
+    allocated_size = (int64_t)(int)memory_pool_ptr[2] + 0xfU & SYSTEM_MEMORY_ALIGNMENT_MASK;
     data_ptr = (int32_t *)(*memory_pool_ptr + allocated_size);
     *(int *)(memory_pool_ptr + 2) = (int)allocated_size + 0x10;
     
@@ -367,19 +367,19 @@ void SystemDataProcessor(uint64_t param_1, uint64_t param_2, uint64_t param_3, u
     
     /* 如果需要清理，执行内存清理操作 */
     if (needs_cleanup != '\0') {
-        memory_pool_ptr = *(longlong **)(context_ptr + SYSTEM_MEMORY_POOL_OFFSET);
-        allocated_size = (longlong)(int)memory_pool_ptr[2] + 7U & SYSTEM_MEMORY_ALIGNMENT_MASK_8;
+        memory_pool_ptr = *(int64_t **)(context_ptr + SYSTEM_MEMORY_POOL_OFFSET);
+        allocated_size = (int64_t)(int)memory_pool_ptr[2] + 7U & SYSTEM_MEMORY_ALIGNMENT_MASK_8;
         *(uint *)(memory_pool_ptr + 2) = (int)allocated_size + (cleanup_size + 1) * 8;
-        memset(*memory_pool_ptr + allocated_size, 0, (ulonglong)cleanup_size * 8);
+        memset(*memory_pool_ptr + allocated_size, 0, (uint64_t)cleanup_size * 8);
     }
     
     /* 更新数据指针和状态信息 */
-    *(uint64_t *)(data_ptr + 2) = *(uint64_t *)(*(longlong *)(context_ptr + 8) + index_ptr * 8);
-    *(int32_t **)(*(longlong *)(context_ptr + 8) + index_ptr * 8) = data_ptr;
+    *(uint64_t *)(data_ptr + 2) = *(uint64_t *)(*(int64_t *)(context_ptr + 8) + index_ptr * 8);
+    *(int32_t **)(*(int64_t *)(context_ptr + 8) + index_ptr * 8) = data_ptr;
     
     /* 更新系统计数器 */
-    context_ptr = *(longlong *)(context_ptr + 8);
-    *(longlong *)(context_ptr + SYSTEM_COUNTER_OFFSET) = *(longlong *)(context_ptr + SYSTEM_COUNTER_OFFSET) + 1;
+    context_ptr = *(int64_t *)(context_ptr + 8);
+    *(int64_t *)(context_ptr + SYSTEM_COUNTER_OFFSET) = *(int64_t *)(context_ptr + SYSTEM_COUNTER_OFFSET) + 1;
     *target_ptr = data_ptr;
     target_ptr[1] = context_ptr + index_ptr * 8;
     *(int8_t *)(target_ptr + 2) = SYSTEM_STATUS_ACTIVE;
@@ -394,16 +394,16 @@ void SystemDataProcessor(uint64_t param_1, uint64_t param_2, uint64_t param_3, u
  */
 void SystemMemoryAllocator(void)
 {
-    longlong *memory_pool_ptr;
-    ulonglong allocated_size;
-    longlong context_ptr;
+    int64_t *memory_pool_ptr;
+    uint64_t allocated_size;
+    int64_t context_ptr;
     uint64_t allocation_size;
     
     /* 获取内存池指针并计算分配大小 */
-    memory_pool_ptr = *(longlong **)(context_ptr + SYSTEM_MEMORY_POOL_OFFSET);
-    allocated_size = (longlong)(int)memory_pool_ptr[2] + 7U & SYSTEM_MEMORY_ALIGNMENT_MASK_8;
+    memory_pool_ptr = *(int64_t **)(context_ptr + SYSTEM_MEMORY_POOL_OFFSET);
+    allocated_size = (int64_t)(int)memory_pool_ptr[2] + 7U & SYSTEM_MEMORY_ALIGNMENT_MASK_8;
     *(uint *)(memory_pool_ptr + 2) = (int)allocated_size + (allocation_size._4_4_ + 1) * 8;
-    memset(*memory_pool_ptr + allocated_size, 0, (ulonglong)allocation_size._4_4_ * 8);
+    memset(*memory_pool_ptr + allocated_size, 0, (uint64_t)allocation_size._4_4_ * 8);
 }
 
 /**
@@ -432,16 +432,16 @@ void SystemDataWriter(uint64_t param_1, uint64_t param_2)
  */
 void SystemDataManager(void)
 {
-    longlong data_ptr;
-    longlong context_ptr;
-    longlong index_ptr;
-    longlong target_ptr;
+    int64_t data_ptr;
+    int64_t context_ptr;
+    int64_t index_ptr;
+    int64_t target_ptr;
     
     /* 管理数据存储和检索 */
-    *(uint64_t *)(index_ptr + 8) = *(uint64_t *)(*(longlong *)(context_ptr + 8) + index_ptr * 8);
-    *(longlong *)(*(longlong *)(context_ptr + 8) + index_ptr * 8) = index_ptr;
-    data_ptr = *(longlong *)(context_ptr + 8);
-    *(longlong *)(context_ptr + SYSTEM_COUNTER_OFFSET) = *(longlong *)(context_ptr + SYSTEM_COUNTER_OFFSET) + 1;
+    *(uint64_t *)(index_ptr + 8) = *(uint64_t *)(*(int64_t *)(context_ptr + 8) + index_ptr * 8);
+    *(int64_t *)(*(int64_t *)(context_ptr + 8) + index_ptr * 8) = index_ptr;
+    data_ptr = *(int64_t *)(context_ptr + 8);
+    *(int64_t *)(context_ptr + SYSTEM_COUNTER_OFFSET) = *(int64_t *)(context_ptr + SYSTEM_COUNTER_OFFSET) + 1;
     *target_ptr = index_ptr;
     target_ptr[1] = data_ptr + index_ptr * 8;
     *(int8_t *)(target_ptr + 2) = SYSTEM_STATUS_ACTIVE;
@@ -456,24 +456,24 @@ void SystemDataManager(void)
  * @param param_2 配置数据指针
  * @param param_3 配置大小
  */
-void SystemConfigInitializer(uint64_t param_1, longlong *param_2, int param_3)
+void SystemConfigInitializer(uint64_t param_1, int64_t *param_2, int param_3)
 {
     uint64_t config_data;
     uint64_t security_cookie;
     int8_t config_buffer[32];
     int32_t is_initialized;
     uint64_t config_flags;
-    longlong *config_ptr;
+    int64_t *config_ptr;
     void *resource_ptr;
     int8_t *data_buffer;
     int32_t buffer_size;
     int8_t stack_buffer[72];
-    ulonglong security_value;
+    uint64_t security_value;
     
     /* 获取系统配置数据 */
     config_data = system_system_data_config;
     config_flags = 0xfffffffffffffffe;
-    security_value = GET_SECURITY_COOKIE() ^ (ulonglong)config_buffer;
+    security_value = GET_SECURITY_COOKIE() ^ (uint64_t)config_buffer;
     is_initialized = 0;
     
     /* 计算配置大小并设置参数 */
@@ -501,7 +501,7 @@ void SystemConfigInitializer(uint64_t param_1, longlong *param_2, int param_3)
     is_initialized = 1;
     
     /* 执行安全检查 */
-    SystemSecurityChecker(security_value ^ (ulonglong)config_buffer);
+    SystemSecurityChecker(security_value ^ (uint64_t)config_buffer);
 }
 
 /**
@@ -513,11 +513,11 @@ void SystemConfigInitializer(uint64_t param_1, longlong *param_2, int param_3)
  * @param param_2 资源指针
  * @return 分配的资源指针
  */
-uint64_t *SystemResourceAllocator(longlong param_1, uint64_t *param_2)
+uint64_t *SystemResourceAllocator(int64_t param_1, uint64_t *param_2)
 {
-    longlong resource_list;
+    int64_t resource_list;
     int lock_result;
-    longlong *resource_ptr;
+    int64_t *resource_ptr;
     int32_t allocation_flags;
     uint64_t resource_data;
     
@@ -532,36 +532,36 @@ uint64_t *SystemResourceAllocator(longlong param_1, uint64_t *param_2)
     }
     
     /* 检查资源列表状态 */
-    resource_list = *(longlong *)(param_1 + 200);
-    if (*(longlong *)(param_1 + 0xc0) == resource_list) {
+    resource_list = *(int64_t *)(param_1 + 200);
+    if (*(int64_t *)(param_1 + 0xc0) == resource_list) {
         /* 分配新资源 */
-        resource_ptr = (longlong *)SystemMemoryAllocator(system_memory_pool_ptr, 0x28, 8, SYSTEM_ALLOC_FLAG_LARGE, allocation_flags, resource_data);
-        *resource_ptr = (longlong)&system_handler1_ptr;
-        *resource_ptr = (longlong)&system_handler2_ptr;
+        resource_ptr = (int64_t *)SystemMemoryAllocator(system_memory_pool_ptr, 0x28, 8, SYSTEM_ALLOC_FLAG_LARGE, allocation_flags, resource_data);
+        *resource_ptr = (int64_t)&system_handler1_ptr;
+        *resource_ptr = (int64_t)&system_handler2_ptr;
         *(int32_t *)(resource_ptr + 1) = 0;
-        *resource_ptr = (longlong)&unknown_var_6544_ptr;
+        *resource_ptr = (int64_t)&unknown_var_6544_ptr;
         resource_ptr[2] = 0;
         resource_ptr[3] = 0;
         *(int8_t *)(resource_ptr + 4) = 0;
-        *resource_ptr = (longlong)&unknown_var_2968_ptr;
+        *resource_ptr = (int64_t)&unknown_var_2968_ptr;
         (**(code **)(*resource_ptr + 0x28))(resource_ptr);
         *param_2 = resource_ptr;
     } else {
         /* 重用现有资源 */
-        resource_ptr = *(longlong **)(resource_list + -8);
-        *(longlong *)(param_1 + 200) = resource_list + -8;
+        resource_ptr = *(int64_t **)(resource_list + -8);
+        *(int64_t *)(param_1 + 200) = resource_list + -8;
         resource_ptr[1] = -0x5a5a5a5a5a5a5a5b;
         resource_ptr[2] = -0x5a5a5a5a5a5a5a5b;
         resource_ptr[3] = -0x5a5a5a5a5a5a5a5b;
         resource_ptr[4] = -0x5a5a5a5a5a5a5a5b;
-        *resource_ptr = (longlong)&system_handler1_ptr;
-        *resource_ptr = (longlong)&system_handler2_ptr;
+        *resource_ptr = (int64_t)&system_handler1_ptr;
+        *resource_ptr = (int64_t)&system_handler2_ptr;
         *(int32_t *)(resource_ptr + 1) = 0;
-        *resource_ptr = (longlong)&unknown_var_6544_ptr;
+        *resource_ptr = (int64_t)&unknown_var_6544_ptr;
         resource_ptr[2] = 0;
         resource_ptr[3] = 0;
         *(int8_t *)(resource_ptr + 4) = 0;
-        *resource_ptr = (longlong)&unknown_var_2968_ptr;
+        *resource_ptr = (int64_t)&unknown_var_2968_ptr;
         (**(code **)(*resource_ptr + 0x28))(resource_ptr);
         *param_2 = resource_ptr;
     }
@@ -585,7 +585,7 @@ uint64_t *SystemResourceAllocator(longlong param_1, uint64_t *param_2)
  * @param param_3 操作类型
  * @return 操作结果
  */
-longlong SystemDataOperator(longlong *param_1, longlong *param_2, int param_3)
+int64_t SystemDataOperator(int64_t *param_1, int64_t *param_2, int param_3)
 {
     uint64_t *source_ptr;
     uint64_t source_data;
@@ -617,7 +617,7 @@ longlong SystemDataOperator(longlong *param_1, longlong *param_2, int param_3)
             target_ptr[4] = source_ptr[4];
             target_ptr[5] = source_data;
             target_ptr[6] = source_ptr[6];
-            *param_1 = (longlong)target_ptr;
+            *param_1 = (int64_t)target_ptr;
             return 0;
         }
         if (param_3 == 2) {
@@ -639,7 +639,7 @@ longlong SystemDataOperator(longlong *param_1, longlong *param_2, int param_3)
  * @param param_3 转换类型
  * @return 转换结果
  */
-longlong SystemDataTransformer(longlong *param_1, longlong *param_2, int param_3)
+int64_t SystemDataTransformer(int64_t *param_1, int64_t *param_2, int param_3)
 {
     uint64_t *source_ptr;
     uint64_t source_data;
@@ -671,7 +671,7 @@ longlong SystemDataTransformer(longlong *param_1, longlong *param_2, int param_3
             target_ptr[4] = source_ptr[4];
             target_ptr[5] = source_data;
             target_ptr[6] = source_ptr[6];
-            *param_1 = (longlong)target_ptr;
+            *param_1 = (int64_t)target_ptr;
             return 0;
         }
         if (param_3 == 2) {
@@ -693,13 +693,13 @@ longlong SystemDataTransformer(longlong *param_1, longlong *param_2, int param_3
  * @param param_3 状态指针
  * @return 原始状态
  */
-int8_t SystemStateManager(longlong param_1, uint64_t param_2, longlong *param_3)
+int8_t SystemStateManager(int64_t param_1, uint64_t param_2, int64_t *param_3)
 {
     int8_t original_state;
     
     /* 获取状态指针并更新状态 */
-    param_3 = (longlong *)*param_3;
-    SystemStateManager(*param_3, *(uint64_t *)(param_1 + 8), (longlong)(int)param_3[1]);
+    param_3 = (int64_t *)*param_3;
+    SystemStateManager(*param_3, *(uint64_t *)(param_1 + 8), (int64_t)(int)param_3[1]);
     ((uint64_t *)*param_3)[1] = *(uint64_t *)*param_3;
     
     /* 线程安全的状态更新 */
@@ -724,7 +724,7 @@ int8_t SystemStateManager(longlong param_1, uint64_t param_2, longlong *param_3)
  * @param param_3 操作类型
  * @return 操作结果
  */
-longlong SystemDataProcessorAdvanced(longlong *param_1, longlong *param_2, int param_3)
+int64_t SystemDataProcessorAdvanced(int64_t *param_1, int64_t *param_2, int param_3)
 {
     uint64_t *source_ptr;
     uint64_t source_data;
@@ -752,7 +752,7 @@ longlong SystemDataProcessorAdvanced(longlong *param_1, longlong *param_2, int p
             source_data = source_ptr[3];
             target_ptr[2] = source_ptr[2];
             target_ptr[3] = source_data;
-            *param_1 = (longlong)target_ptr;
+            *param_1 = (int64_t)target_ptr;
             return 0;
         }
         if (param_3 == 2) {
@@ -777,41 +777,41 @@ longlong SystemDataProcessorAdvanced(longlong *param_1, longlong *param_2, int p
  * @param param_6 资源配置
  * @return 资源指针
  */
-uint64_t *SystemResourceManager(uint64_t *param_1, uint64_t *param_2, longlong *param_3, uint64_t param_4,
-                               uint64_t param_5, longlong param_6)
+uint64_t *SystemResourceManager(uint64_t *param_1, uint64_t *param_2, int64_t *param_3, uint64_t param_4,
+                               uint64_t param_5, int64_t param_6)
 {
-    longlong resource_data;
-    longlong *resource_ptr;
+    int64_t resource_data;
+    int64_t *resource_ptr;
     uint64_t system_id;
     uint64_t *allocated_resource;
     int32_t resource_flags;
     uint64_t resource_handle;
-    longlong stack_param1;
-    longlong stack_param2;
+    int64_t stack_param1;
+    int64_t stack_param2;
     int32_t stack_flag1;
     int32_t stack_flag2;
     int32_t stack_flag3;
     int32_t stack_flag4;
     void *resource_context;
-    longlong stack_param3;
+    int64_t stack_param3;
     int32_t stack_status;
     
     /* 初始化资源参数 */
     resource_handle = 0xfffffffffffffffe;
-    resource_ptr = (longlong *)0x0;
+    resource_ptr = (int64_t *)0x0;
     resource_data = *param_3;
     stack_param2 = param_3[1];
     stack_flag1 = (int32_t)param_3[2];
-    stack_flag2 = *(int32_t *)((longlong)param_3 + 0x14);
+    stack_flag2 = *(int32_t *)((int64_t)param_3 + 0x14);
     stack_flag3 = (int32_t)param_3[3];
-    stack_flag4 = *(int32_t *)((longlong)param_3 + 0x1c);
+    stack_flag4 = *(int32_t *)((int64_t)param_3 + 0x1c);
     resource_context = (void *)param_3[4];
     stack_param1 = resource_data;
     
     /* 检查资源类型并分配相应资源 */
     if (resource_data - 2U < 2) {
-        resource_ptr = (longlong *)SystemMemoryAllocator(system_memory_pool_ptr, 0x10, 8, 3);
-        *resource_ptr = (longlong)&unknown_var_3856_ptr;
+        resource_ptr = (int64_t *)SystemMemoryAllocator(system_memory_pool_ptr, 0x10, 8, 3);
+        *resource_ptr = (int64_t)&unknown_var_3856_ptr;
         *(bool *)(resource_ptr + 1) = resource_data == 3;
     }
     
@@ -829,7 +829,7 @@ uint64_t *SystemResourceManager(uint64_t *param_1, uint64_t *param_2, longlong *
     resource_flags = 1;
     
     /* 处理资源分配 */
-    if (resource_ptr == (longlong *)0x0) {
+    if (resource_ptr == (int64_t *)0x0) {
         (**(code **)(param_2[4] + 0x10))(param_2 + 4, &unknown_var_3064_ptr);
         *(int8_t *)(param_2 + 3) = 1;
         param_2[2] = 0;
@@ -891,7 +891,7 @@ void SystemCleaner(uint64_t *param_1)
  * @param param_4 释放参数
  * @return 内存指针
  */
-uint64_t *SystemMemoryReleaser(uint64_t *param_1, ulonglong param_2, uint64_t param_3, uint64_t param_4)
+uint64_t *SystemMemoryReleaser(uint64_t *param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
     *param_1 = &unknown_var_4912_ptr;
     *param_1 = &unknown_var_4872_ptr;
@@ -911,12 +911,12 @@ uint64_t *SystemMemoryReleaser(uint64_t *param_1, ulonglong param_2, uint64_t pa
  * @param param_3 批处理大小
  * @return 处理结果
  */
-uint64_t SystemBatchProcessor(longlong param_1, longlong param_2, uint param_3)
+uint64_t SystemBatchProcessor(int64_t param_1, int64_t param_2, uint param_3)
 {
-    longlong data_pool;
+    int64_t data_pool;
     int32_t *source_ptr;
     int32_t *target_ptr;
-    ulonglong iteration_count;
+    uint64_t iteration_count;
     int8_t stack_buffer[16];
     int32_t pool_size;
     int32_t available_space;
@@ -943,18 +943,18 @@ uint64_t SystemBatchProcessor(longlong param_1, longlong param_2, uint param_3)
     
     /* 获取批处理参数 */
     pool_size = *(int32_t *)(param_1 + 0x18);
-    capacity = (int32_t)((*(longlong **)(param_1 + 0x10))[1] - **(longlong **)(param_1 + 0x10) >> 6);
+    capacity = (int32_t)((*(int64_t **)(param_1 + 0x10))[1] - **(int64_t **)(param_1 + 0x10) >> 6);
     available_space = *(int32_t *)(param_1 + 0x1c);
     batch_size = param_3;
     
     /* 如果有批处理任务，执行处理 */
     if (param_3 != 0) {
         target_ptr = (int32_t *)(param_2 + 0x18);
-        iteration_count = (ulonglong)param_3;
+        iteration_count = (uint64_t)param_3;
         
         do {
             /* 获取数据池和指针 */
-            data_pool = *(longlong *)(param_1 + 0x10);
+            data_pool = *(int64_t *)(param_1 + 0x10);
             data_value1 = target_ptr[-6];
             data_value2 = target_ptr[-5];
             data_value3 = target_ptr[-4];
@@ -963,7 +963,7 @@ uint64_t SystemBatchProcessor(longlong param_1, longlong param_2, uint param_3)
             data_value5 = target_ptr[-2];
             data_value6 = target_ptr[-1];
             data_value7 = *target_ptr;
-            status_word = *(int16_t *)((longlong)target_ptr + 0x1a);
+            status_word = *(int16_t *)((int64_t)target_ptr + 0x1a);
             data_value9 = target_ptr[7];
             
             /* 设置浮点值 */
@@ -989,7 +989,7 @@ uint64_t SystemBatchProcessor(longlong param_1, longlong param_2, uint param_3)
                 *(uint64_t *)(source_ptr + 9) = 0;
                 source_ptr[0xb] = 0x3f000000;
                 *(int8_t *)(source_ptr + 0xc) = 0;
-                *(int16_t *)((longlong)source_ptr + 0x32) = status_word;
+                *(int16_t *)((int64_t)source_ptr + 0x32) = status_word;
                 source_ptr[0xd] = data_value9;
                 source_ptr[0xe] = 0x3f000000;
                 source_ptr[0xf] = 0x3f19999a;
@@ -1020,16 +1020,16 @@ uint64_t SystemBatchProcessor(longlong param_1, longlong param_2, uint param_3)
  * @param param_3 流大小
  * @return 处理结果
  */
-uint64_t SystemStreamProcessor(uint64_t param_1, longlong param_2, ulonglong param_3)
+uint64_t SystemStreamProcessor(uint64_t param_1, int64_t param_2, uint64_t param_3)
 {
-    longlong data_pool;
+    int64_t data_pool;
     int32_t *source_ptr;
     uint64_t data_value1;
     int32_t *target_ptr;
     uint64_t data_value2;
-    longlong context_ptr;
+    int64_t context_ptr;
     uint64_t data_value3;
-    longlong data_value4;
+    int64_t data_value4;
     int32_t float_value1;
     int32_t float_value2;
     int32_t float_value3;
@@ -1071,7 +1071,7 @@ uint64_t SystemStreamProcessor(uint64_t param_1, longlong param_2, ulonglong par
     /* 流处理循环 */
     do {
         /* 获取数据池和指针 */
-        data_pool = *(longlong *)(context_ptr + 0x10);
+        data_pool = *(int64_t *)(context_ptr + 0x10);
         stream_data1 = target_ptr[-6];
         stream_data2 = target_ptr[-5];
         stream_data3 = target_ptr[-4];
@@ -1080,7 +1080,7 @@ uint64_t SystemStreamProcessor(uint64_t param_1, longlong param_2, ulonglong par
         stream_data5 = target_ptr[-2];
         stream_data6 = target_ptr[-1];
         stream_data7 = *target_ptr;
-        stream_status = *(int16_t *)((longlong)target_ptr + 0x1a);
+        stream_status = *(int16_t *)((int64_t)target_ptr + 0x1a);
         stream_value1 = target_ptr[7];
         stream_data8 = 0x7f7fffff;
         stream_value2 = 0;
@@ -1102,7 +1102,7 @@ uint64_t SystemStreamProcessor(uint64_t param_1, longlong param_2, ulonglong par
             *(uint64_t *)(source_ptr + 9) = 0;
             source_ptr[0xb] = 0x3f000000;
             *(int8_t *)(source_ptr + 0xc) = 0;
-            *(int16_t *)((longlong)source_ptr + 0x32) = stream_status;
+            *(int16_t *)((int64_t)source_ptr + 0x32) = stream_status;
             source_ptr[0xd] = stream_value1;
             source_ptr[0xe] = 0x3f000000;
             source_ptr[0xf] = 0x3f19999a;
@@ -1131,7 +1131,7 @@ uint64_t SystemStreamProcessor(uint64_t param_1, longlong param_2, ulonglong par
  */
 int8_t SystemStateChecker(void)
 {
-    longlong context_ptr;
+    int64_t context_ptr;
     int8_t stack_buffer[8];
     
     /* 检查系统状态 */
@@ -1151,7 +1151,7 @@ int8_t SystemStateChecker(void)
  * @param param_4 释放参数
  * @return 资源指针
  */
-uint64_t *SystemResourceReleaser(uint64_t *param_1, ulonglong param_2, uint64_t param_3, uint64_t param_4)
+uint64_t *SystemResourceReleaser(uint64_t *param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
     *param_1 = &unknown_var_4848_ptr;
     if ((param_2 & 1) != 0) {
@@ -1215,11 +1215,11 @@ uint64_t *SystemConfigManager(uint64_t *param_1, uint64_t param_2, uint64_t para
  */
 uint64_t *SystemDestructor(uint64_t *param_1, uint param_2, uint64_t param_3, uint64_t param_4)
 {
-    longlong *resource_ptr;
-    ulonglong resource_index;
+    int64_t *resource_ptr;
+    uint64_t resource_index;
     uint resource_count;
-    ulonglong iteration_count;
-    longlong resource_data;
+    uint64_t iteration_count;
+    int64_t resource_data;
     uint64_t resource_handle;
     
     /* 初始化析构参数 */
@@ -1240,8 +1240,8 @@ uint64_t *SystemDestructor(uint64_t *param_1, uint param_2, uint64_t param_3, ui
             resource_count = (int)iteration_count + 1;
             resource_index = resource_index + 8;
             resource_data = *resource_ptr;
-            iteration_count = (ulonglong)resource_count;
-        } while ((ulonglong)(longlong)(int)resource_count < (ulonglong)(param_1[2] - resource_data >> 3));
+            iteration_count = (uint64_t)resource_count;
+        } while ((uint64_t)(int64_t)(int)resource_count < (uint64_t)(param_1[2] - resource_data >> 3));
     }
     
     /* 检查是否需要完全释放 */
@@ -1264,25 +1264,25 @@ uint64_t *SystemDestructor(uint64_t *param_1, uint param_2, uint64_t param_3, ui
  * 
  * @param param_1 内存管理参数
  */
-void SystemMemoryManager(longlong param_1)
+void SystemMemoryManager(int64_t param_1)
 {
     int *reference_count;
     uint64_t *memory_ptr;
-    longlong memory_info;
-    ulonglong memory_address;
+    int64_t memory_info;
+    uint64_t memory_address;
     
     /* 执行内存清理 */
     SystemMemoryCleaner();
     
     /* 检查是否有内存需要管理 */
-    if ((1 < *(ulonglong *)(param_1 + 0x10)) &&
+    if ((1 < *(uint64_t *)(param_1 + 0x10)) &&
         (memory_ptr = *(uint64_t **)(param_1 + 8), memory_ptr != (uint64_t *)0x0)) {
         /* 计算内存地址 */
-        memory_address = (ulonglong)memory_ptr & 0xffffffffffc00000;
+        memory_address = (uint64_t)memory_ptr & 0xffffffffffc00000;
         if (memory_address != 0) {
             /* 获取内存信息 */
-            memory_info = memory_address + 0x80 + ((longlong)memory_ptr - memory_address >> 0x10) * 0x50;
-            memory_info = memory_info - (ulonglong)*(uint *)(memory_info + 4);
+            memory_info = memory_address + 0x80 + ((int64_t)memory_ptr - memory_address >> 0x10) * 0x50;
+            memory_info = memory_info - (uint64_t)*(uint *)(memory_info + 4);
             
             /* 检查是否可以安全释放 */
             if ((*(void ***)(memory_address + 0x70) == &ExceptionList) && (*(char *)(memory_info + 0xe) == '\0')) {
@@ -1311,25 +1311,25 @@ void SystemMemoryManager(longlong param_1)
  * 
  * @param param_1 清理参数
  */
-void SystemResourceCleaner(longlong param_1)
+void SystemResourceCleaner(int64_t param_1)
 {
     int *reference_count;
     uint64_t *resource_ptr;
-    longlong resource_info;
-    ulonglong resource_address;
+    int64_t resource_info;
+    uint64_t resource_address;
     
     /* 执行资源清理 */
     SystemMemoryCleaner();
     
     /* 检查是否有资源需要清理 */
-    if ((1 < *(ulonglong *)(param_1 + 0x10)) &&
+    if ((1 < *(uint64_t *)(param_1 + 0x10)) &&
         (resource_ptr = *(uint64_t **)(param_1 + 8), resource_ptr != (uint64_t *)0x0)) {
         /* 计算资源地址 */
-        resource_address = (ulonglong)resource_ptr & 0xffffffffffc00000;
+        resource_address = (uint64_t)resource_ptr & 0xffffffffffc00000;
         if (resource_address != 0) {
             /* 获取资源信息 */
-            resource_info = resource_address + 0x80 + ((longlong)resource_ptr - resource_address >> 0x10) * 0x50;
-            resource_info = resource_info - (ulonglong)*(uint *)(resource_info + 4);
+            resource_info = resource_address + 0x80 + ((int64_t)resource_ptr - resource_address >> 0x10) * 0x50;
+            resource_info = resource_info - (uint64_t)*(uint *)(resource_info + 4);
             
             /* 检查是否可以安全清理 */
             if ((*(void ***)(resource_address + 0x70) == &ExceptionList) && (*(char *)(resource_info + 0xe) == '\0')) {
@@ -1362,7 +1362,7 @@ void SystemResourceCleaner(longlong param_1)
  * @param param_4 处理参数
  * @return 内存指针
  */
-uint64_t *SystemMemoryHandler(uint64_t *param_1, ulonglong param_2, uint64_t param_3, uint64_t param_4)
+uint64_t *SystemMemoryHandler(uint64_t *param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
     *param_1 = &unknown_var_4760_ptr;
     if ((param_2 & 1) != 0) {
@@ -1394,7 +1394,7 @@ void SystemMemoryInitializer(uint64_t *param_1)
  * @param param_4 管理参数
  * @return 对象指针
  */
-uint64_t *SystemObjectManager(uint64_t *param_1, ulonglong param_2, uint64_t param_3, uint64_t param_4)
+uint64_t *SystemObjectManager(uint64_t *param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
     *param_1 = &unknown_var_4680_ptr;
     param_1[2] = 0;
@@ -1415,7 +1415,7 @@ uint64_t *SystemObjectManager(uint64_t *param_1, ulonglong param_2, uint64_t par
  */
 void SystemObjectDestroyer(uint64_t param_1, uint64_t *param_2)
 {
-    longlong object_ref;
+    int64_t object_ref;
     
     /* 销毁对象 */
     if (param_2 != (uint64_t *)0x0) {
@@ -1437,7 +1437,7 @@ void SystemObjectDestroyer(uint64_t param_1, uint64_t *param_2)
  */
 void SystemObjectProcessor(uint64_t param_1, uint64_t *param_2)
 {
-    longlong object_ref;
+    int64_t object_ref;
     
     /* 处理对象 */
     object_ref = __RTCastToVoid();
@@ -1468,7 +1468,7 @@ void SystemEmptyFunction(void)
  * @param param_4 终止参数
  * @return 终止结果
  */
-uint64_t *SystemTerminator(uint64_t *param_1, ulonglong param_2, uint64_t param_3, uint64_t param_4)
+uint64_t *SystemTerminator(uint64_t *param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
     uint64_t system_flags;
     
@@ -1507,26 +1507,26 @@ uint64_t *SystemTerminator(uint64_t *param_1, ulonglong param_2, uint64_t param_
  * 
  * @param param_1 清理参数
  */
-void SystemCleanupExecutor(longlong param_1)
+void SystemCleanupExecutor(int64_t param_1)
 {
     int *reference_count;
     uint64_t *resource_ptr;
-    longlong resource_info;
-    ulonglong resource_address;
+    int64_t resource_info;
+    uint64_t resource_address;
     
     /* 执行基础清理 */
     SystemBaseCleaner();
     SystemMemoryCleaner(param_1 + 0x20);
     
     /* 检查是否有资源需要清理 */
-    if ((1 < *(ulonglong *)(param_1 + 0x30)) &&
+    if ((1 < *(uint64_t *)(param_1 + 0x30)) &&
         (resource_ptr = *(uint64_t **)(param_1 + 0x28), resource_ptr != (uint64_t *)0x0)) {
         /* 计算资源地址 */
-        resource_address = (ulonglong)resource_ptr & 0xffffffffffc00000;
+        resource_address = (uint64_t)resource_ptr & 0xffffffffffc00000;
         if (resource_address != 0) {
             /* 获取资源信息 */
-            resource_info = resource_address + 0x80 + ((longlong)resource_ptr - resource_address >> 0x10) * 0x50;
-            resource_info = resource_info - (ulonglong)*(uint *)(resource_info + 4);
+            resource_info = resource_address + 0x80 + ((int64_t)resource_ptr - resource_address >> 0x10) * 0x50;
+            resource_info = resource_info - (uint64_t)*(uint *)(resource_info + 4);
             
             /* 检查是否可以安全清理 */
             if ((*(void ***)(resource_address + 0x70) == &ExceptionList) && (*(char *)(resource_info + 0xe) == '\0')) {
@@ -1556,12 +1556,12 @@ void SystemCleanupExecutor(longlong param_1)
  * @param param_1 数值参数
  * @return 计算结果
  */
-float SystemValueProcessor(longlong param_1)
+float SystemValueProcessor(int64_t param_1)
 {
     float result;
     
     /* 执行数值计算 */
-    result = (float)(**(code **)(**(longlong **)(param_1 + 8) + 0x68))();
+    result = (float)(**(code **)(**(int64_t **)(param_1 + 8) + 0x68))();
     return result * *(float *)(param_1 + 0x10);
 }
 
@@ -1573,12 +1573,12 @@ float SystemValueProcessor(longlong param_1)
  * @param param_1 转换参数
  * @return 转换结果
  */
-float SystemValueTransformer(longlong param_1)
+float SystemValueTransformer(int64_t param_1)
 {
     short *value_ptr;
     
     /* 执行数值转换 */
-    value_ptr = (short *)(**(code **)(**(longlong **)(param_1 + 8) + 0x90))();
+    value_ptr = (short *)(**(code **)(**(int64_t **)(param_1 + 8) + 0x90))();
     return (float)(int)*value_ptr * *(float *)(param_1 + 0x10);
 }
 
@@ -1593,7 +1593,7 @@ float SystemValueTransformer(longlong param_1)
  * @param param_4 重置参数
  * @return 重置结果
  */
-uint64_t *SystemStateResetter(uint64_t *param_1, ulonglong param_2, uint64_t param_3, uint64_t param_4)
+uint64_t *SystemStateResetter(uint64_t *param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
     uint64_t system_flags;
     
@@ -1637,7 +1637,7 @@ void SystemConfigResetter(uint64_t *param_1)
  * @param param_4 重置参数
  * @return 重置结果
  */
-uint64_t *SystemMemoryResetter(uint64_t *param_1, ulonglong param_2, uint64_t param_3, uint64_t param_4)
+uint64_t *SystemMemoryResetter(uint64_t *param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
     *param_1 = &unknown_var_3600_ptr;
     *param_1 = &unknown_var_4032_ptr;
@@ -1656,7 +1656,7 @@ uint64_t *SystemMemoryResetter(uint64_t *param_1, ulonglong param_2, uint64_t pa
  */
 void SystemExecutor(uint64_t *param_1)
 {
-    (**(code **)(*(longlong *)*param_1 + 800))();
+    (**(code **)(*(int64_t *)*param_1 + 800))();
 }
 
 /**

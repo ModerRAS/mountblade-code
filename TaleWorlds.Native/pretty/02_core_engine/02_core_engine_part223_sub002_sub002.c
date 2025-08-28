@@ -13,71 +13,71 @@
  * 
  * @param engine_context 引擎上下文指针，包含材质相关数据
  */
-void process_material_usage_statistics(longlong engine_context)
+void process_material_usage_statistics(int64_t engine_context)
 {
     byte temp_byte1;
     bool comparison_result;
-    longlong *material_ptr1;
-    longlong *material_ptr2;
-    longlong *material_ptr3;
+    int64_t *material_ptr1;
+    int64_t *material_ptr2;
+    int64_t *material_ptr3;
     byte *name_buffer_ptr1;
-    longlong *material_ptr4;
+    int64_t *material_ptr4;
     uint64_t *******tree_node_ptr1;
     int loop_counter1;
     uint64_t *data_ptr1;
     uint64_t *******tree_node_ptr2;
-    longlong *material_ptr5;
+    int64_t *material_ptr5;
     uint64_t *******tree_node_ptr3;
     int32_t *name_ptr1;
     uint char_comparison1;
     uint64_t ******array_ptr1;
     byte *name_buffer_ptr2;
     void *temp_ptr1;
-    ulonglong address_offset1;
+    uint64_t address_offset1;
     int char_diff1;
     uint *uint_ptr1;
-    longlong material_data1;
-    longlong material_data2;
-    longlong material_data3;
+    int64_t material_data1;
+    int64_t material_data2;
+    int64_t material_data3;
     uint64_t *******tree_node_ptr4;
-    ulonglong material_count1;
-    ulonglong material_count2;
-    longlong *material_ptr6;
-    ulonglong material_count3;
+    uint64_t material_count1;
+    uint64_t material_count2;
+    int64_t *material_ptr6;
+    uint64_t material_count3;
     uint stack_var1;
     int32_t stack_var2;
-    longlong **stack_ptr_array1;
+    int64_t **stack_ptr_array1;
     void *stack_ptr1;
     byte *stack_buffer1;
     int stack_int1;
-    ulonglong stack_offset1;
+    uint64_t stack_offset1;
     void *stack_ptr2;
     byte *stack_buffer2;
     int stack_int2;
-    ulonglong stack_offset2;
+    uint64_t stack_offset2;
     void *stack_ptr3;
     byte *stack_buffer3;
     int stack_int3;
-    ulonglong stack_offset3;
+    uint64_t stack_offset3;
     void *stack_ptr4;
     byte *stack_buffer4;
     int stack_int4;
-    ulonglong stack_offset4;
+    uint64_t stack_offset4;
     void *stack_ptr5;
     byte *stack_buffer5;
     int stack_int5;
-    ulonglong stack_offset5;
+    uint64_t stack_offset5;
     void *stack_ptr6;
     byte *stack_buffer6;
     int stack_int6;
-    ulonglong stack_offset6;
+    uint64_t stack_offset6;
     uint64_t ******stack_tree_array1;
     uint64_t ******stack_tree_array2;
     uint64_t ******stack_tree_array3;
     uint64_t stack_var3;
     uint64_t stack_var4;
     int32_t stack_var5;
-    ulonglong stack_offset7;
+    uint64_t stack_offset7;
     uint64_t ******stack_tree_array4;
     uint64_t ******stack_tree_array5;
     uint64_t ******stack_tree_array6;
@@ -90,18 +90,18 @@ void process_material_usage_statistics(longlong engine_context)
     uint64_t stack_var9;
     uint64_t stack_var10;
     int32_t stack_var11;
-    longlong *material_ptr7;
-    ulonglong stack_offset8;
-    longlong stack_var12;
-    longlong *material_ptr8;
-    ulonglong stack_offset9;
+    int64_t *material_ptr7;
+    uint64_t stack_offset8;
+    int64_t stack_var12;
+    int64_t *material_ptr8;
+    uint64_t stack_offset9;
     int32_t stack_var13;
     int32_t stack_var14;
     int32_t stack_var15;
-    longlong stack_var16;
+    int64_t stack_var16;
     uint64_t *data_ptr2;
-    longlong *material_ptr9;
-    longlong *material_ptr10;
+    int64_t *material_ptr9;
+    int64_t *material_ptr10;
     uint64_t stack_var17;
     int32_t stack_var18;
     uint64_t stack_var19;
@@ -120,10 +120,10 @@ void process_material_usage_statistics(longlong engine_context)
     material_count2 = 0;
     
     // 初始化材质引用计数器
-    (**(code **)(*(longlong *)(engine_context + 0x60740) + 0x10))
-            ((longlong *)(engine_context + 0x60740), &MATERIAL_REF_COUNTER);
-    (**(code **)(*(longlong *)(engine_context + 0x60760) + 0x10))
-            ((longlong *)(engine_context + 0x60760), &MATERIAL_REF_COUNTER);
+    (**(code **)(*(int64_t *)(engine_context + 0x60740) + 0x10))
+            ((int64_t *)(engine_context + 0x60740), &MATERIAL_REF_COUNTER);
+    (**(code **)(*(int64_t *)(engine_context + 0x60760) + 0x10))
+            ((int64_t *)(engine_context + 0x60760), &MATERIAL_REF_COUNTER);
     
     // 复制材质状态标志
     *(int8_t *)(engine_context + 0x607a2) = *(int8_t *)(engine_context + 0x331c);
@@ -131,16 +131,16 @@ void process_material_usage_statistics(longlong engine_context)
     // 获取当前材质索引对应的材质数据
     address_offset1 = material_count2;
     if (*(int *)(engine_context + 0x60c40) != -1) {
-        address_offset1 = *(ulonglong *)
-                  (*(longlong *)(engine_context + 0x60c20) + 
-                   (longlong)*(int *)(engine_context + 0x60c40) * 8);
+        address_offset1 = *(uint64_t *)
+                  (*(int64_t *)(engine_context + 0x60c20) + 
+                   (int64_t)*(int *)(engine_context + 0x60c40) * 8);
     }
     
     // 设置材质存在标志
     *(bool *)(engine_context + 0x607a1) = address_offset1 != 0;
     
     // 获取材质总数
-    address_offset1 = *(ulonglong *)(engine_context + 0x60838);
+    address_offset1 = *(uint64_t *)(engine_context + 0x60838);
     stack_var11 = 3;
     stack_tree_array7 = &stack_tree_array7;
     stack_tree_array8 = &stack_tree_array7;
@@ -176,8 +176,8 @@ void process_material_usage_statistics(longlong engine_context)
         do {
             // 检查材质类型标志
             if (*(char *)(stack_var12 + 0x2e5) == '\x04') {
-                material_ptr9 = (longlong *)0x0;
-                material_ptr10 = (longlong *)0x0;
+                material_ptr9 = (int64_t *)0x0;
+                material_ptr10 = (int64_t *)0x0;
                 stack_var17 = 0;
                 stack_var18 = 3;
                 stack_offset7 = material_count3;
@@ -185,11 +185,11 @@ void process_material_usage_statistics(longlong engine_context)
                 // 获取材质子列表
                 get_material_sublist(stack_var12, &material_ptr9, 0, 0xffffffff);
                 
-                stack_ptr_array1 = (longlong **)
+                stack_ptr_array1 = (int64_t **)
                                CONCAT44(stack_ptr_array1._4_4_,
                                         (int)material_count1 +
-                                        (int)((longlong)material_ptr10 - 
-                                              (longlong)material_ptr9 >> 3));
+                                        (int)((int64_t)material_ptr10 - 
+                                              (int64_t)material_ptr9 >> 3));
                 material_ptr6 = material_ptr9;
                 material_ptr7 = material_ptr9;
                 material_ptr1 = material_ptr9;
@@ -217,11 +217,11 @@ void process_material_usage_statistics(longlong engine_context)
                             }
                             // 复制材质名称
                             memcpy(stack_buffer3, temp_ptr1, 
-                                   (longlong)(*(int *)(material_data1 + 0x20) + 1));
+                                   (int64_t)(*(int *)(material_data1 + 0x20) + 1));
                         }
                         
                         // 确保字符串以null结尾
-                        if ((*(longlong *)(material_data1 + 0x18) != 0) && 
+                        if ((*(int64_t *)(material_data1 + 0x18) != 0) && 
                             (stack_int3 = 0, stack_buffer3 != (byte *)0x0)) {
                             *stack_buffer3 = 0;
                         }
@@ -244,8 +244,8 @@ void process_material_usage_statistics(longlong engine_context)
                                     name_buffer_ptr2 = stack_buffer3;
                                     do {
                                         char_comparison1 = (uint)name_buffer_ptr2[
-                                            (longlong)tree_node_ptr4[5] - 
-                                            (longlong)stack_buffer3];
+                                            (int64_t)tree_node_ptr4[5] - 
+                                            (int64_t)stack_buffer3];
                                         char_diff1 = *name_buffer_ptr2 - char_comparison1;
                                         if (*name_buffer_ptr2 != char_comparison1) break;
                                         name_buffer_ptr2 = name_buffer_ptr2 + 1;
@@ -276,15 +276,15 @@ void process_material_usage_statistics(longlong engine_context)
                         else if (*(int *)(tree_node_ptr2 + 6) != 0) {
                             if (stack_int3 != 0) {
                                 array_ptr1 = tree_node_ptr2[5];
-                                material_data1 = (longlong)stack_buffer3 - 
-                                                (longlong)array_ptr1;
+                                material_data1 = (int64_t)stack_buffer3 - 
+                                                (int64_t)array_ptr1;
                                 do {
                                     temp_byte1 = *(byte *)array_ptr1;
                                     char_comparison1 = (uint)*(byte *)
-                                        ((longlong)array_ptr1 + material_data1);
+                                        ((int64_t)array_ptr1 + material_data1);
                                     if (temp_byte1 != char_comparison1) break;
                                     array_ptr1 = (uint64_t ******)
-                                        ((longlong)array_ptr1 + 1);
+                                        ((int64_t)array_ptr1 + 1);
                                 } while (char_comparison1 != 0);
                                 if ((int)(temp_byte1 - char_comparison1) < 1) 
                                     goto PROCESS_MATCH;
@@ -319,10 +319,10 @@ void process_material_usage_statistics(longlong engine_context)
                                 temp_ptr1 = *(void **)(material_data1 + 0x18);
                             }
                             memcpy(stack_buffer4, temp_ptr1, 
-                                   (longlong)(*(int *)(material_data1 + 0x20) + 1));
+                                   (int64_t)(*(int *)(material_data1 + 0x20) + 1));
                         }
                         
-                        if ((*(longlong *)(material_data1 + 0x18) != 0) && 
+                        if ((*(int64_t *)(material_data1 + 0x18) != 0) && 
                             (stack_int4 = 0, stack_buffer4 != (byte *)0x0)) {
                             *stack_buffer4 = 0;
                         }
@@ -345,8 +345,8 @@ void process_material_usage_statistics(longlong engine_context)
                                     name_buffer_ptr2 = stack_buffer4;
                                     do {
                                         char_comparison1 = (uint)name_buffer_ptr2[
-                                            (longlong)tree_node_ptr4[5] - 
-                                            (longlong)stack_buffer4];
+                                            (int64_t)tree_node_ptr4[5] - 
+                                            (int64_t)stack_buffer4];
                                         loop_counter1 = *name_buffer_ptr2 - char_comparison1;
                                         if (*name_buffer_ptr2 != char_comparison1) break;
                                         name_buffer_ptr2 = name_buffer_ptr2 + 1;
@@ -377,15 +377,15 @@ void process_material_usage_statistics(longlong engine_context)
                         else if (*(int *)(tree_node_ptr2 + 6) != 0) {
                             if (stack_int4 != 0) {
                                 array_ptr1 = tree_node_ptr2[5];
-                                material_data1 = (longlong)stack_buffer4 - 
-                                                (longlong)array_ptr1;
+                                material_data1 = (int64_t)stack_buffer4 - 
+                                                (int64_t)array_ptr1;
                                 do {
                                     temp_byte1 = *(byte *)array_ptr1;
                                     char_comparison1 = (uint)*(byte *)
-                                        ((longlong)array_ptr1 + material_data1);
+                                        ((int64_t)array_ptr1 + material_data1);
                                     if (temp_byte1 != char_comparison1) break;
                                     array_ptr1 = (uint64_t ******)
-                                        ((longlong)array_ptr1 + 1);
+                                        ((int64_t)array_ptr1 + 1);
                                 } while (char_comparison1 != 0);
                                 if ((int)(temp_byte1 - char_comparison1) < 1) 
                                     goto PROCESS_SECOND_MATCH;
@@ -414,7 +414,7 @@ void process_material_usage_statistics(longlong engine_context)
                         
                         stack_var1 = (int)material_count1 + 
                                     *(int *)(material_data2 + 0x1fc);
-                        material_data1 = *(longlong *)(material_data1 + 0x1b8);
+                        material_data1 = *(int64_t *)(material_data1 + 0x1b8);
                         stack_ptr5 = &MATERIAL_NAME_BUFFER;
                         stack_offset4 = 0;
                         stack_buffer5 = (byte *)0x0;
@@ -429,10 +429,10 @@ void process_material_usage_statistics(longlong engine_context)
                                 temp_ptr1 = *(void **)(material_data1 + 0x18);
                             }
                             memcpy(stack_buffer5, temp_ptr1, 
-                                   (longlong)(*(int *)(material_data1 + 0x20) + 1));
+                                   (int64_t)(*(int *)(material_data1 + 0x20) + 1));
                         }
                         
-                        if ((*(longlong *)(material_data1 + 0x18) != 0) && 
+                        if ((*(int64_t *)(material_data1 + 0x18) != 0) && 
                             (stack_int5 = 0, stack_buffer5 != (byte *)0x0)) {
                             *stack_buffer5 = 0;
                         }
@@ -455,8 +455,8 @@ void process_material_usage_statistics(longlong engine_context)
                                     name_buffer_ptr2 = stack_buffer5;
                                     do {
                                         char_comparison1 = (uint)name_buffer_ptr2[
-                                            (longlong)tree_node_ptr4[5] - 
-                                            (longlong)stack_buffer5];
+                                            (int64_t)tree_node_ptr4[5] - 
+                                            (int64_t)stack_buffer5];
                                         char_diff1 = *name_buffer_ptr2 - char_comparison1;
                                         if (*name_buffer_ptr2 != char_comparison1) break;
                                         name_buffer_ptr2 = name_buffer_ptr2 + 1;
@@ -487,15 +487,15 @@ void process_material_usage_statistics(longlong engine_context)
                         else if (*(int *)(tree_node_ptr2 + 6) != 0) {
                             if (stack_int5 != 0) {
                                 array_ptr1 = tree_node_ptr2[5];
-                                material_data2 = (longlong)stack_buffer5 - 
-                                                (longlong)array_ptr1;
+                                material_data2 = (int64_t)stack_buffer5 - 
+                                                (int64_t)array_ptr1;
                                 do {
                                     temp_byte1 = *(byte *)array_ptr1;
                                     char_comparison1 = (uint)*(byte *)
-                                        ((longlong)array_ptr1 + material_data2);
+                                        ((int64_t)array_ptr1 + material_data2);
                                     if (temp_byte1 != char_comparison1) break;
                                     array_ptr1 = (uint64_t ******)
-                                        ((longlong)array_ptr1 + 1);
+                                        ((int64_t)array_ptr1 + 1);
                                 } while (char_comparison1 != 0);
                                 if ((int)(temp_byte1 - char_comparison1) < 1) 
                                     goto PROCESS_THIRD_MATCH;
@@ -527,10 +527,10 @@ void process_material_usage_statistics(longlong engine_context)
                                 temp_ptr1 = *(void **)(material_data1 + 0x18);
                             }
                             memcpy(stack_buffer6, temp_ptr1, 
-                                   (longlong)(*(int *)(material_data1 + 0x20) + 1));
+                                   (int64_t)(*(int *)(material_data1 + 0x20) + 1));
                         }
                         
-                        if ((*(longlong *)(material_data1 + 0x18) != 0) && 
+                        if ((*(int64_t *)(material_data1 + 0x18) != 0) && 
                             (stack_int6 = 0, stack_buffer6 != (byte *)0x0)) {
                             *stack_buffer6 = 0;
                         }
@@ -553,8 +553,8 @@ void process_material_usage_statistics(longlong engine_context)
                                     name_buffer_ptr2 = stack_buffer6;
                                     do {
                                         char_comparison1 = (uint)name_buffer_ptr2[
-                                            (longlong)tree_node_ptr4[5] - 
-                                            (longlong)stack_buffer6];
+                                            (int64_t)tree_node_ptr4[5] - 
+                                            (int64_t)stack_buffer6];
                                         loop_counter1 = *name_buffer_ptr2 - char_comparison1;
                                         if (*name_buffer_ptr2 != char_comparison1) break;
                                         name_buffer_ptr2 = name_buffer_ptr2 + 1;
@@ -585,15 +585,15 @@ void process_material_usage_statistics(longlong engine_context)
                         else if (*(int *)(tree_node_ptr2 + 6) != 0) {
                             if (stack_int6 != 0) {
                                 array_ptr1 = tree_node_ptr2[5];
-                                material_data2 = (longlong)stack_buffer6 - 
-                                                (longlong)array_ptr1;
+                                material_data2 = (int64_t)stack_buffer6 - 
+                                                (int64_t)array_ptr1;
                                 do {
                                     temp_byte1 = *(byte *)array_ptr1;
                                     char_comparison1 = (uint)*(byte *)
-                                        ((longlong)array_ptr1 + material_data2);
+                                        ((int64_t)array_ptr1 + material_data2);
                                     if (temp_byte1 != char_comparison1) break;
                                     array_ptr1 = (uint64_t ******)
-                                        ((longlong)array_ptr1 + 1);
+                                        ((int64_t)array_ptr1 + 1);
                                 } while (char_comparison1 != 0);
                                 if ((int)(temp_byte1 - char_comparison1) < 1) 
                                     goto PROCESS_FOURTH_MATCH;
@@ -613,7 +613,7 @@ void process_material_usage_statistics(longlong engine_context)
                         stack_ptr6 = &EMPTY_STRING_PTR;
                         
                         // 处理材质属性列表
-                        material_ptr5 = (longlong *)(material_data1 + 0xb8);
+                        material_ptr5 = (int64_t *)(material_data1 + 0xb8);
                         material_data1 = 0x10;
                         
                         do {
@@ -635,10 +635,10 @@ void process_material_usage_statistics(longlong engine_context)
                                         temp_ptr1 = *(void **)(material_data2 + 0x18);
                                     }
                                     memcpy(stack_buffer1, temp_ptr1, 
-                                           (longlong)(*(int *)(material_data2 + 0x20) + 1));
+                                           (int64_t)(*(int *)(material_data2 + 0x20) + 1));
                                 }
                                 
-                                if ((*(longlong *)(material_data2 + 0x18) != 0) && 
+                                if ((*(int64_t *)(material_data2 + 0x18) != 0) && 
                                     (stack_int1 = 0, stack_buffer1 != (byte *)0x0)) {
                                     *stack_buffer1 = 0;
                                 }
@@ -661,8 +661,8 @@ void process_material_usage_statistics(longlong engine_context)
                                             name_buffer_ptr2 = stack_buffer1;
                                             do {
                                                 char_comparison1 = (uint)name_buffer_ptr2[
-                                                    (longlong)tree_node_ptr4[5] - 
-                                                    (longlong)stack_buffer1];
+                                                    (int64_t)tree_node_ptr4[5] - 
+                                                    (int64_t)stack_buffer1];
                                                 char_diff1 = *name_buffer_ptr2 - char_comparison1;
                                                 if (*name_buffer_ptr2 != char_comparison1) break;
                                                 name_buffer_ptr2 = name_buffer_ptr2 + 1;
@@ -693,15 +693,15 @@ void process_material_usage_statistics(longlong engine_context)
                                 else if (*(int *)(tree_node_ptr2 + 6) != 0) {
                                     if (stack_int1 != 0) {
                                         array_ptr1 = tree_node_ptr2[5];
-                                        material_data3 = (longlong)stack_buffer1 - 
-                                                        (longlong)array_ptr1;
+                                        material_data3 = (int64_t)stack_buffer1 - 
+                                                        (int64_t)array_ptr1;
                                         do {
                                             temp_byte1 = *(byte *)array_ptr1;
                                             char_comparison1 = (uint)*(byte *)
-                                                ((longlong)array_ptr1 + material_data3);
+                                                ((int64_t)array_ptr1 + material_data3);
                                             if (temp_byte1 != char_comparison1) break;
                                             array_ptr1 = (uint64_t ******)
-                                                ((longlong)array_ptr1 + 1);
+                                                ((int64_t)array_ptr1 + 1);
                                         } while (char_comparison1 != 0);
                                         if ((int)(temp_byte1 - char_comparison1) < 1) 
                                             goto PROCESS_PROPERTY_MATCH;
@@ -735,10 +735,10 @@ void process_material_usage_statistics(longlong engine_context)
                                         temp_ptr1 = *(void **)(material_data2 + 0x18);
                                     }
                                     memcpy(stack_buffer2, temp_ptr1, 
-                                           (longlong)(*(int *)(material_data2 + 0x20) + 1));
+                                           (int64_t)(*(int *)(material_data2 + 0x20) + 1));
                                 }
                                 
-                                if ((*(longlong *)(material_data2 + 0x18) != 0) && 
+                                if ((*(int64_t *)(material_data2 + 0x18) != 0) && 
                                     (stack_int2 = 0, stack_buffer2 != (byte *)0x0)) {
                                     *stack_buffer2 = 0;
                                 }
@@ -761,8 +761,8 @@ void process_material_usage_statistics(longlong engine_context)
                                             name_buffer_ptr2 = stack_buffer2;
                                             do {
                                                 char_comparison1 = (uint)name_buffer_ptr2[
-                                                    (longlong)tree_node_ptr4[5] - 
-                                                    (longlong)stack_buffer2];
+                                                    (int64_t)tree_node_ptr4[5] - 
+                                                    (int64_t)stack_buffer2];
                                                 loop_counter1 = *name_buffer_ptr2 - char_comparison1;
                                                 if (*name_buffer_ptr2 != char_comparison1) break;
                                                 name_buffer_ptr2 = name_buffer_ptr2 + 1;
@@ -793,15 +793,15 @@ void process_material_usage_statistics(longlong engine_context)
                                 else if (*(int *)(tree_node_ptr2 + 6) != 0) {
                                     if (stack_int2 != 0) {
                                         array_ptr1 = tree_node_ptr2[5];
-                                        material_data3 = (longlong)stack_buffer2 - 
-                                                        (longlong)array_ptr1;
+                                        material_data3 = (int64_t)stack_buffer2 - 
+                                                        (int64_t)array_ptr1;
                                         do {
                                             temp_byte1 = *(byte *)array_ptr1;
                                             char_comparison1 = (uint)*(byte *)
-                                                ((longlong)array_ptr1 + material_data3);
+                                                ((int64_t)array_ptr1 + material_data3);
                                             if (temp_byte1 != char_comparison1) break;
                                             array_ptr1 = (uint64_t ******)
-                                                ((longlong)array_ptr1 + 1);
+                                                ((int64_t)array_ptr1 + 1);
                                         } while (char_comparison1 != 0);
                                         if ((int)(temp_byte1 - char_comparison1) < 1) 
                                             goto PROCESS_SECOND_PROPERTY_MATCH;
@@ -826,7 +826,7 @@ void process_material_usage_statistics(longlong engine_context)
                         } while (material_data1 != 0);
                         
                         material_ptr7 = material_ptr7 + 1;
-                        material_count1 = (ulonglong)stack_var1;
+                        material_count1 = (uint64_t)stack_var1;
                         material_ptr6 = material_ptr7;
                         address_offset1 = stack_offset8;
                         material_ptr5 = material_ptr8;
@@ -843,8 +843,8 @@ void process_material_usage_statistics(longlong engine_context)
                     material_ptr1 != material_ptr10; material_ptr1 = material_ptr1 + 1) {
                     material_ptr9 = material_ptr2;
                     material_ptr10 = material_ptr3;
-                    if ((longlong *)*material_ptr1 != (longlong *)0x0) {
-                        (**(code **)(*(longlong *)*material_ptr1 + 0x38))();
+                    if ((int64_t *)*material_ptr1 != (int64_t *)0x0) {
+                        (**(code **)(*(int64_t *)*material_ptr1 + 0x38))();
                     }
                     address_offset1 = stack_offset8;
                     material_ptr5 = material_ptr8;
@@ -854,13 +854,13 @@ void process_material_usage_statistics(longlong engine_context)
                     material_ptr9 = material_ptr6;
                 }
                 
-                if (material_ptr9 != (longlong *)0x0) {
+                if (material_ptr9 != (int64_t *)0x0) {
                     material_ptr9 = material_ptr2;
                     material_ptr10 = material_ptr3;
                     free_material_list(material_ptr6);
                 }
                 
-                material_count2 = (ulonglong)stack_ptr_array1 & 0xffffffff;
+                material_count2 = (uint64_t)stack_ptr_array1 & 0xffffffff;
                 material_ptr9 = material_ptr2;
                 material_ptr10 = material_ptr3;
             }
@@ -870,11 +870,11 @@ void process_material_usage_statistics(longlong engine_context)
                 material_count3 = material_count3 + 1;
                 material_data3 = (material_count3 & 0xffffffff) * 0x10;
                 material_data2 = material_data3 + 8 + material_data1;
-                if ((*(ulonglong *)(material_data3 + material_data1) & 0xffffffff00000000) == 0) {
+                if ((*(uint64_t *)(material_data3 + material_data1) & 0xffffffff00000000) == 0) {
                     material_data2 = 0;
                 }
                 if (material_data2 != 0) {
-                    stack_var12 = *(longlong *)(material_data1 + 8 + 
+                    stack_var12 = *(int64_t *)(material_data1 + 8 + 
                                               (material_count3 & 0xffffffff) * 0x10);
                     break;
                 }
@@ -892,12 +892,12 @@ void process_material_usage_statistics(longlong engine_context)
         do {
             free_material_tree(&material_ptr8, tree_node_ptr4 + 4);
             stack_var15 = *(int32_t *)(tree_node_ptr4 + 8);
-            material_ptr5 = (longlong *)create_material_from_template(
+            material_ptr5 = (int64_t *)create_material_from_template(
                 MATERIAL_TEMPLATE_BASE, &stack_var1, &material_ptr8, 0);
             material_data1 = *material_ptr5;
             
-            if ((longlong *)CONCAT44(stack_var2, stack_var1) != (longlong *)0x0) {
-                (**(code **)(*(longlong *)CONCAT44(stack_var2, stack_var1) + 0x38))();
+            if ((int64_t *)CONCAT44(stack_var2, stack_var1) != (int64_t *)0x0) {
+                (**(code **)(*(int64_t *)CONCAT44(stack_var2, stack_var1) + 0x38))();
             }
             
             loop_counter1 = char_diff1;
@@ -911,7 +911,7 @@ void process_material_usage_statistics(longlong engine_context)
             }
             
             stack_ptr_array1 = &material_ptr8;
-            material_ptr8 = (longlong *)&MATERIAL_NAME_BUFFER;
+            material_ptr8 = (int64_t *)&MATERIAL_NAME_BUFFER;
             
             if (stack_offset9 != 0) {
                 free_memory_pool();
@@ -919,7 +919,7 @@ void process_material_usage_statistics(longlong engine_context)
             
             stack_offset9 = 0;
             stack_var13 = 0;
-            material_ptr8 = (longlong *)&EMPTY_STRING_PTR;
+            material_ptr8 = (int64_t *)&EMPTY_STRING_PTR;
             tree_node_ptr4 = (uint64_t *******)next_material_node(tree_node_ptr4);
             char_diff1 = loop_counter1;
         } while (tree_node_ptr4 != &stack_tree_array1);
@@ -949,15 +949,15 @@ void process_material_usage_statistics(longlong engine_context)
     name_ptr1 = (int32_t *)create_material_name(MATERIAL_NAME_BASE, 0x10, 0x13);
     
     *(int8_t *)name_ptr1 = 0;
-    address_offset1 = (ulonglong)name_ptr1 & 0xffffffffffc00000;
+    address_offset1 = (uint64_t)name_ptr1 & 0xffffffffffc00000;
     
     if (address_offset1 != 0) {
-        material_data1 = ((longlong)name_ptr1 - address_offset1 >> 0x10) * 0x50 + 
+        material_data1 = ((int64_t)name_ptr1 - address_offset1 >> 0x10) * 0x50 + 
                         0x80 + address_offset1;
         uint_ptr1 = (uint *)(material_data1 - 
-                           (ulonglong)*(uint *)(material_data1 + 4));
+                           (uint64_t)*(uint *)(material_data1 + 4));
         
-        if ((*(byte *)((longlong)uint_ptr1 + 0xe) & 2) == 0) {
+        if ((*(byte *)((int64_t)uint_ptr1 + 0xe) & 2) == 0) {
             char_comparison1 = uint_ptr1[7];
             if (0x3ffffff < char_comparison1) {
                 char_comparison1 = *uint_ptr1 << 0x10;
@@ -966,16 +966,16 @@ void process_material_usage_statistics(longlong engine_context)
         else {
             char_comparison1 = uint_ptr1[7];
             if (char_comparison1 < 0x4000000) {
-                material_count2 = (ulonglong)char_comparison1;
+                material_count2 = (uint64_t)char_comparison1;
             }
             else {
-                material_count2 = (ulonglong)*uint_ptr1 << 0x10;
+                material_count2 = (uint64_t)*uint_ptr1 << 0x10;
             }
             if (0x3ffffff < char_comparison1) {
                 char_comparison1 = *uint_ptr1 << 0x10;
             }
-            char_comparison1 = char_comparison1 - (int)(((longlong)name_ptr1 -
-                                (((longlong)((longlong)uint_ptr1 + 
+            char_comparison1 = char_comparison1 - (int)(((int64_t)name_ptr1 -
+                                (((int64_t)((int64_t)uint_ptr1 + 
                                   (-0x80 - address_offset1)) / 0x50) * 0x10000 +
                                  address_offset1)) % material_count2);
         }

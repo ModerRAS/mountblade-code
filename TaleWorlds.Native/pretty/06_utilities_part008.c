@@ -71,21 +71,21 @@
 // 类型别名定义
 // ============================================================================
 
-typedef longlong UtilitiesHandle;                    // 工具系统句柄
+typedef int64_t UtilitiesHandle;                    // 工具系统句柄
 typedef int8_t *UtilitiesDataPtr;                 // 工具数据指针
 typedef int *UtilitiesIntPtr;                        // 整数指针
 typedef uint64_t UtilitiesUInt64;                  // 64位无符号整数
 typedef uint *UtilitiesUIntPtr;                      // 无符号整数指针
 typedef float *UtilitiesFloatPtr;                     // 浮点数指针
 typedef uint64_t *UtilitiesVoidPtr;                // 空指针
-typedef longlong *UtilitiesLongPtr;                  // 长整数指针
+typedef int64_t *UtilitiesLongPtr;                  // 长整数指针
 typedef byte *UtilitiesBytePtr;                      // 字节指针
 typedef int32_t *UtilitiesUInt32Ptr;             // 32位无符号整数指针
 typedef char *UtilitiesCharPtr;                      // 字符指针
 typedef bool *UtilitiesBoolPtr;                      // 布尔指针
 typedef double *UtilitiesDoublePtr;                  // 双精度指针
 typedef void *UtilitiesGenericPtr;                   // 通用指针
-typedef longlong UtilitiesSize;                      // 大小类型
+typedef int64_t UtilitiesSize;                      // 大小类型
 typedef int UtilitiesIndex;                          // 索引类型
 typedef uint UtilitiesFlag;                          // 标志类型
 
@@ -248,14 +248,14 @@ void UtilitiesProcessData(UtilitiesHandle systemHandle, UtilitiesDataPtr dataPtr
 {
     // 局部变量声明
     byte statusFlag;                    // 状态标志
-    longlong calculatedValue;           // 计算值
+    int64_t calculatedValue;           // 计算值
     char operationType;                 // 操作类型
     int currentIndex;                   // 当前索引
     uint64_t callbackResult;          // 回调结果
-    longlong referenceValue;            // 引用值
-    longlong adjustedValue;             // 调整值
+    int64_t referenceValue;            // 引用值
+    int64_t adjustedValue;             // 调整值
     int limitIndex;                     // 限制索引
-    longlong dataPointer;               // 数据指针
+    int64_t dataPointer;               // 数据指针
     float primaryFloat;                 // 主要浮点数
     float secondaryFloat;               // 次要浮点数
     
@@ -263,26 +263,26 @@ void UtilitiesProcessData(UtilitiesHandle systemHandle, UtilitiesDataPtr dataPtr
     int8_t stackBuffer_738 [68];    // 栈缓冲区738
     int32_t stackValue_6f4;          // 栈值6f4
     int *resultCounter;                 // 结果计数器
-    longlong dataTableAddress;          // 数据表地址
-    longlong indexOffset;               // 索引偏移
-    longlong arrayData_6b0 [13];        // 数组数据6b0
+    int64_t dataTableAddress;          // 数据表地址
+    int64_t indexOffset;               // 索引偏移
+    int64_t arrayData_6b0 [13];        // 数组数据6b0
     int8_t dataBuffer_648 [1536];    // 数据缓冲区648
-    ulonglong stackGuard;               // 栈保护值
+    uint64_t stackGuard;               // 栈保护值
     
     // 初始化栈保护
-    stackGuard = GET_SECURITY_COOKIE() ^ (ulonglong)stackBuffer_738;
+    stackGuard = GET_SECURITY_COOKIE() ^ (uint64_t)stackBuffer_738;
     
     // 获取当前索引和设置结果指针
     currentIndex = *(int *)(systemHandle + UTILITIES_LIMIT_OFFSET);
-    adjustedValue = (longlong)currentIndex;
+    adjustedValue = (int64_t)currentIndex;
     resultCounter = resultPtr;
     
     // 检查索引是否在有效范围内
     if (currentIndex < *(int *)(systemHandle + UTILITIES_SIZE_OFFSET)) {
         // 获取数据表地址和计算索引偏移
-        dataTableAddress = *(longlong *)(systemHandle + UTILITIES_DATA_OFFSET);
+        dataTableAddress = *(int64_t *)(systemHandle + UTILITIES_DATA_OFFSET);
         indexOffset = adjustedValue * 3;
-        dataPointer = (longlong)*(int *)(dataTableAddress + adjustedValue * 0xc) + *(longlong *)(systemHandle + UTILITIES_POINTER_OFFSET);
+        dataPointer = (int64_t)*(int *)(dataTableAddress + adjustedValue * 0xc) + *(int64_t *)(systemHandle + UTILITIES_POINTER_OFFSET);
         operationType = *(char *)(dataTableAddress + 8 + adjustedValue * 0xc);
         
         // 根据操作类型处理
@@ -317,8 +317,8 @@ void UtilitiesProcessData(UtilitiesHandle systemHandle, UtilitiesDataPtr dataPtr
             }
             
             // 获取引用值和调整值
-            calculatedValue = *(longlong *)(systemHandle + UTILITIES_HANDLE_OFFSET);
-            referenceValue = *(longlong *)(systemHandle + UTILITIES_REFERENCE_OFFSET);
+            calculatedValue = *(int64_t *)(systemHandle + UTILITIES_HANDLE_OFFSET);
+            referenceValue = *(int64_t *)(systemHandle + UTILITIES_REFERENCE_OFFSET);
             if (referenceValue == 0) {
                 secondaryFloat = (float)*(uint *)(systemHandle + UTILITIES_VALUE_OFFSET) * secondaryFloat;
                 referenceValue = 0;
@@ -326,15 +326,15 @@ void UtilitiesProcessData(UtilitiesHandle systemHandle, UtilitiesDataPtr dataPtr
                     (secondaryFloat = secondaryFloat - UTILITIES_FLOAT_THRESHOLD, secondaryFloat < UTILITIES_FLOAT_THRESHOLD)) {
                     referenceValue = UTILITIES_NEGATIVE_INFINITY;
                 }
-                referenceValue = calculatedValue - ((longlong)secondaryFloat + referenceValue);
-                *(longlong *)(systemHandle + UTILITIES_REFERENCE_OFFSET) = referenceValue;
+                referenceValue = calculatedValue - ((int64_t)secondaryFloat + referenceValue);
+                *(int64_t *)(systemHandle + UTILITIES_REFERENCE_OFFSET) = referenceValue;
             }
             
             // 获取状态标志
             statusFlag = *(byte *)(systemHandle + UTILITIES_STATE_OFFSET);
             
             // 执行回调函数（如果存在）
-            if (*(longlong *)(systemHandle + UTILITIES_CALLBACK_OFFSET) != 0) {
+            if (*(int64_t *)(systemHandle + UTILITIES_CALLBACK_OFFSET) != 0) {
                 callbackResult = FUN_180895ef0(systemHandle);
                 currentIndex = (**(code **)(systemHandle + UTILITIES_CALLBACK_OFFSET))
                                 (callbackResult, currentIndex, *(int32_t *)(dataPointer + 0x18), 
@@ -344,14 +344,14 @@ void UtilitiesProcessData(UtilitiesHandle systemHandle, UtilitiesDataPtr dataPtr
             
             // 检查处理条件
             if (((((statusFlag & UTILITIES_FLAG_PROCESSED) != 0 || 
-                  (longlong)primaryFloat + adjustedValue < calculatedValue - referenceValue) &&
+                  (int64_t)primaryFloat + adjustedValue < calculatedValue - referenceValue) &&
                  (currentIndex = *resultCounter, *resultCounter = currentIndex + 1, currentIndex < UTILITIES_MAX_ITERATIONS)) &&
                 ((*(uint *)(systemHandle + UTILITIES_STATE_OFFSET) >> 0x18 & 1) == 0)) &&
                (((*(uint *)(systemHandle + UTILITIES_STATE_OFFSET) >> 0x19 & 1) != 0 && 
                  (limitIndex == *(int *)(systemHandle + UTILITIES_PARAM_OFFSET))))) {
                 
                 // 执行内存复制操作
-                memcpy(dataBuffer_648, dataPointer, (longlong)*(int *)(dataPointer + 8));
+                memcpy(dataBuffer_648, dataPointer, (int64_t)*(int *)(dataPointer + 8));
             }
         }
         else {
@@ -360,7 +360,7 @@ void UtilitiesProcessData(UtilitiesHandle systemHandle, UtilitiesDataPtr dataPtr
                 // 处理类型6操作
                 operationType = func_0x000180881f80(*(uint64_t *)(systemHandle + 0x58));
                 if (operationType == '\0') {
-                    memcpy(dataBuffer_648, dataPointer, (longlong)*(int *)(dataPointer + 8));
+                    memcpy(dataBuffer_648, dataPointer, (int64_t)*(int *)(dataPointer + 8));
                 }
                 *dataPtr = 0;
                 goto cleanup_stack;
@@ -370,24 +370,24 @@ void UtilitiesProcessData(UtilitiesHandle systemHandle, UtilitiesDataPtr dataPtr
                 // 处理类型7操作
                 operationType = func_0x000180881f80(*(uint64_t *)(systemHandle + 0x58));
                 if (operationType == '\0') {
-                    if (*(int *)(*(longlong *)(*(longlong *)(*(longlong *)(systemHandle + 0x58) + 0x90) + 0x790) + 0x1c8) != 0) {
+                    if (*(int *)(*(int64_t *)(*(int64_t *)(*(int64_t *)(systemHandle + 0x58) + 0x90) + 0x790) + 0x1c8) != 0) {
                         *dataPtr = 0;
                         goto cleanup_stack;
                     }
-                    memcpy(dataBuffer_648, dataPointer, (longlong)*(int *)(dataPointer + 8));
+                    memcpy(dataBuffer_648, dataPointer, (int64_t)*(int *)(dataPointer + 8));
                 }
             }
             else {
                 // 处理类型2操作
                 if ((operationType != '\x02') || ((*(byte *)(systemHandle + UTILITIES_STATE_OFFSET) & UTILITIES_FLAG_VALID) != 0)) {
-                    memcpy(dataBuffer_648, dataPointer, (longlong)*(int *)(dataPointer + 8));
+                    memcpy(dataBuffer_648, dataPointer, (int64_t)*(int *)(dataPointer + 8));
                 }
                 stackValue_6f4 = *(int32_t *)(dataPointer + 0x20);
                 currentIndex = FUN_180895c60(systemHandle, currentIndex, &stackValue_6f4);
                 if (currentIndex != 0) goto cleanup_stack;
                 currentIndex = func_0x00018088c530(stackValue_6f4, arrayData_6b0);
                 if ((currentIndex != 0) || (*(int *)(arrayData_6b0[0] + UTILITIES_INDEX_OFFSET) != 2)) {
-                    memcpy(dataBuffer_648, dataPointer, (longlong)*(int *)(dataPointer + 8));
+                    memcpy(dataBuffer_648, dataPointer, (int64_t)*(int *)(dataPointer + 8));
                 }
             }
         }
@@ -402,7 +402,7 @@ void UtilitiesProcessData(UtilitiesHandle systemHandle, UtilitiesDataPtr dataPtr
     
 cleanup_stack:
     // 清理栈并返回
-    FUN_1808fc050(stackGuard ^ (ulonglong)stackBuffer_738);
+    FUN_1808fc050(stackGuard ^ (uint64_t)stackBuffer_738);
 }
 
 // ============================================================================
@@ -418,7 +418,7 @@ cleanup_stack:
  * 
  * 功能说明：处理索引数据访问，执行浮点数计算，管理状态标志
  */
-void FUN_1808953bf(longlong param_1, uint64_t param_2, int *param_3);
+void FUN_1808953bf(int64_t param_1, uint64_t param_2, int *param_3);
 
 /**
  * @brief 工具系统栈清理函数
@@ -437,7 +437,7 @@ void FUN_180895b89(void);
  * 
  * 功能说明：查找下一个匹配的数据，执行回调函数，验证数据匹配
  */
-void FUN_180895bb0(longlong param_1, int param_2, uint64_t *param_3);
+void FUN_180895bb0(int64_t param_1, int param_2, uint64_t *param_3);
 
 /**
  * @brief 工具系统验证和处理器
@@ -448,7 +448,7 @@ void FUN_180895bb0(longlong param_1, int param_2, uint64_t *param_3);
  * 
  * 功能说明：验证参数有效性，执行哈希表查找，处理回调函数
  */
-uint64_t FUN_180895c60(longlong param_1, int param_2, uint *param_3);
+uint64_t FUN_180895c60(int64_t param_1, int param_2, uint *param_3);
 
 /**
  * @brief 工具系统索引条目处理器
@@ -460,7 +460,7 @@ uint64_t FUN_180895c60(longlong param_1, int param_2, uint *param_3);
  * 
  * 功能说明：处理索引条目，执行哈希查找，处理回调操作
  */
-uint64_t FUN_180895c8b(longlong param_1, uint64_t param_2, longlong param_3, uint param_4);
+uint64_t FUN_180895c8b(int64_t param_1, uint64_t param_2, int64_t param_3, uint param_4);
 
 /**
  * @brief 工具系统直接条目处理器
@@ -471,7 +471,7 @@ uint64_t FUN_180895c8b(longlong param_1, uint64_t param_2, longlong param_3, uin
  * 
  * 功能说明：处理直接条目访问，执行回调函数
  */
-uint64_t FUN_180895cf1(longlong param_1, uint64_t param_2, longlong param_3);
+uint64_t FUN_180895cf1(int64_t param_1, uint64_t param_2, int64_t param_3);
 
 /**
  * @brief 工具系统默认错误获取器
@@ -490,7 +490,7 @@ uint64_t FUN_180895d16(void);
  * 
  * 功能说明：验证表状态，查找现有条目，插入新条目，处理表扩容
  */
-uint64_t FUN_180895d30(longlong *param_1, uint *param_2, uint64_t *param_3);
+uint64_t FUN_180895d30(int64_t *param_1, uint *param_2, uint64_t *param_3);
 
 /**
  * @brief 工具系统哈希条目更新器
@@ -522,7 +522,7 @@ uint64_t FUN_180895d9c(uint64_t param_1, int32_t param_2);
  * 
  * 功能说明：直接更新数据，处理指针操作
  */
-uint64_t FUN_180895e00(longlong param_1, uint64_t param_2, longlong param_3);
+uint64_t FUN_180895e00(int64_t param_1, uint64_t param_2, int64_t param_3);
 
 /**
  * @brief 工具系统分配和插入器
@@ -552,7 +552,7 @@ uint64_t FUN_180895210(void);
  * @param param1 参数1
  * @return 回调结果
  */
-uint64_t FUN_180895ef0(longlong param_1);
+uint64_t FUN_180895ef0(int64_t param_1);
 
 /**
  * @brief 内存分配函数
@@ -560,7 +560,7 @@ uint64_t FUN_180895ef0(longlong param_1);
  * @param param2 参数2
  * @return 分配结果
  */
-uint64_t FUN_1807d3f50(longlong param_1, int param_2);
+uint64_t FUN_1807d3f50(int64_t param_1, int param_2);
 
 /**
  * @brief 栈清理函数

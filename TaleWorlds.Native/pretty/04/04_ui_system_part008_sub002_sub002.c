@@ -44,12 +44,12 @@
 #define ui_system_collision_validation_helper FUN_180659163
 
 // 外部函数声明
-extern uint64_t FUN_18062b420(uint64_t *param_1, longlong param_2, int param_3, longlong *param_4, uint64_t param_5);
+extern uint64_t FUN_18062b420(uint64_t *param_1, int64_t param_2, int param_3, int64_t *param_4, uint64_t param_5);
 extern void FUN_180640330(uint64_t *param_1, uint64_t *param_2);
-extern void FUN_18063efb0(longlong *param_1, uint64_t **param_2, int param_3, int param_4);
-extern void FUN_18033a920(longlong *param_1);
+extern void FUN_18063efb0(int64_t *param_1, uint64_t **param_2, int param_3, int param_4);
+extern void FUN_18033a920(int64_t *param_1);
 extern void FUN_1806457f0(int32_t *param_1, int32_t *param_2, float *param_3, float *param_4, float *param_5);
-extern char FUN_18063e7e0(longlong *param_1, uint64_t *param_2);
+extern char FUN_18063e7e0(int64_t *param_1, uint64_t *param_2);
 extern void FUN_18064e900(uint64_t *param_1);
 
 // 全局变量引用
@@ -77,21 +77,21 @@ extern void FUN_18064e900(uint64_t *param_1);
  * - 内存使用优化
  * - 批量操作加速
  */
-void ui_system_advanced_data_structure_processor(longlong *param_1, longlong *param_2, longlong *param_3)
+void ui_system_advanced_data_structure_processor(int64_t *param_1, int64_t *param_2, int64_t *param_3)
 {
     int32_t uVar1;
     int32_t uVar2;
     uint64_t *puVar3;
     int iVar4;
-    longlong lVar5;
-    longlong lVar6;
+    int64_t lVar5;
+    int64_t lVar6;
     uint64_t *puVar7;
     uint64_t *puVar8;
     uint64_t *puVar9;
     uint64_t *puVar10;
     uint64_t *puVar11;
     uint uVar12;
-    longlong lStackX_8;
+    int64_t lStackX_8;
     uint64_t uStackX_18;
     uint64_t uVar13;
     uint64_t *puStack_60;
@@ -114,13 +114,13 @@ void ui_system_advanced_data_structure_processor(longlong *param_1, longlong *pa
     param_1[0xe] = lVar5;
     
     // 复制属性数据
-    uVar1 = *(int32_t *)((longlong)param_2 + 0x34);
+    uVar1 = *(int32_t *)((int64_t)param_2 + 0x34);
     lVar5 = param_2[7];
-    uVar2 = *(int32_t *)((longlong)param_2 + 0x3c);
+    uVar2 = *(int32_t *)((int64_t)param_2 + 0x3c);
     *(int *)(param_1 + 0xf) = (int)param_2[6];
-    *(int32_t *)((longlong)param_1 + 0x7c) = uVar1;
+    *(int32_t *)((int64_t)param_1 + 0x7c) = uVar1;
     *(int *)(param_1 + 0x10) = (int)lVar5;
-    *(int32_t *)((longlong)param_1 + 0x84) = uVar2;
+    *(int32_t *)((int64_t)param_1 + 0x84) = uVar2;
     
     // 计算数据块大小
     lVar5 = param_3[1] - *param_3 >> 4;
@@ -130,12 +130,12 @@ void ui_system_advanced_data_structure_processor(longlong *param_1, longlong *pa
     puStack_50 = (uint64_t *)0x0;
     uStack_48 = 3;
     iVar4 = (int)lVar5;
-    lStackX_8 = (longlong)iVar4;
+    lStackX_8 = (int64_t)iVar4;
     
     // 分配内存池
     if (iVar4 != 0) {
         puStack_58 = (uint64_t *)FUN_18062b420(GLOBAL_MEMORY_POOL, lStackX_8 * 8,
-                                                   CONCAT71((int7)(int3)((ulonglong)lVar5 >> 8), 3), param_3,
+                                                   CONCAT71((int7)(int3)((uint64_t)lVar5 >> 8), 3), param_3,
                                                    UI_SYSTEM_MEMORY_POOL_SIZE);
         puStack_50 = puStack_58 + lStackX_8;
     }
@@ -152,16 +152,16 @@ void ui_system_advanced_data_structure_processor(longlong *param_1, longlong *pa
             puVar3 = puStack_58;
             lVar5 = *param_3;
             if (puStack_58 < puVar8) {
-                *puStack_58 = *(uint64_t *)((longlong)puVar11 + lVar5);
+                *puStack_58 = *(uint64_t *)((int64_t)puVar11 + lVar5);
                 puVar7 = puVar10;
             }
             else {
-                lVar6 = (longlong)puStack_58 - (longlong)puVar10 >> 3;
+                lVar6 = (int64_t)puStack_58 - (int64_t)puVar10 >> 3;
                 if (lVar6 == 0) {
                     lVar6 = 1;
 LAB_1806588f2:
                     puVar7 = (uint64_t *)FUN_18062b420(GLOBAL_MEMORY_POOL, lVar6 * 8,
-                                                         CONCAT71((int7)((ulonglong)lStackX_8 >> 8), 3), param_3, uVar13);
+                                                         CONCAT71((int7)((uint64_t)lStackX_8 >> 8), 3), param_3, uVar13);
                 }
                 else {
                     lVar6 = lVar6 * 2;
@@ -170,9 +170,9 @@ LAB_1806588f2:
                 }
                 if (puVar10 != puVar3) {
                     // WARNING: Subroutine does not return
-                    memmove(puVar7, puVar10, (longlong)puVar3 - (longlong)puVar10);
+                    memmove(puVar7, puVar10, (int64_t)puVar3 - (int64_t)puVar10);
                 }
-                *puVar7 = *(uint64_t *)((longlong)puVar11 + lVar5);
+                *puVar7 = *(uint64_t *)((int64_t)puVar11 + lVar5);
                 if (puVar10 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
                     FUN_18064e900(puVar10);
@@ -190,7 +190,7 @@ LAB_1806588f2:
     }
     
     // 最终处理和清理
-    lVar5 = (longlong)puStack_58 - (longlong)puVar7;
+    lVar5 = (int64_t)puStack_58 - (int64_t)puVar7;
     FUN_180640330(puVar7, puStack_58);
     FUN_18063efb0(param_1, &puStack_60, lVar5 >> 3 & 0xffffffff, 1);
     FUN_18033a920(param_1 + 0x11);
@@ -199,13 +199,13 @@ LAB_1806588f2:
     puVar8 = puVar9;
     if (param_1[1] - *param_1 >> 3 != 0) {
         do {
-            uStackX_18 = CONCAT44(*(int32_t *)((longlong)puVar9 + *param_1 + 4),
-                                  *(int32_t *)((longlong)puVar9 + *param_1));
-            *(uint64_t *)((longlong)puVar9 + param_1[0x11]) = uStackX_18;
+            uStackX_18 = CONCAT44(*(int32_t *)((int64_t)puVar9 + *param_1 + 4),
+                                  *(int32_t *)((int64_t)puVar9 + *param_1));
+            *(uint64_t *)((int64_t)puVar9 + param_1[0x11]) = uStackX_18;
             uVar12 = (int)puVar8 + 1;
             puVar9 = puVar9 + 1;
-            puVar8 = (uint64_t *)(ulonglong)uVar12;
-        } while ((ulonglong)(longlong)(int)uVar12 < (ulonglong)(param_1[1] - *param_1 >> 3));
+            puVar8 = (uint64_t *)(uint64_t)uVar12;
+        } while ((uint64_t)(int64_t)(int)uVar12 < (uint64_t)(param_1[1] - *param_1 >> 3));
     }
     
     // 清理资源
@@ -238,12 +238,12 @@ LAB_1806588f2:
  * - 优化的几何变换
  * - 可配置的检测精度
  */
-uint64_t ui_system_collision_detection_processor(longlong *param_1, float *param_2, float *param_3, float *param_4, char param_5)
+uint64_t ui_system_collision_detection_processor(int64_t *param_1, float *param_2, float *param_3, float *param_4, char param_5)
 {
     float fVar1;
     float fVar2;
     float fVar3;
-    longlong lVar4;
+    int64_t lVar4;
     bool bVar5;
     float fVar6;
     float fVar7;
@@ -254,15 +254,15 @@ uint64_t ui_system_collision_detection_processor(longlong *param_1, float *param
     float fVar12;
     float *pfVar13;
     char cVar14;
-    longlong lVar15;
+    int64_t lVar15;
     uint64_t uVar16;
     float *pfVar17;
     int iVar18;
     int32_t *puVar19;
     float fVar20;
     int iVar21;
-    longlong lVar22;
-    longlong lVar23;
+    int64_t lVar22;
+    int64_t lVar23;
     int iVar24;
     float fVar25;
     float fVar26;
@@ -290,8 +290,8 @@ uint64_t ui_system_collision_detection_processor(longlong *param_1, float *param
     float fStack_1b4;
     float fStack_1b0;
     float fStack_1ac;
-    longlong lStack_1a8;
-    longlong lStack_1a0;
+    int64_t lStack_1a8;
+    int64_t lStack_1a0;
     int32_t uStack_198;
     int32_t uStack_194;
     int32_t uStack_190;
@@ -350,10 +350,10 @@ uint64_t ui_system_collision_detection_processor(longlong *param_1, float *param
     // 加载变换矩阵
     fVar1 = *(float *)(param_1 + 9);
     fVar27 = *(float *)(param_1 + 10);
-    fVar25 = *(float *)((longlong)param_1 + 0x4c);
-    fVar26 = *(float *)((longlong)param_1 + 0x7c);
-    fVar28 = *(float *)((longlong)param_1 + 0x6c);
-    fVar2 = *(float *)((longlong)param_1 + 0x5c);
+    fVar25 = *(float *)((int64_t)param_1 + 0x4c);
+    fVar26 = *(float *)((int64_t)param_1 + 0x7c);
+    fVar28 = *(float *)((int64_t)param_1 + 0x6c);
+    fVar2 = *(float *)((int64_t)param_1 + 0x5c);
     fVar3 = *(float *)(param_1 + 0xb);
     
     // 执行矩阵变换计算
@@ -406,7 +406,7 @@ uint64_t ui_system_collision_detection_processor(longlong *param_1, float *param
         fVar26 = UI_SYSTEM_MAX_FLOAT_VALUE;
         lVar23 = param_1[0x11];
         iVar18 = (int)(param_1[0x12] - lVar23 >> 3);
-        lStack_1a0 = (longlong)iVar18;
+        lStack_1a0 = (int64_t)iVar18;
         fStackX_10 = 0.0;
         fStackX_14 = 0.0;
         fVar28 = UI_SYSTEM_MAX_FLOAT_VALUE;
@@ -436,9 +436,9 @@ uint64_t ui_system_collision_detection_processor(longlong *param_1, float *param
             fVar20 = fStackX_14;
             
             do {
-                uStack_198 = *(int32_t *)((lVar23 - lVar4) + -4 + (longlong)puVar19);
-                uStack_194 = *(int32_t *)((lVar23 - lVar4) + (longlong)puVar19);
-                lVar22 = (longlong)(iVar24 % iVar18);
+                uStack_198 = *(int32_t *)((lVar23 - lVar4) + -4 + (int64_t)puVar19);
+                uStack_194 = *(int32_t *)((lVar23 - lVar4) + (int64_t)puVar19);
+                lVar22 = (int64_t)(iVar24 % iVar18);
                 uStack_188 = *(int32_t *)(lVar23 + lVar22 * 8);
                 uStack_184 = *(int32_t *)(lVar23 + 4 + lVar22 * 8);
                 FUN_1806457f0(&uStack_188, &uStack_198, &fStack_1b8, &fStack_1c8, &fStack_138, &fStack_178);
@@ -491,7 +491,7 @@ uint64_t ui_system_collision_detection_processor(longlong *param_1, float *param
             lVar23 = lVar22 * 4;
             
             do {
-                lVar15 = (longlong)((iVar21 + -1) % iVar18);
+                lVar15 = (int64_t)((iVar21 + -1) % iVar18);
                 if ((!bVar5) ||
                    ((fVar31 = (pfVar17[-4] - *(float *)(lVar4 + 4 + lVar15 * 8)) *
                               (fStackX_18 - pfVar17[-5]) -
@@ -503,17 +503,17 @@ uint64_t ui_system_collision_detection_processor(longlong *param_1, float *param
                     bVar5 = true;
                 }
                 if ((!bVar5) ||
-                   ((fVar31 = (pfVar17[-2] - *(float *)(lVar4 + 4 + (longlong)(iVar21 % iVar18) * 8)) *
+                   ((fVar31 = (pfVar17[-2] - *(float *)(lVar4 + 4 + (int64_t)(iVar21 % iVar18) * 8)) *
                               (fStackX_18 - pfVar17[-3]) -
                               (fStackX_1c - pfVar17[-2]) *
-                              (pfVar17[-3] - *(float *)(lVar4 + (longlong)(iVar21 % iVar18) * 8)),
+                              (pfVar17[-3] - *(float *)(lVar4 + (int64_t)(iVar21 % iVar18) * 8)),
                      fVar31 <= 0.0 && (fVar31 < 0.0)))) {
                     bVar5 = false;
                 }
                 else {
                     bVar5 = true;
                 }
-                lVar15 = (longlong)((iVar21 + 1) % iVar18);
+                lVar15 = (int64_t)((iVar21 + 1) % iVar18);
                 if ((!bVar5) ||
                    ((fVar31 = (*pfVar17 - *(float *)(lVar4 + 4 + lVar15 * 8)) * (fStackX_18 - pfVar17[-1]) -
                               (fStackX_1c - *pfVar17) * (pfVar17[-1] - *(float *)(lVar4 + lVar15 * 8)),
@@ -523,7 +523,7 @@ uint64_t ui_system_collision_detection_processor(longlong *param_1, float *param
                 else {
                     bVar5 = true;
                 }
-                lVar15 = (longlong)((iVar21 + 2) % iVar18);
+                lVar15 = (int64_t)((iVar21 + 2) % iVar18);
                 if ((!bVar5) ||
                    ((fVar31 = (pfVar17[2] - *(float *)(lVar4 + 4 + lVar15 * 8)) * (fStackX_18 - pfVar17[1])
                               - (fStackX_1c - pfVar17[2]) * (pfVar17[1] - *(float *)(lVar4 + lVar15 * 8)),
@@ -545,10 +545,10 @@ uint64_t ui_system_collision_detection_processor(longlong *param_1, float *param
                 iVar24 = iVar24 + 1;
                 if ((!bVar5) ||
                    ((fVar31 = *(float *)(lVar4 + 4 + lVar23 * 8), fVar33 = *(float *)(lVar4 + lVar23 * 8),
-                     fVar31 = (fVar31 - *(float *)(lVar4 + 4 + (longlong)(iVar24 % iVar18) * 8)) *
+                     fVar31 = (fVar31 - *(float *)(lVar4 + 4 + (int64_t)(iVar24 % iVar18) * 8)) *
                               (fStackX_18 - fVar33) -
                               (fStackX_1c - fVar31) *
-                              (fVar33 - *(float *)(lVar4 + (longlong)(iVar24 % iVar18) * 8)),
+                              (fVar33 - *(float *)(lVar4 + (int64_t)(iVar24 % iVar18) * 8)),
                      fVar31 <= 0.0 && (fVar31 < 0.0)))) {
                     bVar5 = false;
                 }
@@ -623,10 +623,10 @@ LAB_180659172:
  * - 稳定的迭代求解
  * - 完整的错误处理
  */
-uint64_t ui_system_geometric_calculation_engine(longlong *param_1)
+uint64_t ui_system_geometric_calculation_engine(int64_t *param_1)
 {
     float fVar1;
-    longlong lVar2;
+    int64_t lVar2;
     bool bVar3;
     float fVar4;
     float fVar5;
@@ -634,17 +634,17 @@ uint64_t ui_system_geometric_calculation_engine(longlong *param_1)
     float fVar7;
     float fVar8;
     char cVar9;
-    longlong lVar10;
+    int64_t lVar10;
     float *pfVar11;
     int iVar12;
-    longlong unaff_RBX;
+    int64_t unaff_RBX;
     uint64_t uVar13;
     float *unaff_RBP;
     uint64_t uVar14;
     int iVar15;
-    longlong lVar16;
-    longlong lVar17;
-    longlong unaff_R12;
+    int64_t lVar16;
+    int64_t lVar17;
+    int64_t unaff_R12;
     float *unaff_R13;
     int iVar18;
     float fVar19;
@@ -665,8 +665,8 @@ uint64_t ui_system_geometric_calculation_engine(longlong *param_1)
     float fStack0000000000000034;
     float fStack0000000000000040;
     float fStack0000000000000044;
-    longlong in_stack_00000050;
-    longlong lStack0000000000000058;
+    int64_t in_stack_00000050;
+    int64_t lStack0000000000000058;
     int32_t uStack0000000000000060;
     int32_t uStack0000000000000064;
     int32_t uStack0000000000000068;
@@ -682,7 +682,7 @@ uint64_t ui_system_geometric_calculation_engine(longlong *param_1)
     lVar17 = param_1[0x11];
     unaff_RBP[0x42] = unaff_XMM14_Da;
     iVar12 = (int)(unaff_RBX - lVar17 >> 3);
-    lStack0000000000000058 = (longlong)iVar12;
+    lStack0000000000000058 = (int64_t)iVar12;
     unaff_RBP[0x43] = unaff_XMM15_Da;
     uVar14 = *(uint64_t *)(unaff_RBP + 0x42);
     unaff_RBP[0x44] = 0.0;
@@ -706,9 +706,9 @@ uint64_t ui_system_geometric_calculation_engine(longlong *param_1)
         in_stack_00000050 = lStack0000000000000058;
         
         do {
-            uStack0000000000000060 = *(int32_t *)((lVar17 - lVar2) + -4 + (longlong)pfVar11);
-            uStack0000000000000064 = *(int32_t *)((lVar17 - lVar2) + (longlong)pfVar11);
-            lVar16 = (longlong)(iVar18 % iVar12);
+            uStack0000000000000060 = *(int32_t *)((lVar17 - lVar2) + -4 + (int64_t)pfVar11);
+            uStack0000000000000064 = *(int32_t *)((lVar17 - lVar2) + (int64_t)pfVar11);
+            lVar16 = (int64_t)(iVar18 % iVar12);
             uStack0000000000000070 = *(int32_t *)(lVar17 + lVar16 * 8);
             uStack0000000000000074 = *(int32_t *)(lVar17 + 4 + lVar16 * 8);
             FUN_1806457f0(&stack0x00000070, &stack0x00000060, &stack0x00000040, &stack0x00000030,
@@ -745,7 +745,7 @@ uint64_t ui_system_geometric_calculation_engine(longlong *param_1)
             fVar21 = unaff_XMM10_Da;
             fVar20 = fVar19;
         } while (in_stack_00000050 != 0);
-        unaff_R12 = *(longlong *)(unaff_RBP + 0x40);
+        unaff_R12 = *(int64_t *)(unaff_RBP + 0x40);
         unaff_R13 = *(float **)(unaff_RBP + 0x46);
         *(uint64_t *)(unaff_RBP + 0x44) = uVar13;
         fVar21 = unaff_RBP[0x45];
@@ -762,7 +762,7 @@ uint64_t ui_system_geometric_calculation_engine(longlong *param_1)
     iVar18 = 0;
     
     if (3 < lStack0000000000000058) {
-        lVar2 = *(longlong *)(unaff_R12 + 0x88);
+        lVar2 = *(int64_t *)(unaff_R12 + 0x88);
         iVar15 = 2;
         lVar16 = (lStack0000000000000058 - 4U >> 2) + 1;
         pfVar11 = (float *)(lVar2 + 0x14);
@@ -770,7 +770,7 @@ uint64_t ui_system_geometric_calculation_engine(longlong *param_1)
         lVar17 = lVar16 * 4;
         
         do {
-            lVar10 = (longlong)((iVar15 + -1) % iVar12);
+            lVar10 = (int64_t)((iVar15 + -1) % iVar12);
             if ((!bVar3) ||
                ((fVar19 = (pfVar11[-4] - *(float *)(lVar2 + 4 + lVar10 * 8)) * (fVar20 - pfVar11[-5]) -
                          (fVar21 - pfVar11[-4]) * (pfVar11[-5] - *(float *)(lVar2 + lVar10 * 8)),
@@ -781,17 +781,17 @@ uint64_t ui_system_geometric_calculation_engine(longlong *param_1)
                 bVar3 = true;
             }
             if ((!bVar3) ||
-               ((fVar19 = (pfVar11[-2] - *(float *)(lVar2 + 4 + (longlong)(iVar15 % iVar12) * 8)) *
+               ((fVar19 = (pfVar11[-2] - *(float *)(lVar2 + 4 + (int64_t)(iVar15 % iVar12) * 8)) *
                          (fVar20 - pfVar11[-3]) -
                          (fVar21 - pfVar11[-2]) *
-                         (pfVar11[-3] - *(float *)(lVar2 + (longlong)(iVar15 % iVar12) * 8)),
+                         (pfVar11[-3] - *(float *)(lVar2 + (int64_t)(iVar15 % iVar12) * 8)),
                fVar19 <= unaff_XMM6_Da && (fVar19 < unaff_XMM6_Da)))) {
                 bVar3 = false;
             }
             else {
                 bVar3 = true;
             }
-            lVar10 = (longlong)((iVar15 + 1) % iVar12);
+            lVar10 = (int64_t)((iVar15 + 1) % iVar12);
             if ((!bVar3) ||
                ((fVar19 = (*pfVar11 - *(float *)(lVar2 + 4 + lVar10 * 8)) * (fVar20 - pfVar11[-1]) -
                          (fVar21 - *pfVar11) * (pfVar11[-1] - *(float *)(lVar2 + lVar10 * 8)),
@@ -801,7 +801,7 @@ uint64_t ui_system_geometric_calculation_engine(longlong *param_1)
             else {
                 bVar3 = true;
             }
-            lVar10 = (longlong)((iVar15 + 2) % iVar12);
+            lVar10 = (int64_t)((iVar15 + 2) % iVar12);
             if ((!bVar3) ||
                ((fVar19 = (pfVar11[2] - *(float *)(lVar2 + 4 + lVar10 * 8)) * (fVar20 - pfVar11[1]) -
                          (fVar21 - pfVar11[2]) * (pfVar11[1] - *(float *)(lVar2 + lVar10 * 8)),
@@ -818,14 +818,14 @@ uint64_t ui_system_geometric_calculation_engine(longlong *param_1)
     }
     
     if (lVar17 < lStack0000000000000058) {
-        lVar2 = *(longlong *)(unaff_R12 + 0x88);
+        lVar2 = *(int64_t *)(unaff_R12 + 0x88);
         do {
             iVar18 = iVar18 + 1;
             if ((!bVar3) ||
                ((fVar19 = *(float *)(lVar2 + 4 + lVar17 * 8), fVar1 = *(float *)(lVar2 + lVar17 * 8),
-                 fVar19 = (fVar19 - *(float *)(lVar2 + 4 + (longlong)(iVar18 % iVar12) * 8)) *
+                 fVar19 = (fVar19 - *(float *)(lVar2 + 4 + (int64_t)(iVar18 % iVar12) * 8)) *
                           (fVar20 - fVar1) -
-                          (fVar21 - fVar19) * (fVar1 - *(float *)(lVar2 + (longlong)(iVar18 % iVar12) * 8)),
+                          (fVar21 - fVar19) * (fVar1 - *(float *)(lVar2 + (int64_t)(iVar18 % iVar12) * 8)),
                  fVar19 <= unaff_XMM6_Da && (fVar19 < unaff_XMM6_Da)))) {
                 bVar3 = false;
             }
@@ -908,7 +908,7 @@ uint64_t ui_system_geometric_calculation_engine(longlong *param_1)
  * - 1: 变换成功
  * - 0: 变换失败
  */
-uint64_t ui_system_coordinate_transformer(longlong *param_1)
+uint64_t ui_system_coordinate_transformer(int64_t *param_1)
 {
     // 实现坐标变换功能
     // 包含矩阵运算、几何变换和坐标转换

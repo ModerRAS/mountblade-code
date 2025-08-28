@@ -12,19 +12,19 @@ void find_and_process_entity_collisions(void)
   float position_x;
   float position_y;
   float test_x;
-  longlong saved_ptr;
-  longlong candidate_object;
-  longlong in_RAX;
-  longlong current_object;
-  longlong array_index;
+  int64_t saved_ptr;
+  int64_t candidate_object;
+  int64_t in_RAX;
+  int64_t current_object;
+  int64_t array_index;
   uint64_t unaff_RBP;
-  longlong null_value;
-  longlong *object_array_ptr;
+  int64_t null_value;
+  int64_t *object_array_ptr;
   uint64_t unaff_RDI;
-  longlong alternate_object;
-  longlong temp_object;
-  longlong in_R10;
-  longlong object_ptr;
+  int64_t alternate_object;
+  int64_t temp_object;
+  int64_t in_R10;
+  int64_t object_ptr;
   float threshold_y;
   float threshold_x;
   int32_t unaff_XMM6_Da;
@@ -56,7 +56,7 @@ void find_and_process_entity_collisions(void)
   *(int32_t *)(in_RAX + -0x24) = unaff_XMM6_Db;
   *(int32_t *)(in_RAX + -0x20) = unaff_XMM6_Dc;
   *(int32_t *)(in_RAX + -0x1c) = unaff_XMM6_Dd;
-  lVar13 = *(longlong *)(in_R10 + 0x1b78);
+  lVar13 = *(int64_t *)(in_R10 + 0x1b78);
   *(int32_t *)(in_RAX + -0x38) = unaff_XMM7_Da;
   *(int32_t *)(in_RAX + -0x34) = unaff_XMM7_Db;
   *(int32_t *)(in_RAX + -0x30) = unaff_XMM7_Dc;
@@ -74,9 +74,9 @@ void find_and_process_entity_collisions(void)
     lVar5 = lVar9;
   }
   else {
-    lVar5 = *(longlong *)(lVar13 + 0x28);
+    lVar5 = *(int64_t *)(lVar13 + 0x28);
     *(uint64_t *)(lVar13 + 0x28) = *(uint64_t *)(in_R10 + 0x1c80);
-    lVar13 = *(longlong *)(in_R10 + 0x1b78);
+    lVar13 = *(int64_t *)(in_R10 + 0x1b78);
   }
   lVar7 = lVar9;
   if ((lVar13 != 0) && ((*(uint *)(lVar13 + 0xc) & 0x200) == 0)) {
@@ -98,17 +98,17 @@ void find_and_process_entity_collisions(void)
   }
   lVar11 = lVar9;
   if (0 < *(int *)(in_R10 + 0x1aa0)) {
-    lVar8 = (longlong)*(int *)(in_R10 + 0x1aa0) + -1;
-    plVar10 = (longlong *)(*(longlong *)(in_R10 + 0x1aa8) + lVar8 * 8);
+    lVar8 = (int64_t)*(int *)(in_R10 + 0x1aa0) + -1;
+    plVar10 = (int64_t *)(*(int64_t *)(in_R10 + 0x1aa8) + lVar8 * 8);
     lVar12 = lVar7;
     do {
       lVar6 = *plVar10;
       lVar7 = lVar12;
       if ((((*(char *)(lVar6 + 0xaf) != '\0') && (*(char *)(lVar6 + 0xb6) == '\0')) &&
           ((*(uint *)(lVar6 + 0xc) >> 9 & 1) == 0)) &&
-         (*(longlong *)(lVar6 + 0x28) == *(longlong *)(in_R10 + 0x1c80))) {
+         (*(int64_t *)(lVar6 + 0x28) == *(int64_t *)(in_R10 + 0x1c80))) {
         fStackX_8 = (float)*(uint64_t *)(lVar6 + 0x240);
-        fStackX_c = (float)((ulonglong)*(uint64_t *)(lVar6 + 0x240) >> 0x20);
+        fStackX_c = (float)((uint64_t)*(uint64_t *)(lVar6 + 0x240) >> 0x20);
         fVar3 = fVar1;
         fVar4 = fVar2;
         if ((*(uint *)(lVar6 + 0xc) & 0x1000002) == 0) {
@@ -118,7 +118,7 @@ void find_and_process_entity_collisions(void)
         fVar15 = *(float *)(in_R10 + 0x118);
         if ((((float)*(uint64_t *)(lVar6 + 0x238) - fVar3 <= fVar15) &&
             (fVar14 = *(float *)(in_R10 + 0x11c),
-            (float)((ulonglong)*(uint64_t *)(lVar6 + 0x238) >> 0x20) - fVar4 <= fVar14)) &&
+            (float)((uint64_t)*(uint64_t *)(lVar6 + 0x238) >> 0x20) - fVar4 <= fVar14)) &&
            ((fVar15 < fStackX_8 + fVar3 && (fVar14 < fStackX_c + fVar4)))) {
           if (*(short *)(lVar6 + 0x268) != 0) {
             fVar15 = fVar15 - *(float *)(lVar6 + 0x40);
@@ -134,7 +134,7 @@ void find_and_process_entity_collisions(void)
             lVar7 = lVar12;
           }
           if ((lVar11 == 0) &&
-             ((lVar13 == 0 || (*(longlong *)(lVar6 + 0x3a0) != *(longlong *)(lVar13 + 0x3a0))))) {
+             ((lVar13 == 0 || (*(int64_t *)(lVar6 + 0x3a0) != *(int64_t *)(lVar13 + 0x3a0))))) {
             lVar11 = lVar6;
           }
           if ((lVar7 != 0) && (lVar11 != 0)) break;
@@ -146,14 +146,14 @@ LAB_180127fd0:
       lVar12 = lVar7;
     } while (-1 < lVar8);
   }
-  *(longlong *)(in_R10 + 0x1b00) = lVar7;
+  *(int64_t *)(in_R10 + 0x1b00) = lVar7;
   if (lVar7 != 0) {
-    lVar9 = *(longlong *)(lVar7 + 0x3a0);
+    lVar9 = *(int64_t *)(lVar7 + 0x3a0);
   }
-  *(longlong *)(in_R10 + 0x1b08) = lVar9;
-  *(longlong *)(in_R10 + 0x1b10) = lVar11;
+  *(int64_t *)(in_R10 + 0x1b08) = lVar9;
+  *(int64_t *)(in_R10 + 0x1b10) = lVar11;
   if (lVar13 != 0) {
-    *(longlong *)(lVar13 + 0x28) = lVar5;
+    *(int64_t *)(lVar13 + 0x28) = lVar5;
   }
   return;
 }
@@ -171,18 +171,18 @@ void find_entity_collisions_with_flags(void)
   float fVar1;
   float fVar2;
   float fVar3;
-  longlong lVar5;
-  longlong lVar6;
-  longlong in_RAX;
-  longlong lVar7;
-  longlong lVar8;
-  longlong unaff_RBP;
-  longlong *plVar9;
+  int64_t lVar5;
+  int64_t lVar6;
+  int64_t in_RAX;
+  int64_t lVar7;
+  int64_t lVar8;
+  int64_t unaff_RBP;
+  int64_t *plVar9;
   char cVar10;
-  longlong lVar11;
-  longlong lVar12;
-  longlong in_R10;
-  longlong lVar13;
+  int64_t lVar11;
+  int64_t lVar12;
+  int64_t in_R10;
+  int64_t lVar13;
   float fVar14;
   float fVar15;
   int32_t unaff_XMM6_Da;
@@ -211,7 +211,7 @@ void find_entity_collisions_with_flags(void)
   *(int32_t *)(in_RAX + -0x24) = unaff_XMM6_Db;
   *(int32_t *)(in_RAX + -0x20) = unaff_XMM6_Dc;
   *(int32_t *)(in_RAX + -0x1c) = unaff_XMM6_Dd;
-  lVar13 = *(longlong *)(in_R10 + 0x1b78);
+  lVar13 = *(int64_t *)(in_R10 + 0x1b78);
   *(int32_t *)(in_RAX + -0x38) = unaff_XMM7_Da;
   *(int32_t *)(in_RAX + -0x34) = unaff_XMM7_Db;
   *(int32_t *)(in_RAX + -0x30) = unaff_XMM7_Dc;
@@ -229,9 +229,9 @@ void find_entity_collisions_with_flags(void)
     lVar5 = unaff_RBP;
   }
   else {
-    lVar5 = *(longlong *)(lVar13 + 0x28);
+    lVar5 = *(int64_t *)(lVar13 + 0x28);
     *(uint64_t *)(lVar13 + 0x28) = *(uint64_t *)(in_R10 + 0x1c80);
-    lVar13 = *(longlong *)(in_R10 + 0x1b78);
+    lVar13 = *(int64_t *)(in_R10 + 0x1b78);
   }
   lVar7 = unaff_RBP;
   if ((lVar13 != 0) && ((*(uint *)(lVar13 + 0xc) & 0x200) == 0)) {
@@ -254,17 +254,17 @@ void find_entity_collisions_with_flags(void)
   }
   lVar11 = unaff_RBP;
   if (0 < *(int *)(in_R10 + 0x1aa0)) {
-    lVar8 = (longlong)*(int *)(in_R10 + 0x1aa0) + -1;
-    plVar9 = (longlong *)(*(longlong *)(in_R10 + 0x1aa8) + lVar8 * 8);
+    lVar8 = (int64_t)*(int *)(in_R10 + 0x1aa0) + -1;
+    plVar9 = (int64_t *)(*(int64_t *)(in_R10 + 0x1aa8) + lVar8 * 8);
     lVar12 = lVar7;
     do {
       lVar6 = *plVar9;
       lVar7 = lVar12;
       if ((((*(char *)(lVar6 + 0xaf) != cVar10) && (*(char *)(lVar6 + 0xb6) == cVar10)) &&
           ((*(uint *)(lVar6 + 0xc) >> 9 & 1) == 0)) &&
-         (*(longlong *)(lVar6 + 0x28) == *(longlong *)(in_R10 + 0x1c80))) {
+         (*(int64_t *)(lVar6 + 0x28) == *(int64_t *)(in_R10 + 0x1c80))) {
         fStackX_8 = (float)*(uint64_t *)(lVar6 + 0x240);
-        fStackX_c = (float)((ulonglong)*(uint64_t *)(lVar6 + 0x240) >> 0x20);
+        fStackX_c = (float)((uint64_t)*(uint64_t *)(lVar6 + 0x240) >> 0x20);
         fVar3 = fVar1;
         fVar4 = fVar2;
         if ((*(uint *)(lVar6 + 0xc) & 0x1000002) == 0) {
@@ -274,7 +274,7 @@ void find_entity_collisions_with_flags(void)
         fVar15 = *(float *)(in_R10 + 0x118);
         if ((((float)*(uint64_t *)(lVar6 + 0x238) - fVar3 <= fVar15) &&
             (fVar14 = *(float *)(in_R10 + 0x11c),
-            (float)((ulonglong)*(uint64_t *)(lVar6 + 0x238) >> 0x20) - fVar4 <= fVar14)) &&
+            (float)((uint64_t)*(uint64_t *)(lVar6 + 0x238) >> 0x20) - fVar4 <= fVar14)) &&
            ((fVar15 < fStackX_8 + fVar3 && (fVar14 < fStackX_c + fVar4)))) {
           if (*(short *)(lVar6 + 0x268) != 0) {
             fVar15 = fVar15 - *(float *)(lVar6 + 0x40);
@@ -290,7 +290,7 @@ void find_entity_collisions_with_flags(void)
             lVar7 = lVar12;
           }
           if ((lVar11 == 0) &&
-             ((lVar13 == 0 || (*(longlong *)(lVar6 + 0x3a0) != *(longlong *)(lVar13 + 0x3a0))))) {
+             ((lVar13 == 0 || (*(int64_t *)(lVar6 + 0x3a0) != *(int64_t *)(lVar13 + 0x3a0))))) {
             lVar11 = lVar6;
           }
           if ((lVar7 != 0) && (lVar11 != 0)) break;
@@ -302,14 +302,14 @@ LAB_180127fd0:
       lVar12 = lVar7;
     } while (-1 < lVar8);
   }
-  *(longlong *)(in_R10 + 0x1b00) = lVar7;
+  *(int64_t *)(in_R10 + 0x1b00) = lVar7;
   if (lVar7 != 0) {
-    unaff_RBP = *(longlong *)(lVar7 + 0x3a0);
+    unaff_RBP = *(int64_t *)(lVar7 + 0x3a0);
   }
-  *(longlong *)(in_R10 + 0x1b08) = unaff_RBP;
-  *(longlong *)(in_R10 + 0x1b10) = lVar11;
+  *(int64_t *)(in_R10 + 0x1b08) = unaff_RBP;
+  *(int64_t *)(in_R10 + 0x1b10) = lVar11;
   if (lVar13 != 0) {
-    *(longlong *)(lVar13 + 0x28) = lVar5;
+    *(int64_t *)(lVar13 + 0x28) = lVar5;
   }
   return;
 }
@@ -324,16 +324,16 @@ LAB_180127fd0:
 void search_entity_collisions_in_range(void)
 
 {
-  longlong lVar1;
-  longlong in_RAX;
-  longlong lVar2;
-  longlong lVar3;
+  int64_t lVar1;
+  int64_t in_RAX;
+  int64_t lVar2;
+  int64_t lVar3;
   uint64_t unaff_RBP;
-  longlong *plVar4;
-  longlong unaff_RDI;
-  longlong in_R9;
-  longlong in_R10;
-  longlong in_R11;
+  int64_t *plVar4;
+  int64_t unaff_RDI;
+  int64_t in_R9;
+  int64_t in_R10;
+  int64_t in_R11;
   uint64_t unaff_R14;
   float fVar5;
   float fVar6;
@@ -346,17 +346,17 @@ void search_entity_collisions_in_range(void)
   float fStackX_c;
   
   lVar3 = in_RAX + -1;
-  plVar4 = (longlong *)(*(longlong *)(in_R10 + 0x1aa8) + lVar3 * 8);
+  plVar4 = (int64_t *)(*(int64_t *)(in_R10 + 0x1aa8) + lVar3 * 8);
   do {
     lVar1 = *plVar4;
     lVar2 = in_R9;
     if ((((*(char *)(lVar1 + 0xaf) != (char)unaff_RBP) &&
          (*(char *)(lVar1 + 0xb6) == (char)unaff_RBP)) && ((*(uint *)(lVar1 + 0xc) >> 9 & 1) == 0))
-       && (*(longlong *)(lVar1 + 0x28) == *(longlong *)(in_R10 + 0x1c80))) {
+       && (*(int64_t *)(lVar1 + 0x28) == *(int64_t *)(in_R10 + 0x1c80))) {
       fVar5 = (float)*(uint64_t *)(lVar1 + 0x238);
-      fVar6 = (float)((ulonglong)*(uint64_t *)(lVar1 + 0x238) >> 0x20);
+      fVar6 = (float)((uint64_t)*(uint64_t *)(lVar1 + 0x238) >> 0x20);
       fStackX_8 = (float)*(uint64_t *)(lVar1 + 0x240);
-      fStackX_c = (float)((ulonglong)*(uint64_t *)(lVar1 + 0x240) >> 0x20);
+      fStackX_c = (float)((uint64_t)*(uint64_t *)(lVar1 + 0x240) >> 0x20);
       if ((*(uint *)(lVar1 + 0xc) & 0x1000002) == 0) {
         fVar5 = fVar5 - unaff_XMM8_Da;
         fVar6 = fVar6 - unaff_XMM9_Da;
@@ -387,7 +387,7 @@ void search_entity_collisions_in_range(void)
             lVar2 = in_R9;
           }
           if ((unaff_RDI == 0) &&
-             ((in_R11 == 0 || (*(longlong *)(lVar1 + 0x3a0) != *(longlong *)(in_R11 + 0x3a0))))) {
+             ((in_R11 == 0 || (*(int64_t *)(lVar1 + 0x3a0) != *(int64_t *)(in_R11 + 0x3a0))))) {
             unaff_RDI = lVar1;
           }
           if ((lVar2 != 0) && (unaff_RDI != 0)) break;
@@ -399,12 +399,12 @@ LAB_180127fd0:
     lVar3 = lVar3 + -1;
     in_R9 = lVar2;
   } while (-1 < lVar3);
-  *(longlong *)(in_R10 + 0x1b00) = lVar2;
+  *(int64_t *)(in_R10 + 0x1b00) = lVar2;
   if (lVar2 != 0) {
     unaff_RBP = *(uint64_t *)(lVar2 + 0x3a0);
   }
   *(uint64_t *)(in_R10 + 0x1b08) = unaff_RBP;
-  *(longlong *)(in_R10 + 0x1b10) = unaff_RDI;
+  *(int64_t *)(in_R10 + 0x1b10) = unaff_RDI;
   if (in_R11 != 0) {
     *(uint64_t *)(in_R11 + 0x28) = unaff_R14;
   }
@@ -423,12 +423,12 @@ void set_entity_selection_result(void)
 {
   uint64_t unaff_RBP;
   uint64_t unaff_RDI;
-  longlong in_R9;
-  longlong in_R10;
-  longlong in_R11;
+  int64_t in_R9;
+  int64_t in_R10;
+  int64_t in_R11;
   uint64_t unaff_R14;
   
-  *(longlong *)(in_R10 + 0x1b00) = in_R9;
+  *(int64_t *)(in_R10 + 0x1b00) = in_R9;
   if (in_R9 != 0) {
     unaff_RBP = *(uint64_t *)(in_R9 + 0x3a0);
   }
@@ -451,9 +451,9 @@ void update_entity_property_references(void)
 
 {
   uint64_t unaff_RDI;
-  longlong in_R9;
-  longlong in_R10;
-  longlong in_R11;
+  int64_t in_R9;
+  int64_t in_R10;
+  int64_t in_R11;
   uint64_t unaff_R14;
   
   *(uint64_t *)(in_R10 + 0x1b08) = *(uint64_t *)(in_R9 + 0x3a0);
@@ -474,7 +474,7 @@ void update_entity_property_references(void)
 void reset_entity_linked_list_pointer(void)
 
 {
-  longlong in_R11;
+  int64_t in_R11;
   uint64_t unaff_R14;
   
   *(uint64_t *)(in_R11 + 0x28) = unaff_R14;
@@ -483,13 +483,13 @@ void reset_entity_linked_list_pointer(void)
 
 
 
-// 函数: ulonglong detect_entity_collision_relation(uint64_t *entity1, uint64_t *entity2, char use_bounds_check)
+// 函数: uint64_t detect_entity_collision_relation(uint64_t *entity1, uint64_t *entity2, char use_bounds_check)
 // 功能: 检测两个游戏对象之间的碰撞关系
 // 原始实现: FUN_180128040 - 简化实现: 为函数和参数提供语义化名称
-ulonglong detect_entity_collision_relation(uint64_t *entity1, uint64_t *entity2, char use_bounds_check)
+uint64_t detect_entity_collision_relation(uint64_t *entity1, uint64_t *entity2, char use_bounds_check)
 
 {
-  longlong lVar1;
+  int64_t lVar1;
   float *in_RAX;
   float fVar2;
   float fVar3;
@@ -500,14 +500,14 @@ ulonglong detect_entity_collision_relation(uint64_t *entity1, uint64_t *entity2,
   float fStack_4c;
   
   fStack_50 = (float)*param_2;
-  fStack_4c = (float)((ulonglong)*param_2 >> 0x20);
+  fStack_4c = (float)((uint64_t)*param_2 >> 0x20);
   fStack_58 = (float)*param_1;
-  fStack_54 = (float)((ulonglong)*param_1 >> 0x20);
+  fStack_54 = (float)((uint64_t)*param_1 >> 0x20);
   fVar2 = fStack_58;
   fVar3 = fStack_4c;
   fVar4 = fStack_54;
   if (param_3 != '\0') {
-    lVar1 = *(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1af8);
+    lVar1 = *(int64_t *)(SYSTEM_DATA_MANAGER_A + 0x1af8);
     in_RAX = (float *)(lVar1 + 0x228);
     fVar2 = *in_RAX;
     if (*in_RAX <= fStack_58) {
@@ -532,10 +532,10 @@ ulonglong detect_entity_collision_relation(uint64_t *entity1, uint64_t *entity2,
     in_RAX = *(float **)(SYSTEM_DATA_MANAGER_A + 0x1c80);
     if (((fVar4 < in_RAX[3] + in_RAX[5]) && (in_RAX[3] < fVar3)) &&
        ((fVar2 < in_RAX[2] + in_RAX[4] && (in_RAX[2] < fStack_50)))) {
-      return CONCAT71((int7)((ulonglong)in_RAX >> 8),1);
+      return CONCAT71((int7)((uint64_t)in_RAX >> 8),1);
     }
   }
-  return (ulonglong)in_RAX & 0xffffffffffffff00;
+  return (uint64_t)in_RAX & 0xffffffffffffff00;
 }
 
 
@@ -551,7 +551,7 @@ uint64_t check_entity_animation_state(int entity_index, char check_animation)
   float extraout_XMM0_Da;
   float fVar3;
   
-  fVar3 = *(float *)(SYSTEM_DATA_MANAGER_A + 0x424 + (longlong)param_1 * 4);
+  fVar3 = *(float *)(SYSTEM_DATA_MANAGER_A + 0x424 + (int64_t)param_1 * 4);
   if (fVar3 == 0.0) {
     return 1;
   }
@@ -569,10 +569,10 @@ uint64_t check_entity_animation_state(int entity_index, char check_animation)
 
 
 
-// 函数: int8_t compare_entity_rotation_angles(uint64_t angle1, uint64_t angle2, longlong rotation_data)
+// 函数: int8_t compare_entity_rotation_angles(uint64_t angle1, uint64_t angle2, int64_t rotation_data)
 // 功能: 比较游戏对象的旋转角度关系
 // 原始实现: FUN_1801282c7 - 简化实现: 为函数和参数提供语义化名称
-int8_t compare_entity_rotation_angles(uint64_t angle1, uint64_t angle2, longlong rotation_data)
+int8_t compare_entity_rotation_angles(uint64_t angle1, uint64_t angle2, int64_t rotation_data)
 
 {
   float fVar1;
@@ -606,33 +606,33 @@ int8_t return_empty_status_check(void)
 
 
 
-// 函数: void initialize_game_entity(longlong entity_id,int entity_type,float *size_data,uint64_t context_ptr,uint entity_flags)
+// 函数: void initialize_game_entity(int64_t entity_id,int entity_type,float *size_data,uint64_t context_ptr,uint entity_flags)
 // 功能: 初始化游戏对象并设置其属性
 // 原始实现: FUN_1801283f0 - 简化实现: 为函数和参数提供语义化名称
-void initialize_game_entity(longlong entity_id,int entity_type,float *size_data,uint64_t context_ptr,uint entity_flags)
+void initialize_game_entity(int64_t entity_id,int entity_type,float *size_data,uint64_t context_ptr,uint entity_flags)
 
 {
   int32_t uVar1;
   uint uVar2;
   uint64_t *puVar3;
-  longlong lVar4;
+  int64_t lVar4;
   bool bVar5;
-  longlong lVar6;
+  int64_t lVar6;
   uint uVar7;
   float fVar8;
   float fVar9;
   int8_t auStack_188 [32];
-  longlong lStack_168;
+  int64_t lStack_168;
   int iStack_160;
   float fStack_158;
   float fStack_154;
   int8_t auStack_148 [256];
-  ulonglong uStack_48;
+  uint64_t uStack_48;
   
   lVar6 = SYSTEM_DATA_MANAGER_A;
-  uStack_48 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_188;
+  uStack_48 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_188;
   puVar3 = *(uint64_t **)(SYSTEM_DATA_MANAGER_A + 0x1af8);
-  uVar2 = *(uint *)((longlong)puVar3 + 0xc);
+  uVar2 = *(uint *)((int64_t)puVar3 + 0xc);
   func_0x00018012df80(&fStack_158);
   uVar7 = 0;
   fVar8 = (float)(int)param_3[1];
@@ -661,7 +661,7 @@ void initialize_game_entity(longlong entity_id,int entity_type,float *size_data,
   }
   uVar1 = *(int32_t *)(lVar6 + 0x1650);
   FUN_1801299b0(auStack_148,0,param_5 | uVar2 & 4 | 0x1200103);
-  lVar4 = *(longlong *)(lVar6 + 0x1af8);
+  lVar4 = *(int64_t *)(lVar6 + 0x1af8);
   *(int32_t *)(lVar6 + 0x1650) = uVar1;
   *(int *)(lVar4 + 0x88) = param_2;
   *(uint *)(lVar4 + 0xd0) = uVar7 | bVar5;
@@ -676,7 +676,7 @@ void initialize_game_entity(longlong entity_id,int entity_type,float *size_data,
     *(int32_t *)(lVar6 + 0x1b60) = 2;
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_48 ^ (ulonglong)auStack_188);
+  FUN_1808fc050(uStack_48 ^ (uint64_t)auStack_188);
 }
 
 
@@ -695,13 +695,13 @@ void process_entity_boundary_box(void)
   int *piVar2;
   float fVar3;
   float fVar4;
-  longlong lVar5;
+  int64_t lVar5;
   char cVar6;
   uint uVar7;
-  longlong lVar8;
-  longlong lVar9;
-  longlong lVar10;
-  longlong lVar11;
+  int64_t lVar8;
+  int64_t lVar9;
+  int64_t lVar10;
+  int64_t lVar11;
   float fVar12;
   float fVar13;
   uint64_t uStackX_8;
@@ -712,12 +712,12 @@ void process_entity_boundary_box(void)
   void *puStack_40;
   
   lVar5 = SYSTEM_DATA_MANAGER_A;
-  lVar11 = *(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1af8);
+  lVar11 = *(int64_t *)(SYSTEM_DATA_MANAGER_A + 0x1af8);
   if (*(short *)(lVar11 + 0xb8) < 2) {
     uStackX_8 = *(uint64_t *)(lVar11 + 0x48);
     fVar12 = (float)uStackX_8;
     if (((*(uint *)(lVar11 + 0xd0) & 1) != 0) && ((float)uStackX_8 <= 4.0)) {
-      uStackX_8._4_4_ = (float)((ulonglong)uStackX_8 >> 0x20);
+      uStackX_8._4_4_ = (float)((uint64_t)uStackX_8 >> 0x20);
       uStackX_8 = CONCAT44(uStackX_8._4_4_,0x40800000);
       fVar12 = 4.0;
     }
@@ -727,9 +727,9 @@ void process_entity_boundary_box(void)
       fVar13 = 4.0;
     }
     FUN_18012cfe0();
-    fVar3 = *(float *)(*(longlong *)(lVar5 + 0x1af8) + 0x100);
+    fVar3 = *(float *)(*(int64_t *)(lVar5 + 0x1af8) + 0x100);
     fVar12 = fVar3 + fVar12;
-    fVar4 = *(float *)(*(longlong *)(lVar5 + 0x1af8) + 0x104);
+    fVar4 = *(float *)(*(int64_t *)(lVar5 + 0x1af8) + 0x104);
     fVar13 = fVar4 + fVar13;
     fStack_58 = fVar3;
     fStack_54 = fVar4;
@@ -739,13 +739,13 @@ void process_entity_boundary_box(void)
     lVar10 = SYSTEM_DATA_MANAGER_A;
     if (((*(int *)(lVar11 + 0x174) == 0) && (*(char *)(lVar11 + 0x17d) == '\0')) ||
        ((*(uint *)(lVar11 + 0xc) & 0x800000) != 0)) {
-      lVar11 = *(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1af8);
+      lVar11 = *(int64_t *)(SYSTEM_DATA_MANAGER_A + 0x1af8);
       *(uint64_t *)(lVar11 + 0x144) = 0;
       *(float *)(lVar11 + 0x14c) = fStack_58;
       *(float *)(lVar11 + 0x150) = fStack_54;
       *(float *)(lVar11 + 0x154) = fStack_50;
       *(float *)(lVar11 + 0x158) = fStack_4c;
-      lVar5 = *(longlong *)(lVar10 + 0x1af8);
+      lVar5 = *(int64_t *)(lVar10 + 0x1af8);
       if (((((*(float *)(lVar5 + 0x22c) <= fVar13 && fVar13 != *(float *)(lVar5 + 0x22c)) &&
             (fVar4 < *(float *)(lVar5 + 0x234))) &&
            ((*(float *)(lVar5 + 0x228) <= fVar12 && fVar12 != *(float *)(lVar5 + 0x228) &&
@@ -759,7 +759,7 @@ void process_entity_boundary_box(void)
       if (*(int *)(lVar11 + 0x88) == *(int *)(SYSTEM_DATA_MANAGER_A + 0x1ca0)) {
         FUN_1801230e0(&fStack_58,1);
       }
-      if ((*(int *)(lVar11 + 0x174) == 0) && (lVar11 == *(longlong *)(lVar5 + 0x1c98))) {
+      if ((*(int *)(lVar11 + 0x174) == 0) && (lVar11 == *(int64_t *)(lVar5 + 0x1c98))) {
         fStack_50 = fStack_50 + 2.0;
         fStack_4c = fStack_4c + 2.0;
         fStack_58 = fStack_58 - 2.0;
@@ -772,8 +772,8 @@ void process_entity_boundary_box(void)
     return;
   }
   if ((1 < *(int *)(SYSTEM_DATA_MANAGER_A + 0x1ad0)) || (*(char *)(SYSTEM_DATA_MANAGER_A + 2) == '\0')) {
-    lVar11 = *(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1af8);
-    if (*(longlong *)(lVar11 + 0x210) != 0) {
+    lVar11 = *(int64_t *)(SYSTEM_DATA_MANAGER_A + 0x1af8);
+    if (*(int64_t *)(lVar11 + 0x210) != 0) {
       puStack_40 = (void *)0x18012d024;
       FUN_180134b80();
     }
@@ -789,10 +789,10 @@ void process_entity_boundary_box(void)
     {
       puStack_40 = (void *)0x18012d075;
       FUN_18013c760(&unknown_var_3196_ptr);
-      if (*(longlong *)(lVar9 + 0x2e40) != 0) {
+      if (*(int64_t *)(lVar9 + 0x2e40) != 0) {
         puStack_40 = (void *)0x18012d087;
         lVar8 = __acrt_iob_func(1);
-        if (*(longlong *)(lVar9 + 0x2e40) == lVar8) {
+        if (*(int64_t *)(lVar9 + 0x2e40) == lVar8) {
           puStack_40 = (void *)0x18012d099;
           fflush();
         }
@@ -803,12 +803,12 @@ void process_entity_boundary_box(void)
         *(uint64_t *)(lVar9 + 0x2e40) = 0;
       }
       piVar2 = (int *)(lVar9 + 0x2e48);
-      lVar8 = *(longlong *)(lVar9 + 0x2e50);
+      lVar8 = *(int64_t *)(lVar9 + 0x2e50);
       if ((lVar8 != 0) && (1 < *piVar2 + -1)) {
         if (*(code **)(SYSTEM_DATA_MANAGER_A + 0x100) != (code *)0x0) {
           puStack_40 = (void *)0x18012d0e1;
           (**(code **)(SYSTEM_DATA_MANAGER_A + 0x100))(*(uint64_t *)(SYSTEM_DATA_MANAGER_A + 0x108),lVar8);
-          lVar8 = *(longlong *)(lVar9 + 0x2e50);
+          lVar8 = *(int64_t *)(lVar9 + 0x2e50);
         }
         lVar9 = SYSTEM_DATA_MANAGER_A;
         if (lVar8 != 0) {
@@ -826,8 +826,8 @@ void process_entity_boundary_box(void)
       lVar9 = SYSTEM_DATA_MANAGER_A;
       *pcVar1 = '\0';
     }
-    if (((*(longlong *)(lVar11 + 0x408) != 0) && ((*(byte *)(lVar11 + 0x432) & 2) != 0)) &&
-       (lVar8 = *(longlong *)(*(longlong *)(lVar11 + 0x408) + 0x68), lVar8 != 0)) {
+    if (((*(int64_t *)(lVar11 + 0x408) != 0) && ((*(byte *)(lVar11 + 0x432) & 2) != 0)) &&
+       (lVar8 = *(int64_t *)(*(int64_t *)(lVar11 + 0x408) + 0x68), lVar8 != 0)) {
       fVar12 = *(float *)(lVar11 + 0x11c);
       fVar13 = *(float *)(lVar11 + 0x74);
       *(float *)(lVar8 + 0x118) =
@@ -839,22 +839,22 @@ void process_entity_boundary_box(void)
       *(int *)(lVar5 + 0x1bc0) = *(int *)(lVar5 + 0x1bc0) + -1;
     }
     if (*(int *)(lVar5 + 0x1ad0) != 0) {
-      lVar10 = *(longlong *)
-                (*(longlong *)(lVar5 + 0x1ad8) + -8 + (longlong)*(int *)(lVar5 + 0x1ad0) * 8);
+      lVar10 = *(int64_t *)
+                (*(int64_t *)(lVar5 + 0x1ad8) + -8 + (int64_t)*(int *)(lVar5 + 0x1ad0) * 8);
     }
-    *(longlong *)(lVar9 + 0x1af8) = lVar10;
+    *(int64_t *)(lVar9 + 0x1af8) = lVar10;
     if (lVar10 != 0) {
       fVar12 = *(float *)(lVar9 + 0x19fc) * *(float *)(lVar10 + 0x2d8) * *(float *)(lVar10 + 0x2dc);
       *(float *)(lVar9 + 0x1a10) = fVar12;
       *(float *)(lVar9 + 0x19f8) = fVar12;
     }
-    if (*(longlong *)(lVar5 + 0x1af8) != 0) {
-      lVar11 = *(longlong *)(*(longlong *)(lVar5 + 0x1af8) + 0x28);
+    if (*(int64_t *)(lVar5 + 0x1af8) != 0) {
+      lVar11 = *(int64_t *)(*(int64_t *)(lVar5 + 0x1af8) + 0x28);
       if (lVar11 != 0) {
         *(int32_t *)(lVar11 + 0x54) = *(int32_t *)(lVar9 + 0x1a90);
       }
-      if (((*(longlong *)(lVar9 + 0x1c78) != lVar11) &&
-          (*(longlong *)(lVar9 + 0x1c78) = lVar11, lVar11 != 0)) &&
+      if (((*(int64_t *)(lVar9 + 0x1c78) != lVar11) &&
+          (*(int64_t *)(lVar9 + 0x1c78) = lVar11, lVar11 != 0)) &&
          (*(code **)(lVar9 + 0x15c0) != (code *)0x0)) {
                     // WARNING: Could not recover jumptable at 0x00018012d226. Too many branches
                     // WARNING: Treating indirect jump as call
@@ -881,18 +881,18 @@ void update_entity_position_bounds(uint64_t position_data)
   float fVar1;
   float fVar2;
   int iVar3;
-  longlong lVar4;
-  longlong lVar5;
+  int64_t lVar4;
+  int64_t lVar5;
   int32_t uVar6;
   int32_t uVar7;
   int32_t uVar8;
   int32_t uVar9;
   char cVar10;
-  ulonglong in_RAX;
-  longlong unaff_RBX;
-  longlong unaff_RBP;
-  longlong unaff_RDI;
-  longlong lVar11;
+  uint64_t in_RAX;
+  int64_t unaff_RBX;
+  int64_t unaff_RBP;
+  int64_t unaff_RDI;
+  int64_t lVar11;
   float fVar12;
   float fVar13;
   
@@ -908,7 +908,7 @@ void update_entity_position_bounds(uint64_t position_data)
     fVar12 = 4.0;
   }
   FUN_18012cfe0();
-  lVar4 = *(longlong *)(unaff_RDI + 0x1af8);
+  lVar4 = *(int64_t *)(unaff_RDI + 0x1af8);
   fVar1 = *(float *)(lVar4 + 0x100);
   *(float *)(unaff_RBP + -0x50) = fVar1;
   fVar13 = fVar1 + fVar13;
@@ -925,13 +925,13 @@ void update_entity_position_bounds(uint64_t position_data)
     uVar7 = *(int32_t *)(unaff_RBP + -0x4c);
     uVar8 = *(int32_t *)(unaff_RBP + -0x48);
     uVar9 = *(int32_t *)(unaff_RBP + -0x44);
-    lVar11 = *(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1af8);
+    lVar11 = *(int64_t *)(SYSTEM_DATA_MANAGER_A + 0x1af8);
     *(uint64_t *)(lVar11 + 0x144) = 0;
     *(int32_t *)(lVar11 + 0x14c) = uVar6;
     *(int32_t *)(lVar11 + 0x150) = uVar7;
     *(int32_t *)(lVar11 + 0x154) = uVar8;
     *(int32_t *)(lVar11 + 0x158) = uVar9;
-    lVar5 = *(longlong *)(lVar4 + 0x1af8);
+    lVar5 = *(int64_t *)(lVar4 + 0x1af8);
     if ((((*(float *)(lVar5 + 0x22c) <= fVar12 && fVar12 != *(float *)(lVar5 + 0x22c)) &&
          (fVar2 < *(float *)(lVar5 + 0x234))) &&
         ((*(float *)(lVar5 + 0x228) <= fVar13 && fVar13 != *(float *)(lVar5 + 0x228) &&
@@ -947,7 +947,7 @@ void update_entity_position_bounds(uint64_t position_data)
     if (*(int *)(unaff_RBX + 0x88) == *(int *)(SYSTEM_DATA_MANAGER_A + 0x1ca0)) {
       FUN_1801230e0(unaff_RBP + -0x50,1);
     }
-    if ((*(int *)(unaff_RBX + 0x174) == 0) && (unaff_RBX == *(longlong *)(unaff_RDI + 0x1c98))) {
+    if ((*(int *)(unaff_RBX + 0x174) == 0) && (unaff_RBX == *(int64_t *)(unaff_RDI + 0x1c98))) {
       iVar3 = *(int *)(SYSTEM_DATA_MANAGER_A + 0x1ca0);
       *(float *)(unaff_RBP + -0x48) = *(float *)(unaff_RBP + -0x48) + 2.0;
       *(float *)(unaff_RBP + -0x44) = *(float *)(unaff_RBP + -0x44) + 2.0;

@@ -112,29 +112,29 @@ typedef struct {
  * - 实现内存对齐优化
  * - 支持SIMD指令集优化
  */
-void DataProcessor_AdvancedInterpolator(longlong param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
+void DataProcessor_AdvancedInterpolator(int64_t param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
     bool bVar1;
     int iVar2;
     int iVar3;
     uint uVar4;
     float *pfVar5;
-    ulonglong uVar6;
+    uint64_t uVar6;
     uint uVar7;
-    longlong lVar8;
+    int64_t lVar8;
     int iVar9;
-    ulonglong uVar10;
+    uint64_t uVar10;
     int iVar11;
     float fVar12;
     float fVar13;
     float fVar14;
-    longlong lStack_30;
-    longlong lStack_28;
+    int64_t lStack_30;
+    int64_t lStack_28;
     uint64_t uStack_20;
     int32_t uStack_18;
     
     // 检查数据结构状态
-    if (*(longlong *)(param_1 + 8) == *(longlong *)(param_1 + 0x10)) {
+    if (*(int64_t *)(param_1 + 8) == *(int64_t *)(param_1 + 0x10)) {
         // 执行简单插值计算
         float base_value = *(float *)(param_1 + 0x28) * *(float *)(param_1 + 0x2c);
         
@@ -202,19 +202,19 @@ void DataProcessor_AdvancedInterpolator(longlong param_1, uint64_t param_2, uint
                         iVar2 = iVar2 + 1;
                     }
                     uVar4 = (iVar2 >> 1) + iVar9;
-                    bVar1 = *(float *)(lStack_30 + (longlong)(int)uVar4 * 8) < fVar13;
+                    bVar1 = *(float *)(lStack_30 + (int64_t)(int)uVar4 * 8) < fVar13;
                     uVar7 = uVar4;
                     if (bVar1) {
                         uVar7 = (uint)uVar6;
                     }
-                    uVar6 = (ulonglong)uVar7;
+                    uVar6 = (uint64_t)uVar7;
                     if (bVar1) {
                         iVar9 = uVar4 + 1;
                     }
                 } while (iVar9 < (int)uVar7);
             }
             
-            uVar6 = (ulonglong)iVar9;
+            uVar6 = (uint64_t)iVar9;
             if (uVar6 == uVar10) {
                 fVar13 = *(float *)(lStack_28 + -4);
             }
@@ -241,19 +241,19 @@ void DataProcessor_AdvancedInterpolator(longlong param_1, uint64_t param_2, uint
                             iVar2 = iVar2 + 1;
                         }
                         uVar4 = (iVar2 >> 1) + iVar9;
-                        bVar1 = *(float *)(lStack_30 + (longlong)(int)uVar4 * 8) < (float)(iVar11 + offset);
+                        bVar1 = *(float *)(lStack_30 + (int64_t)(int)uVar4 * 8) < (float)(iVar11 + offset);
                         uVar7 = uVar4;
                         if (bVar1) {
                             uVar7 = (uint)uVar6;
                         }
-                        uVar6 = (ulonglong)uVar7;
+                        uVar6 = (uint64_t)uVar7;
                         if (bVar1) {
                             iVar9 = uVar4 + 1;
                         }
                     } while (iVar9 < (int)uVar7);
                 }
                 
-                uVar6 = (ulonglong)iVar9;
+                uVar6 = (uint64_t)iVar9;
                 if (uVar6 == uVar10) {
                     fVar13 = *(float *)(lStack_28 + -4);
                 }
@@ -333,18 +333,18 @@ void DataProcessor_AdvancedInterpolator(longlong param_1, uint64_t param_2, uint
  * - 支持内存对齐优化
  * - 包含完整的错误处理机制
  */
-uint64_t *DataProcessor_StructureManager(uint64_t *param_1, longlong param_2, uint64_t param_3, uint64_t param_4)
+uint64_t *DataProcessor_StructureManager(uint64_t *param_1, int64_t param_2, uint64_t param_3, uint64_t param_4)
 {
     uint64_t *puVar1;
     uint uVar2;
     uint64_t uVar3;
-    longlong lVar4;
+    int64_t lVar4;
     uint64_t *puVar5;
-    longlong lVar6;
+    int64_t lVar6;
     
     // 初始化数据结构
     *param_1 = &unknown_var_7440_ptr;
-    lVar6 = *(longlong *)(param_2 + 0x10) - *(longlong *)(param_2 + 8) >> 5;
+    lVar6 = *(int64_t *)(param_2 + 0x10) - *(int64_t *)(param_2 + 8) >> 5;
     uVar2 = *(uint *)(param_2 + 0x20);
     *(uint *)(param_1 + 4) = uVar2;
     
@@ -361,19 +361,19 @@ uint64_t *DataProcessor_StructureManager(uint64_t *param_1, longlong param_2, ui
     param_1[2] = lVar4;
     param_1[3] = lVar6 * ARRAY_CHUNK_SIZE + lVar4;
     puVar5 = (uint64_t *)param_1[1];
-    lVar6 = *(longlong *)(param_2 + 0x10) - *(longlong *)(param_2 + 8) >> 5;
+    lVar6 = *(int64_t *)(param_2 + 0x10) - *(int64_t *)(param_2 + 8) >> 5;
     
     // 执行数据复制操作
     if (0 < lVar6) {
-        lVar4 = *(longlong *)(param_2 + 8) - (longlong)puVar5;
+        lVar4 = *(int64_t *)(param_2 + 8) - (int64_t)puVar5;
         do {
             // 复制数据块到目标位置
-            puVar1 = (uint64_t *)(lVar4 + (longlong)puVar5);
+            puVar1 = (uint64_t *)(lVar4 + (int64_t)puVar5);
             uVar3 = puVar1[1];
             *puVar5 = *puVar1;
             puVar5[1] = uVar3;
             
-            puVar1 = (uint64_t *)(lVar4 + 0x10 + (longlong)puVar5);
+            puVar1 = (uint64_t *)(lVar4 + 0x10 + (int64_t)puVar5);
             uVar3 = puVar1[1];
             puVar5[2] = *puVar1;
             puVar5[3] = uVar3;
@@ -409,7 +409,7 @@ uint64_t *DataProcessor_StructureManager(uint64_t *param_1, longlong param_2, ui
  * - 支持内存池管理
  * - 包含完整的错误处理机制
  */
-uint64_t *DataProcessor_MemoryManager(uint64_t *param_1, ulonglong param_2, uint64_t param_3, uint64_t param_4)
+uint64_t *DataProcessor_MemoryManager(uint64_t *param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
     uint64_t uVar1;
     
