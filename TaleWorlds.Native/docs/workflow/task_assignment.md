@@ -52,7 +52,7 @@
 - [-] `01_initialization_part020.c` - 进行中 - 负责人: Claude - 预计完成时间: 2025-08-28
 - [-] `01_initialization_part021.c` - 进行中 - 负责人: Claude Code - 预计完成时间: 2025-08-28
 - [-] `01_initialization_part022.c` - 进行中 - 负责人: Claude Code - 预计完成时间: 2025-08-28
-- [ ] `01_initialization_part023.c` - 未开始 - 负责人: - 预计完成时间: -
+- [-] `01_initialization_part023.c` - 进行中 - 负责人: Claude - 预计完成时间: 2025-08-28
 - [ ] `01_initialization_part024.c` - 未开始 - 负责人: - 预计完成时间: -
 - [ ] `01_initialization_part025.c` - 未开始 - 负责人: - 预计完成时间: -
 - [ ] `01_initialization_part026.c` - 未开始 - 负责人: - 预计完成时间: -
@@ -102,8 +102,8 @@
 ---
 
 ### 模块02: 核心引擎 (336个文件)
-- [-] `02_core_engine_part001.c` - 进行中 - 负责人: Claude Code - 预计完成时间: 2025-08-28
-- [ ] `02_core_engine_part002.c` - 未开始 - 负责人: - 预计完成时间: -
+- [x] `02_core_engine_part001.c` - 已完成 - 负责人: Claude Code - 完成时间: 2025-08-28
+- [-] `02_core_engine_part002.c` - 进行中 - 负责人: Claude - 预计完成时间: 2025-08-28
 - [ ] `02_core_engine_part003.c` - 未开始 - 负责人: - 预计完成时间: -
 - [ ] `02_core_engine_part004.c` - 未开始 - 负责人: - 预计完成时间: -
 - [ ] `02_core_engine_part005.c` - 未开始 - 负责人: - 预计完成时间: -
