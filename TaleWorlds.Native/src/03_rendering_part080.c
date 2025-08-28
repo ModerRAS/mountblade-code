@@ -475,22 +475,24 @@ void rendering_system_finalize_render_process(void)
 
 
 
-// 函数: void FUN_1803109a0(undefined4 param_1,undefined1 param_2,char param_3)
-void FUN_1803109a0(undefined4 param_1,undefined1 param_2,char param_3)
+// 函数: void rendering_system_set_render_parameter(undefined4 param_1,undefined1 param_2,char param_3)
+// 渲染系统参数设置函数
+// 设置渲染参数，包括透明度、混合模式等渲染状态
+void rendering_system_set_render_parameter(undefined4 param_1,undefined1 param_2,char param_3)
 
 {
-  undefined1 auStack_18 [4];
-  undefined1 uStack_14;
-  undefined8 uStack_10;
+  undefined1 render_stack[4];
+  undefined1 parameter_type;
+  undefined8 parameter_value;
   
-  uStack_14 = param_2;
+  parameter_type = param_2;
   if (param_3 != '\0') {
-    uStack_10 = 0x3f800000;
-    FUN_180310a00(0x3f800000,auStack_18);
+    parameter_value = 0x3f800000;  // 1.0f - 完全不透明
+    rendering_system_execute_render_command(0x3f800000,render_stack);
     return;
   }
-  uStack_10 = 0;
-  FUN_180310a00(param_1,auStack_18);
+  parameter_value = 0;  // 0.0f - 完全透明
+  rendering_system_execute_render_command(param_1,render_stack);
   return;
 }
 
