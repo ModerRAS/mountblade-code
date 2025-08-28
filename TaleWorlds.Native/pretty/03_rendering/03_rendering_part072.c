@@ -593,199 +593,284 @@ void rendering_system_interpolation_handler(
     *(uint64_t *)(secondary_context + 0x58) = transform_data[6];
     *(uint64_t *)(secondary_context + 0x60) = temp_data;
 }
-
-
-
-
-
-// 函数: void FUN_18030a08b(undefined8 param_1,longlong param_2,undefined8 *param_3)
-void FUN_18030a08b(undefined8 param_1,longlong param_2,undefined8 *param_3)
-
-{
-  undefined8 uVar1;
-  
-  func_0x00018030a230();
-  *(undefined8 *)(param_2 + 0x90) = *(undefined8 *)(param_2 + 0xd0);
-  *(undefined8 *)(param_2 + 0x98) = *(undefined8 *)(param_2 + 0xd8);
-  *(undefined8 *)(param_2 + 0xa0) = *(undefined8 *)(param_2 + 0xe0);
-  *(undefined8 *)(param_2 + 0xa8) = *(undefined8 *)(param_2 + 0xe8);
-  *(undefined8 *)(param_2 + 0xb0) = *(undefined8 *)(param_2 + 0xf0);
-  *(undefined8 *)(param_2 + 0xb8) = *(undefined8 *)(param_2 + 0xf8);
-  *(undefined8 *)(param_2 + 0xc0) = *(undefined8 *)(param_2 + 0x100);
-  *(undefined8 *)(param_2 + 200) = *(undefined8 *)(param_2 + 0x108);
-  uVar1 = param_3[1];
-  *(undefined8 *)(param_2 + 0x28) = *param_3;
-  *(undefined8 *)(param_2 + 0x30) = uVar1;
-  uVar1 = param_3[3];
-  *(undefined8 *)(param_2 + 0x38) = param_3[2];
-  *(undefined8 *)(param_2 + 0x40) = uVar1;
-  uVar1 = param_3[5];
-  *(undefined8 *)(param_2 + 0x48) = param_3[4];
-  *(undefined8 *)(param_2 + 0x50) = uVar1;
-  uVar1 = param_3[7];
-  *(undefined8 *)(param_2 + 0x58) = param_3[6];
-  *(undefined8 *)(param_2 + 0x60) = uVar1;
-  return;
+/**
+ * 渲染系统批处理器
+ * 
+ * 执行渲染批处理操作，同步渲染状态和数据。
+ * 
+ * @param unused_param 未使用参数
+ * @param render_context 渲染上下文指针
+ * @param transform_data 变换数据数组
+ */
+void rendering_system_batch_processor(
+    uint64_t unused_param, 
+    longlong render_context, 
+    uint64_t *transform_data
+) {
+    uint64_t temp_data;
+    
+    func_0x00018030a230();
+    
+    // 同步渲染状态数据
+    *(uint64_t *)(render_context + 0x90) = *(uint64_t *)(render_context + 0xd0);
+    *(uint64_t *)(render_context + 0x98) = *(uint64_t *)(render_context + 0xd8);
+    *(uint64_t *)(render_context + 0xa0) = *(uint64_t *)(render_context + 0xe0);
+    *(uint64_t *)(render_context + 0xa8) = *(uint64_t *)(render_context + 0xe8);
+    *(uint64_t *)(render_context + 0xb0) = *(uint64_t *)(render_context + 0xf0);
+    *(uint64_t *)(render_context + 0xb8) = *(uint64_t *)(render_context + 0xf8);
+    *(uint64_t *)(render_context + 0xc0) = *(uint64_t *)(render_context + 0x100);
+    *(uint64_t *)(render_context + 200) = *(uint64_t *)(render_context + 0x108);
+    
+    // 应用变换数据
+    temp_data = transform_data[1];
+    *(uint64_t *)(render_context + 0x28) = *transform_data;
+    *(uint64_t *)(render_context + 0x30) = temp_data;
+    temp_data = transform_data[3];
+    *(uint64_t *)(render_context + 0x38) = transform_data[2];
+    *(uint64_t *)(render_context + 0x40) = temp_data;
+    temp_data = transform_data[5];
+    *(uint64_t *)(render_context + 0x48) = transform_data[4];
+    *(uint64_t *)(render_context + 0x50) = temp_data;
+    temp_data = transform_data[7];
+    *(uint64_t *)(render_context + 0x58) = transform_data[6];
+    *(uint64_t *)(render_context + 0x60) = temp_data;
+}
+/**
+ * 渲染系统数据变换器
+ * 
+ * 执行渲染数据的变换操作，更新变换矩阵和位置数据。
+ * 
+ * @param unused_param 未使用参数
+ * @param render_context 渲染上下文指针
+ * @param transform_data 变换数据数组
+ */
+void rendering_system_data_transformer(
+    uint64_t unused_param, 
+    longlong render_context, 
+    uint64_t *transform_data
+) {
+    uint64_t temp_data;
+    
+    // 应用变换数据到渲染上下文
+    temp_data = transform_data[1];
+    *(uint64_t *)(render_context + 0x28) = *transform_data;
+    *(uint64_t *)(render_context + 0x30) = temp_data;
+    temp_data = transform_data[3];
+    *(uint64_t *)(render_context + 0x38) = transform_data[2];
+    *(uint64_t *)(render_context + 0x40) = temp_data;
+    temp_data = transform_data[5];
+    *(uint64_t *)(render_context + 0x48) = transform_data[4];
+    *(uint64_t *)(render_context + 0x50) = temp_data;
+    temp_data = transform_data[7];
+    *(uint64_t *)(render_context + 0x58) = transform_data[6];
+    *(uint64_t *)(render_context + 0x60) = temp_data;
 }
 
 
 
-
-
-// 函数: void FUN_18030a0da(undefined8 param_1,longlong param_2,undefined8 *param_3)
-void FUN_18030a0da(undefined8 param_1,longlong param_2,undefined8 *param_3)
-
-{
-  undefined8 uVar1;
-  
-  uVar1 = param_3[1];
-  *(undefined8 *)(param_2 + 0x28) = *param_3;
-  *(undefined8 *)(param_2 + 0x30) = uVar1;
-  uVar1 = param_3[3];
-  *(undefined8 *)(param_2 + 0x38) = param_3[2];
-  *(undefined8 *)(param_2 + 0x40) = uVar1;
-  uVar1 = param_3[5];
-  *(undefined8 *)(param_2 + 0x48) = param_3[4];
-  *(undefined8 *)(param_2 + 0x50) = uVar1;
-  uVar1 = param_3[7];
-  *(undefined8 *)(param_2 + 0x58) = param_3[6];
-  *(undefined8 *)(param_2 + 0x60) = uVar1;
-  return;
+/**
+ * 渲染系统资源分配器
+ * 
+ * 分配和管理渲染系统资源，包括内存分配、锁管理和资源清理。
+ * 
+ * @param resource_handle 资源句柄指针
+ * @param allocation_flags 分配标志
+ * @param resource_param1 资源参数1
+ * @param resource_param2 资源参数2
+ * @return 分配的资源句柄
+ */
+uint64_t *rendering_system_resource_allocator(
+    uint64_t *resource_handle, 
+    uint64_t allocation_flags, 
+    uint64_t resource_param1, 
+    uint64_t resource_param2
+) {
+    longlong lock_context;
+    longlong resource_manager;
+    longlong lock_handle;
+    int allocation_params[2];
+    uint64_t *temp_ptr;
+    uint64_t memory_flags;
+    longlong cleanup_context;
+    
+    memory_flags = RENDERING_MEMORY_FLAG_EXCLUSIVE;
+    *resource_handle = &rendering_resource_table;
+    resource_manager = global_resource_manager;
+    allocation_params[0] = *(int *)(resource_handle + 2);
+    lock_handle = (longlong)allocation_params[0];
+    lock_context = global_resource_manager + RENDERING_LOCK_OFFSET;
+    cleanup_context = lock_context;
+    
+    // 获取独占锁
+    AcquireSRWLockExclusive(lock_context);
+    *(uint8_t *)(resource_manager + 1) = 1;
+    *(uint8_t *)(*(longlong *)(resource_manager + RENDERING_RESOURCE_TABLE_OFFSET) + lock_handle * RENDERING_ENTRY_SIZE) = 0;
+    
+    // 初始化资源
+    FUN_1800571e0(
+        resource_manager + RENDERING_INIT_OFFSET, 
+        allocation_params, 
+        resource_param1, 
+        resource_param2, 
+        memory_flags, 
+        cleanup_context, 
+        1
+    );
+    
+    *(uint32_t *)(resource_handle + 2) = RENDERING_INVALID_HANDLE;
+    ReleaseSRWLockExclusive(lock_context);
+    
+    // 清理资源
+    if ((longlong *)resource_handle[0x30] != (longlong *)0x0) {
+        (**(code **)(*(longlong *)resource_handle[0x30] + RENDERING_CLEANUP_OFFSET))();
+    }
+    
+    // 重置资源句柄
+    resource_handle[0x1c] = &rendering_null_pointer;
+    resource_handle[7] = &rendering_null_pointer;
+    temp_ptr = resource_handle + 3;
+    FUN_1800f89b0();
+    *resource_handle = &rendering_cleanup_sequence1;
+    *resource_handle = &rendering_cleanup_sequence2;
+    
+    // 根据标志决定是否释放内存
+    if ((allocation_flags & RENDERING_FLAG_FREE_MEMORY) != 0) {
+        free(resource_handle, RENDERING_RESOURCE_SIZE);
+    }
+    
+    return resource_handle;
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-undefined8 *
-FUN_18030a110(undefined8 *param_1,ulonglong param_2,undefined8 param_3,undefined8 param_4)
-
-{
-  longlong lVar1;
-  longlong lVar2;
-  longlong lVar3;
-  int aiStackX_10 [2];
-  undefined8 *puStackX_18;
-  undefined8 uVar4;
-  longlong lVar5;
-  
-  uVar4 = 0xfffffffffffffffe;
-  *param_1 = &UNK_180a1a368;
-  lVar2 = _DAT_180c8a980;
-  aiStackX_10[0] = *(int *)(param_1 + 2);
-  lVar3 = (longlong)aiStackX_10[0];
-  lVar1 = _DAT_180c8a980 + 0x2b8;
-  lVar5 = lVar1;
-  AcquireSRWLockExclusive(lVar1);
-  *(undefined1 *)(lVar2 + 1) = 1;
-  *(undefined1 *)(*(longlong *)(lVar2 + 0x180) + lVar3 * 0x30) = 0;
-  FUN_1800571e0(lVar2 + 0xe0,aiStackX_10,param_3,param_4,uVar4,lVar5,1);
-  *(undefined4 *)(param_1 + 2) = 0xffffffff;
-  ReleaseSRWLockExclusive(lVar1);
-  if ((longlong *)param_1[0x30] != (longlong *)0x0) {
-    (**(code **)(*(longlong *)param_1[0x30] + 0x38))();
-  }
-  param_1[0x1c] = &UNK_18098bcb0;
-  param_1[7] = &UNK_18098bcb0;
-  puStackX_18 = param_1 + 3;
-  FUN_1800f89b0();
-  *param_1 = &UNK_180a21720;
-  *param_1 = &UNK_180a21690;
-  if ((param_2 & 1) != 0) {
-    free(param_1,0x188);
-  }
-  return param_1;
-}
-
-
-
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-int * FUN_18030a2a0(int *param_1,int *param_2,int param_3)
-
-{
-  uint uVar1;
-  longlong *plVar2;
-  longlong *plVar3;
-  longlong lVar4;
-  int iVar5;
-  int iVar6;
-  undefined8 *puVar7;
-  uint uVar8;
-  undefined8 uVar9;
-  
-  uVar9 = 0xfffffffffffffffe;
-  uVar8 = param_3 + 0xffU & 0xffffff00;
-  iVar6 = _Mtx_lock(param_1 + 6);
-  if (iVar6 != 0) {
-    __Throw_C_error_std__YAXH_Z(iVar6);
-  }
-  while( true ) {
-    plVar2 = *(longlong **)(param_1 + 2);
-    for (plVar3 = plVar2; plVar3 != (longlong *)0x0; plVar3 = (longlong *)*plVar3) {
-      uVar1 = *(uint *)(plVar3 + 2);
-      if ((int)uVar8 <= (int)uVar1) {
-        iVar6 = *(int *)((longlong)plVar3 + 0x14);
-        if (uVar1 == uVar8) {
-          if (plVar3 == plVar2) {
-            *(longlong *)(param_1 + 2) = *plVar2;
-          }
-          if (plVar3 == *(longlong **)(param_1 + 4)) {
-            *(longlong *)(param_1 + 4) = (*(longlong **)(param_1 + 4))[1];
-          }
-          if ((longlong *)plVar3[1] != (longlong *)0x0) {
-            *(longlong *)plVar3[1] = *plVar3;
-          }
-          if (*plVar3 != 0) {
-            *(longlong *)(*plVar3 + 8) = plVar3[1];
-          }
-                    // WARNING: Subroutine does not return
-          FUN_18064e900(plVar3);
+/**
+ * 渲染系统内存管理器
+ * 
+ * 管理渲染系统的内存分配和释放，包括内存池管理和碎片整理。
+ * 
+ * @param memory_pool 内存池指针
+ * @param allocation_result 分配结果指针
+ * @param allocation_size 分配大小
+ * @return 分配结果指针
+ */
+int *rendering_system_memory_manager(
+    int *memory_pool, 
+    int *allocation_result, 
+    int allocation_size
+) {
+    uint block_size;
+    longlong *current_block;
+    longlong *next_block;
+    longlong pool_tail;
+    int pool_capacity;
+    int lock_status;
+    int new_capacity;
+    uint64_t *new_block;
+    uint aligned_size;
+    uint64_t memory_flags;
+    
+    memory_flags = RENDERING_MEMORY_FLAG_EXCLUSIVE;
+    aligned_size = allocation_size + 0xffU & 0xffffff00;
+    
+    // 获取内存池锁
+    lock_status = _Mtx_lock(memory_pool + 6);
+    if (lock_status != 0) {
+        __Throw_C_error_std__YAXH_Z(lock_status);
+    }
+    
+    while (true) {
+        current_block = *(longlong **)(memory_pool + 2);
+        
+        // 遍历内存块链表
+        for (next_block = current_block; next_block != (longlong *)0x0; next_block = (longlong *)*next_block) {
+            block_size = *(uint *)(next_block + 2);
+            
+            if ((int)aligned_size <= (int)block_size) {
+                lock_status = *(int *)((longlong)next_block + 0x14);
+                
+                // 如果找到精确匹配的块
+                if (block_size == aligned_size) {
+                    // 从链表中移除该块
+                    if (next_block == current_block) {
+                        *(longlong *)(memory_pool + 2) = *current_block;
+                    }
+                    if (next_block == *(longlong **)(memory_pool + 4)) {
+                        *(longlong *)(memory_pool + 4) = (*(longlong **)(memory_pool + 4))[1];
+                    }
+                    if ((longlong *)next_block[1] != (longlong *)0x0) {
+                        *(longlong *)next_block[1] = *next_block;
+                    }
+                    if (*next_block != 0) {
+                        *(longlong *)(*next_block + 8) = next_block[1];
+                    }
+                    
+                    // 释放内存块
+                    FUN_18064e900(next_block);
+                }
+                
+                // 分割内存块
+                *(uint *)((longlong)next_block + 0x14) = lock_status + aligned_size;
+                *(uint *)(next_block + 2) = block_size - aligned_size;
+                *allocation_result = lock_status;
+                allocation_result[1] = aligned_size;
+                goto unlock_and_return;
+            }
         }
-        *(uint *)((longlong)plVar3 + 0x14) = iVar6 + uVar8;
-        *(uint *)(plVar3 + 2) = uVar1 - uVar8;
-        *param_2 = iVar6;
-        param_2[1] = uVar8;
-        goto LAB_18030a42d;
-      }
+        
+        // 如果没有找到合适的块且内存池未满，则扩展内存池
+        if ((char)memory_pool[1] == '\0') break;
+        
+        lock_status = *memory_pool;
+        new_capacity = lock_status * 2;
+        pool_tail = *(longlong *)(memory_pool + 4);
+        
+        if ((pool_tail == 0) || (*(int *)(pool_tail + 0x14) + *(int *)(pool_tail + 0x10) != lock_status)) {
+            // 分配新的内存块
+            new_block = (uint64_t *)FUN_18062b1e0(
+                global_memory_allocator, 
+                RENDERING_BLOCK_SIZE, 
+                8, 
+                CONCAT71((uint7)(uint3)((uint)lock_status >> 8), 3),
+                memory_flags
+            );
+            
+            *new_block = 0;
+            new_block[1] = 0;
+            *(uint32_t *)(new_block + 2) = 0;
+            *(uint32_t *)((longlong)new_block + 0x14) = RENDERING_MAX_BLOCK_SIZE;
+            *(int *)((longlong)new_block + 0x14) = *memory_pool;
+            *(int *)(new_block + 2) = new_capacity - *memory_pool;
+            new_block[1] = *(uint64_t *)(memory_pool + 4);
+            
+            if (*(uint64_t **)(memory_pool + 4) != (uint64_t *)0x0) {
+                **(uint64_t **)(memory_pool + 4) = new_block;
+            }
+            
+            if ((*(longlong *)(memory_pool + 2) == 0) && (*(longlong *)(memory_pool + 4) == 0)) {
+                *(uint64_t **)(memory_pool + 2) = new_block;
+            }
+            
+            *(uint64_t **)(memory_pool + 4) = new_block;
+            *memory_pool = new_capacity;
+        }
+        else {
+            // 扩展现有内存块
+            *(int *)(pool_tail + 0x10) = (*(int *)(pool_tail + 0x10) - lock_status) + new_capacity;
+            *memory_pool = new_capacity;
+        }
     }
-    if ((char)param_1[1] == '\0') break;
-    iVar6 = *param_1;
-    iVar5 = iVar6 * 2;
-    lVar4 = *(longlong *)(param_1 + 4);
-    if ((lVar4 == 0) || (*(int *)(lVar4 + 0x14) + *(int *)(lVar4 + 0x10) != iVar6)) {
-      puVar7 = (undefined8 *)
-               FUN_18062b1e0(_DAT_180c8ed18,0x18,8,CONCAT71((uint7)(uint3)((uint)iVar6 >> 8),3),
-                             uVar9);
-      *puVar7 = 0;
-      puVar7[1] = 0;
-      *(undefined4 *)(puVar7 + 2) = 0;
-      *(undefined4 *)((longlong)puVar7 + 0x14) = 0xffffffff;
-      *(int *)((longlong)puVar7 + 0x14) = *param_1;
-      *(int *)(puVar7 + 2) = iVar5 - *param_1;
-      puVar7[1] = *(undefined8 *)(param_1 + 4);
-      if (*(undefined8 **)(param_1 + 4) != (undefined8 *)0x0) {
-        **(undefined8 **)(param_1 + 4) = puVar7;
-      }
-      if ((*(longlong *)(param_1 + 2) == 0) && (*(longlong *)(param_1 + 4) == 0)) {
-        *(undefined8 **)(param_1 + 2) = puVar7;
-      }
-      *(undefined8 **)(param_1 + 4) = puVar7;
-      *param_1 = iVar5;
+    
+    // 没有找到可用的内存块
+    allocation_result[0] = -1;
+    allocation_result[1] = -1;
+    
+unlock_and_return:
+    lock_status = _Mtx_unlock(memory_pool + 6);
+    if (lock_status != 0) {
+        __Throw_C_error_std__YAXH_Z(lock_status);
     }
-    else {
-      *(int *)(lVar4 + 0x10) = (*(int *)(lVar4 + 0x10) - iVar6) + iVar5;
-      *param_1 = iVar5;
-    }
-  }
-  param_2[0] = -1;
-  param_2[1] = -1;
-LAB_18030a42d:
-  iVar6 = _Mtx_unlock(param_1 + 6);
-  if (iVar6 != 0) {
-    __Throw_C_error_std__YAXH_Z(iVar6);
-  }
-  return param_2;
+    
+    return allocation_result;
 }
 
 

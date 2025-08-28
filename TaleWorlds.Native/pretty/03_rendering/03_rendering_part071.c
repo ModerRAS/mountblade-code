@@ -664,48 +664,59 @@ void rendering_system_optimize_render_data(longlong *param_1, longlong param_2, 
             original_param = param_4;
         } while (loop_counter < param_3);
     }
-  if (lVar9 == param_3) {
-    uVar7 = (int)param_1[1] + -1 + (int)lVar9;
-    uVar5 = uVar7 >> 0xb;
-    uVar8 = (int)param_1[1] + (int)param_4;
-    uVar6 = uVar8 >> 0xb;
-    *(undefined8 *)
-     (*(longlong *)(*param_1 + 8 + (ulonglong)uVar6 * 8) + (ulonglong)(uVar8 + uVar6 * -0x800) * 8)
-         = *(undefined8 *)
-            (*(longlong *)(*param_1 + 8 + (ulonglong)uVar5 * 8) +
-            (ulonglong)(uVar7 + uVar5 * -0x800) * 8);
-    param_4 = lVar9 + -1;
-  }
-  lVar9 = *param_1;
-  iVar1 = (int)param_1[1];
-  while (iVar3 = (int)param_4, param_2 < param_4) {
-    param_4 = param_4 + -1 >> 1;
-    plStackX_18 = (longlong *)*param_5;
-    if (plStackX_18 != (longlong *)0x0) {
-      (**(code **)(*plStackX_18 + 0x28))();
+    // 边界条件处理
+    if (loop_counter == param_3) {
+        data_index_1 = (int)param_1[1] + -1 + (int)loop_counter;
+        hash_index_1 = data_index_1 >> RENDERING_DATA_HASH_SHIFT;
+        data_index_2 = (int)param_1[1] + (int)param_4;
+        hash_index_2 = data_index_2 >> RENDERING_DATA_HASH_SHIFT;
+        *(undefined8 *)
+         (*(longlong *)(*param_1 + 8 + (ulonglong)hash_index_2 * 8) + (ulonglong)(data_index_2 + hash_index_2 * -RENDERING_DATA_HASH_BLOCK_SIZE) * 8)
+             = *(undefined8 *)
+                (*(longlong)(*param_1 + 8 + (ulonglong)hash_index_1 * 8) +
+                (ulonglong)(data_index_1 + hash_index_1 * -RENDERING_DATA_HASH_BLOCK_SIZE) * 8);
+        param_4 = loop_counter + -1;
     }
-    uVar6 = (int)param_4 + iVar1;
-    uVar5 = uVar6 >> 0xb;
-    uVar6 = uVar6 & 0x7ff;
-    plStackX_20 = *(longlong **)
-                   (*(longlong *)(lVar9 + 8 + (ulonglong)uVar5 * 8) + (ulonglong)uVar6 * 8);
-    if (plStackX_20 != (longlong *)0x0) {
-      (**(code **)(*plStackX_20 + 0x28))();
+    
+    // 第三阶段：数据块插入和排序
+    loop_counter = *param_1;
+    base_index = (int)param_1[1];
+    while (temp_index = (int)param_4, param_2 < param_4) {
+        param_4 = param_4 + -1 >> 1;
+        data_block_3 = (longlong *)*param_5;
+        if (data_block_3 != (longlong *)0x0) {
+            // 执行数据块3的处理函数
+            (**(code **)(*data_block_3 + 0x28))();
+        }
+        
+        hash_index_2 = (int)param_4 + base_index;
+        hash_index_1 = hash_index_2 >> RENDERING_DATA_HASH_SHIFT;
+        hash_index_2 = hash_index_2 & RENDERING_DATA_HASH_MASK;
+        data_block_4 = *(longlong **)
+                       (*(longlong *)(loop_counter + 8 + (ulonglong)hash_index_1 * 8) + (ulonglong)hash_index_2 * 8);
+        if (data_block_4 != (longlong *)0x0) {
+            // 执行数据块4的处理函数
+            (**(code **)(*data_block_4 + 0x28))();
+        }
+        
+        compare_result = FUN_180306d20(&data_block_4, &data_block_3);
+        if (compare_result == '\0') break;
+        
+        data_index_2 = temp_index + base_index;
+        data_index_1 = data_index_2 >> RENDERING_DATA_HASH_SHIFT;
+        *(undefined8 *)
+         (*(longlong *)(loop_counter + 8 + (ulonglong)data_index_1 * 8) + (ulonglong)(data_index_2 + data_index_1 * -RENDERING_DATA_HASH_BLOCK_SIZE) * 8) =
+             *(undefined8 *)(*(longlong *)(loop_counter + 8 + (ulonglong)hash_index_1 * 8) + (ulonglong)hash_index_2 * 8);
     }
-    cVar4 = FUN_180306d20(&plStackX_20,&plStackX_18);
-    if (cVar4 == '\0') break;
-    uVar8 = iVar3 + iVar1;
-    uVar7 = uVar8 >> 0xb;
-    *(undefined8 *)
-     (*(longlong *)(lVar9 + 8 + (ulonglong)uVar7 * 8) + (ulonglong)(uVar8 + uVar7 * -0x800) * 8) =
-         *(undefined8 *)(*(longlong *)(lVar9 + 8 + (ulonglong)uVar5 * 8) + (ulonglong)uVar6 * 8);
-  }
-  uVar6 = iVar3 + iVar1;
-  uVar5 = uVar6 >> 0xb;
-  *(longlong *)
-   (*(longlong *)(lVar9 + 8 + (ulonglong)uVar5 * 8) + (ulonglong)(uVar6 + uVar5 * -0x800) * 8) =
-       *param_5;
-  return;
+    
+    // 最终数据块插入
+    data_index_2 = temp_index + base_index;
+    hash_index_1 = data_index_2 >> RENDERING_DATA_HASH_SHIFT;
+    *(longlong *)
+     (*(longlong *)(loop_counter + 8 + (ulonglong)hash_index_1 * 8) + (ulonglong)(data_index_2 + hash_index_1 * -RENDERING_DATA_HASH_BLOCK_SIZE) * 8) =
+         *param_5;
+    
+    return;
 }
 
 
