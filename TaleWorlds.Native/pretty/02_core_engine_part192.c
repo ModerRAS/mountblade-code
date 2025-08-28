@@ -570,8 +570,9 @@ void SystemEventDispatcher(void)
 
 
 
-// 函数: void FUN_180175686(void)
-void FUN_180175686(void)
+// 函数: void SystemStateUpdater(void)
+// 功能: 系统状态更新器，负责系统状态的更新和事件处理
+void SystemStateUpdater(void)
 
 {
   int64_t in_RAX;
@@ -598,8 +599,9 @@ void FUN_180175686(void)
 
 
 
-// 函数: void FUN_180175700(int64_t param_1,int64_t param_2)
-void FUN_180175700(int64_t param_1,int64_t param_2)
+// 函数: void SystemDataValidator(int64_t data_context,int64_t validation_data)
+// 功能: 系统数据验证器，负责数据验证、格式检查和错误处理
+void SystemDataValidator(int64_t data_context,int64_t validation_data)
 
 {
   short sVar1;
@@ -667,7 +669,7 @@ void FUN_180175700(int64_t param_1,int64_t param_2)
           uStack_120 = 0x100;
           _uStack_134 = CONCAT44(uVar9,1);
           uStack_124 = 2;
-          puStack_168 = &system_data_buffer_ptr;
+          puStack_168 = &system_validation_buffer_ptr;
           uStack_150 = 0;
           puStack_160 = (int32_t *)0x0;
           uStack_158 = 0;
@@ -695,7 +697,7 @@ void FUN_180175700(int64_t param_1,int64_t param_2)
                     // WARNING: Subroutine does not return
             memcpy(puVar5 + 6,*(uint64_t *)(param_1 + 0x68),(int64_t)(iVar4 + 1));
           }
-          puStack_e8 = &unknown_var_3432_ptr;
+          puStack_e8 = &system_format_buffer_ptr;
           puStack_e0 = auStack_d0;
           auStack_d0[0] = 0;
           uStack_d8 = 0x18;
@@ -716,7 +718,7 @@ void FUN_180175700(int64_t param_1,int64_t param_2)
             (**(code **)(*plStack_f8 + 0x38))();
           }
           puStack_e8 = &system_state_ptr;
-          puStack_168 = &system_data_buffer_ptr;
+          puStack_168 = &system_validation_buffer_ptr;
           if (puVar5 != (int32_t *)0x0) {
                     // WARNING: Subroutine does not return
             CoreEngineMemoryPoolCleaner(puVar5);

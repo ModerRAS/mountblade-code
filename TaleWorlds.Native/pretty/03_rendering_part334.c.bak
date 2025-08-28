@@ -11,66 +11,6 @@
 ===================================================================================*/
 
 // 渲染系统偏移量常量
-n// 渲染系统函数别名定义
-n// 渲染系统函数别名定义
-n// 渲染系统函数别名定义
-n// 渲染系统函数别名定义
-n// 渲染系统函数别名定义
-n// 渲染系统函数别名定义
-n// 渲染系统函数别名定义
-n// 渲染系统函数别名定义
-n// 渲染系统函数别名定义
-n// 渲染系统函数别名定义
-n// 渲染系统函数别名定义
-n// 渲染系统函数别名定义
-n// 渲染系统函数别名定义
-n// 渲染系统函数别名定义
-n// 渲染系统函数别名定义
-n// 渲染系统函数别名定义
-n// 渲染系统函数别名定义
-n// 渲染系统函数别名定义
-n// 渲染系统函数别名定义
-n// 渲染系统函数别名定义
-n// 渲染系统函数别名定义
-n// 渲染系统函数别名定义
-n// 渲染系统函数别名定义
-n// 渲染系统函数别名定义
-n// 渲染系统函数别名定义
-n// 渲染系统函数别名定义
-n// 渲染系统函数别名定义
-n// 渲染系统函数别名定义
-n// 渲染系统函数别名定义
-n// 渲染系统函数别名定义
-#define RenderingStateManager RenderingStateManager  // RenderingStateManager
-#define RenderingObjectListManager RenderingObjectListManager  // RenderingObjectListManager
-#define RenderingConfigValidator RenderingConfigValidator  // RenderingConfigValidator
-#define RenderingOptimizer RenderingOptimizer  // RenderingOptimizer
-#define RenderingMemoryAllocator RenderingMemoryAllocator  // RenderingMemoryAllocator
-#define RenderingObjectProcessor RenderingObjectProcessor  // RenderingObjectProcessor
-#define RenderingEventNotifier RenderingEventNotifier  // RenderingEventNotifier
-#define RenderingMemoryCleaner RenderingMemoryCleaner  // RenderingMemoryCleaner
-#define RenderingDataProcessor RenderingDataProcessor  // RenderingDataProcessor
-#define RenderingPerformanceMonitor RenderingPerformanceMonitor  // RenderingPerformanceMonitor
-#define RenderingObjectRemover RenderingObjectRemover  // RenderingObjectRemover
-#define RenderingThreadSynchronizer RenderingThreadSynchronizer  // RenderingThreadSynchronizer
-#define RenderingDataTransformer RenderingDataTransformer  // RenderingDataTransformer
-#define RenderingEventManager RenderingEventManager  // RenderingEventManager
-#define RenderingResourceFinalizer RenderingResourceFinalizer  // RenderingResourceFinalizer
-#define RenderingTransformProcessor RenderingTransformProcessor  // RenderingTransformProcessor
-#define RenderingConfigProcessor RenderingConfigProcessor  // RenderingConfigProcessor
-#define RenderingMemoryManager RenderingMemoryManager  // RenderingMemoryManager
-#define RenderingThreadManager RenderingThreadManager  // RenderingThreadManager
-#define RenderingParameterValidator RenderingParameterValidator  // RenderingParameterValidator
-#define RenderingResourceManager RenderingResourceManager  // RenderingResourceManager
-#define RenderingStateValidator RenderingStateValidator  // RenderingStateValidator
-#define RenderingResourceCleaner RenderingResourceCleaner  // RenderingResourceCleaner
-#define RenderingConfigManager RenderingConfigManager  // RenderingConfigManager
-#define RenderingParameterManager RenderingParameterManager  // RenderingParameterManager
-#define RenderingParameterProcessor RenderingParameterProcessor  // RenderingParameterProcessor
-#define RenderingEventHandler RenderingEventHandler  // RenderingEventHandler
-#define RenderingQualityController RenderingQualityController  // RenderingQualityController
-#define RenderingThreadProcessor RenderingThreadProcessor  // RenderingThreadProcessor
-#define RenderingStatusUpdater RenderingStatusUpdater  // RenderingStatusUpdater
 #define RENDERING_SYSTEM_OFFSET_60D10    0x60D10      // 渲染系统数据结构偏移量
 #define RENDERING_SYSTEM_OFFSET_60D18    0x60D18      // 渲染系统数据结构偏移量
 #define RENDERING_SYSTEM_OFFSET_607E0    0x607E0      // 渲染系统资源偏移量
@@ -181,7 +121,7 @@ void RenderingSystem_CopyRenderBuffers(uint64_t *param_1, uint64_t *param_2);
  * 5. 更新渲染状态标志
  * 6. 从列表中移除对象引用
  */
-void RenderingObjectRemover(int64_t *render_context, uint64_t param_2, uint64_t param_3, uint64_t param_4)
+void FUN_180443820(int64_t *render_context, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
     int64_t *object_list;
     int64_t context_data;
@@ -226,18 +166,18 @@ LAB_18044388e:
             
             // 检查是否需要额外清理
             if ((int)render_context[0x57] == -1) {
-                RenderingResourceCleaner(context_data + RENDERING_SYSTEM_OFFSET_607E0, render_context);
+                FUN_1803982f0(context_data + RENDERING_SYSTEM_OFFSET_607E0, render_context);
                 if (render_context[0x2d] == 0) {
-                    RenderingResourceFinalizer(context_data + RENDERING_SYSTEM_OFFSET_607E0, render_context);
+                    FUN_180398640(context_data + RENDERING_SYSTEM_OFFSET_607E0, render_context);
                 }
             }
             
             // 从对象列表中移除引用
             resource_manager = *object_list;
-            RenderingResourceManager(resource_manager + (int64_t)object_index * 8,
+            FUN_180080810(resource_manager + (int64_t)object_index * 8,
                           resource_manager + ((*(int64_t *)(context_data + RENDERING_SYSTEM_OFFSET_60D18) - resource_manager >> 3) + -1) * 8,
                           resource_manager, param_4, removal_flag);
-            RenderingObjectListManager(object_list, (*(int64_t *)(context_data + RENDERING_SYSTEM_OFFSET_60D18) - *object_list >> 3) + -1);
+            FUN_1800b8630(object_list, (*(int64_t *)(context_data + RENDERING_SYSTEM_OFFSET_60D18) - *object_list >> 3) + -1);
         }
     }
     return;
@@ -253,7 +193,7 @@ LAB_18044388e:
  * @param param_4 输出数据指针2
  * @param param_5 变换模式标志
  */
-void RenderingDataTransformer(int64_t param_1, int8_t param_2, uint64_t *param_3, uint64_t *param_4, char param_5)
+void FUN_180443930(int64_t param_1, int8_t param_2, uint64_t *param_3, uint64_t *param_4, char param_5)
 {
     uint64_t transform_data_1;
     uint64_t transform_data_2;
@@ -262,7 +202,7 @@ void RenderingDataTransformer(int64_t param_1, int8_t param_2, uint64_t *param_3
     
     if (param_1 != 0) {
         // 执行基础变换操作
-        RenderingDataProcessor(param_1, &transform_data_1, param_2, 0);
+        FUN_1802f4040(param_1, &transform_data_1, param_2, 0);
         
         if (param_5 != '\0') {
             // 直接输出变换结果
@@ -274,7 +214,7 @@ void RenderingDataTransformer(int64_t param_1, int8_t param_2, uint64_t *param_3
         }
         
         // 应用高级变换处理
-        RenderingTransformProcessor(&transform_data_1, param_1 + 0x70, param_3, param_4);
+        FUN_18063a7b0(&transform_data_1, param_1 + 0x70, param_3, param_4);
     }
     return;
 }
@@ -286,7 +226,7 @@ void RenderingDataTransformer(int64_t param_1, int8_t param_2, uint64_t *param_3
  * @param param_1 渲染对象指针
  * @param param_2 新的状态值
  */
-void RenderingObjectProcessor(int64_t param_1, int32_t param_2)
+void FUN_1804439b0(int64_t param_1, int32_t param_2)
 {
     uint64_t child_index;
     uint child_count;
@@ -299,7 +239,7 @@ void RenderingObjectProcessor(int64_t param_1, int32_t param_2)
     // 递归处理所有子对象
     if (*(int64_t *)(param_1 + RENDERING_SYSTEM_OFFSET_1C8) - *(int64_t *)(param_1 + RENDERING_SYSTEM_OFFSET_1C0) >> 3 != 0) {
         do {
-            RenderingObjectProcessor(*(uint64_t *)(*(int64_t *)(param_1 + RENDERING_SYSTEM_OFFSET_1C0) + child_index), param_2);
+            FUN_1804439b0(*(uint64_t *)(*(int64_t *)(param_1 + RENDERING_SYSTEM_OFFSET_1C0) + child_index), param_2);
             child_index = child_index + 8;
             child_count = (int)total_children + 1;
             total_children = (uint64_t)child_count;
@@ -324,7 +264,7 @@ void FUN_1804439e4(void)
     object_index = (uint64_t)object_count;
     
     do {
-        RenderingObjectProcessor(*(uint64_t *)(*(int64_t *)(render_context + RENDERING_SYSTEM_OFFSET_1C0) + object_index), render_state);
+        FUN_1804439b0(*(uint64_t *)(*(int64_t *)(render_context + RENDERING_SYSTEM_OFFSET_1C0) + object_index), render_state);
         object_index = object_index + 8;
         object_count = object_count + 1;
     } while ((uint64_t)(int64_t)(int)object_count <
