@@ -506,51 +506,87 @@ void SystemUtilityFunction(void)
 
 
 
-uint64_t FUN_1800988e0(int64_t *param_1,int param_2,int param_3)
-
+/**
+ * @brief 数据结构比较器 - 树形数据结构比较和查找函数
+ * 
+ * 此函数实现了一个复杂的数据结构比较算法，主要用于树形数据结构中
+ * 的节点比较和查找操作。它通过遍历树结构并比较特定值来确定节点
+ * 的相对位置。
+ * 
+ * @param param_1 指向数据结构根节点的指针
+ * @param param_2 第一个比较参数（通常用于键值比较）
+ * @param param_3 第二个比较参数（通常用于键值比较）
+ * 
+ * @return uint64_t 比较结果，包含节点位置和比较状态信息
+ * 
+ * 算法说明：
+ * 1. 从根节点开始遍历树结构
+ * 2. 根据参数3进行第一轮比较和节点定位
+ * 3. 根据参数2进行第二轮比较和节点定位
+ * 4. 计算并返回比较结果
+ * 
+ * 返回值结构：
+ * - 高位包含节点位置信息
+ * - 低位包含比较状态标志
+ */
+uint64_t DataStructureComparator(int64_t *param_1, int param_2, int param_3)
 {
-  uint64_t *puVar1;
-  uint64_t *puVar2;
-  uint64_t *puVar3;
-  uint64_t *puVar4;
-  
-  puVar1 = (uint64_t *)*param_1;
-  puVar4 = (uint64_t *)puVar1[2];
-  puVar2 = puVar4;
-  puVar3 = puVar1;
-  if (puVar4 == (uint64_t *)0x0) {
+    uint64_t *root_node;
+    uint64_t *current_node1;
+    uint64_t *target_node1;
+    uint64_t *current_node2;
+    
+    // 获取根节点
+    root_node = (uint64_t *)*param_1;
+    current_node2 = (uint64_t *)root_node[2];
+    current_node1 = current_node2;
+    target_node1 = root_node;
+    
+    // 第一轮遍历：基于参数3的节点查找
+    if (current_node2 == (uint64_t *)0x0) {
 LAB_180098929:
-    puVar3 = puVar1;
-  }
-  else {
-    do {
-      if (*(int *)(puVar2 + 4) < param_3) {
-        puVar2 = (uint64_t *)*puVar2;
-      }
-      else {
-        puVar3 = puVar2;
-        puVar2 = (uint64_t *)puVar2[1];
-      }
-    } while (puVar2 != (uint64_t *)0x0);
-    if ((puVar3 == puVar1) || (param_3 < *(int *)(puVar3 + 4))) goto LAB_180098929;
-  }
-  puVar2 = puVar1;
-  if (puVar4 != (uint64_t *)0x0) {
-    do {
-      if (*(int *)(puVar4 + 4) < param_2) {
-        puVar4 = (uint64_t *)*puVar4;
-      }
-      else {
-        puVar2 = puVar4;
-        puVar4 = (uint64_t *)puVar4[1];
-      }
-    } while (puVar4 != (uint64_t *)0x0);
-    if ((puVar2 != puVar1) && (*(int *)(puVar2 + 4) <= param_2)) goto LAB_180098960;
-  }
-  puVar2 = puVar1;
+        target_node1 = root_node;
+    } else {
+        do {
+            // 比较节点值与参数3
+            if (*(int *)(current_node1 + 4) < param_3) {
+                current_node1 = (uint64_t *)*current_node1;
+            } else {
+                target_node1 = current_node1;
+                current_node1 = (uint64_t *)current_node1[1];
+            }
+        } while (current_node1 != (uint64_t *)0x0);
+        
+        // 验证找到的节点
+        if ((target_node1 == root_node) || (param_3 < *(int *)(target_node1 + 4))) {
+            goto LAB_180098929;
+        }
+    }
+    
+    // 第二轮遍历：基于参数2的节点查找
+    current_node1 = root_node;
+    if (current_node2 != (uint64_t *)0x0) {
+        do {
+            // 比较节点值与参数2
+            if (*(int *)(current_node2 + 4) < param_2) {
+                current_node2 = (uint64_t *)*current_node2;
+            } else {
+                current_node1 = current_node2;
+                current_node2 = (uint64_t *)current_node2[1];
+            }
+        } while (current_node2 != (uint64_t *)0x0);
+        
+        // 验证找到的节点
+        if ((current_node1 != root_node) && (*(int *)(current_node1 + 4) <= param_2)) {
+            goto LAB_180098960;
+        }
+    }
+    
+    current_node1 = root_node;
 LAB_180098960:
-  return CONCAT71((int7)((uint64_t)puVar2 >> 8),
-                  *(float *)((int64_t)puVar3 + 0x24) < *(float *)((int64_t)puVar2 + 0x24));
+    // 计算并返回比较结果
+    return CONCAT71((int7)((uint64_t)current_node1 >> 8),
+                   *(float *)((int64_t)target_node1 + 0x24) < *(float *)((int64_t)current_node1 + 0x24));
 }
 
 
@@ -559,55 +595,88 @@ LAB_180098960:
 
 
 
-// 函数: void FUN_180098980(int8_t *param_1)
-void FUN_180098980(int8_t *param_1)
-
+/**
+ * @brief 数据结构复制器 - 深度复制数据结构函数
+ * 
+ * 此函数用于深度复制复杂的数据结构，包括内存分配、数据复制
+ * 和子结构处理。它能够处理包含动态内存分配的复杂数据结构。
+ * 
+ * @param param_1 指向源数据结构的指针
+ * 
+ * @return void
+ * 
+ * 处理流程：
+ * 1. 分配新的内存空间
+ * 2. 复制基本数据字段
+ * 3. 处理动态分配的子结构
+ * 4. 递归复制嵌套数据
+ * 5. 更新系统参数缓冲区
+ */
+void DataStructureCopier(int8_t *param_1)
 {
-  int64_t lVar1;
-  int8_t *puVar2;
-  uint64_t uVar3;
-  uint64_t uVar4;
-  int64_t lVar5;
-  uint uVar6;
-  uint64_t uVar7;
-  
-  puVar2 = (int8_t *)FUN_18062b1e0(system_memory_pool_ptr,0x30,8,3);
-  uVar7 = 0;
-  *(uint64_t *)(puVar2 + 0x14) = 0;
-  *puVar2 = 0;
-  *(int32_t *)(puVar2 + 0x10) = 0;
-  *(uint64_t *)(puVar2 + 0x24) = 0;
-  *(uint64_t *)(puVar2 + 0x1c) = 0;
-  *(uint64_t *)(puVar2 + 8) = 0;
-  *puVar2 = *param_1;
-  *(int32_t *)(puVar2 + 0x10) = *(int32_t *)(param_1 + 0x10);
-  *(int32_t *)(puVar2 + 0x18) = *(int32_t *)(param_1 + 0x18);
-  *(int32_t *)(puVar2 + 0x14) = *(int32_t *)(param_1 + 0x14);
-  *(uint64_t *)(puVar2 + 0x1c) = *(uint64_t *)(param_1 + 0x1c);
-  *(uint64_t *)(puVar2 + 0x24) = *(uint64_t *)(param_1 + 0x24);
-  uVar3 = uVar7;
-  if ((int64_t)*(int *)(param_1 + 0x10) != 0) {
-    uVar3 = FUN_18062b420(system_memory_pool_ptr,(int64_t)*(int *)(param_1 + 0x10) * 8,3);
-  }
-  *(uint64_t *)(puVar2 + 8) = uVar3;
-  uVar3 = uVar7;
-  if (0 < *(int *)(param_1 + 0x10)) {
-    do {
-      lVar1 = *(int64_t *)(uVar3 + *(int64_t *)(param_1 + 8));
-      uVar4 = FUN_18062b1e0(system_memory_pool_ptr,0xa8,8,3);
-      lVar5 = FUN_18011fa30(uVar4,0);
-      FUN_18013e410(lVar5,lVar1);
-      FUN_18013e570(lVar5 + 0x10,lVar1 + 0x10);
-      FUN_18013e390(lVar5 + 0x20,lVar1 + 0x20);
-      *(int32_t *)(lVar5 + 0x30) = *(int32_t *)(lVar1 + 0x30);
-      uVar6 = (int)uVar7 + 1;
-      uVar7 = (uint64_t)uVar6;
-      *(int64_t *)(uVar3 + *(int64_t *)(puVar2 + 8)) = lVar5;
-      uVar3 = uVar3 + 8;
-    } while ((int)uVar6 < *(int *)(param_1 + 0x10));
-  }
-  *(int8_t **)(system_parameter_buffer + 0x1a08 + (int64_t)core_system_data_memory * 8) = puVar2;
-  return;
+    int64_t source_data;
+    int8_t *dest_struct;
+    uint64_t array_size;
+    uint64_t element_size;
+    int64_t element_handle;
+    uint element_index;
+    uint64_t array_index;
+    
+    // 分配目标结构内存
+    dest_struct = (int8_t *)FUN_18062b1e0(system_memory_pool_ptr, SYSTEM_DATA_BUFFER_SIZE, MEMORY_ALIGNMENT_8, 3);
+    array_index = 0;
+    
+    // 初始化目标结构
+    *(uint64_t *)(dest_struct + 0x14) = 0;
+    *dest_struct = 0;
+    *(int32_t *)(dest_struct + 0x10) = 0;
+    *(uint64_t *)(dest_struct + 0x24) = 0;
+    *(uint64_t *)(dest_struct + 0x1c) = 0;
+    *(uint64_t *)(dest_struct + 8) = 0;
+    
+    // 复制基本数据字段
+    *dest_struct = *param_1;
+    *(int32_t *)(dest_struct + 0x10) = *(int32_t *)(param_1 + 0x10);
+    *(int32_t *)(dest_struct + 0x18) = *(int32_t *)(param_1 + 0x18);
+    *(int32_t *)(dest_struct + 0x14) = *(int32_t *)(param_1 + 0x14);
+    *(uint64_t *)(dest_struct + 0x1c) = *(uint64_t *)(param_1 + 0x1c);
+    *(uint64_t *)(dest_struct + 0x24) = *(uint64_t *)(param_1 + 0x24);
+    
+    array_size = array_index;
+    
+    // 分配数组内存
+    if ((int64_t)*(int *)(param_1 + 0x10) != 0) {
+        array_size = FUN_18062b420(system_memory_pool_ptr, (int64_t)*(int *)(param_1 + 0x10) * 8, 3);
+    }
+    
+    *(uint64_t *)(dest_struct + 8) = array_size;
+    array_size = array_index;
+    
+    // 处理数组元素
+    if (0 < *(int *)(param_1 + 0x10)) {
+        do {
+            // 获取源元素
+            source_data = *(int64_t *)(array_size + *(int64_t *)(param_1 + 8));
+            
+            // 分配新元素内存
+            element_size = FUN_18062b1e0(system_memory_pool_ptr, SYSTEM_MESSAGE_BUFFER_SIZE, MEMORY_ALIGNMENT_8, 3);
+            element_handle = FUN_18011fa30(element_size, 0);
+            
+            // 复制元素数据
+            FUN_18013e410(element_handle, source_data);
+            FUN_18013e570(element_handle + 0x10, source_data + 0x10);
+            FUN_18013e390(element_handle + 0x20, source_data + 0x20);
+            *(int32_t *)(element_handle + 0x30) = *(int32_t *)(source_data + 0x30);
+            
+            element_index = (int)array_index + 1;
+            array_index = (uint64_t)element_index;
+            *(int64_t *)(array_size + *(int64_t *)(dest_struct + 8)) = element_handle;
+            array_size = array_size + 8;
+        } while ((int)element_index < *(int *)(param_1 + 0x10));
+    }
+    
+    // 更新系统参数缓冲区
+    *(int8_t **)(system_parameter_buffer + 0x1a08 + (int64_t)core_system_data_memory * 8) = dest_struct;
 }
 
 
