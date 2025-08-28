@@ -2250,7 +2250,7 @@ void utilities_system_buffer_cleaner_2(void)
   longlong lVar2;
   
   if (0xf < *system_buffer_size_ptr) {
-    lVar1 = CONCAT71(uRam0000000180bfc101,system_memory_c100);
+    lVar1 = CONCAT71(*system_buffer_ptr_4,*system_memory_c100);
     lVar2 = lVar1;
     if (0xfff < *system_buffer_size_ptr + 1) {
       lVar2 = *(longlong *)(lVar1 + -8);
@@ -2303,9 +2303,9 @@ void utilities_system_memory_cleaner(void)
   }
   
   // 重置内存状态
-  uRam0000000180bfc0e8 = 0;
-  uRam0000000180bfc0f0 = 0xf;
-  uRam0000000180bfc0d8 = 0;
+  *system_buffer_ptr_8 = 0;
+  *system_memory_usage_count = 0xf;
+  *system_buffer_ptr_6 = 0;
   return;
 }
 

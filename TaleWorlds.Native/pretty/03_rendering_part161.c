@@ -64,7 +64,7 @@
 #define SystemBaseInitializer FUN_1803456e0
 #define SystemMemoryAllocator FUN_18062b420
 #define SystemStringHashCalculator FUN_18064e990
-#define SystemContextManager FUN_1803460a0
+#define SystemContextManager SystemContextManager
 #define SystemMemoryReleaser FUN_18064e900
 #define SystemMemoryDeallocator FUN_1803457d0
 #define SystemMemoryManager FUN_18062b1e0
@@ -152,15 +152,15 @@ void RenderingSystem_CreateRenderContext(uint64_t *context_ptr)
     thread_counter = 0;
     string_buffer = (uint64_t *)0x0;
     buffer_length = 0;
-    context_data = (uint64_t *)FUN_18062b420(_DAT_180c8ed18, 0x10, 0x13);
+    context_data = (uint64_t *)SystemMemoryAllocator(_DAT_180c8ed18, 0x10, 0x13);
     *(int8_t *)context_data = 0;
     string_buffer = context_data;
-    string_length = FUN_18064e990(context_data);
+    string_length = SystemStringHashCalculator(context_data);
     thread_counter = CONCAT44(thread_counter._4_4_, string_length);
     *context_data = RENDERING_SYSTEM_MAGIC_COOKIE_1;
     *(int32_t *)(context_data + 1) = RENDERING_SYSTEM_MAGIC_COOKIE_2;
     buffer_length = 0xb;
-    FUN_1803460a0(context_ptr, &cleanup_handler, context_ptr + 0xe, 2);
+    SystemContextManager(context_ptr, &cleanup_handler, context_ptr + 0xe, 2);
     cleanup_handler = &unknown_var_3456_ptr;
     FUN_18064e900(context_data);
 }
@@ -238,7 +238,7 @@ void RenderingSystem_SetupRenderParameters(uint64_t param_1, uint64_t param_2)
   *puVar2 = 0x6f4d6f54656d6954;
   *(int32_t *)(puVar2 + 1) = 0x416564;
   uStack_f8 = 0xb;
-  FUN_1803460a0(puVar3,&puStack_108,puVar3 + 0xe,2);
+  SystemContextManager(puVar3,&puStack_108,puVar3 + 0xe,2);
   puStack_108 = &unknown_var_3456_ptr;
                     // WARNING: Subroutine does not return
   FUN_18064e900(puVar2);
@@ -782,7 +782,7 @@ void RenderingSystem_StringManagerInitializer(uint64_t *string_manager) {
     buffer_length = 9; // 主字符串长度
     
     // 初始化主字符串处理
-    FUN_1803460a0(string_manager, &string_buffer, buffer_target, 0);
+    SystemContextManager(string_manager, &string_buffer, buffer_target, 0);
     
     // 清理主缓冲区
     string_buffer = &unknown_var_3456_ptr;
@@ -1226,7 +1226,7 @@ void RenderingSystem_ManagerCreator(uint64_t param_1, uint64_t param_2) {
     buffer_length = 9; // 主字符串长度
     
     // 初始化主字符串处理
-    FUN_1803460a0(manager, &string_buffer, buffer_target, 0);
+    SystemContextManager(manager, &string_buffer, buffer_target, 0);
     
     // 清理主缓冲区
     string_buffer = &unknown_var_3456_ptr;

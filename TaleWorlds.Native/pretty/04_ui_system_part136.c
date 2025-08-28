@@ -416,7 +416,7 @@ int UISystem_ResourceInitializer(longlong context)
     int32_t tempValue;
     
     // 创建主资源句柄
-    resourceHandle = UISystem_MemoryAllocator(*(uint64_t *)(_DAT_180be12f0 + 0x1a0), UI_CONST_0X4D0, &ui_system_memory_pool, UI_CONST_0X146,
+    resourceHandle = UISystem_MemoryAllocator(GET_SYSTEM_MEMORY_ALLOCATOR(), UI_CONST_0X4D0, &ui_system_memory_pool, UI_CONST_0X146,
                                   stack_param & 0xffffffff00000000, 0, 1);
     resourcePtr = (longlong *)0x0;
     if (resourceHandle != 0) {

@@ -1,9 +1,152 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 04_ui_system_part137.c - 6 个函数
+// ============================================================================
+// UI系统高级组件管理和状态控制模块
+// ============================================================================
+// 文件说明：本模块实现UI系统的高级组件管理、状态控制、资源处理等功能
+// 主要功能：UI组件状态管理、资源清理、事件处理、数学计算、向量处理等
+// 美化版本：1.0
+// 最后更新：2025-08-28
+// ============================================================================
 
-// 函数: void FUN_180749a2a(longlong param_1)
-void FUN_180749a2a(longlong param_1)
+// ================================
+// 系统常量定义
+// ================================
+#define UI_SYSTEM_MAX_COMPONENTS         8           // UI系统最大组件数量
+#define UI_SYSTEM_BUFFER_SIZE            0x100       // UI系统缓冲区大小
+#define UI_SYSTEM_ANGLE_MULTIPLIER       57.295776   // 角度转换系数（弧度转角度）
+#define UI_SYSTEM_THRESHOLD_VALUE        0.002       // UI系统阈值
+#define UI_SYSTEM_MAX_RANGE              4.0         // UI系统最大范围
+#define UI_SYSTEM_STACK_OFFSET           0x698       // UI系统堆栈偏移量
+#define UI_SYSTEM_RESOURCE_OFFSET        0x670       // UI系统资源偏移量
+#define UI_SYSTEM_STATUS_OFFSET          0x6a8       // UI系统状态偏移量
+#define UI_SYSTEM_COUNTER_OFFSET         0x694       // UI系统计数器偏移量
+#define UI_SYSTEM_POINTER_OFFSET         0x6a0       // UI系统指针偏移量
+#define UI_SYSTEM_FLAG_OFFSET            0x6ac       // UI系统标志偏移量
+#define UI_SYSTEM_COMPONENT_SIZE         0x38        // UI系统组件大小
+#define UI_SYSTEM_DATA_OFFSET            0x18        // UI系统数据偏移量
+#define UI_SYSTEM_VECTOR_OFFSET          0x14        // UI系统向量偏移量
+#define UI_SYSTEM_ANGLE_OFFSET           0x20        // UI系统角度偏移量
+#define UI_SYSTEM_POSITION_OFFSET         0x1198c     // UI系统位置偏移量
+#define UI_SYSTEM_TRANSFORM_OFFSET       0x11be0     // UI系统变换偏移量
+#define UI_SYSTEM_LIST_OFFSET            0x11b80     // UI系统列表偏移量
+#define UI_SYSTEM_PARAM_OFFSET           0x1193c     // UI系统参数偏移量
+
+// ================================
+// 系统枚举定义
+// ================================
+typedef enum {
+    UI_STATUS_SUCCESS = 0,                // UI操作成功
+    UI_STATUS_ERROR_INVALID_PARAM = 0x1e, // UI无效参数错误
+    UI_STATUS_ERROR_BUSY = 0x1c,          // UI忙错误
+    UI_STATUS_ERROR_NOT_READY = 0x1f,     // UI未准备就绪错误
+    UI_STATUS_ERROR_FAILED = 0x43         // UI操作失败错误
+} UIStatusCode;
+
+typedef enum {
+    UI_COMPONENT_TYPE_BUTTON = 0,          // UI按钮组件
+    UI_COMPONENT_TYPE_TEXT = 1,            // UI文本组件
+    UI_COMPONENT_TYPE_IMAGE = 2,          // UI图像组件
+    UI_COMPONENT_TYPE_PANEL = 3,           // UI面板组件
+    UI_COMPONENT_TYPE_SCROLL = 4,          // UI滚动组件
+    UI_COMPONENT_TYPE_INPUT = 5,           // UI输入组件
+    UI_COMPONENT_TYPE_LIST = 6,            // UI列表组件
+    UI_COMPONENT_TYPE_CUSTOM = 7           // UI自定义组件
+} UIComponentType;
+
+typedef enum {
+    UI_STATE_NORMAL = 0,                   // UI正常状态
+    UI_STATE_HOVER = 1,                    // UI悬停状态
+    UI_STATE_PRESSED = 2,                  // UI按下状态
+    UI_STATE_DISABLED = 3,                 // UI禁用状态
+    UI_STATE_HIDDEN = 4,                   // UI隐藏状态
+    UI_STATE_LOADING = 5,                  // UI加载状态
+    UI_STATE_ERROR = 6,                    // UI错误状态
+    UI_STATE_CUSTOM = 7                    // UI自定义状态
+} UIComponentState;
+
+typedef enum {
+    UI_FLAG_ENABLED = 0x80,                // UI启用标志
+    UI_FLAG_VISIBLE = 0x40,                // UI可见标志
+    UI_FLAG_INTERACTIVE = 0x20,            // UI交互标志
+    UI_FLAG_ANIMATED = 0x10,               // UI动画标志
+    UI_FLAG_FOCUSED = 0x08,                // UI焦点标志
+    UI_FLAG_MODIFIED = 0x04,               // UI修改标志
+    UI_FLAG_LOCKED = 0x02,                 // UI锁定标志
+    UI_FLAG_RESERVED = 0x01                 // UI保留标志
+} UIComponentFlags;
+
+// ================================
+// 系统结构体定义
+// ================================
+typedef struct {
+    float x;                               // X坐标
+    float y;                               // Y坐标
+    float z;                               // Z坐标
+} UIVector3D;
+
+typedef struct {
+    float x;                               // X坐标
+    float y;                               // Y坐标
+} UIVector2D;
+
+typedef struct {
+    UIVector3D position;                   // 位置向量
+    UIVector3D direction;                  // 方向向量
+    float angle;                           // 角度
+    float magnitude;                       // 大小
+    uint32_t flags;                        // 标志位
+} UIComponentData;
+
+typedef struct {
+    void* component_ptr;                   // 组件指针
+    UIComponentType type;                  // 组件类型
+    UIComponentState state;                // 组件状态
+    uint32_t flags;                        // 组件标志
+    UIVector2D position;                   // 组件位置
+    UIVector2D size;                       // 组件大小
+    void* callback_ptr;                    // 回调指针
+} UIComponent;
+
+// ================================
+// 函数别名定义
+// ================================
+#define UISystem_ComponentStateManager      FUN_180749a2a    // UI系统组件状态管理器
+#define UISystem_EmptyHandler1              FUN_180749e0b    // UI系统空处理器1
+#define UISystem_EmptyHandler2              FUN_180749e21    // UI系统空处理器2
+#define UISystem_ComponentValidator         FUN_180749e60    // UI系统组件验证器
+#define UISystem_EventDispatcher           FUN_180749ef0    // UI系统事件分发器
+#define UISystem_VectorProcessor           FUN_180749f70    // UI系统向量处理器
+#define UISystem_ResourceInitializer       FUN_18074a310    // UI系统资源初始化器
+#define UISystem_ComponentConfigurator     FUN_18074a350    // UI系统组件配置器
+#define UISystem_MemoryManager            FUN_18074a420    // UI系统内存管理器
+#define UISystem_EmptyHandler3             FUN_18074a4ae    // UI系统空处理器3
+#define UISystem_StatusChecker             FUN_18074a51c    // UI系统状态检查器
+#define UISystem_TransformProcessor        FUN_18074a5f0    // UI系统变换处理器
+#define UISystem_CollisionDetector         FUN_18074a63d    // UI系统碰撞检测器
+#define UISystem_PhysicsProcessor          FUN_18074a6ac    // UI系统物理处理器
+#define UISystem_StateSynchronizer         FUN_18074a885    // UI系统状态同步器
+#define UISystem_DataValidator             FUN_18074a895    // UI系统数据验证器
+
+// ================================
+// 全局变量声明
+// ================================
+static UIComponent* g_ui_component_list[UI_SYSTEM_MAX_COMPONENTS];  // UI组件列表
+static uint32_t g_ui_system_flags = 0;                              // UI系统标志
+static void* g_ui_system_context = NULL;                            // UI系统上下文
+
+// ============================================================================
+// 核心函数实现
+// ============================================================================
+
+/**
+ * UI系统组件状态管理器
+ * 负责管理UI组件的状态转换、资源清理和状态同步
+ * 
+ * @param param_1 组件上下文指针
+ * @return 无返回值
+ */
+void UISystem_ComponentStateManager(longlong param_1)
 
 {
   int *piVar1;
