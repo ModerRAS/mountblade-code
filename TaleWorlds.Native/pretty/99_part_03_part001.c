@@ -108,7 +108,7 @@
 
 // 系统验证和配置常量
 #define system_validation_pattern system_file_validation_pattern     // 系统验证模式
-#define system_config_base UNK_1809fd0a0          // 系统配置基础地址
+#define system_config_base system_global_config_base          // 系统配置基础地址
 #define system_string_base UNK_1809fdc18          // 系统字符串基础地址
 #define system_path_separator UNK_180a3c07c        // 系统路径分隔符
 
