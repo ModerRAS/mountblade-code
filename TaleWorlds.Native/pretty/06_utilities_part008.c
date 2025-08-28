@@ -402,7 +402,7 @@ void UtilitiesProcessData(UtilitiesHandle systemHandle, UtilitiesDataPtr dataPtr
     
 cleanup_stack:
     // 清理栈并返回
-    FUN_1808fc050(stackGuard ^ (uint64_t)stackBuffer_738);
+    SystemSecurityChecker(stackGuard ^ (uint64_t)stackBuffer_738);
 }
 
 // ============================================================================
@@ -566,7 +566,7 @@ uint64_t FUN_1807d3f50(int64_t param_1, int param_2);
  * @brief 栈清理函数
  * @param param1 参数1
  */
-void FUN_1808fc050(uint64_t param_1);
+void SystemSecurityChecker(uint64_t param_1);
 
 // ============================================================================
 // 模块总结

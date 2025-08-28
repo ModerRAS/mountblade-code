@@ -873,7 +873,7 @@ void FUN_1806f8750(int64_t param_1,uint64_t param_2,int32_t param_3)
                               *(int32_t *)(param_1 + 0x90));
   if (iVar1 < 1) {
                     // WARNING: Subroutine does not return
-    FUN_1808fc050(auStack_28[0] ^ (uint64_t)auStack_28);
+    SystemSecurityChecker(auStack_28[0] ^ (uint64_t)auStack_28);
   }
   uVar2 = (int64_t)(*(int *)(param_1 + 0x70) * iVar1) * 4;
   uVar3 = uVar2 + 0xf;

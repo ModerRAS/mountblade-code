@@ -821,7 +821,7 @@ void FUN_180510780(int64_t param_1,float *param_2,int64_t param_3)
   param_2[1] = (fVar17 + fVar2) * fVar6 + fVar16 * fVar5 + fVar10;
   *param_2 = fVar16 * fVar4 + (fVar17 + fVar2) * fVar7 + fVar11;
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_28 ^ (uint64_t)auStack_f8);
+  SystemSecurityChecker(uStack_28 ^ (uint64_t)auStack_f8);
 }
 
 
