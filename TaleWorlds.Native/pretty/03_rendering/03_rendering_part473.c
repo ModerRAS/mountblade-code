@@ -149,256 +149,335 @@ extern void func_0x0001805da580(void);
 extern undefined8 UNK_1809f89f0;
 extern undefined8 DAT_180c8ed30;
 
-// 函数: void FUN_18051f1ed(longlong param_1,float *param_2)
-void FUN_18051f1ed(longlong param_1,float *param_2)
-
+/**
+ * @brief 渲染参数处理器 - 主要参数处理函数
+ * 
+ * 该函数负责处理渲染系统中的核心参数，包括：
+ * - 渲染状态检查和验证
+ * - 坐标转换和投影计算
+ * - 渲染位置和变换更新
+ * - 碰撞检测和边界处理
+ * 
+ * @param param_1 渲染上下文指针，包含渲染状态和配置信息
+ * @param param_2 渲染参数向量，包含位置和变换数据
+ * @return void 无返回值
+ * 
+ * @note 该函数是渲染系统的核心处理函数，涉及复杂的坐标变换和状态管理
+ */
+void FUN_18051f1ed(longlong param_1, float *param_2)
 {
-  float fVar1;
-  longlong lVar2;
-  undefined8 uVar3;
-  undefined8 uVar4;
-  char cVar5;
-  uint uVar6;
-  longlong lVar7;
-  ulonglong uVar8;
-  longlong lVar9;
-  float fVar10;
-  float fVar11;
-  float fVar12;
-  float fVar13;
-  float fVar14;
-  float fVar15;
-  byte bStack0000000000000028;
-  float fStack0000000000000040;
-  float fStack0000000000000044;
-  float in_stack_00000048;
-  float fStack0000000000000050;
-  float fStack0000000000000054;
-  float fStack0000000000000058;
-  longlong lStack0000000000000060;
-  undefined8 uStack0000000000000068;
-  float fStack0000000000000070;
-  char cStack0000000000000074;
-  undefined4 in_stack_00000080;
-  undefined4 in_stack_00000088;
-  undefined4 in_stack_00000090;
-  undefined4 in_stack_00000098;
-  undefined4 in_stack_000000a0;
-  undefined4 in_stack_000000a8;
-  undefined4 in_stack_000000b0;
-  undefined4 in_stack_000000b8;
-  
-  lVar2 = *(longlong *)(param_1 + 0x20);
-  lVar7 = *(longlong *)(param_1 + 0x590);
-  if (lVar7 != 0) {
-    if (*(longlong *)(lVar7 + 0x2460) == 0) {
-      uVar8 = 0;
+    /* 局部变量定义 */
+    float fVar1, fVar10, fVar11, fVar12, fVar13, fVar14, fVar15;
+    longlong lVar2, lVar7, lVar9;
+    undefined8 uVar3, uVar4;
+    char cVar5;
+    uint uVar6;
+    ulonglong uVar8;
+    byte bRenderFlag;
+    float fStack40, fStack44, fStack48, fStack50, fStack54, fStack58, fStack70;
+    longlong lStack60;
+    undefined8 uStack68;
+    char cStack74;
+    
+    /* 获取渲染上下文和状态 */
+    lVar2 = *(longlong *)(param_1 + OFFSET_RENDER_CONTEXT);
+    lVar7 = *(longlong *)(param_1 + OFFSET_RENDER_STATE);
+    
+    /* 检查渲染状态有效性 */
+    if (lVar7 != 0) {
+        /* 获取渲染状态标志位 */
+        if (*(longlong *)(lVar7 + 0x2460) == 0) {
+            uVar8 = 0;
+        } else {
+            uVar8 = *(ulonglong *)(*(longlong *)(lVar7 + 0x2460) + 0x1d0);
+        }
+        
+        /* 检查第9位标志位 */
+        if (((*(ulonglong *)(lVar7 + 0x2470) | uVar8) >> 9 & 1) == 0) {
+            /* 获取备用渲染状态 */
+            if (*(longlong *)(lVar7 + 0x24a8) == 0) {
+                uVar8 = 0;
+            } else {
+                uVar8 = *(ulonglong *)(*(longlong *)(lVar7 + 0x24a8) + 0x1d0);
+            }
+            
+            /* 检查备用状态的第9位标志位 */
+            if (((*(ulonglong *)(lVar7 + 0x24b8) | uVar8) >> 9 & 1) == 0) {
+                /* 提取渲染标志位 */
+                bRenderFlag = (byte)((uint)*(undefined4 *)(param_1 + OFFSET_RENDER_FLAGS) >> 8) & 1;
+                
+                /* 初始化堆栈变量 */
+                fStack50 = 0.0f;
+                fStack58 = FLOAT_MAX_VALUE;
+                cStack74 = '\0';
+                fStack70 = 0.0f;
+                lStack60 = 0;
+                uStack68 = 0;
+                
+                /* 调用渲染处理函数 */
+                FUN_180593b40(lVar2, *(undefined8 *)(*(longlong *)(param_1 + OFFSET_RENDER_DATA) + 0x18), 
+                             &fStack40, param_2, *(int *)(param_1 + OFFSET_RENDER_MODE) != 1);
+                
+                /* 检查处理结果 */
+                if (cStack74 == '\x02') {
+                    uVar6 = *(uint *)(lStack60 + 0x18);
+                } else {
+                    uVar6 = 0;
+                }
+                
+                /* 处理渲染参数转换 */
+                if ((((uVar6 & BIT_MASK_6TH) != 0) && (FLOAT_ZERO_THRESHOLD < fStack58)) &&
+                    (lVar7 = lStack60, fVar12 = fStack58, 
+                     cVar5 = func_0x000180522f60(param_1), cVar5 != '\0')) {
+                    
+                    /* 获取渲染对象数据 */
+                    if (lVar7 == 0) {
+                        lVar7 = 0;
+                    } else {
+                        lVar7 = *(longlong *)(lVar7 + 0x10);
+                    }
+                    
+                    /* 检查深度值并进行坐标转换 */
+                    if (*(float *)(lVar7 + 0x88) <= 0.0 && *(float *)(lVar7 + 0x88) != 0.0) {
+                        /* 计算缩放因子 */
+                        fVar10 = *(float *)(*(longlong *)(param_1 + 0x5f0) + 0x80) * 10.0f;
+                        fVar11 = *(float *)(*(longlong *)(param_1 + 0x5f0) + 0x84) * 10.0f;
+                        fVar1 = param_2[2];
+                        
+                        /* 计算坐标偏移 */
+                        fVar14 = *param_2 - fVar10;
+                        fVar15 = param_2[1] - fVar11;
+                        fVar13 = (*param_2 + fVar10) - fVar14;
+                        fVar10 = (param_2[1] + fVar11) - fVar15;
+                        
+                        /* 计算投影参数 */
+                        fVar12 = ((fStack44 - fVar15) * fStack54 + 
+                                  (fStack40 - fVar14) * fStack50 + 
+                                  (fStack48 - fVar1) * fVar12) /
+                                 (fStack54 * fVar10 + fStack50 * fVar13 + 
+                                  (fVar1 - fVar1) * fVar12);
+                        
+                        /* 更新渲染坐标 */
+                        *param_2 = fVar12 * fVar13 + fVar14;
+                        param_2[1] = fVar12 * fVar10 + fVar15;
+                        param_2[2] = (fVar1 - fVar1) * fVar12 + fVar1;
+                        param_2[3] = FLOAT_MAX_VALUE;
+                        
+                        /* 跳转到状态更新部分 */
+                        goto FUN_18051f4c1;
+                    }
+                }
+                
+                /* 处理深度裁剪 */
+                fVar12 = param_2[2];
+                if ((fVar12 <= fStack70) ||
+                    (((*(byte *)(lVar2 + 0x40) & BIT_MASK_1ST) != 0 &&
+                      ((cVar5 = func_0x000180522f60(param_1), cVar5 != '\0' ||
+                       (fVar12 - fStack70 < FLOAT_EPSILON)))))) {
+                    param_2[2] = fStack70;
+                }
+            }
+        }
     }
-    else {
-      uVar8 = *(ulonglong *)(*(longlong *)(lVar7 + 0x2460) + 0x1d0);
-    }
-    if (((*(ulonglong *)(lVar7 + 0x2470) | uVar8) >> 9 & 1) == 0) {
-      if (*(longlong *)(lVar7 + 0x24a8) == 0) {
-        uVar8 = 0;
-      }
-      else {
-        uVar8 = *(ulonglong *)(*(longlong *)(lVar7 + 0x24a8) + 0x1d0);
-      }
-      if (((*(ulonglong *)(lVar7 + 0x24b8) | uVar8) >> 9 & 1) == 0) {
-        bStack0000000000000028 = (byte)((uint)*(undefined4 *)(param_1 + 0x56c) >> 8) & 1;
-        _fStack0000000000000050 = 0;
-        _fStack0000000000000058 = 0x7f7fffff3f800000;
-        cStack0000000000000074 = '\0';
-        fStack0000000000000070 = 0.0;
-        lStack0000000000000060 = 0;
-        uStack0000000000000068 = 0;
-        FUN_180593b40(lVar2,*(undefined8 *)(*(longlong *)(param_1 + 0x8d8) + 0x18),&stack0x00000040,
-                      param_2,*(int *)(param_1 + 0x568) != 1);
-        if (cStack0000000000000074 == '\x02') {
-          uVar6 = *(uint *)(lStack0000000000000060 + 0x18);
-        }
-        else {
-          uVar6 = 0;
-        }
-        if ((((uVar6 & 0x40) != 0) && (0.2 < fStack0000000000000058)) &&
-           (lVar7 = lStack0000000000000060, fVar12 = fStack0000000000000058,
-           cVar5 = func_0x000180522f60(param_1), cVar5 != '\0')) {
-          if (lVar7 == 0) {
-            lVar7 = 0;
-          }
-          else {
-            lVar7 = *(longlong *)(lVar7 + 0x10);
-          }
-          if (*(float *)(lVar7 + 0x88) <= 0.0 && *(float *)(lVar7 + 0x88) != 0.0) {
-            fVar10 = *(float *)(*(longlong *)(param_1 + 0x5f0) + 0x80) * 10.0;
-            fVar11 = *(float *)(*(longlong *)(param_1 + 0x5f0) + 0x84) * 10.0;
-            fVar1 = param_2[2];
-            fVar14 = *param_2 - fVar10;
-            fVar15 = param_2[1] - fVar11;
-            fVar13 = (*param_2 + fVar10) - fVar14;
-            fVar10 = (param_2[1] + fVar11) - fVar15;
-            fVar12 = ((fStack0000000000000044 - fVar15) * fStack0000000000000054 +
-                      (fStack0000000000000040 - fVar14) * fStack0000000000000050 +
-                     (in_stack_00000048 - fVar1) * fVar12) /
-                     (fStack0000000000000054 * fVar10 + fStack0000000000000050 * fVar13 +
-                     (fVar1 - fVar1) * fVar12);
-            *param_2 = fVar12 * fVar13 + fVar14;
-            param_2[1] = fVar12 * fVar10 + fVar15;
-            param_2[2] = (fVar1 - fVar1) * fVar12 + fVar1;
-            param_2[3] = 3.4028235e+38;
-            goto FUN_18051f4c1;
-          }
-        }
-        fVar12 = param_2[2];
-        if ((fVar12 <= fStack0000000000000070) ||
-           (((*(byte *)(lVar2 + 0x40) & 1) != 0 &&
-            ((cVar5 = func_0x000180522f60(param_1), cVar5 != '\0' ||
-             (fVar12 - fStack0000000000000070 < 0.01999672)))))) {
-          param_2[2] = fStack0000000000000070;
-        }
-      }
-    }
-  }
+    
 FUN_18051f4c1:
-  fVar12 = *(float *)(lVar2 + 0x10);
-  fVar1 = *(float *)(lVar2 + 0x14);
-  fVar10 = param_2[1];
-  fVar11 = param_2[2];
-  *(float *)(param_1 + 0x988) = (*(float *)(lVar2 + 0xc) - *param_2) + *(float *)(param_1 + 0x988);
-  uVar3 = *(undefined8 *)param_2;
-  uVar4 = *(undefined8 *)(param_2 + 2);
-  *(float *)(param_1 + 0x98c) = (fVar12 - fVar10) + *(float *)(param_1 + 0x98c);
-  *(float *)(param_1 + 0x990) = (fVar1 - fVar11) + *(float *)(param_1 + 0x990);
-  *(undefined8 *)(lVar2 + 0xc) = uVar3;
-  *(undefined8 *)(lVar2 + 0x14) = uVar4;
-  if (-1 < *(int *)(param_1 + 0x560)) {
-    lVar2 = *(longlong *)(param_1 + 0x8d8);
-    lVar9 = (longlong)*(int *)(param_1 + 0x560) * 0xa60;
-    lVar7 = *(longlong *)(lVar9 + 0x30c0 + lVar2);
-    *(undefined8 *)(lVar7 + 0xc) = uVar3;
-    *(undefined8 *)(lVar7 + 0x14) = uVar4;
-    *(undefined8 *)(lVar9 + 0x3a28 + lVar2) = 0;
-    *(undefined8 *)(lVar9 + 0x3a30 + lVar2) = 0;
-    *(undefined4 *)(lVar9 + 0x3a38 + lVar2) = 0;
-  }
-  return;
+    /* 更新渲染状态和位置 */
+    fVar12 = *(float *)(lVar2 + 0x10);
+    fVar1 = *(float *)(lVar2 + 0x14);
+    fVar10 = param_2[1];
+    fVar11 = param_2[2];
+    
+    /* 更新渲染位置差值 */
+    *(float *)(param_1 + OFFSET_RENDER_POSITION) = 
+        (*(float *)(lVar2 + 0xc) - *param_2) + *(float *)(param_1 + OFFSET_RENDER_POSITION);
+    
+    /* 保存渲染参数 */
+    uVar3 = *(undefined8 *)param_2;
+    uVar4 = *(undefined8 *)(param_2 + 2);
+    
+    /* 更新渲染变换和缩放 */
+    *(float *)(param_1 + OFFSET_RENDER_TRANSFORM) = 
+        (fVar12 - fVar10) + *(float *)(param_1 + OFFSET_RENDER_TRANSFORM);
+    *(float *)(param_1 + OFFSET_RENDER_SCALE) = 
+        (fVar1 - fVar11) + *(float *)(param_1 + OFFSET_RENDER_SCALE);
+    
+    /* 更新渲染上下文 */
+    *(undefined8 *)(lVar2 + 0xc) = uVar3;
+    *(undefined8 *)(lVar2 + 0x14) = uVar4;
+    
+    /* 更新渲染数据 */
+    if (-1 < *(int *)(param_1 + OFFSET_RENDER_INDEX)) {
+        lVar2 = *(longlong *)(param_1 + OFFSET_RENDER_DATA);
+        lVar9 = (longlong)*(int *)(param_1 + OFFSET_RENDER_INDEX) * MEMORY_ALIGNMENT_SIZE;
+        lVar7 = *(longlong *)(lVar9 + RENDER_STATE_OFFSET + lVar2);
+        
+        /* 更新渲染数据状态 */
+        *(undefined8 *)(lVar7 + 0xc) = uVar3;
+        *(undefined8 *)(lVar7 + 0x14) = uVar4;
+        *(undefined8 *)(lVar9 + RENDER_DATA_OFFSET + lVar2) = 0;
+        *(undefined8 *)(lVar9 + RENDER_DATA_OFFSET + 8 + lVar2) = 0;
+        *(undefined4 *)(lVar9 + RENDER_DATA_OFFSET + 16 + lVar2) = 0;
+    }
+    
+    return;
 }
 
 
 
 
 
-// 函数: void FUN_18051f289(undefined8 param_1,longlong param_2,undefined4 param_3,undefined8 param_4)
-void FUN_18051f289(undefined8 param_1,longlong param_2,undefined4 param_3,undefined8 param_4)
-
+/**
+ * @brief 渲染参数处理器 - 替代参数处理函数
+ * 
+ * 该函数是第一个参数处理函数的替代版本，主要功能包括：
+ * - 使用寄存器变量进行高效的参数处理
+ * - 支持不同的参数格式和转换模式
+ * - 提供优化的坐标变换和投影计算
+ * - 处理特殊的渲染状态和标志位
+ * 
+ * @param param_1 渲染参数1，包含高位和低位浮点数据
+ * @param param_2 渲染上下文指针
+ * @param param_3 渲染模式参数
+ * @param param_4 渲染数据向量
+ * @return void 无返回值
+ * 
+ * @note 该函数使用非受影响寄存器变量，适用于特定的渲染场景
+ */
+void FUN_18051f289(undefined8 param_1, longlong param_2, undefined4 param_3, undefined8 param_4)
 {
-  longlong lVar1;
-  undefined8 uVar2;
-  undefined8 uVar3;
-  char cVar4;
-  uint uVar5;
-  longlong lVar6;
-  undefined1 in_CL;
-  longlong lVar7;
-  longlong unaff_RBX;
-  longlong unaff_RSI;
-  float *unaff_RDI;
-  float in_XMM0_Dc;
-  float fVar8;
-  float fVar9;
-  float fVar10;
-  float fVar11;
-  float fVar12;
-  float fVar13;
-  undefined1 uStack0000000000000028;
-  float fStack0000000000000040;
-  float fStack0000000000000044;
-  float in_stack_00000048;
-  float fStack0000000000000050;
-  float fStack0000000000000054;
-  float fStack0000000000000058;
-  longlong lStack0000000000000060;
-  undefined8 uStack0000000000000068;
-  float fStack0000000000000070;
-  char cStack0000000000000074;
-  
-  fStack0000000000000054 = (float)((ulonglong)param_1 >> 0x20);
-  fStack0000000000000050 = (float)param_1;
-  cStack0000000000000074 = '\0';
-  fStack0000000000000070 = 0.0;
-  lStack0000000000000060 = 0;
-  uStack0000000000000068 = 0;
-  uStack0000000000000028 = in_CL;
-  fStack0000000000000058 = in_XMM0_Dc;
-  FUN_180593b40(0,*(undefined8 *)(param_2 + 0x18),param_3,param_4,*(int *)(unaff_RBX + 0x568) != 1);
-  if (cStack0000000000000074 == '\x02') {
-    uVar5 = *(uint *)(lStack0000000000000060 + 0x18);
-  }
-  else {
-    uVar5 = 0;
-  }
-  if (((uVar5 & 0x40) != 0) && (0.2 < fStack0000000000000058)) {
-    lVar6 = lStack0000000000000060;
-    cVar4 = func_0x000180522f60();
-    if (cVar4 != '\0') {
-      if (lVar6 == 0) {
-        lVar6 = 0;
-      }
-      else {
-        lVar6 = *(longlong *)(lVar6 + 0x10);
-      }
-      if (*(float *)(lVar6 + 0x88) <= 0.0 && *(float *)(lVar6 + 0x88) != 0.0) {
-        fVar8 = *(float *)(*(longlong *)(unaff_RBX + 0x5f0) + 0x80) * 10.0;
-        fVar10 = *(float *)(*(longlong *)(unaff_RBX + 0x5f0) + 0x84) * 10.0;
-        fVar9 = unaff_RDI[2];
-        fVar12 = *unaff_RDI - fVar8;
-        fVar13 = unaff_RDI[1] - fVar10;
-        fVar11 = (*unaff_RDI + fVar8) - fVar12;
-        fVar10 = (unaff_RDI[1] + fVar10) - fVar13;
-        fVar8 = ((fStack0000000000000044 - fVar13) * fStack0000000000000054 +
-                 (fStack0000000000000040 - fVar12) * fStack0000000000000050 +
-                (in_stack_00000048 - fVar9) * fStack0000000000000058) /
-                (fStack0000000000000054 * fVar10 + fStack0000000000000050 * fVar11 +
-                (fVar9 - fVar9) * fStack0000000000000058);
-        *unaff_RDI = fVar8 * fVar11 + fVar12;
-        unaff_RDI[1] = fVar8 * fVar10 + fVar13;
-        unaff_RDI[2] = (fVar9 - fVar9) * fVar8 + fVar9;
-        unaff_RDI[3] = 3.4028235e+38;
-        goto LAB_18051f4b9;
-      }
+    /* 局部变量定义 */
+    longlong lVar1, lVar6, lVar7;
+    undefined8 uVar2, uVar3;
+    char cVar4;
+    uint uVar5;
+    float fVar8, fVar9, fVar10, fVar11, fVar12, fVar13;
+    undefined1 uStack28;
+    float fStack40, fStack44, fStack48, fStack50, fStack54, fStack58, fStack70;
+    longlong lStack60;
+    undefined8 uStack68;
+    char cStack74;
+    
+    /* 从参数1中提取浮点数据 */
+    fStack54 = (float)((ulonglong)param_1 >> 0x20);  // 高位部分
+    fStack50 = (float)param_1;                       // 低位部分
+    
+    /* 初始化堆栈变量 */
+    cStack74 = '\0';
+    fStack70 = 0.0f;
+    lStack60 = 0;
+    uStack68 = 0;
+    uStack28 = in_CL;                                // 控制标志
+    fStack58 = in_XMM0_Dc;                           // 浮点寄存器数据
+    
+    /* 调用渲染处理函数 */
+    FUN_180593b40(0, *(undefined8 *)(param_2 + 0x18), param_3, param_4, 
+                 *(int *)(unaff_RBX + OFFSET_RENDER_MODE) != 1);
+    
+    /* 检查处理结果状态 */
+    if (cStack74 == '\x02') {
+        uVar5 = *(uint *)(lStack60 + 0x18);
+    } else {
+        uVar5 = 0;
     }
-  }
-  fVar9 = unaff_RDI[2];
-  if (fStack0000000000000070 < fVar9) {
-    if ((*(byte *)(unaff_RSI + 0x40) & 1) == 0) goto LAB_18051f4b9;
-    cVar4 = func_0x000180522f60();
-    if ((cVar4 == '\0') && (0.01999672 <= fVar9 - fStack0000000000000070)) goto LAB_18051f4b9;
-  }
-  unaff_RDI[2] = fStack0000000000000070;
+    
+    /* 处理渲染参数转换 */
+    if (((uVar5 & BIT_MASK_6TH) != 0) && (FLOAT_ZERO_THRESHOLD < fStack58)) {
+        lVar6 = lStack60;
+        cVar4 = func_0x000180522f60();
+        
+        if (cVar4 != '\0') {
+            /* 获取渲染对象数据 */
+            if (lVar6 == 0) {
+                lVar6 = 0;
+            } else {
+                lVar6 = *(longlong *)(lVar6 + 0x10);
+            }
+            
+            /* 检查深度值并进行坐标转换 */
+            if (*(float *)(lVar6 + 0x88) <= 0.0 && *(float *)(lVar6 + 0x88) != 0.0) {
+                /* 计算缩放因子 */
+                fVar8 = *(float *)(*(longlong *)(unaff_RBX + 0x5f0) + 0x80) * 10.0f;
+                fVar10 = *(float *)(*(longlong *)(unaff_RBX + 0x5f0) + 0x84) * 10.0f;
+                fVar9 = unaff_RDI[2];
+                
+                /* 计算坐标偏移 */
+                fVar12 = *unaff_RDI - fVar8;
+                fVar13 = unaff_RDI[1] - fVar10;
+                fVar11 = (*unaff_RDI + fVar8) - fVar12;
+                fVar10 = (unaff_RDI[1] + fVar10) - fVar13;
+                
+                /* 计算投影参数 */
+                fVar8 = ((fStack44 - fVar13) * fStack54 + 
+                         (fStack40 - fVar12) * fStack50 + 
+                         (fStack48 - fVar9) * fStack58) /
+                        (fStack54 * fVar10 + fStack50 * fVar11 + 
+                         (fVar9 - fVar9) * fStack58);
+                
+                /* 更新渲染坐标 */
+                *unaff_RDI = fVar8 * fVar11 + fVar12;
+                unaff_RDI[1] = fVar8 * fVar10 + fVar13;
+                unaff_RDI[2] = (fVar9 - fVar9) * fVar8 + fVar9;
+                unaff_RDI[3] = FLOAT_MAX_VALUE;
+                
+                /* 跳转到状态更新部分 */
+                goto LAB_18051f4b9;
+            }
+        }
+    }
+    
+    /* 处理深度裁剪 */
+    fVar9 = unaff_RDI[2];
+    if (fStack70 < fVar9) {
+        /* 检查渲染状态标志 */
+        if ((*(byte *)(unaff_RSI + 0x40) & BIT_MASK_1ST) == 0) goto LAB_18051f4b9;
+        
+        cVar4 = func_0x000180522f60();
+        if ((cVar4 == '\0') && (FLOAT_EPSILON <= fVar9 - fStack70)) goto LAB_18051f4b9;
+    }
+    
+    /* 更新深度值 */
+    unaff_RDI[2] = fStack70;
+    
 LAB_18051f4b9:
-  fVar9 = *(float *)(unaff_RSI + 0x10);
-  fVar8 = *(float *)(unaff_RSI + 0x14);
-  fVar10 = unaff_RDI[1];
-  fVar11 = unaff_RDI[2];
-  *(float *)(unaff_RBX + 0x988) =
-       (*(float *)(unaff_RSI + 0xc) - *unaff_RDI) + *(float *)(unaff_RBX + 0x988);
-  uVar2 = *(undefined8 *)unaff_RDI;
-  uVar3 = *(undefined8 *)(unaff_RDI + 2);
-  *(float *)(unaff_RBX + 0x98c) = (fVar9 - fVar10) + *(float *)(unaff_RBX + 0x98c);
-  *(float *)(unaff_RBX + 0x990) = (fVar8 - fVar11) + *(float *)(unaff_RBX + 0x990);
-  *(undefined8 *)(unaff_RSI + 0xc) = uVar2;
-  *(undefined8 *)(unaff_RSI + 0x14) = uVar3;
-  if (-1 < *(int *)(unaff_RBX + 0x560)) {
-    lVar6 = *(longlong *)(unaff_RBX + 0x8d8);
-    lVar7 = (longlong)*(int *)(unaff_RBX + 0x560) * 0xa60;
-    lVar1 = *(longlong *)(lVar7 + 0x30c0 + lVar6);
-    *(undefined8 *)(lVar1 + 0xc) = uVar2;
-    *(undefined8 *)(lVar1 + 0x14) = uVar3;
-    *(undefined8 *)(lVar7 + 0x3a28 + lVar6) = 0;
-    *(undefined8 *)(lVar7 + 0x3a30 + lVar6) = 0;
-    *(undefined4 *)(lVar7 + 0x3a38 + lVar6) = 0;
-  }
-  return;
+    /* 更新渲染状态和位置 */
+    fVar9 = *(float *)(unaff_RSI + 0x10);
+    fVar8 = *(float *)(unaff_RSI + 0x14);
+    fVar10 = unaff_RDI[1];
+    fVar11 = unaff_RDI[2];
+    
+    /* 更新渲染位置差值 */
+    *(float *)(unaff_RBX + OFFSET_RENDER_POSITION) = 
+        (*(float *)(unaff_RSI + 0xc) - *unaff_RDI) + *(float *)(unaff_RBX + OFFSET_RENDER_POSITION);
+    
+    /* 保存渲染参数 */
+    uVar2 = *(undefined8 *)unaff_RDI;
+    uVar3 = *(undefined8 *)(unaff_RDI + 2);
+    
+    /* 更新渲染变换和缩放 */
+    *(float *)(unaff_RBX + OFFSET_RENDER_TRANSFORM) = 
+        (fVar9 - fVar10) + *(float *)(unaff_RBX + OFFSET_RENDER_TRANSFORM);
+    *(float *)(unaff_RBX + OFFSET_RENDER_SCALE) = 
+        (fVar8 - fVar11) + *(float *)(unaff_RBX + OFFSET_RENDER_SCALE);
+    
+    /* 更新渲染上下文 */
+    *(undefined8 *)(unaff_RSI + 0xc) = uVar2;
+    *(undefined8 *)(unaff_RSI + 0x14) = uVar3;
+    
+    /* 更新渲染数据 */
+    if (-1 < *(int *)(unaff_RBX + OFFSET_RENDER_INDEX)) {
+        lVar6 = *(longlong *)(unaff_RBX + OFFSET_RENDER_DATA);
+        lVar7 = (longlong)*(int *)(unaff_RBX + OFFSET_RENDER_INDEX) * MEMORY_ALIGNMENT_SIZE;
+        lVar1 = *(longlong *)(lVar7 + RENDER_STATE_OFFSET + lVar6);
+        
+        /* 更新渲染数据状态 */
+        *(undefined8 *)(lVar1 + 0xc) = uVar2;
+        *(undefined8 *)(lVar1 + 0x14) = uVar3;
+        *(undefined8 *)(lVar7 + RENDER_DATA_OFFSET + lVar6) = 0;
+        *(undefined8 *)(lVar7 + RENDER_DATA_OFFSET + 8 + lVar6) = 0;
+        *(undefined4 *)(lVar7 + RENDER_DATA_OFFSET + 16 + lVar6) = 0;
+    }
+    
+    return;
 }
 
 
