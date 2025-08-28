@@ -195,7 +195,7 @@ void utilities_system_function_invoker(uint64_t *param_1, longlong param_2)
 
 {
   // 调用系统函数并传递相关参数
-  utilities_system_function_invoker(*(uint64_t *)(param_2 + 0x60),    // 资源指针1
+  FUN_1808fc51c(*(uint64_t *)(param_2 + 0x60),    // 资源指针1
                 *(int32_t *)(param_2 + 0x68),    // 状态标志
                 *(uint64_t *)(param_2 + 0x70),    // 资源指针2
                 utilities_system_callback_handler,                      // 回调函数
@@ -2485,6 +2485,7 @@ void FUN_180942720(void)
 #define utilities_system_submodule_handler FUN_180046b10
 #define utilities_system_resource_processor FUN_1808fc914
 #define utilities_system_callback_handler FUN_1808fc074
+#define utilities_system_function_caller FUN_1808fc51c
 #define utilities_system_memory_handler FUN_18008d1f0
 #define utilities_system_exception_recovery FUN_18064d630
 #define utilities_system_cleanup_handler FUN_18005a050

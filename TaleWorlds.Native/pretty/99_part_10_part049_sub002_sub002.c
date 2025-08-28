@@ -5189,7 +5189,7 @@ int SystemHelper5(uint64_t param_1,int32_t param_2)
 
 
 
-int FUN_1806c6c7b(uint64_t param_1,int32_t param_2)
+int AdvancedDataProcessor(uint64_t param_1,int32_t param_2)
 
 {
   int iVar1;
