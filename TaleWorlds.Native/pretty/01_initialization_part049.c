@@ -26,7 +26,7 @@ void FUN_180077710(int64_t param_1)
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemDataCleaner();
         return;
       }
     }
@@ -119,7 +119,7 @@ uint64_t FUN_180077750(int64_t param_1,uint *param_2,float *param_3,int64_t para
   pfStackX_18 = param_3;
   lStackX_20 = param_4;
   if (*(char *)(param_1 + 0xf9) == '\0') {
-    uVar24 = FUN_18062b1e0(system_memory_pool_ptr,0xc0,8,9);
+    uVar24 = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0xc0,8,9);
     uVar24 = FUN_180084ea0(uVar24);
     *(uint64_t *)(param_1 + 0x1d8) = uVar24;
     LOCK();
@@ -184,7 +184,7 @@ LAB_180077879:
         iVar33 = *(int *)(system_main_module_state + 0x224);
         puVar26 = *(uint64_t **)(param_1 + 600);
         if (puVar26 == (uint64_t *)0x0) {
-          puVar26 = (uint64_t *)FUN_18062b1e0(system_memory_pool_ptr,0x58,8,3);
+          puVar26 = (uint64_t *)CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x58,8,3);
           *(uint64_t *)((int64_t)puVar26 + 0x2c) = 0xffffffffffffffff;
           *(int32_t *)(puVar26 + 9) = 0xffffffff;
           *puVar26 = 0;
@@ -222,7 +222,7 @@ LAB_180077879:
             do {
               iVar33 = (int)uVar34;
               if (*(int64_t *)puVar35 == 0) {
-                lVar27 = FUN_18062b420(system_memory_pool_ptr,0xc000,0x25);
+                lVar27 = CoreEngineMemoryPoolAllocator(system_memory_pool_ptr,0xc000,0x25);
                 LOCK();
                 bVar36 = *(int64_t *)(puVar30 + (int64_t)iVar33 * 2 + 2) == 0;
                 if (bVar36) {
@@ -239,7 +239,7 @@ LAB_180077879:
                 else {
                   if (lVar27 != 0) {
                     // WARNING: Subroutine does not return
-                    FUN_18064e900();
+                    CoreEngineMemoryPoolCleaner();
                   }
                   do {
                     uVar25 = uStack_130;
@@ -549,7 +549,7 @@ void FUN_18007799c(void)
   do {
     iVar40 = (int)uVar41;
     if (*(int64_t *)puVar42 == 0) {
-      lVar33 = FUN_18062b420(system_memory_pool_ptr,0xc000,0x25);
+      lVar33 = CoreEngineMemoryPoolAllocator(system_memory_pool_ptr,0xc000,0x25);
       LOCK();
       bVar43 = *(int64_t *)(puVar36 + (int64_t)iVar40 * 2 + 2) == 0;
       if (bVar43) {
@@ -566,7 +566,7 @@ void FUN_18007799c(void)
       else {
         if (lVar33 != 0) {
                     // WARNING: Subroutine does not return
-          FUN_18064e900();
+          CoreEngineMemoryPoolCleaner();
         }
         do {
           uVar32 = in_stack_00000038;

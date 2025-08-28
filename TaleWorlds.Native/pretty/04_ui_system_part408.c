@@ -671,7 +671,7 @@ void ui_control_creator(int64_t control_handle, int64_t creation_context)
     }
     
     // 清理和安全检查
-    FUN_1808fc050(security_cookie ^ (uint64_t)stack_data);
+    SystemSecurityChecker(security_cookie ^ (uint64_t)stack_data);
 }
 
 /**
@@ -701,7 +701,7 @@ void ui_control_initializer(int64_t* control_pointer, int64_t init_context)
     pointer_check = (int64_t*)(memory_block + 0x58);
     if (((int64_t*)*pointer_check == pointer_check) && (*(int64_t**)(memory_block + 0x60) == pointer_check)) {
         // 初始化成功，调用完成处理函数（不返回）
-        FUN_1808fc050(stack_security ^ (uint64_t)&stack0x00000000);
+        SystemSecurityChecker(stack_security ^ (uint64_t)&stack0x00000000);
     }
     
     // 初始化失败，调用错误处理函数（不返回）
@@ -720,7 +720,7 @@ void ui_system_cleaner(void)
     uint64_t stack_security;
     
     // 调用系统清理函数（不返回）
-    FUN_1808fc050(stack_security ^ (uint64_t)&stack0x00000000);
+    SystemSecurityChecker(stack_security ^ (uint64_t)&stack0x00000000);
 }
 
 /**
@@ -1813,7 +1813,7 @@ void ui_system_memory_allocator(int64_t control_handle, uint64_t allocation_size
     }
     
     // 清理和安全检查
-    FUN_1808fc050(security_cookie ^ (uint64_t)temp_data);
+    SystemSecurityChecker(security_cookie ^ (uint64_t)temp_data);
 }
 
 /*==========================================

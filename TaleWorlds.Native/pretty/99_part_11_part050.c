@@ -23,7 +23,7 @@ uint64_t FUN_1807aecd0(uint64_t param_1,uint64_t param_2,uint64_t *param_3,int64
   uint64_t uVar1;
   uint auStackX_18 [4];
   
-  FUN_180769ed0(*(uint64_t *)(param_4 + 0x170),param_2,1,(int)*param_3,auStackX_18);
+  SystemDataAnalyzer(*(uint64_t *)(param_4 + 0x170),param_2,1,(int)*param_3,auStackX_18);
   uVar1 = 0;
   *param_3 = (uint64_t)auStackX_18[0];
   if ((uint64_t)auStackX_18[0] == 0) {
@@ -255,7 +255,7 @@ uint64_t FUN_1807aeed0(int64_t param_1)
   }
   if (*(int64_t *)(param_1 + 0x1c0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*(int64_t *)(param_1 + 0x1c0),
+    SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*(int64_t *)(param_1 + 0x1c0),
                   &unknown_var_9808_ptr,0x1a7,1);
   }
   *(int32_t *)(param_1 + 0x1c8) = 0;
@@ -292,7 +292,7 @@ uint64_t FUN_1807aeff0(int64_t param_1,char param_2)
   iVar5 = 1;
   *(int32_t *)(param_1 + 0x18) = 0;
   *(uint64_t *)(param_1 + 8) = 0;
-  uVar3 = FUN_180769ed0(*(uint64_t *)(param_1 + 0x170),&cStackX_8,1,4,aiStackX_20);
+  uVar3 = SystemDataAnalyzer(*(uint64_t *)(param_1 + 0x170),&cStackX_8,1,4,aiStackX_20);
   if ((int)uVar3 == 0) {
     if (aiStackX_20[0] == 4) {
       if ((((cStackX_8 != 'f') || (cStackX_9 != 'L')) || (cStackX_a != 'a')) || (cStackX_b != 'C'))
@@ -685,7 +685,7 @@ uint64_t FUN_1807af540(int64_t param_1)
   uVar10 = 0;
   if (*(int64_t *)(param_1 + 0x180) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*(int64_t *)(param_1 + 0x180),
+    SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*(int64_t *)(param_1 + 0x180),
                   &unknown_var_9968_ptr,0x2fe,1);
   }
   plVar2 = *(int64_t **)(param_1 + 0x178);
@@ -741,22 +741,22 @@ uint64_t FUN_1807af540(int64_t param_1)
       }
       if (*(int64_t *)(lVar8 + 0x38) != 0) {
                     // WARNING: Subroutine does not return
-        FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*(int64_t *)(lVar8 + 0x38),
+        SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*(int64_t *)(lVar8 + 0x38),
                       &unknown_var_9968_ptr,0x313,1);
       }
       if (*(int64_t *)(lVar8 + 0x40) != 0) {
                     // WARNING: Subroutine does not return
-        FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*(int64_t *)(lVar8 + 0x40),
+        SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*(int64_t *)(lVar8 + 0x40),
                       &unknown_var_9968_ptr,0x314,1);
       }
       if (*(int64_t *)(lVar8 + 0x48) != 0) {
                     // WARNING: Subroutine does not return
-        FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*(int64_t *)(lVar8 + 0x48),
+        SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*(int64_t *)(lVar8 + 0x48),
                       &unknown_var_9968_ptr,0x315,1);
       }
       if (lVar8 != 0) {
                     // WARNING: Subroutine does not return
-        FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),lVar8,&unknown_var_9968_ptr,0x316,1);
+        SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),lVar8,&unknown_var_9968_ptr,0x316,1);
       }
     }
     else if ((bVar13) && (lVar8 != 0)) {
@@ -818,7 +818,7 @@ void FUN_1807af7e0(uint64_t *param_1,uint *param_2,int *param_3,int32_t *param_4
     *param_5 = *(int32_t *)((int64_t)&uStack_58 + (uint64_t)((uint)(uVar1 >> 1) & 0xf) * 4);
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_18 ^ (uint64_t)&uStack_58);
+  SystemSecurityChecker(uStack_18 ^ (uint64_t)&uStack_58);
 }
 
 
@@ -967,7 +967,7 @@ void FUN_1807afa40(int64_t param_1,int param_2,int64_t *param_3,int *param_4)
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_30 ^ (uint64_t)auStack_b8);
+  SystemSecurityChecker(uStack_30 ^ (uint64_t)auStack_b8);
 }
 
 

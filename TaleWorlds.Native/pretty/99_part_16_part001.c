@@ -64,7 +64,7 @@ typedef void (*CallbackFunction)(int64_t, uint64_t, uint64_t, uint64_t, uint64_t
 #define system_state_synchronizer FUN_1808fc7d0
 
 // 回调错误处理器
-#define callback_error_handler FUN_18064e900
+#define callback_error_handler CoreEngineMemoryPoolCleaner
 
 /*
  * 全局变量声明

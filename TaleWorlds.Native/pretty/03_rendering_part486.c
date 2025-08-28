@@ -696,7 +696,7 @@ LAB_180528445:
     param_2[2] = (*(float *)(param_1 + 0x8c0) - *(float *)(param_1 + 0x8c8)) * fVar38 + param_2[2];
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_f8 ^ (uint64_t)auStack_3b8);
+  SystemSecurityChecker(uStack_f8 ^ (uint64_t)auStack_3b8);
 }
 
 
