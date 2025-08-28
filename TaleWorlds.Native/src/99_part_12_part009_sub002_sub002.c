@@ -1939,36 +1939,52 @@ undefined8 SystemConfigurationProcessor(longlong system_context, longlong config
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_1807ce620(longlong param_1,char param_2)
+/**
+ * 系统错误处理器 - 负责处理系统运行中的各种错误和异常情况
+ * 这个函数处理多种错误类型并提供相应的恢复机制
+ * 
+ * @param param_1 系统上下文指针
+ * @param param_2 错误处理标志，决定处理方式
+ * @return 处理状态码，0表示成功
+ * 
+ * 功能说明：
+ * - 初始化错误处理系统
+ * - 检查和处理各种错误条件
+ * - 管理错误恢复流程
+ * - 更新系统状态和配置
+ * - 处理音频相关的错误
+ */
+undefined8 SystemErrorHandler(longlong system_context, char error_flag)
 
 {
-  longlong *plVar1;
-  undefined4 uVar2;
-  undefined4 uVar3;
-  longlong lVar4;
-  uint uVar5;
-  bool bVar6;
-  bool bVar7;
-  undefined *puVar8;
-  byte bVar9;
-  byte bVar10;
-  int iVar11;
-  ushort *puVar12;
-  int iVar13;
-  char *pcVar14;
-  uint uVar15;
-  byte bVar17;
-  int iVar18;
-  ulonglong uVar19;
-  int iVar20;
-  byte bVar21;
-  char *pcVar22;
-  int iStackX_18;
-  longlong lStack_70;
-  longlong lStack_68;
-  undefined *puStack_60;
-  longlong lStack_58;
-  ulonglong uVar16;
+  /* 错误处理相关的变量 */
+  longlong *error_processor;
+  undefined4 saved_state1;
+  undefined4 saved_state2;
+  longlong error_context;
+  uint process_count;
+  bool error_detected;
+  bool recovery_needed;
+  undefined *recovery_data;
+  byte error_code;
+  byte error_type;
+  int error_index;
+  ushort *error_table;
+  int recovery_param;
+  char *error_message;
+  uint temp_value;
+  byte sub_error_code;
+  int total_errors;
+  ulonglong error_address;
+  int context_param;
+  byte severity_level;
+  char *system_data;
+  int iteration_index;
+  longlong resource_addr;
+  longlong context_data;
+  undefined *resource_handle;
+  longlong loop_counter;
+  ulonglong temp_ulong;
   
   bVar7 = false;
   iVar18 = *(int *)(param_1 + 0x3c8);
