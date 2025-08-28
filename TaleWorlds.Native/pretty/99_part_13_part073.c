@@ -863,8 +863,8 @@ void ResourceSystemInitialize(void)
 
 
 
-// 函数: void FUN_1808da8ec(void)
-void FUN_1808da8ec(void)
+// 函数: void ResourceEmptyFunction(void)
+void ResourceEmptyFunction(void)
 
 {
   return;
@@ -877,8 +877,8 @@ void FUN_1808da8ec(void)
 
 
 
-// 函数: void FUN_1808da910(uint64_t *param_1,longlong *param_2)
-void FUN_1808da910(uint64_t *param_1,longlong *param_2)
+// 函数: void ResourceConfigurationSet(uint64_t *config_ptr, longlong *resource_ptr)
+void ResourceConfigurationSet(uint64_t *config_ptr, longlong *resource_ptr)
 
 {
   longlong lVar1;

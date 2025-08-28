@@ -857,7 +857,7 @@ void RenderingSystem_ConnectionProcessor(RenderContextHandle param_1,
                 }
                 
                 *(uint*)(search_index + RENDER_OFFSET_GEOMETRY_DATA) = middle_handle;
-                optimization_result = FUN_18038ee20(optimization_result, new_connection_handle, 0xffffffff);
+                optimization_result = RenderingSystem_ConnectionOptimizer(optimization_result, new_connection_handle, 0xffffffff);
                 optimization_result = FUN_18038ee20(optimization_result, optimization_result, 0xffffffff);
                 optimization_result = FUN_18038ee20(optimization_result, target_handle, 0xffffffff);
                 optimization_result = FUN_18038ee20(optimization_result, search_index, 0xffffffff);
