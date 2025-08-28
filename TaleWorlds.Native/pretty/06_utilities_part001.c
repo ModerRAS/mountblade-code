@@ -127,32 +127,32 @@ uint8_t DAT_180bf65a0;  // 随机数生成器
 uint8_t DAT_180bf65a8;  // 统计计算器
 
 
-// 函数: uint8_t FUN_180941840;
-uint8_t FUN_180941840;
-uint8_t UNK_180a004f8;
-uint8_t DAT_180bf65c0;
-uint8_t DAT_180bf65c8;
-uint8_t DAT_180bf65d0;
-uint8_t DAT_180bf65d8;
+// 图形渲染管理器
+uint8_t FUN_180941840;  // 渲染管理主函数
+uint8_t UNK_180a004f8;  // 渲染管线
+uint8_t DAT_180bf65c0;  // 着色器管理器
+uint8_t DAT_180bf65c8;  // 纹理管理器
+uint8_t DAT_180bf65d0;  // 缓冲区管理器
+uint8_t DAT_180bf65d8;  // 渲染状态管理器
 
 
-// 函数: uint8_t FUN_180941860;
-uint8_t FUN_180941860;
-uint8_t UNK_180a00508;
-uint8_t DAT_180bf65f0;
-uint8_t DAT_180bf65f8;
-uint8_t DAT_180bf6600;
-uint8_t DAT_180bf6608;
+// 音频管理器
+uint8_t FUN_180941860;  // 音频管理主函数
+uint8_t UNK_180a00508;  // 音频引擎
+uint8_t DAT_180bf65f0;  // 音效管理器
+uint8_t DAT_180bf65f8;  // 音乐播放器
+uint8_t DAT_180bf6600;  // 音频缓冲区
+uint8_t DAT_180bf6608;  // 音频流管理器
 
 
-// 函数: uint8_t FUN_180941880;
-uint8_t FUN_180941880;
-uint8_t UNK_180a00518;
-uint8_t DAT_180bf6620;
-uint8_t DAT_180bf6628;
-uint8_t DAT_180bf6630;
-uint8_t DAT_180bf6638;
-uint8_t UNK_180a00528;
+// 输入管理器
+uint8_t FUN_180941880;  // 输入管理主函数
+uint8_t UNK_180a00518;  // 输入设备驱动
+uint8_t DAT_180bf6620;  // 键盘管理器
+uint8_t DAT_180bf6628;  // 鼠标管理器
+uint8_t DAT_180bf6630;  // 手柄管理器
+uint8_t DAT_180bf6638;  // 触摸屏管理器
+uint8_t UNK_180a00528;  // 输入事件队列
 
 
 // 函数: uint8_t FUN_1809418a0;
